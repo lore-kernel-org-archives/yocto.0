@@ -1,550 +1,874 @@
-Received: from APC01-PU1-obe.outbound.protection.outlook.com (APC01-PU1-obe.outbound.protection.outlook.com [40.107.132.117])
- by mx.groups.io with SMTP id smtpd.web11.14097.1586879519122619374
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+ by mx.groups.io with SMTP id smtpd.web12.14435.1586879995750467836
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Apr 2020 08:52:01 -0700
+ Tue, 14 Apr 2020 08:59:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@hcl.com header.s=selector2 header.b=jSGz1K5p;
- spf=pass (domain: hcl.com, ip: 40.107.132.117, mailfrom: ajama@hcl.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=HCL.COM; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jAfNY249ByKHe+ERav1uTj26caN1i/mrx3cxiKn0QnA=;
- b=jSGz1K5puCmXEkG1ueXlba3g1jyV/Z7R324cR+YRi0CKMe3pJ8ZVX8gQsE72DTBKtwo+LQcLAgJy/vD+SI61M3558MXdhgi5WZdHpyRfxOL/sGHsAIUzP7CTleAVgFo9qiPUVMEYLdg3JVK72ODOvnjBAYr/zauR6DmeTVqYz9U=
-Received: from HK2PR0401CA0019.apcprd04.prod.outlook.com (2603:1096:202:2::29)
- by PS1PR0401MB2172.apcprd04.prod.outlook.com (2603:1096:803:7::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2900.17; Tue, 14 Apr
- 2020 15:51:55 +0000
-Received: from HK2APC01FT047.eop-APC01.prod.protection.outlook.com
- (2603:1096:202:2:cafe::bb) by HK2PR0401CA0019.outlook.office365.com
- (2603:1096:202:2::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2900.19 via Frontend
- Transport; Tue, 14 Apr 2020 15:51:55 +0000
-Authentication-Results: spf=pass (sender IP is 192.8.245.51)
- smtp.mailfrom=hcl.com; windriver.com; dkim=pass (signature was verified)
- header.d=HCL.COM;windriver.com; dmarc=pass action=none header.from=hcl.com;
-Received-SPF: Pass (protection.outlook.com: domain of hcl.com designates
- 192.8.245.51 as permitted sender) receiver=protection.outlook.com;
- client-ip=192.8.245.51; helo=APC01-HK2-obe.outbound.protection.outlook.com;
-Received: from APC01-HK2-obe.outbound.protection.outlook.com (192.8.245.51) by
- HK2APC01FT047.mail.protection.outlook.com (10.152.249.86) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2900.15 via Frontend Transport; Tue, 14 Apr 2020 15:51:53 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TTgAg4rgQWd43nuCB8zbG6D/Zk5uYE07CSulVlJc8s4d22f35k3MhZ+gw4+/OZFTaYiVL2l/C5ggi3nj4T6i/HAWjPcX7awO2ljpsCm5wD/bhUHBfeeVhRuniGpPZpkvzjEEq2aT/bMIoFh+tLb/s4xxGsAFXSTxS3YkfZ5fbmbUzoVE+eJcOtSgA57cyau5nAJgbhnSLwCmcJjEIl55af6XyDwzzfr1RhdVlbyFuZdi8klT2NbJmy+N37vNvvD5lTiwlb1lVFjA4nmAuJktzVSDMumVumKLeIbHarACb/VhS7RAxu16MwxX7CJWOhb1WK1HSyjm4nxoxcOj+E+uPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jAfNY249ByKHe+ERav1uTj26caN1i/mrx3cxiKn0QnA=;
- b=BurMFZ9TuCPYsPfofQf/7rsluYd5MuwN5QkKi8B+ogsQQNusbHUVHGbpgTtpiCXe4IsAUV43ccVccMNZsXoEtCvw3O3HqkulHNffD4uG6rRBn5sTKwSR/UrT6ofxtHCnuqMiiI4ixekawVYeCIlwxuI7JQJ8Y/aJyG3WK6qc2N19FXufqd+NZEhAa9w1AqqG9MXv/2ZE458hXpS846jelp6b/tBojo9rz8IaLyai5OuZKv1cUymr2hD15Kq7KNiXgiX5ZLBPk8v7uvPii6Q8EI9vpp1AQfwWQ0UsauESSGhq/0I4/sR+wWkYA0CBY9KTtBaOU0uaLquPzGdC+t7QdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hcl.com; dmarc=pass action=none header.from=hcl.com; dkim=pass
- header.d=hcl.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=HCL.COM; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jAfNY249ByKHe+ERav1uTj26caN1i/mrx3cxiKn0QnA=;
- b=jSGz1K5puCmXEkG1ueXlba3g1jyV/Z7R324cR+YRi0CKMe3pJ8ZVX8gQsE72DTBKtwo+LQcLAgJy/vD+SI61M3558MXdhgi5WZdHpyRfxOL/sGHsAIUzP7CTleAVgFo9qiPUVMEYLdg3JVK72ODOvnjBAYr/zauR6DmeTVqYz9U=
-Received: from SG2PR04MB3335.apcprd04.prod.outlook.com (20.177.91.18) by
- SG2PR04MB2538.apcprd04.prod.outlook.com (20.177.8.17) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2900.24; Tue, 14 Apr 2020 15:51:50 +0000
-Received: from SG2PR04MB3335.apcprd04.prod.outlook.com
- ([fe80::8e9:b76c:9a24:74cd]) by SG2PR04MB3335.apcprd04.prod.outlook.com
- ([fe80::8e9:b76c:9a24:74cd%6]) with mapi id 15.20.2900.028; Tue, 14 Apr 2020
- 15:51:50 +0000
-From: "Ajam Ali" <ajama@hcl.com>
-To: Randy MacLeod <randy.macleod@windriver.com>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"gley-yocto@m.gmane-mx.org" <gley-yocto@m.gmane-mx.org>
-Subject: Re: [yocto] Image size reduction
-Thread-Topic: [yocto] Image size reduction
-Thread-Index: AQHWBeZcNGow7JB2ME2ZHxK+8kxKv6hpKkuAgAAC1++ADj50gIABb/Kv
-Date: Tue, 14 Apr 2020 15:51:50 +0000
-Message-ID: 
- <SG2PR04MB333581D25A3E2F0F9CC88A83B4DA0@SG2PR04MB3335.apcprd04.prod.outlook.com>
-References: 
- <HK0PR04MB2914D21E1391217F6E47708DB4CA0@HK0PR04MB2914.apcprd04.prod.outlook.com>
- <92687be7-1e7f-04ce-6706-9dec1c4c7798@gmail.com>
- <HK0PR04MB2914FE5FB74F913D86030FC9B4C40@HK0PR04MB2914.apcprd04.prod.outlook.com>,<259e6251-19b5-1e49-8ba9-73f6aac273bc@windriver.com>
-In-Reply-To: <259e6251-19b5-1e49-8ba9-73f6aac273bc@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Authentication-Results-Original: spf=none (sender IP is )
- smtp.mailfrom=AjamA@hcl.com; 
-x-originating-ip: [106.206.8.47]
-x-ms-publictraffictype: Email
-X-MS-Office365-Filtering-Correlation-Id: 7b3c5c56-6d42-4308-c2ba-08d7e08bc112
-x-ms-traffictypediagnostic: SG2PR04MB2538:|PS1PR0401MB2172:
-X-Microsoft-Antispam-PRVS: 
-	<PS1PR0401MB2172872B889BD068A194BE65B4DA0@PS1PR0401MB2172.apcprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2803;OLM:2803;
-x-forefront-prvs: 0373D94D15
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR04MB3335.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10019020)(4636009)(376002)(346002)(39860400002)(366004)(396003)(136003)(5660300002)(52536014)(9686003)(55016002)(45080400002)(2906002)(7696005)(8936002)(26005)(8676002)(81156014)(53546011)(6506007)(71200400001)(76116006)(91956017)(33656002)(86362001)(110136005)(66946007)(19627405001)(66446008)(64756008)(66556008)(66476007)(478600001)(316002)(966005)(186003);DIR:OUT;SFP:1102;
-received-spf: None (protection.outlook.com: hcl.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 
- 6VByLQRT5wuRmrKy1UgX/E+e4OViwxmsv2Qd6yTdkYk4Sb2LlKtxwCT2wo79XuPRvzwiCAbQb023DWbQ8b4uxjwL6f6CuVKzI/AOvPsOxuSvP50CQMn6HKDGgVMoy+Owx8yLJfvWXoRhKL6ZKrTfEmLIfhWobfm49xJa76iTTOJArLkJpJyjUaGn7SuceNt5/4BInuBhDV0sNfQGGHC/xaVXeH7GLwMIT6m5nnyhmkdPaWdWzGznWalgmHJWPiBqoe+D6m/+PLFQtjGYAX+/OtxHDzgBV6+uQPns6AOWaqUaojyIIhJVTwTeqwCcyZC4F6gwoLuceQEFshliAAirBoCm4oHA0rhxODhm1xmlucXJFzdXVZIcRzQI98IkR/nDg74BzvenLBrpOxgFuLjvkPSmUMq5tq3pZrA1AaU4iGC8Pzys4baFqerP3NU6Yh4KaLKvHLKc2pml9WOzk3KYlczWHdSDvNdX5d7abWenLdkzfhNjj3YmrR/rzwd0hTb2+nhn5TqFFMQTyOssIotmsA==
-x-ms-exchange-antispam-messagedata: 
- n+2k4PrXjo8XCKqPutlaPwirvLX10ed/q6KPmxtxT8K/VyYR3HEUP7c+Vav/+vRNoPGKFYRybXV6DYudUXO1FiBplosa5y4vR4mgeR4ei1FmmI2NtGvzdF9SjCQLuNwwDA+Y5ifDH91o9cFRBdUe6w==
-x-ms-exchange-transport-forked: True
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Jjy7FnZv;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.167.169, mailfrom: mhalstead@linuxfoundation.org)
+Received: by mail-oi1-f169.google.com with SMTP id x21so4613210oic.5
+        for <yocto@lists.yoctoproject.org>; Tue, 14 Apr 2020 08:59:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=37D16NVt0PJFx/hOfYcyHbPF0B2zud+24s73fJzks5A=;
+        b=Jjy7FnZvKfQRjmz8u0h+e6fEdAOlwMUVB+OCRv00MU5//ofDDWCjIyAJ0/gprw1S4g
+         3nx/UUlJEXugKq+qf5mdawBaYT9ts9vKya+2+rVJsY/lMePNG4V+gVXZ8SS2/YMm3igc
+         wv9+tJe8FWisHSAFtjGuBa61dqwcOCvW7ys/I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=37D16NVt0PJFx/hOfYcyHbPF0B2zud+24s73fJzks5A=;
+        b=k7iBothGFAhKRwjN+JIVK3udx25yRsP0IIAHXSZ5ztykSekB7s4bw0COlxr0GS6tK4
+         1MYSuQjsrv5zqr7tjCplQD3BdHXgGYBxH7fhZzsUyb5cg5/lIEeq0FFPGXa8xYuN42UM
+         2IcKsVb+H/mVyz0g0yVRN8Xkm0Y1tUzj/8mIcAh/EdCMkMqcCHnveFM9Kxh0EDco0ub7
+         irU1ebiGtixEa1yN6Rl0PGvQFeMti6s6P6gG4yIxH9dCjbvYubaUmAMhdmpoJd1ZWZ4C
+         zbQ5Cm+7B9Vyj+TqW90qen52StEmmEw4niVLCGavzlD1ChtxRLZCRi7notugSK520+TM
+         RCUg==
+X-Gm-Message-State: AGi0PuZcM9BWyMLE3hapRVJr4Bp5Dzmh92aJkT8by0n/BKxZcFrJCYy5
+	Bvtsg43d6Fj6MDuzPMOQUKUtTLONb2YdBARh7+hwjg==
+X-Google-Smtp-Source: APiQypKdQNxnTotOmz5grKfRlRH+j3wFXLuNRXx6rkTNXcFX14tUJ+L872s7tUY5IUUePHh3tTTzSmW+oAsWky/EtJg=
+X-Received: by 2002:a05:6808:a8e:: with SMTP id q14mr13733713oij.63.1586879994882;
+ Tue, 14 Apr 2020 08:59:54 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR04MB2538
-X-DLP: MSGProcess
-Return-Path: AjamA@hcl.com
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- HK2APC01FT047.eop-APC01.prod.protection.outlook.com
-X-Forefront-Antispam-Report: 
-	CIP:192.8.245.51;CTRY:IN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:APC01-HK2-obe.outbound.protection.outlook.com;PTR:InfoDomainNonexistent;CAT:NONE;SFTY:;SFS:(10019020)(4636009)(346002)(376002)(39860400002)(396003)(136003)(46966005)(8676002)(336012)(2906002)(186003)(19627405001)(70206006)(45080400002)(30864003)(966005)(478600001)(86362001)(81156014)(26005)(8936002)(70586007)(356005)(316002)(110136005)(7696005)(33656002)(55016002)(9686003)(6506007)(5660300002)(52536014)(36906005)(82740400003)(47076004)(81166007)(53546011);DIR:OUT;SFP:1102;
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	77f0b0f4-301e-4fca-a3c0-08d7e08bbf05
-X-Forefront-PRVS: 0373D94D15
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	GQY+uLWQfySElScChMS3I3cYTjDgDJYa4iCzSa3A5cnVWkHM20MJsEMviPqa1FDZSkdghmOYkuBWht4oy1m9dmluQr+cMNz9/W4L7YJrYnDiBokwzmpGdxyR/4OQAZYIXZrYCG9NonU8lVCrG++5b8Q+VVub6qANxO2tXJV6itfcKTLPPmd0Szhw3IHKzzNOz/mHn1HHLHi4qjI+oFNNmVdr0f2AEhePkDebem+vGNcqfQOBXJkys1W80JpHkV+xcVIu+FaZEM8+uMSVR8iiFzSziSizFT7he51XoCVGMtVcELg+yGR8N9+R91e/oLr1IFBEFXEEmL14DgP4ebaMuhjtlXdTYtuA9t1Gh+4vxhRNi5PLSVizyoySpHEjCAtQcrcDg2uyegBth7Cg3Sg/8admQ6igZATmKo0TPChVA7IdHckN9tzQu7gNNkq37yek6kC8Me/H9X3vZVK+mmFT//cZSAkyJMBX64bdJ1Ai4CIJYKfaMgrCU1poPZVkRRhw46fUd3wB299JGL+UhYb0qG7n5cOmWf5YZt10KO6RZ1MAxfz8QQB/Fy9tkfIEtD72vGoa/lBIquF4Qi4FxalXOQ==
-X-OriginatorOrg: HCL.COM
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2020 15:51:53.4577
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b3c5c56-6d42-4308-c2ba-08d7e08bc112
-X-MS-Exchange-CrossTenant-Id: 189de737-c93a-4f5a-8b68-6f4ca9941912
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=189de737-c93a-4f5a-8b68-6f4ca9941912;Ip=[192.8.245.51];Helo=[APC01-HK2-obe.outbound.protection.outlook.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PS1PR0401MB2172
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_SG2PR04MB333581D25A3E2F0F9CC88A83B4DA0SG2PR04MB3335apcp_"
+References: <VI1PR05MB428643D97A9A175005473BDEA8CD0@VI1PR05MB4286.eurprd05.prod.outlook.com>
+ <3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com> <VI1PR05MB428668BF04B6CC7F617C1FA2A8C60@VI1PR05MB4286.eurprd05.prod.outlook.com>
+ <3ae41ad3-3188-a5a1-5e2e-a3a572cc5e91@windriver.com> <VI1PR05MB42866CEC9BB5364AE0840CF2A8DD0@VI1PR05MB4286.eurprd05.prod.outlook.com>
+ <CANNYZj8QJ261cDW1LvK+1mdOAcWEKPtnjR8yavP_VYqkh787+A@mail.gmail.com>
+In-Reply-To: <CANNYZj8QJ261cDW1LvK+1mdOAcWEKPtnjR8yavP_VYqkh787+A@mail.gmail.com>
+From: "Michael Halstead" <mhalstead@linuxfoundation.org>
+Date: Tue, 14 Apr 2020 08:59:43 -0700
+Message-ID: <CADfgfoafOFaoUmQjr9s7aLjH0mZpvf17iEqB5q=08zyT-=6sEA@mail.gmail.com>
+Subject: Re: [yocto] Files get sporadically lost for native packages
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Konrad Weihmann <kweihmann@outlook.com>, Randy MacLeod <randy.macleod@windriver.com>, 
+	yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000065904a05a3424a98"
 
---_000_SG2PR04MB333581D25A3E2F0F9CC88A83B4DA0SG2PR04MB3335apcp_
-Content-Type: text/plain; charset="us-ascii"
+--00000000000065904a05a3424a98
+Content-Type: text/plain; charset="UTF-8"
+
+During a recent data center move mail permissions were not carried over
+correctly. I've sorted this now and bugzilla e-mail should start arriving
+shortly. If you don't receive e-mail as expected please make another
+attempt. If problems persist reach out to me directly for support.
+
+Thank you,
+Michael Halstead
+SysAdmin / Yocto Project
+
+On Mon, Apr 13, 2020 at 11:17 AM Alexander Kanavin <alex.kanavin@gmail.com>
+wrote:
+
+> Adding Michael (lack of confirmtation email from bugzilla).
+>
+> Alex
+>
+> On Mon, 13 Apr 2020 at 19:59, Konrad Weihmann <kweihmann@outlook.com>
+> wrote:
+>
+>> Hi Randy,
+>>
+>> I'm trying all day to create an account at bugzilla to file the issue,
+>> but somehow I don't get any confirmation mail  (although I tried several
+>> mail accounts today, and no it didn't got stuck in spam;-)) - guess
+>> that's not how it is supposed to be, right :-)? - I don't know where to
+>> address such a problem, so take this reply as FYI.
+>>
+>> Best
+>> Konrad
+>>
+>> On 03.04.20 21:28, Randy MacLeod wrote:
+>> > On 2020-04-02 4:44 a.m., Konrad Weihmann wrote:
+>> >>
+>> >> To answer your others questions... see below
+>> >>
+>> >> On 02.04.20 05:42, Randy MacLeod wrote:
+>> >>> On 2020-03-28 8:26 a.m., Konrad Weihmann wrote:
+>> >>>> Hi,
+>> >>>>
+>> >>>> I'm facing the following error message sporadically on all branches
+>> >>>> I tried so far (master, zeus, warrior and thud)
+>> >>>>
+>> >>>> The stack trace of python calls that resulted in this
+>> >>>> exception/failure was:
+>> >>>> File: 'exec_python_func() autogenerated', lineno: 2, function:
+>> <module>
+>> >>>>       0001:
+>> >>>>   *** 0002:extend_recipe_sysroot(d)
+>> >>>>       0003:
+>> >>>> File: '/build/poky/meta/classes/staging.bbclass', lineno: 551,
+>> >>>> function: extend_recipe_sysroot
+>> >>>>       0547:                    dest = newmanifest[l]
+>> >>>>       0548:                    if l.endswith("/"):
+>> >>>>       0549:                        staging_copydir(l, targetdir,
+>> >>>> dest, seendirs)
+>> >>>>       0550:                        continue
+>> >>>>   *** 0551:                    staging_copyfile(l, targetdir, dest,
+>> >>>> postinsts, seendirs)
+>> >>>>       0552:
+>> >>>>       0553:    bb.note("Installed into sysroot: %s" %
+>> str(msg_adding))
+>> >>>>       0554:    bb.note("Skipping as already exists in sysroot: %s" %
+>> >>>> str(msg_exists))
+>> >>>>       0555:
+>> >>>> File: '/build/poky/meta/classes/staging.bbclass', lineno: 152,
+>> >>>> function: staging_copyfile
+>> >>>>       0148:        os.symlink(linkto, dest)
+>> >>>>       0149:        #bb.warn(c)
+>> >>>>       0150:    else:
+>> >>>>       0151:        try:
+>> >>>>   *** 0152:            os.link(c, dest)
+>> >>>>       0153:        except OSError as err:
+>> >>>>       0154:            if err.errno == errno.EXDEV:
+>> >>>>       0155:                bb.utils.copyfile(c, dest)
+>> >>>>       0156:            else:
+>> >>>> Exception: FileNotFoundError: [Errno 2] No such file or directory:
+>> >>>>
+>> '/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc'
+>>
+>> >>>> ->
+>> >>>>
+>> '/build/poky/build/tmp/work/qemux86_64-mine-linux/core-image-minimal-mine/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc'
+>> >>>>
+>> >>>> I already had a look at the manifest
+>> >>>>
+>> >>>> cat manifest-x86_64-python3-msgcheck-native.populate_sysroot
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links.txt
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/msgcheck
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/sysroot-providers/python3-msgcheck-native
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/sysroot-providers/
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/share/
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/
+>>
+>> >>>>
+>> >>>>
+>> >>>> which states the file should be there, but when doing
+>> >>>>
+>> >>>> find
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links.txt
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/msgcheck
+>>
+>> >>>>
+>> >>>>
+>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/share
+>>
+>> >>>>
+>> >>>>
+>> >>>> the file isn't there.
+>> >>>>
+>> >>>> This happens to random python packages compiled as native (sometimes
+>> >>>> even for python-native itself), but (afaik) not for cross or target
+>> >>>> packages (I'm pretty sure because of the different packaging
+>> applied).
+>> >>>> So I digged a little into the code
+>> >>>> classes/sstate.bbclass:sstate_install, which seems to create the
+>> >>>> sysroot-component dir and the manifest.
+>> >>>> There is a gap between the manifest creation (line 285) and the
+>> >>>> hardlinking (line till 311).
+>> >>>>
+>> >>>> Now my question is there any place where a file potentially could
+>> >>>> get lost? - at first glance there shouldn't be one - I have to admit
+>> >>>> that I don't fully understand all this subprocess magic in
+>> >>>> lib/oe/path.py:copyhardlinktree.
+>> >>>> What I do to fix the issue is reopening the manifest and double
+>> >>>> check for missing files and remove them from the manifest, but this
+>> >>>> feels wrong - so any advise is welcome...
+>> >>>>
+>> >>>> Hope that someone more familiar with the topic could have a look.
+>> >>>
+>> >>> Hi Konrad,
+>> >>>
+>> >>> I'm not really familiar with that code but it's being run buy 1000s of
+>> >>> builder around the world so let's try to eliminate a few
+>> possibilities.
+>> >>>
+>> >>> When did you start having this problem?
+>> >> Since the start of the test distribution I'm working on. But also for
+>> >> plain poky builds if I forcefully inject all of the python-native
+>> >> site-packages via local.conf (DEPENDS_class-native += "..."), without
+>> >> actually using them in the recipe scope
+>> >>> How often do you think it's happening: 1 in 3 builds, 1 in 10?
+>> >> See the other mail - looks like it heavily depends on the host
+>> >>> Tell us about your machine: OS,version, disk, CPUs, ram
+>> >> See the other mail
+>> >>> Do you do anything special in your conf dir? Send local.conf perhaps.
+>> >> No custom modification (just for testing the DEPENDS-injection)
+>> >>> Do you have any local bbappends or commits on top of poky or
+>> >>> in other layers?
+>> >> No
+>> >>> Have you tried to simplify the build to eliminate problems
+>> >>> potentially caused by other layers?
+>> >> I did - see above
+>> >>> Are you able to reproduce the problem on more than one build machine?
+>> >> See the other mail
+>> >>> Are you able to reproduce the problem on a different Linux distro?
+>> >> Not really - Debian 9 was fine all other Hosts are Ubuntu based
+>> >>> Are there other builds or users on the machine that may be causing
+>> >>> extra load?
+>> >> No the hosts are just being poorly equipped - at least the ones that
+>> >> produce this issue
+>> >
+>> >
+>> > Hi Konrad,
+>> >
+>> > Thanks for the detailed and complete replies.
+>> >
+>> > I don't think I've seen this error and we do 100s of builds
+>> > per day using local many-core systems running Ubuntu-18.04
+>> > but with the builds in docker containers using a variety of
+>> > OS distributions.
+>> >
+>> > My first *wild* guess is that the problem might go away on the Azure
+>> > systems if you allocate more memory. That might be an easy
+>> > test to do so that we can confirm that it happens more frequently
+>> > when there is a memory constraint. Can you do that test?
+>> >
+>> > I've also BCCed someone who might know someone who
+>> > would be interested in fixing Azure + Yocto bugs. Let's see
+>> > if they can help. :)
+>> >
+>> > It would also be helpful if you created a defect in:
+>> >
+>> > https://bugzilla.yoctoproject.org/
+>> >
+>> > and hopefully add a patch in that defect including the -native recipes
+>> that
+>> > are required to make the problem happen.
+>> >
+>> > Thanks,
+>> >
+>> > ../Randy
+>> >
+>> >
+>> >>>
+>> >>>
+>> >>> ../Randy
+>> >>>
+>> >>>>
+>> >>>> Thanks
+>> >>>>
+>> >>>> Konrad
+>> >>>>
+>> >>>>
+>> >>>>
+>> >>>>
+>> >>>
+>> >>>
+>> >>>
+>> >>
+>> >>
+>> >
+>> >
+>> > --
+>> > # Randy MacLeod
+>> > # Wind River Linux
+>> >
+>> 
+>>
+>
+
+--00000000000065904a05a3424a98
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Randy,
-
-In my image most of the size is consumed by heavy size packages.
-So i have given this task of image size reduction to application team.
-If i will remove the dependencies then may be some feature get disabled wh=
-ich could be needed.
-Till now i am able to remove only python3 from dependencies.
-
-
-
-
-
-
-
-Thanks,
-Ajam Ali
-________________________________
-From: Randy MacLeod <randy.macleod@windriver.com>
-Sent: Monday, April 13, 2020 11:18 PM
-To: Ajam Ali <AjamA@hcl.com>; yocto@lists.yoctoproject.org <yocto@lists.yo=
-ctoproject.org>; gley-yocto@m.gmane-mx.org <gley-yocto@m.gmane-mx.org>
-Subject: Re: [yocto] Image size reduction
-
-
-[CAUTION: This Email is from outside the Organization. Do not click links =
-or open attachments unless you trust the sender.]
-
-On 2020-04-04 12:27 p.m., Ajam Ali wrote:
-Hi All,
-
-Thanks for your suggestions. I am working on your suggestions.
-I will let you know if it did not work for me.
-
-Ajam,
-
-
-It would be useful if you could reply either way.
-
-
-If there's still a problem then perhaps someone can help.
-
-
-If you are able to resolve the issue, then a brief summary
-
-of what you did could help the next person who has a similar
-
-issue.
-
-
-Thanks,
-
-../Randy
-
-
-Regards,
-Ajam Ali
-
-
-________________________________
-From: yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org> <y=
-octo@lists.yoctoproject.org><mailto:yocto@lists.yoctoproject.org> on behalf=
- of Gmane Admin via lists.yoctoproject.org <gley-yocto=3Dm.gmane-mx.org@lis=
-ts.yoctoproject.org><mailto:gley-yocto=3Dm.gmane-mx.org@lists.yoctoproject.=
-org>
-Sent: Saturday, April 4, 2020 9:36 PM
-To: yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org> <yoc=
-to@lists.yoctoproject.org><mailto:yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Image size reduction
-
-[CAUTION: This Email is from outside the Organization. Do not click links =
-or open attachments unless you trust the sender.]
-
-Op 29-03-2020 om 18:28 schreef Ajam Ali:
-> Hi All,
->
-> Actually my current image size is 3.9GB because of heavy size packages
-> required by my project and without project required packages my image
-> size in Yocto is 800MB.
-
-So your project adds 3.1GB right
-
-> I want to reduce the image size as maximum as possible.
-
-3.1GB is huge. Compare to f.i. Libreoffice (installed 0.5GB or so).
-Either your own code has a lot of fat, or you are pulling in lots of
-packages you don't really need. But is there no way to advise you
-without knowing more.
-
-> Please suggest the best possible way so that I could reduce the maximum
-> possible size(desirable below 1.5 GB).
->
->
-> Thanks in advance,
-> Ajam Ali
->
->
-> Sent from Outlook Mobile <https://apc01.safelinks.protection.outlook.com=
-/?url=3Dhttps%3A%2F%2Faka.ms%2Fblhgte&amp;data=3D02%7C01%7Cajama%40hcl.com%=
-7Cf719cb14fe674f86f02408d7d8b236b0%7C189de737c93a4f5a8b686f4ca9941912%7C0%7=
-C0%7C637216132261322392&amp;sdata=3D8in2t%2B6mXtrsRwa7GmgGQDl69uRzL7g4smj%2=
-Ba3QG9gU%3D&amp;reserved=3D0<https://apc01.safelinks.protection.outlook.com=
-/?url=3Dhttps%3A%2F%2Faka.ms%2Fblhgte&data=3D02%7C01%7Cajama%40hcl.com%7C12=
-8e3933213f473fc34a08d7dfd2da33%7C189de737c93a4f5a8b686f4ca9941912%7C0%7C0%7=
-C637223969041569087&sdata=3DgY%2FoAEw1u9iOH8l9146xlNknKSslGAhehsRsWa83%2F10=
-%3D&reserved=3D0>>
-> ::DISCLAIMER::
-> ------------------------------------------------------------------------
-> The contents of this e-mail and any attachment(s) are confidential and
-> intended for the named recipient(s) only. E-mail transmission is not
-> guaranteed to be secure or error-free as information could be
-> intercepted, corrupted, lost, destroyed, arrive late or incomplete, or
-> may contain viruses in transmission. The e mail and its contents (with
-> or without referred errors) shall therefore not attach any liability on
-> the originator or HCL or its affiliates. Views or opinions, if any,
-> presented in this email are solely those of the author and may not
-> necessarily reflect the views or opinions of HCL or its affiliates. Any
-> form of reproduction, dissemination, copying, disclosure, modification,
-> distribution and / or publication of this message without the prior
-> written consent of authorized representative of HCL is strictly
-> prohibited. If you have received this email in error please delete it
-> and notify the sender immediately. Before opening any email and/or
-> attachments, please check them for viruses and other defects.
-> ------------------------------------------------------------------------
->
->
->
-
-
-
-
-
-
-
-
-
---
-# Randy MacLeod
-# Wind River Linux
-
---_000_SG2PR04MB333581D25A3E2F0F9CC88A83B4DA0SG2PR04MB3335apcp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii=
-">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-b=
-ottom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Hi Randy,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<div dir=3D"ltr">During a recent data center move mail permissions were not=
+ carried over correctly. I&#39;ve sorted this now and bugzilla e-mail shoul=
+d start arriving shortly. If you don&#39;t receive e-mail=C2=A0as expected =
+please make another attempt. If problems persist reach out to me directly f=
+or support.<div><br></div><div>Thank you,</div><div>Michael Halstead</div><=
+div>SysAdmin / Yocto Project</div></div><br><div class=3D"gmail_quote"><div=
+ dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 13, 2020 at 11:17 AM Alexande=
+r Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gmail.=
+com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div dir=3D"ltr"><div>Adding Michael (lack of confirmtation email from b=
+ugzilla).</div><div><br></div><div>Alex<br></div></div><br><div class=3D"gm=
+ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, 13 Apr 2020 at 19:=
+59, Konrad Weihmann &lt;<a href=3D"mailto:kweihmann@outlook.com" target=3D"=
+_blank">kweihmann@outlook.com</a>&gt; wrote:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex">Hi Randy,<br>
 <br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-In my image most of the size is consumed by heavy size packages.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-So i have given this task of image size reduction to application team.</di=
-v>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-If i will remove the dependencies then may be some feature get disabled wh=
-ich could be needed.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Till now i am able to remove only python3 from dependencies.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<br>
-</div>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(12, 100, 192);">
-<br>
-</div>
-<div id=3D"Signature">
-<div></div>
-<div></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0);">
-Thanks,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0);">
-Ajam Ali<br>
-</div>
-</div>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" s=
-tyle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Randy MacLeod &lt;ra=
-ndy.macleod@windriver.com&gt;<br>
-<b>Sent:</b> Monday, April 13, 2020 11:18 PM<br>
-<b>To:</b> Ajam Ali &lt;AjamA@hcl.com&gt;; yocto@lists.yoctoproject.org &l=
-t;yocto@lists.yoctoproject.org&gt;; gley-yocto@m.gmane-mx.org &lt;gley-yoct=
-o@m.gmane-mx.org&gt;<br>
-<b>Subject:</b> Re: [yocto] Image size reduction</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<p></p>
-<p class=3D"x_MsoNormal" style=3D"line-height:12.0pt; background:#FFEB9C">=
-<b><span style=3D"font-size:10.0pt; color:#9C6501"></span></b><span style=
-=3D"font-size:10.0pt; color:red">[CAUTION: This Email is from outside the =
-Organization. Do not click links or open attachments
- unless you trust the sender.]</span></p>
-<div>
-<div class=3D"x_moz-cite-prefix">On 2020-04-04 12:27 p.m., Ajam Ali wrote:=
-<br>
-</div>
-<blockquote type=3D"cite"><style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-Hi All,<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-Thanks for your suggestions. I am working on your suggestions.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-I will let you know if it did not work for me.<br>
-</div>
-</blockquote>
-<p>Ajam,</p>
-<p><br>
-</p>
-<p>It would be useful if you could reply either way.</p>
-<p><br>
-</p>
-<p>If there's still a problem then perhaps someone can help.</p>
-<p><br>
-</p>
-<p>If you are able to resolve the issue, then a brief summary</p>
-<p>of what you did could help the next person who has a similar</p>
-<p>issue.</p>
-<p><br>
-</p>
-<p>Thanks,</p>
-<p>../Randy<br>
-</p>
-<blockquote type=3D"cite">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-Regards,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-Ajam Ali<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-<br>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif"=
- color=3D"#000000" style=3D"font-size:11pt"><b>From:</b>
-<a class=3D"x_moz-txt-link-abbreviated" href=3D"mailto:yocto@lists.yoctopr=
-oject.org">
-yocto@lists.yoctoproject.org</a> <a class=3D"x_moz-txt-link-rfc2396E" href=
-=
-=3D"mailto:yocto@lists.yoctoproject.org">
-&lt;yocto@lists.yoctoproject.org&gt;</a> on behalf of Gmane Admin via list=
-s.yoctoproject.org
-<a class=3D"x_moz-txt-link-rfc2396E" href=3D"mailto:gley-yocto=3Dm.gmane-m=
-x.org@lists.yoctoproject.org">
-&lt;gley-yocto=3Dm.gmane-mx.org@lists.yoctoproject.org&gt;</a><br>
-<b>Sent:</b> Saturday, April 4, 2020 9:36 PM<br>
-<b>To:</b> <a class=3D"x_moz-txt-link-abbreviated" href=3D"mailto:yocto@li=
-sts.yoctoproject.org">
-yocto@lists.yoctoproject.org</a> <a class=3D"x_moz-txt-link-rfc2396E" href=
-=
-=3D"mailto:yocto@lists.yoctoproject.org">
-&lt;yocto@lists.yoctoproject.org&gt;</a><br>
-<b>Subject:</b> Re: [yocto] Image size reduction</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"x_BodyFragment"><font size=3D"2"><span style=3D"font-size:11=
-pt">
-<div class=3D"x_PlainText">[CAUTION: This Email is from outside the Organi=
-zation. Do not click links or open attachments unless you trust the sender.=
-]<br>
-<br>
-Op 29-03-2020 om 18:28 schreef Ajam Ali:<br>
-&gt; Hi All,<br>
-&gt;<br>
-&gt; Actually my current image size is 3.9GB because of heavy size package=
-s<br>
-&gt; required by my project and without project required packages my image=
-<br>
-&gt; size in Yocto is 800MB.<br>
-<br>
-So your project adds 3.1GB right<br>
-<br>
-&gt; I want to reduce the image size as maximum as possible.<br>
-<br>
-3.1GB is huge. Compare to f.i. Libreoffice (installed 0.5GB or so).<br>
-Either your own code has a lot of fat, or you are pulling in lots of<br>
-packages you don't really need. But is there no way to advise you<br>
-without knowing more.<br>
-<br>
-&gt; Please suggest the best possible way so that I could reduce the maxim=
-um<br>
-&gt; possible size(desirable below 1.5 GB).<br>
-&gt;<br>
-&gt;<br>
-&gt; Thanks in advance,<br>
-&gt; Ajam Ali<br>
-&gt;<br>
-&gt;<br>
-&gt; Sent from Outlook Mobile &lt;<a href=3D"https://apc01.safelinks.prote=
-ction.outlook.com/?url=3Dhttps%3A%2F%2Faka.ms%2Fblhgte&amp;data=3D02%7C01%7=
-Cajama%40hcl.com%7C128e3933213f473fc34a08d7dfd2da33%7C189de737c93a4f5a8b686=
-f4ca9941912%7C0%7C0%7C637223969041569087&amp;sdata=3DgY%2FoAEw1u9iOH8l9146x=
-lNknKSslGAhehsRsWa83%2F10%3D&amp;reserved=3D0" originalsrc=3D"https://aka.m=
-s/blhgte" shash=3D"MZSgP5/gVQCqa5UAlYJbtzqHB50yAVC79CYHf3&#43;MPzL5CWPAUJjJ=
-fpsSs9SlTdDrRG32DNTPcv92fYmAnQ57ws4jjvFTSdL7C89Z8KPmxjgmweLhJCdnDbzV8NnbLit=
-IoLH4Mbi&#43;7YzivftzeykVXBa5C2IZpn1HGzJ0Peb2xbU=3D">https://apc01.safelink=
-s.protection.outlook.com/?url=3Dhttps%3A%2F%2Faka.ms%2Fblhgte&amp;amp;data=
-=3D02%7C01%7Cajama%40hcl.com%7Cf719cb14fe674f86f02408d7d8b236b0%7C189de737=
-c93a4f5a8b686f4ca9941912%7C0%7C0%7C637216132261322392&amp;amp;sdata=3D8in2t=
-%2B6mXtrsRwa7GmgGQDl69uRzL7g4smj%2Ba3QG9gU%3D&amp;amp;reserved=3D0</a>&gt;<=
-br>
-&gt; ::DISCLAIMER::<br>
-&gt; ---------------------------------------------------------------------=
----<br>
-&gt; The contents of this e-mail and any attachment(s) are confidential an=
-d<br>
-&gt; intended for the named recipient(s) only. E-mail transmission is not<=
-br>
-&gt; guaranteed to be secure or error-free as information could be<br>
-&gt; intercepted, corrupted, lost, destroyed, arrive late or incomplete, o=
-r<br>
-&gt; may contain viruses in transmission. The e mail and its contents (wit=
-h<br>
-&gt; or without referred errors) shall therefore not attach any liability =
-on<br>
-&gt; the originator or HCL or its affiliates. Views or opinions, if any,<b=
+I&#39;m trying all day to create an account at bugzilla to file the issue,=
+ <br>
+but somehow I don&#39;t get any confirmation mail=C2=A0 (although I tried =
+several <br>
+mail accounts today, and no it didn&#39;t got stuck in spam;-)) - guess <b=
 r>
-&gt; presented in this email are solely those of the author and may not<br=
+that&#39;s not how it is supposed to be, right :-)? - I don&#39;t know whe=
+re to <br>
+address such a problem, so take this reply as FYI.<br>
+<br>
+Best<br>
+Konrad<br>
+<br>
+On 03.04.20 21:28, Randy MacLeod wrote:<br>
+&gt; On 2020-04-02 4:44 a.m., Konrad Weihmann wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; To answer your others questions... see below<br>
+&gt;&gt;<br>
+&gt;&gt; On 02.04.20 05:42, Randy MacLeod wrote:<br>
+&gt;&gt;&gt; On 2020-03-28 8:26 a.m., Konrad Weihmann wrote:<br>
+&gt;&gt;&gt;&gt; Hi,<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; I&#39;m facing the following error message sporadically o=
+n all branches <br>
+&gt;&gt;&gt;&gt; I tried so far (master, zeus, warrior and thud)<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; The stack trace of python calls that resulted in this <br=
 >
-&gt; necessarily reflect the views or opinions of HCL or its affiliates. A=
-ny<br>
-&gt; form of reproduction, dissemination, copying, disclosure, modificatio=
-n,<br>
-&gt; distribution and / or publication of this message without the prior<b=
+&gt;&gt;&gt;&gt; exception/failure was:<br>
+&gt;&gt;&gt;&gt; File: &#39;exec_python_func() autogenerated&#39;, lineno:=
+ 2, function: &lt;module&gt;<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0001:<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0*** 0002:extend_recipe_sysroot(d)<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0003:<br>
+&gt;&gt;&gt;&gt; File: &#39;/build/poky/meta/classes/staging.bbclass&#39;,=
+ lineno: 551, <br>
+&gt;&gt;&gt;&gt; function: extend_recipe_sysroot<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0547:=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 dest =3D newmanifest[l]<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0548:=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 if l.endswith(&quot;/&quot;):<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0549:=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 staging_copydir(l, targetdir=
+, <br>
+&gt;&gt;&gt;&gt; dest, seendirs)<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0550:=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 continue<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0*** 0551:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 staging_copyfile(l, targetdir, dest, <br>
+&gt;&gt;&gt;&gt; postinsts, seendirs)<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0552:<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0553:=C2=A0=C2=A0=C2=A0 bb=
+.note(&quot;Installed into sysroot: %s&quot; % str(msg_adding))<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0554:=C2=A0=C2=A0=C2=A0 bb=
+.note(&quot;Skipping as already exists in sysroot: %s&quot; % <br>
+&gt;&gt;&gt;&gt; str(msg_exists))<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0555:<br>
+&gt;&gt;&gt;&gt; File: &#39;/build/poky/meta/classes/staging.bbclass&#39;,=
+ lineno: 152, <br>
+&gt;&gt;&gt;&gt; function: staging_copyfile<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0148:=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0 os.symlink(linkto, dest)<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0149:=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0 #bb.warn(c)<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0150:=C2=A0=C2=A0=C2=A0 el=
+se:<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0151:=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0 try:<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0*** 0152:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 os.link(c, dest)<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0153:=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0 except OSError as err:<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0154:=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if err.errno =3D=3D errno.EX=
+DEV:<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0155:=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bb.u=
+tils.copyfile(c, dest)<br>
+&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0156:=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else:<br>
+&gt;&gt;&gt;&gt; Exception: FileNotFoundError: [Errno 2] No such file or d=
+irectory: <br>
+&gt;&gt;&gt;&gt; &#39;/build/poky/build/tmp/sysroots-components/x86_64/pyt=
+hon3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/_=
+_init__.cpython-37.pyc&#39; <br>
+&gt;&gt;&gt;&gt; -&gt; <br>
+&gt;&gt;&gt;&gt; &#39;/build/poky/build/tmp/work/qemux86_64-mine-linux/cor=
+e-image-minimal-mine/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-pa=
+ckages/msgcheck/__pycache__/__init__.cpython-37.pyc&#39;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; I already had a look at the manifest<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; cat manifest-x86_64-python3-msgcheck-native.populate_sysr=
+oot<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init=
+__.cpython-37.pyc <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpy=
+thon-37.pyc <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgche=
+ck.cpython-37.pyc <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+/dependency_links.txt <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+/requires.txt <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+/top_level.txt <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+/SOURCES.txt <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+/PKG-INFO <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+/entry_points.txt <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/bin/msgcheck <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/sysroot-providers/python3-msgcheck-native <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+/ <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/ <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/ <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/ <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/ <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/sysroot-providers/ <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/share/ <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/bin/ <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/ <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/ <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; which states the file should be there, but when doing<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; find <br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/ <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7 <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__ <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpy=
+thon-37.pyc <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgche=
+ck.cpython-37.pyc <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+ <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+/dependency_links.txt <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+/requires.txt <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+/top_level.txt <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+/SOURCES.txt <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+/PKG-INFO <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
+/entry_points.txt <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/bin <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/bin/msgcheck <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
+msgcheck-native/usr/share <br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; the file isn&#39;t there.<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; This happens to random python packages compiled as native=
+ (sometimes <br>
+&gt;&gt;&gt;&gt; even for python-native itself), but (afaik) not for cross=
+ or target <br>
+&gt;&gt;&gt;&gt; packages (I&#39;m pretty sure because of the different pa=
+ckaging applied).<br>
+&gt;&gt;&gt;&gt; So I digged a little into the code <br>
+&gt;&gt;&gt;&gt; classes/sstate.bbclass:sstate_install, which seems to cre=
+ate the <br>
+&gt;&gt;&gt;&gt; sysroot-component dir and the manifest.<br>
+&gt;&gt;&gt;&gt; There is a gap between the manifest creation (line 285) a=
+nd the <br>
+&gt;&gt;&gt;&gt; hardlinking (line till 311).<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; Now my question is there any place where a file potential=
+ly could <br>
+&gt;&gt;&gt;&gt; get lost? - at first glance there shouldn&#39;t be one - =
+I have to admit <br>
+&gt;&gt;&gt;&gt; that I don&#39;t fully understand all this subprocess mag=
+ic in <br>
+&gt;&gt;&gt;&gt; lib/oe/path.py:copyhardlinktree.<br>
+&gt;&gt;&gt;&gt; What I do to fix the issue is reopening the manifest and =
+double <br>
+&gt;&gt;&gt;&gt; check for missing files and remove them from the manifest=
+, but this<br>
+&gt;&gt;&gt;&gt; feels wrong - so any advise is welcome...<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; Hope that someone more familiar with the topic could have=
+ a look.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Hi Konrad,<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; I&#39;m not really familiar with that code but it&#39;s being=
+ run buy 1000s of<br>
+&gt;&gt;&gt; builder around the world so let&#39;s try to eliminate a few =
+possibilities.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; When did you start having this problem?<br>
+&gt;&gt; Since the start of the test distribution I&#39;m working on. But =
+also for <br>
+&gt;&gt; plain poky builds if I forcefully inject all of the python-native=
+ <br>
+&gt;&gt; site-packages via local.conf (DEPENDS_class-native +=3D &quot;...=
+&quot;), without <br>
+&gt;&gt; actually using them in the recipe scope<br>
+&gt;&gt;&gt; How often do you think it&#39;s happening: 1 in 3 builds, 1 i=
+n 10?<br>
+&gt;&gt; See the other mail - looks like it heavily depends on the host<br=
+>
+&gt;&gt;&gt; Tell us about your machine: OS,version, disk, CPUs, ram<br>
+&gt;&gt; See the other mail<br>
+&gt;&gt;&gt; Do you do anything special in your conf dir? Send local.conf =
+perhaps.<br>
+&gt;&gt; No custom modification (just for testing the DEPENDS-injection)<b=
 r>
-&gt; written consent of authorized representative of HCL is strictly<br>
-&gt; prohibited. If you have received this email in error please delete it=
-<br>
-&gt; and notify the sender immediately. Before opening any email and/or<br=
+&gt;&gt;&gt; Do you have any local bbappends or commits on top of poky or<=
+br>
+&gt;&gt;&gt; in other layers?<br>
+&gt;&gt; No<br>
+&gt;&gt;&gt; Have you tried to simplify the build to eliminate problems<br=
 >
-&gt; attachments, please check them for viruses and other defects.<br>
-&gt; ---------------------------------------------------------------------=
----<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
+&gt;&gt;&gt; potentially caused by other layers?<br>
+&gt;&gt; I did - see above<br>
+&gt;&gt;&gt; Are you able to reproduce the problem on more than one build =
+machine?<br>
+&gt;&gt; See the other mail<br>
+&gt;&gt;&gt; Are you able to reproduce the problem on a different Linux di=
+stro?<br>
+&gt;&gt; Not really - Debian 9 was fine all other Hosts are Ubuntu based<b=
+r>
+&gt;&gt;&gt; Are there other builds or users on the machine that may be ca=
+using<br>
+&gt;&gt;&gt; extra load?<br>
+&gt;&gt; No the hosts are just being poorly equipped - at least the ones t=
+hat <br>
+&gt;&gt; produce this issue<br>
+&gt; <br>
+&gt; <br>
+&gt; Hi Konrad,<br>
+&gt; <br>
+&gt; Thanks for the detailed and complete replies.<br>
+&gt; <br>
+&gt; I don&#39;t think I&#39;ve seen this error and we do 100s of builds<b=
+r>
+&gt; per day using local many-core systems running Ubuntu-18.04<br>
+&gt; but with the builds in docker containers using a variety of<br>
+&gt; OS distributions.<br>
+&gt; <br>
+&gt; My first *wild* guess is that the problem might go away on the Azure<=
+br>
+&gt; systems if you allocate more memory. That might be an easy<br>
+&gt; test to do so that we can confirm that it happens more frequently<br>
+&gt; when there is a memory constraint. Can you do that test?<br>
+&gt; <br>
+&gt; I&#39;ve also BCCed someone who might know someone who<br>
+&gt; would be interested in fixing Azure + Yocto bugs. Let&#39;s see<br>
+&gt; if they can help. :)<br>
+&gt; <br>
+&gt; It would also be helpful if you created a defect in:<br>
+&gt; <br>
+&gt; <a href=3D"https://bugzilla.yoctoproject.org/" rel=3D"noreferrer" tar=
+get=3D"_blank">https://bugzilla.yoctoproject.org/</a><br>
+&gt; <br>
+&gt; and hopefully add a patch in that defect including the -native recipe=
+s that<br>
+&gt; are required to make the problem happen.<br>
+&gt; <br>
+&gt; Thanks,<br>
+&gt; <br>
+&gt; ../Randy<br>
+&gt; <br>
+&gt; <br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; ../Randy<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; Thanks<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; Konrad<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; -- <br>
+&gt; # Randy MacLeod<br>
+&gt; # Wind River Linux<br>
+&gt; <br>
 <br>
-<br>
-</div>
-</span></font></div>
-<br>
-<fieldset class=3D"x_mimeAttachmentHeader"></fieldset>
-<pre class=3D"x_moz-quote-pre">
-</pre>
-</blockquote>
-<p><br>
-</p>
-<pre class=3D"x_moz-signature" cols=3D"72">--=20
-# Randy MacLeod
-# Wind River Linux</pre>
-</div>
-</div>
-</body>
-</html>
+</blockquote></div>
+</blockquote></div>
 
---_000_SG2PR04MB333581D25A3E2F0F9CC88A83B4DA0SG2PR04MB3335apcp_--
+--00000000000065904a05a3424a98--
