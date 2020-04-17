@@ -1,103 +1,206 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.2581.1587088402488193054
+Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
+ by mx.groups.io with SMTP id smtpd.web12.5833.1587110903553322534
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 Apr 2020 18:53:22 -0700
+ Fri, 17 Apr 2020 01:08:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=DjhJOYDV;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jpuhlman@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 95C75E019FC; Thu, 16 Apr 2020 18:53:21 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.214.173 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A6D7E019F8
-	for <yocto@yoctoproject.org>; Thu, 16 Apr 2020 18:53:20 -0700 (PDT)
-Received: by mail-pl1-f173.google.com with SMTP id h11so360171plr.11
-        for <yocto@yoctoproject.org>; Thu, 16 Apr 2020 18:53:20 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=B3fyKEx4;
+ spf=pass (domain: gmail.com, ip: 209.85.221.172, mailfrom: mabnhdev@gmail.com)
+Received: by mail-vk1-f172.google.com with SMTP id p123so351987vkg.1
+        for <yocto@lists.yoctoproject.org>; Fri, 17 Apr 2020 01:08:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=aKjFaAzyajQQQ28wdYlXycmBX+tjRBon3VpRsBU6d0o=;
-        b=DjhJOYDVcn3FatJeQR41FFhItWtfq34YnU42ATtcc08u+j3UfWr0EGPrId7Zlca+xg
-         Pe8HndWIk17lW/aHAaHlYYep0AJKCK1z0xbT5tkUqozPet3BAXNQdc2oXeK1lsNBi6IN
-         7kkd+ob5Xjppsks2UcgTC8u5MiLETwe4o3amTnNmzCAfcCNxdihGt45wYRXMM1bULJDm
-         zj68Dk9K/AAgFnWBCoBAaRgwQw4G1nCgIl1uGuuXJmhv2/9zEF85yKHuEHJ+uunjHtLC
-         k0lH6Xfsy4gEko2JOCQhct3wopzougDdEqABpysAo4RBZHrhn5snSlu+6ElOOgMLALG1
-         e/8A==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vxKIN0GVL5U75PrwxPPKK1Vm/0d4WnVqgwYWO2tG6sE=;
+        b=B3fyKEx45+nz/Ty0oM8NIiwhG2s7cm39+f88NafM4j3DlACteD6P8fMa2RtnoEandq
+         6IQKc5uXXF4jq7U5nSJIlCzrO5nN2P2fgw94nUOQ34lqGllWHp1Q3TBiPxAHuFg1RXsB
+         2DZvevedDJ0PlU2dUIMlFmn7hgFfyzOo0HAhRrGfqVlcFby4C0wiz6vD4/B+wzJA7QE6
+         vOwKvvAgDo87b6IoOBaHh70WfisAHn9h+dVYVObDUmdu6GbJK4vT0X4Sv0U5EkgY9Su2
+         ZduePQ/KWffAnmqHZ94BpVxRqXkhYkJP+jwQwiY8SIIQkbSzs3nQAxYTqShN+4AJKbbJ
+         Zp3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=aKjFaAzyajQQQ28wdYlXycmBX+tjRBon3VpRsBU6d0o=;
-        b=h1zUD8zC++4AdwjbaoN4JyHdx3MAAo3Z45WPfQJxZ7/fpszmIY07zLe5l7leNAhdCz
-         PGJQPChAJOWpgEMOm4mSRwgRHXzUaQvp8FoMp8XT1tl7Uzv5oYKt1bnQDo6YCoWQQPXx
-         wrXCAeMgTkQ4M8rsNDKzbtkF16Z0h7q7ZcdvqHpxMrisfqhnVX/P9Fg5U0/9LRyCgVtX
-         Kf6At4RcBPIyY8LaIamZVJzdzI5HgFLsdhafIc3Z0/7KJgaYF9VmXIGISJT25+sLDsOR
-         AP1JtkUloYx8VNG5y4pX9z0XbnGzcis3Yk/6xUNDI1m/ztdNx72XEKAc2rPrsr9sz/19
-         Q+mQ==
-X-Gm-Message-State: AGi0PuZApu4LJ1sQFnZ2/3rc1S8nm/Sj5Oo5KSHko0XXH+EXSDV2XlLy
-	NxJA0RWVB+l4WyHfP4PdlMk=
-X-Google-Smtp-Source: APiQypKkOjrHCobCxA6FX/97JDWEOfZ2DGjHCEazhW8709iMS9auqXL711Ez7jNrG79PlABCNEhNlg==
-X-Received: by 2002:a17:902:7449:: with SMTP id e9mr1181604plt.140.1587088399700;
-        Thu, 16 Apr 2020 18:53:19 -0700 (PDT)
-Received: from workhorse.localdomain ([2600:1700:4c90:60a0:56be:f7ff:fe12:d0bd])
-        by smtp.gmail.com with ESMTPSA id j186sm7418524pfb.220.2020.04.16.18.53.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Apr 2020 18:53:18 -0700 (PDT)
-Sender: Jeremy Puhlman <jpuhlman@gmail.com>
-Received: by workhorse.localdomain (Postfix, from userid 1000)
-	id 465732A0629; Thu, 16 Apr 2020 18:53:17 -0700 (PDT)
-From: "Jeremy Puhlman" <jpuhlman@mvista.com>
-To: yocto@yoctoproject.org
-Cc: Jeremy Puhlman <jpuhlman@mvista.com>
-Subject: [meta-cgl][PATCH] initramfs-cgl-boot: Use common MIT license
-Date: Thu, 16 Apr 2020 18:53:12 -0700
-Message-Id: <20200417015312.3801-1-jpuhlman@mvista.com>
-X-Mailer: git-send-email 2.20.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vxKIN0GVL5U75PrwxPPKK1Vm/0d4WnVqgwYWO2tG6sE=;
+        b=jEVIyW4DVelt/p+jN+PLm3GvPkvHbv5Smlq0nGSalKLzF9AZH9wOxj3eNxyilxUMhS
+         lvX57fGfDuoWgl1O+z2vAMNkIyXZQSi3CA1Pww5VkeGXWu0prWM9Kn+t7ZqQHriSlxHh
+         wm05Wxn/y9xSBhzK4EAYjVZVl4isKVx6t6RUr4d15JNwNFwfLgIiS+MGVROmQPglx1ne
+         mGXR92LIj+4OfLIwWU+tVF9gDB8uUtT3tCyrH1Y41oY0iBf2BJlzwwVrfY0gu6Ra53TD
+         Sny33omv76ETdN557NoiDRu48Zkk8SO3gZTNROZa+erwcFZasLUqWwpYglptXDDxdqbr
+         llFw==
+X-Gm-Message-State: AGi0PubvdQrRvLjZSqkQ3kz7cNLzYSfq54szbEwQAWJVnZDUKoHxoEbd
+	4gtHBvSplLAZZn9YHmJfU2ZyLvDuww9wqMmd+wc=
+X-Google-Smtp-Source: APiQypIMjx9Fc+tCya6NLVxkRX0H4O66El7CBCG1/Vn64OuP2YUtSw6ey2DzQjtpdI0FzSEiaXpoVQ+rWdOon0bjAvA=
+X-Received: by 2002:a1f:2ac4:: with SMTP id q187mr1510322vkq.6.1587110901743;
+ Fri, 17 Apr 2020 01:08:21 -0700 (PDT)
 MIME-Version: 1.0
+References: <US9q.1586967370403874617.w9z2@lists.yoctoproject.org>
+ <27a5f0a8-25db-839a-64e8-c8481dd3fea5@gmail.com> <TU4PR8401MB11510284CDD2B3644DC4788882DB0@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: <TU4PR8401MB11510284CDD2B3644DC4788882DB0@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
+From: "MikeB" <mabnhdev@gmail.com>
+Date: Fri, 17 Apr 2020 04:08:11 -0400
+Message-ID: <CAAuRgKAPotgJ9co0Cp00Nv++8wmDAqeMAuAkCPGUzHT3GxVmFA@mail.gmail.com>
+Subject: Re: [yocto] Guidance Downgrading Python2 in Zeus #python
+To: "McKay, Sean" <sean.mckay@hpe.com>
+Cc: akuster <akuster808@gmail.com>, 
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000084840705a3780d2d"
+
+--00000000000084840705a3780d2d
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-From: Jeremy Puhlman <jpuhlman@mvista.com>
+Thank you all.  The new layer did the trick for me also.
 
-Signed-off-by: Jeremy A. Puhlman <jpuhlman@mvista.com>
----
- .../recipes-core/initrdscripts/initramfs-cgl-boot_1.0.bb       | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Regards, Mike
 
-diff --git a/meta-cgl-common/recipes-core/initrdscripts/initramfs-cgl-boo=
-t_1.0.bb b/meta-cgl-common/recipes-core/initrdscripts/initramfs-cgl-boot_=
-1.0.bb
-index 1a2dd1d..8b1768a 100644
---- a/meta-cgl-common/recipes-core/initrdscripts/initramfs-cgl-boot_1.0.b=
-b
-+++ b/meta-cgl-common/recipes-core/initrdscripts/initramfs-cgl-boot_1.0.b=
-b
-@@ -1,8 +1,7 @@
- SUMMARY =3D "Support for having multipath iSCSI devices as root file sys=
-tem"
- LICENSE =3D "MIT"
--LIC_FILES_CHKSUM =3D "file://../COPYING.MIT;md5=3D838c366f69b72c5df05c96=
-dff79b35f2"
-+LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
-b788c80a0384361b4de20420"
- SRC_URI =3D "file://init-boot.sh \
--          file://COPYING.MIT \
- "
-=20
- do_install() {
---=20
-2.20.1
+On Wed, Apr 15, 2020 at 12:33 PM McKay, Sean <sean.mckay@hpe.com> wrote:
 
+> FYI, we=E2=80=99re doing the same internally (vendor supplied FIPS suppor=
+ted
+> openssl 1.0.2), and the layer Armin suggests worked for us on zeus with
+> minimal additional tweaking.
+>
+>
+>
+> Good luck!
+>
+> -Sean
+>
+>
+>
+> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> *On
+> Behalf Of *akuster
+> *Sent:* Wednesday, April 15, 2020 9:23 AM
+> *To:* MikeB <mabnhdev@gmail.com>; yocto@lists.yoctoproject.org
+> *Subject:* Re: [yocto] Guidance Downgrading Python2 in Zeus #python
+>
+>
+>
+>
+>
+> On 4/15/20 9:16 AM, MikeB wrote:
+>
+> I'm working on a set of platforms that have a FIPs certified OpenSSL.  We
+> are at version 1.0.2l.
+>
+> I've found that the new version of python in Zeus (2.7.17) requires a
+> newer version of OpenSSL (1.1).
+>
+> We really don't want to go through a new round of certification, so we
+> want to keep our current OpenSSL (1.0.2l).
+>
+> I think the easiest solution is to downgrade python 2 back to the version
+> used by Sumo (2.7.15).
+>
+> I know how to downgrade simple recipes, but python is far from simple.
+>
+> Can someone give me some guidance on how to approach the downgrade of
+> python2 in Zeus?
+>
+>
+> Have had a chance to look at this layer?
+> http://git.yoctoproject.org/cgit/cgit.cgi/meta-openssl102-fips/
+>
+> - armin
+>
+>
+> Thanks, Mike
+>
+>
+>
+>
+>
+
+--00000000000084840705a3780d2d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
+ans-serif;font-size:small">Thank you all.=C2=A0 The new layer did the=C2=A0=
+trick for me also.</div><div class=3D"gmail_default" style=3D"font-family:t=
+ahoma,sans-serif;font-size:small"><br></div><div class=3D"gmail_default" st=
+yle=3D"font-family:tahoma,sans-serif;font-size:small">Regards, Mike</div></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Wed, Apr 15, 2020 at 12:33 PM McKay, Sean &lt;<a href=3D"mailto:sean.mckay=
+@hpe.com">sean.mckay@hpe.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_3346731708546716415WordSection1">
+<p class=3D"MsoNormal">FYI, we=E2=80=99re doing the same internally (vendor=
+ supplied FIPS supported openssl 1.0.2), and the layer Armin suggests worke=
+d for us on zeus with minimal additional tweaking.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Good luck!<u></u><u></u></p>
+<p class=3D"MsoNormal">-Sean<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
+top:1pt solid rgb(225,225,225);padding:3pt 0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> <a href=3D"mailto:yocto@lists.yoctoproj=
+ect.org" target=3D"_blank">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"=
+mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yocto@lists.yoctopro=
+ject.org</a>&gt;
+<b>On Behalf Of </b>akuster<br>
+<b>Sent:</b> Wednesday, April 15, 2020 9:23 AM<br>
+<b>To:</b> MikeB &lt;<a href=3D"mailto:mabnhdev@gmail.com" target=3D"_blank=
+">mabnhdev@gmail.com</a>&gt;; <a href=3D"mailto:yocto@lists.yoctoproject.or=
+g" target=3D"_blank">yocto@lists.yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] Guidance Downgrading Python2 in Zeus #python<u>=
+</u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><u></u>=C2=A0<u></u></p=
+>
+<div>
+<p class=3D"MsoNormal">On 4/15/20 9:16 AM, MikeB wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
+<p class=3D"MsoNormal">I&#39;m working on a set of platforms that have a FI=
+Ps certified OpenSSL.=C2=A0 We are at version 1.0.2l.<br>
+<br>
+I&#39;ve found that the new version of python in Zeus (2.7.17) requires a n=
+ewer version of OpenSSL (1.1).<br>
+<br>
+We really don&#39;t want to go through a new round of certification, so we =
+want to keep our current OpenSSL (1.0.2l).<br>
+<br>
+I think the easiest solution is to downgrade python 2 back to the version u=
+sed by Sumo (2.7.15).<br>
+<br>
+I know how to downgrade simple recipes, but python is far from simple.<br>
+<br>
+Can someone give me some guidance on how to approach the downgrade of pytho=
+n2 in Zeus?<u></u><u></u></p>
+</blockquote>
+<p class=3D"MsoNormal"><br>
+Have had a chance to look at this layer?<br>
+<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/meta-openssl102-fips/"=
+ target=3D"_blank">http://git.yoctoproject.org/cgit/cgit.cgi/meta-openssl10=
+2-fips/</a><br>
+<br>
+- armin<br>
+<br>
+<u></u><u></u></p>
+<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
+<p class=3D"MsoNormal"><br>
+Thanks, Mike <br>
+<br>
+<u></u><u></u></p>
+<pre><u></u>=C2=A0<u></u></pre>
+</blockquote>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+
+</blockquote></div>
+
+--00000000000084840705a3780d2d--
