@@ -1,206 +1,182 @@
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
- by mx.groups.io with SMTP id smtpd.web12.5833.1587110903553322534
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+ by mx.groups.io with SMTP id smtpd.web11.5717.1587110969639660450
  for <yocto@lists.yoctoproject.org>;
- Fri, 17 Apr 2020 01:08:23 -0700
+ Fri, 17 Apr 2020 01:09:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=B3fyKEx4;
- spf=pass (domain: gmail.com, ip: 209.85.221.172, mailfrom: mabnhdev@gmail.com)
-Received: by mail-vk1-f172.google.com with SMTP id p123so351987vkg.1
-        for <yocto@lists.yoctoproject.org>; Fri, 17 Apr 2020 01:08:23 -0700 (PDT)
+ dkim=pass header.i=@linaro.org header.s=google header.b=RQUVx1/M;
+ spf=pass (domain: linaro.org, ip: 209.85.219.171, mailfrom: nicolas.dechesne@linaro.org)
+Received: by mail-yb1-f171.google.com with SMTP id i16so597134ybq.9
+        for <yocto@lists.yoctoproject.org>; Fri, 17 Apr 2020 01:09:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=vxKIN0GVL5U75PrwxPPKK1Vm/0d4WnVqgwYWO2tG6sE=;
-        b=B3fyKEx45+nz/Ty0oM8NIiwhG2s7cm39+f88NafM4j3DlACteD6P8fMa2RtnoEandq
-         6IQKc5uXXF4jq7U5nSJIlCzrO5nN2P2fgw94nUOQ34lqGllWHp1Q3TBiPxAHuFg1RXsB
-         2DZvevedDJ0PlU2dUIMlFmn7hgFfyzOo0HAhRrGfqVlcFby4C0wiz6vD4/B+wzJA7QE6
-         vOwKvvAgDo87b6IoOBaHh70WfisAHn9h+dVYVObDUmdu6GbJK4vT0X4Sv0U5EkgY9Su2
-         ZduePQ/KWffAnmqHZ94BpVxRqXkhYkJP+jwQwiY8SIIQkbSzs3nQAxYTqShN+4AJKbbJ
-         Zp3w==
+        bh=W1Biq+A4NZd7hT0SiPOq9oiBgzHIHPjHdSjH8svfCaM=;
+        b=RQUVx1/MfI0zPh2sXzEjRzSBOPWVINYmuihxIvxyeppjYQbvNXTjcsfvmOnsDJLzlZ
+         0WESco0JltIlCk6WU/e5vXAxBr7HAOx+ZyF3yM9zDWtOv+gDCwiMe2eqFgHrz4m6m/GJ
+         PbEdfeQqCR6JbJm32biNiplSrY/Vc6Pk9hXk89pRJX8ULcwSmD33IQh+6DOBwrP6ssF4
+         6HPIVbFjdRZd0uDRV8t+IV8J+fSrr0Old5rQGTZYru5Clxkh8STeUUETon/WPDsjRiI6
+         9rwmQBerVeZLzveZhOP2TGRjSQh2HfIbYCuhoWy04o0j3J3OzqCWS0XMJjUyFhPXb14V
+         pW/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=vxKIN0GVL5U75PrwxPPKK1Vm/0d4WnVqgwYWO2tG6sE=;
-        b=jEVIyW4DVelt/p+jN+PLm3GvPkvHbv5Smlq0nGSalKLzF9AZH9wOxj3eNxyilxUMhS
-         lvX57fGfDuoWgl1O+z2vAMNkIyXZQSi3CA1Pww5VkeGXWu0prWM9Kn+t7ZqQHriSlxHh
-         wm05Wxn/y9xSBhzK4EAYjVZVl4isKVx6t6RUr4d15JNwNFwfLgIiS+MGVROmQPglx1ne
-         mGXR92LIj+4OfLIwWU+tVF9gDB8uUtT3tCyrH1Y41oY0iBf2BJlzwwVrfY0gu6Ra53TD
-         Sny33omv76ETdN557NoiDRu48Zkk8SO3gZTNROZa+erwcFZasLUqWwpYglptXDDxdqbr
-         llFw==
-X-Gm-Message-State: AGi0PubvdQrRvLjZSqkQ3kz7cNLzYSfq54szbEwQAWJVnZDUKoHxoEbd
-	4gtHBvSplLAZZn9YHmJfU2ZyLvDuww9wqMmd+wc=
-X-Google-Smtp-Source: APiQypIMjx9Fc+tCya6NLVxkRX0H4O66El7CBCG1/Vn64OuP2YUtSw6ey2DzQjtpdI0FzSEiaXpoVQ+rWdOon0bjAvA=
-X-Received: by 2002:a1f:2ac4:: with SMTP id q187mr1510322vkq.6.1587110901743;
- Fri, 17 Apr 2020 01:08:21 -0700 (PDT)
+        bh=W1Biq+A4NZd7hT0SiPOq9oiBgzHIHPjHdSjH8svfCaM=;
+        b=fXhYARfXI7gkXMOHquqEy+xUdxiToWs9t2Y9ZZ8hLkqXYFeAGIkzfrkXUK2X2fmyWH
+         INGb45vnM25yqPmZ5oKw2IhKH7e4MBtcaSENlLjwYelQs9oCG3clKMcga1rRlZyUO7bV
+         8Q3KCimJ2j9/GrkEHfphETFK2yVn9a2n8jAmep8we8+AXSeUiEjilMbuYy+Qia7A1lpL
+         4hZlJeF6iB+7JG9+iFPZyAABzMxrCcdK4WbLXqjytQa86klb4o78BqDgWxIbZ/gLFooO
+         n5J5I5tIpKG6cI6FWjy41Gv+Vq5cw60BrMFzMitDzvSXeQkKKkRzYnKbb+IyDVjsqTa9
+         ghdg==
+X-Gm-Message-State: AGi0PuYW8hBX8tSZvFWYTYhlWLpOCyj08pySTuEIxpb6nIPMOVw7ppkl
+	8cL+u2NNDJAEnHsJFnSR3ysSBwtCtRTJeAvwf5p92g==
+X-Google-Smtp-Source: APiQypITkfrap6At7IbCGetbkArDwa1Y7J7Jr6bbmSA1UtmkvzrtoPQeEi62GHiQO7sT0ZpgIygzUF5pH7u0FiBqU8o=
+X-Received: by 2002:a25:e6c5:: with SMTP id d188mr3679543ybh.454.1587110968701;
+ Fri, 17 Apr 2020 01:09:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <US9q.1586967370403874617.w9z2@lists.yoctoproject.org>
- <27a5f0a8-25db-839a-64e8-c8481dd3fea5@gmail.com> <TU4PR8401MB11510284CDD2B3644DC4788882DB0@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
-In-Reply-To: <TU4PR8401MB11510284CDD2B3644DC4788882DB0@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
-From: "MikeB" <mabnhdev@gmail.com>
-Date: Fri, 17 Apr 2020 04:08:11 -0400
-Message-ID: <CAAuRgKAPotgJ9co0Cp00Nv++8wmDAqeMAuAkCPGUzHT3GxVmFA@mail.gmail.com>
-Subject: Re: [yocto] Guidance Downgrading Python2 in Zeus #python
-To: "McKay, Sean" <sean.mckay@hpe.com>
-Cc: akuster <akuster808@gmail.com>, 
+References: <d4b42754-b89d-e5b5-7939-af4056c457df@windriver.com> <20200416193629.GF11927@denix.org>
+In-Reply-To: <20200416193629.GF11927@denix.org>
+From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
+Date: Fri, 17 Apr 2020 10:09:15 +0200
+Message-ID: <CAP71WjzL8NQ=Dds6af41Jz+Dak9PJ0WR8R0-h0jrcM5q5CfEUw@mail.gmail.com>
+Subject: Re: [yocto] FYI: Why people are using #hashtags in yocto email subjects.
+To: Denys Dmytriyenko <denis@denix.org>
+Cc: Randy MacLeod <randy.macleod@windriver.com>, 
 	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000084840705a3780d2d"
+Content-Type: multipart/alternative; boundary="00000000000082508005a3781180"
 
---00000000000084840705a3780d2d
+--00000000000082508005a3781180
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Thank you all.  The new layer did the trick for me also.
+On Thu, Apr 16, 2020 at 9:36 PM Denys Dmytriyenko <denis@denix.org> wrote:
 
-Regards, Mike
+> I doubt people that actually send emails to the list use #hashtags.
+>
+> But the new list server provides this posting feature for anyone to
+> address
+> the list and requests poster to add #hashtags - very annoying, indeed:
+>
+> https://lists.yoctoproject.org/g/yocto/post
 
-On Wed, Apr 15, 2020 at 12:33 PM McKay, Sean <sean.mckay@hpe.com> wrote:
 
-> FYI, we=E2=80=99re doing the same internally (vendor supplied FIPS suppor=
-ted
-> openssl 1.0.2), and the layer Armin suggests worked for us on zeus with
-> minimal additional tweaking.
+there is that. And looking at the history on the server, most of the
+existing tags came from the web. But a hashtag is created automatically
+when using '#' in the email subject. that's how #define was created:
+https://lists.yoctoproject.org/g/yocto/message/48686
+
+and this email created #hashtags ;-)
+
+I haven't found a way to disable it.. from what I can see we can
+1. force every message to have at least one hashtag...
+2. bounce message with a new hashtag in $subject
+3. remove new hashtag when used in $subject
+
+I think we will need to do some tests to see what #3 does.. But in any
+case, I don't think we can prevent users from creating hashtags from the
+web..
+
+Is that causing any issues with patches workflow?
+
+
+>
+> --
+> Denys
 >
 >
+> On Thu, Apr 16, 2020 at 03:18:34PM -0400, Randy MacLeod wrote:
+> > FYI:
+> >
+> > I don't know if I missed the memo/tweet about the email archive feature
+> > but I just noticed that the new archive site will index emails
+> > by hashtag:
+> >
+> >    https://lists.yoctoproject.org/g/yocto
+> >
+> >    https://lists.yoctoproject.org/g/yocto/hashtags
+> >
+> > I thought it was an annoying new behaviour coming from Twitter users
+> > but now I understand why there are hashtags on my lawn^Hsubject lines.
+> >
+> > ;-)
+> >
+> > --
+> > # Randy MacLeod
+> > # Wind River Linux
 >
-> Good luck!
+> >
 >
-> -Sean
->
->
->
-> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> *On
-> Behalf Of *akuster
-> *Sent:* Wednesday, April 15, 2020 9:23 AM
-> *To:* MikeB <mabnhdev@gmail.com>; yocto@lists.yoctoproject.org
-> *Subject:* Re: [yocto] Guidance Downgrading Python2 in Zeus #python
->
->
->
->
->
-> On 4/15/20 9:16 AM, MikeB wrote:
->
-> I'm working on a set of platforms that have a FIPs certified OpenSSL.  We
-> are at version 1.0.2l.
->
-> I've found that the new version of python in Zeus (2.7.17) requires a
-> newer version of OpenSSL (1.1).
->
-> We really don't want to go through a new round of certification, so we
-> want to keep our current OpenSSL (1.0.2l).
->
-> I think the easiest solution is to downgrade python 2 back to the version
-> used by Sumo (2.7.15).
->
-> I know how to downgrade simple recipes, but python is far from simple.
->
-> Can someone give me some guidance on how to approach the downgrade of
-> python2 in Zeus?
->
->
-> Have had a chance to look at this layer?
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-openssl102-fips/
->
-> - armin
->
->
-> Thanks, Mike
->
->
->
->
+> 
 >
 
---00000000000084840705a3780d2d
+--00000000000082508005a3781180
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
-ans-serif;font-size:small">Thank you all.=C2=A0 The new layer did the=C2=A0=
-trick for me also.</div><div class=3D"gmail_default" style=3D"font-family:t=
-ahoma,sans-serif;font-size:small"><br></div><div class=3D"gmail_default" st=
-yle=3D"font-family:tahoma,sans-serif;font-size:small">Regards, Mike</div></=
-div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Wed, Apr 15, 2020 at 12:33 PM McKay, Sean &lt;<a href=3D"mailto:sean.mckay=
-@hpe.com">sean.mckay@hpe.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Thu, Apr 16, 2020 at 9:36 PM Denys=
+ Dmytriyenko &lt;<a href=3D"mailto:denis@denix.org">denis@denix.org</a>&gt;=
+ wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">I doubt =
+people that actually send emails to the list use #hashtags.<br>
+<br>
+But the new list server provides this posting feature for anyone to addres=
+s <br>
+the list and requests poster to add #hashtags - very annoying, indeed:<br>
+<br>
+<a href=3D"https://lists.yoctoproject.org/g/yocto/post" rel=3D"noreferrer"=
+ target=3D"_blank">https://lists.yoctoproject.org/g/yocto/post</a></blockqu=
+ote><div><br></div><div>there is that. And looking at the history on the se=
+rver, most of the existing tags came from the web. But a hashtag is created=
+ automatically when using &#39;#&#39; in the email subject. that&#39;s how =
+#define was created:</div><div><a href=3D"https://lists.yoctoproject.org/g/=
+yocto/message/48686">https://lists.yoctoproject.org/g/yocto/message/48686</=
+a></div><div><br></div><div>and this email created #hashtags ;-)</div><div>=
+<br></div><div>I haven&#39;t found a way to disable it.. from what I can se=
+e we can</div><div>1. force every message to have at least one hashtag... <=
+br></div><div>2. bounce message with a new hashtag in $subject<br></div><di=
+v>3. remove new hashtag when used in $subject</div><div><br></div><div>I th=
+ink we will need to do some tests to see what #3 does.. But in any case, I =
+don&#39;t think we can prevent users from creating hashtags from the web.. =
+<br></div><div><br></div><div>Is that causing any issues with patches workf=
+low?</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
+<br>
+<br>
+-- <br>
+Denys<br>
+<br>
+<br>
+On Thu, Apr 16, 2020 at 03:18:34PM -0400, Randy MacLeod wrote:<br>
+&gt; FYI:<br>
+&gt; <br>
+&gt; I don&#39;t know if I missed the memo/tweet about the email archive f=
+eature<br>
+&gt; but I just noticed that the new archive site will index emails<br>
+&gt; by hashtag:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 <a href=3D"https://lists.yoctoproject.org/g/yocto" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto</=
+a><br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 <a href=3D"https://lists.yoctoproject.org/g/yocto/hashta=
+gs" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/y=
+octo/hashtags</a><br>
+&gt; <br>
+&gt; I thought it was an annoying new behaviour coming from Twitter users<=
+br>
+&gt; but now I understand why there are hashtags on my lawn^Hsubject lines=
+.<br>
+&gt; <br>
+&gt; ;-)<br>
+&gt; <br>
+&gt; -- <br>
+&gt; # Randy MacLeod<br>
+&gt; # Wind River Linux<br>
+<br>
+&gt; <br>
+<br>
+<br>
+</blockquote></div></div>
 
-
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_3346731708546716415WordSection1">
-<p class=3D"MsoNormal">FYI, we=E2=80=99re doing the same internally (vendor=
- supplied FIPS supported openssl 1.0.2), and the layer Armin suggests worke=
-d for us on zeus with minimal additional tweaking.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Good luck!<u></u><u></u></p>
-<p class=3D"MsoNormal">-Sean<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
-top:1pt solid rgb(225,225,225);padding:3pt 0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> <a href=3D"mailto:yocto@lists.yoctoproj=
-ect.org" target=3D"_blank">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"=
-mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yocto@lists.yoctopro=
-ject.org</a>&gt;
-<b>On Behalf Of </b>akuster<br>
-<b>Sent:</b> Wednesday, April 15, 2020 9:23 AM<br>
-<b>To:</b> MikeB &lt;<a href=3D"mailto:mabnhdev@gmail.com" target=3D"_blank=
-">mabnhdev@gmail.com</a>&gt;; <a href=3D"mailto:yocto@lists.yoctoproject.or=
-g" target=3D"_blank">yocto@lists.yoctoproject.org</a><br>
-<b>Subject:</b> Re: [yocto] Guidance Downgrading Python2 in Zeus #python<u>=
-</u><u></u></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><u></u>=C2=A0<u></u></p=
->
-<div>
-<p class=3D"MsoNormal">On 4/15/20 9:16 AM, MikeB wrote:<u></u><u></u></p>
-</div>
-<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-<p class=3D"MsoNormal">I&#39;m working on a set of platforms that have a FI=
-Ps certified OpenSSL.=C2=A0 We are at version 1.0.2l.<br>
-<br>
-I&#39;ve found that the new version of python in Zeus (2.7.17) requires a n=
-ewer version of OpenSSL (1.1).<br>
-<br>
-We really don&#39;t want to go through a new round of certification, so we =
-want to keep our current OpenSSL (1.0.2l).<br>
-<br>
-I think the easiest solution is to downgrade python 2 back to the version u=
-sed by Sumo (2.7.15).<br>
-<br>
-I know how to downgrade simple recipes, but python is far from simple.<br>
-<br>
-Can someone give me some guidance on how to approach the downgrade of pytho=
-n2 in Zeus?<u></u><u></u></p>
-</blockquote>
-<p class=3D"MsoNormal"><br>
-Have had a chance to look at this layer?<br>
-<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/meta-openssl102-fips/"=
- target=3D"_blank">http://git.yoctoproject.org/cgit/cgit.cgi/meta-openssl10=
-2-fips/</a><br>
-<br>
-- armin<br>
-<br>
-<u></u><u></u></p>
-<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-<p class=3D"MsoNormal"><br>
-Thanks, Mike <br>
-<br>
-<u></u><u></u></p>
-<pre><u></u>=C2=A0<u></u></pre>
-</blockquote>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-</div>
-
-</blockquote></div>
-
---00000000000084840705a3780d2d--
+--00000000000082508005a3781180--
