@@ -1,61 +1,102 @@
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
- by mx.groups.io with SMTP id smtpd.web10.16801.1587303654069012310
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.9799.1587343021459305534
  for <yocto@lists.yoctoproject.org>;
- Sun, 19 Apr 2020 06:40:54 -0700
+ Sun, 19 Apr 2020 17:37:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: balister.org, ip: 216.168.135.166, mailfrom: philip@balister.org)
-Received: (qmail 29035 invoked by uid 1003); 19 Apr 2020 13:38:21 -0000
-Received: from unknown (HELO ?192.168.11.144?) (philip@opensdr.com@73.152.143.112)
-  by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP; 19 Apr 2020 13:38:21 -0000
-Subject: Re: [yocto] Building zeek 3.1.1 in Sumo
-To: gary@missionsecure.com, yocto@lists.yoctoproject.org
-References: <VI1PR05MB428650E66D786F271F94174CA8D60@VI1PR05MB4286.eurprd05.prod.outlook.com>
- <3226.1587244465235989613@lists.yoctoproject.org>
-From: "Philip Balister" <philip@balister.org>
-Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
- mQENBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
- HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
- rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
- 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
- fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
- AAG0JVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz6JAT4EEwECACgCGyMG
- CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
- nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
- 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
- YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
- 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
- yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4Yxi5AQ0ETo83gQEIAPs+ZC0R
- gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
- GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
- uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
- LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
- gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAYkBJQQYAQIADwIbDAUC
- WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
- 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
- ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
- icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
- ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
- 6eUfr0u7CwnEyqiQ
-Message-ID: <f64a7c76-af17-b6a4-f68e-cd0991764147@balister.org>
-Date: Sun, 19 Apr 2020 09:40:52 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=seVl6gzJ;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id DAF8AE01A26; Sun, 19 Apr 2020 17:37:00 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (jupiter.hce[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.208.46 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 891F1E01A24
+	for <yocto@yoctoproject.org>; Sun, 19 Apr 2020 17:36:58 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id d16so6041720edq.7
+        for <yocto@yoctoproject.org>; Sun, 19 Apr 2020 17:36:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=SL+RkChLjezjs/wmN7PcX54LOQ7LjnFIscx9xyA1Uow=;
+        b=seVl6gzJBVxPX5jgoyhYFCArWYcUjORi/eLyz0eE23C4Xf4it8qvJBu8bUc7wHDPy7
+         kzfzd0FBwQEf3xVFynQd3qlOAewi/VQRFGqS2GRH9+0GHU5yIHlQ3k0mdiFE+7bO7H2s
+         /Xs1Cyq8nCfhUkMyoESdUlmFfZ3ZmVeDRcEVofZe3pTkouiGJUuwzO9FGJdIQXp04N9a
+         hGjkogR5eT+TFuIgphEAMce8DexLO7b408lLRnbSHE+YkV+vT4/rFzsaQIDgNIJfmHmC
+         lTIT7w6n0Y3Z4EgZ0kM5ChXhYk8SQ1Kc0A3Ca5BEN2crvlccvBEfz6RLOo5WVV2J0muw
+         N0qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=SL+RkChLjezjs/wmN7PcX54LOQ7LjnFIscx9xyA1Uow=;
+        b=sF1N2KeDxiKH0t833mYwadvTmgnbbe5TQsvQQ41aUWcIPMX2FLV6gGSq7fvJ4DsDyL
+         yw8AuCcTT96Jknal9e4t7B4rh0lCIZyQrZ2xN+jDjAwXPpVdjdblHjD2zHvjMUCvot25
+         lrlSjUAXQoBCtEY4DHXxClvx38yL8rR6iG4IAPlEhCfead8xevC/4TtdfxlSAFUqK6/6
+         dJyqOlwk72tGyEXUxn5n3ftlVyhTQrzRkoI85WXl1KZql1DkIvtXU8UKAr2ZHbfj9aOd
+         rpRGggpoqjhOPY3bNimUZnljKz57jfyYgsx3U2yxy3WnW3+B/vjSj9WMwmns7eZiFZHG
+         3UNg==
+X-Gm-Message-State: AGi0PuY9UzB5Mj92O9hZ+Cams6MVmnQ+mBqab8r9T/76CQRZDDOpqSVr
+	fQWyJy7DUIYU8fpMb3dOg1AHaffrB1MlhOB9EQGb079G
+X-Google-Smtp-Source: APiQypLD/5GpgRfYYMS4QjPubhIipslBruxmcuo0eMCmDiCsrlVk55YiU1STqLU1TLzupbyX0wwqRQayiX3bvqoOHcE=
+X-Received: by 2002:a05:6402:144c:: with SMTP id d12mr11769641edx.225.1587343017941;
+ Sun, 19 Apr 2020 17:36:57 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <3226.1587244465235989613@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Received: by 2002:ab4:9c01:0:0:0:0:0 with HTTP; Sun, 19 Apr 2020 17:36:57
+ -0700 (PDT)
+From: "JH" <jupiter.hce@gmail.com>
+Date: Mon, 20 Apr 2020 10:36:57 +1000
+Message-ID: <CAA=hcWQtOo9pgikUWR+AtA66EMFEPSQiorqeT-SH4urS==cqdA@mail.gmail.com>
+Subject: Proper configuration for Systemd service to be restarted on failure
+To: Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-I'd add sed-native to DEPENDS rather than depend on one on the build
-machine.
+Hi,
 
-On 4/18/20 5:14 PM, gary@missionsecure.com wrote:
-> Placing the following line in the recipe seems to have fixed the problem:
-> 
-> OECMAKE_FIND_ROOT_PATH_MODE_PROGRAM="BOTH"
-> 
-> That value was set to only by the cmake class, so it only searched in the recipe build directories.
-> 
-> 
-> 
-> 
+I built Yocto systemd Linux running on a device 7 / 24, it is hard to
+access the device, so my application services are running by bash
+script in loop sleep 1 minute, the service and scripts worked fine, I
+don't want the application service stopped for any reasons, I searched
+on Internet, there are many different examples for configuring service
+file to restart it on failure, but most statements are conflicted,
+what is the best way to let systemd restart my application services
+when the scripts stops for Yocto systemd OS?
+
+[Unit]
+After=multi-user.target
+
+[Service]
+Type=simple
+RemainAfterExit=no
+Restart=always
+RestartSec=120s
+ExecStart=/data/bin/apploop60seconds.sh
+
+[Install]
+WantedBy=multi-user.target
+
+Thank you.
+
+Kind regards,
+
+- jh
+
+------------------------------
+"A man can fail many times, but he isn't a failure until he begins to
+blame somebody else."
+-- John Burroughs
