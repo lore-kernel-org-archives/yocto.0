@@ -1,98 +1,406 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.4369.1587569133144659286
+Received: from relay.mailchannels.net (relay.mailchannels.net [23.83.212.3])
+ by mx.groups.io with SMTP id smtpd.web12.4554.1587569925541086966
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 Apr 2020 08:25:33 -0700
+ Wed, 22 Apr 2020 08:38:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=FV/0pvRz;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: easmith5555@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B93EFE01A4C; Wed, 22 Apr 2020 08:25:32 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (easmith5555[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.166.46 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03F39E01A4A
-	for <yocto@yoctoproject.org>; Wed, 22 Apr 2020 08:25:31 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id 19so2760615ioz.10
-        for <yocto@yoctoproject.org>; Wed, 22 Apr 2020 08:25:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=OLofupQwdqwOnU2en5QsT2axN6FZHMXTJipwUEqeTus=;
-        b=FV/0pvRzlQqE23b4HZjKTAUjvf8oCEwoLSBvVCA6vjb5CeAQE+JQfGvFbrkOGo/3r0
-         5GenQ7HjvokU+sBIAj3XZas8QZdiPkRS9pggVbm1RgP//bzHMkUHgBgmmHBMdYeT/Xyj
-         FbL71dQuxyNWGgYapkb07slw4VAyqbmCdt0RZWuf2DDH9l+r/XK8WU3KL0rdjYAwAx1h
-         RjQHB+fK2ELENGAi3eWgB1IKxqWJvfifbYQ9RitYfIOjsGlkKHrjjNIfTOOe6nooKN/T
-         OxiVsdAc7Ti2Zt3mjkrOJZ3oESFtLarbokNO349UzP30O77cnQ1Mr6aykX8hm3nGfoUt
-         JEjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=OLofupQwdqwOnU2en5QsT2axN6FZHMXTJipwUEqeTus=;
-        b=EKNDiRSHTm1+ZCSl7jw2q606uzggo2JEQKEG0Q5qDIudOtPGnG5Pmq9aUD1fWhteO5
-         oBg/u7RQJZ5f/aO7FepqevraQi41U2XQNfHPvm91ihcEOtfy2uzt3MPDzYYMyxxXHK9N
-         +BTGmI6M7BqVGbfith+k8sGp5PSSgv5PswnTxx/19abRpZAD0L6yQv4N1YlYIyArmil3
-         WOM9eOxIMqlt799VY6Z8T8JP1ngmoqQHQkwnmYbHYcz+/qEyhtbZCpb0lc9UI2/vkKIk
-         MkXVX4sCsdx1nUgLmkcL2E3SjpH1QijD8HyI6ERzh8uc3VA9NWYVvm+SCUJ6Ofo/KWZU
-         SrhA==
-X-Gm-Message-State: AGi0PuaNZO5uTG7UAOJ7xdhSVzm+zWbsQGmm1yvyztkwmfx2PhILp4k2
-	sHbg9IPDViTnr/TBXtgwJMR17dsyVJIWvdls/HObTA==
-X-Google-Smtp-Source: APiQypI76PD6X/LTUoesngv7JyEThUiBnPl4lBOJR6sqnkoAKHmPqi265G3T8IUUSVJ/A/yA6wsbIcj3b0ddMjQ6VVE=
-X-Received: by 2002:a5e:9315:: with SMTP id k21mr25444753iom.43.1587569130068;
- Wed, 22 Apr 2020 08:25:30 -0700 (PDT)
+ dkim=missing; spf=softfail (domain: idplus.org.mx, ip: 23.83.212.3, mailfrom: d.fourdrigniez@idplus.org.mx)
+X-Sender-Id: neubox|x-authuser|d.fourdrigniez@idplus.org.mx
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id DCCC1100DBC;
+	Wed, 22 Apr 2020 15:38:36 +0000 (UTC)
+Received: from hv35svg136.neubox.net (100-96-14-13.trex.outbound.svc.cluster.local [100.96.14.13])
+	(Authenticated sender: Neubox)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 2E90010032E;
+	Wed, 22 Apr 2020 15:38:35 +0000 (UTC)
+X-Sender-Id: neubox|x-authuser|d.fourdrigniez@idplus.org.mx
+Received: from hv35svg136.neubox.net (hv35svg136.neubox.net [65.99.252.218])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
+	by 0.0.0.0:2500 (trex/5.18.6);
+	Wed, 22 Apr 2020 15:38:36 +0000
+X-MC-Relay: Neutral
+X-MailChannels-SenderId: neubox|x-authuser|d.fourdrigniez@idplus.org.mx
+X-MailChannels-Auth-Id: Neubox
+X-Blushing-Slimy: 650210d20b1fd8ea_1587569916682_1668467398
+X-MC-Loop-Signature: 1587569916682:4049582815
+X-MC-Ingress-Time: 1587569916682
+Received: from [201.103.223.68] (port=63521 helo=LAPTOPDAVID)
+	by hv35svg136.neubox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <d.fourdrigniez@idplus.org.mx>)
+	id 1jRHSM-0000WE-3y; Wed, 22 Apr 2020 10:38:34 -0500
+From: "David Fz" <d.fourdrigniez@idplus.org.mx>
+To: "'Joshua Watt'" <jpewhacker@gmail.com>
+Cc: "'Samuli Piippo'" <samuli.piippo@qt.io>,
+	<yocto@lists.yoctoproject.org>
+References: <002301d61806$afd72030$0f856090$@idplus.org.mx> <085e51b2-4740-e41a-c7df-f0449b5ffb28@gmail.com>
+In-Reply-To: <085e51b2-4740-e41a-c7df-f0449b5ffb28@gmail.com>
+Subject: Re: [Yocto] Building Qt5 toolchain for windows
+Date: Wed, 22 Apr 2020 10:38:32 -0500
+Message-ID: <000a01d618bc$150e5f30$3f2b1d90$@idplus.org.mx>
 MIME-Version: 1.0
-From: "Emily" <easmith5555@gmail.com>
-Date: Wed, 22 Apr 2020 10:25:18 -0500
-Message-ID: <CAAV2bM2k4+ZPaqgSK5WjEkYZ+fFwDx1uZ4ucOkoh3ParLvFSxQ@mail.gmail.com>
-Subject: Adding python3 remotely
-To: Yocto List <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000000de1c505a3e2be97"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGE+h3gDPry1xy7JbW0hCu7mokelwJ0i2SWqRPc6VA=
+X-AuthUser: d.fourdrigniez@idplus.org.mx
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_000B_01D61892.2C39DDD0"
+Content-Language: fr
 
---0000000000000de1c505a3e2be97
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_000B_01D61892.2C39DDD0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Hi all -
+Hello Joshua,
 
-I'd like to add python3 to my OS - I can add and build it just fine, but at
-the moment I can't physically access my board. I've never been able to get
-the OS to update properly remotely, though I think there should be a way
-since I'm booting from SD. That aside, can I just copy the built python3
-files to the proper places in my OS (/usr/lib, /usr/bin, etc) and have a
-working python3 on the board? If so, which files do I need? I've been
-unable to get it to work thus far by just poking around the workdir files.
+ 
+
+Thank you for your reply,
+
+ 
+
+Just for information, I put the following parameters in local.conf
+
+ 
+
+MACHINE ?= "qemuarm"
+
+ 
+
+SDKMACHINE = "i686-mingw32"
+
+ 
+
+IMAGE_INSTALL_append = " gcc g++ binutils libgcc-dev libstdc++ libstdc++-dev
+libstdc++-staticdev qtbase qtcharts qtconnectivity qtdeclarative qtenginio
+qtgraphicaleffects qtlocation qtmultimedia qtscript qtsensors qtserialport
+qtsystems qttools qttranslations qtvirtualkeyboard qtwebsockets
+qtxmlpatterns openssh-sftp-server gdb gdbserver"
+
+ 
+
+And here is the error I get when I run the command: bitbake
+meta-toolchain-qt5
+
+ 
+
+| In file included from
+/home/david/yocto/poky/build/tmp/work/i686-nativesdk-mingw32-pokysdk-mingw32
+/nativesdk-qtbase/5.13.2+gitAUTOINC+a7a24784ee-r0/recipe-sysroot/opt/poky/3.
+0.2/sysroots/i686-pokysdk-mingw32/usr/include/winbase.h:18,
+
+|                  from
+/home/david/yocto/poky/build/tmp/work/i686-nativesdk-mingw32-pokysdk-mingw32
+/nativesdk-qtbase/5.13.2+gitAUTOINC+a7a24784ee-r0/recipe-sysroot/opt/poky/3.
+0.2/sysroots/i686-pokysdk-mingw32/usr/include/windows.h:70,
+
+|                  from
+/home/david/yocto/poky/build/tmp/work/i686-nativesdk-mingw32-pokysdk-mingw32
+/nativesdk-qtbase/5.13.2+gitAUTOINC+a7a24784ee-r0/git/qmake/library/ioutils.
+cpp:35:
+
+|
+/home/david/yocto/poky/build/tmp/work/i686-nativesdk-mingw32-pokysdk-mingw32
+/nativesdk-qtbase/5.13.2+gitAUTOINC+a7a24784ee-r0/recipe-sysroot/opt/poky/3.
+0.2/sysroots/i686-pokysdk-mingw32/usr/include/fileapi.h:53:48: note:
+initializing argument 1 of 'void* CreateFileA(LPCSTR, DWORD, DWORD,
+LPSECURITY_ATTRIBUTES, DWORD, DWORD, HANDLE)'
+
+|    53 |   WINBASEAPI HANDLE WINAPI CreateFileA (LPCSTR lpFileName, DWORD
+dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES
+lpSecurityAttributes, DWORD dwCreationDisposition, DWORD
+dwFlagsAndAttributes, HANDLE hTemplateFile);
+
+|       |                                         ~~~~~~~^~~~~~~~~~
+
+| Makefile:212: recipe for target 'ioutils.o' failed
+
+| make: *** [ioutils.o] Error 1
+
+| WARNING: exit code 2 from a shell command.
+
+| 
+
+ERROR: Task
+(/home/david/yocto/poky/meta-qt5/recipes-qt/qt5/nativesdk-qtbase_git.bb:do_c
+onfigure) failed with exit code '1'
+
+NOTE: Tasks Summary: Attempted 3299 tasks of which 3161 didn't need to be
+rerun and 1 failed.
+
+ 
+
+Summary: 1 task failed:
+
+ 
+/home/david/yocto/poky/meta-qt5/recipes-qt/qt5/nativesdk-qtbase_git.bb:do_co
+nfigure
+
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+
+ 
+
+Best regards,
+
+ 
+
+David FOURDRIGNIEZ
+Mobile +33 6 27 94 03 25
+
+Email  <mailto:d.fourdrigniez@idplus.org.mx> d.fourdrigniez@idplus.org.mx
+
+ 
+
+From: Joshua Watt <jpewhacker@gmail.com> 
+Sent: mardi 21 avril 2020 13:20
+To: d.fourdrigniez@idplus.org.mx
+Cc: Samuli Piippo <samuli.piippo@qt.io>; yocto@lists.yoctoproject.org
+Subject: Re: [Yocto] Building Qt5 toolchain for windows
+
+ 
+
+ 
+
+On 4/21/20 1:00 PM, d.fourdrigniez@idplus.org.mx
+<mailto:d.fourdrigniez@idplus.org.mx>  wrote:
+
+Hello,
+
+ 
+
+I'm working on a project and I need to build a Qt5 toolchain for Windows,
+
+I'm using meta-qt5 and meta-mingw and my build machine is an ubuntu 18.04
+
+However I keep having errors when i execute < bitbake meta-toolchain-qt5 >,
+very much like the one in below forum thread 
+
+https://www.yoctoproject.org/pipermail/yocto/2019-March/044512.html
+
+ 
+
+Am I doing something wrong ? Could you help sending me some ideas on how I
+could accomplish what I want ?
+
+ 
+
+I don't actually know a whole lot about cmake/qt5, so I'm not sure what
+would need to be done (other than what I've already stated in the message
+above). Samuli Piippo (cc'd) recently did some work to get cmake to build
+for MinGW, so he might have some insight.
+
+ 
 
 Thanks,
-Emily Smith
 
---0000000000000de1c505a3e2be97
-Content-Type: text/html; charset="UTF-8"
+ 
+
+Best regards,
+
+David Fourdrigniez.
+
+
+------=_NextPart_000_000B_01D61892.2C39DDD0
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi all -=C2=A0<div><br></div><div>I&#39;d like to add pyth=
-on3 to my OS - I can add and build it just fine, but at the moment I can&#3=
-9;t physically access my board. I&#39;ve never been able to get the OS to u=
-pdate properly remotely, though I think there should be a way since I&#39;m=
- booting from SD. That aside, can I just copy the built python3 files to th=
-e proper places in my OS (/usr/lib, /usr/bin, etc) and have a working pytho=
-n3 on the board? If so, which files do I need? I&#39;ve been unable to get =
-it to work thus far by just poking around the workdir files.=C2=A0</div><di=
-v><br></div><div>Thanks,</div><div>Emily Smith</div></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DFR =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>Hello Joshua,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Thank you for your reply,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Just for information, I put the =
+following parameters in local.conf<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier New"'>MACHINE ?=3D =
+&#8220;qemuarm&#8221;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US style=3D'font-size:9.0pt;font-family:"Courier =
+New"'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US style=3D'font-size:9.0pt;font-family:"Courier =
+New"'>SDKMACHINE =3D &#8220;i686-mingw32&#8221;<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier New"'>IMAGE_INSTALL_append =
+=3D &#8220; gcc g++ binutils libgcc-dev libstdc++ libstdc++-dev =
+libstdc++-staticdev qtbase qtcharts qtconnectivity qtdeclarative =
+qtenginio qtgraphicaleffects qtlocation qtmultimedia qtscript qtsensors =
+qtserialport qtsystems qttools qttranslations qtvirtualkeyboard =
+qtwebsockets qtxmlpatterns openssh-sftp-server gdb =
+gdbserver&#8221;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>And here is the error I get when I run the command: =
+</span><span lang=3DEN-US style=3D'font-family:"Courier New"'>bitbake =
+meta-toolchain-qt5</span><span lang=3DEN-US><o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier New"'>| In file included =
+from =
+/home/david/yocto/poky/build/tmp/work/i686-nativesdk-mingw32-pokysdk-ming=
+w32/nativesdk-qtbase/5.13.2+gitAUTOINC+a7a24784ee-r0/recipe-sysroot/opt/p=
+oky/3.0.2/sysroots/i686-pokysdk-mingw32/usr/include/winbase.h:18,<o:p></o=
+:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier =
+New"'>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from =
+/home/david/yocto/poky/build/tmp/work/i686-nativesdk-mingw32-pokysdk-ming=
+w32/nativesdk-qtbase/5.13.2+gitAUTOINC+a7a24784ee-r0/recipe-sysroot/opt/p=
+oky/3.0.2/sysroots/i686-pokysdk-mingw32/usr/include/windows.h:70,<o:p></o=
+:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier =
+New"'>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from =
+/home/david/yocto/poky/build/tmp/work/i686-nativesdk-mingw32-pokysdk-ming=
+w32/nativesdk-qtbase/5.13.2+gitAUTOINC+a7a24784ee-r0/git/qmake/library/io=
+utils.cpp:35:<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US style=3D'font-size:9.0pt;font-family:"Courier New"'>| =
+/home/david/yocto/poky/build/tmp/work/i686-nativesdk-mingw32-pokysdk-ming=
+w32/nativesdk-qtbase/5.13.2+gitAUTOINC+a7a24784ee-r0/recipe-sysroot/opt/p=
+oky/3.0.2/sysroots/i686-pokysdk-mingw32/usr/include/fileapi.h:53:48: =
+note:&nbsp;&nbsp; initializing argument 1 of 'void* CreateFileA(LPCSTR, =
+DWORD, DWORD, LPSECURITY_ATTRIBUTES, DWORD, DWORD, =
+HANDLE)'<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier New"'>|&nbsp;&nbsp;&nbsp; =
+53 |&nbsp;&nbsp; WINBASEAPI HANDLE WINAPI CreateFileA (LPCSTR =
+lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, =
+LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, =
+DWORD dwFlagsAndAttributes, HANDLE =
+hTemplateFile);<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US style=3D'font-size:9.0pt;font-family:"Courier =
+New"'>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~~~~~~~^~~~~~~~~~<o:p></o:=
+p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier New"'>| Makefile:212: =
+recipe for target 'ioutils.o' failed<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier New"'>| make: *** =
+[ioutils.o] Error 1<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US style=3D'font-size:9.0pt;font-family:"Courier New"'>| =
+WARNING: exit code 2 from a shell command.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier New"'>| =
+<o:p></o:p></span></p><p class=3DMsoNormal><b><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier New";color:red'>ERROR: =
+Task =
+(/home/david/yocto/poky/meta-qt5/recipes-qt/qt5/nativesdk-qtbase_git.bb:d=
+o_configure) failed with exit code '1'<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier New"'>NOTE: Tasks Summary: =
+Attempted 3299 tasks of which 3161 didn't need to be rerun and 1 =
+failed.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier =
+New"'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US style=3D'font-size:9.0pt;font-family:"Courier =
+New"'>Summary: 1 task failed:<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier New"'>&nbsp; =
+/home/david/yocto/poky/meta-qt5/recipes-qt/qt5/nativesdk-qtbase_git.bb:do=
+_configure<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:9.0pt;font-family:"Courier New"'>Summary: There was 1 =
+ERROR message shown, returning a non-zero exit =
+code.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Best regards,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><div><p =
+class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;color:#5B9BD5;mso-fareast-language:FR'>David =
+FOURDRIGNIEZ<br></span></b><b><span =
+style=3D'font-size:8.0pt;color:#5B9BD5;mso-fareast-language:FR'>Mobile =
+</span></b><span style=3D'font-size:8.0pt;mso-fareast-language:FR'>+33 6 =
+27 94 03 25</span><b><span =
+style=3D'font-size:10.0pt;color:#5B9BD5;mso-fareast-language:FR'><o:p></o=
+:p></span></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;color:#5B9BD5;mso-fareast-language:FR'>Email</sp=
+an></b><span style=3D'font-size:8.0pt;mso-fareast-language:FR'> <a =
+href=3D"mailto:d.fourdrigniez@idplus.org.mx"><span =
+style=3D'color:#0563C1'>d.fourdrigniez@idplus.org.mx</span></a><o:p></o:p=
+></span></p></div><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b><span lang=3DEN-US =
+style=3D'mso-fareast-language:FR'>From:</span></b><span lang=3DEN-US =
+style=3D'mso-fareast-language:FR'> Joshua Watt =
+&lt;jpewhacker@gmail.com&gt; <br><b>Sent:</b> mardi 21 avril 2020 =
+13:20<br><b>To:</b> d.fourdrigniez@idplus.org.mx<br><b>Cc:</b> Samuli =
+Piippo &lt;samuli.piippo@qt.io&gt;; =
+yocto@lists.yoctoproject.org<br><b>Subject:</b> Re: [Yocto] Building Qt5 =
+toolchain for windows<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p><o:p>&nbsp;</o:p></p><div><p =
+class=3DMsoNormal>On 4/21/20 1:00 PM, <a =
+href=3D"mailto:d.fourdrigniez@idplus.org.mx">d.fourdrigniez@idplus.org.mx=
+</a> wrote:<o:p></o:p></p></div><blockquote =
+style=3D'margin-top:5.0pt;margin-bottom:5.0pt'><p =
+class=3DMsoNormal>Hello,<o:p></o:p></p><p =
+class=3DMsoNormal>&nbsp;<o:p></o:p></p><p class=3DMsoNormal>I&#8217;m =
+working on a project and I need to build a Qt5 toolchain for =
+Windows,<o:p></o:p></p><p class=3DMsoNormal>I&#8217;m using meta-qt5 and =
+meta-mingw and my build machine is an ubuntu 18.04<o:p></o:p></p><p =
+class=3DMsoNormal>However I keep having errors when i execute =
+&laquo;&nbsp;bitbake meta-toolchain-qt5&nbsp;&raquo;, very much like the =
+one in below forum thread&nbsp;<o:p></o:p></p><p class=3DMsoNormal><a =
+href=3D"https://www.yoctoproject.org/pipermail/yocto/2019-March/044512.ht=
+ml">https://www.yoctoproject.org/pipermail/yocto/2019-March/044512.html</=
+a><o:p></o:p></p><p class=3DMsoNormal>&nbsp;<o:p></o:p></p><p =
+class=3DMsoNormal>Am I doing something wrong&nbsp;? Could you help =
+sending me some ideas on how I could accomplish what I =
+want&nbsp;?<o:p></o:p></p></blockquote><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:FR'><o:p>&nbsp;</o:p></span></p><p>I don't =
+actually know a whole lot about cmake/qt5, so I'm not sure what would =
+need to be done (other than what I've already stated in the message =
+above). Samuli Piippo (cc'd) recently did some work to get cmake to =
+build for MinGW, so he might have some =
+insight.<o:p></o:p></p><blockquote =
+style=3D'margin-top:5.0pt;margin-bottom:5.0pt'><p =
+class=3DMsoNormal>&nbsp;<o:p></o:p></p><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal>&nbsp;<o:p></o:p></p><p class=3DMsoNormal>Best =
+regards,<o:p></o:p></p><p class=3DMsoNormal>David =
+Fourdrigniez.<o:p></o:p></p></blockquote></div></body></html>
 
---0000000000000de1c505a3e2be97--
+------=_NextPart_000_000B_01D61892.2C39DDD0--
