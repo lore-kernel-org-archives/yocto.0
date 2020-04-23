@@ -1,161 +1,123 @@
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
- by mx.groups.io with SMTP id smtpd.web11.1324.1587621587202254036
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.1610.1587623994767857459
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 Apr 2020 22:59:47 -0700
+ Wed, 22 Apr 2020 23:39:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=HBfjceyf;
- spf=pass (domain: gmail.com, ip: 209.85.219.45, mailfrom: xerofoify@gmail.com)
-Received: by mail-qv1-f45.google.com with SMTP id y19so2295287qvv.4
-        for <yocto@lists.yoctoproject.org>; Wed, 22 Apr 2020 22:59:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language;
-        bh=IS3zI/7a2625ufWuIOh/2fRw3tHzHIccELJxf61v/rs=;
-        b=HBfjceyfpxamon0OA6+5cug3uSmiexkvkKKbyUeUiFaB8s6TjU3gL47TOpgfVOoXiK
-         woAQ9N+kNkJy6Mc1F7ee0g0ZHqInjB/YX+TTEHnGO6j8XGhP6+S7+lMQqEOcyfVqXnr7
-         5GNp8ZBkx/F2+lEsAQVDrnOLsVZPak/EdtVw56pUKNUCsfJz3hDDoWi5t4ipdBVDT4rU
-         63Vx7KtFvFvf8T16eyYcvQu8YaFVKdEogSTeIVrPMkHadCjTdm1amx0kzJtv54hVNr9K
-         Tx3vYL9zVsGMgt9QtdwmHCuS+G3WAjaWiqnxr4VswlwMWsQzkNnOlkQg4eDqK/xvnl7Q
-         /uTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language;
-        bh=IS3zI/7a2625ufWuIOh/2fRw3tHzHIccELJxf61v/rs=;
-        b=KPdbz3BJ9K8wAoEEuQ5SU3RJKwDDdroXEOCY4syZ/2TjBy9Fm7F8AsZpDxyB17WGUE
-         FBgWu019g5lRLDYMB52nyotBbhuf6R1cZLW+z8hnjZTGK5zPkO1OZ1NN1tuR9TuK2xR/
-         1Se16o2x0D0HwEnn569OY6Egfyb8ffoF7rSvm3E6GW06aEQWtV2JPlSnoNpzs1ji66ZX
-         pa2ExrTYNg85e6Kvr5MveJMD2tDpY4V1KPLonkFhQFnWLVBRYbsaes6c7kwDJcDk2xNY
-         SXJrJ6F3g/I26hyEFspSrGfZzkQRzr5jRM9VEpuF2zv3k3/jPKf6frydSPPqCjc4xPTV
-         gW3w==
-X-Gm-Message-State: AGi0Pub98tXUpE5zjgaHhZbYaQfor5SUO4DFJVKTq6BeAwGLmvWFfipI
-	4UH3cSRaElggdvDcQ9wPHVVm3hk3KT0=
-X-Google-Smtp-Source: APiQypLCYdLXrfpzN9uHGYK37MN3UYyzuXmpWj9j7UuEJ3hu5qpkrNVWhFb5KTFA6crhF6TLgZieGw==
-X-Received: by 2002:a0c:da0e:: with SMTP id x14mr2593674qvj.47.1587621585850;
-        Wed, 22 Apr 2020 22:59:45 -0700 (PDT)
-Return-Path: <xerofoify@gmail.com>
-Received: from [192.168.1.101] (173-230-163-45.cable.teksavvy.com. [173.230.163.45])
-        by smtp.gmail.com with ESMTPSA id p11sm999237qki.25.2020.04.22.22.59.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Apr 2020 22:59:45 -0700 (PDT)
-Subject: Re: [yocto] meta-javascripts
-To: per@hallsmark.se, yocto@lists.yoctoproject.org
-References: <lz1S.1587619716614083620.LFsb@lists.yoctoproject.org>
-From: "Nicholas Krause" <xerofoify@gmail.com>
-Message-ID: <a1d40a2e-aa70-d56f-4761-9eb2d4726dac@gmail.com>
-Date: Thu, 23 Apr 2020 01:59:43 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+ dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: changqing.li@windriver.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 5A53BE01A4A; Wed, 22 Apr 2020 23:39:54 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F460E01A0A
+	for <yocto@yoctoproject.org>; Wed, 22 Apr 2020 23:39:53 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com [147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 03N6dqPb011198
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 22 Apr 2020 23:39:52 -0700 (PDT)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+ ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+ 14.3.487.0; Wed, 22 Apr 2020 23:39:39 -0700
+From: "Changqing Li" <changqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Subject: [meta-selinux][PATCH] libselinux-python: Fix one invalid link
+Date: Thu, 23 Apr 2020 14:39:38 +0800
+Message-ID: <1587623978-277654-1-git-send-email-changqing.li@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <lz1S.1587619716614083620.LFsb@lists.yoctoproject.org>
-Content-Type: multipart/alternative;
- boundary="------------879F7DC11E7C6FC6AED65C2A"
-Content-Language: en-US
+Content-Type: text/plain
 
---------------879F7DC11E7C6FC6AED65C2A
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Changqing Li <changqing.li@windriver.com>
 
+when host arch and target arch are different, the extension
+suffix of host is different with target one, so there will
+be a invalid link.  Fix by update the way to create the link.
 
+Signed-off-by: Changqing Li <changqing.li@windriver.com>
+---
+ recipes-security/selinux/libselinux-python_3.0.bb  |  1 +
+ ...PYCEXT-and-rely-on-the-installed-file-nam.patch | 52 ++++++++++++++++++++++
+ 2 files changed, 53 insertions(+)
+ create mode 100644 recipes-security/selinux/libselinux/0001-Do-not-use-PYCEXT-and-rely-on-the-installed-file-nam.patch
 
-On 4/23/20 1:28 AM, per@hallsmark.se wrote:
-> Hello fellow Yocto developers,
->
-> To be able todo efficient HTML5 programming we of course needs some 
-> javascript libraries.
-> I've not seen Yocto have them packaged so I made up this idea of 
-> putting them into their own /usr/lib/js path
-> with a subdir for each javascript library. It is published here :
->
-> https://gitlab.com/saxofon/meta-javascripts
->
-> With an example usage here :
->
-> https://github.com/Wind-River/device-remote-gui
->
-> Would this be something yoctoproject is interested of perhaps?
->
-> BR,
-> Per
+diff --git a/recipes-security/selinux/libselinux-python_3.0.bb b/recipes-security/selinux/libselinux-python_3.0.bb
+index e024a22..2b5438d 100644
+--- a/recipes-security/selinux/libselinux-python_3.0.bb
++++ b/recipes-security/selinux/libselinux-python_3.0.bb
+@@ -16,5 +16,6 @@ SRC_URI += "\
+         file://libselinux-define-FD_CLOEXEC-as-necessary.patch \
+         file://0001-Fix-building-against-musl-and-uClibc-libc-libraries.patch \
+         file://0001-Makefile-fix-python-modules-install-path-for-multili.patch \
++        file://0001-Do-not-use-PYCEXT-and-rely-on-the-installed-file-nam.patch \
+         "
+ S = "${WORKDIR}/libselinux-${PV}"
+diff --git a/recipes-security/selinux/libselinux/0001-Do-not-use-PYCEXT-and-rely-on-the-installed-file-nam.patch b/recipes-security/selinux/libselinux/0001-Do-not-use-PYCEXT-and-rely-on-the-installed-file-nam.patch
+new file mode 100644
+index 0000000..b7cd59d
+--- /dev/null
++++ b/recipes-security/selinux/libselinux/0001-Do-not-use-PYCEXT-and-rely-on-the-installed-file-nam.patch
+@@ -0,0 +1,52 @@
++From 0d4da8093bc2ef92b7c6f7fd1f4804f6ebc6cb56 Mon Sep 17 00:00:00 2001
++From: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
++Date: Fri, 25 Oct 2019 13:37:14 +0200
++Subject: [PATCH] Do not use PYCEXT, and rely on the installed file name
++
++PYCEXT is computed by asking the Python intrepreter what is the
++file extension used for native Python modules.
++
++Unfortunately, when cross-compiling, the host Python doesn't give the
++proper result: it gives the result matching the build machine, and not
++the target machine. Due to this, the symlink has an incorrect name,
++and doesn't point to the .so file that was actually built/installed.
++
++To address this and keep things simple, this patch just changes the ln
++invocation to rely on the name of the _selinux*.so Python module that
++was installed.
++
++[Upstream: https://github.com/SELinuxProject/selinux/pull/184]
++Signed-off-by: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
++
++Upstream-Status: Denied [https://patchwork.kernel.org/patch/11212405/]
++
++[Refreshed for 3.0]
++Signed-off-by: Changqing Li <changqing.li@windriver.com>
++---
++ src/Makefile | 3 +--
++ 1 file changed, 1 insertion(+), 2 deletions(-)
++
++diff --git a/src/Makefile b/src/Makefile
++index a384a10..82adf82 100644
++--- a/src/Makefile
+++++ b/src/Makefile
++@@ -15,7 +15,6 @@ INCLUDEDIR ?= $(PREFIX)/include
++ PYINC ?= $(shell $(PKG_CONFIG) --cflags $(PYPREFIX))
++ PYLIBS ?= $(shell $(PKG_CONFIG) --libs $(PYPREFIX))
++ PYTHONLIBDIR ?= $(shell $(PYTHON) -c "from distutils.sysconfig import *; print(get_python_lib(plat_specific=1, prefix='$(PREFIX)'))")
++-PYCEXT ?= $(shell $(PYTHON) -c 'import imp;print([s for s,m,t in imp.get_suffixes() if t == imp.C_EXTENSION][0])')
++ RUBYINC ?= $(shell $(RUBY) -e 'puts "-I" + RbConfig::CONFIG["rubyarchhdrdir"] + " -I" + RbConfig::CONFIG["rubyhdrdir"]')
++ RUBYLIBS ?= $(shell $(RUBY) -e 'puts "-L" + RbConfig::CONFIG["libdir"] + " -L" + RbConfig::CONFIG["archlibdir"] + " " + RbConfig::CONFIG["LIBRUBYARG_SHARED"]')
++ RUBYINSTALL ?= $(shell $(RUBY) -e 'puts RbConfig::CONFIG["vendorarchdir"]')
++@@ -175,7 +174,7 @@ install: all
++ install-pywrap: pywrap
++ 	$(PYTHON) setup.py install --prefix=$(PREFIX) --root=$(DESTDIR) --install-lib=$(PYTHONLIBDIR)
++ 	install -m 644 $(SWIGPYOUT) $(DESTDIR)$(PYTHONLIBDIR)/selinux/__init__.py
++-	ln -sf --relative $(DESTDIR)$(PYTHONLIBDIR)/selinux/_selinux$(PYCEXT) $(DESTDIR)$(PYTHONLIBDIR)/_selinux$(PYCEXT)
+++	ln -sf --relative $(DESTDIR)$(PYTHONLIBDIR)/selinux/_selinux*.so $(DESTDIR)$(PYTHONLIBDIR)/
++ 
++ install-rubywrap: rubywrap
++ 	test -d $(DESTDIR)$(RUBYINSTALL) || install -m 755 -d $(DESTDIR)$(RUBYINSTALL) 
++-- 
++2.24.1
++
+-- 
+2.7.4
 
-Hi,
-
-I'm not a maintainer but you may want to see if you or other  people are 
-able to maintain
-then as a open embedded layer as part of the index. Not sure if someone 
-else can
-chip in if this is a useful recipe set to add to the open embedded index.
-
-That would ideally be where you would want this to go if this is useful 
-and maintained,
-
-Nick
->
-> 
-
-
---------------879F7DC11E7C6FC6AED65C2A
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 4/23/20 1:28 AM, <a class="moz-txt-link-abbreviated" href="mailto:per@hallsmark.se">per@hallsmark.se</a>
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:lz1S.1587619716614083620.LFsb@lists.yoctoproject.org">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      Hello fellow Yocto developers,<br>
-      <br>
-      To be able todo efficient HTML5 programming we of course needs
-      some javascript libraries.<br>
-      I've not seen Yocto have them packaged so I made up this idea of
-      putting them into their own /usr/lib/js path<br>
-      with a subdir for each javascript library. It is published here :<br>
-      <br>
-      <a href="https://gitlab.com/saxofon/meta-javascripts"
-        target="_blank" rel="noopener" moz-do-not-send="true">https://gitlab.com/saxofon/meta-javascripts</a><br>
-      <br>
-      With an example usage here :<br>
-      <br>
-      <a href="https://github.com/Wind-River/device-remote-gui"
-        target="_blank" rel="noopener" moz-do-not-send="true">https://github.com/Wind-River/device-remote-gui</a><br>
-      <br>
-      Would this be something yoctoproject is interested of perhaps?<br>
-      <br>
-      BR,<br>
-      Per
-      <br>
-    </blockquote>
-    <br>
-    Hi,<br>
-    <br>
-    I'm not a maintainer but you may want to see if you or other  people
-    are able to maintain<br>
-    then as a open embedded layer as part of the index. Not sure if
-    someone else can<br>
-    chip in if this is a useful recipe set to add to the open embedded
-    index.<br>
-    <br>
-    That would ideally be where you would want this to go if this is
-    useful and maintained,<br>
-    <br>
-    Nick<br>
-    <blockquote type="cite"
-      cite="mid:lz1S.1587619716614083620.LFsb@lists.yoctoproject.org">
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------879F7DC11E7C6FC6AED65C2A--
