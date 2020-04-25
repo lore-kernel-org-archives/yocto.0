@@ -1,74 +1,46 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.910.1587777387207580523
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+ by mx.groups.io with SMTP id smtpd.web12.1140.1587778353811016732
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Apr 2020 18:16:27 -0700
+ Fri, 24 Apr 2020 18:32:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=uBuLRTO3;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: raj.khem@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C3FB1E01A69; Fri, 24 Apr 2020 18:16:26 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.216.50 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE78AE01A63
-	for <yocto@yoctoproject.org>; Fri, 24 Apr 2020 18:16:24 -0700 (PDT)
-Received: by mail-pj1-f50.google.com with SMTP id fu13so4013653pjb.5
-        for <yocto@yoctoproject.org>; Fri, 24 Apr 2020 18:16:24 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=uecUJgBr;
+ spf=pass (domain: gmail.com, ip: 209.85.210.173, mailfrom: raj.khem@gmail.com)
+Received: by mail-pf1-f173.google.com with SMTP id 18so5671196pfx.6
+        for <yocto@lists.yoctoproject.org>; Fri, 24 Apr 2020 18:32:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:organization:message-id
-         :date:user-agent:mime-version:in-reply-to;
-        bh=5BnqK2t7bGB6Et73/iXo+pHL9nPDY0y5bIbK98ae8iE=;
-        b=uBuLRTO3b1fMrnReQOyYLWZFP3o5wJAdRX5DBf2HFI53oKZUyd1cZVw9zebdpW5B11
-         LXpL6s4LbTPZVpGDew71+FhnzocC5abekdP/SfjMnex38Us9dSswnOzbSn2g9Gt1m9uV
-         CzWDmSzQotW+wHVjVHKSC4kDKBLzLMrehnJoSvDOhF+z86lyq68oLa9iW+VPQyjlOsV6
-         TCjncAHRT5d53qAQEPxZVH0648utpvbvO2ke3x/43D+FuMxza0gHfb1fV/KYYz2Rm5+k
-         gSx3bqwyqazH9XT3Bw8f7o8TKz1dZ4mSC3zbMQ1njBdGlOwPGDpD2i8es5/WaXBJDMg9
-         cvGA==
+        h=to:references:from:autocrypt:organization:subject:message-id:date
+         :user-agent:mime-version:in-reply-to;
+        bh=YgZw9mo0iJcfWjRldVrjuMnAxOhIufx8XD4uRhtsolc=;
+        b=uecUJgBriS+Vjz9Hex+PsDle0AyZDMp9omqcrem9gH2/yrN9P9mrAVwlJZkqfCd3KI
+         pf08JKFYgF/b9S+xy8GbzqPow/9Beh20PozqqCw+c/qkxKiFYiWCpFlwGGSEpWTXcjYb
+         /6S7m0zO3mxv5k86n0+d+uRW7Ugk13VSElXcftmVr/8knzQOP2sSiF2kGjBekjxpotdp
+         DSoBMELlxSiu7YLgZ08gr9vNStyXQvGpM37/B1DGjA6YqajCiixCMWCCHi/NMDmzJUrE
+         jqyoTJWig0d9eu7YaS2aWuekg7EUF0aek8ao2H0t9BFhbf9oz2DCz1ST4WWJnZ/Fm+PS
+         TgkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to;
-        bh=5BnqK2t7bGB6Et73/iXo+pHL9nPDY0y5bIbK98ae8iE=;
-        b=BxFJtluHSecnJoMtOghEEMkKA1gM3Wd9KIu5kX1TAyaFouIXiOkgHp87rsmtpHrPHN
-         v2RvNduj93WGbeaSCbrptR8Lhm1ilMDfU6si5akWZmm7t1tvpwaccVEss4QVpv1SsSoh
-         sBezpa8dHWr5dIRufSbJwjuZPcRNR1/Mh9wIHqFZXjWXY0HJxF55TlXgq0oXP47q0OVg
-         fCcBcJYiEfMCScC5H32LRAscF1QVVQtIQmTznhT7oFPKeSa1bEdcmRI69s87zMbp8Gwz
-         Y2etdowInBVgBiBQKHSytmb7svxgm8czDlIO2+zrlfn3xE1HWPbX3W22SkxFKmnTby83
-         S8gQ==
-X-Gm-Message-State: AGi0PuY3skfjpyaHrzL+ZVfGHRmNR4UXbQWvndtLBrp8MVniClWLUROv
-	wqrEhsTHd4j5tV3ARVwzogW3ApdMTV0=
-X-Google-Smtp-Source: APiQypLB1gY7p6th1xWRbZHZwASahIN9G+dpBB08NpaZ+3gkOssEbwdoAU4+v96tA8BOlOWKh1fwiQ==
-X-Received: by 2002:a17:90a:6403:: with SMTP id g3mr8551310pjj.99.1587777383276;
-        Fri, 24 Apr 2020 18:16:23 -0700 (PDT)
+        h=x-gm-message-state:to:references:from:autocrypt:organization
+         :subject:message-id:date:user-agent:mime-version:in-reply-to;
+        bh=YgZw9mo0iJcfWjRldVrjuMnAxOhIufx8XD4uRhtsolc=;
+        b=adPPFmyTu4I9BLlN5DWPLi2Yv/nniegP0Qx6u7VmeX0dB2fOtbv1FzafoMytzH/usQ
+         ohzAaur+CKqHcOyfQgWk4jQXuFTJ12sDjTMeUSa0jHgiG58x453j5uE4Tl8TONKUm60g
+         w+jwrmw5NGBf1aw7fdhEz6XrBDxrCtYZkWCFIrBU0EMW6eg/wT+31eBNGxN0/nfiNKRi
+         QZuaER2ycEbPxwVut2veYe9PlqQ02vmk0Fm6jiZUCXljgnPnmM0uShGadWiBiQt4jOFP
+         zSPYhCbEI2dl7Op+IltILo0xes3GZ6lqwKGtiC6eIUSnJRzDO1qkTx4H4aXs0qs2laOY
+         B5tA==
+X-Gm-Message-State: AGi0PubdnGd7iuBamRnMgCvikfQHeiBnZOZe50hxrV0azsqxPxPmEUEs
+	L9ClZ5FzBwT+6w4tsrHAVcuiNDOhhoM=
+X-Google-Smtp-Source: APiQypIkKX8ydxLmdPQx0WDXkiHxRmACM3dG+DKuApcXWEArKD17+WC1tbCkzV8sOogXG659pbe+vg==
+X-Received: by 2002:a63:4c08:: with SMTP id z8mr11809472pga.175.1587778352566;
+        Fri, 24 Apr 2020 18:32:32 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
 Received: from ?IPv6:2601:646:9200:4e0::ac76? ([2601:646:9200:4e0::ac76])
-        by smtp.gmail.com with ESMTPSA id w125sm6002360pgw.22.2020.04.24.18.16.22
+        by smtp.gmail.com with ESMTPSA id 138sm6838368pfz.31.2020.04.24.18.32.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Apr 2020 18:16:22 -0700 (PDT)
-Subject: Re: [yocto] inconsistencies with selecting systemd as init manager?
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>,
- Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-References: <alpine.LFD.2.21.2004230713330.10937@localhost.localdomain>
- <CAP71WjxZp+b_YWAUSWvoJqFo9rcze_66z=+oQOwdHLsaE_-6SA@mail.gmail.com>
- <alpine.LFD.2.21.2004230812410.14835@localhost.localdomain>
+        Fri, 24 Apr 2020 18:32:31 -0700 (PDT)
+To: Cguerin@middleby.com, yocto@lists.yoctoproject.org
+References: <zCQm.1587495013762613098.vhAI@lists.yoctoproject.org>
 From: "Khem Raj" <raj.khem@gmail.com>
 Autocrypt: addr=raj.khem@gmail.com; keydata=
  mQGiBEqXaJERBACUvFofpD3FsxD9675wcPv+rzguIfsRWilrrpSZ61JHjLHwkUnmDLpLSdfv
@@ -103,109 +75,103 @@ Autocrypt: addr=raj.khem@gmail.com; keydata=
  XlQNlB5grwH9o6uNtPbV7q/uRqmKq5EiiEkEGBECAAkFAkqXaJECGwwACgkQuwUzVZGdMxR1
  VACcCkdaO3rb8/gRprldmAH6eR49eo4AnjD3h3aTwv/1bl+BAz1twmZmz8ul
 Organization: HIMVIS LLC
-Message-ID: <30f66da0-ab1b-02d7-025e-97adb24f2543@gmail.com>
-Date: Fri, 24 Apr 2020 18:16:17 -0700
+Subject: Re: [yocto] Enabling SELinux in an application #SELINUX
+Message-ID: <972da3ad-4b00-db4a-ccd1-cda84cde96d9@gmail.com>
+Date: Fri, 24 Apr 2020 18:32:25 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <alpine.LFD.2.21.2004230812410.14835@localhost.localdomain>
-X-Groupsio-MsgNum: 49229
+In-Reply-To: <zCQm.1587495013762613098.vhAI@lists.yoctoproject.org>
+X-Groupsio-MsgNum: 49230
 Content-Type: multipart/signed; micalg=pgp-sha1;
  protocol="application/pgp-signature";
- boundary="82hPQk3UsUVHEzSTMNbCDdkz5vGE8L2ZN"
+ boundary="eR6yUS6cgCXnkpUBIbv1GCgPoirw9B1kR"
 
---82hPQk3UsUVHEzSTMNbCDdkz5vGE8L2ZN
-Content-Type: multipart/mixed; boundary="WtqLwhBokboDPBfr2s8NDsAvlIYr8rafv";
+--eR6yUS6cgCXnkpUBIbv1GCgPoirw9B1kR
+Content-Type: multipart/mixed; boundary="s2JYeKrjmyeTI4I0y5ARqV2RueReewA6M";
  protected-headers="v1"
 From: Khem Raj <raj.khem@gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>,
- Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <30f66da0-ab1b-02d7-025e-97adb24f2543@gmail.com>
-Subject: Re: [yocto] inconsistencies with selecting systemd as init manager?
-References: <alpine.LFD.2.21.2004230713330.10937@localhost.localdomain>
- <CAP71WjxZp+b_YWAUSWvoJqFo9rcze_66z=+oQOwdHLsaE_-6SA@mail.gmail.com>
- <alpine.LFD.2.21.2004230812410.14835@localhost.localdomain>
-In-Reply-To: <alpine.LFD.2.21.2004230812410.14835@localhost.localdomain>
+To: Cguerin@middleby.com, yocto@lists.yoctoproject.org
+Message-ID: <972da3ad-4b00-db4a-ccd1-cda84cde96d9@gmail.com>
+Subject: Re: [yocto] Enabling SELinux in an application #SELINUX
+References: <zCQm.1587495013762613098.vhAI@lists.yoctoproject.org>
+In-Reply-To: <zCQm.1587495013762613098.vhAI@lists.yoctoproject.org>
 
---WtqLwhBokboDPBfr2s8NDsAvlIYr8rafv
-Content-Type: text/plain; charset=iso-8859-15
+--s2JYeKrjmyeTI4I0y5ARqV2RueReewA6M
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
 
 
-On 4/23/20 5:14 AM, Robert P. J. Day wrote:
-> On Thu, 23 Apr 2020, Nicolas Dechesne wrote:
+On 4/21/20 11:50 AM, Cguerin@middleby.com wrote:
+> I am with The Middleby Corporation.=C2=A0 We manufacture a wide variety =
+of
+> commercial ovens, ice machines, coffee brewers, microwaves, soft-serve
+> machines and virtually anything you=E2=80=99d find in a commercial resta=
+urant
+> kitchen.=C2=A0 Much of our equipment has a touch-screen display on it =
+=E2=80=93 often
+> 4.3=E2=80=9D to 10.1=E2=80=9D in size.=C2=A0 This is part of an embedded=
+ control system that
+> includes a separate I/O board to talk to motors, heating elements, etc.=
+=C2=A0
+> The touch-screen control are most often running Yocto Linux with a QT or
+> similar application running on top of Linux.=C2=A0 Recently, we have bee=
+n
+> asked to explore enabling SELinux security provisions in our
+> applications.=C2=A0 In speaking with several of our vendors, they all
+> indicated they don=E2=80=99t generally need to enable SELinux and have n=
+ever
+> done so in the past. =C2=A0
 >=20
->>
->>
->> On Thu, Apr 23, 2020 at 1:18 PM Robert P. J. Day <rpjday@crashcourse.ca=
-> wrote:
->>
->>       =A0 just noticed that, given that since YP 3.0 one could select s=
-ystemd
->>       as the init manager via the single variable INIT_MANAGER, which p=
-ulled
->>       in init-manager-systemd.inc:
->>
->>       # Use systemd for system initialization
->>       DISTRO_FEATURES_append =3D " systemd"
->>       DISTRO_FEATURES_BACKFILL_CONSIDERED_append =3D " sysvinit"
->>       VIRTUAL-RUNTIME_init_manager ??=3D "systemd"
->>       VIRTUAL-RUNTIME_initscripts ??=3D "systemd-compat-units"
->>       VIRTUAL-RUNTIME_login_manager ??=3D "shadow-base"
->>
->>
->> INIT_MANAGER was added in 3.0, see:
->> https://git.openembedded.org/openembedded-core/commit/?id=3D8d0b4704a52=
-6a48cd5e67df6
->> 1b613424bbbdccde
+> I now know what SELinux is, but I can=E2=80=99t get a good answer if it =
+even is
+> needed to be enabled on a touch-screen application on equipment that a
+> 16 year old kid generally operates.=C2=A0 We often do have USB ports on =
+our
+> equipment for software updates and some is connected to the internet as
+> well, but I still don=E2=80=99t see how the security access provisions i=
+n
+> SELinux are needed for our application.=C2=A0
 >=20
->   i know, that's what i mentioned above.
->=20
->>       =A0 this doesn't quite seem to match this snippet from
->>       meta/lib/oeqa/selftest/cases/imagefeatures.py:
->>
->>       # Switch to systemd
->>       DISTRO_FEATURES +=3D "systemd"
->>       VIRTUAL-RUNTIME_init_manager =3D "systemd"
->>       VIRTUAL-RUNTIME_initscripts =3D ""
->>       VIRTUAL-RUNTIME_syslog =3D ""
->>       VIRTUAL-RUNTIME_login_manager =3D "shadow-base"
->>       DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"
->>
->>
->> this is the 'old' (pre 3.0) method, and it can (and should) be
->> replaced with INIT_MANAGER, i believe.
->=20
->   i suspected as much, i just wanted to point out that those two
-> snippets are not *exactly* equivalent so someone should make sure that
-> INIT_MANAGER usage is precisely defined.
 
-perhaps imagefeatures.py should be updated to sync with INIT_MANAGER
-settings.
+Generally devices having ports, or being connected to Internet can
+become a door to your network and cause some serious damage, so you
+sould assess the security needs for your devices, I would think. As far
+as technologies needed to achieve security needs SELinux is one of many
+options, you have apparmor, tomoyo, and other MAC technologies, and I
+would think you should do some experiments to see which of these will
+fit your needs to manage MAC. Then there are other methods to address
+security concerns.
 
->=20
-> rday
+> Lastly, I'm not a programmer. I manage the business end of all of
+> Middleby's electronic controls, so the aim of this message is to ask for
+> general guidance regarding the need for SELinux or not.
+
+I would think you need security, SELinux is one cog in the wheel and
+there are other options, I would think doing some proof of concept
+within your setups after you have done some security analysis, would be
+the steps to take.
+
 >=20
 >=20
 >=20
 >=20
 
 
---WtqLwhBokboDPBfr2s8NDsAvlIYr8rafv--
+--s2JYeKrjmyeTI4I0y5ARqV2RueReewA6M--
 
---82hPQk3UsUVHEzSTMNbCDdkz5vGE8L2ZN
+--eR6yUS6cgCXnkpUBIbv1GCgPoirw9B1kR
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EARECAB0WIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCXqOPYQAKCRC7BTNVkZ0z
-FEsBAJwMwk77m6I9m25ayi+XwDJgTZBwbACfffTZ3qv0cuTobKpOSYYFANLgcVw=
-=vziX
+iF0EARECAB0WIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCXqOTKQAKCRC7BTNVkZ0z
+FO+OAJ0bIGRBuz5Jskd2PmnS0siykVdJCQCcDtcxU8cvl3RoB5ppJTLDNML6h5Y=
+=fuIJ
 -----END PGP SIGNATURE-----
 
---82hPQk3UsUVHEzSTMNbCDdkz5vGE8L2ZN--
+--eR6yUS6cgCXnkpUBIbv1GCgPoirw9B1kR--
