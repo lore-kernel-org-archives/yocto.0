@@ -1,50 +1,47 @@
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
- by mx.groups.io with SMTP id smtpd.web10.812.1587777015898508723
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+ by mx.groups.io with SMTP id smtpd.web12.904.1587777199200517990
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Apr 2020 18:10:15 -0700
+ Fri, 24 Apr 2020 18:13:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=eRwsh16q;
- spf=pass (domain: gmail.com, ip: 209.85.215.173, mailfrom: raj.khem@gmail.com)
-Received: by mail-pg1-f173.google.com with SMTP id n16so5458986pgb.7
-        for <yocto@lists.yoctoproject.org>; Fri, 24 Apr 2020 18:10:15 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=QqP93Avy;
+ spf=pass (domain: gmail.com, ip: 209.85.210.174, mailfrom: raj.khem@gmail.com)
+Received: by mail-pf1-f174.google.com with SMTP id 18so5654327pfx.6
+        for <yocto@lists.yoctoproject.org>; Fri, 24 Apr 2020 18:13:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:organization:message-id
-         :date:user-agent:mime-version:in-reply-to;
-        bh=vtGXcFBE/Tv+tiQ8iGHtisTfJ/cUczygt/ysNT7hPGY=;
-        b=eRwsh16qzhzl3Al/vAbdm/dcU98nY3aKj+D4GNqRK7Mm/Vn+Ti41p924XUYNzAq2zS
-         uNQa4A9hvrAZRrD5uMUD4VGdZgkkShK83yTuxVN1M9Wa07DyCqt8YLkpUfO6SemIAQE9
-         Z+IaWUrFgtz3tNRqnmAssCF+2v1HnFbhsh5LcZ80+fvj8njjhT7ubhFZeyUhJgj89NI+
-         YT84MOY83T9Xy7LifvPBCZzozMfFGoIOs9auG04Qb4ADChG/XaZp8YWA6bnMJ0Dd6uux
-         Bx/3rXKfpO2erbhxXEFjQ2hGSNRthXJCMSxFbpRBbT5lPldrX/ElHa4IIm2GoiG4cmtO
-         HPqg==
+        h=subject:to:references:from:autocrypt:organization:message-id:date
+         :user-agent:mime-version:in-reply-to;
+        bh=i5T9c7FZGg4T199EEY7gj3fMuBYbrvmi5DHuddYWKpM=;
+        b=QqP93AvyQ8Sg6eQuGkZg6MGvrQ5EbqfLViU1OhYR2lxGgyNj5NS0jCgowYFsLYJb2y
+         4G5INQslb7X2pw9q/xD7zj02ibCSlnap4XzYE8FwuKTmLGNNCg5OuNuCpLMiGLQIdzKl
+         E6w0rx6MwOFI5Ik9QaU1u4v4gYntvWYSoTzRIGnHci4k2Bhu+8zBOCsGVMwlgbMJBdjM
+         LIYOr+Ta8U0RqlBtI7g0sQsd/7qcPGRZZ1APnK3OAMtjZ0OgmMSerM8aD+Ezeb1CW7gA
+         1JPavWJDWeTcGMaDnYeCIw2Be3CFlbDfu2MzItX0LtyXOZFA4gZoUA5bP1NAz2tXKjTa
+         XT2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+        h=x-gm-message-state:subject:to:references:from:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to;
-        bh=vtGXcFBE/Tv+tiQ8iGHtisTfJ/cUczygt/ysNT7hPGY=;
-        b=ebJ3M1NvGAozemnkRAgwLCyLhxUXmGpdFAB50c1fmuz2wREnNZKE59LMCqePQCSoMa
-         XdYWCK67h1j7E128lrjwud896p1rARAkR0T5V1yZu2RA9u97Kns+ltmj8lNDVAJfWryF
-         yRwarv6Uh6t3HRaU0Q9A2eXXABY44u7YS99WgVs4hklC4GJ9PO8Q69YYSA0QXOdZPWGw
-         Jw9Jg/6tl7feRP0XlyJqmqvLyxHyZyywaFbDuSHAkeKVEwa378ZnbDvpgpQvjG3EeoD/
-         XYb8QTMFbAPxpVPd6v756wQzZkVQWajVq7jnbZgIkHHOD5QRxD/xlG57vZqsSBiO5Z8d
-         pMrg==
-X-Gm-Message-State: AGi0PuYWc/vXAhm+45c9fnHKThaPX8/XyaHHEUv0OcrfmHZPTwzZDj/+
-	v//ed4Pvh7noNdYTGDRduNEvfnvu5r0=
-X-Google-Smtp-Source: APiQypJwJUbhGXw6lxmWxiNuhB3YD0ubz2kh7xPuQfYBTOa1mMYVzFPvrbLyEyx7/vMEYwPgRoshdg==
-X-Received: by 2002:a63:4c1:: with SMTP id 184mr11728122pge.156.1587777015026;
-        Fri, 24 Apr 2020 18:10:15 -0700 (PDT)
+        bh=i5T9c7FZGg4T199EEY7gj3fMuBYbrvmi5DHuddYWKpM=;
+        b=LKTuHPQBFGl+hkpBgwczLBKciTM0EO8Z8O9BEePxARHK9X7hJaBmTWd9IW9ZXMCQp4
+         vK4+SjNjtKTfs/s9D4zNPG7O0A0HAq0E1iUBRU/IE1c8B1obAwue1u1Z3IsZDTazRydn
+         mcF5eeO9fRU9/Wo7Yve13liJA9kVezo0W8MRUOCd+0fuF1gLQceuanWe+H9vhcBrctE3
+         nU/mJvUxmUjA5VPL+d4+ULDwzR2H477PYFJA7MO7Cd+385OKMFSPes5oiEmkcpoKnyWS
+         1/JgbG7iJw3Mv/0m84Ron3hfR+ISXZSPDFYuO0fft3ht8Q0KSQMiabAcM2UJyr81J0T1
+         88VA==
+X-Gm-Message-State: AGi0PubHyYUntt5yOT7BH732LkHuSZNEG5+Y7e1Yw6ZzhdNJxOiysi7t
+	fLumIEbgHUs5Ik66cpqkfd8FTsL+rhs=
+X-Google-Smtp-Source: APiQypImdKEvMY57TBzpEAMLnlAQhuicDqGBxXXDHEJrPm6J9yM/ImXSExQZER0Q5+mp+dJEt1F9Lw==
+X-Received: by 2002:a63:1845:: with SMTP id 5mr7719938pgy.69.1587777198263;
+        Fri, 24 Apr 2020 18:13:18 -0700 (PDT)
 Return-Path: <raj.khem@gmail.com>
 Received: from ?IPv6:2601:646:9200:4e0::ac76? ([2601:646:9200:4e0::ac76])
-        by smtp.gmail.com with ESMTPSA id y26sm6539713pfn.185.2020.04.24.18.10.13
+        by smtp.gmail.com with ESMTPSA id i13sm5738993pja.40.2020.04.24.18.13.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Apr 2020 18:10:14 -0700 (PDT)
-Subject: Re: [yocto] meta-javascripts
-To: Per Hallsmark <per@hallsmark.se>, Nicholas Krause <xerofoify@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-References: <lz1S.1587619716614083620.LFsb@lists.yoctoproject.org>
- <a1d40a2e-aa70-d56f-4761-9eb2d4726dac@gmail.com>
- <CAPaVuL8QziP+S9oJAmUNAQmFh5HSjwSDaSxpABLot0Cmpucf7w@mail.gmail.com>
+        Fri, 24 Apr 2020 18:13:17 -0700 (PDT)
+Subject: Re: [yocto] Distro testing #yocto
+To: sateesh m <sateesh0457@gmail.com>, yocto@lists.yoctoproject.org
+References: <ot9V.1587633979126023753.LxGx@lists.yoctoproject.org>
 From: "Khem Raj" <raj.khem@gmail.com>
 Autocrypt: addr=raj.khem@gmail.com; keydata=
  mQGiBEqXaJERBACUvFofpD3FsxD9675wcPv+rzguIfsRWilrrpSZ61JHjLHwkUnmDLpLSdfv
@@ -79,110 +76,62 @@ Autocrypt: addr=raj.khem@gmail.com; keydata=
  XlQNlB5grwH9o6uNtPbV7q/uRqmKq5EiiEkEGBECAAkFAkqXaJECGwwACgkQuwUzVZGdMxR1
  VACcCkdaO3rb8/gRprldmAH6eR49eo4AnjD3h3aTwv/1bl+BAz1twmZmz8ul
 Organization: HIMVIS LLC
-Message-ID: <dffc6247-a4e9-bd05-af53-5e502416aab8@gmail.com>
-Date: Fri, 24 Apr 2020 18:10:03 -0700
+Message-ID: <b4482ee6-fd72-9033-dff4-423a6df966d6@gmail.com>
+Date: Fri, 24 Apr 2020 18:13:11 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <CAPaVuL8QziP+S9oJAmUNAQmFh5HSjwSDaSxpABLot0Cmpucf7w@mail.gmail.com>
-X-Groupsio-MsgNum: 49227
+In-Reply-To: <ot9V.1587633979126023753.LxGx@lists.yoctoproject.org>
+X-Groupsio-MsgNum: 49228
 Content-Type: multipart/signed; micalg=pgp-sha1;
  protocol="application/pgp-signature";
- boundary="ylEIKBdJeRuQcHZ4jSDayBvjt2GOMVT3V"
+ boundary="fDWvt3edwwiHC4Etp2Wpd22Rqxd3k0ofr"
 
---ylEIKBdJeRuQcHZ4jSDayBvjt2GOMVT3V
-Content-Type: multipart/mixed; boundary="ITa4CXGToajyOaOfS1IhfLASfDN4ZxQPW";
+--fDWvt3edwwiHC4Etp2Wpd22Rqxd3k0ofr
+Content-Type: multipart/mixed; boundary="5N7rgeBkJGC87qT3cUVZSOL97rN2gJcpM";
  protected-headers="v1"
 From: Khem Raj <raj.khem@gmail.com>
-To: Per Hallsmark <per@hallsmark.se>, Nicholas Krause <xerofoify@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Message-ID: <dffc6247-a4e9-bd05-af53-5e502416aab8@gmail.com>
-Subject: Re: [yocto] meta-javascripts
-References: <lz1S.1587619716614083620.LFsb@lists.yoctoproject.org>
- <a1d40a2e-aa70-d56f-4761-9eb2d4726dac@gmail.com>
- <CAPaVuL8QziP+S9oJAmUNAQmFh5HSjwSDaSxpABLot0Cmpucf7w@mail.gmail.com>
-In-Reply-To: <CAPaVuL8QziP+S9oJAmUNAQmFh5HSjwSDaSxpABLot0Cmpucf7w@mail.gmail.com>
+To: sateesh m <sateesh0457@gmail.com>, yocto@lists.yoctoproject.org
+Message-ID: <b4482ee6-fd72-9033-dff4-423a6df966d6@gmail.com>
+Subject: Re: [yocto] Distro testing #yocto
+References: <ot9V.1587633979126023753.LxGx@lists.yoctoproject.org>
+In-Reply-To: <ot9V.1587633979126023753.LxGx@lists.yoctoproject.org>
 
---ITa4CXGToajyOaOfS1IhfLASfDN4ZxQPW
+--5N7rgeBkJGC87qT3cUVZSOL97rN2gJcpM
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
 
 
-On 4/23/20 12:01 AM, Per Hallsmark wrote:
-> Hi Nicholas,
+On 4/23/20 2:26 AM, sateesh m wrote:
+> Hi Guys,
 >=20
-> Thanks, I was thinking as providing it to Yocto but not maintaining it
-> myself. Too much other stuff going on
-> so it would be a slowly updated layer then.
->=20
-
-Give it some time and see if someone steps up to maintain it, if not you
-can also put these recipes in other layers
-
-> BR,
-> Per
->=20
-> On Thu, 23 Apr 2020 at 07:59, Nicholas Krause <xerofoify@gmail.com
-> <mailto:xerofoify@gmail.com>> wrote:
->=20
->=20
->=20
->     On 4/23/20 1:28 AM, per@hallsmark.se <mailto:per@hallsmark.se> wrote=
-:
->>     Hello fellow Yocto developers,
->>
->>     To be able todo efficient HTML5 programming we of course needs
->>     some javascript libraries.
->>     I've not seen Yocto have them packaged so I made up this idea of
->>     putting them into their own /usr/lib/js path
->>     with a subdir for each javascript library. It is published here :
->>
->>     https://gitlab.com/saxofon/meta-javascripts
->>
->>     With an example usage here :
->>
->>     https://github.com/Wind-River/device-remote-gui
->>
->>     Would this be something yoctoproject is interested of perhaps?
->>
->>     BR,
->>     Per
->=20
->     Hi,
->=20
->     I'm not a maintainer but you may want to see if you or other=C2=A0 p=
-eople
->     are able to maintain
->     then as a open embedded layer as part of the index. Not sure if
->     someone else can
->     chip in if this is a useful recipe set to add to the open embedded
->     index.
->=20
->     That would ideally be where you would want this to go if this is
->     useful and maintained,
->=20
->     Nick
->>
->=20
->=20
->=20
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0I want to test Distro t=
+esting in my yocto build image. for
+> that I need setup configurations and how can i check results and where =
+i
+> can get results. can anybody knows please suggest me .
 >=20
 
+you can check ptest images perhaps see [1]
 
---ITa4CXGToajyOaOfS1IhfLASfDN4ZxQPW--
 
---ylEIKBdJeRuQcHZ4jSDayBvjt2GOMVT3V
+[1] https://wiki.yoctoproject.org/wiki/Image_tests
+
+
+--5N7rgeBkJGC87qT3cUVZSOL97rN2gJcpM--
+
+--fDWvt3edwwiHC4Etp2Wpd22Rqxd3k0ofr
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EARECAB0WIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCXqON6wAKCRC7BTNVkZ0z
-FFJFAJ0ZxDurQceIxsLMUs1MfLa1cFz48wCfXKQnebATWqc7IeXsNK4jVS0DBz0=
-=Y/jp
+iF0EARECAB0WIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCXqOOpwAKCRC7BTNVkZ0z
+FNueAJ0UJ2b/9Zw33UzNECeZYcVbJNM/SQCfb7hcoVey/CYtzV18LewUitEtyQo=
+=y7Ky
 -----END PGP SIGNATURE-----
 
---ylEIKBdJeRuQcHZ4jSDayBvjt2GOMVT3V--
+--fDWvt3edwwiHC4Etp2Wpd22Rqxd3k0ofr--
