@@ -1,46 +1,70 @@
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
- by mx.groups.io with SMTP id smtpd.web12.1140.1587778353811016732
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.1211.1587778715903471614
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Apr 2020 18:32:33 -0700
+ Fri, 24 Apr 2020 18:38:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=uecUJgBr;
- spf=pass (domain: gmail.com, ip: 209.85.210.173, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f173.google.com with SMTP id 18so5671196pfx.6
-        for <yocto@lists.yoctoproject.org>; Fri, 24 Apr 2020 18:32:33 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=BrLNjPHE;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: raj.khem@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 8E744E01A69; Fri, 24 Apr 2020 18:38:35 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.214.196 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C76EE01A63
+	for <yocto@yoctoproject.org>; Fri, 24 Apr 2020 18:38:31 -0700 (PDT)
+Received: by mail-pl1-f196.google.com with SMTP id t4so4397858plq.12
+        for <yocto@yoctoproject.org>; Fri, 24 Apr 2020 18:38:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=to:references:from:autocrypt:organization:subject:message-id:date
+        h=subject:to:references:from:autocrypt:organization:message-id:date
          :user-agent:mime-version:in-reply-to;
-        bh=YgZw9mo0iJcfWjRldVrjuMnAxOhIufx8XD4uRhtsolc=;
-        b=uecUJgBriS+Vjz9Hex+PsDle0AyZDMp9omqcrem9gH2/yrN9P9mrAVwlJZkqfCd3KI
-         pf08JKFYgF/b9S+xy8GbzqPow/9Beh20PozqqCw+c/qkxKiFYiWCpFlwGGSEpWTXcjYb
-         /6S7m0zO3mxv5k86n0+d+uRW7Ugk13VSElXcftmVr/8knzQOP2sSiF2kGjBekjxpotdp
-         DSoBMELlxSiu7YLgZ08gr9vNStyXQvGpM37/B1DGjA6YqajCiixCMWCCHi/NMDmzJUrE
-         jqyoTJWig0d9eu7YaS2aWuekg7EUF0aek8ao2H0t9BFhbf9oz2DCz1ST4WWJnZ/Fm+PS
-         TgkQ==
+        bh=brrSZUaXJMxceSqwBW0r/vJHGxnYXmhcyg7aO/urj/c=;
+        b=BrLNjPHEU+m0GtRUyFIRSadrtLjBAxGprbmiKCq5FPuRP03qO2ifbPt0J5TL0YwatS
+         EkSFbNZfy5/zcZ1ERPLX8c9r3T8/hE/ahgyXyEc5cpF875qDSw5ZRsvmS1wfm25WoYI/
+         44oD6zCfxqxnfWByneZzuYcPnzy1V0dIJ1iS+VrGG3Y7fKYgPaKfy+8AUpcCGFyA+ef2
+         WhQnVyJr1uNwW6rugxdLOsHMeroPGvAdPvNvcmGQN+XroER4M77r0jfJIU/ndDLysUfF
+         K7UvfH5Cpy0O+QXiQ6k1izxbmafX/kW9YeJoX49HgBtdfXl+dKOUqzCMq4kbqsQg3UFX
+         vAnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:references:from:autocrypt:organization
-         :subject:message-id:date:user-agent:mime-version:in-reply-to;
-        bh=YgZw9mo0iJcfWjRldVrjuMnAxOhIufx8XD4uRhtsolc=;
-        b=adPPFmyTu4I9BLlN5DWPLi2Yv/nniegP0Qx6u7VmeX0dB2fOtbv1FzafoMytzH/usQ
-         ohzAaur+CKqHcOyfQgWk4jQXuFTJ12sDjTMeUSa0jHgiG58x453j5uE4Tl8TONKUm60g
-         w+jwrmw5NGBf1aw7fdhEz6XrBDxrCtYZkWCFIrBU0EMW6eg/wT+31eBNGxN0/nfiNKRi
-         QZuaER2ycEbPxwVut2veYe9PlqQ02vmk0Fm6jiZUCXljgnPnmM0uShGadWiBiQt4jOFP
-         zSPYhCbEI2dl7Op+IltILo0xes3GZ6lqwKGtiC6eIUSnJRzDO1qkTx4H4aXs0qs2laOY
-         B5tA==
-X-Gm-Message-State: AGi0PubdnGd7iuBamRnMgCvikfQHeiBnZOZe50hxrV0azsqxPxPmEUEs
-	L9ClZ5FzBwT+6w4tsrHAVcuiNDOhhoM=
-X-Google-Smtp-Source: APiQypIkKX8ydxLmdPQx0WDXkiHxRmACM3dG+DKuApcXWEArKD17+WC1tbCkzV8sOogXG659pbe+vg==
-X-Received: by 2002:a63:4c08:: with SMTP id z8mr11809472pga.175.1587778352566;
-        Fri, 24 Apr 2020 18:32:32 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
+        h=x-gm-message-state:subject:to:references:from:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to;
+        bh=brrSZUaXJMxceSqwBW0r/vJHGxnYXmhcyg7aO/urj/c=;
+        b=FZa7ThGHA5NvtRiRjkHw2SOlEh9pLI4NJ66vhfCIp9N8WFj9+54/Ct4QTlO7Iakn05
+         ByF2+RNoMB8Vv3eJwdewjDKSdkGQ8E8laJlx7SPGFQBNlvfsfNfQt4NT+gZZBykr6TBM
+         Ex4nw/ewElB9iNCK3oFOzgxxPkhBf1n4eJrPiQR55PFoZxyE9r0+ODtQn8C1A5xa5uef
+         fOZUuSop7BHCOritI0507X4jRQoqpxAM1E74YKPkaFoAYPa5yoCE72ex0xdBxg4phtIC
+         jxNHTOQkD0usz4XTGkanJH3oz7TeqshOBf1xMHC3FdXxUYzTP8I8e8G46amFCIaaYXkZ
+         /pnw==
+X-Gm-Message-State: AGi0PuYN7xhlpjbynq+aVbiBA37FpZd3loegRfzOJlwNYyNvEdy0ToB3
+	MGcOlH/2RyQypAfEYK8TZLXoZGf7MiU=
+X-Google-Smtp-Source: APiQypLRmGh9J2jEYrn/yf4YJoHi2zqotDquUFV33h++8wVfjz4OW/+q1aa0ajR8EWz+i87OhdGl0g==
+X-Received: by 2002:a17:90a:3450:: with SMTP id o74mr9596381pjb.159.1587778710912;
+        Fri, 24 Apr 2020 18:38:30 -0700 (PDT)
 Received: from ?IPv6:2601:646:9200:4e0::ac76? ([2601:646:9200:4e0::ac76])
-        by smtp.gmail.com with ESMTPSA id 138sm6838368pfz.31.2020.04.24.18.32.31
+        by smtp.gmail.com with ESMTPSA id y186sm6818552pfy.66.2020.04.24.18.38.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Apr 2020 18:32:31 -0700 (PDT)
-To: Cguerin@middleby.com, yocto@lists.yoctoproject.org
-References: <zCQm.1587495013762613098.vhAI@lists.yoctoproject.org>
+        Fri, 24 Apr 2020 18:38:30 -0700 (PDT)
+Subject: Re: [yocto] Can't find pyconfig.h with python3
+To: Emily <easmith5555@gmail.com>, Yocto List <yocto@yoctoproject.org>
+References: <CAAV2bM0wH85d97Td2dg=oQwSW3K5nTKF3604w7Y0Fz6tn=01Gw@mail.gmail.com>
 From: "Khem Raj" <raj.khem@gmail.com>
 Autocrypt: addr=raj.khem@gmail.com; keydata=
  mQGiBEqXaJERBACUvFofpD3FsxD9675wcPv+rzguIfsRWilrrpSZ61JHjLHwkUnmDLpLSdfv
@@ -75,103 +99,109 @@ Autocrypt: addr=raj.khem@gmail.com; keydata=
  XlQNlB5grwH9o6uNtPbV7q/uRqmKq5EiiEkEGBECAAkFAkqXaJECGwwACgkQuwUzVZGdMxR1
  VACcCkdaO3rb8/gRprldmAH6eR49eo4AnjD3h3aTwv/1bl+BAz1twmZmz8ul
 Organization: HIMVIS LLC
-Subject: Re: [yocto] Enabling SELinux in an application #SELINUX
-Message-ID: <972da3ad-4b00-db4a-ccd1-cda84cde96d9@gmail.com>
-Date: Fri, 24 Apr 2020 18:32:25 -0700
+Message-ID: <096aae34-df17-0aa0-8e3b-e9f740e9a54d@gmail.com>
+Date: Fri, 24 Apr 2020 18:38:23 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <zCQm.1587495013762613098.vhAI@lists.yoctoproject.org>
-X-Groupsio-MsgNum: 49230
+In-Reply-To: <CAAV2bM0wH85d97Td2dg=oQwSW3K5nTKF3604w7Y0Fz6tn=01Gw@mail.gmail.com>
+X-Groupsio-MsgNum: 49231
 Content-Type: multipart/signed; micalg=pgp-sha1;
  protocol="application/pgp-signature";
- boundary="eR6yUS6cgCXnkpUBIbv1GCgPoirw9B1kR"
+ boundary="q5LHLFGmdP0OJQ6zYgebGvqfyJENFUldr"
 
---eR6yUS6cgCXnkpUBIbv1GCgPoirw9B1kR
-Content-Type: multipart/mixed; boundary="s2JYeKrjmyeTI4I0y5ARqV2RueReewA6M";
+--q5LHLFGmdP0OJQ6zYgebGvqfyJENFUldr
+Content-Type: multipart/mixed; boundary="Ab0IgQwAIeRXQvOqHtXtzCkRwdKY0xVkV";
  protected-headers="v1"
 From: Khem Raj <raj.khem@gmail.com>
-To: Cguerin@middleby.com, yocto@lists.yoctoproject.org
-Message-ID: <972da3ad-4b00-db4a-ccd1-cda84cde96d9@gmail.com>
-Subject: Re: [yocto] Enabling SELinux in an application #SELINUX
-References: <zCQm.1587495013762613098.vhAI@lists.yoctoproject.org>
-In-Reply-To: <zCQm.1587495013762613098.vhAI@lists.yoctoproject.org>
+To: Emily <easmith5555@gmail.com>, Yocto List <yocto@yoctoproject.org>
+Message-ID: <096aae34-df17-0aa0-8e3b-e9f740e9a54d@gmail.com>
+Subject: Re: [yocto] Can't find pyconfig.h with python3
+References: <CAAV2bM0wH85d97Td2dg=oQwSW3K5nTKF3604w7Y0Fz6tn=01Gw@mail.gmail.com>
+In-Reply-To: <CAAV2bM0wH85d97Td2dg=oQwSW3K5nTKF3604w7Y0Fz6tn=01Gw@mail.gmail.com>
 
---s2JYeKrjmyeTI4I0y5ARqV2RueReewA6M
+--Ab0IgQwAIeRXQvOqHtXtzCkRwdKY0xVkV
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
 
 
-On 4/21/20 11:50 AM, Cguerin@middleby.com wrote:
-> I am with The Middleby Corporation.=C2=A0 We manufacture a wide variety =
-of
-> commercial ovens, ice machines, coffee brewers, microwaves, soft-serve
-> machines and virtually anything you=E2=80=99d find in a commercial resta=
-urant
-> kitchen.=C2=A0 Much of our equipment has a touch-screen display on it =
-=E2=80=93 often
-> 4.3=E2=80=9D to 10.1=E2=80=9D in size.=C2=A0 This is part of an embedded=
- control system that
-> includes a separate I/O board to talk to motors, heating elements, etc.=
+On 4/24/20 4:17 PM, Emily wrote:
+> Hi all -=C2=A0
+>=20
+> I'm trying to build an OS with a custom recipe
+> (https://github.com/kratsg/meta-l1calo/blob/add/opcServer/recipes-core/o=
+pc-ua/opc-ua-server-gfex_git.bb).
+> I can build it as-is in the link above, but when actually trying to use
+> the output of the recipe (Poverty.so) I get the below error in python3:=
 =C2=A0
-> The touch-screen control are most often running Yocto Linux with a QT or
-> similar application running on top of Linux.=C2=A0 Recently, we have bee=
-n
-> asked to explore enabling SELinux security provisions in our
-> applications.=C2=A0 In speaking with several of our vendors, they all
-> indicated they don=E2=80=99t generally need to enable SELinux and have n=
-ever
-> done so in the past. =C2=A0
 >=20
-> I now know what SELinux is, but I can=E2=80=99t get a good answer if it =
-even is
-> needed to be enabled on a touch-screen application on equipment that a
-> 16 year old kid generally operates.=C2=A0 We often do have USB ports on =
-our
-> equipment for software updates and some is connected to the internet as
-> well, but I still don=E2=80=99t see how the security access provisions i=
-n
-> SELinux are needed for our application.=C2=A0
->=20
-
-Generally devices having ports, or being connected to Internet can
-become a door to your network and cause some serious damage, so you
-sould assess the security needs for your devices, I would think. As far
-as technologies needed to achieve security needs SELinux is one of many
-options, you have apparmor, tomoyo, and other MAC technologies, and I
-would think you should do some experiments to see which of these will
-fit your needs to manage MAC. Then there are other methods to address
-security concerns.
-
-> Lastly, I'm not a programmer. I manage the business end of all of
-> Middleby's electronic controls, so the aim of this message is to ask for
-> general guidance regarding the need for SELinux or not.
-
-I would think you need security, SELinux is one cog in the wheel and
-there are other options, I would think doing some proof of concept
-within your setups after you have done some security analysis, would be
-the steps to take.
-
+>>>> import Poverty Traceback (most recent call last): File "<stdin>", lin=
+e 1, in <module> ImportError: /usr/bin/Poverty.so: undefined symbol: _ZN5bo=
+ost6python6detail11init_moduleEPKcPFvvE
 >=20
 >=20
+> I think that's because I built against python2 in some places. So I
+> replaced essentially all of the python dependencies=C2=A0with their
+> corresponding python3 dependencies, but that gives a build error in
+> bitbake like:=C2=A0=C2=A0
+>=20
+> | /local/d6/easmith5/rocko_bitbake/poky/build/tmp/work/aarch64-poky-linu=
+x/opc-ua-server-gfex/1.0+gitAUTOINC+921c563309-r0/recipe-sysroot/usr/includ=
+e/boost/python/detail/wrap_python.hpp:50:11: fatal error: pyconfig.h: No su=
+ch file or directory
+> | =C2=A0# include <pyconfig.h>
+> | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~~~~~~~~~~~
+> | compilation terminated.
+>=20
+>=20
+> However, I checked and the offending file pyconfig.h is actually present
+> at |
+> /local/d6/easmith5/rocko_bitbake/poky/build/tmp/work/aarch64-poky-linux/=
+opc-ua-server-gfex/1.0+gitAUTOINC+921c563309-r0/recipe-sysroot/usr/include/=
+python3.5m/.
+> When I build with python2 dependencies the file is in the same location,
+> just /python2.7/.
+>=20
+> I can't quite tell if this is a yocto problem, or a problem with my
+> recipe and/or build files for that recipe. If anyone has suggestions
+> they would be much appreciated!=20
+
+this seems to be that it is needing python2, so yes it can perhaps be
+ported to py3 but you might have to check if it needs some code changes
+
+Looking at the recipe it is ineheriting py2 class here [1]
+
+perhaps you should change that to python3native
+
+[1]
+https://github.com/kratsg/meta-l1calo/blob/add/opcServer/recipes-core/opc-=
+ua/opc-ua-server-gfex_git.bb#L15
+
+
+
+>=20
+> Thanks!
+> Emily Smith
+>=20
+>=20
 >=20
 >=20
 
 
---s2JYeKrjmyeTI4I0y5ARqV2RueReewA6M--
+--Ab0IgQwAIeRXQvOqHtXtzCkRwdKY0xVkV--
 
---eR6yUS6cgCXnkpUBIbv1GCgPoirw9B1kR
+--q5LHLFGmdP0OJQ6zYgebGvqfyJENFUldr
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EARECAB0WIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCXqOTKQAKCRC7BTNVkZ0z
-FO+OAJ0bIGRBuz5Jskd2PmnS0siykVdJCQCcDtcxU8cvl3RoB5ppJTLDNML6h5Y=
-=fuIJ
+iF0EARECAB0WIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCXqOUjwAKCRC7BTNVkZ0z
+FH9/AKCB9OtXH5bqu2TrdViUL+axDPRAIgCgi8PN55yoB2OphN6tklS2SgnForQ=
+=Zzzt
 -----END PGP SIGNATURE-----
 
---eR6yUS6cgCXnkpUBIbv1GCgPoirw9B1kR--
+--q5LHLFGmdP0OJQ6zYgebGvqfyJENFUldr--
