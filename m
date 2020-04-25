@@ -1,47 +1,74 @@
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
- by mx.groups.io with SMTP id smtpd.web12.904.1587777199200517990
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.910.1587777387207580523
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Apr 2020 18:13:19 -0700
+ Fri, 24 Apr 2020 18:16:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=QqP93Avy;
- spf=pass (domain: gmail.com, ip: 209.85.210.174, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f174.google.com with SMTP id 18so5654327pfx.6
-        for <yocto@lists.yoctoproject.org>; Fri, 24 Apr 2020 18:13:19 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=uBuLRTO3;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: raj.khem@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id C3FB1E01A69; Fri, 24 Apr 2020 18:16:26 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.216.50 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE78AE01A63
+	for <yocto@yoctoproject.org>; Fri, 24 Apr 2020 18:16:24 -0700 (PDT)
+Received: by mail-pj1-f50.google.com with SMTP id fu13so4013653pjb.5
+        for <yocto@yoctoproject.org>; Fri, 24 Apr 2020 18:16:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:autocrypt:organization:message-id:date
-         :user-agent:mime-version:in-reply-to;
-        bh=i5T9c7FZGg4T199EEY7gj3fMuBYbrvmi5DHuddYWKpM=;
-        b=QqP93AvyQ8Sg6eQuGkZg6MGvrQ5EbqfLViU1OhYR2lxGgyNj5NS0jCgowYFsLYJb2y
-         4G5INQslb7X2pw9q/xD7zj02ibCSlnap4XzYE8FwuKTmLGNNCg5OuNuCpLMiGLQIdzKl
-         E6w0rx6MwOFI5Ik9QaU1u4v4gYntvWYSoTzRIGnHci4k2Bhu+8zBOCsGVMwlgbMJBdjM
-         LIYOr+Ta8U0RqlBtI7g0sQsd/7qcPGRZZ1APnK3OAMtjZ0OgmMSerM8aD+Ezeb1CW7gA
-         1JPavWJDWeTcGMaDnYeCIw2Be3CFlbDfu2MzItX0LtyXOZFA4gZoUA5bP1NAz2tXKjTa
-         XT2w==
+        h=subject:to:cc:references:from:autocrypt:organization:message-id
+         :date:user-agent:mime-version:in-reply-to;
+        bh=5BnqK2t7bGB6Et73/iXo+pHL9nPDY0y5bIbK98ae8iE=;
+        b=uBuLRTO3b1fMrnReQOyYLWZFP3o5wJAdRX5DBf2HFI53oKZUyd1cZVw9zebdpW5B11
+         LXpL6s4LbTPZVpGDew71+FhnzocC5abekdP/SfjMnex38Us9dSswnOzbSn2g9Gt1m9uV
+         CzWDmSzQotW+wHVjVHKSC4kDKBLzLMrehnJoSvDOhF+z86lyq68oLa9iW+VPQyjlOsV6
+         TCjncAHRT5d53qAQEPxZVH0648utpvbvO2ke3x/43D+FuMxza0gHfb1fV/KYYz2Rm5+k
+         gSx3bqwyqazH9XT3Bw8f7o8TKz1dZ4mSC3zbMQ1njBdGlOwPGDpD2i8es5/WaXBJDMg9
+         cvGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to;
-        bh=i5T9c7FZGg4T199EEY7gj3fMuBYbrvmi5DHuddYWKpM=;
-        b=LKTuHPQBFGl+hkpBgwczLBKciTM0EO8Z8O9BEePxARHK9X7hJaBmTWd9IW9ZXMCQp4
-         vK4+SjNjtKTfs/s9D4zNPG7O0A0HAq0E1iUBRU/IE1c8B1obAwue1u1Z3IsZDTazRydn
-         mcF5eeO9fRU9/Wo7Yve13liJA9kVezo0W8MRUOCd+0fuF1gLQceuanWe+H9vhcBrctE3
-         nU/mJvUxmUjA5VPL+d4+ULDwzR2H477PYFJA7MO7Cd+385OKMFSPes5oiEmkcpoKnyWS
-         1/JgbG7iJw3Mv/0m84Ron3hfR+ISXZSPDFYuO0fft3ht8Q0KSQMiabAcM2UJyr81J0T1
-         88VA==
-X-Gm-Message-State: AGi0PubHyYUntt5yOT7BH732LkHuSZNEG5+Y7e1Yw6ZzhdNJxOiysi7t
-	fLumIEbgHUs5Ik66cpqkfd8FTsL+rhs=
-X-Google-Smtp-Source: APiQypImdKEvMY57TBzpEAMLnlAQhuicDqGBxXXDHEJrPm6J9yM/ImXSExQZER0Q5+mp+dJEt1F9Lw==
-X-Received: by 2002:a63:1845:: with SMTP id 5mr7719938pgy.69.1587777198263;
-        Fri, 24 Apr 2020 18:13:18 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
+        bh=5BnqK2t7bGB6Et73/iXo+pHL9nPDY0y5bIbK98ae8iE=;
+        b=BxFJtluHSecnJoMtOghEEMkKA1gM3Wd9KIu5kX1TAyaFouIXiOkgHp87rsmtpHrPHN
+         v2RvNduj93WGbeaSCbrptR8Lhm1ilMDfU6si5akWZmm7t1tvpwaccVEss4QVpv1SsSoh
+         sBezpa8dHWr5dIRufSbJwjuZPcRNR1/Mh9wIHqFZXjWXY0HJxF55TlXgq0oXP47q0OVg
+         fCcBcJYiEfMCScC5H32LRAscF1QVVQtIQmTznhT7oFPKeSa1bEdcmRI69s87zMbp8Gwz
+         Y2etdowInBVgBiBQKHSytmb7svxgm8czDlIO2+zrlfn3xE1HWPbX3W22SkxFKmnTby83
+         S8gQ==
+X-Gm-Message-State: AGi0PuY3skfjpyaHrzL+ZVfGHRmNR4UXbQWvndtLBrp8MVniClWLUROv
+	wqrEhsTHd4j5tV3ARVwzogW3ApdMTV0=
+X-Google-Smtp-Source: APiQypLB1gY7p6th1xWRbZHZwASahIN9G+dpBB08NpaZ+3gkOssEbwdoAU4+v96tA8BOlOWKh1fwiQ==
+X-Received: by 2002:a17:90a:6403:: with SMTP id g3mr8551310pjj.99.1587777383276;
+        Fri, 24 Apr 2020 18:16:23 -0700 (PDT)
 Received: from ?IPv6:2601:646:9200:4e0::ac76? ([2601:646:9200:4e0::ac76])
-        by smtp.gmail.com with ESMTPSA id i13sm5738993pja.40.2020.04.24.18.13.17
+        by smtp.gmail.com with ESMTPSA id w125sm6002360pgw.22.2020.04.24.18.16.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Apr 2020 18:13:17 -0700 (PDT)
-Subject: Re: [yocto] Distro testing #yocto
-To: sateesh m <sateesh0457@gmail.com>, yocto@lists.yoctoproject.org
-References: <ot9V.1587633979126023753.LxGx@lists.yoctoproject.org>
+        Fri, 24 Apr 2020 18:16:22 -0700 (PDT)
+Subject: Re: [yocto] inconsistencies with selecting systemd as init manager?
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>,
+ Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+References: <alpine.LFD.2.21.2004230713330.10937@localhost.localdomain>
+ <CAP71WjxZp+b_YWAUSWvoJqFo9rcze_66z=+oQOwdHLsaE_-6SA@mail.gmail.com>
+ <alpine.LFD.2.21.2004230812410.14835@localhost.localdomain>
 From: "Khem Raj" <raj.khem@gmail.com>
 Autocrypt: addr=raj.khem@gmail.com; keydata=
  mQGiBEqXaJERBACUvFofpD3FsxD9675wcPv+rzguIfsRWilrrpSZ61JHjLHwkUnmDLpLSdfv
@@ -76,62 +103,109 @@ Autocrypt: addr=raj.khem@gmail.com; keydata=
  XlQNlB5grwH9o6uNtPbV7q/uRqmKq5EiiEkEGBECAAkFAkqXaJECGwwACgkQuwUzVZGdMxR1
  VACcCkdaO3rb8/gRprldmAH6eR49eo4AnjD3h3aTwv/1bl+BAz1twmZmz8ul
 Organization: HIMVIS LLC
-Message-ID: <b4482ee6-fd72-9033-dff4-423a6df966d6@gmail.com>
-Date: Fri, 24 Apr 2020 18:13:11 -0700
+Message-ID: <30f66da0-ab1b-02d7-025e-97adb24f2543@gmail.com>
+Date: Fri, 24 Apr 2020 18:16:17 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <ot9V.1587633979126023753.LxGx@lists.yoctoproject.org>
-X-Groupsio-MsgNum: 49228
+In-Reply-To: <alpine.LFD.2.21.2004230812410.14835@localhost.localdomain>
+X-Groupsio-MsgNum: 49229
 Content-Type: multipart/signed; micalg=pgp-sha1;
  protocol="application/pgp-signature";
- boundary="fDWvt3edwwiHC4Etp2Wpd22Rqxd3k0ofr"
+ boundary="82hPQk3UsUVHEzSTMNbCDdkz5vGE8L2ZN"
 
---fDWvt3edwwiHC4Etp2Wpd22Rqxd3k0ofr
-Content-Type: multipart/mixed; boundary="5N7rgeBkJGC87qT3cUVZSOL97rN2gJcpM";
+--82hPQk3UsUVHEzSTMNbCDdkz5vGE8L2ZN
+Content-Type: multipart/mixed; boundary="WtqLwhBokboDPBfr2s8NDsAvlIYr8rafv";
  protected-headers="v1"
 From: Khem Raj <raj.khem@gmail.com>
-To: sateesh m <sateesh0457@gmail.com>, yocto@lists.yoctoproject.org
-Message-ID: <b4482ee6-fd72-9033-dff4-423a6df966d6@gmail.com>
-Subject: Re: [yocto] Distro testing #yocto
-References: <ot9V.1587633979126023753.LxGx@lists.yoctoproject.org>
-In-Reply-To: <ot9V.1587633979126023753.LxGx@lists.yoctoproject.org>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>,
+ Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <30f66da0-ab1b-02d7-025e-97adb24f2543@gmail.com>
+Subject: Re: [yocto] inconsistencies with selecting systemd as init manager?
+References: <alpine.LFD.2.21.2004230713330.10937@localhost.localdomain>
+ <CAP71WjxZp+b_YWAUSWvoJqFo9rcze_66z=+oQOwdHLsaE_-6SA@mail.gmail.com>
+ <alpine.LFD.2.21.2004230812410.14835@localhost.localdomain>
+In-Reply-To: <alpine.LFD.2.21.2004230812410.14835@localhost.localdomain>
 
---5N7rgeBkJGC87qT3cUVZSOL97rN2gJcpM
-Content-Type: text/plain; charset=utf-8
+--WtqLwhBokboDPBfr2s8NDsAvlIYr8rafv
+Content-Type: text/plain; charset=iso-8859-15
 Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
 
 
-On 4/23/20 2:26 AM, sateesh m wrote:
-> Hi Guys,
+On 4/23/20 5:14 AM, Robert P. J. Day wrote:
+> On Thu, 23 Apr 2020, Nicolas Dechesne wrote:
 >=20
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0I want to test Distro t=
-esting in my yocto build image. for
-> that I need setup configurations and how can i check results and where =
-i
-> can get results. can anybody knows please suggest me .
+>>
+>>
+>> On Thu, Apr 23, 2020 at 1:18 PM Robert P. J. Day <rpjday@crashcourse.ca=
+> wrote:
+>>
+>>       =A0 just noticed that, given that since YP 3.0 one could select s=
+ystemd
+>>       as the init manager via the single variable INIT_MANAGER, which p=
+ulled
+>>       in init-manager-systemd.inc:
+>>
+>>       # Use systemd for system initialization
+>>       DISTRO_FEATURES_append =3D " systemd"
+>>       DISTRO_FEATURES_BACKFILL_CONSIDERED_append =3D " sysvinit"
+>>       VIRTUAL-RUNTIME_init_manager ??=3D "systemd"
+>>       VIRTUAL-RUNTIME_initscripts ??=3D "systemd-compat-units"
+>>       VIRTUAL-RUNTIME_login_manager ??=3D "shadow-base"
+>>
+>>
+>> INIT_MANAGER was added in 3.0, see:
+>> https://git.openembedded.org/openembedded-core/commit/?id=3D8d0b4704a52=
+6a48cd5e67df6
+>> 1b613424bbbdccde
+>=20
+>   i know, that's what i mentioned above.
+>=20
+>>       =A0 this doesn't quite seem to match this snippet from
+>>       meta/lib/oeqa/selftest/cases/imagefeatures.py:
+>>
+>>       # Switch to systemd
+>>       DISTRO_FEATURES +=3D "systemd"
+>>       VIRTUAL-RUNTIME_init_manager =3D "systemd"
+>>       VIRTUAL-RUNTIME_initscripts =3D ""
+>>       VIRTUAL-RUNTIME_syslog =3D ""
+>>       VIRTUAL-RUNTIME_login_manager =3D "shadow-base"
+>>       DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"
+>>
+>>
+>> this is the 'old' (pre 3.0) method, and it can (and should) be
+>> replaced with INIT_MANAGER, i believe.
+>=20
+>   i suspected as much, i just wanted to point out that those two
+> snippets are not *exactly* equivalent so someone should make sure that
+> INIT_MANAGER usage is precisely defined.
+
+perhaps imagefeatures.py should be updated to sync with INIT_MANAGER
+settings.
+
+>=20
+> rday
+>=20
+>=20
+>=20
 >=20
 
-you can check ptest images perhaps see [1]
 
+--WtqLwhBokboDPBfr2s8NDsAvlIYr8rafv--
 
-[1] https://wiki.yoctoproject.org/wiki/Image_tests
-
-
---5N7rgeBkJGC87qT3cUVZSOL97rN2gJcpM--
-
---fDWvt3edwwiHC4Etp2Wpd22Rqxd3k0ofr
+--82hPQk3UsUVHEzSTMNbCDdkz5vGE8L2ZN
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EARECAB0WIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCXqOOpwAKCRC7BTNVkZ0z
-FNueAJ0UJ2b/9Zw33UzNECeZYcVbJNM/SQCfb7hcoVey/CYtzV18LewUitEtyQo=
-=y7Ky
+iF0EARECAB0WIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCXqOPYQAKCRC7BTNVkZ0z
+FEsBAJwMwk77m6I9m25ayi+XwDJgTZBwbACfffTZ3qv0cuTobKpOSYYFANLgcVw=
+=vziX
 -----END PGP SIGNATURE-----
 
---fDWvt3edwwiHC4Etp2Wpd22Rqxd3k0ofr--
+--82hPQk3UsUVHEzSTMNbCDdkz5vGE8L2ZN--
