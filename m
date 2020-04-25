@@ -1,69 +1,67 @@
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
- by mx.groups.io with SMTP id smtpd.web10.4399.1587812095255939903
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
+ by mx.groups.io with SMTP id smtpd.web11.7489.1587826466314134443
  for <yocto@lists.yoctoproject.org>;
- Sat, 25 Apr 2020 03:54:55 -0700
+ Sat, 25 Apr 2020 07:54:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=tZhY6rwq;
- spf=pass (domain: konsulko.com, ip: 209.85.128.51, mailfrom: pbarker@konsulko.com)
-Received: by mail-wm1-f51.google.com with SMTP id y24so14616992wma.4
-        for <yocto@lists.yoctoproject.org>; Sat, 25 Apr 2020 03:54:55 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=WEEq1UeS;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.67, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f67.google.com with SMTP id b11so15028880wrs.6
+        for <yocto@lists.yoctoproject.org>; Sat, 25 Apr 2020 07:54:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=date:from:to:cc:subject:message-id:organization:mime-version
-         :content-transfer-encoding;
-        bh=u2v4rS3w4AVBEqZYKncSWxFlYy698ce7FO+qc9MXwHo=;
-        b=tZhY6rwqAEgzQn+cnRyxIfAiqefoQiB2n1v0qfdCWEPOjMbGyZ3uppc18eSHAI26Ll
-         aKKrJ1xVjWSjGw9hNx0p05CM1vXwLd8spKogBS1FPcdJruFE1ywHnYdP6YRngtSJn+i+
-         9eO5I+Ahlcjj0EOCVSr4uijHpAtO8hWnfedYc=
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=prwxrbvkCcEt0o7O2TiCaK1njuxNMkqnRidPvi+x6jM=;
+        b=WEEq1UeSLZ7NG1ohrRPn6w4awzVsv7v0zjRxtDQMZyFwL5hi0idFBXIFtTZifcO0gb
+         SVhEOEgf4g80ECSAS45jwIJM8TZVLbKnvpykhYP1lcKMUQx8vppOJv9iNbo6gknm6eRT
+         iP8iuIAX48GVDm8PTLF80lvy/PTJogyobzCxc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:organization
-         :mime-version:content-transfer-encoding;
-        bh=u2v4rS3w4AVBEqZYKncSWxFlYy698ce7FO+qc9MXwHo=;
-        b=cRus69/gYMTQvL7MLBCQ51WfY4MnQeDnyaQqCOvrFxqYJMZgUovBHuduL0dhc3swT/
-         eg9AhyJCEACSaeuQgnBcX5Oas3xemSMVJZedbL9Mx0wVP0mTEk2aEkoqAcG9DxJCE+G5
-         TBsUyaFWxmCJ0pHFAfPi7IvCENBMf0iu+Ssmm9tQkqALUCs6paD28ZkQ2LEttHQ/ZgQB
-         eDyQs/z4zndtnZB0C5C9T9YlI+MimBIu5yXv1Wa3KuRezU5wN9HuEwpujSxyCZQDjlbZ
-         rwOh6cFaJNg/ln/h11dn4zBfroFl7PGHi+7viH5mZhfNFpPCBhOwH/OfNI/ZV+43uQFg
-         pF0A==
-X-Gm-Message-State: AGi0Pub56GRL3gx8PK3OOedf9efoNq2HB25HOTcjvQW0FwuYNj3ZjIla
-	A4CRAzOO/x3MjRqGVtOQ4eItkw==
-X-Google-Smtp-Source: APiQypLjQF7jk9guSi/sljZAB5BBy3c2cGmyuJk07o+p5aM6t7MBcibfwu2xgJiZFKoNROrDZuddUw==
-X-Received: by 2002:a05:600c:2945:: with SMTP id n5mr15430428wmd.148.1587812093126;
-        Sat, 25 Apr 2020 03:54:53 -0700 (PDT)
-Return-Path: <pbarker@konsulko.com>
-Received: from ub1910 ([213.48.11.149])
-        by smtp.gmail.com with ESMTPSA id e2sm12008784wrv.89.2020.04.25.03.54.52
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=prwxrbvkCcEt0o7O2TiCaK1njuxNMkqnRidPvi+x6jM=;
+        b=MJThM2N/mSIoRUXdmmjS4w/wKQTacUAAuE6WRUj49qw0CAJik7vl8wHbwifzUc2ZpW
+         U9yGSWfUnC+Zq3nlgx9tcDwGzoLSlF+avqqBVhNSG+OA/SsOZOjqxjbJN4K8TqJl4gp/
+         73hekr9VBlVZd25zEzOpw3fiWMydV16R1iLgy6dEJJgYtvoJfZ6xdzfGBj/ETaEcLCra
+         nQyHrsQvipBIqrheA1sE4LFPwSwzXZ6+puUZygIHmgOATHfS6hwKECTr2d/ACTb82RAs
+         UgXgKANWOlXBwB+f7GVFfV7FlFCm/Rgi7PCJvXvdLJeZMnW6FVFtHNPd55TiOAZHvM/a
+         7Hqg==
+X-Gm-Message-State: AGi0PuZh34SsxRH0YjHv4KHAYaUCLXBgUXm+3AMAkj7S60akbUx4hEhW
+	BoRe38XfFhlRjCQit3r+7yOcug==
+X-Google-Smtp-Source: APiQypIQZgiFLlucnzvD6VPt/J3faWeGwSz98++gAHAZOtEtcCYTnB4FyJPtlKmh6qnkIHvNPsSzGw==
+X-Received: by 2002:a5d:4ccb:: with SMTP id c11mr17370144wrt.122.1587826464701;
+        Sat, 25 Apr 2020 07:54:24 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id g25sm7271979wmh.24.2020.04.25.07.54.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Apr 2020 03:54:52 -0700 (PDT)
-Date: Sat, 25 Apr 2020 11:54:50 +0100
-From: "Paul Barker" <pbarker@konsulko.com>
-To: Michael Halstead <mhalstead@linuxfoundation.org>
-Cc: =?UTF-8?B?QmFydMWCb21pZWo=?= Burdukiewicz
- <bartlomiej.burdukiewicz@gmail.com>, yocto@lists.yoctoproject.org
-Subject: Web interface for Yocto & OE mailing lists defaults to Reply to Sender
-Message-ID: <20200425115450.7c581f0d@ub1910>
-Organization: Konsulko Group
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        Sat, 25 Apr 2020 07:54:23 -0700 (PDT)
+Message-ID: <60d25691239036fd72ca41c8369962b7eee4e7ed.camel@linuxfoundation.org>
+Subject: Re: [yocto] Can not use wildcard in SRC_URI to apply patches #yocto
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Hao Qian <qian.hao.developer@gmail.com>, yocto@lists.yoctoproject.org
+Date: Sat, 25 Apr 2020 15:54:22 +0100
+In-Reply-To: <CACxpVWfYGoGiivXCeMOtoPvBYuJBqC9zu+KS3OdnB5bZoyuYyQ@mail.gmail.com>
+References: 
+	<CACxpVWfYGoGiivXCeMOtoPvBYuJBqC9zu+KS3OdnB5bZoyuYyQ@mail.gmail.com>
+User-Agent: Evolution 3.36.1-2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Michael,
+On Sat, 2020-04-25 at 17:30 +0900, Hao Qian wrote:
+> However, if I change files' name into wildcard in SRC_URI like:
+> ===========================================
+> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> SRC_URI += "file://*"
+> ===========================================
+[...]
+> Could anyone tell me how to apply patches by wildcard?
 
-I've just been discussing on IRC with Bart=C5=82omiej who used the groups.i=
-o web
-interface to reply to an email on the list. It defaulted to sending a priva=
-te
-reply off the list. If I try to do the same "Reply to Sender" is the default
-for me as well: https://imgur.com/1RGH9Aw
+That isn't supported. Its hard to get determinism correct and the patch
+ordering could also be problematic.
 
-Looking at the AGL lists on groups.io they have "Reply to Group" as the
-default. Perhaps this is a configuration issue? Could you take when you get
-chance?
+Cheers,
 
-Thanks,
+Richard
 
---=20
-Paul Barker
-Konsulko Group
