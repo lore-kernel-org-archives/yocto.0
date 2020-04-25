@@ -1,146 +1,188 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.2425.1587770247590443491
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+ by mx.groups.io with SMTP id smtpd.web10.812.1587777015898508723
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Apr 2020 16:17:27 -0700
+ Fri, 24 Apr 2020 18:10:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=QGBKtsjy;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: easmith5555@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 317AAE01A65; Fri, 24 Apr 2020 16:17:27 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (easmith5555[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.166.195 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-il1-f195.google.com (mail-il1-f195.google.com [209.85.166.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72651E01A63
-	for <yocto@yoctoproject.org>; Fri, 24 Apr 2020 16:17:26 -0700 (PDT)
-Received: by mail-il1-f195.google.com with SMTP id f82so10852607ilh.8
-        for <yocto@yoctoproject.org>; Fri, 24 Apr 2020 16:17:26 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=eRwsh16q;
+ spf=pass (domain: gmail.com, ip: 209.85.215.173, mailfrom: raj.khem@gmail.com)
+Received: by mail-pg1-f173.google.com with SMTP id n16so5458986pgb.7
+        for <yocto@lists.yoctoproject.org>; Fri, 24 Apr 2020 18:10:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=MGM/EI0ApMBFvHOg9iknWx5hlR1BOIw398r6wPo+ito=;
-        b=QGBKtsjyXra8VdzD2KtQv1LGIAV+EVg8RvbYnXTPpTJ7pV+6GoY90kBZAXMhXjS+kv
-         c2CBsQgrYN/LYr0U10pDo+7+/mYLHfGZUmlJ3Y+mmlH37OdQA9Ts62/Y5OlGKkmW0Euk
-         AZScLtoyOWKCG9RPR/IgrRYtIYYSdSeMYaGLamVtx4DXNYXlv/vrpCQZAYqEOYLVQEss
-         7em7KnA/1WQs1api5BrgoaDTbXsD65LDnjSJ+O4U/Dvhk0sShWXJ8Z3/crk+K1CXDixE
-         MiRDjDbzS3u/RkXUY8P+WVahXqW5oJDeWmGc1KidghRVxO6FXynSCqHy8SdWHUUQq+L7
-         4rCw==
+        h=subject:to:cc:references:from:autocrypt:organization:message-id
+         :date:user-agent:mime-version:in-reply-to;
+        bh=vtGXcFBE/Tv+tiQ8iGHtisTfJ/cUczygt/ysNT7hPGY=;
+        b=eRwsh16qzhzl3Al/vAbdm/dcU98nY3aKj+D4GNqRK7Mm/Vn+Ti41p924XUYNzAq2zS
+         uNQa4A9hvrAZRrD5uMUD4VGdZgkkShK83yTuxVN1M9Wa07DyCqt8YLkpUfO6SemIAQE9
+         Z+IaWUrFgtz3tNRqnmAssCF+2v1HnFbhsh5LcZ80+fvj8njjhT7ubhFZeyUhJgj89NI+
+         YT84MOY83T9Xy7LifvPBCZzozMfFGoIOs9auG04Qb4ADChG/XaZp8YWA6bnMJ0Dd6uux
+         Bx/3rXKfpO2erbhxXEFjQ2hGSNRthXJCMSxFbpRBbT5lPldrX/ElHa4IIm2GoiG4cmtO
+         HPqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=MGM/EI0ApMBFvHOg9iknWx5hlR1BOIw398r6wPo+ito=;
-        b=IRb3pt18q6/88ux6IParvX5+nvp5SvE8HoR6k1NfCQfjG/H0hsjp6ohSHrnwNlIXBJ
-         DU9LEmEoWXQfGZlDS2mSU9eCqFMlhLoIrDD3UXNBBp2Gt4wfVnfx9fS63F/4sjZkFEEA
-         2WcaNMJmECEN0qcA1ayHpmMG+vlW3P+VLDmK41cYRGSyJe9iGcZ4AaYiQBYASVuegu3i
-         O0vvY2ovqRC8hCsZMyL3+MjAXtYcfm3hhBAlXk991luwZ/nW7GcYKhUaKJYrWNPcrFSY
-         +PKbH0yJExMHH2ynyF1W+bdB/UNPLI8W2K+rN9tzQQaQaecCzmqeOxru6KwaB5qzw3pI
-         Rmcw==
-X-Gm-Message-State: AGi0Pub03eXkTe2YMhSglrdVND1fhXNBtd3WGfNwCZV0tG30XDkG2nwL
-	gGmyiVac882TCOtoLig3d5HYOdhfvqTqHmMVD7O2tSVi
-X-Google-Smtp-Source: APiQypLhp5nVQ3Aa/fgfhrR2SAJRpAHK5Dmeu+WOQSblc+SChGob1JBeFuqExx4ZZMLgCP9I52YHYc67prHWKS/qEyU=
-X-Received: by 2002:a92:cbd1:: with SMTP id s17mr10221886ilq.154.1587770245298;
- Fri, 24 Apr 2020 16:17:25 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to;
+        bh=vtGXcFBE/Tv+tiQ8iGHtisTfJ/cUczygt/ysNT7hPGY=;
+        b=ebJ3M1NvGAozemnkRAgwLCyLhxUXmGpdFAB50c1fmuz2wREnNZKE59LMCqePQCSoMa
+         XdYWCK67h1j7E128lrjwud896p1rARAkR0T5V1yZu2RA9u97Kns+ltmj8lNDVAJfWryF
+         yRwarv6Uh6t3HRaU0Q9A2eXXABY44u7YS99WgVs4hklC4GJ9PO8Q69YYSA0QXOdZPWGw
+         Jw9Jg/6tl7feRP0XlyJqmqvLyxHyZyywaFbDuSHAkeKVEwa378ZnbDvpgpQvjG3EeoD/
+         XYb8QTMFbAPxpVPd6v756wQzZkVQWajVq7jnbZgIkHHOD5QRxD/xlG57vZqsSBiO5Z8d
+         pMrg==
+X-Gm-Message-State: AGi0PuYWc/vXAhm+45c9fnHKThaPX8/XyaHHEUv0OcrfmHZPTwzZDj/+
+	v//ed4Pvh7noNdYTGDRduNEvfnvu5r0=
+X-Google-Smtp-Source: APiQypJwJUbhGXw6lxmWxiNuhB3YD0ubz2kh7xPuQfYBTOa1mMYVzFPvrbLyEyx7/vMEYwPgRoshdg==
+X-Received: by 2002:a63:4c1:: with SMTP id 184mr11728122pge.156.1587777015026;
+        Fri, 24 Apr 2020 18:10:15 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:4e0::ac76? ([2601:646:9200:4e0::ac76])
+        by smtp.gmail.com with ESMTPSA id y26sm6539713pfn.185.2020.04.24.18.10.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Apr 2020 18:10:14 -0700 (PDT)
+Subject: Re: [yocto] meta-javascripts
+To: Per Hallsmark <per@hallsmark.se>, Nicholas Krause <xerofoify@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+References: <lz1S.1587619716614083620.LFsb@lists.yoctoproject.org>
+ <a1d40a2e-aa70-d56f-4761-9eb2d4726dac@gmail.com>
+ <CAPaVuL8QziP+S9oJAmUNAQmFh5HSjwSDaSxpABLot0Cmpucf7w@mail.gmail.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Autocrypt: addr=raj.khem@gmail.com; keydata=
+ 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
+Organization: HIMVIS LLC
+Message-ID: <dffc6247-a4e9-bd05-af53-5e502416aab8@gmail.com>
+Date: Fri, 24 Apr 2020 18:10:03 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-From: "Emily" <easmith5555@gmail.com>
-Date: Fri, 24 Apr 2020 18:17:12 -0500
-Message-ID: <CAAV2bM0wH85d97Td2dg=oQwSW3K5nTKF3604w7Y0Fz6tn=01Gw@mail.gmail.com>
-Subject: Can't find pyconfig.h with python3
-To: Yocto List <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000074c15105a4119101"
+In-Reply-To: <CAPaVuL8QziP+S9oJAmUNAQmFh5HSjwSDaSxpABLot0Cmpucf7w@mail.gmail.com>
+X-Groupsio-MsgNum: 49227
+Content-Type: multipart/signed; micalg=pgp-sha1;
+ protocol="application/pgp-signature";
+ boundary="ylEIKBdJeRuQcHZ4jSDayBvjt2GOMVT3V"
 
---00000000000074c15105a4119101
-Content-Type: text/plain; charset="UTF-8"
+--ylEIKBdJeRuQcHZ4jSDayBvjt2GOMVT3V
+Content-Type: multipart/mixed; boundary="ITa4CXGToajyOaOfS1IhfLASfDN4ZxQPW";
+ protected-headers="v1"
+From: Khem Raj <raj.khem@gmail.com>
+To: Per Hallsmark <per@hallsmark.se>, Nicholas Krause <xerofoify@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Message-ID: <dffc6247-a4e9-bd05-af53-5e502416aab8@gmail.com>
+Subject: Re: [yocto] meta-javascripts
+References: <lz1S.1587619716614083620.LFsb@lists.yoctoproject.org>
+ <a1d40a2e-aa70-d56f-4761-9eb2d4726dac@gmail.com>
+ <CAPaVuL8QziP+S9oJAmUNAQmFh5HSjwSDaSxpABLot0Cmpucf7w@mail.gmail.com>
+In-Reply-To: <CAPaVuL8QziP+S9oJAmUNAQmFh5HSjwSDaSxpABLot0Cmpucf7w@mail.gmail.com>
 
-Hi all -
-
-I'm trying to build an OS with a custom recipe (
-https://github.com/kratsg/meta-l1calo/blob/add/opcServer/recipes-core/opc-ua/opc-ua-server-gfex_git.bb).
-I can build it as-is in the link above, but when actually trying to use the
-output of the recipe (Poverty.so) I get the below error in python3:
-
->>> import Poverty Traceback (most recent call last): File "<stdin>", line 1, in <module> ImportError: /usr/bin/Poverty.so: undefined symbol: _ZN5boost6python6detail11init_moduleEPKcPFvvE
-
-
-I think that's because I built against python2 in some places. So I
-replaced essentially all of the python dependencies with their
-corresponding python3 dependencies, but that gives a build error in bitbake
-like:
-
-| /local/d6/easmith5/rocko_bitbake/poky/build/tmp/work/aarch64-poky-linux/opc-ua-server-gfex/1.0+gitAUTOINC+921c563309-r0/recipe-sysroot/usr/include/boost/python/detail/wrap_python.hpp:50:11:
-fatal error: pyconfig.h: No such file or directory
-|  # include <pyconfig.h>
-|            ^~~~~~~~~~~~
-| compilation terminated.
-
-
-However, I checked and the offending file pyconfig.h is actually present at
-|
-/local/d6/easmith5/rocko_bitbake/poky/build/tmp/work/aarch64-poky-linux/opc-ua-server-gfex/1.0+gitAUTOINC+921c563309-r0/recipe-sysroot/usr/include/python3.5m/.
-When I build with python2 dependencies the file is in the same location,
-just /python2.7/.
-
-I can't quite tell if this is a yocto problem, or a problem with my recipe
-and/or build files for that recipe. If anyone has suggestions they would be
-much appreciated!
-
-Thanks!
-Emily Smith
-
---00000000000074c15105a4119101
-Content-Type: text/html; charset="UTF-8"
+--ITa4CXGToajyOaOfS1IhfLASfDN4ZxQPW
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi all -=C2=A0<div><br></div><div>I&#39;m trying to build =
-an OS with a custom recipe (<a href=3D"https://github.com/kratsg/meta-l1cal=
-o/blob/add/opcServer/recipes-core/opc-ua/opc-ua-server-gfex_git.bb">https:/=
-/github.com/kratsg/meta-l1calo/blob/add/opcServer/recipes-core/opc-ua/opc-u=
-a-server-gfex_git.bb</a>). I can build it as-is in the link above, but when=
- actually trying to use the output of the recipe (Poverty.so) I get the bel=
-ow error in python3:=C2=A0</div><div><pre class=3D"gmail-code-java" style=
-=3D"margin-top:0px;margin-bottom:0px;padding:0px;max-height:30em;overflow:a=
-uto;white-space:pre-wrap;color:rgb(23,43,77);font-size:12px;background-colo=
-r:rgb(244,245,247)">&gt;&gt;&gt; <span class=3D"gmail-code-keyword" style=
-=3D"color:rgb(145,0,145)">import</span> Poverty Traceback (most recent call=
- last): File <span class=3D"gmail-code-quote" style=3D"color:rgb(0,145,0)">=
-&quot;&lt;stdin&gt;&quot;</span>, line 1, in &lt;module&gt; ImportError: /u=
-sr/bin/Poverty.so: undefined symbol: _ZN5boost6python6detail11init_moduleEP=
-KcPFvvE</pre></div><div><br></div><div>I think that&#39;s because I built a=
-gainst python2 in some places. So I replaced essentially all of the python =
-dependencies=C2=A0with their corresponding python3 dependencies, but that g=
-ives a build error in bitbake like:=C2=A0=C2=A0</div><div><pre class=3D"gma=
-il-code-java" style=3D"margin-top:0px;margin-bottom:0px;padding:0px;max-hei=
-ght:30em;overflow:auto;white-space:pre-wrap;color:rgb(23,43,77);font-size:1=
-2px;background-color:rgb(244,245,247)">| /local/d6/easmith5/rocko_bitbake/p=
-oky/build/tmp/work/aarch64-poky-linux/opc-ua-server-gfex/1.0+gitAUTOINC+921=
-c563309-r0/recipe-sysroot/usr/include/boost/python/detail/wrap_python.hpp:5=
-0:11: fatal error: pyconfig.h: No such file or directory<br>| =C2=A0# inclu=
-de &lt;pyconfig.h&gt;<br>| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~~~~~~=
-~~~~~<br>| compilation terminated.<br></pre></div><div><br></div><div>Howev=
-er, I checked and the offending file pyconfig.h is actually present at | /l=
-ocal/d6/easmith5/rocko_bitbake/poky/build/tmp/work/aarch64-poky-linux/opc-u=
-a-server-gfex/1.0+gitAUTOINC+921c563309-r0/recipe-sysroot/usr/include/pytho=
-n3.5m/. When I build with python2 dependencies the file is in the same loca=
-tion, just /python2.7/.</div><div><br></div><div>I can&#39;t quite tell if =
-this is a yocto problem, or a problem with my recipe and/or build files for=
- that recipe. If anyone has suggestions they would be much appreciated!=C2=
-=A0</div><div><br></div><div>Thanks!</div><div>Emily Smith</div><div><br></=
-div></div>
 
---00000000000074c15105a4119101--
+
+On 4/23/20 12:01 AM, Per Hallsmark wrote:
+> Hi Nicholas,
+>=20
+> Thanks, I was thinking as providing it to Yocto but not maintaining it
+> myself. Too much other stuff going on
+> so it would be a slowly updated layer then.
+>=20
+
+Give it some time and see if someone steps up to maintain it, if not you
+can also put these recipes in other layers
+
+> BR,
+> Per
+>=20
+> On Thu, 23 Apr 2020 at 07:59, Nicholas Krause <xerofoify@gmail.com
+> <mailto:xerofoify@gmail.com>> wrote:
+>=20
+>=20
+>=20
+>     On 4/23/20 1:28 AM, per@hallsmark.se <mailto:per@hallsmark.se> wrote=
+:
+>>     Hello fellow Yocto developers,
+>>
+>>     To be able todo efficient HTML5 programming we of course needs
+>>     some javascript libraries.
+>>     I've not seen Yocto have them packaged so I made up this idea of
+>>     putting them into their own /usr/lib/js path
+>>     with a subdir for each javascript library. It is published here :
+>>
+>>     https://gitlab.com/saxofon/meta-javascripts
+>>
+>>     With an example usage here :
+>>
+>>     https://github.com/Wind-River/device-remote-gui
+>>
+>>     Would this be something yoctoproject is interested of perhaps?
+>>
+>>     BR,
+>>     Per
+>=20
+>     Hi,
+>=20
+>     I'm not a maintainer but you may want to see if you or other=C2=A0 p=
+eople
+>     are able to maintain
+>     then as a open embedded layer as part of the index. Not sure if
+>     someone else can
+>     chip in if this is a useful recipe set to add to the open embedded
+>     index.
+>=20
+>     That would ideally be where you would want this to go if this is
+>     useful and maintained,
+>=20
+>     Nick
+>>
+>=20
+>=20
+>=20
+>=20
+
+
+--ITa4CXGToajyOaOfS1IhfLASfDN4ZxQPW--
+
+--ylEIKBdJeRuQcHZ4jSDayBvjt2GOMVT3V
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCXqON6wAKCRC7BTNVkZ0z
+FFJFAJ0ZxDurQceIxsLMUs1MfLa1cFz48wCfXKQnebATWqc7IeXsNK4jVS0DBz0=
+=Y/jp
+-----END PGP SIGNATURE-----
+
+--ylEIKBdJeRuQcHZ4jSDayBvjt2GOMVT3V--
