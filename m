@@ -1,83 +1,69 @@
-Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com [209.85.208.193])
- by mx.groups.io with SMTP id smtpd.web10.3191.1587803446074741647
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+ by mx.groups.io with SMTP id smtpd.web10.4399.1587812095255939903
  for <yocto@lists.yoctoproject.org>;
- Sat, 25 Apr 2020 01:30:46 -0700
+ Sat, 25 Apr 2020 03:54:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=OG2t7oYu;
- spf=pass (domain: gmail.com, ip: 209.85.208.193, mailfrom: qian.hao.developer@gmail.com)
-Received: by mail-lj1-f193.google.com with SMTP id y4so12381617ljn.7
-        for <yocto@lists.yoctoproject.org>; Sat, 25 Apr 2020 01:30:45 -0700 (PDT)
+ dkim=pass header.i=@konsulko.com header.s=google header.b=tZhY6rwq;
+ spf=pass (domain: konsulko.com, ip: 209.85.128.51, mailfrom: pbarker@konsulko.com)
+Received: by mail-wm1-f51.google.com with SMTP id y24so14616992wma.4
+        for <yocto@lists.yoctoproject.org>; Sat, 25 Apr 2020 03:54:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=CoEr5PdR+sYRp8MPvZSEAqTZLaZuOj2sL4q2zwRafa0=;
-        b=OG2t7oYuBF5ZEqOcM0+ERA6Lf8lQGcwghF6Sf8vx5ZYx+tlgDqspIYZMZUPU0pq5KX
-         YRiou21RfALLiZFbfe3HMggyXmKqGsu3O9EPQOnjEFUoOY4JhqqOzdkxjf84naRJXnCt
-         NyUmdxv/boTlJbbM8NzjLOUIXG9qxKHIAkFUsdlGmA1XTl4CBU+U3xBHh1e4PT5JLRHI
-         cxRUORLM9ZGNTZn+Ersj81j2mPduMRQZ29dKPaPy8Up/K+rxcG1vnok+gojALCHM8H5E
-         0cOnJwbvx300SdMQgExfQYJyqDgJGDx4CnG4Z7FxS7w1ROLE6+bw+ivjjipcYb6cTkG9
-         S2kg==
+        d=konsulko.com; s=google;
+        h=date:from:to:cc:subject:message-id:organization:mime-version
+         :content-transfer-encoding;
+        bh=u2v4rS3w4AVBEqZYKncSWxFlYy698ce7FO+qc9MXwHo=;
+        b=tZhY6rwqAEgzQn+cnRyxIfAiqefoQiB2n1v0qfdCWEPOjMbGyZ3uppc18eSHAI26Ll
+         aKKrJ1xVjWSjGw9hNx0p05CM1vXwLd8spKogBS1FPcdJruFE1ywHnYdP6YRngtSJn+i+
+         9eO5I+Ahlcjj0EOCVSr4uijHpAtO8hWnfedYc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=CoEr5PdR+sYRp8MPvZSEAqTZLaZuOj2sL4q2zwRafa0=;
-        b=YNMCls4BB3QHoES5yiisVEAMemNAuFgxWyFoAomZA/8sqQtHa/9urSLe13c4o0j4G1
-         tVDnZD+OnhYjeiWDRELNdjaQBtpvKFlvhtInAF0Xzn0VCg2TqOLrARWNxvmLr11OfBNp
-         9Qe3eJPlbOZtOH8R4gmwo/d8aN1oYm5fgKvDZNroN4T3dSOkfsMKAvgAg1ZHz46Z9ewf
-         DABGPoSezrJkLm7MToLCv+QdEgiqgSl2U8VYGKCgWXO90P+/Up90ehQd8oBBP3OF2Dp0
-         OH0xTQg2R9drj9WMZaftrq2J8wnKhpvc6q62VysbCa7zsr4cKuFL0G0wgyc/Qd0rpEB0
-         w/VQ==
-X-Gm-Message-State: AGi0PuY574a7mLOsauSp1aaBdJOYEBaJDH7HY86XLXJeGfEtQWS4mHBY
-	myuLa4ydUmtiNsqH7siwM6CgM2jx5QaxZfbjTceZyFs0
-X-Google-Smtp-Source: APiQypJWgWAYlwfhWrqJcJ3ASuqVtJ4VECxT9IqmNgEvPQr/ixlngGCLcWUfgaewK/mLx76q91HME73OzxcORcUFb8w=
-X-Received: by 2002:a2e:9255:: with SMTP id v21mr8410564ljg.222.1587803443620;
- Sat, 25 Apr 2020 01:30:43 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:organization
+         :mime-version:content-transfer-encoding;
+        bh=u2v4rS3w4AVBEqZYKncSWxFlYy698ce7FO+qc9MXwHo=;
+        b=cRus69/gYMTQvL7MLBCQ51WfY4MnQeDnyaQqCOvrFxqYJMZgUovBHuduL0dhc3swT/
+         eg9AhyJCEACSaeuQgnBcX5Oas3xemSMVJZedbL9Mx0wVP0mTEk2aEkoqAcG9DxJCE+G5
+         TBsUyaFWxmCJ0pHFAfPi7IvCENBMf0iu+Ssmm9tQkqALUCs6paD28ZkQ2LEttHQ/ZgQB
+         eDyQs/z4zndtnZB0C5C9T9YlI+MimBIu5yXv1Wa3KuRezU5wN9HuEwpujSxyCZQDjlbZ
+         rwOh6cFaJNg/ln/h11dn4zBfroFl7PGHi+7viH5mZhfNFpPCBhOwH/OfNI/ZV+43uQFg
+         pF0A==
+X-Gm-Message-State: AGi0Pub56GRL3gx8PK3OOedf9efoNq2HB25HOTcjvQW0FwuYNj3ZjIla
+	A4CRAzOO/x3MjRqGVtOQ4eItkw==
+X-Google-Smtp-Source: APiQypLjQF7jk9guSi/sljZAB5BBy3c2cGmyuJk07o+p5aM6t7MBcibfwu2xgJiZFKoNROrDZuddUw==
+X-Received: by 2002:a05:600c:2945:: with SMTP id n5mr15430428wmd.148.1587812093126;
+        Sat, 25 Apr 2020 03:54:53 -0700 (PDT)
+Return-Path: <pbarker@konsulko.com>
+Received: from ub1910 ([213.48.11.149])
+        by smtp.gmail.com with ESMTPSA id e2sm12008784wrv.89.2020.04.25.03.54.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Apr 2020 03:54:52 -0700 (PDT)
+Date: Sat, 25 Apr 2020 11:54:50 +0100
+From: "Paul Barker" <pbarker@konsulko.com>
+To: Michael Halstead <mhalstead@linuxfoundation.org>
+Cc: =?UTF-8?B?QmFydMWCb21pZWo=?= Burdukiewicz
+ <bartlomiej.burdukiewicz@gmail.com>, yocto@lists.yoctoproject.org
+Subject: Web interface for Yocto & OE mailing lists defaults to Reply to Sender
+Message-ID: <20200425115450.7c581f0d@ub1910>
+Organization: Konsulko Group
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-From: "Hao Qian" <qian.hao.developer@gmail.com>
-Date: Sat, 25 Apr 2020 17:30:32 +0900
-Message-ID: <CACxpVWfYGoGiivXCeMOtoPvBYuJBqC9zu+KS3OdnB5bZoyuYyQ@mail.gmail.com>
-Subject: Can not use wildcard in SRC_URI to apply patches #yocto
-To: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Michael,
 
-I'm trying to apply patches to source code of linux kernel.
+I've just been discussing on IRC with Bart=C5=82omiej who used the groups.i=
+o web
+interface to reply to an email on the list. It defaulted to sending a priva=
+te
+reply off the list. If I try to do the same "Reply to Sender" is the default
+for me as well: https://imgur.com/1RGH9Aw
 
-With devtool (modify and finish commands), I could apply patches
-sucessfully by specified each single patch with its file name, like:
-===========================================
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+Looking at the AGL lists on groups.io they have "Reply to Group" as the
+default. Perhaps this is a configuration issue? Could you take when you get
+chance?
 
-SRC_URI += "\
-        file://0001-xxx-xxx-xxx.patch \
-        file://0002-xxx-xxx-xxx.patch \
-"
-===========================================
+Thanks,
 
-However, if I change files' name into wildcard in SRC_URI like:
-===========================================
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-SRC_URI += "file://*"
-===========================================
-or
-===========================================
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-SRC_URI += "file://*.patch"
-===========================================
-or even create a "patches" folder under ${PN} and modify bb file like
-===========================================
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-SRC_URI += "file://patches"
-===========================================
-patch files will not be applied either do_patch task or "devtool
-modify" command.
-
-I tried in the latest version (zeus) and earlier version (sumo), and
-got the same proble,
-
-Could anyone tell me how to apply patches by wildcard?
-
-Thank you
-
-Qian
+--=20
+Paul Barker
+Konsulko Group
