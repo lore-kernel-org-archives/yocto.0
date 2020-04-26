@@ -1,102 +1,115 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.8129.1587892511315505480
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (EUR05-DB8-obe.outbound.protection.outlook.com [40.92.89.81])
+ by mx.groups.io with SMTP id smtpd.web11.8302.1587893186012795758
  for <yocto@lists.yoctoproject.org>;
- Sun, 26 Apr 2020 02:15:11 -0700
+ Sun, 26 Apr 2020 02:26:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=mFyHEZI4;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: amayajindal786@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C603AE01A75; Sun, 26 Apr 2020 02:15:10 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,HTML_MIME_NO_HTML_TAG,
-	MIME_HTML_ONLY,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (amayajindal786[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.210.171 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  0.4 HTML_MIME_NO_HTML_TAG HTML-only message, but there is no HTML tag
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0A3CE019ED
-	for <yocto@yoctoproject.org>; Sun, 26 Apr 2020 02:15:09 -0700 (PDT)
-Received: by mail-pf1-f171.google.com with SMTP id x2so3553346pfx.7
-        for <yocto@yoctoproject.org>; Sun, 26 Apr 2020 02:15:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:subject:message-id:references:from:to:mime-version
-         :content-transfer-encoding;
-        bh=8LcWW+wKD8bP88qqfyHHgIyQnsebmZX+CGRxMfnrjY0=;
-        b=mFyHEZI4YG1hOSBPuBTngRoEp1p66+i8FAms80g8I+Acm1v5fl6PtnRCl3+7LGvy0O
-         WyziSo94moasYZmzmj7r57JihiPqQ3kQPwF/Z8MA1BXcMB1x5ljlOQBCrqXZliOn6Hyu
-         jKE6D1JfqfnU1KYOtVzNWfBEOEPRoM/CoZBy3G7NaP7lg/MEuDlzHvsI/3Z3rHfqXsVC
-         GoSCxd5HuZ7eJzktmZfQQH/Nl/bv9zo7n5rsPNxGrXfRVA5pMvinGyYH95zLqOwwFdr3
-         NktQCXXHnlJY8e62LNCtzu+E8FU2euocxJe5O4SH1Rc5oqfYX53Emypp7HH/+lWCwmSj
-         xBrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:message-id:references:from:to
-         :mime-version:content-transfer-encoding;
-        bh=8LcWW+wKD8bP88qqfyHHgIyQnsebmZX+CGRxMfnrjY0=;
-        b=B6EZ9FezvDzqike+KUAH/q2SQComRgjkNxfhvRlxAFG31tvYeKyLYkSQVV4sHhVFlG
-         DcLKLFeEZuLrWAfZRAn5z3FHA3AREGhHBAsDzt5FvUkuYy1xwqV//ihHzGsUJlhdluHM
-         oWMAFcbNWsnSeNjH0bEZ1RlqhD+8ZYM6Gmw4fbjDGL+scGWOxCYwC7Y3xA+pDrXyl6GE
-         6G2AXs5/nFeuyDJH6hwz6+2KwjOAbuaOTZHHyE4T4z/9ngE+Eib+V8yHHY+cmshP7+ua
-         3V6imKxDBFOyPfJrdFLyTaRGxgxs8eJWFtmrFA0hNoFM2mPYqYZfWTnEybWnAJkD+jVJ
-         IGQA==
-X-Gm-Message-State: AGi0PuahV8EMRvFghK7rD7A+itwOVLlTXg2zOmwWO0epdr0p7nD6jf5i
-	ZN+WqG6W3wd3hKQ5eC0wKPc=
-X-Google-Smtp-Source: APiQypJ8TcfyRi+TUhPaBAPRxPiM9eJSeBui9COqgeJI30pByqLzrY3tCHjTfXy9BzpyfMd8vjg6cQ==
-X-Received: by 2002:a65:5509:: with SMTP id f9mr18066587pgr.70.1587892508589;
-        Sun, 26 Apr 2020 02:15:08 -0700 (PDT)
-Received: from [100.111.37.221] ([106.78.61.93])
-        by smtp.gmail.com with ESMTPSA id a196sm9763720pfd.184.2020.04.26.02.15.06
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 26 Apr 2020 02:15:08 -0700 (PDT)
-Date: Thu, 23 Apr 2020 10:48:02 +0530
+ dkim=pass header.i=@outlook.com header.s=selector1 header.b=b05PX9Mb;
+ spf=pass (domain: outlook.com, ip: 40.92.89.81, mailfrom: kweihmann@outlook.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=C3Q3OF73xev4QPOA/3bR8BY3BuU1PjmSTyUSO5gTpnLzY3xMqWBKe7wGRZ8A/PRzbsU7BbwLweSmYBdmWZgj/9vWCi/kuDaINX5F1DdrlCKZ+XDaodaFkVzNIzX+at14njmnQYCYw3AAK4i26eC3pPYqnbROf3FdlXPtihyhXa1FIBbgtY0kB0ApHKQ7RrpTHyeLrcxQ1rw9Z/SSMPRM8RYblghd8Z/+IbGcBBSK//5wTNBU1sUpeLnSxfMDcqc+J2tWmNEJqqq3GJulKFDEEQGhm9Kdqb64vUkw7u/5UPRASLsBRhHsFyzdBKs38PLnxVezfAC0wPGh9DKq3tI/rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cAN1ZRdHU1BcxigfKdJKyofXJbhqyNsrxrSBNw/giDo=;
+ b=I0P6iAh9cmNsns/OQ0ugxTvp/PPNF3e853uFn3THIQ4bDXcMDU0O6OomOWY8360koXk6uXpXWCag9P+NCNSLP+X5zn8sTRT0l+SyHnjQxaQ//iTqlaBV0epmBVmyTer44Bf7wrcLe2Sgj8j97G/pREv+FuOh8o9NcVNGaASS/4Vo/fb3oebrAR9FMUTQCWGnq38HbU5ngYF0ont1zea44gVB71x1Dm2aLcbbfJtFEb8lKoe43pFO9FyvltpA5/Pn2nM+pVgtAvlqiuXgm0+L9Wkwr4TxiM/yOI4Ewo/lN4nYbBYCY4K0e07sqgxUt6OASh935mI7+3qHWtTT70YMnA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=outlook.com; dmarc=pass action=none header.from=outlook.com;
+ dkim=pass header.d=outlook.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cAN1ZRdHU1BcxigfKdJKyofXJbhqyNsrxrSBNw/giDo=;
+ b=b05PX9MbIhWVLmkjf7xj/+B6xmRicyC4wDM0Zb9xdAkj6iEYmJ3LuvTlaJ2vHqr7ATD57RLGqLrqSEtGobvzxTldTL1X9YNxoEYmR4fAw2g0a+cW90EAQx7gi2/Gn2ghH4GIGB+sJ9UwHrBha0bvdCoDcM2Qt+B5GoSqJ4HPwXXki9o6FemyIgmDoWaPjYYrg1dVY7sv1AQbuBN3XsVrBd3NXZdXbaQx+L8S2/GwYPVtjCHu2WuKgMnzquJqJ9ZFvU68jOJBz/GnMxamFZen0i56fJgz7DErEjRcpBXgsUmucNeKYRKHY9LS8tbls0rORL42B2InD6Ub6KAX0X90yQ==
+Received: from AM6EUR05FT053.eop-eur05.prod.protection.outlook.com
+ (2a01:111:e400:fc11::52) by
+ AM6EUR05HT245.eop-eur05.prod.protection.outlook.com (2a01:111:e400:fc11::164)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.15; Sun, 26 Apr
+ 2020 09:26:24 +0000
+Received: from AM7PR05MB6881.eurprd05.prod.outlook.com
+ (2a01:111:e400:fc11::4d) by AM6EUR05FT053.mail.protection.outlook.com
+ (2a01:111:e400:fc11::62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.15 via Frontend
+ Transport; Sun, 26 Apr 2020 09:26:24 +0000
+X-IncomingTopHeaderMarker: 
+ OriginalChecksum:07C004DEA14E9951CB31DC0ECC2B8611FDC45D2010E64F0629BCD39FB2B22C7F;UpperCasedChecksum:69ECFC1E41F288F2E4952337479003B0DD4225A879BDF71C22EF1C9106037CF7;SizeAsReceived:8771;Count:49
+Received: from AM7PR05MB6881.eurprd05.prod.outlook.com
+ ([fe80::f5f1:b5e3:66d7:e590]) by AM7PR05MB6881.eurprd05.prod.outlook.com
+ ([fe80::f5f1:b5e3:66d7:e590%6]) with mapi id 15.20.2937.020; Sun, 26 Apr 2020
+ 09:26:24 +0000
 Subject: Re: [yocto] Adding python3 remotely
-X-Priority: 3
-Message-ID: <es9v1o-l7prb9jgxugb-hsgkyw-j7r05u-l7zn1a1gi3f2tfvj0687g071-9uxkrdr9r86iaaprt8-9vsd7pmbw034-893c1p1epwta-k406cp-y7777g-b0m0oxipdk8n-j5k36r-iz8fe3-gsx313nyz0p.1587619082919@email.android.com>
+To: yocto@lists.yoctoproject.org
 References: <CAAV2bM2k4+ZPaqgSK5WjEkYZ+fFwDx1uZ4ucOkoh3ParLvFSxQ@mail.gmail.com>
-From: "amaya jindal" <amayajindal786@gmail.com>
-To: Emily <easmith5555@gmail.com>, Yocto List <yocto@yoctoproject.org>
+From: "Konrad Weihmann" <kweihmann@outlook.com>
+Message-ID: 
+ <AM7PR05MB68813D8557C38BB3F52C9955A8AE0@AM7PR05MB6881.eurprd05.prod.outlook.com>
+Date: Sun, 26 Apr 2020 11:26:23 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+In-Reply-To: <CAAV2bM2k4+ZPaqgSK5WjEkYZ+fFwDx1uZ4ucOkoh3ParLvFSxQ@mail.gmail.com>
+X-ClientProxiedBy: AM5PR0402CA0023.eurprd04.prod.outlook.com
+ (2603:10a6:203:90::33) To AM7PR05MB6881.eurprd05.prod.outlook.com
+ (2603:10a6:20b:1a9::19)
+Return-Path: kweihmann@outlook.com
+X-Microsoft-Original-Message-ID: 
+ <316d03aa-4708-ba50-af40-c04b5ef88274@outlook.com>
 MIME-Version: 1.0
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.188.20] (87.141.80.188) by AM5PR0402CA0023.eurprd04.prod.outlook.com (2603:10a6:203:90::33) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.13 via Frontend Transport; Sun, 26 Apr 2020 09:26:23 +0000
+X-Microsoft-Original-Message-ID: 
+ <316d03aa-4708-ba50-af40-c04b5ef88274@outlook.com>
+X-TMN: [tHrPwq7ECU6zlhekhzNI1uUsl+24DftW]
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 49
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-Correlation-Id: d68a386f-780b-4f7c-7d5a-08d7e9c3e36b
+X-MS-TrafficTypeDiagnostic: AM6EUR05HT245:
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	UoiSp3lZifiWqVF17smu9gxALakgod5u7eeOf5S1B7qI5fyzSlNQsOVnIWqlIOxuHMMHwCODxkvBwNiUmlEXwI1WVO/RhZlDyJrCqwc9LHz/JItN1u7GLWZOnhZR9SqZonQoTOeh2iBfSIdO0LwBzfoUp5GaBfu8TeMHUK+OMYDoYuQnUj0xb2yB1VW/3yVwdAGQ1PgIgGBoHuXsWsJ46J/JrAD9EVgLRa4dMOlzcyOQDqohW2YrvdSiKldz24MA
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:0;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR05MB6881.eurprd05.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:;DIR:OUT;SFP:1901;
+X-MS-Exchange-AntiSpam-MessageData: 
+	nX7w6czCf6p9a2onmS4p35qkMOSABwPEhBNLObVTp/33uyaPmpccjitnNIfKGK3iZIGlgOWkGPKAHsDpQpQQhp+V1GIxp8aezuPKY+gCczkFL2h4UbEqv1wKtdH4Hu4Sj9hxDwbPolSN+zcalc3bhg==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d68a386f-780b-4f7c-7d5a-08d7e9c3e36b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2020 09:26:24.3733
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6EUR05HT245
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-PGRpdiBkaXI9ImF1dG8iPk1heSBiZSB5b3UgY2FuIHRyeSB0byBmaW5kIGJ1aWx0IGJpbmFyeSBv
-ZiBweXRob24gMyBmcm9tIEludGVybmV0IGlmIG5vdCBhYmxlIHRvIGJ1aWxkIGl0IHVzaW5nIHlv
-Y3RvLiBJbiB5b2N0byB5b3UgY2FuIGFjY2VzcyBkZXBsb3kgZm9sZGVyIGZvciBweXRob24zLWJp
-biBhbmQgb3RoZXIgZm9sZGVycyB0byBkaXJlY3RseSBjb3B5IHRoZSBzb2Z0d2FyZSB0b29sIG9u
-IGJvYXJkIGlmIGNvbXBpbGF0aW9uIGluIHlvY3RvIGdvZXMgZ29vZCBmb3IgcHl0aG9uMy4mbmJz
-cDs8YnI+PGJyPlNlbnQgZnJvbSBteSBIdWF3ZWkgcGhvbmU8L2Rpdj48ZGl2IHN0eWxlPSJsaW5l
-LWhlaWdodDoxLjUiPjxicj48YnI+LS0tLS0tLS0gT3JpZ2luYWwgbWVzc2FnZSAtLS0tLS0tLTxi
-cj5Gcm9tOiBFbWlseSAmbHQ7ZWFzbWl0aDU1NTVAZ21haWwuY29tJmd0Ozxicj5EYXRlOiBXZWQs
-IDIyIEFwciAyMDIwLCA4OjU1IHBtPGJyPlRvOiBZb2N0byBMaXN0ICZsdDt5b2N0b0B5b2N0b3By
-b2plY3Qub3JnJmd0Ozxicj5TdWJqZWN0OiBbeW9jdG9dIEFkZGluZyBweXRob24zIHJlbW90ZWx5
-PGJyPjxibG9ja3F1b3RlPjxkaXYgZGlyPSJsdHIiPkhpIGFsbCAtwqA8ZGl2PjxiciAvPjwvZGl2
-PjxkaXY+SSYjMzk7ZCBsaWtlIHRvIGFkZCBweXRob24zIHRvIG15IE9TIC0gSSBjYW4gYWRkIGFu
-ZCBidWlsZCBpdCBqdXN0IGZpbmUsIGJ1dCBhdCB0aGUgbW9tZW50IEkgY2FuJiMzOTt0IHBoeXNp
-Y2FsbHkgYWNjZXNzIG15IGJvYXJkLiBJJiMzOTt2ZSBuZXZlciBiZWVuIGFibGUgdG8gZ2V0IHRo
-ZSBPUyB0byB1cGRhdGUgcHJvcGVybHkgcmVtb3RlbHksIHRob3VnaCBJIHRoaW5rIHRoZXJlIHNo
-b3VsZCBiZSBhIHdheSBzaW5jZSBJJiMzOTttIGJvb3RpbmcgZnJvbSBTRC4gVGhhdCBhc2lkZSwg
-Y2FuIEkganVzdCBjb3B5IHRoZSBidWlsdCBweXRob24zIGZpbGVzIHRvIHRoZSBwcm9wZXIgcGxh
-Y2VzIGluIG15IE9TICgvdXNyL2xpYiwgL3Vzci9iaW4sIGV0YykgYW5kIGhhdmUgYSB3b3JraW5n
-IHB5dGhvbjMgb24gdGhlIGJvYXJkPyBJZiBzbywgd2hpY2ggZmlsZXMgZG8gSSBuZWVkPyBJJiMz
-OTt2ZSBiZWVuIHVuYWJsZSB0byBnZXQgaXQgdG8gd29yayB0aHVzIGZhciBieSBqdXN0IHBva2lu
-ZyBhcm91bmQgdGhlIHdvcmtkaXIgZmlsZXMuwqA8L2Rpdj48ZGl2PjxiciAvPjwvZGl2PjxkaXY+
-VGhhbmtzLDwvZGl2PjxkaXY+RW1pbHkgU21pdGg8L2Rpdj48L2Rpdj4NCjwvYmxvY2txdW90ZT48
-L2Rpdj4=
+I assume that you have ssh access to the device and your rootfs is 
+writeable - in that case you could use "devtool deploy-target".
+Typical workflow would be something like this
+- devtool modify python3
+- devtool build python3
+- devtool deploy-target -s python3 root@<your target ip>
 
+if your rootfs is ramdisk based the change will only last till the next 
+reboot
+
+
+On 22.04.20 17:25, Emily wrote:
+> Hi all -
+> 
+> I'd like to add python3 to my OS - I can add and build it just fine, but 
+> at the moment I can't physically access my board. I've never been able 
+> to get the OS to update properly remotely, though I think there should 
+> be a way since I'm booting from SD. That aside, can I just copy the 
+> built python3 files to the proper places in my OS (/usr/lib, /usr/bin, 
+> etc) and have a working python3 on the board? If so, which files do I 
+> need? I've been unable to get it to work thus far by just poking around 
+> the workdir files.
+> 
+> Thanks,
+> Emily Smith
+> 
+> 
+> 
