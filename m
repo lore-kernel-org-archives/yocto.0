@@ -1,125 +1,130 @@
-Received: from mail-lf1-f68.google.com (mail-lf1-f68.google.com [209.85.167.68])
- by mx.groups.io with SMTP id smtpd.web11.8971.1587897716772086377
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+ by mx.groups.io with SMTP id smtpd.web11.5416.1587932628945280749
  for <yocto@lists.yoctoproject.org>;
- Sun, 26 Apr 2020 03:41:57 -0700
+ Sun, 26 Apr 2020 13:23:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=hdYrv2NX;
- spf=pass (domain: gmail.com, ip: 209.85.167.68, mailfrom: qian.hao.developer@gmail.com)
-Received: by mail-lf1-f68.google.com with SMTP id r17so11355299lff.2
-        for <yocto@lists.yoctoproject.org>; Sun, 26 Apr 2020 03:41:56 -0700 (PDT)
+ dkim=pass header.i=@linaro.org header.s=google header.b=dREh+gFL;
+ spf=pass (domain: linaro.org, ip: 209.85.219.176, mailfrom: nicolas.dechesne@linaro.org)
+Received: by mail-yb1-f176.google.com with SMTP id v10so858212ybk.3
+        for <yocto@lists.yoctoproject.org>; Sun, 26 Apr 2020 13:23:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=838hpbgjRZ8CrkmMUzMQ/ci7iWnELzWwR7CllOkJnLk=;
-        b=hdYrv2NXKDi8TTmNwJw+XoJNHpVrpw0P6m2SOwbwK6JpSqE6mISsaOweRBd/MRhW3X
-         fN9Xa9SHcXx+75ah26c4t4TDGyyh9KewFoigR/bJEcCGUeipIC8qytZ6yFEW6i97ssoh
-         tGnlJl40Vn46xSos/PqpAMlJE1DGeaVxzZOm6dOHwvbvk3U5VZPbfMqsLpvy7n2BxOWb
-         pCdnam0UTGcuIA+F/8jyooM15koWCCaM0MZTbUz574oLNR6ogEwqnS3y2Fg5UI9cgzRC
-         5Evj1+r4zFiSw8Sm5eIBuZLLC3D3RwFBcjK1Ifs6WEFgPZgKhJZUv9XWeE6o/5kRi6cN
-         2dEA==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=S7cBxuM+WWFE1Dv01biZ3MoUI6ZmOclmHF5YtPMN23c=;
+        b=dREh+gFLZ2x3h9VYJDlBCuCMUWPkGVwoeR/CKCaWWuDmiATbsQW2Vp/pvRus663IGY
+         v2F81zIXaZveXNZfLBDdMl48+SF/3Tdb7qfwxxNvYXMJapqQuVrM1aEjqi7i8jehOTtK
+         2nltwr4K9W8H5y1TG6fZ+UGP/3/JxPhBWsnenzS/pid6xPlqRF0sd3WC0bRmSqWZFEdl
+         PkKdhOyJor/2QZapDxSHGq1BRFa6foVLGS1eYlSUh4iQddtbj2p9mNK04xbaR/jFnImv
+         Y5ftclXGWEeMxropp+zLfpoMBg1ae6PFKVUdVu32FPCOsZwijFSdzdoy3ut8I000xWIV
+         gM5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=838hpbgjRZ8CrkmMUzMQ/ci7iWnELzWwR7CllOkJnLk=;
-        b=bnLHWFSbY1nGrrelE7phbNrLZRENUZJbOBV9ZfCA7qZJ66tdGgQauN8S95jAWwaSd7
-         5yXsETCuewVPw/nwmZvkTZ8WR7+crjMysr2Wizgcn40MrRLEEV95nCeavOGhXfPnrgPt
-         UYy+Rk79L0WXXH9QllmCB5q2Y74LqZl/W7evfDR/Z/u3PhAsBZIJAhDCQABH/LKn34X8
-         CwLflyi/9se/WkRj6uEyFXAf51VtxPcFycBYTr5bKUW9u0ob7Ovx9nTZ0irPYj+Qn9wN
-         misl0+R74IZbUHezaDl+J8oME9oVSTvo6rCCyW9R7xHXdlT41ISFpyxjJzr+e0QFBD+W
-         hQdQ==
-X-Gm-Message-State: AGi0PuaiArU8fSjjXGiLouZASo6N3MHi67ojW5h+/45olx1oyFmRy2HR
-	hUTTli4ajYngoyu+WlnA44s5/0Z3ID30ecvbQXNfXXW3
-X-Google-Smtp-Source: APiQypKraKfwMNyGhZ/qQ2kK0jYI70VfAdehmIAPu1YTHr08IAc0Xd2HndFPMS6E9WeIti8AxzuUdqs5XK12fY3PzpI=
-X-Received: by 2002:a05:6512:31c1:: with SMTP id j1mr12347968lfe.14.1587897714444;
- Sun, 26 Apr 2020 03:41:54 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=S7cBxuM+WWFE1Dv01biZ3MoUI6ZmOclmHF5YtPMN23c=;
+        b=kj9lbKLeKZSPTLcLT1tr7jiZYf2uMz+pfnvOziYvTXgv6aZ5RuhmpvPhtK0reVNL2r
+         Ad4L76Z3hOASkFx1PabDbmGUhMNhwjqrLnR9bPmKVtXs13TuA7hTPdieTMuLY9on9Upe
+         CsnQcTyfwdFQDzZWS0+/acvRGQRrjLKp4Ib5WFh5EXQITab+XRsMTSPo4/RJj+yvAB/S
+         yKpwKfMClAPcfHGjLBYaxyCkic4+2VAw/J+g4tcobvaSPFDE9n/hJ2mPBl8WkG0V7ytZ
+         X3Tl/cT3LpQNzJ0/wCe7S4SPGlQMUUnva3wvtYOIVD1sOIxabJSepX+0JF6lsXNdHynz
+         vRyg==
+X-Gm-Message-State: AGi0PuZTOVj8eig/8of2M7Zzcv/AWrgDa/pHu1z9BBuV/BW8+fU/dHcQ
+	Fj7warbFxHZ6teHIy1lKnzcZjkI+LmPrjv55ixkS0Q==
+X-Google-Smtp-Source: APiQypJh7ux6PjGU6qnftmZDnzlqTsnWfWt0MrlvuHwP9v00lavv/94D/pwLSpgCFGOBzWLWPoFrY6WvGbrwHJ2O1Z8=
+X-Received: by 2002:a25:ec1:: with SMTP id 184mr31087158ybo.373.1587932628058;
+ Sun, 26 Apr 2020 13:23:48 -0700 (PDT)
 MIME-Version: 1.0
-From: "Hao Qian" <qian.hao.developer@gmail.com>
-Date: Sun, 26 Apr 2020 19:41:40 +0900
-Message-ID: <CACxpVWcXzG=RQO=FNTWxnwoSwBBU6+wx4x5od9ARZHCi2XOXMA@mail.gmail.com>
-Subject: Kernel panic of "not syncing" occurs when booting on qemu with extracted code by devtool #yocto #devtool #qemu
-To: yocto@lists.yoctoproject.org
+References: <20200425115450.7c581f0d@ub1910>
+In-Reply-To: <20200425115450.7c581f0d@ub1910>
+From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
+Date: Sun, 26 Apr 2020 22:23:34 +0200
+Message-ID: <CAP71WjxW67=mZwr1FJ8A=x7eghuZ=MK4ZEn8ZnM_3JS3bwVfXA@mail.gmail.com>
+Subject: Re: [yocto] Web interface for Yocto & OE mailing lists defaults to Reply to Sender
+To: Paul Barker <pbarker@konsulko.com>
+Cc: Michael Halstead <mhalstead@linuxfoundation.org>, 
+	=?UTF-8?Q?Bart=C5=82omiej_Burdukiewicz?= <bartlomiej.burdukiewicz@gmail.com>, 
+	yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000391de405a437606c"
+
+--000000000000391de405a437606c
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+hi Paul,
 
-I'm trying to add some drivers to linux kernel and confirm it with qemu.
+On Sat, Apr 25, 2020 at 12:54 PM Paul Barker <pbarker@konsulko.com> wrote:
 
-I clone the poky repository, build and boot as below steps:
-----------------------------------------------------------------------------
-1. clone poky (poky only)
-    $ git clone git://git.yoctoproject.org/poky
-2. initialize build folder by oe-init-build-env
-    $ source poky/oe-init-build-env ./build
-3. extract linux repository (but do no modifications)
-    $ devtool modify virtual/kernel
-4. build with default configurations
-    $ bitbake core-image-minimal
-5. boot on qemux86-64
-    $ runqemu nographic
-----------------------------------------------------------------------------
-and I can boot linux without any panic at this time.
+> Michael,
+>
+> I've just been discussing on IRC with Bart=C5=82omiej who used the group=
+s.io
+> web
+> interface to reply to an email on the list. It defaulted to sending a
+> private
+> reply off the list. If I try to do the same "Reply to Sender" is the
+> default
+> for me as well: https://imgur.com/1RGH9Aw
+>
+> Looking at the AGL lists on groups.io they have "Reply to Group" as the
+> default. Perhaps this is a configuration issue? Could you take when you =
+get
+> chance?
+>
 
-
-However, when I try to re-build and boot again, I got a panic at boot time 100%.
-What I did are listed below:
-----------------------------------------------------------------------------
-6. re-build with clean
-    $ bitbake virtual/kernel -c clean && bitbake core-image-minimal -c
-clean && bitbake core-image-minimal
-    (I also tried replacing "-c clean" with "-c cleanall", adding "rm
--rf tmp/ cache/ sstate/", but got same panic error)
-7. boot on qemux86-64
-    $ runqemu nographic
-    (also tried "runqemu qemux86-64 nographic")
-----------------------------------------------------------------------------
-
-The log of panic is:
-============= panic log ===============
-[ 2.177811] rtc_cmos 00:00: setting system clock to
-2020-04-03T22:35:00 UTC (1585953300)
-[ 2.186697] md: Waiting for all devices to be available before autodetect
-[ 2.186838] md: If you don't use raid, use raid=noautodetect
-[ 2.189483] md: Autodetecting RAID arrays.
-[ 2.189595] md: autorun ...
-[ 2.189665] md: ... autorun DONE.
-[ 2.190837] VFS: Cannot open root device "vda" or
-unknown-block(0,0): error -6
-[ 2.190993] Please append a correct "root=" boot option; here are
-the available partitions:
-[ 2.191290] 0b00 1048575 sr0
-[ 2.191310] driver: sr
-[ 2.191485] VFS: Unable to mount root fs on unknown-block(0,0)
-[ 2.191606] User configuration error - no valid root filesystem found
-[ 2.191797] Kernel panic - not syncing: Invalid configuration from
-end user prevents continuing
-[ 2.192134] CPU: 0 PID: 1 Comm: swapper/0 Not tainted 5.2.32 #1
-[ 2.192279] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996),
-BIOS rel-1.12.1-0-ga5cab58e9a3f-prebuilt.qemu.org 04/01/2014
-[ 2.192613] Call Trace:
-[ 2.193218] dump_stack+0x6d/0x9a
-[ 2.193337] panic+0x101/0x2d7
-[ 2.193445] mount_block_root+0x2cf/0x2f2
-[ 2.193538] mount_root+0x7d/0x80
-[ 2.193612] prepare_namespace+0x13f/0x177
-[ 2.193701] kernel_init_freeable+0x236/0x25a
-[ 2.193798] ? rest_init+0xb0/0xb0
-[ 2.193872] kernel_init+0xe/0x100
-[ 2.193946] ret_from_fork+0x35/0x40
-[ 2.194488] Kernel Offset: 0x2e00000 from 0xffffffff81000000
-(relocation range: 0xffffffff80000000-0xffffffffbfffffff)
-[ 2.194918] ---[ end Kernel panic - not syncing: Invalid
-configuration from end user prevents continuing ]---
-======================================
-
-P.S. panic will not happen if I didn't extract linux repository
-with "devtool modify" command.
+Right. It's a per list configuration item. I have changed for yocto list
+for now, and set it to 'reply to group'. we will take care of all lists
+(and on lists.openembedded.org as well). Thanks for spotting this.
 
 
-I've tried to search answers on yocto-mailing-list, stackoverflow, nxp
-community and other websites, but can not find any solution for this
-problem.
+> Thanks,
+>
+> --
+> Paul Barker
+> Konsulko Group
+>=20
+>
 
-Could anyone please help to fix this problem, or just offers some advices?
+--000000000000391de405a437606c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Qian
+<div dir=3D"ltr"><div dir=3D"ltr">hi Paul,<br></div><br><div class=3D"gmail=
+_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Apr 25, 2020 at 12:54=
+ PM Paul Barker &lt;<a href=3D"mailto:pbarker@konsulko.com">pbarker@konsulk=
+o.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex">Michael,<br>
+<br>
+I&#39;ve just been discussing on IRC with Bart=C5=82omiej who used the <a =
+href=3D"http://groups.io" rel=3D"noreferrer" target=3D"_blank">groups.io</a=
+> web<br>
+interface to reply to an email on the list. It defaulted to sending a priv=
+ate<br>
+reply off the list. If I try to do the same &quot;Reply to Sender&quot; is=
+ the default<br>
+for me as well: <a href=3D"https://imgur.com/1RGH9Aw" rel=3D"noreferrer" t=
+arget=3D"_blank">https://imgur.com/1RGH9Aw</a><br>
+<br>
+Looking at the AGL lists on <a href=3D"http://groups.io" rel=3D"noreferrer=
+" target=3D"_blank">groups.io</a> they have &quot;Reply to Group&quot; as t=
+he<br>
+default. Perhaps this is a configuration issue? Could you take when you ge=
+t<br>
+chance?<br></blockquote><div><br></div><div>Right. It&#39;s a per list con=
+figuration item. I have changed for yocto list for now, and set it to &#39;=
+reply to group&#39;. we will take care of all lists (and on <a href=3D"http=
+://lists.openembedded.org">lists.openembedded.org</a> as well). Thanks for =
+spotting this.<br></div><div> <br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
+ding-left:1ex">
+<br>
+Thanks,<br>
+<br>
+-- <br>
+Paul Barker<br>
+Konsulko Group<br>
+<br>
+</blockquote></div></div>
+
+--000000000000391de405a437606c--
