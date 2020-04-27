@@ -1,106 +1,67 @@
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
- by mx.groups.io with SMTP id smtpd.web10.1981.1587976196015171929
+Received: from m158-178.yeah.net (m158-178.yeah.net [123.58.178.158])
+ by mx.groups.io with SMTP id smtpd.web12.1435.1587972217279796099
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Apr 2020 01:29:56 -0700
+ Mon, 27 Apr 2020 00:23:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=rhwsbMbj;
- spf=pass (domain: gmail.com, ip: 209.85.222.180, mailfrom: lefevre.da@gmail.com)
-Received: by mail-qk1-f180.google.com with SMTP id n143so17201634qkn.8
-        for <yocto@lists.yoctoproject.org>; Mon, 27 Apr 2020 01:29:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=i5PUtlLEf3hgM2BSqPLV25P35oJsxGQMB8U2tS0j3Qo=;
-        b=rhwsbMbjcmIu3aduVr6xQfUPaP6G9sJ5B8hPCCmjsNyyI7lLjjRis52mJH4BYZLfPv
-         oAycZHli0+f5UOpCnupC5lCBRq1T8myIjahkX6x9L98Q03AwLwsJslVNluG1J927sy2C
-         eXokPzQWyK8IDPp4Vq1NHEh8qJwfXuWv/78ORcscWnYs1FLcz3fWfjyGk6Kp4Rn3UGTb
-         EIeQq3zxkjGe6By5V1BWE/OXzdJr3Kxy/tT53NHtKg5b5lQCkpUt7I+2Ds2nDmz8Ww7+
-         WruD7x3XoxV4uojdjO3IiwTmbi2BMWFsZfarXY5qK9Dj15rdd51RYfB2oDuSsar7+dPA
-         NOyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=i5PUtlLEf3hgM2BSqPLV25P35oJsxGQMB8U2tS0j3Qo=;
-        b=rGewSYRAfn2/JtYs7tzkIaC4N4FPStfMo3cw5/+sFXaNf1iHZGjFePGFOch7PvAQao
-         Jws4fAuS25m/j31RjEFlJp96jllFPYlHr9MfMOBVfZ9FEfX1cZ0HW/7R9PRb5nWDUq8L
-         CYWFjmehfIwuUvS2YKGl6vaxosRVQ5LELk4pj+MIjfYR9Gs/ELCqwwY1HXk/nermjXSi
-         faXNq/57oyTgSD4hy3GYXAWpAWT+arkIjCQ3hKWzRzR0rROy7004Y69808k9crTBtL5/
-         YKWG9tqmM0XtgFl3MYFm3fcippUub6BMP/X5KOhApbroj6bDKNI+oRhKE81/201myCP1
-         NOxw==
-X-Gm-Message-State: AGi0PuYnx62y/YuzPdvzb4VE7pzhQ6rSldeRhoHSPGs+6ubYevg7+YN9
-	IOOW9MUvasr6ccYIeh7x2cDcAdHJT4Xb8VEYl+JJMhBAKQ==
-X-Google-Smtp-Source: APiQypKzyGCVp5UGnXyC72L0ZHEk8xOq+AlBNVqtxDPblDWQrXg4QCxMhwFpW+4O8J4W5B7c7Rt4w6pEYyaq3iHTZsg=
-X-Received: by 2002:a37:6697:: with SMTP id a145mr20989469qkc.479.1587976194912;
- Mon, 27 Apr 2020 01:29:54 -0700 (PDT)
-MIME-Version: 1.0
-From: "Damien LEFEVRE" <lefevre.da@gmail.com>
-Date: Mon, 27 Apr 2020 11:29:44 +0300
-Message-ID: <CA+FhBv9vjwEC747tn777Fdeh+ygz3kdTTgFGD=txV0ovQJ=F-A@mail.gmail.com>
-Subject: zeus KCFLAGS
+ dkim=pass header.i=@yeah.net header.s=s110527 header.b=CD6gWCWX;
+ spf=pass (domain: yeah.net, ip: 123.58.178.158, mailfrom: nus1998@yeah.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=s3zO9
+	K/fxMIF1UiRzwpjygaSo9JDR7IJjKBbegHeSdM=; b=CD6gWCWXnH5o90qKd3zUb
+	wWlD7EnMDG72zLnmTHWEZr6zJwaIcbI3/Dt3LATGf8ryA4E9nN0vADfuMMXcG7GP
+	hR+JF1ZV9VzDF75SMbaS2Cih84/zKYNR3O382SC2Xze8ynWeWyVARWPSDJL2XL+c
+	LZdk3bFxwmYQwJEmT6dOb4=
+Received: from nus1998$yeah.net ( [113.118.112.154] ) by ajax-webmail-app9
+ (Coremail) ; Mon, 27 Apr 2020 15:23:29 +0800 (CST)
+X-Originating-IP: [113.118.112.154]
+Date: Mon, 27 Apr 2020 15:23:29 +0800 (CST)
+X-CM-HeaderCharset: UTF-8
+From: "nus1998" <nus1998@yeah.net>
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000028e0d05a4418557"
+Subject: dpkg doesn't work
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.10 build 20190724(ac680a23)
+ Copyright (c) 2002-2020 www.mailtech.cn yeah
+MIME-Version: 1.0
+Message-ID: <50dd5404.10cb5.171ba84fa01.Coremail.nus1998@yeah.net>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: OlUQrAC3v29yiKZep1oBAA--.7236W
+X-CM-SenderInfo: 5qxvimyzy65vtdko0vbw/1tbiDxITMFnxXhvjYAACsS
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_250844_1719170969.1587972209153"
 
---000000000000028e0d05a4418557
-Content-Type: text/plain; charset="UTF-8"
+------=_Part_250844_1719170969.1587972209153
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-Hi,
+SGkgQWxsLAoKCkknbSBydW5uaW5nIGlteC1saW51eC16ZXVzIDUuNC4zXzEuMC4wIG9uIGkuTVg2
+IHNhYnJlc2QgYm9hcmQgYnV0IEkgdGhpbmsgdGhpcyBpc3N1ZSBtaWdodCBiZSBIVyBpbmRlcGVu
+ZGVudC4KCgpJIHNldCBQQUNLQUdFX0NMQVNTRVMgPz0gJ3BhY2thZ2VfZGViJyBpbiBteSBsb2Nh
+bC5jb25mIGZpbGUgYW5kIHRoZSBkZWIgcGFja2FnZXMgYXJlIGdlbmVyYXRlZCBpbiBlYWNoIHBh
+Y2thZ2UuIGhvd2V2ZXIsIGluIHJvb3RmcywgYWxsIHRoZSAvdXNyL2Jpbi9kcGtnKiBhcmUgMCBi
+eXRlcyBleGNlcHQgZHBrZy1kZWIgYW5kIGRwa2ctc3BsaXQsIHRodXMgSSBjYW4ndCB1c2UgZHBr
+ZyBvciBhcHQtZ2V0IHRvIGluc3RhbGwgZGViIHBhY2thZ2UuIGRvZXNuJ3QgYW55Ym9keSBrbm93
+IGhvdyB0byBzZXQgaXQgdXAgdG8gaW5zdGFsbCBkZWIgcGFja2FnZSBvbiB0YXJnZXQgYm9hcmQ/
+CgoKQi5SLgpOdXMK
 
-I'm trying to build the core-image-minimal on zeus branch, device Tegra
-Xavier. The compiler has to be GCC 7.* due to some NVidia pre-built
-binaries. So I back ported it from Thud if I recall.
+------=_Part_250844_1719170969.1587972209153
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-The kernel compilation fails with this error:
-| cc1: error: -Werror=address-of-packed-member: no option
--Waddress-of-packed-member
-| cc1: error: -Werror=missing-attributes: no option -Wmissing-attributes
+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
+Zm9udC1mYW1pbHk6QXJpYWwiPjxkaXYgc3R5bGU9Im1hcmdpbjowOyI+SGkgQWxsLDwvZGl2Pjxk
+aXYgc3R5bGU9Im1hcmdpbjowOyI+PGJyPjwvZGl2PjxkaXYgc3R5bGU9Im1hcmdpbjowOyI+SSdt
+IHJ1bm5pbmcgaW14LWxpbnV4LXpldXMgNS40LjNfMS4wLjAgb24gaS5NWDYgc2FicmVzZCBib2Fy
+ZCBidXQgSSB0aGluayB0aGlzIGlzc3VlIG1pZ2h0IGJlIEhXIGluZGVwZW5kZW50LjwvZGl2Pjxk
+aXYgc3R5bGU9Im1hcmdpbjowOyI+PGJyPjwvZGl2PjxkaXYgc3R5bGU9Im1hcmdpbjowOyI+SSBz
+ZXQgUEFDS0FHRV9DTEFTU0VTID89ICdwYWNrYWdlX2RlYicgaW4gbXkgbG9jYWwuY29uZiBmaWxl
+IGFuZCB0aGUgZGViIHBhY2thZ2VzIGFyZSBnZW5lcmF0ZWQgaW4gZWFjaCBwYWNrYWdlLiBob3dl
+dmVyLCBpbiByb290ZnMsIGFsbCB0aGUgL3Vzci9iaW4vZHBrZyogYXJlIDAgYnl0ZXMgZXhjZXB0
+IGRwa2ctZGViIGFuZCBkcGtnLXNwbGl0LCB0aHVzIEkgY2FuJ3QgdXNlIGRwa2cgb3IgYXB0LWdl
+dCB0byBpbnN0YWxsIGRlYiBwYWNrYWdlLiBkb2Vzbid0IGFueWJvZHkga25vdyBob3cgdG8gc2V0
+IGl0IHVwIHRvIGluc3RhbGwgZGViIHBhY2thZ2Ugb24gdGFyZ2V0IGJvYXJkPzwvZGl2PjxkaXYg
+c3R5bGU9Im1hcmdpbjowOyI+PGJyPjwvZGl2PjxkaXYgc3R5bGU9Im1hcmdpbjowOyI+Qi5SLjwv
+ZGl2PjxkaXYgc3R5bGU9Im1hcmdpbjowOyI+TnVzPGJyPjwvZGl2PjwvZGl2Pg==
 
-How to I make the compiler treat these error as warnings?
-
-I've tried adding all these to the kernel recipe:
-export KCFLAGS = " -Wno-error=address-of-packed-member
--Wno-error=missing-attributes "
-export KCPPFLAGS = " -Wno-error=address-of-packed-member
--Wno-error=missing-attributes "
-
-TARGET_CFLAGS += " -Wno-error=address-of-packed-member
--Wno-error=missing-attributes "
-TARGET_CPPFLAGS += " -Wno-error=address-of-packed-member
--Wno-error=missing-attributes "
-
-KBUILD_CFLAGS += " -Wno-error=address-of-packed-member
--Wno-error=missing-attributes "
-
-None of them seems to be applied.
-
-Anything special changed on Zeus? Note I didn't have any issue building the
-kernel on Warrior.
-
-Thanks
--Damien
-
---000000000000028e0d05a4418557
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;m trying to build the core-im=
-age-minimal on zeus branch, device Tegra Xavier. The compiler has to be GCC=
- 7.* due to some NVidia pre-built binaries. So I back ported it from Thud i=
-f I recall.</div><div><br></div><div>The kernel compilation fails with this=
- error:</div><div>| cc1: error: -Werror=3Daddress-of-packed-member: no opti=
-on -Waddress-of-packed-member<br>| cc1: error: -Werror=3Dmissing-attributes=
-: no option -Wmissing-attributes<br></div><div><br></div><div>How to I make=
- the compiler treat these error as warnings?</div><div><br></div><div>I&#39=
-;ve tried adding all these to the kernel recipe:</div><div>export KCFLAGS =
-=3D &quot; -Wno-error=3Daddress-of-packed-member -Wno-error=3Dmissing-attri=
-butes &quot;<br></div><div>export KCPPFLAGS =3D &quot; -Wno-error=3Daddress=
--of-packed-member -Wno-error=3Dmissing-attributes &quot;<br><br>TARGET_CFLA=
-GS +=3D &quot; -Wno-error=3Daddress-of-packed-member -Wno-error=3Dmissing-a=
-ttributes &quot;<br>TARGET_CPPFLAGS +=3D &quot; -Wno-error=3Daddress-of-pac=
-ked-member -Wno-error=3Dmissing-attributes &quot;<br><br>KBUILD_CFLAGS +=3D=
- &quot; -Wno-error=3Daddress-of-packed-member -Wno-error=3Dmissing-attribut=
-es &quot;<br></div><div><br></div><div>None of them seems to be applied.</d=
-iv><div><br></div><div>Anything special changed on Zeus? Note I didn&#39;t =
-have any issue building the kernel on Warrior.</div><div><br></div><div>Tha=
-nks</div><div>-Damien</div></div>
-
---000000000000028e0d05a4418557--
+------=_Part_250844_1719170969.1587972209153--
