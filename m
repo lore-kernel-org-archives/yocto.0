@@ -1,181 +1,294 @@
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
- by mx.groups.io with SMTP id smtpd.web10.6200.1587996479452457464
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.23.1588005569248758023
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Apr 2020 07:07:59 -0700
+ Mon, 27 Apr 2020 09:39:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=pEV7r7T7;
- spf=pass (domain: gmail.com, ip: 209.85.210.47, mailfrom: jpewhacker@gmail.com)
-Received: by mail-ot1-f47.google.com with SMTP id b13so26333156oti.3
-        for <yocto@lists.yoctoproject.org>; Mon, 27 Apr 2020 07:07:59 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=hPTbxH+W;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id D3757E01A90; Mon, 27 Apr 2020 09:39:28 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (sjolley.yp.pm[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.214.175 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AABFBE01A8D
+	for <yocto@yoctoproject.org>; Mon, 27 Apr 2020 09:39:26 -0700 (PDT)
+Received: by mail-pl1-f175.google.com with SMTP id c21so6368537plz.4
+        for <yocto@yoctoproject.org>; Mon, 27 Apr 2020 09:39:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=55GalS+VGnDiDjREGcuLUojvI5IsYvgF7TvdjvCd5R8=;
-        b=pEV7r7T7+HjMIzmq3eVYjP7B+9mBsc1OPszMXSvPNnAaZqJeeBrJ9qsK5fhVAlZqNT
-         QGt8KQaFi3by/uvxolxGfG+kA+MxiX3xWV6m2ARzswLBUgdPI79f9Cvs8h3MfnjFRFX8
-         5SRdgXI90qxOqiXZfvzvnjNcEB3L0zWrqfp64kCcaI6qDoUaP3KccZsw3eK1G0j2iGEB
-         RclbbaR91jC3F2l19DNb1tZTHLjZdmj3sSuW1D9fQJtp6LWkYRTKsezsSEPfXFFIT5f7
-         LeJC0glVhev3Nisk+PiC4EQOZxe6EbU8V65QJc0zeUhJuMRI/q7p+Ih7ieSg2276tmz3
-         ltOw==
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=gX0gmhSnG31iQSLaRwBD9MOb3BBY9HUqCgbHizgwJQI=;
+        b=hPTbxH+W/5XfgzeZERfvCe2QaOmQaZOUmAA3g2INqqD/NON7kmKpSz5khu1WDQ4qy9
+         Iou/ayDBcVhoPggOQueLK7/doW5i+LvLOtXogGf4esfAlKVYhAMai2t3HcBWiGd76GCY
+         UjLxGhag7lngH/VXFBDp6sPrhw4ixjEwGvO4FQK/yvfqHjtYB8jTUt13mgsgtnauBsHE
+         hnaBiXhU6969uN6tZ1kBDDD5ErlVHGO14V6Qgt4RNalJ033eeDz4lQhNkpoeACTcAGSU
+         bWsJZp641xMGRXvUuGTEWodvTKgQvvI1zTRtBeRcRYHI8/d+kWxi8SB35RBnCML3ttJy
+         T/2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=55GalS+VGnDiDjREGcuLUojvI5IsYvgF7TvdjvCd5R8=;
-        b=oWs4fnJ3JAO8AupXMDvkKAKuI9gtWV+frUt1zE10CTku0rwh4npG73Ax1q2QTQuzs4
-         vMxA0w2nfRCCq/ktKudT7Lj9E+ZEkc2cenguQIVoMHn314SbP2AkJ+gqYoXFmbtAeyYa
-         HgooQ4neQ6Ik6PwszGuBSpsM9lACWoLnX92BPHcufx9IbOqrPb9zltpRZRLZAxPbIkkT
-         9Na8+sBvEc4o0p3agWuILZOtxK3WdN7z57DfIzdtVecmoqcgwxFQeqpJ/pOVX8AgTl9j
-         QG6oVqAoRWI8sH6vmZrkIcxyV8k7dCP+f3Eb+1m0XeAtPJXx3NH+CuyQBqeGYaHZVwuj
-         sDlQ==
-X-Gm-Message-State: AGi0PubnwFOOs/tOQBpPSti7BpLZH3BY2VK3f1Nbzx2QWObTHeZ+sX/A
-	CGo82y9ZXX3pS/9WIhPdKXAd1P1H
-X-Google-Smtp-Source: APiQypKAdBs0bw69glXRfocWpvgEEMrDba0SkTf8mC2ingrfcN1c4o/qkM4D3OkfQYm2Wcxs4NwhPA==
-X-Received: by 2002:a9d:883:: with SMTP id 3mr1621632otf.344.1587996477601;
-        Mon, 27 Apr 2020 07:07:57 -0700 (PDT)
-Return-Path: <jpewhacker@gmail.com>
-Received: from OLA-8C37N23.garmin.com ([2605:a601:ac3d:c100:5a:78db:f520:4bc])
-        by smtp.gmail.com with ESMTPSA id p5sm4161406ooa.14.2020.04.27.07.07.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Apr 2020 07:07:56 -0700 (PDT)
-From: "Joshua Watt" <JPEWhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: twoerner@gmail.com,
-	Joshua Watt <JPEWhacker@gmail.com>
-Subject: [meta-rockchip][PATCH] arm-trusted-firmware: Upgrade 2.2 -> 2.3
-Date: Mon, 27 Apr 2020 09:07:51 -0500
-Message-Id: <20200427140751.11628-1-JPEWhacker@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=gX0gmhSnG31iQSLaRwBD9MOb3BBY9HUqCgbHizgwJQI=;
+        b=dKzrsT9YXvkHZkBVazWvwi1ddYg0HqTldY/kb5neGGuZe9Uyb/IKMja9153ap8+F9u
+         YQp7dpFj38+eEcyLMIbiQIBBdhOcwuZTpP7nJ9mPb7f1vat5Py7+cwfZ1XTzh4Z7lQ28
+         xqTm3B/LENQ7c1ErlpvGCN2PhzjJlTI5jXyrQw4CD8391sk9leWA5yql+4exkgk74ln/
+         44BTMfu47rj4QBP9BXQ4RrFutFdif451ONXU/ZH8HNFPax1wcT3/5GuEHP/CYgXD3nPY
+         hdV4q/33DAaUhMQxnXx0Efmi8omvnz2sKxWsQHumqHduejWM4x2Psgjkd1H3dPxkIs/e
+         ZOBg==
+X-Gm-Message-State: AGi0PuavrDilmEjcHn4lrTSERS0SGwoLjIQe5xXb2votzHCHeeljiJu9
+	N1uX4ZMZfqAp5OrMN9kuqg0=
+X-Google-Smtp-Source: APiQypLUZ+J5uAUV00LnexdY4YyKLj4QHCYJFBAhK9oQguqpGYWl9CQm2YfZV30DngIkHW9rkVnNbw==
+X-Received: by 2002:a17:90a:6343:: with SMTP id v3mr24061329pjs.127.1588005565921;
+        Mon, 27 Apr 2020 09:39:25 -0700 (PDT)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id w11sm12738136pfq.100.2020.04.27.09.39.25
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 27 Apr 2020 09:39:25 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 27 Apr 2020 09:39:25 -0700
+Message-ID: <0a8301d61cb2$69d4d2c0$3d7e7840$@gmail.com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGsPGE+JrsCQ1nJfvQcB9QqFv642w==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0A84_01D61C77.BD75FAC0"
+Content-Language: en-us
 
-Upgrades arm-trusted-firmware to the latest version, which fixes a bug
-where the RK3399 would hang during a warm reboot
+------=_NextPart_000_0A84_01D61C77.BD75FAC0
+Content-Type: text/plain;
+	charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
----
- ...hip-Prevent-macro-expansion-in-paths.patch | 94 -------------------
- ...are_2.2.bb => arm-trusted-firmware_2.3.bb} |  3 +-
- 2 files changed, 1 insertion(+), 96 deletions(-)
- delete mode 100644 recipes-bsp/arm-trusted-firmware/arm-trusted-firmware/0001-rockchip-Prevent-macro-expansion-in-paths.patch
- rename recipes-bsp/arm-trusted-firmware/{arm-trusted-firmware_2.2.bb => arm-trusted-firmware_2.3.bb} (89%)
+All,
 
-diff --git a/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware/0001-rockchip-Prevent-macro-expansion-in-paths.patch b/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware/0001-rockchip-Prevent-macro-expansion-in-paths.patch
-deleted file mode 100644
-index 755b618..0000000
---- a/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware/0001-rockchip-Prevent-macro-expansion-in-paths.patch
-+++ /dev/null
-@@ -1,94 +0,0 @@
--From 39a97dce61aca9f618e28e26c6e441c8976f3172 Mon Sep 17 00:00:00 2001
--From: Joshua Watt <JPEWhacker@gmail.com>
--Date: Fri, 13 Dec 2019 13:44:55 -0600
--Subject: [PATCH] rockchip: Prevent macro expansion in paths
--
--Instead of stringizing the paths to binary files, add them as string
--defines on the command line (e.g. -DFOO=\"BAR\" instead of -DFOO=BAR).
--This prevents macros from being expanded inside the string value itself.
--For example, -DFOO=/path/with-linux-in-it would have been expanded to
--"/path/with-1-in-it" because `linux=1` is one of the standard GCC
--defines.
--
--Upstream-Status: Accepted [https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/2813]
--Change-Id: I7b65df3c9930faed4f1aff75ad726982ae3671e6
--Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
-----
-- plat/rockchip/rk3399/drivers/dp/cdn_dp.c  |  2 +-
-- plat/rockchip/rk3399/drivers/pmu/pmu_fw.c | 24 +++++++++++------------
-- plat/rockchip/rk3399/platform.mk          |  6 +++---
-- 3 files changed, 15 insertions(+), 17 deletions(-)
--
--diff --git a/plat/rockchip/rk3399/drivers/dp/cdn_dp.c b/plat/rockchip/rk3399/drivers/dp/cdn_dp.c
--index aa71fdea..a8773f4f 100644
----- a/plat/rockchip/rk3399/drivers/dp/cdn_dp.c
--+++ b/plat/rockchip/rk3399/drivers/dp/cdn_dp.c
--@@ -18,7 +18,7 @@ __asm__(
-- 	".global hdcp_handler\n"
-- 	".balign 4\n"
-- 	"hdcp_handler:\n"
---	".incbin \"" __XSTRING(HDCPFW) "\"\n"
--+	".incbin \"" HDCPFW "\"\n"
-- 	".type hdcp_handler, %function\n"
-- 	".size hdcp_handler, .- hdcp_handler\n"
-- 	".popsection\n"
--diff --git a/plat/rockchip/rk3399/drivers/pmu/pmu_fw.c b/plat/rockchip/rk3399/drivers/pmu/pmu_fw.c
--index a09ad21e..25596b18 100644
----- a/plat/rockchip/rk3399/drivers/pmu/pmu_fw.c
--+++ b/plat/rockchip/rk3399/drivers/pmu/pmu_fw.c
--@@ -5,20 +5,18 @@
--  */
-- 
-- /* convoluted way to make sure that the define is pasted just the right way */
---#define _INCBIN(file, sym, sec) \
--+#define INCBIN(file, sym, sec) \
-- 	__asm__( \
---		".section " #sec "\n" \
---		".global " #sym "\n" \
---		".type " #sym ", %object\n" \
--+		".section " sec "\n" \
--+		".global " sym "\n" \
--+		".type " sym ", %object\n" \
-- 		".align 4\n" \
---		#sym ":\n" \
---		".incbin \"" #file "\"\n" \
---		".size " #sym ", .-" #sym "\n" \
---		".global " #sym "_end\n" \
---		#sym "_end:\n" \
--+		sym ":\n" \
--+		".incbin \"" file "\"\n" \
--+		".size " sym ", .-" sym "\n" \
--+		".global " sym "_end\n" \
--+		sym "_end:\n" \
-- 	)
-- 
---#define INCBIN(file, sym, sec) _INCBIN(file, sym, sec)
---
---INCBIN(RK3399M0FW, rk3399m0_bin, ".sram.incbin");
---INCBIN(RK3399M0PMUFW, rk3399m0pmu_bin, ".pmusram.incbin");
--+INCBIN(RK3399M0FW, "rk3399m0_bin", ".sram.incbin");
--+INCBIN(RK3399M0PMUFW, "rk3399m0pmu_bin", ".pmusram.incbin");
--diff --git a/plat/rockchip/rk3399/platform.mk b/plat/rockchip/rk3399/platform.mk
--index cfc48e8f..643c24f5 100644
----- a/plat/rockchip/rk3399/platform.mk
--+++ b/plat/rockchip/rk3399/platform.mk
--@@ -82,13 +82,13 @@ PLAT_M0                 :=      ${PLAT}m0
-- BUILD_M0		:=	${BUILD_PLAT}/m0
-- 
-- RK3399M0FW=${BUILD_M0}/${PLAT_M0}.bin
---$(eval $(call add_define,RK3399M0FW))
--+$(eval $(call add_define_val,RK3399M0FW,\"$(RK3399M0FW)\"))
-- 
-- RK3399M0PMUFW=${BUILD_M0}/${PLAT_M0}pmu.bin
---$(eval $(call add_define,RK3399M0PMUFW))
--+$(eval $(call add_define_val,RK3399M0PMUFW,\"$(RK3399M0PMUFW)\"))
-- 
-- HDCPFW=${RK_PLAT_SOC}/drivers/dp/hdcp.bin
---$(eval $(call add_define,HDCPFW))
--+$(eval $(call add_define_val,HDCPFW,\"$(HDCPFW)\"))
-- 
-- # CCACHE_EXTRAFILES is needed because ccache doesn't handle .incbin
-- export CCACHE_EXTRAFILES
---- 
--2.23.0
--
-diff --git a/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.2.bb b/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.3.bb
-similarity index 89%
-rename from recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.2.bb
-rename to recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.3.bb
-index abaf0f3..8d36d66 100644
---- a/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.2.bb
-+++ b/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.3.bb
-@@ -14,9 +14,8 @@ PROVIDES = "virtual/atf"
  
- BRANCH = "master"
- SRC_URI = "git://git.trustedfirmware.org/TF-A/trusted-firmware-a.git;protocol=http;branch=${BRANCH} \
--           file://0001-rockchip-Prevent-macro-expansion-in-paths.patch \
-            "
--SRCREV = "a04808c16cfc126d9fe572ae7c4b5a3d39de5796"
-+SRCREV = "8ff55a9e14a23d7c7f89f52465bcc6307850aa33"
- 
- S = "${WORKDIR}/git"
- B = "${WORKDIR}/build"
--- 
-2.17.1
 
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+ 
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
+
+ 
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 337
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
+being in "3.1" and then "3.2".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0A84_01D61C77.BD75FAC0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_3093_01D6117B.2A27CF70";
+	charset="US-ASCII"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
+starting to try and collect up and classify bugs which a newcomer to the =
+project would be able to work on in a way which means people can find =
+them. They're being listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
+><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 337 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_0A84_01D61C77.BD75FAC0--
