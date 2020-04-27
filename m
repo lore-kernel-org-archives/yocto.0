@@ -1,130 +1,106 @@
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
- by mx.groups.io with SMTP id smtpd.web11.5416.1587932628945280749
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+ by mx.groups.io with SMTP id smtpd.web10.1981.1587976196015171929
  for <yocto@lists.yoctoproject.org>;
- Sun, 26 Apr 2020 13:23:49 -0700
+ Mon, 27 Apr 2020 01:29:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=dREh+gFL;
- spf=pass (domain: linaro.org, ip: 209.85.219.176, mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-yb1-f176.google.com with SMTP id v10so858212ybk.3
-        for <yocto@lists.yoctoproject.org>; Sun, 26 Apr 2020 13:23:48 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=rhwsbMbj;
+ spf=pass (domain: gmail.com, ip: 209.85.222.180, mailfrom: lefevre.da@gmail.com)
+Received: by mail-qk1-f180.google.com with SMTP id n143so17201634qkn.8
+        for <yocto@lists.yoctoproject.org>; Mon, 27 Apr 2020 01:29:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=S7cBxuM+WWFE1Dv01biZ3MoUI6ZmOclmHF5YtPMN23c=;
-        b=dREh+gFLZ2x3h9VYJDlBCuCMUWPkGVwoeR/CKCaWWuDmiATbsQW2Vp/pvRus663IGY
-         v2F81zIXaZveXNZfLBDdMl48+SF/3Tdb7qfwxxNvYXMJapqQuVrM1aEjqi7i8jehOTtK
-         2nltwr4K9W8H5y1TG6fZ+UGP/3/JxPhBWsnenzS/pid6xPlqRF0sd3WC0bRmSqWZFEdl
-         PkKdhOyJor/2QZapDxSHGq1BRFa6foVLGS1eYlSUh4iQddtbj2p9mNK04xbaR/jFnImv
-         Y5ftclXGWEeMxropp+zLfpoMBg1ae6PFKVUdVu32FPCOsZwijFSdzdoy3ut8I000xWIV
-         gM5Q==
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=i5PUtlLEf3hgM2BSqPLV25P35oJsxGQMB8U2tS0j3Qo=;
+        b=rhwsbMbjcmIu3aduVr6xQfUPaP6G9sJ5B8hPCCmjsNyyI7lLjjRis52mJH4BYZLfPv
+         oAycZHli0+f5UOpCnupC5lCBRq1T8myIjahkX6x9L98Q03AwLwsJslVNluG1J927sy2C
+         eXokPzQWyK8IDPp4Vq1NHEh8qJwfXuWv/78ORcscWnYs1FLcz3fWfjyGk6Kp4Rn3UGTb
+         EIeQq3zxkjGe6By5V1BWE/OXzdJr3Kxy/tT53NHtKg5b5lQCkpUt7I+2Ds2nDmz8Ww7+
+         WruD7x3XoxV4uojdjO3IiwTmbi2BMWFsZfarXY5qK9Dj15rdd51RYfB2oDuSsar7+dPA
+         NOyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=S7cBxuM+WWFE1Dv01biZ3MoUI6ZmOclmHF5YtPMN23c=;
-        b=kj9lbKLeKZSPTLcLT1tr7jiZYf2uMz+pfnvOziYvTXgv6aZ5RuhmpvPhtK0reVNL2r
-         Ad4L76Z3hOASkFx1PabDbmGUhMNhwjqrLnR9bPmKVtXs13TuA7hTPdieTMuLY9on9Upe
-         CsnQcTyfwdFQDzZWS0+/acvRGQRrjLKp4Ib5WFh5EXQITab+XRsMTSPo4/RJj+yvAB/S
-         yKpwKfMClAPcfHGjLBYaxyCkic4+2VAw/J+g4tcobvaSPFDE9n/hJ2mPBl8WkG0V7ytZ
-         X3Tl/cT3LpQNzJ0/wCe7S4SPGlQMUUnva3wvtYOIVD1sOIxabJSepX+0JF6lsXNdHynz
-         vRyg==
-X-Gm-Message-State: AGi0PuZTOVj8eig/8of2M7Zzcv/AWrgDa/pHu1z9BBuV/BW8+fU/dHcQ
-	Fj7warbFxHZ6teHIy1lKnzcZjkI+LmPrjv55ixkS0Q==
-X-Google-Smtp-Source: APiQypJh7ux6PjGU6qnftmZDnzlqTsnWfWt0MrlvuHwP9v00lavv/94D/pwLSpgCFGOBzWLWPoFrY6WvGbrwHJ2O1Z8=
-X-Received: by 2002:a25:ec1:: with SMTP id 184mr31087158ybo.373.1587932628058;
- Sun, 26 Apr 2020 13:23:48 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=i5PUtlLEf3hgM2BSqPLV25P35oJsxGQMB8U2tS0j3Qo=;
+        b=rGewSYRAfn2/JtYs7tzkIaC4N4FPStfMo3cw5/+sFXaNf1iHZGjFePGFOch7PvAQao
+         Jws4fAuS25m/j31RjEFlJp96jllFPYlHr9MfMOBVfZ9FEfX1cZ0HW/7R9PRb5nWDUq8L
+         CYWFjmehfIwuUvS2YKGl6vaxosRVQ5LELk4pj+MIjfYR9Gs/ELCqwwY1HXk/nermjXSi
+         faXNq/57oyTgSD4hy3GYXAWpAWT+arkIjCQ3hKWzRzR0rROy7004Y69808k9crTBtL5/
+         YKWG9tqmM0XtgFl3MYFm3fcippUub6BMP/X5KOhApbroj6bDKNI+oRhKE81/201myCP1
+         NOxw==
+X-Gm-Message-State: AGi0PuYnx62y/YuzPdvzb4VE7pzhQ6rSldeRhoHSPGs+6ubYevg7+YN9
+	IOOW9MUvasr6ccYIeh7x2cDcAdHJT4Xb8VEYl+JJMhBAKQ==
+X-Google-Smtp-Source: APiQypKzyGCVp5UGnXyC72L0ZHEk8xOq+AlBNVqtxDPblDWQrXg4QCxMhwFpW+4O8J4W5B7c7Rt4w6pEYyaq3iHTZsg=
+X-Received: by 2002:a37:6697:: with SMTP id a145mr20989469qkc.479.1587976194912;
+ Mon, 27 Apr 2020 01:29:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200425115450.7c581f0d@ub1910>
-In-Reply-To: <20200425115450.7c581f0d@ub1910>
-From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
-Date: Sun, 26 Apr 2020 22:23:34 +0200
-Message-ID: <CAP71WjxW67=mZwr1FJ8A=x7eghuZ=MK4ZEn8ZnM_3JS3bwVfXA@mail.gmail.com>
-Subject: Re: [yocto] Web interface for Yocto & OE mailing lists defaults to Reply to Sender
-To: Paul Barker <pbarker@konsulko.com>
-Cc: Michael Halstead <mhalstead@linuxfoundation.org>, 
-	=?UTF-8?Q?Bart=C5=82omiej_Burdukiewicz?= <bartlomiej.burdukiewicz@gmail.com>, 
-	yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000391de405a437606c"
+From: "Damien LEFEVRE" <lefevre.da@gmail.com>
+Date: Mon, 27 Apr 2020 11:29:44 +0300
+Message-ID: <CA+FhBv9vjwEC747tn777Fdeh+ygz3kdTTgFGD=txV0ovQJ=F-A@mail.gmail.com>
+Subject: zeus KCFLAGS
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000028e0d05a4418557"
 
---000000000000391de405a437606c
+--000000000000028e0d05a4418557
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-hi Paul,
+Hi,
 
-On Sat, Apr 25, 2020 at 12:54 PM Paul Barker <pbarker@konsulko.com> wrote:
+I'm trying to build the core-image-minimal on zeus branch, device Tegra
+Xavier. The compiler has to be GCC 7.* due to some NVidia pre-built
+binaries. So I back ported it from Thud if I recall.
 
-> Michael,
->
-> I've just been discussing on IRC with Bart=C5=82omiej who used the group=
-s.io
-> web
-> interface to reply to an email on the list. It defaulted to sending a
-> private
-> reply off the list. If I try to do the same "Reply to Sender" is the
-> default
-> for me as well: https://imgur.com/1RGH9Aw
->
-> Looking at the AGL lists on groups.io they have "Reply to Group" as the
-> default. Perhaps this is a configuration issue? Could you take when you =
-get
-> chance?
->
+The kernel compilation fails with this error:
+| cc1: error: -Werror=address-of-packed-member: no option
+-Waddress-of-packed-member
+| cc1: error: -Werror=missing-attributes: no option -Wmissing-attributes
 
-Right. It's a per list configuration item. I have changed for yocto list
-for now, and set it to 'reply to group'. we will take care of all lists
-(and on lists.openembedded.org as well). Thanks for spotting this.
+How to I make the compiler treat these error as warnings?
 
+I've tried adding all these to the kernel recipe:
+export KCFLAGS = " -Wno-error=address-of-packed-member
+-Wno-error=missing-attributes "
+export KCPPFLAGS = " -Wno-error=address-of-packed-member
+-Wno-error=missing-attributes "
 
-> Thanks,
->
-> --
-> Paul Barker
-> Konsulko Group
->=20
->
+TARGET_CFLAGS += " -Wno-error=address-of-packed-member
+-Wno-error=missing-attributes "
+TARGET_CPPFLAGS += " -Wno-error=address-of-packed-member
+-Wno-error=missing-attributes "
 
---000000000000391de405a437606c
+KBUILD_CFLAGS += " -Wno-error=address-of-packed-member
+-Wno-error=missing-attributes "
+
+None of them seems to be applied.
+
+Anything special changed on Zeus? Note I didn't have any issue building the
+kernel on Warrior.
+
+Thanks
+-Damien
+
+--000000000000028e0d05a4418557
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">hi Paul,<br></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Apr 25, 2020 at 12:54=
- PM Paul Barker &lt;<a href=3D"mailto:pbarker@konsulko.com">pbarker@konsulk=
-o.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex">Michael,<br>
-<br>
-I&#39;ve just been discussing on IRC with Bart=C5=82omiej who used the <a =
-href=3D"http://groups.io" rel=3D"noreferrer" target=3D"_blank">groups.io</a=
-> web<br>
-interface to reply to an email on the list. It defaulted to sending a priv=
-ate<br>
-reply off the list. If I try to do the same &quot;Reply to Sender&quot; is=
- the default<br>
-for me as well: <a href=3D"https://imgur.com/1RGH9Aw" rel=3D"noreferrer" t=
-arget=3D"_blank">https://imgur.com/1RGH9Aw</a><br>
-<br>
-Looking at the AGL lists on <a href=3D"http://groups.io" rel=3D"noreferrer=
-" target=3D"_blank">groups.io</a> they have &quot;Reply to Group&quot; as t=
-he<br>
-default. Perhaps this is a configuration issue? Could you take when you ge=
-t<br>
-chance?<br></blockquote><div><br></div><div>Right. It&#39;s a per list con=
-figuration item. I have changed for yocto list for now, and set it to &#39;=
-reply to group&#39;. we will take care of all lists (and on <a href=3D"http=
-://lists.openembedded.org">lists.openembedded.org</a> as well). Thanks for =
-spotting this.<br></div><div> <br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex">
-<br>
-Thanks,<br>
-<br>
--- <br>
-Paul Barker<br>
-Konsulko Group<br>
-<br>
-</blockquote></div></div>
+<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;m trying to build the core-im=
+age-minimal on zeus branch, device Tegra Xavier. The compiler has to be GCC=
+ 7.* due to some NVidia pre-built binaries. So I back ported it from Thud i=
+f I recall.</div><div><br></div><div>The kernel compilation fails with this=
+ error:</div><div>| cc1: error: -Werror=3Daddress-of-packed-member: no opti=
+on -Waddress-of-packed-member<br>| cc1: error: -Werror=3Dmissing-attributes=
+: no option -Wmissing-attributes<br></div><div><br></div><div>How to I make=
+ the compiler treat these error as warnings?</div><div><br></div><div>I&#39=
+;ve tried adding all these to the kernel recipe:</div><div>export KCFLAGS =
+=3D &quot; -Wno-error=3Daddress-of-packed-member -Wno-error=3Dmissing-attri=
+butes &quot;<br></div><div>export KCPPFLAGS =3D &quot; -Wno-error=3Daddress=
+-of-packed-member -Wno-error=3Dmissing-attributes &quot;<br><br>TARGET_CFLA=
+GS +=3D &quot; -Wno-error=3Daddress-of-packed-member -Wno-error=3Dmissing-a=
+ttributes &quot;<br>TARGET_CPPFLAGS +=3D &quot; -Wno-error=3Daddress-of-pac=
+ked-member -Wno-error=3Dmissing-attributes &quot;<br><br>KBUILD_CFLAGS +=3D=
+ &quot; -Wno-error=3Daddress-of-packed-member -Wno-error=3Dmissing-attribut=
+es &quot;<br></div><div><br></div><div>None of them seems to be applied.</d=
+iv><div><br></div><div>Anything special changed on Zeus? Note I didn&#39;t =
+have any issue building the kernel on Warrior.</div><div><br></div><div>Tha=
+nks</div><div>-Damien</div></div>
 
---000000000000391de405a437606c--
+--000000000000028e0d05a4418557--
