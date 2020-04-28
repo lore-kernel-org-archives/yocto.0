@@ -1,202 +1,77 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.1006.1588097459748588540
+Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com [209.85.221.66])
+ by mx.groups.io with SMTP id smtpd.web10.31.1588104588981654843
  for <yocto@lists.yoctoproject.org>;
- Tue, 28 Apr 2020 11:10:59 -0700
+ Tue, 28 Apr 2020 13:09:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=oYlQ+Z41;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: martin.jansa@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 68524E01AA1; Tue, 28 Apr 2020 11:10:59 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (martin.jansa[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.208.67 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com [209.85.208.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFA1DE01A9F;
-	Tue, 28 Apr 2020 11:10:57 -0700 (PDT)
-Received: by mail-ed1-f67.google.com with SMTP id p16so17136605edm.10;
-        Tue, 28 Apr 2020 11:10:57 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=i+8ZxTLE;
+ spf=pass (domain: gmail.com, ip: 209.85.221.66, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-wr1-f66.google.com with SMTP id k13so26237110wrw.7
+        for <yocto@lists.yoctoproject.org>; Tue, 28 Apr 2020 13:09:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vQwzqE5uHcbqN5g1WDAzwZ97LhNcUaMpIQFIdJ7CPp0=;
-        b=oYlQ+Z41QbjuAVuSbdSqcK5vJ1bv92pLbr2Ws7P6WpNydKAsF5FKNvS6WiyRRNrnI8
-         6wJTPebjauvD9ry6gbOhWZIwXQXJm3OR5QD8sv5EHpnXbKsfwnzmI/OSbIsvc3eyl4PM
-         TNYTC4jKoKJxHvWDWYbH5VX+RFm9kjXfWsKg6XCiNhfrFCVkTfcMvwRYNTKbYqUkMdLV
-         FH9iT//Q8DMn6sD8ojQCLphWYOlosoQ4DMEc6V3gDg+FkIu1/qGV5Rm4/gnhGkX6Ya6r
-         /nx3danscbejHi10CztWuI7w/EOs1bZN/I5mOXbPzp9s2gotPhf7IftueN0mYJIRjoBY
-         hYmg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=d3D7ur4WzLXwcCbFrVpr4jKIBV94earF1Cjq5//vKd0=;
+        b=i+8ZxTLEz+H+463DOL6FyF2SgTsqBEQu1avd5WqZ1OWtGn9koZHjCbfJHG2fB30ilU
+         HqfZfGYaMxVKiR18PU4Jow58w4z5Cg0X9yP+RSxHY07rMwggx0jECisrdIOf59Tz/5rg
+         fEeEjCT4a5XgZpokhELezLc3i46J6s/G75T1Ump1tfeBUO0MBcQn5Cz1uwCbGNNWVTo6
+         NxiMa561hXMcP8NLoridiNTLzluMDPWD06uavwnrekj+MIUmSraz786ffc69GQeJAJgq
+         Q/YWjCLQPGGL1y3IhR2thPH7F5ipXI0tu58FhsLD6w7yqN/kuRIMyXN1h9uKcld2N/fh
+         nusw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vQwzqE5uHcbqN5g1WDAzwZ97LhNcUaMpIQFIdJ7CPp0=;
-        b=QFWM1k3R+rpbE+qxnjhFsvQ0LKCqdYO3rvQIVh7VWonTk6DtCcorUQiUlw2Vc4JUSB
-         lflKz5c2kYsbki049WQcuMIpZ7VSwgEfXNLNDLwYn990nTr2nGPPYOwEzNxtjNalRqrY
-         K9c/sFPW9Ntfcrz6Kv4G5NSjBUnIg18fXdyB71tmH/cRwYoHuCrGePZysjXMs7CumsWp
-         ZkZs3iK9fusJvlASyfIAxMC6uwphOHQLwfDInOOkU7Jp/ggOzlZIkhBBfHbRQ2Z6nVcr
-         B7qEqTCny38ZYKQZTejKd8RBjeofJefALF0xtazHnsXbDIZkPU8QjwKmCPQMkdTwsVLJ
-         3PKg==
-X-Gm-Message-State: AGi0PuboNw0tWjAhybln0zgonjuqU9E8XsJa2zrDERkhw6Cj777pDc1z
-	X2D4Aqtd5umNu+Ux718gqp1kTQg9111CrWcBRL2mjz4G8ng=
-X-Google-Smtp-Source: APiQypJLcCXUblnqEMxMfaBnr3W8a+U5ePcMwm/i/9jID76QSEBbbrV9/nTlh6B3QoYugrNBCba81mQRfxK/m32xqGE=
-X-Received: by 2002:aa7:cdcb:: with SMTP id h11mr22696080edw.264.1588097456579;
- Tue, 28 Apr 2020 11:10:56 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=d3D7ur4WzLXwcCbFrVpr4jKIBV94earF1Cjq5//vKd0=;
+        b=MCn2IrFwJ3R1PWFf37aHJxJSJUuQWRkY7Datfeuj6yFKQ0Ox/RjEDbAoAYqJuFznKt
+         xXbzmFJWDV86CSYCx9xfWlV5VKzXAkJkXSursI14xC+ouvolM2W/kXSH28WE/pTFTvxg
+         L3cbbKMBWDCsjXfVGGPbXKGWGtSja4/L56Xl6zz9G7JhZ5uJm+aBMr60N02RV1/jxCQ4
+         lJVkMTQKICJOf3j6UoUpWPPOxiv+ngnzk5MKgn3KdqAoa66GC/AE4WStsan+KXtr6zur
+         2Tq633Q8X8tHHrziv2vITpOb64xiWqFB52sML6/rqJ+BMK8WZPesgNYN/8LSSUIVLsbS
+         GpcQ==
+X-Gm-Message-State: AGi0PubheUhu71LZ3bgcB9KmHMtY1VD1fAlD5p7mWY+fS3CBCYd5w22N
+	xT7H/wJ5bGXBKF+VY5HDr24iYHo/
+X-Google-Smtp-Source: APiQypJSwLYhczlADfw70gku7hjPM6qdHKth7djhF/qOc8Ydpe49kNWezkVjNXO54lkI1VYq9cbuMQ==
+X-Received: by 2002:adf:9564:: with SMTP id 91mr36136141wrs.246.1588104586805;
+        Tue, 28 Apr 2020 13:09:46 -0700 (PDT)
+Return-Path: <alex.kanavin@gmail.com>
+Received: from linux-f9zs.box ([5.28.69.65])
+        by smtp.gmail.com with ESMTPSA id g15sm27582186wrp.96.2020.04.28.13.09.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Apr 2020 13:09:46 -0700 (PDT)
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+To: yocto@lists.yoctoproject.org,
+	jpewhacker@gmail.com,
+	richard.purdie@linuxfoundation.org
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>
+Subject: [meta-mingw][PATCH] libsdl2: do not enable opengl
+Date: Tue, 28 Apr 2020 22:09:29 +0200
+Message-Id: <20200428200929.31612-1-alex.kanavin@gmail.com>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-References: <15FBEF1FC40D189D.8114@lists.yoctoproject.org> <81fb73b4-f683-5356-ff07-1ac909afb97d@gmail.com>
-In-Reply-To: <81fb73b4-f683-5356-ff07-1ac909afb97d@gmail.com>
-From: "Martin Jansa" <Martin.Jansa@gmail.com>
-Date: Tue, 28 Apr 2020 20:10:45 +0200
-Message-ID: <CA+chaQc8q4Nb4p76WPr=R7ocpDJ8CY3VnJ-k9W8bWW8nwMtYTw@mail.gmail.com>
-Subject: Re: [poky] Thud community support
-To: akuster <akuster808@gmail.com>
-Cc: Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "poky@yoctoproject.org" <poky@yoctoproject.org>, 
-	"bitbake-devel@lists.openembedded.org" <bitbake-devel@lists.openembedded.org>, poky@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000c4aa0c05a45dc080"
+Content-Transfer-Encoding: 8bit
 
---000000000000c4aa0c05a45dc080
-Content-Type: text/plain; charset="UTF-8"
+In some configurations this can be switched on in oe-core,
+and so needs to be disabled similarly to x11.
 
-Is Thud EOL now?
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+---
+ recipes-graphics/libsdl2/libsdl2_%.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Or did someone volunteer off-list and now it waits for Maintainer selection
-process to be defined?
+diff --git a/recipes-graphics/libsdl2/libsdl2_%.bbappend b/recipes-graphics/libsdl2/libsdl2_%.bbappend
+index 5d8ac54..92fa41c 100644
+--- a/recipes-graphics/libsdl2/libsdl2_%.bbappend
++++ b/recipes-graphics/libsdl2/libsdl2_%.bbappend
+@@ -1,7 +1,7 @@
+ # Need to disable X11 explictly as nativesdk-libxdmcp fails:
+ # .libs/Fill.o:Fill.c:(.text+0x48): undefined reference to `_imp__recvfrom@24'
+ # .libs/Flush.o:Flush.c:(.text+0x36): undefined reference to `_imp__sendto@24'
+-PACKAGECONFIG_remove_mingw32_class-nativesdk = "x11"
++PACKAGECONFIG_remove_mingw32_class-nativesdk = "x11 opengl"
+ 
+ # libtool doesn't think it can link windres output (COFF) with libtool objects
+ # (COFF) , but it can.  This might be because file misidentifies version.o:
+-- 
+2.26.1
 
-https://wiki.yoctoproject.org/wiki/Releases still says Community support.
-
-Thanks
-
-On Tue, Mar 17, 2020 at 10:13 PM akuster <akuster808@gmail.com> wrote:
-
->
->
-> On 3/13/20 11:03 AM, akuster via Lists.Yoctoproject.Org wrote:
->
-> The Poky thud branch is now under 'Community support' and is seeking a
-> maintainer to continue supporting the following repos for the thud release:
->
-> bitbake, core, meta-yocto and yocto-docs.
->
->
-> There will be no more point releases.
->
-> seehttps://wiki.yoctoproject.org/wiki/Stable_Release_and_LTS#Maintainer_Procedures
-> to get an idea on what is expected.
->
-> The one thing we (YP) don't know is if there will be AutoBuilder
-> resources available.  Please contact me or Richard regarding that statement.
->
-> If no one steps up by April 24th (six weeks -ish from now), Thud will be
-> moved to EOL status.
->
->
-> It was pointed out to me that there is no Maintainer selection process or
-> criteria defined.  This  will have to be sorted out before we move forward
-> on this transition.
->
->
-> - armin
->
-> - Armin
->
->
->
->
->
->
-> 
->
-
---000000000000c4aa0c05a45dc080
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Is Thud EOL now?<div><br></div><div>Or did someone volunte=
-er off-list and now it waits for Maintainer selection process to be defined=
-?</div><div><br></div><div><a href=3D"https://wiki.yoctoproject.org/wiki/Re=
-leases">https://wiki.yoctoproject.org/wiki/Releases</a>=C2=A0still says Com=
-munity support.<br></div><div><br></div><div>Thanks</div></div><br><div cla=
-ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 17, 20=
-20 at 10:13 PM akuster &lt;<a href=3D"mailto:akuster808@gmail.com">akuster8=
-08@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex">
-  
-    
-  
-  <div>
-    <br>
-    <br>
-    <div>On 3/13/20 11:03 AM, akuster via
-      <a href=3D"http://Lists.Yoctoproject.Org" target=3D"_blank">Lists.Yo=
-ctoproject.Org</a> wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      <pre>The Poky thud branch is now under &#39;Community support&#39; a=
-nd is seeking a
-maintainer to continue supporting the following repos for the thud release=
-:
-
-bitbake, core, meta-yocto and yocto-docs.
-
-
-There will be no more point releases.
-
-see
-<a href=3D"https://wiki.yoctoproject.org/wiki/Stable_Release_and_LTS#Maint=
-ainer_Procedures" target=3D"_blank">https://wiki.yoctoproject.org/wiki/Stab=
-le_Release_and_LTS#Maintainer_Procedures</a>=C2=A0
-to get an idea on what is expected.
-
-The one thing we (YP) don&#39;t know is if there will be AutoBuilder
-resources available.=C2=A0 Please contact me or Richard regarding that sta=
-tement.
-
-If no one steps up by April 24th (six weeks -ish from now), Thud will be
-moved to EOL status.
-</pre>
-    </blockquote>
-    <br>
-    It was pointed out to me that there is no Maintainer selection
-    process or criteria defined.=C2=A0 This=C2=A0 will have to be sorted o=
-ut
-    before we move forward on this transition.<br>
-    <br>
-    <br>
-    - armin<br>
-    <br>
-    <blockquote type=3D"cite">
-      <pre>- Armin
-
-
-
-</pre>
-      <br>
-      <fieldset></fieldset>
-      <pre></pre>
-    </blockquote>
-    <br>
-  </div>
-
-<br>
-</blockquote></div>
-
---000000000000c4aa0c05a45dc080--
