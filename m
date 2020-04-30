@@ -1,197 +1,184 @@
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
- by mx.groups.io with SMTP id smtpd.web10.561.1588288667152821436
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.872.1588289806650144574
  for <yocto@lists.yoctoproject.org>;
- Thu, 30 Apr 2020 16:17:47 -0700
+ Thu, 30 Apr 2020 16:36:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=LaNXRz1G;
- spf=pass (domain: gmail.com, ip: 209.85.222.176, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f176.google.com with SMTP id q7so7727012qkf.3
-        for <yocto@lists.yoctoproject.org>; Thu, 30 Apr 2020 16:17:47 -0700 (PDT)
+ dkim=pass header.i=@ibeeto-com.20150623.gappssmtp.com header.s=20150623 header.b=ei8r24oK;
+ spf=neutral (domain: ibeeto.com, ip: 140.211.169.56, mailfrom: rudolf.streif@ibeeto.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 43F5CE01AB5; Thu, 30 Apr 2020 16:36:46 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.214.175 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41B62E01AB3
+	for <yocto@yoctoproject.org>; Thu, 30 Apr 2020 16:36:44 -0700 (PDT)
+Received: by mail-pl1-f175.google.com with SMTP id n24so2969140plp.13
+        for <yocto@yoctoproject.org>; Thu, 30 Apr 2020 16:36:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=0tjzJM6DO7i37/TrWQW0glaIMsJmjKnjpLA0f4u4p2Q=;
-        b=LaNXRz1G+Xxkr0E0y360A2gUTVjoCpph3Z3P5/77gVD2Uek64HjiOID9q4UbfZRHpi
-         QFpbgu3cQgsVBj+gwsIPYx956ACZDDux8AMIgbxgp3b93SvrktJH1AFMF4o9l6Q666vi
-         mrrjSCYm1Jr4FSJeWQZCpD6oSNLVdh0roSGcl7RHLcwORiBg7wkqnRAfpOb+LtnVT/SA
-         +70M0/7dIBwk3pJeo0Lrb8qw385ISNAw8z7AemKncYyxFLtArMlR+HOHwBQh0AbNPrP4
-         8XhqXPyrWkU0kuCtpLunLPNT1EF3FzEzbmBLIAOGbo4ZmOQrLFmy5LOervCaLsV/v95d
-         E00g==
+        d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
+        h=to:from:subject:autocrypt:message-id:date:user-agent:mime-version;
+        bh=nPXIzvFt/DFdoOBxnn+8BUMKstNArIueFsEdwp8Yg0Y=;
+        b=ei8r24oKnJEv6EMoKTH48sYylgwvnMZywaVo5le476NWSNyrysaxpHcRXzFXxRRlpm
+         Zccygc/lvnIx9cxbItWiUZmtDX2vtdb+1E3WUWcgdPCXn9Sjl8uS9odqCfhMx//QcFTv
+         hpahg1RRPG0oUW0ZyPLDh3rOZuJ7RYEjBoWXeIi+f0z6RzdQVVsBpCKWjYpLBTo0wvRO
+         SM9WNRZz+veA0MjM705ubcRAVaeNpNozKctOpHoyHNzmXHKukNE6ON03/E8vnfvsfdTp
+         iPfBls/vlo3B4bdEHH6qwzieiOboBEyYxGfMVgyj+nWyKRnQipeYJNN9Rx1ObgSB2CVP
+         fJvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=0tjzJM6DO7i37/TrWQW0glaIMsJmjKnjpLA0f4u4p2Q=;
-        b=qaCXstkqqXbRWSNiodr/ylpLhZRfHjpgqG6iagvV+5fWASXK8TMiP/q6z0fhewwFsH
-         7dKPmOIWV1F8O410UaSE6HJpniQTb2898Oz6T5g7p0YOo8BXJKvxc/yRjk1clkbxr/5/
-         yo4o6kKZLm7nR6NlflkCgsBTP8zXXw5WenJZemxvnVVWpqJQLT38ID3NDFglpmCRQ06p
-         99JslQku4QXopdOwZfPbR2K3hwF/SgjiU2C49o0kfyCcGYaU3qNRT2updzo3HyZoYOvw
-         qlqIjBp6i4TzFILiRQ/4bWfDSqcNq6vho75M7Ex0D7gAmAU4pxYxvYhCsVlr7W0bYHz/
-         XtKQ==
-X-Gm-Message-State: AGi0PubCjVSuEVdSIRMxNXSqss0ZjkQPrDTfM1EcrRcLRXCyQ86YJSxq
-	tBI56k81jRTE/WGGSb/qk+s=
-X-Google-Smtp-Source: APiQypJXwdRRcyv98uAkIAc+pEQNZJUBOZB1W1yXOZtqVzkgFlUj6gL4c0pwlO/eorhY/Cw8F1BoyA==
-X-Received: by 2002:a05:620a:c89:: with SMTP id q9mr942095qki.375.1588288666207;
-        Thu, 30 Apr 2020 16:17:46 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:e02c:9432:3945:4d16? ([2601:646:9200:4e0:e02c:9432:3945:4d16])
-        by smtp.gmail.com with ESMTPSA id k127sm1297605qkb.35.2020.04.30.16.17.44
+        h=x-gm-message-state:to:from:subject:autocrypt:message-id:date
+         :user-agent:mime-version;
+        bh=nPXIzvFt/DFdoOBxnn+8BUMKstNArIueFsEdwp8Yg0Y=;
+        b=EhyA4mPtZ2b4xU0yy67uK8mnQ9wLaNQSsd/uNOZrM9JO8V5f0M2qJvRrCu7u7NrNdK
+         +qOUunFP/xsxgAo14k6n+lty7Nwbduem8wut/QJdy8wwJfA4qeQj++cXhjzDV23n15Yi
+         HuSqWM0Vi3CfO5FWnAa0r38E2dOnIC2e3uNq7KraRYutWTIGVjeogSq423g7FSSXJ6kg
+         GA6780Ui2WpOUV9mc2Br154h4xSBRxbvqQgudJ7SpzLFRshg04a40gQ+Yev43WLcdFiL
+         YKZq78FBwFM36msacrA2EwG0PpIYsGSOXnu8VQFlf0/28Pv08mpu3pC0USwkazZsjYmg
+         zxzA==
+X-Gm-Message-State: AGi0PubHxd4wAS10h5q+BwNuZkXAbhYSjbYorncdNefF9ZepyQz6jTSs
+	JLCzKsowLw/+wSq1sFeBjMSRfiH5qP23DQ==
+X-Google-Smtp-Source: APiQypJzlBuiTEiuM+1gKW2aIDtP00iwCJkNvZkcJjbRtGAySMSM2ocCXeE1bt5cswz7W6f79zi2Pw==
+X-Received: by 2002:a17:902:d216:: with SMTP id t22mr1522449ply.186.1588289803081;
+        Thu, 30 Apr 2020 16:36:43 -0700 (PDT)
+Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
+        by smtp.gmail.com with ESMTPSA id c124sm721814pfb.187.2020.04.30.16.36.41
+        for <yocto@yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Apr 2020 16:17:45 -0700 (PDT)
-Subject: Re: [yocto] [WIC] Grow last partition up to disk size
-To: yocto@lists.yoctoproject.org
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-References: <504407a1-379f-dc70-7745-c42624df7d8c@ibeeto.com>
- <CAAfyv35at0HOtTpnTiRRL0yrS4mcvCwxy7MdbAmdbVba5-OnGw@mail.gmail.com>
- <3b7e322b-86db-6412-7cb3-02183d626aeb@gmail.com>
- <CAAfyv362iG0g3pamQ1RS5OoCmYBzH8yf-ey2iQwCeXBYctYdMw@mail.gmail.com>
- <b70bbaae-b1d0-9b8c-add0-8f6c0b32a4e5@gmail.com>
- <CAAfyv34CZUjDZZu0jeGmAZfkNkJDaDyTrNuYp6Mf2m97M2NtYw@mail.gmail.com>
- <160AAEA430561E1B.4948@lists.yoctoproject.org>
- <CAOf5uw=ON2QNoHQiBWy7nWwo9QSu1uKLDhLjJ5yeuz1wN17UHA@mail.gmail.com>
- <b37131d2-827e-9ae4-5d26-0edf3d26e11e@ibeeto.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <d72d64e0-ccb9-9339-657c-2023ea36e739@gmail.com>
-Date: Thu, 30 Apr 2020 16:17:43 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.7.0
+        Thu, 30 Apr 2020 16:36:42 -0700 (PDT)
+To: Yocto list discussion <yocto@yoctoproject.org>
+From: "Rudolf J Streif" <rudolf.streif@ibeeto.com>
+Subject: [WIC] Wic creates spurious partition
+Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
+ mQENBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
+ Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
+ /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
+ cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
+ 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
+ AAG0KlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPokBNwQTAQgA
+ IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
+ 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
+ txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
+ lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
+ Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
+ zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvuQENBFhQFAQBCADXoLKCuF48
+ 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
+ RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
+ w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
+ svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
+ tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAGJAR8EGAEIAAkFAlhQFAQC
+ GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
+ s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
+ fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
+ Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
+ P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
+ ROZj4g==
+Message-ID: <eafa7325-fd3f-9fce-8cf5-d22a6bad9452@ibeeto.com>
+Date: Thu, 30 Apr 2020 16:36:39 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-In-Reply-To: <b37131d2-827e-9ae4-5d26-0edf3d26e11e@ibeeto.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-Groupsio-MsgNum: 49293
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="Lmhd37o8Zzy8tt5ornP21Mi1MPmqAdXA2"
 
+--Lmhd37o8Zzy8tt5ornP21Mi1MPmqAdXA2
+Content-Type: multipart/mixed; boundary="berb8LjfqH6elGZ5X3jVXH2cNJL6Wep19"
 
+--berb8LjfqH6elGZ5X3jVXH2cNJL6Wep19
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
 
-On 4/30/20 4:11 PM, Rudolf J Streif wrote:
-> Thanks, guys, I appreciate it.
-> 
-> Doing it dynamically on first boot would probably work as it is a data 
-> partition and not the rootfs partition.
-> 
-> I will give it a try.
+I seem to be running into wic problems today...
 
-96boards-tools also has a script which works regardless of init systems
+I have the following wks file:
 
-https://github.com/96boards/meta-96boards/blob/master/recipes-bsp/96boards-tools/96boards-tools_0.12.bb
-
-> 
-> :rjs
-> 
-> On 4/30/20 12:13 PM, Michael Nazzareno Trimarchi wrote:
->> Hi
->>
->> On Thu, Apr 30, 2020 at 9:10 PM Michael Nazzareno Trimarchi via
->> lists.yoctoproject.org
->> <michael=amarulasolutions.com@lists.yoctoproject.org>  wrote:
->>> Hi
->>>
->>> Well I have write something like this
->>>
->>> [Unit]
->>> Description=Increases rootfs image size to fit partition
->>> Requires=dev-disk-by\x2dpartlabel-rootfs.device
->>> After=dev-disk-by\x2dpartlabel-rootfs.device
->>>
->>> [Service]
->>> Type=oneshot
->>> ExecStart=/usr/sbin/sgdisk /dev/disk/by-path/platform-ff0f0000.dwmmc -e
->> This resize gpt up to disk size
->>
->>> ExecStart=/usr/sbin/parted /dev/disk/by-path/platform-ff0f0000.dwmmc
->>> -s "resizepart 4 -1" quit
->> This resize partition number 4 up to the max
->>
->> Michael
->>
->>> ExecStart=/sbin/resize2fs /dev/disk/by-partlabel/rootfs
->>> ExecStart=/bin/systemctl disable resize-rootfs.service
->>>
->>> StandardOutput=journal+console
->>>
->>> [Install]
->>> WantedBy=default.target
->>>
->>>
->>> On Thu, Apr 30, 2020 at 8:30 PM Marek Belisko<marek.belisko@gmail.com>  wrote:
->>>> On Thu, Apr 30, 2020 at 8:27 PM Khem Raj<raj.khem@gmail.com>  wrote:
 >>>>>
->>>>> On 4/30/20 11:25 AM, Marek Belisko wrote:
->>>>>> On Thu, Apr 30, 2020 at 8:23 PM Khem Raj<raj.khem@gmail.com>  wrote:
->>>>>>>
->>>>>>> On 4/30/20 11:16 AM, Marek Belisko wrote:
->>>>>>>> Hi Rudolf,
->>>>>>>>
->>>>>>>> On Thu, Apr 30, 2020 at 7:39 PM Rudolf J Streif
->>>>>>>> <rudolf.streif@ibeeto.com>  wrote:
->>>>>>>>> I was looking for a way in a wks file to have wic grow the last
->>>>>>>>> partition to fill up the remainder of the disk. Of course wic does not
->>>>>>>>> know how large the disk is but that could be a parameter.
->>>>>>>>>
->>>>>>>>> The alternative way is to use fixed-size and do the math manually but
->>>>>>>>> that would not allow wic to grow a partition based on content.
->>>>>>>> You can usehttps://manpages.debian.org/testing/systemd/systemd-growfs.8.en.html
->>>>>>>> which grow partition to the end.
->>>>>>> can it grow a mounted partition ? since that will be the case when
->>>>>>> growing rootfs partition.
->>>>>> It will grow last partition in first boot only.
->>>>> my question was will it grow a mounted rootfs parition if that happens
->>>>> tobe the last partition, I understand it will grow last partion and do
->>>>> it as firstboot service.
->>>> I usually use it in case when have dual rootfs (A, B) and data
->>>> partition which is expanded to then end of disk.
->>>> I don't have experience with growing rootfs (I think it can grow only
->>>> not mounted partitions)
->>>>>>>>> :rjs
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>> BR,
->>>>>>>>
->>>>>>>> marek
->>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>> BR,
->>>>>>
->>>>>> marek
->>>>>>
->>>>>>
->>>>>>
->>>>>>
->>>> marek
->>>>
->>>>
->>>> --
->>>> as simple and primitive as possible
->>>> -------------------------------------------------
->>>> Marek Belisko - OPEN-NANDRA
->>>> Freelance Developer
->>>>
->>>> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
->>>> Tel: +421 915 052 184
->>>> skype: marekwhite
->>>> twitter: #opennandra
->>>> web:http://open-nandra.com
->>>>
->>>
->>> --
->>> | Michael Nazzareno Trimarchi                     Amarula Solutions BV |
->>> | COO  -  Founder                                      Cruquiuskade 47 |
->>> | +31(0)851119172                                 Amsterdam 1018 AM NL |
->>> |                  [`as]http://www.amarulasolutions.com                |
->>>
->>
->>
-> -- 
-> -----
-> Rudolf J Streif
-> CEO/CTO ibeeto
-> +1.855.442.3386 x700
-> 
-> 
-> 
-> 
+part SPL --source rawcopy --sourceparams=3D"file=3DSPL" --ondisk mmcblk
+--no-table --align 1
+part u-boot --source rawcopy --sourceparams=3D"file=3D${UBOOT_BINARY}"
+--ondisk mmcblk --no-table --align 69
+part /boot --source bootimg-partition --ondisk mmcblk1 --fstype=3Dvfat
+--label boot --active --align 4096 --fixed-size 16
+
+part /mnt/persistent --ondisk mmcblk1 --fstype=3Dext4 --label persistent
+--fixed-size 10
+part / --source rootfs --ondisk mmcblk1 --fstype=3Dext4 --label rootfs1
+--size 500
+part /mnt/rootfs2 --source rootfs --ondisk mmcblk1 --fstype=3Dext4 --labe=
+l
+rootfs2 --size 500
+part /mnt/internal_storage --ondisk mmcblk1 --fstype=3Dext4 --label data
+--size 1000
+
+bootloader --ptable msdos
+>>>>>
+
+That should create 7 partitions of which 5 have a file system. However,
+when I flash the emmc with it and boot the device:
+
+# fdisk /dev/mmcblk1
+
+Disk /dev/mmcblk1: 3.62 GiB, 3867148288 bytes, 7553024 sectors
+Units: sectors of 1 * 512 =3D 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x0813790a
+
+Device=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Boot=C2=A0=C2=A0 S=
+tart=C2=A0=C2=A0=C2=A0=C2=A0 End Sectors=C2=A0 Size Id Type
+/dev/mmcblk1p1 *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 8192=C2=A0=C2=A0 409=
+59=C2=A0=C2=A0 32768=C2=A0=C2=A0 16M=C2=A0 c W95 FAT32 (LBA)
+/dev/mmcblk1p2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 40960=C2=A0=C2=A0=
+ 61439=C2=A0=C2=A0 20480=C2=A0=C2=A0 10M 83 Linux
+/dev/mmcblk1p3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 61440 1392639 13=
+31200=C2=A0 650M 83 Linux
+/dev/mmcblk1p4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1392640 4771841 3379202=C2=A0=
+ 1.6G=C2=A0 f W95 Ext'd (LBA)
+/dev/mmcblk1p5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1392641 2723840 1331200=C2=A0=
+ 650M 83 Linux
+/dev/mmcblk1p6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 2723842 4771841 2048000 1000=
+M 83 Linux
+
+There is another partition that essentially overlaps the last two. That
+makes no sense.
+
+Thanks,
+Rudi
+
+
+
+--berb8LjfqH6elGZ5X3jVXH2cNJL6Wep19--
+
+--Lmhd37o8Zzy8tt5ornP21Mi1MPmqAdXA2
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAl6rYQgACgkQjYyoKScz
+m3UYnwf+MbCrd8yKDx5MkCXrJFidVwlSObcZpADbUCsHMhYggPr7Zy1MApeALtV5
+aw6QxMlQHHEPlqLIoJ5KykXXYorYwcZabbox3AdZE/VeM+pP8IPn5NSFm2kpnRrC
+R/st0BF/xTlFkdy4NVFmGG0tbJr5tLN+tmOZeWP1KJiSw6CdNkd0dF8BIkB1Nix+
+VddB+p7G4e2KEODX2K93Yy4L41G5KqMnbCAh50ZJbQfeSP5kBgv7sy3M3nYskhV1
+MBdUJngdj+q6hd4KKZl1nrUDPIGttmimYH4jOQggjS2bzGPMAJ/mN9EYj6JMsCak
+m5edPl20ktvorSV59tjJMKQCpG7ZlA==
+=32ob
+-----END PGP SIGNATURE-----
+
+--Lmhd37o8Zzy8tt5ornP21Mi1MPmqAdXA2--
