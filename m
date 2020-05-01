@@ -1,69 +1,163 @@
-Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
- by mx.groups.io with SMTP id smtpd.web11.3009.1588298167066494079
+Received: from ciao.gmane.io (ciao.gmane.io [159.69.161.202])
+ by mx.groups.io with SMTP id smtpd.web11.5571.1588315654221707187
  for <yocto@lists.yoctoproject.org>;
- Thu, 30 Apr 2020 18:56:07 -0700
+ Thu, 30 Apr 2020 23:47:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=FakR61uP;
- spf=pass (domain: gmail.com, ip: 209.85.218.65, mailfrom: jupiter.hce@gmail.com)
-Received: by mail-ej1-f65.google.com with SMTP id s3so6420889eji.6
-        for <yocto@lists.yoctoproject.org>; Thu, 30 Apr 2020 18:56:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-         :cc;
-        bh=aYfIPFu/Pj7VgJyAjdhaR33SsSOkBqm9ztMX725tHeA=;
-        b=FakR61uPykNKs84XdL+i+kQL7XjhtZJ2rywf2G4/KAWGxOfJRHzTbfB+mMyQ64HZkq
-         rq+EJ0ec+YMjl8eeOXBr0P6Z4nsrmy7nntZNtLkud9aZzU8+v6QpV09+d+xwsLBmnMHV
-         jrZOeW9V0jA0qcX2MDi4iG0+y/Uu/zDc35+DmCWjWJySXdSk+uFwNCU3nRSmffG2EBTP
-         8iCXbYqmfGeM7FRB6ubOCMljGMukPmeaECl8oV9nMbxsMFwasIBXdEzblAwqiFBpENtD
-         RA85ZBKH6+JZe2B71Hvq1Hy5YB3nXLZmei7lu3+doq6dh1eXNbOAkP9td0bR9rHCy967
-         RwkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-         :message-id:subject:to:cc;
-        bh=aYfIPFu/Pj7VgJyAjdhaR33SsSOkBqm9ztMX725tHeA=;
-        b=dXI7WZLz1xxlVFnRebeIgyp0VUboUJtv4hfi83XRMkLDd3vYX6d79oGDBWpOxS4Gww
-         HGIV2eujvQ8yAIzCeRcQzaALSUiJxWMU0Ngi7qKKuskeLGjX31/v7yV+EqhdkYU8I1L4
-         8gudbrtAC3RWixnKPL1swxP2AQxSdBvWaYedJtTxBDWARfNVloAQ1HwD70pPTxwKZrKw
-         WdTGo9U9zcZJU0l33F8X7cgxsrbNU7stNeoTBj667CLo2eKu+afmanp0dpJzo5ezHIOH
-         mVji6lnrxj3Lji4GiGLKY1wWZjAc/VqDEBi028TLVgfpXAfKxqVDCFb9mKkS6QB8NN/Q
-         JUQQ==
-X-Gm-Message-State: AGi0PuY+eyoW1z2LQ89wcza+UGSJpICtq+BHjc/RLAXxeZmLU3eLfXK0
-	aL+wYEu+s+UUwoEE5a2OmYirPilZMpFn1OWeFEdG8Q==
-X-Google-Smtp-Source: APiQypKTMulruoL8F6gPVv1Y8tHfFkvO5U4bU6gFZ/XUY0SCTv61CfjnWOzw/IxQ78TYBE0CHLjmz6SUX6XlwbWQdGI=
-X-Received: by 2002:a17:906:4c8e:: with SMTP id q14mr1318098eju.208.1588298165311;
- Thu, 30 Apr 2020 18:56:05 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:ab4:a881:0:0:0:0:0 with HTTP; Thu, 30 Apr 2020 18:56:04
- -0700 (PDT)
-In-Reply-To: <2823ea3424755ef149b90d28c835f64fcb3afdc4.camel@delisys.ch>
-References: <CAA=hcWSKre4hC8m=tdiavFSO1GbetceQy-jbWg0kzrMFK7QBSg@mail.gmail.com>
- <CA+4=imaKgPkYgm-ks8jh0LnTmqovRrMuesXV0RsEmtWs4fmPHQ@mail.gmail.com>
- <CAA=hcWSFY+hWiHQxx9q8eqcaaFZYJaQ1ZfzZx9cTfFjW2XO5fA@mail.gmail.com>
- <CAA=hcWSXzf7SOc4d3tg97O3aORLdFrrD3q1D4y=z2WtqPvfdCQ@mail.gmail.com> <2823ea3424755ef149b90d28c835f64fcb3afdc4.camel@delisys.ch>
-From: "JH" <jupiter.hce@gmail.com>
-Date: Fri, 1 May 2020 11:56:04 +1000
-Message-ID: <CAA=hcWQhp-MRnsh7a-bAq31Yj4bcD_Z5d2cKxaaMdm9V6vDiTQ@mail.gmail.com>
-Subject: Re: [yocto] Which recipe for Linux tools to run u-boot command inside Linux?
+ dkim=missing; spf=pass (domain: m.gmane-mx.org, ip: 159.69.161.202, mailfrom: gley-yocto@m.gmane-mx.org)
+Received: from list by ciao.gmane.io with local (Exim 4.92)
+	(envelope-from <gley-yocto@m.gmane-mx.org>)
+	id 1jUPSN-0009l3-T5
+	for yocto@lists.yoctoproject.org; Fri, 01 May 2020 08:47:31 +0200
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@lists.yoctoproject.org
-Cc: OE <openembedded-core@lists.openembedded.org>
-Content-Type: text/plain; charset="UTF-8"
+From: "Gmane Admin" <gley-yocto@m.gmane-mx.org>
+Subject: Re: [WIC] Grow last partition up to disk size
+Date: Fri, 1 May 2020 08:47:24 +0200
+Message-ID: <4273aa45-1d71-4e34-733e-f5b7828f8839@gmail.com>
+References: <504407a1-379f-dc70-7745-c42624df7d8c@ibeeto.com>
+ <CAAfyv35at0HOtTpnTiRRL0yrS4mcvCwxy7MdbAmdbVba5-OnGw@mail.gmail.com>
+ <3b7e322b-86db-6412-7cb3-02183d626aeb@gmail.com>
+ <CAAfyv362iG0g3pamQ1RS5OoCmYBzH8yf-ey2iQwCeXBYctYdMw@mail.gmail.com>
+ <b70bbaae-b1d0-9b8c-add0-8f6c0b32a4e5@gmail.com>
+ <CAAfyv34CZUjDZZu0jeGmAZfkNkJDaDyTrNuYp6Mf2m97M2NtYw@mail.gmail.com>
+ <160AAEA430561E1B.4948@lists.yoctoproject.org>
+ <CAOf5uw=ON2QNoHQiBWy7nWwo9QSu1uKLDhLjJ5yeuz1wN17UHA@mail.gmail.com>
+ <b37131d2-827e-9ae4-5d26-0edf3d26e11e@ibeeto.com>
+Mime-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+Cc: Yocto list discussion <yocto-EtnWKYl6rD/WsZ/bQMPhNw@public.gmane.org>
+In-Reply-To: <b37131d2-827e-9ae4-5d26-0edf3d26e11e@ibeeto.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-On 4/30/20, Nicolas Jeker <n.jeker@delisys.ch> wrote:
+Op 01-05-2020 om 01:11 schreef Rudolf J Streif:
+> Thanks, guys, I appreciate it.
+> 
+> Doing it dynamically on first boot would probably work as it is a data 
+> partition and not the rootfs partition.
 
-> on Zeus it's very likely _not_ libubootenv that you need, you should
-> try to install u-boot-fw-utils. As Yann wrote, the tools are in
-> libubootenv since Dunfell, which is newer than Zeus.
+If you use btrfs you can even resize the rootfs (mounted) partition.
 
-Thanks Nicolas, I have following error, what I could be missing here?
+> I will give it a try.
+> 
+> :rjs
+> 
+> On 4/30/20 12:13 PM, Michael Nazzareno Trimarchi wrote:
+>> Hi
+>>
+>> On Thu, Apr 30, 2020 at 9:10 PM Michael Nazzareno Trimarchi via
+>> lists.yoctoproject.org
+>> <michael=amarulasolutions.com@lists.yoctoproject.org>  wrote:
+>>> Hi
+>>>
+>>> Well I have write something like this
+>>>
+>>> [Unit]
+>>> Description=Increases rootfs image size to fit partition
+>>> Requires=dev-disk-by\x2dpartlabel-rootfs.device
+>>> After=dev-disk-by\x2dpartlabel-rootfs.device
+>>>
+>>> [Service]
+>>> Type=oneshot
+>>> ExecStart=/usr/sbin/sgdisk /dev/disk/by-path/platform-ff0f0000.dwmmc -e
+>> This resize gpt up to disk size
+>>
+>>> ExecStart=/usr/sbin/parted /dev/disk/by-path/platform-ff0f0000.dwmmc
+>>> -s "resizepart 4 -1" quit
+>> This resize partition number 4 up to the max
+>>
+>> Michael
+>>
+>>> ExecStart=/sbin/resize2fs /dev/disk/by-partlabel/rootfs
+>>> ExecStart=/bin/systemctl disable resize-rootfs.service
+>>>
+>>> StandardOutput=journal+console
+>>>
+>>> [Install]
+>>> WantedBy=default.target
+>>>
+>>>
+>>> On Thu, Apr 30, 2020 at 8:30 PM Marek Belisko<marek.belisko@gmail.com>  wrote:
+>>>> On Thu, Apr 30, 2020 at 8:27 PM Khem Raj<raj.khem@gmail.com>  wrote:
+>>>>>
+>>>>> On 4/30/20 11:25 AM, Marek Belisko wrote:
+>>>>>> On Thu, Apr 30, 2020 at 8:23 PM Khem Raj<raj.khem@gmail.com>  wrote:
+>>>>>>>
+>>>>>>> On 4/30/20 11:16 AM, Marek Belisko wrote:
+>>>>>>>> Hi Rudolf,
+>>>>>>>>
+>>>>>>>> On Thu, Apr 30, 2020 at 7:39 PM Rudolf J Streif
+>>>>>>>> <rudolf.streif@ibeeto.com>  wrote:
+>>>>>>>>> I was looking for a way in a wks file to have wic grow the last
+>>>>>>>>> partition to fill up the remainder of the disk. Of course wic does not
+>>>>>>>>> know how large the disk is but that could be a parameter.
+>>>>>>>>>
+>>>>>>>>> The alternative way is to use fixed-size and do the math manually but
+>>>>>>>>> that would not allow wic to grow a partition based on content.
+>>>>>>>> You can usehttps://manpages.debian.org/testing/systemd/systemd-growfs.8.en.html
+>>>>>>>> which grow partition to the end.
+>>>>>>> can it grow a mounted partition ? since that will be the case when
+>>>>>>> growing rootfs partition.
+>>>>>> It will grow last partition in first boot only.
+>>>>> my question was will it grow a mounted rootfs parition if that happens
+>>>>> tobe the last partition, I understand it will grow last partion and do
+>>>>> it as firstboot service.
+>>>> I usually use it in case when have dual rootfs (A, B) and data
+>>>> partition which is expanded to then end of disk.
+>>>> I don't have experience with growing rootfs (I think it can grow only
+>>>> not mounted partitions)
+>>>>>>>>> :rjs
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>> BR,
+>>>>>>>>
+>>>>>>>> marek
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>
+>>>>>> BR,
+>>>>>>
+>>>>>> marek
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>> marek
+>>>>
+>>>>
+>>>> --
+>>>> as simple and primitive as possible
+>>>> -------------------------------------------------
+>>>> Marek Belisko - OPEN-NANDRA
+>>>> Freelance Developer
+>>>>
+>>>> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+>>>> Tel: +421 915 052 184
+>>>> skype: marekwhite
+>>>> twitter: #opennandra
+>>>> web:http://open-nandra.com
+>>>>
+>>>
+>>> --
+>>> | Michael Nazzareno Trimarchi                     Amarula Solutions BV |
+>>> | COO  -  Founder                                      Cruquiuskade 47 |
+>>> | +31(0)851119172                                 Amsterdam 1018 AM NL |
+>>> |                  [`as]http://www.amarulasolutions.com                |
+>>>
+>>
+>>
+> -- 
+> -----
+> Rudolf J Streif
+> CEO/CTO ibeeto
+> +1.855.442.3386 x700
+> 
+> 
+> 
+> 
 
-ERROR: Task (/build/oe-core/meta/recipes-bsp/u-boot/u-boot-fw-utils_2019.07.bb:do_compile)
-failed with exit code '137'
 
-
-
--- 
-"A man can fail many times, but he isn't a failure until he begins to
-blame somebody else."
--- John Burroughs
