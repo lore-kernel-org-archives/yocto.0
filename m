@@ -1,266 +1,196 @@
-Received: from mail-lj1-f196.google.com (mail-lj1-f196.google.com [209.85.208.196])
- by mx.groups.io with SMTP id smtpd.web12.10215.1588340906884054452
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+ by mx.groups.io with SMTP id smtpd.web11.737.1588356766075499709
  for <yocto@lists.yoctoproject.org>;
- Fri, 01 May 2020 06:48:27 -0700
+ Fri, 01 May 2020 11:12:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=NBZYIpEz;
- spf=pass (domain: gmail.com, ip: 209.85.208.196, mailfrom: jumpnowtek@gmail.com)
-Received: by mail-lj1-f196.google.com with SMTP id u6so2645927ljl.6
-        for <yocto@lists.yoctoproject.org>; Fri, 01 May 2020 06:48:26 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=axLLDlsP;
+ spf=pass (domain: gmail.com, ip: 209.85.222.182, mailfrom: dresser.net@gmail.com)
+Received: by mail-qk1-f182.google.com with SMTP id s63so10061136qke.4
+        for <yocto@lists.yoctoproject.org>; Fri, 01 May 2020 11:12:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ljSYEE1L0RlaLR9hMv7ai0O/uC3yawcGh/pB+1nCueE=;
-        b=NBZYIpEzpa3BDnEza7e4i9K9zCdjAk4//u48gtBbhjEwfazyyWgY0Zi1qhiN++flsH
-         AKhIAjq7Q/qBiel09gNWP3EzKO2cP6sJp33D56a1ck7KCJdeVpxUiNYLu7wsKoTNkBhO
-         uKr3/I+XYgYa4eUBRXFoY5X+HKlLVyX95DjY3yS1gDa//G6uRm5c/ROqCoACXbkEVInv
-         fZj+0fo1CM/Cal7v6nXVMZqtrWuhlobqQnOT0cLrGNCHzOF6sANsbBHqVpLf9Jhpm3wr
-         J3DxMjWOu3Z/Nx0uJ26B5BRdkTXvCfM5FEBBQk8N+S+JtUMc/To0o70WoyCKLdYH36Oj
-         18cQ==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=ZWTHVDpqgsGLKLJQMlqP4hri43PE6zIXd29HwYrkBIU=;
+        b=axLLDlsPVDr2mFhF772xAK6muYYhRksTXEu/ryyH0up6OxqL7Qqv54atMYOPpTRKzv
+         4UXbj56FEf3nfZBKZ8C+235ozY/HixeWHdUW1TJxddDiBEPYP/btJepami3YMd2zwSgz
+         iEGT82/uDBjeTzSEgktN6L9QNrRz5gc36nIeuXSkl6PICxIiY7ht3GLD4a1XPY/XMMUu
+         BdgWHPlfgCPbiRxyFjvwu0XpY5m+vewkszTxYMa2XlBELIR88MetPd6GjM2aDkKIPsXz
+         5DnPnNIWT6GuGz7DL+Sm1z86uUcNrDOhBnpmXDEnEJ4tmgoSBSM1DCgL/u1REYYEvkAJ
+         n3Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ljSYEE1L0RlaLR9hMv7ai0O/uC3yawcGh/pB+1nCueE=;
-        b=J9pOFhgMsGQJ82G+TFQWPXuBHyYbUwt3dnxgN7JjEnT1hPCsFOIQwy7fSFjaY9Ew8c
-         hPo8ChpmiJXCS1ypwBiZr8DiT11s1BkQU8fKMGHh8IsrEfbSO+3cxV2Z4HAh8h7u5hXg
-         2suQFnxoJaMR/NZdbd9zCrd23U7JZ5JrZMR1+RkGbJWwbMpvH1CFgf5RnGuS96tw0/FQ
-         iqpUB7qtMHOcwMEuBIAcicqrGFNihRYD72vB3ADhM5cHHVq26bYyctSKReeMro5fkRjG
-         mLLi2CBM2TQXClMQaKsOZDfXYG+oVtl59uscWwAy85sxZaP7wSOF9k4Ro62Z8JR9L2r9
-         qmUQ==
-X-Gm-Message-State: AGi0PuaZ2oMBGXNy8OUBHXDyMyLuKERF+vr1FfHHWbZgWhrwfNTY43Qs
-	LKyHM0NS8+ENBRBNRZS3S4Uz8MMuY9AMPNaLyr7so42Q
-X-Google-Smtp-Source: APiQypJtFMyTKis+8/SxQm4B+/8z9A8yPjov4W9WZlL7stkAkstQyiVRRzKLdSl6NpI1OWFgbddlp5GxWtDHX43RhRY=
-X-Received: by 2002:a2e:a40d:: with SMTP id p13mr2498686ljn.183.1588340904815;
- Fri, 01 May 2020 06:48:24 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=ZWTHVDpqgsGLKLJQMlqP4hri43PE6zIXd29HwYrkBIU=;
+        b=VhznVLBwb79VLOiak+HfHnmFF8sKCT7c/ZZuyuBhCKFoX1zZIT3SOhg0EBF1yMiW7F
+         ZLZTCLTi4f67hunyZsannHsTNDWm8L7eDzXnJLjeN01C+30CLA1/40xmvpii6OuoSACM
+         ZRrC56Pl2yH6w0vNo4zW8M4lAWVajr/68TDTkgpnYrigxihut9+d8Wk8SF4AHOWRFVSj
+         osbtDo/TTPTLg5/KCgjJc4BSv2mGlhAOx2lyNQ8B0hO9REz5nyIlocc7ShUZmYFkb6gJ
+         u0srZD1AE9cg/mgfpqS3gyNByx2TmbmDt+YyQ2iMIbwHVYiipLEZhLQZ1OqPodzb8arQ
+         zfHA==
+X-Gm-Message-State: AGi0PuZA5HnjyUPgB/vVocXWrOpOMvb9f1zLHEd5H0zBM+caN8AlCwFl
+	464OMH/qNwGEaeej94bBtNtKzbocncaQtNu5Vh8cVAxx
+X-Google-Smtp-Source: APiQypLTAkRgnYXu0HBl6kbbdEoz60aO3QvwVyxoSJmZz9nv5B6X/fdsJu2YWp3DdM3fYwuffQZCGLrmesDO1oR/CHY=
+X-Received: by 2002:a37:9f15:: with SMTP id i21mr4762859qke.47.1588356764886;
+ Fri, 01 May 2020 11:12:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200430202311.11303-1-scott@jumpnowtek.com> <20200430213705.GW11927@denix.org>
-In-Reply-To: <20200430213705.GW11927@denix.org>
-From: "Scott Ellis" <jumpnowtek@gmail.com>
-Date: Fri, 1 May 2020 09:48:14 -0400
-Message-ID: <CAAAx1o7j=dmhKOm4QKLvShjSikxL4kOk1m6LMXupoBaBtWuttw@mail.gmail.com>
-Subject: Re: [yocto][PATCH] openssl: Fix dependency loop with PACKAGECONFIG cryptodev-linux
+From: "Derek Dresser" <dresser.net@gmail.com>
+Date: Fri, 1 May 2020 14:12:34 -0400
+Message-ID: <CADmsHKfnS-=5LFhT_47q63Km6RHz=8TbNF=OiDCZhiAxP6i5YQ@mail.gmail.com>
+Subject: qemu hangs waiting for root device /dev/mmcblk0p2
 To: yocto@lists.yoctoproject.org
-Cc: Scott Ellis <scott@jumpnowtek.com>
-Content-Type: multipart/alternative; boundary="00000000000069f0c405a4966f6e"
+Content-Type: multipart/alternative; boundary="000000000000bf6b1b05a49a2060"
 
---00000000000069f0c405a4966f6e
+--000000000000bf6b1b05a49a2060
 Content-Type: text/plain; charset="UTF-8"
 
-Enabled via a bbappend in a custom layer
+Based on my investigation so far, I believe this is a devicetree issue.  My
+understanding of devicetrees at the moment is rudimentary.  Please don't
+assume I might know something basic.
 
-$ cat openssl_%.bbappend
-PACKAGECONFIG_append = " cryptodev-linux"
+I am working with a custom board based on the Xilinx zcu102-zynqmp
+(aarch64) board.  The build currently boots and runs fine on the actual
+board.  When I try to use runqemu to start an emulator, it hangs at
+"waiting for root device /dev/mmcblk0p2"  I have seen posts that suggest
+this is a problem with mmc0 card detection like a wrong pin or something.
+Some posts suggest it can be worked around by adding "broken-cd" to the
+device configuration, telling the OS not to wait for the card detection.
 
-This was working prior to the openssl_1.1.1f.bb recipe change a few days
-ago.
+To test this, I tried to modify the flattened devicetree from uboot  and
+boot with the "broken-cd" configuration, but it continues to hang at the
+same place.
 
-How are you enabling this PACKAGECONFIG?
 
-On Thu, Apr 30, 2020 at 5:37 PM Denys Dmytriyenko <denis@denix.org> wrote:
+aliases {
+     ...
+     mmc0 = "/amba/sdhci@ff160000";
+     ...
+}
 
-> On Thu, Apr 30, 2020 at 08:23:11PM +0000, Scott Ellis wrote:
->
-> Hi, Scott,
->
-> Sorry, I'm not trying to discourage you from submitting patches, but there
-> are
-> few issues with your patch here - see below and inline.
->
-> First of all, patches for OE-core should be sent to:
-> openembedded-core@lists.openembedded.org
-> https://lists.openembedded.org/g/openembedded-core
->
-> Looks like you are building poky-zeus - Poky, as a distro, is composed
-> from
-> multiple components/layers, such as bitbake, oe-core/meta, meta-poky and
-> meta-yocto-bsp. Most of them have own git repos with corresponding mailing
-> lists - usually mentioned in corresponding README files, please check
-> those.
->
->
-> > Applies to both zeus and dunfell
->
-> The process to get your change backported to older branches/releases is to
-> submit it against master, and once accepted, re-send and ask to backport
-> to
-> other branches, such as zeus and dunfell with the name of the branch in
-> the
-> subject. That is because different branches/versions are usually
-> maintained
-> by different people.
->
->
-> > ERROR: Nothing RPROVIDES 'cryptodev-module-native' (but
-> virtual:native:/home/scott/poky-zeus/meta/recipes-connectivity/openssl/
-> openssl_1.1.1f.bb RDEPENDS on or otherwise requires it)
-> > ERROR: Required build target 'openssl' has no buildable providers.
-> > Missing or unbuildable dependency chain was: ['openssl', 'rpm-native',
-> 'python3-native', 'openssl-native', 'cryptodev-module-native']
->
-> Not sure how you were able to set the wrong PACKAGECONFIG for
-> openssl-native,
-> when it gets explicitly emptied in the recipe below.
->
->
-> > diff --git a/meta/recipes-connectivity/openssl/openssl_1.1.1f.bb
-> b/meta/recipes-connectivity/openssl/openssl_1.1.1f.bb
-> > index aa4ef6f48a..a952fae728 100644
-> > --- a/meta/recipes-connectivity/openssl/openssl_1.1.1f.bb
-> > +++ b/meta/recipes-connectivity/openssl/openssl_1.1.1f.bb
-> > @@ -32,7 +32,7 @@ PACKAGECONFIG ?= ""
-> >  PACKAGECONFIG_class-native = ""
-> >  PACKAGECONFIG_class-nativesdk = ""
->
-> Here, ^^^ PACKAGECONFIG should all be empty for native and nativesdk
-> versions
-> of openssl.
->
->
-> > -PACKAGECONFIG[cryptodev-linux] =
-> "enable-devcryptoeng,disable-devcryptoeng,cryptodev-linux,,cryptodev-module"
-> > +PACKAGECONFIG[cryptodev-linux] =
-> "enable-devcryptoeng,disable-devcryptoeng,cryptodev-linux"
->
-> This is not a fix, but rather a workaround for a bad setup. Moreover, it
-> actually reverts my recent fix to RDEPENDS on cryptodev-module, which is
-> needed to properly support devcryptoeng in openssl.
->
-> Maybe if you share with us how you set your environment, we would be able
-> to
-> help you resolve it properly. Thank you!
->
-> --
-> Denys
->
->
-> >  B = "${WORKDIR}/build"
-> >  do_configure[cleandirs] = "${B}"
-> > --
-> > 2.17.1
-> >
->
-> >
->
-> 
->
+runqemu slirp zcu102-zynqmp.....
 
---00000000000069f0c405a4966f6e
+ZynqMP> setenv bootargs $bootargs root=/dev/mmcblk0p2 rw rootwait earlycon
+clk_ignore_unused
+ZynqMP> fatload mmc 0 0x4000000 devicetree-gen5.dtb
+ZynqMP> fatload mmc $sdbootdev:$partid 0x80000 Image        #(sdbootdev=0,
+partid=auto)
+
+ZynqMP> fdt addr 0x4000000
+
+ZynqMP> fdt resize 1024
+
+ZynqMP> fdt set /amba/sdhci@ff160000 broken-cd
+ZynqMP> fdt list /amba/sdhci@ff160000
+sdhci@ff160000 {
+        broken-cd;
+        u-boot,dm-pre-reloc;
+        compatible = "xlnx,zynqmp-8.9a", "arasan,sdhci-8.9a";
+        status = "okay";
+        interrupt-parent = <0x00000004>;
+        interrupts = <0x00000000 0x00000030 0x00000004>;
+        reg = <0x00000000 0xff160000 0x00000000 0x00001000>;
+        clock-names = "clk_xin", "clk_ahb";
+        xlnx,device_id = <0x00000000>;
+        #stream-id-cells = <0x00000001>;
+        iommus = <0x00000009 0x00000870>;
+        power-domains = <0x0000001f>;
+        nvmem-cells = <0x0000001c>;
+        nvmem-cell-names = "soc_revision";
+        clocks = <0x00000003 0x00000036 0x00000003 0x0000001f>;
+        pinctrl-names = "default";
+        pinctrl-0 = <0x00000020>;
+        xlnx,mio_bank = <0x00000000>;
+};
+ZynqMP> booti 0x80000 - 0x4000000
+....
+.... waiting for root device /dev/mmcblk0p2 ....
+
+
+I also tried building a non-custom build for the zcu102-zynqmp board and it
+boots fine in qemu so this is definitely related to my devicetree or
+configurations.
+
+I have a bunch of questiions.  Any help is appreciated.
+
+What changes might I need to make to get this to boot in qemu?
+Should I expect to need a different devicetree for qemu than for the custom
+board?
+How can I know what the differences should be?
+How do I specify a different devicetree for qemu if necessary?
+
+Thank you,
+Derek
+
+--000000000000bf6b1b05a49a2060
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Enabled via a bbappend in a custom layer</div><div><b=
-r></div>$ cat openssl_%.bbappend <br>PACKAGECONFIG_append =3D &quot; crypto=
-dev-linux&quot;<br><div><br></div><div>This was working prior to the <a hre=
-f=3D"http://openssl_1.1.1f.bb">openssl_1.1.1f.bb</a> recipe change a few da=
-ys ago.</div><div><br></div><div>How are you enabling this PACKAGECONFIG?</=
-div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
-tr">On Thu, Apr 30, 2020 at 5:37 PM Denys Dmytriyenko &lt;<a href=3D"mailto=
-:denis@denix.org">denis@denix.org</a>&gt; wrote:<br></div><blockquote class=
-=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">On Thu, Apr 30, 2020 at 08:23:11PM +0000,=
- Scott Ellis wrote:<br>
-<br>
-Hi, Scott,<br>
-<br>
-Sorry, I&#39;m not trying to discourage you from submitting patches, but t=
-here are <br>
-few issues with your patch here - see below and inline.<br>
-<br>
-First of all, patches for OE-core should be sent to:<br>
-<a href=3D"mailto:openembedded-core@lists.openembedded.org" target=3D"_bla=
-nk">openembedded-core@lists.openembedded.org</a><br>
-<a href=3D"https://lists.openembedded.org/g/openembedded-core" rel=3D"nore=
-ferrer" target=3D"_blank">https://lists.openembedded.org/g/openembedded-cor=
-e</a><br>
-<br>
-Looks like you are building poky-zeus - Poky, as a distro, is composed fro=
-m <br>
-multiple components/layers, such as bitbake, oe-core/meta, meta-poky and <=
-br>
-meta-yocto-bsp. Most of them have own git repos with corresponding mailing=
- <br>
-lists - usually mentioned in corresponding README files, please check thos=
-e.<br>
-<br>
-<br>
-&gt; Applies to both zeus and dunfell<br>
-<br>
-The process to get your change backported to older branches/releases is to=
- <br>
-submit it against master, and once accepted, re-send and ask to backport t=
-o <br>
-other branches, such as zeus and dunfell with the name of the branch in th=
-e <br>
-subject. That is because different branches/versions are usually maintaine=
-d <br>
-by different people.<br>
-<br>
-<br>
-&gt; ERROR: Nothing RPROVIDES &#39;cryptodev-module-native&#39; (but virtu=
-al:native:/home/scott/poky-zeus/meta/recipes-connectivity/openssl/<a href=
-=3D"http://openssl_1.1.1f.bb" rel=3D"noreferrer" target=3D"_blank">openssl=
-_1.1.1f.bb</a> RDEPENDS on or otherwise requires it)<br>
-&gt; ERROR: Required build target &#39;openssl&#39; has no buildable provi=
-ders.<br>
-&gt; Missing or unbuildable dependency chain was: [&#39;openssl&#39;, &#39=
-;rpm-native&#39;, &#39;python3-native&#39;, &#39;openssl-native&#39;, &#39;=
-cryptodev-module-native&#39;]<br>
-<br>
-Not sure how you were able to set the wrong PACKAGECONFIG for openssl-nati=
-ve, <br>
-when it gets explicitly emptied in the recipe below.<br>
-<br>
-<br>
-&gt; diff --git a/meta/recipes-connectivity/openssl/<a href=3D"http://open=
-ssl_1.1.1f.bb" rel=3D"noreferrer" target=3D"_blank">openssl_1.1.1f.bb</a> b=
-/meta/recipes-connectivity/openssl/<a href=3D"http://openssl_1.1.1f.bb" rel=
-=
-=3D"noreferrer" target=3D"_blank">openssl_1.1.1f.bb</a><br>
-&gt; index aa4ef6f48a..a952fae728 100644<br>
-&gt; --- a/meta/recipes-connectivity/openssl/<a href=3D"http://openssl_1.1=
-.1f.bb" rel=3D"noreferrer" target=3D"_blank">openssl_1.1.1f.bb</a><br>
-&gt; +++ b/meta/recipes-connectivity/openssl/<a href=3D"http://openssl_1.1=
-.1f.bb" rel=3D"noreferrer" target=3D"_blank">openssl_1.1.1f.bb</a><br>
-&gt; @@ -32,7 +32,7 @@ PACKAGECONFIG ?=3D &quot;&quot;<br>
-&gt;=C2=A0 PACKAGECONFIG_class-native =3D &quot;&quot;<br>
-&gt;=C2=A0 PACKAGECONFIG_class-nativesdk =3D &quot;&quot;<br>
-<br>
-Here, ^^^ PACKAGECONFIG should all be empty for native and nativesdk versi=
-ons <br>
-of openssl.<br>
-<br>
-<br>
-&gt; -PACKAGECONFIG[cryptodev-linux] =3D &quot;enable-devcryptoeng,disable=
--devcryptoeng,cryptodev-linux,,cryptodev-module&quot;<br>
-&gt; +PACKAGECONFIG[cryptodev-linux] =3D &quot;enable-devcryptoeng,disable=
--devcryptoeng,cryptodev-linux&quot;<br>
-<br>
-This is not a fix, but rather a workaround for a bad setup. Moreover, it <=
-br>
-actually reverts my recent fix to RDEPENDS on cryptodev-module, which is <=
-br>
-needed to properly support devcryptoeng in openssl.<br>
-<br>
-Maybe if you share with us how you set your environment, we would be able =
-to <br>
-help you resolve it properly. Thank you!<br>
-<br>
--- <br>
-Denys<br>
-<br>
-<br>
-&gt;=C2=A0 B =3D &quot;${WORKDIR}/build&quot;<br>
-&gt;=C2=A0 do_configure[cleandirs] =3D &quot;${B}&quot;<br>
-&gt; -- <br>
-&gt; 2.17.1<br>
-&gt; <br>
-<br>
-&gt; <br>
-<br>
-<br>
-</blockquote></div>
+<div dir=3D"ltr"><div>Based on my investigation so far, I believe this is a=
+ devicetree=C2=A0issue.=C2=A0 My understanding of devicetrees=C2=A0at the m=
+oment is rudimentary.=C2=A0 Please don&#39;t assume I might know something =
+basic.</div><div><br></div><div>I am working with a custom board based on t=
+he Xilinx zcu102-zynqmp (aarch64) board.=C2=A0 The build currently boots an=
+d runs fine on the actual board.=C2=A0 When I try to use runqemu to start a=
+n emulator, it hangs at &quot;waiting for root device /dev/mmcblk0p2&quot;=
+=C2=A0 I have seen posts that suggest this is a problem with mmc0 card dete=
+ction like a wrong pin or something.=C2=A0 Some posts suggest it can be wor=
+ked around by adding &quot;broken-cd&quot; to the device configuration, tel=
+ling the OS not to wait for the card detection.</div><div><br></div><div>To=
+ test this, I tried to modify the flattened devicetree=C2=A0from uboot=C2=
+=A0 and boot with the &quot;broken-cd&quot; configuration, but it continues=
+ to hang at the same place.=C2=A0=C2=A0</div><div><blockquote style=3D"marg=
+in:0 0 0 40px;border:none;padding:0px"><br></blockquote></div><blockquote s=
+tyle=3D"margin:0 0 0 40px;border:none;padding:0px"><div><div>aliases {</div=
+></div><div><div>=C2=A0 =C2=A0 =C2=A0...</div></div><div><div>=C2=A0 =C2=A0=
+ =C2=A0mmc0 =3D &quot;/amba/sdhci@ff160000&quot;;</div></div><div><div>=C2=
+=A0 =C2=A0 =C2=A0...</div></div><div><div>}</div></div><div><div><br></div>=
+</div></blockquote><blockquote style=3D"margin:0 0 0 40px;border:none;paddi=
+ng:0px"><div>runqemu slirp zcu102-zynqmp.....</div><div><br></div></blockqu=
+ote><blockquote style=3D"margin:0 0 0 40px;border:none;padding:0px"><div>Zy=
+nqMP&gt;=C2=A0setenv bootargs $bootargs root=3D/dev/mmcblk0p2 rw rootwait e=
+arlycon clk_ignore_unused</div><div><div>ZynqMP&gt; fatload mmc 0 0x4000000=
+ devicetree-gen5.dtb</div></div><div><div>ZynqMP&gt; fatload mmc $sdbootdev=
+:$partid 0x80000 Image=C2=A0 =C2=A0 =C2=A0 =C2=A0 #(sdbootdev=3D0, partid=
+=3Dauto)</div></div></blockquote><blockquote style=3D"margin:0 0 0 40px;bor=
+der:none;padding:0px"><div>ZynqMP&gt; fdt addr 0x4000000</div></blockquote>=
+<blockquote style=3D"margin:0 0 0 40px;border:none;padding:0px"><div>ZynqMP=
+&gt; fdt resize 1024</div></blockquote><blockquote style=3D"margin:0 0 0 40=
+px;border:none;padding:0px"><div><div>ZynqMP&gt; fdt set /amba/sdhci@ff1600=
+00 broken-cd</div></div><div><div>ZynqMP&gt; fdt list /amba/sdhci@ff160000 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 </div></div><div><div>sdhci@ff160000 {</div></d=
+iv><div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 broken-cd;</div></div><div><div>=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 u-boot,dm-pre-reloc;</div></div><div><div>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 compatible =3D &quot;xlnx,zynqmp-8.9a&quot;, &quot=
+;arasan,sdhci-8.9a&quot;;</div></div><div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+status =3D &quot;okay&quot;;</div></div><div><div>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 interrupt-parent =3D &lt;0x00000004&gt;;</div></div><div><div>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 interrupts =3D &lt;0x00000000 0x00000030 0x00000004&gt=
+;;</div></div><div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 reg =3D &lt;0x00000000 =
+0xff160000 0x00000000 0x00001000&gt;;</div></div><div><div>=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 clock-names =3D &quot;clk_xin&quot;, &quot;clk_ahb&quot;;</di=
+v></div><div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 xlnx,device_id =3D &lt;0x0000=
+0000&gt;;</div></div><div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 #stream-id-cells=
+ =3D &lt;0x00000001&gt;;</div></div><div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 i=
+ommus =3D &lt;0x00000009 0x00000870&gt;;</div></div><div><div>=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 power-domains =3D &lt;0x0000001f&gt;;</div></div><div><div>=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 nvmem-cells =3D &lt;0x0000001c&gt;;</div></div>=
+<div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 nvmem-cell-names =3D &quot;soc_revisi=
+on&quot;;</div></div><div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 clocks =3D &lt;0=
+x00000003 0x00000036 0x00000003 0x0000001f&gt;;</div></div><div><div>=C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 pinctrl-names =3D &quot;default&quot;;</div></div><di=
+v><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 pinctrl-0 =3D &lt;0x00000020&gt;;</div><=
+/div><div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 xlnx,mio_bank =3D &lt;0x00000000=
+&gt;;</div></div><div><div>};</div></div><div><div>ZynqMP&gt;=C2=A0booti 0x=
+80000 - 0x4000000</div></div><div><div>....</div></div><div><div>.... waiti=
+ng for root device /dev/mmcblk0p2 ....</div></div></blockquote><div><br></d=
+iv><div>I also tried building a non-custom build for the zcu102-zynqmp boar=
+d and it boots fine in qemu so this is definitely related to my devicetree =
+or configurations.</div><div><br></div><div>I have a bunch of questiions.=
+=C2=A0 Any help is appreciated.</div><div><br></div><div>What changes might=
+ I need to make to get this to boot in qemu?</div><div>Should I expect to n=
+eed a different devicetree=C2=A0for qemu than for the custom board?=C2=A0=
+=C2=A0</div><div>How can I know what the differences should be?=C2=A0=C2=A0=
+</div><div>How do I specify a different devicetree=C2=A0for qemu if necessa=
+ry?</div><div><br></div><div>Thank you,</div><div>Derek</div><div><br></div=
+><div><br></div><div><br></div></div>
 
---00000000000069f0c405a4966f6e--
+--000000000000bf6b1b05a49a2060--
