@@ -1,197 +1,266 @@
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
- by mx.groups.io with SMTP id smtpd.web12.5510.1588316795922856687
+Received: from mail-lj1-f196.google.com (mail-lj1-f196.google.com [209.85.208.196])
+ by mx.groups.io with SMTP id smtpd.web12.10215.1588340906884054452
  for <yocto@lists.yoctoproject.org>;
- Fri, 01 May 2020 00:06:37 -0700
+ Fri, 01 May 2020 06:48:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@amarulasolutions.com header.s=google header.b=FBWBUnYu;
- spf=pass (domain: amarulasolutions.com, ip: 209.85.221.54, mailfrom: michael@amarulasolutions.com)
-Received: by mail-wr1-f54.google.com with SMTP id e16so5376015wra.7
-        for <yocto@lists.yoctoproject.org>; Fri, 01 May 2020 00:06:35 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NBZYIpEz;
+ spf=pass (domain: gmail.com, ip: 209.85.208.196, mailfrom: jumpnowtek@gmail.com)
+Received: by mail-lj1-f196.google.com with SMTP id u6so2645927ljl.6
+        for <yocto@lists.yoctoproject.org>; Fri, 01 May 2020 06:48:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=tXtzgjBu6Gwl/ptywtl7oMohN/BTJhvhbwARwF7lpLM=;
-        b=FBWBUnYug8JdNWgFzBFYdRvpiBjfPXNY0/FybvEFEyX5Z5xZQA48OJafYzHjGNwCV4
-         oJRFKHekA2ZzraEaOAP2u9NetNWSSknwBAuOC/+AEJ1EPnG0prD6LD70tjRnvbXjVmAl
-         w9JWYrb2TGjW9LVBDR5HGZ0oH3LSN2paKyubE=
+        bh=ljSYEE1L0RlaLR9hMv7ai0O/uC3yawcGh/pB+1nCueE=;
+        b=NBZYIpEzpa3BDnEza7e4i9K9zCdjAk4//u48gtBbhjEwfazyyWgY0Zi1qhiN++flsH
+         AKhIAjq7Q/qBiel09gNWP3EzKO2cP6sJp33D56a1ck7KCJdeVpxUiNYLu7wsKoTNkBhO
+         uKr3/I+XYgYa4eUBRXFoY5X+HKlLVyX95DjY3yS1gDa//G6uRm5c/ROqCoACXbkEVInv
+         fZj+0fo1CM/Cal7v6nXVMZqtrWuhlobqQnOT0cLrGNCHzOF6sANsbBHqVpLf9Jhpm3wr
+         J3DxMjWOu3Z/Nx0uJ26B5BRdkTXvCfM5FEBBQk8N+S+JtUMc/To0o70WoyCKLdYH36Oj
+         18cQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=tXtzgjBu6Gwl/ptywtl7oMohN/BTJhvhbwARwF7lpLM=;
-        b=qgeJxHxp3qoJWr7uXc0iUWLIq8t3LiHhO6eNsuTwLgrUxvMsn3Cwd3huURs1c+2ewL
-         i/Ubz5/D5BA8Hj73Rl0PWDAk+8lxpPUyRafqR8rFWpctJel3pu1sENUeNNzIjatch8t4
-         +/BkWM21Wl2MPBQ+MHMk6upnlJ0gVZWBhFTpfwcA2T1JjLLyVMfiYXogI7AVfeZkWPPS
-         2VlP5a34Y2UQXZqUnEHpmgGZhBvOdCssY2+stAYdMDmYmzMnRgMwSxxoo5YMxHicqAsy
-         vPIDtQHejAVcDA8dFu99YG5rd4RTKbwis6A5d43K3qOcaC90OuHcK4z2vY+eLBMmmJiD
-         KOTA==
-X-Gm-Message-State: AGi0PuaTB07KHR20M3PHSyBukxJ+uCds9lWUzHVCxfVS9bP5ktimti4W
-	2osx6ehUUzqIPK5PfvVLswirAfs66jR9uNsWrjJ8ugvE
-X-Google-Smtp-Source: APiQypK8PJSDvvK+FGExDY9Vx6lJllmMeN8opdrb1R9BKss1Ovp57HjzCzlQRxoegCtoWBpU/GkncRpoDUZlLDYWg4I=
-X-Received: by 2002:adf:decb:: with SMTP id i11mr2542451wrn.140.1588316794065;
- Fri, 01 May 2020 00:06:34 -0700 (PDT)
+        bh=ljSYEE1L0RlaLR9hMv7ai0O/uC3yawcGh/pB+1nCueE=;
+        b=J9pOFhgMsGQJ82G+TFQWPXuBHyYbUwt3dnxgN7JjEnT1hPCsFOIQwy7fSFjaY9Ew8c
+         hPo8ChpmiJXCS1ypwBiZr8DiT11s1BkQU8fKMGHh8IsrEfbSO+3cxV2Z4HAh8h7u5hXg
+         2suQFnxoJaMR/NZdbd9zCrd23U7JZ5JrZMR1+RkGbJWwbMpvH1CFgf5RnGuS96tw0/FQ
+         iqpUB7qtMHOcwMEuBIAcicqrGFNihRYD72vB3ADhM5cHHVq26bYyctSKReeMro5fkRjG
+         mLLi2CBM2TQXClMQaKsOZDfXYG+oVtl59uscWwAy85sxZaP7wSOF9k4Ro62Z8JR9L2r9
+         qmUQ==
+X-Gm-Message-State: AGi0PuaZ2oMBGXNy8OUBHXDyMyLuKERF+vr1FfHHWbZgWhrwfNTY43Qs
+	LKyHM0NS8+ENBRBNRZS3S4Uz8MMuY9AMPNaLyr7so42Q
+X-Google-Smtp-Source: APiQypJtFMyTKis+8/SxQm4B+/8z9A8yPjov4W9WZlL7stkAkstQyiVRRzKLdSl6NpI1OWFgbddlp5GxWtDHX43RhRY=
+X-Received: by 2002:a2e:a40d:: with SMTP id p13mr2498686ljn.183.1588340904815;
+ Fri, 01 May 2020 06:48:24 -0700 (PDT)
 MIME-Version: 1.0
-References: <504407a1-379f-dc70-7745-c42624df7d8c@ibeeto.com>
- <CAAfyv35at0HOtTpnTiRRL0yrS4mcvCwxy7MdbAmdbVba5-OnGw@mail.gmail.com>
- <3b7e322b-86db-6412-7cb3-02183d626aeb@gmail.com> <CAAfyv362iG0g3pamQ1RS5OoCmYBzH8yf-ey2iQwCeXBYctYdMw@mail.gmail.com>
- <b70bbaae-b1d0-9b8c-add0-8f6c0b32a4e5@gmail.com> <CAAfyv34CZUjDZZu0jeGmAZfkNkJDaDyTrNuYp6Mf2m97M2NtYw@mail.gmail.com>
- <160AAEA430561E1B.4948@lists.yoctoproject.org> <CAOf5uw=ON2QNoHQiBWy7nWwo9QSu1uKLDhLjJ5yeuz1wN17UHA@mail.gmail.com>
- <b37131d2-827e-9ae4-5d26-0edf3d26e11e@ibeeto.com> <4273aa45-1d71-4e34-733e-f5b7828f8839@gmail.com>
-In-Reply-To: <4273aa45-1d71-4e34-733e-f5b7828f8839@gmail.com>
-From: "Michael Nazzareno Trimarchi" <michael@amarulasolutions.com>
-Date: Fri, 1 May 2020 09:06:22 +0200
-Message-ID: <CAOf5uwnVQkv5XRefnjMzmkGY5QNVi-rBm+shU+qXiLjTucQaiw@mail.gmail.com>
-Subject: Re: [yocto] [WIC] Grow last partition up to disk size
+References: <20200430202311.11303-1-scott@jumpnowtek.com> <20200430213705.GW11927@denix.org>
+In-Reply-To: <20200430213705.GW11927@denix.org>
+From: "Scott Ellis" <jumpnowtek@gmail.com>
+Date: Fri, 1 May 2020 09:48:14 -0400
+Message-ID: <CAAAx1o7j=dmhKOm4QKLvShjSikxL4kOk1m6LMXupoBaBtWuttw@mail.gmail.com>
+Subject: Re: [yocto][PATCH] openssl: Fix dependency loop with PACKAGECONFIG cryptodev-linux
 To: yocto@lists.yoctoproject.org
-Cc: Yocto list discussion <yocto-EtnWKYl6rD/WsZ/bQMPhNw@public.gmane.org>
+Cc: Scott Ellis <scott@jumpnowtek.com>
+Content-Type: multipart/alternative; boundary="00000000000069f0c405a4966f6e"
+
+--00000000000069f0c405a4966f6e
 Content-Type: text/plain; charset="UTF-8"
 
-Hi
+Enabled via a bbappend in a custom layer
 
+$ cat openssl_%.bbappend
+PACKAGECONFIG_append = " cryptodev-linux"
 
-On Fri, May 1, 2020 at 8:47 AM Gmane Admin <gley-yocto@m.gmane-mx.org> wrote:
+This was working prior to the openssl_1.1.1f.bb recipe change a few days
+ago.
+
+How are you enabling this PACKAGECONFIG?
+
+On Thu, Apr 30, 2020 at 5:37 PM Denys Dmytriyenko <denis@denix.org> wrote:
+
+> On Thu, Apr 30, 2020 at 08:23:11PM +0000, Scott Ellis wrote:
 >
-> Op 01-05-2020 om 01:11 schreef Rudolf J Streif:
-> > Thanks, guys, I appreciate it.
-> >
-> > Doing it dynamically on first boot would probably work as it is a data
-> > partition and not the rootfs partition.
+> Hi, Scott,
 >
-> If you use btrfs you can even resize the rootfs (mounted) partition.
+> Sorry, I'm not trying to discourage you from submitting patches, but there
+> are
+> few issues with your patch here - see below and inline.
 >
-
-I don't said but the code I sent resize my rootfs
-
-Michael
-
-> > I will give it a try.
-> >
-> > :rjs
-> >
-> > On 4/30/20 12:13 PM, Michael Nazzareno Trimarchi wrote:
-> >> Hi
-> >>
-> >> On Thu, Apr 30, 2020 at 9:10 PM Michael Nazzareno Trimarchi via
-> >> lists.yoctoproject.org
-> >> <michael=amarulasolutions.com@lists.yoctoproject.org>  wrote:
-> >>> Hi
-> >>>
-> >>> Well I have write something like this
-> >>>
-> >>> [Unit]
-> >>> Description=Increases rootfs image size to fit partition
-> >>> Requires=dev-disk-by\x2dpartlabel-rootfs.device
-> >>> After=dev-disk-by\x2dpartlabel-rootfs.device
-> >>>
-> >>> [Service]
-> >>> Type=oneshot
-> >>> ExecStart=/usr/sbin/sgdisk /dev/disk/by-path/platform-ff0f0000.dwmmc -e
-> >> This resize gpt up to disk size
-> >>
-> >>> ExecStart=/usr/sbin/parted /dev/disk/by-path/platform-ff0f0000.dwmmc
-> >>> -s "resizepart 4 -1" quit
-> >> This resize partition number 4 up to the max
-> >>
-> >> Michael
-> >>
-> >>> ExecStart=/sbin/resize2fs /dev/disk/by-partlabel/rootfs
-> >>> ExecStart=/bin/systemctl disable resize-rootfs.service
-> >>>
-> >>> StandardOutput=journal+console
-> >>>
-> >>> [Install]
-> >>> WantedBy=default.target
-> >>>
-> >>>
-> >>> On Thu, Apr 30, 2020 at 8:30 PM Marek Belisko<marek.belisko@gmail.com>  wrote:
-> >>>> On Thu, Apr 30, 2020 at 8:27 PM Khem Raj<raj.khem@gmail.com>  wrote:
-> >>>>>
-> >>>>> On 4/30/20 11:25 AM, Marek Belisko wrote:
-> >>>>>> On Thu, Apr 30, 2020 at 8:23 PM Khem Raj<raj.khem@gmail.com>  wrote:
-> >>>>>>>
-> >>>>>>> On 4/30/20 11:16 AM, Marek Belisko wrote:
-> >>>>>>>> Hi Rudolf,
-> >>>>>>>>
-> >>>>>>>> On Thu, Apr 30, 2020 at 7:39 PM Rudolf J Streif
-> >>>>>>>> <rudolf.streif@ibeeto.com>  wrote:
-> >>>>>>>>> I was looking for a way in a wks file to have wic grow the last
-> >>>>>>>>> partition to fill up the remainder of the disk. Of course wic does not
-> >>>>>>>>> know how large the disk is but that could be a parameter.
-> >>>>>>>>>
-> >>>>>>>>> The alternative way is to use fixed-size and do the math manually but
-> >>>>>>>>> that would not allow wic to grow a partition based on content.
-> >>>>>>>> You can usehttps://manpages.debian.org/testing/systemd/systemd-growfs.8.en.html
-> >>>>>>>> which grow partition to the end.
-> >>>>>>> can it grow a mounted partition ? since that will be the case when
-> >>>>>>> growing rootfs partition.
-> >>>>>> It will grow last partition in first boot only.
-> >>>>> my question was will it grow a mounted rootfs parition if that happens
-> >>>>> tobe the last partition, I understand it will grow last partion and do
-> >>>>> it as firstboot service.
-> >>>> I usually use it in case when have dual rootfs (A, B) and data
-> >>>> partition which is expanded to then end of disk.
-> >>>> I don't have experience with growing rootfs (I think it can grow only
-> >>>> not mounted partitions)
-> >>>>>>>>> :rjs
-> >>>>>>>>>
-> >>>>>>>>>
-> >>>>>>>>>
-> >>>>>>>> BR,
-> >>>>>>>>
-> >>>>>>>> marek
-> >>>>>>>>
-> >>>>>>>>
-> >>>>>>>>
-> >>>>>>>>
-> >>>>>> BR,
-> >>>>>>
-> >>>>>> marek
-> >>>>>>
-> >>>>>>
-> >>>>>>
-> >>>>>>
-> >>>> marek
-> >>>>
-> >>>>
-> >>>> --
-> >>>> as simple and primitive as possible
-> >>>> -------------------------------------------------
-> >>>> Marek Belisko - OPEN-NANDRA
-> >>>> Freelance Developer
-> >>>>
-> >>>> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-> >>>> Tel: +421 915 052 184
-> >>>> skype: marekwhite
-> >>>> twitter: #opennandra
-> >>>> web:http://open-nandra.com
-> >>>>
-> >>>
-> >>> --
-> >>> | Michael Nazzareno Trimarchi                     Amarula Solutions BV |
-> >>> | COO  -  Founder                                      Cruquiuskade 47 |
-> >>> | +31(0)851119172                                 Amsterdam 1018 AM NL |
-> >>> |                  [`as]http://www.amarulasolutions.com                |
-> >>>
-> >>
-> >>
+> First of all, patches for OE-core should be sent to:
+> openembedded-core@lists.openembedded.org
+> https://lists.openembedded.org/g/openembedded-core
+>
+> Looks like you are building poky-zeus - Poky, as a distro, is composed
+> from
+> multiple components/layers, such as bitbake, oe-core/meta, meta-poky and
+> meta-yocto-bsp. Most of them have own git repos with corresponding mailing
+> lists - usually mentioned in corresponding README files, please check
+> those.
+>
+>
+> > Applies to both zeus and dunfell
+>
+> The process to get your change backported to older branches/releases is to
+> submit it against master, and once accepted, re-send and ask to backport
+> to
+> other branches, such as zeus and dunfell with the name of the branch in
+> the
+> subject. That is because different branches/versions are usually
+> maintained
+> by different people.
+>
+>
+> > ERROR: Nothing RPROVIDES 'cryptodev-module-native' (but
+> virtual:native:/home/scott/poky-zeus/meta/recipes-connectivity/openssl/
+> openssl_1.1.1f.bb RDEPENDS on or otherwise requires it)
+> > ERROR: Required build target 'openssl' has no buildable providers.
+> > Missing or unbuildable dependency chain was: ['openssl', 'rpm-native',
+> 'python3-native', 'openssl-native', 'cryptodev-module-native']
+>
+> Not sure how you were able to set the wrong PACKAGECONFIG for
+> openssl-native,
+> when it gets explicitly emptied in the recipe below.
+>
+>
+> > diff --git a/meta/recipes-connectivity/openssl/openssl_1.1.1f.bb
+> b/meta/recipes-connectivity/openssl/openssl_1.1.1f.bb
+> > index aa4ef6f48a..a952fae728 100644
+> > --- a/meta/recipes-connectivity/openssl/openssl_1.1.1f.bb
+> > +++ b/meta/recipes-connectivity/openssl/openssl_1.1.1f.bb
+> > @@ -32,7 +32,7 @@ PACKAGECONFIG ?= ""
+> >  PACKAGECONFIG_class-native = ""
+> >  PACKAGECONFIG_class-nativesdk = ""
+>
+> Here, ^^^ PACKAGECONFIG should all be empty for native and nativesdk
+> versions
+> of openssl.
+>
+>
+> > -PACKAGECONFIG[cryptodev-linux] =
+> "enable-devcryptoeng,disable-devcryptoeng,cryptodev-linux,,cryptodev-module"
+> > +PACKAGECONFIG[cryptodev-linux] =
+> "enable-devcryptoeng,disable-devcryptoeng,cryptodev-linux"
+>
+> This is not a fix, but rather a workaround for a bad setup. Moreover, it
+> actually reverts my recent fix to RDEPENDS on cryptodev-module, which is
+> needed to properly support devcryptoeng in openssl.
+>
+> Maybe if you share with us how you set your environment, we would be able
+> to
+> help you resolve it properly. Thank you!
+>
+> --
+> Denys
+>
+>
+> >  B = "${WORKDIR}/build"
+> >  do_configure[cleandirs] = "${B}"
 > > --
-> > -----
-> > Rudolf J Streif
-> > CEO/CTO ibeeto
-> > +1.855.442.3386 x700
-> >
-> >
-> >
+> > 2.17.1
 > >
 >
+> >
 >
 > 
+>
 
+--00000000000069f0c405a4966f6e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div>Enabled via a bbappend in a custom layer</div><div><b=
+r></div>$ cat openssl_%.bbappend <br>PACKAGECONFIG_append =3D &quot; crypto=
+dev-linux&quot;<br><div><br></div><div>This was working prior to the <a hre=
+f=3D"http://openssl_1.1.1f.bb">openssl_1.1.1f.bb</a> recipe change a few da=
+ys ago.</div><div><br></div><div>How are you enabling this PACKAGECONFIG?</=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Thu, Apr 30, 2020 at 5:37 PM Denys Dmytriyenko &lt;<a href=3D"mailto=
+:denis@denix.org">denis@denix.org</a>&gt; wrote:<br></div><blockquote class=
+=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">On Thu, Apr 30, 2020 at 08:23:11PM +0000,=
+ Scott Ellis wrote:<br>
+<br>
+Hi, Scott,<br>
+<br>
+Sorry, I&#39;m not trying to discourage you from submitting patches, but t=
+here are <br>
+few issues with your patch here - see below and inline.<br>
+<br>
+First of all, patches for OE-core should be sent to:<br>
+<a href=3D"mailto:openembedded-core@lists.openembedded.org" target=3D"_bla=
+nk">openembedded-core@lists.openembedded.org</a><br>
+<a href=3D"https://lists.openembedded.org/g/openembedded-core" rel=3D"nore=
+ferrer" target=3D"_blank">https://lists.openembedded.org/g/openembedded-cor=
+e</a><br>
+<br>
+Looks like you are building poky-zeus - Poky, as a distro, is composed fro=
+m <br>
+multiple components/layers, such as bitbake, oe-core/meta, meta-poky and <=
+br>
+meta-yocto-bsp. Most of them have own git repos with corresponding mailing=
+ <br>
+lists - usually mentioned in corresponding README files, please check thos=
+e.<br>
+<br>
+<br>
+&gt; Applies to both zeus and dunfell<br>
+<br>
+The process to get your change backported to older branches/releases is to=
+ <br>
+submit it against master, and once accepted, re-send and ask to backport t=
+o <br>
+other branches, such as zeus and dunfell with the name of the branch in th=
+e <br>
+subject. That is because different branches/versions are usually maintaine=
+d <br>
+by different people.<br>
+<br>
+<br>
+&gt; ERROR: Nothing RPROVIDES &#39;cryptodev-module-native&#39; (but virtu=
+al:native:/home/scott/poky-zeus/meta/recipes-connectivity/openssl/<a href=
+=3D"http://openssl_1.1.1f.bb" rel=3D"noreferrer" target=3D"_blank">openssl=
+_1.1.1f.bb</a> RDEPENDS on or otherwise requires it)<br>
+&gt; ERROR: Required build target &#39;openssl&#39; has no buildable provi=
+ders.<br>
+&gt; Missing or unbuildable dependency chain was: [&#39;openssl&#39;, &#39=
+;rpm-native&#39;, &#39;python3-native&#39;, &#39;openssl-native&#39;, &#39;=
+cryptodev-module-native&#39;]<br>
+<br>
+Not sure how you were able to set the wrong PACKAGECONFIG for openssl-nati=
+ve, <br>
+when it gets explicitly emptied in the recipe below.<br>
+<br>
+<br>
+&gt; diff --git a/meta/recipes-connectivity/openssl/<a href=3D"http://open=
+ssl_1.1.1f.bb" rel=3D"noreferrer" target=3D"_blank">openssl_1.1.1f.bb</a> b=
+/meta/recipes-connectivity/openssl/<a href=3D"http://openssl_1.1.1f.bb" rel=
+=
+=3D"noreferrer" target=3D"_blank">openssl_1.1.1f.bb</a><br>
+&gt; index aa4ef6f48a..a952fae728 100644<br>
+&gt; --- a/meta/recipes-connectivity/openssl/<a href=3D"http://openssl_1.1=
+.1f.bb" rel=3D"noreferrer" target=3D"_blank">openssl_1.1.1f.bb</a><br>
+&gt; +++ b/meta/recipes-connectivity/openssl/<a href=3D"http://openssl_1.1=
+.1f.bb" rel=3D"noreferrer" target=3D"_blank">openssl_1.1.1f.bb</a><br>
+&gt; @@ -32,7 +32,7 @@ PACKAGECONFIG ?=3D &quot;&quot;<br>
+&gt;=C2=A0 PACKAGECONFIG_class-native =3D &quot;&quot;<br>
+&gt;=C2=A0 PACKAGECONFIG_class-nativesdk =3D &quot;&quot;<br>
+<br>
+Here, ^^^ PACKAGECONFIG should all be empty for native and nativesdk versi=
+ons <br>
+of openssl.<br>
+<br>
+<br>
+&gt; -PACKAGECONFIG[cryptodev-linux] =3D &quot;enable-devcryptoeng,disable=
+-devcryptoeng,cryptodev-linux,,cryptodev-module&quot;<br>
+&gt; +PACKAGECONFIG[cryptodev-linux] =3D &quot;enable-devcryptoeng,disable=
+-devcryptoeng,cryptodev-linux&quot;<br>
+<br>
+This is not a fix, but rather a workaround for a bad setup. Moreover, it <=
+br>
+actually reverts my recent fix to RDEPENDS on cryptodev-module, which is <=
+br>
+needed to properly support devcryptoeng in openssl.<br>
+<br>
+Maybe if you share with us how you set your environment, we would be able =
+to <br>
+help you resolve it properly. Thank you!<br>
+<br>
+-- <br>
+Denys<br>
+<br>
+<br>
+&gt;=C2=A0 B =3D &quot;${WORKDIR}/build&quot;<br>
+&gt;=C2=A0 do_configure[cleandirs] =3D &quot;${B}&quot;<br>
+&gt; -- <br>
+&gt; 2.17.1<br>
+&gt; <br>
+<br>
+&gt; <br>
+<br>
+<br>
+</blockquote></div>
 
--- 
-| Michael Nazzareno Trimarchi                     Amarula Solutions BV |
-| COO  -  Founder                                      Cruquiuskade 47 |
-| +31(0)851119172                                 Amsterdam 1018 AM NL |
-|                  [`as] http://www.amarulasolutions.com               |
+--00000000000069f0c405a4966f6e--
