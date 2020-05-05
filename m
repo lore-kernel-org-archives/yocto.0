@@ -1,73 +1,132 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.10011.1588691619096178729
+Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
+ by mx.groups.io with SMTP id smtpd.web12.5373.1588708335593282225
  for <yocto@lists.yoctoproject.org>;
- Tue, 05 May 2020 08:13:41 -0700
+ Tue, 05 May 2020 12:52:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=parse error for token &{10 18 sendgrid.net}: limit exceeded (domain: streamunlimited.com, ip: 140.211.169.56, mailfrom: quentin.schulz@streamunlimited.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B8F55E01AF3; Tue,  5 May 2020 08:13:37 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS,URIBL_RED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
-	*      trust
-	*      [213.33.87.14 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 URIBL_RED Contains an URL listed in the URIBL redlist
-	*      [URIs: yoctoproject.org]
-Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B4DFE01AF1
-	for <yocto@yoctoproject.org>; Tue,  5 May 2020 08:13:35 -0700 (PDT)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp.bon.at (Postfix) with ESMTPSA id 49Gjsp01M8z5tlF;
-	Tue,  5 May 2020 17:13:33 +0200 (CEST)
-Date: Tue, 5 May 2020 17:13:32 +0200
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: Prashanth <prashanth.vadde@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Regarding gnutls package in meta-gplv2 layer
-Message-ID: <20200505151332.im4kmprdtbnf2bcm@qschulz>
-References: <CAGskogRNKXgy2s39PZUqD-+M6VRsLykVS7YTp8WmRGz6n+F7Mw@mail.gmail.com>
- <CAGskogT3dUtz_68XK0wzE9h2LXFgS+u-rteYn3No44CDpNK6Cw@mail.gmail.com>
+ dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: trevor.gamblin@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 045Jp8c0017022
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Tue, 5 May 2020 12:51:44 -0700
+Received: from yow-tgamblin-fedora2.wrs.com (128.224.56.206) by
+ ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+ 14.3.487.0; Tue, 5 May 2020 12:51:33 -0700
+From: "Trevor Gamblin" <trevor.gamblin@windriver.com>
+To: <yocto@lists.yoctoproject.org>
+CC: <timothy.t.orling@linux.intel.com>
+Subject: [yocto][yocto-autobuilder2][PATCH] README-Guide: fix typos, add hashserv setup
+Date: Tue, 5 May 2020 15:51:33 -0400
+Message-ID: <20200505195133.3739946-1-trevor.gamblin@windriver.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-In-Reply-To: <CAGskogT3dUtz_68XK0wzE9h2LXFgS+u-rteYn3No44CDpNK6Cw@mail.gmail.com>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail5.wrs.com id 045Jp8c0017022
+Content-Type: text/plain; charset="y"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Prashanth,
+Added some instructions on setting up the hash equivalency server for
+an autobuilder instance that operates independently of the Yocto one.
+This all still assumes that the user is planning on running the controlle=
+r,
+worker, and janitor on the same build host, although the hash equivalency
+server itself doesn't need to be.
 
-On Tue, May 05, 2020 at 08:22:07PM +0530, Prashanth wrote:
-> Hi Team,
-> I am trying to avoid GPLv3 package of gnutls from default Thud release.
-> 
-> So I was checking the gnutls package from meta-gplv2 layer:
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-gplv2/tree/recipes-support/gnutls/gnutls.inc?h=thud
-> 
-> 
-> But here as well I see that, this package is with GPLv3 license. Can you
-> please let me know, if I am missing anything here. If not, can you please
-> suggest if I have any alternate for GPLv2 version gnutls package.
-> 
+Also made some minor changes to the list of packages to install to suppor=
+t
+the autobuilder on Ubuntu, since there were some typos in the package nam=
+es.
 
-It depends exactly which package you're talking about.
+Signed-off-by: Trevor Gamblin <trevor.gamblin@windriver.com>
+---
+ README-Guide.md | 42 ++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 38 insertions(+), 4 deletions(-)
 
-The superset of all licenses of all packages created by the gnutls
-recipe is GPLv3+ & LGPLv2.1+. This is also the default if the license is
-not explicited for a package.
+diff --git a/README-Guide.md b/README-Guide.md
+index 70f1433..21dd7c1 100644
+--- a/README-Guide.md
++++ b/README-Guide.md
+@@ -11,8 +11,8 @@ The final outputs of this section are a controller and =
+worker installed in the s
+ The latest version of BuildBot is written in Python 3, so installation v=
+ia=C2=A0pip3:
+=20
+ ```
+-apt install python-pip3 git build-essential python3-pip virtualenv encha=
+ng npm
+-sudo pip3 install buildbot buildbot-www buildbot-waterfall-view buildbot=
+-console-view buildbot-grid-view
++apt install git build-essential python3-pip virtualenv enchant npm
++sudo pip3 install buildbot buildbot-www buildbot-waterfall-view buildbot=
+-console-view buildbot-grid-view buildbot-worker
+ ```
+=20
+ It is recommended to also install=C2=A0`testtools` and=C2=A0`libccpunit-=
+subunit-dev` (via apt, in this case) on the worker in order=C2=A0for cert=
+ain image tests to work correctly (e.g., `core-image-sato-sdk:do_testimag=
+e`).
+@@ -63,7 +63,41 @@ Set=C2=A0`BASE_HOMEDIR` should be your build user's ho=
+me directory.=C2=A0 (There are she
+=20
+ Finally, as root,=C2=A0add the=C2=A0`yocto-*.service` files to=C2=A0`/li=
+b/systemd/system` (See Appendix A).=C2=A0 Run: `systemctl daemon-reload`.=
+=C2=A0 You should now be able to successfully start these services (e.g.,=
+ `sudo systemctl start yocto-*`).=C2=A0 The controller may take up to 15 =
+seconds to start.
+=20
+-### 1.1) Special Notes for the Worker Environment
++### 1.1) Configuring the Worker's Hash Equivalency Server
++
++A key part of the autobuilder setup is the use of a hash equivalency
++server, which is started manually on the Yocto hosts. By default, the=20
++config.json file that is pulled along with yocto-autobuilder-helper=20
++contains "BB_HASHSERVE =3D 'typhoon.yocto.io:8686'", which will likely=20
++cause a custom autobuilder instance to hang while trying to communicate=20
++with the hash equivalency server. As mentioned in the previous section,=20
++any configuration changes made need to be committed to the=20
++yocto-autobuilder-helper repo that your worker will pull from. A simple
++way to start the hash equivalency server and properly configure your
++workers is done with the following steps:
++
++1. Clone a copy of the poky distribution repo from
++   https://git.yoctoproject.org/cgit/cgit.cgi/poky/
++2. Source the oe-init-build-env script into your build directory
++3. Run "bitbake-hashserv --bind <PORT>:<IP>" from the build directory
++4. Clone a copy of
++   https://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder-helper/,
++   then create config-local.json by copying config.json (and removing=20
++   sections that aren't required). Since the contents of config-local.js=
+on=20
++   are an overlay for those in config.json, this will preserve as much o=
+f=20
++   the initial configuration as possible.
++5. Change the BB_HASHSERVE value in config-local.json to point to the IP=
+=20
++   and port you specified in step 3
++6. Commit the changes in the local yocto-autobuilder-helper repository
++7. In <autobuilderpath>/yocto-controller/yoctoabb/config.py, change the
++   entry for "yocto-autobuilder-helper" under "repos" to point at your
++   local copy of the yocto-autobuilder-helper repository.
++
++After these steps have been taken, the workers that you start should
++attach to your local hash equivalency server and be able to complete a
++target build.
++
++### 1.2) Special Notes for the Worker Environment
+=20
+ The QEMU=C2=A0tap interfaces also need to be generated and owned by the =
+worker's user (created above).=C2=A0 One way to this is to compile the `m=
+eta/recipes-devtools/qemu/qemu-helper/tunctl.c`=C2=A0file and run it _N_ =
+times on the worker's host.=C2=A0 See the related `qemu-helper-native` re=
+cipe for instructions.=C2=A0 The resulting executable would be run _N_ ti=
+mes (e.g., 8), so for example:=C2=A0`sudo=C2=A0tunctl -u $(id -u pokybuil=
+d3) -g $(id -g pokybuild3) -t tun0`.
+=20
+@@ -281,4 +315,4 @@ Group=3Dnogroup
+=20
+ [Install]
+ WantedBy=3Dmulti-user.target
+-```
+\ No newline at end of file
++```
+--=20
+2.25.4
 
-gnutls package (not recipe, package) is licensed under LGPLv2.1+. Same
-for gnutls-xx package.
-
-gnutls-openssl and gnutls-bin are licensed under GPLv3+.
-
-All other packages are under GPLv3+ & LGPLv2.1+.
-
-Hope that helps.
-
-Quentin
