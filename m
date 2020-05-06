@@ -1,91 +1,92 @@
-Subject: Autoupdate of versions in specific recipes #yocto
-To: yocto@lists.yoctoproject.org
-From: "Oliver Westermann" <oliver.westermann@cognex.com>
-X-Originating-Location: Aachen, North Rhine-Westphalia, DE (5.199.241.18)
-X-Originating-Platform: Windows Chrome 81
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
+ by mx.groups.io with SMTP id smtpd.web12.1506.1588775517509826828
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 06 May 2020 07:31:57 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=COlwaOBE;
+ spf=pass (domain: gmail.com, ip: 209.85.217.48, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-vs1-f48.google.com with SMTP id g2so1120899vsb.4
+        for <yocto@lists.yoctoproject.org>; Wed, 06 May 2020 07:31:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=68qc/1lP6fa8OHejbLjGjb6ea7ru7z6FNPYPMO1EadQ=;
+        b=COlwaOBEZVaBmL/CnVtmhuCY66l8E+/vcZQ7V5Cz6IEt2OvAOh4SgaSoIOUamZ5Gc1
+         Q5jo3sLMTrDZmFLTHbSjUnPY4RhyX6tgyDqKTLv3TTRuOtgFDAvmwefdf67pfoLtjOs+
+         3VB8D6lQLyuHOTsWDGOfv4K2EGqg0YICYuD69EJbz8jDnFSDz73MVL89hB9SY1mYirN3
+         l9NBrIY4RHrqjIMHnP4kayeES8MXem9yIiArt38EvbuNHzTDxQk+G3Hs0v3PtP+8ceuw
+         MBe9KF4yS/bZigslR/EZ+fi9DZOYx2YSR/uQlRYgbM1lbXL7ihc/GKaJH3V0F+7iBi3y
+         Xwfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=68qc/1lP6fa8OHejbLjGjb6ea7ru7z6FNPYPMO1EadQ=;
+        b=XqTLCargT03IUZzUtXQpy61xeleAQuzimw7eE/KN7GZNPPvBkXiOxlRFvc5NpGJwKS
+         lGl4Pl+b4ECHxSEddeNZoQy0j6A47YRMEXI57G7D9uFoHVmDra9i/jMtGMeK766bXXLa
+         4pOPnHwxnqrNimc7fw2hcfF+0tbAsjIF897olgLtnfF6mhTcrpSXEEvZIwXB4jwQE4+b
+         SA4bdgncsFfu75Rz6aywF6N6h9x6aATJzW5nrX0E2R56TImDF5sW97H8ddBiPlWseRVZ
+         9OfKcEfvcCVQUzhe1X8Fggk/WKA/Rgk9NR7mFCjwOfJEapKFW4h6RA5tHTAgmxfZRMKZ
+         lvWA==
+X-Gm-Message-State: AGi0PuajR51/52cdvXOtGomn3wF6rwAheSFq6kHkSLFiNAAw4kwqBkpG
+	0hMOa/cF1syiB3ykGaeI023wrDzRy07ynx3Z2+H+WN3M
+X-Google-Smtp-Source: APiQypIoe+hYQX8uhJLvzdRv2k875RtwAUXRtKMOF9OOHRgVNre1F5gGXQkoSlwmEN/P7e7XD6P4DeLhjVlVk02ZpfE=
+X-Received: by 2002:a67:7d10:: with SMTP id y16mr8169439vsc.23.1588775516451;
+ Wed, 06 May 2020 07:31:56 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 06 May 2020 07:19:42 -0700
-Message-ID: <pJCb.1588774782754186556.GQSZ@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="4A5XyyxWwR71GdMKJgwU"
+References: <pJCb.1588774782754186556.GQSZ@lists.yoctoproject.org>
+In-Reply-To: <pJCb.1588774782754186556.GQSZ@lists.yoctoproject.org>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Wed, 6 May 2020 16:31:45 +0200
+Message-ID: <CANNYZj_oH6mzFvk0w-vOe8GpEcV56MCyfyiDwkB7bRgp_nTK2A@mail.gmail.com>
+Subject: Re: [yocto] Autoupdate of versions in specific recipes #yocto
+To: yocto@lists.yoctoproject.org, 
+	oliver westermann <oliver.westermann@cognex.com>
+Content-Type: multipart/alternative; boundary="000000000000493d6b05a4fba0c9"
 
---4A5XyyxWwR71GdMKJgwU
-Content-Type: text/plain; charset="utf-8"
+--000000000000493d6b05a4fba0c9
+Content-Type: text/plain; charset="UTF-8"
+
+On Wed, 6 May 2020 at 16:19, Oliver Westermann <oliver.westermann@cognex.com>
+wrote:
+
+> My goal would be to set a flag in recipes where I would like updates and
+> than trigger "bitbake update-recipes". Bitbake would parse all recipes,
+> check for the flag. If the flag is set, check SRC_URI (git url + branch),
+> update SRCREV and in the end output a summary similar to git submodule
+> summary (changed commits + changelog / git log --oneline). I feel a lot of
+> the plumbing exists (eg from the fetcher supporting AUTOREV).
+>
+
+I think you might find auto upgrade helper useful:
+http://git.yoctoproject.org/cgit/cgit.cgi/auto-upgrade-helper/tree/README
+
+It's built on top of 'devtool upgrade' and 'devtool check-upgrade-status',
+so you can use those directly in some kind of custom script as well.
+
+Alex
+
+--000000000000493d6b05a4fba0c9
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hey,
+<div dir=3D"ltr"><div dir=3D"ltr">On Wed, 6 May 2020 at 16:19, Oliver Weste=
+rmann &lt;<a href=3D"mailto:oliver.westermann@cognex.com">oliver.westermann=
+@cognex.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex">My goal would be to set a flag in rec=
+ipes where I would like updates and than trigger &quot;bitbake update-recip=
+es&quot;. Bitbake would parse all recipes, check for the flag. If the flag =
+is set, check=C2=A0SRC_URI (git url + branch), update SRCREV and in the end=
+ output a summary similar to git submodule summary (changed commits + chang=
+elog / git log --oneline). I feel a lot of the plumbing exists (eg from the=
+ fetcher supporting AUTOREV).<br></blockquote><div><br></div><div>I think y=
+ou might find auto upgrade helper useful:</div><div><a href=3D"http://git.y=
+octoproject.org/cgit/cgit.cgi/auto-upgrade-helper/tree/README">http://git.y=
+octoproject.org/cgit/cgit.cgi/auto-upgrade-helper/tree/README</a></div><div=
+><br></div><div>It&#39;s built on top of &#39;devtool upgrade&#39; and &#39=
+;devtool check-upgrade-status&#39;, so you can use those directly in some k=
+ind of custom script as well.</div><div><br></div><div>Alex<br></div><div><=
+br> </div></div></div>
 
-Is there a feature in yocto, similar to ${AUTOREV}, which allows to check =
-for updates and modify a recipe?
-
-Background:
-We've a setup which is build upon the yocto project. We've a base git proj=
-ect containing various layers (like basic poky, bsp layers as well as our o=
-wn layers with our own recipes). Another part of the yocto "superproject" a=
-re some source repositorys containing the sourcecode of internal applicatio=
-ns. We use the=C2=A0externalsrc class in the recipes (actually a derived cl=
-ass) to build our application which works well.
-
-One benefit of this technique is that we can use git to handle updating an=
-d tracking the submodules: We can track a branch of our applications in the=
- .gitmodules file, we can use $ git submodule summary to summarize changes =
-and so on. This covers the requirement that we can go back to commit xxxxxx=
-x of the superproject and this one commit reflects the state of ALL used so=
-ftware. There are drawbacks however: The sources are now handled out of yoc=
-to's realms, so some features are limited and we need to check out all our =
-applications, even if the target we're building doesn't even use that recip=
-e.
-
-The alternative we use in some, seldomly changed applications is to use "t=
-he regular yocto flow", have a SRCREV in recipe and update that whenever ne=
-eded. Drawback is that this is a manual process, so sb who needs to update =
-two applications needs to replace the revision, collect changelogs from the=
- repos, create a commit containing the changelog, get that through a PR, ..=
-.
-
-My goal would be to set a flag in recipes where I would like updates and t=
-han trigger "bitbake update-recipes". Bitbake would parse all recipes, chec=
-k for the flag. If the flag is set, check=C2=A0SRC_URI (git url + branch), =
-update SRCREV and in the end output a summary similar to git submodule summ=
-ary (changed commits + changelog / git log --oneline). I feel a lot of the =
-plumbing exists (eg from the fetcher supporting AUTOREV).
-
-Does anyone know if something like this?
-
-Best regards, Olli
-
---4A5XyyxWwR71GdMKJgwU
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hey,<br /><br />Is there a feature in yocto, similar to ${AUTOREV}, which a=
-llows to check for updates and modify a recipe?<br /><br />Background:<br /=
->We've a setup which is build upon the yocto project. We've a base git proj=
-ect containing various layers (like basic poky, bsp layers as well as our o=
-wn layers with our own recipes). Another part of the yocto "superproject" a=
-re some source repositorys containing the sourcecode of internal applicatio=
-ns. We use the&nbsp;externalsrc class in the recipes (actually a derived cl=
-ass) to build our application which works well.&nbsp;<br /><br />One benefi=
-t of this technique is that we can use git to handle updating and tracking =
-the submodules: We can track a branch of our applications in the .gitmodule=
-s file, we can use $ git submodule summary to summarize changes and so on. =
-This covers the requirement that we can go back to commit xxxxxxx of the su=
-perproject and this one commit reflects the state of ALL used software. The=
-re are drawbacks however: The sources are now handled out of yocto's realms=
-, so some features are limited and we need to check out all our application=
-s, even if the target we're building doesn't even use that recipe.<br /><br=
- />The alternative we use in some, seldomly changed applications is to use =
-"the regular yocto flow", have a SRCREV in recipe and update that whenever =
-needed. Drawback is that this is a manual process, so sb who needs to updat=
-e two applications needs to replace the revision, collect changelogs from t=
-he repos, create a commit containing the changelog, get that through a PR, =
-...<br /><br />My goal would be to set a flag in recipes where I would like=
- updates and than trigger "bitbake update-recipes". Bitbake would parse all=
- recipes, check for the flag. If the flag is set, check&nbsp;SRC_URI (git u=
-rl + branch), update SRCREV and in the end output a summary similar to git =
-submodule summary (changed commits + changelog / git log --oneline). I feel=
- a lot of the plumbing exists (eg from the fetcher supporting AUTOREV).<br =
-/><br />Does anyone know if something like this?<br /><br />Best regards, O=
-lli<br />
-
---4A5XyyxWwR71GdMKJgwU--
+--000000000000493d6b05a4fba0c9--
