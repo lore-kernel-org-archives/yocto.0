@@ -1,82 +1,91 @@
-Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com [209.85.128.67])
- by mx.groups.io with SMTP id smtpd.web12.302.1588771779813114041
- for <yocto@lists.yoctoproject.org>;
- Wed, 06 May 2020 06:29:40 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bgdev-pl.20150623.gappssmtp.com header.s=20150623 header.b=jbHtOBBK;
- spf=none, err=SPF record not found (domain: bgdev.pl, ip: 209.85.128.67, mailfrom: brgl@bgdev.pl)
-Received: by mail-wm1-f67.google.com with SMTP id y24so2668576wma.4
-        for <yocto@lists.yoctoproject.org>; Wed, 06 May 2020 06:29:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+nygrohoC3XmdgebrcFnnfB1c7tN1EG6SJKbveh6NSY=;
-        b=jbHtOBBKUx0EaabyYULfUSTZQMi1uBrt6BxitDPh/B/hZznfBfBd9p2Mw7bW8Aj1+Y
-         YV8TxRcKlL60SGYOa/2DZAUqBaLd+QS4wBStJ3eV8UT6XS2gT6o0YLwsZ6nhfaoxxxgA
-         +WiMAG3haeVhISKPU5m+wL7u9bMxeAgK/ozpk43aLOjqkWn8Jdz3n/s5GeqXx3Lt3S37
-         MzOdGa3nE+LNl9qoG+Y4T0Te6soh+lZayrYFU6QH4d7bzgovFpo7p1RBpp5o8bQERe/1
-         avopYy4ivluPBovfIVtbmi06PhaoaH6UA10c0xxIOw9Urn3bErfXEuhP/M4HPRr4PLeA
-         m75A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+nygrohoC3XmdgebrcFnnfB1c7tN1EG6SJKbveh6NSY=;
-        b=h3+sf8tprYFcnBVg48d++aUms++3litjF76deTQnQ3tITZXLN8SL8PqHRg2whl5eLl
-         u2C8TyfEVBUaQkp/v+0J7ImTEEi1aRh1sKBiXDfyorpcuKvaKG4QWbYBLv882y6ST8hR
-         y5g12UDiKIO+R4FCi808NRMAut8NYlMiyFPEka3INm0xX4or+XTI5gYvokixu+MAGSal
-         EK4LEsLtd+tCYfYtyHjNgKl9AyD5IpiWq8DuNzuhHXGES4b75FXqIgVdQI2fSWgZKCIw
-         VXye90CiSffWTuYc8DFFlYknZ4EUu0TZOUA1y773wyAcLeCnxdmyjk+1IUBrpbTvhOCq
-         0i7g==
-X-Gm-Message-State: AGi0PuYzGOwcvwh83RIl4bGxcTQZz30pPhDibbyCX85Ke0nERx65u8B+
-	IB9MQc0NaAN5AG08MYf6RqgR4A==
-X-Google-Smtp-Source: APiQypL9mRiq4pgKkp9FPM5kG/Z2XXcuforpDfVpZ70EziXo+uxHmGTu+pih6LB4MiuDyfB9WWCK1w==
-X-Received: by 2002:a7b:c14b:: with SMTP id z11mr4278864wmi.44.1588771778346;
-        Wed, 06 May 2020 06:29:38 -0700 (PDT)
-Return-Path: <brgl@bgdev.pl>
-Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
-        by smtp.gmail.com with ESMTPSA id d7sm2729211wrn.78.2020.05.06.06.29.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 May 2020 06:29:37 -0700 (PDT)
-From: "Bartosz Golaszewski" <brgl@bgdev.pl>
-To: Khem Raj <raj.khem@gmail.com>,
-	Richard Purdie <richard.purdie@linuxfoundation.org>,
-	Armin Kuster <akuster808@gmail.com>
-Cc: openembedded-devel@lists.openembedded.org,
-	yocto@lists.yoctoproject.org,
-	Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [OE-core][PATCH] busybox: disable i2ctransfer
-Date: Wed,  6 May 2020 15:29:32 +0200
-Message-Id: <20200506132932.19286-1-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.25.0
+Subject: Autoupdate of versions in specific recipes #yocto
+To: yocto@lists.yoctoproject.org
+From: "Oliver Westermann" <oliver.westermann@cognex.com>
+X-Originating-Location: Aachen, North Rhine-Westphalia, DE (5.199.241.18)
+X-Originating-Platform: Windows Chrome 81
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Date: Wed, 06 May 2020 07:19:42 -0700
+Message-ID: <pJCb.1588774782754186556.GQSZ@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="4A5XyyxWwR71GdMKJgwU"
 
-From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+--4A5XyyxWwR71GdMKJgwU
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-I2C tools are built by default in busybox. OE-core on the other hand
-disables them all in the busybox defconfig except i2ctransfer. Since
-this looks like an oversight, this patch proposes to disable this tool
-as well.
+Hey,
 
-Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
----
- meta/recipes-core/busybox/busybox/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Is there a feature in yocto, similar to ${AUTOREV}, which allows to check =
+for updates and modify a recipe?
 
-diff --git a/meta/recipes-core/busybox/busybox/defconfig b/meta/recipes-core/busybox/busybox/defconfig
-index 0b27fcd4b3..4334a9d738 100644
---- a/meta/recipes-core/busybox/busybox/defconfig
-+++ b/meta/recipes-core/busybox/busybox/defconfig
-@@ -785,6 +785,7 @@ CONFIG_FEATURE_CROND_DIR=""
- # CONFIG_I2CSET is not set
- # CONFIG_I2CDUMP is not set
- # CONFIG_I2CDETECT is not set
-+# CONFIG_I2CTRANSFER is not set
- # CONFIG_INOTIFYD is not set
- CONFIG_LESS=y
- CONFIG_FEATURE_LESS_MAXLINES=9999999
--- 
-2.25.0
+Background:
+We've a setup which is build upon the yocto project. We've a base git proj=
+ect containing various layers (like basic poky, bsp layers as well as our o=
+wn layers with our own recipes). Another part of the yocto "superproject" a=
+re some source repositorys containing the sourcecode of internal applicatio=
+ns. We use the=C2=A0externalsrc class in the recipes (actually a derived cl=
+ass) to build our application which works well.
 
+One benefit of this technique is that we can use git to handle updating an=
+d tracking the submodules: We can track a branch of our applications in the=
+ .gitmodules file, we can use $ git submodule summary to summarize changes =
+and so on. This covers the requirement that we can go back to commit xxxxxx=
+x of the superproject and this one commit reflects the state of ALL used so=
+ftware. There are drawbacks however: The sources are now handled out of yoc=
+to's realms, so some features are limited and we need to check out all our =
+applications, even if the target we're building doesn't even use that recip=
+e.
+
+The alternative we use in some, seldomly changed applications is to use "t=
+he regular yocto flow", have a SRCREV in recipe and update that whenever ne=
+eded. Drawback is that this is a manual process, so sb who needs to update =
+two applications needs to replace the revision, collect changelogs from the=
+ repos, create a commit containing the changelog, get that through a PR, ..=
+.
+
+My goal would be to set a flag in recipes where I would like updates and t=
+han trigger "bitbake update-recipes". Bitbake would parse all recipes, chec=
+k for the flag. If the flag is set, check=C2=A0SRC_URI (git url + branch), =
+update SRCREV and in the end output a summary similar to git submodule summ=
+ary (changed commits + changelog / git log --oneline). I feel a lot of the =
+plumbing exists (eg from the fetcher supporting AUTOREV).
+
+Does anyone know if something like this?
+
+Best regards, Olli
+
+--4A5XyyxWwR71GdMKJgwU
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hey,<br /><br />Is there a feature in yocto, similar to ${AUTOREV}, which a=
+llows to check for updates and modify a recipe?<br /><br />Background:<br /=
+>We've a setup which is build upon the yocto project. We've a base git proj=
+ect containing various layers (like basic poky, bsp layers as well as our o=
+wn layers with our own recipes). Another part of the yocto "superproject" a=
+re some source repositorys containing the sourcecode of internal applicatio=
+ns. We use the&nbsp;externalsrc class in the recipes (actually a derived cl=
+ass) to build our application which works well.&nbsp;<br /><br />One benefi=
+t of this technique is that we can use git to handle updating and tracking =
+the submodules: We can track a branch of our applications in the .gitmodule=
+s file, we can use $ git submodule summary to summarize changes and so on. =
+This covers the requirement that we can go back to commit xxxxxxx of the su=
+perproject and this one commit reflects the state of ALL used software. The=
+re are drawbacks however: The sources are now handled out of yocto's realms=
+, so some features are limited and we need to check out all our application=
+s, even if the target we're building doesn't even use that recipe.<br /><br=
+ />The alternative we use in some, seldomly changed applications is to use =
+"the regular yocto flow", have a SRCREV in recipe and update that whenever =
+needed. Drawback is that this is a manual process, so sb who needs to updat=
+e two applications needs to replace the revision, collect changelogs from t=
+he repos, create a commit containing the changelog, get that through a PR, =
+...<br /><br />My goal would be to set a flag in recipes where I would like=
+ updates and than trigger "bitbake update-recipes". Bitbake would parse all=
+ recipes, check for the flag. If the flag is set, check&nbsp;SRC_URI (git u=
+rl + branch), update SRCREV and in the end output a summary similar to git =
+submodule summary (changed commits + changelog / git log --oneline). I feel=
+ a lot of the plumbing exists (eg from the fetcher supporting AUTOREV).<br =
+/><br />Does anyone know if something like this?<br /><br />Best regards, O=
+lli<br />
+
+--4A5XyyxWwR71GdMKJgwU--
