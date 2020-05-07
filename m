@@ -1,123 +1,103 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.405.1588874477338539137
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+ by mx.groups.io with SMTP id smtpd.web11.2734.1588881055028152945
  for <yocto@lists.yoctoproject.org>;
- Thu, 07 May 2020 11:01:17 -0700
+ Thu, 07 May 2020 12:50:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DDA3DE01B0C; Thu,  7 May 2020 11:01:16 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24321E01B0A
-	for <yocto@yoctoproject.org>; Thu,  7 May 2020 11:01:15 -0700 (PDT)
-Received: from cpeac202e043973-cmac202e043970.sdns.net.rogers.com ([174.114.100.179]:48768 helo=localhost.localdomain)
-	by cpanel7.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.93)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1jWkpe-0061dX-Dm
-	for yocto@yoctoproject.org; Thu, 07 May 2020 14:01:15 -0400
-Date: Thu, 7 May 2020 14:01:11 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: how to list python3 built-in and core modules supplied by python3?
-Message-ID: <alpine.LFD.2.21.2005071224280.2004419@localhost.localdomain>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Rd+4q/9m;
+ spf=pass (domain: gmail.com, ip: 209.85.210.176, mailfrom: raj.khem@gmail.com)
+Received: by mail-pf1-f176.google.com with SMTP id r14so3525427pfg.2
+        for <yocto@lists.yoctoproject.org>; Thu, 07 May 2020 12:50:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=fvLRRiNSAR4K32FhEGFdB3H0GH8BUk6R7fBajtd4y/0=;
+        b=Rd+4q/9mqDiWIYzrxfSglsCxWuLptUdia5/68HSutrPGIeEYhkxcMk96LnTrc0dZvJ
+         09+rzlqP+69nTf2/vlTlHILcEc2ygjhA78D+uJomzpkAkMLYOdvz9+Dgu0CdxOPI2X43
+         NiT1B1dDhl4DlJls2UkBSPr37NvNOR6Au9Bto6mmKjE1aVfy7CjMRxsZuce7egrtZVP6
+         97SSNoAuXmdySyepC0bRKW8zyHneAxxUdUJN7s+euTPMNY/IKv8G5lFEnpIrbTun6ACg
+         uQiZoQTXN/GV5ze/4Bw+qTAVsmQ9zGFkxpV+B1rzWMxxJNGtMYfUlf2nLX4hW2s+kXHW
+         8i0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=fvLRRiNSAR4K32FhEGFdB3H0GH8BUk6R7fBajtd4y/0=;
+        b=GS55m8+KKPy2ay/gzizJgUYdEmkTSkUc7ttP4ayNXbgFH0xNDrLUJM7Fx68pQfpZ/A
+         RlC4eDEl7qdOAn5THbnFTPYCUG4QSJ26WDUcFOzJ71l9ajqMKaKurmTKDZLXMFPGX4jm
+         AcoM4JNz7zGAJClO57J0JIDVSM2CntKMuPTQUu3swzSD/VhoHXH8L96kMVk2u9SWM9ZI
+         1boURT2B3aSvTaKKs33dfwnC6JPvPF1jO7eiV51CwGuIfDHOrD5KACYJzcS+UcYKikAr
+         y+CnwYVWBKQeapiANd0CYZ6BkNa41QZSWuDnQi7LHPZKPodo0b4B3vkQBoa89pVf2wDd
+         gS8g==
+X-Gm-Message-State: AGi0PuajYR2O/OwD77oA/OdulPAZpBsuA/7VC3FeEGDOIrQkV4fmY3yf
+	1UAdXDvAOIto5eEyrMDYwjdIirp294A=
+X-Google-Smtp-Source: APiQypLM9B1+Z8I93cZwj5XclNlxt3ayhtN7sjDhjUH6O54jxLo6kdQ4IFtehKDFcaps+0PRQuKDmQ==
+X-Received: by 2002:aa7:8f2c:: with SMTP id y12mr16375433pfr.80.1588881053670;
+        Thu, 07 May 2020 12:50:53 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:4e0::2691? ([2601:646:9200:4e0::2691])
+        by smtp.gmail.com with ESMTPSA id t14sm4451628pgr.61.2020.05.07.12.50.52
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 May 2020 12:50:53 -0700 (PDT)
+Subject: Re: [yocto] BSP layer for Firecracker: Sensible? Advisable? #linux #yocto
+To: yocto@lists.yoctoproject.org
+References: <icKq.1588569081390143515.vhG9@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Autocrypt: addr=raj.khem@gmail.com; keydata=
+ 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
+Message-ID: <d067087b-78c0-5fbe-8526-746fbfb5cfb9@gmail.com>
+Date: Thu, 7 May 2020 12:50:52 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <icKq.1588569081390143515.vhG9@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
 
-  colleague recently asked how to list the built-in/core modules that
-come with just installing python3, to know which additional python3
-modules would require running around looking for actual recipes, all
-of this without having to boot the actual image. had to think about
-this for a second, and came up with this -- open to suggestions,
-criticism or gales of wild laughter.
 
-  as a working example to demonstrate this, i'm building a
-core-image-minimal for qemux86_64 (with "package_rpm"), so i can use
-that as a starting point, and i want to identify the python modules
-that go into the image without having to boot the image -- that is,
-just based on what i can poke at under tmp/deploy/.
+On 5/3/20 10:11 PM, mark@taqtiqa.com wrote:
+> Hi,
+> I'm exploring the use of yocto to build kernels, initrd and rootfs for
+> the Firecracker micro VMM.
 
-  so, after building a core-image-minimal, i simply:
+Not sure if there is a dedicated layer for firecracker, but you can
+start with QEMU/KVM which is supported and then extend/customise it
 
-  IMAGE_INSTALL_append = " python3"
-
-build again, and start looking around to see what that added.
-
-  first, i can check the image manifest, where i can see a pile of
-python3 stuff that will now be part of the image:
-
-python3-2to3 core2_64 3.8.2
-python3-asyncio core2_64 3.8.2
-python3-audio core2_64 3.8.2
-python3-codecs core2_64 3.8.2
-python3-compile core2_64 3.8.2
-python3-compression core2_64 3.8.2
-python3-core core2_64 3.8.2
-python3-crypt core2_64 3.8.2
-... and so on and so on ...
-
-  starting with the python3-core package, i can list the built-in
-modules via:
-
-  $ rpm2cpio python3-core-3.8.2-r0.core2_64.rpm | cpio -itv
-
-where i can get an idea of the built-in modules:
-
-...
-./usr/lib/python3.8/linecache.py
-./usr/lib/python3.8/locale.py
-./usr/lib/python3.8/lzma.py
-./usr/lib/python3.8/ntpath.py
-./usr/lib/python3.8/opcode.py
-./usr/lib/python3.8/operator.py
-./usr/lib/python3.8/optparse.py
-./usr/lib/python3.8/os.py
-...
-
-  is that the right/easiest way to see the built-in modules? is there
-a simpler way? would that be a complete list or would i be missing
-something?
-
-  and second, the manifest (as seen above) would also list the
-packages for the various python core modules, as in:
-
-...
-python3-email core2_64 3.8.2
-python3-fcntl core2_64 3.8.2
-python3-html core2_64 3.8.2
-python3-idle core2_64 3.8.2
-python3-image core2_64 3.8.2
-python3-io core2_64 3.8.2
-python3-json core2_64 3.8.2
-python3-logging core2_64 3.8.2
-...
-
-  at this point, would this be a comprehensive list of the modules
-that would be installed by having done nothing but installed
-"python3"? am i missing any? the point of this is to clarify what's
-there to know if one then has to look externally for a given module to
-be added.
-
-  thanks for any pointers.
-
-rday
+> Conseq
+> 
+> 
+> 
