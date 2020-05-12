@@ -1,143 +1,236 @@
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
- by mx.groups.io with SMTP id smtpd.web11.3790.1589238080996287460
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.2980.1589279138666219365
  for <yocto@lists.yoctoproject.org>;
- Mon, 11 May 2020 16:01:21 -0700
+ Tue, 12 May 2020 03:25:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ohTHM0da;
- spf=pass (domain: gmail.com, ip: 209.85.214.177, mailfrom: raj.khem@gmail.com)
-Received: by mail-pl1-f177.google.com with SMTP id t16so4543277plo.7
-        for <yocto@lists.yoctoproject.org>; Mon, 11 May 2020 16:01:20 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=MFYQoy0a;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: mhm.dawod@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 42BD2E01B41; Tue, 12 May 2020 03:25:38 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (mhm.dawod[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.214.176 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65463E01B3F
+	for <yocto@yoctoproject.org>; Tue, 12 May 2020 03:25:36 -0700 (PDT)
+Received: by mail-pl1-f176.google.com with SMTP id u10so5192917pls.8
+        for <yocto@yoctoproject.org>; Tue, 12 May 2020 03:25:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:autocrypt:organization:message-id:date
-         :user-agent:mime-version:in-reply-to;
-        bh=SHx1vg4yr8aXZ0hzgyRABJ1nNyuSy4mWja65DuicJic=;
-        b=ohTHM0da7Okzk/ITEXODQmzVPMu4Ej09n8YX2I6jdCK9mju5eL7MBhBJnINk9WPSwp
-         1TUYRkHhmq/bup8KySPndTs5y78lZpVjTNEroovsVPPeHuf7T9i6cSdZWf7PQoridkHy
-         IRhEoPpZREY6como3UxxHi42aqyHwTm4MtFv9JSbKUoa4JJxPJMLq2JhbMQV2NhdaRiY
-         wvuSZJ5JqHf7l3mGQwfTFIkuCndHath3LuEd+3V9HHeH1eP5Db3TlGhuIjEO6S2ZFQvi
-         VJh+HzYGQxTKHmN4h/zvYs1T9+XU+inI944ZP5cWEWDIQkWvZa1CxvRP7Vq3ksgUCaMg
-         j/Bw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ivJdP+uPV9U7h0Olxmgd4u5qQzl87FqvZhZgE3cWh18=;
+        b=MFYQoy0aWnl/CYryzIdEciB5nxA/P0k6ScdDfqd1Hmfe6wvG8WOxmR6A3+Sq7J0h+M
+         4D9V6JH5e3DiULv3yMmE0/V1BqnMyqWMP7dgashEwV+UYcM0Q/q7L7ii6xssllGM3nMf
+         DVJ+ljzdAV52NZk7hUj6q/FutJ1PwHoOOZTXrO8thfzJ5//63R4rCrVDNwRUnMSgkDLl
+         zhuvE/R6UgPTk1jYIk7b+mpSCQ8t6ysX6Bhsv8tZcZ3JGzVQBY04qG+Q+XNujwPehDxS
+         g6MnhEmg/jkJ4ShzhfoLdJILq4RhlnqeaHEMEN19RvC6uixN1/Gnjdb154o9jJitsIWP
+         OW3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to;
-        bh=SHx1vg4yr8aXZ0hzgyRABJ1nNyuSy4mWja65DuicJic=;
-        b=ugR9IgeqfyNl7WZKokhRwzIQDCxveSy0v9/s8UWUmKeQMlAuLlAI9hWOjZ0phgvBGf
-         anTA7JBj/bru3j1CDW69KCtvI08X9nWXbgf1s0rt6mBqqfuaApn+ZD85/vOBaGt/VvYN
-         uoRrAPLLK2FzHQABSpH58nPNE6kUApGkchXQ7qp7epDAt3yfPIvbgY5/KPYNtJCS4jAG
-         nU2vUFne6dDgecjToLB1mM4rIcqxs5g/OGh3ZXs42LPLyBT5JOrRrUFk4kCtcCDDbbB2
-         4Zz6JZHiDzA/mnGhOCg2KdjIUIRrPipQ8Dmzzerfih+sD9dc7DZELjL5O85t1iuizNL0
-         Tx3g==
-X-Gm-Message-State: AGi0PuZIxO1HqlXa0wC8GrfP+OLyX7AS5o98r6dWDYSELsrXIe3FfO0e
-	MzXeh/hFrO/i52MCY6uFiTAZO00CBqE=
-X-Google-Smtp-Source: APiQypL0HXdbTk4uFrxAz+8UNgb3GdtedlJG3pWyGJBDNz5fMRtFWVu3vUK3z0B80K+yYKwS6Gx3Kg==
-X-Received: by 2002:a17:90a:cc9:: with SMTP id 9mr22874529pjt.16.1589238079997;
-        Mon, 11 May 2020 16:01:19 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0::4cf4? ([2601:646:9200:4e0::4cf4])
-        by smtp.gmail.com with ESMTPSA id o6sm10074372pfp.172.2020.05.11.16.01.18
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 May 2020 16:01:19 -0700 (PDT)
-Subject: Re: [yocto] meta-anaconda Python AttributeError: "str" object has no attribute 'decode'
-To: yocto@lists.yoctoproject.org
-References: <7241cad2-50aa-018c-7dcb-893b897eac3b@optimcloud.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Autocrypt: addr=raj.khem@gmail.com; keydata=
- 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
-Organization: HIMVIS LLC
-Message-ID: <0dd20ef5-276f-476a-f823-850a96ec1961@gmail.com>
-Date: Mon, 11 May 2020 16:01:13 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ivJdP+uPV9U7h0Olxmgd4u5qQzl87FqvZhZgE3cWh18=;
+        b=cC+RqBqMPbHoeUeASz3/UwfaHw/BqS5mlDn4VGup273ikvAnMQ+nZ0VipPtVclt3sf
+         BGLnb2plhwiWNKF2Q+BtA7srcDw+/g2cDgIaOu12YKnJAa6kusxnmPwWIRILmzczEgd9
+         s6A6dsUjW7LBtplZ1oeupqPLXTnCry1QfTx9FQBF3pJ3GwqLLk7fm4gAJl6Epw6FKXLZ
+         2YdcOOxqwc72JoBgsdnNbmrGjPhdo8ulzKYigi+i7AkoJK5Pvz7gPrzltEoZS+u3lEXA
+         1sZtMjQRtCFz1z8UiYAxbxy9ExbWxta4ltsUv2pYE2OtzgvoT+GGYgSfLp3dm7MQjJ+F
+         xkTA==
+X-Gm-Message-State: AOAM530Pa6ooRRnV4r22s7xcIEFDTwHaBQRYzcg6OUxXi7ESQZq3mBw2
+	c9lXKPLES0XSOD+uaCCu+rJBNH+9cYVUunVyzEnsYvsp
+X-Google-Smtp-Source: ABdhPJwh7N4/RWpfYzHNg+sRf9ypGNrzf2opQkttxEr++H6sCB14GxPJaRl+OFxMvF5b7OLbbnbMktpLyNylCITUFIQ=
+X-Received: by 2002:a17:90b:357:: with SMTP id fh23mr3424070pjb.225.1589279136087;
+ Tue, 12 May 2020 03:25:36 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <7241cad2-50aa-018c-7dcb-893b897eac3b@optimcloud.com>
-X-Groupsio-MsgNum: 49370
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature";
- boundary="GMsnr4wrX6oXxJjoTbQjPO8xt3dlAJqG9"
+References: <CAGCTLNQW1WWHmy1zaE+LF-AKBQa-UpY8sfOy=HH3tt0rJLJFLg@mail.gmail.com>
+ <20200511091703.l53b4t74xc36vgdo@qschulz> <e183edd5-cea8-8870-eef3-2d3b7ecbc05a@kernel.crashing.org>
+In-Reply-To: <e183edd5-cea8-8870-eef3-2d3b7ecbc05a@kernel.crashing.org>
+From: "Dawod" <mhm.dawod@gmail.com>
+Date: Tue, 12 May 2020 12:25:24 +0200
+Message-ID: <CAGCTLNTeN7ATP32VNxV8OdBuU73OUdAYHtDtQS7=3a1tCQGgRA@mail.gmail.com>
+Subject: Re: [oe][yocto][bitbake] Fetching source using different protocols
+To: Mark Hatle <mark.hatle@kernel.crashing.org>
+Cc: Quentin Schulz <quentin.schulz@streamunlimited.com>, 
+	openembedded-core@lists.openembedded.org, yocto@yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000005b015b05a570e20e"
 
---GMsnr4wrX6oXxJjoTbQjPO8xt3dlAJqG9
-Content-Type: multipart/mixed; boundary="uAXCZgVKAxwDHyT21YJz4MEX6rD0OfhrZ";
- protected-headers="v1"
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@lists.yoctoproject.org
-Message-ID: <0dd20ef5-276f-476a-f823-850a96ec1961@gmail.com>
-Subject: Re: [yocto] meta-anaconda Python AttributeError: "str" object has no
- attribute 'decode'
-References: <7241cad2-50aa-018c-7dcb-893b897eac3b@optimcloud.com>
-In-Reply-To: <7241cad2-50aa-018c-7dcb-893b897eac3b@optimcloud.com>
+--0000000000005b015b05a570e20e
+Content-Type: text/plain; charset="UTF-8"
 
---uAXCZgVKAxwDHyT21YJz4MEX6rD0OfhrZ
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+Thank you all, your answers were so helpful,
+My problem had been solved.
+The reason behind my question was a temporary connections error for some
+machines in the lab so I needed some way to cover this problem  as fast as
+possible to keep my Yocto recipes away from this problem.
 
+Thank you very much.
 
+On Mon, May 11, 2020 at 8:37 PM Mark Hatle <mark.hatle@kernel.crashing.org>
+wrote:
 
-On 5/10/20 2:58 AM, Yocto wrote:
-> using meta-anaconda for an iso installer during the grub process python
-> exists with
->=20
-> Python AttributeError: "str" object has no attribute 'decode'
+>
+>
+> On 5/11/20 4:17 AM, Quentin Schulz wrote:
+> > Hi Mohamed,
+> >
+> > On Mon, May 11, 2020 at 11:03:26AM +0200, Dawod wrote:
+> >> Hello,
+> >>
+> >> I need to fetch a git repo using 2 different protocols ( ssh & https )
+> >> So that when I run bitbake, It will fetch using ssh protocol first and
+> if
+> >> it fails to fetch, It will try to fetch using https protocol.
+> >>
+> >
+> > Why? What's the exact use case?
+> >
+> >> can I do some thing like that or I will have to change it manually every
+> >> time ?
+> >>
+> >
+> > Maybe you could play with PREMIRROS? (I've never explicitly used that
+> > variable though):
+> >
+> https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-PREMIRRORS
+>
+> This is what I would suggest.  Have the recipe itself set the fallback URI
+> as
+> the main URL.
+>
+>
+> SRC_URI = "git://example.com/my/repository/uri;proto=https"
+>
+> PREMIRRORS_prepend = "git://example.com/my/repository/uri;proto=https
+> git://example.com/my/otherrepo/uri;proto=ssh \n"
+>
+> (the \n is literally '\' and 'n')
+>
+> The above should, when it sees the SRC_URI, try the ssh protocol first..
+> if that
+> doesn't work it will fall back to SRC_URI.
+>
+> --Mark
+>
+> > I guess the asterisk parts could be removed and the path to more or less
+> your
+> > source could be used (ssh first, to http path in your SRC_URI)?
+> >
+> > That's a shot in the dark for me but something to test I'd say :)
+> >
+> > Quentin
+> >
+> >
+> > 
+> >
 >
 
-this seems to be perhaps python version mismatch between 2 and 3
 
+-- 
 
-> Screen shots attached. seem to have an issue with unicode ....
->=20
+Mohamed Dawod
+Computer Engineer
 
+--0000000000005b015b05a570e20e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
->=20
->=20
->=20
->=20
+<div dir=3D"ltr"><div>Thank you all, your answers were so helpful,<br></div=
+><div>My problem had been solved.<br></div><div>The reason behind my questi=
+on was a temporary connections error for some machines in the lab so I need=
+ed some way to cover this problem=C2=A0 as fast as possible to keep my Yoct=
+o recipes away from this problem.=C2=A0</div><div><br></div><div>Thank you =
+very much.<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Mon, May 11, 2020 at 8:37 PM Mark Hatle &lt;<a href=
+=3D"mailto:mark.hatle@kernel.crashing.org">mark.hatle@kernel.crashing.org<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
+br>
+<br>
+On 5/11/20 4:17 AM, Quentin Schulz wrote:<br>
+&gt; Hi Mohamed,<br>
+&gt; <br>
+&gt; On Mon, May 11, 2020 at 11:03:26AM +0200, Dawod wrote:<br>
+&gt;&gt; Hello,<br>
+&gt;&gt;<br>
+&gt;&gt; I need to fetch a git repo using 2 different protocols ( ssh &amp=
+; https )<br>
+&gt;&gt; So that when I run bitbake, It will fetch using ssh protocol firs=
+t and if<br>
+&gt;&gt; it fails to fetch, It will try to fetch using https protocol.<br>
+&gt;&gt;<br>
+&gt; <br>
+&gt; Why? What&#39;s the exact use case?<br>
+&gt; <br>
+&gt;&gt; can I do some thing like that or I will have to change it manuall=
+y every<br>
+&gt;&gt; time ?<br>
+&gt;&gt;<br>
+&gt; <br>
+&gt; Maybe you could play with PREMIRROS? (I&#39;ve never explicitly used =
+that<br>
+&gt; variable though):<br>
+&gt; <a href=3D"https://www.yoctoproject.org/docs/latest/mega-manual/mega-=
+manual.html#var-PREMIRRORS" rel=3D"noreferrer" target=3D"_blank">https://ww=
+w.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-PREMIRRORS<=
+/a><br>
+<br>
+This is what I would suggest.=C2=A0 Have the recipe itself set the fallbac=
+k URI as<br>
+the main URL.<br>
+<br>
+<br>
+SRC_URI =3D &quot;git://<a href=3D"http://example.com/my/repository/uri;pr=
+oto=3Dhttps" rel=3D"noreferrer" target=3D"_blank">example.com/my/repository=
+/uri;proto=3Dhttps</a>&quot;<br>
+<br>
+PREMIRRORS_prepend =3D &quot;git://<a href=3D"http://example.com/my/reposi=
+tory/uri;proto=3Dhttps" rel=3D"noreferrer" target=3D"_blank">example.com/my=
+/repository/uri;proto=3Dhttps</a><br>
+git://<a href=3D"http://example.com/my/otherrepo/uri;proto=3Dssh" rel=3D"n=
+oreferrer" target=3D"_blank">example.com/my/otherrepo/uri;proto=3Dssh</a> \=
+n&quot;<br>
+<br>
+(the \n is literally &#39;\&#39; and &#39;n&#39;)<br>
+<br>
+The above should, when it sees the SRC_URI, try the ssh protocol first.. i=
+f that<br>
+doesn&#39;t work it will fall back to SRC_URI.<br>
+<br>
+--Mark<br>
+<br>
+&gt; I guess the asterisk parts could be removed and the path to more or l=
+ess your<br>
+&gt; source could be used (ssh first, to http path in your SRC_URI)?<br>
+&gt; <br>
+&gt; That&#39;s a shot in the dark for me but something to test I&#39;d sa=
+y :)<br>
+&gt; <br>
+&gt; Quentin<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"=
+gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"lt=
+r"><div>=C2=A0<br>Mohamed Dawod<br></div><div>
+Computer Engineer<br><br></div></div></div></div></div></div></div>
 
-
---uAXCZgVKAxwDHyT21YJz4MEX6rD0OfhrZ--
-
---GMsnr4wrX6oXxJjoTbQjPO8xt3dlAJqG9
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCXrnZOQAKCRC7BTNVkZ0z
-FIqcAJ9WKEulB07Ysu/g1emdc2+96al6qgCggZXlb2LGVCS/w39PeZfSjFJ6BhA=
-=Ol7s
------END PGP SIGNATURE-----
-
---GMsnr4wrX6oXxJjoTbQjPO8xt3dlAJqG9--
+--0000000000005b015b05a570e20e--
