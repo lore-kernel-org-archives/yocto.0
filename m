@@ -1,93 +1,59 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.6603.1589378653601347375
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+ by mx.groups.io with SMTP id smtpd.web12.6881.1589379218367945941
  for <yocto@lists.yoctoproject.org>;
- Wed, 13 May 2020 07:04:14 -0700
+ Wed, 13 May 2020 07:13:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=parse error for token &{10 18 sendgrid.net}: limit exceeded (domain: streamunlimited.com, ip: 140.211.169.56, mailfrom: quentin.schulz@streamunlimited.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3710BE01A83; Wed, 13 May 2020 07:04:13 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
-	*      trust
-	*      [213.33.87.14 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F30B7E01A7F
-	for <yocto@yoctoproject.org>; Wed, 13 May 2020 07:04:11 -0700 (PDT)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp.bon.at (Postfix) with ESMTPSA id 49Mby23C9Nz5tlD;
-	Wed, 13 May 2020 16:04:10 +0200 (CEST)
-Date: Wed, 13 May 2020 16:04:09 +0200
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Richard Leitner <richard.leitner@skidata.com>,
-	Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [yocto] what is the proper treatment of the "Unlicense" license?
-Message-ID: <20200513140409.jclu6q4rhbosnejf@qschulz>
-References: <alpine.LFD.2.21.2005130622090.7657@localhost.localdomain>
- <20200513103944.5d7jjdnqs352htpy@qschulz>
- <20200513105030.GA225130@pcleri>
- <alpine.LFD.2.21.2005130719200.10141@localhost.localdomain>
- <20200513121940.d3qf2wrse7ph3anb@qschulz>
- <alpine.LFD.2.21.2005130839330.13342@localhost.localdomain>
- <20200513134127.sprsrldj6nv2zg6o@qschulz>
- <alpine.LFD.2.21.2005130945260.16212@localhost.localdomain>
+ dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=aokcb+ui;
+ spf=pass (domain: burtonini.com, ip: 209.85.208.180, mailfrom: ross@burtonini.com)
+Received: by mail-lj1-f180.google.com with SMTP id u15so17986185ljd.3
+        for <yocto@lists.yoctoproject.org>; Wed, 13 May 2020 07:13:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=adx6awUSJijNPfOH9aZw+q5UdPvEArvPyWwgM9V+Gjo=;
+        b=aokcb+uiTey1/M1+6aKPm6sUdxZy7oImnb4MRc2L+wQlbjt/7ZJFl21Qn1Qq6wlGp6
+         glFA4RnQEkQtJdjdPH/Q7TaJWZ4O2eazt1yMUBufKc8w1yz2/QHG/CMAQsYP9iHluhVs
+         NQ+rh8OTZacOV3JRnk2sxzbYjWyBptUy4hKC6fsJtFiKk9ZyhJ9XUdXiKzUEyix37lOI
+         nUflL+AQvx+kcUaYVING+FN/fLxW/GO999cNzj+gpWXqz58dNr21KQ97DpHpNkqPh/ly
+         O4RdOtew7u9wzUvUnSBVtQEi66jr7TuhBPG5Ckxvtb3OYkowW2A6kLKOGyMfUufSnB9m
+         v3kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=adx6awUSJijNPfOH9aZw+q5UdPvEArvPyWwgM9V+Gjo=;
+        b=fUViAwl2c0ZEJR/hTrM9PewARIEQxplqAwOTzD2U8H5KPWeV2LEy8Zdl67hGkcQgSO
+         MW7r8LOsg2HKPT6SFmYiTwFgZHKdF2vy0wtuAvrixtnm8t0VukjXkF4RHzOjnPZPq4k0
+         FMyAGHx9Fa47fKz3iqyLbxgyqCcHfJ3yMLw+qDCIl/Gminid7ibTiC/MU0VvwtyFShpj
+         bCW2rypqRXJ3nDK1g/7hfkNEeckd2JmKQU2ZsyA+a6jb41SXwsY/Aj9c+h8/V1IgKKSW
+         HstJs8Cg14texM8+3EK9dyybYPzwNOPGk2w6d0qyfjGPNu1PwwcwpqQS+MypQVqsotWS
+         sZFA==
+X-Gm-Message-State: AOAM532wx3Z8idkfNlGtjCN5uprlrrpb4tqPaaZyt2zFsoOdK7jLRnjQ
+	ZGlisIUKWWOZUxmasRCZP/ll0ezSG65qrPEXDALpWw==
+X-Google-Smtp-Source: ABdhPJxY7reP+VJK7127jtdFSJ2ynwuNgG3UEgvg1TA5CpyGHLrIrXHnkCXTIocsZc/U1QXx0C0G4vZqEpa8OHYXbe8=
+X-Received: by 2002:a2e:8658:: with SMTP id i24mr16268322ljj.287.1589379216509;
+ Wed, 13 May 2020 07:13:36 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <alpine.LFD.2.21.2005130945260.16212@localhost.localdomain>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <CABKMkP+Mr4CiHZTbgW=WN98F6j4fvA4pdUqde06nUwmX39s_dw@mail.gmail.com>
+In-Reply-To: <CABKMkP+Mr4CiHZTbgW=WN98F6j4fvA4pdUqde06nUwmX39s_dw@mail.gmail.com>
+From: "Ross Burton" <ross@burtonini.com>
+Date: Wed, 13 May 2020 15:13:24 +0100
+Message-ID: <CAAnfSTtUAJO=agi0fpBWEt4Q0dEatXXijCfRVrbguVRzQrLAyw@mail.gmail.com>
+Subject: Re: [yocto] project that builds target and host
+To: Joel Winarske <joel.winarske@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, May 13, 2020 at 09:53:12AM -0400, Robert P. J. Day wrote:
-[...]
-> 
->   it gets weirder ... the project i'm working with is based on morty
-> so that variable *would* still be relevant, but even adding
-> "Unlicense" to that variable didn't stop the offending recipe
-> from still generating a warning. so i thought, "i wonder if there are
-> any other recipes in the layers i'm working with that have
-> 'Unlicense," and sure enough, there's one: pyelftools (created
-> in-house).
-> 
->   so i added pyelftools to the image i'm building, but *that* recipe
-> *didn't* generate a warning, so now i'm thoroughly baffled. and,
-> finally, i decided to check the current state of pyelftools to see
-> what its licensing is, and in meta-python, we have the recipe
-> python3-pyelftools_0.25.bb, wherein we read:
-> 
-> LICENSE = "PD"
-> 
->   argh ... and if one checks OE/meta/files/common-licenses, there is
-> indeed a license file named "PD" whose contents are simply:
-> 
-> This is a placeholder for the Public Domain License
-> 
-> so now i'm not sure if a "Unlicense" license file is redundant or
-> what.
-> 
+On Wed, 13 May 2020 at 06:03, Joel Winarske <joel.winarske@gmail.com> wrote:
+> I have a project that generates a native artifact during the target build.  Both the native and target artifacts are needed for other target recipes.
+>
+> What's the recommended pattern for handling this?
 
-If Unlicense and Public Domain (PD) were actual synonyms we could put
-them into the SPDXLICENSEMAP in
-openembedded-core/meta/conf/licenses.conf, but according to
-https://unlicense.org/ lists there should be a difference between both.
+Either use BBCLASSEXTEND or write a -native recipe, build just the
+native parts in a foo-native recipe and depend on that to build foo
+and other recipes.
 
-It looks like it's decently used though as GitHub reported that 2% of
-the projects they host are Unlicense-licensed[1] which is more than
-BSD-2 or [AL]GPLv3!
+For example, glib-2.0 DEPENDS on glib-2.0-native.
 
-[1] https://github.blog/2015-03-09-open-source-license-usage-on-github-com/
-
->   i'm confused.
-> 
-
-Since we have [AL]GPLv3 "support", I'd say Unlicense has its place as
-well.
-
-Quentin
+Ross
