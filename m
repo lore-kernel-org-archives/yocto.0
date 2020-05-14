@@ -1,78 +1,53 @@
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
- by mx.groups.io with SMTP id smtpd.web11.8020.1589443569133881844
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+ by mx.groups.io with SMTP id smtpd.web12.8247.1589443961435274954
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 May 2020 01:06:09 -0700
+ Thu, 14 May 2020 01:12:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=emmNRTJP;
- spf=pass (domain: gmail.com, ip: 209.85.160.177, mailfrom: lefevre.da@gmail.com)
-Received: by mail-qt1-f177.google.com with SMTP id o19so2114921qtr.10
-        for <yocto@lists.yoctoproject.org>; Thu, 14 May 2020 01:06:09 -0700 (PDT)
+ dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=0tk+iSHa;
+ spf=pass (domain: burtonini.com, ip: 209.85.208.176, mailfrom: ross@burtonini.com)
+Received: by mail-lj1-f176.google.com with SMTP id b6so2532714ljj.1
+        for <yocto@lists.yoctoproject.org>; Thu, 14 May 2020 01:12:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=kQNd6ZoSwhMcWZDCqVpiCP3F+odhgSfFfzqIw2D88IY=;
-        b=emmNRTJP2qQoLvfmFoAQZKVlTlfVq1eaJAEknmhdX62o/YBjEg7dKlsfi7MDovv+AP
-         7HsYy5mj57onfwGWBZtLXQsoYpgUNM677/03gI4Ue69tmn470xF3yoeEWyjaFp8IwsAc
-         dwy+0FhfE2aDL2io3ASdR4B5/ju3DfHKNqKZYQEid0sNz8cysrZAmIpaNiWgyT0DG7lX
-         Uw5ZygY3bM4uT81nj84VrYZBcEie/c1h2nNAFgSvf18hmcHkHjKrc3zVOQZkikQusM8k
-         BZrGhHqXAgoE3Cs2yIijtjt+w6lnUQ9ARCwU+rqclHmRA5GBeoo+4zHBUdgNR9stp9Tk
-         uI3w==
+        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sQ5/fDPB36MaCvasnHWyQEVlEXQJb0V9EXQi3R2TNgg=;
+        b=0tk+iSHadoP11n5ycYd2FO3699hiu3j6x3LsqbAo91eZ8cbBKdifVLLnbeB9AKukOf
+         /aXbrmMBgbunE6mDykQStKfiPwqBy/jWrdrP0j7S0q1c1KL1RH9OtCwix9X6OuRSSP+y
+         BVLhEsMzV2wpVjlqKDK4+OXXxOpUbPJAspMNr1hwrEuOwcev2dNBRuzaBn6RF//HeCp4
+         LcDClLr6VMPmeXaQTk6mHAfwcfdmkE2bz5aqT/EvlPFY1zY6fY603wf4esqZdAWjFvE8
+         kXxlk3N/A8NFBhGAEFNIMjtX7H1WHQT3RRy7Y/jyInZqfsQsiTgJrOpDW0c5zdXOFzuo
+         Kjgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=kQNd6ZoSwhMcWZDCqVpiCP3F+odhgSfFfzqIw2D88IY=;
-        b=sGcMH/KRrqfSjgL/cO0XLsPqXHyBRJ8reb8dERz1xpf+/EwWtDdztU61l7L/vbKmyq
-         62M6XyBmk63W+y/uSUWH3hYXdqkOvrZhfFPA9j09eM8OCmagE/XaE/l8fRfYYmQvtl0D
-         NIAK33A0JRY0G+X8Vhp5E1DIs2JMcMVy6t8pQuQyM/ZkzgwEDzB9t5WNYtIJElnQ/NcU
-         HCEKBQH+x0e34xrcmoP/eCrLu/yr3N/S6n3gvR2aPQFwaFdJ7zwlDbWj6Pak9YuVutSz
-         BKTpT2z2wAjWQiyC5lXh6S/g2t113T99uvMtKfqetqP75DmrRpOIPIcXbkzlXdCneGiX
-         oxQQ==
-X-Gm-Message-State: AOAM533b7e5lO2wTVSHSOBZ9fTSorpr+bcTCTNwv9nDaLf68S5Bf/qY0
-	fnLIAYaGZ3OU0/F5DLnZsuQDqMbeJigdHZsCDfynrxdPIg==
-X-Google-Smtp-Source: ABdhPJxxk8VDAEpUXdSu9Wcbi7c8DWQ2tuJG5GVJAGfDKU10cNGme12fTszfCHqGNaVUrddxJP1qpuevlVhhUf86dBU=
-X-Received: by 2002:ac8:3879:: with SMTP id r54mr3164336qtb.106.1589443567026;
- Thu, 14 May 2020 01:06:07 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sQ5/fDPB36MaCvasnHWyQEVlEXQJb0V9EXQi3R2TNgg=;
+        b=mI1qQfb/RC5ko1IXbNQHQu6wqUVyb8eOEvsUtLAYmz+TZs2hwLFSulUKHuV/DK8h+N
+         UMiSsS0A6sl9Svjnp5e5MJq2eILe0JvQU/muhm1aCF6Tc8wvgxNJtlc+jA3uGZmCOFup
+         +4YrGoXmLvGHghmIAKZJTKBKCKrNQ2fD8D9lCGE0Bt89w0tPDCT4Gqo10YqG0dtKGNNP
+         0CDO6awPhLScGKd7j55vHjGU0708ZyQ08I4UAtwJm5DMA4bdqhcxlTRDYJ8I7qLTVy3v
+         rIKJ5hxxCoLYTN0eQOVdRsjP9q6BoWATy+ssCCE6gmRBeihtmWAah1OhSk82uLQNHHey
+         RwqA==
+X-Gm-Message-State: AOAM533+VzlBfJZb8N2oF8VAuOydO2pxwAwE7/3WvNgMwAPrjn9HDLSB
+	K/QExmbOYC1EjRhzUvQd+Oljv0o91oVIZjTfuraEbN7TANCak0iB
+X-Google-Smtp-Source: ABdhPJzcyOY021r0hNRVBkbn/yCcT5dPvG+F4WSYHNL5NoyxODUFUKhVOQotg/3Wv3v5226w2y95TZG0EMvZNWcvdOg=
+X-Received: by 2002:a2e:8017:: with SMTP id j23mr1853285ljg.22.1589443959782;
+ Thu, 14 May 2020 01:12:39 -0700 (PDT)
 MIME-Version: 1.0
-From: "Damien LEFEVRE" <lefevre.da@gmail.com>
-Date: Thu, 14 May 2020 11:05:56 +0300
-Message-ID: <CA+FhBv8kAsM9bHk71bXZ33pF9hep4w6CkBQau0UivS50tLG89w@mail.gmail.com>
-Subject: PREFERRED_VERSION
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000003405f405a5972b6a"
-
---0000000000003405f405a5972b6a
+References: <CA+FhBv8kAsM9bHk71bXZ33pF9hep4w6CkBQau0UivS50tLG89w@mail.gmail.com>
+In-Reply-To: <CA+FhBv8kAsM9bHk71bXZ33pF9hep4w6CkBQau0UivS50tLG89w@mail.gmail.com>
+From: "Ross Burton" <ross@burtonini.com>
+Date: Thu, 14 May 2020 09:12:29 +0100
+Message-ID: <CAAnfSTtCsmpv7osDEE9CG6F_J50CcNuzsBpmLVz6MyBucy4zuw@mail.gmail.com>
+Subject: Re: [yocto] PREFERRED_VERSION
+To: Damien LEFEVRE <lefevre.da@gmail.com>
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Thu, 14 May 2020 at 09:06, Damien LEFEVRE <lefevre.da@gmail.com> wrote:
+> Should it be possible to set PREFERRED_VERSION in the image definition files?
 
-Should it be possible to set PREFERRED_VERSION in the image definition
-files?
+No.
 
-I have 2 image files:
-- image1.bb
-- image2.bb : PREFERRED_VERSION_package_1.0.0
-
-I have a package with 2 versions:
-- package_1.0.0.bb
-- package_1.1.0.bb
-
-I'm using the same HW setup, MACHINE, distro and local.conf.
-
-Thanks,
--Damien
-
---0000000000003405f405a5972b6a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>Should it be possible to set=C2=A0P=
-REFERRED_VERSION in the image definition files?</div><div><br></div><div>I =
-have 2 image files:</div><div>- <a href=3D"http://image1.bb">image1.bb</a><=
-/div><div>- <a href=3D"http://image2.bb">image2.bb</a> :=C2=A0PREFERRED_VER=
-SION_package_1.0.0</div><div><br></div><div>I have a package with 2 version=
-s:</div><div>- <a href=3D"http://package_1.0.0.bb">package_1.0.0.bb</a></di=
-v><div>- <a href=3D"http://package_1.1.0.bb">package_1.1.0.bb</a><br></div>=
-<div><br></div><div>I&#39;m using the same HW setup, MACHINE, distro and lo=
-cal.conf.</div><div><br></div><div>Thanks,</div><div>-Damien</div></div>
-
---0000000000003405f405a5972b6a--
+Ross
