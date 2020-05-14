@@ -1,53 +1,61 @@
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
- by mx.groups.io with SMTP id smtpd.web12.8247.1589443961435274954
+Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
+ by mx.groups.io with SMTP id smtpd.web11.8167.1589444438673609733
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 May 2020 01:12:41 -0700
+ Thu, 14 May 2020 01:20:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=0tk+iSHa;
- spf=pass (domain: burtonini.com, ip: 209.85.208.176, mailfrom: ross@burtonini.com)
-Received: by mail-lj1-f176.google.com with SMTP id b6so2532714ljj.1
-        for <yocto@lists.yoctoproject.org>; Thu, 14 May 2020 01:12:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sQ5/fDPB36MaCvasnHWyQEVlEXQJb0V9EXQi3R2TNgg=;
-        b=0tk+iSHadoP11n5ycYd2FO3699hiu3j6x3LsqbAo91eZ8cbBKdifVLLnbeB9AKukOf
-         /aXbrmMBgbunE6mDykQStKfiPwqBy/jWrdrP0j7S0q1c1KL1RH9OtCwix9X6OuRSSP+y
-         BVLhEsMzV2wpVjlqKDK4+OXXxOpUbPJAspMNr1hwrEuOwcev2dNBRuzaBn6RF//HeCp4
-         LcDClLr6VMPmeXaQTk6mHAfwcfdmkE2bz5aqT/EvlPFY1zY6fY603wf4esqZdAWjFvE8
-         kXxlk3N/A8NFBhGAEFNIMjtX7H1WHQT3RRy7Y/jyInZqfsQsiTgJrOpDW0c5zdXOFzuo
-         Kjgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sQ5/fDPB36MaCvasnHWyQEVlEXQJb0V9EXQi3R2TNgg=;
-        b=mI1qQfb/RC5ko1IXbNQHQu6wqUVyb8eOEvsUtLAYmz+TZs2hwLFSulUKHuV/DK8h+N
-         UMiSsS0A6sl9Svjnp5e5MJq2eILe0JvQU/muhm1aCF6Tc8wvgxNJtlc+jA3uGZmCOFup
-         +4YrGoXmLvGHghmIAKZJTKBKCKrNQ2fD8D9lCGE0Bt89w0tPDCT4Gqo10YqG0dtKGNNP
-         0CDO6awPhLScGKd7j55vHjGU0708ZyQ08I4UAtwJm5DMA4bdqhcxlTRDYJ8I7qLTVy3v
-         rIKJ5hxxCoLYTN0eQOVdRsjP9q6BoWATy+ssCCE6gmRBeihtmWAah1OhSk82uLQNHHey
-         RwqA==
-X-Gm-Message-State: AOAM533+VzlBfJZb8N2oF8VAuOydO2pxwAwE7/3WvNgMwAPrjn9HDLSB
-	K/QExmbOYC1EjRhzUvQd+Oljv0o91oVIZjTfuraEbN7TANCak0iB
-X-Google-Smtp-Source: ABdhPJzcyOY021r0hNRVBkbn/yCcT5dPvG+F4WSYHNL5NoyxODUFUKhVOQotg/3Wv3v5226w2y95TZG0EMvZNWcvdOg=
-X-Received: by 2002:a2e:8017:: with SMTP id j23mr1853285ljg.22.1589443959782;
- Thu, 14 May 2020 01:12:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <CA+FhBv8kAsM9bHk71bXZ33pF9hep4w6CkBQau0UivS50tLG89w@mail.gmail.com>
-In-Reply-To: <CA+FhBv8kAsM9bHk71bXZ33pF9hep4w6CkBQau0UivS50tLG89w@mail.gmail.com>
-From: "Ross Burton" <ross@burtonini.com>
-Date: Thu, 14 May 2020 09:12:29 +0100
-Message-ID: <CAAnfSTtCsmpv7osDEE9CG6F_J50CcNuzsBpmLVz6MyBucy4zuw@mail.gmail.com>
-Subject: Re: [yocto] PREFERRED_VERSION
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp.bon.at (Postfix) with ESMTPSA id 49N4H70cYvz5tm0;
+	Thu, 14 May 2020 10:20:35 +0200 (CEST)
+Date: Thu, 14 May 2020 10:20:33 +0200
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
 To: Damien LEFEVRE <lefevre.da@gmail.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [yocto] PREFERRED_VERSION
+Message-ID: <20200514082033.5uukrrsvpp77upxv@qschulz>
+References: <CA+FhBv8kAsM9bHk71bXZ33pF9hep4w6CkBQau0UivS50tLG89w@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CA+FhBv8kAsM9bHk71bXZ33pF9hep4w6CkBQau0UivS50tLG89w@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Thu, 14 May 2020 at 09:06, Damien LEFEVRE <lefevre.da@gmail.com> wrote:
-> Should it be possible to set PREFERRED_VERSION in the image definition files?
+Hi Damienm
 
-No.
+On Thu, May 14, 2020 at 11:05:56AM +0300, Damien LEFEVRE wrote:
+> Hi,
+> 
+> Should it be possible to set PREFERRED_VERSION in the image definition
+> files?
+> 
 
-Ross
+Conceptually, no. An image recipe is a recipe. Global data is global and
+local data is local. A recipe (image or package) set local data only.
+
+> I have 2 image files:
+> - image1.bb
+> - image2.bb : PREFERRED_VERSION_package_1.0.0
+> 
+> I have a package with 2 versions:
+> - package_1.0.0.bb
+> - package_1.1.0.bb
+> 
+
+Correct way is different distro or machine. Obviously the build impact
+is high for such as small difference in images.
+
+Two possible hacks to me:
+1. package10_1.0.0.bb and package11_1.1.0.bb but then you need to manage
+the dependencies inside recipes (those (r)depending on package10 or
+package11). If it's a "final" package which isn't a dependency of
+anything else except the image, that's actually not too bad. Then in the
+image you add package10 or package11.
+
+2. Have an intermediate recipe which RDEPENDS_${PN} += "package
+(=1.1.0)" and the other on "package (=1.0.0)" and install this
+intermediate recipe in the appropriate image.
+
+There are shortcomings in both hacks (otherwise they wouldn't be called
+that way :) ).
+
+Quentin
