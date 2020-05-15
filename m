@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.14874.1589554014228521389
+ by mx.groups.io with SMTP id smtpd.web11.15702.1589556367159119258
  for <yocto@lists.yoctoproject.org>;
- Fri, 15 May 2020 07:46:54 -0700
+ Fri, 15 May 2020 08:26:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=DMU5u5Ua;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: raj.khem@gmail.com)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=lp7Csc5l;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: wpdster@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D1EA4E01AB3; Fri, 15 May 2020 07:46:53 -0700 (PDT)
+	id CB08FE01B6C; Fri, 15 May 2020 08:26:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -17,125 +17,100 @@ X-Spam-HAM-Report:
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (raj.khem[at]gmail.com)
+	*      (wpdster[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.166.174 listed in list.dnswl.org]
+	*      [209.85.219.49 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F40FE01A55
-	for <yocto@yoctoproject.org>; Fri, 15 May 2020 07:46:50 -0700 (PDT)
-Received: by mail-il1-f174.google.com with SMTP id c20so631102ilk.6
-        for <yocto@yoctoproject.org>; Fri, 15 May 2020 07:46:50 -0700 (PDT)
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22C81E01B6A
+	for <yocto@yoctoproject.org>; Fri, 15 May 2020 08:26:05 -0700 (PDT)
+Received: by mail-qv1-f49.google.com with SMTP id d1so1251809qvl.6
+        for <yocto@yoctoproject.org>; Fri, 15 May 2020 08:26:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=UPW6iR8DBKeYe8XCw3Ux8A28lSOlPzPY5TkiIVdFRYo=;
-        b=DMU5u5Ua2hzGbBg8JorQdbXpLCGFLndOqIM5sidTpH0DHxWw2byh3bYPqWJRDyF7x7
-         vrFkeeSec5tgGTI/be7fj6SlI20HFqm1+zMKt1TQPejnnKEG9iQMehy2X5/8ZCAoienw
-         VEFBCxymMVt4vLkE9LRJyQlCL9M50Wo8UgrMzopQbhrxxgXCyxW7DOYUHks3kV13nSFm
-         IZPQSZ6lHCabhsndwrSrpEiAJ7TLrk7ENhFKhf06867xU2oCYCkUbYYka0CDTZ2IuFa3
-         BdWphqmli/pFZ7zeMc3rSqg6Dm2UmvH4gCCuFFb42U8OpZZnd4aqKm+5nPEe+n3u6sr6
-         rmBw==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Zqo3J6Lz2NaiFeemQGXo9bh3uuurQ9NGc+GX7Mdv2Ko=;
+        b=lp7Csc5lQfm+6owfikr+GcLsJ+QJOKFvoeQMmweW+3yPW8rSgsx4dzXWu8Ja7qszpn
+         AKkBWM27npcr/p4y7vB0CLUno5RW79hh+TrTzDpg/mR5uU7szZGlrpC32a5BrnAiLpup
+         S4Uj0tjlcgvSDR9RowBkG6+SQkdcatdagrohl0o1Ne4Vs8FFg89fYzOCfWE2h4hwU2vr
+         /D9xN+BNOd0zCaDUeJqhdT9q+fCIDyiQEuE8Rk8QENLEOjapB7mVc4fV+kB9JtDe2WFJ
+         P4eaO6vbwT8VWmCDqKSZHG3KlLRupVaZVf/paE+f0LJ/boL04k2jPEI481w5jKqUelSZ
+         sg5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=UPW6iR8DBKeYe8XCw3Ux8A28lSOlPzPY5TkiIVdFRYo=;
-        b=BXg8tKocwfoQUR/45Ml6lT09NEzA0jebWL6p3/HUBFDd5HZ8l4idEScAxG1/AUBUFW
-         me1Z+3UgiCmrI47GO0Qd3Slf97WIskZ2SB8xWiCrLrjsiimAOLzQZT6DJjoQmVNO+f4n
-         zS9Tsk5hbRVSh5ei7i8ZmrPmhsvqPblAkYHpzy2VjZpWZtZtO7qp3emYsLJ2QSFzui59
-         sVY6K6zbp1yGyosxt1+FDhFVgtL8h886Rc5KCk52lWz/ELLDr+AJ8L3jja2pO6hdeqgb
-         zORdxZTH7LKXQctiQUuzkK/KCombLwySlNx4z6+5jg24Wc+LAI10zg2YLI1skmxJ1y0V
-         nUpA==
-X-Gm-Message-State: AOAM533wjnvpxdHh320Vs7m+FYwZOseVParGaiY1yxQcjAkjPVazSkZT
-	ep+7zKkpSc4MHzWlIM6OCFmrJsw1rHc=
-X-Google-Smtp-Source: ABdhPJyu58h0+vx6kc27IpLm+ewzF6mkhYF37v3N0Bwlw4a+kvJya63lT6LjfowxJ7IU4/NZlKqgrg==
-X-Received: by 2002:a05:6e02:530:: with SMTP id h16mr2271840ils.2.1589554009746;
-        Fri, 15 May 2020 07:46:49 -0700 (PDT)
-Received: from ?IPv6:2601:646:9200:4e0:33:f6fe:2ae3:dbd8? ([2601:646:9200:4e0:33:f6fe:2ae3:dbd8])
-        by smtp.gmail.com with ESMTPSA id j90sm986257ilg.70.2020.05.15.07.46.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 May 2020 07:46:49 -0700 (PDT)
-Subject: Re: [yocto] Package libgcc-lic cannot be installed into the image because it has incompatible license(s): GPL-3.0
-To: matthias.schoepfer@googlemail.com,
- Yocto-mailing-list <yocto@yoctoproject.org>
-References: <5e93c06b-61a1-a89c-a2f7-0dadda804be2@googlemail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <ce772f60-45d4-61c1-5305-53c571cd4079@gmail.com>
-Date: Fri, 15 May 2020 07:46:48 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.8.0
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Zqo3J6Lz2NaiFeemQGXo9bh3uuurQ9NGc+GX7Mdv2Ko=;
+        b=JqKBJEA9CUPmQrXP8VASNfewq8BM+sQIo8cYiPFPuw4S9UcKUVN7iLEvXmZk3lIVsr
+         2qgrrTY2W/Xr+xatNS6yRy7KBsPLj20KUYT773UV/jKtzOm8GvWdOmJap+tZH8DM0jGh
+         Ih7OLrIAG5PmXj7sF+V9H+Ou/XGWxttxoQI58OmaV/NtFkMucTYcaFaHLLtdjYd4RgCI
+         dp/kmnXk1GRdi1nszU2N0hukrvE32hxIdzNOs9JS+AvkpH3EbR0JDHcdSGb8aS1BNBAH
+         g4b4cIsi+c8nLqc3mkMyto560VDKXVNA9SN6V6mcQAsFlNY/BBZdnzFJ6LW1ChT9Ah/J
+         ZNdA==
+X-Gm-Message-State: AOAM533gDIQHCl9JElKoXXStRbTFyGEEy9cbdkSt7T6WNskeTLYPeaI+
+	7Kvj5z4gZFPSzN58Lcm3t5fUPCJARsRhs6p+fqOcuHYX
+X-Google-Smtp-Source: ABdhPJx4WDmpQPC87YJ46f9290xvj+8/NbV+Kr4Ps7ERGFQEYcR3sYiNI/emSy9VcmsQ16bM0S1X2TRiCVRs2UfWLUg=
+X-Received: by 2002:a05:6214:3f0:: with SMTP id cf16mr4163099qvb.4.1589556364776;
+ Fri, 15 May 2020 08:26:04 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <5e93c06b-61a1-a89c-a2f7-0dadda804be2@googlemail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: quoted-printable
+From: "Patrick Doyle" <wpdster@gmail.com>
+Date: Fri, 15 May 2020 11:25:39 -0400
+Message-ID: <CAF_dkJAW0uYnm=yC_cC5fa+Jt-r+KjBzfJC_rL+4WZ5CjXa7rQ@mail.gmail.com>
+Subject: What is the recommended method for debugging applications with Yocto
+To: Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
+I know I can do
 
+$ bitbake base-image -cpopulate_sdk
 
-On 5/15/20 2:32 AM, Matthias Schoepfer via lists.yoctoproject.org wrote:
-> Hi!
->=20
-> I am trying to migrate to dunfell. Out customer does not want GPLv3 or=
-=20
-> anything like that on the firmware.
->=20
-> So - same as in zeus - we have a line:
->=20
-> INCOMPATIBLE_LICENSE =3D "GPLv3 LGPLv3 GPLv3+ LGPLv3+ GPL-3.0 LGPL-3.0=
-=20
-> AGPL-3.0"
->=20
-> during do_rootfs, the process fails with:
->=20
-> do_rootfs: Package libgcc-lic cannot be installed into the image because=
-=
-=20
-> it has incompatible license(s): GPL-3.0
->=20
-> The package basically consists of the license information for libgcc,=20
-> libgcc is allowed due to the linking exception.
->=20
-> Even, when I try to allow this package with something like this:
->=20
-> INCOMPATIBLE_LICENSE_pn-libgcc-lic =3D ""
-> INCOMPATIBLE_LICENSE_pn-libgcc =3D ""
->=20
-> which has worked in the past to have an in house debug image with the=20
-> gdbserver on it, it still fails.
->=20
-> Am I the first to experience this? Am I doing something wrong?
->=20
-> We do
->=20
-> COPY_LIC_MANIFEST =3D "1"
-> COPY_LIC_DIRS =3D "1"
-> LICENSE_CREATE_PACKAGE =3D "1"
->=20
-> as well, if that info is needed.
->=20
-> Any help would be appreciated.
->=20
+and distribute the resulting SDK to developers (myself included).
 
-Can you try adding
+But suppose I've just built and deployed an image and want to debug a
+core file generated by one of the applications.
 
-LICENSE_${PN}-lic =3D "GPL-3.0-with-GCC-exception"
+I don't see .debug directories anywhere in $TMP, so when I try to tell
+gdb to use the sysroot from the application, that works, but I don't
+get debugging symbols libc, nor do I get stack traces (on my MIPS
+target).
+(I guess it's possible that I would have found the .debug directories
+if I had performed a complete build from scratch without the benefit
+of the sstate-cache, but I rely upon the sstate-cache and routinely
+start with a blank $TMP)
 
-in meta/recipes-devtools/gcc/libgcc.inc
+So, I can populate the sdk, and end up with a pile of .debug directories:
 
-and see if it helps ?
+$ find . -name .debug -type d
+./tmp/work/sundial-poky-linux-musl/base-image/1.0-r0/sdk/image/opt/irobot-mt/0.2/sysroots/mips32r2-24kec-nf-poky-linux-musl/usr/lib/.debug
+./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-r0/packages-split/gcc-cross-canadian-mipsel-dbg/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/bin/mipsel-poky-linux/.debug
+./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-r0/packages-split/gcc-cross-canadian-mipsel-dbg/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/gcc/mipsel-poky-linux/8.3.0/.debug
+./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-r0/packages-split/gcc-cross-canadian-mipsel-dbg/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/gcc/mipsel-poky-linux/8.3.0/plugin/.debug
+./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-r0/package/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/bin/mipsel-poky-linux/.debug
+./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-r0/package/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/gcc/mipsel-poky-linux/8.3.0/.debug
+./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-r0/package/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/gcc/mipsel-poky-linux/8.3.0/plugin/.debug
+./tmp/work/mips32r2-24kec-nf-poky-linux-musl/musl-utils/20170421-r0/packages-split/musl-utils-dbg/usr/bin/.debug
+./tmp/work/mips32r2-24kec-nf-poky-linux-musl/musl-utils/20170421-r0/package/usr/bin/.debug
 
-> Thanks and Regards,
->=20
->  =C2=A0 Matthias
->=20
->=20
->=20
->=20
+Which sysroot directory is the best one at which I can point gdb for
+getting debug symbols?
+
+If I build this with an autobuilder and want to archive the sysroot
+for use by gdb later, which one should I archive?
+
+I could archive the generated SDK, but that will require that I (or
+others) install the SDK just to debug a core file, which seems a
+little heavy to me.  But I can do that, if that's "the Yocto way".
+
+I wonder if there is a lighter weight mechanism for accessing the
+debugging symbols during development, and for archiving said symbols
+for post-development support.
+
+Any ideas?  Best practices?  Recommended approaches?
+
+Thanks
+
+--wpd
