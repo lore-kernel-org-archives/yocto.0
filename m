@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.3682.1589499070398419367
+ by mx.groups.io with SMTP id smtpd.web12.6260.1589509640784052455
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 May 2020 16:31:10 -0700
+ Thu, 14 May 2020 19:27:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=CTxA69ib;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: ticotimo@gmail.com)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=rNMAAAs/;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: b.hutchman@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E45BFE01B62; Thu, 14 May 2020 16:31:09 -0700 (PDT)
+	id 68978E01B63; Thu, 14 May 2020 19:27:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -17,108 +17,119 @@ X-Spam-HAM-Report:
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (ticotimo[at]gmail.com)
+	*      (b.hutchman[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.166.175 listed in list.dnswl.org]
+	*      [209.85.210.171 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5F38E01B60
-	for <yocto@yoctoproject.org>; Thu, 14 May 2020 16:31:06 -0700 (PDT)
-Received: by mail-il1-f175.google.com with SMTP id r2so646353ilo.6
-        for <yocto@yoctoproject.org>; Thu, 14 May 2020 16:31:06 -0700 (PDT)
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 340C7E01B61
+	for <yocto@yoctoproject.org>; Thu, 14 May 2020 19:27:16 -0700 (PDT)
+Received: by mail-pf1-f171.google.com with SMTP id y18so260780pfl.9
+        for <yocto@yoctoproject.org>; Thu, 14 May 2020 19:27:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Zrwg1m9MQ5bkA07xKT9bcsKxfRo7AHF/Xm5EH+2uspA=;
-        b=CTxA69ibsz4CQJvJUStuYCyqHtJn6XXzW74AHhR64wv4SuHlS3trP87P3jkEgg76Na
-         oKY1jeCMWyDSOQc13l9rMkWZnSixaHYYj2KTT0oFGIONfoF+5i818eQOYQ33ftS0Zu9A
-         o8HFsYCfOKdC3y/xb9ouQONnA43C1FQF8VM+TyNJ4CR+EjOmfFn1LKQ4watcwzTyom8P
-         fcjMv6T/7j+KY1QLpQo8q5uNNdCvG5+1vRL/mfvW4QiIikqNWXIqujKgelAvSDnamo3Y
-         8yYRrUg1CQAwWeOSxs0y/57BLJ4Brw6QxPodKtIudMPmHXGhKn43qhJbMvoxKzb1R5+4
-         n4nw==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=mvovC2MfHG/7IHAJZiV3jIWBaeFI7VasW7ldlgOAN0s=;
+        b=rNMAAAs/3yFhwNn0Xt8wHxOPcUHcf2M5j+gyfzhvjh9s4c7O+1bx8TUIL6PXwGTbsF
+         TVHCR9kGo18Ie2oxHgti5psnRsYq1mZ+ieV3tzaWnJuDXYuBd1Gwt1V+eYZInnRUjxWK
+         Jwh8afdP3aR74K+fNoBbYGPslAasXH1lr4P3/tP+td5WRbadSFNQbgoPDqKTQfHv9kVH
+         CnWKN5bTdtm4EoLd+MRfOCGmqzAgMtVNtDcptOCf3tmLkJHSifu5+1kfh5HCE75AEKFq
+         ZwEhz+11FWI7IQtA+QWHlcZIrMXbDnxNj4r/bUrOoN1PhqvHS2bmUTKOSyTBtRBZVP93
+         78iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Zrwg1m9MQ5bkA07xKT9bcsKxfRo7AHF/Xm5EH+2uspA=;
-        b=KR0hpxAbgKTF283p4II7sN95lgIiHNO2n8Rn4TjGCyiCapzfl/jxM8jjbdbMHh2CPV
-         SfPerB9y84r5mjhxCRdilf/sA1eA7/qqGfjuyGFc8iAi6UBGi/+yhHN4tpB8gFIEFb8M
-         tZpY2VY5WV4HXsIDOABetlOl3xEA4+EjwSTc0OVQRAHqtbAhredoHtZeOzJpBMtd/CcB
-         W4yzUngwblC6VaWwRhxNXPKiIztbiKGDo06b5H62iQ0uz1Xg7KZi7uD/RHRGtWEVYG22
-         2OYHD+vVhBMc3ys+ve1evozS+zsnnyLrb3UM7DZzX/7yknnhrxa40gEeMm7wY6iHLd8G
-         YE3A==
-X-Gm-Message-State: AOAM5310BDjoa6lRXvrj7W9r39GBzJkzNNsetcwiBQo/Xqzf0xjdJi2E
-	ooCXp6k9FZHZOQcgqXeYuqa+lDQad5sM64YYWpeba8y9
-X-Google-Smtp-Source: ABdhPJzjxlhIYUw5Vpr2zPyqVMTep6ho1Ox+ndiwh81JrL/8tGODXOHiJPJ9CH+d6Jz7jEk/Jr/rloZnj6or3xVpO28=
-X-Received: by 2002:a05:6e02:5c5:: with SMTP id l5mr684218ils.170.1589499065921;
- Thu, 14 May 2020 16:31:05 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=mvovC2MfHG/7IHAJZiV3jIWBaeFI7VasW7ldlgOAN0s=;
+        b=pJPt00+OSxXRPrc/mzK24fuE/gX394PjM1MRrMEAZrmooQ6xMd7MxCeRR9Md6NtL2n
+         e2AqWJNY8h1++wb9xzyOlgt2tqWhpvVfF5wAX0ZzD39+b3Kiz8w7sIICmj7asjyk5vDh
+         YW+XgjH2XaWCDijZbUKhWE/qXtsTSPz8BLEgwjjm5YweOWUc5Z49HrQgbY5jH9NfjOYm
+         QTmVdPGRmTAylctQy+libXY/mA5AFSEOxn0FFUpI3ra8MHLdO3m0tG4cM7HMJl6qSWX9
+         AvbL5R/VxiHhYrhQUwiqpmMU3kJIA9d+Q1PGkQlJBKyoOxr8dwjJ3lCuPq6OVvRI6DZr
+         QKgg==
+X-Gm-Message-State: AOAM532uPJHixNVKAkAoFttS03L6izfmC89ylTgyrVYIEboDL68I6Axs
+	/bKl6HL+ckmtA1fM9dmP6YTaa5QH1Ezqs/nYcxctjCKt
+X-Google-Smtp-Source: ABdhPJyspbCD8s8LiDOC/ITkcpbq8dYtyq757tWfTkBspEgFsdNQs/CI0j2/5mk4f3hit0Qn9I4qoVSnDLa6wOt3kQQ=
+X-Received: by 2002:a63:4f5c:: with SMTP id p28mr1054907pgl.412.1589509635820;
+ Thu, 14 May 2020 19:27:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <alpine.LFD.2.21.2005141810220.28376@localhost.localdomain>
-In-Reply-To: <alpine.LFD.2.21.2005141810220.28376@localhost.localdomain>
-From: "Tim Orling" <ticotimo@gmail.com>
-Date: Thu, 14 May 2020 16:30:55 -0700
-Message-ID: <CANx9H-BJ7=5K3OY2046en4UObisDsTwkKbw+z=YYx42y_TjrPw@mail.gmail.com>
-Subject: Re: [yocto] problems creating acct at wiki.yoctoproject.org
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000003200fa05a5a4170c"
+From: "Brian Hutchinson" <b.hutchman@gmail.com>
+Date: Thu, 14 May 2020 22:27:04 -0400
+Message-ID: <CAFZh4h-4B99SbAFeSWE_Bq3=SprMQeoCmwD4L2E3xNabQVY1bA@mail.gmail.com>
+Subject: Looks like systemd is a split package ... but where is coredumpctl?
+To: yocto@yoctoproject.org, Openembedded-devel@lists.openembedded.org
+Content-Type: multipart/alternative; boundary="00000000000035d1e505a5a68df3"
 
---0000000000003200fa05a5a4170c
+--00000000000035d1e505a5a68df3
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, May 14, 2020 at 3:12 PM Robert P. J. Day <rpjday@crashcourse.ca>
-wrote:
+Hi,
 
->
->   trying to edit wiki, so trying to create acct at
-> https://wiki.yoctoproject.org/wiki/Special:RequestAccount, and am
-> getting:
->
->   Error sending mail:
->   Unknown error in PHP's mail() function.
->
-> are there known issues with registering at the wiki?
->
+I'm trying to figure out how to configure /etc/systemd/coredump.conf in
+order to get coredump files.
 
-No data,  but hunch that a link to the new mail address url is needed...
+I don't appear to have coredumpctl nor can I find a recipe in Yocto or OE
+Core that looks like it builds it.  I've looked at all (I think) systemd
+packages that were generated when I built systemd and I don't see any that
+include coredumpctl.
 
->
-> rday
-> 
->
+Then I found this thread:
 
---0000000000003200fa05a5a4170c
+https://www.openembedded.org/pipermail/openembedded-core/2018-July/152959.html
+
+... which left me even more confused.
+
+If I uncomment and define the settings in /etc/systemd/coredump.conf, will
+that enable coredumps or is there more to it than that?  I'm not sure how
+to get systemd-coredump going on a core-image-base image and Google is just
+turning up noise from other distros that don't appear to match what I'm
+seeing in Yocto/OE.  It feels like there should be a systemd-coredump
+recipe like in Debian but I'm not seeing a layer that provides something
+like that.   Maybe I'm not looking in the right place but I've been doing
+this a while and I'm kind of stumped.
+
+Thanks for any hints to point me in the right direction.
+
+Regards,
+
+Brian
+
+--00000000000035d1e505a5a68df3
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Thu, May 14, 2020 at 3:12 PM Robert P. J. Day &lt;<a hr=
-ef=3D"mailto:rpjday@crashcourse.ca">rpjday@crashcourse.ca</a>&gt; wrote:<br=
-></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex"><br>
-=C2=A0 trying to edit wiki, so trying to create acct at<br>
-<a href=3D"https://wiki.yoctoproject.org/wiki/Special:RequestAccount" rel=
-=3D"noreferrer" target=3D"_blank">https://wiki.yoctoproject.org/wiki/Speci=
-al:RequestAccount</a>, and am<br>
-getting:<br>
-<br>
-=C2=A0 Error sending mail:<br>
-=C2=A0 Unknown error in PHP&#39;s mail() function.<br>
-<br>
-are there known issues with registering at the wiki?<br>
-</blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">No data, =C2=A0=
-but hunch that a link to the new mail address url is needed...</div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc =
-solid;padding-left:1ex"><br>
-rday<br>
-<br>
-</blockquote></div></div>
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I&#39;m trying to figure=
+ out how to configure /etc/systemd/coredump.conf in order to get coredump f=
+iles.</div><div><br></div><div>I don&#39;t appear to have coredumpctl nor c=
+an I find a recipe in Yocto or OE Core that looks like it builds it.=C2=A0 =
+I&#39;ve looked at all (I think) systemd packages that were generated when =
+I built systemd and I don&#39;t see any that include coredumpctl.</div><div=
+><br></div><div>Then I found this thread:</div><div><br></div><div><span cl=
+ass=3D"gmail-gI"><span><a href=3D"https://www.openembedded.org/pipermail/op=
+enembedded-core/2018-July/152959.html">https://www.openembedded.org/piperma=
+il/openembedded-core/2018-July/152959.html</a></span></span></div><div><spa=
+n class=3D"gmail-gI"><span><br></span></span></div><div><span class=3D"gmai=
+l-gI"><span>... which left me even more confused.</span></span></div><div><=
+span class=3D"gmail-gI"><span><br></span></span></div><div><span class=3D"g=
+mail-gI"><span>If I uncomment and define the settings in /etc/systemd/cored=
+ump.conf, will that enable coredumps or is there more to it than that?=C2=
+=A0 I&#39;m not sure how to get systemd-coredump going on a core-image-base=
+ image and Google is just turning up noise from other distros that don&#39;=
+t appear to match what I&#39;m seeing in Yocto/OE.=C2=A0 It feels like ther=
+e should be a systemd-coredump recipe like in Debian but I&#39;m not seeing=
+ a layer that provides something like that. =C2=A0 Maybe I&#39;m not lookin=
+g in the right place but I&#39;ve been doing this a while and I&#39;m kind =
+of stumped.<br></span></span></div><div><span class=3D"gmail-gI"><span><br>=
+</span></span></div><div><span class=3D"gmail-gI"><span>Thanks for any hint=
+s to point me in the right direction.</span></span></div><div><span class=
+=3D"gmail-gI"><span><br></span></span></div><div><span class=3D"gmail-gI"><=
+span>Regards,</span></span></div><div><span class=3D"gmail-gI"><span><br></=
+span></span></div><div><span class=3D"gmail-gI"><span>Brian<br></span></spa=
+n></div></div>
 
---0000000000003200fa05a5a4170c--
+--00000000000035d1e505a5a68df3--
