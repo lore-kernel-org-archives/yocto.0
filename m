@@ -1,95 +1,95 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.15994.1589557010739724411
+ by mx.groups.io with SMTP id smtpd.web12.16000.1589557635000270904
  for <yocto@lists.yoctoproject.org>;
- Fri, 15 May 2020 08:36:50 -0700
+ Fri, 15 May 2020 08:47:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=GRGE8wc3;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: raj.khem@gmail.com)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=oaYp4yfO;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: alex.kanavin@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5D153E01B6C; Fri, 15 May 2020 08:36:50 -0700 (PDT)
+	id D0352E01B6C; Fri, 15 May 2020 08:47:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (raj.khem[at]gmail.com)
+	*      (alex.kanavin[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.166.169 listed in list.dnswl.org]
+	*      [209.85.221.177 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13CB7E01B6A
-	for <yocto@yoctoproject.org>; Fri, 15 May 2020 08:36:46 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id 4so3006171ilg.1
-        for <yocto@yoctoproject.org>; Fri, 15 May 2020 08:36:46 -0700 (PDT)
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77548E01B6A
+	for <yocto@yoctoproject.org>; Fri, 15 May 2020 08:47:10 -0700 (PDT)
+Received: by mail-vk1-f177.google.com with SMTP id v23so691308vke.13
+        for <yocto@yoctoproject.org>; Fri, 15 May 2020 08:47:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=r8bkvdUUAUnEwyPdcV7LFuTU76TgRZYUOffG3mPZdVQ=;
-        b=GRGE8wc31TxzKIwMoLuvMMZD0V8rS6DyUKaTXzDP2WXN9fm37ELwhqQYTmUfOIy1q7
-         iq6jLlj5kJcAvW50zhT8Gwlp1lLsOv0EU49YtW17jGrIwfzdjuMswaNNQ9dw0BbTJLE2
-         SHIIzJUBQjWtIBTXk4MkyOYeRpm0iLC/4sSah50dBa8B+PjxsB9VX+ltK6Ah/NjMMMEn
-         HFCAdEbSar/AZzfa2nMYCCq3NtSZJT4x0h+BDxc+ZpXGri+Dj7JIhzBNLXUEj4ez8b3Z
-         ItL/AHmlyNbjnCr8qcwxtZYAjmSpWFN7sV/bA4HjPN2fkS9n32JF6on5qK+bviFADxRR
-         3x2w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tqeL7nubMCaBtbOIc8ZLIMO373xd63aC0s4zYnlMWw4=;
+        b=oaYp4yfOroQUUc4aiJJ2xPEw+oTzq8FAAsmGr86G7rIMTVL4ZRHsG/mmi2bsUapwtx
+         rvOwzg/gmFNvjnOsZJCFrBpHzm7OuiKRpMAGhnQeWJfaFz6SvD/ARHbxkOvQksvnSXih
+         2F1DLdvcjzBqEhkIs5jwfk8XBexmyQTIqoN05iVtYfBy7FQtgj2UjtJRiZi4nIX1hss7
+         VbAhbg8C7gTNR8pfX2fVXPFYAgPehqD/oM4Qs3B45orTTgsVgc8m6imi8y58sxHMR5QI
+         LQXdCXdSIVXkNRBwZAJo07fAXO6F8CHHDZlK+JvJpA9ldhJ9kx0PmMzwZSqu8B1IfjXf
+         QKow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=r8bkvdUUAUnEwyPdcV7LFuTU76TgRZYUOffG3mPZdVQ=;
-        b=r39Wek3mwKUwAyhe0ftTbpeUC2W1GZRvSmj1b9X3rqEcvCmMiOWefPqKER30hGaMDC
-         5ncYdvqs74dYL85rvGIbdjYNh+gYnEoCHcyqWcFRCK/4oQUpxsNCCTLdVnAG2Ht1vBqo
-         0TVs5qIhOVZYRw0KDWGIJRnq9n7WeimFlclRXbKQxavpAEx7I3Gd2DEXl8SYbzY0yZja
-         NOjin+t6r6u6C2v+t54e/MrdQN8tvoK0qlvWBzZWnlq1xlJDDwstKM10AqZQgh07Cgmb
-         B+/abGuELqyrSCH03/nDibQoUIY6ROLUfWpwUSEUojmchR0s+9zquXmGdbHUGkk1gnzm
-         NbWA==
-X-Gm-Message-State: AOAM531M0KFR+s+AmO/ZAqoR+1jErUzQmES8fIQpGwd6LdXYkBaXS3JI
-	L47E7JlIN8D+6DdzdoP6lX2i3tWjyPs=
-X-Google-Smtp-Source: ABdhPJwzMUtlsEHMxYIqXuHzyIWyLO59JEPo8Yk1GSuwpIIaYAXghqZ+QE3tXstW7PfH8zQUapUuVA==
-X-Received: by 2002:a05:6e02:689:: with SMTP id o9mr4068985ils.294.1589557005978;
-        Fri, 15 May 2020 08:36:45 -0700 (PDT)
-Received: from ?IPv6:2601:646:9200:4e0:33:f6fe:2ae3:dbd8? ([2601:646:9200:4e0:33:f6fe:2ae3:dbd8])
-        by smtp.gmail.com with ESMTPSA id s81sm1011232ilb.60.2020.05.15.08.36.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 May 2020 08:36:45 -0700 (PDT)
-Subject: Re: [yocto] What is the recommended method for debugging applications with Yocto
-To: Patrick Doyle <wpdster@gmail.com>,
- Yocto discussion list <yocto@yoctoproject.org>
-References: <CAF_dkJAW0uYnm=yC_cC5fa+Jt-r+KjBzfJC_rL+4WZ5CjXa7rQ@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <f8274e46-b45f-d4f0-b446-75443865fc08@gmail.com>
-Date: Fri, 15 May 2020 08:36:44 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tqeL7nubMCaBtbOIc8ZLIMO373xd63aC0s4zYnlMWw4=;
+        b=de4taMmxcyuDqTMLqhsC/Foa1JuFyLscLRSoOtcMgpDKYMXkd4X1GJOvN3B3QbueqX
+         /NZ5IhNr47Hjlcjq7zhDTpkxxEAi+OwydZWGCp+J5EgfVnsHnlCXnhyuPyPm6C+KoyHo
+         Mu7D+atJgpyyKsChtO/hpWzUf+CX7mHjf5k9xDZLhmLjXDzQyPn6J2J6/6UgQHIz7LJp
+         +iE2At3NHNeCxLA0ALU7oO7RfS3fFNSe9EoXqhnnrOFaN52IocR5vIdxBfOY3RGiJG0Y
+         Xnnes6IAD5kWQ2HxIxP0OaDdm8M/TfFlnJrJQoo+Z3KJT/zS/4m9mlwjsJJRnFIHenmY
+         g7Lg==
+X-Gm-Message-State: AOAM532PFlnVhUUPJ7EV8g7ihO1PNHOoyxByuDYSEQbysQj3kT+Wy57R
+	ijDijTKbQhUhgbxfxJipSOV28b6FQuQBe/EhVAY=
+X-Google-Smtp-Source: ABdhPJx+UDwh+pAnyZ60Vju3iU7vvhjBQ658mrDvIv9huHG1ALS03d0m7wPw+kDTiev49KsEzfc/v4w6pzqX1R3rFzo=
+X-Received: by 2002:a1f:b209:: with SMTP id b9mr3289000vkf.9.1589557629969;
+ Fri, 15 May 2020 08:47:09 -0700 (PDT)
 MIME-Version: 1.0
+References: <CAF_dkJAW0uYnm=yC_cC5fa+Jt-r+KjBzfJC_rL+4WZ5CjXa7rQ@mail.gmail.com>
 In-Reply-To: <CAF_dkJAW0uYnm=yC_cC5fa+Jt-r+KjBzfJC_rL+4WZ5CjXa7rQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Fri, 15 May 2020 17:46:58 +0200
+Message-ID: <CANNYZj8xCNageJ7NR4H-Dz2fNSfCJdGiBO8JztBz8unJwTtT8w@mail.gmail.com>
+Subject: Re: [yocto] What is the recommended method for debugging applications with Yocto
+To: Patrick Doyle <wpdster@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000e26a5905a5b1b942"
 
+--000000000000e26a5905a5b1b942
+Content-Type: text/plain; charset="UTF-8"
 
+The three debugging sections in the yocto manual should help?
 
-On 5/15/20 8:25 AM, Patrick Doyle wrote:
+https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#platdev-gdb-remotedebug
+
+Alex
+
+On Fri, 15 May 2020 at 17:26, Patrick Doyle <wpdster@gmail.com> wrote:
+
 > I know I can do
-> 
+>
 > $ bitbake base-image -cpopulate_sdk
-> 
+>
 > and distribute the resulting SDK to developers (myself included).
-> 
+>
 > But suppose I've just built and deployed an image and want to debug a
 > core file generated by one of the applications.
-> 
+>
 > I don't see .debug directories anywhere in $TMP, so when I try to tell
 > gdb to use the sysroot from the application, that works, but I don't
 > get debugging symbols libc, nor do I get stack traces (on my MIPS
@@ -98,50 +98,138 @@ On 5/15/20 8:25 AM, Patrick Doyle wrote:
 > if I had performed a complete build from scratch without the benefit
 > of the sstate-cache, but I rely upon the sstate-cache and routinely
 > start with a blank $TMP)
-> 
+>
 > So, I can populate the sdk, and end up with a pile of .debug directories:
-> 
+>
 > $ find . -name .debug -type d
+>
 > ./tmp/work/sundial-poky-linux-musl/base-image/1.0-r0/sdk/image/opt/irobot-mt/0.2/sysroots/mips32r2-24kec-nf-poky-linux-musl/usr/lib/.debug
+>
 > ./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-r0/packages-split/gcc-cross-canadian-mipsel-dbg/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/bin/mipsel-poky-linux/.debug
+>
 > ./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-r0/packages-split/gcc-cross-canadian-mipsel-dbg/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/gcc/mipsel-poky-linux/8.3.0/.debug
+>
 > ./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-r0/packages-split/gcc-cross-canadian-mipsel-dbg/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/gcc/mipsel-poky-linux/8.3.0/plugin/.debug
+>
 > ./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-r0/package/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/bin/mipsel-poky-linux/.debug
+>
 > ./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-r0/package/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/gcc/mipsel-poky-linux/8.3.0/.debug
+>
 > ./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-r0/package/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/gcc/mipsel-poky-linux/8.3.0/plugin/.debug
+>
 > ./tmp/work/mips32r2-24kec-nf-poky-linux-musl/musl-utils/20170421-r0/packages-split/musl-utils-dbg/usr/bin/.debug
+>
 > ./tmp/work/mips32r2-24kec-nf-poky-linux-musl/musl-utils/20170421-r0/package/usr/bin/.debug
-> 
+>
 > Which sysroot directory is the best one at which I can point gdb for
 > getting debug symbols?
-> 
+>
 > If I build this with an autobuilder and want to archive the sysroot
 > for use by gdb later, which one should I archive?
-> 
+>
 > I could archive the generated SDK, but that will require that I (or
 > others) install the SDK just to debug a core file, which seems a
 > little heavy to me.  But I can do that, if that's "the Yocto way".
-> 
+>
 > I wonder if there is a lighter weight mechanism for accessing the
 > debugging symbols during development, and for archiving said symbols
 > for post-development support.
-> 
+>
 > Any ideas?  Best practices?  Recommended approaches?
-> 
-
-I would think of using IMAGE_GEN_DEBUGFS set to 1 which should generate 
-a debug archive of image
-
-see following for detailed steps
-
-https://docs.windriver.com/bundle/Wind_River_Linux_Platform_Developers_Guide_9_1/page/fvn1520619692704.html
-
-https://developer.ridgerun.com/wiki/index.php?title=Preparing_Yocto_Development_Environment_for_Debugging
-
+>
 > Thanks
-> 
+>
 > --wpd
 > 
-> 
-> 
-> 
+>
+
+--000000000000e26a5905a5b1b942
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>The three debugging sections in the yocto manual shou=
+ld help?</div><div><br></div><div><a href=3D"https://www.yoctoproject.org/d=
+ocs/latest/mega-manual/mega-manual.html#platdev-gdb-remotedebug">https://ww=
+w.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#platdev-gdb-rem=
+otedebug</a></div><div><br></div><div>Alex<br></div></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, 15 May 2020 at =
+17:26, Patrick Doyle &lt;<a href=3D"mailto:wpdster@gmail.com">wpdster@gmail=
+.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
+ex">I know I can do<br>
+<br>
+$ bitbake base-image -cpopulate_sdk<br>
+<br>
+and distribute the resulting SDK to developers (myself included).<br>
+<br>
+But suppose I&#39;ve just built and deployed an image and want to debug a<=
+br>
+core file generated by one of the applications.<br>
+<br>
+I don&#39;t see .debug directories anywhere in $TMP, so when I try to tell=
+<br>
+gdb to use the sysroot from the application, that works, but I don&#39;t<b=
+r>
+get debugging symbols libc, nor do I get stack traces (on my MIPS<br>
+target).<br>
+(I guess it&#39;s possible that I would have found the .debug directories<=
+br>
+if I had performed a complete build from scratch without the benefit<br>
+of the sstate-cache, but I rely upon the sstate-cache and routinely<br>
+start with a blank $TMP)<br>
+<br>
+So, I can populate the sdk, and end up with a pile of .debug directories:<=
+br>
+<br>
+$ find . -name .debug -type d<br>
+./tmp/work/sundial-poky-linux-musl/base-image/1.0-r0/sdk/image/opt/irobot-=
+mt/0.2/sysroots/mips32r2-24kec-nf-poky-linux-musl/usr/lib/.debug<br>
+./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-=
+r0/packages-split/gcc-cross-canadian-mipsel-dbg/opt/irobot-mt/0.2/sysroots/=
+x86_64-pokysdk-linux/usr/bin/mipsel-poky-linux/.debug<br>
+./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-=
+r0/packages-split/gcc-cross-canadian-mipsel-dbg/opt/irobot-mt/0.2/sysroots/=
+x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/gcc/mipsel-poky-linux/8.=
+3.0/.debug<br>
+./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-=
+r0/packages-split/gcc-cross-canadian-mipsel-dbg/opt/irobot-mt/0.2/sysroots/=
+x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/gcc/mipsel-poky-linux/8.=
+3.0/plugin/.debug<br>
+./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-=
+r0/package/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/bin/mipsel-p=
+oky-linux/.debug<br>
+./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-=
+r0/package/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/mips=
+el-poky-linux/gcc/mipsel-poky-linux/8.3.0/.debug<br>
+./tmp/work/x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-mipsel/8.3.0-=
+r0/package/opt/irobot-mt/0.2/sysroots/x86_64-pokysdk-linux/usr/libexec/mips=
+el-poky-linux/gcc/mipsel-poky-linux/8.3.0/plugin/.debug<br>
+./tmp/work/mips32r2-24kec-nf-poky-linux-musl/musl-utils/20170421-r0/packag=
+es-split/musl-utils-dbg/usr/bin/.debug<br>
+./tmp/work/mips32r2-24kec-nf-poky-linux-musl/musl-utils/20170421-r0/packag=
+e/usr/bin/.debug<br>
+<br>
+Which sysroot directory is the best one at which I can point gdb for<br>
+getting debug symbols?<br>
+<br>
+If I build this with an autobuilder and want to archive the sysroot<br>
+for use by gdb later, which one should I archive?<br>
+<br>
+I could archive the generated SDK, but that will require that I (or<br>
+others) install the SDK just to debug a core file, which seems a<br>
+little heavy to me.=C2=A0 But I can do that, if that&#39;s &quot;the Yocto=
+ way&quot;.<br>
+<br>
+I wonder if there is a lighter weight mechanism for accessing the<br>
+debugging symbols during development, and for archiving said symbols<br>
+for post-development support.<br>
+<br>
+Any ideas?=C2=A0 Best practices?=C2=A0 Recommended approaches?<br>
+<br>
+Thanks<br>
+<br>
+--wpd<br>
+<br>
+</blockquote></div>
+
+--000000000000e26a5905a5b1b942--
