@@ -1,86 +1,142 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.16730.1589558752843077225
+ by mx.groups.io with SMTP id smtpd.web12.5509.1589638349459784671
  for <yocto@lists.yoctoproject.org>;
- Fri, 15 May 2020 09:05:52 -0700
+ Sat, 16 May 2020 07:12:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=i3fe2osW;
- spf=softfail (domain: linaro.org, ip: 140.211.169.56, mailfrom: daniel.diaz@linaro.org)
+ dkim=fail reason="body hash did not verify" header.i=@googlemail.com header.s=20161025 header.b=mLA3NY2D;
+ spf=softfail (domain: googlemail.com, ip: 140.211.169.56, mailfrom: matthias.schoepfer@googlemail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 807C0E01B6D; Fri, 15 May 2020 09:05:52 -0700 (PDT)
+	id ECDF0E00CD1; Sat, 16 May 2020 07:12:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (matthias.schoepfer[at]googlemail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.208.172 listed in list.dnswl.org]
+	*      [209.85.221.53 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B74FE01B6A
-	for <yocto@yoctoproject.org>; Fri, 15 May 2020 09:05:48 -0700 (PDT)
-Received: by mail-lj1-f172.google.com with SMTP id u6so2813982ljl.6
-        for <yocto@yoctoproject.org>; Fri, 15 May 2020 09:05:48 -0700 (PDT)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 509E2E00A6B
+	for <yocto@yoctoproject.org>; Sat, 16 May 2020 07:12:28 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id e16so6658443wra.7
+        for <yocto@yoctoproject.org>; Sat, 16 May 2020 07:12:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=uPAUg1hqRcRY5R6N+giZ/EdWLpEifRyjheSZH9bmjT8=;
-        b=i3fe2osWMy51Q58EjaC3CSaoBXxXn3+wH3c4jhJcdFbb0EQAjYibVs4CnCn0X0gSjj
-         COBQjig99lPsI6hSL82K+VpCvxnVmqd4AmYNTsS4A2iWYFYXUaiaGyN2Pk9RtDMikoP8
-         ZZfMT2bn1S8vW/mPQkmMLdH6KYKN+QJ0bA+K5IOJJmLn2FlMqV5oiQ66MmlIX/51WrL9
-         m73zrRiAKY1w+skmlGkTfR9LrHGgBKJnbO66RU2H5j3leVeR2+CoeX4PJcpa9UhCnaRk
-         tVIs6B1wkyaI2P35ZeDsFgbz/rO5z5gHo/Crc37xBdjqgySb1yUhH3jvwnCyxCrbDkJo
-         DYuQ==
+        d=googlemail.com; s=20161025;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding:content-language;
+        bh=0/gnLePT+kXjgg8FXmGLurgJHbCKxWs5nHQljl+GBRA=;
+        b=mLA3NY2DNvug+mtGVmgTkhxrQMUW+zDJPV8oBHxApao+GslQpZqWX+TEblMdtuCBwy
+         F8p8aydkN3N+toNlAygNMmjEb2R5yZ2CCbxmp2TBoMeelSPZflJkPHOTKF7KiTC6UUnK
+         /KJRHhu9+RaT2fJuLNSuNgp7egn5+ubFdyrO+51I0RIM0dxBeFmHeROrSpqo4973BcyF
+         D2FwuJli4vu1jaeZ5A0do+I54Nh8TwLurtWxF4zFG8e4o3NEnvdn3nTszI3NZrtyf0XR
+         1RUbpPflm4gqaO+FfZY/EldTB98pZGIOcGr8noCAWfk9rda/LxQIcASMN9Rnb6Qhz8Ni
+         hIcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=uPAUg1hqRcRY5R6N+giZ/EdWLpEifRyjheSZH9bmjT8=;
-        b=le6ZNDmJ2RK0g6RnA+S5t80d9PZdanX1xGLcO3xAskeeOHmQ/OxSwN7nK8dnJr6Ojm
-         ftq2Qmxx/rw+6o/UTOumNYfWx4N2pmjXSfSJd02vdzOoWXwc+OEDsYLUpV9r8qH0ENm4
-         fYxuWK3Yaqh7sn6+Dlo73xYgUm1vvhT4s2yLtrJKQFoT5OVzWPdNC221yo7uvKRNqJUQ
-         9GxaC4LGjursPorAQT5pZvGg7XCy5QOCZv2n3t1Km39BA4yXhEAGlTVsSNoZ9wxPEYzt
-         wu1aiNBH1caRf+oT7DGU/9HZbK4KXGDrvH3A36clujgQzqE0lmIj7fRePqwvqxhh56O2
-         pnjg==
-X-Gm-Message-State: AOAM5322/2j3JCPDNRvu+GWNJMw8OPFBv66esyFH5IK4XBdINrHUlFHf
-	TAAx2pxHlxy1Z6/EarnhratBEBv4nzb3JYy+CjGxOW6pLUzRKg==
-X-Google-Smtp-Source: ABdhPJyCFW8wuyPVAAtPpR6XFyr23wRHYDs/NEkcGl4iJ5cn6VgAH9xG0UuRa6EGtMD6wCEtCtrxq0klLp4e2dX2lkk=
-X-Received: by 2002:a2e:6c08:: with SMTP id h8mr2656036ljc.48.1589558747511;
- Fri, 15 May 2020 09:05:47 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=0/gnLePT+kXjgg8FXmGLurgJHbCKxWs5nHQljl+GBRA=;
+        b=D/gmF6d6pH3zUvjngY+E7HnIpWtBYXEj39MM7BWSerMzh6Azp0KDF9VkBUCcVgp3xp
+         qtoi3CTgg3YLCZF0dt2aCeq0GgQR0a/cBNdGqBqvNd2V221tBVJh8MmHQgGRm9JkfQoc
+         sqcSdep+PgN5xUoqkR43VOnnVQF3Nbz2YFYsiWwnHm3lXrfmXSBIarY5Y9eg2/T4ZDkD
+         /9laEOpHVDgZ2dGaAE8hZl5mSQjEeWe1bYlEpO86EcmRIxGbOUqJNV1QUnpNFKcRK5J/
+         STje8gFC+1rtp1XUnMU62CE1b3Jsfja3TRmRQJ3SvN61YPRWMm3fWt4nBy7aArFri1Fk
+         Ncwg==
+X-Gm-Message-State: AOAM531U1DtzFxg4xq+cFZ7uFiFkLb0M3dzq6ZEwfn7XHfTFieKksql6
+	ZoHNbiZtka2V5IdV4gv6IAPhP3wJ
+X-Google-Smtp-Source: ABdhPJwM5Cmz70QKlyKfaD/PJlhSrtiFYngQRGYl5l6/KsMYuKpy8Ocf4BepY0nvco/j4irzIaEO8w==
+X-Received: by 2002:adf:d0c6:: with SMTP id z6mr10632368wrh.219.1589638346986;
+        Sat, 16 May 2020 07:12:26 -0700 (PDT)
+Received: from ?IPv6:2003:f8:5702:6d00:765:17e2:2464:fe5c? (p200300f857026d00076517e22464fe5c.dip0.t-ipconnect.de. [2003:f8:5702:6d00:765:17e2:2464:fe5c])
+        by smtp.gmail.com with ESMTPSA id z124sm6599084wmg.20.2020.05.16.07.12.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 16 May 2020 07:12:26 -0700 (PDT)
+Subject: Re: [yocto] Package libgcc-lic cannot be installed into the image because it has incompatible license(s): GPL-3.0
+To: Khem Raj <raj.khem@gmail.com>, Yocto-mailing-list <yocto@yoctoproject.org>
+References: <5e93c06b-61a1-a89c-a2f7-0dadda804be2@googlemail.com>
+ <ce772f60-45d4-61c1-5305-53c571cd4079@gmail.com>
+From: "Matthias Schoepfer" <matthias.schoepfer@googlemail.com>
+Message-ID: <eb4ddd34-4b76-4f9d-a41a-cc06058296da@googlemail.com>
+Date: Sat, 16 May 2020 16:12:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-References: <f756b087-c3e3-3a47-171e-bc72421ff48a@balister.org>
-In-Reply-To: <f756b087-c3e3-3a47-171e-bc72421ff48a@balister.org>
-From: "Daniel D?az" <daniel.diaz@linaro.org>
-Date: Fri, 15 May 2020 11:05:36 -0500
-Message-ID: <CAEUSe783rDYWD6we-OLpU2=eM1HTJ0=zars+RJOBYW0c8NFveQ@mail.gmail.com>
-Subject: Re: [OE-core] OpenEmbedded Happy Hour
-To: Philip Balister <philip@balister.org>
-Cc: "openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	"openembedded-members@lists.openembedded.org" <openembedded-members@lists.openembedded.org>, 
-	Yocto Project <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <ce772f60-45d4-61c1-5305-53c571cd4079@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
-Hello!
+Hi Khem!
 
-On Fri, 15 May 2020 at 10:56, Philip Balister <philip@balister.org> wrote:
-> I've made a wiki page to track these:
-> https://www.openembedded.org/wiki/Happy_Hours
-> Then next one is scheduled for 2100 UTC on May 27.
+On 5/15/20 4:46 PM, Khem Raj wrote:
+> On 5/15/20 2:32 AM, Matthias Schoepfer via lists.yoctoproject.org wrote=
+:
+>> Hi!
+>>
+>> I am trying to migrate to dunfell. Out customer does not want GPLv3=20
+>> or anything like that on the firmware.
+>>
+>> So - same as in zeus - we have a line:
+>>
+>> INCOMPATIBLE_LICENSE =3D "GPLv3 LGPLv3 GPLv3+ LGPLv3+ GPL-3.0 LGPL-3.0=
+=20
+>> AGPL-3.0"
+>>
+>> during do_rootfs, the process fails with:
+>>
+>> do_rootfs: Package libgcc-lic cannot be installed into the image=20
+>> because it has incompatible license(s): GPL-3.0
+>>
+>> The package basically consists of the license information for libgcc,=20
+>> libgcc is allowed due to the linking exception.
+>>
+>> Even, when I try to allow this package with something like this:
+>>
+>> INCOMPATIBLE_LICENSE_pn-libgcc-lic =3D ""
+>> INCOMPATIBLE_LICENSE_pn-libgcc =3D ""
+>>
+>> which has worked in the past to have an in house debug image with the=20
+>> gdbserver on it, it still fails.
+>>
+>> Am I the first to experience this? Am I doing something wrong?
+>>
+>> We do
+>>
+>> COPY_LIC_MANIFEST =3D "1"
+>> COPY_LIC_DIRS =3D "1"
+>> LICENSE_CREATE_PACKAGE =3D "1"
+>>
+>> as well, if that info is needed.
+>>
+>> Any help would be appreciated.
+>>
+>
+> Can you try adding
+>
+> LICENSE_${PN}-lic =3D "GPL-3.0-with-GCC-exception"
+>
+> in meta/recipes-devtools/gcc/libgcc.inc
+>
+> and see if it helps ?
+>
+It did help, thank you very much! I needed to repeat this for libgcrypt=20
+and libidn2. It does look like a bug though, does it not?
 
-Ah, just in time to watch live SpaceX's launch:
-https://blogs.nasa.gov/commercialcrew/
 
-Greetings!
+Regards,
 
-Daniel D=C3=ADaz
-daniel.diaz@linaro.org
+
+ =C2=A0 Matthias
+
