@@ -1,154 +1,196 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.15291.1589673642648609262
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+ by mx.groups.io with SMTP id smtpd.web10.24101.1589728899534548186
  for <yocto@lists.yoctoproject.org>;
- Sat, 16 May 2020 17:00:42 -0700
+ Sun, 17 May 2020 08:21:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=TXqjkjOS;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: ankur.tyagi85@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 31270E01B79; Sat, 16 May 2020 17:00:42 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (ankur.tyagi85[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.208.46 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5CE0E01B3E
-	for <yocto@yoctoproject.org>; Sat, 16 May 2020 17:00:39 -0700 (PDT)
-Received: by mail-ed1-f46.google.com with SMTP id k19so5341065edv.9
-        for <yocto@yoctoproject.org>; Sat, 16 May 2020 17:00:39 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=OEWplihl;
+ spf=pass (domain: gmail.com, ip: 209.85.128.42, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-wm1-f42.google.com with SMTP id n5so7583905wmd.0
+        for <yocto@lists.yoctoproject.org>; Sun, 17 May 2020 08:21:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KxUwGa3D4o/62A1PwPjTHf36XwpbPEpimqfDiiJt+LM=;
-        b=TXqjkjOSDjWbe7jF2DVnIAG2zA7AMiy4y+wUhwiri4TTHgD/PCV/MmVhk8I3ELAGkI
-         Lg/vB1YsFZ4dOp96rSv6a5zTs9ks8FkimWFeGYEX4m7PvakRcEcK9E3h4/Go9kMVGpnG
-         uAbmZpTa3LOV5uWu9+1Kg6SrCvm/QGXMDqVhJ/DpyomiYe+rlaZwCVt5TkDGkUYGxg/4
-         Ov7gHLLEH8fC+IA+X/S7GNl63bONJi5cU/sjlY/4EiDiqjz4wdCoEtFSxWMSdoSm/RoA
-         7r9SbFtAbxcZj8/PeuAQccU8stB9uomByc2FgyTZdFWIJ9mYe0vqc1ySGdZ8pj/jxtzT
-         URZA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3kFaBNwkSFVMhlAwJFYfJjoNSzs5ORzBWYubvgBMikE=;
+        b=OEWplihlM6bSzMpVAyoptSQ2+C4UYowSJ8ugHh2zgpV1FYNP76HOu/7bKvBVq5mwKD
+         eGlBYb5W+1C8ixTV+R3vs/xcbsFJsHX51Zggu9+FkJT1UmJzxy0Ug3GJiOwZA7680tCh
+         Nlxlo/NTGlL9BeeegB7gYCAkoJtZCBUziwOpvY+DSNClZzb7Tp9FHf2660NG6Y4pObmo
+         h1XXnY3v24n5OljXL0zroEkErzw4zGl080G3P28AqNBIL7Scnd6boZX38ZUvjO8LiBnE
+         x3Zn4+jpfYZvKg6MdLwl5PRvgHeLmJRHOgWoPL540EVsmtMoQYjP/mOVm/RNosznU/yk
+         WG5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KxUwGa3D4o/62A1PwPjTHf36XwpbPEpimqfDiiJt+LM=;
-        b=aAHVosOpKuD1c70OpDj8+r0BK/2686Mgy6q1w/QrMS+DNgrFXgmGbWKBYoeN3QiUE7
-         hluiOq+VctW65mkBdYvR0EbzWrGFbZT0d6RAKxr/b3/61ke2FsQ8xA/jCqp1ZT4J0gs/
-         RS+RqizTbor4AerX4TG32Y2aDa9o0NEqxPz9Kg7uRMdGSNEhlUjFUKaHLAm9xsZ5p/Wk
-         2xEsKlDnTpTHaGMz8GpA+tdvBNktidhPXon+Hxjn6/HClLsYZSkk/ewVkO+krQQrtF3m
-         g/TwHSepvc7p5OoiT/swLgfua1QKucvdl/SrQDoDE2ys79MRiNR2pkHmccweFKLivZJ0
-         YoLw==
-X-Gm-Message-State: AOAM531AkaMjQ8zeQ4yqnP0Y2Yi+cXvzoSYPldpsZwP6qigWjveMjdtX
-	+nlQ/cDKIKmqozrRF/cBmUaxOM1Tc5NUg51LQAu3YQ==
-X-Google-Smtp-Source: ABdhPJz/gg80aUypPLjngQ2650IyWutc6PNawDOFwnmqOo1OdWBUG63n0P/0r2yVELypsXJg4LJ515LPvgR9oD/2mnY=
-X-Received: by 2002:aa7:c312:: with SMTP id l18mr191412edq.161.1589673638381;
- Sat, 16 May 2020 17:00:38 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3kFaBNwkSFVMhlAwJFYfJjoNSzs5ORzBWYubvgBMikE=;
+        b=WstoBdQLyP/895bkhZ5yZbFgBlqCAzMtd7rO2BTh+5UOUN9OpIBG/qySfamWZ6rjPa
+         lvT6C9gB3oMOgnG9gy0JDNTsQdBd/vy/ncLqwlaO9EqHpLMvW7lUonm7j3xRYvhXn9cR
+         qZuFhabUYfFgoJUjqkm+LYfBZ424lrPyXsNuoRrJSGXfZv362utOaI4RtA0qz2Ly/P/f
+         ZdCB11f1283DjSEaYJmA4U2cODdw+Ppix1gbZX48NLyNah4Xrv1m5VouR8aM1VxCQFBc
+         xcqa4QouZDTrOmX2lfnO9yZmhAFeND96eEUMSoyLGCCtRqZYo4rkWrIBv+6n8eDZC39Q
+         vYRw==
+X-Gm-Message-State: AOAM533BiCNarnaBvWiumvjOPTNCD9hfNbTQ4sjkAOoLJMUf07KBhly8
+	RbXy4ncxpaLWH7U/O0Fo9RvQhf0Z
+X-Google-Smtp-Source: ABdhPJxNJvbiDQGQIU9cF2GM+8nnMsrmJQscgN+4F9j2nK3p6UEfBfv+oU4JPOBAhXJnDIS1yBIw+Q==
+X-Received: by 2002:a7b:c41a:: with SMTP id k26mr14760352wmi.85.1589728897706;
+        Sun, 17 May 2020 08:21:37 -0700 (PDT)
+Return-Path: <alex.kanavin@gmail.com>
+Received: from linux-f9zs.site ([2a02:2450:1011:56f:238d:84be:b349:9184])
+        by smtp.gmail.com with ESMTPSA id c19sm12983563wrb.89.2020.05.17.08.21.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 May 2020 08:21:37 -0700 (PDT)
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>
+Subject: [PATCH yocto-autobuilder-helper] scripts: add a pair of scripts to set up and run Auto Upgrade Helper
+Date: Sun, 17 May 2020 17:21:09 +0200
+Message-Id: <20200517152109.23350-1-alex.kanavin@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <f756b087-c3e3-3a47-171e-bc72421ff48a@balister.org> <3eaeb926-20f3-d032-c0fa-25c1af92a235@koansoftware.com>
-In-Reply-To: <3eaeb926-20f3-d032-c0fa-25c1af92a235@koansoftware.com>
-From: "Ankur Tyagi" <ankur.tyagi85@gmail.com>
-Date: Sun, 17 May 2020 12:02:26 +1200
-Message-ID: <CADySD0HZEAHjQZcfXJYL0L+33VTj9HOiATJwOT2ysiBy8Th=4w@mail.gmail.com>
-Subject: Re: [oe] OpenEmbedded Happy Hour
-To: m.cavallini@koansoftware.com
-Cc: Philip Balister <philip@balister.org>, openembedded-devel@lists.openembedded.org, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	"openembedded-members@lists.openembedded.org" <openembedded-members@lists.openembedded.org>, 
-	Yocto Project <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000864e0805a5ccbc59"
+Content-Transfer-Encoding: 8bit
 
---000000000000864e0805a5ccbc59
-Content-Type: text/plain; charset="UTF-8"
+This allows automating its setup and execution on all autobuilder worker machines;
+previously there was a static setup on a dedicated machine, which wasn't
+great from maintenance perspective.
 
-See you all from down under !
+To use:
 
-Cheers
-Ankur
+scripts/setup-auh target_dir
+scripts/run-auh target_dir
 
-On Sun, May 17, 2020, 2:27 AM Marco Cavallini [KOAN] <
-m.cavallini@koansoftware.com> wrote:
+(run-auh can be run several times in a directory that
+was previously set up)
 
-> On 15/05/20 17:56, Philip Balister wrote:
-> > I've made a wiki page to track these:
-> >
-> > https://www.openembedded.org/wiki/Happy_Hours
-> >
-> > Then next one is scheduled for 2100 UTC on May 27. This is late evening
-> > for Europe and morning for New Zealand, so hopefully we see some
-> > different faces. The meeting info is on the wiki page.
-> >
-> > There is no set agenda, so bring some projects to talk about with the
-> > community.
-> >
-> >
-> > Philip
-> >
->
->
-> https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+May+27&iso=20200527T21&p1=%3A&ah=1
->
-> --
-> Marco
->
-> 
->
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+---
+ scripts/auh-config/local.conf.append   |  3 +++
+ scripts/auh-config/upgrade-helper.conf | 33 ++++++++++++++++++++++++++
+ scripts/run-auh                        | 32 +++++++++++++++++++++++++
+ scripts/setup-auh                      | 26 ++++++++++++++++++++
+ 4 files changed, 94 insertions(+)
+ create mode 100644 scripts/auh-config/local.conf.append
+ create mode 100644 scripts/auh-config/upgrade-helper.conf
+ create mode 100755 scripts/run-auh
+ create mode 100755 scripts/setup-auh
 
---000000000000864e0805a5ccbc59
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+diff --git a/scripts/auh-config/local.conf.append b/scripts/auh-config/local.conf.append
+new file mode 100644
+index 0000000..9628737
+--- /dev/null
++++ b/scripts/auh-config/local.conf.append
+@@ -0,0 +1,3 @@
++
++INHERIT += "buildhistory"
++LICENSE_FLAGS_WHITELIST = "commercial"
+diff --git a/scripts/auh-config/upgrade-helper.conf b/scripts/auh-config/upgrade-helper.conf
+new file mode 100644
+index 0000000..fbf5d8a
+--- /dev/null
++++ b/scripts/auh-config/upgrade-helper.conf
+@@ -0,0 +1,33 @@
++[maintainer_override]
++# mails for recipe upgrades will go to john.doe instead of jane.doe, etc
++#ross.burton@intel.com=anibal.limon@linux.intel.com
++
++[settings]
++# recipes in blacklist will be skipped
++blacklist=linux-libc-headers linux-yocto alsa-utils-scripts build-appliance-image
++#blacklist=python python3 glibc gcc linux-libc-headers linux-yocto-rt linux-yocto linux-yocto-dev linux-yocto-tiny qt4-x11-free qt4-embedded qt4-x11-free qt4e-demo-image gnome-common gnome-desktop3 gnome-desktop-testing adt-installer build-appliance-image
++# only recipes belonging to maintainers in whitelist will be attempted
++#maintainers_whitelist=anibal.limon@linux.intel.com
++# SMTP server
++smtp=smtp1.yoctoproject.org:25
++# from whom should the mails arrive
++from=auh@auh.yoctoproject.org
++# who should get the status mail with statistics, at the end
++status_recipients=openembedded-core@lists.openembedded.org
++# clean sstate directory before upgrading
++#clean_sstate=yes
++# clean tmp directory before upgrading
++#clean_tmp=yes
++# machines to test build with
++#machines=qemux86 qemux86-64 qemuarm qemumips qemuppc
++#machines=qemux86
++
++buildhistory=yes
++#testimage=yes
++#testimage_name=core-image-minimal
++
++#workdir=/home/auh/work/
++#publish_work_url=https://logs.yoctoproject.org/auh/
++
++commit_revert_policy=all
++
+diff --git a/scripts/run-auh b/scripts/run-auh
+new file mode 100755
+index 0000000..29a8044
+--- /dev/null
++++ b/scripts/run-auh
+@@ -0,0 +1,32 @@
++#!/bin/bash
++# Run Auto Upgrade Helper in a directory set up by setup_auh.
++#
++# Called with $1 - the directory where the setup was created
++
++if [ -z $1 ]; then
++  echo "Use: $0 auh_setup_dir"
++  exit 1
++fi
++
++full_dir=$(readlink -e $1)
++
++auh_dir=$full_dir/auto-upgrade-helper
++poky_dir=$full_dir/poky
++build_dir=$full_dir/build
++sstate_dir=$full_dir/build/sstate-cache
++
++pushd $poky_dir
++
++# Base the upgrades on poky master
++git fetch origin
++git checkout -B tmp-auh-upgrades origin/master
++
++source $poky_dir/oe-init-build-env $build_dir
++$auh_dir/upgradehelper.py -e all
++
++# clean up to avoid the disk filling up
++rm -rf $build_dir/tmp/
++rm -rf $build_dir/workspace/sources/*
++find $sstate_dir -atime +10 -delete
++
++popd
+diff --git a/scripts/setup-auh b/scripts/setup-auh
+new file mode 100755
+index 0000000..23f3d44
+--- /dev/null
++++ b/scripts/setup-auh
+@@ -0,0 +1,26 @@
++#!/bin/bash
++# Initialize Auto Upgrade Helper in a directory.
++#
++# Called with $1 - the directory to place the setup
++CONFIG_DIR=`dirname $0`/auh-config
++
++if [ -z $1 ]; then
++  echo "Use: $0 target_dir"
++  exit 1
++fi
++
++mkdir -p $1
++pushd $1
++
++git clone git://git.yoctoproject.org/poky
++pushd poky
++git config user.email auh@auh.yoctoproject.org
++git config user.name "Auto Upgrade Helper"
++popd
++git clone git://git.yoctoproject.org/auto-upgrade-helper
++source poky/oe-init-build-env build
++mkdir -p upgrade-helper
++popd
++
++cp $CONFIG_DIR/upgrade-helper.conf $1/build/upgrade-helper
++cat $CONFIG_DIR/local.conf.append >> $1/build/conf/local.conf
+-- 
+2.26.2
 
-<div dir=3D"auto">See you all from down under !<div dir=3D"auto"><br></div>=
-<div dir=3D"auto">Cheers</div><div dir=3D"auto">Ankur</div></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, May 17, =
-2020, 2:27 AM Marco Cavallini [KOAN] &lt;<a href=3D"mailto:m.cavallini@koan=
-software.com">m.cavallini@koansoftware.com</a>&gt; wrote:<br></div><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc s=
-olid;padding-left:1ex">On 15/05/20 17:56, Philip Balister wrote:<br>
-&gt; I&#39;ve made a wiki page to track these:<br>
-&gt;<br>
-&gt; <a href=3D"https://www.openembedded.org/wiki/Happy_Hours" rel=3D"nore=
-ferrer noreferrer" target=3D"_blank">https://www.openembedded.org/wiki/Happ=
-y_Hours</a><br>
-&gt;<br>
-&gt; Then next one is scheduled for 2100 UTC on May 27. This is late eveni=
-ng<br>
-&gt; for Europe and morning for New Zealand, so hopefully we see some<br>
-&gt; different faces. The meeting info is on the wiki page.<br>
-&gt;<br>
-&gt; There is no set agenda, so bring some projects to talk about with the=
-<br>
-&gt; community.<br>
-&gt;<br>
-&gt;<br>
-&gt; Philip<br>
-&gt;<br>
-<br>
-<a href=3D"https://www.timeanddate.com/worldclock/fixedtime.html?msg=3DOpe=
-nEmbedded+Happy+Hour+May+27&amp;iso=3D20200527T21&amp;p1=3D%3A&amp;ah=3D1" =
-rel=3D"noreferrer noreferrer" target=3D"_blank">https://www.timeanddate.com=
-/worldclock/fixedtime.html?msg=3DOpenEmbedded+Happy+Hour+May+27&amp;iso=3D2=
-0200527T21&amp;p1=3D%3A&amp;ah=3D1</a><br>
-<br>
---<br>
-Marco<br>
-<br>
-<br>
-</blockquote></div>
-
---000000000000864e0805a5ccbc59--
