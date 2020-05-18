@@ -1,403 +1,156 @@
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
- by mx.groups.io with SMTP id smtpd.web12.36860.1589785389477107448
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (EUR04-VI1-obe.outbound.protection.outlook.com [40.107.8.49])
+ by mx.groups.io with SMTP id smtpd.web10.38746.1589794808768580638
  for <yocto@lists.yoctoproject.org>;
- Mon, 18 May 2020 00:03:09 -0700
+ Mon, 18 May 2020 02:40:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=jlzlN8YF;
- spf=pass (domain: linaro.org, ip: 209.85.219.182, mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-yb1-f182.google.com with SMTP id a10so4767141ybc.3
-        for <yocto@lists.yoctoproject.org>; Mon, 18 May 2020 00:03:09 -0700 (PDT)
+ dkim=pass header.i=@topicbv.onmicrosoft.com header.s=selector2-topicbv-onmicrosoft-com header.b=NgKzqo4g;
+ spf=pass (domain: topicproducts.com, ip: 40.107.8.49, mailfrom: mike.looijmans@topicproducts.com)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=I+0VEFiZG/Utx/shVyA6/T95A/cZ+LT3MPfP/a6eIZ4=;
-        b=jlzlN8YFLYzrnlR4rmyQ89UsE8z1SbHU5NYqjSwqlwFmFPIez5/6ZUMijllVbq4bFH
-         +urXGieEoNl9SlYK9OHnSWwn+QXxxHfitM78abrzpNMPornrpo5WU8mkncgGC4QmTo2M
-         x0caH7nH11bdiM8c1Jk+7uZTAUhLR/rw5ppI47eGz47KhYZFxUQtNGz4t0oMEYTqG0RY
-         7k93EaPSInnz5dHHbXe1zxTScArpC3z50gDRzx050HhaSVSZOrkQ2pxs/OFDHYsWAqvZ
-         f4Tax7zWEwnU+I3sH9B1n6j4C6CpMdSH1aqLXil5+stqZofLYuYMixCJzTsBegmCoA+B
-         vVWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=I+0VEFiZG/Utx/shVyA6/T95A/cZ+LT3MPfP/a6eIZ4=;
-        b=r5QtocNQzvjFouGTWDFHEDsY9XeiIxR2vk8wDC6X/UMTfd6nK/CL4uxArJLYT1UeoI
-         Q9C9KhEueJhOpIp2y4Z64UbwsMU5v6bE0yAtSHN2dm/nwxse+mg/I07AyHdCzd7pHo5C
-         c3h/Npv4E2viHuj9lXz6snak3mGLjm8tfLRQ/ewflXuehjMN2pv9YubPeba0e+iL5Q+G
-         7P9OfinNYCW2pihDAHtgaS6IfDWfKPxVWx+U7OJ8Jyn1/4lTlTcsd5VeGsQn/wVZl35g
-         0ttjCHK+9koRPz+QgDhv3aRen6b8SvB0N8KNS6x11ULGXV/XcX8n4qKeUBaVR5CdzdxE
-         Ldgw==
-X-Gm-Message-State: AOAM530qAonBj8KFmxbuKcLPinY4Jpixbkl3rFNRWo8bJAE2jMLKMXTH
-	TRWnhw9005SU/TWgJJcxTHGapBR6CMRpuA4YGkg4yg==
-X-Google-Smtp-Source: ABdhPJwCEGC9a68HiSX+wL6SWBec4Myxvu4XithHicnw59JMn2w+RK/yvTtFhw1Yja0tF60j0TjVECyqveIeKWCsjlQ=
-X-Received: by 2002:a25:8b0c:: with SMTP id i12mr24652439ybl.371.1589785388527;
- Mon, 18 May 2020 00:03:08 -0700 (PDT)
+ d=topicbv.onmicrosoft.com; s=selector2-topicbv-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lVX4/OaDv9M6g4WIfeET2+pLJjjq0gTHGWT8mfPYfSg=;
+ b=NgKzqo4g9C8EyAomQqNZfW6UfsDjB5+HNWAdpGqazkP5NJkI2HVktHa8t1qaIqqXiffa4F025XPjsF//4UFYHsZ8qeJtOKIwb4c/mDlSXo7lk6LsHrut/I5dHn1FdiHF7HW4839et0q0lH7FRwKhxgGTIaNRVHb0Goj/SIFvn7M=
+Received: from DB6PR0301CA0011.eurprd03.prod.outlook.com (2603:10a6:4:3e::21)
+ by AM0PR0402MB3585.eurprd04.prod.outlook.com (2603:10a6:208:1c::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.26; Mon, 18 May
+ 2020 09:40:04 +0000
+Received: from DB5EUR01FT048.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:4:3e:cafe::b8) by DB6PR0301CA0011.outlook.office365.com
+ (2603:10a6:4:3e::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.24 via Frontend
+ Transport; Mon, 18 May 2020 09:40:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 40.68.112.65)
+ smtp.mailfrom=topicproducts.com; yoctoproject.org; dkim=fail (signature did
+ not verify) header.d=topicbv.onmicrosoft.com;yoctoproject.org; dmarc=none
+ action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
+ designates 40.68.112.65 as permitted sender) receiver=protection.outlook.com;
+ client-ip=40.68.112.65; helo=westeu12-emailsignatures-cloud.codetwo.com;
+Received: from westeu12-emailsignatures-cloud.codetwo.com (40.68.112.65) by
+ DB5EUR01FT048.mail.protection.outlook.com (10.152.5.166) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3000.19 via Frontend Transport; Mon, 18 May 2020 09:40:04 +0000
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (104.47.14.57) by westeu12-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Mon, 18 May 2020 09:40:03 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=P5QSCK64HufeG8RpmNJ605JVjpKKUPv6n1rPE8jJRypyVauWGmnt2OmvfTLUVxmPofs6JAUvKEM5QvwW0Bxfg2dwI+/WZIqqAcdr7dehVuHQZR6igUxOCPXLsBgBalrObCHoMkvixCb4uTrg31ed75JxgPCEatZggO7HMyTqin5WWIF6+V+Tj5QcFX+zhmtFkveR5BAw848RiHK2/IOsqBtgeHK/FKTmsUjMACUefeRDWumn8P7VPJbHo/Q0JlkNLPO6BV0/w1tOByfKK3MRMmYoRENqs4svbxrzXYdBbTF3lhaONISulqb4Xust9nQxlMjn3/P4d5I492y9Ox0nHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lVX4/OaDv9M6g4WIfeET2+pLJjjq0gTHGWT8mfPYfSg=;
+ b=AYTr5kMxVvY+N+UmqLhWPcYpDpzYvhE8UAkk/ZQqPNrDA4uibiqGz6zw7Gd7+Rzwr/1alsE7EE/W2FweIYtnrhmw7itNXbTOVjqwtzICUZhe1PpFnZ+8JFdNRabAAAuiSsks1hOeKzQp9doEURjApDvTSnFeIqtK1f2EL8pzx/MRrhSWLiQQlWfs7WhG2Vp+GZ3l9CcBO3wgHzvidTp4m4iUP1RB85w6oFibfQacCHxppjHPep3ZItq3a6WV6bL1mGDaWjqbzozRuSxiMMMNKjmogu5H9yxpNohEs3iArNfnNo04CoQRAu3XNTAyNoiYsyShqcCAU6NL2K4R/mDfZw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
+ dkim=pass header.d=topic.nl; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=topicbv.onmicrosoft.com; s=selector2-topicbv-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lVX4/OaDv9M6g4WIfeET2+pLJjjq0gTHGWT8mfPYfSg=;
+ b=ryrQSZUAoKRJi61gkHX0+xOgkGoOWFf3KU/oxZahFqjic0PUjb3XsHvqXagFVI15SgdPMNv+gqGIRT+L9k0Lz8jpF2X1Kle1+UVV6J1xNMPLYPYRkM0SdZQWx/IwIAL3mcPwxBqrW45ykmupwQ5VCUhJLg++QPuQhgTaXj+2aqI=
+Authentication-Results-Original: yoctoproject.org; dkim=none (message not
+ signed) header.d=none;yoctoproject.org; dmarc=none action=none
+ header.from=topic.nl;
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
+ by DB8PR04MB6827.eurprd04.prod.outlook.com (2603:10a6:10:f8::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.27; Mon, 18 May
+ 2020 09:40:01 +0000
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::6cf6:7323:7395:eec9]) by DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::6cf6:7323:7395:eec9%7]) with mapi id 15.20.3000.034; Mon, 18 May 2020
+ 09:40:01 +0000
+Subject: Re: [yocto] [WIC] Grow last partition up to disk size
+To: yocto@lists.yoctoproject.org
+CC: Yocto list discussion <yocto@yoctoproject.org>
+References: <504407a1-379f-dc70-7745-c42624df7d8c@ibeeto.com>
+ <CAAfyv35at0HOtTpnTiRRL0yrS4mcvCwxy7MdbAmdbVba5-OnGw@mail.gmail.com>
+ <3b7e322b-86db-6412-7cb3-02183d626aeb@gmail.com>
+From: "Mike Looijmans" <mike.looijmans@topic.nl>
+Organization: Topic
+Message-ID: <d1bdc7ca-917c-27b1-6e6c-e050a3782aed@topic.nl>
+Date: Mon, 18 May 2020 11:39:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+In-Reply-To: <3b7e322b-86db-6412-7cb3-02183d626aeb@gmail.com>
+X-ClientProxiedBy: AM0PR03CA0012.eurprd03.prod.outlook.com
+ (2603:10a6:208:14::25) To DB8PR04MB6523.eurprd04.prod.outlook.com
+ (2603:10a6:10:10f::26)
+Return-Path: mike.looijmans@topicproducts.com
 MIME-Version: 1.0
-References: <20200517152109.23350-1-alex.kanavin@gmail.com>
-In-Reply-To: <20200517152109.23350-1-alex.kanavin@gmail.com>
-From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
-Date: Mon, 18 May 2020 09:02:57 +0200
-Message-ID: <CAP71WjyMG4-DzrmvkoE8jC+Lpm96Xj-qB17H3w+QzA23PBocew@mail.gmail.com>
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] scripts: add a pair of scripts to set up and run Auto Upgrade Helper
-To: Alexander Kanavin <alex.kanavin@gmail.com>, Anibal Limon <anibal.limon@linaro.org>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000005a480505a5e6c15b"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.130] (83.128.90.119) by AM0PR03CA0012.eurprd03.prod.outlook.com (2603:10a6:208:14::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.20 via Frontend Transport; Mon, 18 May 2020 09:40:01 +0000
+X-Originating-IP: [83.128.90.119]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e05ef000-342d-4bc7-2223-08d7fb0f7174
+X-MS-TrafficTypeDiagnostic: DB8PR04MB6827:|AM0PR0402MB3585:
+X-Microsoft-Antispam-PRVS: 
+	<AM0PR0402MB3585F7AA0621E299B88FB97D96B80@AM0PR0402MB3585.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;OLM:7691;
+X-Forefront-PRVS: 04073E895A
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: 
+ AVvDOfrH4qJtoPWpf7danWvt6mIA+znv00f+DsG29VR0pS+kFGIRkjto2jY1JATA0+IfGhqWMhyG2LLNfpopz8ZwVrnKnnrFNsi3XysKEN7ld18v172kojrAOP0WxaqiKpqQKMoFcHTaXWQY9s+9DQGqKpv4tsllh/ddnajyuD+7nEvp7p96JxlIsPSJ+LQKvEOymZuegCIdDZEekvTx2D2E6VH3HmS+BoHwKQwYMoLA9wOMYhbe8w3sYIHYeLHeVDzNwv/ZlSJtbSXIRO6UEiXZzMBh6G5CgAGr1AdyHwvR8duWA5DDnPWwWJ4PJQi8NdQQLAfyNl1s3GDKQu5wBIzQkZG4nNRcmuRxifA4nOXfnXR8mPmuniBViLdvBv09DWjtaRkQKl8G3PGVgJ1KWCf6MtC8F01BOQ3695ToGUgkvCSAh5VHFwKBkkWhWZX3IV6X/PaIK+vBJqEAimfWvimatl6ppDKHuXO5lUzkVpGEWO2Pt8zwUwAShomT+ubSo7K3XnMfrVS+tnn6Au1KxNEiAX+md6gcRuB2aClPmfDbYbTNT36SHjl6yzJn8nBLO8pFcX12IXgcyouquJWa8A==
+X-Forefront-Antispam-Report-Untrusted: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6523.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(39840400004)(376002)(346002)(366004)(396003)(136003)(16576012)(966005)(16526019)(5660300002)(42882007)(186003)(316002)(508600001)(956004)(2616005)(6666004)(83170400001)(6916009)(31686004)(26005)(6486002)(66556008)(4326008)(2906002)(66946007)(66476007)(31696002)(53546011)(36756003)(44832011)(36916002)(52116002)(8936002)(8676002)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: jEC83TjL674ExddJGK3HiOdHaHsTGgWYoFr765uw9zRYd3ykw+Ue953G4E5SsOqBKUIQsyetgr1mdA0IEEIyT/2Q2O5BAIgtC8kdVU/tmtJwwOe9ZPcJIPjydGDp86VhdyLZdbGMpE1IVPjW9kA88ohlzLhRh7kE+zesg3Zh64fowUT54dxjZvrn7haYFH++gVOXIhJVL6c1qeOmwxLpeJst05NUK/OHeqlca2MttF50q5tmgdgT5JdunKMTE7Cny2lpJpe/h0YrF837+ATStA7RAqzZtMjb3QZqHazffNIzMDRNvxmNLyBR/k1aaX+g/83tT8T4Ac4tv7fZt3xLFsRD9rzM1gsCqv94qSSlsP/D86BHkToUoYK7Z2SYIsHv73w/FmHQwFwHr0DK8ogFsQtA6obcoCrKB1B79ZNaudqw2FqyEg7Qs2keoF5sVvfW9lV+mBVmZLXhaKjQHAennp9Z9jFJjotkjpjax3+R9lI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6827
+X-CodeTwo-MessageID: 45acb58a-b23a-4b17-a2a9-13cbced7db95.20200518094002@westeu12-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
+ DB5EUR01FT048.eop-EUR01.prod.protection.outlook.com
+X-Forefront-Antispam-Report: 
+	CIP:40.68.112.65;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu12-emailsignatures-cloud.codetwo.com;PTR:westeu12-emailsignatures-cloud.codetwo.com;CAT:NONE;SFTY:;SFS:(396003)(346002)(136003)(376002)(39840400004)(46966005)(6666004)(36916002)(47076004)(356005)(16526019)(26005)(53546011)(966005)(186003)(36756003)(8936002)(70206006)(2616005)(44832011)(956004)(5660300002)(8676002)(70586007)(316002)(16576012)(6916009)(6486002)(7636003)(4326008)(7596003)(83170400001)(82310400002)(31696002)(508600001)(42882007)(336012)(2906002)(31686004)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 
+	708336a6-c297-402d-c26c-08d7fb0f6fc5
+X-Forefront-PRVS: 04073E895A
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	jjwDQz5JE9oQYzskZgoheJWStdVQgukM627eDEnMw4owSrbPOA1KvU+VnDzTb+iIXCnoTbjsdsTNVRNJj4hN6Ucx4SaIgdGOSD0/wmbB9wjOp91en9aM0f2VyihYzXeQ3og1Qa9doFpfk1a6B7+8UjKyrfdwJbJIA9PgiEAyp16qmsVe4W55BlvgsxrfAFyyIcu4OUUPKfBJG4OWsDgnP0t6aSj++B6Gj4yT0e4ohewHE1C2sLR9Sf8vbT7acjElofUi0KiCWcalrOUhEQkCU/FUWq1Ldeokr8IJP54w2HY/3Nyl0dwk+YEEsm0kd2JRrAGCvlWKAkUryvNSvdk5Ezke97XcK8W1U/Q6KuwNYZlFbX5x8F/y0Z6KcNC7DhSESO9WggXvPxKQbROqJz0F47VnmVOrHwm2MggiVn4Dc5hqR3unq33LWSuiRVpxDb0yyynMtPEGG8FKIfHhaLmj+7z8kKjbX6GkTuiwoHTWMGj9OLCZuTPZ7oA7b34+XggcSJhCq0jrg0WQ5UGKeTWtS1j/ST2ReBwcFoKyJhdEf6+zwv2L0BGVvJ+GoJ31XuugVOFguz846WMnYjfZVOwupVhXlsqvIBHX2z4R0JsugrwY6pW7Kd/NWdD2Qri23oRD
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2020 09:40:04.2102
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e05ef000-342d-4bc7-2223-08d7fb0f7174
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[40.68.112.65];Helo=[westeu12-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR0402MB3585
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
---0000000000005a480505a5e6c15b
-Content-Type: text/plain; charset="UTF-8"
-
-On Sun, May 17, 2020 at 5:21 PM Alexander Kanavin <alex.kanavin@gmail.com>
-wrote:
-
-> This allows automating its setup and execution on all autobuilder worker
-> machines;
-> previously there was a static setup on a dedicated machine, which wasn't
-> great from maintenance perspective.
+On 30-04-2020 20:23, Khem Raj via lists.yoctoproject.org wrote:
 >
-> To use:
 >
-> scripts/setup-auh target_dir
-> scripts/run-auh target_dir
+> On 4/30/20 11:16 AM, Marek Belisko wrote:
+>> Hi Rudolf,
+>>
+>> On Thu, Apr 30, 2020 at 7:39 PM Rudolf J Streif
+>> <rudolf.streif@ibeeto.com> wrote:
+>>>
+>>> I was looking for a way in a wks file to have wic grow the last
+>>> partition to fill up the remainder of the disk. Of course wic does not
+>>> know how large the disk is but that could be a parameter.
+>>>
+>>> The alternative way is to use fixed-size and do the math manually but
+>>> that would not allow wic to grow a partition based on content.
+>> You can use 
+>> https://manpages.debian.org/testing/systemd/systemd-growfs.8.en.html
+>> which grow partition to the end.
 >
-> (run-auh can be run several times in a directory that
-> was previously set up)
->
-> Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
-> ---
->  scripts/auh-config/local.conf.append   |  3 +++
->  scripts/auh-config/upgrade-helper.conf | 33 ++++++++++++++++++++++++++
->  scripts/run-auh                        | 32 +++++++++++++++++++++++++
->  scripts/setup-auh                      | 26 ++++++++++++++++++++
->  4 files changed, 94 insertions(+)
->  create mode 100644 scripts/auh-config/local.conf.append
->  create mode 100644 scripts/auh-config/upgrade-helper.conf
->  create mode 100755 scripts/run-auh
->  create mode 100755 scripts/setup-auh
->
-> diff --git a/scripts/auh-config/local.conf.append
-> b/scripts/auh-config/local.conf.append
-> new file mode 100644
-> index 0000000..9628737
-> --- /dev/null
-> +++ b/scripts/auh-config/local.conf.append
-> @@ -0,0 +1,3 @@
-> +
-> +INHERIT += "buildhistory"
-> +LICENSE_FLAGS_WHITELIST = "commercial"
-> diff --git a/scripts/auh-config/upgrade-helper.conf
-> b/scripts/auh-config/upgrade-helper.conf
-> new file mode 100644
-> index 0000000..fbf5d8a
-> --- /dev/null
-> +++ b/scripts/auh-config/upgrade-helper.conf
-> @@ -0,0 +1,33 @@
-> +[maintainer_override]
-> +# mails for recipe upgrades will go to john.doe instead of jane.doe, etc
-> +#ross.burton@intel.com=anibal.limon@linux.intel.com
+> can it grow a mounted partition ? since that will be the case when 
+> growing rootfs partition. 
 
 
-unrelated.. but I just spotted this ^. I am cc'ing Anibal new email
-address. it's in a few other places.
+Yes, a mounted ext4 partition can be resized. Some tools will try to 
+keep you from doing that though, had to patch parted to stop whining 
+about mounted partitions in "scripted" mode that to make it work though.
 
+https://github.com/topic-embedded-products/topic-platform/tree/zeus/meta-topic-platform/recipes-extended/parted
 
->
-> +
-> +[settings]
-> +# recipes in blacklist will be skipped
-> +blacklist=linux-libc-headers linux-yocto alsa-utils-scripts
-> build-appliance-image
-> +#blacklist=python python3 glibc gcc linux-libc-headers linux-yocto-rt
-> linux-yocto linux-yocto-dev linux-yocto-tiny qt4-x11-free qt4-embedded
-> qt4-x11-free qt4e-demo-image gnome-common gnome-desktop3
-> gnome-desktop-testing adt-installer build-appliance-image
-> +# only recipes belonging to maintainers in whitelist will be attempted
-> +#maintainers_whitelist=anibal.limon@linux.intel.com
-> +# SMTP server
-> +smtp=smtp1.yoctoproject.org:25
-> +# from whom should the mails arrive
-> +from=auh@auh.yoctoproject.org
-> +# who should get the status mail with statistics, at the end
-> +status_recipients=openembedded-core@lists.openembedded.org
-> +# clean sstate directory before upgrading
-> +#clean_sstate=yes
-> +# clean tmp directory before upgrading
-> +#clean_tmp=yes
-> +# machines to test build with
-> +#machines=qemux86 qemux86-64 qemuarm qemumips qemuppc
-> +#machines=qemux86
-> +
-> +buildhistory=yes
-> +#testimage=yes
-> +#testimage_name=core-image-minimal
-> +
-> +#workdir=/home/auh/work/
-> +#publish_work_url=https://logs.yoctoproject.org/auh/
-> +
-> +commit_revert_policy=all
-> +
-> diff --git a/scripts/run-auh b/scripts/run-auh
-> new file mode 100755
-> index 0000000..29a8044
-> --- /dev/null
-> +++ b/scripts/run-auh
-> @@ -0,0 +1,32 @@
-> +#!/bin/bash
-> +# Run Auto Upgrade Helper in a directory set up by setup_auh.
-> +#
-> +# Called with $1 - the directory where the setup was created
-> +
-> +if [ -z $1 ]; then
-> +  echo "Use: $0 auh_setup_dir"
-> +  exit 1
-> +fi
-> +
-> +full_dir=$(readlink -e $1)
-> +
-> +auh_dir=$full_dir/auto-upgrade-helper
-> +poky_dir=$full_dir/poky
-> +build_dir=$full_dir/build
-> +sstate_dir=$full_dir/build/sstate-cache
-> +
-> +pushd $poky_dir
-> +
-> +# Base the upgrades on poky master
-> +git fetch origin
-> +git checkout -B tmp-auh-upgrades origin/master
-> +
-> +source $poky_dir/oe-init-build-env $build_dir
-> +$auh_dir/upgradehelper.py -e all
-> +
-> +# clean up to avoid the disk filling up
-> +rm -rf $build_dir/tmp/
-> +rm -rf $build_dir/workspace/sources/*
-> +find $sstate_dir -atime +10 -delete
-> +
-> +popd
-> diff --git a/scripts/setup-auh b/scripts/setup-auh
-> new file mode 100755
-> index 0000000..23f3d44
-> --- /dev/null
-> +++ b/scripts/setup-auh
-> @@ -0,0 +1,26 @@
-> +#!/bin/bash
-> +# Initialize Auto Upgrade Helper in a directory.
-> +#
-> +# Called with $1 - the directory to place the setup
-> +CONFIG_DIR=`dirname $0`/auh-config
-> +
-> +if [ -z $1 ]; then
-> +  echo "Use: $0 target_dir"
-> +  exit 1
-> +fi
-> +
-> +mkdir -p $1
-> +pushd $1
-> +
-> +git clone git://git.yoctoproject.org/poky
-> +pushd poky
-> +git config user.email auh@auh.yoctoproject.org
-> +git config user.name "Auto Upgrade Helper"
-> +popd
-> +git clone git://git.yoctoproject.org/auto-upgrade-helper
-> +source poky/oe-init-build-env build
-> +mkdir -p upgrade-helper
-> +popd
-> +
-> +cp $CONFIG_DIR/upgrade-helper.conf $1/build/upgrade-helper
-> +cat $CONFIG_DIR/local.conf.append >> $1/build/conf/local.conf
-> --
-> 2.26.2
->
-> 
->
+Here's the recipe that re-partitions the SD or eMMC on first boot after 
+programming a (small) wic image:
 
---0000000000005a480505a5e6c15b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+https://github.com/topic-embedded-products/topic-platform/tree/zeus/meta-topic-platform/recipes-topic/expand-wic-partition
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Sun, May 17, 2020 at 5:21 PM Alexa=
-nder Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gma=
-il.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex">This allows automating its setup and execution on all autobuilder wor=
-ker machines;<br>
-previously there was a static setup on a dedicated machine, which wasn&#39=
-;t<br>
-great from maintenance perspective.<br>
-<br>
-To use:<br>
-<br>
-scripts/setup-auh target_dir<br>
-scripts/run-auh target_dir<br>
-<br>
-(run-auh can be run several times in a directory that<br>
-was previously set up)<br>
-<br>
-Signed-off-by: Alexander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.=
-com" target=3D"_blank">alex.kanavin@gmail.com</a>&gt;<br>
----<br>
-=C2=A0scripts/auh-config/local.conf.append=C2=A0 =C2=A0|=C2=A0 3 +++<br>
-=C2=A0scripts/auh-config/upgrade-helper.conf | 33 ++++++++++++++++++++++++=
-++<br>
-=C2=A0scripts/run-auh=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 32 +++++++++++++++++++++++++<br>
-=C2=A0scripts/setup-auh=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 | 26 ++++++++++++++++++++<br>
-=C2=A04 files changed, 94 insertions(+)<br>
-=C2=A0create mode 100644 scripts/auh-config/local.conf.append<br>
-=C2=A0create mode 100644 scripts/auh-config/upgrade-helper.conf<br>
-=C2=A0create mode 100755 scripts/run-auh<br>
-=C2=A0create mode 100755 scripts/setup-auh<br>
-<br>
-diff --git a/scripts/auh-config/local.conf.append b/scripts/auh-config/loc=
-al.conf.append<br>
-new file mode 100644<br>
-index 0000000..9628737<br>
---- /dev/null<br>
-+++ b/scripts/auh-config/local.conf.append<br>
-@@ -0,0 +1,3 @@<br>
-+<br>
-+INHERIT +=3D &quot;buildhistory&quot;<br>
-+LICENSE_FLAGS_WHITELIST =3D &quot;commercial&quot;<br>
-diff --git a/scripts/auh-config/upgrade-helper.conf b/scripts/auh-config/u=
-pgrade-helper.conf<br>
-new file mode 100644<br>
-index 0000000..fbf5d8a<br>
---- /dev/null<br>
-+++ b/scripts/auh-config/upgrade-helper.conf<br>
-@@ -0,0 +1,33 @@<br>
-+[maintainer_override]<br>
-+# mails for recipe upgrades will go to john.doe instead of jane.doe, etc<=
-br>
-+#<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@i=
-ntel.com</a>=3D<a href=3D"mailto:anibal.limon@linux.intel.com" target=3D"_b=
-lank">anibal.limon@linux.intel.com</a></blockquote><div><br></div><div>unre=
-lated.. but I just spotted this ^. I am cc&#39;ing Anibal new email address=
-. it&#39;s in a few other places.</div><div>=C2=A0</div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><br>
-+<br>
-+[settings]<br>
-+# recipes in blacklist will be skipped<br>
-+blacklist=3Dlinux-libc-headers linux-yocto alsa-utils-scripts build-appli=
-ance-image<br>
-+#blacklist=3Dpython python3 glibc gcc linux-libc-headers linux-yocto-rt l=
-inux-yocto linux-yocto-dev linux-yocto-tiny qt4-x11-free qt4-embedded qt4-x=
-11-free qt4e-demo-image gnome-common gnome-desktop3 gnome-desktop-testing a=
-dt-installer build-appliance-image<br>
-+# only recipes belonging to maintainers in whitelist will be attempted<br=
->
-+#maintainers_whitelist=3D<a href=3D"mailto:anibal.limon@linux.intel.com" =
-target=3D"_blank">anibal.limon@linux.intel.com</a><br>
-+# SMTP server<br>
-+smtp=3D<a href=3D"http://smtp1.yoctoproject.org:25" rel=3D"noreferrer" ta=
-rget=3D"_blank">smtp1.yoctoproject.org:25</a><br>
-+# from whom should the mails arrive<br>
-+from=3D<a href=3D"mailto:auh@auh.yoctoproject.org" target=3D"_blank">auh@=
-auh.yoctoproject.org</a><br>
-+# who should get the status mail with statistics, at the end<br>
-+status_recipients=3D<a href=3D"mailto:openembedded-core@lists.openembedde=
-d.org" target=3D"_blank">openembedded-core@lists.openembedded.org</a><br>
-+# clean sstate directory before upgrading<br>
-+#clean_sstate=3Dyes<br>
-+# clean tmp directory before upgrading<br>
-+#clean_tmp=3Dyes<br>
-+# machines to test build with<br>
-+#machines=3Dqemux86 qemux86-64 qemuarm qemumips qemuppc<br>
-+#machines=3Dqemux86<br>
-+<br>
-+buildhistory=3Dyes<br>
-+#testimage=3Dyes<br>
-+#testimage_name=3Dcore-image-minimal<br>
-+<br>
-+#workdir=3D/home/auh/work/<br>
-+#publish_work_url=3D<a href=3D"https://logs.yoctoproject.org/auh/" rel=3D=
-"noreferrer" target=3D"_blank">https://logs.yoctoproject.org/auh/</a><br>
-+<br>
-+commit_revert_policy=3Dall<br>
-+<br>
-diff --git a/scripts/run-auh b/scripts/run-auh<br>
-new file mode 100755<br>
-index 0000000..29a8044<br>
---- /dev/null<br>
-+++ b/scripts/run-auh<br>
-@@ -0,0 +1,32 @@<br>
-+#!/bin/bash<br>
-+# Run Auto Upgrade Helper in a directory set up by setup_auh.<br>
-+#<br>
-+# Called with $1 - the directory where the setup was created<br>
-+<br>
-+if [ -z $1 ]; then<br>
-+=C2=A0 echo &quot;Use: $0 auh_setup_dir&quot;<br>
-+=C2=A0 exit 1<br>
-+fi<br>
-+<br>
-+full_dir=3D$(readlink -e $1)<br>
-+<br>
-+auh_dir=3D$full_dir/auto-upgrade-helper<br>
-+poky_dir=3D$full_dir/poky<br>
-+build_dir=3D$full_dir/build<br>
-+sstate_dir=3D$full_dir/build/sstate-cache<br>
-+<br>
-+pushd $poky_dir<br>
-+<br>
-+# Base the upgrades on poky master<br>
-+git fetch origin<br>
-+git checkout -B tmp-auh-upgrades origin/master<br>
-+<br>
-+source $poky_dir/oe-init-build-env $build_dir<br>
-+$auh_dir/upgradehelper.py -e all<br>
-+<br>
-+# clean up to avoid the disk filling up<br>
-+rm -rf $build_dir/tmp/<br>
-+rm -rf $build_dir/workspace/sources/*<br>
-+find $sstate_dir -atime +10 -delete<br>
-+<br>
-+popd<br>
-diff --git a/scripts/setup-auh b/scripts/setup-auh<br>
-new file mode 100755<br>
-index 0000000..23f3d44<br>
---- /dev/null<br>
-+++ b/scripts/setup-auh<br>
-@@ -0,0 +1,26 @@<br>
-+#!/bin/bash<br>
-+# Initialize Auto Upgrade Helper in a directory.<br>
-+#<br>
-+# Called with $1 - the directory to place the setup<br>
-+CONFIG_DIR=3D`dirname $0`/auh-config<br>
-+<br>
-+if [ -z $1 ]; then<br>
-+=C2=A0 echo &quot;Use: $0 target_dir&quot;<br>
-+=C2=A0 exit 1<br>
-+fi<br>
-+<br>
-+mkdir -p $1<br>
-+pushd $1<br>
-+<br>
-+git clone git://<a href=3D"http://git.yoctoproject.org/poky" rel=3D"noref=
-errer" target=3D"_blank">git.yoctoproject.org/poky</a><br>
-+pushd poky<br>
-+git config user.email <a href=3D"mailto:auh@auh.yoctoproject.org" target=
-=3D"_blank">auh@auh.yoctoproject.org</a><br>
-+git config <a href=3D"http://user.name" rel=3D"noreferrer" target=3D"_bla=
-nk">user.name</a> &quot;Auto Upgrade Helper&quot;<br>
-+popd<br>
-+git clone git://<a href=3D"http://git.yoctoproject.org/auto-upgrade-helpe=
-r" rel=3D"noreferrer" target=3D"_blank">git.yoctoproject.org/auto-upgrade-h=
-elper</a><br>
-+source poky/oe-init-build-env build<br>
-+mkdir -p upgrade-helper<br>
-+popd<br>
-+<br>
-+cp $CONFIG_DIR/upgrade-helper.conf $1/build/upgrade-helper<br>
-+cat $CONFIG_DIR/local.conf.append &gt;&gt; $1/build/conf/local.conf<br>
--- <br>
-2.26.2<br>
-<br>
-<br>
-</blockquote></div></div>
-
---0000000000005a480505a5e6c15b--
