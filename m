@@ -1,156 +1,244 @@
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (EUR04-VI1-obe.outbound.protection.outlook.com [40.107.8.49])
- by mx.groups.io with SMTP id smtpd.web10.38746.1589794808768580638
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.42180.1589810242616847289
  for <yocto@lists.yoctoproject.org>;
- Mon, 18 May 2020 02:40:10 -0700
+ Mon, 18 May 2020 06:57:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@topicbv.onmicrosoft.com header.s=selector2-topicbv-onmicrosoft-com header.b=NgKzqo4g;
- spf=pass (domain: topicproducts.com, ip: 40.107.8.49, mailfrom: mike.looijmans@topicproducts.com)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=HF/v1xdv;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: gizero@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 09FF3E01AF3; Mon, 18 May 2020 06:57:22 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,URIBL_RED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (gizero[at]gmail.com)
+	*  0.0 URIBL_RED Contains an URL listed in the URIBL redlist
+	*      [URIs: yoctoproject.org]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.166.179 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91821E01ADC
+	for <yocto@yoctoproject.org>; Mon, 18 May 2020 06:57:19 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id b15so9858686ilq.12
+        for <yocto@yoctoproject.org>; Mon, 18 May 2020 06:57:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=topicbv.onmicrosoft.com; s=selector2-topicbv-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lVX4/OaDv9M6g4WIfeET2+pLJjjq0gTHGWT8mfPYfSg=;
- b=NgKzqo4g9C8EyAomQqNZfW6UfsDjB5+HNWAdpGqazkP5NJkI2HVktHa8t1qaIqqXiffa4F025XPjsF//4UFYHsZ8qeJtOKIwb4c/mDlSXo7lk6LsHrut/I5dHn1FdiHF7HW4839et0q0lH7FRwKhxgGTIaNRVHb0Goj/SIFvn7M=
-Received: from DB6PR0301CA0011.eurprd03.prod.outlook.com (2603:10a6:4:3e::21)
- by AM0PR0402MB3585.eurprd04.prod.outlook.com (2603:10a6:208:1c::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.26; Mon, 18 May
- 2020 09:40:04 +0000
-Received: from DB5EUR01FT048.eop-EUR01.prod.protection.outlook.com
- (2603:10a6:4:3e:cafe::b8) by DB6PR0301CA0011.outlook.office365.com
- (2603:10a6:4:3e::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.24 via Frontend
- Transport; Mon, 18 May 2020 09:40:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 40.68.112.65)
- smtp.mailfrom=topicproducts.com; yoctoproject.org; dkim=fail (signature did
- not verify) header.d=topicbv.onmicrosoft.com;yoctoproject.org; dmarc=none
- action=none header.from=topic.nl;
-Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
- designates 40.68.112.65 as permitted sender) receiver=protection.outlook.com;
- client-ip=40.68.112.65; helo=westeu12-emailsignatures-cloud.codetwo.com;
-Received: from westeu12-emailsignatures-cloud.codetwo.com (40.68.112.65) by
- DB5EUR01FT048.mail.protection.outlook.com (10.152.5.166) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3000.19 via Frontend Transport; Mon, 18 May 2020 09:40:04 +0000
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (104.47.14.57) by westeu12-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Mon, 18 May 2020 09:40:03 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P5QSCK64HufeG8RpmNJ605JVjpKKUPv6n1rPE8jJRypyVauWGmnt2OmvfTLUVxmPofs6JAUvKEM5QvwW0Bxfg2dwI+/WZIqqAcdr7dehVuHQZR6igUxOCPXLsBgBalrObCHoMkvixCb4uTrg31ed75JxgPCEatZggO7HMyTqin5WWIF6+V+Tj5QcFX+zhmtFkveR5BAw848RiHK2/IOsqBtgeHK/FKTmsUjMACUefeRDWumn8P7VPJbHo/Q0JlkNLPO6BV0/w1tOByfKK3MRMmYoRENqs4svbxrzXYdBbTF3lhaONISulqb4Xust9nQxlMjn3/P4d5I492y9Ox0nHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lVX4/OaDv9M6g4WIfeET2+pLJjjq0gTHGWT8mfPYfSg=;
- b=AYTr5kMxVvY+N+UmqLhWPcYpDpzYvhE8UAkk/ZQqPNrDA4uibiqGz6zw7Gd7+Rzwr/1alsE7EE/W2FweIYtnrhmw7itNXbTOVjqwtzICUZhe1PpFnZ+8JFdNRabAAAuiSsks1hOeKzQp9doEURjApDvTSnFeIqtK1f2EL8pzx/MRrhSWLiQQlWfs7WhG2Vp+GZ3l9CcBO3wgHzvidTp4m4iUP1RB85w6oFibfQacCHxppjHPep3ZItq3a6WV6bL1mGDaWjqbzozRuSxiMMMNKjmogu5H9yxpNohEs3iArNfnNo04CoQRAu3XNTAyNoiYsyShqcCAU6NL2K4R/mDfZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
- dkim=pass header.d=topic.nl; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=topicbv.onmicrosoft.com; s=selector2-topicbv-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lVX4/OaDv9M6g4WIfeET2+pLJjjq0gTHGWT8mfPYfSg=;
- b=ryrQSZUAoKRJi61gkHX0+xOgkGoOWFf3KU/oxZahFqjic0PUjb3XsHvqXagFVI15SgdPMNv+gqGIRT+L9k0Lz8jpF2X1Kle1+UVV6J1xNMPLYPYRkM0SdZQWx/IwIAL3mcPwxBqrW45ykmupwQ5VCUhJLg++QPuQhgTaXj+2aqI=
-Authentication-Results-Original: yoctoproject.org; dkim=none (message not
- signed) header.d=none;yoctoproject.org; dmarc=none action=none
- header.from=topic.nl;
-Received: from DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
- by DB8PR04MB6827.eurprd04.prod.outlook.com (2603:10a6:10:f8::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.27; Mon, 18 May
- 2020 09:40:01 +0000
-Received: from DB8PR04MB6523.eurprd04.prod.outlook.com
- ([fe80::6cf6:7323:7395:eec9]) by DB8PR04MB6523.eurprd04.prod.outlook.com
- ([fe80::6cf6:7323:7395:eec9%7]) with mapi id 15.20.3000.034; Mon, 18 May 2020
- 09:40:01 +0000
-Subject: Re: [yocto] [WIC] Grow last partition up to disk size
-To: yocto@lists.yoctoproject.org
-CC: Yocto list discussion <yocto@yoctoproject.org>
-References: <504407a1-379f-dc70-7745-c42624df7d8c@ibeeto.com>
- <CAAfyv35at0HOtTpnTiRRL0yrS4mcvCwxy7MdbAmdbVba5-OnGw@mail.gmail.com>
- <3b7e322b-86db-6412-7cb3-02183d626aeb@gmail.com>
-From: "Mike Looijmans" <mike.looijmans@topic.nl>
-Organization: Topic
-Message-ID: <d1bdc7ca-917c-27b1-6e6c-e050a3782aed@topic.nl>
-Date: Mon, 18 May 2020 11:39:56 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-In-Reply-To: <3b7e322b-86db-6412-7cb3-02183d626aeb@gmail.com>
-X-ClientProxiedBy: AM0PR03CA0012.eurprd03.prod.outlook.com
- (2603:10a6:208:14::25) To DB8PR04MB6523.eurprd04.prod.outlook.com
- (2603:10a6:10:10f::26)
-Return-Path: mike.looijmans@topicproducts.com
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=CtjZdu+XeATmuh/nPEAGhhJPP3W5iG3j3d5bVb2hjPM=;
+        b=HF/v1xdv/jpfzI5yUy5QZkj/5BJul9zl5Gd5aOaZCUUpQYNuZuv2sIKzcHk0WwYHwB
+         Om9m+nuMBI3Y+dYKOMJ1vM9YbiAsFKUl/Pns7eZONomHiIP5AkEwgHpy3B/Nz1YrmZ2q
+         su8K2rGxOb/378p+xIk9Gyzf59e9WVF1AkfKy38RLNIWKXu0Ds/aLlPTfO36+8AIU872
+         NtvIyM0xng5p+5iJgOjRBEliD2A+JSiwSt6iLTlal9gCRLuwkYiUIICE+D+yX/agS8ON
+         F38706NkY5oDvZzzbzSU+fdMAP2sb9lqPqebY5aeQbBAA6naGfjIRwqNehe8fMn1k0Br
+         4bxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=CtjZdu+XeATmuh/nPEAGhhJPP3W5iG3j3d5bVb2hjPM=;
+        b=JV9DKNhSHJAibzy1IgSKVz4u26DvLpIAysgE9ga6louLMo6dRKF+PsLh/wpnPFv30s
+         Rvufg+d/yhCvv9zfbYs6fBl1pOa6hOud/pG8sZNcYI0V6eAaCg/hFVT1jgZTZcahnh0N
+         NKkLLmJtcQ/cw1jjYhHFeZxBgvDgBQY8hKUfXUYNy6FWmnEdcIUpkdG/jP8f2OaJkrpc
+         vnvwbGJkO9543bSrCwofAgDoI8m5ymMuJ00NMpAJeUQVjxHbpZm/KOUGwdalqJjrzwQ2
+         nNF1TJKlYu8w3ij4SNtWzB6diAbvVp83Rw6oADlrpyfcQgjOR7cDS2Kt4zzs3k8ILHVM
+         gHTw==
+X-Gm-Message-State: AOAM5307qF9kIde3tb1OHeFQVrz1RBnfflinzXG6JSCWoNbRNGwAhUmr
+	sNpzAk3G9rJwtK5kzVmo3aSd+beTF6pGgTto/DA=
+X-Google-Smtp-Source: ABdhPJxd2GuwDYWuxoIk7knkMrsI/lc8xkfpyhB+uAiBWjD/wRCLODpiLqLc5N4vrWZfQBbrQP6crrdPkfFevYU8/lw=
+X-Received: by 2002:a92:8d49:: with SMTP id s70mr16236487ild.54.1589810239015;
+ Mon, 18 May 2020 06:57:19 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.1.130] (83.128.90.119) by AM0PR03CA0012.eurprd03.prod.outlook.com (2603:10a6:208:14::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.20 via Frontend Transport; Mon, 18 May 2020 09:40:01 +0000
-X-Originating-IP: [83.128.90.119]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e05ef000-342d-4bc7-2223-08d7fb0f7174
-X-MS-TrafficTypeDiagnostic: DB8PR04MB6827:|AM0PR0402MB3585:
-X-Microsoft-Antispam-PRVS: 
-	<AM0PR0402MB3585F7AA0621E299B88FB97D96B80@AM0PR0402MB3585.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;OLM:7691;
-X-Forefront-PRVS: 04073E895A
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 
- AVvDOfrH4qJtoPWpf7danWvt6mIA+znv00f+DsG29VR0pS+kFGIRkjto2jY1JATA0+IfGhqWMhyG2LLNfpopz8ZwVrnKnnrFNsi3XysKEN7ld18v172kojrAOP0WxaqiKpqQKMoFcHTaXWQY9s+9DQGqKpv4tsllh/ddnajyuD+7nEvp7p96JxlIsPSJ+LQKvEOymZuegCIdDZEekvTx2D2E6VH3HmS+BoHwKQwYMoLA9wOMYhbe8w3sYIHYeLHeVDzNwv/ZlSJtbSXIRO6UEiXZzMBh6G5CgAGr1AdyHwvR8duWA5DDnPWwWJ4PJQi8NdQQLAfyNl1s3GDKQu5wBIzQkZG4nNRcmuRxifA4nOXfnXR8mPmuniBViLdvBv09DWjtaRkQKl8G3PGVgJ1KWCf6MtC8F01BOQ3695ToGUgkvCSAh5VHFwKBkkWhWZX3IV6X/PaIK+vBJqEAimfWvimatl6ppDKHuXO5lUzkVpGEWO2Pt8zwUwAShomT+ubSo7K3XnMfrVS+tnn6Au1KxNEiAX+md6gcRuB2aClPmfDbYbTNT36SHjl6yzJn8nBLO8pFcX12IXgcyouquJWa8A==
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6523.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(39840400004)(376002)(346002)(366004)(396003)(136003)(16576012)(966005)(16526019)(5660300002)(42882007)(186003)(316002)(508600001)(956004)(2616005)(6666004)(83170400001)(6916009)(31686004)(26005)(6486002)(66556008)(4326008)(2906002)(66946007)(66476007)(31696002)(53546011)(36756003)(44832011)(36916002)(52116002)(8936002)(8676002)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: jEC83TjL674ExddJGK3HiOdHaHsTGgWYoFr765uw9zRYd3ykw+Ue953G4E5SsOqBKUIQsyetgr1mdA0IEEIyT/2Q2O5BAIgtC8kdVU/tmtJwwOe9ZPcJIPjydGDp86VhdyLZdbGMpE1IVPjW9kA88ohlzLhRh7kE+zesg3Zh64fowUT54dxjZvrn7haYFH++gVOXIhJVL6c1qeOmwxLpeJst05NUK/OHeqlca2MttF50q5tmgdgT5JdunKMTE7Cny2lpJpe/h0YrF837+ATStA7RAqzZtMjb3QZqHazffNIzMDRNvxmNLyBR/k1aaX+g/83tT8T4Ac4tv7fZt3xLFsRD9rzM1gsCqv94qSSlsP/D86BHkToUoYK7Z2SYIsHv73w/FmHQwFwHr0DK8ogFsQtA6obcoCrKB1B79ZNaudqw2FqyEg7Qs2keoF5sVvfW9lV+mBVmZLXhaKjQHAennp9Z9jFJjotkjpjax3+R9lI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6827
-X-CodeTwo-MessageID: 45acb58a-b23a-4b17-a2a9-13cbced7db95.20200518094002@westeu12-emailsignatures-cloud.codetwo.com
-X-CodeTwoProcessed: true
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- DB5EUR01FT048.eop-EUR01.prod.protection.outlook.com
-X-Forefront-Antispam-Report: 
-	CIP:40.68.112.65;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu12-emailsignatures-cloud.codetwo.com;PTR:westeu12-emailsignatures-cloud.codetwo.com;CAT:NONE;SFTY:;SFS:(396003)(346002)(136003)(376002)(39840400004)(46966005)(6666004)(36916002)(47076004)(356005)(16526019)(26005)(53546011)(966005)(186003)(36756003)(8936002)(70206006)(2616005)(44832011)(956004)(5660300002)(8676002)(70586007)(316002)(16576012)(6916009)(6486002)(7636003)(4326008)(7596003)(83170400001)(82310400002)(31696002)(508600001)(42882007)(336012)(2906002)(31686004)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	708336a6-c297-402d-c26c-08d7fb0f6fc5
-X-Forefront-PRVS: 04073E895A
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	jjwDQz5JE9oQYzskZgoheJWStdVQgukM627eDEnMw4owSrbPOA1KvU+VnDzTb+iIXCnoTbjsdsTNVRNJj4hN6Ucx4SaIgdGOSD0/wmbB9wjOp91en9aM0f2VyihYzXeQ3og1Qa9doFpfk1a6B7+8UjKyrfdwJbJIA9PgiEAyp16qmsVe4W55BlvgsxrfAFyyIcu4OUUPKfBJG4OWsDgnP0t6aSj++B6Gj4yT0e4ohewHE1C2sLR9Sf8vbT7acjElofUi0KiCWcalrOUhEQkCU/FUWq1Ldeokr8IJP54w2HY/3Nyl0dwk+YEEsm0kd2JRrAGCvlWKAkUryvNSvdk5Ezke97XcK8W1U/Q6KuwNYZlFbX5x8F/y0Z6KcNC7DhSESO9WggXvPxKQbROqJz0F47VnmVOrHwm2MggiVn4Dc5hqR3unq33LWSuiRVpxDb0yyynMtPEGG8FKIfHhaLmj+7z8kKjbX6GkTuiwoHTWMGj9OLCZuTPZ7oA7b34+XggcSJhCq0jrg0WQ5UGKeTWtS1j/ST2ReBwcFoKyJhdEf6+zwv2L0BGVvJ+GoJ31XuugVOFguz846WMnYjfZVOwupVhXlsqvIBHX2z4R0JsugrwY6pW7Kd/NWdD2Qri23oRD
-X-OriginatorOrg: topic.nl
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2020 09:40:04.2102
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e05ef000-342d-4bc7-2223-08d7fb0f7174
-X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[40.68.112.65];Helo=[westeu12-emailsignatures-cloud.codetwo.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR0402MB3585
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+References: <CAMmNTemi9+UoZg0vWvvFZu-ggnYHkDy5VARfHhm6tHjAWr7BGQ@mail.gmail.com>
+ <CAMmNTem63EK=Jab7ZYSug5VG+stsFN4-457UTde9PPFoRFNOuw@mail.gmail.com>
+In-Reply-To: <CAMmNTem63EK=Jab7ZYSug5VG+stsFN4-457UTde9PPFoRFNOuw@mail.gmail.com>
+From: "Andrea Galbusera" <gizero@gmail.com>
+Date: Mon, 18 May 2020 15:57:07 +0200
+Message-ID: <CAC+thW16nHpv48PKw3BMUtq19i7VHxPUq3iTFu_6wV26GSFLsQ@mail.gmail.com>
+Subject: Re: [yocto] Extended SDK installation fails during git fetch of kernel source hosted on private repo
+To: Gabriele Favalessa <gabriele@analyticsfire.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 30-04-2020 20:23, Khem Raj via lists.yoctoproject.org wrote:
+Hi!
+
+I had a similar issue in my backlog for ages... Finally hit it again
+while updating some SDKs and found this thread from more than two
+years ago. In my case, fetching during the SDK install script run was
+triggered by at least one recipe which was setting SRCREV with
+AUTOREV. Although using AUTOREV in generating SDKs is probably
+debatable, I found your comments here a good starting point for
+further investigation. Looking at the git history since then, it
+reveals a recent commit [1] which is reworking (possibly with
+different motivations) the way SDK install script is "cleaning" some
+env variables at invocation.
+
+I tested backporting this commit to an old pyro based project where I
+was seeing SDK install failures with AUTOREV recipes and it solved the
+original error.
+
+I could find no issue in Bugzilla for this specific face of the
+problem, even though the above commit descries itself as a rework of
+the fix for [1]. I'm reporting to the list for the records, in case
+someone else would happen to hit issues with using the ssh agent while
+installing their SDKs.
+
+Regards,
+
+[1] https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D6d78b84029=
+d0717354bf39e5c355fba1c14d8347
+[2] https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D8698
+
+On Thu, Sep 6, 2018 at 12:18 PM Gabriele Favalessa
+<gabriele@analyticsfire.com> wrote:
 >
+> An update (and a workaround.)
 >
-> On 4/30/20 11:16 AM, Marek Belisko wrote:
->> Hi Rudolf,
+> What's happening is that during the execution of the install script for t=
+he extended SDK, the env of the original shell is ignored. If your SDK refe=
+rs to private git repos (on github for example) and you normally authentica=
+te to github using ssh and ssh-agent, the SSH_AUTH_SOCK env variables neede=
+d won't be set by the time git is invoked. The workaround is configuring th=
+e authentication to github in .ssh/config and avoid the ssh-agent. (Yes, I =
+checked and SSH_AUTH_SOCK is exported by the shell :)
+>
+> But the underlying problem is that env of the shell is ignored during ins=
+tall, so potentially other useful variables could be ignored. Is that inten=
+tional? Is there a way to prevent it?
+>
+> Gabriele
+>
+> On Wed, Aug 29, 2018 at 3:55 PM Gabriele Favalessa <gabriele@analyticsfir=
+e.com> wrote:
 >>
->> On Thu, Apr 30, 2020 at 7:39 PM Rudolf J Streif
->> <rudolf.streif@ibeeto.com> wrote:
->>>
->>> I was looking for a way in a wks file to have wic grow the last
->>> partition to fill up the remainder of the disk. Of course wic does not
->>> know how large the disk is but that could be a parameter.
->>>
->>> The alternative way is to use fixed-size and do the math manually but
->>> that would not allow wic to grow a partition based on content.
->> You can use 
->> https://manpages.debian.org/testing/systemd/systemd-growfs.8.en.html
->> which grow partition to the end.
+>> Hi,
+>>
+>> I'm trying to install on ubuntu 17.04 an Extensible SDK that I have buil=
+t, and it stops with an error:
+>>
+>> -------------------------------------------------------
+>> sdk@sdk:~$ ./acme-linux-glibc-x86_64-acme-image-datalogger-cortexa7hf-ne=
+on-toolchain-ext-2.5.1.sh -D
+>> =E2=80=A6
+>> + sh -c . buildtools/environment-setup* > /home/sdk/acme-linux_sdk/prepa=
+ring_build_system.log && cd /home/sdk/acme-linux_sdk/layers/poky && set /ho=
+me/sdk/acme-linux_sdk && . /home/sdk/acme-linux_sdk/layers/poky/oe-init-bui=
+ld-env /home/sdk/acme-linux_sdk >> /home/sdk/acme-linux_sdk/preparing_build=
+_system.log && python /home/sdk/acme-linux_sdk/ext-sdk-prepare.py /home/sdk=
+/acme-linux_sdk/preparing_build_system.log 'acme-image-datalogger meta-exts=
+dk-toolchain:do_populate_sysroot'
+>> WARNING: /home/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kerne=
+l/linux/linux-imx_4.9.11.bb: Exception during build_dependencies for AUTORE=
+V
+>> WARNING: /home/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kerne=
+l/linux/linux-imx_4.9.11.bb: Error during finalise of /home/sdk/acme-linux_=
+sdk/layers/poky/meta-myboard/recipes-kernel/linux/linux-imx_4.9.11.bb
+>> ERROR: ExpansionError during parsing /home/sdk/acme-linux_sdk/layers/pok=
+y/meta-myboard/recipes-kernel/linux/linux-imx_4.9.11.bb
+>> Traceback (most recent call last):
+>> bb.data_smart.ExpansionError: Failure expanding variable SRCPV, expressi=
+on was ${@bb.fetch2.get_srcrev(d)} which triggered exception FetchError: Fe=
+tcher failure: Fetch command export PSEUDO_DISABLED=3D1; export GIT_SSL_CAI=
+NFO=3D"/home/sdk/acme-linux_sdk/buildtools/sysroots/x86_64-acmesdk-linux/et=
+c/ssl/certs/ca-certificates.crt"; export PATH=3D"/home/sdk/acme-linux_sdk/l=
+ayers/poky/scripts:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-gnu=
+eabi/linux-imx/4.9.11-r0/recipe-sysroot-native/usr/bin/arm-acme-linux-gnuea=
+bi:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-gnueabi/linux-imx/4=
+.9.11-r0/recipe-sysroot/usr/bin/crossscripts:/home/sdk/acme-linux_sdk/tmp/w=
+ork/myboard-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysroot-native/us=
+r/sbin:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-gnueabi/linux-i=
+mx/4.9.11-r0/recipe-sysroot-native/usr/bin:/home/sdk/acme-linux_sdk/tmp/wor=
+k/myboard-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysroot-native/sbin=
+:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-gnueabi/linux-imx/4.9=
+.11-r0/recipe-sysroot-native/bin:/home/sdk/acme-linux_sdk/layers/poky/bitba=
+ke/bin:/home/sdk/acme-linux_sdk/tmp/hosttools"; export HOME=3D"/home/sdk"; =
+git -c core.fsyncobjectfiles=3D0 ls-remote ssh://git@github.com/Acme/linux-=
+imx.git  failed with exit code 128, output:
+>> Permission denied (publickey).
+>> fatal: Could not read from remote repository.
+>>
+>> Please make sure you have the correct access rights
+>> and the repository exists.
+>>
+>>
+>> ERROR: SDK preparation failed: error log written to /home/sdk/acme-linux=
+_sdk/preparing_build_system.log
+>> -------------------------------------------------------
+>>
+>> I tested the failing git command `git -c ls-remote ssh://git@github.com/=
+Acme/linux-imx.git` directly from the command line and it succeeds without =
+errors. I do have the ssh key in ssh-agent, so that's not surprise.
+>>
+>> It looks like during the SDK installation the ssh key is needed but for =
+some reason the ssh-agent is not reachable (maybe the SSH_* env variables a=
+re not propagated by the script?)
+>>
+>> Is it unavoidable for the SDK to fetch from git during the installation?=
+ If it is unavoidable, how can I make the script fetch from a private githu=
+b repo, given that the ssh-agent seems to be ignored?
+>>
+>> Just out of curiosity, I copy&pasted the failing command in the shell, a=
+nd this time it ran without errors (again confirming that the ssh key is pr=
+esent.)
+>>
+>> -------------------------------------------------------
+>> sdk@sdk:~$ sh -c . buildtools/environment-setup* > /home/sdk/acme-linux_=
+sdk/preparing_build_system.log && cd /home/sdk/
+>> acme-linux_sdk/layers/poky && set /home/sdk/acme-linux_sdk && . /home/sd=
+k/acme-linux_sdk/layers/poky/oe-init-build-env
+>> /home/sdk/acme-linux_sdk >> /home/sdk/acme-linux_sdk/preparing_build_sys=
+tem.log && python /home/sdk/acme-linux_sdk/ext-
+>> sdk-prepare.py /home/sdk/acme-linux_sdk/preparing_build_system.log 'acme=
+-image-datalogger meta-extsdk-toolchain:do_popu
+>> late_sysroot'
+>> Loading cache: 100% |###################################################=
+################################| Time: 0:00:00
+>> Parsing recipes: 100% |#################################################=
+################################| Time: 0:01:32
+>> Initialising tasks: 100% |##############################################=
+################################| Time: 0:00:02
+>> Checking sstate mirror object availability: 100% |######################=
+################################| Time: 0:00:00
+>> Loading cache: 100% |###################################################=
+################################| Time: 0:00:00
+>> Parsing recipes: 100% |#################################################=
+################################| Time: 0:00:07
+>> Initialising tasks: 100% |##############################################=
+################################| Time: 0:00:00
+>> -------------------------------------------------------
+>>
+>> However the resulting SDK installation seems to be broken anyway (probab=
+ly there are other steps after the one I re-run manually that where not exe=
+cuted because the toplevel script stopped with an error):
+>>
+>> -------------------------------------------------------
+>> sdk@sdk:~/acme-linux_sdk$ source environment-setup-cortexa7hf-neon-acme-=
+linux-gnueabi
+>> SDK environment now set up; additionally you may now run devtool to perf=
+orm development tasks.
+>> Run devtool --help for further details.
+>> ERROR: this SDK was not fully installed and needs reinstalling
+>> -------------------------------------------------------
+>>
+>> Thanks
+>>
+>> Gabriele
 >
-> can it grow a mounted partition ? since that will be the case when 
-> growing rootfs partition. 
-
-
-Yes, a mounted ext4 partition can be resized. Some tools will try to 
-keep you from doing that though, had to patch parted to stop whining 
-about mounted partitions in "scripted" mode that to make it work though.
-
-https://github.com/topic-embedded-products/topic-platform/tree/zeus/meta-topic-platform/recipes-extended/parted
-
-Here's the recipe that re-partitions the SD or eMMC on first boot after 
-programming a (small) wic image:
-
-https://github.com/topic-embedded-products/topic-platform/tree/zeus/meta-topic-platform/recipes-topic/expand-wic-partition
-
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
