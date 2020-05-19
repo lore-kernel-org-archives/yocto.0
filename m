@@ -1,88 +1,65 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.10026.1589888328709359439
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+ by mx.groups.io with SMTP id smtpd.web10.12257.1589897152364503901
  for <yocto@lists.yoctoproject.org>;
- Tue, 19 May 2020 04:38:48 -0700
+ Tue, 19 May 2020 07:05:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Jnk+SbRs;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0F4F9E01BAF; Tue, 19 May 2020 04:38:48 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (jupiter.hce[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.218.43 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F477E01B19
-	for <yocto@yoctoproject.org>; Tue, 19 May 2020 04:38:46 -0700 (PDT)
-Received: by mail-ej1-f43.google.com with SMTP id x20so11465054ejb.11
-        for <yocto@yoctoproject.org>; Tue, 19 May 2020 04:38:46 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NcNF0RLI;
+ spf=pass (domain: gmail.com, ip: 209.85.219.53, mailfrom: lefevre.da@gmail.com)
+Received: by mail-qv1-f53.google.com with SMTP id dh1so2642875qvb.13
+        for <yocto@lists.yoctoproject.org>; Tue, 19 May 2020 07:05:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:from:date:message-id:subject:to;
-        bh=TMytJm73Pjhd44szWZdtWNYKaj8QbddQDM0jDBN0XeI=;
-        b=Jnk+SbRsk0zJIvkNctYZSQsYiQxNgtifGs7U00oGmyaxAVinPfWeCzoHE2Fc+qIeHW
-         GAOXnfcnKbuhDA+VmJJwWjHsSb2VDBV5og+M2gJIAA+zZkKBvCyi4Kr63jrW87VUpCm2
-         ojsZs7eHB8uoJ5IK76dR9FMgsn9eE1ru9yhuLAdkA94i9s9/ntxKrL6WptMA8vN7fLyE
-         B/s2HHZggtYXFvZr9HqYB9T7OEj0ZEaKjLy1zEG5QqmzyOI+Xj3GyN5wFi9Wo4fvJXnw
-         q382QNrBUqMorQyx7XXHdwUdR4foWMR7bHEPuXq9DPuJi+svvD7bjQlq3NG7ojymhx2c
-         o3BQ==
+        bh=sO3RrsEXkHL6CfVHmJaRTzP3Iu6Bme5m44+rC0UGDxU=;
+        b=NcNF0RLI+e2iHSkVCsiOG7Mb4PUrbpGsJIveAFHi4qokJTuxJk/4k3ueYvXvKV8hJg
+         6Vm2L9xwXZuxZ7HFYbcmrekc7tcyw6f7MQX5eTSCMgb8UeDqq8FuF1LB9kNi8wTwNHxd
+         fbdIZVllTMS/ri85Z0o9yctHqYHuD36ByB27ao9NQNbwmUZ3SB6ZlWXid1IilrjidcM2
+         elF3YlLFG9UxnMyxC4UU4AbyFttt5rE8CnCIfJZJXZxDsmNOLPb64QE0jW5qBCu96285
+         LemlTjBVDUrig1klJxkJBUZ00AhWUfW3NN9qzRZYlE3tBCGBohmx62qcPWgq6zSAQtsa
+         29cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=TMytJm73Pjhd44szWZdtWNYKaj8QbddQDM0jDBN0XeI=;
-        b=erIa0wJCR30BF1zPnGxpoIj2WejVjOwKMIKj00MhMcwB0hdMXrKI9gr1+SMZnMrEUs
-         Iyr0aQeFAHS6wURywTSCdCR5oJuBlOQlYsSHCOVOuk9SDOJy9+94PR01Xdd485xhncwQ
-         8PktUjEcks4WgVFeKPgi43jzNn4ZKpYhavEsvloStggzQzPylWP1lEO/lkquRZvXKwjg
-         eGIyc5HeBWhZay3Jfj9YDp3ZqTgjB/LXK01fmwmIZxR3Ok/jC1e3MrQumwfbxQsl1188
-         2bgNrgeNriXUAUeAL6aEkbDTh2Urt3ShsMI3aVJWnhIXAe85yAeyyQL1ohJT1cIoCp0U
-         8KLg==
-X-Gm-Message-State: AOAM533uK5bep5m8pshWnLMX0+qdxj6bReRGX4AzXMHTVIkeSy/QC5s7
-	/FqFfthfvYK9zK2q9MARwnldmjYYb9d9yQjNTtU3/luQ
-X-Google-Smtp-Source: ABdhPJwIipwfzhey4a6ziabyRLGhSi6H2XUXMDqp/Jfp3HgJr2y0+cl6/Rrxoas3wC5b7YgPt+z7flqEdqhXgvbzZaY=
-X-Received: by 2002:a17:906:eb48:: with SMTP id mc8mr221431ejb.551.1589888325652;
- Tue, 19 May 2020 04:38:45 -0700 (PDT)
+        bh=sO3RrsEXkHL6CfVHmJaRTzP3Iu6Bme5m44+rC0UGDxU=;
+        b=n4+8Ku9+VmLZRpSN/6iBVh02K11C91qvmVTY+XlB+oy6WpANoQxs34pf+t24TcIC7v
+         CjNCZKrLxySY7RWeE3m6cPLdgaMnq4TPqvnqFVe3kMZXDiI0wew4eqvxni+U+os0syWX
+         SWJfhkIqcszNh+gyPwxXnkWWPN5NEMsN7EFIpx6MQv3s2rnIBPMvBwjkSeMCpgPWbBdA
+         pkH7hd82vv0N89sxkrPhpj6ybcMLGd2nry/Zu6sdBRIFOaj7Nxv5CJYIjnQPaWpPR7fH
+         tcSwDZ0OBMM84Do5oGtviC6JrNkuCnkPQHHTdoIsd7extMAfOjzrnvN4/RDkFycmfX/H
+         WKZg==
+X-Gm-Message-State: AOAM531Y6IyaiAXPnkj0q8eINdDRRaiRvtwxdMPR3UAeXGwnfx8O0u2/
+	lg99i5bkFwGB/UuoCKiAqz8iBS65WjZOruBx1oh1HTs=
+X-Google-Smtp-Source: ABdhPJzNQl9a1SqeX6/+c67M/MJQF/Jr5mcO2TorifAQdSVf0Lixls0HKGtJftT25VH1HSv3v16++cJAJ9nG3KlqPRU=
+X-Received: by 2002:ad4:5662:: with SMTP id bm2mr11361539qvb.48.1589897151348;
+ Tue, 19 May 2020 07:05:51 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a54:3344:0:0:0:0:0 with HTTP; Tue, 19 May 2020 04:38:44
- -0700 (PDT)
-From: "JH" <jupiter.hce@gmail.com>
-Date: Tue, 19 May 2020 21:38:44 +1000
-Message-ID: <CAA=hcWSnoTiTQu+azr+pW=h9Jss+Wg-0umKkMV_1W7SyeVg2WQ@mail.gmail.com>
-Subject: Missing another DTB file in images directory
-To: Yocto discussion list <yocto@yoctoproject.org>
+From: "Damien LEFEVRE" <lefevre.da@gmail.com>
+Date: Tue, 19 May 2020 17:05:40 +0300
+Message-ID: <CA+FhBv_iyW6hhU6u4BrHoS5bNDcH2vDurWOJsPrPFNWodc5dDQ@mail.gmail.com>
+Subject: deploy GPG keys into images
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000ef869905a600c6c0"
+
+--000000000000ef869905a600c6c0
 Content-Type: text/plain; charset="UTF-8"
 
 Hi,
 
-I have two device tree source files, imx6ulz.dts and imx6ulz-kobs.dts,
-I defined machine configure file with KERNEL_DEVICETREE = "imx6ulz.dtb
-imx6ulz-kobs.dtb", I can see both imx6ulz.dtb imx6ulz-kobs.dtb in
-build directory, but there is only one imx6ulz.dtb in the images
-directory, missed imx6ulz-kobs.dtb, how can I package imx6ulz-kobs.dtb
-to the images directory?
+I've put GnuPG in my image, and I'd like to deploy a set to public and
+private keys into the system images.
 
-Thank you.
+How can I do that from recipes?
 
-Kind regards,
+Thanks,
+-Damien
 
-- jh
+--000000000000ef869905a600c6c0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;ve put GnuPG in my=C2=A0image=
+, and I&#39;d like to deploy a set to public and private keys into the syst=
+em images.</div><div><br></div><div>How can I do that from recipes?</div><d=
+iv><br></div><div>Thanks,</div><div>-Damien</div></div>
 
--- 
-"A man can fail many times, but he isn't a failure until he begins to
-blame somebody else."
--- John Burroughs
+--000000000000ef869905a600c6c0--
