@@ -1,102 +1,100 @@
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
- by mx.groups.io with SMTP id smtpd.web12.15435.1589989167515011651
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.654.1590005322346876303
  for <yocto@lists.yoctoproject.org>;
- Wed, 20 May 2020 08:39:27 -0700
+ Wed, 20 May 2020 13:08:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=KF36Wptz;
- spf=pass (domain: gmail.com, ip: 209.85.210.169, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f169.google.com with SMTP id n18so1745468pfa.2
-        for <yocto@lists.yoctoproject.org>; Wed, 20 May 2020 08:39:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=77YzRAPyxGiTlVWY+EHQ3rMRR1DZRJyN5QEi4tAIeQc=;
-        b=KF36WptzzStYKwFGScJXi8ZpJou9xleNUAgToZt1SQWA74KWPWWFyVmOcWE4p21POi
-         ywyotqhF30ddbqnJKidcTQjgoB7yyKMDBzKEMZ8Lqc6FvfI7RLCqx45VCdinenoxh1lW
-         QdWrSNZBdgVr8Bini8Tgx/iPe+GqLRL5y27v/i533mB0N0+70GchlIC/iouCVH0XnJbH
-         X/NoPWKGy2C/QEQASVuQPyi6ZSwV2aZDcquIODRW0YUGmx46QqsVbvWTCfbA5qYv2IJ4
-         8bO6wFWS/xLuHgndbIDd1y1MscprBiYdOBPWAgJgSWOaDa89o2ptkxFgahqE/dF7Xqmm
-         Bhew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=77YzRAPyxGiTlVWY+EHQ3rMRR1DZRJyN5QEi4tAIeQc=;
-        b=bocnYb52MseAmYx6dMxLcxwn9UbtHNvK12YqQTTDrHS68Bg73yCbScIzFrr2PJwhDq
-         0q0qnK6HvbfcyDHrTWijQySvOhtnULwVqHKpWqONynEHA/QvbfCP9O6SUFWYSBCh9TJd
-         9t2sEhlaaTwYRsXi5ClftIMql1zfEf+AkHuIL77+pOw5uwQItw7xSUTb0WByiEV322LC
-         ubOzzDG/zRzc2ZPvNWTrgVupKrCYg7Mw4gWNRMNxaozrBl9REVrsJYyg+hsPphZ+hZqR
-         Xiac5CGzU/zdfGqcxlVK7qsvFffHJNmRgGhkCBoICbGeEOuKtciM1jSamsQ7qbCATH7U
-         yfvg==
-X-Gm-Message-State: AOAM531scQDf2Hn0qXgPiKpsTO4ACTKiGRUIxbItWKT0GLworbkFyoZp
-	gyXbTSgpVIr8rlw6K0zPSF3LXHF2gBg=
-X-Google-Smtp-Source: ABdhPJwj525FvMmKo/dZT441+6qVaTx7kbzcNRNPEE3bmAoGxKY7VTKA68lXAX6pli0F2JWJ4C9pLQ==
-X-Received: by 2002:a63:f810:: with SMTP id n16mr4716158pgh.281.1589989166482;
-        Wed, 20 May 2020 08:39:26 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:2911:7230:fac5:7fd8? ([2601:646:9200:4e0:2911:7230:fac5:7fd8])
-        by smtp.gmail.com with ESMTPSA id q4sm2720682pfu.42.2020.05.20.08.39.25
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 May 2020 08:39:25 -0700 (PDT)
-Subject: Re: [yocto] strange formatting of command output on core-image-base
-To: yocto@lists.yoctoproject.org
-References: <Mhgx.1589970231695626350.vE1J@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <dff0a65c-e27b-4077-933f-cbbed892e2f1@gmail.com>
-Date: Wed, 20 May 2020 08:39:24 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.8.0
+ dkim=missing; spf=fail (domain: zork.pl, ip: 140.211.169.56, mailfrom: lm@zork.pl)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 2FDF8E01BCE; Wed, 20 May 2020 13:08:42 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Greylist: delayed 332 seconds by postgrey-1.32 at yocto-www; Wed, 20 May 2020 13:08:40 PDT
+Received: from black.zork.pl (black.zork.pl [178.32.202.57])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88923E01BC7
+	for <yocto@yoctoproject.org>; Wed, 20 May 2020 13:08:40 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by black.zork.pl (Postfix) with ESMTP id 6106C149E51
+	for <yocto@yoctoproject.org>; Wed, 20 May 2020 22:03:06 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at zork.pl
+Received: from black.zork.pl ([127.0.0.1])
+	by localhost (black.zork.pl [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id iUkl_cw7sff2 for <yocto@yoctoproject.org>;
+	Wed, 20 May 2020 22:03:04 +0200 (CEST)
+Received: from [192.168.17.110] (mirth.lan [192.168.17.110])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by black.zork.pl (Postfix) with ESMTPSA id 6B987149E4E
+	for <yocto@yoctoproject.org>; Wed, 20 May 2020 22:03:04 +0200 (CEST)
+To: yocto@yoctoproject.org
+From: "?ukasz Michalski" <lm@zork.pl>
+Subject: netmask problem on host interface with runquemu
+Message-ID: <44a594e5-4777-b8c8-0568-8acef1768f9f@zork.pl>
+Date: Wed, 20 May 2020 22:03:04 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <Mhgx.1589970231695626350.vE1J@lists.yoctoproject.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+I ha a configuration for raspberry pi from recent dunfell branch.
+When I run my image with runquemu:
+
+[zork@archdevel yocto-wallscreen-qemu-build]$ runqemu
+runqemu - INFO - Running bitbake -e ...
+runqemu - INFO - Overriding conf file setting of STAGING_DIR_NATIVE to /h=
+ome/zork/data/yocto-wallscreen-qemu-build/tmp/work/armv7vet2hf-neon-poky-=
+linux-gnueabi/defaultpkgname/1.0-r0/recipe-sysroot-native from Bitbake en=
+vironment
+runqemu - INFO - Continuing with the following parameters:
+KERNEL: [/home/zork/data/yocto-wallscreen-qemu-build/tmp/deploy/images/qe=
+muarm/zImage--5.4.27+git0+bee554e595_ab849248b4-r0-qemuarm-20200519150054=
+.bin]
+MACHINE: [qemuarm]
+FSTYPE: [ext4]
+ROOTFS: [/home/zork/data/yocto-wallscreen-qemu-build/tmp/deploy/images/qe=
+muarm/basic-dev-image-qemuarm-20200519150054.rootfs.ext4]
+CONFFILE: [/home/zork/data/yocto-wallscreen-qemu-build/tmp/deploy/images/=
+qemuarm/basic-dev-image-qemuarm-20200519150054.qemuboot.conf]
+
+runqemu - INFO - Setting up tap interface under sudo
+runqemu - INFO - Network configuration: ip=3D192.168.7.2::192.168.7.1:255=
+.255.255.0
+runqemu - INFO - Running /home/zork/data/yocto-wallscreen-qemu-build/tmp/=
+work/x86_64-linux/qemu-helper-native/1.0-r1/recipe-sysroot-native/usr/bin=
+/qemu-system-arm -device virtio-net-device,netdev=3Dnet0,mac=3D52:54:00:1=
+2:34:02 -netdev tap,id=3Dnet0,ifname=3Dtap0,script=3Dno,downscript=3Dno -=
+drive id=3Ddisk0,file=3D/home/zork/data/yocto-wallscreen-qemu-build/tmp/d=
+eploy/images/qemuarm/basic-dev-image-qemuarm-20200519150054.rootfs.ext4,i=
+f=3Dnone,format=3Draw -device virtio-blk-device,drive=3Ddisk0 -show-curso=
+r -device VGA,edid=3Don -device qemu-xhci -device usb-tablet -device usb-=
+kbd -object rng-random,filename=3D/dev/urandom,id=3Drng0 -device virtio-r=
+ng-pci,rng=3Drng0  -machine virt,highmem=3Doff -cpu cortex-a15 -m 256 -se=
+rial mon:vc -serial null -kernel /home/zork/data/yocto-wallscreen-qemu-bu=
+ild/tmp/deploy/images/qemuarm/zImage--5.4.27+git0+bee554e595_ab849248b4-r=
+0-qemuarm-20200519150054.bin -append 'root=3D/dev/vda rw  mem=3D256M ip=3D=
+192.168.7.2::192.168.7.1:255.255.255.0 console=3DttyAMA0 '
 
 
+I have tap0 interface on host with netmask 32:
 
-On 5/20/20 3:23 AM, stefan.wenninger@evopro-ag.de wrote:
-> Hi,
-> I recently switched form an image based on fsl-image-qt5 to one based on 
-> core-image-base.
-> The new image works fine in every regard except that the output of some 
-> commands looks weird.
-> 
-> I have attached the output of commands "nmcli" and "systemctl status 
-> dbus". Once executed on the fsl-image-qt5 based system and once on the 
-> core-image-base based system (_weird.txt).
-> There are two main points I gather from that weird output:
-> 1. There are some codes like "[[32m"+"[[0m" or "[[0;1;32m"+"[[0m", which 
-> I assume are colour codes, that are printed and not applied.
-> 2. The output appears to be opened in a vi-like editor?! It clears and 
-> fills the entire terminal page and seems to display an input mode at the 
-> bottom.
-> 
-> Both of these aspects are non-existent on the fsl-image-qt5 based 
-> system. There, colours are displayed normally and the output is just 
-> printed right beneath my command call.
-> 
-> I have discovered that I can get these two commands to work properly on 
-> the core-image-base based system, if I pipe their output into cat: 
-> "nmcli | cat".
-> 
-> My assumption for the colour codes is that, the core-image-base system 
-> uses a different text encoding, or a different style of colour codes and 
-> therefore does not recognize the ones presented by nmcli.
-> I have tried to install the ttf-dejavu-* fonts that are present on the 
-> fsl-image-qt system. I also verfied that both systems seem to be using 
-> POSIX as their LANG setting ("locale" produces the same output on both).
-> I have no idea why the output is presented in what seems to be a vi 
-> editor though. Both systems have their EDITOR variable set to "vi".
-> 
-> Am I missing some kind of package or setting in my image?
-> 
-> I am at my wits' end and would greatly appreciate anyone trying to shed 
-> some light on what is going on here.
-> Stefan Wenninger
-> 
+11: tap0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state=
+ UP group default qlen 1000
+     link/ether e6:ae:b4:35:07:cf brd ff:ff:ff:ff:ff:ff
+     inet 192.168.7.1/32 brd 192.168.7.255 scope global tap0
+        valid_lft forever preferred_lft forever
 
-Its perhaps some of  busybox applets like cat etc. Try 
-core-image-full-cmdline and see if its any better.
+How to change this mask to 24?
+
+Thanks,
+=C5=81ukasz
