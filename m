@@ -1,238 +1,113 @@
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
- by mx.groups.io with SMTP id smtpd.web11.9477.1590137227999932524
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.9846.1590139599357217305
  for <yocto@lists.yoctoproject.org>;
- Fri, 22 May 2020 01:47:08 -0700
+ Fri, 22 May 2020 02:26:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=bneZCd+0;
- spf=pass (domain: gmail.com, ip: 209.85.219.44, mailfrom: lefevre.da@gmail.com)
-Received: by mail-qv1-f44.google.com with SMTP id p4so4359959qvr.10
-        for <yocto@lists.yoctoproject.org>; Fri, 22 May 2020 01:47:07 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=CxMnc5/J;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: alex.kanavin@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id ED581E01BDF; Fri, 22 May 2020 02:26:38 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.222.51 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B181E01BCE
+	for <yocto@yoctoproject.org>; Fri, 22 May 2020 02:26:37 -0700 (PDT)
+Received: by mail-ua1-f51.google.com with SMTP id i89so3569734uad.5
+        for <yocto@yoctoproject.org>; Fri, 22 May 2020 02:26:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=QvLCLh/Y5G1svAzMJK8WgLpPOisDRWppiu2Assfbw68=;
-        b=bneZCd+0378e6gOtE3U68vxAAeCmBBaOJOv0POo9Ss49jpTAXHEEln5O1NUkoHuRds
-         sGxqINi7v2lqStOkhXjwLZm66gWdzBs0hofTYmUOaeyKqQ0Y4qHDzpmXH3WX/oK9DXau
-         FwsZdAPU6BQw3REkT9Qui0Ba35Yqm8nOy2vS92FXv914Eon3pJQZ94kLDu2TL8bWz7gz
-         EelEjyybKIblTLl04wC2cUSBl0P+RCTOCCkbcBH4Iz7Bm8pQTWj3z+IiFemHQioEJl23
-         NVl9IZtuKCJYQUgR5h8F7GxmBrBMf0o/5tnvWDKzHf2S5c66klOB4izpyeEOi+3O5ul5
-         GRpg==
+        bh=s1Bj2ZOpTbo96y8jMyvEbag/wYbtl3L9DBWt8yxKQ3E=;
+        b=CxMnc5/JIiGM7e79PIg+R4lHdsJ/vTdSPgbGmnl5JL/VU22giImCLGVNPtrZIVt7Ez
+         4DJsCNmNNv0z30XdS7zQGYocjWhP4rIcZG8h8/VuvaeyiUzkd0JO4ZOTwhtCh2WlfoT7
+         1ohpWkCsLkx8mkZBGXnDY08BuohOqHaFs1dArPccNxuk6pJ/TLAtTFCceEOoIfxmILCK
+         nwgaPLgcJW4UfLOrbsqKM+PP8eTqJzoVnAR7w6TdCpFUY5BJmxXAIOcK97V27uZUhSKB
+         plQKam53821biRdiIRUcCu+zll0EULjAP0/cTFf5cCg4AsAgRi95er5H5HOnVe1wjX3e
+         eipA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=QvLCLh/Y5G1svAzMJK8WgLpPOisDRWppiu2Assfbw68=;
-        b=FFNdgfssPVbbW6IuNr6juCOzw2SogRAxUjkPgF+RZwx/tqoeJA4N/J5U8r8OiGYh4L
-         wo55AXI/kl0xo+wzkK6xuD6tyS+f5oAl0grCjuCdBXBJGEqK2Xoth+yV3a4uN8NDDzk9
-         tQzu70E9h70nDv6H9dnQGkcokEsUbLNi5P+kKjj1sGHM1HbHJwF517cSxwp8biVI9rCb
-         TNvTxTEdjmuZVgCIcGcYJmqX4EuIN55mEaNDLJ5LnzC1/L1sT6GaoWalDG2ru5IqhRGP
-         14KZm97f7AUgGgBOslfLKq1GrbxuhJIcEsDcq37F019J7b9uX+Y62TqcZT1KB0OWV4zF
-         t0Aw==
-X-Gm-Message-State: AOAM531ND8lrWuHhrqGcAU0bdCTQp4Ck7UXlGFtufPUvldiUUv3wPqIc
-	urOYgcwA5P9v8Q/gNNruLoWPYdYBSfhLHat4RA==
-X-Google-Smtp-Source: ABdhPJx0V4qU5tUz8Xqx0Cmzw9hkaifQ1H3v5700jJAUKDHAvAk/EOAEDDCLLshzlisMw8Svq37ylsZzDda5yETxm0Y=
-X-Received: by 2002:ad4:4801:: with SMTP id g1mr2590914qvy.199.1590137227130;
- Fri, 22 May 2020 01:47:07 -0700 (PDT)
+        bh=s1Bj2ZOpTbo96y8jMyvEbag/wYbtl3L9DBWt8yxKQ3E=;
+        b=YlsomZihrpBioALZfkDOr6zsaKKlah0sJN1ERrSLGhs2aR2fyobLxiG7f94XWNSp8M
+         zpuhPoHIbXwTi8Zuf7UJ6AuhklVmUuIMEnAFuln0aJH1SjHXzlK/+UsK+4bWCIJZRTgF
+         Fsu3Zd/sS4MsDlkehf+CBoIhXOk0eivz8UJ07M+l+uWPF3+xTMVlXle5p0sYX4H6po/a
+         7m5l42OSjyd3+RIIvoqoHwNO8JShlpVJApA/CZqZ440U9ZjpUEusZ6magT4Lx8P5nBV0
+         W1No2MiKdyPR4wAs50N69ZJXbzUdLXJZw+psSpDgNfplQrnvZqK6pfgv3892SsFPZRzQ
+         2OEA==
+X-Gm-Message-State: AOAM532jjWkf8x5KwnaTER81DmdhD7bHj+BmVerNQ5E4aciohh7ykkQI
+	dLheM6kf4JIjMyVWXV2M3zkYfmzsRutjdBkeW8U=
+X-Google-Smtp-Source: ABdhPJxVnEd4HXJVBuARD/WhZjU5FNAJpF8r2+Pr6Cgd1iMDiQTjlzk66itpch4yTETP+LTI9L7QxVtbJsv8tv9NZxg=
+X-Received: by 2002:ab0:6688:: with SMTP id a8mr9858029uan.93.1590139597287;
+ Fri, 22 May 2020 02:26:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <CA+FhBv_iyW6hhU6u4BrHoS5bNDcH2vDurWOJsPrPFNWodc5dDQ@mail.gmail.com>
- <5beaecc9-1472-3614-1ac1-1928b0b3a3bd@ibeeto.com>
-In-Reply-To: <5beaecc9-1472-3614-1ac1-1928b0b3a3bd@ibeeto.com>
-From: "Damien LEFEVRE" <lefevre.da@gmail.com>
-Date: Fri, 22 May 2020 11:46:56 +0300
-Message-ID: <CA+FhBv-LRYmJLm9Macd3e48g8WJx-Y=k2=R=B5i=EqnFfa6=ww@mail.gmail.com>
-Subject: Re: [yocto] deploy GPG keys into images
-To: Rudolf J Streif <rudolf.streif@ibeeto.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000913b3405a638acf7"
+References: <1590152009-5052-1-git-send-email-zangrc.fnst@cn.fujitsu.com>
+In-Reply-To: <1590152009-5052-1-git-send-email-zangrc.fnst@cn.fujitsu.com>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Fri, 22 May 2020 11:26:26 +0200
+Message-ID: <CANNYZj9VT3M1-nP18j6b5zZk9NMxAAZ2TnLoPptdZabwt=VbjA@mail.gmail.com>
+Subject: Re: [yocto] [ptest-runner] Added output processing to pytest
+To: zangrc <zangrc.fnst@cn.fujitsu.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>, Anibal Limon <anibal.limon@linaro.org>
+Content-Type: multipart/alternative; boundary="000000000000d6f47005a6393967"
 
---000000000000913b3405a638acf7
+--000000000000d6f47005a6393967
 Content-Type: text/plain; charset="UTF-8"
 
-Thanks for the tip Rudolf!
+On Fri, 22 May 2020 at 05:54, zangrc <zangrc.fnst@cn.fujitsu.com> wrote:
 
-I found out that gpg has a --homedir flag to do the obvious. Since gpg
-builds a database, I cannot simply copy the key.
-
-Knowing that now, I can just create the gpg database via a standard recipe
-using the native utility package and install the files.
-
--Damien
-
-On Tue, May 19, 2020 at 7:01 PM Rudolf J Streif <rudolf.streif@ibeeto.com>
-wrote:
-
-> Hi Damien,
-> On 5/19/20 7:05 AM, Damien LEFEVRE wrote:
->
-> Hi,
->
-> I've put GnuPG in my image, and I'd like to deploy a set to public and
-> private keys into the system images.
->
-> How can I do that from recipes?
->
-> You do this with a shell function that is added to
-> ROOTFS_POSTPROCESS_COMMAND. Here is a script that I use to create SSH keys:
->
-> # Image post-processing to configure sshd
->
-> # Setup ssh key login for these users
-> SSH_USERS ??= ""
-> SSH_DISALLOW_PWAUTH ??= "1"
->
-> configure_sshd() {
->    # disallow password authentication
->    if [ "${SSH_DIALLOW_PWAUTH}" == "1" ]; then
->       echo "PasswordAuthentication no" >>
-> ${IMAGE_ROOTFS}/etc/ssh/sshd_config
->    fi
->
->    # keys will be stored tmp/deploy/keys
->    mkdir -p ${DEPLOY_DIR}/keys
->
->    # create the keys for the users
->    for user in ${SSH_USERS}; do
->       if [ ! -f ${DEPLOY_DIR}/keys/${user}-sshkey ]; then
->       /usr/bin/ssh-keygen -t rsa -N '' \
->          -f ${DEPLOY_DIR}/keys/${user}-sshkey
->       fi
->
->       # add public key to authorized_keys for the user
->       mkdir -p ${IMAGE_ROOTFS}/home/${user}/.ssh
->       cat ${DEPLOY_DIR}/keys/${user}-sshkey.pub \
->           >> ${IMAGE_ROOTFS}/home/${user}/.ssh/authorized_keys
->    done
-> }
-> ROOTFS_POSTPROCESS_COMMAND += "configure_sshd;"
->
-> I have this script as an include file that I included into my image
-> recipes.
->
-> :rjs
->
->
-> Thanks,
-> -Damien
->
-> 
->
-> --
-> -----
-> Rudolf J Streif
-> CEO/CTO ibeeto
-> +1.855.442.3386 x700
->
+> +               char pytest_append[] = "| sed -e 's/\\[...%\\]//g'| sed -e
+> 's/PASSED/PASS/g'| sed -e 's/FAILED/FAIL/g'|sed -e 's/SKIPPED/SKIP/g'| awk
+> '{if ($NF==\"PASS\" || $NF==\"FAIL\" || $NF==\"SKIP\" || $NF==\"XFAIL\" ||
+> $NF==\"XPASS\"){printf \"%s: %s\\n\", $NF, $0}else{print}}'| awk '{if
+> ($NF==\"PASS\" || $NF==\"FAIL\" || $NF==\"SKIP\" || $NF==\"XFAIL\" ||
+> $NF==\"XPASS\") {$NF=\"\";print $0}else{print}}'";
 >
 
---000000000000913b3405a638acf7
+Is it possible to process the output directly, rather than tweak it via
+sed/awk shell pipelines that are very difficult to read?
+
+Alex
+
+--000000000000d6f47005a6393967
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks for the tip Rudolf!<div><br></div><div>I found out =
-that gpg has a --homedir flag to do the obvious. Since gpg builds a databas=
-e, I cannot simply copy the key.</div><div><br></div><div>Knowing that now,=
- I can just create the gpg database via a standard recipe using the native =
-utility package and install=C2=A0the files.</div><div><br></div><div>-Damie=
-n</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Tue, May 19, 2020 at 7:01 PM Rudolf J Streif &lt;<a href=3D"mailt=
-o:rudolf.streif@ibeeto.com">rudolf.streif@ibeeto.com</a>&gt; wrote:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left:1px solid rgb(204,204,204);padding-left:1ex">
-  
-    
-  
-  <div>
-    <p>Hi Damien,<br>
-    </p>
-    <div>On 5/19/20 7:05 AM, Damien LEFEVRE
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      
-      <div dir=3D"ltr">Hi,
-        <div><br>
-        </div>
-        <div>I&#39;ve put GnuPG in my=C2=A0image, and I&#39;d like to depl=
-oy a set to
-          public and private keys into the system images.</div>
-        <div><br>
-        </div>
-        <div>How can I do that from recipes?</div>
-        <div><br>
-        </div>
-      </div>
-    </blockquote>
-    <p>You do this with a shell function that is added to
-      ROOTFS_POSTPROCESS_COMMAND. Here is a script that I use to create
-      SSH keys:</p>
-    <p><tt># Image post-processing to configure sshd</tt><tt><br>
-      </tt><tt><br>
-      </tt><tt># Setup ssh key login for these users</tt><tt><br>
-      </tt><tt>SSH_USERS ??=3D &quot;&quot;</tt><tt><br>
-      </tt><tt>SSH_DISALLOW_PWAUTH ??=3D &quot;1&quot;</tt><tt><br>
-      </tt><tt><br>
-      </tt><tt>configure_sshd() {</tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0 # disallow password authentication</tt><tt><br=
->
-      </tt><tt>=C2=A0=C2=A0 if [ &quot;${SSH_DIALLOW_PWAUTH}&quot; =3D=3D =
-&quot;1&quot; ]; then</tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 echo &quot;PasswordAuthentic=
-ation no&quot; &gt;&gt;
-        ${IMAGE_ROOTFS}/etc/ssh/sshd_config</tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0 fi</tt><tt><br>
-      </tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0 # keys will be stored tmp/deploy/keys</tt><tt>=
-<br>
-      </tt><tt>=C2=A0=C2=A0 mkdir -p ${DEPLOY_DIR}/keys</tt><tt><br>
-      </tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0 # create the keys for the users</tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0 for user in ${SSH_USERS}; do</tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if [ ! -f ${DEPLOY_DIR}/keys=
-/${user}-sshkey ]; then</tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /usr/bin/ssh-keygen -t rsa -=
-N &#39;&#39; \</tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -f ${DEPLO=
-Y_DIR}/keys/${user}-sshkey</tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fi</tt><tt><br>
-      </tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # add public key to authoriz=
-ed_keys for the user</tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mkdir -p ${IMAGE_ROOTFS}/hom=
-e/${user}/.ssh</tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cat ${DEPLOY_DIR}/keys/${use=
-r}-sshkey.pub \</tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &gt;=
-&gt;
-        ${IMAGE_ROOTFS}/home/${user}/.ssh/authorized_keys</tt><tt><br>
-      </tt><tt>=C2=A0=C2=A0 done</tt><tt><br>
-      </tt><tt>}</tt><tt><br>
-      </tt><tt>ROOTFS_POSTPROCESS_COMMAND +=3D &quot;configure_sshd;&quot;=
-</tt><br>
-    </p>
-    <p>I have this script as an include file that I included into my
-      image recipes.</p>
-    <p>:rjs<br>
-    </p>
-    <p><br>
-    </p>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">
-        <div>Thanks,</div>
-        <div>-Damien</div>
-      </div>
-      <br>
-      <fieldset></fieldset>
-      <pre>
-</pre>
-    </blockquote>
-    <pre cols=3D"72">--=20
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3386 x700</pre>
-  </div>
+<div dir=3D"ltr"><div dir=3D"ltr">On Fri, 22 May 2020 at 05:54, zangrc &lt;=
+<a href=3D"mailto:zangrc.fnst@cn.fujitsu.com">zangrc.fnst@cn.fujitsu.com</a=
+>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex">+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0char pytest_append[] =3D &quot;| sed -e &#39;s/\\[...%\\]//g&#39;| se=
+d -e &#39;s/PASSED/PASS/g&#39;| sed -e &#39;s/FAILED/FAIL/g&#39;|sed -e &#3=
+9;s/SKIPPED/SKIP/g&#39;| awk &#39;{if ($NF=3D=3D\&quot;PASS\&quot; || $NF=
+=3D=3D\&quot;FAIL\&quot; || $NF=3D=3D\&quot;SKIP\&quot; || $NF=3D=3D\&quot;=
+XFAIL\&quot; || $NF=3D=3D\&quot;XPASS\&quot;){printf \&quot;%s: %s\\n\&quot=
+;, $NF, $0}else{print}}&#39;| awk &#39;{if ($NF=3D=3D\&quot;PASS\&quot; || =
+$NF=3D=3D\&quot;FAIL\&quot; || $NF=3D=3D\&quot;SKIP\&quot; || $NF=3D=3D\&qu=
+ot;XFAIL\&quot; || $NF=3D=3D\&quot;XPASS\&quot;) {$NF=3D\&quot;\&quot;;prin=
+t $0}else{print}}&#39;&quot;;<br></blockquote><div><br></div><div>Is it pos=
+sible to process the output directly, rather than tweak it via sed/awk shel=
+l pipelines that are very difficult to read?</div><div><br></div><div>Alex<=
+br></div></div></div>
 
-</blockquote></div>
-
---000000000000913b3405a638acf7--
+--000000000000d6f47005a6393967--
