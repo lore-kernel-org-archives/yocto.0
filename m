@@ -1,85 +1,70 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.12987.1590154638788261175
+Received: from ciao.gmane.io (ciao.gmane.io [159.69.161.202])
+ by mx.groups.io with SMTP id smtpd.web10.12808.1590323895845984475
  for <yocto@lists.yoctoproject.org>;
- Fri, 22 May 2020 06:37:18 -0700
+ Sun, 24 May 2020 05:38:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=UG1p4s/o;
- spf=softfail (domain: burtonini.com, ip: 140.211.169.56, mailfrom: ross@burtonini.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 292F6E01BDF; Fri, 22 May 2020 06:37:18 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.208.174 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35E83E01BC7
-	for <yocto@yoctoproject.org>; Fri, 22 May 2020 06:37:16 -0700 (PDT)
-Received: by mail-lj1-f174.google.com with SMTP id z6so12614256ljm.13
-        for <yocto@yoctoproject.org>; Fri, 22 May 2020 06:37:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=e27mrNdPM45zr186ijGeK4xjBR7kUz5Tx/G2YqyCAwQ=;
-        b=UG1p4s/ouIM21NLf0s325qviYGQ+i2W6JSurKRg9qRGt+LbHkj9RRr1CWM40FazjpQ
-         uF7OPpTi0h+7UXVAYHRpxERl7ksp1gxq18Kv4PmfSxFXH8dRnDS2qKg2ApeJafiunAJ9
-         72Eiz/XbFAOV6zKdqe0VPhizVPAPc97BmPQV72uS4cEal4tTqKwIhiAYRrehaXAacKz6
-         ec+6Ti5uzOU9axTX007C+FWpx/+Y824N0X90t2GB+Ddb0o4UcZ8asEsqFi2DcgMmxhcD
-         fJNEIneLb7ObwonMFzcoaPV7F+8n8zbebf5pkugxRhyhn/63eiRWnefZx+T4fk9UfgmI
-         LEoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=e27mrNdPM45zr186ijGeK4xjBR7kUz5Tx/G2YqyCAwQ=;
-        b=Ixh0yGAxjHJbUreLR2Md9IqefU16bFTyo4+MIeBjoPBm0PqQPhQxkMArZP5K+z9Kpu
-         OuW38v6nnSd5PrzDD6z39jjJGhN5PfXgBCY4dTLeIybTOcP8j8Hvm4mCsKINl8WkIipy
-         Hh+KgG15MjdwI4ukcG3DmHMS6uBDJmhqDtxq6Pexe6kKuWVY8ow+SNjvevgWPkQdKxLi
-         CRnde/BvUy5Z36ZPYeCjV6LqYoqx10e9bO4uycit9KVjFDnE0FG5q/KSTucljLYPOfxT
-         VMf9juukIMRavn1dGNXi8UNwS2alfBXSasazsnWX6yiQE3xd3NjoKHSdVqm7hu3GnQZt
-         emIw==
-X-Gm-Message-State: AOAM533MFfRmCTJwNsWyx1ZCGTLnvLJCoUJqAeHpI2/GdAaND824dM1r
-	FW65wq354yuhIne7yZk4do9Zd921/efEOTE8EF9teg==
-X-Google-Smtp-Source: ABdhPJxu/kO/h+uZhQS6IQOd5q6M4rSto4NxY7pIj/3w+5ZLQUbJVvtABLlXi1fsvmnXOOo8JzjkFS/B/jHKjaP06w8=
-X-Received: by 2002:a05:651c:11c1:: with SMTP id z1mr5149145ljo.352.1590154635528;
- Fri, 22 May 2020 06:37:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <1590152009-5052-1-git-send-email-zangrc.fnst@cn.fujitsu.com>
- <CANNYZj9VT3M1-nP18j6b5zZk9NMxAAZ2TnLoPptdZabwt=VbjA@mail.gmail.com>
- <CAM9ZRVtS4tKmrBb9Z+L+wjAcd3pwAj5wfTYmueTsg=CW6BXdUQ@mail.gmail.com>
- <CAAnfSTsEXz13ngzs3=8oqWmdLcLH-dX8gPjtkW9Gb-GDA4yc0Q@mail.gmail.com> <CAM9ZRVtN371hZaR1-b8sdPcxfHSo=QkuHdvin8xgNvicAcqMHQ@mail.gmail.com>
-In-Reply-To: <CAM9ZRVtN371hZaR1-b8sdPcxfHSo=QkuHdvin8xgNvicAcqMHQ@mail.gmail.com>
-From: "Ross Burton" <ross@burtonini.com>
-Date: Fri, 22 May 2020 14:37:03 +0100
-Message-ID: <CAAnfSTuZJqF67pw28Z8pv-dgYDAtDjagvHwiuZgfkb+xC5Durw@mail.gmail.com>
-Subject: Re: [yocto] [ptest-runner] Added output processing to pytest
-To: Paul Barker <pbarker@konsulko.com>
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>, zangrc <zangrc.fnst@cn.fujitsu.com>, 
-	Yocto discussion list <yocto@yoctoproject.org>, Anibal Limon <anibal.limon@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+ dkim=missing; spf=pass (domain: m.gmane-mx.org, ip: 159.69.161.202, mailfrom: gley-yocto@m.gmane-mx.org)
+Received: from list by ciao.gmane.io with local (Exim 4.92)
+	(envelope-from <gley-yocto@m.gmane-mx.org>)
+	id 1jcptN-000EER-Ga
+	for yocto@lists.yoctoproject.org; Sun, 24 May 2020 14:38:13 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@lists.yoctoproject.org
+From: "Gmane Admin" <gley-yocto@m.gmane-mx.org>
+Subject: Re: How to include initrd.cpio to image
+Date: Sun, 24 May 2020 14:38:08 +0200
+Message-ID: <c901037a-977d-16d9-0062-bc33ffe883f2@gmail.com>
+References: <160AB66D41D34D89.15432@lists.yoctoproject.org>
+ <160B81ECB7BC9386.1783@lists.yoctoproject.org>
+Mime-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+In-Reply-To: <160B81ECB7BC9386.1783@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-On Fri, 22 May 2020 at 14:31, Paul Barker <pbarker@konsulko.com> wrote:
-> > We could have a recipe in oe-core with this in, or just drop it into
-> > the python recipe directly.
->
-> It's packaged on pypi: https://pypi.org/project/betatest/
->
-> I need to do a new release as I tidied a few things up and added a
-> subtest wrapper after I published v0.1.0. This gives me a kick to get
-> that done :)
+Op 03-05-2020 om 13:42 schreef Gmane Admin:
+> Op 30-04-2020 om 23:33 schreef Gmane Admin:
+>> I am generating core-image-minimal-initramfs-edison.cpio.gz which is 
+>> found in the deploy-core-image-minimal-initramfs-image-complete/ 
+>> directory.
+>>
+>> When I build my image edison-image initrd gets included and deployed 
+>> in edison-image-edison.hddimg. But I am not using that.
+>>
+>> I also generate edison-image-edison.ext4 which has bzImage kernel in 
+>> /boot. But by Zeus, I have no idea how to get edison-image to install 
+>> a file from the other recipe's deploy.
+>>
+>> To me it doesn't make sense to include bzImage without initrd, kernel 
+>> will not be able to load the rootfs without.
+>>
+>> I know I can bundle the initramfs, and that has worked fine before. 
+>> Until kernel + initrd grew above 15MB, now U-Boot won't load it. I 
+>> have now kernel = 10MB + initrd = 10MB which boot fine when I copy 
+>> initrd to /boot manually.
+> 
+> Gmane is crazy. It's me, Ferry.
+> 
+> I'm still stuck here. Any ideas?
 
-Awesome.  I endorse a pypi recipe shipping that, which recipes can then re-use.
+Self answering, I added this to my image recipe:
 
-The next question is how to integrate that runner with pytest.
+ROOTFS_POSTPROCESS_COMMAND += "install_initrd; "
 
-Ross
+install_initrd() {
+     bbnote "Adding initrd to image ${IMAGE_ROOTFS}"
+     install -d {IMAGE_ROOTFS}/boot
+     bbnote "from 
+${DEPLOY_DIR_IMAGE}/core-image-minimal-initramfs-edison.cpio.gz"
+     install -m 0755 
+${DEPLOY_DIR_IMAGE}/core-image-minimal-initramfs-edison.cpio.gz 
+${IMAGE_ROOTFS}/boot/initrd
+}
+
+
+> 
+> 
+
+
