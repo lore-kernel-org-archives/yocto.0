@@ -1,152 +1,96 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.18284.1590344461355848100
+ by mx.groups.io with SMTP id smtpd.web12.24988.1590373043862274404
  for <yocto@lists.yoctoproject.org>;
- Sun, 24 May 2020 11:21:01 -0700
+ Sun, 24 May 2020 19:17:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=w61XwHGx;
- spf=softfail (domain: linaro.org, ip: 140.211.169.56, mailfrom: anibal.limon@linaro.org)
+ dkim=missing; spf=none, err=SPF record not found (domain: cn.fujitsu.com, ip: 140.211.169.56, mailfrom: zangrc.fnst@cn.fujitsu.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6AC0BE01C08; Sun, 24 May 2020 11:21:00 -0700 (PDT)
+	id 329BBE01C08; Sun, 24 May 2020 19:17:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	URIBL_RED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.128.53 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E44B4E01C06
-	for <yocto@yoctoproject.org>; Sun, 24 May 2020 11:20:57 -0700 (PDT)
-Received: by mail-wm1-f53.google.com with SMTP id c71so2941243wmd.5
-        for <yocto@yoctoproject.org>; Sun, 24 May 2020 11:20:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hChvmngKRXErSBEkY+qeicgfEXbXpkJ4atM9wDkbM6A=;
-        b=w61XwHGxmlrnF4x1VuPCeW5on+D+fZ7EoBRRFvzTGxw3yMKYedQWg8QC4/Nh0O7Qmf
-         nCBCxE3uoNBvv+837pPkiQY+AEmYjDb8FHtgkcHJe4cyETe+yAT0mTT1mkMmTHo/ziuM
-         NfU0RFUxG1C8tJcTKUMLeo23t8VNumBAQiQ4K57PoSAeAAq95Qg92f65CMpzMqh/syEe
-         DJTkUflxV5K510pg1I4yi6Q7MIC88ICCofMA4muHVeLKN5uDMO+8+iv33oupbWx5CIuc
-         mHnZczS7dyXbLgr6AN5zRf6nVP/ePEqUdpFNmFugtymYZLRndy/JbPlSpOoGr1E0gPyt
-         /3Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hChvmngKRXErSBEkY+qeicgfEXbXpkJ4atM9wDkbM6A=;
-        b=lJIVljATlmaHwc9sM9n93reCJUClWBopuh90gCkYBCoIGp+M7rSV6ZXU7EnVgefDBa
-         30nV/7jA2s8DmO9ZutxebEfL60DoyWOx3CMB3uoFqXIHMJ8iaEnA0hJEW0ps7ZURXrI5
-         YF/yU9IWd78WN7RFcsE16bhKN0jl6EgtumCdISQ6yH0fqYa2NjI9k3GQREx2TtKWsBUG
-         Dvw6M84n3rRJlDGqz6gl5Pl+B3Rm55GDbbNveO8LzheZjgTfPaO9uvmpryat0a5iOCcU
-         1H69+p3dkTRIpPpEknBd5PQkkxhZiycrFedgYteEmeCut5lmxbZ0PeV/AUxVIgzEGq94
-         kPIw==
-X-Gm-Message-State: AOAM532nQicu+PTkdwISsCX8Pqu3LLozc7S25vtHRJc6Ra97iKLMNDyl
-	2qwzope0tcww7ZpQJj5n7Cl7qgkZZ8fMPwRi5ZtT1w==
-X-Google-Smtp-Source: ABdhPJwZUzurEFnN15nrL85AkD38lXD9kP1XYTV0rLIwVTr7BmotijWcI9jYcbTbVeHeGFMNcVPdUwHpHqsyat54QzY=
-X-Received: by 2002:a05:600c:29a:: with SMTP id 26mr2790566wmk.76.1590344456836;
- Sun, 24 May 2020 11:20:56 -0700 (PDT)
-MIME-Version: 1.0
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
+	*      medium trust
+	*      [183.91.158.132 listed in list.dnswl.org]
+	*  0.0 URIBL_RED Contains an URL listed in the URIBL redlist
+	*      [URIs: yoctoproject.org]
+Received: from heian.cn.fujitsu.com (mail.cn.fujitsu.com [183.91.158.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47A80E01C06
+	for <yocto@yoctoproject.org>; Sun, 24 May 2020 19:17:21 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.73,431,1583164800"; 
+   d="scan'208";a="93011172"
+Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
+  by heian.cn.fujitsu.com with ESMTP; 25 May 2020 10:17:18 +0800
+Received: from G08CNEXMBPEKD06.g08.fujitsu.local (unknown [10.167.33.206])
+	by cn.fujitsu.com (Postfix) with ESMTP id 2F79D50A9974;
+	Mon, 25 May 2020 10:17:14 +0800 (CST)
+Received: from G08CNEXMBPEKD04.g08.fujitsu.local (10.167.33.201) by
+ G08CNEXMBPEKD06.g08.fujitsu.local (10.167.33.206) with Microsoft SMTP Server
+ (TLS) id 15.0.1497.2; Mon, 25 May 2020 10:17:16 +0800
+Received: from G08CNEXMBPEKD04.g08.fujitsu.local ([fe80::a02b:f831:342:223])
+ by G08CNEXMBPEKD04.g08.fujitsu.local ([fe80::a02b:f831:342:223%14]) with mapi
+ id 15.00.1497.006; Mon, 25 May 2020 10:17:17 +0800
+From: "zangrc" <zangrc.fnst@cn.fujitsu.com>
+To: Ross Burton <ross@burtonini.com>, Paul Barker <pbarker@konsulko.com>
+CC: Alexander Kanavin <alex.kanavin@gmail.com>, Yocto discussion list
+	<yocto@yoctoproject.org>, Anibal Limon <anibal.limon@linaro.org>, Tim Orling
+	<ticotimo@gmail.com>
+Subject: Re: [yocto] [ptest-runner] Added output processing to pytest
+Thread-Topic: [yocto] [ptest-runner] Added output processing to pytest
+Thread-Index: AQHWL+ySwMW8CUz66kWBaGauDAl/B6izUCwAgAAA04CAAEINgIAAAYoAgAABm4CABHx+gA==
+Date: Mon, 25 May 2020 02:17:17 +0000
+Message-ID: <2bd9057d62bf49be9242cecfe7092f6c@G08CNEXMBPEKD04.g08.fujitsu.local>
 References: <1590152009-5052-1-git-send-email-zangrc.fnst@cn.fujitsu.com>
  <CANNYZj9VT3M1-nP18j6b5zZk9NMxAAZ2TnLoPptdZabwt=VbjA@mail.gmail.com>
  <CAM9ZRVtS4tKmrBb9Z+L+wjAcd3pwAj5wfTYmueTsg=CW6BXdUQ@mail.gmail.com>
  <CAAnfSTsEXz13ngzs3=8oqWmdLcLH-dX8gPjtkW9Gb-GDA4yc0Q@mail.gmail.com>
- <CAM9ZRVtN371hZaR1-b8sdPcxfHSo=QkuHdvin8xgNvicAcqMHQ@mail.gmail.com> <CAAnfSTuZJqF67pw28Z8pv-dgYDAtDjagvHwiuZgfkb+xC5Durw@mail.gmail.com>
+ <CAM9ZRVtN371hZaR1-b8sdPcxfHSo=QkuHdvin8xgNvicAcqMHQ@mail.gmail.com>
+ <CAAnfSTuZJqF67pw28Z8pv-dgYDAtDjagvHwiuZgfkb+xC5Durw@mail.gmail.com>
 In-Reply-To: <CAAnfSTuZJqF67pw28Z8pv-dgYDAtDjagvHwiuZgfkb+xC5Durw@mail.gmail.com>
-From: "Anibal Limon" <anibal.limon@linaro.org>
-Date: Sun, 24 May 2020 13:20:45 -0500
-Message-ID: <CA+_AqitjL-1cEjnxCZYqoM7gXn2up5x8Kw_xx2JpAU-S=pu30A@mail.gmail.com>
-Subject: Re: [yocto] [ptest-runner] Added output processing to pytest
-To: Ross Burton <ross@burtonini.com>
-Cc: Paul Barker <pbarker@konsulko.com>, Alexander Kanavin <alex.kanavin@gmail.com>, 
-	zangrc <zangrc.fnst@cn.fujitsu.com>, Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000006bb2dc05a668ec9c"
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.167.225.81]
+MIME-Version: 1.0
+X-yoursite-MailScanner-ID: 2F79D50A9974.A8CBD
+X-yoursite-MailScanner: Found to be clean
+X-yoursite-MailScanner-From: zangrc.fnst@cn.fujitsu.com
+Content-Language: zh-CN
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---0000000000006bb2dc05a668ec9c
-Content-Type: text/plain; charset="UTF-8"
-
-On Fri, 22 May 2020 at 08:37, Ross Burton <ross@burtonini.com> wrote:
-
-> On Fri, 22 May 2020 at 14:31, Paul Barker <pbarker@konsulko.com> wrote:
-> > > We could have a recipe in oe-core with this in, or just drop it into
-> > > the python recipe directly.
-> >
-> > It's packaged on pypi: https://pypi.org/project/betatest/
-> >
-> > I need to do a new release as I tidied a few things up and added a
-> > subtest wrapper after I published v0.1.0. This gives me a kick to get
-> > that done :)
->
-> Awesome.  I endorse a pypi recipe shipping that, which recipes can then
-> re-use.
->
-> The next question is how to integrate that runner with pytest.
->
-
-I like the idea of format the output at level of pytest, in OEQA there is
-OETestResult class that is where the changes need to be made to add the
-option to use AM format.
-
-https://git.openembedded.org/openembedded-core/tree/meta/lib/oeqa/core/runner.py#n38
-
-Regards,
-Anibal
-
-
->
-> Ross
->
-
---0000000000006bb2dc05a668ec9c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Fri, 22 May 2020 at 08:37, Ross Bu=
-rton &lt;<a href=3D"mailto:ross@burtonini.com">ross@burtonini.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Fri, 22=
- May 2020 at 14:31, Paul Barker &lt;<a href=3D"mailto:pbarker@konsulko.com"=
- target=3D"_blank">pbarker@konsulko.com</a>&gt; wrote:<br>
-&gt; &gt; We could have a recipe in oe-core with this in, or just drop it i=
-nto<br>
-&gt; &gt; the python recipe directly.<br>
-&gt;<br>
-&gt; It&#39;s packaged on pypi: <a href=3D"https://pypi.org/project/betates=
-t/" rel=3D"noreferrer" target=3D"_blank">https://pypi.org/project/betatest/=
-</a><br>
-&gt;<br>
-&gt; I need to do a new release as I tidied a few things up and added a<br>
-&gt; subtest wrapper after I published v0.1.0. This gives me a kick to get<=
-br>
-&gt; that done :)<br>
-<br>
-Awesome.=C2=A0 I endorse a pypi recipe shipping that, which recipes can the=
-n re-use.<br>
-<br>
-The next question is how to integrate that runner with pytest.<br></blockqu=
-ote><div><br></div><div>I like the idea of format the output at level of py=
-test, in OEQA there is OETestResult class that is where the changes need to=
- be made to add the option to use AM format.</div><div><br></div><div><a hr=
-ef=3D"https://git.openembedded.org/openembedded-core/tree/meta/lib/oeqa/cor=
-e/runner.py#n38">https://git.openembedded.org/openembedded-core/tree/meta/l=
-ib/oeqa/core/runner.py#n38</a><br></div><div><br></div><div>Regards,</div><=
-div>Anibal</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex">
-<br>
-Ross<br>
-</blockquote></div></div>
-
---0000000000006bb2dc05a668ec9c--
+SXMgaXQgcG9zc2libGUgdG8gY29udGludWUgdG8gYWRkIHB0ZXN0IGZvciBw
+eXRob24tWFggaW4gdGhlIG9sZCB3YXkgYXQgcHJlc2VudCwgYW5kIHdhaXQg
+Zm9yIHRoZSBuZXcgcmVjaXBlIHRvIGJlIGludGVncmF0ZWQgKHVuY2VydGFp
+biB0aW1lKSwgYW5kIHRoZW4gdW5pZm9ybWx5IHByb2Nlc3MgdGhlIG91dHB1
+dD8gT3Igc3VzcGVuZCB0aGUgd29yayBvZiBhcHBlbmRpbmcgcHRlc3QgYW5k
+IHdhaXQgZm9yIHRoZSBzb2x1dGlvbi4NCg0KLS0NClphbmcgUnVvY2hlbg0K
+DQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogeW9jdG9AbGlz
+dHMueW9jdG9wcm9qZWN0Lm9yZyA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0
+Lm9yZz4gT24gQmVoYWxmIE9mIFJvc3MgQnVydG9uDQpTZW50OiBGcmlkYXks
+IE1heSAyMiwgMjAyMCA5OjM3IFBNDQpUbzogUGF1bCBCYXJrZXIgPHBiYXJr
+ZXJAa29uc3Vsa28uY29tPg0KQ2M6IEFsZXhhbmRlciBLYW5hdmluIDxhbGV4
+LmthbmF2aW5AZ21haWwuY29tPjsgWmFuZywgUnVvY2hlbi/oh6cg6Iul5bCY
+IDx6YW5ncmMuZm5zdEBjbi5mdWppdHN1LmNvbT47IFlvY3RvIGRpc2N1c3Np
+b24gbGlzdCA8eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz47IEFuaWJhbCBMaW1v
+biA8YW5pYmFsLmxpbW9uQGxpbmFyby5vcmc+DQpTdWJqZWN0OiBSZTogW3lv
+Y3RvXSBbcHRlc3QtcnVubmVyXSBBZGRlZCBvdXRwdXQgcHJvY2Vzc2luZyB0
+byBweXRlc3QNCg0KT24gRnJpLCAyMiBNYXkgMjAyMCBhdCAxNDozMSwgUGF1
+bCBCYXJrZXIgPHBiYXJrZXJAa29uc3Vsa28uY29tPiB3cm90ZToNCj4gPiBX
+ZSBjb3VsZCBoYXZlIGEgcmVjaXBlIGluIG9lLWNvcmUgd2l0aCB0aGlzIGlu
+LCBvciBqdXN0IGRyb3AgaXQgaW50byANCj4gPiB0aGUgcHl0aG9uIHJlY2lw
+ZSBkaXJlY3RseS4NCj4NCj4gSXQncyBwYWNrYWdlZCBvbiBweXBpOiBodHRw
+czovL3B5cGkub3JnL3Byb2plY3QvYmV0YXRlc3QvDQo+DQo+IEkgbmVlZCB0
+byBkbyBhIG5ldyByZWxlYXNlIGFzIEkgdGlkaWVkIGEgZmV3IHRoaW5ncyB1
+cCBhbmQgYWRkZWQgYSANCj4gc3VidGVzdCB3cmFwcGVyIGFmdGVyIEkgcHVi
+bGlzaGVkIHYwLjEuMC4gVGhpcyBnaXZlcyBtZSBhIGtpY2sgdG8gZ2V0IA0K
+PiB0aGF0IGRvbmUgOikNCg0KQXdlc29tZS4gIEkgZW5kb3JzZSBhIHB5cGkg
+cmVjaXBlIHNoaXBwaW5nIHRoYXQsIHdoaWNoIHJlY2lwZXMgY2FuIHRoZW4g
+cmUtdXNlLg0KDQpUaGUgbmV4dCBxdWVzdGlvbiBpcyBob3cgdG8gaW50ZWdy
+YXRlIHRoYXQgcnVubmVyIHdpdGggcHl0ZXN0Lg0KDQpSb3NzDQoNCg0KCgo=
