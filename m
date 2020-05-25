@@ -1,163 +1,51 @@
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
- by mx.groups.io with SMTP id smtpd.web11.31097.1590413323516763419
+Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
+ by mx.groups.io with SMTP id smtpd.web11.31099.1590413336096360137
  for <yocto@lists.yoctoproject.org>;
- Mon, 25 May 2020 06:28:43 -0700
+ Mon, 25 May 2020 06:28:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=t7yVm4vh;
- spf=pass (domain: gmail.com, ip: 209.85.160.173, mailfrom: lefevre.da@gmail.com)
-Received: by mail-qt1-f173.google.com with SMTP id x29so546455qtv.4
-        for <yocto@lists.yoctoproject.org>; Mon, 25 May 2020 06:28:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=PGeFt4AMHb5JfUo7ujDUtfQ2ftLKEZNm64PlqhK3ws0=;
-        b=t7yVm4vh3DIyKDtQSEmy2zEHrUtRWJS/ocLdSO8DnN3hrYlUy7c0yh7dcdqc+3z2Sv
-         rTT8yaZ47vhL7J8mfgZcQev2odEA5y/hLf2H+ThfiWkcP23DcAn8YELjmGNxv0bdOC1z
-         gsFIrERwLdpGeMfqAp94sSioIVPPWGfh6p5iPv+FqMXrqasE3X4D0nX3RmMkBtorGNFB
-         fLoD8t8zTRzdXIJTHkzg9uyxfCnpLBd6vIHAzBP3s39f6Xzi1HHd/zUDTubXvIdxhp2U
-         /vp8djWZTRgV7t6529XC/3gD2cMF1hii/ycPwL8BUWXgZ1BbogHmTxgLaNpMRFTik7PJ
-         se3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=PGeFt4AMHb5JfUo7ujDUtfQ2ftLKEZNm64PlqhK3ws0=;
-        b=Is+phI4HpnfKB4zyaXkXb0NEzn8dCRdC6Hj8sUIV09KfzW+Px5CnlqaZhgFmIUn4VQ
-         UudV46Dxtd1aHk2pxWmIzKwrgEL2iiRrPY3rRlOUKaWjbw+EYj+TvPkAeI1+NWh0sffT
-         BEbSpIyflHHhTb9iNMcvFRzy5KGYgtWQ+pqI9guCdjL4hthIilWCSLXUs4ZQaftu9slA
-         Sqy1PaEEx3tUg6uZBWC7kNFq9ei65wZzltMbMOalMfMGZhdRPrWHPXgqJN9vTeIPMjLD
-         b3cDEzIJJMCe8ZAP1RHf6yfM8OyuDsUbTvwvkJ67O1GDcS5GkR1vnqQhHA2IfWxlrXYz
-         3YAQ==
-X-Gm-Message-State: AOAM530t87ekTGp2+g4rm9zPdKY/TnE1nVkdlmlZBM80eyJdZUEedc+J
-	10+vOz7iCzYsYu4n56qp2nc9H86+CyYl1iHiRkgkz9M=
-X-Google-Smtp-Source: ABdhPJxnDBaGqBT/5LGtIhDiYjmcmQkG9KEryh7NcDXFK6dzjJiQuRAWA3rYNml4tVnLM5GpmNOkDHqnG/Vs2nOHuOU=
-X-Received: by 2002:ac8:5648:: with SMTP id 8mr12083643qtt.280.1590413322427;
- Mon, 25 May 2020 06:28:42 -0700 (PDT)
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp.bon.at (Postfix) with ESMTPSA id 49Vybp08Wtz5tlK;
+	Mon, 25 May 2020 15:28:53 +0200 (CEST)
+Date: Mon, 25 May 2020 15:28:52 +0200
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: Martin Jansa <Martin.Jansa@gmail.com>
+Cc: TRO <thomas.roos@industronic.de>,
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] overwrite LAYERSERIES_COMPAT_ for different layer
+Message-ID: <20200525132852.e2vefssv7gaqbc5u@qschulz>
+References: <bMCJ.1590405446519275298.gKDM@lists.yoctoproject.org>
+ <CA+chaQfeMQvS_QFY-babkxTgNSOThPh6YhDPJQxLodo-KfF=Ag@mail.gmail.com>
 MIME-Version: 1.0
-From: "Damien LEFEVRE" <lefevre.da@gmail.com>
-Date: Mon, 25 May 2020 16:28:31 +0300
-Message-ID: <CA+FhBv8xRbibFkKB6cE8yr+ZiApOiGrk13WsWJ6tfxxNeFFt5A@mail.gmail.com>
-Subject: gpg: can't connect to the agent: File name too long
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000021213805a678f571"
+In-Reply-To: <CA+chaQfeMQvS_QFY-babkxTgNSOThPh6YhDPJQxLodo-KfF=Ag@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---00000000000021213805a678f571
-Content-Type: text/plain; charset="UTF-8"
+On Mon, May 25, 2020 at 03:10:39PM +0200, Martin Jansa wrote:
+> You can add a layer which will set LAYERSERIES_COMPAT for another layer,
+> but it needs to be parsed before the layer you want to change, e.g.:
+> https://github.com/webosose/meta-webosose/blob/thud/meta-qt5-compat/conf/layer.conf
+> it's useful to use this layer also to implement whatever modifications are
+> needed to make the layer to be actually compatible with the release you're
+> using, like:
+> https://github.com/webOS-ports/meta-webos-ports/tree/zeus/meta-qt5-compat
+> 
 
-Hi,
+FWIW, you could make the parsing order not matter (at least in thud,
+from a quick look, master as well). LAYERSERIES_COMPAT is resolved after
+all layer.conf have been parsed[1]. I do not know if it's on purpose or
+not, meaning it could well disappear in the near future.
 
-I'm using this command from a new image type
-'''
-gpg --homedir home --encrypt --sign --default-key "server@test.ltd"
---pinentry-mode loopback --passphrase-file server.passphrase  --recipient
-"device@test.ltd" --output ${IMAGE_LINK_NAME}.fw
-${IMGDEPLOYDIR}/${IMAGE_NAME}.img
-'''
+So you could override it from anywhere by using __append but it has to
+be done before or during the conf/layer.conf parsing. This also makes it
+future proof wrt layer priorities and how LAYERSERIES_COMPAT is set (+=,
+=, ?= ?).
 
-From yocto build I get this error
+I personally have it in conf/bblayers.conf (for some reason we "ship"
+this one, though it's not best practice IIRC).
 
-'''
-| gpg: can't connect to the agent: File name too long
-| gpg: Warning: not using 'server@test.ltd' as default key: No secret key
-| gpg: all values passed to '--default-key' ignored
-'''
+[1] https://git.yoctoproject.org/cgit.cgi/poky/tree/bitbake/lib/bb/cookerdata.py?h=thud#n399
 
-I added this img_ota.bbclass
-
-'''
-inherit image_types image_types_tegra pythonnative
-
-create_img_ota_pkg() {
-    rm -rf "${WORKDIR}/my_img"
-    mkdir -p "${WORKDIR}/my_img"
-    oldwd=`pwd`
-    cd "${WORKDIR}/my_img"
-    ln -sf "${STAGING_DATADIR_NATIVE}/gpg-keys/" home
-    ln -sf "${STAGING_DATADIR_NATIVE}/gpg-keys/update.passphrase"
-update.passphrase
-    ln -sf "${STAGING_DATADIR_NATIVE}/gpg-keys/encrypt.py" encrypt.py
-    ln -sf "${IMGDEPLOYDIR}/${IMAGE_LINK_NAME}.img" "${IMAGE_LINK_NAME}.img"
-    #gpg --homedir home --encrypt --sign --default-key "server@test.ltd"
---pinentry-mode loopback --passphrase-file server.passphrase  --recipient
-"device@test.ltd" --output ${IMAGE_LINK_NAME}.fw
-${IMGDEPLOYDIR}/${IMAGE_NAME}.img
-    echo $(which python3)
-    python3 encrypt.py blabla.fw ${IMAGE_LINK_NAME}.img
-    cd oldwd
-}
-
-create_my_pkg[vardepsexclude] += "DATETIME"
-
-IMAGE_CMD_img_ota = "create_img_ota_pkg"
-do_image_img_ota[depends] += " \
-    gpg-keys-native:do_populate_sysroot \
-"
-
-IMAGE_TYPEDEP_img_ota += "tegraflash"
-IMAGE_TYPES += "img_ota"
-'''
-
-I have a native recipe creating the gpg db and install the keys.
-
-I did check the gpg and gpg-agent binaries used come from
-/test-warrior/build-jetson-xavier/tmp/work/jetson_xavier-poky-linux/test-image/1.0-r0/recipe-sysroot-native/usr/bin
-
-I tried to wrap the command in a python script but it had no effect.
-
-If I open a terminal, add
-/test-warrior/build-jetson-xavier/tmp/work/jetson_xavier-poky-linux/test-image/1.0-r0/recipe-sysroot-native/usr/bin
-to PATH and run the commands, they go through successfully and I don't
-manage to reproduce the error.
-
-What is different with bitbake which could make this fail?
-
-Thanks
--Damien
-
---00000000000021213805a678f571
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;m using this command from a n=
-ew image type</div><div>&#39;&#39;&#39;</div><div>gpg --homedir home --encr=
-ypt --sign --default-key &quot;server@test.ltd&quot; --pinentry-mode loopba=
-ck --passphrase-file server.passphrase =C2=A0--recipient &quot;device@test.=
-ltd&quot; --output ${IMAGE_LINK_NAME}.fw ${IMGDEPLOYDIR}/${IMAGE_NAME}.img<=
-/div><div>&#39;&#39;&#39;</div><div><br></div><div>From yocto build I get t=
-his error<br></div><div><br></div><div>&#39;&#39;&#39;</div><div>| gpg: can=
-&#39;t connect to the agent: File name too long<br>| gpg: Warning: not usin=
-g &#39;server@test.ltd&#39; as default key: No secret key<br>| gpg: all val=
-ues passed to &#39;--default-key&#39; ignored<br></div><div>&#39;&#39;&#39;=
-<br></div><div><br></div><div>I added this=C2=A0img_ota.bbclass</div><div><=
-br></div><div>&#39;&#39;&#39;</div><div>inherit image_types image_types_teg=
-ra pythonnative<br><br>create_img_ota_pkg() {<br>=C2=A0 =C2=A0 rm -rf &quot=
-;${WORKDIR}/my_img&quot;<br>=C2=A0 =C2=A0 mkdir -p &quot;${WORKDIR}/my_img&=
-quot;<br>=C2=A0 =C2=A0 oldwd=3D`pwd`<br>=C2=A0 =C2=A0 cd &quot;${WORKDIR}/m=
-y_img&quot;<br>=C2=A0 =C2=A0 ln -sf &quot;${STAGING_DATADIR_NATIVE}/gpg-key=
-s/&quot; home<br>=C2=A0 =C2=A0 ln -sf &quot;${STAGING_DATADIR_NATIVE}/gpg-k=
-eys/update.passphrase&quot; update.passphrase<br>=C2=A0 =C2=A0 ln -sf &quot=
-;${STAGING_DATADIR_NATIVE}/gpg-keys/encrypt.py&quot; encrypt.py<br>=C2=A0 =
-=C2=A0 ln -sf &quot;${IMGDEPLOYDIR}/${IMAGE_LINK_NAME}.img&quot; &quot;${IM=
-AGE_LINK_NAME}.img&quot;<br>=C2=A0 =C2=A0 #gpg --homedir home --encrypt --s=
-ign --default-key &quot;server@test.ltd&quot; --pinentry-mode loopback --pa=
-ssphrase-file server.passphrase =C2=A0--recipient &quot;device@test.ltd&quo=
-t; --output ${IMAGE_LINK_NAME}.fw ${IMGDEPLOYDIR}/${IMAGE_NAME}.img <br>=C2=
-=A0 =C2=A0 echo $(which python3)<br>=C2=A0 =C2=A0 python3 encrypt.py blabla=
-.fw ${IMAGE_LINK_NAME}.img<br>=C2=A0 =C2=A0 cd oldwd<br>}<br><br>create_my_=
-pkg[vardepsexclude] +=3D &quot;DATETIME&quot;<br><br>IMAGE_CMD_img_ota =3D =
-&quot;create_img_ota_pkg&quot;<br>do_image_img_ota[depends] +=3D &quot; \<b=
-r>=C2=A0 =C2=A0 gpg-keys-native:do_populate_sysroot \ <br>&quot;<br><br>IMA=
-GE_TYPEDEP_img_ota +=3D &quot;tegraflash&quot;<br>IMAGE_TYPES +=3D &quot;im=
-g_ota&quot;<br></div><div>&#39;&#39;&#39;</div><div><br></div><div>I have a=
- native recipe creating the gpg db and install the keys.</div><div><br></di=
-v><div>I did check the gpg and gpg-agent binaries used come from /test-warr=
-ior/build-jetson-xavier/tmp/work/jetson_xavier-poky-linux/test-image/1.0-r0=
-/recipe-sysroot-native/usr/bin</div><div><br></div><div>I tried to wrap the=
-=C2=A0command in a python script but it had no effect.</div><div><br></div>=
-<div>If I open a terminal, add=C2=A0 /test-warrior/build-jetson-xavier/tmp/=
-work/jetson_xavier-poky-linux/test-image/1.0-r0/recipe-sysroot-native/usr/b=
-in to PATH and run the commands, they go through successfully and I don&#39=
-;t manage to reproduce the error.</div><div><br></div><div>What is differen=
-t with bitbake which could make this fail?</div><div><br></div><div>Thanks<=
-/div><div>-Damien</div><div><br></div></div>
-
---00000000000021213805a678f571--
+Cheers,
+Quentin
