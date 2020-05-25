@@ -1,96 +1,84 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.24988.1590373043862274404
+ by mx.groups.io with SMTP id smtpd.web11.28795.1590401867290960172
  for <yocto@lists.yoctoproject.org>;
- Sun, 24 May 2020 19:17:23 -0700
+ Mon, 25 May 2020 03:17:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: cn.fujitsu.com, ip: 140.211.169.56, mailfrom: zangrc.fnst@cn.fujitsu.com)
+ dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 329BBE01C08; Sun, 24 May 2020 19:17:23 -0700 (PDT)
+	id 929E5E01C09; Mon, 25 May 2020 03:17:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	URIBL_RED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [183.91.158.132 listed in list.dnswl.org]
-	*  0.0 URIBL_RED Contains an URL listed in the URIBL redlist
-	*      [URIs: yoctoproject.org]
-Received: from heian.cn.fujitsu.com (mail.cn.fujitsu.com [183.91.158.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47A80E01C06
-	for <yocto@yoctoproject.org>; Sun, 24 May 2020 19:17:21 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.73,431,1583164800"; 
-   d="scan'208";a="93011172"
-Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
-  by heian.cn.fujitsu.com with ESMTP; 25 May 2020 10:17:18 +0800
-Received: from G08CNEXMBPEKD06.g08.fujitsu.local (unknown [10.167.33.206])
-	by cn.fujitsu.com (Postfix) with ESMTP id 2F79D50A9974;
-	Mon, 25 May 2020 10:17:14 +0800 (CST)
-Received: from G08CNEXMBPEKD04.g08.fujitsu.local (10.167.33.201) by
- G08CNEXMBPEKD06.g08.fujitsu.local (10.167.33.206) with Microsoft SMTP Server
- (TLS) id 15.0.1497.2; Mon, 25 May 2020 10:17:16 +0800
-Received: from G08CNEXMBPEKD04.g08.fujitsu.local ([fe80::a02b:f831:342:223])
- by G08CNEXMBPEKD04.g08.fujitsu.local ([fe80::a02b:f831:342:223%14]) with mapi
- id 15.00.1497.006; Mon, 25 May 2020 10:17:17 +0800
-From: "zangrc" <zangrc.fnst@cn.fujitsu.com>
-To: Ross Burton <ross@burtonini.com>, Paul Barker <pbarker@konsulko.com>
-CC: Alexander Kanavin <alex.kanavin@gmail.com>, Yocto discussion list
-	<yocto@yoctoproject.org>, Anibal Limon <anibal.limon@linaro.org>, Tim Orling
-	<ticotimo@gmail.com>
-Subject: Re: [yocto] [ptest-runner] Added output processing to pytest
-Thread-Topic: [yocto] [ptest-runner] Added output processing to pytest
-Thread-Index: AQHWL+ySwMW8CUz66kWBaGauDAl/B6izUCwAgAAA04CAAEINgIAAAYoAgAABm4CABHx+gA==
-Date: Mon, 25 May 2020 02:17:17 +0000
-Message-ID: <2bd9057d62bf49be9242cecfe7092f6c@G08CNEXMBPEKD04.g08.fujitsu.local>
-References: <1590152009-5052-1-git-send-email-zangrc.fnst@cn.fujitsu.com>
- <CANNYZj9VT3M1-nP18j6b5zZk9NMxAAZ2TnLoPptdZabwt=VbjA@mail.gmail.com>
- <CAM9ZRVtS4tKmrBb9Z+L+wjAcd3pwAj5wfTYmueTsg=CW6BXdUQ@mail.gmail.com>
- <CAAnfSTsEXz13ngzs3=8oqWmdLcLH-dX8gPjtkW9Gb-GDA4yc0Q@mail.gmail.com>
- <CAM9ZRVtN371hZaR1-b8sdPcxfHSo=QkuHdvin8xgNvicAcqMHQ@mail.gmail.com>
- <CAAnfSTuZJqF67pw28Z8pv-dgYDAtDjagvHwiuZgfkb+xC5Durw@mail.gmail.com>
-In-Reply-To: <CAAnfSTuZJqF67pw28Z8pv-dgYDAtDjagvHwiuZgfkb+xC5Durw@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.167.225.81]
+Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DAC8E01C06
+	for <yocto@yoctoproject.org>; Mon, 25 May 2020 03:17:44 -0700 (PDT)
+Received: from cpeac202e043973-cmac202e043970.sdns.net.rogers.com ([174.114.100.179]:48310 helo=localhost.localdomain)
+	by cpanel7.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1jdAAx-008Okh-9t; Mon, 25 May 2020 06:17:43 -0400
+Date: Mon, 25 May 2020 06:17:41 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [yocto] can i run an arbitrary x86_64-based image under QEMU?
+In-Reply-To: <CANNYZj9viqzAdLR8ocTbB=BnrG8tSriYxNMTqcx9qc3WY2LNwg@mail.gmail.com>
+Message-ID: <alpine.LFD.2.21.2005250617060.7852@localhost.localdomain>
+References: <alpine.LFD.2.21.2005241138230.24040@localhost.localdomain> <CANNYZj9viqzAdLR8ocTbB=BnrG8tSriYxNMTqcx9qc3WY2LNwg@mail.gmail.com>
 MIME-Version: 1.0
-X-yoursite-MailScanner-ID: 2F79D50A9974.A8CBD
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-From: zangrc.fnst@cn.fujitsu.com
-Content-Language: zh-CN
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Content-Type: multipart/mixed; boundary="8323328-1033222231-1590401863=:7852"
 
-SXMgaXQgcG9zc2libGUgdG8gY29udGludWUgdG8gYWRkIHB0ZXN0IGZvciBw
-eXRob24tWFggaW4gdGhlIG9sZCB3YXkgYXQgcHJlc2VudCwgYW5kIHdhaXQg
-Zm9yIHRoZSBuZXcgcmVjaXBlIHRvIGJlIGludGVncmF0ZWQgKHVuY2VydGFp
-biB0aW1lKSwgYW5kIHRoZW4gdW5pZm9ybWx5IHByb2Nlc3MgdGhlIG91dHB1
-dD8gT3Igc3VzcGVuZCB0aGUgd29yayBvZiBhcHBlbmRpbmcgcHRlc3QgYW5k
-IHdhaXQgZm9yIHRoZSBzb2x1dGlvbi4NCg0KLS0NClphbmcgUnVvY2hlbg0K
-DQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogeW9jdG9AbGlz
-dHMueW9jdG9wcm9qZWN0Lm9yZyA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0
-Lm9yZz4gT24gQmVoYWxmIE9mIFJvc3MgQnVydG9uDQpTZW50OiBGcmlkYXks
-IE1heSAyMiwgMjAyMCA5OjM3IFBNDQpUbzogUGF1bCBCYXJrZXIgPHBiYXJr
-ZXJAa29uc3Vsa28uY29tPg0KQ2M6IEFsZXhhbmRlciBLYW5hdmluIDxhbGV4
-LmthbmF2aW5AZ21haWwuY29tPjsgWmFuZywgUnVvY2hlbi/oh6cg6Iul5bCY
-IDx6YW5ncmMuZm5zdEBjbi5mdWppdHN1LmNvbT47IFlvY3RvIGRpc2N1c3Np
-b24gbGlzdCA8eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz47IEFuaWJhbCBMaW1v
-biA8YW5pYmFsLmxpbW9uQGxpbmFyby5vcmc+DQpTdWJqZWN0OiBSZTogW3lv
-Y3RvXSBbcHRlc3QtcnVubmVyXSBBZGRlZCBvdXRwdXQgcHJvY2Vzc2luZyB0
-byBweXRlc3QNCg0KT24gRnJpLCAyMiBNYXkgMjAyMCBhdCAxNDozMSwgUGF1
-bCBCYXJrZXIgPHBiYXJrZXJAa29uc3Vsa28uY29tPiB3cm90ZToNCj4gPiBX
-ZSBjb3VsZCBoYXZlIGEgcmVjaXBlIGluIG9lLWNvcmUgd2l0aCB0aGlzIGlu
-LCBvciBqdXN0IGRyb3AgaXQgaW50byANCj4gPiB0aGUgcHl0aG9uIHJlY2lw
-ZSBkaXJlY3RseS4NCj4NCj4gSXQncyBwYWNrYWdlZCBvbiBweXBpOiBodHRw
-czovL3B5cGkub3JnL3Byb2plY3QvYmV0YXRlc3QvDQo+DQo+IEkgbmVlZCB0
-byBkbyBhIG5ldyByZWxlYXNlIGFzIEkgdGlkaWVkIGEgZmV3IHRoaW5ncyB1
-cCBhbmQgYWRkZWQgYSANCj4gc3VidGVzdCB3cmFwcGVyIGFmdGVyIEkgcHVi
-bGlzaGVkIHYwLjEuMC4gVGhpcyBnaXZlcyBtZSBhIGtpY2sgdG8gZ2V0IA0K
-PiB0aGF0IGRvbmUgOikNCg0KQXdlc29tZS4gIEkgZW5kb3JzZSBhIHB5cGkg
-cmVjaXBlIHNoaXBwaW5nIHRoYXQsIHdoaWNoIHJlY2lwZXMgY2FuIHRoZW4g
-cmUtdXNlLg0KDQpUaGUgbmV4dCBxdWVzdGlvbiBpcyBob3cgdG8gaW50ZWdy
-YXRlIHRoYXQgcnVubmVyIHdpdGggcHl0ZXN0Lg0KDQpSb3NzDQoNCg0KCgo=
+--8323328-1033222231-1590401863=:7852
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, 24 May 2020, Alexander Kanavin wrote:
+
+> To me this seems like Wind River's special sauce.
+>
+> The CHANGELOG in meta-intel says this:
+>
+> Added QEMU support.
+> -------------------
+> We now build several virtio drivers into the kernel by default, and
+> have qemuboot.conf files for intel-corei7-64 and intel-core2-32
+> targets. This allows one to do basic testing on meta-intel images
+> without having to use hardware. The virtio drivers are added via
+> KERNEL_FEATURES_INTEL_COMMON. This prevents them from being added to
+> custom kernels by default. They can be removed by adding the
+> following to a conf or kernel bbappend file:
+> =C2=A0 KERNEL_FEATURES_INTEL_COMMON_remove =3D =E2=80=9Ccfg/virtio.scc=E2=
+=80=9D OVMF
+> firmware is also built and can be used in order to emulate a UEFI
+> environment. A full runqemu command line for intel-corei7-64 could
+> look like this:
+> =C2=A0 runqemu core-image-minimal intel-corei7-64 wic ovmf
+> =3D=3D=3D=3D=3D=3D
+>
+> It's probably not too difficult to make this work in YP upstream
+> (given that qemu is able to run desktop Linux distribution images
+> aimed at real HW), but currently this isn't documented or (most
+> importantly) tested on the AB.
+
+  i suspected it was a WR thing, thanks.
+
+rday
+
+--8323328-1033222231-1590401863=:7852--
