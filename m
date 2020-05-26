@@ -1,183 +1,110 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.52378.1590505751758611773
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (EUR01-DB5-obe.outbound.protection.outlook.com [40.107.15.48])
+ by mx.groups.io with SMTP id smtpd.web10.1555.1590517748696714595
  for <yocto@lists.yoctoproject.org>;
- Tue, 26 May 2020 08:09:11 -0700
+ Tue, 26 May 2020 11:29:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@googlemail.com header.s=20161025 header.b=vdMQgfBM;
- spf=softfail (domain: googlemail.com, ip: 140.211.169.56, mailfrom: ayoub.zaki@googlemail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 45D31E01C23; Tue, 26 May 2020 08:09:11 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE,
-	URIBL_RED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (ayoub.zaki[at]googlemail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.160.174 listed in list.dnswl.org]
-	*  0.0 URIBL_RED Contains an URL listed in the URIBL redlist
-	*      [URIs: yoctoproject.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41343E01C21
-	for <yocto@yoctoproject.org>; Tue, 26 May 2020 08:09:08 -0700 (PDT)
-Received: by mail-qt1-f174.google.com with SMTP id i68so16368750qtb.5
-        for <yocto@yoctoproject.org>; Tue, 26 May 2020 08:09:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/ygIyQ/3eM6km0HYJ+3Z9s90uVDry/2uhgu3esBA8q4=;
-        b=vdMQgfBM5UKfpHCrgZYCzndAGHyj8D6j7Kvu+3XftrmICRWvXcAz8lgHhMC+OaBUK7
-         wz1p5mAjfuRkF+9/L3CUz7+/oJBOv4MJCtS3jyezCtM7sxDpahn2Bd0/lXs12y1aEWPi
-         QKUY9pxPCgl7I38EbAuP3FsRq0pq08/QJ0uM0JyjidLjIqrWNg7ekdAz5glKNX/XFVjn
-         9rMhCbE6opkNLQU3k9II58OJvhx8dUbBoQuZU0w5p9t7aNdZfS1TT5LBimvuFkyTs8YZ
-         bfLVqRe9W79RPXTC2xCCTXvv8yP8LASfhJ27kJljsxoX2ZN4mKr51oWlUxYEBmCzgGHF
-         GLgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/ygIyQ/3eM6km0HYJ+3Z9s90uVDry/2uhgu3esBA8q4=;
-        b=WY1UND11nufOdd0bA4Xbpy35G4BDte4cj5oggMmnIT3uRabmA/zZbVywFKq9ukiCgH
-         evgUBGcP6b/KgNT3Le5okWGWhY0TZ1y47bDiXFyNCmHxCwLQpCYrkBYfiDiPFvduRMyJ
-         w708pN67jtKNO0NyrMNNmxtThPB3QkTd7UP2zOYHIR/7xDZorf/4Hdb3ls+vibEP4Mmu
-         IfkxUv6/LgTFHGXuHcvLLeemLKNJpFVQJSp4ATCLRsK530LukJcm7ub18niDY7ZlBrkU
-         jpIPwuUZcKIXwB3y9Y5Yf+toWu6Rlg6WMqS34vBEwLD9HZd7KJj/szKCWk1LE/au/nwX
-         yuUw==
-X-Gm-Message-State: AOAM533C2fY95YmMuViWyz5Xc2XtD/j2ws5Sabvt4pHxDfXUGEIVx6D2
-	naqQ0LwnUEFxlTKe09qZNuf6nTyAxzB3NgH8KQ1zzgLO
-X-Google-Smtp-Source: ABdhPJyC3LQBJlTeG6QHhQhn1J8D5BzuFF1Wob6jpXt1fYBS3ha/78KTznnCidUie/yeIAlIMRoKFBW7TK9t5ayqg1c=
-X-Received: by 2002:aed:35ab:: with SMTP id c40mr1724081qte.287.1590505747984;
- Tue, 26 May 2020 08:09:07 -0700 (PDT)
+ dkim=pass header.i=@spinetix.com header.s=selector2 header.b=DMpWiibh;
+ spf=pass (domain: spinetix.com, ip: 40.107.15.48, mailfrom: diego.santacruz@spinetix.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=A+IA6ZOo/dbwsXbAPYwG4L3788Rb7leP6BtJUBdd/2SrMPMot7EdYkE9A8i0aBqVPdL6ug5lEtM7poqlD7lCLw8Ies5sdxILgZBREGu6zZ+yhT+TAabA0DpLgvmDeBmWW1y4axe1Y8aewo8YCOzPrB3SCi8Ug7Rp0qQr10VTlCwQuukp4X1f9EOzGFH8nA9DcfhTHjrTDyGYEnMvjDE3FJubBrEuAz5Vr/RfB778pQ7KNUKYo/tKc2NdcJirD+8f69CgSicrVZMjtF934Rz8PWEDaNlknGQ3g8G/PepyX3Ov6Dth3SgjYiFJeiX4qHxIx6HzRxPmdb8DEhzjPo19aw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Qt4ovGpFwOeEy//N4f6x64p0E1VkRp7RmM4aOR5X/8A=;
+ b=UV9LUtXZZ44PhV0xZimChWKC969CvoQ+junoX2JLRh+q8+6ZPrCeqzBsGgFMap8DFM/fBJS0BXC3IKcUgx0WVXfjt+fFke/GbH/o416VjSg2PHu/m2iLsMual6PDcfhd/D2Tz1b/aWvmMeesPKXZFr4/KsR4LnpIca+SZh2SzUwFLXSE9s2/Vuvej3yJLeZ1qYkhyEaDGG9OsNaSQaEQixJXD5msqtxvwfmyuKqCG7UWc7hjVjDhzoPqNg+GLQ14rajEFCx5AAL4cl62jOdBwbMkqgWX9Od0LOg30ddGYnkeKUh4pW2IOH4gA3f2gLiQMlf9MgaqNLIzqWHabgBAcw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=spinetix.com; dmarc=pass action=none header.from=spinetix.com;
+ dkim=pass header.d=spinetix.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=spinetix.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Qt4ovGpFwOeEy//N4f6x64p0E1VkRp7RmM4aOR5X/8A=;
+ b=DMpWiibhbhHdK13J6/DdhuyCYBaCIlMEWD41AeAqJzXtFJ8IrUeE9K4KLq5gH8EeMiPOEeLyjW9SynA7YNRWYtXPEy9LFcnch5aKcLM0hH+0GMaHvDq4hdd8yeT++nLmcUjxZe9GS3d0oXFe5axBsSuCD7dHZ/osFYIvunmwq80=
+Received: from VI1PR01MB5167.eurprd01.prod.exchangelabs.com
+ (2603:10a6:803:cb::33) by VI1PR01MB7070.eurprd01.prod.exchangelabs.com
+ (2603:10a6:800:17f::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3021.27; Tue, 26 May
+ 2020 18:29:06 +0000
+Received: from VI1PR01MB5167.eurprd01.prod.exchangelabs.com
+ ([fe80::11ae:165f:f75c:4996]) by VI1PR01MB5167.eurprd01.prod.exchangelabs.com
+ ([fe80::11ae:165f:f75c:4996%7]) with mapi id 15.20.3021.029; Tue, 26 May 2020
+ 18:29:06 +0000
+From: "Diego Santa Cruz" <diego.santacruz@spinetix.com>
+To: "lefevre.da@gmail.com" <lefevre.da@gmail.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] gpg: can't connect to the agent: File name too long
+Thread-Topic: [yocto] gpg: can't connect to the agent: File name too long
+Thread-Index: AQHWMzxYhqnpHyqRVUeXdsjXVDFQ/Ki6rshw
+Date: Tue, 26 May 2020 18:29:06 +0000
+Message-ID: 
+ <VI1PR01MB51673721D2BCB3F23D37E06E88B00@VI1PR01MB5167.eurprd01.prod.exchangelabs.com>
+References: 
+ <CA+FhBv8=d9doBMqQ2CL6bfet01i-4fAL_SDHVx7vgLTcoMxZcw@mail.gmail.com>
+In-Reply-To: 
+ <CA+FhBv8=d9doBMqQ2CL6bfet01i-4fAL_SDHVx7vgLTcoMxZcw@mail.gmail.com>
+Accept-Language: en-GB, fr-CH, fr-FR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=spinetix.com;
+x-originating-ip: [2a02:120b:2c6c:52f0:a8b2:6f0d:b77a:4875]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5b6c0706-7067-4e66-4506-08d801a2accc
+x-ms-traffictypediagnostic: VI1PR01MB7070:
+x-microsoft-antispam-prvs: 
+ <VI1PR01MB7070DFB75327A3DBAA9D4FA988B00@VI1PR01MB7070.eurprd01.prod.exchangelabs.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 041517DFAB
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ JUSWPehTf+yMPwOh23Gk3pdNLlZDDwDMlPl1UUPVBUyjnM1dnI69PifApaHBJjfXHvqxRIplqQgxxOWnmtKwefKU4h5V4eVr2LbKkx67eqo/H5ha1jW00pMeoWjC6Jrm8YujoIOWi7v23v8OXVRC+z9aBPWemP7rXwgYpd1274Q0CuyQCRq0rV9mcao3TwDiddXZq1qTT/N9H7B/jP8KkMsojVOTgC9JxNz+AZdauvltjezE4MU6NqhkBUSf/NuMHNK4lM8MYdghDQK0lDo4HZptIPf2+3wuqJlZivMPxZxnnGGD/f8/y8YSkTUw/t+b
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR01MB5167.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFTY:;SFS:(39830400003)(366004)(376002)(136003)(396003)(346002)(508600001)(52536014)(64756008)(66556008)(53546011)(66476007)(110136005)(8936002)(6506007)(2906002)(86362001)(66446008)(76116006)(186003)(66946007)(9686003)(55016002)(33656002)(316002)(71200400001)(5660300002)(7696005)(8676002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 
+ 4E3nnUBQwMiwW4Q7LyvSWqJlSEwMNhlIgoLGj31m6Pd1ONswBh9XCuGlMcElXpk1QkVNPFPTob4phZfhnzKWs2lweWaR3CfIkSDIm1wfExr/w3OXG9NIxwups6I72dNx5CBnBacKRoSyQvIfVZ+6rgDTtPFYWflmHSgUzG6SKaRiZKkEIcyQ0M5RDhdjcXb3Dg1NjyUjI74lQrBAvAoY4QXLc+Llu8kVKpmze55ucNlEkIiBuAz+vnO6ypVoGxAcN7fVkr4kSdHMb62VW6mgWGHmVVIFaxa0WeDfHomGmaYG1e+LUGZQZ6vOAqmCBgEr4GB/p2dNRzYG34I2PR+UVx9wHPfVgTw4fkK6gTQlGITE2ErChyEFmP1qypI4e6GJfzgWhPEaYdnEq3NAIOKc8rOKr1GCBDfxLFTM3sjIGMNunH2zmcodXMjDdQOSG9GWlSameof/YvuMcUttlV9fNlHyHnjDr85tDiLadwUeikPiEnyiizA7LLRJJdN5eR4mQCMUX8TBbqPzZ2wbkKlf8cdYS+zEYYpIFVMsXUtvfTRrVd7X4pwsLIirZfp1e0Kf
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CA+-BmJZRJ_d+AsrWoZpsu4+ds3ug4BbhFWJ-09tL0rheq0zgcw@mail.gmail.com>
- <20200526144218.xj6iwwf5gnewn5ei@qschulz>
-In-Reply-To: <20200526144218.xj6iwwf5gnewn5ei@qschulz>
-From: "Ayoub Zaki" <ayoub.zaki@googlemail.com>
-Date: Tue, 26 May 2020 17:08:56 +0200
-Message-ID: <CA+-BmJZ-wvXBYA=W7gED9ZChS0HTt956KXvo7_wTuGROJSLiaw@mail.gmail.com>
-Subject: Re: [yocto] Overwrite a bblcass globally
-To: Quentin Schulz <quentin.schulz@streamunlimited.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000001f346105a68e7a45"
+X-OriginatorOrg: spinetix.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b6c0706-7067-4e66-4506-08d801a2accc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 May 2020 18:29:06.6304
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 5f4034fa-ed2d-4840-a93f-acb1e9633b93
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Ae1cZ6RfnZU10rqnQPs9vNHbieBxoFQQED4pUr/Kzv/7JxnKFq3fSdU6Nw1clSennwiPIU0G3vZZV8d6nmkB00Scepk1Oy4rmH8lwzKNyq8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR01MB7070
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---0000000000001f346105a68e7a45
-Content-Type: text/plain; charset="UTF-8"
-
-Thanks for the idea of using BBPATH.
-
-my change is kind of custom and I don't think someone else will make use of
-it.
-
-
-Cheers
-
-On Tue, May 26, 2020 at 4:42 PM Quentin Schulz <
-quentin.schulz@streamunlimited.com> wrote:
-
-> Hi Ayoub,
->
-> On Tue, May 26, 2020 at 04:36:13PM +0200, Ayoub Zaki via
-> lists.yoctoproject.org wrote:
-> > Hi,
-> >
-> > I would like to make changes on systemd.bblcass in my layer.
-> >
-> > I can create new one e.g my-systemd.bbclass to overwrite the default one
-> > but this will not work since I want that ALL recipes in all layers I'm
-> > using to make usage of it.
-> >
-> > are there ways to achieve this?
-> >
->
-> BBPATH[1] is what's used to locate bbclasses. It's defined in your
-> conf/layer.conf.
->
-> You can either make sure your layer is parsed before the one having the
-> original systemd.bbclass (in BBLAYERS of conf/bblayers.conf) or prepend
-> to BBPATH instead of appending.
->
-> Although... It's usually bad practice because it means that if I were to
-> use
-> two layers doing the same thing (overriding the same bbclass), the behavior
-> is kind of undefined depending on which order they are parsed.
->
-> Ideally, you should contribute back the modifications to upstream
-> systemd.bbclass, that way, no need to duplicate it and override it from
-> somewhere else.
->
-> [1]
-> https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-BBPATH
->
-> Cheers,
-> Quentin
->
-
---0000000000001f346105a68e7a45
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Thanks for the idea of using BBPATH.<div><br></div><div>my=
- change is kind of custom and I don&#39;t think someone else will make use=
-=C2=A0of it.=C2=A0</div><div><br></div><div><br></div><div>Cheers</div></di=
-v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On T=
-ue, May 26, 2020 at 4:42 PM Quentin Schulz &lt;<a href=3D"mailto:quentin.sc=
-hulz@streamunlimited.com">quentin.schulz@streamunlimited.com</a>&gt; wrote:=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Ayoub,<br>
-<br>
-On Tue, May 26, 2020 at 04:36:13PM +0200, Ayoub Zaki via <a href=3D"http://=
-lists.yoctoproject.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctopro=
-ject.org</a> wrote:<br>
-&gt; Hi,<br>
-&gt; <br>
-&gt; I would like to make changes on systemd.bblcass in my layer.<br>
-&gt; <br>
-&gt; I can create new one e.g my-systemd.bbclass to overwrite the default o=
-ne<br>
-&gt; but this will not work since I want that ALL recipes in all layers I&#=
-39;m<br>
-&gt; using to make usage of it.<br>
-&gt; <br>
-&gt; are there ways to achieve this?<br>
-&gt; <br>
-<br>
-BBPATH[1] is what&#39;s used to locate bbclasses. It&#39;s defined in your<=
-br>
-conf/layer.conf.<br>
-<br>
-You can either make sure your layer is parsed before the one having the<br>
-original systemd.bbclass (in BBLAYERS of conf/bblayers.conf) or prepend<br>
-to BBPATH instead of appending.<br>
-<br>
-Although... It&#39;s usually bad practice because it means that if I were t=
-o use<br>
-two layers doing the same thing (overriding the same bbclass), the behavior=
-<br>
-is kind of undefined depending on which order they are parsed.<br>
-<br>
-Ideally, you should contribute back the modifications to upstream<br>
-systemd.bbclass, that way, no need to duplicate it and override it from<br>
-somewhere else.<br>
-<br>
-[1] <a href=3D"https://www.yoctoproject.org/docs/current/mega-manual/mega-m=
-anual.html#var-BBPATH" rel=3D"noreferrer" target=3D"_blank">https://www.yoc=
-toproject.org/docs/current/mega-manual/mega-manual.html#var-BBPATH</a><br>
-<br>
-Cheers,<br>
-Quentin<br>
-</blockquote></div>
-
---0000000000001f346105a68e7a45--
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiB5b2N0b0BsaXN0cy55b2N0b3By
+b2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPiBPbg0KPiBCZWhhbGYgT2Yg
+RGFtaWVuIExFRkVWUkUgdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCj4gU2VudDogMjYgTWF5
+IDIwMjAgMTE6MDINCj4gVG86IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVj
+dDogUmU6IFt5b2N0b10gZ3BnOiBjYW4ndCBjb25uZWN0IHRvIHRoZSBhZ2VudDogRmlsZSBuYW1l
+IHRvbyBsb25nDQo+IA0KPiBJIHRoaW5rIG15IHByb2JsZW0gaXMgdGhhdCB0aGUgZG9faW1hZ2Vf
+KiBhcmUgcnVubmluZyBhcyBmYWtlcm9vdC9wc2V1ZG8uDQo+IA0KPiBJcyB0aGVyZSBhIHdheSB0
+byBydW4gdGhpcyB0YXNrIGFzIGEgbm9ybWFsIGxvY2FsIHVzZXIuDQo+IA0KPiBJIHJlYWQgdGhh
+dCBJIHNob3VsZCBjcmVhdGUgdGhlIHNvY2tldCB3aGVuIG5vdCBydW5uaW5nIHVuZGVyIGxvY2Fs
+IHVzZXIgd2l0aA0KPiBncGdjb25mIC0tY3JlYXRlLXNvY2tldGRpcg0KPiANCj4gDQo+IEJ1dCB0
+aGlzIGZhaWxzIHRvbyBhbHRob3VnaCBJIHNldCBwZXJtaXNzaW9ucyBmb3IgYWxsIG9uIHRoZSBn
+cGcgZmlsZXMgYW5kDQo+IGRpcmVjdG9yaWVzOg0KPiAnJycNCj4gfCBncGdjb25mOiBzb2NrZXRk
+aXIgaXMgJy90ZXN0LXdhcnJpb3IvYnVpbGQtamV0c29uLQ0KPiB4YXZpZXIvdG1wL3dvcmsvamV0
+c29uX3hhdmllci1wb2t5LWxpbnV4L3Rlc3QtaW1hZ2UvMS4wLQ0KPiByMC9teV9pbWcvaG9tZScN
+Cj4gfCBncGdjb25mOiBubyAvcnVuL3VzZXIgZGlyDQo+IHwgZ3BnY29uZjogdXNpbmcgaG9tZWRp
+ciBhcyBmYWxsYmFjaw0KPiB8IGdwZ2NvbmY6IGVycm9yIGNyZWF0aW5nIHNvY2tldCBkaXJlY3Rv
+cnkNCj4gfCBncGdjb25mOiBmYXRhbCBlcnJvciAoZXhpdCBzdGF0dXMgMSkNCj4gDQo+ICcnJw0K
+PiANCj4gQmFzaWNhbGx5IEkgbmVlZCB0bywgYXMgYSBub3JtYWwgdXNlciwgcnVuIGdwZyBhZnRl
+ciBkb19pbWFnZV90ZWdyYS4NCj4gDQo+IEFueSBoaW50Pw0KDQpUaGUgcHJvYmxlbSBpcyB0aGF0
+IHRoZSBwYXRoIHRvIFVOSVggc29ja2V0cyBhcmUgbGltaXRlZCBpbiBsZW5ndGggYW5kIHlvdSBh
+cmUgcHJvYmFibHkgaGl0dGluZyB0aGF0IGxpbWl0LiBUaGUgYmFzZSBjbGFzc2VzIHRha2UgY2Fy
+ZSBvZiBhdm9pZGluZyB0aGF0IGJ1dCBJIGRpZCBoaXQgdGhpcyBwcm9ibGVtIGluIGEgY3VzdG9t
+IHJlY2lwZSB0aGF0IHdhcyB1c2luZyBncGcgZGlyZWN0bHkuDQoNCkkgc29sdmVkIHByb2JsZW0g
+aW4gdGhlIHRhc2sgc2hlbGwgZnVuY3Rpb24gdGhhdCB3YXMgY2FsbGluZyBncGcgYnkgdXNpbmcg
+YSBob3N0IHRlbXBvcmFyeSBkaXJlY3RvcnkgKC92YXIvdG1wLy4uLikgYXMgYSB0aHJvdyBhd2F5
+IEdQRyBob21lIGRpcmVjdG9yeS4NCg0KZ3BnZGlyPWBta3RlbXAgLXRkICR7UE59LWdwZy5YWFhY
+WFhgDQppbnN0YWxsIC1tIDcwMCAtZCAkZ3BnZGlyL2hvbWUNCmdwZyAtLWJhdGNoIC0taG9tZWRp
+ciAkZ3BnZGlyL2hvbWUgLi4uDQouLi4NCnJtIC1yZiAkZ3BnZGlyDQoNCkhvcGUgdGhhdCBoZWxw
+cy4NCg0KLS0gDQpEaWVnbyBTYW50YSBDcnV6LCBQaEQNClRlY2hub2xvZ3kgQXJjaGl0ZWN0DQpz
+cGluZXRpeC5jb20NCg0KDQo=
