@@ -1,112 +1,92 @@
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.4835.1590582741447011244
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.5948.1590586068794843949
  for <yocto@lists.yoctoproject.org>;
- Wed, 27 May 2020 05:32:21 -0700
+ Wed, 27 May 2020 06:27:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=teyOefTs;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: wmills@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04RCVs8N007692;
-	Wed, 27 May 2020 07:31:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1590582714;
-	bh=gTUomElLPxKxbrJwZ4969mtkDIVMY0Z8xB00diy1JHU=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=teyOefTspGhmgG+c1l7fI47cps87j0JVMTmKbGgHXq/XEzD3y53YsavhJkz06pDPZ
-	 d9o7pSS5S7rlxH874IlI6RdAwt7xGSwLry6XBzmz/JBZAocnpJ7r70372MkEJkaGJI
-	 3zuUy6JB+HW50c2m/89+1mf5hY7V7D2L3M8KcL1U=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04RCVsE6008733
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 27 May 2020 07:31:54 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 27
- May 2020 07:31:53 -0500
-Received: from DFLE109.ent.ti.com ([fe80::e4e5:c81b:7525:c9b2]) by
- DFLE109.ent.ti.com ([fe80::e4e5:c81b:7525:c9b2%17]) with mapi id
- 15.01.1979.003; Wed, 27 May 2020 07:31:53 -0500
-From: "William Mills" <wmills@ti.com>
-To: "pokybuild@ubuntu1804-ty-1.yocto.io" <pokybuild@ubuntu1804-ty-1.yocto.io>,
-        "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-CC: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
-        "yi.zhao@windriver.com" <yi.zhao@windriver.com>,
-        "apoorv.sangal@intel.com"
-	<apoorv.sangal@intel.com>,
-        "ee.peng.yeoh@intel.com" <ee.peng.yeoh@intel.com>,
-        "aaron.chun.yew.chan@intel.com" <aaron.chun.yew.chan@intel.com>,
-        "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
-        "akuster808@gmail.com" <akuster808@gmail.com>,
-        "sjolley.yp.pm@gmail.com"
-	<sjolley.yp.pm@gmail.com>,
-        "sangeeta.jain@intel.com"
-	<sangeeta.jain@intel.com>
-Subject: Re: [yocto] QA notification for completed autobuilder build (yocto-2.7.4.rc2)
-Thread-Topic: [yocto] QA notification for completed autobuilder build
- (yocto-2.7.4.rc2)
-Thread-Index: AQHWNB+oBaImsY6QsUqkvMMULRecEai729Ig
-Date: Wed, 27 May 2020 12:31:53 +0000
-Message-ID: <615783cf129245af8973e3376b06f3bc@ti.com>
-References: <20200527120917.D994DE01C24@yocto-www.yoctoproject.org>
-In-Reply-To: <20200527120917.D994DE01C24@yocto-www.yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.250.77.122]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+ dkim=missing; spf=none, err=permanent DNS error (domain: balister.org, ip: 140.211.169.56, mailfrom: philip@balister.org)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 361A7E01BD9; Wed, 27 May 2020 06:27:48 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+X-Greylist: delayed 400 seconds by postgrey-1.32 at yocto-www; Wed, 27 May 2020 06:27:46 PDT
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com [216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C72CAE01BCE
+	for <yocto@yoctoproject.org>; Wed, 27 May 2020 06:27:46 -0700 (PDT)
+Received: (qmail 22089 invoked by uid 1003); 27 May 2020 13:21:10 -0000
+Received: from unknown (HELO ?192.168.11.146?) (philip@opensdr.com@73.152.143.112)
+  by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP; 27 May 2020 13:21:10 -0000
+Subject: Re: [OE-core] OpenEmbedded Happy Hour
+From: "Philip Balister" <philip@balister.org>
+To: "openembedded-devel@lists.openembedded.org"
+ <openembedded-devel@lists.openembedded.org>,
+ openembedded-core <openembedded-core@lists.openembedded.org>,
+ "openembedded-members@lists.openembedded.org"
+ <openembedded-members@lists.openembedded.org>,
+ Yocto Project <yocto@yoctoproject.org>
+References: <160F3EC1CDCCEA98.6323@lists.openembedded.org>
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+ mQENBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+ HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+ rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+ 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+ fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+ AAG0JVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz6JAT4EEwECACgCGyMG
+ CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+ nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+ 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+ YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+ 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+ yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4Yxi5AQ0ETo83gQEIAPs+ZC0R
+ gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+ GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+ uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+ LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+ gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAYkBJQQYAQIADwIbDAUC
+ WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+ 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+ ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+ icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+ ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+ 6eUfr0u7CwnEyqiQ
+Message-ID: <612c03a9-0494-aa33-fb36-6067200e7d35@balister.org>
+Date: Wed, 27 May 2020 09:21:01 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
+In-Reply-To: <160F3EC1CDCCEA98.6323@lists.openembedded.org>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-In a script, how would I download all the files in this dir:
+Just a reminder this happens later "today". As always consult:
 
-https://autobuilder.yocto.io/pub/releases/yocto-2.7.4.rc2/machines/beaglebo=
-ne-yocto/
+https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+May+27&iso=20200527T21&p1=%3A&ah=1
 
-I see no global md5sum (or sha256sum etc) file in the tree anywhere.
+for the local day and time.
 
-The names are cut off in the default html list format so screen scrapping w=
-on't work.  Is there an automated way to request a better format?  WebDav? =
-Am I missing something obvious?
+Philip
 
-Thanks,
-Bill
-
------Original Message-----
-From: yocto@lists.yoctoproject.org [mailto:yocto@lists.yoctoproject.org] On=
- Behalf Of pokybuild@ubuntu1804-ty-1.yocto.io
-Sent: Wednesday, May 27, 2020 8:09 AM
-To: yocto@lists.yoctoproject.org
-Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; apoorv.sangal@intel.com=
-; ee.peng.yeoh@intel.com; aaron.chun.yew.chan@intel.com; richard.purdie@lin=
-uxfoundation.org; akuster808@gmail.com; sjolley.yp.pm@gmail.com; sangeeta.j=
-ain@intel.com
-Subject: [yocto] QA notification for completed autobuilder build (yocto-2.7=
-.4.rc2)
-
-
-A build flagged for QA (yocto-2.7.4.rc2) was completed on the autobuilder a=
-nd is available at:
-
-
-    https://autobuilder.yocto.io/pub/releases/yocto-2.7.4.rc2
-
-
-Build hash information:=20
-
-bitbake: 7f7126211170439ac1d7d72e980786ce0edb7bb7
-meta-gplv2: d5d9fc9a4bbd365d6cd6fe4d6a8558f7115c17da
-meta-intel: 29ee4852a05931dcf856670d9d8a3c3077a40fe8
-meta-mingw: 10695afe8cd406844e0d0dd868c11677e07557d4
-oecore: db3ce703d03b18e8a4120969d32ff7f344f34fe9
-poky: f65b24e9ca0918a4ede70ea48ed8b7cc4620f07f
-
-
-
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
-
-=20
+On 5/15/20 11:56 AM, Philip Balister wrote:
+> I've made a wiki page to track these:
+> 
+> https://www.openembedded.org/wiki/Happy_Hours
+> 
+> Then next one is scheduled for 2100 UTC on May 27. This is late evening
+> for Europe and morning for New Zealand, so hopefully we see some
+> different faces. The meeting info is on the wiki page.
+> 
+> There is no set agenda, so bring some projects to talk about with the
+> community.
+> 
+> 
+> Philip
+> 
+> 
+> 
+> 
