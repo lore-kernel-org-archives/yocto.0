@@ -1,106 +1,127 @@
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.52])
- by mx.groups.io with SMTP id smtpd.web10.7944.1590653241630656597
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+ by mx.groups.io with SMTP id smtpd.web12.8214.1590655336756934358
  for <yocto@lists.yoctoproject.org>;
- Thu, 28 May 2020 01:07:23 -0700
+ Thu, 28 May 2020 01:42:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@rsi-elektrotechnik.de header.s=strato-dkim-0002 header.b=FXs/luou;
- spf=none, err=permanent DNS error (domain: rsi-elektrotechnik.de, ip: 85.215.255.52, mailfrom: prvs=14172d03e9=holzmayr@rsi-elektrotechnik.de)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1590653239;
-	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
-	h=In-Reply-To:Date:Message-ID:From:References:To:Subject:
-	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=q83ILEx9607FXBnLoDpO+BPZvqWD678TqAFT+CVLLos=;
-	b=FXs/luounmv6fBf23SqLNQWnh8OzvdrH6Dkmdoos9GOYW2xVkcT5M4r27m4IRG2Ck7
-	i2N5gC9+2IxpdHQxAMb1t4Ye8YRqaow/Z5wouUf1/LbijtQVblAktzSoItMcD5cwIdoP
-	sVbjRXG8Gayn8dFypRbfiYK4AwH7XiB9nEeooWLc//7dgkT4DdwNblWEHS9FCBjoJxlD
-	DgZl0WtYExFk95jyn+1YEYG7BOCB9K9LcrcPbsvQbxi11SqjqceNbNezJGm2fiDSs8f2
-	nGpH8hrgY1vB3AitUa8KcR45J/5eK3rAMNhtXrT4pXd+0qgXSQgtcKofkfTA9u8deik5
-	mVIQ==
-X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	by smtp.strato.de (RZmta 46.9.0 AUTH)
-	with ESMTPSA id j08dacw4S87I0Kl
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits))
-	(Client did not present a certificate)
-	for <yocto@lists.yoctoproject.org>;
-	Thu, 28 May 2020 10:07:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1590653238; x=1591258038;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Subject:To:
-	References:From:Message-ID:Date:User-Agent:MIME-Version:
-	In-Reply-To:Content-Type:Content-Transfer-Encoding; bh=q83ILEx96
-	07FXBnLoDpO+BPZvqWD678TqAFT+CVLLos=; b=dQkOITFng98fvn4GQC4EbDzUV
-	O9fBMEAoK5SzzHRjCtncJKFdh9/b4W58+lscIYNvau018Mi9Hu6dN8GxCbYSrWbb
-	ShifX+Ps+88MxoO9Irh0S9B+CR0H7LdEA2v0OVpiI2JApxVdDVboMGIBsf7dgah3
-	zTH+yY7bBqkO6xsEmY=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.5.5) with ESMTPSA id md50000276446.msg; 
-	Thu, 28 May 2020 10:07:18 +0200
-X-Spam-Processed: mail.rsi-elektrotechnik.de, Thu, 28 May 2020 10:07:18 +0200
-	(not processed: message from trusted or authenticated source)
-X-MDArrival-Date: Thu, 28 May 2020 10:07:18 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=14172d03e9=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-X-MDaemon-Deliver-To: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] #apt #linux #yocto #raspberrypi., apt, gcc, sudo not present
-To: yocto@lists.yoctoproject.org
-References: <AWwo.1590573982221245323.TyTi@lists.yoctoproject.org>
-From: "Josef Holzmayr" <holzmayr@rsi-elektrotechnik.de>
-Message-ID: <fe62ae2d-871a-7508-0652-700e0412160f@rsi-elektrotechnik.de>
-Date: Thu, 28 May 2020 10:07:14 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.1
+ dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=vBasgZfc;
+ spf=pass (domain: burtonini.com, ip: 209.85.167.51, mailfrom: ross@burtonini.com)
+Received: by mail-lf1-f51.google.com with SMTP id 202so16105867lfe.5
+        for <yocto@lists.yoctoproject.org>; Thu, 28 May 2020 01:42:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rVYIf1vQgr/LLNYgKcisI5YlGhYF5aUYIll5VCTg6Sk=;
+        b=vBasgZfcwRGh+XEyGmMQ5g/k4/k3jv0BjmLyUWc7V/eofSoedf+37xtPE8V2F5FzBN
+         ew76gCgNPZWhpsGBojXLhtu2ojbopUHcvUUdkQ2QK2lgGGy8ejPBxBIEo63pjf2md6zT
+         nnZv5t9DWSiQZ4kqPGrzjHxIuJMbIBtQ6yPSMJnxZne5IYjXuM0GbO/72sBYzclk1Nut
+         JiMK0KRz35sh4st2iVtL5dQsTDPwrSGOi8WdNoqBbqEAm2msixkPe/N1V1lff3b+ytkf
+         ub4g7wJmqSkrniWUDy2qTA2YwW8MhzE3xKRX/OfW4VnnbD5xAnROjZrjmwKQV2zL1D42
+         /Jhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rVYIf1vQgr/LLNYgKcisI5YlGhYF5aUYIll5VCTg6Sk=;
+        b=lH1sauw86wYXRfyZ+QbvVf/O7/8ZunPv9TmGo2DalgvnABJEBHcH5E05Y6Hxlwb/UN
+         ZAvidGFPpn/5qFpsMWtk6+Y16uBiJW1a/t/NVm/1VdnwEGUWOMq8JWWbjCm3ovdWIB0y
+         rpMFl8woNJ3kPA6c89JIKFR4H4CiN5GlgLmpn6tNA9+sXKewdYHxNM6W2DoDc+JKpeJZ
+         XHIVaURZOFWAjwpDErkFmWyWeLtrkDNbaelUpsR2zW4cWihOLIe2VdWtUyePz4kM5ZNH
+         n4s4IF2NZ6pZ5GO+Nh6IZGuhUCe9iKjr0+gXSwN71bG80sNWYmtTKYtQt7hyIgoG264F
+         gtTg==
+X-Gm-Message-State: AOAM5309TbYaDews2FGVEYLEAmuKbAcglqJASQ8IOl5vzoIlwdpR52XP
+	9xaRuZ4SZZZZ4zwGyO8e67Rajmg7/K5wZhtGoujOKQ==
+X-Google-Smtp-Source: ABdhPJyWulBi6Ofo81vFHNhKMqZ9C394AxegBKZFwsx4OhbPq/Pk4Lss7FcJ0BnLFqaf8NtppudyRfOHmoyRfpxi0eM=
+X-Received: by 2002:ac2:490f:: with SMTP id n15mr1139401lfi.39.1590655334896;
+ Thu, 28 May 2020 01:42:14 -0700 (PDT)
 MIME-Version: 1.0
+References: <AWwo.1590573982221245323.TyTi@lists.yoctoproject.org>
 In-Reply-To: <AWwo.1590573982221245323.TyTi@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: "Ross Burton" <ross@burtonini.com>
+Date: Thu, 28 May 2020 09:42:04 +0100
+Message-ID: <CAAnfSTuWAqfEDTVaDs=fDWXxu5vowmGDF8-BSTjRJcab5H_k2Q@mail.gmail.com>
+Subject: Re: [yocto] #apt #linux #yocto #raspberrypi., apt, gcc, sudo not present
+To: Siddhartha V <Siddhuvgowda.18695@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000003280f105a6b14ebe"
 
-Howdy!
+--0000000000003280f105a6b14ebe
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Am 27.05.2020 um 12:06 schrieb Siddhartha V:
+On Wed, 27 May 2020 at 11:06, Siddhartha V <Siddhuvgowda.18695@gmail.com>
+wrote:
+
 > Hello,
-> 
->    I built the image for Raspberrypi3B+ board. But when boot the board 
-> gcc, apt, sudo were not there. Actually only the poweron and poweroff 
-> and few basic commnds like, ls, mkdir, whoami were working. May I konw 
-> what wrong I did while building please.
+>
+>   I built the image for Raspberrypi3B+ board. But when boot the board gcc=
+,
+> apt, sudo were not there. Actually only the poweron and poweroff and few
+> basic commnds like, ls, mkdir, whoami were working. May I konw what wrong=
+ I
+> did while building please.
+>
+> I am using yocto warrior. I used *"bitbake core-image-base"* command for
+> building.
 
-This sounds like you actually want an ubuntu. Why not just use it, then? 
-Beating a yocto build into shape will always just leave you wanting and 
-complaining, unless you are willing to get rid of your assumptions.
 
-Hint:
-The frist things you have to get out of your head are expecting apt, 
-sudo and gcc on the board.
+You did nothing wrong, precisely. core-image-base is a base image that
+doesn=E2=80=99t do much beyond boot into a working command line environment=
+.
 
-Reasoning:
-- no apt, because the images are usually constructed at build time 
-including all expected software. Runtime package management is actually 
-rarely needed.
-- no sudo, because you can just log in as whatever user you want to. And 
-in the product case it has no use because usually people do not login, 
-hence no need for its security means.
-- no gcc, because all compilation is meant to happen at image building 
-time, or at least on the development host.
+If you want a working toolchain (gcc and friends) on the image then add
+=E2=80=9Ctools-sdl=E2=80=9D to IMAGE_FEATURES. By default toolchains are no=
+t included
+because they=E2=80=99re huge and not needed.
 
-Of course this is only a very generic, top-level explanation and use 
-cases diffee. But If the mindset does not fit right from the beginning, 
-then there only lies trouble ahead.
+If you want apt then first change the package manager to deb by changing
+your explicit assignment of PACKAGE_CLASSES. This builds the image with
+apt, and if you also want a working apt and package database in the image
+then add package-management to IMAGE_FEATURES.
 
-Greetz
+To add sudo, simple add sudo to IMAGE_INSTALL.
 
--- 
-_____________________________________________________________
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-Fon: +49 8444 9204-0
-Fax: +49 8444 9204-50
-www.rsi-elektrotechnik.de
+I recommend looking up those variables in the documentation to understand
+what they do.
 
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+Ross
 
+--0000000000003280f105a6b14ebe
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>On Wed, 27 May 2020 at 11:06, Siddhartha V &lt;<a href=3D"mailto:Siddh=
+uvgowda.18695@gmail.com">Siddhuvgowda.18695@gmail.com</a>&gt; wrote:<br></d=
+iv><div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello,<b=
+r><br>=C2=A0 I built the image for Raspberrypi3B+ board. But when boot the =
+board gcc, apt, sudo were not there. Actually only the poweron and poweroff=
+ and few basic commnds like, ls, mkdir, whoami were working. May I konw wha=
+t wrong I did while building please.<br><br>I am using yocto warrior. I use=
+d <strong>&quot;<span style=3D"font-family:Consolas,Menlo,Monaco,&#39;Lucid=
+a Console&#39;,&#39;Liberation Mono&#39;,&#39;DejaVu Sans Mono&#39;,&#39;Bi=
+tstream Vera Sans Mono&#39;,&#39;Courier New&#39;,monospace;font-size:15px;=
+white-space:pre-wrap;background-color:#f9f9f9">bitbake core-image-</span><s=
+pan style=3D"font-family:Consolas,Menlo,Monaco,&#39;Lucida Console&#39;,&#3=
+9;Liberation Mono&#39;,&#39;DejaVu Sans Mono&#39;,&#39;Bitstream Vera Sans =
+Mono&#39;,&#39;Courier New&#39;,monospace;font-size:15px;white-space:pre-wr=
+ap">base</span>&quot;</strong> command for building.</blockquote><div dir=
+=3D"auto"><br></div><div dir=3D"auto">You did nothing wrong, precisely. cor=
+e-image-base is a base image that doesn=E2=80=99t do much beyond boot into =
+a working command line environment.</div><div dir=3D"auto"><br></div><div d=
+ir=3D"auto">If you want a working toolchain (gcc and friends) on the image =
+then add =E2=80=9Ctools-sdl=E2=80=9D to IMAGE_FEATURES. By default toolchai=
+ns are not included because they=E2=80=99re huge and not needed.</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">If you want apt then first change =
+the package manager to deb by changing your explicit assignment of PACKAGE_=
+CLASSES. This builds the image with apt, and if you also want a working apt=
+ and package database in the image then add package-management to IMAGE_FEA=
+TURES.</div><div dir=3D"auto"><br></div><div dir=3D"auto">To add sudo, simp=
+le add sudo to IMAGE_INSTALL.</div><div dir=3D"auto"><br></div><div dir=3D"=
+auto">I recommend looking up those variables in the documentation to unders=
+tand what they do.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Ross<=
+/div><div dir=3D"auto"><br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"></blockquot=
+e></div></div>
+
+--0000000000003280f105a6b14ebe--
