@@ -1,57 +1,71 @@
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
- by mx.groups.io with SMTP id smtpd.web10.30109.1590737851284118344
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+ by mx.groups.io with SMTP id smtpd.web11.30264.1590737978448133472
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 May 2020 00:37:31 -0700
+ Fri, 29 May 2020 00:39:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=mckr3CKo;
- spf=pass (domain: gmail.com, ip: 209.85.166.44, mailfrom: siddhuvgowda.18695@gmail.com)
-Received: by mail-io1-f44.google.com with SMTP id d5so1293000ios.9
-        for <yocto@lists.yoctoproject.org>; Fri, 29 May 2020 00:37:31 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Ejq/Akwi;
+ spf=pass (domain: gmail.com, ip: 209.85.166.171, mailfrom: siddhuvgowda.18695@gmail.com)
+Received: by mail-il1-f171.google.com with SMTP id j3so1499680ilk.11
+        for <yocto@lists.yoctoproject.org>; Fri, 29 May 2020 00:39:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=EdSWXFv8huXlXdQNJDCG9pDFAFGqwv2RmXr8bCY1ssA=;
-        b=mckr3CKoU8psBxj7kIcjJcqMIMZCKCKPjb+sUx4d/Npb0V9koin5d+0QTHX5TjQUx6
-         ox35QJfSr35FDtrvpdGtM06EmjJlQatAZNX+GqjKRYcilYE4GjnvmN52TjhE7L05gV98
-         Xp0525NDEyIePOQKfZphzhO8H7dwHXAbMSZ+Y2wUp7Hc1v1y49qQKvSE8w4E3fS4wvLx
-         EuIjzko/qFIP4S7fdqgkZcOj5BNAN65hRIBrYlBoJczyAW7lDkPLHZUH049Mm2cLRAM9
-         Ww4oDFJ0FJtCQrVuDKGlVbPkMb9qKVdxQZ6QxS/HZtYzZ27Ot0nJkKQU20N0G9jAiJ19
-         jhxw==
+        bh=CuZtcuDuMZNtBjD5C9x3YlIge4A4d5dv4L2dRoPRffU=;
+        b=Ejq/AkwiG7WptLmtX9UXvw+BqA/Cea2ikiqZ+Z7QgJBYTboy8N0wglmJ/1Uq1D5/zi
+         CH2mvfrhx/E8HzeYUmvfpHihRsOLGPIinaMucCMcERxwgkO1TvmHWpXrZOQTBqJ4FGLM
+         KVEMbszk6Uxim6wpEDnLyqCRfJqmezeQcyVQwv5vJi35MCF5KCkAJ/og8zD9e7EqS6F/
+         9XZABKAdI9wwvSy3sTSjiEv+FgFtrP/E82FsFyBo8LKluQvSXCBYElGeQQte97C3FRRA
+         fXA5iLH6OuQMIJCKXfoK3B4vR5zixVeFNPzGjNnm/je9fmvjRMOhVdtjhgzxLFRyVnil
+         SJ1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=EdSWXFv8huXlXdQNJDCG9pDFAFGqwv2RmXr8bCY1ssA=;
-        b=YHf0ffMliXf85nHjHLLMbFFUYkc7+OU5tqPG3/2MzMChYtX7eA+Ac1SlO0RMimC50A
-         fa+1wn/VxVRKJqf6Y1+i6+fy5MKjiScYgWlt0S9kcAV9HWE+XFZoXUYSYy/Uloi4BvbI
-         UU3UO+wOTP3/TZ4o2e4U1EOLZ0lf5YScZfWHO3Px6TxS9LACXQ4yyndm4IaGzrfolzjk
-         OzJhGOQiyFoHy+Lp0Vp9ZRaxoCfZCNSPAjKAtyGkh+CoQQWEP6iXQK53R30bX0SrPdkS
-         n6piCbyTwG+/dVw/Zk+PJodXTxNlN+tayXQ/orAXEhDUXa8CEXIrAfc+G/OnaGaTRnmF
-         r4eg==
-X-Gm-Message-State: AOAM532yyFH8azyVw8pPXEmfE5yQtr9kLvuS+i/efzGSFSQLFCSotzcc
-	1pr17EZ8oNXfaCE5TRmnQcNePndGhK9Wlxn+jsQ=
-X-Google-Smtp-Source: ABdhPJyfLBBgGllidb7NAcQrFQAgWCf64mHsE+XhnHypw8pyOO95gBOvwHAQ4d4ro4CvliGahtB4Us0+v8HwOfw2eVY=
-X-Received: by 2002:a6b:d617:: with SMTP id w23mr5477083ioa.188.1590737850608;
- Fri, 29 May 2020 00:37:30 -0700 (PDT)
+        bh=CuZtcuDuMZNtBjD5C9x3YlIge4A4d5dv4L2dRoPRffU=;
+        b=jVUIrDLLmYKRNylPTn9nFAHS/r1B9GGfzFO2Sibgse88d29Bf31YFvkpHIj/ff+cwd
+         vX0zopt95vjOdIpDEjgQeXuQAey6jGAjTBPeLoTxK6U1jIx8ci0+SVl4j7/f2xqNTkeK
+         JmSLYG7RKpD/EKS83pqkqLGOEpLhghQMx4hfKFC/O+j9VuIZk/RDCcro4abwGUB5qAwF
+         sFhQ/uenWr8flo48zoAXxsbdYXCnUptqdG+X5OR0EQ9sgtwfikqawE70m0jso6s6DVeT
+         n7BXmi9MSQEr5auuOK2IdneqfisMMgx10cR/e9Q2sY7oXFUszw6iLyCfPBnAwqG4sJfH
+         EQvw==
+X-Gm-Message-State: AOAM532dMkT8nMG3M3M9hEPXWC+9lzGZjBTU1EuzOCtr2oehw/llCDC0
+	Ax+hmEoyPzNjSTf0+ag9qnRXU4kZp70Mwo8OjJc=
+X-Google-Smtp-Source: ABdhPJx5L1gQoUA8wW5ro/4OAfWAR1aidLOhTErDhqHaY+k2ohexClCkqqQvO6/ArPRZMsj7XgV6gPBqzCj1tAQMo4k=
+X-Received: by 2002:a92:5a5a:: with SMTP id o87mr5999684ilb.184.1590737977722;
+ Fri, 29 May 2020 00:39:37 -0700 (PDT)
 MIME-Version: 1.0
 References: <nZrM.1590736704865454092.xcuh@lists.yoctoproject.org>
 In-Reply-To: <nZrM.1590736704865454092.xcuh@lists.yoctoproject.org>
 From: "Siddhartha V" <Siddhuvgowda.18695@gmail.com>
-Date: Fri, 29 May 2020 13:07:19 +0530
-Message-ID: <CAEkELtCwRke9wKWGz=o8QQK0f6aDtAW_UPOoo0WVr5qEqAUUqQ@mail.gmail.com>
+Date: Fri, 29 May 2020 13:09:26 +0530
+Message-ID: <CAEkELtDq3ZFSMw7YSNwXWX8d7p2bNHr_aAXgBmqq=RhacMRo6w@mail.gmail.com>
 Subject: Re: [yocto] Yocto,core-image-minimal for RPI4 #linux #yocto
 To: Pankaj Vinadrao Joshi <pankaj.vj@exaleapsemi.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000842e8e05a6c484e2"
+Content-Type: multipart/alternative; boundary="00000000000017ca8b05a6c48cee"
 
---000000000000842e8e05a6c484e2
+--00000000000017ca8b05a6c48cee
 Content-Type: text/plain; charset="UTF-8"
 
-Hello Pankaj,
+You should have core-image-base-raspberrypi3.rpi-sdimg this should be
+written to to the SD card. Please check it by following below steps. Hope
+this help you.
 
-  Try below mentioned steps, Hope it helps you, (there my image
-was"core-image-base-raspberrypi3.rpi-sdimg"  replace it by your image )
+
+
+then follow below steps to write the image on SD card.
+
+
+SD_image writing
+
+
+
+In build directory :
+to check the sdimage for installing on SD card.
+
+ls tmp/deploy/images/raspberrypi3/core-image-base-raspberrypi3.rpi-sdimg
+
 
 
 plug sd card to pc then
@@ -64,7 +78,7 @@ if=tmp/deploy/images/raspberrypi3/core-image-base-raspberrypi3.rpi-sdimg
 of=/dev/sdb bs=4M
 
   >> This task will take some time and at the end we will get the output
-something similar(not exact it depends on build files) to below :
+something similar to below :
 
         46+0 records in
 46+0 records out
@@ -77,6 +91,8 @@ $: sudo umount /dev/sdb*
 
 Best Regards,
 Siddhartha V
+
+
 
 On Fri, May 29, 2020 at 12:48 PM Pankaj Vinadrao Joshi <
 pankaj.vj@exaleapsemi.com> wrote:
@@ -149,31 +165,33 @@ pankaj.vj@exaleapsemi.com> wrote:
 Thanks and Regards.
 Siddhartha V.
 
---000000000000842e8e05a6c484e2
+--00000000000017ca8b05a6c48cee
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello Pankaj,<div><br></div><div>=C2=A0 Try below mentione=
-d steps, Hope it helps you, (there my image was&quot;core-image-base-raspbe=
-rrypi3.rpi-sdimg&quot;=C2=A0 replace it by your image )</div><div><br></div=
-><div><br>plug sd card to pc then <br><br>$: lsblk<br>$: sudo umount /dev/s=
-db*<br><br>$: sudo dd if=3Dtmp/deploy/images/raspberrypi3/core-image-base-r=
-aspberrypi3.rpi-sdimg of=3D/dev/sdb bs=3D4M<br><br>=C2=A0 &gt;&gt; This tas=
-k will take some time and at the end we will get the output something simil=
-ar(not exact it depends on build files) to below :<br><br>=C2=A0 =C2=A0 =C2=
-=
-=A0 =C2=A0 46+0 records in<br>	46+0 records out<br>	192937984 bytes (193 M=
-B, 184 MiB) copied, 10.2155 s, 18.9 MB/s<br><br><br>$: sync<br>$: sudo umou=
-nt /dev/sdb*<br></div><div><br></div><div><br></div><div>Best Regards,</div=
-><div>Siddhartha V</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Fri, May 29, 2020 at 12:48 PM Pankaj  Vinadrao J=
-oshi &lt;<a href=3D"mailto:pankaj.vj@exaleapsemi.com">pankaj.vj@exaleapsemi=
-.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex"><div style=3D"margin:0px;padding:0px;border:0px;font-variant-numeric:in=
-herit;font-variant-east-asian:inherit;font-stretch:inherit;font-size:12pt;l=
-ine-height:inherit;font-family:Calibri,Arial,Helvetica,sans-serif;vertical-=
-align:baseline;color:black">Hi,</div>
+<div dir=3D"ltr">You should have=C2=A0core-image-base-raspberrypi3.rpi-sdim=
+g this should be written to to the SD card. Please check it by following be=
+low steps. Hope this help you.<div><br></div><div><br></div><div><br>then f=
+ollow below steps to write the image on SD card.<br><br><br>SD_image writin=
+g<br><br><br><br>In build directory : <br>to check the sdimage for installi=
+ng on SD card.<br><br>ls tmp/deploy/images/raspberrypi3/core-image-base-ras=
+pberrypi3.rpi-sdimg<br><br><br><br>plug sd card to pc then <br><br>$: lsblk=
+<br>$: sudo umount /dev/sdb*<br><br>$: sudo dd if=3Dtmp/deploy/images/raspb=
+errypi3/core-image-base-raspberrypi3.rpi-sdimg of=3D/dev/sdb bs=3D4M<br><br=
+>=C2=A0 &gt;&gt; This task will take some time and at the end we will get t=
+he output something similar to below :<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 4=
+6+0 records in<br>	46+0 records out<br>	192937984 bytes (193 MB, 184 MiB) c=
+opied, 10.2155 s, 18.9 MB/s<br><br><br>$: sync<br>$: sudo umount /dev/sdb*<=
+br></div><div><br></div><div><br></div><div>Best Regards,</div><div>Siddhar=
+tha V</div><div><div><br></div><div><br></div></div></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, May 29, 2020 at=
+ 12:48 PM Pankaj  Vinadrao Joshi &lt;<a href=3D"mailto:pankaj.vj@exaleapsem=
+i.com">pankaj.vj@exaleapsemi.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div style=3D"margin:0px;padding:0px;bord=
+er:0px;font-variant-numeric:inherit;font-variant-east-asian:inherit;font-st=
+retch:inherit;font-size:12pt;line-height:inherit;font-family:Calibri,Arial,=
+Helvetica,sans-serif;vertical-align:baseline;color:black">Hi,</div>
 <div style=3D"margin:0px;padding:0px;border:0px;font-variant-numeric:inher=
 it;font-variant-east-asian:inherit;font-stretch:inherit;font-size:12pt;line=
 -height:inherit;font-family:Calibri,Arial,Helvetica,sans-serif;vertical-ali=
@@ -351,4 +369,4 @@ ont:inherit;vertical-align:baseline;color:inherit">Thanks!</span></div>
 " class=3D"gmail_signature"><div dir=3D"ltr"><div>Thanks and Regards.</div>=
 Siddhartha V.<div>=C2=A0</div></div></div>
 
---000000000000842e8e05a6c484e2--
+--00000000000017ca8b05a6c48cee--
