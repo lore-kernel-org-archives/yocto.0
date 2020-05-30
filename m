@@ -1,140 +1,117 @@
-Subject: error while adding meta-python,meta-gnone,meta-multimedia layer #linux #raspberrypi #yocto
+Received: from smtpcmd02101.aruba.it (smtpcmd02101.aruba.it [62.149.158.101])
+ by mx.groups.io with SMTP id smtpd.web11.8691.1590840866650252490
+ for <yocto@lists.yoctoproject.org>;
+ Sat, 30 May 2020 05:14:27 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@aruba.it header.s=a1 header.b=TK04Tyo6;
+ spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 62.149.158.101, mailfrom: mauro@faresoftware.it)
+Received: from [192.168.24.172] ([93.38.119.136])
+	by smtpcmd02.ad.aruba.it with bizsmtp
+	id l0EQ2200j2wfazh010ERK6; Sat, 30 May 2020 14:14:25 +0200
 To: yocto@lists.yoctoproject.org
-From: "Pankaj  Vinadrao Joshi" <pankaj.vj@exaleapsemi.com>
-X-Originating-Location: Pune, Maharashtra, IN (49.35.84.77)
-X-Originating-Platform: Windows Chrome 83
-User-Agent: GROUPS.IO Web Poster
+From: "Mauro Ziliani" <mauro@faresoftware.it>
+Subject: python3, pyscard, setuptools ModuleNotFound. Why?
+Message-ID: <8eeb9582-680b-889c-7228-074a998540f9@faresoftware.it>
+Date: Sat, 30 May 2020 14:14:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.1
 MIME-Version: 1.0
-Date: Fri, 29 May 2020 07:58:09 -0700
-Message-ID: <wXZf.1590764289812996033.qGwE@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="XX573rexbkcFQ0H4du5i"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1590840865; bh=NP8J6n9x54E4usyFta/dsiOO7YFg6TYtfdsLmOlqNMM=;
+	h=To:From:Subject:Date:MIME-Version:Content-Type;
+	b=TK04Tyo6NGdiJuPeT21ORCya00uoLsxtOviHc9bkoelJWmnyNtka1wQf4pwnTzi+e
+	 t+FZir+m4npV81ImoFOpQ1Sxf4MrPoOi2jPf7IRIw91r3c72DMSOSeo+psOU2ose7T
+	 4X4Ws09utXAabtcq444juRg+haV8FY99NG6vq1WGBM3yabF2hxvmhPVeaHw2D92HbG
+	 cPqBwVPbauBI9TR6dwqLpwnGBASR/wH/NnKSz8RrohauR5hEZ3utrcOHCIm6B2wgHS
+	 eWUGfntKZB+5pgX27SJRRpI+RlwcpB0xylkYP97EMKG11OloHRZe7q437QYkLPXS0M
+	 Yy7WeaaSAqyOw==
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: it
 
---XX573rexbkcFQ0H4du5i
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hi all.
 
-Hi,
-when i am trying to add meta-python=C2=A0 from meta-openembedded i am gett=
-ing following error i have kept meta-openembedded,meta-raspberrypi into sam=
-e branch dunfell
-/Raspberrypi4-yocto$ bitbake-layers add-layer /home/ritesh/source_meta/met=
-a-openembedded/meta-python/
-NOTE: Starting bitbake server...
-Traceback (most recent call last):
-File "/home/ritesh/Yocto_practice/poky/bitbake/bin/bitbake-layers", line 9=
-5, in <module>
-ret =3D main()
-File "/home/ritesh/Yocto_practice/poky/bitbake/bin/bitbake-layers", line 6=
-3, in main
-tinfoil.prepare(True)
-File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/tinfoil.py", line 41=
-4, in prepare
-self.run_command('parseConfiguration')
-File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/tinfoil.py", line 47=
-0, in run_command
-raise TinfoilCommandFailed(result[1])
-bb.tinfoil.TinfoilCommandFailed: Traceback (most recent call last):
-File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/command.py", line 74=
-, in runCommand
-result =3D command_method(self, commandline)
-File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/command.py", line 27=
-5, in parseConfiguration
-command.cooker.parseConfiguration()
-File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/cooker.py", line 433=
-, in parseConfiguration
-self.handleCollections(self.data.getVar("BBFILE_COLLECTIONS"))
-File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/cooker.py", line 122=
-5, in handleCollections
-raise CollectionError("Errors during parsing layer configuration")
-bb.cooker.CollectionError: Errors during parsing layer configuration
+I'd like to include pyscard from pypi in my bsp.
 
-this is bblayer.conf
+I'm using zeus and python3.
 
-[1:06 PM, 5/29/2020] =C2=B6=C2=A3: my=C2=A0 bblayer.conf is as following
-[1:06 PM, 5/29/2020] =C2=B6=C2=A3: POKY_BBLAYERS_CONF_VERSION is increased=
- each time build/conf/bblayers.conf
-# changes incompatibly
-POKY_BBLAYERS_CONF_VERSION =3D "2"
 
-BBPATH =3D "${TOPDIR}"
-BBFILES ?=3D ""
+The recipe for pyscard is placed in recipes-devtools/python of my layer
 
-BBLAYERS ?=3D " \
-/home/pankajjoshi/Yocto_practice/poky/meta \
-/home/pankajjoshi/Yocto_practice/poky/meta-poky \
-/home/pankajjoshi/Yocto_practice/poky/meta-yocto-bsp \
-/home/pankajjoshi/source_meta/meta-raspberrypi \
-/home/pankajjoshi/source_meta/meta-openembedded/meta-oe \
-/home/pankajjoshi/source_meta/meta-openembedded/meta-filesystems \
-/home/pankajjoshi/source_meta/meta-openembedded/meta-networking \
+The recipe name s python3-pyscard_1.9.9.bb
+
+This is the recipe
+
+
+# PYScard
+#
+#
+LICENSE="LGPL-2.1"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=d0227c3c90dc0a9eae8b0a64acd8c6e1"
+
+PYPI_PACKAGE="pyscard"
+
+
+inherit pypi setuptools3
+
+SRC_URI[md5sum] = "a8e94032ca8dec22a6c559a7afd41998"
+SRC_URI[sha256sum] = 
+"e6bde541990183858740793806b1c7f4e798670519ae4c96145f35d5d7944c20"
+
+
+DEPENDS = " \
+     swig \
 "
 
-why i am getting an error while adding layer into??
+Why bitbake tell this error?
 
---XX573rexbkcFQ0H4du5i
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Sstate summary: Wanted 5 Found 0 Missed 5 Current 168 (0% match, 97% 
+complete)
+NOTE: Executing Tasks
+NOTE: Setscene tasks completed
+NOTE: Running task 678 of 773 
+(/home/mauro/yocto/zeus/sources/meta-custom/recipes-devtools/python/python3-pyscard_1.9.9.bb:do_configure)
+NOTE: recipe python3-pyscard-1.9.9-r0: task do_configure: Started
+ERROR: python3-pyscard-1.9.9-r0 do_configure: Execution of 
+'/home/mauro/yocto/zeus/qt10-build/tmp-glibc/work/core2-32-oe-linux/python3-pyscard/1.9.9-r0/temp/run.do_configure.1232' 
+failed with exit code 1:
+Traceback (most recent call last):
+   File "setup.py", line 31, in <module>
+     from setuptools import setup, Extension
+ModuleNotFoundError: No module named 'setuptools'
+WARNING: exit code 1 from a shell command.
 
-Hi,<br />when i am trying to add meta-python&nbsp; from meta-openembedded i=
- am getting following error i have kept meta-openembedded,meta-raspberrypi =
-into same branch dunfell<br />
-<div>/Raspberrypi4-yocto$ bitbake-layers add-layer /home/ritesh/source_met=
-a/meta-openembedded/meta-python/</div>
-<div>NOTE: Starting bitbake server...</div>
-<div>Traceback (most recent call last):</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/bin/bitbake-lay=
-ers", line 95, in &lt;module&gt;</div>
-<div>&nbsp; &nbsp; ret =3D main()</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/bin/bitbake-lay=
-ers", line 63, in main</div>
-<div>&nbsp; &nbsp; tinfoil.prepare(True)</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/tinfoil.=
-py", line 414, in prepare</div>
-<div>&nbsp; &nbsp; self.run_command('parseConfiguration')</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/tinfoil.=
-py", line 470, in run_command</div>
-<div>&nbsp; &nbsp; raise TinfoilCommandFailed(result[1])</div>
-<div>bb.tinfoil.TinfoilCommandFailed: Traceback (most recent call last):</=
-div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/command.=
-py", line 74, in runCommand</div>
-<div>&nbsp; &nbsp; result =3D command_method(self, commandline)</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/command.=
-py", line 275, in parseConfiguration</div>
-<div>&nbsp; &nbsp; command.cooker.parseConfiguration()</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/cooker.p=
-y", line 433, in parseConfiguration</div>
-<div>&nbsp; &nbsp; self.handleCollections(self.data.getVar("BBFILE_COLLECT=
-IONS"))</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/cooker.p=
-y", line 1225, in handleCollections</div>
-<div>&nbsp; &nbsp; raise CollectionError("Errors during parsing layer conf=
-iguration")</div>
-<div>bb.cooker.CollectionError: Errors during parsing layer configuration<=
-br /><br />this is bblayer.conf<br /><br />
-<div>[1:06 PM, 5/29/2020] &para;&pound;: my&nbsp; bblayer.conf is as follo=
-wing</div>
-<div>[1:06 PM, 5/29/2020] &para;&pound;: POKY_BBLAYERS_CONF_VERSION is inc=
-reased each time build/conf/bblayers.conf</div>
-<div># changes incompatibly</div>
-<div>POKY_BBLAYERS_CONF_VERSION =3D "2"</div>
-<div>&nbsp;</div>
-<div>BBPATH =3D "${TOPDIR}"</div>
-<div>BBFILES ?=3D ""</div>
-<div>&nbsp;</div>
-<div>BBLAYERS ?=3D " \</div>
-<div>&nbsp; /home/pankajjoshi/Yocto_practice/poky/meta \</div>
-<div>&nbsp; /home/pankajjoshi/Yocto_practice/poky/meta-poky \</div>
-<div>&nbsp; /home/pankajjoshi/Yocto_practice/poky/meta-yocto-bsp \</div>
-<div>&nbsp; /home/pankajjoshi/source_meta/meta-raspberrypi \</div>
-<div>&nbsp; /home/pankajjoshi/source_meta/meta-openembedded/meta-oe \</div=
->
-<div>&nbsp; /home/pankajjoshi/source_meta/meta-openembedded/meta-filesyste=
-ms \</div>
-<div>&nbsp; /home/pankajjoshi/source_meta/meta-openembedded/meta-networkin=
-g \</div>
-<div>&nbsp; "<br /><br />why i am getting an error while adding layer into=
-??</div>
-<br /><br /><br /><br /></div>
+ERROR: Logfile of failure stored in: 
+/home/mauro/yocto/zeus/qt10-build/tmp-glibc/work/core2-32-oe-linux/python3-pyscard/1.9.9-r0/temp/log.do_configure.1232
+Log data follows:
+| DEBUG: Executing shell function do_configure
+| Traceback (most recent call last):
+|   File "setup.py", line 31, in <module>
+|     from setuptools import setup, Extension
+| ModuleNotFoundError: No module named 'setuptools'
+| WARNING: exit code 1 from a shell command.
+| ERROR: Execution of 
+'/home/mauro/yocto/zeus/qt10-build/tmp-glibc/work/core2-32-oe-linux/python3-pyscard/1.9.9-r0/temp/run.do_configure.1232' 
+failed with exit code 1:
+| Traceback (most recent call last):
+|   File "setup.py", line 31, in <module>
+|     from setuptools import setup, Extension
+| ModuleNotFoundError: No module named 'setuptools'
+| WARNING: exit code 1 from a shell command.
+|
+NOTE: recipe python3-pyscard-1.9.9-r0: task do_configure: Failed
+ERROR: Task 
+(/home/mauro/yocto/zeus/sources/meta-custom/recipes-devtools/python/python3-pyscard_1.9.9.bb:do_configure) 
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 765 tasks of which 764 didn't need to be 
+rerun and 1 failed.
 
---XX573rexbkcFQ0H4du5i--
+Summary: 1 task failed:
+/home/mauro/yocto/zeus/sources/meta-custom/recipes-devtools/python/python3-pyscard_1.9.9.bb:do_configure
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+
+
+Thanks all
+
+MZ
+
