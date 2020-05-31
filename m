@@ -1,62 +1,103 @@
-Received: from f462.i.mail.ru (f462.i.mail.ru [185.5.136.195])
- by mx.groups.io with SMTP id smtpd.web12.13364.1590923729032254839
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+ by mx.groups.io with SMTP id smtpd.web11.18413.1590942964469161507
  for <yocto@lists.yoctoproject.org>;
- Sun, 31 May 2020 04:15:30 -0700
+ Sun, 31 May 2020 09:36:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bk.ru header.s=mail header.b=JdsyYUiy;
- spf=pass (domain: bk.ru, ip: 185.5.136.195, mailfrom: reffum@bk.ru)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=bk.ru; s=mail;
-	h=Content-Type:Message-ID:Reply-To:Date:MIME-Version:Subject:To:From; bh=WefM5fetVep7FJ7a4iCqTJ8jkM6nr0zS55YOUFIy+5Q=;
-	b=JdsyYUiygm6iinb1/S/hN0BzW0zudbaa+9AUvncctAjj2GHegyJVFpZRYB6ir2Am+RTlfSwXgLHHaGhkqyt3BlggRacXTylNnTLa44uCVJKH9JIQHL249Q7MbiHE6WsW63h0TotGZFrPhbAAM2Ti/XAzudROOzFA/odvELuo1p8=;
-Received: by f462.i.mail.ru with local (envelope-from <reffum@bk.ru>)
-	id 1jfLw6-0000g9-23
-	for yocto@lists.yoctoproject.org; Sun, 31 May 2020 14:15:26 +0300
-Received: by e.mail.ru with HTTP;
-	Sun, 31 May 2020 14:15:25 +0300
-From: reffum@bk.ru
-To: yocto@lists.yoctoproject.org
-Subject: Can I build Yocto Arm Image without QEMU?
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ctcVzk7F;
+ spf=pass (domain: gmail.com, ip: 209.85.208.170, mailfrom: sergey.nikulov@gmail.com)
+Received: by mail-lj1-f170.google.com with SMTP id z13so5153764ljn.7
+        for <yocto@lists.yoctoproject.org>; Sun, 31 May 2020 09:36:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5at3p36ZIFuzaNKdZqrnJmT5y+NZi2i2JzT5T3iAe0A=;
+        b=ctcVzk7FZbQ3KqY/lP0M82+BUzvuXOnIAr7tVsm090ncE868Fa28zWVRsmCeYelLV/
+         m57+EsSx3Zn6356Fd4kWJpGOtx3s+fxyhKdBUuLcWYKMsnZ27oQGqSMqSZUggKm11njI
+         3RlZpGrS9+1WO7GsL2SaClyNM/f79LHmQ1AvD9wBD9cAcd4Qazx3XREP7m7ww3Q85LM5
+         DhlZ9/MLITsjAPO6XcNdouWxU/jGi3jhhFkJysmO/We4ZeKvXmhhNexVVdY/6vF22Dbl
+         haJJWsxDf0Jczl9qYNr00Bvqn98L52R8EQJAERsxmEuG8G8lMySRy1CSgHiENclgMi/1
+         /D3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5at3p36ZIFuzaNKdZqrnJmT5y+NZi2i2JzT5T3iAe0A=;
+        b=lkTNehKm+UmKxbkZF/glHkeH0lh54+PDTpBx5myIykpqYq8U7tlAoQUGzQtLYJHkGF
+         R6lyNWnq8u4WIILWjTvGtqEJ4IGWp5PX+ndh5xnpaouZQ24NT7C16z1/KYfT7ryHkh4G
+         8qWSLEryPKNGld4uzU2eWSNxSDOiTyCZQBUFdcI+vUWIdBy4zd7SIu2Z/y/yR8KPRbve
+         JBKnc8RbV2IQpVxL4AlGuZ1ayoQ+e4DlzssiPydkltm/aMmOTA0pWj+BHpXe0KWHY4NB
+         HlUHceksuhV50wVlB/E4YClpl3brecLHYPDwE/g0f9A0xw8QrYd20HbZQaC1W1Vn10uU
+         52iw==
+X-Gm-Message-State: AOAM5312OuiNM/r+mfYz0IQCvxBWeXZudwsmzhRYXDPlB/3FjmNnlCTX
+	IS3tRZiZG55QAkLnEuuXJYxNrmWL15B0uidHplE=
+X-Google-Smtp-Source: ABdhPJzGUiUJhhTcxV5Rc/noH89ePF4TgvngPk6MoPG9nLK8KFP9fvVpP91XiNq+JgfozPP1I/YUj+a1FHjXGnUYV30=
+X-Received: by 2002:a2e:3215:: with SMTP id y21mr8598157ljy.85.1590942962581;
+ Sun, 31 May 2020 09:36:02 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Mail.Ru Mailer 1.0
-Date: Sun, 31 May 2020 14:15:25 +0300
-Reply-To: =?UTF-8?B?0J7Qu9C10LMg0JPQsNCy0YDQuNC70YzRh9C10L3QutC+?= <reffum@bk.ru>
-X-Priority: 3 (Normal)
-Message-ID: <1590923725.222022924@f462.i.mail.ru>
-Authentication-Results: f462.i.mail.ru; auth=pass smtp.auth=reffum@bk.ru smtp.mailfrom=reffum@bk.ru
-X-7564579A: 78E4E2B564C1792B
-X-77F55803: 119C1F4DF6A9251C4499230945D9DCC7C5F700EE48CAC9C40258827A55F91530ABF6EAE57C0FACE9A213982B15A38F1C0331BEEDD3EE30BCBCDB39ECA96CD103217A548D7C17D9D2
-X-7FA49CB5: 70AAF3C13DB7016878DA827A17800CE79BD9990B272B1DA9C4224003CC836476431F5DFAA794DED8BFD28B28ED4578739E625A9149C048EEC24E1E72F37C03A0B237B30BB4E08982B287FD4696A6DC2FA8DF7F3B2552694A4E2F5AFA99E116B42401471946AA11AF1661749BA6B97735ECD3FEFFF0C7120D8F08D7030A58E5AD6BA297DBC24807EAA9D420A4CFB5DD3E0B5C865A7CDBA10067E6846913E1A01A8794E14F7ADDB10D8941B15DA834481FA18204E546F3947C0839144E5BB460BAF6B57BC7E64490618DEB871D839B7333395957E7521B51C2545D4CF71C94A83E9FA2833FD35BB23D27C277FBC8AE2E8B8C7ADC89C2F0B2A5A471835C12D1D977C4224003CC836476C0CAF46E325F83A522CA9DD8327EE4930A3850AC1BE2E735026D3A1080F4EF5CC4224003CC836476C0CAF46E325F83A50BF2EBBBDD9D6B0F5D41B9178041F3E72623479134186CDE6BA297DBC24807EABDAD6C7F3747799A
-X-C8649E89: DFCA31FCD2F3334DAFBDC6733FC582B88A2FE685EBEEBDD08C8DD805DE876D75ADF0D90D5D756DCC
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5+wYjsrrSY/u8Y3PrTqANeitKFiSd6Yd7yPpbiiZ/d5BsxIjK0jGQgCHUM3Ry2Lt2G3MDkMauH3h0dBdQGj+BB/iPzQYh7XS329fgu+/vnDhRH/FwsSHWVK3KhOanPjP3Q==
-X-Mailru-Internal-Actual: A:0.90677929703216
-X-Mailru-MI: 900
-X-Mailru-Sender: 2765FF0E0CDDFF581D3F87F11743B0BCF1961BFA3F9B1CA4C210199F0C826651776A69C02058F0D6943CEA73DB6FD1649783317E504EFF41E1FC50A19C98759BC4B7A897FCCFE1FB176A1C93FD69709FAE27536645352AA265405AC80F8C59925B2EE8FE1AE1B635AE208404248635DF
-X-Mras: Ok
-X-Spam: undefined
-Content-Type: multipart/alternative;
-	boundary="--ALT--3d58227EAbAd28cE9E554757A9eCe3161590923725"
+References: <1590923725.222022924@f462.i.mail.ru>
+In-Reply-To: <1590923725.222022924@f462.i.mail.ru>
+From: "Sergei Nikulov" <sergey.nikulov@gmail.com>
+Date: Sun, 31 May 2020 19:35:50 +0300
+Message-ID: <CAE7Ac0C-=dh6dWpcaCa2AQy_-=fxwOwWUfPpz9xENei7=ey7pQ@mail.gmail.com>
+Subject: Re: [yocto] Can I build Yocto Arm Image without QEMU?
+To: reffum@bk.ru
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000024854d05a6f44684"
 
-----ALT--3d58227EAbAd28cE9E554757A9eCe3161590923725
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+--00000000000024854d05a6f44684
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-CkhlbGxvIQpTb3JyeSBmb3IgbXkgRW5nbGlzaC4gTXkgZmlyc3QgbGFuZ3VhZ2UgaXMgUnVzc2lh
-bi4KSSBoYXZlIGEgcXVlc3Rpb24gYWJvdXQgYnVpbGQgeW9jdG8gaW1hZ2UuIENhbiBJIGJ1aWxk
-IGltYWdlIHdpdGhvdXQgYnVpbGQgYW55wqBRRU1VIHBhY2thZ2VzPyBBbmQgaG93IGNhbiBJIGRv
-IGl0PwpJIGRvIG5vdCBuZWV0IFFFTVUsIEkgcnVuIExpbnV4IG9ubHkgaW4gaGFyZHdhcmUuClRo
-YW5rIHlvdSBmb3IgYW5zd2Vycy4KwqAKwqAKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo=
+=D0=B2=D1=81, 31 =D0=BC=D0=B0=D1=8F 2020 =D0=B3., 14:15 =D0=9E=D0=BB=D0=B5=
+=D0=B3 =D0=93=D0=B0=D0=B2=D1=80=D0=B8=D0=BB=D1=8C=D1=87=D0=B5=D0=BD=D0=BA=
+=D0=BE via lists.yoctoproject.org
+<reffum=3Dbk.ru@lists.yoctoproject.org>:
 
-----ALT--3d58227EAbAd28cE9E554757A9eCe3161590923725
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+> Hello!
+> Sorry for my English. My first language is Russian.
+> I have a question about build yocto image. Can I build image without bui=
+ld
+> any QEMU packages? And how can I do it?
+>
 
-CjxIVE1MPjxCT0RZPjxkaXY+PGRpdj5IZWxsbyE8L2Rpdj48ZGl2PlNvcnJ5IGZvciBteSBFbmds
-aXNoLiBNeSBmaXJzdCBsYW5ndWFnZSBpcyBSdXNzaWFuLjwvZGl2PjxkaXY+SSBoYXZlIGEgcXVl
-c3Rpb24gYWJvdXQgYnVpbGQgeW9jdG8gaW1hZ2UuIENhbiBJIGJ1aWxkIGltYWdlIHdpdGhvdXQg
-YnVpbGQgYW55Jm5ic3A7UUVNVSBwYWNrYWdlcz8gQW5kIGhvdyBjYW4gSSBkbyBpdD88L2Rpdj48
-ZGl2PkkgZG8gbm90IG5lZXQgUUVNVSwgSSBydW4gTGludXggb25seSBpbiBoYXJkd2FyZS48L2Rp
-dj48ZGl2PlRoYW5rIHlvdSBmb3IgYW5zd2Vycy48L2Rpdj48L2Rpdj48ZGl2PiZuYnNwOzwvZGl2
-PjxkaXY+Jm5ic3A7PGhyPjwvZGl2PjwvQk9EWT48L0hUTUw+Cg==
+Yes, you can.
+Check MACHINE variable in documentation.
+You should set it to specific HW you're using.
 
-----ALT--3d58227EAbAd28cE9E554757A9eCe3161590923725--
+I do not neet QEMU, I run Linux only in hardware.
+> Thank you for answers.
+>
+>
+> ------------------------------
+>=20
+>
+
+--00000000000024854d05a6f44684
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">=D0=B2=D1=81, 31 =D0=BC=D0=B0=D1=8F 2020 =D0=B3., 14:1=
+5 =D0=9E=D0=BB=D0=B5=D0=B3 =D0=93=D0=B0=D0=B2=D1=80=D0=B8=D0=BB=D1=8C=D1=87=
+=
+=D0=B5=D0=BD=D0=BA=D0=BE via <a href=3D"http://lists.yoctoproject.org">lis=
+ts.yoctoproject.org</a> &lt;reffum=3D<a href=3D"mailto:bk.ru@lists.yoctopro=
+ject.org">bk.ru@lists.yoctoproject.org</a>&gt;:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
+ding-left:1ex">
+<div><div><div>Hello!</div><div>Sorry for my English. My first language is=
+ Russian.</div><div>I have a question about build yocto image. Can I build =
+image without build any=C2=A0QEMU packages? And how can I do it?</div></div=
+></div></blockquote></div></div><div dir=3D"auto"><br></div><div dir=3D"aut=
+o">Yes, you can.</div><div dir=3D"auto">Check=C2=A0MACHINE variable in docu=
+mentation.</div><div dir=3D"auto">You should set it to specific HW you&#39;=
+re using.</div><div dir=3D"auto"><br></div><div dir=3D"auto"><div class=3D"=
+gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;b=
+order-left:1px #ccc solid;padding-left:1ex"><div><div><div>I do not neet QE=
+MU, I run Linux only in hardware.</div><div>Thank you for answers.</div></d=
+iv><div>=C2=A0</div><div>=C2=A0<hr></div></div>
+<br>
+</blockquote></div></div></div>
+
+--00000000000024854d05a6f44684--
