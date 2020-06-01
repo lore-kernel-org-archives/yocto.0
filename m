@@ -1,129 +1,121 @@
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
- by mx.groups.io with SMTP id smtpd.web11.37264.1591019145929814244
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (NAM10-BN7-obe.outbound.protection.outlook.com [40.107.92.104])
+ by mx.groups.io with SMTP id smtpd.web10.39556.1591024581373978360
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Jun 2020 06:45:46 -0700
+ Mon, 01 Jun 2020 08:16:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=KWH5wMB8;
- spf=pass (domain: gmail.com, ip: 209.85.215.175, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f175.google.com with SMTP id d10so3524872pgn.4
-        for <yocto@lists.yoctoproject.org>; Mon, 01 Jun 2020 06:45:45 -0700 (PDT)
+ dkim=pass header.i=@melink.onmicrosoft.com header.s=selector2-melink-onmicrosoft-com header.b=MkXZ02hX;
+ spf=pass (domain: melinkcorp.com, ip: 40.107.92.104, mailfrom: bevenson@melinkcorp.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=by1ZHK4lUyrc59kBif5bF3bYlNkU3uKYhmxrvOJFdiGfv3UFYGO5yKUt0AdfELSg1q8gS7lAfJ6m5zj2xmCA+wwIXWzubVTdk7NauBq/TQGRe42xsh/Sl0Fv6FUr+s0RFMiwkkvEpSXSwdQaFDz1B9n/SpGCfjyeXOzJNt+iAKpkRIHWMbI6mFEExlxTWFbmus5+gngHxfxEjU120oD4KgiyhBZ1d6Nv675Kiazhx32zIFsAKnqR67DN5WtAu7Ce3151qoS1RshNyC9395ssyXgqPTtiNjbBn7ZEtBjA0zFHR3tMRqXuvs3K6m6gW6ymwWDqZOJVBy/8My8QuCFYGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5aAI6e/H/cOPxj5Q9xnJwB78VuEXtlk5FvhDJfGtgKc=;
+ b=EYnyVfwHIfzq6NO5MEoXrJJTzVJwq551Byqf2Yglht6Cs9vmor38KnYf/QN7QQDv4a/M7JZld1Y+m7HstMFC+M2hmOsOt/Kr4rXv1TAypDmh/od8hnmKWwX6XRLOFL11HWLCgmiDhVEVj+AGl7P2GZQ1W8+m0+uR5YlM0aHHQYko6lWz0SXJAnTTbB1btm7TY8kAA5sWn4u6v7FbZQIcMVum8Ky+u/Sd+IzljfUX0ckvameWh3eklmX2H/uIar4OO+3d7ZRomseJ0JMdJK0jW0mqv+9vnAGo7m7fXMSW95uLGrZEBtIq0dVBDajhwFzdY9UUF5xAUVA39krycRLGsQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=melinkcorp.com; dmarc=pass action=none
+ header.from=melinkcorp.com; dkim=pass header.d=melinkcorp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=F3pqToc6cSto44pbI8EwTOPLsD+kFnWUxgbO9nmNGhM=;
-        b=KWH5wMB8byoABGxOHGoRrBT2CIFXMib+924qVWVhZpjCT5U5ze6AMe8dAnPsf3wrsW
-         Zi3+L6kp3qgJL04vyEjH+ET/1BH7Cx78QZ8WhOu2h4G2C32DltmFPdJS+oDTEjKD49Oo
-         m/ralok+c/Kp+FAh7RGI8SmHmbLb4iVsTO5jZsBE8kU76MX7EEdjobu9tpc49vw9RyBc
-         GY9fBIeFEmkJKwthYBddI11+0g9AYgBAAlHkUvIdCqGwCXM4f6KYkh4V8X7kXacX3z7z
-         P74V4kT9aP4f3MeJUTQ0ugoWUQvhP+a/ygykL5bXfVka4mcQUpbTWLYT29a2X8b/YysI
-         m0UQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-transfer-encoding:content-language;
-        bh=F3pqToc6cSto44pbI8EwTOPLsD+kFnWUxgbO9nmNGhM=;
-        b=Hq+IGk+i7UjNkT1y4tEXQI0gzZm8vsPrE+XJcdr5thfuVHc9dfFUfjhA19Qy0u3c5X
-         Pm7Nv9l/kdl6kd9EEaqQO+6t5Ajeowv39m+Ck5zOMFjTnmq5fMgXZtf2iy+LAW6+UFvr
-         2OO8wxOeCz/8yUtRxC/93WEHEn7tBpEzXbSaFcMqLv/l3W0VFWbYXh4lzUYznteFQTUy
-         GzL2i7tSCJ0do9wcmbt15L/zlT+gSMUKgS4jfUxtMvcpbysrwNqkC6NKXOMprtisvPOM
-         8fJ/wb+gCaEsRh9iKpsDQUZeINSj7XEHpqSjuR9JYpr7CN38D6ynleAOKYGrc7uipAWH
-         ijGw==
-X-Gm-Message-State: AOAM533ivCqgzB7Vj4a1YLvNrieTEQh/pwy5DMfOx482RJQrAYc/6EYh
-	htcN3+dEjiV0iJExuF5iXz4=
-X-Google-Smtp-Source: ABdhPJwzki+Lw6cEyWg5K+AZkM7wA/OQW2ySb53KIs1pHA7xWygtNnUf4hYwUvCKi8vIoq9cXGJC6w==
-X-Received: by 2002:a63:5f11:: with SMTP id t17mr18565101pgb.177.1591019145360;
-        Mon, 01 Jun 2020 06:45:45 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from ?IPv6:2601:202:4180:a5c0:2def:b3ad:e523:eb37? ([2601:202:4180:a5c0:2def:b3ad:e523:eb37])
-        by smtp.gmail.com with ESMTPSA id v127sm14476172pfv.99.2020.06.01.06.45.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Jun 2020 06:45:44 -0700 (PDT)
-Subject: Re: QA completion for completed autobuilder build (yocto-2.7.4.rc2)
-To: "Jain, Sangeeta" <sangeeta.jain@intel.com>,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
- "yi.zhao@windriver.com" <yi.zhao@windriver.com>,
- "Sangal, Apoorv" <apoorv.sangal@intel.com>,
- "Chan, Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
- "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
- "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
- "Tummalapalli, Vineela" <vineela.tummalapalli@intel.com>
-References: <BY5PR11MB40371DDE5C07A6FE3BA2F211E38A0@BY5PR11MB4037.namprd11.prod.outlook.com>
-From: "akuster" <akuster808@gmail.com>
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
- Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
- mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
- aquZVHNXxPwjKPaSEEYqQjFeiNgFTavV+AhM2dmPmGUWCX9RZisrqA4slGwEB0srMdFf12Zg
- mD35Y9jZ80qpu5LPtJCFcsaAlebqR+dg36pIpiRR+olhN1wmC6LYP1vw6uMEYBjkTa2Rnb6+
- C4FDzCJD4UCrUvLMNeTW810DY0bjMMj3SfmSGSfQUssaaaTXCVlLGuGxyCr/kza1rHaXMKum
- Ek4EFj1fyn7AfkSLEHfJfY4sO1tpgigvs4eD/4ZSQEXSu/TjVvyKx4EvUbhlGMRyH2CPwD/H
- 7DFF8tcVtJvCwUUW+zKtjxjSSLrhniNMXAOQJZ6CdaqCe4OyJQT5aRdr+FWbBRjpaRCCf5nf
- dTc88NMU9PrBT3vu0QJ5WNPO6MJpnb+d8iMNLZAz8tv8JMm2l+sMcNKSJ6lhX8peoBsfMVqc
- FgiykEO0fUt7DCbUYR5tLjM/3E5tHvTjMooVJyOxoufVLYtTtQARAQABzSFha3VzdGVyODA4
- IDxha3VzdGVyODA4QGdtYWlsLmNvbT7CwX0EEwEIACcFAlnlUP4CGyMFCQlmAYAFCwkIBwIG
- FQgJCgsCBBYCAwECHgECF4AACgkQ7ou0mfRW5/kuhRAAlR2FTq5572jrX5nnPR7AqI2bvSVb
- vqGLlvv739WhghvagbC+tu05QguopAhWW1/DcHK2+QtfIoC9UZrSW4RaO0CCo5sPjqK7l1KT
- ngWX/rGjF6xTF2QN0U/btcpMyVN2CNtVLwsDF9e+GHKoUcnFkP+JP8vHGokN9k6E/c97hLaL
- IJPeKl8LZXc2Efk+MaW1NXkfDJdcp/p+voajbihSQO6OZ/o+x9d2I3ZybKfTZ71+ek5Hxzjz
- g6KkMOI7KJjlmBlrQFAtVbS+CFAKrwkYznE6ggkcmGv3N7DeUBTUR78hf+EZEAM+ajeLMtrG
- rXE00pIb+gLGYPZxba5pCdQ+qWUW38qi9UnIRPm6fq7Ypx1r6XwJvbgCOkhbxo3D4YUdyC0b
- FE9lgrg8htbc9in4j2+hVI6ALswNjLprzXdzdKrd+T3Egx36o3Z/qrYsW2o5/A5sVvvASVKi
- wRPuEKhEhfmiHUPLvuKqhMoymHaz3fg5D2Q8G0gSDkLgeEpAjiWqf4+AGLx+MSDai7DSOsmI
- t61kWxs7cFTB32UrB/TDoVNn3Fm88ZFQpA/bngikE9jgEm045mSY86fNlbFj2mcCd0Ha1i1n
- aYc97RpgfjNMWyHDVHOGrNg/hJjkGa5RsAXkfyBwltHRw0Hj4urUQ3rr8um8PLe43SezPwXA
- oRoyDxDOwU0EWeVQ/gEQALNHwj5VSPdnvXy1RXUuH+rclMx4x8zaqDyY0YqHfA7b/d8Y0VAt
- Y6YpzDeFTwD8A0Wfb7kZ2mlDIE6ODCB71uT/E3C6b+FiiN+lgzslznjUW+9l8ddDhRrC8HMG
- 37vrXF5h++PTXUKEKUlkDib1w093tu3mlJXUvIAzl8CEHkptF6Br0L9XxFwuWoNUfjT9IorQ
- 0SVIhvq5PhVAITXUD5fD7/N8B4TYegmHFRo1UaaKSnSHwlJJkzKpeWOH8QTYrP0RHxX86Obv
- IZuwbAo3F3oojcvLJt9NxWnbEmEALkleklLZnukgu7q5Wp1VDwhUbMFTLb6qmnBa/Xi30uOk
- 0l1TMHDbeQswvQDOZBAMukSRqyBetKxQ3iTfZ/3z1ubQRcVDbVlMDScSHQq0LK3F9yMOMM/6
- 0QPqJjl13xn/+Bn7WJiAIXXwzAV7uo6i0khFfjDtCDQ40aeffqOLxp1yMLkc3EKJGcQ5F6O2
- ycEf4QXCYUbMXjxB0EJB8y7z+xOi5Mmd/pPlVmZ2gQK84NAL90p7n7jRlyf3gOUY+JOl4c5e
- UFiIhOzmuqNrvPOiZ02GXh6SGUU5y7IgSoIKvXSFgHAn2OG/tcspBmkyv6IuNVpmbmEgYn4I
- Rnt40UXVQkxTh0dENFhk2cjunMYozV/OqYCgmZLFSeJd8kAo4yn+yOtNABEBAAHCwWUEGAEI
- AA8FAlnlUP4CGwwFCQlmAYAACgkQ7ou0mfRW5/nNcg//R63cbOS6zLtvdnPub3Ssp1Ft8Wmv
- mni+kccuNApuDV7d63QckYxjAfUv2zYMLpbh87gVbLyCq9ASn552EbfRhTvHdk44CgbHBVcI
- ZBEdZWgRR5ViJakQSYHpP2e5AGNFnx9gSIuRTaa5rvZM+4xeoZ2vJiq93TtaYPr7UFNfK+c4
- vv4C66lkt9l95/I10eSc3RqbOKZW47emlg4X3ygEoB9k2lPrpspyf6sUuSEi0WrlSxoLAr6p
- JG8rTUErYNeXe6JCdL31odDx1Dh5sdKIj2RicUYZNilxu9f1M7jZwf2ra1FGAlKj2ybqmgpZ
- EFteaiCinEYsvDyZyOiWHjAFI+RZIPQQL3AnVp4l7wYD3r9hnqYPww0slyMDcb9262RoFkHq
- dDwxPYarrNjWUpOzxB6bFxOgNRdCTgvQl8Ftk8a/yXB6vHeUSm1vPFCBxQPZytyfOLhEWm0J
- /mkVL0Z6iRK3p1LKnpLYCS4/esL2u7RrhPyCs2SsL58YcQF/g+PpeT9geZ+oyZ/4IQ+TWJoU
- PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
- ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
- 8CS2NxU=
-Message-ID: <c4c0289f-b4cc-d176-420a-e8ab46363284@gmail.com>
-Date: Mon, 1 Jun 2020 06:45:43 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+ d=Melink.onmicrosoft.com; s=selector2-Melink-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5aAI6e/H/cOPxj5Q9xnJwB78VuEXtlk5FvhDJfGtgKc=;
+ b=MkXZ02hXc8V959r65IrSZhDXJgtvcoi4yPfJePO1SbchiBxAi4srcdFze2vluXf6C7SnKYmuM6EjJcA3Jo85+mv3NDp6e+2tGySe7cBHc7LchUZvHiZXfwJf2E1cJzzNCaMZBcO8SmZiDSM82kF/ffNp431TJw00X+Bkr9xNWiyxIAGBIYveEY6Q9YW+OrkJa0dZJjq0qJqXDsMUTXegg+/hfW9v3IbAMu+3mqBTBPO7sLTTak8r0oamI5cguYIor9HDv/okwdQ+JfvPMl6FfzPZFdvW2VzH1rn3txTU4wIUvDYNB+kBvc13Q8IWlCma5L0X92FK7Ol+qJO0L8A84w==
+Received: from DM6PR20MB2540.namprd20.prod.outlook.com (2603:10b6:5:1ac::13)
+ by DM6PR20MB3283.namprd20.prod.outlook.com (2603:10b6:5:2a2::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3045.17; Mon, 1 Jun
+ 2020 15:16:19 +0000
+Received: from DM6PR20MB2540.namprd20.prod.outlook.com
+ ([fe80::2051:ee3e:dbd0:9337]) by DM6PR20MB2540.namprd20.prod.outlook.com
+ ([fe80::2051:ee3e:dbd0:9337%5]) with mapi id 15.20.3045.024; Mon, 1 Jun 2020
+ 15:16:19 +0000
+From: "Bryan Evenson" <bevenson@melinkcorp.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Eclipse GDB setup issues; can't determine cause for SIGSEGV
+Thread-Topic: Eclipse GDB setup issues; can't determine cause for SIGSEGV
+Thread-Index: AdY4IU1c+KqgRe3YQl6zQlxTh54n9A==
+Date: Mon, 1 Jun 2020 15:16:19 +0000
+Message-ID: 
+ <DM6PR20MB25405CB5ADB273ADF20DC449BB8A0@DM6PR20MB2540.namprd20.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-bromium-msgid: 6c1a46f2-ee72-44d2-b05a-4eec34c72f40
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=melinkcorp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 391f3843-2a8c-4b8e-285c-08d8063ebcb2
+x-ms-traffictypediagnostic: DM6PR20MB3283:
+x-microsoft-antispam-prvs: 
+ <DM6PR20MB328364C620C625F808C6CD7CBB8A0@DM6PR20MB3283.namprd20.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 0421BF7135
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ RWAivO3KwykDNPeT00qkVfoBpZGah+NC69T16zntMXYGDcVaFt3cxKgEfLK0xV1htvf8J5ztKRgikjG+nwPBGmEpmfqD7zGR4OG0fOqxlNVLPUGjUHg0JcOMOJAM+Xd/4K9YYXEKrLJFZVOb2Dn8p0/jKRBbHz0b1b926r5Sbe5tSxHdqpvXXwzfoI8pP8wolQxNlyevKImk85jjorhyJB8yzsODfRKNzrwm/MoQ54u1nvk30G0XOVCne+9xYMeDL4+9tm24ah/t+Lypz2r6BW+MJoP0MFoPdxw6ZSCdvh80d1MOgRXyiz1JfOxE6C/s
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR20MB2540.namprd20.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(366004)(376002)(39840400004)(396003)(346002)(136003)(6506007)(26005)(83380400001)(86362001)(6916009)(7696005)(508600001)(33656002)(9686003)(55016002)(316002)(5660300002)(76116006)(8676002)(66946007)(66556008)(8936002)(66446008)(66476007)(64756008)(186003)(2906002)(52536014)(71200400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: 
+ ouVEuiYftaFg9TU4UoHPdwocIkEbBldVmqgz33ii5f2IAPcGMb3ZWJK3ZvBt+0x/WU/HUCoMUmC4aXqiJFIiPSDgIlsx02eVqh9y+rf/TKw40JCC3if3mlgJRXfkzmDcWpoBp9X+3ZAWK7QejVnSEZWITuNj1XhqJ/LC94R676Xs7/+AtNW7DqloGGt59p5sjEDsdymBM2icyRKKP4z+dzmSZhIPmNwK7bDcwXh8YTJO/Xhxg2XK26umTVPB2dOcrDCvhzC3bRbb9NkEvEVDKdwqYC/SnP+Zg2Avp43pWvBLqrx0RXmo48M6Hj5C3wVxZD5GMb/ZmwxktN11C26OOoaRzesNi0cMXqmLpdwVrg55vt89lVILnE9ZpmpvbHx4bwoutFYAMKLpuQ7mabXmI0rRu0wUpvjwJeTP9SflHklUpa9fkQcdKWDJ0LJIo1dzIefNhkcevTeBHys5CYNSmLTAFagxGGuH8lTdcD1wY8A=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-In-Reply-To: <BY5PR11MB40371DDE5C07A6FE3BA2F211E38A0@BY5PR11MB4037.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: melinkcorp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 391f3843-2a8c-4b8e-285c-08d8063ebcb2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jun 2020 15:16:19.5047
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 47a7DwGGqTd3dZqwGgrXYISwpu4vChxgv81+FzzvjH1jCiiNSqTdsf7BPGt6SF0Gc+XhDMFoG/LSEHnnCXlPGA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR20MB3283
 Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+All,
 
+I have a AT91SAM9G25 system that has been idle for a couple years (running =
+morty, yocto version 2.2.1) and I am working on updating to the latest Yoct=
+o production branch.  Before I get there, I'm trying to confirm the old set=
+up and I'm having problems with remote debugging.  I know there have been c=
+hanges since yocto version 2.7 for debugging support, so I want to make sur=
+e I can get the old setup to work first prior to changing everything.  I'm =
+looking for assistance in tracking down my debug issues.
 
-On 6/1/20 12:25 AM, Jain, Sangeeta wrote:
-> Hello all,
->
-> This is the full report for yocto-2.7.4.rc2:  
-> https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?h=intel-yocto-testresults
+My stable production image is based off of core-image-minimal, with a few a=
+dditional packages for our proprietary applications (proprietary applicatio=
+ns are written in C).  I also have a development image, based off of our pr=
+oduction image, with the following additions:
 
-Thank you.
+IMAGE_FEATURES +=3D "package-management dev-pkgs eclipse-debug allow-empty-=
+password empty-root-password"
 
-- Armin
->
-> ======= Summary ========
-> No high milestone defects.  
-> No new defects are found in this cycle.
->
-> Note: Few failures are observed. These are setup issues, not real yocto issue.
->
-> Thanks,
-> Sangeeta
->
+IMAGE_INSTALL +=3D " \
+    #same additional packages as production image  \
+    #"-dbg" version of proprietary applications \                          =
+    =20
+    gdbserver \
+"
+# Strip python from the image to reduce the image size
+PACKAGE_EXCLUDE =3D "python"
+
+I have the Eclipse Yocto plugin installed and it is setup to use the SDK th=
+at I have built based on the development image.  I've confirmed that I can =
+start a debug session on one of our proprietary applications.  I can set br=
+eakpoints and run the debugger.  However, the debugger always stops at the =
+first call to uuid_compare with a  SIGSEGV.  The last line in the call stac=
+k states "<symbol is not available> 0x00000000".  From my understanding, th=
+e stack pointer is getting set to NULL when uuid_compare is getting called.=
+  If I stop the debugger and just run the application on the hardware, the =
+application runs without errors.  I have confirmed with syslog messages tha=
+t I do not have the same NULL stack pointer issue when I run the applicatio=
+n outside of the debugger.
+
+Any suggestions on where to start looking?  I don't see any obvious possibl=
+e causes and I don't know where to start looking for the problem.
+
+Thanks,
+Bryan
 
