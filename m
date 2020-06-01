@@ -1,121 +1,304 @@
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (NAM10-BN7-obe.outbound.protection.outlook.com [40.107.92.104])
- by mx.groups.io with SMTP id smtpd.web10.39556.1591024581373978360
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.41215.1591028701785103863
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Jun 2020 08:16:21 -0700
+ Mon, 01 Jun 2020 09:25:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@melink.onmicrosoft.com header.s=selector2-melink-onmicrosoft-com header.b=MkXZ02hX;
- spf=pass (domain: melinkcorp.com, ip: 40.107.92.104, mailfrom: bevenson@melinkcorp.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=by1ZHK4lUyrc59kBif5bF3bYlNkU3uKYhmxrvOJFdiGfv3UFYGO5yKUt0AdfELSg1q8gS7lAfJ6m5zj2xmCA+wwIXWzubVTdk7NauBq/TQGRe42xsh/Sl0Fv6FUr+s0RFMiwkkvEpSXSwdQaFDz1B9n/SpGCfjyeXOzJNt+iAKpkRIHWMbI6mFEExlxTWFbmus5+gngHxfxEjU120oD4KgiyhBZ1d6Nv675Kiazhx32zIFsAKnqR67DN5WtAu7Ce3151qoS1RshNyC9395ssyXgqPTtiNjbBn7ZEtBjA0zFHR3tMRqXuvs3K6m6gW6ymwWDqZOJVBy/8My8QuCFYGA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5aAI6e/H/cOPxj5Q9xnJwB78VuEXtlk5FvhDJfGtgKc=;
- b=EYnyVfwHIfzq6NO5MEoXrJJTzVJwq551Byqf2Yglht6Cs9vmor38KnYf/QN7QQDv4a/M7JZld1Y+m7HstMFC+M2hmOsOt/Kr4rXv1TAypDmh/od8hnmKWwX6XRLOFL11HWLCgmiDhVEVj+AGl7P2GZQ1W8+m0+uR5YlM0aHHQYko6lWz0SXJAnTTbB1btm7TY8kAA5sWn4u6v7FbZQIcMVum8Ky+u/Sd+IzljfUX0ckvameWh3eklmX2H/uIar4OO+3d7ZRomseJ0JMdJK0jW0mqv+9vnAGo7m7fXMSW95uLGrZEBtIq0dVBDajhwFzdY9UUF5xAUVA39krycRLGsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=melinkcorp.com; dmarc=pass action=none
- header.from=melinkcorp.com; dkim=pass header.d=melinkcorp.com; arc=none
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=L+8Px3J0;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 5D0BEE01C53; Mon,  1 Jun 2020 09:25:01 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (sjolley.yp.pm[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.216.41 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9874E01B60
+	for <yocto@yoctoproject.org>; Mon,  1 Jun 2020 09:25:00 -0700 (PDT)
+Received: by mail-pj1-f41.google.com with SMTP id ga6so47533pjb.1
+        for <yocto@yoctoproject.org>; Mon, 01 Jun 2020 09:25:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Melink.onmicrosoft.com; s=selector2-Melink-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5aAI6e/H/cOPxj5Q9xnJwB78VuEXtlk5FvhDJfGtgKc=;
- b=MkXZ02hXc8V959r65IrSZhDXJgtvcoi4yPfJePO1SbchiBxAi4srcdFze2vluXf6C7SnKYmuM6EjJcA3Jo85+mv3NDp6e+2tGySe7cBHc7LchUZvHiZXfwJf2E1cJzzNCaMZBcO8SmZiDSM82kF/ffNp431TJw00X+Bkr9xNWiyxIAGBIYveEY6Q9YW+OrkJa0dZJjq0qJqXDsMUTXegg+/hfW9v3IbAMu+3mqBTBPO7sLTTak8r0oamI5cguYIor9HDv/okwdQ+JfvPMl6FfzPZFdvW2VzH1rn3txTU4wIUvDYNB+kBvc13Q8IWlCma5L0X92FK7Ol+qJO0L8A84w==
-Received: from DM6PR20MB2540.namprd20.prod.outlook.com (2603:10b6:5:1ac::13)
- by DM6PR20MB3283.namprd20.prod.outlook.com (2603:10b6:5:2a2::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3045.17; Mon, 1 Jun
- 2020 15:16:19 +0000
-Received: from DM6PR20MB2540.namprd20.prod.outlook.com
- ([fe80::2051:ee3e:dbd0:9337]) by DM6PR20MB2540.namprd20.prod.outlook.com
- ([fe80::2051:ee3e:dbd0:9337%5]) with mapi id 15.20.3045.024; Mon, 1 Jun 2020
- 15:16:19 +0000
-From: "Bryan Evenson" <bevenson@melinkcorp.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Eclipse GDB setup issues; can't determine cause for SIGSEGV
-Thread-Topic: Eclipse GDB setup issues; can't determine cause for SIGSEGV
-Thread-Index: AdY4IU1c+KqgRe3YQl6zQlxTh54n9A==
-Date: Mon, 1 Jun 2020 15:16:19 +0000
-Message-ID: 
- <DM6PR20MB25405CB5ADB273ADF20DC449BB8A0@DM6PR20MB2540.namprd20.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-bromium-msgid: 6c1a46f2-ee72-44d2-b05a-4eec34c72f40
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=melinkcorp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 391f3843-2a8c-4b8e-285c-08d8063ebcb2
-x-ms-traffictypediagnostic: DM6PR20MB3283:
-x-microsoft-antispam-prvs: 
- <DM6PR20MB328364C620C625F808C6CD7CBB8A0@DM6PR20MB3283.namprd20.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 0421BF7135
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- RWAivO3KwykDNPeT00qkVfoBpZGah+NC69T16zntMXYGDcVaFt3cxKgEfLK0xV1htvf8J5ztKRgikjG+nwPBGmEpmfqD7zGR4OG0fOqxlNVLPUGjUHg0JcOMOJAM+Xd/4K9YYXEKrLJFZVOb2Dn8p0/jKRBbHz0b1b926r5Sbe5tSxHdqpvXXwzfoI8pP8wolQxNlyevKImk85jjorhyJB8yzsODfRKNzrwm/MoQ54u1nvk30G0XOVCne+9xYMeDL4+9tm24ah/t+Lypz2r6BW+MJoP0MFoPdxw6ZSCdvh80d1MOgRXyiz1JfOxE6C/s
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR20MB2540.namprd20.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(366004)(376002)(39840400004)(396003)(346002)(136003)(6506007)(26005)(83380400001)(86362001)(6916009)(7696005)(508600001)(33656002)(9686003)(55016002)(316002)(5660300002)(76116006)(8676002)(66946007)(66556008)(8936002)(66446008)(66476007)(64756008)(186003)(2906002)(52536014)(71200400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: 
- ouVEuiYftaFg9TU4UoHPdwocIkEbBldVmqgz33ii5f2IAPcGMb3ZWJK3ZvBt+0x/WU/HUCoMUmC4aXqiJFIiPSDgIlsx02eVqh9y+rf/TKw40JCC3if3mlgJRXfkzmDcWpoBp9X+3ZAWK7QejVnSEZWITuNj1XhqJ/LC94R676Xs7/+AtNW7DqloGGt59p5sjEDsdymBM2icyRKKP4z+dzmSZhIPmNwK7bDcwXh8YTJO/Xhxg2XK26umTVPB2dOcrDCvhzC3bRbb9NkEvEVDKdwqYC/SnP+Zg2Avp43pWvBLqrx0RXmo48M6Hj5C3wVxZD5GMb/ZmwxktN11C26OOoaRzesNi0cMXqmLpdwVrg55vt89lVILnE9ZpmpvbHx4bwoutFYAMKLpuQ7mabXmI0rRu0wUpvjwJeTP9SflHklUpa9fkQcdKWDJ0LJIo1dzIefNhkcevTeBHys5CYNSmLTAFagxGGuH8lTdcD1wY8A=
-x-ms-exchange-transport-forked: True
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language:importance;
+        bh=H2doJJuGON2b50yOU9xdPzJmsCcgVtDdcjo17vR3PJI=;
+        b=L+8Px3J0orCl49KZ9oeri/fcEXkBAwkdoqGjiNdR4IIUFUvSFMYJ2MsX2EoWl7e2TJ
+         /TCcA+mT8WGLCcyWGZUSfP8wwF8BgAHJYU6imgLXwUWzHC7DObspTv+u3kOWWu9F87dt
+         REzq0Kh30Konn6fVAhEU0Wj9RVBOZf8gpoPaBw8x7DuChGpSSfxnc/4opHZef+ytU4FT
+         1irsyN+0hvaCEMGrcAn280c/YGSNJQ2qqkLJSvgzeBwYMjGKgEWRrgzWC0QWyATt0PvR
+         IdbEygiXECGahgJqujhP7acaDKMko6W30ev1yjWUPwvLo1cXfoiDLTiXGnjRA4cFZuY5
+         mxGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language:importance;
+        bh=H2doJJuGON2b50yOU9xdPzJmsCcgVtDdcjo17vR3PJI=;
+        b=sDDoEX3zdpwodGEQEx6VPjGDWyP6myHxwQ90vVSS2QuwZUTGGGO4Ee6kECo7/RU6dh
+         c6HupqzK6j4cNg/g8G4rMZCqchOiVVJhwYVoWOihaLkZEpoHtnrJf5jQJCizmyf4AT6A
+         cv0HsGDGHIFJusgjD2FBTwvYuiNb9SIrpG8LN1Z6nV6A9aoeUMJAaCiVwL7aS4ti2uAI
+         Nj7QJpGjyJ3Var/l0BBjrho/1O9uC/B1uVAwEcM1vjgRQnqmKfiiW4YNp/kC8XOUbSM7
+         13ku6lQhdoPSpONuRKz0I8wPCPSWMBrvhPRvv0u03KBJyclYFjkPZVlyT5NTwrINFAT5
+         +aIQ==
+X-Gm-Message-State: AOAM530hjH8JkUDuIvLKyWRpdAE5WQk2BXVViHs6yWKd1S2dvb7P3oJR
+	ZRZ4ZaKv2MJ4sdAL2DgptDI=
+X-Google-Smtp-Source: ABdhPJz8iXTL1GgPaS9Y0hYJn3lilOmykMZNjeeGbGed+t/SzjwdcpqxXcagAoi7yb9ojwZD+2GTMg==
+X-Received: by 2002:a17:902:9a03:: with SMTP id v3mr21155471plp.6.1591028699874;
+        Mon, 01 Jun 2020 09:24:59 -0700 (PDT)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id 73sm6303pge.15.2020.06.01.09.24.59
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 01 Jun 2020 09:24:59 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Reminder: Yocto Project Technical Team Meeting @ Monthly from 8am on the first Tuesday (PDT)
+Date: Mon, 1 Jun 2020 09:24:59 -0700
+Message-ID: <118a01d63831$31ea7410$95bf5c30$@gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 391f3843-2a8c-4b8e-285c-08d8063ebcb2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jun 2020 15:16:19.5047
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 47a7DwGGqTd3dZqwGgrXYISwpu4vChxgv81+FzzvjH1jCiiNSqTdsf7BPGt6SF0Gc+XhDMFoG/LSEHnnCXlPGA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR20MB3283
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-Priority: 1 (Highest)
+X-MSMail-Priority: High
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQH850a8I300MoYKgQT9aBbEgyNPlA==
+Importance: High
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_118B_01D637F6.858C5F60"
+Content-Language: en-us
+
+------=_NextPart_000_118B_01D637F6.858C5F60
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
 All,
 
-I have a AT91SAM9G25 system that has been idle for a couple years (running =
-morty, yocto version 2.2.1) and I am working on updating to the latest Yoct=
-o production branch.  Before I get there, I'm trying to confirm the old set=
-up and I'm having problems with remote debugging.  I know there have been c=
-hanges since yocto version 2.7 for debugging support, so I want to make sur=
-e I can get the old setup to work first prior to changing everything.  I'm =
-looking for assistance in tracking down my debug issues.
+ 
 
-My stable production image is based off of core-image-minimal, with a few a=
-dditional packages for our proprietary applications (proprietary applicatio=
-ns are written in C).  I also have a development image, based off of our pr=
-oduction image, with the following additions:
+Just a reminder we will hold the monthly Yocto Project Technical Meeting at
+8am PST tomorrow. (6/2)  
 
-IMAGE_FEATURES +=3D "package-management dev-pkgs eclipse-debug allow-empty-=
-password empty-root-password"
+ 
 
-IMAGE_INSTALL +=3D " \
-    #same additional packages as production image  \
-    #"-dbg" version of proprietary applications \                          =
-    =20
-    gdbserver \
-"
-# Strip python from the image to reduce the image size
-PACKAGE_EXCLUDE =3D "python"
+Yocto Project Technical Team Meeting: We encourage people attending the
+meeting to logon and announce themselves on the Yocto Project IRC chancel
+during the meeting (optional):
 
-I have the Eclipse Yocto plugin installed and it is setup to use the SDK th=
-at I have built based on the development image.  I've confirmed that I can =
-start a debug session on one of our proprietary applications.  I can set br=
-eakpoints and run the debugger.  However, the debugger always stops at the =
-first call to uuid_compare with a  SIGSEGV.  The last line in the call stac=
-k states "<symbol is not available> 0x00000000".  From my understanding, th=
-e stack pointer is getting set to NULL when uuid_compare is getting called.=
-  If I stop the debugger and just run the application on the hardware, the =
-application runs without errors.  I have confirmed with syslog messages tha=
-t I do not have the same NULL stack pointer issue when I run the applicatio=
-n outside of the debugger.
+Yocto IRC: http://webchat.freenode.net/?channels=#yocto
 
-Any suggestions on where to start looking?  I don't see any obvious possibl=
-e causes and I don't know where to start looking for the problem.
+ 
+
+Wiki: https://www.yoctoproject.org/public-virtual-meetings/
+
+ 
+
+When            Monthly from 8am to 8:30am on the first Tuesday Pacific Time
+
+Where           Zoom Meeting: https://zoom.us/j/990892712 
+
+ 
+
+We are tracking the minutes at:
+https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9d
+DH4/edit?pli=1 Please request access if you want to assist in editing them.
+The world should have view access. 
+
+ 
 
 Thanks,
-Bryan
 
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_118B_01D637F6.858C5F60
+Content-Type: text/html;
+	boundary="----=_NextPart_000_2855_01D621F6.09676210";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>All,</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Just a =
+reminder we will hold the monthly Yocto Project Technical Meeting at 8am =
+PST tomorrow. (6/2)&nbsp; <o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Yocto =
+Project Technical Team Meeting: We encourage people attending the =
+meeting to logon and announce themselves on the Yocto Project IRC =
+chancel during the meeting (optional):</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Yocto IRC: =
+</span><a =
+href=3D"http://webchat.freenode.net/?channels=3D#yocto">http://webchat.fr=
+eenode.net/?channels=3D#yocto</a><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Wiki: =
+</span><a =
+href=3D"https://www.yoctoproject.org/public-virtual-meetings/">https://ww=
+w.yoctoproject.org/public-virtual-meetings/</a><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>When&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; Monthly from 8am to 8:30am on the first Tuesday =
+Pacific Time</span><span style=3D'font-size:12.0pt;font-family:"Times =
+New Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>Where&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; Zoom Meeting: </span><a =
+href=3D"https://zoom.us/j/990892712">https://zoom.us/j/990892712</a><span=
+ style=3D'color:#1F497D'> </span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>We are =
+tracking the minutes at: </span><a =
+href=3D"https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7Q=
+wKC5wWVDg9dDH4/edit?pli=3D1">https://docs.google.com/document/d/1ly8nyhO1=
+4kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit?pli=3D1</a><span =
+style=3D'color:#1F497D'> Please request access if you want to assist in =
+editing them.&nbsp; The world should have view access. </span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>Thanks,</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_118B_01D637F6.858C5F60--
