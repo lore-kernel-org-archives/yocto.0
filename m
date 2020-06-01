@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.41604.1591030036484269460
+ by mx.groups.io with SMTP id smtpd.web11.41803.1591030348847243816
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Jun 2020 09:47:16 -0700
+ Mon, 01 Jun 2020 09:52:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=W/Mmue/R;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=lqNL8Vh7;
  spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5B299E01C53; Mon,  1 Jun 2020 09:47:16 -0700 (PDT)
+	id 6D467E01C53; Mon,  1 Jun 2020 09:52:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -20,117 +20,110 @@ X-Spam-HAM-Report:
 	*      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.215.178 listed in list.dnswl.org]
+	*      [209.85.214.174 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83F52E01B60
-	for <yocto@yoctoproject.org>; Mon,  1 Jun 2020 09:47:14 -0700 (PDT)
-Received: by mail-pg1-f178.google.com with SMTP id u5so3773367pgn.5
-        for <yocto@yoctoproject.org>; Mon, 01 Jun 2020 09:47:14 -0700 (PDT)
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED41AE01B60
+	for <yocto@yoctoproject.org>; Mon,  1 Jun 2020 09:52:27 -0700 (PDT)
+Received: by mail-pl1-f174.google.com with SMTP id y17so184124plb.8
+        for <yocto@yoctoproject.org>; Mon, 01 Jun 2020 09:52:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:mime-version:thread-index
          :content-language;
-        bh=pZGoxWoP4ogQO+Rw6wBcMnPD2GJB8uoPIXknVemG3FY=;
-        b=W/Mmue/RMeTdrQONhRP0Qg3TTAqjKds7hVHv4TnORJq9n0CYG/iwtwxhUkRiGE6lQQ
-         86HQILSYBzEetUsZyHuEx94BtvFVilfCZj+2+tckMQEnDZK0CjlTi1YBWVZ/3KOtQUFB
-         Pjnmk4kMgoHh87Qhjpb6WxZ3dbn6UDyCGPGS/8vF7mdJXaTuXd4yiBUzMSdYHvTbPjQv
-         NxgmzzTshLeaMWl8evenNqIzfPbqH5Vx9EyggODkXJp+qDySC2img8MRxodKfZ5SeCrp
-         20mBI8oDY3VtVJEhYhXG8r/P6b/ASA9vdYNpZN6LgsJx1KMLTSlJDa45FpijtK932hyf
-         2GOw==
+        bh=cri1gZ4gVSpSEvB8tKriEzcxgU7ibSa/zcbi9DEX9mk=;
+        b=lqNL8Vh7+vEo/tloHOxWNZByxglsU3eG4y1+0kcxnwUrw7cfvIEdVv0e21Ln2LL6hc
+         LxXgEPbb3+m9uORKD7ypsi1nyI1ZoU3fPFmO/GAN/O4oxHMYbD6fRIew9eBVaifaMixt
+         KpQp4MnktWC8a/2ZrAK1xWMb8m22QEE/q2XZ+GecQgWvBT7msi7LVTb6mYxWqf8BTIzz
+         7w2pYcRvrEI1Nvo69QsbdkQcX7yiLiQDszd0sj24Ou1Cm03KU8Z3ZK5L8NK4GdZ1C7hF
+         oIk969m2qkmoeht3VjoX4aqscvfSw3Yk1M5/p3zYYMp/HRKNJEa1UcfZHfLwqHbJUPWe
+         1Cfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :thread-index:content-language;
-        bh=pZGoxWoP4ogQO+Rw6wBcMnPD2GJB8uoPIXknVemG3FY=;
-        b=knqPmshC0vqQBWEoeo4FCG7UlQPuRf3sq/m0oiZdXjNiq3FHAw4vTgAVUmj7U68CFQ
-         +xna1ek878NWqEB4GgLBn5zTa/BHXdN/jvnBhZKCeWVuoUK6UTXoNRws8PKKGeRRPEzl
-         AHSeKS/BeGCi0Mke/JbDX5B+uPSYLWVkEYTmnflTQjzP6OyWG1PzKQCnK10uI7VLF206
-         lWfKlEJcjHWqCgbLGsyo0RXO2sQvmzc1zBz848CDD1kxDXWnonoLYoDB1FJchfX/RvIx
-         tUUYQT7XQEUtXpMPeAZLYDIqzHtDweceCej5pSIIRNyGRZJ7LcqJ0qdxsZKg53mbAer7
-         Ll9Q==
-X-Gm-Message-State: AOAM533T41eLOPyVoc7MX2fUAZQluyoq1/7tvF7hL53PDP9w4zTo6DR3
-	s4zl/dzcyqeSIij7AIUs+TE=
-X-Google-Smtp-Source: ABdhPJwe1vPHMYK9oJs0T2pwL3MlIdwLPr2ozLpcUwyTu+MgNjAaBkaVMEswm+NI1BT7ntsAKoXahg==
-X-Received: by 2002:a63:d307:: with SMTP id b7mr20432399pgg.219.1591030033981;
-        Mon, 01 Jun 2020 09:47:13 -0700 (PDT)
+        bh=cri1gZ4gVSpSEvB8tKriEzcxgU7ibSa/zcbi9DEX9mk=;
+        b=VEP5my5GdB4EiwjzXmj8+qoGCxqqV4RuA4KvXH8epvmeVmahwtBFCJPT/e1o7zqpal
+         3FjqY+7QN7OevVql8lp9Aom2L1p29shihUy8igPpBH23gx/OZlMdRGqrdWxMHv6AAQIe
+         2peZiusBjqZBv3c0hO9IndxBLfG4cH4CH2CB4Wi+zCBgKCmddzN6xJRhwdyqyduuYx2G
+         Nyu9ckqodfn9I9hC1XTGxdcGvgm4TVBW2FVGXONDLlWW20KO9og9bkbzLqQXKY/vAqcW
+         PYzpOPVp3yq6uDdoqwwWrOScibtg0J37OUslDniibLGVQfbR6dOaGY/k9cYIu2rYCcJE
+         GKeA==
+X-Gm-Message-State: AOAM530mI7c8S+nX2ubbpeduDcwWlQAHOFwV+ivqnebfY36OlOOdfFwt
+	x0nR2Fgnx2i9906P4aJzodI=
+X-Google-Smtp-Source: ABdhPJwbdB/PzIUPZNkGdywalPpK8mdJYpEVFF2S37h2hRnWk30l4Do9gnRDJUd5dYz8RNmW4Gm1pg==
+X-Received: by 2002:a17:90b:23c8:: with SMTP id md8mr371448pjb.72.1591030347458;
+        Mon, 01 Jun 2020 09:52:27 -0700 (PDT)
 Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-        by smtp.gmail.com with ESMTPSA id n19sm13738pjo.5.2020.06.01.09.47.13
+        by smtp.gmail.com with ESMTPSA id j24sm36771pga.51.2020.06.01.09.52.26
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 01 Jun 2020 09:47:13 -0700 (PDT)
+        Mon, 01 Jun 2020 09:52:27 -0700 (PDT)
 From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
-Date: Mon, 1 Jun 2020 09:47:13 -0700
-Message-ID: <11d801d63834$4d2fee50$e78fcaf0$@gmail.com>
+To: <yocto@yoctoproject.org>
+Subject: Enhancements/Bugs closed WW22!
+Date: Mon, 1 Jun 2020 09:52:26 -0700
+Message-ID: <11e701d63835$0809f220$181dd660$@gmail.com>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFgpQdkty3UgvH6TzurRFgIPfziUQ==
+Thread-Index: AdY4NPevUYrNFQ2ySO6fayII5FIBnA==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_11D9_01D637F9.A0D24ED0"
+	boundary="----=_NextPart_000_11E8_01D637FA.5BAE4E70"
 Content-Language: en-us
 
-------=_NextPart_000_11D9_01D637F9.A0D24ED0
+------=_NextPart_000_11E8_01D637FA.5BAE4E70
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
 All,
 
- 
+The below were the owners of enhancements or bugs closed during the last
+week!
 
-The triage team is starting to try and collect up and classify bugs which a
-newcomer to the project would be able to work on in a way which means people
-can find them. They're being listed on the triage page under the appropriate
-heading:
 
- 
+Who
 
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
+Count
 
- 
 
-The idea is these bugs should be straight forward for a person to help work
-on who doesn't have deep experience with the project.  If anyone can help,
-please take ownership of the bug and send patches!  If anyone needs
-help/advice there are people on irc who can likely do so, or some of the
-more experienced contributors will likely be happy to help too.
+richard.purdie@linuxfoundation.org
 
- 
+3
 
-Also, the triage team meets weekly and does its best to handle the bugs
-reported into the Bugzilla. The number of people attending that meeting has
-fallen, as have the number of people available to help fix bugs. One of the
-things we hear users report is they don't know how to help. We (the triage
-team) are therefore going to start reporting out the currently 361
-unassigned or newcomer bugs.
 
- 
+michael@yoctoproject.org
 
-We're hoping people may be able to spare some time now and again to help out
-with these.  Bugs are split into two types, "true bugs" where things don't
-work as they should and "enhancements" which are features we'd want to add
-to the system.  There are also roughly four different "priority" classes
-right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
-being in "3.1" and then "3.2".
+3
 
- 
 
-Please review this link and if a bug is something you would be able to help
-with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
-like and I will assign it to you (please make sure you have a Bugzilla
-account).  The list is at:
-https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
-_Bugs
+randy.macleod@windriver.com
 
- 
+2
+
+
+timothy.t.orling@intel.com
+
+1
+
+
+steve@sakoman.com
+
+1
+
+
+Martin.Jansa@gmail.com
+
+1
+
+
+Grand Total
+
+11
 
 Thanks,
 
@@ -148,9 +141,9 @@ Yocto Project Program Manager
  
 
 
-------=_NextPart_000_11D9_01D637F9.A0D24ED0
+------=_NextPart_000_11E8_01D637FA.5BAE4E70
 Content-Type: text/html;
-	boundary="----=_NextPart_000_1A1F_01D632A6.CBD6CBE0";
+	boundary="----=_NextPart_000_1A2E_01D632A7.BB605C30";
 	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -210,54 +203,98 @@ div.WordSection1
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
 link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
-starting to try and collect up and classify bugs which a newcomer to the =
-project would be able to work on in a way which means people can find =
-them. They're being listed on the triage page under the appropriate =
-heading:<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
-s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
-><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>The idea is these bugs should be straight =
-forward for a person to help work on who doesn't have deep experience =
-with the project.&nbsp; If anyone can help, please take ownership of the =
-bug and send patches!&nbsp; If anyone needs help/advice there are people =
-on irc who can likely do so, or some of the more experienced =
-contributors will likely be happy to help too.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
-meets weekly and does its best to handle the bugs reported into the =
-Bugzilla. The number of people attending that meeting has fallen, as =
-have the number of people available to help fix bugs. One of the things =
-we hear users report is they don't know how to help. We (the triage =
-team) are therefore going to start reporting out the currently 361 =
-unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>We're hoping people may be able to spare =
-some time now and again to help out with these.&nbsp; Bugs are split =
-into two types, &quot;true bugs&quot; where things don't work as they =
-should and &quot;enhancements&quot; which are features we'd want to add =
-to the system.&nbsp; There are also roughly four different =
-&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
-&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
-being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
-and if a bug is something you would be able to help with either take =
-ownership of the bug, or send me (<a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
-e-mail with the bug number you would like and I will assign it to you =
-(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
-or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
-nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><span style=3D'color:black'>All,<br><br>The below were =
+the owners of enhancements or bugs closed during the last =
+week!<b><o:p></o:p></b></span></p><table class=3DMsoNormalTable =
+border=3D0 cellspacing=3D0 cellpadding=3D0 width=3D293 =
+style=3D'width:220.0pt;margin-left:-.15pt;border-collapse:collapse'><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><b><span =
+style=3D'color:black'>Who<o:p></o:p></span></b></p></td><td width=3D43 =
+nowrap valign=3Dbottom style=3D'width:32.0pt;border:solid windowtext =
+1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
+5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
+style=3D'color:black'>Count<o:p></o:p></span></b></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
+></p></td><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>3<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>michael@yoctoproject.org<o:p></o:p></span></p></td>=
+<td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>3<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
+td><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>timothy.t.orling@intel.com<o:p></o:p></span></p></t=
+d><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>steve@sakoman.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>Martin.Jansa@gmail.com<o:p></o:p></span></p></td><t=
+d width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;background:#DCE6F1;padding:0in 5.4pt 0in =
+5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
+style=3D'color:black'>Grand Total<o:p></o:p></span></b></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext =
+1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal align=3Dright style=3D'text-align:right'><b><span =
+style=3D'color:black'>11<o:p></o:p></span></b></p></td></tr></table><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
 style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
 style=3D'font-size:16.0pt;font-family:"Times New =
@@ -291,4 +328,4 @@ href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
 style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
 an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-------=_NextPart_000_11D9_01D637F9.A0D24ED0--
+------=_NextPart_000_11E8_01D637FA.5BAE4E70--
