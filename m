@@ -1,198 +1,474 @@
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
- by mx.groups.io with SMTP id smtpd.web11.2409.1591122015553119431
- for <yocto@lists.yoctoproject.org>;
- Tue, 02 Jun 2020 11:20:15 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=AfUJg1OR;
- spf=pass (domain: gmail.com, ip: 209.85.219.42, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f42.google.com with SMTP id cv17so2220403qvb.13
-        for <yocto@lists.yoctoproject.org>; Tue, 02 Jun 2020 11:20:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=qfLldP/RTFPsKLRMDH1Tw/Ao0t+kqHl26SSrOmcaT0s=;
-        b=AfUJg1ORmXiEviaGsyuAgoTAW3hrEiaCRzmFUB14HpYMOFCDm64M8Lt3Br6i6z0ON8
-         aiWAgn+8JR1HTHItpXAIyNfOwC/ZU9xrxnOlrTjmSQqXW15XBT5dQdmu2r3HQieoteFP
-         FFWUBISKwxuiGx8NVTPFkpzPIDJkNTtSvwr/4lSiS2kLwB50H9e6xAbimpaceNRRDeC2
-         EEkMJOlXQgd5b4LUkJCdOHuLyrS61u2vLHpQkjnv4WzAI+VNQ6q3R1ATeeruSc1RSxUo
-         vztXW1VpU4D8zxE1ABacTCx3RJTyIwoim2G8lrzMqOVBqVQqsLhT8Q9w/Ml6m49CgdMj
-         ZSSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=qfLldP/RTFPsKLRMDH1Tw/Ao0t+kqHl26SSrOmcaT0s=;
-        b=O8wqiWioJqkqdTXgQgOanjDRp8VqlJOARvYQDiRNDyiDGnGpQKH9c2DsP74S7YWj9N
-         9n60l8T+kfInEWTaP1aQpcFN+LmAMSdquW73IzunmFRtdwkaj8D91tKQpOGgLf2zR3Wt
-         ve0VoECU2MeBmi6AZ8+KndsaiFdFNNBuMlaj/1UPXDwwy3gdyLxe+0D96YB+dr42c9Ig
-         j6LQyp3MGrsod16YiiU6YMJor4L12MDqnkvGoF1ofu8U0rjHRuTPD2hKPiCU7nVgrh5E
-         U0fchjGOUDxWHTjBApsVHJFIKS9ePIHgmqQIdZlzim/SLfwHNbtprrC98mOYbFeT3cEe
-         ihzw==
-X-Gm-Message-State: AOAM532GF33zu84AdX0Iyk2as8oM+CLHKfgLJ8hdhCAFShCjd1gbqWjl
-	x2ivWd0z9q/6WR0WrP4uMFiZqw+fUH59iLeq1wE=
-X-Google-Smtp-Source: ABdhPJwYDmB9e1sWYSP7jFOOMcgbX0fHcOSJQyC48UH/Iu/nqmmmxmjZrmkZz2lcCiz7cfeVtrCm17JC6B2xMz9u3Mc=
-X-Received: by 2002:a0c:f888:: with SMTP id u8mr22297389qvn.130.1591122014397;
- Tue, 02 Jun 2020 11:20:14 -0700 (PDT)
+Subject: devtool modify issues with ubuntu 20 and fedora core 32
+To: yocto@lists.yoctoproject.org
+From: "Andrew Geissler" <geissonator@gmail.com>
+X-Originating-Location: Austin, Texas, US (45.18.127.186)
+X-Originating-Platform: Mac Firefox 76
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <1614746D82793AEE.8494@lists.yoctoproject.org> <1614866B049B125B.10126@lists.yoctoproject.org>
- <MN2PR20MB254289B326D91A3401BECCB8BB8B0@MN2PR20MB2542.namprd20.prod.outlook.com>
-In-Reply-To: <MN2PR20MB254289B326D91A3401BECCB8BB8B0@MN2PR20MB2542.namprd20.prod.outlook.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Tue, 2 Jun 2020 11:19:48 -0700
-Message-ID: <CAMKF1sqf_jVLznvOb83LkqnR0DEHKz5q0iU5rDWE6=BNmxi+uQ@mail.gmail.com>
-Subject: Re: [yocto] Eclipse GDB setup issues; can't determine cause for SIGSEGV
-To: Bryan Evenson <bevenson@melinkcorp.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Date: Tue, 02 Jun 2020 14:28:47 -0700
+Message-ID: <srY9.1591133327694476026.h5dt@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="X2JWADCzOw2PjNgVWgaD"
+
+--X2JWADCzOw2PjNgVWgaD
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 2, 2020 at 6:52 AM Bryan Evenson <bevenson@melinkcorp.com> wrot=
-e:
->
-> All,
->
->
-> > -----Original Message-----
-> > From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
-> > Behalf Of Bryan Evenson via lists.yoctoproject.org
-> > Sent: Monday, June 1, 2020 4:46 PM
-> > To: Bryan Evenson <bevenson@melinkcorp.com>;
-> > yocto@lists.yoctoproject.org
-> > Subject: Re: [yocto] Eclipse GDB setup issues; can't determine cause f=
-or
-> > SIGSEGV
-> >
-> > All,
-> >
-> > > -----Original Message-----
-> > > From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
-> > > Behalf Of Bryan Evenson via lists.yoctoproject.org
-> > > Sent: Monday, June 1, 2020 11:16 AM
-> > > To: yocto@lists.yoctoproject.org
-> > > Subject: [yocto] Eclipse GDB setup issues; can't determine cause for
-> > SIGSEGV
-> > >
-> > > All,
-> > >
-> > > I have a AT91SAM9G25 system that has been idle for a couple years
-> > (running
-> > > morty, yocto version 2.2.1) and I am working on updating to the late=
-st
-> > Yocto
-> > > production branch.  Before I get there, I'm trying to confirm the ol=
-d setup
-> > > and I'm having problems with remote debugging.  I know there have be=
-en
-> > > changes since yocto version 2.7 for debugging support, so I want to =
-make
-> > > sure I can get the old setup to work first prior to changing everyth=
-ing.  I'm
-> > > looking for assistance in tracking down my debug issues.
-> > >
-> > > My stable production image is based off of core-image-minimal, with =
-a few
-> > > additional packages for our proprietary applications (proprietary
-> > applications
-> > > are written in C).  I also have a development image, based off of ou=
-r
-> > > production image, with the following additions:
-> > >
-> > > IMAGE_FEATURES +=3D "package-management dev-pkgs eclipse-debug
-> > allow-
-> > > empty-password empty-root-password"
-> > >
-> > > IMAGE_INSTALL +=3D " \
-> > >     #same additional packages as production image  \
-> > >     #"-dbg" version of proprietary applications \
-> > >     gdbserver \
-> > > "
-> > > # Strip python from the image to reduce the image size
-> > > PACKAGE_EXCLUDE =3D "python"
-> > >
-> > > I have the Eclipse Yocto plugin installed and it is setup to use the=
- SDK that I
-> > > have built based on the development image.  I've confirmed that I ca=
-n start
-> > a
-> > > debug session on one of our proprietary applications.  I can set bre=
-akpoints
-> > > and run the debugger.  However, the debugger always stops at the fir=
-st call
-> > > to uuid_compare with a  SIGSEGV.  The last line in the call stack st=
-ates
-> > > "<symbol is not available> 0x00000000".  From my understanding, the =
-stack
-> > > pointer is getting set to NULL when uuid_compare is getting called. =
- If I stop
-> > > the debugger and just run the application on the hardware, the appli=
-cation
-> > > runs without errors.  I have confirmed with syslog messages that I d=
-o not
-> > > have the same NULL stack pointer issue when I run the application ou=
-tside
-> > of
-> > > the debugger.
-> > >
-> > > Any suggestions on where to start looking?  I don't see any obvious
-> > possible
-> > > causes and I don't know where to start looking for the problem.
-> > >
-> >
-> > On a whim, I changed in my code:
-> >     if(uuid_compare(uuid1, uuid2) =3D=3D 0)
-> >
-> > To:
-> >     If(memcmp(uuid1, uuid2, 16) =3D=3D 0)
-> >
-> > After this change the problematic line of code worked just fine.  The
-> > debugger worked fine until I got to the next spot in my code that call=
-ed
-> > uuid_compare.  At the next call to uuid_compare I got the same SIGSEGV
-> > error I had before.  Something is clearly a problem with calling uuid_=
-compare.
-> > However, I'm using several other functions from the uuid library
-> > (uuid_is_null, uuid_parse, uuid_unparse for a few) and none of them ar=
-e
-> > causing problems.  I don't think it's a problem with the input paramet=
-ers
-> > because I'm passing the same UUIDs to memcomp as I did to uuid_compare=
+I see meta-poky/conf/distro/poky.conf lists both Ubuntu 20 and FC32 as supp=
+orted but a couple of us have seen issues with running devtool modify using=
+ these distros.
+
+Anyone else seeing this or know of the issue?
+
+Seems like something with _PYTHON_SYSCONFIGDATA_NAME and sysconfig.py.
+
+A quick hack was to modify sysconfig.py _get_sysconfigdata_name() function=
+ and change _PYTHON_SYSCONFIGDATA_NAME to _PYTHON_SYSCONFIGDATA_NAME_INVALI=
+D so the python function will use the alternative _sysconfigdata_{abi}_{pla=
+tform}_{multiarch}'.format
+
+We see this building OpenBMC code using upstream master open-embedded.
+
+Here's the full error:
+
+devtool modify phosphor-state-manager
+NOTE: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+NOTE: Reconnecting to bitbake server...
+NOTE: Previous bitbake instance shutting down?, waiting to retry...
+NOTE: Retrying server connection (#2)...
+Loading cache: 100% |#####################################################=
+#########################################################| Time: 0:00:00
+Loaded 3614 entries from dependency cache.
+Parsing recipes: 100% |###################################################=
+#########################################################| Time: 0:00:00
+Parsing of 2406 .bb files complete (2404 cached, 2 parsed). 3615 targets, =
+362 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=
+ "1.46.0"
+BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 =3D "x86_64-linux"
+NATIVELSBSTRING=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "ubuntu-20.04"
+TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=
+ "arm-openbmc-linux-gnueabi"
+MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 =3D "witherspoon"
+DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 =3D "openbmc-witherspoon"
+DISTRO_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "0.1.0"
+TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "arm thumb arm=
+1176jzs"
+TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=
+ "soft"
+meta
+meta-oe
+meta-networking
+meta-perl
+meta-python
+meta-phosphor
+meta-aspeed
+meta-openpower
+meta-ibm
+workspace=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 =3D "master:1ba73b9e60779e905f483b419fc2a801e0d17873"
+
+Initialising tasks: 100% |################################################=
+#########################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Found 0 Missed 0 Current 10 (0% match, 100% compl=
+ete)
+NOTE: Executing Tasks
+ERROR: Error executing a python function in exec_python_func() autogenerat=
+ed:
+
+The stack trace of python calls that resulted in this exception/failure wa=
+s:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+0001:
+*** 0002:devtool_post_unpack(d)
+0003:
+File: '/home/andrewg/Code/openbmc/meta/classes/devtool-source.bbclass', li=
+neno: 68, function: devtool_post_unpack
+0064:}
+0065:
+0066:
+0067:python devtool_post_unpack() {
+*** 0068:=C2=A0=C2=A0=C2=A0 import oe.recipeutils
+0069:=C2=A0=C2=A0=C2=A0 import shutil
+0070:=C2=A0=C2=A0=C2=A0 sys.path.insert(0, os.path.join(d.getVar('COREBASE=
+'), 'scripts', 'lib'))
+0071:=C2=A0=C2=A0=C2=A0 import scriptutils
+0072:=C2=A0=C2=A0=C2=A0 from devtool import setup_git_repo
+File: '/home/andrewg/Code/openbmc/meta/lib/oe/recipeutils.py', lineno: 21,=
+ function: <module>
+0017:import shutil
+0018:import re
+0019:import fnmatch
+0020:import glob
+*** 0021:import bb.tinfoil
+0022:
+0023:from collections import OrderedDict, defaultdict
+0024:from bb.utils import vercmp_string
+0025:
+File: '/home/andrewg/Code/openbmc/poky/bitbake/lib/bb/tinfoil.py', lineno:=
+ 19, function: <module>
+0015:from collections import OrderedDict, defaultdict
+0016:from functools import partial
+0017:
+0018:import bb.cache
+*** 0019:import bb.cooker
+0020:import bb.providers
+0021:import bb.taskdata
+0022:import bb.utils
+0023:import bb.command
+File: '/home/andrewg/Code/openbmc/poky/bitbake/lib/bb/cooker.py', lineno: =
+25, function: <module>
+0021:import bb, bb.exceptions, bb.command
+0022:from bb import utils, data, parse, event, cache, providers, taskdata,=
+ runqueue, build
+0023:import queue
+0024:import signal
+*** 0025:import prserv.serv
+0026:import pyinotify
+0027:import json
+0028:import pickle
+0029:import codecs
+File: '/home/andrewg/Code/openbmc/poky/bitbake/lib/prserv/serv.py', lineno=
+: 7, function: <module>
+0003:#
+0004:
+0005:import os,sys,logging
+0006:import signal, time
+*** 0007:from xmlrpc.server import SimpleXMLRPCServer, SimpleXMLRPCRequest=
+Handler
+0008:import threading
+0009:import queue
+0010:import socket
+0011:import io
+File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/xmlrp=
+c/server.py', lineno: 117, function: <module>
+0113:import socketserver
+0114:import sys
+0115:import os
+0116:import re
+*** 0117:import pydoc
+0118:import traceback
+0119:try:
+0120:=C2=A0=C2=A0=C2=A0 import fcntl
+0121:except ImportError:
+File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/pydoc=
+.py', lineno: 366, function: <module>
+0362:=C2=A0=C2=A0=C2=A0 return module
+0363:
+0364:# ---------------------------------------------------- formatter base=
+ class
+0365:
+*** 0366:class Doc:
+0367:
+0368:=C2=A0=C2=A0=C2=A0 PYTHONDOCS =3D os.environ.get("PYTHONDOCS",
+0369:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "https://docs.python.org/%d.=
+%d/library"
+0370:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 % sys.version_info[:2])
+File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/pydoc=
+.py', lineno: 396, function: Doc
+0392:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 raise TypeError(message)
+0393:
+0394:=C2=A0=C2=A0=C2=A0 docmodule =3D docclass =3D docroutine =3D docother=
+ =3D docproperty =3D docdata =3D fail
+0395:
+*** 0396:=C2=A0=C2=A0=C2=A0 def getdocloc(self, object, basedir=3Dsysconfi=
+g.get_path('stdlib')):
+0397:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 """Return the location of =
+module docs or None"""
+0398:
+0399:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 try:
+0400:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fi=
+le =3D inspect.getabsfile(object)
+File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/sysco=
+nfig.py', lineno: 514, function: get_path
+0510:=C2=A0=C2=A0=C2=A0 """Return a path corresponding to the scheme.
+0511:
+0512:=C2=A0=C2=A0=C2=A0 ``scheme`` is the install scheme name.
+0513:=C2=A0=C2=A0=C2=A0 """
+*** 0514:=C2=A0=C2=A0=C2=A0 return get_paths(scheme, vars, expand)[name]
+0515:
+0516:
+0517:def get_config_vars(*args):
+0518:=C2=A0=C2=A0=C2=A0 """With no arguments, return a dictionary of all c=
+onfiguration
+File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/sysco=
+nfig.py', lineno: 504, function: get_paths
+0500:=C2=A0=C2=A0=C2=A0 ``scheme`` is the install scheme name. If not prov=
+ided, it will
+0501:=C2=A0=C2=A0=C2=A0 return the default scheme for the current platform=
 .
-> > Has anyone ever seen only one function from a library cause problems l=
-ike
-> > this?
->
-> I don't know if this is related, but I noticed that the debugger cannot =
-step into any library functions.  For example, I tried stepping into strncp=
-y, and the debugger stepped over the function call.  I switched to assembly=
- instruction stepping mode, then when I stepped into strncpy I received the=
- message "No source available for strncpy@plt".  I continued single steppin=
-g and was able to step through all the assembly code for strncpy.  I then i=
-nstruction single stepped into uuid_compare, and I was able to single step =
-without issue until I got to the following instruction:
->     bx r12
-> When this instruction is called, r12 is 0.  I'm a little confused why th=
-is library function call is failing in this manner (when all the input para=
-meters to uuid_compare are valid), and I'm not sure why I can't source step=
- through any library functions.  If anyone has any suggestions on either is=
-sue, please let me know.
+0502:=C2=A0=C2=A0=C2=A0 """
+0503:=C2=A0=C2=A0=C2=A0 if expand:
+*** 0504:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return _expand_vars(sc=
+heme, vars)
+0505:=C2=A0=C2=A0=C2=A0 else:
+0506:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return _INSTALL_SCHEMES[sc=
+heme]
+0507:
+0508:
+File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/sysco=
+nfig.py', lineno: 172, function: _expand_vars
+0168:def _expand_vars(scheme, vars):
+0169:=C2=A0=C2=A0=C2=A0 res =3D {}
+0170:=C2=A0=C2=A0=C2=A0 if vars is None:
+0171:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vars =3D {}
+*** 0172:=C2=A0=C2=A0=C2=A0 _extend_dict(vars, get_config_vars())
+0173:
+0174:=C2=A0=C2=A0=C2=A0 for key, value in _INSTALL_SCHEMES[scheme].items()=
+:
+0175:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if os.name in ('posix', 'n=
+t'):
+0176:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 va=
+lue =3D os.path.expanduser(value)
+File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/sysco=
+nfig.py', lineno: 552, function: get_config_vars
+0548:
+0549:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if os.name =3D=3D 'nt':
+0550:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 _i=
+nit_non_posix(_CONFIG_VARS)
+0551:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if os.name =3D=3D 'posix':
+*** 0552:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 _init_posix(_CONFIG_VARS)
+0553:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # For backward compatibili=
+ty, see issue19555
+0554:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SO =3D _CONFIG_VARS.get('E=
+XT_SUFFIX')
+0555:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if SO is not None:
+0556:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 _C=
+ONFIG_VARS['SO'] =3D SO
+File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/sysco=
+nfig.py', lineno: 423, function: _init_posix
+0419:def _init_posix(vars):
+0420:=C2=A0=C2=A0=C2=A0 """Initialize the module as appropriate for POSIX =
+systems."""
+0421:=C2=A0=C2=A0=C2=A0 # _sysconfigdata is generated at build time, see _=
+generate_posix_vars()
+0422:=C2=A0=C2=A0=C2=A0 name =3D _get_sysconfigdata_name()
+*** 0423:=C2=A0=C2=A0=C2=A0 _temp =3D __import__(name, globals(), locals()=
+, ['build_time_vars'], 0)
+0424:=C2=A0=C2=A0=C2=A0 build_time_vars =3D _temp.build_time_vars
+0425:=C2=A0=C2=A0=C2=A0 vars.update(build_time_vars)
+0426:
+0427:def _init_non_posix(vars):
+Exception: ModuleNotFoundError: No module named '_sysconfigdata'
 
-It seems you are using thumb1 ISA, and usually, there is some sort of
-veneer code to
-switch from arm mode to thumb mode which might employ this kind of
-indirect jumps
-perhaps in e2fsprogs recipe, you can add INHIBIT_PACKAGE_STRIP =3D "1" tem=
-porarily
-and load the image, perhaps that can give you better debugging
-experience, but it seems
-there is a code-gen bug as it seems.
+ERROR: Logfile of failure stored in: /home/andrewg/Code/openbmc/build/tmp/=
+work/arm1176jzs-openbmc-linux-gnueabi/phosphor-state-manager/1.0+gitAUTOINC=
++42f2898d18-r1/devtooltmp-5k9pa8p_/temp/log.do_unpack.3596808
 
->
-> Thanks,
-> Bryan
->
-> >
-> > > Thanks,
-> > > Bryan
->
->=20
+--X2JWADCzOw2PjNgVWgaD
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I see meta-poky/conf/distro/poky.conf lists both Ubuntu 20 and FC32 as supp=
+orted but a couple of us have seen issues with running devtool modify using=
+ these distros.<br /><br />Anyone else seeing this or know of the issue?<br=
+ /><br />Seems like something with _PYTHON_SYSCONFIGDATA_NAME and sysconfig=
+.py.<br /><br />A quick hack was to modify sysconfig.py _get_sysconfigdata_=
+name() function and change _PYTHON_SYSCONFIGDATA_NAME to _PYTHON_SYSCONFIGD=
+ATA_NAME_INVALID so the python function will use the alternative _sysconfig=
+data_{abi}_{platform}_{multiarch}'.format<br /><br />We see this building O=
+penBMC code using upstream master open-embedded.<br /><br />Here's the full=
+ error:<br /><br />devtool modify phosphor-state-manager<br />NOTE: Startin=
+g bitbake server...<br />NOTE: Reconnecting to bitbake server...<br />NOTE:=
+ Retrying server connection (#1)...<br />NOTE: Reconnecting to bitbake serv=
+er...<br />NOTE: Previous bitbake instance shutting down?, waiting to retry=
+...<br />NOTE: Retrying server connection (#2)...<br />Loading cache: 100% =
+|##########################################################################=
+####################################| Time: 0:00:00<br />Loaded 3614 entrie=
+s from dependency cache.<br />Parsing recipes: 100% |######################=
+###########################################################################=
+###########| Time: 0:00:00<br />Parsing of 2406 .bb files complete (2404 ca=
+ched, 2 parsed). 3615 targets, 362 skipped, 0 masked, 0 errors.<br />NOTE: =
+Resolving any missing task queue dependencies<br /><br />Build Configuratio=
+n:<br />BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; =3D "1.46.0"<br />BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; =3D "x86_64-linux"<br />NATIVELSBSTRING&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; =3D "ubuntu-20.04"<br />TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "arm-openbmc-linux-gnueabi"<br />=
+MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; =3D "witherspoon"<br />DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "openbmc-witherspoon"=
+<br />DISTRO_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "0.1.0"<br />T=
+UNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "arm thumb arm11=
+76jzs"<br />TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; =3D "soft"<br />meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />meta-oe&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />me=
+ta-networking&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />meta-perl&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />meta-python&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />meta-phosphor&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />meta-aspeed&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />meta-openpower&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; <br />meta-ibm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; <br />workspace&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "master:1ba73b9e60779e905f483b419fc2a8=
+01e0d17873"<br /><br />Initialising tasks: 100% |##########################=
+###########################################################################=
+####| Time: 0:00:00<br />Sstate summary: Wanted 0 Found 0 Missed 0 Current =
+10 (0% match, 100% complete)<br />NOTE: Executing Tasks<br />ERROR: Error e=
+xecuting a python function in exec_python_func() autogenerated:<br /><br />=
+The stack trace of python calls that resulted in this exception/failure was=
+:<br />File: 'exec_python_func() autogenerated', lineno: 2, function: &lt;m=
+odule&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp; 0001:<br />&nbsp;*** 0002:devtool_p=
+ost_unpack(d)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0003:<br />File: '/home/andrewg=
+/Code/openbmc/meta/classes/devtool-source.bbclass', lineno: 68, function: d=
+evtool_post_unpack<br />&nbsp;&nbsp;&nbsp;&nbsp; 0064:}<br />&nbsp;&nbsp;&n=
+bsp;&nbsp; 0065:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0066:<br />&nbsp;&nbsp;&nbsp=
+;&nbsp; 0067:python devtool_post_unpack() {<br />&nbsp;*** 0068:&nbsp;&nbsp=
+;&nbsp; import oe.recipeutils<br />&nbsp;&nbsp;&nbsp;&nbsp; 0069:&nbsp;&nbs=
+p;&nbsp; import shutil<br />&nbsp;&nbsp;&nbsp;&nbsp; 0070:&nbsp;&nbsp;&nbsp=
+; sys.path.insert(0, os.path.join(d.getVar('COREBASE'), 'scripts', 'lib'))<=
+br />&nbsp;&nbsp;&nbsp;&nbsp; 0071:&nbsp;&nbsp;&nbsp; import scriptutils<br=
+ />&nbsp;&nbsp;&nbsp;&nbsp; 0072:&nbsp;&nbsp;&nbsp; from devtool import set=
+up_git_repo<br />File: '/home/andrewg/Code/openbmc/meta/lib/oe/recipeutils.=
+py', lineno: 21, function: &lt;module&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp; 001=
+7:import shutil<br />&nbsp;&nbsp;&nbsp;&nbsp; 0018:import re<br />&nbsp;&nb=
+sp;&nbsp;&nbsp; 0019:import fnmatch<br />&nbsp;&nbsp;&nbsp;&nbsp; 0020:impo=
+rt glob<br />&nbsp;*** 0021:import bb.tinfoil<br />&nbsp;&nbsp;&nbsp;&nbsp;=
+ 0022:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0023:from collections import OrderedDi=
+ct, defaultdict<br />&nbsp;&nbsp;&nbsp;&nbsp; 0024:from bb.utils import ver=
+cmp_string<br />&nbsp;&nbsp;&nbsp;&nbsp; 0025:<br />File: '/home/andrewg/Co=
+de/openbmc/poky/bitbake/lib/bb/tinfoil.py', lineno: 19, function: &lt;modul=
+e&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp; 0015:from collections import OrderedDic=
+t, defaultdict<br />&nbsp;&nbsp;&nbsp;&nbsp; 0016:from functools import par=
+tial<br />&nbsp;&nbsp;&nbsp;&nbsp; 0017:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0018=
+:import bb.cache<br />&nbsp;*** 0019:import bb.cooker<br />&nbsp;&nbsp;&nbs=
+p;&nbsp; 0020:import bb.providers<br />&nbsp;&nbsp;&nbsp;&nbsp; 0021:import=
+ bb.taskdata<br />&nbsp;&nbsp;&nbsp;&nbsp; 0022:import bb.utils<br />&nbsp;=
+&nbsp;&nbsp;&nbsp; 0023:import bb.command<br />File: '/home/andrewg/Code/op=
+enbmc/poky/bitbake/lib/bb/cooker.py', lineno: 25, function: &lt;module&gt;<=
+br />&nbsp;&nbsp;&nbsp;&nbsp; 0021:import bb, bb.exceptions, bb.command<br =
+/>&nbsp;&nbsp;&nbsp;&nbsp; 0022:from bb import utils, data, parse, event, c=
+ache, providers, taskdata, runqueue, build<br />&nbsp;&nbsp;&nbsp;&nbsp; 00=
+23:import queue<br />&nbsp;&nbsp;&nbsp;&nbsp; 0024:import signal<br />&nbsp=
+;*** 0025:import prserv.serv<br />&nbsp;&nbsp;&nbsp;&nbsp; 0026:import pyin=
+otify<br />&nbsp;&nbsp;&nbsp;&nbsp; 0027:import json<br />&nbsp;&nbsp;&nbsp=
+;&nbsp; 0028:import pickle<br />&nbsp;&nbsp;&nbsp;&nbsp; 0029:import codecs=
+<br />File: '/home/andrewg/Code/openbmc/poky/bitbake/lib/prserv/serv.py', l=
+ineno: 7, function: &lt;module&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp; 0003:#<br =
+/>&nbsp;&nbsp;&nbsp;&nbsp; 0004:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0005:import =
+os,sys,logging<br />&nbsp;&nbsp;&nbsp;&nbsp; 0006:import signal, time<br />=
+&nbsp;*** 0007:from xmlrpc.server import SimpleXMLRPCServer, SimpleXMLRPCRe=
+questHandler<br />&nbsp;&nbsp;&nbsp;&nbsp; 0008:import threading<br />&nbsp=
+;&nbsp;&nbsp;&nbsp; 0009:import queue<br />&nbsp;&nbsp;&nbsp;&nbsp; 0010:im=
+port socket<br />&nbsp;&nbsp;&nbsp;&nbsp; 0011:import io<br />File: '/opt/p=
+oky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/xmlrpc/server.py', =
+lineno: 117, function: &lt;module&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp; 0113:im=
+port socketserver<br />&nbsp;&nbsp;&nbsp;&nbsp; 0114:import sys<br />&nbsp;=
+&nbsp;&nbsp;&nbsp; 0115:import os<br />&nbsp;&nbsp;&nbsp;&nbsp; 0116:import=
+ re<br />&nbsp;*** 0117:import pydoc<br />&nbsp;&nbsp;&nbsp;&nbsp; 0118:imp=
+ort traceback<br />&nbsp;&nbsp;&nbsp;&nbsp; 0119:try:<br />&nbsp;&nbsp;&nbs=
+p;&nbsp; 0120:&nbsp;&nbsp;&nbsp; import fcntl<br />&nbsp;&nbsp;&nbsp;&nbsp;=
+ 0121:except ImportError:<br />File: '/opt/poky/3.1/sysroots/x86_64-pokysdk=
+-linux/usr/lib/python3.8/pydoc.py', lineno: 366, function: &lt;module&gt;<b=
+r />&nbsp;&nbsp;&nbsp;&nbsp; 0362:&nbsp;&nbsp;&nbsp; return module<br />&nb=
+sp;&nbsp;&nbsp;&nbsp; 0363:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0364:# ----------=
+------------------------------------------ formatter base class<br />&nbsp;=
+&nbsp;&nbsp;&nbsp; 0365:<br />&nbsp;*** 0366:class Doc:<br />&nbsp;&nbsp;&n=
+bsp;&nbsp; 0367:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0368:&nbsp;&nbsp;&nbsp; PYTH=
+ONDOCS =3D os.environ.get("PYTHONDOCS",<br />&nbsp;&nbsp;&nbsp;&nbsp; 0369:=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "https://docs.python.org/%d.%d/library=
+"<br />&nbsp;&nbsp;&nbsp;&nbsp; 0370:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %=
+ sys.version_info[:2])<br />File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-li=
+nux/usr/lib/python3.8/pydoc.py', lineno: 396, function: Doc<br />&nbsp;&nbs=
+p;&nbsp;&nbsp; 0392:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raise TypeEr=
+ror(message)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0393:<br />&nbsp;&nbsp;&nbsp;&nb=
+sp; 0394:&nbsp;&nbsp;&nbsp; docmodule =3D docclass =3D docroutine =3D docot=
+her =3D docproperty =3D docdata =3D fail<br />&nbsp;&nbsp;&nbsp;&nbsp; 0395=
+:<br />&nbsp;*** 0396:&nbsp;&nbsp;&nbsp; def getdocloc(self, object, basedi=
+r=3Dsysconfig.get_path('stdlib')):<br />&nbsp;&nbsp;&nbsp;&nbsp; 0397:&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; """Return the location of module docs=
+ or None"""<br />&nbsp;&nbsp;&nbsp;&nbsp; 0398:<br />&nbsp;&nbsp;&nbsp;&nbs=
+p; 0399:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try:<br />&nbsp;&nbsp;&n=
+bsp;&nbsp; 0400:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; file =3D inspect.getabsfile(object)<br />File: '/opt/poky/3.1/sysro=
+ots/x86_64-pokysdk-linux/usr/lib/python3.8/sysconfig.py', lineno: 514, func=
+tion: get_path<br />&nbsp;&nbsp;&nbsp;&nbsp; 0510:&nbsp;&nbsp;&nbsp; """Ret=
+urn a path corresponding to the scheme.<br />&nbsp;&nbsp;&nbsp;&nbsp; 0511:=
+<br />&nbsp;&nbsp;&nbsp;&nbsp; 0512:&nbsp;&nbsp;&nbsp; ``scheme`` is the in=
+stall scheme name.<br />&nbsp;&nbsp;&nbsp;&nbsp; 0513:&nbsp;&nbsp;&nbsp; ""=
+"<br />&nbsp;*** 0514:&nbsp;&nbsp;&nbsp; return get_paths(scheme, vars, exp=
+and)[name]<br />&nbsp;&nbsp;&nbsp;&nbsp; 0515:<br />&nbsp;&nbsp;&nbsp;&nbsp=
+; 0516:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0517:def get_config_vars(*args):<br /=
+>&nbsp;&nbsp;&nbsp;&nbsp; 0518:&nbsp;&nbsp;&nbsp; """With no arguments, ret=
+urn a dictionary of all configuration<br />File: '/opt/poky/3.1/sysroots/x8=
+6_64-pokysdk-linux/usr/lib/python3.8/sysconfig.py', lineno: 504, function: =
+get_paths<br />&nbsp;&nbsp;&nbsp;&nbsp; 0500:&nbsp;&nbsp;&nbsp; ``scheme`` =
+is the install scheme name. If not provided, it will<br />&nbsp;&nbsp;&nbsp=
+;&nbsp; 0501:&nbsp;&nbsp;&nbsp; return the default scheme for the current p=
+latform.<br />&nbsp;&nbsp;&nbsp;&nbsp; 0502:&nbsp;&nbsp;&nbsp; """<br />&nb=
+sp;&nbsp;&nbsp;&nbsp; 0503:&nbsp;&nbsp;&nbsp; if expand:<br />&nbsp;*** 050=
+4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return _expand_vars(scheme, va=
+rs)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0505:&nbsp;&nbsp;&nbsp; else:<br />&nbsp;=
+&nbsp;&nbsp;&nbsp; 0506:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return _=
+INSTALL_SCHEMES[scheme]<br />&nbsp;&nbsp;&nbsp;&nbsp; 0507:<br />&nbsp;&nbs=
+p;&nbsp;&nbsp; 0508:<br />File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linu=
+x/usr/lib/python3.8/sysconfig.py', lineno: 172, function: _expand_vars<br /=
+>&nbsp;&nbsp;&nbsp;&nbsp; 0168:def _expand_vars(scheme, vars):<br />&nbsp;&=
+nbsp;&nbsp;&nbsp; 0169:&nbsp;&nbsp;&nbsp; res =3D {}<br />&nbsp;&nbsp;&nbsp=
+;&nbsp; 0170:&nbsp;&nbsp;&nbsp; if vars is None:<br />&nbsp;&nbsp;&nbsp;&nb=
+sp; 0171:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vars =3D {}<br />&nbsp;=
+*** 0172:&nbsp;&nbsp;&nbsp; _extend_dict(vars, get_config_vars())<br />&nbs=
+p;&nbsp;&nbsp;&nbsp; 0173:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0174:&nbsp;&nbsp;&=
+nbsp; for key, value in _INSTALL_SCHEMES[scheme].items():<br />&nbsp;&nbsp;=
+&nbsp;&nbsp; 0175:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if os.name in =
+('posix', 'nt'):<br />&nbsp;&nbsp;&nbsp;&nbsp; 0176:&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value =3D os.path.expanduser(va=
+lue)<br />File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python=
+3.8/sysconfig.py', lineno: 552, function: get_config_vars<br />&nbsp;&nbsp;=
+&nbsp;&nbsp; 0548:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0549:&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; if os.name =3D=3D 'nt':<br />&nbsp;&nbsp;&nbsp;&nbsp;=
+ 0550:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _i=
+nit_non_posix(_CONFIG_VARS)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0551:&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if os.name =3D=3D 'posix':<br />&nbsp;*** 05=
+52:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _init=
+_posix(_CONFIG_VARS)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0553:&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; # For backward compatibility, see issue19555<br />&=
+nbsp;&nbsp;&nbsp;&nbsp; 0554:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SO =
+=
+=3D _CONFIG_VARS.get('EXT_SUFFIX')<br />&nbsp;&nbsp;&nbsp;&nbsp; 0555:&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if SO is not None:<br />&nbsp;&nbsp;=
+&nbsp;&nbsp; 0556:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; _CONFIG_VARS['SO'] =3D SO<br />File: '/opt/poky/3.1/sysroots/x86_=
+64-pokysdk-linux/usr/lib/python3.8/sysconfig.py', lineno: 423, function: _i=
+nit_posix<br />&nbsp;&nbsp;&nbsp;&nbsp; 0419:def _init_posix(vars):<br />&n=
+bsp;&nbsp;&nbsp;&nbsp; 0420:&nbsp;&nbsp;&nbsp; """Initialize the module as =
+appropriate for POSIX systems."""<br />&nbsp;&nbsp;&nbsp;&nbsp; 0421:&nbsp;=
+&nbsp;&nbsp; # _sysconfigdata is generated at build time, see _generate_pos=
+ix_vars()<br />&nbsp;&nbsp;&nbsp;&nbsp; 0422:&nbsp;&nbsp;&nbsp; name =3D _g=
+et_sysconfigdata_name()<br />&nbsp;*** 0423:&nbsp;&nbsp;&nbsp; _temp =3D __=
+import__(name, globals(), locals(), ['build_time_vars'], 0)<br />&nbsp;&nbs=
+p;&nbsp;&nbsp; 0424:&nbsp;&nbsp;&nbsp; build_time_vars =3D _temp.build_time=
+_vars<br />&nbsp;&nbsp;&nbsp;&nbsp; 0425:&nbsp;&nbsp;&nbsp; vars.update(bui=
+ld_time_vars)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0426:<br />&nbsp;&nbsp;&nbsp;&n=
+bsp; 0427:def _init_non_posix(vars):<br />Exception: ModuleNotFoundError: N=
+o module named '_sysconfigdata'<br /><br />ERROR: Logfile of failure stored=
+ in: /home/andrewg/Code/openbmc/build/tmp/work/arm1176jzs-openbmc-linux-gnu=
+eabi/phosphor-state-manager/1.0+gitAUTOINC+42f2898d18-r1/devtooltmp-5k9pa8p=
+_/temp/log.do_unpack.3596808<br /><span style=3D"caret-color: #ffffff; colo=
+r: #ffffff; font-family: Helvetica; font-size: 12px; font-style: normal; fo=
+nt-variant-caps: normal; font-weight: normal; letter-spacing: normal; orpha=
+ns: auto; text-align: start; text-indent: 0px; text-transform: none; white-=
+space: normal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: a=
+uto; -webkit-text-stroke-width: 0px; text-decoration: none; display: inline=
+ !important; float: none;"><br /></span>
+
+--X2JWADCzOw2PjNgVWgaD--
