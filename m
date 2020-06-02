@@ -1,474 +1,270 @@
-Subject: devtool modify issues with ubuntu 20 and fedora core 32
-To: yocto@lists.yoctoproject.org
-From: "Andrew Geissler" <geissonator@gmail.com>
-X-Originating-Location: Austin, Texas, US (45.18.127.186)
-X-Originating-Platform: Mac Firefox 76
-User-Agent: GROUPS.IO Web Poster
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by mx.groups.io with SMTP id smtpd.web11.2433.1591139898319841320
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 02 Jun 2020 16:18:18 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=ZEveR3J1;
+ spf=pass (domain: intel.com, ip: 192.55.52.120, mailfrom: vineela.tummalapalli@intel.com)
+IronPort-SDR: pyvFy+olwmaBiwqTfF55601/ZwCXIgsqKhf5i0cY/Zez4a9AaP2hMe7QBk3YEF3qoidpjpKMwb
+ zfQ4P36oqkdQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2020 16:18:17 -0700
+IronPort-SDR: NM9HB4kkBb0nb2Sd2zzISB69/vl60nT+A9stXGbuH2pKA7+kl7FQQFbnE3wyqAveoV2K1lniN2
+ 0DWPQLhq59vQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.73,466,1583222400"; 
+   d="scan'208";a="272533196"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+  by orsmga006.jf.intel.com with ESMTP; 02 Jun 2020 16:18:16 -0700
+Received: from fmsmsx154.amr.corp.intel.com (10.18.116.70) by
+ fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 2 Jun 2020 16:18:16 -0700
+Received: from FMSEDG001.ED.cps.intel.com (10.1.192.133) by
+ FMSMSX154.amr.corp.intel.com (10.18.116.70) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 2 Jun 2020 16:18:16 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.175)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server (TLS) id
+ 14.3.439.0; Tue, 2 Jun 2020 16:18:16 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eHqPNmPed0euIEkF1FW04/p261Cxzj4Ged0uH88kxHNWzsebiDkE310HQoHsylP6IDd5r7KkcjUqtecs566RD+0aPUGdRusgrOnyKCubfLJ72/AhiGEtLn1dlGVwSu+uiH4sgtx389TUXWflY5TLjv5XczIdbq5hgVV4BCH2V5aMzKt0q0Q1IlXhYLj8o2Qm78VkrUgGmKTX6xlpsaECXJOHEsBIVHpg0t09+3PVRzdvdZS1H8Ou3D24oekdNVeDa4WSsHNx0884rcuUhKRUMDZG3YX1xTDhU3DwwfgZtHzujNh4R7jjU/6kExDkyIMxvwOXDonB56Z/s2/Ooeqb5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qjgl7N8B39V5U+Rx7tY1Avdba98WZInRhp7X7CAMDTI=;
+ b=aDZObRIKidX8JEXm/xapf19iBdBKfvkWVFtjwv1Cipk6Zu7UoKGNzaoVAqOnjeQsBYUm2sBVPVtzsj4lSFJbNJiu3+HAg+VRfHVMxS/p40ILy18VdqU3cIksmNrGC3Iwx7S568mpsgaEXWNdbrTttcog7mxWxU4G0pf7Uc0yofADaqADtatZ0Hwr2ULfkD+Bg8chXAArFsnt2B5RhWHdnVrec6QE0q19Cp+ucsZk16fhi7PdEcBEWietxCsX7UPJ2f3ft8B2H0dLU6rO0Pj98Q3FS5cLye7BvSJzsSrcD/G2sL0kobzoYW6WXd0liMx1n/VdAaWFFelbDCia33cmSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qjgl7N8B39V5U+Rx7tY1Avdba98WZInRhp7X7CAMDTI=;
+ b=ZEveR3J1q3sDvocrU3GrjT8wDDROfucBkcARweQbSquMHQNxqxIgl0kx+jnrMaXQinWp26EsgV+WGldeB4UlWvPYBJ+HBNU957udBHXk/rxTMZlbH1ClcTGxn0JQ3aMwn9GWOR09/sKg+Yg0aCN6dBjBm7jSI6wvFpjccC5RxkQ=
+Received: from BYAPR11MB2790.namprd11.prod.outlook.com (2603:10b6:a02:c4::29)
+ by BYAPR11MB3367.namprd11.prod.outlook.com (2603:10b6:a03:79::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3045.21; Tue, 2 Jun
+ 2020 23:18:14 +0000
+Received: from BYAPR11MB2790.namprd11.prod.outlook.com
+ ([fe80::9473:76f0:c189:bd46]) by BYAPR11MB2790.namprd11.prod.outlook.com
+ ([fe80::9473:76f0:c189:bd46%3]) with mapi id 15.20.3045.018; Tue, 2 Jun 2020
+ 23:18:14 +0000
+From: "Vineela" <vineela.tummalapalli@intel.com>
+To: "'yocto-announce@lists.yoctoproject.org'"
+	<yocto-announce@lists.yoctoproject.org>, "'yocto@lists.yoctoproject.org'"
+	<yocto@lists.yoctoproject.org>, "'yocto-request@eclists.intel.com'"
+	<yocto-request@eclists.intel.com>
+Subject: [ANNOUNCEMENT] Yocto Project 2.7.4 (warrior 21.0.4) Released
+Thread-Topic: [ANNOUNCEMENT] Yocto Project 2.7.4 (warrior 21.0.4) Released
+Thread-Index: AdY5Mm1wPQUc7ytzR+OZ2m/2uP+y+Q==
+Date: Tue, 2 Jun 2020 23:18:14 +0000
+Message-ID: <BYAPR11MB2790AD4E996046E2C4FF7C73888B0@BYAPR11MB2790.namprd11.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+dlp-product: dlpe-windows
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=intel.com;
+x-originating-ip: [184.103.234.47]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 998331a5-7d7f-40a7-ebff-08d8074b39de
+x-ms-traffictypediagnostic: BYAPR11MB3367:
+x-microsoft-antispam-prvs: <BYAPR11MB33678D37D7AEE28D6B50F8E9888B0@BYAPR11MB3367.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0422860ED4
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: cAF27tixzTS0yxDM68n7ipIGFxahczCuLFzvrbNIOValImbACmp8rZlJEM/CIoKfRu9OVTs5OD/iBjbwX+dwWp1ueU3V5Esi1IKpxgTqWher7hypfdbeOHbhGsgAdjXMJJDfn6D/KWBGChRExOoz3eiELMNOCzCGAt/is6MOWdvY64eiTcO3s1bCMdW2BgLshdmxPgSB/CFA5geov1u9Hlt9OrscSwcFAptkeXLRiPOz9qXJdOJxdn2WdU+X4yZ5ctSaz1021XvsOU6ZvqPh0PvzU89ot/4Ob5ve84X+PQhuXJ4DBw36AA9SeK46KJwlKnBUo0Ck86tYlLi5VZZ5ifnbkVGkSDaN9ZEBsDXo12Zegy+C834dL3Duv9oYhche+yyDLGEunLT7w8GmiJTxcbykiOZr5fD97Ad9kJFKPvEVr6PsVUG0NUXmZvbzCjRr
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB2790.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(39860400002)(346002)(136003)(396003)(366004)(376002)(71200400001)(8676002)(8936002)(86362001)(33656002)(2906002)(7696005)(5660300002)(6506007)(186003)(26005)(83380400001)(76116006)(110136005)(316002)(52536014)(966005)(55016002)(66946007)(478600001)(66476007)(9686003)(66446008)(64756008)(66556008)(491001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: FthoHsYyNgQX91RxRpJ4mDbG8iFzUgawwRnpqKfnzbT18NM37axd4TeOn+aJdYAAgIKu82fedBhkx0OLdYupQ7EWH6HKwGEFVI6D6Og/gdzLi2y1eT8aJj0GG7tqzsUDzA7WnNC1mlG5nj/klO+tE2AZkqN5WqdfJWTEdZJEkvQJuJJ8ryDM17Uq2uBYRc2Zbzhy6R2mK61f+MCaYrV78v6LGV4Z3V4jG3yQRVGLq6yOGa5Z+RG7PaKLfy3OwOz0PKC0TYVGaSRsOZckcq45CgT6qKl+EIfpdjNMC4llxwWjOJbK0SBSAFVP92xT4y2IfBLqfpD6FniZAlpJRm2GTjQ2n0UJXjd5SuLm896UtXqg5k7Zgwy60T92UAU0M8rE2QwT8EOlKE81k0hSiHPLp36A0ru3RFhRZ86e8g1unBCoxAMRZj7TV08qtEUT7dDpKk/wue6vkZnATeYwMZO4dAEFpeKakBFpwWrqi6MeFPz0wXQ+kEY5rsQR7896sHd5
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Date: Tue, 02 Jun 2020 14:28:47 -0700
-Message-ID: <srY9.1591133327694476026.h5dt@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="X2JWADCzOw2PjNgVWgaD"
-
---X2JWADCzOw2PjNgVWgaD
-Content-Type: text/plain; charset="utf-8"
+X-MS-Exchange-CrossTenant-Network-Message-Id: 998331a5-7d7f-40a7-ebff-08d8074b39de
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jun 2020 23:18:14.5448
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: A3bgk5xmydBlcrwCoFJwzj2Aq/jWuRARCt5dA2+NVH8fdOuurY4ifB8IPDU9XWwwPbpke3QX4bmZxbx1V5ooi4crhMEbTUXRdP/NgIc6cUg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3367
+Return-Path: vineela.tummalapalli@intel.com
+X-OriginatorOrg: intel.com
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I see meta-poky/conf/distro/poky.conf lists both Ubuntu 20 and FC32 as supp=
-orted but a couple of us have seen issues with running devtool modify using=
- these distros.
+Hello,
 
-Anyone else seeing this or know of the issue?
+We are pleased to announce the Yocto Project 2.7.4 (warrior-21.0.4) Release=
+ is now available for download.
 
-Seems like something with _PYTHON_SYSCONFIGDATA_NAME and sysconfig.py.
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.7.4/poky-warrior-2=
+1.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.7.4/poky-warrior-21.0.4.tar.b=
+z2
 
-A quick hack was to modify sysconfig.py _get_sysconfigdata_name() function=
- and change _PYTHON_SYSCONFIGDATA_NAME to _PYTHON_SYSCONFIGDATA_NAME_INVALI=
-D so the python function will use the alternative _sysconfigdata_{abi}_{pla=
-tform}_{multiarch}'.format
+A gpg signed version of these release notes is available at:
 
-We see this building OpenBMC code using upstream master open-embedded.
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.7.4/RELEASENOTES
 
-Here's the full error:
+Full Test Report:
 
-devtool modify phosphor-state-manager
-NOTE: Starting bitbake server...
-NOTE: Reconnecting to bitbake server...
-NOTE: Retrying server connection (#1)...
-NOTE: Reconnecting to bitbake server...
-NOTE: Previous bitbake instance shutting down?, waiting to retry...
-NOTE: Retrying server connection (#2)...
-Loading cache: 100% |#####################################################=
-#########################################################| Time: 0:00:00
-Loaded 3614 entries from dependency cache.
-Parsing recipes: 100% |###################################################=
-#########################################################| Time: 0:00:00
-Parsing of 2406 .bb files complete (2404 cached, 2 parsed). 3615 targets, =
-362 skipped, 0 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.7.4/testreport.txt
 
-Build Configuration:
-BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=
- "1.46.0"
-BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 =3D "x86_64-linux"
-NATIVELSBSTRING=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "ubuntu-20.04"
-TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=
- "arm-openbmc-linux-gnueabi"
-MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 =3D "witherspoon"
-DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 =3D "openbmc-witherspoon"
-DISTRO_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "0.1.0"
-TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "arm thumb arm=
-1176jzs"
-TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=
- "soft"
-meta
-meta-oe
-meta-networking
-meta-perl
-meta-python
-meta-phosphor
-meta-aspeed
-meta-openpower
-meta-ibm
-workspace=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 =3D "master:1ba73b9e60779e905f483b419fc2a801e0d17873"
+Thank you for everyone's contributions to this release.
 
-Initialising tasks: 100% |################################################=
-#########################################################| Time: 0:00:00
-Sstate summary: Wanted 0 Found 0 Missed 0 Current 10 (0% match, 100% compl=
-ete)
-NOTE: Executing Tasks
-ERROR: Error executing a python function in exec_python_func() autogenerat=
-ed:
+Sincerely
 
-The stack trace of python calls that resulted in this exception/failure wa=
-s:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-0001:
-*** 0002:devtool_post_unpack(d)
-0003:
-File: '/home/andrewg/Code/openbmc/meta/classes/devtool-source.bbclass', li=
-neno: 68, function: devtool_post_unpack
-0064:}
-0065:
-0066:
-0067:python devtool_post_unpack() {
-*** 0068:=C2=A0=C2=A0=C2=A0 import oe.recipeutils
-0069:=C2=A0=C2=A0=C2=A0 import shutil
-0070:=C2=A0=C2=A0=C2=A0 sys.path.insert(0, os.path.join(d.getVar('COREBASE=
-'), 'scripts', 'lib'))
-0071:=C2=A0=C2=A0=C2=A0 import scriptutils
-0072:=C2=A0=C2=A0=C2=A0 from devtool import setup_git_repo
-File: '/home/andrewg/Code/openbmc/meta/lib/oe/recipeutils.py', lineno: 21,=
- function: <module>
-0017:import shutil
-0018:import re
-0019:import fnmatch
-0020:import glob
-*** 0021:import bb.tinfoil
-0022:
-0023:from collections import OrderedDict, defaultdict
-0024:from bb.utils import vercmp_string
-0025:
-File: '/home/andrewg/Code/openbmc/poky/bitbake/lib/bb/tinfoil.py', lineno:=
- 19, function: <module>
-0015:from collections import OrderedDict, defaultdict
-0016:from functools import partial
-0017:
-0018:import bb.cache
-*** 0019:import bb.cooker
-0020:import bb.providers
-0021:import bb.taskdata
-0022:import bb.utils
-0023:import bb.command
-File: '/home/andrewg/Code/openbmc/poky/bitbake/lib/bb/cooker.py', lineno: =
-25, function: <module>
-0021:import bb, bb.exceptions, bb.command
-0022:from bb import utils, data, parse, event, cache, providers, taskdata,=
- runqueue, build
-0023:import queue
-0024:import signal
-*** 0025:import prserv.serv
-0026:import pyinotify
-0027:import json
-0028:import pickle
-0029:import codecs
-File: '/home/andrewg/Code/openbmc/poky/bitbake/lib/prserv/serv.py', lineno=
-: 7, function: <module>
-0003:#
-0004:
-0005:import os,sys,logging
-0006:import signal, time
-*** 0007:from xmlrpc.server import SimpleXMLRPCServer, SimpleXMLRPCRequest=
-Handler
-0008:import threading
-0009:import queue
-0010:import socket
-0011:import io
-File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/xmlrp=
-c/server.py', lineno: 117, function: <module>
-0113:import socketserver
-0114:import sys
-0115:import os
-0116:import re
-*** 0117:import pydoc
-0118:import traceback
-0119:try:
-0120:=C2=A0=C2=A0=C2=A0 import fcntl
-0121:except ImportError:
-File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/pydoc=
-.py', lineno: 366, function: <module>
-0362:=C2=A0=C2=A0=C2=A0 return module
-0363:
-0364:# ---------------------------------------------------- formatter base=
- class
-0365:
-*** 0366:class Doc:
-0367:
-0368:=C2=A0=C2=A0=C2=A0 PYTHONDOCS =3D os.environ.get("PYTHONDOCS",
-0369:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "https://docs.python.org/%d.=
-%d/library"
-0370:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 % sys.version_info[:2])
-File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/pydoc=
-.py', lineno: 396, function: Doc
-0392:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 raise TypeError(message)
-0393:
-0394:=C2=A0=C2=A0=C2=A0 docmodule =3D docclass =3D docroutine =3D docother=
- =3D docproperty =3D docdata =3D fail
-0395:
-*** 0396:=C2=A0=C2=A0=C2=A0 def getdocloc(self, object, basedir=3Dsysconfi=
-g.get_path('stdlib')):
-0397:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 """Return the location of =
-module docs or None"""
-0398:
-0399:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 try:
-0400:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fi=
-le =3D inspect.getabsfile(object)
-File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/sysco=
-nfig.py', lineno: 514, function: get_path
-0510:=C2=A0=C2=A0=C2=A0 """Return a path corresponding to the scheme.
-0511:
-0512:=C2=A0=C2=A0=C2=A0 ``scheme`` is the install scheme name.
-0513:=C2=A0=C2=A0=C2=A0 """
-*** 0514:=C2=A0=C2=A0=C2=A0 return get_paths(scheme, vars, expand)[name]
-0515:
-0516:
-0517:def get_config_vars(*args):
-0518:=C2=A0=C2=A0=C2=A0 """With no arguments, return a dictionary of all c=
-onfiguration
-File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/sysco=
-nfig.py', lineno: 504, function: get_paths
-0500:=C2=A0=C2=A0=C2=A0 ``scheme`` is the install scheme name. If not prov=
-ided, it will
-0501:=C2=A0=C2=A0=C2=A0 return the default scheme for the current platform=
-.
-0502:=C2=A0=C2=A0=C2=A0 """
-0503:=C2=A0=C2=A0=C2=A0 if expand:
-*** 0504:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return _expand_vars(sc=
-heme, vars)
-0505:=C2=A0=C2=A0=C2=A0 else:
-0506:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return _INSTALL_SCHEMES[sc=
-heme]
-0507:
-0508:
-File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/sysco=
-nfig.py', lineno: 172, function: _expand_vars
-0168:def _expand_vars(scheme, vars):
-0169:=C2=A0=C2=A0=C2=A0 res =3D {}
-0170:=C2=A0=C2=A0=C2=A0 if vars is None:
-0171:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vars =3D {}
-*** 0172:=C2=A0=C2=A0=C2=A0 _extend_dict(vars, get_config_vars())
-0173:
-0174:=C2=A0=C2=A0=C2=A0 for key, value in _INSTALL_SCHEMES[scheme].items()=
-:
-0175:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if os.name in ('posix', 'n=
-t'):
-0176:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 va=
-lue =3D os.path.expanduser(value)
-File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/sysco=
-nfig.py', lineno: 552, function: get_config_vars
-0548:
-0549:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if os.name =3D=3D 'nt':
-0550:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 _i=
-nit_non_posix(_CONFIG_VARS)
-0551:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if os.name =3D=3D 'posix':
-*** 0552:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 _init_posix(_CONFIG_VARS)
-0553:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # For backward compatibili=
-ty, see issue19555
-0554:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SO =3D _CONFIG_VARS.get('E=
-XT_SUFFIX')
-0555:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if SO is not None:
-0556:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 _C=
-ONFIG_VARS['SO'] =3D SO
-File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/sysco=
-nfig.py', lineno: 423, function: _init_posix
-0419:def _init_posix(vars):
-0420:=C2=A0=C2=A0=C2=A0 """Initialize the module as appropriate for POSIX =
-systems."""
-0421:=C2=A0=C2=A0=C2=A0 # _sysconfigdata is generated at build time, see _=
-generate_posix_vars()
-0422:=C2=A0=C2=A0=C2=A0 name =3D _get_sysconfigdata_name()
-*** 0423:=C2=A0=C2=A0=C2=A0 _temp =3D __import__(name, globals(), locals()=
-, ['build_time_vars'], 0)
-0424:=C2=A0=C2=A0=C2=A0 build_time_vars =3D _temp.build_time_vars
-0425:=C2=A0=C2=A0=C2=A0 vars.update(build_time_vars)
-0426:
-0427:def _init_non_posix(vars):
-Exception: ModuleNotFoundError: No module named '_sysconfigdata'
+Vineela Tummalapalli,
+Yocto Project Build and Release
+vineela.tummalapalli@intel.com
 
-ERROR: Logfile of failure stored in: /home/andrewg/Code/openbmc/build/tmp/=
-work/arm1176jzs-openbmc-linux-gnueabi/phosphor-state-manager/1.0+gitAUTOINC=
-+42f2898d18-r1/devtooltmp-5k9pa8p_/temp/log.do_unpack.3596808
 
---X2JWADCzOw2PjNgVWgaD
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+--------------------------
+yocto-2.7.4 Release Notes
+--------------------------
 
-I see meta-poky/conf/distro/poky.conf lists both Ubuntu 20 and FC32 as supp=
-orted but a couple of us have seen issues with running devtool modify using=
- these distros.<br /><br />Anyone else seeing this or know of the issue?<br=
- /><br />Seems like something with _PYTHON_SYSCONFIGDATA_NAME and sysconfig=
-.py.<br /><br />A quick hack was to modify sysconfig.py _get_sysconfigdata_=
-name() function and change _PYTHON_SYSCONFIGDATA_NAME to _PYTHON_SYSCONFIGD=
-ATA_NAME_INVALID so the python function will use the alternative _sysconfig=
-data_{abi}_{platform}_{multiarch}'.format<br /><br />We see this building O=
-penBMC code using upstream master open-embedded.<br /><br />Here's the full=
- error:<br /><br />devtool modify phosphor-state-manager<br />NOTE: Startin=
-g bitbake server...<br />NOTE: Reconnecting to bitbake server...<br />NOTE:=
- Retrying server connection (#1)...<br />NOTE: Reconnecting to bitbake serv=
-er...<br />NOTE: Previous bitbake instance shutting down?, waiting to retry=
-...<br />NOTE: Retrying server connection (#2)...<br />Loading cache: 100% =
-|##########################################################################=
-####################################| Time: 0:00:00<br />Loaded 3614 entrie=
-s from dependency cache.<br />Parsing recipes: 100% |######################=
-###########################################################################=
-###########| Time: 0:00:00<br />Parsing of 2406 .bb files complete (2404 ca=
-ched, 2 parsed). 3615 targets, 362 skipped, 0 masked, 0 errors.<br />NOTE: =
-Resolving any missing task queue dependencies<br /><br />Build Configuratio=
-n:<br />BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; =3D "1.46.0"<br />BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp; =3D "x86_64-linux"<br />NATIVELSBSTRING&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; =3D "ubuntu-20.04"<br />TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "arm-openbmc-linux-gnueabi"<br />=
-MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; =3D "witherspoon"<br />DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "openbmc-witherspoon"=
-<br />DISTRO_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "0.1.0"<br />T=
-UNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "arm thumb arm11=
-76jzs"<br />TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; =3D "soft"<br />meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />meta-oe&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />me=
-ta-networking&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />meta-perl&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />meta-python&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />meta-phosphor&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />meta-aspeed&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />meta-openpower&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; <br />meta-ibm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; <br />workspace&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "master:1ba73b9e60779e905f483b419fc2a8=
-01e0d17873"<br /><br />Initialising tasks: 100% |##########################=
-###########################################################################=
-####| Time: 0:00:00<br />Sstate summary: Wanted 0 Found 0 Missed 0 Current =
-10 (0% match, 100% complete)<br />NOTE: Executing Tasks<br />ERROR: Error e=
-xecuting a python function in exec_python_func() autogenerated:<br /><br />=
-The stack trace of python calls that resulted in this exception/failure was=
-:<br />File: 'exec_python_func() autogenerated', lineno: 2, function: &lt;m=
-odule&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp; 0001:<br />&nbsp;*** 0002:devtool_p=
-ost_unpack(d)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0003:<br />File: '/home/andrewg=
-/Code/openbmc/meta/classes/devtool-source.bbclass', lineno: 68, function: d=
-evtool_post_unpack<br />&nbsp;&nbsp;&nbsp;&nbsp; 0064:}<br />&nbsp;&nbsp;&n=
-bsp;&nbsp; 0065:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0066:<br />&nbsp;&nbsp;&nbsp=
-;&nbsp; 0067:python devtool_post_unpack() {<br />&nbsp;*** 0068:&nbsp;&nbsp=
-;&nbsp; import oe.recipeutils<br />&nbsp;&nbsp;&nbsp;&nbsp; 0069:&nbsp;&nbs=
-p;&nbsp; import shutil<br />&nbsp;&nbsp;&nbsp;&nbsp; 0070:&nbsp;&nbsp;&nbsp=
-; sys.path.insert(0, os.path.join(d.getVar('COREBASE'), 'scripts', 'lib'))<=
-br />&nbsp;&nbsp;&nbsp;&nbsp; 0071:&nbsp;&nbsp;&nbsp; import scriptutils<br=
- />&nbsp;&nbsp;&nbsp;&nbsp; 0072:&nbsp;&nbsp;&nbsp; from devtool import set=
-up_git_repo<br />File: '/home/andrewg/Code/openbmc/meta/lib/oe/recipeutils.=
-py', lineno: 21, function: &lt;module&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp; 001=
-7:import shutil<br />&nbsp;&nbsp;&nbsp;&nbsp; 0018:import re<br />&nbsp;&nb=
-sp;&nbsp;&nbsp; 0019:import fnmatch<br />&nbsp;&nbsp;&nbsp;&nbsp; 0020:impo=
-rt glob<br />&nbsp;*** 0021:import bb.tinfoil<br />&nbsp;&nbsp;&nbsp;&nbsp;=
- 0022:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0023:from collections import OrderedDi=
-ct, defaultdict<br />&nbsp;&nbsp;&nbsp;&nbsp; 0024:from bb.utils import ver=
-cmp_string<br />&nbsp;&nbsp;&nbsp;&nbsp; 0025:<br />File: '/home/andrewg/Co=
-de/openbmc/poky/bitbake/lib/bb/tinfoil.py', lineno: 19, function: &lt;modul=
-e&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp; 0015:from collections import OrderedDic=
-t, defaultdict<br />&nbsp;&nbsp;&nbsp;&nbsp; 0016:from functools import par=
-tial<br />&nbsp;&nbsp;&nbsp;&nbsp; 0017:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0018=
-:import bb.cache<br />&nbsp;*** 0019:import bb.cooker<br />&nbsp;&nbsp;&nbs=
-p;&nbsp; 0020:import bb.providers<br />&nbsp;&nbsp;&nbsp;&nbsp; 0021:import=
- bb.taskdata<br />&nbsp;&nbsp;&nbsp;&nbsp; 0022:import bb.utils<br />&nbsp;=
-&nbsp;&nbsp;&nbsp; 0023:import bb.command<br />File: '/home/andrewg/Code/op=
-enbmc/poky/bitbake/lib/bb/cooker.py', lineno: 25, function: &lt;module&gt;<=
-br />&nbsp;&nbsp;&nbsp;&nbsp; 0021:import bb, bb.exceptions, bb.command<br =
-/>&nbsp;&nbsp;&nbsp;&nbsp; 0022:from bb import utils, data, parse, event, c=
-ache, providers, taskdata, runqueue, build<br />&nbsp;&nbsp;&nbsp;&nbsp; 00=
-23:import queue<br />&nbsp;&nbsp;&nbsp;&nbsp; 0024:import signal<br />&nbsp=
-;*** 0025:import prserv.serv<br />&nbsp;&nbsp;&nbsp;&nbsp; 0026:import pyin=
-otify<br />&nbsp;&nbsp;&nbsp;&nbsp; 0027:import json<br />&nbsp;&nbsp;&nbsp=
-;&nbsp; 0028:import pickle<br />&nbsp;&nbsp;&nbsp;&nbsp; 0029:import codecs=
-<br />File: '/home/andrewg/Code/openbmc/poky/bitbake/lib/prserv/serv.py', l=
-ineno: 7, function: &lt;module&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp; 0003:#<br =
-/>&nbsp;&nbsp;&nbsp;&nbsp; 0004:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0005:import =
-os,sys,logging<br />&nbsp;&nbsp;&nbsp;&nbsp; 0006:import signal, time<br />=
-&nbsp;*** 0007:from xmlrpc.server import SimpleXMLRPCServer, SimpleXMLRPCRe=
-questHandler<br />&nbsp;&nbsp;&nbsp;&nbsp; 0008:import threading<br />&nbsp=
-;&nbsp;&nbsp;&nbsp; 0009:import queue<br />&nbsp;&nbsp;&nbsp;&nbsp; 0010:im=
-port socket<br />&nbsp;&nbsp;&nbsp;&nbsp; 0011:import io<br />File: '/opt/p=
-oky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python3.8/xmlrpc/server.py', =
-lineno: 117, function: &lt;module&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp; 0113:im=
-port socketserver<br />&nbsp;&nbsp;&nbsp;&nbsp; 0114:import sys<br />&nbsp;=
-&nbsp;&nbsp;&nbsp; 0115:import os<br />&nbsp;&nbsp;&nbsp;&nbsp; 0116:import=
- re<br />&nbsp;*** 0117:import pydoc<br />&nbsp;&nbsp;&nbsp;&nbsp; 0118:imp=
-ort traceback<br />&nbsp;&nbsp;&nbsp;&nbsp; 0119:try:<br />&nbsp;&nbsp;&nbs=
-p;&nbsp; 0120:&nbsp;&nbsp;&nbsp; import fcntl<br />&nbsp;&nbsp;&nbsp;&nbsp;=
- 0121:except ImportError:<br />File: '/opt/poky/3.1/sysroots/x86_64-pokysdk=
--linux/usr/lib/python3.8/pydoc.py', lineno: 366, function: &lt;module&gt;<b=
-r />&nbsp;&nbsp;&nbsp;&nbsp; 0362:&nbsp;&nbsp;&nbsp; return module<br />&nb=
-sp;&nbsp;&nbsp;&nbsp; 0363:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0364:# ----------=
------------------------------------------- formatter base class<br />&nbsp;=
-&nbsp;&nbsp;&nbsp; 0365:<br />&nbsp;*** 0366:class Doc:<br />&nbsp;&nbsp;&n=
-bsp;&nbsp; 0367:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0368:&nbsp;&nbsp;&nbsp; PYTH=
-ONDOCS =3D os.environ.get("PYTHONDOCS",<br />&nbsp;&nbsp;&nbsp;&nbsp; 0369:=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "https://docs.python.org/%d.%d/library=
-"<br />&nbsp;&nbsp;&nbsp;&nbsp; 0370:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %=
- sys.version_info[:2])<br />File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-li=
-nux/usr/lib/python3.8/pydoc.py', lineno: 396, function: Doc<br />&nbsp;&nbs=
-p;&nbsp;&nbsp; 0392:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raise TypeEr=
-ror(message)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0393:<br />&nbsp;&nbsp;&nbsp;&nb=
-sp; 0394:&nbsp;&nbsp;&nbsp; docmodule =3D docclass =3D docroutine =3D docot=
-her =3D docproperty =3D docdata =3D fail<br />&nbsp;&nbsp;&nbsp;&nbsp; 0395=
-:<br />&nbsp;*** 0396:&nbsp;&nbsp;&nbsp; def getdocloc(self, object, basedi=
-r=3Dsysconfig.get_path('stdlib')):<br />&nbsp;&nbsp;&nbsp;&nbsp; 0397:&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; """Return the location of module docs=
- or None"""<br />&nbsp;&nbsp;&nbsp;&nbsp; 0398:<br />&nbsp;&nbsp;&nbsp;&nbs=
-p; 0399:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try:<br />&nbsp;&nbsp;&n=
-bsp;&nbsp; 0400:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; file =3D inspect.getabsfile(object)<br />File: '/opt/poky/3.1/sysro=
-ots/x86_64-pokysdk-linux/usr/lib/python3.8/sysconfig.py', lineno: 514, func=
-tion: get_path<br />&nbsp;&nbsp;&nbsp;&nbsp; 0510:&nbsp;&nbsp;&nbsp; """Ret=
-urn a path corresponding to the scheme.<br />&nbsp;&nbsp;&nbsp;&nbsp; 0511:=
-<br />&nbsp;&nbsp;&nbsp;&nbsp; 0512:&nbsp;&nbsp;&nbsp; ``scheme`` is the in=
-stall scheme name.<br />&nbsp;&nbsp;&nbsp;&nbsp; 0513:&nbsp;&nbsp;&nbsp; ""=
-"<br />&nbsp;*** 0514:&nbsp;&nbsp;&nbsp; return get_paths(scheme, vars, exp=
-and)[name]<br />&nbsp;&nbsp;&nbsp;&nbsp; 0515:<br />&nbsp;&nbsp;&nbsp;&nbsp=
-; 0516:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0517:def get_config_vars(*args):<br /=
->&nbsp;&nbsp;&nbsp;&nbsp; 0518:&nbsp;&nbsp;&nbsp; """With no arguments, ret=
-urn a dictionary of all configuration<br />File: '/opt/poky/3.1/sysroots/x8=
-6_64-pokysdk-linux/usr/lib/python3.8/sysconfig.py', lineno: 504, function: =
-get_paths<br />&nbsp;&nbsp;&nbsp;&nbsp; 0500:&nbsp;&nbsp;&nbsp; ``scheme`` =
-is the install scheme name. If not provided, it will<br />&nbsp;&nbsp;&nbsp=
-;&nbsp; 0501:&nbsp;&nbsp;&nbsp; return the default scheme for the current p=
-latform.<br />&nbsp;&nbsp;&nbsp;&nbsp; 0502:&nbsp;&nbsp;&nbsp; """<br />&nb=
-sp;&nbsp;&nbsp;&nbsp; 0503:&nbsp;&nbsp;&nbsp; if expand:<br />&nbsp;*** 050=
-4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return _expand_vars(scheme, va=
-rs)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0505:&nbsp;&nbsp;&nbsp; else:<br />&nbsp;=
-&nbsp;&nbsp;&nbsp; 0506:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return _=
-INSTALL_SCHEMES[scheme]<br />&nbsp;&nbsp;&nbsp;&nbsp; 0507:<br />&nbsp;&nbs=
-p;&nbsp;&nbsp; 0508:<br />File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linu=
-x/usr/lib/python3.8/sysconfig.py', lineno: 172, function: _expand_vars<br /=
->&nbsp;&nbsp;&nbsp;&nbsp; 0168:def _expand_vars(scheme, vars):<br />&nbsp;&=
-nbsp;&nbsp;&nbsp; 0169:&nbsp;&nbsp;&nbsp; res =3D {}<br />&nbsp;&nbsp;&nbsp=
-;&nbsp; 0170:&nbsp;&nbsp;&nbsp; if vars is None:<br />&nbsp;&nbsp;&nbsp;&nb=
-sp; 0171:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vars =3D {}<br />&nbsp;=
-*** 0172:&nbsp;&nbsp;&nbsp; _extend_dict(vars, get_config_vars())<br />&nbs=
-p;&nbsp;&nbsp;&nbsp; 0173:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0174:&nbsp;&nbsp;&=
-nbsp; for key, value in _INSTALL_SCHEMES[scheme].items():<br />&nbsp;&nbsp;=
-&nbsp;&nbsp; 0175:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if os.name in =
-('posix', 'nt'):<br />&nbsp;&nbsp;&nbsp;&nbsp; 0176:&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value =3D os.path.expanduser(va=
-lue)<br />File: '/opt/poky/3.1/sysroots/x86_64-pokysdk-linux/usr/lib/python=
-3.8/sysconfig.py', lineno: 552, function: get_config_vars<br />&nbsp;&nbsp;=
-&nbsp;&nbsp; 0548:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0549:&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if os.name =3D=3D 'nt':<br />&nbsp;&nbsp;&nbsp;&nbsp;=
- 0550:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _i=
-nit_non_posix(_CONFIG_VARS)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0551:&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if os.name =3D=3D 'posix':<br />&nbsp;*** 05=
-52:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _init=
-_posix(_CONFIG_VARS)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0553:&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp; # For backward compatibility, see issue19555<br />&=
-nbsp;&nbsp;&nbsp;&nbsp; 0554:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SO =
-=
-=3D _CONFIG_VARS.get('EXT_SUFFIX')<br />&nbsp;&nbsp;&nbsp;&nbsp; 0555:&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if SO is not None:<br />&nbsp;&nbsp;=
-&nbsp;&nbsp; 0556:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; _CONFIG_VARS['SO'] =3D SO<br />File: '/opt/poky/3.1/sysroots/x86_=
-64-pokysdk-linux/usr/lib/python3.8/sysconfig.py', lineno: 423, function: _i=
-nit_posix<br />&nbsp;&nbsp;&nbsp;&nbsp; 0419:def _init_posix(vars):<br />&n=
-bsp;&nbsp;&nbsp;&nbsp; 0420:&nbsp;&nbsp;&nbsp; """Initialize the module as =
-appropriate for POSIX systems."""<br />&nbsp;&nbsp;&nbsp;&nbsp; 0421:&nbsp;=
-&nbsp;&nbsp; # _sysconfigdata is generated at build time, see _generate_pos=
-ix_vars()<br />&nbsp;&nbsp;&nbsp;&nbsp; 0422:&nbsp;&nbsp;&nbsp; name =3D _g=
-et_sysconfigdata_name()<br />&nbsp;*** 0423:&nbsp;&nbsp;&nbsp; _temp =3D __=
-import__(name, globals(), locals(), ['build_time_vars'], 0)<br />&nbsp;&nbs=
-p;&nbsp;&nbsp; 0424:&nbsp;&nbsp;&nbsp; build_time_vars =3D _temp.build_time=
-_vars<br />&nbsp;&nbsp;&nbsp;&nbsp; 0425:&nbsp;&nbsp;&nbsp; vars.update(bui=
-ld_time_vars)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0426:<br />&nbsp;&nbsp;&nbsp;&n=
-bsp; 0427:def _init_non_posix(vars):<br />Exception: ModuleNotFoundError: N=
-o module named '_sysconfigdata'<br /><br />ERROR: Logfile of failure stored=
- in: /home/andrewg/Code/openbmc/build/tmp/work/arm1176jzs-openbmc-linux-gnu=
-eabi/phosphor-state-manager/1.0+gitAUTOINC+42f2898d18-r1/devtooltmp-5k9pa8p=
-_/temp/log.do_unpack.3596808<br /><span style=3D"caret-color: #ffffff; colo=
-r: #ffffff; font-family: Helvetica; font-size: 12px; font-style: normal; fo=
-nt-variant-caps: normal; font-weight: normal; letter-spacing: normal; orpha=
-ns: auto; text-align: start; text-indent: 0px; text-transform: none; white-=
-space: normal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: a=
-uto; -webkit-text-stroke-width: 0px; text-decoration: none; display: inline=
- !important; float: none;"><br /></span>
+--------------------------
+ Repositories/Downloads
+--------------------------
 
---X2JWADCzOw2PjNgVWgaD--
+Repository Name: poky
+Repository Location: https://git.yoctoproject.org/git/poky
+Branch: warrior
+Tag: yocto-2.7.4
+Git Revision: f65b24e9ca0918a4ede70ea48ed8b7cc4620f07f
+Release Arefact: poky-warrior-21.0.4
+sha: cc3fbef5a514eee7e0a6ed7918a8e78ea47f7c57314de2e24fb20b99fde54cbb
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.7.4/poky-warrior-2=
+1.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.7.4/poky-warrior-21.0.4.tar.b=
+z2
+
+Repository Name: openembedded-core
+Repository Location: https://git.openembedded.org/openembedded-core
+Branch: warrior
+Tag: 2019-04.4-warrior
+Git Revision: db3ce703d03b18e8a4120969d32ff7f344f34fe9
+Release Arefact: oecore-warrior-21.0.4
+sha: 27185ef148b443dd415bb1f7f8a8fd8438a53ea3fc32fc1d7298156ea930d1c9
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.7.4/oecore-warrior=
+-21.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.7.4/oecore-warrior-21.0.4.tar=
+.bz2
+
+Repository Name: meta-mingw
+Repository Location: https://git.yoctoproject.org/git/meta-mingw
+Branch: warrior
+Tag: yocto-2.7.4
+Git Revision: 10695afe8cd406844e0d0dd868c11677e07557d4
+Release Arefact: meta-mingw-warrior-21.0.4
+sha: 2e8e856aab006e0da4e78aa1550c3a9e29ec545cefde85fa97c9a8cfb964a9e7
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.7.4/meta-mingw-war=
+rior-21.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.7.4/meta-mingw-warrior-21.0.4=
+.tar.bz2
+
+Repository Name: meta-gplv2
+Repository Location: https://git.yoctoproject.org/git/meta-gplv2
+Branch: warrior
+Tag: yocto-2.7.4
+Git Revision: d5d9fc9a4bbd365d6cd6fe4d6a8558f7115c17da
+Release Arefact: meta-gplv2-warrior-21.0.4
+sha: 9d018da2baf8ad01d367e91877d24038b44a1dbd0530799c45c02b8f4e0a742b
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.7.4/meta-gplv2-war=
+rior-21.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.7.4/meta-gplv2-warrior-21.0.4=
+.tar.bz2
+
+Repository Name: bitbake
+Repository Location: https://git.openembedded.org/bitbake
+Branch: warrior
+Tag: 2019-04.4-warrior
+Git Revision: 7f7126211170439ac1d7d72e980786ce0edb7bb7
+Release Arefact: bitbake-warrior-21.0.4
+sha: 791a52bb2595f4dd04e32ee4c441d6cc5e0d49a0931b7a8da366d0c8e4355a17
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.7.4/bitbake-warrio=
+r-21.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.7.4/bitbake-warrior-21.0.4.ta=
+r.bz2
+
+---------------
+Contributors
+---------------
+Adrian Bunk
+akuster
+Alexander Kanavin
+Anuj Mittal
+Daisuke Yamane
+Denys Dmytriyenko
+Jan Luebbe
+Jain Sangeeta
+Lee Chee Yang
+Martin Jansa
+Michael Halstead
+Nicolas Dechesne
+Oleksandr Kravchuk
+Qi.Chen@windriver.com
+Richard Purdie
+Stephen Jolley
+Ross Burton
+Vineela Tummalapalli
+Yi Zhao
+Zang Ruochen
+
+---------------
+ Known Issues
+---------------
+N/A
+
+
+---------------
+Security Fixes
+---------------
+openssl10: Add CVE_PRODUCT
+systemd: Backport the CVE-2019-20386 fix
+e2fsprogs: fix CVE-2019-5188
+ppp: Security fix CVE-2020-8597
+ncurses: add CVE_VERSION
+libxml2: Fix CVE-2019-20388
+libxml2: fix CVE-2020-7595
+sqlite3: fix CVE-2019-16168
+libsoup: set CVE_PRODUCT
+
+
+---------------
+Fixes
+---------------
+build-appliance-image: Update to warrior head revision
+prservice.py: fix do_package with newer Python in Ubuntu 20.04
+build-appliance-image: Update to warrior head revision
+poky.conf: Bump version for 2.7.4 warrior release
+cve-check: CPE version '-' as all version
+openssl: upgrade 1.1.1f -> 1.1.1g
+openssl: update to 1.1.1f
+openssl: Upgrade 1.1.1d -> 1.1.1e
+openssl: recommend cryptodev-module for corresponding PACKAGECONFIG
+openssl: Fix reproducibility issue
+python: Upgrade 2.7.17 -> 2.17.18
+git: Upgrade 2.20.1 -> 2.20.4
+Documenation: Prepared for the 2.7.4 release
+yocto-uninative.inc: version 2.8 updates glibc to 2.31
+python3: Upgrade 3.7.6 -> 3.7.7
+gnupg: upgrade 2.2.16 -> 2.2.17
+gnupg: upgrade 2.2.15 -> 2.2.16
+gnupg: update to 2.2.15
+openssl10: Upgrade 1.0.2r -> 1.0.2u
+e2fsprogs: backport upstream patch
+boost: fix build for x32
+openssh: backport patch to fix "cert not yet valid" test
+bitbake: lib/bb/utils.py: Preserve ownership of symlink
