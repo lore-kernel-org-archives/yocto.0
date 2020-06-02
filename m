@@ -1,68 +1,140 @@
-Received: from heian.cn.fujitsu.com (heian.cn.fujitsu.com [183.91.158.132])
- by mx.groups.io with SMTP id smtpd.web11.1829.1591063525678675759
- for <yocto@lists.yoctoproject.org>;
- Mon, 01 Jun 2020 19:05:26 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: cn.fujitsu.com, ip: 183.91.158.132, mailfrom: lixm.fnst@cn.fujitsu.com)
-X-IronPort-AV: E=Sophos;i="5.73,462,1583164800"; 
-   d="scan'208";a="93618565"
-Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
-  by heian.cn.fujitsu.com with ESMTP; 02 Jun 2020 10:05:20 +0800
-Received: from G08CNEXMBPEKD05.g08.fujitsu.local (unknown [10.167.33.204])
-	by cn.fujitsu.com (Postfix) with ESMTP id B5B7E4CE032B;
-	Tue,  2 Jun 2020 10:05:19 +0800 (CST)
-Received: from G08CNEXMBPEKD05.g08.fujitsu.local (10.167.33.204) by
- G08CNEXMBPEKD05.g08.fujitsu.local (10.167.33.204) with Microsoft SMTP Server
- (TLS) id 15.0.1497.2; Tue, 2 Jun 2020 10:05:18 +0800
-Received: from G08CNEXMBPEKD05.g08.fujitsu.local ([fe80::90ed:382f:828d:5124])
- by G08CNEXMBPEKD05.g08.fujitsu.local ([fe80::90ed:382f:828d:5124%14]) with
- mapi id 15.00.1497.006; Tue, 2 Jun 2020 10:05:18 +0800
-From: "Li, Xiaoming" <lixm.fnst@cn.fujitsu.com>
-To: Sangeeta Jain <sangeeta.jain@intel.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: =?UTF-8?B?562U5aSNOiBRQSBjb21wbGV0aW9uIGZvciBjb21wbGV0ZWQgYXV0b2J1aWxkZXIgYnVpbGQgKHlvY3RvLTIuNy40LnJjMik=?=
-Thread-Topic: QA completion for completed autobuilder build (yocto-2.7.4.rc2)
-Thread-Index: AdY35btkDB8TuKqMTXW+3mqug3znTwAnD2UQ
-Date: Tue, 2 Jun 2020 02:05:18 +0000
-Message-ID: <8963d43382ec4edb9adf4e127d8bc509@G08CNEXMBPEKD05.g08.fujitsu.local>
-References: <BY5PR11MB40371DDE5C07A6FE3BA2F211E38A0@BY5PR11MB4037.namprd11.prod.outlook.com>
-In-Reply-To: <BY5PR11MB40371DDE5C07A6FE3BA2F211E38A0@BY5PR11MB4037.namprd11.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.167.218.89]
+Subject: error while adding python layer #yocto
+To: yocto@lists.yoctoproject.org
+From: "Pankaj  Vinadrao Joshi" <pankaj.vj@exaleapsemi.com>
+X-Originating-Location: Pune, Maharashtra, IN (157.33.227.39)
+X-Originating-Platform: Windows Chrome 83
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-yoursite-MailScanner-ID: B5B7E4CE032B.A9485
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-From: lixm.fnst@cn.fujitsu.com
-X-Spam-Status: No
-Content-Language: zh-CN
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+Date: Mon, 01 Jun 2020 23:29:20 -0700
+Message-ID: <jywR.1591079360251491570.isY0@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="AaIutDvTiA4yUj5rUiHZ"
 
-SGmjrFNhbmdlZXRhDQoNCkFyZSB5b3VyIHRlc3QgY2FzZSBhbmQgdGVzdCBz
-dGVwcyBvcGVuIHNvdXJjZSA/DQpJZiB5ZXMsIHdoZXJlIGNhbiBJIGdldCBp
-dCA/IFRoYW5rcyBhIGxvdC4NCg0KQmVzdA0KTGkNCg0KPiAtLS0tLdPKvP7U
-rbz+LS0tLS0NCj4gt6K8/sjLOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qu
-b3JnIFttYWlsdG86eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZ10gtPoN
-Cj4gse0gU2FuZ2VldGEgSmFpbg0KPiC3osvNyrG85DogMjAyMMTqNtTCMcjV
-IDE1OjI2DQo+IMrVvP7IyzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9y
-Zw0KPiCzrcvNOiBvdGF2aW9Ab3NzeXN0ZW1zLmNvbS5icjsgeWkuemhhb0B3
-aW5kcml2ZXIuY29tOyBTYW5nYWwsIEFwb29ydg0KPiA8YXBvb3J2LnNhbmdh
-bEBpbnRlbC5jb20+OyBDaGFuLCBBYXJvbiBDaHVuIFlldw0KPiA8YWFyb24u
-Y2h1bi55ZXcuY2hhbkBpbnRlbC5jb20+OyByaWNoYXJkLnB1cmRpZUBsaW51
-eGZvdW5kYXRpb24ub3JnOw0KPiBha3VzdGVyODA4QGdtYWlsLmNvbTsgc2pv
-bGxleS55cC5wbUBnbWFpbC5jb207IFR1bW1hbGFwYWxsaSwgVmluZWVsYQ0K
-PiA8dmluZWVsYS50dW1tYWxhcGFsbGlAaW50ZWwuY29tPg0KPiDW98ziOiBb
-eW9jdG9dIFFBIGNvbXBsZXRpb24gZm9yIGNvbXBsZXRlZCBhdXRvYnVpbGRl
-ciBidWlsZCAoeW9jdG8tMi43LjQucmMyKQ0KPiANCj4gSGVsbG8gYWxsLA0K
-PiANCj4gVGhpcyBpcyB0aGUgZnVsbCByZXBvcnQgZm9yIHlvY3RvLTIuNy40
-LnJjMjoNCj4gaHR0cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9jZ2l0L2Nn
-aXQuY2dpL3lvY3RvLXRlc3RyZXN1bHRzLWNvbnRyaWIvdHJlZS8/aD1pbnRl
-DQo+IGwteW9jdG8tdGVzdHJlc3VsdHMNCj4gDQo+ID09PT09PT0gU3VtbWFy
-eSA9PT09PT09PQ0KPiBObyBoaWdoIG1pbGVzdG9uZSBkZWZlY3RzLg0KPiBO
-byBuZXcgZGVmZWN0cyBhcmUgZm91bmQgaW4gdGhpcyBjeWNsZS4NCj4gDQo+
-IE5vdGU6IEZldyBmYWlsdXJlcyBhcmUgb2JzZXJ2ZWQuIFRoZXNlIGFyZSBz
-ZXR1cCBpc3N1ZXMsIG5vdCByZWFsIHlvY3RvIGlzc3VlLg0KPiANCj4gVGhh
-bmtzLA0KPiBTYW5nZWV0YQ0KPiANCj4gDQoNCgoK
+--AaIutDvTiA4yUj5rUiHZ
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+when i am trying to add meta-python=C2=A0 from meta-openembedded i am gett=
+ing following error i have kept meta-openembedded,meta-raspberrypi into sam=
+e branch dunfell
+/Raspberrypi4-yocto$ bitbake-layers add-layer /home/ritesh/source_meta/met=
+a-openembedded/meta-python/
+NOTE: Starting bitbake server...
+Traceback (most recent call last):
+File "/home/ritesh/Yocto_practice/poky/bitbake/bin/bitbake-layers", line 9=
+5, in <module>
+ret =3D main()
+File "/home/ritesh/Yocto_practice/poky/bitbake/bin/bitbake-layers", line 6=
+3, in main
+tinfoil.prepare(True)
+File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/tinfoil.py", line 41=
+4, in prepare
+self.run_command('parseConfiguration')
+File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/tinfoil.py", line 47=
+0, in run_command
+raise TinfoilCommandFailed(result[1])
+bb.tinfoil.TinfoilCommandFailed: Traceback (most recent call last):
+File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/command.py", line 74=
+, in runCommand
+result =3D command_method(self, commandline)
+File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/command.py", line 27=
+5, in parseConfiguration
+command.cooker.parseConfiguration()
+File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/cooker.py", line 433=
+, in parseConfiguration
+self.handleCollections(self.data.getVar("BBFILE_COLLECTIONS"))
+File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/cooker.py", line 122=
+5, in handleCollections
+raise CollectionError("Errors during parsing layer configuration")
+bb.cooker.CollectionError: Errors during parsing layer configuration
+
+this is bblayer.conf
+
+[1:06 PM, 5/29/2020] =C2=B6=C2=A3: my=C2=A0 bblayer.conf is as following
+[1:06 PM, 5/29/2020] =C2=B6=C2=A3: POKY_BBLAYERS_CONF_VERSION is increased=
+ each time build/conf/bblayers.conf
+# changes incompatibly
+POKY_BBLAYERS_CONF_VERSION =3D "2"
+
+BBPATH =3D "${TOPDIR}"
+BBFILES ?=3D ""
+
+BBLAYERS ?=3D " \
+/home/pankajjoshi/Yocto_practice/poky/meta \
+/home/pankajjoshi/Yocto_practice/poky/meta-poky \
+/home/pankajjoshi/Yocto_practice/poky/meta-yocto-bsp \
+/home/pankajjoshi/source_meta/meta-raspberrypi \
+/home/pankajjoshi/source_meta/meta-openembedded/meta-oe \
+/home/pankajjoshi/source_meta/meta-openembedded/meta-filesystems \
+/home/pankajjoshi/source_meta/meta-openembedded/meta-networking \
+"
+
+why i am getting an error while adding layer into??
+
+--AaIutDvTiA4yUj5rUiHZ
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<br />when i am trying to add meta-python&nbsp; from meta-openembedded i=
+ am getting following error i have kept meta-openembedded,meta-raspberrypi =
+into same branch dunfell<br />
+<div>/Raspberrypi4-yocto$ bitbake-layers add-layer /home/ritesh/source_met=
+a/meta-openembedded/meta-python/</div>
+<div>NOTE: Starting bitbake server...</div>
+<div>Traceback (most recent call last):</div>
+<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/bin/bitbake-lay=
+ers", line 95, in &lt;module&gt;</div>
+<div>&nbsp; &nbsp; ret =3D main()</div>
+<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/bin/bitbake-lay=
+ers", line 63, in main</div>
+<div>&nbsp; &nbsp; tinfoil.prepare(True)</div>
+<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/tinfoil.=
+py", line 414, in prepare</div>
+<div>&nbsp; &nbsp; self.run_command('parseConfiguration')</div>
+<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/tinfoil.=
+py", line 470, in run_command</div>
+<div>&nbsp; &nbsp; raise TinfoilCommandFailed(result[1])</div>
+<div>bb.tinfoil.TinfoilCommandFailed: Traceback (most recent call last):</=
+div>
+<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/command.=
+py", line 74, in runCommand</div>
+<div>&nbsp; &nbsp; result =3D command_method(self, commandline)</div>
+<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/command.=
+py", line 275, in parseConfiguration</div>
+<div>&nbsp; &nbsp; command.cooker.parseConfiguration()</div>
+<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/cooker.p=
+y", line 433, in parseConfiguration</div>
+<div>&nbsp; &nbsp; self.handleCollections(self.data.getVar("BBFILE_COLLECT=
+IONS"))</div>
+<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/cooker.p=
+y", line 1225, in handleCollections</div>
+<div>&nbsp; &nbsp; raise CollectionError("Errors during parsing layer conf=
+iguration")</div>
+<div>bb.cooker.CollectionError: Errors during parsing layer configuration<=
+br /><br />this is bblayer.conf<br /><br />
+<div>[1:06 PM, 5/29/2020] &para;&pound;: my&nbsp; bblayer.conf is as follo=
+wing</div>
+<div>[1:06 PM, 5/29/2020] &para;&pound;: POKY_BBLAYERS_CONF_VERSION is inc=
+reased each time build/conf/bblayers.conf</div>
+<div># changes incompatibly</div>
+<div>POKY_BBLAYERS_CONF_VERSION =3D "2"</div>
+<div>&nbsp;</div>
+<div>BBPATH =3D "${TOPDIR}"</div>
+<div>BBFILES ?=3D ""</div>
+<div>&nbsp;</div>
+<div>BBLAYERS ?=3D " \</div>
+<div>&nbsp; /home/pankajjoshi/Yocto_practice/poky/meta \</div>
+<div>&nbsp; /home/pankajjoshi/Yocto_practice/poky/meta-poky \</div>
+<div>&nbsp; /home/pankajjoshi/Yocto_practice/poky/meta-yocto-bsp \</div>
+<div>&nbsp; /home/pankajjoshi/source_meta/meta-raspberrypi \</div>
+<div>&nbsp; /home/pankajjoshi/source_meta/meta-openembedded/meta-oe \</div=
+>
+<div>&nbsp; /home/pankajjoshi/source_meta/meta-openembedded/meta-filesyste=
+ms \</div>
+<div>&nbsp; /home/pankajjoshi/source_meta/meta-openembedded/meta-networkin=
+g \</div>
+<div>&nbsp; "<br /><br />why i am getting an error while adding layer into=
+??</div>
+</div>
+
+--AaIutDvTiA4yUj5rUiHZ--
