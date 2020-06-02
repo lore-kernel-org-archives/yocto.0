@@ -1,140 +1,140 @@
-Subject: error while adding python layer #yocto
-To: yocto@lists.yoctoproject.org
-From: "Pankaj  Vinadrao Joshi" <pankaj.vj@exaleapsemi.com>
-X-Originating-Location: Pune, Maharashtra, IN (157.33.227.39)
-X-Originating-Platform: Windows Chrome 83
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+ by mx.groups.io with SMTP id smtpd.web10.10765.1591105022298019395
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 02 Jun 2020 06:37:02 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=md2fb7A9;
+ spf=pass (domain: gmail.com, ip: 209.85.166.181, mailfrom: jpewhacker@gmail.com)
+Received: by mail-il1-f181.google.com with SMTP id p5so11816494ile.6
+        for <yocto@lists.yoctoproject.org>; Tue, 02 Jun 2020 06:37:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:subject:to:references:cc:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language;
+        bh=fsqus19xR9uh31w2IyuxeFPcikTGZhFpYOf1rKWEqgE=;
+        b=md2fb7A9zCmZGFvGBzrpPf6u8S9pcPHLBl7nQ9sC/6zp1Vy+8hwCnf7k34B3uVWEPm
+         +HafOCY8uYByRdBTsSSKEGzE1Ss3RaPVgilk3SA5rWPAZpLVp0iqVMIhSE+lAPzOf6Yw
+         xNcMTw8SbweCT+vwFq373VKKPDl1eYqrlrkEUto1GWV5Ml/gUydXKWHWYOMKPVQDTEbn
+         4AeLXOqxznogrVRsMRQP9AhFNvK4R5CdjfyCeL1L4yQwLqTSLnCAs9nAAyhmElCdLroD
+         mB/bONzzVaNFRfUru8ZQ33rw8O7C2uhigIP/g7whrB8Ha8+SEYSS2gXSLS0D8BnUZEzE
+         kgvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:to:references:cc:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language;
+        bh=fsqus19xR9uh31w2IyuxeFPcikTGZhFpYOf1rKWEqgE=;
+        b=E3GjYiPM44QQiOKq371nWUYrvEsef9iNypwas8F7W/Lkw4xIWM18zT53OGgbkIzRLR
+         Bs1R5aeL9UuSA7XUolUhkcb+HqBAuXwTiYHE70yWHWsXOa5gYKhG/jTfja06ZFeG7ue8
+         kfKgxJ9SVrO5/YST8Uphnz/Uj/LErjWT435RofcYTdGgfBpjcZNJ50rrZaJDutqEblRY
+         JurJPt25nc2dXyNYoZAhvhUIxDFrYwbyizkoSF6R0qRVbIULNw2RnHQIj+gAnQf1imxj
+         VIjzs43P5G0uFR6kubMIZOC1PMOM9vpMcfyxwqmh30KBRbvS8nqRWIHwwEheHgCpjDmG
+         T7WQ==
+X-Gm-Message-State: AOAM531KHeLTtQA3LTyCjIqc2JIBhfXWO+lABHIdXOnW3HM6WrU/ta1A
+	5qo02NLFeiOR5saHzQil4MrbQdhA9QM=
+X-Google-Smtp-Source: ABdhPJxVgf4U0kjQI5qB2+gCks/bnYQF8RjpsEzfyYr1g8XVTSCy0kQp9cn0mw3cvYvlsj4ZoHp/9A==
+X-Received: by 2002:a92:c948:: with SMTP id i8mr26012715ilq.258.1591105021531;
+        Tue, 02 Jun 2020 06:37:01 -0700 (PDT)
+Return-Path: <jpewhacker@gmail.com>
+Received: from ?IPv6:2605:a601:ac3d:c100:b01b:daad:c850:7bb9? ([2605:a601:ac3d:c100:b01b:daad:c850:7bb9])
+        by smtp.gmail.com with ESMTPSA id q75sm1070384iod.22.2020.06.02.06.37.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Jun 2020 06:37:00 -0700 (PDT)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+Subject: [meta-mingw]: Static libraries (was: meta-mingw)
+To: Edgar Chaves <edgarchvs11@gmail.com>
+References: <CAK6d4ekRt99dBF=d4_nc_C2aRCWcLQG=hyxfLyz4qd_gZXqMSw@mail.gmail.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Message-ID: <a4309ce9-b4d2-afd5-49e2-a65c463c34a6@gmail.com>
+Date: Tue, 2 Jun 2020 08:37:00 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Date: Mon, 01 Jun 2020 23:29:20 -0700
-Message-ID: <jywR.1591079360251491570.isY0@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="AaIutDvTiA4yUj5rUiHZ"
+In-Reply-To: <CAK6d4ekRt99dBF=d4_nc_C2aRCWcLQG=hyxfLyz4qd_gZXqMSw@mail.gmail.com>
+Content-Type: multipart/alternative;
+ boundary="------------8F76C3AB1CB461A73D3432D2"
+Content-Language: en-US
 
---AaIutDvTiA4yUj5rUiHZ
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+--------------8F76C3AB1CB461A73D3432D2
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
-when i am trying to add meta-python=C2=A0 from meta-openembedded i am gett=
-ing following error i have kept meta-openembedded,meta-raspberrypi into sam=
-e branch dunfell
-/Raspberrypi4-yocto$ bitbake-layers add-layer /home/ritesh/source_meta/met=
-a-openembedded/meta-python/
-NOTE: Starting bitbake server...
-Traceback (most recent call last):
-File "/home/ritesh/Yocto_practice/poky/bitbake/bin/bitbake-layers", line 9=
-5, in <module>
-ret =3D main()
-File "/home/ritesh/Yocto_practice/poky/bitbake/bin/bitbake-layers", line 6=
-3, in main
-tinfoil.prepare(True)
-File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/tinfoil.py", line 41=
-4, in prepare
-self.run_command('parseConfiguration')
-File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/tinfoil.py", line 47=
-0, in run_command
-raise TinfoilCommandFailed(result[1])
-bb.tinfoil.TinfoilCommandFailed: Traceback (most recent call last):
-File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/command.py", line 74=
-, in runCommand
-result =3D command_method(self, commandline)
-File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/command.py", line 27=
-5, in parseConfiguration
-command.cooker.parseConfiguration()
-File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/cooker.py", line 433=
-, in parseConfiguration
-self.handleCollections(self.data.getVar("BBFILE_COLLECTIONS"))
-File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/cooker.py", line 122=
-5, in handleCollections
-raise CollectionError("Errors during parsing layer configuration")
-bb.cooker.CollectionError: Errors during parsing layer configuration
+CC'in the mailing list.
 
-this is bblayer.conf
-
-[1:06 PM, 5/29/2020] =C2=B6=C2=A3: my=C2=A0 bblayer.conf is as following
-[1:06 PM, 5/29/2020] =C2=B6=C2=A3: POKY_BBLAYERS_CONF_VERSION is increased=
- each time build/conf/bblayers.conf
-# changes incompatibly
-POKY_BBLAYERS_CONF_VERSION =3D "2"
-
-BBPATH =3D "${TOPDIR}"
-BBFILES ?=3D ""
-
-BBLAYERS ?=3D " \
-/home/pankajjoshi/Yocto_practice/poky/meta \
-/home/pankajjoshi/Yocto_practice/poky/meta-poky \
-/home/pankajjoshi/Yocto_practice/poky/meta-yocto-bsp \
-/home/pankajjoshi/source_meta/meta-raspberrypi \
-/home/pankajjoshi/source_meta/meta-openembedded/meta-oe \
-/home/pankajjoshi/source_meta/meta-openembedded/meta-filesystems \
-/home/pankajjoshi/source_meta/meta-openembedded/meta-networking \
-"
-
-why i am getting an error while adding layer into??
-
---AaIutDvTiA4yUj5rUiHZ
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,<br />when i am trying to add meta-python&nbsp; from meta-openembedded i=
- am getting following error i have kept meta-openembedded,meta-raspberrypi =
-into same branch dunfell<br />
-<div>/Raspberrypi4-yocto$ bitbake-layers add-layer /home/ritesh/source_met=
-a/meta-openembedded/meta-python/</div>
-<div>NOTE: Starting bitbake server...</div>
-<div>Traceback (most recent call last):</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/bin/bitbake-lay=
-ers", line 95, in &lt;module&gt;</div>
-<div>&nbsp; &nbsp; ret =3D main()</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/bin/bitbake-lay=
-ers", line 63, in main</div>
-<div>&nbsp; &nbsp; tinfoil.prepare(True)</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/tinfoil.=
-py", line 414, in prepare</div>
-<div>&nbsp; &nbsp; self.run_command('parseConfiguration')</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/tinfoil.=
-py", line 470, in run_command</div>
-<div>&nbsp; &nbsp; raise TinfoilCommandFailed(result[1])</div>
-<div>bb.tinfoil.TinfoilCommandFailed: Traceback (most recent call last):</=
-div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/command.=
-py", line 74, in runCommand</div>
-<div>&nbsp; &nbsp; result =3D command_method(self, commandline)</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/command.=
-py", line 275, in parseConfiguration</div>
-<div>&nbsp; &nbsp; command.cooker.parseConfiguration()</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/cooker.p=
-y", line 433, in parseConfiguration</div>
-<div>&nbsp; &nbsp; self.handleCollections(self.data.getVar("BBFILE_COLLECT=
-IONS"))</div>
-<div>&nbsp; File "/home/ritesh/Yocto_practice/poky/bitbake/lib/bb/cooker.p=
-y", line 1225, in handleCollections</div>
-<div>&nbsp; &nbsp; raise CollectionError("Errors during parsing layer conf=
-iguration")</div>
-<div>bb.cooker.CollectionError: Errors during parsing layer configuration<=
-br /><br />this is bblayer.conf<br /><br />
-<div>[1:06 PM, 5/29/2020] &para;&pound;: my&nbsp; bblayer.conf is as follo=
-wing</div>
-<div>[1:06 PM, 5/29/2020] &para;&pound;: POKY_BBLAYERS_CONF_VERSION is inc=
-reased each time build/conf/bblayers.conf</div>
-<div># changes incompatibly</div>
-<div>POKY_BBLAYERS_CONF_VERSION =3D "2"</div>
-<div>&nbsp;</div>
-<div>BBPATH =3D "${TOPDIR}"</div>
-<div>BBFILES ?=3D ""</div>
-<div>&nbsp;</div>
-<div>BBLAYERS ?=3D " \</div>
-<div>&nbsp; /home/pankajjoshi/Yocto_practice/poky/meta \</div>
-<div>&nbsp; /home/pankajjoshi/Yocto_practice/poky/meta-poky \</div>
-<div>&nbsp; /home/pankajjoshi/Yocto_practice/poky/meta-yocto-bsp \</div>
-<div>&nbsp; /home/pankajjoshi/source_meta/meta-raspberrypi \</div>
-<div>&nbsp; /home/pankajjoshi/source_meta/meta-openembedded/meta-oe \</div=
+On 6/1/20 10:39 PM, Edgar Chaves wrote:
+> Hi
 >
-<div>&nbsp; /home/pankajjoshi/source_meta/meta-openembedded/meta-filesyste=
-ms \</div>
-<div>&nbsp; /home/pankajjoshi/source_meta/meta-openembedded/meta-networkin=
-g \</div>
-<div>&nbsp; "<br /><br />why i am getting an error while adding layer into=
-??</div>
-</div>
+> I want to ask about meta-mingw static libraries for Windows. The thing 
+> is that I don't get ".lib" in the SDK. Do you have any information 
+> about that?
 
---AaIutDvTiA4yUj5rUiHZ--
+meta-mingw is primarily intended to build and SDK that allows you to 
+cross compile for a Linux target from a Windows host, so including the 
+static libraries for the Windows portions doesn't really make sense. I 
+think there has been a little discussions about making and SDK that 
+cross compiles for Windows, but I don't recall where that went.
+
+Perhaps you can clarify what your use case is?
+
+
+>
+> Thank you, I'd appreciate your answer.
+>
+> —Edgar
+
+--------------8F76C3AB1CB461A73D3432D2
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>CC'in the mailing list.<br>
+    </p>
+    <div class="moz-cite-prefix">On 6/1/20 10:39 PM, Edgar Chaves wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAK6d4ekRt99dBF=d4_nc_C2aRCWcLQG=hyxfLyz4qd_gZXqMSw@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="ltr">
+        <div>
+          <div>
+            <div>Hi<br>
+              <br>
+            </div>
+            I want to ask about meta-mingw static libraries for Windows.
+            The thing is that I don't get ".lib" in the SDK. Do you have
+            any information about that?<br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <p>meta-mingw is primarily intended to build and SDK that allows you
+      to cross compile for a Linux target from a Windows host, so
+      including the static libraries for the Windows portions doesn't
+      really make sense. I think there has been a little discussions
+      about making and SDK that cross compiles for Windows, but I don't
+      recall where that went.<br>
+    </p>
+    <p>Perhaps you can clarify what your use case is?<br>
+    </p>
+    <p><br>
+    </p>
+    <blockquote type="cite"
+cite="mid:CAK6d4ekRt99dBF=d4_nc_C2aRCWcLQG=hyxfLyz4qd_gZXqMSw@mail.gmail.com">
+      <div dir="ltr">
+        <div>
+          <div><br>
+          </div>
+          Thank you, I'd appreciate your answer.<br>
+          <br>
+        </div>
+        <span class="gmail-st">—</span>Edgar<br>
+      </div>
+    </blockquote>
+  </body>
+</html>
+
+--------------8F76C3AB1CB461A73D3432D2--
