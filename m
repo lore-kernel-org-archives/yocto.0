@@ -1,33 +1,42 @@
-Subject: meta-openssl102 support in Dunfell?
+Subject: HELP NEEDED TO ENABLE PRINTING USING YOCTO #cups #linux #yocto
 To: yocto@lists.yoctoproject.org
-From: "MikeB" <mabnhdev@gmail.com>
-X-Originating-Location: Raleigh, North Carolina, US (107.13.78.59)
+From: sheng.leong.soi@intel.com
+X-Originating-Location: Bayan Lepas, Penang, MY (192.198.146.171)
 X-Originating-Platform: Windows Chrome 83
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Wed, 03 Jun 2020 00:05:06 -0700
-Message-ID: <EjyZ.1591167906021465339.7Rt6@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="KxLLV5nnC4PiIJCoZwaz"
+Date: Wed, 03 Jun 2020 00:29:00 -0700
+Message-ID: <W2tI.1591169340644600535.qm12@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="PtegQA0Ei2v7umbGUkVe"
 
---KxLLV5nnC4PiIJCoZwaz
+--PtegQA0Ei2v7umbGUkVe
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Is there any plan to support meta-openssl102 (and meta-openssl102-fips) in =
-Dunfell?
+I am trying to print using Yocto, but I am clueless on how to enable the pr=
+inting. The printer I am using is HP Deskjet 2135 Ink Advantage.
 
-I'm one of those users that is stuck with a FIPs certified openssl, but I'=
-d like to move to an LTS release in the near future.
+CUPS version: 2.2.8
+HPLIP version: 3.15.6
+Avahi version: 0.8
 
-Thanks.
+When I executing "hp-setup", it mentioned "no PPD found". So, where to get=
+ the PPD file for my printer?
+Or do I need to install any other drivers such as ghostscripts, hpcups, et=
+c?
+Your help will be much appreciated.
+Thanks
 
---KxLLV5nnC4PiIJCoZwaz
+--PtegQA0Ei2v7umbGUkVe
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Is there any plan to support meta-openssl102 (and meta-openssl102-fips) in =
-Dunfell?<br /><br />I'm one of those users that is stuck with a FIPs certif=
-ied openssl, but I'd like to move to an LTS release in the near future.<br =
-/><br />Thanks.
+I am trying to print using Yocto, but I am clueless on how to enable the pr=
+inting. The printer I am using is HP Deskjet 2135 Ink Advantage.<br /><br /=
+>CUPS version: 2.2.8<br />HPLIP version: 3.15.6<br />Avahi version: 0.8<br =
+/><br />When I executing "hp-setup", it mentioned "no PPD found". So, where=
+ to get the PPD file for my printer?<br />Or do I need to install any other=
+ drivers such as ghostscripts, hpcups, etc?<br />Your help will be much app=
+reciated.<br />Thanks
 
---KxLLV5nnC4PiIJCoZwaz--
+--PtegQA0Ei2v7umbGUkVe--
