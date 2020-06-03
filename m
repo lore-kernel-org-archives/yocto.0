@@ -1,206 +1,251 @@
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (NAM12-BN8-obe.outbound.protection.outlook.com [40.107.237.123])
- by mx.groups.io with SMTP id smtpd.web10.18214.1591202497938499478
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+ by mx.groups.io with SMTP id smtpd.web12.1303.1591206377735414247
  for <yocto@lists.yoctoproject.org>;
- Wed, 03 Jun 2020 09:41:38 -0700
+ Wed, 03 Jun 2020 10:46:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@melink.onmicrosoft.com header.s=selector2-melink-onmicrosoft-com header.b=bkAFHMDO;
- spf=pass (domain: melinkcorp.com, ip: 40.107.237.123, mailfrom: bevenson@melinkcorp.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a4BNrzZY7RZpOlIiBnrjn+ogO08wDtzDL6e4PlLBh6IBD4hqOGZoNea/Svaa/t1BfvQyl5CA3GgZ3Epd/rj9KwtpydUGBTI0M3SvhtQzDABuKYxf/GiOsv66RE0MY7XENgVAs072mbgG5bQKqS7lwXzkSrmdAbCDHsDJMWkVjCebmmmg0oNb1Mfr7+ezEuIBybuUFxKfvGTJrozAP2qiaUz+aqP2RqvrzOvUmeGry7iKayHFSSHAYHa6zp4rnt1Xbi1dX4WWI6fSSaUvSONzdQ6yFvvoiMUhaxBCh4WE6QIULTBey0PRcJfqDCWXzin4tzsppiCN0X2dZBANUihuBQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TChpS4iBvHCWSqiz/KDAL11qq604AfneUNtgrUceGMQ=;
- b=EiUEovZSLmEcsLfOT2fRAqv6xLVQ5nazenh4+FmuMlcNDVS/vhzpVr5mFw4YBxSJDYD0U2w7MCPF86wIZe2je9v4I5riWcLV0Ac1YjQRba3oPJVh/DP9k7ncsqoE2JkJKMwD+Oh5WjqrfCkyLDk0dcQPEUwcRqlotrRACRIPHrHxLuz6UlQez8SMhMgn8nPgVjEDx7NmtSzco1+BWHyz26jeSMtniDneuvQmsrJJZAp8XOTQKr9FK7c3zflYf7/QHcIcrBP0PxZgyOBA9hXHhwsaxPJE3HchhO/Hly3KV7lSae04qu0QoevU6rtUOlswYJL8zEHdjRMcuNvUo5NtUg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=melinkcorp.com; dmarc=pass action=none
- header.from=melinkcorp.com; dkim=pass header.d=melinkcorp.com; arc=none
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=D3jWyCQ6;
+ spf=pass (domain: gmail.com, ip: 209.85.160.179, mailfrom: raj.khem@gmail.com)
+Received: by mail-qt1-f179.google.com with SMTP id y1so2758053qtv.12
+        for <yocto@lists.yoctoproject.org>; Wed, 03 Jun 2020 10:46:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Melink.onmicrosoft.com; s=selector2-Melink-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TChpS4iBvHCWSqiz/KDAL11qq604AfneUNtgrUceGMQ=;
- b=bkAFHMDOZah128h551KGlSjB5zG6AIouWek27I9m77QDA9ASMUgAqtl+4j6KVW8owZyYGuuT28C1DNQBqTrg3SOAWYzbflEcJOsFu6L9H2R37LoMczzWXjTo2U95tSvKE8AdEwX4FY97EyFoBKmqygWgvyvZ6PZkDa0ouLEKXTx7dIL7YaldgwKJcefdWB4R2DLgH22CXn7/nWXU8SF3qaEym3jyyefAQneIzdBE66PxxAitUYCIAcSkFXMh9Xm4XRlFXGCtOGDEWslEg38dM9LaOMVRwv2KegSBudamigbJQynol4NSXeLnd9F8cWZJAVYDeBoCIBhADjRNWRVt8w==
-Received: from DM6PR20MB2540.namprd20.prod.outlook.com (2603:10b6:5:1ac::13)
- by DM6PR20MB3577.namprd20.prod.outlook.com (2603:10b6:5:bf::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3045.17; Wed, 3 Jun
- 2020 16:41:35 +0000
-Received: from DM6PR20MB2540.namprd20.prod.outlook.com
- ([fe80::2051:ee3e:dbd0:9337]) by DM6PR20MB2540.namprd20.prod.outlook.com
- ([fe80::2051:ee3e:dbd0:9337%5]) with mapi id 15.20.3066.018; Wed, 3 Jun 2020
- 16:41:35 +0000
-From: "Bryan Evenson" <bevenson@melinkcorp.com>
-To: Khem Raj <raj.khem@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Eclipse GDB setup issues; can't determine cause for SIGSEGV
-Thread-Topic: [yocto] Eclipse GDB setup issues; can't determine cause for
- SIGSEGV
-Thread-Index: AdY4IU1c+KqgRe3YQl6zQlxTh54n9AAMxTngACGDy4AAC/0tAAAuGTbA
-Date: Wed, 3 Jun 2020 16:41:35 +0000
-Message-ID: 
- <DM6PR20MB254012C2D0907779B8D83202BB880@DM6PR20MB2540.namprd20.prod.outlook.com>
-References: <1614746D82793AEE.8494@lists.yoctoproject.org>
- <1614866B049B125B.10126@lists.yoctoproject.org>
- <MN2PR20MB254289B326D91A3401BECCB8BB8B0@MN2PR20MB2542.namprd20.prod.outlook.com>
- <CAMKF1sqf_jVLznvOb83LkqnR0DEHKz5q0iU5rDWE6=BNmxi+uQ@mail.gmail.com>
-In-Reply-To: 
- <CAMKF1sqf_jVLznvOb83LkqnR0DEHKz5q0iU5rDWE6=BNmxi+uQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-bromium-msgid: ad013136-f1e0-449b-abf1-a7b3d4492340
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=melinkcorp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d38c4c64-b1f3-471d-d18e-08d807dcfaad
-x-ms-traffictypediagnostic: DM6PR20MB3577:
-x-microsoft-antispam-prvs: 
- <DM6PR20MB35770AFF0463F12F00EF5A5BBB880@DM6PR20MB3577.namprd20.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 04238CD941
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 3FL6KC8WYruC+0uPEOAMlyHWFrWElN0V7GQy9OMJeVLCqbmgVD2R8F7dUUMjDJ0pgnZCL1rDPsCMggmeI/8PDIbLv2RlxFBMBwX/Z2griOgkmSLRCPCNTI6of4USCCqqHqP+2Y/NDnrc560Y92siwm3DqoWOSC4zP3ZqocUKEPBMo82Qd7WwvSWYbZH3YbvzbiTsxRrWZsYepGSuWUXM3gfG57KxdtbCIf0JQuEFX0G/gUI18BFHlt+2IQYqX0Bv+Gi952g0f9E5yxjCEFheebczY4CVrsBhQkYPflKApusF0Ksm+XxckHGKP/DZP2A+5oP7QpBy2nwl2RfsY2oyE8e7xAKHy8syJ/CqBpxxdST7gKjIgzaPvBPyssJFClV36EsgtkmQ6k8Vv2/CgGyRUw==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR20MB2540.namprd20.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(39840400004)(136003)(376002)(396003)(346002)(366004)(55016002)(9686003)(86362001)(71200400001)(83380400001)(186003)(508600001)(2906002)(53546011)(6916009)(52536014)(966005)(4326008)(8676002)(6506007)(26005)(7696005)(5660300002)(64756008)(33656002)(66556008)(76116006)(316002)(8936002)(66446008)(66946007)(66476007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: 
- KfGNDIH2Y7O7B9sqwJQaZLawGzxeEB/5s9tVSwknjrb22z73kegIemOocpogIBISwre0/VbzY+2rv82xqeqCMu7GZJH0sj9koL1G/HeyGhocBJvoBgCbbQ4E/j8/8TegH3tqQIfYoCPCoQGmRerFvBATx9xFRUE+9JdTb41s2sZydh3a3gp5e81DUEwOFC4WEe4zT829E3rnoRebHd7MTSZUjxTYtmnsT33puf88gxmT36VJNOrIBiWpMT4LrbBj7nArGn0/qPyc/oXUN0Rw1/TrveUUZQtmB1SezPBN8OnaWIA8FgpDOjKpyegMWlSmAK5yZMx1L/wJDTKbLmD92xlDM1GkeJ0Cy6EHiY3eiEItSgnuF5siQGCSRXoDxeNt3QojVO+wUgQ2KBLPSofZIAs9dIZklU7yrX6Y+SuYD9u8ZRAm1izEnC9rLm1ySC3P5jv1MbvMOXS725zkOYkUtb2sN/r+FsGHwCbmugBNNio=
-x-ms-exchange-transport-forked: True
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=YsytBR4MCNvTW7uGmnC0Z///cy6zuDE4DHVXicbABM0=;
+        b=D3jWyCQ6zPBjge0Gp0J9BOUu9gOrnUqBHeEKAOqv+ZUytvZh/GXHTEcuI6ezTGS9VS
+         BgOEWWXpPdYoaWGgyQ+om5w7H/wRSp5GRXfnsMJV/I0hreV74fdE1NqXRXd+aK+Bph5n
+         ooeLmOUSwIuK8uit3yWjWi6d0iiUeUdM9unf826eirZe/qWpZGRPLUAHW2J/7MNnYRvw
+         y5KmqYi06j9PJrfyZRXKe22dyO2cSjdeQ2pAsopESIuWlEHvrp55MDPvtWBj4TrSnxi2
+         u/wjnsBDwgNZF6Pl4gjDBeD8oNms/lGKYzvMp8U6s8cL98JvNmjnyZsElB9vZsmqKMpF
+         fDKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=YsytBR4MCNvTW7uGmnC0Z///cy6zuDE4DHVXicbABM0=;
+        b=lSDcR0P0dfP/v0iNyWJ6V83VLS3vbC4nEMzorDcvCmlQNUBG1pmun7rYSttIHKgRwp
+         7aIY9gGTBSO4VGEq+4hX1Fq+yM3ib2UU1NY1QKGuWr9sMDC4vkIKXLOUKyEHPXeaAat7
+         PrvrogtNIzYC2sfkpmFYm1RGXazWmquju5N8gJfhKezYX55ei7hMS1D5EI+9dQBSSrE9
+         VZUfbREG6CuGBbeZDzHgbj5R5B9umBVWVVI7RZtra9M0Q4DD8+zMRRTMUoMgSPEU13Jl
+         O5l7ZfLIyTDjhwI/qYs9cEIx+kwA4Eyclh9w8R9XxF6KgCKxCCLYbOymkwW/6MHU3mP1
+         CBrA==
+X-Gm-Message-State: AOAM530S1vUPxikVdHy9ZF751mdIV74vKynWoO0HtPOmn0fcdEzCnD6X
+	kQgc+hw5iPmNDuKoOuPApit3Mnun9lIJidt2d5o=
+X-Google-Smtp-Source: ABdhPJw2dZEzk/J8zGVMi5rnXewZHkTYk2k1RL2kwFOLSEMJJr0KiQSswqGBNQGAldQ+8Ds6VSRW+16/X3LuJSY+8T0=
+X-Received: by 2002:ac8:5148:: with SMTP id h8mr464262qtn.316.1591206376618;
+ Wed, 03 Jun 2020 10:46:16 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d38c4c64-b1f3-471d-d18e-08d807dcfaad
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jun 2020 16:41:35.1221
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: GM5kvcVK4CscbqIQqtRN5WmIMwyrGyFTa56FcWPDentYfCtxGcVcNQcCMEyKJWnhUpwh9i/cKQKiqLu6v99gQw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR20MB3577
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+References: <1614746D82793AEE.8494@lists.yoctoproject.org> <1614866B049B125B.10126@lists.yoctoproject.org>
+ <MN2PR20MB254289B326D91A3401BECCB8BB8B0@MN2PR20MB2542.namprd20.prod.outlook.com>
+ <CAMKF1sqf_jVLznvOb83LkqnR0DEHKz5q0iU5rDWE6=BNmxi+uQ@mail.gmail.com> <DM6PR20MB254012C2D0907779B8D83202BB880@DM6PR20MB2540.namprd20.prod.outlook.com>
+In-Reply-To: <DM6PR20MB254012C2D0907779B8D83202BB880@DM6PR20MB2540.namprd20.prod.outlook.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Wed, 3 Jun 2020 10:45:50 -0700
+Message-ID: <CAMKF1sopMPr71axFPL63xMDpFGjUyDbcc-HjEHXwcKeCPDc2Hw@mail.gmail.com>
+Subject: Re: [yocto] Eclipse GDB setup issues; can't determine cause for SIGSEGV
+To: Bryan Evenson <bevenson@melinkcorp.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-S2hlbSwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBLaGVtIFJhaiA8
-cmFqLmtoZW1AZ21haWwuY29tPg0KPiBTZW50OiBUdWVzZGF5LCBKdW5lIDIsIDIwMjAgMjoyMCBQ
-TQ0KPiBUbzogQnJ5YW4gRXZlbnNvbiA8YmV2ZW5zb25AbWVsaW5rY29ycC5jb20+DQo+IENjOiB5
-b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIEVjbGlw
-c2UgR0RCIHNldHVwIGlzc3VlczsgY2FuJ3QgZGV0ZXJtaW5lIGNhdXNlIGZvcg0KPiBTSUdTRUdW
-DQo+IA0KPiBPbiBUdWUsIEp1biAyLCAyMDIwIGF0IDY6NTIgQU0gQnJ5YW4gRXZlbnNvbiA8YmV2
-ZW5zb25AbWVsaW5rY29ycC5jb20+DQo+IHdyb3RlOg0KPiA+DQo+ID4gQWxsLA0KPiA+DQo+ID4N
-Cj4gPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4gPiBGcm9tOiB5b2N0b0BsaXN0
-cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPiBPbg0KPiA+
-ID4gQmVoYWxmIE9mIEJyeWFuIEV2ZW5zb24gdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCj4g
-PiA+IFNlbnQ6IE1vbmRheSwgSnVuZSAxLCAyMDIwIDQ6NDYgUE0NCj4gPiA+IFRvOiBCcnlhbiBF
-dmVuc29uIDxiZXZlbnNvbkBtZWxpbmtjb3JwLmNvbT47DQo+ID4gPiB5b2N0b0BsaXN0cy55b2N0
-b3Byb2plY3Qub3JnDQo+ID4gPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBFY2xpcHNlIEdEQiBzZXR1
-cCBpc3N1ZXM7IGNhbid0IGRldGVybWluZSBjYXVzZQ0KPiA+ID4gZm9yIFNJR1NFR1YNCj4gPiA+
-DQo+ID4gPiBBbGwsDQo+ID4gPg0KPiA+ID4gPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
-PiA+ID4gPiBGcm9tOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0cy55
-b2N0b3Byb2plY3Qub3JnPg0KPiA+ID4gPiBPbiBCZWhhbGYgT2YgQnJ5YW4gRXZlbnNvbiB2aWEg
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KPiA+ID4gPiBTZW50OiBNb25kYXksIEp1bmUgMSwgMjAy
-MCAxMToxNiBBTQ0KPiA+ID4gPiBUbzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KPiA+
-ID4gPiBTdWJqZWN0OiBbeW9jdG9dIEVjbGlwc2UgR0RCIHNldHVwIGlzc3VlczsgY2FuJ3QgZGV0
-ZXJtaW5lIGNhdXNlDQo+ID4gPiA+IGZvcg0KPiA+ID4gU0lHU0VHVg0KPiA+ID4gPg0KPiA+ID4g
-PiBBbGwsDQo+ID4gPiA+DQo+ID4gPiA+IEkgaGF2ZSBhIEFUOTFTQU05RzI1IHN5c3RlbSB0aGF0
-IGhhcyBiZWVuIGlkbGUgZm9yIGEgY291cGxlIHllYXJzDQo+ID4gPiAocnVubmluZw0KPiA+ID4g
-PiBtb3J0eSwgeW9jdG8gdmVyc2lvbiAyLjIuMSkgYW5kIEkgYW0gd29ya2luZyBvbiB1cGRhdGlu
-ZyB0byB0aGUNCj4gPiA+ID4gbGF0ZXN0DQo+ID4gPiBZb2N0bw0KPiA+ID4gPiBwcm9kdWN0aW9u
-IGJyYW5jaC4gIEJlZm9yZSBJIGdldCB0aGVyZSwgSSdtIHRyeWluZyB0byBjb25maXJtIHRoZQ0K
-PiA+ID4gPiBvbGQgc2V0dXAgYW5kIEknbSBoYXZpbmcgcHJvYmxlbXMgd2l0aCByZW1vdGUgZGVi
-dWdnaW5nLiAgSSBrbm93DQo+ID4gPiA+IHRoZXJlIGhhdmUgYmVlbiBjaGFuZ2VzIHNpbmNlIHlv
-Y3RvIHZlcnNpb24gMi43IGZvciBkZWJ1Z2dpbmcNCj4gPiA+ID4gc3VwcG9ydCwgc28gSSB3YW50
-IHRvIG1ha2Ugc3VyZSBJIGNhbiBnZXQgdGhlIG9sZCBzZXR1cCB0byB3b3JrDQo+ID4gPiA+IGZp
-cnN0IHByaW9yIHRvIGNoYW5naW5nIGV2ZXJ5dGhpbmcuICBJJ20gbG9va2luZyBmb3IgYXNzaXN0
-YW5jZSBpbiB0cmFja2luZw0KPiBkb3duIG15IGRlYnVnIGlzc3Vlcy4NCj4gPiA+ID4NCj4gPiA+
-ID4gTXkgc3RhYmxlIHByb2R1Y3Rpb24gaW1hZ2UgaXMgYmFzZWQgb2ZmIG9mIGNvcmUtaW1hZ2Ut
-bWluaW1hbCwNCj4gPiA+ID4gd2l0aCBhIGZldyBhZGRpdGlvbmFsIHBhY2thZ2VzIGZvciBvdXIg
-cHJvcHJpZXRhcnkgYXBwbGljYXRpb25zDQo+ID4gPiA+IChwcm9wcmlldGFyeQ0KPiA+ID4gYXBw
-bGljYXRpb25zDQo+ID4gPiA+IGFyZSB3cml0dGVuIGluIEMpLiAgSSBhbHNvIGhhdmUgYSBkZXZl
-bG9wbWVudCBpbWFnZSwgYmFzZWQgb2ZmIG9mDQo+ID4gPiA+IG91ciBwcm9kdWN0aW9uIGltYWdl
-LCB3aXRoIHRoZSBmb2xsb3dpbmcgYWRkaXRpb25zOg0KPiA+ID4gPg0KPiA+ID4gPiBJTUFHRV9G
-RUFUVVJFUyArPSAicGFja2FnZS1tYW5hZ2VtZW50IGRldi1wa2dzIGVjbGlwc2UtZGVidWcNCj4g
-PiA+IGFsbG93LQ0KPiA+ID4gPiBlbXB0eS1wYXNzd29yZCBlbXB0eS1yb290LXBhc3N3b3JkIg0K
-PiA+ID4gPg0KPiA+ID4gPiBJTUFHRV9JTlNUQUxMICs9ICIgXA0KPiA+ID4gPiAgICAgI3NhbWUg
-YWRkaXRpb25hbCBwYWNrYWdlcyBhcyBwcm9kdWN0aW9uIGltYWdlICBcDQo+ID4gPiA+ICAgICAj
-Ii1kYmciIHZlcnNpb24gb2YgcHJvcHJpZXRhcnkgYXBwbGljYXRpb25zIFwNCj4gPiA+ID4gICAg
-IGdkYnNlcnZlciBcDQo+ID4gPiA+ICINCj4gPiA+ID4gIyBTdHJpcCBweXRob24gZnJvbSB0aGUg
-aW1hZ2UgdG8gcmVkdWNlIHRoZSBpbWFnZSBzaXplDQo+ID4gPiA+IFBBQ0tBR0VfRVhDTFVERSA9
-ICJweXRob24iDQo+ID4gPiA+DQo+ID4gPiA+IEkgaGF2ZSB0aGUgRWNsaXBzZSBZb2N0byBwbHVn
-aW4gaW5zdGFsbGVkIGFuZCBpdCBpcyBzZXR1cCB0byB1c2UNCj4gPiA+ID4gdGhlIFNESyB0aGF0
-IEkgaGF2ZSBidWlsdCBiYXNlZCBvbiB0aGUgZGV2ZWxvcG1lbnQgaW1hZ2UuICBJJ3ZlDQo+ID4g
-PiA+IGNvbmZpcm1lZCB0aGF0IEkgY2FuIHN0YXJ0DQo+ID4gPiBhDQo+ID4gPiA+IGRlYnVnIHNl
-c3Npb24gb24gb25lIG9mIG91ciBwcm9wcmlldGFyeSBhcHBsaWNhdGlvbnMuICBJIGNhbiBzZXQN
-Cj4gPiA+ID4gYnJlYWtwb2ludHMgYW5kIHJ1biB0aGUgZGVidWdnZXIuICBIb3dldmVyLCB0aGUg
-ZGVidWdnZXIgYWx3YXlzDQo+ID4gPiA+IHN0b3BzIGF0IHRoZSBmaXJzdCBjYWxsIHRvIHV1aWRf
-Y29tcGFyZSB3aXRoIGEgIFNJR1NFR1YuICBUaGUgbGFzdA0KPiA+ID4gPiBsaW5lIGluIHRoZSBj
-YWxsIHN0YWNrIHN0YXRlcyAiPHN5bWJvbCBpcyBub3QgYXZhaWxhYmxlPg0KPiA+ID4gPiAweDAw
-MDAwMDAwIi4gIEZyb20gbXkgdW5kZXJzdGFuZGluZywgdGhlIHN0YWNrIHBvaW50ZXIgaXMgZ2V0
-dGluZw0KPiA+ID4gPiBzZXQgdG8gTlVMTCB3aGVuIHV1aWRfY29tcGFyZSBpcyBnZXR0aW5nIGNh
-bGxlZC4gIElmIEkgc3RvcCB0aGUNCj4gPiA+ID4gZGVidWdnZXIgYW5kIGp1c3QgcnVuIHRoZSBh
-cHBsaWNhdGlvbiBvbiB0aGUgaGFyZHdhcmUsIHRoZQ0KPiA+ID4gPiBhcHBsaWNhdGlvbiBydW5z
-IHdpdGhvdXQgZXJyb3JzLiAgSSBoYXZlIGNvbmZpcm1lZCB3aXRoIHN5c2xvZw0KPiA+ID4gPiBt
-ZXNzYWdlcyB0aGF0IEkgZG8gbm90IGhhdmUgdGhlIHNhbWUgTlVMTCBzdGFjayBwb2ludGVyIGlz
-c3VlIHdoZW4NCj4gPiA+ID4gSSBydW4gdGhlIGFwcGxpY2F0aW9uIG91dHNpZGUNCj4gPiA+IG9m
-DQo+ID4gPiA+IHRoZSBkZWJ1Z2dlci4NCj4gPiA+ID4NCj4gPiA+ID4gQW55IHN1Z2dlc3Rpb25z
-IG9uIHdoZXJlIHRvIHN0YXJ0IGxvb2tpbmc/ICBJIGRvbid0IHNlZSBhbnkNCj4gPiA+ID4gb2J2
-aW91cw0KPiA+ID4gcG9zc2libGUNCj4gPiA+ID4gY2F1c2VzIGFuZCBJIGRvbid0IGtub3cgd2hl
-cmUgdG8gc3RhcnQgbG9va2luZyBmb3IgdGhlIHByb2JsZW0uDQo+ID4gPiA+DQo+ID4gPg0KPiA+
-ID4gT24gYSB3aGltLCBJIGNoYW5nZWQgaW4gbXkgY29kZToNCj4gPiA+ICAgICBpZih1dWlkX2Nv
-bXBhcmUodXVpZDEsIHV1aWQyKSA9PSAwKQ0KPiA+ID4NCj4gPiA+IFRvOg0KPiA+ID4gICAgIElm
-KG1lbWNtcCh1dWlkMSwgdXVpZDIsIDE2KSA9PSAwKQ0KPiA+ID4NCj4gPiA+IEFmdGVyIHRoaXMg
-Y2hhbmdlIHRoZSBwcm9ibGVtYXRpYyBsaW5lIG9mIGNvZGUgd29ya2VkIGp1c3QgZmluZS4NCj4g
-PiA+IFRoZSBkZWJ1Z2dlciB3b3JrZWQgZmluZSB1bnRpbCBJIGdvdCB0byB0aGUgbmV4dCBzcG90
-IGluIG15IGNvZGUNCj4gPiA+IHRoYXQgY2FsbGVkIHV1aWRfY29tcGFyZS4gIEF0IHRoZSBuZXh0
-IGNhbGwgdG8gdXVpZF9jb21wYXJlIEkgZ290DQo+ID4gPiB0aGUgc2FtZSBTSUdTRUdWIGVycm9y
-IEkgaGFkIGJlZm9yZS4gIFNvbWV0aGluZyBpcyBjbGVhcmx5IGEgcHJvYmxlbQ0KPiB3aXRoIGNh
-bGxpbmcgdXVpZF9jb21wYXJlLg0KPiA+ID4gSG93ZXZlciwgSSdtIHVzaW5nIHNldmVyYWwgb3Ro
-ZXIgZnVuY3Rpb25zIGZyb20gdGhlIHV1aWQgbGlicmFyeQ0KPiA+ID4gKHV1aWRfaXNfbnVsbCwg
-dXVpZF9wYXJzZSwgdXVpZF91bnBhcnNlIGZvciBhIGZldykgYW5kIG5vbmUgb2YgdGhlbQ0KPiA+
-ID4gYXJlIGNhdXNpbmcgcHJvYmxlbXMuICBJIGRvbid0IHRoaW5rIGl0J3MgYSBwcm9ibGVtIHdp
-dGggdGhlIGlucHV0DQo+ID4gPiBwYXJhbWV0ZXJzIGJlY2F1c2UgSSdtIHBhc3NpbmcgdGhlIHNh
-bWUgVVVJRHMgdG8gbWVtY29tcCBhcyBJIGRpZCB0bw0KPiB1dWlkX2NvbXBhcmUuDQo+ID4gPiBI
-YXMgYW55b25lIGV2ZXIgc2VlbiBvbmx5IG9uZSBmdW5jdGlvbiBmcm9tIGEgbGlicmFyeSBjYXVz
-ZSBwcm9ibGVtcw0KPiA+ID4gbGlrZSB0aGlzPw0KPiA+DQo+ID4gSSBkb24ndCBrbm93IGlmIHRo
-aXMgaXMgcmVsYXRlZCwgYnV0IEkgbm90aWNlZCB0aGF0IHRoZSBkZWJ1Z2dlciBjYW5ub3Qgc3Rl
-cA0KPiBpbnRvIGFueSBsaWJyYXJ5IGZ1bmN0aW9ucy4gIEZvciBleGFtcGxlLCBJIHRyaWVkIHN0
-ZXBwaW5nIGludG8gc3RybmNweSwgYW5kIHRoZQ0KPiBkZWJ1Z2dlciBzdGVwcGVkIG92ZXIgdGhl
-IGZ1bmN0aW9uIGNhbGwuICBJIHN3aXRjaGVkIHRvIGFzc2VtYmx5IGluc3RydWN0aW9uDQo+IHN0
-ZXBwaW5nIG1vZGUsIHRoZW4gd2hlbiBJIHN0ZXBwZWQgaW50byBzdHJuY3B5IEkgcmVjZWl2ZWQg
-dGhlIG1lc3NhZ2UNCj4gIk5vIHNvdXJjZSBhdmFpbGFibGUgZm9yIHN0cm5jcHlAcGx0Ii4gIEkg
-Y29udGludWVkIHNpbmdsZSBzdGVwcGluZyBhbmQgd2FzDQo+IGFibGUgdG8gc3RlcCB0aHJvdWdo
-IGFsbCB0aGUgYXNzZW1ibHkgY29kZSBmb3Igc3RybmNweS4gIEkgdGhlbiBpbnN0cnVjdGlvbg0K
-PiBzaW5nbGUgc3RlcHBlZCBpbnRvIHV1aWRfY29tcGFyZSwgYW5kIEkgd2FzIGFibGUgdG8gc2lu
-Z2xlIHN0ZXAgd2l0aG91dCBpc3N1ZQ0KPiB1bnRpbCBJIGdvdCB0byB0aGUgZm9sbG93aW5nIGlu
-c3RydWN0aW9uOg0KPiA+ICAgICBieCByMTINCj4gPiBXaGVuIHRoaXMgaW5zdHJ1Y3Rpb24gaXMg
-Y2FsbGVkLCByMTIgaXMgMC4gIEknbSBhIGxpdHRsZSBjb25mdXNlZCB3aHkgdGhpcyBsaWJyYXJ5
-DQo+IGZ1bmN0aW9uIGNhbGwgaXMgZmFpbGluZyBpbiB0aGlzIG1hbm5lciAod2hlbiBhbGwgdGhl
-IGlucHV0IHBhcmFtZXRlcnMgdG8NCj4gdXVpZF9jb21wYXJlIGFyZSB2YWxpZCksIGFuZCBJJ20g
-bm90IHN1cmUgd2h5IEkgY2FuJ3Qgc291cmNlIHN0ZXAgdGhyb3VnaA0KPiBhbnkgbGlicmFyeSBm
-dW5jdGlvbnMuICBJZiBhbnlvbmUgaGFzIGFueSBzdWdnZXN0aW9ucyBvbiBlaXRoZXIgaXNzdWUs
-IHBsZWFzZQ0KPiBsZXQgbWUga25vdy4NCj4gDQo+IEl0IHNlZW1zIHlvdSBhcmUgdXNpbmcgdGh1
-bWIxIElTQSwgYW5kIHVzdWFsbHksIHRoZXJlIGlzIHNvbWUgc29ydCBvZiB2ZW5lZXINCj4gY29k
-ZSB0byBzd2l0Y2ggZnJvbSBhcm0gbW9kZSB0byB0aHVtYiBtb2RlIHdoaWNoIG1pZ2h0IGVtcGxv
-eSB0aGlzIGtpbmQNCj4gb2YgaW5kaXJlY3QganVtcHMgcGVyaGFwcyBpbiBlMmZzcHJvZ3MgcmVj
-aXBlLCB5b3UgY2FuIGFkZA0KPiBJTkhJQklUX1BBQ0tBR0VfU1RSSVAgPSAiMSIgdGVtcG9yYXJp
-bHkgYW5kIGxvYWQgdGhlIGltYWdlLCBwZXJoYXBzIHRoYXQNCj4gY2FuIGdpdmUgeW91IGJldHRl
-ciBkZWJ1Z2dpbmcgZXhwZXJpZW5jZSwgYnV0IGl0IHNlZW1zIHRoZXJlIGlzIGEgY29kZS1nZW4N
-Cj4gYnVnIGFzIGl0IHNlZW1zLg0KPiANCg0KVGhhbmtzIGZvciB0aGUgc3VnZ2VzdGlvbnMuICBJ
-IHRyaWVkIHRoZXNlIHN1Z2dlc3Rpb25zIGFuZCBpdCBkaWRuJ3QgaGVscC4gSSByZXBsYWNlZCBh
-bGwgdGhlIHV1aWRfY29tcGFyZSBjYWxscyBpbiBteSBjb2RlIGFuZCBJIHdhcyBhYmxlIHRvIGRv
-IHNvbWUgZGVidWdnaW5nLiAgQnV0IHRoZW4gSSBzdGFydGVkIGhhdmluZyBvdGhlciBvZGQgcHJv
-YmxlbXMgd2l0aCBTSUdBQlJUIGFuZCBTSUdTRUdWIGVycm9ycyBhdCBwb2ludHMgdGhhdCBub3Jt
-YWxseSB3b3JrLg0KDQpJIHRoZW4gbWVyZ2VkIGluIHNvbWUgY29kZSBmcm9tIGFub3RoZXIgZGV2
-ZWxvcGVyIHdoaWNoIGlzIHVzaW5nIGFuIG9sZGVyIFNESy4gIEkgd2Fzbid0IGFibGUgdG8gYnVp
-bGQgYW55IG1vcmUgYW5kIGRldGVybWluZWQgdGhlIG1ha2VmaWxlcyBhbmQgY29uZmlndXJlIG5l
-ZWRlZCB1cGRhdGVkIChhdXRvdG9vbHMgYmFzZWQgcHJvZ3JhbSkuICBBIHNpbXBsZSBhdXRvcmVj
-b25mIGRpZG4ndCBmaXggaXQ7IEkgaGFkIHRvIGludm9rZSBhY2xvY2FsLCBhdXRvY29uZiwgYXV0
-b21ha2UgYW5kIHRoZW4gYXV0b3JlY29uZi4gIEFmdGVyIGFsbCB0aGVzZSBjaGFuZ2VzLCBJIGNh
-biBub3cgZGVidWcgbXkgYXBwbGljYXRpb24gd2l0aG91dCBpdCBjcmFzaGluZy4gIFRoZSB1dWlk
-X2NvbXBhcmUgY2FsbHMgYXJlIHdvcmtpbmcganVzdCBmaW5lIGFuZCBJJ3ZlIGJlZW4gYWJsZSB0
-byBydW4gdGhlIGRlYnVnZ2VyIGFuZCBzZXQgYnJlYWtwb2ludHMgaW4gbWFueSBwYXJ0cyBvZiBt
-eSBjb2RlLiAgSSBkb24ndCBmdWxseSB1bmRlcnN0YW5kIHdoeSBpdCB3YXMgdGhlIGlzc3VlLCBi
-dXQgaXQgYXBwZWFycyBJIG5lZWRlZCB0byBkbyBhIG1vcmUgaW4tZGVwdGggYXV0b3Rvb2xzIHJl
-Y29uZmlndXJhdGlvbiBmb3IgZGVidWdnaW5nIHRvIHdvcmsgd2l0aCBteSBjb3B5IG9mIHRoZSBT
-REsuDQoNClRoYW5rcywNCkJyeWFuDQoNCj4gPg0KPiA+IFRoYW5rcywNCj4gPiBCcnlhbg0KPiA+
-DQo+ID4gPg0KPiA+ID4gPiBUaGFua3MsDQo+ID4gPiA+IEJyeWFuDQo+ID4NCj4gPiANCg==
+On Wed, Jun 3, 2020 at 9:41 AM Bryan Evenson <bevenson@melinkcorp.com> wrot=
+e:
+>
+> Khem,
+>
+> > -----Original Message-----
+> > From: Khem Raj <raj.khem@gmail.com>
+> > Sent: Tuesday, June 2, 2020 2:20 PM
+> > To: Bryan Evenson <bevenson@melinkcorp.com>
+> > Cc: yocto@lists.yoctoproject.org
+> > Subject: Re: [yocto] Eclipse GDB setup issues; can't determine cause f=
+or
+> > SIGSEGV
+> >
+> > On Tue, Jun 2, 2020 at 6:52 AM Bryan Evenson <bevenson@melinkcorp.com>
+> > wrote:
+> > >
+> > > All,
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> =
+On
+> > > > Behalf Of Bryan Evenson via lists.yoctoproject.org
+> > > > Sent: Monday, June 1, 2020 4:46 PM
+> > > > To: Bryan Evenson <bevenson@melinkcorp.com>;
+> > > > yocto@lists.yoctoproject.org
+> > > > Subject: Re: [yocto] Eclipse GDB setup issues; can't determine cau=
+se
+> > > > for SIGSEGV
+> > > >
+> > > > All,
+> > > >
+> > > > > -----Original Message-----
+> > > > > From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org=
+>
+> > > > > On Behalf Of Bryan Evenson via lists.yoctoproject.org
+> > > > > Sent: Monday, June 1, 2020 11:16 AM
+> > > > > To: yocto@lists.yoctoproject.org
+> > > > > Subject: [yocto] Eclipse GDB setup issues; can't determine cause
+> > > > > for
+> > > > SIGSEGV
+> > > > >
+> > > > > All,
+> > > > >
+> > > > > I have a AT91SAM9G25 system that has been idle for a couple year=
+s
+> > > > (running
+> > > > > morty, yocto version 2.2.1) and I am working on updating to the
+> > > > > latest
+> > > > Yocto
+> > > > > production branch.  Before I get there, I'm trying to confirm th=
+e
+> > > > > old setup and I'm having problems with remote debugging.  I know
+> > > > > there have been changes since yocto version 2.7 for debugging
+> > > > > support, so I want to make sure I can get the old setup to work
+> > > > > first prior to changing everything.  I'm looking for assistance =
+in tracking
+> > down my debug issues.
+> > > > >
+> > > > > My stable production image is based off of core-image-minimal,
+> > > > > with a few additional packages for our proprietary applications
+> > > > > (proprietary
+> > > > applications
+> > > > > are written in C).  I also have a development image, based off o=
+f
+> > > > > our production image, with the following additions:
+> > > > >
+> > > > > IMAGE_FEATURES +=3D "package-management dev-pkgs eclipse-debug
+> > > > allow-
+> > > > > empty-password empty-root-password"
+> > > > >
+> > > > > IMAGE_INSTALL +=3D " \
+> > > > >     #same additional packages as production image  \
+> > > > >     #"-dbg" version of proprietary applications \
+> > > > >     gdbserver \
+> > > > > "
+> > > > > # Strip python from the image to reduce the image size
+> > > > > PACKAGE_EXCLUDE =3D "python"
+> > > > >
+> > > > > I have the Eclipse Yocto plugin installed and it is setup to use
+> > > > > the SDK that I have built based on the development image.  I've
+> > > > > confirmed that I can start
+> > > > a
+> > > > > debug session on one of our proprietary applications.  I can set
+> > > > > breakpoints and run the debugger.  However, the debugger always
+> > > > > stops at the first call to uuid_compare with a  SIGSEGV.  The la=
+st
+> > > > > line in the call stack states "<symbol is not available>
+> > > > > 0x00000000".  From my understanding, the stack pointer is gettin=
+g
+> > > > > set to NULL when uuid_compare is getting called.  If I stop the
+> > > > > debugger and just run the application on the hardware, the
+> > > > > application runs without errors.  I have confirmed with syslog
+> > > > > messages that I do not have the same NULL stack pointer issue wh=
+en
+> > > > > I run the application outside
+> > > > of
+> > > > > the debugger.
+> > > > >
+> > > > > Any suggestions on where to start looking?  I don't see any
+> > > > > obvious
+> > > > possible
+> > > > > causes and I don't know where to start looking for the problem.
+> > > > >
+> > > >
+> > > > On a whim, I changed in my code:
+> > > >     if(uuid_compare(uuid1, uuid2) =3D=3D 0)
+> > > >
+> > > > To:
+> > > >     If(memcmp(uuid1, uuid2, 16) =3D=3D 0)
+> > > >
+> > > > After this change the problematic line of code worked just fine.
+> > > > The debugger worked fine until I got to the next spot in my code
+> > > > that called uuid_compare.  At the next call to uuid_compare I got
+> > > > the same SIGSEGV error I had before.  Something is clearly a probl=
+em
+> > with calling uuid_compare.
+> > > > However, I'm using several other functions from the uuid library
+> > > > (uuid_is_null, uuid_parse, uuid_unparse for a few) and none of the=
+m
+> > > > are causing problems.  I don't think it's a problem with the input
+> > > > parameters because I'm passing the same UUIDs to memcomp as I did =
+to
+> > uuid_compare.
+> > > > Has anyone ever seen only one function from a library cause proble=
+ms
+> > > > like this?
+> > >
+> > > I don't know if this is related, but I noticed that the debugger can=
+not step
+> > into any library functions.  For example, I tried stepping into strncp=
+y, and the
+> > debugger stepped over the function call.  I switched to assembly instr=
+uction
+> > stepping mode, then when I stepped into strncpy I received the message
+> > "No source available for strncpy@plt".  I continued single stepping an=
+d was
+> > able to step through all the assembly code for strncpy.  I then instru=
+ction
+> > single stepped into uuid_compare, and I was able to single step withou=
+t issue
+> > until I got to the following instruction:
+> > >     bx r12
+> > > When this instruction is called, r12 is 0.  I'm a little confused wh=
+y this library
+> > function call is failing in this manner (when all the input parameters=
+ to
+> > uuid_compare are valid), and I'm not sure why I can't source step thro=
+ugh
+> > any library functions.  If anyone has any suggestions on either issue,=
+ please
+> > let me know.
+> >
+> > It seems you are using thumb1 ISA, and usually, there is some sort of =
+veneer
+> > code to switch from arm mode to thumb mode which might employ this kin=
+d
+> > of indirect jumps perhaps in e2fsprogs recipe, you can add
+> > INHIBIT_PACKAGE_STRIP =3D "1" temporarily and load the image, perhaps =
+that
+> > can give you better debugging experience, but it seems there is a code=
+-gen
+> > bug as it seems.
+> >
+>
+> Thanks for the suggestions.  I tried these suggestions and it didn't hel=
+p. I replaced all the uuid_compare calls in my code and I was able to do so=
+me debugging.  But then I started having other odd problems with SIGABRT an=
+d SIGSEGV errors at points that normally work.
+>
+> I then merged in some code from another developer which is using an olde=
+r SDK.  I wasn't able to build any more and determined the makefiles and co=
+nfigure needed updated (autotools based program).  A simple autoreconf didn=
+'t fix it; I had to invoke aclocal, autoconf, automake and then autoreconf.=
+  After all these changes, I can now debug my application without it crashi=
+ng.  The uuid_compare calls are working just fine and I've been able to run=
+ the debugger and set breakpoints in many parts of my code.  I don't fully =
+understand why it was the issue, but it appears I needed to do a more in-de=
+pth autotools reconfiguration for debugging to work with my copy of the SDK=
+.
+>
+
+what code did you merge and was it into layers? or your app.
+autoreconf helping would
+mean that its some pre-generated header etc. I am not sure what was
+causing it and not sure
+what fixed it
+
+> Thanks,
+> Bryan
+>
+> > >
+> > > Thanks,
+> > > Bryan
+> > >
+> > > >
+> > > > > Thanks,
+> > > > > Bryan
+> > >
+> > >=20
