@@ -1,137 +1,132 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.4238.1591331284587946193
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+ by mx.groups.io with SMTP id smtpd.web10.5495.1591339705508467425
  for <yocto@lists.yoctoproject.org>;
- Thu, 04 Jun 2020 21:28:04 -0700
+ Thu, 04 Jun 2020 23:48:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=G8rGNi8m;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1ABB9E01C7C; Thu,  4 Jun 2020 21:28:04 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (akuster808[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.216.46 listed in list.dnswl.org]
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02D78E01B89
-	for <yocto@yoctoproject.org>; Thu,  4 Jun 2020 21:28:02 -0700 (PDT)
-Received: by mail-pj1-f46.google.com with SMTP id 5so2192438pjd.0
-        for <yocto@yoctoproject.org>; Thu, 04 Jun 2020 21:28:02 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=bSqts481;
+ spf=pass (domain: gmail.com, ip: 209.85.221.41, mailfrom: kkettinger@gmail.com)
+Received: by mail-wr1-f41.google.com with SMTP id y17so8503196wrn.11
+        for <yocto@lists.yoctoproject.org>; Thu, 04 Jun 2020 23:48:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=to:from:subject:autocrypt:message-id:date:user-agent:mime-version
-         :content-transfer-encoding:content-language;
-        bh=G0HxRy2cOs/TQH/SHXps0cP9syNvsabDkySjo0ZilyM=;
-        b=G8rGNi8mtDEOQCRdMO8MkEhWx0wVMWWX2W2sMFAh1WZ3kkYUwW3AEZHRzg6fVG4wy/
-         wJI80F0Lh0gjG4l/n1mf1ywMR1pT4GnyU7dsm8XJBkwtIiExcNzmuMalrMF26zWXL36v
-         KI2nbIQwdPhxyjHb6Ha0jUeNL+g19ncqbDbK/nEki/iUht+a0pge2j7UvhqTg88Q517V
-         fh3lhMV2S6IoX1qAoW1Zms5r2+D7VjM7tQxIBE7urUj6Al629Zm9d5wZf8DpTPKEmP0a
-         4xlHIhEr9Waj2p1kQuIBWrqHJSdROIOkbNf7MOQh15VDEz9Kd/oz7SY6pPczaeKbKT6a
-         sUzg==
+        h=to:from:subject:message-id:date:user-agent:mime-version
+         :content-transfer-encoding;
+        bh=loJfVNvTkqysnSbFL6U3G+g93N3l6sknh0dkEIqRSx0=;
+        b=bSqts481AeLFnt8oKJLkOIMq57RlcfVI/oql4HBr1BAGeZ2VbqMdtcFd2pv7Hhit3J
+         Ux4BhxYkwtcp6vJ3TLexn7EhMMJyfnpYXg7xRK+gm/W2DbRQ7c5/YH9zKS9QcTMsHSWk
+         jzAj+RUj9+1HCvE8UOI9bbg8L3lZqTkBns3YaQD4MmQUWh4EPkbg4j6T2Ijbu7ljCGVu
+         CY5K86hriYdmEPX1Tp13ajhf3ihul3wGT1EvjeplGIvYeeGNjWw3slTjtjzlREJwXc3F
+         Vc+9RwcADmas5kZ9FG3/SNxWUPXyEnypNzLj7G5IukFJCP2AA9Xt71pSnwL6rfsYK6Ud
+         Ntiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:from:subject:autocrypt:message-id:date
-         :user-agent:mime-version:content-transfer-encoding:content-language;
-        bh=G0HxRy2cOs/TQH/SHXps0cP9syNvsabDkySjo0ZilyM=;
-        b=LyRFNmRpxAepO1ndPNIKjVcytYtDwKKtGGnrUj8ss5WMk3uFsMEDfsFUwXaRc1g14w
-         f8pF3Eg5dNtBGX6eTqVHlaAEwCrFyUKK8r9426Wz2TgzvO7sOurtNdBQEBumQ7ozy79K
-         hH9v8Gb3EqwrzwY0FvOTCS+Od0FrERhVXFSmPiPhS7EVR65oRr89xKjwQ+87ir3yDby5
-         sYUe+HCjwg84Oti/pvixiOrmhLqWrz/LPMF7s4Dt/0PzfSxc0OsqR2nszbJgSvLN1CQ3
-         wK0hlhsYL/jux69BGikYLTdruZ48I0CPuY3Q2NfCPOz6YQKOt4KTYHk67UXJZ2FjNm2e
-         nLhA==
-X-Gm-Message-State: AOAM531PRIVRQhl0fmkrd/D3jCh3sEn8SWQMdFrdCCEnm07bj7Wnp1iA
-	HEzAO7UU5xFWHWwQM7Aj7Oh5K4fg
-X-Google-Smtp-Source: ABdhPJxL9opsybkAzbS3NmhPm9ASL67ZXad1f9zZ2Tesi12khGPoaXAusjlRUXR1YW6Fs6ebrx2BVQ==
-X-Received: by 2002:a17:902:7608:: with SMTP id k8mr3635450pll.107.1591331282416;
-        Thu, 04 Jun 2020 21:28:02 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:a5c0:ed8b:1e5d:5477:19f4? ([2601:202:4180:a5c0:ed8b:1e5d:5477:19f4])
-        by smtp.gmail.com with ESMTPSA id z144sm6377334pfc.195.2020.06.04.21.28.01
+        h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=loJfVNvTkqysnSbFL6U3G+g93N3l6sknh0dkEIqRSx0=;
+        b=SA7CSJi+iMY/GCcUh6InTt1SkdQsQIqn68xHFEOcaIU+BD+UDz0vw8SGqamhS4aS8Y
+         ApCOu43YlJze0GvRRt0wcUev1IFt61eRISlcHorTlN+6T3yWkO4ZYLSV89i50GZx0jT8
+         U6mt1d/Hqq3TmYqqtmy0xm4Gt3PAYjMNAfnQYqBlbF4UZbxZVweEUwTiLsnS0Wu6io3x
+         A7o3BOjDUk+zjgv21bjmsDSWhcsH+Jij9xuMz6a47QN1Ujy0fFDx9F98/tmchQ9PEItq
+         OXRPLuDpYZyDSmJJUqW5HgUneFLMW6ZRrrdCFTXqB7r2aqyReUZS0YrZ+7gREeVDq8Pu
+         dzNA==
+X-Gm-Message-State: AOAM531U+AIaEgid4r0eEBkfdM6mU3vvDeOTikivWYzLL+1ZgMN7m6En
+	BOT/G0tBs5MAMY9KEUwaCiGBkjGi
+X-Google-Smtp-Source: ABdhPJwN8nctdTJIUOoEPmXaTGfQi3yWyJA3qznbE/2ZDj0o00zcmKiVrSSrqJHRcn6oyv396eA9Mw==
+X-Received: by 2002:adf:ec03:: with SMTP id x3mr7977861wrn.297.1591339703517;
+        Thu, 04 Jun 2020 23:48:23 -0700 (PDT)
+Return-Path: <kkettinger@gmail.com>
+Received: from [100.120.10.83] (d7.nat.whka.de. [141.70.45.5])
+        by smtp.googlemail.com with ESMTPSA id o20sm11330019wra.29.2020.06.04.23.48.22
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jun 2020 21:28:01 -0700 (PDT)
-To: Patches and discussions about the oe-core layer
- <openembedded-core@lists.openembedded.org>,
- "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
- "bitbake-devel@lists.openembedded.org" <bitbake-devel@lists.openembedded.org>
-From: "akuster" <akuster808@gmail.com>
-Subject: Stable Warrior branch
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <03a353c4-80dd-e66c-3222-7850a98182f7@gmail.com>
-Date: Thu, 4 Jun 2020 21:28:00 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+        Thu, 04 Jun 2020 23:48:22 -0700 (PDT)
+To: yocto@lists.yoctoproject.org
+From: kkettinger@gmail.com
+Subject: opkg package manifest file is not generated by bitbake
+Message-ID: <c5efd245-ec33-c182-ea8c-8bc246c512c0@gmail.com>
+Date: Fri, 5 Jun 2020 08:48:22 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 Hello,
 
-The Warrior branch of Poky has had its last official dot release. It
-will be moving to Community support and EOL within 6 weeks if no one
-steps up.
-If someone is interested in taking on the responsibilities of
-maintaining the "Warrior" branch moving forward, please email this list.
+i want to use my yocto build sever as opkg package source for updating 
+some packages directly, but it seems after generating an image the 
+"Packages" file for opkg is not created.
 
-Please look at the
-https://wiki.yoctoproject.org/wiki/Stable_Release_and_LTS for what will
-be expected.
+In the ./<build>/tmp/deploy/ipk folder, there are these folders
+---------------------------------------------------------------------
+   all
+   apalis_imx6
+   cortexa9hf-neon
+   cortexa9t2hf-neon
+   cortexa9t2hf-neon-mx6qdl
+---------------------------------------------------------------------
+but no "Packages" or "Packages.gz" file.
 
-regards,
-Armin
+My local.conf:
+---------------------------------------------------------------------
+BB_NUMBER_THREADS ?= "${@oe.utils.cpu_count()}"
+PARALLEL_MAKE ?= "-j ${@oe.utils.cpu_count()}"
+MACHINE ??= "apalis-imx6"
+MACHINE_HOSTNAME ?= "b2qt-${MACHINE}"
+DL_DIR ?= "${TOPDIR}/../downloads"
+SSTATE_DIR ?= "${TOPDIR}/../sstate-cache"
+DISTRO ?= "b2qt"
+PACKAGE_CLASSES ?= "package_ipk"
+EXTRA_IMAGE_FEATURES = "debug-tweaks"
+USER_CLASSES ?= "buildstats image-mklibs"
+PATCHRESOLVE = "noop"
+BB_DISKMON_DIRS = "\
+     STOPTASKS,${TMPDIR},1G,100K \
+     STOPTASKS,${DL_DIR},1G,100K \
+     STOPTASKS,${SSTATE_DIR},1G,100K \
+     ABORT,${TMPDIR},100M,1K \
+     ABORT,${DL_DIR},100M,1K \
+     ABORT,${SSTATE_DIR},100M,1K"
+CONF_VERSION = "1"
+INHERIT += "image-buildinfo"
+INHERIT += "internal-build"
+ACCEPT_FSL_EULA = "1"
+LICENSE_FLAGS_WHITELIST = "commercial"
+QT_SDK_PATH = ""
+PRSERV_HOST = "localhost:0"
+include conf/distro/include/${MACHINE}.pre.inc
+INHERIT+="toaster buildhistory"
+BUILDHISTORY_COMMIT = "1"
+---------------------------------------------------------------------
 
+My image.bb file does provider "package-management":
+---------------------------------------------------------------------
+IMAGE_FEATURES += "\
+         package-management \
+         ssh-server-dropbear \
+         tools-debug \
+         tools-profile \
+         debug-tweaks \
+         hwcodecs \
+         "
+---------------------------------------------------------------------
+(opkg is working on the embedded device)
+
+Output after building an image:
+---------------------------------------------------------------------
+BB_VERSION           = "1.42.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "apalis-imx6"
+DISTRO               = "b2qt"
+DISTRO_VERSION       = "2.7.3"
+TUNE_FEATURES        = "arm vfp cortexa9 neon thumb callconvention-hard"
+TARGET_FPU           = "hard"
+SDKMACHINE           = "x86_64"
+---------------------------------------------------------------------
+
+A appreciate any help.
+
+Mit freundlichen Grüßen / Best regards,
+Kevin Kettinger
