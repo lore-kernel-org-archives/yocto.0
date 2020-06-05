@@ -1,665 +1,137 @@
-Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
- by mx.groups.io with SMTP id smtpd.web11.1839.1591320268026952246
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.4238.1591331284587946193
  for <yocto@lists.yoctoproject.org>;
- Thu, 04 Jun 2020 18:24:28 -0700
+ Thu, 04 Jun 2020 21:28:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: yi.zhao@windriver.com)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 0551NYCq005792
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Thu, 4 Jun 2020 18:24:00 -0700
-Received: from localhost (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Thu, 4 Jun
- 2020 18:23:43 -0700
-From: "Yi Zhao" <yi.zhao@windriver.com>
-To: <yocto@lists.yoctoproject.org>, <joe@deserted.net>
-Subject: [meta-selinux][PATCH] libsepol: fix build errors on Fedora 32
-Date: Fri, 5 Jun 2020 09:23:23 +0800
-Message-ID: <20200605012323.14281-1-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=G8rGNi8m;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 1ABB9E01C7C; Thu,  4 Jun 2020 21:28:04 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (akuster808[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.216.46 listed in list.dnswl.org]
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02D78E01B89
+	for <yocto@yoctoproject.org>; Thu,  4 Jun 2020 21:28:02 -0700 (PDT)
+Received: by mail-pj1-f46.google.com with SMTP id 5so2192438pjd.0
+        for <yocto@yoctoproject.org>; Thu, 04 Jun 2020 21:28:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=to:from:subject:autocrypt:message-id:date:user-agent:mime-version
+         :content-transfer-encoding:content-language;
+        bh=G0HxRy2cOs/TQH/SHXps0cP9syNvsabDkySjo0ZilyM=;
+        b=G8rGNi8mtDEOQCRdMO8MkEhWx0wVMWWX2W2sMFAh1WZ3kkYUwW3AEZHRzg6fVG4wy/
+         wJI80F0Lh0gjG4l/n1mf1ywMR1pT4GnyU7dsm8XJBkwtIiExcNzmuMalrMF26zWXL36v
+         KI2nbIQwdPhxyjHb6Ha0jUeNL+g19ncqbDbK/nEki/iUht+a0pge2j7UvhqTg88Q517V
+         fh3lhMV2S6IoX1qAoW1Zms5r2+D7VjM7tQxIBE7urUj6Al629Zm9d5wZf8DpTPKEmP0a
+         4xlHIhEr9Waj2p1kQuIBWrqHJSdROIOkbNf7MOQh15VDEz9Kd/oz7SY6pPczaeKbKT6a
+         sUzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:from:subject:autocrypt:message-id:date
+         :user-agent:mime-version:content-transfer-encoding:content-language;
+        bh=G0HxRy2cOs/TQH/SHXps0cP9syNvsabDkySjo0ZilyM=;
+        b=LyRFNmRpxAepO1ndPNIKjVcytYtDwKKtGGnrUj8ss5WMk3uFsMEDfsFUwXaRc1g14w
+         f8pF3Eg5dNtBGX6eTqVHlaAEwCrFyUKK8r9426Wz2TgzvO7sOurtNdBQEBumQ7ozy79K
+         hH9v8Gb3EqwrzwY0FvOTCS+Od0FrERhVXFSmPiPhS7EVR65oRr89xKjwQ+87ir3yDby5
+         sYUe+HCjwg84Oti/pvixiOrmhLqWrz/LPMF7s4Dt/0PzfSxc0OsqR2nszbJgSvLN1CQ3
+         wK0hlhsYL/jux69BGikYLTdruZ48I0CPuY3Q2NfCPOz6YQKOt4KTYHk67UXJZ2FjNm2e
+         nLhA==
+X-Gm-Message-State: AOAM531PRIVRQhl0fmkrd/D3jCh3sEn8SWQMdFrdCCEnm07bj7Wnp1iA
+	HEzAO7UU5xFWHWwQM7Aj7Oh5K4fg
+X-Google-Smtp-Source: ABdhPJxL9opsybkAzbS3NmhPm9ASL67ZXad1f9zZ2Tesi12khGPoaXAusjlRUXR1YW6Fs6ebrx2BVQ==
+X-Received: by 2002:a17:902:7608:: with SMTP id k8mr3635450pll.107.1591331282416;
+        Thu, 04 Jun 2020 21:28:02 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:a5c0:ed8b:1e5d:5477:19f4? ([2601:202:4180:a5c0:ed8b:1e5d:5477:19f4])
+        by smtp.gmail.com with ESMTPSA id z144sm6377334pfc.195.2020.06.04.21.28.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jun 2020 21:28:01 -0700 (PDT)
+To: Patches and discussions about the oe-core layer
+ <openembedded-core@lists.openembedded.org>,
+ "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+ "bitbake-devel@lists.openembedded.org" <bitbake-devel@lists.openembedded.org>
+From: "akuster" <akuster808@gmail.com>
+Subject: Stable Warrior branch
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <03a353c4-80dd-e66c-3222-7850a98182f7@gmail.com>
+Date: Thu, 4 Jun 2020 21:28:00 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.174]
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
 
-Backport 2 patches to fix the build errors on Fedora 32.
+Hello,
 
-Fixes:
-[snip]
-../cil/src/cil_verify.lo:(.bss+0x4f0): multiple definition of `CIL_KEY_CONS_T3';
-../cil/src/cil_verify.lo:(.bss+0x4f8): multiple definition of `CIL_KEY_CONS_T2';
-../cil/src/cil_verify.lo:(.bss+0x500): multiple definition of `CIL_KEY_CONS_T1';
-../cil/src/cil_verify.lo:(.bss+0x508): multiple definition of `cil_mem_error_handler';
-[snip]
+The Warrior branch of Poky has had its last official dot release. It
+will be moving to Community support and EOL within 6 weeks if no one
+steps up.
+If someone is interested in taking on the responsibilities of
+maintaining the "Warrior" branch moving forward, please email this list.
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- ...IL_KEY_-build-errors-with-fno-common.patch | 530 ++++++++++++++++++
- ...e-leftovers-of-cil_mem_error_handler.patch |  65 +++
- recipes-security/selinux/libsepol_3.0.bb      |   5 +
- 3 files changed, 600 insertions(+)
- create mode 100644 recipes-security/selinux/libsepol/0001-libsepol-fix-CIL_KEY_-build-errors-with-fno-common.patch
- create mode 100644 recipes-security/selinux/libsepol/0001-libsepol-remove-leftovers-of-cil_mem_error_handler.patch
+Please look at the
+https://wiki.yoctoproject.org/wiki/Stable_Release_and_LTS for what will
+be expected.
 
-diff --git a/recipes-security/selinux/libsepol/0001-libsepol-fix-CIL_KEY_-build-errors-with-fno-common.patch b/recipes-security/selinux/libsepol/0001-libsepol-fix-CIL_KEY_-build-errors-with-fno-common.patch
-new file mode 100644
-index 0000000..46c56a4
---- /dev/null
-+++ b/recipes-security/selinux/libsepol/0001-libsepol-fix-CIL_KEY_-build-errors-with-fno-common.patch
-@@ -0,0 +1,530 @@
-+From a96e8c59ecac84096d870b42701a504791a8cc8c Mon Sep 17 00:00:00 2001
-+From: Ondrej Mosnacek <omosnace@redhat.com>
-+Date: Thu, 23 Jan 2020 13:57:13 +0100
-+Subject: [PATCH] libsepol: fix CIL_KEY_* build errors with -fno-common
-+
-+GCC 10 comes with -fno-common enabled by default - fix the CIL_KEY_*
-+global variables to be defined only once in cil.c and declared in the
-+header file correctly with the 'extern' keyword, so that other units
-+including the file don't generate duplicate definitions.
-+
-+Signed-off-by: Ondrej Mosnacek <omosnace@redhat.com>
-+
-+Upstream-Status: Backport
-+[https://github.com/SELinuxProject/selinux/commit/a96e8c59ecac84096d870b42701a504791a8cc8c]
-+
-+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-+---
-+ cil/src/cil.c          | 162 ++++++++++++++++
-+ cil/src/cil_internal.h | 322 ++++++++++++++++----------------
-+ 2 files changed, 323 insertions(+), 161 deletions(-)
-+
-+diff --git a/cil/src/cil.c b/cil/src/cil.c
-+index de729cf8..d222ad3a 100644
-+--- a/cil/src/cil.c
-++++ b/cil/src/cil.c
-+@@ -77,6 +77,168 @@ int cil_sym_sizes[CIL_SYM_ARRAY_NUM][CIL_SYM_NUM] = {
-+ 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-+ };
-+ 
-++char *CIL_KEY_CONS_T1;
-++char *CIL_KEY_CONS_T2;
-++char *CIL_KEY_CONS_T3;
-++char *CIL_KEY_CONS_R1;
-++char *CIL_KEY_CONS_R2;
-++char *CIL_KEY_CONS_R3;
-++char *CIL_KEY_CONS_U1;
-++char *CIL_KEY_CONS_U2;
-++char *CIL_KEY_CONS_U3;
-++char *CIL_KEY_CONS_L1;
-++char *CIL_KEY_CONS_L2;
-++char *CIL_KEY_CONS_H1;
-++char *CIL_KEY_CONS_H2;
-++char *CIL_KEY_AND;
-++char *CIL_KEY_OR;
-++char *CIL_KEY_NOT;
-++char *CIL_KEY_EQ;
-++char *CIL_KEY_NEQ;
-++char *CIL_KEY_CONS_DOM;
-++char *CIL_KEY_CONS_DOMBY;
-++char *CIL_KEY_CONS_INCOMP;
-++char *CIL_KEY_CONDTRUE;
-++char *CIL_KEY_CONDFALSE;
-++char *CIL_KEY_SELF;
-++char *CIL_KEY_OBJECT_R;
-++char *CIL_KEY_STAR;
-++char *CIL_KEY_TCP;
-++char *CIL_KEY_UDP;
-++char *CIL_KEY_DCCP;
-++char *CIL_KEY_SCTP;
-++char *CIL_KEY_AUDITALLOW;
-++char *CIL_KEY_TUNABLEIF;
-++char *CIL_KEY_ALLOW;
-++char *CIL_KEY_DONTAUDIT;
-++char *CIL_KEY_TYPETRANSITION;
-++char *CIL_KEY_TYPECHANGE;
-++char *CIL_KEY_CALL;
-++char *CIL_KEY_TUNABLE;
-++char *CIL_KEY_XOR;
-++char *CIL_KEY_ALL;
-++char *CIL_KEY_RANGE;
-++char *CIL_KEY_GLOB;
-++char *CIL_KEY_FILE;
-++char *CIL_KEY_DIR;
-++char *CIL_KEY_CHAR;
-++char *CIL_KEY_BLOCK;
-++char *CIL_KEY_SOCKET;
-++char *CIL_KEY_PIPE;
-++char *CIL_KEY_SYMLINK;
-++char *CIL_KEY_ANY;
-++char *CIL_KEY_XATTR;
-++char *CIL_KEY_TASK;
-++char *CIL_KEY_TRANS;
-++char *CIL_KEY_TYPE;
-++char *CIL_KEY_ROLE;
-++char *CIL_KEY_USER;
-++char *CIL_KEY_USERATTRIBUTE;
-++char *CIL_KEY_USERATTRIBUTESET;
-++char *CIL_KEY_SENSITIVITY;
-++char *CIL_KEY_CATEGORY;
-++char *CIL_KEY_CATSET;
-++char *CIL_KEY_LEVEL;
-++char *CIL_KEY_LEVELRANGE;
-++char *CIL_KEY_CLASS;
-++char *CIL_KEY_IPADDR;
-++char *CIL_KEY_MAP_CLASS;
-++char *CIL_KEY_CLASSPERMISSION;
-++char *CIL_KEY_BOOL;
-++char *CIL_KEY_STRING;
-++char *CIL_KEY_NAME;
-++char *CIL_KEY_SOURCE;
-++char *CIL_KEY_TARGET;
-++char *CIL_KEY_LOW;
-++char *CIL_KEY_HIGH;
-++char *CIL_KEY_LOW_HIGH;
-++char *CIL_KEY_GLBLUB;
-++char *CIL_KEY_HANDLEUNKNOWN;
-++char *CIL_KEY_HANDLEUNKNOWN_ALLOW;
-++char *CIL_KEY_HANDLEUNKNOWN_DENY;
-++char *CIL_KEY_HANDLEUNKNOWN_REJECT;
-++char *CIL_KEY_MACRO;
-++char *CIL_KEY_IN;
-++char *CIL_KEY_MLS;
-++char *CIL_KEY_DEFAULTRANGE;
-++char *CIL_KEY_BLOCKINHERIT;
-++char *CIL_KEY_BLOCKABSTRACT;
-++char *CIL_KEY_CLASSORDER;
-++char *CIL_KEY_CLASSMAPPING;
-++char *CIL_KEY_CLASSPERMISSIONSET;
-++char *CIL_KEY_COMMON;
-++char *CIL_KEY_CLASSCOMMON;
-++char *CIL_KEY_SID;
-++char *CIL_KEY_SIDCONTEXT;
-++char *CIL_KEY_SIDORDER;
-++char *CIL_KEY_USERLEVEL;
-++char *CIL_KEY_USERRANGE;
-++char *CIL_KEY_USERBOUNDS;
-++char *CIL_KEY_USERPREFIX;
-++char *CIL_KEY_SELINUXUSER;
-++char *CIL_KEY_SELINUXUSERDEFAULT;
-++char *CIL_KEY_TYPEATTRIBUTE;
-++char *CIL_KEY_TYPEATTRIBUTESET;
-++char *CIL_KEY_EXPANDTYPEATTRIBUTE;
-++char *CIL_KEY_TYPEALIAS;
-++char *CIL_KEY_TYPEALIASACTUAL;
-++char *CIL_KEY_TYPEBOUNDS;
-++char *CIL_KEY_TYPEPERMISSIVE;
-++char *CIL_KEY_RANGETRANSITION;
-++char *CIL_KEY_USERROLE;
-++char *CIL_KEY_ROLETYPE;
-++char *CIL_KEY_ROLETRANSITION;
-++char *CIL_KEY_ROLEALLOW;
-++char *CIL_KEY_ROLEATTRIBUTE;
-++char *CIL_KEY_ROLEATTRIBUTESET;
-++char *CIL_KEY_ROLEBOUNDS;
-++char *CIL_KEY_BOOLEANIF;
-++char *CIL_KEY_NEVERALLOW;
-++char *CIL_KEY_TYPEMEMBER;
-++char *CIL_KEY_SENSALIAS;
-++char *CIL_KEY_SENSALIASACTUAL;
-++char *CIL_KEY_CATALIAS;
-++char *CIL_KEY_CATALIASACTUAL;
-++char *CIL_KEY_CATORDER;
-++char *CIL_KEY_SENSITIVITYORDER;
-++char *CIL_KEY_SENSCAT;
-++char *CIL_KEY_CONSTRAIN;
-++char *CIL_KEY_MLSCONSTRAIN;
-++char *CIL_KEY_VALIDATETRANS;
-++char *CIL_KEY_MLSVALIDATETRANS;
-++char *CIL_KEY_CONTEXT;
-++char *CIL_KEY_FILECON;
-++char *CIL_KEY_IBPKEYCON;
-++char *CIL_KEY_IBENDPORTCON;
-++char *CIL_KEY_PORTCON;
-++char *CIL_KEY_NODECON;
-++char *CIL_KEY_GENFSCON;
-++char *CIL_KEY_NETIFCON;
-++char *CIL_KEY_PIRQCON;
-++char *CIL_KEY_IOMEMCON;
-++char *CIL_KEY_IOPORTCON;
-++char *CIL_KEY_PCIDEVICECON;
-++char *CIL_KEY_DEVICETREECON;
-++char *CIL_KEY_FSUSE;
-++char *CIL_KEY_POLICYCAP;
-++char *CIL_KEY_OPTIONAL;
-++char *CIL_KEY_DEFAULTUSER;
-++char *CIL_KEY_DEFAULTROLE;
-++char *CIL_KEY_DEFAULTTYPE;
-++char *CIL_KEY_ROOT;
-++char *CIL_KEY_NODE;
-++char *CIL_KEY_PERM;
-++char *CIL_KEY_ALLOWX;
-++char *CIL_KEY_AUDITALLOWX;
-++char *CIL_KEY_DONTAUDITX;
-++char *CIL_KEY_NEVERALLOWX;
-++char *CIL_KEY_PERMISSIONX;
-++char *CIL_KEY_IOCTL;
-++char *CIL_KEY_UNORDERED;
-++char *CIL_KEY_SRC_INFO;
-++char *CIL_KEY_SRC_CIL;
-++char *CIL_KEY_SRC_HLL;
-++
-+ static void cil_init_keys(void)
-+ {
-+ 	/* Initialize CIL Keys into strpool */
-+diff --git a/cil/src/cil_internal.h b/cil/src/cil_internal.h
-+index 30fab649..9bdcbdd0 100644
-+--- a/cil/src/cil_internal.h
-++++ b/cil/src/cil_internal.h
-+@@ -74,167 +74,167 @@ enum cil_pass {
-+ /*
-+ 	Keywords
-+ */
-+-char *CIL_KEY_CONS_T1;
-+-char *CIL_KEY_CONS_T2;
-+-char *CIL_KEY_CONS_T3;
-+-char *CIL_KEY_CONS_R1;
-+-char *CIL_KEY_CONS_R2;
-+-char *CIL_KEY_CONS_R3;
-+-char *CIL_KEY_CONS_U1;
-+-char *CIL_KEY_CONS_U2;
-+-char *CIL_KEY_CONS_U3;
-+-char *CIL_KEY_CONS_L1;
-+-char *CIL_KEY_CONS_L2;
-+-char *CIL_KEY_CONS_H1;
-+-char *CIL_KEY_CONS_H2;
-+-char *CIL_KEY_AND;
-+-char *CIL_KEY_OR;
-+-char *CIL_KEY_NOT;
-+-char *CIL_KEY_EQ;
-+-char *CIL_KEY_NEQ;
-+-char *CIL_KEY_CONS_DOM;
-+-char *CIL_KEY_CONS_DOMBY;
-+-char *CIL_KEY_CONS_INCOMP;
-+-char *CIL_KEY_CONDTRUE;
-+-char *CIL_KEY_CONDFALSE;
-+-char *CIL_KEY_SELF;
-+-char *CIL_KEY_OBJECT_R;
-+-char *CIL_KEY_STAR;
-+-char *CIL_KEY_TCP;
-+-char *CIL_KEY_UDP;
-+-char *CIL_KEY_DCCP;
-+-char *CIL_KEY_SCTP;
-+-char *CIL_KEY_AUDITALLOW;
-+-char *CIL_KEY_TUNABLEIF;
-+-char *CIL_KEY_ALLOW;
-+-char *CIL_KEY_DONTAUDIT;
-+-char *CIL_KEY_TYPETRANSITION;
-+-char *CIL_KEY_TYPECHANGE;
-+-char *CIL_KEY_CALL;
-+-char *CIL_KEY_TUNABLE;
-+-char *CIL_KEY_XOR;
-+-char *CIL_KEY_ALL;
-+-char *CIL_KEY_RANGE;
-+-char *CIL_KEY_GLOB;
-+-char *CIL_KEY_FILE;
-+-char *CIL_KEY_DIR;
-+-char *CIL_KEY_CHAR;
-+-char *CIL_KEY_BLOCK;
-+-char *CIL_KEY_SOCKET;
-+-char *CIL_KEY_PIPE;
-+-char *CIL_KEY_SYMLINK;
-+-char *CIL_KEY_ANY;
-+-char *CIL_KEY_XATTR;
-+-char *CIL_KEY_TASK;
-+-char *CIL_KEY_TRANS;
-+-char *CIL_KEY_TYPE;
-+-char *CIL_KEY_ROLE;
-+-char *CIL_KEY_USER;
-+-char *CIL_KEY_USERATTRIBUTE;
-+-char *CIL_KEY_USERATTRIBUTESET;
-+-char *CIL_KEY_SENSITIVITY;
-+-char *CIL_KEY_CATEGORY;
-+-char *CIL_KEY_CATSET;
-+-char *CIL_KEY_LEVEL;
-+-char *CIL_KEY_LEVELRANGE;
-+-char *CIL_KEY_CLASS;
-+-char *CIL_KEY_IPADDR;
-+-char *CIL_KEY_MAP_CLASS;
-+-char *CIL_KEY_CLASSPERMISSION;
-+-char *CIL_KEY_BOOL;
-+-char *CIL_KEY_STRING;
-+-char *CIL_KEY_NAME;
-+-char *CIL_KEY_SOURCE;
-+-char *CIL_KEY_TARGET;
-+-char *CIL_KEY_LOW;
-+-char *CIL_KEY_HIGH;
-+-char *CIL_KEY_LOW_HIGH;
-+-char *CIL_KEY_GLBLUB;
-+-char *CIL_KEY_HANDLEUNKNOWN;
-+-char *CIL_KEY_HANDLEUNKNOWN_ALLOW;
-+-char *CIL_KEY_HANDLEUNKNOWN_DENY;
-+-char *CIL_KEY_HANDLEUNKNOWN_REJECT;
-+-char *CIL_KEY_MACRO;
-+-char *CIL_KEY_IN;
-+-char *CIL_KEY_MLS;
-+-char *CIL_KEY_DEFAULTRANGE;
-+-char *CIL_KEY_BLOCKINHERIT;
-+-char *CIL_KEY_BLOCKABSTRACT;
-+-char *CIL_KEY_CLASSORDER;
-+-char *CIL_KEY_CLASSMAPPING;
-+-char *CIL_KEY_CLASSPERMISSIONSET;
-+-char *CIL_KEY_COMMON;
-+-char *CIL_KEY_CLASSCOMMON;
-+-char *CIL_KEY_SID;
-+-char *CIL_KEY_SIDCONTEXT;
-+-char *CIL_KEY_SIDORDER;
-+-char *CIL_KEY_USERLEVEL;
-+-char *CIL_KEY_USERRANGE;
-+-char *CIL_KEY_USERBOUNDS;
-+-char *CIL_KEY_USERPREFIX;
-+-char *CIL_KEY_SELINUXUSER;
-+-char *CIL_KEY_SELINUXUSERDEFAULT;
-+-char *CIL_KEY_TYPEATTRIBUTE;
-+-char *CIL_KEY_TYPEATTRIBUTESET;
-+-char *CIL_KEY_EXPANDTYPEATTRIBUTE;
-+-char *CIL_KEY_TYPEALIAS;
-+-char *CIL_KEY_TYPEALIASACTUAL;
-+-char *CIL_KEY_TYPEBOUNDS;
-+-char *CIL_KEY_TYPEPERMISSIVE;
-+-char *CIL_KEY_RANGETRANSITION;
-+-char *CIL_KEY_USERROLE;
-+-char *CIL_KEY_ROLETYPE;
-+-char *CIL_KEY_ROLETRANSITION;
-+-char *CIL_KEY_ROLEALLOW;
-+-char *CIL_KEY_ROLEATTRIBUTE;
-+-char *CIL_KEY_ROLEATTRIBUTESET;
-+-char *CIL_KEY_ROLEBOUNDS;
-+-char *CIL_KEY_BOOLEANIF;
-+-char *CIL_KEY_NEVERALLOW;
-+-char *CIL_KEY_TYPEMEMBER;
-+-char *CIL_KEY_SENSALIAS;
-+-char *CIL_KEY_SENSALIASACTUAL;
-+-char *CIL_KEY_CATALIAS;
-+-char *CIL_KEY_CATALIASACTUAL;
-+-char *CIL_KEY_CATORDER;
-+-char *CIL_KEY_SENSITIVITYORDER;
-+-char *CIL_KEY_SENSCAT;
-+-char *CIL_KEY_CONSTRAIN;
-+-char *CIL_KEY_MLSCONSTRAIN;
-+-char *CIL_KEY_VALIDATETRANS;
-+-char *CIL_KEY_MLSVALIDATETRANS;
-+-char *CIL_KEY_CONTEXT;
-+-char *CIL_KEY_FILECON;
-+-char *CIL_KEY_IBPKEYCON;
-+-char *CIL_KEY_IBENDPORTCON;
-+-char *CIL_KEY_PORTCON;
-+-char *CIL_KEY_NODECON;
-+-char *CIL_KEY_GENFSCON;
-+-char *CIL_KEY_NETIFCON;
-+-char *CIL_KEY_PIRQCON;
-+-char *CIL_KEY_IOMEMCON;
-+-char *CIL_KEY_IOPORTCON;
-+-char *CIL_KEY_PCIDEVICECON;
-+-char *CIL_KEY_DEVICETREECON;
-+-char *CIL_KEY_FSUSE;
-+-char *CIL_KEY_POLICYCAP;
-+-char *CIL_KEY_OPTIONAL;
-+-char *CIL_KEY_DEFAULTUSER;
-+-char *CIL_KEY_DEFAULTROLE;
-+-char *CIL_KEY_DEFAULTTYPE;
-+-char *CIL_KEY_ROOT;
-+-char *CIL_KEY_NODE;
-+-char *CIL_KEY_PERM;
-+-char *CIL_KEY_ALLOWX;
-+-char *CIL_KEY_AUDITALLOWX;
-+-char *CIL_KEY_DONTAUDITX;
-+-char *CIL_KEY_NEVERALLOWX;
-+-char *CIL_KEY_PERMISSIONX;
-+-char *CIL_KEY_IOCTL;
-+-char *CIL_KEY_UNORDERED;
-+-char *CIL_KEY_SRC_INFO;
-+-char *CIL_KEY_SRC_CIL;
-+-char *CIL_KEY_SRC_HLL;
-++extern char *CIL_KEY_CONS_T1;
-++extern char *CIL_KEY_CONS_T2;
-++extern char *CIL_KEY_CONS_T3;
-++extern char *CIL_KEY_CONS_R1;
-++extern char *CIL_KEY_CONS_R2;
-++extern char *CIL_KEY_CONS_R3;
-++extern char *CIL_KEY_CONS_U1;
-++extern char *CIL_KEY_CONS_U2;
-++extern char *CIL_KEY_CONS_U3;
-++extern char *CIL_KEY_CONS_L1;
-++extern char *CIL_KEY_CONS_L2;
-++extern char *CIL_KEY_CONS_H1;
-++extern char *CIL_KEY_CONS_H2;
-++extern char *CIL_KEY_AND;
-++extern char *CIL_KEY_OR;
-++extern char *CIL_KEY_NOT;
-++extern char *CIL_KEY_EQ;
-++extern char *CIL_KEY_NEQ;
-++extern char *CIL_KEY_CONS_DOM;
-++extern char *CIL_KEY_CONS_DOMBY;
-++extern char *CIL_KEY_CONS_INCOMP;
-++extern char *CIL_KEY_CONDTRUE;
-++extern char *CIL_KEY_CONDFALSE;
-++extern char *CIL_KEY_SELF;
-++extern char *CIL_KEY_OBJECT_R;
-++extern char *CIL_KEY_STAR;
-++extern char *CIL_KEY_TCP;
-++extern char *CIL_KEY_UDP;
-++extern char *CIL_KEY_DCCP;
-++extern char *CIL_KEY_SCTP;
-++extern char *CIL_KEY_AUDITALLOW;
-++extern char *CIL_KEY_TUNABLEIF;
-++extern char *CIL_KEY_ALLOW;
-++extern char *CIL_KEY_DONTAUDIT;
-++extern char *CIL_KEY_TYPETRANSITION;
-++extern char *CIL_KEY_TYPECHANGE;
-++extern char *CIL_KEY_CALL;
-++extern char *CIL_KEY_TUNABLE;
-++extern char *CIL_KEY_XOR;
-++extern char *CIL_KEY_ALL;
-++extern char *CIL_KEY_RANGE;
-++extern char *CIL_KEY_GLOB;
-++extern char *CIL_KEY_FILE;
-++extern char *CIL_KEY_DIR;
-++extern char *CIL_KEY_CHAR;
-++extern char *CIL_KEY_BLOCK;
-++extern char *CIL_KEY_SOCKET;
-++extern char *CIL_KEY_PIPE;
-++extern char *CIL_KEY_SYMLINK;
-++extern char *CIL_KEY_ANY;
-++extern char *CIL_KEY_XATTR;
-++extern char *CIL_KEY_TASK;
-++extern char *CIL_KEY_TRANS;
-++extern char *CIL_KEY_TYPE;
-++extern char *CIL_KEY_ROLE;
-++extern char *CIL_KEY_USER;
-++extern char *CIL_KEY_USERATTRIBUTE;
-++extern char *CIL_KEY_USERATTRIBUTESET;
-++extern char *CIL_KEY_SENSITIVITY;
-++extern char *CIL_KEY_CATEGORY;
-++extern char *CIL_KEY_CATSET;
-++extern char *CIL_KEY_LEVEL;
-++extern char *CIL_KEY_LEVELRANGE;
-++extern char *CIL_KEY_CLASS;
-++extern char *CIL_KEY_IPADDR;
-++extern char *CIL_KEY_MAP_CLASS;
-++extern char *CIL_KEY_CLASSPERMISSION;
-++extern char *CIL_KEY_BOOL;
-++extern char *CIL_KEY_STRING;
-++extern char *CIL_KEY_NAME;
-++extern char *CIL_KEY_SOURCE;
-++extern char *CIL_KEY_TARGET;
-++extern char *CIL_KEY_LOW;
-++extern char *CIL_KEY_HIGH;
-++extern char *CIL_KEY_LOW_HIGH;
-++extern char *CIL_KEY_GLBLUB;
-++extern char *CIL_KEY_HANDLEUNKNOWN;
-++extern char *CIL_KEY_HANDLEUNKNOWN_ALLOW;
-++extern char *CIL_KEY_HANDLEUNKNOWN_DENY;
-++extern char *CIL_KEY_HANDLEUNKNOWN_REJECT;
-++extern char *CIL_KEY_MACRO;
-++extern char *CIL_KEY_IN;
-++extern char *CIL_KEY_MLS;
-++extern char *CIL_KEY_DEFAULTRANGE;
-++extern char *CIL_KEY_BLOCKINHERIT;
-++extern char *CIL_KEY_BLOCKABSTRACT;
-++extern char *CIL_KEY_CLASSORDER;
-++extern char *CIL_KEY_CLASSMAPPING;
-++extern char *CIL_KEY_CLASSPERMISSIONSET;
-++extern char *CIL_KEY_COMMON;
-++extern char *CIL_KEY_CLASSCOMMON;
-++extern char *CIL_KEY_SID;
-++extern char *CIL_KEY_SIDCONTEXT;
-++extern char *CIL_KEY_SIDORDER;
-++extern char *CIL_KEY_USERLEVEL;
-++extern char *CIL_KEY_USERRANGE;
-++extern char *CIL_KEY_USERBOUNDS;
-++extern char *CIL_KEY_USERPREFIX;
-++extern char *CIL_KEY_SELINUXUSER;
-++extern char *CIL_KEY_SELINUXUSERDEFAULT;
-++extern char *CIL_KEY_TYPEATTRIBUTE;
-++extern char *CIL_KEY_TYPEATTRIBUTESET;
-++extern char *CIL_KEY_EXPANDTYPEATTRIBUTE;
-++extern char *CIL_KEY_TYPEALIAS;
-++extern char *CIL_KEY_TYPEALIASACTUAL;
-++extern char *CIL_KEY_TYPEBOUNDS;
-++extern char *CIL_KEY_TYPEPERMISSIVE;
-++extern char *CIL_KEY_RANGETRANSITION;
-++extern char *CIL_KEY_USERROLE;
-++extern char *CIL_KEY_ROLETYPE;
-++extern char *CIL_KEY_ROLETRANSITION;
-++extern char *CIL_KEY_ROLEALLOW;
-++extern char *CIL_KEY_ROLEATTRIBUTE;
-++extern char *CIL_KEY_ROLEATTRIBUTESET;
-++extern char *CIL_KEY_ROLEBOUNDS;
-++extern char *CIL_KEY_BOOLEANIF;
-++extern char *CIL_KEY_NEVERALLOW;
-++extern char *CIL_KEY_TYPEMEMBER;
-++extern char *CIL_KEY_SENSALIAS;
-++extern char *CIL_KEY_SENSALIASACTUAL;
-++extern char *CIL_KEY_CATALIAS;
-++extern char *CIL_KEY_CATALIASACTUAL;
-++extern char *CIL_KEY_CATORDER;
-++extern char *CIL_KEY_SENSITIVITYORDER;
-++extern char *CIL_KEY_SENSCAT;
-++extern char *CIL_KEY_CONSTRAIN;
-++extern char *CIL_KEY_MLSCONSTRAIN;
-++extern char *CIL_KEY_VALIDATETRANS;
-++extern char *CIL_KEY_MLSVALIDATETRANS;
-++extern char *CIL_KEY_CONTEXT;
-++extern char *CIL_KEY_FILECON;
-++extern char *CIL_KEY_IBPKEYCON;
-++extern char *CIL_KEY_IBENDPORTCON;
-++extern char *CIL_KEY_PORTCON;
-++extern char *CIL_KEY_NODECON;
-++extern char *CIL_KEY_GENFSCON;
-++extern char *CIL_KEY_NETIFCON;
-++extern char *CIL_KEY_PIRQCON;
-++extern char *CIL_KEY_IOMEMCON;
-++extern char *CIL_KEY_IOPORTCON;
-++extern char *CIL_KEY_PCIDEVICECON;
-++extern char *CIL_KEY_DEVICETREECON;
-++extern char *CIL_KEY_FSUSE;
-++extern char *CIL_KEY_POLICYCAP;
-++extern char *CIL_KEY_OPTIONAL;
-++extern char *CIL_KEY_DEFAULTUSER;
-++extern char *CIL_KEY_DEFAULTROLE;
-++extern char *CIL_KEY_DEFAULTTYPE;
-++extern char *CIL_KEY_ROOT;
-++extern char *CIL_KEY_NODE;
-++extern char *CIL_KEY_PERM;
-++extern char *CIL_KEY_ALLOWX;
-++extern char *CIL_KEY_AUDITALLOWX;
-++extern char *CIL_KEY_DONTAUDITX;
-++extern char *CIL_KEY_NEVERALLOWX;
-++extern char *CIL_KEY_PERMISSIONX;
-++extern char *CIL_KEY_IOCTL;
-++extern char *CIL_KEY_UNORDERED;
-++extern char *CIL_KEY_SRC_INFO;
-++extern char *CIL_KEY_SRC_CIL;
-++extern char *CIL_KEY_SRC_HLL;
-+ 
-+ /*
-+ 	Symbol Table Array Indices
-+-- 
-+2.17.1
-+
-diff --git a/recipes-security/selinux/libsepol/0001-libsepol-remove-leftovers-of-cil_mem_error_handler.patch b/recipes-security/selinux/libsepol/0001-libsepol-remove-leftovers-of-cil_mem_error_handler.patch
-new file mode 100644
-index 0000000..674fddd
---- /dev/null
-+++ b/recipes-security/selinux/libsepol/0001-libsepol-remove-leftovers-of-cil_mem_error_handler.patch
-@@ -0,0 +1,65 @@
-+From 3d32fc24d6aff360a538c63dad08ca5c957551b0 Mon Sep 17 00:00:00 2001
-+From: Ondrej Mosnacek <omosnace@redhat.com>
-+Date: Thu, 23 Jan 2020 13:57:14 +0100
-+Subject: [PATCH] libsepol: remove leftovers of cil_mem_error_handler
-+
-+Commit 4459d635b8f1 ("libsepol: Remove cil_mem_error_handler() function
-+pointer") replaced cil_mem_error_handler usage with inline contents of
-+the default handler. However, it left over the header declaration and
-+two callers. Convert these as well and remove the header declaration.
-+
-+This also fixes a build failure with -fno-common.
-+
-+Fixes: 4459d635b8f1 ("libsepol: Remove cil_mem_error_handler() function pointer")
-+Signed-off-by: Ondrej Mosnacek <omosnace@redhat.com>
-+
-+Upstream-Status: Backport
-+[https://github.com/SELinuxProject/selinux/commit/3d32fc24d6aff360a538c63dad08ca5c957551b0]
-+
-+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-+---
-+ cil/src/cil_mem.h     | 1 -
-+ cil/src/cil_strpool.c | 8 ++++----
-+ 2 files changed, 4 insertions(+), 5 deletions(-)
-+
-+diff --git a/cil/src/cil_mem.h b/cil/src/cil_mem.h
-+index 902ce131..794f02a3 100644
-+--- a/cil/src/cil_mem.h
-++++ b/cil/src/cil_mem.h
-+@@ -36,7 +36,6 @@ void *cil_calloc(size_t num_elements, size_t element_size);
-+ void *cil_realloc(void *ptr, size_t size);
-+ char *cil_strdup(const char *str);
-+ int cil_asprintf(char **strp, const char *fmt, ...);
-+-void (*cil_mem_error_handler)(void);
-+ 
-+ #endif /* CIL_MEM_H_ */
-+ 
-+diff --git a/cil/src/cil_strpool.c b/cil/src/cil_strpool.c
-+index 97d4c4b9..2598bbf3 100644
-+--- a/cil/src/cil_strpool.c
-++++ b/cil/src/cil_strpool.c
-+@@ -80,8 +80,8 @@ char *cil_strpool_add(const char *str)
-+ 		int rc = hashtab_insert(cil_strpool_tab, (hashtab_key_t)strpool_ref->str, strpool_ref);
-+ 		if (rc != SEPOL_OK) {
-+ 			pthread_mutex_unlock(&cil_strpool_mutex);
-+-			(*cil_mem_error_handler)();
-+-			pthread_mutex_lock(&cil_strpool_mutex);
-++			cil_log(CIL_ERR, "Failed to allocate memory\n");
-++			exit(1);
-+ 		}
-+ 	}
-+ 
-+@@ -104,8 +104,8 @@ void cil_strpool_init(void)
-+ 		cil_strpool_tab = hashtab_create(cil_strpool_hash, cil_strpool_compare, CIL_STRPOOL_TABLE_SIZE);
-+ 		if (cil_strpool_tab == NULL) {
-+ 			pthread_mutex_unlock(&cil_strpool_mutex);
-+-			(*cil_mem_error_handler)();
-+-			return;
-++			cil_log(CIL_ERR, "Failed to allocate memory\n");
-++			exit(1);
-+ 		}
-+ 	}
-+ 	cil_strpool_readers++;
-+-- 
-+2.17.1
-+
-diff --git a/recipes-security/selinux/libsepol_3.0.bb b/recipes-security/selinux/libsepol_3.0.bb
-index 6c85256..58559d7 100644
---- a/recipes-security/selinux/libsepol_3.0.bb
-+++ b/recipes-security/selinux/libsepol_3.0.bb
-@@ -5,3 +5,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
- 
- SRC_URI[md5sum] = "22ddb9994910cb9cfff5cb9663cb7ae7"
- SRC_URI[sha256sum] = "5b7ae1881909f1048b06f7a0c364c5c8a86ec12e0ec76e740fe9595a6033eb79"
-+
-+SRC_URI += "\
-+        file://0001-libsepol-fix-CIL_KEY_-build-errors-with-fno-common.patch \
-+        file://0001-libsepol-remove-leftovers-of-cil_mem_error_handler.patch \
-+        "
--- 
-2.17.1
+regards,
+Armin
 
