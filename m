@@ -1,66 +1,81 @@
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
- by mx.groups.io with SMTP id smtpd.web11.9476.1591359129405400062
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
+ by mx.groups.io with SMTP id smtpd.web10.9960.1591361510694994845
  for <yocto@lists.yoctoproject.org>;
- Fri, 05 Jun 2020 05:12:09 -0700
+ Fri, 05 Jun 2020 05:51:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=TVw/6NnY;
- spf=pass (domain: gmail.com, ip: 209.85.217.48, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vs1-f48.google.com with SMTP id j13so5463989vsn.3
-        for <yocto@lists.yoctoproject.org>; Fri, 05 Jun 2020 05:12:09 -0700 (PDT)
+ dkim=pass header.i=@soccasys-com.20150623.gappssmtp.com header.s=20150623 header.b=kKfx7vqH;
+ spf=pass (domain: soccasys.com, ip: 209.85.222.53, mailfrom: laurent.gauthier@soccasys.com)
+Received: by mail-ua1-f53.google.com with SMTP id b13so3247582uav.3
+        for <yocto@lists.yoctoproject.org>; Fri, 05 Jun 2020 05:51:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=soccasys-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=47kDZkiLHmIxgWDsxW30DoXN/Fg+2+t6aaSmtpyWz3s=;
-        b=TVw/6NnYPA3MGMN2PL00hnDQt12NPMpu6wMJX1PBBfRCKrBo0J6b5j0z7JYbWexTOO
-         qeqTH8e8eHY6MCl5zGz0T4P9HJ7bybpGDPspdp+RhQ0WI945vw81YK4qSRLl2HowUQuC
-         SlzDo4dzbxGBZY984/HwEAFyB7WeYEieY6R02hEXXWraXuUJyiqjOm/iWJi6NEwb16Kl
-         h56fmjCEQ0f8Dkp8GDQN1GvxLSp0feM95CFIZXlB046aUxCgqIrycQKkSkCz4DHd3HP/
-         UbMh0EDCI0leC1kluh36TJNkaf9Wgn+uLdk0lTBPqe+XN54ipJ3Kz/P6LBeTeDHaNof3
-         ak+A==
+        bh=4gGsgng+sR/NMiNBY1edSjsRWfXTfOzPo96K7MhulKI=;
+        b=kKfx7vqHuC5FpX5IfvuJweR+TbAQPU1Srd445x42zOGqYvk2yvDxAI0pgDUXk0uf/J
+         6ji/DfdUTzL+Aw6deCoubGZlFsvByV0Z856nsWD9Xwxcme/1b/YFVGuvNTX+PsJiwiUG
+         Zf+Lhi/frifHJ506cCKarhkmlwv2fvgFSrvTTFEWVi2h634T4Zb3NcjV3OAqu6ewlFrm
+         MyTW1zt3x1+T0mdR7DtpH23YIL688ajlgciUJF2b5FcjZdY7vd/jELrF2rLMetgLO5iX
+         9LB1E3L3l+1eveBlj4azujVpVK8QlZvwgJYeyH0uCcE275kpdLrSxK0VtPKu+viw4bT3
+         FJyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=47kDZkiLHmIxgWDsxW30DoXN/Fg+2+t6aaSmtpyWz3s=;
-        b=FsYii3kAQoWffuBFE9OwsWVsjsQ8XaZ4qYYXlDwcww0akMlllaZahwAo8s9m/myT9q
-         GsqynVJzYz8fWf89OMpordBN3Nq0jm0WeZN7QXvUTecVyy6+Fvz2gakTY9cp50TWytB6
-         P3QNs3JtAacsEyEBp9gP9XqZaDZ+9SW0G75lah8UbJpKFwdmhT61JBRmG704h86WeM0s
-         NyyktLnx+X7Jko9a73ppDh4WHKkIOY7Aqj4dN4/zNTeeW3v0s8PsAra7/Sz/qiq7XvOa
-         e7jaZ5Tr70OL8nxU+DG8rEvbFFYKQWH/4C0/I8+nVF9tC2RgGScrCaYyUfRWDvbEFbjW
-         zxmA==
-X-Gm-Message-State: AOAM532we72P8eQOJhVXqu/lvr819e8EMXyN511q5HhMr9QpI3/1UZIX
-	c1Nr4RW1EI1GiFPAelENUhbciqumJRBuy/cjTIGvZyoJ
-X-Google-Smtp-Source: ABdhPJxGmajLNKKWD7YBscGWkYNu2r6UA/U76OEVLhMHf26KWx/5Sj9qSd/928W5PEQnfyPfLVTRUmj2BjwAe4q8pow=
-X-Received: by 2002:a67:6ec4:: with SMTP id j187mr6418167vsc.35.1591359128462;
- Fri, 05 Jun 2020 05:12:08 -0700 (PDT)
+        bh=4gGsgng+sR/NMiNBY1edSjsRWfXTfOzPo96K7MhulKI=;
+        b=tGqB2LBG55lGW2P3Jeeh5TxKOQwCT2ekJrBpnI63YiuYg2CgQcv1VGHDahBuqZXgTF
+         wr+E4M0qhzIGKVA4S+2jC9Qo3a1qpS2Tmb9qGxYbNe0ka4xvKpoRMTy7TjFrvwQrHSF3
+         VNuyJQViti1k5KlGIiVNhpoNpD1bItIUef0RpFz86ZAjb98xzgS3tJtIK8YkQGXQrNGl
+         r9MsuCxHIOjGxhwVawFBD8luJptFDJmaulh+YwTSdR5MsF1qdgFSzUEJkltyRHDT0n6U
+         t9+ZphZbr8cbmst+0JXE0Bblu0IDuzD3sV1w+mizNByJcWIkbe+pylLTF/B4tjfq0CHx
+         aQ6Q==
+X-Gm-Message-State: AOAM533JaZOC9mZxNoKsUUFmtbZ77AJeEa90KqcB7tNOKk+vcyx/6ThV
+	3n+HTGETFfmCc2dTtbE4gs8oNMGWuKTO1e9oTyyn62Uq
+X-Google-Smtp-Source: ABdhPJx3yR5qKvZ1sTgbC80ryFXBgLWa/TQMWvouAUyEFcg6oK4u8m8aTVOrDnalwGUUhsoJZST1gKsR5WFwIeD53xE=
+X-Received: by 2002:a9f:28c6:: with SMTP id d64mr6924673uad.61.1591361509611;
+ Fri, 05 Jun 2020 05:51:49 -0700 (PDT)
 MIME-Version: 1.0
 References: <294e63c4-293f-9b86-82d5-7c41bead0d2c@faresoftware.it>
 In-Reply-To: <294e63c4-293f-9b86-82d5-7c41bead0d2c@faresoftware.it>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Fri, 5 Jun 2020 14:11:56 +0200
-Message-ID: <CANNYZj-0O6ixQCUxrj5U7ZYsU7-CqSQHxDXN2S1W7c_Z_xaicw@mail.gmail.com>
+From: "Laurent Gauthier" <laurent.gauthier@soccasys.com>
+Date: Fri, 5 Jun 2020 14:51:13 +0200
+Message-ID: <CAGbd71Qq-5KkVDCjZXrZhducc6NykVb3P54vDapuQEMdtZ7CsQ@mail.gmail.com>
 Subject: Re: [yocto] Recipe do_install priority
 To: Mauro Ziliani <mauro@faresoftware.it>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000008feee605a7552b29"
+Content-Type: multipart/alternative; boundary="0000000000007d700005a755b944"
 
---0000000000008feee605a7552b29
+--0000000000007d700005a755b944
 Content-Type: text/plain; charset="UTF-8"
 
-do_install() is not installing things into the final image. It is
-installing items to the target location under a separate 'destination
-directory', independently of anything else that installs to the same target
-location under different destination directory. If the filenames are the
-same, you will get a file conflict error later on when the image is
-constructed.
+Hi Mauro, all,
 
-It would help if you describe in detail what file do you intend to replace,
-and why.
+During the creation of the rootfs of your image yocto will try to install
+both packages, and should complain loudly because the same file is provided
+by two packages.
 
-Alex
+There are a few ways you can do this properly:
 
-On Fri, 5 Jun 2020 at 13:31, Mauro Ziliani <mauro@faresoftware.it> wrote:
+a) the straight-forware way is be to create a bbappend for init-ifupdown
+that updates the contentious file with the content that you need, and NOT
+provide this file in your library.bb
+
+b) you could also createa bbappend for init-ifupdown which remove that file
+from the installation in a do_install_append, and then you are free to
+install it in your library.bb as it is not longer part of init-ifupdown.
+This is not too complex.
+
+c) another option is to try to use alternatives which allows the same file
+to be delivered by several packages, and which one is used is selected at
+install and/or runtime by using symbolic links (example: vi vs vim). This
+requires a bit more research.
+
+I am afraid that options other than these straight-forward ones will
+qualify for the title of "horrible hacks"... :-)
+
+Kind regards, Laurent.
+
+On Fri, Jun 5, 2020 at 1:31 PM Mauro Ziliani <mauro@faresoftware.it> wrote:
 
 > Hi all.
 >
@@ -99,22 +114,40 @@ On Fri, 5 Jun 2020 at 13:31, Mauro Ziliani <mauro@faresoftware.it> wrote:
 > 
 >
 
---0000000000008feee605a7552b29
+
+-- 
+Laurent Gauthier
+Embedded Linux Systems & Software
+Phone: +33 630 483 429
+http://soccasys.com
+
+--0000000000007d700005a755b944
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>do_install() is not installing things into the final =
-image. It is installing items to the target location under a separate &#39;=
-destination directory&#39;, independently of anything else that installs to=
- the same target location under different destination directory. If the fil=
-enames are the same, you will get a file conflict error later on when the i=
-mage is constructed.<br></div><div><br></div><div>It would help if you desc=
-ribe in detail what file do you intend to replace, and why.</div><div><br><=
-/div><div>Alex<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Fri, 5 Jun 2020 at 13:31, Mauro Ziliani &lt;<a h=
-ref=3D"mailto:mauro@faresoftware.it">mauro@faresoftware.it</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi all.<br>
+<div dir=3D"ltr"><div>Hi Mauro, all,</div><div><br></div><div>During the cr=
+eation of the rootfs of your image yocto will try to install both packages,=
+ and should complain loudly because the same file is provided by two packag=
+es.<br></div><div><br></div><div>There are a few ways you can do this prope=
+rly:</div><div><br></div><div>a) the straight-forware way is be to create a=
+ bbappend for init-ifupdown that updates the contentious file with the cont=
+ent that you need, and NOT provide this file in your <a href=3D"http://libr=
+ary.bb">library.bb</a></div><div><br></div><div>b) you could also createa b=
+bappend for init-ifupdown which remove that file from the installation in a=
+ do_install_append, and then you are free to install it in your <a href=3D"=
+http://library.bb">library.bb</a> as it is not longer part of init-ifupdown=
+. This is not too complex.<br></div><div><br></div><div>c) another option i=
+s to try to use alternatives which allows the same file to be delivered by =
+several packages, and which one is used is selected at install and/or runti=
+me by using symbolic links (example: vi vs vim). This requires a bit more r=
+esearch.<br></div><div><br></div><div>I am afraid that options other than t=
+hese straight-forward ones will qualify for the title of &quot;horrible hac=
+ks&quot;... :-)</div><div><br></div><div>Kind=C2=A0regards, Laurent.<br></d=
+iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Fri, Jun 5, 2020 at 1:31 PM Mauro Ziliani &lt;<a href=3D"mailto:mauro=
+@faresoftware.it">mauro@faresoftware.it</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex">Hi all.<br>
 <br>
 I&#39;m Mauro.<br>
 <br>
@@ -158,6 +191,9 @@ Any idea?<br>
 MZ<br>
 <br>
 <br>
-</blockquote></div>
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"=
+gmail_signature">Laurent Gauthier<br>Embedded Linux Systems &amp; Software<=
+br>Phone: +33 630 483 429<br><a href=3D"http://soccasys.com" target=3D"_bla=
+nk">http://soccasys.com</a></div>
 
---0000000000008feee605a7552b29--
+--0000000000007d700005a755b944--
