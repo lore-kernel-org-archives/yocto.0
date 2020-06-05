@@ -1,310 +1,665 @@
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
- by mx.groups.io with SMTP id smtpd.web12.13948.1591278094018651015
+Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
+ by mx.groups.io with SMTP id smtpd.web11.1839.1591320268026952246
  for <yocto@lists.yoctoproject.org>;
- Thu, 04 Jun 2020 06:41:34 -0700
+ Thu, 04 Jun 2020 18:24:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=llRjVeBY;
- spf=pass (domain: gmail.com, ip: 209.85.217.54, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vs1-f54.google.com with SMTP id u17so3520260vsu.7
-        for <yocto@lists.yoctoproject.org>; Thu, 04 Jun 2020 06:41:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=H4UoYQDizSLMIFl63QW0w4zyIJaGNKmFNjyC9o4S3I8=;
-        b=llRjVeBYl29NndA0Dk5j734GM0QtwflP0g2IAY5ob4Gu8SCV4wwJcNu3gwYc9zsEUN
-         /hovvUb3W/+ZqzkUR7LRQunv/Vgi2oEL92rGETL73eavDwKRTBq6OkHpZVvI06FFbQqM
-         beOjRlsfXiR0pUSAI3cCsbHiWDwhfDsqs72sHp10qEEG6XvFAHhYuNM9ur4Bs/LX8kep
-         JUGy4eSsBcFE990pRwGe9cJIB6LqQp71+YzxroBojTP9YIn95kC6Vv1xYkqCZZ1vqdQc
-         J8dwdN93VylxeRUnKfKIUJ7whB6svWhrU+MRAEUsLeyWMXYt9g7ebFFyUMbEHulDvi0C
-         vizA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=H4UoYQDizSLMIFl63QW0w4zyIJaGNKmFNjyC9o4S3I8=;
-        b=OxuITluru04rdmuBtLhiDuTrKw9jX194VyVKWldaOTXvy5g3EAwM7mQzPg3KAfmbX0
-         cpIoXUlLOZAq7mtqqCPCneiyCNDqh2XEVmszfOYlIDj3ke15ZuQrCIJEfVKxZ6xNpt4K
-         PlelzGqaTyWpzJGSXeuu4lp67TDIoRAE591adCHti9T0+OOpKHiawvL0/+OXk3LrGoSq
-         NRXNzbR8y1QjtVISNWoTakhTPccTPRpk1TmVOk9qxYf9pTT0dp2QNTjUKwvtDiihoR7Z
-         gWhysCBlYZVpXJv0OSgE4b6YFSzwKIYbvJ4iW1LFVFssn4cOdQfsc+AfcbijCMARUzno
-         j+eQ==
-X-Gm-Message-State: AOAM530XuNpUINJeMj8YNnXXtxf3HONHlzsjYhn8wecTVu6vwqEENAZZ
-	hKJAVr2eKe6z/3Kb4gvS6AAhk/dSf8zwM+kY5rc=
-X-Google-Smtp-Source: ABdhPJxLZ4IwMi3VesIDx+rOhNZIS6UdtRm9Qe6bU6EqfN4JZggeUPAFukMUeddaEK/QImJVmJi91xZfoWRoAQR7LXQ=
-X-Received: by 2002:a67:6686:: with SMTP id a128mr3519282vsc.83.1591278093048;
- Thu, 04 Jun 2020 06:41:33 -0700 (PDT)
+ dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: yi.zhao@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 0551NYCq005792
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Thu, 4 Jun 2020 18:24:00 -0700
+Received: from localhost (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Thu, 4 Jun
+ 2020 18:23:43 -0700
+From: "Yi Zhao" <yi.zhao@windriver.com>
+To: <yocto@lists.yoctoproject.org>, <joe@deserted.net>
+Subject: [meta-selinux][PATCH] libsepol: fix build errors on Fedora 32
+Date: Fri, 5 Jun 2020 09:23:23 +0800
+Message-ID: <20200605012323.14281-1-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <3jcy.1591258723749216280.cuB3@lists.yoctoproject.org>
- <CANNYZj9jWU9xS3OwhA7Ag+RiM6C_aT-EiAESHQFDh2wrZSt=BA@mail.gmail.com> <CABMxt4gwV-nZZkWRD8ayiNZL67rEx_rcWYLzVH9Y5hzNL1epoQ@mail.gmail.com>
-In-Reply-To: <CABMxt4gwV-nZZkWRD8ayiNZL67rEx_rcWYLzVH9Y5hzNL1epoQ@mail.gmail.com>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Thu, 4 Jun 2020 15:41:21 +0200
-Message-ID: <CANNYZj8h=5PLS=N742duuMcn8t8L5Fvnp-f8vvbwCX_d1vtTYA@mail.gmail.com>
-Subject: Re: [yocto] Why and when we need to migrate to newer #yocto version?
-To: Mohamed HAMZAOUI <requinham@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000799f2905a7424d8c"
+X-Originating-IP: [128.224.162.174]
+Content-Type: text/plain
 
---000000000000799f2905a7424d8c
-Content-Type: text/plain; charset="UTF-8"
+Backport 2 patches to fix the build errors on Fedora 32.
 
-On Thu, 4 Jun 2020 at 11:19, Mohamed HAMZAOUI <requinham@gmail.com> wrote:
+Fixes:
+[snip]
+../cil/src/cil_verify.lo:(.bss+0x4f0): multiple definition of `CIL_KEY_CONS_T3';
+../cil/src/cil_verify.lo:(.bss+0x4f8): multiple definition of `CIL_KEY_CONS_T2';
+../cil/src/cil_verify.lo:(.bss+0x500): multiple definition of `CIL_KEY_CONS_T1';
+../cil/src/cil_verify.lo:(.bss+0x508): multiple definition of `cil_mem_error_handler';
+[snip]
 
-> Thanks Alexander,
->
-> When you say "The versions of libraries and tools are not independent
-> from Yocto versions, in fact they are directly defined through oe-core
-> metadata that is in a specific Yocto version." This not concern Linux
-> kernel ? because Yocto wiki say "While tooling is provided to use any
-> Linux kernel you wish, the linux-yocto Linux kernel recipes are tested
-> with all the emulated targets, the core hardware BSPs, and some vendor
-> layers."
->
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ ...IL_KEY_-build-errors-with-fno-common.patch | 530 ++++++++++++++++++
+ ...e-leftovers-of-cil_mem_error_handler.patch |  65 +++
+ recipes-security/selinux/libsepol_3.0.bb      |   5 +
+ 3 files changed, 600 insertions(+)
+ create mode 100644 recipes-security/selinux/libsepol/0001-libsepol-fix-CIL_KEY_-build-errors-with-fno-common.patch
+ create mode 100644 recipes-security/selinux/libsepol/0001-libsepol-remove-leftovers-of-cil_mem_error_handler.patch
 
-Yes, the kernel is typically provided by the BSP vendor through the BSP
-layer, and they define the kernel version in use. The security concerns
-still apply though: if there is a vulnerability in their kernel, it's much
-easier to address if the kernel is recent. And newer kernels gain new
-features too, which might be useful or even required in the project.
+diff --git a/recipes-security/selinux/libsepol/0001-libsepol-fix-CIL_KEY_-build-errors-with-fno-common.patch b/recipes-security/selinux/libsepol/0001-libsepol-fix-CIL_KEY_-build-errors-with-fno-common.patch
+new file mode 100644
+index 0000000..46c56a4
+--- /dev/null
++++ b/recipes-security/selinux/libsepol/0001-libsepol-fix-CIL_KEY_-build-errors-with-fno-common.patch
+@@ -0,0 +1,530 @@
++From a96e8c59ecac84096d870b42701a504791a8cc8c Mon Sep 17 00:00:00 2001
++From: Ondrej Mosnacek <omosnace@redhat.com>
++Date: Thu, 23 Jan 2020 13:57:13 +0100
++Subject: [PATCH] libsepol: fix CIL_KEY_* build errors with -fno-common
++
++GCC 10 comes with -fno-common enabled by default - fix the CIL_KEY_*
++global variables to be defined only once in cil.c and declared in the
++header file correctly with the 'extern' keyword, so that other units
++including the file don't generate duplicate definitions.
++
++Signed-off-by: Ondrej Mosnacek <omosnace@redhat.com>
++
++Upstream-Status: Backport
++[https://github.com/SELinuxProject/selinux/commit/a96e8c59ecac84096d870b42701a504791a8cc8c]
++
++Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
++---
++ cil/src/cil.c          | 162 ++++++++++++++++
++ cil/src/cil_internal.h | 322 ++++++++++++++++----------------
++ 2 files changed, 323 insertions(+), 161 deletions(-)
++
++diff --git a/cil/src/cil.c b/cil/src/cil.c
++index de729cf8..d222ad3a 100644
++--- a/cil/src/cil.c
+++++ b/cil/src/cil.c
++@@ -77,6 +77,168 @@ int cil_sym_sizes[CIL_SYM_ARRAY_NUM][CIL_SYM_NUM] = {
++ 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
++ };
++ 
+++char *CIL_KEY_CONS_T1;
+++char *CIL_KEY_CONS_T2;
+++char *CIL_KEY_CONS_T3;
+++char *CIL_KEY_CONS_R1;
+++char *CIL_KEY_CONS_R2;
+++char *CIL_KEY_CONS_R3;
+++char *CIL_KEY_CONS_U1;
+++char *CIL_KEY_CONS_U2;
+++char *CIL_KEY_CONS_U3;
+++char *CIL_KEY_CONS_L1;
+++char *CIL_KEY_CONS_L2;
+++char *CIL_KEY_CONS_H1;
+++char *CIL_KEY_CONS_H2;
+++char *CIL_KEY_AND;
+++char *CIL_KEY_OR;
+++char *CIL_KEY_NOT;
+++char *CIL_KEY_EQ;
+++char *CIL_KEY_NEQ;
+++char *CIL_KEY_CONS_DOM;
+++char *CIL_KEY_CONS_DOMBY;
+++char *CIL_KEY_CONS_INCOMP;
+++char *CIL_KEY_CONDTRUE;
+++char *CIL_KEY_CONDFALSE;
+++char *CIL_KEY_SELF;
+++char *CIL_KEY_OBJECT_R;
+++char *CIL_KEY_STAR;
+++char *CIL_KEY_TCP;
+++char *CIL_KEY_UDP;
+++char *CIL_KEY_DCCP;
+++char *CIL_KEY_SCTP;
+++char *CIL_KEY_AUDITALLOW;
+++char *CIL_KEY_TUNABLEIF;
+++char *CIL_KEY_ALLOW;
+++char *CIL_KEY_DONTAUDIT;
+++char *CIL_KEY_TYPETRANSITION;
+++char *CIL_KEY_TYPECHANGE;
+++char *CIL_KEY_CALL;
+++char *CIL_KEY_TUNABLE;
+++char *CIL_KEY_XOR;
+++char *CIL_KEY_ALL;
+++char *CIL_KEY_RANGE;
+++char *CIL_KEY_GLOB;
+++char *CIL_KEY_FILE;
+++char *CIL_KEY_DIR;
+++char *CIL_KEY_CHAR;
+++char *CIL_KEY_BLOCK;
+++char *CIL_KEY_SOCKET;
+++char *CIL_KEY_PIPE;
+++char *CIL_KEY_SYMLINK;
+++char *CIL_KEY_ANY;
+++char *CIL_KEY_XATTR;
+++char *CIL_KEY_TASK;
+++char *CIL_KEY_TRANS;
+++char *CIL_KEY_TYPE;
+++char *CIL_KEY_ROLE;
+++char *CIL_KEY_USER;
+++char *CIL_KEY_USERATTRIBUTE;
+++char *CIL_KEY_USERATTRIBUTESET;
+++char *CIL_KEY_SENSITIVITY;
+++char *CIL_KEY_CATEGORY;
+++char *CIL_KEY_CATSET;
+++char *CIL_KEY_LEVEL;
+++char *CIL_KEY_LEVELRANGE;
+++char *CIL_KEY_CLASS;
+++char *CIL_KEY_IPADDR;
+++char *CIL_KEY_MAP_CLASS;
+++char *CIL_KEY_CLASSPERMISSION;
+++char *CIL_KEY_BOOL;
+++char *CIL_KEY_STRING;
+++char *CIL_KEY_NAME;
+++char *CIL_KEY_SOURCE;
+++char *CIL_KEY_TARGET;
+++char *CIL_KEY_LOW;
+++char *CIL_KEY_HIGH;
+++char *CIL_KEY_LOW_HIGH;
+++char *CIL_KEY_GLBLUB;
+++char *CIL_KEY_HANDLEUNKNOWN;
+++char *CIL_KEY_HANDLEUNKNOWN_ALLOW;
+++char *CIL_KEY_HANDLEUNKNOWN_DENY;
+++char *CIL_KEY_HANDLEUNKNOWN_REJECT;
+++char *CIL_KEY_MACRO;
+++char *CIL_KEY_IN;
+++char *CIL_KEY_MLS;
+++char *CIL_KEY_DEFAULTRANGE;
+++char *CIL_KEY_BLOCKINHERIT;
+++char *CIL_KEY_BLOCKABSTRACT;
+++char *CIL_KEY_CLASSORDER;
+++char *CIL_KEY_CLASSMAPPING;
+++char *CIL_KEY_CLASSPERMISSIONSET;
+++char *CIL_KEY_COMMON;
+++char *CIL_KEY_CLASSCOMMON;
+++char *CIL_KEY_SID;
+++char *CIL_KEY_SIDCONTEXT;
+++char *CIL_KEY_SIDORDER;
+++char *CIL_KEY_USERLEVEL;
+++char *CIL_KEY_USERRANGE;
+++char *CIL_KEY_USERBOUNDS;
+++char *CIL_KEY_USERPREFIX;
+++char *CIL_KEY_SELINUXUSER;
+++char *CIL_KEY_SELINUXUSERDEFAULT;
+++char *CIL_KEY_TYPEATTRIBUTE;
+++char *CIL_KEY_TYPEATTRIBUTESET;
+++char *CIL_KEY_EXPANDTYPEATTRIBUTE;
+++char *CIL_KEY_TYPEALIAS;
+++char *CIL_KEY_TYPEALIASACTUAL;
+++char *CIL_KEY_TYPEBOUNDS;
+++char *CIL_KEY_TYPEPERMISSIVE;
+++char *CIL_KEY_RANGETRANSITION;
+++char *CIL_KEY_USERROLE;
+++char *CIL_KEY_ROLETYPE;
+++char *CIL_KEY_ROLETRANSITION;
+++char *CIL_KEY_ROLEALLOW;
+++char *CIL_KEY_ROLEATTRIBUTE;
+++char *CIL_KEY_ROLEATTRIBUTESET;
+++char *CIL_KEY_ROLEBOUNDS;
+++char *CIL_KEY_BOOLEANIF;
+++char *CIL_KEY_NEVERALLOW;
+++char *CIL_KEY_TYPEMEMBER;
+++char *CIL_KEY_SENSALIAS;
+++char *CIL_KEY_SENSALIASACTUAL;
+++char *CIL_KEY_CATALIAS;
+++char *CIL_KEY_CATALIASACTUAL;
+++char *CIL_KEY_CATORDER;
+++char *CIL_KEY_SENSITIVITYORDER;
+++char *CIL_KEY_SENSCAT;
+++char *CIL_KEY_CONSTRAIN;
+++char *CIL_KEY_MLSCONSTRAIN;
+++char *CIL_KEY_VALIDATETRANS;
+++char *CIL_KEY_MLSVALIDATETRANS;
+++char *CIL_KEY_CONTEXT;
+++char *CIL_KEY_FILECON;
+++char *CIL_KEY_IBPKEYCON;
+++char *CIL_KEY_IBENDPORTCON;
+++char *CIL_KEY_PORTCON;
+++char *CIL_KEY_NODECON;
+++char *CIL_KEY_GENFSCON;
+++char *CIL_KEY_NETIFCON;
+++char *CIL_KEY_PIRQCON;
+++char *CIL_KEY_IOMEMCON;
+++char *CIL_KEY_IOPORTCON;
+++char *CIL_KEY_PCIDEVICECON;
+++char *CIL_KEY_DEVICETREECON;
+++char *CIL_KEY_FSUSE;
+++char *CIL_KEY_POLICYCAP;
+++char *CIL_KEY_OPTIONAL;
+++char *CIL_KEY_DEFAULTUSER;
+++char *CIL_KEY_DEFAULTROLE;
+++char *CIL_KEY_DEFAULTTYPE;
+++char *CIL_KEY_ROOT;
+++char *CIL_KEY_NODE;
+++char *CIL_KEY_PERM;
+++char *CIL_KEY_ALLOWX;
+++char *CIL_KEY_AUDITALLOWX;
+++char *CIL_KEY_DONTAUDITX;
+++char *CIL_KEY_NEVERALLOWX;
+++char *CIL_KEY_PERMISSIONX;
+++char *CIL_KEY_IOCTL;
+++char *CIL_KEY_UNORDERED;
+++char *CIL_KEY_SRC_INFO;
+++char *CIL_KEY_SRC_CIL;
+++char *CIL_KEY_SRC_HLL;
+++
++ static void cil_init_keys(void)
++ {
++ 	/* Initialize CIL Keys into strpool */
++diff --git a/cil/src/cil_internal.h b/cil/src/cil_internal.h
++index 30fab649..9bdcbdd0 100644
++--- a/cil/src/cil_internal.h
+++++ b/cil/src/cil_internal.h
++@@ -74,167 +74,167 @@ enum cil_pass {
++ /*
++ 	Keywords
++ */
++-char *CIL_KEY_CONS_T1;
++-char *CIL_KEY_CONS_T2;
++-char *CIL_KEY_CONS_T3;
++-char *CIL_KEY_CONS_R1;
++-char *CIL_KEY_CONS_R2;
++-char *CIL_KEY_CONS_R3;
++-char *CIL_KEY_CONS_U1;
++-char *CIL_KEY_CONS_U2;
++-char *CIL_KEY_CONS_U3;
++-char *CIL_KEY_CONS_L1;
++-char *CIL_KEY_CONS_L2;
++-char *CIL_KEY_CONS_H1;
++-char *CIL_KEY_CONS_H2;
++-char *CIL_KEY_AND;
++-char *CIL_KEY_OR;
++-char *CIL_KEY_NOT;
++-char *CIL_KEY_EQ;
++-char *CIL_KEY_NEQ;
++-char *CIL_KEY_CONS_DOM;
++-char *CIL_KEY_CONS_DOMBY;
++-char *CIL_KEY_CONS_INCOMP;
++-char *CIL_KEY_CONDTRUE;
++-char *CIL_KEY_CONDFALSE;
++-char *CIL_KEY_SELF;
++-char *CIL_KEY_OBJECT_R;
++-char *CIL_KEY_STAR;
++-char *CIL_KEY_TCP;
++-char *CIL_KEY_UDP;
++-char *CIL_KEY_DCCP;
++-char *CIL_KEY_SCTP;
++-char *CIL_KEY_AUDITALLOW;
++-char *CIL_KEY_TUNABLEIF;
++-char *CIL_KEY_ALLOW;
++-char *CIL_KEY_DONTAUDIT;
++-char *CIL_KEY_TYPETRANSITION;
++-char *CIL_KEY_TYPECHANGE;
++-char *CIL_KEY_CALL;
++-char *CIL_KEY_TUNABLE;
++-char *CIL_KEY_XOR;
++-char *CIL_KEY_ALL;
++-char *CIL_KEY_RANGE;
++-char *CIL_KEY_GLOB;
++-char *CIL_KEY_FILE;
++-char *CIL_KEY_DIR;
++-char *CIL_KEY_CHAR;
++-char *CIL_KEY_BLOCK;
++-char *CIL_KEY_SOCKET;
++-char *CIL_KEY_PIPE;
++-char *CIL_KEY_SYMLINK;
++-char *CIL_KEY_ANY;
++-char *CIL_KEY_XATTR;
++-char *CIL_KEY_TASK;
++-char *CIL_KEY_TRANS;
++-char *CIL_KEY_TYPE;
++-char *CIL_KEY_ROLE;
++-char *CIL_KEY_USER;
++-char *CIL_KEY_USERATTRIBUTE;
++-char *CIL_KEY_USERATTRIBUTESET;
++-char *CIL_KEY_SENSITIVITY;
++-char *CIL_KEY_CATEGORY;
++-char *CIL_KEY_CATSET;
++-char *CIL_KEY_LEVEL;
++-char *CIL_KEY_LEVELRANGE;
++-char *CIL_KEY_CLASS;
++-char *CIL_KEY_IPADDR;
++-char *CIL_KEY_MAP_CLASS;
++-char *CIL_KEY_CLASSPERMISSION;
++-char *CIL_KEY_BOOL;
++-char *CIL_KEY_STRING;
++-char *CIL_KEY_NAME;
++-char *CIL_KEY_SOURCE;
++-char *CIL_KEY_TARGET;
++-char *CIL_KEY_LOW;
++-char *CIL_KEY_HIGH;
++-char *CIL_KEY_LOW_HIGH;
++-char *CIL_KEY_GLBLUB;
++-char *CIL_KEY_HANDLEUNKNOWN;
++-char *CIL_KEY_HANDLEUNKNOWN_ALLOW;
++-char *CIL_KEY_HANDLEUNKNOWN_DENY;
++-char *CIL_KEY_HANDLEUNKNOWN_REJECT;
++-char *CIL_KEY_MACRO;
++-char *CIL_KEY_IN;
++-char *CIL_KEY_MLS;
++-char *CIL_KEY_DEFAULTRANGE;
++-char *CIL_KEY_BLOCKINHERIT;
++-char *CIL_KEY_BLOCKABSTRACT;
++-char *CIL_KEY_CLASSORDER;
++-char *CIL_KEY_CLASSMAPPING;
++-char *CIL_KEY_CLASSPERMISSIONSET;
++-char *CIL_KEY_COMMON;
++-char *CIL_KEY_CLASSCOMMON;
++-char *CIL_KEY_SID;
++-char *CIL_KEY_SIDCONTEXT;
++-char *CIL_KEY_SIDORDER;
++-char *CIL_KEY_USERLEVEL;
++-char *CIL_KEY_USERRANGE;
++-char *CIL_KEY_USERBOUNDS;
++-char *CIL_KEY_USERPREFIX;
++-char *CIL_KEY_SELINUXUSER;
++-char *CIL_KEY_SELINUXUSERDEFAULT;
++-char *CIL_KEY_TYPEATTRIBUTE;
++-char *CIL_KEY_TYPEATTRIBUTESET;
++-char *CIL_KEY_EXPANDTYPEATTRIBUTE;
++-char *CIL_KEY_TYPEALIAS;
++-char *CIL_KEY_TYPEALIASACTUAL;
++-char *CIL_KEY_TYPEBOUNDS;
++-char *CIL_KEY_TYPEPERMISSIVE;
++-char *CIL_KEY_RANGETRANSITION;
++-char *CIL_KEY_USERROLE;
++-char *CIL_KEY_ROLETYPE;
++-char *CIL_KEY_ROLETRANSITION;
++-char *CIL_KEY_ROLEALLOW;
++-char *CIL_KEY_ROLEATTRIBUTE;
++-char *CIL_KEY_ROLEATTRIBUTESET;
++-char *CIL_KEY_ROLEBOUNDS;
++-char *CIL_KEY_BOOLEANIF;
++-char *CIL_KEY_NEVERALLOW;
++-char *CIL_KEY_TYPEMEMBER;
++-char *CIL_KEY_SENSALIAS;
++-char *CIL_KEY_SENSALIASACTUAL;
++-char *CIL_KEY_CATALIAS;
++-char *CIL_KEY_CATALIASACTUAL;
++-char *CIL_KEY_CATORDER;
++-char *CIL_KEY_SENSITIVITYORDER;
++-char *CIL_KEY_SENSCAT;
++-char *CIL_KEY_CONSTRAIN;
++-char *CIL_KEY_MLSCONSTRAIN;
++-char *CIL_KEY_VALIDATETRANS;
++-char *CIL_KEY_MLSVALIDATETRANS;
++-char *CIL_KEY_CONTEXT;
++-char *CIL_KEY_FILECON;
++-char *CIL_KEY_IBPKEYCON;
++-char *CIL_KEY_IBENDPORTCON;
++-char *CIL_KEY_PORTCON;
++-char *CIL_KEY_NODECON;
++-char *CIL_KEY_GENFSCON;
++-char *CIL_KEY_NETIFCON;
++-char *CIL_KEY_PIRQCON;
++-char *CIL_KEY_IOMEMCON;
++-char *CIL_KEY_IOPORTCON;
++-char *CIL_KEY_PCIDEVICECON;
++-char *CIL_KEY_DEVICETREECON;
++-char *CIL_KEY_FSUSE;
++-char *CIL_KEY_POLICYCAP;
++-char *CIL_KEY_OPTIONAL;
++-char *CIL_KEY_DEFAULTUSER;
++-char *CIL_KEY_DEFAULTROLE;
++-char *CIL_KEY_DEFAULTTYPE;
++-char *CIL_KEY_ROOT;
++-char *CIL_KEY_NODE;
++-char *CIL_KEY_PERM;
++-char *CIL_KEY_ALLOWX;
++-char *CIL_KEY_AUDITALLOWX;
++-char *CIL_KEY_DONTAUDITX;
++-char *CIL_KEY_NEVERALLOWX;
++-char *CIL_KEY_PERMISSIONX;
++-char *CIL_KEY_IOCTL;
++-char *CIL_KEY_UNORDERED;
++-char *CIL_KEY_SRC_INFO;
++-char *CIL_KEY_SRC_CIL;
++-char *CIL_KEY_SRC_HLL;
+++extern char *CIL_KEY_CONS_T1;
+++extern char *CIL_KEY_CONS_T2;
+++extern char *CIL_KEY_CONS_T3;
+++extern char *CIL_KEY_CONS_R1;
+++extern char *CIL_KEY_CONS_R2;
+++extern char *CIL_KEY_CONS_R3;
+++extern char *CIL_KEY_CONS_U1;
+++extern char *CIL_KEY_CONS_U2;
+++extern char *CIL_KEY_CONS_U3;
+++extern char *CIL_KEY_CONS_L1;
+++extern char *CIL_KEY_CONS_L2;
+++extern char *CIL_KEY_CONS_H1;
+++extern char *CIL_KEY_CONS_H2;
+++extern char *CIL_KEY_AND;
+++extern char *CIL_KEY_OR;
+++extern char *CIL_KEY_NOT;
+++extern char *CIL_KEY_EQ;
+++extern char *CIL_KEY_NEQ;
+++extern char *CIL_KEY_CONS_DOM;
+++extern char *CIL_KEY_CONS_DOMBY;
+++extern char *CIL_KEY_CONS_INCOMP;
+++extern char *CIL_KEY_CONDTRUE;
+++extern char *CIL_KEY_CONDFALSE;
+++extern char *CIL_KEY_SELF;
+++extern char *CIL_KEY_OBJECT_R;
+++extern char *CIL_KEY_STAR;
+++extern char *CIL_KEY_TCP;
+++extern char *CIL_KEY_UDP;
+++extern char *CIL_KEY_DCCP;
+++extern char *CIL_KEY_SCTP;
+++extern char *CIL_KEY_AUDITALLOW;
+++extern char *CIL_KEY_TUNABLEIF;
+++extern char *CIL_KEY_ALLOW;
+++extern char *CIL_KEY_DONTAUDIT;
+++extern char *CIL_KEY_TYPETRANSITION;
+++extern char *CIL_KEY_TYPECHANGE;
+++extern char *CIL_KEY_CALL;
+++extern char *CIL_KEY_TUNABLE;
+++extern char *CIL_KEY_XOR;
+++extern char *CIL_KEY_ALL;
+++extern char *CIL_KEY_RANGE;
+++extern char *CIL_KEY_GLOB;
+++extern char *CIL_KEY_FILE;
+++extern char *CIL_KEY_DIR;
+++extern char *CIL_KEY_CHAR;
+++extern char *CIL_KEY_BLOCK;
+++extern char *CIL_KEY_SOCKET;
+++extern char *CIL_KEY_PIPE;
+++extern char *CIL_KEY_SYMLINK;
+++extern char *CIL_KEY_ANY;
+++extern char *CIL_KEY_XATTR;
+++extern char *CIL_KEY_TASK;
+++extern char *CIL_KEY_TRANS;
+++extern char *CIL_KEY_TYPE;
+++extern char *CIL_KEY_ROLE;
+++extern char *CIL_KEY_USER;
+++extern char *CIL_KEY_USERATTRIBUTE;
+++extern char *CIL_KEY_USERATTRIBUTESET;
+++extern char *CIL_KEY_SENSITIVITY;
+++extern char *CIL_KEY_CATEGORY;
+++extern char *CIL_KEY_CATSET;
+++extern char *CIL_KEY_LEVEL;
+++extern char *CIL_KEY_LEVELRANGE;
+++extern char *CIL_KEY_CLASS;
+++extern char *CIL_KEY_IPADDR;
+++extern char *CIL_KEY_MAP_CLASS;
+++extern char *CIL_KEY_CLASSPERMISSION;
+++extern char *CIL_KEY_BOOL;
+++extern char *CIL_KEY_STRING;
+++extern char *CIL_KEY_NAME;
+++extern char *CIL_KEY_SOURCE;
+++extern char *CIL_KEY_TARGET;
+++extern char *CIL_KEY_LOW;
+++extern char *CIL_KEY_HIGH;
+++extern char *CIL_KEY_LOW_HIGH;
+++extern char *CIL_KEY_GLBLUB;
+++extern char *CIL_KEY_HANDLEUNKNOWN;
+++extern char *CIL_KEY_HANDLEUNKNOWN_ALLOW;
+++extern char *CIL_KEY_HANDLEUNKNOWN_DENY;
+++extern char *CIL_KEY_HANDLEUNKNOWN_REJECT;
+++extern char *CIL_KEY_MACRO;
+++extern char *CIL_KEY_IN;
+++extern char *CIL_KEY_MLS;
+++extern char *CIL_KEY_DEFAULTRANGE;
+++extern char *CIL_KEY_BLOCKINHERIT;
+++extern char *CIL_KEY_BLOCKABSTRACT;
+++extern char *CIL_KEY_CLASSORDER;
+++extern char *CIL_KEY_CLASSMAPPING;
+++extern char *CIL_KEY_CLASSPERMISSIONSET;
+++extern char *CIL_KEY_COMMON;
+++extern char *CIL_KEY_CLASSCOMMON;
+++extern char *CIL_KEY_SID;
+++extern char *CIL_KEY_SIDCONTEXT;
+++extern char *CIL_KEY_SIDORDER;
+++extern char *CIL_KEY_USERLEVEL;
+++extern char *CIL_KEY_USERRANGE;
+++extern char *CIL_KEY_USERBOUNDS;
+++extern char *CIL_KEY_USERPREFIX;
+++extern char *CIL_KEY_SELINUXUSER;
+++extern char *CIL_KEY_SELINUXUSERDEFAULT;
+++extern char *CIL_KEY_TYPEATTRIBUTE;
+++extern char *CIL_KEY_TYPEATTRIBUTESET;
+++extern char *CIL_KEY_EXPANDTYPEATTRIBUTE;
+++extern char *CIL_KEY_TYPEALIAS;
+++extern char *CIL_KEY_TYPEALIASACTUAL;
+++extern char *CIL_KEY_TYPEBOUNDS;
+++extern char *CIL_KEY_TYPEPERMISSIVE;
+++extern char *CIL_KEY_RANGETRANSITION;
+++extern char *CIL_KEY_USERROLE;
+++extern char *CIL_KEY_ROLETYPE;
+++extern char *CIL_KEY_ROLETRANSITION;
+++extern char *CIL_KEY_ROLEALLOW;
+++extern char *CIL_KEY_ROLEATTRIBUTE;
+++extern char *CIL_KEY_ROLEATTRIBUTESET;
+++extern char *CIL_KEY_ROLEBOUNDS;
+++extern char *CIL_KEY_BOOLEANIF;
+++extern char *CIL_KEY_NEVERALLOW;
+++extern char *CIL_KEY_TYPEMEMBER;
+++extern char *CIL_KEY_SENSALIAS;
+++extern char *CIL_KEY_SENSALIASACTUAL;
+++extern char *CIL_KEY_CATALIAS;
+++extern char *CIL_KEY_CATALIASACTUAL;
+++extern char *CIL_KEY_CATORDER;
+++extern char *CIL_KEY_SENSITIVITYORDER;
+++extern char *CIL_KEY_SENSCAT;
+++extern char *CIL_KEY_CONSTRAIN;
+++extern char *CIL_KEY_MLSCONSTRAIN;
+++extern char *CIL_KEY_VALIDATETRANS;
+++extern char *CIL_KEY_MLSVALIDATETRANS;
+++extern char *CIL_KEY_CONTEXT;
+++extern char *CIL_KEY_FILECON;
+++extern char *CIL_KEY_IBPKEYCON;
+++extern char *CIL_KEY_IBENDPORTCON;
+++extern char *CIL_KEY_PORTCON;
+++extern char *CIL_KEY_NODECON;
+++extern char *CIL_KEY_GENFSCON;
+++extern char *CIL_KEY_NETIFCON;
+++extern char *CIL_KEY_PIRQCON;
+++extern char *CIL_KEY_IOMEMCON;
+++extern char *CIL_KEY_IOPORTCON;
+++extern char *CIL_KEY_PCIDEVICECON;
+++extern char *CIL_KEY_DEVICETREECON;
+++extern char *CIL_KEY_FSUSE;
+++extern char *CIL_KEY_POLICYCAP;
+++extern char *CIL_KEY_OPTIONAL;
+++extern char *CIL_KEY_DEFAULTUSER;
+++extern char *CIL_KEY_DEFAULTROLE;
+++extern char *CIL_KEY_DEFAULTTYPE;
+++extern char *CIL_KEY_ROOT;
+++extern char *CIL_KEY_NODE;
+++extern char *CIL_KEY_PERM;
+++extern char *CIL_KEY_ALLOWX;
+++extern char *CIL_KEY_AUDITALLOWX;
+++extern char *CIL_KEY_DONTAUDITX;
+++extern char *CIL_KEY_NEVERALLOWX;
+++extern char *CIL_KEY_PERMISSIONX;
+++extern char *CIL_KEY_IOCTL;
+++extern char *CIL_KEY_UNORDERED;
+++extern char *CIL_KEY_SRC_INFO;
+++extern char *CIL_KEY_SRC_CIL;
+++extern char *CIL_KEY_SRC_HLL;
++ 
++ /*
++ 	Symbol Table Array Indices
++-- 
++2.17.1
++
+diff --git a/recipes-security/selinux/libsepol/0001-libsepol-remove-leftovers-of-cil_mem_error_handler.patch b/recipes-security/selinux/libsepol/0001-libsepol-remove-leftovers-of-cil_mem_error_handler.patch
+new file mode 100644
+index 0000000..674fddd
+--- /dev/null
++++ b/recipes-security/selinux/libsepol/0001-libsepol-remove-leftovers-of-cil_mem_error_handler.patch
+@@ -0,0 +1,65 @@
++From 3d32fc24d6aff360a538c63dad08ca5c957551b0 Mon Sep 17 00:00:00 2001
++From: Ondrej Mosnacek <omosnace@redhat.com>
++Date: Thu, 23 Jan 2020 13:57:14 +0100
++Subject: [PATCH] libsepol: remove leftovers of cil_mem_error_handler
++
++Commit 4459d635b8f1 ("libsepol: Remove cil_mem_error_handler() function
++pointer") replaced cil_mem_error_handler usage with inline contents of
++the default handler. However, it left over the header declaration and
++two callers. Convert these as well and remove the header declaration.
++
++This also fixes a build failure with -fno-common.
++
++Fixes: 4459d635b8f1 ("libsepol: Remove cil_mem_error_handler() function pointer")
++Signed-off-by: Ondrej Mosnacek <omosnace@redhat.com>
++
++Upstream-Status: Backport
++[https://github.com/SELinuxProject/selinux/commit/3d32fc24d6aff360a538c63dad08ca5c957551b0]
++
++Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
++---
++ cil/src/cil_mem.h     | 1 -
++ cil/src/cil_strpool.c | 8 ++++----
++ 2 files changed, 4 insertions(+), 5 deletions(-)
++
++diff --git a/cil/src/cil_mem.h b/cil/src/cil_mem.h
++index 902ce131..794f02a3 100644
++--- a/cil/src/cil_mem.h
+++++ b/cil/src/cil_mem.h
++@@ -36,7 +36,6 @@ void *cil_calloc(size_t num_elements, size_t element_size);
++ void *cil_realloc(void *ptr, size_t size);
++ char *cil_strdup(const char *str);
++ int cil_asprintf(char **strp, const char *fmt, ...);
++-void (*cil_mem_error_handler)(void);
++ 
++ #endif /* CIL_MEM_H_ */
++ 
++diff --git a/cil/src/cil_strpool.c b/cil/src/cil_strpool.c
++index 97d4c4b9..2598bbf3 100644
++--- a/cil/src/cil_strpool.c
+++++ b/cil/src/cil_strpool.c
++@@ -80,8 +80,8 @@ char *cil_strpool_add(const char *str)
++ 		int rc = hashtab_insert(cil_strpool_tab, (hashtab_key_t)strpool_ref->str, strpool_ref);
++ 		if (rc != SEPOL_OK) {
++ 			pthread_mutex_unlock(&cil_strpool_mutex);
++-			(*cil_mem_error_handler)();
++-			pthread_mutex_lock(&cil_strpool_mutex);
+++			cil_log(CIL_ERR, "Failed to allocate memory\n");
+++			exit(1);
++ 		}
++ 	}
++ 
++@@ -104,8 +104,8 @@ void cil_strpool_init(void)
++ 		cil_strpool_tab = hashtab_create(cil_strpool_hash, cil_strpool_compare, CIL_STRPOOL_TABLE_SIZE);
++ 		if (cil_strpool_tab == NULL) {
++ 			pthread_mutex_unlock(&cil_strpool_mutex);
++-			(*cil_mem_error_handler)();
++-			return;
+++			cil_log(CIL_ERR, "Failed to allocate memory\n");
+++			exit(1);
++ 		}
++ 	}
++ 	cil_strpool_readers++;
++-- 
++2.17.1
++
+diff --git a/recipes-security/selinux/libsepol_3.0.bb b/recipes-security/selinux/libsepol_3.0.bb
+index 6c85256..58559d7 100644
+--- a/recipes-security/selinux/libsepol_3.0.bb
++++ b/recipes-security/selinux/libsepol_3.0.bb
+@@ -5,3 +5,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
+ 
+ SRC_URI[md5sum] = "22ddb9994910cb9cfff5cb9663cb7ae7"
+ SRC_URI[sha256sum] = "5b7ae1881909f1048b06f7a0c364c5c8a86ec12e0ec76e740fe9595a6033eb79"
++
++SRC_URI += "\
++        file://0001-libsepol-fix-CIL_KEY_-build-errors-with-fno-common.patch \
++        file://0001-libsepol-remove-leftovers-of-cil_mem_error_handler.patch \
++        "
+-- 
+2.17.1
 
-
-> Then, you cited an important element for maintenance strategy : security
-> issue .
-> Except the 3.1 LTS, each Yocto version is maintained for 2 releases so
-> for 1 year. Thus, for security fix, I think the normal way is to track
-> vulnerabilities and apply patch because migrating to newest Yocto
-> version every year represents a cost and an enormous effort whereas in
-> certain cases, all the evolution don't necessarily concern the system
-> which we uses.
-> Is my understanding correct?
->
-
-Tracking vulnerabilities and applying patches is a lot of work, and it
-becomes harder, the further you are from upstream development. For two
-reasons:
-
-- security fixes need to be backported. To do that the code should not
-change too much between the version that has the upstream fix, and version
-that you need to patch. If you are far behind upstream, chances of that are
-lower.
-
-- if you can't apply the patch the way it is, and you need to change it,
-you also need to truly understand what the code is doing and what the fix
-changes in the code - and for most components that is not the case.
-
-Also, after a Yocto version goes out of support (which happens fairly
-quickly, previously one year, from now on 6 months for regular releases,
-and 2 years for LTS ones), you need to do all of the vulnerability tracking
-yourself; there typically is no shared community effort.
-
-I would recommend the following strategy (and this is what we are using in
-https://mbition.io/):
-
-- there are two maintained branches, one 'rolling development' branch which
-tracks master branches of all upstream layers and is periodically pushed
-forward to bring in the latest upstream changes from all the layers, and
-another 'stable product' branch which is based on the latest, supported LTS
-release;
-
-- when a new LTS release happens, 'rolling development' branch is split
-into two: rolling development continues as it was, and a new 'stable
-product' branch is created from the same code point. Previous LTS branch
-can be retired then.
-
-This way, there is never an enormous effort in migrating; instead the
-migrating effort is spread over the 'rolling development' process, and is
-continuous in nature.
-
-
-Alex
-
->
-> Mohamed
->
-> On Thu, Jun 4, 2020 at 10:38 AM Alexander Kanavin
-> <alex.kanavin@gmail.com> wrote:
-> >
-> > The versions of libraries and tools are not independent from Yocto
-> versions, in fact they are directly defined through oe-core metadata that
-> is in a specific Yocto version.
-> >
-> > For examples, what version of openssl is in your yocto builds? Is it
-> supported/maintained upstream? What are you going to do if a critical
-> security vulnerability is discovered in that version?
-> >
-> > This extends to all of the packages: it makes sense to use the most
-> recent Yocto version for two primary reasons:
-> >
-> > - the stack is much less likely to contain security vulnerabilities
-> > - it is much easier to satisfy project requirements w.r.t. version
-> compatibility, or needed features, if those features are only available in
-> recent versions of the package.
-> >
-> > This mailing list gets horror stories all the time from people who are
-> for some reason using some ancient Yocto, then a customer requirement
-> arrives that can only be satisfied through updating to a newer Yocto, or
-> backporting a major component to the old Yocto; both impossible or nearly
-> impossible tasks. You do not want to end up in that situation.
-> >
-> > Alex
-> >
-> > On Thu, 4 Jun 2020 at 10:18, <requinham@gmail.com> wrote:
-> >>
-> >> My question is about the #Yocto update and maintenance strategy. I have
-> several projects for different boards and different versions of Yocto (1.7
-> 2.0 2.2) which includes their BSP.
-> >>
-> >> As an OS build system, especially GNU/Linux, I don't understand exactly
-> when should we necessarily migrate to a new version?
-> >>
-> >> In my understanding, the versions of the kernel, libraries and tools
-> are independent from Yocto version. If you need to migrate to a new version
-> of the Linux kernel, you have to modify/add the right recipe without
-> worrying about the Yocto version.
-> >>
-> >> Thus, the maintenance work -security, bugs, optimization- should relate
-> to the recipes and not to Yocto itself.
-> >>
-> >> Updating Yocto may have sens for me when we need to use new bitbake
-> feature or new architecture but not to use new version of package. I think
-> we should keep in mind to manage a certain consistency and compatibility
-> between the different versions of the recipes in order for example to use
-> the right version of the openssl library with the right version of Qt or
-> even between the right version of the kernel and drivers, etc.
-> >> Thanks,
-> >> Mohamed
-> >>
-> >> 
->
-
---000000000000799f2905a7424d8c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Thu, 4 Jun 2020 at 11:19, Mohamed HAMZ=
-AOUI &lt;<a href=3D"mailto:requinham@gmail.com">requinham@gmail.com</a>&gt;=
- wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex">Thanks Alexander,<br>
-<br>
-When you say &quot;The versions of libraries and tools are not independent=
-<br>
-from Yocto versions, in fact they are directly defined through oe-core<br>
-metadata that is in a specific Yocto version.&quot; This not concern Linux=
-<br>
-kernel ? because Yocto wiki say &quot;While tooling is provided to use any=
-<br>
-Linux kernel you wish, the linux-yocto Linux kernel recipes are tested<br>
-with all the emulated targets, the core hardware BSPs, and some vendor<br>
-layers.&quot;<br></blockquote><div><br></div><div>Yes, the kernel is typic=
-ally provided by the BSP vendor through the BSP layer, and they define the =
-kernel version in use. The security concerns still apply though: if there i=
-s a vulnerability in their kernel, it&#39;s much easier to address if the k=
-ernel is recent. And newer kernels gain new features too, which might be us=
-eful or even required in the project.<br></div><div>=C2=A0</div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex">
-Then, you cited an important element for maintenance strategy : security i=
-ssue .<br>
-Except the 3.1 LTS, each Yocto version is maintained for 2 releases so<br>
-for 1 year. Thus, for security fix, I think the normal way is to track<br>
-vulnerabilities and apply patch because migrating to newest Yocto<br>
-version every year represents a cost and an enormous effort whereas in<br>
-certain cases, all the evolution don&#39;t necessarily concern the system<=
-br>
-which we uses.<br>
-Is my understanding correct?<br></blockquote><div><br></div><div>Tracking =
-vulnerabilities and applying patches is a lot of work, and it becomes harde=
-r, the further you are from upstream development. For two reasons:</div><di=
-v><br></div><div>- security fixes need to be backported. To do that the cod=
-e should not change too much between the version that has the upstream fix,=
- and version that you need to patch. If you are far behind upstream, chance=
-s of that are lower.</div><div><br></div><div>- if you can&#39;t apply the =
-patch the way it is, and you need to change it, you also need to truly unde=
-rstand what the code is doing and what the fix changes in the code - and fo=
-r most components that is not the case.</div><div><br></div><div>Also, afte=
-r a Yocto version goes out of support (which happens fairly quickly, previo=
-usly one year, from now on 6 months for regular releases, and 2 years for L=
-TS ones), you need to do all of the vulnerability tracking yourself; there =
-typically is no shared community effort.</div><div><br></div><div>I would r=
-ecommend the following strategy (and this is what we are using in <a href=
-=3D"https://mbition.io/">https://mbition.io/</a>):</div><div><br></div><di=
-v>- there are two maintained branches, one &#39;rolling development&#39; br=
-anch which tracks master branches of all upstream layers and is periodicall=
-y pushed forward to bring in the latest upstream changes from all the layer=
-s, and another &#39;stable product&#39; branch which is based on the latest=
-, supported LTS release;<br></div><div><br></div><div>- when a new LTS rele=
-ase happens, &#39;rolling development&#39; branch is split into two: rollin=
-g development continues as it was, and a new &#39;stable product&#39; branc=
-h is created from the same code point. Previous LTS branch can be retired t=
-hen.<br></div><div><br></div><div>This way, there is never an enormous effo=
-rt in migrating; instead the migrating effort is spread over the &#39;rolli=
-ng development&#39; process, and is continuous in nature.<br></div><div>=C2=
-=
-=A0</div><div><br></div><div>Alex<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex">
-<br>
-Mohamed<br>
-<br>
-On Thu, Jun 4, 2020 at 10:38 AM Alexander Kanavin<br>
-&lt;<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.kanav=
-in@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; The versions of libraries and tools are not independent from Yocto ve=
-rsions, in fact they are directly defined through oe-core metadata that is =
-in a specific Yocto version.<br>
-&gt;<br>
-&gt; For examples, what version of openssl is in your yocto builds? Is it =
-supported/maintained upstream? What are you going to do if a critical secur=
-ity vulnerability is discovered in that version?<br>
-&gt;<br>
-&gt; This extends to all of the packages: it makes sense to use the most r=
-ecent Yocto version for two primary reasons:<br>
-&gt;<br>
-&gt; - the stack is much less likely to contain security vulnerabilities<b=
-r>
-&gt; - it is much easier to satisfy project requirements w.r.t. version co=
-mpatibility, or needed features, if those features are only available in re=
-cent versions of the package.<br>
-&gt;<br>
-&gt; This mailing list gets horror stories all the time from people who ar=
-e for some reason using some ancient Yocto, then a customer requirement arr=
-ives that can only be satisfied through updating to a newer Yocto, or backp=
-orting a major component to the old Yocto; both impossible or nearly imposs=
-ible tasks. You do not want to end up in that situation.<br>
-&gt;<br>
-&gt; Alex<br>
-&gt;<br>
-&gt; On Thu, 4 Jun 2020 at 10:18, &lt;<a href=3D"mailto:requinham@gmail.co=
-m" target=3D"_blank">requinham@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; My question is about the #Yocto update and maintenance strategy. =
-I have several projects for different boards and different versions of Yoct=
-o (1.7 2.0 2.2) which includes their BSP.<br>
-&gt;&gt;<br>
-&gt;&gt; As an OS build system, especially GNU/Linux, I don&#39;t understa=
-nd exactly when should we necessarily migrate to a new version?<br>
-&gt;&gt;<br>
-&gt;&gt; In my understanding, the versions of the kernel, libraries and to=
-ols are independent from Yocto version. If you need to migrate to a new ver=
-sion of the Linux kernel, you have to modify/add the right recipe without w=
-orrying about the Yocto version.<br>
-&gt;&gt;<br>
-&gt;&gt; Thus, the maintenance work -security, bugs, optimization- should =
-relate to the recipes and not to Yocto itself.<br>
-&gt;&gt;<br>
-&gt;&gt; Updating Yocto may have sens for me when we need to use new bitba=
-ke feature or new architecture but not to use new version of package. I thi=
-nk we should keep in mind to manage a certain consistency and compatibility=
- between the different versions of the recipes in order for example to use =
-the right version of the openssl library with the right version of Qt or ev=
-en between the right version of the kernel and drivers, etc.<br>
-&gt;&gt; Thanks,<br>
-&gt;&gt; Mohamed<br>
-&gt;&gt;<br>
-&gt;&gt; <br>
-</blockquote></div></div>
-
---000000000000799f2905a7424d8c--
