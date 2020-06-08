@@ -1,99 +1,68 @@
-Received: from FRA01-MR2-obe.outbound.protection.outlook.com (FRA01-MR2-obe.outbound.protection.outlook.com [40.107.9.78])
- by mx.groups.io with SMTP id smtpd.web12.8114.1591539026244574424
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+ by mx.groups.io with SMTP id smtpd.web10.23480.1591592344465239556
  for <yocto@lists.yoctoproject.org>;
- Sun, 07 Jun 2020 07:10:27 -0700
+ Sun, 07 Jun 2020 21:59:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@actia.fr header.s=selector1 header.b=AESnGZ40;
- spf=pass (domain: actia.fr, ip: 40.107.9.78, mailfrom: nicolas.adell@actia.fr)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NG03l+N+pLa8chjhpctzdSxqTcJItF5tdULY9bqZVJZegvUimTVWBtt7cs8oSqUty5gC2kCN3FIsu5P0354M09hUDeWOZWSCWXCWw/1DxCjsXXVY0zzGesMLQwMZjLcMgXGe5+3lSD4BRv1IENi+ZYAet6jQi38UNPxVCr6Gh5pYUtUv4Y1t0XKHcaWpArVGHY0Z8Ky9LT3p+rJ1Wj9ZrkvCdYyV11EMKFednYPCR67ybRju6lKOM5RqHXwx30Xh6QIqNRXzRCkvYjTKWdD5D4G932g/bmIf7n+RdJq7Kma+EbBtMepbjDaQKm+KPwnQ5ItAyiKRp0tMAwfq8ZKQ1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Xu3EEzPK/zP7CApQBTGgffP75wL7l/5gBpjZhbw+ByI=;
- b=T+QAYBPZ3WkEVPjpdrjwuwxf3GAfoPowfEghBCf068mKl21EScoP/KYgD14LF6NF5rYtwSRMOLyCVdFdU+CDMc9V8XPpsiRmdze0GW97YdN/tz9gP0o9+CBGtsrJSq3D/ywuIMdx7Ky67UR5giaJPJGIMrUu9tUdLwfSRvgCB8VIB+NcMxdGnL2avojvHl9psTqOOXc2AJNs2jhoZYQOW9YXD7VETnAVR+dpNOPw3O0vR6GkkHUj+7gu0aU/on57ey/uTo4OmaBt2EVcRjCOViSi/48TRTsCl4ZDoByCX2tGleuDI8dzec0kr2JM0KfoKmNawbjZO4xyOzA24u1maQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=actia.fr; dmarc=pass action=none header.from=actia.fr;
- dkim=pass header.d=actia.fr; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=actia.fr; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Xu3EEzPK/zP7CApQBTGgffP75wL7l/5gBpjZhbw+ByI=;
- b=AESnGZ40SSV4knXg29aRnsrNucCh0sSqv+de5/kh8vJQ5fNeXAiif1BVCuuecJSIKZEgucxLh2apQuZp/CBw+NxSPW3HCFjV5tmum0pVW8cG45VJYz1Dw/ysBY+ooY7pYsj3A3VW6pfAWXP6IPvMx5rI2Ju8xa3AlIPRxbnyJKc=
-Received: from PR2P264MB0238.FRAP264.PROD.OUTLOOK.COM (2603:10a6:101:7::19) by
- PR2P264MB0175.FRAP264.PROD.OUTLOOK.COM (2603:10a6:101:6::23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3066.20; Sun, 7 Jun 2020 14:10:24 +0000
-Received: from PR2P264MB0238.FRAP264.PROD.OUTLOOK.COM
- ([fe80::f183:29f7:bdd9:3210]) by PR2P264MB0238.FRAP264.PROD.OUTLOOK.COM
- ([fe80::f183:29f7:bdd9:3210%6]) with mapi id 15.20.3066.023; Sun, 7 Jun 2020
- 14:10:24 +0000
-From: "Nicolas Adell" <nicolas.adell@actia.fr>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: [yocto] How to deploy in DEPLOYDIR from Python task
-Thread-Topic: [yocto] How to deploy in DEPLOYDIR from Python task
-Thread-Index: AQHWPNTCWi7oh1jBOE2lfz4ow81MEg==
-Date: Sun, 7 Jun 2020 14:10:24 +0000
-Message-ID: 
- <PR2P264MB0238EF2FA09B1754DB0B6BA385840@PR2P264MB0238.FRAP264.PROD.OUTLOOK.COM>
-Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=actia.fr;
-x-originating-ip: [212.194.216.84]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 111223d4-e8a0-4471-7397-08d80aec857e
-x-ms-traffictypediagnostic: PR2P264MB0175:
-x-microsoft-antispam-prvs: 
- <PR2P264MB017558CBF480C94861F2969385840@PR2P264MB0175.FRAP264.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 04270EF89C
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- SchVpfsb5suC6rXYIbSlWgUsWbLfzt3D3Bj2Ieln6/IhDo51ReHOCRSz12b5ZEfYT0zL/MckgzE0e0i/et8tUaR6qgcovPSZ6kpZv7eDg797Oc5CEtvzhifxQ9IFB5Wo64jinlUgH8nThGUhyp+OMphMgn6Y9pZIVi/p5QJnSUb4gYiTLOEb27OpqTnkRq8kzl/xxiyeTqEay0Rz1Nqm2Hpcs7ww2O0Dj98UQbRxecb932RzmLulz5Ubsw5PbXmmd/YprIsgNWzcWuirOdOR4/P4U5P+vifChDcpHkGEGArXdpm646Tslmxb5zOvoC3X790fMXFbU7ZYwwk43UXVYQ==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PR2P264MB0238.FRAP264.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFTY:;SFS:(346002)(376002)(396003)(39840400004)(366004)(136003)(26005)(5660300002)(186003)(4744005)(8676002)(71200400001)(2906002)(8936002)(6916009)(316002)(6506007)(33656002)(66556008)(76116006)(66946007)(64756008)(55016002)(9686003)(66446008)(66476007)(86362001)(478600001)(7696005)(52536014);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 
- o7b88Mc6eS7x8yYNUgnf8atoc9RNEc7oIjUpw3otvnFP97cfZh8WzfpWvvP5G5TAxlU53aa4tR8rvaDGIDBafvP8fdoF2nKrkXTzlFSim9R63uhoD35Mqg7onMY52jhPom8Cql2PhFXbxO8HCMrYOfxwCn1Dv7g9HrylHkDF9f6BAA/xg/Ot5eYg3ADVpsSfnaRHmyQCIsivj5yOXXcALpjL70Ck88vQgKHBHRSja+qxw3CZWzG4DqvY1I0uQ+7IjKqbT9srIC4whrvfV93zvPnlrC3SpHiKsK9125Zj1chBPnly1QmdnkM0bYXWHidOBKvVGfqQ8Hco2WBOhDaxRnF6bjWTf77E12BU6UjM+ZUu2eFjvElacdFAZdlDfcRLwOEFtXutXm5gHzhghhxhglAcrEUXPvVzl4G0oopHSXwcq9y7unqm3gAhH0mJrdAA2lNvbCiQTnPe+yQ3wfyphgOKzfjNAvGO3P/L9GhBzE/krGEAO2qdHFLKCBos5ggm
-x-ms-exchange-transport-forked: True
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=j+h4ysHu;
+ spf=pass (domain: gmail.com, ip: 209.85.218.49, mailfrom: maillinglists18@gmail.com)
+Received: by mail-ej1-f49.google.com with SMTP id n21so2312281ejg.3
+        for <yocto@lists.yoctoproject.org>; Sun, 07 Jun 2020 21:59:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=qyfCRZa5JmrwI5vZ7EriQhe8A89oMDNAnZwVaxroSqk=;
+        b=j+h4ysHue3MzaJ/1K6ZnYZMli0Gizhd0U5zc51NIs8vydcYRPAaug6a4AWs2PG/2J3
+         muv9l0jWj7p+OLcLRwplahc09Hmgng5n2u5nihvV8++jXtDqOs05EjkDV8fPJOohNH+j
+         kRGwUFpBNlC9dK/NwE2kSBlKMykyMuAbI28CThoO1jdNWxL7j02tWy1iAkhjmT794AHV
+         /ovWxa08uE4mdBWHIWbyi8Okc7Hv1Fjuskuu4I2AXtLJxjOw/q6wE0zAAevDUF6XHd79
+         eWQ8H87wWCcUCmkrmdcgj1cQpDN4K44tLMLx9AX7kdiLNeh+bTibWgWp6SAO+7m8u4js
+         CseA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=qyfCRZa5JmrwI5vZ7EriQhe8A89oMDNAnZwVaxroSqk=;
+        b=cV4ZkYnXyNqkhWQpxDAYdb8MuIX23AnzZiA/DjdNibIWZE1wzs94bO4WkfRod8TIbI
+         0+tWvJcncbZlXNAZlPLJk+vYJXoKVWtXdQB/v1CZRd57OWRPz2AkTZDoak1tZBrkYSkV
+         FBIj3bGh7MSsYk9dPoWjukfzI6vKVznFhmYzAjVAuRDgdUwrJ0OqMubrV9DdQ5/MAvbg
+         IkAm3OFOUTUbCGZpgiE/P7g9xqHYooF6gr0R9qr3HEkgvSvbnq54D0U8OgzJuVwlHTEf
+         nlp7UL3xRR3Zy4fyjPVCrjsZ10D9xgz5oheBp8F/YXfVliAQHl39KVaeV+mtXrnqYGpf
+         cMcg==
+X-Gm-Message-State: AOAM531E9qG58OffMurM43v1riYkWerBnbuUnfSPqqPwUFOwCZ4JLZpu
+	AwA6Su9u++xn3bfonIYjvc/p0qCbjTt368OclMZ/zP3c
+X-Google-Smtp-Source: ABdhPJzioarub+SIVOcPNnfTkU8hpBlbFafPP5OFTC/g/pVtMDESzdJAWFBmSKE+PEi6zuqInr7try9koty0jf4DSdE=
+X-Received: by 2002:a17:907:4030:: with SMTP id nr24mr12167173ejb.247.1591592342820;
+ Sun, 07 Jun 2020 21:59:02 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: actia.fr
-X-MS-Exchange-CrossTenant-Network-Message-Id: 111223d4-e8a0-4471-7397-08d80aec857e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jun 2020 14:10:24.0102
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 86314f06-03e8-4460-82f3-a44f992a19c7
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VJ0/G0AUCB7TlPHjuV+5DVyEjuI89kO2qXMygc+o7WrFbXhmOYAogFaRyJeCjtF9S+Av2WH8BQvevf7ldSvfvA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR2P264MB0175
-Content-Language: fr-FR
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: "Teemu K." <maillinglists18@gmail.com>
+Date: Mon, 8 Jun 2020 07:58:52 +0300
+Message-ID: <CAAmVmrpBbtWu7yCDCzVEB5Q76hwRQmQgmRgaap4Fd-AFQauBVw@mail.gmail.com>
+Subject: SDK having libraries that are not in image
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-Because all tasks provided by a custom bbclass are written in Python, I wou=
-ld like to stick that logic adding a deployment task.=0A=
-However, all examples I found in poky layer are Shell script based, and are=
- comparable to the following example:=0A=
-=0A=
-    do_deploy_custom_image() {=0A=
-        install -d ${DEPLOYDIR}=0A=
-        install -m 644 ${B}/${IMAGE} ${DEPLOYDIR}/${IMAGE}=0A=
-    }=0A=
-=0A=
-Is there a proper way to do the expected thing from a Python based task ?=
-=0A=
-=0A=
-I imagine something like=0A=
-=0A=
-    python do_deploy_custom_image() {=0A=
-        ddir =3D d.getVar('DEPLOYDIR')=0A=
-        ...=0A=
-    }=0A=
-    do_deploy_custom_image[dirs] =3D "${DEPLOYDIR} ${B}"=0A=
-    addtask deploy_custom_image after do_install before do_deploy=0A=
-=0A=
-Thanks=0A=
-=0A=
-=0A=
+Hi,
+
+I'm using Warrior - version of Yocto and I have libraries ending up to
+SDK that are not in image and it's causing problems because
+applications are trying to look for libraries that are not there. This
+is not first time this has happened and I'm wondering why it's
+happening in the first place.
+
+Here are the libraries that are on SDK, but not on image:
+
+libsmime3.so => not found
+libnss3.so => not found
+libsoftokn3.so => not found
+libnssutil3.so => not found
+libplds4.so => not found
+libplc4.so => not found
+libnspr4.so => not found
+libevent-2.1.so.6 => not found
+
+I've used bitbake <image> -c populate_sdk - command to generate SDK.
+Is there something I'm missing from configuration or something what's
+causing this? To 'fix' this problem I need to separately add those
+libraries to image so I get image match SDK and not the other way
+around.
+
+-TeemuK
