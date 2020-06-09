@@ -1,78 +1,58 @@
-Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
- by mx.groups.io with SMTP id smtpd.web10.26672.1591610531223891544
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.7642.1591710559591547639
  for <yocto@lists.yoctoproject.org>;
- Mon, 08 Jun 2020 03:02:11 -0700
+ Tue, 09 Jun 2020 06:49:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=mDrEIRYQ;
- spf=pass (domain: gmail.com, ip: 209.85.218.65, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ej1-f65.google.com with SMTP id x1so17557753ejd.8
-        for <yocto@lists.yoctoproject.org>; Mon, 08 Jun 2020 03:02:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=hF8P37fRZjeJ5mRNWJQEW51754l0hHBgXG7ejRbXIrE=;
-        b=mDrEIRYQm1UCSj6s8l3bmfyOehaW4EQzlBIAPoWtl992hmIhuB1ADpOz2Iw1uU8Ebg
-         7+Nfc2CHmqiHGsSxLrsSRC5Rp3Ve53M2LToyus1Lzu6PHjGtnby18PB8d3KXt1J3nNkQ
-         Izd0Tf4mJuD5gKxJf4+Jiq0Z16ax6KQK2IFTvBd3n/5fwdiqzh6vLYkeviD0Y1bvdbF7
-         Bg5YGej9diBLkSfF/qSJjLx2OE7qufdCrVJsDh6AK4JPLysEJwyqp8/kPHXhv8hYgnXx
-         NiRJ/hHdoGv+OxSl52lnvuyPpseGCwEDSrFHCdazsPA761XKQjqqvwCPSzm6+8ugOjet
-         xDcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=hF8P37fRZjeJ5mRNWJQEW51754l0hHBgXG7ejRbXIrE=;
-        b=lhca4ylrjtH2BGbiNxXXMeepk2jy1uxs/MTkFeL7mBpC4SRD7YRIf26lsI25kabLqg
-         2ohFgICS5L2j+f+kmIPIfjcttgrJHR7d+ajyeQLNzzw0groDLBoxBELgxyTyzcGdDLza
-         eFYLEZlJrK/PQ+03crActWGjY5ge5xpR6xhcXnoGyBex4MuakWYSMrCEyx49W1oHcPUQ
-         7XOA+cRSk9jtbiJwxC35fJMJuwj4YCU8ANjAUMwn65YgVyZEfqAzJmpCpyLmsO1J1Jdt
-         7B1lxUZjbvVdZBHf8FyzwaDRR/h3Ii4L1yiSBxoQYjGWiOk5JwPvQeI8amBMPAFnXuBF
-         CesA==
-X-Gm-Message-State: AOAM531y6XYppiBSiRUWAyqXdQLZnzCK/rHwAISOm59LTtIBSnfkdkxG
-	8wsSU8lcyVOYOe2TVg7URP5nHf2KaxU=
-X-Google-Smtp-Source: ABdhPJxDze0FdGJs0jOn1iS8poRdIlzD0SpY+6f9l0v9wKptBTOCfrlLJ4UQT9aG8GKTu1biQAKzdg==
-X-Received: by 2002:a17:906:f53:: with SMTP id h19mr19612341ejj.343.1591610529368;
-        Mon, 08 Jun 2020 03:02:09 -0700 (PDT)
-Return-Path: <alex.kanavin@gmail.com>
-Received: from linux-f9zs.box ([5.28.66.228])
-        by smtp.gmail.com with ESMTPSA id z20sm10251470ejb.68.2020.06.08.03.02.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jun 2020 03:02:08 -0700 (PDT)
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-Subject: [meta-security][PATCH] apparmor: pull in coreutils/findutils only when not using systemd as init manager
-Date: Mon,  8 Jun 2020 12:00:46 +0200
-Message-Id: <20200608100046.10153-1-alex.kanavin@gmail.com>
-X-Mailer: git-send-email 2.26.2
+ dkim=pass header.i=@aruba.it header.s=a1 header.b=jsJncNL/;
+ spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 140.211.169.56, mailfrom: mauro@faresoftware.it)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 28744E01C31; Tue,  9 Jun 2020 06:49:19 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [62.149.156.56 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www; Tue, 09 Jun 2020 06:49:17 PDT
+Received: from smtpcmd0756.aruba.it (smtpcmd0756.aruba.it [62.149.156.56])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 482EAE01BF1
+	for <yocto@yoctoproject.org>; Tue,  9 Jun 2020 06:49:17 -0700 (PDT)
+Received: from [192.168.24.172] ([93.38.119.136])
+	by smtpcmd07.ad.aruba.it with bizsmtp
+	id p1oC2200W2wfazh011oCML; Tue, 09 Jun 2020 15:48:12 +0200
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: "Mauro Ziliani" <mauro@faresoftware.it>
+Subject: OpenRC
+Message-ID: <3ece96c1-0778-1b28-8305-5c6f7137e9ff@faresoftware.it>
+Date: Tue, 9 Jun 2020 15:48:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1591710492; bh=7Ni2QQVCkBzjdZoPI+zuujCVlx5yNAUSd+XUoJqaulE=;
+	h=To:From:Subject:Date:MIME-Version:Content-Type;
+	b=jsJncNL/ZkAeU6gyNCWtPKITAeUR2YwrPyY5XKUv77u/DFwdvGxkk/5mTjdToVKkO
+	 jH+7ypiA1pZGC9OE1PKwMn+7BFWx8Hux1hRYx5u6TTxqj54AeV1Fwii+Bt2f1ZuECz
+	 kuDN7lFBeAYMLW/ms9V5zGzJvXeALhY0aZ48vJ9mKY8pJu8XvwQA3JNAq6oyVQfbTF
+	 SVi7LErV2fOFoAGr/kSrRZLqA1RmlKX/c7UxMz8dR6+xRNPngCrVuOlPWG8O/L0ZWZ
+	 xYIxuTsU/WHHide5Xsdv/0JZNqKBZRqnOMc55f6OYugek5+7plq6CFGlE8Ptjs7Q2k
+	 Aa5UQ3akGH1Xg==
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: it
 
-The utilities from those packages (xargs, comm) are only used in sysvinit
-scripts, and so there is no need to pull them in when systemd is in use.
-Both are gpl3 licensed, so this is beneficial for builds where gpl3 is not
-allowed.
+Hi all.
 
-Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
----
- recipes-mac/AppArmor/apparmor_2.13.4.bb | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+There is a plan to integrate OpenRC like startup scripts environment?
 
-diff --git a/recipes-mac/AppArmor/apparmor_2.13.4.bb b/recipes-mac/AppArmor/apparmor_2.13.4.bb
-index d6f61b3..552cac7 100644
---- a/recipes-mac/AppArmor/apparmor_2.13.4.bb
-+++ b/recipes-mac/AppArmor/apparmor_2.13.4.bb
-@@ -191,7 +191,8 @@ PACKAGES += "mod-${PN}"
- FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor ${PYTHON_SITEPACKAGES_DIR}"
- FILES_mod-${PN} = "${libdir}/apache2/modules/*"
- 
--RDEPENDS_${PN} +=  "coreutils findutils ${@bb.utils.contains('PACKAGECONFIG','python','python3-core python3-modules','', d)}"
-+# Add coreutils and findutils only if sysvinit scripts are in use
-+RDEPENDS_${PN} +=  "${@["coreutils findutils", ""][(d.getVar('VIRTUAL-RUNTIME_init_manager') == 'systemd')]} ${@bb.utils.contains('PACKAGECONFIG','python','python3-core python3-modules','', d)}"
- RDEPENDS_${PN}_remove += "${@bb.utils.contains('PACKAGECONFIG','perl','','perl', d)}"
- RDEPENDS_${PN}-ptest += "perl coreutils dbus-lib bash"
- 
--- 
-2.26.2
+
+MZ
 
