@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.425.1591736908594212334
+ by mx.groups.io with SMTP id smtpd.web10.666.1591737371759366348
  for <yocto@lists.yoctoproject.org>;
- Tue, 09 Jun 2020 14:08:28 -0700
+ Tue, 09 Jun 2020 14:16:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=m2RS4H77;
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=gu4Zn3SO;
  spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: twoerner@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1B554E01CB3; Tue,  9 Jun 2020 14:08:28 -0700 (PDT)
+	id 5D1F2E01CB3; Tue,  9 Jun 2020 14:16:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -20,61 +20,61 @@ X-Spam-HAM-Report:
 	*      (twoerner[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.160.181 listed in list.dnswl.org]
+	*      [209.85.219.43 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6FD4E01C7A
-	for <yocto@yoctoproject.org>; Tue,  9 Jun 2020 14:08:26 -0700 (PDT)
-Received: by mail-qt1-f181.google.com with SMTP id g62so112507qtd.5
-        for <yocto@yoctoproject.org>; Tue, 09 Jun 2020 14:08:26 -0700 (PDT)
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61C58E01C7A
+	for <yocto@yoctoproject.org>; Tue,  9 Jun 2020 14:16:10 -0700 (PDT)
+Received: by mail-qv1-f43.google.com with SMTP id cv17so47226qvb.13
+        for <yocto@yoctoproject.org>; Tue, 09 Jun 2020 14:16:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:subject:message-id:mime-version:content-disposition
          :content-transfer-encoding:user-agent;
-        bh=EnHRqrTNtuHEjOS7G7ac64nQmJ9GlAhvd/oBLDKYE/E=;
-        b=m2RS4H77IKOyl/ai07QDSAegTZZXMuSJ/N8KtivYwKYdd9dBTNbnWR1IFz32bCNffY
-         DA96R8b49FlqtwMo068hv1Wb88UZVsznc2pBpkrMbTmtMOy/gpKwgo0OVgVGzy3UxBul
-         I16sz5MFHi6fHTj6PRxvAGbKCr5c8Vy7W2HR+h9lJCgZyT/YeDZIze716kj44YGoRBtC
-         hJApAiQdZhmOcqqJQIDQXebnyBOQIlgJZjjUAe5kscAzmtmwYloCK6LLgv7Gp5fWeEIP
-         gSvDE+rJ7yas1BpqrawtmlVIf3bm1XurPZGKNvlJx1BY6wfB4qHSRsHnSKZTWiVhYzjq
-         gsyw==
+        bh=AIsaj5lF5PLxR3quC2nbtmXY3HhICEoZ5zJvnXGLONo=;
+        b=gu4Zn3SOORGZm91SYHPbBz7QE3J3svJru4E3/OcmwJGivPCjDYeFOasFzKIol/A1Ns
+         3JE5hV3vy7dVOccscborWYS66r6MQDEHom5IGFrcwtc8DjkHeMHUg/kKnSubjxgLZTk2
+         W+zrvjlVL+4bHzCvoXpe1Je5x/JDd2ayHHDQme+oOJMmZV4CzIG6Woic9GUQg+Z+Fy36
+         EL+bMTJsvclN2uSjeoDnKa/gLHGL8T9knKyKzCAFr9g/JK565YQ4rxZ4HGWhvfSH1L0A
+         vPs3WGPosJH+tT0NUc40Xcy1/uoOHYdNw+C2E8Cta+hROhfE+0XJmPmjZKpl+LcoYqDF
+         QB0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:subject:message-id:mime-version
          :content-disposition:content-transfer-encoding:user-agent;
-        bh=EnHRqrTNtuHEjOS7G7ac64nQmJ9GlAhvd/oBLDKYE/E=;
-        b=CmbUVO8T924L8PB5zTkYEmkY4WnSjrfpc4y36VLWCtxXUIC63HEgYFnIabSUpNctx6
-         4EkXEUTy/fo55y2boOozMwGYLpsNr+aSw9zvJEwnIIOeFuvDJTaxp/bGyZiDiHcYMPh3
-         YTUN0OOKbhggPvsH2BmHJOelMeJDjdfg4uHOa6iTm/a03+YOUfsE4Ehq4vkV5mhn0Ur/
-         sUpSkN7xRw1l/OTynR6H1aziD0sIQYRQY1KqDlZuLzgG0jMbUALg6X/oJYlpdBQsGocV
-         /NAv/AzOo5H6MoorPFSRbTW3lYI7D7HlE22x1BdIS2GZDBQhVm7V6yU9LBKUiUcQwiqh
-         Crmw==
-X-Gm-Message-State: AOAM532xMGPgmTyKPQxyxe2ph++KqoiPR1IUJVhO+HQb7CNmmAuPF33e
-	6Y8CzHkjQ3j2zdJOmote7YW4zlIT
-X-Google-Smtp-Source: ABdhPJz7K8VXhAoswKVW5hJ6lO49dhgkoukxiQqNJwqJMMPuSnX0dNRA6oLjnqtNaPbEqxJEGoQvzw==
-X-Received: by 2002:ac8:7b5a:: with SMTP id m26mr32496887qtu.381.1591736904759;
-        Tue, 09 Jun 2020 14:08:24 -0700 (PDT)
+        bh=AIsaj5lF5PLxR3quC2nbtmXY3HhICEoZ5zJvnXGLONo=;
+        b=ek5+eWrWEKvHjdrqj6+iAC8ZePUR8hnMGUckdBPcHgcw1mASbhs4sG45MWNfkc7YH/
+         c1T9W44BFuOGV8RigxW6pxIMYGBMYTL8tifMPhV9ydFtnO4LZZtoaQpSo6inAAMs+tAx
+         RBaaMRsk+wQkhnWk5e7lJqyVOcEjeClCuktU54xLTEsiIjPChgZK4QWKrw8IX6zegCKS
+         QfJDflkRFFKHvy79USvm/Ljxliu4iW7h4j85+Wj7Cn1B9W1xkajwDsw0usUGo4CZOiUm
+         cmk7vzS+4QI4CrxMPtoKq5K814k7r3tyUmTFPd+2jxR+YckGrgPcgTI4lgfz5XC7DK5D
+         GyPg==
+X-Gm-Message-State: AOAM532VBjlWQ0Zsn5OG+FjaVc5RBDGzYiWGS6QCf5DSu4sxf15t/I1D
+	XGlyWQOPTFAyjtxk7u7+Fc5jYeZL
+X-Google-Smtp-Source: ABdhPJwXpFIiUJmG1m3SRti7jpL2+2QfcgUVLcab/wAGKsphMmo8Z/0pkwDPvG9EXCxUTJPJbgfnbA==
+X-Received: by 2002:a0c:ed4d:: with SMTP id v13mr31051qvq.237.1591737368975;
+        Tue, 09 Jun 2020 14:16:08 -0700 (PDT)
 Received: from linux-uys3 ([206.248.190.95])
-        by smtp.gmail.com with ESMTPSA id l8sm11731723qtb.57.2020.06.09.14.08.23
+        by smtp.gmail.com with ESMTPSA id e1sm10715153qto.51.2020.06.09.14.16.07
         for <yocto@yoctoproject.org>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 09 Jun 2020 14:08:23 -0700 (PDT)
-Date: Tue, 9 Jun 2020 17:08:21 -0400
+        Tue, 09 Jun 2020 14:16:08 -0700 (PDT)
+Date: Tue, 9 Jun 2020 17:16:05 -0400
 From: "Trevor Woerner" <twoerner@gmail.com>
 To: yocto@yoctoproject.org
-Subject: minutes for Yocto Project Technical Team Meeting / Engineering Sync - June 2 2020
-Message-ID: <20200609210821.GA33481@linux-uys3>
+Subject: minutes for Yocto Project Technical Team Meeting / Engineering Sync - June 9 2020
+Message-ID: <20200609211605.GA37371@linux-uys3>
 MIME-Version: 1.0
 User-Agent: Mutt/1.6.0 (2016-04-01)
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Yocto Technical Team Minutes, Engineering Sync, for June 2 2020
+Yocto Technical Team Minutes, Engineering Sync, for June 9 2020
 archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7=
 QwKC5wWVDg9dDH4/edit
 
@@ -85,126 +85,163 @@ l
 free to reply to this email with any corrections.
 
 =3D=3D attendees =3D=3D
-Trevor Woerner, Stephen Jolly, Joshua Watt, Mark Morton, Richard Purdie, =
-Steve
-Sakoman, Randy MacLeod, Trevor Gamblin, Bruce Ashfield, Jan-Simon M=C3=B6=
-ller,
-Jeremy Puhlmann, Jon Mason, Mark Van de Vyver, Michael Halstead, Paul Bar=
-ker,
-Ross Burton, Scott Murray, Tim Orling, Armin Kuster, Peter Kjellerstedt, =
-David
-Reyna, Denys Dmytriyenko
+Trevor Woerner, Jan-Simon M=C3=B6ller, Stephen Jolly, Trevor Gamblin, Bru=
+ce
+Ashfield, Scott Murray, Paul Barker, Michael Halstead, Jon Mason, Richard
+Purdie, Joshua Watt, Armin Kuster, Tim Orling, Sathishkumar Duraisamy,
+henriknj, Ross Burton, Jeremy Puhlman
 
 =3D=3D notes =3D=3D
-- YP 3.0.3 has been released
-- YP 2.7.4 is awaiting final approval and likely to be released today
-- YP 3.1.1 later this week or early next
-- AB up on Fedora 32 and Ubuntu 20.04
+- 2.7.4 released last week
+- 3.1.1 built, but has issues, not sent to QA yet
+- M1 early next week (to build)
+- thanks to AlexK for lots of fixes
 
 =3D=3D general =3D=3D
-Randy: how do we feel about the build quality
-RP: better, but it looks like there=E2=80=99s new races (e.g. icu-data) e=
-specially
-    when multiple builds are run in parallel, not =E2=80=9Cpanic=E2=80=9D=
- yet, but
-    =E2=80=9Cconcerned=E2=80=9D
-TrevorG: haven=E2=80=99t had success with logrotate yet
-RP: on a good day there=E2=80=99s a 50% chance of a build failing
-Randy: that=E2=80=99s not good, we see ~1% internally at WR
-
-RP: Steve: we need to look at the ltp-release issue
-Steve: okay
-RP: upstream recommends removing some of the tests and using at least 1GB=
- of
-    RAM
-
-RP: Joshua sent invasive bitbake patches, something we probably should ha=
-ve
-    done a while back, but taking them makes LTS diverge significantly fr=
-om
-    master, should we put it in LTS?
-JPEW: maybe put it in master for a while, but ideally it would be in LTS
-    eventually
-
-RP: python module issue for dunfell (LTS): upgrading to LTS
-    requires meta-openembedded because of meta-arm see:
-    https://www.mail-archive.com/openembedded-core@lists.openembedded.org=
-/msg136914.html
-(various): conflicted on whether this is good or not
-Steve: including meta-oe is pretty much standard, hard to believe a produ=
-ction
-    system can build without it
-RP+Timo: we see people who would rather cherry pick from meta-oe (and for=
-king)
-    than importing meta-oe entirely
-Paul: how does this cause breakage?
-RP: versions and layer priorities
-JPEW: happens when people already have meta-python and upgrade one but no=
+RP:
+    problems with 3.1.1. qemu(-mips?) failed with taskhash mismatches, no=
 t
-    another
-Scott: doesn=E2=80=99t the build fail?
-JPEW: yes, it could, or they get the wrong versions
-RP: if they upgrade oe-core but not meta-oe then it fails
-JPEW: if we move them, do we also upgrade them?
-RP: given the security issues, we should. i suggest punting to TSC
-Timo: do we do the upgrade also on meta-oe dunfell branch?
-RP: yes, but it needs to be clear that this is an exceptional circumstanc=
-e,
-    this isn=E2=80=99t something we=E2=80=99ll do regularly
-Steve: do we do it now, or 3.1.1?
-RP: 3.1.1.
-Ross: lots of overlap between OE and Yocto TSC, but I think this is mostl=
-y an
-    OE TSC issue
-Timo: if this had happened a few months ago, this wouldn=E2=80=99t be an =
-issue, so i
-    think it should go in
-RP: agreed. JPEW and Bruce: thoughts?
-JPEW + Bruce: sounds good
-Paul: to clarify if oe-core is updated but meta-oe isn=E2=80=99t the wron=
-g recipe is
-    used
-RP: an older version of a recipe is used, so it succeeds but has the wron=
-g
-    version
-Paul: maybe we should add sanity checks
-RP: don=E2=80=99t think we should
-Scott: will dunfell be updated
-Steve: have to dig into the issue to understand it
+    sure why
 
-Timo: crops broken, worked on getting it working over the weekend, now wo=
-rks
-    from morty to zeus, but fails on dunfell and master, not sure why
-RP: can we run the tests on AB?
-Timo: probably just a =E2=80=9Cpip install=E2=80=9D
-RP: we do something similar with mingw
 
-Timo: perl dependency, look at all the split packages, run all the files
-    through perl-req, in order to generate
-RP: thanks for update
+RP:
+    devtool, patchtest, patchwork, and wic looking for maintainers
+PaulB:
+    patchtest/patchwork still on python2, needs 2=E2=86=923 update. patch=
+test
+    should be moved to OE-core so it can be noticed by more people
 
-Scott: noticed <secret> is a platinum member
-RP: yes, not quite ready to blog about it, the website updated, but still
-    finishing the deal, an official announcement is coming. we don=E2=80=99=
-t know
-    who from their side will be interacting with the community, we=E2=80=99=
-ll have
-    to see
 
-Scott: is devday sign-up going to be posted?
-David: just signed things recently, team has been distracted
-Scott: how is it going to work this year?
-David: zoom meeting, 500 participants, 3 hands-on, hoping for helpers (as
-    usual), separate rooms
+RP:
+    lots of recipe upgrades, happy with where master is (wrt to recipe
+    versions), still need to update qemu to 5
 
-RP: lots of changes behind the scenes, advocacy Tracy again, Andrew Wafaa=
- on
-    board
 
-RP: Mark how are things going with docs?
-Mark: out last week. Nico has a wiki page setup for the conversion, worki=
-ng on
-    testing manual
-RP: looking forward to first draft of testing manual! (then others can pi=
-tch
-    in)
+JPEW:
+    did RP see my patch to mc-depends to make it backwards compatible?
+RP:
+    dismayed it was more complex than hoped, but looks okay
+JPEW:
+    i=E2=80=99m using a proxy object otherwise we need to duplicate a lot=
+ of code
+    with a lot of if=E2=80=99s
+RP:
+    saw the BBMASK thing for multiconfig that needed index checking, sad
+    that we=E2=80=99ll be stuck with that going forward (in command.py) m=
+ostly for
+    backwards compatibility (e.g. file checking). another option is to ha=
+ve
+    a new API and append a =E2=80=982=E2=80=99 to the end so callers will=
+ call the right
+    things (old or new). the code=E2=80=99s probably going to get worse a=
+nd worse
+    with every new parameter we want to add (in the future)
+
+JPEW:
+    re multiconfig, sometimes the old full =E2=80=9Cmulticonfig=E2=80=9D =
+string
+    doesn=E2=80=99t work but the new =E2=80=9Cmc=E2=80=9D string does, ca=
+n we drop
+    =E2=80=9Cmulticonfig=E2=80=9D? changed in 2.7? or 3.0? there=E2=80=99=
+s a bugzilla somewhere.
+    some code handles both, some doesn=E2=80=99t
+RP:
+    we can get rid of it, despite the expected screaming
+
+
+RP:
+    re devtool, reports on mailing list that devtool isn=E2=80=99t mc-com=
+pliant
+RP:
+    we have a horrible hack for PRserver
+RP:
+    highlights the need for a dedicated maintainer
+
+
+PaulB:
+    re patchwork, kernel.org are using a newer version of patchwork that =
+is
+    python3-compatible, is maintained, but missing some things we need
+Timo:
+    i looked at freedesktop.org=E2=80=99s gitlab, they=E2=80=99ve made a =
+lot of changes
+    from where we forked from them, they=E2=80=99re also using python3 an=
+d django2.
+    going with mainline will miss features that we=E2=80=99re used to
+PaulB:
+    make a list of the gap items, then decide if we can live without thes=
+e
+    things
+Timo:
+    i looked at the fd.o=E2=80=99s patchwork and saw that many of the thi=
+ngs we
+    added to our fork have been added (but differently) in fd.o=E2=80=99s=
+. e.g. we
+    added a superseded feature, doesn=E2=80=99t seem to be on any other p=
+atchworks
+PaulB:
+    would like to spin up concurrent patchworks to see how the react to t=
+he
+    mailing list
+Timo:
+    good idea, maybe we can work together on that
+PaulB:
+    for patchtest it seems obvious what steps are required, patchwork les=
+s
+    clear
+Timo:
+    https://gitlab.freedesktop.org/patchwork-fdo
+Timo:
+    might be a lot of work to compare ours with fd.o=E2=80=99s patch by p=
+atch to
+    see
+PaulB:
+    we need to figure out if we can live with some upstream version, to c=
+ut
+    down on the effort of having our own fork
+RP:
+    but it=E2=80=99ll cause a lot of pain if, for example, the superceded=
+ feature is
+    missing
+Timo:
+    we=E2=80=99re better off putting resources elsewhere. upstream looks =
+hard, but
+    i think patchwork-fdo looks like it might work, maybe easier to submi=
+t to
+    patchwork-fdo rather than upstream?
+TrevorW:
+    maybe fdo would really like a superceded feature, they split from
+    upstream for same reasons as us, they probably share the same frustra=
+tions
+Timo:
+    agreed, we should reach out to them
+RP:
+    we should get a list first before reaching out
+Timo:
+    we probably have about 30 patches on top of upstream, although most o=
+f
+    them of them are probably just to add the supercede feature
+PaulB:
+    is there anything in bugzilla? 13684 is a django update
+PaulB:
+    to take action to capture this discussion in bugzilla
+Timo:
+    Amber working on layerindex, but maybe we can have her work on this t=
+oo
+    (not a promise), she has a lot of django experience
+
+
+Timo:
+    re perl dependency. there=E2=80=99s an existing oe-package-data util =
+script,
+    i=E2=80=99m using almost exact same code in a bitbake task, should th=
+is be
+    refactored to lib/oe?
+RP:
+    sounds good, but depends on the implementation, in general i=E2=80=99=
+m in favour
+    of strong APIs in lib/oe. e.g. =E2=80=9Cpackagedata=E2=80=9D is too g=
+eneric. the
+    history was that packagedata.py was created as a way of pulling code =
+out
+    of a bbclass
