@@ -1,100 +1,70 @@
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
- by mx.groups.io with SMTP id smtpd.web12.10351.1591794663242866992
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+ by mx.groups.io with SMTP id smtpd.web11.13572.1591802942134664626
  for <yocto@lists.yoctoproject.org>;
- Wed, 10 Jun 2020 06:11:03 -0700
+ Wed, 10 Jun 2020 08:29:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=g3dYJTnt;
- spf=pass (domain: gmail.com, ip: 209.85.222.176, mailfrom: lefevre.da@gmail.com)
-Received: by mail-qk1-f176.google.com with SMTP id c14so1863055qka.11
-        for <yocto@lists.yoctoproject.org>; Wed, 10 Jun 2020 06:11:03 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=ZAa1O3oz;
+ spf=softfail (domain: sakoman.com, ip: 209.85.214.182, mailfrom: steve@sakoman.com)
+Received: by mail-pl1-f182.google.com with SMTP id t7so1095397plr.0
+        for <yocto@lists.yoctoproject.org>; Wed, 10 Jun 2020 08:29:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=StaLntUhepa9LkPOr0IooIdSlRtqhQ/RDKBwZ5I3uUg=;
-        b=g3dYJTntgGJGEDBJg3GU2H2F2am+BHAhhWLhgeDmppx3ozqta5vjCA1zBI5o11h1ki
-         O7YwYbM4WFyV+QALLA+31q4QCWNbNSPh1x2H+zAc1KzZ6KuwhAwNmuOa7lpoH+zXTh/d
-         x9bYPbQSicYbuiEkinJISYwXH7+cmzLySlbU2yYSMejYBb5j0vDXSEdpieQWezsMQSN7
-         Q1/vUUzIsF+i8LlVUqva/3vo72Hc0u63pDZzmsJNpRyWnZGZd3XMEEXEAtkLFJvT/N+f
-         BEkS/wNubxFYln8LrAfhq+8w9rmmRzcfHTW61opUBoEBaJNQ9azhT0X2Ukc4m/00nhee
-         fBSA==
+        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:subject:date:message-id:in-reply-to:references;
+        bh=CnuhIYuI0NWdwWr1LlR5LB22b8QBn33KyeeKtrq30Y0=;
+        b=ZAa1O3ozwE07llubs+GCllM49QDNhU+mMrge8h/GWC19fNQxbSZMI8QVYdKvSG2HxF
+         6UyKDPHJIPp/bTO8S5+rnVXJiyjpiVnQHXzDK8gCFLvIbcMCl1agj1uMZrvgUTFoCiWt
+         umGyxGGdq3i7owQF4FVYUUtB5iHkVQ9/pqeivuxYcZx1lyihTTBVOEVzWG1iTBHqjao1
+         EFNP6n/Qk2BzvCCLSH3Yw1QJqNgsGc6OMNtqqb5M9/7i9Hyp5VnH6dicRxsjqMZq6mjs
+         vuNwzAaStAwHEhzLCYv9vnrGS5G8ei0vR+wXEylbQ/rZXpstqGnZF4K/9Kw2Mr/O6/il
+         sXGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=StaLntUhepa9LkPOr0IooIdSlRtqhQ/RDKBwZ5I3uUg=;
-        b=IB4Zzx9vPEnppzEYIi4Mi1c3LasO9NsySG0RWYfi7qxCeNugUqrDS3M3ojnYC2nxim
-         HIj/ljyy07ioTWwg9xnkMvHDcRkQZ09CrKXPL6kJ+WjiG39qs4UmYQiAL57V+ZRannOj
-         vS9HnqhHZiGu2H0xSW8WkQJZGsIdJCf96cnn6yaN5SikimBX/Pvs8hnmynYcX5Tvutwg
-         g3f4PlDFlQnHFxLqCtlZ4GZ1XC2fmJ/uuLUnU46qdL0elAmw17kQ53JYgRLgHRxxwX3Q
-         VUMAHJF7zA1syhsIbgDOi0OP/t1gQyjdajHxWs/5WfWFFlt8UTC/a1NSmIohSvwBlX6F
-         W/bA==
-X-Gm-Message-State: AOAM532EXZv2quph4Ld5KqT9J8/6NWfWDvD26gL6UDIzI7UgKSy93VzD
-	9rLQcbQM63Kzf6+SwWWY2HMiysRJoJsvSGc0oCJyKPc=
-X-Google-Smtp-Source: ABdhPJzHxF9tb+fG93TeqcRVQa0aSmDIYWBUG8QAJ+5zXA8i7C71NsngP9A6Nxv5v4a1+aQx+eg7dJTsYvZW3pHpdZM=
-X-Received: by 2002:ae9:eb47:: with SMTP id b68mr2844539qkg.479.1591794661950;
- Wed, 10 Jun 2020 06:11:01 -0700 (PDT)
-MIME-Version: 1.0
-From: "Damien LEFEVRE" <lefevre.da@gmail.com>
-Date: Wed, 10 Jun 2020 16:10:51 +0300
-Message-ID: <CA+FhBv8zMQOdP6GLXxC+9oqPp+h66_ssSt27rihBS83B8+pgmQ@mail.gmail.com>
-Subject: llvm native
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references;
+        bh=CnuhIYuI0NWdwWr1LlR5LB22b8QBn33KyeeKtrq30Y0=;
+        b=EUyruyg/1Y4TjbunqlYjyAZdGsL3ErNcKGThhihtkt9MO0HAMTGdmJb7uWP92GH3RZ
+         EnK7B1cBMZkyH5t7dKaWYg2eGnRSHUjVLlutNUJQClYlbRLH/6dUse02Isfnzb1kZpu1
+         PET8N7nqqmCj3UVGMWvkUD5G3amfGBRIDByJXmdSrrhwqrYIOoG6gtOXjN3yH6tbVfU7
+         1sbJomAxw2tnwfh5qDtEMQTJoVzTjz6LjIRcQfP577lWWzo7M6E3G9slCG4iA2C1TKrH
+         nqwN8fZIqAbiHikcfYn+klyOGGitK5tl1pSSzYmvb4VaDok2nn4aqf6lnSVRTzXD45mp
+         vV1A==
+X-Gm-Message-State: AOAM531VPRQA2k0R8kDu1guj7Uz6IMROS+CpBMLoq0J84D+afZbJFSek
+	bnOEjAS2KxPHYaGcYggufpv+r3ZS6eI=
+X-Google-Smtp-Source: ABdhPJysZ+f1cOF76AhNkOe6IPEgiIr7j66gzPYcGboIn2wkz9b7GYirdj0ovFPMLYiNCjHnZV/VGw==
+X-Received: by 2002:a17:902:b706:: with SMTP id d6mr3537469pls.304.1591802940986;
+        Wed, 10 Jun 2020 08:29:00 -0700 (PDT)
+Return-Path: <steve@sakoman.com>
+Received: from octo.router0800d9.com (rrcs-66-91-142-162.west.biz.rr.com. [66.91.142.162])
+        by smtp.gmail.com with ESMTPSA id n11sm248024pgm.1.2020.06.10.08.28.59
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jun 2020 08:29:00 -0700 (PDT)
+From: "Steve Sakoman" <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000061922505a7ba9399"
+Subject: [yocto-autobuilder-helper][dunfell] config.json: add steve@sakoman.com to QA email list
+Date: Wed, 10 Jun 2020 05:28:41 -1000
+Message-Id: <0f247cf211b0768414196effc34a3b44825512d1.1591802816.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <cover.1591802816.git.steve@sakoman.com>
+References: <cover.1591802816.git.steve@sakoman.com>
 
---00000000000061922505a7ba9399
-Content-Type: text/plain; charset="UTF-8"
+---
+ config.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Hi,
+diff --git a/config.json b/config.json
+index 17acc09..9636ea1 100644
+--- a/config.json
++++ b/config.json
+@@ -16,7 +16,7 @@
+     "TRASH_DIR" : "${BASE_HOMEDIR}/git/trash",
+ 
+     "QAMAIL_TO" : "yocto@lists.yoctoproject.org",
+-    "QAMAIL_CC" : "otavio@ossystems.com.br, yi.zhao@windriver.com, apoorv.sangal@intel.com, ee.peng.yeoh@intel.com, aaron.chun.yew.chan@intel.com, richard.purdie@linuxfoundation.org, akuster808@gmail.com, sjolley.yp.pm@gmail.com, sangeeta.jain@intel.com",
++    "QAMAIL_CC" : "otavio@ossystems.com.br, yi.zhao@windriver.com, apoorv.sangal@intel.com, ee.peng.yeoh@intel.com, aaron.chun.yew.chan@intel.com, richard.purdie@linuxfoundation.org, akuster808@gmail.com, sjolley.yp.pm@gmail.com, sangeeta.jain@intel.com, steve@sakoman.com",
+     "WEBPUBLISH_DIR" : "${BASE_SHAREDDIR}/",
+     "WEBPUBLISH_URL" : "https://autobuilder.yocto.io/",
+ 
+-- 
+2.17.1
 
-I'm trying to build a native package which uses llvm. I never used llvm
-before, so time to learn
-
-I've added
-DEPENDS += "llvm-native"
-
-to my recipe but I still get errors
-
-LLVM_CONFIG:
-| CMake Error at data/shiboken_helpers.cmake:146 (message):
-|   Unable to detect CLANG location by checking LLVM_INSTALL_DIR,
-|   CLANG_INSTALL_DIR or running llvm-config.
-| Call Stack (most recent call first):
-|   CMakeLists.txt:37 (setup_clang)
-
-I looked at the llvm_git.bb file
-do_install_class-native() {
-install -D -m 0755 ${B}/bin/llvm-tblgen ${D}${bindir}/llvm-tblgen${PV}
-install -D -m 0755 ${B}/bin/llvm-config ${D}${bindir}/llvm-config${PV}
-install -D -m 0755 ${B}/lib/libLLVM-${MAJOR_VERSION}.so
-${D}${libdir}/libLLVM-${MAJOR_VERSION}.so
-}
-
-so I would expect to see llvm-config8.0.0 in
-the recipe-sysroot-native/usr/bin/ inside my package folder but nothing
-llvm related.
-
-What am I missing?
-Thanks,
-
---00000000000061922505a7ba9399
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,=C2=A0<div><br></div><div>I&#39;m trying to build a nat=
-ive package which uses llvm. I never used llvm before, so time to learn</di=
-v><div><br></div><div>I&#39;ve added=C2=A0</div><div>DEPENDS +=3D &quot;llv=
-m-native&quot;<br></div><div><br></div><div>to my recipe but I still get er=
-rors</div><div><br></div><div>LLVM_CONFIG:<br>| CMake Error at data/shiboke=
-n_helpers.cmake:146 (message):<br>| =C2=A0 Unable to detect CLANG location =
-by checking LLVM_INSTALL_DIR,<br>| =C2=A0 CLANG_INSTALL_DIR or running llvm=
--config.<br>| Call Stack (most recent call first):<br>| =C2=A0 CMakeLists.t=
-xt:37 (setup_clang)<br></div><div><br></div><div>I looked at the <a href=3D=
-"http://llvm_git.bb">llvm_git.bb</a> file</div><div>do_install_class-native=
-() {<br>	install -D -m 0755 ${B}/bin/llvm-tblgen ${D}${bindir}/llvm-tblgen$=
-{PV}<br>	install -D -m 0755 ${B}/bin/llvm-config ${D}${bindir}/llvm-config$=
-{PV}<br>	install -D -m 0755 ${B}/lib/libLLVM-${MAJOR_VERSION}.so ${D}${libd=
-ir}/libLLVM-${MAJOR_VERSION}.so<br>}<br></div><div><br></div><div>so I woul=
-d expect to see=C2=A0llvm-config8.0.0 in the=C2=A0recipe-sysroot-native/usr=
-/bin/ inside my package folder but nothing llvm related.</div><div><br></di=
-v><div>What am I missing?</div><div>Thanks,</div></div>
-
---00000000000061922505a7ba9399--
