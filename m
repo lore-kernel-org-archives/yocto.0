@@ -1,70 +1,68 @@
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
- by mx.groups.io with SMTP id smtpd.web11.13572.1591802942134664626
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.211.1591811351452767708
  for <yocto@lists.yoctoproject.org>;
- Wed, 10 Jun 2020 08:29:02 -0700
+ Wed, 10 Jun 2020 10:49:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=ZAa1O3oz;
- spf=softfail (domain: sakoman.com, ip: 209.85.214.182, mailfrom: steve@sakoman.com)
-Received: by mail-pl1-f182.google.com with SMTP id t7so1095397plr.0
-        for <yocto@lists.yoctoproject.org>; Wed, 10 Jun 2020 08:29:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=CnuhIYuI0NWdwWr1LlR5LB22b8QBn33KyeeKtrq30Y0=;
-        b=ZAa1O3ozwE07llubs+GCllM49QDNhU+mMrge8h/GWC19fNQxbSZMI8QVYdKvSG2HxF
-         6UyKDPHJIPp/bTO8S5+rnVXJiyjpiVnQHXzDK8gCFLvIbcMCl1agj1uMZrvgUTFoCiWt
-         umGyxGGdq3i7owQF4FVYUUtB5iHkVQ9/pqeivuxYcZx1lyihTTBVOEVzWG1iTBHqjao1
-         EFNP6n/Qk2BzvCCLSH3Yw1QJqNgsGc6OMNtqqb5M9/7i9Hyp5VnH6dicRxsjqMZq6mjs
-         vuNwzAaStAwHEhzLCYv9vnrGS5G8ei0vR+wXEylbQ/rZXpstqGnZF4K/9Kw2Mr/O6/il
-         sXGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references;
-        bh=CnuhIYuI0NWdwWr1LlR5LB22b8QBn33KyeeKtrq30Y0=;
-        b=EUyruyg/1Y4TjbunqlYjyAZdGsL3ErNcKGThhihtkt9MO0HAMTGdmJb7uWP92GH3RZ
-         EnK7B1cBMZkyH5t7dKaWYg2eGnRSHUjVLlutNUJQClYlbRLH/6dUse02Isfnzb1kZpu1
-         PET8N7nqqmCj3UVGMWvkUD5G3amfGBRIDByJXmdSrrhwqrYIOoG6gtOXjN3yH6tbVfU7
-         1sbJomAxw2tnwfh5qDtEMQTJoVzTjz6LjIRcQfP577lWWzo7M6E3G9slCG4iA2C1TKrH
-         nqwN8fZIqAbiHikcfYn+klyOGGitK5tl1pSSzYmvb4VaDok2nn4aqf6lnSVRTzXD45mp
-         vV1A==
-X-Gm-Message-State: AOAM531VPRQA2k0R8kDu1guj7Uz6IMROS+CpBMLoq0J84D+afZbJFSek
-	bnOEjAS2KxPHYaGcYggufpv+r3ZS6eI=
-X-Google-Smtp-Source: ABdhPJysZ+f1cOF76AhNkOe6IPEgiIr7j66gzPYcGboIn2wkz9b7GYirdj0ovFPMLYiNCjHnZV/VGw==
-X-Received: by 2002:a17:902:b706:: with SMTP id d6mr3537469pls.304.1591802940986;
-        Wed, 10 Jun 2020 08:29:00 -0700 (PDT)
-Return-Path: <steve@sakoman.com>
-Received: from octo.router0800d9.com (rrcs-66-91-142-162.west.biz.rr.com. [66.91.142.162])
-        by smtp.gmail.com with ESMTPSA id n11sm248024pgm.1.2020.06.10.08.28.59
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jun 2020 08:29:00 -0700 (PDT)
-From: "Steve Sakoman" <steve@sakoman.com>
-To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][dunfell] config.json: add steve@sakoman.com to QA email list
-Date: Wed, 10 Jun 2020 05:28:41 -1000
-Message-Id: <0f247cf211b0768414196effc34a3b44825512d1.1591802816.git.steve@sakoman.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1591802816.git.steve@sakoman.com>
-References: <cover.1591802816.git.steve@sakoman.com>
+ dkim=fail reason="body hash did not verify" header.i=@aruba.it header.s=a1 header.b=aUCbx+zt;
+ spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 140.211.169.56, mailfrom: mauro@faresoftware.it)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id E9B73E01CC1; Wed, 10 Jun 2020 10:49:10 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [62.149.156.56 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from smtpcmd0756.aruba.it (smtpcmd0756.aruba.it [62.149.156.56])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A730DE01CBF
+	for <yocto@yoctoproject.org>; Wed, 10 Jun 2020 10:49:07 -0700 (PDT)
+Received: from [192.168.24.172] ([93.38.119.136])
+	by smtpcmd07.ad.aruba.it with bizsmtp
+	id pVp5220012wfazh01Vp5Un; Wed, 10 Jun 2020 19:49:05 +0200
+To: yocto@yoctoproject.org
+From: "Mauro Ziliani" <mauro@faresoftware.it>
+Subject: Strange error
+Message-ID: <6831ffcc-263f-99cb-2859-e265fa04f770@faresoftware.it>
+Date: Wed, 10 Jun 2020 19:48:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
+MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1591811345; bh=dX7IgheVH4g4awtJvNNquiqZ7CA2AKr0mYyPYC51fuc=;
+	h=To:From:Subject:Date:MIME-Version:Content-Type;
+	b=aUCbx+zt4DEjsf6Dh8MWas8mRHFgXmvrK086L3KFRci+j7DkRL10OzUyTOsvlXJNL
+	 wH7GDzgoUFvm+nJEMj083+hXSQ47QwAPZKV7ZNre+OSTqH6qiuIIN2jOdKh7UK0fgz
+	 F+/TTggbgjtBZcDd3Tix3a7CU6kR/PMmPWlz7ZmlKoExNG2dTs3w63ewSeAp8+Bywz
+	 kkSLiy7BkLKCtdfkuvYUU9kx1PfpHocyDdItPQ8sY5Q8LRBB9NkYF9SknoUWHArKxS
+	 UA6xcXiDR7Dgx4hQ9gDSHQdEdWpWJKqehzEfAtUxuirBGbhcjF8W2wHu94kMX04oN2
+	 z0vOQTQWlEJzQ==
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: it
+Content-Transfer-Encoding: quoted-printable
 
----
- config.json | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi all.
 
-diff --git a/config.json b/config.json
-index 17acc09..9636ea1 100644
---- a/config.json
-+++ b/config.json
-@@ -16,7 +16,7 @@
-     "TRASH_DIR" : "${BASE_HOMEDIR}/git/trash",
- 
-     "QAMAIL_TO" : "yocto@lists.yoctoproject.org",
--    "QAMAIL_CC" : "otavio@ossystems.com.br, yi.zhao@windriver.com, apoorv.sangal@intel.com, ee.peng.yeoh@intel.com, aaron.chun.yew.chan@intel.com, richard.purdie@linuxfoundation.org, akuster808@gmail.com, sjolley.yp.pm@gmail.com, sangeeta.jain@intel.com",
-+    "QAMAIL_CC" : "otavio@ossystems.com.br, yi.zhao@windriver.com, apoorv.sangal@intel.com, ee.peng.yeoh@intel.com, aaron.chun.yew.chan@intel.com, richard.purdie@linuxfoundation.org, akuster808@gmail.com, sjolley.yp.pm@gmail.com, sangeeta.jain@intel.com, steve@sakoman.com",
-     "WEBPUBLISH_DIR" : "${BASE_SHAREDDIR}/",
-     "WEBPUBLISH_URL" : "https://autobuilder.yocto.io/",
- 
--- 
-2.17.1
+This error
+
+NOTE: Executing RunQueue Tasks
+ERROR: When reparsing <recipe_of_image>.do_rootfs, the basehash value=20
+changed from 7419bfc242fa2eee9ce87b18ebf40d25 to=20
+5b2654046d2ac406f3484b3286de0acd. The metadata is not deterministic and=20
+this needs to be fixed.
+
+
+Why?
+
+
+Best regards,
+
+ =A0 MZ
 
