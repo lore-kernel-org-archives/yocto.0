@@ -1,91 +1,189 @@
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
- by mx.groups.io with SMTP id smtpd.web10.24908.1591982069016006165
+Received: from mail-io1-f67.google.com (mail-io1-f67.google.com [209.85.166.67])
+ by mx.groups.io with SMTP id smtpd.web10.52.1591983507434336929
  for <yocto@lists.yoctoproject.org>;
- Fri, 12 Jun 2020 10:14:29 -0700
+ Fri, 12 Jun 2020 10:38:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Rpd78LY2;
- spf=pass (domain: gmail.com, ip: 209.85.215.175, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f175.google.com with SMTP id w20so4407053pga.6
-        for <yocto@lists.yoctoproject.org>; Fri, 12 Jun 2020 10:14:28 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NLg9UOfr;
+ spf=pass (domain: gmail.com, ip: 209.85.166.67, mailfrom: jpewhacker@gmail.com)
+Received: by mail-io1-f67.google.com with SMTP id p20so11052439iop.11
+        for <yocto@lists.yoctoproject.org>; Fri, 12 Jun 2020 10:38:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=mn750t0EfHxa8f+YzZqOd+cPC701SuTZKrqc8fAJZ98=;
-        b=Rpd78LY2NwiU3xzPENrkvlWV/pY11loG+81t5r2SJHkGO/cIOLtfaRluxIXiXZpRK+
-         JEUVgz0p/eXi9AQ8aA27O5BfFW9dqTLjy0gq9GOsDQ90vF9iOL1tTMUpDDUJcCzUxBJL
-         HjB9siioYMgi2+U3kuQeSkpRCRH12QArQOMP6SaCsjYhIlnZWTWAI9SqsAffjSyIGUzQ
-         BVMvU57JYGcCU5LTBUj5VmdXbEFKRYV2bCmSGouYxfVYTo16wB7CKK36twO6onEV9Xse
-         zexUCyVV3ksxYYVB6uANUoq3WV8ax3hZXuQ+BuKsqw3SSYYnlxes7aIuLVYlA4dtbqfw
-         Iu9w==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bzU+wQSB2I4VTKW/T77BUZL4uCPKecaVHaXx0nYxLtI=;
+        b=NLg9UOfrBJJ75/3HRbEb6f/nU76l2CqOBaibtEg9kExHWD8IGB9OP7bT5IC4CAPf8V
+         97WtrxyUqP7DcdiTaduoO/uRdCEIMcp7ZxbPhs3d5Ck0WIzk7ynanepk96/D+7kMFbg9
+         6/WfF992dyv1W+g7RHHeOJ32hkPHWZ3VfXgc2RumdiTpo/rLX3XITZjwgM4Z/mEI9drk
+         5p7kf5mZ7h26KnbetFqwQoaKfCmIex5VqdU94+Ccz7Wb9F7f/OqHDKHdWHIBduvWd2tq
+         grTNewXGKuD3nfCDD7AuAn+o16nEA83mflvpF+xYoK6NQO4BRddSb5hCmksmv3t0l2w+
+         QnqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references;
-        bh=mn750t0EfHxa8f+YzZqOd+cPC701SuTZKrqc8fAJZ98=;
-        b=MOc8TQAPBwlejpmybA10AWof7zya9od9Uqj+CVwdWQ/OTaL/IedAGJp0YY4ZI8lmuI
-         QM3LOFuCOcYOTMiLAgrzfAxMuQQ6oB+3H+91RPigI9RXby0h3GBY0pWeVGdl1BlgxmWj
-         z1EO3RiiDL/FF8YPM0h0XxCBs2GJWtKzcm3in/zGpBwE4o/LO9FqcnmXJ8Bzb8GnLprz
-         fDUDI4UDCZYwGnxvsiSyd/KF4oYmOcIBoJE+JuzOk/7SeVDnNCjp8ZpVMKV5XdGqHBUd
-         EqScj+aOnG2/+NHYJcpQpRWPAwVWiIxp4IQ+xhYfcoBaFlX/zDj1Os/W+uShtfH9Mewi
-         uNpQ==
-X-Gm-Message-State: AOAM530POGaIBGjLvmXKIy+wRE0+gQAkDOr+TEg5JSyXkfzd3ovRVXwJ
-	pzSoeGl2bnw+HW/u+MRkMuSLLZ9F
-X-Google-Smtp-Source: ABdhPJxQWCPIfIgdfLrGOSbeH2oMKhdfIcNOJgxFFnEji1UgzrCk0YB/rJVmfePDhfLimZAA+uMHhA==
-X-Received: by 2002:a62:ac0a:: with SMTP id v10mr13031865pfe.27.1591982068105;
-        Fri, 12 Jun 2020 10:14:28 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net ([2601:202:4180:a5c0:5030:aa9f:23eb:a3d9])
-        by smtp.gmail.com with ESMTPSA id q6sm6687494pff.163.2020.06.12.10.14.27
-        for <yocto@lists.yoctoproject.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bzU+wQSB2I4VTKW/T77BUZL4uCPKecaVHaXx0nYxLtI=;
+        b=TRj23SqU5VZaWiHmTuB+MuE4ucc+7zbEJzgV4fSk9nkJFzQBTOXFRtGpYuWr7BrsGa
+         JdSPQX3ZploUpN9DkTIYQ0N3fEmJTRElXR0rpQl/8pTBNLPtyRhrNeoobxSK386AwQt+
+         mKl1cv6o27bxzHmkMU43KooT+kcc/ROagNMoc/Phk24fhLLy9rjMSDQtQb4KYzEdLAHr
+         krqpgSenCoWNZTiPHnj9047Y0np6cBINulixdlxfkq2SnprAATDdORRbMSF9F9UIH2Vm
+         pk6ncfQtEXoyXQuRzB6AZhMXqrviRJJW7DORk1T6VmR2gi6yUIpe3xCdwkDDvPRW/SJX
+         lzXw==
+X-Gm-Message-State: AOAM530gSx0U6/Np944UO6BdSfptpXNde4HFS4A3eoMhnqcL75xVbCYF
+	6bYxt5W+1Hrbit/8sTdjzxeatHXe
+X-Google-Smtp-Source: ABdhPJzTVZ8OmflraMS7EMDQBJhI9lACr51tGdpLrfrcm3FjPUZgZHCLm/QQHDCQazafcn20zfdgUA==
+X-Received: by 2002:a02:cc71:: with SMTP id j17mr8850345jaq.94.1591983506431;
+        Fri, 12 Jun 2020 10:38:26 -0700 (PDT)
+Return-Path: <jpewhacker@gmail.com>
+Received: from localhost.localdomain ([2605:a601:ac3d:c100:35f5:8651:479a:b9eb])
+        by smtp.gmail.com with ESMTPSA id v11sm3420429ile.61.2020.06.12.10.38.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jun 2020 10:14:27 -0700 (PDT)
-From: "akuster" <akuster808@gmail.com>
+        Fri, 12 Jun 2020 10:38:25 -0700 (PDT)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 6/6] openscap: update to 1.3.3
-Date: Fri, 12 Jun 2020 10:14:22 -0700
-Message-Id: <20200612171422.3380-6-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200612171422.3380-1-akuster808@gmail.com>
-References: <20200612171422.3380-1-akuster808@gmail.com>
+Cc: twoerner@gmail.com,
+	Joshua Watt <JPEWhacker@gmail.com>
+Subject: [meta-rockchip][PATCH] Use TF-A recipe from meta-arm
+Date: Fri, 12 Jun 2020 12:38:23 -0500
+Message-Id: <20200612173823.7749-1-JPEWhacker@gmail.com>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+Converts the build to pull the canonical TF-A recipe from meta-arm
+instead of duplicating it in this layer.
+
+Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
 ---
- .../openscap/{openscap_1.3.1.bb => openscap_1.3.3.bb}         | 2 +-
- .../recipes-openscap/openscap/openscap_git.bb                 | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
- rename meta-security-compliance/recipes-openscap/openscap/{openscap_1.3.1.bb => openscap_1.3.3.bb} (76%)
+ README                                        |  4 ++
+ conf/layer.conf                               |  2 +-
+ conf/machine/include/rk3399.inc               |  5 +--
+ .../arm-trusted-firmware_2.3.bb               | 43 -------------------
+ .../trusted-firmware-a_%.bbappend             |  6 +++
+ recipes-bsp/u-boot/u-boot%.bbappend           |  6 +--
+ 6 files changed, 16 insertions(+), 50 deletions(-)
+ delete mode 100644 recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.3.bb
+ create mode 100644 recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
 
-diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb
-similarity index 76%
-rename from meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb
-rename to meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb
-index ad29efd..51fa9ee 100644
---- a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb
-@@ -2,7 +2,7 @@ SUMARRY = "NIST Certified SCAP 1.2 toolkit"
+diff --git a/README b/README
+index a97b89e..e1cfe3e 100644
+--- a/README
++++ b/README
+@@ -11,6 +11,10 @@ Dependencies:
+ 	layers: meta
+ 	branch: matched branches (e.g. master, sumo, ...)
  
- require openscap.inc
++	URI: git://git.yoctoproject.org/meta-arm
++	layers: meta-arm
++	branch: matched branches (e.g. master, sumo, ...)
++
+ Status of supported boards:
+ --------------------------
+ 	builds and boots wic image:
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 72d5366..4168391 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -15,4 +15,4 @@ BBFILE_PRIORITY_rockchip = "1"
+ # cause compatibility issues with other layers
+ LAYERVERSION_rockchip = "1"
+ LAYERSERIES_COMPAT_rockchip = "dunfell"
+-LAYERDEPENDS_rockchip = "core"
++LAYERDEPENDS_rockchip = "core meta-arm"
+diff --git a/conf/machine/include/rk3399.inc b/conf/machine/include/rk3399.inc
+index 1fd8fd6..4019988 100644
+--- a/conf/machine/include/rk3399.inc
++++ b/conf/machine/include/rk3399.inc
+@@ -13,9 +13,8 @@ KBUILD_DEFCONFIG ?= "defconfig"
+ KERNEL_CLASSES = "kernel-fitimage"
+ KERNEL_IMAGETYPE = "fitImage"
  
--SRCREV = "3a4c635691380fa990a226acc8558db35d7ebabc"
-+SRCREV = "0cb55c55af6be9934d6fd0caf4563b206f289732"
- SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3 \
- "
+-ATF_PLATFORM ?= "rk3399"
+-ATF_TARGET ?= "bl31"
+-ATF_SUFFIX ?= "elf"
++TFA_PLATFORM = "rk3399"
++TFA_BUILD_TARGET = "bl31"
  
-diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-index 963d3de..73a4729 100644
---- a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-@@ -5,8 +5,8 @@ SUMARRY = "NIST Certified SCAP 1.2 toolkit with OE changes"
+ UBOOT_SUFFIX ?= "itb"
+ UBOOT_ENTRYPOINT ?= "0x06000000"
+diff --git a/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.3.bb b/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.3.bb
+deleted file mode 100644
+index 8d36d66..0000000
+--- a/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.3.bb
++++ /dev/null
+@@ -1,43 +0,0 @@
+-# Copyright (C) 2019 Garmin Ltd. or its subsidaries
+-# Released under the MIT license (see COPYING.MIT for the terms)
+-
+-SUMMARY = "Arm Trusted Firmware"
+-HOMEPAGE = "https://developer.trustedfirmware.org/"
+-LICENSE = "BSD-3-Clause"
+-LIC_FILES_CHKSUM = "file://docs/license.rst;md5=189505435dbcdcc8caa63c46fe93fa89"
+-
+-# Rockchip RK3399 compiles some M0 firmware which requires an arm-none-eabi GCC
+-# toolchain
+-DEPENDS_rk3399 = "virtual/arm-none-eabi-gcc"
+-
+-PROVIDES = "virtual/atf"
+-
+-BRANCH = "master"
+-SRC_URI = "git://git.trustedfirmware.org/TF-A/trusted-firmware-a.git;protocol=http;branch=${BRANCH} \
+-           "
+-SRCREV = "8ff55a9e14a23d7c7f89f52465bcc6307850aa33"
+-
+-S = "${WORKDIR}/git"
+-B = "${WORKDIR}/build"
+-
+-inherit deploy
+-
+-ATF_SUFFIX ??= "bin"
+-
+-do_compile() {
+-    unset LDFLAGS
+-    unset CFLAGS
+-    unset CPPFLAGS
+-
+-    oe_runmake -C ${S} BUILD_BASE=${B} DEBUG=0 CROSS_COMPILE=${TARGET_PREFIX} \
+-        PLAT=${ATF_PLATFORM} ${ATF_TARGET}
+-}
+-
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-
+-do_deploy() {
+-    install -m 644 ${B}/${ATF_PLATFORM}/release/${ATF_TARGET}/${ATF_TARGET}.${ATF_SUFFIX} \
+-        ${DEPLOYDIR}/${ATF_TARGET}.${ATF_SUFFIX}
+-}
+-addtask deploy after do_compile
+-
+diff --git a/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
+new file mode 100644
+index 0000000..ecde25d
+--- /dev/null
++++ b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
+@@ -0,0 +1,6 @@
++# Rockchip RK3399 compiles some M0 firmware which requires an arm-none-eabi GCC
++# toolchain
++DEPENDS_append_rk3399 = " virtual/arm-none-eabi-gcc"
++
++COMPATIBLE_MACHINE_append_rk3399 = "|rk3399"
++
+diff --git a/recipes-bsp/u-boot/u-boot%.bbappend b/recipes-bsp/u-boot/u-boot%.bbappend
+index 401d649..042507d 100644
+--- a/recipes-bsp/u-boot/u-boot%.bbappend
++++ b/recipes-bsp/u-boot/u-boot%.bbappend
+@@ -7,8 +7,8 @@ do_compile_append_rock2-square () {
  
- include openscap.inc
+ ATF_DEPENDS ??= ""
  
--SRCREV = "4bbdb46ff651f809d5b38ca08d769790c4bfff90"
-+SRCREV = "a85943eee400fdbe59234d1c4a02d8cf710c4625"
- SRC_URI = "git://github.com/akuster/openscap.git;branch=oe-1.3 \
- "
+-EXTRA_OEMAKE_append_rk3399 = " BL31=${DEPLOY_DIR_IMAGE}/bl31.elf"
+-ATF_DEPENDS_rk3399 = "virtual/atf:do_deploy"
++EXTRA_OEMAKE_append_rk3399 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3399.elf"
++ATF_DEPENDS_rk3399 = " virtual/trusted-firmware-a:do_deploy"
  
--PV = "1.3.1+git${SRCPV}"
-+PV = "1.3.3+git${SRCPV}"
+-do_compile[depends] += "${ATF_DEPENDS}"
++do_compile[depends] .= "${ATF_DEPENDS}"
+ 
 -- 
-2.17.1
+2.26.2
 
