@@ -1,83 +1,89 @@
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
- by mx.groups.io with SMTP id smtpd.web12.25019.1591982066674020007
+Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com [209.85.210.194])
+ by mx.groups.io with SMTP id smtpd.web12.25020.1591982067065006192
  for <yocto@lists.yoctoproject.org>;
- Fri, 12 Jun 2020 10:14:26 -0700
+ Fri, 12 Jun 2020 10:14:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=WvyREb1O;
- spf=pass (domain: gmail.com, ip: 209.85.215.180, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f180.google.com with SMTP id e18so4401291pgn.7
-        for <yocto@lists.yoctoproject.org>; Fri, 12 Jun 2020 10:14:26 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=DBaz05WP;
+ spf=pass (domain: gmail.com, ip: 209.85.210.194, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f194.google.com with SMTP id a127so4586286pfa.12
+        for <yocto@lists.yoctoproject.org>; Fri, 12 Jun 2020 10:14:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=V2fnrDqTKFOLvF4gqv+pHue839E4m/38a59VcpPMTdg=;
-        b=WvyREb1O3oD2oBxr0cSpZ1pf45zaHFqLZzogppJbvZzjKo3TX1LlReNbVfejqwFn5r
-         aMu1BTaOBcSfAB1ArwAjienPzpU3Pofy/eeAp+TWGH17Srjx1G1ZcOGzG8mRXf4xNX/1
-         P3WoflUHOvVnhACa7YxS+dyVj6uKh/rEZoTTaspgeVceISSdZy4ARKxIlrJMCPw6WLK5
-         DuOLmYX+8bNFftAn83A3U1t0HxmJHt3zz+qCquiXvYGBPkoisoXP/jaUB54sMFVfXJN0
-         HxoM5g4ljIXcVZZ1ywQ0WhL+YdKRIRn7UYuS4EuJH9MZBtBFI0CmggiETFO1tKQHLjUH
-         tumw==
+        bh=mSNLGA9mn2JntzRX6CcvNo3IXhPxQA97xPq0M+qMu8E=;
+        b=DBaz05WPGC+tIgedb25j6DVxHGCg9EeCNOll4Ddr8gVqZ3qKE0eJGukG2X/z05FkTX
+         K6HsqPvbHF6iRY+5x7BBBJOH0LZAUH6n2bdt32YpZrOpoKWbuRlSskXpKc/8jn5GXUQ0
+         PvHWO33uMP/xSJVOo4OrgzzK38QlW8qgL8BklV/qoFY4dnazKOkESIviLCsH0TxAGguX
+         zye3296tnXz7F8uMq3tItK5zsSQEqTuWZJ9kfxI6MI8Q8J2qeeRjMObT/qoYqTsyBkEF
+         6+0j+wQF+KM1knkVSe2hMYgzP58yzJmVqmC7BQNfcYEN220/831Wia4g9vk6lpcBBM3L
+         uBnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=V2fnrDqTKFOLvF4gqv+pHue839E4m/38a59VcpPMTdg=;
-        b=XKDXHiPsWCuUSneQzXMsVY+MQK+G4Zpsr8sgrdurWrUjE0iIHiq0ZjhkvJ8LvEwYJy
-         rRlAQIE3kmjd0LHIEQIFy10RQubfm2a+YQKL9EsH+THHrkMyX8mJ7LF34tLjQAQ5OPd7
-         eHG9jB901Zy8f4/g7RGBYI7TCVJSsJdwou1qKPuuwsoUGpUWCK9r1fF9krt4qmJtRtJy
-         XBonH+J1ylfJRJbMf/EfYjgn6uA+Zd8Z1bZ7DAbNRXB0macg1FlcvNzLusuKWhI7dLj2
-         lG74x9vZTW2XMwNJQoOsKxhOulBTT67KhlWrZ1ulYKW6kYXjv0sOrDswBjsaM0pp+Wgy
-         /f8w==
-X-Gm-Message-State: AOAM530mObS91C9U/2yFD7K6UCSKGLz3+0iW8/ME9Cc93cg/TQL4tu2E
-	i/+fhimHsyrHzdrktKs+LZ+28Hjk
-X-Google-Smtp-Source: ABdhPJyNHl1ekppBfVpFvYLwj2Fw9hms1DbqUR5jK6xQPznHJT+vw1vgboUFshYbsiT3Xf5xeHNLWw==
-X-Received: by 2002:a62:7547:: with SMTP id q68mr13159230pfc.202.1591982065585;
-        Fri, 12 Jun 2020 10:14:25 -0700 (PDT)
+        bh=mSNLGA9mn2JntzRX6CcvNo3IXhPxQA97xPq0M+qMu8E=;
+        b=MiN/cqJ1P81HVT0PdHyemjf6jydug2EJXy8y7ti5I8H9qJvbofxSr/FcB5PB2JfQKV
+         qk2F+MHviqk15ZHVnOpkr+OotYzwcxEjVuokT+BLPA6F3/BoFPpDOjt5X4f43Ha90C2W
+         kxYUnzsDC7geBApUqYzr6eRlImj9KKZmX+UvUMWJXYDRgVamaBlC/SGf/ilM1lwHw9ge
+         hq2qu9yCoXPSCsqqpiKUq16mIa0hPzFrfRC1Zq1EMG3NY9eja/USWqRBIpbOAMnAIm1s
+         u6kvNuFEbmAfaaLFUs/dvopa/fqWgeUSaJS8+oYgjSk0ZPrQuU/fquMWYhxeFj2JE0G/
+         t+hQ==
+X-Gm-Message-State: AOAM531cF2ggxIVGhtblLVkeJURWOc0Ip9TLNC8hRKRu7i+V6vO8myPU
+	xyZ9x5t5BE3fVVV4X801pBrvO/GF
+X-Google-Smtp-Source: ABdhPJzrwD0IZkd4ep1adO2R7g7hHuqBF07vhee3LhUpUxtuzgokmz6/l7mA5Fr1JJxdB+/YbxoSVw==
+X-Received: by 2002:aa7:96d7:: with SMTP id h23mr13242999pfq.320.1591982066380;
+        Fri, 12 Jun 2020 10:14:26 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net ([2601:202:4180:a5c0:5030:aa9f:23eb:a3d9])
-        by smtp.gmail.com with ESMTPSA id q6sm6687494pff.163.2020.06.12.10.14.24
+        by smtp.gmail.com with ESMTPSA id q6sm6687494pff.163.2020.06.12.10.14.25
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jun 2020 10:14:24 -0700 (PDT)
+        Fri, 12 Jun 2020 10:14:25 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 3/6] tpm2-tss-engine: add branch to SRC_URI & update to tip
-Date: Fri, 12 Jun 2020 10:14:19 -0700
-Message-Id: <20200612171422.3380-3-akuster808@gmail.com>
+Subject: [meta-security][PATCH 4/6] tpm2-pkcs11: update 1.2.0
+Date: Fri, 12 Jun 2020 10:14:20 -0700
+Message-Id: <20200612171422.3380-4-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200612171422.3380-1-akuster808@gmail.com>
 References: <20200612171422.3380-1-akuster808@gmail.com>
 
-LICENSE changed to BSD 3
+add yaml package
+Updated LICNESE
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ .../{tpm2-pkcs11_0.9.9.bb => tpm2-pkcs11_1.2.0.bb}    | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+ rename meta-tpm/recipes-tpm2/tpm2-pkcs11/{tpm2-pkcs11_0.9.9.bb => tpm2-pkcs11_1.2.0.bb} (67%)
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb
-index 3641b1b..ebd6d53 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb
-@@ -1,15 +1,15 @@
- SUMMARY = "The tpm2-tss-engine project implements a cryptographic engine for OpenSSL." 
- DESCRIPTION = "The tpm2-tss-engine project implements a cryptographic engine for OpenSSL for Trusted Platform Module (TPM 2.0) using the tpm2-tss software stack that follows the Trusted Computing Groups (TCG) TPM Software Stack (TSS 2.0). It uses the Enhanced System API (ESAPI) interface of the TSS 2.0 for downwards communication. It supports RSA decryption and signatures as well as ECDSA signatures."
- 
--LICENSE = "BSD-2-Clause"
--LIC_FILES_CHKSUM = "file://LICENSE;md5=7b3ab643b9ce041de515d1ed092a36d4"
-+LICENSE = "BSD-3-Clause"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=3fb0047fd29391478a71e8e6101c76eb"
- 
+diff --git a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.2.0.bb
+similarity index 67%
+rename from meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb
+rename to meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.2.0.bb
+index 351e03e..ce2dac0 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.2.0.bb
+@@ -2,15 +2,14 @@ SUMMARY = "A PKCS#11 interface for TPM2 hardware"
+ DESCRIPTION = "PKCS #11 is a Public-Key Cryptography Standard that defines a standard method to access cryptographic services from tokens/ devices such as hardware security modules (HSM), smart cards, etc. In this project we intend to use a TPM2 device as the cryptographic token."
  SECTION = "security/tpm"
+ LICENSE = "BSD-2-Clause"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=93645981214b60a02688745c14f93c95"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=0fc19f620a102768d6dbd1e7166e78ab"
  
- DEPENDS = "autoconf-archive-native bash-completion libtss2 libgcrypt openssl"
+-DEPENDS = "autoconf-archive pkgconfig dstat sqlite3 openssl libtss2-dev tpm2-tools"
++DEPENDS = "autoconf-archive pkgconfig dstat sqlite3 openssl libtss2-dev tpm2-tools libyaml"
  
--SRCREV = "fdc8f65dfc8bad8b5a3aed181fae338267308f70"
--SRC_URI = "git://github.com/tpm2-software/tpm2-tss-engine.git"
-+SRCREV = "24f1383cc6befde44d6f01a51ea653304d844ffd"
-+SRC_URI = "git://github.com/tpm2-software/tpm2-tss-engine.git;branch=v1.0.x"
+-SRC_URI = "git://github.com/tpm2-software/tpm2-pkcs11.git \
+-           file://bootstrap_fixup.patch \
+-          "
++SRC_URI = "git://github.com/tpm2-software/tpm2-pkcs11.git;branch=1.X \
++           file://bootstrap_fixup.patch "
  
- inherit autotools-brokensep pkgconfig systemd
+-SRCREV = "6de3f6f9c6e0a4983f3fb90e35feb34906f8aea7"
++SRCREV = "8d8f137f65f1d61d66cc191947b59c378f23e97d"
+ 
+ S = "${WORKDIR}/git"
  
 -- 
 2.17.1
