@@ -1,188 +1,175 @@
-Received: from mail-io1-f67.google.com (mail-io1-f67.google.com [209.85.166.67])
- by mx.groups.io with SMTP id smtpd.web10.52.1591983507434336929
+Received: from mail-io1-f65.google.com (mail-io1-f65.google.com [209.85.166.65])
+ by mx.groups.io with SMTP id smtpd.web11.1396.1591987094369937234
  for <yocto@lists.yoctoproject.org>;
- Fri, 12 Jun 2020 10:38:27 -0700
+ Fri, 12 Jun 2020 11:38:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=NLg9UOfr;
- spf=pass (domain: gmail.com, ip: 209.85.166.67, mailfrom: jpewhacker@gmail.com)
-Received: by mail-io1-f67.google.com with SMTP id p20so11052439iop.11
-        for <yocto@lists.yoctoproject.org>; Fri, 12 Jun 2020 10:38:27 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=qqzFTuua;
+ spf=pass (domain: gmail.com, ip: 209.85.166.65, mailfrom: jpewhacker@gmail.com)
+Received: by mail-io1-f65.google.com with SMTP id w18so11282538iom.5
+        for <yocto@lists.yoctoproject.org>; Fri, 12 Jun 2020 11:38:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=bzU+wQSB2I4VTKW/T77BUZL4uCPKecaVHaXx0nYxLtI=;
-        b=NLg9UOfrBJJ75/3HRbEb6f/nU76l2CqOBaibtEg9kExHWD8IGB9OP7bT5IC4CAPf8V
-         97WtrxyUqP7DcdiTaduoO/uRdCEIMcp7ZxbPhs3d5Ck0WIzk7ynanepk96/D+7kMFbg9
-         6/WfF992dyv1W+g7RHHeOJ32hkPHWZ3VfXgc2RumdiTpo/rLX3XITZjwgM4Z/mEI9drk
-         5p7kf5mZ7h26KnbetFqwQoaKfCmIex5VqdU94+Ccz7Wb9F7f/OqHDKHdWHIBduvWd2tq
-         grTNewXGKuD3nfCDD7AuAn+o16nEA83mflvpF+xYoK6NQO4BRddSb5hCmksmv3t0l2w+
-         QnqQ==
+        bh=w04zrTpOXrgTWoH0YSDXYxxoWMNfnpgySqo2CRGITp0=;
+        b=qqzFTuuaij6NQkQJBXvSuvz8c+7xqrsL6ubfDrbUhmn8GLRx4Y2XaiwaAmR15QY5cl
+         e2Luoq7l0fxBL9FuLErX0iS9ubmz1fY8hkI0TvlbowzIchXIGpJoa6/6w64eNZ3fTk3y
+         /mI/YOaU5mEVMqAHlv7xvGIDjAeA/i8VMXYreqy6jmpYTL4/rXf1cLwf/YPP5LzM6Vo2
+         wiYYYC6yZA8G5lHjNRgvMJP6mCGhp8D8tFb7ze0sFYuYbR8CcMzMoQW8qx//fUayTge7
+         DF1HGWjMQ6t1CeWwBw4veDU6To/QnIFfQ0jXVdPDvBFhDKgImL+oX7u/AzqtRJzzD250
+         IqTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=bzU+wQSB2I4VTKW/T77BUZL4uCPKecaVHaXx0nYxLtI=;
-        b=TRj23SqU5VZaWiHmTuB+MuE4ucc+7zbEJzgV4fSk9nkJFzQBTOXFRtGpYuWr7BrsGa
-         JdSPQX3ZploUpN9DkTIYQ0N3fEmJTRElXR0rpQl/8pTBNLPtyRhrNeoobxSK386AwQt+
-         mKl1cv6o27bxzHmkMU43KooT+kcc/ROagNMoc/Phk24fhLLy9rjMSDQtQb4KYzEdLAHr
-         krqpgSenCoWNZTiPHnj9047Y0np6cBINulixdlxfkq2SnprAATDdORRbMSF9F9UIH2Vm
-         pk6ncfQtEXoyXQuRzB6AZhMXqrviRJJW7DORk1T6VmR2gi6yUIpe3xCdwkDDvPRW/SJX
-         lzXw==
-X-Gm-Message-State: AOAM530gSx0U6/Np944UO6BdSfptpXNde4HFS4A3eoMhnqcL75xVbCYF
-	6bYxt5W+1Hrbit/8sTdjzxeatHXe
-X-Google-Smtp-Source: ABdhPJzTVZ8OmflraMS7EMDQBJhI9lACr51tGdpLrfrcm3FjPUZgZHCLm/QQHDCQazafcn20zfdgUA==
-X-Received: by 2002:a02:cc71:: with SMTP id j17mr8850345jaq.94.1591983506431;
-        Fri, 12 Jun 2020 10:38:26 -0700 (PDT)
+        bh=w04zrTpOXrgTWoH0YSDXYxxoWMNfnpgySqo2CRGITp0=;
+        b=mwU2Q5h5VaU0cB5fo6ON/tEIx9D02/7u/inyvReiXIpI1BVhxl8tMbg2b0a29EDWYa
+         l5Sjo5Jgbzv04l+/vCoM8L/mbEvhgXPAUtDw37Zej9MKP8GI+n05a7F9c+cGRh11aGHd
+         ctRhTuzRjTW7cMb1YAikPL9/9XRTBt3kdmvASDzEoPA9Y+/gg26ibqs11P/l89UMAUHq
+         rgPNcG/ub17e7/hOheyHI1efyxasXW9/N7vX/icYaEDT+d0zrNZBTdANROYmPZBD5xFt
+         w7fJUTNzQD2okK/PhyrUdP4UZA5dArUtsQg7j4jCZH+AJvVOXrhkYl9c/IZczvYF1/L0
+         LvWQ==
+X-Gm-Message-State: AOAM533bv8iKn7GfmVdVMWww/OBOC1jhk2mg88CtcQYtK0DbPYzEUnbt
+	+Ty3FyZoQWi3xB7xdo3xoUITPhoy
+X-Google-Smtp-Source: ABdhPJwnaLDElGcBq4FDyy69Ao6oer699BX0bZdg9bB4euKjFo1N6bPSaK8b1e1JubPEgo+12TclkA==
+X-Received: by 2002:a6b:e215:: with SMTP id z21mr15200338ioc.115.1591987093444;
+        Fri, 12 Jun 2020 11:38:13 -0700 (PDT)
 Return-Path: <jpewhacker@gmail.com>
 Received: from localhost.localdomain ([2605:a601:ac3d:c100:35f5:8651:479a:b9eb])
-        by smtp.gmail.com with ESMTPSA id v11sm3420429ile.61.2020.06.12.10.38.25
+        by smtp.gmail.com with ESMTPSA id p11sm3436716ioo.26.2020.06.12.11.38.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jun 2020 10:38:25 -0700 (PDT)
+        Fri, 12 Jun 2020 11:38:12 -0700 (PDT)
 From: "Joshua Watt" <JPEWhacker@gmail.com>
 X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: twoerner@gmail.com,
 	Joshua Watt <JPEWhacker@gmail.com>
-Subject: [meta-rockchip][PATCH] Use TF-A recipe from meta-arm
-Date: Fri, 12 Jun 2020 12:38:23 -0500
-Message-Id: <20200612173823.7749-1-JPEWhacker@gmail.com>
+Subject: [meta-rockchip][PATCH] wic: Use --offset and --fixed-size instead of --align and --size
+Date: Fri, 12 Jun 2020 13:38:09 -0500
+Message-Id: <20200612183809.865-1-JPEWhacker@gmail.com>
 X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Converts the build to pull the canonical TF-A recipe from meta-arm
-instead of duplicating it in this layer.
+The --align argument isn't intended to make a partition exist at a fixed
+location like the Rockchip boot ROM requires. Use the recently added
+--offset argument which will fail to build the image if the partition
+can't be placed at the correct location. Also used --fixed-size to make
+sure that Wic isn't inserting hidden padding that changes things around.
+
+Finally, the location of the rootfs isn't required to be at sector
+262144 since u-boot and the kernel reads the partition table to find it
+and actually hasn't been at this location anyway since Wic has been
+padding the /boot partition, so remove it's alignment requirements.
 
 Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
 ---
- README                                        |  4 ++
- conf/layer.conf                               |  2 +-
- conf/machine/include/rk3399.inc               |  5 +--
- .../arm-trusted-firmware_2.3.bb               | 43 -------------------
- .../trusted-firmware-a_%.bbappend             |  6 +++
- recipes-bsp/u-boot/u-boot%.bbappend           |  6 +--
- 6 files changed, 16 insertions(+), 50 deletions(-)
- delete mode 100644 recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.3.bb
- create mode 100644 recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
+ wic/firefly-rk3288.wks |  2 +-
+ wic/rk3288-boot.wks    | 14 +++++++-------
+ wic/rk3399-boot.wks    | 14 +++++++-------
+ wic/rock-pi-4.wks      |  2 +-
+ wic/tinker-board.wks   |  2 +-
+ wic/vyasa-rk3288.wks   |  2 +-
+ 6 files changed, 18 insertions(+), 18 deletions(-)
 
-diff --git a/README b/README
-index a97b89e..e1cfe3e 100644
---- a/README
-+++ b/README
-@@ -11,6 +11,10 @@ Dependencies:
- 	layers: meta
- 	branch: matched branches (e.g. master, sumo, ...)
+diff --git a/wic/firefly-rk3288.wks b/wic/firefly-rk3288.wks
+index b60aa0e..da0067f 100644
+--- a/wic/firefly-rk3288.wks
++++ b/wic/firefly-rk3288.wks
+@@ -2,6 +2,6 @@
+ # Released under the MIT license (see COPYING.MIT for the terms)
  
-+	URI: git://git.yoctoproject.org/meta-arm
-+	layers: meta-arm
-+	branch: matched branches (e.g. master, sumo, ...)
-+
- Status of supported boards:
- --------------------------
- 	builds and boots wic image:
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 72d5366..4168391 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -15,4 +15,4 @@ BBFILE_PRIORITY_rockchip = "1"
- # cause compatibility issues with other layers
- LAYERVERSION_rockchip = "1"
- LAYERSERIES_COMPAT_rockchip = "dunfell"
--LAYERDEPENDS_rockchip = "core"
-+LAYERDEPENDS_rockchip = "core meta-arm"
-diff --git a/conf/machine/include/rk3399.inc b/conf/machine/include/rk3399.inc
-index 1fd8fd6..4019988 100644
---- a/conf/machine/include/rk3399.inc
-+++ b/conf/machine/include/rk3399.inc
-@@ -13,9 +13,8 @@ KBUILD_DEFCONFIG ?= "defconfig"
- KERNEL_CLASSES = "kernel-fitimage"
- KERNEL_IMAGETYPE = "fitImage"
+ include rk3288-boot.wks
+-part / --align 131072 --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
++part / --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
  
--ATF_PLATFORM ?= "rk3399"
--ATF_TARGET ?= "bl31"
--ATF_SUFFIX ?= "elf"
-+TFA_PLATFORM = "rk3399"
-+TFA_BUILD_TARGET = "bl31"
+ bootloader --ptable gpt --append="console=tty1 console=ttyS2,115200n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
+diff --git a/wic/rk3288-boot.wks b/wic/rk3288-boot.wks
+index c0b7d95..e4d30cc 100644
+--- a/wic/rk3288-boot.wks
++++ b/wic/rk3288-boot.wks
+@@ -12,13 +12,13 @@
+ #   loader2     16384           8192
+ #   atf         24576           8192
+ #   boot        32768           229376
+-#   root        262144          -
++#   root        262144          -           (suggested)
+ #
  
- UBOOT_SUFFIX ?= "itb"
- UBOOT_ENTRYPOINT ?= "0x06000000"
-diff --git a/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.3.bb b/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.3.bb
-deleted file mode 100644
-index 8d36d66..0000000
---- a/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.3.bb
-+++ /dev/null
-@@ -1,43 +0,0 @@
--# Copyright (C) 2019 Garmin Ltd. or its subsidaries
--# Released under the MIT license (see COPYING.MIT for the terms)
--
--SUMMARY = "Arm Trusted Firmware"
--HOMEPAGE = "https://developer.trustedfirmware.org/"
--LICENSE = "BSD-3-Clause"
--LIC_FILES_CHKSUM = "file://docs/license.rst;md5=189505435dbcdcc8caa63c46fe93fa89"
--
--# Rockchip RK3399 compiles some M0 firmware which requires an arm-none-eabi GCC
--# toolchain
--DEPENDS_rk3399 = "virtual/arm-none-eabi-gcc"
--
--PROVIDES = "virtual/atf"
--
--BRANCH = "master"
--SRC_URI = "git://git.trustedfirmware.org/TF-A/trusted-firmware-a.git;protocol=http;branch=${BRANCH} \
--           "
--SRCREV = "8ff55a9e14a23d7c7f89f52465bcc6307850aa33"
--
--S = "${WORKDIR}/git"
--B = "${WORKDIR}/build"
--
--inherit deploy
--
--ATF_SUFFIX ??= "bin"
--
--do_compile() {
--    unset LDFLAGS
--    unset CFLAGS
--    unset CPPFLAGS
--
--    oe_runmake -C ${S} BUILD_BASE=${B} DEBUG=0 CROSS_COMPILE=${TARGET_PREFIX} \
--        PLAT=${ATF_PLATFORM} ${ATF_TARGET}
--}
--
--PACKAGE_ARCH = "${MACHINE_ARCH}"
--
--do_deploy() {
--    install -m 644 ${B}/${ATF_PLATFORM}/release/${ATF_TARGET}/${ATF_TARGET}.${ATF_SUFFIX} \
--        ${DEPLOYDIR}/${ATF_TARGET}.${ATF_SUFFIX}
--}
--addtask deploy after do_compile
--
-diff --git a/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
-new file mode 100644
-index 0000000..ecde25d
---- /dev/null
-+++ b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
-@@ -0,0 +1,6 @@
-+# Rockchip RK3399 compiles some M0 firmware which requires an arm-none-eabi GCC
-+# toolchain
-+DEPENDS_append_rk3399 = " virtual/arm-none-eabi-gcc"
-+
-+COMPATIBLE_MACHINE_append_rk3399 = "|rk3399"
-+
-diff --git a/recipes-bsp/u-boot/u-boot%.bbappend b/recipes-bsp/u-boot/u-boot%.bbappend
-index 401d649..042507d 100644
---- a/recipes-bsp/u-boot/u-boot%.bbappend
-+++ b/recipes-bsp/u-boot/u-boot%.bbappend
-@@ -7,8 +7,8 @@ do_compile_append_rock2-square () {
+-part loader1    --align 32     --size 4000K            --ondisk ${RK_BOOT_DEVICE} --source rawcopy --sourceparams="file=idbloader.img"
+-part reserved1  --align 4032   --size 64K              --ondisk ${RK_BOOT_DEVICE}
+-part reserved2  --align 4096   --size 4096K            --ondisk ${RK_BOOT_DEVICE}
+-part loader2    --align 8192   --size 4096K            --ondisk ${RK_BOOT_DEVICE} --source rawcopy --sourceparams="file=u-boot.bin"
+-part atf        --align 12288  --size 4096K            --ondisk ${RK_BOOT_DEVICE}
+-part /boot      --align 16384  --size=114688K --active --ondisk ${RK_BOOT_DEVICE} --source bootimg-partition --fstype=vfat --label boot --sourceparams="loader=u-boot"
++part loader1    --offset 32     --fixed-size 4000K            --ondisk ${RK_BOOT_DEVICE} --source rawcopy --sourceparams="file=idbloader.img"
++part reserved1  --offset 4032   --fixed-size 64K              --ondisk ${RK_BOOT_DEVICE}
++part reserved2  --offset 4096   --fixed-size 4096K            --ondisk ${RK_BOOT_DEVICE}
++part loader2    --offset 8192   --fixed-size 4096K            --ondisk ${RK_BOOT_DEVICE} --source rawcopy --sourceparams="file=u-boot.bin"
++part atf        --offset 12288  --fixed-size 4096K            --ondisk ${RK_BOOT_DEVICE}
++part /boot      --offset 16384  --size       114688K --active --ondisk ${RK_BOOT_DEVICE} --source bootimg-partition --fstype=vfat --label boot --sourceparams="loader=u-boot"
  
- ATF_DEPENDS ??= ""
+diff --git a/wic/rk3399-boot.wks b/wic/rk3399-boot.wks
+index 885d46b..8a65179 100644
+--- a/wic/rk3399-boot.wks
++++ b/wic/rk3399-boot.wks
+@@ -12,13 +12,13 @@
+ #   loader2     16384           8192
+ #   atf         24576           8192
+ #   boot        32768           229376
+-#   root        262144          -
++#   root        262144          -           (suggested)
+ #
  
--EXTRA_OEMAKE_append_rk3399 = " BL31=${DEPLOY_DIR_IMAGE}/bl31.elf"
--ATF_DEPENDS_rk3399 = "virtual/atf:do_deploy"
-+EXTRA_OEMAKE_append_rk3399 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3399.elf"
-+ATF_DEPENDS_rk3399 = " virtual/trusted-firmware-a:do_deploy"
+-part loader1    --align 32     --size 4000K            --ondisk ${RK_BOOT_DEVICE} --source rawcopy --sourceparams="file=idbloader.img"
+-part reserved1  --align 4032   --size 64K              --ondisk ${RK_BOOT_DEVICE}
+-part reserved2  --align 4096   --size 4096K            --ondisk ${RK_BOOT_DEVICE}
+-part loader2    --align 8192   --size 4096K            --ondisk ${RK_BOOT_DEVICE} --source rawcopy --sourceparams="file=u-boot.itb"
+-part atf        --align 12288  --size 4096K            --ondisk ${RK_BOOT_DEVICE}
+-part /boot      --align 16384  --size=114688K --active --ondisk ${RK_BOOT_DEVICE} --source bootimg-partition --fstype=vfat --label boot --sourceparams="loader=u-boot"
++part loader1    --offset 32     --fixed-size 4000K            --ondisk ${RK_BOOT_DEVICE} --source rawcopy --sourceparams="file=idbloader.img"
++part reserved1  --offset 4032   --fixed-size 64K              --ondisk ${RK_BOOT_DEVICE}
++part reserved2  --offset 4096   --fixed-size 4096K            --ondisk ${RK_BOOT_DEVICE}
++part loader2    --offset 8192   --fixed-size 4096K            --ondisk ${RK_BOOT_DEVICE} --source rawcopy --sourceparams="file=u-boot.itb"
++part atf        --offset 12288  --fixed-size 4096K            --ondisk ${RK_BOOT_DEVICE}
++part /boot      --offset 16384  --size       114688K --active --ondisk ${RK_BOOT_DEVICE} --source bootimg-partition --fstype=vfat --label boot --sourceparams="loader=u-boot"
  
--do_compile[depends] += "${ATF_DEPENDS}"
-+do_compile[depends] .= "${ATF_DEPENDS}"
+diff --git a/wic/rock-pi-4.wks b/wic/rock-pi-4.wks
+index 75ac358..c6174a9 100644
+--- a/wic/rock-pi-4.wks
++++ b/wic/rock-pi-4.wks
+@@ -2,6 +2,6 @@
+ # Released under the MIT license (see COPYING.MIT for the terms)
+ 
+ include rk3399-boot.wks
+-part / --align 131072 --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
++part / --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
+ 
+ bootloader --ptable gpt --append="console=tty1 console=ttyS2,1500000n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
+diff --git a/wic/tinker-board.wks b/wic/tinker-board.wks
+index 8f08138..5a63ce0 100644
+--- a/wic/tinker-board.wks
++++ b/wic/tinker-board.wks
+@@ -3,6 +3,6 @@
+ 
+ include rk3288-boot.wks
+ 
+-part / --align 131072 --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
++part / --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
+ 
+ bootloader --ptable gpt --append="console=tty1 console=ttyS2,115200n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
+diff --git a/wic/vyasa-rk3288.wks b/wic/vyasa-rk3288.wks
+index b577e5a..5db65df 100644
+--- a/wic/vyasa-rk3288.wks
++++ b/wic/vyasa-rk3288.wks
+@@ -2,7 +2,7 @@
+ # Released under the MIT license (see COPYING.MIT for the terms)
+ 
+ include rk3288-boot.wks
+-part / --align 131072 --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
++part / --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
+ 
+ bootloader --ptable gpt --append="console=tty1 console=ttyS2,115200n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
  
 -- 
 2.26.2
