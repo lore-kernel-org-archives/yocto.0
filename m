@@ -1,131 +1,102 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.24495.1591980969858547109
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+ by mx.groups.io with SMTP id smtpd.web10.24905.1591982064387249957
  for <yocto@lists.yoctoproject.org>;
- Fri, 12 Jun 2020 09:56:09 -0700
+ Fri, 12 Jun 2020 10:14:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=Cvl+FO9w;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 35526E01CDD; Fri, 12 Jun 2020 09:56:09 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.210.172 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEF63E01CDA
-	for <yocto@yoctoproject.org>; Fri, 12 Jun 2020 09:56:06 -0700 (PDT)
-Received: by mail-pf1-f172.google.com with SMTP id a127so4561225pfa.12
-        for <yocto@yoctoproject.org>; Fri, 12 Jun 2020 09:56:06 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=mMjr6mU0;
+ spf=pass (domain: gmail.com, ip: 209.85.216.42, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f42.google.com with SMTP id s88so4110449pjb.5
+        for <yocto@lists.yoctoproject.org>; Fri, 12 Jun 2020 10:14:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=to:from:subject:autocrypt:message-id:date:user-agent:mime-version
-         :content-transfer-encoding:content-language;
-        bh=wh/9VBUzWZVu7uKn6VJ641GVnme03WjYWpx50EOc2Uk=;
-        b=Cvl+FO9wN/wePKq9TDKZK8Mklbyg46zdmwPbH1Pv5kmHqlJKTC9AkFG2BmC/dInvfi
-         GRokV7i42gcGrs/T6NbdQLm7iGcIfGEoQJZeGCCU0WO7Zy0e89iLEYddRN4CPQ2+fK8j
-         TVPMVMUehzrbUPBlkvQn9XsQoe6FgYKalot2psbjhN4SaXDh7b/qbe1h0BWeAQ+thoLw
-         k+qA+emlfzoT1c4dK68j80wewsfrGhDXk38xiKUI+hk/iYyfX654TcqwWtV9YuwVUjWE
-         h3xONQQ/XCVCciJzhFgFGMh4mE3JQJ6GBxc92jxZThTevSZc2aA4NiTKdx2flsDiJ16c
-         AT8Q==
+        h=from:to:subject:date:message-id;
+        bh=DpIgE+lwP9aIrG6ZIu2SFXKJFqz5Lwn5KbxtvKoQSS8=;
+        b=mMjr6mU0txG6WgYS/Z66lNLx7Y/xPRE8Lzpe5i1cjmnhHwS/9EpUm2gIjm1vqkwelu
+         Ii0ymEIAuCuvNPG2HR2DfaxulAv5DIHY/HRukNmxHU9tjki+xi7PCo2GglHc7AELQwM4
+         ww7t6gfk7/kbsu+pOAV6JlwAsBySytBqRBcH224Wqf4VYsBhTetdzgFxMvVHO8lA3C45
+         DAPY05Tn57j/9w620PDJZ/UOQLq0y2r8BrHoqLrraB3u8HlnGY3gXQFZYECgV7LJAQUm
+         NL2dSw15wouJ6hyYdq/tK/I4rzz+idJtvWi+x24DXAffwVdLN+o6UNEfxi4xS0T54jmR
+         VPKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:from:subject:autocrypt:message-id:date
-         :user-agent:mime-version:content-transfer-encoding:content-language;
-        bh=wh/9VBUzWZVu7uKn6VJ641GVnme03WjYWpx50EOc2Uk=;
-        b=gcskgjuzr/KUZSqQaghiqNTzIVgmA25Y+qCTF2VBCzFcaMtH4Ag3M/y5+BXsnGiDwX
-         Cjdm8HWK7PxN9DRtd7WccVQT8RiuxdssgJTh/ZHINYab+dXJwfZdZy+B8MIpl5BAIYDF
-         PxsgAkXwqr8QDWQKcHg7RFuzMgsCjQ/ZQNQoNF6LD/uOoXeRCUIR0hph7X/6dOt8Z35/
-         GcRvZytu+ncreSlZV0YgL4An+0PgiDowtz3Es2qT9n4E1a9KrXaHo2PJ/P+AFobWENyy
-         xTSOxycJFZ3/ae/mv9zrux/6MeZiQu6a+dzcMmVCkU9TczwBjaN1CNnE6iWAgebvzfae
-         nxZg==
-X-Gm-Message-State: AOAM531a5AiqxMC0p46ZQdZKKpWD/xCrN/DeMkg74XYLFtDd7lHIscSZ
-	I/Ag8cRv1LWVeCceMHUGdeZEeP8V
-X-Google-Smtp-Source: ABdhPJzYU11qiv3Q8XoyiAM5m9194+cxuaG6H+dfLf3HmxhJkRYwCx361IFvusJuZTXy0JjzcppUPQ==
-X-Received: by 2002:a63:fb04:: with SMTP id o4mr12231386pgh.386.1591980965833;
-        Fri, 12 Jun 2020 09:56:05 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:a5c0:5030:aa9f:23eb:a3d9? ([2601:202:4180:a5c0:5030:aa9f:23eb:a3d9])
-        by smtp.gmail.com with ESMTPSA id y3sm6149620pff.37.2020.06.12.09.56.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jun 2020 09:56:05 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
- Patches and discussions about the oe-core layer
- <openembedded-core@lists.openembedded.org>,
- OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=DpIgE+lwP9aIrG6ZIu2SFXKJFqz5Lwn5KbxtvKoQSS8=;
+        b=V/go/tthwn1mPHue//p8J5kqwsQLUyKlHgCHyWHy3tXtqPWyzpXPOWtL95Yz3o+weS
+         /2Z3+KGsfsgMLPfASPaTWMcY0gmi/RnlzJ3LGaDP+rHApXPlGDZSWOM6QIpn1ewXn5h/
+         5kq1UY2CPey8U8+8H2o6XsrNjOumF1AwLbunqOenyrcKjCNB8naaxxeSgeseDxIPpa8d
+         mqHLl3TlVtdr22hxyY9LUlsH7OJz5yzG68B91ZoH702833dBA4A084CoC+8plv61P50T
+         H3QMmBKwrh1RJZs6WfCXSykwK7CBUkc6SqD8CsyNx18JwPDZEfN7kCwgiscyrhCQyaTz
+         GTCg==
+X-Gm-Message-State: AOAM531DStmSejUx49IspcuECmX01W6QgAv9UeOv51XUHoHbgo3a0AJ4
+	InoZgJt+s8nOPduhqQu55m0nRrv6
+X-Google-Smtp-Source: ABdhPJyAVSKeSz1vGvAXmKBiItoUZdUi1bV7LIzwmOF7SRWwHWsH8mTN0nVg7YeQQ9dz3nzmIS5j+Q==
+X-Received: by 2002:a17:902:7487:: with SMTP id h7mr12384955pll.155.1591982063504;
+        Fri, 12 Jun 2020 10:14:23 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net ([2601:202:4180:a5c0:5030:aa9f:23eb:a3d9])
+        by smtp.gmail.com with ESMTPSA id q6sm6687494pff.163.2020.06.12.10.14.22
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Jun 2020 10:14:23 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
-Subject: Meta-security layer LTS statement
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <3a3e8e1a-a712-2a22-59a7-89491d825226@gmail.com>
-Date: Fri, 12 Jun 2020 09:56:04 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH 1/6] tpm2-tools: update to 4.1.3
+Date: Fri, 12 Jun 2020 10:14:17 -0700
+Message-Id: <20200612171422.3380-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
-Hello all,
+LICENSE changed to BSD3
 
-As the=C2=A0 maintainer for meta-security layer, I will be aligning=C2=A0=
- with the
-LTS policy the Yocto Project has defined and the Dunfell branch of
-meta-security will have the same life cycle of 2 years.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb | 17 -----------------
+ .../recipes-tpm2/tpm2-tools/tpm2-tools_4.1.3.bb | 13 +++++++++++++
+ 2 files changed, 13 insertions(+), 17 deletions(-)
+ delete mode 100644 meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
+ create mode 100644 meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.3.bb
 
-Best regards,
-Armin
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
+deleted file mode 100644
+index e90dcfe..0000000
+--- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
++++ /dev/null
+@@ -1,17 +0,0 @@
+-SUMMARY = "Tools for TPM2."
+-DESCRIPTION = "tpm2-tools"
+-LICENSE = "BSD"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=0eb1216e46938bd723098d93a23c3bcc"
+-SECTION = "tpm"
+-
+-DEPENDS = "tpm2-abrmd tpm2-tss openssl curl autoconf-archive"
+-
+-SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz"
+-
+-SRC_URI[md5sum] = "701ae9e8c8cbdd37d89c8ad774f55395"
+-SRC_URI[sha256sum] = "40b9263d8b949bd2bc03a3cd60fa242e27116727467f9bbdd0b5f2539a25a7b1"
+-SRC_URI[sha1sum] = "d097d321237983435f05c974533ad90e6f20acef"
+-SRC_URI[sha384sum] = "396547f400e4f5626d7741d77ec543f312d94e6697899f4c36260d15fab3f4f971ad2c0487e6eaa2d60256f3cf68f85f"
+-SRC_URI[sha512sum] = "25952cf947f0acd16b1a8dbd3ac8573bce85ff970a7e24c290c4f9cd29418e77a3e48ac82c932fbd250887a9303ab301ff92db594c2fffaba47b873382444d26"
+-
+-inherit autotools pkgconfig bash-completion
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.3.bb b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.3.bb
+new file mode 100644
+index 0000000..ae01d5e
+--- /dev/null
++++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.3.bb
+@@ -0,0 +1,13 @@
++SUMMARY = "Tools for TPM2."
++DESCRIPTION = "tpm2-tools"
++LICENSE = "BSD-3-Clause"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=0eb1216e46938bd723098d93a23c3bcc"
++SECTION = "tpm"
++
++DEPENDS = "tpm2-abrmd tpm2-tss openssl curl autoconf-archive"
++
++SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz"
++
++SRC_URI[sha256sum] = "bb5d3310620e75468fe33dbd530bd73dd648c70ec707b4579c74d9f63fc82704"
++
++inherit autotools pkgconfig bash-completion
+-- 
+2.17.1
+
