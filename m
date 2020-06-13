@@ -1,54 +1,56 @@
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
- by mx.groups.io with SMTP id smtpd.web11.1902.1592014764606753009
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+ by mx.groups.io with SMTP id smtpd.web11.1904.1592014767473879609
  for <yocto@lists.yoctoproject.org>;
- Fri, 12 Jun 2020 19:19:24 -0700
+ Fri, 12 Jun 2020 19:19:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=VenHazh7;
- spf=pass (domain: gmail.com, ip: 209.85.210.52, mailfrom: jpuhlman@gmail.com)
-Received: by mail-ot1-f52.google.com with SMTP id u23so8898259otq.10
-        for <yocto@lists.yoctoproject.org>; Fri, 12 Jun 2020 19:19:24 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=aHKftLsc;
+ spf=pass (domain: gmail.com, ip: 209.85.167.170, mailfrom: jpuhlman@gmail.com)
+Received: by mail-oi1-f170.google.com with SMTP id 25so10497042oiy.13
+        for <yocto@lists.yoctoproject.org>; Fri, 12 Jun 2020 19:19:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=CSHapQOaCfALb2aN3vT+JeP//gXoYyop4HcuWllppkk=;
-        b=VenHazh7nW37obAtD/QbbBHbzwkS1k5LbIOm7SIhP1rYEVUrLq0bJYub8/rzpccvt1
-         8mrH7rum/WlxEUBCVESXulmpR1AcIUPexWXee1L1+1c4/aMKwKJWBWZ4nATxptfuffnN
-         zFI461biHC09hP24FNGom3GXvFlItR6zkA/nMtPHszdKXeLA8XLjky69HhIYNofSHaJd
-         trzdatuShrr/sxvGIgunaR3HCMwkU6amvKvAzgP8yx3lQrI0antIaYElSXoExXfWamIV
-         nQ/yqLtn6w/sgDWtqoDkVJu0I4J95YEkVZhucqmJ682y5hwVef3bRVnlHsjAhBweDEwh
-         JGEQ==
+        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=HNnoa856ZdI0jYjdpQMa7cQy9yFyBx2Z8yMI5mSvbDk=;
+        b=aHKftLscl5QJ+uyBfvBU1dMmkxMxYlu6v1E2NRWyjI7d8SfbxON3ttsy1/UQa2C9So
+         94NTDQTKSsBX+v0MiodSWQH9Pg1eeiuJeabrdHLx8baDv1tmvqwffK3zBdnMZldW7I60
+         oz+axmTTyfCefzCtoI055R1R9K42tugDnFWzokW2sCMvaM9Dq6cQGkfEcNz2pmOuXF6V
+         H9+cvk02Dd9C6E/lqEZ8a5aeEPDvYhCxwrSt+kkuiZWpzqFuItKPHvekOqC2ATUgB/4Y
+         6VqnORmYj2MLr7MU/2+1H23KMbI9yeg8PGGfjNbsFJu0rkvt5/FIpg9OUdJw+HQPhQJH
+         FAhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=CSHapQOaCfALb2aN3vT+JeP//gXoYyop4HcuWllppkk=;
-        b=I95jbGTGCbCUXc28mPTg0Jvo6fnGgN+etXdaDti82osqMxbwtM8vEOeg0IFyTTh2DA
-         9Wq7dof/FztY+K4OMFiaGBIkfwSu7scZlddDfd28ILPfxGC0GHeUWqwxFjQjq/T/cV9E
-         nCHKed4flv1u/Mhk/BjweHo4t+VxCjrMKLg0ywj9ti6RWi7RRNSKCt3BoQDBMBw9EIJd
-         QdMADgMGX9yOkexB1ArNTh13vuDTrgLYJAkk6I3kjWB0vjbk/Qit/8vSHQtE/DQ56zTt
-         TNHft4mMTkO0WJZn4GT9mQuVHnon4jkk//YAcIrAapDU1yGsLWcFiDw1blzdfwPdJN1H
-         PCVw==
-X-Gm-Message-State: AOAM533K4DO1CQ7zMAzoU3ukysxKt3ve7FW07vyay0S5HqFE+0GFMs3P
-	9ID3/HZVgyS0ZG9sorcpSLwke6Srf9YzXg==
-X-Google-Smtp-Source: ABdhPJwCSQkMYYKqZT4URwei0NwFKafBGaiwxF59Ws6zzqn412AFJsFANky5A1Q8sXvexsvJ54Xnkg==
-X-Received: by 2002:a9d:3b86:: with SMTP id k6mr12781644otc.106.1592014763751;
-        Fri, 12 Jun 2020 19:19:23 -0700 (PDT)
+         :in-reply-to:references:mime-version:content-transfer-encoding;
+        bh=HNnoa856ZdI0jYjdpQMa7cQy9yFyBx2Z8yMI5mSvbDk=;
+        b=ri98+U+3hDb9J7lhRaH0ribnx3Yk/yZRAJRj1fV4KCAJkE62ZFGDvObvAQA3tgK/GW
+         PtuC8P3zS8rXZXFeQgj5cBw2fYAJwUobR2IXv+Dt4bkMIazh8d3pI7AXBte+g8Yt1g9Y
+         cVfS0R4dVzKanv2zRxnp+IXj067FkYNLK0Oi8P9pg9Etvinlod/3DwbEIvVIIhLqaqDD
+         6LpEx7ORaRz+tdm+OETZRr4rdccNlDd7KnwB2xOtXShwaUudwpbzezn6DDnmSG/s6Lfw
+         si6+adg7XZSt1Ml3YELacfjDlYzqnnJpuZNSJ6Pe6Nqdet7uRxbcsWC+CEZO8Pe+Arne
+         g5Tw==
+X-Gm-Message-State: AOAM531Ze3plwokbrxufzUcQXPLmoTbPphKkRMMzrYRSjJ8y/Pxlc/j1
+	CcnJTZEpNCbHbfmIqZlLv850tfY37fpvcA==
+X-Google-Smtp-Source: ABdhPJwT9Fl4G7rRERs3o+Bq61IQtchI/tfv+IXzVH5pxOj1EI6s1UWSkfAd9LHZ7TjMmiyG1R0N1A==
+X-Received: by 2002:aca:cc8b:: with SMTP id c133mr1383630oig.5.1592014766576;
+        Fri, 12 Jun 2020 19:19:26 -0700 (PDT)
 Return-Path: <jpuhlman@gmail.com>
 Received: from workhorse.localdomain (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
-        by smtp.gmail.com with ESMTPSA id k2sm655602oib.10.2020.06.12.19.19.22
+        by smtp.gmail.com with ESMTPSA id t8sm1759683oor.42.2020.06.12.19.19.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jun 2020 19:19:23 -0700 (PDT)
+        Fri, 12 Jun 2020 19:19:26 -0700 (PDT)
 Sender: Jeremy Puhlman <jpuhlman@gmail.com>
 Received: by workhorse.localdomain (Postfix, from userid 1000)
-	id 9FAE42A0D57; Fri, 12 Jun 2020 19:19:21 -0700 (PDT)
+	id 3E5572A0D57; Fri, 12 Jun 2020 19:19:25 -0700 (PDT)
 From: "Jeremy Puhlman" <jpuhlman@mvista.com>
 To: yocto@lists.yoctoproject.org
 Cc: Jeremy Puhlman <jpuhlman@mvista.com>
-Subject: [meta-security][master|dunfell][PATCH 1/2] clamav: resolve multilib issues
-Date: Fri, 12 Jun 2020 19:19:18 -0700
-Message-Id: <20200613021919.1871-1-jpuhlman@mvista.com>
+Subject: [meta-security][master|dunfell][PATCH 2/2] tripwire: Remove makefiles from the man directories.
+Date: Fri, 12 Jun 2020 19:19:19 -0700
+Message-Id: <20200613021919.1871-2-jpuhlman@mvista.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200613021919.1871-1-jpuhlman@mvista.com>
+References: <20200613021919.1871-1-jpuhlman@mvista.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
@@ -56,39 +58,21 @@ From: Jeremy Puhlman <jpuhlman@mvista.com>
 
 Signed-off-by: Jeremy Puhlman <jpuhlman@mvista.com>
 ---
- recipes-scanners/clamav/clamav_0.101.5.bb | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ recipes-ids/tripwire/tripwire_2.4.3.7.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/recipes-scanners/clamav/clamav_0.101.5.bb b/recipes-scanners/clamav/clamav_0.101.5.bb
-index f4625b1..2ea2c9b 100644
---- a/recipes-scanners/clamav/clamav_0.101.5.bb
-+++ b/recipes-scanners/clamav/clamav_0.101.5.bb
-@@ -25,7 +25,7 @@ S = "${WORKDIR}/git"
- LEAD_SONAME = "libclamav.so"
- SO_VER = "9.0.2"
- 
--inherit autotools pkgconfig useradd systemd
-+inherit autotools pkgconfig useradd systemd multilib_header multilib_script
- 
- CLAMAV_UID ?= "clamav"
- CLAMAV_GID ?= "clamav"
-@@ -45,6 +45,8 @@ PACKAGECONFIG[bz2] = "--with-libbz2-prefix=${CLAMAV_USR_DIR}, --disable-bzip2, b
- PACKAGECONFIG[ncurses] = "--with-libncurses-prefix=${CLAMAV_USR_DIR}, --without-libncurses-prefix, ncurses, "
- PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_unitdir}/system/, --without-systemdsystemunitdir, "
- 
-+MULTILIB_SCRIPTS = "${PN}-dev:${bindir}/clamav-config ${PN}-cvd:${localstatedir}/lib/clamav/mirrors.dat"
-+
- EXTRA_OECONF_CLAMAV = "--without-libcheck-prefix --disable-unrar \
-             --disable-mempool \
-             --program-prefix="" \
-@@ -93,6 +95,7 @@ do_install_append_class-target () {
-         install -d ${D}${sysconfdir}/tmpfiles.d
-         install -m 0644 ${WORKDIR}/tmpfiles.clamav ${D}${sysconfdir}/tmpfiles.d/clamav.conf
-     fi
-+    oe_multilib_header clamav-types.h
- }
- 
- pkg_postinst_ontarget_${PN} () {
+diff --git a/recipes-ids/tripwire/tripwire_2.4.3.7.bb b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
+index c26392a..4f50bff 100644
+--- a/recipes-ids/tripwire/tripwire_2.4.3.7.bb
++++ b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
+@@ -52,6 +52,7 @@ do_install () {
+     install -m 0644 ${S}/man/man4/* ${D}${mandir}/man4
+     install -m 0644 ${S}/man/man5/* ${D}${mandir}/man5
+     install -m 0644 ${S}/man/man8/* ${D}${mandir}/man8
++    rm ${D}${mandir}/man*/Makefile*
+     install -m 0644 ${S}/policy/templates/* ${D}${docdir}/${BPN}/templates
+     install -m 0644 ${S}/policy/*txt ${D}${docdir}/${BPN}
+     install -m 0644 ${S}/COPYING ${D}${docdir}/${BPN}
 -- 
 2.20.1
 
