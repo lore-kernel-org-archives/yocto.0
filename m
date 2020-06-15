@@ -1,378 +1,161 @@
-Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
- by mx.groups.io with SMTP id smtpd.web12.12417.1592207043771956417
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
+ by mx.groups.io with SMTP id smtpd.web11.12850.1592208663224218370
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 Jun 2020 00:44:04 -0700
+ Mon, 15 Jun 2020 01:11:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: zhixiong.chi@windriver.com)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 05F7hCmH006953
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Mon, 15 Jun 2020 00:43:33 -0700
-Received: from ala-lpggp3.wrs.com (147.11.105.124) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server id 14.3.487.0; Mon, 15 Jun 2020
- 00:43:08 -0700
-From: "Zhixiong Chi" <zhixiong.chi@windriver.com>
-To: <bruce.ashfield@gmail.com>, <yocto@lists.yoctoproject.org>,
-        <zhixiong.chi@windriver.com>
-Subject: [yocto][meta-virtualization][zeus][PATCH] kubernetes: CVE-2020-8555
-Date: Mon, 15 Jun 2020 00:43:08 -0700
-Message-ID: <20200615074308.129683-1-zhixiong.chi@windriver.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=JQ7EtKFL;
+ spf=pass (domain: gmail.com, ip: 209.85.222.41, mailfrom: mabnhdev@gmail.com)
+Received: by mail-ua1-f41.google.com with SMTP id g44so5347429uae.12
+        for <yocto@lists.yoctoproject.org>; Mon, 15 Jun 2020 01:11:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fSrQFEGKCMrUvkNdw8jNzIPFBIca1McQ0/Y8oZP9lzI=;
+        b=JQ7EtKFLuRylaMO+NFaTG3VuIoigdLu1zP+peMyZuauJRXa80/SPB8UMTqQxC0IemT
+         /8sv/PZsoF1cfloBhWGnikvveEVmKiOi31X+wnx8jTmVM93RGnsYtPKii0jmNuswrIRc
+         HwNuhyHQqHqqigtPBthfHV7vDqb2xy/9IJU8LEI0VRGWImRCuAICjVJMSE/bSsQBiK/h
+         DnGmEnOETnEXBHa7oD0+ztN5BMTX99W04PkSk2UZX0FKH/7ykMtqV/0HPgH4WGJy9A1r
+         nWwR8yGx8ABtqW1AYSEVWUhbN7ljAX53aLjzeRaSCrhEOqcBaQ0Oh8t11aABmSBhRcxT
+         WuZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fSrQFEGKCMrUvkNdw8jNzIPFBIca1McQ0/Y8oZP9lzI=;
+        b=jDsQCwL7XPyyzFM5jgpwPcbwwTvwt1T9kRRcYS+rZApYUG9mRtnu+JC4KuxzY0sO9m
+         zayro1V6dk+PE8JKFJJWjLRxbjsz3bBorvtwPx55ITlo+ed9hmEenL3HD6SaveAEU0RD
+         9sKzH/SyIT3BD5o4QUMeSWzgD3O5KIc1Uo5W4fOP5mzvLsNxj6f3n8JxTSPp4cCAgSC9
+         qxg8SUf4R/0KD1uSc13U2mbkmrX9AqjDSq1rBnFJOvv2zZsmvCGCK7rlZgEzMgl1rC3w
+         oqtV3LsZHGHxdCd94BxOi9O0Tx461p4oCncF2KSNDuVNzXN37QM6ivSs2JBiETBpJ1gB
+         W5gw==
+X-Gm-Message-State: AOAM532nw5N8CzUX2bVntjhk3kr7O/Q9fbj1oLwK4GjaXrj5dk94ktn6
+	H5xHsha5ZoQygG2P9V/PXvb33PVfEslpJLRR4/g=
+X-Google-Smtp-Source: ABdhPJxqRmG/CvjGge3oHp/iWEgM+l2Uw+ESHSnZmj0dgoi0in4+XkH7umjQqTr+ANDymStkkIqX1i4kf2ELn8Pub3Y=
+X-Received: by 2002:ab0:7715:: with SMTP id z21mr18048295uaq.139.1592208662412;
+ Mon, 15 Jun 2020 01:11:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <p9vd.1592089619874670888.VyFF@lists.yoctoproject.org> <2846920.tVNd4TQEIe@tyche>
+In-Reply-To: <2846920.tVNd4TQEIe@tyche>
+From: "MikeB" <mabnhdev@gmail.com>
+Date: Mon, 15 Jun 2020 04:10:58 -0400
+Message-ID: <CAAuRgKDAGjvnioENabeQ3Ad8+F3OTCn-NqihLTYa=XGs0rTm4w@mail.gmail.com>
+Subject: Re: [yocto] Dunfell busybox NFS mount fails to build
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000bb44b405a81af7a5"
 
-Backport the CVE patch from the upstream:
-https://github.com/kubernetes/kubernetes.git
+--000000000000bb44b405a81af7a5
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Zhixiong Chi <zhixiong.chi@windriver.com>
----
- .../kubernetes/kubernetes/CVE-2020-8555.patch | 324 ++++++++++++++++++
- .../kubernetes/kubernetes_git.bb              |   1 +
- 2 files changed, 325 insertions(+)
- create mode 100644 recipes-containers/kubernetes/kubernetes/CVE-2020-8555.patch
+Removing the libnsl2 dependency worked for tcp-wrappers, but a similar
+situation arose with python3.  In the case of python3, removing libnsl2
+dependency caused other failures in the build.
 
-diff --git a/recipes-containers/kubernetes/kubernetes/CVE-2020-8555.patch b/recipes-containers/kubernetes/kubernetes/CVE-2020-8555.patch
-new file mode 100644
-index 0000000..c6f8e24
---- /dev/null
-+++ b/recipes-containers/kubernetes/kubernetes/CVE-2020-8555.patch
-@@ -0,0 +1,324 @@
-+From 830811b331c47b9b03c60f9156cea02698fa9e20 Mon Sep 17 00:00:00 2001
-+From: Michelle Au <msau@google.com>
-+Date: Thu, 2 Apr 2020 13:47:56 -0700
-+Subject: [PATCH] Clean up event messages for errors.
-+
-+Change-Id: Ib70b50e676b917c4d976f32ee7a19f8fc63b6bc6
-+
-+CVE: CVE-2020-8555
-+Upstream-Status: Backport [https://github.com/kubernetes/kubernetes.git branch: release-1.16]
-+Signed-off-by: Zhixiong Chi <zhixiong.chi@windriver.com>
-+---
-+ src/import/pkg/volume/glusterfs/glusterfs.go      | 30 +++++++----
-+ src/import/pkg/volume/quobyte/quobyte.go          | 13 ++++-
-+ src/import/pkg/volume/scaleio/sio_client.go       | 71 ++++++++++++++++++--------
-+ src/import/pkg/volume/storageos/storageos_util.go | 12 +++--
-+ 4 files changed, 91 insertions(+), 35 deletions(-)
-+
-+diff --git a/src/import/pkg/volume/glusterfs/glusterfs.go b/src/import/pkg/volume/glusterfs/glusterfs.go
-+index 52ff8cb1328..dd543c4625b 100644
-+--- a/src/import/pkg/volume/glusterfs/glusterfs.go
-++++ b/src/import/pkg/volume/glusterfs/glusterfs.go
-+@@ -672,8 +672,9 @@ func (d *glusterfsVolumeDeleter) Delete() error {
-+ 	err = cli.VolumeDelete(volumeID)
-+ 	if err != nil {
-+ 		if dstrings.TrimSpace(err.Error()) != errIDNotFound {
-+-			klog.Errorf("failed to delete volume %s: %v", volumeName, err)
-+-			return fmt.Errorf("failed to delete volume %s: %v", volumeName, err)
-++			// don't log error details from client calls in events
-++			klog.V(4).Infof("failed to delete volume %s: %v", volumeName, err)
-++			return fmt.Errorf("failed to delete volume: see kube-controller-manager.log for details")
-+ 		}
-+ 		klog.V(2).Infof("volume %s not present in heketi, ignoring", volumeName)
-+ 	}
-+@@ -818,7 +819,9 @@ func (p *glusterfsVolumeProvisioner) CreateVolume(gid int) (r *v1.GlusterfsPersi
-+ 	volumeReq := &gapi.VolumeCreateRequest{Size: sz, Name: customVolumeName, Clusters: clusterIDs, Gid: gid64, Durability: p.volumeType, GlusterVolumeOptions: p.volumeOptions, Snapshot: snaps}
-+ 	volume, err := cli.VolumeCreate(volumeReq)
-+ 	if err != nil {
-+-		return nil, 0, "", fmt.Errorf("failed to create volume: %v", err)
-++		// don't log error details from client calls in events
-++		klog.V(4).Infof("failed to create volume: %v", err)
-++		return nil, 0, "", fmt.Errorf("failed to create volume: see kube-controller-manager.log for details")
-+ 	}
-+ 	klog.V(1).Infof("volume with size %d and name %s created", volume.Size, volume.Name)
-+ 	volID = volume.Id
-+@@ -839,7 +842,8 @@ func (p *glusterfsVolumeProvisioner) CreateVolume(gid int) (r *v1.GlusterfsPersi
-+ 	if err != nil {
-+ 		deleteErr := cli.VolumeDelete(volume.Id)
-+ 		if deleteErr != nil {
-+-			klog.Errorf("failed to delete volume: %v, manual deletion of the volume required", deleteErr)
-++			// don't log error details from client calls in events
-++			klog.V(4).Infof("failed to delete volume: %v, manual deletion of the volume required", deleteErr)
-+ 		}
-+ 		klog.V(3).Infof("failed to update endpoint, deleting %s", endpoint)
-+ 		err = kubeClient.CoreV1().Services(epNamespace).Delete(epServiceName, nil)
-+@@ -957,7 +961,9 @@ func parseSecret(namespace, secretName string, kubeClient clientset.Interface) (
-+ func getClusterNodes(cli *gcli.Client, cluster string) (dynamicHostIps []string, err error) {
-+ 	clusterinfo, err := cli.ClusterInfo(cluster)
-+ 	if err != nil {
-+-		return nil, fmt.Errorf("failed to get cluster details: %v", err)
-++		// don't log error details from client calls in events
-++		klog.V(4).Infof("failed to get cluster details: %v", err)
-++		return nil, fmt.Errorf("failed to get cluster details: see kube-controller-manager.log for details")
-+ 	}
-+ 
-+ 	// For the dynamically provisioned volume, we gather the list of node IPs
-+@@ -966,7 +972,9 @@ func getClusterNodes(cli *gcli.Client, cluster string) (dynamicHostIps []string,
-+ 	for _, node := range clusterinfo.Nodes {
-+ 		nodeInfo, err := cli.NodeInfo(string(node))
-+ 		if err != nil {
-+-			return nil, fmt.Errorf("failed to get host ipaddress: %v", err)
-++			// don't log error details from client calls in events
-++			klog.V(4).Infof("failed to get host ipaddress: %v", err)
-++			return nil, fmt.Errorf("failed to get host ipaddress: see kube-controller-manager.log for details")
-+ 		}
-+ 		ipaddr := dstrings.Join(nodeInfo.NodeAddRequest.Hostnames.Storage, "")
-+ 		dynamicHostIps = append(dynamicHostIps, ipaddr)
-+@@ -1210,8 +1218,9 @@ func (plugin *glusterfsPlugin) ExpandVolumeDevice(spec *volume.Spec, newSize res
-+ 	//Check the existing volume size
-+ 	currentVolumeInfo, err := cli.VolumeInfo(volumeID)
-+ 	if err != nil {
-+-		klog.Errorf("error when fetching details of volume %s: %v", volumeName, err)
-+-		return oldSize, err
-++		// don't log error details from client calls in events
-++		klog.V(4).Infof("error when fetching details of volume %s: %v", volumeName, err)
-++		return oldSize, fmt.Errorf("failed to get volume info %s: see kube-controller-manager.log for details", volumeName)
-+ 	}
-+ 	if int64(currentVolumeInfo.Size) >= requestGiB {
-+ 		return newSize, nil
-+@@ -1223,8 +1232,9 @@ func (plugin *glusterfsPlugin) ExpandVolumeDevice(spec *volume.Spec, newSize res
-+ 	// Expand the volume
-+ 	volumeInfoRes, err := cli.VolumeExpand(volumeID, volumeExpandReq)
-+ 	if err != nil {
-+-		klog.Errorf("failed to expand volume %s: %v", volumeName, err)
-+-		return oldSize, err
-++		// don't log error details from client calls in events
-++		klog.V(4).Infof("failed to expand volume %s: %v", volumeName, err)
-++		return oldSize, fmt.Errorf("failed to expand volume: see kube-controller-manager.log for details")
-+ 	}
-+ 	klog.V(2).Infof("volume %s expanded to new size %d successfully", volumeName, volumeInfoRes.Size)
-+ 	newVolumeSize := resource.MustParse(fmt.Sprintf("%dGi", volumeInfoRes.Size))
-+diff --git a/src/import/pkg/volume/quobyte/quobyte.go b/src/import/pkg/volume/quobyte/quobyte.go
-+index 3cfc7a800ec..f7e0e31e63b 100644
-+--- a/src/import/pkg/volume/quobyte/quobyte.go
-++++ b/src/import/pkg/volume/quobyte/quobyte.go
-+@@ -17,6 +17,7 @@ limitations under the License.
-+ package quobyte
-+ 
-+ import (
-++	"errors"
-+ 	"fmt"
-+ 	"os"
-+ 	"path/filepath"
-+@@ -416,7 +417,9 @@ func (provisioner *quobyteVolumeProvisioner) Provision(selectedNode *v1.Node, al
-+ 
-+ 	vol, sizeGB, err := manager.createVolume(provisioner, createQuota)
-+ 	if err != nil {
-+-		return nil, err
-++		// don't log error details from client calls in events
-++		klog.V(4).Infof("CreateVolume failed: %v", err)
-++		return nil, errors.New("CreateVolume failed: see kube-controller-manager.log for details")
-+ 	}
-+ 	pv := new(v1.PersistentVolume)
-+ 	metav1.SetMetaDataAnnotation(&pv.ObjectMeta, util.VolumeDynamicallyCreatedByKey, "quobyte-dynamic-provisioner")
-+@@ -451,7 +454,13 @@ func (deleter *quobyteVolumeDeleter) Delete() error {
-+ 	manager := &quobyteVolumeManager{
-+ 		config: cfg,
-+ 	}
-+-	return manager.deleteVolume(deleter)
-++	err = manager.deleteVolume(deleter)
-++	if err != nil {
-++		// don't log error details from client calls in events
-++		klog.V(4).Infof("DeleteVolume failed: %v", err)
-++		return errors.New("DeleteVolume failed: see kube-controller-manager.log for details")
-++	}
-++	return nil
-+ }
-+ 
-+ // Parse API configuration (url, username and password) out of class.Parameters.
-+diff --git a/src/import/pkg/volume/scaleio/sio_client.go b/src/import/pkg/volume/scaleio/sio_client.go
-+index bc9b9868f7b..2f8c652dd8b 100644
-+--- a/src/import/pkg/volume/scaleio/sio_client.go
-++++ b/src/import/pkg/volume/scaleio/sio_client.go
-+@@ -126,8 +126,9 @@ func (c *sioClient) init() error {
-+ 			Username: c.username,
-+ 			Password: c.password},
-+ 	); err != nil {
-+-		klog.Error(log("client authentication failed: %v", err))
-+-		return err
-++		// don't log error details from client calls in events
-++		klog.V(4).Infof(log("client authentication failed: %v", err))
-++		return errors.New("client authentication failed")
-+ 	}
-+ 
-+ 	// retrieve system
-+@@ -214,8 +215,9 @@ func (c *sioClient) CreateVolume(name string, sizeGB int64) (*siotypes.Volume, e
-+ 	}
-+ 	createResponse, err := c.client.CreateVolume(params, c.storagePool.Name)
-+ 	if err != nil {
-+-		klog.Error(log("failed to create volume %s: %v", name, err))
-+-		return nil, err
-++		// don't log error details from client calls in events
-++		klog.V(4).Infof(log("failed to create volume %s: %v", name, err))
-++		return nil, errors.New("failed to create volume: see kubernetes logs for details")
-+ 	}
-+ 	return c.Volume(sioVolumeID(createResponse.ID))
-+ }
-+@@ -243,8 +245,9 @@ func (c *sioClient) AttachVolume(id sioVolumeID, multipleMappings bool) error {
-+ 	volClient.Volume = &siotypes.Volume{ID: string(id)}
-+ 
-+ 	if err := volClient.MapVolumeSdc(params); err != nil {
-+-		klog.Error(log("failed to attach volume id %s: %v", id, err))
-+-		return err
-++		// don't log error details from client calls in events
-++		klog.V(4).Infof(log("failed to attach volume id %s: %v", id, err))
-++		return errors.New("failed to attach volume: see kubernetes logs for details")
-+ 	}
-+ 
-+ 	klog.V(4).Info(log("volume %s attached successfully", id))
-+@@ -269,7 +272,9 @@ func (c *sioClient) DetachVolume(id sioVolumeID) error {
-+ 	volClient := sio.NewVolume(c.client)
-+ 	volClient.Volume = &siotypes.Volume{ID: string(id)}
-+ 	if err := volClient.UnmapVolumeSdc(params); err != nil {
-+-		return err
-++		// don't log error details from client calls in events
-++		klog.V(4).Infof(log("failed to detach volume id %s: %v", id, err))
-++		return errors.New("failed to detach volume: see kubernetes logs for details")
-+ 	}
-+ 	return nil
-+ }
-+@@ -287,7 +292,9 @@ func (c *sioClient) DeleteVolume(id sioVolumeID) error {
-+ 	volClient := sio.NewVolume(c.client)
-+ 	volClient.Volume = vol
-+ 	if err := volClient.RemoveVolume("ONLY_ME"); err != nil {
-+-		return err
-++		// don't log error details from client calls in events
-++		klog.V(4).Infof(log("failed to remove volume id %s: %v", id, err))
-++		return errors.New("failed to remove volume: see kubernetes logs for details")
-+ 	}
-+ 	return nil
-+ }
-+@@ -306,8 +313,9 @@ func (c *sioClient) IID() (string, error) {
-+ 		}
-+ 		sdc, err := c.sysClient.FindSdc("SdcGUID", guid)
-+ 		if err != nil {
-+-			klog.Error(log("failed to retrieve sdc info %s", err))
-+-			return "", err
-++			// don't log error details from client calls in events
-++			klog.V(4).Infof(log("failed to retrieve sdc info %s", err))
-++			return "", errors.New("failed to retrieve sdc info: see kubernetes logs for details")
-+ 		}
-+ 		c.instanceID = sdc.Sdc.ID
-+ 		klog.V(4).Info(log("retrieved instanceID %s", c.instanceID))
-+@@ -472,12 +480,15 @@ func (c *sioClient) WaitForDetachedDevice(token string) error {
-+ // ***********************************************************************
-+ func (c *sioClient) findSystem(sysname string) (sys *siotypes.System, err error) {
-+ 	if c.sysClient, err = c.client.FindSystem("", sysname, ""); err != nil {
-+-		return nil, err
-++		// don't log error details from clients in events
-++		klog.V(4).Infof(log("failed to find system %q: %v", sysname, err))
-++		return nil, errors.New("failed to find system: see kubernetes logs for details")
-+ 	}
-+ 	systems, err := c.client.GetInstance("")
-+ 	if err != nil {
-+-		klog.Error(log("failed to retrieve instances: %v", err))
-+-		return nil, err
-++		// don't log error details from clients in events
-++		klog.V(4).Infof(log("failed to retrieve instances: %v", err))
-++		return nil, errors.New("failed to retrieve instances: see kubernetes logs for details")
-+ 	}
-+ 	for _, sys = range systems {
-+ 		if sys.Name == sysname {
-+@@ -493,8 +504,9 @@ func (c *sioClient) findProtectionDomain(pdname string) (*siotypes.ProtectionDom
-+ 	if c.sysClient != nil {
-+ 		protectionDomain, err := c.sysClient.FindProtectionDomain("", pdname, "")
-+ 		if err != nil {
-+-			klog.Error(log("failed to retrieve protection domains: %v", err))
-+-			return nil, err
-++			// don't log error details from clients in events
-++			klog.V(4).Infof(log("failed to retrieve protection domains: %v", err))
-++			return nil, errors.New("failed to retrieve protection domains: see kubernetes logs for details")
-+ 		}
-+ 		c.pdClient.ProtectionDomain = protectionDomain
-+ 		return protectionDomain, nil
-+@@ -508,8 +520,9 @@ func (c *sioClient) findStoragePool(spname string) (*siotypes.StoragePool, error
-+ 	if c.pdClient != nil {
-+ 		sp, err := c.pdClient.FindStoragePool("", spname, "")
-+ 		if err != nil {
-+-			klog.Error(log("failed to retrieve storage pool: %v", err))
-+-			return nil, err
-++			// don't log error details from clients in events
-++			klog.V(4).Infof(log("failed to retrieve storage pool: %v", err))
-++			return nil, errors.New("failed to retrieve storage pool: see kubernetes logs for details")
-+ 		}
-+ 		c.spClient.StoragePool = sp
-+ 		return sp, nil
-+@@ -519,14 +532,32 @@ func (c *sioClient) findStoragePool(spname string) (*siotypes.StoragePool, error
-+ }
-+ 
-+ func (c *sioClient) getVolumes() ([]*siotypes.Volume, error) {
-+-	return c.client.GetVolume("", "", "", "", true)
-++	volumes, err := c.client.GetVolume("", "", "", "", true)
-++	if err != nil {
-++		// don't log error details from clients in events
-++		klog.V(4).Infof(log("failed to get volumes: %v", err))
-++		return nil, errors.New("failed to get volumes: see kubernetes logs for details")
-++	}
-++	return volumes, nil
-+ }
-+ func (c *sioClient) getVolumesByID(id sioVolumeID) ([]*siotypes.Volume, error) {
-+-	return c.client.GetVolume("", string(id), "", "", true)
-++	volumes, err := c.client.GetVolume("", string(id), "", "", true)
-++	if err != nil {
-++		// don't log error details from clients in events
-++		klog.V(4).Infof(log("failed to get volumes by id: %v", err))
-++		return nil, errors.New("failed to get volumes by id: see kubernetes logs for details")
-++	}
-++	return volumes, nil
-+ }
-+ 
-+ func (c *sioClient) getVolumesByName(name string) ([]*siotypes.Volume, error) {
-+-	return c.client.GetVolume("", "", "", name, true)
-++	volumes, err := c.client.GetVolume("", "", "", name, true)
-++	if err != nil {
-++		// don't log error details from clients in events
-++		klog.V(4).Infof(log("failed to get volumes by name: %v", err))
-++		return nil, errors.New("failed to get volumes by name: see kubernetes logs for details")
-++	}
-++	return volumes, nil
-+ }
-+ 
-+ func (c *sioClient) getSdcPath() string {
-+diff --git a/src/import/pkg/volume/storageos/storageos_util.go b/src/import/pkg/volume/storageos/storageos_util.go
-+index c7f430ea5d4..d62cae66788 100644
-+--- a/src/import/pkg/volume/storageos/storageos_util.go
-++++ b/src/import/pkg/volume/storageos/storageos_util.go
-+@@ -128,8 +128,9 @@ func (u *storageosUtil) CreateVolume(p *storageosProvisioner) (*storageosVolume,
-+ 
-+ 	vol, err := u.api.VolumeCreate(opts)
-+ 	if err != nil {
-+-		klog.Errorf("volume create failed for volume %q (%v)", opts.Name, err)
-+-		return nil, err
-++		// don't log error details from client calls in events
-++		klog.V(4).Infof("volume create failed for volume %q (%v)", opts.Name, err)
-++		return nil, errors.New("volume create failed: see kube-controller-manager.log for details")
-+ 	}
-+ 	return &storageosVolume{
-+ 		ID:          vol.ID,
-+@@ -294,7 +295,12 @@ func (u *storageosUtil) DeleteVolume(d *storageosDeleter) error {
-+ 		Namespace: d.volNamespace,
-+ 		Force:     true,
-+ 	}
-+-	return u.api.VolumeDelete(opts)
-++	if err := u.api.VolumeDelete(opts); err != nil {
-++		// don't log error details from client calls in events
-++		klog.V(4).Infof("volume deleted failed for volume %q in namespace %q: %v", d.volName, d.volNamespace, err)
-++		return errors.New("volume delete failed: see kube-controller-manager.log for details")
-++	}
-++	return nil
-+ }
-+ 
-+ // Get the node's device path from the API, falling back to the default if not
-+-- 
-+2.17.0
-+
-diff --git a/recipes-containers/kubernetes/kubernetes_git.bb b/recipes-containers/kubernetes/kubernetes_git.bb
-index c378ccc..e96b7d6 100644
---- a/recipes-containers/kubernetes/kubernetes_git.bb
-+++ b/recipes-containers/kubernetes/kubernetes_git.bb
-@@ -14,6 +14,7 @@ SRC_URI = "git://github.com/kubernetes/kubernetes.git;branch=release-1.16;name=k
-            file://0001-fix-compiling-failure-execvp-bin-bash-Argument-list-.patch \
-            file://CVE-2020-8551.patch \
-            file://CVE-2020-8552.patch \
-+           file://CVE-2020-8555.patch \
-           "
- 
- DEPENDS += "rsync-native \
--- 
-2.17.1
+However, reading some comments in util-linux/mount.c, the
+CONFIG_FEATURE_MOUNT_NFS
+seems to only apply to kernels < 2.6.23.  So, I'm going to leave it
+undefined until I can do further testing.
 
+Regards, Mike
+
+On Sun, Jun 14, 2020 at 1:08 AM Khem Raj <raj.khem@gmail.com> wrote:
+
+> On Saturday, June 13, 2020 4:06:59 PM PDT MikeB wrote:
+> > I'm trying to build busybox on Dunfell with NFS mount configured
+> > (CONFIG_FEATURE_MOUNT_NFS).  The build fails with the following.
+> > | util-linux/mount.c:253:11: fatal error: rpc/rpc.h: No such file or
+> > | directory|
+> > |   253 | # include <rpc/rpc.h>
+> >
+> > Reading online, later versions of glibc no longer install rpc headers.
+> Once
+> > suggested solution is to configure glibc with --enable-obsolete-rpc.  I
+> > tried that, but then the build fails as follows.
+> >
+> > ERROR: tcp-wrappers-7.6-r10 do_prepare_recipe_sysroot: The file
+> > /usr/include/rpcsvc/yppasswd.x is installed by both glibc and libnsl2,
+> > aborting
+> >
+> > I also tried adding libtirpc as a dependency to busybox; no luck there
+> > either.
+> >
+> > Can someone give me a workaround for this problem?
+> >
+>
+> Obsolete rpc is really not supported as you can see but if you are using
+> it
+> also ensure libnsl2 is not used either.
+> remove libnsl2 from tcp-wrappers dependencies
+>
+> > Thanks.
+>
+>
+>
+>
+>
+
+--000000000000bb44b405a81af7a5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
+ans-serif;font-size:small">Removing the libnsl2 dependency worked for tcp-w=
+rappers, but a similar situation arose with python3.=C2=A0 In the case of p=
+ython3, removing libnsl2 dependency caused other failures in the build.</di=
+v><div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif;font-=
+size:small"><br></div><div class=3D"gmail_default" style=3D"font-family:tah=
+oma,sans-serif;font-size:small">However, reading some comments in util-linu=
+x/mount.c, the=C2=A0<span style=3D"font-family:Arial,Helvetica,sans-serif">=
+CONFIG_FEATURE_MOUNT_NFS seems to only apply to kernels &lt; 2.6.23.=C2=A0 =
+So, I&#39;m going to leave it undefined until I can do further=C2=A0testing=
+.</span></div><div class=3D"gmail_default" style=3D"font-family:tahoma,sans=
+-serif;font-size:small"><span style=3D"font-family:Arial,Helvetica,sans-ser=
+if"><br></span></div><div class=3D"gmail_default" style=3D"font-family:taho=
+ma,sans-serif;font-size:small"><span style=3D"font-family:Arial,Helvetica,s=
+ans-serif">Regards, Mike</span></div></div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Sun, Jun 14, 2020 at 1:08 AM Khem R=
+aj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gma=
+il.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
+:1ex">On Saturday, June 13, 2020 4:06:59 PM PDT MikeB wrote:<br>
+&gt; I&#39;m trying to build busybox on Dunfell with NFS mount configured<b=
+r>
+&gt; (CONFIG_FEATURE_MOUNT_NFS).=C2=A0 The build fails with the following.<=
+br>
+&gt; | util-linux/mount.c:253:11: fatal error: rpc/rpc.h: No such file or<b=
+r>
+&gt; | directory|<br>
+&gt; |=C2=A0 =C2=A0253 | # include &lt;rpc/rpc.h&gt;<br>
+&gt; <br>
+&gt; Reading online, later versions of glibc no longer install rpc headers.=
+=C2=A0 Once<br>
+&gt; suggested solution is to configure glibc with --enable-obsolete-rpc.=
+=C2=A0 I<br>
+&gt; tried that, but then the build fails as follows.<br>
+&gt; <br>
+&gt; ERROR: tcp-wrappers-7.6-r10 do_prepare_recipe_sysroot: The file<br>
+&gt; /usr/include/rpcsvc/yppasswd.x is installed by both glibc and libnsl2,=
+<br>
+&gt; aborting<br>
+&gt; <br>
+&gt; I also tried adding libtirpc as a dependency to busybox; no luck there=
+<br>
+&gt; either.<br>
+&gt; <br>
+&gt; Can someone give me a workaround for this problem?<br>
+&gt; <br>
+<br>
+Obsolete rpc is really not supported as you can see but if you are using it=
+ <br>
+also ensure libnsl2 is not used either.<br>
+remove libnsl2 from tcp-wrappers dependencies<br>
+<br>
+&gt; Thanks.<br>
+<br>
+<br>
+<br>
+<br>
+</blockquote></div>
+
+--000000000000bb44b405a81af7a5--
