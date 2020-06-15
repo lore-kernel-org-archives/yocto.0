@@ -1,97 +1,378 @@
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
- by mx.groups.io with SMTP id smtpd.web11.6722.1592177490211073354
+Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
+ by mx.groups.io with SMTP id smtpd.web12.12417.1592207043771956417
  for <yocto@lists.yoctoproject.org>;
- Sun, 14 Jun 2020 16:31:31 -0700
+ Mon, 15 Jun 2020 00:44:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@axis.com header.s=axis-central1 header.b=FZm7S4RT;
- spf=pass (domain: axis.com, ip: 195.60.68.17, mailfrom: peter.kjellerstedt@axis.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; l=3758; q=dns/txt; s=axis-central1;
-  t=1592177490; x=1623713490;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=HT7QFSmdkNHrLamMeHVh/s657fhPfKCUkNhm2cOOjKw=;
-  b=FZm7S4RTAI24m1Njrb1mDWjNq3Wr0vVQDjYb+G7Po3RfY4iLK2AzWiM9
-   72741BXeFplcGJcF4uu8LI8n48YFW4b2gzCiEe383MiMfuUi2b3yD4mi5
-   9pnsCzMekw0X0G+Lhghx7BBGWkxBRML3LhGoz8x4yLfCf4cffo4sU+Afz
-   +6fqUIZKYrdGv+3rk3IvTRbxy1aS/aeD9vUySmUT133WMd1pnb0bnFPwd
-   rHaqyT9fEjO7duQIdoypNyrtRYdzgmvB5Di6GShmTOWJ6SHhNR6UkpsBq
-   JFZUv4ngFJmeUPNIYoH4UlaiXtv3FeYVSs5ZSii4O9TTn6XBvC7fruqGs
-   w==;
-IronPort-SDR: vWZCFNxKxm7iJIBF+DrVm8/h51JCaIGNc+iAqu44KGCZpKpu8rFy92uIa81leU4/shTVlmN8W1
- XBLJWaR41wNj7Pg7yTMk6Z7C0skIPa49bMNoStUTSEza+pXyZ9QWoxyliYVa57fwNY5kUa4syV
- OlwmOp4AYexGhefYECBm1+LwVMOPWG/SWKdZOO764/JocHoA/7j+F1OFwEtcSCJ82toXzi2v9Z
- O1+n6uKfsR1IQWZRUHkg88la5UoZOg/r/YBeRVxUQ3gXbXVKpM4Gq/udVTzBgkBW87ciQvwM1R
- FAo=
-X-IronPort-AV: E=Sophos;i="5.73,512,1583190000"; 
-   d="scan'208";a="9803397"
-From: "Peter Kjellerstedt" <peter.kjellerstedt@axis.com>
-To: "kergoth@gmail.com" <kergoth@gmail.com>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] devtool modify issues with ubuntu 20 and fedora core 32
-Thread-Topic: [yocto] devtool modify issues with ubuntu 20 and fedora core 32
-Thread-Index: AQHWOSTT5l/Ko76eSkGCxv3PQJ6wUajGeKyAgABNSoCAAA/xAIAR/sqA
-Date: Sun, 14 Jun 2020 23:31:27 +0000
-Message-ID: <fb2e2a258d1943d0b1b2494e2f16adea@XBOX03.axis.com>
-References: <115f3f1f445a163af79f94cdd48b497f478ae85d.camel@linuxfoundation.org>
- <E1827ACC-C046-4086-B4CB-026A0FC58904@gmail.com>
-In-Reply-To: <E1827ACC-C046-4086-B4CB-026A0FC58904@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.0.5.60]
+ dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: zhixiong.chi@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 05F7hCmH006953
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Mon, 15 Jun 2020 00:43:33 -0700
+Received: from ala-lpggp3.wrs.com (147.11.105.124) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server id 14.3.487.0; Mon, 15 Jun 2020
+ 00:43:08 -0700
+From: "Zhixiong Chi" <zhixiong.chi@windriver.com>
+To: <bruce.ashfield@gmail.com>, <yocto@lists.yoctoproject.org>,
+        <zhixiong.chi@windriver.com>
+Subject: [yocto][meta-virtualization][zeus][PATCH] kubernetes: CVE-2020-8555
+Date: Mon, 15 Jun 2020 00:43:08 -0700
+Message-ID: <20200615074308.129683-1-zhixiong.chi@windriver.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiB5b2N0b0BsaXN0cy55b2N0b3By
-b2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPiBPbg0KPiBCZWhhbGYgT2Yg
-a2VyZ290aEBnbWFpbC5jb20NCj4gU2VudDogZGVuIDMganVuaSAyMDIwIDE2OjQwDQo+IFRvOiB5
-b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIGRldnRv
-b2wgbW9kaWZ5IGlzc3VlcyB3aXRoIHVidW50dSAyMCBhbmQgZmVkb3JhIGNvcmUNCj4gMzINCj4g
-DQo+ID4gT24gSnVuIDMsIDIwMjAsIGF0IDY6NDMgQU0sIFJpY2hhcmQgUHVyZGllDQo+IDxyaWNo
-YXJkLnB1cmRpZUBsaW51eGZvdW5kYXRpb24ub3JnPiB3cm90ZToNCj4gPg0KPiA+IO+7v09uIFdl
-ZCwgMjAyMC0wNi0wMyBhdCAxMTowNiArMDIwMCwgQWxleGFuZGVyIEthbmF2aW4gd3JvdGU6DQo+
-ID4+IEknbSBub3Qgc3VyZSBpZiB0aGlzIGlzIGRpc3RybyBzcGVjaWZpYy4gX1BZVEhPTl9TWVND
-T05GSUdEQVRBX05BTUUNCj4gPj4gaXMgc2V0IGZyb20gcHl0aG9uM25hdGl2ZS5iYmNsYXNzIHNv
-IHRoYXQgbmF0aXZlIHB5dGhvbiBjYW4gcGljayB1cA0KPiA+PiB0YXJnZXQgY29uZmlndXJhdGlv
-biwgYW5kIGlmIHRoZSB0YXJnZXQgY29uZmlndXJhdGlvbiBpcyBub3QgdGhlcmUNCj4gPj4gKGl0
-IGNvbWVzIHdpdGggdGFyZ2V0IHB5dGhvbjMgYnVpbGQpLCB0aGVuIHRoZXJlIHdpbGwgYmUgYSBm
-YWlsdXJlDQo+ID4+IGxpa2UgdGhlIGFib3ZlLiBIb3cgZG9lcyB5b3VyIHJlY2lwZSBsb29rIGxp
-a2U/IERvIHlvdSBnZXQgdGhlIHNhbWUNCj4gPj4gZmFpbHVyZSBpZiB5b3UgdHJ5IGRldnRvb2wg
-bW9kaWZ5IGluIGEgcGxhaW4geW9jdG8gZW52aXJvbm1lbnQgKG5vdA0KPiA+PiB0aGUgU0RLKT8N
-Cj4gPg0KPiA+IENocmlzIGFuZCBJIGRpZCB0YWxrIGFib3V0IHRoaXMgb24gaXJjOg0KPiA+DQo+
-ID4gKDIyOjMzOjM4KSBrZXJnb3RoOiBhY3R1YWxseSBmYWlscyBldmVuIHdpdGhvdXQgcHJzZXJ2
-IGVuYWJsZWQgYXQgYWxsDQo+ID4gKDIyOjM0OjA3KSBrZXJnb3RoOiBqdXN0IGltcG9ydCBweWRv
-YyB3aWxsIGNhbGwgc3lzY29uZmlnLmdldF9wYXRoKCkNCj4gd2hpY2ggZW50ZXJzIHRoYXQgY29k
-ZXBhdGgNCj4gPiAoMjI6MzQ6MjIpIGtlcmdvdGg6IHNvIGNhbGxpbmcgYW55dGhpbmcgdGhhdCBp
-bXBvcnRzIGJiIGZyb20gYSB0YXNrDQo+IHdpbGwgZXhwbG9kZQ0KPiA+ICgyMjozNDozMykga2Vy
-Z290aDogY29va2VyIHB1bGxzIGluIHhtbHJwYywgd2hpY2ggcHVsbHMgaW4gcHlkb2MNCj4gPiAo
-MjI6MzQ6NDEpIGtlcmdvdGg6IGJyZWFrcyBkZXZ0b29sIG1vZGlmeQ0KPiA+ICgyMjozNzowNCkg
-UlA6IGtlcmdvdGg6IHJpZ2h0LCBpdCB3YXMgbW9yZSBhYm91dCBpdCBiZWluZyBhIGhpbnQgYXQg
-dGhlDQo+IGtpbmRzIG9mIGlzc3Vlcw0KPiA+ICgyMjozNzoxMSkga2VyZ290aDogYWgsIGZhaXIg
-ZW5vdWdoDQo+ID4gKDIyOjM3OjI2KSBrZXJnb3RoOiBpIGV4cGVjdCB3ZSBtYXkgbmVlZCB0byBj
-aGFuZ2UgaG93IHB5dGhvbjNuYXRpdmUgaXMNCj4gZG9pbmcgaXRzIHRoaW5nDQo+ID4gKDIyOjQy
-OjU1KSBSUDoga2VyZ290aDogcXVpdGUgcG9zc2libHkuIEkgbmV2ZXIgbGlrZWQgdGhhdCBmaXgg
-YW5kDQo+IHN1c3BlY3RlZCB0aGVyZSB3YXMgbW9yZSB0byBpdCA6Lw0KPiA+ICgyMzoyMTozOSkg
-a2VyZ290aDogUlA6IG1heWJlIHNvbWV0aGluZyBsaWtlDQo+IGh0dHBzOi8vZ2l0aHViLmNvbS9v
-cGVuZW1iZWRkZWQvb3BlbmVtYmVkZGVkLQ0KPiBjb3JlL2NvbXBhcmUvbWFzdGVyLi4ua2VyZ290
-aDpweXRob24tc3lzY29uZmlnID8gaSdsbCBtdWxsIGl0IG92ZXIuIG1ha2VzDQo+IHNlbnNlLCB0
-aG91Z2guIHdlIHJlbmFtZSBfc3lzY29uZmlnIG9ubHkgZm9yIHRoZSBweXRob24zLW5hdGl2ZSBy
-ZWNpcGUsDQo+IHNvIGl0J2QgbWFrZSBzZW5zZSBmb3IgdXMgdG8gb25seSBjaGFuZ2UgdGhhdCBu
-YW1lIGZvciBvdXIgcHl0aG9uLCBub3QNCj4gYW55IHB5dGhvbiBydW4gZnJvbSB0aGUgdGFzaw0K
-PiA+ICgyMzoyMTo0OSkga2VyZ290aDogX3N5c2NvbmZpZ2RhdGEsIHRoYXQgaXMNCj4gPiAoMjM6
-NDY6MzUpIFJQOiBrZXJnb3RoOiBzb21ldGhpbmcgbGlrZSB0aGF0IHdvdWxkIG1ha2Ugc2Vuc2Us
-IHllcw0KPiA+DQo+ID4gQ2hyaXM6IERpZCB5b3UgY29tZSB0byBhbnkgY29uY2x1c2lvbj8NCj4g
-DQo+IEkgdGVzdGVkIHRoZSBpbml0aWFsIGxpbmtlZCBwcm90b3R5cGUgYnV0IGl0IGNhdXNlZCBm
-YWlsdXJlcyBpbiB0aGUgZ2xpYg0KPiBidWlsZCBzbyBpdCBtdXN0IGhhdmUgYmVlbiBtaXNzaW5n
-IHNvbWV0aGluZy4gSSBoYXZlbuKAmXQgaGFkIHRpbWUgdGhpcw0KPiB3ZWVrIHRvIGxvb2sgYmFj
-ayBpbnRvIGl0IHlldC4NCj4gDQo+ID4gRG9lcyBzb21lb25lIHdhbnQgdG8gc2VuZCBhIHBhdGNo
-Pw0KPiA+DQo+ID4gQ2hlZXJzLA0KPiA+DQo+ID4gUmljaGFyZA0KDQpXYXMgdGhlcmUgYW55IHBy
-b2dyZXNzIG9uIHRoaXM/IEkgZ3Vlc3MgdGhlIGZhaWx1cmVzIGluIGdsaWIgc3RlbXMgZnJvbSBp
-dCANCnVuc2V0dGluZyBfUFlUSE9OX1NZU0NPTkZJR0RBVEFfTkFNRSwgd2hpY2ggZG9lc24ndCBo
-YXZlIGFueSBlZmZlY3Qgd2hlbiANCml0IGlzIHNldCB2aWEgdGhlIHdyYXBwZXIuIFRoZXJlIGFy
-ZSBhIGNvdXBsZSBvZiByZWNpcGVzIGFuZCBiYmNsYXNzZXMgDQp0aGF0IGRvIHRoaXMuDQoNCi8v
-UGV0ZXINCg0K
+Backport the CVE patch from the upstream:
+https://github.com/kubernetes/kubernetes.git
+
+Signed-off-by: Zhixiong Chi <zhixiong.chi@windriver.com>
+---
+ .../kubernetes/kubernetes/CVE-2020-8555.patch | 324 ++++++++++++++++++
+ .../kubernetes/kubernetes_git.bb              |   1 +
+ 2 files changed, 325 insertions(+)
+ create mode 100644 recipes-containers/kubernetes/kubernetes/CVE-2020-8555.patch
+
+diff --git a/recipes-containers/kubernetes/kubernetes/CVE-2020-8555.patch b/recipes-containers/kubernetes/kubernetes/CVE-2020-8555.patch
+new file mode 100644
+index 0000000..c6f8e24
+--- /dev/null
++++ b/recipes-containers/kubernetes/kubernetes/CVE-2020-8555.patch
+@@ -0,0 +1,324 @@
++From 830811b331c47b9b03c60f9156cea02698fa9e20 Mon Sep 17 00:00:00 2001
++From: Michelle Au <msau@google.com>
++Date: Thu, 2 Apr 2020 13:47:56 -0700
++Subject: [PATCH] Clean up event messages for errors.
++
++Change-Id: Ib70b50e676b917c4d976f32ee7a19f8fc63b6bc6
++
++CVE: CVE-2020-8555
++Upstream-Status: Backport [https://github.com/kubernetes/kubernetes.git branch: release-1.16]
++Signed-off-by: Zhixiong Chi <zhixiong.chi@windriver.com>
++---
++ src/import/pkg/volume/glusterfs/glusterfs.go      | 30 +++++++----
++ src/import/pkg/volume/quobyte/quobyte.go          | 13 ++++-
++ src/import/pkg/volume/scaleio/sio_client.go       | 71 ++++++++++++++++++--------
++ src/import/pkg/volume/storageos/storageos_util.go | 12 +++--
++ 4 files changed, 91 insertions(+), 35 deletions(-)
++
++diff --git a/src/import/pkg/volume/glusterfs/glusterfs.go b/src/import/pkg/volume/glusterfs/glusterfs.go
++index 52ff8cb1328..dd543c4625b 100644
++--- a/src/import/pkg/volume/glusterfs/glusterfs.go
+++++ b/src/import/pkg/volume/glusterfs/glusterfs.go
++@@ -672,8 +672,9 @@ func (d *glusterfsVolumeDeleter) Delete() error {
++ 	err = cli.VolumeDelete(volumeID)
++ 	if err != nil {
++ 		if dstrings.TrimSpace(err.Error()) != errIDNotFound {
++-			klog.Errorf("failed to delete volume %s: %v", volumeName, err)
++-			return fmt.Errorf("failed to delete volume %s: %v", volumeName, err)
+++			// don't log error details from client calls in events
+++			klog.V(4).Infof("failed to delete volume %s: %v", volumeName, err)
+++			return fmt.Errorf("failed to delete volume: see kube-controller-manager.log for details")
++ 		}
++ 		klog.V(2).Infof("volume %s not present in heketi, ignoring", volumeName)
++ 	}
++@@ -818,7 +819,9 @@ func (p *glusterfsVolumeProvisioner) CreateVolume(gid int) (r *v1.GlusterfsPersi
++ 	volumeReq := &gapi.VolumeCreateRequest{Size: sz, Name: customVolumeName, Clusters: clusterIDs, Gid: gid64, Durability: p.volumeType, GlusterVolumeOptions: p.volumeOptions, Snapshot: snaps}
++ 	volume, err := cli.VolumeCreate(volumeReq)
++ 	if err != nil {
++-		return nil, 0, "", fmt.Errorf("failed to create volume: %v", err)
+++		// don't log error details from client calls in events
+++		klog.V(4).Infof("failed to create volume: %v", err)
+++		return nil, 0, "", fmt.Errorf("failed to create volume: see kube-controller-manager.log for details")
++ 	}
++ 	klog.V(1).Infof("volume with size %d and name %s created", volume.Size, volume.Name)
++ 	volID = volume.Id
++@@ -839,7 +842,8 @@ func (p *glusterfsVolumeProvisioner) CreateVolume(gid int) (r *v1.GlusterfsPersi
++ 	if err != nil {
++ 		deleteErr := cli.VolumeDelete(volume.Id)
++ 		if deleteErr != nil {
++-			klog.Errorf("failed to delete volume: %v, manual deletion of the volume required", deleteErr)
+++			// don't log error details from client calls in events
+++			klog.V(4).Infof("failed to delete volume: %v, manual deletion of the volume required", deleteErr)
++ 		}
++ 		klog.V(3).Infof("failed to update endpoint, deleting %s", endpoint)
++ 		err = kubeClient.CoreV1().Services(epNamespace).Delete(epServiceName, nil)
++@@ -957,7 +961,9 @@ func parseSecret(namespace, secretName string, kubeClient clientset.Interface) (
++ func getClusterNodes(cli *gcli.Client, cluster string) (dynamicHostIps []string, err error) {
++ 	clusterinfo, err := cli.ClusterInfo(cluster)
++ 	if err != nil {
++-		return nil, fmt.Errorf("failed to get cluster details: %v", err)
+++		// don't log error details from client calls in events
+++		klog.V(4).Infof("failed to get cluster details: %v", err)
+++		return nil, fmt.Errorf("failed to get cluster details: see kube-controller-manager.log for details")
++ 	}
++ 
++ 	// For the dynamically provisioned volume, we gather the list of node IPs
++@@ -966,7 +972,9 @@ func getClusterNodes(cli *gcli.Client, cluster string) (dynamicHostIps []string,
++ 	for _, node := range clusterinfo.Nodes {
++ 		nodeInfo, err := cli.NodeInfo(string(node))
++ 		if err != nil {
++-			return nil, fmt.Errorf("failed to get host ipaddress: %v", err)
+++			// don't log error details from client calls in events
+++			klog.V(4).Infof("failed to get host ipaddress: %v", err)
+++			return nil, fmt.Errorf("failed to get host ipaddress: see kube-controller-manager.log for details")
++ 		}
++ 		ipaddr := dstrings.Join(nodeInfo.NodeAddRequest.Hostnames.Storage, "")
++ 		dynamicHostIps = append(dynamicHostIps, ipaddr)
++@@ -1210,8 +1218,9 @@ func (plugin *glusterfsPlugin) ExpandVolumeDevice(spec *volume.Spec, newSize res
++ 	//Check the existing volume size
++ 	currentVolumeInfo, err := cli.VolumeInfo(volumeID)
++ 	if err != nil {
++-		klog.Errorf("error when fetching details of volume %s: %v", volumeName, err)
++-		return oldSize, err
+++		// don't log error details from client calls in events
+++		klog.V(4).Infof("error when fetching details of volume %s: %v", volumeName, err)
+++		return oldSize, fmt.Errorf("failed to get volume info %s: see kube-controller-manager.log for details", volumeName)
++ 	}
++ 	if int64(currentVolumeInfo.Size) >= requestGiB {
++ 		return newSize, nil
++@@ -1223,8 +1232,9 @@ func (plugin *glusterfsPlugin) ExpandVolumeDevice(spec *volume.Spec, newSize res
++ 	// Expand the volume
++ 	volumeInfoRes, err := cli.VolumeExpand(volumeID, volumeExpandReq)
++ 	if err != nil {
++-		klog.Errorf("failed to expand volume %s: %v", volumeName, err)
++-		return oldSize, err
+++		// don't log error details from client calls in events
+++		klog.V(4).Infof("failed to expand volume %s: %v", volumeName, err)
+++		return oldSize, fmt.Errorf("failed to expand volume: see kube-controller-manager.log for details")
++ 	}
++ 	klog.V(2).Infof("volume %s expanded to new size %d successfully", volumeName, volumeInfoRes.Size)
++ 	newVolumeSize := resource.MustParse(fmt.Sprintf("%dGi", volumeInfoRes.Size))
++diff --git a/src/import/pkg/volume/quobyte/quobyte.go b/src/import/pkg/volume/quobyte/quobyte.go
++index 3cfc7a800ec..f7e0e31e63b 100644
++--- a/src/import/pkg/volume/quobyte/quobyte.go
+++++ b/src/import/pkg/volume/quobyte/quobyte.go
++@@ -17,6 +17,7 @@ limitations under the License.
++ package quobyte
++ 
++ import (
+++	"errors"
++ 	"fmt"
++ 	"os"
++ 	"path/filepath"
++@@ -416,7 +417,9 @@ func (provisioner *quobyteVolumeProvisioner) Provision(selectedNode *v1.Node, al
++ 
++ 	vol, sizeGB, err := manager.createVolume(provisioner, createQuota)
++ 	if err != nil {
++-		return nil, err
+++		// don't log error details from client calls in events
+++		klog.V(4).Infof("CreateVolume failed: %v", err)
+++		return nil, errors.New("CreateVolume failed: see kube-controller-manager.log for details")
++ 	}
++ 	pv := new(v1.PersistentVolume)
++ 	metav1.SetMetaDataAnnotation(&pv.ObjectMeta, util.VolumeDynamicallyCreatedByKey, "quobyte-dynamic-provisioner")
++@@ -451,7 +454,13 @@ func (deleter *quobyteVolumeDeleter) Delete() error {
++ 	manager := &quobyteVolumeManager{
++ 		config: cfg,
++ 	}
++-	return manager.deleteVolume(deleter)
+++	err = manager.deleteVolume(deleter)
+++	if err != nil {
+++		// don't log error details from client calls in events
+++		klog.V(4).Infof("DeleteVolume failed: %v", err)
+++		return errors.New("DeleteVolume failed: see kube-controller-manager.log for details")
+++	}
+++	return nil
++ }
++ 
++ // Parse API configuration (url, username and password) out of class.Parameters.
++diff --git a/src/import/pkg/volume/scaleio/sio_client.go b/src/import/pkg/volume/scaleio/sio_client.go
++index bc9b9868f7b..2f8c652dd8b 100644
++--- a/src/import/pkg/volume/scaleio/sio_client.go
+++++ b/src/import/pkg/volume/scaleio/sio_client.go
++@@ -126,8 +126,9 @@ func (c *sioClient) init() error {
++ 			Username: c.username,
++ 			Password: c.password},
++ 	); err != nil {
++-		klog.Error(log("client authentication failed: %v", err))
++-		return err
+++		// don't log error details from client calls in events
+++		klog.V(4).Infof(log("client authentication failed: %v", err))
+++		return errors.New("client authentication failed")
++ 	}
++ 
++ 	// retrieve system
++@@ -214,8 +215,9 @@ func (c *sioClient) CreateVolume(name string, sizeGB int64) (*siotypes.Volume, e
++ 	}
++ 	createResponse, err := c.client.CreateVolume(params, c.storagePool.Name)
++ 	if err != nil {
++-		klog.Error(log("failed to create volume %s: %v", name, err))
++-		return nil, err
+++		// don't log error details from client calls in events
+++		klog.V(4).Infof(log("failed to create volume %s: %v", name, err))
+++		return nil, errors.New("failed to create volume: see kubernetes logs for details")
++ 	}
++ 	return c.Volume(sioVolumeID(createResponse.ID))
++ }
++@@ -243,8 +245,9 @@ func (c *sioClient) AttachVolume(id sioVolumeID, multipleMappings bool) error {
++ 	volClient.Volume = &siotypes.Volume{ID: string(id)}
++ 
++ 	if err := volClient.MapVolumeSdc(params); err != nil {
++-		klog.Error(log("failed to attach volume id %s: %v", id, err))
++-		return err
+++		// don't log error details from client calls in events
+++		klog.V(4).Infof(log("failed to attach volume id %s: %v", id, err))
+++		return errors.New("failed to attach volume: see kubernetes logs for details")
++ 	}
++ 
++ 	klog.V(4).Info(log("volume %s attached successfully", id))
++@@ -269,7 +272,9 @@ func (c *sioClient) DetachVolume(id sioVolumeID) error {
++ 	volClient := sio.NewVolume(c.client)
++ 	volClient.Volume = &siotypes.Volume{ID: string(id)}
++ 	if err := volClient.UnmapVolumeSdc(params); err != nil {
++-		return err
+++		// don't log error details from client calls in events
+++		klog.V(4).Infof(log("failed to detach volume id %s: %v", id, err))
+++		return errors.New("failed to detach volume: see kubernetes logs for details")
++ 	}
++ 	return nil
++ }
++@@ -287,7 +292,9 @@ func (c *sioClient) DeleteVolume(id sioVolumeID) error {
++ 	volClient := sio.NewVolume(c.client)
++ 	volClient.Volume = vol
++ 	if err := volClient.RemoveVolume("ONLY_ME"); err != nil {
++-		return err
+++		// don't log error details from client calls in events
+++		klog.V(4).Infof(log("failed to remove volume id %s: %v", id, err))
+++		return errors.New("failed to remove volume: see kubernetes logs for details")
++ 	}
++ 	return nil
++ }
++@@ -306,8 +313,9 @@ func (c *sioClient) IID() (string, error) {
++ 		}
++ 		sdc, err := c.sysClient.FindSdc("SdcGUID", guid)
++ 		if err != nil {
++-			klog.Error(log("failed to retrieve sdc info %s", err))
++-			return "", err
+++			// don't log error details from client calls in events
+++			klog.V(4).Infof(log("failed to retrieve sdc info %s", err))
+++			return "", errors.New("failed to retrieve sdc info: see kubernetes logs for details")
++ 		}
++ 		c.instanceID = sdc.Sdc.ID
++ 		klog.V(4).Info(log("retrieved instanceID %s", c.instanceID))
++@@ -472,12 +480,15 @@ func (c *sioClient) WaitForDetachedDevice(token string) error {
++ // ***********************************************************************
++ func (c *sioClient) findSystem(sysname string) (sys *siotypes.System, err error) {
++ 	if c.sysClient, err = c.client.FindSystem("", sysname, ""); err != nil {
++-		return nil, err
+++		// don't log error details from clients in events
+++		klog.V(4).Infof(log("failed to find system %q: %v", sysname, err))
+++		return nil, errors.New("failed to find system: see kubernetes logs for details")
++ 	}
++ 	systems, err := c.client.GetInstance("")
++ 	if err != nil {
++-		klog.Error(log("failed to retrieve instances: %v", err))
++-		return nil, err
+++		// don't log error details from clients in events
+++		klog.V(4).Infof(log("failed to retrieve instances: %v", err))
+++		return nil, errors.New("failed to retrieve instances: see kubernetes logs for details")
++ 	}
++ 	for _, sys = range systems {
++ 		if sys.Name == sysname {
++@@ -493,8 +504,9 @@ func (c *sioClient) findProtectionDomain(pdname string) (*siotypes.ProtectionDom
++ 	if c.sysClient != nil {
++ 		protectionDomain, err := c.sysClient.FindProtectionDomain("", pdname, "")
++ 		if err != nil {
++-			klog.Error(log("failed to retrieve protection domains: %v", err))
++-			return nil, err
+++			// don't log error details from clients in events
+++			klog.V(4).Infof(log("failed to retrieve protection domains: %v", err))
+++			return nil, errors.New("failed to retrieve protection domains: see kubernetes logs for details")
++ 		}
++ 		c.pdClient.ProtectionDomain = protectionDomain
++ 		return protectionDomain, nil
++@@ -508,8 +520,9 @@ func (c *sioClient) findStoragePool(spname string) (*siotypes.StoragePool, error
++ 	if c.pdClient != nil {
++ 		sp, err := c.pdClient.FindStoragePool("", spname, "")
++ 		if err != nil {
++-			klog.Error(log("failed to retrieve storage pool: %v", err))
++-			return nil, err
+++			// don't log error details from clients in events
+++			klog.V(4).Infof(log("failed to retrieve storage pool: %v", err))
+++			return nil, errors.New("failed to retrieve storage pool: see kubernetes logs for details")
++ 		}
++ 		c.spClient.StoragePool = sp
++ 		return sp, nil
++@@ -519,14 +532,32 @@ func (c *sioClient) findStoragePool(spname string) (*siotypes.StoragePool, error
++ }
++ 
++ func (c *sioClient) getVolumes() ([]*siotypes.Volume, error) {
++-	return c.client.GetVolume("", "", "", "", true)
+++	volumes, err := c.client.GetVolume("", "", "", "", true)
+++	if err != nil {
+++		// don't log error details from clients in events
+++		klog.V(4).Infof(log("failed to get volumes: %v", err))
+++		return nil, errors.New("failed to get volumes: see kubernetes logs for details")
+++	}
+++	return volumes, nil
++ }
++ func (c *sioClient) getVolumesByID(id sioVolumeID) ([]*siotypes.Volume, error) {
++-	return c.client.GetVolume("", string(id), "", "", true)
+++	volumes, err := c.client.GetVolume("", string(id), "", "", true)
+++	if err != nil {
+++		// don't log error details from clients in events
+++		klog.V(4).Infof(log("failed to get volumes by id: %v", err))
+++		return nil, errors.New("failed to get volumes by id: see kubernetes logs for details")
+++	}
+++	return volumes, nil
++ }
++ 
++ func (c *sioClient) getVolumesByName(name string) ([]*siotypes.Volume, error) {
++-	return c.client.GetVolume("", "", "", name, true)
+++	volumes, err := c.client.GetVolume("", "", "", name, true)
+++	if err != nil {
+++		// don't log error details from clients in events
+++		klog.V(4).Infof(log("failed to get volumes by name: %v", err))
+++		return nil, errors.New("failed to get volumes by name: see kubernetes logs for details")
+++	}
+++	return volumes, nil
++ }
++ 
++ func (c *sioClient) getSdcPath() string {
++diff --git a/src/import/pkg/volume/storageos/storageos_util.go b/src/import/pkg/volume/storageos/storageos_util.go
++index c7f430ea5d4..d62cae66788 100644
++--- a/src/import/pkg/volume/storageos/storageos_util.go
+++++ b/src/import/pkg/volume/storageos/storageos_util.go
++@@ -128,8 +128,9 @@ func (u *storageosUtil) CreateVolume(p *storageosProvisioner) (*storageosVolume,
++ 
++ 	vol, err := u.api.VolumeCreate(opts)
++ 	if err != nil {
++-		klog.Errorf("volume create failed for volume %q (%v)", opts.Name, err)
++-		return nil, err
+++		// don't log error details from client calls in events
+++		klog.V(4).Infof("volume create failed for volume %q (%v)", opts.Name, err)
+++		return nil, errors.New("volume create failed: see kube-controller-manager.log for details")
++ 	}
++ 	return &storageosVolume{
++ 		ID:          vol.ID,
++@@ -294,7 +295,12 @@ func (u *storageosUtil) DeleteVolume(d *storageosDeleter) error {
++ 		Namespace: d.volNamespace,
++ 		Force:     true,
++ 	}
++-	return u.api.VolumeDelete(opts)
+++	if err := u.api.VolumeDelete(opts); err != nil {
+++		// don't log error details from client calls in events
+++		klog.V(4).Infof("volume deleted failed for volume %q in namespace %q: %v", d.volName, d.volNamespace, err)
+++		return errors.New("volume delete failed: see kube-controller-manager.log for details")
+++	}
+++	return nil
++ }
++ 
++ // Get the node's device path from the API, falling back to the default if not
++-- 
++2.17.0
++
+diff --git a/recipes-containers/kubernetes/kubernetes_git.bb b/recipes-containers/kubernetes/kubernetes_git.bb
+index c378ccc..e96b7d6 100644
+--- a/recipes-containers/kubernetes/kubernetes_git.bb
++++ b/recipes-containers/kubernetes/kubernetes_git.bb
+@@ -14,6 +14,7 @@ SRC_URI = "git://github.com/kubernetes/kubernetes.git;branch=release-1.16;name=k
+            file://0001-fix-compiling-failure-execvp-bin-bash-Argument-list-.patch \
+            file://CVE-2020-8551.patch \
+            file://CVE-2020-8552.patch \
++           file://CVE-2020-8555.patch \
+           "
+ 
+ DEPENDS += "rsync-native \
+-- 
+2.17.1
+
