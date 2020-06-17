@@ -1,56 +1,108 @@
-Received: from smtpcmd0871.aruba.it (smtpcmd0871.aruba.it [62.149.156.71])
- by mx.groups.io with SMTP id smtpd.web11.6001.1592395522681444671
- for <yocto@lists.yoctoproject.org>;
- Wed, 17 Jun 2020 05:05:24 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@aruba.it header.s=a1 header.b=DxoCX6LR;
- spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 62.149.156.71, mailfrom: mauro@faresoftware.it)
-Received: from [192.168.24.172] ([93.38.119.136])
-	by smtpcmd08.ad.aruba.it with bizsmtp
-	id sC5L2201a2wfazh01C5LNP; Wed, 17 Jun 2020 14:05:21 +0200
+Subject: Re: Enable systemd service with unit template instance on startup
 To: yocto@lists.yoctoproject.org
-From: "Mauro Ziliani" <mauro@faresoftware.it>
-Subject: Missing artifact with wic create -e <image> <wks>
-Message-ID: <7ad4a5c2-5458-60aa-0c1b-b01c130fe7a1@faresoftware.it>
-Date: Wed, 17 Jun 2020 14:05:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+From: "Robert Varga" <robert.varga@getinge.com>
+X-Originating-Location: Ulm, Baden-WÃ¼rttemberg, DE (217.240.134.124)
+X-Originating-Platform: Windows Chrome 81
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
-	t=1592395521; bh=Jrs/xQ6vrKA5cuiTMmuCvhKX3y4n9OXuFWNLCoRfehc=;
-	h=To:From:Subject:Date:MIME-Version:Content-Type;
-	b=DxoCX6LRRTpUHi4OX6k6LJu8qNVTHkkQVhFThwaMGmc0c6wkvK2xh4LGvr9z3IG0T
-	 VAIySdCbKcZUOOnZs8z0APa7J6NuNnirnhkSlqWj6eyrDnOOUGymGrPw43onbS0XVP
-	 fSIDBL2koNSV6ronWnXhbjT2k581tusfEuV0Fvsk+ZekZc3ez5GxkBSWUvNhu4teKn
-	 HYT/xRXkEkNpFTqpZGjuqNrOPOuAqay99czmoVwZ6qSmEY+3+rUKbs3ALpy0+oFToG
-	 xyc9bS/5+PgbT2U4l2vM5+NPzus6VttzmNDYuYCT/w6QpbxfCTZ3AtDaSiZu3V/o2A
-	 /zzA2BvWzMefQ==
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: it
+Date: Wed, 17 Jun 2020 05:13:33 -0700
+References: <AM0PR03MB37142015675C68049E2FA92FFE9A0@AM0PR03MB3714.eurprd03.prod.outlook.com>
+In-Reply-To: <AM0PR03MB37142015675C68049E2FA92FFE9A0@AM0PR03MB3714.eurprd03.prod.outlook.com>
+Message-ID: <14900.1592396013932940523@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="3t1MQMdhtWZN3nTVmpLW"
 
-Hi all.
+--3t1MQMdhtWZN3nTVmpLW
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-When I try to build an image with wic I get always this error
+>=20
+>=20
+>=20
+> Why is
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+> SYSTEMD_SERVICE_${PN} =3D " \
+>=20
+>=20
+>=20
+> can@... ( can@... ) \
+>=20
+>=20
+>=20
+> "
+>=20
+>=20
+>=20
+> and not
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+> SYSTEMD_SERVICE_${PN} =3D " \
+>=20
+>=20
+>=20
+> can@.service \
+>=20
+>=20
+>=20
+> "
+>=20
+>=20
+>=20
 
-NOTE: Executing Tasks
-NOTE: Setscene tasks completed
-NOTE: Tasks Summary: Attempted 1355 tasks of which 1355 didn't need to 
-be rerun and all succeeded.
-INFO: Build artifacts not found, exiting.
-INFO:   (Please check that the build artifacts for the machine
-INFO:    selected in local.conf actually exist and that they
-INFO:    are the correct artifacts for the image (.wks file)).
+This is because I want bitbake to create an instance of the template unit =
+file (can@.service) with the parameter "can0" which is then passed to the t=
+emplate unit file. This corresponds to calling following in a console.
 
-ERROR: ("The artifact that couldn't be found was %s:\n %s", 
-'rootfs-dir', 
-'/home/mauro/yocto/zeus/epilmax-build/tmp-glibc/work/geode_lx500-oe-linux/epilmax-image/1.0-r0/rootfs')
+systemctl enable can@can0.service
 
+--3t1MQMdhtWZN3nTVmpLW
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-The epilmax-imagr/1.0-r0/rootfs doesn't exists
+<blockquote>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US">=
+Why is</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US">=
+=
+=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US">=
+SYSTEMD_SERVICE_${PN} =3D &#34; \</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US">=
+=
+=C2=A0=C2=A0</span><span lang=3D"DE"><a href=3D"mailto:can@..." target=3D"=
+_blank" rel=3D"nofollow noopener"><span lang=3D"EN-US">can@...</span></a></=
+span><span lang=3D"EN-US">=C2=A0\</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"DE">&#3=
+4;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US">=
+=
+=C2=A0</span><span lang=3D"EN-US">and not</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US">=
+=
+=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US">=
+SYSTEMD_SERVICE_${PN} =3D &#34; \</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US">=
+=
+=C2=A0=C2=A0<a href=3D"mailto:can@.service" target=3D"_blank" rel=3D"nofol=
+low noopener">can@.service</a>=C2=A0\</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"DE">&#3=
+4;<br/></span></p>
+</blockquote>
+This is because I want bitbake to create an instance of the template unit =
+file (can@.service) with the parameter &#34;can0&#34; which is then passed =
+to the template unit file. This corresponds to calling following in a conso=
+le.<br/><br/>systemctl enable <a href=3D"mailto:can@can0.service" target=3D=
+"_blank" rel=3D"noopener">can@can0.service</a>
 
-
-Which is my error?
-
-Mauro
-
+--3t1MQMdhtWZN3nTVmpLW--
