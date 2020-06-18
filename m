@@ -1,149 +1,103 @@
-Subject: #yocto - meta-anaconda installer gives "An unknown error has occurred"
-To: yocto@lists.yoctoproject.org
-From: srijan.nandi@gmail.com
-X-Originating-Location: Ahmedabad, Gujarat, IN (14.102.160.178)
-X-Originating-Platform: Mac Safari 13.1
-User-Agent: GROUPS.IO Web Poster
+Received: from mail.optimcloud.com (mail.optimcloud.com [46.23.86.243])
+ by mx.groups.io with SMTP id smtpd.web11.11310.1592496758573637506
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 18 Jun 2020 09:12:39 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=none, err=SPF record not found (domain: optimcloud.com, ip: 46.23.86.243, mailfrom: yocto@optimcloud.com)
+Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
+	by mail.optimcloud.com (Postfix) with ESMTPA id 2B2518002B
+	for <yocto@lists.yoctoproject.org>; Thu, 18 Jun 2020 16:12:34 +0000 (UTC)
 MIME-Version: 1.0
-Date: Thu, 18 Jun 2020 08:28:20 -0700
-Message-ID: <zfUG.1592494100488823620.BO2C@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="SSelPirxGoQsDyppPe7t"
+Date: Thu, 18 Jun 2020 23:12:33 +0700
+From: "Yocto" <yocto@optimcloud.com>
+To: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] #yocto - meta-anaconda installer gives "An unknown error has occurred"
+In-Reply-To: <zfUG.1592494100488823620.BO2C@lists.yoctoproject.org>
+References: <zfUG.1592494100488823620.BO2C@lists.yoctoproject.org>
+Message-ID: <ddd6238faab99c6a0e5cf5edfa27915e@optimcloud.com>
+X-Sender: yocto@optimcloud.com
+Authentication-Results: mail.optimcloud.com;
+	auth=pass smtp.auth=yocto@optimcloud.com smtp.mailfrom=yocto@optimcloud.com
+X-Spamd-Bar: /
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
---SSelPirxGoQsDyppPe7t
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On 2020-06-18 22:28, srijan.nandi@gmail.com wrote:
+> Hello all,
+> 
+> I created a core-image-full-cmdline for genericx86-64 machine. I am
+> trying to configure meta-anaconda with it. I have used the following
+> bblayers.conf file and added the requirements in the local.conf file.
+> 
 
-Hello all,
+I was recently able to build and boot an x86_64 image and install it via 
+anaconda from dunfell layer on real hardware and in XenServer
+i did notice depending on the vm template used some would error, 
+centos/ununtu templates appeared ok, though not sure if you have
+templates for os installs in vmware, never used it.
 
-I created a core-image-full-cmdline for genericx86-64 machine. I am trying=
- to configure meta-anaconda with it. I have used the following bblayers.con=
-f file and added the requirements in the local.conf file.
-
-1. Target Build:
-bblayers.conf:
-BBLAYERS ?=3D " \
-/opt/graylog-poky/meta \
-/opt/graylog-poky/meta-poky \
-/opt/graylog-poky/meta-yocto-bsp \
-/opt/graylog-poky/meta-graylog \
-/opt/graylog-poky/meta-openembedded/meta-oe \
-/opt/graylog-poky/meta-openembedded/meta-python \
-/opt/graylog-poky/meta-openembedded/meta-networking \
-/opt/graylog-poky/meta-openembedded/meta-gnome \
-/opt/graylog-poky/meta-openembedded/meta-filesystems \
-/opt/graylog-poky/meta-openembedded/meta-initramfs \
-/opt/graylog-poky/meta-anaconda \
-"
-local.conf file:
-PACKAGE_CLASSES ?=3D "package_deb package_rpm"
-DISTRO_FEATURES_append =3D " systemd keyboard ldconfig pam"
-EXTRA_IMAGE_FEATURES_append =3D " package-management ssh-server-openssh"
-CORE_IMAGE_EXTRA_INSTALL_append =3D " kernel-modules iptables bash vim par=
-ted tcpdump dhcp-server dhcp-client"
-VIRTUAL-RUNTIME_init_manager =3D "systemd"
-DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"
-VIRTUAL-RUNTIME_initscripts =3D ""
-IMAGE_FSTYPES =3D "ext4 iso wic wic.vmdk"
-
-The target directory is /opt/graylog-poky/build.
-
-Then I created the install build with the following bblayers.conf and loca=
-l.conf with the following customizations
-
-bblayers.conf:
-BBLAYERS ?=3D " \
-/opt/graylog-poky/meta \
-/opt/graylog-poky/meta-poky \
-/opt/graylog-poky/meta-yocto-bsp \
-/opt/graylog-poky/meta-graylog \
-/opt/graylog-poky/meta-openembedded/meta-oe \
-/opt/graylog-poky/meta-openembedded/meta-python \
-/opt/graylog-poky/meta-openembedded/meta-networking \
-/opt/graylog-poky/meta-openembedded/meta-gnome \
-/opt/graylog-poky/meta-openembedded/meta-filesystems \
-/opt/graylog-poky/meta-openembedded/meta-initramfs \
-/opt/graylog-poky/meta-anaconda \
-"
-
-local.conf:
-MACHINE ??=3D "qemux86-64"
-PACKAGE_CLASSES ?=3D "package_ipk"
-PACKAGE_CLASSES =3D "package_rpm"
-DISTRO =3D "anaconda"
-INSTALLER_TARGET_IMAGE =3D "core-image-full-cmdline"
-INSTALLER_TARGET_BUILD =3D "/opt/graylog-poky/build"
-
-It gave me an iso, when I try to boot in a vmware or on a virtualbox with =
-the iso, it boots up and then after opening up the anaconda installer it co=
-mes up with the error message "An unknown error has occurred" and it hangs =
-on the screen.
-
-Any help will be highly appreciated.
-
-Also would like to know if it is possible to boot an x86-64 using the abov=
-e method.
-
---SSelPirxGoQsDyppPe7t
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello all,<br /><br />I created a core-image-full-cmdline for genericx86-64=
- machine. I am trying to configure meta-anaconda with it. I have used the f=
-ollowing bblayers.conf file and added the requirements in the local.conf fi=
-le.<br /><br />1. Target Build:<br />bblayers.conf:<br />
-<div>BBLAYERS ?=3D " \</div>
-<div>&nbsp; /opt/graylog-poky/meta \</div>
-<div>&nbsp; /opt/graylog-poky/meta-poky \</div>
-<div>&nbsp; /opt/graylog-poky/meta-yocto-bsp \</div>
-<div>&nbsp; /opt/graylog-poky/meta-graylog \</div>
-<div>&nbsp; /opt/graylog-poky/meta-openembedded/meta-oe \</div>
-<div>&nbsp; /opt/graylog-poky/meta-openembedded/meta-python \</div>
-<div>&nbsp; /opt/graylog-poky/meta-openembedded/meta-networking \</div>
-<div>&nbsp; /opt/graylog-poky/meta-openembedded/meta-gnome \</div>
-<div>&nbsp; /opt/graylog-poky/meta-openembedded/meta-filesystems \</div>
-<div>&nbsp; /opt/graylog-poky/meta-openembedded/meta-initramfs \</div>
-<div>&nbsp; /opt/graylog-poky/meta-anaconda \<br />"<br />local.conf file:=
-<br />
-<div>PACKAGE_CLASSES ?=3D "package_deb package_rpm"</div>
-<div>DISTRO_FEATURES_append =3D " systemd keyboard ldconfig pam"</div>
-<div>EXTRA_IMAGE_FEATURES_append =3D " package-management ssh-server-opens=
-sh"</div>
-<div>CORE_IMAGE_EXTRA_INSTALL_append =3D " kernel-modules iptables bash vi=
-m parted tcpdump dhcp-server dhcp-client"</div>
-<div>VIRTUAL-RUNTIME_init_manager =3D "systemd"</div>
-<div>DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"</div>
-<div>VIRTUAL-RUNTIME_initscripts =3D ""</div>
-<div>IMAGE_FSTYPES =3D "ext4 iso wic wic.vmdk"<br /><br />The target direc=
-tory is /opt/graylog-poky/build.<br /><br />Then I created the install buil=
-d with the following bblayers.conf and local.conf with the following custom=
-izations<br /><br />bblayers.conf:<br />
-<div>BBLAYERS ?=3D " \</div>
-<div>&nbsp; /opt/graylog-poky/meta \</div>
-<div>&nbsp; /opt/graylog-poky/meta-poky \</div>
-<div>&nbsp; /opt/graylog-poky/meta-yocto-bsp \</div>
-<div>&nbsp; /opt/graylog-poky/meta-graylog \</div>
-<div>&nbsp; /opt/graylog-poky/meta-openembedded/meta-oe \</div>
-<div>&nbsp; /opt/graylog-poky/meta-openembedded/meta-python \</div>
-<div>&nbsp; /opt/graylog-poky/meta-openembedded/meta-networking \</div>
-<div>&nbsp; /opt/graylog-poky/meta-openembedded/meta-gnome \</div>
-<div>&nbsp; /opt/graylog-poky/meta-openembedded/meta-filesystems \</div>
-<div>&nbsp; /opt/graylog-poky/meta-openembedded/meta-initramfs \</div>
-<div>&nbsp; /opt/graylog-poky/meta-anaconda \</div>
-<div>&nbsp; "</div>
-</div>
-</div>
-<br />local.conf:<br />MACHINE ??=3D "qemux86-64"<br />PACKAGE_CLASSES ?=
-=3D "package_ipk"<br />
-<div>PACKAGE_CLASSES =3D "package_rpm"</div>
-<div>DISTRO =3D "anaconda"</div>
-<div>INSTALLER_TARGET_IMAGE =3D "core-image-full-cmdline"</div>
-<div>INSTALLER_TARGET_BUILD =3D "/opt/graylog-poky/build"<br /><br />It ga=
-ve me an iso, when I try to boot in a vmware or on a virtualbox with the is=
-o, it boots up and then after opening up the anaconda installer it comes up=
- with the error message "An unknown error has occurred" and it hangs on the=
- screen.</div>
-<div>&nbsp;</div>
-<div>Any help will be highly appreciated.&nbsp;<br /><br />Also would like=
- to know if it is possible to boot an x86-64 using the above method.</div>
-
---SSelPirxGoQsDyppPe7t--
+> 1. Target Build:
+> bblayers.conf:
+> BBLAYERS ?= " \
+>   /opt/graylog-poky/meta \
+>   /opt/graylog-poky/meta-poky \
+>   /opt/graylog-poky/meta-yocto-bsp \
+>   /opt/graylog-poky/meta-graylog \
+>   /opt/graylog-poky/meta-openembedded/meta-oe \
+>   /opt/graylog-poky/meta-openembedded/meta-python \
+>   /opt/graylog-poky/meta-openembedded/meta-networking \
+>   /opt/graylog-poky/meta-openembedded/meta-gnome \
+>   /opt/graylog-poky/meta-openembedded/meta-filesystems \
+>   /opt/graylog-poky/meta-openembedded/meta-initramfs \
+>   /opt/graylog-poky/meta-anaconda \
+> "
+> local.conf file:
+> PACKAGE_CLASSES ?= "package_deb package_rpm"
+> DISTRO_FEATURES_append = " systemd keyboard ldconfig pam"
+> EXTRA_IMAGE_FEATURES_append = " package-management ssh-server-openssh"
+> 
+> CORE_IMAGE_EXTRA_INSTALL_append = " kernel-modules iptables bash vim
+> parted tcpdump dhcp-server dhcp-client"
+> VIRTUAL-RUNTIME_init_manager = "systemd"
+> DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+> VIRTUAL-RUNTIME_initscripts = ""
+> IMAGE_FSTYPES = "ext4 iso wic wic.vmdk"
+> 
+> The target directory is /opt/graylog-poky/build.
+> 
+> Then I created the install build with the following bblayers.conf and
+> local.conf with the following customizations
+> 
+> bblayers.conf:
+> BBLAYERS ?= " \
+>   /opt/graylog-poky/meta \
+>   /opt/graylog-poky/meta-poky \
+>   /opt/graylog-poky/meta-yocto-bsp \
+>   /opt/graylog-poky/meta-graylog \
+>   /opt/graylog-poky/meta-openembedded/meta-oe \
+>   /opt/graylog-poky/meta-openembedded/meta-python \
+>   /opt/graylog-poky/meta-openembedded/meta-networking \
+>   /opt/graylog-poky/meta-openembedded/meta-gnome \
+>   /opt/graylog-poky/meta-openembedded/meta-filesystems \
+>   /opt/graylog-poky/meta-openembedded/meta-initramfs \
+>   /opt/graylog-poky/meta-anaconda \
+>   "
+> local.conf:
+> MACHINE ??= "qemux86-64"
+> PACKAGE_CLASSES ?= "package_ipk"
+> PACKAGE_CLASSES = "package_rpm"
+> DISTRO = "anaconda"
+> INSTALLER_TARGET_IMAGE = "core-image-full-cmdline"
+> INSTALLER_TARGET_BUILD = "/opt/graylog-poky/build"
+> 
+> It gave me an iso, when I try to boot in a vmware or on a virtualbox
+> with the iso, it boots up and then after opening up the anaconda
+> installer it comes up with the error message "An unknown error has
+> occurred" and it hangs on the screen.
+> 
+> Any help will be highly appreciated.
+> 
+> Also would like to know if it is possible to boot an x86-64 using the
+> above method.
+> 
