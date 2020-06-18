@@ -1,172 +1,162 @@
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by mx.groups.io with SMTP id smtpd.web11.1259.1592446637034000969
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.2188.1592464122462139220
  for <yocto@lists.yoctoproject.org>;
- Wed, 17 Jun 2020 19:17:17 -0700
+ Thu, 18 Jun 2020 00:08:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=m6HzRQ1H;
- spf=pass (domain: intel.com, ip: 134.134.136.126, mailfrom: sangeeta.jain@intel.com)
-IronPort-SDR: hNfuMFUVW7M1LLpceH3XiGyBi5LlAKR5kD8Xe2Cv3WFphG2CvlByqt7vZ2d6b3i1grZSoRNcJw
- vl5LuxqYgHWw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jun 2020 19:17:15 -0700
-IronPort-SDR: v4EOb5luiuuU3CILPWK+FZ0iHQKCxP874KCNR4aydX/ImgLEkMRqQIOzKe8AiZp2Iq/KrVXI3V
- Vp74ZAbwFovQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,524,1583222400"; 
-   d="scan'208";a="261889513"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
-  by fmsmga007.fm.intel.com with ESMTP; 17 Jun 2020 19:17:15 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 17 Jun 2020 19:17:15 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 17 Jun 2020 19:17:14 -0700
-Received: from ORSEDG001.ED.cps.intel.com (10.7.248.4) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Wed, 17 Jun 2020 19:17:14 -0700
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com (104.47.37.55) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server (TLS) id
- 14.3.439.0; Wed, 17 Jun 2020 19:17:14 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=btsPIHLEOJK544cjuuBeuJTKsz5KUkXrn5KgyqQ6Vwyf0qbWlMg5KJvNZg7ADbVFK8YeCUyEPT9xxBsAQQ9Uqp3pNg+5SmGySW1r8Ks0tGJGmCPBYrYO4cg7rVS5fWqsvUDpm4/nPjMdv/60zx4ivbDmmyoM6d/YYKeXLrq5qFKnSQzuACpAfAiBMvGCfENZxQPv6vlWgGtw3740NX+hMpL0h0a9li6GpK4jmWDgRTfttGaE2TCuZJV7BEW+EUAvbGnLh2SAB+qzDHB+HCS/Hn/7TggT74cnSFsm/z6vYdtoXGtHwgA2sVyBhPQKgvJvnQSyeNqyZRAr1IrFXpI18A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=osQqT8Z9r4NL1cTp7PpOM73IHrwcGbUW7y+F06u8Xuo=;
- b=m1RQ31MpszQKjQYfsQK3s3eT7mAWrGSxyHzjhBkRqAi2hKHvfiu2asE3gXqDA4nM7KpZJNO0MrXukVoTxKkgavU5mx+MfHS3rhjVZj+m9+UTXcTpTFGh+r632xfE6IVyMUPBeMXclxkQbAffGRfQJAmaSSCPneW9Zln+1FR2dx7xJk2NrzovLrQJJ92zQoK7IH3jSxh+E5ttJ7MSXtt+8/YKtrbYIdGiNpyEk/RdRO8tclJp0fwq4qePIRGCZ7zX6xyYVI8vM2mSeMNcpnDoGOIKDH5gcx2ffL9E+wMZdAw6nE50B0pYiPv/4iK0mJUZT7xr3FlggifXT4kcdbbgBQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=osQqT8Z9r4NL1cTp7PpOM73IHrwcGbUW7y+F06u8Xuo=;
- b=m6HzRQ1HrkNLp7kxkgnKFEW+NlCkkL9J8abiILUvxXEIj7lxY9d3+cV6TddqTH8PY0Neopv7fvDWZD1XZFa2OhWE030SE6bSJ7+Sm+t7tRc89ZPQkNj7Yj800rZdttY35Dzg2TjJXJRpSBezTNSbylAifv6F1uHYqsJz9D7ari8=
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com (2603:10b6:a03:b1::33)
- by BYAPR11MB3719.namprd11.prod.outlook.com (2603:10b6:a03:fa::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.22; Thu, 18 Jun
- 2020 02:17:11 +0000
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::341a:eb30:746f:e614]) by BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::341a:eb30:746f:e614%7]) with mapi id 15.20.3109.021; Thu, 18 Jun 2020
- 02:17:11 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-CC: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
-	"yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
-	<apoorv.sangal@intel.com>, "Chan, Aaron Chun Yew"
-	<aaron.chun.yew.chan@intel.com>, "richard.purdie@linuxfoundation.org"
-	<richard.purdie@linuxfoundation.org>, "akuster808@gmail.com"
-	<akuster808@gmail.com>, "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>
-Subject: Re: QA notification for completed autobuilder build (yocto-3.2_M1.rc1)
-Thread-Topic: QA notification for completed autobuilder build
- (yocto-3.2_M1.rc1)
-Thread-Index: AQHWRQIAe+MWH6/DV0qqE4uEKIJbTKjdoqPQ
-Date: Thu, 18 Jun 2020 02:17:10 +0000
-Message-ID: <BYAPR11MB3624D9BB27F0BEFC9460D8EEE39B0@BYAPR11MB3624.namprd11.prod.outlook.com>
-References: <20200617234936.2991D1438EE@ubuntu2004-ty-1.yocto.io>
-In-Reply-To: <20200617234936.2991D1438EE@ubuntu2004-ty-1.yocto.io>
-Accept-Language: en-US
+ dkim=missing; spf=none, err=SPF record not found (domain: cn.fujitsu.com, ip: 140.211.169.56, mailfrom: zhengrq.fnst@cn.fujitsu.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id E9879E01D22; Thu, 18 Jun 2020 00:08:41 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
+	*      medium trust
+	*      [183.91.158.132 listed in list.dnswl.org]
+Received: from heian.cn.fujitsu.com (mail.cn.fujitsu.com [183.91.158.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B989E01D1C
+	for <yocto@yoctoproject.org>; Thu, 18 Jun 2020 00:08:39 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.73,525,1583164800"; 
+   d="scan'208";a="94794816"
+Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
+  by heian.cn.fujitsu.com with ESMTP; 18 Jun 2020 15:08:36 +0800
+Received: from G08CNEXMBPEKD06.g08.fujitsu.local (unknown [10.167.33.206])
+	by cn.fujitsu.com (Postfix) with ESMTP id 0C26F49B1114;
+	Thu, 18 Jun 2020 15:08:33 +0800 (CST)
+Received: from G08CNEXMBPEKD06.g08.fujitsu.local (10.167.33.206) by
+ G08CNEXMBPEKD06.g08.fujitsu.local (10.167.33.206) with Microsoft SMTP Server
+ (TLS) id 15.0.1497.2; Thu, 18 Jun 2020 15:08:34 +0800
+Received: from G08CNEXMBPEKD06.g08.fujitsu.local ([::1]) by
+ G08CNEXMBPEKD06.g08.fujitsu.local ([fe80::574:467a:eb61:fb9b%14]) with mapi
+ id 15.00.1497.006; Thu, 18 Jun 2020 15:08:34 +0800
+From: "zhengruoqin" <zhengrq.fnst@cn.fujitsu.com>
+To: Stefano Babic <sbabic@denx.de>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+CC: swupdate <swupdate@googlegroups.com>
+Subject: [swupdate] RE: [yocto] [PATCH] [meta-swupdate] Fix build error of dependence.
+Thread-Topic: [swupdate] RE: [yocto] [PATCH] [meta-swupdate] Fix build error
+ of dependence.
+Thread-Index: AQHWRT9Hqh+07mqNz0izZtD1vz9o1Q==
+Date: Thu, 18 Jun 2020 07:08:33 +0000
+Message-ID: <1592464111066.55405@cn.fujitsu.com>
+References: <1591273565-20422-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
+ <b4d88124-4292-d5f2-8275-3c450551844e@denx.de>
+ <2e85067adbff4d4a93bd9acabf8424b2@G08CNEXMBPEKD06.g08.fujitsu.local>,<982020c1-346e-7183-31df-7fe61c898537@denx.de>
+In-Reply-To: <982020c1-346e-7183-31df-7fe61c898537@denx.de>
+Accept-Language: zh-CN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.2.0.6
-dlp-product: dlpe-windows
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=intel.com;
-x-originating-ip: [175.139.89.22]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 92ed0c1f-6684-4a55-aa79-08d8132db577
-x-ms-traffictypediagnostic: BYAPR11MB3719:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BYAPR11MB37197A0E5573F0C87BA52509E39B0@BYAPR11MB3719.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-forefront-prvs: 0438F90F17
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: EyzeQo2VTWrPBZZww1KMHzpHVl9kZoEdD/9UVX16ecWeNBpm1qw7Bj8YQDzTJTFUVJNBsTvpEFVmEjpNpONB+YCx3CF+NBbyi/xlTRwOFBOxfhXluLYX5QPjv5qazW/M/KdfTTjJkApCG26A2VRkWuZbijXtw6StHtH8oTOysb/U8aP76y5bAnfagpP0WDN9ISASPu5MhXdUfXbeYazFPdpfghBnAMmu6bp0CHTbFGqcrW6f+UPRM/nsICyD6aMGPJGdj6oDLgaDjE1qz5Y41CChNiz/M2DfbBkrgyC1lRQ2lsRiF4mOzPub9hz/Px7Jpp/qOn1si/BN+mUdfCgAb8x7Ipk4oR5wMs0V1t3i/W/SA0WBHO34xA7epDBZWp4sASNKkPX0Q4P4lbbIS2UqeA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3624.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(346002)(396003)(136003)(376002)(366004)(39860400002)(316002)(66946007)(186003)(54906003)(66556008)(64756008)(8936002)(76116006)(55236004)(66476007)(66446008)(26005)(2906002)(8676002)(6916009)(33656002)(6506007)(52536014)(83380400001)(7696005)(9686003)(55016002)(71200400001)(86362001)(15650500001)(478600001)(53546011)(4326008)(5660300002)(966005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: d80Z5vCNJcJ1tubRqlBwb951ajhX4VJJgCJzBmWVphvbsH2O00/9pJG0fGzc6Tdz4VUP4jI542VuUdsI7OoA8y/0LaKsgYiJ6SBHlZnl/G+JaQdGlMByba63VtvWAOQfiiVRRvBwG5kxd/lIWoQBQBURk5DPoOIWfnxyJ0NhyOzgOpudBi5k8EnbDwejfJiTLolKT2BLaiFvIY/oaBqOa+Ny2k0k4uFnVgq5UJ3UYBChQQ6CMQNUKjtaZ69DNOofIQWnwRrCt8TS0lQB3LPYgFWp3HSqAnToShiIcXQfEgK5J3r1wF/uxPAeLxVshZRn4kxlWS7K6tLoIUBLMNM0wwSnon3wmz70CmLZHVWJNamTGZLXu/r7zkKuH6cu7Qfn8p2/+2F2A8aoPNN14qGP4BYmPj4qTZc0glkxFTmaNnNSDbz9qIT61TmMItMGi+lQlycVaX4xe/kqvdo+8Qsogu8N30nz/MKEOmC+3KiLe+th9ikzD3u+1iZ3wQpIcoYZ
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.167.33.78]
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 92ed0c1f-6684-4a55-aa79-08d8132db577
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jun 2020 02:17:10.9990
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: c+LDq+PnZPQ6/PgZR/GyYiIqNL/C+Kf6vlWzXG1c6i5hts9kEkw+McK+PzeBFGm13UgumzGVCqhilAZSCdX1lA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3719
-Return-Path: sangeeta.jain@intel.com
-X-OriginatorOrg: intel.com
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-yoursite-MailScanner-ID: 0C26F49B1114.AD553
+X-yoursite-MailScanner: Found to be clean
+X-yoursite-MailScanner-From: zhengrq.fnst@cn.fujitsu.com
+Content-Language: zh-CN
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi all,
-
-Intel and WR YP QA is now running QA execution for YP build yocto-3.2_M1.rc=
-1.
-We are planning to execute following tests for this cycle:
-
-OEQA-manual tests for following module:
-1. OE-Core
-2. BSP-hw
-
-Runtime auto test for following platforms:
-1. MinnowTurbot 32-bit
-2. Coffee Lake
-3. NUC 7
-4. NUC 6
-5. Edgerouter
-6. Beaglebone
-
-ETA for completion is Monday, June 22.
-
-Thanks,
-Sangeeta
-
-> -----Original Message-----
-> From: Pokybuild User <pokybuild@ubuntu2004-ty-1.yocto.io>
-> Sent: Thursday, 18 June, 2020 7:50 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv
-> <apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>;
-> Chan, Aaron Chun Yew <aaron.chun.yew.chan@intel.com>;
-> richard.purdie@linuxfoundation.org; akuster808@gmail.com;
-> sjolley.yp.pm@gmail.com; Jain, Sangeeta <sangeeta.jain@intel.com>
-> Subject: QA notification for completed autobuilder build (yocto-3.2_M1.rc=
-1)
->=20
->=20
-> A build flagged for QA (yocto-3.2_M1.rc1) was completed on the autobuilde=
-r
-> and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.2_M1.rc1
->=20
->=20
-> Build hash information:
->=20
-> bitbake: 7689fa781646039524a655295a884e525ad8732c
-> meta-gplv2: a8da8eb127a56561bf633ab53bec57fb5dbba537
-> meta-intel: 635e8a6892163cc3334a9b947abaca70697d458f
-> meta-mingw: 88f9689f7dd0f634f1ac9a370bdf00585d884206
-> oecore: 878a8561e10017bb91ea42bbbe6d4acfc0985482
-> poky: 29bfa17d6cab31dbf8f1d12e473ef83dd9e92519
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
+SGksIFN0ZWZhbm8KCiAKSSdtIHNvcnJ5IEknbSBzbyBsYXRlIGZvciB5b3VyIHJlcGx5LgoKCj4g
+SSBkbyBub3QgdGhpbmsgdGhlIGlzc3VlIGV4aXN0cy4KCiAKSSBiaXRiYWtlIHN3dXBkYXRlIHdp
+dGggcG9reSBhbmQgbWV0YS1vZSB3aXRob3V0IGFueSBtb2RpZmljYXRpb25zLCBkZXBlbmQgZXJy
+b3IgaGFwcGVucywgaXNuJ3QgaXQgYW4gaXNzdWU/CgoKPiBJbiBmYWN0LCBDT05GSUdfTU9OR09P
+U0VTU0wgaXMgcHJvdGVjdGVkIGJ5Cgo+IENPTkZJR19TU0xfSU1QTF9PUEVOU1NMIG9yIENPTkZJ
+R19TU0xfSU1QTF9NQkVEVExTLiBJZiB5b3Ugc2V0Cgo+IENPTkZJR19NT05HT09TRVNTTCwgU1NM
+IGlzIGFscmVhZHkgc2V0LgoKIApJIGRvbid0IGZpbmQgdGhlIHJlbGF0aW9uc2hpcCBvZiAgQ09O
+RklHX01PTkdPT1NFU1NMIGFuZCBDT05GSUdfU1NMX0lNUExfT1BFTlNTTCBvciBDT05GSUdfU1NM
+X0lNUExfTUJFRFRMUyBpbiBtZW51Y29uZmlnIHN0ZXAuCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0KCiQgZ3JlcCBNT05HT09TRVNTTCB0bXAvd29yay9jb3JlMi02NC1wb2t5LWxpbnV4L3N3
+dXBkYXRlLzIwMjAuMDQtcjAvZ2l0LyAtciB8IGdyZXAgS2NvbmZpZwoKJAoKLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tCgpCeSBkZWZhdWx0IENPTkZJR19TU0xfSU1QTF9PUEVOU1NMIHdpbGwg
+YmUgZW5hYmxlIGR1cmluZyBjb25maWd1cmUgc3RlcC4gQnV0IG9wZW5zc2wgaXMgbm90IGluIHRo
+ZSBkZXBlbmRlbmNlcyBvZiBzd3VwZGF0ZS4gVGhhdCcgcyB3aHkgZXJyb3IgaGFwcGVucyBieSBk
+ZWZhdWx0LgoKT2YgY291cnNlLCBZUCB1c2VycyBjYW4gZml4IHRoaXMgYnVpbGQgZXJyb3IgYnkg
+bWFudWNvbmZpZyBvciBtb2RpZmllZCB0aGUgZGVmY29uZmlnLiBCdXQgdGhhdCdzIG5vdCBmcmll
+bmRseS4KCiAKCkluIGZhY3QsIGFmdGVyIGNvbmZpZ3VyaW5nIHRoZSBDT05GSUdfU1NMX0lNUExf
+T1BFTlNTTCB3aWxsIGJlIGFkZGVkIGludG8gLmNvbmZpZyBmaWxlLiBCdXQgc3d1cGRhdGUuaW5j
+IGp1ZGdlcyB3aGljaCBkZXBlbmRlbmNlIHdpbGwgYmUgYWRkZWQgYnkgZGVmY29uZmlnIGZpbGUg
+YmVmb3JlIGNvbmZpZ3VyZSBzdGVwLgoKU28sIEkgdGhvdWdodCBvdXQgdHdvIG1ldGhvZHMgdG8g
+Zml4IHRoaXMgaXNzdWUgdG8gbWFrZSBzd3VwZGF0ZSBjYW4gYmUgcGFzc2VkIGJ5IGRlZmF1bHQu
+CgoxLiAgQWRkZWQgb3BlbnNzbCBpbnRvIGRlcGVuZGVuY2VzIGJ5IERFUEVORFMgcGFyYW1ldGVy
+LCBzdWNoIGFzIHRoZSBmb2xsb3dpbmc6CgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgot
+LS0gYS9yZWNpcGVzLXN1cHBvcnQvc3d1cGRhdGUvc3d1cGRhdGUuaW5jCgorKysgYi9yZWNpcGVz
+LXN1cHBvcnQvc3d1cGRhdGUvc3d1cGRhdGUuaW5jCgpAQCAtNzIsNyArNzIsNyBAQCBTID0gIiR7
+V09SS0RJUn0vZ2l0LyIKCi4uLi4uLgoKLURFUEVORFMgKz0gImtlcm4tdG9vbHMtbmF0aXZlIgoK
+K0RFUEVORFMgKz0gImtlcm4tdG9vbHMtbmF0aXZlIG9wZW5zc2wiCgotLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tCgoKMi4gQWRkZWQgQ09ORklHX1NTTF9JTVBMX09QRU5TU0wgaW50byBkZWZj
+b25maWcgZmlsZS4KCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KCi0tLSBhL3JlY2lwZXMt
+c3VwcG9ydC9zd3VwZGF0ZS9zd3VwZGF0ZS9kZWZjb25maWcKCisrKyBiL3JlY2lwZXMtc3VwcG9y
+dC9zd3VwZGF0ZS9zd3VwZGF0ZS9kZWZjb25maWcKCkBAIC05NiwzICs5Niw0IEBAIENPTkZJR19T
+SEVMTFNDUklQVEhBTkRMRVI9eQoKICMgQ09ORklHX0FSQ0hJVkUgaXMgbm90IHNldAoKICMgQ09O
+RklHX1JFTU9URV9IQU5ETEVSIGlzIG5vdCBzZXQKCiAjIENPTkZJR19CT09UTE9BREVSSEFORExF
+UiBpcyBub3Qgc2V0CgorQ09ORklHX1NTTF9JTVBMX09QRU5TU0w9eQoKLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLQogCgpVc2VycyB3aG8gd2FudCB0byB1c2UgbWJlZHRscyBpbnN0ZWFkIGlm
+IG9wZW5zc2wgY2FuIGFkZGVkIGJiYXBwZW5kIGZpbGUgdG8gbW9kaWZ5IHRoZSBERVBFTkRTIHBh
+cmFtZXRlciBvciBkZWZjb25maWcgZmlsZS4KIAoKSG93IGFib3V0IG15IHN1Z2dlc3Rpb24/CiAK
+CkJlc3QgcmVnYXJkcwoKWmhlbmfigIsKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18K5Y+R5Lu25Lq6OiBTdGVmYW5vIEJhYmljIDxzYmFiaWNAZGVueC5kZT4K5Y+R6YCB
+5pe26Ze0OiAyMDIw5bm0NuaciDjml6UgMTY6NTUK5pS25Lu25Lq6OiBaaGVuZywgUnVvcWluOyBT
+dGVmYW5vIEJhYmljOyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnCuaKhOmAgTogc3d1cGRhdGUK5Li7
+6aKYOiBSZTogW3N3dXBkYXRlXSBSRTogW3lvY3RvXSBbUEFUQ0hdIFttZXRhLXN3dXBkYXRlXSBG
+aXggYnVpbGQgZXJyb3Igb2YgZGVwZW5kZW5jZS4KCkhpIFpoZW5nLAoKT24gMDguMDYuMjAgMTA6
+NDksIFpoZW5nLCBSdW9xaW4gd3JvdGU6Cj4gSGkgU3RlZmFubwo+Cj4+IHRoZXJlIGlzIGEgTUwg
+Zm9yIFNXVXBkYXRlIGFuZCBtZXRhLXN3dXBkYXRlIChzZWUgQ0MpLCB3ZSBhcmUgY3Jvc3MtCj4+
+IHBvc3RpbmcgaGVyZToKPiBUaGFuayB5b3UsIEkgZ290IGl0Lgo+Cj4+IG9wZW5TU0wgaXMgbm90
+IHRoZSBvbmx5IHN1cHBvcnRlZCBTU0wgbGlicmFyeSwgdGhlIFdlYnNlcnZlciBydW5zIGFsc28g
+d2l0aAo+PiBtYmVkVExTLiBUaGlzIHBhdGNoIGZvcmNlcyB0byB1c2Ugb3BlblNTTCBhbmQgY29u
+ZmxpY3RzIGluIGNhc2UgbWJlZFRMUyBpcwo+PiB1c2VkIGFzIHNpZ25pbmcgYW5kIGNyeXB0byBs
+aWJyYXJ5Lgo+Pgo+Pj4gICAgICAgaWYgJ0NPTkZJR19KU09OPXlcbicgaW4gZmVhdHVyZXM6Cj4+
+PiAgICAgICAgICAgZGVwZW5kcyArPSAnIGpzb24tYycKPiBPSywgSSdsbCB1cGRhdGUgbXkgcGF0
+Y2ggYW5kIHNlbmQgVjIgdmVyc2lvbi4KPgoKSSBkbyBub3QgdGhpbmsgdGhlIGlzc3VlIGV4aXN0
+cy4gSW4gZmFjdCwgQ09ORklHX01PTkdPT1NFU1NMIGlzCnByb3RlY3RlZCBieSBDT05GSUdfU1NM
+X0lNUExfT1BFTlNTTCBvciBDT05GSUdfU1NMX0lNUExfTUJFRFRMUy4gSWYgeW91CnNldCBDT05G
+SUdfTU9OR09PU0VTU0wsIFNTTCBpcyBhbHJlYWR5IHNldC4KClRoZSBvbmx5IHdheSB0byBnbyBp
+bnRvIHRoZSBpc3N1ZSBpcyB0byBtb2RpZnkgZGlyZWN0bHkgeW91ciBkZWZjb25maWcKZmlsZSAg
+aW5zdGVhZCBvZiBydW5uaW5nICJiaXRiYWtlIC1jIG1lbnVjb25maWciIGFuZCB0aGVuIGFwcGx5
+IHRoZQpkaWZmY29uZmlnIG9yIHRoZSBuZXcgZGVmY29uZmlnLiBCdXQgdGhpcyBpcyBvZiBjb3Vy
+c2UgYSB3cm9uZyB3YXksCmV4YWN0bHkgYXMgaW4ga2VybmVsLgoKVHJ5IHRvIHJ1biAibW51Y29u
+ZmlnIiBhbmQgdGhlbiB5b3UgY2FuIGFwcGx5IHRoZSBmcmFnbWVudCB0byB5b3VyCmRpZmZjb25m
+aWcgKGZyYWdtZW50cyBhcmUgc3VwcG9ydGVkLCB0b28pLgoKQmVzdCByZWdhcmRzLApTdGVmYW5v
+Cgo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4g
+WmhlbmcgUnVvcWluCj4gTmFuamluZyBGdWppdHN1IE5hbmRhIFNvZnR3YXJlIFRlY2guIENvLiwg
+THRkLihGTlNUKQo+IEFERFIuOiBOby42IFdlbnpodSBSb2FkLCBTb2Z0d2FyZSBBdmVudWUsCj4g
+ICAgICAgIE5hbmppbmcsIDIxMDAxMiwgQ2hpbmEKPiBNQUlMIDogemhlbmdycS5mbnN0QGNuLmZ1
+amlzdHUuY29tCj4KPgo+Cj4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tCj4+IEZyb206IFN0
+ZWZhbm8gQmFiaWMgPHNiYWJpY0BkZW54LmRlPgo+PiBTZW50OiBUaHVyc2RheSwgSnVuZSA0LCAy
+MDIwIDM6MjIgUE0KPj4gVG86IFpoZW5nLCBSdW9xaW4v6YORIOiLpemSpiA8emhlbmdycS5mbnN0
+QGNuLmZ1aml0c3UuY29tPjsKPj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZwo+PiBDYzogc3d1cGRh
+dGUgPHN3dXBkYXRlQGdvb2dsZWdyb3Vwcy5jb20+Cj4+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFtQ
+QVRDSF0gW21ldGEtc3d1cGRhdGVdIEZpeCBidWlsZCBlcnJvciBvZiBkZXBlbmRlbmNlLgo+Pgo+
+PiBIaSBaaGVuZywKPj4KPj4gdGhlcmUgaXMgYSBNTCBmb3IgU1dVcGRhdGUgYW5kIG1ldGEtc3d1
+cGRhdGUgKHNlZSBDQyksIHdlIGFyZSBjcm9zcy0KPj4gcG9zdGluZyBoZXJlOgo+Pgo+PiBPbiAw
+NC4wNi4yMCAxNDoyNiwgemhlbmdydW9xaW4gd3JvdGU6Cj4+PiAgIC1jIC1vIG1vbmdvb3NlL21v
+bmdvb3NlLm8gbW9uZ29vc2UvbW9uZ29vc2UuYwo+Pj4gfCBtb25nb29zZS9tb25nb29zZS5jOjQ0
+OTY6MTA6IGZhdGFsIGVycm9yOiBvcGVuc3NsL3NzbC5oOiBObyBzdWNoCj4+PiB8IGZpbGUKPj4+
+IG9yIGRpcmVjdG9yeQo+Pj4KPj4+IFNpZ25lZC1vZmYtYnk6IFpoZW5nIFJ1b3FpbmcgPHpoZW5n
+cnEuZm5zdEBjbi5mdWppdHN1LmNvbT4KPj4+IC0tLQo+Pj4gICByZWNpcGVzLXN1cHBvcnQvc3d1
+cGRhdGUvc3d1cGRhdGUuaW5jIHwgMyArKysKPj4+ICAgMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0
+aW9ucygrKQo+Pj4KPj4+IGRpZmYgLS1naXQgYS9yZWNpcGVzLXN1cHBvcnQvc3d1cGRhdGUvc3d1
+cGRhdGUuaW5jCj4+PiBiL3JlY2lwZXMtc3VwcG9ydC9zd3VwZGF0ZS9zd3VwZGF0ZS5pbmMKPj4+
+IGluZGV4IDllYTBhOGEuLjNkOWEzZmEgMTAwNjQ0Cj4+PiAtLS0gYS9yZWNpcGVzLXN1cHBvcnQv
+c3d1cGRhdGUvc3d1cGRhdGUuaW5jCj4+PiArKysgYi9yZWNpcGVzLXN1cHBvcnQvc3d1cGRhdGUv
+c3d1cGRhdGUuaW5jCj4+PiBAQCAtMTIzLDYgKzEyMyw5IEBAIHB5dGhvbiAoKSB7Cj4+PiAgICAg
+ICBlbGlmICdDT05GSUdfU1NMX0lNUExfTUJFRFRMUz15XG4nIGluIGZlYXR1cmVzOgo+Pj4gICAg
+ICAgICAgIGRlcGVuZHMgKz0gJyBtYmVkdGxzJwo+Pj4KPj4+ICsgICAgaWYgJ0NPTkZJR19NT05H
+T09TRVNTTD15XG4nIGluIGZlYXR1cmVzOgo+Pj4gKyAgICAgICAgZGVwZW5kcyArPSAnIG9wZW5z
+c2wnCj4+PiArCj4+Cj4+IG9wZW5TU0wgaXMgbm90IHRoZSBvbmx5IHN1cHBvcnRlZCBTU0wgbGli
+cmFyeSwgdGhlIFdlYnNlcnZlciBydW5zIGFsc28gd2l0aAo+PiBtYmVkVExTLiBUaGlzIHBhdGNo
+IGZvcmNlcyB0byB1c2Ugb3BlblNTTCBhbmQgY29uZmxpY3RzIGluIGNhc2UgbWJlZFRMUyBpcwo+
+PiB1c2VkIGFzIHNpZ25pbmcgYW5kIGNyeXB0byBsaWJyYXJ5Lgo+Pgo+Pj4gICAgICAgaWYgJ0NP
+TkZJR19KU09OPXlcbicgaW4gZmVhdHVyZXM6Cj4+PiAgICAgICAgICAgZGVwZW5kcyArPSAnIGpz
+b24tYycKPj4+Cj4+Pgo+Pj4KPj4+IAo+Pj4KPj4KPj4gQmVzdCByZWdhcmRzLAo+PiBTdGVmYW5v
+IEJhYmljCj4+Cj4+Cj4+Cj4+Cj4+Cj4KPgo+CgoKLS0KPT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CkRFTlggU29mdHdh
+cmUgRW5naW5lZXJpbmcgR21iSCwgICAgICBNYW5hZ2luZyBEaXJlY3RvcjogV29sZmdhbmcgRGVu
+awpIUkIgMTY1MjM1IE11bmljaCwgT2ZmaWNlOiBLaXJjaGVuc3RyLjUsIEQtODIxOTQgR3JvZWJl
+bnplbGwsIEdlcm1hbnkKUGhvbmU6ICs0OS04MTQyLTY2OTg5LTUzIEZheDogKzQ5LTgxNDItNjY5
+ODktODAgRW1haWw6IHNiYWJpY0BkZW54LmRlCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQoKCgoK
