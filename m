@@ -1,162 +1,1117 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.2188.1592464122462139220
+Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
+ by mx.groups.io with SMTP id smtpd.web12.2506.1592465702381782737
  for <yocto@lists.yoctoproject.org>;
- Thu, 18 Jun 2020 00:08:42 -0700
+ Thu, 18 Jun 2020 00:35:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: cn.fujitsu.com, ip: 140.211.169.56, mailfrom: zhengrq.fnst@cn.fujitsu.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E9879E01D22; Thu, 18 Jun 2020 00:08:41 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [183.91.158.132 listed in list.dnswl.org]
-Received: from heian.cn.fujitsu.com (mail.cn.fujitsu.com [183.91.158.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B989E01D1C
-	for <yocto@yoctoproject.org>; Thu, 18 Jun 2020 00:08:39 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.73,525,1583164800"; 
-   d="scan'208";a="94794816"
-Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
-  by heian.cn.fujitsu.com with ESMTP; 18 Jun 2020 15:08:36 +0800
-Received: from G08CNEXMBPEKD06.g08.fujitsu.local (unknown [10.167.33.206])
-	by cn.fujitsu.com (Postfix) with ESMTP id 0C26F49B1114;
-	Thu, 18 Jun 2020 15:08:33 +0800 (CST)
-Received: from G08CNEXMBPEKD06.g08.fujitsu.local (10.167.33.206) by
- G08CNEXMBPEKD06.g08.fujitsu.local (10.167.33.206) with Microsoft SMTP Server
- (TLS) id 15.0.1497.2; Thu, 18 Jun 2020 15:08:34 +0800
-Received: from G08CNEXMBPEKD06.g08.fujitsu.local ([::1]) by
- G08CNEXMBPEKD06.g08.fujitsu.local ([fe80::574:467a:eb61:fb9b%14]) with mapi
- id 15.00.1497.006; Thu, 18 Jun 2020 15:08:34 +0800
-From: "zhengruoqin" <zhengrq.fnst@cn.fujitsu.com>
-To: Stefano Babic <sbabic@denx.de>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-CC: swupdate <swupdate@googlegroups.com>
-Subject: [swupdate] RE: [yocto] [PATCH] [meta-swupdate] Fix build error of dependence.
-Thread-Topic: [swupdate] RE: [yocto] [PATCH] [meta-swupdate] Fix build error
- of dependence.
-Thread-Index: AQHWRT9Hqh+07mqNz0izZtD1vz9o1Q==
-Date: Thu, 18 Jun 2020 07:08:33 +0000
-Message-ID: <1592464111066.55405@cn.fujitsu.com>
-References: <1591273565-20422-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
- <b4d88124-4292-d5f2-8275-3c450551844e@denx.de>
- <2e85067adbff4d4a93bd9acabf8424b2@G08CNEXMBPEKD06.g08.fujitsu.local>,<982020c1-346e-7183-31df-7fe61c898537@denx.de>
-In-Reply-To: <982020c1-346e-7183-31df-7fe61c898537@denx.de>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.167.33.78]
+ dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: zhixiong.chi@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 05I7YDix022614
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Thu, 18 Jun 2020 00:34:33 -0700
+Received: from ala-lpggp3.wrs.com (147.11.105.124) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server id 14.3.487.0; Thu, 18 Jun 2020
+ 00:34:19 -0700
+From: "Zhixiong Chi" <zhixiong.chi@windriver.com>
+To: <bruce.ashfield@gmail.com>, <yocto@lists.yoctoproject.org>
+Subject: [yocto][meta-virtualization][zeus][PATCH] kubernetes: CVE-2019-11254
+Date: Thu, 18 Jun 2020 00:34:19 -0700
+Message-ID: <20200618073419.154522-1-zhixiong.chi@windriver.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-yoursite-MailScanner-ID: 0C26F49B1114.AD553
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-From: zhengrq.fnst@cn.fujitsu.com
-Content-Language: zh-CN
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail5.wrs.com id 05I7YDix022614
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGksIFN0ZWZhbm8KCiAKSSdtIHNvcnJ5IEknbSBzbyBsYXRlIGZvciB5b3VyIHJlcGx5LgoKCj4g
-SSBkbyBub3QgdGhpbmsgdGhlIGlzc3VlIGV4aXN0cy4KCiAKSSBiaXRiYWtlIHN3dXBkYXRlIHdp
-dGggcG9reSBhbmQgbWV0YS1vZSB3aXRob3V0IGFueSBtb2RpZmljYXRpb25zLCBkZXBlbmQgZXJy
-b3IgaGFwcGVucywgaXNuJ3QgaXQgYW4gaXNzdWU/CgoKPiBJbiBmYWN0LCBDT05GSUdfTU9OR09P
-U0VTU0wgaXMgcHJvdGVjdGVkIGJ5Cgo+IENPTkZJR19TU0xfSU1QTF9PUEVOU1NMIG9yIENPTkZJ
-R19TU0xfSU1QTF9NQkVEVExTLiBJZiB5b3Ugc2V0Cgo+IENPTkZJR19NT05HT09TRVNTTCwgU1NM
-IGlzIGFscmVhZHkgc2V0LgoKIApJIGRvbid0IGZpbmQgdGhlIHJlbGF0aW9uc2hpcCBvZiAgQ09O
-RklHX01PTkdPT1NFU1NMIGFuZCBDT05GSUdfU1NMX0lNUExfT1BFTlNTTCBvciBDT05GSUdfU1NM
-X0lNUExfTUJFRFRMUyBpbiBtZW51Y29uZmlnIHN0ZXAuCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0KCiQgZ3JlcCBNT05HT09TRVNTTCB0bXAvd29yay9jb3JlMi02NC1wb2t5LWxpbnV4L3N3
-dXBkYXRlLzIwMjAuMDQtcjAvZ2l0LyAtciB8IGdyZXAgS2NvbmZpZwoKJAoKLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tCgpCeSBkZWZhdWx0IENPTkZJR19TU0xfSU1QTF9PUEVOU1NMIHdpbGwg
-YmUgZW5hYmxlIGR1cmluZyBjb25maWd1cmUgc3RlcC4gQnV0IG9wZW5zc2wgaXMgbm90IGluIHRo
-ZSBkZXBlbmRlbmNlcyBvZiBzd3VwZGF0ZS4gVGhhdCcgcyB3aHkgZXJyb3IgaGFwcGVucyBieSBk
-ZWZhdWx0LgoKT2YgY291cnNlLCBZUCB1c2VycyBjYW4gZml4IHRoaXMgYnVpbGQgZXJyb3IgYnkg
-bWFudWNvbmZpZyBvciBtb2RpZmllZCB0aGUgZGVmY29uZmlnLiBCdXQgdGhhdCdzIG5vdCBmcmll
-bmRseS4KCiAKCkluIGZhY3QsIGFmdGVyIGNvbmZpZ3VyaW5nIHRoZSBDT05GSUdfU1NMX0lNUExf
-T1BFTlNTTCB3aWxsIGJlIGFkZGVkIGludG8gLmNvbmZpZyBmaWxlLiBCdXQgc3d1cGRhdGUuaW5j
-IGp1ZGdlcyB3aGljaCBkZXBlbmRlbmNlIHdpbGwgYmUgYWRkZWQgYnkgZGVmY29uZmlnIGZpbGUg
-YmVmb3JlIGNvbmZpZ3VyZSBzdGVwLgoKU28sIEkgdGhvdWdodCBvdXQgdHdvIG1ldGhvZHMgdG8g
-Zml4IHRoaXMgaXNzdWUgdG8gbWFrZSBzd3VwZGF0ZSBjYW4gYmUgcGFzc2VkIGJ5IGRlZmF1bHQu
-CgoxLiAgQWRkZWQgb3BlbnNzbCBpbnRvIGRlcGVuZGVuY2VzIGJ5IERFUEVORFMgcGFyYW1ldGVy
-LCBzdWNoIGFzIHRoZSBmb2xsb3dpbmc6CgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgot
-LS0gYS9yZWNpcGVzLXN1cHBvcnQvc3d1cGRhdGUvc3d1cGRhdGUuaW5jCgorKysgYi9yZWNpcGVz
-LXN1cHBvcnQvc3d1cGRhdGUvc3d1cGRhdGUuaW5jCgpAQCAtNzIsNyArNzIsNyBAQCBTID0gIiR7
-V09SS0RJUn0vZ2l0LyIKCi4uLi4uLgoKLURFUEVORFMgKz0gImtlcm4tdG9vbHMtbmF0aXZlIgoK
-K0RFUEVORFMgKz0gImtlcm4tdG9vbHMtbmF0aXZlIG9wZW5zc2wiCgotLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tCgoKMi4gQWRkZWQgQ09ORklHX1NTTF9JTVBMX09QRU5TU0wgaW50byBkZWZj
-b25maWcgZmlsZS4KCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KCi0tLSBhL3JlY2lwZXMt
-c3VwcG9ydC9zd3VwZGF0ZS9zd3VwZGF0ZS9kZWZjb25maWcKCisrKyBiL3JlY2lwZXMtc3VwcG9y
-dC9zd3VwZGF0ZS9zd3VwZGF0ZS9kZWZjb25maWcKCkBAIC05NiwzICs5Niw0IEBAIENPTkZJR19T
-SEVMTFNDUklQVEhBTkRMRVI9eQoKICMgQ09ORklHX0FSQ0hJVkUgaXMgbm90IHNldAoKICMgQ09O
-RklHX1JFTU9URV9IQU5ETEVSIGlzIG5vdCBzZXQKCiAjIENPTkZJR19CT09UTE9BREVSSEFORExF
-UiBpcyBub3Qgc2V0CgorQ09ORklHX1NTTF9JTVBMX09QRU5TU0w9eQoKLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLQogCgpVc2VycyB3aG8gd2FudCB0byB1c2UgbWJlZHRscyBpbnN0ZWFkIGlm
-IG9wZW5zc2wgY2FuIGFkZGVkIGJiYXBwZW5kIGZpbGUgdG8gbW9kaWZ5IHRoZSBERVBFTkRTIHBh
-cmFtZXRlciBvciBkZWZjb25maWcgZmlsZS4KIAoKSG93IGFib3V0IG15IHN1Z2dlc3Rpb24/CiAK
-CkJlc3QgcmVnYXJkcwoKWmhlbmfigIsKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18K5Y+R5Lu25Lq6OiBTdGVmYW5vIEJhYmljIDxzYmFiaWNAZGVueC5kZT4K5Y+R6YCB
-5pe26Ze0OiAyMDIw5bm0NuaciDjml6UgMTY6NTUK5pS25Lu25Lq6OiBaaGVuZywgUnVvcWluOyBT
-dGVmYW5vIEJhYmljOyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnCuaKhOmAgTogc3d1cGRhdGUK5Li7
-6aKYOiBSZTogW3N3dXBkYXRlXSBSRTogW3lvY3RvXSBbUEFUQ0hdIFttZXRhLXN3dXBkYXRlXSBG
-aXggYnVpbGQgZXJyb3Igb2YgZGVwZW5kZW5jZS4KCkhpIFpoZW5nLAoKT24gMDguMDYuMjAgMTA6
-NDksIFpoZW5nLCBSdW9xaW4gd3JvdGU6Cj4gSGkgU3RlZmFubwo+Cj4+IHRoZXJlIGlzIGEgTUwg
-Zm9yIFNXVXBkYXRlIGFuZCBtZXRhLXN3dXBkYXRlIChzZWUgQ0MpLCB3ZSBhcmUgY3Jvc3MtCj4+
-IHBvc3RpbmcgaGVyZToKPiBUaGFuayB5b3UsIEkgZ290IGl0Lgo+Cj4+IG9wZW5TU0wgaXMgbm90
-IHRoZSBvbmx5IHN1cHBvcnRlZCBTU0wgbGlicmFyeSwgdGhlIFdlYnNlcnZlciBydW5zIGFsc28g
-d2l0aAo+PiBtYmVkVExTLiBUaGlzIHBhdGNoIGZvcmNlcyB0byB1c2Ugb3BlblNTTCBhbmQgY29u
-ZmxpY3RzIGluIGNhc2UgbWJlZFRMUyBpcwo+PiB1c2VkIGFzIHNpZ25pbmcgYW5kIGNyeXB0byBs
-aWJyYXJ5Lgo+Pgo+Pj4gICAgICAgaWYgJ0NPTkZJR19KU09OPXlcbicgaW4gZmVhdHVyZXM6Cj4+
-PiAgICAgICAgICAgZGVwZW5kcyArPSAnIGpzb24tYycKPiBPSywgSSdsbCB1cGRhdGUgbXkgcGF0
-Y2ggYW5kIHNlbmQgVjIgdmVyc2lvbi4KPgoKSSBkbyBub3QgdGhpbmsgdGhlIGlzc3VlIGV4aXN0
-cy4gSW4gZmFjdCwgQ09ORklHX01PTkdPT1NFU1NMIGlzCnByb3RlY3RlZCBieSBDT05GSUdfU1NM
-X0lNUExfT1BFTlNTTCBvciBDT05GSUdfU1NMX0lNUExfTUJFRFRMUy4gSWYgeW91CnNldCBDT05G
-SUdfTU9OR09PU0VTU0wsIFNTTCBpcyBhbHJlYWR5IHNldC4KClRoZSBvbmx5IHdheSB0byBnbyBp
-bnRvIHRoZSBpc3N1ZSBpcyB0byBtb2RpZnkgZGlyZWN0bHkgeW91ciBkZWZjb25maWcKZmlsZSAg
-aW5zdGVhZCBvZiBydW5uaW5nICJiaXRiYWtlIC1jIG1lbnVjb25maWciIGFuZCB0aGVuIGFwcGx5
-IHRoZQpkaWZmY29uZmlnIG9yIHRoZSBuZXcgZGVmY29uZmlnLiBCdXQgdGhpcyBpcyBvZiBjb3Vy
-c2UgYSB3cm9uZyB3YXksCmV4YWN0bHkgYXMgaW4ga2VybmVsLgoKVHJ5IHRvIHJ1biAibW51Y29u
-ZmlnIiBhbmQgdGhlbiB5b3UgY2FuIGFwcGx5IHRoZSBmcmFnbWVudCB0byB5b3VyCmRpZmZjb25m
-aWcgKGZyYWdtZW50cyBhcmUgc3VwcG9ydGVkLCB0b28pLgoKQmVzdCByZWdhcmRzLApTdGVmYW5v
-Cgo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4g
-WmhlbmcgUnVvcWluCj4gTmFuamluZyBGdWppdHN1IE5hbmRhIFNvZnR3YXJlIFRlY2guIENvLiwg
-THRkLihGTlNUKQo+IEFERFIuOiBOby42IFdlbnpodSBSb2FkLCBTb2Z0d2FyZSBBdmVudWUsCj4g
-ICAgICAgIE5hbmppbmcsIDIxMDAxMiwgQ2hpbmEKPiBNQUlMIDogemhlbmdycS5mbnN0QGNuLmZ1
-amlzdHUuY29tCj4KPgo+Cj4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tCj4+IEZyb206IFN0
-ZWZhbm8gQmFiaWMgPHNiYWJpY0BkZW54LmRlPgo+PiBTZW50OiBUaHVyc2RheSwgSnVuZSA0LCAy
-MDIwIDM6MjIgUE0KPj4gVG86IFpoZW5nLCBSdW9xaW4v6YORIOiLpemSpiA8emhlbmdycS5mbnN0
-QGNuLmZ1aml0c3UuY29tPjsKPj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZwo+PiBDYzogc3d1cGRh
-dGUgPHN3dXBkYXRlQGdvb2dsZWdyb3Vwcy5jb20+Cj4+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFtQ
-QVRDSF0gW21ldGEtc3d1cGRhdGVdIEZpeCBidWlsZCBlcnJvciBvZiBkZXBlbmRlbmNlLgo+Pgo+
-PiBIaSBaaGVuZywKPj4KPj4gdGhlcmUgaXMgYSBNTCBmb3IgU1dVcGRhdGUgYW5kIG1ldGEtc3d1
-cGRhdGUgKHNlZSBDQyksIHdlIGFyZSBjcm9zcy0KPj4gcG9zdGluZyBoZXJlOgo+Pgo+PiBPbiAw
-NC4wNi4yMCAxNDoyNiwgemhlbmdydW9xaW4gd3JvdGU6Cj4+PiAgIC1jIC1vIG1vbmdvb3NlL21v
-bmdvb3NlLm8gbW9uZ29vc2UvbW9uZ29vc2UuYwo+Pj4gfCBtb25nb29zZS9tb25nb29zZS5jOjQ0
-OTY6MTA6IGZhdGFsIGVycm9yOiBvcGVuc3NsL3NzbC5oOiBObyBzdWNoCj4+PiB8IGZpbGUKPj4+
-IG9yIGRpcmVjdG9yeQo+Pj4KPj4+IFNpZ25lZC1vZmYtYnk6IFpoZW5nIFJ1b3FpbmcgPHpoZW5n
-cnEuZm5zdEBjbi5mdWppdHN1LmNvbT4KPj4+IC0tLQo+Pj4gICByZWNpcGVzLXN1cHBvcnQvc3d1
-cGRhdGUvc3d1cGRhdGUuaW5jIHwgMyArKysKPj4+ICAgMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0
-aW9ucygrKQo+Pj4KPj4+IGRpZmYgLS1naXQgYS9yZWNpcGVzLXN1cHBvcnQvc3d1cGRhdGUvc3d1
-cGRhdGUuaW5jCj4+PiBiL3JlY2lwZXMtc3VwcG9ydC9zd3VwZGF0ZS9zd3VwZGF0ZS5pbmMKPj4+
-IGluZGV4IDllYTBhOGEuLjNkOWEzZmEgMTAwNjQ0Cj4+PiAtLS0gYS9yZWNpcGVzLXN1cHBvcnQv
-c3d1cGRhdGUvc3d1cGRhdGUuaW5jCj4+PiArKysgYi9yZWNpcGVzLXN1cHBvcnQvc3d1cGRhdGUv
-c3d1cGRhdGUuaW5jCj4+PiBAQCAtMTIzLDYgKzEyMyw5IEBAIHB5dGhvbiAoKSB7Cj4+PiAgICAg
-ICBlbGlmICdDT05GSUdfU1NMX0lNUExfTUJFRFRMUz15XG4nIGluIGZlYXR1cmVzOgo+Pj4gICAg
-ICAgICAgIGRlcGVuZHMgKz0gJyBtYmVkdGxzJwo+Pj4KPj4+ICsgICAgaWYgJ0NPTkZJR19NT05H
-T09TRVNTTD15XG4nIGluIGZlYXR1cmVzOgo+Pj4gKyAgICAgICAgZGVwZW5kcyArPSAnIG9wZW5z
-c2wnCj4+PiArCj4+Cj4+IG9wZW5TU0wgaXMgbm90IHRoZSBvbmx5IHN1cHBvcnRlZCBTU0wgbGli
-cmFyeSwgdGhlIFdlYnNlcnZlciBydW5zIGFsc28gd2l0aAo+PiBtYmVkVExTLiBUaGlzIHBhdGNo
-IGZvcmNlcyB0byB1c2Ugb3BlblNTTCBhbmQgY29uZmxpY3RzIGluIGNhc2UgbWJlZFRMUyBpcwo+
-PiB1c2VkIGFzIHNpZ25pbmcgYW5kIGNyeXB0byBsaWJyYXJ5Lgo+Pgo+Pj4gICAgICAgaWYgJ0NP
-TkZJR19KU09OPXlcbicgaW4gZmVhdHVyZXM6Cj4+PiAgICAgICAgICAgZGVwZW5kcyArPSAnIGpz
-b24tYycKPj4+Cj4+Pgo+Pj4KPj4+IAo+Pj4KPj4KPj4gQmVzdCByZWdhcmRzLAo+PiBTdGVmYW5v
-IEJhYmljCj4+Cj4+Cj4+Cj4+Cj4+Cj4KPgo+CgoKLS0KPT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CkRFTlggU29mdHdh
-cmUgRW5naW5lZXJpbmcgR21iSCwgICAgICBNYW5hZ2luZyBEaXJlY3RvcjogV29sZmdhbmcgRGVu
-awpIUkIgMTY1MjM1IE11bmljaCwgT2ZmaWNlOiBLaXJjaGVuc3RyLjUsIEQtODIxOTQgR3JvZWJl
-bnplbGwsIEdlcm1hbnkKUGhvbmU6ICs0OS04MTQyLTY2OTg5LTUzIEZheDogKzQ5LTgxNDItNjY5
-ODktODAgRW1haWw6IHNiYWJpY0BkZW54LmRlCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQoKCgoK
+Backport the CVE patch from the upstream:
+https://github.com/kubernetes/kubernetes.git
+
+Signed-off-by: Zhixiong Chi <zhixiong.chi@windriver.com>
+---
+ .../kubernetes/CVE-2019-11254.patch           | 797 ++++++++++++++++++
+ .../kubernetes/kubernetes_git.bb              |   1 +
+ 2 files changed, 798 insertions(+)
+ create mode 100644 recipes-containers/kubernetes/kubernetes/CVE-2019-112=
+54.patch
+
+diff --git a/recipes-containers/kubernetes/kubernetes/CVE-2019-11254.patc=
+h b/recipes-containers/kubernetes/kubernetes/CVE-2019-11254.patch
+new file mode 100644
+index 0000000..2d991a9
+--- /dev/null
++++ b/recipes-containers/kubernetes/kubernetes/CVE-2019-11254.patch
+@@ -0,0 +1,797 @@
++From e9ba264d57d379d86dfbf3ae94e82eb0ead9c468 Mon Sep 17 00:00:00 2001
++From: CJ Cullen <cjcullen@google.com>
++Date: Wed, 22 Jan 2020 11:32:39 -0800
++Subject: [PATCH] update gopkg.in/yaml.v2 to v2.2.8
++
++CVE: CVE-2019-11254
++Upstream-Status: Backport [https://github.com/kubernetes/kubernetes.git =
+branch: release-1.16]
++Signed-off-by: Zhixiong Chi <zhixiong.chi@windriver.com>
++---
++ src/import/go.mod                                       |   4 +-
++ src/import/go.sum                                       |   4 +-
++ src/import/staging/src/k8s.io/api/go.sum                 |   4 +-
++ .../src/k8s.io/apiextensions-apiserver/go.mod           |   2 +-
++ .../src/k8s.io/apiextensions-apiserver/go.sum           |   4 +-
++ src/import/staging/src/k8s.io/apimachinery/go.mod        |   2 +-
++ src/import/staging/src/k8s.io/apimachinery/go.sum        |   4 +-
++ src/import/staging/src/k8s.io/apiserver/go.mod           |   2 +-
++ src/import/staging/src/k8s.io/apiserver/go.sum           |   4 +-
++ src/import/staging/src/k8s.io/cli-runtime/go.sum         |   4 +-
++ src/import/staging/src/k8s.io/client-go/go.sum           |   4 +-
++ src/import/staging/src/k8s.io/cloud-provider/go.sum      |   4 +-
++ src/import/staging/src/k8s.io/cluster-bootstrap/go.sum   |   4 +-
++ src/import/staging/src/k8s.io/code-generator/go.mod      |   2 +-
++ src/import/staging/src/k8s.io/code-generator/go.sum      |   4 +-
++ src/import/staging/src/k8s.io/component-base/go.sum      |   4 +-
++ src/import/staging/src/k8s.io/csi-translation-lib/go.sum |   4 +-
++ src/import/staging/src/k8s.io/kube-aggregator/go.sum     |   4 +-
++ .../src/k8s.io/kube-controller-manager/go.sum           |   4 +-
++ src/import/staging/src/k8s.io/kube-proxy/go.sum          |   4 +-
++ src/import/staging/src/k8s.io/kube-scheduler/go.sum      |   4 +-
++ src/import/staging/src/k8s.io/kubectl/go.mod             |   2 +-
++ src/import/staging/src/k8s.io/kubectl/go.sum             |   4 +-
++ src/import/staging/src/k8s.io/kubelet/go.sum             |   4 +-
++ .../src/k8s.io/legacy-cloud-providers/go.sum            |   4 +-
++ src/import/staging/src/k8s.io/metrics/go.sum             |   4 +-
++ src/import/staging/src/k8s.io/node-api/go.sum            |   4 +-
++ src/import/staging/src/k8s.io/sample-apiserver/go.sum    |   4 +-
++ src/import/staging/src/k8s.io/sample-cli-plugin/go.sum   |   4 +-
++ src/import/staging/src/k8s.io/sample-controller/go.sum   |   4 +-
++ src/import/vendor/gopkg.in/yaml.v2/.travis.yml           |  18 +--
++ src/import/vendor/gopkg.in/yaml.v2/decode.go             |  14 ++-
++ src/import/vendor/gopkg.in/yaml.v2/scannerc.go           | 107 ++++++++=
++---------
++ src/import/vendor/gopkg.in/yaml.v2/yaml.go               |   2 +-
++ src/import/vendor/gopkg.in/yaml.v2/yamlh.go              |   1 +
++ src/import/vendor/modules.txt                            |   2 +-
++ 36 files changed, 130 insertions(+), 124 deletions(-)
++
++diff --git a/src/import/go.mod b/go.mod
++index cf8c9147e62..884870f8843 100644
++--- a/src/import/go.mod
+++++ b/src/import/go.mod
++@@ -139,7 +139,7 @@ require (
++ 	google.golang.org/grpc v1.23.0
++ 	gopkg.in/gcfg.v1 v1.2.0
++ 	gopkg.in/square/go-jose.v2 v2.2.2
++-	gopkg.in/yaml.v2 v2.2.4
+++	gopkg.in/yaml.v2 v2.2.8
++ 	gotest.tools v2.2.0+incompatible
++ 	gotest.tools/gotestsum v0.3.5
++ 	honnef.co/go/tools v0.0.1-2019.2.2
++@@ -444,7 +444,7 @@ replace (
++ 	gopkg.in/square/go-jose.v2 =3D> gopkg.in/square/go-jose.v2 v2.2.2
++ 	gopkg.in/tomb.v1 =3D> gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f=
+1e7
++ 	gopkg.in/warnings.v0 =3D> gopkg.in/warnings.v0 v0.1.1
++-	gopkg.in/yaml.v2 =3D> gopkg.in/yaml.v2 v2.2.4
+++	gopkg.in/yaml.v2 =3D> gopkg.in/yaml.v2 v2.2.8
++ 	gotest.tools =3D> gotest.tools v2.2.0+incompatible
++ 	gotest.tools/gotestsum =3D> gotest.tools/gotestsum v0.3.5
++ 	honnef.co/go/tools =3D> honnef.co/go/tools v0.0.1-2019.2.2
++diff --git a/src/import/go.sum b/src/import/go.sum
++index b5e3f74686f..617081d2d9e 100644
++--- a/src/import/go.sum
+++++ b/src/import/go.sum
++@@ -492,8 +492,8 @@ gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 =
+h1:uRGJdciOHaEIrze2W8Q3AKkep
++ gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58z=
+S4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=3D
++ gopkg.in/warnings.v0 v0.1.1 h1:XM28wIgFzaBmeZ5dNHIpWLQpt/9DGKxk+rCg/22n=
+nYE=3D
++ gopkg.in/warnings.v0 v0.1.1/go.mod h1:jksf8JmL6Qr/oQM2OXTHunEvvTAsrWBLb=
+6OOjuVWRNI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gotest.tools v2.2.0+incompatible h1:VsBPFP1AI068pPrMxtb/S8Zkgf9xEmTLJjf=
+M+P5UIEo=3D
++ gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sx=
+OXAzmJt81HFBacw=3D
++ gotest.tools/gotestsum v0.3.5 h1:VePOWRsuWFYpfp/G8mbmOZKxO5T3501SEGQRUd=
+vq7h0=3D
++diff --git a/src/import/staging/src/k8s.io/api/go.sum b/src/import/stagi=
+ng/src/k8s.io/api/go.sum
++index c162d16011e..8ac86891676 100644
++--- a/src/import/staging/src/k8s.io/api/go.sum
+++++ b/src/import/staging/src/k8s.io/api/go.sum
++@@ -90,8 +90,8 @@ gopkg.in/inf.v0 v0.9.1/go.mod h1:cWUDdTG/fYaXco+Dcufb5=
+Vnc6Gp2YChqWtbxRZE0mXw=3D
++ gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58z=
+S4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=3D
++ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++ k8s.io/klog v0.0.0-20181102134211-b9b56d5dfc92/go.mod h1:Gq+BEi5rUBO/HR=
+z0bTSXDUcqjScdoY3a9IHpCEIOOfk=3D
++ k8s.io/klog v0.4.0 h1:lCJCxf/LIowc2IGS9TPjWDyXY4nOmdGdfcwwDQCOURQ=3D
++diff --git a/src/import/staging/src/k8s.io/apiextensions-apiserver/go.mo=
+d b/src/import/staging/src/k8s.io/apiextensions-apiserver/go.mod
++index f2cc6ca100f..41289345ad7 100644
++--- a/src/import/staging/src/k8s.io/apiextensions-apiserver/go.mod
+++++ b/src/import/staging/src/k8s.io/apiextensions-apiserver/go.mod
++@@ -21,7 +21,7 @@ require (
++ 	github.com/spf13/pflag v1.0.3
++ 	github.com/stretchr/testify v1.3.0
++ 	google.golang.org/grpc v1.23.0
++-	gopkg.in/yaml.v2 v2.2.4
+++	gopkg.in/yaml.v2 v2.2.8
++ 	k8s.io/api v0.0.0
++ 	k8s.io/apimachinery v0.0.0
++ 	k8s.io/apiserver v0.0.0
++diff --git a/src/import/staging/src/k8s.io/apiextensions-apiserver/go.su=
+m b/src/import/staging/src/k8s.io/apiextensions-apiserver/go.sum
++index 853644fbe6d..1c4460fdc38 100644
++--- a/src/import/staging/src/k8s.io/apiextensions-apiserver/go.sum
+++++ b/src/import/staging/src/k8s.io/apiextensions-apiserver/go.sum
++@@ -349,8 +349,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sx=
+OXAzmJt81HFBacw=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++diff --git a/src/import/staging/src/k8s.io/apimachinery/go.mod b/src/imp=
+ort/staging/src/k8s.io/apimachinery/go.mod
++index 5b49085be74..bdd9ed2f63d 100644
++--- a/src/import/staging/src/k8s.io/apimachinery/go.mod
+++++ b/src/import/staging/src/k8s.io/apimachinery/go.mod
++@@ -30,7 +30,7 @@ require (
++ 	golang.org/x/text v0.3.2 // indirect
++ 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
++ 	gopkg.in/inf.v0 v0.9.0
++-	gopkg.in/yaml.v2 v2.2.4
+++	gopkg.in/yaml.v2 v2.2.8
++ 	k8s.io/klog v0.4.0
++ 	k8s.io/kube-openapi v0.0.0-20190816220812-743ec37842bf
++ 	sigs.k8s.io/yaml v1.1.0
++diff --git a/src/import/staging/src/k8s.io/apimachinery/go.sum b/src/imp=
+ort/staging/src/k8s.io/apimachinery/go.sum
++index 916261e42c0..636ef5751ea 100644
++--- a/src/import/staging/src/k8s.io/apimachinery/go.sum
+++++ b/src/import/staging/src/k8s.io/apimachinery/go.sum
++@@ -106,8 +106,8 @@ gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 =
+h1:uRGJdciOHaEIrze2W8Q3AKkep
++ gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58z=
+S4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=3D
++ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++ k8s.io/klog v0.0.0-20181102134211-b9b56d5dfc92/go.mod h1:Gq+BEi5rUBO/HR=
+z0bTSXDUcqjScdoY3a9IHpCEIOOfk=3D
++ k8s.io/klog v0.4.0 h1:lCJCxf/LIowc2IGS9TPjWDyXY4nOmdGdfcwwDQCOURQ=3D
++diff --git a/src/import/staging/src/k8s.io/apiserver/go.mod b/src/import=
+/staging/src/k8s.io/apiserver/go.mod
++index 8f97b49b06a..e1fdb94df10 100644
++--- a/src/import/staging/src/k8s.io/apiserver/go.mod
+++++ b/src/import/staging/src/k8s.io/apiserver/go.mod
++@@ -47,7 +47,7 @@ require (
++ 	google.golang.org/grpc v1.23.0
++ 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
++ 	gopkg.in/square/go-jose.v2 v2.2.2
++-	gopkg.in/yaml.v2 v2.2.4
+++	gopkg.in/yaml.v2 v2.2.8
++ 	gotest.tools v2.2.0+incompatible // indirect
++ 	k8s.io/api v0.0.0
++ 	k8s.io/apimachinery v0.0.0
++diff --git a/src/import/staging/src/k8s.io/apiserver/go.sum b/src/import=
+/staging/src/k8s.io/apiserver/go.sum
++index 9658ae1784a..d055f0d08a2 100644
++--- a/src/import/staging/src/k8s.io/apiserver/go.sum
+++++ b/src/import/staging/src/k8s.io/apiserver/go.sum
++@@ -268,8 +268,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gotest.tools v2.2.0+incompatible h1:VsBPFP1AI068pPrMxtb/S8Zkgf9xEmTLJjf=
+M+P5UIEo=3D
++ gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sx=
+OXAzmJt81HFBacw=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++diff --git a/src/import/staging/src/k8s.io/cli-runtime/go.sum b/src/impo=
+rt/staging/src/k8s.io/cli-runtime/go.sum
++index 71af2c05905..641ba432230 100644
++--- a/src/import/staging/src/k8s.io/cli-runtime/go.sum
+++++ b/src/import/staging/src/k8s.io/cli-runtime/go.sum
++@@ -207,8 +207,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++diff --git a/src/import/staging/src/k8s.io/client-go/go.sum b/src/import=
+/staging/src/k8s.io/client-go/go.sum
++index ec7d3780cad..315bfceda79 100644
++--- a/src/import/staging/src/k8s.io/client-go/go.sum
+++++ b/src/import/staging/src/k8s.io/client-go/go.sum
++@@ -175,8 +175,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++diff --git a/src/import/staging/src/k8s.io/cloud-provider/go.sum b/src/i=
+mport/staging/src/k8s.io/cloud-provider/go.sum
++index e00d8e24a27..7d446c66231 100644
++--- a/src/import/staging/src/k8s.io/cloud-provider/go.sum
+++++ b/src/import/staging/src/k8s.io/cloud-provider/go.sum
++@@ -158,8 +158,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++diff --git a/src/import/staging/src/k8s.io/cluster-bootstrap/go.sum b/sr=
+c/import/staging/src/k8s.io/cluster-bootstrap/go.sum
++index 09c98a9ccd8..e148b9741de 100644
++--- a/src/import/staging/src/k8s.io/cluster-bootstrap/go.sum
+++++ b/src/import/staging/src/k8s.io/cluster-bootstrap/go.sum
++@@ -91,8 +91,8 @@ gopkg.in/square/go-jose.v2 v2.2.2/go.mod h1:M9dMgbHiYL=
+oDGQrXy7OpJDJWiKiU//h+vD76
++ gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58z=
+S4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=3D
++ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++ k8s.io/klog v0.0.0-20181102134211-b9b56d5dfc92/go.mod h1:Gq+BEi5rUBO/HR=
+z0bTSXDUcqjScdoY3a9IHpCEIOOfk=3D
++ k8s.io/klog v0.4.0 h1:lCJCxf/LIowc2IGS9TPjWDyXY4nOmdGdfcwwDQCOURQ=3D
++diff --git a/src/import/staging/src/k8s.io/code-generator/go.mod b/src/i=
+mport/staging/src/k8s.io/code-generator/go.mod
++index 7717cae18ba..0dc05a6c181 100644
++--- a/src/import/staging/src/k8s.io/code-generator/go.mod
+++++ b/src/import/staging/src/k8s.io/code-generator/go.mod
++@@ -15,7 +15,7 @@ require (
++ 	golang.org/x/tools v0.0.0-20190621195816-6e04913cbbac // indirect
++ 	gonum.org/v1/gonum v0.0.0-20190331200053-3d26580ed485
++ 	gonum.org/v1/netlib v0.0.0-20190331212654-76723241ea4e // indirect
++-	gopkg.in/yaml.v2 v2.2.4 // indirect
+++	gopkg.in/yaml.v2 v2.2.8 // indirect
++ 	k8s.io/gengo v0.0.0-20190822140433-26a664648505
++ 	k8s.io/klog v0.4.0
++ 	k8s.io/kube-openapi v0.0.0-20190816220812-743ec37842bf
++diff --git a/src/import/staging/src/k8s.io/code-generator/go.sum b/src/i=
+mport/staging/src/k8s.io/code-generator/go.sum
++index a34b8497afa..a3be7c382b8 100644
++--- a/src/import/staging/src/k8s.io/code-generator/go.sum
+++++ b/src/import/staging/src/k8s.io/code-generator/go.sum
++@@ -103,8 +103,8 @@ gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127=
+/go.mod h1:Co6ibVJAznAaIkqp8
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6 h1:4s3/R4+OYYYUKptXPhZK=
+jQ04WJ6EhQQVFdjOFvCazDk=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++ k8s.io/gengo v0.0.0-20190822140433-26a664648505 h1:ZY6yclUKVbZ+SdWnkfY+=
+Je5vrMpKOxmGeKRbsXVmqYM=3D
++diff --git a/src/import/staging/src/k8s.io/component-base/go.sum b/src/i=
+mport/staging/src/k8s.io/component-base/go.sum
++index 34151a5846d..155e3e420e9 100644
++--- a/src/import/staging/src/k8s.io/component-base/go.sum
+++++ b/src/import/staging/src/k8s.io/component-base/go.sum
++@@ -171,8 +171,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++diff --git a/src/import/staging/src/k8s.io/csi-translation-lib/go.sum b/=
+src/import/staging/src/k8s.io/csi-translation-lib/go.sum
++index 71646a53606..a4de3199c55 100644
++--- a/src/import/staging/src/k8s.io/csi-translation-lib/go.sum
+++++ b/src/import/staging/src/k8s.io/csi-translation-lib/go.sum
++@@ -139,8 +139,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++diff --git a/src/import/staging/src/k8s.io/kube-aggregator/go.sum b/src/=
+import/staging/src/k8s.io/kube-aggregator/go.sum
++index 306beb4d2c1..be07875a640 100644
++--- a/src/import/staging/src/k8s.io/kube-aggregator/go.sum
+++++ b/src/import/staging/src/k8s.io/kube-aggregator/go.sum
++@@ -303,8 +303,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sx=
+OXAzmJt81HFBacw=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++diff --git a/src/import/staging/src/k8s.io/kube-controller-manager/go.su=
+m b/src/import/staging/src/k8s.io/kube-controller-manager/go.sum
++index 346871c01de..1653f3eca5a 100644
++--- a/src/import/staging/src/k8s.io/kube-controller-manager/go.sum
+++++ b/src/import/staging/src/k8s.io/kube-controller-manager/go.sum
++@@ -147,8 +147,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++diff --git a/src/import/staging/src/k8s.io/kube-proxy/go.sum b/src/impor=
+t/staging/src/k8s.io/kube-proxy/go.sum
++index 346871c01de..1653f3eca5a 100644
++--- a/src/import/staging/src/k8s.io/kube-proxy/go.sum
+++++ b/src/import/staging/src/k8s.io/kube-proxy/go.sum
++@@ -147,8 +147,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++diff --git a/src/import/staging/src/k8s.io/kube-scheduler/go.sum b/src/i=
+mport/staging/src/k8s.io/kube-scheduler/go.sum
++index 346871c01de..1653f3eca5a 100644
++--- a/src/import/staging/src/k8s.io/kube-scheduler/go.sum
+++++ b/src/import/staging/src/k8s.io/kube-scheduler/go.sum
++@@ -147,8 +147,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++diff --git a/src/import/staging/src/k8s.io/kubectl/go.mod b/src/import/s=
+taging/src/k8s.io/kubectl/go.mod
++index 5e5e4b2bbed..d1c8a52cbb4 100644
++--- a/src/import/staging/src/k8s.io/kubectl/go.mod
+++++ b/src/import/staging/src/k8s.io/kubectl/go.mod
++@@ -33,7 +33,7 @@ require (
++ 	github.com/spf13/pflag v1.0.3
++ 	github.com/stretchr/testify v1.3.0
++ 	golang.org/x/sys v0.0.0-20190616124812-15dcb6c0061f
++-	gopkg.in/yaml.v2 v2.2.4
+++	gopkg.in/yaml.v2 v2.2.8
++ 	gotest.tools v2.2.0+incompatible // indirect
++ 	k8s.io/api v0.0.0
++ 	k8s.io/apimachinery v0.0.0
++diff --git a/src/import/staging/src/k8s.io/kubectl/go.sum b/src/import/s=
+taging/src/k8s.io/kubectl/go.sum
++index b164ecd3dc3..17d56a30001 100644
++--- a/src/import/staging/src/k8s.io/kubectl/go.sum
+++++ b/src/import/staging/src/k8s.io/kubectl/go.sum
++@@ -268,8 +268,8 @@ gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/=
+go.mod h1:dt/ZhP58zS4L8KSrWD
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gotest.tools v2.2.0+incompatible h1:VsBPFP1AI068pPrMxtb/S8Zkgf9xEmTLJjf=
+M+P5UIEo=3D
++ gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sx=
+OXAzmJt81HFBacw=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++diff --git a/src/import/staging/src/k8s.io/kubelet/go.sum b/src/import/s=
+taging/src/k8s.io/kubelet/go.sum
++index 0635238e2ce..e12860540cd 100644
++--- a/src/import/staging/src/k8s.io/kubelet/go.sum
+++++ b/src/import/staging/src/k8s.io/kubelet/go.sum
++@@ -87,8 +87,8 @@ gopkg.in/inf.v0 v0.9.1/go.mod h1:cWUDdTG/fYaXco+Dcufb5=
+Vnc6Gp2YChqWtbxRZE0mXw=3D
++ gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58z=
+S4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=3D
++ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++ k8s.io/klog v0.0.0-20181102134211-b9b56d5dfc92/go.mod h1:Gq+BEi5rUBO/HR=
+z0bTSXDUcqjScdoY3a9IHpCEIOOfk=3D
++ k8s.io/klog v0.4.0 h1:lCJCxf/LIowc2IGS9TPjWDyXY4nOmdGdfcwwDQCOURQ=3D
++diff --git a/src/import/staging/src/k8s.io/legacy-cloud-providers/go.sum=
+ b/src/import/staging/src/k8s.io/legacy-cloud-providers/go.sum
++index 7da7d10f1b0..4affb42e698 100644
++--- a/src/import/staging/src/k8s.io/legacy-cloud-providers/go.sum
+++++ b/src/import/staging/src/k8s.io/legacy-cloud-providers/go.sum
++@@ -271,8 +271,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sx=
+OXAzmJt81HFBacw=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++diff --git a/src/import/staging/src/k8s.io/metrics/go.sum b/src/import/s=
+taging/src/k8s.io/metrics/go.sum
++index 4ba35f7c725..b820dfe346b 100644
++--- a/src/import/staging/src/k8s.io/metrics/go.sum
+++++ b/src/import/staging/src/k8s.io/metrics/go.sum
++@@ -192,8 +192,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6 h1:4s3/R4+OYYYUKptXPhZK=
+jQ04WJ6EhQQVFdjOFvCazDk=3D
++diff --git a/src/import/staging/src/k8s.io/node-api/go.sum b/src/import/=
+staging/src/k8s.io/node-api/go.sum
++index eb2113416f4..df4095e8c53 100644
++--- a/src/import/staging/src/k8s.io/node-api/go.sum
+++++ b/src/import/staging/src/k8s.io/node-api/go.sum
++@@ -195,8 +195,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6 h1:4s3/R4+OYYYUKptXPhZK=
+jQ04WJ6EhQQVFdjOFvCazDk=3D
++diff --git a/src/import/staging/src/k8s.io/sample-apiserver/go.sum b/src=
+/import/staging/src/k8s.io/sample-apiserver/go.sum
++index 6100b600021..c9af593485a 100644
++--- a/src/import/staging/src/k8s.io/sample-apiserver/go.sum
+++++ b/src/import/staging/src/k8s.io/sample-apiserver/go.sum
++@@ -300,8 +300,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sx=
+OXAzmJt81HFBacw=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++diff --git a/src/import/staging/src/k8s.io/sample-cli-plugin/go.sum b/sr=
+c/import/staging/src/k8s.io/sample-cli-plugin/go.sum
++index 71af2c05905..641ba432230 100644
++--- a/src/import/staging/src/k8s.io/sample-cli-plugin/go.sum
+++++ b/src/import/staging/src/k8s.io/sample-cli-plugin/go.sum
++@@ -207,8 +207,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6r=
+bqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=3D
++diff --git a/src/import/staging/src/k8s.io/sample-controller/go.sum b/sr=
+c/import/staging/src/k8s.io/sample-controller/go.sum
++index 2729443484f..9d360830a5a 100644
++--- a/src/import/staging/src/k8s.io/sample-controller/go.sum
+++++ b/src/import/staging/src/k8s.io/sample-controller/go.sum
++@@ -196,8 +196,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91Y=
+hliOondGd6ZrsDBHQE=3D
++ gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=3D
++ gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=3D
++-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
+++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=3D
+++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5=
+A1VGuI=3D
++ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4B=
+RIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=3D
++ k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6 h1:4s3/R4+OYYYUKptXPhZK=
+jQ04WJ6EhQQVFdjOFvCazDk=3D
++diff --git a/src/import/vendor/gopkg.in/yaml.v2/.travis.yml b/src/import=
+/vendor/gopkg.in/yaml.v2/.travis.yml
++index 9f556934d8b..055480b9ef8 100644
++--- a/src/import/vendor/gopkg.in/yaml.v2/.travis.yml
+++++ b/src/import/vendor/gopkg.in/yaml.v2/.travis.yml
++@@ -1,12 +1,16 @@
++ language: go
++=20
++ go:
++-    - 1.4
++-    - 1.5
++-    - 1.6
++-    - 1.7
++-    - 1.8
++-    - 1.9
++-    - tip
+++    - "1.4.x"
+++    - "1.5.x"
+++    - "1.6.x"
+++    - "1.7.x"
+++    - "1.8.x"
+++    - "1.9.x"
+++    - "1.10.x"
+++    - "1.11.x"
+++    - "1.12.x"
+++    - "1.13.x"
+++    - "tip"
++=20
++ go_import_path: gopkg.in/yaml.v2
++diff --git a/src/import/vendor/gopkg.in/yaml.v2/decode.go b/src/import/v=
+endor/gopkg.in/yaml.v2/decode.go
++index 53108765555..129bc2a97d3 100644
++--- a/src/import/vendor/gopkg.in/yaml.v2/decode.go
+++++ b/src/import/vendor/gopkg.in/yaml.v2/decode.go
++@@ -319,10 +319,14 @@ func (d *decoder) prepare(n *node, out reflect.Val=
+ue) (newout reflect.Value, unm
++ }
++=20
++ const (
++-	// 400,000 decode operations is ~500kb of dense object declarations, o=
+r ~5kb of dense object declarations with 10000% alias expansion
+++	// 400,000 decode operations is ~500kb of dense object declarations, o=
+r
+++	// ~5kb of dense object declarations with 10000% alias expansion
++ 	alias_ratio_range_low =3D 400000
++-	// 4,000,000 decode operations is ~5MB of dense object declarations, o=
+r ~4.5MB of dense object declarations with 10% alias expansion
+++
+++	// 4,000,000 decode operations is ~5MB of dense object declarations, o=
+r
+++	// ~4.5MB of dense object declarations with 10% alias expansion
++ 	alias_ratio_range_high =3D 4000000
+++
++ 	// alias_ratio_range is the range over which we scale allowed alias ra=
+tios
++ 	alias_ratio_range =3D float64(alias_ratio_range_high - alias_ratio_ran=
+ge_low)
++ )
++@@ -784,8 +788,7 @@ func (d *decoder) merge(n *node, out reflect.Value) =
+{
++ 	case mappingNode:
++ 		d.unmarshal(n, out)
++ 	case aliasNode:
++-		an, ok :=3D d.doc.anchors[n.value]
++-		if ok && an.kind !=3D mappingNode {
+++		if n.alias !=3D nil && n.alias.kind !=3D mappingNode {
++ 			failWantMap()
++ 		}
++ 		d.unmarshal(n, out)
++@@ -794,8 +797,7 @@ func (d *decoder) merge(n *node, out reflect.Value) =
+{
++ 		for i :=3D len(n.children) - 1; i >=3D 0; i-- {
++ 			ni :=3D n.children[i]
++ 			if ni.kind =3D=3D aliasNode {
++-				an, ok :=3D d.doc.anchors[ni.value]
++-				if ok && an.kind !=3D mappingNode {
+++				if ni.alias !=3D nil && ni.alias.kind !=3D mappingNode {
++ 					failWantMap()
++ 				}
++ 			} else if ni.kind !=3D mappingNode {
++diff --git a/src/import/vendor/gopkg.in/yaml.v2/scannerc.go b/src/import=
+/vendor/gopkg.in/yaml.v2/scannerc.go
++index 570b8ecd10f..0b9bb6030a0 100644
++--- a/src/import/vendor/gopkg.in/yaml.v2/scannerc.go
+++++ b/src/import/vendor/gopkg.in/yaml.v2/scannerc.go
++@@ -626,31 +626,18 @@ func trace(args ...interface{}) func() {
++ func yaml_parser_fetch_more_tokens(parser *yaml_parser_t) bool {
++ 	// While we need more tokens to fetch, do it.
++ 	for {
++-		// Check if we really need to fetch more tokens.
++-		need_more_tokens :=3D false
++-
++-		if parser.tokens_head =3D=3D len(parser.tokens) {
++-			// Queue is empty.
++-			need_more_tokens =3D true
++-		} else {
++-			// Check if any potential simple key may occupy the head position.
++-			if !yaml_parser_stale_simple_keys(parser) {
+++		if parser.tokens_head !=3D len(parser.tokens) {
+++			// If queue is non-empty, check if any potential simple key may
+++			// occupy the head position.
+++			head_tok_idx, ok :=3D parser.simple_keys_by_tok[parser.tokens_parsed=
+]
+++			if !ok {
+++				break
+++			} else if valid, ok :=3D yaml_simple_key_is_valid(parser, &parser.si=
+mple_keys[head_tok_idx]); !ok {
++ 				return false
++-			}
++-
++-			for i :=3D range parser.simple_keys {
++-				simple_key :=3D &parser.simple_keys[i]
++-				if simple_key.possible && simple_key.token_number =3D=3D parser.tok=
+ens_parsed {
++-					need_more_tokens =3D true
++-					break
++-				}
+++			} else if !valid {
+++				break
++ 			}
++ 		}
++-
++-		// We are finished.
++-		if !need_more_tokens {
++-			break
++-		}
++ 		// Fetch the next token.
++ 		if !yaml_parser_fetch_next_token(parser) {
++ 			return false
++@@ -678,11 +665,6 @@ func yaml_parser_fetch_next_token(parser *yaml_pars=
+er_t) bool {
++ 		return false
++ 	}
++=20
++-	// Remove obsolete potential simple keys.
++-	if !yaml_parser_stale_simple_keys(parser) {
++-		return false
++-	}
++-
++ 	// Check the indentation level against the current column.
++ 	if !yaml_parser_unroll_indent(parser, parser.mark.column) {
++ 		return false
++@@ -837,29 +819,30 @@ func yaml_parser_fetch_next_token(parser *yaml_par=
+ser_t) bool {
++ 		"found character that cannot start any token")
++ }
++=20
++-// Check the list of potential simple keys and remove the positions tha=
+t
++-// cannot contain simple keys anymore.
++-func yaml_parser_stale_simple_keys(parser *yaml_parser_t) bool {
++-	// Check for a potential simple key for each flow level.
++-	for i :=3D range parser.simple_keys {
++-		simple_key :=3D &parser.simple_keys[i]
++-
++-		// The specification requires that a simple key
++-		//
++-		//  - is limited to a single line,
++-		//  - is shorter than 1024 characters.
++-		if simple_key.possible && (simple_key.mark.line < parser.mark.line ||=
+ simple_key.mark.index+1024 < parser.mark.index) {
++-
++-			// Check if the potential simple key to be removed is required.
++-			if simple_key.required {
++-				return yaml_parser_set_scanner_error(parser,
++-					"while scanning a simple key", simple_key.mark,
++-					"could not find expected ':'")
++-			}
++-			simple_key.possible =3D false
+++func yaml_simple_key_is_valid(parser *yaml_parser_t, simple_key *yaml_s=
+imple_key_t) (valid, ok bool) {
+++	if !simple_key.possible {
+++		return false, true
+++	}
+++
+++	// The 1.2 specification says:
+++	//
+++	//     "If the ? indicator is omitted, parsing needs to see past the
+++	//     implicit key to recognize it as such. To limit the amount of
+++	//     lookahead required, the =E2=80=9C:=E2=80=9D indicator must appe=
+ar at most 1024
+++	//     Unicode characters beyond the start of the key. In addition, th=
+e key
+++	//     is restricted to a single line."
+++	//
+++	if simple_key.mark.line < parser.mark.line || simple_key.mark.index+10=
+24 < parser.mark.index {
+++		// Check if the potential simple key to be removed is required.
+++		if simple_key.required {
+++			return false, yaml_parser_set_scanner_error(parser,
+++				"while scanning a simple key", simple_key.mark,
+++				"could not find expected ':'")
++ 		}
+++		simple_key.possible =3D false
+++		return false, true
++ 	}
++-	return true
+++	return true, true
++ }
++=20
++ // Check if a simple key may start at the current position and add it i=
+f
++@@ -879,13 +862,14 @@ func yaml_parser_save_simple_key(parser *yaml_pars=
+er_t) bool {
++ 			possible:     true,
++ 			required:     required,
++ 			token_number: parser.tokens_parsed + (len(parser.tokens) - parser.to=
+kens_head),
+++			mark:         parser.mark,
++ 		}
++-		simple_key.mark =3D parser.mark
++=20
++ 		if !yaml_parser_remove_simple_key(parser) {
++ 			return false
++ 		}
++ 		parser.simple_keys[len(parser.simple_keys)-1] =3D simple_key
+++		parser.simple_keys_by_tok[simple_key.token_number] =3D len(parser.sim=
+ple_keys) - 1
++ 	}
++ 	return true
++ }
++@@ -900,9 +884,10 @@ func yaml_parser_remove_simple_key(parser *yaml_par=
+ser_t) bool {
++ 				"while scanning a simple key", parser.simple_keys[i].mark,
++ 				"could not find expected ':'")
++ 		}
+++		// Remove the key from the stack.
+++		parser.simple_keys[i].possible =3D false
+++		delete(parser.simple_keys_by_tok, parser.simple_keys[i].token_number)
++ 	}
++-	// Remove the key from the stack.
++-	parser.simple_keys[i].possible =3D false
++ 	return true
++ }
++=20
++@@ -912,7 +897,12 @@ const max_flow_level =3D 10000
++ // Increase the flow level and resize the simple key list if needed.
++ func yaml_parser_increase_flow_level(parser *yaml_parser_t) bool {
++ 	// Reset the simple key on the next level.
++-	parser.simple_keys =3D append(parser.simple_keys, yaml_simple_key_t{})
+++	parser.simple_keys =3D append(parser.simple_keys, yaml_simple_key_t{
+++		possible:     false,
+++		required:     false,
+++		token_number: parser.tokens_parsed + (len(parser.tokens) - parser.tok=
+ens_head),
+++		mark:         parser.mark,
+++	})
++=20
++ 	// Increase the flow level.
++ 	parser.flow_level++
++@@ -928,7 +918,9 @@ func yaml_parser_increase_flow_level(parser *yaml_pa=
+rser_t) bool {
++ func yaml_parser_decrease_flow_level(parser *yaml_parser_t) bool {
++ 	if parser.flow_level > 0 {
++ 		parser.flow_level--
++-		parser.simple_keys =3D parser.simple_keys[:len(parser.simple_keys)-1]
+++		last :=3D len(parser.simple_keys) - 1
+++		delete(parser.simple_keys_by_tok, parser.simple_keys[last].token_numb=
+er)
+++		parser.simple_keys =3D parser.simple_keys[:last]
++ 	}
++ 	return true
++ }
++@@ -1005,6 +997,8 @@ func yaml_parser_fetch_stream_start(parser *yaml_pa=
+rser_t) bool {
++ 	// Initialize the simple key stack.
++ 	parser.simple_keys =3D append(parser.simple_keys, yaml_simple_key_t{})
++=20
+++	parser.simple_keys_by_tok =3D make(map[int]int)
+++
++ 	// A simple key is allowed at the beginning of the stream.
++ 	parser.simple_key_allowed =3D true
++=20
++@@ -1286,7 +1280,11 @@ func yaml_parser_fetch_value(parser *yaml_parser_=
+t) bool {
++ 	simple_key :=3D &parser.simple_keys[len(parser.simple_keys)-1]
++=20
++ 	// Have we found a simple key?
++-	if simple_key.possible {
+++	if valid, ok :=3D yaml_simple_key_is_valid(parser, simple_key); !ok {
+++		return false
+++
+++	} else if valid {
+++
++ 		// Create the KEY token and insert it into the queue.
++ 		token :=3D yaml_token_t{
++ 			typ:        yaml_KEY_TOKEN,
++@@ -1304,6 +1302,7 @@ func yaml_parser_fetch_value(parser *yaml_parser_t=
+) bool {
++=20
++ 		// Remove the simple key.
++ 		simple_key.possible =3D false
+++		delete(parser.simple_keys_by_tok, simple_key.token_number)
++=20
++ 		// A simple key cannot follow another simple key.
++ 		parser.simple_key_allowed =3D false
++diff --git a/src/import/vendor/gopkg.in/yaml.v2/yaml.go b/src/import/ven=
+dor/gopkg.in/yaml.v2/yaml.go
++index de85aa4cdb7..89650e293ac 100644
++--- a/src/import/vendor/gopkg.in/yaml.v2/yaml.go
+++++ b/src/import/vendor/gopkg.in/yaml.v2/yaml.go
++@@ -89,7 +89,7 @@ func UnmarshalStrict(in []byte, out interface{}) (err =
+error) {
++ 	return unmarshal(in, out, true)
++ }
++=20
++-// A Decorder reads and decodes YAML values from an input stream.
+++// A Decoder reads and decodes YAML values from an input stream.
++ type Decoder struct {
++ 	strict bool
++ 	parser *parser
++diff --git a/src/import/vendor/gopkg.in/yaml.v2/yamlh.go b/src/import/ve=
+ndor/gopkg.in/yaml.v2/yamlh.go
++index e25cee563be..f6a9c8e34b1 100644
++--- a/src/import/vendor/gopkg.in/yaml.v2/yamlh.go
+++++ b/src/import/vendor/gopkg.in/yaml.v2/yamlh.go
++@@ -579,6 +579,7 @@ type yaml_parser_t struct {
++=20
++ 	simple_key_allowed bool                // May a simple key occur at th=
+e current position?
++ 	simple_keys        []yaml_simple_key_t // The stack of simple keys.
+++	simple_keys_by_tok map[int]int         // possible simple_key indexes =
+indexed by token_number
++=20
++ 	// Parser stuff
++=20
++diff --git a/src/import/vendor/modules.txt b/src/import/vendor/modules.t=
+xt
++index 4585ca5ec0d..06a5d7fa5a0 100644
++--- a/src/import/vendor/modules.txt
+++++ b/src/import/vendor/modules.txt
++@@ -1069,7 +1069,7 @@ gopkg.in/square/go-jose.v2/jwt
++ gopkg.in/tomb.v1
++ # gopkg.in/warnings.v0 v0.1.1 =3D> gopkg.in/warnings.v0 v0.1.1
++ gopkg.in/warnings.v0
++-# gopkg.in/yaml.v2 v2.2.4 =3D> gopkg.in/yaml.v2 v2.2.4
+++# gopkg.in/yaml.v2 v2.2.8 =3D> gopkg.in/yaml.v2 v2.2.8
++ gopkg.in/yaml.v2
++ # gotest.tools v2.2.0+incompatible =3D> gotest.tools v2.2.0+incompatibl=
+e
++ gotest.tools
++--=20
++2.23.0
++
+diff --git a/recipes-containers/kubernetes/kubernetes_git.bb b/recipes-co=
+ntainers/kubernetes/kubernetes_git.bb
+index e96b7d6..941e0ca 100644
+--- a/recipes-containers/kubernetes/kubernetes_git.bb
++++ b/recipes-containers/kubernetes/kubernetes_git.bb
+@@ -15,6 +15,7 @@ SRC_URI =3D "git://github.com/kubernetes/kubernetes.git=
+;branch=3Drelease-1.16;name=3Dk
+            file://CVE-2020-8551.patch \
+            file://CVE-2020-8552.patch \
+            file://CVE-2020-8555.patch \
++           file://CVE-2019-11254.patch \
+           "
+=20
+ DEPENDS +=3D "rsync-native \
+--=20
+2.17.1
+
