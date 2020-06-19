@@ -1,146 +1,153 @@
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
- by mx.groups.io with SMTP id smtpd.web11.6927.1592573786939097991
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+ by mx.groups.io with SMTP id smtpd.web10.7585.1592575547969214547
  for <yocto@lists.yoctoproject.org>;
- Fri, 19 Jun 2020 06:36:27 -0700
+ Fri, 19 Jun 2020 07:05:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=vPjP8pCA;
- spf=pass (domain: gmail.com, ip: 209.85.221.176, mailfrom: tomekthemessenger@gmail.com)
-Received: by mail-vk1-f176.google.com with SMTP id y23so2285206vkd.13
-        for <yocto@lists.yoctoproject.org>; Fri, 19 Jun 2020 06:36:26 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=tcHm0Pva;
+ spf=pass (domain: gmail.com, ip: 209.85.221.181, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-vk1-f181.google.com with SMTP id t23so2312637vkt.5
+        for <yocto@lists.yoctoproject.org>; Fri, 19 Jun 2020 07:05:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=yKPed7uAZ0mwmNT3dGs/ggaOr6hhYafDGXOT2uP3Xgg=;
-        b=vPjP8pCAfsdNavqAafxFQ1Oc+VlNjQw2i9NQCToJlPX9whE9UtBOO9Vtjuah5+3lWM
-         nrRkHU1VuV+kdo4hQPINF1NaILrTu18I/xglP+UQ8GA1tIvC5o9r05Xr0fYMJBoxDDhE
-         5conpIllbGxkXW7Fjbn97u0cf89gTHs2j1jKQvqW+vYCgSnU6tqLPuK7etwssRUobFTo
-         B0L8rhagkD9Gf+yYC8l3GZjHZr44KlCXesCVvYiX/hKDGo1jVmDWknVOcwWcauvHcg5E
-         IbVBF/0Jssvw1Aa/oLiOZrA7YukX7OlW1LeHld8heVcBL8Ezg2NxAopJ6de2D8z3bQZE
-         W8TQ==
+        bh=7hrKpsIq8tFVwPy6Zn40gGkMEhl5o5rv9kd0lq+ahWM=;
+        b=tcHm0Pvaor9fqhAo4cwUI2eaXo6LphjB1z2KVUFD8mkBd5seAiuHowQRw+2f6mryme
+         +VmWj0c49AYABtgXKWzHkv3YubKoCggJKvnnqLUZaMNNontbn9I5PfH3ELE7OGYDB0Og
+         yULj4m88tRgV1Zecp3LamXiRaR+QhsyCboQcItoBbjkEYBpZb+jFJqStiKqOMqFe3N9M
+         cDz8YFLrTAD+sqJLjlVfmjcK5y4sCThX7nMwopn0Tc86PRqgMY9QuEf/lzw5yQ29KBYI
+         NKOb1WY2dlRc3X9ZCcpL891YhTstoP7g5fIcCMt5lwOg1OLLiXVCNE85NGngIGrhLTt/
+         MLZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=yKPed7uAZ0mwmNT3dGs/ggaOr6hhYafDGXOT2uP3Xgg=;
-        b=XyYAtpknr5rVQzrgqIOf0Nw15d7L4HbokG7ZPJ6pZPlE3YgfhxWOE0GgF2LaK3Qq+f
-         JDZbu3fLnI5h7cpDEbsGuhtwFX5+tzk3Ehmmp1TnPsU3BtRIaub6dd104uqFy6dGnDHF
-         Q3/aMIXlWHd05dGGmo+ypPJJTVC5+gdCTDZLaG1qohNRLRCt31iCc0bQNrZ5vivHGZTg
-         OyQ/AfvyzgoD55TurCPZUT611vU1hAPRdYhWKXQ25YPzYST1byDeE2CkE52pK7Lfpmz/
-         +IYZxz/r9C3taHRbNnobRr3Vpz5xJwdLAAxTxAI6lqF0Wy8PvnP/tP2ytYpwFOm8Erxt
-         trFw==
-X-Gm-Message-State: AOAM533HZBo6SfapxkKtvtauYT7y4b2iQ0fgiOZVh1vKJDZT1w6NdxeL
-	0u0Co/Ll3K82EJX2GsVkJsAf1LBBDnzHms3DCHY=
-X-Google-Smtp-Source: ABdhPJzSVr7+EUgo4eM3OImae7/c9wTVqDLUDL0TRRU1CYU5s9TAB6qpnOb8JF1IjGSeZwu6sTWJ8LJiM1L0A0/cdRg=
-X-Received: by 2002:a05:6122:106f:: with SMTP id k15mr7129183vko.21.1592573785794;
- Fri, 19 Jun 2020 06:36:25 -0700 (PDT)
+        bh=7hrKpsIq8tFVwPy6Zn40gGkMEhl5o5rv9kd0lq+ahWM=;
+        b=sc6hO9WG4kgLhzhULVlqDgccO4dUXfXVRHZzPP4hQ0axSDOrl1/zpb0D6F6eK+hKJi
+         UaQiboDcilD7CYGFYNI4OqB7LHUNHlw5w6FPj704nnBTdkE6Car/jb12eDIbd7X7QaAc
+         vp33Zv1OibHXUl4NOULsZdUH6/9vn7BGwjZC0xshC0JuKdaLdue++8bVmEV8WYPKMuWo
+         srCWzxByeKNj1SnR/G48m5eywY5yQ/Z5Lrr+2Y2k0+E9lHg10CoX8DeSRfygYAxQkZDf
+         hkteTiJ+HTamT43xM5R7xdHU/LDczOqA6U+b9ewv7D4ODC57ZsTHfPRksA56by067twC
+         xY0g==
+X-Gm-Message-State: AOAM533TkPWI4iR5YGj9F650F2iz/czgU4Ha0DkCbXKrG5KdUSqHzWcQ
+	4xFecJu7CpnU8nFhzemc8PSFxK155eUl+j05fvc=
+X-Google-Smtp-Source: ABdhPJxvfcU7ug+anTAaTDAiiB2BxUMDjaGlPZtfPfee0c4U3emPnOZY16d/bn8eYkdFYk2+NyUh9syuYF+vAMHnlbQ=
+X-Received: by 2002:a1f:4192:: with SMTP id o140mr7253243vka.49.1592575547043;
+ Fri, 19 Jun 2020 07:05:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAA4NGyuwrkQrQ05AR_2OyaYTxrF41sqx1AoaDFbJaU99TwCjxQ@mail.gmail.com>
- <CAAx3WaB-8BapkcGYtz2KftvAY7hE0HRBcEKfhKs5V-V+H3M2HQ@mail.gmail.com>
-In-Reply-To: <CAAx3WaB-8BapkcGYtz2KftvAY7hE0HRBcEKfhKs5V-V+H3M2HQ@mail.gmail.com>
-From: "Tomek The Messenger" <tomekthemessenger@gmail.com>
-Date: Fri, 19 Jun 2020 15:36:13 +0200
-Message-ID: <CAA4NGyv2S1S009zeTezOt+DU42ggfOGt5priOVc49Toi9aCFPA@mail.gmail.com>
-Subject: Re: [yocto] MACHINE and inc files
-To: Gabriele Zampieri <gabbla.malist@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000c7ec8005a86ffaf6"
+References: <BL0PR11MB3268E2BB9A442B0890DA3C9DAE980@BL0PR11MB3268.namprd11.prod.outlook.com>
+In-Reply-To: <BL0PR11MB3268E2BB9A442B0890DA3C9DAE980@BL0PR11MB3268.namprd11.prod.outlook.com>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Fri, 19 Jun 2020 16:05:35 +0200
+Message-ID: <CANNYZj_0BYuNgmO3MHm0vEgu6qQut2vk984fRFPQGuRCy+=W1Q@mail.gmail.com>
+Subject: Re: [yocto] Distro upgrade strategies
+To: Hugh Boddington <hboddington@orangephotonics.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000c2743f05a8706397"
 
---000000000000c7ec8005a86ffaf6
+--000000000000c2743f05a8706397
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-And then do include ${MAGIC_NUMBER}. But this is not good idea. Each time
-new x version appers I will have to extend temp.bb file about the line you
-wrote but with another x version.
+Yocto does not support or test upgrading from one yocto release to the next
+through dnf. Nothing conceptually prevents it, but you need to set up and
+test such upgrades yourself, and send any needed fixes upstream.
 
-pt., 19.06.2020, 15:26 u=C5=BCytkownik Gabriele Zampieri <gabbla.malist@gm=
-ail.com>
-napisa=C5=82:
+Alex
 
-> Hi Tomek,
+On Fri 19. Jun 2020 at 14.16, Hugh Boddington <
+hboddington@orangephotonics.com> wrote:
+
+> Hello all,
 >
-> you can specify machine-specific variables/function with the following
-> syntax:
->  <PROPERTY_NAME>_[MACHINE_NAME] =3D "value"
-> ex:
->  MAGIC_NUMBER_velismate-x21 =3D "12345"
-> inside your temp.bb
+> I'm struggling conceptually with a recommended upgrade strategy for our
+> distribution (i.e. the resultant distribution on an ARM-based embedded
+> device, not the development SDK itself).  I had initially assumed that a
+> package manager (we're using DNF) could be used to upgrade a distribution
+> from one version to the next, but every time I've used it to try to deploy
+> a large upgrade (e.g.,  Zeus->Dunfell) I've run into problems.  Currently,
+> if I try to use DNF to upgrade from a Zeus-based distribution my DNF
+> installation breaks ("ModuleNotFoundError: No module named 'dnf'") and I
+> can't even shut the device down ("/run/initctl: No such file or
+> directory").  However, if I install the Dunfell-based distribution from a
+> raw image (without upgrading through Zeus) then everything works fine.  I'm
+> not getting an errors in my build or indication that something went wrong,
+> but obviously something is amiss.
 >
-> Regards,
-> Gabriele
+> Questions:
+>   1) Am I missing something?  Is it reasonable to expect that I can
+> upgrade the whole distro using DNF?  I've read the wiki page about System
+> Updates (https://wiki.yoctoproject.org/wiki/System_Update) and DNF (or
+> any other package manager) is not listed - does that imply it's not up to
+> the job?
+>   2) If I do continue using DNF, how do I troubleshoot the above issues?
+> I don't mean specifically those issues, but I want to learn to fish.  Some
+> packages got broken.  Was it caused by the distro I'm upgrading from?  To?
+> What's the best way of tracing it back?  I tried looking through the
+> various commits but obviously there were a lot of changes made from one
+> distro to another.  The above scenario seems also to be a perfect storm
+> because now that DNF is broken I don't have a mechanism to downgrade
+> anything.
 >
-> On Fri, Jun 19, 2020 at 3:21 PM Tomek The Messenger <
-> tomekthemessenger@gmail.com> wrote:
+> I can't help but think that I'm swimming against the current here, or that
+> I've done something fundamentally wrong - I'd appreciate any insight or
+> advice.  Thank you!
 >
->> Hi
->> I have various ${MACHINE} called:
->> uruguay-x11
->> uruguay-x21
->> supa-rte-x11
->> supa-rte-x13
->> supa-rte-x21
->> velismate-x11
->> velismate-x21
->>
->> I created some bb recipe:
->> temp.bb
->> where there are common things done for all machines.
->> Now I need to perform different things for  uruguay, supa-rte and
->> velismate.
->> How to do this? Should I create
->> uruguay-%.inc supa-%.inc and velismate-%.inc?
->> and in temp.bb write:
->> include ${MACHINE}.inc
->> but this won't work as bitbake will expect full name with x11 etc part.
->> How to exclude part with x11, rte-x21 etc? Is any way?
->> Anybody can help?
->>
->> BR
->> Tomek
->>=20
->>
+> Hugh
+> 
 >
 
---000000000000c7ec8005a86ffaf6
+--000000000000c2743f05a8706397
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">And then do include ${MAGIC_NUMBER}. But this is not good=
- idea. Each time new x version appers I will have to extend <a href=3D"http=
-://temp.bb">temp.bb</a> file about the line you wrote but with another x ve=
-rsion.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">pt., 19.06.2020, 15:26 u=C5=BCytkownik Gabriele Zampieri &lt;<a href=
-=3D"mailto:gabbla.malist@gmail.com">gabbla.malist@gmail.com</a>&gt; napisa=
-=
-=C5=82:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
-8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div>Hi T=
-omek,</div><div><br></div><div>you can specify machine-specific variables/f=
-unction with the following syntax:</div><div>=C2=A0<span style=3D"font-fami=
-ly:monospace">&lt;PROPERTY_NAME&gt;_[MACHINE_NAME] =3D &quot;value&quot;</s=
-pan></div><div>ex:</div><div>=C2=A0<span style=3D"font-family:monospace">MA=
-GIC_NUMBER_velismate-x21 =3D &quot;12345&quot;</span></div><div>inside your=
- <a href=3D"http://temp.bb" target=3D"_blank" rel=3D"noreferrer">temp.bb</a=
-></div><div><br></div><div>Regards,</div><div>Gabriele<br></div></div><br><=
-div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun=
- 19, 2020 at 3:21 PM Tomek The Messenger &lt;<a href=3D"mailto:tomekthemess=
-enger@gmail.com" target=3D"_blank" rel=3D"noreferrer">tomekthemessenger@gma=
-il.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex"><div dir=3D"ltr">Hi<br>I have various ${MACHINE} called:<br>uruguay-x=
-11<br>uruguay-x21<br>supa-rte-x11<br>supa-rte-x13<br>supa-rte-x21<br>velism=
-ate-x11<br>velismate-x21<br><br>I created some bb recipe:<br><a href=3D"htt=
-p://temp.bb" target=3D"_blank" rel=3D"noreferrer">temp.bb</a><br>where ther=
-e are common things done for all machines.<br>Now I need to perform differe=
-nt things for =C2=A0uruguay, supa-rte and velismate.<br>How to do this? Sho=
-uld I create <br>uruguay-%.inc supa-%.inc and velismate-%.inc?<br>and in <a=
- href=3D"http://temp.bb" target=3D"_blank" rel=3D"noreferrer">temp.bb</a> w=
-rite:<br>include ${MACHINE}.inc<br>but this won&#39;t work as bitbake will =
-expect full name with x11 etc part. How to exclude=C2=A0part=C2=A0with x11,=
- rte-x21 etc? Is any way?<br>Anybody can help?<br><div><br></div><div>BR</d=
-iv><div>Tomek</div></div>
+<div><div dir=3D"auto">Yocto does not support or test upgrading from one yo=
+cto release to the next through dnf. Nothing conceptually prevents it, but =
+you need to set up and test such upgrades yourself, and send any needed fix=
+es upstream.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Alex</div><=
+/div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Fri 19. Jun 2020 at 14.16, Hugh Boddington &lt;<a href=3D"mailto:hbo=
+ddington@orangephotonics.com">hboddington@orangephotonics.com</a>&gt; wrote=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;border-l=
+eft-color:rgb(204,204,204)">Hello all,<br>
 <br>
-</blockquote></div>
-</blockquote></div>
+I&#39;m struggling conceptually with a recommended upgrade strategy for ou=
+r distribution (i.e. the resultant distribution on an ARM-based embedded de=
+vice, not the development SDK itself).=C2=A0 I had initially assumed that a=
+ package manager (we&#39;re using DNF) could be used to upgrade a distribut=
+ion from one version to the next, but every time I&#39;ve used it to try to=
+ deploy a large upgrade (e.g.,=C2=A0 Zeus-&gt;Dunfell) I&#39;ve run into pr=
+oblems.=C2=A0 Currently, if I try to use DNF to upgrade from a Zeus-based d=
+istribution my DNF installation breaks (&quot;ModuleNotFoundError: No modul=
+e named &#39;dnf&#39;&quot;) and I can&#39;t even shut the device down (&qu=
+ot;/run/initctl: No such file or directory&quot;).=C2=A0 However, if I inst=
+all the Dunfell-based distribution from a raw image (without upgrading thro=
+ugh Zeus) then everything works fine.=C2=A0 I&#39;m not getting an errors i=
+n my build or indication that something went wrong, but obviously something=
+ is amiss.<br>
+<br>
+Questions:<br>
+=C2=A0 1) Am I missing something?=C2=A0 Is it reasonable to expect that I =
+can upgrade the whole distro using DNF?=C2=A0 I&#39;ve read the wiki page a=
+bout System Updates (<a href=3D"https://wiki.yoctoproject.org/wiki/System_U=
+pdate" rel=3D"noreferrer" target=3D"_blank">https://wiki.yoctoproject.org/w=
+iki/System_Update</a>) and DNF (or any other package manager) is not listed=
+ - does that imply it&#39;s not up to the job?<br>
+=C2=A0 2) If I do continue using DNF, how do I troubleshoot the above issu=
+es?=C2=A0 I don&#39;t mean specifically those issues, but I want to learn t=
+o fish.=C2=A0 Some packages got broken.=C2=A0 Was it caused by the distro I=
+&#39;m upgrading from?=C2=A0 To?=C2=A0 What&#39;s the best way of tracing i=
+t back?=C2=A0 I tried looking through the various commits but obviously the=
+re were a lot of changes made from one distro to another.=C2=A0 The above s=
+cenario seems also to be a perfect storm because now that DNF is broken I d=
+on&#39;t have a mechanism to downgrade anything.<br>
+<br>
+I can&#39;t help but think that I&#39;m swimming against the current here,=
+ or that I&#39;ve done something fundamentally wrong - I&#39;d appreciate a=
+ny insight or advice.=C2=A0 Thank you!<br>
+<br>
+Hugh<br>
+<br>
+</blockquote></div></div>
 
---000000000000c7ec8005a86ffaf6--
+--000000000000c2743f05a8706397--
