@@ -1,48 +1,48 @@
-Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com [209.85.215.195])
- by mx.groups.io with SMTP id smtpd.web10.1886.1592610194200888109
+Received: from mail-pj1-f67.google.com (mail-pj1-f67.google.com [209.85.216.67])
+ by mx.groups.io with SMTP id smtpd.web11.1781.1592610215203645231
  for <yocto@lists.yoctoproject.org>;
- Fri, 19 Jun 2020 16:43:14 -0700
+ Fri, 19 Jun 2020 16:43:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=pj1MXpyb;
- spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 209.85.215.195, mailfrom: akuster@mvista.com)
-Received: by mail-pg1-f195.google.com with SMTP id v11so5176593pgb.6
-        for <yocto@lists.yoctoproject.org>; Fri, 19 Jun 2020 16:43:14 -0700 (PDT)
+ dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=M9BSjPeS;
+ spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 209.85.216.67, mailfrom: akuster@mvista.com)
+Received: by mail-pj1-f67.google.com with SMTP id u8so4748357pje.4
+        for <yocto@lists.yoctoproject.org>; Fri, 19 Jun 2020 16:43:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=mvista-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language;
-        bh=NsUoVGCduE2Ie/QRw17RGq7X/FbmwkENKuMcLN+yqI0=;
-        b=pj1MXpybEFCLQMx8hPxb0jYLfxa1WMrK52apbfNIBfV+EzgpuDSINvePNEiK4IACpH
-         CzhuCXtRme6rXy1oAbrxJXMc9b7z6DKV2Ewaxj9wjULdrnMuyQChxcVJvosnJ5mPSSuq
-         LG7O17Msb0UlalI7MXb4vVLZOj8cg8S+DbcpIbk+XSqovBa+e9RqSqcehZWAG3XOet0s
-         wgtuJgvpTq61mlZru7PelE3K0uZMPXVhRO6+cBHmGcne768uJAUdOHBudpHiMzKu9q6d
-         w5jrIIoucUdQvBDZ0t9R3mojjrTql0aCCLVgmxRpjF7OzgR6XGDsQzXsk/ubldjThO+2
-         HWTQ==
+        bh=MmHBHYXjnKDAYcAR9bcCc5Uf1Q0d3eL5rQBubX9jeFQ=;
+        b=M9BSjPeShQKcbxb9GyQsrE6Dy7Cgf0+ETdJHzehQyOLinEBkFS2GuJs5gthKG3VOyd
+         JGbBA7ahYe4yKFCCXU6Ub/YzCPqBHSIGIu+EOrQKwWvCrtPkXB4c1kp5F2VxKdY+nTKx
+         e5RFg69zaYXXIw5e5Ig0dBQa2KsyJ7SOe42lHBdGnzSQBDXCq86rTdJu28awpLNStK/9
+         ImjpLuKmcsVltU50e/tFyvYgAoqD3AOrxmcG2wGol2gNAj96HHp3BLABMkfmXyb468g3
+         LBqwielKvmFPvtZiDX8Cf5UcgZSCQHPuil3iRoImFMser2gRtrEEOLPTH9d8AY28f0gI
+         WQpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
          :date:user-agent:mime-version:in-reply-to:content-language;
-        bh=NsUoVGCduE2Ie/QRw17RGq7X/FbmwkENKuMcLN+yqI0=;
-        b=rJaB+oz5KDycYGoUTIFCeJCi1WAQkQIoTs1HQ4p2O9J7wkneZOJYxzT8WmUeJUgyxO
-         pwxSoxU0noBSYqrSoy1GK2hiykHCt7XoyvFB2zsXJ9Lk2Zcg8H/qCOPkI6Iekp4tDqB1
-         Qke2oCR9hreT5ISbAYV4t9jOe1VhxnfI0Nu3aBS4Q2NIOcVWDMsFcIiZGu9dijiV1nqg
-         5TqogBA4CrKwme69NfUHa6Ob+P7Hfdp5CF2gwdvv0YbHYl6/e1DsEdY1T4S8bYegCNYO
-         nPeVzH8xqIL/6+bcy+oYvHhqoUre+9T3fXtgNOzg5pkT+WYI2uLzStvFsr41e0B0l6pz
-         s4sA==
-X-Gm-Message-State: AOAM5319WROl/AZGjxBsAdSi4lGTpgGatsUynufrY7LuV9dhAhUq+hwI
-	uE9xWWBCnZ/mK6TQ/fDcqCcWifPlAwc=
-X-Google-Smtp-Source: ABdhPJwixVPcXOM1pvAgE8lIFoLmy3IfsVtxkyEcgCd3ICQFol5ZtcjmLS+0rQHD03dKqZpZj6gBlw==
-X-Received: by 2002:a63:e74b:: with SMTP id j11mr4762276pgk.237.1592610193321;
-        Fri, 19 Jun 2020 16:43:13 -0700 (PDT)
+        bh=MmHBHYXjnKDAYcAR9bcCc5Uf1Q0d3eL5rQBubX9jeFQ=;
+        b=gNwAfAk2lM88cueuAr+0/L6jBxFV9V4FLovqgKgAwfo0Y6Kcw/lnLr/AedW56C1qmX
+         SgxZnZnuXnbdppvfu2FvcUjcGii1JyEMZgVHlf/yk2UGu+26SDHoCBlNkWAgOfvqQu4z
+         PC51T3U1EbCrqYPWG0lvZvpECooDdeefxDFmCDZLKjPxeQGh8t74vBkgpRMHVDQfO+UV
+         nROk9cBMp1qtHyvo7LlXYduBhWD8+dohvhSrzmaWsPFAvdariVPoqWV993hfXKqT0tY1
+         rJeql256UgGBR/YFkZeUasPI88R6CY/c67W9SZBIzF/Ec26mQMYX7NmBqu6eijs7LOsa
+         yIDA==
+X-Gm-Message-State: AOAM530EUOLZWPVoOgRW1qneXfQWaWsAw73HPVFdkNyhFvnqPjaKcnDC
+	6Nwg0dvZEWxJcatOh5TgEMjizEoB/is=
+X-Google-Smtp-Source: ABdhPJyiL9xjOafIiXmM25Gd6uH1hwEHYDaQfTGRNGr1wE3N0B+/0N2v8Y5ZKIpF/TulcRAQ4kfJRg==
+X-Received: by 2002:a17:90a:3489:: with SMTP id p9mr5917796pjb.56.1592610214327;
+        Fri, 19 Jun 2020 16:43:34 -0700 (PDT)
 Return-Path: <akuster@mvista.com>
 Received: from ?IPv6:2601:202:4180:a5c0:445a:f005:22f0:213c? ([2601:202:4180:a5c0:445a:f005:22f0:213c])
-        by smtp.gmail.com with ESMTPSA id p12sm6075958pgk.40.2020.06.19.16.43.12
+        by smtp.gmail.com with ESMTPSA id n64sm5904795pga.38.2020.06.19.16.43.33
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Jun 2020 16:43:12 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][master|dunfell][PATCH 2/2] tripwire: Remove makefiles from the man directories.
-To: Jeremy Puhlman <jpuhlman@mvista.com>, yocto@lists.yoctoproject.org
-References: <20200613021919.1871-1-jpuhlman@mvista.com>
- <20200613021919.1871-2-jpuhlman@mvista.com>
+        Fri, 19 Jun 2020 16:43:33 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH] apparmor: pull in coreutils/findutils only when not using systemd as init manager
+To: yocto@lists.yoctoproject.org
+References: <20200608100046.10153-1-alex.kanavin@gmail.com>
 From: "Armin Kuster" <akuster@mvista.com>
 Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -87,47 +87,52 @@ Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <ebbafcf3-c3c7-97f4-3864-f6621abe2b16@mvista.com>
-Date: Fri, 19 Jun 2020 16:43:11 -0700
+Message-ID: <3f0d2941-a6b4-2f98-dd51-f7b7969d5cbc@mvista.com>
+Date: Fri, 19 Jun 2020 16:43:32 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <20200613021919.1871-2-jpuhlman@mvista.com>
+In-Reply-To: <20200608100046.10153-1-alex.kanavin@gmail.com>
 Content-Type: multipart/alternative;
- boundary="------------6195BB3BBB280F53A49D578C"
+ boundary="------------2F7B718E4C3E30DF68308800"
 Content-Language: en-US
 
---------------6195BB3BBB280F53A49D578C
+--------------2F7B718E4C3E30DF68308800
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
 merged
 
-On 6/12/20 7:19 PM, Jeremy Puhlman wrote:
-> From: Jeremy Puhlman <jpuhlman@mvista.com>
+On 6/8/20 3:00 AM, Alexander Kanavin wrote:
+> The utilities from those packages (xargs, comm) are only used in sysvinit
+> scripts, and so there is no need to pull them in when systemd is in use.
+> Both are gpl3 licensed, so this is beneficial for builds where gpl3 is not
+> allowed.
 >
-> Signed-off-by: Jeremy Puhlman <jpuhlman@mvista.com>
+> Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
 > ---
->  recipes-ids/tripwire/tripwire_2.4.3.7.bb | 1 +
->  1 file changed, 1 insertion(+)
+>  recipes-mac/AppArmor/apparmor_2.13.4.bb | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 >
-> diff --git a/recipes-ids/tripwire/tripwire_2.4.3.7.bb b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
-> index c26392a..4f50bff 100644
-> --- a/recipes-ids/tripwire/tripwire_2.4.3.7.bb
-> +++ b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
-> @@ -52,6 +52,7 @@ do_install () {
->      install -m 0644 ${S}/man/man4/* ${D}${mandir}/man4
->      install -m 0644 ${S}/man/man5/* ${D}${mandir}/man5
->      install -m 0644 ${S}/man/man8/* ${D}${mandir}/man8
-> +    rm ${D}${mandir}/man*/Makefile*
->      install -m 0644 ${S}/policy/templates/* ${D}${docdir}/${BPN}/templates
->      install -m 0644 ${S}/policy/*txt ${D}${docdir}/${BPN}
->      install -m 0644 ${S}/COPYING ${D}${docdir}/${BPN}
+> diff --git a/recipes-mac/AppArmor/apparmor_2.13.4.bb b/recipes-mac/AppArmor/apparmor_2.13.4.bb
+> index d6f61b3..552cac7 100644
+> --- a/recipes-mac/AppArmor/apparmor_2.13.4.bb
+> +++ b/recipes-mac/AppArmor/apparmor_2.13.4.bb
+> @@ -191,7 +191,8 @@ PACKAGES += "mod-${PN}"
+>  FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor ${PYTHON_SITEPACKAGES_DIR}"
+>  FILES_mod-${PN} = "${libdir}/apache2/modules/*"
+>  
+> -RDEPENDS_${PN} +=  "coreutils findutils ${@bb.utils.contains('PACKAGECONFIG','python','python3-core python3-modules','', d)}"
+> +# Add coreutils and findutils only if sysvinit scripts are in use
+> +RDEPENDS_${PN} +=  "${@["coreutils findutils", ""][(d.getVar('VIRTUAL-RUNTIME_init_manager') == 'systemd')]} ${@bb.utils.contains('PACKAGECONFIG','python','python3-core python3-modules','', d)}"
+>  RDEPENDS_${PN}_remove += "${@bb.utils.contains('PACKAGECONFIG','perl','','perl', d)}"
+>  RDEPENDS_${PN}-ptest += "perl coreutils dbus-lib bash"
+>  
 >
 > 
 
 
---------------6195BB3BBB280F53A49D578C
+--------------2F7B718E4C3E30DF68308800
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
@@ -138,30 +143,35 @@ Content-Transfer-Encoding: 7bit
   <body>
     merged<br>
     <br>
-    <div class="moz-cite-prefix">On 6/12/20 7:19 PM, Jeremy Puhlman
+    <div class="moz-cite-prefix">On 6/8/20 3:00 AM, Alexander Kanavin
       wrote:<br>
     </div>
     <blockquote type="cite"
-      cite="mid:20200613021919.1871-2-jpuhlman@mvista.com">
-      <pre class="moz-quote-pre" wrap="">From: Jeremy Puhlman <a class="moz-txt-link-rfc2396E" href="mailto:jpuhlman@mvista.com">&lt;jpuhlman@mvista.com&gt;</a>
+      cite="mid:20200608100046.10153-1-alex.kanavin@gmail.com">
+      <pre class="moz-quote-pre" wrap="">The utilities from those packages (xargs, comm) are only used in sysvinit
+scripts, and so there is no need to pull them in when systemd is in use.
+Both are gpl3 licensed, so this is beneficial for builds where gpl3 is not
+allowed.
 
-Signed-off-by: Jeremy Puhlman <a class="moz-txt-link-rfc2396E" href="mailto:jpuhlman@mvista.com">&lt;jpuhlman@mvista.com&gt;</a>
+Signed-off-by: Alexander Kanavin <a class="moz-txt-link-rfc2396E" href="mailto:alex.kanavin@gmail.com">&lt;alex.kanavin@gmail.com&gt;</a>
 ---
- recipes-ids/tripwire/tripwire_2.4.3.7.bb | 1 +
- 1 file changed, 1 insertion(+)
+ recipes-mac/AppArmor/apparmor_2.13.4.bb | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/recipes-ids/tripwire/tripwire_2.4.3.7.bb b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
-index c26392a..4f50bff 100644
---- a/recipes-ids/tripwire/tripwire_2.4.3.7.bb
-+++ b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
-@@ -52,6 +52,7 @@ do_install () {
-     install -m 0644 ${S}/man/man4/* ${D}${mandir}/man4
-     install -m 0644 ${S}/man/man5/* ${D}${mandir}/man5
-     install -m 0644 ${S}/man/man8/* ${D}${mandir}/man8
-+    rm ${D}${mandir}/man*/Makefile*
-     install -m 0644 ${S}/policy/templates/* ${D}${docdir}/${BPN}/templates
-     install -m 0644 ${S}/policy/*txt ${D}${docdir}/${BPN}
-     install -m 0644 ${S}/COPYING ${D}${docdir}/${BPN}
+diff --git a/recipes-mac/AppArmor/apparmor_2.13.4.bb b/recipes-mac/AppArmor/apparmor_2.13.4.bb
+index d6f61b3..552cac7 100644
+--- a/recipes-mac/AppArmor/apparmor_2.13.4.bb
++++ b/recipes-mac/AppArmor/apparmor_2.13.4.bb
+@@ -191,7 +191,8 @@ PACKAGES += "mod-${PN}"
+ FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor ${PYTHON_SITEPACKAGES_DIR}"
+ FILES_mod-${PN} = "${libdir}/apache2/modules/*"
+ 
+-RDEPENDS_${PN} +=  "coreutils findutils ${@bb.utils.contains('PACKAGECONFIG','python','python3-core python3-modules','', d)}"
++# Add coreutils and findutils only if sysvinit scripts are in use
++RDEPENDS_${PN} +=  "${@["coreutils findutils", ""][(d.getVar('VIRTUAL-RUNTIME_init_manager') == 'systemd')]} ${@bb.utils.contains('PACKAGECONFIG','python','python3-core python3-modules','', d)}"
+ RDEPENDS_${PN}_remove += <a class="moz-txt-link-rfc2396E" href="mailto:${@bb.utils.contains('PACKAGECONFIG','perl','','perl',d)}">"${@bb.utils.contains('PACKAGECONFIG','perl','','perl', d)}"</a>
+ RDEPENDS_${PN}-ptest += "perl coreutils dbus-lib bash"
+ 
 </pre>
       <br>
       <fieldset class="mimeAttachmentHeader"></fieldset>
@@ -172,4 +182,4 @@ index c26392a..4f50bff 100644
   </body>
 </html>
 
---------------6195BB3BBB280F53A49D578C--
+--------------2F7B718E4C3E30DF68308800--
