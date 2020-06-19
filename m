@@ -1,287 +1,216 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.685.1592590330023088417
+Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com [209.85.214.194])
+ by mx.groups.io with SMTP id smtpd.web12.1834.1592610178827912782
  for <yocto@lists.yoctoproject.org>;
- Fri, 19 Jun 2020 11:12:10 -0700
+ Fri, 19 Jun 2020 16:42:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: abiomed.com, ip: 140.211.169.56, mailfrom: rsrinivasan@abiomed.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DB83BE01D42; Fri, 19 Jun 2020 11:12:09 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [63.128.21.188 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 305 seconds by postgrey-1.32 at yocto-www; Fri, 19 Jun 2020 11:12:07 PDT
-Received: from us-smtp-delivery-188.mimecast.com (us-smtp-delivery-188.mimecast.com [63.128.21.188])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED67DE01D40
-	for <yocto@yoctoproject.org>; Fri, 19 Jun 2020 11:12:07 -0700 (PDT)
-Received: from NAM04-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam04lp2053.outbound.protection.outlook.com [104.47.44.53]) (Using
- TLS) by relay.mimecast.com with ESMTP id
- us-mta-35-X3Gd8xYUN_yUq9YFyfMUPA-1; Fri, 19 Jun 2020 14:05:40 -0400
-X-MC-Unique: X3Gd8xYUN_yUq9YFyfMUPA-1
-Received: from BY5PR13MB3345.namprd13.prod.outlook.com (2603:10b6:a03:1ae::17)
- by BY5PR13MB3620.namprd13.prod.outlook.com (2603:10b6:a03:221::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.7; Fri, 19 Jun
- 2020 18:05:38 +0000
-Received: from BY5PR13MB3345.namprd13.prod.outlook.com
- ([fe80::74bf:c366:76a:4c36]) by BY5PR13MB3345.namprd13.prod.outlook.com
- ([fe80::74bf:c366:76a:4c36%7]) with mapi id 15.20.3131.009; Fri, 19 Jun 2020
- 18:05:38 +0000
-From: "Srini" <rsrinivasan@abiomed.com>
-To: Robert Berger <robert.berger.yocto.user@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "raj.khem@gmail.com"
-	<raj.khem@gmail.com>
-CC: Robert Berger <robert.berger@reliableembeddedsystems.com>
-Subject: Re: [yocto] Go toolchain in SDK
-Thread-Topic: [yocto] Go toolchain in SDK
-Thread-Index: AQHWRl8GLEzgKlM1SEWJAdsxPzGwLKjgOy7c
-Date: Fri, 19 Jun 2020 18:05:38 +0000
-Message-ID: 
- <BY5PR13MB3345E5FC60ED820EC41DD1C0AA980@BY5PR13MB3345.namprd13.prod.outlook.com>
-References: 
- <439eb160-94b9-a8ce-f305-be6c486eb06d@gmail.com>,<55730455-4164-1268-884c-70186e46b56e@gmail.com>
-In-Reply-To: <55730455-4164-1268-884c-70186e46b56e@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [107.0.242.52]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 72425971-8df6-4d0c-648a-08d8147b5f3a
-x-ms-traffictypediagnostic: BY5PR13MB3620:
-x-microsoft-antispam-prvs: 
- <BY5PR13MB36200D141338F0DEF34C27ACAA980@BY5PR13MB3620.namprd13.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4125;
-x-forefront-prvs: 0439571D1D
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- v4htwpllnKwJ4lYgPwKsYJMebK2mdFFMtSnshrsixEyxnzDobcPRtsVOUqkW9t0g9SjPm/RHITty6mo985KTk3s6rnwllg+YuzfUakQKnLiS1rZti89DAR+W9fSSsy7Tok8vfOlCVm+w8Ryyp/wSYv+UW49HxHHRZ7oI4gtJmL7Uuukbv1MRLJHJ/0vP6KyYO9kiiIZJ6RSyNQMHKi8WLiVVovxEAMaAE58R70w9gnDYT2+W5ijaam20lVZCT0z8VVnn0RPpQnJ6Rzj+zhGKfeozmFTk9M4Rc8CpJudGUk+L85/MLfBclk24gaPqOPyPEzEir9YRsl/0TZHltn3lBw==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR13MB3345.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(396003)(346002)(39860400002)(136003)(376002)(366004)(66476007)(66946007)(66556008)(66446008)(64756008)(8936002)(2906002)(91956017)(86362001)(8676002)(478600001)(76116006)(55016002)(9686003)(4326008)(83380400001)(71200400001)(186003)(5660300002)(52536014)(33656002)(26005)(7696005)(110136005)(19627405001)(53546011)(316002)(6506007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: 
- /4EJ5hnlIqIM02V/ihax3yCPnH1QqszZehwsyB/GK/syiwrc8XDjtDsMVwgUR4e0oBhp2XaXp+PSlb08pzuBxI/cfk9ts8BX9AXhUfq/+vU63J07TaKYMZcDEYr7HCB+JEKLgGcUakfK3shp65X0TOwF4odMUIv02dJBa0M7kgV3kVYH4mcqGl9fRlTVL0X1Kw4zAhtw7FXU5rMWVnSwepsXiyVjWkbj0+Ig+6Glxn8sTzIwSiGQzpdVs3wIhkJTQAehjnjhIj4o0tTJcAk/x+WnyFIou/VCSrQRo8fLZHyYvQuQC7hC9Qyi5VwMm52DbFvKANX3erA2tv2voLjKjUUqrJY5tJRXDLdSU6UHO9wfgY4eJf4Bmbytj6XJd7RiUd3OhPABd3TfJyRi/tlmR/pp/FMxMGezh2otWHHhMujjieQgRYHs1B+ixoWeqFN7SyPReZ8f8jCjJMk2EQhEcj6JALhbegU6xvHnzPc4LZw=
-x-ms-exchange-transport-forked: True
+ dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=h4I2ikk+;
+ spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 209.85.214.194, mailfrom: akuster@mvista.com)
+Received: by mail-pl1-f194.google.com with SMTP id d10so2688378pls.5
+        for <yocto@lists.yoctoproject.org>; Fri, 19 Jun 2020 16:42:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mvista-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language;
+        bh=KkSNrpjome7mg++9n9xlLp5VFy6o37ZSjQo3gypxxrc=;
+        b=h4I2ikk+NNB4b/wxjIJCX1FDuFlbwBKBoyPfX6z5I4I7PSE57eTwnqn62TLjRNhY4K
+         ZSf8EqYLXx1+EHVr1gmZF0xk8k/HWTnVf+tleqMwQYcB2FpriQiwxU78vCdRMx7Ds2ol
+         QsbtgfSyfROPqk2+p50BPAiy5gU8mCnGXzro8YI68sN38WT1VpFNaJVrlDNxIW+rUOIW
+         crpRYow0mp+BchUETZGZRmtD6Be93SCEoDDliWOQtwGk5QQ9lFf9JSDVJm4wWwQO02jW
+         iw1wmW1aZyq1He8yCirp4gr+mISNvJ9Fv2WBB2MsWcYkQWkpJM34DXqyjC5lr+U0P1MT
+         oMtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language;
+        bh=KkSNrpjome7mg++9n9xlLp5VFy6o37ZSjQo3gypxxrc=;
+        b=mlWuwHThWQPUiG1+UWlJmsIMNvhkYOoMiq0t42BTh3nWSZgb4LMmKO2hr1kyKapdFI
+         ElJ0e9pkR7exj8o1UyenorsOT768H4nN57CAs23lml17nLL6l0a1lGC23lrxLVnrnOCe
+         ppPbMCQ3e1MG8ss8ec7edVyfUlTolWFbf3ksjg0bufWKjH5FYTPKK5Nsc3AKyti/fUdW
+         4J8CRktX+VaMlPbrhPNs2ErB+XvfbyBeZ6zeRVZnoLEdZxYeLw74zCqnfIMJF5G+k/+h
+         6me3j4zlj8/mNFCIrGvv4fcnBYkCsl9++Hd4Leo2Zj5nTrTOs7TpLcBw+oWehZAMVjjb
+         4O9w==
+X-Gm-Message-State: AOAM5306hpuMId48bzrXujCIT+TjhpHdE5oSSCx15x78DUxLumT6HE6T
+	iNqvING4F9xpraQeG9SK4whCQ7rKYS8=
+X-Google-Smtp-Source: ABdhPJwxwV8/Ql6BGKMIEca6BmtDPIH1b4Bs8Oc9NI4tlukCXOnur/beTuXsKBQcnF18JHZyK8cLhQ==
+X-Received: by 2002:a17:90a:a08d:: with SMTP id r13mr5649677pjp.96.1592610177899;
+        Fri, 19 Jun 2020 16:42:57 -0700 (PDT)
+Return-Path: <akuster@mvista.com>
+Received: from ?IPv6:2601:202:4180:a5c0:445a:f005:22f0:213c? ([2601:202:4180:a5c0:445a:f005:22f0:213c])
+        by smtp.gmail.com with ESMTPSA id s197sm6861442pfc.188.2020.06.19.16.42.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Jun 2020 16:42:56 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][master|dunfell][PATCH 1/2] clamav: resolve multilib issues
+To: Jeremy Puhlman <jpuhlman@mvista.com>, yocto@lists.yoctoproject.org
+References: <20200613021919.1871-1-jpuhlman@mvista.com>
+From: "Armin Kuster" <akuster@mvista.com>
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <b17e0ee0-d415-4165-f357-2eeed28fd86d@mvista.com>
+Date: Fri, 19 Jun 2020 16:42:55 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: abiomed.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 72425971-8df6-4d0c-648a-08d8147b5f3a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jun 2020 18:05:38.2471
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3e5db3e6-2403-4bf8-8501-bbd7acfd4b6f
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: E06cxOVZyIOR/2wmOn7iX6V/CFFu198hP3Uq75USy4JXfk7HQyiQ37F3DUXq03gp6gM+QGHNb4j8C3YugHcscA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR13MB3620
-Authentication-Results: relay.mimecast.com;
-	auth=pass smtp.auth=CUSA88A250 smtp.mailfrom=rsrinivasan@abiomed.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: abiomed.com
-Content-Language: en-US
+In-Reply-To: <20200613021919.1871-1-jpuhlman@mvista.com>
 Content-Type: multipart/alternative;
-	boundary="_000_BY5PR13MB3345E5FC60ED820EC41DD1C0AA980BY5PR13MB3345namp_"
+ boundary="------------CF821085CAC38D9D68015D65"
+Content-Language: en-US
 
---_000_BY5PR13MB3345E5FC60ED820EC41DD1C0AA980BY5PR13MB3345namp_
-Content-Type: text/plain; charset=WINDOWS-1252
-Content-Transfer-Encoding: quoted-printable
+--------------CF821085CAC38D9D68015D65
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-Unlike other languages go has the ability to produce cross platform binarie=
-s. In my case, I just used my go to produce binaries for my yocto based tar=
-get and just included it. it was too much effort to incorporate the go tool=
-chain. But then it was > 1 year ago.
+merged to both.
 
-srini
+thanks
+armin
 
-________________________________
-From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on behalf=
- of Khem Raj via lists.yoctoproject.org <raj.khem=3Dgmail.com@lists.yoctopr=
-oject.org>
-Sent: Thursday, June 18, 2020 8:27 PM
-To: Robert Berger <robert.berger.yocto.user@gmail.com>; yocto@yoctoproject.=
-org <yocto@yoctoproject.org>
-Cc: Robert Berger <robert.berger@reliableembeddedsystems.com>
-Subject: Re: [yocto] Go toolchain in SDK
-
-
-
-On 6/16/20 1:55 PM, Robert Berger wrote:
-> Hi,
+On 6/12/20 7:19 PM, Jeremy Puhlman wrote:
+> From: Jeremy Puhlman <jpuhlman@mvista.com>
 >
-> What is the "proper" way to add the Go toolchain to an SDK nowadays
-> (dunfell)?
+> Signed-off-by: Jeremy Puhlman <jpuhlman@mvista.com>
+> ---
+>  recipes-scanners/clamav/clamav_0.101.5.bb | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 >
-
-I dont think there is sample image target for image based SDKs
-
-> I saw there is in poky:
+> diff --git a/recipes-scanners/clamav/clamav_0.101.5.bb b/recipes-scanners/clamav/clamav_0.101.5.bb
+> index f4625b1..2ea2c9b 100644
+> --- a/recipes-scanners/clamav/clamav_0.101.5.bb
+> +++ b/recipes-scanners/clamav/clamav_0.101.5.bb
+> @@ -25,7 +25,7 @@ S = "${WORKDIR}/git"
+>  LEAD_SONAME = "libclamav.so"
+>  SO_VER = "9.0.2"
+>  
+> -inherit autotools pkgconfig useradd systemd
+> +inherit autotools pkgconfig useradd systemd multilib_header multilib_script
+>  
+>  CLAMAV_UID ?= "clamav"
+>  CLAMAV_GID ?= "clamav"
+> @@ -45,6 +45,8 @@ PACKAGECONFIG[bz2] = "--with-libbz2-prefix=${CLAMAV_USR_DIR}, --disable-bzip2, b
+>  PACKAGECONFIG[ncurses] = "--with-libncurses-prefix=${CLAMAV_USR_DIR}, --without-libncurses-prefix, ncurses, "
+>  PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_unitdir}/system/, --without-systemdsystemunitdir, "
+>  
+> +MULTILIB_SCRIPTS = "${PN}-dev:${bindir}/clamav-config ${PN}-cvd:${localstatedir}/lib/clamav/mirrors.dat"
+> +
+>  EXTRA_OECONF_CLAMAV = "--without-libcheck-prefix --disable-unrar \
+>              --disable-mempool \
+>              --program-prefix="" \
+> @@ -93,6 +95,7 @@ do_install_append_class-target () {
+>          install -d ${D}${sysconfdir}/tmpfiles.d
+>          install -m 0644 ${WORKDIR}/tmpfiles.clamav ${D}${sysconfdir}/tmpfiles.d/clamav.conf
+>      fi
+> +    oe_multilib_header clamav-types.h
+>  }
+>  
+>  pkg_postinst_ontarget_${PN} () {
 >
-> ./meta/recipes-core/meta/meta-go-toolchain.bb
->
-> but I am not quite sure how to build an SDK with meta-go-toolchain
-> included.
-
-that is more like a meta-toolchain target
-
->
-> so I added something like that to local.conf which seems to work for the
-> "classic" SDK:
->
-> # --> golang stuff
-> # attempt to add golang to SDK
-> TOOLCHAIN_HOST_TASK_append =3D " \
->     packagegroup-go-cross-canadian-${MACHINE} \
-> "
->
-> TOOLCHAIN_TARGET_TASK_append =3D " \
->     ${@multilib_pkg_extend(d, 'packagegroup-go-sdk-target')} \
-> "
-> # <-- golang stuff
->
-> bitbake core-image-sato-sdk -c populate_sdk
->
-> and currently also for:
-> bitbake core-image-sato-sdk -c populate_sdk_ext
->
-> I don't think that's the way it was intended.
->
-> Can you please enlighten me?
-
-what you did is roughly what should be needed. Maybe you might want
-to create a -dev image
-
-perhaps adding nativesdk-go to TOOLCHAIN_HOST_TASK might get everything
-you need
-
->
-> Regards,
->
-> Robert
->
->
->
+> 
 
 
---_000_BY5PR13MB3345E5FC60ED820EC41DD1C0AA980BY5PR13MB3345namp_
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--------------CF821085CAC38D9D68015D65
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-<html><head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-<style type=3D"text/css">.style1 {font-family: "Times New Roman";}</style><=
-/head><body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Unlike other languages go has the ability to produce cross platform binarie=
-s. In my case, I just used my go to produce binaries for my yocto based tar=
-get and just included it. it was too much effort to incorporate the go tool=
-chain. But then it was &gt; 1 year
- ago.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-srini</div>
-<div>
-<div id=3D"appendonsend"></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> yocto@lists.yoctoproj=
-ect.org &lt;yocto@lists.yoctoproject.org&gt; on behalf of Khem Raj via list=
-s.yoctoproject.org &lt;raj.khem=3Dgmail.com@lists.yoctoproject.org&gt;<br>
-<b>Sent:</b> Thursday, June 18, 2020 8:27 PM<br>
-<b>To:</b> Robert Berger &lt;robert.berger.yocto.user@gmail.com&gt;; yocto@=
-yoctoproject.org &lt;yocto@yoctoproject.org&gt;<br>
-<b>Cc:</b> Robert Berger &lt;robert.berger@reliableembeddedsystems.com&gt;<=
-br>
-<b>Subject:</b> Re: [yocto] Go toolchain in SDK</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
->
-<div class=3D"PlainText"><br>
-<br>
-On 6/16/20 1:55 PM, Robert Berger wrote:<br>
-&gt; Hi,<br>
-&gt; <br>
-&gt; What is the &quot;proper&quot; way to add the Go toolchain to an SDK n=
-owadays<br>
-&gt; (dunfell)?<br>
-&gt; <br>
-<br>
-I dont think there is sample image target for image based SDKs<br>
-<br>
-&gt; I saw there is in poky:<br>
-&gt; <br>
-&gt; ./meta/recipes-core/meta/meta-go-toolchain.bb<br>
-&gt; <br>
-&gt; but I am not quite sure how to build an SDK with meta-go-toolchain<br>
-&gt; included.<br>
-<br>
-that is more like a meta-toolchain target<br>
-<br>
-&gt; <br>
-&gt; so I added something like that to local.conf which seems to work for t=
-he<br>
-&gt; &quot;classic&quot; SDK:<br>
-&gt; <br>
-&gt; # --&gt; golang stuff<br>
-&gt; # attempt to add golang to SDK<br>
-&gt; TOOLCHAIN_HOST_TASK_append =3D &quot; \<br>
-&gt; &nbsp;&nbsp;&nbsp; packagegroup-go-cross-canadian-${MACHINE} \<br>
-&gt; &quot;<br>
-&gt; <br>
-&gt; TOOLCHAIN_TARGET_TASK_append =3D &quot; \<br>
-&gt; &nbsp;&nbsp;&nbsp; ${@multilib_pkg_extend(d, 'packagegroup-go-sdk-targ=
-et')} \<br>
-&gt; &quot;<br>
-&gt; # &lt;-- golang stuff<br>
-&gt; <br>
-&gt; bitbake core-image-sato-sdk -c populate_sdk<br>
-&gt; <br>
-&gt; and currently also for:<br>
-&gt; bitbake core-image-sato-sdk -c populate_sdk_ext<br>
-&gt; <br>
-&gt; I don't think that's the way it was intended.<br>
-&gt; <br>
-&gt; Can you please enlighten me?<br>
-<br>
-what you did is roughly what should be needed. Maybe you might want<br>
-to create a -dev image<br>
-<br>
-perhaps adding nativesdk-go to TOOLCHAIN_HOST_TASK might get everything<br>
-you need<br>
-<br>
-&gt; <br>
-&gt; Regards,<br>
-&gt; <br>
-&gt; Robert<br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-<br>
-</div>
-</span></font></div>
-</div>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    merged to both.<br>
+    <br>
+    thanks<br>
+    armin<br>
+    <br>
+    <div class="moz-cite-prefix">On 6/12/20 7:19 PM, Jeremy Puhlman
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20200613021919.1871-1-jpuhlman@mvista.com">
+      <pre class="moz-quote-pre" wrap="">From: Jeremy Puhlman <a class="moz-txt-link-rfc2396E" href="mailto:jpuhlman@mvista.com">&lt;jpuhlman@mvista.com&gt;</a>
 
+Signed-off-by: Jeremy Puhlman <a class="moz-txt-link-rfc2396E" href="mailto:jpuhlman@mvista.com">&lt;jpuhlman@mvista.com&gt;</a>
+---
+ recipes-scanners/clamav/clamav_0.101.5.bb | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-<br><br><p style=3D"font-family: Verdana; font-size:10pt; color:#666666;"><=
-/p><p style=3D"font-family: Verdana; font-size:8pt; color:#666666;"></p></b=
-ody></html>
+diff --git a/recipes-scanners/clamav/clamav_0.101.5.bb b/recipes-scanners/clamav/clamav_0.101.5.bb
+index f4625b1..2ea2c9b 100644
+--- a/recipes-scanners/clamav/clamav_0.101.5.bb
++++ b/recipes-scanners/clamav/clamav_0.101.5.bb
+@@ -25,7 +25,7 @@ S = "${WORKDIR}/git"
+ LEAD_SONAME = "libclamav.so"
+ SO_VER = "9.0.2"
+ 
+-inherit autotools pkgconfig useradd systemd
++inherit autotools pkgconfig useradd systemd multilib_header multilib_script
+ 
+ CLAMAV_UID ?= "clamav"
+ CLAMAV_GID ?= "clamav"
+@@ -45,6 +45,8 @@ PACKAGECONFIG[bz2] = "--with-libbz2-prefix=${CLAMAV_USR_DIR}, --disable-bzip2, b
+ PACKAGECONFIG[ncurses] = "--with-libncurses-prefix=${CLAMAV_USR_DIR}, --without-libncurses-prefix, ncurses, "
+ PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_unitdir}/system/, --without-systemdsystemunitdir, "
+ 
++MULTILIB_SCRIPTS = "${PN}-dev:${bindir}/clamav-config ${PN}-cvd:${localstatedir}/lib/clamav/mirrors.dat"
++
+ EXTRA_OECONF_CLAMAV = "--without-libcheck-prefix --disable-unrar \
+             --disable-mempool \
+             --program-prefix="" \
+@@ -93,6 +95,7 @@ do_install_append_class-target () {
+         install -d ${D}${sysconfdir}/tmpfiles.d
+         install -m 0644 ${WORKDIR}/tmpfiles.clamav ${D}${sysconfdir}/tmpfiles.d/clamav.conf
+     fi
++    oe_multilib_header clamav-types.h
+ }
+ 
+ pkg_postinst_ontarget_${PN} () {
+</pre>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
---_000_BY5PR13MB3345E5FC60ED820EC41DD1C0AA980BY5PR13MB3345namp_--
+--------------CF821085CAC38D9D68015D65--
