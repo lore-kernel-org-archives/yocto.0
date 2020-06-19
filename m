@@ -1,260 +1,168 @@
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
- by mx.groups.io with SMTP id smtpd.web11.8340.1592577551616628115
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+ by mx.groups.io with SMTP id smtpd.web12.8849.1592578848155928840
  for <yocto@lists.yoctoproject.org>;
- Fri, 19 Jun 2020 07:39:11 -0700
+ Fri, 19 Jun 2020 08:00:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Nlk8EN+6;
- spf=pass (domain: gmail.com, ip: 209.85.221.181, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vk1-f181.google.com with SMTP id y23so2334794vkd.13
-        for <yocto@lists.yoctoproject.org>; Fri, 19 Jun 2020 07:39:11 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ALaOe1c7;
+ spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: gabbla.malist@gmail.com)
+Received: by mail-lf1-f47.google.com with SMTP id u25so5763209lfm.1
+        for <yocto@lists.yoctoproject.org>; Fri, 19 Jun 2020 08:00:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=XwfH9+kO1qYPi8ptW+INA9FkvPsaXZ1MvyK5JY5HK6Q=;
-        b=Nlk8EN+6VP2AtAXfMmVwqsBQVLhiwo+cTfp7jtYd1dVkp2hSe97fswNr4RHZSkmOOJ
-         IFrVluwKqIB80iybUOQS2XkUamR/+oeDcHvoZgS50eBs4rtuZaiyI6IRTayaxjgpN0qf
-         tT8nVDSmOuFAuZ0Aj6nJuI978eNA5wSvIEEeT3gSR3uRmeIqrWzBnJ2TIiGy2z7JO+l3
-         2jxh66AHBTaD0ya+epfhn6088NT6Gf4Gw6ltdTWEjAxrngYJ6upSYSeZBkHatwJOhafG
-         nw56w8wn1Bbknny4IggoXiKVu32DjmhGs6JBGFvQaUBAmXLLn8ViOmhy6VZ2nSlqCcVQ
-         KlDA==
+        bh=2nYPoRD90X7d5sD0aZ4nDiCczNOxnDuautJWYkpnr+4=;
+        b=ALaOe1c7v8+TOaD9c3+ZMrnLwv3geA1B31KowtwDcKCANKEuR2MYrf8fXnXuMfaX3x
+         R3s1dMyQ3MSGNaZkDZ+UonDW/icPbTAX42XiEroC9yDus0jrXEG5ap7yCoftgcRqYyMe
+         FakYp5XG8ztiVPGyW8rFpOLCmLSJX0s9YUM1RS+qSv2dSwOKI3FcIIzjbZayUU2pq1TK
+         qn45p7NcVQIMdxojsUkjGGZml5Yq8gSTTMPAsD6uFjTS0lzEL9OwqT2pwclqQ2CVl/bw
+         1sD1o/h97olzLg8kQp12H45kL+NxExjg7xvKgE6m3Te0r0uEu0bU5uj+tj28ZiJeMZqR
+         dPTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=XwfH9+kO1qYPi8ptW+INA9FkvPsaXZ1MvyK5JY5HK6Q=;
-        b=HbQKMZWi/w0y56cc0s1mu3elidw+qaZigTQkwOwibwGhUVMkr9sAenD23qsXpDo1hQ
-         Zf9NxG9nQpWqswmWUwQae7rlgVbaXEncbE+xWMWi0hh+v81b2zRhqOu5dYhVT469N0Xm
-         eDBr4zXs9gw6wcQv2aYuObB9xBLi5R2oyCYsN6EME+BLdDY/5zngpCbvvtA7otm7f+s6
-         unDy0KJWC8Kt8xNvrXxUK6GQz2YOmfu9ydIdX+pok3jNk2OuduanlAbW4OkX0jXgOsMN
-         42oHZVzB3EijXh7lEuw1vUyLTN8ri4yu+m2yvDmPWf1R4694wEEzEPxgFf7tg4vPaQjp
-         LMYA==
-X-Gm-Message-State: AOAM532pT/fPXi6QRtyagwPe4/sPQn1dc7sL6OU+KVh8juOOb0YRZaGO
-	GvfJbgi+/5WWblgXQ602EUBnuaICFsxzanlAEFDfWyL6
-X-Google-Smtp-Source: ABdhPJzCoxl5cj+QmJvOffJsIZEL1U1/Io7HqdtZq8Q31OdGF+EdyfT0OBR0sdkGPvjaBNrN/x+TmhIUlNoBTY9Fxo4=
-X-Received: by 2002:a1f:2c0d:: with SMTP id s13mr7776532vks.9.1592577550642;
- Fri, 19 Jun 2020 07:39:10 -0700 (PDT)
+        bh=2nYPoRD90X7d5sD0aZ4nDiCczNOxnDuautJWYkpnr+4=;
+        b=tWtS/aHGBBvE//XhKvIkeObN5unC7gjcaDZsPSQWjv9B15yVlaKsGRD2qtOe0k5uoV
+         Ps+H54eci00Ym7I3lSqb6lnGwcWiVG2duTOeq0md+dTtFJnlZc99hg0EwoypIcsXEq/n
+         9+QTNlvgFgzgkvI3P5Z5mLYooCGsYgBr9GNf4ZVpywxP/S7q1/NCF/5IhxcWaKN8zz4V
+         sgA0IEdZmD0otP8XaNxiVcbLyvY7zSeql/OxCN+IBbZ1Wg+pZMmS9kZwp8yB/l59h8tO
+         VEnKBbdRsO6TKlyanXEtD5ODzW/nourv8YCxKts84CnLu0lcvPleBND4wG/npY2qTXnf
+         /MDw==
+X-Gm-Message-State: AOAM531RasCO6REFTka+9U6SaKQezRXMBLYGKvrQ7PAPMnek7p5+d9hU
+	7eThIhuI+azdOFSACKTgOvgFLOtA2IkwDrYA31k=
+X-Google-Smtp-Source: ABdhPJwoTUmkKboM5TnfFsz5K4yEsigOp28aSL7q/81fBa03quetmTSnwWiJyrR8VCGcX6gHhmReSm0E7ZQNB5UqMmU=
+X-Received: by 2002:a05:6512:10c3:: with SMTP id k3mr2232161lfg.33.1592578846242;
+ Fri, 19 Jun 2020 08:00:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <BL0PR11MB3268E2BB9A442B0890DA3C9DAE980@BL0PR11MB3268.namprd11.prod.outlook.com>
- <CANNYZj_0BYuNgmO3MHm0vEgu6qQut2vk984fRFPQGuRCy+=W1Q@mail.gmail.com> <4f66cf05-c142-188c-0661-8e446c81c67f@2net.co.uk>
-In-Reply-To: <4f66cf05-c142-188c-0661-8e446c81c67f@2net.co.uk>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Fri, 19 Jun 2020 16:38:59 +0200
-Message-ID: <CANNYZj9XG7MiVg8NPTnE0g+qu1sXMefQM6yCaT4iik8TENDn+Q@mail.gmail.com>
-Subject: Re: [yocto] Distro upgrade strategies
-To: chris@2net.co.uk
+References: <CAA4NGyuwrkQrQ05AR_2OyaYTxrF41sqx1AoaDFbJaU99TwCjxQ@mail.gmail.com>
+ <CAAx3WaB-8BapkcGYtz2KftvAY7hE0HRBcEKfhKs5V-V+H3M2HQ@mail.gmail.com> <CAA4NGyv2S1S009zeTezOt+DU42ggfOGt5priOVc49Toi9aCFPA@mail.gmail.com>
+In-Reply-To: <CAA4NGyv2S1S009zeTezOt+DU42ggfOGt5priOVc49Toi9aCFPA@mail.gmail.com>
+From: "Gabriele" <gabbla.malist@gmail.com>
+Date: Fri, 19 Jun 2020 17:00:34 +0200
+Message-ID: <CAAx3WaA4cCVD8rz5SV13Ciku5+YP+bE92AmEea+Q+V6-1Ur=EA@mail.gmail.com>
+Subject: Re: [yocto] MACHINE and inc files
+To: Tomek The Messenger <tomekthemessenger@gmail.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000002ef22705a870db28"
+Content-Type: multipart/alternative; boundary="000000000000683c6705a87128bf"
 
---0000000000002ef22705a870db28
+--000000000000683c6705a87128bf
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Right. Where I work, the updates would be performed through an A/B
-partition scheme: if the update is botched, it is always possible to roll
-back. This doubles the disk space requirement, but is far more robust.
+You do not need to include anything. Maybe I did not understand you. Can
+you provide a file structure/use case?
 
-Alex
+Gabriele
 
-On Fri, 19 Jun 2020 at 16:35, csimmonds <chris@2net.co.uk> wrote:
+NOTE: I won't be able to reply till Tuesday 23rd
 
-> I would like to add that this is a design decision. Package updates, be
-> they based on rpm, deb, or ipk, are not atomic. Which means that if you
-> power off during an update the system will usually not boot afterwards.
-> This is not a problem with servers in data centers with redundant power
-> supplies and whatever, but it is a problem for an embedded device on the
-> top of a mountain or at the bottom of the sea. OpenEmbedded/Yocto
-> Project expect the update will be done by programming a new root
-> filesystem image. There are several ways to do this, including OTA
-> solutions like swupdate and mender.io.
->
-> HTH,
-> Chris
->
-> On 19/06/2020 15:05, Alexander Kanavin wrote:
-> > Yocto does not support or test upgrading from one yocto release to the
-> > next through dnf. Nothing conceptually prevents it, but you need to set
-> > up and test such upgrades yourself, and send any needed fixes upstream.
-> >
-> > Alex
-> >
-> > On Fri 19. Jun 2020 at 14.16, Hugh Boddington
-> > <hboddington@orangephotonics.com
-> > <mailto:hboddington@orangephotonics.com>> wrote:
-> >
-> >     Hello all,
-> >
-> >     I'm struggling conceptually with a recommended upgrade strategy for
-> >     our distribution (i.e. the resultant distribution on an ARM-based
-> >     embedded device, not the development SDK itself).  I had initially
-> >     assumed that a package manager (we're using DNF) could be used to
-> >     upgrade a distribution from one version to the next, but every time
-> >     I've used it to try to deploy a large upgrade (e.g.,  Zeus->Dunfell)
-> >     I've run into problems.  Currently, if I try to use DNF to upgrade
-> >     from a Zeus-based distribution my DNF installation breaks
-> >     ("ModuleNotFoundError: No module named 'dnf'") and I can't even shut
-> >     the device down ("/run/initctl: No such file or directory").
-> >     However, if I install the Dunfell-based distribution from a raw
-> >     image (without upgrading through Zeus) then everything works fine.
-> >     I'm not getting an errors in my build or indication that something
-> >     went wrong, but obviously something is amiss.
-> >
-> >     Questions:
-> >       1) Am I missing something?  Is it reasonable to expect that I can
-> >     upgrade the whole distro using DNF?  I've read the wiki page about
-> >     System Updates (https://wiki.yoctoproject.org/wiki/System_Update)
-> >     and DNF (or any other package manager) is not listed - does that
-> >     imply it's not up to the job?
-> >       2) If I do continue using DNF, how do I troubleshoot the above
-> >     issues?  I don't mean specifically those issues, but I want to learn
-> >     to fish.  Some packages got broken.  Was it caused by the distro I'm
-> >     upgrading from?  To?  What's the best way of tracing it back?  I
-> >     tried looking through the various commits but obviously there were a
-> >     lot of changes made from one distro to another.  The above scenario
-> >     seems also to be a perfect storm because now that DNF is broken I
-> >     don't have a mechanism to downgrade anything.
-> >
-> >     I can't help but think that I'm swimming against the current here,
-> >     or that I've done something fundamentally wrong - I'd appreciate any
-> >     insight or advice.  Thank you!
-> >
-> >     Hugh
-> >
-> >
-> >
-> >
->
->
-> --
-> Chris Simmonds, trainer and consultant at 2net
-> http://www.2net.co.uk
-> Author of "Mastering Embedded Linux Programming"
-> 
->
+On Fri, Jun 19, 2020 at 3:36 PM Tomek The Messenger <
+tomekthemessenger@gmail.com> wrote:
 
---0000000000002ef22705a870db28
+> And then do include ${MAGIC_NUMBER}. But this is not good idea. Each tim=
+e
+> new x version appers I will have to extend temp.bb file about the line
+> you wrote but with another x version.
+>
+> pt., 19.06.2020, 15:26 u=C5=BCytkownik Gabriele Zampieri <
+> gabbla.malist@gmail.com> napisa=C5=82:
+>
+>> Hi Tomek,
+>>
+>> you can specify machine-specific variables/function with the following
+>> syntax:
+>>  <PROPERTY_NAME>_[MACHINE_NAME] =3D "value"
+>> ex:
+>>  MAGIC_NUMBER_velismate-x21 =3D "12345"
+>> inside your temp.bb
+>>
+>> Regards,
+>> Gabriele
+>>
+>> On Fri, Jun 19, 2020 at 3:21 PM Tomek The Messenger <
+>> tomekthemessenger@gmail.com> wrote:
+>>
+>>> Hi
+>>> I have various ${MACHINE} called:
+>>> uruguay-x11
+>>> uruguay-x21
+>>> supa-rte-x11
+>>> supa-rte-x13
+>>> supa-rte-x21
+>>> velismate-x11
+>>> velismate-x21
+>>>
+>>> I created some bb recipe:
+>>> temp.bb
+>>> where there are common things done for all machines.
+>>> Now I need to perform different things for  uruguay, supa-rte and
+>>> velismate.
+>>> How to do this? Should I create
+>>> uruguay-%.inc supa-%.inc and velismate-%.inc?
+>>> and in temp.bb write:
+>>> include ${MACHINE}.inc
+>>> but this won't work as bitbake will expect full name with x11 etc part=
+.
+>>> How to exclude part with x11, rte-x21 etc? Is any way?
+>>> Anybody can help?
+>>>
+>>> BR
+>>> Tomek
+>>>=20
+>>>
+>>
+
+--000000000000683c6705a87128bf
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Right. Where I work, the updates would be performed t=
-hrough an A/B partition scheme: if the update is botched, it is always poss=
-ible to roll back. This doubles the disk space requirement, but is far more=
- robust.</div><div><br></div><div>Alex<br></div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, 19 Jun 2020 at 16:3=
-5, csimmonds &lt;<a href=3D"mailto:chris@2net.co.uk">chris@2net.co.uk</a>&g=
-t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">I woul=
-d like to add that this is a design decision. Package updates, be<br>
-they based on rpm, deb, or ipk, are not atomic. Which means that if you<br=
->
-power off during an update the system will usually not boot afterwards.<br=
->
-This is not a problem with servers in data centers with redundant power<br=
->
-supplies and whatever, but it is a problem for an embedded device on the<b=
-r>
-top of a mountain or at the bottom of the sea. OpenEmbedded/Yocto<br>
-Project expect the update will be done by programming a new root<br>
-filesystem image. There are several ways to do this, including OTA<br>
-solutions like swupdate and <a href=3D"http://mender.io" rel=3D"noreferrer=
-" target=3D"_blank">mender.io</a>.<br>
-<br>
-HTH,<br>
-Chris<br>
-<br>
-On 19/06/2020 15:05, Alexander Kanavin wrote:<br>
-&gt; Yocto does not support or test upgrading from one yocto release to th=
-e<br>
-&gt; next through dnf. Nothing conceptually prevents it, but you need to s=
-et<br>
-&gt; up and test such upgrades yourself, and send any needed fixes upstrea=
-m.<br>
-&gt; <br>
-&gt; Alex<br>
-&gt; <br>
-&gt; On Fri 19. Jun 2020 at 14.16, Hugh Boddington<br>
-&gt; &lt;<a href=3D"mailto:hboddington@orangephotonics.com" target=3D"_bla=
-nk">hboddington@orangephotonics.com</a><br>
-&gt; &lt;mailto:<a href=3D"mailto:hboddington@orangephotonics.com" target=
-=3D"_blank">hboddington@orangephotonics.com</a>&gt;&gt; wrote:<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Hello all,<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0I&#39;m struggling conceptually with a recommended=
- upgrade strategy for<br>
-&gt;=C2=A0 =C2=A0 =C2=A0our distribution (i.e. the resultant distribution =
-on an ARM-based<br>
-&gt;=C2=A0 =C2=A0 =C2=A0embedded device, not the development SDK itself).=
-=C2=A0 I had initially<br>
-&gt;=C2=A0 =C2=A0 =C2=A0assumed that a package manager (we&#39;re using DN=
-F) could be used to<br>
-&gt;=C2=A0 =C2=A0 =C2=A0upgrade a distribution from one version to the nex=
-t, but every time<br>
-&gt;=C2=A0 =C2=A0 =C2=A0I&#39;ve used it to try to deploy a large upgrade =
-(e.g.,=C2=A0 Zeus-&gt;Dunfell)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0I&#39;ve run into problems.=C2=A0 Currently, if I =
-try to use DNF to upgrade<br>
-&gt;=C2=A0 =C2=A0 =C2=A0from a Zeus-based distribution my DNF installation=
- breaks<br>
-&gt;=C2=A0 =C2=A0 =C2=A0(&quot;ModuleNotFoundError: No module named &#39;d=
-nf&#39;&quot;) and I can&#39;t even shut<br>
-&gt;=C2=A0 =C2=A0 =C2=A0the device down (&quot;/run/initctl: No such file =
-or directory&quot;).=C2=A0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0However, if I install the Dunfell-based distributi=
-on from a raw<br>
-&gt;=C2=A0 =C2=A0 =C2=A0image (without upgrading through Zeus) then everyt=
-hing works fine.=C2=A0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0I&#39;m not getting an errors in my build or indic=
-ation that something<br>
-&gt;=C2=A0 =C2=A0 =C2=A0went wrong, but obviously something is amiss.<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Questions:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0=C2=A0 1) Am I missing something?=C2=A0 Is it reas=
-onable to expect that I can<br>
-&gt;=C2=A0 =C2=A0 =C2=A0upgrade the whole distro using DNF?=C2=A0 I&#39;ve=
- read the wiki page about<br>
-&gt;=C2=A0 =C2=A0 =C2=A0System Updates (<a href=3D"https://wiki.yoctoproje=
-ct.org/wiki/System_Update" rel=3D"noreferrer" target=3D"_blank">https://wik=
-i.yoctoproject.org/wiki/System_Update</a>)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0and DNF (or any other package manager) is not list=
-ed - does that<br>
-&gt;=C2=A0 =C2=A0 =C2=A0imply it&#39;s not up to the job?<br>
-&gt;=C2=A0 =C2=A0 =C2=A0=C2=A0 2) If I do continue using DNF, how do I tro=
-ubleshoot the above<br>
-&gt;=C2=A0 =C2=A0 =C2=A0issues?=C2=A0 I don&#39;t mean specifically those =
-issues, but I want to learn<br>
-&gt;=C2=A0 =C2=A0 =C2=A0to fish.=C2=A0 Some packages got broken.=C2=A0 Was=
- it caused by the distro I&#39;m<br>
-&gt;=C2=A0 =C2=A0 =C2=A0upgrading from?=C2=A0 To?=C2=A0 What&#39;s the bes=
-t way of tracing it back?=C2=A0 I<br>
-&gt;=C2=A0 =C2=A0 =C2=A0tried looking through the various commits but obvi=
-ously there were a<br>
-&gt;=C2=A0 =C2=A0 =C2=A0lot of changes made from one distro to another.=C2=
+<div dir=3D"ltr"><div>You do not need to include anything. Maybe I did not =
+understand you. Can you provide a file structure/use case?</div><div><br></=
+div><div>Gabriele</div><div><br></div><div>NOTE: I won&#39;t be able to rep=
+ly till Tuesday 23rd<br></div></div><br><div class=3D"gmail_quote"><div dir=
 =
-=A0 The above scenario<br>
-&gt;=C2=A0 =C2=A0 =C2=A0seems also to be a perfect storm because now that =
-DNF is broken I<br>
-&gt;=C2=A0 =C2=A0 =C2=A0don&#39;t have a mechanism to downgrade anything.<=
-br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0I can&#39;t help but think that I&#39;m swimming a=
-gainst the current here,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0or that I&#39;ve done something fundamentally wron=
-g - I&#39;d appreciate any<br>
-&gt;=C2=A0 =C2=A0 =C2=A0insight or advice.=C2=A0 Thank you!<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Hugh<br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-<br>
-<br>
--- <br>
-Chris Simmonds, trainer and consultant at 2net<br>
-<a href=3D"http://www.2net.co.uk" rel=3D"noreferrer" target=3D"_blank">htt=
-p://www.2net.co.uk</a><br>
-Author of &quot;Mastering Embedded Linux Programming&quot;<br>
+=3D"ltr" class=3D"gmail_attr">On Fri, Jun 19, 2020 at 3:36 PM Tomek The Me=
+ssenger &lt;<a href=3D"mailto:tomekthemessenger@gmail.com">tomekthemessenge=
+r@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex"><div dir=3D"auto">And then do include ${MAGIC_NUMBER}. But this=
+ is not good idea. Each time new x version appers I will have to extend <a =
+href=3D"http://temp.bb" target=3D"_blank">temp.bb</a> file about the line y=
+ou wrote but with another x version.</div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">pt., 19.06.2020, 15:26 u=C5=BCytkownik =
+Gabriele Zampieri &lt;<a href=3D"mailto:gabbla.malist@gmail.com" target=3D"=
+_blank">gabbla.malist@gmail.com</a>&gt; napisa=C5=82:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Tomek,</div>=
+<div><br></div><div>you can specify machine-specific variables/function wit=
+h the following syntax:</div><div>=C2=A0<span style=3D"font-family:monospac=
+e">&lt;PROPERTY_NAME&gt;_[MACHINE_NAME] =3D &quot;value&quot;</span></div><=
+div>ex:</div><div>=C2=A0<span style=3D"font-family:monospace">MAGIC_NUMBER_=
+velismate-x21 =3D &quot;12345&quot;</span></div><div>inside your <a href=3D=
+"http://temp.bb" rel=3D"noreferrer" target=3D"_blank">temp.bb</a></div><div=
+><br></div><div>Regards,</div><div>Gabriele<br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 19, 202=
+0 at 3:21 PM Tomek The Messenger &lt;<a href=3D"mailto:tomekthemessenger@gm=
+ail.com" rel=3D"noreferrer" target=3D"_blank">tomekthemessenger@gmail.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
+iv dir=3D"ltr">Hi<br>I have various ${MACHINE} called:<br>uruguay-x11<br>ur=
+uguay-x21<br>supa-rte-x11<br>supa-rte-x13<br>supa-rte-x21<br>velismate-x11<=
+br>velismate-x21<br><br>I created some bb recipe:<br><a href=3D"http://temp=
+.bb" rel=3D"noreferrer" target=3D"_blank">temp.bb</a><br>where there are co=
+mmon things done for all machines.<br>Now I need to perform different thing=
+s for =C2=A0uruguay, supa-rte and velismate.<br>How to do this? Should I cr=
+eate <br>uruguay-%.inc supa-%.inc and velismate-%.inc?<br>and in <a href=3D=
+"http://temp.bb" rel=3D"noreferrer" target=3D"_blank">temp.bb</a> write:<br=
+>include ${MACHINE}.inc<br>but this won&#39;t work as bitbake will expect f=
+ull name with x11 etc part. How to exclude=C2=A0part=C2=A0with x11, rte-x21=
+ etc? Is any way?<br>Anybody can help?<br><div><br></div><div>BR</div><div>=
+Tomek</div></div>
 <br>
 </blockquote></div>
+</blockquote></div>
+</blockquote></div>
 
---0000000000002ef22705a870db28--
+--000000000000683c6705a87128bf--
