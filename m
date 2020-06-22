@@ -1,88 +1,120 @@
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
- by mx.groups.io with SMTP id smtpd.web11.15886.1592748295818398382
+Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
+ by mx.groups.io with SMTP id smtpd.web10.13000.1592815432046170300
  for <yocto@lists.yoctoproject.org>;
- Sun, 21 Jun 2020 07:04:56 -0700
+ Mon, 22 Jun 2020 01:43:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=eR30WrD3;
- spf=pass (domain: gmail.com, ip: 209.85.221.182, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vk1-f182.google.com with SMTP id x126so584443vkb.1
-        for <yocto@lists.yoctoproject.org>; Sun, 21 Jun 2020 07:04:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lZAnIKn3GjAgjJRqqPxgdAe3Yeznju7aNziACyLFEb0=;
-        b=eR30WrD37d13FihTLd98uWIaI2l3qIb8Fp+O5RBr33VBs9Jhz/mVfc3+X/kL0EeS49
-         v+YEOK78hTmpA4B7SKaSbZHi0JPrxTxjGdtFGaYvGEpWqJqsKc3iv3nHUef9XLmV4P65
-         wdvrsXdQm3ZOzOZfzRJOLKuIEyXpqQU2WyGvaOOUxTqBtMXu8J7Jp8uUkVe2Ewea2yq2
-         b9qNYEmUixhyv0/em70eMFBMVEIlzr6o7BJb5UDIzkF7SZIGhkXN0Cz3uaZRuvWIBxln
-         OcMh8HTQLG8MOPtss9rYWhjQDdMQc4wynsKOOVXP4imlMfIZ/UY5hONGOwpT6/HF0hRQ
-         /btw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lZAnIKn3GjAgjJRqqPxgdAe3Yeznju7aNziACyLFEb0=;
-        b=Ikm0PoOtWDU5AUGkYyVjyZTQMM2p9iUzZyFISjPfMp0Fim83sMT1zp7g+AnjKfTP47
-         uQ1HPrQuLE6JbQji0JzZOSGYlqgkaZnlvEE+JOD9p+bvhbtEoSh9tSMmSY1w320Gx0xR
-         S2dtbxPfKEyGEMDqUCmcLL34S6WkKgXc28yktekcigEQImnxkLBuwScdaeskYDS9oVmW
-         p8rHUHWMHTj5kw2ncgHNH5GLYqGLRvrMmllVHHw17kSIhdK78jQOVjCn9+kweXkV/kb5
-         9SrCjt8MgCoIT2EnNUxMhghAinIDdKlYPYyvJ/T09Q24nz5bnEgvcH10PryIeAlab6X5
-         UFAw==
-X-Gm-Message-State: AOAM530G4hyddDPT9KHjOo6aho8XzFELL9oPekuhr3wUSYYPp8w2wL9C
-	4gDmfrpjLnTlPXF/rIXpheZAbYBdSxsa9qk5tu8=
-X-Google-Smtp-Source: ABdhPJz/ZPmULGBGQgXdPLDcLetyL0ERJP+4Gh9ljwjHoDBy3B09JN6SaA9FdNm5ZsV3gCDp3lszjUXXLb33o7cJ1wg=
-X-Received: by 2002:a1f:5f0d:: with SMTP id t13mr1238477vkb.29.1592748294978;
- Sun, 21 Jun 2020 07:04:54 -0700 (PDT)
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp.bon.at (Postfix) with ESMTPSA id 49r2xw51wGz5tlB;
+	Mon, 22 Jun 2020 10:43:48 +0200 (CEST)
+Date: Mon, 22 Jun 2020 10:43:47 +0200
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: Tomek The Messenger <tomekthemessenger@gmail.com>
+Cc: Gabriele Zampieri <gabbla.malist@gmail.com>,
+	yocto@lists.yoctoproject.org
+Subject: Re: [yocto] MACHINE and inc files
+Message-ID: <20200622084346.74xni5xmxhhbdurw@qschulz>
+References: <CAA4NGyuwrkQrQ05AR_2OyaYTxrF41sqx1AoaDFbJaU99TwCjxQ@mail.gmail.com>
+ <CAAx3WaB-8BapkcGYtz2KftvAY7hE0HRBcEKfhKs5V-V+H3M2HQ@mail.gmail.com>
+ <CAA4NGyv2S1S009zeTezOt+DU42ggfOGt5priOVc49Toi9aCFPA@mail.gmail.com>
+ <CAAx3WaA4cCVD8rz5SV13Ciku5+YP+bE92AmEea+Q+V6-1Ur=EA@mail.gmail.com>
+ <CAA4NGyt+jmBTuumhQ1df-nOr0x9f0VnVfXH9VT3WctiuDkrVdw@mail.gmail.com>
 MIME-Version: 1.0
-References: <BL0PR11MB3268E2BB9A442B0890DA3C9DAE980@BL0PR11MB3268.namprd11.prod.outlook.com>
- <CANNYZj_0BYuNgmO3MHm0vEgu6qQut2vk984fRFPQGuRCy+=W1Q@mail.gmail.com>
- <4f66cf05-c142-188c-0661-8e446c81c67f@2net.co.uk> <20200621071150.GC6921@localhost>
- <28338870-464a-0f9b-71f2-5802cb4a7330@denx.de> <20200621134637.GD6921@localhost>
-In-Reply-To: <20200621134637.GD6921@localhost>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Sun, 21 Jun 2020 16:04:43 +0200
-Message-ID: <CANNYZj_0Ttc=npufxew0C+jyq-WLYfo8JZNn1ELQOTVO+3v6ng@mail.gmail.com>
-Subject: Re: [yocto] Distro upgrade strategies
-To: Adrian Bunk <bunk@stusta.de>
-Cc: Stefano Babic <sbabic@denx.de>, csimmonds <chris@2net.co.uk>, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000056be7905a8989c7b"
+In-Reply-To: <CAA4NGyt+jmBTuumhQ1df-nOr0x9f0VnVfXH9VT3WctiuDkrVdw@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---00000000000056be7905a8989c7b
-Content-Type: text/plain; charset="UTF-8"
+Hi Tomek,
 
-On Sun, 21 Jun 2020 at 15:46, Adrian Bunk <bunk@stusta.de> wrote:
+On Sun, Jun 21, 2020 at 03:09:40PM +0200, Tomek The Messenger wrote:
+> The problem which I have is that this one below doesn't work (*):
+> KERNEL_MODULE_AUTOLOAD_velismate += "A"
+> KERNEL_MODULE_AUTOLOAD += "B"
+> 
+> The two kernel modules are autoloaded during linux startup only if I have
+> in bb recipe this one:
+> KERNEL_MODULE_AUTOLOAD += "A"
+> KERNEL_MODULE_AUTOLOAD += "B"
+> or
+> KERNEL_MODULE_AUTOLOAD_velismate += "A"
+> KERNEL_MODULE_AUTOLOAD_velismate += "B"
 
->
-> With "atomic where they have to be" I meant the normal fsync+rename
-> that ensures that you can never end up with a half-written file
-> after a power-cut.
->
+Because there is a misunderstanding on how _<override> works :)
 
-What about half-installed packages? Does dpkg guarantee atomicity on that
-level, and if so, how? The situation where the system boots with a core
-package being a mix of old and upgraded version isn't acceptable. And same
-for the overall package set, where some packages are old and others are new.
+KERNEL_MODULE_AUTOLOAD_velismate += "A"
+KERNEL_MODULE_AUTOLOAD += "B"
 
-Alex
+does not mean that you add A in case of velismate machine is used.
 
---00000000000056be7905a8989c7b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+You can have *many* variables that are override-able by machines (or
+other OVERRIDES values).
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Sun, 21 Jun 2020 at 15:46, Adrian Bunk=
- &lt;<a href=3D"mailto:bunk@stusta.de">bunk@stusta.de</a>&gt; wrote:<br></d=
-iv><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex"><br>
-With &quot;atomic where they have to be&quot; I meant the normal fsync+rena=
-me<br>
-that ensures that you can never end up with a half-written file<br>
-after a power-cut.<br></blockquote><div><br></div><div>What about half-inst=
-alled packages? Does dpkg guarantee atomicity on that level, and if so, how=
-? The situation where the system boots with a core package being a mix of o=
-ld and upgraded version isn&#39;t acceptable. And same for the overall pack=
-age set, where some packages are old and others are new.<br></div><div><br>=
-</div><div>Alex<br></div></div></div>
+In your example above you will actually have two variables for Yocto
+internals:
+KERNEL_MODULE_AUTOLOAD_velismate = "A"
+KERNEL_MODULE_AUTOLOAD = "B"
 
---00000000000056be7905a8989c7b--
+You can check that by using `-e` after bitbake.
+
+What you want is to **add** to KERNEL_MODULE_AUTOLOAD **only** for
+velismate machine. That can be done with:
+KERNEL_MODULE_AUTOLOAD_append_velismate = " A"
+
+Note the leading space, and that it's _append_velismate and not
+_velismate_append.
+
+This will just work.
+
+> If I have like here (*), so kind of some mix, then kernel-moduleB isn't
+> autoloaded.
+> On the other hand the below one works OK:
+> RPROVIDES_${PN}_velismate += "kernel-module-A"
+> RPROVIDES_${PN} += "kernel-module-B"
+> RPPROVIDES install in filesystem your kernel module and based on variable
+> AUTOLOAD some magic during building kernel image is done that after linux
+> startupu your module is loading.
+> So I try to pass the above by adding:
+> #include ${MACHINE}.inc and in *.inc file I will use KERNEL_MODULE_AUTOLOAD
+> without part "_something" as it is problematic when mixing.
+> so my temp.bb recipe will looks like:
+>   KERNEL_MODULE_AUTOLOAD += "B"
+>   include ${MACHINE}.inc  #here for machine velismate kernel module B will
+> be added
+> 
+
+As per KERNEL_MODULE_AUTOLOAD documentation[1] you can actually put it
+in the machine configuration file, which makes **a lot** more sense :)
+Forget about all your "I'm pulling my hair"-tries and go with that,
+trust me.
+
+[1] https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-KERNEL_MODULE_AUTOLOAD
+
+> But the problem is that my MACHINE is:
+> 'velismate-x11'
+> 'velismate-x21'
+> not just 'velismate'
+> and how to ignore x11,x12 words and not do anything in temp.bb if in future
+> machine velismate-x31 will appear.
+> It must be something like
+> include ${takeOnlyFirstWordOfMachine(${MACHINE})}.inc
+> so I probably need to implement function takeOnlyFirstWordOfMachine but
+> how, I don't know.
+> In makefile it is easy, You have:
+> ifeq ($(findstring velismate, $(MACHINE)), velismate)
+> endif
+> but in bitbake I don't have idea how to done it in the most simplest way.
+> 
+
+You want to use MACHINEOVERRIDES for that. Add your 'velismate'
+"family" to it (AT THE CORRECT PLACE, use bitbake -e to check, rightmost
+in MACHINEOVERRIDES has top priority). You just have to make sure
+velismate is in your new machine configuration file.
+
+IIRC, you would need to do:
+MACHINEOVERRIDES =. ":velismate"
+before all require/include in your machine configuration file.
+
+https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-MACHINEOVERRIDES
+
+Quentin
