@@ -1,896 +1,153 @@
-Received: from mail-qv1-f65.google.com (mail-qv1-f65.google.com [209.85.219.65])
- by mx.groups.io with SMTP id smtpd.web11.17637.1592832952081425402
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+ by mx.groups.io with SMTP id smtpd.web12.18491.1592835532314513324
  for <yocto@lists.yoctoproject.org>;
- Mon, 22 Jun 2020 06:35:52 -0700
+ Mon, 22 Jun 2020 07:18:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=abteIzK/;
- spf=pass (domain: gmail.com, ip: 209.85.219.65, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-qv1-f65.google.com with SMTP id cv17so7883627qvb.13
-        for <yocto@lists.yoctoproject.org>; Mon, 22 Jun 2020 06:35:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=nlF4VFcIjQwqUXZfDQvy5rHDwmBlIH/sumifRUpjBYA=;
-        b=abteIzK/bPblt/5K27UZqrO0HQbIJwg9rl/12ce0RK/nf7KSbbNw7+RXJY6YKEGAfu
-         vJYjJ7iw6qZb/n6ZFjvqTTES+gnFjhww/HKQHryzemWZR3rpRZPntMCsAKXJ+thtTG4j
-         uXAlevGQ9oyK+SNtTDNM2jbjzJVIWNSiyBJFXvFn7PwAC+/nFUvQMcTLB700n0Pm6yaQ
-         X5RPSbuT/NHBGn/cQhmgYEKpJ8YrrCdWFw05xCu6laYycYX5xTy/4qv+Nkn0Y9yDjiE8
-         XX2ve0SLnsG1iwLbxroKuc2j1UQfX57nBsvWsTZJxpW71dKxtCj5CQNng/m9lHKiphAH
-         E6Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=nlF4VFcIjQwqUXZfDQvy5rHDwmBlIH/sumifRUpjBYA=;
-        b=b7Ui/Kqwjhacl9Vbwlx3KP/woIFiijQ+XUPHZ6D99UJWgxV/6fx5oeA7X/xoZkQ2FG
-         JicaUFW6A+qotPBpmGssUNhHp2nqhVEWw+1FU4MdhAIDxQPGk7LkSayFkhnr1LcR9+dR
-         jEHdHeJyg3YzTDRVTGB811tSrAyUoa2neGVOS1A4DZUWWoYDanKqJvd6IwZnAfFFyYdX
-         2aHQPftt7zTkNxGGa2iifunAV5/SGdNDXxbdgujL6zOQXGU4ZntT+jCroiuO//i5Qikk
-         rLUf4WhAieEQT9DeUqt7tKdNx+2gEUoDRNCf5yrAEX+OM6kfXQ9e1AfTvNL/DS02l58U
-         +Szw==
-X-Gm-Message-State: AOAM530vfKuoV+pJesR0aehok1Ns2hXvhBO0ztW5d/uBpMLV3ZdQoB7V
-	nEVAwLJFqQK6DfuXgXZ/KCk=
-X-Google-Smtp-Source: ABdhPJxmuC+fOo9cA2uLpEhWxvkwl5dHB4mc5PSE+YVtu0tN0ALWhSZ8NhjuUn/rbSaydazuUaIkwg==
-X-Received: by 2002:ad4:4b62:: with SMTP id m2mr9866770qvx.68.1592832950576;
-        Mon, 22 Jun 2020 06:35:50 -0700 (PDT)
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from gmail.com (CPE04d4c4975b80-CM64777d5e8820.cpe.net.cable.rogers.com. [174.112.240.214])
-        by smtp.gmail.com with ESMTPSA id s46sm5052993qts.85.2020.06.22.06.35.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jun 2020 06:35:49 -0700 (PDT)
-Date: Mon, 22 Jun 2020 09:35:48 -0400
-From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
-To: Zhixiong Chi <zhixiong.chi@windriver.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto][meta-virtualization][zeus][PATCH] kubernetes: CVE-2019-11254
-Message-ID: <20200622133547.GA52735@gmail.com>
-References: <20200618073419.154522-1-zhixiong.chi@windriver.com>
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: trevor.gamblin@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 05MEIoBC023237
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Mon, 22 Jun 2020 07:18:51 -0700 (PDT)
+Received: from yow-tgamblin-fedora2.wrs.com (128.224.56.206) by
+ ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+ 14.3.487.0; Mon, 22 Jun 2020 07:18:50 -0700
+From: "Trevor Gamblin" <trevor.gamblin@windriver.com>
+To: <yocto@lists.yoctoproject.org>
+CC: <richard.purdie@linuxfoundation.org>
+Subject: [yocto-autobuilder2][PATCH 1/2] README-Guide: cleanup, clarify setup instructions
+Date: Mon, 22 Jun 2020 10:18:47 -0400
+Message-ID: <20200622141848.3461211-2-trevor.gamblin@windriver.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200622141848.3461211-1-trevor.gamblin@windriver.com>
+References: <20200622141848.3461211-1-trevor.gamblin@windriver.com>
 MIME-Version: 1.0
-In-Reply-To: <20200618073419.154522-1-zhixiong.chi@windriver.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail1.windriver.com id 05MEIoBC023237
+Content-Type: text/plain; charset="y"
+Content-Transfer-Encoding: quoted-printable
 
-This patch doesn't apply to zeus.
+Broke the document up into more sections, and added some info
+to make it clear that the same instructions for setting up
+the systemd autobuilder can be used to start it manually.
 
-Can you rebase and resubmit ?
+Signed-off-by: Trevor Gamblin <trevor.gamblin@windriver.com>
+---
+ README-Guide.md | 33 ++++++++++++++++++++++++++++++---
+ 1 file changed, 30 insertions(+), 3 deletions(-)
 
-Cheers,
+diff --git a/README-Guide.md b/README-Guide.md
+index 21dd7c1..83e30d0 100644
+--- a/README-Guide.md
++++ b/README-Guide.md
+@@ -4,6 +4,8 @@ This guide will walk through how to install a stand-alone=
+ autobuilder controller
+=20
+ ## 1) Stand-alone Installation
+=20
++### 1.1) Basic Requirements
++
+ The final outputs of this section are a controller and worker installed =
+in the same server, ready for trimming back to an individual organization=
+'s needs.
+=20
+  > NOTE: The guide assumes that your host OS has the packages installed =
+to support BitBake for the release(s) you are targeting.=C2=A0 Please ref=
+er to the Yocto manual for those packages.
+@@ -17,6 +19,8 @@ sudo pip3 install buildbot buildbot-www buildbot-waterf=
+all-view buildbot-console
+=20
+ It is recommended to also install=C2=A0`testtools` and=C2=A0`libccpunit-=
+subunit-dev` (via apt, in this case) on the worker in order=C2=A0for cert=
+ain image tests to work correctly (e.g., `core-image-sato-sdk:do_testimag=
+e`).
+=20
++### 1.2) Creating the Autobuilder User's Directory
++
+ For a new installation you will need a system user that can run Autobuil=
+der2 as well as a couple of repositories: Autobuilder2 itself and a helpe=
+r plugin.  As root:
+=20
+ ```
+@@ -27,11 +31,14 @@ buildbot-worker create-worker -r --umask=3D0o22 yocto=
+-worker localhost example-wor
+ cd yocto-controller
+ git clone=C2=A0https://git.yoctoproject.org/git/yocto-autobuilder2=C2=A0=
+yoctoabb
+ ln -rs yoctoabb/master.cfg master.cfg
+-cd ~
++cd -
+ git clone=C2=A0https://git.yoctoproject.org/git/yocto-autobuilder-helper
+ chown -R pokybuild3:nogroup /home/pokybuild3
+ ```
+=20
++Note: depending on the configuration of your system, you may need to
++replace "nogroup" with "pokybuild3" for the last command to work.
++
+  > **IMPORTANT:** In the above command you created a controller and a wo=
+rker, which will attempt to join the controller using=C2=A0`pass` as the =
+password.=C2=A0 Feel free to change this, knowing that if you do, you mus=
+t change the controller's master configuration file to match.
+=20
+ At the end of this, your build user's home directory (e.g., `/home/pokyb=
+uild3`) should look like this:
+@@ -43,6 +50,8 @@ yocto-controller/yoctoabb
+ yocto-worker
+ ```
+=20
++### 1.3) Customizing the Autobuilder Configuration
++
+ Next, we need to update the=C2=A0`yocto-controller/yoctoabb/master.cfg` =
+towards the bottom where the=C2=A0`title`,=C2=A0`titleURL`, and=C2=A0`bui=
+ldbotURL` are all set.  This is also where you would specify a different =
+password for binding workers to the master.
+=20
+ Then, we need to update the=C2=A0`yocto-controller/yoctoabb/config.py` t=
+o include our worker.=C2=A0 In that file, find the line where=C2=A0`worke=
+rs` is set and add:=C2=A0["example-worker"].=C2=A0=C2=A0_NOTE:_ if your w=
+orker's name is different, use that here.=C2=A0 Section 3.1 discusses how=
+ to further refine this list of workers.
+@@ -61,9 +70,27 @@ Set=C2=A0`BASE_HOMEDIR` should be your build user's ho=
+me directory.=C2=A0 (There are she
+=20
+  > NOTE: The way the build step is written, the worker will pull a fresh=
+ copy of the helper from the server.  Therefore=C2=A0these configuration =
+files must be committed to the=C2=A0`yocto-autobuilder-helper`=C2=A0repo =
+location you have specified in=C2=A0`yoctoabb/config.py`=C2=A0because the=
+ worker is given a build step that pulls from that repo (see=C2=A0`yoctoa=
+bb/builders.py`).
+=20
+-Finally, as root,=C2=A0add the=C2=A0`yocto-*.service` files to=C2=A0`/li=
+b/systemd/system` (See Appendix A).=C2=A0 Run: `systemctl daemon-reload`.=
+=C2=A0 You should now be able to successfully start these services (e.g.,=
+ `sudo systemctl start yocto-*`).=C2=A0 The controller may take up to 15 =
+seconds to start.
++### 1.4) Starting the Autobuilder
++
++At this point, you can start your Autobuilder controller, worker, and
++janitor in one of two ways: using buildbot manually, or by creating
++systemd service files.
++
++#### 1.4.1) Manually Starting the Autobuilder
++
++Run the following from the pokybuild3 directory:
++
++ 1. yocto-autobuilder-helper/janitor/ab-janitor&
++ 2. buildbot start yocto-controller
++ 3. buildbot-worker start yocto-worker
++
++#### 1.4.2) Creating Service Files
++
++ 1. As root,=C2=A0add the=C2=A0`yocto-*.service` files to=C2=A0`/lib/sys=
+temd/system` (See Appendix A).=C2=A0=20
++ 2. Run: `systemctl daemon-reload`.=C2=A0=20
++ 3. You should now be able to successfully start these services (e.g., `=
+sudo systemctl start yocto-*`).=C2=A0The controller may take up to 15 sec=
+onds to start.
+=20
+-### 1.1) Configuring the Worker's Hash Equivalency Server
++### 1.5) Configuring the Worker's Hash Equivalency Server
+=20
+ A key part of the autobuilder setup is the use of a hash equivalency
+ server, which is started manually on the Yocto hosts. By default, the=20
+--=20
+2.26.2
 
-Bruce
-
-In message: [yocto][meta-virtualization][zeus][PATCH] kubernetes: CVE-2019-11254
-on 18/06/2020 Zhixiong Chi wrote:
-
-> Backport the CVE patch from the upstream:
-> https://github.com/kubernetes/kubernetes.git
-> 
-> Signed-off-by: Zhixiong Chi <zhixiong.chi@windriver.com>
-> ---
->  .../kubernetes/CVE-2019-11254.patch           | 797 ++++++++++++++++++
->  .../kubernetes/kubernetes_git.bb              |   1 +
->  2 files changed, 798 insertions(+)
->  create mode 100644 recipes-containers/kubernetes/kubernetes/CVE-2019-11254.patch
-> 
-> diff --git a/recipes-containers/kubernetes/kubernetes/CVE-2019-11254.patch b/recipes-containers/kubernetes/kubernetes/CVE-2019-11254.patch
-> new file mode 100644
-> index 0000000..2d991a9
-> --- /dev/null
-> +++ b/recipes-containers/kubernetes/kubernetes/CVE-2019-11254.patch
-> @@ -0,0 +1,797 @@
-> +From e9ba264d57d379d86dfbf3ae94e82eb0ead9c468 Mon Sep 17 00:00:00 2001
-> +From: CJ Cullen <cjcullen@google.com>
-> +Date: Wed, 22 Jan 2020 11:32:39 -0800
-> +Subject: [PATCH] update gopkg.in/yaml.v2 to v2.2.8
-> +
-> +CVE: CVE-2019-11254
-> +Upstream-Status: Backport [https://github.com/kubernetes/kubernetes.git branch: release-1.16]
-> +Signed-off-by: Zhixiong Chi <zhixiong.chi@windriver.com>
-> +---
-> + src/import/go.mod                                       |   4 +-
-> + src/import/go.sum                                       |   4 +-
-> + src/import/staging/src/k8s.io/api/go.sum                 |   4 +-
-> + .../src/k8s.io/apiextensions-apiserver/go.mod           |   2 +-
-> + .../src/k8s.io/apiextensions-apiserver/go.sum           |   4 +-
-> + src/import/staging/src/k8s.io/apimachinery/go.mod        |   2 +-
-> + src/import/staging/src/k8s.io/apimachinery/go.sum        |   4 +-
-> + src/import/staging/src/k8s.io/apiserver/go.mod           |   2 +-
-> + src/import/staging/src/k8s.io/apiserver/go.sum           |   4 +-
-> + src/import/staging/src/k8s.io/cli-runtime/go.sum         |   4 +-
-> + src/import/staging/src/k8s.io/client-go/go.sum           |   4 +-
-> + src/import/staging/src/k8s.io/cloud-provider/go.sum      |   4 +-
-> + src/import/staging/src/k8s.io/cluster-bootstrap/go.sum   |   4 +-
-> + src/import/staging/src/k8s.io/code-generator/go.mod      |   2 +-
-> + src/import/staging/src/k8s.io/code-generator/go.sum      |   4 +-
-> + src/import/staging/src/k8s.io/component-base/go.sum      |   4 +-
-> + src/import/staging/src/k8s.io/csi-translation-lib/go.sum |   4 +-
-> + src/import/staging/src/k8s.io/kube-aggregator/go.sum     |   4 +-
-> + .../src/k8s.io/kube-controller-manager/go.sum           |   4 +-
-> + src/import/staging/src/k8s.io/kube-proxy/go.sum          |   4 +-
-> + src/import/staging/src/k8s.io/kube-scheduler/go.sum      |   4 +-
-> + src/import/staging/src/k8s.io/kubectl/go.mod             |   2 +-
-> + src/import/staging/src/k8s.io/kubectl/go.sum             |   4 +-
-> + src/import/staging/src/k8s.io/kubelet/go.sum             |   4 +-
-> + .../src/k8s.io/legacy-cloud-providers/go.sum            |   4 +-
-> + src/import/staging/src/k8s.io/metrics/go.sum             |   4 +-
-> + src/import/staging/src/k8s.io/node-api/go.sum            |   4 +-
-> + src/import/staging/src/k8s.io/sample-apiserver/go.sum    |   4 +-
-> + src/import/staging/src/k8s.io/sample-cli-plugin/go.sum   |   4 +-
-> + src/import/staging/src/k8s.io/sample-controller/go.sum   |   4 +-
-> + src/import/vendor/gopkg.in/yaml.v2/.travis.yml           |  18 +--
-> + src/import/vendor/gopkg.in/yaml.v2/decode.go             |  14 ++-
-> + src/import/vendor/gopkg.in/yaml.v2/scannerc.go           | 107 +++++++++---------
-> + src/import/vendor/gopkg.in/yaml.v2/yaml.go               |   2 +-
-> + src/import/vendor/gopkg.in/yaml.v2/yamlh.go              |   1 +
-> + src/import/vendor/modules.txt                            |   2 +-
-> + 36 files changed, 130 insertions(+), 124 deletions(-)
-> +
-> +diff --git a/src/import/go.mod b/go.mod
-> +index cf8c9147e62..884870f8843 100644
-> +--- a/src/import/go.mod
-> ++++ b/src/import/go.mod
-> +@@ -139,7 +139,7 @@ require (
-> + 	google.golang.org/grpc v1.23.0
-> + 	gopkg.in/gcfg.v1 v1.2.0
-> + 	gopkg.in/square/go-jose.v2 v2.2.2
-> +-	gopkg.in/yaml.v2 v2.2.4
-> ++	gopkg.in/yaml.v2 v2.2.8
-> + 	gotest.tools v2.2.0+incompatible
-> + 	gotest.tools/gotestsum v0.3.5
-> + 	honnef.co/go/tools v0.0.1-2019.2.2
-> +@@ -444,7 +444,7 @@ replace (
-> + 	gopkg.in/square/go-jose.v2 => gopkg.in/square/go-jose.v2 v2.2.2
-> + 	gopkg.in/tomb.v1 => gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7
-> + 	gopkg.in/warnings.v0 => gopkg.in/warnings.v0 v0.1.1
-> +-	gopkg.in/yaml.v2 => gopkg.in/yaml.v2 v2.2.4
-> ++	gopkg.in/yaml.v2 => gopkg.in/yaml.v2 v2.2.8
-> + 	gotest.tools => gotest.tools v2.2.0+incompatible
-> + 	gotest.tools/gotestsum => gotest.tools/gotestsum v0.3.5
-> + 	honnef.co/go/tools => honnef.co/go/tools v0.0.1-2019.2.2
-> +diff --git a/src/import/go.sum b/src/import/go.sum
-> +index b5e3f74686f..617081d2d9e 100644
-> +--- a/src/import/go.sum
-> ++++ b/src/import/go.sum
-> +@@ -492,8 +492,8 @@ gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 h1:uRGJdciOHaEIrze2W8Q3AKkep
-> + gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58zS4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=
-> + gopkg.in/warnings.v0 v0.1.1 h1:XM28wIgFzaBmeZ5dNHIpWLQpt/9DGKxk+rCg/22nnYE=
-> + gopkg.in/warnings.v0 v0.1.1/go.mod h1:jksf8JmL6Qr/oQM2OXTHunEvvTAsrWBLb6OOjuVWRNI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gotest.tools v2.2.0+incompatible h1:VsBPFP1AI068pPrMxtb/S8Zkgf9xEmTLJjfM+P5UIEo=
-> + gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sxOXAzmJt81HFBacw=
-> + gotest.tools/gotestsum v0.3.5 h1:VePOWRsuWFYpfp/G8mbmOZKxO5T3501SEGQRUdvq7h0=
-> +diff --git a/src/import/staging/src/k8s.io/api/go.sum b/src/import/staging/src/k8s.io/api/go.sum
-> +index c162d16011e..8ac86891676 100644
-> +--- a/src/import/staging/src/k8s.io/api/go.sum
-> ++++ b/src/import/staging/src/k8s.io/api/go.sum
-> +@@ -90,8 +90,8 @@ gopkg.in/inf.v0 v0.9.1/go.mod h1:cWUDdTG/fYaXco+Dcufb5Vnc6Gp2YChqWtbxRZE0mXw=
-> + gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58zS4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=
-> + gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> + k8s.io/klog v0.0.0-20181102134211-b9b56d5dfc92/go.mod h1:Gq+BEi5rUBO/HRz0bTSXDUcqjScdoY3a9IHpCEIOOfk=
-> + k8s.io/klog v0.4.0 h1:lCJCxf/LIowc2IGS9TPjWDyXY4nOmdGdfcwwDQCOURQ=
-> +diff --git a/src/import/staging/src/k8s.io/apiextensions-apiserver/go.mod b/src/import/staging/src/k8s.io/apiextensions-apiserver/go.mod
-> +index f2cc6ca100f..41289345ad7 100644
-> +--- a/src/import/staging/src/k8s.io/apiextensions-apiserver/go.mod
-> ++++ b/src/import/staging/src/k8s.io/apiextensions-apiserver/go.mod
-> +@@ -21,7 +21,7 @@ require (
-> + 	github.com/spf13/pflag v1.0.3
-> + 	github.com/stretchr/testify v1.3.0
-> + 	google.golang.org/grpc v1.23.0
-> +-	gopkg.in/yaml.v2 v2.2.4
-> ++	gopkg.in/yaml.v2 v2.2.8
-> + 	k8s.io/api v0.0.0
-> + 	k8s.io/apimachinery v0.0.0
-> + 	k8s.io/apiserver v0.0.0
-> +diff --git a/src/import/staging/src/k8s.io/apiextensions-apiserver/go.sum b/src/import/staging/src/k8s.io/apiextensions-apiserver/go.sum
-> +index 853644fbe6d..1c4460fdc38 100644
-> +--- a/src/import/staging/src/k8s.io/apiextensions-apiserver/go.sum
-> ++++ b/src/import/staging/src/k8s.io/apiextensions-apiserver/go.sum
-> +@@ -349,8 +349,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sxOXAzmJt81HFBacw=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> +diff --git a/src/import/staging/src/k8s.io/apimachinery/go.mod b/src/import/staging/src/k8s.io/apimachinery/go.mod
-> +index 5b49085be74..bdd9ed2f63d 100644
-> +--- a/src/import/staging/src/k8s.io/apimachinery/go.mod
-> ++++ b/src/import/staging/src/k8s.io/apimachinery/go.mod
-> +@@ -30,7 +30,7 @@ require (
-> + 	golang.org/x/text v0.3.2 // indirect
-> + 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
-> + 	gopkg.in/inf.v0 v0.9.0
-> +-	gopkg.in/yaml.v2 v2.2.4
-> ++	gopkg.in/yaml.v2 v2.2.8
-> + 	k8s.io/klog v0.4.0
-> + 	k8s.io/kube-openapi v0.0.0-20190816220812-743ec37842bf
-> + 	sigs.k8s.io/yaml v1.1.0
-> +diff --git a/src/import/staging/src/k8s.io/apimachinery/go.sum b/src/import/staging/src/k8s.io/apimachinery/go.sum
-> +index 916261e42c0..636ef5751ea 100644
-> +--- a/src/import/staging/src/k8s.io/apimachinery/go.sum
-> ++++ b/src/import/staging/src/k8s.io/apimachinery/go.sum
-> +@@ -106,8 +106,8 @@ gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 h1:uRGJdciOHaEIrze2W8Q3AKkep
-> + gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58zS4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=
-> + gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> + k8s.io/klog v0.0.0-20181102134211-b9b56d5dfc92/go.mod h1:Gq+BEi5rUBO/HRz0bTSXDUcqjScdoY3a9IHpCEIOOfk=
-> + k8s.io/klog v0.4.0 h1:lCJCxf/LIowc2IGS9TPjWDyXY4nOmdGdfcwwDQCOURQ=
-> +diff --git a/src/import/staging/src/k8s.io/apiserver/go.mod b/src/import/staging/src/k8s.io/apiserver/go.mod
-> +index 8f97b49b06a..e1fdb94df10 100644
-> +--- a/src/import/staging/src/k8s.io/apiserver/go.mod
-> ++++ b/src/import/staging/src/k8s.io/apiserver/go.mod
-> +@@ -47,7 +47,7 @@ require (
-> + 	google.golang.org/grpc v1.23.0
-> + 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
-> + 	gopkg.in/square/go-jose.v2 v2.2.2
-> +-	gopkg.in/yaml.v2 v2.2.4
-> ++	gopkg.in/yaml.v2 v2.2.8
-> + 	gotest.tools v2.2.0+incompatible // indirect
-> + 	k8s.io/api v0.0.0
-> + 	k8s.io/apimachinery v0.0.0
-> +diff --git a/src/import/staging/src/k8s.io/apiserver/go.sum b/src/import/staging/src/k8s.io/apiserver/go.sum
-> +index 9658ae1784a..d055f0d08a2 100644
-> +--- a/src/import/staging/src/k8s.io/apiserver/go.sum
-> ++++ b/src/import/staging/src/k8s.io/apiserver/go.sum
-> +@@ -268,8 +268,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gotest.tools v2.2.0+incompatible h1:VsBPFP1AI068pPrMxtb/S8Zkgf9xEmTLJjfM+P5UIEo=
-> + gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sxOXAzmJt81HFBacw=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> +diff --git a/src/import/staging/src/k8s.io/cli-runtime/go.sum b/src/import/staging/src/k8s.io/cli-runtime/go.sum
-> +index 71af2c05905..641ba432230 100644
-> +--- a/src/import/staging/src/k8s.io/cli-runtime/go.sum
-> ++++ b/src/import/staging/src/k8s.io/cli-runtime/go.sum
-> +@@ -207,8 +207,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> +diff --git a/src/import/staging/src/k8s.io/client-go/go.sum b/src/import/staging/src/k8s.io/client-go/go.sum
-> +index ec7d3780cad..315bfceda79 100644
-> +--- a/src/import/staging/src/k8s.io/client-go/go.sum
-> ++++ b/src/import/staging/src/k8s.io/client-go/go.sum
-> +@@ -175,8 +175,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> +diff --git a/src/import/staging/src/k8s.io/cloud-provider/go.sum b/src/import/staging/src/k8s.io/cloud-provider/go.sum
-> +index e00d8e24a27..7d446c66231 100644
-> +--- a/src/import/staging/src/k8s.io/cloud-provider/go.sum
-> ++++ b/src/import/staging/src/k8s.io/cloud-provider/go.sum
-> +@@ -158,8 +158,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> +diff --git a/src/import/staging/src/k8s.io/cluster-bootstrap/go.sum b/src/import/staging/src/k8s.io/cluster-bootstrap/go.sum
-> +index 09c98a9ccd8..e148b9741de 100644
-> +--- a/src/import/staging/src/k8s.io/cluster-bootstrap/go.sum
-> ++++ b/src/import/staging/src/k8s.io/cluster-bootstrap/go.sum
-> +@@ -91,8 +91,8 @@ gopkg.in/square/go-jose.v2 v2.2.2/go.mod h1:M9dMgbHiYLoDGQrXy7OpJDJWiKiU//h+vD76
-> + gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58zS4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=
-> + gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> + k8s.io/klog v0.0.0-20181102134211-b9b56d5dfc92/go.mod h1:Gq+BEi5rUBO/HRz0bTSXDUcqjScdoY3a9IHpCEIOOfk=
-> + k8s.io/klog v0.4.0 h1:lCJCxf/LIowc2IGS9TPjWDyXY4nOmdGdfcwwDQCOURQ=
-> +diff --git a/src/import/staging/src/k8s.io/code-generator/go.mod b/src/import/staging/src/k8s.io/code-generator/go.mod
-> +index 7717cae18ba..0dc05a6c181 100644
-> +--- a/src/import/staging/src/k8s.io/code-generator/go.mod
-> ++++ b/src/import/staging/src/k8s.io/code-generator/go.mod
-> +@@ -15,7 +15,7 @@ require (
-> + 	golang.org/x/tools v0.0.0-20190621195816-6e04913cbbac // indirect
-> + 	gonum.org/v1/gonum v0.0.0-20190331200053-3d26580ed485
-> + 	gonum.org/v1/netlib v0.0.0-20190331212654-76723241ea4e // indirect
-> +-	gopkg.in/yaml.v2 v2.2.4 // indirect
-> ++	gopkg.in/yaml.v2 v2.2.8 // indirect
-> + 	k8s.io/gengo v0.0.0-20190822140433-26a664648505
-> + 	k8s.io/klog v0.4.0
-> + 	k8s.io/kube-openapi v0.0.0-20190816220812-743ec37842bf
-> +diff --git a/src/import/staging/src/k8s.io/code-generator/go.sum b/src/import/staging/src/k8s.io/code-generator/go.sum
-> +index a34b8497afa..a3be7c382b8 100644
-> +--- a/src/import/staging/src/k8s.io/code-generator/go.sum
-> ++++ b/src/import/staging/src/k8s.io/code-generator/go.sum
-> +@@ -103,8 +103,8 @@ gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127/go.mod h1:Co6ibVJAznAaIkqp8
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6 h1:4s3/R4+OYYYUKptXPhZKjQ04WJ6EhQQVFdjOFvCazDk=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> + k8s.io/gengo v0.0.0-20190822140433-26a664648505 h1:ZY6yclUKVbZ+SdWnkfY+Je5vrMpKOxmGeKRbsXVmqYM=
-> +diff --git a/src/import/staging/src/k8s.io/component-base/go.sum b/src/import/staging/src/k8s.io/component-base/go.sum
-> +index 34151a5846d..155e3e420e9 100644
-> +--- a/src/import/staging/src/k8s.io/component-base/go.sum
-> ++++ b/src/import/staging/src/k8s.io/component-base/go.sum
-> +@@ -171,8 +171,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> +diff --git a/src/import/staging/src/k8s.io/csi-translation-lib/go.sum b/src/import/staging/src/k8s.io/csi-translation-lib/go.sum
-> +index 71646a53606..a4de3199c55 100644
-> +--- a/src/import/staging/src/k8s.io/csi-translation-lib/go.sum
-> ++++ b/src/import/staging/src/k8s.io/csi-translation-lib/go.sum
-> +@@ -139,8 +139,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> +diff --git a/src/import/staging/src/k8s.io/kube-aggregator/go.sum b/src/import/staging/src/k8s.io/kube-aggregator/go.sum
-> +index 306beb4d2c1..be07875a640 100644
-> +--- a/src/import/staging/src/k8s.io/kube-aggregator/go.sum
-> ++++ b/src/import/staging/src/k8s.io/kube-aggregator/go.sum
-> +@@ -303,8 +303,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sxOXAzmJt81HFBacw=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> +diff --git a/src/import/staging/src/k8s.io/kube-controller-manager/go.sum b/src/import/staging/src/k8s.io/kube-controller-manager/go.sum
-> +index 346871c01de..1653f3eca5a 100644
-> +--- a/src/import/staging/src/k8s.io/kube-controller-manager/go.sum
-> ++++ b/src/import/staging/src/k8s.io/kube-controller-manager/go.sum
-> +@@ -147,8 +147,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> +diff --git a/src/import/staging/src/k8s.io/kube-proxy/go.sum b/src/import/staging/src/k8s.io/kube-proxy/go.sum
-> +index 346871c01de..1653f3eca5a 100644
-> +--- a/src/import/staging/src/k8s.io/kube-proxy/go.sum
-> ++++ b/src/import/staging/src/k8s.io/kube-proxy/go.sum
-> +@@ -147,8 +147,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> +diff --git a/src/import/staging/src/k8s.io/kube-scheduler/go.sum b/src/import/staging/src/k8s.io/kube-scheduler/go.sum
-> +index 346871c01de..1653f3eca5a 100644
-> +--- a/src/import/staging/src/k8s.io/kube-scheduler/go.sum
-> ++++ b/src/import/staging/src/k8s.io/kube-scheduler/go.sum
-> +@@ -147,8 +147,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> +diff --git a/src/import/staging/src/k8s.io/kubectl/go.mod b/src/import/staging/src/k8s.io/kubectl/go.mod
-> +index 5e5e4b2bbed..d1c8a52cbb4 100644
-> +--- a/src/import/staging/src/k8s.io/kubectl/go.mod
-> ++++ b/src/import/staging/src/k8s.io/kubectl/go.mod
-> +@@ -33,7 +33,7 @@ require (
-> + 	github.com/spf13/pflag v1.0.3
-> + 	github.com/stretchr/testify v1.3.0
-> + 	golang.org/x/sys v0.0.0-20190616124812-15dcb6c0061f
-> +-	gopkg.in/yaml.v2 v2.2.4
-> ++	gopkg.in/yaml.v2 v2.2.8
-> + 	gotest.tools v2.2.0+incompatible // indirect
-> + 	k8s.io/api v0.0.0
-> + 	k8s.io/apimachinery v0.0.0
-> +diff --git a/src/import/staging/src/k8s.io/kubectl/go.sum b/src/import/staging/src/k8s.io/kubectl/go.sum
-> +index b164ecd3dc3..17d56a30001 100644
-> +--- a/src/import/staging/src/k8s.io/kubectl/go.sum
-> ++++ b/src/import/staging/src/k8s.io/kubectl/go.sum
-> +@@ -268,8 +268,8 @@ gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58zS4L8KSrWD
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gotest.tools v2.2.0+incompatible h1:VsBPFP1AI068pPrMxtb/S8Zkgf9xEmTLJjfM+P5UIEo=
-> + gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sxOXAzmJt81HFBacw=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> +diff --git a/src/import/staging/src/k8s.io/kubelet/go.sum b/src/import/staging/src/k8s.io/kubelet/go.sum
-> +index 0635238e2ce..e12860540cd 100644
-> +--- a/src/import/staging/src/k8s.io/kubelet/go.sum
-> ++++ b/src/import/staging/src/k8s.io/kubelet/go.sum
-> +@@ -87,8 +87,8 @@ gopkg.in/inf.v0 v0.9.1/go.mod h1:cWUDdTG/fYaXco+Dcufb5Vnc6Gp2YChqWtbxRZE0mXw=
-> + gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58zS4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=
-> + gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> + k8s.io/klog v0.0.0-20181102134211-b9b56d5dfc92/go.mod h1:Gq+BEi5rUBO/HRz0bTSXDUcqjScdoY3a9IHpCEIOOfk=
-> + k8s.io/klog v0.4.0 h1:lCJCxf/LIowc2IGS9TPjWDyXY4nOmdGdfcwwDQCOURQ=
-> +diff --git a/src/import/staging/src/k8s.io/legacy-cloud-providers/go.sum b/src/import/staging/src/k8s.io/legacy-cloud-providers/go.sum
-> +index 7da7d10f1b0..4affb42e698 100644
-> +--- a/src/import/staging/src/k8s.io/legacy-cloud-providers/go.sum
-> ++++ b/src/import/staging/src/k8s.io/legacy-cloud-providers/go.sum
-> +@@ -271,8 +271,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sxOXAzmJt81HFBacw=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> +diff --git a/src/import/staging/src/k8s.io/metrics/go.sum b/src/import/staging/src/k8s.io/metrics/go.sum
-> +index 4ba35f7c725..b820dfe346b 100644
-> +--- a/src/import/staging/src/k8s.io/metrics/go.sum
-> ++++ b/src/import/staging/src/k8s.io/metrics/go.sum
-> +@@ -192,8 +192,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6 h1:4s3/R4+OYYYUKptXPhZKjQ04WJ6EhQQVFdjOFvCazDk=
-> +diff --git a/src/import/staging/src/k8s.io/node-api/go.sum b/src/import/staging/src/k8s.io/node-api/go.sum
-> +index eb2113416f4..df4095e8c53 100644
-> +--- a/src/import/staging/src/k8s.io/node-api/go.sum
-> ++++ b/src/import/staging/src/k8s.io/node-api/go.sum
-> +@@ -195,8 +195,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6 h1:4s3/R4+OYYYUKptXPhZKjQ04WJ6EhQQVFdjOFvCazDk=
-> +diff --git a/src/import/staging/src/k8s.io/sample-apiserver/go.sum b/src/import/staging/src/k8s.io/sample-apiserver/go.sum
-> +index 6100b600021..c9af593485a 100644
-> +--- a/src/import/staging/src/k8s.io/sample-apiserver/go.sum
-> ++++ b/src/import/staging/src/k8s.io/sample-apiserver/go.sum
-> +@@ -300,8 +300,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gotest.tools v2.2.0+incompatible/go.mod h1:DsYFclhRJ6vuDpmuTbkuFWG+y2sxOXAzmJt81HFBacw=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> +diff --git a/src/import/staging/src/k8s.io/sample-cli-plugin/go.sum b/src/import/staging/src/k8s.io/sample-cli-plugin/go.sum
-> +index 71af2c05905..641ba432230 100644
-> +--- a/src/import/staging/src/k8s.io/sample-cli-plugin/go.sum
-> ++++ b/src/import/staging/src/k8s.io/sample-cli-plugin/go.sum
-> +@@ -207,8 +207,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
-> +diff --git a/src/import/staging/src/k8s.io/sample-controller/go.sum b/src/import/staging/src/k8s.io/sample-controller/go.sum
-> +index 2729443484f..9d360830a5a 100644
-> +--- a/src/import/staging/src/k8s.io/sample-controller/go.sum
-> ++++ b/src/import/staging/src/k8s.io/sample-controller/go.sum
-> +@@ -196,8 +196,8 @@ gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
-> + gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
-> + gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> +-gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
-> +-gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> ++gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
-> ++gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-> + honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
-> + k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6 h1:4s3/R4+OYYYUKptXPhZKjQ04WJ6EhQQVFdjOFvCazDk=
-> +diff --git a/src/import/vendor/gopkg.in/yaml.v2/.travis.yml b/src/import/vendor/gopkg.in/yaml.v2/.travis.yml
-> +index 9f556934d8b..055480b9ef8 100644
-> +--- a/src/import/vendor/gopkg.in/yaml.v2/.travis.yml
-> ++++ b/src/import/vendor/gopkg.in/yaml.v2/.travis.yml
-> +@@ -1,12 +1,16 @@
-> + language: go
-> + 
-> + go:
-> +-    - 1.4
-> +-    - 1.5
-> +-    - 1.6
-> +-    - 1.7
-> +-    - 1.8
-> +-    - 1.9
-> +-    - tip
-> ++    - "1.4.x"
-> ++    - "1.5.x"
-> ++    - "1.6.x"
-> ++    - "1.7.x"
-> ++    - "1.8.x"
-> ++    - "1.9.x"
-> ++    - "1.10.x"
-> ++    - "1.11.x"
-> ++    - "1.12.x"
-> ++    - "1.13.x"
-> ++    - "tip"
-> + 
-> + go_import_path: gopkg.in/yaml.v2
-> +diff --git a/src/import/vendor/gopkg.in/yaml.v2/decode.go b/src/import/vendor/gopkg.in/yaml.v2/decode.go
-> +index 53108765555..129bc2a97d3 100644
-> +--- a/src/import/vendor/gopkg.in/yaml.v2/decode.go
-> ++++ b/src/import/vendor/gopkg.in/yaml.v2/decode.go
-> +@@ -319,10 +319,14 @@ func (d *decoder) prepare(n *node, out reflect.Value) (newout reflect.Value, unm
-> + }
-> + 
-> + const (
-> +-	// 400,000 decode operations is ~500kb of dense object declarations, or ~5kb of dense object declarations with 10000% alias expansion
-> ++	// 400,000 decode operations is ~500kb of dense object declarations, or
-> ++	// ~5kb of dense object declarations with 10000% alias expansion
-> + 	alias_ratio_range_low = 400000
-> +-	// 4,000,000 decode operations is ~5MB of dense object declarations, or ~4.5MB of dense object declarations with 10% alias expansion
-> ++
-> ++	// 4,000,000 decode operations is ~5MB of dense object declarations, or
-> ++	// ~4.5MB of dense object declarations with 10% alias expansion
-> + 	alias_ratio_range_high = 4000000
-> ++
-> + 	// alias_ratio_range is the range over which we scale allowed alias ratios
-> + 	alias_ratio_range = float64(alias_ratio_range_high - alias_ratio_range_low)
-> + )
-> +@@ -784,8 +788,7 @@ func (d *decoder) merge(n *node, out reflect.Value) {
-> + 	case mappingNode:
-> + 		d.unmarshal(n, out)
-> + 	case aliasNode:
-> +-		an, ok := d.doc.anchors[n.value]
-> +-		if ok && an.kind != mappingNode {
-> ++		if n.alias != nil && n.alias.kind != mappingNode {
-> + 			failWantMap()
-> + 		}
-> + 		d.unmarshal(n, out)
-> +@@ -794,8 +797,7 @@ func (d *decoder) merge(n *node, out reflect.Value) {
-> + 		for i := len(n.children) - 1; i >= 0; i-- {
-> + 			ni := n.children[i]
-> + 			if ni.kind == aliasNode {
-> +-				an, ok := d.doc.anchors[ni.value]
-> +-				if ok && an.kind != mappingNode {
-> ++				if ni.alias != nil && ni.alias.kind != mappingNode {
-> + 					failWantMap()
-> + 				}
-> + 			} else if ni.kind != mappingNode {
-> +diff --git a/src/import/vendor/gopkg.in/yaml.v2/scannerc.go b/src/import/vendor/gopkg.in/yaml.v2/scannerc.go
-> +index 570b8ecd10f..0b9bb6030a0 100644
-> +--- a/src/import/vendor/gopkg.in/yaml.v2/scannerc.go
-> ++++ b/src/import/vendor/gopkg.in/yaml.v2/scannerc.go
-> +@@ -626,31 +626,18 @@ func trace(args ...interface{}) func() {
-> + func yaml_parser_fetch_more_tokens(parser *yaml_parser_t) bool {
-> + 	// While we need more tokens to fetch, do it.
-> + 	for {
-> +-		// Check if we really need to fetch more tokens.
-> +-		need_more_tokens := false
-> +-
-> +-		if parser.tokens_head == len(parser.tokens) {
-> +-			// Queue is empty.
-> +-			need_more_tokens = true
-> +-		} else {
-> +-			// Check if any potential simple key may occupy the head position.
-> +-			if !yaml_parser_stale_simple_keys(parser) {
-> ++		if parser.tokens_head != len(parser.tokens) {
-> ++			// If queue is non-empty, check if any potential simple key may
-> ++			// occupy the head position.
-> ++			head_tok_idx, ok := parser.simple_keys_by_tok[parser.tokens_parsed]
-> ++			if !ok {
-> ++				break
-> ++			} else if valid, ok := yaml_simple_key_is_valid(parser, &parser.simple_keys[head_tok_idx]); !ok {
-> + 				return false
-> +-			}
-> +-
-> +-			for i := range parser.simple_keys {
-> +-				simple_key := &parser.simple_keys[i]
-> +-				if simple_key.possible && simple_key.token_number == parser.tokens_parsed {
-> +-					need_more_tokens = true
-> +-					break
-> +-				}
-> ++			} else if !valid {
-> ++				break
-> + 			}
-> + 		}
-> +-
-> +-		// We are finished.
-> +-		if !need_more_tokens {
-> +-			break
-> +-		}
-> + 		// Fetch the next token.
-> + 		if !yaml_parser_fetch_next_token(parser) {
-> + 			return false
-> +@@ -678,11 +665,6 @@ func yaml_parser_fetch_next_token(parser *yaml_parser_t) bool {
-> + 		return false
-> + 	}
-> + 
-> +-	// Remove obsolete potential simple keys.
-> +-	if !yaml_parser_stale_simple_keys(parser) {
-> +-		return false
-> +-	}
-> +-
-> + 	// Check the indentation level against the current column.
-> + 	if !yaml_parser_unroll_indent(parser, parser.mark.column) {
-> + 		return false
-> +@@ -837,29 +819,30 @@ func yaml_parser_fetch_next_token(parser *yaml_parser_t) bool {
-> + 		"found character that cannot start any token")
-> + }
-> + 
-> +-// Check the list of potential simple keys and remove the positions that
-> +-// cannot contain simple keys anymore.
-> +-func yaml_parser_stale_simple_keys(parser *yaml_parser_t) bool {
-> +-	// Check for a potential simple key for each flow level.
-> +-	for i := range parser.simple_keys {
-> +-		simple_key := &parser.simple_keys[i]
-> +-
-> +-		// The specification requires that a simple key
-> +-		//
-> +-		//  - is limited to a single line,
-> +-		//  - is shorter than 1024 characters.
-> +-		if simple_key.possible && (simple_key.mark.line < parser.mark.line || simple_key.mark.index+1024 < parser.mark.index) {
-> +-
-> +-			// Check if the potential simple key to be removed is required.
-> +-			if simple_key.required {
-> +-				return yaml_parser_set_scanner_error(parser,
-> +-					"while scanning a simple key", simple_key.mark,
-> +-					"could not find expected ':'")
-> +-			}
-> +-			simple_key.possible = false
-> ++func yaml_simple_key_is_valid(parser *yaml_parser_t, simple_key *yaml_simple_key_t) (valid, ok bool) {
-> ++	if !simple_key.possible {
-> ++		return false, true
-> ++	}
-> ++
-> ++	// The 1.2 specification says:
-> ++	//
-> ++	//     "If the ? indicator is omitted, parsing needs to see past the
-> ++	//     implicit key to recognize it as such. To limit the amount of
-> ++	//     lookahead required, the “:” indicator must appear at most 1024
-> ++	//     Unicode characters beyond the start of the key. In addition, the key
-> ++	//     is restricted to a single line."
-> ++	//
-> ++	if simple_key.mark.line < parser.mark.line || simple_key.mark.index+1024 < parser.mark.index {
-> ++		// Check if the potential simple key to be removed is required.
-> ++		if simple_key.required {
-> ++			return false, yaml_parser_set_scanner_error(parser,
-> ++				"while scanning a simple key", simple_key.mark,
-> ++				"could not find expected ':'")
-> + 		}
-> ++		simple_key.possible = false
-> ++		return false, true
-> + 	}
-> +-	return true
-> ++	return true, true
-> + }
-> + 
-> + // Check if a simple key may start at the current position and add it if
-> +@@ -879,13 +862,14 @@ func yaml_parser_save_simple_key(parser *yaml_parser_t) bool {
-> + 			possible:     true,
-> + 			required:     required,
-> + 			token_number: parser.tokens_parsed + (len(parser.tokens) - parser.tokens_head),
-> ++			mark:         parser.mark,
-> + 		}
-> +-		simple_key.mark = parser.mark
-> + 
-> + 		if !yaml_parser_remove_simple_key(parser) {
-> + 			return false
-> + 		}
-> + 		parser.simple_keys[len(parser.simple_keys)-1] = simple_key
-> ++		parser.simple_keys_by_tok[simple_key.token_number] = len(parser.simple_keys) - 1
-> + 	}
-> + 	return true
-> + }
-> +@@ -900,9 +884,10 @@ func yaml_parser_remove_simple_key(parser *yaml_parser_t) bool {
-> + 				"while scanning a simple key", parser.simple_keys[i].mark,
-> + 				"could not find expected ':'")
-> + 		}
-> ++		// Remove the key from the stack.
-> ++		parser.simple_keys[i].possible = false
-> ++		delete(parser.simple_keys_by_tok, parser.simple_keys[i].token_number)
-> + 	}
-> +-	// Remove the key from the stack.
-> +-	parser.simple_keys[i].possible = false
-> + 	return true
-> + }
-> + 
-> +@@ -912,7 +897,12 @@ const max_flow_level = 10000
-> + // Increase the flow level and resize the simple key list if needed.
-> + func yaml_parser_increase_flow_level(parser *yaml_parser_t) bool {
-> + 	// Reset the simple key on the next level.
-> +-	parser.simple_keys = append(parser.simple_keys, yaml_simple_key_t{})
-> ++	parser.simple_keys = append(parser.simple_keys, yaml_simple_key_t{
-> ++		possible:     false,
-> ++		required:     false,
-> ++		token_number: parser.tokens_parsed + (len(parser.tokens) - parser.tokens_head),
-> ++		mark:         parser.mark,
-> ++	})
-> + 
-> + 	// Increase the flow level.
-> + 	parser.flow_level++
-> +@@ -928,7 +918,9 @@ func yaml_parser_increase_flow_level(parser *yaml_parser_t) bool {
-> + func yaml_parser_decrease_flow_level(parser *yaml_parser_t) bool {
-> + 	if parser.flow_level > 0 {
-> + 		parser.flow_level--
-> +-		parser.simple_keys = parser.simple_keys[:len(parser.simple_keys)-1]
-> ++		last := len(parser.simple_keys) - 1
-> ++		delete(parser.simple_keys_by_tok, parser.simple_keys[last].token_number)
-> ++		parser.simple_keys = parser.simple_keys[:last]
-> + 	}
-> + 	return true
-> + }
-> +@@ -1005,6 +997,8 @@ func yaml_parser_fetch_stream_start(parser *yaml_parser_t) bool {
-> + 	// Initialize the simple key stack.
-> + 	parser.simple_keys = append(parser.simple_keys, yaml_simple_key_t{})
-> + 
-> ++	parser.simple_keys_by_tok = make(map[int]int)
-> ++
-> + 	// A simple key is allowed at the beginning of the stream.
-> + 	parser.simple_key_allowed = true
-> + 
-> +@@ -1286,7 +1280,11 @@ func yaml_parser_fetch_value(parser *yaml_parser_t) bool {
-> + 	simple_key := &parser.simple_keys[len(parser.simple_keys)-1]
-> + 
-> + 	// Have we found a simple key?
-> +-	if simple_key.possible {
-> ++	if valid, ok := yaml_simple_key_is_valid(parser, simple_key); !ok {
-> ++		return false
-> ++
-> ++	} else if valid {
-> ++
-> + 		// Create the KEY token and insert it into the queue.
-> + 		token := yaml_token_t{
-> + 			typ:        yaml_KEY_TOKEN,
-> +@@ -1304,6 +1302,7 @@ func yaml_parser_fetch_value(parser *yaml_parser_t) bool {
-> + 
-> + 		// Remove the simple key.
-> + 		simple_key.possible = false
-> ++		delete(parser.simple_keys_by_tok, simple_key.token_number)
-> + 
-> + 		// A simple key cannot follow another simple key.
-> + 		parser.simple_key_allowed = false
-> +diff --git a/src/import/vendor/gopkg.in/yaml.v2/yaml.go b/src/import/vendor/gopkg.in/yaml.v2/yaml.go
-> +index de85aa4cdb7..89650e293ac 100644
-> +--- a/src/import/vendor/gopkg.in/yaml.v2/yaml.go
-> ++++ b/src/import/vendor/gopkg.in/yaml.v2/yaml.go
-> +@@ -89,7 +89,7 @@ func UnmarshalStrict(in []byte, out interface{}) (err error) {
-> + 	return unmarshal(in, out, true)
-> + }
-> + 
-> +-// A Decorder reads and decodes YAML values from an input stream.
-> ++// A Decoder reads and decodes YAML values from an input stream.
-> + type Decoder struct {
-> + 	strict bool
-> + 	parser *parser
-> +diff --git a/src/import/vendor/gopkg.in/yaml.v2/yamlh.go b/src/import/vendor/gopkg.in/yaml.v2/yamlh.go
-> +index e25cee563be..f6a9c8e34b1 100644
-> +--- a/src/import/vendor/gopkg.in/yaml.v2/yamlh.go
-> ++++ b/src/import/vendor/gopkg.in/yaml.v2/yamlh.go
-> +@@ -579,6 +579,7 @@ type yaml_parser_t struct {
-> + 
-> + 	simple_key_allowed bool                // May a simple key occur at the current position?
-> + 	simple_keys        []yaml_simple_key_t // The stack of simple keys.
-> ++	simple_keys_by_tok map[int]int         // possible simple_key indexes indexed by token_number
-> + 
-> + 	// Parser stuff
-> + 
-> +diff --git a/src/import/vendor/modules.txt b/src/import/vendor/modules.txt
-> +index 4585ca5ec0d..06a5d7fa5a0 100644
-> +--- a/src/import/vendor/modules.txt
-> ++++ b/src/import/vendor/modules.txt
-> +@@ -1069,7 +1069,7 @@ gopkg.in/square/go-jose.v2/jwt
-> + gopkg.in/tomb.v1
-> + # gopkg.in/warnings.v0 v0.1.1 => gopkg.in/warnings.v0 v0.1.1
-> + gopkg.in/warnings.v0
-> +-# gopkg.in/yaml.v2 v2.2.4 => gopkg.in/yaml.v2 v2.2.4
-> ++# gopkg.in/yaml.v2 v2.2.8 => gopkg.in/yaml.v2 v2.2.8
-> + gopkg.in/yaml.v2
-> + # gotest.tools v2.2.0+incompatible => gotest.tools v2.2.0+incompatible
-> + gotest.tools
-> +-- 
-> +2.23.0
-> +
-> diff --git a/recipes-containers/kubernetes/kubernetes_git.bb b/recipes-containers/kubernetes/kubernetes_git.bb
-> index e96b7d6..941e0ca 100644
-> --- a/recipes-containers/kubernetes/kubernetes_git.bb
-> +++ b/recipes-containers/kubernetes/kubernetes_git.bb
-> @@ -15,6 +15,7 @@ SRC_URI = "git://github.com/kubernetes/kubernetes.git;branch=release-1.16;name=k
->             file://CVE-2020-8551.patch \
->             file://CVE-2020-8552.patch \
->             file://CVE-2020-8555.patch \
-> +           file://CVE-2019-11254.patch \
->            "
->  
->  DEPENDS += "rsync-native \
-> -- 
-> 2.17.1
-> 
