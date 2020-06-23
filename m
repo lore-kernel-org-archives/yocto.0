@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.14293.1592938365121740398
+ by mx.groups.io with SMTP id smtpd.web10.14529.1592939091573157339
  for <yocto@lists.yoctoproject.org>;
- Tue, 23 Jun 2020 11:52:45 -0700
+ Tue, 23 Jun 2020 12:04:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=Z9YjO+s8;
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=ewbJX/Az;
  spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: twoerner@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B3300E01D74; Tue, 23 Jun 2020 11:52:44 -0700 (PDT)
+	id 3A728E01D74; Tue, 23 Jun 2020 12:04:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -20,61 +20,61 @@ X-Spam-HAM-Report:
 	*      (twoerner[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.160.170 listed in list.dnswl.org]
+	*      [209.85.222.170 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05FFFE01D30
-	for <yocto@yoctoproject.org>; Tue, 23 Jun 2020 11:52:43 -0700 (PDT)
-Received: by mail-qt1-f170.google.com with SMTP id g13so5857712qtv.8
-        for <yocto@yoctoproject.org>; Tue, 23 Jun 2020 11:52:43 -0700 (PDT)
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F387E01D30
+	for <yocto@yoctoproject.org>; Tue, 23 Jun 2020 12:04:49 -0700 (PDT)
+Received: by mail-qk1-f170.google.com with SMTP id q198so12033399qka.2
+        for <yocto@yoctoproject.org>; Tue, 23 Jun 2020 12:04:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:subject:message-id:mime-version:content-disposition
          :content-transfer-encoding:user-agent;
-        bh=PmKS+k8NJhIWpvsZnMRbb+fhJFSJdQTSSRigZi/iTSk=;
-        b=Z9YjO+s8Xw5LYqoNPgcKcdv/wdd2Ztyc4qS/gCJFiRW9TYP6qjg3aLq2/uL6YZ9w3Z
-         mn1lpnVoQGk6gM6OjKFq5EVIzC96ImZe7eyRyrVbSNOsSCwVVfbFBjNz8IZNxdBEMJqI
-         Jqqm0kvi/2XeCgq0kcWw82WDTd2etnISlyVRmrDIzyJs0yXHHE/jkjjRokmG4NQ82v8K
-         VAbeV+/TA3+9CFJMU8ifQV1pMZDVi93/Ee610KliaO8nrwVO9wtORUVjkDeN0GOH9oQl
-         BfedhSVsJVXDHqOIs279L9Hw8t7Rd2HSTER7lKo1xhOuHYsfSdh89v7HYKIDZYWSDjCK
-         fnlQ==
+        bh=YiL0QZ9wglnX/JZ5/DT5URgtveo6/pU5RTCnIQZKZ2U=;
+        b=ewbJX/AzdtpOTvEOIrcG6bNNHF3AgmlJVFiWLDXaOsDe8SjhwHvlZDg1wET6Jv+wE/
+         5t2Xs6U9YzV7QGobX3Kn9VqayPTJ3WvTSurUy28SNufgcsFje6BbPkYZkba0hjenlVoF
+         CYLF09Ra77WKESXgwWTGtfg8AJRfF6nHXRP7uf6eEIdjWLWjyPak6IOl/xVyV77EMRey
+         dtji4JJ16UYSL1B2m4cz+TYu4txnhcq5nGNAGzBHbx7Ts7WE7HDIlBzWPSF8wiZjU8Ew
+         Mfj/ejWNwCMHzaw6vgAq+LIhGE1Xma3lluK478dPuVMKDSgpnqtSp8YP6cJOWcX5tvlR
+         Yf9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:subject:message-id:mime-version
          :content-disposition:content-transfer-encoding:user-agent;
-        bh=PmKS+k8NJhIWpvsZnMRbb+fhJFSJdQTSSRigZi/iTSk=;
-        b=WjO99rcLJN4xb/2xln3qySl3Pc5gPjkTEF8DDYgQuzjXcY+nx7aQ/jvI1gsPyiH9D1
-         ihTtTHDrI5QM+YfVAUfUvqNBE+qQ1H6BvSTuiHsmZOuWf6FmFkHDNrzvfQhxzsWfOYAL
-         JmbfSFaN+bjcSieZd8GOJIeFaTiRO+Fy6NV7OAXbgqlaf62ixwyoX2wVpD7lHRVs1KzW
-         fYKVifT6GblsMbiMqkmiXcaU9wuoJA7lRDWGRZBSC9aW6h3C58xQu+4wCPn1mlsTX/iY
-         c0jaVWKhs3sHHK+6YlDzuWwAzquUANkwGR4w6pcmeypZgf+xB4N7EdgWcEXbG3wdLezY
-         rC0Q==
-X-Gm-Message-State: AOAM532kDJX9TQp2e3YKaN+EMlBCywB2maQaR5xjIjtWzaeykFTbsdQX
-	bxrMMe22wzTk7S3aO8u1CXHYmJE4
-X-Google-Smtp-Source: ABdhPJx7V/tMj/6TmCHMPQYBYqF2IHcdPRzyYHAm8tyRGH1roBmAwv7IXQmtYJnrFJaZ326YW1AbzQ==
-X-Received: by 2002:ac8:4297:: with SMTP id o23mr7740347qtl.74.1592938362572;
-        Tue, 23 Jun 2020 11:52:42 -0700 (PDT)
+        bh=YiL0QZ9wglnX/JZ5/DT5URgtveo6/pU5RTCnIQZKZ2U=;
+        b=cmtaU0QUvBRL8Hu5EpyENxfaDdUQp7tJA66LoZ62A6EU/Io6czJNDbYUDGMAiJ363Z
+         PQD61ZbpnkNCTrONirNY9W0g2UdAO99OSLiz00o9eHERvuzLujGM/fWaWYwEElnvjYRQ
+         QFCFDzraU0QsF8AggNpGUuqmDZ5ZGDLZ5HI6IdlGwoDUDqdgNj1vZ6Nbg/vursp486fZ
+         SRvlFJE/dDphqk1TkPf+yjgcQv5bQYvhhlpUoPPxiqGmjmRxo+N8aBdzcZiDQvvL1E2G
+         jrvSzu9jWWXt5chHrtE0wkyetulghCBVgD2n3X9YdJwg/OYzMv245OfPYnQQ7jXbeKNg
+         8HhQ==
+X-Gm-Message-State: AOAM530HlcvU0lb9FhhwIjbF4o3KV4NfhTgsgnBPMdRzeQSLOqBrLU6D
+	4ov6YvpLXBRJfpRbcbPi7654sVuk
+X-Google-Smtp-Source: ABdhPJxEwESxBYmn4xaPd99cvVeoKqR0Q5VLgUHZP9bdcwcreHYookGi4Fg8Hc0nAvKQZuY5Y2pzQQ==
+X-Received: by 2002:a37:855:: with SMTP id 82mr4409319qki.441.1592939088635;
+        Tue, 23 Jun 2020 12:04:48 -0700 (PDT)
 Received: from linux-uys3 ([206.248.190.95])
-        by smtp.gmail.com with ESMTPSA id h7sm1258478qkk.102.2020.06.23.11.52.40
+        by smtp.gmail.com with ESMTPSA id r5sm1524158qtc.20.2020.06.23.12.04.47
         for <yocto@yoctoproject.org>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 23 Jun 2020 11:52:41 -0700 (PDT)
-Date: Tue, 23 Jun 2020 14:52:38 -0400
+        Tue, 23 Jun 2020 12:04:47 -0700 (PDT)
+Date: Tue, 23 Jun 2020 15:04:45 -0400
 From: "Trevor Woerner" <twoerner@gmail.com>
 To: yocto@yoctoproject.org
-Subject: Yocto Technical Team Minutes, Engineering Sync, for June 16 2020
-Message-ID: <20200623185238.GA16972@linux-uys3>
+Subject: Yocto Technical Team Minutes, Engineering Sync, for June 23 2020
+Message-ID: <20200623190445.GA21879@linux-uys3>
 MIME-Version: 1.0
 User-Agent: Mutt/1.6.0 (2016-04-01)
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Yocto Technical Team Minutes, Engineering Sync, for June 16 2020
+Yocto Technical Team Minutes, Engineering Sync, for June 23 2020
 archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7=
 QwKC5wWVDg9dDH4/edit
 
@@ -85,71 +85,252 @@ l
 free to reply to this email with any corrections.
 
 =3D=3D attendees =3D=3D
-Trevor Woerner, Jan-Simon M=C3=B6ller, Armin Kuster, Alejandro, Richard P=
-urdie,
-Stephen Jolly, Steve Sakoman, David Reyna, Mark Morton, Tim Orling,
-Scott Murray, Joshua Watt, Vineela, Michael Halstead, Ross Burton, Randy
-MacLeod, Daniel Dragomir, Paul Barker, Bruce Ashfield, Jeremy Puhlman, Ma=
-rk
-Asselstine, Peter Kjellerstedt
+Trevor Woerner, Stephen Jolly, Jan-Simon M=C3=B6ller, Armin Kuster, Jerem=
+y
+Puhlman, Trevor Gamblin, Scott Murray, Richard Purdie, Steve Sakoman, Bru=
+ce
+Ashfield, Paul Baker, Randy MacLeod, Peter Kjellerstedt, David Reyna, Mar=
+k
+Morton, Tim Orling, Joshua Watt, Michael Halstead, Vineela (?), Alejandro=
+ H
 
 =3D=3D notes =3D=3D
-- 3.1.1 just out of QA, looks good, will go to TSC for release
-- 3.2-m1 built shortly (next day or 2)
-- still struggling to find maintainers for key components
-- kudos to Paul Barker and Joshua Watt for key patches
+- 3.1.1 was released last week
+- 3.2.1 out of QA, looks clean, for TSC review, release probably in next =
+few
+    days
+- still issues with AB
+- still looking for more maintainers
+- lots of unassigned M2 bugs
+- new testing manual
+- ELC + devday next week
 
 =3D=3D general =3D=3D
-Randy: growth of medium+ is apparent
-Steven Jolly: mediums down, medium+ up. perhaps an issue of grading
-RP: there=E2=80=99s a natural undulation that corresponds with releases
+TW: meeting next week?
+Stephen: will look if there=E2=80=99s a timezone/agenda conflict=E2=80=A6
+(various input)
+Stephen: okay, next week=E2=80=99s meeting cancelled
 
-RP: to Michael: do we have the data going back 10 years?
-MH: not for full 10 years
-RP: i=E2=80=99d like to get the WDD charts going back as far as possible
-see: https://wiki.yoctoproject.org/charts/combo.html
+David: ELC, virtual booth and slack session, looking for people to hang o=
+ut
+TW: do we have to be registered for ELC?
+David: no, certainly not for slack, Tracey and I will work it out. email =
+to
+    come later today with details, contact me if interested
 
-RP: kudos to Paul and JPEW for stability improvements, some are invasive,
-    don=E2=80=99t think we should backport them, however
+RP: links in status report to devday and to new test manual. please have
+    a look through the test manual. kudos to Mark for pulling it together
+    (always getting questions about testing). this was started a while ba=
+ck
+    with ScottR
 
-RP: i see Mark Morton is on, any updates?
-MM: should see updates later today
-RP: lots of stuff on AB, testing, etc aren=E2=80=99t documented anywhere,=
- these
-    changes are to improve these areas
-MM: there=E2=80=99s a meeting tomorrow to discuss conversion to Sphinx, k=
-udos to Nico
+RP: re AB. still seeing intermittent issues, causes lots of builds to fai=
+l.
+    impacts me and SteveS. couple issues with repositories and/or branche=
+s
+    (upstream) disappearing.
 
-David R: links are up to yocto devday! lots of good content, good speaker=
-s,
-    separate from ELC
-JPEW: same platform as ELC?
-David R: no, we=E2=80=99re just using zoom (professional, holds 500 peopl=
-e)
-Scott: using the slide deck as before?
-David: yes, we=E2=80=99ll each host our own slides, but i want a master,
-    consolidated deck
-JPEW: 16x9 slides please?
-David: yes, we have to =E2=98=BA
+RP: issues around the =E2=80=9Cstdin=E2=80=9D bug (wrt testing)
 
-Randy: maybe we can recruit at devday too (maintainers for key areas)?
-RP: if anyone has any other ides, please approach the TSC
-JPEW: i like to add a =E2=80=9Chow to get involved=E2=80=9D slide at the =
-end of any
-    presentation
-RP: should start something on wiki, then it can be used for more than sli=
-des
-    in presentations
-Randy: sometimes it=E2=80=99s difficult for someone to contribute due to =
-lawyers
-RP: best to introduce the lawyers from one company (who can=E2=80=99t fig=
-ure it out)
-    to lawyers who have figured it out so they can talk in their own lang=
-uage
-Randy: any suggestions?
-RP: i=E2=80=99ll poke LF
+RP: Ross still working on RCU bug
 
-Paul: =E2=80=9Clatest activity=E2=80=9D on yocto website seems to have st=
-opped updating
-    about a month ago (Scott noticed it too)
-Michael: i=E2=80=99ll raise it with Tracy and Nico, should be an easy fix
+RP: Alex working on a =E2=80=9Cwarnings=E2=80=9D issue
+
+Scott: can we still add 3.2 features?
+RP: nobody=E2=80=99s mentioning anything. we=E2=80=99ve never been so ble=
+eding edge (AUH
+    kudos: AlexK). apt upgrade. Armin working on dhcp and bind updates. B=
+ut no
+    =E2=80=9C3.2 sound-bite=E2=80=9D
+JPEW: multiconfig fixes
+RP: true. and also some RDEPENDS support (should be straight-forward exce=
+pt
+    when recursing)
+JPEW: not sold on the feature
+RP: simple use-case is to put 2 toolchains into one sdk. my answer is to =
+build
+    the two then combine later (with other code). i agree that we might n=
+eed
+    to look for a different approach
+Timo: the code to bring it all together could do other stuff too, but i a=
+gree
+    with Joshua that =E2=80=9Cthere be dragons=E2=80=9D
+
+Timo: perl has a new release 5.32, we might want to get that in
+Scott: but it has some new language features, might not just be a point
+    release
+Timo: haven=E2=80=99t dug in, we=E2=80=99ve had issues with perl so hopef=
+ully things are
+    better
+
+RP: 3.2. held up due to valgrind regressions, new distros (gcc 10 fixes),
+    reproducible builds, etc=E2=80=A6 so there=E2=80=99s lots of good stu=
+ff going in, just
+    nothing =E2=80=9Cnew=E2=80=9D (i.e. a feature), but that=E2=80=99s ok=
+ay
+
+Scott: new autoconf (Ross)?
+RP: don=E2=80=99t think it=E2=80=99s released yet, we=E2=80=99re testing =
+the pre-release. if
+    upstream releases then we=E2=80=99ll upgrade, but don=E2=80=99t know =
+their timescale
+
+RP: trying to reduce patch overhead (AlexK has been helping). it has been
+    slowing moving down, but recently up-ticked a tiny bit. we=E2=80=99ll=
+ never get
+    to 0, but every reduction helps
+
+Timo: was looking at Sphinx update yesterday. looks good, some glitches.
+    noticed the doc revision history was missing. how important is that?
+RP: i=E2=80=99ll ask MarkM to take a look. if it=E2=80=99s lost it won=E2=
+=80=99t break the deal,
+    but ideally we=E2=80=99d keep it
+MarkM: yes, that and some other things (e.g. html version doesn=E2=80=99t=
+ have
+    section links)
+Timo: was looking at Toaster manual, noticed some images were missing too=
+.
+    also found a broken URL. overall very good, nice to see a modern form=
+at
+    (i.e. readthedocs)
+MarkM: we=E2=80=99re also looking at a colour scheme, Nico simply picked =
+the
+    default, but something else will probably look better
+RP: Nico, MarkM, and I met (it was an open meeting=E2=80=A6 *wink wink*) =
+and decided
+    to move forward and are hoping to have it done for Dunfell (LTS) and
+    master
+Timo: agreed. XML is a dying art, everything looks good, kudos! (will try=
+ to
+    get some help from some Intel folks)
+
+JPEW: sstate found/miss cache?
+JPEW: a patch to not go out and look for every sstate object, keep a cach=
+e if
+    one had already been found
+RP: the found cache isn=E2=80=99t the issue, the not-found could be an is=
+sue
+    especially where multiple builds are using the same sstate. we don=E2=
+=80=99t
+    have a mechanism to generate an sstate object in isolation, but it mi=
+ght
+    be a step away
+JPEW: but it=E2=80=99s the not-found that is the slow path. if the sstate=
+ object
+    isn=E2=80=99t there, the build goes out and searches the filesystem f=
+or the
+    missing object
+RP: maybe we could make the cache time-limited (e.g. 30 seconds?)
+JPEW: yes, that might help. it=E2=80=99s like there=E2=80=99s 2 scenarios=
+: local builds
+    with one builder, group builds
+PaulB: maybe we could simply watch the sstate directory for changes?
+PaulB: there=E2=80=99s also an issue of a remote sstate cache over https =
+where
+    packets are dropped so it fails, the machine builds it locally. could=
+ be
+    a =E2=80=9Ctime of check=E2=80=9D vs =E2=80=9Ctime of use=E2=80=9D is=
+sue: the check says it=E2=80=99s
+    there, but at use time the network blips and then it=E2=80=99s not re=
+trieved,
+    and then there=E2=80=99s no retry
+JPEW: we saw same issue here: solution for us was to run bitbake twice: o=
+nce
+    with the setscene only, then once without it
+PaulB: we=E2=80=99re trying to offer our customers a common sstate but we=
+ can=E2=80=99t
+    necessarily ask users to do the =E2=80=9C2 bitbake=E2=80=9D build
+RP: maybe we need a config setting
+PaulB: i think the issue is we=E2=80=99re checking a URL twice, it=E2=80=99=
+s the time
+    difference between checking and using that is the issue. perhaps we c=
+ould
+    just do the poll once?
+RP: absolutely not, that=E2=80=99s effectively not possible. decisions ar=
+e made
+    based on those checks so the two fetches have to be separate. if we
+    combine them, then there=E2=80=99s no savings, each build would be ve=
+ry long
+PaulB: perhaps better reporting
+RP: people are just going to set the config to ignore the warning then bu=
+ilds
+    will fail and it=E2=80=99ll look like the build is flaky. i think the=
+ answer
+    is we=E2=80=99re going to have to accept a config option, but we=E2=80=
+=99ll have to
+    document it and be aware
+Alejandro: could we switch run-queue classes (by a flag for e.g.)
+RP: the patch isn=E2=80=99t the issue, it=E2=80=99s a philosophical quest=
+ion. i=E2=80=99m
+    worried about the implications from a usability standpoint (e.g. =E2=80=
+=9Cwhy is
+    my build rebuilding all this stuff?=E2=80=9D =E2=80=9Cbecause your ne=
+twork is bad=E2=80=9D)
+RP: over the years we=E2=80=99ve reduced the number of useless warnings t=
+o the point
+    where warnings are actual warnings now. maybe it wouldn=E2=80=99t be =
+bad to have
+    a warning for this situation
+PaulB: some layers cause lots of warnings to be emitted
+RP: heads up for 3.2, lots of warnings are errors now in poky
+Timo: very similar to gcc=E2=80=99s situation, code warnings are ignored,=
+ code
+    doesn=E2=80=99t work, so now more warnings are fatal for the build
+RP: 5 years ago i wouldn=E2=80=99t have taken that patch, now i think it=E2=
+=80=99s
+    reasonable
+PaulB: okay, I=E2=80=99ll put a patch together
+
+RP: getting back to JPEW=E2=80=99s issue, i think we=E2=80=99ll simply ne=
+ed a config
+    option. for the future I see bitbake needing some sort of dynamic
+    directory monitoring code, perhaps notifications from the hash equiva=
+lence
+    server (if there was a mechanism for sending messages)
+JPEW: true, but if event-driven (not polling)
+TW: but if the network is flaky=E2=80=A6
+RP: depends on scenario, AB should work reliably, over the Internet?
+    anyone=E2=80=99s guess
+RP: maybe a username/password, or web token, or some other auth method
+
+PaulB: what would it take to replace pseudo with some sort of container
+    (flakiness with LD_PRELOAD issues and others). 2 issues: 1: build nee=
+ds
+    the sub-uids and sub-gids needed before the build 2: even with root i
+    don=E2=80=99t think you can run mknod
+Timo: could be bind-mount in the devices and then add groups, we=E2=80=99=
+d like to
+    keep it rootless if possible
+PaulB: but even with root we can=E2=80=99t create device nodes (device na=
+me-space
+    inside and outside the contain is the same (shared?))
+Randy: is the same namespace used on purpose?
+JPEW: not sure how to name-space physical devices?
+PaulB: if mknod is the only thing that could be an issue, then it=E2=80=99=
+s the only
+    thing we=E2=80=99ll need to get working with LD_PRELOAD
+RP: not just that, but anything mknod would create would need to be wrapp=
+ed
+PaulB: oh, true
+Scott: do we need the full system image in the container?
+Timo: no
+RP: all things considered, pseudo is still holding up pretty well, is it =
+worth
+    wholesale replacement?
+PaulB: still seeing seccomp issue
+RP: there is a work-around for the seccomp issue
+Scott: i like the idea of using the container since it will definitely av=
+oid
+    host contamination
+Randy: a container would be faster too?
+JPEW: we still have to record everything
+RP: won=E2=80=99t completely solve the host contamination thing because t=
+he
+    cross-compile is still happening on the host, depends on which proble=
+m
+    we=E2=80=99re solving (LD_PRELOAD? host contamination? performance? =E2=
+=80=A6)
+PaulB: my issue was mostly LD_PRELOAD, and wic. bitbake runs inside faker=
+oot,
+    but wic doesn=E2=80=99t
+RP: true. i think the tools need to be more granular
