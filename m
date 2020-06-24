@@ -1,154 +1,118 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.7161.1592974759585667488
+Received: from mail-yb1-f195.google.com (mail-yb1-f195.google.com [209.85.219.195])
+ by mx.groups.io with SMTP id smtpd.web12.7651.1592977749975382901
  for <yocto@lists.yoctoproject.org>;
- Tue, 23 Jun 2020 21:59:19 -0700
+ Tue, 23 Jun 2020 22:49:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=NYTJoAl6;
- spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: david.reyna@windriver.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 28B68E01D74; Tue, 23 Jun 2020 21:59:19 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,FORGED_SPF_HELO,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [40.107.93.77 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2077.outbound.protection.outlook.com [40.107.93.77])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37735E01D47
-	for <yocto@yoctoproject.org>; Tue, 23 Jun 2020 21:59:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TvTLB0726kiyCjZMzt1Ui9i0zzSh/Coti8ykb7oTNQyyct2JrvilcD1go9LarELUa7wKLrdoSCtO7j3D2zImuJMPL/8aMKvhu3La4SDc316eY4bjP2bt4pjt42+ZY/rLjyxBasiE/SnPbrqDdJulmmYeq+Ka/wchwHC25IGc+cdPOZfEyzKCW0pJ3Zp67lsOYMDyIDs5UUHQAGv9d5hWAru47CtBV5/Spsn8BCXQsplDsVpBX30zZ9rc+zqrnT83p83K1ESjUM8+v6d2hc79afnR6R9GuS6P52m4ZKu91tvEz8vwbkZYR1qTbW8Tk8G1T9FJyTtueUV2SjfUW4/yFQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j9HBVDzQnR7vx3gxm561sf5FfHDvaBREDvonO71Or0M=;
- b=eaNiNCd/V0pF2Vse+sOk0gSnWpxSMtinMD24UINCBdzLM0f/PE/PXGGulZ0t22JaWgMhjcRrnStrUHUsfnxMcMQvHidEuAnGoYnWohIiCCKcq9hMlF9XMYckxaUznVPMmKH0AyXvKIgk6Inp2S1iabh+saE88607U0EQYWYyDvS6lFwguBvU5ExCERKvEkVolFZ/kbatBoY9i2kbNDDUyDdR8+Z1FGd3lcZBL0KsTM+2ADG7yPjxcZE+vEoshX8hg6SN1uAUb5FUvDIEJKV3FS+OkFuXmQ6N/VZAjDIqzExe3yEVO2shY6/cRrB9UxnKEKSWs9zjQv5okTx6rmBkew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+ dkim=pass header.i=@linaro.org header.s=google header.b=Jh8jKMu7;
+ spf=pass (domain: linaro.org, ip: 209.85.219.195, mailfrom: nicolas.dechesne@linaro.org)
+Received: by mail-yb1-f195.google.com with SMTP id k18so430900ybm.13
+        for <yocto@lists.yoctoproject.org>; Tue, 23 Jun 2020 22:49:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=windriversystems.onmicrosoft.com;
- s=selector2-windriversystems-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j9HBVDzQnR7vx3gxm561sf5FfHDvaBREDvonO71Or0M=;
- b=NYTJoAl6FArtOMbekE7hTS8/yzE8OifOOeGUf2z94B6koc6Lq5LHQ+ClGFlbn6QxS38s9gJOOGsMd3OFyY8eSiEhkjqzj4e28WBqfzBPtPebvWEx3yC6N8PqA+3Mq8jqd/1wXO0CLwLmvLR+g4raptRZa3l+NSBK8hxmJlJy+xM=
-Received: from BY5PR11MB4167.namprd11.prod.outlook.com (2603:10b6:a03:185::28)
- by BY5PR11MB4497.namprd11.prod.outlook.com (2603:10b6:a03:1cc::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.22; Wed, 24 Jun
- 2020 04:59:15 +0000
-Received: from BY5PR11MB4167.namprd11.prod.outlook.com
- ([fe80::c54b:4815:9a86:533a]) by BY5PR11MB4167.namprd11.prod.outlook.com
- ([fe80::c54b:4815:9a86:533a%3]) with mapi id 15.20.3109.027; Wed, 24 Jun 2020
- 04:59:15 +0000
-From: "Reyna, David" <david.reyna@windriver.com>
-To: "chris.laplante@agilent.com" <chris.laplante@agilent.com>,
-	"sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Yocto Project Status WW25'20
-Thread-Topic: [OE-core] Yocto Project Status WW25'20
-Thread-Index: AdZJbUdP+FsSdrtKSByBV3SeDZdVTwACStUQABrs1tA=
-Date: Wed, 24 Jun 2020 04:59:14 +0000
-Message-ID: 
- <BY5PR11MB4167B414192233E0A5F8F241EA950@BY5PR11MB4167.namprd11.prod.outlook.com>
-References: <067a01d6496d$5f46d9b0$1dd48d10$@gmail.com>
- <MW2PR12MB247418580E300A77C479C1698B940@MW2PR12MB2474.namprd12.prod.outlook.com>
-In-Reply-To: 
- <MW2PR12MB247418580E300A77C479C1698B940@MW2PR12MB2474.namprd12.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: agilent.com; dkim=none (message not signed)
- header.d=none;agilent.com; dmarc=none action=none header.from=windriver.com;
-x-originating-ip: [24.5.28.247]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8f15bd3e-d72c-4a85-ee3a-08d817fb57f0
-x-ms-traffictypediagnostic: BY5PR11MB4497:
-x-microsoft-antispam-prvs: 
- <BY5PR11MB4497322F18DE1ED6D4751A60EA950@BY5PR11MB4497.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 0444EB1997
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- fxRsCZNSHUEkfV5x6sq3Ig8I+1atWzjFo+bhXzQJZcSL5TC5fK2ZR5yfjdLMgW1wiIOQORUw8jX/gClCD1+CNSATXiYpRkJ5axRWOZz3KJf4yfXw34o72l96JVQJeRxa/WDRyBYOrKuVs+kh1ERlH8fglVROEeshCB6xay/bFIvkSA6VOjbSj+iAR8V7zWZHZFGe0McqPK9XneHrhahMHJ84PaGl2urZZBx7/RwctupXb/U771weaKyK++FLDzs9fvkqjTP3q3JXClpgqOeu20mEgy+mlYq2MeqWg+/14g7eoYguBp65fcSCQDa3s1kre7uI3PEWDOWQQsz3rH7ctKGyJCSxLZuJpA6wP7wiPafriqWzzqvlGpUfn/HMp8VjgovnmCJGiwOJTC8LixuJPQ==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB4167.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(346002)(376002)(136003)(39850400004)(396003)(366004)(33656002)(186003)(76116006)(86362001)(478600001)(966005)(316002)(6506007)(71200400001)(66446008)(52536014)(7696005)(26005)(53546011)(110136005)(8936002)(5660300002)(8676002)(66946007)(9686003)(66556008)(55016002)(64756008)(2906002)(83380400001)(66476007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 
- DMVLBjTst1c+WfhSlrgC/jS7yzSUgbj9YX8pvZUFfI82Pxv4qxIAt5FBp6H0oYDiPFV1ol8ZBz3u2kwLipBLUIXZ140J4TpQ0wqJ6tFi9tGASRuS0118y7jg/UBuuoBYK4pRHwoa+kQw5w5kwmlYEri6N4DftUDXsLw/TnonTTNWPyfkdlfmZGm3r+dtj7XJn74zPbikkDHGDOkaG+xtPgtF31/AgsCenEGgKxUt+Ri6LkjYRjoc0nKeLUWyYXF2+C4GyFxjtf+R93/PKMLBuC9IsG8W6TPXTZ5ebWErl0wKJiTtkEulcNTDo8hVHE3brS5zlkZ+2BAia+8Uisxblqg6gnboE8RjsY0teu2Ye6hjNY6sXLaLTagXVf/f2WbfBEj0T269xyCivAHZHCKWihlZlWCf/caVMmdbjehGYK3wl4VMV7m1hrAv5O1zbBroZprww45PLIpO/C2/ZzVfiETcyHAvvlkedTKeMvN06qM=
-x-ms-exchange-transport-forked: True
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=XB+Ztrs6GXFyqwkigh1PYEXMXqLEAtjgQtnxDfJFOw4=;
+        b=Jh8jKMu7eJBMFNjKF2fbc7JNcgnBSlGdf8F3Gtr1Cu2WElJydjZa5Ohs9l6S1+jRqL
+         heZ84+M7m9YiKPxONmI0TU3kfXtqhayPesrgN7ISTnid/UggJ+1XqRr3nuwoz/iOgC3K
+         zZN2JjIlcXDd7bolWuS9AkkLOM6XHSdCWQA4IIxcDPEn0qpn4a2uYyb6Sk/ulgFgWV+i
+         NBU3np/v/Hb+EL4hLTw9kDOKMeHH10qWHwDeOCi5QJTqcUur9y4iTj2RjXfAR4V8VaKT
+         JDhD+q1zK7rWwOokNU3VYoNuVFnE725xPz8HRQHvpyQPC8ae43crHR/hY9N6rVwgPBlo
+         vFMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=XB+Ztrs6GXFyqwkigh1PYEXMXqLEAtjgQtnxDfJFOw4=;
+        b=EVzLlGLXLEEsEUxRwvLePHPJeYHWWnZ7cBfau3inYIcl2DfX9kci+Q1UEKqfgPg3gH
+         c+ICmPMbnBY/boJpBIwoplLrTsbYxNuuh8168WQTSko2kdZIZk3Ken6iSHW+Ship6Lc3
+         DAP4fKuibDpwyfCdeYPd7z6DR5qPMzLLawQYKiLksqPJTRaq2IEvvH9S0JkJNNxVLvw3
+         mrAm7HC9Tjxvpa6ILoY6tbASPnkXYomkfeo49YlnPf+aWrcqiXKToG0ZJV2wg4O648J7
+         f7+TxU0YUWtFDd9rplMGUp0v/RmqfBQpQAPvYLAYfgImzc+AKa5eRKVd0+1LCeNNes1g
+         q2TA==
+X-Gm-Message-State: AOAM533ubFWQZg8Z5v4HI0kGSNSNDl6Biz5Jeb7spIef0rPWbN8YmX9S
+	To+K8z6F1Ol+vzLzQDhqI27bE7wf8du9UOo2LfiPqw==
+X-Google-Smtp-Source: ABdhPJwlBe9gHAlmfc6JlS4iPl/npX7A3reFRaeAR9USa3tq1ZeQkYXbIlF4+H+GO1N05esK6ulRLm0x2rMA5d3qmYg=
+X-Received: by 2002:a25:84cc:: with SMTP id x12mr39322018ybm.454.1592977749022;
+ Tue, 23 Jun 2020 22:49:09 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f15bd3e-d72c-4a85-ee3a-08d817fb57f0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jun 2020 04:59:15.0334
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JGo8wJ6J3iJawamw6m/4Wrd+UbfUfShBx4UUzkQUQ6cdDsRmLFjLS328nHB9Xudszp7Cca2JZwkDd0LHS/kHGpMXc4ebBVXglnu1Eb/lU90=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB4497
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+References: <DB6P192MB0214395F93E78A3751ABF4EFC3950@DB6P192MB0214.EURP192.PROD.OUTLOOK.COM>
+In-Reply-To: <DB6P192MB0214395F93E78A3751ABF4EFC3950@DB6P192MB0214.EURP192.PROD.OUTLOOK.COM>
+From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
+Date: Wed, 24 Jun 2020 07:48:57 +0200
+Message-ID: <CAP71WjyTZVWTJmd_CazWnyNpEYkTGhwCJubU=CSfq6PwApqYkg@mail.gmail.com>
+Subject: Re: [yocto] Nested images, a.k.a. two-stage booting
+To: Peter Budny <pbudny@witekio.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Chris,
+On Wed, Jun 24, 2020 at 3:12 AM Peter Budny <pbudny@witekio.com> wrote:
+>
+> Hello all,
+>
+> I have an unusual and uncommon situation, and could use some help to get=
+ Yocto to do what I need.
+>
+> I'm working on a legacy system which is being ported to use Yocto and Li=
+nux. The hardware architecture is complex, but the main detail to know is t=
+hat the processor I'm running on boots entirely from RAM. A co-processor pu=
+ts a FIT image into shared memory, which this processor uses to boot Linux =
+and then decompress the initramfs, which is not an "initial" ramdisk but is=
+ actually the only rootfs it uses. Unfortunately, RAM is quite limited, and=
+ the image has become large enough that Linux runs out of space decompressi=
+ng it.
+>
+> The problem is that to decompress the rootfs, there has to be enough RAM=
+ for the compressed image, and the decompressed image, and working space fo=
+r the decompressor. However, I figured out a workaround: I can have a minim=
+al initramfs that contains just enough to boot plus the desired compressed =
+rootfs. This way it only needs ~12MB free to decompress the outer rootfs. O=
+nce the kernel is done booting and has freed some memory used during boot, =
+there's enough free memory that it can decompress the inner rootfs and pivo=
+t_root. It sounds a little crazy, but it does work.
+>
+> This is easy enough to do manually:
+> * Create the inner rootfs as a .cpio.xz (or whatever)
+> * Create the outer rootfs, which is similar to core-image-minimal-initra=
+mfs.
+> * To the outer rootfs, manually add inner_rootfs.cpio.xz and a script to=
+ decompress it and pivot_root.
+>
+> I can do that the evil way (by modifying the outer rootfs inside the bui=
+ld/tmp/work/ directory, which I know will confuse sstate) or in a nicer but=
+ still manual way (with a script run afterwards to decompress the outer roo=
+tfs, add the files, and recompress it... however, putting a bootable image =
+back together involves several extra steps on this baroque system, more tha=
+n just building a CPIO and FIT image).
+>
+> The ideal way would be to put this into a recipe or class, and that's wh=
+ere I'm stuck. There doesn't seem to be a way to do it with just an image r=
+ecipe; you can't simply RDEPEND on it, nor do image recipes generate packag=
+e output that could be "installed" in another recipe. I was hoping that IMA=
+GE_FSTYPES=3D"live" might get me close, but alas that depends on Syslinux a=
+nd is only for x86.
+>
+> Has anyone seen something like this two-stage boot or nested images befo=
+re? I searched around but couldn't find anything useful to my situation.
 
-> "Does anyone know what the intended audience is for the Developer Day pre=
-sentations?"
+in the outer rootfs image recipe, you can create a task which creates
+your custom 'bundle' (e.g. do_custom_image), and set:
 
-The official description for the intended audience can be found here: https=
-://www.yoctoproject.org/yocto-project-dev-day-virtual-north-america-2020/
+do_custom_image[depends] +=3D "inner-recipe:do_image_complete"
 
-We will be covering a lot of topics that can give you ideas on how to use O=
-E/YP in perhaps new ways, for example in containers, virtualization, micro =
-services, and CI/CD frameworks.=20
+It will ensure that your inner rootfs will exist in DEPLOY_DIR_IMAGE
+before you run your outer custom bundle task, and at that point you
+have both the inner and outer images available , and you can process
+them as needed.
 
-There will be practical instruction in such topics as image size reduction.=
-=20
+Something similar is used in the kernel.bbclass, see:
+d.appendVarFlag('do_bundle_initramfs', 'depends', '
+${INITRAMFS_IMAGE}:do_image_complete')
 
-There will also be hands-on exercises in the kernel development tools and u=
-ser space management.
-
-There will be many ways to expand your horizons with Yocto Project at DevDa=
-y, to meet and hear the community experts behind all the magic, and even br=
-ing them your questions directly.
-
-All of this plus being with people passionate about OE/YP and having fun at=
- the same time! A bargain at any price!
-
-- David
-
-
------Original Message-----
-From: openembedded-core@lists.openembedded.org [mailto:openembedded-core@li=
-sts.openembedded.org] On Behalf Of Chris Laplante via lists.openembedded.or=
-g
-Sent: Tuesday, June 23, 2020 8:58 AM
-To: sjolley.yp.pm@gmail.com; yocto@yoctoproject.org; openembedded-core@list=
-s.openembedded.org
-Subject: Re: [OE-core] Yocto Project Status WW25'20
-
-> * Next week is ELC which is taking place virtually this year and Yocto Pr=
-oject
-> has a presence there. There is also a virtual Yocto Project Developer Day=
-:
-> https://events.linuxfoundation.org/yocto-dev-day-north-america/
-
-Does anyone know what the intended audience is for the Developer Day presen=
-tations? E.g. would someone who uses bitbake day-to-day but perhaps doesn't=
- edit recipes benefit?
-=20
-Thanks,
-Chris
+>
+> Assuming a class is the best way to do this, any suggestions on how to i=
+mplement this? I'm pretty competent with ordinary recipes, but the code for=
+ generating images is a lot more opaque, and I'm having a hard time figurin=
+g out what will be required. (For instance, it's not even clear to me wheth=
+er inner image should depend on outer image, or outer image should depend o=
+n inner image.)
