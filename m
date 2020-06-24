@@ -1,115 +1,82 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.1950.1593031630798137544
+Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com [209.85.215.195])
+ by mx.groups.io with SMTP id smtpd.web11.799.1593041819557503774
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Jun 2020 13:47:10 -0700
+ Wed, 24 Jun 2020 16:36:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: randy.macleod@windriver.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C4F6EE01D77; Wed, 24 Jun 2020 13:47:09 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA63FE01D41
-	for <yocto@yoctoproject.org>; Wed, 24 Jun 2020 13:47:08 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 05OKkDKV009061
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Wed, 24 Jun 2020 13:46:39 -0700
-Received: from [172.25.44.3] (172.25.44.3) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Wed, 24 Jun
- 2020 13:46:07 -0700
-Subject: Re: [yocto] License reporting for golang (and rust)
-To: Irving ST <irving@ssfivy.com>,
-        Yocto discussion list
-	<yocto@yoctoproject.org>
-References: <CAN--ZaUr1C_rKY05_yWuD=A-S7deSvd5gFSYc2ZE-V7vDTkZxw@mail.gmail.com>
-From: "Randy MacLeod" <randy.macleod@windriver.com>
-Message-ID: <24bd30f8-5663-2e14-0710-cbb2c8676363@windriver.com>
-Date: Wed, 24 Jun 2020 16:46:04 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
-MIME-Version: 1.0
-In-Reply-To: <CAN--ZaUr1C_rKY05_yWuD=A-S7deSvd5gFSYc2ZE-V7vDTkZxw@mail.gmail.com>
-X-Originating-IP: [172.25.44.3]
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-CA
-Content-Transfer-Encoding: 7bit
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=mG801iAx;
+ spf=pass (domain: gmail.com, ip: 209.85.215.195, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f195.google.com with SMTP id f3so2305835pgr.2
+        for <yocto@lists.yoctoproject.org>; Wed, 24 Jun 2020 16:36:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id;
+        bh=drK+6Zi4DqE2N3HxaX7B9M+ei4p/iUXlfujKqDTT1Kw=;
+        b=mG801iAx6a9tGNifo7vXzecb2UmRNxqMOQ7c9JIX2wEwbH3Q6Mkbt2AOzCyyt9wULA
+         02rfW7ATL4jfZwj5O+jzKpMYxiIvW8ewWPdYNcdp//3ODfbxOgbEaY4cQuXgVljXv3sO
+         ZukmhHHt1u31oh1uvj16tiHelfOQ+kTvtHhGRq03EvQrFqDdbQY5Lc0JbxxBOLamHykH
+         Nr+zABF8ARyaZ1rIjopKgi93atte3da9y6yJuvVRq7kDVfcjGK0x8ORYxg0GK5fFHcTb
+         pJ/ArnjQaWUSGuwQCk80HfUtJD1KwL7JFrdKE2FQA1SGPmzlX47VqrkmdsEqpeEYXpHc
+         lvMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=drK+6Zi4DqE2N3HxaX7B9M+ei4p/iUXlfujKqDTT1Kw=;
+        b=F3GeUf0AWJ41xb2maA7jkHhowNQgkkgqSkRH0DSaU4AbOkeZzSzjR0Qf90l5FvW3o2
+         sF7LdLTcIY9lWzC8VHN4+3skS2U6GZX7/+2sHR5ixlMlesVbwW/agM8kDnt3zYBW/Hs8
+         jw6TIGNAx3gGzZ23ohApU47YqAoH827y1rNcqUiCOfjpEvnn/hZyRT9bl1ck4VZUTYvI
+         dCZKyYNo0TEI868K4C9S94x7icSaprfBpoLVy6sKrGp0Qo5Q1UmOP55fkXyIayhtbcbJ
+         OnPqziP0njok4XgsaF9AoRO/tAsoPhmOQfQgqf/8wEZk22BxUyHbnycnIbzt0QoJvhhT
+         zHmA==
+X-Gm-Message-State: AOAM532v98jvf8l+0Yk0YqGu4Q8qvo3OdpTqWzxjsxfukYRUaG71X2ly
+	jlN1P9PXen8znmU+b//cNq84q5TS
+X-Google-Smtp-Source: ABdhPJxu776EFkiita6S9bAxboBoUW1UbWRn6ADmNBtWjSrl51d7qreNfC/AOpRti27tWrLg8eIrSw==
+X-Received: by 2002:a62:ce83:: with SMTP id y125mr4446219pfg.181.1593041818591;
+        Wed, 24 Jun 2020 16:36:58 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:c6b:ea9b:6226:355f])
+        by smtp.gmail.com with ESMTPSA id iq19sm6064997pjb.48.2020.06.24.16.36.57
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jun 2020 16:36:58 -0700 (PDT)
+From: "akuster" <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][zeus][PATCH] tpm2-tss-engine: License changed
+Date: Wed, 24 Jun 2020 16:36:56 -0700
+Message-Id: <20200624233656.20725-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
-On 2020-06-22 4:53 a.m., Irving ST wrote:
-> Hello,
-> 
-> I am building a device that uses some Go (and Rust) dependencies. This
-> is on Yocto 2.7 / Warrior.
-> 
-> I noticed that after building an image, the generated license.manifest
-> and package.manifest (in tmp/deploy/licenses/) does not contain any
-> mention of go packages or rust crates. The go packages seem to
-> generate directories in tmp/deploy/licenses/ but they do not seem to
-> be reported in the final image.
-> 
-> For example, an image that contains docker (from meta-virtualization
-> layer) has build dependencies on, say, go-cli (also from
-> meta-virtualization layer). This is specified in the docker recipe
-> having DEPENDS on go-cli recipe. I saw tmp/deploy/licenses/go-cli
-> directory exists with licensing information, but
-> tmp/deploy/licenses//license.manifest does not contain any reference
-> to go-cli.
-> 
-> My best *guess* at the moment is because go packages are build
-> dependencies (DEPENDS instead of RDEPENDS), they are not considered
-> shipped packages by bitbake (because they are not shipped, the final
-> docker package is) and are not listed in the manifest files. This
-> makes licensing compliance more difficult since I still need to show
-> the copyright notices even for permissive licenses like MIT - but I
-> can't show it if I don't know that it has been shipped with the image
-> (since it's not in the manifest).
-> 
-> Is there a way to get a manifest of go packages shipped into the image?
-> This issue seems to happen with rust crates as well, so a solution /
-> explanation for rust would be greatly appreciated too.
-> 
-> Sorry if this has been resolved somewhere, I'm not exactly super
-> familiar with the golang build system or its integration with Yocto.
+Fixes this error:
 
+ERROR: tpm2-tss-engine-1.0.1-r0 do_populate_lic: QA Issue: tpm2-tss-engine: The LIC_FILES_CHKSUM does not match for file://LICENSE;md5=3fb0047fd29391478a71e8e6101c76eb
+tpm2-tss-engine: The new md5 checksum is 7b3ab643b9ce041de515d1ed092a36d4
+tpm2-tss-engine: Here is the selected license text:
 
-Hi Irving,
+The License changed to BSD-3 14 months ago so I suspect the commit was incorrect.
 
-I haven't heard or such a problem until now.
+This corrects the License and hash
 
-If possible, please check if it's still happening on a newer release
-or the master branch.
+[Yocto #13926]
 
-If it is still an issue, please open a bug with detailed steps
-to reproduce in:
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb     | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-    https://bugzilla.yoctoproject.org/
-See:
-    https://wiki.yoctoproject.org/wiki/Bug_reporting_and_Information_levels
-
-We're a little short on people to fix bugs so you could assign
-the defect to yourself. If you're not able to do that, we review new
-bugs once a week so maybe someone will decide to work on the defect.
-
-Thanks,
-../Randy
-> 
-> Best regards,
-> Irving Tjiptowarsono
-> 
-> 
-> 
-> 
-
-
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb
+index 8825737..5a5192f 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb
+@@ -1,8 +1,8 @@
+ SUMMARY = "The tpm2-tss-engine project implements a cryptographic engine for OpenSSL." 
+ DESCRIPTION = "The tpm2-tss-engine project implements a cryptographic engine for OpenSSL for Trusted Platform Module (TPM 2.0) using the tpm2-tss software stack that follows the Trusted Computing Groups (TCG) TPM Software Stack (TSS 2.0). It uses the Enhanced System API (ESAPI) interface of the TSS 2.0 for downwards communication. It supports RSA decryption and signatures as well as ECDSA signatures."
+ 
+-LICENSE = "BSD-2-Clause"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=3fb0047fd29391478a71e8e6101c76eb"
++LICENSE = "BSD-3-Clause"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=7b3ab643b9ce041de515d1ed092a36d4"
+ 
+ SECTION = "security/tpm"
+ 
 -- 
-# Randy MacLeod
-# Wind River Linux
+2.17.1
+
