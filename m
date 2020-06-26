@@ -1,123 +1,102 @@
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by mx.groups.io with SMTP id smtpd.web12.1254.1593197125989427277
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.56.1593206307599225176
  for <yocto@lists.yoctoproject.org>;
- Fri, 26 Jun 2020 11:45:27 -0700
+ Fri, 26 Jun 2020 14:18:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=L/RStO5y;
- spf=pass (domain: intel.com, ip: 134.134.136.100, mailfrom: vineela.tummalapalli@intel.com)
-IronPort-SDR: zblrSUB6euDM8GhWady5gHfoQ8FmZYMAIRjHQDe05lSb69CvwdquzRY9gpeEbfZHx2uqe1ZWW8
- kkPRMBHOwcHA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9664"; a="210516941"
-X-IronPort-AV: E=Sophos;i="5.75,284,1589266800"; 
-   d="scan'208";a="210516941"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jun 2020 11:45:24 -0700
-IronPort-SDR: kysRqRIBWhhUF0L35B/e89HSRbvqrWcDRP8i6zRIwSBU+m3JpBkDzvJB5iS4a2l+Z6mz3VFkF+
- puGA16++MXWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,284,1589266800"; 
-   d="scan'208";a="453450553"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
-  by orsmga005.jf.intel.com with ESMTP; 26 Jun 2020 11:45:23 -0700
-Received: from ORSEDG001.ED.cps.intel.com (10.7.248.4) by
- ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 26 Jun 2020 11:45:23 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.44) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server (TLS) id
- 14.3.439.0; Fri, 26 Jun 2020 11:45:23 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n50oxBGdEh0MIyylqGDGbBUkiPcZz39D0JlWUoUChBs0LNHXVNQ1F+XQMu3V2GSN6pWUeCeiPhs0eeiURGmMVO22bvxVj0tfB6GHVyKmDDWZa5x2eAIHDE85vm6zLqV83HOPg7Sy/e3pUAGQQzlBLwhwrImABVqhRsVHRYoFROzw1Ae5vhJfnNYuhMpHa50zM19YAxAq+BQXCCCQvKl1K82B1Gy6d1VArleyA/P0IMVAWOUyVZp1/JxeJ1tUqDxJatIOkBLw0eOiiQDh5zs0Yq0gzORH4w2Iz7nNNmxzKOy76G/aqrefVGVaZWFsHYWURT8nLtTFB972mYiYxaPoCQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qVPtJSxPe13D/1y4XNxp1mujoBARUD3Pmf22Ixh/OMw=;
- b=DDZVt6qXmFqSLweZCD5Lji0sXvxNRQk2rnpIYphjPCimNRdVLRlHlYeNyMqZal2ylySNvzoCIBfpKIYpRebSzBSkazKrSlfMDxKDn0te9FYwjOsqlSHWVVcqy9T1ZJ021XsMSq+mJH6g3gP+DYVYAcgP7ZoXaCCFedPpRqJFwl+S1UsXNhxip1gCkgMG3j91x2xSvflFcKog7rupKgbIgwrpIlMHzddty2Z8khRdYFPCjQwqDDEYmDyWY4XSej5K1rEDtfOyw58SSzQbJSlA814X/wGIEO1Lyo8pnYDIhvOJUMQIjmgIEypDcK1ws3MEwzOh+k3BllibtbMvUKXYmw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qVPtJSxPe13D/1y4XNxp1mujoBARUD3Pmf22Ixh/OMw=;
- b=L/RStO5y63EHZfcJpo2kv8NOjIGtrGvZsa+fk9gjkEF+kPyKgg/TJmK7alGSaDIp/Ptunl6KscpZ94MXde3nX1PBB7pExikeNcO46dSGceT8D6qrRgUAWW1wHKx/KT632fjRT4fi3g4s55NXxXlgZD/6BO+Yh7b3EQeC1GnF+Nk=
-Received: from BYAPR11MB2790.namprd11.prod.outlook.com (2603:10b6:a02:c4::29)
- by BYAPR11MB2759.namprd11.prod.outlook.com (2603:10b6:a02:c8::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.21; Fri, 26 Jun
- 2020 18:45:22 +0000
-Received: from BYAPR11MB2790.namprd11.prod.outlook.com
- ([fe80::9473:76f0:c189:bd46]) by BYAPR11MB2790.namprd11.prod.outlook.com
- ([fe80::9473:76f0:c189:bd46%3]) with mapi id 15.20.3131.025; Fri, 26 Jun 2020
- 18:45:22 +0000
-From: "Vineela" <vineela.tummalapalli@intel.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: [yocto-autobuilder-helper][PATCH]scripts/utils.py: Convert md5sum to sha256sum for layer tarballs
-Thread-Topic: [yocto-autobuilder-helper][PATCH]scripts/utils.py: Convert
- md5sum to sha256sum for layer tarballs
-Thread-Index: AdZL6V4TZBuRc2THTQSypMf3nHd3bg==
-Date: Fri, 26 Jun 2020 18:45:22 +0000
-Message-ID: <BYAPR11MB27904ED962D7392249CC3C2B88930@BYAPR11MB2790.namprd11.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-dlp-product: dlpe-windows
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=intel.com;
-x-originating-ip: [73.41.250.65]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a6bf8b3b-b479-4bc6-cdfa-08d81a01152c
-x-ms-traffictypediagnostic: BYAPR11MB2759:
-x-microsoft-antispam-prvs: <BYAPR11MB275986A7DB8DC15E0A0E4B3D88930@BYAPR11MB2759.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:215;
-x-forefront-prvs: 0446F0FCE1
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: O3ikzFie32bJnZjqISBYe8zkPCHPy0l/ct1ZKrj6LcaQQcJewUZCR0z2gP/flk5uV9x7hHj5wrEBL7qgjQ+vw6uzVkqS5IL84Zumb3bVJG1SuFttqAOCiSjxxjxEqns7n0jsFTxYR2Eo3xAUOTbNyolKgEz8/TOAVyXSEjNxWumCBqBvvNyUJDk3/gOCgkCCNed7zl6urhxj0mu+5E93tcdpsMFH1SLASKn8K1ZYiH16Elw6f8T9/zu9eNoaGRH7CmOzB7TZc5sCPA16GeVcKpH7+LUL38GalbS+r3XI/j7T8WCLnLnT/dxN+bjuycqNEjvTKEuZ9+JRyVi5Q6y+yyrBRxDe3kQWDJjQsLjsQpakPhVVPyf9YbXKTodIrD9V1q8OiwQCH37wQaJPcr0g9g==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB2790.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(366004)(396003)(39860400002)(376002)(136003)(346002)(316002)(7696005)(52536014)(478600001)(26005)(186003)(33656002)(71200400001)(4744005)(83380400001)(5660300002)(6916009)(8676002)(2906002)(55016002)(86362001)(76116006)(9686003)(6506007)(8936002)(66446008)(66556008)(66476007)(64756008)(66946007)(42413003)(32563001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: y6aEoV5NscJt9glS+DkEQBeP5i9zkkkn6vuSVrazhcglpM/2f86fPmptD8E5dafvW2pZRmtlVzr+ZWjDLoyjc0gqyez9aFZgJxgQk9CkSqoSd2DzaSZaEbzKq5Wl6EjVQBrDdi0GK3Jemgporf3GERa87EKYM53j8EVWqQQV8oTk/mqS+wGOb8RKlbNzGmmAicFBojPriQgcoq9JigQLPLXGL7eMf8DXLNTDu277BI08xyfCgKOGUcBsOB0dAGxKJ2yB10IQy0JQH/VTglI3DLx3gsgDNE0IccWLptKwkxIYzdhUv8YdAqeHYIxDyZamn6r0sncZV6OKS+/NK90vJhlAaca2d/VJCIdTLZ9xypv2jbS0Iqgo7CDJiP6xW1sgb4zZlV7iqQXOSGYkGfheTUWUaqX3OUC1MXSYTQSfGh4luIpPEgdDOpBHegSxHtaHwhAGOAg1rRV0W0nSzzerwSjkRXrv/IB7Ee8yHgzp4ZI=
-x-ms-exchange-transport-forked: True
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=HX9VaRTe;
+ spf=softfail (domain: linuxfoundation.org, ip: 140.211.169.56, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 21D50E01D96; Fri, 26 Jun 2020 14:18:27 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.221.47 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC78EE01D92
+	for <yocto@yoctoproject.org>; Fri, 26 Jun 2020 14:18:25 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id g18so10802432wrm.2
+        for <yocto@yoctoproject.org>; Fri, 26 Jun 2020 14:18:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=urlJAtXT8iEmwnpfBlvLiMYnRmAM6erXFXEyqx8Wmww=;
+        b=HX9VaRTeIURY6UvTAEaIMs2/bJ3KHCy8VOLCaJnSNgqrSIDL4Q4IRr1VOKJ9X5lLlY
+         jbxeyrfsJbJEgvOf4IbjPdRig9/OarQtNIeYXHPK9bSvddq7XZEfZiGjV0pZv7dMfG6y
+         pm9E0BU7Ouai1ls4LffgVXadm8QXlRS+y1oXQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=urlJAtXT8iEmwnpfBlvLiMYnRmAM6erXFXEyqx8Wmww=;
+        b=F08EYXO5IoX42f0DcNqUkb1RRAwHAIIdCIetuuulBxZqPWaW+zWjrncT8bhMcUJ7lh
+         88oKsqgw2x+vCiMSYCuc2Phc0ta2VedrLyr8EDL52IysZft0pP20GK4nkWjLS9s33X4M
+         sNhCnhqIeYzbbzYcZFSw5ro9rUF9FmCAMJK9/mYp5oq+wftlhCvl43l5ihKr7D8iCaIf
+         w3DCUG47yBWlvxxOWbdJjOeD42cxGQOScbh+z1G5Z0WrntADU9evLZB8NulhEsVqoLtg
+         K1C6fjng0H7HgLLqf0kA1uh9Cy+m5hYQPlrsmPzYsg3UTQ1yBn7deeUKrIw2dJUMnBBK
+         Al5Q==
+X-Gm-Message-State: AOAM531BSYm+rIwVgZH8Y02C1QfSnBQUUnf9GQ1OcUTr+Vc6SP9Z5LuR
+	p1YV44TnGcmDxq62wRfsqhJD9iE2H0gC8A==
+X-Google-Smtp-Source: ABdhPJzdWOuqO8GlDWY2pEKJVyeRtqNFDNzkOT8VNxkCtmJ8ZIuoqeYmJn04XSZcvz/43SnvfRiq9Q==
+X-Received: by 2002:a5d:69c8:: with SMTP id s8mr5495866wrw.405.1593206304622;
+        Fri, 26 Jun 2020 14:18:24 -0700 (PDT)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id e5sm38413244wrs.33.2020.06.26.14.18.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Jun 2020 14:18:23 -0700 (PDT)
+Message-ID: <a4d0acc8c9bbc53901747afff990d94803af5386.camel@linuxfoundation.org>
+Subject: Re: [yocto] how crippled is ruby support in YP 3.0?
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	 <yocto@yoctoproject.org>
+Date: Fri, 26 Jun 2020 22:18:22 +0100
+In-Reply-To: <alpine.LFD.2.21.2006261419350.1554442@localhost.localdomain>
+References: <alpine.LFD.2.21.2006261419350.1554442@localhost.localdomain>
+User-Agent: Evolution 3.36.2-0ubuntu1 
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6bf8b3b-b479-4bc6-cdfa-08d81a01152c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jun 2020 18:45:22.4593
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4dKwcifcwXYfxSKdoYxS8orRIgGpz2rJTMQe7h5QzoIe6WccN7mc6MfstAzn3FAj3YsJzvQi1OYnL1iKbn8567BKX7nKzDEA+J4JVMcQNQI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB2759
-Return-Path: vineela.tummalapalli@intel.com
-X-OriginatorOrg: intel.com
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Vineela Tummalapalli <vineela.tummalapalli@intel.com>
----
- scripts/utils.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Fri, 2020-06-26 at 14:19 -0400, Robert P. J. Day wrote:
+>   background: trying to get ruby and a number of ruby gems migrated
+> from "morty" to "zeus", and nothing but grief trying to
+> compile/install ruby gems.
+> 
+>   plan A: start with standard YP layers all checked out to "zeus",
+> and
+> add vendor layer -- still similar grief.
+> 
+>   current plan: start from absolute scratch, new project targeting
+> x86_64, all layers checked out to "zeus", and build for
+> core-image-minimal (*that* i know i can do).
+> 
+>   then, little by little, add ruby content. has anyone here worked
+> with ruby and ruby gems extensively and has had to struggle to get
+> stuff working? as soon as this basic build is done, i'm going to just
+> add "ruby" to the image, and from there, start adding gems one by
+> one.
+> 
+>   should i expect this to go smoothly, or should i expect the pain
+> i've been through for the last couple days?
 
-diff --git a/scripts/utils.py b/scripts/utils.py
-index d7b9ae7..ec43832 100644
---- a/scripts/utils.py
-+++ b/scripts/utils.py
-@@ -251,7 +251,7 @@ def publishrepo(clonedir, repo, publishdir):
-     revision =3D subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=
-=3Dsharedrepo).decode('utf-8').strip()
-     archive_name =3D repo + "-" + revision + ".tar.bz2"
-     subprocess.check_call("git archive --format=3Dtar HEAD --prefix=3D" + =
-repo + "/ | bzip2 -c > " + archive_name, shell=3DTrue, cwd=3Dsharedrepo)
--    subprocess.check_call("md5sum " + archive_name + " >> " + archive_name=
- + ".md5sum", shell=3DTrue, cwd=3Dsharedrepo)
-+    subprocess.check_call("sha256sum " + archive_name + " >> " + archive_n=
-ame + ".sha256sum", shell=3DTrue, cwd=3Dsharedrepo)
-     mkdir(publishdir)
-     subprocess.check_call("rsync -av " + archive_name + "* " + publishdir,=
- shell=3DTrue, cwd=3Dsharedrepo)
+If we actually had some tests for it, we might have a much better idea.
 
---
-2.7.4
+The areas of the project with good automated tests tend not to regress
+without our noticing. Areas with no tests can and do :(
+
+Cheers,
+
+Richard
+
