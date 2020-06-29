@@ -1,84 +1,96 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.6348.1593254569221232091
- for <yocto@lists.yoctoproject.org>;
- Sat, 27 Jun 2020 03:42:49 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB9D5E01D97; Sat, 27 Jun 2020 03:42:48 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82BE1E01D94
-	for <yocto@yoctoproject.org>; Sat, 27 Jun 2020 03:42:47 -0700 (PDT)
-Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:46596 helo=localhost.localdomain)
-	by cpanel7.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.93)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1jp8IF-002fm5-Me
-	for yocto@yoctoproject.org; Sat, 27 Jun 2020 06:42:46 -0400
-Date: Sat, 27 Jun 2020 06:42:40 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: starting a quest to make some ruby recipes buildable/installable
-Message-ID: <alpine.LFD.2.21.2006270636560.2237067@localhost.localdomain>
+Subject: How to enable direct IO of sg driver?
+To: yocto@lists.yoctoproject.org
+From: zackjtl@gmail.com
+X-Originating-Location: Hsinchu, TW (125.227.176.110)
+X-Originating-Platform: Windows Chrome 83
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+Date: Sun, 28 Jun 2020 20:15:51 -0700
+Message-ID: <Bfd2.1593400551587901318.aHv4@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="kqrtFQY5llLc8Jadxg8C"
 
+--kqrtFQY5llLc8Jadxg8C
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-  followup to yesterday's cry for help, i've built a
-core-image-minimal for x86_64 using "zeus" layers and, at this point,
-i'm simply going to start trying to bitbake and IMAGE_INSTALL_append
-various ruby gems.
+I'm using a Yocto image (a branch of 2.0 Jethro) on my wandboard (an ev-boa=
+rd of an iMX6 SoC) and I would like to write a C code to access the USB sto=
+rage device via sg driver.
 
-  things did not start out well as the very first attempt blew up:
+Since I need to access the logical blocks of the storage directly instead =
+of transferring through kernel buffer, I attempted to change the */proc/scs=
+i/sg/allow_dio* flag (which is on the pseudo file system) introduced by the=
+ document Linux Version 3 SCSI Generic Driver ( http://sg.danny.cz/sg/s_pac=
+ket.html ) , but I can't find the folder */proc/scsi/sg* in the file system=
+.
 
-  $ bitbake json
+I think the *sg* module has been loaded on the running system because I ca=
+n operate to the USB storage with the indirect method (but that's not appro=
+priate to my demand).
 
-but it appears that (zeus-supplied) version 1.8.3 of that recipe has
-known issues, so i grabbed the recipe from
-meta-cloud-services/meta-openstack (where, for some baffling reason,
-many of these ruby gems live), tweaked it thusly:
+Is there a alternate way to enable the direct IO or could make /proc/scsi/=
+sg appears?
 
-BPV = "2.3.0"
-SRCREV = "92cf5c451a6ec0f3a00e291eb909e57cf38fbea4"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=8a960b08d972f43f91ae84a6f00dcbfb"
+Sincerely
 
-whereupon it failed on the packaging step thusly:
+--kqrtFQY5llLc8Jadxg8C
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-ERROR: json-2.3.0-r0 do_package_qa: QA Issue:
-/usr/lib/ruby/gems/2.5.0/gems/json-2.3.0/lib/json/ext/generator.so
-contained in package json requires libcrypt.so.2()(64bit), but no
-providers found in RDEPENDS_json? [file-rdeps]
-ERROR: json-2.3.0-r0 do_package_qa: QA run found fatal errors. Please
-consider fixing them.
-ERROR: Logfile of failure stored in:
-/home/rpjday/oe/builds/zeus/chef/tmp/work/core2-64-poky-linux/json/2.3.0-r0/temp/log.do_package_qa.2236511
-ERROR: Task
-(/home/rpjday/oe/dist/layers/meta-cloud-services/meta-openstack/recipes-devtools/ruby/json_git.bb:do_package_qa)
-failed with exit code '1'
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-num=
+eric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; lin=
+e-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-se=
+rif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear:=
+ both; color: #242729;">I'm using a Yocto image (a branch of 2.0 Jethro) on=
+ my wandboard (an ev-board of an iMX6 SoC) and I would like to write a C co=
+de to access the USB storage device via sg driver.</p>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">Since I need to access the logical blocks of the s=
+torage directly instead of transferring through kernel buffer, I attempted =
+to change the&nbsp;<em style=3D"margin: 0px; padding: 0px; border: 0px; fon=
+t-variant: inherit; font-weight: inherit; font-stretch: inherit; line-heigh=
+t: inherit; font-family: inherit; vertical-align: baseline; box-sizing: inh=
+erit;"><strong style=3D"margin: 0px; padding: 0px; border: 0px; font-style:=
+ inherit; font-variant: inherit; font-stretch: inherit; line-height: inheri=
+t; font-family: inherit; vertical-align: baseline; box-sizing: inherit;">/p=
+roc/scsi/sg/allow_dio</strong></em>&nbsp;flag (which is on the pseudo file =
+system) introduced by the document&nbsp;<a style=3D"margin: 0px; padding: 0=
+px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: i=
+nherit; font-stretch: inherit; line-height: inherit; font-family: inherit; =
+vertical-align: baseline; box-sizing: inherit; text-decoration-line: underl=
+ine; color: #061621; cursor: pointer;" href=3D"http://sg.danny.cz/sg/s_pack=
+et.html" rel=3D"nofollow noreferrer">Linux Version 3 SCSI Generic Driver</a=
+>, but I can't find the folder&nbsp;<em style=3D"margin: 0px; padding: 0px;=
+ border: 0px; font-variant: inherit; font-weight: inherit; font-stretch: in=
+herit; line-height: inherit; font-family: inherit; vertical-align: baseline=
+; box-sizing: inherit;"><strong style=3D"margin: 0px; padding: 0px; border:=
+ 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: inherit; vertical-align: baseline; box-siz=
+ing: inherit;">/proc/scsi/sg</strong></em>&nbsp;in the file system.</p>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">I think the&nbsp;<em style=3D"margin: 0px; padding=
+: 0px; border: 0px; font-variant: inherit; font-weight: inherit; font-stret=
+ch: inherit; line-height: inherit; font-family: inherit; vertical-align: ba=
+seline; box-sizing: inherit;"><strong style=3D"margin: 0px; padding: 0px; b=
+order: 0px; font-style: inherit; font-variant: inherit; font-stretch: inher=
+it; line-height: inherit; font-family: inherit; vertical-align: baseline; b=
+ox-sizing: inherit;">sg</strong></em>&nbsp;module has been loaded on the ru=
+nning system because I can operate to the USB storage with the indirect met=
+hod (but that's not appropriate to my demand).</p>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; vertical-align: baseline; box-sizing: inherit; clear: b=
+oth;"><span style=3D"color: #242729; font-family: Arial, Helvetica Neue, He=
+lvetica, sans-serif;"><span style=3D"font-size: 15px;">Is there a alternate=
+ way to enable the direct IO or could make /proc/scsi/sg appears?</span></s=
+pan><br /><br /><span style=3D"color: #242729; font-family: Arial, Helvetic=
+a Neue, Helvetica, sans-serif;"><span style=3D"font-size: 15px;">Sincerely<=
+/span></span></p>
 
-  i don't know enough about ruby recipes to know how to resolve that
-libcrypt.so packaging error, so i'm open to suggestions. in the
-meantime, i'm going to work my way through numerous recipes and see
-how many i can get to build.
-
-rday
+--kqrtFQY5llLc8Jadxg8C--
