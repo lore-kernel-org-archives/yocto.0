@@ -1,1133 +1,1926 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.9964.1593559740108611343
+ by mx.groups.io with SMTP id smtpd.web11.10348.1593560686522370304
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Jun 2020 16:29:00 -0700
+ Tue, 30 Jun 2020 16:44:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ptKYeL9+;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
+ dkim=fail reason="body hash did not verify" header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=EFxr9f9G;
+ spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 140.211.169.56, mailfrom: akuster@mvista.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F2176E01DC9; Tue, 30 Jun 2020 16:28:59 -0700 (PDT)
+	id 0DCFCE01DC9; Tue, 30 Jun 2020 16:44:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.215.181 listed in list.dnswl.org]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (sjolley.yp.pm[at]gmail.com)
+	*      [209.85.210.179 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9CE1E01DC7
-	for <yocto@yoctoproject.org>; Tue, 30 Jun 2020 16:28:57 -0700 (PDT)
-Received: by mail-pg1-f181.google.com with SMTP id t6so10726519pgq.1
-        for <yocto@yoctoproject.org>; Tue, 30 Jun 2020 16:28:57 -0700 (PDT)
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F416E01DC7
+	for <yocto@yoctoproject.org>; Tue, 30 Jun 2020 16:44:41 -0700 (PDT)
+Received: by mail-pf1-f179.google.com with SMTP id b16so10105466pfi.13
+        for <yocto@yoctoproject.org>; Tue, 30 Jun 2020 16:44:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version:content-language
-         :thread-index;
-        bh=dJlKaIl9FtfkXSXlpSDOnGlv7R8NJBMOFLq3Lj/9IH4=;
-        b=ptKYeL9+xkoXFTOy2E+8cmUD5bbSj/EW+CLFMYFhMMOkspEhtw1HsRb/Fbq20BPtzO
-         aY027e05FlRuL5Xe2lo9amHNWP1iB8CPo29zlTUK8Rkj26YxCuUbtvjEsooJwNKNd9/j
-         VlsuWqhuJPhg6T0GeGuNnOsnNkNyztiGipQAj2DLtvE0G+tCdwa+d2pT7eWSdL4nLVHG
-         Pb7m90HolbhCs8J4W0x16OPfLXg+vvBVtwNFCbwa4YzgEKkjoCMCEs5ydgwp8trRLfks
-         bI7/4hb8eaXWTC+xGbB782uypjzw73Do+d1Mg7kRxHXwdVRDiV9co4r4EK0gHpuhsflE
-         25qg==
+        d=mvista-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language;
+        bh=zCEw+HjJWSndQ7ADpg6qbD7V4z9HhGireSjjGhLUl1w=;
+        b=EFxr9f9GW5+Qwm3iCrBc3L9n7kGiTl1pSUEsvcDJ7ehvelXmk5VbfkiIMlVgLKJ9Eu
+         V2AXhPj8xFj6beAMna3slc5rhvu6aSn61nw7OqU6LZE007QIccQwu1felGwg/KCAQbMt
+         2P5jdmZUUiNWxDiDVqIUSxklfkgApUejg+kRQdcCf/2KaRKC2ms5VQcCvQrBDjb32FI4
+         yd1b4dMJYVNfH07HZyeCYlV6ihKsAzKhBXsf0DkI4juqJNE6Oc1vHOYRTGzd20yAsBoF
+         rgkXMNgX+iI7G8m7EGvj3oz1eTqQCOrpqA2TP+0Ag3VpJjzllgD1whJGXgNBlA1+CDUd
+         j+gQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-language:thread-index;
-        bh=dJlKaIl9FtfkXSXlpSDOnGlv7R8NJBMOFLq3Lj/9IH4=;
-        b=LIIuCtjKHS4OW3NP9D+3IealorOBDzHG6XwNDTLnL9wCAhyrwpRcNde9OUK/rkUpLj
-         SFKfHwoiuFx6VXRYr/wFMykzM6gAr1BmWZaag/nTaPFME/f/l+IwyRxQgM2trc5/MnSX
-         dUnofvs/rMQBUY8KQN/HKOgAJQqEGPnV6qw8gn5cRC0LImwxe0fGh+j+62VBIj+uphXQ
-         Td4XTuQyUue9iVIKXeaQWw0iJNz0L0QK5DxkOONIF9+C7UEBYTnr6iUGIWj0EKCbtkbY
-         3aSdO46sU4O3L1MzsLdgvmmtDHXrqUsQa+xXf5JS+L0edMY4u7WY2/nIzPWTl+4mEh/o
-         w5yw==
-X-Gm-Message-State: AOAM533z4WghIFL6eLlGzVYH3BaZQt8vatOQAm0/pu/6xDIPam3m+xi+
-	0rp6E63H9lZfrhngV0Rm1Nw=
-X-Google-Smtp-Source: ABdhPJyWY/V5a/9oNdChjAccxvZWTKJe2k91C2mpHGeofTgW/L1Dr8WyKpynhuqj6mPkFg1sUQotDw==
-X-Received: by 2002:aa7:8096:: with SMTP id v22mr11477319pff.132.1593559736967;
-        Tue, 30 Jun 2020 16:28:56 -0700 (PDT)
-Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-        by smtp.gmail.com with ESMTPSA id 73sm3784214pfy.24.2020.06.30.16.28.55
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 30 Jun 2020 16:28:56 -0700 (PDT)
-From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>
-Subject: M+ & H bugs with Milestone Movements WW26
-Date: Tue, 30 Jun 2020 16:28:57 -0700
-Message-ID: <273601d64f36$3a15bde0$ae4139a0$@gmail.com>
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language;
+        bh=zCEw+HjJWSndQ7ADpg6qbD7V4z9HhGireSjjGhLUl1w=;
+        b=b688eNC+vVOaR84WsE06OhGVFobUl78ahoQzf/7d+8zxHOZI5uOxrXqfC4M2GGUSbU
+         aQ/DsTdOwEJ0WXFv/OmkWo4iyqM1KlU1zF5Koyhj7mpXnaRQcmoDQBeEJ5BDyMBV70XH
+         SmCa7nbdXRnsp6t1PXfTFkpXh6ocf9rKQa0H+omY9ViYlurtSSZkJeGF3eWCziZnd2HN
+         NXv4Hyzo0A3eoDVL7EYLNvKGnD7ZCx270Vy2HiwrSK/QbCqUdnZ5g1vV1WUU9Gf7jDmm
+         xI/4T3kVQdQ+fPwemZn+GkOBYVd0ohNE81asgdk9AZgX+Kj0K3j7dSTCfWH9taEFu7XB
+         at2g==
+X-Gm-Message-State: AOAM532O49eDod53nbRGQ+BgkAdkoDGVykBAQrQSlNn7xoEe3rsH4jeC
+	itd3B4CWK3Ctk1/QIbh9SkH3w01lBH4=
+X-Google-Smtp-Source: ABdhPJx9WbbScgfEGSdx1mbUzZKs2/OkhQwV2gwX5eOIIB+6c3XN6K/lAhXelr5XzFrj2tXwWP1q/g==
+X-Received: by 2002:a63:571b:: with SMTP id l27mr17506078pgb.417.1593560680587;
+        Tue, 30 Jun 2020 16:44:40 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:a5c0:c85d:3ce:5443:9164? ([2601:202:4180:a5c0:c85d:3ce:5443:9164])
+        by smtp.gmail.com with ESMTPSA id o2sm3137381pjp.53.2020.06.30.16.44.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jun 2020 16:44:39 -0700 (PDT)
+Subject: Re: [yocto] M+ & H bugs with Milestone Movements WW26
+To: Stephen Jolley <sjolley.yp.pm@gmail.com>, yocto@yoctoproject.org
+References: <273601d64f36$3a15bde0$ae4139a0$@gmail.com>
+From: "Armin Kuster" <akuster@mvista.com>
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
+ xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
+ Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
+ mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
+ aquZVHNXxPwjKPaSEEYqQjFeiNgFTavV+AhM2dmPmGUWCX9RZisrqA4slGwEB0srMdFf12Zg
+ mD35Y9jZ80qpu5LPtJCFcsaAlebqR+dg36pIpiRR+olhN1wmC6LYP1vw6uMEYBjkTa2Rnb6+
+ C4FDzCJD4UCrUvLMNeTW810DY0bjMMj3SfmSGSfQUssaaaTXCVlLGuGxyCr/kza1rHaXMKum
+ Ek4EFj1fyn7AfkSLEHfJfY4sO1tpgigvs4eD/4ZSQEXSu/TjVvyKx4EvUbhlGMRyH2CPwD/H
+ 7DFF8tcVtJvCwUUW+zKtjxjSSLrhniNMXAOQJZ6CdaqCe4OyJQT5aRdr+FWbBRjpaRCCf5nf
+ dTc88NMU9PrBT3vu0QJ5WNPO6MJpnb+d8iMNLZAz8tv8JMm2l+sMcNKSJ6lhX8peoBsfMVqc
+ FgiykEO0fUt7DCbUYR5tLjM/3E5tHvTjMooVJyOxoufVLYtTtQARAQABzSFha3VzdGVyODA4
+ IDxha3VzdGVyODA4QGdtYWlsLmNvbT7CwX0EEwEIACcFAlnlUP4CGyMFCQlmAYAFCwkIBwIG
+ FQgJCgsCBBYCAwECHgECF4AACgkQ7ou0mfRW5/kuhRAAlR2FTq5572jrX5nnPR7AqI2bvSVb
+ vqGLlvv739WhghvagbC+tu05QguopAhWW1/DcHK2+QtfIoC9UZrSW4RaO0CCo5sPjqK7l1KT
+ ngWX/rGjF6xTF2QN0U/btcpMyVN2CNtVLwsDF9e+GHKoUcnFkP+JP8vHGokN9k6E/c97hLaL
+ IJPeKl8LZXc2Efk+MaW1NXkfDJdcp/p+voajbihSQO6OZ/o+x9d2I3ZybKfTZ71+ek5Hxzjz
+ g6KkMOI7KJjlmBlrQFAtVbS+CFAKrwkYznE6ggkcmGv3N7DeUBTUR78hf+EZEAM+ajeLMtrG
+ rXE00pIb+gLGYPZxba5pCdQ+qWUW38qi9UnIRPm6fq7Ypx1r6XwJvbgCOkhbxo3D4YUdyC0b
+ FE9lgrg8htbc9in4j2+hVI6ALswNjLprzXdzdKrd+T3Egx36o3Z/qrYsW2o5/A5sVvvASVKi
+ wRPuEKhEhfmiHUPLvuKqhMoymHaz3fg5D2Q8G0gSDkLgeEpAjiWqf4+AGLx+MSDai7DSOsmI
+ t61kWxs7cFTB32UrB/TDoVNn3Fm88ZFQpA/bngikE9jgEm045mSY86fNlbFj2mcCd0Ha1i1n
+ aYc97RpgfjNMWyHDVHOGrNg/hJjkGa5RsAXkfyBwltHRw0Hj4urUQ3rr8um8PLe43SezPwXA
+ oRoyDxDOwU0EWeVQ/gEQALNHwj5VSPdnvXy1RXUuH+rclMx4x8zaqDyY0YqHfA7b/d8Y0VAt
+ Y6YpzDeFTwD8A0Wfb7kZ2mlDIE6ODCB71uT/E3C6b+FiiN+lgzslznjUW+9l8ddDhRrC8HMG
+ 37vrXF5h++PTXUKEKUlkDib1w093tu3mlJXUvIAzl8CEHkptF6Br0L9XxFwuWoNUfjT9IorQ
+ 0SVIhvq5PhVAITXUD5fD7/N8B4TYegmHFRo1UaaKSnSHwlJJkzKpeWOH8QTYrP0RHxX86Obv
+ IZuwbAo3F3oojcvLJt9NxWnbEmEALkleklLZnukgu7q5Wp1VDwhUbMFTLb6qmnBa/Xi30uOk
+ 0l1TMHDbeQswvQDOZBAMukSRqyBetKxQ3iTfZ/3z1ubQRcVDbVlMDScSHQq0LK3F9yMOMM/6
+ 0QPqJjl13xn/+Bn7WJiAIXXwzAV7uo6i0khFfjDtCDQ40aeffqOLxp1yMLkc3EKJGcQ5F6O2
+ ycEf4QXCYUbMXjxB0EJB8y7z+xOi5Mmd/pPlVmZ2gQK84NAL90p7n7jRlyf3gOUY+JOl4c5e
+ UFiIhOzmuqNrvPOiZ02GXh6SGUU5y7IgSoIKvXSFgHAn2OG/tcspBmkyv6IuNVpmbmEgYn4I
+ Rnt40UXVQkxTh0dENFhk2cjunMYozV/OqYCgmZLFSeJd8kAo4yn+yOtNABEBAAHCwWUEGAEI
+ AA8FAlnlUP4CGwwFCQlmAYAACgkQ7ou0mfRW5/nNcg//R63cbOS6zLtvdnPub3Ssp1Ft8Wmv
+ mni+kccuNApuDV7d63QckYxjAfUv2zYMLpbh87gVbLyCq9ASn552EbfRhTvHdk44CgbHBVcI
+ ZBEdZWgRR5ViJakQSYHpP2e5AGNFnx9gSIuRTaa5rvZM+4xeoZ2vJiq93TtaYPr7UFNfK+c4
+ vv4C66lkt9l95/I10eSc3RqbOKZW47emlg4X3ygEoB9k2lPrpspyf6sUuSEi0WrlSxoLAr6p
+ JG8rTUErYNeXe6JCdL31odDx1Dh5sdKIj2RicUYZNilxu9f1M7jZwf2ra1FGAlKj2ybqmgpZ
+ EFteaiCinEYsvDyZyOiWHjAFI+RZIPQQL3AnVp4l7wYD3r9hnqYPww0slyMDcb9262RoFkHq
+ dDwxPYarrNjWUpOzxB6bFxOgNRdCTgvQl8Ftk8a/yXB6vHeUSm1vPFCBxQPZytyfOLhEWm0J
+ /mkVL0Z6iRK3p1LKnpLYCS4/esL2u7RrhPyCs2SsL58YcQF/g+PpeT9geZ+oyZ/4IQ+TWJoU
+ PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
+ ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
+ 8CS2NxU=
+Message-ID: <3256f16b-a3e3-7b62-c56d-b61a5cc72358@mvista.com>
+Date: Tue, 30 Jun 2020 16:44:37 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdZPNhco6cOlSUs/QPGeR6zPVQR0jQ==
+In-Reply-To: <273601d64f36$3a15bde0$ae4139a0$@gmail.com>
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_2737_01D64EFB.8DC341F0"
-Content-Language: en-us
+ boundary="------------51D25A579BBF0BFD4DEFB2E2"
+Content-Language: en-US
 
-------=_NextPart_000_2737_01D64EFB.8DC341F0
-Content-Type: text/plain;
-	charset="utf-8"
+--------------51D25A579BBF0BFD4DEFB2E2
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-All,
 
-YP M+ or high bugs which moved to a new milestone in WW26 are listed =
-below:=20
-
-
-Priority
-
-Bug ID
-
-Short Description
-
-Changer
-
-Owner
-
-Was
-
-Became
-
-
-High
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13947> 13947
-
-buildtools checksum files are named different on non-release and release =
-builds
-
-richard.purdie@linuxfoundation.org
-
-vineela.tummalapalli@intel.com
-
-3.2 M1
-
-3.2 M2
-
-
-Medium+
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5322> 5322
-
-Global DNS fallback mechanism not present in poky distro
-
-kai.kang@windriver.com
-
-kai.kang@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10693> 10693
-
-Add a testcase for multilib eSDK on the autobuilder
-
-Qi.Chen@windriver.com
-
-Qi.Chen@windriver.com
-
-3.2 M1
-
-3.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11449> 11449
-
-Allow overriding classes to override overridden classes
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11746> 11746
-
-oe-selftest: capture self.logger messages in XML output
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11906> 11906
-
-rpmbuild: Can not build packages on qemu target
-
-hongxu.jia@windriver.com
-
-hongxu.jia@windriver.com
-
-3.2 M1
-
-3.2 M4
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12090> 12090
-
-bitbake resident server reconnect needed ?
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12279> 12279
-
-enhance manifest not found warning
-
-kai.kang@windriver.com
-
-kai.kang@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12342> 12342
-
-lib32-core-image-sato -ctestimage failed due to wrong package names
-
-kai.kang@windriver.com
-
-kai.kang@windriver.com
-
-3.2 M1
-
-3.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12368> 12368
-
-persistent bitbake server does not re-parse if previous build was =
-ctrl+C'd
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12723> 12723
-
-mysql requires unicode and char length filtering
-
-david.reyna@windriver.com
-
-david.reyna@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12760> 12760
-
-CMake Toolchain File Has Wrong Module Path
-
-timothy.t.orling@intel.com
-
-bluelightning@bluelightning.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12917> 12917
-
-Warnings from nightly-multilib builds (build-deps)
-
-kai.kang@windriver.com
-
-kai.kang@windriver.com
-
-3.2 M1
-
-3.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12970> 12970
-
-uninative file should be versionned
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12986> 12986
-
-Failed to expand SRCPV on updateding SRC_URI using pn overrides and =
-BBCLASSEXTEND
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13008> 13008
-
-toaster testing
-
-david.reyna@windriver.com
-
-david.reyna@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13025> 13025
-
-WIC image install support
-
-kexin.hao@windriver.com
-
-kexin.hao@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13079> 13079
-
-devtool documentation needs to mention oe-local-files
-
-timothy.t.orling@intel.com
-
-bluelightning@bluelightning.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13070> 13070
-
-recipetool.RecipetoolTests.test_recipetool_load_plugin - Testcase 1640: =
-FAILED
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13109> 13109
-
-Implement CPE to package to Release mapping
-
-david.reyna@windriver.com
-
-david.reyna@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13103> 13103
-
-[Bug][QA 2.7 M1 rc1][Toaster] "Recipes" table=E2=94=AC=C3=A1 and =
-=E2=94=AC=C3=A1"machines" table are not getting populated after =
-clicking=E2=94=AC=C3=A1on imported layer as well as after clicking =
-Machines Tab on project page
-
-david.reyna@windriver.com
-
-david.reyna@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13183> 13183
-
-bitbake-layers crashes with incorrect layer configuration data is given =
-(expected proper error printing and exit with error)
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13182> 13182
-
-Inconsistency detected by ld.so: dl-open.c: 274: dl_open_worker: =
-Assertion xxx failed
-
-Qi.Chen@windriver.com
-
-Qi.Chen@windriver.com
-
-3.2 M1
-
-3.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13190> 13190
-
-RRS cannot handle multiple recipes with same PN
-
-timothy.t.orling@intel.com
-
-bluelightning@bluelightning.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13278> 13278
-
-If git protocol doesn't work, you get a tar.gz clone from PREMIRROR =
-which has git protocol origin
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13288> 13288
-
-pseudo should not follow symlinks in /proc
-
-randy.macleod@windriver.com
-
-seebs@seebs.net
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13320> 13320
-
-Update license files to match current SPDX names and license contents
-
-randy.macleod@windriver.com
-
-newcomer@yoctoproject.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13325> 13325
-
-Add link to the output directory from LHS console view
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13355> 13355
-
-RDEPENDS does not work properly for native builds (only supports recipe =
-names, not package names)
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13417> 13417
-
-Development manual coverage of devtool
-
-timothy.t.orling@intel.com
-
-bluelightning@bluelightning.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13424> 13424
-
-devupstream doesn't work with mutilib
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13426> 13426
-
-Loses track of data if file rename()d to same name
-
-randy.macleod@windriver.com
-
-seebs@seebs.net
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13448> 13448
-
-bitbake master appears to expand variables it should not need to
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13459> 13459
-
-sdk: compiler targets glibc, even though rootfs uses musl-libc
-
-randy.macleod@windriver.com
-
-randy.macleod@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13480> 13480
-
-gcc-cross plugins feature cannot be used
-
-zhe.he@windriver.com
-
-zhe.he@windriver.com
-
-3.2 M1
-
-3.99
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13489> 13489
-
-layer index: properly handle issues in first parse
-
-timothy.t.orling@intel.com
-
-bluelightning@bluelightning.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13490> 13490
-
-layer index: log failures during initial parse
-
-timothy.t.orling@intel.com
-
-bluelightning@bluelightning.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13495> 13495
-
-Support building out container image without init manager
-
-Qi.Chen@windriver.com
-
-Qi.Chen@windriver.com
-
-3.2 M1
-
-3.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13508> 13508
-
-Meson detects googletest installed on system
-
-hongxu.jia@windriver.com
-
-hongxu.jia@windriver.com
-
-3.2 M1
-
-3.2 M4
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13581> 13581
-
-Line wrapping over prompt in BASH
-
-randy.macleod@windriver.com
-
-jason.wessel@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13599> 13599
-
-Enhancement: Detect variables that shouldn't be defined in image scope, =
-but in global (distro) scope
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13604> 13604
-
-[master-next] Distrodata.test_maintainers  fails
-
-kai.kang@windriver.com
-
-kai.kang@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13625> 13625
-
-test_devtool_add_library fails in multilib setups
-
-timothy.t.orling@intel.com
-
-bluelightning@bluelightning.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13631> 13631
-
-core-image-full-cmdline qemumips systemd boot failure
-
-kai.kang@windriver.com
-
-kai.kang@windriver.com
-
-3.2 M1
-
-3.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13642> 13642
-
-Split single "run-config" step into multiple steps
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13646> 13646
-
-runtime tests sometimes can't login to the serial console on systemd =
-images (generates warning)
-
-kai.kang@windriver.com
-
-kai.kang@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13669> 13669
-
-Move Toaster testsuite-2 away from Testopia
-
-david.reyna@windriver.com
-
-david.reyna@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13699> 13699
-
-Prolonged recipe parsing times after removing tmp when the resident =
-bitbake server is used
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13711> 13711
-
-Parsing fails on externalsrc recipe containing both git and file in =
-SRC_URI
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13727> 13727
-
-unable to run dockerd on MACHINE=3Dintel-corei7-64 yet works on =
-MACHINE=3Dgenericx86-64
-
-timothy.t.orling@intel.com
-
-ksaye@saye.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13729> 13729
-
-Changing siteinfo files doesn't change task checksum
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13738> 13738
-
-devtool modify fails with file:// fetcher
-
-timothy.t.orling@intel.com
-
-bluelightning@bluelightning.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13732> 13732
-
-eSDK: getting error "xmlcatalog: not found" installing SDK
-
-Qi.Chen@windriver.com
-
-Qi.Chen@windriver.com
-
-3.2 M1
-
-3.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13748> 13748
-
-bitbake doesn't detect changes in code to run do_compile when using =
-devtool modify on recipe with destsuffix
-
-timothy.t.orling@intel.com
-
-bluelightning@bluelightning.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13804> 13804
-
-do_package_qa race generating warning
-
-richard.purdie@linuxfoundation.org
-
-newcomer@yoctoproject.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13807> 13807
-
-Add support for elfutils debuginfod
-
-randy.macleod@windriver.com
-
-newcomer@yoctoproject.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13823> 13823
-
-fetch2: PREMIRROR and SRC_URI with users on both url yields invalid =
-username
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13838> 13838
-
-[QA 3.1 M3 RC1] failure in ptest: valgrind.drd/tests/bar_bad and =
-valgrind.drd/tests/bar_bad_xml
-
-randy.macleod@windriver.com
-
-randy.macleod@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13886> 13886
-
-bitbake resident server does not honour --runonly or --runall options
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13891> 13891
-
-insane.bbclass: do_package_qa hangs when checking a FIFO (named pipe) =
-file
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13892> 13892
-
-Cannot access the terminal via serial port on BeagleBone Black
-
-kexin.hao@windriver.com
-
-guillaume.bonnet@epitech.eu
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13893> 13893
-
-bitbake considers any package name starting with "texinfo-native" as =
-satisfiable DEPENDS
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13911> 13911
-
-SystemExit failure when running oe-selftests
-
-kai.kang@windriver.com
-
-kai.kang@windriver.com
-
-3.2 M1
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13904> 13904
-
-do_prepare_recipe_sysroot: postinst-useradd-* does not run in order of =
-dependency and sometimes fails
-
-randy.macleod@windriver.com
-
-sakib.sajal@windriver.com
-
-3.2 M4
-
-3.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13953> 13953
-
-oe-selftest doesn't cleanup in non-parallel builds
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-3.2 M2
-
----
-
-Thanks,
-
-=20
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com =
-<mailto:sjolley.yp.pm@gmail.com>=20
-
-=20
-
-
-------=_NextPart_000_2737_01D64EFB.8DC341F0
-Content-Type: text/html;
-	boundary="----=_NextPart_000_0272_01D648A2.AA795AF0";
-	charset="utf-8"
+Stephen,
+
+On 6/30/20 4:28 PM, Stephen Jolley wrote:
+>
+> All,
+>
+Thanks for sending this out.
+
+
+Is there any priority to these that may help the community pick off the
+ones most important to the Project?
+
+-armin
+
+> YP M+ or high bugs which moved to a new milestone in WW26 are listed
+> below:
+>
+> *Priority*
+>
+> =09
+>
+> *Bug ID*
+>
+> =09
+>
+> *Short Description*
+>
+> =09
+>
+> *Changer*
+>
+> =09
+>
+> *Owner*
+>
+> =09
+>
+> *Was*
+>
+> =09
+>
+> *Became*
+>
+> *High*
+>
+> =09
+>
+> *13947 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13947>*
+>
+> =09
+>
+> buildtools checksum files are named different on non-release and
+> release builds
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> vineela.tummalapalli@intel.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *Medium+*
+>
+> =09
+>
+> *5322 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5322>*
+>
+> =09
+>
+> Global DNS fallback mechanism not present in poky distro
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *10693 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10693>*
+>
+> =09
+>
+> Add a testcase for multilib eSDK on the autobuilder
+>
+> =09
+>
+> Qi.Chen@windriver.com
+>
+> =09
+>
+> Qi.Chen@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M3
+>
+> *=C2=A0*
+>
+> =09
+>
+> *11449 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11449>*
+>
+> =09
+>
+> Allow overriding classes to override overridden classes
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *11746 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11746>*
+>
+> =09
+>
+> oe-selftest: capture self.logger messages in XML output
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *11906 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11906>*
+>
+> =09
+>
+> rpmbuild: Can not build packages on qemu target
+>
+> =09
+>
+> hongxu.jia@windriver.com
+>
+> =09
+>
+> hongxu.jia@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M4
+>
+> *=C2=A0*
+>
+> =09
+>
+> *12090 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12090>*
+>
+> =09
+>
+> bitbake resident server reconnect needed ?
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *12279 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12279>*
+>
+> =09
+>
+> enhance manifest not found warning
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *12342 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12342>*
+>
+> =09
+>
+> lib32-core-image-sato -ctestimage failed due to wrong package names
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M3
+>
+> *=C2=A0*
+>
+> =09
+>
+> *12368 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12368>*
+>
+> =09
+>
+> persistent bitbake server does not re-parse if previous build was ctrl+C=
+'d
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *12723 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12723>*
+>
+> =09
+>
+> mysql requires unicode and char length filtering
+>
+> =09
+>
+> david.reyna@windriver.com
+>
+> =09
+>
+> david.reyna@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *12760 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12760>*
+>
+> =09
+>
+> CMake Toolchain File Has Wrong Module Path
+>
+> =09
+>
+> timothy.t.orling@intel.com
+>
+> =09
+>
+> bluelightning@bluelightning.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *12917 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12917>*
+>
+> =09
+>
+> Warnings from nightly-multilib builds (build-deps)
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M3
+>
+> *=C2=A0*
+>
+> =09
+>
+> *12970 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12970>*
+>
+> =09
+>
+> uninative file should be versionned
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *12986 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12986>*
+>
+> =09
+>
+> Failed to expand SRCPV on updateding SRC_URI using pn overrides and
+> BBCLASSEXTEND
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13008 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13008>*
+>
+> =09
+>
+> toaster testing
+>
+> =09
+>
+> david.reyna@windriver.com
+>
+> =09
+>
+> david.reyna@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13025 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13025>*
+>
+> =09
+>
+> WIC image install support
+>
+> =09
+>
+> kexin.hao@windriver.com
+>
+> =09
+>
+> kexin.hao@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13079 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13079>*
+>
+> =09
+>
+> devtool documentation needs to mention oe-local-files
+>
+> =09
+>
+> timothy.t.orling@intel.com
+>
+> =09
+>
+> bluelightning@bluelightning.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13070 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13070>*
+>
+> =09
+>
+> recipetool.RecipetoolTests.test_recipetool_load_plugin - Testcase
+> 1640: FAILED
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13109 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13109>*
+>
+> =09
+>
+> Implement CPE to package to Release mapping
+>
+> =09
+>
+> david.reyna@windriver.com
+>
+> =09
+>
+> david.reyna@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13103 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13103>*
+>
+> =09
+>
+> [Bug][QA 2.7 M1 rc1][Toaster] "Recipes" table=E2=94=AC=C3=A1 and =E2=94=
+=AC=C3=A1"machines" table
+> are not getting populated after clicking=E2=94=AC=C3=A1on imported layer=
+ as well as
+> after clicking Machines Tab on project page
+>
+> =09
+>
+> david.reyna@windriver.com
+>
+> =09
+>
+> david.reyna@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13183 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13183>*
+>
+> =09
+>
+> bitbake-layers crashes with incorrect layer configuration data is
+> given (expected proper error printing and exit with error)
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13182 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13182>*
+>
+> =09
+>
+> Inconsistency detected by ld.so: dl-open.c: 274: dl_open_worker:
+> Assertion xxx failed
+>
+> =09
+>
+> Qi.Chen@windriver.com
+>
+> =09
+>
+> Qi.Chen@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M3
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13190 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13190>*
+>
+> =09
+>
+> RRS cannot handle multiple recipes with same PN
+>
+> =09
+>
+> timothy.t.orling@intel.com
+>
+> =09
+>
+> bluelightning@bluelightning.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13278 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13278>*
+>
+> =09
+>
+> If git protocol doesn't work, you get a tar.gz clone from PREMIRROR
+> which has git protocol origin
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13288 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13288>*
+>
+> =09
+>
+> pseudo should not follow symlinks in /proc
+>
+> =09
+>
+> randy.macleod@windriver.com
+>
+> =09
+>
+> seebs@seebs.net
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13320 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13320>*
+>
+> =09
+>
+> Update license files to match current SPDX names and license contents
+>
+> =09
+>
+> randy.macleod@windriver.com
+>
+> =09
+>
+> newcomer@yoctoproject.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13325 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13325>*
+>
+> =09
+>
+> Add link to the output directory from LHS console view
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13355 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13355>*
+>
+> =09
+>
+> RDEPENDS does not work properly for native builds (only supports
+> recipe names, not package names)
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13417 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13417>*
+>
+> =09
+>
+> Development manual coverage of devtool
+>
+> =09
+>
+> timothy.t.orling@intel.com
+>
+> =09
+>
+> bluelightning@bluelightning.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13424 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13424>*
+>
+> =09
+>
+> devupstream doesn't work with mutilib
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13426 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13426>*
+>
+> =09
+>
+> Loses track of data if file rename()d to same name
+>
+> =09
+>
+> randy.macleod@windriver.com
+>
+> =09
+>
+> seebs@seebs.net
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13448 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13448>*
+>
+> =09
+>
+> bitbake master appears to expand variables it should not need to
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13459 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13459>*
+>
+> =09
+>
+> sdk: compiler targets glibc, even though rootfs uses musl-libc
+>
+> =09
+>
+> randy.macleod@windriver.com
+>
+> =09
+>
+> randy.macleod@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13480 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13480>*
+>
+> =09
+>
+> gcc-cross plugins feature cannot be used
+>
+> =09
+>
+> zhe.he@windriver.com
+>
+> =09
+>
+> zhe.he@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.99
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13489 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13489>*
+>
+> =09
+>
+> layer index: properly handle issues in first parse
+>
+> =09
+>
+> timothy.t.orling@intel.com
+>
+> =09
+>
+> bluelightning@bluelightning.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13490 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13490>*
+>
+> =09
+>
+> layer index: log failures during initial parse
+>
+> =09
+>
+> timothy.t.orling@intel.com
+>
+> =09
+>
+> bluelightning@bluelightning.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13495 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13495>*
+>
+> =09
+>
+> Support building out container image without init manager
+>
+> =09
+>
+> Qi.Chen@windriver.com
+>
+> =09
+>
+> Qi.Chen@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M3
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13508 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13508>*
+>
+> =09
+>
+> Meson detects googletest installed on system
+>
+> =09
+>
+> hongxu.jia@windriver.com
+>
+> =09
+>
+> hongxu.jia@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M4
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13581 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13581>*
+>
+> =09
+>
+> Line wrapping over prompt in BASH
+>
+> =09
+>
+> randy.macleod@windriver.com
+>
+> =09
+>
+> jason.wessel@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13599 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13599>*
+>
+> =09
+>
+> Enhancement: Detect variables that shouldn't be defined in image
+> scope, but in global (distro) scope
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13604 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13604>*
+>
+> =09
+>
+> [master-next] Distrodata.test_maintainers=C2=A0 fails
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13625 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13625>*
+>
+> =09
+>
+> test_devtool_add_library fails in multilib setups
+>
+> =09
+>
+> timothy.t.orling@intel.com
+>
+> =09
+>
+> bluelightning@bluelightning.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13631 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13631>*
+>
+> =09
+>
+> core-image-full-cmdline qemumips systemd boot failure
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M3
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13642 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13642>*
+>
+> =09
+>
+> Split single "run-config" step into multiple steps
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13646 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13646>*
+>
+> =09
+>
+> runtime tests sometimes can't login to the serial console on systemd
+> images (generates warning)
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13669 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13669>*
+>
+> =09
+>
+> Move Toaster testsuite-2 away from Testopia
+>
+> =09
+>
+> david.reyna@windriver.com
+>
+> =09
+>
+> david.reyna@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13699 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13699>*
+>
+> =09
+>
+> Prolonged recipe parsing times after removing tmp when the resident
+> bitbake server is used
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13711 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13711>*
+>
+> =09
+>
+> Parsing fails on externalsrc recipe containing both git and file in
+> SRC_URI
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13727 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13727>*
+>
+> =09
+>
+> unable to run dockerd on MACHINE=3Dintel-corei7-64 yet works on
+> MACHINE=3Dgenericx86-64
+>
+> =09
+>
+> timothy.t.orling@intel.com
+>
+> =09
+>
+> ksaye@saye.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13729 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13729>*
+>
+> =09
+>
+> Changing siteinfo files doesn't change task checksum
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13738 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13738>*
+>
+> =09
+>
+> devtool modify fails with file:// fetcher
+>
+> =09
+>
+> timothy.t.orling@intel.com
+>
+> =09
+>
+> bluelightning@bluelightning.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13732 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13732>*
+>
+> =09
+>
+> eSDK: getting error "xmlcatalog: not found" installing SDK
+>
+> =09
+>
+> Qi.Chen@windriver.com
+>
+> =09
+>
+> Qi.Chen@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M3
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13748 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13748>*
+>
+> =09
+>
+> bitbake doesn't detect changes in code to run do_compile when using
+> devtool modify on recipe with destsuffix
+>
+> =09
+>
+> timothy.t.orling@intel.com
+>
+> =09
+>
+> bluelightning@bluelightning.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13804 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13804>*
+>
+> =09
+>
+> do_package_qa race generating warning
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> newcomer@yoctoproject.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13807 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13807>*
+>
+> =09
+>
+> Add support for elfutils debuginfod
+>
+> =09
+>
+> randy.macleod@windriver.com
+>
+> =09
+>
+> newcomer@yoctoproject.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13823 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13823>*
+>
+> =09
+>
+> fetch2: PREMIRROR and SRC_URI with users on both url yields invalid
+> username
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13838 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13838>*
+>
+> =09
+>
+> [QA 3.1 M3 RC1] failure in ptest: valgrind.drd/tests/bar_bad and
+> valgrind.drd/tests/bar_bad_xml
+>
+> =09
+>
+> randy.macleod@windriver.com
+>
+> =09
+>
+> randy.macleod@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13886 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13886>*
+>
+> =09
+>
+> bitbake resident server does not honour --runonly or --runall options
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13891 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13891>*
+>
+> =09
+>
+> insane.bbclass: do_package_qa hangs when checking a FIFO (named pipe) fi=
+le
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13892 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13892>*
+>
+> =09
+>
+> Cannot access the terminal via serial port on BeagleBone Black
+>
+> =09
+>
+> kexin.hao@windriver.com
+>
+> =09
+>
+> guillaume.bonnet@epitech.eu
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13893 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13893>*
+>
+> =09
+>
+> bitbake considers any package name starting with "texinfo-native" as
+> satisfiable DEPENDS
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13911 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13911>*
+>
+> =09
+>
+> SystemExit failure when running oe-selftests
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> kai.kang@windriver.com
+>
+> =09
+>
+> 3.2 M1
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13904 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13904>*
+>
+> =09
+>
+> do_prepare_recipe_sysroot: postinst-useradd-* does not run in order of
+> dependency and sometimes fails
+>
+> =09
+>
+> randy.macleod@windriver.com
+>
+> =09
+>
+> sakib.sajal@windriver.com
+>
+> =09
+>
+> 3.2 M4
+>
+> =09
+>
+> 3.2 M2
+>
+> *=C2=A0*
+>
+> =09
+>
+> *13953 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13953>*
+>
+> =09
+>
+> oe-selftest doesn't cleanup in non-parallel builds
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> richard.purdie@linuxfoundation.org
+>
+> =09
+>
+> 3.2 M2
+>
+> =09
+>
+> ---
+>
+> Thanks,
+>
+> =C2=A0
+>
+> */Stephen K. Jolley/**//*
+>
+> *Yocto Project Program Manager*
+>
+> (=C2=A0=C2=A0=C2=A0 *Cell*:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (208) 244-4460
+>
+> * *Email*:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0_sjolley.yp.pm@gmail.com
+> <mailto:sjolley.yp.pm@gmail.com>_
+>
+> =C2=A0
+>
+>
+>=20
+
+
+--------------51D25A579BBF0BFD4DEFB2E2
+Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dutf-8">
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta name=3DGenerator =
-content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
+8">
+  </head>
+  <body>
+    <br>
+    Stephen,<br>
+    <br>
+    <div class=3D"moz-cite-prefix">On 6/30/20 4:28 PM, Stephen Jolley
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:273601d64f36$3a15bde0$ae4139a0$@gmail.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUT=
+F-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
 /* Font Definitions */
 @font-face
 	{font-family:Wingdings;
@@ -1173,2595 +1966,4791 @@ div.WordSection1
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal><span style=3D'color:black'>All,<br><br>YP M+ or high =
-bugs which moved to a new milestone in WW26 are listed below: =
-</span><o:p></o:p></p><table class=3DMsoNormalTable border=3D0 =
-cellspacing=3D0 cellpadding=3D0 width=3D1844 =
-style=3D'width:1383.1pt;margin-left:-.15pt;border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Priority<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom style=3D'width:38.8pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Bug ID<o:p></o:p></span></b></p></td><td =
-width=3D1123 nowrap valign=3Dbottom style=3D'width:842.35pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Short =
-Description<o:p></o:p></span></b></p></td><td width=3D236 nowrap =
-valign=3Dbottom style=3D'width:177.0pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Changer<o:p></o:p></span></b></p></td><td =
-width=3D243 nowrap valign=3Dbottom style=3D'width:182.0pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Owner<o:p></o:p></span></b></p></td><td width=3D79 =
-nowrap valign=3Dbottom style=3D'width:59.2pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Was<o:p></o:p></span></b></p></td><td width=3D38 =
-nowrap valign=3Dbottom style=3D'width:28.85pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Became<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>High<o:p></o:p></span></b></p></td><td width=3D52 =
-nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13947" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13947</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>buildtools checksum files are named different on =
-non-release and release builds<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>vineela.tummalapalli@intel.com<o:p></o:p></span></p=
-></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Medium+<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5322" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>5322</span></a><o:p></o:p></sp=
-an></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Global DNS fallback mechanism not present in poky =
-distro<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10693" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>10693</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Add a testcase for multilib eSDK on the =
-autobuilder<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Qi.Chen@windriver.com<o:p></o:p></span></p></td><td=
- width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Qi.Chen@windriver.com<o:p></o:p></span></p></td><td=
- width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11449" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>11449</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Allow overriding classes to override overridden =
-classes<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11746" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>11746</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>oe-selftest: capture self.logger messages in XML =
-output<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11906" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>11906</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>rpmbuild: Can not build packages on qemu =
-target<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>hongxu.jia@windriver.com<o:p></o:p></span></p></td>=
-<td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>hongxu.jia@windriver.com<o:p></o:p></span></p></td>=
-<td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M4<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12090" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>12090</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bitbake resident server reconnect needed =
-?<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12279" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>12279</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>enhance manifest not found =
-warning<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12342" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>12342</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>lib32-core-image-sato -ctestimage failed due to =
-wrong package names<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12368" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>12368</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>persistent bitbake server does not re-parse if =
-previous build was ctrl+C'd<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12723" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>12723</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>mysql requires unicode and char length =
-filtering<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>david.reyna@windriver.com<o:p></o:p></span></p></td=
-><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>david.reyna@windriver.com<o:p></o:p></span></p></td=
-><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12760" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>12760</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>CMake Toolchain File Has Wrong Module =
-Path<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>timothy.t.orling@intel.com<o:p></o:p></span></p></t=
-d><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bluelightning@bluelightning.org<o:p></o:p></span></=
-p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12917" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>12917</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Warnings from nightly-multilib builds =
-(build-deps)<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12970" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>12970</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>uninative file should be =
-versionned<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12986" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>12986</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Failed to expand SRCPV on updateding SRC_URI using =
-pn overrides and BBCLASSEXTEND<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13008" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13008</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>toaster testing<o:p></o:p></span></p></td><td =
-width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>david.reyna@windriver.com<o:p></o:p></span></p></td=
-><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>david.reyna@windriver.com<o:p></o:p></span></p></td=
-><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13025" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13025</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>WIC image install =
-support<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kexin.hao@windriver.com<o:p></o:p></span></p></td><=
-td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kexin.hao@windriver.com<o:p></o:p></span></p></td><=
-td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13079" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13079</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>devtool documentation needs to mention =
-oe-local-files<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>timothy.t.orling@intel.com<o:p></o:p></span></p></t=
-d><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bluelightning@bluelightning.org<o:p></o:p></span></=
-p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13070" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13070</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>recipetool.RecipetoolTests.test_recipetool_load_plu=
-gin - Testcase 1640: FAILED<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13109" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13109</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Implement CPE to package to Release =
-mapping<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>david.reyna@windriver.com<o:p></o:p></span></p></td=
-><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>david.reyna@windriver.com<o:p></o:p></span></p></td=
-><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13103" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13103</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>[Bug][QA 2.7 M1 rc1][Toaster] &quot;Recipes&quot; =
-table</span><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>=E2=94=AC</span><spa=
-n style=3D'color:black'>&aacute; and </span><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>=E2=94=AC</span><spa=
-n style=3D'color:black'>&aacute;&quot;machines&quot; table are not =
-getting populated after clicking</span><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>=E2=94=AC</span><spa=
-n style=3D'color:black'>&aacute;on imported layer as well as after =
-clicking Machines Tab on project page<o:p></o:p></span></p></td><td =
-width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>david.reyna@windriver.com<o:p></o:p></span></p></td=
-><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>david.reyna@windriver.com<o:p></o:p></span></p></td=
-><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13183" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13183</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bitbake-layers crashes with incorrect layer =
-configuration data is given (expected proper error printing and exit =
-with error)<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13182" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13182</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Inconsistency detected by ld.so: dl-open.c: 274: =
-dl_open_worker: Assertion xxx failed<o:p></o:p></span></p></td><td =
-width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Qi.Chen@windriver.com<o:p></o:p></span></p></td><td=
- width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Qi.Chen@windriver.com<o:p></o:p></span></p></td><td=
- width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13190" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13190</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>RRS cannot handle multiple recipes with same =
-PN<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>timothy.t.orling@intel.com<o:p></o:p></span></p></t=
-d><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bluelightning@bluelightning.org<o:p></o:p></span></=
-p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13278" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13278</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>If git protocol doesn't work, you get a tar.gz =
-clone from PREMIRROR which has git protocol =
-origin<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13288" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13288</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>pseudo should not follow symlinks in =
-/proc<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>seebs@seebs.net<o:p></o:p></span></p></td><td =
-width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13320" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13320</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Update license files to match current SPDX names =
-and license contents<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>newcomer@yoctoproject.org<o:p></o:p></span></p></td=
-><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13325" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13325</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Add link to the output directory from LHS console =
-view<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13355" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13355</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>RDEPENDS does not work properly for native builds =
-(only supports recipe names, not package =
-names)<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13417" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13417</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Development manual coverage of =
-devtool<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>timothy.t.orling@intel.com<o:p></o:p></span></p></t=
-d><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bluelightning@bluelightning.org<o:p></o:p></span></=
-p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13424" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13424</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>devupstream doesn't work with =
-mutilib<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13426" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13426</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Loses track of data if file rename()d to same =
-name<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>seebs@seebs.net<o:p></o:p></span></p></td><td =
-width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13448" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13448</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bitbake master appears to expand variables it =
-should not need to<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13459" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13459</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>sdk: compiler targets glibc, even though rootfs =
-uses musl-libc<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13480" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13480</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>gcc-cross plugins feature cannot be =
-used<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>zhe.he@windriver.com<o:p></o:p></span></p></td><td =
-width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>zhe.he@windriver.com<o:p></o:p></span></p></td><td =
-width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>3.99<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13489" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13489</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>layer index: properly handle issues in first =
-parse<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>timothy.t.orling@intel.com<o:p></o:p></span></p></t=
-d><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bluelightning@bluelightning.org<o:p></o:p></span></=
-p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13490" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13490</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>layer index: log failures during initial =
-parse<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>timothy.t.orling@intel.com<o:p></o:p></span></p></t=
-d><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bluelightning@bluelightning.org<o:p></o:p></span></=
-p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13495" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13495</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Support building out container image without init =
-manager<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Qi.Chen@windriver.com<o:p></o:p></span></p></td><td=
- width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Qi.Chen@windriver.com<o:p></o:p></span></p></td><td=
- width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13508" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13508</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Meson detects googletest installed on =
-system<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>hongxu.jia@windriver.com<o:p></o:p></span></p></td>=
-<td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>hongxu.jia@windriver.com<o:p></o:p></span></p></td>=
-<td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M4<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13581" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13581</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Line wrapping over prompt in =
-BASH<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>jason.wessel@windriver.com<o:p></o:p></span></p></t=
-d><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13599" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13599</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Enhancement: Detect variables that shouldn't be =
-defined in image scope, but in global (distro) =
-scope<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13604" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13604</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>[master-next] Distrodata.test_maintainers&nbsp; =
-fails<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13625" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13625</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>test_devtool_add_library fails in multilib =
-setups<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>timothy.t.orling@intel.com<o:p></o:p></span></p></t=
-d><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bluelightning@bluelightning.org<o:p></o:p></span></=
-p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13631" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13631</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>core-image-full-cmdline qemumips systemd boot =
-failure<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13642" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13642</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Split single &quot;run-config&quot; step into =
-multiple steps<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13646" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13646</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>runtime tests sometimes can't login to the serial =
-console on systemd images (generates =
-warning)<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13669" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13669</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Move Toaster testsuite-2 away from =
-Testopia<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>david.reyna@windriver.com<o:p></o:p></span></p></td=
-><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>david.reyna@windriver.com<o:p></o:p></span></p></td=
-><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13699" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13699</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Prolonged recipe parsing times after removing tmp =
-when the resident bitbake server is used<o:p></o:p></span></p></td><td =
-width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13711" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13711</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Parsing fails on externalsrc recipe containing =
-both git and file in SRC_URI<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13727" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13727</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unable to run dockerd on MACHINE=3Dintel-corei7-64 =
-yet works on MACHINE=3Dgenericx86-64<o:p></o:p></span></p></td><td =
-width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>timothy.t.orling@intel.com<o:p></o:p></span></p></t=
-d><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>ksaye@saye.org<o:p></o:p></span></p></td><td =
-width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13729" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13729</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Changing siteinfo files doesn't change task =
-checksum<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13738" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13738</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>devtool modify fails with file:// =
-fetcher<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>timothy.t.orling@intel.com<o:p></o:p></span></p></t=
-d><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bluelightning@bluelightning.org<o:p></o:p></span></=
-p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13732" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13732</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>eSDK: getting error &quot;xmlcatalog: not =
-found&quot; installing SDK<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Qi.Chen@windriver.com<o:p></o:p></span></p></td><td=
- width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Qi.Chen@windriver.com<o:p></o:p></span></p></td><td=
- width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13748" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13748</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bitbake doesn't detect changes in code to run =
-do_compile when using devtool modify on recipe with =
-destsuffix<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>timothy.t.orling@intel.com<o:p></o:p></span></p></t=
-d><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bluelightning@bluelightning.org<o:p></o:p></span></=
-p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13804" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13804</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>do_package_qa race generating =
-warning<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>newcomer@yoctoproject.org<o:p></o:p></span></p></td=
-><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13807" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13807</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Add support for elfutils =
-debuginfod<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>newcomer@yoctoproject.org<o:p></o:p></span></p></td=
-><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13823" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13823</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>fetch2: PREMIRROR and SRC_URI with users on both =
-url yields invalid username<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13838" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13838</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>[QA 3.1 M3 RC1] failure in ptest: =
-valgrind.drd/tests/bar_bad and =
-valgrind.drd/tests/bar_bad_xml<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13886" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13886</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bitbake resident server does not honour --runonly =
-or --runall options<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13891" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13891</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>insane.bbclass: do_package_qa hangs when checking =
-a FIFO (named pipe) file<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13892" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13892</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Cannot access the terminal via serial port on =
-BeagleBone Black<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kexin.hao@windriver.com<o:p></o:p></span></p></td><=
-td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>guillaume.bonnet@epitech.eu<o:p></o:p></span></p></=
-td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13893" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13893</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bitbake considers any package name starting with =
-&quot;texinfo-native&quot; as satisfiable =
-DEPENDS<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13911" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13911</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>SystemExit failure when running =
-oe-selftests<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
-d width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M1<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13904" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13904</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>do_prepare_recipe_sysroot: postinst-useradd-* does =
-not run in order of dependency and sometimes =
-fails<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>sakib.sajal@windriver.com<o:p></o:p></span></p></td=
-><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M4<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13953" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13953</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D1123 nowrap valign=3Dbottom =
-style=3D'width:842.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>oe-selftest doesn't cleanup in non-parallel =
-builds<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D79 nowrap valign=3Dbottom =
-style=3D'width:59.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M2<o:p></o:p></span></p></td><td width=3D38 =
-nowrap valign=3Dbottom =
-style=3D'width:28.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>---<o:p></o:p></span></p></td></tr></table><p =
-class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal"><span style=3D"color:black">All,<br>
+            <br>
+          </span></p>
+      </div>
+    </blockquote>
+    Thanks for sending this out.<br>
+    <br>
+    <br>
+    Is there any priority to these that may help the community pick off
+    the ones most important to the Project?<br>
+    <br>
+    -armin<br>
+    <br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:273601d64f36$3a15bde0$ae4139a0$@gmail.com">
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal"><span style=3D"color:black">YP M+ or high
+            bugs which moved to a new milestone in WW26 are listed
+            below: </span><o:p></o:p></p>
+        <table class=3D"MsoNormalTable"
+          style=3D"width:1383.1pt;margin-left:-.15pt;border-collapse:colla=
+pse"
+          width=3D"1844" cellspacing=3D"0" cellpadding=3D"0" border=3D"0">
+          <tbody>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">Prio=
+rity<o:p></o:p></span></b></p>
+              </td>
+              <td style=3D"width:38.8pt;border:solid windowtext
+                1.0pt;border-left:none;background:#DCE6F1;padding:0in
+                5.4pt 0in 5.4pt;height:15.0pt" width=3D"52"
+                valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">Bug =
+ID<o:p></o:p></span></b></p>
+              </td>
+              <td style=3D"width:842.35pt;border:solid windowtext
+                1.0pt;border-left:none;background:#DCE6F1;padding:0in
+                5.4pt 0in 5.4pt;height:15.0pt" width=3D"1123"
+                valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">Shor=
+t
+                      Description<o:p></o:p></span></b></p>
+              </td>
+              <td style=3D"width:177.0pt;border:solid windowtext
+                1.0pt;border-left:none;background:#DCE6F1;padding:0in
+                5.4pt 0in 5.4pt;height:15.0pt" width=3D"236"
+                valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">Chan=
+ger<o:p></o:p></span></b></p>
+              </td>
+              <td style=3D"width:182.0pt;border:solid windowtext
+                1.0pt;border-left:none;background:#DCE6F1;padding:0in
+                5.4pt 0in 5.4pt;height:15.0pt" width=3D"243"
+                valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">Owne=
+r<o:p></o:p></span></b></p>
+              </td>
+              <td style=3D"width:59.2pt;border:solid windowtext
+                1.0pt;border-left:none;background:#DCE6F1;padding:0in
+                5.4pt 0in 5.4pt;height:15.0pt" width=3D"79"
+                valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">Was<=
+o:p></o:p></span></b></p>
+              </td>
+              <td style=3D"width:28.85pt;border:solid windowtext
+                1.0pt;border-left:none;background:#DCE6F1;padding:0in
+                5.4pt 0in 5.4pt;height:15.0pt" width=3D"38"
+                valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">Beca=
+me<o:p></o:p></span></b></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">High=
+<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13947"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13947=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">buildto=
+ols
+                    checksum files are named different on non-release
+                    and release builds<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:vineela.tummalapalli@intel.co=
+m">vineela.tummalapalli@intel.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">Medi=
+um+<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D5322"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">5322<=
+/span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Global
+                    DNS fallback mechanism not present in poky distro<o:p>=
+</o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D10693"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">10693=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Add a
+                    testcase for multilib eSDK on the autobuilder<o:p></o:=
+p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:Qi.Chen@windriver.com">Qi.Che=
+n@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:Qi.Chen@windriver.com">Qi.Che=
+n@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M3<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D11449"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">11449=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Allow
+                    overriding classes to override overridden classes<o:p>=
+</o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D11746"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">11746=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">oe-self=
+test:
+                    capture self.logger messages in XML output<o:p></o:p><=
+/span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D11906"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">11906=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">rpmbuil=
+d:
+                    Can not build packages on qemu target<o:p></o:p></span=
+></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:hongxu.jia@windriver.com">hon=
+gxu.jia@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:hongxu.jia@windriver.com">hon=
+gxu.jia@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M4<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D12090"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">12090=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">bitbake
+                    resident server reconnect needed ?<o:p></o:p></span></=
+p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D12279"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">12279=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">enhance
+                    manifest not found warning<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D12342"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">12342=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">lib32-c=
+ore-image-sato
+                    -ctestimage failed due to wrong package names<o:p></o:=
+p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M3<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D12368"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">12368=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">persist=
+ent
+                    bitbake server does not re-parse if previous build
+                    was ctrl+C'd<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D12723"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">12723=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">mysql
+                    requires unicode and char length filtering<o:p></o:p><=
+/span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:david.reyna@windriver.com">da=
+vid.reyna@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:david.reyna@windriver.com">da=
+vid.reyna@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D12760"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">12760=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">CMake
+                    Toolchain File Has Wrong Module Path<o:p></o:p></span>=
+</p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:timothy.t.orling@intel.com">t=
+imothy.t.orling@intel.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:bluelightning@bluelightning.o=
+rg">bluelightning@bluelightning.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D12917"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">12917=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Warning=
+s
+                    from nightly-multilib builds (build-deps)<o:p></o:p></=
+span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M3<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D12970"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">12970=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">uninati=
+ve
+                    file should be versionned<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D12986"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">12986=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Failed =
+to
+                    expand SRCPV on updateding SRC_URI using pn
+                    overrides and BBCLASSEXTEND<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13008"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13008=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">toaster
+                    testing<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:david.reyna@windriver.com">da=
+vid.reyna@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:david.reyna@windriver.com">da=
+vid.reyna@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13025"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13025=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">WIC ima=
+ge
+                    install support<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kexin.hao@windriver.com">kexi=
+n.hao@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kexin.hao@windriver.com">kexi=
+n.hao@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13079"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13079=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">devtool
+                    documentation needs to mention oe-local-files<o:p></o:=
+p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:timothy.t.orling@intel.com">t=
+imothy.t.orling@intel.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:bluelightning@bluelightning.o=
+rg">bluelightning@bluelightning.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13070"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13070=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">recipet=
+ool.RecipetoolTests.test_recipetool_load_plugin
+                    - Testcase 1640: FAILED<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13109"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13109=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Impleme=
+nt
+                    CPE to package to Release mapping<o:p></o:p></span></p=
+>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:david.reyna@windriver.com">da=
+vid.reyna@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:david.reyna@windriver.com">da=
+vid.reyna@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13103"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13103=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">[Bug][Q=
+A
+                    2.7 M1 rc1][Toaster] "Recipes" table</span><span
+                    style=3D"font-family:&quot;Arial&quot;,sans-serif;colo=
+r:black">=E2=94=AC</span><span
+                    style=3D"color:black">=C3=A1 and </span><span
+                    style=3D"font-family:&quot;Arial&quot;,sans-serif;colo=
+r:black">=E2=94=AC</span><span
+                    style=3D"color:black">=C3=A1"machines" table are not
+                    getting populated after clicking</span><span
+                    style=3D"font-family:&quot;Arial&quot;,sans-serif;colo=
+r:black">=E2=94=AC</span><span
+                    style=3D"color:black">=C3=A1on imported layer as well =
+as
+                    after clicking Machines Tab on project page<o:p></o:p>=
+</span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:david.reyna@windriver.com">da=
+vid.reyna@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:david.reyna@windriver.com">da=
+vid.reyna@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13183"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13183=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">bitbake=
+-layers
+                    crashes with incorrect layer configuration data is
+                    given (expected proper error printing and exit with
+                    error)<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13182"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13182=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Inconsi=
+stency
+                    detected by ld.so: dl-open.c: 274: dl_open_worker:
+                    Assertion xxx failed<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:Qi.Chen@windriver.com">Qi.Che=
+n@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:Qi.Chen@windriver.com">Qi.Che=
+n@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M3<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13190"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13190=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">RRS
+                    cannot handle multiple recipes with same PN<o:p></o:p>=
+</span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:timothy.t.orling@intel.com">t=
+imothy.t.orling@intel.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:bluelightning@bluelightning.o=
+rg">bluelightning@bluelightning.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13278"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13278=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">If git
+                    protocol doesn't work, you get a tar.gz clone from
+                    PREMIRROR which has git protocol origin<o:p></o:p></sp=
+an></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13288"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13288=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">pseudo
+                    should not follow symlinks in /proc<o:p></o:p></span><=
+/p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:randy.macleod@windriver.com">=
+randy.macleod@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:seebs@seebs.net">seebs@seebs.=
+net</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13320"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13320=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Update
+                    license files to match current SPDX names and
+                    license contents<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:randy.macleod@windriver.com">=
+randy.macleod@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:newcomer@yoctoproject.org">ne=
+wcomer@yoctoproject.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13325"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13325=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Add lin=
+k
+                    to the output directory from LHS console view<o:p></o:=
+p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13355"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13355=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">RDEPEND=
+S
+                    does not work properly for native builds (only
+                    supports recipe names, not package names)<o:p></o:p></=
+span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13417"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13417=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Develop=
+ment
+                    manual coverage of devtool<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:timothy.t.orling@intel.com">t=
+imothy.t.orling@intel.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:bluelightning@bluelightning.o=
+rg">bluelightning@bluelightning.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13424"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13424=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">devupst=
+ream
+                    doesn't work with mutilib<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13426"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13426=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Loses
+                    track of data if file rename()d to same name<o:p></o:p=
+></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:randy.macleod@windriver.com">=
+randy.macleod@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:seebs@seebs.net">seebs@seebs.=
+net</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13448"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13448=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">bitbake
+                    master appears to expand variables it should not
+                    need to<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13459"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13459=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">sdk:
+                    compiler targets glibc, even though rootfs uses
+                    musl-libc<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:randy.macleod@windriver.com">=
+randy.macleod@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:randy.macleod@windriver.com">=
+randy.macleod@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13480"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13480=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">gcc-cro=
+ss
+                    plugins feature cannot be used<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:zhe.he@windriver.com">zhe.he@=
+windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:zhe.he@windriver.com">zhe.he@=
+windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><span style=3D"color:black">3.99<o:p></o=
+:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13489"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13489=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">layer
+                    index: properly handle issues in first parse<o:p></o:p=
+></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:timothy.t.orling@intel.com">t=
+imothy.t.orling@intel.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:bluelightning@bluelightning.o=
+rg">bluelightning@bluelightning.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13490"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13490=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">layer
+                    index: log failures during initial parse<o:p></o:p></s=
+pan></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:timothy.t.orling@intel.com">t=
+imothy.t.orling@intel.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:bluelightning@bluelightning.o=
+rg">bluelightning@bluelightning.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13495"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13495=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Support
+                    building out container image without init manager<o:p>=
+</o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:Qi.Chen@windriver.com">Qi.Che=
+n@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:Qi.Chen@windriver.com">Qi.Che=
+n@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M3<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13508"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13508=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Meson
+                    detects googletest installed on system<o:p></o:p></spa=
+n></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:hongxu.jia@windriver.com">hon=
+gxu.jia@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:hongxu.jia@windriver.com">hon=
+gxu.jia@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M4<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13581"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13581=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Line
+                    wrapping over prompt in BASH<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:randy.macleod@windriver.com">=
+randy.macleod@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:jason.wessel@windriver.com">j=
+ason.wessel@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13599"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13599=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Enhance=
+ment:
+                    Detect variables that shouldn't be defined in image
+                    scope, but in global (distro) scope<o:p></o:p></span><=
+/p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13604"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13604=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">[master=
+-next]
+                    Distrodata.test_maintainers=C2=A0 fails<o:p></o:p></sp=
+an></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13625"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13625=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">test_de=
+vtool_add_library
+                    fails in multilib setups<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:timothy.t.orling@intel.com">t=
+imothy.t.orling@intel.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:bluelightning@bluelightning.o=
+rg">bluelightning@bluelightning.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13631"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13631=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">core-im=
+age-full-cmdline
+                    qemumips systemd boot failure<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M3<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13642"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13642=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Split
+                    single "run-config" step into multiple steps<o:p></o:p=
+></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13646"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13646=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">runtime
+                    tests sometimes can't login to the serial console on
+                    systemd images (generates warning)<o:p></o:p></span></=
+p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13669"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13669=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Move
+                    Toaster testsuite-2 away from Testopia<o:p></o:p></spa=
+n></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:david.reyna@windriver.com">da=
+vid.reyna@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:david.reyna@windriver.com">da=
+vid.reyna@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13699"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13699=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Prolong=
+ed
+                    recipe parsing times after removing tmp when the
+                    resident bitbake server is used<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13711"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13711=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Parsing
+                    fails on externalsrc recipe containing both git and
+                    file in SRC_URI<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13727"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13727=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">unable =
+to
+                    run dockerd on MACHINE=3Dintel-corei7-64 yet works on
+                    MACHINE=3Dgenericx86-64<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:timothy.t.orling@intel.com">t=
+imothy.t.orling@intel.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:ksaye@saye.org">ksaye@saye.or=
+g</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13729"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13729=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Changin=
+g
+                    siteinfo files doesn't change task checksum<o:p></o:p>=
+</span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13738"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13738=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">devtool
+                    modify fails with <a class=3D"moz-txt-link-freetext" h=
+ref=3D"file://">file://</a> fetcher<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:timothy.t.orling@intel.com">t=
+imothy.t.orling@intel.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:bluelightning@bluelightning.o=
+rg">bluelightning@bluelightning.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13732"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13732=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">eSDK:
+                    getting error "xmlcatalog: not found" installing SDK<o=
+:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:Qi.Chen@windriver.com">Qi.Che=
+n@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:Qi.Chen@windriver.com">Qi.Che=
+n@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M3<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13748"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13748=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">bitbake
+                    doesn't detect changes in code to run do_compile
+                    when using devtool modify on recipe with destsuffix<o:=
+p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:timothy.t.orling@intel.com">t=
+imothy.t.orling@intel.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:bluelightning@bluelightning.o=
+rg">bluelightning@bluelightning.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13804"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13804=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">do_pack=
+age_qa
+                    race generating warning<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:newcomer@yoctoproject.org">ne=
+wcomer@yoctoproject.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13807"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13807=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Add
+                    support for elfutils debuginfod<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:randy.macleod@windriver.com">=
+randy.macleod@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:newcomer@yoctoproject.org">ne=
+wcomer@yoctoproject.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13823"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13823=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">fetch2:
+                    PREMIRROR and SRC_URI with users on both url yields
+                    invalid username<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13838"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13838=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">[QA 3.1
+                    M3 RC1] failure in ptest: valgrind.drd/tests/bar_bad
+                    and valgrind.drd/tests/bar_bad_xml<o:p></o:p></span></=
+p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:randy.macleod@windriver.com">=
+randy.macleod@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:randy.macleod@windriver.com">=
+randy.macleod@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13886"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13886=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">bitbake
+                    resident server does not honour --runonly or
+                    --runall options<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13891"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13891=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">insane.=
+bbclass:
+                    do_package_qa hangs when checking a FIFO (named
+                    pipe) file<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13892"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13892=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">Cannot
+                    access the terminal via serial port on BeagleBone
+                    Black<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kexin.hao@windriver.com">kexi=
+n.hao@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:guillaume.bonnet@epitech.eu">=
+guillaume.bonnet@epitech.eu</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13893"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13893=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">bitbake
+                    considers any package name starting with
+                    "texinfo-native" as satisfiable DEPENDS<o:p></o:p></sp=
+an></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13911"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13911=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">SystemE=
+xit
+                    failure when running oe-selftests<o:p></o:p></span></p=
+>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:kai.kang@windriver.com">kai.k=
+ang@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M1<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13904"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13904=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">do_prep=
+are_recipe_sysroot:
+                    postinst-useradd-* does not run in order of
+                    dependency and sometimes fails<o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:randy.macleod@windriver.com">=
+randy.macleod@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:sakib.sajal@windriver.com">sa=
+kib.sajal@windriver.com</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M4<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+            </tr>
+            <tr style=3D"height:15.0pt">
+              <td style=3D"width:54.9pt;border:solid windowtext
+                1.0pt;border-top:none;padding:0in 5.4pt 0in
+                5.4pt;height:15.0pt" width=3D"73" valign=3D"bottom"
+                nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><b><span style=3D"color:black">=C2=
+=A0<o:p></o:p></span></b></p>
+              </td>
+              <td
+                style=3D"width:38.8pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"52" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal" style=3D"text-align:right"
+                  align=3D"right"><b><span style=3D"color:black"><a
+                        href=3D"https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13953"
+                        target=3D"_parent" moz-do-not-send=3D"true"><span
+                          style=3D"color:black;text-decoration:none">13953=
+</span></a><o:p></o:p></span></b></p>
+              </td>
+              <td
+style=3D"width:842.35pt;border-top:none;border-left:none;border-bottom:sol=
+id
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"1123" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">oe-self=
+test
+                    doesn't cleanup in non-parallel builds<o:p></o:p></spa=
+n></p>
+              </td>
+              <td
+style=3D"width:177.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"236" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:182.0pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"243" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black"><a clas=
+s=3D"moz-txt-link-abbreviated" href=3D"mailto:richard.purdie@linuxfoundatio=
+n.org">richard.purdie@linuxfoundation.org</a><o:p></o:p></span></p>
+              </td>
+              <td
+                style=3D"width:59.2pt;border-top:none;border-left:none;bor=
+der-bottom:solid
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"79" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">3.2 M2<=
+o:p></o:p></span></p>
+              </td>
+              <td
+style=3D"width:28.85pt;border-top:none;border-left:none;border-bottom:soli=
+d
+                windowtext 1.0pt;border-right:solid windowtext
+                1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt"
+                width=3D"38" valign=3D"bottom" nowrap=3D"nowrap">
+                <p class=3D"MsoNormal"><span style=3D"color:black">---<o:p=
+></o:p></span></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal"
+          style=3D"page-break-after:avoid;text-autospace:none"><b><i><span
+                style=3D"font-size:16.0pt;font-family:&quot;Times New
+                Roman&quot;,serif;color:purple">Stephen K. Jolley</span></=
+i></b><b><i><span
+style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:=
+purple"><o:p></o:p></span></i></b></p>
+        <p class=3D"MsoNormal"><b><span
+              style=3D"font-size:8.0pt;font-family:&quot;Courier
+              New&quot;;color:blue">Yocto Project Program Manager<o:p></o:=
+p></span></b></p>
+        <p class=3D"MsoNormal"><span
+            style=3D"font-size:9.0pt;font-family:Wingdings;color:black">(<=
+/span><span
+            style=3D"font-size:9.0pt;font-family:&quot;MS Sans
+            Serif&quot;;color:teal">=C2=A0=C2=A0=C2=A0 </span><b><span
+              style=3D"font-size:8.0pt;font-family:&quot;Comic Sans
+              MS&quot;;color:teal">Cell</span></b><span
+            style=3D"font-size:9.0pt;font-family:&quot;MS Sans
+            Serif&quot;;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span
+            style=3D"font-size:9.0pt;font-family:&quot;MS Sans
+            Serif&quot;">(208) 244-4460<span style=3D"color:black"><o:p></=
+o:p></span></span></p>
+        <p class=3D"MsoNormal"><span
+            style=3D"font-size:9.0pt;font-family:Wingdings">* </span><b><s=
+pan
+              style=3D"font-size:8.0pt;font-family:&quot;Comic Sans
+              MS&quot;;color:teal" lang=3D"FR">Email</span></b><span
+            style=3D"font-size:9.0pt;font-family:&quot;MS Sans
+            Serif&quot;;color:teal" lang=3D"FR">:</span><span
+            style=3D"font-size:9.0pt;font-family:&quot;MS Sans
+            Serif&quot;" lang=3D"FR">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<u><span
+                style=3D"color:blue"><a
+                  href=3D"mailto:sjolley.yp.pm@gmail.com"
+                  moz-do-not-send=3D"true">sjolley.yp.pm@gmail.com</a></sp=
+an></u></span><span
+style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif"
+            lang=3D"FR"><o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
-------=_NextPart_000_2737_01D64EFB.8DC341F0--
+--------------51D25A579BBF0BFD4DEFB2E2--
