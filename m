@@ -1,84 +1,105 @@
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
- by mx.groups.io with SMTP id smtpd.web12.626.1593533540052290104
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
+ by mx.groups.io with SMTP id smtpd.web12.1038.1593534664279463199
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Jun 2020 09:12:20 -0700
+ Tue, 30 Jun 2020 09:31:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=sUaJPpVO;
- spf=pass (domain: gmail.com, ip: 209.85.210.175, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f175.google.com with SMTP id t11so4764867pfq.11
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Jun 2020 09:12:20 -0700 (PDT)
+ dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=RP6rET0q;
+ spf=pass (domain: burtonini.com, ip: 209.85.128.68, mailfrom: ross@burtonini.com)
+Received: by mail-wm1-f68.google.com with SMTP id 17so20205629wmo.1
+        for <yocto@lists.yoctoproject.org>; Tue, 30 Jun 2020 09:31:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=eUM2IaW93Ep0Cx0Re1X9Hqg/ielr4E1UPL7UPAaEmfg=;
-        b=sUaJPpVOYI3sL8B40cLmGm+XnMDi70+J5LaTiNR2AGvfJDT/VFVuqhFQ+0PWbmYw2S
-         QV6yCwrtz6w3HnVAfPr0C+aA9esp043KuUt1+SRumhZc6u1U3F3zYLHYRXkVGdGPMZJN
-         TTAxLvGuMCBmr6NNujDSkuF8Meki1o6MSVqrm4aiNqmiuU2jYLLILZKiev/xJ9hrNXi+
-         5Vn7JoqUw2+34jVSHq5pnfqj5ORi49ozrHbTdMSk7PZ72LEiYNrFyPHu326Lilv3a07R
-         ixi49CVSFOSagnLf9dOUGDDz27O32pllFkEEginBtbS5NBjVEx/zUi/EXi6Sue685wbM
-         syEg==
+        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PpS1upmtH8AkBRO8NgJGhVXzxznb4fN8n/brV3cr00s=;
+        b=RP6rET0qlXACZkn8y7SkWwN9e+Y86O6Kh7EaGC4OTgQar/O05OSvf0J/RES5Qd2p8b
+         qxUEo+fD8B7loThmOycfOicAW5FTp4U/ypJlGLC7UFP73Xby7Ox/QTkLQO2ztBOcZtdB
+         r4pXCpEN91bKXiN94kcgcupltGKy6++tz9ROZlqtsAwML9hCuYMf2nWuPlf8Lc3yx7KL
+         oM2OXi6IZiX81/KhPNIJRkS9ER92fMKkYEoeupRrvNCo1eghW/qogN7ovrr8m9DpXOTm
+         lTNqWY8aulHUE/wEmrV8jbp42wHyQd0sohEm1JLzNMYetcFVm21D2c4sZpg0AnMoOFHQ
+         tNjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=eUM2IaW93Ep0Cx0Re1X9Hqg/ielr4E1UPL7UPAaEmfg=;
-        b=TOn9JE6QbzlfDtrVG5C0RCPfc5VLqPQExluWa4MhPDswk+T/+CKnhaIWNJ+4du6NXf
-         qkYfu7ao1Ys0iezdl8j/THlJu7TA9K8uqBSIIOCWSiX5MYSoeo9sySh2MtU48zB+37iB
-         Ub/LGDP/zJ0Uyr0CcTARhqBiaT+jOuR71Rlm0pInJYUr7QJQrUQOO1oaNm7QHsMrZycS
-         m5h6XEEqRSlySpXqFM7z7NgHGH6Q4RvRQJNpYZTkr0VPyXLirus153kforwinILPOK/F
-         yuVR4GpS4xCPKzouvP7Dow48F9y5Aq+/MBXLrI3cG0Q3qvKEC5xYfPyXcKcktO4jHSVa
-         fEsA==
-X-Gm-Message-State: AOAM531WFGf81DeUPM7JJF8n1qPCkfvogTUVZLuRrFjDPiCs36v0LaEp
-	cx135oEQfSkdxNU9WmpgF/sDeLnlwCU=
-X-Google-Smtp-Source: ABdhPJzjZIqm4YoGKOHEYHNF8+VXjTP6xL4P9b9hYpfEyfh764NOA8HVCVaCRm6EiCuadEZt+ncwIg==
-X-Received: by 2002:a62:e203:: with SMTP id a3mr11956442pfi.295.1593533538941;
-        Tue, 30 Jun 2020 09:12:18 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:2c51:53a1:364:7e03? ([2601:646:9200:4e0:2c51:53a1:364:7e03])
-        by smtp.gmail.com with ESMTPSA id 27sm2758628pjg.19.2020.06.30.09.12.17
+        bh=PpS1upmtH8AkBRO8NgJGhVXzxznb4fN8n/brV3cr00s=;
+        b=Oz2hdW2BBhHhPVJy5T/nYQZ/bopwmDHKKa92GIptzqXJkSWZgDY+TRP2YcKwRwspur
+         fPTtGHZTD/oHPzxNK+N5DGc0oxPpcu43LCerLMC1RbcF2c+4xzxkJrLAKhtEKHvGl1Qg
+         aOQ8KODy0HmWGOFGFmlJt3uGXdJyMHUf15RqOUI70znyYX13GNBXU2To7JJa9jZ6nXET
+         /ba73gb125qe+wcSe2Krk20eE5h/RBu2HWg4h3761ZGF2KGvtX6p90bvrnpbXmtudiE6
+         GDagCv0qInnraHZteuem6hY50G0YpVYfHVkCbxtJLkxjgP/UxhVRs+Ib8jxxps4ojENh
+         42nw==
+X-Gm-Message-State: AOAM533byRQZ05sElk7isadzW6qDDs2a/tTFdmp3mUaPEvVQeCFJjn2w
+	WyGCJCUtWTJeh+DETOnKDTOnqddjKahK7A==
+X-Google-Smtp-Source: ABdhPJyHHsOoZEDK7g+g/rab8Td8txjoEKlLiTye4+4Sd6L6oMOF1NjUIWkLvz42qQR0uUv+5vkjIw==
+X-Received: by 2002:a1c:5418:: with SMTP id i24mr21464890wmb.47.1593534662378;
+        Tue, 30 Jun 2020 09:31:02 -0700 (PDT)
+Return-Path: <ross@burtonini.com>
+Received: from localhost.localdomain (35.106.2.81.in-addr.arpa. [81.2.106.35])
+        by smtp.gmail.com with ESMTPSA id z25sm3849475wmk.28.2020.06.30.09.31.01
         for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jun 2020 09:12:18 -0700 (PDT)
-Subject: Re: [yocto] #yocto #python
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 Jun 2020 09:31:01 -0700 (PDT)
+From: "Ross Burton" <ross@burtonini.com>
 To: yocto@lists.yoctoproject.org
-References: <OUPV.1593170119040069710.fQAH@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <e957a5d1-63b3-1eea-1cd8-86a55046ef7d@gmail.com>
-Date: Tue, 30 Jun 2020 09:12:17 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.9.0
+Subject: [PATCH yocto-autobuilder-helper] config.json: add meta-arm
+Date: Tue, 30 Jun 2020 17:30:57 +0100
+Message-Id: <20200630163057.29948-1-ross@burtonini.com>
+X-Mailer: git-send-email 2.24.3 (Apple Git-128)
 MIME-Version: 1.0
-In-Reply-To: <OUPV.1593170119040069710.fQAH@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
 Content-Transfer-Encoding: 8bit
 
+From: Ross Burton <ross.burton@arm.com>
 
+This builds a small number of images for the N1 SDP and Juno boards.
 
-On 6/26/20 4:15 AM, valentin.duee@weidmueller.com wrote:
-> Hi,
-> 
-> if I try to add a layer like this:
-> 
-> bitbake-layers add-layer ../layers/meta-openembedded/meta-oe
-> (also for other layers)
-> I get following error:
-> 
-> The following required tools (as specified by HOSTTOOLS) appear to be 
-> unavailable in PATH, please install them in order to proceed:
->    python
-> 
-> But I do have installed python in all possible versions. I don't know 
-> what to do currently and would appreciate your help a lot. Thanks in 
-> Advance.
-> 
+Signed-off-by: Ross Burton <ross.burton@arm.com>
+---
+ config.json | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-which release of yocto are you on ? secondly which OS is on the host?
-you might want to install python2 perhaps on it.
+diff --git a/config.json b/config.json
+index b810373..8823c32 100644
+--- a/config.json
++++ b/config.json
+@@ -273,6 +273,24 @@
+             "MACHINE" : "qemuarm64",
+             "TEMPLATE" : "ltp-qemu"
+         },
++        "meta-arm" : {
++            "NEEDREPOS" : ["poky", "meta-arm"],
++            "ADDLAYER" : [
++                "${BUILDDIR}/../meta-arm/meta-arm",
++                "${BUILDDIR}/../meta-arm/meta-arm-bsp",
++                "${BUILDDIR}/../meta-arm/meta-arm-toolchain"
++            ],
++            "step1": {
++                "MACHINE": "n1sdp",
++                "BBTARGETS": "core-image-minimal core-image-sato core-image-sato:do_populate_sdk",
++                "SANITYTARGETS" : "core-image-sato:do_testsdk"
++                },
++            "step2": {
++                "MACHINE": "juno",
++                "BBTARGETS": "core-image-minimal core-image-sato core-image-sato:do_populate_sdk",
++                "SANITYTARGETS" : "core-image-sato:do_testsdk"
++            }
++        },
+        "bringup" : {
+             "BUILDINFO" : true,
+             "SSTATEDIR" : ["SSTATE_DIR ?= '${HELPERBUILDDIR}/sstate'"],
+@@ -964,6 +982,12 @@
+             "branch" : "master",
+             "revision" : "HEAD",
+             "no-layer-add" : true
++        },
++        "meta-arm" : {
++            "url" : "git://git.yoctoproject.org/meta-arm",
++            "branch" : "master",
++            "revision" : "HEAD",
++            "no-layer-add" : true
+         }
+ 
+     },
+-- 
+2.24.3 (Apple Git-128)
 
-> BR
-> 
-> 
-> 
