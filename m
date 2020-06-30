@@ -1,167 +1,78 @@
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
- by mx.groups.io with SMTP id smtpd.web12.11960.1593510960080383103
+Received: from mail.actia.se (mail.actia.se [195.67.112.82])
+ by mx.groups.io with SMTP id smtpd.web10.12195.1593511318721858420
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Jun 2020 02:56:00 -0700
+ Tue, 30 Jun 2020 03:01:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=DDIFxXx4;
- spf=pass (domain: gmail.com, ip: 209.85.222.41, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f41.google.com with SMTP id b13so6287728uav.3
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Jun 2020 02:55:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3YTO7WvgaECFe1KulsXVEAH3t0XLZMS4OQrbjiZ9Uz8=;
-        b=DDIFxXx4nQIAwZD8udwoJWbeMz7W4aCInTnztRxZxIp6eCGYwFoYtEx7n0a/+pk92p
-         rjfWmMZlLcypRIQfP1Ug3am3CZxww0O9IC3ZcUe+j0Yxs2iW7sOTI8EMQHO3lTtDRH4u
-         BsA5MD2mLDLQli/KNt1T/bLnZJJ5XdMykqWatEba9Cw5Cew8QjU1RZ23cGpBu1qUitRj
-         UV1xToxUZdx06w7WgwB1q75+eP3D4rHpqvYsT1dN6zO9MN7nBlpm05fSbTm3Mgn0ACxt
-         dPv3DHSJ2SPDWddfbqziI+dU9DDzZkESUi/jmWfqQXvmGxOZgEy0YbsFVDf9xCJsmOIB
-         G7fA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3YTO7WvgaECFe1KulsXVEAH3t0XLZMS4OQrbjiZ9Uz8=;
-        b=JDQL9wECADRKv+r58HefcAh493UF7vVvqSMrXyxrB0e29davnsxbCDy7taEe9EVgao
-         AD5FU3XPgQtxrGqEmQkiB9L2FljQdbut2vt8xlsg823SiZd6ytS9t4V1Cc7oMGefloaQ
-         vV6R7OCvyxWfZGM4NF+hS/iS6idO1jxdWPYAVoT/0sYtcmLTqhM7fDAGd/t+Ple01gPG
-         3g3F6wA6WFFyvUjxc8hgbSgbdT9AYTPvgJt3rgcfR8GBbhrSahgJ9ozyRgv9PVSxZsvS
-         fvQAci2DxKaLrN0ejVk7QyXSAmQrV1F6XhPHzceVBT9ZHs67QIJFlerPML+y2Fx91mYa
-         XViw==
-X-Gm-Message-State: AOAM533jGgmiOWKgwwXrbTawCAgHb0fbtgQNbG+PBwccR0F16aVFf1KR
-	P5IeZnz7/XZtd5evN1HRkbBHhV6et6ZJs2vKEOFgMKgq
-X-Google-Smtp-Source: ABdhPJwpA49Z5BvAs8ysQ9AHFH9vG9AgqRksLaPDVVYAwH2nBosma4C+Ocq9C93srEDGmT90RuiEcP5OPmV0CCadnf4=
-X-Received: by 2002:ab0:2eab:: with SMTP id y11mr12505697uay.22.1593510959035;
- Tue, 30 Jun 2020 02:55:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <c57c1a5d-8b83-c9c8-7eba-20edf63e0de0@actia.se>
-In-Reply-To: <c57c1a5d-8b83-c9c8-7eba-20edf63e0de0@actia.se>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Tue, 30 Jun 2020 11:55:47 +0200
-Message-ID: <CANNYZj9jEMyhwHFoSsjPQbLV7ff=336_JYcaJ=NTJ1Smcyuz9w@mail.gmail.com>
+ dkim=missing; spf=pass (domain: actia.se, ip: 195.67.112.82, mailfrom: john.ernberg@actia.se)
+Received: from S036ANL.actianordic.se (192.168.16.117) by
+ S036ANL.actianordic.se (192.168.16.117) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2044.4; Tue, 30 Jun 2020 12:01:56 +0200
+Received: from S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69]) by
+ S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69%3]) with mapi id
+ 15.01.2044.004; Tue, 30 Jun 2020 12:01:56 +0200
+From: "John Ernberg" <john.ernberg@actia.se>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] INCOMPATIBLE_LICENSE - how to use it properly?
-To: John Ernberg <john.ernberg@actia.se>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000a8b7fc05a94a2ebc"
+Thread-Topic: [yocto] INCOMPATIBLE_LICENSE - how to use it properly?
+Thread-Index: AQHWTsGsti6IBxq3eUqDhkIqYh9VRajwyjaAgAABt4A=
+Date: Tue, 30 Jun 2020 10:01:56 +0000
+Message-ID: <01d5b9db-cd7e-eee9-bc09-1ff346c7e2aa@actia.se>
+References: <c57c1a5d-8b83-c9c8-7eba-20edf63e0de0@actia.se>
+ <CANNYZj9jEMyhwHFoSsjPQbLV7ff=336_JYcaJ=NTJ1Smcyuz9w@mail.gmail.com>
+In-Reply-To: <CANNYZj9jEMyhwHFoSsjPQbLV7ff=336_JYcaJ=NTJ1Smcyuz9w@mail.gmail.com>
+Accept-Language: en-US, sv-SE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.11.250.5]
+MIME-Version: 1.0
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <02DAB1D1C0E1DD429A3C7F9F0AC58DAE@actia.se>
+Content-Transfer-Encoding: base64
 
---000000000000a8b7fc05a94a2ebc
-Content-Type: text/plain; charset="UTF-8"
-
-On master, you can set INCOMPATIBLE_LICENSE in the image recipe, rather
-than globally, then the check would only be performed on items that
-actually go into that image.
-
-Warrior does not have that feature yet, I think, so your only option there
-is meta-gpl2.
-
-Alex
-
-On Tue, 30 Jun 2020 at 11:34, John Ernberg <john.ernberg@actia.se> wrote:
-
-> Hi,
->
-> I have been trying to use INCOMPATIBLE_LICENSE to filter out undesirable
-> licenses for us from our images. I started simple and picked the
-> examples from the manual (AGPL-3.0, GPL-3.0 and LGPL-3.0).
->
-> Currently we're based on Warrior, but I also did a short test on master
-> (results later in the message)
->
-> Our images use systemd as init system. We use busybox ash as shell on
-> these images for now.
->
-> When setting the INCOMPATIBLE_LICENSE according to the manual example,
-> systemd cannot be built anymore because bash is being skipped due to
-> license.
->
-> Turns out that because systemd-bash-completion and
-> systemd-kernel-install both rdepend on bash, we can't build systemd at
-> all, because bash is not buildable. Even if we're not installing those
-> features of systemd.
->
-> A dive into TaskData suggests that all the rdepends of all packages
-> provided by a recipe are flattened into depends of the recipe when
-> testing buildability.
->
-> A quick test on master from about 2 weeks ago show the same behavior.
->
-> For the test on master all I did was change the DISTRO_FEATURES of
-> core-image-minimal to include systemd.
->
->
-> Am I using ICOMPATIBLE_LICENSE properly so far?
-> If so, is being unable to fulfill an rdepend for an unused package meant
-> to fail the whole build, and how can I avoid it short of including
-> meta-gplv2 or writing lots of .bbappends to remove the dependencies?
-> Otherwise, where did I go wrong, and what should I be trying instead?
->
-> Thank you.
->
-> Best regards // John Ernberg
-> 
->
-
---000000000000a8b7fc05a94a2ebc
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>On master, you can set INCOMPATIBLE_LICENSE in the im=
-age recipe, rather than globally, then the check would only be performed on=
- items that actually go into that image.</div><div><br></div><div>Warrior d=
-oes not have that feature yet, I think, so your only option there is meta-g=
-pl2.<br></div><div><br></div><div>Alex<br></div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 30 Jun 2020 at 11:3=
-4, John Ernberg &lt;<a href=3D"mailto:john.ernberg@actia.se">john.ernberg@a=
-ctia.se</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex">Hi,<br>
-<br>
-I have been trying to use INCOMPATIBLE_LICENSE to filter out undesirable <=
-br>
-licenses for us from our images. I started simple and picked the <br>
-examples from the manual (AGPL-3.0, GPL-3.0 and LGPL-3.0).<br>
-<br>
-Currently we&#39;re based on Warrior, but I also did a short test on maste=
-r <br>
-(results later in the message)<br>
-<br>
-Our images use systemd as init system. We use busybox ash as shell on <br>
-these images for now.<br>
-<br>
-When setting the INCOMPATIBLE_LICENSE according to the manual example, <br=
->
-systemd cannot be built anymore because bash is being skipped due to <br>
-license.<br>
-<br>
-Turns out that because systemd-bash-completion and <br>
-systemd-kernel-install both rdepend on bash, we can&#39;t build systemd at=
- <br>
-all, because bash is not buildable. Even if we&#39;re not installing those=
- <br>
-features of systemd.<br>
-<br>
-A dive into TaskData suggests that all the rdepends of all packages <br>
-provided by a recipe are flattened into depends of the recipe when <br>
-testing buildability.<br>
-<br>
-A quick test on master from about 2 weeks ago show the same behavior.<br>
-<br>
-For the test on master all I did was change the DISTRO_FEATURES of <br>
-core-image-minimal to include systemd.<br>
-<br>
-<br>
-Am I using ICOMPATIBLE_LICENSE properly so far?<br>
-If so, is being unable to fulfill an rdepend for an unused package meant <=
-br>
-to fail the whole build, and how can I avoid it short of including <br>
-meta-gplv2 or writing lots of .bbappends to remove the dependencies?<br>
-Otherwise, where did I go wrong, and what should I be trying instead?<br>
-<br>
-Thank you.<br>
-<br>
-Best regards // John Ernberg<br>
-<br>
-</blockquote></div>
-
---000000000000a8b7fc05a94a2ebc--
+SGkgQWxleCwNCg0KSSB3aWxsIGdpdmUgdGhpcyBhIHRyeSBvbiBtYXN0ZXIuDQoNCk9uZSBxdWVz
+dGlvbiB0aG91Z2gsIHdpbGwgdGhpcyBzdGlsbCBjYXRjaCBidWlsZC1vbmx5IGxpYnJhcmllcz8g
+KGkuZS4gYSANCmxpYnJhcnkgdGhhdCBjb25zaXN0cyBvbmx5IG9mIGhlYWRlcnMpLiBJIGRvbid0
+IHRoaW5rIHdlIGhhdmUgc3VjaCANCnJlY2lwZXMgcmlnaHQgbm93LCBpdCdzIG1vcmUgdG8gdW5k
+ZXJzdGFuZCBob3cgdGhpcyBmZWF0dXJlIHdvcmtzLg0KDQpUaGFuayB5b3UuDQoNCkJlc3QgcmVn
+YXJkcyAvLyBKb2huIEVybmJlcmcNCg0KT24gNi8zMC8yMCAxMTo1NSBBTSwgQWxleGFuZGVyIEth
+bmF2aW4gd3JvdGU6DQo+IE9uIG1hc3RlciwgeW91IGNhbiBzZXQgSU5DT01QQVRJQkxFX0xJQ0VO
+U0UgaW4gdGhlIGltYWdlIHJlY2lwZSwgcmF0aGVyIA0KPiB0aGFuIGdsb2JhbGx5LCB0aGVuIHRo
+ZSBjaGVjayB3b3VsZCBvbmx5IGJlIHBlcmZvcm1lZCBvbiBpdGVtcyB0aGF0IA0KPiBhY3R1YWxs
+eSBnbyBpbnRvIHRoYXQgaW1hZ2UuDQo+IA0KPiBXYXJyaW9yIGRvZXMgbm90IGhhdmUgdGhhdCBm
+ZWF0dXJlIHlldCwgSSB0aGluaywgc28geW91ciBvbmx5IG9wdGlvbiANCj4gdGhlcmUgaXMgbWV0
+YS1ncGwyLg0KPiANCj4gQWxleA0KPiANCj4gT24gVHVlLCAzMCBKdW4gMjAyMCBhdCAxMTozNCwg
+Sm9obiBFcm5iZXJnIDxqb2huLmVybmJlcmdAYWN0aWEuc2UgDQo+IDxtYWlsdG86am9obi5lcm5i
+ZXJnQGFjdGlhLnNlPj4gd3JvdGU6DQo+IA0KPiAgICAgSGksDQo+IA0KPiAgICAgSSBoYXZlIGJl
+ZW4gdHJ5aW5nIHRvIHVzZSBJTkNPTVBBVElCTEVfTElDRU5TRSB0byBmaWx0ZXIgb3V0DQo+ICAg
+ICB1bmRlc2lyYWJsZQ0KPiAgICAgbGljZW5zZXMgZm9yIHVzIGZyb20gb3VyIGltYWdlcy4gSSBz
+dGFydGVkIHNpbXBsZSBhbmQgcGlja2VkIHRoZQ0KPiAgICAgZXhhbXBsZXMgZnJvbSB0aGUgbWFu
+dWFsIChBR1BMLTMuMCwgR1BMLTMuMCBhbmQgTEdQTC0zLjApLg0KPiANCj4gICAgIEN1cnJlbnRs
+eSB3ZSdyZSBiYXNlZCBvbiBXYXJyaW9yLCBidXQgSSBhbHNvIGRpZCBhIHNob3J0IHRlc3Qgb24g
+bWFzdGVyDQo+ICAgICAocmVzdWx0cyBsYXRlciBpbiB0aGUgbWVzc2FnZSkNCj4gDQo+ICAgICBP
+dXIgaW1hZ2VzIHVzZSBzeXN0ZW1kIGFzIGluaXQgc3lzdGVtLiBXZSB1c2UgYnVzeWJveCBhc2gg
+YXMgc2hlbGwgb24NCj4gICAgIHRoZXNlIGltYWdlcyBmb3Igbm93Lg0KPiANCj4gICAgIFdoZW4g
+c2V0dGluZyB0aGUgSU5DT01QQVRJQkxFX0xJQ0VOU0UgYWNjb3JkaW5nIHRvIHRoZSBtYW51YWwg
+ZXhhbXBsZSwNCj4gICAgIHN5c3RlbWQgY2Fubm90IGJlIGJ1aWx0IGFueW1vcmUgYmVjYXVzZSBi
+YXNoIGlzIGJlaW5nIHNraXBwZWQgZHVlIHRvDQo+ICAgICBsaWNlbnNlLg0KPiANCj4gICAgIFR1
+cm5zIG91dCB0aGF0IGJlY2F1c2Ugc3lzdGVtZC1iYXNoLWNvbXBsZXRpb24gYW5kDQo+ICAgICBz
+eXN0ZW1kLWtlcm5lbC1pbnN0YWxsIGJvdGggcmRlcGVuZCBvbiBiYXNoLCB3ZSBjYW4ndCBidWls
+ZCBzeXN0ZW1kIGF0DQo+ICAgICBhbGwsIGJlY2F1c2UgYmFzaCBpcyBub3QgYnVpbGRhYmxlLiBF
+dmVuIGlmIHdlJ3JlIG5vdCBpbnN0YWxsaW5nIHRob3NlDQo+ICAgICBmZWF0dXJlcyBvZiBzeXN0
+ZW1kLg0KPiANCj4gICAgIEEgZGl2ZSBpbnRvIFRhc2tEYXRhIHN1Z2dlc3RzIHRoYXQgYWxsIHRo
+ZSByZGVwZW5kcyBvZiBhbGwgcGFja2FnZXMNCj4gICAgIHByb3ZpZGVkIGJ5IGEgcmVjaXBlIGFy
+ZSBmbGF0dGVuZWQgaW50byBkZXBlbmRzIG9mIHRoZSByZWNpcGUgd2hlbg0KPiAgICAgdGVzdGlu
+ZyBidWlsZGFiaWxpdHkuDQo+IA0KPiAgICAgQSBxdWljayB0ZXN0IG9uIG1hc3RlciBmcm9tIGFi
+b3V0IDIgd2Vla3MgYWdvIHNob3cgdGhlIHNhbWUgYmVoYXZpb3IuDQo+IA0KPiAgICAgRm9yIHRo
+ZSB0ZXN0IG9uIG1hc3RlciBhbGwgSSBkaWQgd2FzIGNoYW5nZSB0aGUgRElTVFJPX0ZFQVRVUkVT
+IG9mDQo+ICAgICBjb3JlLWltYWdlLW1pbmltYWwgdG8gaW5jbHVkZSBzeXN0ZW1kLg0KPiANCj4g
+DQo+ICAgICBBbSBJIHVzaW5nIElDT01QQVRJQkxFX0xJQ0VOU0UgcHJvcGVybHkgc28gZmFyPw0K
+PiAgICAgSWYgc28sIGlzIGJlaW5nIHVuYWJsZSB0byBmdWxmaWxsIGFuIHJkZXBlbmQgZm9yIGFu
+IHVudXNlZCBwYWNrYWdlDQo+ICAgICBtZWFudA0KPiAgICAgdG8gZmFpbCB0aGUgd2hvbGUgYnVp
+bGQsIGFuZCBob3cgY2FuIEkgYXZvaWQgaXQgc2hvcnQgb2YgaW5jbHVkaW5nDQo+ICAgICBtZXRh
+LWdwbHYyIG9yIHdyaXRpbmcgbG90cyBvZiAuYmJhcHBlbmRzIHRvIHJlbW92ZSB0aGUgZGVwZW5k
+ZW5jaWVzPw0KPiAgICAgT3RoZXJ3aXNlLCB3aGVyZSBkaWQgSSBnbyB3cm9uZywgYW5kIHdoYXQg
+c2hvdWxkIEkgYmUgdHJ5aW5nIGluc3RlYWQ/DQo+IA0KPiAgICAgVGhhbmsgeW91Lg0KPiANCj4g
+ICAgIEJlc3QgcmVnYXJkcyAvLyBKb2huIEVybmJlcmcNCj4gICAgIA0KPiANCg==
