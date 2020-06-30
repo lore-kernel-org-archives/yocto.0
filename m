@@ -1,146 +1,160 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.8156.1593553679771464718
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+ by mx.groups.io with SMTP id smtpd.web12.8140.1593553956955247134
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Jun 2020 14:47:59 -0700
+ Tue, 30 Jun 2020 14:52:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=FZkSi2by;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: raj.khem@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0A4FFE01DC9; Tue, 30 Jun 2020 14:47:59 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.215.177 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3BE1E01DC7
-	for <yocto@yoctoproject.org>; Tue, 30 Jun 2020 14:47:57 -0700 (PDT)
-Received: by mail-pg1-f177.google.com with SMTP id g67so9683831pgc.8
-        for <yocto@yoctoproject.org>; Tue, 30 Jun 2020 14:47:57 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Rh5HWUus;
+ spf=pass (domain: gmail.com, ip: 209.85.210.182, mailfrom: raj.khem@gmail.com)
+Received: by mail-pf1-f182.google.com with SMTP id 67so5937179pfg.5
+        for <yocto@lists.yoctoproject.org>; Tue, 30 Jun 2020 14:52:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=ZvklxMYM8x6H2vH+v7O19W2jPWAH7vn4C2kmxqy1hcE=;
-        b=FZkSi2byTHxxGE7VNMEUMWP1vo5Hb+VBEpMBt/rc8FRRcNFYmrCmC+yLG1Xs4SST2s
-         25d1RqcdiCgz7Nw9Hg9giR1Hhk7VZmINh6KH0yrL14DaOhnSTj9Er/ozUkhb3liDuK4L
-         i9RkSpwzsiy6jZQPduuEpNXVrfANk7DrUCgYUQ+zUiPSmc9NHdKIwP2aBqznfxD+8UX+
-         I/qHSP4VMy+mrpEPgNrofKbAO2T7XUprOGJE1BHk47bUyL+8twINWF5gwYEGQhOkOvlW
-         g97wMbwftTYQTTkyiRNPlMbGSOEgQEGot0KQkoxJJkoNF045OjXysxMmXM27czVdWbSr
-         Pbwg==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=1kORqM4sgzgHuNmTQpzNbMOzPWeubuH71hNzE/s3lJ8=;
+        b=Rh5HWUusZ6OgfnfAn9NmJU0TPgVLsNNriszX5anraHqfLpiu5PgFeM3xcZPT+HBbZO
+         Vr4JIVmDXBkyTYfsQDWI/DcPSlwIEVfnz1eiMb0E3pXWNHX2/GoRjJIm9Pm9SJ+IAAi+
+         Hx37l46I4RcvgFqYydblvGajtMcdCCNu4bqXYOHdljpNOKw0WuJkzqxfYuNhBFmWEdNs
+         BvC61ZSLfjcNfb7SSH/8q2R/UbjbF6YwIEDJqZxqyYqyyV1HYdTwWVi+Gw1BKihA2c37
+         F1USIAb2L39s+qXSgKfUO7BicqojmipXGuS0Nao8xmPCmYMlSCXIW+d8Subg0Nu3thCT
+         1wuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=ZvklxMYM8x6H2vH+v7O19W2jPWAH7vn4C2kmxqy1hcE=;
-        b=bfDlud/EVc+ssmHT7bPCi5TagOKMZ3xQ2UZlAfU/GqdVD3u0E2o9PCv3GGtidgqmW1
-         BOKiiinnZp/8gSq+jl4ACEESvn2GIQRKXZJm2NiI7jm87YMuDIUz0BQin5H3g2by/8Iu
-         MIRLSZTZJqM2zX9LOjW3C50Nxh0dG5Wm8IZPz79bFWehSzd+9BiapYPTT1X5semu7ZH9
-         2O+WErtCWSzmYR/K+uGKNWqITeEPu3xYluly056F3gVpz7+43YJu/zYzR//1Ua+20IT4
-         s/OhjNN3G9DwVbMz7VhIEtDNbMPLA1fz0XfG6dhcZzjsC3rSvv2cYVJclNJkysQ8L/G7
-         yHEg==
-X-Gm-Message-State: AOAM531beMe+l9uXFWMr633CvYMMtIbIYHyO/izvhSENA2s+gFIyRoXT
-	tU99qUr2LqDFMs5ZMfFrbPt+E+ZRvS4=
-X-Google-Smtp-Source: ABdhPJxGPqxUDAnoktY6LgU5dYdoXUfgtIjA1FXjd23cMInrIsoJORVY95qML2BcNgUhvpYWKS+5fQ==
-X-Received: by 2002:a63:e60b:: with SMTP id g11mr17284513pgh.188.1593553676709;
-        Tue, 30 Jun 2020 14:47:56 -0700 (PDT)
+        bh=1kORqM4sgzgHuNmTQpzNbMOzPWeubuH71hNzE/s3lJ8=;
+        b=ZDXVDro2KgStMQReH469QMcxiBI/MTaVcUH1WEaB6cLnmB31VUS3owWm8vUV8R/Qj8
+         SsTgP+bkAi4z/J69P5ThWj19jS4QaLtNCAK0Ww6u1bz2vecRqAuikbyG/jFv3aF30jJm
+         rLVpa4k+fzdKQubhbbjPmhK7ITkCRooZj3anGmes2krpn4REP9kZaFUI52tMLQEws71p
+         6Q/H++kRuzJNdELK0ghqZN8bOszMuvnu0+Ab1txsgujBPnNAERNH6YGthDLZyiIgkNT3
+         mYL+UE/vWiTYUscwWdl+DwvdzJuG6kjM2ltUwz3Fg3+z6vP6QR75ISbnWk+BJSZjUY7i
+         TABw==
+X-Gm-Message-State: AOAM530Hdjwv0fC+nNJ8jb4hPNTp0+LqPrjSzN8cPkGStFPkTjcjnVy0
+	vNFQQSvkZzOFzNvjEcvUmiBS453LJCs=
+X-Google-Smtp-Source: ABdhPJw2kbrCFdu+o7vUU0dAMl0xChHmmdFjpRPZkx7MurdtBRLO5dWopTB0Qghjy4ZUiwemfnUdRA==
+X-Received: by 2002:a62:8f4a:: with SMTP id n71mr21032958pfd.31.1593553955985;
+        Tue, 30 Jun 2020 14:52:35 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
 Received: from ?IPv6:2601:646:9200:4e0:2c51:53a1:364:7e03? ([2601:646:9200:4e0:2c51:53a1:364:7e03])
-        by smtp.gmail.com with ESMTPSA id b82sm2226815pfb.215.2020.06.30.14.47.55
+        by smtp.gmail.com with ESMTPSA id h17sm3364783pgv.41.2020.06.30.14.52.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jun 2020 14:47:56 -0700 (PDT)
-Subject: Re: [yocto] Errors Building openjdk-8 on dunfell
-To: Robert Joslyn <robert.joslyn@redrectangle.org>,
- Yocto discussion list <yocto@yoctoproject.org>
-References: <0e53cff2f343fe6bd08ec502376ad1910b1d8039.camel@redrectangle.org>
+        Tue, 30 Jun 2020 14:52:35 -0700 (PDT)
+Subject: Re: [yocto] INCOMPATIBLE_LICENSE - how to use it properly?
+To: Mikko Rapeli <mikko.rapeli@bmw.de>, john.ernberg@actia.se
+Cc: yocto@lists.yoctoproject.org
+References: <c57c1a5d-8b83-c9c8-7eba-20edf63e0de0@actia.se>
+ <20200630100752.GW108868@korppu>
 From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <0bcecd8a-589a-41b8-bdcb-3fa62b57d874@gmail.com>
-Date: Tue, 30 Jun 2020 14:47:55 -0700
+Message-ID: <d943a362-2a5c-bb93-2eba-bbbc9bd6393c@gmail.com>
+Date: Tue, 30 Jun 2020 14:52:34 -0700
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
  Gecko/20100101 Thunderbird/68.9.0
 MIME-Version: 1.0
-In-Reply-To: <0e53cff2f343fe6bd08ec502376ad1910b1d8039.camel@redrectangle.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20200630100752.GW108868@korppu>
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Language: en-GB
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
 
 
-On 6/29/20 10:13 PM, Robert Joslyn wrote:
-> I'm trying to build openjdk-8 on dunfull and am getting some build error=
-s.
-> Using an Ubuntu 18.04 host, I get an error building the openjdk-8 recipe=
-:
->=20
-> | g++: error: unrecognized command line option =E2=80=98-fmacro-prefix-
-> map=3D/mnt/yocto/bionic/poky/build/tmp/work/core2-64-poky-linux/openjdk-
-> 8/252-r0=3D/usr/src/debug/openjdk-8/252-r0=E2=80=99
->=20
-> This seems to imply I need a newer gcc which supports the -fmacro-prefix=
--
-> map option. The README says I need gcc 6 or later on the host, but 18.04
-> has gcc 7.5.0. Maybe the README is outdated?
->=20
-> I then tried building in an Ubuntu 20.04 container to see if that makes
-> any difference. It fails in a different way while building icedtea7-
-> native:
->=20
-> | /usr/include/x86_64-linux-gnu/bits/stdio2.h:100:24: error: =E2=80=98%s=
-=
-=E2=80=99
-> directive argument is null [-Werror=3Dformat-overflow=3D]
+On 6/30/20 3:07 AM, Mikko Rapeli wrote:
+> Hi,
+> 
+> On Tue, Jun 30, 2020 at 09:34:39AM +0000, John Ernberg wrote:
+>> Hi,
+>>
+>> I have been trying to use INCOMPATIBLE_LICENSE to filter out undesirable
+>> licenses for us from our images. I started simple and picked the
+>> examples from the manual (AGPL-3.0, GPL-3.0 and LGPL-3.0).
+>>
+>> Currently we're based on Warrior, but I also did a short test on master
+>> (results later in the message)
+>>
+>> Our images use systemd as init system. We use busybox ash as shell on
+>> these images for now.
+>>
+>> When setting the INCOMPATIBLE_LICENSE according to the manual example,
+>> systemd cannot be built anymore because bash is being skipped due to
+>> license.
+>>
+>> Turns out that because systemd-bash-completion and
+>> systemd-kernel-install both rdepend on bash, we can't build systemd at
+>> all, because bash is not buildable. Even if we're not installing those
+>> features of systemd.
+>>
+>> A dive into TaskData suggests that all the rdepends of all packages
+>> provided by a recipe are flattened into depends of the recipe when
+>> testing buildability.
+>>
+>> A quick test on master from about 2 weeks ago show the same behavior.
+>>
+>> For the test on master all I did was change the DISTRO_FEATURES of
+>> core-image-minimal to include systemd.
+>>
+>>
+>> Am I using ICOMPATIBLE_LICENSE properly so far?
+>> If so, is being unable to fulfill an rdepend for an unused package meant
+>> to fail the whole build, and how can I avoid it short of including
+>> meta-gplv2 or writing lots of .bbappends to remove the dependencies?
+>> Otherwise, where did I go wrong, and what should I be trying instead?
+> 
+> You need to add exceptions to build a lot GPLv3 components but not let them
+> be part of product images.
+> 
+> In distro config:
+> 
+> INCOMPATIBLE_LICENSE += "GPLv3 GPLv3+ LGPLv3 LGPLv3+"
+> ...
+> WHITELIST_GPL-3.0 += "bash"
+> PACKAGE_EXCLUDE += "bash-ptest bash-dbg bash-staticdev bash-dev bash-doc bash-locale bashbug bash"
+> ...
+> 
+> The PACKAGE_EXCLUDE must be complete list of binary packages produced by the recipe.
+> 
 
-I guess compiler on your host is too new for openjdk-8, perhaps you=20
-might get through by disabling Werror option to host cflags. You might=20
-have to dig the appropriate place to stick the option in.
 
->=20
-> I'm doing clean builds with both my 18.04 and 20.04 setups starting with
-> separate, empty sstate-cache directories. Both builds are using poky
-> defaults:
->=20
-> Build Configuration:
-> BB_VERSION           =3D "1.46.0"
-> BUILD_SYS            =3D "x86_64-linux"
-> NATIVELSBSTRING      =3D "universal"
-> TARGET_SYS           =3D "x86_64-poky-linux"
-> MACHINE              =3D "qemux86-64"
-> DISTRO               =3D "poky"
-> DISTRO_VERSION       =3D "3.1.1"
-> TUNE_FEATURES        =3D "m64 core2"
-> TARGET_FPU           =3D ""
-> meta
-> meta-poky
-> meta-yocto-bsp       =3D "dunfell:93ef4736915090ac9a2402916df8924ac44394=
-90"
-> meta-oe              =3D "dunfell:8a72d29e0876830ffd96b85d7d0308302eb07a=
-5d"
-> meta-java            =3D "dunfell:cf9604a4789801d9dfb0cb8ca134ff04b42ae1=
-61"
->=20
-> Is there some trick I'm missing to get clean builds out of the box? I ca=
-n
-> fix the 20.04 build by adding -Wno-error for that specific warning (and
-> can send a patch if desired), but has anyone else had these issues? Any
-> thoughts would be appreciated.
->=20
-> Thanks,
-> Robert
->=20
->=20
->=20
->=20
+I think having two different distro configs is a reliable approach here, 
+we keep adding more refined packaging which means you have to be on your 
+toes all the time in the allowed list above.
+
+> I end up enabling a large set of GPLv3 tools for use as development tooling at build
+> time or in SDK:
+> 
+> $ grep WHITELIST_ distro.conf
+> WHITELIST_GPL-3.0 += "autoconf"
+> WHITELIST_GPL-3.0 += "bash"
+> WHITELIST_GPL-3.0 += "bc"
+> WHITELIST_GPL-3.0 += "binutils"
+> WHITELIST_GPL-3.0 += "bison"
+> WHITELIST_GPL-3.0 += "ccache"
+> WHITELIST_GPL-3.0 += "coreutils"
+> WHITELIST_GPL-3.0 += "diffutils"
+> WHITELIST_GPL-3.0 += "elfutils"
+> WHITELIST_GPL-3.0 += "findutils"
+> WHITELIST_GPL-3.0 += "gawk"
+> WHITELIST_GPL-3.0 += "gdb"
+> WHITELIST_GPL-3.0 += "gdbm"
+> WHITELIST_GPL-3.0 += "gettext"
+> WHITELIST_GPL-3.0 += "gnutls"
+> WHITELIST_GPL-3.0 += "grep"
+> WHITELIST_GPL-3.0 += "libevent"
+> WHITELIST_GPL-3.0 += "libpipeline"
+> WHITELIST_GPL-3.0 += "libunistring"
+> WHITELIST_GPL-3.0 += "m4"
+> WHITELIST_GPL-3.0 += "make"
+> WHITELIST_GPL-3.0 += "readline"
+> WHITELIST_GPL-3.0 += "rsync"
+> WHITELIST_GPL-3.0 += "sed"
+> WHITELIST_GPL-3.0 += "which"
+> 
+> If one does not do this, alternative is to use a bunch of old and deprecated tool
+> versions from meta-gplv2.
+> 
+> Hope this helps,
+> 
+> -Mikko
+> 
+> 
+> 
+> 
