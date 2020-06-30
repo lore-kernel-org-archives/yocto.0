@@ -1,80 +1,139 @@
-Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
- by mx.groups.io with SMTP id smtpd.web12.11476.1593508508328273451
- for <yocto@lists.yoctoproject.org>;
- Tue, 30 Jun 2020 02:15:08 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Bw96FndC;
- spf=pass (domain: gmail.com, ip: 209.85.208.65, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ed1-f65.google.com with SMTP id e22so15457652edq.8
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Jun 2020 02:15:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wF/7F9/orNFdcK1bajlc/QLx/oUzSU9dmBxSk4H27mg=;
-        b=Bw96FndCgshzDUFYlAJ0pFKFiVeobL6RaHQDit/6r7stZgAeCsXyCtMbO7JVpwHj9x
-         db4JKsiS4q+siHx5h0anoOVehiXFZZx9vlLiwfQEjQvw6+zr4cz5Hz00JAkFA1eSd0dj
-         m46r+IiyyAL2YcKzh/0shJqlKmAP99vytKIOlgiEXDXVvWOOhPrNnJwUBp4A2/S3frT0
-         UaY5Ms50CRpHUtEQ9mxbuW27gYaCVHcjSTGxuecFShBoL8Fz5bwafS3XtVlYFd2WMlQq
-         DMLV8REjlOAsRZpEKxENEcO0yQChD+2L9oEEnHjLVnKBdX4H4JQKkE7g+UcLpWtoKdQJ
-         CdNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wF/7F9/orNFdcK1bajlc/QLx/oUzSU9dmBxSk4H27mg=;
-        b=kEbgGpoKmfsKQ1dbBXXfT81soXtnYAGZPm+fCd44Mz4Xl32YFXxxT2TVHT+0plVbYQ
-         FoHO/TnEz4RzVaa3vlzwnA1N060ykC26342Wbu7V5EYHJHkslaYzQ5Bo9+fZHI/7DK5O
-         yJFzAm2w3BgVd8vSZXuU/9eetFnZlIS1T9Aul+KMbVEKoEgcueUTKujcrSzbg/xRKCeL
-         yzCQfJ3SFrUDHQ97tiorbq9PAk+Fjjz5wKq/GQ9kWkEbfhuH7oJVIH4wMUU33L978juN
-         vaCaf+tc87RSIqoFVQUBI/Mxs0GsLMrOPGJPuH4aAKAPjzErLsjzjwAENojtgB+YERbR
-         UyOg==
-X-Gm-Message-State: AOAM533PQisO7IjtqSsF3nw3KJPXuqmOg5L/iH/pF5Wgje6zuIj1CWSl
-	LrdpLJBacMoJ92lHWxb8M5MeYsBglvE=
-X-Google-Smtp-Source: ABdhPJzkxmIh1OMKVROnywIQdtWhPtUe2UQ4cdv8nIuMyZTGmtZWB8O1m+Ky5JmvoPJO5J2LcpHOxw==
-X-Received: by 2002:aa7:c31a:: with SMTP id l26mr21139620edq.61.1593508506399;
-        Tue, 30 Jun 2020 02:15:06 -0700 (PDT)
-Return-Path: <alex.kanavin@gmail.com>
-Received: from linux-f9zs.site ([2a02:2450:1011:56f:b652:c378:b428:fdf])
-        by smtp.gmail.com with ESMTPSA id p4sm1510598eji.123.2020.06.30.02.15.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jun 2020 02:15:05 -0700 (PDT)
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Subject: Re: Error building openjdk-8 on zeus
 To: yocto@lists.yoctoproject.org
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-Subject: [PATCH yocto-autobuilder-helper] auh-config: send AUH update emails to oe-core list as well
-Date: Tue, 30 Jun 2020 11:14:13 +0200
-Message-Id: <20200630091413.9724-1-alex.kanavin@gmail.com>
-X-Mailer: git-send-email 2.27.0
+From: srijan.nandi@gmail.com
+X-Originating-Location: Ahmedabad, Gujarat, IN (14.102.160.178)
+X-Originating-Platform: Mac Safari 13.1
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Date: Tue, 30 Jun 2020 01:56:39 -0700
+References: <BcDx.1593501203506248239.S9xK@lists.yoctoproject.org>
+In-Reply-To: <BcDx.1593501203506248239.S9xK@lists.yoctoproject.org>
+Message-ID: <15141.1593507399153336184@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="S9PJYwk2zXdOrkCFgHuJ"
 
-Sadly, many maintainers do not act on AUH mails in a timely manner
-(or do not act at all). Sending these emails to oe-core list as well
-will allow other people to pick them up, and ease up the path
-to doing recipe version maintenance.
+--S9PJYwk2zXdOrkCFgHuJ
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Also, recently the amount of outdate recipes has been greatly reduced,
-so there should not be too many of those emails each month.
+So here is what I have done so far:.
 
-Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
----
- scripts/auh-config/upgrade-helper.conf | 2 ++
- 1 file changed, 2 insertions(+)
+# Added meta-java layer in bblayers.conf and then did a bitbake -c cleanal=
+l glibc followed by bitbake glibc. Everything builds successfully.
 
-diff --git a/scripts/auh-config/upgrade-helper.conf b/scripts/auh-config/upgrade-helper.conf
-index fbf5d8a..b012600 100644
---- a/scripts/auh-config/upgrade-helper.conf
-+++ b/scripts/auh-config/upgrade-helper.conf
-@@ -14,6 +14,8 @@ smtp=smtp1.yoctoproject.org:25
- from=auh@auh.yoctoproject.org
- # who should get the status mail with statistics, at the end
- status_recipients=openembedded-core@lists.openembedded.org
-+# who should be CCd with upgrade emails
-+cc_recipients=openembedded-core@lists.openembedded.org
- # clean sstate directory before upgrading
- #clean_sstate=yes
- # clean tmp directory before upgrading
--- 
-2.27.0
+# As soon as I try to build=C2=A0bitbake core-image-full-cmdline, I get th=
+e following errors:
 
+ERROR: linux-yocto-5.2.17+gitAUTOINC+bb2776d6be_25b14cdf96-r0 do_package: =
+Error executing a python function in exec_python_func() autogenerated:
+
+The stack trace of python calls that resulted in this exception/failure wa=
+s:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+0001:
+*** 0002:split_kernel_module_packages(d)
+0003:
+File: '/opt/graylog-poky/meta/classes/kernel-module-split.bbclass', lineno=
+: 171, function: split_kernel_module_packages
+0167: =C2=A0 =C2=A0# avoid warnings. removedirs only raises an OSError if =
+an empty
+0168: =C2=A0 =C2=A0# directory cannot be removed.
+0169: =C2=A0 =C2=A0dvar =3D d.getVar('PKGD')
+0170: =C2=A0 =C2=A0for dir in ["%s/etc/modprobe.d" % (dvar), "%s/etc/modul=
+es-load.d" % (dvar), "%s/etc" % (dvar)]:
+*** 0171: =C2=A0 =C2=A0 =C2=A0 =C2=A0if len(os.listdir(dir)) =3D=3D 0:
+0172: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0os.rmdir(dir)
+0173:}
+0174:
+0175:do_package[vardeps] +=3D '${@" ".join(map(lambda s: "module_conf_" + =
+s, (d.getVar("KERNEL_MODULE_PROBECONF") or "").split()))}'
+Exception: FileNotFoundError: [Errno 2] No such file or directory: '/opt/g=
+raylog-poky/build/tmp/work/genericx86_64-poky-linux/linux-yocto/5.2.17+gitA=
+UTOINC+bb2776d6be_25b14cdf96-r0/package/etc/modprobe.d'
+
+ERROR: Logfile of failure stored in: /opt/graylog-poky/build/tmp/work/gene=
+ricx86_64-poky-linux/linux-yocto/5.2.17+gitAUTOINC+bb2776d6be_25b14cdf96-r0=
+/temp/log.do_package.29306
+ERROR: Task (/opt/graylog-poky/meta/recipes-kernel/linux/linux-yocto_5.2.b=
+b:do_package) failed with exit code '1'
+ERROR: volatile-binds-1.0-r0 do_package: SYSTEMD_SERVICE_volatile-binds va=
+lue var-volatile-lib.service does not exist
+ERROR: Logfile of failure stored in: /opt/graylog-poky/build/tmp/work/all-=
+poky-linux/volatile-binds/1.0-r0/temp/log.do_package.29309
+ERROR: Task (/opt/graylog-poky/meta/recipes-core/volatile-binds/volatile-b=
+inds.bb:do_package) failed with exit code '1'
+ERROR: run-postinsts-1.0-r10 do_package: SYSTEMD_SERVICE_run-postinsts val=
+ue run-postinsts.service does not exist
+ERROR: Logfile of failure stored in: /opt/graylog-poky/build/tmp/work/all-=
+poky-linux/run-postinsts/1.0-r10/temp/log.do_package.29316
+ERROR: Task (/opt/graylog-poky/meta/recipes-devtools/run-postinsts/run-pos=
+tinsts_1.0.bb:do_package) failed with exit code '1'
+
+# If I remove the meta-java layer from bblayers.conf, everything builds su=
+ccessfully.
+
+-=3DSrijan
+
+--S9PJYwk2zXdOrkCFgHuJ
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+So here is what I have done so far:.<br /><br /># Added meta-java layer in =
+bblayers.conf and then did a bitbake -c cleanall glibc followed by bitbake =
+glibc. Everything builds successfully.<br /><br /># As soon as I try to bui=
+ld&nbsp;bitbake core-image-full-cmdline, I get the following errors:<br /><=
+br />
+<div>ERROR: linux-yocto-5.2.17+gitAUTOINC+bb2776d6be_25b14cdf96-r0 do_pack=
+age: Error executing a python function in exec_python_func() autogenerated:=
+</div>
+<div>&nbsp;</div>
+<div>The stack trace of python calls that resulted in this exception/failu=
+re was:</div>
+<div>File: 'exec_python_func() autogenerated', lineno: 2, function: &lt;mo=
+dule&gt;</div>
+<div>&nbsp; &nbsp; &nbsp;0001:</div>
+<div>&nbsp;*** 0002:split_kernel_module_packages(d)</div>
+<div>&nbsp; &nbsp; &nbsp;0003:</div>
+<div>File: '/opt/graylog-poky/meta/classes/kernel-module-split.bbclass', l=
+ineno: 171, function: split_kernel_module_packages</div>
+<div>&nbsp; &nbsp; &nbsp;0167: &nbsp; &nbsp;# avoid warnings. removedirs o=
+nly raises an OSError if an empty</div>
+<div>&nbsp; &nbsp; &nbsp;0168: &nbsp; &nbsp;# directory cannot be removed.=
+</div>
+<div>&nbsp; &nbsp; &nbsp;0169: &nbsp; &nbsp;dvar =3D d.getVar('PKGD')</div=
+>
+<div>&nbsp; &nbsp; &nbsp;0170: &nbsp; &nbsp;for dir in ["%s/etc/modprobe.d=
+" % (dvar), "%s/etc/modules-load.d" % (dvar), "%s/etc" % (dvar)]:</div>
+<div>&nbsp;*** 0171: &nbsp; &nbsp; &nbsp; &nbsp;if len(os.listdir(dir)) =
+=3D=3D 0:</div>
+<div>&nbsp; &nbsp; &nbsp;0172: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;os=
+.rmdir(dir)</div>
+<div>&nbsp; &nbsp; &nbsp;0173:}</div>
+<div>&nbsp; &nbsp; &nbsp;0174:</div>
+<div>&nbsp; &nbsp; &nbsp;0175:do_package[vardeps] +=3D '${@" ".join(map(la=
+mbda s: "module_conf_" + s, (d.getVar("KERNEL_MODULE_PROBECONF") or "").spl=
+it()))}'</div>
+<div>Exception: FileNotFoundError: [Errno 2] No such file or directory: '/=
+opt/graylog-poky/build/tmp/work/genericx86_64-poky-linux/linux-yocto/5.2.17=
++gitAUTOINC+bb2776d6be_25b14cdf96-r0/package/etc/modprobe.d'</div>
+<div>&nbsp;</div>
+<div>ERROR: Logfile of failure stored in: /opt/graylog-poky/build/tmp/work=
+/genericx86_64-poky-linux/linux-yocto/5.2.17+gitAUTOINC+bb2776d6be_25b14cdf=
+96-r0/temp/log.do_package.29306</div>
+<div>ERROR: Task (/opt/graylog-poky/meta/recipes-kernel/linux/linux-yocto_=
+5.2.bb:do_package) failed with exit code '1'</div>
+<div>ERROR: volatile-binds-1.0-r0 do_package: SYSTEMD_SERVICE_volatile-bin=
+ds value var-volatile-lib.service does not exist</div>
+<div>ERROR: Logfile of failure stored in: /opt/graylog-poky/build/tmp/work=
+/all-poky-linux/volatile-binds/1.0-r0/temp/log.do_package.29309</div>
+<div>ERROR: Task (/opt/graylog-poky/meta/recipes-core/volatile-binds/volat=
+ile-binds.bb:do_package) failed with exit code '1'</div>
+<div>ERROR: run-postinsts-1.0-r10 do_package: SYSTEMD_SERVICE_run-postinst=
+s value run-postinsts.service does not exist</div>
+<div>ERROR: Logfile of failure stored in: /opt/graylog-poky/build/tmp/work=
+/all-poky-linux/run-postinsts/1.0-r10/temp/log.do_package.29316</div>
+<div>ERROR: Task (/opt/graylog-poky/meta/recipes-devtools/run-postinsts/ru=
+n-postinsts_1.0.bb:do_package) failed with exit code '1'<br /><br /># If I =
+remove the meta-java layer from bblayers.conf, everything builds successful=
+ly.<br /><br />-=3DSrijan</div>
+
+--S9PJYwk2zXdOrkCFgHuJ--
