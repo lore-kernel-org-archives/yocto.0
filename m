@@ -1,160 +1,145 @@
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
- by mx.groups.io with SMTP id smtpd.web12.8140.1593553956955247134
- for <yocto@lists.yoctoproject.org>;
- Tue, 30 Jun 2020 14:52:37 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Rh5HWUus;
- spf=pass (domain: gmail.com, ip: 209.85.210.182, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f182.google.com with SMTP id 67so5937179pfg.5
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Jun 2020 14:52:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=1kORqM4sgzgHuNmTQpzNbMOzPWeubuH71hNzE/s3lJ8=;
-        b=Rh5HWUusZ6OgfnfAn9NmJU0TPgVLsNNriszX5anraHqfLpiu5PgFeM3xcZPT+HBbZO
-         Vr4JIVmDXBkyTYfsQDWI/DcPSlwIEVfnz1eiMb0E3pXWNHX2/GoRjJIm9Pm9SJ+IAAi+
-         Hx37l46I4RcvgFqYydblvGajtMcdCCNu4bqXYOHdljpNOKw0WuJkzqxfYuNhBFmWEdNs
-         BvC61ZSLfjcNfb7SSH/8q2R/UbjbF6YwIEDJqZxqyYqyyV1HYdTwWVi+Gw1BKihA2c37
-         F1USIAb2L39s+qXSgKfUO7BicqojmipXGuS0Nao8xmPCmYMlSCXIW+d8Subg0Nu3thCT
-         1wuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1kORqM4sgzgHuNmTQpzNbMOzPWeubuH71hNzE/s3lJ8=;
-        b=ZDXVDro2KgStMQReH469QMcxiBI/MTaVcUH1WEaB6cLnmB31VUS3owWm8vUV8R/Qj8
-         SsTgP+bkAi4z/J69P5ThWj19jS4QaLtNCAK0Ww6u1bz2vecRqAuikbyG/jFv3aF30jJm
-         rLVpa4k+fzdKQubhbbjPmhK7ITkCRooZj3anGmes2krpn4REP9kZaFUI52tMLQEws71p
-         6Q/H++kRuzJNdELK0ghqZN8bOszMuvnu0+Ab1txsgujBPnNAERNH6YGthDLZyiIgkNT3
-         mYL+UE/vWiTYUscwWdl+DwvdzJuG6kjM2ltUwz3Fg3+z6vP6QR75ISbnWk+BJSZjUY7i
-         TABw==
-X-Gm-Message-State: AOAM530Hdjwv0fC+nNJ8jb4hPNTp0+LqPrjSzN8cPkGStFPkTjcjnVy0
-	vNFQQSvkZzOFzNvjEcvUmiBS453LJCs=
-X-Google-Smtp-Source: ABdhPJw2kbrCFdu+o7vUU0dAMl0xChHmmdFjpRPZkx7MurdtBRLO5dWopTB0Qghjy4ZUiwemfnUdRA==
-X-Received: by 2002:a62:8f4a:: with SMTP id n71mr21032958pfd.31.1593553955985;
-        Tue, 30 Jun 2020 14:52:35 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:2c51:53a1:364:7e03? ([2601:646:9200:4e0:2c51:53a1:364:7e03])
-        by smtp.gmail.com with ESMTPSA id h17sm3364783pgv.41.2020.06.30.14.52.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jun 2020 14:52:35 -0700 (PDT)
-Subject: Re: [yocto] INCOMPATIBLE_LICENSE - how to use it properly?
-To: Mikko Rapeli <mikko.rapeli@bmw.de>, john.ernberg@actia.se
-Cc: yocto@lists.yoctoproject.org
-References: <c57c1a5d-8b83-c9c8-7eba-20edf63e0de0@actia.se>
- <20200630100752.GW108868@korppu>
-From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <d943a362-2a5c-bb93-2eba-bbbc9bd6393c@gmail.com>
-Date: Tue, 30 Jun 2020 14:52:34 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.9.0
+Subject: Dunfell 3.1.1 gcc-sanitizers build failure
+To: yocto@lists.yoctoproject.org
+From: "MikeB" <mabnhdev@gmail.com>
+X-Originating-Location: Raleigh, North Carolina, US (107.13.78.59)
+X-Originating-Platform: Windows Chrome 83
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <20200630100752.GW108868@korppu>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Date: Tue, 30 Jun 2020 14:56:46 -0700
+Message-ID: <dlSN.1593554206630147499.1cxR@lists.yoctoproject.org>
+X-Groupsio-MsgNum: 49793
+Content-Type: multipart/mixed; boundary="SASxXHKtC1Q55DeNavzU"
 
+--SASxXHKtC1Q55DeNavzU
+Content-Type: multipart/alternative; boundary="OT8HrIpoIWd81xRTaxkL"
 
+--OT8HrIpoIWd81xRTaxkL
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 6/30/20 3:07 AM, Mikko Rapeli wrote:
-> Hi,
-> 
-> On Tue, Jun 30, 2020 at 09:34:39AM +0000, John Ernberg wrote:
->> Hi,
->>
->> I have been trying to use INCOMPATIBLE_LICENSE to filter out undesirable
->> licenses for us from our images. I started simple and picked the
->> examples from the manual (AGPL-3.0, GPL-3.0 and LGPL-3.0).
->>
->> Currently we're based on Warrior, but I also did a short test on master
->> (results later in the message)
->>
->> Our images use systemd as init system. We use busybox ash as shell on
->> these images for now.
->>
->> When setting the INCOMPATIBLE_LICENSE according to the manual example,
->> systemd cannot be built anymore because bash is being skipped due to
->> license.
->>
->> Turns out that because systemd-bash-completion and
->> systemd-kernel-install both rdepend on bash, we can't build systemd at
->> all, because bash is not buildable. Even if we're not installing those
->> features of systemd.
->>
->> A dive into TaskData suggests that all the rdepends of all packages
->> provided by a recipe are flattened into depends of the recipe when
->> testing buildability.
->>
->> A quick test on master from about 2 weeks ago show the same behavior.
->>
->> For the test on master all I did was change the DISTRO_FEATURES of
->> core-image-minimal to include systemd.
->>
->>
->> Am I using ICOMPATIBLE_LICENSE properly so far?
->> If so, is being unable to fulfill an rdepend for an unused package meant
->> to fail the whole build, and how can I avoid it short of including
->> meta-gplv2 or writing lots of .bbappends to remove the dependencies?
->> Otherwise, where did I go wrong, and what should I be trying instead?
-> 
-> You need to add exceptions to build a lot GPLv3 components but not let them
-> be part of product images.
-> 
-> In distro config:
-> 
-> INCOMPATIBLE_LICENSE += "GPLv3 GPLv3+ LGPLv3 LGPLv3+"
-> ...
-> WHITELIST_GPL-3.0 += "bash"
-> PACKAGE_EXCLUDE += "bash-ptest bash-dbg bash-staticdev bash-dev bash-doc bash-locale bashbug bash"
-> ...
-> 
-> The PACKAGE_EXCLUDE must be complete list of binary packages produced by the recipe.
-> 
+I recently tried upgrading from 3.1.0 to 3.1.1.=C2=A0 I'm not sure if this =
+is a bug or just my problem.=C2=A0 I maintain five different architectures =
+and all five have the same failure in gcc-sanitizers as I'm trying to build=
+ the SDK.
 
+| cat: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work-shared/=
+gcc-9.3.0-r0/gcc-9.3.0/gcc/defaults.h: No such file or directory
+| WARNING: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work/aar=
+ch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_configure.31505:1 exit =
+1 from 'grep -v "\#endif.*GCC_DEFAULTS_H" > /data/mabnhdev/exos-yocto-dunfe=
+ll/build/exos-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/gcc=
+-9.3.0/build.aarch64-poky-linux.aarch64-poky-linux/gcc/defaults.h.new'
+| ERROR: Execution of '/data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/=
+tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_configure.3=
+1505' failed with exit code 1:
+| cat: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work-shared/=
+gcc-9.3.0-r0/gcc-9.3.0/gcc/defaults.h: No such file or directory
+| WARNING: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work/aar=
+ch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_configure.31505:1 exit =
+1 from 'grep -v "\#endif.*GCC_DEFAULTS_H" > /data/mabnhdev/exos-yocto-dunfe=
+ll/build/exos-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/gcc=
+-9.3.0/build.aarch64-poky-linux.aarch64-poky-linux/gcc/defaults.h.new'
 
-I think having two different distro configs is a reliable approach here, 
-we keep adding more refined packaging which means you have to be on your 
-toes all the time in the allowed list above.
+At first, I thought this may be a dependency issue because I inherit "rm_w=
+ork" to tidy up; but I tried a build without it - i.e. keeping all work aro=
+und - and got the same failure.
 
-> I end up enabling a large set of GPLv3 tools for use as development tooling at build
-> time or in SDK:
-> 
-> $ grep WHITELIST_ distro.conf
-> WHITELIST_GPL-3.0 += "autoconf"
-> WHITELIST_GPL-3.0 += "bash"
-> WHITELIST_GPL-3.0 += "bc"
-> WHITELIST_GPL-3.0 += "binutils"
-> WHITELIST_GPL-3.0 += "bison"
-> WHITELIST_GPL-3.0 += "ccache"
-> WHITELIST_GPL-3.0 += "coreutils"
-> WHITELIST_GPL-3.0 += "diffutils"
-> WHITELIST_GPL-3.0 += "elfutils"
-> WHITELIST_GPL-3.0 += "findutils"
-> WHITELIST_GPL-3.0 += "gawk"
-> WHITELIST_GPL-3.0 += "gdb"
-> WHITELIST_GPL-3.0 += "gdbm"
-> WHITELIST_GPL-3.0 += "gettext"
-> WHITELIST_GPL-3.0 += "gnutls"
-> WHITELIST_GPL-3.0 += "grep"
-> WHITELIST_GPL-3.0 += "libevent"
-> WHITELIST_GPL-3.0 += "libpipeline"
-> WHITELIST_GPL-3.0 += "libunistring"
-> WHITELIST_GPL-3.0 += "m4"
-> WHITELIST_GPL-3.0 += "make"
-> WHITELIST_GPL-3.0 += "readline"
-> WHITELIST_GPL-3.0 += "rsync"
-> WHITELIST_GPL-3.0 += "sed"
-> WHITELIST_GPL-3.0 += "which"
-> 
-> If one does not do this, alternative is to use a bunch of old and deprecated tool
-> versions from meta-gplv2.
-> 
-> Hope this helps,
-> 
-> -Mikko
-> 
-> 
-> 
-> 
+I've attached the full error log.=C2=A0 Any troubleshooting advice would b=
+e appreciated.
+
+--OT8HrIpoIWd81xRTaxkL
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I recently tried upgrading from 3.1.0 to 3.1.1.&nbsp; I'm not sure if this =
+is a bug or just my problem.&nbsp; I maintain five different architectures =
+and all five have the same failure in gcc-sanitizers as I'm trying to build=
+ the SDK.<br /><br />
+<div>| cat: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work-sh=
+ared/gcc-9.3.0-r0/gcc-9.3.0/gcc/defaults.h: No such file or directory</div>
+<div>| WARNING: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/wor=
+k/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_configure.31505:1 =
+exit 1 from 'grep -v "\#endif.*GCC_DEFAULTS_H" &gt; /data/mabnhdev/exos-yoc=
+to-dunfell/build/exos-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.=
+0-r0/gcc-9.3.0/build.aarch64-poky-linux.aarch64-poky-linux/gcc/defaults.h.n=
+ew'</div>
+<div>| ERROR: Execution of '/data/mabnhdev/exos-yocto-dunfell/build/exos-a=
+rm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_config=
+ure.31505' failed with exit code 1:</div>
+<div>| cat: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work-sh=
+ared/gcc-9.3.0-r0/gcc-9.3.0/gcc/defaults.h: No such file or directory</div>
+<div>| WARNING: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/wor=
+k/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_configure.31505:1 =
+exit 1 from 'grep -v "\#endif.*GCC_DEFAULTS_H" &gt; /data/mabnhdev/exos-yoc=
+to-dunfell/build/exos-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.=
+0-r0/gcc-9.3.0/build.aarch64-poky-linux.aarch64-poky-linux/gcc/defaults.h.n=
+ew'</div>
+<div>&nbsp;</div>
+At first, I thought this may be a dependency issue because I inherit "rm_w=
+ork" to tidy up; but I tried a build without it - i.e. keeping all work aro=
+und - and got the same failure.<br /><br />I've attached the full error log=
+.&nbsp; Any troubleshooting advice would be appreciated.
+
+--OT8HrIpoIWd81xRTaxkL--
+
+--SASxXHKtC1Q55DeNavzU
+Content-Type: application/octet-stream; name="log.do_configure.31505"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="log.do_configure.31505"
+
+REVCVUc6IEV4ZWN1dGluZyBzaGVsbCBmdW5jdGlvbiBhdXRvdG9vbHNfcHJlY29uZmlndXJlCkRF
+QlVHOiBTaGVsbCBmdW5jdGlvbiBhdXRvdG9vbHNfcHJlY29uZmlndXJlIGZpbmlzaGVkCkRFQlVH
+OiBFeGVjdXRpbmcgcHl0aG9uIGZ1bmN0aW9uIGF1dG90b29sc19hY2xvY2FscwpERUJVRzogU0lU
+RSBmaWxlcyBbJ2VuZGlhbi1saXR0bGUnLCAnYml0LTY0JywgJ2FybS1jb21tb24nLCAnYXJtLTY0
+JywgJ2NvbW1vbi1saW51eCcsICdjb21tb24tZ2xpYmMnLCAnYWFyY2g2NC1saW51eCcsICdjb21t
+b24nXQpERUJVRzogUHl0aG9uIGZ1bmN0aW9uIGF1dG90b29sc19hY2xvY2FscyBmaW5pc2hlZApE
+RUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBnY2NfbXVsdGlsaWJfc2V0dXAKREVCVUc6
+IFB5dGhvbiBmdW5jdGlvbiBnY2NfbXVsdGlsaWJfc2V0dXAgZmluaXNoZWQKREVCVUc6IEV4ZWN1
+dGluZyBweXRob24gZnVuY3Rpb24gZXh0cmFjdF9zdGFzaGVkX2J1aWxkZGlyCkRFQlVHOiBzZWQg
+LWUgJ3M6XlteL10qLzovZGF0YS9tYWJuaGRldi9leG9zLXlvY3RvLWR1bmZlbGwvYnVpbGQvZXhv
+cy1hcm02NC90bXAvd29yay9hYXJjaDY0LXBva3ktbGludXgvZ2NjLXNhbml0aXplcnMvOS4zLjAt
+cjAvZ2NjLTkuMy4wL2J1aWxkLmFhcmNoNjQtcG9reS1saW51eC5hYXJjaDY0LXBva3ktbGludXgv
+OmcnIC9kYXRhL21hYm5oZGV2L2V4b3MteW9jdG8tZHVuZmVsbC9idWlsZC9leG9zLWFybTY0L3Rt
+cC9zeXNyb290cy1jb21wb25lbnRzL3g4Nl82NC9nY2Mtc3Rhc2hlZC1idWlsZGRpci1hYXJjaDY0
+LXBva3ktbGludXgvZml4bWVwYXRoIHwgeGFyZ3Mgc2VkIC1pIC1lICdzOkZJWE1FU1RBR0lOR0RJ
+UlRBUkdFVDovZGF0YS9tYWJuaGRldi9leG9zLXlvY3RvLWR1bmZlbGwvYnVpbGQvZXhvcy1hcm02
+NC90bXAvd29yay9hYXJjaDY0LXBva3ktbGludXgvZ2NjLXNhbml0aXplcnMvOS4zLjAtcjAvcmVj
+aXBlLXN5c3Jvb3Q6ZzsgczpGSVhNRVNUQUdJTkdESVJIT1NUOi9kYXRhL21hYm5oZGV2L2V4b3Mt
+eW9jdG8tZHVuZmVsbC9idWlsZC9leG9zLWFybTY0L3RtcC93b3JrL2FhcmNoNjQtcG9reS1saW51
+eC9nY2Mtc2FuaXRpemVycy85LjMuMC1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmU6ZycgLWUgJ3M6
+RklYTUVfUFNFVURPX1NZU1JPT1Q6L2RhdGEvbWFibmhkZXYvZXhvcy15b2N0by1kdW5mZWxsL2J1
+aWxkL2V4b3MtYXJtNjQvdG1wL3N5c3Jvb3RzLWNvbXBvbmVudHMveDg2XzY0L3BzZXVkby1uYXRp
+dmU6ZycgLWUgJ3M6RklYTUVfSE9TVFRPT0xTX0RJUjovZGF0YS9tYWJuaGRldi9leG9zLXlvY3Rv
+LWR1bmZlbGwvYnVpbGQvZXhvcy1hcm02NC90bXAvaG9zdHRvb2xzOmcnIC1lICdzOkZJWE1FX1BL
+R0RBVEFfRElSOi9kYXRhL21hYm5oZGV2L2V4b3MteW9jdG8tZHVuZmVsbC9idWlsZC9leG9zLWFy
+bTY0L3RtcC9wa2dkYXRhL2V4b3MtYXJtNjQ6ZycgLWUgJ3M6RklYTUVfUFNFVURPX0xPQ0FMU1RB
+VEVESVI6L2RhdGEvbWFibmhkZXYvZXhvcy15b2N0by1kdW5mZWxsL2J1aWxkL2V4b3MtYXJtNjQv
+dG1wL3dvcmsvYWFyY2g2NC1wb2t5LWxpbnV4L2djYy1zYW5pdGl6ZXJzLzkuMy4wLXIwL3BzZXVk
+by86ZycgLWUgJ3M6RklYTUVfTE9HRklGTzovZGF0YS9tYWJuaGRldi9leG9zLXlvY3RvLWR1bmZl
+bGwvYnVpbGQvZXhvcy1hcm02NC90bXAvd29yay9hYXJjaDY0LXBva3ktbGludXgvZ2NjLXNhbml0
+aXplcnMvOS4zLjAtcjAvdGVtcC9maWZvLjMxNTA1OmcnCkRFQlVHOiBQeXRob24gZnVuY3Rpb24g
+ZXh0cmFjdF9zdGFzaGVkX2J1aWxkZGlyIGZpbmlzaGVkCkRFQlVHOiBFeGVjdXRpbmcgc2hlbGwg
+ZnVuY3Rpb24gZG9fY29uZmlndXJlCmNhdDogL2RhdGEvbWFibmhkZXYvZXhvcy15b2N0by1kdW5m
+ZWxsL2J1aWxkL2V4b3MtYXJtNjQvdG1wL3dvcmstc2hhcmVkL2djYy05LjMuMC1yMC9nY2MtOS4z
+LjAvZ2NjL2RlZmF1bHRzLmg6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkKV0FSTklORzogL2Rh
+dGEvbWFibmhkZXYvZXhvcy15b2N0by1kdW5mZWxsL2J1aWxkL2V4b3MtYXJtNjQvdG1wL3dvcmsv
+YWFyY2g2NC1wb2t5LWxpbnV4L2djYy1zYW5pdGl6ZXJzLzkuMy4wLXIwL3RlbXAvcnVuLmRvX2Nv
+bmZpZ3VyZS4zMTUwNToxIGV4aXQgMSBmcm9tICdncmVwIC12ICJcI2VuZGlmLipHQ0NfREVGQVVM
+VFNfSCIgPiAvZGF0YS9tYWJuaGRldi9leG9zLXlvY3RvLWR1bmZlbGwvYnVpbGQvZXhvcy1hcm02
+NC90bXAvd29yay9hYXJjaDY0LXBva3ktbGludXgvZ2NjLXNhbml0aXplcnMvOS4zLjAtcjAvZ2Nj
+LTkuMy4wL2J1aWxkLmFhcmNoNjQtcG9reS1saW51eC5hYXJjaDY0LXBva3ktbGludXgvZ2NjL2Rl
+ZmF1bHRzLmgubmV3JwpFUlJPUjogRXhlY3V0aW9uIG9mICcvZGF0YS9tYWJuaGRldi9leG9zLXlv
+Y3RvLWR1bmZlbGwvYnVpbGQvZXhvcy1hcm02NC90bXAvd29yay9hYXJjaDY0LXBva3ktbGludXgv
+Z2NjLXNhbml0aXplcnMvOS4zLjAtcjAvdGVtcC9ydW4uZG9fY29uZmlndXJlLjMxNTA1JyBmYWls
+ZWQgd2l0aCBleGl0IGNvZGUgMToKY2F0OiAvZGF0YS9tYWJuaGRldi9leG9zLXlvY3RvLWR1bmZl
+bGwvYnVpbGQvZXhvcy1hcm02NC90bXAvd29yay1zaGFyZWQvZ2NjLTkuMy4wLXIwL2djYy05LjMu
+MC9nY2MvZGVmYXVsdHMuaDogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQpXQVJOSU5HOiAvZGF0
+YS9tYWJuaGRldi9leG9zLXlvY3RvLWR1bmZlbGwvYnVpbGQvZXhvcy1hcm02NC90bXAvd29yay9h
+YXJjaDY0LXBva3ktbGludXgvZ2NjLXNhbml0aXplcnMvOS4zLjAtcjAvdGVtcC9ydW4uZG9fY29u
+ZmlndXJlLjMxNTA1OjEgZXhpdCAxIGZyb20gJ2dyZXAgLXYgIlwjZW5kaWYuKkdDQ19ERUZBVUxU
+U19IIiA+IC9kYXRhL21hYm5oZGV2L2V4b3MteW9jdG8tZHVuZmVsbC9idWlsZC9leG9zLWFybTY0
+L3RtcC93b3JrL2FhcmNoNjQtcG9reS1saW51eC9nY2Mtc2FuaXRpemVycy85LjMuMC1yMC9nY2Mt
+OS4zLjAvYnVpbGQuYWFyY2g2NC1wb2t5LWxpbnV4LmFhcmNoNjQtcG9reS1saW51eC9nY2MvZGVm
+YXVsdHMuaC5uZXcnCgo=
+
+--SASxXHKtC1Q55DeNavzU--
