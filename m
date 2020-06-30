@@ -1,141 +1,85 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.13523.1593517092754436302
+Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
+ by mx.groups.io with SMTP id smtpd.web12.13965.1593519632348881281
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Jun 2020 04:38:13 -0700
+ Tue, 30 Jun 2020 05:20:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ssfivy-com.20150623.gappssmtp.com header.s=20150623 header.b=iBHuNSKN;
- spf=softfail (domain: irving-st.id.au, ip: 140.211.169.56, mailfrom: irving@irving-st.id.au)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 516B2E01DBD; Tue, 30 Jun 2020 04:38:12 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.221.47 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED615E01D75
-	for <yocto@yoctoproject.org>; Tue, 30 Jun 2020 04:38:10 -0700 (PDT)
-Received: by mail-wr1-f47.google.com with SMTP id r12so19716480wrj.13
-        for <yocto@yoctoproject.org>; Tue, 30 Jun 2020 04:38:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ssfivy-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=YACO16A8+MrPStnUFBiAwkw5Oo/RQrN7xRLzGrCth08=;
-        b=iBHuNSKN+n7ImNGu/SpuAdxml2IjxmR0zM7UKIk8wA4CusnIYSprJjfey12zqWA4LR
-         pbt0wewH9Rq2hYOOE02giQjTW5iIJdLC3W4NgRLTdlYILjI4FUpO64WU2awxrU0Ezhl5
-         5wCcPdyD+jAZxkU8zXLCry6IceDlwg/PrbplZ2BTetciwLq1LKD4VIPDJflOqpH7sEsq
-         4JziMmzqIMeEsGpxRsEPFVwrjKTEzxZ+O8f7CwgNz+uV4Bs5bL8tL+3od25Uy9rG16kV
-         rgyNVfCpuq4dhfxNy1GLJo+3WaOYp8M93jY+TgL13lht4q1U1zUXlLkLWY/gE39RoLE6
-         SlZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=YACO16A8+MrPStnUFBiAwkw5Oo/RQrN7xRLzGrCth08=;
-        b=LYed3DiZ+/HxP/86CX5wwkBAEtMR+QW/DlIdajwAvDmXsKfbVpn/FVtouOqmIsvpVG
-         ANYtSQ7cvn2gt/zPtQCSyD70jZ61oi8y9eVTyV2S3mU7SVK3va02zJsnztESexpD3YMb
-         FN4kUmYxKmiweJc0tk0K+edW9DbDlmX83PtUpSh7g3uQljWCyr0aozVYptUjTHqj0EwQ
-         93cxcVRx26OeA0dyvcI/HAwrHBYWk+Z7iJU6KH9mp99XMD9ogOwqYHdk9l7Y96ibgxpV
-         pfSmEK9gl995Mm0tV7RHp4rHMAQKW+Yd5MP3Y1AuHwOLXXtIpyYWUHfbMRYft83U+H+J
-         zf/Q==
-X-Gm-Message-State: AOAM532khq5LrDVvo/OlDPyBhn3DYF5us66UWNCoGbnxa+pVGsWvnPAi
-	G++pl7RoZLbnFZtEZbEmhxM+B65w/V5jUOwrMH3skQ==
-X-Google-Smtp-Source: ABdhPJwUlRK3fuNOk5sYes/HEIQ4U3kZDBM14GnYoNvMw18uSZjyPso0NSj81MzpAZn48zOzeRAAlhatOMb3lXaVfcs=
-X-Received: by 2002:a5d:6288:: with SMTP id k8mr20921077wru.373.1593517089116;
- Tue, 30 Jun 2020 04:38:09 -0700 (PDT)
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp.bon.at (Postfix) with ESMTPSA id 49x3NF31hkz5tlP;
+	Tue, 30 Jun 2020 14:20:29 +0200 (CEST)
+Date: Tue, 30 Jun 2020 14:20:27 +0200
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: tobies@synopsys.com
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] Need help understanding #devtool flow to library
+Message-ID: <20200630122027.dasbwk5rgokww4td@qschulz>
+References: <C5wX.1593516361344535133.allJ@lists.yoctoproject.org>
 MIME-Version: 1.0
-References: <CAN--ZaUr1C_rKY05_yWuD=A-S7deSvd5gFSYc2ZE-V7vDTkZxw@mail.gmail.com>
- <4bafc350-fa80-c4e9-a13f-579484cc389e@gmail.com>
-In-Reply-To: <4bafc350-fa80-c4e9-a13f-579484cc389e@gmail.com>
-From: "Irving ST" <irving@ssfivy.com>
-Date: Tue, 30 Jun 2020 21:37:58 +1000
-Message-ID: <CAN--ZaWd5MTbFxG73A11ws+PNj+nrwEJVdfYEhy4=4jG38T7vw@mail.gmail.com>
-Subject: Re: [yocto] License reporting for golang (and rust)
-To: robert.berger.yocto.user@gmail.com
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <C5wX.1593516361344535133.allJ@lists.yoctoproject.org>
+User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Stephan,
 
-For anyone else having the same problem, here's what I eventually did
-for my go stuff:
+On Tue, Jun 30, 2020 at 04:26:01AM -0700, tobies@synopsys.com wrote:
+> Hello!
+>=20
+> I am new to yocto, so I might be missing something obvious, but I have =
+trouble getting the devtool flow to work for me. It seems that the librar=
+y that ends up in the image is not the one with my modifications but inst=
+ead the altered one.
+>=20
+> Here is what I have done:
+>=20
+> devtool modify <libname>
+>=20
+> This has successfully checked out the sources of the library that I wan=
+t to modify and I could make my modifications and build the changed versi=
+on with "devtool build vsomeip" .=A0Now when I build an image with "devto=
+ol build-image <img-name>", devtool reports that it would build the image=
+ with addtional package "vsomeip".
+>=20
+> But the library that ends up in the generated image does not seem to ha=
+ve the modified code. I do not find my additional symbols when I do an ob=
+jdump on the library in
+>=20
+> ./tmp/work/qemux86-poky-linux/<img-name>/1.0-r0/rootfs/usr/lib/libvsome=
+ip...
+>=20
+> On the other hand, the library built in=A0./tmp/work/i586-poky-linux/vs=
+omeip/2.10.21-r0/vsomeip-2.10.21/libvsomeip.so.2.10.21 does have these sy=
+mbols.
+>=20
+> The disconnect seems to happen already within the vsomeip library build=
+ process. The library present at=A0./tmp/work/i586-poky-linux/vsomeip/2.1=
+0.21-r0/package/usr/lib/libvsomeip.so.2.10.21 is one _without_ my changes=
+ present (and identical in size to the one on the rootfs folder of the im=
+age).
+>=20
+> It feels like I am missing a step of the devtool flow, or at least the =
+starting point to debug the deployment process.
+>=20
+> Any hints of pointers to relevant documentation would be very appreciat=
+ed!
+>=20
 
-I created a bbclass containing a task that gets inherited by all
-packages, but the task only does some work when it detects that it is
-inherited by a golang recipe.
-The task basically sets up GOPATH and calls
-https://github.com/rancher/trash - this tool populates all the source
-dependencies and generate a trash.lock file in the repository.
-Then I used https://github.com/pivotal/LicenseFinder to generate a
-json report that can be postprocessed with python.
+Libraries and binaries are stripped of the debug symbols before adding
+them to the "normal" package. The version with the debug symbols are
+usually in the -dbg package of your recipe.
 
-To me it seems that Go used the vendor directory approach in the past,
-and there are multiple tools that can be used for this; and nowadays
-go seems to have switched to a different approach called go modules.
-With this multiple tools and methods of managing dependencies, I am
-not sure whether it is feasible to integrate this in Yocto at all -
-though I think I have seen mailing list posts on meta-virtualization
-adding vendor information to their recipes, so maybe some progress is
-happening there.
+You can disable this behavior with INHIBIT_PACKAGE_STRIP in your recipe (=
+c.f.
+https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#va=
+r-INHIBIT_PACKAGE_STRIP)
 
-Best regards,
-Irving Tjiptowarsono
+This is Yocto's default behavior, not sure if there is anything specific
+to devtool in what you described.
 
-On Tue, Jun 30, 2020 at 7:32 AM Robert Berger@yocto.user
-<robert.berger.yocto.user@gmail.com> wrote:
->
-> Hi,
->
-> My comments are in-line
->
-> On 22/06/2020 11:53, Irving ST wrote:
-> > Hello,
-> >
-> > I am building a device that uses some Go (and Rust) dependencies. This
-> > is on Yocto 2.7 / Warrior.
-> >
-> > I noticed that after building an image, the generated license.manifest
-> > and package.manifest (in tmp/deploy/licenses/) does not contain any
-> > mention of go packages or rust crates. The go packages seem to
-> > generate directories in tmp/deploy/licenses/ but they do not seem to
-> > be reported in the final image.
->
-> On dunfell 3.1.1 I see this:
->
-> licenses/
-> =E2=94=94=E2=94=80=E2=94=80 github.com-influxdata-influxdb
->      =E2=94=9C=E2=94=80=E2=94=80 generic_MIT
->      =E2=94=9C=E2=94=80=E2=94=80 LICENSE
->      =E2=94=94=E2=94=80=E2=94=80 recipeinfo
->
-> which is wrong, since I would need to add all the licenses of all the
-> dependencies golang pulls in as well to the recipe. It's shows only the
-> top level license.
->
-> In my license manifest I do have the influxdb:
->
-> tmp/deploy/licenses/image-influxdb-from-source-container-x86-64-202006292=
-05620/license.manifest
->
-> PACKAGE NAME: github.com-influxdata-influxdb
-> PACKAGE VERSION: 1.8.0
-> RECIPE NAME: github.com-influxdata-influxdb
-> LICENSE: MIT
->
-> Regards,
->
-> Robert
->
->
->
+(BTW, until you have run devtool reset <recipe>, bitbake takes the
+ sources from your devtool workspace. I don't know exactly what's the
+ difference with bitbake build-image <img-name> and bitbake <img-name>)
+
+Let us know if that helps,
+Quentin
