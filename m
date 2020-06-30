@@ -1,105 +1,106 @@
-Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
- by mx.groups.io with SMTP id smtpd.web12.1038.1593534664279463199
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+ by mx.groups.io with SMTP id smtpd.web11.8004.1593553195501556808
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Jun 2020 09:31:04 -0700
+ Tue, 30 Jun 2020 14:39:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=RP6rET0q;
- spf=pass (domain: burtonini.com, ip: 209.85.128.68, mailfrom: ross@burtonini.com)
-Received: by mail-wm1-f68.google.com with SMTP id 17so20205629wmo.1
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Jun 2020 09:31:04 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=k8Cgy7sV;
+ spf=pass (domain: gmail.com, ip: 209.85.222.181, mailfrom: jpewhacker@gmail.com)
+Received: by mail-qk1-f181.google.com with SMTP id e13so20201099qkg.5
+        for <yocto@lists.yoctoproject.org>; Tue, 30 Jun 2020 14:39:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:subject:date:message-id:mime-version
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=PpS1upmtH8AkBRO8NgJGhVXzxznb4fN8n/brV3cr00s=;
-        b=RP6rET0qlXACZkn8y7SkWwN9e+Y86O6Kh7EaGC4OTgQar/O05OSvf0J/RES5Qd2p8b
-         qxUEo+fD8B7loThmOycfOicAW5FTp4U/ypJlGLC7UFP73Xby7Ox/QTkLQO2ztBOcZtdB
-         r4pXCpEN91bKXiN94kcgcupltGKy6++tz9ROZlqtsAwML9hCuYMf2nWuPlf8Lc3yx7KL
-         oM2OXi6IZiX81/KhPNIJRkS9ER92fMKkYEoeupRrvNCo1eghW/qogN7ovrr8m9DpXOTm
-         lTNqWY8aulHUE/wEmrV8jbp42wHyQd0sohEm1JLzNMYetcFVm21D2c4sZpg0AnMoOFHQ
-         tNjQ==
+        bh=cXeNKJacJFlMCK50nR51r/X9cYPLwFtpwAm6VJ1Nc6w=;
+        b=k8Cgy7sVeBpbGO2FPkqknCHLulw8mJJh9LIehvs9+fCbmQrZnPAypSobMjziVfMl90
+         05UyYMN03xCrCNM9MLACQHmqTMOmDw752WF10mKUfyTV//CoMEkVzf9NgPLTMPQn3h6y
+         DR5YdUCdtUXpXm1zfCTWJM4fNH1z4Grw3iYxfs5x6pQE2c6IbXWCdn/E2ga3VSpPRRIL
+         VnRDCBhUeZw1tKfOynqdO6tVOLtjIysBKtOXCubEyRUBKLu9wOPpcetkvLfkrsh0IiOG
+         6PqD0LjaGRQ4EQvZyrQraHySMGz962HNrd8fEg8xKsxWTwKZTLjIQk9gMHEKsDJEINL8
+         3Vfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=PpS1upmtH8AkBRO8NgJGhVXzxznb4fN8n/brV3cr00s=;
-        b=Oz2hdW2BBhHhPVJy5T/nYQZ/bopwmDHKKa92GIptzqXJkSWZgDY+TRP2YcKwRwspur
-         fPTtGHZTD/oHPzxNK+N5DGc0oxPpcu43LCerLMC1RbcF2c+4xzxkJrLAKhtEKHvGl1Qg
-         aOQ8KODy0HmWGOFGFmlJt3uGXdJyMHUf15RqOUI70znyYX13GNBXU2To7JJa9jZ6nXET
-         /ba73gb125qe+wcSe2Krk20eE5h/RBu2HWg4h3761ZGF2KGvtX6p90bvrnpbXmtudiE6
-         GDagCv0qInnraHZteuem6hY50G0YpVYfHVkCbxtJLkxjgP/UxhVRs+Ib8jxxps4ojENh
-         42nw==
-X-Gm-Message-State: AOAM533byRQZ05sElk7isadzW6qDDs2a/tTFdmp3mUaPEvVQeCFJjn2w
-	WyGCJCUtWTJeh+DETOnKDTOnqddjKahK7A==
-X-Google-Smtp-Source: ABdhPJyHHsOoZEDK7g+g/rab8Td8txjoEKlLiTye4+4Sd6L6oMOF1NjUIWkLvz42qQR0uUv+5vkjIw==
-X-Received: by 2002:a1c:5418:: with SMTP id i24mr21464890wmb.47.1593534662378;
-        Tue, 30 Jun 2020 09:31:02 -0700 (PDT)
-Return-Path: <ross@burtonini.com>
-Received: from localhost.localdomain (35.106.2.81.in-addr.arpa. [81.2.106.35])
-        by smtp.gmail.com with ESMTPSA id z25sm3849475wmk.28.2020.06.30.09.31.01
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 30 Jun 2020 09:31:01 -0700 (PDT)
-From: "Ross Burton" <ross@burtonini.com>
+        bh=cXeNKJacJFlMCK50nR51r/X9cYPLwFtpwAm6VJ1Nc6w=;
+        b=AFTbuSc0z+rUcNpQdyJdk/8XdnP2lpRbLEETca2equKoQaLI9SQMEKR2x65I2CpreC
+         bx3djCGbevJGJP/VhFbRJVp9kawqOhTbhEfH+xD/PuiNf71oc4uXVIPxj9KxJCXE3jeN
+         NbD5MekFbj/mojJbEOos2cZYSdoWRrN6sircZXp7NqGJpD9AWwLhHAG4zZ/tmggVKPYv
+         aIvMCkLR8pXaByUD7j0yAqacXxKe4izzv/G9r5pYY+z/xguWn8jQa5cX8P2dLXIDoyG7
+         07xwwSDj1nHuJ3sf8PcXPNXzw9xaUMyqe+BVqsXMFyiws+cgUSllxoAWBeQO4fkxPgWA
+         oirA==
+X-Gm-Message-State: AOAM53207eiy3A+pSB49XqPng+1KMxy9wH8gtAhaNVnlNISU1HisYU6C
+	J4z+xOohWN7C9Fjqz6745C+chViBZVQ=
+X-Google-Smtp-Source: ABdhPJw2U0NqWWx1IAZlDYNPYQQoXRG1t+tomHHMkO6XDA3rs0ZAfq4V6xDeNLYGG2byLC0TZB3ZEw==
+X-Received: by 2002:a05:6638:160e:: with SMTP id x14mr13706244jas.35.1593552728599;
+        Tue, 30 Jun 2020 14:32:08 -0700 (PDT)
+Return-Path: <jpewhacker@gmail.com>
+Received: from localhost.localdomain ([2605:a601:ac3d:c100:1c9b:3646:316:137a])
+        by smtp.gmail.com with ESMTPSA id d18sm2244838ils.34.2020.06.30.14.32.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jun 2020 14:32:08 -0700 (PDT)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [PATCH yocto-autobuilder-helper] config.json: add meta-arm
-Date: Tue, 30 Jun 2020 17:30:57 +0100
-Message-Id: <20200630163057.29948-1-ross@burtonini.com>
-X-Mailer: git-send-email 2.24.3 (Apple Git-128)
+Cc: Joshua Watt <JPEWhacker@gmail.com>
+Subject: [yocto][meta-mingw][PATCH] mingw-w64: Upgrade to 7.0.0
+Date: Tue, 30 Jun 2020 16:31:50 -0500
+Message-Id: <20200630213150.26785-1-JPEWhacker@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Ross Burton <ross.burton@arm.com>
-
-This builds a small number of images for the N1 SDP and Juno boards.
-
-Signed-off-by: Ross Burton <ross.burton@arm.com>
+Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
 ---
- config.json | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ recipes-devtools/mingw-w64/mingw-w64.inc                      | 3 +--
+ ...-headers_6.0.0.bb => nativesdk-mingw-w64-headers_7.0.0.bb} | 4 ----
+ ...-runtime_6.0.0.bb => nativesdk-mingw-w64-runtime_7.0.0.bb} | 0
+ ...eads_6.0.0.bb => nativesdk-mingw-w64-winpthreads_7.0.0.bb} | 0
+ 4 files changed, 1 insertion(+), 6 deletions(-)
+ rename recipes-devtools/mingw-w64/{nativesdk-mingw-w64-headers_6.0.0.bb => nativesdk-mingw-w64-headers_7.0.0.bb} (82%)
+ rename recipes-devtools/mingw-w64/{nativesdk-mingw-w64-runtime_6.0.0.bb => nativesdk-mingw-w64-runtime_7.0.0.bb} (100%)
+ rename recipes-devtools/mingw-w64/{nativesdk-mingw-w64-winpthreads_6.0.0.bb => nativesdk-mingw-w64-winpthreads_7.0.0.bb} (100%)
 
-diff --git a/config.json b/config.json
-index b810373..8823c32 100644
---- a/config.json
-+++ b/config.json
-@@ -273,6 +273,24 @@
-             "MACHINE" : "qemuarm64",
-             "TEMPLATE" : "ltp-qemu"
-         },
-+        "meta-arm" : {
-+            "NEEDREPOS" : ["poky", "meta-arm"],
-+            "ADDLAYER" : [
-+                "${BUILDDIR}/../meta-arm/meta-arm",
-+                "${BUILDDIR}/../meta-arm/meta-arm-bsp",
-+                "${BUILDDIR}/../meta-arm/meta-arm-toolchain"
-+            ],
-+            "step1": {
-+                "MACHINE": "n1sdp",
-+                "BBTARGETS": "core-image-minimal core-image-sato core-image-sato:do_populate_sdk",
-+                "SANITYTARGETS" : "core-image-sato:do_testsdk"
-+                },
-+            "step2": {
-+                "MACHINE": "juno",
-+                "BBTARGETS": "core-image-minimal core-image-sato core-image-sato:do_populate_sdk",
-+                "SANITYTARGETS" : "core-image-sato:do_testsdk"
-+            }
-+        },
-        "bringup" : {
-             "BUILDINFO" : true,
-             "SSTATEDIR" : ["SSTATE_DIR ?= '${HELPERBUILDDIR}/sstate'"],
-@@ -964,6 +982,12 @@
-             "branch" : "master",
-             "revision" : "HEAD",
-             "no-layer-add" : true
-+        },
-+        "meta-arm" : {
-+            "url" : "git://git.yoctoproject.org/meta-arm",
-+            "branch" : "master",
-+            "revision" : "HEAD",
-+            "no-layer-add" : true
-         }
+diff --git a/recipes-devtools/mingw-w64/mingw-w64.inc b/recipes-devtools/mingw-w64/mingw-w64.inc
+index 8c68bcc..a435dea 100644
+--- a/recipes-devtools/mingw-w64/mingw-w64.inc
++++ b/recipes-devtools/mingw-w64/mingw-w64.inc
+@@ -5,8 +5,7 @@ COMPATIBLE_HOST = ".*-mingw.*"
  
-     },
+ SRC_URI = "${SOURCEFORGE_MIRROR}/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v${PV}.tar.bz2"
+ 
+-SRC_URI[md5sum] = "cf5673f6d689bb5e02863e6284cc3d03"
+-SRC_URI[sha256sum] = "805e11101e26d7897fce7d49cbb140d7bac15f3e085a91e0001e80b2adaf48f0"
++SRC_URI[sha256sum] = "aa20dfff3596f08a7f427aab74315a6cb80c2b086b4a107ed35af02f9496b628"
+ 
+ UPSTREAM_CHECK_URI = "http://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/"
+ UPSTREAM_CHECK_REGEX = "mingw-w64-v(?P<pver>(\d+[\.\-_]*)+)\.tar"
+diff --git a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_6.0.0.bb b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_7.0.0.bb
+similarity index 82%
+rename from recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_6.0.0.bb
+rename to recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_7.0.0.bb
+index 58073d6..292d22b 100644
+--- a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_6.0.0.bb
++++ b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_7.0.0.bb
+@@ -10,10 +10,6 @@ inherit autotools nativesdk
+ INHIBIT_DEFAULT_DEPS = "1"
+ DEPENDS = ""
+ 
+-PACKAGECONFIG ??= "secure-api"
+-
+-PACKAGECONFIG[secure-api] = "--enable-secure-api,--disable-secure-api"
+-
+ do_configure() {
+ 	oe_runconf
+ }
+diff --git a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_6.0.0.bb b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_7.0.0.bb
+similarity index 100%
+rename from recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_6.0.0.bb
+rename to recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_7.0.0.bb
+diff --git a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_6.0.0.bb b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_7.0.0.bb
+similarity index 100%
+rename from recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_6.0.0.bb
+rename to recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_7.0.0.bb
 -- 
-2.24.3 (Apple Git-128)
+2.27.0
 
