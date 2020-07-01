@@ -1,134 +1,218 @@
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
- by mx.groups.io with SMTP id smtpd.web11.17949.1593597654955513887
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
+ by mx.groups.io with SMTP id smtpd.web10.18783.1593600346854784707
  for <yocto@lists.yoctoproject.org>;
- Wed, 01 Jul 2020 03:00:56 -0700
+ Wed, 01 Jul 2020 03:45:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@rsi-elektrotechnik.de header.s=strato-dkim-0002 header.b=ndZncSHX;
- spf=none, err=permanent DNS error (domain: rsi-elektrotechnik.de, ip: 85.215.255.50, mailfrom: prvs=14517a8ec1=holzmayr@rsi-elektrotechnik.de)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1593597652;
-	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
-	h=In-Reply-To:Date:Message-ID:From:References:To:Subject:
-	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=BTs92eQ7yUzoAF41Nkg2qicvGArOwah6hQE+B6irqSU=;
-	b=ndZncSHXdlSnN5w/iMRLH4XYPd1RbCkETme4kkTrIzr3k2xt5VjPYQORdebEn0Aaoc
-	jUEzsE86xXgge1tqYslb6QP5CQ1QDo1kAORvsIp//1a00+dF9ZVFdiF03wERuIVGfiqF
-	TOwWvPW9tJNYh8mrOpK3fv320RW04F9QfMST0CiAeL0PYnKH0/ZJqNrRXxNYh54Xb03X
-	sVZfnRWyyxotMIhiP58uAWRXL4WjKmLmlCkScdfyaS8c8qYAP+4XG5s1hdD7OnV9/D1E
-	cydG3EygRZ1gFpK4F/04eMxepTNRFTaFzTE3dqvm8IHmqXiX2lzkiE8Q7ZVjg+ny02Id
-	Wngw==
-X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	by smtp.strato.de (RZmta 46.10.5 AUTH)
-	with ESMTPSA id t09fdew61A0qPS4
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits))
-	(Client did not present a certificate)
-	for <yocto@lists.yoctoproject.org>;
-	Wed, 1 Jul 2020 12:00:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1593597651; x=1594202451;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Subject:To:
-	References:From:Message-ID:Date:User-Agent:MIME-Version:
-	In-Reply-To:Content-Type:Content-Transfer-Encoding; bh=BTs92eQ7y
-	UzoAF41Nkg2qicvGArOwah6hQE+B6irqSU=; b=knCIFxJE/rsiRv8XGYtZgakGL
-	1Mm75TYPGsStwlZXDz3R2MPHmuhDAWnSfyyqT8zc+o1Q33zsb3lOaeM73tVOLJRU
-	OczvedKqYDs6LGolQP5pCC17XlJlPnOVzcGEqIcWPOn0UlVufR93t56OoeSOjuo9
-	Kp4z/gIkZ5Ic4Nl7IA=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.5.5) with ESMTPSA id md50000286817.msg; 
-	Wed, 01 Jul 2020 12:00:51 +0200
-X-Spam-Processed: mail.rsi-elektrotechnik.de, Wed, 01 Jul 2020 12:00:51 +0200
-	(not processed: message from trusted or authenticated source)
-X-MDArrival-Date: Wed, 01 Jul 2020 12:00:51 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=14517a8ec1=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-X-MDaemon-Deliver-To: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] How to install rrdtool-per package?
-To: yocto@lists.yoctoproject.org
-References: <5aRG.1593597049418588674.ppPw@lists.yoctoproject.org>
-From: "Josef Holzmayr" <holzmayr@rsi-elektrotechnik.de>
-Message-ID: <11c1c7af-0b29-a7bf-dc4a-e0b1b4e64b4a@rsi-elektrotechnik.de>
-Date: Wed, 1 Jul 2020 12:00:48 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Qp+tWuaA;
+ spf=pass (domain: gmail.com, ip: 209.85.222.52, mailfrom: mabnhdev@gmail.com)
+Received: by mail-ua1-f52.google.com with SMTP id i8so7548060uak.9
+        for <yocto@lists.yoctoproject.org>; Wed, 01 Jul 2020 03:45:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Mbo5B4vkiHZUR91XKD4y1JUxM+OqtrL2IaRl8OqUf0g=;
+        b=Qp+tWuaAYgaLSRkU0GhOGdweWq32m8ZfaEWqHSNInDcJoRxArZF2xBNwpHiXo8c9H9
+         BEkSjJYPupjsWSJwacOdT8OK1nXoqJwAaMJ9smGZ1fVT5wBqqnhLWHT1hWjQPblO8uEt
+         WUlSkaTKCuv4OrjKpQWiGbVqTzBQsZmnQX4n1DHb30mnthQHEwTxCL7VGs8Lbm2eI3LB
+         vloy6+pGwr0GTJmO/IIAl2T7m1AFJ6sbC7Rv1Jbn3bk9AZ8N0uLL6CqUubxepDjul529
+         sNZFfkdOg1/8dGhatOxFYdsza0TlOi9s2J7BIa8cV1bmDvYAdACvAsV2olqthAHZKToc
+         In5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Mbo5B4vkiHZUR91XKD4y1JUxM+OqtrL2IaRl8OqUf0g=;
+        b=B3b4Vn3yEfl1vIEPzAxHgGmsRh2lZKZjXFuGKn/P4k4XZfIXDcL+N3GOHxN7lcJtsb
+         3hLDDiuLdYx8RNL8SSplWuWxDl+tUOUzL90ZUVEi3V+C1pMw8szaa/aFETKv4/hErB5x
+         AFWm51xaz29kGGHoRt81ZpeptvWW6OuNb36rKggTxY1rvODERXQSy6RqmH8R6spUVTMi
+         blJSXOxUTVfKXM6n/uAusam2xgzgjcdBMGMGWunCST9kvOOLh4ETsReZgjuJsModIXiU
+         5oCFLM+v8960JM4RnZc11sPWQrTbZA3ygsANdNxKjrsDOLo6t5WyQka2rMoHtul2dWfz
+         /uTA==
+X-Gm-Message-State: AOAM531R39TIN0UY2NhqFcMzX7vEymCgn7qBdEFnBqi5+FXt2ulHI31g
+	sISumQ2UK9Jiu3LmFi+1z86C1RKDi8KgAFLztUc=
+X-Google-Smtp-Source: ABdhPJzOZ0AuxZ/cN5H+UU8qB9YAYifD8Fm+J0UTX0TMDt+XuJPhaqi9riulix4vMdipAd+hFqvu14Osok0ZrcJq8OU=
+X-Received: by 2002:ab0:3b2:: with SMTP id 47mr18444569uau.139.1593600346017;
+ Wed, 01 Jul 2020 03:45:46 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <5aRG.1593597049418588674.ppPw@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <dlSN.1593554206630147499.1cxR@lists.yoctoproject.org>
+ <CAJdd5GYmGrZk3B5+2H9Ud=A+YWXJe_j4EN+AEM=e+QXxcmJGKw@mail.gmail.com>
+ <CAJdd5GZ1ZEmA1CG2q4Q6Z94TF8wSCHhQf4hF0F9hA=ye6eJS5g@mail.gmail.com>
+ <161D821F3054189B.29179@lists.yoctoproject.org> <CAOSpxdaGpkGBmTeH_pqmZ=g=pMhYDND3PGnzJ3bOj11nU=+Rqw@mail.gmail.com>
+In-Reply-To: <CAOSpxdaGpkGBmTeH_pqmZ=g=pMhYDND3PGnzJ3bOj11nU=+Rqw@mail.gmail.com>
+From: "MikeB" <mabnhdev@gmail.com>
+Date: Wed, 1 Jul 2020 06:45:35 -0400
+Message-ID: <CAAuRgKCcgccNcPd3rggY5xhUgePi54FFPER6oQ02aep8Uj_eqg@mail.gmail.com>
+Subject: Re: [yocto] Dunfell 3.1.1 gcc-sanitizers build failure
+To: Steve Sakoman <steve@sakoman.com>
+Cc: yocto@lists.yoctoproject.org, Joshua Watt <JPEWhacker@gmail.com>
+Content-Type: multipart/alternative; boundary="00000000000089d57405a95efe66"
 
-Howdy!
+--00000000000089d57405a95efe66
+Content-Type: text/plain; charset="UTF-8"
 
-Looks very much like you'll need to set up PACKAGECONFIG of rrdtool, 
-then it should provide rrdtool-perl.
+The combination of the
+https://lists.openembedded.org/g/openembedded-core/message/140161 and
+a 'bitbake
+-ccleansstate on gcc-source-9.3.0' has gotten me back on track.
 
-See also: 
-http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-extended/rrdtool/rrdtool_1.7.2.bb?h=master#n104
+Thank you all for the help!
 
-Greetz
+On Tue, Jun 30, 2020 at 11:10 PM Steve Sakoman <steve@sakoman.com> wrote:
 
-Am 01.07.2020 um 11:50 schrieb ingemar0720@gmail.com:
-> My Yocto build failed and it seems to be looking for "rrdtool-perl" 
-> package. I've added package "rrdtool" into my "INSTALL_APPEND" variable 
-> but it still fail. The logs is in below. Could someone helped me to find 
-> the correct recipe to install it?
-> 
-> """
-> 
-> repo: using cache for: oe-repo
-> 
-> not found other for:
-> 
-> not found modules for:
-> 
-> not found deltainfo for:
-> 
-> not found updateinfo for:
-> 
-> oe-repo: using metadata from Wed 01 Jul 2020 09:34:21 AM UTC.
-> 
-> Last metadata expiration check: 0:00:01 ago on Wed 01 Jul 2020 09:34:22 
-> AM UTC.
-> 
-> No module defaults found
-> 
-> --> Starting dependency resolution
-> 
-> --> Finished dependency resolution
-> 
-> Error:
-> 
->   Problem: conflicting requests
-> 
->    - nothing provides rrdtool-perl needed by 
-> rpimonitor-2.13-r0.arm1176jzfshf_vfp
-> 
-> (try to add '--skip-broken' to skip uninstallable packages or '--nobest' 
-> to use not only best candidate packages)
-> 
-> ERROR: Logfile of failure stored in: 
-> /home/ingemar/yocto/sdk/build/tmp/work/raspberrypi0_wifi-poky-linux-gnueabi/rpi-image/1.0-r0/temp/log.do_rootfs.27003
-> 
-> ERROR: Task 
-> (/home/ingemar/yocto/sdk/build/../build/meta-rpi/recipes-core/images/rpi-image.bb:do_rootfs) 
-> failed with exit code '1'
-> 
-> """
-> 
-> 
-> 
-> 
+> On Tue, Jun 30, 2020 at 5:08 PM Steve Sakoman via
+> lists.yoctoproject.org <steve=sakoman.com@lists.yoctoproject.org>
+> wrote:
+> >
+> > On Tue, Jun 30, 2020 at 4:53 PM Joshua Watt <JPEWhacker@gmail.com>
+> wrote:
+> > >
+> > > On Tue, Jun 30, 2020 at 8:08 PM Joshua Watt <jpewhacker@gmail.com>
+> wrote:
+> > > >
+> > > > On Tue, Jun 30, 2020 at 4:56 PM MikeB <mabnhdev@gmail.com> wrote:
+> > > > >
+> > > > > I recently tried upgrading from 3.1.0 to 3.1.1.  I'm not sure if
+> this is a bug or just my problem.  I maintain five different architectures
+> and all five have the same failure in gcc-sanitizers as I'm trying to build
+> the SDK.
+> > > > >
+> > > > > | cat:
+> /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work-shared/gcc-9.3.0-r0/gcc-9.3.0/gcc/defaults.h:
+> No such file or directory
+> > > > > | WARNING:
+> /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_configure.31505:1
+> exit 1 from 'grep -v "\#endif.*GCC_DEFAULTS_H" >
+> /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/gcc-9.3.0/build.aarch64-poky-linux.aarch64-poky-linux/gcc/defaults.h.new'
+> > > > > | ERROR: Execution of
+> '/data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_configure.31505'
+> failed with exit code 1:
+> > > > > | cat:
+> /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work-shared/gcc-9.3.0-r0/gcc-9.3.0/gcc/defaults.h:
+> No such file or directory
+> > > > > | WARNING:
+> /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_configure.31505:1
+> exit 1 from 'grep -v "\#endif.*GCC_DEFAULTS_H" >
+> /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/gcc-9.3.0/build.aarch64-poky-linux.aarch64-poky-linux/gcc/defaults.h.new'
+> > > > >
+> > > > > At first, I thought this may be a dependency issue because I
+> inherit "rm_work" to tidy up; but I tried a build without it - i.e. keeping
+> all work around - and got the same failure.
+> > > >
+> > > > I've encountered a similar error just today when switching
+> SDKMACHINE.
+> > > > Are you using archive.bbclass by any chance (INHERIT += "archive")? I
+> > > > just recently fixed a bug in archive.bbclass
+> > > > (7a57e777597d7f66d065582cfb83cd8f9468f4af) where the archiving of
+> > > > gcc-source raced with do_preconfigure and I'm wondering if it's
+> > > > related
+> > >
+> > > I believe I have fixed this in
+> > > https://lists.openembedded.org/g/openembedded-core/message/140161,
+> > > please try it out to make sure it solves your issue as well.
+> >
+> > That patch came in after the 3.1.1 release, but it is present in the
+> > dunfell branch so it will make it into 3.1.2
+>
+> Doh, I'm getting ahead of myself! I was thinking of another
+> classes/archiver patch that Joshua sent :-)
+>
+> Steve
+>
 
--- 
-_____________________________________________________________
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-Fon: +49 8444 9204-0
-Fax: +49 8444 9204-50
-www.rsi-elektrotechnik.de
+--00000000000089d57405a95efe66
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
+ans-serif;font-size:small">The combination of the=C2=A0<a href=3D"https://l=
+ists.openembedded.org/g/openembedded-core/message/140161" style=3D"font-fam=
+ily:Arial,Helvetica,sans-serif">https://lists.openembedded.org/g/openembedd=
+ed-core/message/140161</a>=C2=A0and a &#39;<span style=3D"font-family:Arial=
+,Helvetica,sans-serif">bitbake -ccleansstate on gcc-source-9.3.0&#39; has g=
+otten me back on track.</span></div><div class=3D"gmail_default" style=3D"f=
+ont-family:tahoma,sans-serif;font-size:small"><span style=3D"font-family:Ar=
+ial,Helvetica,sans-serif"><br></span></div><div class=3D"gmail_default" sty=
+le=3D"font-family:tahoma,sans-serif;font-size:small"><span style=3D"font-fa=
+mily:Arial,Helvetica,sans-serif">Thank you all for the help!</span></div></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Tue, Jun 30, 2020 at 11:10 PM Steve Sakoman &lt;<a href=3D"mailto:steve@sa=
+koman.com">steve@sakoman.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">On Tue, Jun 30, 2020 at 5:08 PM Steve Sakoman v=
+ia<br>
+<a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer" target=3D"_bla=
+nk">lists.yoctoproject.org</a> &lt;steve=3D<a href=3D"mailto:sakoman.com@li=
+sts.yoctoproject.org" target=3D"_blank">sakoman.com@lists.yoctoproject.org<=
+/a>&gt;<br>
+wrote:<br>
+&gt;<br>
+&gt; On Tue, Jun 30, 2020 at 4:53 PM Joshua Watt &lt;<a href=3D"mailto:JPEW=
+hacker@gmail.com" target=3D"_blank">JPEWhacker@gmail.com</a>&gt; wrote:<br>
+&gt; &gt;<br>
+&gt; &gt; On Tue, Jun 30, 2020 at 8:08 PM Joshua Watt &lt;<a href=3D"mailto=
+:jpewhacker@gmail.com" target=3D"_blank">jpewhacker@gmail.com</a>&gt; wrote=
+:<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; On Tue, Jun 30, 2020 at 4:56 PM MikeB &lt;<a href=3D"mailto:=
+mabnhdev@gmail.com" target=3D"_blank">mabnhdev@gmail.com</a>&gt; wrote:<br>
+&gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; I recently tried upgrading from 3.1.0 to 3.1.1.=C2=A0 I=
+&#39;m not sure if this is a bug or just my problem.=C2=A0 I maintain five =
+different architectures and all five have the same failure in gcc-sanitizer=
+s as I&#39;m trying to build the SDK.<br>
+&gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; | cat: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm=
+64/tmp/work-shared/gcc-9.3.0-r0/gcc-9.3.0/gcc/defaults.h: No such file or d=
+irectory<br>
+&gt; &gt; &gt; &gt; | WARNING: /data/mabnhdev/exos-yocto-dunfell/build/exos=
+-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_conf=
+igure.31505:1 exit 1 from &#39;grep -v &quot;\#endif.*GCC_DEFAULTS_H&quot; =
+&gt; /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work/aarch64-po=
+ky-linux/gcc-sanitizers/9.3.0-r0/gcc-9.3.0/build.aarch64-poky-linux.aarch64=
+-poky-linux/gcc/defaults.h.new&#39;<br>
+&gt; &gt; &gt; &gt; | ERROR: Execution of &#39;/data/mabnhdev/exos-yocto-du=
+nfell/build/exos-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/=
+temp/run.do_configure.31505&#39; failed with exit code 1:<br>
+&gt; &gt; &gt; &gt; | cat: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm=
+64/tmp/work-shared/gcc-9.3.0-r0/gcc-9.3.0/gcc/defaults.h: No such file or d=
+irectory<br>
+&gt; &gt; &gt; &gt; | WARNING: /data/mabnhdev/exos-yocto-dunfell/build/exos=
+-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_conf=
+igure.31505:1 exit 1 from &#39;grep -v &quot;\#endif.*GCC_DEFAULTS_H&quot; =
+&gt; /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work/aarch64-po=
+ky-linux/gcc-sanitizers/9.3.0-r0/gcc-9.3.0/build.aarch64-poky-linux.aarch64=
+-poky-linux/gcc/defaults.h.new&#39;<br>
+&gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; At first, I thought this may be a dependency issue beca=
+use I inherit &quot;rm_work&quot; to tidy up; but I tried a build without i=
+t - i.e. keeping all work around - and got the same failure.<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; I&#39;ve encountered a similar error just today when switchi=
+ng SDKMACHINE.<br>
+&gt; &gt; &gt; Are you using archive.bbclass by any chance (INHERIT +=3D &q=
+uot;archive&quot;)? I<br>
+&gt; &gt; &gt; just recently fixed a bug in archive.bbclass<br>
+&gt; &gt; &gt; (7a57e777597d7f66d065582cfb83cd8f9468f4af) where the archivi=
+ng of<br>
+&gt; &gt; &gt; gcc-source raced with do_preconfigure and I&#39;m wondering =
+if it&#39;s<br>
+&gt; &gt; &gt; related<br>
+&gt; &gt;<br>
+&gt; &gt; I believe I have fixed this in<br>
+&gt; &gt; <a href=3D"https://lists.openembedded.org/g/openembedded-core/mes=
+sage/140161" rel=3D"noreferrer" target=3D"_blank">https://lists.openembedde=
+d.org/g/openembedded-core/message/140161</a>,<br>
+&gt; &gt; please try it out to make sure it solves your issue as well.<br>
+&gt;<br>
+&gt; That patch came in after the 3.1.1 release, but it is present in the<b=
+r>
+&gt; dunfell branch so it will make it into 3.1.2<br>
+<br>
+Doh, I&#39;m getting ahead of myself! I was thinking of another<br>
+classes/archiver patch that Joshua sent :-)<br>
+<br>
+Steve<br>
+</blockquote></div>
 
+--00000000000089d57405a95efe66--
