@@ -1,111 +1,145 @@
-Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com [209.85.218.67])
- by mx.groups.io with SMTP id smtpd.web12.13262.1593573053421807999
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.16667.1593590521618691968
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Jun 2020 20:10:53 -0700
+ Wed, 01 Jul 2020 01:02:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=cAH4NX3e;
- spf=softfail (domain: sakoman.com, ip: 209.85.218.67, mailfrom: steve@sakoman.com)
-Received: by mail-ej1-f67.google.com with SMTP id a1so22883019ejg.12
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Jun 2020 20:10:53 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=UH9Y7PmC;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: robert.berger.yocto.user@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id D6EE8E01DCA; Wed,  1 Jul 2020 01:02:00 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (robert.berger.yocto.user[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.221.54 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28177E01DC8
+	for <yocto@yoctoproject.org>; Wed,  1 Jul 2020 01:01:58 -0700 (PDT)
+Received: by mail-wr1-f54.google.com with SMTP id f18so14732931wrs.0
+        for <yocto@yoctoproject.org>; Wed, 01 Jul 2020 01:01:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=ColP6HfzKI4OP+wY2eL3H4+e29Ze0Os2Zfhlw93kokk=;
-        b=cAH4NX3eJ3ZsAj/tuQLIyO+3HxvuAt/9dGBG3lW6upMoizOCNdIddp64ZMcJxuwrWa
-         53y6pmUdo9izEWCrUt+oFR1KlPCL71wqcz+rD1QTERxUFPgjXw9W+4Jz9PXgcjE3GOqu
-         LEwJtFvJ7v6CFUprPoGDqzbIcmpaPC7cOc0TRDc0Rorul8i8QpYeNIAFEgtk0y+0eiTP
-         mUcgpCzksDKPi3l1IpI/nASoT3+qKuGSaiFe9g0q4Denggqi85WddfpnmvECr3ljYCVN
-         2KUDDNYG9Yt547A3dPhZjWJO1G6bVjEe8tNl+MmPLU8cGntT2j/eAE+jSB/pLqrUZcia
-         G6DA==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=csii5DHSYpI4WEjbUEpCF1exElVxZgss9P+B6IEyjLU=;
+        b=UH9Y7PmCBzTEnwXkHOk3Sa8OUEPHsVBhXSxqMtQAK+1FnWjkXxfHdpRsRHhzQghlgv
+         9kdK/xCp4gi5d30pGieKZm+KKCmpsmONYgj33D4kK4y+stffbrU/+eKVw/i2Tt8eeKNz
+         HIggPQCNtIiKKmAzgVnIm8oQIhHhFbRF75J55jtzRl0QVoWnsAAQpkaYOitYMN67TUTM
+         baJ6dtjPdXIjwUQ4zoh1x4Ma5QFJEAvX97sHVeH9lZu34cPJ9ppwvmE8L/EfxKCEgTO3
+         Yg95ib0mD/s9+Iw1JxQck/gx2cJdvRwpTUiFvRpWw1DWVWeTTu1nl868KkBDo3ZLi1Sj
+         OldQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=ColP6HfzKI4OP+wY2eL3H4+e29Ze0Os2Zfhlw93kokk=;
-        b=ns6B9L/m9gfq2/q/umzmiw/Fhx5ouqX9OmileB2+hMV8CWhNUbJmPtIA0BQPQp1yZ6
-         ldZvHLGBeNewSILhFiWGyDdhbQg63Puq5RnUYSHEj1nG6Pom/Hhu43my6VvH6XW+Q/XT
-         262QiODNis7yOmc0B78cS0E/MlfwNux7Y43OX6B3169v5GpsEvTzjefQcsXgu4Hs/BJx
-         Em3x+wxQxFzTKNtEgo2r0wqZzkkUc0Frt8bq5BvP1IijX5iQSrk5jekZxcL7R2fXo5A0
-         GlHYEvKf2CmOFVLvojoK9ZBUBXdN+VSspIxFnLmopikP9WZrlYaZC2bTUYBsV7UH5XbS
-         6mng==
-X-Gm-Message-State: AOAM532Z0eYJWmtyDwdRdIUUyLfNaGz4OYj/UsnT1PWnBV9EjyZkBKCp
-	5BBdDYoKzWooAlCLyTR51hnrFPimyWkqAs+McWVt5zqU3tY=
-X-Google-Smtp-Source: ABdhPJyugGgkUtroUxMv7EWbdwD6aK0gzbX0GOTybKT5jYGKTeIZaWd65KL41UgGBuObR3Vsz47XDbHLgyQCSIm3h2M=
-X-Received: by 2002:a17:906:e2ca:: with SMTP id gr10mr20242220ejb.81.1593573051851;
- Tue, 30 Jun 2020 20:10:51 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=csii5DHSYpI4WEjbUEpCF1exElVxZgss9P+B6IEyjLU=;
+        b=Xmhebh4rK7MUfyq8VQCMdjh7dKp3Ah00tG+UER9Pu6oyfeQsxw4Yt2qf1c9tcZxH0l
+         cMCopSOJBp3aZHTjJzcd075T8w8soDCumy0ArgfGDAwDq7Hfui4bdrbk8HzcSPVy3AVm
+         oANHT/YbpJ9Dk3N3fDVCdv3+9gsOGwM9cNC1s9gFRjhRYs4rvKWIA6oeLLFavO1kBL8G
+         3ZRE1pJ41X4FdUsXYTWs7deAoaTey7W+KXfFvL+MCcI4JrFiY+mEO4aLPM2W+Nv8yNpb
+         uZKTVoHff8FpIupi1OoiS+YxM0IP+NDFzLl+j2TuueuXW7zmRDT7GXmHcLBsI+YSax40
+         z3SA==
+X-Gm-Message-State: AOAM532aX7AQCS35YrOSx3JWl5M6tZmsjBVoAScE6v66Nw2SOgaNR8pd
+	ziTF+p0DN44pn0WXu3b30P9Fnl+H
+X-Google-Smtp-Source: ABdhPJwuQ211DvIDaDPbmu1Q8/pnZ/yNk0k7siDn/QYiRQnvlC8EWxQiF54rJbBYmh4Qn8MEcWWL2A==
+X-Received: by 2002:adf:f6cb:: with SMTP id y11mr24817564wrp.100.1593590517211;
+        Wed, 01 Jul 2020 01:01:57 -0700 (PDT)
+Received: from [192.168.42.52] (ppp-2-86-138-91.home.otenet.gr. [2.86.138.91])
+        by smtp.gmail.com with ESMTPSA id k126sm6534116wme.17.2020.07.01.01.01.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Jul 2020 01:01:56 -0700 (PDT)
+Subject: Re: [yocto] License reporting for golang (and rust)
+To: Irving ST <irving@ssfivy.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+References: <CAN--ZaUr1C_rKY05_yWuD=A-S7deSvd5gFSYc2ZE-V7vDTkZxw@mail.gmail.com>
+ <4bafc350-fa80-c4e9-a13f-579484cc389e@gmail.com>
+ <CAN--ZaWd5MTbFxG73A11ws+PNj+nrwEJVdfYEhy4=4jG38T7vw@mail.gmail.com>
+From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
+Message-ID: <50d6e449-030c-f360-a61e-e2c87df55cf6@gmail.com>
+Date: Wed, 1 Jul 2020 11:01:54 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-References: <dlSN.1593554206630147499.1cxR@lists.yoctoproject.org>
- <CAJdd5GYmGrZk3B5+2H9Ud=A+YWXJe_j4EN+AEM=e+QXxcmJGKw@mail.gmail.com>
- <CAJdd5GZ1ZEmA1CG2q4Q6Z94TF8wSCHhQf4hF0F9hA=ye6eJS5g@mail.gmail.com> <161D821F3054189B.29179@lists.yoctoproject.org>
-In-Reply-To: <161D821F3054189B.29179@lists.yoctoproject.org>
-From: "Steve Sakoman" <steve@sakoman.com>
-Date: Tue, 30 Jun 2020 17:10:38 -1000
-Message-ID: <CAOSpxdaGpkGBmTeH_pqmZ=g=pMhYDND3PGnzJ3bOj11nU=+Rqw@mail.gmail.com>
-Subject: Re: [yocto] Dunfell 3.1.1 gcc-sanitizers build failure
-To: Steve Sakoman <steve@sakoman.com>
-Cc: MikeB <mabnhdev@gmail.com>, yocto@lists.yoctoproject.org, 
-	Joshua Watt <JPEWhacker@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAN--ZaWd5MTbFxG73A11ws+PNj+nrwEJVdfYEhy4=4jG38T7vw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jun 30, 2020 at 5:08 PM Steve Sakoman via
-lists.yoctoproject.org <steve=3Dsakoman.com@lists.yoctoproject.org>
-wrote:
->
-> On Tue, Jun 30, 2020 at 4:53 PM Joshua Watt <JPEWhacker@gmail.com> wrote:
-> >
-> > On Tue, Jun 30, 2020 at 8:08 PM Joshua Watt <jpewhacker@gmail.com> wrot=
-e:
-> > >
-> > > On Tue, Jun 30, 2020 at 4:56 PM MikeB <mabnhdev@gmail.com> wrote:
-> > > >
-> > > > I recently tried upgrading from 3.1.0 to 3.1.1.  I'm not sure if th=
-is is a bug or just my problem.  I maintain five different architectures an=
-d all five have the same failure in gcc-sanitizers as I'm trying to build t=
-he SDK.
-> > > >
-> > > > | cat: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work-=
-shared/gcc-9.3.0-r0/gcc-9.3.0/gcc/defaults.h: No such file or directory
-> > > > | WARNING: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/w=
-ork/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_configure.31505:=
-1 exit 1 from 'grep -v "\#endif.*GCC_DEFAULTS_H" > /data/mabnhdev/exos-yoct=
-o-dunfell/build/exos-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0=
--r0/gcc-9.3.0/build.aarch64-poky-linux.aarch64-poky-linux/gcc/defaults.h.ne=
-w'
-> > > > | ERROR: Execution of '/data/mabnhdev/exos-yocto-dunfell/build/exos=
--arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_conf=
-igure.31505' failed with exit code 1:
-> > > > | cat: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/work-=
-shared/gcc-9.3.0-r0/gcc-9.3.0/gcc/defaults.h: No such file or directory
-> > > > | WARNING: /data/mabnhdev/exos-yocto-dunfell/build/exos-arm64/tmp/w=
-ork/aarch64-poky-linux/gcc-sanitizers/9.3.0-r0/temp/run.do_configure.31505:=
-1 exit 1 from 'grep -v "\#endif.*GCC_DEFAULTS_H" > /data/mabnhdev/exos-yoct=
-o-dunfell/build/exos-arm64/tmp/work/aarch64-poky-linux/gcc-sanitizers/9.3.0=
--r0/gcc-9.3.0/build.aarch64-poky-linux.aarch64-poky-linux/gcc/defaults.h.ne=
-w'
-> > > >
-> > > > At first, I thought this may be a dependency issue because I inheri=
-t "rm_work" to tidy up; but I tried a build without it - i.e. keeping all w=
-ork around - and got the same failure.
-> > >
-> > > I've encountered a similar error just today when switching SDKMACHINE=
-.
-> > > Are you using archive.bbclass by any chance (INHERIT +=3D "archive")?=
- I
-> > > just recently fixed a bug in archive.bbclass
-> > > (7a57e777597d7f66d065582cfb83cd8f9468f4af) where the archiving of
-> > > gcc-source raced with do_preconfigure and I'm wondering if it's
-> > > related
-> >
-> > I believe I have fixed this in
-> > https://lists.openembedded.org/g/openembedded-core/message/140161,
-> > please try it out to make sure it solves your issue as well.
->
-> That patch came in after the 3.1.1 release, but it is present in the
-> dunfell branch so it will make it into 3.1.2
+Hi,
 
-Doh, I'm getting ahead of myself! I was thinking of another
-classes/archiver patch that Joshua sent :-)
+My comments are in-line
 
-Steve
+On 30/06/2020 14:37, Irving ST wrote:
+> Hi,
+> 
+> For anyone else having the same problem, here's what I eventually did
+> for my go stuff:
+> 
+> I created a bbclass containing a task that gets inherited by all
+> packages, but the task only does some work when it detects that it is
+> inherited by a golang recipe.
+> The task basically sets up GOPATH and calls
+> https://github.com/rancher/trash - this tool populates all the source
+> dependencies and generate a trash.lock file in the repository.
+> Then I used https://github.com/pivotal/LicenseFinder to generate a
+> json report that can be postprocessed with python.
+
+Is your work available somewhere in the public? I would like to give it 
+a try with dunfell 3.1.1 and influxdb.[1] Also it would be interesting 
+what happens if you include a prebuilt go executable[2].
+
+[1] 
+https://gitlab.com/meta-layers/meta-tig/-/blob/master/recipes-from-source/github.com-influxdata-influxdb/github.com-influxdata-influxdb_1.8.0.bb 
+(from khem and slightly hacked)
+
+[2] 
+https://gitlab.com/meta-layers/meta-tig/-/blob/master/recipes-prebuilt/influxdb/influxdb_1.8.0.bb
+
+> 
+> To me it seems that Go used the vendor directory approach in the past,
+> and there are multiple tools that can be used for this; and nowadays
+> go seems to have switched to a different approach called go modules.
+
+It looks like master and dunfell 3.1.1 support go modules now.[3][4]
+
+[3] 
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?h=dunfell&id=7892a056f7e03e9c086148f8f027bd1cebf2aa68
+[4] 
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?h=dunfell&id=ce277ec45f1f241b1eb17ea6999dbe5a718b898a
+
+Now we have both go dep and go modules support ;)
+
+> With this multiple tools and methods of managing dependencies, I am
+> not sure whether it is feasible to integrate this in Yocto at all -
+> though I think I have seen mailing list posts on meta-virtualization
+> adding vendor information to their recipes, so maybe some progress is
+> happening there.
+
+Currently arm 32 Golang support is broken in meta-virt (docker), but I 
+am confident it's going to be fixed soon.[5]
+
+[5] 
+https://lists.yoctoproject.org/g/meta-virtualization/message/5488?p=,,,20,0,0,0::Created,,docker,20,2,0,75127700
+
+> 
+> Best regards,
+> Irving Tjiptowarsono
+
+Regards,
+
+Robert
