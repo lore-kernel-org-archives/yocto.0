@@ -1,89 +1,75 @@
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
- by mx.groups.io with SMTP id smtpd.web11.3583.1593716092154936927
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+ by mx.groups.io with SMTP id smtpd.web10.3597.1593716094523963399
  for <yocto@lists.yoctoproject.org>;
- Thu, 02 Jul 2020 11:54:52 -0700
+ Thu, 02 Jul 2020 11:54:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=zMZ+8Ex4;
- spf=softfail (domain: sakoman.com, ip: 209.85.214.169, mailfrom: steve@sakoman.com)
-Received: by mail-pl1-f169.google.com with SMTP id x8so10761969plm.10
-        for <yocto@lists.yoctoproject.org>; Thu, 02 Jul 2020 11:54:52 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=YO3A4JyA;
+ spf=softfail (domain: sakoman.com, ip: 209.85.216.49, mailfrom: steve@sakoman.com)
+Received: by mail-pj1-f49.google.com with SMTP id gc9so6323491pjb.2
+        for <yocto@lists.yoctoproject.org>; Thu, 02 Jul 2020 11:54:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sakoman-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=thFWfxncLzwzjxhsp09a9pUmwCNGGr0C8iu22dzrOwY=;
-        b=zMZ+8Ex4f5KZ1eq6sz/h4i/Q1atX+jSWgdOvfDlPmYph1NxdO36MKih4IMMG7ThtMU
-         fO7BJtQMcVQT+uyCvvq00oVEHwhqsi5eG87mrHCnVBR4mFdq7wFX337bcNXw9qeyqp7v
-         XeRR+q4mPnEFIoGUQWnnMiyQCCBWLiov/oYmA0DJrSuivs0cDRJ+KFNBXssxtY8mdcof
-         1X5KIJbrDTYuvtUprOKTFsNbfk/hBsMiaL4BM89KwJagyMY6Ux1EjCs6N2ofJ/gTtn9N
-         LUdjKi9IcQFo0tLNrHbRI7VnWwPI421uSkCMhX/HjZlhVBa8DSKumffyDAZlEkhNm4e+
-         YScw==
+        bh=hPUxDhoiQ10tEnyF6bp+JDHxx0KNze/+0kr/VVBRPG8=;
+        b=YO3A4JyAGL9CExPGDIJq4Rf3d7gUx1vqbba+p5HZk8i8Q0P7zcsuUcQfK2kkDowUWs
+         8uj2VHNOb+E++jvvIPI0a5qjamG/36zfG3R1V1CWHEJshKoNIR6iFapXdX9B9NzLzsIC
+         wFPiSwecTg3LkDUoujTlpMWLXCYgaYCRmebQfatLSdlOIiRQBNFWWbj3P+YAoTYEXnpB
+         hltmy9JhYRflnU9lBNohPmFC3fn3HZab0DcqZXfR1GRVyjqud/GhCytXrvNVUnfcUSuN
+         2/Ts+amojNuwBi13PMJeXJkZXHrfMA86vvsPr4pRbAPN5SWkxbVzYTrfwU6boYrpgChF
+         Q8/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=thFWfxncLzwzjxhsp09a9pUmwCNGGr0C8iu22dzrOwY=;
-        b=CaHgSXY/f6F0bc1EGPfwVJsvI0A8AbANXHA5dA8VFqnZhbemwXWLmbmguc3VW33jHP
-         G3QbNgM1k+TjRSUUjmimlJINPvXXUu/Ecg0UUCtAOPzrW+MxuGw3xPysP9WVexu8Ruxo
-         UlefLSUZJ2HQT1r6Cxbj3ESib9GtPqITN1LHwf9NGdDTzIwSkG2fc2Eq8nIFcX6mSDYQ
-         AgmkBuS2bx6fsuJDN+y7oO9OKbFHMNYF3oXgemLblMzvZFgLUUeHnrcb65IdHQQ9A6nO
-         0Bbw6tc0t8Np4fkR7E6i3vMYTBMGZrmS3oPo/3o7pRmLOZDu4NF3GBz5nr0DSFF8MrCV
-         xmwQ==
-X-Gm-Message-State: AOAM531OdQvtrvCD1fQ4JMFdW0a2q71nD7fB8GhPv3IJxva1wT/MXE49
-	uTSoxeVudbCeqZ5kwv6WU0tslYGxIigzLA==
-X-Google-Smtp-Source: ABdhPJyuJZ0PJD+wx3THJds9uv2Q+9LOkQQG4R1exJofyxq7e3Gi9raW4em23gxZ/ad0k6TOU/WCpQ==
-X-Received: by 2002:a17:90a:5d03:: with SMTP id s3mr19678432pji.47.1593716091258;
-        Thu, 02 Jul 2020 11:54:51 -0700 (PDT)
+        bh=hPUxDhoiQ10tEnyF6bp+JDHxx0KNze/+0kr/VVBRPG8=;
+        b=d7kuVp9MeI8MxE5Y6eo5kpCOSKyN5XOflev1i5jie1N4TrQaCw13zcsHKqw89F6FW9
+         SA+yRFM1m++TaTR++hPWKCrsXq/DznlbO+pfYpPIhG+0pAcLI5tOTQOU1DNnYp3jKtHy
+         +7bka88Z6LySeq1vFFsqtXrD5WhgNxXl1ahfPABFt7XXEpz0ZE2QZsYo5JPh8MH+kHsb
+         sbDxOd4j5cD84Wm++q8YJqYYvjOnaKUQWq17by9eyr+u8fxGGPBSil//uAkdVcajmP/5
+         z5t+KfYvOCiDrw6kdLEuOAuIfhFh61rpoAGZdo3Z72MPqqwOJjK6eA59eRDlZoEYyJqn
+         4rWA==
+X-Gm-Message-State: AOAM531NOfIk+PmcxKI0SCKIIr8dPPNeiba/S3/PDIuP2Rn0Jvtk3Nm8
+	ejblL7pWJh82pPCsqBjUYDG9rV4yLBBvUQ==
+X-Google-Smtp-Source: ABdhPJyMrTnfYqjyRgDvdK6zW4SbsFfBbFcTQ+C8th14pYo28Sv63ZFXBDdCMxs9+Mw8Cvk7KjmFhg==
+X-Received: by 2002:a17:90a:970c:: with SMTP id x12mr33096240pjo.115.1593716093638;
+        Thu, 02 Jul 2020 11:54:53 -0700 (PDT)
 Return-Path: <steve@sakoman.com>
 Received: from octo.router0800d9.com (rrcs-66-91-142-162.west.biz.rr.com. [66.91.142.162])
-        by smtp.gmail.com with ESMTPSA id j16sm9411204pgb.33.2020.07.02.11.54.50
+        by smtp.gmail.com with ESMTPSA id j16sm9411204pgb.33.2020.07.02.11.54.52
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jul 2020 11:54:50 -0700 (PDT)
+        Thu, 02 Jul 2020 11:54:53 -0700 (PDT)
 From: "Steve Sakoman" <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][dunfell 5/6] publish-artefacts: Improve sha256 checksum handling
-Date: Thu,  2 Jul 2020 08:54:01 -1000
-Message-Id: <6b6d272e48b2a90820a9dbca3ccddfdb5c562e3d.1593715874.git.steve@sakoman.com>
+Subject: [yocto-autobuilder-helper][dunfell 6/6] scripts/utils.py: Convert md5sum to sha256sum for layer tarballs
+Date: Thu,  2 Jul 2020 08:54:02 -1000
+Message-Id: <9d03270212d0414e5c90a37d75cf3cebe7120239.1593715874.git.steve@sakoman.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1593715874.git.steve@sakoman.com>
 References: <cover.1593715874.git.steve@sakoman.com>
 
-From: "Tummalapalli, Vineela" <vineela.tummalapalli@intel.com>
-
-The existing checksum files were encoding full paths. This patch changes
-this to use just the filename which allows relocation of the directories
-and is more appropriate for sharing over http.
+From: Vineela <vineela.tummalapalli@intel.com>
 
 Signed-off-by: Vineela Tummalapalli <vineela.tummalapalli@intel.com>
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-(cherry picked from commit 835ac325a4ed3e421a5a9bfd7c75f552ae2103cf)
+(cherry picked from commit 3aefa5a763125c760813a8f8434c574ecd3ca99b)
 Signed-off-by: Steve Sakoman <steve@sakoman.com>
 ---
- scripts/publish-artefacts | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ scripts/utils.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/scripts/publish-artefacts b/scripts/publish-artefacts
-index e773350..6ed922a 100755
---- a/scripts/publish-artefacts
-+++ b/scripts/publish-artefacts
-@@ -5,10 +5,14 @@ target=$3
- 
- sha256sums(){
-     dest=$1
--    for x in `find $dest -maxdepth 5 -type f`; do
--        if [ ${x##*.} != sha256sum ]; then
--            sha256sum $x >> $x.sha256sum
--        fi
-+    for x in `find -L $dest -maxdepth 5 -type f`; do
-+        for w in $x;do
-+            if [ ${w##*.} != sha256sum ]; then
-+                shasum=`sha256sum $w | awk '{print $1}'`
-+                filename=${w##*/}
-+                echo $shasum $filename >> $w.sha256sum
-+            fi
-+        done
-     done
- }
+diff --git a/scripts/utils.py b/scripts/utils.py
+index d7b9ae7..ec43832 100644
+--- a/scripts/utils.py
++++ b/scripts/utils.py
+@@ -251,7 +251,7 @@ def publishrepo(clonedir, repo, publishdir):
+     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=sharedrepo).decode('utf-8').strip()
+     archive_name = repo + "-" + revision + ".tar.bz2"
+     subprocess.check_call("git archive --format=tar HEAD --prefix=" + repo + "/ | bzip2 -c > " + archive_name, shell=True, cwd=sharedrepo)
+-    subprocess.check_call("md5sum " + archive_name + " >> " + archive_name + ".md5sum", shell=True, cwd=sharedrepo)
++    subprocess.check_call("sha256sum " + archive_name + " >> " + archive_name + ".sha256sum", shell=True, cwd=sharedrepo)
+     mkdir(publishdir)
+     subprocess.check_call("rsync -av " + archive_name + "* " + publishdir, shell=True, cwd=sharedrepo)
  
 -- 
 2.17.1
