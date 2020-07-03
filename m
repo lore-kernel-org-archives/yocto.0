@@ -1,96 +1,108 @@
-Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
- by mx.groups.io with SMTP id smtpd.web11.5810.1593762015959208792
- for <yocto@lists.yoctoproject.org>;
- Fri, 03 Jul 2020 00:40:17 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp.bon.at (Postfix) with ESMTPSA id 49yn1R2MWJz5tlM;
-	Fri,  3 Jul 2020 09:40:11 +0200 (CEST)
-Date: Fri, 3 Jul 2020 09:40:09 +0200
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: Pankaj Vinadrao Joshi <pankaj.vj@exaleapsemi.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] The following packages have unmet dependencies: packagegroup-core-x11-base : Depends: packagegroup-core-x11-xserver but it is not going to be installed #yocto
-Message-ID: <20200703074009.73wy7gzs3gehejb4@qschulz>
-References: <10822.1593680079768378665@lists.yoctoproject.org>
- <6208.1593761482623104508@lists.yoctoproject.org>
+Subject: Build hangs
+To: yocto@lists.yoctoproject.org
+From: "Kjeld Flarup" <kfa@deif.com>
+X-Originating-Location: Viborg, Central Jutland, DK (87.54.42.99)
+X-Originating-Platform: Linux Chrome 83
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <6208.1593761482623104508@lists.yoctoproject.org>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Date: Fri, 03 Jul 2020 01:07:07 -0700
+Message-ID: <bNRG.1593763627322531824.X25r@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="ZG4JAnFSE4D5wC9cXLlh"
+
+--ZG4JAnFSE4D5wC9cXLlh
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Pankaj,
+I sometimes encounters this situation, where a task is running forever. Thi=
+s example only one task, but I have seen 6 tasks which have been running fo=
+r 10+ minutes
 
-On Fri, Jul 03, 2020 at 12:31:22AM -0700, Pankaj  Vinadrao Joshi wrote:
-> Hi Quentin,
-> Missing x11 in DISTRO_FEATURES in your distro.
-> http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-graphics=
-/packagegroups/packagegroup-core-x11-xserver.bb?h=3Dmaster#n12=A0=A0(the sa=
-me is present in ( http://cgit.openembedded.org/openembedded-core/tree/meta=
-/recipes-graphics/packagegroups/packagegroup-core-x11-xserver.bb?h=3Dmaster=
-#n12 ) openembedded-core/tree/meta/recipes-graphics/packagegroups ( http://=
-cgit.openembedded.org/openembedded-core/tree/meta/recipes-graphics/packageg=
-roups/packagegroup-core-x11-xserver.bb?h=3Dmaster#n12 ) ) ( http://cgit.ope=
-nembedded.org/openembedded-core/tree/meta/recipes-graphics/packagegroups/pa=
-ckagegroup-core-x11-xserver.bb?h=3Dmaster#n12 )
->=20
-> i have added x11=A0 in DISTRO_FEATURES but it seems i am facing the same =
-issue , i am attaching the few parameters from local.conf
->=20
-> EXTRA_IMAGE_FEATURES ?=3D " debug-tweaks *packagegroup-core-x11-xserver* =
- allow-empty-password allow-root-login bash-completion-pkgs dbg-pkgs debug-=
-tweaks dev-pkgs doc doc-pkgs eclipse-debug empty-root-password hwcodecs nfs=
--client nfs-server package-management post-install-logging ptest-pkgs read-=
-only-rootfs splash src-pkgs ssh-server-dropbear ssh-server-openssh stateles=
-s-rootfs staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps =
-x11 x11-base x11-sato " ENABLE_UART =3D "1" CORE_IMAGE_EXTRA_INSTALL +=3D "=
-git ruby bsdtar pseudo os-release lsb-release openssh cmake apt" DISTRO_FEA=
-TURES_append =3D "opengl python3-pip " IMAGE_FEATURES_append =3D "tools-deb=
-ug tools-sdk dev-pkgs" EXTRA_IMAGE_FEATURES_append +=3D "src-pkgs package-m=
-anagement ssh-server-dropbear ssh-server-openssh stateless-rootfs " IMAGE_I=
-NSTALL_append +=3D " dhcp-client dhcp-server " CORE_IMAGE_EXTRA_INSTALL +=
-=3D " python3 util-linux mtd-utils-jffs2 mtd-utils-misc" EXTRA_IMAGE_FEATUR=
-ES +=3D "staticdev-pkgs" *DISTRO_FEATURES +=3D "x11"* DISTRO_FEATURES +=3D =
-"wifi ipv4 ipv6 nfs usbgadget keyboard usbhost pci cramfs glx" IMAGE_INSTAL=
-L_append =3D "perf dbus libnss-mdns minicom rsync dbus dstat hostapd dhcpcd=
- nasm ncurses-libncurses ncurses-tools ncurses-terminfo-base python3-matplo=
-tlib python3-flask" IMAGE_INSTALL +=3D "vim lzo dosfstools nfs-utils unzip =
-make mtd-utils e2fsprogs " IMAGE_INSTALL +=3D " pciutils man-pages iperf3 "=
- IMAGE_INSTALL +=3D " libtirpc libsdl2 " but still i am getting the followi=
-ng error,
-> Loading cache: 100% | | ETA: --:--:-- Loaded 0 entries from dependency ca=
-che. Parsing recipes: 100% |###############################################=
-###########################################################################=
-############################################| Time: 0:00:11 Parsing of 2316=
- .bb files complete (0 cached, 2316 parsed). 3545 targets, 213 skipped, 0 m=
-asked, 0 errors. ERROR: Nothing PROVIDES 'core-image-sato' core-image-sato =
-was skipped: 'packagegroup-core-x11-xserver' in IMAGE_FEATURES (added via E=
-XTRA_IMAGE_FEATURES) is not a valid image feature. Valid features: allow-em=
-pty-password allow-root-login bash-completion-pkgs dbg-pkgs debug-tweaks de=
-v-pkgs doc doc-pkgs eclipse-debug empty-root-password hwcodecs nfs-client n=
-fs-server package-management post-install-logging ptest-pkgs read-only-root=
-fs splash src-pkgs ssh-server-dropbear ssh-server-openssh stateless-rootfs =
-staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x11 x11-b=
-ase x11-sato
+Currently=C2=A0 1 running tasks (680 of 2941)=C2=A0 23% |#################=
+##########=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |
+0: openssl-native-1.1.1d-r0 do_install - 6m17s (pid 6007)
 
-packagegroup-core-x11-server is a recipe (well, both a recipe and a
-package) not a feature.
+When I look into the docker container I see only these processes
+user@yocto:~$ ps -ef
+UID=C2=A0 =C2=A0 =C2=A0 =C2=A0 PID=C2=A0 PPID=C2=A0 C STIME TTY=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 TIME CMD
+user=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01=C2=A0 =C2=A0 =C2=A00=C2=A0 0 07:37=
+ pts/0=C2=A0 =C2=A0 00:00:00 /bin/bash scripts/ci.sh pdsystems prepare_arti=
+facts
+user=C2=A0 =C2=A0 =C2=A0 =C2=A0 53=C2=A0 =C2=A0 =C2=A01=C2=A0 1 07:37 pts/=
+0=C2=A0 =C2=A0 00:00:03 python3 /home/user/meta-poky/bitbake/bin/bitbake ma=
+chine
+user=C2=A0 =C2=A0 =C2=A0 =C2=A0 59=C2=A0 =C2=A0 =C2=A01=C2=A0 4 07:37 ?=C2=
+=
+=A0 =C2=A0 =C2=A0 =C2=A0 00:00:14 python3 /home/user/meta-poky/bitbake/bin=
+/bitbake machine
+user=C2=A0 =C2=A0 =C2=A0 =C2=A0414=C2=A0 =C2=A0 =C2=A00=C2=A0 0 07:38 pts/=
+1=C2=A0 =C2=A0 00:00:00 bash
+user=C2=A0 =C2=A0 =C2=A0 =C2=A0449=C2=A0 =C2=A0 59=C2=A0 5 07:39 ?=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 00:00:11 python3 /home/user/meta-poky/bitbake/bin/bit=
+bake-worker decafbad
+user=C2=A0 =C2=A0 =C2=A015205=C2=A0 =C2=A0414=C2=A0 0 07:42 pts/1=C2=A0 =
+=C2=A0 00:00:00 ps -ef
 
-If you want to add packagegroup-core-x11-server package to your image,
-you need to add it to IMAGE_INSTALL.
+Usually I can fix this by deleting all of by build folder, which of course=
+ is annoying as it takes a loong time. Just deleting caches does not help.
 
-If I can suggest spending a bit of time reading some of the extensive
-documentations available here: https://www.yoctoproject.org/docs/
+Anybody has an idea of why this happens.
 
-Or a good way to get started rather quickly with the basics of Yocto,
-watch a few of the Youtube Live Coding videos available here:
-https://www.youtube.com/user/TheYoctoProject/videos
-That should make your life easier for the beginning :)
+Kjeld Flarup
 
-(and you still haven't added the leading space in
-IMAGE_FEATURES_append, DISTRO_FEATURES_append and IMAGE_INSTALL_append)
+--ZG4JAnFSE4D5wC9cXLlh
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Quentin
+<div>I sometimes encounters this situation, where a task is running forever=
+. This example only one task, but I have seen 6 tasks which have been runni=
+ng for 10+ minutes<br /><br /><span style=3D"font-family: courier_newregula=
+r, courier;">Currently&nbsp; 1 running tasks (680 of 2941)&nbsp; 23% |#####=
+######################&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |</span></div>
+<div><span style=3D"font-family: courier_newregular, courier;">0: openssl-=
+native-1.1.1d-r0 do_install - 6m17s (pid 6007)</span></div>
+<div><br />When I look into the docker container I see only these processe=
+s<br />
+<div><span style=3D"font-family: courier_newregular, courier;">user@yocto:=
+~$ ps -ef</span></div>
+<div><span style=3D"font-family: courier_newregular, courier;">UID&nbsp; &=
+nbsp; &nbsp; &nbsp; PID&nbsp; PPID&nbsp; C STIME TTY&nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; TIME CMD</span></div>
+<div><span style=3D"font-family: courier_newregular, courier;">user&nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp;1&nbsp; &nbsp; &nbsp;0&nbsp; 0 07:37 pts/0&nbsp;=
+ &nbsp; 00:00:00 /bin/bash scripts/ci.sh pdsystems prepare_artifacts</span>=
+</div>
+<div><span style=3D"font-family: courier_newregular, courier;">user&nbsp; =
+&nbsp; &nbsp; &nbsp; 53&nbsp; &nbsp; &nbsp;1&nbsp; 1 07:37 pts/0&nbsp; &nbs=
+p; 00:00:03 python3 /home/user/meta-poky/bitbake/bin/bitbake machine</span>=
+</div>
+<div><span style=3D"font-family: courier_newregular, courier;">user&nbsp; =
+&nbsp; &nbsp; &nbsp; 59&nbsp; &nbsp; &nbsp;1&nbsp; 4 07:37 ?&nbsp; &nbsp; &=
+nbsp; &nbsp; 00:00:14 python3 /home/user/meta-poky/bitbake/bin/bitbake mach=
+ine</span></div>
+<div><span style=3D"font-family: courier_newregular, courier;">user&nbsp; =
+&nbsp; &nbsp; &nbsp;414&nbsp; &nbsp; &nbsp;0&nbsp; 0 07:38 pts/1&nbsp; &nbs=
+p; 00:00:00 bash</span></div>
+<div><span style=3D"font-family: courier_newregular, courier;">user&nbsp; =
+&nbsp; &nbsp; &nbsp;449&nbsp; &nbsp; 59&nbsp; 5 07:39 ?&nbsp; &nbsp; &nbsp;=
+ &nbsp; 00:00:11 python3 /home/user/meta-poky/bitbake/bin/bitbake-worker de=
+cafbad</span></div>
+<div><span style=3D"font-family: courier_newregular, courier;">user&nbsp; =
+&nbsp; &nbsp;15205&nbsp; &nbsp;414&nbsp; 0 07:42 pts/1&nbsp; &nbsp; 00:00:0=
+0 ps -ef</span></div>
+</div>
+<div><br />Usually I can fix this by deleting all of by build folder, whic=
+h of course is annoying as it takes a loong time. Just deleting caches does=
+ not help.<br /><br />Anybody has an idea of why this happens.<br /><br />K=
+jeld Flarup<br /><br /></div>
+
+--ZG4JAnFSE4D5wC9cXLlh--
