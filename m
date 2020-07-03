@@ -1,44 +1,44 @@
-Received: from mail-pj1-f68.google.com (mail-pj1-f68.google.com [209.85.216.68])
- by mx.groups.io with SMTP id smtpd.web12.3997.1593798243849141648
+Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com [209.85.214.194])
+ by mx.groups.io with SMTP id smtpd.web11.4324.1593798938671136351
  for <yocto@lists.yoctoproject.org>;
- Fri, 03 Jul 2020 10:44:03 -0700
+ Fri, 03 Jul 2020 10:55:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=G6+J3rAG;
- spf=pass (domain: gmail.com, ip: 209.85.216.68, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f68.google.com with SMTP id k71so10634435pje.0
-        for <yocto@lists.yoctoproject.org>; Fri, 03 Jul 2020 10:44:03 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=pvZwmfxL;
+ spf=pass (domain: gmail.com, ip: 209.85.214.194, mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f194.google.com with SMTP id w19so2204351ply.9
+        for <yocto@lists.yoctoproject.org>; Fri, 03 Jul 2020 10:55:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language;
-        bh=vKN7DjoOu50Foks+bbl5LS9d0NWX87HCMiQanPkSYeI=;
-        b=G6+J3rAGvg1OHFdKYLWFDj58WLCbtH5adPf8XOIHj8+72BC6WcYZmnG8GYe587kbxW
-         brsoJErJnV4NSXiT/CXHRhX/mNIsJzZGRAt2p9n+jZNBPPYQH2I7VLUGJOHQtSp2EHV8
-         sBAV7iXOy22fuQ3DtCdxwpv/pAvFvS1xFYuKv98mcLsRmHth9n+dYOTo4K5u6z+k8lyc
-         xzf7PXsmiPoYQwz1q8cTX0zUMs5aKDaJ8+pyZDZfvofdbEsLrmppRzpbbeX8YQy5Stke
-         70C3kBheovMzqN1/di1cSw38E11zV3/9VG3qfp9zjR5cBn1w57vyNUNzD8hB5DOTcRr9
-         DMcQ==
+        bh=uqTn6FZNtumKcrZcEIfw9bNojWJL4G+5yPtdaSZbcm8=;
+        b=pvZwmfxLrtJFKPZoQa/zdMM7S5IRpHQ3CCMuqs8uHsmZh85C9GYuyMdhHqqdbvz+EF
+         oZxnMJaHetHgWV3e1aceiq9rmV3qEVDNUcYDNaJE4VYSCvCQ9M8ljC8LCSMcS0dKz+k7
+         lY9vHNK2RB96tTCH8APT/PKWGIik2f2wRq77+RZ59jnZIRfXlBuhTUkJYRZ2JQMOcqGA
+         To94VKvD6ITFy1WHYx35pFqpLvSWHKtBcrmefMQN0aJgv0NdpEyV3Xs8Iq8UQEA5RhVU
+         WwYWrp13hEUcqJudSZYTWXuG4GHCt96uDfeLiuUV9/Uec1bZVif7OLnbcPURlQHCJngA
+         CmHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
          :date:user-agent:mime-version:in-reply-to:content-language;
-        bh=vKN7DjoOu50Foks+bbl5LS9d0NWX87HCMiQanPkSYeI=;
-        b=hEsFdyrDpFYyLtV3zt6BAUzuR6/gLTyRr812MqcbohaWdz/HMupYluAfA50acHXMTt
-         t2LUg1hxgv0xrUdDJx8840N1UQuanAg0ixgEgKW4QXqbqUs2FOE4HdXAv/b9AbN90nj9
-         cJ4v96V+/lMivhqLOzThAn3EemrGCGaCLeaLtG749tZZAqOogh7KetR0b5tXaqcoEB7l
-         7A4nWJMS8/rqI/nU7Bxoov0cagfY2lAswhS9+OJblsBIqMz1ZuzfZrvFQ2J5O0dZUQ1c
-         BD4VicQ/jl3JXyQLuUi11SF4IyZ/ft0WPL+tAdbvo7bdIw9yBnDGzVewfEo6QjE9ZyOB
-         szew==
-X-Gm-Message-State: AOAM533i7dVBwdPFJncQHqk91zTEq9n/XpB+Oiq3MEsh3Crtkmqdp8z6
-	UeZ2shSSQqWA1gr/ffH/GdXuQ7FDeKc=
-X-Google-Smtp-Source: ABdhPJwG3fIJnEmD1isAsdfHGjphgZUCIXQSbztDFIE5kpi95BuwvHdnTyCQyQqIEmOofamAhqfuEQ==
-X-Received: by 2002:a17:90a:354d:: with SMTP id q71mr40929750pjb.216.1593798243186;
-        Fri, 03 Jul 2020 10:44:03 -0700 (PDT)
+        bh=uqTn6FZNtumKcrZcEIfw9bNojWJL4G+5yPtdaSZbcm8=;
+        b=SP1018iJz3G5+Q8CSIniB8tndoOQmVcnl78RVgOJiOCccVZSBGhamQIunMdxDdq5g8
+         buTKVvKLuXeuut4RcgkNKsFpNDUJ42B178sJI2IJInI4u1guY54aR6ehCot1reVI+EXX
+         GqDm4OYZJXPyT4OxoO4nkA8v6aLIBbjk6wCrxVg0CkqqIIQUEACms5QhSeoKpD0+TdUB
+         1YvYsBAzs2Q0QCX9IzpYTDg/ikz37VyDiUjc+OQfWEnx4iIg73uBg2DfYys4QzUAI/1U
+         rYrm+mJkCHo3kIQXYEkrrpc3DRkNOxDQmOdy8H27IZm7ViB+9VxeZvAF2RD793coXn37
+         Lf7g==
+X-Gm-Message-State: AOAM533+nbe+icfXcvRAvX2wb68GsWof5xQBTRlj7VpgPhTaQL/5UTeo
+	+XdqzovitHMV0LJthQI1GdlPKkStcic=
+X-Google-Smtp-Source: ABdhPJxufGao1Vj0gugMw5AWiYORxWACSpSZjriICGUUi6QxCNDct+piQVZ+TB6DOh9l1dQWdO28/g==
+X-Received: by 2002:a17:902:7d90:: with SMTP id a16mr3498536plm.226.1593798937694;
+        Fri, 03 Jul 2020 10:55:37 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from ?IPv6:2601:202:4180:a5c0::afc? ([2601:202:4180:a5c0::afc])
-        by smtp.gmail.com with ESMTPSA id u26sm12425415pgo.71.2020.07.03.10.44.01
+        by smtp.gmail.com with ESMTPSA id i196sm12456699pgc.55.2020.07.03.10.55.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Jul 2020 10:44:02 -0700 (PDT)
+        Fri, 03 Jul 2020 10:55:37 -0700 (PDT)
 Subject: Re: [yocto] [meta-security][master|dunfell][PATCH] clamav: Fix issue when yara_grammar.h is regenerated.
 To: Jeremy Puhlman <jpuhlman@mvista.com>, akuster808 <akuster808@gmail.com>,
  yocto@lists.yoctoproject.org
@@ -89,17 +89,17 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <5786539e-a981-11d3-68ff-4847c999326b@gmail.com>
-Date: Fri, 3 Jul 2020 10:44:01 -0700
+Message-ID: <c4d18ba1-99ec-5367-0f24-0c325f1ecc7b@gmail.com>
+Date: Fri, 3 Jul 2020 10:55:36 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
 In-Reply-To: <a1666091-15ab-0ef5-15eb-4ade35e7006e@mvista.com>
 Content-Type: multipart/alternative;
- boundary="------------DEABE13D711EDF9A376FE4EB"
+ boundary="------------550BFB8D2A8F7931CBAE6EEC"
 Content-Language: en-US
 
---------------DEABE13D711EDF9A376FE4EB
+--------------550BFB8D2A8F7931CBAE6EEC
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -129,9 +129,12 @@ On 7/3/20 9:43 AM, Jeremy Puhlman wrote:
 >> warning: fix-its can be applied.  Rerun with option '--update'. [-Wother]
 >> | Makefile:4247: recipe for target 'yara_grammar.c' failed
 >
+
+i am also seeing this while working on updating master to 102.3.
+
+-armin
 > Weird we should be using common bison/lex. You are building on a
 > ubuntu host correct?
-yes
 >
 >>
 >> -armin
@@ -209,7 +212,7 @@ yes
 > 
 
 
---------------DEABE13D711EDF9A376FE4EB
+--------------550BFB8D2A8F7931CBAE6EEC
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -258,12 +261,16 @@ This is fixed in 0.103. Backported code snippet to resolve the issue.</pre>
         | Makefile:4247: recipe for target 'yara_grammar.c' failed<br>
       </blockquote>
       <br>
-      Weird we should be using common bison/lex. You are building on a
-      ubuntu host correct?<br>
     </blockquote>
-    yes<br>
+    <br>
+    i am also seeing this while working on updating master to 102.3.<br>
+    <br>
+    -armin<br>
     <blockquote type="cite"
-      cite="mid:a1666091-15ab-0ef5-15eb-4ade35e7006e@mvista.com"> <br>
+      cite="mid:a1666091-15ab-0ef5-15eb-4ade35e7006e@mvista.com"> Weird
+      we should be using common bison/lex. You are building on a ubuntu
+      host correct?<br>
+      <br>
       <blockquote type="cite"
         cite="mid:f9fcdb6c-784e-18ea-2009-f577e141356e@gmail.com"> <br>
         -armin<br>
@@ -367,4 +374,4 @@ Jeremy A. Puhlman
   </body>
 </html>
 
---------------DEABE13D711EDF9A376FE4EB--
+--------------550BFB8D2A8F7931CBAE6EEC--
