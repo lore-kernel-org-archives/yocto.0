@@ -1,136 +1,96 @@
-Subject: Re: The following packages have unmet dependencies: packagegroup-core-x11-base : Depends: packagegroup-core-x11-xserver but it is not going to be installed #yocto
-To: yocto@lists.yoctoproject.org
-From: "Pankaj  Vinadrao Joshi" <pankaj.vj@exaleapsemi.com>
-X-Originating-Location: Pune, Maharashtra, IN (49.35.219.96)
-X-Originating-Platform: Windows Chrome 83
-User-Agent: GROUPS.IO Web Poster
+Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
+ by mx.groups.io with SMTP id smtpd.web11.5810.1593762015959208792
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 03 Jul 2020 00:40:17 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp.bon.at (Postfix) with ESMTPSA id 49yn1R2MWJz5tlM;
+	Fri,  3 Jul 2020 09:40:11 +0200 (CEST)
+Date: Fri, 3 Jul 2020 09:40:09 +0200
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: Pankaj Vinadrao Joshi <pankaj.vj@exaleapsemi.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] The following packages have unmet dependencies: packagegroup-core-x11-base : Depends: packagegroup-core-x11-xserver but it is not going to be installed #yocto
+Message-ID: <20200703074009.73wy7gzs3gehejb4@qschulz>
+References: <10822.1593680079768378665@lists.yoctoproject.org>
+ <6208.1593761482623104508@lists.yoctoproject.org>
 MIME-Version: 1.0
-Date: Fri, 03 Jul 2020 00:38:23 -0700
-References: <6208.1593761482623104508@lists.yoctoproject.org>
 In-Reply-To: <6208.1593761482623104508@lists.yoctoproject.org>
-Message-ID: <8184.1593761903948245805@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="A5aSnrz8gIQBMzPLRp6c"
-
---A5aSnrz8gIQBMzPLRp6c
-Content-Type: text/plain; charset="utf-8"
+User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Sorry i forgot to attach the complete error log also i dont know while post=
-ing why the local.conf features it got copied twice,
+Hi Pankaj,
 
-ERROR: core-image-sato-1.0-r0 do_rootfs: Unable to install packages. Comma=
-nd '/home/performance-team/pankaj/Oe_raspberrypi4/tmp-glibc/work/raspberryp=
-i4_64-oe-linux/core-image-sato/1.0-r0/recipe-sysroot-native/usr/bin/opkg --=
-volatile-cache -f /home/performance-team/pankaj/Oe_raspberrypi4/tmp-glibc/w=
-ork/raspberrypi4_64-oe-linux/core-image-sato/1.0-r0/opkg.conf -t /home/perf=
-ormance-team/pankaj/Oe_raspberrypi4/tmp-glibc/work/raspberrypi4_64-oe-linux=
-/core-image-sato/1.0-r0/temp/ipktemp/ -o /home/performance-team/pankaj/Oe_r=
-aspberrypi4/tmp-glibc/work/raspberrypi4_64-oe-linux/core-image-sato/1.0-r0/=
-rootfs=C2=A0 --force_postinstall --prefer-arch-to-version=C2=A0 =C2=A0insta=
-ll cpufrequtils cups dbus dhcp-client dhcp-server dhcpcd dosfstools dstat e=
-2fsprogs gdbserver hostapd iperf3 libnss-mdns libsdl2 libtirpc lzo make man=
--pages minicom mtd-utils nasm ncurses-libncurses ncurses-terminfo-base ncur=
-ses-tools nfs-utils opkg packagegroup-core-eclipse-debug packagegroup-core-=
-nfs-client packagegroup-core-nfs-server packagegroup-core-sdk packagegroup-=
-core-ssh-openssh packagegroup-core-standalone-sdk-target packagegroup-core-=
-tools-debug packagegroup-core-tools-profile packagegroup-core-tools-testapp=
-s packagegroup-core-x11 packagegroup-core-x11-base packagegroup-core-x11-sa=
-to pciutils perf psplash-raspberrypi python3-flask python3-matplotlib rsync=
- run-postinsts strace sudo unzip vim zlib' returned 2:
-Collected errors:
-* Solver encountered 2 problem(s):
-* Problem 1/2:
-*=C2=A0 =C2=A0- package packagegroup-core-x11-base-1.0-r1.all requires pac=
-kagegroup-core-x11-xserver, but none of the providers can be installed
-*=C2=A0 =C2=A0- conflicting requests
-*=C2=A0 =C2=A0- nothing provides xserver-xorg-extension-glx needed by pack=
-agegroup-core-x11-xserver-1.0-r40.raspberrypi4_64
-*
-* Solution 1:
-*=C2=A0 =C2=A0- do not ask to install a package providing packagegroup-cor=
-e-x11-base
+On Fri, Jul 03, 2020 at 12:31:22AM -0700, Pankaj  Vinadrao Joshi wrote:
+> Hi Quentin,
+> Missing x11 in DISTRO_FEATURES in your distro.
+> http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-graphics=
+/packagegroups/packagegroup-core-x11-xserver.bb?h=3Dmaster#n12=A0=A0(the sa=
+me is present in ( http://cgit.openembedded.org/openembedded-core/tree/meta=
+/recipes-graphics/packagegroups/packagegroup-core-x11-xserver.bb?h=3Dmaster=
+#n12 ) openembedded-core/tree/meta/recipes-graphics/packagegroups ( http://=
+cgit.openembedded.org/openembedded-core/tree/meta/recipes-graphics/packageg=
+roups/packagegroup-core-x11-xserver.bb?h=3Dmaster#n12 ) ) ( http://cgit.ope=
+nembedded.org/openembedded-core/tree/meta/recipes-graphics/packagegroups/pa=
+ckagegroup-core-x11-xserver.bb?h=3Dmaster#n12 )
+>=20
+> i have added x11=A0 in DISTRO_FEATURES but it seems i am facing the same =
+issue , i am attaching the few parameters from local.conf
+>=20
+> EXTRA_IMAGE_FEATURES ?=3D " debug-tweaks *packagegroup-core-x11-xserver* =
+ allow-empty-password allow-root-login bash-completion-pkgs dbg-pkgs debug-=
+tweaks dev-pkgs doc doc-pkgs eclipse-debug empty-root-password hwcodecs nfs=
+-client nfs-server package-management post-install-logging ptest-pkgs read-=
+only-rootfs splash src-pkgs ssh-server-dropbear ssh-server-openssh stateles=
+s-rootfs staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps =
+x11 x11-base x11-sato " ENABLE_UART =3D "1" CORE_IMAGE_EXTRA_INSTALL +=3D "=
+git ruby bsdtar pseudo os-release lsb-release openssh cmake apt" DISTRO_FEA=
+TURES_append =3D "opengl python3-pip " IMAGE_FEATURES_append =3D "tools-deb=
+ug tools-sdk dev-pkgs" EXTRA_IMAGE_FEATURES_append +=3D "src-pkgs package-m=
+anagement ssh-server-dropbear ssh-server-openssh stateless-rootfs " IMAGE_I=
+NSTALL_append +=3D " dhcp-client dhcp-server " CORE_IMAGE_EXTRA_INSTALL +=
+=3D " python3 util-linux mtd-utils-jffs2 mtd-utils-misc" EXTRA_IMAGE_FEATUR=
+ES +=3D "staticdev-pkgs" *DISTRO_FEATURES +=3D "x11"* DISTRO_FEATURES +=3D =
+"wifi ipv4 ipv6 nfs usbgadget keyboard usbhost pci cramfs glx" IMAGE_INSTAL=
+L_append =3D "perf dbus libnss-mdns minicom rsync dbus dstat hostapd dhcpcd=
+ nasm ncurses-libncurses ncurses-tools ncurses-terminfo-base python3-matplo=
+tlib python3-flask" IMAGE_INSTALL +=3D "vim lzo dosfstools nfs-utils unzip =
+make mtd-utils e2fsprogs " IMAGE_INSTALL +=3D " pciutils man-pages iperf3 "=
+ IMAGE_INSTALL +=3D " libtirpc libsdl2 " but still i am getting the followi=
+ng error,
+> Loading cache: 100% | | ETA: --:--:-- Loaded 0 entries from dependency ca=
+che. Parsing recipes: 100% |###############################################=
+###########################################################################=
+############################################| Time: 0:00:11 Parsing of 2316=
+ .bb files complete (0 cached, 2316 parsed). 3545 targets, 213 skipped, 0 m=
+asked, 0 errors. ERROR: Nothing PROVIDES 'core-image-sato' core-image-sato =
+was skipped: 'packagegroup-core-x11-xserver' in IMAGE_FEATURES (added via E=
+XTRA_IMAGE_FEATURES) is not a valid image feature. Valid features: allow-em=
+pty-password allow-root-login bash-completion-pkgs dbg-pkgs debug-tweaks de=
+v-pkgs doc doc-pkgs eclipse-debug empty-root-password hwcodecs nfs-client n=
+fs-server package-management post-install-logging ptest-pkgs read-only-root=
+fs splash src-pkgs ssh-server-dropbear ssh-server-openssh stateless-rootfs =
+staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x11 x11-b=
+ase x11-sato
 
-* Problem 2/2:
-*=C2=A0 =C2=A0- package packagegroup-core-x11-1.0-r40.all requires package=
-group-core-x11-xserver, but none of the providers can be installed
-*=C2=A0 =C2=A0- conflicting requests
-*=C2=A0 =C2=A0- nothing provides xserver-xorg-extension-glx needed by pack=
-agegroup-core-x11-xserver-1.0-r40.raspberrypi4_64
-*
-* Solution 1:
-*=C2=A0 =C2=A0- do not ask to install a package providing packagegroup-cor=
-e-x11
+packagegroup-core-x11-server is a recipe (well, both a recipe and a
+package) not a feature.
 
-ERROR: Logfile of failure stored in: /home/performance-team/pankaj/Oe_rasp=
-berrypi4/tmp-glibc/work/raspberrypi4_64-oe-linux/core-image-sato/1.0-r0/tem=
-p/log.do_rootfs.645
-ERROR: Task (/home/performance-team/pankaj/openembedded-core/meta/recipes-=
-sato/images/core-image-sato.bb:do_rootfs) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 6537 tasks of which 6536 didn't need to be =
-rerun and 1 failed.
+If you want to add packagegroup-core-x11-server package to your image,
+you need to add it to IMAGE_INSTALL.
 
---A5aSnrz8gIQBMzPLRp6c
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+If I can suggest spending a bit of time reading some of the extensive
+documentations available here: https://www.yoctoproject.org/docs/
 
-Sorry i forgot to attach the complete error log also i dont know while post=
-ing why the local.conf features it got copied twice,<br /><br />
-<div>ERROR: core-image-sato-1.0-r0 do_rootfs: Unable to install packages. =
-Command '/home/performance-team/pankaj/Oe_raspberrypi4/tmp-glibc/work/raspb=
-errypi4_64-oe-linux/core-image-sato/1.0-r0/recipe-sysroot-native/usr/bin/op=
-kg --volatile-cache -f /home/performance-team/pankaj/Oe_raspberrypi4/tmp-gl=
-ibc/work/raspberrypi4_64-oe-linux/core-image-sato/1.0-r0/opkg.conf -t /home=
-/performance-team/pankaj/Oe_raspberrypi4/tmp-glibc/work/raspberrypi4_64-oe-=
-linux/core-image-sato/1.0-r0/temp/ipktemp/ -o /home/performance-team/pankaj=
-/Oe_raspberrypi4/tmp-glibc/work/raspberrypi4_64-oe-linux/core-image-sato/1.=
-0-r0/rootfs&nbsp; --force_postinstall --prefer-arch-to-version&nbsp; &nbsp;=
-install cpufrequtils cups dbus dhcp-client dhcp-server dhcpcd dosfstools ds=
-tat e2fsprogs gdbserver hostapd iperf3 libnss-mdns libsdl2 libtirpc lzo mak=
-e man-pages minicom mtd-utils nasm ncurses-libncurses ncurses-terminfo-base=
- ncurses-tools nfs-utils opkg packagegroup-core-eclipse-debug packagegroup-=
-core-nfs-client packagegroup-core-nfs-server packagegroup-core-sdk packageg=
-roup-core-ssh-openssh packagegroup-core-standalone-sdk-target packagegroup-=
-core-tools-debug packagegroup-core-tools-profile packagegroup-core-tools-te=
-stapps packagegroup-core-x11 packagegroup-core-x11-base packagegroup-core-x=
-11-sato pciutils perf psplash-raspberrypi python3-flask python3-matplotlib =
-rsync run-postinsts strace sudo unzip vim zlib' returned 2:</div>
-<div>Collected errors:</div>
-<div>&nbsp;* Solver encountered 2 problem(s):</div>
-<div>&nbsp;* Problem 1/2:</div>
-<div>&nbsp;*&nbsp; &nbsp;- package packagegroup-core-x11-base-1.0-r1.all r=
-equires packagegroup-core-x11-xserver, but none of the providers can be ins=
-talled</div>
-<div>&nbsp;*&nbsp; &nbsp;- conflicting requests</div>
-<div>&nbsp;*&nbsp; &nbsp;- nothing provides xserver-xorg-extension-glx nee=
-ded by packagegroup-core-x11-xserver-1.0-r40.raspberrypi4_64</div>
-<div>&nbsp;*&nbsp;</div>
-<div>&nbsp;* Solution 1:</div>
-<div>&nbsp;*&nbsp; &nbsp;- do not ask to install a package providing packa=
-gegroup-core-x11-base</div>
-<div>&nbsp;</div>
-<div>&nbsp;* Problem 2/2:</div>
-<div>&nbsp;*&nbsp; &nbsp;- package packagegroup-core-x11-1.0-r40.all requi=
-res packagegroup-core-x11-xserver, but none of the providers can be install=
-ed</div>
-<div>&nbsp;*&nbsp; &nbsp;- conflicting requests</div>
-<div>&nbsp;*&nbsp; &nbsp;- nothing provides xserver-xorg-extension-glx nee=
-ded by packagegroup-core-x11-xserver-1.0-r40.raspberrypi4_64</div>
-<div>&nbsp;*&nbsp;</div>
-<div>&nbsp;* Solution 1:</div>
-<div>&nbsp;*&nbsp; &nbsp;- do not ask to install a package providing packa=
-gegroup-core-x11</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>ERROR: Logfile of failure stored in: /home/performance-team/pankaj/Oe=
-_raspberrypi4/tmp-glibc/work/raspberrypi4_64-oe-linux/core-image-sato/1.0-r=
-0/temp/log.do_rootfs.645</div>
-<div>ERROR: Task (/home/performance-team/pankaj/openembedded-core/meta/rec=
-ipes-sato/images/core-image-sato.bb:do_rootfs) failed with exit code '1'</d=
-iv>
-<div>NOTE: Tasks Summary: Attempted 6537 tasks of which 6536 didn't need t=
-o be rerun and 1 failed.</div>
-<div>&nbsp;</div>
+Or a good way to get started rather quickly with the basics of Yocto,
+watch a few of the Youtube Live Coding videos available here:
+https://www.youtube.com/user/TheYoctoProject/videos
+That should make your life easier for the beginning :)
 
---A5aSnrz8gIQBMzPLRp6c--
+(and you still haven't added the leading space in
+IMAGE_FEATURES_append, DISTRO_FEATURES_append and IMAGE_INSTALL_append)
+
+Quentin
