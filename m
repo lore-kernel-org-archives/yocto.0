@@ -1,224 +1,132 @@
-Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com [209.85.214.194])
- by mx.groups.io with SMTP id smtpd.web10.617.1593735422001241108
- for <yocto@lists.yoctoproject.org>;
- Thu, 02 Jul 2020 17:17:02 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=h0jgyf36;
- spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 209.85.214.194, mailfrom: jpuhlman@mvista.com)
-Received: by mail-pl1-f194.google.com with SMTP id p1so2673002pls.4
-        for <yocto@lists.yoctoproject.org>; Thu, 02 Jul 2020 17:17:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language;
-        bh=7oy2hTOc3fBtUII5OdypaIncoY/8m45bABFPINlS36U=;
-        b=h0jgyf36G9zVIx0rDIMLggT7q3H7yanPr2r9KFLRBAm+QOTx0iHxQ8YzrVPpJVNUwg
-         OXbXBBGx0U/lkuZXKacoRWpwXrRucs6Q9yT0wJtM4MNV8ZfPTsFNsEFpwASoKyQ8ykFg
-         XC8os8Jf6VPRGa3YM75LREIZ8eSZkmZL0Z06vIRxyHNiop79BYleUpOBWsYLqcAizfhc
-         o3AC0EqpLM8YV+DQYteImjBbtP9y+ZLnU96O9aY3gSZkTSsEUP1c5g/oQonMPAGfMwpa
-         MRg00lygIRon57CgTkLkRfCgIBnuKwjVGiy8mPUEzZsOkqUg2st+iJySa1njIZMprc0Z
-         NvqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language;
-        bh=7oy2hTOc3fBtUII5OdypaIncoY/8m45bABFPINlS36U=;
-        b=V9sJofjZbws4S9vGOn59LNyZBzgdSgo5muztzCMDzVvH+dsW3EOaIiRS5GshpXF6uQ
-         dhoXhy5gIN8qMymMkc1fLXdU1Jj9sLHd0fhpBrFahvLlcdAlc3bLUS16EhF+/vLIRx2J
-         WHdEcUIUP1Joc5OkA0DvvqgtjnmuL2q+4jHt2/i9d3HGvPmhTp22uKOvxtqOmFvx0dnn
-         7f/3CBaO+pWi8ZajOGHkUG+VsswP9boiUThYzwnqoAa7Etzoyx2COe4G09T9XNYOjMoY
-         iS/Jt12msgMbLTC8Pm644gZCOlEbqeB9IB21j9VMTQtE9MznOc9+EtAW0/aicT9YjPzm
-         mkJw==
-X-Gm-Message-State: AOAM530nbVQYfqWCydiWAjW9uED1FYwaR3XV8XOEPmBEPwMb9i7OPHFY
-	Lk5ikfodKkJRKcp6W9d+tsxicA==
-X-Google-Smtp-Source: ABdhPJyMq5dvcoIT4FCLo2UFquRal09LWPKx9H+njKjcHREJZFV518UyIquwoXmow8Zl5ufLVw5XUQ==
-X-Received: by 2002:a17:90a:3fc7:: with SMTP id u7mr28385369pjm.231.1593735421487;
-        Thu, 02 Jul 2020 17:17:01 -0700 (PDT)
-Return-Path: <jpuhlman@mvista.com>
-Received: from [192.168.1.128] (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
-        by smtp.gmail.com with ESMTPSA id i8sm9550563pfd.14.2020.07.02.17.17.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jul 2020 17:17:00 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][master|dunfell][PATCH 1/2] apparmor: pull in coreutils/findutils only when not using systemd as init manager
-To: akuster808 <akuster808@gmail.com>, yocto@lists.yoctoproject.org
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-References: <20200703000043.9774-1-jpuhlman@mvista.com>
- <e47106a4-ca73-8c91-2081-f204bb348d9a@gmail.com>
-From: "Jeremy Puhlman" <jpuhlman@mvista.com>
-Message-ID: <775d4de9-264e-0dce-378e-653e6dd516c3@mvista.com>
-Date: Thu, 2 Jul 2020 17:16:59 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Subject: Re: The following packages have unmet dependencies: packagegroup-core-x11-base : Depends: packagegroup-core-x11-xserver but it is not going to be installed #yocto
+To: yocto@lists.yoctoproject.org
+From: "Pankaj  Vinadrao Joshi" <pankaj.vj@exaleapsemi.com>
+X-Originating-Location: Pune, Maharashtra, IN (49.35.219.96)
+X-Originating-Platform: Windows Chrome 83
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <e47106a4-ca73-8c91-2081-f204bb348d9a@gmail.com>
-Content-Type: multipart/alternative;
- boundary="------------3890DB5CDAD9C56B3678CAF2"
-Content-Language: en-US
+Date: Fri, 03 Jul 2020 00:31:22 -0700
+References: <10822.1593680079768378665@lists.yoctoproject.org>
+In-Reply-To: <10822.1593680079768378665@lists.yoctoproject.org>
+Message-ID: <6208.1593761482623104508@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="hbMLR2ecoAOgLRqjGReP"
 
---------------3890DB5CDAD9C56B3678CAF2
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--hbMLR2ecoAOgLRqjGReP
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Yeah that was a goof on my part. I thought I aborted it, but I guess I 
-didn't. I meant to send the clamav patch.
+Hi Quentin,
+Missing x11 in DISTRO_FEATURES in your distro.
+http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-graphics/=
+packagegroups/packagegroup-core-x11-xserver.bb?h=3Dmaster#n12=C2=A0=C2=A0(t=
+he same is present in ( http://cgit.openembedded.org/openembedded-core/tree=
+/meta/recipes-graphics/packagegroups/packagegroup-core-x11-xserver.bb?h=3Dm=
+aster#n12 ) openembedded-core/tree/meta/recipes-graphics/packagegroups ( ht=
+tp://cgit.openembedded.org/openembedded-core/tree/meta/recipes-graphics/pac=
+kagegroups/packagegroup-core-x11-xserver.bb?h=3Dmaster#n12 ) ) ( http://cgi=
+t.openembedded.org/openembedded-core/tree/meta/recipes-graphics/packagegrou=
+ps/packagegroup-core-x11-xserver.bb?h=3Dmaster#n12 )
 
-Sorry for the noise on that one.
+i have added x11=C2=A0 in DISTRO_FEATURES but it seems i am facing the sam=
+e issue , i am attaching the few parameters from local.conf
 
-On 7/2/2020 5:14 PM, akuster808 wrote:
->
->
-> On 7/2/20 5:00 PM, Jeremy Puhlman wrote:
->> From: Alexander Kanavin<alex.kanavin@gmail.com>
->>
->> The utilities from those packages (xargs, comm) are only used in sysvinit
->> scripts, and so there is no need to pull them in when systemd is in use.
->> Both are gpl3 licensed, so this is beneficial for builds where gpl3 is not
->> allowed.
->>
->> Signed-off-by: Alexander Kanavin<alex.kanavin@gmail.com>
->> Signed-off-by: Armin Kuster<akuster808@gmail.com>
->
-> If I am not mistaken, this is in both master and dunfell.
->
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-security/commit/?id=3018714159686e0ab2e4e5e6323a76b92aedc4ca
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-security/commit/?h=dunfell&id=217fadb03da925757b236cb91ba9807e3b2bbd6e
->
-> - armin
->> ---
->>   recipes-mac/AppArmor/apparmor_2.13.4.bb | 3 ++-
->>   1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/recipes-mac/AppArmor/apparmor_2.13.4.bb b/recipes-mac/AppArmor/apparmor_2.13.4.bb
->> index d6f61b3..552cac7 100644
->> --- a/recipes-mac/AppArmor/apparmor_2.13.4.bb
->> +++ b/recipes-mac/AppArmor/apparmor_2.13.4.bb
->> @@ -191,7 +191,8 @@ PACKAGES += "mod-${PN}"
->>   FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor ${PYTHON_SITEPACKAGES_DIR}"
->>   FILES_mod-${PN} = "${libdir}/apache2/modules/*"
->>   
->> -RDEPENDS_${PN} +=  "coreutils findutils ${@bb.utils.contains('PACKAGECONFIG','python','python3-core python3-modules','', d)}"
->> +# Add coreutils and findutils only if sysvinit scripts are in use
->> +RDEPENDS_${PN} +=  "${@["coreutils findutils", ""][(d.getVar('VIRTUAL-RUNTIME_init_manager') == 'systemd')]} ${@bb.utils.contains('PACKAGECONFIG','python','python3-core python3-modules','', d)}"
->>   RDEPENDS_${PN}_remove +="${@bb.utils.contains('PACKAGECONFIG','perl','','perl', d)}"
->>   RDEPENDS_${PN}-ptest += "perl coreutils dbus-lib bash"
->>   
->>
->> 
->
->
-> <http://www.avg.com/email-signature?utm_medium=email&utm_source=link&utm_campaign=sig-email&utm_content=emailclient> 
-> 	Virus-free. www.avg.com 
-> <http://www.avg.com/email-signature?utm_medium=email&utm_source=link&utm_campaign=sig-email&utm_content=emailclient> 
->
->
-> <#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2>
+EXTRA_IMAGE_FEATURES ?=3D " debug-tweaks *packagegroup-core-x11-xserver* a=
+llow-empty-password allow-root-login bash-completion-pkgs dbg-pkgs debug-tw=
+eaks dev-pkgs doc doc-pkgs eclipse-debug empty-root-password hwcodecs nfs-c=
+lient nfs-server package-management post-install-logging ptest-pkgs read-on=
+ly-rootfs splash src-pkgs ssh-server-dropbear ssh-server-openssh stateless-=
+rootfs staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x1=
+1 x11-base x11-sato " ENABLE_UART =3D "1" CORE_IMAGE_EXTRA_INSTALL +=3D "gi=
+t ruby bsdtar pseudo os-release lsb-release openssh cmake apt" DISTRO_FEATU=
+RES_append =3D "opengl python3-pip " IMAGE_FEATURES_append =3D "tools-debug=
+ tools-sdk dev-pkgs" EXTRA_IMAGE_FEATURES_append +=3D "src-pkgs package-man=
+agement ssh-server-dropbear ssh-server-openssh stateless-rootfs " IMAGE_INS=
+TALL_append +=3D " dhcp-client dhcp-server " CORE_IMAGE_EXTRA_INSTALL +=3D =
+" python3 util-linux mtd-utils-jffs2 mtd-utils-misc" EXTRA_IMAGE_FEATURES +=
+=
+=3D "staticdev-pkgs" *DISTRO_FEATURES +=3D "x11"* DISTRO_FEATURES +=3D "wi=
+fi ipv4 ipv6 nfs usbgadget keyboard usbhost pci cramfs glx" IMAGE_INSTALL_a=
+ppend =3D "perf dbus libnss-mdns minicom rsync dbus dstat hostapd dhcpcd na=
+sm ncurses-libncurses ncurses-tools ncurses-terminfo-base python3-matplotli=
+b python3-flask" IMAGE_INSTALL +=3D "vim lzo dosfstools nfs-utils unzip mak=
+e mtd-utils e2fsprogs " IMAGE_INSTALL +=3D " pciutils man-pages iperf3 " IM=
+AGE_INSTALL +=3D " libtirpc libsdl2 " but still i am getting the following =
+error,
+Loading cache: 100% | | ETA: --:--:-- Loaded 0 entries from dependency cac=
+he. Parsing recipes: 100% |################################################=
+###########################################################################=
+###########################################| Time: 0:00:11 Parsing of 2316 =
+.bb files complete (0 cached, 2316 parsed). 3545 targets, 213 skipped, 0 ma=
+sked, 0 errors. ERROR: Nothing PROVIDES 'core-image-sato' core-image-sato w=
+as skipped: 'packagegroup-core-x11-xserver' in IMAGE_FEATURES (added via EX=
+TRA_IMAGE_FEATURES) is not a valid image feature. Valid features: allow-emp=
+ty-password allow-root-login bash-completion-pkgs dbg-pkgs debug-tweaks dev=
+-pkgs doc doc-pkgs eclipse-debug empty-root-password hwcodecs nfs-client nf=
+s-server package-management post-install-logging ptest-pkgs read-only-rootf=
+s splash src-pkgs ssh-server-dropbear ssh-server-openssh stateless-rootfs s=
+taticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x11 x11-ba=
+se x11-sato
+Can you suggest where modify exactly??Kindly suggest
 
--- 
-Jeremy A. Puhlman
-jpuhlman@mvista.com
+Thanks!
 
+--hbMLR2ecoAOgLRqjGReP
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------3890DB5CDAD9C56B3678CAF2
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Hi Quentin,<br /><span style=3D"white-space: pre-wrap;">Missing x11 in DIST=
+RO_FEATURES in your distro.</span><br style=3D"white-space: pre-wrap;" /><a=
+ style=3D"background-color: #ffffff; white-space: pre-wrap;" href=3D"http:/=
+/cgit.openembedded.org/openembedded-core/tree/meta/recipes-graphics/package=
+groups/packagegroup-core-x11-xserver.bb?h=3Dmaster#n12" target=3D"_blank" r=
+el=3D"noopener">http://cgit.openembedded.org/openembedded-core/tree/meta/re=
+cipes-graphics/packagegroups/packagegroup-core-x11-xserver.bb?h=3Dmaster#n1=
+2&nbsp;&nbsp;(the same is present in </a><a style=3D"background-color: #fff=
+fff; color: #23527c; outline: 0px;" href=3D"http://cgit.openembedded.org/op=
+enembedded-core/tree/meta/recipes-graphics/packagegroups/packagegroup-core-=
+x11-xserver.bb?h=3Dmaster#n12" target=3D"_blank" rel=3D"noopener">openembed=
+ded-core/tree/meta/recipes-graphics/packagegroups</a><a style=3D"background=
+-color: #ffffff; white-space: pre-wrap;" href=3D"http://cgit.openembedded.o=
+rg/openembedded-core/tree/meta/recipes-graphics/packagegroups/packagegroup-=
+core-x11-xserver.bb?h=3Dmaster#n12" target=3D"_blank" rel=3D"noopener"> )</=
+a><br /><br />i have added x11&nbsp; in&nbsp;<span style=3D"white-space: pr=
+e-wrap;"> DISTRO_FEATURES but it seems i am facing the same issue , i am at=
+taching the few parameters from local.conf</span><br /><br /><span style=3D=
+"white-space: pre-wrap;">EXTRA_IMAGE_FEATURES ?=3D " debug-tweaks <strong> =
+packagegroup-core-x11-xserver</strong> allow-empty-password allow-root-logi=
+n bash-completion-pkgs dbg-pkgs debug-tweaks dev-pkgs doc doc-pkgs eclipse-=
+debug empty-root-password hwcodecs nfs-client nfs-server package-management=
+ post-install-logging ptest-pkgs read-only-rootfs splash src-pkgs ssh-serve=
+r-dropbear ssh-server-openssh stateless-rootfs staticdev-pkgs tools-debug t=
+ools-profile tools-sdk tools-testapps x11 x11-base x11-sato " ENABLE_UART =
+=3D "1" CORE_IMAGE_EXTRA_INSTALL +=3D "git ruby bsdtar pseudo os-release l=
+sb-release openssh cmake apt" DISTRO_FEATURES_append =3D "opengl python3-pi=
+p " IMAGE_FEATURES_append =3D "tools-debug tools-sdk dev-pkgs" EXTRA_IMAGE_=
+FEATURES_append +=3D "src-pkgs package-management ssh-server-dropbear ssh-s=
+erver-openssh stateless-rootfs " IMAGE_INSTALL_append +=3D " dhcp-client dh=
+cp-server " CORE_IMAGE_EXTRA_INSTALL +=3D " python3 util-linux mtd-utils-jf=
+fs2 mtd-utils-misc" EXTRA_IMAGE_FEATURES +=3D "staticdev-pkgs" <strong>DIST=
+RO_FEATURES +=3D "x11"</strong> DISTRO_FEATURES +=3D "wifi ipv4 ipv6 nfs us=
+bgadget keyboard usbhost pci cramfs glx" IMAGE_INSTALL_append =3D "perf dbu=
+s libnss-mdns minicom rsync dbus dstat hostapd dhcpcd nasm ncurses-libncurs=
+es ncurses-tools ncurses-terminfo-base python3-matplotlib python3-flask" IM=
+AGE_INSTALL +=3D "vim lzo dosfstools nfs-utils unzip make mtd-utils e2fspro=
+gs " IMAGE_INSTALL +=3D " pciutils man-pages iperf3 " IMAGE_INSTALL +=3D " =
+libtirpc libsdl2 " but still i am getting the following error,</span><br />=
+<span style=3D"white-space: pre-wrap;">Loading cache: 100% | | ETA: --:--:-=
+- Loaded 0 entries from dependency cache. Parsing recipes: 100% |##########=
+###########################################################################=
+###########################################################################=
+######| Time: 0:00:11 Parsing of 2316 .bb files complete (0 cached, 2316 pa=
+rsed). 3545 targets, 213 skipped, 0 masked, 0 errors. ERROR: Nothing PROVID=
+ES 'core-image-sato' core-image-sato was skipped: 'packagegroup-core-x11-xs=
+erver' in IMAGE_FEATURES (added via EXTRA_IMAGE_FEATURES) is not a valid im=
+age feature. Valid features: allow-empty-password allow-root-login bash-com=
+pletion-pkgs dbg-pkgs debug-tweaks dev-pkgs doc doc-pkgs eclipse-debug empt=
+y-root-password hwcodecs nfs-client nfs-server package-management post-inst=
+all-logging ptest-pkgs read-only-rootfs splash src-pkgs ssh-server-dropbear=
+ ssh-server-openssh stateless-rootfs staticdev-pkgs tools-debug tools-profi=
+le tools-sdk tools-testapps x11 x11-base x11-sato </span><br />Can you sugg=
+est where modify exactly??Kindly suggest&nbsp;<br /><br />Thanks!
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    Yeah that was a goof on my part. I thought I aborted it, but I guess
-    I didn't. I meant to send the clamav patch.<br>
-    <br>
-    Sorry for the noise on that one.<br>
-    <br>
-    <div class="moz-cite-prefix">On 7/2/2020 5:14 PM, akuster808 wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:e47106a4-ca73-8c91-2081-f204bb348d9a@gmail.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <br>
-      <br>
-      <div class="moz-cite-prefix">On 7/2/20 5:00 PM, Jeremy Puhlman
-        wrote:<br>
-      </div>
-      <blockquote type="cite"
-        cite="mid:20200703000043.9774-1-jpuhlman@mvista.com">
-        <pre class="moz-quote-pre" wrap="">From: Alexander Kanavin <a class="moz-txt-link-rfc2396E" href="mailto:alex.kanavin@gmail.com" moz-do-not-send="true">&lt;alex.kanavin@gmail.com&gt;</a>
-
-The utilities from those packages (xargs, comm) are only used in sysvinit
-scripts, and so there is no need to pull them in when systemd is in use.
-Both are gpl3 licensed, so this is beneficial for builds where gpl3 is not
-allowed.
-
-Signed-off-by: Alexander Kanavin <a class="moz-txt-link-rfc2396E" href="mailto:alex.kanavin@gmail.com" moz-do-not-send="true">&lt;alex.kanavin@gmail.com&gt;</a>
-Signed-off-by: Armin Kuster <a class="moz-txt-link-rfc2396E" href="mailto:akuster808@gmail.com" moz-do-not-send="true">&lt;akuster808@gmail.com&gt;</a></pre>
-      </blockquote>
-      <br>
-      If I am not mistaken, this is in both master and dunfell.<br>
-      <br>
-      <a class="moz-txt-link-freetext"
-href="http://git.yoctoproject.org/cgit/cgit.cgi/meta-security/commit/?id=3018714159686e0ab2e4e5e6323a76b92aedc4ca"
-        moz-do-not-send="true">http://git.yoctoproject.org/cgit/cgit.cgi/meta-security/commit/?id=3018714159686e0ab2e4e5e6323a76b92aedc4ca</a><br>
-      <a class="moz-txt-link-freetext"
-href="http://git.yoctoproject.org/cgit/cgit.cgi/meta-security/commit/?h=dunfell&amp;id=217fadb03da925757b236cb91ba9807e3b2bbd6e"
-        moz-do-not-send="true">http://git.yoctoproject.org/cgit/cgit.cgi/meta-security/commit/?h=dunfell&amp;id=217fadb03da925757b236cb91ba9807e3b2bbd6e</a><br>
-      <br>
-      - armin<br>
-      <blockquote type="cite"
-        cite="mid:20200703000043.9774-1-jpuhlman@mvista.com">
-        <pre class="moz-quote-pre" wrap="">---
- recipes-mac/AppArmor/apparmor_2.13.4.bb | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/recipes-mac/AppArmor/apparmor_2.13.4.bb b/recipes-mac/AppArmor/apparmor_2.13.4.bb
-index d6f61b3..552cac7 100644
---- a/recipes-mac/AppArmor/apparmor_2.13.4.bb
-+++ b/recipes-mac/AppArmor/apparmor_2.13.4.bb
-@@ -191,7 +191,8 @@ PACKAGES += "mod-${PN}"
- FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor ${PYTHON_SITEPACKAGES_DIR}"
- FILES_mod-${PN} = "${libdir}/apache2/modules/*"
- 
--RDEPENDS_${PN} +=  "coreutils findutils ${@bb.utils.contains('PACKAGECONFIG','python','python3-core python3-modules','', d)}"
-+# Add coreutils and findutils only if sysvinit scripts are in use
-+RDEPENDS_${PN} +=  "${@["coreutils findutils", ""][(d.getVar('VIRTUAL-RUNTIME_init_manager') == 'systemd')]} ${@bb.utils.contains('PACKAGECONFIG','python','python3-core python3-modules','', d)}"
- RDEPENDS_${PN}_remove += <a class="moz-txt-link-rfc2396E" href="mailto:${@bb.utils.contains('PACKAGECONFIG','perl','','perl',d)}" moz-do-not-send="true">"${@bb.utils.contains('PACKAGECONFIG','perl','','perl', d)}"</a>
- RDEPENDS_${PN}-ptest += "perl coreutils dbus-lib bash"
- 
-</pre>
-        <br>
-        <fieldset class="mimeAttachmentHeader"></fieldset>
-        <pre class="moz-quote-pre" wrap="">
-</pre>
-      </blockquote>
-      <br>
-      <div id="DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2"><br>
-        <table style="border-top: 1px solid #D3D4DE;">
-          <tbody>
-            <tr>
-              <td style="width: 55px; padding-top: 13px;"><a
-href="http://www.avg.com/email-signature?utm_medium=email&amp;utm_source=link&amp;utm_campaign=sig-email&amp;utm_content=emailclient"
-                  target="_blank" moz-do-not-send="true"><img
-src="https://ipmcdn.avast.com/images/icons/icon-envelope-tick-green-avg-v1.png"
-                    alt="" style="width: 46px; height: 29px;"
-                    moz-do-not-send="true" width="46" height="29"></a></td>
-              <td style="width: 470px; padding-top: 12px; color:
-                #41424e; font-size: 13px; font-family: Arial, Helvetica,
-                sans-serif; line-height: 18px;">Virus-free. <a
-href="http://www.avg.com/email-signature?utm_medium=email&amp;utm_source=link&amp;utm_campaign=sig-email&amp;utm_content=emailclient"
-                  target="_blank" style="color: #4453ea;"
-                  moz-do-not-send="true">www.avg.com</a> </td>
-            </tr>
-          </tbody>
-        </table>
-        <a href="#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2" width="1"
-          height="1" moz-do-not-send="true"> </a></div>
-    </blockquote>
-    <br>
-    <pre class="moz-signature" cols="72">-- 
-Jeremy A. Puhlman
-<a class="moz-txt-link-abbreviated" href="mailto:jpuhlman@mvista.com">jpuhlman@mvista.com</a></pre>
-  </body>
-</html>
-
---------------3890DB5CDAD9C56B3678CAF2--
+--hbMLR2ecoAOgLRqjGReP--
