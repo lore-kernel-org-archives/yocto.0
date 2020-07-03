@@ -5,128 +5,132 @@ X-Originating-Location: Pune, Maharashtra, IN (49.35.219.96)
 X-Originating-Platform: Windows Chrome 83
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Fri, 03 Jul 2020 00:31:22 -0700
-References: <10822.1593680079768378665@lists.yoctoproject.org>
-In-Reply-To: <10822.1593680079768378665@lists.yoctoproject.org>
-Message-ID: <6208.1593761482623104508@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="hbMLR2ecoAOgLRqjGReP"
+Date: Fri, 03 Jul 2020 00:38:23 -0700
+References: <6208.1593761482623104508@lists.yoctoproject.org>
+In-Reply-To: <6208.1593761482623104508@lists.yoctoproject.org>
+Message-ID: <8184.1593761903948245805@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="A5aSnrz8gIQBMzPLRp6c"
 
---hbMLR2ecoAOgLRqjGReP
+--A5aSnrz8gIQBMzPLRp6c
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Quentin,
-Missing x11 in DISTRO_FEATURES in your distro.
-http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-graphics/=
-packagegroups/packagegroup-core-x11-xserver.bb?h=3Dmaster#n12=C2=A0=C2=A0(t=
-he same is present in ( http://cgit.openembedded.org/openembedded-core/tree=
-/meta/recipes-graphics/packagegroups/packagegroup-core-x11-xserver.bb?h=3Dm=
-aster#n12 ) openembedded-core/tree/meta/recipes-graphics/packagegroups ( ht=
-tp://cgit.openembedded.org/openembedded-core/tree/meta/recipes-graphics/pac=
-kagegroups/packagegroup-core-x11-xserver.bb?h=3Dmaster#n12 ) ) ( http://cgi=
-t.openembedded.org/openembedded-core/tree/meta/recipes-graphics/packagegrou=
-ps/packagegroup-core-x11-xserver.bb?h=3Dmaster#n12 )
+Sorry i forgot to attach the complete error log also i dont know while post=
+ing why the local.conf features it got copied twice,
 
-i have added x11=C2=A0 in DISTRO_FEATURES but it seems i am facing the sam=
-e issue , i am attaching the few parameters from local.conf
+ERROR: core-image-sato-1.0-r0 do_rootfs: Unable to install packages. Comma=
+nd '/home/performance-team/pankaj/Oe_raspberrypi4/tmp-glibc/work/raspberryp=
+i4_64-oe-linux/core-image-sato/1.0-r0/recipe-sysroot-native/usr/bin/opkg --=
+volatile-cache -f /home/performance-team/pankaj/Oe_raspberrypi4/tmp-glibc/w=
+ork/raspberrypi4_64-oe-linux/core-image-sato/1.0-r0/opkg.conf -t /home/perf=
+ormance-team/pankaj/Oe_raspberrypi4/tmp-glibc/work/raspberrypi4_64-oe-linux=
+/core-image-sato/1.0-r0/temp/ipktemp/ -o /home/performance-team/pankaj/Oe_r=
+aspberrypi4/tmp-glibc/work/raspberrypi4_64-oe-linux/core-image-sato/1.0-r0/=
+rootfs=C2=A0 --force_postinstall --prefer-arch-to-version=C2=A0 =C2=A0insta=
+ll cpufrequtils cups dbus dhcp-client dhcp-server dhcpcd dosfstools dstat e=
+2fsprogs gdbserver hostapd iperf3 libnss-mdns libsdl2 libtirpc lzo make man=
+-pages minicom mtd-utils nasm ncurses-libncurses ncurses-terminfo-base ncur=
+ses-tools nfs-utils opkg packagegroup-core-eclipse-debug packagegroup-core-=
+nfs-client packagegroup-core-nfs-server packagegroup-core-sdk packagegroup-=
+core-ssh-openssh packagegroup-core-standalone-sdk-target packagegroup-core-=
+tools-debug packagegroup-core-tools-profile packagegroup-core-tools-testapp=
+s packagegroup-core-x11 packagegroup-core-x11-base packagegroup-core-x11-sa=
+to pciutils perf psplash-raspberrypi python3-flask python3-matplotlib rsync=
+ run-postinsts strace sudo unzip vim zlib' returned 2:
+Collected errors:
+* Solver encountered 2 problem(s):
+* Problem 1/2:
+*=C2=A0 =C2=A0- package packagegroup-core-x11-base-1.0-r1.all requires pac=
+kagegroup-core-x11-xserver, but none of the providers can be installed
+*=C2=A0 =C2=A0- conflicting requests
+*=C2=A0 =C2=A0- nothing provides xserver-xorg-extension-glx needed by pack=
+agegroup-core-x11-xserver-1.0-r40.raspberrypi4_64
+*
+* Solution 1:
+*=C2=A0 =C2=A0- do not ask to install a package providing packagegroup-cor=
+e-x11-base
 
-EXTRA_IMAGE_FEATURES ?=3D " debug-tweaks *packagegroup-core-x11-xserver* a=
-llow-empty-password allow-root-login bash-completion-pkgs dbg-pkgs debug-tw=
-eaks dev-pkgs doc doc-pkgs eclipse-debug empty-root-password hwcodecs nfs-c=
-lient nfs-server package-management post-install-logging ptest-pkgs read-on=
-ly-rootfs splash src-pkgs ssh-server-dropbear ssh-server-openssh stateless-=
-rootfs staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x1=
-1 x11-base x11-sato " ENABLE_UART =3D "1" CORE_IMAGE_EXTRA_INSTALL +=3D "gi=
-t ruby bsdtar pseudo os-release lsb-release openssh cmake apt" DISTRO_FEATU=
-RES_append =3D "opengl python3-pip " IMAGE_FEATURES_append =3D "tools-debug=
- tools-sdk dev-pkgs" EXTRA_IMAGE_FEATURES_append +=3D "src-pkgs package-man=
-agement ssh-server-dropbear ssh-server-openssh stateless-rootfs " IMAGE_INS=
-TALL_append +=3D " dhcp-client dhcp-server " CORE_IMAGE_EXTRA_INSTALL +=3D =
-" python3 util-linux mtd-utils-jffs2 mtd-utils-misc" EXTRA_IMAGE_FEATURES +=
-=
-=3D "staticdev-pkgs" *DISTRO_FEATURES +=3D "x11"* DISTRO_FEATURES +=3D "wi=
-fi ipv4 ipv6 nfs usbgadget keyboard usbhost pci cramfs glx" IMAGE_INSTALL_a=
-ppend =3D "perf dbus libnss-mdns minicom rsync dbus dstat hostapd dhcpcd na=
-sm ncurses-libncurses ncurses-tools ncurses-terminfo-base python3-matplotli=
-b python3-flask" IMAGE_INSTALL +=3D "vim lzo dosfstools nfs-utils unzip mak=
-e mtd-utils e2fsprogs " IMAGE_INSTALL +=3D " pciutils man-pages iperf3 " IM=
-AGE_INSTALL +=3D " libtirpc libsdl2 " but still i am getting the following =
-error,
-Loading cache: 100% | | ETA: --:--:-- Loaded 0 entries from dependency cac=
-he. Parsing recipes: 100% |################################################=
-###########################################################################=
-###########################################| Time: 0:00:11 Parsing of 2316 =
-.bb files complete (0 cached, 2316 parsed). 3545 targets, 213 skipped, 0 ma=
-sked, 0 errors. ERROR: Nothing PROVIDES 'core-image-sato' core-image-sato w=
-as skipped: 'packagegroup-core-x11-xserver' in IMAGE_FEATURES (added via EX=
-TRA_IMAGE_FEATURES) is not a valid image feature. Valid features: allow-emp=
-ty-password allow-root-login bash-completion-pkgs dbg-pkgs debug-tweaks dev=
--pkgs doc doc-pkgs eclipse-debug empty-root-password hwcodecs nfs-client nf=
-s-server package-management post-install-logging ptest-pkgs read-only-rootf=
-s splash src-pkgs ssh-server-dropbear ssh-server-openssh stateless-rootfs s=
-taticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x11 x11-ba=
-se x11-sato
-Can you suggest where modify exactly??Kindly suggest
+* Problem 2/2:
+*=C2=A0 =C2=A0- package packagegroup-core-x11-1.0-r40.all requires package=
+group-core-x11-xserver, but none of the providers can be installed
+*=C2=A0 =C2=A0- conflicting requests
+*=C2=A0 =C2=A0- nothing provides xserver-xorg-extension-glx needed by pack=
+agegroup-core-x11-xserver-1.0-r40.raspberrypi4_64
+*
+* Solution 1:
+*=C2=A0 =C2=A0- do not ask to install a package providing packagegroup-cor=
+e-x11
 
-Thanks!
+ERROR: Logfile of failure stored in: /home/performance-team/pankaj/Oe_rasp=
+berrypi4/tmp-glibc/work/raspberrypi4_64-oe-linux/core-image-sato/1.0-r0/tem=
+p/log.do_rootfs.645
+ERROR: Task (/home/performance-team/pankaj/openembedded-core/meta/recipes-=
+sato/images/core-image-sato.bb:do_rootfs) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 6537 tasks of which 6536 didn't need to be =
+rerun and 1 failed.
 
---hbMLR2ecoAOgLRqjGReP
+--A5aSnrz8gIQBMzPLRp6c
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Quentin,<br /><span style=3D"white-space: pre-wrap;">Missing x11 in DIST=
-RO_FEATURES in your distro.</span><br style=3D"white-space: pre-wrap;" /><a=
- style=3D"background-color: #ffffff; white-space: pre-wrap;" href=3D"http:/=
-/cgit.openembedded.org/openembedded-core/tree/meta/recipes-graphics/package=
-groups/packagegroup-core-x11-xserver.bb?h=3Dmaster#n12" target=3D"_blank" r=
-el=3D"noopener">http://cgit.openembedded.org/openembedded-core/tree/meta/re=
-cipes-graphics/packagegroups/packagegroup-core-x11-xserver.bb?h=3Dmaster#n1=
-2&nbsp;&nbsp;(the same is present in </a><a style=3D"background-color: #fff=
-fff; color: #23527c; outline: 0px;" href=3D"http://cgit.openembedded.org/op=
-enembedded-core/tree/meta/recipes-graphics/packagegroups/packagegroup-core-=
-x11-xserver.bb?h=3Dmaster#n12" target=3D"_blank" rel=3D"noopener">openembed=
-ded-core/tree/meta/recipes-graphics/packagegroups</a><a style=3D"background=
--color: #ffffff; white-space: pre-wrap;" href=3D"http://cgit.openembedded.o=
-rg/openembedded-core/tree/meta/recipes-graphics/packagegroups/packagegroup-=
-core-x11-xserver.bb?h=3Dmaster#n12" target=3D"_blank" rel=3D"noopener"> )</=
-a><br /><br />i have added x11&nbsp; in&nbsp;<span style=3D"white-space: pr=
-e-wrap;"> DISTRO_FEATURES but it seems i am facing the same issue , i am at=
-taching the few parameters from local.conf</span><br /><br /><span style=3D=
-"white-space: pre-wrap;">EXTRA_IMAGE_FEATURES ?=3D " debug-tweaks <strong> =
-packagegroup-core-x11-xserver</strong> allow-empty-password allow-root-logi=
-n bash-completion-pkgs dbg-pkgs debug-tweaks dev-pkgs doc doc-pkgs eclipse-=
-debug empty-root-password hwcodecs nfs-client nfs-server package-management=
- post-install-logging ptest-pkgs read-only-rootfs splash src-pkgs ssh-serve=
-r-dropbear ssh-server-openssh stateless-rootfs staticdev-pkgs tools-debug t=
-ools-profile tools-sdk tools-testapps x11 x11-base x11-sato " ENABLE_UART =
-=3D "1" CORE_IMAGE_EXTRA_INSTALL +=3D "git ruby bsdtar pseudo os-release l=
-sb-release openssh cmake apt" DISTRO_FEATURES_append =3D "opengl python3-pi=
-p " IMAGE_FEATURES_append =3D "tools-debug tools-sdk dev-pkgs" EXTRA_IMAGE_=
-FEATURES_append +=3D "src-pkgs package-management ssh-server-dropbear ssh-s=
-erver-openssh stateless-rootfs " IMAGE_INSTALL_append +=3D " dhcp-client dh=
-cp-server " CORE_IMAGE_EXTRA_INSTALL +=3D " python3 util-linux mtd-utils-jf=
-fs2 mtd-utils-misc" EXTRA_IMAGE_FEATURES +=3D "staticdev-pkgs" <strong>DIST=
-RO_FEATURES +=3D "x11"</strong> DISTRO_FEATURES +=3D "wifi ipv4 ipv6 nfs us=
-bgadget keyboard usbhost pci cramfs glx" IMAGE_INSTALL_append =3D "perf dbu=
-s libnss-mdns minicom rsync dbus dstat hostapd dhcpcd nasm ncurses-libncurs=
-es ncurses-tools ncurses-terminfo-base python3-matplotlib python3-flask" IM=
-AGE_INSTALL +=3D "vim lzo dosfstools nfs-utils unzip make mtd-utils e2fspro=
-gs " IMAGE_INSTALL +=3D " pciutils man-pages iperf3 " IMAGE_INSTALL +=3D " =
-libtirpc libsdl2 " but still i am getting the following error,</span><br />=
-<span style=3D"white-space: pre-wrap;">Loading cache: 100% | | ETA: --:--:-=
-- Loaded 0 entries from dependency cache. Parsing recipes: 100% |##########=
-###########################################################################=
-###########################################################################=
-######| Time: 0:00:11 Parsing of 2316 .bb files complete (0 cached, 2316 pa=
-rsed). 3545 targets, 213 skipped, 0 masked, 0 errors. ERROR: Nothing PROVID=
-ES 'core-image-sato' core-image-sato was skipped: 'packagegroup-core-x11-xs=
-erver' in IMAGE_FEATURES (added via EXTRA_IMAGE_FEATURES) is not a valid im=
-age feature. Valid features: allow-empty-password allow-root-login bash-com=
-pletion-pkgs dbg-pkgs debug-tweaks dev-pkgs doc doc-pkgs eclipse-debug empt=
-y-root-password hwcodecs nfs-client nfs-server package-management post-inst=
-all-logging ptest-pkgs read-only-rootfs splash src-pkgs ssh-server-dropbear=
- ssh-server-openssh stateless-rootfs staticdev-pkgs tools-debug tools-profi=
-le tools-sdk tools-testapps x11 x11-base x11-sato </span><br />Can you sugg=
-est where modify exactly??Kindly suggest&nbsp;<br /><br />Thanks!
+Sorry i forgot to attach the complete error log also i dont know while post=
+ing why the local.conf features it got copied twice,<br /><br />
+<div>ERROR: core-image-sato-1.0-r0 do_rootfs: Unable to install packages. =
+Command '/home/performance-team/pankaj/Oe_raspberrypi4/tmp-glibc/work/raspb=
+errypi4_64-oe-linux/core-image-sato/1.0-r0/recipe-sysroot-native/usr/bin/op=
+kg --volatile-cache -f /home/performance-team/pankaj/Oe_raspberrypi4/tmp-gl=
+ibc/work/raspberrypi4_64-oe-linux/core-image-sato/1.0-r0/opkg.conf -t /home=
+/performance-team/pankaj/Oe_raspberrypi4/tmp-glibc/work/raspberrypi4_64-oe-=
+linux/core-image-sato/1.0-r0/temp/ipktemp/ -o /home/performance-team/pankaj=
+/Oe_raspberrypi4/tmp-glibc/work/raspberrypi4_64-oe-linux/core-image-sato/1.=
+0-r0/rootfs&nbsp; --force_postinstall --prefer-arch-to-version&nbsp; &nbsp;=
+install cpufrequtils cups dbus dhcp-client dhcp-server dhcpcd dosfstools ds=
+tat e2fsprogs gdbserver hostapd iperf3 libnss-mdns libsdl2 libtirpc lzo mak=
+e man-pages minicom mtd-utils nasm ncurses-libncurses ncurses-terminfo-base=
+ ncurses-tools nfs-utils opkg packagegroup-core-eclipse-debug packagegroup-=
+core-nfs-client packagegroup-core-nfs-server packagegroup-core-sdk packageg=
+roup-core-ssh-openssh packagegroup-core-standalone-sdk-target packagegroup-=
+core-tools-debug packagegroup-core-tools-profile packagegroup-core-tools-te=
+stapps packagegroup-core-x11 packagegroup-core-x11-base packagegroup-core-x=
+11-sato pciutils perf psplash-raspberrypi python3-flask python3-matplotlib =
+rsync run-postinsts strace sudo unzip vim zlib' returned 2:</div>
+<div>Collected errors:</div>
+<div>&nbsp;* Solver encountered 2 problem(s):</div>
+<div>&nbsp;* Problem 1/2:</div>
+<div>&nbsp;*&nbsp; &nbsp;- package packagegroup-core-x11-base-1.0-r1.all r=
+equires packagegroup-core-x11-xserver, but none of the providers can be ins=
+talled</div>
+<div>&nbsp;*&nbsp; &nbsp;- conflicting requests</div>
+<div>&nbsp;*&nbsp; &nbsp;- nothing provides xserver-xorg-extension-glx nee=
+ded by packagegroup-core-x11-xserver-1.0-r40.raspberrypi4_64</div>
+<div>&nbsp;*&nbsp;</div>
+<div>&nbsp;* Solution 1:</div>
+<div>&nbsp;*&nbsp; &nbsp;- do not ask to install a package providing packa=
+gegroup-core-x11-base</div>
+<div>&nbsp;</div>
+<div>&nbsp;* Problem 2/2:</div>
+<div>&nbsp;*&nbsp; &nbsp;- package packagegroup-core-x11-1.0-r40.all requi=
+res packagegroup-core-x11-xserver, but none of the providers can be install=
+ed</div>
+<div>&nbsp;*&nbsp; &nbsp;- conflicting requests</div>
+<div>&nbsp;*&nbsp; &nbsp;- nothing provides xserver-xorg-extension-glx nee=
+ded by packagegroup-core-x11-xserver-1.0-r40.raspberrypi4_64</div>
+<div>&nbsp;*&nbsp;</div>
+<div>&nbsp;* Solution 1:</div>
+<div>&nbsp;*&nbsp; &nbsp;- do not ask to install a package providing packa=
+gegroup-core-x11</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>ERROR: Logfile of failure stored in: /home/performance-team/pankaj/Oe=
+_raspberrypi4/tmp-glibc/work/raspberrypi4_64-oe-linux/core-image-sato/1.0-r=
+0/temp/log.do_rootfs.645</div>
+<div>ERROR: Task (/home/performance-team/pankaj/openembedded-core/meta/rec=
+ipes-sato/images/core-image-sato.bb:do_rootfs) failed with exit code '1'</d=
+iv>
+<div>NOTE: Tasks Summary: Attempted 6537 tasks of which 6536 didn't need t=
+o be rerun and 1 failed.</div>
+<div>&nbsp;</div>
 
---hbMLR2ecoAOgLRqjGReP--
+--A5aSnrz8gIQBMzPLRp6c--
