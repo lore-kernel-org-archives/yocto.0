@@ -1,109 +1,75 @@
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
- by mx.groups.io with SMTP id smtpd.web10.42557.1593975492812172903
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+ by mx.groups.io with SMTP id smtpd.web11.42799.1593975493448821205
  for <yocto@lists.yoctoproject.org>;
- Sun, 05 Jul 2020 11:58:12 -0700
+ Sun, 05 Jul 2020 11:58:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=gViCv+Lr;
- spf=pass (domain: gmail.com, ip: 209.85.210.177, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f177.google.com with SMTP id a14so11486861pfi.2
-        for <yocto@lists.yoctoproject.org>; Sun, 05 Jul 2020 11:58:12 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=QhfFcQ4r;
+ spf=pass (domain: gmail.com, ip: 209.85.214.175, mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f175.google.com with SMTP id k4so309216pld.12
+        for <yocto@lists.yoctoproject.org>; Sun, 05 Jul 2020 11:58:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=r4EeLWp+b3o7gBMgXurw3VMM0Bc9JN6YNblPQ4CIoKw=;
-        b=gViCv+LrntBGShBfu1eaAxiUrRVbBQntXLV3NoR8ERBpiVegZwj/XHT93sU9fF92fc
-         75ZrJnvc/40EO1O9gt++ZIVt1Wtq8OQjoN0C6R3EJZ+YkYNlbl88SrHpsXHBWtENJ482
-         wLNkl6j8zRkwtivauSHwTwfr77MPwGKPr+ib+zfxVdadQWIBWNaIrmaJTRVt2EQ4imqC
-         7qloSJb6yA2OwLqTKxhu6H2qyIPgTPzlqNSIhEQ0AZmDI1j1bxzMvzEc5vCXr8qbPrJn
-         ERc22nDdFUCl6awI/rrq7Hd0OLr51WIo6s2/+xW8lcE2RSkIy0VBcSSQU0lst4D1i3H8
-         zNtg==
+        bh=GxKQeRczgqHcm0SAW1PZV6hcP6M4EVBN9q00gwVRdOo=;
+        b=QhfFcQ4r5/UIh1WYNCFzoCH/7CutTJEY8RbxyHgZS0OTP5Ym3xXrxe5SjajJdy7bdn
+         pgMPo43QjxWzm+QnzIZcCbUj3saMNSPvbS49vDDUvwdJYhY8uK6MS0caBIFz7eaXp76u
+         dlwFqcUDV7saJDo/q7Oc6WiRRWGbePZMF0WblLjAFp2S3dvWvxvLH5cB+rbMC3CaC1B5
+         nVViPCIQF0i9EZ2B56cADynHpO+V1sgdK09BO7rBabIu0Djll6G1Qu6LFkmod3G6ac+k
+         oMXbfTPbB8dEhys0KPzKeUFLGwAlES0ulR0RFpHGb5Zbx+NS1Jn7I6GnBuTWqcfao4vJ
+         cv4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=r4EeLWp+b3o7gBMgXurw3VMM0Bc9JN6YNblPQ4CIoKw=;
-        b=UAAocvT3eei9aTBI4Ws7TdaKza9vjDnEDIgr9MK1bBs+ZJ+WVgdmj7P18Nsc0Jo2jq
-         QDTcmGVtMBqcCIrxWiMzjOgYo4wYZV9GUOnWZaeLuGZn8IP3t2Kx+eusHjaOh4xZ48I5
-         atgy1AxLSc+pch/GIxkKoUiVF7pITmTGuEiyv2WRFxisTqQKhBxAi+C2xXDFOUWJE1Vd
-         EapckUYoxHF/0UTej+I1Xi/wC0bKXsX0/dnLWzuc9jJvF1V2hnfS9TZzww1jcwDiqek9
-         WE5s3cgZv5svFU6mEUpWCadXUuRLKBk2p86o3d/XGzdCQgPbLPo138XQEL+Bp4HA54vK
-         23mQ==
-X-Gm-Message-State: AOAM532khPmNuSgdqZLUjxVf962eeGAZ0dQXrxU0bXb0y+2yd9CxTO7k
-	vwpPYCXfoJTTznwVIq9aU7wwj2JCJlI=
-X-Google-Smtp-Source: ABdhPJwzUgx00/ik3t7/Ynwda/wYL4HUWPDqmt8zkqoTjEcio9erRloU/ofOVF+HTxwRUHxPPtbj4w==
-X-Received: by 2002:a63:6643:: with SMTP id a64mr38193046pgc.246.1593975491844;
-        Sun, 05 Jul 2020 11:58:11 -0700 (PDT)
+        bh=GxKQeRczgqHcm0SAW1PZV6hcP6M4EVBN9q00gwVRdOo=;
+        b=WoJpfG/TqdS83D8hBF8eCXGVwOpkHLTFJyHi8Jcg0VmNb8vPTMLAasBwHVorVOQfXd
+         9ighz8wZfBdB4d2VGM1mC7VALQUEUSWg4OEZlRqf89NNnjF0emR+mcr2lDrjo92VqhEi
+         QlDTONbkBqHXpf4CUrGtHtMvW6bPBt0uNmpEFNVLJL4be2g6c/OCCcR65lSDDz1QShtK
+         ZNDtKUJPYc2lIS43H02jHORZ9+ahWuPfvFwVc6gDf5ILvcgHoeJjITAsGX39DhDtwNFj
+         NJhWHTWn9jUyNoBlNubWJ/jCGVrEA4PtEzkSUBSwz3PY/aqqgQy2fwHdUFfIlIltRlYk
+         o3rQ==
+X-Gm-Message-State: AOAM533zSfVYhR4UzvKAQcnDFg/kGVYuOFLSnjuYB6CRQN868wvC2YwH
+	tc+PVRKusLn3lLomc/8zixhSOyi22n4=
+X-Google-Smtp-Source: ABdhPJzl9gjEAJwcEqxKZBnjM7Lc9xNmxTyKh/WfaUr6wEOR8aizhVQDNl7b+AvtLRHWPYZfLXacNg==
+X-Received: by 2002:a17:90a:ea05:: with SMTP id w5mr30320219pjy.175.1593975492922;
+        Sun, 05 Jul 2020 11:58:12 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net ([2601:202:4180:a5c0:4da7:8833:1925:8aef])
-        by smtp.gmail.com with ESMTPSA id d5sm15464534pjo.20.2020.07.05.11.58.11
+        by smtp.gmail.com with ESMTPSA id d5sm15464534pjo.20.2020.07.05.11.58.12
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jul 2020 11:58:11 -0700 (PDT)
+        Sun, 05 Jul 2020 11:58:12 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 3/5] python3-rsa: add recipe
-Date: Sun,  5 Jul 2020 11:58:06 -0700
-Message-Id: <20200705185808.3912-3-akuster808@gmail.com>
+Subject: [meta-security][PATCH 4/5] python3-ecdsa: add recipe
+Date: Sun,  5 Jul 2020 11:58:07 -0700
+Message-Id: <20200705185808.3912-4-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200705185808.3912-1-akuster808@gmail.com>
 References: <20200705185808.3912-1-akuster808@gmail.com>
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-python/python/python3-rsa_3.4.2.bb | 44 ++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
- create mode 100644 recipes-python/python/python3-rsa_3.4.2.bb
+ recipes-python/python/python3-ecdsa_0.15.bb | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+ create mode 100644 recipes-python/python/python3-ecdsa_0.15.bb
 
-diff --git a/recipes-python/python/python3-rsa_3.4.2.bb b/recipes-python/python/python3-rsa_3.4.2.bb
+diff --git a/recipes-python/python/python3-ecdsa_0.15.bb b/recipes-python/python/python3-ecdsa_0.15.bb
 new file mode 100644
-index 0000000..759214f
+index 0000000..79df4ed
 --- /dev/null
-+++ b/recipes-python/python/python3-rsa_3.4.2.bb
-@@ -0,0 +1,44 @@
-+SUMMARY = "Pure-Python RSA implementation"
++++ b/recipes-python/python/python3-ecdsa_0.15.bb
+@@ -0,0 +1,10 @@
++SUMMARY = "ECDSA cryptographic signature library (pure python)"
 +SECTION = "devel/python"
-+AUTHOR = "Sybren A. Stuvel"
-+LICENSE = "Apache-2.0"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=c403f6882d4f97a9cd927df987d55634"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=66ffc5e30f76cbb5358fe54b645e5a1d"
 +
-+SRC_URI[sha256sum] = "25df4e10c263fb88b5ace923dd84bf9aa7f5019687b5e55382ffcdb8bede9db5"
++PYPI_PACKAGE = "ecdsa"
++SRC_URI[sha256sum] = "8f12ac317f8a1318efa75757ef0a651abe12e51fc1af8838fb91079445227277"
 +
-+inherit pypi setuptools3 update-alternatives
++inherit pypi setuptools3
 +
-+ALTERNATIVE_${PN} = "\
-+    pyrsa-decrypt \
-+    pyrsa-decrypt-bigfile \
-+    pyrsa-encrypt \
-+    pyrsa-encrypt-bigfile \
-+    pyrsa-keygen \
-+    pyrsa-priv2pub \
-+    pyrsa-sign \
-+    pyrsa-verify \
-+"
-+
-+ALTERNATIVE_LINK_NAME[pyrsa-decrypt] = "${bindir}/pyrsa-decrypt"
-+ALTERNATIVE_LINK_NAME[pyrsa-decrypt-bigfile] = "${bindir}/pyrsa-decrypt-bigfile"
-+ALTERNATIVE_LINK_NAME[pyrsa-encrypt] = "${bindir}/pyrsa-encrypt"
-+ALTERNATIVE_LINK_NAME[pyrsa-encrypt-bigfile] = "${bindir}/pyrsa-encrypt-bigfile"
-+ALTERNATIVE_LINK_NAME[pyrsa-keygen] = "${bindir}/pyrsa-keygen"
-+ALTERNATIVE_LINK_NAME[pyrsa-priv2pub] = "${bindir}/pyrsa-priv2pub"
-+ALTERNATIVE_LINK_NAME[pyrsa-sign] = "${bindir}/pyrsa-sign"
-+ALTERNATIVE_LINK_NAME[pyrsa-verify] = "${bindir}/pyrsa-verify"
-+ALTERNATIVE_PRIORITY = "30"
-+
-+
-+RDEPENDS_${PN} += "\
-+    ${PYTHON_PN}-compression \
-+    ${PYTHON_PN}-crypt \
-+    ${PYTHON_PN}-doctest \
-+    ${PYTHON_PN}-logging \
-+    ${PYTHON_PN}-math \
-+    ${PYTHON_PN}-multiprocessing \
-+    ${PYTHON_PN}-netclient \
-+    ${PYTHON_PN}-pickle \
-+"
-+
-+RDEPENDS_${PN} += "${PYTHON_PN}-pyasn1"
 -- 
 2.17.1
 
