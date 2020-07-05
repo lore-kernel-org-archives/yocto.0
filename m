@@ -1,86 +1,89 @@
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
- by mx.groups.io with SMTP id smtpd.web12.45141.1593983790390651392
+Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
+ by mx.groups.io with SMTP id smtpd.web10.45276.1593984420587092798
  for <yocto@lists.yoctoproject.org>;
- Sun, 05 Jul 2020 14:16:30 -0700
+ Sun, 05 Jul 2020 14:27:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=tYSArIVC;
- spf=pass (domain: gmail.com, ip: 209.85.128.51, mailfrom: robert.berger.yocto.user@gmail.com)
-Received: by mail-wm1-f51.google.com with SMTP id j18so37128605wmi.3
-        for <yocto@lists.yoctoproject.org>; Sun, 05 Jul 2020 14:16:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=m0zMs+XjieNbgrEVLkraBAt6yXKqHHxutgXrBtAX2HY=;
-        b=tYSArIVC+Os5mrSEYdt90zjCXIRb7fvV2dHAS384R+mZeTmt4MRTAkKrUoWxCqWV1o
-         UeRx5viZOEXUw7gdFDA+Qbj0Z1nNljkFaG514rH9kO7OBgSZRMNT+X8xbHsTTGm+/gFG
-         pDv1HySIC40yc0Kh1WrtU06kucmF9Nw9jXP3UOrMf8n+/btVhGghUYfgXqIMlqfqm7mt
-         tv4RtgMC6cjZFtLev6fJjpbWfPPgnb9LbeRZh9OIFGquBesJtg08akOaQlb4pbA/NQ9i
-         8wx80gI5iUzDX8Fo7XH+tT4g166fpYwTmEUf9iipRy0JA7lepemJsLSNFc5k9LWvlEP0
-         8piw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=m0zMs+XjieNbgrEVLkraBAt6yXKqHHxutgXrBtAX2HY=;
-        b=ujAQrnKFi9PvfkqjGvKmB0wulPmMwsxJvA4/Yo5qVuxnaSfE3xO8tYteENsm++Zq2+
-         otAsHYQr01CGyojjGYBdrcQSgz2w8jjDOqV0QIrbxJKHbRT2GB1F36DVa9HylKOrWRF0
-         aSHOl1IkNAcOMqcwOkKBv3WJFji4Rl6jaX0vjXXmmLlhfcbXIVAHN5/WhBN1iklOo5lf
-         dTPEVXRZzGilhQ8ZVVd0iC3tjlDsRuUtFuJNafl1iFyH6k2veCVuUup75/A9HeHD7/in
-         +E6ZigQnz4aXQ2gWTVM3VYGi9K9Rb/vNNDKsiZti8AxsGFzMtg5hEkQDVNgXwiNhQKvQ
-         eyNA==
-X-Gm-Message-State: AOAM53256wEG9GEY2kKAlr4b2GPoGiRBZWIcer91fDVjSm6lyyD6oyYA
-	yPSdxFp2GsR89nuWz13VgkHbBg3k
-X-Google-Smtp-Source: ABdhPJwcP6WYV04jmaSSeV3vr2IjUgogV1YOfZWp3AMX86kcvVy/GfNARjexb+GJmkg/elPW4NJkjw==
-X-Received: by 2002:a7b:c94a:: with SMTP id i10mr23157709wml.183.1593983788799;
-        Sun, 05 Jul 2020 14:16:28 -0700 (PDT)
-Return-Path: <robert.berger.yocto.user@gmail.com>
-Received: from [192.168.42.52] (ppp-2-86-138-91.home.otenet.gr. [2.86.138.91])
-        by smtp.gmail.com with ESMTPSA id m9sm20697606wml.45.2020.07.05.14.16.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Jul 2020 14:16:28 -0700 (PDT)
+ dkim=missing; spf=pass (domain: crashcourse.ca, ip: 199.212.143.8, mailfrom: rpjday@crashcourse.ca)
+Received: from localhost ([127.0.0.1]:33924 helo=cpanel7.indieserve.net)
+	by cpanel7.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.93)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1jsCA6-001j96-UH; Sun, 05 Jul 2020 17:26:59 -0400
+Received: from [66.129.241.12] ([66.129.241.12]) by crashcourse.ca (Horde
+ Framework) with HTTPS; Sun, 05 Jul 2020 17:26:58 -0400
+Date: Sun, 05 Jul 2020 17:26:58 -0400
+Message-ID: <20200705172658.Horde.aKqksEonhdfsnNCOQY9PS9l@crashcourse.ca>
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: yocto@lists.yoctoproject.org
 Subject: Re: [yocto] how does "bitbake meta-toolchain" map to a particular "image" when generating SDK?
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, yocto@lists.yoctoproject.org
 References: <20200705065053.Horde.NJDQhlsuiJNUkmbq-wIigE6@crashcourse.ca>
  <CAAnfSTu2mMMifGdTc0OtGfN8wXNQKddnZ9udTY0gbV0fQAvRRw@mail.gmail.com>
  <20200705152404.Horde.B3EKfbXBj697OSUtR4mf4S6@crashcourse.ca>
-From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
-Message-ID: <6aa46c26-16a6-d674-3338-a5304ef76c56@gmail.com>
-Date: Mon, 6 Jul 2020 00:16:27 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+ <13669db91c4314f433e43a0ad7f7c4ba912c95db.camel@linuxfoundation.org>
+In-Reply-To: <13669db91c4314f433e43a0ad7f7c4ba912c95db.camel@linuxfoundation.org>
+User-Agent: Horde Application Framework 5
 MIME-Version: 1.0
-In-Reply-To: <20200705152404.Horde.B3EKfbXBj697OSUtR4mf4S6@crashcourse.ca>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday@crashcourse.ca
+X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
+Content-Disposition: inline
 
-Hi
 
-My comments are in-line
+Quoting Richard Purdie <richard.purdie@linuxfoundation.org>:
 
-On 05/07/2020 22:24, Robert P. J. Day wrote:
-> 
->    i'd assumed as much, but is there a reason that the meta-toolchain 
-> target
-> is not mentioned at all in the SDK manual? Would that not be the right
-> place to mention it, even briefly?
+> On Sun, 2020-07-05 at 15:24 -0400, Robert P. J. Day wrote:
+>> Quoting Ross Burton <ross@burtonini.com>:
+>>
+>> > On Sun, 5 Jul 2020 at 11:50, Robert P. J. Day  
+>> <rpjday@crashcourse.ca> wrote:
+>> > >    however, one can also generate a standard SDK with the generic
+>> > > (image-independent):
+>> > >
+>> > >    $ bitbake meta-toolchain
+>> > >
+>> > > which clearly does not identify an image (all that recipe does,
+>> > > really, is "inherit populate_sdk"), so i *guessed* that using that
+>> > > command will generate a standard SDK based only on what can be found
+>> > > in the various .conf files and associated variables (MACHINE, DISTRO,
+>> > > etc.) without being tied to a particular image.
+>> > >
+>> > >    just about to dive into the details, but is the above at least a
+>> > > simplistic way of looking at it?
+>> >
+>> > At the most fundamental level, you've asked bitbake to build
+>> > 'meta-toolchain'.  Looking in meta-toolchain.bb will show you what
+>> > that entails.  It's basically just the compilers and a few other tools
+>> > that were added as needed over the years.
+>>
+>>    i'd assumed as much, but is there a reason that the meta-toolchain target
+>> is not mentioned at all in the SDK manual? Would that not be the right
+>> place to mention it, even briefly?
+>
+> meta-toolchain is really old, from the days before the populate_sdk
+> task for images existed. It was created as a compatibility artefact and
+> as an example to show you could do standalone SDKs like that without
+> images.
+>
+> I'd imagine its not mentioned as we envisaged the populate_sdk tasks
+> taking over from meta-toolchain. I'm not even sure we test meta-
+> toolchain on the autobuilder. It probably continues to work as its so
+> similar to buildtools-tarball and friends.
+>
+> Should it be mentioned? Maybe...
 
-I guess it depends on the definition of the SDK vs. just the toolchain.
+   that actually clears things up. i'll let others higher up the food chain
+decide if the meta-toolchain target should be documented, or if it's
+entirely superseded by the populate_sdk tasks.
 
-With a toolchain alone not much can be done. You need a sysroot as well 
-to build against.
+rday
 
-The SDK is built against some software stack and actually contains more 
-headers and libs than what shows up in the image.
-
-SDK is toolchain + sysroot
-
-meta-toolchain buils only the toolchain. You'll need to install the 
-sysroot manually somehow.
-
-> 
-> rday
-> 
-> 
