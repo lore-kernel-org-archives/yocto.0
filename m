@@ -1,62 +1,68 @@
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com [209.85.214.193])
- by mx.groups.io with SMTP id smtpd.web12.42931.1593976388627778882
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+ by mx.groups.io with SMTP id smtpd.web10.43002.1593976829144625570
  for <yocto@lists.yoctoproject.org>;
- Sun, 05 Jul 2020 12:13:08 -0700
+ Sun, 05 Jul 2020 12:20:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=IPc3/D1G;
- spf=pass (domain: gmail.com, ip: 209.85.214.193, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f193.google.com with SMTP id p1so5213076pls.4
-        for <yocto@lists.yoctoproject.org>; Sun, 05 Jul 2020 12:13:08 -0700 (PDT)
+ dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=rrduK4hX;
+ spf=pass (domain: burtonini.com, ip: 209.85.208.170, mailfrom: ross@burtonini.com)
+Received: by mail-lj1-f170.google.com with SMTP id e8so8540706ljb.0
+        for <yocto@lists.yoctoproject.org>; Sun, 05 Jul 2020 12:20:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=XrbtTIk4aA5oO56ysRrRQnSq0dTLW8hst2a5EFMcRhQ=;
-        b=IPc3/D1GhHg6aeyc8PTtpoouUGMoBnbX1mly/ow/CYxlvvgmj+XPLfUMBirEluDYeo
-         yKOY5AacOcFLz7iqtmOtXszaYw0I6v6S9e1BZ9AHxRkFsIsqiAocpveLJF8OabNI+xAr
-         hOo01Rg5E1mNPdAt6C6EFUINqD+LFpUtq6mTlEbcn+eFtNlQCL8BRns9qzdGxA+S267a
-         MbNqE9panuz61Thj2NC1H1dseWI0kzxUrZUeyGhYrzkBQ0cBMXB35VYhwg9qq1O/QlB7
-         8m5YpG+5VFuecqOqU9n3HWZDPjqg/sELDKbWO+I/QOBazvERdRumZKW9poUPKU0jqSbq
-         BikA==
+        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kaA7JjcmqSnVQe8KgxblizUWjyRHDd3YZwbYGbz2J/g=;
+        b=rrduK4hXCYk2znfgEDfw7imRkA0aEAH8iL0DVc4kHU5IUB2irqUy7ng9HjNFMLuWC3
+         HZJN1wrAjQwvnIyMvHpzv2X3MxEQ98fzDglrTJ13E1BBBEX68Ki33ruwyeWOKIPJ+sZw
+         7lpnqZfvZAsSNVh3CJUB8xM8AmCFFHtkBNasFUYDD2fjs60YfkFvTqvuCAukxZHsU1PG
+         iWCtXaSRq4puD75n98ZbBBRvYPsebWEu1D+UvQh9LaJ/Oq0FAfMmqaM8v/T+ctZdAP7Q
+         fSkLKS+ZPQlZwsiaeOngWNLQ0mhdk9U1yGA70xuE2NPBsA4ggMAkNZ3FcBN4QDWMw0ig
+         2vyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=XrbtTIk4aA5oO56ysRrRQnSq0dTLW8hst2a5EFMcRhQ=;
-        b=E7BgtLQ56LNMeODQEwpYn45fgRLNhTF2lK6vH//HrenzcGLT2HH8blKcPMoDm1lLiO
-         ZoND7M4HxOv8pKW/RsfE+nINyUSOy+kq+yB9NS5+FaX5nqyUwc47jB/pRlOJwCr6hgPe
-         2yCIhYMORhV8H1TnHE2c9q5hyHhQXnkXtcFGgUsjI9k6usgzgP4CE5T8wEmsGyz0Ziuk
-         Q3Ux/qgvh4oGrbs1fGKI0UD4xY26YsWAAMOpJE32DzwGyys6SW+TQxDaA6LIRLTqnbGS
-         XcEPAdzHnac9hDoyZ3zoJURFgOaeA+rWsVdrmrsr1WeHoV2edxsS5PAOhQbWNNHd3C+s
-         x9SQ==
-X-Gm-Message-State: AOAM530VppMZYlwV+T3+k3upj6Oyz1hur2uvMEBpViIlOo39CwocFkDV
-	0DT5640uNPokW9UlZWNQLuhe1BSoit0=
-X-Google-Smtp-Source: ABdhPJz/Pj+Hx9IbvWnm88GI6rEpviX3DlF5ifb86cPAU6Jtm2fC8eL9u+O0BZmyrhtkdip2bDcSYQ==
-X-Received: by 2002:a17:90a:d3d7:: with SMTP id d23mr1778376pjw.232.1593976387907;
-        Sun, 05 Jul 2020 12:13:07 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id p127sm5675360pfb.17.2020.07.05.12.13.07
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jul 2020 12:13:07 -0700 (PDT)
-From: "akuster" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] isafw.bbclass: typo in layer name
-Date: Sun,  5 Jul 2020 19:13:06 +0000
-Message-Id: <20200705191306.21823-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kaA7JjcmqSnVQe8KgxblizUWjyRHDd3YZwbYGbz2J/g=;
+        b=KvALl35O/DOTYBvnGY8Bu7n18KYHhdUDZrFqw1AYBtQ2VBiPMP3pfENXTEXB+qRBsM
+         RbkYpVnPIkDNod0OUd3sS2sM6LXmns4mHMLdD6KaagySDnMDc4mU66CMco6qeZYX6+NR
+         8Nu1Ec321nHnxgTv8Hi/vgng82RzE53yJS+EAcDsdCZFPbxYQpTm4zpOxoM6bZR6PmUR
+         kefSwCl62FmMZ05OP2cUzZF81smipjHWZLb9LRVYEOCLN63nHj3+KljuK52l9OYzB8xN
+         tdwsdfWG+9DTZkuEl/33jsJjkn3s975WEF2mtEPoE3PzJVPVvPhMV7/Ty6hpJKUUu2CN
+         4YyQ==
+X-Gm-Message-State: AOAM531bWpF7h4JWshIgQSw9JEQ78MqQ5L7glHZe3+DZ9pByntt16/78
+	6MXdKj1ZuVolbUIhqTm0WuxnnzC38soqyDhLq5A/lw==
+X-Google-Smtp-Source: ABdhPJy3mxO9ODv60f7I8MHSXbxpxlB3anleBVgpFFdNLl3sGW5El8PgX0JkCOqBC/R/hro2GsYo4gPxdHfE/+iCfYo=
+X-Received: by 2002:a2e:3211:: with SMTP id y17mr13320974ljy.340.1593976827017;
+ Sun, 05 Jul 2020 12:20:27 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200705065053.Horde.NJDQhlsuiJNUkmbq-wIigE6@crashcourse.ca>
+In-Reply-To: <20200705065053.Horde.NJDQhlsuiJNUkmbq-wIigE6@crashcourse.ca>
+From: "Ross Burton" <ross@burtonini.com>
+Date: Sun, 5 Jul 2020 20:20:15 +0100
+Message-ID: <CAAnfSTu2mMMifGdTc0OtGfN8wXNQKddnZ9udTY0gbV0fQAvRRw@mail.gmail.com>
+Subject: Re: [yocto] how does "bitbake meta-toolchain" map to a particular "image" when generating SDK?
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-move class to proper layer
+On Sun, 5 Jul 2020 at 11:50, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+>    however, one can also generate a standard SDK with the generic
+> (image-independent):
+>
+>    $ bitbake meta-toolchain
+>
+> which clearly does not identify an image (all that recipe does,
+> really, is "inherit populate_sdk"), so i *guessed* that using that
+> command will generate a standard SDK based only on what can be found
+> in the various .conf files and associated variables (MACHINE, DISTRO,
+> etc.) without being tied to a particular image.
+>
+>    just about to dive into the details, but is the above at least a
+> simplistic way of looking at it?
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../classes/isafw.bbclass                                         | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- rename {meta-security-isfafw => meta-security-isafw}/classes/isafw.bbclass (100%)
+At the most fundamental level, you've asked bitbake to build
+'meta-toolchain'.  Looking in meta-toolchain.bb will show you what
+that entails.  It's basically just the compilers and a few other tools
+that were added as needed over the years.
 
-diff --git a/meta-security-isfafw/classes/isafw.bbclass b/meta-security-isafw/classes/isafw.bbclass
-similarity index 100%
-rename from meta-security-isfafw/classes/isafw.bbclass
-rename to meta-security-isafw/classes/isafw.bbclass
--- 
-2.17.1
-
+Ross
