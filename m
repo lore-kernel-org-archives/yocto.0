@@ -1,63 +1,57 @@
-Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
- by mx.groups.io with SMTP id smtpd.web10.55887.1594036240128479062
+Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
+ by mx.groups.io with SMTP id smtpd.web10.59667.1594047617903481652
  for <yocto@lists.yoctoproject.org>;
- Mon, 06 Jul 2020 04:50:41 -0700
+ Mon, 06 Jul 2020 08:00:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp.bon.at (Postfix) with ESMTPSA id 4B0kR2019Pz5tlK;
-	Mon,  6 Jul 2020 13:50:37 +0200 (CEST)
-Date: Mon, 6 Jul 2020 13:50:36 +0200
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: Hans-Ulrich Schlieben <hu.schlieben@codewrights.de>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] #yocto howto use deltask
-Message-ID: <20200706115036.2uervyzueqjggdpc@qschulz>
-References: <qZOx.1594033211826466725.wfsG@lists.yoctoproject.org>
+ dkim=missing; spf=pass (domain: crashcourse.ca, ip: 199.212.143.8, mailfrom: rpjday@crashcourse.ca)
+Received: from localhost ([127.0.0.1]:59076 helo=cpanel7.indieserve.net)
+	by cpanel7.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.93)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1jsSbQ-000ZX7-8z
+	for yocto@lists.yoctoproject.org; Mon, 06 Jul 2020 11:00:16 -0400
+Received: from [66.129.241.11] ([66.129.241.11]) by crashcourse.ca (Horde
+ Framework) with HTTPS; Mon, 06 Jul 2020 11:00:16 -0400
+Date: Mon, 06 Jul 2020 11:00:16 -0400
+Message-ID: <20200706110016.Horde.b7JEU4y-rh5sjVGjH_PyAlF@crashcourse.ca>
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+To: yocto@lists.yoctoproject.org
+Subject: how does the recipe search resolve a recipe name? eg., "opencryptoki"?
+User-Agent: Horde Application Framework 5
 MIME-Version: 1.0
-In-Reply-To: <qZOx.1594033211826466725.wfsG@lists.yoctoproject.org>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday@crashcourse.ca
+X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
 Content-Disposition: inline
 
-Hi,
+i've run across this on occasion -- using  
+http://layers.openembedded.org/ to find a given recipe sometimes  
+produces answers that don't actually point to the recipe (this seems  
+to be a good entry for a FAQ).
 
-On Mon, Jul 06, 2020 at 04:00:11AM -0700, Hans-Ulrich Schlieben wrote:
-> Hi,
-> 
-> my image build fails with:
-> ERROR: ims-image-fieldgate-1.0-r0 do_rootfs: The following packages could not be configured offline and rootfs is read-only: ['apparmor']
-> 
-> The image build succeeds if i remove the task pkg_postinst_ontarget_${PN} from apparmor_2.13.3.bb.
-> 
-> I tried to use deltask in my apparmor_2.13.3.bbappend with different settings:
-> deltask postinst_ontarget
-> deltask postinst
-> deltask pkg_postinst
-> deltask pkg_postinst_ontarget_
-> deltask pkg_postinst_ontarget_apparmor
-> deltask pkg_postinst_ontarget_apparmor_2
-> 
-> and
-> 
-> postinst_ontarget[noexec] = "1"
-> postinst[noexec] = "1"
-> pkg_postinst[noexec] = "1"
-> pkg_postinst_ontarget_[noexec] = "1"
-> pkg_postinst_ontarget_apparmor[noexec] = "1"
-> pkg_postinst_ontarget_apparmor_2[noexec] = "1"
-> 
+went looking for "opencryptoki", and got here:
 
-What about:
+http://layers.openembedded.org/layerindex/branch/master/recipes/?q=opencryptoki
 
-pkg_postinst_ontarget_${PN}() {
-	:
-}
+none of which actually take one to a recipe for that software.  
+granted, the summary explains that, "the package contains commands to  
+utilize some of the capabilities available in the TPM PKCS#11  
+interface implemented in the openCryptoki project," but that's not the  
+same thing.
 
-in your bbappend? This should effectively override the task from a
-bbappend (except if there are _append for the task).
+is there some sort of rationale for the search results one might get  
+for a given recipe name?
 
-Can't comment on this being a good solution to your problem but that
-should work to remove the content of pkg_postinst_ontarget.
+rday
 
-Quentin
+
+
