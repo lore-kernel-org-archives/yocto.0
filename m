@@ -1,46 +1,89 @@
-Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
- by mx.groups.io with SMTP id smtpd.web11.53926.1594025645937168047
- for <yocto@lists.yoctoproject.org>;
- Mon, 06 Jul 2020 01:54:06 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp.bon.at (Postfix) with ESMTPSA id 4B0fWJ0T6kz5tlC;
-	Mon,  6 Jul 2020 10:54:04 +0200 (CEST)
-Date: Mon, 6 Jul 2020 10:54:02 +0200
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: Shlomi Vaknin <shlomi.39sd@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Building a clean image without using sstate-cache
-Message-ID: <20200706085402.h4ysl6ydc5erzv5a@qschulz>
-References: <CALxJ29R_QJEmQeXWc4JSy7vi2CC7tprMp5tfmFjV8uwpfjR9Hw@mail.gmail.com>
+Subject: #yocto howto use deltask
+To: yocto@lists.yoctoproject.org
+From: "Hans-Ulrich Schlieben" <hu.schlieben@codewrights.de>
+X-Originating-Location: Ahlersbach, Hesse, DE (5.10.161.194)
+X-Originating-Platform: Windows Chrome 83
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <CALxJ29R_QJEmQeXWc4JSy7vi2CC7tprMp5tfmFjV8uwpfjR9Hw@mail.gmail.com>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Date: Mon, 06 Jul 2020 04:00:11 -0700
+Message-ID: <qZOx.1594033211826466725.wfsG@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="lwJxM18KUQuBK2bU9gnn"
+
+--lwJxM18KUQuBK2bU9gnn
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-On Mon, Jul 06, 2020 at 11:08:31AM +0300, Shlomi Vaknin wrote:
-> Hi,
-> 
-> I'm trying to run a clean build without using the sstate-cache shared
-> directory, so we can check that everything is working properly and also
-> update our sstate-cache shared folder every now and then.
-> 
-> I have the SSTATE_MIRRORS defined in my site.conf using "?=" operator.
-> 
-> When I try to export this variable as empty string and then build the
-> image, the image is built using the cache.
-> 
-> How can I override the SSTATE_MIRRORS when running bitbake or run a clean
-> build without using sstate-cache?
-> 
+my image build fails with:
+ERROR: ims-image-fieldgate-1.0-r0 do_rootfs: The following packages could =
+not be configured offline and rootfs is read-only: ['apparmor']
 
-IIUC, SSTATE_MIRRORS is just a way to prepopulate your local sstate-cache.
-So you'd need to have SSTATE_MIRRORS="" but also change SSTATE_DIR to some
-path where no sstate-cache is so that the local sstate-cache isn't also
-used.
+The image build succeeds if i remove the task pkg_postinst_ontarget_${PN} =
+from apparmor_2.13.3.bb.
 
-Quentin
+I tried to use deltask in my apparmor_2.13.3.bbappend with different setti=
+ngs:
+deltask postinst_ontarget
+deltask postinst
+deltask pkg_postinst
+deltask pkg_postinst_ontarget_
+deltask pkg_postinst_ontarget_apparmor
+deltask pkg_postinst_ontarget_apparmor_2
+
+and
+
+postinst_ontarget[noexec] =3D "1"
+postinst[noexec] =3D "1"
+pkg_postinst[noexec] =3D "1"
+pkg_postinst_ontarget_[noexec] =3D "1"
+pkg_postinst_ontarget_apparmor[noexec] =3D "1"
+pkg_postinst_ontarget_apparmor_2[noexec] =3D "1"
+
+but to no avail - I always get the rootfs error.
+
+I know how to patch source files. But it seems there is no way to patch a =
+recipe.
+My workaround would be to make a copy of the apparmor recipe without the p=
+ostinst part.
+
+Is there a better or another way to do this?
+
+Best regards
+
+hu
+
+--lwJxM18KUQuBK2bU9gnn
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<br /><br />my image build fails with:<br />
+<div>ERROR: ims-image-fieldgate-1.0-r0 do_rootfs: The following packages c=
+ould not be configured offline and rootfs is read-only: ['apparmor']<br /><=
+br />The image build succeeds if i remove the task pkg_postinst_ontarget_${=
+PN} from apparmor_2.13.3.bb.<br /><br /></div>
+<div>I tried to use deltask in my apparmor_2.13.3.bbappend with different =
+settings:</div>
+<div>
+<div>deltask postinst_ontarget</div>
+<div>deltask postinst</div>
+<div>deltask pkg_postinst</div>
+<div>deltask pkg_postinst_ontarget_</div>
+<div>deltask pkg_postinst_ontarget_apparmor</div>
+<div>deltask pkg_postinst_ontarget_apparmor_2<br /><br />and<br />
+<div><br />postinst_ontarget[noexec] =3D "1"</div>
+<div>postinst[noexec] =3D "1"</div>
+<div>pkg_postinst[noexec] =3D "1"</div>
+<div>pkg_postinst_ontarget_[noexec] =3D "1"</div>
+<div>pkg_postinst_ontarget_apparmor[noexec] =3D "1"</div>
+<div>pkg_postinst_ontarget_apparmor_2[noexec] =3D "1"</div>
+<div>&nbsp;</div>
+</div>
+<div>but to no avail - I always get the rootfs error.&nbsp;<br /><br />I k=
+now how to patch source files. But it seems there is no way to patch a reci=
+pe.<br />My workaround would be to make a copy of the apparmor recipe witho=
+ut the postinst part.<br /><br />Is there a better or another way to do thi=
+s?<br /><br />Best regards<br /><br />hu<br /><br /></div>
+</div>
+
+--lwJxM18KUQuBK2bU9gnn--
