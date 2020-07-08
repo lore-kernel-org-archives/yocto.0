@@ -1,134 +1,89 @@
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
- by mx.groups.io with SMTP id smtpd.web11.11032.1594216259991441636
- for <yocto@lists.yoctoproject.org>;
- Wed, 08 Jul 2020 06:51:01 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denx.de, ip: 212.18.0.9, mailfrom: sbabic@denx.de)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 4B210x42X9z1qs3M;
-	Wed,  8 Jul 2020 15:50:57 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-	by mail.m-online.net (Postfix) with ESMTP id 4B210x3mm8z1r57C;
-	Wed,  8 Jul 2020 15:50:57 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-	with ESMTP id NymUPf-VpPXM; Wed,  8 Jul 2020 15:50:55 +0200 (CEST)
-Received: from babic.homelinux.org (host-88-217-136-221.customer.m-online.net [88.217.136.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPS;
-	Wed,  8 Jul 2020 15:50:54 +0200 (CEST)
-Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
-	by babic.homelinux.org (Postfix) with ESMTP id 9D43A45403F8;
-	Wed,  8 Jul 2020 15:50:54 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
-Received: from babic.homelinux.org ([IPv6:::1])
-	by localhost (mail.babic.homelinux.org [IPv6:::1]) (amavisd-new, port 10024)
-	with ESMTP id l3wcVBF7kv9I; Wed,  8 Jul 2020 15:50:51 +0200 (CEST)
-Received: from [192.168.178.64] (paperino.fritz.box [192.168.178.64])
-	by babic.homelinux.org (Postfix) with ESMTP id CAC634540338;
-	Wed,  8 Jul 2020 15:50:51 +0200 (CEST)
-Subject: Re: [yocto] Broken dunfell branch
-To: Guy Morand <guy@guy-morand.ch>, yocto@lists.yoctoproject.org
-References: <66c69152-4aaa-fdee-2e02-9bd9b8763cbe@guy-morand.ch>
-From: "Stefano Babic" <sbabic@denx.de>
-Autocrypt: addr=sbabic@denx.de; prefer-encrypt=mutual; keydata=
- mQGiBEfdB5IRBADkpYcnh2BoAkGD5p186ysEkWlcp5DU07m7BKzvkEMRhFjeFUOU0klKNmh0
- ZM6rKpYpAYPYBm9YahMyqvj9DmLrZ4yfJ5MssvW9SRETmHpva+h1rN+DzmEcwrqZmLG1JWGy
- LA5ruJaFSzxJHBoROoog1NDMbNDB8A9F7VKrePfkVwCgmODpW/uh2IuMYLVidzDeuvo7alED
- /iV8rwU7C+eBcKy2htuDsEmsqlkBxIDM7IO6h5XxdyqbZOYizuBP3Ksb6xK54weEaB5aQs7S
- 8N9Soi0p1Xh0LMWj6PBCzTC4LF+OCGEMBPc6bBHNzivChgztJlUMioCDSVpOXB/QpBaK302G
- yP5WdmcB1Jn6neq/YRlxHN38MV2yA/46jnzeUotL9LliVZKA/ql4GmyWg2Ae1BUiCqEJQNwl
- knGJOmIS4uABLArB5HjsfDU5hA9FORaNGCIiZlezBkZ3JXA2uQMQhfgqBXrZt4j1fcw9I7E+
- 7IZ2kSCeTPZFLd5FiGQPDOm3Z9eHrpK6pmBGMeBG0pDgUEbN9awyLNBLj7QeU3RlZmFubyBC
- YWJpYyA8c2JhYmljQGRlbnguZGU+iGMEExECACMCGwMGCwkIBwMCBBUCCAMEFgIDAQIeAQIX
- gAUCT9deSgIZAQAKCRD09WXkmmjvppF1AKCRl8d49K4yxWzdBVRTTWG55cyo/gCfRD1RAttl
- R1ofs2wGLHNtXousyL25Ag0ER90HmBAIAIFfX4bKnOmCyB3nPh+jbXZuBSMZTuyDEnguRxl5
- N8Q0ayofQwucCBjXYv65sQ9Rq6FNhEnWqUZBu8A5CwvSakOFOGNC5ta/8VxVRLh0Z0ZTgEep
- SKiPonJyacCbmgWDECdVrKowV7QB9be3Wu67uAZ74rPw2Kd7f0FKnL3djvVRMaBWFIpyQ6SE
- bGOCJjhRQ5L1pIM1Soko+reU7eO+1g6IBw6YkFJisdQE6fzTwaSqUKPPsQLz/W03invQltOb
- Eg7ZwtFs0DFonr1DMm57ksiEhW6SN1wylRO/JzRYG1Qe7u1EVln6iV3ilBvbbfkyRssk4/0e
- kicpSnQknA72YOMAAwYH+QGpAiQ4hAMHrp1bUrtyGXYdeQpYufIZAM4etOnBy/G+e1nfu6y+
- jH4SN9sVK7bwBBAbhEJqkqR5LVsFIRapThJQOWB11rQxLpwkBU9wao/pRM+o95ujGo32WUzf
- wWrzWrkTDy7vMCZuUOLVi4n1GZlUAwpG4rzb6UxPC6GWymkVWGgXp1NC58og5i3Y+rKT7+Xi
- XT2BtvC6PDepoH4JhD+9OkHQO6UfTxPSmtgNbTgtl6L6tj+bm5dOHgkPJFMkEiG8qhUZYQzb
- bYz37orRbA72M2bxK76e9QKn0mVu+d/YCd8wRcvvJbGsozpzcxPvD5Wy5RNJCES8McPtAseU
- tMeISQQYEQIACQUCR90HmAIbDAAKCRD09WXkmmjvpv+3AJ9RakBsH1j0X/Kxp6t2lf0VUfS2
- qACfZ+J6ktk8PKNuyHf0J/I0mbCrhV4=
-Message-ID: <b3f172de-28d4-ac7d-8e76-70afc609399b@denx.de>
-Date: Wed, 8 Jul 2020 15:50:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+Subject: Configuring UIO to handle GPIO interrupt #yocto #linux
+To: yocto@lists.yoctoproject.org
+From: sdw@inea.com
+X-Originating-Location: Nashua, New Hampshire, US (24.63.67.55)
+X-Originating-Platform: Windows Chrome 83
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <66c69152-4aaa-fdee-2e02-9bd9b8763cbe@guy-morand.ch>
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
+Date: Wed, 08 Jul 2020 07:15:17 -0700
+Message-ID: <xX9c.1594217717668483382.XXBG@lists.yoctoproject.org>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Guy,
+Dear Yocto community,
 
-On 08.07.20 15:15, Guy Morand wrote:
-> Hallo Yocto deveopers!
->=20
-> For our daily release, we build from the latest dunfell branch. I would
-> like to thank and congratulate you because we have been doing so for
-> over a year and the build never broke because of poky/OE meta layers!
->=20
-> However, we recently got some errors:
->=20
-> ERROR: mtd-utils-2.1.1-r0 do_patch: Command Error: 'quilt --quiltrc
-> /mnt/sdb/buildAgent/work/8161e17a85bb6b69/build/tmp/work/armv7vet2hf-neo=
-n-scewo-linux-gnueabi/mtd-utils/2.1.1-r0/recipe-sysroot-native/etc/quiltrc
-> push' exited with 0=C2=A0 Output:
-> Applying patch 0001-mtd-utils-Fix-return-value-of-ubiformat.patch
-> patching file ubi-utils/ubiformat.c
-> Hunk #1 FAILED at 550.
-> Hunk #2 FAILED at 643.
-> Hunk #3 FAILED at 669.
-> 3 out of 3 hunks FAILED -- rejects in file ubi-utils/ubiformat.c
-> Patch 0001-mtd-utils-Fix-return-value-of-ubiformat.patch can be
-> reverse-applied
-> ERROR: Logfile of failure stored in:
-> /mnt/sdb/buildAgent/work/8161e17a85bb6b69/build/tmp/work/armv7vet2hf-neo=
-n-scewo-linux-gnueabi/mtd-utils/2.1.1-r0/temp/log.do_patch.23641
->=20
-> ERROR: Task
-> (/mnt/sdb/buildAgent/work/8161e17a85bb6b69/meta-layers/poky/meta/recipes=
--devtools/mtd/mtd-utils_git.bb:do_patch)
-> failed with exit code '1'
->=20
-> It seems the faulty commit is:
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?h=3Ddunfell&id=3D=
-994783b52e5c0a97000b8b643c8fd80d81069097
->=20
->=20
-> For now I simply build from the previous commit and everything is fine.
-> Not sure if someone already noticed that or if there is something wrong
-> with my setup?
->=20
+I am hoping that you can provide advice on configuring UIO to handle a GPI=
+O interrupt from user space.  I found an excellent summary at https://yurov=
+sky.github.io/2014/10/10/linux-uio-gpio-interrupt.html and have tried to fo=
+llow it as well as I can, being a newcomer to Yocto and embedded Linux.=20
 
-Do you have meta-swupdate in your layers, too, and are you using -master
-(see commit ece400ed5) ?
+We are using a Variscite DART-MX8M-MINI development kit, with the i.MX8M M=
+ini processor on a System-on-Module.  I have enabled spidev, which I am usi=
+ng to communicate with an ADS1299 EEG analog front end from TI.  It generat=
+es a =E2=80=9Cdata ready=E2=80=9D interrupt DRDY# (active low).  I=E2=80=99=
+d like to be able to handle this falling-edge interrupt by connecting it to=
+ a GPIO (GPIO1_0) and either read() or poll() to wait for an interrupt, and=
+ can then read the acquired data using /dev/spidev0.0.=20
 
-Best regards,
-Stefano Babic
+In my device tree, I have added the following under my &ecspi1 node.  I am=
+ not certain this is the correct place to add this information, or if I can=
+ simply add it within the device tree =E2=80=9Croot=E2=80=9D node =E2=80=9C=
+/ {=E2=80=9C.  I would appreciate your advice on the best place add this in=
+formation!
+       // Added for DRDY# interrupt on GPIO1_0 from user space=20
+       user_io@0 {=20
+              compatible =3D "mydevice,generic-uio,ui_pdrv";=20
+              status =3D "okay";=20
+              interrupt-parent =3D <&gpio1>;=20
+              interrupts =3D <0 IRQ_TYPE_EDGE_FALLING>;=20
+              pinctrl-names =3D "default";=20
+              pinctrl-0 =3D <&pinctrl_user_io>;=20
+       };=20
 
-> Best regards,
->=20
-> Guy Morand
->=20
->=20
->=20
+Under my dts &iomuxc node, the various pinctrl groups are defined.  I adde=
+d the following for GPIO1_0:=20
+              // Added for DRDY# interrupt on GPIO1_0 from user space=20
+              pinctrl_user_io: user_io-0 {=20
+                     fsl,pins =3D <=20
+                           MX8MM_IOMUXC_GPIO1_IO00_GPIO1_IO0           0x1=
+c0=20
+                     >;=20
+              };
+This should configure the pin to enable a pull-up.
 
+I have modified my kernel .config file via 'bitbake -c menuconfig virtual/=
+kernel', and it contains the following entries:=20
+CONFIG_UIO=3Dy
+CONFIG_UIO_PDRV_GENIRQ=3Dm=20
+  
+The =E2=80=9Cy=E2=80=9D setting for CONFIG_UIO was evidently due to other =
+dependencies in the provided configuration.  I then built the SD card image=
+ using 'bitbake fsl-image-qt5', and programmed it onto my SD card.
 
---=20
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+However, when I boot the board up, I cannot see /dev/uio0 or run the modpr=
+obe command as specified in the description at the link provided above:=20
+root@imx8mm-var-dart:~# ls /dev/u*
+/dev/ubi_ctrl  /dev/udev_network_queue  /dev/uhid  /dev/uinput  /dev/urand=
+om root@imx8mm-var-dart:~# modprobe uio_pdrv_genirq of_id=3D"mydevice,gener=
+ic-uio,ui_pdrv"=20
+modprobe: FATAL: Module uio_pdrv_genirq not found in directory /lib/module=
+s/4.19.35-imx8mm+ge6d3e3fefe4e=20
+
+I used grep to look for =E2=80=9Cuio=E2=80=9D in the /lib/modules director=
+y, and only found the following:=20
+root@imx8mm-var-dart:/lib/modules/4.19.35-imx8mm+ge6d3e3fefe4e# grep -RnI =
+uio .=20
+./modules.builtin:270:kernel/drivers/uio/uio.ko=20
+
+I am stumped, and think I must have something wrong in my .dts file, my .c=
+onfig file, or in the packages/libraries added to the Yocto image.  Do you =
+have any suggestions for how to diagnose/fix this problem?  I can provide m=
+y .config file, .dts file, or any other information, but I am not sure how =
+they should be added for access by the group.
+
+UIO apparently is a "preferred" way to handle writing simple device driver=
+s from user space.  Do I need to add something to Yocto to enable UIO and U=
+IO_PDRV_GENIRQ?
+
+Thank you for your help, and kind regards,=20
+Scott
