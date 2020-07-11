@@ -1,67 +1,75 @@
-Received: from mail-qk1-f196.google.com (mail-qk1-f196.google.com [209.85.222.196])
- by mx.groups.io with SMTP id smtpd.web11.15700.1595325818151006308
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+ by mx.groups.io with SMTP id smtpd.web12.6875.1594464887531130964
  for <yocto@lists.yoctoproject.org>;
- Tue, 21 Jul 2020 03:03:38 -0700
+ Sat, 11 Jul 2020 03:54:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@globallogic.com header.s=google header.b=JzTMGoVk;
- spf=pass (domain: globallogic.com, ip: 209.85.222.196, mailfrom: oleksandr.s.popovych@globallogic.com)
-Received: by mail-qk1-f196.google.com with SMTP id z15so11882587qki.10
-        for <yocto@lists.yoctoproject.org>; Tue, 21 Jul 2020 03:03:38 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=acGOBLVH;
+ spf=pass (domain: gmail.com, ip: 209.85.166.44, mailfrom: dusinski.adrian@gmail.com)
+Received: by mail-io1-f44.google.com with SMTP id y2so8666438ioy.3
+        for <yocto@lists.yoctoproject.org>; Sat, 11 Jul 2020 03:54:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=globallogic.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kNkkZSgx/cCW3gCGu/K1QHkzqXtJG2PA9tbRt9usq/c=;
-        b=JzTMGoVk/g3PJerKcbCC32O/x9BWW7w1wemcxpRLOG4Mg0n6AjCyJIKH8QY/SutBg9
-         vhvWBz6FVHFYriRi3kLjdA5y9tRuvSLzkJKeZ1zO7LTmRaZvb0hfm2efp/4XcVyH9/IC
-         hRtaRQPapEOtNn/fdGgc/fgkJrrqlNQ5mBX/uH3hCpZrxgJXkR17kj+KjhUrMDYHcC06
-         IWW1ln4eZu2ZA7Me5mm9tzJHyQJybIYIDbRoEWJdFEbANAJlFn80yKTIqNjFdZw0zjWJ
-         CvtDcek9U0HeIrlqjdk+7xOIKfhlrKYgGq5agC4Krjo3JKdZlI8GPlrOM0KmsLvhsRhz
-         0BeA==
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Mx7VzaHCFONSKIM1GEXbm1+9F2OcaKOjoqNFRoMJpW4=;
+        b=acGOBLVH5REW2a834XKSW0JmDW1vDEZvelCdH9NpAMvFJ3NlQ31rXmi8ZfF46V5NqX
+         ljGxAHZh3zgjFHccir+tTcxiN99FxMdljIHXRh9evsZ+y1+D70vnendFnXPKP6zdc7yb
+         3jvjSbekK2gYWTevp3VZmADqxMFLJwKgsl0GnNb++bLpVEyGRYAflMoKtRUk3nOZck9e
+         p8qrbHraMGXhWMYY1oWkRscqd+1+beUtOTM3I9ISk59ydnZDKen8bshq9UzycOS262XW
+         whIGIXrYeMbvqojO7C57JCy0UCenMz6zzU/gKSTVrFAwKVOY75b4niAwfnmSs6CjeHBF
+         EBXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kNkkZSgx/cCW3gCGu/K1QHkzqXtJG2PA9tbRt9usq/c=;
-        b=C1VO7MKMMQOiEjRyyK0N3OJydJuG3Te+1tj9t5+TfUVFzpkuOQ7fMNmqJS2UcUhoMR
-         tBkmI7KNpjGscZd0r835ETkOIHO1OhkZB9alPsh0rwwgsUUa+J9pMN9kDN24Dk0UWPRq
-         HG1xpGdSryOUZW27E7g9cXfLoaRYoqayZsK/PeXr2zkhyxQR8EVd3W9rD3tiv6WzozuT
-         4nt7lM11ols+/AA/KYM0mRiqwK4i3A8ITCwAMiZaLRZH+P3f67FkLzZPscw2eMxRF3yJ
-         7OAnAY/z25RnF9eKsP+JMTvtDyhN3q4zz/+0R0E6bxlBzuW/7iTi4sACeodWU36WPBIk
-         ER5Q==
-X-Gm-Message-State: AOAM533FT0VLTpRtm3Nt2zwZpH3gUCAsi6qjmwlXiJoaCErTxkaiQnlJ
-	UIBaNpssCBMNBMch5/nd00hVC5yw8pKF1/0r1LUGFw==
-X-Google-Smtp-Source: ABdhPJxqhVVIppeSJX00jD2LGPtnLS9FHr47ucXjqn4m6ESPt+r6RaCWdPcQag+iiD4Xin+RP82hbFoGClgMgtzz3Yc=
-X-Received: by 2002:a05:620a:144d:: with SMTP id i13mr19990281qkl.207.1595325817286;
- Tue, 21 Jul 2020 03:03:37 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Mx7VzaHCFONSKIM1GEXbm1+9F2OcaKOjoqNFRoMJpW4=;
+        b=X7CxC0watEa/dF1TGsevndohicUUNyj+JoFGl+3d5ztcaRrXpNvQoqyLMMq62RZQQY
+         E33ZK4ZsOM11JCA6EC8fm29H9Ce3guy++nSNYLA5EIxCdj3U19nKfhOffdjmwutH21wC
+         CvnOqXU10eG7/SUj5ekSkXNa/pKYNFlcu15Vxs0c1Sv9h8+n2g4s7aKQ5KQZXKOJiwIk
+         7E3yZ2X0tT9Ik1kXDBBLhuunTXjrvhKN2yvjr8W8tRU1Lm0IxgkO5k+4BZ3rfx+mVTyB
+         TPtqzWiDgoYUX0Ms2WEYvLcfun9+3HDeyrFdxirlLiWUgWiO2WhYuAyI3GDoQeE6PEpY
+         65eg==
+X-Gm-Message-State: AOAM530sOy8L6Mdj1xdJqLVpWWdUTEFMIfIzQsejVtj8CcY+iVykoi9/
+	H+jnVm3QHVB/9UnroIsjfF6jPBGVp61zT7nb9KM27WBm
+X-Google-Smtp-Source: ABdhPJy5FBzdfTKc81gCC0YNZQS5iuvFZeBNLIIRAafhNHI27A6wE44LTXI67eBvEys/U56dUiOhKb+fKp2Wg+TDyY4=
+X-Received: by 2002:a6b:c897:: with SMTP id y145mr34663672iof.190.1594464886161;
+ Sat, 11 Jul 2020 03:54:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200718160325.18297-1-oleksandr.s.popovych@globallogic.com> <CAJdd5GZtu8Noxd4Cp1ezLuTzwo3bjmHCkt5YJ4hFVC5B_vkB1w@mail.gmail.com>
-In-Reply-To: <CAJdd5GZtu8Noxd4Cp1ezLuTzwo3bjmHCkt5YJ4hFVC5B_vkB1w@mail.gmail.com>
-From: "Oleksandr" <oleksandr.s.popovych@globallogic.com>
-Date: Tue, 21 Jul 2020 13:03:26 +0300
-Message-ID: <CAKqUGW9P90s1Dg=OfUiFR4B54xq9tH6Ej1cZzHxTOnb2=MjWsw@mail.gmail.com>
-Subject: Re: [meta-mingw][PATCH] expat: Switch platform to Windows in CMake toolchain file
-To: Joshua Watt <jpewhacker@gmail.com>
-Cc: yocto@lists.yoctoproject.org
+From: =?UTF-8?B?QWRyaWFuIER1c2nFhHNraQ==?= <dusinski.adrian@gmail.com>
+Date: Sat, 11 Jul 2020 12:54:34 +0200
+Message-ID: <CAO80Z=rbH2JzHV4G33pyj3A0LJYq17PN=i1bPeg0XgOp8BCzZw@mail.gmail.com>
+Subject: Image with trustfence
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000025829905aa2849c2"
+
+--00000000000025829905aa2849c2
 Content-Type: text/plain; charset="UTF-8"
 
-Hello Joshua,
+Do I have to change the address of loading the image into ram when
+trustfence is enabled?
+Because after enabling trustfence I have got error:
 
-On Mon, Jul 20, 2020 at 8:47 PM Joshua Watt <jpewhacker@gmail.com> wrote:
->
-> Hmm, this seems like the kind of thing that should be set for all
-> mingw32 builds....
->
+##  Flattened Device Tree blob at 8300000
 
-Do you mean "set for all CMake-based recipes by default"? Maybe this is a better
-option than adding the same function manually.
+      Booting using the fdt blob at 0x8300000
 
-But then next question appears:
-Should this be done by duplicating already existing "cmake.bbclass"
-file to "meta-mingw"
-layer and making changes there, or creating new class that inherits
-"cmake.bbclass" and
-adds necessary changes?
-If there is a better way to achieve this goal, I`ll be glad to check it out.
+      Using Device Tree in place at 8300000, end 8300b55a
 
-Thanks for your attention.
+fdt_find_or_add_subnode: chosen: FDT_ERR_BADSTRUCTURE
+
+ERROR: /chosen node create failed
+
+- must RESET the board....
+
+--00000000000025829905aa2849c2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Do I have to change the address of loading the image into =
+ram when trustfence is enabled?<br>Because after enabling trustfence I have=
+ got error:<div></div><div><p>##=C2=A0 Flattened Device Tree blob at 830000=
+0</p><p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Booting using the fdt blob at 0=
+x8300000</p><p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Using Device Tree in pla=
+ce at 8300000, end 8300b55a</p><p>fdt_find_or_add_subnode: chosen: FDT_ERR_=
+BADSTRUCTURE</p><p>ERROR: /chosen node create failed</p><p>- must RESET the=
+ board....</p></div><div><br></div></div>
+
+--00000000000025829905aa2849c2--
