@@ -1,108 +1,134 @@
-Subject: [poky] python-setuptools dependency loops error #yocto #python
+Subject: Linker error undefined reference to `_rtld_global_ro'
 To: yocto@lists.yoctoproject.org
-From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
-X-Originating-Location: Monastir, Gouvernorat de Monastir, TN (41.226.168.190)
-X-Originating-Platform: Linux Firefox 78
+From: "Robert Varga" <robert.varga@getinge.com>
+X-Originating-Location: Karlsruhe, Baden-Württemberg, DE (217.240.134.124)
+X-Originating-Platform: Windows Chrome 81
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Mon, 13 Jul 2020 02:04:33 -0700
-Message-ID: <le8z.1594631073716482968.ix2I@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="BXMmrfXg5827VWxl092S"
+Date: Mon, 13 Jul 2020 04:21:09 -0700
+Message-ID: <EDk7.1594639269271279456.HLoQ@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="WmdQXfUqHOmdRyYP3d3d"
 
---BXMmrfXg5827VWxl092S
+--WmdQXfUqHOmdRyYP3d3d
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
-I have a problem using *python-setuptools* with yocto when bitbaking any r=
-ecipe that inherits *setuptools* , or even when I execute "bitbake setuptoo=
-ls"
-but there is no problem with setuptools3, but I need to use python2 for no=
-w.
-Here is the log:
+Hello,
 
-------------------------------
+I am new to the Yocto project and need some help in solving a linker issue=
+ when compiling/linking an application using the SDK. It seems, that the co=
+mpilation is completed, but the linker could not resolve to "_rtld_global_r=
+o". Here is the output of the last stage
+<snip>
+...
+/opt/mydistro/1.0.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-lin=
+ux-gnueabi/gcc/arm-poky-linux-gnueabi/8.3.0/real-ld: /opt/mydistro/1.0.0/sy=
+sroots/cortexa9t2hf-neon-poky-linux-gnueabi/usr/lib/libc.a(getcontext.o): i=
+n function `getcontext':
+/usr/src/debug/glibc/2.29-r0/git/stdlib/../sysdeps/unix/sysv/linux/arm/get=
+context.S:101: undefined reference to `_rtld_global_ro'
+/opt/mydistro/1.0.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-lin=
+ux-gnueabi/gcc/arm-poky-linux-gnueabi/8.3.0/real-ld: /opt/mydistro/1.0.0/sy=
+sroots/cortexa9t2hf-neon-poky-linux-gnueabi/usr/lib/libc.a(setcontext.o): i=
+n function `__startcontext':
+/usr/src/debug/glibc/2.29-r0/git/stdlib/../sysdeps/unix/sysv/linux/arm/set=
+context.S:100: undefined reference to `_rtld_global_ro'
+collect2: error: ld returned 1 exit status
+makefile:116: recipe for target 'ortable' failed
+make: *** [ortable] Error 1
+</snip>
 
-*ERROR: 176 unbuildable tasks were found.
-##########################################=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | ETA:=C2=A0 =
-0:00:00*
-*These are usually caused by circular dependencies and any circular depend=
-ency chains found will be printed below. Increase the debug level to see a =
-list of unbuildable tasks.*
+What I can see from the output is, that both getcontext.S and setcontext.S=
+ are referencing to "_rtld_global_ro". What I do not understand is, why the=
+ glibc is located in the debug folder? Is this probably the issue?
 
-*Identifying dependency loops (this may take a short while)...*
+I have sourced the SDK using following command:
+source /opt/mydistro/1.0.0/environment-setup-cortexa9t2hf-neon-poky-linux-=
+gnueabi
 
-*ERROR:*
-*Dependency loop #1 found:*
-*Task virtual:native:/media/talel/data/sumo/sources/poky/meta/recipes-devt=
-ools/python/python-setuptools_40.0.0.bb:do_compile (dependent Tasks ['pytho=
-n-setuptools_40.0.0.bb:do_configure'])*
-*Task virtual:native:/media/talel/data/sumo/sources/poky/meta/recipes-devt=
-ools/python/python-setuptools_40.0.0.bb:do_install (dependent Tasks ['pytho=
-n-setuptools_40.0.0.bb:do_compile'])*
-*Task virtual:native:/media/talel/data/sumo/sources/poky/meta/recipes-devt=
-ools/python/python-setuptools_40.0.0.bb:do_populate_sysroot (dependent Task=
-s ['python-setuptools_40.0.0.bb:do_install'])*
-*Task virtual:native:/media/talel/data/sumo/sources/poky/meta/recipes-devt=
-ools/python/python-setuptools_40.0.0.bb:do_prepare_recipe_sysroot (dependen=
-t Tasks ['python-setuptools_40.0.0.bb:do_populate_sysroot', 'python-native_=
-2.7.15.bb:do_populate_sysroot', 'python-setuptools_40.0.0.bb:do_fetch'])*
-*Task virtual:native:/media/talel/data/sumo/sources/poky/meta/recipes-devt=
-ools/python/python-setuptools_40.0.0.bb:do_configure (dependent Tasks ['pyt=
-hon-setuptools_40.0.0.bb:do_prepare_recipe_sysroot', 'python-setuptools_40.=
-0.0.bb:do_patch'])*
+Here's image bb file (which I have used for building the SDK using this co=
+mmand (bitbake my-image -c populate_sdk).
 
-*ERROR: Command execution failed: 1
+require recipes-extended/images/core-image-full-cmdline.bb
 
-* ------------------------------
+IMAGE_INSTALL_append =3D " \
+emmy-w1-driver-sdiosdio \
+emmy-w1-systemd \
+eth-systemd \
+can-systemd \
+can-utils \
+lighttpd \
+dnsmasq \
+parted \
+swupdate \
+swupdate-www \
+u-boot-fw-utils \
+linux-firmware-imx-sdma-imx6q \
+"
 
-Thansk, Talel
+TOOLCHAIN_HOST_TASK_append =3D " nativesdk-perl-modules"
+SDKIMAGE_FEATURES_append =3D " staticdev-pkgs"
 
---BXMmrfXg5827VWxl092S
+Any help on resolving this issue would be greatly appreciated.
+
+Thanks.
+--
+
+Rob
+
+--WmdQXfUqHOmdRyYP3d3d
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,<br />I have a problem using <strong>python-setuptools</strong> with=
- yocto when bitbaking any recipe that inherits <strong>setuptools</strong> =
-, or even when I execute "bitbake setuptools"<br />but there is no problem =
-with setuptools3, but I need to use python2 for now.<br />Here is the log:<=
-br /><br />------------------------------<br /><br /><strong>ERROR: 176 unb=
-uildable tasks were found.<br />##########################################&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-| ETA:&nbsp; 0:00:00</strong><br /><strong>These are usually caused by circ=
-ular dependencies and any circular dependency chains found will be printed =
-below. Increase the debug level to see a list of unbuildable tasks.</strong=
-><br /><br /><strong>Identifying dependency loops (this may take a short wh=
-ile)...</strong><br /><br /><strong>ERROR: </strong><br /><strong>Dependenc=
-y loop #1 found:</strong><br /><strong>&nbsp; Task virtual:native:/media/ta=
-lel/data/sumo/sources/poky/meta/recipes-devtools/python/python-setuptools_4=
-0.0.0.bb:do_compile (dependent Tasks ['python-setuptools_40.0.0.bb:do_confi=
-gure'])</strong><br /><strong>&nbsp; Task virtual:native:/media/talel/data/=
-sumo/sources/poky/meta/recipes-devtools/python/python-setuptools_40.0.0.bb:=
-do_install (dependent Tasks ['python-setuptools_40.0.0.bb:do_compile'])</st=
-rong><br /><strong>&nbsp; Task virtual:native:/media/talel/data/sumo/source=
-s/poky/meta/recipes-devtools/python/python-setuptools_40.0.0.bb:do_populate=
-_sysroot (dependent Tasks ['python-setuptools_40.0.0.bb:do_install'])</stro=
-ng><br /><strong>&nbsp; Task virtual:native:/media/talel/data/sumo/sources/=
-poky/meta/recipes-devtools/python/python-setuptools_40.0.0.bb:do_prepare_re=
-cipe_sysroot (dependent Tasks ['python-setuptools_40.0.0.bb:do_populate_sys=
-root', 'python-native_2.7.15.bb:do_populate_sysroot', 'python-setuptools_40=
-.0.0.bb:do_fetch'])</strong><br /><strong>&nbsp; Task virtual:native:/media=
-/talel/data/sumo/sources/poky/meta/recipes-devtools/python/python-setuptool=
-s_40.0.0.bb:do_configure (dependent Tasks ['python-setuptools_40.0.0.bb:do_=
-prepare_recipe_sysroot', 'python-setuptools_40.0.0.bb:do_patch'])</strong><=
-br /><br /><br /><strong>ERROR: Command execution failed: 1<br /><br /></st=
-rong>------------------------------<br /><br />Thansk, Talel
+Hello,<br /><br />I am new to the Yocto project and need some help in solvi=
+ng a linker issue when compiling/linking an application using the SDK. It s=
+eems, that the compilation is completed, but the linker could not resolve t=
+o "_rtld_global_ro". Here is the output of the last stage<br />&lt;snip&gt;=
+<br />...<br />
+<div>/opt/mydistro/1.0.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-pok=
+y-linux-gnueabi/gcc/arm-poky-linux-gnueabi/8.3.0/real-ld: /opt/mydistro/1.0=
+.0/sysroots/cortexa9t2hf-neon-poky-linux-gnueabi/usr/lib/libc.a(getcontext.=
+o): in function `getcontext':</div>
+<div>/usr/src/debug/glibc/2.29-r0/git/stdlib/../sysdeps/unix/sysv/linux/ar=
+m/getcontext.S:101: undefined reference to `_rtld_global_ro'</div>
+<div>/opt/mydistro/1.0.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-pok=
+y-linux-gnueabi/gcc/arm-poky-linux-gnueabi/8.3.0/real-ld: /opt/mydistro/1.0=
+.0/sysroots/cortexa9t2hf-neon-poky-linux-gnueabi/usr/lib/libc.a(setcontext.=
+o): in function `__startcontext':</div>
+<div>/usr/src/debug/glibc/2.29-r0/git/stdlib/../sysdeps/unix/sysv/linux/ar=
+m/setcontext.S:100: undefined reference to `_rtld_global_ro'</div>
+<div>collect2: error: ld returned 1 exit status</div>
+<div>makefile:116: recipe for target 'ortable' failed</div>
+<div>make: *** [ortable] Error 1</div>
+<div>&lt;/snip&gt;</div>
+<br />What I can see from the output is, that both getcontext.S and setcon=
+text.S are referencing to "_rtld_global_ro". What I do not understand is, w=
+hy the glibc is located in the debug folder? Is this probably the issue?<br=
+ /><br />I have sourced the SDK using following command:<br />source /opt/m=
+ydistro/1.0.0/environment-setup-cortexa9t2hf-neon-poky-linux-gnueabi<br /><=
+br />Here's image bb file (which I have used for building the SDK using thi=
+s command (bitbake my-image -c populate_sdk).<br /><br />
+<div>require recipes-extended/images/core-image-full-cmdline.bb</div>
+<div>&nbsp;</div>
+<div>IMAGE_INSTALL_append =3D " \</div>
+<div>&nbsp; &nbsp; emmy-w1-driver-sdiosdio \</div>
+<div>&nbsp; &nbsp; emmy-w1-systemd \</div>
+<div>&nbsp; &nbsp; eth-systemd \</div>
+<div>&nbsp; &nbsp; can-systemd \</div>
+<div>&nbsp; &nbsp; can-utils \</div>
+<div>&nbsp; &nbsp; lighttpd \</div>
+<div>&nbsp; &nbsp; dnsmasq \</div>
+<div>&nbsp; &nbsp; parted \</div>
+<div>&nbsp; &nbsp; swupdate \</div>
+<div>&nbsp; &nbsp; swupdate-www \</div>
+<div>&nbsp; &nbsp; u-boot-fw-utils \</div>
+<div>&nbsp; &nbsp; linux-firmware-imx-sdma-imx6q \</div>
+<div>&nbsp; &nbsp; "</div>
+<div>&nbsp;</div>
+<div>TOOLCHAIN_HOST_TASK_append =3D " nativesdk-perl-modules"</div>
+<div>SDKIMAGE_FEATURES_append =3D " staticdev-pkgs"</div>
+<div>&nbsp;</div>
+Any help on resolving this issue would be greatly appreciated.<br /><br />=
+Thanks.<br />-- <br /><br />Rob
 
---BXMmrfXg5827VWxl092S--
+--WmdQXfUqHOmdRyYP3d3d--
