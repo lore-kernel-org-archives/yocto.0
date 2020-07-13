@@ -1,218 +1,294 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.4261.1594668581905742645
+ by mx.groups.io with SMTP id smtpd.web11.7474.1594677949925191903
  for <yocto@lists.yoctoproject.org>;
- Mon, 13 Jul 2020 12:29:42 -0700
+ Mon, 13 Jul 2020 15:05:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=dTPAYbmH;
- spf=softfail (domain: linaro.org, ip: 140.211.169.56, mailfrom: anibal.limon@linaro.org)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=lp6dtMrn;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8359FE01E7B; Mon, 13 Jul 2020 12:29:41 -0700 (PDT)
+	id 7D915E01E7D; Mon, 13 Jul 2020 15:05:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.128.68 listed in list.dnswl.org]
+	*      [209.85.214.169 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94C5BE01E79
-	for <yocto@yoctoproject.org>; Mon, 13 Jul 2020 12:29:39 -0700 (PDT)
-Received: by mail-wm1-f68.google.com with SMTP id j18so953969wmi.3
-        for <yocto@yoctoproject.org>; Mon, 13 Jul 2020 12:29:39 -0700 (PDT)
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEA62E01E79
+	for <yocto@yoctoproject.org>; Mon, 13 Jul 2020 15:05:47 -0700 (PDT)
+Received: by mail-pl1-f169.google.com with SMTP id x8so6125196plm.10
+        for <yocto@yoctoproject.org>; Mon, 13 Jul 2020 15:05:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=g9qxfxLwYolZQvQySaVG4DN/iFnccLflUpPiJDh7cQw=;
-        b=dTPAYbmHXOpIZA2O/5R2QXspu+b4jhrIUFmgDgK4GLpJw10Undxy5OkSZ+rc4FcEw0
-         6qbZpM0NNQWzkCSsLlyme6PafZzvHRR4EAB4wPOH67LafnOv1mQxekN99gc5kpysurej
-         tkoJqWP967Zz4BcOQcHNH88dP0gXVtWXXraoxPxyEmS311G3aeUCmmnVpJ8g5oT7gHOc
-         maL9C5Kl1AEBjYEwKErOjcpm/HqDvnhKNq1H1GUF7mHSnysA1P92VQML8ZRygM7JZwmS
-         dbHOoDy6s75H39J2mSwzyT9mGcZ9XkBEz9omq5QwpJVAM+DIVzLXdN5wn1uUtbvIMuJq
-         x6xg==
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=tPP1JwpXG8rofw2oRRf6ysOCBzXPyQLK+j9bDwLNJkY=;
+        b=lp6dtMrn1hxQL/+FBLmQh9cJWxiEa3LaxPnZDP3tNVX+SjdDmuVOpYYq6+d7dzYX+y
+         pTNyRnUKxgees8bt9cAtmBf5c908pFRugZeF42/NBXFvAfMAzkA8i29EroD/xi5Ar6bF
+         PVR8Jv9Ypy+XyhsgBw5DX1MtDNNzoreqFfIqb6CjGD0gwOMcWfqp9Eew2IGwsus4a6eS
+         Mpw+IkQm/9xBNxSjA54nc0d3y4JyqYoa+2wXqFcYHdg+lLMbmhIiJgXpq7s+DJcsecLv
+         XEZj+zYNnEYR9+ur2vP3x3b9amqPVr0zVZQh11tAKcUH/XzQcFkZuyr10Fbt3ldkYuaJ
+         oLPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=g9qxfxLwYolZQvQySaVG4DN/iFnccLflUpPiJDh7cQw=;
-        b=or8zlGKpRtdXHM8bLhrJYOjrQ2xcmmfpoSbSsbMGQ/ZxmI/InGoloMHQ/ut39+SQx2
-         pPMJN3WkrHEKI3T6SIfs1CCWtVALJVLmIY3wJu8NOF7gJTH52Mfr8kQSx0WuE2ziXFTo
-         ViHvVlvMYqMcXpwT5aLL9n4RZcEirExuq9Mjs7ND2McT3KYrval6RzzmoyLG6zVbB9Wb
-         RdG9argdfQCaqh9lVeeulgxtQHipIPY4tlOMX8K/S95q6VGCF5Qm5Zl42tORO1q0sAlG
-         nA6voCuKTK40ElmxTc0/XDIPY52qMHdhvtdGFqmB7M0w5jr5dui37F9IbNGikkIYNmEI
-         YGFQ==
-X-Gm-Message-State: AOAM530oFQB9fYLuDKSw7SJU/nq/JpIOzIf/4ObFwfqnibZZAtVdIpC7
-	01rxU7hof1icu1hSl+McOQdrjrJx5hJqZYpMV5BpJExh
-X-Google-Smtp-Source: ABdhPJxG+p4oYccKT88Ak9/VhBU1+TNP+l7s7k3XjbYU9hBR2uxp8LKxOhkXADH6qrCDbJLekLB0HkPDxnr1Bu7Tfs0=
-X-Received: by 2002:a1c:3bc1:: with SMTP id i184mr892725wma.119.1594668579065;
- Mon, 13 Jul 2020 12:29:39 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=tPP1JwpXG8rofw2oRRf6ysOCBzXPyQLK+j9bDwLNJkY=;
+        b=Xmy0D57xAqqV03w5AGz8aMjeTWBU52FCx3zQG5zzHTLLOUj6u/Pz6WjMC91MzHF3fX
+         UfZnZo7q8c2FrXxRTTIx2v+uAfBnG6ikbd1hOmWtHOj+KiRgmfqYNh7AWjbbt1yc3tVr
+         3FqFbyrzyj1WeIulkPmnJbY0fxOHcnjxPKL01fHqlJ7Puza9nBh8YRAxh5r1Va4CgEX/
+         VPYHYPZ8BhVGjIhiFnA82hp9cg2JA1mF4r6+LiXJglhleIxxqEpR7Q1fe+3XvwucSF+m
+         gxtnUwl1wC0/rx/U6CeE6HQr4/9OaOhkilvNwt0HONfnKNNSjS0soRsMzA6r5F6Iy+bf
+         X4gA==
+X-Gm-Message-State: AOAM5321LNPcFHQOBqvjOAcYn7nptazV19doo1SdBgBWbRvtSwxH2DyI
+	b6rn9+0kl7ZObgqvXPyu55g=
+X-Google-Smtp-Source: ABdhPJx4Uew4KYVDIH4xZHO/5uNSAg9M5sdP+hnaQbLkRz9NRGdhS7rTi7Pa5TUyjAbll99t3oUMrw==
+X-Received: by 2002:a17:90a:d684:: with SMTP id x4mr1450834pju.62.1594677946759;
+        Mon, 13 Jul 2020 15:05:46 -0700 (PDT)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id w64sm13767950pgd.67.2020.07.13.15.05.46
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 13 Jul 2020 15:05:46 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 13 Jul 2020 15:05:47 -0700
+Message-ID: <03b301d65961$c371c040$4a5540c0$@gmail.com>
 MIME-Version: 1.0
-References: <20200710054432.557157-1-tero.kinnunen@vaisala.com>
-In-Reply-To: <20200710054432.557157-1-tero.kinnunen@vaisala.com>
-From: "Anibal Limon" <anibal.limon@linaro.org>
-Date: Mon, 13 Jul 2020 14:29:28 -0500
-Message-ID: <CA+_Aqit4UM=EH5ztSHbuVx84eHzoQN0NPU+ADEY7Sfi7=WpNDA@mail.gmail.com>
-Subject: Re: [ptest-runner][PATCH v2] Fix inappropriate ioctl when detaching tty
-To: Tero Kinnunen <tero.kinnunen@vaisala.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000030aa9605aa57b63c"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHhj/QcHxFa04aWWDz2uFKhvVnvyA==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_03B4_01D65927.17138480"
+Content-Language: en-us
 
---00000000000030aa9605aa57b63c
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_03B4_01D65927.17138480
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Applied, Thanks!.
+All,
 
-Anibal
+ 
 
-On Fri, 10 Jul 2020 at 00:44, Tero Kinnunen <tero.kinnunen@vaisala.com>
-wrote:
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
 
-> Fixes error
->
->     ERROR: Unable to detach from controlling tty, Inappropriate ioctl for
-> device
->
-> when running multiple ptests
->
->     ptest-runner a b
->
-> or when invoked over ssh single command, like
->
->     $ ssh localhost ptest-runner
->
-> For ssh case, fd 0 is not a tty. (isatty(0) is false).
-> When running multiple ptests, deattach for parent needs to be
-> done only once.
->
-> Signed-off-by: Tero Kinnunen <tero.kinnunen@vaisala.com>
-> ---
->  utils.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/utils.c b/utils.c
-> index a8ba190..a4e190e 100644
-> --- a/utils.c
-> +++ b/utils.c
-> @@ -437,6 +437,9 @@ run_ptests(struct ptest_list *head, const struct
-> ptest_options opts,
->                         break;
->                 }
->                 fprintf(fp, "START: %s\n", progname);
-> +               if (isatty(0) && ioctl(0, TIOCNOTTY) == -1) {
-> +                       fprintf(fp, "ERROR: Unable to detach from
-> controlling tty, %s\n", strerror(errno));
-> +               }
->                 PTEST_LIST_ITERATE_START(head, p)
->                         char *ptest_dir = strdup(p->run_ptest);
->                         if (ptest_dir == NULL) {
-> @@ -444,9 +447,6 @@ run_ptests(struct ptest_list *head, const struct
-> ptest_options opts,
->                                 break;
->                         }
->                         dirname(ptest_dir);
-> -                       if (ioctl(0, TIOCNOTTY) == -1) {
-> -                               fprintf(fp, "ERROR: Unable to detach from
-> controlling tty, %s\n", strerror(errno));
-> -                       }
->
->                         if ((pgid = getpgid(0)) == -1) {
->                                 fprintf(fp, "ERROR: getpgid() failed,
-> %s\n", strerror(errno));
-> --
-> 2.25.1
->
->
+ 
 
---00000000000030aa9605aa57b63c
-Content-Type: text/html; charset="UTF-8"
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
+
+ 
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 341
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
+being in "3.1" and then "3.2".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_03B4_01D65927.17138480
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0770_01D653C3.C83BAAD0";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Applied, Thanks!.<div><br></div><div>Anibal</div></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, 1=
-0 Jul 2020 at 00:44, Tero Kinnunen &lt;<a href=3D"mailto:tero.kinnunen@vais=
-ala.com">tero.kinnunen@vaisala.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">Fixes error<br>
-<br>
-=C2=A0 =C2=A0 ERROR: Unable to detach from controlling tty, Inappropriate i=
-octl for device<br>
-<br>
-when running multiple ptests<br>
-<br>
-=C2=A0 =C2=A0 ptest-runner a b<br>
-<br>
-or when invoked over ssh single command, like<br>
-<br>
-=C2=A0 =C2=A0 $ ssh localhost ptest-runner<br>
-<br>
-For ssh case, fd 0 is not a tty. (isatty(0) is false).<br>
-When running multiple ptests, deattach for parent needs to be<br>
-done only once.<br>
-<br>
-Signed-off-by: Tero Kinnunen &lt;<a href=3D"mailto:tero.kinnunen@vaisala.co=
-m" target=3D"_blank">tero.kinnunen@vaisala.com</a>&gt;<br>
----<br>
-=C2=A0utils.c | 6 +++---<br>
-=C2=A01 file changed, 3 insertions(+), 3 deletions(-)<br>
-<br>
-diff --git a/utils.c b/utils.c<br>
-index a8ba190..a4e190e 100644<br>
---- a/utils.c<br>
-+++ b/utils.c<br>
-@@ -437,6 +437,9 @@ run_ptests(struct ptest_list *head, const struct ptest_=
-options opts,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 break;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fprintf(fp, &quot;S=
-TART: %s\n&quot;, progname);<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (isatty(0) &amp;=
-&amp; ioctl(0, TIOCNOTTY) =3D=3D -1) {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0fprintf(fp, &quot;ERROR: Unable to detach from controlling tty, %=
-s\n&quot;, strerror(errno));<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 PTEST_LIST_ITERATE_=
-START(head, p)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 char *ptest_dir =3D strdup(p-&gt;run_ptest);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 if (ptest_dir =3D=3D NULL) {<br>
-@@ -444,9 +447,6 @@ run_ptests(struct ptest_list *head, const struct ptest_=
-options opts,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 }<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 dirname(ptest_dir);<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0if (ioctl(0, TIOCNOTTY) =3D=3D -1) {<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, &quot;ERROR: Unable to de=
-tach from controlling tty, %s\n&quot;, strerror(errno));<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0}<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 if ((pgid =3D getpgid(0)) =3D=3D -1) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fprintf(fp, &quot;ERROR: getpgid() f=
-ailed, %s\n&quot;, strerror(errno));<br>
--- <br>
-2.25.1<br>
-<br>
-</blockquote></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
+starting to try and collect up and classify bugs which a newcomer to the =
+project would be able to work on in a way which means people can find =
+them. They're being listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
+><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 341 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
---00000000000030aa9605aa57b63c--
+------=_NextPart_000_03B4_01D65927.17138480--
