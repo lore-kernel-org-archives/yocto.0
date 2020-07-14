@@ -1,91 +1,79 @@
-Received: from mail-qv1-f65.google.com (mail-qv1-f65.google.com [209.85.219.65])
- by mx.groups.io with SMTP id smtpd.web11.7.1594743621927035978
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+ by mx.groups.io with SMTP id smtpd.web11.2777.1594750943896072227
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Jul 2020 09:20:22 -0700
+ Tue, 14 Jul 2020 11:22:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=PEzeWSJw;
- spf=pass (domain: konsulko.com, ip: 209.85.219.65, mailfrom: scott.murray@konsulko.com)
-Received: by mail-qv1-f65.google.com with SMTP id t7so7737847qvl.8
-        for <yocto@lists.yoctoproject.org>; Tue, 14 Jul 2020 09:20:21 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=YwkRuVQ3;
+ spf=softfail (domain: sakoman.com, ip: 209.85.210.175, mailfrom: steve@sakoman.com)
+Received: by mail-pf1-f175.google.com with SMTP id q17so7917438pfu.8
+        for <yocto@lists.yoctoproject.org>; Tue, 14 Jul 2020 11:22:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :mime-version;
-        bh=BcyBoQ5JWK7VOtM84aevgQxIpsCfPieZr2rYjyo+CVk=;
-        b=PEzeWSJw4hWiQ/XfqKk7lYyRfvs9wS8kr13GKAGd+VqPRch87Ev/jM98mbVNfuwRSN
-         +7Tj0phocdWlXbWVkRjFZ32QpH5rUjTbyw5w5lb1zc3yNgNz/1UHm0cOskDnNvtAUq1X
-         te3a3HFg2HICfPZexYMODXOclNtHYkRtnhbw8=
+        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:subject:date:message-id:in-reply-to:references;
+        bh=q1e7W5bhScNVOG9qEtyOyclYBbJ106Gp3UzziVUTRig=;
+        b=YwkRuVQ3xgHbo5rdnoGb41SqaOMkYxlScTTewQKWEtfuTwlMDjRSeoby7FRwU/o+yF
+         NkXx2vlfBOW5LqzxhIwD7MF3kUAfHYjhs7DrC6MPSWXVx7BFHhvLw1dtoQi3ewpne2UT
+         mxB6pmPGimRll7LFjgBPHn0J3/HETjpxyJHiDCQAQ3iSxTbPJEpBAj0r/TrQAb1FmUqA
+         /wM/jG7Cru5XnOsAuxoYwrS/kSSyL94CUsad2K8CvMEX0FcTmy0YJIcnHaH0jsmF6Wz+
+         Ra64TGfCUIGMiZ3A6eAN1+OtaP7urq7aB0AdrIDpZAAhZS3F/phDAgCgJUdlwfyqj6fr
+         nkqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:mime-version;
-        bh=BcyBoQ5JWK7VOtM84aevgQxIpsCfPieZr2rYjyo+CVk=;
-        b=PcdB2NMbbh3IA1nYHI2m+V/KVvZCsbsg+vTXtxfHXL3ZNVi4HfoySfRGuyAdiQh3dx
-         gdnslwXsWwDWb45KvI+CNZU4DbMM66dLaCN8qdgY60cJXnlzWtDQ3g7ueSDf0Ut8dqZZ
-         AzEdJfwT+Vo+ORVi7LpqLoQp1YyOwO9kI2+Yb4C0sOaOv4fHwCXHaEPlVckg0ZSWPdnq
-         AZlD7MpjXECQ4LjD3O/KmUkG2uCXAfnokfisUmSbsS9NiIrw5QjwUgehFkebRXNcmUr+
-         Xgv63FfVvmUQ6I7h10U50ab6JFetYXHP0AioUuTbKTdIdCq5vN6BCnWIOmeRpQ19LbMq
-         zHgw==
-X-Gm-Message-State: AOAM5318skJlPy263bRHm/ymBS7c9oCaNojOxjK4gq4JzjSLy213eeHE
-	JE26BagI6+WBPu/Vcvx6PGaYsg==
-X-Google-Smtp-Source: ABdhPJzhZOwQaC9Ed/BbR1UbniFBk5ISaU1WuaSjtBcBkwYFk3gNNzhnnc5hjhFK8o/Bh6RPo1hhIA==
-X-Received: by 2002:a0c:aa9b:: with SMTP id f27mr5510363qvb.9.1594743620926;
-        Tue, 14 Jul 2020 09:20:20 -0700 (PDT)
-Return-Path: <scott.murray@konsulko.com>
-Received: from godzilla (198-84-179-103.cpe.teksavvy.com. [198.84.179.103])
-        by smtp.gmail.com with ESMTPSA id c9sm22040769qko.24.2020.07.14.09.20.19
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references;
+        bh=q1e7W5bhScNVOG9qEtyOyclYBbJ106Gp3UzziVUTRig=;
+        b=nzDiwmDQSf2ih6BpSthfxtpam6I8qABCZ+74oW2VAtoJzBrCzhi6EL2P7JoITjfogW
+         mES3vldgJkLCRACCAY7GQCohYUKmAmqMOTonWWwUqqKl8T1pQhwkKm0GF47Mt2TUNgpT
+         2bjJjOgjoofVO18OogNoPFlkVkOMROjDxCAHJMSxaQ70W6vrc04oCeFm6WvTLZ9Dc7eL
+         CyJsAWymFPxxSn04SrUyGY9k79hLpxsZb0xD9Hyhu+G7CDQM7vPRS1htfr2Tr6AoxHW9
+         Psk73rn7KcidFvYIBz+nHFbWelWSHuwcv96/vn8n6gUBDIQ76G6zVYLrnIv5Fo7FYLHL
+         u3tw==
+X-Gm-Message-State: AOAM5331YuslkCwbDjiBRZ0uvRaO0DTgB4dAbc9iway3cIThbd0/133/
+	+KeuYmgESNA9IYOQRgChQQdsI1BjxBzZDg==
+X-Google-Smtp-Source: ABdhPJx4rS39tONiMnsaWHkJP2dkz+9tbSr12VztsW4UeLNTe+N3MoTijYvEssMlbdyZ9KvZnZ55iQ==
+X-Received: by 2002:a62:7f55:: with SMTP id a82mr5343056pfd.61.1594750942793;
+        Tue, 14 Jul 2020 11:22:22 -0700 (PDT)
+Return-Path: <steve@sakoman.com>
+Received: from octo.router0800d9.com (rrcs-66-91-142-162.west.biz.rr.com. [66.91.142.162])
+        by smtp.gmail.com with ESMTPSA id t126sm18478647pfd.214.2020.07.14.11.22.21
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2020 09:20:20 -0700 (PDT)
-Date: Tue, 14 Jul 2020 12:19:58 -0400 (EDT)
-From: "Scott Murray" <scott.murray@konsulko.com>
-X-X-Sender: scottm@godzilla.spiteful.org
-To: Yi Zhao <yi.zhao@windriver.com>
-cc: yocto@lists.yoctoproject.org, joe@deserted.net
-Subject: Re: [yocto] [meta-selinux][PATCH 0/4] refpolicy: update to 20200229+git
-In-Reply-To: <20200707082914.30094-1-yi.zhao@windriver.com>
-Message-ID: <alpine.LFD.2.23.451.2007141131280.11165@godzilla.spiteful.org>
-References: <20200707082914.30094-1-yi.zhao@windriver.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        Tue, 14 Jul 2020 11:22:22 -0700 (PDT)
+From: "Steve Sakoman" <steve@sakoman.com>
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder2] builders.py: At the end of trigger builds use rm rather than clobber to clean up
+Date: Tue, 14 Jul 2020 08:22:07 -1000
+Message-Id: <e8974d09921184f10394db6825249a4185ebadc1.1594750859.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <cover.1594750859.git.steve@sakoman.com>
+References: <cover.1594750859.git.steve@sakoman.com>
 
-On Tue, 7 Jul 2020, Yi Zhao wrote:
+Since clobber is crossing two file systems in this case the worker
+can delete the files faster than it can move them
 
-> Here is the changelog for this is patchset:
->
-> * Drop refpolicy 2.20190201
->   If we still keep two versions of refpolicy, it is difficult to maintain two huge local patchsets. So drop this version and only keep the git version.
->
-> * Add patches to make systemd/sysvinit can work with all policy types.
->
-> Here are the results with this patcheset:
->
-> Machine: qemux86-64
-> Image: core-image-selinux
-> Init manager: sysvinit and systemd
-> Policy types: minimum, targeted, standard, mcs, mls
-> Boot command: runqemu qemux86-64 kvm nographic bootparams="selinux=1 enforcing=1" qemuparams="-m 1024"
->
-> 1. All refpolicy type can be built without problems.
->
-> 2. With parameter selinux=1 & enforcing=1
-> The qemu can boot up and login with all policy types.
-[snip]
+Also fixes a occasional race that results in build failures
 
-I suspect I'm really missing something, but I'm unable to successfully
-make this work with poky + meta-selinux and its meta-openembedded
-dependencies with either sysvinit or systemd; I see denials on boot and
-cannot log in due to denials on reading /etc/passwd.  That's also the
-behavior I see without this update, so I'm wondering if I'm just doing
-something significantly wrong with respect to configuration.  My
-local.conf additions for testing are just:
+Signed-off-by: Steve Sakoman <steve@sakoman.com>
+---
+ builders.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-DISTRO_FEATURES_append = " selinux"
-PREFERRED_PROVIDER_virtual/refpolicy = "refpolicy-targeted"
-
-Any ideas?
-
-Thanks,
-
-Scott
-
+diff --git a/builders.py b/builders.py
+index 13bfe18..778989b 100644
+--- a/builders.py
++++ b/builders.py
+@@ -377,9 +377,9 @@ def create_parent_builder_factory(buildername, waitname):
+ 
+ 
+     factory.addStep(steps.ShellCommand(
+-                    command=[clob, util.Interpolate("{}/%(prop:buildername)s-%(prop:buildnumber)s".format(config.sharedrepodir))],
++                    command=["rm", "-fr", util.Interpolate("{}/%(prop:buildername)s-%(prop:buildnumber)s".format(config.sharedrepodir))],
+                     haltOnFailure=True,
+-                    name="Clobber shared repo dir"))
++                    name="Remove shared repo dir"))
+ 
+     return factory
+ 
+-- 
+2.17.1
 
