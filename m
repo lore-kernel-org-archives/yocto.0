@@ -1,94 +1,81 @@
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
- by mx.groups.io with SMTP id smtpd.web12.13047.1594699211206631968
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+ by mx.groups.io with SMTP id smtpd.web12.13048.1594699213146000395
  for <yocto@lists.yoctoproject.org>;
- Mon, 13 Jul 2020 21:00:11 -0700
+ Mon, 13 Jul 2020 21:00:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=IkZgvdkU;
- spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 209.85.222.178, mailfrom: jpuhlman@mvista.com)
-Received: by mail-qk1-f178.google.com with SMTP id e11so14461088qkm.3
-        for <yocto@lists.yoctoproject.org>; Mon, 13 Jul 2020 21:00:11 -0700 (PDT)
+ dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=nWzRsuri;
+ spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 209.85.219.48, mailfrom: jpuhlman@mvista.com)
+Received: by mail-qv1-f48.google.com with SMTP id h18so6895734qvl.3
+        for <yocto@lists.yoctoproject.org>; Mon, 13 Jul 2020 21:00:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=mvista-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id;
-        bh=86NZ3yGFlntx0TEd/tRxOWfdl5Q/WjweJ6abW6x+icc=;
-        b=IkZgvdkU01FfL9UwV4DDzYIE92BTEyUf1eBYgJm+7X+0lrH/0vRh5617CMWOcfFy7f
-         E8xFzZT/F4Z21HPdcEGIOtWIkRtdWdv65BFoeGQ2yUh7CI98A4uiQaDusIj59XSN3Bt1
-         Ejo2LeZ1qM7yEZXP19x6wUzrjqP2Hm1uG8CODIy95Ij/PsNvkiGSN8+I48IFyNwOl6XB
-         XhvbbFbLgZOImJPZiUIsn5Y7iGDZLEh8d5fMi+wG1pw/b21Fhoqk8m67eEpDZJ/I9vgR
-         L5l1bAbvwKoT8GEBJoe9yHO121NHxSiLzlmYq3P8koFQZiHCE5RCQUA0qPQ2jkGYAGB+
-         aklw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=8qiL2+PRuJYRJP+RAjluqTuswgHs3CXyfmzcvrqhDnk=;
+        b=nWzRsuriYv4Wj2HZyD1vXiAKUUBRc6XcM4SPGeoNfz0aDflDV6pRoNvA6XBACLnLXS
+         GOV871MyyVsh78A7xcPHEfx6PNnUqO+glnnG5y5tWGSmjFh1RosAw6+0z/d0oA5aHyxU
+         6O3FPmgJT9PIJWoDh3WrfL7v0Bj7zrrVsHKZtf5f2hF1zo/c7gmlJt2CDpAvxPZcCXDA
+         vnnuHtJIMZmhzkv9pdrFHlw3v8oxKPJNASUoy8iy8sTSafZ2hLSP5Q9Th+ddWjB+dXVS
+         tCWCDN0Ppnc1Ay6Y8zXsOAvpim2pX1oZF40Eb3v05moaSE+m7hnSzcVG23QFi6aeLbgQ
+         W5xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=86NZ3yGFlntx0TEd/tRxOWfdl5Q/WjweJ6abW6x+icc=;
-        b=FM7NUzsdMmpFcucHrpvu8R6kPM836CKZdR68EH1+Zt+77oIQgFdShs39gdPn1DYh6q
-         5Vq9GnSbqawOqZ/XAJCQ/HAmginxJ/EGCYoNuyUkZOm4RkXbLP3kvyoWmt0eSK5ssFWn
-         GeG/Msdk4DDMTkBsjKDgiG9DWHgv/eZo48HJ1qSLhfPCpFKM0eMpDll+vTpaEOPXcGYW
-         slSNHrRPxHooTyyqebuLIsPthit9rgJRY4Iu4p5Jsk9kPsOt8OiTNOlhflWtF6l4CGmr
-         sa2VI7/RpV2PdeDClvL+HUdf73JzlJ5BpDPYY4yvLss9yGY5yQb0yEYuvh8ViZyEG8Tg
-         H36w==
-X-Gm-Message-State: AOAM533hVyp1CdQY6ZjDMf0PgJNJa4wFj5PEERYpH+IGDGg0SrZLALES
-	UZuluVJjjGjRwsHbvltwIOMnVW1wqLA=
-X-Google-Smtp-Source: ABdhPJzszX7jPRt13AEk9UwY52GFseutgHOCj47NYS2x7vTgVBKau10vRm+eDMBzzUvcXeo091jcJw==
-X-Received: by 2002:a05:620a:10a4:: with SMTP id h4mr2694575qkk.320.1594699210015;
-        Mon, 13 Jul 2020 21:00:10 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=8qiL2+PRuJYRJP+RAjluqTuswgHs3CXyfmzcvrqhDnk=;
+        b=To35MqrSlsZdoX0calpJ1ZP3izKAtgCvYuRJ0/zih8VpLvNKrHS5r7B2G86wGarel8
+         +uRuXvdRFJRJkqxsFpWWt0IHIzpW5rfT5oZVNt3pDZ72qLIPpW6701VZDY7kIDZ13qow
+         +DYWVd+2YhVSKVAa9CAEZeu/24Oiqon5np3pnwkoapvT5OZMAla5TdC8pYvuVv9cgSkb
+         gOmMZG3SXXM4p1b9CrPTHCPEubpneLDdLKWJh7byRPNHMohQ1t8lkSLkC0D0aYgSYFFF
+         lMqyRkrmkAWYgQ+YcoulNXK8b5ukJY06lDfv1YU9e9RXOoeWDhwXlBRVndrpDzTYAkGa
+         F30A==
+X-Gm-Message-State: AOAM531yMRM6F15EKj3e6vuP46KSC/cLximWV1i7TZzpd3sNN41jX3fY
+	vk+7dVaPU4fjwJwiKVh3I+PM7HSf7Ss=
+X-Google-Smtp-Source: ABdhPJzfllByjsYsq0aP/0o2QezPG7YGt4nwoY6/Qi5kzuW6V3XwclKXx6yowQBtFdOR3AwmIcyF1A==
+X-Received: by 2002:a0c:f345:: with SMTP id e5mr2748299qvm.84.1594699211945;
+        Mon, 13 Jul 2020 21:00:11 -0700 (PDT)
 Return-Path: <jpuhlman@mvista.com>
 Received: from workhorse.localdomain (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
-        by smtp.gmail.com with ESMTPSA id m14sm21917098qke.99.2020.07.13.21.00.08
+        by smtp.gmail.com with ESMTPSA id o145sm20810870qke.2.2020.07.13.21.00.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jul 2020 21:00:09 -0700 (PDT)
+        Mon, 13 Jul 2020 21:00:11 -0700 (PDT)
 Received: by workhorse.localdomain (Postfix, from userid 1000)
-	id 83C6F2A099A; Mon, 13 Jul 2020 21:00:07 -0700 (PDT)
+	id 267462A099A; Mon, 13 Jul 2020 21:00:10 -0700 (PDT)
 From: "Jeremy Puhlman" <jpuhlman@mvista.com>
 To: yocto@lists.yoctoproject.org
 Cc: Jeremy Puhlman <jpuhlman@mvista.com>
-Subject: [meta-security][master|dunfell][PATCH 1/2] cryptsetup-tpm-incubator: RPROVIDES cryptsetup and cryptsetup-dev
-Date: Mon, 13 Jul 2020 21:00:00 -0700
-Message-Id: <1594699201-14545-1-git-send-email-jpuhlman@mvista.com>
+Subject: [meta-security][master|dunfell][PATCH 2/2] packagegroup-security-tpm2: Depend on preferred provider for cryptsetup
+Date: Mon, 13 Jul 2020 21:00:01 -0700
+Message-Id: <1594699201-14545-2-git-send-email-jpuhlman@mvista.com>
 X-Mailer: git-send-email 1.8.2.3
+In-Reply-To: <1594699201-14545-1-git-send-email-jpuhlman@mvista.com>
+References: <1594699201-14545-1-git-send-email-jpuhlman@mvista.com>
 
 From: Jeremy Puhlman <jpuhlman@mvista.com>
 
-Without this we get weird conflict when you include dev packages:
-rror: Transaction check error:
-  file /usr/include/libcryptsetup.h conflicts between attempted installs of
-cryptsetup-tpm-incubator-dev-0.9.9-r0.corei7_64 and
-lib32-cryptsetup-dev-2.3.2-r0.1.i586
-  file /usr/lib64/libcryptsetup.so conflicts between attempted installs of
-cryptsetup-tpm-incubator-dev-0.9.9-r0.corei7_64 and
-cryptsetup-dev-2.3.2-r0.1.corei7_64
-  file /usr/lib64/pkgconfig/libcryptsetup.pc conflicts between attempted
-installs of cryptsetup-tpm-incubator-dev-0.9.9-r0.corei7_64 and
-cryptsetup-dev-2.3.2-r0.1.corei7_64
-  file /usr/lib/libcryptsetup.so conflicts between attempted installs of
-lib32-cryptsetup-tpm-incubator-dev-0.9.9-r0.i586 and
-lib32-cryptsetup-dev-2.3.2-r0.1.i586
-  file /usr/lib/pkgconfig/libcryptsetup.pc conflicts between attempted installs
-of lib32-cryptsetup-tpm-incubator-dev-0.9.9-r0.i586 and
-lib32-cryptsetup-dev-2.3.2-r0.1.i586
-
 Signed-off-by: Jeremy Puhlman <jpuhlman@mvista.com>
 ---
- .../cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb       | 5 +++++
- 1 file changed, 5 insertions(+)
+ meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb b/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb
-index b706d15..2617162 100644
---- a/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb
-+++ b/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb
-@@ -36,7 +36,12 @@ FILES_${PN} += "${libdir}/tmpfiles.d"
- RDEPENDS_${PN} += "lvm2 libdevmapper"
- RRECOMMENDS_${PN} += "lvm2-udevrules"
+diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
+index 8f5c537..a553a63 100644
+--- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
++++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
+@@ -7,6 +7,7 @@ inherit packagegroup
  
-+RPROVIDES_${PN} = "cryptsetup"
- RREPLACES_${PN} = "cryptsetup"
- RCONFLICTS_${PN}  ="cryptsetup"
+ PACKAGES = "${PN}"
  
-+RPROVIDES_${PN}-dev = "cryptsetup-dev"
-+RREPLACES_${PN}-dev = "cryptsetup-dev"
-+RCONFLICTS_${PN}-dev  ="cryptsetup-dev"
-+
- BBCLASSEXTEND = "native nativesdk"
++PREFERRED_PROVIDER_cryptsetup ?= "cryptsetup-tpm-incubator"
+ SUMMARY_packagegroup-security-tpm2 = "Security TPM 2.0 support"
+ RDEPENDS_packagegroup-security-tpm2 = " \
+     tpm2-tools \
+@@ -19,5 +20,5 @@ RDEPENDS_packagegroup-security-tpm2 = " \
+     tpm2-abrmd \
+     tpm2-pkcs11 \
+     ibmswtpm2 \
+-    cryptsetup-tpm-incubator \
++    ${PREFERRED_PROVIDER_cryptsetup} \
+     "
 -- 
 1.8.2.3
 
