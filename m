@@ -1,93 +1,88 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.20286.1594734930492391989
+ by mx.groups.io with SMTP id smtpd.web10.20481.1594735540525498551
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Jul 2020 06:55:30 -0700
+ Tue, 14 Jul 2020 07:05:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=aWxb3AY1;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: mans.zigher@gmail.com)
+ dkim=pass header.i=@stusta.de header.s=default header.b=pCTnTCyA;
+ spf=neutral (domain: stusta.mhn.de, ip: 140.211.169.56, mailfrom: srs0=yu6m=az=stusta.de=bunk@stusta.mhn.de)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F1231E01DEE; Tue, 14 Jul 2020 06:55:29 -0700 (PDT)
+	id 1ED91E01DEE; Tue, 14 Jul 2020 07:05:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,URIBL_RED autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (mans.zigher[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
+	*      trust
+	*      [141.84.69.5 listed in list.dnswl.org]
+	*  0.0 URIBL_RED Contains an URL listed in the URIBL redlist
+	*      [URIs: yoctoproject.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.208.180 listed in list.dnswl.org]
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1FE9AE01D33
-	for <yocto@yoctoproject.org>; Tue, 14 Jul 2020 06:55:28 -0700 (PDT)
-Received: by mail-lj1-f180.google.com with SMTP id q7so22843823ljm.1
-        for <yocto@yoctoproject.org>; Tue, 14 Jul 2020 06:55:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JAFKKDzN+0izLAeAzCoIiFQlXD0H48x5pKJHksfd7No=;
-        b=aWxb3AY1QQnLXdK8il8m0aOABWu5Tgrpwi46pSYsbh9z8YziaLE84UAvNr500gyNCa
-         m9k4P1Lzi1YJH8OZCI1uqaYZeIYcfntWYzHC5gUcqF6f20CC6y5cnWn5HSjzX+NIbOaN
-         lBIm1ecabL4KoCVk9yGnRB0XrhtN/DCzhb15puIHCY1+508lAV59JD5BQzMfh5xNv5bs
-         OS62rxV6RevZYpPXabwR7ZZ32i6F5GNj9HzADh9T8I71hAm9PGPajVKivRK5NbuYvvOv
-         eCxon920S5VBKLHnGbjYKOHOsVP4UJqVGHnVXB4qtXQDzgdxCWFXbo05E/SIIT49yW/S
-         M3uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JAFKKDzN+0izLAeAzCoIiFQlXD0H48x5pKJHksfd7No=;
-        b=bzmE/PAVtRQtXzmhxmenuFouQL9m4+3tYUXgtU7QyLnrh1QUWuTwMyMwZ7GhxNCS/Y
-         0d9htM8slGT5f2/sxg32ogfhfJGK94PzrblJr/ihcUHANLYm0VlMl5AaxeT4a46xBxfB
-         FgLFIPkKPE/C14rhikMDMp4MbdCzAQj33s7H6K1XW0TvNzyrhE9PCVoNTedEqGjh+3/a
-         jnrx5+VXIjDp0CxIDUe1WC6pQEDwqV7xzvrH+NhVP2ncdrjZRGwcPPBKxTBIPqgQKMBo
-         mMx7wljbxgityC2DpSmf1vUg56vXuDjQlCpijsjpNhC4P2KERQPsbe+tpSlkp3dW/a1j
-         92ig==
-X-Gm-Message-State: AOAM531SZ1TVkqoMvLNPHOXnEDtQnTRig70gkvT998JpqfO7rDG39HBy
-	2yOVNy8uMWkTR+hS7zXKLN6b5tivcepk2Hdi/vc=
-X-Google-Smtp-Source: ABdhPJwYY23WYc0mqE6Iu8D+dJm1dPbH49xNuXkHG8qXVGYZL26T5xxWKrrgG1u2hKMjKRHHrW5aEjcAqexc+ozq9aE=
-X-Received: by 2002:a2e:b0da:: with SMTP id g26mr2399885ljl.299.1594734926568;
- Tue, 14 Jul 2020 06:55:26 -0700 (PDT)
+X-Greylist: delayed 552 seconds by postgrey-1.32 at yocto-www; Tue, 14 Jul 2020 07:05:37 PDT
+Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C396E01D33
+	for <yocto@yoctoproject.org>; Tue, 14 Jul 2020 07:05:37 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 4B5hrP2sZRz1n;
+	Tue, 14 Jul 2020 15:56:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
+	s=default; t=1594734982;
+	bh=r7tzVtmC32fo2RtRJigOR0SlW4Z0mY2LbfDQtr6cLFw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pCTnTCyAd59CDwLdeXJqiIWa9myBPJ1MtLQMNj4Xdpq4bGbpZZU9oS1bzue4Dj71W
+	 Bq4P40/MvTbikwmb10uW6CPH01OUX025xmFYv45abnGAJ3b9k+dhu3aAM41Qn7zT58
+	 32SSf3hWC8WX3qjSz9kx8n7C4sj83H5Em38hg8rYXFonPNk6HcKixQ8OX9WWXYFp0O
+	 EsuAW7yrDITk4xbYOw+iD52Kmr+9TrzTUJqBTAcM98Jx+HkLPpVLltDqy88SStHrND
+	 6Xy4mm4Om2zi2NbB8W77YwMqWqMg04k6QFJ7+VCdRMT+5ZPeGCXqyM6wAoUWnYm1Ig
+	 vQa5VNFVk8YffbNHBjC+ihVvhJGUTkdzG9mLnaV2oVp7vNR7v7RTQ+PNXTFXpYu6cU
+	 QZbb5Pxp8vdiLhHsmevc+suLPAoUnTuS7mCq8i91QM3jscAYYc/BZ9WQw7HlgIq0kY
+	 CguhC6vm+EdjIEbXDRO9ahBfbHRzkrEnnzxbF3U6IJ+WjzhIeMzHRZy5JdN2J4yPtH
+	 S8NrYMLceMt748GMLbw+QBB8L1waWN+PlyQgsAZlPyakLIXteL4O9V76d480N3iNJH
+	 YlwJcCEMtxbxJVTa2ZPbk/mtZ5UYLITc0zlhunSu9/jD8a5MZoIumfoFG+doQo7H8e
+	 y7JR/XeV94kyCjEv1ZewbcLI=
+Date: Tue, 14 Jul 2020 16:56:19 +0300
+From: "Adrian Bunk" <bunk@stusta.de>
+To: akuster <akuster808@gmail.com>
+Cc: Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"bitbake-devel@lists.openembedded.org" <bitbake-devel@lists.openembedded.org>
+Subject: Re: [yocto] Stable Warrior branch
+Message-ID: <20200714135619.GF25970@localhost>
+References: <03a353c4-80dd-e66c-3222-7850a98182f7@gmail.com>
 MIME-Version: 1.0
-References: <CAEhQi8kgE933ACogqL48Ncdofcu-DW85sJ275ccZH0WFTKEOJA@mail.gmail.com>
- <CAEhQi8nxjCkWr6YZ_6BTOg4RddY7ff8fU5sj33XCnTp_W7LACQ@mail.gmail.com>
- <CAEhQi8kJuZNpx5=-oaFowLkR_2bWkAanBfPYgrk1uFMuTrdTAQ@mail.gmail.com> <20200714121209.GD108868@korppu>
-In-Reply-To: <20200714121209.GD108868@korppu>
-From: "Mans Zigher" <mans.zigher@gmail.com>
-Date: Tue, 14 Jul 2020 15:55:15 +0200
-Message-ID: <CAEhQi8nn=uZyy6s3HQLxhZxPQEangnwBqvd+Lx_hxmDVdxR=Lg@mail.gmail.com>
-Subject: Re: [yocto] meta layers priority using BBFILE_PRIORITY in layer.conf is not working for me?
-To: Mikko.Rapeli@bmw.de
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <03a353c4-80dd-e66c-3222-7850a98182f7@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-Thanks why I did not think of that. Anyway it works so thanks again.
+On Thu, Jun 04, 2020 at 09:28:00PM -0700, akuster wrote:
+> Hello,
+> 
+> The Warrior branch of Poky has had its last official dot release. It
+> will be moving to Community support and EOL within 6 weeks if no one
+> steps up.
+> If someone is interested in taking on the responsibilities of
+> maintaining the "Warrior" branch moving forward, please email this list.
 
-BR
+I have an interest in keeping warrior branch alive in poky and meta-oe,
+and I'll take this responsibility since noone else seems to be interested.
 
-Den tis 14 juli 2020 kl 14:12 skrev <Mikko.Rapeli@bmw.de>:
->
-> Hi,
->
-> On Tue, Jul 14, 2020 at 02:08:37PM +0200, Mans Zigher wrote:
-> > I figured it out the problem was that in meta-layer1 we had
-> > SRC_URI_append_machine1 += "file://0001-patch-one.patch" this
-> > apparently will always be added to the end of  SRC_URI list and
-> > thereby the meta-layer2 patches will be applied first. Is it possible
-> > to get machine specific patches applied first?
->
-> You can try with SRC_URI_prepend_machine1.
->
-> Cheers,
->
-> -Mikko
+> Please look at the
+> https://wiki.yoctoproject.org/wiki/Stable_Release_and_LTS for what will
+> be expected.
+
+I have some ideas, but not yet a fixed plan how I will set this up.
+
+> regards,
+> Armin
+
+cu
+Adrian
