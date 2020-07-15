@@ -1,54 +1,62 @@
-Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
- by mx.groups.io with SMTP id smtpd.web12.5637.1594816840499616626
- for <yocto@lists.yoctoproject.org>;
- Wed, 15 Jul 2020 05:40:41 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: crashcourse.ca, ip: 199.212.143.8, mailfrom: rpjday@crashcourse.ca)
-Received: from localhost ([127.0.0.1]:48192 helo=cpanel7.indieserve.net)
-	by cpanel7.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.93)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1jvgiE-001W7W-U3
-	for yocto@lists.yoctoproject.org; Wed, 15 Jul 2020 08:40:39 -0400
-Received: from [66.129.241.14] ([66.129.241.14]) by crashcourse.ca (Horde
- Framework) with HTTPS; Wed, 15 Jul 2020 08:40:38 -0400
-Date: Wed, 15 Jul 2020 08:40:38 -0400
-Message-ID: <20200715084038.Horde._MxiVfolxrAUkmwAbzmgLHy@crashcourse.ca>
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Subject: Re: Linker error undefined reference to `_rtld_global_ro'
 To: yocto@lists.yoctoproject.org
-Subject: simplest way to disable all shared state cache for a build?
-User-Agent: Horde Application Framework 5
+From: "Robert Varga" <robert.varga@getinge.com>
+X-Originating-Location: Karlsruhe, Baden-Württemberg, DE (217.240.134.124)
+X-Originating-Platform: Windows Chrome 81
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday@crashcourse.ca
-X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
-Content-Disposition: inline
+Date: Wed, 15 Jul 2020 07:36:19 -0700
+References: <faf2f2ae-5bfe-2493-1445-ebfaaafde328@gmail.com>
+In-Reply-To: <faf2f2ae-5bfe-2493-1445-ebfaaafde328@gmail.com>
+Message-ID: <11273.1594823779014710167@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="6u3i4lmlHZm12nVBfexj"
 
-what is the simplest way to disable any use of sstate for a new build?
-i see bitbake has a "--no-setscene" option that would appear to do that:
+--6u3i4lmlHZm12nVBfexj
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-   Do not run any setscene tasks. sstate will be ignored
-   and everything needed, built.
+Thank you for instructions...
 
-i've also seen some solutions that involve setting to empty strings
-various variables like SSTATE_DIR, SSTATE_MIRRORS and so on. so if all
-i want is to make sure everything is fetched, configured and built with
-no use of sstate cache whatsoever, is "--no-setscene" the way to go?
+>=20
+> build SDK for arm64. e.g. MACHINE=3Dqemuarm64 bitbake -cpopulate_sdk
+> core-image-sato
 
-rday
+After long attempts I finally managed to create an SDK with qemuarm64. How=
+ever, I did not use the core-minimal-sato as suggested, but used the same s=
+etup as in my-image.bb (which is based on the core-image-full-cmdline).
+With this new SDK I then did the same experiment and compiled the applicat=
+ion, and it worked! There were no linker error messages.
+Now the question for me is, why did it compile with qemuarm64, but not wit=
+h my settings?
+Is there anything else I can do to isolate the issue?
+Thanks for your support so far.
 
-p.s. is this mentioned anywhere in the bitbake or a YP manual? seems
-like this would be useful information for rigorous testing purposes.
+--
 
+Rob
 
+--6u3i4lmlHZm12nVBfexj
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div style=3D"line-height: 1.42857; white-space: normal;">Thank you for ins=
+tructions...</div>
+<div>&nbsp;</div>
+<blockquote><span style=3D"white-space: pre-wrap;">build SDK for arm64. e.=
+g. MACHINE=3Dqemuarm64 bitbake -cpopulate_sdk</span><br style=3D"white-spac=
+e: pre-wrap;" /><span style=3D"white-space: pre-wrap;">core-image-sato</spa=
+n></blockquote>
+<div>After long attempts I finally managed to create an SDK with qemuarm64=
+. However, I did not use the core-minimal-sato as suggested, but used the s=
+ame setup as in my-image.bb (which is based on the core-image-full-cmdline)=
+.&nbsp;<br />With this new SDK I then did the same experiment and compiled =
+the application, and it worked! There were no linker error messages.</div>
+<div>Now the question for me is, why did it compile with qemuarm64, but no=
+t with my settings?&nbsp;</div>
+<div>Is there anything else I can do to isolate the issue?</div>
+<div>Thanks for your support so far.</div>
+<div>&nbsp;</div>
+<div>--&nbsp;</div>
+<br />Rob
 
+--6u3i4lmlHZm12nVBfexj--
