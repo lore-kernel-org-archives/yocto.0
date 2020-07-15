@@ -1,108 +1,65 @@
-Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
- by mx.groups.io with SMTP id smtpd.web11.1450.1594793965731955631
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+ by mx.groups.io with SMTP id smtpd.web10.1650.1594795602679758551
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Jul 2020 23:19:26 -0700
+ Tue, 14 Jul 2020 23:46:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: yi.zhao@windriver.com)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 06F6IB7X027172
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Tue, 14 Jul 2020 23:18:32 -0700
-Received: from [128.224.162.174] (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Tue, 14 Jul
- 2020 23:18:00 -0700
-Subject: Re: [yocto] [meta-selinux][PATCH 0/4] refpolicy: update to 20200229+git
-To: Scott Murray <scott.murray@konsulko.com>
-CC: <yocto@lists.yoctoproject.org>, <joe@deserted.net>
-References: <20200707082914.30094-1-yi.zhao@windriver.com>
- <alpine.LFD.2.23.451.2007141131280.11165@godzilla.spiteful.org>
-From: "Yi Zhao" <yi.zhao@windriver.com>
-Message-ID: <2629bc61-5450-4c6f-6241-6599077e0a86@windriver.com>
-Date: Wed, 15 Jul 2020 14:17:36 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+ dkim=pass header.i=@theyoctojester-info.20150623.gappssmtp.com header.s=20150623 header.b=Fn19uAiL;
+ spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.172, mailfrom: jester@theyoctojester.info)
+Received: by mail-lj1-f172.google.com with SMTP id b25so1320310ljp.6
+        for <yocto@lists.yoctoproject.org>; Tue, 14 Jul 2020 23:46:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=theyoctojester-info.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0Kt9AxcMmGr6s3+9A+4SkOuu67fQ9lqN6sZ/kt2QHGM=;
+        b=Fn19uAiLohqhk+7q8pHSkvAfpaXV8IedcHpVSAO8McVyPR7a5MPv49Rxk6H4TK1S37
+         OVTWRQcjdIz+Xose0f/jyuUzo0z5y+jP7KCVuk9w9v9H3Dcbz5d3AauPEOBYWSm9tayK
+         64Kcw2c8qP2qWLkQ1Lv0C+navushIFuADWr+b/n5kyGekKDFzxb3VTyIMHD65TR/rAGB
+         ZZ+xC5eWryqpMkUsDQAJesskxLI7Vi8yAL+LZCDxlsk1mijlBBz7d+EV8zN9F/lVZi4S
+         cL9jXIjWatW/765OdR8JH2jGFpdOQ79GV6pkkhuVcbw0g1zsOtzkzQdrBrHubVTNi6G2
+         l5Gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0Kt9AxcMmGr6s3+9A+4SkOuu67fQ9lqN6sZ/kt2QHGM=;
+        b=oEr6p6tUdVlk97QS9NkndUiPwTe/QQDoiFkL5zC+rlU9Qq5kyKpsqkSfE+GBwpGE3P
+         WlH7hPPXHc9tu4deP7j4cMSMBVkg1mH473VK/DtOHCmmM5t0zt9cjPnYs6wI4IQ42fk0
+         2MdOBEMp0koUsPHfn+4vuoC1AEWhE48VJ8QJ6lWFKDfzlLqgopzA2y1ZwJXSMPpUAIJh
+         9QDzKqAvWwr3ybG1pwOe72sDHcp+4OE6wiAcSNWnkMExKQ+YAU6V2MITXbSw5598hztK
+         kGiKW94mt6nnLIER+XXNU/OZxSdMxMVqeKPG72uGfAXqtUqlWYrMlck/vKZsC03JW5U7
+         kZBA==
+X-Gm-Message-State: AOAM532BTpd01RH2g4BLxG3lBNuYR8hURcQeJn9M61WtiMsO84g3GmIX
+	a/3oDa9MjHIGsKJEcHxdy0HMYWUlpLR6mdJPwG9HLg==
+X-Google-Smtp-Source: ABdhPJzCVgB8B/D3y7uSWgtQWwHfma4b5eOhJpEpgqetkpO+wFnd1zJzS6EZDIOskk3sfD7p0wqBnp83yw9ni8MShlI=
+X-Received: by 2002:a05:651c:3cf:: with SMTP id f15mr4311411ljp.365.1594795600870;
+ Tue, 14 Jul 2020 23:46:40 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <alpine.LFD.2.23.451.2007141131280.11165@godzilla.spiteful.org>
-X-Originating-IP: [128.224.162.174]
-X-MIME-Autoconverted: from 8bit to quoted-printable by mail5.wrs.com id 06F6IB7X027172
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+References: <81Um.1594791618485076745.TJVy@lists.yoctoproject.org>
+In-Reply-To: <81Um.1594791618485076745.TJVy@lists.yoctoproject.org>
+From: "Josef Holzmayr-Khosh Amoz" <jester@theyoctojester.info>
+Date: Wed, 15 Jul 2020 08:46:29 +0200
+Message-ID: <CAEt6NwrHhg1Bwm9QM7RhSYbB1obk2UXksqq2iTkW=hKtZo8D5A@mail.gmail.com>
+Subject: Re: [yocto] How to completely uninstall a pre-installed package in Yocto #linux #yocto
+To: "Soi, Sheng Leong" <sheng.leong.soi@intel.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
+Howdy!
 
-On 7/15/20 12:19 AM, Scott Murray wrote:
-> On Tue, 7 Jul 2020, Yi Zhao wrote:
+Am Mi., 15. Juli 2020 um 07:40 Uhr schrieb Soi, Sheng Leong
+<sheng.leong.soi@intel.com>:
 >
->> Here is the changelog for this is patchset:
->>
->> * Drop refpolicy 2.20190201
->>    If we still keep two versions of refpolicy, it is difficult to main=
-tain two huge local patchsets. So drop this version and only keep the git=
- version.
->>
->> * Add patches to make systemd/sysvinit can work with all policy types.
->>
->> Here are the results with this patcheset:
->>
->> Machine: qemux86-64
->> Image: core-image-selinux
->> Init manager: sysvinit and systemd
->> Policy types: minimum, targeted, standard, mcs, mls
->> Boot command: runqemu qemux86-64 kvm nographic bootparams=3D"selinux=3D=
-1 enforcing=3D1" qemuparams=3D"-m 1024"
->>
->> 1. All refpolicy type can be built without problems.
->>
->> 2. With parameter selinux=3D1 & enforcing=3D1
->> The qemu can boot up and login with all policy types.
-> [snip]
+> The question is how to completely uninstall the pre-installed package in Yocto. Thanks
 >
-> I suspect I'm really missing something, but I'm unable to successfully
-> make this work with poky + meta-selinux and its meta-openembedded
-> dependencies with either sysvinit or systemd; I see denials on boot and
-> cannot log in due to denials on reading /etc/passwd.  That's also the
-> behavior I see without this update, so I'm wondering if I'm just doing
-> something significantly wrong with respect to configuration.  My
-> local.conf additions for testing are just:
+> I found out that one of the packages in Yocto is unwanted, and wish to completely uninstall the package.
 >
-> DISTRO_FEATURES_append =3D " selinux"
 
+In contrast to a general purpose distribution where you have little
+control over the default set, there is no need to install anything you
+do not want. So the correct solution is: do not install that package.
 
-Please set the following DISTRO_FEATURES:
+Even moreso, removing it later might be impossible if the image
+doesn't have package management enabled.
 
-DISTRO_FEATURES_append =3D " acl xattr pam selinux"
-
-
-If you see some AVC denials for {map} like below:
-
-avc:=C2=A0 denied=C2=A0 { map } for=C2=A0 pid=3D249 comm=3D"dbus-daemon" =
-path=3D"/etc/passwd"=20
-dev=3D"vda" ino=3D345=20
-scontext=3Dsystem_u:system_r:system_dbusd_t:s0-s0:c0.c1023=20
-tcontext=3Dsystem_u:object_r:etc_t:s0 tclass=3Dfile permissive=3D0
-avc:=C2=A0 denied=C2=A0 { map } for=C2=A0 pid=3D319 comm=3D"avahi-daemon"=
-=20
-path=3D"/etc/passwd" dev=3D"vda" ino=3D345=20
-scontext=3Dsystem_u:system_r:avahi_t:s0=20
-tcontext=3Dsystem_u:object_r:etc_t:s0 tclass=3Dfile permissive=3D0
-avc:=C2=A0 denied=C2=A0 { map } for=C2=A0 pid=3D379 comm=3D"login" path=3D=
-"/etc/passwd"=20
-dev=3D"vda" ino=3D345=20
-scontext=3Dsystem_u:system_r:local_login_t:s0-s0:c0.c1023=20
-tcontext=3Dsystem_u:object_r:etc_t:s0 tclass=3Dfile permissive=3D0
-
-They are harmless.
-
-
-//Yi
-
-
-> PREFERRED_PROVIDER_virtual/refpolicy =3D "refpolicy-targeted"
->
-> Any ideas?
->
-> Thanks,
->
-> Scott
->
->
+Greetz
