@@ -5,36 +5,38 @@ X-Originating-Location: Ahmedabad, Gujarat, IN (14.102.160.178)
 X-Originating-Platform: Mac Safari 13.1
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Wed, 15 Jul 2020 10:10:23 -0700
+Date: Wed, 15 Jul 2020 10:24:01 -0700
 References: <CAEt6NwrHhg1Bwm9QM7RhSYbB1obk2UXksqq2iTkW=hKtZo8D5A@mail.gmail.com>
 In-Reply-To: <CAEt6NwrHhg1Bwm9QM7RhSYbB1obk2UXksqq2iTkW=hKtZo8D5A@mail.gmail.com>
-Message-ID: <5242.1594833023805939735@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="psKbmPA0K8JRlcrtavpu"
+Message-ID: <9229.1594833841050931824@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="pDicXAF9ZT77Ddd5ZBgC"
 
---psKbmPA0K8JRlcrtavpu
+--pDicXAF9ZT77Ddd5ZBgC
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-What I did was. I ran the following:
+What I did was, ran the following command to see what all gets installed..
 
 bitbake <image> -e |grep -v ^# |grep "^DISTRO_FEATURES=3D\|^IMAGE_FEATURES=
 =
 =3D"
 
-Then used=C2=A0DISTRO_FEATURES_remove in local.conf to remove the unwanted=
- packages.
+Then used DISTRO_FEATURES_remove in the local.conf to removed the unnecess=
+ary package. Hope this helps.
 
 -=3DSrijan Nandi
 
---psKbmPA0K8JRlcrtavpu
+--pDicXAF9ZT77Ddd5ZBgC
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-What I did was. I ran the following:<br /><br />
-<p lang=3D"en-US" style=3D"caret-color: #000000; color: #000000; margin: 0=
-in; font-family: Calibri; font-size: 11pt;">bitbake <em>&lt;image&gt;</em> =
--e |grep -v ^# |grep "^DISTRO_FEATURES=3D\|^IMAGE_FEATURES=3D"<br /><br />T=
-hen used&nbsp;DISTRO_FEATURES_remove in local.conf to remove the unwanted p=
-ackages.<br /><br />-=3DSrijan Nandi</p>
+<div>What I did was, ran the following command to see what all gets install=
+ed..</div>
+<div>&nbsp;</div>
+<div>bitbake &lt;image&gt; -e |grep -v ^# |grep "^DISTRO_FEATURES=3D\|^IMA=
+GE_FEATURES=3D"</div>
+<div>&nbsp;</div>
+<div>Then used DISTRO_FEATURES_remove in the local.conf to removed the unn=
+ecessary package. Hope this helps.<br /><br />-=3DSrijan Nandi</div>
 
---psKbmPA0K8JRlcrtavpu--
+--pDicXAF9ZT77Ddd5ZBgC--
