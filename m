@@ -1,72 +1,48 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.327.1594786723500804606
- for <yocto@lists.yoctoproject.org>;
- Tue, 14 Jul 2020 21:18:43 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=g42GS2ii;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 16FF2E01E6B; Tue, 14 Jul 2020 21:18:43 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,NICE_REPLY_A,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.167.195 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 NICE_REPLY_A Looks like a legit reply (A)
 Received: from mail-oi1-f195.google.com (mail-oi1-f195.google.com [209.85.167.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55CF8E01E69
-	for <yocto@yoctoproject.org>; Tue, 14 Jul 2020 21:18:41 -0700 (PDT)
-Received: by mail-oi1-f195.google.com with SMTP id h17so1152713oie.3
-        for <yocto@yoctoproject.org>; Tue, 14 Jul 2020 21:18:41 -0700 (PDT)
+ by mx.groups.io with SMTP id smtpd.web12.355.1594786876718278988
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 14 Jul 2020 21:21:16 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=kX11TT+W;
+ spf=pass (domain: gmail.com, ip: 209.85.167.195, mailfrom: akuster808@gmail.com)
+Received: by mail-oi1-f195.google.com with SMTP id t4so1133743oij.9
+        for <yocto@lists.yoctoproject.org>; Tue, 14 Jul 2020 21:21:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language;
-        bh=fE9EoyRWMLI0UF1alRGzYNeBcvXqn75bxTIEZVh6Iic=;
-        b=g42GS2iiG3YVBX/5xJN/BpGDJ+HmrKC8XmqL8fLgTmSLo+6M77PanbEJcwFewsApBD
-         WqEfNSpgV/MiPOPcUtomImSqYYZ5uSeVDa6ZLUEKSPWdEYAeGvwus5N+EpjVh6eS1qAy
-         /tHUCL2i7o27mPEklderxwADh6c5LORJAdaG7q7li5H2bZo4aIB4heuS+FPY3rO9VTnS
-         WWWWJTAVs2ho0G3oQMGcy77W1MBzAnhlNqoxe+jog1kVjkf32FT+7x5BGaqOaxG4vrQb
-         xQGVzAgcxxUscyYwLFr83dSw3W1yX/BgfvMiTj7U85qWsawtBi0dTUGIxxpQ7GVA3q0Z
-         w/Mg==
+        bh=kF+4t664/IvHSLgIVewJZYiUXuFOhVcYsVdWrQe9L44=;
+        b=kX11TT+W6bW3zvqabRN9qNBUxl7CJ2yN9CiKLHvEcFgPPlYKkd6KPQ1vtdewUpTv+h
+         5Tj44DVUgq8iQ2mCzpHdObh0LmNqdzeku4etHNarjDL8a22KcchnrbDvh7T1c6onoEsF
+         +o0RPi7bzeb48iKx/flcNh89o2wbGwhFmt/ZvKMJZYR6LNkw2DL+yAfRlL9PjULg5QS4
+         JGbjHReiGyvzVmwPKNR72O8wG30alGvhT16pw798DH2/DNo+faN4u0XpTnFhYoGTQLeT
+         p2TsLgn6ZEsCImAeCINVx1O9RmyDXm2bIwir1zOTXw+lwvHW/l5OuzFMO6uN6InfkMrJ
+         pChA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
          :date:user-agent:mime-version:in-reply-to:content-language;
-        bh=fE9EoyRWMLI0UF1alRGzYNeBcvXqn75bxTIEZVh6Iic=;
-        b=fzwaJbEEYSl1F6xv+bp9c7n2Hr0w2J7yHAcchPA3bmm5SKFqwbjwS9WZ0u+CXEIRhj
-         RvOgh4Z4sxGh8PiLtaEXQj0QLpMrjoO+6MrAXh1ZjACXeo92P47lxIp3XTeV2/1OJlXX
-         pLr8tEkWu2FYrQqbwQk7fUbDO9Z1MpV8ZIYdaldhc9CZlx1JbBWYOYHMkSvDu+X8prbO
-         ljAxQ527Z/5jNxRhTpEnB4IpHUZEjzK2THnC7pLW8L4LBceEwr7jxWJlk+T2hDNIJFOU
-         B56y4o8296hdXtOgU51FlKCfCP2DSYao3/ZoovkP49MFNoYT5VZ/+9Ka+UYxcjxZE/Bq
-         6lcA==
-X-Gm-Message-State: AOAM533TJ33TrcXBPIQY37LEBX3UKngoI8nUOvDQG+5IEzkN3HV3Xd9L
-	UFHGSu/UlWthT/2uzJp4l6egsvvwBg8=
-X-Google-Smtp-Source: ABdhPJzCF3kC/WfLs+xmWR23rcyI5WYy2H5x6GHmy3DAD2vtv5VCI7nohtWV4HZIfWdnq4D6PgRjgw==
-X-Received: by 2002:a17:90a:22ab:: with SMTP id s40mr8646217pjc.117.1594786402179;
-        Tue, 14 Jul 2020 21:13:22 -0700 (PDT)
+        bh=kF+4t664/IvHSLgIVewJZYiUXuFOhVcYsVdWrQe9L44=;
+        b=Y4pA3x9aG105+qn82r/vUvaQhPV7iVfyV+KNogPuPhpsQmibNiL/XpSR12Mx0gUdTe
+         69m3EaLC1Tw3M2IxDNOw1w4tNJaw+7JniEcIQ3LIb8xXXn1wF7q4jZsmUKub5DJCYPUv
+         AJ/qG5eVOEaylinytJaZk/6j4cpkbhBxdWbpbxiyHsWE42WO/F/nrx19l6pLTAcK2X1/
+         rstbiaYWQ6QVhPgFT/w7tNeEx7YQzFvFXGuCP/8zfWBfd4B4DjFnrkdKQ3TZ7E0zr4kx
+         0hzBkO3nGzwOtgY2faAZtIQcJuKtIt1XvFQrEY1xw0io+XGl0IHQXprIuIksQUb5DsRe
+         D6iQ==
+X-Gm-Message-State: AOAM531pnIF/LqRSxRctbyF046zN3k7/OQ16TL9z1PFZjpEfVL7kXivY
+	trvSzKvOYi4f4dgcb0RQSHugpCj9fRQ=
+X-Google-Smtp-Source: ABdhPJwl3xk2+HHxe2VlI4IB3rvruAJKLG8kW1sp23qJDoe1SK7AwhZgIBadUcGpup6Iq1k8VRQAPQ==
+X-Received: by 2002:a17:90a:cb81:: with SMTP id a1mr8210219pju.11.1594786386620;
+        Tue, 14 Jul 2020 21:13:06 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
 Received: from ?IPv6:2601:202:4180:a5c0:7df4:7f73:717d:af68? ([2601:202:4180:a5c0:7df4:7f73:717d:af68])
-        by smtp.gmail.com with ESMTPSA id t13sm487889pjs.17.2020.07.14.21.13.21
+        by smtp.gmail.com with ESMTPSA id 17sm493486pjl.30.2020.07.14.21.13.05
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jul 2020 21:13:21 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][PATCH] bastille: Deleted redundant inherit to fix error when enable multilib.
-To: zhengruoqin <zhengrq.fnst@cn.fujitsu.com>, yocto@yoctoproject.org
-References: <1594364643-125858-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
+        Tue, 14 Jul 2020 21:13:06 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH] ccs-tools:Fix build error when enable multilib.
+To: yocto@lists.yoctoproject.org
+References: <1594099810-69294-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
 From: "akuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -111,49 +87,55 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <aeb1d67e-409c-771d-3081-fb49c2c6a881@gmail.com>
-Date: Tue, 14 Jul 2020 21:13:21 -0700
+Message-ID: <bd9300c4-fc21-a566-e8a0-6ddb9b853fec@gmail.com>
+Date: Tue, 14 Jul 2020 21:13:05 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <1594364643-125858-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
+In-Reply-To: <1594099810-69294-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
 Content-Type: multipart/alternative;
- boundary="------------9A6DEFE33DF831F84276B802"
+ boundary="------------F45578DCEAF8580B6C031C87"
 Content-Language: en-US
 
---------------9A6DEFE33DF831F84276B802
+--------------F45578DCEAF8580B6C031C87
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
-merged
 
-On 7/10/20 12:04 AM, zhengruoqin wrote:
-> There is no need to inherit module-base. Because this inherit will stop
-> bastille to build to lib32-bastille.
+
+On 7/6/20 10:30 PM, zhengruoqin wrote:
+> ERROR: lib32-ccs-tools-1.8.4-r0 do_install: oe_runmake failed
+> ERROR: lib32-ccs-tools-1.8.4-r0 do_install: Execution of
+> '/build-armv8/tmp/work/armv7ahf-neon-mllib32-linux-gnueabi/lib32-ccs-tools/1.8.4-r0/temp/run.do_install.22368'
+> failed with exit code 1:
+> make: *** No rule to make target 'install'.  Stop.
+> WARNING: exit code 1 from a shell command.
 >
 > Signed-off-by: Zheng Ruoqin <zhengrq.fnst@cn.fujitsu.com>
 > ---
->  recipes-security/bastille/bastille_3.2.1.bb | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/recipes-security/bastille/bastille_3.2.1.bb b/recipes-security/bastille/bastille_3.2.1.bb
-> index e9accb5..0290cae 100644
-> --- a/recipes-security/bastille/bastille_3.2.1.bb
-> +++ b/recipes-security/bastille/bastille_3.2.1.bb
-> @@ -9,8 +9,6 @@ DEPENDS = "virtual/kernel"
->  RDEPENDS_${PN} = "perl bash tcl perl-module-getopt-long perl-module-text-wrap lib-perl perl-module-file-path perl-module-mime-base64 perl-module-file-find perl-module-errno perl-module-file-glob perl-module-tie-hash-namedcapture perl-module-file-copy perl-module-english perl-module-exporter perl-module-cwd libcurses-perl coreutils"
->  FILES_${PN} += "/run/lock/subsys/bastille"
+>  recipes-mac/ccs-tools/ccs-tools_1.8.4.bb | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+merged.
+Thanks
+
+> diff --git a/recipes-mac/ccs-tools/ccs-tools_1.8.4.bb b/recipes-mac/ccs-tools/ccs-tools_1.8.4.bb
+> index 2e37c0b..79af6a5 100644
+> --- a/recipes-mac/ccs-tools/ccs-tools_1.8.4.bb
+> +++ b/recipes-mac/ccs-tools/ccs-tools_1.8.4.bb
+> @@ -13,7 +13,7 @@ SRC_URI = "http://osdn.dl.sourceforge.jp/tomoyo/49693/${BPN}-${PV}-${DS}.tar.gz"
+>  SRC_URI[md5sum] = "eeee8eb96a7680bfa9c8f6de55502c44"
+>  SRC_URI[sha256sum] = "c358b80a2ea77a9dda79dc2a056dae3acaf3a72fcb8481cfb1cd1f16746324b4"
 >  
-> -inherit module-base
-> -
->  SRC_URI = "http://sourceforge.net/projects/bastille-linux/files/bastille-linux/3.2.1/Bastille-3.2.1.tar.bz2 \
->             file://AccountPermission.pm \
->             file://FileContent.pm \
+> -S = "${WORKDIR}/${PN}"
+> +S = "${WORKDIR}/${BPN}"
+>  
+>  inherit features_check
+>  
 >
 > 
 
 
---------------9A6DEFE33DF831F84276B802
+--------------F45578DCEAF8580B6C031C87
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
@@ -162,33 +144,44 @@ Content-Transfer-Encoding: 7bit
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body>
-    merged<br>
     <br>
-    <div class="moz-cite-prefix">On 7/10/20 12:04 AM, zhengruoqin wrote:<br>
+    <br>
+    <div class="moz-cite-prefix">On 7/6/20 10:30 PM, zhengruoqin wrote:<br>
     </div>
     <blockquote type="cite"
-cite="mid:1594364643-125858-1-git-send-email-zhengrq.fnst@cn.fujitsu.com">
-      <pre class="moz-quote-pre" wrap="">There is no need to inherit module-base. Because this inherit will stop
-bastille to build to lib32-bastille.
+      cite="mid:1594099810-69294-1-git-send-email-zhengrq.fnst@cn.fujitsu.com">
+      <pre class="moz-quote-pre" wrap="">ERROR: lib32-ccs-tools-1.8.4-r0 do_install: oe_runmake failed
+ERROR: lib32-ccs-tools-1.8.4-r0 do_install: Execution of
+'/build-armv8/tmp/work/armv7ahf-neon-mllib32-linux-gnueabi/lib32-ccs-tools/1.8.4-r0/temp/run.do_install.22368'
+failed with exit code 1:
+make: *** No rule to make target 'install'.  Stop.
+WARNING: exit code 1 from a shell command.
 
 Signed-off-by: Zheng Ruoqin <a class="moz-txt-link-rfc2396E" href="mailto:zhengrq.fnst@cn.fujitsu.com">&lt;zhengrq.fnst@cn.fujitsu.com&gt;</a>
 ---
- recipes-security/bastille/bastille_3.2.1.bb | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/recipes-security/bastille/bastille_3.2.1.bb b/recipes-security/bastille/bastille_3.2.1.bb
-index e9accb5..0290cae 100644
---- a/recipes-security/bastille/bastille_3.2.1.bb
-+++ b/recipes-security/bastille/bastille_3.2.1.bb
-@@ -9,8 +9,6 @@ DEPENDS = "virtual/kernel"
- RDEPENDS_${PN} = "perl bash tcl perl-module-getopt-long perl-module-text-wrap lib-perl perl-module-file-path perl-module-mime-base64 perl-module-file-find perl-module-errno perl-module-file-glob perl-module-tie-hash-namedcapture perl-module-file-copy perl-module-english perl-module-exporter perl-module-cwd libcurses-perl coreutils"
- FILES_${PN} += "/run/lock/subsys/bastille"
+ recipes-mac/ccs-tools/ccs-tools_1.8.4.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</pre>
+    </blockquote>
+    merged.<br>
+    Thanks<br>
+    <br>
+    <blockquote type="cite"
+      cite="mid:1594099810-69294-1-git-send-email-zhengrq.fnst@cn.fujitsu.com">
+      <pre class="moz-quote-pre" wrap="">
+diff --git a/recipes-mac/ccs-tools/ccs-tools_1.8.4.bb b/recipes-mac/ccs-tools/ccs-tools_1.8.4.bb
+index 2e37c0b..79af6a5 100644
+--- a/recipes-mac/ccs-tools/ccs-tools_1.8.4.bb
++++ b/recipes-mac/ccs-tools/ccs-tools_1.8.4.bb
+@@ -13,7 +13,7 @@ SRC_URI = <a class="moz-txt-link-rfc2396E" href="http://osdn.dl.sourceforge.jp/tomoyo/49693/${BPN}-${PV}-${DS}.tar.gz">"http://osdn.dl.sourceforge.jp/tomoyo/49693/${BPN}-${PV}-${DS}.tar.gz"</a>
+ SRC_URI[md5sum] = "eeee8eb96a7680bfa9c8f6de55502c44"
+ SRC_URI[sha256sum] = "c358b80a2ea77a9dda79dc2a056dae3acaf3a72fcb8481cfb1cd1f16746324b4"
  
--inherit module-base
--
- SRC_URI = "<a class="moz-txt-link-freetext" href="http://sourceforge.net/projects/bastille-linux/files/bastille-linux/3.2.1/Bastille-3.2.1.tar.bz2">http://sourceforge.net/projects/bastille-linux/files/bastille-linux/3.2.1/Bastille-3.2.1.tar.bz2</a> \
-            <a class="moz-txt-link-freetext" href="file://AccountPermission.pm">file://AccountPermission.pm</a> \
-            <a class="moz-txt-link-freetext" href="file://FileContent.pm">file://FileContent.pm</a> \
+-S = "${WORKDIR}/${PN}"
++S = "${WORKDIR}/${BPN}"
+ 
+ inherit features_check
+ 
 </pre>
       <br>
       <fieldset class="mimeAttachmentHeader"></fieldset>
@@ -199,4 +192,4 @@ index e9accb5..0290cae 100644
   </body>
 </html>
 
---------------9A6DEFE33DF831F84276B802--
+--------------F45578DCEAF8580B6C031C87--
