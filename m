@@ -1,47 +1,72 @@
-Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
- by mx.groups.io with SMTP id smtpd.web12.271.1594786359118297912
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.327.1594786723500804606
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Jul 2020 21:12:39 -0700
+ Tue, 14 Jul 2020 21:18:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=CaTXlaBC;
- spf=pass (domain: gmail.com, ip: 209.85.214.195, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f195.google.com with SMTP id x8so1654085plm.10
-        for <yocto@lists.yoctoproject.org>; Tue, 14 Jul 2020 21:12:39 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=g42GS2ii;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 16FF2E01E6B; Tue, 14 Jul 2020 21:18:43 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,NICE_REPLY_A,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.167.195 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 NICE_REPLY_A Looks like a legit reply (A)
+Received: from mail-oi1-f195.google.com (mail-oi1-f195.google.com [209.85.167.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55CF8E01E69
+	for <yocto@yoctoproject.org>; Tue, 14 Jul 2020 21:18:41 -0700 (PDT)
+Received: by mail-oi1-f195.google.com with SMTP id h17so1152713oie.3
+        for <yocto@yoctoproject.org>; Tue, 14 Jul 2020 21:18:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language;
-        bh=sqnzpaZBJlyIudLB8K8YNeL0GvJPewKtNpQowQQEgF0=;
-        b=CaTXlaBCeSZX1ob6TVn0KbTngIxh7dQL7WiqyY0pmQlGylC0hYxi6fmB3/91C2sbUp
-         kmPrRgCwTclhzaF93KV+KzQzxoAOuA7jkvln+EgI0sI0szmwGGe2c1xOI4hq+lEEjgcc
-         pxpZPWwLVXkWm2KPH00IyPZVMnvYQiGDJNhHQUjDEh3wAESnyvwZuUr0ukpXySNGkI4v
-         yMbjFyuKPx3u4nAcXAJH0vdLiw+3hUqkwKv0lkoh7LxvYpU/oEIy1tR9iGQ7d45fJLSN
-         rPrGJ8Vr3ZDgUBA1hawHzwRbstPCWOWgsq/Ro+8yK+FwvEGCebkqtXZR0wzR1TvkhKRf
-         saOw==
+        bh=fE9EoyRWMLI0UF1alRGzYNeBcvXqn75bxTIEZVh6Iic=;
+        b=g42GS2iiG3YVBX/5xJN/BpGDJ+HmrKC8XmqL8fLgTmSLo+6M77PanbEJcwFewsApBD
+         WqEfNSpgV/MiPOPcUtomImSqYYZ5uSeVDa6ZLUEKSPWdEYAeGvwus5N+EpjVh6eS1qAy
+         /tHUCL2i7o27mPEklderxwADh6c5LORJAdaG7q7li5H2bZo4aIB4heuS+FPY3rO9VTnS
+         WWWWJTAVs2ho0G3oQMGcy77W1MBzAnhlNqoxe+jog1kVjkf32FT+7x5BGaqOaxG4vrQb
+         xQGVzAgcxxUscyYwLFr83dSw3W1yX/BgfvMiTj7U85qWsawtBi0dTUGIxxpQ7GVA3q0Z
+         w/Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
          :date:user-agent:mime-version:in-reply-to:content-language;
-        bh=sqnzpaZBJlyIudLB8K8YNeL0GvJPewKtNpQowQQEgF0=;
-        b=fw9yNo3DY69e75fFPxuQO3vgLBbDPNkeO69n/dkTj1bD4ONns0OBIRuIVYOMLguWsO
-         tO3hXyL2kN6KFVCLRN+iIPOu5B7T53QbxhflUfQ4cn+Gn7r/aQUPhkfHzfy3Jqzq0acl
-         MNHj/G/x328Ii6mT32nFjEloZ10Z0VxNT3nM6fqziDkeqTKuFWlXd5O5vEz6JuZR+VJ0
-         LCT1z3sq0VsHI82IPkHTLp85JvH7oPIP85INXok2yRfNG0LINm9SOByKKVjZ0kJ4KlSR
-         jKnVq36uD4JfMfj67xM7JnISXvgRyq5ZItMzD7U+N/rv6lIj4RII1t1qcTrnOUWyOHoq
-         MFqQ==
-X-Gm-Message-State: AOAM533zcEmk7QO6ywZKaG8J8x1YrjQTymEZ7XTv39WZ+WjxKk+1sM44
-	47aw22R/5pWX938hXHwRj8MI4ow+2pk=
-X-Google-Smtp-Source: ABdhPJzdd725IVxVkWnZEMIk7XdJYreqXjRcTGHGpWM247CwMtMvZlxJ/emnO7sbDh70SkWiZRmpgg==
-X-Received: by 2002:a17:902:bc49:: with SMTP id t9mr6813599plz.17.1594786358357;
-        Tue, 14 Jul 2020 21:12:38 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
+        bh=fE9EoyRWMLI0UF1alRGzYNeBcvXqn75bxTIEZVh6Iic=;
+        b=fzwaJbEEYSl1F6xv+bp9c7n2Hr0w2J7yHAcchPA3bmm5SKFqwbjwS9WZ0u+CXEIRhj
+         RvOgh4Z4sxGh8PiLtaEXQj0QLpMrjoO+6MrAXh1ZjACXeo92P47lxIp3XTeV2/1OJlXX
+         pLr8tEkWu2FYrQqbwQk7fUbDO9Z1MpV8ZIYdaldhc9CZlx1JbBWYOYHMkSvDu+X8prbO
+         ljAxQ527Z/5jNxRhTpEnB4IpHUZEjzK2THnC7pLW8L4LBceEwr7jxWJlk+T2hDNIJFOU
+         B56y4o8296hdXtOgU51FlKCfCP2DSYao3/ZoovkP49MFNoYT5VZ/+9Ka+UYxcjxZE/Bq
+         6lcA==
+X-Gm-Message-State: AOAM533TJ33TrcXBPIQY37LEBX3UKngoI8nUOvDQG+5IEzkN3HV3Xd9L
+	UFHGSu/UlWthT/2uzJp4l6egsvvwBg8=
+X-Google-Smtp-Source: ABdhPJzCF3kC/WfLs+xmWR23rcyI5WYy2H5x6GHmy3DAD2vtv5VCI7nohtWV4HZIfWdnq4D6PgRjgw==
+X-Received: by 2002:a17:90a:22ab:: with SMTP id s40mr8646217pjc.117.1594786402179;
+        Tue, 14 Jul 2020 21:13:22 -0700 (PDT)
 Received: from ?IPv6:2601:202:4180:a5c0:7df4:7f73:717d:af68? ([2601:202:4180:a5c0:7df4:7f73:717d:af68])
-        by smtp.gmail.com with ESMTPSA id nv9sm512720pjb.6.2020.07.14.21.12.37
+        by smtp.gmail.com with ESMTPSA id t13sm487889pjs.17.2020.07.14.21.13.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jul 2020 21:12:37 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][master|dunfell][PATCH 1/2] cryptsetup-tpm-incubator: RPROVIDES cryptsetup and cryptsetup-dev
-To: Jeremy Puhlman <jpuhlman@mvista.com>, yocto@lists.yoctoproject.org
-References: <1594699201-14545-1-git-send-email-jpuhlman@mvista.com>
+        Tue, 14 Jul 2020 21:13:21 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH] bastille: Deleted redundant inherit to fix error when enable multilib.
+To: zhengruoqin <zhengrq.fnst@cn.fujitsu.com>, yocto@yoctoproject.org
+References: <1594364643-125858-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
 From: "akuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -86,77 +111,49 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <7a3929c7-32ac-e736-f13e-3039f8e1eda7@gmail.com>
-Date: Tue, 14 Jul 2020 21:12:36 -0700
+Message-ID: <aeb1d67e-409c-771d-3081-fb49c2c6a881@gmail.com>
+Date: Tue, 14 Jul 2020 21:13:21 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <1594699201-14545-1-git-send-email-jpuhlman@mvista.com>
+In-Reply-To: <1594364643-125858-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
 Content-Type: multipart/alternative;
- boundary="------------5B04C30E1289F6C827F11B78"
+ boundary="------------9A6DEFE33DF831F84276B802"
 Content-Language: en-US
 
---------------5B04C30E1289F6C827F11B78
+--------------9A6DEFE33DF831F84276B802
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
+merged
 
-
-On 7/13/20 9:00 PM, Jeremy Puhlman wrote:
-> From: Jeremy Puhlman <jpuhlman@mvista.com>
+On 7/10/20 12:04 AM, zhengruoqin wrote:
+> There is no need to inherit module-base. Because this inherit will stop
+> bastille to build to lib32-bastille.
 >
-> Without this we get weird conflict when you include dev packages:
-> rror: Transaction check error:
->   file /usr/include/libcryptsetup.h conflicts between attempted installs of
-> cryptsetup-tpm-incubator-dev-0.9.9-r0.corei7_64 and
-> lib32-cryptsetup-dev-2.3.2-r0.1.i586
->   file /usr/lib64/libcryptsetup.so conflicts between attempted installs of
-> cryptsetup-tpm-incubator-dev-0.9.9-r0.corei7_64 and
-> cryptsetup-dev-2.3.2-r0.1.corei7_64
->   file /usr/lib64/pkgconfig/libcryptsetup.pc conflicts between attempted
-> installs of cryptsetup-tpm-incubator-dev-0.9.9-r0.corei7_64 and
-> cryptsetup-dev-2.3.2-r0.1.corei7_64
->   file /usr/lib/libcryptsetup.so conflicts between attempted installs of
-> lib32-cryptsetup-tpm-incubator-dev-0.9.9-r0.i586 and
-> lib32-cryptsetup-dev-2.3.2-r0.1.i586
->   file /usr/lib/pkgconfig/libcryptsetup.pc conflicts between attempted installs
-> of lib32-cryptsetup-tpm-incubator-dev-0.9.9-r0.i586 and
-> lib32-cryptsetup-dev-2.3.2-r0.1.i586
-
-I plan on taking this for Dunfell. Master no long compiles do to core
-package updates.
-
-not sure what I am going to do for Master yet.
-
-thanks for the patch.
-Armin
-> Signed-off-by: Jeremy Puhlman <jpuhlman@mvista.com>
+> Signed-off-by: Zheng Ruoqin <zhengrq.fnst@cn.fujitsu.com>
 > ---
->  .../cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb       | 5 +++++
->  1 file changed, 5 insertions(+)
+>  recipes-security/bastille/bastille_3.2.1.bb | 2 --
+>  1 file changed, 2 deletions(-)
 >
-> diff --git a/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb b/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb
-> index b706d15..2617162 100644
-> --- a/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb
-> +++ b/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb
-> @@ -36,7 +36,12 @@ FILES_${PN} += "${libdir}/tmpfiles.d"
->  RDEPENDS_${PN} += "lvm2 libdevmapper"
->  RRECOMMENDS_${PN} += "lvm2-udevrules"
+> diff --git a/recipes-security/bastille/bastille_3.2.1.bb b/recipes-security/bastille/bastille_3.2.1.bb
+> index e9accb5..0290cae 100644
+> --- a/recipes-security/bastille/bastille_3.2.1.bb
+> +++ b/recipes-security/bastille/bastille_3.2.1.bb
+> @@ -9,8 +9,6 @@ DEPENDS = "virtual/kernel"
+>  RDEPENDS_${PN} = "perl bash tcl perl-module-getopt-long perl-module-text-wrap lib-perl perl-module-file-path perl-module-mime-base64 perl-module-file-find perl-module-errno perl-module-file-glob perl-module-tie-hash-namedcapture perl-module-file-copy perl-module-english perl-module-exporter perl-module-cwd libcurses-perl coreutils"
+>  FILES_${PN} += "/run/lock/subsys/bastille"
 >  
-> +RPROVIDES_${PN} = "cryptsetup"
->  RREPLACES_${PN} = "cryptsetup"
->  RCONFLICTS_${PN}  ="cryptsetup"
->  
-> +RPROVIDES_${PN}-dev = "cryptsetup-dev"
-> +RREPLACES_${PN}-dev = "cryptsetup-dev"
-> +RCONFLICTS_${PN}-dev  ="cryptsetup-dev"
-> +
->  BBCLASSEXTEND = "native nativesdk"
+> -inherit module-base
+> -
+>  SRC_URI = "http://sourceforge.net/projects/bastille-linux/files/bastille-linux/3.2.1/Bastille-3.2.1.tar.bz2 \
+>             file://AccountPermission.pm \
+>             file://FileContent.pm \
 >
 > 
 
 
---------------5B04C30E1289F6C827F11B78
+--------------9A6DEFE33DF831F84276B802
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
@@ -165,67 +162,33 @@ Content-Transfer-Encoding: 7bit
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body>
+    merged<br>
     <br>
-    <br>
-    <div class="moz-cite-prefix">On 7/13/20 9:00 PM, Jeremy Puhlman
-      wrote:<br>
+    <div class="moz-cite-prefix">On 7/10/20 12:04 AM, zhengruoqin wrote:<br>
     </div>
     <blockquote type="cite"
-      cite="mid:1594699201-14545-1-git-send-email-jpuhlman@mvista.com">
-      <pre class="moz-quote-pre" wrap="">From: Jeremy Puhlman <a class="moz-txt-link-rfc2396E" href="mailto:jpuhlman@mvista.com">&lt;jpuhlman@mvista.com&gt;</a>
+cite="mid:1594364643-125858-1-git-send-email-zhengrq.fnst@cn.fujitsu.com">
+      <pre class="moz-quote-pre" wrap="">There is no need to inherit module-base. Because this inherit will stop
+bastille to build to lib32-bastille.
 
-Without this we get weird conflict when you include dev packages:
-rror: Transaction check error:
-  file /usr/include/libcryptsetup.h conflicts between attempted installs of
-cryptsetup-tpm-incubator-dev-0.9.9-r0.corei7_64 and
-lib32-cryptsetup-dev-2.3.2-r0.1.i586
-  file /usr/lib64/libcryptsetup.so conflicts between attempted installs of
-cryptsetup-tpm-incubator-dev-0.9.9-r0.corei7_64 and
-cryptsetup-dev-2.3.2-r0.1.corei7_64
-  file /usr/lib64/pkgconfig/libcryptsetup.pc conflicts between attempted
-installs of cryptsetup-tpm-incubator-dev-0.9.9-r0.corei7_64 and
-cryptsetup-dev-2.3.2-r0.1.corei7_64
-  file /usr/lib/libcryptsetup.so conflicts between attempted installs of
-lib32-cryptsetup-tpm-incubator-dev-0.9.9-r0.i586 and
-lib32-cryptsetup-dev-2.3.2-r0.1.i586
-  file /usr/lib/pkgconfig/libcryptsetup.pc conflicts between attempted installs
-of lib32-cryptsetup-tpm-incubator-dev-0.9.9-r0.i586 and
-lib32-cryptsetup-dev-2.3.2-r0.1.i586
-</pre>
-    </blockquote>
-    <br>
-    I plan on taking this for Dunfell. Master no long compiles do to
-    core package updates.<br>
-    <br>
-    not sure what I am going to do for Master yet.<br>
-    <br>
-    thanks for the patch.<br>
-    Armin<br>
-    <blockquote type="cite"
-      cite="mid:1594699201-14545-1-git-send-email-jpuhlman@mvista.com">
-      <pre class="moz-quote-pre" wrap="">
-Signed-off-by: Jeremy Puhlman <a class="moz-txt-link-rfc2396E" href="mailto:jpuhlman@mvista.com">&lt;jpuhlman@mvista.com&gt;</a>
+Signed-off-by: Zheng Ruoqin <a class="moz-txt-link-rfc2396E" href="mailto:zhengrq.fnst@cn.fujitsu.com">&lt;zhengrq.fnst@cn.fujitsu.com&gt;</a>
 ---
- .../cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb       | 5 +++++
- 1 file changed, 5 insertions(+)
+ recipes-security/bastille/bastille_3.2.1.bb | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb b/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb
-index b706d15..2617162 100644
---- a/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb
-+++ b/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb
-@@ -36,7 +36,12 @@ FILES_${PN} += "${libdir}/tmpfiles.d"
- RDEPENDS_${PN} += "lvm2 libdevmapper"
- RRECOMMENDS_${PN} += "lvm2-udevrules"
+diff --git a/recipes-security/bastille/bastille_3.2.1.bb b/recipes-security/bastille/bastille_3.2.1.bb
+index e9accb5..0290cae 100644
+--- a/recipes-security/bastille/bastille_3.2.1.bb
++++ b/recipes-security/bastille/bastille_3.2.1.bb
+@@ -9,8 +9,6 @@ DEPENDS = "virtual/kernel"
+ RDEPENDS_${PN} = "perl bash tcl perl-module-getopt-long perl-module-text-wrap lib-perl perl-module-file-path perl-module-mime-base64 perl-module-file-find perl-module-errno perl-module-file-glob perl-module-tie-hash-namedcapture perl-module-file-copy perl-module-english perl-module-exporter perl-module-cwd libcurses-perl coreutils"
+ FILES_${PN} += "/run/lock/subsys/bastille"
  
-+RPROVIDES_${PN} = "cryptsetup"
- RREPLACES_${PN} = "cryptsetup"
- RCONFLICTS_${PN}  ="cryptsetup"
- 
-+RPROVIDES_${PN}-dev = "cryptsetup-dev"
-+RREPLACES_${PN}-dev = "cryptsetup-dev"
-+RCONFLICTS_${PN}-dev  ="cryptsetup-dev"
-+
- BBCLASSEXTEND = "native nativesdk"
+-inherit module-base
+-
+ SRC_URI = "<a class="moz-txt-link-freetext" href="http://sourceforge.net/projects/bastille-linux/files/bastille-linux/3.2.1/Bastille-3.2.1.tar.bz2">http://sourceforge.net/projects/bastille-linux/files/bastille-linux/3.2.1/Bastille-3.2.1.tar.bz2</a> \
+            <a class="moz-txt-link-freetext" href="file://AccountPermission.pm">file://AccountPermission.pm</a> \
+            <a class="moz-txt-link-freetext" href="file://FileContent.pm">file://FileContent.pm</a> \
 </pre>
       <br>
       <fieldset class="mimeAttachmentHeader"></fieldset>
@@ -236,4 +199,4 @@ index b706d15..2617162 100644
   </body>
 </html>
 
---------------5B04C30E1289F6C827F11B78--
+--------------9A6DEFE33DF831F84276B802--
