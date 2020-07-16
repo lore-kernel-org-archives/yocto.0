@@ -1,42 +1,36 @@
-Subject: Re: How to completely uninstall a pre-installed package in Yocto #linux #yocto
+Subject: mongodb issue - missing systemd service and conf files #yocto
 To: yocto@lists.yoctoproject.org
 From: srijan.nandi@gmail.com
 X-Originating-Location: Ahmedabad, Gujarat, IN (14.102.160.178)
 X-Originating-Platform: Mac Safari 13.1
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Thu, 16 Jul 2020 03:13:54 -0700
-References: <CAEt6NwrHhg1Bwm9QM7RhSYbB1obk2UXksqq2iTkW=hKtZo8D5A@mail.gmail.com>
-In-Reply-To: <CAEt6NwrHhg1Bwm9QM7RhSYbB1obk2UXksqq2iTkW=hKtZo8D5A@mail.gmail.com>
-Message-ID: <13583.1594894434581797554@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="TBAVA6ZoM41SIaLqPWbq"
+Date: Thu, 16 Jul 2020 03:48:44 -0700
+Message-ID: <fi1d.1594896524763527578.Pm0j@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="CT7hUZcE0yERnK7KS0XH"
 
---TBAVA6ZoM41SIaLqPWbq
+--CT7hUZcE0yERnK7KS0XH
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-This is what I did. I ran the following:
+Hello Everyone,
 
-bitbake <image> -e |grep -v ^# |grep "^DISTRO_FEATURES=3D\|^IMAGE_FEATURES=
-=
-=3D"
+I have installed mongodb on zeus. It seems the mogod.service and the mongo=
+d.conf files are missing. Can someone tell me where I can find these or may=
+be point me to some documentation where I can make these files using .bbapp=
+end.
 
-Found out the DISTRO_FEATURES and IMAGE_FEATURES. Thne used=C2=A0DISTRO_FE=
-ATURES_remove in the local.conf to remove the features that I do not need. =
-Hope this helps.
-
+Thanks,
 -=3DSrijan Nandi
 
---TBAVA6ZoM41SIaLqPWbq
+--CT7hUZcE0yERnK7KS0XH
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-This is what I did. I ran the following:<br /><br />
-<p lang=3D"en-US" style=3D"caret-color: #000000; color: #000000; margin: 0=
-in; font-family: Calibri; font-size: 11pt;">bitbake <em>&lt;image&gt;</em> =
--e |grep -v ^# |grep "^DISTRO_FEATURES=3D\|^IMAGE_FEATURES=3D"<br /><br />F=
-ound out the DISTRO_FEATURES and IMAGE_FEATURES. Thne used&nbsp;DISTRO_FEAT=
-URES_remove in the local.conf to remove the features that I do not need. Ho=
-pe this helps.<br /><br />-=3DSrijan Nandi</p>
+Hello Everyone,<br /><br />I have installed mongodb on zeus. It seems the m=
+ogod.service and the mongod.conf files are missing. Can someone tell me whe=
+re I can find these or maybe point me to some documentation where I can mak=
+e these files using .bbappend.&nbsp;<br /><br />Thanks,<br />-=3DSrijan Nan=
+di
 
---TBAVA6ZoM41SIaLqPWbq--
+--CT7hUZcE0yERnK7KS0XH--
