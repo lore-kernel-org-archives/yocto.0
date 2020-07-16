@@ -1,109 +1,123 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.16869.1594910384517903233
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+ by mx.groups.io with SMTP id smtpd.web11.17420.1594911664122733435
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 Jul 2020 07:39:44 -0700
+ Thu, 16 Jul 2020 08:01:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intertechengineering.onmicrosoft.com header.s=selector2-intertechengineering-onmicrosoft-com header.b=pKl5AGRD;
- spf=fail (domain: inea.com, ip: 140.211.169.56, mailfrom: sdw@inea.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 27F1EE01E22; Thu, 16 Jul 2020 07:39:44 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,FORGED_SPF_HELO,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [40.107.243.139 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2139.outbound.protection.outlook.com [40.107.243.139])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14A41E01DF9
-	for <yocto@yoctoproject.org>; Thu, 16 Jul 2020 07:39:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cFI1Uo/EtZTc81NH1uRfMtCbJEE0x2LYaKnG/id5ylqu8/HYHNV+pUlFbKtWkpIdOilvXDLdM7Hgk+CJqVeep/vghwHHLyVTJaiHC3eDM6+ZPr2JVklvYKVr9KTNDbimllQoZvxAbuyYS9NVzhxIPzuNCXVU6L8Ixqo/z8p9gIlQSDasZazwA+0J9cQcC1YFG1kp8y1log97cCdpTQoLvIgtVL+SPMVn9jedlt8okgwz69BiSoEcnIkADa0ErFDC5CwI247Yqam0COuyaA4dzhIPd6l6xYnj+VraeV1lHhqhhTuH4sgWwm3f1XOJudmMfn3Xvv4/FOYgDTWUbLYjVQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hmISpUuTBtsbCHsnxwG/QjfjHrfX+i4kovAuxyf4No8=;
- b=E5nKe+9Q5XFF1gt2WepPQUkZd1AyOR9J8ZdL/4jlfdntsa5xZJe0NOCOJMWHVeLLYab9hUZtCU9+XgHFChEByWYyufMkc70CHZiwXeGSQpVY58tx1e0A7vKSOJjLjGkK9e+bm8T424Ob/ymWLijlgo0POMdJIeDsCMNFGgM6KtKIyrL4lcUJrT9xiGqqJoB+Ldh4j6wWmKZGkJu+BFtO5FOeA+a7yd3pPuHtITPqvycByw6miXHnPOlVFU3NmQ4CK0THj3NgiANn84uty+439xhvoCkchp8ma0/Xuec3Jqah8BffOO+0G+BPyP4NN8hF1pJo5QwTJNp0trnGeIaBAg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=inea.com; dmarc=pass action=none header.from=inea.com;
- dkim=pass header.d=inea.com; arc=none
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=RI0rOc17;
+ spf=pass (domain: gmail.com, ip: 209.85.160.171, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-qt1-f171.google.com with SMTP id 6so5123063qtt.0
+        for <yocto@lists.yoctoproject.org>; Thu, 16 Jul 2020 08:01:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=intertechengineering.onmicrosoft.com;
- s=selector2-intertechengineering-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hmISpUuTBtsbCHsnxwG/QjfjHrfX+i4kovAuxyf4No8=;
- b=pKl5AGRDNeXjACksqtZmH797R7W8kK3f5H+Rb0l88sJju9EwM/fU8L/m30Bo0WOv6RQiPHb0ftZopPwUIQuQ5o0S2Qk595SGrwyHjY4EMZ4DpcdpxlSrdWQEZkL3fZ8IkAda8UGaoRRvTnGEVC6VzF4z2IQ4cbgRUV0zWjAkm2I=
-Received: from MN2PR17MB3024.namprd17.prod.outlook.com (2603:10b6:208:e3::18)
- by MN2PR17MB3343.namprd17.prod.outlook.com (2603:10b6:208:13a::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.22; Thu, 16 Jul
- 2020 14:39:40 +0000
-Received: from MN2PR17MB3024.namprd17.prod.outlook.com
- ([fe80::879:1263:40db:4543]) by MN2PR17MB3024.namprd17.prod.outlook.com
- ([fe80::879:1263:40db:4543%5]) with mapi id 15.20.3174.025; Thu, 16 Jul 2020
- 14:39:40 +0000
-From: sdw@inea.com
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: How to configure scheduler to SCHED_FIFO
-Thread-Topic: How to configure scheduler to SCHED_FIFO
-Thread-Index: AdZbfmbwiPhv9HmzRN2+Gnj0BC4Zag==
-Date: Thu, 16 Jul 2020 14:39:40 +0000
-Message-ID: 
- <MN2PR17MB302451D7F5FDA52B1DFAAD64D67F0@MN2PR17MB3024.namprd17.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
- header.d=none;yoctoproject.org; dmarc=none action=none header.from=inea.com;
-x-originating-ip: [2601:191:8500:6a70:243f:e516:a67c:cbf1]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 069a5a7b-c5da-4572-c9c3-08d829961249
-x-ms-traffictypediagnostic: MN2PR17MB3343:
-x-microsoft-antispam-prvs: 
- <MN2PR17MB334312386B503A5D34508ECBD67F0@MN2PR17MB3343.namprd17.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- NAX3fytec1C4BmQXS1dJ2dersNjWL/1ax1kdvzcpSQyUPQacFaaoxam6owC2WANnWZ17XCxX43IyrjSzaPob39QF9KemHkNpTYG08GgezXSGQwTQRJJRv++QNmVUL5kqTjn2woHqi2htjzg14KJxKUIFUgF9EL8aDyTQun97qoz20td8Ir6fT1Hgrz4rAq0HqjKL/3wudoXCUbaPEpPcUTpcTxKfiDXWplg/LqdIwofar2mz/CJTD6Bn0AUIrYKvvv9SdaaFhPtnkmxPUwUf0egZbljwyfZ56duxkUapaqKqniVuXOUFvV1VbODsZMRj9Uy5ePdLzaM8uGixZgXpNg==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR17MB3024.namprd17.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(346002)(366004)(136003)(396003)(376002)(39830400003)(9686003)(55016002)(66476007)(66556008)(64756008)(7696005)(316002)(33656002)(71200400001)(86362001)(83380400001)(8936002)(508600001)(66446008)(52536014)(8676002)(76116006)(5660300002)(4744005)(66946007)(2906002)(186003)(6506007)(6916009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: 
- OhFHPBnYGdv4r6SDz0Nx0MQP0BliKUwAcBL1TY+pSlekEvS5Htz2gZL+uZ/FgaSewW8YKWZY3sycgqwzV2Djnqs8nyMaK7zVd0kHTzBH98nP5WKFGTdFOi3CiQW7gkqTgT4JP99gkBXJX00f1qsr+xU6Hq05s7HlSboXzZ/CMrzSqKWXoEn5yaZk5KKj6MdbM2c7610j74va76UrKwlnu5bOSFpgj8mbzjGNm1fqYpSUF9hHiHw8hi3eSR1ACCQ1KLk52A/8aORQyQkWaL0gaRdLH5o+ZcX33MM/HkCxovxtJfTuoGYxUYsPsopEOnLRgZM78uZA3w4LIL+ga6uayCffO4yU5O9l7O61wKxGZI+wOvjVsLJO5CsHYaX0SGGB+Yb4xo1tiQFG4eOol67xOa75xDa/lnTRevn3MdNPDshHdSkHZUzhwqhZQoN84WlH7n0o7Bo7FbazYUlnBUgcn+2PzGOjEhNYoprWdZr/RI9NT5Y1w6mzedGIlqrkAcWY0WVPOoN9GzSLzMzMvG8MyCJokWDvtqrE/0wiyXSiaHUzaHot3hWOUjr3oWVCGZGX
-x-ms-exchange-transport-forked: True
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=wUc81sZfh4UlIbdK8JL8Kob5sU2Oj5mSRyr+6nd+kAc=;
+        b=RI0rOc17UuCUrZ7LlfnpxXMWH3PT65zyljggZrxt6MMZykXnOWMiFUNrmnVs9g6BDz
+         p1BUhaWoDv6oxQ2P9vrjlf39nHkxuPlR0cdiNwRZfyjy3W5O/h3ZchbRnAHJr2kMoZvT
+         +5HyidN5/Fwjv0tV8oo6++c7uJ8tu87Llzzgl+d7qXESgaRERE7FW7I9RiddC08swZOZ
+         ZEQP6/QYNSWlZ36A6AmtQ2Bs7F5aqV1yGSCzBTCz/c3BOcC1WWvSCPyfVRun9kqW4vc4
+         p3+AeFJlTv5HHMja1L0FmYWc3Cle4TVmCX4bvkI+90FyM6nzKGqp4vSB7Yf3eJ6wxT3y
+         WfPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=wUc81sZfh4UlIbdK8JL8Kob5sU2Oj5mSRyr+6nd+kAc=;
+        b=XH5WlJXg/ef1e2TtXhqEwIHbHHpAB5pR5k+AeWd7r1BybcPn2TBy+mghxGxbbK0wI4
+         zdTVHniCIr6p1dhSL9ZWGDZQ7XLBrhN4UfA9UYDFLPiS9VNIs5JFGrEoCM2zP5ubSWHl
+         IEnKV1mVQRLr0iFntE19dmoslcFYEXZXMjB5ZKhSgOkXI2TEBvqpjBUPuw+4IY7iCQAg
+         8HYoAzqbZHbzROE6x1rU6vwB2cRU+0/vig++B4nksOAEcN+Fsc3YCpgpgXC4uwD96/Ua
+         FSrsmqLB2AanoWCSXkD78BhqyvdKCHAYNYTuOtVaw5UguX+I/wuxqlcdHFAFoJrCg/rl
+         tsQQ==
+X-Gm-Message-State: AOAM5312WIeVhD1GEMxY6toZcPijDLbcugO3GTGiBsAa6GYYerZHO3fz
+	kw44E1Fs7/l1UgHFIvf1oEf/NZKbnUmw7jfw157licFjcJM=
+X-Google-Smtp-Source: ABdhPJw8Zqzu6Prl89ekMA/kj+SYEbKFNsisbW6VPMPO+9mvm06gNeVx5aA7NeF5EoMH6pAp8WShTfFdlPBpzRE2IFg=
+X-Received: by 2002:ac8:18d4:: with SMTP id o20mr5514341qtk.141.1594911662950;
+ Thu, 16 Jul 2020 08:01:02 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: inea.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR17MB3024.namprd17.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 069a5a7b-c5da-4572-c9c3-08d829961249
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jul 2020 14:39:40.0454
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 99c11015-7dbb-4c7c-ae43-1a26885adc83
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tZ85uUVZO6RgMCQz0AkvmtC5zV6z5es77zBpnRvdU5DLJrvqBOzlzPWUQqR1dIjw
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR17MB3343
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+References: <fAN8.1594908076170368387.Ot4r@lists.yoctoproject.org>
+In-Reply-To: <fAN8.1594908076170368387.Ot4r@lists.yoctoproject.org>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Thu, 16 Jul 2020 17:00:51 +0200
+Message-ID: <CAGAf8LwLB2zD8CHRTA3FxptWa94BDrN3AAO2XbGUQ+EOotZK1Q@mail.gmail.com>
+Subject: Re: [yocto] openssh_8.0p1 on zeus - sshd.service not starting #yocto
+To: srijan.nandi@gmail.com
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-In Yocto Warrior, it appears that the default scheduler configuration is SC=
-HED_NORMAL.  We are trying to do some time-critical I/O, and it seems like =
-we may be missing some data.  I'd like to increase the thread priority for =
-our data acquisition, but am not sure how to do so.
-Is it possible to reconfigure the kernel to use SCHED_FIFO or some other "r=
-eal-time" scheduler?  If so, how?
-And what are the risks of changing the scheduler configuration?
+On my BBB board (as test vehicle), the following is true:
 
-Scott D. Whitney
+root@arm:~# uname -a
+Linux arm 5.7.6 #1 SMP Tue Jun 30 16:46:05 CEST 2020 armv7l GNU/Linux
+root@arm:~# lshw -short
+H/W path  Device  Class      Description
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+                  system     TI AM335x BeagleBone Black
+/0                bus        Motherboard
+/0/0              processor  cpu
+/0/1              processor  idle-states
+/0/2              memory     491MiB System memory
+/1        eth0    network    Ethernet interface
+root@arm:~# which systemctl
+/bin/systemctl
+root@arm:~# systemctl status sshd
+=E2=97=8F ssh.service - OpenBSD Secure Shell server
+   Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset=
+: enab
+   Active: active (running) since Thu 2020-07-16 12:21:59 UTC; 2h 33min ag=
+o
+     Docs: man:sshd(8)
+           man:sshd_config(5)
+  Process: 435 ExecStartPre=3D/usr/sbin/sshd -t (code=3Dexited, status=3D0=
+/SUCCESS)
+ Main PID: 765 (sshd)
+   Memory: 2.1M
+   CGroup: /system.slice/ssh.service
+           =E2=94=94=E2=94=80765 /usr/sbin/sshd -D
 
+Jul 16 12:00:13 arm systemd[1]: Starting OpenBSD Secure Shell server...
+Jul 16 12:21:59 arm sshd[765]: Server listening on 0.0.0.0 port 22.
+Jul 16 12:21:59 arm sshd[765]: Server listening on :: port 22.
+Jul 16 12:21:59 arm systemd[1]: Started OpenBSD Secure Shell server.
+root@arm:~#
+
+Although I am not running YOCTO there, you can see that I have systemd
+present, and that my sshd server is running.
+
+You should give us more info using: $ journalctl -u sshd.service -r -n 1
+
+Zoran
+_______
+
+On Thu, Jul 16, 2020 at 4:01 PM <srijan.nandi@gmail.com> wrote:
+>
+> I am facing an issue with openssh_8.0p1 on zeus...systemd is not able to=
+ start sshd.service. I am using the following sshd.service file.
+>
+> [Unit]
+> Description=3DOpenSSH server daemon
+> Documentation=3Dman:sshd(8) man:sshd_config(5)
+> After=3Dnetwork.target sshdgenkeys.service
+> Wants=3Dsshdgenkeys.service
+>
+> [Service]
+> Type=3Dforking
+> PIDFile=3D@localstatedir@/run/sshd.pid
+> EnvironmentFile=3D-@SYSCONFDIR@/default/sshd
+> ExecStart=3D@SBINDIR@/sshd -D $OPTIONS
+> ExecReload=3D@BASE_BINDIR@/kill -HUP $MAINPID
+> PermissionsStartOnly=3Dtrue
+> ExecStartPre=3D-/bin/mkdir -p /var/run/sshd
+> ExecStartPre=3D/bin/chmod -R 755 /var/run/sshd
+> KillMode=3Dprocess
+> Restart=3Don-failure
+> RestartSec=3D42s
+>
+> [Install]
+> WantedBy=3Dmulti-user.target
+>
+>
+> Has anyone else faced a similar issue.
+>=20
