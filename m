@@ -1,132 +1,70 @@
-Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com [209.85.210.195])
- by mx.groups.io with SMTP id smtpd.web11.4840.1594959006440935532
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+ by mx.groups.io with SMTP id smtpd.web11.4841.1594959006854478402
  for <yocto@lists.yoctoproject.org>;
  Thu, 16 Jul 2020 21:10:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=jZUmsCss;
- spf=pass (domain: gmail.com, ip: 209.85.210.195, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f195.google.com with SMTP id x72so4759763pfc.6
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=CskbIbGG;
+ spf=pass (domain: gmail.com, ip: 209.85.215.170, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f170.google.com with SMTP id e8so6043824pgc.5
         for <yocto@lists.yoctoproject.org>; Thu, 16 Jul 2020 21:10:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=cUNdNiHWutNclHcGWrUX5ExtYmOa90dKk3r+izkbx14=;
-        b=jZUmsCssR0xK8vAiaxppVJAZot69MM+sP1GNRoL3OWy5n2bwT22k3e+3k32wpJXAvt
-         cVyiyFva7odb7uA5PVr2WAJPnqIw6qUXExheT9+y2cczDdB5+NImSn3FVJ2MeWM7s3ls
-         EfCSrkKpgflpIl4p10YvcmEh0geQAk5RpdsPp4e8shLOqe/X1aNLDRxsHQBbbJqMQ3fU
-         ReHzMPuBrAQ52d7k9xKafEqQGhM3z2tJ1ZrsCJXlZ6AztvVdggIW8YDTdOSwJh6E8oXY
-         Z5lh13nZppOxrGKSxK216f4OYl2FGv0KmON+BjqxQTy/esSbymeB0zwiUzASky8h0+J7
-         qzTA==
+        bh=Xnhz1Jsn4H7udpjjVZmEpgeY9Hduh8KQDzS0wv7vDbs=;
+        b=CskbIbGGOUkWZtm1wWUB4oAHqO22XZikvmGO/Eqq9ckZ48ZNiayzqo+OnD4+Tuc1XB
+         O624CWyTFeueGD9iSU2KpdkecMDFqR41O7XqtwytBlXEjrbZuTKCGL4K8p2WLFCfNoFu
+         w7EmQBtBOoF9bac26ZVTeEGLXvg6T1oE5G9bvm3L32VZDvHQ9KMS4HGaKMHdPZClk2Da
+         4umz9PmmsWA+sTUVtuITnjHcMEee8Eosvy55LwakR4heCCL++AB/tLyUxfSPlc49ZxZv
+         otuoPiH80nDPutIYfr+8EIZTzR9Kz/EoxEv1J/P5aiiuJWomvzvV8WJiXFP8eBIOhckr
+         Y6wQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=cUNdNiHWutNclHcGWrUX5ExtYmOa90dKk3r+izkbx14=;
-        b=SnQVYUODXOTHkvxE5X1CYAVgzGgpLBh8Dg+Newnu1Oe1roIE0OL0CbgDKF3WDZVSdW
-         3a//41k/JNMA37jfRLGjt+D7wxpKPxb35+m/d4Duv9sEjPG2htf0Njx3K1Hbjr9D4CJF
-         dmdN/7TNQOMVWhoOoPZI8uEGFY+11DkxXo+JHCz/yHmakt8uesRJBDVC43c7tLKST8WY
-         lEOmJyK/IaPCe1yK9umNeH97LmOdBMpqq1lWNhhsnMxFmgxoZUZ1U1GGGUzn6/yqhxkN
-         mqkNSBLlMKXxs0zkjYKBjjMimaCQCRQrCibSGoOQo55hYeXnosBXdBtT6LoCbx8HjDWU
-         yHYw==
-X-Gm-Message-State: AOAM532czfhJeC3hehHSwG1spXRsgmCrzOvhrMAknWKmymqoyfw/p1/W
-	9ELoaCKd5406t1xNTCCvtE9N0Cv/EAA=
-X-Google-Smtp-Source: ABdhPJw8hEUqaz7sjStUKHGH2GKX4uHPVYDuyJVd+XWW+xH8tqGqh8juxMG3salAM+wQdtSCtzikhw==
-X-Received: by 2002:a63:6741:: with SMTP id b62mr6992422pgc.58.1594959005478;
-        Thu, 16 Jul 2020 21:10:05 -0700 (PDT)
+        bh=Xnhz1Jsn4H7udpjjVZmEpgeY9Hduh8KQDzS0wv7vDbs=;
+        b=lev7bkCaCCXNvORPgqaVic28twZ2URNVIay5pj0NcHKlWfW9HhlmxfdJdbkHAjmeBS
+         27g2H+YLXHGqldcJoJKMWWYZfGXNN3xwa+utddjQsYiZnGPj4POAuXYAL/SRstHPQ39g
+         +BXzu9rn6SyrS3Tcd2Z4c0QniOmkMKQdkbGemIEuFHxQ/YIkPE6TGitkg5r+SK1P1pC+
+         dV6cLvesDYo5hcSglkzKhjhGFdRM6sYHh9RwTxGxdQe9CPs+oyG3XnSZSSx3IMokRe/0
+         V7CerHbQ04dlZH38/xgr9lND9QG0b6KubnZs3R5ObeP5NaJxp+16JFYH4xgDDs43nSGT
+         IzSA==
+X-Gm-Message-State: AOAM533Lfn+3ErLnOlORfMRYwu3TJXHCx9aDugvWn6IphajjjE5Gz70H
+	jl9z0ULoZL0+26Tp6t58LMH9PKAbXoA=
+X-Google-Smtp-Source: ABdhPJwUw7NgcCn6S4qcM7elY/pSJHxTYLzIooJETLAUI2RunfhP5PnFtemTH11Liyv49ghnTIbDvQ==
+X-Received: by 2002:a65:52c2:: with SMTP id z2mr7260436pgp.419.1594959006252;
+        Thu, 16 Jul 2020 21:10:06 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from localhost.localdomain (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id k7sm6212446pgh.46.2020.07.16.21.10.04
+        by smtp.gmail.com with ESMTPSA id k7sm6212446pgh.46.2020.07.16.21.10.05
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 16 Jul 2020 21:10:05 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 3/6] strongswan: add bbappends for tpm changes
-Date: Fri, 17 Jul 2020 04:09:58 +0000
-Message-Id: <20200717041001.17312-3-akuster808@gmail.com>
+Subject: [meta-security][PATCH 4/6] layer.conf: add dynamic-layer for strongswan
+Date: Fri, 17 Jul 2020 04:09:59 +0000
+Message-Id: <20200717041001.17312-4-akuster808@gmail.com>
 X-Mailer: git-send-email 2.8.6
 In-Reply-To: <20200717041001.17312-1-akuster808@gmail.com>
 References: <20200717041001.17312-1-akuster808@gmail.com>
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- ...01-xfrmi-Only-build-if-libcharon-is-built.patch | 38 ++++++++++++++++++++++
- .../recipes-support/strongswan/strongswan-tpm.inc  | 12 +++++++
- .../strongswan/strongswan_5.%.bbappend             |  1 +
- 3 files changed, 51 insertions(+)
- create mode 100644 meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/files/0001-xfrmi-Only-build-if-libcharon-is-built.patch
- create mode 100644 meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan-tpm.inc
- create mode 100644 meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan_5.%.bbappend
+ meta-tpm/conf/layer.conf | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/files/0001-xfrmi-Only-build-if-libcharon-is-built.patch b/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/files/0001-xfrmi-Only-build-if-libcharon-is-built.patch
-new file mode 100644
-index 0000000..8250282
---- /dev/null
-+++ b/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/files/0001-xfrmi-Only-build-if-libcharon-is-built.patch
-@@ -0,0 +1,38 @@
-+From db772305c6baa01f6c6750be74733e4bfc1d6106 Mon Sep 17 00:00:00 2001
-+From: Tobias Brunner <tobias@strongswan.org>
-+Date: Tue, 14 Apr 2020 10:44:19 +0200
-+Subject: [PATCH] xfrmi: Only build if libcharon is built
+diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
+index c3372c7..46d0279 100644
+--- a/meta-tpm/conf/layer.conf
++++ b/meta-tpm/conf/layer.conf
+@@ -15,3 +15,7 @@ LAYERDEPENDS_tpm-layer = " \
+     openembedded-layer \
+ "
+ BBLAYERS_LAYERINDEX_NAME_tpm-layer = "meta-tpm"
 +
-+The kernel-netlink plugin is only built if libcharon is.
-+
-+Closes strongswan/strongswan#167.
-+
-+Upstream-Status: Backport
-+Signed-off-by: Armin Kuster <akuster808@gmail.com>
-+
-+---
-+ src/Makefile.am | 7 +++----
-+ 1 file changed, 3 insertions(+), 4 deletions(-)
-+
-+Index: strongswan-5.8.4/src/Makefile.am
-+===================================================================
-+--- strongswan-5.8.4.orig/src/Makefile.am
-++++ strongswan-5.8.4/src/Makefile.am
-+@@ -42,6 +42,9 @@ endif
-+ 
-+ if USE_LIBCHARON
-+   SUBDIRS += libcharon
-++if USE_KERNEL_NETLINK
-++  SUBDIRS += xfrmi
-++endif
-+ endif
-+ 
-+ if USE_FILE_CONFIG
-+@@ -143,7 +146,3 @@ endif
-+ if USE_TPM
-+   SUBDIRS += tpm_extendpcr
-+ endif
-+-
-+-if USE_KERNEL_NETLINK
-+-  SUBDIRS += xfrmi
-+-endif
-diff --git a/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan-tpm.inc b/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan-tpm.inc
-new file mode 100644
-index 0000000..d8604e1
---- /dev/null
-+++ b/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan-tpm.inc
-@@ -0,0 +1,12 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-+
-+DEPENDS = "libtspi"
-+
-+SRC_URI_append = " file://0001-xfrmi-Only-build-if-libcharon-is-built.patch"
-+
-+PACKAGECONFIG += "aikgen tpm"
-+
-+PACKAGECONFIG[tpm] = "--enable-tpm,--disable-tpm,,"
-+PACKAGECONFIG[aikgen] = "--enable-aikgen,--disable-aikgen,,"
-+
-+EXTRA_OECONF += "--with-linux-headers=${STAGING_KERNEL_DIR}"
-diff --git a/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan_5.%.bbappend b/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan_5.%.bbappend
-new file mode 100644
-index 0000000..34757bb
---- /dev/null
-+++ b/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan_5.%.bbappend
-@@ -0,0 +1 @@
-+require ${@bb.utils.contains('DISTRO_FEATURES', 'tpm', 'strongswan-tpm.inc', '', d)}
++BBFILES_DYNAMIC += " \
++networking-layer:${LAYERDIR}/dynamic-layers/meta-networking/recipes-*/*/*.bbappend \
++"
 -- 
 2.8.6
 
