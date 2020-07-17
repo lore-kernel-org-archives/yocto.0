@@ -1,76 +1,77 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.2447.1594931265905407023
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+ by mx.groups.io with SMTP id smtpd.web10.4852.1594959005038743125
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 Jul 2020 13:27:46 -0700
+ Thu, 16 Jul 2020 21:10:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=QE5quVmj;
- spf=softfail (domain: konsulko.com, ip: 140.211.169.56, mailfrom: paul.barker@konsulko.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33944E01E9A; Thu, 16 Jul 2020 13:27:45 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.167.173 listed in list.dnswl.org]
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0D12E01E98
-	for <yocto@yoctoproject.org>; Thu, 16 Jul 2020 13:27:43 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id k22so6186095oib.0
-        for <yocto@yoctoproject.org>; Thu, 16 Jul 2020 13:27:43 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=r1ROzCg6;
+ spf=pass (domain: gmail.com, ip: 209.85.215.175, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f175.google.com with SMTP id e8so6043776pgc.5
+        for <yocto@lists.yoctoproject.org>; Thu, 16 Jul 2020 21:10:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=i2yUVhQmx911jQNd++OuA1ban4YoCMb3dpIAxKw5J3g=;
-        b=QE5quVmjaw8L6y5Xred+yZ4rR4QYg5MZU576IviTqe0PbxKik2vlVykLFyaPowlWId
-         Pos8C0XrcPI6RK92s0YAZMC2gsmEXy3uAIYOOTU1JRPU2OVh/qWS8+o96VAC5hjfPU9n
-         Nt9Hlrdf3bPt0ZHpFTTrSVNOocScmffik0ZIY=
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id;
+        bh=dA9+A5Y/IjSlSDnKWUgwikrIEC5qyWmRPqAY8pJiSsA=;
+        b=r1ROzCg6xG7bnHfoW0HN7n05XGxodwhGXNT4zrht36+eLb2ExGHbeJTVTLgEfdN3M1
+         xSPNH2UfvBB9n2EnnNkAIX5UjnP+/Bg3D7GVIsOI2AUAT55fZi61DPt+njZqa7i7uvAO
+         hqkmSTeQc1aW2ebDpbDgHULwrEfPwGtfQMxhB4JchzamGabT/gQVv7CUe0btqlObzajV
+         QUn4sr0sLh9CLKGuSmWWeY8/3xoPyu6GTR6vigBhlNVTXERFlG2y3dtGTmjOVzymv2Ak
+         puLiQJee81CW1ygS+/IBv0O+J6hv3pqOEEtoFcLtZfPTdO5aYVA/Z5bcWqKBXdFDJ9O1
+         njbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i2yUVhQmx911jQNd++OuA1ban4YoCMb3dpIAxKw5J3g=;
-        b=n/XQcXcmoEdBGjxXct6gm0XsFIffzpyneC4nhuuuArq2840/Bfiftc4OgwvuiDwQTP
-         ZDXrTKrwOn7q8mX+x6dIHQBCP61KZtx5I+M414nItEcNbFJk9erBr1BeHK2juhD+qk50
-         BsMqQc61YOpO5OrjTSHn34/LoCtgP+48HbSYBdETq6PHo/d1hz+N4mW+NnO4l4tXrmj/
-         3rgg7WsvFvNx9TiH9uyMf68R0BUrU3gbYt9HsLJcPw1tBNLylUIvU0a2DU6ZuggocW5R
-         Py6yOENWaSG37yV1l9v0DIoYCHUCM1A13aG+S2rWZY9PyErlfRKkigKhI0zxNbnQGV3l
-         6nxg==
-X-Gm-Message-State: AOAM532tAhp3qXtklTMcCEJgf6Y1HxLp0YnrCjGAO+awvSuboSdTs0OF
-	+kDrxUJJLg+biQ/7xfMvThjbuhJqSkNUWaIZ4A19YYRa
-X-Google-Smtp-Source: ABdhPJwrNg7WKuCUlgAJttOqDAVXX9RbjCxc2CRIL7NiPx54a5ZVj4G5QbWx1qzEc2Egv+Xz6zieFTtBaWL4krM+u4M=
-X-Received: by 2002:aca:4a04:: with SMTP id x4mr4952578oia.152.1594931262758;
- Thu, 16 Jul 2020 13:27:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200716200503.GA11596@linux-uys3>
-In-Reply-To: <20200716200503.GA11596@linux-uys3>
-From: "Paul Barker" <pbarker@konsulko.com>
-Date: Thu, 16 Jul 2020 21:27:32 +0100
-Message-ID: <CAM9ZRVvTKizo0evwzkh6GUbb=KUgLYh929BV+1inBY=LsTYYNA@mail.gmail.com>
-Subject: Re: [yocto] Yocto Technical Team Minutes, Engineering Sync, for July 14 2020
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=dA9+A5Y/IjSlSDnKWUgwikrIEC5qyWmRPqAY8pJiSsA=;
+        b=m+Yr35W8BVvW4USr2pImWWlZks/mPGX3PaAaXr5zQ9aDZTMfRaMRj+icTOCeU6zqDM
+         KoAC8rLUU+uYRCH35k8hqtL8En6WNdPzBgN5m1tu0UUXJJg2PS1IATRoimx3KzCC/nrp
+         CGMF1Pv2EMRr80MNW63E94SmYy1G+XDwNDhSV2c/GAKJXHD3DXzX0xxis6fll1KdH1N/
+         VBhGgnGDWakGBJ8lIarcRnrhUApDngbj8ULrflompQiHblc5I4U0/76gBg7h5FQye0c0
+         Ckd591TATc8KsB1yqmRc32bc2PKLNHVzK4irx+oSBIZllbeWpBL63Dvk1Iv/o+fHbxL/
+         ud4g==
+X-Gm-Message-State: AOAM5319exSuRTre00ZNdtIBw46xMQmBSk8nFzEq9cpltiT6+/uuQxE/
+	MYwh4bl4zcv7w9jANRQd9fkBgagBu7o=
+X-Google-Smtp-Source: ABdhPJyRu1zvNR+i+W6KS1nEMkOrZMl3/aHAeuyEZEnxCJNxBymdnBvDuRsPG/i81R3dAx1c47us0g==
+X-Received: by 2002:a63:5013:: with SMTP id e19mr7127845pgb.68.1594959003966;
+        Thu, 16 Jul 2020 21:10:03 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from localhost.localdomain (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
+        by smtp.gmail.com with ESMTPSA id k7sm6212446pgh.46.2020.07.16.21.10.02
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Jul 2020 21:10:03 -0700 (PDT)
+From: "akuster" <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH 1/6] python3-oauth2client: add recipe
+Date: Fri, 17 Jul 2020 04:09:56 +0000
+Message-Id: <20200717041001.17312-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.8.6
 
-On Thu, 16 Jul 2020 at 21:05, Trevor Woerner <twoerner@gmail.com> wrote:
->
-> Yocto Technical Team Minutes, Engineering Sync, for July 14, 2020
-> archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
 
-Many thanks for taking these notes, I missed the call this week so
-good to be able to keep up to date :)
+---
+[V2]
+Add missing rdepends
+---
+ recipes-python/python/python3-oauth2client_4.1.3.bb | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 recipes-python/python/python3-oauth2client_4.1.3.bb
 
+diff --git a/recipes-python/python/python3-oauth2client_4.1.3.bb b/recipes-python/python/python3-oauth2client_4.1.3.bb
+new file mode 100644
+index 0000000..ca25d14
+--- /dev/null
++++ b/recipes-python/python/python3-oauth2client_4.1.3.bb
+@@ -0,0 +1,11 @@
++SUMMARY = "Add version info to file paths."
++SECTION = "devel/python"
++LICENSE = "Apache-2.0"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=038e1390e94fe637991fa5569daa62bc"
++
++PYPI_PACKAGE = "oauth2client"
++SRC_URI[sha256sum] = "d486741e451287f69568a4d26d70d9acd73a2bbfa275746c535b4209891cccc6"
++
++inherit pypi setuptools3
++
++RDEPENDS_${PN} = "python3-six python3-rsa python3-httplib2 python3-pyasn1 python3-pyasn1-modules"
 -- 
-Paul Barker
-Konsulko Group
+2.8.6
+
