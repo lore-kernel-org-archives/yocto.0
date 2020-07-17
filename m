@@ -1,105 +1,132 @@
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
- by mx.groups.io with SMTP id smtpd.web12.4893.1594959005845525397
+Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com [209.85.210.195])
+ by mx.groups.io with SMTP id smtpd.web11.4840.1594959006440935532
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 Jul 2020 21:10:05 -0700
+ Thu, 16 Jul 2020 21:10:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=U22E37dg;
- spf=pass (domain: gmail.com, ip: 209.85.214.171, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f171.google.com with SMTP id k4so4871329pld.12
-        for <yocto@lists.yoctoproject.org>; Thu, 16 Jul 2020 21:10:05 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=jZUmsCss;
+ spf=pass (domain: gmail.com, ip: 209.85.210.195, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f195.google.com with SMTP id x72so4759763pfc.6
+        for <yocto@lists.yoctoproject.org>; Thu, 16 Jul 2020 21:10:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=3lBVsfWgvAjKBI2+IhotV+U5DisG7Myqrx8nMw7iHtI=;
-        b=U22E37dg7a+1Mpfk9apKocAJOW8MWfCHGKriP185j4Cu3TuNx1VEuRUPhJfmQBtjCD
-         69jtbFDWAoAEfuUZGrmvuG+I8Vj4NgZ1nj/qhjTeAkbE8a7ONYfD1iyyJhzXW0EoRbEx
-         kVT4GMBeSFgRQiZY8CdZWEF0SCuAhJnLSjNv128Z9ZGZdNkX3cSP2xAi8In8cyCBGkAw
-         ApUGxt/mJN2a9T49gheJdiTZT3iPNv0eoq/Yo5CUvcgT6s1yOc19fDE4JyWUh7skuhvl
-         m5MojumYxFzC8UgWREKkdNXjkn0/xymaxhdldsZmxH7FWwZywzQ1pRnGARYlBfjMSVlA
-         i8vQ==
+        bh=cUNdNiHWutNclHcGWrUX5ExtYmOa90dKk3r+izkbx14=;
+        b=jZUmsCssR0xK8vAiaxppVJAZot69MM+sP1GNRoL3OWy5n2bwT22k3e+3k32wpJXAvt
+         cVyiyFva7odb7uA5PVr2WAJPnqIw6qUXExheT9+y2cczDdB5+NImSn3FVJ2MeWM7s3ls
+         EfCSrkKpgflpIl4p10YvcmEh0geQAk5RpdsPp4e8shLOqe/X1aNLDRxsHQBbbJqMQ3fU
+         ReHzMPuBrAQ52d7k9xKafEqQGhM3z2tJ1ZrsCJXlZ6AztvVdggIW8YDTdOSwJh6E8oXY
+         Z5lh13nZppOxrGKSxK216f4OYl2FGv0KmON+BjqxQTy/esSbymeB0zwiUzASky8h0+J7
+         qzTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=3lBVsfWgvAjKBI2+IhotV+U5DisG7Myqrx8nMw7iHtI=;
-        b=uVLZpk+68v4de3KeLo0so4qcU1mhQlHoRYlREqJ/RtdAaaiji6Bjl9Z5wy89aAaGxg
-         te1qFIperfBWPoviJV3T3aEzoGuRdIZkP7jEcH0A51foUUp4LWZDpA/ULLvyyUlwSXlA
-         OQtU0xjswx6TV3zhY7NdLwUNhG20ay4UsDka5IKqgZOJ75hVFHkGltYYt+ZQS5kzX7eL
-         ZxVAGGCf9lyJPDBsNZPWcOQPFcul7N7mGGH7dkY/Qeg/SbkD0H6zJM2UGlkrudizE7tt
-         Epc7hK9ctcSb2LlbnDXBXClKCciEQ5R3rpnsCZ0pC0t2xGsQVAUTBGB/zu3tYSGi+78v
-         NliA==
-X-Gm-Message-State: AOAM531IzSE+Cv2hv0/4qWhvTglOkXqhDKV7ZIMj9mirktE4ThstacHp
-	wSOB0uA0Z7d+qvU0dpT4ABv/7amXOcM=
-X-Google-Smtp-Source: ABdhPJyBQt5bZFy3t20b2xUhKCDIyh+C4OlPT1wvWAJGnmPdaqIVMUzuFyquT84KK7ByF4E6edC0wg==
-X-Received: by 2002:a17:90a:3a81:: with SMTP id b1mr8246383pjc.217.1594959004748;
-        Thu, 16 Jul 2020 21:10:04 -0700 (PDT)
+        bh=cUNdNiHWutNclHcGWrUX5ExtYmOa90dKk3r+izkbx14=;
+        b=SnQVYUODXOTHkvxE5X1CYAVgzGgpLBh8Dg+Newnu1Oe1roIE0OL0CbgDKF3WDZVSdW
+         3a//41k/JNMA37jfRLGjt+D7wxpKPxb35+m/d4Duv9sEjPG2htf0Njx3K1Hbjr9D4CJF
+         dmdN/7TNQOMVWhoOoPZI8uEGFY+11DkxXo+JHCz/yHmakt8uesRJBDVC43c7tLKST8WY
+         lEOmJyK/IaPCe1yK9umNeH97LmOdBMpqq1lWNhhsnMxFmgxoZUZ1U1GGGUzn6/yqhxkN
+         mqkNSBLlMKXxs0zkjYKBjjMimaCQCRQrCibSGoOQo55hYeXnosBXdBtT6LoCbx8HjDWU
+         yHYw==
+X-Gm-Message-State: AOAM532czfhJeC3hehHSwG1spXRsgmCrzOvhrMAknWKmymqoyfw/p1/W
+	9ELoaCKd5406t1xNTCCvtE9N0Cv/EAA=
+X-Google-Smtp-Source: ABdhPJw8hEUqaz7sjStUKHGH2GKX4uHPVYDuyJVd+XWW+xH8tqGqh8juxMG3salAM+wQdtSCtzikhw==
+X-Received: by 2002:a63:6741:: with SMTP id b62mr6992422pgc.58.1594959005478;
+        Thu, 16 Jul 2020 21:10:05 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from localhost.localdomain (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
         by smtp.gmail.com with ESMTPSA id k7sm6212446pgh.46.2020.07.16.21.10.04
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jul 2020 21:10:04 -0700 (PDT)
+        Thu, 16 Jul 2020 21:10:05 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/6] python3-privacyidea: adding initial support for mfa
-Date: Fri, 17 Jul 2020 04:09:57 +0000
-Message-Id: <20200717041001.17312-2-akuster808@gmail.com>
+Subject: [meta-security][PATCH 3/6] strongswan: add bbappends for tpm changes
+Date: Fri, 17 Jul 2020 04:09:58 +0000
+Message-Id: <20200717041001.17312-3-akuster808@gmail.com>
 X-Mailer: git-send-email 2.8.6
 In-Reply-To: <20200717041001.17312-1-akuster808@gmail.com>
 References: <20200717041001.17312-1-akuster808@gmail.com>
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/mfa/python3-privacyidea_3.3.bb | 40 +++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
- create mode 100644 recipes-security/mfa/python3-privacyidea_3.3.bb
+ ...01-xfrmi-Only-build-if-libcharon-is-built.patch | 38 ++++++++++++++++++++++
+ .../recipes-support/strongswan/strongswan-tpm.inc  | 12 +++++++
+ .../strongswan/strongswan_5.%.bbappend             |  1 +
+ 3 files changed, 51 insertions(+)
+ create mode 100644 meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/files/0001-xfrmi-Only-build-if-libcharon-is-built.patch
+ create mode 100644 meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan-tpm.inc
+ create mode 100644 meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan_5.%.bbappend
 
-diff --git a/recipes-security/mfa/python3-privacyidea_3.3.bb b/recipes-security/mfa/python3-privacyidea_3.3.bb
+diff --git a/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/files/0001-xfrmi-Only-build-if-libcharon-is-built.patch b/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/files/0001-xfrmi-Only-build-if-libcharon-is-built.patch
 new file mode 100644
-index 0000000..eb6b7eb
+index 0000000..8250282
 --- /dev/null
-+++ b/recipes-security/mfa/python3-privacyidea_3.3.bb
-@@ -0,0 +1,40 @@
-+SUMMARY = "identity, multifactor authentication (OTP), authorization, audit"
-+DESCRIPTION = "privacyIDEA is an open solution for strong two-factor authentication like OTP tokens, SMS, smartphones or SSH keys. Using privacyIDEA you can enhance your existing applications like local login (PAM, Windows Credential Provider), VPN, remote access, SSH connections, access to web sites or web portals with a second factor during authentication. Thus boosting the security of your existing applications."
++++ b/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/files/0001-xfrmi-Only-build-if-libcharon-is-built.patch
+@@ -0,0 +1,38 @@
++From db772305c6baa01f6c6750be74733e4bfc1d6106 Mon Sep 17 00:00:00 2001
++From: Tobias Brunner <tobias@strongswan.org>
++Date: Tue, 14 Apr 2020 10:44:19 +0200
++Subject: [PATCH] xfrmi: Only build if libcharon is built
 +
-+HOMEPAGE = "http://www.privacyidea.org/"
-+LICENSE = "AGPL-3.0"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=c0acfa7a8a03b718abee9135bc1a1c55"
++The kernel-netlink plugin is only built if libcharon is.
 +
-+PYPI_PACKAGE = "privacyIDEA"
-+SRC_URI[sha256sum] = "55fbdd0fdc8957f7fc5b8900453fd9dc294860bae218e53e7fe394d93f982518"
++Closes strongswan/strongswan#167.
 +
-+inherit pypi setuptools3
++Upstream-Status: Backport
++Signed-off-by: Armin Kuster <akuster808@gmail.com>
 +
-+do_install_append () {
-+    #install ${D}/var/log/privacyidea
++---
++ src/Makefile.am | 7 +++----
++ 1 file changed, 3 insertions(+), 4 deletions(-)
 +
-+    rm -fr ${D}${libdir}/${PYTHON_DIR}/site-packages/tests
-+}
++Index: strongswan-5.8.4/src/Makefile.am
++===================================================================
++--- strongswan-5.8.4.orig/src/Makefile.am
+++++ strongswan-5.8.4/src/Makefile.am
++@@ -42,6 +42,9 @@ endif
++ 
++ if USE_LIBCHARON
++   SUBDIRS += libcharon
+++if USE_KERNEL_NETLINK
+++  SUBDIRS += xfrmi
+++endif
++ endif
++ 
++ if USE_FILE_CONFIG
++@@ -143,7 +146,3 @@ endif
++ if USE_TPM
++   SUBDIRS += tpm_extendpcr
++ endif
++-
++-if USE_KERNEL_NETLINK
++-  SUBDIRS += xfrmi
++-endif
+diff --git a/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan-tpm.inc b/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan-tpm.inc
+new file mode 100644
+index 0000000..d8604e1
+--- /dev/null
++++ b/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan-tpm.inc
+@@ -0,0 +1,12 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 +
-+USERADD_PACKAGES = "${PN}"
-+GROUPADD_PARAM_${PN} = "--system privacyidea"
-+USERADD_PARAM_${PN} = "--system -g privacyidea -o -r -d /opt/${BPN}  \
-+    --shell /bin/false privacyidea"
++DEPENDS = "libtspi"
 +
-+FILES_${PN} += " ${datadir}/etc/privacyidea/* ${datadir}/lib/privacyidea/*"
++SRC_URI_append = " file://0001-xfrmi-Only-build-if-libcharon-is-built.patch"
 +
-+RDEPENDS_${PN} += " bash perl freeradius-mysql freeradius-utils"
++PACKAGECONFIG += "aikgen tpm"
 +
-+RDEPENDS_${PN} += "python3 python3-alembic python3-babel python3-backports-functools-lru-cache python3-bcrypt"
-+RDEPENDS_${PN} += "python3-beautifulsoup4 python3-cbor2 python3-certifi python3-cffi python3-chardet"
-+RDEPENDS_${PN} += "python3-click python3-configobj python3-croniter python3-cryptography python3-defusedxml"
-+RDEPENDS_${PN} += "python3-ecdsa  python3-flask python3-flask-babel python3-flask-migrate"
-+RDEPENDS_${PN} += "python3-flask-script python3-flask-sqlalchemy python3-flask-versioned"
-+RDEPENDS_${PN} += "python3-future python3-httplib2 python3-huey python3-idna python3-ipaddress"
-+RDEPENDS_${PN} += "python3-itsdangerous python3-jinja2 python3-ldap python3-lxml python3-mako"
-+RDEPENDS_${PN} += "python3-markupsafe python3-netaddr python3-oauth2client python3-passlib python3-pillow"
-+RDEPENDS_${PN} += "python3-pyasn1 python3-pyasn1-modules python3-pycparser python3-pyjwt python3-pymysql"
-+RDEPENDS_${PN} += "python3-pyopenssl python3-pyrad python3-dateutil python3-editor python3-gnupg"
-+RDEPENDS_${PN} += "python3-pytz python3-pyyaml python3-qrcode python3-redis python3-requests python3-rsa"
-+RDEPENDS_${PN} += "python3-six python3-smpplib python3-soupsieve python3-soupsieve "
-+RDEPENDS_${PN} += "python3-sqlalchemy python3-sqlsoup python3-urllib3 python3-werkzeug"
++PACKAGECONFIG[tpm] = "--enable-tpm,--disable-tpm,,"
++PACKAGECONFIG[aikgen] = "--enable-aikgen,--disable-aikgen,,"
++
++EXTRA_OECONF += "--with-linux-headers=${STAGING_KERNEL_DIR}"
+diff --git a/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan_5.%.bbappend b/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan_5.%.bbappend
+new file mode 100644
+index 0000000..34757bb
+--- /dev/null
++++ b/meta-tpm/dynamic-layers/meta-networking/recipes-support/strongswan/strongswan_5.%.bbappend
+@@ -0,0 +1 @@
++require ${@bb.utils.contains('DISTRO_FEATURES', 'tpm', 'strongswan-tpm.inc', '', d)}
 -- 
 2.8.6
 
