@@ -1,53 +1,113 @@
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by mx.groups.io with SMTP id smtpd.web12.5087.1594960238216816055
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+ by mx.groups.io with SMTP id smtpd.web11.6829.1594971741558779062
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 Jul 2020 21:30:38 -0700
+ Fri, 17 Jul 2020 00:42:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.115, mailfrom: anuj.mittal@intel.com)
-IronPort-SDR: JPT4IR15J4ojQC4yX5M8JrdhtewQuKXqeqyKQbl0KCsvCaZQwXbpQd+oK/ZgAw4AHi3fDmLLKV
- 7TqCKM/Myi5g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9684"; a="148696605"
-X-IronPort-AV: E=Sophos;i="5.75,361,1589266800"; 
-   d="scan'208";a="148696605"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2020 21:30:34 -0700
-IronPort-SDR: otVrYtyOENUG0lc/jXUfnVIix3Q40yWNHZHPtpWpTv6SnXeDDn7hV9Fy0wT9ULZJXU2mMNZN/+
- QvusMmvv7/nA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,361,1589266800"; 
-   d="scan'208";a="430724731"
-Received: from kmsmsx153.gar.corp.intel.com ([172.21.73.88])
-  by orsmga004.jf.intel.com with ESMTP; 16 Jul 2020 21:30:33 -0700
-Received: from pgsmsx101.gar.corp.intel.com ([169.254.1.140]) by
- KMSMSX153.gar.corp.intel.com ([169.254.5.147]) with mapi id 14.03.0439.000;
- Fri, 17 Jul 2020 12:30:29 +0800
-From: "Anuj Mittal" <anuj.mittal@intel.com>
-To: "rick.liu@broadcom.com" <rick.liu@broadcom.com>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] [meta-dpdk] is there a plan to support newer dpdk?
-Thread-Topic: [yocto] [meta-dpdk] is there a plan to support newer dpdk?
-Thread-Index: AQHWW6TpIm/EkpxzpEmZEahsaF50kakKqJgA
-Date: Fri, 17 Jul 2020 04:30:29 +0000
-Message-ID: <3d40d4675902012c9fd2b366eba4304a0962fb13.camel@intel.com>
-References: <l237.1594926681038650358.mYoM@lists.yoctoproject.org>
-In-Reply-To: <l237.1594926681038650358.mYoM@lists.yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.249.73.156]
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: mingli.yu@windriver.com)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com [147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 06H7gKox000744
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
+	for <yocto@lists.yoctoproject.org>; Fri, 17 Jul 2020 00:42:20 -0700 (PDT)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+ ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+ 14.3.487.0; Fri, 17 Jul 2020 00:42:01 -0700
+From: "Yu, Mingli" <mingli.yu@windriver.com>
+To: <yocto@lists.yoctoproject.org>
+Subject: [meta-cgl][PATCH] ucarp: force to use TLS1.2 during do_fetch
+Date: Fri, 17 Jul 2020 15:38:42 +0800
+Message-ID: <20200717073842.1688632-1-mingli.yu@windriver.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <98302D0214DF134DBEA7F430E883E966@intel.com>
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-T24gVGh1LCAyMDIwLTA3LTE2IGF0IDEyOjExIC0wNzAwLCBSaWNrIExpdSB2aWEgbGlzdHMueW9j
-dG9wcm9qZWN0Lm9yZw0Kd3JvdGU6DQo+IEhpLA0KPiANCj4gRnJvbSBtZXRhLWRwZGsuZ2l0LCB0
-aGUgbGF0ZXN0IGR1ZmVsbCBicmFuY2ggaXMgdXNpbmcgZHBkayAxOS4xMS4yLg0KPiBJcyB0aGVy
-ZSBhIHBsYW4gdG8gc3VwcG9ydCBkcGRrIDIwLjB4PyANCj4gKGFuZCBtYXliZSB1c2luZyBtZWFz
-b24vbmluamEgdG8gYnVpbGQ/KQ0KDQpOb3Qgb24gdGhlIGR1bmZlbGwgYnJhbmNoLiBJZiB5b3Ug
-YWxyZWFkeSBoYXZlIHRoZSByZWNpcGUsIEkgY2FuIGFkZCBpdA0KdG8gbWFzdGVyIGJyYW5jaCB3
-aGljaCBJIHRoaW5rIHNob3VsZCBidWlsZCBmaW5lIHdpdGggb2UtY29yZSBkdW5mZWxsDQp0b28u
-DQoNClRoYW5rcywNCg0KQW51ag0K
+From: Mingli Yu <mingli.yu@windriver.com>
+
+There comes below error when use buildtools [1]:
+$ bitbake -cfetch ucarp
+[snip]
+--2020-07-17 06:39:31--  https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
+Resolving download.pureftpd.org... 37.59.238.213
+Connecting to download.pureftpd.org|37.59.238.213|:443... connected.
+GnuTLS: A TLS fatal alert has been received.
+GnuTLS: received alert [70]: Error in protocol version
+Unable to establish SSL connection.
+
+And can simply use below step to reproduce the above error.
+$ wget https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
+--2020-07-17 06:43:36--  https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
+Resolving download.pureftpd.org... 37.59.238.213
+Connecting to download.pureftpd.org|37.59.238.213|:443... connected.
+GnuTLS: A TLS fatal alert has been received.
+GnuTLS: received alert [70]: Error in protocol version
+Unable to establish SSL connection.
+
+$ wget --version
+GNU Wget 1.20.3 built on linux-gnu.
+
+Currently wget uses gnutls as the ssl backend as the below logic
+in layers/openembedded-core/meta/recipes-extended/wget/wget.inc
+PACKAGECONFIG[gnutls] = "--with-ssl=gnutls,,gnutls"
+
+Check the link https://download.pureftpd.org/pub/ucarp/ and found
+the file https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
+already 10 years ago.
+ucarp-1.5.2.tar.gz                                 31-Jan-2010 22:06              429089
+
+Meanwhile we can use gnutls-cli-debug to diagnose the download.pureftpd.org
+which hosts ucarp and it doesn't support TLS 1.3 but supports TLS 1.2 instead
+as below.
+$ gnutls-cli-debug 37.59.238.213
+GnuTLS debug client 3.6.4
+Checking 37.59.238.213:443
+                        whether we need to disable TLS 1.2... no
+                        whether we need to disable TLS 1.1... no
+                        whether we need to disable TLS 1.0... no
+                        whether %NO_EXTENSIONS is required... no
+                               whether %COMPAT is required... yes
+                             for TLS 1.0 (RFC2246) support... no
+ for TLS 1.0 (RFC2246) support with TLS 1.0 record version... no
+                             for TLS 1.1 (RFC4346) support... no
+                                  fallback from TLS 1.1 to... failed
+                             for TLS 1.2 (RFC5246) support... yes
+                             for TLS 1.3 (RFC8446) support... no
+[snip]
+
+$ wget --secure-protocol=TLSv1_2 https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
+--2020-07-17 07:07:08--  https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
+Resolving download.pureftpd.org... 37.59.238.213
+Connecting to download.pureftpd.org|37.59.238.213|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 429089 (419K) [text/plain]
+Saving to: 'ucarp-1.5.2.tar.gz'
+
+ucarp-1.5.2.tar.gz  100%[===================>] 419.03K   432KB/s    in 1.0s
+
+2020-07-17 07:07:16 (432 KB/s) - 'ucarp-1.5.2.tar.gz' saved [429089/429089]
+
+Considering gnutls doesn't fallback to TLS 1.2 automatically, so force ucarp
+to use TLS1.2 to fix the above do_fetch error.
+
+[1] https://www.yoctoproject.org/docs/3.1/ref-manual/ref-manual.html#building-your-own-buildtools-tarball
+
+Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
+---
+ meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb b/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb
+index 6f30bf7..d17baa0 100644
+--- a/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb
++++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb
+@@ -34,7 +34,7 @@ DEPENDS = "libpcap"
+ 
+ SYSTEMD_SERVICE_${PN} = "ucarp.service"
+ SYSTEMD_AUTO_ENABLE = "disable"
+-
++export FETCHCMD_wget = "/usr/bin/env wget --secure-protocol=TLSv1_2 -t 2 -T 30 --passive-ftp --no-check-certificate"
+ EXTRA_OECONF += "--sysconfdir=${sysconfdir}/${BPN}"
+ 
+ # fix the perms for config.rpath
+-- 
+2.26.2
+
