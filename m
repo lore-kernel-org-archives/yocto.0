@@ -1,70 +1,53 @@
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
- by mx.groups.io with SMTP id smtpd.web10.4853.1594959008446032269
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by mx.groups.io with SMTP id smtpd.web12.5087.1594960238216816055
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 Jul 2020 21:10:08 -0700
+ Thu, 16 Jul 2020 21:30:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=oN8BSf44;
- spf=pass (domain: gmail.com, ip: 209.85.215.171, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f171.google.com with SMTP id d4so6043883pgk.4
-        for <yocto@lists.yoctoproject.org>; Thu, 16 Jul 2020 21:10:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=UJKSJpAccRknRtSVDT77WtimBATpmBqHp9GxR2fLYzM=;
-        b=oN8BSf44AI/cJUVFvi19Tt0wDUovVkpYj0YfjI1YFZDGjNDqQSeIlucngy2mtU6Yt+
-         q7Aq98mCsixz3WWTj11cnTU99LH81+fB+d2Of9Q+j80m4Oeu5aLiCx9kAuUT8VFRQqix
-         0fX5UsUXYszrgCEybdhaBnTaWOB7+6SOtXKnRA70Bugq3iji4OF4lmgk/vgnJSJ8pLxN
-         36HJ7Qb9VqYZ/AbAWrmmmSYjP6ugxPIDDTDenMBH9tmJgcYeERvmek3yMMbUA54HPgOk
-         Uh2FM4s7eqBEdaXzkf8Qe62UWtfB3tfqfeBPxv3lj5aLb9EnTIscOUAP+oZICAGRFfxQ
-         V5YQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references;
-        bh=UJKSJpAccRknRtSVDT77WtimBATpmBqHp9GxR2fLYzM=;
-        b=oGiFsNTRvlLCk7zQSoyw0Ekgd6x3IDeujawJpWS7nmS0ZIUwPz3ZO2zKxrheiV+lar
-         fzMWa5IntDgReXblgBKpnQfENYEZITXnZz3klMMf1QOubnTzQWO+4fntdS7GFDrqjeSe
-         GIkA3pKiGV7N3q81cUu64bKPOKcuSeqvNUOgiP+De4x/1JNE6el0yRAa4pLrTsL6sVIg
-         UV7KbqarrtKiwS3WfKCytZt59d1GaNO293p9XvtsVDyQA+nDwV8U4fbm2Ydk/68g+niQ
-         UII4Oprhoa1QdE1oV8TwB2xJ+hKG9w+FeLTVbMOJ5QHr4gN4aU/Cl3VX0eWN3BU5zrRu
-         XFdQ==
-X-Gm-Message-State: AOAM530FoNLd3RVdrB5zi9ZmKzGxWxv2tmd9cr/30g9r6RINiDOTvt7J
-	p85nB5kcvCZCsku7PtpPizEUCqGmjME=
-X-Google-Smtp-Source: ABdhPJyGxiGYrsdKoVdwENDdwyDc2rGVAod/4fsc9endsgB5dq5IRPRCZT2TnkkwsuaEHcreJfRjMA==
-X-Received: by 2002:a62:7e90:: with SMTP id z138mr6272191pfc.292.1594959007827;
-        Thu, 16 Jul 2020 21:10:07 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from localhost.localdomain (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id k7sm6212446pgh.46.2020.07.16.21.10.07
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jul 2020 21:10:07 -0700 (PDT)
-From: "akuster" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 6/6] meta-integrity: add dynamic-layer for strongswan
-Date: Fri, 17 Jul 2020 04:10:01 +0000
-Message-Id: <20200717041001.17312-6-akuster808@gmail.com>
-X-Mailer: git-send-email 2.8.6
-In-Reply-To: <20200717041001.17312-1-akuster808@gmail.com>
-References: <20200717041001.17312-1-akuster808@gmail.com>
+ dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.115, mailfrom: anuj.mittal@intel.com)
+IronPort-SDR: JPT4IR15J4ojQC4yX5M8JrdhtewQuKXqeqyKQbl0KCsvCaZQwXbpQd+oK/ZgAw4AHi3fDmLLKV
+ 7TqCKM/Myi5g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9684"; a="148696605"
+X-IronPort-AV: E=Sophos;i="5.75,361,1589266800"; 
+   d="scan'208";a="148696605"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2020 21:30:34 -0700
+IronPort-SDR: otVrYtyOENUG0lc/jXUfnVIix3Q40yWNHZHPtpWpTv6SnXeDDn7hV9Fy0wT9ULZJXU2mMNZN/+
+ QvusMmvv7/nA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,361,1589266800"; 
+   d="scan'208";a="430724731"
+Received: from kmsmsx153.gar.corp.intel.com ([172.21.73.88])
+  by orsmga004.jf.intel.com with ESMTP; 16 Jul 2020 21:30:33 -0700
+Received: from pgsmsx101.gar.corp.intel.com ([169.254.1.140]) by
+ KMSMSX153.gar.corp.intel.com ([169.254.5.147]) with mapi id 14.03.0439.000;
+ Fri, 17 Jul 2020 12:30:29 +0800
+From: "Anuj Mittal" <anuj.mittal@intel.com>
+To: "rick.liu@broadcom.com" <rick.liu@broadcom.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] [meta-dpdk] is there a plan to support newer dpdk?
+Thread-Topic: [yocto] [meta-dpdk] is there a plan to support newer dpdk?
+Thread-Index: AQHWW6TpIm/EkpxzpEmZEahsaF50kakKqJgA
+Date: Fri, 17 Jul 2020 04:30:29 +0000
+Message-ID: <3d40d4675902012c9fd2b366eba4304a0962fb13.camel@intel.com>
+References: <l237.1594926681038650358.mYoM@lists.yoctoproject.org>
+In-Reply-To: <l237.1594926681038650358.mYoM@lists.yoctoproject.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.249.73.156]
+MIME-Version: 1.0
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <98302D0214DF134DBEA7F430E883E966@intel.com>
+Content-Transfer-Encoding: base64
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- meta-integrity/conf/layer.conf | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
-index b4edac3..f905b0b 100644
---- a/meta-integrity/conf/layer.conf
-+++ b/meta-integrity/conf/layer.conf
-@@ -26,3 +26,7 @@ LAYERSERIES_COMPAT_integrity = "dunfell"
- LAYERDEPENDS_integrity = "core openembedded-layer"
- 
- BBLAYERS_LAYERINDEX_NAME_integrity = "meta-integrity"
-+
-+BBFILES_DYNAMIC += " \
-+networking-layer:${LAYERDIR}/dynamic-layers/meta-networking/recipes-*/*/*.bbappend \
-+"
--- 
-2.8.6
-
+T24gVGh1LCAyMDIwLTA3LTE2IGF0IDEyOjExIC0wNzAwLCBSaWNrIExpdSB2aWEgbGlzdHMueW9j
+dG9wcm9qZWN0Lm9yZw0Kd3JvdGU6DQo+IEhpLA0KPiANCj4gRnJvbSBtZXRhLWRwZGsuZ2l0LCB0
+aGUgbGF0ZXN0IGR1ZmVsbCBicmFuY2ggaXMgdXNpbmcgZHBkayAxOS4xMS4yLg0KPiBJcyB0aGVy
+ZSBhIHBsYW4gdG8gc3VwcG9ydCBkcGRrIDIwLjB4PyANCj4gKGFuZCBtYXliZSB1c2luZyBtZWFz
+b24vbmluamEgdG8gYnVpbGQ/KQ0KDQpOb3Qgb24gdGhlIGR1bmZlbGwgYnJhbmNoLiBJZiB5b3Ug
+YWxyZWFkeSBoYXZlIHRoZSByZWNpcGUsIEkgY2FuIGFkZCBpdA0KdG8gbWFzdGVyIGJyYW5jaCB3
+aGljaCBJIHRoaW5rIHNob3VsZCBidWlsZCBmaW5lIHdpdGggb2UtY29yZSBkdW5mZWxsDQp0b28u
+DQoNClRoYW5rcywNCg0KQW51ag0K
