@@ -1,73 +1,133 @@
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
- by mx.groups.io with SMTP id smtpd.web12.30060.1595212462207160003
- for <yocto@lists.yoctoproject.org>;
- Sun, 19 Jul 2020 19:34:22 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=GVmaVwRW;
- spf=pass (domain: gmail.com, ip: 209.85.216.41, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f41.google.com with SMTP id k71so9436994pje.0
-        for <yocto@lists.yoctoproject.org>; Sun, 19 Jul 2020 19:34:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=PZ2EjwzEMnRWAIg5YJeYBhdDo96JWCB6wkIU2ACC2LU=;
-        b=GVmaVwRW6ZzXrP8Y2XSSeE/t1gDWOQnwLaFcsOdUqG1ax+98Hdx0UOOo3S8+GOn2m8
-         BW2SFSe0bL1lf1LUuVBUpMcI+cZx24tmOWTO+7IGdjyoJ5H61Yr0TdNetWK+ztKEU9an
-         Fi0UKLid7kuw/AxbSyphkC6DBntORNRodAT+255nBfgHy3D70NXFd3g2SHCAr/as2+3W
-         d8UlhF061f3ZNWDwmC6xZqtZpfaBbdfoafW0CF1QtxvMwUks1jwpkK3NbfiJx5W1+zEg
-         618aY3LozNs+4vD7FBNCUJrFpgtvMawvOkWebJYH4dN5hnIlV27cX97iJGOWst7ar3QN
-         lEfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=PZ2EjwzEMnRWAIg5YJeYBhdDo96JWCB6wkIU2ACC2LU=;
-        b=ram0FWIa9hMs/IIqeHLv1ZdqC9FUt4lGQg4JHByQn6OFaCGONJ7/LjrDUoew+ZFOEP
-         8s0+M8uOw9MWpRw07fwoT5mHN6WOe2sXj+qZMQre7EN18MiocNex0SZsPIiiffaVY1Gn
-         Q5As5Pg6RbSJZ8nnm6CXwG1oZmtpEYAhLnR1iewKYc6WbL+vRv1j4iaMRfQjx6nHFk1t
-         OkLrm8huwP3KdP0qT3LcT97YU1FW1sSg6O/jXjfq7GpCZH0d58zIH7CV0O5iBqFWRaMt
-         jtLOw6cnHOtRhOyAbvmu/C3HbG8OJjvJseZU5bv0hNnGt9/fT2eqwObyFyqvR0uNl4Ye
-         kLaA==
-X-Gm-Message-State: AOAM533iEBRqXorW9rgNc9TuZm41eJxYmh0VezuERe3z3i6ioCZyY3To
-	WHVK27Ffi2KU6RA1z1X1/oYkV91jfnw=
-X-Google-Smtp-Source: ABdhPJwrl+uGjybrxi2Q88Uksul/wne0I0WYIyuQxiootJDL9W5pr5Et9G/9IJD0OPV0L2xqlgp10A==
-X-Received: by 2002:a17:90a:2846:: with SMTP id p6mr21266706pjf.163.1595212461391;
-        Sun, 19 Jul 2020 19:34:21 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id y19sm13598723pgj.35.2020.07.19.19.34.20
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jul 2020 19:34:20 -0700 (PDT)
-From: "akuster" <akuster808@gmail.com>
+Subject: Offline Build #yocto
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] lynis: update to 3.0.0
-Date: Mon, 20 Jul 2020 02:34:18 +0000
-Message-Id: <20200720023418.16791-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
+From: "Amrun Nisha.R" <amrunnishar@gmail.com>
+X-Originating-Location: Bengaluru, Karnataka, IN (103.232.224.219)
+X-Originating-Platform: Windows Chrome 84
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Sun, 19 Jul 2020 23:05:07 -0700
+Message-ID: <O27O.1595225107952785470.PzJ1@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="g6tWFZwAmOJOUMnUSZ72"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../recipes-auditors/lynis/{lynis_2.7.5.bb => lynis_3.0.0.bb}  | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
- rename meta-security-compliance/recipes-auditors/lynis/{lynis_2.7.5.bb => lynis_3.0.0.bb} (89%)
+--g6tWFZwAmOJOUMnUSZ72
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/meta-security-compliance/recipes-auditors/lynis/lynis_2.7.5.bb b/meta-security-compliance/recipes-auditors/lynis/lynis_3.0.0.bb
-similarity index 89%
-rename from meta-security-compliance/recipes-auditors/lynis/lynis_2.7.5.bb
-rename to meta-security-compliance/recipes-auditors/lynis/lynis_3.0.0.bb
-index 245761c..2d59623 100644
---- a/meta-security-compliance/recipes-auditors/lynis/lynis_2.7.5.bb
-+++ b/meta-security-compliance/recipes-auditors/lynis/lynis_3.0.0.bb
-@@ -8,8 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3edd6782854304fd11da4975ab9799c1"
- 
- SRC_URI = "https://cisofy.com/files/${BPN}-${PV}.tar.gz"
- 
--SRC_URI[md5sum] = "fb527b6976e70a6bcd57036c9cddc242"
--SRC_URI[sha256sum] = "3d27ade73a5c1248925ad9c060024940ce5d2029f40aaa901f43314888fe324d"
-+SRC_URI[sha256sum] = "3cc165f9007ba41de6d0b693a1167dbaf0179085f9506dcba64b4b8e37e1bda2"
- 
- S = "${WORKDIR}/${BPN}"
- 
--- 
-2.17.1
+I want to create a offline build using yocto.
 
+I have sources and downloads packages directory in which i can able to cre=
+ate a successful bitbake. I have transferred those files to another system =
+and tried to build them in offline but it is not working. During Bitbake, I=
+ got the below error.
+
+ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0 do_unpack: Fetc=
+her failure: Fetch command export PSEUDO_DISABLED=3D1; export DBUS_SESSION_=
+BUS_ADDRESS=3D"unix:abstract=3D/tmp/dbus-g7k0CS09Dd,guid=3D12ec7c389f454edf=
+56e65e9a5f1271ce"; export SSH_AGENT_PID=3D"1474"; export SSH_AUTH_SOCK=3D"/=
+tmp/ssh-uwTL38C6OxLZ/agent.1310"; export PATH=3D"/home/admin/Platform_Build=
+/yocto/sources/poky/scripts/native-intercept:/home/admin/Platform_Build/yoc=
+to/sources/poky/scripts:/home/admin/Platform_Build/yocto/build/tmp/work/x86=
+_64-linux/gnu-config-native/20150728+gitAUTOINC+b576fa87c1-r0/recipe-sysroo=
+t-native/usr/bin/x86_64-linux:/home/admin/Platform_Build/yocto/build/tmp/wo=
+rk/x86_64-linux/gnu-config-native/20150728+gitAUTOINC+b576fa87c1-r0/recipe-=
+sysroot-native/usr/bin:/home/admin/Platform_Build/yocto/build/tmp/work/x86_=
+64-linux/gnu-config-native/20150728+gitAUTOINC+b576fa87c1-r0/recipe-sysroot=
+-native/usr/sbin:/home/admin/Platform_Build/yocto/build/tmp/work/x86_64-lin=
+ux/gnu-config-native/20150728+gitAUTOINC+b576fa87c1-r0/recipe-sysroot-nativ=
+e/usr/bin:/home/admin/Platform_Build/yocto/build/tmp/work/x86_64-linux/gnu-=
+config-native/20150728+gitAUTOINC+b576fa87c1-r0/recipe-sysroot-native/sbin:=
+/home/admin/Platform_Build/yocto/build/tmp/work/x86_64-linux/gnu-config-nat=
+ive/20150728+gitAUTOINC+b576fa87c1-r0/recipe-sysroot-native/bin:/home/admin=
+/Platform_Build/yocto/sources/poky/bitbake/bin:/home/admin/Platform_Build/y=
+octo/build/tmp/hosttools"; export HOME=3D"/home/admin"; git -c core.fsyncob=
+jectfiles=3D0 clone -s -n /home/admin/Platform_Build/pltswcode/Yocto/Linux/=
+downloads//git2/git.savannah.gnu.org.config.git/ /home/admin/Platform_Build=
+/yocto/build/tmp/work/x86_64-linux/gnu-config-native/20150728+gitAUTOINC+b5=
+76fa87c1-r0/git/ failed with exit code 128, output:
+fatal: repository '/home/admin/Platform_Build/pltswcode/Yocto/Linux/downlo=
+ads//git2/git.savannah.gnu.org.config.git/' does not exist
+
+ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0 do_unpack: Func=
+tion failed: base_do_unpack
+ERROR: Logfile of failure stored in: /home/admin/Platform_Build/yocto/buil=
+d/tmp/work/x86_64-linux/gnu-config-native/20150728+gitAUTOINC+b576fa87c1-r0=
+/temp/log.do_unpack.619
+ERROR: Task (virtual:native:/home/admin/Platform_Build/yocto/sources/poky/=
+meta/recipes-devtools/gnu-config/gnu-config_git.bb:do_unpack) failed with e=
+xit code '1'
+NOTE: Tasks Summary: Attempted 68 tasks of which 63 didn't need to be reru=
+n and 1 failed.
+
+Summary: 1 task failed:
+virtual:native:/home/admin/Platform_Build/yocto/sources/poky/meta/recipes-=
+devtools/gnu-config/gnu-config_git.bb:do_unpack
+Summary: There was 1 WARNING message shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code=
+.
+
+I want to know :
+1. Why the bitbake command is not taking the downloads directory as it is =
+?
+2. Is there any other way to create the offline build without downloading =
+the yocto packages?
+
+--g6tWFZwAmOJOUMnUSZ72
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I want to create a offline build using yocto.&nbsp;<br /><br />I have sourc=
+es and downloads packages directory in which i can able to create a success=
+ful bitbake. I have transferred those files to another system and tried to =
+build them in offline but it is not working. During Bitbake, I got the belo=
+w error.
+<div>&nbsp;</div>
+<div>ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0 do_unpack:=
+ Fetcher failure: Fetch command export PSEUDO_DISABLED=3D1; export DBUS_SES=
+SION_BUS_ADDRESS=3D"unix:abstract=3D/tmp/dbus-g7k0CS09Dd,guid=3D12ec7c389f4=
+54edf56e65e9a5f1271ce"; export SSH_AGENT_PID=3D"1474"; export SSH_AUTH_SOCK=
+=
+=3D"/tmp/ssh-uwTL38C6OxLZ/agent.1310"; export PATH=3D"/home/admin/Platform=
+_Build/yocto/sources/poky/scripts/native-intercept:/home/admin/Platform_Bui=
+ld/yocto/sources/poky/scripts:/home/admin/Platform_Build/yocto/build/tmp/wo=
+rk/x86_64-linux/gnu-config-native/20150728+gitAUTOINC+b576fa87c1-r0/recipe-=
+sysroot-native/usr/bin/x86_64-linux:/home/admin/Platform_Build/yocto/build/=
+tmp/work/x86_64-linux/gnu-config-native/20150728+gitAUTOINC+b576fa87c1-r0/r=
+ecipe-sysroot-native/usr/bin:/home/admin/Platform_Build/yocto/build/tmp/wor=
+k/x86_64-linux/gnu-config-native/20150728+gitAUTOINC+b576fa87c1-r0/recipe-s=
+ysroot-native/usr/sbin:/home/admin/Platform_Build/yocto/build/tmp/work/x86_=
+64-linux/gnu-config-native/20150728+gitAUTOINC+b576fa87c1-r0/recipe-sysroot=
+-native/usr/bin:/home/admin/Platform_Build/yocto/build/tmp/work/x86_64-linu=
+x/gnu-config-native/20150728+gitAUTOINC+b576fa87c1-r0/recipe-sysroot-native=
+/sbin:/home/admin/Platform_Build/yocto/build/tmp/work/x86_64-linux/gnu-conf=
+ig-native/20150728+gitAUTOINC+b576fa87c1-r0/recipe-sysroot-native/bin:/home=
+/admin/Platform_Build/yocto/sources/poky/bitbake/bin:/home/admin/Platform_B=
+uild/yocto/build/tmp/hosttools"; export HOME=3D"/home/admin"; git -c core.f=
+syncobjectfiles=3D0 clone -s -n /home/admin/Platform_Build/pltswcode/Yocto/=
+Linux/downloads//git2/git.savannah.gnu.org.config.git/ /home/admin/Platform=
+_Build/yocto/build/tmp/work/x86_64-linux/gnu-config-native/20150728+gitAUTO=
+INC+b576fa87c1-r0/git/ failed with exit code 128, output:</div>
+<div>fatal: repository '/home/admin/Platform_Build/pltswcode/Yocto/Linux/d=
+ownloads//git2/git.savannah.gnu.org.config.git/' does not exist</div>
+<div>&nbsp;</div>
+<div>ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0 do_unpack:=
+ Function failed: base_do_unpack</div>
+<div>ERROR: Logfile of failure stored in: /home/admin/Platform_Build/yocto=
+/build/tmp/work/x86_64-linux/gnu-config-native/20150728+gitAUTOINC+b576fa87=
+c1-r0/temp/log.do_unpack.619</div>
+<div>ERROR: Task (virtual:native:/home/admin/Platform_Build/yocto/sources/=
+poky/meta/recipes-devtools/gnu-config/gnu-config_git.bb:do_unpack) failed w=
+ith exit code '1'</div>
+<div>NOTE: Tasks Summary: Attempted 68 tasks of which 63 didn't need to be=
+ rerun and 1 failed.</div>
+<div>&nbsp;</div>
+<div>Summary: 1 task failed:</div>
+<div>&nbsp; virtual:native:/home/admin/Platform_Build/yocto/sources/poky/m=
+eta/recipes-devtools/gnu-config/gnu-config_git.bb:do_unpack</div>
+<div>Summary: There was 1 WARNING message shown.</div>
+<div>Summary: There were 2 ERROR messages shown, returning a non-zero exit=
+ code.<br /><br />I want to know :<br />1. Why the bitbake command is not t=
+aking the downloads directory as it is ?<br />2. Is there any other way to =
+create the offline build without downloading the yocto packages?</div>
+<div>&nbsp;</div>
+
+--g6tWFZwAmOJOUMnUSZ72--
