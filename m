@@ -1,232 +1,73 @@
-Received: from mail-pf1-f193.google.com (mail-pf1-f193.google.com [209.85.210.193])
- by mx.groups.io with SMTP id smtpd.web10.30307.1595211710365051666
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+ by mx.groups.io with SMTP id smtpd.web12.30060.1595212462207160003
  for <yocto@lists.yoctoproject.org>;
- Sun, 19 Jul 2020 19:21:50 -0700
+ Sun, 19 Jul 2020 19:34:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=cSpol+oW;
- spf=pass (domain: gmail.com, ip: 209.85.210.193, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f193.google.com with SMTP id s26so8300743pfm.4
-        for <yocto@lists.yoctoproject.org>; Sun, 19 Jul 2020 19:21:50 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=GVmaVwRW;
+ spf=pass (domain: gmail.com, ip: 209.85.216.41, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f41.google.com with SMTP id k71so9436994pje.0
+        for <yocto@lists.yoctoproject.org>; Sun, 19 Jul 2020 19:34:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id;
-        bh=L30fMrh0+vKx5yM/CXP8EKemzeZDlqWaLEbuIEKcjU8=;
-        b=cSpol+oWPBfAhg/8wPBDS7+aja7UyEzrwN86y9L+32eFuL9VaqbC/7dadj6o5u7omv
-         wTE0MZdeCOxG4kdurcIbGi2Gup5bXJyHFIQGDEMN1VxuroBrNtEyannFsbrZf6N8LemX
-         WCcEEqCkKM8mzNdWO9cChlgwXhmgR5nrd1VhkeQOMJSWpzzaHD1oHKkSbP9N5SM8NWpL
-         VkN9IjXSIgDkyK84fXI/g1dt5zp6Q6u6c0Seo4D/+w5UfZypXSF9/VhJMHGM2KjEOPpv
-         bIYL3aTMZXZVfYt+vtwy9MIng0YkxlgsjWpqixwwASBei4Pg43SAYCvpOJKG6uHGIz5p
-         3bzA==
+        bh=PZ2EjwzEMnRWAIg5YJeYBhdDo96JWCB6wkIU2ACC2LU=;
+        b=GVmaVwRW6ZzXrP8Y2XSSeE/t1gDWOQnwLaFcsOdUqG1ax+98Hdx0UOOo3S8+GOn2m8
+         BW2SFSe0bL1lf1LUuVBUpMcI+cZx24tmOWTO+7IGdjyoJ5H61Yr0TdNetWK+ztKEU9an
+         Fi0UKLid7kuw/AxbSyphkC6DBntORNRodAT+255nBfgHy3D70NXFd3g2SHCAr/as2+3W
+         d8UlhF061f3ZNWDwmC6xZqtZpfaBbdfoafW0CF1QtxvMwUks1jwpkK3NbfiJx5W1+zEg
+         618aY3LozNs+4vD7FBNCUJrFpgtvMawvOkWebJYH4dN5hnIlV27cX97iJGOWst7ar3QN
+         lEfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=L30fMrh0+vKx5yM/CXP8EKemzeZDlqWaLEbuIEKcjU8=;
-        b=saN+fypi7ypBc1J2GRWybdXZPdPVyBoDUgCQFZegwKg7oF6QTPKsiv9oGai/PSQxDx
-         yJcfiKiRnw8Vq9Az/0+MWXuyOv5cPLO06zMgtR77EZ53VG4v/fNUyYLiX4I8wgJVBo5K
-         AmoRBllRYSmDB2vvqz11utoSEagbNY5hIH+WLM2zu+lCS0pFI98Pt93Ecu8CsIatDJvK
-         8x9Xz8IYQc66gUqzC+7n+o4XmXg74tTUm0K0IOGdG/RluAdL2RZYUR+S6dX2hdXlEWDA
-         dQG0sTM/gsNzikaDN/PanORE6/GB+usnyZRYEoZUDLaga3FVpk7afLxcDVpGOnSPNDJS
-         LamQ==
-X-Gm-Message-State: AOAM5317RDXRKdpEuSAipkFGrQ6BmV7ouaYqCEjSQd5vk1JRh+wxwUzK
-	6k/0ydUdCpd95OXWtFpAWlD97sJw25U=
-X-Google-Smtp-Source: ABdhPJwcN7+lFjIh8f/Qy5pzBJdDppYJGyNsB1M1/az8GXFmT40Do7bSpI6LTzeNAy5OhRYm3+KCow==
-X-Received: by 2002:a63:e057:: with SMTP id n23mr16760684pgj.368.1595211709290;
-        Sun, 19 Jul 2020 19:21:49 -0700 (PDT)
+        bh=PZ2EjwzEMnRWAIg5YJeYBhdDo96JWCB6wkIU2ACC2LU=;
+        b=ram0FWIa9hMs/IIqeHLv1ZdqC9FUt4lGQg4JHByQn6OFaCGONJ7/LjrDUoew+ZFOEP
+         8s0+M8uOw9MWpRw07fwoT5mHN6WOe2sXj+qZMQre7EN18MiocNex0SZsPIiiffaVY1Gn
+         Q5As5Pg6RbSJZ8nnm6CXwG1oZmtpEYAhLnR1iewKYc6WbL+vRv1j4iaMRfQjx6nHFk1t
+         OkLrm8huwP3KdP0qT3LcT97YU1FW1sSg6O/jXjfq7GpCZH0d58zIH7CV0O5iBqFWRaMt
+         jtLOw6cnHOtRhOyAbvmu/C3HbG8OJjvJseZU5bv0hNnGt9/fT2eqwObyFyqvR0uNl4Ye
+         kLaA==
+X-Gm-Message-State: AOAM533iEBRqXorW9rgNc9TuZm41eJxYmh0VezuERe3z3i6ioCZyY3To
+	WHVK27Ffi2KU6RA1z1X1/oYkV91jfnw=
+X-Google-Smtp-Source: ABdhPJwrl+uGjybrxi2Q88Uksul/wne0I0WYIyuQxiootJDL9W5pr5Et9G/9IJD0OPV0L2xqlgp10A==
+X-Received: by 2002:a17:90a:2846:: with SMTP id p6mr21266706pjf.163.1595212461391;
+        Sun, 19 Jul 2020 19:34:21 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
-Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:411f:2971:8bd3:d88])
-        by smtp.gmail.com with ESMTPSA id y22sm9970424pjp.41.2020.07.19.19.21.47
+Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
+        by smtp.gmail.com with ESMTPSA id y19sm13598723pgj.35.2020.07.19.19.34.20
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jul 2020 19:21:48 -0700 (PDT)
+        Sun, 19 Jul 2020 19:34:20 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] kas: add ima, tpm and tpm2 build configs
-Date: Sun, 19 Jul 2020 19:21:47 -0700
-Message-Id: <20200720022147.22884-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH] lynis: update to 3.0.0
+Date: Mon, 20 Jul 2020 02:34:18 +0000
+Message-Id: <20200720023418.16791-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
-
-for qemux86, qemux86-64 and qemuarm64
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .gitlab-ci.yml            | 32 ++++++++++++++++++++++++++++++++
- kas/kas-security-base.yml |  4 ++++
- kas/qemuarm64-ima.yml     | 10 ++++++++++
- kas/qemuarm64-tpm2.yml    | 10 ++++++++++
- kas/qemuarm64.yml         |  2 +-
- kas/qemux86-64-ima.yml    | 10 ++++++++++
- kas/qemux86-64-tpm.yml    | 10 ++++++++++
- kas/qemux86-64-tpm2.yml   | 10 ++++++++++
- kas/qemux86-ima.yml       | 10 ++++++++++
- 9 files changed, 97 insertions(+), 1 deletion(-)
- create mode 100644 kas/qemuarm64-ima.yml
- create mode 100644 kas/qemuarm64-tpm2.yml
- create mode 100644 kas/qemux86-64-ima.yml
- create mode 100644 kas/qemux86-64-tpm.yml
- create mode 100644 kas/qemux86-64-tpm2.yml
- create mode 100644 kas/qemux86-ima.yml
+ .../recipes-auditors/lynis/{lynis_2.7.5.bb => lynis_3.0.0.bb}  | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+ rename meta-security-compliance/recipes-auditors/lynis/{lynis_2.7.5.bb => lynis_3.0.0.bb} (89%)
 
-diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
-index f7517a5..c6fba3e 100644
---- a/.gitlab-ci.yml
-+++ b/.gitlab-ci.yml
-@@ -54,3 +54,35 @@ qemuriscv64:
-   extends: .build
-   script:
-   - ./scripts/ci-build.sh  $CI_JOB_NAME security-build-image
-+
-+qemux86-64-tpm:
-+  extends: .build
-+  script:
-+  - ./scripts/ci-build.sh  $CI_JOB_NAME security-tpm-image
-+
-+qemux86-64-tpm2:
-+  extends: .build
-+  script:
-+  - ./scripts/ci-build.sh  $CI_JOB_NAME security-tpm2-image
-+
-+qemuarm64-tpm2:
-+  extends: .build
-+  script:
-+  - ./scripts/ci-build.sh  $CI_JOB_NAME security-tpm2-image
-+
-+
-+qemux86-ima:
-+  extends: .build
-+  script:
-+  - ./scripts/ci-build.sh  $CI_JOB_NAME integrity-image-minimal
-+
-+qemux86-64-ima:
-+  extends: .build
-+  script:
-+  - ./scripts/ci-build.sh  $CI_JOB_NAME integrity-image-minimal
-+
-+qemuarm64-iam:
-+  extends: .build
-+  script:
-+  - ./scripts/ci-build.sh  $CI_JOB_NAME integrity-image-minimal
-+
-diff --git a/kas/kas-security-base.yml b/kas/kas-security-base.yml
-index 7f807d1..82072ef 100644
---- a/kas/kas-security-base.yml
-+++ b/kas/kas-security-base.yml
-@@ -5,6 +5,10 @@ distro: poky
+diff --git a/meta-security-compliance/recipes-auditors/lynis/lynis_2.7.5.bb b/meta-security-compliance/recipes-auditors/lynis/lynis_3.0.0.bb
+similarity index 89%
+rename from meta-security-compliance/recipes-auditors/lynis/lynis_2.7.5.bb
+rename to meta-security-compliance/recipes-auditors/lynis/lynis_3.0.0.bb
+index 245761c..2d59623 100644
+--- a/meta-security-compliance/recipes-auditors/lynis/lynis_2.7.5.bb
++++ b/meta-security-compliance/recipes-auditors/lynis/lynis_3.0.0.bb
+@@ -8,8 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3edd6782854304fd11da4975ab9799c1"
  
- repos:
-   meta-security:
-+    layers:
-+      meta-tpm:
-+      meta-integrity:
-+      meta-security-compliance:
+ SRC_URI = "https://cisofy.com/files/${BPN}-${PV}.tar.gz"
  
-   poky:
-     url: https://git.yoctoproject.org/git/poky
-diff --git a/kas/qemuarm64-ima.yml b/kas/qemuarm64-ima.yml
-new file mode 100644
-index 0000000..b478472
---- /dev/null
-+++ b/kas/qemuarm64-ima.yml
-@@ -0,0 +1,10 @@
-+header:
-+  version: 8
-+  includes:
-+    - kas-security-base.yml
-+
-+local_conf_header:
-+  meta-security: |
-+    DISTRO_FEATURES_append = " ima"
-+
-+machine: qemuarm64
-diff --git a/kas/qemuarm64-tpm2.yml b/kas/qemuarm64-tpm2.yml
-new file mode 100644
-index 0000000..3a8d8fc
---- /dev/null
-+++ b/kas/qemuarm64-tpm2.yml
-@@ -0,0 +1,10 @@
-+header:
-+  version: 8
-+  includes:
-+    - kas-security-base.yml
-+
-+local_conf_header:
-+  meta-security: |
-+    DISTRO_FEATURES_append = " tpm2"
-+
-+machine: qemuarm64 
-diff --git a/kas/qemuarm64.yml b/kas/qemuarm64.yml
-index d55adff..a0c2d1a 100644
---- a/kas/qemuarm64.yml
-+++ b/kas/qemuarm64.yml
-@@ -3,4 +3,4 @@ header:
-   includes:
-     - kas-security-base.yml
+-SRC_URI[md5sum] = "fb527b6976e70a6bcd57036c9cddc242"
+-SRC_URI[sha256sum] = "3d27ade73a5c1248925ad9c060024940ce5d2029f40aaa901f43314888fe324d"
++SRC_URI[sha256sum] = "3cc165f9007ba41de6d0b693a1167dbaf0179085f9506dcba64b4b8e37e1bda2"
  
--machine: qemuarmu64
-+machine: qemuarm64
-diff --git a/kas/qemux86-64-ima.yml b/kas/qemux86-64-ima.yml
-new file mode 100644
-index 0000000..e64931c
---- /dev/null
-+++ b/kas/qemux86-64-ima.yml
-@@ -0,0 +1,10 @@
-+header:
-+  version: 8
-+  includes:
-+    - kas-security-base.yml
-+
-+local_conf_header:
-+  meta-security: |
-+    DISTRO_FEATURES_append = " ima"
-+
-+machine: qemux86-64
-diff --git a/kas/qemux86-64-tpm.yml b/kas/qemux86-64-tpm.yml
-new file mode 100644
-index 0000000..565b423
---- /dev/null
-+++ b/kas/qemux86-64-tpm.yml
-@@ -0,0 +1,10 @@
-+header:
-+  version: 8
-+  includes:
-+    - kas-security-base.yml
-+
-+local_conf_header:
-+  meta-security: |
-+    DISTRO_FEATURES_append = " tpm"
-+
-+machine: qemux86-64
-diff --git a/kas/qemux86-64-tpm2.yml b/kas/qemux86-64-tpm2.yml
-new file mode 100644
-index 0000000..a43693e
---- /dev/null
-+++ b/kas/qemux86-64-tpm2.yml
-@@ -0,0 +1,10 @@
-+header:
-+  version: 8
-+  includes:
-+    - kas-security-base.yml
-+
-+local_conf_header:
-+  meta-security: |
-+    DISTRO_FEATURES_append = " tpm2"
-+
-+machine: qemux86-64
-diff --git a/kas/qemux86-ima.yml b/kas/qemux86-ima.yml
-new file mode 100644
-index 0000000..6528ba6
---- /dev/null
-+++ b/kas/qemux86-ima.yml
-@@ -0,0 +1,10 @@
-+header:
-+  version: 8
-+  includes:
-+    - kas-security-base.yml
-+
-+local_conf_header:
-+  meta-security: |
-+    DISTRO_FEATURES_append = " ima"
-+
-+machine: qemux86
+ S = "${WORKDIR}/${BPN}"
+ 
 -- 
 2.17.1
 
