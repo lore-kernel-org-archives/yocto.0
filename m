@@ -1,231 +1,76 @@
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web10.40061.1595257659177764317
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+ by mx.groups.io with SMTP id smtpd.web12.39834.1595257932551606133
  for <yocto@lists.yoctoproject.org>;
- Mon, 20 Jul 2020 08:07:41 -0700
+ Mon, 20 Jul 2020 08:12:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=WmQwd3FO;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1595257659; x=1752937659;
-  h=from:to:subject:date:mime-version;
-  bh=950UV5hFXfEePiY9PfbZSnYjHKICJLtYgnWmAdscqKc=;
-  b=WmQwd3FO/aAYmGlirV1HHOOEd+pxPccqf57aOrKk1FV1D6F9nrMnTr4r
-   RbbdlNScGL290DD5gafITS9j5RQ2jgP0TQfHiPEYaWzniTeixFmyplQ4t
-   6ldc9uK8g/qM+FP63SIHuDVIAIMixivSgEpjMmLrKxE11d7wXqSuQFNpS
-   A=;
-IronPort-PHdr: =?us-ascii?q?9a23=3As3jpMheNA0KDP7SlHUQB6maJlGMj4u6mDksu8pMi?=
- =?us-ascii?q?zoh2WeGdxcWyZR7h7PlgxGXEQZ/co6odzbaP7ea8BSdZuN6oizMrSNR0TRgLiM?=
- =?us-ascii?q?EbzUQLIfWuLgnFFsPsdDEwB89YVVVorDmROElRH9viNRWJ+iXhpTEdFQ/iOgVr?=
- =?us-ascii?q?O+/7BpDdj9it1+C15pbffxhEiCCybL9vLRi6twrcu8YZjYd/N6o61wfErGZPd+?=
- =?us-ascii?q?lK321jOEidnwz75se+/Z5j9zpftvc8/MNeUqv0Yro1Q6VAADspL2466svrtQLe?=
- =?us-ascii?q?TQSU/XsTTn8WkhtTDAfb6hzxQ4r8vTH7tup53ymaINH2QLUpUjms86tnVBnlgz?=
- =?us-ascii?q?oBOjUk8m/Yl9Zwgbpbrhy/uhJ/34DaboKUNPVicazQZskVSXZDXstLSyBNHp2w?=
- =?us-ascii?q?Yo0SBOQBJ+ZYqIz9qkMAoRW5AgmsAvjvxSFWiX/txaExzvkvER3Y0ww+Ad0Otm?=
- =?us-ascii?q?nfocvoP6sWX++70azEwTveZP5Rwjf99JbHcg4/rvGKR75wdM3RyU80FwzbkFqQ?=
- =?us-ascii?q?spfoMCiP2esTqGia7/FgVf6xhG4isAF9uCSgxsApioTQgI8e11/L+zljzokvOd?=
- =?us-ascii?q?24VFB0YcSiEJZIuS+XOZd7T8IgTmxppio216MLtJ27cSUOx5kqyAPTZfKHfoaH?=
- =?us-ascii?q?/x7uUOScLDd3iX9kZb6ymRK//Eujx+DhS8W631BHpTdGnNnUrn0BygDf5tKJR/?=
- =?us-ascii?q?Z/5EutxDKC2g7J5uxFIU04jbfXJ4I7zrM/mZcfq0DOEjX1lUj0iqKda18q9fKy?=
- =?us-ascii?q?6+v9Z7XrvpqcN4hphQ7gKqkugcm/AfggMggJQmib5fyw1L398k39R7VHluM2nb?=
- =?us-ascii?q?PZsJDcIMQbvaq0DgtR34o/9hqzFTGm384CkXYcNl1KZgmHjojyO1HSPv/4COy/?=
- =?us-ascii?q?j06wnzdswvDKJrzhApPTIXjfiLrtYKpx51RSxQcx19xT+pZZB78bLP/yWkL9rN?=
- =?us-ascii?q?nYAQU4MwywzebnEtJ91oYGVGKUHq+WLr3SvkGO5u41JumMY4kVuC3jJPc7/P7j?=
- =?us-ascii?q?lmQ2lkUDcqmy3ZoXc2y4EepjI0WCe3bjntABEWISsgokUOPqkEGCUSJUZ3uqX6?=
- =?us-ascii?q?M84S00CJ6hDYrYQoCtgaeB3DugHpFMZmFGDUyDEWvvd4WcQfcMbyCSLdF9nTwY?=
- =?us-ascii?q?T7ShTJUh1R79/DP9nvB2KeHI/QUctIn/z55k4ObPkgko8j55BNjb1HuCBSkgj2?=
- =?us-ascii?q?QDWzge2KFkvVc721CIza9gmftaGNdPofRTXVFpG4TbyrkwLtf0QQ/MZZPBc0qr?=
- =?us-ascii?q?XNigSRp5Du8KgpVGN11hFsuviFbG2CyxDrIOv7aCCYcl6b7R2mO3LMF4nSWVnJ?=
- =?us-ascii?q?I9hkUrF5McfVatgbRyolDe?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2DhAwDhsRVf/0HBJQpggQmBSoEjgXaBP?=
- =?us-ascii?q?a9HgX0LAQEBAQEBAQEBBwEvBAEBhm4lNQgOAhABAQYBAQEBAQYEAYZJC4I3IoN?=
- =?us-ascii?q?MXgEaZhcPAQQbgx+BfqtogTSFUoRvgTiOTj6Dc4sfBJknnCAHA4JdmVoqn0iSA?=
- =?us-ascii?q?Z5/AgQCBAUCFYFUAYIPcIM6TxcCDZxlgSsCBggBAQMJjn6BEQEB?=
-X-IPAS-Result: =?us-ascii?q?A2DhAwDhsRVf/0HBJQpggQmBSoEjgXaBPa9HgX0LAQEBAQE?=
- =?us-ascii?q?BAQEBBwEvBAEBhm4lNQgOAhABAQYBAQEBAQYEAYZJC4I3IoNMXgEaZhcPAQQbg?=
- =?us-ascii?q?x+BfqtogTSFUoRvgTiOTj6Dc4sfBJknnCAHA4JdmVoqn0iSAZ5/AgQCBAUCFYF?=
- =?us-ascii?q?UAYIPcIM6TxcCDZxlgSsCBggBAQMJjn6BEQEB?=
-X-IronPort-AV: E=Sophos;i="5.75,375,1589241600"; 
-   d="scan'208,217";a="291499864"
-X-IronPort-AV: E=Sophos;i="5.75,375,1589241600"; 
-   d="scan'208,217";a="424839410"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Adjusting Extensible SDK for build setup
-Thread-Topic: Adjusting Extensible SDK for build setup
-Thread-Index: AdZep08Nr0r4qTsuQMiHvVDazPILjA==
-Date: Mon, 20 Jul 2020 15:06:14 +0000
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.9.87]
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=G283pJik;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.49, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f49.google.com with SMTP id q15so22635062wmj.2
+        for <yocto@lists.yoctoproject.org>; Mon, 20 Jul 2020 08:12:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=FXud7A+VZIuvlu2BPNchoqLIZ64OB89l5nQTTupkq+k=;
+        b=G283pJikDhmcvYCjCVLRlvm+ksVizw0LeShZht31FDd72jTIHezIwAK0wiR3WTmVp7
+         WlQddgWJbSRx7SAd5BxRAncauUFAcOqXebUzTc5mA9crK5zI8oswSQ+VOX0PNq8d6Dog
+         ZN04VHdnbxSI1CpEZEd2L00ujboZRqdafuy8w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=FXud7A+VZIuvlu2BPNchoqLIZ64OB89l5nQTTupkq+k=;
+        b=G8ybELqLgEZkvAylqYQDSnl6b969d62qhRyhpIjVejvzmtEijEhb5zcWhlF6LmvGtr
+         ej2e/p34Rg5TYxnUrXBx2mP79342d2D/bd4JJknKubaEdg/tZgpIwR4zvIJSgSQ8YqO+
+         VTyD7fT5hz5Gam9C9aJaoAqlxiWYT2AW2ZeUN/rsZIbGrciYN1GJ8bzv1bgHfrR4hE8J
+         C9uZmxUA6z+W0OfbLXR+M3P5jqohIDyDtstto09tZcNSSXqgb04yxMU0h91WuG1ae1jH
+         rAe1jocqf6yEyzbxciQLGD982O9vP1/DRVDKXljaLh/LlSvhgMYTW+zwQ1MnU98BdVpT
+         2Iqw==
+X-Gm-Message-State: AOAM530DQzaaWZ0spBqYy8rfJJuOCo8+90zKOSGks+gjgWajXq+iNtJG
+	OfobojTU4h8U7hLnG51OHgReRA==
+X-Google-Smtp-Source: ABdhPJytuA31f6h+uzlm8G2HGeDkzoXmrZoG8C5SC/rXp7ZEXIVjoOxdUr2FKOc4P39BPeI+oL2cVg==
+X-Received: by 2002:a1c:3dc3:: with SMTP id k186mr23144249wma.66.1595257931067;
+        Mon, 20 Jul 2020 08:12:11 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from 5.f.a.a.6.6.c.6.8.7.0.3.0.b.c.1.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (5.f.a.a.6.6.c.6.8.7.0.3.0.b.c.1.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:1cb0:3078:6c66:aaf5])
+        by smtp.gmail.com with ESMTPSA id k126sm34108468wmf.3.2020.07.20.08.12.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jul 2020 08:12:10 -0700 (PDT)
+Message-ID: <8d0258be3275bc76159bdd096d75c8c7984ff6d3.camel@linuxfoundation.org>
+Subject: Re: [yocto] Offline Build #yocto
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: "Amrun Nisha.R" <amrunnishar@gmail.com>, yocto@lists.yoctoproject.org
+Date: Mon, 20 Jul 2020 16:12:06 +0100
+In-Reply-To: <16314.1595254681269487194@lists.yoctoproject.org>
+References: 
+	<f7fc0973c145bd10b5196d42b8b2903a624d4c20.camel@linuxfoundation.org>
+	 <16314.1595254681269487194@lists.yoctoproject.org>
+User-Agent: Evolution 3.36.3-0ubuntu1 
 MIME-Version: 1.0
-Message-ID: <MADEUP.16237E6420DAF7B2.12894@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_991d2a793b844975bf5e6bc5587584c2baesystemscom_"
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---_000_991d2a793b844975bf5e6bc5587584c2baesystemscom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Mon, 2020-07-20 at 07:18 -0700, Amrun Nisha.R wrote:
+> For gnu-config-native-20150728, I have copied the git2 folder from
+> older build folder to new build folder. It is fixed now.
+> 
+> But I'm getting do_fetch error for the ncurses and ncurses_native. I
+> have attached the log file for both packages.
+> 
+> Actually I have doubts regarding the build folders:
+> 1. As mentioned above, I have copied the sources and download folder
+> to the another machine. While bitbaking, it again doing the do_fetch
+> process. Whether I have to copy the build folder (build_wayland)?
+> 2. Is there any particular folders should be copy other than the
+> sources and download folder to build the yocto project in offline?
 
+When you run the original build, where is DL_DIR pointing? Find that
+and make sure the same directory is available to the second build.
 
-I am fairly new to the Yocto SDK build process, and am looking to create an=
- extensible SDK for one of our platforms.
+It sounds a bit like you have multiple builds are not sharing the same
+DL_DIR so either make them share them, or copy them all.
 
-I am currently working with Rocko 2.4.1, in conjunction with uninative rele=
-ase 1.9...
+Cheers,
 
-My current build system setup does not follow the standard configuration, I=
- use a different environment setup script other than "oe-init-build-env".
+Richard
 
-My environment setup script "setup-build-env" is also not located in the  $=
-{COREBASE}, i.e. the "poky" directory, but rather at "${COREBASE}/../meta-b=
-ae/meta-limws", the meta-limws level has multiple architecture sub levels (=
-each an independent build), I am only looking to build an SDK for one of th=
-ese architectures. Each architecture's  bblayers.conf provides the appropri=
-ate layers...
-
-My build directory is expected to reside here:   "${COREBASE}/../meta-bae/m=
-eta-limws/builds, and there are multiple architecture builds under this dir=
-ectory.
-
-In the Yocto Project Mega-Manual, Appendix B.2... it talks about setting up=
- COREBASE and COREBASE_FILES...
-
-The default COREBASE_FILES is setup in populate_sdk_ext.bbclass as:
-
-COREBASE_FILES ?=3D " \
-    oe-init-build-env \
-    scripts \
-    LICENSE \
-    .templateconf \
-"
-How do I configure COREBASE, COREBASE_FILES, and OE_INIT_ENV_SCRIPT variabl=
-e so that populate_sdk_ext.bbclass is able to properly run "do_populate_sdk=
-_ext" without having to modify populate_sdk_ext.bbclass ?
-
-Can someone tell me the proper configuration for these variables so that my=
- "setup-build-env" script is copied/used correctly by the SDK build env ?
-
-Thanks,
-Steve
-
-
-
-
---_000_991d2a793b844975bf5e6bc5587584c2baesystemscom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am fairly new to the Yocto SDK build process, and =
-am looking to create an extensible SDK for one of our platforms.<o:p></o:p>=
-</p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am currently working with Rocko 2.4.1, in conjunct=
-ion with uninative release 1.9&#8230;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">My current build system setup does not follow the st=
-andard configuration, I use a different environment setup script other than=
- &#8220;oe-init-build-env&#8221;.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">My environment setup script &#8220;setup-build-env&#=
-8221; is also not located in the &nbsp;${COREBASE}, i.e. the &#8220;poky&#8=
-221; directory, but rather at &#8220;${COREBASE}/../meta-bae/meta-limws&#82=
-21;, the meta-limws level has multiple architecture sub levels (each an ind=
-ependent
- build), I am only looking to build an SDK for one of these architectures. =
-Each architecture&#8217;s &nbsp;bblayers.conf provides the appropriate laye=
-rs&#8230;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">My build directory is expected to reside here: &nbsp=
-;&nbsp;&#8220;${COREBASE}/../meta-bae/meta-limws/builds, and there are mult=
-iple architecture builds under this directory.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">In the Yocto Project Mega-Manual, Appendix B.2&#8230=
-; it talks about setting up COREBASE and COREBASE_FILES&#8230;<o:p></o:p></=
-p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The default COREBASE_FILES is setup in populate_sdk_=
-ext.bbclass as:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">COREBASE_FILES ?=3D &quot; \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; oe-init-build-env \<o:p></o:p></p=
->
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; scripts \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; LICENSE \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; .templateconf \<o:p></o:p></p>
-<p class=3D"MsoNormal">&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><b>How do I configure COREBASE, COREBASE_FILES, and =
-OE_INIT_ENV_SCRIPT variable so that populate_sdk_ext.bbclass is able to pro=
-perly run &#8220;do_populate_sdk_ext&#8221; without having to modify popula=
-te_sdk_ext.bbclass ?<o:p></o:p></b></p>
-<p class=3D"MsoNormal"><span style=3D"color:#2E75B6"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal">Can someone tell me the proper configuration for the=
-se variables so that my &#8220;setup-build-env&#8221; script is copied/used=
- correctly by the SDK build env ?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Steve<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_991d2a793b844975bf5e6bc5587584c2baesystemscom_--
