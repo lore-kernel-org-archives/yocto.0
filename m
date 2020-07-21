@@ -1,101 +1,119 @@
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
- by mx.groups.io with SMTP id smtpd.web12.14747.1595319858934531183
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.15023.1595321587989602853
  for <yocto@lists.yoctoproject.org>;
- Tue, 21 Jul 2020 01:24:19 -0700
+ Tue, 21 Jul 2020 01:53:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=bmR/crUR;
- spf=pass (domain: gmail.com, ip: 209.85.208.49, mailfrom: martin.jansa@gmail.com)
-Received: by mail-ed1-f49.google.com with SMTP id h28so14686007edz.0
-        for <yocto@lists.yoctoproject.org>; Tue, 21 Jul 2020 01:24:18 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=HU5P2bCO;
+ spf=softfail (domain: linuxfoundation.org, ip: 140.211.169.56, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 86570E01ED0; Tue, 21 Jul 2020 01:53:07 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.128.67 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com [209.85.128.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93A47E01E4E
+	for <yocto@yoctoproject.org>; Tue, 21 Jul 2020 01:53:05 -0700 (PDT)
+Received: by mail-wm1-f67.google.com with SMTP id a6so1714129wmm.0
+        for <yocto@yoctoproject.org>; Tue, 21 Jul 2020 01:53:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=t/C5NAUAnF3NbwNyXuv3nUtVCulLmoQVF1MlKmCR8f0=;
-        b=bmR/crUR3kf5xbkfwjNfHHCnY/P5YtuxcZaBhzdEskTIVIns0AtzbMFNxrOItJsb2W
-         bzhFB2701dP8rWDsVvRonyanh+xV6IYuaTM5SbK70bh9E/cX6hXrLepLl8KEB+hIqTe6
-         9aw3cb1MdSc41TNmtokKvboeFu6Jpe1wDlTBcF0ZPsyZGMU0PVaZAb0IFSGJSvEpcRiU
-         MywpyNQY8QZDR3VxN+kDnEuSWhSItUqXNxQGx9lVh2T3ZYOwBQBrti/whgfZP1kj93X/
-         05mz1v2MXWU7KWyOM2Dgvw2AZIIVCqfjlugsCjppzOFYqgR41xZMUsfbUzGnPNOfIEUE
-         r8Cw==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=zYCNEJACaPiEaUhEZirYxzQJlragZteVQ/Y6JR8khRQ=;
+        b=HU5P2bCOgnZa4vUNTBsuOU24RDcTkE1lyiE656vv8YbD2OJYS7RIJ6PIWGRCSMWoAG
+         /GIDJCbswCGD14Y6DBoAFWMIcsYXvOc4YnUvZ9mpc9o5UaatpG8OSy20HLcbfujtFvJf
+         pOTcV9fr7CEs9GU6IrhE4HF1GO/vpmzZlvVTA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=t/C5NAUAnF3NbwNyXuv3nUtVCulLmoQVF1MlKmCR8f0=;
-        b=VwvXZRyYfuAc7NeDfnOpSioZwR11iEnGAai/fhrUbsj04hA9Z7ViW6ntLIgddZf9/1
-         kWMkzhab7/QeVD+uwxore2pdpmaPF4+uc3iHxcFET3ghuvyoEyGUQN+rxQGTpMA7LiNj
-         pHFJNJ0Z1AXOGxOpZbH9LTpY1p97Ch6yN78mdZpwQiD0pmMmiUZt8aDW6o/TWC6bvwb8
-         LXXI8SFwfcIOn3NI9DDokfwU2aen5XW6RUMbOBownxRqU4EADuoLkj2jXKxbWF30njJ9
-         gtKQw1HDz9YBnFvDLKZYuyWlPGQyBYWjFWbBl/4mXKcv/Tt1zAkxGZKoiLbb2hN1plgY
-         cAEg==
-X-Gm-Message-State: AOAM531kaXI9U1lkI89dSob4ud7eKd4+klsFE+2EU3SAh5K2K4cOIn0y
-	mjNf3NKVIEV/g2QDu2gV/FNwPYt2Aj1VGOv5dtA=
-X-Google-Smtp-Source: ABdhPJykpIKMNCF4zUwf6pqRNzXuEDjVUQ7J3qpMXL9sdAd+tNbn/WUIls4HqyeYGF0BQ5rIZXYUvxzF9OSo7c6ko/k=
-X-Received: by 2002:a50:ee01:: with SMTP id g1mr24074788eds.264.1595319857498;
- Tue, 21 Jul 2020 01:24:17 -0700 (PDT)
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=zYCNEJACaPiEaUhEZirYxzQJlragZteVQ/Y6JR8khRQ=;
+        b=MlnkMxxktJEEighyCdDrVETPQbYtxxYxHshe4Qzcoifj0QqR6j5SLqYOnVWTaIfF1x
+         ga+UEhG2kz3JzTKeEYEM6SCK859M5BF2MAXYgPcZ5wbOT305swURHbC9hRU0wJox8410
+         SLHEo4BggPfEVreLQ6rjRKR2EGzw8A94XHPqgmDL2uOrYH1SD8JxMDP/APtciL/4K28e
+         VKAt00Q9o78v+rRZUDVp5wI9TgeBA7jk278TNxuK20GX9CeqTjUtEPjBZ4Rql4T5RKYR
+         t6qMV2J+OrGH1GtSzOwqse7yJrOXV0V5S7PLmh+GBd3fC4OAsR3xPsau/zN1A5sxH7Qa
+         SH1A==
+X-Gm-Message-State: AOAM532SbD1eLDeMKlcCERRlwpBw0RpWoEyi3g8T0amTosOECRPpTqif
+	lOZ8HHGRYDoDHpI2A+9VeftxBw==
+X-Google-Smtp-Source: ABdhPJwmzdzRKW+GVQvXv5EVZ+ZvImTsC3czMBC7v5o1nKBEvqWSkC9AVIClfBGBOBP8cPHw5Iarnw==
+X-Received: by 2002:a1c:7fd3:: with SMTP id a202mr2961779wmd.67.1595321585130;
+        Tue, 21 Jul 2020 01:53:05 -0700 (PDT)
+Received: from 6.d.c.a.e.4.9.c.8.4.4.2.b.1.8.1.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (6.d.c.a.e.4.9.c.8.4.4.2.b.1.8.1.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:181b:2448:c94e:acd6])
+        by smtp.gmail.com with ESMTPSA id l1sm39019702wrb.12.2020.07.21.01.53.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Jul 2020 01:53:04 -0700 (PDT)
+Message-ID: <cca863dd41cf837cfaa89484c010578e5ac0809b.camel@linuxfoundation.org>
+Subject: Re: [bitbake-devel] [yocto] Stable Warrior branch
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Adrian Bunk <bunk@stusta.de>, akuster <akuster808@gmail.com>
+Cc: Patches and discussions about the oe-core layer
+	 <openembedded-core@lists.openembedded.org>, "yocto@yoctoproject.org"
+	 <yocto@yoctoproject.org>, "bitbake-devel@lists.openembedded.org"
+	 <bitbake-devel@lists.openembedded.org>
+Date: Tue, 21 Jul 2020 09:53:03 +0100
+In-Reply-To: <20200714135619.GF25970@localhost>
+References: <03a353c4-80dd-e66c-3222-7850a98182f7@gmail.com>
+	 <20200714135619.GF25970@localhost>
+User-Agent: Evolution 3.36.3-0ubuntu1 
 MIME-Version: 1.0
-References: <vwp4.1595315227497297738.rdls@lists.yoctoproject.org>
-In-Reply-To: <vwp4.1595315227497297738.rdls@lists.yoctoproject.org>
-From: "Martin Jansa" <Martin.Jansa@gmail.com>
-Date: Tue, 21 Jul 2020 10:24:06 +0200
-Message-ID: <CA+chaQc3mCMf5wmbE_=hF3pN8-Znxz4ksA0L1nUF=BpEFJvzOA@mail.gmail.com>
-Subject: Re: [yocto] Building of warrior branch fails when building with Ubuntu 20.04 LTS #qemu #yocto #linux
-To: Bernd <bsp@swissqprint.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000068ceb805aaef5951"
-
---00000000000068ceb805aaef5951
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-You can backport
-https://git.openembedded.org/openembedded-core/commit/?h=dunfell&id=2cca75155baec8358939e2aae822e256bed4cfe0
-
-On Tue, Jul 21, 2020 at 9:07 AM Bernd <bsp@swissqprint.com> wrote:
-
-> Hello,
->
-> we are using the warrior branch for our embedded Linux project. Since
-> Ubuntu 20.04 LTS has been released we would like to switch from 18.04 to
-> 20.04. However, Ubuntu 20.04 now uses glibc-2.31 where the stime function
-> has been replaced. Therefore the build process of qmu-native-3.1.1.1 fails
-> with the following error code:
->
-> /opt/ti/tq-yocto/build/tmp/hosttools/ld.bfd: linux-user/syscall.o: in
-> function `do_syscall1': |
-> /opt/ti/tq-yocto/build/tmp/work/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.1.1.1/linux-user/syscall.c:7404:
-> undefined reference to `stime'
->
-> Is there a work around?
->
-> Thanks a lot for your help,
-> Bernd
+On Tue, 2020-07-14 at 16:56 +0300, Adrian Bunk wrote:
+> On Thu, Jun 04, 2020 at 09:28:00PM -0700, akuster wrote:
+> > Hello,
+> > 
+> > The Warrior branch of Poky has had its last official dot release.
+> > It
+> > will be moving to Community support and EOL within 6 weeks if no
+> > one
+> > steps up.
+> > If someone is interested in taking on the responsibilities of
+> > maintaining the "Warrior" branch moving forward, please email this
+> > list.
 > 
->
+> I have an interest in keeping warrior branch alive in poky and meta-
+> oe,
+> and I'll take this responsibility since noone else seems to be
+> interested.
+> 
+> > Please look at the
+> > https://wiki.yoctoproject.org/wiki/Stable_Release_and_LTS for what
+> > will
+> > be expected.
+> 
+> I have some ideas, but not yet a fixed plan how I will set this up.
 
---00000000000068ceb805aaef5951
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Ok. FWIW we are struggling a little with keeping the older releases
+building on the autobuilder as the workers change. We do have plans for
+handling this with buildtools but its not rolled out on the older
+autobuilder-helper branches.
 
-<div dir=3D"ltr">You can backport=C2=A0<a href=3D"https://git.openembedded.=
-org/openembedded-core/commit/?h=3Ddunfell&amp;id=3D2cca75155baec8358939e2aa=
-e822e256bed4cfe0">https://git.openembedded.org/openembedded-core/commit/?h=
-=3Ddunfell&amp;id=3D2cca75155baec8358939e2aae822e256bed4cfe0</a></div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Ju=
-l 21, 2020 at 9:07 AM Bernd &lt;<a href=3D"mailto:bsp@swissqprint.com">bsp@=
-swissqprint.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex"><p style=3D"margin-left:30px"><span>Hello</span><span></span=
->,<br><br>we are using the warrior branch for our embedded Linux project. S=
-ince Ubuntu 20.04 LTS has been released we would like to switch from 18.04 =
-to 20.04. However, Ubuntu 20.04 now uses glibc-2.31 where the stime functio=
-n has been replaced. Therefore the build process of qmu-native-3.1.1.1 fail=
-s with the following error code:<br><br>/opt/ti/tq-yocto/build/tmp/hosttool=
-s/ld.bfd: linux-user/syscall.o: in function `do_syscall1&#39;: | /opt/ti/tq=
--yocto/build/tmp/work/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.1.1.1/linu=
-x-user/syscall.c:7404: undefined reference to `stime&#39;<br><br>Is there a=
- work around?<br><br>Thanks a lot for your help,<br>Bernd</p>
-<br>
-</blockquote></div>
+I do have work in progress working with Jeremy for thud
+(contrib/rpurdie/thud), much of which should apply to warrior too
+(contrib/rpurdie/warrior is a guess). I just really want to highlight
+that there may be some initial work to get these older branches to the
+point where they continue to work on the infrastructure.
 
---00000000000068ceb805aaef5951--
+I think we may have to accept backporting a lot of patches in helper to
+bring things more into sync with master/dunfell to make all this easier
+to maintain/get working.
+
+Cheers,
+
+Richard
+
