@@ -1,73 +1,79 @@
-Received: from mail-io1-f66.google.com (mail-io1-f66.google.com [209.85.166.66])
- by mx.groups.io with SMTP id smtpd.web10.1180.1595354231651274794
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+ by mx.groups.io with SMTP id smtpd.web10.2840.1595358658043631906
  for <yocto@lists.yoctoproject.org>;
- Tue, 21 Jul 2020 10:57:11 -0700
+ Tue, 21 Jul 2020 12:10:58 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=mEh7epcg;
- spf=pass (domain: gmail.com, ip: 209.85.166.66, mailfrom: jpewhacker@gmail.com)
-Received: by mail-io1-f66.google.com with SMTP id p205so22344710iod.8
-        for <yocto@lists.yoctoproject.org>; Tue, 21 Jul 2020 10:57:11 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ptCv9ruF;
+ spf=pass (domain: gmail.com, ip: 209.85.216.51, mailfrom: raj.khem@gmail.com)
+Received: by mail-pj1-f51.google.com with SMTP id b92so2131206pjc.4
+        for <yocto@lists.yoctoproject.org>; Tue, 21 Jul 2020 12:10:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8/i/7qUZts4A9v3VS6cI48p04IP32xqk2bByBj1Olx4=;
-        b=mEh7epcgom3iDJzEQfnJEycQz1FykBuuAsuWsmhJYkqGbZwjb9/nB2wpU2z95Z4uDW
-         hIHQF51rLWEHULn8zpdgQV99doQAoJGrHpNUQFTPX/sceROHNmlXmKG3V2J1k2mkC0vk
-         2WBZQtTIpy0WNNp5J0SMuXfAS9CJr+rGPgC6ZSrVvjgBs0vNOI2uUwGrBi5kIwmaDDh9
-         5hdqdnbcOF38t4vQm57rllxaNhFIfcoi3drvPWzrotvF4NcxrRM7ACkfBlXyen+pQKCT
-         XNRURAbzVGM9hAGeqxRRwEcrY/lb+i+n0R8R7fJhEgt0A2JU/higAZi2WcJm80rxNsg5
-         HRcw==
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=zLm6g7Bs7uU96mYUgT75GvspKqkaEoBYa6bCI9SxfuU=;
+        b=ptCv9ruFntC2uXp1cQFUVFWrU2kktajIxiojViRGAzrcJLUgw4v9G77ltM4o+YYSW7
+         AUNrVhzaA4yyRFd2F2kQsiCPV4ygfzb7sIpwJJVojdTGbqwqI8mgdphCHZen8+W3qAK3
+         9QE94n4/nZ9MeqMM7XAzBqGx4hHz085J2hMLjMiAXefYULgZ0nNDMcaubCF48uOpy9Cf
+         EOjzQq2wuxJwBlKaDGNrysstAsTse7xXGk4RDoh9jwqYchXFHHpSLwbZtK7wCQGXWOO5
+         ZVK9rFKbsFqzd9svO6yn8bklI/3i40WRM3cuv2syZYWLZXK+KrrAkk+TuDjvJ94Ca/Z2
+         yBQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=8/i/7qUZts4A9v3VS6cI48p04IP32xqk2bByBj1Olx4=;
-        b=blEufFZQrgCWT6sHHjMhQ+wVbdKlXDudElCcPIFismrbGdM7NgpnRYwBoZK2/uyL8h
-         A5KnvelIcsGtfzwGZWv15alGnTJTo4RUMQ+PaUg363Ei1c8l7HDrpY0IIVOZ6u3PHRBQ
-         gCsWhi90umA3695/uIfntx/nXYB3zUIDRAiAMayWFTX4rC/dD8PAKejZA0m2mWlngpdU
-         eqfXvIExfY9j2M26+oAGU5X5oO6TYQ/Zi6iB5eN9ywwlr6XQdTnkNnK7PseMCxyd1FS0
-         OJ7kYCKjsz5f4f8kuHA0hNSV/xbDFfoxMbhYDn7n3rttD9RKrLOE61SbmQlJpAhkdL58
-         aKvA==
-X-Gm-Message-State: AOAM530Tnhdr6sjNuDF3qrKRTbQUkUaSSHQbdZv5XlfC3z9x44aSBPG6
-	y+SXP4RKMmP8JQrOM7zusQfH66XIx84=
-X-Google-Smtp-Source: ABdhPJzOA6Oe3K0yLJD3lGXd2GpONbt4RtsnyStFn36VZyiPQhM+mP1VqKRSJco1DvFBO8IdorkcvA==
-X-Received: by 2002:a6b:c903:: with SMTP id z3mr721947iof.172.1595354230346;
-        Tue, 21 Jul 2020 10:57:10 -0700 (PDT)
-Return-Path: <jpewhacker@gmail.com>
-Received: from localhost.localdomain ([2605:a601:ac3d:c100:c183:1b34:3163:7b15])
-        by smtp.gmail.com with ESMTPSA id m16sm10648945ili.26.2020.07.21.10.57.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jul 2020 10:57:09 -0700 (PDT)
-From: "Joshua Watt" <JPEWhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Joshua Watt <JPEWhacker@gmail.com>
-Subject: [yocto][meta-mingw][PATCH] gdb-cross-canadian: Stop statically linking
-Date: Tue, 21 Jul 2020 12:57:08 -0500
-Message-Id: <20200721175708.11718-1-JPEWhacker@gmail.com>
-X-Mailer: git-send-email 2.27.0
+        bh=zLm6g7Bs7uU96mYUgT75GvspKqkaEoBYa6bCI9SxfuU=;
+        b=K4mhuphnYyoVI5bGhIUm6AqdYwCtS1E+tpRmUwmLpUbawVemteEXgGi6dmHGD/ZlFg
+         fTEex9f7bJhvMUTw6jSRtpmY9DGFCLn7LAiR8FNCUpGw+gz3RmRClJSKs6d2E+LoX8Kt
+         GkhGpG+Bk9OwF4KJywU1GXnjmDc+OdvsPAlBFEWqO/zxXIMJvuk1qh/DoQHfc7O9F0nZ
+         ABWICN/V9/W5W8NcCxmt7Jwg1ZvV7NRHYIHZGVWEtYE9dY9sKTwBteyM8q4L0tTWq3mV
+         +wCM3EpHeQgaebbMLgDYQLX0DkzKTUXypnNKg+SvL5CfoAc5I4QwOet2xCGbSZ6nqrpe
+         PBnQ==
+X-Gm-Message-State: AOAM532LKmNf9ZU6JC3zjeP8JN7qGwFpM8S26z1yL4u7MQ+8ohcope2n
+	Ba8dxGnXfPnKF2PECxfW1DZc0OqB1Ks=
+X-Google-Smtp-Source: ABdhPJwlWM/swJP0+qEQZR13LdZlE6LS/yRJNDem8AgCR/5/KhLQ7VoPkYG/GuZryX1rAzAyy0um/w==
+X-Received: by 2002:a17:902:b685:: with SMTP id c5mr23164141pls.115.1595358657119;
+        Tue, 21 Jul 2020 12:10:57 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:4e0::6651? ([2601:646:9200:4e0::6651])
+        by smtp.gmail.com with ESMTPSA id w9sm21552476pfq.178.2020.07.21.12.10.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Jul 2020 12:10:56 -0700 (PDT)
+Subject: Re: [yocto] Linker error undefined reference to `_rtld_global_ro'
+To: Robert Varga <robert.varga@getinge.com>, yocto@lists.yoctoproject.org
+References: <31567.1594972310474932989@lists.yoctoproject.org>
+ <5730.1595344075792268885@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Message-ID: <659b0db3-ad58-0686-e88a-191327606088@gmail.com>
+Date: Tue, 21 Jul 2020 12:10:55 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <5730.1595344075792268885@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-gdb was configured to statically link, presumably so it could find the
-static libexpat library. Since libexpat has been updated, it no longer
-builds a static library, so remove the flag to make GDB look for one.
 
-Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
----
- recipes-devtools/gdb/gdb-cross-canadian_%.bbappend | 1 -
- 1 file changed, 1 deletion(-)
 
-diff --git a/recipes-devtools/gdb/gdb-cross-canadian_%.bbappend b/recipes-devtools/gdb/gdb-cross-canadian_%.bbappend
-index 067b614..c33a9ce 100644
---- a/recipes-devtools/gdb/gdb-cross-canadian_%.bbappend
-+++ b/recipes-devtools/gdb/gdb-cross-canadian_%.bbappend
-@@ -1,4 +1,3 @@
--LDFLAGS_append_sdkmingw32 = " -Wl,-static"
- EXEEXT_sdkmingw32 = ".exe"
- DEPENDS_remove_sdkmingw32 = "nativesdk-ncurses nativesdk-readline nativesdk-python"
- RDEPENDS_${PN}_remove_sdkmingw32 = "nativesdk-python-core nativesdk-python-lang nativesdk-python-re nativesdk-python-codecs nativesdk-python-netclient"
--- 
-2.27.0
+On 7/21/20 8:07 AM, Robert Varga wrote:
+> Hi Khem,
+> 
+> Do you have any ideas, whether the passed compiler parameters ("-pie" or 
+> "-fpie") are the origin of this linker issues?
+> 
+> Does anyone know if glibc is compiled with "--enable-static-pie" if the 
+> passed compiler parameters include those "-pie" or "-fpie"? Or are they 
+> unrelated?
+> 
 
+can you try setting GLIBCPIE = "" in local.conf and see if that helps
+
+> Thanks a lot for your support.
+> 
+> -- 
+> Rob
+> 
+> 
+> 
