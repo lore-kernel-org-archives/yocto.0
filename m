@@ -1,76 +1,79 @@
-Received: from mail-40135.protonmail.ch (mail-40135.protonmail.ch [185.70.40.135])
- by mx.groups.io with SMTP id smtpd.web11.4972.1595593532323935918
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+ by mx.groups.io with SMTP id smtpd.web11.5289.1595594676687005747
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Jul 2020 05:25:32 -0700
+ Fri, 24 Jul 2020 05:44:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@protonmail.ch header.s=protonmail header.b=H9ANCY3w;
- spf=pass (domain: protonmail.ch, ip: 185.70.40.135, mailfrom: vygu@protonmail.ch)
-Date: Fri, 24 Jul 2020 12:25:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.ch;
-	s=protonmail; t=1595593528;
-	bh=C2FTWJSY1Kz0bCXqIUA+IddTC3gj8zzPwmDEcp2HwFE=;
-	h=Date:To:From:Reply-To:Subject:From;
-	b=H9ANCY3wz5lhyNdIX3zZDeiZm+WeAlVFtqdkAed2TcN30tlL3t2PK6fPARP1ak+1a
-	 +xzaMYx1+bD9nigg5FEVBBZnpCrk7aQ+H3vGpEIp83h0L5FNK94UIzP0g1EiyBruNl
-	 OMxHAUjH1Us2kN7IsJ1Qg/SFGEhE0Hv7zRqJUH4U=
-To: "openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>, "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-From: "vygu" <vygu@protonmail.ch>
-Reply-To: vygu <vygu@protonmail.ch>
-Subject: error about cve_check after a 'do_populate_sdk: Succeeded' on poky master since 20 july on ubuntu18.04/Debian 10/Debian 9.12
-Message-ID: <4ndNL9YzwzexePdkb2TsG1deKpyrFQKKBcgbPArK1n89-zKVAjhgWkLksbQrXK27ug5O4Pr69snx4PJnHM_BittA4cTWn9ADxSGhjwGvHKI=@protonmail.ch>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=cpeJtYyX;
+ spf=pass (domain: gmail.com, ip: 209.85.217.50, mailfrom: nikhilvp29@gmail.com)
+Received: by mail-vs1-f50.google.com with SMTP id p25so4822816vsg.4
+        for <yocto@lists.yoctoproject.org>; Fri, 24 Jul 2020 05:44:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=9HneZZcaDsKdtT5wiYE5CCp69yWI1NmVsU6lfz0e9wY=;
+        b=cpeJtYyXtmOx1HsCnAj34goaNOuW3sXO81UhXWY6McbbX7VndJtS2pAa7U8JcGoliq
+         8C2zhU5vmfjB3N04F2PGq22KljzaGG/CkhNwXJZDWi73qXJ/PCLa6BlBmQjTPpbKaOMV
+         ipUEjiupT8OVrxlVyeZ4Aftl+arlBlCRlYH5CmY8wOb3Bfc8cXuB/ZlmwIiWR5+X2EKy
+         9k8e0NSxTM4Dcytu18djuEK8kB98RwyI7KIhEKnpZTi5PfpY1s+yJ+HF1vE9ACCQDZpK
+         fRnmi+75cxpUC3oyTuw7ZgWecEuamlY+edxv+9ylqiP37i/ojN5FZ8vdRSTY4g6O0iHF
+         KMXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=9HneZZcaDsKdtT5wiYE5CCp69yWI1NmVsU6lfz0e9wY=;
+        b=lc0WVZL5B/vskLZCVdcFayn21WCTvNd70Yj69rCZ2Nqkd424AGz+zujTL8h4kqaafA
+         zdmtwt8T+7aeDZsMWmIwjg+OyD2DrwRB0nT1BDBJf7nk57pwNlwVtTTbU9Ce+o0iqBZW
+         sKLef6GJGaEFMIKwt/hkSzw6fMRhkra23LxaG/tWx0B5WN6nD4usOEv+ZlDl18xSwmOW
+         GmMwnsjiAc4bdaTLtwHzpPSvFt++aJuy2JIXJdCGIzehV5YaGMYe+e2jnjxHk4+OAUrI
+         p332PVgg65IHzcgUPSAxRCuJ9bDJRKB+KUJqs3wOlDrdBx69Tcz220zhB3IMTfVSc+oH
+         SlyA==
+X-Gm-Message-State: AOAM532klr9OV8Z4HEQoIpk3U++mB+ryBSp9H6yPJyXtemQgFqLdIwUf
+	VuJ2TKVgmLM5XVtOyYkaRzen5ZF7PZ/CZazc1oc5yFNfJ1U=
+X-Google-Smtp-Source: ABdhPJxbHVOA8nhVIWEQeJRjtwBcRgPwEBVVTJ3MIQEGTph+Psd0RWT47Wx+5qgOeZe8pCTZ9dZh/A1Hb8rqj91xeU0=
+X-Received: by 2002:a67:7047:: with SMTP id l68mr516926vsc.102.1595594675446;
+ Fri, 24 Jul 2020 05:44:35 -0700 (PDT)
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.2 required=7.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,HTML_MESSAGE
-	shortcircuit=no autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on mail.protonmail.ch
-Content-Type: multipart/alternative;
- boundary="b1_7HXk0NzjlRFiYPiYwIqGVRG2zYmmtIq8L8dEnXQsQ"
+From: nikhilvp29@gmail.com
+Date: Fri, 24 Jul 2020 18:14:24 +0530
+Message-ID: <CAJw=dJ_yy8+A6JWoB39rRB0+FbQX+LGFgFmnn9dTWcqPFN2ruQ@mail.gmail.com>
+Subject: Remove connman package from yocto sdk.
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000d5e63905ab2f5534"
 
---b1_7HXk0NzjlRFiYPiYwIqGVRG2zYmmtIq8L8dEnXQsQ
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+--000000000000d5e63905ab2f5534
+Content-Type: text/plain; charset="UTF-8"
 
-SGVsbG8sCgpXZSBvYnNlcnZlIHRoaXMgZm9sbG93aW5nIGVycm9yIGFib3V0IGN2ZV9jaGVjayBh
-ZnRlciBhIHBvcHVsYXRlX3NkazoKCkVSUk9SOiBFeGVjdXRpb24gb2YgZXZlbnQgaGFuZGxlciAn
-Y3ZlX3NhdmVfc3VtbWFyeV9oYW5kbGVyJyBmYWlsZWQKVHJhY2ViYWNrIChtb3N0IHJlY2VudCBj
-YWxsIGxhc3QpOgpGaWxlICIvaG9tZS91c2VyL3Bva3kvbWV0YS9jbGFzc2VzL2N2ZS1jaGVjay5i
-YmNsYXNzIiwgbGluZSA2NSwgaW4gY3ZlX3NhdmVfc3VtbWFyeV9oYW5kbGVyKGU9PGJiLmV2ZW50
-LkJ1aWxkQ29tcGxldGVkIG9iamVjdCBhdCAweDdmZjZkNDFhZjBiOD4pOgoKPiBzaHV0aWwuY29w
-eWZpbGUoY3ZlX3RtcF9maWxlLCBjdmVfc3VtbWFyeV9maWxlKQoKRmlsZSAiL3Vzci9saWIvcHl0
-aG9uMy42L3NodXRpbC5weSIsIGxpbmUgMTIwLCBpbiBjb3B5ZmlsZShzcmM9Jy9ob21lL3VzZXIv
-cG9reS9idWlsZC90bXAvY3ZlX2NoZWNrJywgZHN0PScvaG9tZS91c2VyL3Bva3kvYnVpbGQvdG1w
-L2xvZy9jdmUvY3ZlLXN1bW1hcnktMjAyMDA3MjQxMTE4MTQudHh0JywgZm9sbG93X3N5bWxpbmtz
-PVRydWUpOgplbHNlOgo+IHdpdGggb3BlbihzcmMsICdyYicpIGFzIGZzcmM6CndpdGggb3Blbihk
-c3QsICd3YicpIGFzIGZkc3Q6CkZpbGVOb3RGb3VuZEVycm9yOiBbRXJybm8gMl0gTm8gc3VjaCBm
-aWxlIG9yIGRpcmVjdG9yeTogJy9ob21lL3VzZXIvcG9reS9idWlsZC90bXAvY3ZlX2NoZWNrJw==
+Hi team,
+          We want to use NetworkManager to access internet using LTE module
+. but connman and Networkmaanger both are installed.
 
---b1_7HXk0NzjlRFiYPiYwIqGVRG2zYmmtIq8L8dEnXQsQ
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+          I struggled so much to remove connman,  I tried as follows :-
+           1) Added IMAGE_INSTALL_remove = "connman"  in local.conf
+                            but it still come with sato image.
 
-PGRpdj5IZWxsbyw8YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5XZSBvYnNlcnZlIHRoaXMg
-Zm9sbG93aW5nIGVycm9yIGFib3V0IGN2ZV9jaGVjayBhZnRlciBhIHBvcHVsYXRlX3Nkazo8YnI+
-PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5FUlJPUjogRXhlY3V0aW9uIG9mIGV2ZW50IGhhbmRs
-ZXIgJ2N2ZV9zYXZlX3N1bW1hcnlfaGFuZGxlcicgZmFpbGVkPGJyPjwvZGl2PjxkaXY+VHJhY2Vi
-YWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOjxicj48L2Rpdj48ZGl2PiZuYnNwOyBGaWxlICIv
-aG9tZS91c2VyL3Bva3kvbWV0YS9jbGFzc2VzL2N2ZS1jaGVjay5iYmNsYXNzIiwgbGluZSA2NSwg
-aW4gY3ZlX3NhdmVfc3VtbWFyeV9oYW5kbGVyKGU9Jmx0O2JiLmV2ZW50LkJ1aWxkQ29tcGxldGVk
-IG9iamVjdCBhdCAweDdmZjZkNDFhZjBiOCZndDspOjxicj48L2Rpdj48ZGl2PiZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOzxicj48L2Rpdj48ZGl2PiZuYnNwOyZuYnNwOyZuYnNwOyAmZ3Q7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7IHNodXRpbC5jb3B5ZmlsZShjdmVfdG1wX2ZpbGUsIGN2ZV9zdW1tYXJ5X2Zp
-bGUpPGJyPjwvZGl2PjxkaXY+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7PGJyPjwvZGl2PjxkaXY+
-Jm5ic3A7IEZpbGUgIi91c3IvbGliL3B5dGhvbjMuNi9zaHV0aWwucHkiLCBsaW5lIDEyMCwgaW4g
-Y29weWZpbGUoc3JjPScvaG9tZS91c2VyL3Bva3kvYnVpbGQvdG1wL2N2ZV9jaGVjaycsIGRzdD0n
-L2hvbWUvdXNlci9wb2t5L2J1aWxkL3RtcC9sb2cvY3ZlL2N2ZS1zdW1tYXJ5LTIwMjAwNzI0MTEx
-ODE0LnR4dCcsIGZvbGxvd19zeW1saW5rcz1UcnVlKTo8L2Rpdj48ZGl2PiZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBlbHNlOjxicj48L2Rpdj48ZGl2PiZu
-YnNwOyZuYnNwOyZuYnNwOyAmZ3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7IHdpdGggb3BlbihzcmMsICdyYicpIGFzIGZzcmM6PGJyPjwvZGl2PjxkaXY+Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHdpdGggb3Blbihkc3QsICd3YicpIGFz
-IGZkc3Q6PGJyPjwvZGl2PjxkaXY+RmlsZU5vdEZvdW5kRXJyb3I6IFtFcnJubyAyXSBObyBzdWNo
-IGZpbGUgb3IgZGlyZWN0b3J5OiAnL2hvbWUvdXNlci9wb2t5L2J1aWxkL3RtcC9jdmVfY2hlY2sn
-PGJyPjwvZGl2Pg==
+            2) Added DISTRO_FEATURE_remove = "connman"  in local.conf
+                            but it still come with sato image.
 
+    By default connman is coming in image , how to remove connman ?
 
---b1_7HXk0NzjlRFiYPiYwIqGVRG2zYmmtIq8L8dEnXQsQ--
+--000000000000d5e63905ab2f5534
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi team,<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 We want to=
+ use NetworkManager to access internet using LTE module . but connman and N=
+etworkmaanger both are installed.</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 I str=
+uggled so much to remove connman,=C2=A0 I tried as follows=C2=A0:-</div><di=
+v>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01) Added IMAGE_INSTALL_remove =
+=3D &quot;connman&quot;=C2=A0 in local.conf</div><div>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 but it still come with sato image.</div><div><br></div><div>=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2) Added DISTRO_FEATURE_remove =3D &quot;co=
+nnman&quot;=C2=A0 in local.conf</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 but it s=
+till come with sato image.</div><div>=C2=A0 =C2=A0</div><div>=C2=A0 =C2=A0 =
+By default connman is coming in image , how to remove connman ?</div><div>=
+=C2=A0 =C2=A0 =C2=A0=C2=A0</div></div>
+
+--000000000000d5e63905ab2f5534--
