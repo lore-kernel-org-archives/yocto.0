@@ -1,55 +1,205 @@
-Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
- by mx.groups.io with SMTP id smtpd.web11.5865.1595596467917939437
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+ by mx.groups.io with SMTP id smtpd.web12.96.1595609800672795331
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Jul 2020 06:14:28 -0700
+ Fri, 24 Jul 2020 09:56:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp.bon.at (Postfix) with ESMTPSA id 4BCqRN29ngz5tlC;
-	Fri, 24 Jul 2020 15:14:24 +0200 (CEST)
-Date: Fri, 24 Jul 2020 15:14:23 +0200
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: paruchuribhavyasree@gmail.com
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] ERRORS while building customized yocto image for Raspberrypi #yocto
-Message-ID: <20200724131423.wkpmfforkxce6adv@qschulz>
-References: <PPIi.1595595549816870928.90tI@lists.yoctoproject.org>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=IquHpxvR;
+ spf=pass (domain: gmail.com, ip: 209.85.216.54, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f54.google.com with SMTP id b92so5607978pjc.4
+        for <yocto@lists.yoctoproject.org>; Fri, 24 Jul 2020 09:56:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language;
+        bh=nAHVganb5QbFVG0HMMb00OZkvjZir2izwhBuk3knGno=;
+        b=IquHpxvRW4VFq+MZSp/dRI92J2ImaeIxnYFD3lbDgWNWkEFjWaxqfZGM9nemtFm+L/
+         0isMBO9Jjia2FXWMahzV3qZRmzQPsH03il72Vu+kDKJ8BJNcAeiI+l74L8bdUmzSavTT
+         KZKsvmVB2nwKJ0hdG8eFGZ4kpgustXZWOM2jXzxMb1fOdRlrB0xMp1y1kWYl7Q5hr0kt
+         PjGud5gY1SJv+L7uTnRXZY9rrNElsP6/Ha+6YiB3wcf3iZmTWHeiwLSlzrv/r7sTgKjs
+         sQuljo79XIeVuGdcipn4OUP2iYf5NeW5WhYc8FZiIVxJwMifTTKUy6oN2iWfkwCRCRqt
+         8STQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language;
+        bh=nAHVganb5QbFVG0HMMb00OZkvjZir2izwhBuk3knGno=;
+        b=E4sFRRWc3qVpK3b51//0Dsvv7t+ahNDdER7BK9vkl3628rLEywHXs/BS6e4kTIkvkS
+         jJxQSjm9TGpiG3u9lCN658ahXqjuCPWZEdRjCY1SYVS0lpEl6Fn1fGqmW01MWlsI0/Td
+         Uezx3MHVrI4HSkjJDQiw+4lsEHZC3NvslPQYEgUsZpfzC4rJnGU1lBHKXbQ9BrFNGi4t
+         i30V8tTt9OmEnu0rfACtKSB45BHPMajT+CMHus/zN8KMzPZGXOprFdkkibNCS8kfI90T
+         K6M3e3MaCFZ+37HV2uYX0VKhMHuH0bkD+5+H32U23X+f4acugR+VKQ7cWbIytNb4xPX7
+         Ioyw==
+X-Gm-Message-State: AOAM5318vsoSJuDoeYW4ARz4WrILTM6IXpd86XDSQ+Up125BFY0VuFoW
+	QXVqoC52shgVqJ5OX21QYr3rXd+gbCM=
+X-Google-Smtp-Source: ABdhPJzULXn5tRMKBkQlqGFsodWQ1HA3J64fp3MIXbVqGZzpxHvFlk4BLyw2CBatxDaSDZr0nKC0bw==
+X-Received: by 2002:a17:902:8a90:: with SMTP id p16mr9172453plo.167.1595609799995;
+        Fri, 24 Jul 2020 09:56:39 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from ?IPv6:2601:202:4180:a5c0:c16f:613f:b5e6:25b7? ([2601:202:4180:a5c0:c16f:613f:b5e6:25b7])
+        by smtp.gmail.com with ESMTPSA id 129sm7034714pfv.161.2020.07.24.09.56.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Jul 2020 09:56:39 -0700 (PDT)
+Subject: Re: [yocto] error about cve_check after a 'do_populate_sdk: Succeeded' on poky master since 20 july on ubuntu18.04/Debian 10/Debian 9.12
+To: vygu@protonmail.ch,
+ "openembedded-core@lists.openembedded.org"
+ <openembedded-core@lists.openembedded.org>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <4ndNL9YzwzexePdkb2TsG1deKpyrFQKKBcgbPArK1n89-zKVAjhgWkLksbQrXK27ug5O4Pr69snx4PJnHM_BittA4cTWn9ADxSGhjwGvHKI=@protonmail.ch>
+From: "akuster" <akuster808@gmail.com>
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <4d181c4d-32b3-c5d2-919d-64459ea84c64@gmail.com>
+Date: Fri, 24 Jul 2020 09:56:38 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <PPIi.1595595549816870928.90tI@lists.yoctoproject.org>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+In-Reply-To: <4ndNL9YzwzexePdkb2TsG1deKpyrFQKKBcgbPArK1n89-zKVAjhgWkLksbQrXK27ug5O4Pr69snx4PJnHM_BittA4cTWn9ADxSGhjwGvHKI=@protonmail.ch>
+Content-Type: multipart/alternative;
+ boundary="------------879C3B6CF16576F14E07FE3C"
+Content-Language: en-US
 
-Hi Bhavya,
+--------------879C3B6CF16576F14E07FE3C
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jul 24, 2020 at 05:59:09AM -0700, paruchuribhavyasree@gmail.com wrote:
-> Hi,
+This error has been reported earlier.
+
+I am working on a fix .
+
+-armin
+
+On 7/24/20 5:25 AM, vygu via lists.yoctoproject.org wrote:
+> Hello,
+>
+> We observe this following error about cve_check after a populate_sdk:
+>
+> ERROR: Execution of event handler 'cve_save_summary_handler' failed
+> Traceback (most recent call last):
+>   File "/home/user/poky/meta/classes/cve-check.bbclass", line 65, in
+> cve_save_summary_handler(e=<bb.event.BuildCompleted object at
+> 0x7ff6d41af0b8>):
+>     
+>     >    shutil.copyfile(cve_tmp_file, cve_summary_file)
+>     
+>   File "/usr/lib/python3.6/shutil.py", line 120, in
+> copyfile(src='/home/user/poky/build/tmp/cve_check',
+> dst='/home/user/poky/build/tmp/log/cve/cve-summary-20200724111814.txt',
+> follow_symlinks=True):
+>          else:
+>     >        with open(src, 'rb') as fsrc:
+>                  with open(dst, 'wb') as fdst:
+> FileNotFoundError: [Errno 2] No such file or directory:
+> '/home/user/poky/build/tmp/cve_check'
+>
 > 
-> I'am trying to build Yocto image for a customized code, where the source code is in my local files, so here is my recipe :
-> 
-> ----------------------------------------------------------------------------------------------------------------------------------
-> DESCRIPTION = "GSM-ASTERISK-SPI"
-> HOMEPAGE = ""
-> SECTION = "GSM build for Asterisk"
-> PR = "r1"
-> LICENSE = "GNUC"
-> LICENSE = "GPLv3"
-> LIC_FILES_CHKSUM = "file://license;md5=d41d8cd98f00b204e9800998ecf8427e"
-> 
-> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
-> 
-> DEPENDS = "asterisk"
-> SRCREV = "0.1"
-> SRC_URI = "file://gsm-${PV}.tar.gz"
-> SRC_URI = "file://license"
-> 
 
-SRC_URI = "file://gsm-${PV}.tar.gz \
-	   file://license"
 
-or
+--------------879C3B6CF16576F14E07FE3C
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-SRC_URI = "file://gsm-${PV}.tar.gz"
-SRC_URI += "file://license"
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    This error has been reported earlier.<br>
+    <br>
+    I am working on a fix .<br>
+    <br>
+    -armin<br>
+    <br>
+    <div class="moz-cite-prefix">On 7/24/20 5:25 AM, vygu via
+      lists.yoctoproject.org wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:4ndNL9YzwzexePdkb2TsG1deKpyrFQKKBcgbPArK1n89-zKVAjhgWkLksbQrXK27ug5O4Pr69snx4PJnHM_BittA4cTWn9ADxSGhjwGvHKI=@protonmail.ch">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div>Hello,<br>
+      </div>
+      <div><br>
+      </div>
+      <div>We observe this following error about cve_check after a
+        populate_sdk:<br>
+      </div>
+      <div><br>
+      </div>
+      <div>ERROR: Execution of event handler 'cve_save_summary_handler'
+        failed<br>
+      </div>
+      <div>Traceback (most recent call last):<br>
+      </div>
+      <div>  File "/home/user/poky/meta/classes/cve-check.bbclass", line
+        65, in cve_save_summary_handler(e=&lt;bb.event.BuildCompleted
+        object at 0x7ff6d41af0b8&gt;):<br>
+      </div>
+      <div>    <br>
+      </div>
+      <div>    &gt;    shutil.copyfile(cve_tmp_file, cve_summary_file)<br>
+      </div>
+      <div>    <br>
+      </div>
+      <div>  File "/usr/lib/python3.6/shutil.py", line 120, in
+        copyfile(src='/home/user/poky/build/tmp/cve_check',
+        dst='/home/user/poky/build/tmp/log/cve/cve-summary-20200724111814.txt',
+        follow_symlinks=True):</div>
+      <div>         else:<br>
+      </div>
+      <div>    &gt;        with open(src, 'rb') as fsrc:<br>
+      </div>
+      <div>                 with open(dst, 'wb') as fdst:<br>
+      </div>
+      <div>FileNotFoundError: [Errno 2] No such file or directory:
+        '/home/user/poky/build/tmp/cve_check'<br>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
-Quentin
+--------------879C3B6CF16576F14E07FE3C--
