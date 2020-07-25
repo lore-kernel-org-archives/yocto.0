@@ -1,82 +1,66 @@
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
- by mx.groups.io with SMTP id smtpd.web12.2871.1595617609052155787
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+ by mx.groups.io with SMTP id smtpd.web10.3172.1595645326104321695
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Jul 2020 12:06:49 -0700
+ Fri, 24 Jul 2020 19:48:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ftml.net header.s=fm1 header.b=eeMyaHRI;
- spf=pass (domain: ftml.net, ip: 64.147.123.25, mailfrom: fdk17@ftml.net)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.west.internal (Postfix) with ESMTP id 26F11E89
-	for <yocto@lists.yoctoproject.org>; Fri, 24 Jul 2020 15:06:48 -0400 (EDT)
-Received: from imap7 ([10.202.2.57])
-  by compute3.internal (MEProxy); Fri, 24 Jul 2020 15:06:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ftml.net; h=
-	mime-version:message-id:in-reply-to:references:date:from:to
-	:subject:content-type; s=fm1; bh=33UiqnK5e/vAslunLCMlXkutVodfQ5s
-	tbjF9Zbaszak=; b=eeMyaHRIiX6i/O9gHOyH4O6/bxmsl87giCUQka/aQLfuf5u
-	IzLMaT4g021YIQfwR815Iwp3vFhvdyCQQPJMRKehyM0cWOCJqQC9vieYAsq8hC2J
-	4vINJE1MJvhpUtMwehom+db47RmNa94W1Wu27C2JL2ZE8y8LImfmRfFXKm5yTEKj
-	OyJz1geXAAX/1imJhee/KDB8dVgOhn8Wgcsh1oZZIm5GgxKXuOKQ5Ca6I/IxImVw
-	ZYkG1PIdtEQy0THi8AuZpFbyrQWYo+uKhOGEqP+up1fvAzix2ZmOwtQYvCiyaa7R
-	WcxG2pGQHJyXlBCdJgqHPM2Qvw2m2+dhNcZnUuw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=33Uiqn
-	K5e/vAslunLCMlXkutVodfQ5stbjF9Zbaszak=; b=nZTEEgDuBYeBcFvQ+pS8Pf
-	ukVXZ7aoFo5ebpVz6MAQa2EjuFMh1FcquTkeL76cjaHR7+G/AwAOMH7yMDtE1iTF
-	GFzKd7cRQPfQcOrxNjGUHcGWLEP2lR+YKK/le3zJGI5Bb3NmS0JPQ2+vF3H5dwar
-	Im/eRIIL9/ptE0MhbMlxSlJw4wMc53gI2smGSIyCD/HwJYw9ZDUf+QztjHfeeWbk
-	XYzSJmkgfAENMWAFch87U3a1BfYZa8NUJo2C2rZKQ131Dm5yPGMS5zhwj/C06PGB
-	hjZXqpfaRx+ribXGDomyr6AB2H3RQLZmy1auFGxdmcAwRKRw07zEJL5db/ex8/Ig
-	==
-X-ME-Sender: <xms:RzEbX95Xa7i0Smjr_efFndCU4x_9b6_5amicMj0RTPPnQPK19vfw_Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrheefgddufeehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfgjfhffhffvufgtsegrtd
-    erreerredtnecuhfhrohhmpedfhfhrvgguuceurghkshhikhdfuceofhgukhdujeesfhht
-    mhhlrdhnvghtqeenucggtffrrghtthgvrhhnpefgkedtjeejleehvedtvdfhiedvvddtgf
-    ejveefleeukeevuedvgfejjefgueehhfenucevlhhushhtvghrufhiiigvpedtnecurfgr
-    rhgrmhepmhgrihhlfhhrohhmpehfughkudejsehfthhmlhdrnhgvth
-X-ME-Proxy: <xmx:RzEbX675Q8OjjkodQZ2DZyLYBn7U2I9WI35tUpnY5VWHpjrsfjv_6g>
-    <xmx:RzEbX0f7Cz7-enyAcM1xz8_EQUbYFhVhlRNNpFm-nHklHQRoKR6dwA>
-    <xmx:RzEbX2IzM6txTI8ap5tk7lxev1De7hXzcMko0RT6gLfn4pyZPJ5vww>
-    <xmx:RzEbX0ZyfMyApuLr_YL5zq-LVXX5-uKlk1rj8vdsFXaEDtQqBmV3kQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 5D92418041E; Fri, 24 Jul 2020 15:06:47 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.3.0-92-g11c785d-fm-20200721.004-g11c785d5
-Mime-Version: 1.0
-Message-Id: <932b3576-0e34-456a-8c76-0897a4e8c5c7@www.fastmail.com>
-In-Reply-To: <4159.1595301994782406425@lists.yoctoproject.org>
-References: 
- <CA+chaQcp+gvTxxwxXcMtUL1OnpERhD3TAr3jLFLi+J1sq7qXeA@mail.gmail.com>
- <4159.1595301994782406425@lists.yoctoproject.org>
-Date: Fri, 24 Jul 2020 15:06:15 -0400
-From: "Fred Baksik" <fdk17@ftml.net>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=pEatIqxY;
+ spf=pass (domain: gmail.com, ip: 209.85.216.44, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f44.google.com with SMTP id mn17so6375535pjb.4
+        for <yocto@lists.yoctoproject.org>; Fri, 24 Jul 2020 19:48:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id;
+        bh=hcTcKbx3kwyn6Ony0Kc4oPiMAYAXf47yjo6Ld1L5lSU=;
+        b=pEatIqxYGnbPQc3TyWf2iKSFF0P87bqCvNuwzZ3IrQu29B0EJP6aEJ7lxuH+fFYVOA
+         QWNNF4M94p2vhtEV6c6/s6nTiHynUW21UzcFkbEPnaa7ufOHkVR4t+NDdp9CPp+d2Rhm
+         eG1TftBYxhEljk3X70tfQyVgJr0wiBf+HXTNhPz4O32MlpCMrMV+dy9O2PsZpGymuiXH
+         fqewtSSZQ+GVbdarXcgpVkkGJBFvUA3gdsOy7kpCn52BUpBpOio1f1DWLiOMmtY9YSr8
+         PAcbPWU9gQ29IXMKzkYGYaVb6FqKuSIclMY0z/jhRW2v5QF8OLfmHx0lAYdTzTPpfmFS
+         VwKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=hcTcKbx3kwyn6Ony0Kc4oPiMAYAXf47yjo6Ld1L5lSU=;
+        b=m9uXZQsPX4zDRodfDIvRORZ5Y6rXoWZdY2gnOJLPTLP1xILl9Ya7sPVImMTlITiMu4
+         +QGY/zPt3AB0y/SJIg4LPMXhTZCYSFveXWFtYTk34ro3dC8fnaFtqg6lw/lurVrvYWHC
+         JR6ERS1rKka8hWjC9GPXsG9crNkMLDTVZIc0BcPq52YvKeQep98m2E5atfEt/iFWsoEV
+         LtOrF3/QHneu9rKXq4TmcgKciX4SFAMWIYDxGgw5kqSmuB6pRnbWsjOMTX3PLK/14mrB
+         bD8PLeBQ94PUX9PBb75uMoruwoUeVE3TXCeL0Q2TqpbYGsJU9kM/hcEbe4ImQ/61z05b
+         Kfgw==
+X-Gm-Message-State: AOAM533HZDdGUBAZctLtfVgdEyUzyDB1zJtvfOZr9WfLDL5zhDfL/mun
+	ur3xgKIu1RivCMj/G9seu8BlmfSgU6o=
+X-Google-Smtp-Source: ABdhPJzBLGF6y+MsKl/G3PrpxIRAzQHQaAQ4ZQnAYZ5E6Fl+gs/eIVMxNrBDlFSANTLUahA0Zse9vg==
+X-Received: by 2002:a17:902:302:: with SMTP id 2mr11118148pld.169.1595645325180;
+        Fri, 24 Jul 2020 19:48:45 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:c16f:613f:b5e6:25b7])
+        by smtp.gmail.com with ESMTPSA id d18sm7117799pjz.11.2020.07.24.19.48.44
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Jul 2020 19:48:44 -0700 (PDT)
+From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Offline Build #yocto
-Content-Type: multipart/alternative;
- boundary=3d107f6db603456c92015c0284add692
+Subject: [meta-security][PATCH 1/3] security packagegroups: move to recipes-core
+Date: Fri, 24 Jul 2020 19:48:41 -0700
+Message-Id: <20200725024843.14793-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
---3d107f6db603456c92015c0284add692
-Content-Type: text/plain
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../packagegroup/packagegroup-core-security-ptest.bb              | 0
+ .../packagegroup/packagegroup-core-security.bb                    | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ rename {recipes-security => recipes-core}/packagegroup/packagegroup-core-security-ptest.bb (100%)
+ rename {recipes-security => recipes-core}/packagegroup/packagegroup-core-security.bb (100%)
 
-On Mon, Jul 20, 2020, at 11:26 PM, Amrun Nisha.R wrote:
-> I gave new downloads (<pwd>/downloads) path in replace of /opt/yocto_downloads. It takes the new downloads path and did the compilation, but i'm facing error in do_fetch and do_compile. 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
+diff --git a/recipes-security/packagegroup/packagegroup-core-security-ptest.bb b/recipes-core/packagegroup/packagegroup-core-security-ptest.bb
+similarity index 100%
+rename from recipes-security/packagegroup/packagegroup-core-security-ptest.bb
+rename to recipes-core/packagegroup/packagegroup-core-security-ptest.bb
+diff --git a/recipes-security/packagegroup/packagegroup-core-security.bb b/recipes-core/packagegroup/packagegroup-core-security.bb
+similarity index 100%
+rename from recipes-security/packagegroup/packagegroup-core-security.bb
+rename to recipes-core/packagegroup/packagegroup-core-security.bb
+-- 
+2.17.1
 
-This kind of procedure worked for me pretty straight forward.
-
-Did your original local.conf file contain the following?
-#create download mirrors
-BB_GENERATE_MIRROR_TARBALLS = "1"
-
-
---3d107f6db603456c92015c0284add692
-Content-Type: text/html
-
-<!DOCTYPE html><html><head><title></title><style type="text/css">p.MsoNormal,p.MsoNoSpacing{margin:0}</style></head><body><div>On Mon, Jul 20, 2020, at 11:26 PM, Amrun Nisha.R wrote:<br></div><blockquote type="cite" id="qt" style=""><div>I gave new downloads (&lt;pwd&gt;/downloads) path in replace of /opt/yocto_downloads. It takes the new downloads path and did the compilation, but i'm facing error in do_fetch and do_compile. <br></div><div>-=-=-=-=-=-=-=-=-=-=-=-<br></div><div><br></div></blockquote><div><br></div><div>This kind of procedure worked for me pretty straight forward.<br></div><div><br></div><div>Did your original local.conf file contain the following?<br></div><div>#create download mirrors<br></div><div>BB_GENERATE_MIRROR_TARBALLS = "1"<br></div><div><br></div><div><br></div></body></html>
-
---3d107f6db603456c92015c0284add692--
