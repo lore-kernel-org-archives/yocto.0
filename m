@@ -1,91 +1,180 @@
-Subject: [meta-java] icedtea7-native fails to build with error: cc1plus: all warnings being treated as errors
-To: yocto@lists.yoctoproject.org
-From: ithijme@gmail.com
-X-Originating-Location: Frankfurt am Main, Hesse, DE (185.209.196.166)
-X-Originating-Platform: Linux Firefox 78
-User-Agent: GROUPS.IO Web Poster
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.56872.1595860614499261549
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 27 Jul 2020 07:36:54 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=kuJc0pBk;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 20E27E01E8B; Mon, 27 Jul 2020 07:36:54 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+	URIBL_RED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.210.196 listed in list.dnswl.org]
+	*  0.0 URIBL_RED Contains an URL listed in the URIBL redlist
+	*      [URIs: yoctoproject.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -1.0 NICE_REPLY_A Looks like a legit reply (A)
+Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com [209.85.210.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22C0AE01E4D
+	for <yocto@yoctoproject.org>; Mon, 27 Jul 2020 07:36:52 -0700 (PDT)
+Received: by mail-pf1-f196.google.com with SMTP id d188so3122718pfd.2
+        for <yocto@yoctoproject.org>; Mon, 27 Jul 2020 07:36:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=zTdM1D4wEVsNTVgUFFjF0AbTfi0vc+hxwQ9r1RQD0Io=;
+        b=kuJc0pBkzOYEM+nFHR8rnAmTo9Ygj4nmuy1v5SGnS2ydpeCKt3agUF0gw2S0EWb4v2
+         ZDkft/3NQbx5BLAodZCUJpoUMmWkbcd3riBr6IJvWy12MUVG3zeV30UNh4NpA4u4sMDI
+         Wa6Li4EQU3Gp3+e32ByproRHn+vHI7au60rn5x5fwmieCbjMhSFLn/krs6uaT5E7btUN
+         Y408PuM+Z2h4VKWBej+GdcBCeYfBicjeE3pIr298jdRMg5eVW+YnwSpTtCDkv/ztNL84
+         KutIi3woj3R73dQDQTU7rp7VP+6TyvrOhVro1XS0RCJzPqwj3I1nbajNpPmRxC1ydZ27
+         i1uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-transfer-encoding:content-language;
+        bh=zTdM1D4wEVsNTVgUFFjF0AbTfi0vc+hxwQ9r1RQD0Io=;
+        b=PSxEiRlhOkFqjhw4ALDi6tETTq0hP8N6p/GQxDzK1cZkdtbLZ250znSWjPCTDDbg+o
+         /VWvtUL51eEbJT73fI4MAGfIv41eRtFb9ogudbUp+k35d6mtjIXeOLyh++UYWQ8I/TpJ
+         WQqr0UAyZiRXVg5x7+BI4NfdfFNaRBD6XlDczF6Tu8fbXkzQV6FzRV19XUytR0Q4ti1+
+         jLmh3FFsxcI6hDBYCpe+j6rqOQ7a1xwy2xNvvdhzEguGlJ3r9ZsoLAYOIAMTKhEJEXZH
+         4B7fKvoE3g5eKjWfWZJpUSbz+uCWSbyT2ItsrodPnku8ZGg4jWQb7KAqXn515fIRqax+
+         jR9w==
+X-Gm-Message-State: AOAM530twDNlb9wUsGCbNJi2C+cLsZad5NoufEcW1JLZDop0K8KhE+xI
+	EJaRnBYq4fqkRV9TMDJoD4Q=
+X-Google-Smtp-Source: ABdhPJyj2fb/J2lEndItqhHtHKRhgrDhb+vcDxzdMnd5pmcdptqEHmUPDZcfHFABvt9DwyEsaJNmJQ==
+X-Received: by 2002:aa7:8f26:: with SMTP id y6mr20414005pfr.191.1595860611612;
+        Mon, 27 Jul 2020 07:36:51 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:a5c0:8df1:f28:d14a:8296? ([2601:202:4180:a5c0:8df1:f28:d14a:8296])
+        by smtp.gmail.com with ESMTPSA id x9sm16448954pfq.11.2020.07.27.07.36.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jul 2020 07:36:50 -0700 (PDT)
+Subject: Re: [bitbake-devel] [yocto] Stable Warrior branch
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+ Adrian Bunk <bunk@stusta.de>
+Cc: Patches and discussions about the oe-core layer
+ <openembedded-core@lists.openembedded.org>,
+ "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+ "bitbake-devel@lists.openembedded.org" <bitbake-devel@lists.openembedded.org>
+References: <03a353c4-80dd-e66c-3222-7850a98182f7@gmail.com>
+ <20200714135619.GF25970@localhost>
+ <cca863dd41cf837cfaa89484c010578e5ac0809b.camel@linuxfoundation.org>
+From: "akuster" <akuster808@gmail.com>
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <e6743da0-b2d2-14bf-2d1c-7e6f50ba8e1b@gmail.com>
+Date: Mon, 27 Jul 2020 07:36:49 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Date: Mon, 27 Jul 2020 06:16:25 -0700
-Message-ID: <u6iU.1595855785511775765.vBcd@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="j7phaqBtYwNXQgna71wX"
+In-Reply-To: <cca863dd41cf837cfaa89484c010578e5ac0809b.camel@linuxfoundation.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
---j7phaqBtYwNXQgna71wX
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Adrian,
 
-Hi,
+On 7/21/20 1:53 AM, Richard Purdie wrote:
+> On Tue, 2020-07-14 at 16:56 +0300, Adrian Bunk wrote:
+>> On Thu, Jun 04, 2020 at 09:28:00PM -0700, akuster wrote:
+>>> Hello,
+>>>
+>>> The Warrior branch of Poky has had its last official dot release.
+>>> It
+>>> will be moving to Community support and EOL within 6 weeks if no
+>>> one
+>>> steps up.
+>>> If someone is interested in taking on the responsibilities of
+>>> maintaining the "Warrior" branch moving forward, please email this
+>>> list.
+>> I have an interest in keeping warrior branch alive in poky and meta-
+>> oe,
+>> and I'll take this responsibility since noone else seems to be
+>> interested.
 
-I am trying to build openjdk-8-native, however its icedtea7 dependency fai=
-ls to build.
-The error is a little hard to parse but it appears to be due to warnings b=
-eing treated as errors.
-There are a lot of logs like the following:
+Are you still interested?
 
-| In function =E2=80=98int fprintf(FILE*, const char*, ...)=E2=80=99,
-|=C2=A0=C2=A0=C2=A0=C2=A0 inlined from =E2=80=98void ADLParser::frame_pars=
-e()=E2=80=99 at .../build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-r1.0/=
-icedtea-2.1.3/build/openjdk-boot/hotspot/src/share/vm/adlc/adlparse.cpp:111=
-8:34:
-| /usr/include/x86_64-linux-gnu/bits/stdio2.h:100:24: error: =E2=80=98%s=
-=E2=80=99 directive argument is null [-Werror=3Dformat-overflow=3D]
-|=C2=A0=C2=A0 100 |=C2=A0=C2=A0 return __fprintf_chk (__stream, __USE_FORT=
-IFY_LEVEL - 1, __fmt,
-|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
-~~~~
-|=C2=A0=C2=A0 101 |=C2=A0=C2=A0=C2=A0 __va_arg_pack ());
-|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 ~~~~~~~~~~~~~~~~=
-~
-| cc1plus: all warnings being treated as errors
-| make[7]: *** [.../build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-r1.0=
-/icedtea-2.1.3/build/openjdk-boot/hotspot/make/linux/makefiles/adlc.make:20=
-7: ../generated/adfiles/adlparse.o] Error 1
-| make[7]: *** Waiting for unfinished jobs....
-| cc1plus: all warnings being treated as errors
+-armin
+>>> Please look at the
+>>> https://wiki.yoctoproject.org/wiki/Stable_Release_and_LTS for what
+>>> will
+>>> be expected.
+>> I have some ideas, but not yet a fixed plan how I will set this up.
+> Ok. FWIW we are struggling a little with keeping the older releases
+> building on the autobuilder as the workers change. We do have plans for
+> handling this with buildtools but its not rolled out on the older
+> autobuilder-helper branches.
+>
+> I do have work in progress working with Jeremy for thud
+> (contrib/rpurdie/thud), much of which should apply to warrior too
+> (contrib/rpurdie/warrior is a guess). I just really want to highlight
+> that there may be some initial work to get these older branches to the
+> point where they continue to work on the infrastructure.
+>
+> I think we may have to accept backporting a lot of patches in helper to
+> bring things more into sync with master/dunfell to make all this easier
+> to maintain/get working.
+>
+> Cheers,
+>
+> Richard
+>
 
-I am using the following bblayers:
-* poky/meta
-* poky/meta-poky
-* meta-openembedded/meta-oe
-* meta-java
-
-All layers are from the dunfell branch of their respective repositories an=
-d are up to date.
-
-Can anybody offer any advice on how to successfully build the openjdk-8-na=
-tive recipe ? Anybody have it working themselves ?
-
-Cheers
-Jeff
-
---j7phaqBtYwNXQgna71wX
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,<br /><br />I am trying to build openjdk-8-native, however its icedtea7 =
-dependency fails to build.<br />The error is a little hard to parse but it =
-appears to be due to warnings being treated as errors.<br />There are a lot=
- of logs like the following:<br /><br />| In function &lsquo;int fprintf(FI=
-LE*, const char*, ...)&rsquo;,<br />|&nbsp;&nbsp;&nbsp;&nbsp; inlined from =
-&lsquo;void ADLParser::frame_parse()&rsquo; at .../build/tmp/work/x86_64-li=
-nux/icedtea7-native/2.1.3-r1.0/icedtea-2.1.3/build/openjdk-boot/hotspot/src=
-/share/vm/adlc/adlparse.cpp:1118:34:<br />| /usr/include/x86_64-linux-gnu/b=
-its/stdio2.h:100:24: error: &lsquo;%s&rsquo; directive argument is null [-W=
-error=3Dformat-overflow=3D]<br />|&nbsp;&nbsp; 100 |&nbsp;&nbsp; return __f=
-printf_chk (__stream, __USE_FORTIFY_LEVEL - 1, __fmt,<br />|&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br />|&nbsp;&nb=
-sp; 101 |&nbsp;&nbsp;&nbsp; __va_arg_pack ());<br />|&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; ~~~~~~~~~~~~~~~~~<br />| cc1plus: all wa=
-rnings being treated as errors<br />| make[7]: *** [.../build/tmp/work/x86_=
-64-linux/icedtea7-native/2.1.3-r1.0/icedtea-2.1.3/build/openjdk-boot/hotspo=
-t/make/linux/makefiles/adlc.make:207: ../generated/adfiles/adlparse.o] Erro=
-r 1<br />| make[7]: *** Waiting for unfinished jobs....<br />| cc1plus: all=
- warnings being treated as errors<br /><br />I am using the following bblay=
-ers:<br />* poky/meta<br />* poky/meta-poky<br />* meta-openembedded/meta-o=
-e<br />* meta-java<br /><br />All layers are from the dunfell branch of the=
-ir respective repositories and are up to date.<br /><br />Can anybody offer=
- any advice on how to successfully build the openjdk-8-native recipe ? Anyb=
-ody have it working themselves ?<br /><br />Cheers<br />Jeff
-
---j7phaqBtYwNXQgna71wX--
