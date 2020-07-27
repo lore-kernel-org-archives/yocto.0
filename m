@@ -1,180 +1,125 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.56872.1595860614499261549
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+ by mx.groups.io with SMTP id smtpd.web10.63682.1595877540835706382
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Jul 2020 07:36:54 -0700
+ Mon, 27 Jul 2020 12:19:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=kuJc0pBk;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20E27E01E8B; Mon, 27 Jul 2020 07:36:54 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-	URIBL_RED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.210.196 listed in list.dnswl.org]
-	*  0.0 URIBL_RED Contains an URL listed in the URIBL redlist
-	*      [URIs: yoctoproject.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -1.0 NICE_REPLY_A Looks like a legit reply (A)
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com [209.85.210.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22C0AE01E4D
-	for <yocto@yoctoproject.org>; Mon, 27 Jul 2020 07:36:52 -0700 (PDT)
-Received: by mail-pf1-f196.google.com with SMTP id d188so3122718pfd.2
-        for <yocto@yoctoproject.org>; Mon, 27 Jul 2020 07:36:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=zTdM1D4wEVsNTVgUFFjF0AbTfi0vc+hxwQ9r1RQD0Io=;
-        b=kuJc0pBkzOYEM+nFHR8rnAmTo9Ygj4nmuy1v5SGnS2ydpeCKt3agUF0gw2S0EWb4v2
-         ZDkft/3NQbx5BLAodZCUJpoUMmWkbcd3riBr6IJvWy12MUVG3zeV30UNh4NpA4u4sMDI
-         Wa6Li4EQU3Gp3+e32ByproRHn+vHI7au60rn5x5fwmieCbjMhSFLn/krs6uaT5E7btUN
-         Y408PuM+Z2h4VKWBej+GdcBCeYfBicjeE3pIr298jdRMg5eVW+YnwSpTtCDkv/ztNL84
-         KutIi3woj3R73dQDQTU7rp7VP+6TyvrOhVro1XS0RCJzPqwj3I1nbajNpPmRxC1ydZ27
-         i1uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-transfer-encoding:content-language;
-        bh=zTdM1D4wEVsNTVgUFFjF0AbTfi0vc+hxwQ9r1RQD0Io=;
-        b=PSxEiRlhOkFqjhw4ALDi6tETTq0hP8N6p/GQxDzK1cZkdtbLZ250znSWjPCTDDbg+o
-         /VWvtUL51eEbJT73fI4MAGfIv41eRtFb9ogudbUp+k35d6mtjIXeOLyh++UYWQ8I/TpJ
-         WQqr0UAyZiRXVg5x7+BI4NfdfFNaRBD6XlDczF6Tu8fbXkzQV6FzRV19XUytR0Q4ti1+
-         jLmh3FFsxcI6hDBYCpe+j6rqOQ7a1xwy2xNvvdhzEguGlJ3r9ZsoLAYOIAMTKhEJEXZH
-         4B7fKvoE3g5eKjWfWZJpUSbz+uCWSbyT2ItsrodPnku8ZGg4jWQb7KAqXn515fIRqax+
-         jR9w==
-X-Gm-Message-State: AOAM530twDNlb9wUsGCbNJi2C+cLsZad5NoufEcW1JLZDop0K8KhE+xI
-	EJaRnBYq4fqkRV9TMDJoD4Q=
-X-Google-Smtp-Source: ABdhPJyj2fb/J2lEndItqhHtHKRhgrDhb+vcDxzdMnd5pmcdptqEHmUPDZcfHFABvt9DwyEsaJNmJQ==
-X-Received: by 2002:aa7:8f26:: with SMTP id y6mr20414005pfr.191.1595860611612;
-        Mon, 27 Jul 2020 07:36:51 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:a5c0:8df1:f28:d14a:8296? ([2601:202:4180:a5c0:8df1:f28:d14a:8296])
-        by smtp.gmail.com with ESMTPSA id x9sm16448954pfq.11.2020.07.27.07.36.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jul 2020 07:36:50 -0700 (PDT)
-Subject: Re: [bitbake-devel] [yocto] Stable Warrior branch
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
- Adrian Bunk <bunk@stusta.de>
-Cc: Patches and discussions about the oe-core layer
- <openembedded-core@lists.openembedded.org>,
- "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
- "bitbake-devel@lists.openembedded.org" <bitbake-devel@lists.openembedded.org>
-References: <03a353c4-80dd-e66c-3222-7850a98182f7@gmail.com>
- <20200714135619.GF25970@localhost>
- <cca863dd41cf837cfaa89484c010578e5ac0809b.camel@linuxfoundation.org>
-From: "akuster" <akuster808@gmail.com>
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <e6743da0-b2d2-14bf-2d1c-7e6f50ba8e1b@gmail.com>
-Date: Mon, 27 Jul 2020 07:36:49 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <cca863dd41cf837cfaa89484c010578e5ac0809b.camel@linuxfoundation.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+ dkim=pass header.i=@ftml.net header.s=fm1 header.b=pM8VzH9/;
+ spf=pass (domain: ftml.net, ip: 66.111.4.29, mailfrom: fdk17@ftml.net)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.nyi.internal (Postfix) with ESMTP id 9BADC5C013C
+	for <yocto@lists.yoctoproject.org>; Mon, 27 Jul 2020 15:18:59 -0400 (EDT)
+Received: from imap7 ([10.202.2.57])
+  by compute3.internal (MEProxy); Mon, 27 Jul 2020 15:18:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ftml.net; h=
+	mime-version:message-id:in-reply-to:references:date:from:to
+	:subject:content-type; s=fm1; bh=4JZkdzKwBcjuccwGkkizR4PHcuPgsdr
+	C7Wt+Jv4+L24=; b=pM8VzH9/ntoHojmD2AE6NMfTk8kzQ6O7gjeQRO8tYZFSJCX
+	tsw9EsqBEWJrfOrctrlxOcfYR8liJ9VHr3yz+6KVmzH4bMMpQZVMvAGxXQlgssvh
+	fRe71lLuN1Eo8/IlTD3++pzwPGllamPrPg27RYC7FVXJikYUQVHgrmqZYWEFaHvG
+	RXyhogLbvNJbtQSKJew54Yrg+X2+cINkbkabiSKImxA1EWz5afiSjS9zYDC+VBoV
+	TVFICmOr+xCsrsXa8KWiWIlcGIl/yLCFNCNXaDRzM1Z/GrKxBlpXSqV3X263hWil
+	kvUJy2wGERWesPSprHDgHu1PjiyS3cXilo2DvZw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=4JZkdz
+	KwBcjuccwGkkizR4PHcuPgsdrC7Wt+Jv4+L24=; b=lLBc01tTGp0f5bG0P6XMzx
+	STuwXBjoQqy8R6FL2cCNMYIDBS2evP/pCZVhiMArO2cbMetlk/ZPYCQHCchLuNCV
+	FmyvEQq9VE3xHA7oQdAo5tzZZW+CqvHqZWWn8UFpD7hEtegMfjk3Xx4lOsFYiuBQ
+	fOpRqLK8sUwetHwjMig95CrLPPlYBaxSJ4SkVCW3ssE4Ceq7PplIQWHcA6tmyDrT
+	LOmXiux6JPGwoGSyVpCWOXFXYRnVlfvq8vfvvA+0sjkj8nj4ZBGGoG2loA5X7sYA
+	QfLGWeF9XIlorHJfzpNBC4CbhdMt1680LR0b60R4B+BBbVB3O1dGsNs/zlf1yXKA
+	==
+X-ME-Sender: <xms:oygfX21ukpyK8de5fvmoDnZSWKBuuDdU--PWOALZLuEYwwrM_g_-AQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedriedtgddufeejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfgjfhffhffvufgtsegrtd
+    erreerredtnecuhfhrohhmpedfhfhrvgguuceurghkshhikhdfuceofhgukhdujeesfhht
+    mhhlrdhnvghtqeenucggtffrrghtthgvrhhnpeevgfegfeefueegheelgedvfeeuieegff
+    fhieeiheffuddviedukeejuddugfelgfenucffohhmrghinhephihotghtohhprhhojhgv
+    tghtrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepfhgukhdujeesfhhtmhhlrdhnvght
+X-ME-Proxy: <xmx:oygfX5EOAdTI_D3CFcy85GwyI2BfHGefc2MpEtqp-3ZgXPBuwOvYEw>
+    <xmx:oygfX-7RlVr6ym0afb62tCG6vskpLl4YRoivmmo3qLxKQTnDquxgrQ>
+    <xmx:oygfX32isVyq8wEcGjAy1VZ00q1nGRpmUs0ax2RWDuE1T7Ov51rWyA>
+    <xmx:oygfXxHYwCaNwPNWHHV1LZ17eg1wafKbbrlkgixQPagCsL5gIWJuog>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 41B5F180490; Mon, 27 Jul 2020 15:18:59 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.3.0-92-g11c785d-fm-20200721.004-g11c785d5
+Mime-Version: 1.0
+Message-Id: <c449c6f2-ea03-4de2-a48d-77f9995b582b@www.fastmail.com>
+In-Reply-To: <11928.1595824718226986412@lists.yoctoproject.org>
+References: <932b3576-0e34-456a-8c76-0897a4e8c5c7@www.fastmail.com>
+ <11928.1595824718226986412@lists.yoctoproject.org>
+Date: Mon, 27 Jul 2020 15:18:38 -0400
+From: "Fred Baksik" <fdk17@ftml.net>
+To: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] Offline Build #yocto
+Content-Type: multipart/alternative;
+ boundary=0dcd118e64204c23997ea122e0359f50
 
-Adrian,
+--0dcd118e64204c23997ea122e0359f50
+Content-Type: text/plain
 
-On 7/21/20 1:53 AM, Richard Purdie wrote:
-> On Tue, 2020-07-14 at 16:56 +0300, Adrian Bunk wrote:
->> On Thu, Jun 04, 2020 at 09:28:00PM -0700, akuster wrote:
->>> Hello,
->>>
->>> The Warrior branch of Poky has had its last official dot release.
->>> It
->>> will be moving to Community support and EOL within 6 weeks if no
->>> one
->>> steps up.
->>> If someone is interested in taking on the responsibilities of
->>> maintaining the "Warrior" branch moving forward, please email this
->>> list.
->> I have an interest in keeping warrior branch alive in poky and meta-
->> oe,
->> and I'll take this responsibility since noone else seems to be
->> interested.
 
-Are you still interested?
+On Mon, Jul 27, 2020, at 12:38 AM, Amrun Nisha.R wrote:
+> Hi Fred,
+> 
+> check whether the downloads folder has all the files. I found that while checking the folders, I can't able to find the branches and ref folders in the git2 folder (downloads/git2). Once i placed the empty folders branch and ref, it works fine for me. And I didnt update on the config file. 
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
 
--armin
->>> Please look at the
->>> https://wiki.yoctoproject.org/wiki/Stable_Release_and_LTS for what
->>> will
->>> be expected.
->> I have some ideas, but not yet a fixed plan how I will set this up.
-> Ok. FWIW we are struggling a little with keeping the older releases
-> building on the autobuilder as the workers change. We do have plans for
-> handling this with buildtools but its not rolled out on the older
-> autobuilder-helper branches.
->
-> I do have work in progress working with Jeremy for thud
-> (contrib/rpurdie/thud), much of which should apply to warrior too
-> (contrib/rpurdie/warrior is a guess). I just really want to highlight
-> that there may be some initial work to get these older branches to the
-> point where they continue to work on the infrastructure.
->
-> I think we may have to accept backporting a lot of patches in helper to
-> bring things more into sync with master/dunfell to make all this easier
-> to maintain/get working.
->
-> Cheers,
->
-> Richard
->
+https://www.yoctoproject.org/docs/2.7.4/mega-manual/mega-manual.html#replicating-a-build-offline
 
+The downloads folder that I used to setup the pre-mirror didn't even contain the git2 folder.  From the directions:
+*Optionally Remove Any Git or other SCM Subdirectories From the Downloads Directory:* If you want, you can clean up your downloads directory by removing any Git or other Source Control Management (SCM) subdirectories such as `${DL_DIR}/git2/*`. The tarballs already contain these subdirectories.
+
+FYI, the documentation states for DL_DIR:
+By default, `DL_DIR` gets files suitable for mirroring for everything except Git repositories. If you want tarballs of Git repositories, use the `BB_GENERATE_MIRROR_TARBALLS` <https://www.yoctoproject.org/docs/2.7.4/mega-manual/mega-manual.html#var-BB_GENERATE_MIRROR_TARBALLS> variable.
+
+All I can say is that following these directions for replicating the build offline worked.
+When skipping any of the steps I saw similar errors like the one in the original post.
+
+--0dcd118e64204c23997ea122e0359f50
+Content-Type: text/html
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html><head><title></title><style type=3D"text/css">p.Mso=
+Normal,p.MsoNoSpacing{margin:0}</style></head><body><div><br></div><div>=
+On Mon, Jul 27, 2020, at 12:38 AM, Amrun Nisha.R wrote:<br></div><blockq=
+uote type=3D"cite" id=3D"qt" style=3D""><div>Hi Fred,<br></div><div><br>=
+</div><div>check whether the downloads folder has all the files. I found=
+ that while checking the folders, I can't able to find the branches and =
+ref folders in the git2 folder (downloads/git2). Once i placed the empty=
+ folders branch and ref, it works fine for me. And I didnt update on the=
+ config file. <br></div><div>-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D=
+-<br></div><div><br></div></blockquote><div><br></div><div><a href=3D"ht=
+tps://www.yoctoproject.org/docs/2.7.4/mega-manual/mega-manual.html#repli=
+cating-a-build-offline">https://www.yoctoproject.org/docs/2.7.4/mega-man=
+ual/mega-manual.html#replicating-a-build-offline</a><br></div><div><br><=
+/div><div>The downloads folder that I used to setup the pre-mirror didn'=
+t even contain the git2 folder.&nbsp; From the directions:<br></div><div=
+><span class=3D"emphasis"><i>Optionally Remove Any Git or other SCM Subd=
+irectories From the Downloads Directory:</i></span> If you want, you can=
+ clean up your downloads directory
+                        by removing any Git or other Source Control Mana=
+gement
+                        (SCM) subdirectories such as <code class=3D"file=
+name">${DL_DIR}/git2/*</code>.
+                        The tarballs already contain these subdirectorie=
+s.<br></div><div><br></div><div>FYI, the documentation states for DL_DIR=
+:<br></div><div>By default, <code class=3D"filename">DL_DIR</code> gets =
+files
+                    suitable for mirroring for everything except Git
+                    repositories.
+                    If you want tarballs of Git repositories, use the <a=
+ class=3D"link" href=3D"https://www.yoctoproject.org/docs/2.7.4/mega-man=
+ual/mega-manual.html#var-BB_GENERATE_MIRROR_TARBALLS" title=3D"BB_GENERA=
+TE_MIRROR_TARBALLS"><code class=3D"filename">BB_GENERATE_MIRROR_TARBALLS=
+</code></a> variable.<br></div><div><br></div><div>All I can say is that=
+ following these directions for replicating the build offline worked.<br=
+></div><div>When skipping any of the steps I saw similar errors like the=
+ one in the original post.<br></div></body></html>
+
+--0dcd118e64204c23997ea122e0359f50--
