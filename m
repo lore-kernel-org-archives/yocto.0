@@ -1,54 +1,91 @@
-Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
- by mx.groups.io with SMTP id smtpd.web12.51031.1595838233604341669
- for <yocto@lists.yoctoproject.org>;
- Mon, 27 Jul 2020 01:23:54 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp.bon.at (Postfix) with ESMTPSA id 4BFXrk4S49z5tlF;
-	Mon, 27 Jul 2020 10:23:50 +0200 (CEST)
-Date: Mon, 27 Jul 2020 10:23:49 +0200
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: paruchuribhavyasree@gmail.com
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] ERRORS while building customized yocto image for Raspberrypi #yocto
-Message-ID: <20200727082349.vji4hpki47etvwuw@qschulz>
-References: <20200724131423.wkpmfforkxce6adv@qschulz>
- <11928.1595650329560242513@lists.yoctoproject.org>
+Subject: [meta-java] icedtea7-native fails to build with error: cc1plus: all warnings being treated as errors
+To: yocto@lists.yoctoproject.org
+From: ithijme@gmail.com
+X-Originating-Location: Frankfurt am Main, Hesse, DE (185.209.196.166)
+X-Originating-Platform: Linux Firefox 78
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <11928.1595650329560242513@lists.yoctoproject.org>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Date: Mon, 27 Jul 2020 06:16:25 -0700
+Message-ID: <u6iU.1595855785511775765.vBcd@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="j7phaqBtYwNXQgna71wX"
 
-Hi Bhavya,
+--j7phaqBtYwNXQgna71wX
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 24, 2020 at 09:12:09PM -0700, paruchuribhavyasree@gmail.com wrote:
-> Hi Quentin
-> 
-> I tried changing it but facing same kind of error during Build.
-> 
+Hi,
 
-Your S = "${WORKDIR}" is probably wrong then.
+I am trying to build openjdk-8-native, however its icedtea7 dependency fai=
+ls to build.
+The error is a little hard to parse but it appears to be due to warnings b=
+eing treated as errors.
+There are a lot of logs like the following:
 
-Is there only a directory "at the root" of the tarball? I mean if you
-untar it, do you get one directory where all your source code is? In
-that case, if the subdirectory is named "gsm-${PV}" (replace PV with the
-correct and full number), you don't need to define S because the default
-should be just enough IIRC.
+| In function =E2=80=98int fprintf(FILE*, const char*, ...)=E2=80=99,
+|=C2=A0=C2=A0=C2=A0=C2=A0 inlined from =E2=80=98void ADLParser::frame_pars=
+e()=E2=80=99 at .../build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-r1.0/=
+icedtea-2.1.3/build/openjdk-boot/hotspot/src/share/vm/adlc/adlparse.cpp:111=
+8:34:
+| /usr/include/x86_64-linux-gnu/bits/stdio2.h:100:24: error: =E2=80=98%s=
+=E2=80=99 directive argument is null [-Werror=3Dformat-overflow=3D]
+|=C2=A0=C2=A0 100 |=C2=A0=C2=A0 return __fprintf_chk (__stream, __USE_FORT=
+IFY_LEVEL - 1, __fmt,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~~~
+|=C2=A0=C2=A0 101 |=C2=A0=C2=A0=C2=A0 __va_arg_pack ());
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 ~~~~~~~~~~~~~~~~=
+~
+| cc1plus: all warnings being treated as errors
+| make[7]: *** [.../build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-r1.0=
+/icedtea-2.1.3/build/openjdk-boot/hotspot/make/linux/makefiles/adlc.make:20=
+7: ../generated/adfiles/adlparse.o] Error 1
+| make[7]: *** Waiting for unfinished jobs....
+| cc1plus: all warnings being treated as errors
 
-Otherwise, S = "${WORKDIR}/<whatever_name_of_the_dir_in_gsm-${PV}.tar.gz_is>"
+I am using the following bblayers:
+* poky/meta
+* poky/meta-poky
+* meta-openembedded/meta-oe
+* meta-java
 
-Finally, since your license is not in the tarball (but it should really
-be actually), you need to prefix your LIC_FILES_CHKSUM with "../"
-otherwise the license won't be found.
+All layers are from the dunfell branch of their respective repositories an=
+d are up to date.
 
-Moreover, you can't reassign twice the same variable and expect them to
-be merged. That's what you did for SRC_URI but I missed that you also
-did it for LICENSE, if it's dual licensed: LICENSE = "GNUC | GPLv3" or
-LICENSE = "GNUC & GPLv3", the meaning is obviously not the same but you
-only can know what to put there.
+Can anybody offer any advice on how to successfully build the openjdk-8-na=
+tive recipe ? Anybody have it working themselves ?
 
-N.B.: You still need the SRC_URI as I gave you in an earlier mail.
+Cheers
+Jeff
 
-Quentin
+--j7phaqBtYwNXQgna71wX
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<br /><br />I am trying to build openjdk-8-native, however its icedtea7 =
+dependency fails to build.<br />The error is a little hard to parse but it =
+appears to be due to warnings being treated as errors.<br />There are a lot=
+ of logs like the following:<br /><br />| In function &lsquo;int fprintf(FI=
+LE*, const char*, ...)&rsquo;,<br />|&nbsp;&nbsp;&nbsp;&nbsp; inlined from =
+&lsquo;void ADLParser::frame_parse()&rsquo; at .../build/tmp/work/x86_64-li=
+nux/icedtea7-native/2.1.3-r1.0/icedtea-2.1.3/build/openjdk-boot/hotspot/src=
+/share/vm/adlc/adlparse.cpp:1118:34:<br />| /usr/include/x86_64-linux-gnu/b=
+its/stdio2.h:100:24: error: &lsquo;%s&rsquo; directive argument is null [-W=
+error=3Dformat-overflow=3D]<br />|&nbsp;&nbsp; 100 |&nbsp;&nbsp; return __f=
+printf_chk (__stream, __USE_FORTIFY_LEVEL - 1, __fmt,<br />|&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p; ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br />|&nbsp;&nb=
+sp; 101 |&nbsp;&nbsp;&nbsp; __va_arg_pack ());<br />|&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; ~~~~~~~~~~~~~~~~~<br />| cc1plus: all wa=
+rnings being treated as errors<br />| make[7]: *** [.../build/tmp/work/x86_=
+64-linux/icedtea7-native/2.1.3-r1.0/icedtea-2.1.3/build/openjdk-boot/hotspo=
+t/make/linux/makefiles/adlc.make:207: ../generated/adfiles/adlparse.o] Erro=
+r 1<br />| make[7]: *** Waiting for unfinished jobs....<br />| cc1plus: all=
+ warnings being treated as errors<br /><br />I am using the following bblay=
+ers:<br />* poky/meta<br />* poky/meta-poky<br />* meta-openembedded/meta-o=
+e<br />* meta-java<br /><br />All layers are from the dunfell branch of the=
+ir respective repositories and are up to date.<br /><br />Can anybody offer=
+ any advice on how to successfully build the openjdk-8-native recipe ? Anyb=
+ody have it working themselves ?<br /><br />Cheers<br />Jeff
+
+--j7phaqBtYwNXQgna71wX--
