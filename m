@@ -1,575 +1,196 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.13442.1595945882232393087
+ by mx.groups.io with SMTP id smtpd.web11.13046.1595945925750320752
  for <yocto@lists.yoctoproject.org>;
- Tue, 28 Jul 2020 07:18:02 -0700
+ Tue, 28 Jul 2020 07:18:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=K0ITl+ba;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: bruce.ashfield@gmail.com)
+ dkim=pass header.i=@intertechengineering.onmicrosoft.com header.s=selector2-intertechengineering-onmicrosoft-com header.b=B2Lj53CP;
+ spf=fail (domain: inea.com, ip: 140.211.169.56, mailfrom: sdw@inea.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CBA6BE01E9B; Tue, 28 Jul 2020 07:18:01 -0700 (PDT)
+	id 9AD5AE01E9B; Tue, 28 Jul 2020 07:18:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,FORGED_SPF_HELO,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (bruce.ashfield[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.218.45 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
+	*      [40.107.220.112 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61C5EE01E8D
-	for <yocto@yoctoproject.org>; Tue, 28 Jul 2020 07:17:58 -0700 (PDT)
-Received: by mail-ej1-f45.google.com with SMTP id l4so20762088ejd.13
-        for <yocto@yoctoproject.org>; Tue, 28 Jul 2020 07:17:58 -0700 (PDT)
+	*  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2112.outbound.protection.outlook.com [40.107.220.112])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0E22E01E8D
+	for <yocto@yoctoproject.org>; Tue, 28 Jul 2020 07:18:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=X2vL3txf1aVHYZbmNZaS12pC+XAjTI0YKR9VEGsXpHULe0infx6qedfw25L3R7BNZJ2HgbRBKTzWmn/A4DW0hdJLmIzhWk8x4WrB69rImGxcE+laTRTD/nIeFjpv+3dmjdMJQOvbDviJEPrLEHvUTalZ+pfHI6KYm60XU22fBKMPdMBqpipFBVIPHqV04PkSoPNNq8tSLcRvr4uscKXYpzGzPBH5mdwxFSLp1iybTel/xsLsXetF/gf97kpfA7agcR1n96xdSLyLzHwJ7MSzZGD5JaKGKv4CCniIQgozJqOqBDKZwiFUcok2klSklbOmYBu+B5qpV+qd9rgb8rtmDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8/f/QqpVgt8GDK5LJjpodUA2rgoFXwGdsS2VdaJ/30s=;
+ b=JG6D0fFwxuJzH4j4o8NQYN2ZY+Kjk172CVMm3On4BKCVNGPNC0yi+UHxoUHeA7cq0gIvvc8waVkOjehDwi+L929egFQQRTx4nX9263b2wUVUr/Iwxs+/InIk4xyZOsCM5OkoDHomZXFya6FnPRnHxzX4olC86jd4ZklcNtflRmSmFj8q8KMZOsiUqdOu/8F+gT8t/jXQTiATj/LUk5XX8ngPaySO4afUIKrgnvXjgJpBHY76/7UE3tdl+7bImqbrKb6MLBALovtOFkjiOx/yUsNxlHSJSyyCm+p1iGRnfkASv9a+nTMq5XAiKhyVrft8GLmL7h68uwY0g+kL9w2iCw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=inea.com; dmarc=pass action=none header.from=inea.com;
+ dkim=pass header.d=inea.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ngMTKM8ISEK5tB3Y0/P6n1XsfayrvkJr2cwo1cYN2jU=;
-        b=K0ITl+baLgb6Mfphxl1g0QzKwbW+bLf6aj5GQDf/7oCOuinb0YXx3FREFW02UtxGgE
-         14w67a06fDyaLxJq6ZK2MXBNfotCqeCrOOHdnrujWNL67Mofnf/JjpF0Ht88aa9qy41n
-         q93BOCc7N+ajsj3+4AdWBkqZI0fVzTDpU/8Udd6nFVA4fNZqHF3AJht84K7dWGCexVd/
-         EyO+kKvZ92xgDlmWTjWT33g4M4x92r0Rl6v/ff7c8lo7jbD5xbRjAQHn7L7NBeYGSLkz
-         Bj9Gszejdy9BBVOlVeugg+19rdzNPJqq0gVPTOPbdatw42hyVcINZK0OK2Cdfoc3DfCX
-         mHRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ngMTKM8ISEK5tB3Y0/P6n1XsfayrvkJr2cwo1cYN2jU=;
-        b=hlyJBu1/0J/IuGmcinNOYoriVzxFFq7pWo7gaVZWRHG9uPxZI7QTQ8KTrlv1boRaFG
-         SwS7Ml8eKWagdqLTA8aOxj+8uIs7W9nwCBxrtQl1clsHEiDses0GKji2OhVJUTyD6Vy+
-         gtDsE8Ow5ekyXG+Qrjzhwy0vEna9IyN+cLbNOLtaoJM4+UPP44KGxjFFy60jQgaitfwB
-         +kvTsK+suozh4FS5gxWD02aW0oUMErLf4lMEMyGmgVvquDKrj9hI+q47OIMOdKIhPZaY
-         rH74OtEczPeWpNgLVrjvWto98kgC+ormymz+Xs/E5mETbvQnuHHcLkgRX8By7JA3SZkE
-         U8Qg==
-X-Gm-Message-State: AOAM533e/V9nGz2X2t9gKzUcDsxvFWpA9OVKC1gtw97yXJfZbQkqrGs8
-	DRjkV2JV6BMdFS7TDZVxCM0KJgMZLZ/loL97lxfIP6hfS9s=
-X-Google-Smtp-Source: ABdhPJxtGcM71h95lGoLhre3uVwpkT1dceVW8lPgQt68gOGhVN3ciO/D/7u5wnSpKQ6LPvOUWi1PCbJdGJDXH3M+9ZI=
-X-Received: by 2002:a17:906:3685:: with SMTP id a5mr24278313ejc.298.1595945877924;
- Tue, 28 Jul 2020 07:17:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <MN2PR17MB3024CFBE1455A8B37E1D5FD7D6720@MN2PR17MB3024.namprd17.prod.outlook.com>
- <CADkTA4MBSrRjgQQbnN=4XMhxVTB=b0RdH74zNPCb8pEwhg2GsA@mail.gmail.com> <MN2PR17MB30248E9C96341B99C68CC4BBD6730@MN2PR17MB3024.namprd17.prod.outlook.com>
-In-Reply-To: <MN2PR17MB30248E9C96341B99C68CC4BBD6730@MN2PR17MB3024.namprd17.prod.outlook.com>
-From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
-Date: Tue, 28 Jul 2020 10:17:45 -0400
-Message-ID: <CADkTA4MSEF6ZOXe4W38RrHVOpndffQKudSN--ANFa947WcKoUA@mail.gmail.com>
+ d=intertechengineering.onmicrosoft.com;
+ s=selector2-intertechengineering-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8/f/QqpVgt8GDK5LJjpodUA2rgoFXwGdsS2VdaJ/30s=;
+ b=B2Lj53CP1Ntty5cD10NCj+9mmhHE4GKrzuPi3zTflYwE2qOsmWrWqMN6rV+lS6bvSWszHaOKEj9+MQDZ1CqnYcRvqKZY7AD7p1f++kYYPzrN0KAvCxvbl8lLc8LFfDhRrgRG2anmyZ4kWHrMBjd8bTxlGv45bRIj3h0OmMJTTQI=
+Received: from MN2PR17MB3024.namprd17.prod.outlook.com (2603:10b6:208:e3::18)
+ by MN2PR17MB4000.namprd17.prod.outlook.com (2603:10b6:208:1f5::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.23; Tue, 28 Jul
+ 2020 14:18:41 +0000
+Received: from MN2PR17MB3024.namprd17.prod.outlook.com
+ ([fe80::879:1263:40db:4543]) by MN2PR17MB3024.namprd17.prod.outlook.com
+ ([fe80::879:1263:40db:4543%5]) with mapi id 15.20.3216.033; Tue, 28 Jul 2020
+ 14:18:41 +0000
+From: "Scott Whitney" <sdw@inea.com>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+CC: Bruce Ashfield <bruce.ashfield@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
 Subject: Re: [yocto] How to enable preempt-rt in Yocto Zeus or Warrior?
-To: Scott Whitney <sdw@inea.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Groupsio-MsgNum: 50118
-Content-Type: multipart/related; boundary="00000000000022881205ab811bd6"
-
---00000000000022881205ab811bd6
-Content-Type: multipart/alternative; boundary="00000000000022881105ab811bd5"
-
---00000000000022881105ab811bd5
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jul 28, 2020 at 8:45 AM Scott Whitney <sdw@inea.com> wrote:
-
-> Hi Bruce,
->
->
->
-> Yes, we are using Linux built by Yocto, but where is the preferred
-> provider for the kernel set to linux-yocto-rt?
->
->
->
-
-This is one of the nuances about OE/Yocto, it isn't about building the
-kernel with yocto, I was wondering about the kernel recipe you are using.
-
-If you have a booting kernel built from linux-yocto (the recipe), then the
-switch to -rt is easy. If it isn't using linux-yocto, then using -rt is
-specific to the kernel provider that you have (and it may be just as easy
-as the linux-yocto switch ... just without the details of that
-recipe/provider, I can't say).
-
-The preferred provider is likely set in the vendor's BSP layer, and it
-likely points at whatever vendor kernel they are currently shipping.
-
-Cheers,
-
-Bruce
-
-
-
-> Thanks for your help
->
->
->
-> *Scott D. Whitney*
->
-> *sdw@inea.com <sdw@inea.com>*    |     T: 781-801-1152    |
-> F: 781-801-1108    |     *www.inea.com <http://www.inea.com/>*
->
->
->
-> *From:* Bruce Ashfield <bruce.ashfield@gmail.com>
-> *Sent:* Monday, July 27, 2020 10:04 PM
-> *To:* Scott Whitney <sdw@inea.com>
-> *Cc:* yocto@yoctoproject.org
-> *Subject:* Re: [yocto] How to enable preempt-rt in Yocto Zeus or Warrior=
-?
->
->
->
->
->
->
->
-> On Mon, Jul 27, 2020 at 3:51 PM Scott Whitney <sdw@inea.com> wrote:
->
-> Hi Yocto group,
->
->
->
-> I=E2=80=99m working with a newly-released copy of Yocto Zeus from Varisc=
-ite for
-> the i.MX8MM Mini, although the same option seems to apply to the previou=
-s
-> Yocto Warrior.
->
->
->
-> I understand that a Linux real-time kernel can be enabled by setting
-> LINUX_KERNEL_TYPE =3D =E2=80=9Cpreempt-rt=E2=80=9D.  Where does this opt=
-ion need to be set so
-> that when I bitbake fsl-image-qt5, I get the Linux =E2=80=9Cpreempt-rt=
-=E2=80=9D kernel
-> instead of the =E2=80=9Cstandard=E2=80=9D kernel?
->
->
->
-> Is there a specific configuration file that needs to be modified, or a n=
-ew
-> recipe in a layer?  I am confused and hoping that you can help.
->
->
->
-> If you aren't using linux-yocto, you'll need to arrange for the preempt-=
-rt
-> patch(es) to be applied to whatever kernel you are using. Which means yo=
-u
-> are creating a new recipe, bbappending an existing one, or if you are lu=
-cky
-> the kernel provider already has a -rt recipe available.
->
->
->
-> If you are using linux-yocto, it's as simple as setting the preferred
-> provider of the kernel as linux-yocto-rt  and building.
->
->
->
-> Bruce
->
->
->
->
->
->
->
-> Best regards,
->
->
->
-> *Scott D. Whitney*
->
-> Principal Software Engineer
->
->
-> Intertech Engineering Associates, Inc.
-> 100 Lowder Brook Drive, Suite 2500
-> Westwood, MA  02090
-> *sdw@inea.com <sdw@inea.com>*    |     T: 781-801-1152    |
-> F: 781-801-1108    |     *www.inea.com <http://www.inea.com/>*
->
->
->
->=20
->
->
->
->
-> --
->
-> - Thou shalt not follow the NULL pointer, for chaos and madness await th=
-ee
-> at its end
-> - "Use the force Harry" - Gandalf, Star Trek II
->
-
-
---=20
-- Thou shalt not follow the NULL pointer, for chaos and madness await thee
-at its end
-- "Use the force Harry" - Gandalf, Star Trek II
-
---00000000000022881105ab811bd5
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
-t-size:small"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Tue, Jul 28, 2020 at 8:45 AM Scott Whitney &lt;<=
-a href=3D"mailto:sdw@inea.com">sdw@inea.com</a>&gt; wrote:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_1341109852642080234WordSection1">
-<p class=3D"MsoNormal">Hi Bruce,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Yes, we are using Linux built by Yocto, but where i=
-s the preferred provider for the kernel set to linux-yocto-rt?<u></u><u></u=
-></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0</p></div></div></blockquote><div><br>=
-</div><div><div class=3D"gmail_default" style=3D"font-size:small">This is o=
-ne of the nuances about OE/Yocto, it isn&#39;t about building the kernel wi=
-th yocto, I was wondering about the kernel recipe you are using.</div><div =
-class=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"g=
-mail_default" style=3D"font-size:small">If you have a booting kernel built =
-from linux-yocto (the recipe), then the switch to -rt is easy. If it isn&#3=
-9;t using linux-yocto, then using -rt is specific to the kernel provider th=
-at you have (and it may be just as easy as the linux-yocto switch ... just =
-without the details of that recipe/provider, I can&#39;t say).</div><div cl=
-ass=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"gma=
-il_default" style=3D"font-size:small">The preferred provider is likely set =
-in the vendor&#39;s BSP layer, and it likely points at whatever vendor kern=
-el they are currently shipping.</div><div class=3D"gmail_default" style=3D"=
-font-size:small"><br></div><div class=3D"gmail_default" style=3D"font-size:=
-small">Cheers,</div><div class=3D"gmail_default" style=3D"font-size:small">=
-<br></div><div class=3D"gmail_default" style=3D"font-size:small">Bruce</div=
-><br></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x"><div lang=3D"EN-US"><div class=3D"gmail-m_1341109852642080234WordSection=
-1"><p class=3D"MsoNormal"><u></u></p>
-<p class=3D"MsoNormal">Thanks for your help<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal" style=3D"text-align:justify"><b>Scott D. Whitney</b=
-><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt"><img width=3D"82" he=
-ight=3D"27" style=3D"width: 0.8541in; height: 0.2812in;" id=3D"gmail-m_1341=
-109852642080234Picture_x0020_7" src=3D"cid:17395c56a73692e332"><u></u><u></=
-u></span></p>
-<p class=3D"MsoNormal"><u><span style=3D"font-size:9pt"><a href=3D"mailto:=
-sdw@inea.com" target=3D"_blank"><span lang=3D"FR">sdw@inea.com</span></a></=
-span></u><span lang=3D"FR" style=3D"font-size:9pt">=C2=A0=C2=A0=C2=A0=C2=A0=
-|=C2=A0=C2=A0=C2=A0=C2=A0 T:=C2=A0781-801-1152=C2=A0=C2=A0=C2=A0=C2=A0|=C2=
-=A0=C2=A0=C2=A0=C2=A0 F:=C2=A0781-801-1108=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=
-=C2=A0=C2=A0=C2=A0
-</span><u><span style=3D"font-size:9pt"><a href=3D"http://www.inea.com/" t=
-arget=3D"_blank"><span lang=3D"FR" style=3D"color:windowtext">www.inea.com<=
-/span></a></span></u><u><span lang=3D"FR" style=3D"font-size:9pt"><u></u><u=
-></u></span></u></p>
-<p class=3D"MsoNormal"><span lang=3D"FR"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><b>From:</b> Bruce Ashfield &lt;<a href=3D"mailto:b=
-ruce.ashfield@gmail.com" target=3D"_blank">bruce.ashfield@gmail.com</a>&gt;=
- <br>
-<b>Sent:</b> Monday, July 27, 2020 10:04 PM<br>
-<b>To:</b> Scott Whitney &lt;<a href=3D"mailto:sdw@inea.com" target=3D"_bl=
-ank">sdw@inea.com</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoc=
-to@yoctoproject.org</a><br>
-<b>Subject:</b> Re: [yocto] How to enable preempt-rt in Yocto Zeus or Warr=
-ior?<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt"><u></u>=C2=A0<u></u>=
-</span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">On Mon, Jul 27, 2020 at 3:51 PM Scott Whitney &lt;<=
-a href=3D"mailto:sdw@inea.com" target=3D"_blank">sdw@inea.com</a>&gt; wrote=
-:<u></u><u></u></p>
-</div>
-<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;=
-border-left:1pt solid rgb(204,204,204);padding:0in 0in 0in 6pt;margin-left:=
-4.8pt;margin-right:0in">
-<div>
-<div>
-<p class=3D"MsoNormal">Hi Yocto group,<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">I=E2=80=99m working with a newly-released copy of Y=
-octo Zeus from Variscite for the i.MX8MM Mini, although the same option see=
-ms to apply to the previous Yocto Warrior.=C2=A0
-<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">I understand that a Linux real-time kernel can be e=
-nabled by setting LINUX_KERNEL_TYPE =3D =E2=80=9Cpreempt-rt=E2=80=9D.=C2=A0=
- Where does this option need to be set so that when I bitbake fsl-image-qt5=
-,
- I get the Linux =E2=80=9Cpreempt-rt=E2=80=9D kernel instead of the =E2=80=
-=
-=9Cstandard=E2=80=9D kernel?<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Is there a specific configuration file that needs t=
-o be modified, or a new recipe in a layer?=C2=A0 I am confused and hoping t=
-hat you can help.<u></u><u></u></p>
-</div>
-</div>
-</blockquote>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt">If you aren&#39;t us=
-ing linux-yocto, you&#39;ll need to arrange for the preempt-rt patch(es) to=
- be applied to whatever kernel you are using. Which means you are creating =
-a new recipe, bbappending an existing one,
- or if you are lucky the kernel provider already has a -rt recipe availabl=
-e.<u></u><u></u></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt"><u></u>=C2=A0<u></u>=
-</span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt">If you are using lin=
-ux-yocto, it&#39;s as simple as setting the preferred provider of the kerne=
-l as linux-yocto-rt=C2=A0 and building.<u></u><u></u></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt"><u></u>=C2=A0<u></u>=
-</span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt">Bruce<u></u><u></u><=
-/span></p>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-</div>
-<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;=
-border-left:1pt solid rgb(204,204,204);padding:0in 0in 0in 6pt;margin-left:=
-4.8pt;margin-right:0in">
-<div>
-<div>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Best regards,<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal"><b>Scott D. Whitney</b><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9pt;color:rgb(64,64,64)">P=
-rincipal Software Engineer</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9pt;color:rgb(64,64,64)"><=
-img border=3D"0" width=3D"82" height=3D"27" style=3D"width: 0.8541in; heigh=
-t: 0.2812in;" id=3D"gmail-m_1341109852642080234gmail-m_6629233205366031238P=
-icture_x0020_3" src=3D"cid:17395c56a735b16b21"><br>
-Intertech Engineering Associates, Inc.<br>
-100=C2=A0Lowder=C2=A0Brook=C2=A0Drive, Suite=C2=A02500<br>
-Westwood,=C2=A0MA=C2=A0=C2=A002090<br>
-</span><u><span style=3D"font-size:9pt"><a href=3D"mailto:sdw@inea.com" ta=
-rget=3D"_blank">sdw@inea.com</a></span></u><span style=3D"font-size:9pt">=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A0=C2=A0 T:=C2=A0781-801-1152=C2=
-=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A0=C2=A0 F:=C2=A0781-801-1108=C2=A0=
-=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A0=C2=A0
-<u><a href=3D"http://www.inea.com/" target=3D"_blank"><span style=3D"color=
-:windowtext">www.inea.com</span></a></u></span><u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u><u></u></p>
-</blockquote>
-</div>
-<p class=3D"MsoNormal"><br clear=3D"all">
-<u></u><u></u></p>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<p class=3D"MsoNormal">-- <u></u><u></u></p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12pt">- Thou shalt not follo=
-w the NULL pointer, for chaos and madness await thee at its end<br>
-- &quot;Use the force Harry&quot; - Gandalf, Star Trek II<u></u><u></u></p=
->
-</div>
-</div>
-</div>
-</div>
-
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
-" class=3D"gmail_signature">- Thou shalt not follow the NULL pointer, for c=
-haos and madness await thee at its end<br>- &quot;Use the force Harry&quot;=
- - Gandalf, Star Trek II<br><br></div></div>
-
---00000000000022881105ab811bd5--
-
---00000000000022881205ab811bd6
-Content-Type: image/png; name="image002.png"
-Content-Disposition: inline; filename="image002.png"
+Thread-Topic: [yocto] How to enable preempt-rt in Yocto Zeus or Warrior?
+Thread-Index: AdZkTy0e0WXgeqKER/megdrmqDgR/QANDX4AABZQMcAAAtpTgAAAGgzw
+Date: Tue, 28 Jul 2020 14:18:41 +0000
+Message-ID: 
+ <MN2PR17MB30245CF7109A455943CB5DE9D6730@MN2PR17MB3024.namprd17.prod.outlook.com>
+References: 
+ <MN2PR17MB3024CFBE1455A8B37E1D5FD7D6720@MN2PR17MB3024.namprd17.prod.outlook.com>
+ <CADkTA4MBSrRjgQQbnN=4XMhxVTB=b0RdH74zNPCb8pEwhg2GsA@mail.gmail.com>
+ <MN2PR17MB30248E9C96341B99C68CC4BBD6730@MN2PR17MB3024.namprd17.prod.outlook.com>
+ <CAGAf8LzT4EMXEmdbOLzNvoGA4_jE1J2-DOQB6UbXh=ZJdOPNeA@mail.gmail.com>
+In-Reply-To: 
+ <CAGAf8LzT4EMXEmdbOLzNvoGA4_jE1J2-DOQB6UbXh=ZJdOPNeA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=inea.com;
+x-originating-ip: [2601:191:8500:6a70:1147:9dbc:bfba:ab41]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 198418ce-c4bc-48e8-b800-08d8330120ed
+x-ms-traffictypediagnostic: MN2PR17MB4000:
+x-microsoft-antispam-prvs: 
+ <MN2PR17MB4000D04FE832AD47F06EF095D6730@MN2PR17MB4000.namprd17.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4941;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ ADBgtn6cTk5iIuZy7+J2r7orht8R9tT1cVN1ONWdHdYcH2ufJc7vBaiTZlxfBwSE9umQ6BZ+vma+cqBDVokBO/XdGoZbmhG/Osre7xugJTH8ZcAVDJHmZDZnwGE/EqV8B9JEyW3l6Ko58X2N05GY9CCfEE07gC6VeE6sbBpsmTQLNT+70elqqnyPjDrZqewFqEnTNAd5C1ksLaOp0y5iomG5KG1tzxURYgej3kgzikBtzihZPTbljtxuqjcDgqyv4TybBP82yKwU+P/0QUjCVW2eMaE2FmFvqF4ElMCScQNUPGFRA3aqqB2Ld18wdGxCOpNEdIBZl/GpRqX2n72W+aT9/2bJ1e3drY9rBJTgQ4EkLU8Daen6cR5Hrx6ups1l4ZYZQAu46PY+1P1yvsLXgQ==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR17MB3024.namprd17.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(136003)(396003)(346002)(366004)(376002)(39830400003)(83380400001)(53546011)(6506007)(186003)(7696005)(966005)(8676002)(8936002)(86362001)(33656002)(6916009)(316002)(4326008)(5660300002)(55016002)(76116006)(66446008)(66946007)(9686003)(66476007)(64756008)(52536014)(66556008)(54906003)(2906002)(508600001)(71200400001)(15974865002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: 
+ O+c9tpxKICOZ0Pr7yCmRS/zoIzUDFSPXM1ucU8vwCMYRIAj44AC9c4CT8/eHxlW1g4dyZxQgK9mLvsB2wo5OcFA85aWGZzmQAyFORW3mZFFT/xsdyhFx7YWsp38l43vz+MzR/eSOwxRvrbqjDpBMI2bJ+nZmK+H4LZ18arCRzZsLmRcdwJJpahcmh+JjiEUYqcTYFRUhS0dkxmoelYDMyYC/b5X/GqnyVdyE+MU2MksoMxFSAknnxmaEvybbqIYe7oSjJWA6UKRHIeG3GCMBtyRwGzPCvvY+nEoz12apoYTjmF8u8BX9VgQIf7DD04/dzLcfunhH3WQX0NQrQVWHB90PXmmSBa88lK83W+yhSxusNVQDYXUxonECEscbr+Wk7JD9kxVdqvUy3nU4Us9eb3z8xjfydNp8T+6pNlVQXL4zOv6PYFJcDc7uTvSV3UiVa/a4c9b4CuHUQ+ztuzGd7loW10ErmcUXDNzsboUxQFj/4sxZ+/R44vJqI4qtZ/WIwswYAiecX0a2Du4b9T0N4T5PrgN4WiXWICkdAhHBGqssWccX85ipTB0Ygxc+Hoau
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: inea.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR17MB3024.namprd17.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 198418ce-c4bc-48e8-b800-08d8330120ed
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2020 14:18:41.2159
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 99c11015-7dbb-4c7c-ae43-1a26885adc83
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: K/jlhXR4+qVPjIJiFUFetLDewA6gtxRImceBVwjxNlBwJcX6KVXQURNJ9ly+nbii
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR17MB4000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-ID: <17395c56a735b16b21>
-X-Attachment-Id: 17395c56a735b16b21
 
-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
-JHpNzT1yAAAAAElFTkSuQmCC
-
---00000000000022881205ab811bd6
-Content-Type: image/png; name="image003.png"
-Content-Disposition: inline; filename="image003.png"
-Content-Transfer-Encoding: base64
-Content-ID: <17395c56a73692e332>
-X-Attachment-Id: 17395c56a73692e332
-
-iVBORw0KGgoAAAANSUhEUgAAAFIAAAAbCAYAAADve9g/AAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
-xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAA59SURBVGhD
-5Vl5dFxlFb/vvW/mvckkzUynyUwy7bRNUyAQRdlTLOixFlxYRIo9p3isW12RTVkUT5wej+KuLC4g
-KBwLQlFxAQSqHi3tlLYHtYTmADVpU9I2SdMss71t3vN3vzdJSxJKPfoX/U6n8/It993vd+/93ft9
-I7LZLB2vrXPgrAVERoZONDdnR7e6/y0Onfp7a6gvfyqJwl7x3y5+Q80fyu+lpLiQeiI/66S3/5kq
-5nYKqf8mlQbIoTHs1aII+TRiqmQYNeS6MVLDKfK8xaSHl5A73kJq5Wv0tvc9e1wDmW3vrgCsn3QO
-nXMyxeddRaVRItcichx4p1Ig8m0qAshwWMX/BqlaLWmaQrMaiIoHLapU3plNbt5E3ZvpuAZyMrrO
-W34N/e3p0ylSt4Q8YKhqghQlBjAxhT8+/uFDHpEWYhAHya8sB4j/mpAhgRweXhcqFDLgC9KEoGI6
-vXTvGyqEq5vZtWtjUygk4kII7PHMPRN7zHav9Tr9JWvIMbeRKiJUcWbYPoAMRQhj4+RYF2eTWydB
-5MkSyJGRlnYhlBxeImzbfgRdK48FyK6urkg0OrY8HDbCruv9c/78M18+lnVHm9PVtbE2GhWQGdbK
-5dL21talvf+rzIn1miZ+YRj6slLJegp97z5SLrzrhc6Bc75J0dhXqcz0OKVpYTikVyGrvDLbtPXZ
-qcMSSFX1moUI60KoZNvK4LEqbhj5xUKEHtV1jSzL/jjW/c9A1tUJGDX061CIdRErIPP/AmQsluO9
-LtA0VUWUDs+4R1f9NpXHr4TntZJTPjxFUeFyOlE5fxVAfGKmtRJIRVHnqqoC7gQHELLWMTZNozkK
-KKRctsHBtPMYlx11mud5yUCmBY6nXf8PmSxj+/a6ek3LxyoVH/tVemaSm01vLnUOLFkLjrz/VeNG
-HRQa/VE2ueXHr6VPNdkoGSZVbALzvH6ezLy5c2cdgr3B7ujocHO5deFM5oQUuKUvGB8G63onaHB5
-AGl7npsfHs7piUQH0l7Q9uzZuBimTIJ3h9Ppju6J/qmyEc6zDMPQhobcfCqlLqoateA4lcJUmf39
-uRNclxoha2j+/I4Xp24MPDgnEhGt6Hf6+nq6OjpWVfXJ85oE79H3/Zd4HeYmIhHSkRP2Tcrp2fkg
-tZ50A4Vq2skuocwEiGZ+C+3yriUk66MCCQ9IsxdUKhV8XAlUPt/y+KJF4VbTNH+2Z09udzrd+mWE
-RKanJ/egroubbdvdoKpivmU5sDCFwD1PjY1VtiUSdAkUnA+O+6Hvhy4OhTQFnu7s3p17PBRyP9TX
-J+xUquVpyJ5nWeYPeno2FWMxvdO2Kw+kUv75iI4202SZSo2uG3/L591nIPODbBRV1X/gecp7hNBQ
-0nk2ZD4KmR8DEIXOzk71wx++oFPXw59CzmzkvUDnrl27cmtaWztyiJgkwlqDceAtnt3bu/lW6Lja
-95VIb2/u8wsXdtzH+852jLqdA+oPkXTuluHsWnkkmNXZjq320aJDeqTn+fBI+c3EsLe/f2O974u3
-Iecbqqp+BeGuY2NSDr4vcl0Tri/qsSIalAfEpwJDUfyDnCxqa0NPRCJ6W6FQLgHwYWxgXjRqXJLP
-lz5dV+f+BGvPhWwQj3ZdJBLKsAfatlWB7AT6kRoDmXglnukA6+N54qlIJLygWCznIXMcMtORiHFF
-oWBuxZzvrl797q9Ho/qNbATbdpieFtbUGO2eZ3I4vgUfBhJjrg9j/RyJtYa9Exmcy8ZLMS6BlM2l
-9WTlv0bRRBKlzpeQoad5/lRQBSyprF59YRLujjF/ZGhIDDU30yJsJhSEuvKc49jXIONdC3BWwqLF
-fJ7+EY+7p1iW+F1trb6sWDQ3jY5alxDFi9Fo/jMMIjKjrar0LiHcHbYdeoGNhQ282TC8eQBIdd0K
-khzNNk37Jt/3dum6x4CsRYLZAEDOhcwnR0fNKx9+eEP+Ix+58CYYYkGpZJYRMUsjkfhey8q/CJ3n
-YM1JADoG41yDd8BTK7fV1/d8YXx84W0Yh3fK8RqMp+EUeCcnG++nkHM/tvc4xpugz/4jgQFXjnUO
-dfydSofeTHcsv5OyW6biNu1vsWbNsqhtT0b/IPNhb++mTAgxydi6rn8DSpCtCAWPLQqwD7S3L0XV
-T4QwTwSe6u9G3zj3IUzO5j4YoRfhsjno22IF85SDoIMUhyZ7HQz0yYULz31gQiuUUxoMweBw/dvL
-MteuXYq/cmfzfADTDV1k/YawlqEGWAbAmSdCXZ2NoyjeE4nEKmd8fLPJ74Ec0zD6HMdpmcv6Q689
-0Os65nxQjAh0VabXzZ7/R2jxcDa7lj3sdRtC20j4vhuvVvEy0fi+mtFAKvAWDxx0MJCiLpJOSyTn
-cLgpimiqeu1kcYuhFPMTpMR2797yTYzXQdn5VZLnbNnIG0RWNsNhb+ORGsbjI3PgkQ0cHQBEvqfa
-klWZc5jbMMwGlFEEjtvjeepcLpfA1z74eCgAWLm7XDYfgxPmA2BznIC4SdAaGloQdTQ7qFRI5oUj
-2+mN0U0j5XJ171NHp/8tymV3No6SsAwP+jJ74VmWQ2gjCON9gaew1zKSitwgvIBzWJzDCfuR63K5
-nGhq8psR/sw9ScMI38D9nJA4rCCX553Az5AzPDJCY+n0YaXKZQEeozgSCRtTbri/v9/AVyMffyEz
-A5k3MoDgOuZrfvcefLWxTDwXMVcCiYzO5ZgsyQL6umDiTQe4LxTy0qg4NBcbwTtfmQrNmcnImno1
-fjsdkJcXr9sEhDSx9wXepsjilz2oGooDHF79/duStu03MGgY3R1IFY0IlYlwkhZtaHA5SSUQZlwS
-/d5xyr9AQnLAjSVwkgiH3e3gVXCpbAdXrNhQ6O7m0A2apnnNoBRkeQ7RCd7qgYcK6cUo+h8qlSoP
-wYtsyGS+FLru5iDzA6wv/g2b5vRiG/RVi4MG5MjXSAOxF/NdBIDk9qpDSH/qvR26Eb9+rJR/EuQ6
-DeSZUOWszeQPIGUNKRfB4k3BZF++AF6Lk49Sx2GAedIjQdSZ4ETj+PCGqpWpARjMDozgPdXScu5v
-QQGzXVd9q+NQcd8+UUilaG5VkVe6u7Myrg43tZmN6jiWo6qVamiLRjhbbdWwT8DTIHNbg+vapzqO
-mofMcjJJC6pFxX4YvojKIVpTo16BLB8uFt0cakUO0TkBDakTYSyjDns9hPGBCR0629rUTx4Kfc+o
-jWl2efwy9P9lJuCm9iGk/XnMj+wFsFgVfWUiDKT1EAYpLryZzDXNlWGMuTIL4mkMoVwtaJmrNFH1
-KCkLnPfFWbOiN42PF+3mZhfliJgdKDGd4KHL/CChKYOoSqRxLIvSOHbLUxeOshJcGC8bi9V9emys
-OJ7JiFb8jbJJNqmvYdAC1JP36rrOPL+mXKa/whEiQWXiVvMAyahD1+DISHySYtYMn/hloy52TnF0
-EKioK+GdX00feOx1uVKAi0DCXDZ4Lty9Dzynp1JKY/DSILGgP8NhgNSHBBGE3BHhj5odF6DBvAgU
-rtKEarTBusjiZ/FZHzrvEMIYBbc1VUutI5OJRAEOM68afpyR5RUM1tWwwRhIyA9X+fq0IDroecNo
-gcyXZwUJivRqOYcaWCGUULzuGT44MN0wd8MYEmzMbQ7oQAF9tXN2JIB2PnTstMsF8iouwSsT5fwo
-3yHcWjXUa34htP129gLoapZK7oHmZoGNUjLwtsAD4CmLw+EQrGsVkSAOVROEx+EERVLxuLERgN0L
-znoAXGTj5IOrErr9scfuuQWFL7xQevAd6KtB6CJJyUQ2jXvYQaohuhB+tQUy7wSv/gnlGaICJ1Kq
-3IPyaBjPpwTZ1rsrkUggI7/0PPRYjHe8D0nlOQy0sRfn884zKJe6UaZdiFMMoqPsVSqG9HQ0HEV5
-j4Hn96cubwIM96tQ0LFxLoEirlUmVVGvHo5d/tPE6CMjRwOTObICL+HQfJn5BUeqNui8HyEBI6vy
-fAwFcbRy4YnKjvXrN4xjHi4U/HtRwlwCSy9AAf4mHPFSUHoQm/8cQvtWXQ81ICE0wIvHUJzfyUcw
-yD4Png3ZFnjVnXY5As66C0nqgnBY4NSin2pZbiPfjQKIq+HVa5GxU9hfCvoegtG/Dw6Wlwsw4I1Y
-h9pXOwOZ/S042XCyexoG/UTgCBRFQtkPh+iPRMyB4PqPipCz36/IkxF+XfAeDBuzMmYBeFWt6ToW
-vDKeMr3hL2LKl44KJMj4PD4TxeNBKA0N9eyoq8u08fOKFWvy3d3dCJHKLaDtbLEYt/BjmYx5XELs
-AKmfXl+vnA6uUiuVuu3cD8Duxln7cZyE2qEePMDeCYClZ59xBm154QW7DV7tQzYy9uQ9htQRieTZ
-rq5tb41G3dP4GgQZeRv3t7R03AaZj+Ji5GTIhG1cljl5GsHzrnXr1i05++yWs0KhyiwseQWynp/Y
-OLz6e1h7e6FALpzAXLasTV2//q53FF8ZovalF4/3N77/nkht/flm/jCIE2sdhLka1q8emHPpfcmD
-j77mUVFA8KvqJNyWMD/JU8PERtlTA/BebRP0H0LP01MtVQVuGgeOjnbYkMGfSdlT17a3n8l14JMz
-yORsO61wnpi3atUqdoRNU9cFei/FNc5h/bEvb+Ikti952dcB4ketwuhMS6ni2qRHYzWWO3obJlww
-4yR0Hte/2fSnLr3ZqKm72TYLfCeLa0hwZjWsg59p5JUb2eU8g7l8b+NFn503+Ic7ZwLzuAUS4fyN
-+jnpm+wSrg2QDcHBNlJ1AXncxlmNseJMhHqcakU4gh+zwhSJ1N+BzP4cyqHcVDCPOyCRgeOm4V0v
-VG15YWTwO+Dw54Tr9GkiNCRMMW4aAa2halANcyRaEKHZilVOF63CyWGj9jxcvd4OvlwNvuw6Eszj
-Csjh2ErdNNyMcL1fJQ/+5pbX4rsj+g+i0ucLmX/gg9sg+tZw6vK5LrkL+1NX1qYP/FLegnH7D7B8
-JHpNzT1yAAAAAElFTkSuQmCC
-
---00000000000022881205ab811bd6--
+SGkgWm9yYW4sDQoNClRoYW5rIHlvdSBmb3IgcmVzcG9uZGluZy4gIEkgY29uZmVzcyBJIGFtIHN0
+aWxsIG5ldyB0byBidWlsZGluZyBMaW51eCB3aXRoIFlvY3RvLCBzbyBzb21lIG9mIHlvdXIgc3Rl
+cHMgbWF5IHNlZW0gb2J2aW91cywgYnV0IGFyZSBhIGJpdCBjb25mdXNpbmcgdG8gYSAnbmV3Ymll
+Jy4NCg0KSSBhbSB1c2luZyBub3JtYWwgWW9jdG8gaW5zdHJ1Y3Rpb24gcHJvdmlkZWQgYnkgVmFy
+aXNjaXRlIHRvIGJ1aWxkIG91ciByb290ZnMsIFUtQm9vdCwgYW5kIGtlcm5lbC4gIEhvd2V2ZXIs
+IEkgYW0gbm90IGRvaW5nIGFueXRoaW5nIHNwZWNpYWwgdG8gYnVpbGQgYW4gcnQta2VybmVsLCBh
+bmQgdGhhdCBpcyB3aGF0IEkgYW0gdHJ5aW5nIHRvIGZpbmQgb3V0IGhvdyB0byBkby4NCg0KRm9y
+IGV4YW1wbGUsIGFmdGVyIGRvd25sb2FkaW5nIGFuZCBpbnN0YWxsaW5nIHByZXJlcXVpc2l0ZSBl
+eGVjdXRhYmxlcywgSSBpbml0aWFsaXplIG91ciByZXBvIChleGFtcGxlIGlzIGZvciBZb2N0byBX
+YXJyaW9yLCBidXQgc2ltaWxhciBmb3IgWW9jdG8gWmV1cyk6DQoNCiQgcmVwbyBpbml0IC11IGh0
+dHBzOi8vZ2l0aHViLmNvbS92YXJpZ2l0L3ZhcmlzY2l0ZS1ic3AtcGxhdGZvcm0uZ2l0IC1iIGZz
+bC13YXJyaW9yIC1tIGlteC00LjE5LjM1LTEuMS4wLXZhcjAxLnhtbA0KJCByZXBvIHN5bmMgLWo0
+DQoNClRoZW4gSSBjb25maWd1cmUgb3VyIG1hY2hpbmUsIGRpc3RybywgYW5kIGJ1aWxkIGRpcmVj
+dG9yeToNCg0KJCBjZCB+L3Zhci1mc2wteW9jdG8NCiQgTUFDSElORT1pbXg4bW0tdmFyLWRhcnQg
+RElTVFJPPWZzbC1pbXgteHdheWxhbmQgLiB2YXItc2V0dXAtcmVsZWFzZS5zaCAtYiBidWlsZF94
+d2F5bGFuZA0KDQpUaGVuIEkgYW0gaW4gdGhlIGJ1aWxkX3h3YXlsYW5kIGRpcmVjdG9yeSwgYW5k
+IGNyZWF0ZSBvdXIgU0QgY2FyZCBpbWFnZSB1c2luZzoNCg0KJCBiaXRiYWtlIGZzbC1pbWFnZS1x
+dDUNCg0KVGhlIFNEIGNhcmQgaW1hZ2UgZW5kcyB1cCBpbiB0aGUgYnVpbGRfeHdheWxhbmQvdG1w
+L2RlcGxveS9pbWFnZXMgZGlyZWN0b3J5LCBhbmQgSSB1c2UgdGhlIGZvbGxvd2luZyB0byBmbGFz
+aCB0aGUgU0QgY2FyZDoNCg0KIyBGb3IgZnNsLWltYWdlLXF0NSBpbWFnZSAoUXQ1LVhXQVlMQU5E
+ICYgUXQ1LVdBWUxBTkQpDQokIHpjYXQgdG1wL2RlcGxveS9pbWFnZXMvaW14OG1tLXZhci1kYXJ0
+L2ZzbC1pbWFnZS1xdDUtaW14OG1tLXZhci1kYXJ0LnNkY2FyZC5neiB8IHN1ZG8gZGQgb2Y9L2Rl
+di9zZFggYnM9MU0gY29udj1mc3luYw0KDQpXaGF0IHN0ZXBzIGFyZSB5b3Ugc3VnZ2VzdGluZyB0
+byBjb25maWd1cmUgcnQtbGludXg/ICBJIHdvdWxkIGFwcHJlY2lhdGUgaXQgaWYgeW91IGNvdWxk
+IGJlIHNwZWNpZmljLCBzaW5jZSBzb21lIG9mIHRoZSBzdGVwcyBpbnZvbHZlZCBhcmUgbmV3IHRv
+IG1lLg0KDQpJIGhhdmUgYWxyZWFkeSBhZGRlZCBhIC5iYmFwcGVuZCBmaWxlIHRvIG1vZGlmeSB0
+aGUgZGV2aWNlIHRyZWUgZm9yIG91ciBhcHBsaWNhdGlvbiwgYW5kIGhhdmUgcnVuIGJpdGJha2Ug
+LWMgbWVudWNvbmZpZyB2aXJ0dWFsL2tlcm5lbCB0byB1cGRhdGUgdGhlIGtlcm5lbCBjb25maWd1
+cmF0aW9uLg0KDQpUaGFua3MgZm9yIHlvdXIgYXNzaXN0YW5jZSBhbmQgdG9sZXJhbmNlIGZvciBt
+eSBpbmV4cGVyaWVuY2VkIHF1ZXN0aW9ucy4NCg0KU2NvdHQgRC4gV2hpdG5leQ0KDQpzZHdAaW5l
+YS5jb23CoMKgwqDCoHzCoMKgwqDCoCBUOsKgNzgxLTgwMS0xMTUywqDCoMKgwqB8wqDCoMKgwqAg
+RjrCoDc4MS04MDEtMTEwOMKgwqDCoMKgfMKgwqDCoMKgIHd3dy5pbmVhLmNvbQ0KDQotLS0tLU9y
+aWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogWm9yYW4gU3RvanNhdmxqZXZpYyA8em9yYW4uc3Rv
+anNhdmxqZXZpY0BnbWFpbC5jb20+IA0KU2VudDogVHVlc2RheSwgSnVseSAyOCwgMjAyMCAxMDow
+NSBBTQ0KVG86IFNjb3R0IFdoaXRuZXkgPHNkd0BpbmVhLmNvbT4NCkNjOiBCcnVjZSBBc2hmaWVs
+ZCA8YnJ1Y2UuYXNoZmllbGRAZ21haWwuY29tPjsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3Vi
+amVjdDogUmU6IFt5b2N0b10gSG93IHRvIGVuYWJsZSBwcmVlbXB0LXJ0IGluIFlvY3RvIFpldXMg
+b3IgV2Fycmlvcj8NCg0KSGVsbG8gU2NvdHQsDQoNCkkgaGF2ZSBhIGJpdCBvZiBhIGRpZmZlcmVu
+dCBpZGVhIGFib3V0IHRoZSB3aG9sZSBZT0NUTyBwcm9jZXNzLg0KDQpMZXQgbWUgc3VnZ2VzdCBz
+b21ldGhpbmcgZWxzZSwgYWN0dWFsbHkgYSBoeWJyaWQgY29tYmluYXRpb24gb2YgdGhlIFlPQ1RP
+IGJ1aWxkIHN5c3RlbS4NCg0KWW91IGNhbiBkbyB0aGUgd2hvbGUgcHJvY2VzcyBvZiBZT0NUTywg
+YnV0IHdoeSBkbyB5b3Ugbm90IHVzZSBjb21wb25lbnRzIG91dCBvZiB0aGUgWU9DVE8gYnVpbGRp
+bmcgcHJvY2Vzcz8NCg0KRm9yIGV4YW1wbGUsIHlvdSBjYW4gdXNlIHJvb3RmcyBidWlsdCBieSBZ
+T0NUTywgYW5kIFUtQm9vdCBhbmQgcnQta2VybmVsIGJ1aWx0IG91dCBvZiB0aGUgWU9DVE8sIGZv
+ciB0aGUgYmVnaW5uaW5nPw0KDQpUaGVuLCBhcyBhbiBvcHRpb24sIGlmIHlvdSBhcmUgc2F0aXNm
+aWVkIHdpdGggdGhlIHJlYWNoZWQgYXJjaGl0ZWN0dXJlLCB5b3UgY2FuIHdyaXRlIHlvdXIgb3du
+IHJlY2lwZSBmb3IgdGhlIHJ0LWtlcm5lbCAoeW91IG5lZWQgdG8gaW5jb3Jwb3JhdGUgYSBidW5j
+aCBvZiBwYXRjaGVzIGludG8gdGhlIHJ0LWtlcm5lbCBwcm9wcmlldGFyeSByZWNpcGUpLg0KDQpa
+b3Jhbg0KX19fX19fXw0KDQoNCk9uIFR1ZSwgSnVsIDI4LCAyMDIwIGF0IDI6NDUgUE0gU2NvdHQg
+V2hpdG5leSA8c2R3QGluZWEuY29tPiB3cm90ZToNCj4NCj4gSGkgQnJ1Y2UsDQo+DQo+DQo+DQo+
+IFllcywgd2UgYXJlIHVzaW5nIExpbnV4IGJ1aWx0IGJ5IFlvY3RvLCBidXQgd2hlcmUgaXMgdGhl
+IHByZWZlcnJlZCBwcm92aWRlciBmb3IgdGhlIGtlcm5lbCBzZXQgdG8gbGludXgteW9jdG8tcnQ/
+DQo+DQo+DQo+DQo+IFRoYW5rcyBmb3IgeW91ciBoZWxwDQo+DQo+DQo+DQo+IFNjb3R0IEQuIFdo
+aXRuZXkNCj4NCj4gc2R3QGluZWEuY29tICAgIHwgICAgIFQ6IDc4MS04MDEtMTE1MiAgICB8ICAg
+ICBGOiA3ODEtODAxLTExMDggICAgfCAgICAgd3d3LmluZWEuY29tDQo+DQo+DQo+DQo+IEZyb206
+IEJydWNlIEFzaGZpZWxkIDxicnVjZS5hc2hmaWVsZEBnbWFpbC5jb20+DQo+IFNlbnQ6IE1vbmRh
+eSwgSnVseSAyNywgMjAyMCAxMDowNCBQTQ0KPiBUbzogU2NvdHQgV2hpdG5leSA8c2R3QGluZWEu
+Y29tPg0KPiBDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0OiBSZTogW3lvY3Rv
+XSBIb3cgdG8gZW5hYmxlIHByZWVtcHQtcnQgaW4gWW9jdG8gWmV1cyBvciBXYXJyaW9yPw0KPg0K
+Pg0KPg0KPg0KPg0KPg0KPg0KPiBPbiBNb24sIEp1bCAyNywgMjAyMCBhdCAzOjUxIFBNIFNjb3R0
+IFdoaXRuZXkgPHNkd0BpbmVhLmNvbT4gd3JvdGU6DQo+DQo+IEhpIFlvY3RvIGdyb3VwLA0KPg0K
+Pg0KPg0KPiBJ4oCZbSB3b3JraW5nIHdpdGggYSBuZXdseS1yZWxlYXNlZCBjb3B5IG9mIFlvY3Rv
+IFpldXMgZnJvbSBWYXJpc2NpdGUgZm9yIHRoZSBpLk1YOE1NIE1pbmksIGFsdGhvdWdoIHRoZSBz
+YW1lIG9wdGlvbiBzZWVtcyB0byBhcHBseSB0byB0aGUgcHJldmlvdXMgWW9jdG8gV2Fycmlvci4N
+Cj4NCj4NCj4NCj4gSSB1bmRlcnN0YW5kIHRoYXQgYSBMaW51eCByZWFsLXRpbWUga2VybmVsIGNh
+biBiZSBlbmFibGVkIGJ5IHNldHRpbmcgTElOVVhfS0VSTkVMX1RZUEUgPSDigJxwcmVlbXB0LXJ0
+4oCdLiAgV2hlcmUgZG9lcyB0aGlzIG9wdGlvbiBuZWVkIHRvIGJlIHNldCBzbyB0aGF0IHdoZW4g
+SSBiaXRiYWtlIGZzbC1pbWFnZS1xdDUsIEkgZ2V0IHRoZSBMaW51eCDigJxwcmVlbXB0LXJ04oCd
+IGtlcm5lbCBpbnN0ZWFkIG9mIHRoZSDigJxzdGFuZGFyZOKAnSBrZXJuZWw/DQo+DQo+DQo+DQo+
+IElzIHRoZXJlIGEgc3BlY2lmaWMgY29uZmlndXJhdGlvbiBmaWxlIHRoYXQgbmVlZHMgdG8gYmUg
+bW9kaWZpZWQsIG9yIGEgbmV3IHJlY2lwZSBpbiBhIGxheWVyPyAgSSBhbSBjb25mdXNlZCBhbmQg
+aG9waW5nIHRoYXQgeW91IGNhbiBoZWxwLg0KPg0KPg0KPg0KPiBJZiB5b3UgYXJlbid0IHVzaW5n
+IGxpbnV4LXlvY3RvLCB5b3UnbGwgbmVlZCB0byBhcnJhbmdlIGZvciB0aGUgcHJlZW1wdC1ydCBw
+YXRjaChlcykgdG8gYmUgYXBwbGllZCB0byB3aGF0ZXZlciBrZXJuZWwgeW91IGFyZSB1c2luZy4g
+V2hpY2ggbWVhbnMgeW91IGFyZSBjcmVhdGluZyBhIG5ldyByZWNpcGUsIGJiYXBwZW5kaW5nIGFu
+IGV4aXN0aW5nIG9uZSwgb3IgaWYgeW91IGFyZSBsdWNreSB0aGUga2VybmVsIHByb3ZpZGVyIGFs
+cmVhZHkgaGFzIGEgLXJ0IHJlY2lwZSBhdmFpbGFibGUuDQo+DQo+DQo+DQo+IElmIHlvdSBhcmUg
+dXNpbmcgbGludXgteW9jdG8sIGl0J3MgYXMgc2ltcGxlIGFzIHNldHRpbmcgdGhlIHByZWZlcnJl
+ZCBwcm92aWRlciBvZiB0aGUga2VybmVsIGFzIGxpbnV4LXlvY3RvLXJ0ICBhbmQgYnVpbGRpbmcu
+DQo+DQo+DQo+DQo+IEJydWNlDQo+DQo+DQo+DQo+DQo+DQo+DQo+DQo+IEJlc3QgcmVnYXJkcywN
+Cj4NCj4NCj4NCj4gU2NvdHQgRC4gV2hpdG5leQ0KPg0KPiBQcmluY2lwYWwgU29mdHdhcmUgRW5n
+aW5lZXINCj4NCj4NCj4gSW50ZXJ0ZWNoIEVuZ2luZWVyaW5nIEFzc29jaWF0ZXMsIEluYy4NCj4g
+MTAwIExvd2RlciBCcm9vayBEcml2ZSwgU3VpdGUgMjUwMA0KPiBXZXN0d29vZCwgTUEgIDAyMDkw
+DQo+IHNkd0BpbmVhLmNvbSAgICB8ICAgICBUOiA3ODEtODAxLTExNTIgICAgfCAgICAgRjogNzgx
+LTgwMS0xMTA4ICAgIHwgICAgIHd3dy5pbmVhLmNvbQ0KPg0KPg0KPg0KPg0KPg0KPg0KPiAtLQ0K
+Pg0KPiAtIFRob3Ugc2hhbHQgbm90IGZvbGxvdyB0aGUgTlVMTCBwb2ludGVyLCBmb3IgY2hhb3Mg
+YW5kIG1hZG5lc3MgYXdhaXQgDQo+IHRoZWUgYXQgaXRzIGVuZA0KPiAtICJVc2UgdGhlIGZvcmNl
+IEhhcnJ5IiAtIEdhbmRhbGYsIFN0YXIgVHJlayBJSQ0KPg0KPiANCg==
