@@ -1,78 +1,36 @@
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
- by mx.groups.io with SMTP id smtpd.web11.4718.1595906946122256443
- for <yocto@lists.yoctoproject.org>;
- Mon, 27 Jul 2020 20:29:06 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: redrectangle.org, ip: 217.70.178.231, mailfrom: robert.joslyn@redrectangle.org)
-Received: from bucephalus (rrcs-173-197-191-182.west.biz.rr.com [173.197.191.182])
-	(Authenticated sender: robert.joslyn@redrectangle.org)
-	by relay11.mail.gandi.net (Postfix) with ESMTPSA id 42CB7100005;
-	Tue, 28 Jul 2020 03:29:01 +0000 (UTC)
-Message-ID: <785c799e6974c0c7485cd682427cfa673760c5da.camel@redrectangle.org>
-Subject: Re: [yocto] [meta-java] icedtea7-native fails to build with error: cc1plus: all warnings being treated as errors
-From: "Robert Joslyn" <robert.joslyn@redrectangle.org>
-To: ithijme@gmail.com, yocto@lists.yoctoproject.org
-Date: Mon, 27 Jul 2020 20:28:58 -0700
-In-Reply-To: <u6iU.1595855785511775765.vBcd@lists.yoctoproject.org>
-References: <u6iU.1595855785511775765.vBcd@lists.yoctoproject.org>
-User-Agent: Evolution 3.36.4 
+Subject: #toolchain #yocto #devtool #linux
+To: yocto@lists.yoctoproject.org
+From: andymishra97@gmail.com
+X-Originating-Location: Hyderabad, Telangana, IN (14.139.93.243)
+X-Originating-Platform: Linux Firefox 78
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Date: Mon, 27 Jul 2020 22:09:53 -0700
+Message-ID: <qEDV.1595912993747746816.6I57@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="MpQ8xndqyMliQ7DbXrgV"
 
-On Mon, 2020-07-27 at 06:16 -0700, ithijme@gmail.com wrote:
-> Hi,
-> 
-> I am trying to build openjdk-8-native, however its icedtea7 dependency
-> fails to build.
-> The error is a little hard to parse but it appears to be due to warnings
-> being treated as errors.
-> There are a lot of logs like the following:
-> 
-> | In function ‘int fprintf(FILE*, const char*, ...)’,
-> |     inlined from ‘void ADLParser::frame_parse()’ at
-> .../build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-r1.0/icedtea-
-> 2.1.3/build/openjdk-boot/hotspot/src/share/vm/adlc/adlparse.cpp:1118:34:
-> | /usr/include/x86_64-linux-gnu/bits/stdio2.h:100:24: error: ‘%s’
-> directive argument is null [-Werror=format-overflow=]
-> |   100 |   return __fprintf_chk (__stream, __USE_FORTIFY_LEVEL - 1,
-> __fmt,
-> |       |         
-> ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> |   101 |    __va_arg_pack ());
-> |       |    ~~~~~~~~~~~~~~~~~
-> | cc1plus: all warnings being treated as errors
-> | make[7]: *** [.../build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-
-> r1.0/icedtea-2.1.3/build/openjdk-
-> boot/hotspot/make/linux/makefiles/adlc.make:207:
-> ../generated/adfiles/adlparse.o] Error 1
-> | make[7]: *** Waiting for unfinished jobs....
-> | cc1plus: all warnings being treated as errors
-> 
-> I am using the following bblayers:
-> * poky/meta
-> * poky/meta-poky
-> * meta-openembedded/meta-oe
-> * meta-java
-> 
-> All layers are from the dunfell branch of their respective repositories
-> and are up to date.
-> 
-> Can anybody offer any advice on how to successfully build the openjdk-8-
-> native recipe ? Anybody have it working themselves ?
-> 
-> Cheers
-> Jeff
-> 
+--MpQ8xndqyMliQ7DbXrgV
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-I had the same problem about a month ago. My quick fix was to create an
-icedtea7-native_%.bbappend in my own layer to disable turning that warning
-into an error:
+Hi,
+I am trying to build a yocto *demo-coreip-cli* image for my custom RISC-V =
+SOC which only supports *imafd* instructions. For the compilation of cross =
+toolchain that is used by Bitbake, I tried changing cross-binutils.inc reci=
+pe and cross-gcc.inc recipe in openembedded-core layer by including =E2=80=
+=9C *=E2=80=93with-arch=3Drv64imafd* =E2=80=9D in " *EXTRA_OECONF* " varia=
+ble. Is there anything else I am missing or doing wrong? Thank You.
 
-CFLAGS_append = " -Wno-error=format-overflow"
+--MpQ8xndqyMliQ7DbXrgV
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-I assume it's due to the compiler on your build machine being newer (or at
-least different) than what the recipe is expecting.
+Hi,<br />I am trying to build a yocto <strong>demo-coreip-cli</strong> imag=
+e for my custom RISC-V SOC which only supports <strong>imafd</strong> instr=
+uctions. For the compilation of cross toolchain that is used by Bitbake, I =
+tried changing cross-binutils.inc recipe and cross-gcc.inc recipe in openem=
+bedded-core layer by including &ldquo;<strong>&ndash;with-arch=3Drv64imafd<=
+/strong>&rdquo; in "<strong>EXTRA_OECONF</strong> " variable. Is there anyt=
+hing else I am missing or doing wrong? Thank You.
 
-Robert
-
+--MpQ8xndqyMliQ7DbXrgV--
