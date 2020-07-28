@@ -1,97 +1,134 @@
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
- by mx.groups.io with SMTP id smtpd.web12.6066.1595913556524954471
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+ by mx.groups.io with SMTP id smtpd.web12.6750.1595917830516401318
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Jul 2020 22:19:16 -0700
+ Mon, 27 Jul 2020 23:30:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=OmQKkULP;
- spf=pass (domain: gmail.com, ip: 209.85.222.43, mailfrom: nikhilvp29@gmail.com)
-Received: by mail-ua1-f43.google.com with SMTP id o25so6133008uar.1
-        for <yocto@lists.yoctoproject.org>; Mon, 27 Jul 2020 22:19:16 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=POWmRX2R;
+ spf=pass (domain: gmail.com, ip: 209.85.218.52, mailfrom: ithijme@gmail.com)
+Received: by mail-ej1-f52.google.com with SMTP id g7so11200869ejw.12
+        for <yocto@lists.yoctoproject.org>; Mon, 27 Jul 2020 23:30:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=rXVVlbU2IQWmupN3UHLxjidXDOfUcLgmE5HV3GjLb9E=;
-        b=OmQKkULPARROPpLcQ8i63N5Rm0VSAokpRzbbQvnWwkHUSCoB/cR8plesZ5Gm+Pml61
-         tX2bgRBscToBAiM9777bzW+i+BgiyzlfSmfugD5f30O6yBjJ/9DskmNZeTlr5zoRr5iX
-         c9TJDCQhsDl8SitmkOYSBHKfWLmDssEBdZZE99J2CSTArd7Fzfr3MbHXNUnu9nL3jAcH
-         l0cqn8yoxqXyAap4lbaBhWnpE0LrrwXzK8nt5i3ufzxKUs6hFaQpbtxSnzuhIdqsZfPT
-         17HysIEhVof/uDkbXwAGEaBC6G8vcFCI/CdxFC+9gSO9txQSOtziDBGHOu6WpHWhBZf2
-         4RqA==
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding:content-language;
+        bh=zqsrUuiAPXAy4ThFpLnQIt8Iu3/BAqSZfmkcKVrxKas=;
+        b=POWmRX2Ry+8YwWz63bSlDmINyaRoVnpsiCxpDYHm3C8O8CxFF/U2LmpdV6GrPtdHjE
+         UeHEwldSJA9pMnZ9EXLWSF7SWdJBZejurxdoSTWQyxkqOliMWpqTPNHw7o7ksYrB2GfJ
+         Xz+E00rrGgS5OWTVTxB6pTjEintTyX16vKNwGT4Gr9/OUwT3CHlqo5XEFVoMxtbM9ToT
+         HyNf/G1oDEn6iAYCoQ4Xm4WN00UfFozJaSc8YegukBy2n4KwZgDg7sZ3Vff8gfExmImE
+         cZ4uweKCmTRmXeRibP3SOY9JzEWARHA2fBkin/PyQ+NLVEish+4NMQBfPdZpnu/SBnYs
+         N1LA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=rXVVlbU2IQWmupN3UHLxjidXDOfUcLgmE5HV3GjLb9E=;
-        b=S5GGmwdoy30lpkN4gpgaQ0iLb0xBZrxujBLiQNZEXZ2mrT59d58BSAI3vjVuXWGkgH
-         zsVGYEZVCkXqGU8CetrABBfPze6Io3mjWse8BAV5hEXVViNL29MFWg324eFpg7KGyHJa
-         IpxFNsjfbVKpL5TE2BAMxf4klTT0nSSUwy/CkD+9BzEwl+npOCfUBTrkkkjUomxZsTya
-         Hs2fe51hRe6hmetP7wmt4/4IfDiZ6aMRW1iYhPhmVeONEL18Z9aZ/kr6CSV2hl67zVK9
-         3rCkr4MuiQskTMRcZkCSIiPB8Dt3mYb4swm1mE3flBvPra0EmW+GvycP3IllKjWrqzgT
-         bp9w==
-X-Gm-Message-State: AOAM530ISwYZAuHAH0MheitKeMhkEy1fHwZ5q6MOXawkZySMkzbW30/p
-	bNvjtV91RbF2PM4at/SwghE9a4qNFN0j2A2xxppcb2va
-X-Google-Smtp-Source: ABdhPJz5M45hilnaGN58XK+v71jsC8Dl5cKMoCH3IWJUebXvaBBC6uXPdEKn0FT7936DV4G0sFlIeQV781E36WP0tRI=
-X-Received: by 2002:ab0:6585:: with SMTP id v5mr4644201uam.73.1595913555236;
- Mon, 27 Jul 2020 22:19:15 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=zqsrUuiAPXAy4ThFpLnQIt8Iu3/BAqSZfmkcKVrxKas=;
+        b=tUFIboIbIhrsuzf1aUolGrzSUDrcJj321pTVH2jSQpI5V1yjXQGVo5q13FWl54t23o
+         /pBQJdb2h5PW8NxgA6y1LtLvnYhC2TycV0VbzKDCVexxG97xPMJFI2fToOEVaeMhBU3N
+         ALIHJ4scDOPQZ+IS+aZsLumefBp9V39BAolJvoZl8wcnyxCGjJqf0GS9FKRW7MUmomAS
+         aACTvvbYBzZziMmptwZCq8lFbfK+I4fWhU9g9VN8McFY10CFHmXWAXQ7y+Yi1sxUQwZH
+         94wjtOzNiuqfHjn3OBV1Z6zgG1rm1ZPY/OFpH2In0RhuE8JZFBBmWAjvpWbf4G1m9jxO
+         f+dg==
+X-Gm-Message-State: AOAM530DY/mFJpUY3T1QV9FkmGU9fprH3orChr7cXpU2e3PTenj5svm6
+	Rt8wXFXgL7LCSn0ntJxbjASg0Riehh0=
+X-Google-Smtp-Source: ABdhPJyS6ABdygqW3JFDOkIxSbF67fcxk5j+ckuPqeU6i/QqlhtR2TEDmNOy2/KiD5xzS16lhd71VA==
+X-Received: by 2002:a17:906:743:: with SMTP id z3mr24012059ejb.216.1595917828792;
+        Mon, 27 Jul 2020 23:30:28 -0700 (PDT)
+Return-Path: <ithijme@gmail.com>
+Received: from [10.68.24.155] ([193.27.14.73])
+        by smtp.gmail.com with ESMTPSA id e13sm183675eds.46.2020.07.27.23.30.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jul 2020 23:30:28 -0700 (PDT)
+Subject: Re: [yocto] [meta-java] icedtea7-native fails to build with error: cc1plus: all warnings being treated as errors
+To: Robert Joslyn <robert.joslyn@redrectangle.org>,
+ yocto@lists.yoctoproject.org
+References: <u6iU.1595855785511775765.vBcd@lists.yoctoproject.org>
+ <785c799e6974c0c7485cd682427cfa673760c5da.camel@redrectangle.org>
+From: ithijme@gmail.com
+Message-ID: <32dca10c-bb5d-09c9-c943-9e8a356c731d@gmail.com>
+Date: Tue, 28 Jul 2020 08:30:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <CAJw=dJ_yy8+A6JWoB39rRB0+FbQX+LGFgFmnn9dTWcqPFN2ruQ@mail.gmail.com>
-In-Reply-To: <CAJw=dJ_yy8+A6JWoB39rRB0+FbQX+LGFgFmnn9dTWcqPFN2ruQ@mail.gmail.com>
-From: "NIKHIL PATIL" <nikhilvp29@gmail.com>
-Date: Tue, 28 Jul 2020 10:49:03 +0530
-Message-ID: <CAJw=dJ-WJfC=sss_aS6mokwUPTZby65GN+cayYM=pqWs6o7JVw@mail.gmail.com>
-Subject: Re: Remove connman package from yocto sdk.
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000008d5c8205ab7994ef"
+In-Reply-To: <785c799e6974c0c7485cd682427cfa673760c5da.camel@redrectangle.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
---0000000000008d5c8205ab7994ef
-Content-Type: text/plain; charset="UTF-8"
+Hi Robert,
 
-hi,
- Still we ar facing same issue  ,
-  If anyone know, please help.
+Thanks for the tip, it seems to have worked and I've gotten past the 
+compilation step.
 
-On Fri, Jul 24, 2020 at 6:14 PM NIKHIL PATIL <nikhilvp29@gmail.com> wrote:
+Unfortunately, now the build seems to be failing the do_package_rpm task 
+with the following error:
 
-> Hi team,
->           We want to use NetworkManager to access internet using LTE
-> module . but connman and Networkmaanger both are installed.
+Exception: bb.process.ExecutionError: Execution of 
+'../build/tmp/work/aarch64-poky-linux/icedtea7-native/%-r0/temp/run.BUILDSPEC.153296' 
+failed with exit code 127:
+../build/tmp/work/aarch64-poky-linux/icedtea7-native/%-r0/temp/run.BUILDSPEC.153296: 
+106: rpmbuild: not found
+WARNING: exit code 127 from a shell command.
+
+Did you also encounter this ?
+
+Cheers
+Jeff
+
+On 7/28/20 5:28 AM, Robert Joslyn wrote:
+> On Mon, 2020-07-27 at 06:16 -0700, ithijme@gmail.com wrote:
+>> Hi,
+>>
+>> I am trying to build openjdk-8-native, however its icedtea7 dependency
+>> fails to build.
+>> The error is a little hard to parse but it appears to be due to warnings
+>> being treated as errors.
+>> There are a lot of logs like the following:
+>>
+>> | In function ‘int fprintf(FILE*, const char*, ...)’,
+>> |     inlined from ‘void ADLParser::frame_parse()’ at
+>> .../build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-r1.0/icedtea-
+>> 2.1.3/build/openjdk-boot/hotspot/src/share/vm/adlc/adlparse.cpp:1118:34:
+>> | /usr/include/x86_64-linux-gnu/bits/stdio2.h:100:24: error: ‘%s’
+>> directive argument is null [-Werror=format-overflow=]
+>> |   100 |   return __fprintf_chk (__stream, __USE_FORTIFY_LEVEL - 1,
+>> __fmt,
+>> |       |
+>> ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> |   101 |    __va_arg_pack ());
+>> |       |    ~~~~~~~~~~~~~~~~~
+>> | cc1plus: all warnings being treated as errors
+>> | make[7]: *** [.../build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-
+>> r1.0/icedtea-2.1.3/build/openjdk-
+>> boot/hotspot/make/linux/makefiles/adlc.make:207:
+>> ../generated/adfiles/adlparse.o] Error 1
+>> | make[7]: *** Waiting for unfinished jobs....
+>> | cc1plus: all warnings being treated as errors
+>>
+>> I am using the following bblayers:
+>> * poky/meta
+>> * poky/meta-poky
+>> * meta-openembedded/meta-oe
+>> * meta-java
+>>
+>> All layers are from the dunfell branch of their respective repositories
+>> and are up to date.
+>>
+>> Can anybody offer any advice on how to successfully build the openjdk-8-
+>> native recipe ? Anybody have it working themselves ?
+>>
+>> Cheers
+>> Jeff
+>> 
+> I had the same problem about a month ago. My quick fix was to create an
+> icedtea7-native_%.bbappend in my own layer to disable turning that warning
+> into an error:
 >
->           I struggled so much to remove connman,  I tried as follows :-
->            1) Added IMAGE_INSTALL_remove = "connman"  in local.conf
->                             but it still come with sato image.
+> CFLAGS_append = " -Wno-error=format-overflow"
 >
->             2) Added DISTRO_FEATURE_remove = "connman"  in local.conf
->                             but it still come with sato image.
+> I assume it's due to the compiler on your build machine being newer (or at
+> least different) than what the recipe is expecting.
 >
->     By default connman is coming in image , how to remove connman ?
+> Robert
 >
->
-
---0000000000008d5c8205ab7994ef
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">hi,<div>=C2=A0Still we ar facing same issue=C2=A0 ,</div><=
-div>=C2=A0 If anyone know, please help.</div></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jul 24, 2020 at 6:14 P=
-M NIKHIL PATIL &lt;<a href=3D"mailto:nikhilvp29@gmail.com">nikhilvp29@gmail=
-.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex"><div dir=3D"ltr">Hi team,<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 We wan=
-t to use NetworkManager to access internet using LTE module . but connman a=
-nd Networkmaanger both are installed.</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 I=
- struggled so much to remove connman,=C2=A0 I tried as follows=C2=A0:-</div=
-><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01) Added IMAGE_INSTALL_remov=
-e =3D &quot;connman&quot;=C2=A0 in local.conf</div><div>=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 but it still come with sato image.</div><div><br></div><div>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2) Added DISTRO_FEATURE_remove =3D &quot=
-;connman&quot;=C2=A0 in local.conf</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 but i=
-t still come with sato image.</div><div>=C2=A0 =C2=A0</div><div>=C2=A0 =C2=
-=A0 By default connman is coming in image , how to remove connman ?</div><d=
-iv>=C2=A0 =C2=A0 =C2=A0=C2=A0</div></div>
-</blockquote></div>
-
---0000000000008d5c8205ab7994ef--
