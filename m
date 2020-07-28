@@ -1,63 +1,177 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.11.1595971582203218762
+ by mx.groups.io with SMTP id smtpd.web12.1002.1595976116870413516
  for <yocto@lists.yoctoproject.org>;
- Tue, 28 Jul 2020 14:26:22 -0700
+ Tue, 28 Jul 2020 15:41:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: randy.macleod@windriver.com)
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=kYtvNod6;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: twoerner@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BEE68E01F39; Tue, 28 Jul 2020 14:26:21 -0700 (PDT)
+	id 652D2E01F38; Tue, 28 Jul 2020 15:41:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.0 NICE_REPLY_A Looks like a legit reply (A)
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9ABCAE01F37
-	for <yocto@yoctoproject.org>; Tue, 28 Jul 2020 14:26:20 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 06SLPDA4029425
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Tue, 28 Jul 2020 14:25:34 -0700
-Received: from [172.25.44.3] (172.25.44.3) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Tue, 28 Jul
- 2020 14:25:12 -0700
-Subject: Re: [yocto] [prelink-cross] prelink-cross: Add SPDX-License-Identifier: GPL-2.0-or-later to source files
-To: Sathish V <sathish25071992@gmail.com>, <mark.hatle@kernel.crashing.org>
-CC: <yocto@yoctoproject.org>
-References: <20200721141407.2692-1-sathish25071992@gmail.com>
-From: "Randy MacLeod" <randy.macleod@windriver.com>
-Message-ID: <4702a531-6633-ffec-c5a3-e7591811fce2@windriver.com>
-Date: Tue, 28 Jul 2020 17:25:10 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (twoerner[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.166.43 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD1F7E01EF2
+	for <yocto@yoctoproject.org>; Tue, 28 Jul 2020 15:41:53 -0700 (PDT)
+Received: by mail-io1-f43.google.com with SMTP id z6so22565423iow.6
+        for <yocto@yoctoproject.org>; Tue, 28 Jul 2020 15:41:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:subject:message-id:mime-version:content-disposition
+         :content-transfer-encoding:user-agent;
+        bh=Ch5QEW6t/mkG47IVxZlGMZaa0yve9FqY3y/rRuJKiGs=;
+        b=kYtvNod67FzdIf4rmga2z/azCpde41MDz4hM2sQT2OBhNfE4RWbp7x6zAX6LeF4LFc
+         pr5sdhOYwiGP0uk5Mic14SC1YqhtVZ14PCjBRU+8ZJJhMhkB4vJdYcpLmdoesq03Wavk
+         4fxtRgNcOesT/zGreHsWEsBg7O12TPDV3BxTOqTo/0YZDfRoAF9bdlOMqQg6MR46+RHm
+         TNpe4Zkw1/8a4D5qL9tCQ4spmw4TAu76LeoOq7pFLfSuL1a7bUYvV+TWuX3vvSZquBGM
+         wLL3Bd1k+itbxs4HrRu5mdgjNwYNE+f7EPMRLiU2gfmc5V7kntlJKWVDzxK/8GvYTRzG
+         RUWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition:content-transfer-encoding:user-agent;
+        bh=Ch5QEW6t/mkG47IVxZlGMZaa0yve9FqY3y/rRuJKiGs=;
+        b=oNBHikiF3LP74nLySK7bDxDuBLMk3qlYZq4ftn29fibJtTsvowavtLst0n3VTcc2kC
+         bHcXESPuibFM6ZEHbMYlcZXuqrURrwr/wNBXTsH6RD55tpO9OB0ZTz86XSHHdIz0bATr
+         LV2+Z64WufBDIMlA5jbZb9iEwYmvPRinDHcEdPrlxEI21WKOOq3nVnnWPp+r4LyDzxSe
+         1fZqa4RE07qaTGFRwqCvpXlnqZ2CdElAhryJogfwMVK1b4FBc8tzdAjGPCaW8AEXU3St
+         wwI+XIVtdfJmIg6rjkU67kr5lrjM1lPszWo72NIssbTA4O4jhLvOSKnkY8PjR70fYb0I
+         Vx8g==
+X-Gm-Message-State: AOAM532JX/MwTSxL0Z6rSx1aqN/WfPKaynWmrnPSjSA2fqEiB7DROyi2
+	H6M7GsCJejO7JxvHcOuavQyN5oBNTrQ=
+X-Google-Smtp-Source: ABdhPJwQ+zHPMQVY8HTINZ/KNHm3xegsuCEob6gY0MBpRNOhGQEdHzfFhan6BsqJ3b98kD56oYw2xg==
+X-Received: by 2002:a05:6638:27a:: with SMTP id x26mr4796727jaq.43.1595976112359;
+        Tue, 28 Jul 2020 15:41:52 -0700 (PDT)
+Received: from linux-uys3 ([206.248.190.95])
+        by smtp.gmail.com with ESMTPSA id w15sm103809ila.65.2020.07.28.15.41.51
+        for <yocto@yoctoproject.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 28 Jul 2020 15:41:51 -0700 (PDT)
+Date: Tue, 28 Jul 2020 18:41:49 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Yocto Technical Team Minutes, Engineering Sync, for July 28 2020
+Message-ID: <20200728224149.GA22506@linux-uys3>
 MIME-Version: 1.0
-In-Reply-To: <20200721141407.2692-1-sathish25071992@gmail.com>
-X-Originating-IP: [172.25.44.3]
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-CA
-Content-Transfer-Encoding: 7bit
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2020-07-21 10:14 a.m., Sathish V wrote:
-> Signed-off-by: Sathish V <sathish25071992@gmail.com>
-> ---
->   gelf/gelf.c        | 4 +++-
->   gelf/gelf.h        | 4 +++-
->   gelfx/gelfx.h      | 4 +++-n
-...
+Yocto Technical Team Minutes, Engineering Sync, for July 28 2020
+archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7=
+QwKC5wWVDg9dDH4/edit
 
-Thanks Sathish!
+=3D=3D disclaimer =3D=3D
+Best efforts are made to ensure the below is accurate and valid. However,
+errors sometimes happen. If any errors or omissions are found, please fee=
+l
+free to reply to this email with any corrections.
 
-Mark, did you miss this email?
+=3D=3D attendees =3D=3D
+Trevor Woerner, Stephen Jolly, Armin Kuster, Josef Holzmayr, Richard
+Purdie, Trevor Gamblin, Joshua Watt, Mark Morton, Ross Burton, Bruce
+Ashfield, Steve Sakoman, (phone-in ??), Jon Mason, Randy MacLeod, Scott
+Murray, Denys Dmytriyenko
 
+=3D=3D notes =3D=3D
+- fixed a race on AB wrt perl
+- 3.1.2 into QA
+- 3.2-m2 to QA once they=E2=80=99re done with 3.1.2
 
+=3D=3D general =3D=3D
+RP: load of perl issues over the weekend, believe to have found issue
+RP: lots of qemumips issues, not sure why, perhaps a timeouts issue? (no =
+ping
+    within 30 seconds)
+RP: some infrastructure issues (one worker has become corrupted)
 
--- 
-# Randy MacLeod
-# Wind River Linux
+RP: curious to know what people think about 3.1.2: there is a bitbake iss=
+ue
+    with toaster, should we release then fix or wait for fix before relea=
+se?
+SS: maybe we should get feedback from people using toaster
+RP: the fix is simple, maybe release 3.1.2 (with release note) then fix
+
+RP: merged re-arrangement of package manager code, this puts more of our =
+code
+    into python libraries instead of bbclass files, which is the directio=
+n i
+    want to take going forward
+RP: i need to start a conversation on oe-architecture for future directio=
+ns
+RP: e.g. binary package feeds, we want to capture these use-cases into th=
+e
+    wiki
+
+[NB: done! see https://wiki.yoctoproject.org/wiki/Future_Directions]
+
+RP: we also posted the current agreement on =E2=80=9Cinclusive language=E2=
+=80=9D as agreed
+    on by various groups (oe board, oe-tsc, yp-tsc)
+
+TW: what=E2=80=99s the thinking behind moving code to libraries vs bbclas=
+s?
+RP: pro: parsing speed con: variable dependency tracking is lost
+RP: lots of python code gets written to logs etc, which slows it down
+JPEW: does bitbake automatically detect variable dependencies in library =
+code?
+RP: no. maybe we just need to do the scan once?
+TW: do we lose flexibility? (e.g. it=E2=80=99s easy to copy+paste+modify =
+a bbclass,
+    will that be possible?)
+RP: there will still be all the same entry points, so it should be possib=
+le
+RP: i=E2=80=99m worried about the size of the datastore in memory and it =
+is a
+    bottleneck
+
+RP: i wonder why qemumips is so slow?
+Randy: i think Cisco are the only ones caring about mips
+RP: yes, and Comcast too i think
+
+MM: have been wrapped up in $WORK stuff, but will be working on docs
+    conversion soon
+RP: MH has been putting infrastructure in place and Nico is looking forwa=
+rd to
+    getting this going
+MM: do we want to try to reproduce our current colours/formatting or try
+    something new
+RP: i like what we have, the project does have an existing scheme, but we=
+ can
+    change if something else makes sense
+
+TW: i do lots of builds, never seen issues, why are there so many failure=
+s on
+    AB?
+RP: do you do oe-selftest or testsdk builds?
+TW: no
+RP: do you do mips builds?
+TW: no
+RP: so these are the areas where we see these failures, =E2=80=9Cregular=E2=
+=80=9D builds
+    are okay
+SS: i don=E2=80=99t see issues on my builds but that=E2=80=99s probably b=
+ecause of working
+    these issues out on the AB
+RP: infrastructure issues are low, it=E2=80=99s mostly race issues that c=
+ome out of
+    the extreme load of the AB or intermittent architecture issues that a=
+re
+    rarely tested
