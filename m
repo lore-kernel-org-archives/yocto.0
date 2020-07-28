@@ -1,75 +1,82 @@
-Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
- by mx.groups.io with SMTP id smtpd.web10.8089.1595924948604408951
+Received: from mail.deif.com (mail.deif.com [87.54.42.111])
+ by mx.groups.io with SMTP id smtpd.web12.9006.1595930306767509967
  for <yocto@lists.yoctoproject.org>;
- Tue, 28 Jul 2020 01:29:08 -0700
+ Tue, 28 Jul 2020 02:58:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: yi.zhao@windriver.com)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 06S8SD7F002672
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Tue, 28 Jul 2020 01:28:39 -0700
-Received: from localhost (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Tue, 28 Jul
- 2020 01:28:02 -0700
-From: "Yi Zhao" <yi.zhao@windriver.com>
-To: <yocto@lists.yoctoproject.org>, <joe@deserted.net>
-Subject: [meta-selinux][PATCH 1/2] selinux-*.bb: fix typos
-Date: Tue, 28 Jul 2020 16:27:57 +0800
-Message-ID: <20200728082758.9609-1-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=pass header.i=@deif.com header.s=s1024 header.b=oKfnZav3;
+ spf=pass (domain: deif.com, ip: 87.54.42.111, mailfrom: kfa@deif.com)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed;
+    s=s1024; d=deif.com;
+    h=from:to:subject:date:message-id:references:in-reply-to:content-type:
+      mime-version;
+    bh=f9zhJommpwORiS0rFqzm3crKNKY=;
+    b=oKfnZav3kfZFBYnKO0h87BmovzbHygpmF4MTWj2rOw7KYXoipDfyupWlgR2HxQ
+      yKqTHARrmwMT2BwWrYc+7uI0Q+D1EB9Il/BoeY9luzkiCSPRKQpcvhvLNzK6QO
+      bi654I20FCtgxh0QYZUkqVsMohOJZjd8V7Fgpi15Cg0xg48=
+From: "Kjeld Flarup" <kfa@deif.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Building extensible SDK
+Thread-Topic: Building extensible SDK
+Thread-Index: AQHWZMWhAoGXO6vNuEiioBUpzqe6ew==
+Date: Tue, 28 Jul 2020 09:58:23 +0000
+Message-ID: <6f1314dc8f5448ad998aa66d10929345@deif.com>
+References: <WBxu.1594201038361970285.H0ZY@lists.yoctoproject.org>,<589397f5-4ba5-d2a0-c318-fc3187537aab@gmail.com>
+In-Reply-To: <589397f5-4ba5-d2a0-c318-fc3187537aab@gmail.com>
+Accept-Language: en-US, da-DK
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.174]
-Content-Type: text/plain
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Fixes:
-${PN}_RDEPENDS -> RDEPENDS_${PN}
+The eSDK looks interesting, but the documentation does not say anything abo=
+ut how to build it.
+Am I missing something about how to obtain the eSDK?
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- recipes-security/selinux/selinux-autorelabel_0.1.bb | 2 +-
- recipes-security/selinux/selinux-init_0.1.bb        | 2 +-
- recipes-security/selinux/selinux-labeldev_0.1.bb    | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/recipes-security/selinux/selinux-autorelabel_0.1.bb b/recipes-security/selinux/selinux-autorelabel_0.1.bb
-index b898c3b..85b0db9 100644
---- a/recipes-security/selinux/selinux-autorelabel_0.1.bb
-+++ b/recipes-security/selinux/selinux-autorelabel_0.1.bb
-@@ -7,7 +7,7 @@ file is present.\
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
- 
--${PN}_RDEPENDS = " \
-+RDEPENDS_${PN} = " \
-     policycoreutils-setfiles \
- "
- 
-diff --git a/recipes-security/selinux/selinux-init_0.1.bb b/recipes-security/selinux/selinux-init_0.1.bb
-index 78f571c..ebe7399 100644
---- a/recipes-security/selinux/selinux-init_0.1.bb
-+++ b/recipes-security/selinux/selinux-init_0.1.bb
-@@ -7,7 +7,7 @@ boot time. \
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
- 
--${PN}_RDEPENDS = " \
-+RDEPENDS_${PN} = " \
-     coreutils \
-     libselinux-bin \
-     policycoreutils-secon \
-diff --git a/recipes-security/selinux/selinux-labeldev_0.1.bb b/recipes-security/selinux/selinux-labeldev_0.1.bb
-index 8eb5db4..2a0bca9 100644
---- a/recipes-security/selinux/selinux-labeldev_0.1.bb
-+++ b/recipes-security/selinux/selinux-labeldev_0.1.bb
-@@ -4,7 +4,7 @@ DESCRIPTION = "Set SELinux labels for /dev."
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
- 
--${PN}_RDEPENDS = " \
-+RDEPENDS_${PN} = " \
-     coreutils \
-     libselinux-bin \
-     policycoreutils-setfiles \
--- 
-2.17.1
+Regards
+Kjeld Flarup
+DEIF R&D - Platform Software
 
+
+
+________________________________________
+From: Khem Raj <raj.khem@gmail.com>
+Sent: Friday, July 10, 2020 02:38
+To: Kjeld Flarup; yocto@lists.yoctoproject.org
+Subject: Re: [yocto] Add application with library to target
+
+On 7/8/20 2:37 AM, Kjeld Flarup via lists.yoctoproject.org wrote:
+> I have a functioning Yocto build today, but two of the recipes are
+> optional. An application and a library.
+> I would like to split my build in two.
+>
+> One that contains the basic system with kernel rootfs etc.
+> A second that just contains the application and the library
+>
+> If I just had the application, it would be simple just to use the SDK
+> and generate the application.
+> But when adding the library, things starts to be more complex.
+>
+> I would also like to use my existing recipe with dependencies etc.
+>
+> What is the best approach
+>
+>   * Can this be done with the ADT?
+>   * Can a layer solve it
+>   * Do I need to do it all manually with the SDK
+>
+
+I think eSDK might be good fit for your usecase.
+
+https://www.yoctoproject.org/docs/current/sdk-manual/sdk-manual.html#sdk-e=
+xtensible
+>
+> --
+> Regards
+> Kjeld Flarup
+> DEIF A/S
+>
+>=20
+>
