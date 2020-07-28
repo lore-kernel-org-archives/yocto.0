@@ -1,82 +1,79 @@
-Received: from mail.deif.com (mail.deif.com [87.54.42.111])
- by mx.groups.io with SMTP id smtpd.web12.9006.1595930306767509967
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+ by mx.groups.io with SMTP id smtpd.web10.9846.1595934206496564582
  for <yocto@lists.yoctoproject.org>;
- Tue, 28 Jul 2020 02:58:27 -0700
+ Tue, 28 Jul 2020 04:03:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@deif.com header.s=s1024 header.b=oKfnZav3;
- spf=pass (domain: deif.com, ip: 87.54.42.111, mailfrom: kfa@deif.com)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed;
-    s=s1024; d=deif.com;
-    h=from:to:subject:date:message-id:references:in-reply-to:content-type:
-      mime-version;
-    bh=f9zhJommpwORiS0rFqzm3crKNKY=;
-    b=oKfnZav3kfZFBYnKO0h87BmovzbHygpmF4MTWj2rOw7KYXoipDfyupWlgR2HxQ
-      yKqTHARrmwMT2BwWrYc+7uI0Q+D1EB9Il/BoeY9luzkiCSPRKQpcvhvLNzK6QO
-      bi654I20FCtgxh0QYZUkqVsMohOJZjd8V7Fgpi15Cg0xg48=
-From: "Kjeld Flarup" <kfa@deif.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Building extensible SDK
-Thread-Topic: Building extensible SDK
-Thread-Index: AQHWZMWhAoGXO6vNuEiioBUpzqe6ew==
-Date: Tue, 28 Jul 2020 09:58:23 +0000
-Message-ID: <6f1314dc8f5448ad998aa66d10929345@deif.com>
-References: <WBxu.1594201038361970285.H0ZY@lists.yoctoproject.org>,<589397f5-4ba5-d2a0-c318-fc3187537aab@gmail.com>
-In-Reply-To: <589397f5-4ba5-d2a0-c318-fc3187537aab@gmail.com>
-Accept-Language: en-US, da-DK
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+ dkim=pass header.i=@theyoctojester-info.20150623.gappssmtp.com header.s=20150623 header.b=NSjmkCcK;
+ spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.174, mailfrom: jester@theyoctojester.info)
+Received: by mail-lj1-f174.google.com with SMTP id b25so20655970ljp.6
+        for <yocto@lists.yoctoproject.org>; Tue, 28 Jul 2020 04:03:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=theyoctojester-info.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XszuWKZVbTOgrPnlulab5Xp8VD5q4nptTMCN2WwDbIA=;
+        b=NSjmkCcK75fARxd017/pNpJKVm9BJnAoksSFF+uHIxAoVrxmrgaayPKea7LSerqlH4
+         bBP1bDi+MPyZFhi+l0klcC5cT8Ca8b6nJGhvHgYwrZ+BhVMB1v/D92j6rGQnVMYXNpSs
+         LQDV1g25BpapxO4gJak36rroxiDQJ7otCi4j46+UJ1bZkOR8bOw7zdBorcrwdwoBaC9F
+         8dxdzQxqhFlg5Hw6J0c21NRgiZzgBhm9Vz0BO0U3YQ9iV9ptlctl3kfv/SxVG/goatpX
+         n64KRrZ/jL8v0RBfAuiXJRKPBPLT9re5SVu5j/FQPAmRgEyeCyhYTQHlGxEQwrCnBMpU
+         YwEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XszuWKZVbTOgrPnlulab5Xp8VD5q4nptTMCN2WwDbIA=;
+        b=qerfx59Tgocqdw2rvk20FUFHsCU09VOH/6bmemwmjlmChWoQpSJKJIZ0eeI+8/LIag
+         /01iw70NoLegyEDocw+XPcweDhnzBxBS2o3Rm6zAJEpkyD07+CENQ0ASO8wC+KMbHUgq
+         spkqWewILu/GSjtZlZ2MaSuGnKmTbSgZVJrptiosN88CDwS40MUndf7z/HxtJTRGoG+m
+         Ah+IK9/FEygBGPL+AbBE+9/XarC7shlaNNGouyj88N8wr9Uhmz76c2x0rmsqDEXrw3qW
+         NXA6cYymE+XJr1a88UglbXkp9qLoEh1ZyHsxwi3yHZXs0PQhWh3KWzf1NmDAkr1OEu8B
+         BWCQ==
+X-Gm-Message-State: AOAM533AMxvVRbZh+HqcGfzBMyQFGncoNaeGfSEM9ljNfECNQ1pBjy1l
+	5e1HlnQgbIBeeLo94REXEPYa2ZZeousV/lZNd5qwhQ==
+X-Google-Smtp-Source: ABdhPJxQv7C+UBgHpKIgr6ZpnOey4bEPkq0SsPEBod1tT3K1W3VuT31dPNv26m2SCO6QLqBTaTFeVEDAyRT00zHvg8k=
+X-Received: by 2002:a2e:a17c:: with SMTP id u28mr11942477ljl.140.1595934204480;
+ Tue, 28 Jul 2020 04:03:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+References: <CAJw=dJ_yy8+A6JWoB39rRB0+FbQX+LGFgFmnn9dTWcqPFN2ruQ@mail.gmail.com>
+ <CAJw=dJ-WJfC=sss_aS6mokwUPTZby65GN+cayYM=pqWs6o7JVw@mail.gmail.com>
+ <CAEt6NwoPfHC2jjjAXHxDdBJZf0p0f7kKK9MGTitekJ4CbqZ+Zg@mail.gmail.com> <CAJw=dJ9c50nX-9ssy4f5koN7BGTYLo5h=H4XZObAY-ZimTWxxQ@mail.gmail.com>
+In-Reply-To: <CAJw=dJ9c50nX-9ssy4f5koN7BGTYLo5h=H4XZObAY-ZimTWxxQ@mail.gmail.com>
+From: "Josef Holzmayr-Khosh Amoz" <jester@theyoctojester.info>
+Date: Tue, 28 Jul 2020 13:02:58 +0200
+Message-ID: <CAEt6Nwo_9BUaAyQpXVV7dQH8P6jrw7Bg1Hyom3ArrY_JWcdKNQ@mail.gmail.com>
+Subject: Re: [yocto] Remove connman package from yocto sdk.
+To: NIKHIL PATIL <nikhilvp29@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-The eSDK looks interesting, but the documentation does not say anything abo=
-ut how to build it.
-Am I missing something about how to obtain the eSDK?
+Howdy!
 
+(re-adding the ML)
 
-Regards
-Kjeld Flarup
-DEIF R&D - Platform Software
+Am Di., 28. Juli 2020 um 12:10 Uhr schrieb NIKHIL PATIL <nikhilvp29@gmail.com>:
+>
+> Hi
+>           1) connman is default package, so by default it is coming with sato image.
 
+Nope. It is not the default. Maybe the sato image pulls it in, but if
+you don't like that then why do you use the sato image? Create your
+own image recipe.
 
+>           2) some packages are depends on connection manager.
 
-________________________________________
-From: Khem Raj <raj.khem@gmail.com>
-Sent: Friday, July 10, 2020 02:38
-To: Kjeld Flarup; yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Add application with library to target
+Create your own image recipe and include the connection manager that
+you like. If you install something that has an explicit dependency on
+connman, then you probably have to remove that too.
 
-On 7/8/20 2:37 AM, Kjeld Flarup via lists.yoctoproject.org wrote:
-> I have a functioning Yocto build today, but two of the recipes are
-> optional. An application and a library.
-> I would like to split my build in two.
->
-> One that contains the basic system with kernel rootfs etc.
-> A second that just contains the application and the library
->
-> If I just had the application, it would be simple just to use the SDK
-> and generate the application.
-> But when adding the library, things starts to be more complex.
->
-> I would also like to use my existing recipe with dependencies etc.
->
-> What is the best approach
->
->   * Can this be done with the ADT?
->   * Can a layer solve it
->   * Do I need to do it all manually with the SDK
->
+>           3)  In our own own image recipe how we can remove connection manager package ?
 
-I think eSDK might be good fit for your usecase.
+Why would one have to remove something that is not there? Again, now
+really for the last time:
 
-https://www.yoctoproject.org/docs/current/sdk-manual/sdk-manual.html#sdk-e=
-xtensible
->
-> --
-> Regards
-> Kjeld Flarup
-> DEIF A/S
->
->=20
->
+"Create your own image recipe and add only the things that you want".
+
+There is even a neat demonstration on how to do that online:
+https://youtu.be/nqHylLP2NmA
+
+Greetz
