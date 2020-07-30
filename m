@@ -1,77 +1,118 @@
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
- by mx.groups.io with SMTP id smtpd.web10.2438.1596088345021797707
+Received: from mail.deif.com (mail.deif.com [87.54.42.111])
+ by mx.groups.io with SMTP id smtpd.web11.3041.1596091713237481341
  for <yocto@lists.yoctoproject.org>;
- Wed, 29 Jul 2020 22:52:25 -0700
+ Wed, 29 Jul 2020 23:48:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Z8JCd5tG;
- spf=pass (domain: gmail.com, ip: 209.85.210.170, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f170.google.com with SMTP id 74so6140742pfx.13
-        for <yocto@lists.yoctoproject.org>; Wed, 29 Jul 2020 22:52:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=j686x4IRNJo3uRNFvc82In74+pOQS+w5VHgV4TV4lQ0=;
-        b=Z8JCd5tGXr/9HqXS5me0kdlXkRC3+9biqcZ7o/Zk329Tvlf4/KWvlFTful2Ihl9Nq+
-         Zy3kNKkTsgSi2X8coF53hDzWSGI1wY5U7lr/h7q8KTzsiU/+eAcNYbxQ104NGrstz08b
-         H80gCXCvfHn1mo6ddMVzGGmePPe6OfU50kdexh56KcgooRfNXIhQkA/tcKfrOAsRwbxs
-         6tr0c1rMpvu0ufR6T7QhO1yMcvwI3Ar9Fixo76W50hYx4AUcysW0GX1ZRGlUQ1SRR88s
-         N1uRxDXIZSLYkiuqBoHMZDEpNS7zPHRLwlJpcrm+ATAVUoTx5FkRHpd1S10yKZNQLmjs
-         jiUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=j686x4IRNJo3uRNFvc82In74+pOQS+w5VHgV4TV4lQ0=;
-        b=uhFs1NHo+R9HJ3X7RPI+hxoBHRckKAN6SgtGGKqVjKapax1q7o9DMJWHzI4zSC37z7
-         JtIJFHMxJ1pfmERod339HGHoUrMO9Yh5BenDaVbVxwIU+oIms+SWuwefoHNpMiWbNjIO
-         CYRBeuXn/7WFs0TDC7AwIuGy+7AqOf/tvxMxEUcenCe1eeLPYy5i0TmgxORGxalj60Rs
-         3L6mYuYF8QtybA/sydIvNUKazAzg2l/HMJ7AhKkkH+ybyZcP74ap0SRZg9EUx4Vz3e1z
-         lkULSGxcyCmqm5WHvG8NfUxIbGVqaYjgELUIpO0wLTW/uhtmn/Pz0wGc0HIBNPGUlh6u
-         6oyg==
-X-Gm-Message-State: AOAM532upMEgctzqur4wVaTzbdkC4Yr8HXAbE4Q0uuHWN6nyAwYDsb6w
-	5u9UGW7OiADYZVcFrk5rGvOij067xWs=
-X-Google-Smtp-Source: ABdhPJxLurq7r/L//Z0gfItiC2iLcy9vgt+PxOvuHKP+IBYTGtAACt7hQUs/FKWvWq1+Yya3MjLASg==
-X-Received: by 2002:a65:6645:: with SMTP id z5mr33230512pgv.123.1596088343952;
-        Wed, 29 Jul 2020 22:52:23 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:5ba:2655:68eb:112e? ([2601:646:9200:4e0:5ba:2655:68eb:112e])
-        by smtp.gmail.com with ESMTPSA id e26sm365939pfj.197.2020.07.29.22.52.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jul 2020 22:52:23 -0700 (PDT)
-Subject: Re: [yocto] Remove connman package from yocto sdk.
-To: NIKHIL PATIL <nikhilvp29@gmail.com>, yocto@lists.yoctoproject.org
-References: <CAJw=dJ_yy8+A6JWoB39rRB0+FbQX+LGFgFmnn9dTWcqPFN2ruQ@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <e23215cd-0f1a-3af0-bc78-95c3257c6af3@gmail.com>
-Date: Wed, 29 Jul 2020 22:52:22 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.11.0
+ dkim=pass header.i=@deif.com header.s=s1024 header.b=ko9+vQfc;
+ spf=pass (domain: deif.com, ip: 87.54.42.111, mailfrom: kfa@deif.com)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed;
+    s=s1024; d=deif.com;
+    h=from:to:subject:date:message-id:references:in-reply-to:content-type:
+      mime-version;
+    bh=BO7D1EuAPjXKk761yKFIuG+ykTA=;
+    b=ko9+vQfcKRWdW6pxb+LqxyCHhhMSDA5BKq0y5iToxv6luKcv5bx24ZC4GfLJZa
+      4SceWbQWl8BtEW3U7i2/1EzMv6bY4C/dXpadpTib/ZvAnDra9HfheGgRlJ1Nxt
+      3Ijl1qCNY3dL080SfB9lEeQ5d1hZNKFPODaIyvjYgYMoOfk=
+From: "Kjeld Flarup" <kfa@deif.com>
+To: Khem Raj <raj.khem@gmail.com>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Building extensible SDK
+Thread-Topic: [yocto] Building extensible SDK
+Thread-Index: AQHWZMWhAoGXO6vNuEiioBUpzqe6e6kffK0AgAAsk9U=
+Date: Thu, 30 Jul 2020 06:48:29 +0000
+Message-ID: <a39361425b0745ae880040cfb6eeebea@deif.com>
+References: <WBxu.1594201038361970285.H0ZY@lists.yoctoproject.org>
+ <589397f5-4ba5-d2a0-c318-fc3187537aab@gmail.com>
+ <6f1314dc8f5448ad998aa66d10929345@deif.com>,<51ed3fe1-a7cc-6476-eb2c-55e56842be94@gmail.com>
+In-Reply-To: <51ed3fe1-a7cc-6476-eb2c-55e56842be94@gmail.com>
+Accept-Language: en-US, da-DK
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-In-Reply-To: <CAJw=dJ_yy8+A6JWoB39rRB0+FbQX+LGFgFmnn9dTWcqPFN2ruQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks Khem
+
+I guess the eSDK is quite new then.
+
+I have to ask my BSP supplier, about what version of Yocto they are using.
+
+"The extensible SDK can currently only be built for the same architecture =
+as the machine being built on - SDK_ARCH is
+set to i686 (likely via setting SDKMACHINE) which is different from the ar=
+chitecture of the build machine (x86_64)."
+
+
+Regards
+Kjeld Flarup
+DEIF R&D - Platform Software
 
 
 
-On 7/24/20 5:44 AM, NIKHIL PATIL wrote:
-> Hi team,
->            We want to use NetworkManager to access internet using LTE 
-> module . but connman and Networkmaanger both are installed.
->            I struggled so much to remove connman,  I tried as follows :-
->             1) Added IMAGE_INSTALL_remove = "connman"  in local.conf
->                              but it still come with sato image.
-> 
->              2) Added DISTRO_FEATURE_remove = "connman"  in local.conf
->                              but it still come with sato image.
->      By default connman is coming in image , how to remove connman ?
+________________________________________
+From: Khem Raj <raj.khem@gmail.com>
+Sent: Thursday, July 30, 2020 7:40:04 AM
+To: Kjeld Flarup; yocto@lists.yoctoproject.org
+Subject: Re: [yocto] Building extensible SDK
 
-try to find where its being added. Perhaps bitbake -g <image> should 
-give you dependency file where you can check where it appear on right 
-hand side of -> and equate to which package is bringing it in as dependency
+On 7/28/20 2:58 AM, Kjeld Flarup via lists.yoctoproject.org wrote:
+> The eSDK looks interesting, but the documentation does not say anything =
+about how to build it.
+> Am I missing something about how to obtain the eSDK?
 
-> 
-> 
-> 
+its all in the manual e.g.
+
+https://www.yoctoproject.org/docs/current/sdk-manual/sdk-manual.html#sdk-b=
+uilding-an-sdk-installer
+
+>
+>
+> Regards
+> Kjeld Flarup
+> DEIF R&D - Platform Software
+>
+>
+>
+> ________________________________________
+> From: Khem Raj <raj.khem@gmail.com>
+> Sent: Friday, July 10, 2020 02:38
+> To: Kjeld Flarup; yocto@lists.yoctoproject.org
+> Subject: Re: [yocto] Add application with library to target
+>
+> On 7/8/20 2:37 AM, Kjeld Flarup via lists.yoctoproject.org wrote:
+>> I have a functioning Yocto build today, but two of the recipes are
+>> optional. An application and a library.
+>> I would like to split my build in two.
+>>
+>> One that contains the basic system with kernel rootfs etc.
+>> A second that just contains the application and the library
+>>
+>> If I just had the application, it would be simple just to use the SDK
+>> and generate the application.
+>> But when adding the library, things starts to be more complex.
+>>
+>> I would also like to use my existing recipe with dependencies etc.
+>>
+>> What is the best approach
+>>
+>>    * Can this be done with the ADT?
+>>    * Can a layer solve it
+>>    * Do I need to do it all manually with the SDK
+>>
+>
+> I think eSDK might be good fit for your usecase.
+>
+> https://www.yoctoproject.org/docs/current/sdk-manual/sdk-manual.html#sdk=
+-extensible
+>>
+>> --
+>> Regards
+>> Kjeld Flarup
+>> DEIF A/S
+>>
+>>
+>>
+>>
+>>=20
