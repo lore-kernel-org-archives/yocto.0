@@ -1,49 +1,49 @@
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
- by mx.groups.io with SMTP id smtpd.web12.64.1596075130751623118
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+ by mx.groups.io with SMTP id smtpd.web10.2217.1596086838916137053
  for <yocto@lists.yoctoproject.org>;
- Wed, 29 Jul 2020 19:12:10 -0700
+ Wed, 29 Jul 2020 22:27:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=EedjJ5js;
- spf=pass (domain: gmail.com, ip: 209.85.214.182, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f182.google.com with SMTP id w17so12945270ply.11
-        for <yocto@lists.yoctoproject.org>; Wed, 29 Jul 2020 19:12:10 -0700 (PDT)
+ dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=zK5gNg2J;
+ spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 209.85.216.49, mailfrom: akuster@mvista.com)
+Received: by mail-pj1-f49.google.com with SMTP id lx9so3565566pjb.2
+        for <yocto@lists.yoctoproject.org>; Wed, 29 Jul 2020 22:27:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=mvista-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language;
-        bh=A8OOWa1Y0jOO8Nk5R+L/1ZgGmJEyIEhN4WnGQKJEjMc=;
-        b=EedjJ5jsd0boD5xJ2FkaAa5RhjnEQlQv1Zyu5fGeZ/D/Nczj871Km5cJShD4EB5po3
-         kdD+KdaZi3iQJC4WPXqhFTSrxiaMmItnbXj/pjnOc/48t49LoIK3qM7ddthRfhwux0Gc
-         aPDNOeWK8u2AC5GHK/Z04RNOZ5SCOChdqz3bDHhEBOx/LwobSjvzyHUFSOWPi/okQHNh
-         +iSrwkOVczXo75TmrLQ1ROA/iCHy8T6oHEOR9yDMm1Me8KHF2Yg23VSE/WFs7johJJU5
-         v0W3YTHLfc/bRjn7a4am8SU0xsyirflGYkKhDZicgJ7ZTR/jc1Rd0EFb5gZHqXPCLl1J
-         atyw==
+        bh=Xa8OezG1KvKFvn9szZFjnQqkItmzUm9en6ka7Gznh7I=;
+        b=zK5gNg2JUd+bb30IZLQSE4Ifb1t9ClLaxplesAGga1Uf/3mSY6IJzkSFKXgdTzMt/g
+         REhD8D03DqCyJo1wEWYfb/mtgRSwuD9BcOE6FUGA/dzGyY0jkJBJg82frbUkVIkf/tXx
+         4E7/8heKRMRGwwoeN8MXyjiOab0vGm6dWnPaWXSo3jhYfwSblHrpgQQ4cwdEe/y+DJwz
+         XVkeLLiKngWDdse9xbNXG3NQz777Kk6Sv3BggOox/7arA8pf25fpSSXtIFyWnbXRpUTO
+         THznghS6NkWG/2Cg6RC6yL9ZX/rOgzBJykGEx2CdAk/ct/qyLm0hgmJ699LI6x/OgqZs
+         yexg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
          :date:user-agent:mime-version:in-reply-to:content-language;
-        bh=A8OOWa1Y0jOO8Nk5R+L/1ZgGmJEyIEhN4WnGQKJEjMc=;
-        b=r3mHWJh0XQXlUPN0RdqvnRVG6vNwxrG5Qbs1bHRDxoSdL0XR78jdVS6VQK4DqV4W1B
-         d7BXZ3LgH8bDcWJDEAyMNFYtx1IKpNRPXEuG9/TuPNnHrqyo+stQ3HHXL5IcHR0wtXX+
-         ZWg+C9jqugziOjrGasgT2vhcftBa595VJ2TsoOSJKR1WhM9xzjRYE09JKWxD1i89Ycs9
-         tsmzkycP6cxihEcMKxSwKw5fBtPLQic4HowQ7X9tCxwxiCRMesFZIm7t07QW6S5KDel2
-         n4oTgfZkk2eOX2CSzNs0f+AmmYtCQcnvUWMyqJovW37enPc4sLqGpDo6oRM4xkFkHGoo
-         FyHg==
-X-Gm-Message-State: AOAM530waVfL/pwOpakrz5m67lmtSDHTuHKfbIBUj0KgUSgo9YT0ZKqd
-	kGdRpqBYbJWkxOzX+bAx0TbYvS7I
-X-Google-Smtp-Source: ABdhPJxnvUhP6mazICw0RU4ZgDUF0UkqWgl3lPllgPq6MT77Z6cXjivKNCwrPRU6Hanl4mJgsyhU0w==
-X-Received: by 2002:a17:902:bd90:: with SMTP id q16mr840201pls.54.1596075130032;
-        Wed, 29 Jul 2020 19:12:10 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from ?IPv6:2601:202:4180:a5c0:78ea:3c50:1a71:2bae? ([2601:202:4180:a5c0:78ea:3c50:1a71:2bae])
-        by smtp.gmail.com with ESMTPSA id 79sm3805754pfu.86.2020.07.29.19.12.09
+        bh=Xa8OezG1KvKFvn9szZFjnQqkItmzUm9en6ka7Gznh7I=;
+        b=QsHb1K+C+zLmhcEXl6TGUhFDfRG/3y8BzMHPiVCqGRMr8DDImdMpmc7vu0tIGcojGJ
+         +Filsl20+54nql2afHvtdsE83bDXAjaPTqYVXuSxX4whGNmaLqf4b5Oc6lu6b1udA9XT
+         QfhxAFIUDm3PRWQ24oMDim0iuHmCniwZtSrob+dtos90LF1RVVtk8jYalGT3apU59Rhk
+         /XGT1/G/7G/NTfb57lkdqve3EspOjrjN9etRDSe5gSSdFFwbDoajaULMGRbcmbFyLxVb
+         XL/jOhBatLCJ/MGXtJcClRGiJLMEdHH0pydY1BK6B0Ncu1Q29WC6/+Y3LrVhUUM/0r+Z
+         e4XA==
+X-Gm-Message-State: AOAM533vd2hZaoR2H14GBIrZekLy5l14r3oPk71bC5955FMo854HBUPX
+	Iio4CimLYSGBvYxoHKdtrw+FYTDovC8=
+X-Google-Smtp-Source: ABdhPJyk17oX6ZImkYGi3pSzDOK1K9ESKXCUnCSod6zw15SMj++jrRH4ofh5ylV7dWKSwl+reIAr7A==
+X-Received: by 2002:a17:90b:112:: with SMTP id p18mr13632157pjz.92.1596086837777;
+        Wed, 29 Jul 2020 22:27:17 -0700 (PDT)
+Return-Path: <akuster@mvista.com>
+Received: from ?IPv6:2601:202:4180:a5c0:dc4d:db68:5141:68ac? ([2601:202:4180:a5c0:dc4d:db68:5141:68ac])
+        by smtp.gmail.com with ESMTPSA id a17sm4241754pgw.60.2020.07.29.22.27.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jul 2020 19:12:09 -0700 (PDT)
+        Wed, 29 Jul 2020 22:27:16 -0700 (PDT)
 Subject: Re: [yocto] [meta-security] Clamav libclammspack.so missing from image
 To: yoc <yoc.dev@whitetree.xyz>, yocto@lists.yoctoproject.org
 References: <464e94c9-7077-bc1c-6ac7-955933fcb4c5@whitetree.xyz>
-From: "akuster" <akuster808@gmail.com>
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+From: "Armin Kuster" <akuster@mvista.com>
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
  Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
  mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
@@ -86,17 +86,17 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <598c4053-8ad7-15d5-a0c2-d22d6a54256f@gmail.com>
-Date: Wed, 29 Jul 2020 19:12:08 -0700
+Message-ID: <1ed8c27b-8532-d574-adbc-223b056fe36a@mvista.com>
+Date: Wed, 29 Jul 2020 22:27:15 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
 In-Reply-To: <464e94c9-7077-bc1c-6ac7-955933fcb4c5@whitetree.xyz>
 Content-Type: multipart/alternative;
- boundary="------------045E97C43D2CE7CC3EF366AA"
+ boundary="------------EF3D3164D17BA3FFBBC82FDB"
 Content-Language: en-US
 
---------------045E97C43D2CE7CC3EF366AA
+--------------EF3D3164D17BA3FFBBC82FDB
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
@@ -112,14 +112,10 @@ On 7/29/20 12:34 PM, yoc wrote:
 > to /usr/lib
 >
 > How to I make sure that libclammspack.so is include in the image?
-
-You can check the build directory in the package dir and see if it is
-there. Then check the package-split to see if it ended up in a different
-package.
-
-I am rebuilding dunfell now to see what is up.
+You can find it in the 'libmspack' package.
 
 -armin
+
 >
 > I am using the meta-security layer on the dunfell branch.
 >
@@ -131,7 +127,7 @@ I am rebuilding dunfell now to see what is up.
 > 
 
 
---------------045E97C43D2CE7CC3EF366AA
+--------------EF3D3164D17BA3FFBBC82FDB
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
@@ -159,14 +155,10 @@ Content-Transfer-Encoding: 7bit
       How to I make sure that libclammspack.so is include in the image?
       <br>
     </blockquote>
-    <br>
-    You can check the build directory in the package dir and see if it
-    is there. Then check the package-split to see if it ended up in a
-    different package.<br>
-    <br>
-    I am rebuilding dunfell now to see what is up. <br>
+    You can find it in the 'libmspack' package.<br>
     <br>
     -armin<br>
+    <br>
     <blockquote type="cite"
       cite="mid:464e94c9-7077-bc1c-6ac7-955933fcb4c5@whitetree.xyz">
       <br>
@@ -188,4 +180,4 @@ Content-Transfer-Encoding: 7bit
   </body>
 </html>
 
---------------045E97C43D2CE7CC3EF366AA--
+--------------EF3D3164D17BA3FFBBC82FDB--
