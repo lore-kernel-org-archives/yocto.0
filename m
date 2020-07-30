@@ -1,97 +1,140 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.11133.1596124564902850794
- for <yocto@lists.yoctoproject.org>;
- Thu, 30 Jul 2020 08:56:05 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@stusta.de header.s=default header.b=XQIIVdz3;
- spf=neutral (domain: stusta.mhn.de, ip: 140.211.169.56, mailfrom: srs0=xatc=bj=stusta.de=bunk@stusta.mhn.de)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73144E01F52; Thu, 30 Jul 2020 08:56:04 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
-	*      trust
-	*      [141.84.69.5 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-X-Greylist: delayed 383 seconds by postgrey-1.32 at yocto-www; Thu, 30 Jul 2020 08:56:01 PDT
-Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87D48E01F50
-	for <yocto@yoctoproject.org>; Thu, 30 Jul 2020 08:56:01 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 4BHZbd2mkXz4H;
-	Thu, 30 Jul 2020 17:49:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
-	s=default; t=1596124175;
-	bh=/6R5I+xdmYFs8ss62IRD2sX8nwgfjlWpSgJcP7lfjnE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XQIIVdz3omaGG9bZL/deZfg4N1ZkPV/VM4vfb81WMmQ3/YVxiLcOZJIiiQtDtLZBL
-	 G0vnjzGEFBdVNdhSXh/+JWvdgFz2G0tpdJ5JbYDZ39ljKHjMdOPw7/jAlEr0mWIFNJ
-	 zLjyvUYpFg1c7G14AWc9/AK1LTajf2NaG75MAgU25Ea45HtqsRz/1eHHO4CAnj+EJl
-	 2fzdwMc0vd9xma4HBnQolN0XcJQWrTLfo9Qx5lzRPQ8oaG/magPtvdtSvwDJOlW7iK
-	 U9tvCXE4nAtaNRFJXHrZdUAvtt8iQ/2wPHfnhjQ+YuTz4o4seGcne+FOX/BdUOac0q
-	 O3lnbtT0CseqRXfFC14lxBNO4MXseOT0UDUpXPxwDpXrGB+inT4NVhFZ7PawiH6aOZ
-	 F3sTRmOgSpGhdeq7guCMS/D1bixqUVCmP8XV9oS7Y65ryJF6RqUDiJHx2zRdYkru6Y
-	 7xcbOuimjoTav/esoWFXz9BuHB8dmBGVgkw6LsGkp/5f6RDfP73oI/QMREU+WxgppJ
-	 rDPH3mCktuGWIPXkBy0zwXBlhw8fBvyoEnwvBgC36sGyMZxezTAQFOD05n/XG/JKZU
-	 1B57cChR21fXU1EM7+5b0LuF31HjiogEmIeoSIhiFPOEOSvWi8PAAum3ZW5oEIT+sM
-	 ouPnDMujwdnZO1TxOPf36vl8=
-Date: Thu, 30 Jul 2020 18:49:31 +0300
-From: "Adrian Bunk" <bunk@stusta.de>
-To: akuster808 <akuster808@gmail.com>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>,
-	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"bitbake-devel@lists.openembedded.org" <bitbake-devel@lists.openembedded.org>
-Subject: Re: [bitbake-devel] [yocto] Stable Warrior branch
-Message-ID: <20200730154931.GE1260@localhost>
-References: <03a353c4-80dd-e66c-3222-7850a98182f7@gmail.com>
- <20200714135619.GF25970@localhost>
- <cca863dd41cf837cfaa89484c010578e5ac0809b.camel@linuxfoundation.org>
- <e6743da0-b2d2-14bf-2d1c-7e6f50ba8e1b@gmail.com>
+Subject: Re: [meta-security] Clamav libclammspack.so missing from image
+To: yocto@lists.yoctoproject.org
+From: "yoc" <yoc.dev@whitetree.xyz>
+X-Originating-Location: GB (92.40.168.144)
+X-Originating-Platform: Linux Chrome 83
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <e6743da0-b2d2-14bf-2d1c-7e6f50ba8e1b@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Date: Thu, 30 Jul 2020 14:58:28 -0700
+References: <1ed8c27b-8532-d574-adbc-223b056fe36a@mvista.com>
+In-Reply-To: <1ed8c27b-8532-d574-adbc-223b056fe36a@mvista.com>
+Message-ID: <22223.1596146308757509890@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="1z1TCXR5tHxnkQi7BhDC"
 
-On Mon, Jul 27, 2020 at 07:36:49AM -0700, akuster808 wrote:
-> Adrian,
+--1z1TCXR5tHxnkQi7BhDC
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
 Hi Armin,
 
-> On 7/21/20 1:53 AM, Richard Purdie wrote:
-> > On Tue, 2020-07-14 at 16:56 +0300, Adrian Bunk wrote:
-> >> On Thu, Jun 04, 2020 at 09:28:00PM -0700, akuster wrote:
-> >>> Hello,
-> >>>
-> >>> The Warrior branch of Poky has had its last official dot release.
-> >>> It
-> >>> will be moving to Community support and EOL within 6 weeks if no
-> >>> one
-> >>> steps up.
-> >>> If someone is interested in taking on the responsibilities of
-> >>> maintaining the "Warrior" branch moving forward, please email this
-> >>> list.
-> >> I have an interest in keeping warrior branch alive in poky and meta-
-> >> oe,
-> >> and I'll take this responsibility since noone else seems to be
-> >> interested.
-> 
-> Are you still interested?
+So I found libmspack where you said it would be. I have done some more dig=
+ging and talked to the Clamav developers.
 
-yes.
+This line in the recipe (--with-system-libmspack=3D${CLAMAV_USR_DIR}) mean=
+s that libmspack installed on the system is used and the output produced is=
+ libclamav.so* and libmspack.so*
 
-> -armin
+When I built clamav outside of Yocto I didnt specify the --with-system-lib=
+mspack option and the output was libclamav.so* and libclammspack.so* i.e. t=
+he internal library bundled with Clamav was used.
 
-cu
-Adrian
+Having spoken to the Clamav developers I want to use the internal as it gi=
+ves additional capabilities and security protections:
+
+https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=3D233763
+
+"Upgrade from libmspack 0.5alpha to libmspack 0.7.1alpha. As a reminder, w=
+e support system-installed versions of libmspack. However, at this time the=
+ ClamAV-provided version of libmspack provides additional abilities to pars=
+e broken or non-standard CAB files beyond what the stock libmspack 0.7.1alp=
+ha provides. We are working with the upstream project to incorporate our mo=
+difications, and hopefully these changes will appear in a future release of=
+ libmspack."
+
+So I went about trying to get the Yocto recipe to compile against the inte=
+rnal libclammspack bundled with Clamav and did not have any success:
+
+tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sysroot-native/usr/bi=
+n/aarch64-poky-linux/../../libexec/aarch64-poky-linux/gcc/aarch64-poky-linu=
+x/9.3.0/ld: warning: libclammspack.so.0, needed by ../libclamav/.libs/libcl=
+amav.so, not found (try using -rpath or -rpath-link)
+
+Firstly, would you be able to give me a pointer on how to solve this issue=
+ - I think it requires a patch to the Clamav build process? I saw some hist=
+oric commits mentioning rpath but was unsuccessful with getting anything to=
+ build.
+
+Secondly, I would propose the following and am happy to implement the patc=
+hes if these ideas are agreeable to you:
+
+1) Use the PACKAGECONFIG mechanism to allow a switch between using the sys=
+tem and internal libmspack with the default being to use the internal versi=
+on
+2) Update the version of Clamav to the latest stable version - it was note=
+d by the Clamav developers that the current version in the recipe is outdat=
+ed
+3) Fix the bug on line 92 of the recipe. I believe that this line should b=
+e surrounded by the same if statement as lines 75-79. I am behind a company=
+ proxy so need the INSTALL_CLAMAV_CVD option switched off
+
+Thank you for your time with this.
+
+Kind Regards,
+
+Charlie
+
+--1z1TCXR5tHxnkQi7BhDC
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hi Armin,</div>
+<div>&nbsp;</div>
+<div>So I found libmspack where you said it would be. I have done some mor=
+e digging and talked to the Clamav developers.</div>
+<div>&nbsp;</div>
+<div>This line in the recipe (--with-system-libmspack=3D${CLAMAV_USR_DIR})=
+ means that libmspack installed on the system is used and the output produc=
+ed is libclamav.so* and libmspack.so*</div>
+<div>&nbsp;</div>
+<div>When I built clamav outside of Yocto I didnt specify the --with-syste=
+m-libmspack option and the output was libclamav.so* and libclammspack.so* i=
+.e. the internal library bundled with Clamav was used.</div>
+<div>&nbsp;</div>
+<div>Having spoken to the Clamav developers I want to use the internal as =
+it gives additional capabilities and security protections:</div>
+<div><br /><a href=3D"https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=3D=
+233763" target=3D"_blank" rel=3D"noopener">https://bugs.freebsd.org/bugzill=
+a/show_bug.cgi?id=3D233763</a></div>
+<div>&nbsp;</div>
+<div>"Upgrade from libmspack 0.5alpha to libmspack 0.7.1alpha. As a remind=
+er, we support system-installed versions of libmspack. However, at this tim=
+e the ClamAV-provided version of libmspack provides additional abilities to=
+ parse broken or non-standard CAB files beyond what the stock libmspack 0.7=
+.1alpha provides. We are working with the upstream project to incorporate o=
+ur modifications, and hopefully these changes will appear in a future relea=
+se of libmspack."</div>
+<div>&nbsp;</div>
+<div>So I went about trying to get the Yocto recipe to compile against the=
+ internal libclammspack bundled with Clamav and did not have any success:</=
+div>
+<div>&nbsp;</div>
+<div>tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sysroot-native/u=
+sr/bin/aarch64-poky-linux/../../libexec/aarch64-poky-linux/gcc/aarch64-poky=
+-linux/9.3.0/ld: warning: libclammspack.so.0, needed by ../libclamav/.libs/=
+libclamav.so, not found (try using -rpath or -rpath-link)</div>
+<div>&nbsp;</div>
+<div>Firstly, would you be able to give me a pointer on how to solve this =
+issue - I think it requires a patch to the Clamav build process? I saw some=
+ historic commits mentioning rpath but was unsuccessful with getting anythi=
+ng to build.</div>
+<div>&nbsp;</div>
+<div>Secondly, I would propose the following and am happy to implement the=
+ patches if these ideas are agreeable to you:</div>
+<div>&nbsp;</div>
+<div>1) Use the PACKAGECONFIG mechanism to allow a switch between using th=
+e system and internal libmspack with the default being to use the internal =
+version</div>
+<div>2) Update the version of Clamav to the latest stable version - it was=
+ noted by the Clamav developers that the current version in the recipe is o=
+utdated</div>
+<div>3) Fix the bug on line 92 of the recipe. I believe that this line sho=
+uld be surrounded by the same if statement as lines 75-79. I am behind a co=
+mpany proxy so need the INSTALL_CLAMAV_CVD option switched off</div>
+<div>&nbsp;</div>
+<div>Thank you for your time with this.</div>
+<div>&nbsp;</div>
+<div>Kind Regards,</div>
+<div>&nbsp;</div>
+<div>Charlie</div>
+
+--1z1TCXR5tHxnkQi7BhDC--
