@@ -1,163 +1,191 @@
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by mx.groups.io with SMTP id smtpd.web11.5600.1596074013609731217
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+ by mx.groups.io with SMTP id smtpd.web12.64.1596075130751623118
  for <yocto@lists.yoctoproject.org>;
- Wed, 29 Jul 2020 18:53:33 -0700
+ Wed, 29 Jul 2020 19:12:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=RNVg0LtS;
- spf=pass (domain: intel.com, ip: 192.55.52.115, mailfrom: sangeeta.jain@intel.com)
-IronPort-SDR: LWeH6soj5mByOB7vlojfhfQUOq6YZbpjJPg3qZu97GuCDajFa9tbkFCWVpwgtFip+tbACQN+vQ
- TDOOdkKw9O7A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9697"; a="150698907"
-X-IronPort-AV: E=Sophos;i="5.75,412,1589266800"; 
-   d="scan'208";a="150698907"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jul 2020 18:53:32 -0700
-IronPort-SDR: 6JeOJcMIK218S2ivDrxP/H2pajqjYeQTlmiRKEBN4BNX2Qn6HvtinV/kbRcJ/+qf71FssasGxo
- PFqGUhxWfkmQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,412,1589266800"; 
-   d="scan'208";a="394831364"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
-  by fmsmga001.fm.intel.com with ESMTP; 29 Jul 2020 18:53:32 -0700
-Received: from fmsmsx152.amr.corp.intel.com (10.18.125.5) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 29 Jul 2020 18:53:32 -0700
-Received: from FMSEDG001.ED.cps.intel.com (10.1.192.133) by
- FMSMSX152.amr.corp.intel.com (10.18.125.5) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 29 Jul 2020 18:53:32 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.173)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server (TLS) id
- 14.3.439.0; Wed, 29 Jul 2020 18:53:31 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=knKyZRoRuvmo0HURgp5tiJ+RT0lE0q9624t+leFKMGyiwFgocH0mqPyv8+R+gdMKtJsD1zC3/YZ10W/1fjKFPaIfb4n364PuYnuX0NbvxbLsAs3c9YV5g0wS50AzdQp0TEB6ASxKpKc/eg1yzPcLucFP/jiX+dC3gvHh6kEe7GD2+EGxxxA3Fk7n0XfgEGfgN5roWFR4t0haMMl0Tyj8UW8CnnttIY5STo/yAiq/iq5VwXn08gCSA+l9jiwq+ipK5xMlumkrXK7vbb9blwfPQ4H7Ibxfg7enw5OjVvHKnkGp/+DACzBJC5Lq7CNR2dYKpTldUv39+dSshCpi1p+E4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iOZ93B9R/0s21TUveOmnuZUTl4lnTeCM6CLyasdPxG4=;
- b=S0xvF2xONZ1jKX+iDvekKOtc2B+tpR2adGN4qdvD0HPiOxEidY78mIaxpX/z2/TM3Pllgxxv/Ba+BIhayjbN/BoCtlR2ZJgyvIngXoWUwoysnFjOiuW3AsGdkh+hfngToSXXVweFb7bVeUlSUevY73GYqRgecBtWEzCH6rKwL6Oi0rA+bD+VtkHDu1PK2pve6FXFbRj8ycDGR+NLbMp+gnFPk4TrFhL2qtaZIxGJj0+w3c7ujIGrZU4ix4gc+uBxTDMggiU1kmoR8KQFM692AyR5uZhMeo8IGRwC+A0ougXIBv2lHnssiRMAFWoZSOTNXQtzLuG1UE2EJIfOycXX7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iOZ93B9R/0s21TUveOmnuZUTl4lnTeCM6CLyasdPxG4=;
- b=RNVg0LtSHmdFuVNrjhd/ZrHgK6axWkTmwzWM3SOUDfGQga1nLPSr+5vdqVOptV7XZwYmK/0XlHs7Or2I87qq5u/ph7YamcZYmG4NvevfHK2V22rWR3I9n78QKAQqo3wPABJO0jQRAs5xn/Mc0FKyifu4cqcP0ovK3m/leR1S1Uc=
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com (2603:10b6:a03:b1::33)
- by BYAPR11MB3816.namprd11.prod.outlook.com (2603:10b6:a03:f8::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.24; Thu, 30 Jul
- 2020 01:53:30 +0000
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::341a:eb30:746f:e614]) by BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::341a:eb30:746f:e614%7]) with mapi id 15.20.3239.018; Thu, 30 Jul 2020
- 01:53:30 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: akuster808 <akuster808@gmail.com>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>, openembedded-core
-	<openembedded-core@lists.openembedded.org>
-CC: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
-	"yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
-	<apoorv.sangal@intel.com>, "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "Chan,
- Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
-	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
-	"sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>, "steve@sakoman.com"
-	<steve@sakoman.com>
-Subject: Re: [yocto] QA notification for completed autobuilder build (yocto-3.1.2.rc1)
-Thread-Topic: [yocto] QA notification for completed autobuilder build
- (yocto-3.1.2.rc1)
-Thread-Index: AQHWYZA1MMfE3iel5kWpkbIYRDRksKkeHX9ggAElhgCAAABfcA==
-Date: Thu, 30 Jul 2020 01:53:30 +0000
-Message-ID: <BYAPR11MB362488151541D4CD0BB8B734E3710@BYAPR11MB3624.namprd11.prod.outlook.com>
-References: <20200724075804.747FD280D94@debian10-ty-1.yocto.io>
- <BYAPR11MB36243A6E3626563BFF30D22CE3700@BYAPR11MB3624.namprd11.prod.outlook.com>
- <d975f34c-7b15-e552-31b4-6e21ac959f33@gmail.com>
-In-Reply-To: <d975f34c-7b15-e552-31b4-6e21ac959f33@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.2.0.6
-dlp-product: dlpe-windows
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [60.48.233.201]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f290cab0-3bd8-486b-4bde-08d8342b5c1c
-x-ms-traffictypediagnostic: BYAPR11MB3816:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BYAPR11MB381658138C7699053E397EDDE3710@BYAPR11MB3816.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: mRKUGZwa4MF/qEBu+hUYQ4C7k87dnIp58d0OZmP9/tGfuwPqOxcPmkVovm6AkN7FcPSWenrDWqq6oKmox8dS2fYqt4T/3w1L7SmA99hf6poeJU2UTEReRvz8oE2eUiwYP06qVoJC+mblBTriyyV2n8QeHVSvy70Vupw2KDLnOK5zEbmFKIfyKV/6sAhpl6eGu+y8uZd/RltLB9Nlp74PUVR4TiuPWKOtFfDnbVmoUUE6E5CGqug9DSsJQLEov0G1PR628v0u/awms4jHLKoy7kqTW+iIPY9SHs5PfTGie6TaI6gJRuwWZSqpQDXNqUkGuaOolRM3gC+PjlQ6S0gS516H1/SForr7XW4UEhjiSyKLh2bCKqpIKlPh/l+D4z4F4yzuc1ahT1QWaUEKmWMW2A==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3624.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(4636009)(396003)(136003)(39860400002)(366004)(346002)(376002)(52536014)(478600001)(316002)(966005)(55016002)(83380400001)(9686003)(110136005)(8936002)(4326008)(53546011)(54906003)(6506007)(64756008)(8676002)(76116006)(7696005)(66556008)(66476007)(33656002)(66946007)(66446008)(186003)(2906002)(86362001)(26005)(15650500001)(71200400001)(5660300002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: fwXLMAudCvD4prSjjctfAeDCNq8GnYEULRyheTwxJvCQJCnp5kxCuLh46gk9PQ8NY4fd+0rmDILu826ZWJrNykmkoLBIoB4eIGZH42pE+Ux+W21SoiX8XfGJ1+flTNcG07fYqQTIYX+mPNs+Tio9LJchLBtlBGGoLaLozoQzM9QmoXOWU5xdLQZ6hQo2fBTp3QV8TSsnZZp/lp5nSmaUVvw2xNzZUCW7Mau1ztAgUy7zzxrWS3SlWsnSFjh4xPKu1q043pKG63wRUB1O+sN8sJuujSc/iDxbBoCMa4OcIyzyoL6RtKsv4kBEVwf3DEQqOtL+c9IHUPGSdca2IVp7LWMmYtpLo2tY0BVOz3NlP4r+5/5OVpigpgcw1I9RqckEOQFHiCmTWbLa/En5huWGAxgo5XnuarmhBu3/ZCzcPbd/HxFhE2msXLa43YkMJhFqaEO4g4cD3jKbm/HouCyTv2Oy4iqq0b0xevshX8zG9MhnCPxJK+VH0Vf+0M1n5vAQ
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=EedjJ5js;
+ spf=pass (domain: gmail.com, ip: 209.85.214.182, mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f182.google.com with SMTP id w17so12945270ply.11
+        for <yocto@lists.yoctoproject.org>; Wed, 29 Jul 2020 19:12:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language;
+        bh=A8OOWa1Y0jOO8Nk5R+L/1ZgGmJEyIEhN4WnGQKJEjMc=;
+        b=EedjJ5jsd0boD5xJ2FkaAa5RhjnEQlQv1Zyu5fGeZ/D/Nczj871Km5cJShD4EB5po3
+         kdD+KdaZi3iQJC4WPXqhFTSrxiaMmItnbXj/pjnOc/48t49LoIK3qM7ddthRfhwux0Gc
+         aPDNOeWK8u2AC5GHK/Z04RNOZ5SCOChdqz3bDHhEBOx/LwobSjvzyHUFSOWPi/okQHNh
+         +iSrwkOVczXo75TmrLQ1ROA/iCHy8T6oHEOR9yDMm1Me8KHF2Yg23VSE/WFs7johJJU5
+         v0W3YTHLfc/bRjn7a4am8SU0xsyirflGYkKhDZicgJ7ZTR/jc1Rd0EFb5gZHqXPCLl1J
+         atyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language;
+        bh=A8OOWa1Y0jOO8Nk5R+L/1ZgGmJEyIEhN4WnGQKJEjMc=;
+        b=r3mHWJh0XQXlUPN0RdqvnRVG6vNwxrG5Qbs1bHRDxoSdL0XR78jdVS6VQK4DqV4W1B
+         d7BXZ3LgH8bDcWJDEAyMNFYtx1IKpNRPXEuG9/TuPNnHrqyo+stQ3HHXL5IcHR0wtXX+
+         ZWg+C9jqugziOjrGasgT2vhcftBa595VJ2TsoOSJKR1WhM9xzjRYE09JKWxD1i89Ycs9
+         tsmzkycP6cxihEcMKxSwKw5fBtPLQic4HowQ7X9tCxwxiCRMesFZIm7t07QW6S5KDel2
+         n4oTgfZkk2eOX2CSzNs0f+AmmYtCQcnvUWMyqJovW37enPc4sLqGpDo6oRM4xkFkHGoo
+         FyHg==
+X-Gm-Message-State: AOAM530waVfL/pwOpakrz5m67lmtSDHTuHKfbIBUj0KgUSgo9YT0ZKqd
+	kGdRpqBYbJWkxOzX+bAx0TbYvS7I
+X-Google-Smtp-Source: ABdhPJxnvUhP6mazICw0RU4ZgDUF0UkqWgl3lPllgPq6MT77Z6cXjivKNCwrPRU6Hanl4mJgsyhU0w==
+X-Received: by 2002:a17:902:bd90:: with SMTP id q16mr840201pls.54.1596075130032;
+        Wed, 29 Jul 2020 19:12:10 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from ?IPv6:2601:202:4180:a5c0:78ea:3c50:1a71:2bae? ([2601:202:4180:a5c0:78ea:3c50:1a71:2bae])
+        by smtp.gmail.com with ESMTPSA id 79sm3805754pfu.86.2020.07.29.19.12.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jul 2020 19:12:09 -0700 (PDT)
+Subject: Re: [yocto] [meta-security] Clamav libclammspack.so missing from image
+To: yoc <yoc.dev@whitetree.xyz>, yocto@lists.yoctoproject.org
+References: <464e94c9-7077-bc1c-6ac7-955933fcb4c5@whitetree.xyz>
+From: "akuster" <akuster808@gmail.com>
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <598c4053-8ad7-15d5-a0c2-d22d6a54256f@gmail.com>
+Date: Wed, 29 Jul 2020 19:12:08 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3624.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f290cab0-3bd8-486b-4bde-08d8342b5c1c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jul 2020 01:53:30.5442
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 44/GUe4hTysRk+rdFHYlLhwefCL98oIe5K7/rO8INN1Kr4OxW3OmO+MlxHuw33o+XJ8Wtg7eTbF1menNHwJvdw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3816
-Return-Path: sangeeta.jain@intel.com
-X-OriginatorOrg: intel.com
+In-Reply-To: <464e94c9-7077-bc1c-6ac7-955933fcb4c5@whitetree.xyz>
+Content-Type: multipart/alternative;
+ boundary="------------045E97C43D2CE7CC3EF366AA"
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-VGhhbmtzLA0Kc2FuZ2VldGENCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9t
-OiBha3VzdGVyODA4IDxha3VzdGVyODA4QGdtYWlsLmNvbT4NCj4gU2VudDogVGh1cnNkYXksIDMw
-IEp1bHksIDIwMjAgNzo1MSBBTQ0KPiBUbzogSmFpbiwgU2FuZ2VldGEgPHNhbmdlZXRhLmphaW5A
-aW50ZWwuY29tPjsgeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzsNCj4gb3BlbmVtYmVkZGVk
-LWNvcmUgPG9wZW5lbWJlZGRlZC1jb3JlQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmc+DQo+IENjOiBv
-dGF2aW9Ab3NzeXN0ZW1zLmNvbS5icjsgeWkuemhhb0B3aW5kcml2ZXIuY29tOyBTYW5nYWwsIEFw
-b29ydg0KPiA8YXBvb3J2LnNhbmdhbEBpbnRlbC5jb20+OyBZZW9oLCBFZSBQZW5nIDxlZS5wZW5n
-Lnllb2hAaW50ZWwuY29tPjsgQ2hhbiwNCj4gQWFyb24gQ2h1biBZZXcgPGFhcm9uLmNodW4ueWV3
-LmNoYW5AaW50ZWwuY29tPjsNCj4gcmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZzsg
-c2pvbGxleS55cC5wbUBnbWFpbC5jb207DQo+IHN0ZXZlQHNha29tYW4uY29tDQo+IFN1YmplY3Q6
-IFJlOiBbeW9jdG9dIFFBIG5vdGlmaWNhdGlvbiBmb3IgY29tcGxldGVkIGF1dG9idWlsZGVyIGJ1
-aWxkICh5b2N0by0NCj4gMy4xLjIucmMxKQ0KPiANCj4gDQo+IA0KPiBPbiA3LzI4LzIwIDExOjIy
-IFBNLCBKYWluLCBTYW5nZWV0YSB3cm90ZToNCj4gPiBIaSBBbGwsDQo+ID4NCj4gPiBUaGlzIGlz
-IHRoZSBRQSByZXBvcnQgZm9yIHlvY3RvLTMuMS4yLnJjMToNCj4gPiBodHRwczovL2dpdC55b2N0
-b3Byb2plY3Qub3JnL2NnaXQvY2dpdC5jZ2kveW9jdG8tdGVzdHJlc3VsdHMtY29udHJpYi90DQo+
-ID4gcmVlLz9oPWludGVsLXlvY3RvLXRlc3RyZXN1bHRzDQo+IA0KPiBJcyBRQSBzdGlsbCBoYXZp
-bmcgdG8gcGVyZm9ybSB0aGUgTWFudWFsIHRlc3QgcmVtb3RlbHk/DQoNCldlIGNhbiBhY2Nlc3Mg
-aGFyZHdhcmUgbm93Lg0KIA0KPiANCj4gLWFybWluDQo+ID4NCj4gPiA9PT09PT09IFN1bW1hcnkg
-PT09PT09PT0NCj4gPiBObyBoaWdoIG1pbGVzdG9uZSBkZWZlY3RzLg0KPiA+IE5vIG5ldyBkZWZl
-Y3RzIGFyZSBmb3VuZCBpbiB0aGlzIGN5Y2xlLg0KPiA+DQo+ID4gVGhhbmtzLA0KPiA+IFNhbmdl
-ZXRhDQo+ID4NCg0KPiA+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+PiBGcm9tOiB5
-b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3Jn
-PiBPbg0KPiA+PiBCZWhhbGYgT2YgUG9reWJ1aWxkIFVzZXINCj4gPj4gU2VudDogRnJpZGF5LCAy
-NCBKdWx5LCAyMDIwIDM6NTggUE0NCj4gPj4gVG86IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5v
-cmcNCj4gPj4gQ2M6IG90YXZpb0Bvc3N5c3RlbXMuY29tLmJyOyB5aS56aGFvQHdpbmRyaXZlci5j
-b207IFNhbmdhbCwgQXBvb3J2DQo+ID4+IDxhcG9vcnYuc2FuZ2FsQGludGVsLmNvbT47IFllb2gs
-IEVlIFBlbmcgPGVlLnBlbmcueWVvaEBpbnRlbC5jb20+Ow0KPiA+PiBDaGFuLCBBYXJvbiBDaHVu
-IFlldyA8YWFyb24uY2h1bi55ZXcuY2hhbkBpbnRlbC5jb20+Ow0KPiA+PiByaWNoYXJkLnB1cmRp
-ZUBsaW51eGZvdW5kYXRpb24ub3JnOyBha3VzdGVyODA4QGdtYWlsLmNvbTsNCj4gPj4gc2pvbGxl
-eS55cC5wbUBnbWFpbC5jb207IEphaW4sIFNhbmdlZXRhIDxzYW5nZWV0YS5qYWluQGludGVsLmNv
-bT47DQo+ID4+IHN0ZXZlQHNha29tYW4uY29tDQo+ID4+IFN1YmplY3Q6IFt5b2N0b10gUUEgbm90
-aWZpY2F0aW9uIGZvciBjb21wbGV0ZWQgYXV0b2J1aWxkZXIgYnVpbGQNCj4gPj4gKHlvY3RvLQ0K
-PiA+PiAzLjEuMi5yYzEpDQo+ID4+DQo+ID4+DQo+ID4+IEEgYnVpbGQgZmxhZ2dlZCBmb3IgUUEg
-KHlvY3RvLTMuMS4yLnJjMSkgd2FzIGNvbXBsZXRlZCBvbiB0aGUNCj4gPj4gYXV0b2J1aWxkZXIg
-YW5kIGlzIGF2YWlsYWJsZSBhdDoNCj4gPj4NCj4gPj4NCj4gPj4gICAgIGh0dHBzOi8vYXV0b2J1
-aWxkZXIueW9jdG8uaW8vcHViL3JlbGVhc2VzL3lvY3RvLTMuMS4yLnJjMQ0KPiA+Pg0KPiA+Pg0K
-PiA+PiBCdWlsZCBoYXNoIGluZm9ybWF0aW9uOg0KPiA+Pg0KPiA+PiBiaXRiYWtlOiBjYzExZGZh
-NGViMzYxNjU0N2E4YTM5MDlmODlkYTBjYzRmMzVkYzU3DQo+ID4+IG1ldGEtYXJtOiA0ODEyYTY2
-NTI3ZTg4ZWJkYzUzNTFkNWRiZDYzNzY1YWJlNGFiZjYyDQo+ID4+IG1ldGEtZ3BsdjI6IDYwYjI1
-MWMyNWJhODdlOTQ2YTBjYTRjZGM4ZDE3YjFjYjA5MjkyYWMNCj4gPj4gbWV0YS1pbnRlbDogNzc4
-MzE0NDM3Mzg4ODVkMzNiZmEzYTczOGZlNmM0ZjAzNjFlNDg5Mg0KPiA+PiBtZXRhLWtlcm5lbDog
-NThhNTg5YzVhYWQ1NDE3YWJkMDk5YTk2MWUzYzFhNWIwODNjZGI5MA0KPiA+PiBtZXRhLW1pbmd3
-OiA1MjRkZTY4NjIwNWI1ZDY3MzY2NjFkNDUzMmY1Zjk4ZmVlODU4OWI3DQo+ID4+IG9lY29yZTog
-ZWE4ODZkNTdkYjkxN2E0MWEwZDEwNmExNWUxZTk2YzcyZDY0MDdiMA0KPiA+PiBwb2t5OiA1Njli
-MWY1ZDY3YzU3ZGU5NTdlMjQzOTk3YzUzZWMyZjgxZGM4ZGZlDQo+ID4+DQo+ID4+DQo+ID4+DQo+
-ID4+IFRoaXMgaXMgYW4gYXV0b21hdGVkIG1lc3NhZ2UgZnJvbSB0aGUgWW9jdG8gUHJvamVjdCBB
-dXRvYnVpbGRlcg0KPiA+PiBHaXQ6IGdpdDovL2dpdC55b2N0b3Byb2plY3Qub3JnL3lvY3RvLWF1
-dG9idWlsZGVyMg0KPiA+PiBFbWFpbDogcmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9y
-Zw0KPiA+Pg0KPiA+Pg0KPiA+Pg0KDQo=
+--------------045E97C43D2CE7CC3EF366AA
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+
+
+On 7/29/20 12:34 PM, yoc wrote:
+> Hi,
+>
+> I am adding clamav to my custom image.
+>
+> I have added the target clamav-libclamav to my image and libclamav.so
+> is added, as expected, to /usr/lib but libclammspack.so is not added
+> to /usr/lib
+>
+> How to I make sure that libclammspack.so is include in the image?
+
+You can check the build directory in the package dir and see if it is
+there. Then check the package-split to see if it ended up in a different
+package.
+
+I am rebuilding dunfell now to see what is up.
+
+-armin
+>
+> I am using the meta-security layer on the dunfell branch.
+>
+> Many Thanks,
+>
+> Charlie
+>
+>
+> 
+
+
+--------------045E97C43D2CE7CC3EF366AA
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 7/29/20 12:34 PM, yoc wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:464e94c9-7077-bc1c-6ac7-955933fcb4c5@whitetree.xyz">Hi,
+      <br>
+      <br>
+      I am adding clamav to my custom image.
+      <br>
+      <br>
+      I have added the target clamav-libclamav to my image and
+      libclamav.so is added, as expected, to /usr/lib but
+      libclammspack.so is not added to /usr/lib
+      <br>
+      <br>
+      How to I make sure that libclammspack.so is include in the image?
+      <br>
+    </blockquote>
+    <br>
+    You can check the build directory in the package dir and see if it
+    is there. Then check the package-split to see if it ended up in a
+    different package.<br>
+    <br>
+    I am rebuilding dunfell now to see what is up. <br>
+    <br>
+    -armin<br>
+    <blockquote type="cite"
+      cite="mid:464e94c9-7077-bc1c-6ac7-955933fcb4c5@whitetree.xyz">
+      <br>
+      I am using the meta-security layer on the dunfell branch.
+      <br>
+      <br>
+      Many Thanks,
+      <br>
+      <br>
+      Charlie
+      <br>
+      <br>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------045E97C43D2CE7CC3EF366AA--
