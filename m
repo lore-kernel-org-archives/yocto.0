@@ -1,118 +1,67 @@
-Received: from mail.deif.com (mail.deif.com [87.54.42.111])
- by mx.groups.io with SMTP id smtpd.web11.3041.1596091713237481341
+Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
+ by mx.groups.io with SMTP id smtpd.web11.3106.1596091896177812235
  for <yocto@lists.yoctoproject.org>;
- Wed, 29 Jul 2020 23:48:34 -0700
+ Wed, 29 Jul 2020 23:51:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@deif.com header.s=s1024 header.b=ko9+vQfc;
- spf=pass (domain: deif.com, ip: 87.54.42.111, mailfrom: kfa@deif.com)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed;
-    s=s1024; d=deif.com;
-    h=from:to:subject:date:message-id:references:in-reply-to:content-type:
-      mime-version;
-    bh=BO7D1EuAPjXKk761yKFIuG+ykTA=;
-    b=ko9+vQfcKRWdW6pxb+LqxyCHhhMSDA5BKq0y5iToxv6luKcv5bx24ZC4GfLJZa
-      4SceWbQWl8BtEW3U7i2/1EzMv6bY4C/dXpadpTib/ZvAnDra9HfheGgRlJ1Nxt
-      3Ijl1qCNY3dL080SfB9lEeQ5d1hZNKFPODaIyvjYgYMoOfk=
-From: "Kjeld Flarup" <kfa@deif.com>
-To: Khem Raj <raj.khem@gmail.com>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Building extensible SDK
-Thread-Topic: [yocto] Building extensible SDK
-Thread-Index: AQHWZMWhAoGXO6vNuEiioBUpzqe6e6kffK0AgAAsk9U=
-Date: Thu, 30 Jul 2020 06:48:29 +0000
-Message-ID: <a39361425b0745ae880040cfb6eeebea@deif.com>
-References: <WBxu.1594201038361970285.H0ZY@lists.yoctoproject.org>
- <589397f5-4ba5-d2a0-c318-fc3187537aab@gmail.com>
- <6f1314dc8f5448ad998aa66d10929345@deif.com>,<51ed3fe1-a7cc-6476-eb2c-55e56842be94@gmail.com>
-In-Reply-To: <51ed3fe1-a7cc-6476-eb2c-55e56842be94@gmail.com>
-Accept-Language: en-US, da-DK
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+ dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: yi.zhao@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 06U6orEe030772
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Wed, 29 Jul 2020 23:51:09 -0700
+Received: from localhost (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Wed, 29 Jul
+ 2020 23:50:43 -0700
+From: "Yi Zhao" <yi.zhao@windriver.com>
+To: <yocto@lists.yoctoproject.org>, <joe@deserted.net>
+Subject: [meta-selinux][PATCH] selinux-*.service: install to sysinit.target
+Date: Thu, 30 Jul 2020 14:50:36 +0800
+Message-ID: <20200730065036.29004-1-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-Originating-IP: [128.224.162.174]
+Content-Type: text/plain
 
-Thanks Khem
+The selinux-init/autorelabel/labeldev services have a constraint of
+Before=sysinit.arget. So it is better to install them to sysinit.target
+rather than multi-user.target.
 
-I guess the eSDK is quite new then.
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ .../selinux/selinux-autorelabel/selinux-autorelabel.service     | 2 +-
+ recipes-security/selinux/selinux-init/selinux-init.service      | 2 +-
+ .../selinux/selinux-labeldev/selinux-labeldev.service           | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-I have to ask my BSP supplier, about what version of Yocto they are using.
+diff --git a/recipes-security/selinux/selinux-autorelabel/selinux-autorelabel.service b/recipes-security/selinux/selinux-autorelabel/selinux-autorelabel.service
+index 9520f6e..3c2a576 100644
+--- a/recipes-security/selinux/selinux-autorelabel/selinux-autorelabel.service
++++ b/recipes-security/selinux/selinux-autorelabel/selinux-autorelabel.service
+@@ -8,4 +8,4 @@ Type=oneshot
+ ExecStart=/usr/bin/selinux-autorelabel.sh
+ 
+ [Install]
+-WantedBy=multi-user.target
++WantedBy=sysinit.target
+diff --git a/recipes-security/selinux/selinux-init/selinux-init.service b/recipes-security/selinux/selinux-init/selinux-init.service
+index 49c6d98..91b3e72 100644
+--- a/recipes-security/selinux/selinux-init/selinux-init.service
++++ b/recipes-security/selinux/selinux-init/selinux-init.service
+@@ -9,4 +9,4 @@ Type=oneshot
+ ExecStart=/usr/bin/selinux-init.sh
+ 
+ [Install]
+-WantedBy=multi-user.target
++WantedBy=sysinit.target
+diff --git a/recipes-security/selinux/selinux-labeldev/selinux-labeldev.service b/recipes-security/selinux/selinux-labeldev/selinux-labeldev.service
+index d45ecbc..96142a3 100644
+--- a/recipes-security/selinux/selinux-labeldev/selinux-labeldev.service
++++ b/recipes-security/selinux/selinux-labeldev/selinux-labeldev.service
+@@ -8,4 +8,4 @@ Type=oneshot
+ ExecStart=/usr/bin/selinux-labeldev.sh
+ 
+ [Install]
+-WantedBy=multi-user.target
++WantedBy=sysinit.target
+-- 
+2.17.1
 
-"The extensible SDK can currently only be built for the same architecture =
-as the machine being built on - SDK_ARCH is
-set to i686 (likely via setting SDKMACHINE) which is different from the ar=
-chitecture of the build machine (x86_64)."
-
-
-Regards
-Kjeld Flarup
-DEIF R&D - Platform Software
-
-
-
-________________________________________
-From: Khem Raj <raj.khem@gmail.com>
-Sent: Thursday, July 30, 2020 7:40:04 AM
-To: Kjeld Flarup; yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Building extensible SDK
-
-On 7/28/20 2:58 AM, Kjeld Flarup via lists.yoctoproject.org wrote:
-> The eSDK looks interesting, but the documentation does not say anything =
-about how to build it.
-> Am I missing something about how to obtain the eSDK?
-
-its all in the manual e.g.
-
-https://www.yoctoproject.org/docs/current/sdk-manual/sdk-manual.html#sdk-b=
-uilding-an-sdk-installer
-
->
->
-> Regards
-> Kjeld Flarup
-> DEIF R&D - Platform Software
->
->
->
-> ________________________________________
-> From: Khem Raj <raj.khem@gmail.com>
-> Sent: Friday, July 10, 2020 02:38
-> To: Kjeld Flarup; yocto@lists.yoctoproject.org
-> Subject: Re: [yocto] Add application with library to target
->
-> On 7/8/20 2:37 AM, Kjeld Flarup via lists.yoctoproject.org wrote:
->> I have a functioning Yocto build today, but two of the recipes are
->> optional. An application and a library.
->> I would like to split my build in two.
->>
->> One that contains the basic system with kernel rootfs etc.
->> A second that just contains the application and the library
->>
->> If I just had the application, it would be simple just to use the SDK
->> and generate the application.
->> But when adding the library, things starts to be more complex.
->>
->> I would also like to use my existing recipe with dependencies etc.
->>
->> What is the best approach
->>
->>    * Can this be done with the ADT?
->>    * Can a layer solve it
->>    * Do I need to do it all manually with the SDK
->>
->
-> I think eSDK might be good fit for your usecase.
->
-> https://www.yoctoproject.org/docs/current/sdk-manual/sdk-manual.html#sdk=
--extensible
->>
->> --
->> Regards
->> Kjeld Flarup
->> DEIF A/S
->>
->>
->>
->>
->>=20
