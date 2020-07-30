@@ -1,119 +1,97 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.5523.1596105662319360852
+ by mx.groups.io with SMTP id smtpd.web11.11133.1596124564902850794
  for <yocto@lists.yoctoproject.org>;
- Thu, 30 Jul 2020 03:41:02 -0700
+ Thu, 30 Jul 2020 08:56:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denx.de, ip: 140.211.169.56, mailfrom: sbabic@denx.de)
+ dkim=pass header.i=@stusta.de header.s=default header.b=XQIIVdz3;
+ spf=neutral (domain: stusta.mhn.de, ip: 140.211.169.56, mailfrom: srs0=xatc=bj=stusta.de=bunk@stusta.mhn.de)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC315E01F46; Thu, 30 Jul 2020 03:41:01 -0700 (PDT)
+	id 73144E01F52; Thu, 30 Jul 2020 08:56:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
-	*      trust
-	*      [212.18.0.10 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.8 NICE_REPLY_A Looks like a legit reply (A)
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B0EEE01F43
-	for <yocto@yoctoproject.org>; Thu, 30 Jul 2020 03:40:58 -0700 (PDT)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 4BHRlY6J0Jz1rv9l;
-	Thu, 30 Jul 2020 12:40:57 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-	by mail.m-online.net (Postfix) with ESMTP id 4BHRlY41Mpz1qr4c;
-	Thu, 30 Jul 2020 12:40:57 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-	with ESMTP id JMi3TL_ksJZZ; Thu, 30 Jul 2020 12:40:56 +0200 (CEST)
-Received: from babic.homelinux.org (host-88-217-136-221.customer.m-online.net [88.217.136.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPS;
-	Thu, 30 Jul 2020 12:40:56 +0200 (CEST)
-Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
-	by babic.homelinux.org (Postfix) with ESMTP id 57E6D454050B;
-	Thu, 30 Jul 2020 12:40:56 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
-Received: from babic.homelinux.org ([127.0.0.1])
-	by localhost (mail.babic.homelinux.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id bdLSfq1KnHA8; Thu, 30 Jul 2020 12:40:54 +0200 (CEST)
-Received: from [192.168.178.47] (stefano-MacBookPro.fritz.box [192.168.178.47])
-	by babic.homelinux.org (Postfix) with ESMTPS id E167A4540393;
-	Thu, 30 Jul 2020 12:40:53 +0200 (CEST)
-Subject: Re: [yocto] [swupdate] [meta-swupdate][PATCH] mtd-utils: Remove patchs
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
- Stefano Babic <sbabic@denx.de>, Zheng Ruoqin <zhengrq.fnst@cn.fujitsu.com>,
- swupdate@googlegroups.com
-Cc: yocto@yoctoproject.org
-References: <1596071889-91188-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
- <2de062d5-c94c-e8e1-eae4-26d0663ec8ee@denx.de>
- <2a963f4bef787067aaa680c73df08d5ac1307a02.camel@linuxfoundation.org>
-From: "Stefano Babic" <sbabic@denx.de>
-Message-ID: <95e70525-1555-22b7-3112-863c569af56b@denx.de>
-Date: Thu, 30 Jul 2020 12:40:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
+	*      trust
+	*      [141.84.69.5 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 383 seconds by postgrey-1.32 at yocto-www; Thu, 30 Jul 2020 08:56:01 PDT
+Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87D48E01F50
+	for <yocto@yoctoproject.org>; Thu, 30 Jul 2020 08:56:01 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 4BHZbd2mkXz4H;
+	Thu, 30 Jul 2020 17:49:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
+	s=default; t=1596124175;
+	bh=/6R5I+xdmYFs8ss62IRD2sX8nwgfjlWpSgJcP7lfjnE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XQIIVdz3omaGG9bZL/deZfg4N1ZkPV/VM4vfb81WMmQ3/YVxiLcOZJIiiQtDtLZBL
+	 G0vnjzGEFBdVNdhSXh/+JWvdgFz2G0tpdJ5JbYDZ39ljKHjMdOPw7/jAlEr0mWIFNJ
+	 zLjyvUYpFg1c7G14AWc9/AK1LTajf2NaG75MAgU25Ea45HtqsRz/1eHHO4CAnj+EJl
+	 2fzdwMc0vd9xma4HBnQolN0XcJQWrTLfo9Qx5lzRPQ8oaG/magPtvdtSvwDJOlW7iK
+	 U9tvCXE4nAtaNRFJXHrZdUAvtt8iQ/2wPHfnhjQ+YuTz4o4seGcne+FOX/BdUOac0q
+	 O3lnbtT0CseqRXfFC14lxBNO4MXseOT0UDUpXPxwDpXrGB+inT4NVhFZ7PawiH6aOZ
+	 F3sTRmOgSpGhdeq7guCMS/D1bixqUVCmP8XV9oS7Y65ryJF6RqUDiJHx2zRdYkru6Y
+	 7xcbOuimjoTav/esoWFXz9BuHB8dmBGVgkw6LsGkp/5f6RDfP73oI/QMREU+WxgppJ
+	 rDPH3mCktuGWIPXkBy0zwXBlhw8fBvyoEnwvBgC36sGyMZxezTAQFOD05n/XG/JKZU
+	 1B57cChR21fXU1EM7+5b0LuF31HjiogEmIeoSIhiFPOEOSvWi8PAAum3ZW5oEIT+sM
+	 ouPnDMujwdnZO1TxOPf36vl8=
+Date: Thu, 30 Jul 2020 18:49:31 +0300
+From: "Adrian Bunk" <bunk@stusta.de>
+To: akuster808 <akuster808@gmail.com>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>,
+	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"bitbake-devel@lists.openembedded.org" <bitbake-devel@lists.openembedded.org>
+Subject: Re: [bitbake-devel] [yocto] Stable Warrior branch
+Message-ID: <20200730154931.GE1260@localhost>
+References: <03a353c4-80dd-e66c-3222-7850a98182f7@gmail.com>
+ <20200714135619.GF25970@localhost>
+ <cca863dd41cf837cfaa89484c010578e5ac0809b.camel@linuxfoundation.org>
+ <e6743da0-b2d2-14bf-2d1c-7e6f50ba8e1b@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <2a963f4bef787067aaa680c73df08d5ac1307a02.camel@linuxfoundation.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <e6743da0-b2d2-14bf-2d1c-7e6f50ba8e1b@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-Hi Richard,
+On Mon, Jul 27, 2020 at 07:36:49AM -0700, akuster808 wrote:
+> Adrian,
 
-On 30.07.20 12:28, Richard Purdie wrote:
-> On Thu, 2020-07-30 at 10:34 +0200, Stefano Babic wrote:
->> Hi Zheng,
->>
->> I do not discuss abot the correctness of these patches (that I will
->> aplly to meta-swupdate, -master), but about mtd-utils version (for
->> this I pick up Richard in CC). There were in last month more breakage
->> around mtd-utils due to patches (required !) that are applied to an
->> undefined (from recipe) version of mtd-utils.
->>
->> In fact, we have mtd-utils_git.bb in poky, and as "git" version, the
->> expectation is that it points to TOT. But this is not the case, and
->> meta-<layers> outside poky just add some patches to a not well
->> defined version.
->>
->> Should we also replace mtd-utils_git.bb with a more precise
->> mtd-utils_2.1.2.bb ?
+Hi Armin,
+
+> On 7/21/20 1:53 AM, Richard Purdie wrote:
+> > On Tue, 2020-07-14 at 16:56 +0300, Adrian Bunk wrote:
+> >> On Thu, Jun 04, 2020 at 09:28:00PM -0700, akuster wrote:
+> >>> Hello,
+> >>>
+> >>> The Warrior branch of Poky has had its last official dot release.
+> >>> It
+> >>> will be moving to Community support and EOL within 6 weeks if no
+> >>> one
+> >>> steps up.
+> >>> If someone is interested in taking on the responsibilities of
+> >>> maintaining the "Warrior" branch moving forward, please email this
+> >>> list.
+> >> I have an interest in keeping warrior branch alive in poky and meta-
+> >> oe,
+> >> and I'll take this responsibility since noone else seems to be
+> >> interested.
 > 
-> Adding patches in bbappends is always going to be high maintenance. Are
-> these patches swupdate specific?
-> 
+> Are you still interested?
 
-Yes, they are. My question was related to mtd recipe in OE-Core.
+yes.
 
-> The recipes use "git" in the filename and then set a sepcific SRCREV
-> and set PV correctly. This is an accepted behaviour. I can see how
-> renaming the recipe would also help for certain usecases but both are
-> really correct for different reasons.
+> -armin
 
-Agree both are correct, but as you said, it can be more messy to 
-maintain in external layers if it is not possible to identify a specific 
-version,
-
-> 
-> I'd also note that git versions in oe-core are always locked down to
-> something and that something is therefore likely not to be TOT as they
-> don't get updated frequently enough.
-
-ok, fine.
-
-Regards,
-Stefano
-
-
--- 
-=====================================================================
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-=====================================================================
+cu
+Adrian
