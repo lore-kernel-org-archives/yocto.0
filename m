@@ -1,110 +1,288 @@
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
- by mx.groups.io with SMTP id smtpd.web12.21230.1596209720281538157
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+ by mx.groups.io with SMTP id smtpd.web12.295.1596212142098473623
  for <yocto@lists.yoctoproject.org>;
- Fri, 31 Jul 2020 08:35:20 -0700
+ Fri, 31 Jul 2020 09:15:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=ZUVc0LGa;
- spf=pass (domain: linaro.org, ip: 209.85.166.48, mailfrom: ryan.harkin@linaro.org)
-Received: by mail-io1-f48.google.com with SMTP id g19so19976621ioh.8
-        for <yocto@lists.yoctoproject.org>; Fri, 31 Jul 2020 08:35:20 -0700 (PDT)
+ dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=rgC9jfj2;
+ spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 209.85.215.182, mailfrom: akuster@mvista.com)
+Received: by mail-pg1-f182.google.com with SMTP id h12so4914202pgf.7
+        for <yocto@lists.yoctoproject.org>; Fri, 31 Jul 2020 09:15:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=3WON6TB+AyDwednyLhLlxtJFoPB0mJCppKHDVWcF0wI=;
-        b=ZUVc0LGaeFtTfYq3NX+TEOUVORdinqwAKwVLF4K3ucQeIyMyrp3zFFQwPsVuJS+R0v
-         6K7OL+AEHzL3q+wRl6+ZbL/LaOwoV97hlNi8r0PPagiftx1U1uV6ve3PDBJqkNv7Natd
-         UJJ/PSTrXFQJoSctyF72V29jemurPeIWiH7y+hjMuRIuZ3Jrhf6XLn5bCBqGPYbOL6Kj
-         ixv8DnMqqmMrn5ou+M0ZtEMnexGJCjNVfgR2rK5EK33K9QBDP+3Rt1W5eicT13YGkp3C
-         GDqEu3xJb1YeoZ1l8aNTilFDfjA+7WHyVTjYjczSiAndvMhhHVNqXTPgwzVPLP78broR
-         THlQ==
+        d=mvista-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language;
+        bh=RLhKcaouyXK2X5iMvorBLOhU3olyRR6RnAMTUyqn4jc=;
+        b=rgC9jfj2auOQXgkK3cdQ2Rc2AnsJtb3Sh1vkCPSlPim6fRi/GFEnhbBiw5JzAbKplw
+         qacqQdckDQvQmqLAB328326jd+tooGCBg4ojg7B80uUPOtl0uTXv8fOgkUfitUC6Q2Ml
+         vO+yKsVrXrSH2or9KLbIcrB8DAs9iGw7IX+g7htXkXhig5K4SlctDF2YsaQufti0aWUp
+         Qb0V9iXX8xzxWfNKw0jpUcMNuLeBiUIph2ZGACCGXuLsNoMuHf+ByaPKffAGjxmHp7HK
+         sDtIDIab/GxGVe3Sjz/aLGrm2sNmLVTdhU98WzjZxZPeMjzCbCzshCaRDJc9p+QYJ+cP
+         LWZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=3WON6TB+AyDwednyLhLlxtJFoPB0mJCppKHDVWcF0wI=;
-        b=tluYzTMQPgaXzw80zyscnNPgbH8iG2BVvqSGvGC+vZ9ARyhz46yn0lIuLUF4TsWpx2
-         BHvePFByicQxWUAlE0FzjWhb3gYxXqmg+vhbgM7y815ZqjPRk0S4xMWm+XWFrtUrA5jX
-         WLCoe5Ny/Nk7SLCXOY2rzCUr5WV31pYT3Z5pC8M+G30zAiUOG5I6bO+pHIHEhz7gdIJL
-         23+RoXTsBXGZQeTOSzxhuG+2QaREElPo//6TBQU7PVq/Ui5j/WZEDfAaeU9zzwZkDE8V
-         05PW1j8tuYXWV/puAhwLutX+tMixikB9jW7roHpipib3j4n15FsVO0j5G+i+0h/K8tNK
-         +kCQ==
-X-Gm-Message-State: AOAM531hl4uJgcqtrheasFUsMd/5ctNG8nxnBVwr0RFkc9U6jWAUIpDk
-	Obd1rx1APEcvAbXctAngNZbrW23FOrsEAUkVAxVMfJypZ6w=
-X-Google-Smtp-Source: ABdhPJwJKEKmPYmhnTYj1msVvoNUgC7Lbgp9BNxs6z1DDEmd6A9ERLWDvflNOWw5H0G1NI5Tz2EriK++5l3gNGWhCns=
-X-Received: by 2002:a5e:d90a:: with SMTP id n10mr4161068iop.50.1596209719436;
- Fri, 31 Jul 2020 08:35:19 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language;
+        bh=RLhKcaouyXK2X5iMvorBLOhU3olyRR6RnAMTUyqn4jc=;
+        b=O7wYpqC/MHgSPHbwVJo9vCzDrTkSHJ2sW4l6jKhn+1+SHROYttT5siFTn0lManRXtM
+         L2fUrlR6p3rLrko1ZjJsWU6RFpCpM2ynh87+S6QTMfMh00GeS6Kmxz36UXUFqAyqBRtP
+         d0oxzK4P1Y/NwedNsZ3fzzpNPuzet5T+9pF3PnPGhvkaN3ponER0fmF235DV8YwNFIop
+         Lpry4J0RuhZSsjgXz9eDGcQL/L7q4ODxVycSDtUmps5bR9O5oHEmBV0GB1D8StH2BeJc
+         NQcPiP/H7W6sCmxPlX/yApxbp7ygltHFMPwlWL858uaNVi4oXMZOJp4/I7E/Xs0uG1cR
+         VwZw==
+X-Gm-Message-State: AOAM533+Ts49kxqM4QReju+6L4y2C2Jpguqr6bv6ANGtiNqf9ZtlYnwU
+	th9Xm0XYnPjW6NwfiKUvqvhSS4tf6so=
+X-Google-Smtp-Source: ABdhPJwg4deVZ3Q/cH14aH3QgkwQU5f52WH8/FfKoixaZlJccxuP+DJ0mPDfpVd/2NBl4Fl901fVvQ==
+X-Received: by 2002:a63:907:: with SMTP id 7mr4459660pgj.193.1596212141139;
+        Fri, 31 Jul 2020 09:15:41 -0700 (PDT)
+Return-Path: <akuster@mvista.com>
+Received: from ?IPv6:2601:202:4180:a5c0:cd39:b98e:a1ce:2c8f? ([2601:202:4180:a5c0:cd39:b98e:a1ce:2c8f])
+        by smtp.gmail.com with ESMTPSA id lx16sm10233877pjb.1.2020.07.31.09.15.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Jul 2020 09:15:40 -0700 (PDT)
+Subject: Re: [yocto] cannot build PDF docs
+To: Rob Prowel <rprowel@comcast.net>, yocto@lists.yoctoproject.org
+References: <de5d2fa6-d353-9113-72cf-f75d2544707c@comcast.net>
+From: "Armin Kuster" <akuster@mvista.com>
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <511d121e-885a-b163-03d9-9993c3125054@mvista.com>
+Date: Fri, 31 Jul 2020 09:15:38 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-From: "Ryan Harkin" <ryan.harkin@linaro.org>
-Date: Fri, 31 Jul 2020 16:35:08 +0100
-Message-ID: <CAD0U-hK2euAfxe2EZ2QhWa+QQ0cVMNmSh6SUMbKy9GnB7BVHUQ@mail.gmail.com>
-Subject: dunfell gcc-sanitizers-arm-8.3 fails to build
-To: yocto@lists.yoctoproject.org
-Cc: Sumit Garg <sumit.garg@linaro.org>, Ralph Siemsen <ralph.siemsen@linaro.org>, Jon.Mason@arm.com, 
-	Nicolas Dechesne <nicolas.dechesne@linaro.org>, openembedded <openembedded@lists.linaro.org>
-Content-Type: multipart/alternative; boundary="00000000000050798205abbe8944"
+In-Reply-To: <de5d2fa6-d353-9113-72cf-f75d2544707c@comcast.net>
+Content-Type: multipart/alternative;
+ boundary="------------8D95F9BB6A77ED0D21BBBA29"
+Content-Language: en-US
 
---00000000000050798205abbe8944
-Content-Type: text/plain; charset="UTF-8"
+--------------8D95F9BB6A77ED0D21BBBA29
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-Hello,
+Rob,
 
-I'm migrating from Warrior to Dunfell and I'm getting a curious build
-failure in gcc-sanitizers.
 
-Here's the full gory detail:
-    https://pastebin.ubuntu.com/p/nh4cDKMvgS/
+On 7/31/20 8:19 AM, Rob Prowel wrote:
+> Is there some magic to building the PDF versions of the yocto docs?
+> I've tried on multiple machines running debian and differing versions
+> of ubuntu and consistently the PDF docs fail to build.
+>
+> Font substitution errors are trivial, but not being able to locate the
+> images that get are inserted is a pretty serious build bug.
+>
+> What's the secret to building PDF docs, or where are they online?  and
+> no, not interested in referring to cloud based HTML docs.  I want
+> offline PDF documentation.
+>
 
-However, the main error is this:
+I believe you are hitting a known bug: 
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=13767
 
-| In file included from
-../../../../../../../../../work-shared/gcc-arm-8.3-r2019.03/git/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.cc:193:
-|
-../../../../../../../../../work-shared/gcc-arm-8.3-r2019.03/git/libsanitizer/sanitizer_common/sanitizer_internal_defs.h:317:72:
-error: size of array 'assertion_failed__1152' is negative
-|      typedef char IMPL_PASTE(assertion_failed_##_, line)[2*(int)(pred)-1]
+regards,
+Armin
 
-I have no idea where to begin with this. I don't even know why
-gcc-sanitizers is included in the build, what it does, or why I need it.
-I'm building an image with dev packages and gcc, so I guess that's why.
+> Thanks!
+>
+> $ make DOC=adt-manual pdf
+> cd adt-manual; ../tools/poky-docbook-to-pdf adt-manual.xml
+> ../template; cd ..
+> Note: namesp. cut : stripped namespace before processing
+>             Yocto Project Application Developer's Guide
+>
+> Making portrait pages on A4 paper (210mmx297mm)
+> Attributed 561 IDs for element, cleaned up 0
+> [warning] /usr/bin/fop: JVM flavor 'sun' not understood
+> Picked up _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=on
+> -Dswing.aatext=true
+> [INFO] FopConfParser - Default page-height set to: 11in
+> [INFO] FopConfParser - Default page-width set to: 8.26in
+> [ERROR] FOUserAgent - Image not found. URI: figures/adt-title.png.
+> (See position 2:38206)
+> [WARN] FOUserAgent - Font "Symbol,normal,700" not found. Substituting
+> with "Symbol,normal,400".
+> [WARN] FOUserAgent - Font "ZapfDingbats,normal,700" not found.
+> Substituting with "ZapfDingbats,normal,400".
+> [ERROR] FOUserAgent - Image not found. URI: figures/adt-title.png. (No
+> context info available)
+> [INFO] FOUserAgent - Rendered page #1.
+> [INFO] FOUserAgent - Rendered page #2.
+> [INFO] FOUserAgent - Rendered page #3.
+> [INFO] FOUserAgent - Rendered page #4.
+> [INFO] FOUserAgent - Rendered page #5.
+> [ERROR] FOUserAgent - Image not found. URI:
+> figures/using-a-pre-built-image.png. (See position 736:275)
+> [WARN] FOUserAgent - Font "veramono,italic,400" not found.
+> Substituting with "veramono,normal,400".
+> [WARN] FOUserAgent - The contents of fo:block line 1 exceed the
+> available area in the inline-progression direction by more than 50
+> points. (See position 496:372)
+> [WARN] FOUserAgent - The contents of fo:block line 1 exceed the
+> available area in the inline-progression direction by more than 50
+> points. (See position 496:372)
+> [WARN] FOUserAgent - The contents of fo:block line 1 exceed the
+> available area in the inline-progression direction by more than 50
+> points. (See position 496:372)
+> [WARN] FOUserAgent - The contents of fo:block line 1 exceed
+>
+> 
 
-I've hacked meta-arm to patch sanitizer_platform_limits_posix.cc to null
-out the macros and that builds fine. I'm sure it won't work, should someone
-want to use it, mind you.
 
-Is there something obvious that I should be doing as part of a Warrior ->
-Dunfell migration to get this to work?
+--------------8D95F9BB6A77ED0D21BBBA29
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-note: Warrior used meta-linaro-toolchain and for Dunfell, it's moved to
-meta-arm-toolchain.
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body>
+    Rob,<br>
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 7/31/20 8:19 AM, Rob Prowel wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:de5d2fa6-d353-9113-72cf-f75d2544707c@comcast.net">Is
+      there some magic to building the PDF versions of the yocto docs?
+      I've tried on multiple machines running debian and differing
+      versions of ubuntu and consistently the PDF docs fail to build.
+      <br>
+      <br>
+      Font substitution errors are trivial, but not being able to locate
+      the images that get are inserted is a pretty serious build bug.
+      <br>
+      <br>
+      What's the secret to building PDF docs, or where are they online? 
+      and no, not interested in referring to cloud based HTML docs.  I
+      want offline PDF documentation.
+      <br>
+      <br>
+    </blockquote>
+    <br>
+    I believe you are hitting a known bug: 
+    <a class="moz-txt-link-freetext" href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=13767">https://bugzilla.yoctoproject.org/show_bug.cgi?id=13767</a><br>
+    <br>
+    regards,<br>
+    Armin<br>
+    <br>
+    <blockquote type="cite"
+      cite="mid:de5d2fa6-d353-9113-72cf-f75d2544707c@comcast.net">Thanks!
+      <br>
+      <br>
+      $ make DOC=adt-manual pdf
+      <br>
+      cd adt-manual; ../tools/poky-docbook-to-pdf adt-manual.xml
+      ../template; cd ..
+      <br>
+      Note: namesp. cut : stripped namespace before processing
+      <br>
+                  Yocto Project Application Developer's Guide
+      <br>
+      <br>
+      Making portrait pages on A4 paper (210mmx297mm)
+      <br>
+      Attributed 561 IDs for element, cleaned up 0
+      <br>
+      [warning] /usr/bin/fop: JVM flavor 'sun' not understood
+      <br>
+      Picked up _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=on
+      -Dswing.aatext=true
+      <br>
+      [INFO] FopConfParser - Default page-height set to: 11in
+      <br>
+      [INFO] FopConfParser - Default page-width set to: 8.26in
+      <br>
+      [ERROR] FOUserAgent - Image not found. URI: figures/adt-title.png.
+      (See position 2:38206)
+      <br>
+      [WARN] FOUserAgent - Font "Symbol,normal,700" not found.
+      Substituting with "Symbol,normal,400".
+      <br>
+      [WARN] FOUserAgent - Font "ZapfDingbats,normal,700" not found.
+      Substituting with "ZapfDingbats,normal,400".
+      <br>
+      [ERROR] FOUserAgent - Image not found. URI: figures/adt-title.png.
+      (No context info available)
+      <br>
+      [INFO] FOUserAgent - Rendered page #1.
+      <br>
+      [INFO] FOUserAgent - Rendered page #2.
+      <br>
+      [INFO] FOUserAgent - Rendered page #3.
+      <br>
+      [INFO] FOUserAgent - Rendered page #4.
+      <br>
+      [INFO] FOUserAgent - Rendered page #5.
+      <br>
+      [ERROR] FOUserAgent - Image not found. URI:
+      figures/using-a-pre-built-image.png. (See position 736:275)
+      <br>
+      [WARN] FOUserAgent - Font "veramono,italic,400" not found.
+      Substituting with "veramono,normal,400".
+      <br>
+      [WARN] FOUserAgent - The contents of fo:block line 1 exceed the
+      available area in the inline-progression direction by more than 50
+      points. (See position 496:372)
+      <br>
+      [WARN] FOUserAgent - The contents of fo:block line 1 exceed the
+      available area in the inline-progression direction by more than 50
+      points. (See position 496:372)
+      <br>
+      [WARN] FOUserAgent - The contents of fo:block line 1 exceed the
+      available area in the inline-progression direction by more than 50
+      points. (See position 496:372)
+      <br>
+      [WARN] FOUserAgent - The contents of fo:block line 1 exceed
+      <br>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
-Regards,
-Ryan.
-
---00000000000050798205abbe8944
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I&#39;m migrating fro=
-m Warrior to Dunfell and I&#39;m getting a curious build failure in gcc-san=
-itizers.</div><div><br></div><div>Here&#39;s the full gory detail:</div>=C2=
-=A0 =C2=A0=C2=A0<a href=3D"https://pastebin.ubuntu.com/p/nh4cDKMvgS/">https=
-://pastebin.ubuntu.com/p/nh4cDKMvgS/</a><br><div><br></div><div>However, th=
-e main error is this:</div><div><br></div><div>| In file included from ../.=
-./../../../../../../../work-shared/gcc-arm-8.3-r2019.03/git/libsanitizer/sa=
-nitizer_common/sanitizer_platform_limits_posix.cc:193:<br>| ../../../../../=
-../../../../work-shared/gcc-arm-8.3-r2019.03/git/libsanitizer/sanitizer_com=
-mon/sanitizer_internal_defs.h:317:72: error: size of array &#39;assertion_f=
-ailed__1152&#39; is negative<br>| =C2=A0 =C2=A0 =C2=A0typedef char IMPL_PAS=
-TE(assertion_failed_##_, line)[2*(int)(pred)-1]<br></div><div><br></div><di=
-v>I have no idea where to begin with this. I don&#39;t even know why gcc-sa=
-nitizers is included in the build,=C2=A0what it=C2=A0does, or why I need=C2=
-=A0it. I&#39;m building an image with dev packages and gcc, so I guess that=
-&#39;s why.</div><div><br></div><div>I&#39;ve hacked meta-arm to patch=C2=
-=A0sanitizer_platform_limits_posix.cc to null out the macros and that build=
-s fine. I&#39;m sure it won&#39;t work, should someone want to use it, mind=
- you.</div><div><br></div><div>Is there something obvious that I should be =
-doing as part of a Warrior -&gt; Dunfell migration to get this to work?</di=
-v><div><br></div><div>note: Warrior used meta-linaro-toolchain and for Dunf=
-ell, it&#39;s moved to meta-arm-toolchain.</div><div><br></div><div>Regards=
-,</div><div>Ryan.</div></div>
-
---00000000000050798205abbe8944--
+--------------8D95F9BB6A77ED0D21BBBA29--
