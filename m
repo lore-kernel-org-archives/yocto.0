@@ -1,140 +1,70 @@
-Subject: Re: [meta-security] Clamav libclammspack.so missing from image
+Received: from resqmta-ch2-06v.sys.comcast.net (resqmta-ch2-06v.sys.comcast.net [69.252.207.38])
+ by mx.groups.io with SMTP id smtpd.web11.17425.1596199520342334988
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 31 Jul 2020 05:45:20 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@comcast.net header.s=20190202a header.b=rk6nZtwg;
+ spf=pass (domain: comcast.net, ip: 69.252.207.38, mailfrom: rprowel@comcast.net)
+Received: from resomta-ch2-03v.sys.comcast.net ([69.252.207.99])
+	by resqmta-ch2-06v.sys.comcast.net with ESMTP
+	id 1ULLkbORz0Dff1UPXkpLGL; Fri, 31 Jul 2020 12:45:19 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+	s=20190202a; t=1596199519;
+	bh=4NFeHpSKToLp1THjbX2D2LExrTT1YmJeZaSZFYnhoyA=;
+	h=Received:Received:To:From:Subject:Message-ID:Date:MIME-Version:
+	 Content-Type;
+	b=rk6nZtwg40/WLvj10iC+3RQ4TWeF+XCOHIn2DQwcPU8PgBd096V2OkjKbtoFIs45t
+	 LXZtPcMdG+xWj9cf9Z47iBEnOfm5MtWod/vmSFbmsWsQFrzTTSYXGFj2mYitT3YWxy
+	 qlh82HvnAjhxXRrqmcXcr434Y4PXfGVTBHCEOkH5362f3ynEf6ErHmrK1F5NvPnLA4
+	 9adVmD2oLDnKXlxfac9fY4PNZsBct1t91zeYdY4OfXfzs5VYeUKrp8MBv4elR7mYfm
+	 jJAt1VhcQX215pAUgNjpktxyXoAWlLtYTKFdsF7bcAmqGJBbw3QCB2WII45HNXe39Y
+	 EhCUwDZp8m3NA==
+Received: from [10.1.11.102] ([73.174.24.42])
+	by resomta-ch2-03v.sys.comcast.net with ESMTPSA
+	id 1UPVk1cPOf3P01UPWkGqoW; Fri, 31 Jul 2020 12:45:18 +0000
+X-Xfinity-VAAS: gggruggvucftvghtrhhoucdtuddrgeduiedrieekgdehiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucevohhmtggrshhtqdftvghsihdpqfgfvfdppffquffrtefokffrnecuuegrihhlohhuthemuceftddtnecunecujfgurhepvffhuffkffgfgggtgfesthejredttdefheenucfhrhhomheptfhosgcurfhrohifvghluceorhhprhhofigvlhestghomhgtrghsthdrnhgvtheqnecuggftrfgrthhtvghrnhepieetteehhfdvkeetgfekhfdvhfegveefheeuuddtheeffeevffelueeiueeifeetnecukfhppeejfedrudejgedrvdegrdegvdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhephhgvlhhopegluddtrddurdduuddruddtvdgnpdhinhgvthepjeefrddujeegrddvgedrgedvpdhmrghilhhfrhhomheprhhprhhofigvlhestghomhgtrghsthdrnhgvthdprhgtphhtthhopeihohgtthhosehlihhsthhsrdihohgtthhophhrohhjvggtthdrohhrgh
+X-Xfinity-VMeta: sc=0.00;st=legit
 To: yocto@lists.yoctoproject.org
-From: "yoc" <yoc.dev@whitetree.xyz>
-X-Originating-Location: GB (92.40.168.144)
-X-Originating-Platform: Linux Chrome 83
-User-Agent: GROUPS.IO Web Poster
+From: "Rob Prowel" <rprowel@comcast.net>
+Subject: one way hash analogy of yocto
+Message-ID: <e4947fc8-98a7-c74d-0e9b-a33a90bb4495@comcast.net>
+Date: Fri, 31 Jul 2020 08:45:17 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Date: Thu, 30 Jul 2020 14:58:28 -0700
-References: <1ed8c27b-8532-d574-adbc-223b056fe36a@mvista.com>
-In-Reply-To: <1ed8c27b-8532-d574-adbc-223b056fe36a@mvista.com>
-Message-ID: <22223.1596146308757509890@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="1z1TCXR5tHxnkQi7BhDC"
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---1z1TCXR5tHxnkQi7BhDC
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+What I really need is information about introspection or the ability to 
+query an existing yocto distro to return data about features included 
+and more to the point, to understand EXACTLY where recipes or classes 
+are overridden or appended.  You can only do so much with recursive grep 
+and find scripts.  Based on what I've seen so far, it seems that 
+capability is lacking in yocto.
 
-Hi Armin,
+In essence I have what is like a one way hash ABCDEFG-->X and I have X 
+but cannot fully figure out the whole input that generated it.
 
-So I found libmspack where you said it would be. I have done some more dig=
-ging and talked to the Clamav developers.
+An example would be an overridden task method like
 
-This line in the recipe (--with-system-libmspack=3D${CLAMAV_USR_DIR}) mean=
-s that libmspack installed on the system is used and the output produced is=
- libclamav.so* and libmspack.so*
+do_something
 
-When I built clamav outside of Yocto I didnt specify the --with-system-lib=
-mspack option and the output was libclamav.so* and libclammspack.so* i.e. t=
-he internal library bundled with Clamav was used.
+I need a quick way to determine the highest priority level that task was 
+overridden or appended in for a given recipe.
 
-Having spoken to the Clamav developers I want to use the internal as it gi=
-ves additional capabilities and security protections:
+a command like "bitbake -describe -c do_something my-recipe"
 
-https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=3D233763
+and it should also be possible to query this kind of information for 
+variables and not just methods or tasks.
 
-"Upgrade from libmspack 0.5alpha to libmspack 0.7.1alpha. As a reminder, w=
-e support system-installed versions of libmspack. However, at this time the=
- ClamAV-provided version of libmspack provides additional abilities to pars=
-e broken or non-standard CAB files beyond what the stock libmspack 0.7.1alp=
-ha provides. We are working with the upstream project to incorporate our mo=
-difications, and hopefully these changes will appear in a future release of=
- libmspack."
+Do these tools exist or am I looking at parsing megabytes of verbose 
+build data and tracing output to find what I'm looking for?
 
-So I went about trying to get the Yocto recipe to compile against the inte=
-rnal libclammspack bundled with Clamav and did not have any success:
+and no, I didn't create the distro...I'm an end user customer who was 
+given an undocumented distro with quazi-proprietary BSP layers in it 
+that not only describe our specific product purchased, but the vendor's 
+others products as well, which complicates matters.
 
-tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sysroot-native/usr/bi=
-n/aarch64-poky-linux/../../libexec/aarch64-poky-linux/gcc/aarch64-poky-linu=
-x/9.3.0/ld: warning: libclammspack.so.0, needed by ../libclamav/.libs/libcl=
-amav.so, not found (try using -rpath or -rpath-link)
+Thoughts?
 
-Firstly, would you be able to give me a pointer on how to solve this issue=
- - I think it requires a patch to the Clamav build process? I saw some hist=
-oric commits mentioning rpath but was unsuccessful with getting anything to=
- build.
-
-Secondly, I would propose the following and am happy to implement the patc=
-hes if these ideas are agreeable to you:
-
-1) Use the PACKAGECONFIG mechanism to allow a switch between using the sys=
-tem and internal libmspack with the default being to use the internal versi=
-on
-2) Update the version of Clamav to the latest stable version - it was note=
-d by the Clamav developers that the current version in the recipe is outdat=
-ed
-3) Fix the bug on line 92 of the recipe. I believe that this line should b=
-e surrounded by the same if statement as lines 75-79. I am behind a company=
- proxy so need the INSTALL_CLAMAV_CVD option switched off
-
-Thank you for your time with this.
-
-Kind Regards,
-
-Charlie
-
---1z1TCXR5tHxnkQi7BhDC
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>Hi Armin,</div>
-<div>&nbsp;</div>
-<div>So I found libmspack where you said it would be. I have done some mor=
-e digging and talked to the Clamav developers.</div>
-<div>&nbsp;</div>
-<div>This line in the recipe (--with-system-libmspack=3D${CLAMAV_USR_DIR})=
- means that libmspack installed on the system is used and the output produc=
-ed is libclamav.so* and libmspack.so*</div>
-<div>&nbsp;</div>
-<div>When I built clamav outside of Yocto I didnt specify the --with-syste=
-m-libmspack option and the output was libclamav.so* and libclammspack.so* i=
-.e. the internal library bundled with Clamav was used.</div>
-<div>&nbsp;</div>
-<div>Having spoken to the Clamav developers I want to use the internal as =
-it gives additional capabilities and security protections:</div>
-<div><br /><a href=3D"https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=3D=
-233763" target=3D"_blank" rel=3D"noopener">https://bugs.freebsd.org/bugzill=
-a/show_bug.cgi?id=3D233763</a></div>
-<div>&nbsp;</div>
-<div>"Upgrade from libmspack 0.5alpha to libmspack 0.7.1alpha. As a remind=
-er, we support system-installed versions of libmspack. However, at this tim=
-e the ClamAV-provided version of libmspack provides additional abilities to=
- parse broken or non-standard CAB files beyond what the stock libmspack 0.7=
-.1alpha provides. We are working with the upstream project to incorporate o=
-ur modifications, and hopefully these changes will appear in a future relea=
-se of libmspack."</div>
-<div>&nbsp;</div>
-<div>So I went about trying to get the Yocto recipe to compile against the=
- internal libclammspack bundled with Clamav and did not have any success:</=
-div>
-<div>&nbsp;</div>
-<div>tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sysroot-native/u=
-sr/bin/aarch64-poky-linux/../../libexec/aarch64-poky-linux/gcc/aarch64-poky=
--linux/9.3.0/ld: warning: libclammspack.so.0, needed by ../libclamav/.libs/=
-libclamav.so, not found (try using -rpath or -rpath-link)</div>
-<div>&nbsp;</div>
-<div>Firstly, would you be able to give me a pointer on how to solve this =
-issue - I think it requires a patch to the Clamav build process? I saw some=
- historic commits mentioning rpath but was unsuccessful with getting anythi=
-ng to build.</div>
-<div>&nbsp;</div>
-<div>Secondly, I would propose the following and am happy to implement the=
- patches if these ideas are agreeable to you:</div>
-<div>&nbsp;</div>
-<div>1) Use the PACKAGECONFIG mechanism to allow a switch between using th=
-e system and internal libmspack with the default being to use the internal =
-version</div>
-<div>2) Update the version of Clamav to the latest stable version - it was=
- noted by the Clamav developers that the current version in the recipe is o=
-utdated</div>
-<div>3) Fix the bug on line 92 of the recipe. I believe that this line sho=
-uld be surrounded by the same if statement as lines 75-79. I am behind a co=
-mpany proxy so need the INSTALL_CLAMAV_CVD option switched off</div>
-<div>&nbsp;</div>
-<div>Thank you for your time with this.</div>
-<div>&nbsp;</div>
-<div>Kind Regards,</div>
-<div>&nbsp;</div>
-<div>Charlie</div>
-
---1z1TCXR5tHxnkQi7BhDC--
