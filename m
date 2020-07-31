@@ -1,91 +1,110 @@
-Received: from resqmta-ch2-02v.sys.comcast.net (resqmta-ch2-02v.sys.comcast.net [69.252.207.34])
- by mx.groups.io with SMTP id smtpd.web12.20849.1596208779413702136
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+ by mx.groups.io with SMTP id smtpd.web12.21230.1596209720281538157
  for <yocto@lists.yoctoproject.org>;
- Fri, 31 Jul 2020 08:19:39 -0700
+ Fri, 31 Jul 2020 08:35:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@comcast.net header.s=20190202a header.b=ePhEwWui;
- spf=pass (domain: comcast.net, ip: 69.252.207.34, mailfrom: rprowel@comcast.net)
-Received: from resomta-ch2-12v.sys.comcast.net ([69.252.207.108])
-	by resqmta-ch2-02v.sys.comcast.net with ESMTP
-	id 1WgVkmBxf8jIb1Workcjq9; Fri, 31 Jul 2020 15:19:38 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
-	s=20190202a; t=1596208778;
-	bh=0ShsrID2ITYI2NAAxhX81FyBpsoKLlIBjnlTgmsxVtQ=;
-	h=Received:Received:To:From:Subject:Message-ID:Date:MIME-Version:
-	 Content-Type;
-	b=ePhEwWuinX/hXElBgFEJ8FcIDhDCoRvfK3KcF0eN+1qaLFf0Q2Z/TJVK0491d4ocO
-	 +Y7CgSgdK2KslXkqJFdl0L+jMjo6Kc2WAeMWRf/NGPtQ724RWP8UKu8VW9nyAE/cSj
-	 YnPDsmZDeXTrHcfbKCMh5nbIM1xzjWh+fYpGsuuXmXfa3CeevjXE65Pem8QuwdViIK
-	 VBzoQhBVNcn1oMGqI6A42X0GjeTIrmMnO5/niI7+ufYxs5JwPZgmFJewG7mbki3kA+
-	 FYuAmNkqsDuwAbQUL486DdAeAMETBMewNOiEPbK5oHGsFS7jS+pXJltmrEhcZ6v9Ei
-	 8w+tW7vBdGtFw==
-Received: from [10.1.11.102] ([73.174.24.42])
-	by resomta-ch2-12v.sys.comcast.net with ESMTPSA
-	id 1WolkoJ0bQJHF1Womk68Bd; Fri, 31 Jul 2020 15:19:32 +0000
-X-Xfinity-VAAS: gggruggvucftvghtrhhoucdtuddrgeduiedrieekgdekjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucevohhmtggrshhtqdftvghsihdpqfgfvfdppffquffrtefokffrnecuuegrihhlohhuthemuceftddtnecunecujfgurhepvffhuffkffgfgggtgfesthejredttdefheenucfhrhhomheptfhosgcurfhrohifvghluceorhhprhhofigvlhestghomhgtrghsthdrnhgvtheqnecuggftrfgrthhtvghrnhepveffkeffieekfeelieejgeejffffueekudefkeeuvdduieefieejveevjeeuudetnecuffhomhgrihhnpehpnhhgrdhnohenucfkphepjeefrddujeegrddvgedrgedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehhvghloheplgdutddruddruddurddutddvngdpihhnvghtpeejfedrudejgedrvdegrdegvddpmhgrihhlfhhrohhmpehrphhrohifvghlsegtohhmtggrshhtrdhnvghtpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhg
-X-Xfinity-VMeta: sc=0.00;st=legit
-To: yocto@lists.yoctoproject.org
-From: "Rob Prowel" <rprowel@comcast.net>
-Subject: cannot build PDF docs
-Message-ID: <de5d2fa6-d353-9113-72cf-f75d2544707c@comcast.net>
-Date: Fri, 31 Jul 2020 11:19:31 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ dkim=pass header.i=@linaro.org header.s=google header.b=ZUVc0LGa;
+ spf=pass (domain: linaro.org, ip: 209.85.166.48, mailfrom: ryan.harkin@linaro.org)
+Received: by mail-io1-f48.google.com with SMTP id g19so19976621ioh.8
+        for <yocto@lists.yoctoproject.org>; Fri, 31 Jul 2020 08:35:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=3WON6TB+AyDwednyLhLlxtJFoPB0mJCppKHDVWcF0wI=;
+        b=ZUVc0LGaeFtTfYq3NX+TEOUVORdinqwAKwVLF4K3ucQeIyMyrp3zFFQwPsVuJS+R0v
+         6K7OL+AEHzL3q+wRl6+ZbL/LaOwoV97hlNi8r0PPagiftx1U1uV6ve3PDBJqkNv7Natd
+         UJJ/PSTrXFQJoSctyF72V29jemurPeIWiH7y+hjMuRIuZ3Jrhf6XLn5bCBqGPYbOL6Kj
+         ixv8DnMqqmMrn5ou+M0ZtEMnexGJCjNVfgR2rK5EK33K9QBDP+3Rt1W5eicT13YGkp3C
+         GDqEu3xJb1YeoZ1l8aNTilFDfjA+7WHyVTjYjczSiAndvMhhHVNqXTPgwzVPLP78broR
+         THlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=3WON6TB+AyDwednyLhLlxtJFoPB0mJCppKHDVWcF0wI=;
+        b=tluYzTMQPgaXzw80zyscnNPgbH8iG2BVvqSGvGC+vZ9ARyhz46yn0lIuLUF4TsWpx2
+         BHvePFByicQxWUAlE0FzjWhb3gYxXqmg+vhbgM7y815ZqjPRk0S4xMWm+XWFrtUrA5jX
+         WLCoe5Ny/Nk7SLCXOY2rzCUr5WV31pYT3Z5pC8M+G30zAiUOG5I6bO+pHIHEhz7gdIJL
+         23+RoXTsBXGZQeTOSzxhuG+2QaREElPo//6TBQU7PVq/Ui5j/WZEDfAaeU9zzwZkDE8V
+         05PW1j8tuYXWV/puAhwLutX+tMixikB9jW7roHpipib3j4n15FsVO0j5G+i+0h/K8tNK
+         +kCQ==
+X-Gm-Message-State: AOAM531hl4uJgcqtrheasFUsMd/5ctNG8nxnBVwr0RFkc9U6jWAUIpDk
+	Obd1rx1APEcvAbXctAngNZbrW23FOrsEAUkVAxVMfJypZ6w=
+X-Google-Smtp-Source: ABdhPJwJKEKmPYmhnTYj1msVvoNUgC7Lbgp9BNxs6z1DDEmd6A9ERLWDvflNOWw5H0G1NI5Tz2EriK++5l3gNGWhCns=
+X-Received: by 2002:a5e:d90a:: with SMTP id n10mr4161068iop.50.1596209719436;
+ Fri, 31 Jul 2020 08:35:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+From: "Ryan Harkin" <ryan.harkin@linaro.org>
+Date: Fri, 31 Jul 2020 16:35:08 +0100
+Message-ID: <CAD0U-hK2euAfxe2EZ2QhWa+QQ0cVMNmSh6SUMbKy9GnB7BVHUQ@mail.gmail.com>
+Subject: dunfell gcc-sanitizers-arm-8.3 fails to build
+To: yocto@lists.yoctoproject.org
+Cc: Sumit Garg <sumit.garg@linaro.org>, Ralph Siemsen <ralph.siemsen@linaro.org>, Jon.Mason@arm.com, 
+	Nicolas Dechesne <nicolas.dechesne@linaro.org>, openembedded <openembedded@lists.linaro.org>
+Content-Type: multipart/alternative; boundary="00000000000050798205abbe8944"
 
-Is there some magic to building the PDF versions of the yocto docs? 
-I've tried on multiple machines running debian and differing versions of 
-ubuntu and consistently the PDF docs fail to build.
+--00000000000050798205abbe8944
+Content-Type: text/plain; charset="UTF-8"
 
-Font substitution errors are trivial, but not being able to locate the 
-images that get are inserted is a pretty serious build bug.
+Hello,
 
-What's the secret to building PDF docs, or where are they online?  and 
-no, not interested in referring to cloud based HTML docs.  I want 
-offline PDF documentation.
+I'm migrating from Warrior to Dunfell and I'm getting a curious build
+failure in gcc-sanitizers.
 
-Thanks!
+Here's the full gory detail:
+    https://pastebin.ubuntu.com/p/nh4cDKMvgS/
 
-$ make DOC=adt-manual pdf
-cd adt-manual; ../tools/poky-docbook-to-pdf adt-manual.xml ../template; 
-cd ..
-Note: namesp. cut : stripped namespace before processing
-             Yocto Project Application Developer's Guide
+However, the main error is this:
 
-Making portrait pages on A4 paper (210mmx297mm)
-Attributed 561 IDs for element, cleaned up 0
-[warning] /usr/bin/fop: JVM flavor 'sun' not understood
-Picked up _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=on 
--Dswing.aatext=true
-[INFO] FopConfParser - Default page-height set to: 11in
-[INFO] FopConfParser - Default page-width set to: 8.26in
-[ERROR] FOUserAgent - Image not found. URI: figures/adt-title.png. (See 
-position 2:38206)
-[WARN] FOUserAgent - Font "Symbol,normal,700" not found. Substituting 
-with "Symbol,normal,400".
-[WARN] FOUserAgent - Font "ZapfDingbats,normal,700" not found. 
-Substituting with "ZapfDingbats,normal,400".
-[ERROR] FOUserAgent - Image not found. URI: figures/adt-title.png. (No 
-context info available)
-[INFO] FOUserAgent - Rendered page #1.
-[INFO] FOUserAgent - Rendered page #2.
-[INFO] FOUserAgent - Rendered page #3.
-[INFO] FOUserAgent - Rendered page #4.
-[INFO] FOUserAgent - Rendered page #5.
-[ERROR] FOUserAgent - Image not found. URI: 
-figures/using-a-pre-built-image.png. (See position 736:275)
-[WARN] FOUserAgent - Font "veramono,italic,400" not found. Substituting 
-with "veramono,normal,400".
-[WARN] FOUserAgent - The contents of fo:block line 1 exceed the 
-available area in the inline-progression direction by more than 50 
-points. (See position 496:372)
-[WARN] FOUserAgent - The contents of fo:block line 1 exceed the 
-available area in the inline-progression direction by more than 50 
-points. (See position 496:372)
-[WARN] FOUserAgent - The contents of fo:block line 1 exceed the 
-available area in the inline-progression direction by more than 50 
-points. (See position 496:372)
-[WARN] FOUserAgent - The contents of fo:block line 1 exceed
+| In file included from
+../../../../../../../../../work-shared/gcc-arm-8.3-r2019.03/git/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.cc:193:
+|
+../../../../../../../../../work-shared/gcc-arm-8.3-r2019.03/git/libsanitizer/sanitizer_common/sanitizer_internal_defs.h:317:72:
+error: size of array 'assertion_failed__1152' is negative
+|      typedef char IMPL_PASTE(assertion_failed_##_, line)[2*(int)(pred)-1]
+
+I have no idea where to begin with this. I don't even know why
+gcc-sanitizers is included in the build, what it does, or why I need it.
+I'm building an image with dev packages and gcc, so I guess that's why.
+
+I've hacked meta-arm to patch sanitizer_platform_limits_posix.cc to null
+out the macros and that builds fine. I'm sure it won't work, should someone
+want to use it, mind you.
+
+Is there something obvious that I should be doing as part of a Warrior ->
+Dunfell migration to get this to work?
+
+note: Warrior used meta-linaro-toolchain and for Dunfell, it's moved to
+meta-arm-toolchain.
+
+Regards,
+Ryan.
+
+--00000000000050798205abbe8944
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I&#39;m migrating fro=
+m Warrior to Dunfell and I&#39;m getting a curious build failure in gcc-san=
+itizers.</div><div><br></div><div>Here&#39;s the full gory detail:</div>=C2=
+=A0 =C2=A0=C2=A0<a href=3D"https://pastebin.ubuntu.com/p/nh4cDKMvgS/">https=
+://pastebin.ubuntu.com/p/nh4cDKMvgS/</a><br><div><br></div><div>However, th=
+e main error is this:</div><div><br></div><div>| In file included from ../.=
+./../../../../../../../work-shared/gcc-arm-8.3-r2019.03/git/libsanitizer/sa=
+nitizer_common/sanitizer_platform_limits_posix.cc:193:<br>| ../../../../../=
+../../../../work-shared/gcc-arm-8.3-r2019.03/git/libsanitizer/sanitizer_com=
+mon/sanitizer_internal_defs.h:317:72: error: size of array &#39;assertion_f=
+ailed__1152&#39; is negative<br>| =C2=A0 =C2=A0 =C2=A0typedef char IMPL_PAS=
+TE(assertion_failed_##_, line)[2*(int)(pred)-1]<br></div><div><br></div><di=
+v>I have no idea where to begin with this. I don&#39;t even know why gcc-sa=
+nitizers is included in the build,=C2=A0what it=C2=A0does, or why I need=C2=
+=A0it. I&#39;m building an image with dev packages and gcc, so I guess that=
+&#39;s why.</div><div><br></div><div>I&#39;ve hacked meta-arm to patch=C2=
+=A0sanitizer_platform_limits_posix.cc to null out the macros and that build=
+s fine. I&#39;m sure it won&#39;t work, should someone want to use it, mind=
+ you.</div><div><br></div><div>Is there something obvious that I should be =
+doing as part of a Warrior -&gt; Dunfell migration to get this to work?</di=
+v><div><br></div><div>note: Warrior used meta-linaro-toolchain and for Dunf=
+ell, it&#39;s moved to meta-arm-toolchain.</div><div><br></div><div>Regards=
+,</div><div>Ryan.</div></div>
+
+--00000000000050798205abbe8944--
