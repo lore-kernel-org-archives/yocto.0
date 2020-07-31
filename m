@@ -1,107 +1,79 @@
-Received: from esa13.hc324-48.eu.iphmx.com (esa13.hc324-48.eu.iphmx.com [207.54.72.35])
- by mx.groups.io with SMTP id smtpd.web10.17803.1596200524578472219
+Received: from resqmta-ch2-11v.sys.comcast.net (resqmta-ch2-11v.sys.comcast.net [69.252.207.43])
+ by mx.groups.io with SMTP id smtpd.web10.17889.1596200746706213885
  for <yocto@lists.yoctoproject.org>;
- Fri, 31 Jul 2020 06:02:05 -0700
+ Fri, 31 Jul 2020 06:05:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1 header.b=J9qV6vVi;
- spf=pass (domain: bmw.de, ip: 207.54.72.35, mailfrom: prvs=474e6858f=mikko.rapeli@bmw.de)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1596200524; x=1627736524;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=tz8t0wJXYWizZWq85eIZzME1MZgURlSBXjBO+hlrEWg=;
-  b=J9qV6vViELC3Lh3ICXA4YUz4avuEY05YafbI9i5JY3d7wJwsVruHPSlS
-   XGSQ2V0k+POn72E67lAKwyWfAPxcNRUsz/DV8+LCjOEItnn5CsXVRy3nf
-   OpVT8LMgG1fCuIoX8wdre5+6S/Ij2h7br3T6nCOzM8RSPadK8Qc9EBhUt
-   Q=;
-Received: from esagw5.bmwgroup.com (HELO esagw5.muc) ([160.46.252.46]) by
- esa13.hc324-48.eu.iphmx.com with ESMTP/TLS; 31 Jul 2020 15:02:01 +0200
-Received: from esabb5.muc ([160.50.100.47])  by esagw5.muc with ESMTP/TLS;
- 31 Jul 2020 15:02:01 +0200
-Received: from smucm10k.bmwgroup.net (HELO smucm10k.europe.bmw.corp) ([160.48.96.47])
- by esabb5.muc with ESMTP/TLS; 31 Jul 2020 15:02:01 +0200
-Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10k.europe.bmw.corp
- (160.48.96.47) with Microsoft SMTP Server (TLS;
- Fri, 31 Jul 2020 15:02:01 +0200
-Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
- smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1497.006; Fri,
- 31 Jul 2020 15:02:01 +0200
-From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
-To: <rprowel@comcast.net>
-CC: <yocto@lists.yoctoproject.org>
+ dkim=pass header.i=@comcast.net header.s=20190202a header.b=50iBLBHQ;
+ spf=pass (domain: comcast.net, ip: 69.252.207.43, mailfrom: rprowel@comcast.net)
+Received: from resomta-ch2-10v.sys.comcast.net ([69.252.207.106])
+	by resqmta-ch2-11v.sys.comcast.net with ESMTP
+	id 1ULHkO43reol41UjJksHYZ; Fri, 31 Jul 2020 13:05:45 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+	s=20190202a; t=1596200745;
+	bh=r1zJU6nYuELQEuNedI843TicU43EvG1Z9ulXO0NEO6g=;
+	h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
+	 Content-Type;
+	b=50iBLBHQ9DvZ0wRUzzF0vEVKiOhdG86gF2fUQQKs+qtHrtrFHJq5utg+aVL/bdHvP
+	 nlNC+12u1Mr7iFW1goqKQsV+jtAf5z8klCGvGra1giJuo6T6btz88NWq7D7k98dF0o
+	 tiJcDXVxRtW6SjW+51732i++CWPAIMrTZ19web2MVFFfDdTKYWyEm9/qaxfFYcUn2M
+	 1xf2f6Z270uwLXPrvIDzqh5mbqeU1XWQE5HhVlwcGaduX6ckTqsFpAmdGlGY9LFyDJ
+	 4W3q4fSp9si6k7b0IIxfhYLeABSHE5DkUXdUCwGsiM0IoolKyhh53lzKLAOtmHodMi
+	 ucPkgbaDSDhKA==
+Received: from [10.1.11.102] ([73.174.24.42])
+	by resomta-ch2-10v.sys.comcast.net with ESMTPSA
+	id 1UjHkHELSpFlP1UjIkWLfz; Fri, 31 Jul 2020 13:05:45 +0000
+X-Xfinity-VAAS: gggruggvucftvghtrhhoucdtuddrgeduiedrieekgdeitdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucevohhmtggrshhtqdftvghsihdpqfgfvfdppffquffrtefokffrnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeehnecuhfhrohhmpeftohgsucfrrhhofigvlhcuoehrphhrohifvghlsegtohhmtggrshhtrdhnvghtqeenucggtffrrghtthgvrhhnpeegvdfhkeegteduueeitddukeethfffueekvefgtedtgefgteetvdegvddvteelueenucfkphepjeefrddujeegrddvgedrgedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehhvghloheplgdutddruddruddurddutddvngdpihhnvghtpeejfedrudejgedrvdegrdegvddpmhgrihhlfhhrohhmpehrphhrohifvghlsegtohhmtggrshhtrdhnvghtpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhgpdhrtghpthhtohepqhhuvghnthhinhdrshgthhhulhiisehsthhrvggrmhhunhhlihhmihhtvggurdgtohhm
+X-Xfinity-VMeta: sc=-100.00;st=legit
 Subject: Re: [yocto] one way hash analogy of yocto
-Thread-Topic: [yocto] one way hash analogy of yocto
-Thread-Index: AQHWZzh47Y9CRKnrF0y5N6H07ZJ0t6khhZSA
-Date: Fri, 31 Jul 2020 13:02:01 +0000
-Message-ID: <20200731130159.GE108868@korppu>
+To: Quentin Schulz <quentin.schulz@streamunlimited.com>
+Cc: yocto@lists.yoctoproject.org
 References: <e4947fc8-98a7-c74d-0e9b-a33a90bb4495@comcast.net>
-In-Reply-To: <e4947fc8-98a7-c74d-0e9b-a33a90bb4495@comcast.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
+ <20200731125316.pt63tzszs6b7eys3@qschulz>
+From: "Rob Prowel" <rprowel@comcast.net>
+Message-ID: <5e404635-6920-7f19-5404-f4b9dc9e2456@comcast.net>
+Date: Fri, 31 Jul 2020 09:05:43 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20200731125316.pt63tzszs6b7eys3@qschulz>
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <A33ECBA4E48A514883CE4BBEFB2078F4@bmwmail.corp>
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jul 31, 2020 at 08:45:17AM -0400, Rob Prowel wrote:
-> What I really need is information about introspection or the ability to
-> query an existing yocto distro to return data about features included an=
-d
-> more to the point, to understand EXACTLY where recipes or classes are
-> overridden or appended.  You can only do so much with recursive grep and
-> find scripts.  Based on what I've seen so far, it seems that capability =
-is
-> lacking in yocto.
->=20
-> In essence I have what is like a one way hash ABCDEFG-->X and I have X b=
-ut
-> cannot fully figure out the whole input that generated it.
->=20
-> An example would be an overridden task method like
->=20
-> do_something
->=20
-> I need a quick way to determine the highest priority level that task was
-> overridden or appended in for a given recipe.
->=20
-> a command like "bitbake -describe -c do_something my-recipe"
+On 2020-07-31 08:53, Quentin Schulz wrote:
 
-bitbake -e my-recipe ?
+> 
+> I do not know if there is such a mechanism for tasks, but the
+> bitbake-layers should help you get started in your quest of overridden
+> tasks.
+> 
+> Also, I'm not sure it matters much where the tasks are overridden? Just
+> override them again with your own bbappend (especially if it's a layer
+> you don't own (read upstream or provided by vendor)).
 
-Maybe grep for the variable of interest?
+Thanks for the prompt followup.  Yeah, the two comments above are 
+related in my nightmare so I'll address both of them together.
 
-> and it should also be possible to query this kind of information for
-> variables and not just methods or tasks.
->=20
-> Do these tools exist or am I looking at parsing megabytes of verbose bui=
-ld
-> data and tracing output to find what I'm looking for?
->=20
-> and no, I didn't create the distro...I'm an end user customer who was gi=
-ven
-> an undocumented distro with quazi-proprietary BSP layers in it that not =
-only
-> describe our specific product purchased, but the vendor's others product=
-s as
-> well, which complicates matters.
->=20
-> Thoughts?
+vendor has layers that I am NOT modifying, and unfortunately I'm not 
+100% sure that they didn't modify poky or meta-oe in what they shipped 
+to me.  Just haven't had time to download and compare those layers to 
+yocto official sources.
 
-When adding layers, only way to be sure is to actually review the layers
-and their bbappends. I tend to BBMASK everything out which I haven't check=
-ed
-at least on BSP layer side. Open source layers from yocto community are be=
-tter.
+I really do need to be able to inspect what they've done in their BSP 
+layer to be able to effectively override or modify it though.  Things 
+very easily break when I attempt to make changes.
 
-Cheers,
+Their as-delivered image builder creates an executable and the only way 
+to update their board is to boot into linux on the board and run that 
+executable (on the board) to update the secondary flash, then boot into 
+the secondary flash and update the primary...which takes forever on QSPI 
+NOR.  Yeah, they disabled the jtag interface so you HAVE to be in a 
+boot-able linux image on the board to update it.
 
--Mikko
+My development model is to reconfigure to use nfsroot while developing 
+and configuring and only update the flash for relatively solid release 
+to be tested.
 
->=20
+but thanks...will investigate the commands you mentioned.  I really do 
+need a quick way of seeing the authoritative version of a task though.
 
->=20
