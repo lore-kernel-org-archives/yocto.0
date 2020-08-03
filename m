@@ -1,168 +1,123 @@
-Received: from MTA-06-3.privateemail.com (MTA-06-3.privateemail.com [198.54.127.59])
- by mx.groups.io with SMTP id smtpd.web12.317.1596410480071608359
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.5570.1596435683725171768
  for <yocto@lists.yoctoproject.org>;
- Sun, 02 Aug 2020 16:21:20 -0700
+ Sun, 02 Aug 2020 23:21:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: whitetree.xyz, ip: 198.54.127.59, mailfrom: yoc.dev@whitetree.xyz)
-Received: from MTA-06.privateemail.com (localhost [127.0.0.1])
-	by MTA-06.privateemail.com (Postfix) with ESMTP id C5C5B60049
-	for <yocto@lists.yoctoproject.org>; Sun,  2 Aug 2020 19:21:17 -0400 (EDT)
-Received: from [10.67.0.78] (unknown [10.20.151.243])
-	by MTA-06.privateemail.com (Postfix) with ESMTPA id 55BBB6003D
-	for <yocto@lists.yoctoproject.org>; Sun,  2 Aug 2020 23:21:17 +0000 (UTC)
-To: yocto@lists.yoctoproject.org
-From: "yoc" <yoc.dev@whitetree.xyz>
-Subject: libtool: library search path "/usr/lib" is unsafe for cross-compilation
-Message-ID: <2e47fc5f-dbee-1f6a-f029-23b74e62b186@whitetree.xyz>
-Date: Mon, 3 Aug 2020 00:21:05 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: kai.kang@windriver.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 40807E01F72; Sun,  2 Aug 2020 23:21:23 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 112CCE01F70
+	for <yocto@yoctoproject.org>; Sun,  2 Aug 2020 23:21:19 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com [147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 0736LIPH014608
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Sun, 2 Aug 2020 23:21:18 -0700 (PDT)
+Received: from pek-lpg-core3.wrs.com (128.224.153.232) by
+ ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+ 14.3.487.0; Sun, 2 Aug 2020 23:21:05 -0700
+From: "kai" <kai.kang@windriver.com>
+To: <yocto@yoctoproject.org>
+Subject: [meta-security][PATCH] libseccomp: fix cross compile error for mips
+Date: Mon, 3 Aug 2020 14:21:02 +0800
+Message-ID: <20200803062102.6034-1-kai.kang@windriver.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-Virus-Scanned: ClamAV using ClamSMTP
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-Hi,
+From: Kai Kang <kai.kang@windriver.com>
 
-I am coming across the following issue when cross compiling: The install=20
-log indicates that host include and/or library paths were used
+Backport patch to fix cross compile error for mips:
 
-A closer look at the log shows the following:
+| syscalls.h:44:6: error: expected identifier or '(' before numeric constant
+|    44 |  int mips;
+|       |      ^~~~
 
-Making install in libfreshclam
-make[1]: Entering directory=20
-'/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/build/libfr=
-eshclam'
-make[2]: Entering directory=20
-'/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/build/libfr=
-eshclam'
- =C2=A0/workdir/build/tmp/hosttools/mkdir -p=20
-'/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/image/usr/l=
-ib'
- =C2=A0/workdir/build/tmp/hosttools/mkdir -p=20
-'/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/image/usr/i=
-nclude'
- =C2=A0/bin/bash ../libtool --tag CXX=C2=A0 --mode=3Dinstall=20
-/workdir/build/tmp/hosttools/install -c=C2=A0=C2=A0 libfreshclam.la=20
-'/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/image/usr/l=
-ib'
- =C2=A0/workdir/build/tmp/hosttools/install -c -m 644=20
-/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/git/libfresh=
-clam/libfreshclam.h=20
-'/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/image/usr/i=
-nclude'
-libtool: warning: relinking 'libfreshclam.la'
-libtool: install: (cd=20
-/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/build/libfre=
-shclam;=20
-/bin/bash=20
-"/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/build/libto=
-ol"=20
---tag CXX --mode=3Drelink aarch64-poky-linux-gcc=20
--L/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sys=
-root/usr/lib=20
--L/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sys=
-root/usr/lib=20
--thread-safe -version-info 2:0:0 -no-undefined=20
--Wl,--version-script,/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.=
-101.5-r0/git/libfreshclam/libfreshclam.map=20
--Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -fstack-protector-strong=20
--Wl,-z,relro,-z,now=20
--L/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sys=
-root/usr/lib=20
--o libfreshclam.la -rpath /usr/lib output.lo optparser.lo getopt.lo=20
-misc.lo cdiff.lo tar.lo cert_util.lo libfreshclam.lo=20
-libfreshclam_internal.lo dns.lo cert_util_linux.lo=20
-../libclamav/libclamav.la -lresolv=20
--L/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sys=
-root/usr/lib=20
--lcurl=20
--L/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sys=
-root/usr/lib=20
--lz -lcurl -lssl -lcrypto -lz -lltdl -lpthread -lm -inst-prefix-dir=20
-/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/image)
-libtool: relink: aarch64-poky-linux-g++=C2=A0 -march=3Darmv8-a+crc=20
--fstack-protector-strong=C2=A0 -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-se=
-curity=20
--Werror=3Dformat-security=20
---sysroot=3D/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/=
-recipe-sysroot=20
--fPIC -DPIC -shared -nostdlib=20
-/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sysro=
-ot/usr/lib/crti.o=20
-/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sysro=
-ot/usr/lib/aarch64-poky-linux/9.3.0/crtbeginS.o=20
-.libs/output.o .libs/optparser.o .libs/getopt.o .libs/misc.o=20
-.libs/cdiff.o .libs/tar.o .libs/cert_util.o .libs/libfreshclam.o=20
-.libs/libfreshclam_internal.o .libs/dns.o .libs/cert_util_linux.o=20
--L/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sys=
-root/usr/lib=20
--L/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/image/usr/=
-lib=20
--L/usr/lib -lclamav -lresolv -lcurl -lssl -lcrypto -lz -lltdl -lpthread=20
--L/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sys=
-root-native/usr/bin/aarch64-poky-linux/../../lib/aarch64-poky-linux/gcc/a=
-arch64-poky-linux/9.3.0=20
--L/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sys=
-root-native/usr/bin/aarch64-poky-linux/../../lib/aarch64-poky-linux/gcc=20
--L/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sys=
-root/lib=20
--L/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sys=
-root/usr/lib/aarch64-poky-linux/9.3.0=20
--lstdc++ -lm -lc -lgcc_s=20
-/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sysro=
-ot/usr/lib/aarch64-poky-linux/9.3.0/crtendS.o=20
-/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sysro=
-ot/usr/lib/crtn.o=20
--Wl,--version-script=20
--Wl,/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/git/libf=
-reshclam/libfreshclam.map=20
--Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -fstack-protector-strong=20
--Wl,-z -Wl,relro -Wl,-z -Wl,now -Wl,-soname -Wl,libfreshclam.so.2 -o=20
-.libs/libfreshclam.so.2.0.0
-/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/recipe-sysro=
-ot-native/usr/bin/aarch64-poky-linux/../../libexec/aarch64-poky-linux/gcc=
-/aarch64-poky-linux/9.3.0/ld:=20
-warning: library search path "/usr/lib" is unsafe for cross-compilation
-libtool: install: /workdir/build/tmp/hosttools/install -c=20
-.libs/libfreshclam.so.2.0.0T=20
-/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/image/usr/li=
-b/libfreshclam.so.2.0.0
-libtool: install: (cd=20
-/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/image/usr/li=
-b=20
-&& { ln -s -f libfreshclam.so.2.0.0 libfreshclam.so.2 || { rm -f=20
-libfreshclam.so.2 && ln -s libfreshclam.so.2.0.0 libfreshclam.so.2; }; })
-libtool: install: (cd=20
-/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/image/usr/li=
-b=20
-&& { ln -s -f libfreshclam.so.2.0.0 libfreshclam.so || { rm -f=20
-libfreshclam.so && ln -s libfreshclam.so.2.0.0 libfreshclam.so; }; })
-libtool: install: /workdir/build/tmp/hosttools/install -c=20
-.libs/libfreshclam.lai=20
-/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/image/usr/li=
-b/libfreshclam.la
-libtool: warning: remember to run 'libtool --finish /usr/lib'
-make[2]: Leaving directory=20
-'/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/build/libfr=
-eshclam'
-make[1]: Leaving directory=20
-'/workdir/build/tmp/work/aarch64-poky-linux/clamav/0.101.5-r0/build/libfr=
-eshclam'
+Signed-off-by: Kai Kang <kai.kang@windriver.com>
+---
+ .../files/fix-mips-build-failure.patch        | 49 +++++++++++++++++++
+ .../libseccomp/libseccomp_2.5.0.bb            |  1 +
+ 2 files changed, 50 insertions(+)
+ create mode 100644 recipes-security/libseccomp/files/fix-mips-build-failure.patch
 
-For some reason "/usr/lib" is being injected into the libtool install=20
-and I can't find out why this is happening.
-
-For reference I am cross compiling the=20
-https://github.com/Cisco-Talos/clamav-devel on rel/0.102 branch
-
-I found reference to the following=20
-https://lists.gnu.org/archive/html/libtool/2010-02/msg00001.html however=20
-I was wondering whether this is an appropriate solution or is there a=20
-better way to solve this issue?
-
-Many Thanks,
-
-Charlie
+diff --git a/recipes-security/libseccomp/files/fix-mips-build-failure.patch b/recipes-security/libseccomp/files/fix-mips-build-failure.patch
+new file mode 100644
+index 0000000..7d17a03
+--- /dev/null
++++ b/recipes-security/libseccomp/files/fix-mips-build-failure.patch
+@@ -0,0 +1,49 @@
++Backport patch to fix cross compile error for mips:
++
++| syscalls.h:44:6: error: expected identifier or '(' before numeric constant
++|    44 |  int mips;
++|       |      ^~~~
++
++Upstream-Status: Submitted [https://github.com/seccomp/libseccomp/pull/279/commits/04c519e5]
++
++Signed-off-by: Kai Kang <kai.kang@windriver.com>
++
++From 04c519e5b1de53592e98307813e5c6db7418f91b Mon Sep 17 00:00:00 2001
++From: Paul Moore <paul@paul-moore.com>
++Date: Sun, 2 Aug 2020 09:57:39 -0400
++Subject: [PATCH] build: undefine "mips" to prevent build problems for MIPS
++ targets
++
++It turns out that the MIPS GCC compiler defines a "mips" cpp macro
++which was resulting in build failures on MIPS so we need to
++undefine the "mips" macro during build.  As this should be safe
++to do in all architectures, just add it to the compiler flags by
++default.
++
++This was reported in the following GH issue:
++* https://github.com/seccomp/libseccomp/issues/274
++
++Reported-by: Rongwei Zhang <pudh4418@gmail.com>
++Suggested-by: Rongwei Zhang <pudh4418@gmail.com>
++Signed-off-by: Paul Moore <paul@paul-moore.com>
++---
++ configure.ac | 4 +++-
++ 1 file changed, 3 insertions(+), 1 deletion(-)
++
++diff --git a/configure.ac b/configure.ac
++index 40d9dcbb..3e877348 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -65,9 +65,11 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
++ 
++ dnl ####
++ dnl build flags
+++dnl NOTE: the '-Umips' is here because MIPS GCC compilers "helpfully" define it
+++dnl       for us which wreaks havoc on the build
++ dnl ####
++ AM_CPPFLAGS="-I\${top_srcdir}/include -I\${top_builddir}/include"
++-AM_CFLAGS="-Wall"
+++AM_CFLAGS="-Wall -Umips"
++ AM_LDFLAGS="-Wl,-z -Wl,relro"
++ AC_SUBST([AM_CPPFLAGS])
++ AC_SUBST([AM_CFLAGS])
+diff --git a/recipes-security/libseccomp/libseccomp_2.5.0.bb b/recipes-security/libseccomp/libseccomp_2.5.0.bb
+index 7a6b483..35365d5 100644
+--- a/recipes-security/libseccomp/libseccomp_2.5.0.bb
++++ b/recipes-security/libseccomp/libseccomp_2.5.0.bb
+@@ -10,6 +10,7 @@ SRCREV = "f13f58efc690493fe7aa69f54cb52a118f3769c1"
+ 
+ SRC_URI = "git://github.com/seccomp/libseccomp.git;branch=release-2.5 \
+            file://run-ptest \
++           file://fix-mips-build-failure.patch \
+ "
+ 
+ COMPATIBLE_HOST_riscv32 = "null"
+-- 
+2.17.1
 
