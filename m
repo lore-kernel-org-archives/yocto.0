@@ -1,123 +1,80 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.5570.1596435683725171768
+ by mx.groups.io with SMTP id smtpd.web12.7254.1596444979337485339
  for <yocto@lists.yoctoproject.org>;
- Sun, 02 Aug 2020 23:21:24 -0700
+ Mon, 03 Aug 2020 01:56:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: kai.kang@windriver.com)
+ dkim=pass header.i=@konsulko.com header.s=google header.b=bZdQpAgO;
+ spf=softfail (domain: konsulko.com, ip: 140.211.169.56, mailfrom: paul.barker@konsulko.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 40807E01F72; Sun,  2 Aug 2020 23:21:23 -0700 (PDT)
+	id CF6F0E01F72; Mon,  3 Aug 2020 01:56:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 112CCE01F70
-	for <yocto@yoctoproject.org>; Sun,  2 Aug 2020 23:21:19 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com [147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 0736LIPH014608
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 2 Aug 2020 23:21:18 -0700 (PDT)
-Received: from pek-lpg-core3.wrs.com (128.224.153.232) by
- ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
- 14.3.487.0; Sun, 2 Aug 2020 23:21:05 -0700
-From: "kai" <kai.kang@windriver.com>
-To: <yocto@yoctoproject.org>
-Subject: [meta-security][PATCH] libseccomp: fix cross compile error for mips
-Date: Mon, 3 Aug 2020 14:21:02 +0800
-Message-ID: <20200803062102.6034-1-kai.kang@windriver.com>
-X-Mailer: git-send-email 2.17.1
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.167.181 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE426E01F70
+	for <yocto@yoctoproject.org>; Mon,  3 Aug 2020 01:56:17 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id j7so16246094oij.9
+        for <yocto@yoctoproject.org>; Mon, 03 Aug 2020 01:56:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=yYBX9f7TUbltHxFn6vTUaII5b8kidx6cAu2LlIvZEs0=;
+        b=bZdQpAgOEyvWSdaYifwS40L5nJN8zKsT5fIAPnpCAH1PJ6XCoOckF9nvRl3BGc2JG0
+         6nrOlPC9TFMfC96J230+aJI0p5z3lKK8Mu/9ZfKghiCSIf1h+JaC0uOm9QtFL+h2i+pl
+         z9hxh+bqLQerX1GmMDJl40y7Jxi3I7WSia7IY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=yYBX9f7TUbltHxFn6vTUaII5b8kidx6cAu2LlIvZEs0=;
+        b=Io1jUsfAHqY5KpXuTFLXfYO5h/n9255GySTH/X6roCHlI1Rekdj1Hj+oH9+xzSfZJK
+         L7Muij3HUKD4shYQG07kg1W+1LKImaPvrvvREwMHn95G+zTzqbA/dsIthZ9NYxnSX7NA
+         B6db5LVu4BgQj79IccKBHtk5V4yfXyj4yGCpWiqrDQWyzJ1ohzHNtEe8Hucjl9ATeHzB
+         ENo0PrYzoLCBSKNr/xXB6+pi/+aD6hIkxsu+zsyHXKXGKQ4UMrMEKF3NfzEJlEj4vOsY
+         oXVa1OZpfuAsgQd+S6RQiO8awz9DOrnQpeRWY4Wk4UFFDZhJja6WhtKlUnf1b5PYNoIZ
+         EBvA==
+X-Gm-Message-State: AOAM532BlszZ9jCezwD7i/sjvOry19A05xfQ5AipzTMM8MJvgmw0yHQF
+	r7ukH2zze9Kl4B0ZklX9ecXPHROc77aH5dQf8NTwFyZTjD0=
+X-Google-Smtp-Source: ABdhPJyWzdTtLJF5KIpUQ/6o7rEX8GWWgqjiL/k38yY/GkGowL2YuXqhm3zhW63wV3X6gjgHJ8WHGy+kvlPgTKxOGSU=
+X-Received: by 2002:aca:670b:: with SMTP id z11mr11256850oix.6.1596444976279;
+ Mon, 03 Aug 2020 01:56:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+From: "Paul Barker" <pbarker@konsulko.com>
+Date: Mon, 3 Aug 2020 09:56:06 +0100
+Message-ID: <CAM9ZRVvRYmxjUcm7BmCX6ArPAn7JaEhGukbU4zGhvedmc8NcFA@mail.gmail.com>
+Subject: Mirroring meta-kernel on git.yoctoproject.org
+To: Yocto discussion list <yocto@yoctoproject.org>
+Cc: Ross Burton <ross@burtonini.com>, Richard Purdie <richard.purdie@linuxfoundation.org>, 
+	Michael Halstead <mhalstead@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
 
-From: Kai Kang <kai.kang@windriver.com>
+Hey folks,
 
-Backport patch to fix cross compile error for mips:
+I'd like to get the meta-kernel layer mirrored on git.yoctoproject.org
+so that we've got a backup available in case of any issues with
+GitLab. This has been requested by one of our users
+(https://gitlab.com/openembedded/community/meta-kernel/-/issues/11). I
+also think it's important now that meta-arm-bsp and a few other layers
+depend on meta-kernel.
 
-| syscalls.h:44:6: error: expected identifier or '(' before numeric constant
-|    44 |  int mips;
-|       |      ^~~~
+I can enable an automatic push from GitLab whenever the repository is
+updated so all we would need on git.yoctoproject.org is a meta-kernel
+repository and push access from the relevant SSH keys.
 
-Signed-off-by: Kai Kang <kai.kang@windriver.com>
----
- .../files/fix-mips-build-failure.patch        | 49 +++++++++++++++++++
- .../libseccomp/libseccomp_2.5.0.bb            |  1 +
- 2 files changed, 50 insertions(+)
- create mode 100644 recipes-security/libseccomp/files/fix-mips-build-failure.patch
+Thanks,
 
-diff --git a/recipes-security/libseccomp/files/fix-mips-build-failure.patch b/recipes-security/libseccomp/files/fix-mips-build-failure.patch
-new file mode 100644
-index 0000000..7d17a03
---- /dev/null
-+++ b/recipes-security/libseccomp/files/fix-mips-build-failure.patch
-@@ -0,0 +1,49 @@
-+Backport patch to fix cross compile error for mips:
-+
-+| syscalls.h:44:6: error: expected identifier or '(' before numeric constant
-+|    44 |  int mips;
-+|       |      ^~~~
-+
-+Upstream-Status: Submitted [https://github.com/seccomp/libseccomp/pull/279/commits/04c519e5]
-+
-+Signed-off-by: Kai Kang <kai.kang@windriver.com>
-+
-+From 04c519e5b1de53592e98307813e5c6db7418f91b Mon Sep 17 00:00:00 2001
-+From: Paul Moore <paul@paul-moore.com>
-+Date: Sun, 2 Aug 2020 09:57:39 -0400
-+Subject: [PATCH] build: undefine "mips" to prevent build problems for MIPS
-+ targets
-+
-+It turns out that the MIPS GCC compiler defines a "mips" cpp macro
-+which was resulting in build failures on MIPS so we need to
-+undefine the "mips" macro during build.  As this should be safe
-+to do in all architectures, just add it to the compiler flags by
-+default.
-+
-+This was reported in the following GH issue:
-+* https://github.com/seccomp/libseccomp/issues/274
-+
-+Reported-by: Rongwei Zhang <pudh4418@gmail.com>
-+Suggested-by: Rongwei Zhang <pudh4418@gmail.com>
-+Signed-off-by: Paul Moore <paul@paul-moore.com>
-+---
-+ configure.ac | 4 +++-
-+ 1 file changed, 3 insertions(+), 1 deletion(-)
-+
-+diff --git a/configure.ac b/configure.ac
-+index 40d9dcbb..3e877348 100644
-+--- a/configure.ac
-++++ b/configure.ac
-+@@ -65,9 +65,11 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
-+ 
-+ dnl ####
-+ dnl build flags
-++dnl NOTE: the '-Umips' is here because MIPS GCC compilers "helpfully" define it
-++dnl       for us which wreaks havoc on the build
-+ dnl ####
-+ AM_CPPFLAGS="-I\${top_srcdir}/include -I\${top_builddir}/include"
-+-AM_CFLAGS="-Wall"
-++AM_CFLAGS="-Wall -Umips"
-+ AM_LDFLAGS="-Wl,-z -Wl,relro"
-+ AC_SUBST([AM_CPPFLAGS])
-+ AC_SUBST([AM_CFLAGS])
-diff --git a/recipes-security/libseccomp/libseccomp_2.5.0.bb b/recipes-security/libseccomp/libseccomp_2.5.0.bb
-index 7a6b483..35365d5 100644
---- a/recipes-security/libseccomp/libseccomp_2.5.0.bb
-+++ b/recipes-security/libseccomp/libseccomp_2.5.0.bb
-@@ -10,6 +10,7 @@ SRCREV = "f13f58efc690493fe7aa69f54cb52a118f3769c1"
- 
- SRC_URI = "git://github.com/seccomp/libseccomp.git;branch=release-2.5 \
-            file://run-ptest \
-+           file://fix-mips-build-failure.patch \
- "
- 
- COMPATIBLE_HOST_riscv32 = "null"
 -- 
-2.17.1
-
+Paul Barker
+Konsulko Group
