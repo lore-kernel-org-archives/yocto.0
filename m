@@ -1,270 +1,237 @@
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
- by mx.groups.io with SMTP id smtpd.web10.8554.1596556974324063680
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.8752.1596557675015813322
  for <yocto@lists.yoctoproject.org>;
- Tue, 04 Aug 2020 09:02:54 -0700
+ Tue, 04 Aug 2020 09:14:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=FuUXZTEm;
- spf=pass (domain: gmail.com, ip: 209.85.166.171, mailfrom: eripflo@gmail.com)
-Received: by mail-il1-f171.google.com with SMTP id z3so24436348ilh.3
-        for <yocto@lists.yoctoproject.org>; Tue, 04 Aug 2020 09:02:54 -0700 (PDT)
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=E5VgFoaK;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: twoerner@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id AA718E01F8C; Tue,  4 Aug 2020 09:14:34 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (twoerner[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.166.47 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FD87E01F8A
+	for <yocto@yoctoproject.org>; Tue,  4 Aug 2020 09:14:33 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id j8so30431293ioe.9
+        for <yocto@yoctoproject.org>; Tue, 04 Aug 2020 09:14:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=k9sBS48zyS5Y3GFkffzRovU1msA92aqIJKNc4hybaMg=;
-        b=FuUXZTEmf23TstkMRQuq4FHaydf3iHpBVT+o7SWbJSU+uqZckO9P3DE9pdK4EY+RjR
-         P92H2a0rM777t8254LdT8ypAgfAJbwtLX48EovgrG1LIfmNdTzOCGBVCrgXiGsfPNbIZ
-         SPWazX5GUu4aPa7U47Cik/ZcIVcA2309buJ7XbQuRyreMUaIJ7mdOefnxoBK/DBksYvi
-         ANxXS0tvu8dH2tGa5/oYmR5aKzeMpNSS4y2JWIBZe+pRRTeQ5bsBhwgirbP8G7e4n4pY
-         NWl1FQKy0HrjEieRYMPyoDJC1Yv63Uw6U2MJHrjILNmg+itX4klnVn5IIBswi4Aw/Thp
-         7snw==
+        h=date:from:to:subject:message-id:mime-version:content-disposition
+         :content-transfer-encoding:user-agent;
+        bh=nu4gk7KOwwSSsU3LdEp78yksq3MvpxkYYsLbswDCWS0=;
+        b=E5VgFoaKcsFialfn0eW51soi8NzL1OMW21u/dFYwq88PNNV5NRG81rjXQ4vZZ5Ht+T
+         NQHmaPniviXEofg/hFZKlnug64TxHVy0zdka9QmcqmRyINeHbHks8gemoJpKMwDTAzJY
+         flDWIP7Xo28KqGf93iYFzxqnxTgsye+dSPQl1YLOlscqOe+8dxUI/l4/OX2jm8shLK1K
+         /BnYHI6k1ot9EfnstH9AfbJVe0qirQ2wY26UL6q65EVvNk12wzzrRMfEsIDGIsKezynH
+         jvGisuAGQQTjF6t4gbzgM3Q4o04jfdxXArfaqH/RWN6pj3roHJBvXy9Yxt+eS7RoIv26
+         OKOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=k9sBS48zyS5Y3GFkffzRovU1msA92aqIJKNc4hybaMg=;
-        b=YsKY/HyQM6P/0GTtkAiOa3XKq2k93gqBgRtr/OTEpI7+z98FtnKnZljtgxmrDBP4Wp
-         R+2fhocsbDHOGzWXfqLmJ0rYbwmVOc0rHQOVcuRaAT7AmOLBuyQfnrPhH16VuuM3G+W8
-         l0FJQor4ef9HJEO7Nj4DYOZ8YhQnHu7XAsTw/Q4SOJpaSdlau6VOWQ+cyvbOsuceYLwY
-         jlNxRo3b4wdVjvhXSk+fzmNRpk6ci/BI8DrYzMHmrNLHJU5M0mOUD9pTAUFtoYvEfjvD
-         xyveCdT8+m9jHbnOMV37Lr8u5dqk6wK3TPdgipFPaT+EoakI4c7DvojhMY7GknSJZnk2
-         ajtA==
-X-Gm-Message-State: AOAM530cAJXfvQa8Vb3nqSJudWQAxxjlL6Tb/63c28OWOQ4qWpceFKL6
-	vcAjyChXeScXHepHSTm76rUcdY8y+1fpXF252Ro=
-X-Google-Smtp-Source: ABdhPJzBKMHz9cBJCxrSPOg+YNVhBqqbYxMAYlRjpd8c47ZuB0UoVRg2jdV1GWRKT951DeTmnjUZ0GJG7By3bp2oO8w=
-X-Received: by 2002:a92:bac5:: with SMTP id t66mr5342225ill.125.1596556973688;
- Tue, 04 Aug 2020 09:02:53 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition:content-transfer-encoding:user-agent;
+        bh=nu4gk7KOwwSSsU3LdEp78yksq3MvpxkYYsLbswDCWS0=;
+        b=t8JYJNPFX/3sr3Tjj64mgLaAbzryPJIQP/kPu2t4mr3RdsmhPZ/GFRVl2/hFctzg/7
+         ohGlfvs5JW8PpebZS+/a231xQyIWTmKOa9sMp9CDtWfJANNozPsGgMxZBACIWo4T0xgC
+         TKE6SPzWd4xJFge2QG+r2suS0iacf5K0+nUFW7zyLQ2+S5VLWHq1HN9wgDITDN/guL3i
+         VZ/rHlKzJ4iJZ2XpnBSYrf0jVjoIhDUozdobIx1wMDWpAEEzaAobe751YOcrB7A+dGTG
+         VXSjLYcyq0YcvjkCpkwdXbnSHmVSEjO7rvMu00d7rIyU+NgIyiXejjfImrFli2y80IMy
+         WGWg==
+X-Gm-Message-State: AOAM5300aeF3SCeVhbQO8E+fwdEvep21pICDkidHi8m2tChY77+u2SiG
+	ZuPKX3/SfjvQrF6FavqzIRkV5EB2kLA=
+X-Google-Smtp-Source: ABdhPJwlJSZ5FNOM7UXBATEVbk5tvO5IRUIRqDB0pMYev7wXsDUAuttX1yUI6F4cnPNSo1d4mjWuRQ==
+X-Received: by 2002:a6b:c98b:: with SMTP id z133mr5950472iof.3.1596557672246;
+        Tue, 04 Aug 2020 09:14:32 -0700 (PDT)
+Received: from linux-uys3 ([206.248.190.95])
+        by smtp.gmail.com with ESMTPSA id c13sm13119595ilg.27.2020.08.04.09.14.31
+        for <yocto@yoctoproject.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 04 Aug 2020 09:14:31 -0700 (PDT)
+Date: Tue, 4 Aug 2020 12:14:29 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Yocto Technical Team Minutes, Engineering Sync, for August 4 2020
+Message-ID: <20200804161429.GA24936@linux-uys3>
 MIME-Version: 1.0
-References: <CAGhBkzxwg4q_E1h+x1uJK6PGY6x_j91HQq2ahWnyZZbO_SC=Zw@mail.gmail.com>
- <CAGhBkzyYq4HOqz7u-qenXMeSkKyoJtejXtHz0mscJp_Pd4GGjw@mail.gmail.com>
- <CADfgfoaUNu8KsN-JfspzSQpYKm+s-0nVvX-5O1MoRc+uUDcQCQ@mail.gmail.com>
- <CAGhBkzwBDJZ7Dxt6CtfUfZziDstLFaA6eSnho7ngB2+5Qxkz-Q@mail.gmail.com>
- <CAGhBkzxzXZEv4g0+D3KabG4ZbTwNJ6MEr_P9=CyneQZ32SaR9Q@mail.gmail.com>
- <CAGhBkzxZnZ+TK+k0b_kOFFGvtyJ0RAwz8iFGMsbtVY5RAz5pyw@mail.gmail.com> <CAEt6NwqMKnWxKqQEWhVcgAYnaxwD2KeC-G4KA1biMmdL2KBang@mail.gmail.com>
-In-Reply-To: <CAEt6NwqMKnWxKqQEWhVcgAYnaxwD2KeC-G4KA1biMmdL2KBang@mail.gmail.com>
-From: "FLoraVLogs" <eripflo@gmail.com>
-Date: Tue, 4 Aug 2020 12:02:42 -0400
-Message-ID: <CAGhBkzxBtGuzkuT69UQZUL+4Q_YL8adoWd=kZZF5FQZLD2gO+w@mail.gmail.com>
-Subject: Re: [yocto] Yocto host not found
-To: Josef Holzmayr-Khosh Amoz <jester@theyoctojester.info>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000047ccb605ac0f63ad"
-
---00000000000047ccb605ac0f63ad
-Content-Type: text/plain; charset="UTF-8"
-
-Is there any ETA on this?
-
-Regards,
-
-Ripu
-
-On Tue, Aug 4, 2020 at 11:30 AM Josef Holzmayr-Khosh Amoz <
-jester@theyoctojester.info> wrote:
-
-> https://twitter.com/TheYoctoJester/status/1290569609100308480
->
-> Am Di., 4. Aug. 2020 um 15:17 Uhr schrieb FLoraVLogs <eripflo@gmail.com>:
-> >
-> > I am seeing the following error:
-> >
-> > Gateway Timeout
-> >
-> > Server error - server 198.145.29.63 is unreachable at this moment.
-> >
-> > Please retry the request or contact your administrator.
-> >
-> >
-> > Kindly help.
-> >
-> >
-> > Regards,
-> >
-> >
-> > Ripu
-> >
-> >
-> > On Tue, Aug 4, 2020 at 9:14 AM FLoraVLogs <eripflo@gmail.com> wrote:
-> >>
-> >> Hi,
-> >>
-> >> It seems like Yocto is down again.
-> >>
-> >> http://downloads.yoctoproject.org/
-> >>
-> >> Could you please help solve this?
-> >>
-> >> Regards,
-> >>
-> >> Ripu
-> >>
-> >> On Thu, Jan 9, 2020 at 4:50 PM FLoraVLogs <eripflo@gmail.com> wrote:
-> >>>
-> >>> It is working now.
-> >>>
-> >>> Thank you
-> >>>
-> >>> Regards,
-> >>>
-> >>> Ripu
-> >>>
-> >>> On Thu., Jan. 9, 2020, 4:44 p.m. Michael Halstead, <
-> mhalstead@linuxfoundation.org> wrote:
-> >>>>
-> >>>> There was a brief outage while rebooting a storage device. The error
-> should have been resolved several minutes ago. If you are still seeing this
-> error please let me know.
-> >>>>
-> >>>> Michael Halstead
-> >>>>
-> >>>> On Thu, Jan 9, 2020 at 1:38 PM FLoraVLogs <eripflo@gmail.com> wrote:
-> >>>>>
-> >>>>> Also, I do see:
-> >>>>>
-> >>>>> Connecting to downloads.yoctoproject.org (downloads.yoctoproject.org)|198.145.29.63|:80...
-> failed: Connection refused.
-> >>>>>
-> >>>>>
-> >>>>> On Thu, Jan 9, 2020 at 3:37 PM FLoraVLogs <eripflo@gmail.com> wrote:
-> >>>>>>
-> >>>>>> Hi,
-> >>>>>>
-> >>>>>> I tried to go into the following:
-> >>>>>> http://downloads.yoctoproject.org/
-> >>>>>>
-> >>>>>> I get the following error:
-> >>>>>>
-> >>>>>>
-> >>>>>> Host Not Found
-> >>>>>>
-> >>>>>> DNS error (the host name of the page you are looking for does not
-> exist) or Server did not accept the connection.
-> >>>>>>
-> >>>>>> Please check that the host name has been spelled correctly.
-> >>>>>>
-> >>>>>> Regards,
-> >>>>>>
-> >>>>>> Ripu
-> >>>>>
-> >>>>>
-> > 
->
-
---00000000000047ccb605ac0f63ad
-Content-Type: text/html; charset="UTF-8"
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Is there any ETA on this?<div><br></div><div>Regards,</div=
-><div><br></div><div>Ripu</div></div><br><div class=3D"gmail_quote"><div di=
-r=3D"ltr" class=3D"gmail_attr">On Tue, Aug 4, 2020 at 11:30 AM Josef Holzma=
-yr-Khosh Amoz &lt;<a href=3D"mailto:jester@theyoctojester.info">jester@they=
-octojester.info</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex"><a href=3D"https://twitter.com/TheYoctoJester/status/1290569=
-609100308480" rel=3D"noreferrer" target=3D"_blank">https://twitter.com/TheY=
-octoJester/status/1290569609100308480</a><br>
-<br>
-Am Di., 4. Aug. 2020 um 15:17 Uhr schrieb FLoraVLogs &lt;<a href=3D"mailto=
-:eripflo@gmail.com" target=3D"_blank">eripflo@gmail.com</a>&gt;:<br>
-&gt;<br>
-&gt; I am seeing the following error:<br>
-&gt;<br>
-&gt; Gateway Timeout<br>
-&gt;<br>
-&gt; Server error - server 198.145.29.63 is unreachable at this moment.<br=
->
-&gt;<br>
-&gt; Please retry the request or contact your administrator.<br>
-&gt;<br>
-&gt;<br>
-&gt; Kindly help.<br>
-&gt;<br>
-&gt;<br>
-&gt; Regards,<br>
-&gt;<br>
-&gt;<br>
-&gt; Ripu<br>
-&gt;<br>
-&gt;<br>
-&gt; On Tue, Aug 4, 2020 at 9:14 AM FLoraVLogs &lt;<a href=3D"mailto:eripf=
-lo@gmail.com" target=3D"_blank">eripflo@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; Hi,<br>
-&gt;&gt;<br>
-&gt;&gt; It seems like Yocto is down again.<br>
-&gt;&gt;<br>
-&gt;&gt; <a href=3D"http://downloads.yoctoproject.org/" rel=3D"noreferrer"=
- target=3D"_blank">http://downloads.yoctoproject.org/</a><br>
-&gt;&gt;<br>
-&gt;&gt; Could you please help solve this?<br>
-&gt;&gt;<br>
-&gt;&gt; Regards,<br>
-&gt;&gt;<br>
-&gt;&gt; Ripu<br>
-&gt;&gt;<br>
-&gt;&gt; On Thu, Jan 9, 2020 at 4:50 PM FLoraVLogs &lt;<a href=3D"mailto:e=
-ripflo@gmail.com" target=3D"_blank">eripflo@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; It is working now.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Thank you<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Regards,<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Ripu<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; On Thu., Jan. 9, 2020, 4:44 p.m. Michael Halstead, &lt;<a hre=
-f=3D"mailto:mhalstead@linuxfoundation.org" target=3D"_blank">mhalstead@linu=
-xfoundation.org</a>&gt; wrote:<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; There was a brief outage while rebooting a storage device=
-. The error should have been resolved several minutes ago. If you are still=
- seeing this error please let me know.<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Michael Halstead<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; On Thu, Jan 9, 2020 at 1:38 PM FLoraVLogs &lt;<a href=3D"=
-mailto:eripflo@gmail.com" target=3D"_blank">eripflo@gmail.com</a>&gt; wrote=
-:<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; Also, I do see:<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; Connecting to <a href=3D"http://downloads.yoctoprojec=
-t.org" rel=3D"noreferrer" target=3D"_blank">downloads.yoctoproject.org</a> =
-(<a href=3D"http://downloads.yoctoproject.org" rel=3D"noreferrer" target=3D=
-"_blank">downloads.yoctoproject.org</a>)|198.145.29.63|:80... failed: Conne=
-ction refused.<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; On Thu, Jan 9, 2020 at 3:37 PM FLoraVLogs &lt;<a href=
-=
-=3D"mailto:eripflo@gmail.com" target=3D"_blank">eripflo@gmail.com</a>&gt; =
-wrote:<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Hi,<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; I tried to go into the following:<br>
-&gt;&gt;&gt;&gt;&gt;&gt; <a href=3D"http://downloads.yoctoproject.org/" re=
-l=3D"noreferrer" target=3D"_blank">http://downloads.yoctoproject.org/</a><b=
-r>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; I get the following error:<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Host Not Found<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; DNS error (the host name of the page you are look=
-ing for does not exist) or Server did not accept the connection.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Please check that the host name has been spelled =
-correctly.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Regards,<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Ripu<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt; <br>
-</blockquote></div>
+Yocto Technical Team Minutes, Engineering Sync, for August 4 2020
+archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7=
+QwKC5wWVDg9dDH4/edit
 
---00000000000047ccb605ac0f63ad--
+=3D=3D disclaimer =3D=3D
+Best efforts are made to ensure the below is accurate and valid. However,
+errors sometimes happen. If any errors or omissions are found, please fee=
+l
+free to reply to this email with any corrections.
+
+=3D=3D attendees =3D=3D
+Trevor Woerner, Stephen Jolley, Armin Kuster, Richard Purdie, Josef
+Holzmayr, Joshua Watt, Alejandro H, Steve Sakoman, Bruce Ashfield,
+(phone-in), Jon Mason, Scott Murray, Denys Dmytriyenko, Matthew Zeng,
+Philip Balister, Peter Kjellerstedt, Saul Wold, Tim Orling, Ross Burton
+
+=3D=3D notes =3D=3D
+- 3.1.2 released
+- 3.1-m2 in QA
+- qemumips issues continue on AB
+- published doc on inclusive language
+- published doc on future directions
+- intermittent AB failures, but seems to be going down
+- lots of unassigned bugs, please pitch in
+- 3.0.4 (last build of 3.0 series, zeus) probably built sometime next wee=
+k (if
+    everything stays good)
+- project tracking metrics are good, probably the best in roughly 18 mont=
+hs
+- overall project appears healthy and growing
+
+=3D=3D general =3D=3D
+RP: relatively quiet week
+RP: binutils update caused perf issues, Bruce already submitted a patch
+RP: infrastructure has issues today (some parts are down) Michael is awar=
+e
+
+RP: inclusive language: agreed on by various groups in the project. pleas=
+e
+    join in.
+
+RP: future directions is something we=E2=80=99ve been working on for a wh=
+ile, please
+    take a look
+
+RP: i=E2=80=99ve been looking at the sphynx doc update (hi Nico!)
+RP: Nico has been making great progress. i=E2=80=99d like to make improve=
+ments to
+    how doc versions are selected, looking into what sphynx can do for us=
+. i
+    think Nico is about to publish a list of ways to contribute(?)
+
+Timo: bug triage: we decided to create a new mailing list for AB failures=
+. any
+    name suggestions?
+RP: i think it wasn=E2=80=99t AB failures, but QA reports
+SS: yes
+RP: with AB1 we realised that what was being emailed out was wrong, with =
+AB2
+    we never re-enabled/re-implemented it. the problem with an AB failure=
+s
+    list was that people started reporting general failures not happening=
+ on
+    AB. the idea was to shut down the build failures list and create a QA=
+ list
+RP: we could create it, if there is demand, but i don=E2=80=99t think the=
+ demand is
+    there
+Timo: i=E2=80=99d rather get an email than staring at the AB2 UI
+RP: having that email sounds great, but we don=E2=80=99t have the code in=
+ place or
+    anyone to create/maintain it
+Timo: fedora project has some stuff that maybe we could use
+RP: resource issue, patch-test and patchwork are limping along already
+Timo: fyi, Intel is hoping to take a look (shortly) at patch-test and
+    patchwork (it=E2=80=99s in the queue)
+RP: thankfully some tools are getting tested since they have test suites,
+    hopefully more tools will get test suites
+
+TW: we had a nice OEHH last Wednesday, thanks to all for the opportunity,=
+ nice
+    to see people attending
+Timo: i appreciate it too
+Crofton: i=E2=80=99ve created an OE calendar with the dates going forward=
+, let me
+    know how that works
+http://www.openembedded.org/wiki/Calendar
+
+TW: time to start planning for next YPDD?
+Armin: yes, David was on yesterday=E2=80=99s advocacy meeting and said he=
+ was taking
+    a lead on it
+
+SS: getting ready for next LTS release, please take a look at the current=
+ CVE
+    list (we=E2=80=99re getting it down)
+Armin: what=E2=80=99s different between having Steve send it out rather t=
+han the AB?
+RP: i think generating it automatically causes it to end up in a black ho=
+le
+    that nobody looks at. i prefer to have it be more personal
+SS: it is automatically generated
+Timo: we also have tool (from WR)
+RP: that is a good tool (the WR one). i=E2=80=99d like to see SS=E2=80=99=
+s tool released
+    too so we can say =E2=80=9Cthis is what we=E2=80=99re using=E2=80=9D
+Crofton: is YP security list still a thing?
+(varous): yes, there is a mailing list
+Crofton: it appears dead, bad for people to sign up then not see any acti=
+vity
+Armin: i thought there were hooks
+Scott: the hooks stopped working a while back, there hasn=E2=80=99t been =
+an email to
+    that list in months. talks to get it working again (MarkH)
+RP: there was a datacentre move a while back, maybe that=E2=80=99s what h=
+appened
+TW: oecommits emails stopped at end of March, maybe same thing?
+Scott: or maybe the groups.io move?
+
+Scott: yesterday, announcement of the new open software security foundati=
+on
+    (which appears to be an LF project) did OE/YP get invited?
+https://openssf.org/
+Crofton: i posted that on twitter, i=E2=80=99ll get back with the replies=
+. chances
+    are we could use their help and they could use ours
+RP: it=E2=80=99s the first i=E2=80=99ve heard of this, i=E2=80=99ve discu=
+ssed with LF to have
+    better communication between LF members, especially for new foundatio=
+ns,
+    we weren=E2=80=99t notified but we should try to reach out
+Timo: is there any regular LF-wide meeting within LF?
+RP: no
+Crofton: closest would be the Leadership Conference
+RP: coordination between all the LF projects is hard and doesn=E2=80=99t =
+exist (yet,
+    at least not to the degree that maybe it could)
+
+Timo: fop is a =E2=80=9Cyou should have this installed if you want to gen=
+erate the
+    docs=E2=80=9D
+Timo: do we know how some of our diagrams were generated? do we have the
+    =E2=80=9Csources=E2=80=9D?
+RP: i=E2=80=99m guessing not. i looked at some of them recently and notic=
+ed some
+    tweaking was needed and was wondering how we=E2=80=99d do that
+
+Timo: last week Thea had some ideas for solving some of our resourcing is=
+sues.
+    e.g. looking at stats of past contributors can help find resources
+Armin: i was at yesterday=E2=80=99s advocacy meeting, and this wasn=E2=80=
+=99t a big topic
+    of discussion
+Scott: is foundries.io a member now?
+RP: yes
+Scott: needs to be added to website
+RP: odd, they are a silver member now
+
+Bruce: hoping to go with 5.8 kernel (and related libc headers) for gatesg=
+arth.
+    things are looking good, lots of pain (strace!) but coming along well
