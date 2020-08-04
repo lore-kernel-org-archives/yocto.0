@@ -1,61 +1,79 @@
-Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
- by mx.groups.io with SMTP id smtpd.web12.1108.1596528507855308475
- for <yocto@lists.yoctoproject.org>;
- Tue, 04 Aug 2020 01:08:29 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp.bon.at (Postfix) with ESMTPSA id 4BLS7C61r5z5tlC;
-	Tue,  4 Aug 2020 10:08:21 +0200 (CEST)
-Date: Tue, 4 Aug 2020 10:08:19 +0200
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: "Soi, Sheng Leong" <sheng.leong.soi@intel.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] How to disable specific default recipe to be included in Yocto? #linux #yocto #cups #hplip
-Message-ID: <20200804080819.3ojpzldilrinrtco@qschulz>
-References: <TrZe.1596525506407384003.CLar@lists.yoctoproject.org>
+Subject: Cannot fetch sources, downloads.yoctoproject.org is down
+To: yocto@lists.yoctoproject.org
+From: "Lluis Campos" <lluis.campos@northern.tech>
+X-Originating-Location: Oslo, Oslo County, NO (195.159.234.190)
+X-Originating-Platform: Linux Firefox 78
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <TrZe.1596525506407384003.CLar@lists.yoctoproject.org>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Date: Tue, 04 Aug 2020 02:32:05 -0700
+Message-ID: <Bae2.1596533525566598644.bP5S@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="QxfrJRxtG1pw0dzgx7cb"
 
-Hi Sheng Leong,
+--QxfrJRxtG1pw0dzgx7cb
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 04, 2020 at 12:18:26AM -0700, Soi, Sheng Leong wrote:
-> Hi,
-> 
-> Does anyone here know how to disable specific default recipe (e.g. CUPS and HPLIP) to be included in Yocto image?
-> 
+Hello,
 
-Start from a core-image-minimal and add packages manually. Only the
-packages that are specified to be installed explicitly in your image
-recipe and the packages specified in RDEPENDS and RRECOMMENDS of those
-packages will be installed in the recipe.
+Since two hours ago, I am not able to build anything due to downloads.yoct=
+oproject.org being down. Do you have any more info on what is going on?
 
-Some packages are also pulled because of configuration files (machine,
-distro or local.conf).
+I am getting the following error:
 
-If there are RRECOMMENDS you don't want, you can use BAD_RECOMMENDATIONS
-in your image recipe to ask the image to not pull them in.
+--2020-08-04 07:55:45--=C2=A0 http://downloads.yoctoproject.org/releases/o=
+pkg/opkg-0.4.2.tar.gz
+Resolving downloads.yoctoproject.org (downloads.yoctoproject.org)... 198.1=
+45.29.63
+Connecting to downloads.yoctoproject.org (downloads.yoctoproject.org)|198.=
+145.29.63|:80... failed: Connection timed out.
+Retrying.
+--2020-08-04 07:56:16--=C2=A0 (try: 2)=C2=A0 http://downloads.yoctoproject=
+.org/releases/opkg/opkg-0.4.2.tar.gz
+Connecting to downloads.yoctoproject.org (downloads.yoctoproject.org)|198.=
+145.29.63|:80... failed: Connection timed out.
+Giving up.
+ERROR: opkg-native-1_0.4.2-r0 do_fetch: Fetcher failure for URL: 'http://d=
+ownloads.yoctoproject.org/releases/opkg/opkg-0.4.2.tar.gz'. Unable to fetch=
+ URL from any source.
 
-If it's an RDEPENDS that you don't want, maybe it's pulled because of a
-selected PACKAGECONFIG that you don't need, in that case create a
-bbappend for that recipe and set PACKAGECONFIG accordingly.
+Thanks!
 
-If that still does not do it, you'll have to dig deeper into what can be
-removed from RDEPENDS and for which reason (is it a mistake? is is safe
-in one specific configuration).
+--
+Llu=C3=ADs M- Campos Mart=C3=ADnez
+Northern.tech ++ Mender.io
 
-The way to know which package is pulling which package is to use `-g`
-as argument of bitbake. DO not attempt to create a scheme/drawing/image
-from the dot files, they are too big for dot to handle properly (takes
-hours and the result is unusable). "recipeA:do_foo" => "recipeB:do_bar"
-means that do_foo task from recipeA depends on do_bar from recipeB.
+--QxfrJRxtG1pw0dzgx7cb
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hope that helps, if not, please be a bit more explicit with what you
-want to do, what's happening and what you're expecting, so we can help
-you the best way we can.
+Hello,<br /><br />Since two hours ago, I am not able to build anything due =
+to downloads.yoctoproject.org being down. Do you have any more info on what=
+ is going on?<br /><br />I am getting the following error:<br /><br />--202=
+0-08-04 07:55:45--&nbsp; http://downloads.yoctoproject.org/releases/opkg/op=
+kg-0.4.2.tar.gz <br />Resolving downloads.yoctoproject.org (downloads.yocto=
+project.org)... 198.145.29.63 <br />Connecting to downloads.yoctoproject.or=
+g (downloads.yoctoproject.org)|198.145.29.63|:80... failed: Connection time=
+d out. <br />Retrying. <br />--2020-08-04 07:56:16--&nbsp; (try: 2)&nbsp; h=
+ttp://downloads.yoctoproject.org/releases/opkg/opkg-0.4.2.tar.gz <br />Conn=
+ecting to downloads.yoctoproject.org (downloads.yoctoproject.org)|198.145.2=
+9.63|:80... failed: Connection timed out. <br />Giving up. <br />ERROR: opk=
+g-native-1_0.4.2-r0 do_fetch: Fetcher failure for URL: 'http://downloads.yo=
+ctoproject.org/releases/opkg/opkg-0.4.2.tar.gz'. Unable to fetch URL from a=
+ny source.<br /><br />Thanks!<br /><br />--<br />
+<div class=3D"" style=3D"caret-color: #2e3436; color: #2e3436; font-family=
+: monospace; font-size: 13.333333015441895px; font-style: normal; font-vari=
+ant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: aut=
+o; text-align: left; text-indent: 0px; text-transform: none; white-space: n=
+ormal; widows: auto; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0=
+, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none; width:=
+ 71ch;" data-evo-paragraph=3D"">Llu&iacute;s M- Campos Mart&iacute;nez</div=
+>
+<div class=3D"" style=3D"caret-color: #2e3436; color: #2e3436; font-family=
+: monospace; font-size: 13.333333015441895px; font-style: normal; font-vari=
+ant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: aut=
+o; text-align: left; text-indent: 0px; text-transform: none; white-space: n=
+ormal; widows: auto; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0=
+, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none; width:=
+ 71ch;" data-evo-paragraph=3D"">Northern.tech ++ Mender.io</div>
 
-Cheers,
-Quentin
+--QxfrJRxtG1pw0dzgx7cb--
