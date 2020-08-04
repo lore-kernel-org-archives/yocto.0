@@ -1,79 +1,36 @@
-Subject: Cannot fetch sources, downloads.yoctoproject.org is down
-To: yocto@lists.yoctoproject.org
-From: "Lluis Campos" <lluis.campos@northern.tech>
-X-Originating-Location: Oslo, Oslo County, NO (195.159.234.190)
-X-Originating-Platform: Linux Firefox 78
-User-Agent: GROUPS.IO Web Poster
+Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
+ by mx.groups.io with SMTP id smtpd.web10.1985.1596533908996521487
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 04 Aug 2020 02:38:29 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp.bon.at (Postfix) with ESMTPSA id 4BLV760rdDz5tlM;
+	Tue,  4 Aug 2020 11:38:25 +0200 (CEST)
+Date: Tue, 4 Aug 2020 11:38:24 +0200
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: lluis.campos@northern.tech
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] Cannot fetch sources, downloads.yoctoproject.org is down
+Message-ID: <20200804093824.qcmw652sqt2v7i3d@qschulz>
+References: <Bae2.1596533525566598644.bP5S@lists.yoctoproject.org>
 MIME-Version: 1.0
-Date: Tue, 04 Aug 2020 02:32:05 -0700
-Message-ID: <Bae2.1596533525566598644.bP5S@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="QxfrJRxtG1pw0dzgx7cb"
+In-Reply-To: <Bae2.1596533525566598644.bP5S@lists.yoctoproject.org>
+User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---QxfrJRxtG1pw0dzgx7cb
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Lluis,
 
-Hello,
+On Tue, Aug 04, 2020 at 02:32:05AM -0700, Lluis Campos via lists.yoctoproject.org wrote:
+> Hello,
+> 
+> Since two hours ago, I am not able to build anything due to downloads.yoctoproject.org being down. Do you have any more info on what is going on?
+> 
 
-Since two hours ago, I am not able to build anything due to downloads.yoct=
-oproject.org being down. Do you have any more info on what is going on?
+It's known:
+https://twitter.com/yoctoproject/status/1290570140468285441?s=20
 
-I am getting the following error:
+Thanks for the report anyway :)
 
---2020-08-04 07:55:45--=C2=A0 http://downloads.yoctoproject.org/releases/o=
-pkg/opkg-0.4.2.tar.gz
-Resolving downloads.yoctoproject.org (downloads.yoctoproject.org)... 198.1=
-45.29.63
-Connecting to downloads.yoctoproject.org (downloads.yoctoproject.org)|198.=
-145.29.63|:80... failed: Connection timed out.
-Retrying.
---2020-08-04 07:56:16--=C2=A0 (try: 2)=C2=A0 http://downloads.yoctoproject=
-.org/releases/opkg/opkg-0.4.2.tar.gz
-Connecting to downloads.yoctoproject.org (downloads.yoctoproject.org)|198.=
-145.29.63|:80... failed: Connection timed out.
-Giving up.
-ERROR: opkg-native-1_0.4.2-r0 do_fetch: Fetcher failure for URL: 'http://d=
-ownloads.yoctoproject.org/releases/opkg/opkg-0.4.2.tar.gz'. Unable to fetch=
- URL from any source.
-
-Thanks!
-
---
-Llu=C3=ADs M- Campos Mart=C3=ADnez
-Northern.tech ++ Mender.io
-
---QxfrJRxtG1pw0dzgx7cb
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello,<br /><br />Since two hours ago, I am not able to build anything due =
-to downloads.yoctoproject.org being down. Do you have any more info on what=
- is going on?<br /><br />I am getting the following error:<br /><br />--202=
-0-08-04 07:55:45--&nbsp; http://downloads.yoctoproject.org/releases/opkg/op=
-kg-0.4.2.tar.gz <br />Resolving downloads.yoctoproject.org (downloads.yocto=
-project.org)... 198.145.29.63 <br />Connecting to downloads.yoctoproject.or=
-g (downloads.yoctoproject.org)|198.145.29.63|:80... failed: Connection time=
-d out. <br />Retrying. <br />--2020-08-04 07:56:16--&nbsp; (try: 2)&nbsp; h=
-ttp://downloads.yoctoproject.org/releases/opkg/opkg-0.4.2.tar.gz <br />Conn=
-ecting to downloads.yoctoproject.org (downloads.yoctoproject.org)|198.145.2=
-9.63|:80... failed: Connection timed out. <br />Giving up. <br />ERROR: opk=
-g-native-1_0.4.2-r0 do_fetch: Fetcher failure for URL: 'http://downloads.yo=
-ctoproject.org/releases/opkg/opkg-0.4.2.tar.gz'. Unable to fetch URL from a=
-ny source.<br /><br />Thanks!<br /><br />--<br />
-<div class=3D"" style=3D"caret-color: #2e3436; color: #2e3436; font-family=
-: monospace; font-size: 13.333333015441895px; font-style: normal; font-vari=
-ant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: aut=
-o; text-align: left; text-indent: 0px; text-transform: none; white-space: n=
-ormal; widows: auto; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0=
-, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none; width:=
- 71ch;" data-evo-paragraph=3D"">Llu&iacute;s M- Campos Mart&iacute;nez</div=
->
-<div class=3D"" style=3D"caret-color: #2e3436; color: #2e3436; font-family=
-: monospace; font-size: 13.333333015441895px; font-style: normal; font-vari=
-ant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: aut=
-o; text-align: left; text-indent: 0px; text-transform: none; white-space: n=
-ormal; widows: auto; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0=
-, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none; width:=
- 71ch;" data-evo-paragraph=3D"">Northern.tech ++ Mender.io</div>
-
---QxfrJRxtG1pw0dzgx7cb--
+Quentin
