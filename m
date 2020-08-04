@@ -1,36 +1,36 @@
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
- by mx.groups.io with SMTP id smtpd.web10.1215.1596577045220647607
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+ by mx.groups.io with SMTP id smtpd.web10.2968.1596581172214324545
  for <yocto@lists.yoctoproject.org>;
- Tue, 04 Aug 2020 14:37:25 -0700
+ Tue, 04 Aug 2020 15:46:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@broadcom.com header.s=google header.b=IvhfhFmy;
- spf=permerror, err=parse error for token &{10 18 %{i}._ip.%{h}._ehlo.%{d}._spf.vali.email}: invalid domain name (domain: broadcom.com, ip: 209.85.218.51, mailfrom: rick.liu@broadcom.com)
-Received: by mail-ej1-f51.google.com with SMTP id jp10so17512446ejb.0
-        for <yocto@lists.yoctoproject.org>; Tue, 04 Aug 2020 14:37:24 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=RKMTIHMT;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.219.175, mailfrom: mhalstead@linuxfoundation.org)
+Received: by mail-yb1-f175.google.com with SMTP id a34so17749414ybj.9
+        for <yocto@lists.yoctoproject.org>; Tue, 04 Aug 2020 15:46:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
+        d=linuxfoundation.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=jEIGWrqhF5vPZMKciymn0hXjEFUQ984Ixxm1KS1TQKc=;
-        b=IvhfhFmyY8A2TmhTuLHCXQleRbWah/Kg+ILs5jhgQkoET77skFq4DiVSF20w5Cv752
-         QNjuRjRDzwgS7vOjp4yEaZ+1pWGGiuKQcsGOlHcKRkQCIpYHDskcDs4AUd1sqpoE2O2c
-         aufy+ETxkxWGq3CnvqKPZvGt3DD1D5mdzpz8o=
+        bh=RWmRTZ+u2B+FatyYaxMcxBhO1b8Rj1aSPTY5ZaBthzw=;
+        b=RKMTIHMTuk3BjKMrd5y6+A9orZHfgXW6d7EMguODuyXYfLn6/1QtaTB2hTBrrMVXsX
+         yyALekNBpnch9lrpqAJyuzwqRXhJVyBOYJv00WlDz8hd0jQ4ye2ppDmop7/Ujvl2/VNw
+         Am4Kq6+ETsewLVcSl+pC+JQ44b6NAF4pl0/LE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=jEIGWrqhF5vPZMKciymn0hXjEFUQ984Ixxm1KS1TQKc=;
-        b=kWRwbYGFU0YuavhAVAT6a1RXAzud4IoLu5Ed8wjAfRBM39dqGzTj8aCgmMOgsKAWOX
-         Vn5eP15HEZrleGp4bGGIFyKKt4GcTsuwuwHLSvORDZXe9Dvzr3r+aMaXiBXsLyOZsGHu
-         CKey2QLmLEjrLPzYhRPn+H4xQtqkcYjAXV2tniyqGqfMt779Ta3mogLXX8EO2JeZHv8r
-         tVK9nbWZeMJg9Qb/fUUZuPYujx+K3wGjCqiuXdfeaRUcgdvXlfJMa3pDJWT1YRrAk+1d
-         FJL/QzdBu88gkCjL3oEW5X9PneVo0HmYsXYM+R0LC0HnGTMR4Tx47hUeX8biMjlLA2eh
-         QeTw==
-X-Gm-Message-State: AOAM5322IAzVd/Zz16W5S+YyhVBFvTVrbAeQUHVYHQ4NwuZj71SR0iCO
-	nGoirF2nlEe5a17XCFoWo5KUXNl8yCHbVUKtV7jX+/gp3Da6
-X-Google-Smtp-Source: ABdhPJzgPyTB17ItDZhdIf9ik9QrlhQf+EqCCfZ9AW2Ih7p6RNuG7rIbeSOhD2TG4DSG48dQ8UxocX/Z+jQnk6tHcYo=
-X-Received: by 2002:a05:6512:312b:: with SMTP id p11mr44931lfd.202.1596575441676;
- Tue, 04 Aug 2020 14:10:41 -0700 (PDT)
+        bh=RWmRTZ+u2B+FatyYaxMcxBhO1b8Rj1aSPTY5ZaBthzw=;
+        b=UAyaKiL65LyYU3IZshLBWP7+KNIsFIZJcv/0BOtL8RGU9GN0qSVgB3vqndbXELeRTr
+         en09lG+D/zAKDhETKK4NjxH+iGa5HaudlK4AIyqe1glWGhGmJSCaCADLoAOx8grPdirJ
+         SMXVbJXvievGCR8U0TLH+Ie+CSwVWCyvRbh9iLqHH+GV+up3O2cE4hEqRdZj9fRuQ/pi
+         yyqnOfxtezK4eO7IlgGu7pyhXkk9j7f1a3O3QhiJgiQ1Bo+a666J/kUt/jMchBuisJaH
+         pVJ9PMMeWmO1vOC5hihwUVV0oXE408Z0S7LGr1XVDYfTZXGhn3RveHF3OHdyVFMI0VHj
+         Z6XA==
+X-Gm-Message-State: AOAM531N4n8gdy+QvaHkxFXhRHTh/cdrJST8wIraJe9xcHrXJ+BXfDyL
+	Ac28WejhXeOxo85lW+nQJOyUhYYVwZ2xn1GWgP7Ong==
+X-Google-Smtp-Source: ABdhPJz9QgLklJTlAA7BHgtRrDn1VL9GR6SWvdLj1bQ+J9CdXc2W/1KH1PrJM27COIRHn1azWYC6JK0uUMLyB68fCeI=
+X-Received: by 2002:a25:3bce:: with SMTP id i197mr471075yba.426.1596581171344;
+ Tue, 04 Aug 2020 15:46:11 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAGhBkzxwg4q_E1h+x1uJK6PGY6x_j91HQq2ahWnyZZbO_SC=Zw@mail.gmail.com>
  <CAGhBkzyYq4HOqz7u-qenXMeSkKyoJtejXtHz0mscJp_Pd4GGjw@mail.gmail.com>
@@ -40,186 +40,222 @@ References: <CAGhBkzxwg4q_E1h+x1uJK6PGY6x_j91HQq2ahWnyZZbO_SC=Zw@mail.gmail.com>
  <CAGhBkzxZnZ+TK+k0b_kOFFGvtyJ0RAwz8iFGMsbtVY5RAz5pyw@mail.gmail.com>
  <CAEt6NwqMKnWxKqQEWhVcgAYnaxwD2KeC-G4KA1biMmdL2KBang@mail.gmail.com>
  <CAGhBkzxBtGuzkuT69UQZUL+4Q_YL8adoWd=kZZF5FQZLD2gO+w@mail.gmail.com>
- <CADfgfoYbR8nNgXZ+dfByGUJtGhhVrRZyaBYoCQ-fntr5OGUaMw@mail.gmail.com> <CAGhBkzwNrnGxSfipxXxqK0=GEznsjw0Vs7=QTFHRkpv=vQgH2w@mail.gmail.com>
-In-Reply-To: <CAGhBkzwNrnGxSfipxXxqK0=GEznsjw0Vs7=QTFHRkpv=vQgH2w@mail.gmail.com>
-From: "Rick Liu" <rick.liu@broadcom.com>
-Date: Tue, 4 Aug 2020 14:10:28 -0700
-Message-ID: <CAKmBsaa9mLYvA3gQfbR9vTW1F728Qz2Yb-qw5tKtR4iA2F-1bg@mail.gmail.com>
+ <CADfgfoYbR8nNgXZ+dfByGUJtGhhVrRZyaBYoCQ-fntr5OGUaMw@mail.gmail.com>
+ <CAGhBkzwNrnGxSfipxXxqK0=GEznsjw0Vs7=QTFHRkpv=vQgH2w@mail.gmail.com> <CAKmBsaa9mLYvA3gQfbR9vTW1F728Qz2Yb-qw5tKtR4iA2F-1bg@mail.gmail.com>
+In-Reply-To: <CAKmBsaa9mLYvA3gQfbR9vTW1F728Qz2Yb-qw5tKtR4iA2F-1bg@mail.gmail.com>
+From: "Michael Halstead" <mhalstead@linuxfoundation.org>
+Date: Tue, 4 Aug 2020 15:46:00 -0700
+Message-ID: <CADfgfobHj3=TWy8G1YE3ryqoq-yxgQhTv3SxtjrCY5q=BEmbGA@mail.gmail.com>
 Subject: Re: [yocto] Yocto host not found
-To: FLoraVLogs <eripflo@gmail.com>
-Cc: Michael Halstead <mhalstead@linuxfoundation.org>, 
+To: Rick Liu <rick.liu@broadcom.com>
+Cc: FLoraVLogs <eripflo@gmail.com>, 
 	Josef Holzmayr-Khosh Amoz <jester@theyoctojester.info>, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000000f42ca05ac13b019"
+Content-Type: multipart/alternative; boundary="00000000000092fdec05ac150541"
 
---0000000000000f42ca05ac13b019
+--00000000000092fdec05ac150541
 Content-Type: text/plain; charset="UTF-8"
 
-Does http://downloads.yoctoproject.org/ have HA or hot-backup machine?
-Is there an instruction on how to create a
-http://downloads.yoctoproject.org/  local mirror and sync?
+On Tue, Aug 4, 2020 at 2:10 PM Rick Liu <rick.liu@broadcom.com> wrote:
 
-Rick
-
-On Tue, Aug 4, 2020 at 11:16 AM FLoraVLogs <eripflo@gmail.com> wrote:
-
-> Ok, thanks for the update. Kindly keep me posted.
+> Does http://downloads.yoctoproject.org/ have HA or hot-backup machine?
 >
-> On Tue., Aug. 4, 2020, 2:05 p.m. Michael Halstead, <
-> mhalstead@linuxfoundation.org> wrote:
+
+No. Many important files are mirrored at http://mirrors.kernel.org/yocto/
+ though.
+
+
+> Is there an instruction on how to create a
+> http://downloads.yoctoproject.org/  local mirror and sync?
 >
->> Remote troubleshooting has stalled. I'm headed to the data center to
->> continue. No ETA yet.
+
+Some larger users keep local mirrors. The full archive is almost 20TB so
+they usually only mirror parts of it. Please email me directly if you are
+interested.
+
+
+>
+> Rick
+>
+> On Tue, Aug 4, 2020 at 11:16 AM FLoraVLogs <eripflo@gmail.com> wrote:
+>
+>> Ok, thanks for the update. Kindly keep me posted.
 >>
->> On Tue, Aug 4, 2020 at 9:02 AM FLoraVLogs <eripflo@gmail.com> wrote:
+>> On Tue., Aug. 4, 2020, 2:05 p.m. Michael Halstead, <
+>> mhalstead@linuxfoundation.org> wrote:
 >>
->>> Is there any ETA on this?
+>>> Remote troubleshooting has stalled. I'm headed to the data center to
+>>> continue. No ETA yet.
 >>>
->>> Regards,
+>>> On Tue, Aug 4, 2020 at 9:02 AM FLoraVLogs <eripflo@gmail.com> wrote:
 >>>
->>> Ripu
->>>
->>> On Tue, Aug 4, 2020 at 11:30 AM Josef Holzmayr-Khosh Amoz <
->>> jester@theyoctojester.info> wrote:
->>>
->>>> https://twitter.com/TheYoctoJester/status/1290569609100308480
+>>>> Is there any ETA on this?
 >>>>
->>>> Am Di., 4. Aug. 2020 um 15:17 Uhr schrieb FLoraVLogs <eripflo@gmail.com
->>>> >:
->>>> >
->>>> > I am seeing the following error:
->>>> >
->>>> > Gateway Timeout
->>>> >
->>>> > Server error - server 198.145.29.63 is unreachable at this moment.
->>>> >
->>>> > Please retry the request or contact your administrator.
->>>> >
->>>> >
->>>> > Kindly help.
->>>> >
->>>> >
->>>> > Regards,
->>>> >
->>>> >
->>>> > Ripu
->>>> >
->>>> >
->>>> > On Tue, Aug 4, 2020 at 9:14 AM FLoraVLogs <eripflo@gmail.com> wrote:
->>>> >>
->>>> >> Hi,
->>>> >>
->>>> >> It seems like Yocto is down again.
->>>> >>
->>>> >> http://downloads.yoctoproject.org/
->>>> >>
->>>> >> Could you please help solve this?
->>>> >>
->>>> >> Regards,
->>>> >>
->>>> >> Ripu
->>>> >>
->>>> >> On Thu, Jan 9, 2020 at 4:50 PM FLoraVLogs <eripflo@gmail.com> wrote:
->>>> >>>
->>>> >>> It is working now.
->>>> >>>
->>>> >>> Thank you
->>>> >>>
->>>> >>> Regards,
->>>> >>>
->>>> >>> Ripu
->>>> >>>
->>>> >>> On Thu., Jan. 9, 2020, 4:44 p.m. Michael Halstead, <
->>>> mhalstead@linuxfoundation.org> wrote:
->>>> >>>>
->>>> >>>> There was a brief outage while rebooting a storage device. The
->>>> error should have been resolved several minutes ago. If you are still
->>>> seeing this error please let me know.
->>>> >>>>
->>>> >>>> Michael Halstead
->>>> >>>>
->>>> >>>> On Thu, Jan 9, 2020 at 1:38 PM FLoraVLogs <eripflo@gmail.com>
->>>> wrote:
->>>> >>>>>
->>>> >>>>> Also, I do see:
->>>> >>>>>
->>>> >>>>> Connecting to downloads.yoctoproject.org (
->>>> downloads.yoctoproject.org)|198.145.29.63|:80... failed: Connection
->>>> refused.
->>>> >>>>>
->>>> >>>>>
->>>> >>>>> On Thu, Jan 9, 2020 at 3:37 PM FLoraVLogs <eripflo@gmail.com>
->>>> wrote:
->>>> >>>>>>
->>>> >>>>>> Hi,
->>>> >>>>>>
->>>> >>>>>> I tried to go into the following:
->>>> >>>>>> http://downloads.yoctoproject.org/
->>>> >>>>>>
->>>> >>>>>> I get the following error:
->>>> >>>>>>
->>>> >>>>>>
->>>> >>>>>> Host Not Found
->>>> >>>>>>
->>>> >>>>>> DNS error (the host name of the page you are looking for does
->>>> not exist) or Server did not accept the connection.
->>>> >>>>>>
->>>> >>>>>> Please check that the host name has been spelled correctly.
->>>> >>>>>>
->>>> >>>>>> Regards,
->>>> >>>>>>
->>>> >>>>>> Ripu
->>>> >>>>>
->>>> >>>>>
->>>> >
+>>>> Regards,
+>>>>
+>>>> Ripu
+>>>>
+>>>> On Tue, Aug 4, 2020 at 11:30 AM Josef Holzmayr-Khosh Amoz <
+>>>> jester@theyoctojester.info> wrote:
+>>>>
+>>>>> https://twitter.com/TheYoctoJester/status/1290569609100308480
+>>>>>
+>>>>> Am Di., 4. Aug. 2020 um 15:17 Uhr schrieb FLoraVLogs <
+>>>>> eripflo@gmail.com>:
+>>>>> >
+>>>>> > I am seeing the following error:
+>>>>> >
+>>>>> > Gateway Timeout
+>>>>> >
+>>>>> > Server error - server 198.145.29.63 is unreachable at this moment.
+>>>>> >
+>>>>> > Please retry the request or contact your administrator.
+>>>>> >
+>>>>> >
+>>>>> > Kindly help.
+>>>>> >
+>>>>> >
+>>>>> > Regards,
+>>>>> >
+>>>>> >
+>>>>> > Ripu
+>>>>> >
+>>>>> >
+>>>>> > On Tue, Aug 4, 2020 at 9:14 AM FLoraVLogs <eripflo@gmail.com> wrote:
+>>>>> >>
+>>>>> >> Hi,
+>>>>> >>
+>>>>> >> It seems like Yocto is down again.
+>>>>> >>
+>>>>> >> http://downloads.yoctoproject.org/
+>>>>> >>
+>>>>> >> Could you please help solve this?
+>>>>> >>
+>>>>> >> Regards,
+>>>>> >>
+>>>>> >> Ripu
+>>>>> >>
+>>>>> >> On Thu, Jan 9, 2020 at 4:50 PM FLoraVLogs <eripflo@gmail.com>
+>>>>> wrote:
+>>>>> >>>
+>>>>> >>> It is working now.
+>>>>> >>>
+>>>>> >>> Thank you
+>>>>> >>>
+>>>>> >>> Regards,
+>>>>> >>>
+>>>>> >>> Ripu
+>>>>> >>>
+>>>>> >>> On Thu., Jan. 9, 2020, 4:44 p.m. Michael Halstead, <
+>>>>> mhalstead@linuxfoundation.org> wrote:
+>>>>> >>>>
+>>>>> >>>> There was a brief outage while rebooting a storage device. The
+>>>>> error should have been resolved several minutes ago. If you are still
+>>>>> seeing this error please let me know.
+>>>>> >>>>
+>>>>> >>>> Michael Halstead
+>>>>> >>>>
+>>>>> >>>> On Thu, Jan 9, 2020 at 1:38 PM FLoraVLogs <eripflo@gmail.com>
+>>>>> wrote:
+>>>>> >>>>>
+>>>>> >>>>> Also, I do see:
+>>>>> >>>>>
+>>>>> >>>>> Connecting to downloads.yoctoproject.org (
+>>>>> downloads.yoctoproject.org)|198.145.29.63|:80... failed: Connection
+>>>>> refused.
+>>>>> >>>>>
+>>>>> >>>>>
+>>>>> >>>>> On Thu, Jan 9, 2020 at 3:37 PM FLoraVLogs <eripflo@gmail.com>
+>>>>> wrote:
+>>>>> >>>>>>
+>>>>> >>>>>> Hi,
+>>>>> >>>>>>
+>>>>> >>>>>> I tried to go into the following:
+>>>>> >>>>>> http://downloads.yoctoproject.org/
+>>>>> >>>>>>
+>>>>> >>>>>> I get the following error:
+>>>>> >>>>>>
+>>>>> >>>>>>
+>>>>> >>>>>> Host Not Found
+>>>>> >>>>>>
+>>>>> >>>>>> DNS error (the host name of the page you are looking for does
+>>>>> not exist) or Server did not accept the connection.
+>>>>> >>>>>>
+>>>>> >>>>>> Please check that the host name has been spelled correctly.
+>>>>> >>>>>>
+>>>>> >>>>>> Regards,
+>>>>> >>>>>>
+>>>>> >>>>>> Ripu
+>>>>> >>>>>
+>>>>> >>>>>
+>>>>> >
+>>>>>
+>>>>
 >>>>
 >>>
+>>> --
+>>> Michael Halstead
+>>> Linux Foundation / Yocto Project
+>>> Systems Operations Engineer
 >>>
+>> 
 >>
->> --
->> Michael Halstead
->> Linux Foundation / Yocto Project
->> Systems Operations Engineer
->>
-> 
 >
 
---0000000000000f42ca05ac13b019
+-- 
+Michael Halstead
+Linux Foundation / Yocto Project
+Systems Operations Engineer
+
+--00000000000092fdec05ac150541
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Does=C2=A0<a href=3D"http://downloads.yoctoproject.org/">h=
-ttp://downloads.yoctoproject.org/</a>=C2=A0have HA or hot-backup machine?<d=
-iv>Is there an instruction on how to create a=C2=A0=C2=A0<a href=3D"http://=
-downloads.yoctoproject.org/">http://downloads.yoctoproject.org/</a>=C2=A0 l=
-ocal mirror and sync?</div><div><br></div><div>Rick</div></div><br><div cla=
-ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 4, 202=
-0 at 11:16 AM FLoraVLogs &lt;<a href=3D"mailto:eripflo@gmail.com">eripflo@g=
-mail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div dir=3D"auto">Ok, thanks for the update. Kindly keep me posted.=
-=
-=C2=A0</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Tue., Aug. 4, 2020, 2:05 p.m. Michael Halstead, &lt;<a href=3D"ma=
-ilto:mhalstead@linuxfoundation.org" target=3D"_blank">mhalstead@linuxfounda=
-tion.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div dir=3D"ltr">Remote troubleshooting has stalled. I&#39;m headed=
- to the data center to continue. No ETA yet.</div><br><div class=3D"gmail_q=
-uote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 4, 2020 at 9:02 AM =
-FLoraVLogs &lt;<a href=3D"mailto:eripflo@gmail.com" rel=3D"noreferrer" targ=
-et=3D"_blank">eripflo@gmail.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Is there any ETA on this=
-?<div><br></div><div>Regards,</div><div><br></div><div>Ripu</div></div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Au=
-g 4, 2020 at 11:30 AM Josef Holzmayr-Khosh Amoz &lt;<a href=3D"mailto:jeste=
-r@theyoctojester.info" rel=3D"noreferrer" target=3D"_blank">jester@theyocto=
-jester.info</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"></div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 4, 2020 at 2=
+:10 PM Rick Liu &lt;<a href=3D"mailto:rick.liu@broadcom.com">rick.liu@broad=
+com.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex"><div dir=3D"ltr">Does=C2=A0<a href=3D"http://downloads.yoctoproject.=
+org/" target=3D"_blank">http://downloads.yoctoproject.org/</a>=C2=A0have HA=
+ or hot-backup machine?</div></blockquote><div><br></div><div>No. Many impo=
+rtant files are mirrored at=C2=A0<a href=3D"http://mirrors.kernel.org/yocto=
+/">http://mirrors.kernel.org/yocto/</a>=C2=A0though.</div><div>=C2=A0</div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Is =
+there an instruction on how to create a=C2=A0=C2=A0<a href=3D"http://downlo=
+ads.yoctoproject.org/" target=3D"_blank">http://downloads.yoctoproject.org/=
+</a>=C2=A0 local mirror and sync?</div></div></blockquote><div><br></div><d=
+iv>Some larger users keep local mirrors. The full archive is almost 20TB so=
+ they usually only mirror parts of it. Please email me directly if you are =
+interested.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=
 =3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex"><a href=3D"https://twitter.com/TheYoctoJester/status/1290569609=
-100308480" rel=3D"noreferrer noreferrer" target=3D"_blank">https://twitter.=
-com/TheYoctoJester/status/1290569609100308480</a><br>
+g-left:1ex"><div dir=3D"ltr"><div><br></div><div>Rick</div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 4, 2=
+020 at 11:16 AM FLoraVLogs &lt;<a href=3D"mailto:eripflo@gmail.com" target=
+=3D"_blank">eripflo@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex"><div dir=3D"auto">Ok, thanks for the update. =
+Kindly keep me posted.=C2=A0</div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Tue., Aug. 4, 2020, 2:05 p.m. Michael Hal=
+stead, &lt;<a href=3D"mailto:mhalstead@linuxfoundation.org" target=3D"_blan=
+k">mhalstead@linuxfoundation.org</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Remote troubleshooting h=
+as stalled. I&#39;m headed to the data center to continue. No ETA yet.</div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tu=
+e, Aug 4, 2020 at 9:02 AM FLoraVLogs &lt;<a href=3D"mailto:eripflo@gmail.co=
+m" rel=3D"noreferrer" target=3D"_blank">eripflo@gmail.com</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">I=
+s there any ETA on this?<div><br></div><div>Regards,</div><div><br></div><d=
+iv>Ripu</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
+"gmail_attr">On Tue, Aug 4, 2020 at 11:30 AM Josef Holzmayr-Khosh Amoz &lt;=
+<a href=3D"mailto:jester@theyoctojester.info" rel=3D"noreferrer" target=3D"=
+_blank">jester@theyoctojester.info</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><a href=3D"https://twitter.com/TheYoctoJe=
+ster/status/1290569609100308480" rel=3D"noreferrer noreferrer" target=3D"_b=
+lank">https://twitter.com/TheYoctoJester/status/1290569609100308480</a><br>
 <br>
 Am Di., 4. Aug. 2020 um 15:17 Uhr schrieb FLoraVLogs &lt;<a href=3D"mailto=
 :eripflo@gmail.com" rel=3D"noreferrer" target=3D"_blank">eripflo@gmail.com<=
@@ -333,5 +369,9 @@ iv><div>Systems Operations Engineer</div></div></div>
 </blockquote></div>
 <br>
 </blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
+" class=3D"gmail_signature"><div dir=3D"ltr">Michael Halstead<div>Linux Fou=
+ndation / Yocto Project</div><div>Systems Operations Engineer</div></div></=
+div></div></div>
 
---0000000000000f42ca05ac13b019--
+--00000000000092fdec05ac150541--
