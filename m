@@ -1,76 +1,96 @@
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
- by mx.groups.io with SMTP id smtpd.web11.3827.1596621006261009500
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+ by mx.groups.io with SMTP id smtpd.web12.3969.1596621617239456476
  for <yocto@lists.yoctoproject.org>;
- Wed, 05 Aug 2020 02:50:06 -0700
+ Wed, 05 Aug 2020 03:00:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=RGuAqYLU;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.49, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f49.google.com with SMTP id g8so5225468wmk.3
-        for <yocto@lists.yoctoproject.org>; Wed, 05 Aug 2020 02:50:06 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=d1TdcgjT;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.42, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f42.google.com with SMTP id a5so30124507wrm.6
+        for <yocto@lists.yoctoproject.org>; Wed, 05 Aug 2020 03:00:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=OO+HHjoDONmHNKxBKm8KfJ//c35DPBzzcrurg3YLPw8=;
-        b=RGuAqYLUkdmhSvBbzRw6HUttKNI/PBv87ja42U/l0BSacNJLZIUXg6Nc2yfT4qcP2T
-         kYbJMW8kUxm1zOC6rZag0EJWqzLQZ6dDbgaS5b2NKETecs0mNuOEhgrkPACjFNGBb47G
-         YQVgH7wBKjPB3tTz3+TZrtpH/Z9pxnNvKL98A=
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=EM5mOqINvTTnMRhOunHpDwIrW0phuos1EPPArqL5r2o=;
+        b=d1TdcgjTzWdqJNyFHPspTibnXSDU4dmBfBFPKYWrAPBUtvDTaQQNEVk47c86tQwh2/
+         VWjH6Y5+e0BpLTeoUtpzJzdGMsjnlhzxBcQAj8Q5sxJKvdC6K7u2wCyp48GdbyztCp7q
+         tv3LGNfgsBTv+YUsSjfD8wqlJe/uO2h/7urdQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
          :references:user-agent:mime-version:content-transfer-encoding;
-        bh=OO+HHjoDONmHNKxBKm8KfJ//c35DPBzzcrurg3YLPw8=;
-        b=aaPtzYf89VLJDZqRYFv87zfo1EBiHhRj6v+kStaObBtNv1fTsMVmToL7DI4P7I+cJO
-         g6+qW3vNGvaHFioOswV3HcEyK+GfkeSt/GYlrYq1o5jC8ottGLmlNQFioc+5IzfZLy++
-         7/As4x2VL3ayhm6KKp8MoFqZ3H+oFOadlbH68rElJHGPlXguQo6cPp8ycTuiF7/1I8PN
-         Bq7e8OEfZVAuKGdyQsLbbEPNcOXR4ixZMpx6L2CyVu8AEAIvfGTZ7xDI+L7y3v+AAcdH
-         gp/ZQ4+5gThIv/42ztSv12qmXP5vHikyJDb2VAnnWDmK+q+4K+UWbT0sha1JlSrlfXdG
-         AJjQ==
-X-Gm-Message-State: AOAM532VMYnvYw05ZJejFx7OdKpTZk9TP40ZBNxFfZxDPnv15CoRSnyk
-	VKaN3yMK9ezzKtgg4tSCO5FjGQ==
-X-Google-Smtp-Source: ABdhPJzNT+34aNN6uQC0j37kavf0zZmfPkUs2F/8aMeKdUg4foafc6mQIE0qVNFoKssAHkp+DRPtKQ==
-X-Received: by 2002:a1c:26c4:: with SMTP id m187mr2500331wmm.90.1596621004644;
-        Wed, 05 Aug 2020 02:50:04 -0700 (PDT)
+        bh=EM5mOqINvTTnMRhOunHpDwIrW0phuos1EPPArqL5r2o=;
+        b=fFCCjGZduRncaeQXqlqoqjVh8ZqiShPEozuZ1C7Yo7F5pIH0fsBz9BUmHEp3NHKLIF
+         +c0yNEfzv/Uor0956DZjsa1RiRYiu2E1vjo2OAvW3MmWyStqPf6qaZet49T++qzDiFcr
+         VErtUQOKG+U+Yc/5fUcVxvztMA+V0yDV1DaoTkAuNOf6TKPIlRs+f6t7rcr4gyztp7/I
+         9j4mGv1oHc68WeJ2nil83CfwAIU3L7GcMY9ckOz9SulYxv6fd7tqXUCbvIh0co3WH8jw
+         XYwFfo3SxK8nRnnzQ/3Fihb7SJtgCwWlEyFgQ08QzafVvZ0HEZWl4CPQfOSUigw62FGQ
+         nfgw==
+X-Gm-Message-State: AOAM532d0VIkhLNKjNRlbZPJA9kShMReud+TUz1HHiCFhLZYMI8tMzcx
+	XnISf5KAu39YBWf1p6vVidPbmA==
+X-Google-Smtp-Source: ABdhPJxFt5NH+aQ23rcRWywz0BhAtkIDtoPtqvJFKvIMrFb9NzL/exqKlK+gwbRJjr79FuoJe+kirA==
+X-Received: by 2002:adf:d08d:: with SMTP id y13mr2203673wrh.313.1596621614876;
+        Wed, 05 Aug 2020 03:00:14 -0700 (PDT)
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from 1.8.8.2.4.4.9.8.7.6.b.0.9.5.0.7.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (1.8.8.2.4.4.9.8.7.6.b.0.9.5.0.7.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:7059:b67:8944:2881])
-        by smtp.gmail.com with ESMTPSA id f15sm1963730wmj.39.2020.08.05.02.50.03
+        by smtp.gmail.com with ESMTPSA id j24sm2251987wrb.49.2020.08.05.03.00.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Aug 2020 02:50:04 -0700 (PDT)
-Message-ID: <14aa33ffb8218838763ba61c809149365d92ab98.camel@linuxfoundation.org>
-Subject: Re: [yocto] Is http://downloads.yoctoproject.org/ down?
+        Wed, 05 Aug 2020 03:00:14 -0700 (PDT)
+Message-ID: <74e291b3cad363050f382fe58b1dc91f6ebbe43b.camel@linuxfoundation.org>
+Subject: Re: [yocto] Yocto host not found
 From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: scott.branden@broadcom.com, yocto@lists.yoctoproject.org
-Date: Wed, 05 Aug 2020 10:50:03 +0100
-In-Reply-To: <4061.1596576995601033488@lists.yoctoproject.org>
-References: <20200512131738.GQ11927@denix.org>
-	 <4061.1596576995601033488@lists.yoctoproject.org>
+To: rick.liu@broadcom.com, FLoraVLogs <eripflo@gmail.com>
+Cc: Michael Halstead <mhalstead@linuxfoundation.org>, Josef Holzmayr-Khosh
+	Amoz <jester@theyoctojester.info>, yocto@lists.yoctoproject.org
+Date: Wed, 05 Aug 2020 11:00:12 +0100
+In-Reply-To: <CAKmBsaa9mLYvA3gQfbR9vTW1F728Qz2Yb-qw5tKtR4iA2F-1bg@mail.gmail.com>
+References: 
+	<CAGhBkzxwg4q_E1h+x1uJK6PGY6x_j91HQq2ahWnyZZbO_SC=Zw@mail.gmail.com>
+	 <CAGhBkzyYq4HOqz7u-qenXMeSkKyoJtejXtHz0mscJp_Pd4GGjw@mail.gmail.com>
+	 <CADfgfoaUNu8KsN-JfspzSQpYKm+s-0nVvX-5O1MoRc+uUDcQCQ@mail.gmail.com>
+	 <CAGhBkzwBDJZ7Dxt6CtfUfZziDstLFaA6eSnho7ngB2+5Qxkz-Q@mail.gmail.com>
+	 <CAGhBkzxzXZEv4g0+D3KabG4ZbTwNJ6MEr_P9=CyneQZ32SaR9Q@mail.gmail.com>
+	 <CAGhBkzxZnZ+TK+k0b_kOFFGvtyJ0RAwz8iFGMsbtVY5RAz5pyw@mail.gmail.com>
+	 <CAEt6NwqMKnWxKqQEWhVcgAYnaxwD2KeC-G4KA1biMmdL2KBang@mail.gmail.com>
+	 <CAGhBkzxBtGuzkuT69UQZUL+4Q_YL8adoWd=kZZF5FQZLD2gO+w@mail.gmail.com>
+	 <CADfgfoYbR8nNgXZ+dfByGUJtGhhVrRZyaBYoCQ-fntr5OGUaMw@mail.gmail.com>
+	 <CAGhBkzwNrnGxSfipxXxqK0=GEznsjw0Vs7=QTFHRkpv=vQgH2w@mail.gmail.com>
+	 <CAKmBsaa9mLYvA3gQfbR9vTW1F728Qz2Yb-qw5tKtR4iA2F-1bg@mail.gmail.com>
 User-Agent: Evolution 3.36.3-0ubuntu1 
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Tue, 2020-08-04 at 14:36 -0700, Scott Branden via
-lists.yoctoproject.org wrote:
-> With downloads.yoctoproject.org down again this begs the question:
-> 
-> Why does uninative tarball get fetched by default from the internet
-> every time?
-> Why is it in not cached like every other tarball that is downloaded
-> by recipes?
-> The default behaviour for the yocto project should be to have the
-> tarball stored in the yocto cache such that it is not fetched every
-> time?
+On Tue, 2020-08-04 at 14:10 -0700, Rick Liu via lists.yoctoproject.org
+wrote:
+> Does http://downloads.yoctoproject.org/ have HA or hot-backup
+> machine?
+> Is there an instruction on how to create a  
+> http://downloads.yoctoproject.org/  local mirror and sync?
 
-Those are good questions. 
+The standard DL_DIR should be enough for normal builds to work, based
+on Scott's questions, it sounds like there is some issue somewhere
+which would be worth looking into. I don't see that issue locally or on
+the autobuilder infrastructure so its hard for me to say what is wrong.
 
-As far as I know on my own local builds, the uninative tarball *is*
-cached locally in DL_DIR. We don't see repeated downloads on the
-autobuilder either so it appears to work there too.
+Regarding HA or hot-backup, our resilience places are supposed to be
+that:
 
-If you're not seeing that it would definitely be something to
-investigate.
+a) DL_DIR should allow existing builds to work
+b) kernel.org has a partial mirror of the key components
+c) we just have to accept the autobuilder would be unavailable in the 
+   case of NAS failure until its repaired
+
+It sounds like something isn't working quite right for a) to be having
+an issue.
+
+We'd love to have more server infrastructure and have things like hot
+backup machines. Our budgets and infrastructure allow us to have what
+we have. I'd note that broadcom were once a silver member but dropped
+project membership, sadly :(. We do the best we can with what we have.
 
 Cheers,
 
 Richard
+
 
