@@ -1,103 +1,96 @@
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
- by mx.groups.io with SMTP id smtpd.web11.4961.1596626364417642073
+Received: from mail-qv1-f67.google.com (mail-qv1-f67.google.com [209.85.219.67])
+ by mx.groups.io with SMTP id smtpd.web12.6170.1596631495730116805
  for <yocto@lists.yoctoproject.org>;
- Wed, 05 Aug 2020 04:19:24 -0700
+ Wed, 05 Aug 2020 05:44:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=He8gr79b;
- spf=pass (domain: burtonini.com, ip: 209.85.208.171, mailfrom: ross@burtonini.com)
-Received: by mail-lj1-f171.google.com with SMTP id s16so31985230ljc.8
-        for <yocto@lists.yoctoproject.org>; Wed, 05 Aug 2020 04:19:24 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=VcfJJ/DM;
+ spf=pass (domain: gmail.com, ip: 209.85.219.67, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-qv1-f67.google.com with SMTP id w2so8531029qvh.12
+        for <yocto@lists.yoctoproject.org>; Wed, 05 Aug 2020 05:44:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8/BFvotyV16rGRGzCcfyG6KHbmyA4piW84HapIyHPvE=;
-        b=He8gr79bULxByTDIdUaond8sHZVejfF72xrYsM6odabmvHHz8U6x5qOSLq7XUL5dIY
-         sT9qHxoquZWDivNcujMQZTg4EZe7/l3MB+eUNRu6RnZEPA0FgdX8w+ySyAheVbgOkNXy
-         pM5/28BiwPRD0J8qAVoQ5EFArmz3hcjqr2lOTVZBjZ7t8KGIIa+3REYj1TjnDOwcWaGe
-         njMfSaJojhFCOtiV7gtcfG6BQacw4KCwNfNGVzQa6zgL/m9YSfRCUDmcWKn7bmKmdzd8
-         WLQZ9sHVzEW96Od5MoN7eqrDRji4ZPL507fzrz1ePki9s2UrrLYfGmuIqtSQ/6oXc6sz
-         R3Kw==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lWloM/B/KQ8bBWozFc8zbTm93d6p5RbFw+xUFGJbMfQ=;
+        b=VcfJJ/DM3TIyflm1XByse3fQjxzGUBrAg3KkZ9kyDsG8hzgimhIacJUyaV3snd6dwa
+         YJEhClEsmKf5/ADmVj6Vy7WUM5jXNTKt4BoJUeUv2pRdTh+I2ugA3ViaRRLD/kbmMdOu
+         y2ozkTyhHTaNdAol+58WvR4W6sVkU+7SQtDqXd0tZIOrEa85iFnd3TcvTmD9o4dVbdBv
+         000PBWOi1NMKEgjs4a+k7XTsZpiZrBKOZ6izxHGN5LkIz3TNuoN2tqyG2xeNWMi1KU5A
+         4i2ysVhriVST3eiWoll6KYegTwVyK+UA+u/KxducKIMRNzJjPOUPnpFz5CcaZg43kDs7
+         fYrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8/BFvotyV16rGRGzCcfyG6KHbmyA4piW84HapIyHPvE=;
-        b=I0BiFlCtTf3RbinnE5/qjvTRdFaaVuwdwRrGRGoWy5QcfT57RjZuFCOTCCiUgREPbD
-         sKD1pCyOdCLP0cCOAhW3FcMOwE6MxDB50n/EJ9wniNLhMz4mq6uA4fXPG8fx45mRQ6m/
-         1SJSDc3MCmwPfnYtjX0HbHzfuHTnC103a5WVkHeWr+JuvIbOKvk4ILqw/2G9P/ptAqM+
-         BEwHRUenf0KZ3l90kaBnRiiy3bo57PLsT4BVzTZisURrjJEWo51FY6/+CYkeD1cJlAJK
-         MiGMZt+pxPptFPVEthXTDvz4SavqOTZa6d/om3GqeAiLgsjaHL5BunP+L6w6qyTSwYKY
-         84Vw==
-X-Gm-Message-State: AOAM531MNd2NIB0C59oehhqxXTn8KfG+lqMgocnnRuWbUKTmJBf0JOJt
-	4AgE5AsOeOowyVQCM5+ZiQm1iCM429IyNocDcCS2EQ==
-X-Google-Smtp-Source: ABdhPJwLupM2LfDnwv5F+z/7lpzTGdZxG2puX0dWo3ur3FKBPFpazEqHUwwhkFd22J+VG9pe+nUjfRXJNkb9wMEz27o=
-X-Received: by 2002:a2e:97d3:: with SMTP id m19mr1261812ljj.340.1596626362539;
- Wed, 05 Aug 2020 04:19:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200805071423.Horde.gFLTeIPgkH6Zz45SlgRXx8H@crashcourse.ca>
-In-Reply-To: <20200805071423.Horde.gFLTeIPgkH6Zz45SlgRXx8H@crashcourse.ca>
-From: "Ross Burton" <ross@burtonini.com>
-Date: Wed, 5 Aug 2020 12:19:11 +0100
-Message-ID: <CAAnfSTt254oxeTYf8+21ZTa0ZR+0293P9JMC=RSSC4YjhDOMjw@mail.gmail.com>
-Subject: Re: [yocto] when is it appropriate to push recipe enhancements (eg., class-nativesdk) upstream?
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lWloM/B/KQ8bBWozFc8zbTm93d6p5RbFw+xUFGJbMfQ=;
+        b=o2PJ6TQrgwCbQmWqlQET/XlocYoK3SZugPG+Kg/pJDio5d057EMHTk1R4xNZ4IUooT
+         ZQ46BT+LaWqbsutz76dSyR5egUhJp8YMJnq+FP7XjL/vqznkM2VWuT+Wh5uxFpueorhO
+         iJ5iagANddhVfuT6bG4ZVGZ0EW1FdWSCRX1MnyyoyKWP4HPBXct40GVYe2WccDHuHPaM
+         JMH6ef7hXJSjhhhhON4VMn7DYWxERPHxKzNovWGl650xx8p8Zzg8+2MkSrs/RW9t3bfX
+         o11BSWzmTDGHVRTL4euCPYwLOOAJHuD13O0Jh702diAfYGrBQ73FI8Itw6LWHsduFfRj
+         S8zg==
+X-Gm-Message-State: AOAM53363YYS4jS6sk2eNEfy6QLRQK1sS/1szHSsCoLqFsl/MCKolOJP
+	dicorwsnnuxSZ42+rTLupvY=
+X-Google-Smtp-Source: ABdhPJwiBWRCHDZCv4OczV9YShNbvjKCv7OWRZ+fypRPFDaZ3ZnwoM3m9dQNcvgGi9BhmZ+IAiSmSg==
+X-Received: by 2002:a0c:f007:: with SMTP id z7mr3349248qvk.53.1596631494819;
+        Wed, 05 Aug 2020 05:44:54 -0700 (PDT)
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from localhost.localdomain (CPE04d4c4975b80-CM64777d5e8820.cpe.net.cable.rogers.com. [174.112.240.214])
+        by smtp.gmail.com with ESMTPSA id t127sm1595883qkc.100.2020.08.05.05.44.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Aug 2020 05:44:54 -0700 (PDT)
+From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
+To: richard.purdie@linuxfoundation.org
 Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: [PATCH] yocto-bsps: update reference BSPs to 5.4.54
+Date: Wed,  5 Aug 2020 08:44:52 -0400
+Message-Id: <20200805124452.42477-1-bruce.ashfield@gmail.com>
+X-Mailer: git-send-email 2.19.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-For simple things like adding native/nativesdk then pushing them
-upstream is easy and simple.  I'm trying to avoid commenting on that
-specific bbappend...
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
 
-Ross
+Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
+---
 
-On Wed, 5 Aug 2020 at 12:14, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->
-> based on recipe from an existing (zeus-based) project, colleague asks
-> about a bbappend file, and whether it's appropriate that it be submitted
-> upstream as a patch -- this example involves "pciutils" recipe from
-> oe-core, but the question more generally covers any number of recipes.
->
-> this particular code base has the following pciutils_%.bbappend file:
->
-> === start ===
-> PACKAGECONFIG_class-nativesdk = ""
->
-> DISABLE_STATIC_pn-nativesdk-pciutils = ""
->
-> # Need nativesdk-specific do_install due to ${sbindir} being set to usr/bin
-> do_install_class-nativesdk () {
->          oe_runmake DESTDIR=${D} install install-lib
->
->          oe_multilib_header pci/config.h
-> }
->
-> BBCLASSEXTEND += "nativesdk"
-> === end ===
->
-> i'm looking at this for the first time and, sure, it appears to
-> extend the pciutils recipe for nativesdk. but if that's true, then
-> would it not make sense to submit that as a patch?
->
-> the current zeus "pciutils_3.6.2.bb" recipe doesn't extend the
-> recipe for nativesdk, so if this bbappend file actually correctly
-> does that, would it not make sense to contribute that enhancement
-> back?
->
-> in general, there appear to be numerous recipes in this code base
-> that do little more than extend the recipe for native and nativesdk
-> because the oe-core (or meta-oe) recipes don't do that.
->
-> am i thinking about this correctly? it seems that, if local bbappend
-> content fixes or enhances a recipe, it would make sense to push that
-> fix so as to not have to carry around the bbappend files.
->
-> thoughts? i'm not passing any judgment on the correctness of this
-> particular bbappend file, i'm more interested in the general
-> philosophy of pushing improvements to not have to keep carrying
-> them around in the local code base.
->
-> rday
->
->
-> 
+This also picks up the binutils fix.
+
+Bruce
+
+ .../linux/linux-yocto_5.4.bbappend               | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.4.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.4.bbappend
+index 626748541a..2c73eb2f67 100644
+--- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.4.bbappend
++++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.4.bbappend
+@@ -7,17 +7,17 @@ KMACHINE_genericx86 ?= "common-pc"
+ KMACHINE_genericx86-64 ?= "common-pc-64"
+ KMACHINE_beaglebone-yocto ?= "beaglebone"
+ 
+-SRCREV_machine_genericx86 ?= "ec485bd4afef57715eb45ba331b04b3f941e43bb"
+-SRCREV_machine_genericx86-64 ?= "ec485bd4afef57715eb45ba331b04b3f941e43bb"
+-SRCREV_machine_edgerouter ?= "ec485bd4afef57715eb45ba331b04b3f941e43bb"
+-SRCREV_machine_beaglebone-yocto ?= "ec485bd4afef57715eb45ba331b04b3f941e43bb"
++SRCREV_machine_genericx86 ?= "9fc2fb2e73466a520ee9a3c48b3ca2f5b21415dc"
++SRCREV_machine_genericx86-64 ?= "9fc2fb2e73466a520ee9a3c48b3ca2f5b21415dc"
++SRCREV_machine_edgerouter ?= "9fc2fb2e73466a520ee9a3c48b3ca2f5b21415dc"
++SRCREV_machine_beaglebone-yocto ?= "9fc2fb2e73466a520ee9a3c48b3ca2f5b21415dc"
+ 
+ COMPATIBLE_MACHINE_genericx86 = "genericx86"
+ COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
+ COMPATIBLE_MACHINE_edgerouter = "edgerouter"
+ COMPATIBLE_MACHINE_beaglebone-yocto = "beaglebone-yocto"
+ 
+-LINUX_VERSION_genericx86 = "5.4.49"
+-LINUX_VERSION_genericx86-64 = "5.4.49"
+-LINUX_VERSION_edgerouter = "5.4.49"
+-LINUX_VERSION_beaglebone-yocto = "5.4.49"
++LINUX_VERSION_genericx86 = "5.4.54"
++LINUX_VERSION_genericx86-64 = "5.4.54"
++LINUX_VERSION_edgerouter = "5.4.54"
++LINUX_VERSION_beaglebone-yocto = "5.4.54"
+-- 
+2.19.1
+
