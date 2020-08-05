@@ -1,96 +1,107 @@
-Received: from mail-qv1-f67.google.com (mail-qv1-f67.google.com [209.85.219.67])
- by mx.groups.io with SMTP id smtpd.web12.6170.1596631495730116805
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.6647.1596632979749217350
  for <yocto@lists.yoctoproject.org>;
- Wed, 05 Aug 2020 05:44:56 -0700
+ Wed, 05 Aug 2020 06:09:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=VcfJJ/DM;
- spf=pass (domain: gmail.com, ip: 209.85.219.67, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-qv1-f67.google.com with SMTP id w2so8531029qvh.12
-        for <yocto@lists.yoctoproject.org>; Wed, 05 Aug 2020 05:44:55 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=KYO3m2O8;
+ spf=softfail (domain: linuxfoundation.org, ip: 140.211.169.56, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 5356AE01F8B; Wed,  5 Aug 2020 06:09:39 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.221.41 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A3DDE01F24
+	for <yocto@yoctoproject.org>; Wed,  5 Aug 2020 06:09:37 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id y3so40646476wrl.4
+        for <yocto@yoctoproject.org>; Wed, 05 Aug 2020 06:09:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lWloM/B/KQ8bBWozFc8zbTm93d6p5RbFw+xUFGJbMfQ=;
-        b=VcfJJ/DM3TIyflm1XByse3fQjxzGUBrAg3KkZ9kyDsG8hzgimhIacJUyaV3snd6dwa
-         YJEhClEsmKf5/ADmVj6Vy7WUM5jXNTKt4BoJUeUv2pRdTh+I2ugA3ViaRRLD/kbmMdOu
-         y2ozkTyhHTaNdAol+58WvR4W6sVkU+7SQtDqXd0tZIOrEa85iFnd3TcvTmD9o4dVbdBv
-         000PBWOi1NMKEgjs4a+k7XTsZpiZrBKOZ6izxHGN5LkIz3TNuoN2tqyG2xeNWMi1KU5A
-         4i2ysVhriVST3eiWoll6KYegTwVyK+UA+u/KxducKIMRNzJjPOUPnpFz5CcaZg43kDs7
-         fYrg==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=IH06UGc24vx0Y28xNbhiSQjdHF9r+nz8Yo8H56BDczc=;
+        b=KYO3m2O85BFX9LjZHLx8hJy6QKmCbW1AVB2jzLjMPn70UIcsRpkGcEdKsi8wHNJfBZ
+         7OuhFaKeIjlvhHd6fzV3vYbSW09f/kLuKQI6CVV5kbA3RTqXhFjCLQw4XntO3zu6hzkD
+         QNRtiAsfp9eqWJ0qQQo03lxyQIzNsDZOl+OFU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lWloM/B/KQ8bBWozFc8zbTm93d6p5RbFw+xUFGJbMfQ=;
-        b=o2PJ6TQrgwCbQmWqlQET/XlocYoK3SZugPG+Kg/pJDio5d057EMHTk1R4xNZ4IUooT
-         ZQ46BT+LaWqbsutz76dSyR5egUhJp8YMJnq+FP7XjL/vqznkM2VWuT+Wh5uxFpueorhO
-         iJ5iagANddhVfuT6bG4ZVGZ0EW1FdWSCRX1MnyyoyKWP4HPBXct40GVYe2WccDHuHPaM
-         JMH6ef7hXJSjhhhhON4VMn7DYWxERPHxKzNovWGl650xx8p8Zzg8+2MkSrs/RW9t3bfX
-         o11BSWzmTDGHVRTL4euCPYwLOOAJHuD13O0Jh702diAfYGrBQ73FI8Itw6LWHsduFfRj
-         S8zg==
-X-Gm-Message-State: AOAM53363YYS4jS6sk2eNEfy6QLRQK1sS/1szHSsCoLqFsl/MCKolOJP
-	dicorwsnnuxSZ42+rTLupvY=
-X-Google-Smtp-Source: ABdhPJwiBWRCHDZCv4OczV9YShNbvjKCv7OWRZ+fypRPFDaZ3ZnwoM3m9dQNcvgGi9BhmZ+IAiSmSg==
-X-Received: by 2002:a0c:f007:: with SMTP id z7mr3349248qvk.53.1596631494819;
-        Wed, 05 Aug 2020 05:44:54 -0700 (PDT)
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from localhost.localdomain (CPE04d4c4975b80-CM64777d5e8820.cpe.net.cable.rogers.com. [174.112.240.214])
-        by smtp.gmail.com with ESMTPSA id t127sm1595883qkc.100.2020.08.05.05.44.53
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=IH06UGc24vx0Y28xNbhiSQjdHF9r+nz8Yo8H56BDczc=;
+        b=GBfNafsdqZ4M/t3cYspHY/V1eY+EpghdhMJ0wzLX9F7trrproMP5D1AGNp39ZvAmOO
+         NuDooMc66ULYZAmfDf+NBmjmP4o0UEc4H4TqLe6qeYaL3+vsS5gU8yiwLJ4XSUSEP/tU
+         bEhLlBlmLx09Favo4mHeyTATHd+w0skyiy7ZCMx6dFbs/Ji50UK+2vf1xAWj4mhxIAJG
+         Trbg3bsm5Ns3FsWxsMNvo7xm/TxUGQmQuqXFm3qdci9NNiDdMEwuKWorx+5n48plARIX
+         ehr5s/gWTJb37bQEqL7r3CPvHdZj9WPGkjqGEksDfLfSjGUbRN+4VCn8RXG8xC1WexuW
+         EBYw==
+X-Gm-Message-State: AOAM531/grz1bqOPjsBOHHvc6BAuj5CgkEB972rOK3JTuy669qe35Mf4
+	PDifKIMeoDosjzEyfUIsZNoS6g==
+X-Google-Smtp-Source: ABdhPJwmyf6++tPeC5yZRAbVZvvklSLFNwfJpCPbSwNCfanA79tgoCjuSGneECj4u4S1h2/6LeDVvA==
+X-Received: by 2002:adf:ed85:: with SMTP id c5mr2740048wro.307.1596632977017;
+        Wed, 05 Aug 2020 06:09:37 -0700 (PDT)
+Received: from 1.8.8.2.4.4.9.8.7.6.b.0.9.5.0.7.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (1.8.8.2.4.4.9.8.7.6.b.0.9.5.0.7.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:7059:b67:8944:2881])
+        by smtp.gmail.com with ESMTPSA id b8sm2722036wrv.4.2020.08.05.06.09.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Aug 2020 05:44:54 -0700 (PDT)
-From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
-To: richard.purdie@linuxfoundation.org
-Cc: yocto@lists.yoctoproject.org
-Subject: [PATCH] yocto-bsps: update reference BSPs to 5.4.54
-Date: Wed,  5 Aug 2020 08:44:52 -0400
-Message-Id: <20200805124452.42477-1-bruce.ashfield@gmail.com>
-X-Mailer: git-send-email 2.19.1
+        Wed, 05 Aug 2020 06:09:36 -0700 (PDT)
+Message-ID: <46f432ee580bbabf1b4378a89cbe49829da4ce0a.camel@linuxfoundation.org>
+Subject: Re: Mirroring meta-kernel on git.yoctoproject.org
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Paul Barker <pbarker@konsulko.com>, Yocto discussion list
+	 <yocto@yoctoproject.org>
+Cc: Ross Burton <ross@burtonini.com>, Michael Halstead
+	 <mhalstead@linuxfoundation.org>
+Date: Wed, 05 Aug 2020 14:09:33 +0100
+In-Reply-To: <CAM9ZRVvRYmxjUcm7BmCX6ArPAn7JaEhGukbU4zGhvedmc8NcFA@mail.gmail.com>
+References: 
+	<CAM9ZRVvRYmxjUcm7BmCX6ArPAn7JaEhGukbU4zGhvedmc8NcFA@mail.gmail.com>
+User-Agent: Evolution 3.36.3-0ubuntu1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
+On Mon, 2020-08-03 at 09:56 +0100, Paul Barker wrote:
+> I'd like to get the meta-kernel layer mirrored on
+> git.yoctoproject.org
+> so that we've got a backup available in case of any issues with
+> GitLab. This has been requested by one of our users
+> (https://gitlab.com/openembedded/community/meta-kernel/-/issues/11).
+> I
+> also think it's important now that meta-arm-bsp and a few other
+> layers
+> depend on meta-kernel.
+> 
+> I can enable an automatic push from GitLab whenever the repository is
+> updated so all we would need on git.yoctoproject.org is a meta-kernel
+> repository and push access from the relevant SSH keys.
 
-Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
----
+I've had to think carefully about this and I think we can only say no. 
 
-This also picks up the binutils fix.
+The reason is the namespacing. This is taking a special namespace and
+its doing it by stealth, not a conscious decision. If we do this, its
+going to create confusion for users and also create friction with other
+Yocto Project components.
 
-Bruce
+This was warned about when "meta-kernel" was started and now its coming
+back to bite us :(.
 
- .../linux/linux-yocto_5.4.bbappend               | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+I suspect this is something which will you'll want to appeal against
+and I should therefore refer it to the YP TSC?
 
-diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.4.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.4.bbappend
-index 626748541a..2c73eb2f67 100644
---- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.4.bbappend
-+++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.4.bbappend
-@@ -7,17 +7,17 @@ KMACHINE_genericx86 ?= "common-pc"
- KMACHINE_genericx86-64 ?= "common-pc-64"
- KMACHINE_beaglebone-yocto ?= "beaglebone"
- 
--SRCREV_machine_genericx86 ?= "ec485bd4afef57715eb45ba331b04b3f941e43bb"
--SRCREV_machine_genericx86-64 ?= "ec485bd4afef57715eb45ba331b04b3f941e43bb"
--SRCREV_machine_edgerouter ?= "ec485bd4afef57715eb45ba331b04b3f941e43bb"
--SRCREV_machine_beaglebone-yocto ?= "ec485bd4afef57715eb45ba331b04b3f941e43bb"
-+SRCREV_machine_genericx86 ?= "9fc2fb2e73466a520ee9a3c48b3ca2f5b21415dc"
-+SRCREV_machine_genericx86-64 ?= "9fc2fb2e73466a520ee9a3c48b3ca2f5b21415dc"
-+SRCREV_machine_edgerouter ?= "9fc2fb2e73466a520ee9a3c48b3ca2f5b21415dc"
-+SRCREV_machine_beaglebone-yocto ?= "9fc2fb2e73466a520ee9a3c48b3ca2f5b21415dc"
- 
- COMPATIBLE_MACHINE_genericx86 = "genericx86"
- COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
- COMPATIBLE_MACHINE_edgerouter = "edgerouter"
- COMPATIBLE_MACHINE_beaglebone-yocto = "beaglebone-yocto"
- 
--LINUX_VERSION_genericx86 = "5.4.49"
--LINUX_VERSION_genericx86-64 = "5.4.49"
--LINUX_VERSION_edgerouter = "5.4.49"
--LINUX_VERSION_beaglebone-yocto = "5.4.49"
-+LINUX_VERSION_genericx86 = "5.4.54"
-+LINUX_VERSION_genericx86-64 = "5.4.54"
-+LINUX_VERSION_edgerouter = "5.4.54"
-+LINUX_VERSION_beaglebone-yocto = "5.4.54"
--- 
-2.19.1
+Cheers,
+
+Richard
+
 
