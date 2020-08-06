@@ -1,86 +1,188 @@
-Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
- by mx.groups.io with SMTP id smtpd.web11.285.1596690202936979200
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+ by mx.groups.io with SMTP id smtpd.web12.9047.1596728362353745589
  for <yocto@lists.yoctoproject.org>;
- Wed, 05 Aug 2020 22:03:23 -0700
+ Thu, 06 Aug 2020 08:39:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: yi.zhao@windriver.com)
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: mzeng@windriver.com)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 07652S7A003442
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Wed, 5 Aug 2020 22:02:54 -0700
-Received: from localhost (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Wed, 5 Aug
- 2020 22:02:22 -0700
-From: "Yi Zhao" <yi.zhao@windriver.com>
-To: <yocto@lists.yoctoproject.org>, <joe@deserted.net>
-Subject: [meta-selinux][PATCH] refpolicy: update file context for ifconfig
-Date: Thu, 6 Aug 2020 13:02:06 +0800
-Message-ID: <20200806050206.32003-1-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.17.1
+	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 076FdHnU014837
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
+	for <yocto@lists.yoctoproject.org>; Thu, 6 Aug 2020 08:39:17 -0700 (PDT)
+Received: from yow-lpggp3.wrs.com (128.224.137.13) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server id 14.3.487.0; Thu, 6 Aug 2020
+ 08:39:17 -0700
+Received: by yow-lpggp3.wrs.com (Postfix, from userid 21151)	id C9645200EE;
+ Thu,  6 Aug 2020 11:39:16 -0400 (EDT)
+From: "Matthew" <matthew.zeng@windriver.com>
+To: <yocto@lists.yoctoproject.org>
+Subject: [matchbox-desktop][PATCH] Add SPDX-License-Identifier: GPL-2.0-or-later
+Date: Thu, 6 Aug 2020 11:39:16 -0400
+Message-ID: <20200806153916.26645-1-matthew.zeng@windriver.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.174]
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-The ifconfig was moved from sbin to bin with oe-core commit:
-c9caff40ff61c08e24a84922f8d7c8e9cdf8883e. Update the file context for
-it.
-
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+Signed-off-by: Mingde (Matthew) Zeng <matthew.zeng@windriver.com>
 ---
- ...ork-update-file-context-for-ifconfig.patch | 31 +++++++++++++++++++
- .../refpolicy/refpolicy_common.inc            |  1 +
- 2 files changed, 32 insertions(+)
- create mode 100644 recipes-security/refpolicy/refpolicy/0081-fc-sysnetwork-update-file-context-for-ifconfig.patch
+ modules/dotdesktop.c        |  2 ++
+ modules/simplefilebrowser.c |  2 ++
+ modules/tasks.c             |  2 ++
+ src/mbdesktop.c             | 12 ++----------
+ src/mbdesktop.h             |  2 ++
+ src/mbdesktop_item.c        |  2 ++
+ src/mbdesktop_item.h        |  2 ++
+ src/mbdesktop_module.c      |  2 ++
+ src/mbdesktop_module.h      |  2 ++
+ src/mbdesktop_view.c        |  2 ++
+ src/mbdesktop_view.h        |  2 ++
+ src/mbdesktop_win_plugin.c  |  2 ++
+ src/mbdesktop_win_plugin.h  |  2 ++
+ 13 files changed, 26 insertions(+), 10 deletions(-)
 
-diff --git a/recipes-security/refpolicy/refpolicy/0081-fc-sysnetwork-update-file-context-for-ifconfig.patch b/recipes-security/refpolicy/refpolicy/0081-fc-sysnetwork-update-file-context-for-ifconfig.patch
-new file mode 100644
-index 0000000..eaecf40
---- /dev/null
-+++ b/recipes-security/refpolicy/refpolicy/0081-fc-sysnetwork-update-file-context-for-ifconfig.patch
-@@ -0,0 +1,31 @@
-+From e6b303444988717c725a71db7b21417839321463 Mon Sep 17 00:00:00 2001
-+From: Yi Zhao <yi.zhao@windriver.com>
-+Date: Tue, 4 Aug 2020 16:48:12 +0800
-+Subject: [PATCH] fc/sysnetwork: update file context for ifconfig
+diff --git a/modules/dotdesktop.c b/modules/dotdesktop.c
+index 22dde99..372f969 100644
+--- a/modules/dotdesktop.c
++++ b/modules/dotdesktop.c
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
 +
-+The ifconfig was moved from sbin to bin with oe-core commit:
-+c9caff40ff61c08e24a84922f8d7c8e9cdf8883e. Update the file context for
-+it.
-+
-+Upstream-Status: Inappropriate [embedded specific]
-+
-+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-+---
-+ policy/modules/system/sysnetwork.fc | 1 +
-+ 1 file changed, 1 insertion(+)
-+
-+diff --git a/policy/modules/system/sysnetwork.fc b/policy/modules/system/sysnetwork.fc
-+index d8902d725..9ec4eefb7 100644
-+--- a/policy/modules/system/sysnetwork.fc
-++++ b/policy/modules/system/sysnetwork.fc
-+@@ -43,6 +43,7 @@ ifdef(`distro_redhat',`
-+ /usr/bin/dhcpcd		        --	gen_context(system_u:object_r:dhcpc_exec_t,s0)
-+ /usr/bin/ethtool		    --	gen_context(system_u:object_r:ifconfig_exec_t,s0)
-+ /usr/bin/ifconfig		    --	gen_context(system_u:object_r:ifconfig_exec_t,s0)
-++/usr/bin/ifconfig\.net-tools		--	gen_context(system_u:object_r:ifconfig_exec_t,s0)
-+ /usr/bin/ip			        --	gen_context(system_u:object_r:ifconfig_exec_t,s0)
-+ /usr/bin/ipx_configure		--	gen_context(system_u:object_r:ifconfig_exec_t,s0)
-+ /usr/bin/ipx_interface		--	gen_context(system_u:object_r:ifconfig_exec_t,s0)
-+-- 
-+2.17.1
-+
-diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
-index 46cbfa3..6600af5 100644
---- a/recipes-security/refpolicy/refpolicy_common.inc
-+++ b/recipes-security/refpolicy/refpolicy_common.inc
-@@ -98,6 +98,7 @@ SRC_URI += " \
-         file://0078-policy-modules-system-systemd-systemd-gpt-auto-gener.patch \
-         file://0079-policy-modules-services-ntp-make-nptd_t-MLS-trusted-.patch \
-         file://0080-policy-modules-services-avahi-make-avahi_t-MLS-trust.patch \
-+        file://0081-fc-sysnetwork-update-file-context-for-ifconfig.patch \
-         "
- 
- S = "${WORKDIR}/refpolicy"
--- 
-2.17.1
+ #include "mbdesktop_module.h"
 
+ #ifdef USE_LIBSN
+diff --git a/modules/simplefilebrowser.c b/modules/simplefilebrowser.c
+index e68c481..1118df1 100644
+--- a/modules/simplefilebrowser.c
++++ b/modules/simplefilebrowser.c
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++
+ #include "mbdesktop_module.h"
+ #include <sys/types.h>
+ #include <sys/stat.h>
+diff --git a/modules/tasks.c b/modules/tasks.c
+index 5437c13..ed8d1a7 100644
+--- a/modules/tasks.c
++++ b/modules/tasks.c
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++
+ #include "mbdesktop_module.h"
+
+ static int trapped_error_code = 0;
+diff --git a/src/mbdesktop.c b/src/mbdesktop.c
+index 90dc364..309d84f 100644
+--- a/src/mbdesktop.c
++++ b/src/mbdesktop.c
+@@ -1,17 +1,9 @@
+ /*
+-  mbdesktop - a desktop for handhelds etc.
++  mbdesktop - a desktop for handhelds etc.
+
+    Copyright 2002 Matthew Allum
+
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
++   SPDX-License-Identifier: GPL-2.0-or-later
+ */
+
+
+diff --git a/src/mbdesktop.h b/src/mbdesktop.h
+index cbb4aff..4231e58 100644
+--- a/src/mbdesktop.h
++++ b/src/mbdesktop.h
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++
+ #ifndef _HAVE_MBDESKTOP_H
+ #define _HAVE_MBDESKTOP_H
+
+diff --git a/src/mbdesktop_item.c b/src/mbdesktop_item.c
+index 4bd7dd7..e7e7fcf 100644
+--- a/src/mbdesktop_item.c
++++ b/src/mbdesktop_item.c
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++
+ #include "mbdesktop_item.h"
+ #include "mbdesktop_module.h"
+ #include "md5.h"
+diff --git a/src/mbdesktop_item.h b/src/mbdesktop_item.h
+index 6eb7770..073f659 100644
+--- a/src/mbdesktop_item.h
++++ b/src/mbdesktop_item.h
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++
+ #ifndef _HAVE_MBDESKTOP_ITEM_H
+ #define _HAVE_MBDESKTOP_ITEM_H
+
+diff --git a/src/mbdesktop_module.c b/src/mbdesktop_module.c
+index 7c961b2..4c18b48 100644
+--- a/src/mbdesktop_module.c
++++ b/src/mbdesktop_module.c
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++
+ #include "mbdesktop_module.h"
+
+ MBDesktopItem *
+diff --git a/src/mbdesktop_module.h b/src/mbdesktop_module.h
+index c31e091..dde93bc 100644
+--- a/src/mbdesktop_module.h
++++ b/src/mbdesktop_module.h
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++
+ #ifndef _HAVE_MBDESKTOP_MODULE_H
+ #define _HAVE_MBDESKTOP_MODULE_H
+
+diff --git a/src/mbdesktop_view.c b/src/mbdesktop_view.c
+index 8ee20f6..0b552c0 100644
+--- a/src/mbdesktop_view.c
++++ b/src/mbdesktop_view.c
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++
+ #include "mbdesktop_view.h"
+
+ static void
+diff --git a/src/mbdesktop_view.h b/src/mbdesktop_view.h
+index 44fcffc..659ea35 100644
+--- a/src/mbdesktop_view.h
++++ b/src/mbdesktop_view.h
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++
+ #ifndef _HAVE_MBDESKTOP_VIEW_H
+ #define _HAVE_MBDESKTOP_VIEW_H
+
+diff --git a/src/mbdesktop_win_plugin.c b/src/mbdesktop_win_plugin.c
+index e302f9e..a2f5fb1 100644
+--- a/src/mbdesktop_win_plugin.c
++++ b/src/mbdesktop_win_plugin.c
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++
+ #include "mbdesktop.h"
+ #include "mbdesktop_win_plugin.h"
+
+diff --git a/src/mbdesktop_win_plugin.h b/src/mbdesktop_win_plugin.h
+index 2211b23..8a78233 100644
+--- a/src/mbdesktop_win_plugin.h
++++ b/src/mbdesktop_win_plugin.h
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++
+ #ifndef _HAVE_MBDESKTOP_WIN_PLUGIN_H
+ #define _HAVE_MBDESKTOP_WIN_PLUGIN_H
+
+--
+2.27.0
