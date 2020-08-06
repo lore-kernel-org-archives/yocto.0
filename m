@@ -1,188 +1,81 @@
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
- by mx.groups.io with SMTP id smtpd.web12.9047.1596728362353745589
+Received: from resqmta-ch2-11v.sys.comcast.net (resqmta-ch2-11v.sys.comcast.net [69.252.207.43])
+ by mx.groups.io with SMTP id smtpd.web11.9339.1596728723859237620
  for <yocto@lists.yoctoproject.org>;
- Thu, 06 Aug 2020 08:39:22 -0700
+ Thu, 06 Aug 2020 08:45:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: mzeng@windriver.com)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 076FdHnU014837
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Thu, 6 Aug 2020 08:39:17 -0700 (PDT)
-Received: from yow-lpggp3.wrs.com (128.224.137.13) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server id 14.3.487.0; Thu, 6 Aug 2020
- 08:39:17 -0700
-Received: by yow-lpggp3.wrs.com (Postfix, from userid 21151)	id C9645200EE;
- Thu,  6 Aug 2020 11:39:16 -0400 (EDT)
-From: "Matthew" <matthew.zeng@windriver.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: [matchbox-desktop][PATCH] Add SPDX-License-Identifier: GPL-2.0-or-later
-Date: Thu, 6 Aug 2020 11:39:16 -0400
-Message-ID: <20200806153916.26645-1-matthew.zeng@windriver.com>
-X-Mailer: git-send-email 2.27.0
+ dkim=pass header.i=@comcast.net header.s=20190202a header.b=p+4R1rHZ;
+ spf=pass (domain: comcast.net, ip: 69.252.207.43, mailfrom: rprowel@comcast.net)
+Received: from resomta-ch2-19v.sys.comcast.net ([69.252.207.115])
+	by resqmta-ch2-11v.sys.comcast.net with ESMTP
+	id 3hVWkUyOSPdj93i54k0Q5k; Thu, 06 Aug 2020 15:45:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+	s=20190202a; t=1596728722;
+	bh=wDHY641cV9HQa9DGxJC2p/hAoRWsyNxXsiQh/znE/Ew=;
+	h=Received:Received:To:From:Subject:Message-ID:Date:MIME-Version:
+	 Content-Type;
+	b=p+4R1rHZ8jdRHsF3ERexwAc+JiSqQcA2rnacxDTINJZ5dqPcZHx0lgTVvDjJTirkn
+	 CjEg/W04iOZid0kZYmYtDzWTqB9yib5lh2Q9U8hrW5RHSjZ4EEP5VSwqaIFnDEjys0
+	 PD4607ONHK+1WoIso2AqLFk9h4THyjmJ/rWdedEvHrkwKJm489eiMPctTn61PPdum7
+	 uR3Dvypa4MqNuxLdmCeeT54jhkKGd1S6ktSR7j5X516WLeUfK9o473VNI5JoDu1qiW
+	 M6DI2IPOJWwIzFF97IRf3aeVpqBbE7rjZoI8b7nKSqRXMvkC6Wg3dyyhH8BVI38l/m
+	 U24v7FaW0XOiQ==
+Received: from [10.1.11.102] ([73.174.24.42])
+	by resomta-ch2-19v.sys.comcast.net with ESMTPSA
+	id 3i53kzu8b4vI43i54kyWPU; Thu, 06 Aug 2020 15:45:22 +0000
+X-Xfinity-VAAS: gggruggvucftvghtrhhoucdtuddrgeduiedrkedtgdelgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucevohhmtggrshhtqdftvghsihdpqfgfvfdppffquffrtefokffrnecuuegrihhlohhuthemuceftddtnecunecujfgurhepvffhuffkffgfgggtgfesthejredttdefheenucfhrhhomheptfhosgcurfhrohifvghluceorhhprhhofigvlhestghomhgtrghsthdrnhgvtheqnecuggftrfgrthhtvghrnhepieetteehhfdvkeetgfekhfdvhfegveefheeuuddtheeffeevffelueeiueeifeetnecukfhppeejfedrudejgedrvdegrdegvdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhephhgvlhhopegluddtrddurdduuddruddtvdgnpdhinhgvthepjeefrddujeegrddvgedrgedvpdhmrghilhhfrhhomheprhhprhhofigvlhestghomhgtrghsthdrnhgvthdprhgtphhtthhopeihohgtthhosehlihhsthhsrdihohgtthhophhrohhjvggtthdrohhrgh
+X-Xfinity-VMeta: sc=0.00;st=legit
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+From: "Rob Prowel" <rprowel@comcast.net>
+Subject: out of kernel custom module build fails
+Message-ID: <dcbdee93-a37d-a870-2d11-bdf7bfdef3fc@comcast.net>
+Date: Thu, 6 Aug 2020 11:45:21 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-
-Signed-off-by: Mingde (Matthew) Zeng <matthew.zeng@windriver.com>
----
- modules/dotdesktop.c        |  2 ++
- modules/simplefilebrowser.c |  2 ++
- modules/tasks.c             |  2 ++
- src/mbdesktop.c             | 12 ++----------
- src/mbdesktop.h             |  2 ++
- src/mbdesktop_item.c        |  2 ++
- src/mbdesktop_item.h        |  2 ++
- src/mbdesktop_module.c      |  2 ++
- src/mbdesktop_module.h      |  2 ++
- src/mbdesktop_view.c        |  2 ++
- src/mbdesktop_view.h        |  2 ++
- src/mbdesktop_win_plugin.c  |  2 ++
- src/mbdesktop_win_plugin.h  |  2 ++
- 13 files changed, 26 insertions(+), 10 deletions(-)
-
-diff --git a/modules/dotdesktop.c b/modules/dotdesktop.c
-index 22dde99..372f969 100644
---- a/modules/dotdesktop.c
-+++ b/modules/dotdesktop.c
-@@ -1,3 +1,5 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
- #include "mbdesktop_module.h"
-
- #ifdef USE_LIBSN
-diff --git a/modules/simplefilebrowser.c b/modules/simplefilebrowser.c
-index e68c481..1118df1 100644
---- a/modules/simplefilebrowser.c
-+++ b/modules/simplefilebrowser.c
-@@ -1,3 +1,5 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
- #include "mbdesktop_module.h"
- #include <sys/types.h>
- #include <sys/stat.h>
-diff --git a/modules/tasks.c b/modules/tasks.c
-index 5437c13..ed8d1a7 100644
---- a/modules/tasks.c
-+++ b/modules/tasks.c
-@@ -1,3 +1,5 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
- #include "mbdesktop_module.h"
-
- static int trapped_error_code = 0;
-diff --git a/src/mbdesktop.c b/src/mbdesktop.c
-index 90dc364..309d84f 100644
---- a/src/mbdesktop.c
-+++ b/src/mbdesktop.c
-@@ -1,17 +1,9 @@
- /*
--  mbdesktop - a desktop for handhelds etc.
-+  mbdesktop - a desktop for handhelds etc.
-
-    Copyright 2002 Matthew Allum
-
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
-+   SPDX-License-Identifier: GPL-2.0-or-later
- */
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
 
-diff --git a/src/mbdesktop.h b/src/mbdesktop.h
-index cbb4aff..4231e58 100644
---- a/src/mbdesktop.h
-+++ b/src/mbdesktop.h
-@@ -1,3 +1,5 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
- #ifndef _HAVE_MBDESKTOP_H
- #define _HAVE_MBDESKTOP_H
+I need to build a custom slip driver out of the normal kernel build 
+process and I've overridden the var
 
-diff --git a/src/mbdesktop_item.c b/src/mbdesktop_item.c
-index 4bd7dd7..e7e7fcf 100644
---- a/src/mbdesktop_item.c
-+++ b/src/mbdesktop_item.c
-@@ -1,3 +1,5 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
- #include "mbdesktop_item.h"
- #include "mbdesktop_module.h"
- #include "md5.h"
-diff --git a/src/mbdesktop_item.h b/src/mbdesktop_item.h
-index 6eb7770..073f659 100644
---- a/src/mbdesktop_item.h
-+++ b/src/mbdesktop_item.h
-@@ -1,3 +1,5 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
- #ifndef _HAVE_MBDESKTOP_ITEM_H
- #define _HAVE_MBDESKTOP_ITEM_H
+LINUX_VERSION_EXTENSION = \
+     "-${PROMPT}-$(/bin/date +%j%H%M)${PM1_DEVEL_IMAGE}"
 
-diff --git a/src/mbdesktop_module.c b/src/mbdesktop_module.c
-index 7c961b2..4c18b48 100644
---- a/src/mbdesktop_module.c
-+++ b/src/mbdesktop_module.c
-@@ -1,3 +1,5 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
- #include "mbdesktop_module.h"
+so that my kernel always has a unique identifier for the development 
+build I'm working on.
 
- MBDesktopItem *
-diff --git a/src/mbdesktop_module.h b/src/mbdesktop_module.h
-index c31e091..dde93bc 100644
---- a/src/mbdesktop_module.h
-+++ b/src/mbdesktop_module.h
-@@ -1,3 +1,5 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
- #ifndef _HAVE_MBDESKTOP_MODULE_H
- #define _HAVE_MBDESKTOP_MODULE_H
+problem is that the custom driver bb file barfs.
 
-diff --git a/src/mbdesktop_view.c b/src/mbdesktop_view.c
-index 8ee20f6..0b552c0 100644
---- a/src/mbdesktop_view.c
-+++ b/src/mbdesktop_view.c
-@@ -1,3 +1,5 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
- #include "mbdesktop_view.h"
+bitbake -f -c cleanall virtual/kernel
+bitbake my-image
 
- static void
-diff --git a/src/mbdesktop_view.h b/src/mbdesktop_view.h
-index 44fcffc..659ea35 100644
---- a/src/mbdesktop_view.h
-+++ b/src/mbdesktop_view.h
-@@ -1,3 +1,5 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
- #ifndef _HAVE_MBDESKTOP_VIEW_H
- #define _HAVE_MBDESKTOP_VIEW_H
+fails with:
 
-diff --git a/src/mbdesktop_win_plugin.c b/src/mbdesktop_win_plugin.c
-index e302f9e..a2f5fb1 100644
---- a/src/mbdesktop_win_plugin.c
-+++ b/src/mbdesktop_win_plugin.c
-@@ -1,3 +1,5 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
- #include "mbdesktop.h"
- #include "mbdesktop_win_plugin.h"
+Collected errors:
+  * Solver encountered 1 problem(s):
+  * Problem 1/1:
+  *   - nothing provides kernel-4.14.0-hpcu-2182234dev needed by 
+kernel-module-customslip-4.14.0-hpcu-2182234dev-...
+  *
+  * Solution 1:
+  *   - do not ask to install a package providing customslip-mod
 
-diff --git a/src/mbdesktop_win_plugin.h b/src/mbdesktop_win_plugin.h
-index 2211b23..8a78233 100644
---- a/src/mbdesktop_win_plugin.h
-+++ b/src/mbdesktop_win_plugin.h
-@@ -1,3 +1,5 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
- #ifndef _HAVE_MBDESKTOP_WIN_PLUGIN_H
- #define _HAVE_MBDESKTOP_WIN_PLUGIN_H
+the important bb file content is:
 
---
-2.27.0
+inherit module
+SRC_URI = "file://Makefile \
+            file://customslip.c \
+            file://customslip.h \
+            file://COPYING \
+           "
+S = "${WORKDIR}"
+
+RPROVIDES_${PN} += "kernel-module-customslip"
+
+------------------
+What yocto override variable can I set in the bb to make it not care 
+what the localversion appended to the kernel name is?
+
+
