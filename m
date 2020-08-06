@@ -1,26 +1,24 @@
 Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
- by mx.groups.io with SMTP id smtpd.web10.14591.1596743265018590964
+ by mx.groups.io with SMTP id smtpd.web12.14463.1596743265013994458
  for <yocto@lists.yoctoproject.org>;
  Thu, 06 Aug 2020 12:47:50 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: mzeng@windriver.com)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 076JlBFE002115
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 076JlBFD002115
 	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
 	for <yocto@lists.yoctoproject.org>; Thu, 6 Aug 2020 12:47:33 -0700
 Received: from yow-lpggp3.wrs.com (128.224.137.13) by ALA-HCA.corp.ad.wrs.com
  (147.11.189.50) with Microsoft SMTP Server id 14.3.487.0; Thu, 6 Aug 2020
  12:47:13 -0700
-Received: by yow-lpggp3.wrs.com (Postfix, from userid 21151)	id 10DC220051;
- Thu,  6 Aug 2020 15:47:13 -0400 (EDT)
+Received: by yow-lpggp3.wrs.com (Postfix, from userid 21151)	id 08B1D201FA;
+ Thu,  6 Aug 2020 15:47:12 -0400 (EDT)
 From: "Matthew" <matthew.zeng@windriver.com>
 To: <yocto@lists.yoctoproject.org>
-Subject: [matchbox-window-manager][PATCH] Add SPDX-License-Identifier: GPL-2.0-or-later
-Date: Thu, 6 Aug 2020 15:47:12 -0400
-Message-ID: <20200806194712.12526-3-matthew.zeng@windriver.com>
+Subject: [matchbox-tests][PATCH] Add SPDX-License-Identifier: GPL-2.0-or-later
+Date: Thu, 6 Aug 2020 15:47:10 -0400
+Message-ID: <20200806194712.12526-1-matthew.zeng@windriver.com>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200806194712.12526-1-matthew.zeng@windriver.com>
-References: <20200806194712.12526-1-matthew.zeng@windriver.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -31,50 +29,19 @@ Fixes [YOCTO #13319]
 
 Signed-off-by: Mingde (Matthew) Zeng <matthewzmd@gmail.com>
 ---
- COPYING                  | 340 +++++++++++++++++++++++++++++++++++++++
- src/base_client.c        |  12 +-
- src/base_client.h        |  12 +-
- src/client_common.c      |  12 +-
- src/client_common.h      |  12 +-
- src/composite-engine.c   |  12 +-
- src/composite-engine.h   |  12 +-
- src/desktop_client.c     |  12 +-
- src/desktop_client.h     |  12 +-
- src/dialog_client.c      |  12 +-
- src/dialog_client.h      |  12 +-
- src/dockbar_client.c     |  14 +-
- src/dockbar_client.h     |  12 +-
- src/ewmh.c               |  12 +-
- src/ewmh.h               |  12 +-
- src/keys.c               |  12 +-
- src/keys.h               |  12 +-
- src/list.c               |  12 +-
- src/list.h               |  12 +-
- src/main.c               |  10 +-
- src/main_client.c        |  10 +-
- src/main_client.h        |  12 +-
- src/matchbox-remote.c    |  12 +-
- src/mbtheme-standalone.c |  12 +-
- src/mbtheme-standalone.h |  12 +-
- src/mbtheme.c            |  12 +-
- src/mbtheme.h            |  12 +-
- src/misc.c               |  12 +-
- src/misc.h               |  12 +-
- src/select_client.c      |  14 +-
- src/select_client.h      |  12 +-
- src/session.c            |  12 +-
- src/session.h            |  12 +-
- src/stack.c              |  12 +-
- src/stack.h              |  12 +-
- src/structs.h            |  12 +-
- src/toolbar_client.c     |  12 +-
- src/toolbar_client.h     |  12 +-
- src/toolbar_client_alt.c |  12 +-
- src/wm.c                 |  12 +-
- src/wm.h                 |  12 +-
- src/xml.c                |  12 +-
- src/xml.h                |  12 +-
- 43 files changed, 424 insertions(+), 420 deletions(-)
+ COPYING             | 340 ++++++++++++++++++++++++++++++++++++++++++++
+ argbtest.c          |   1 +
+ gcov-wrapper.sh     |   4 +-
+ libmb-tests.c       |   1 +
+ sendkey.c           |  12 +-
+ test-argb.sh        |   3 +
+ test-dock.sh        |   2 +-
+ test-gconf.sh       |   2 +
+ test-interaction.sh |   2 +
+ test-windows.sh     |   2 +
+ testrun.sh          |   2 +
+ winspew.c           |  14 +-
+ 12 files changed, 361 insertions(+), 24 deletions(-)
  create mode 100644 COPYING
 
 diff --git a/COPYING b/COPYING
@@ -423,1138 +390,170 @@ index 0000000..d60c31a
 +consider it more useful to permit linking proprietary applications with the
 +library.  If this is what you want to do, use the GNU Library General
 +Public License instead of this License.
-diff --git a/src/base_client.c b/src/base_client.c
-index 07f8334..02569ec 100644
---- a/src/base_client.c
-+++ b/src/base_client.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
+diff --git a/argbtest.c b/argbtest.c
+index 13b93cc..13737ea 100644
+--- a/argbtest.c
++++ b/argbtest.c
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <unistd.h>
+diff --git a/gcov-wrapper.sh b/gcov-wrapper.sh
+index f56dcec..b1c75c3 100755
+--- a/gcov-wrapper.sh
++++ b/gcov-wrapper.sh
+@@ -1,8 +1,8 @@
+ #!/bin/sh
+ #
+-# wrapper for generating gcov stats from matchbox source 
+-#
++# wrapper for generating gcov stats from matchbox source
+ #
++# SPDX-License-Identifier: GPL-2.0-or-later
  
-diff --git a/src/base_client.h b/src/base_client.h
-index 60e3f00..1aa40e8 100644
---- a/src/base_client.h
-+++ b/src/base_client.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
+ if [ -z "$1" ] || [ -z "$2" ]; then
+    echo
+diff --git a/libmb-tests.c b/libmb-tests.c
+index 12b1802..250f727 100644
+--- a/libmb-tests.c
++++ b/libmb-tests.c
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+diff --git a/sendkey.c b/sendkey.c
+index 73c2676..c9c6d6e 100644
+--- a/sendkey.c
++++ b/sendkey.c
+@@ -3,16 +3,8 @@
  
-diff --git a/src/client_common.c b/src/client_common.c
-index 2b62024..f139f3d 100644
---- a/src/client_common.c
-+++ b/src/client_common.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
+   Copyright 2003 Matthew Allum
  
-diff --git a/src/client_common.h b/src/client_common.h
-index dd4c1d3..fc0d70b 100644
---- a/src/client_common.h
-+++ b/src/client_common.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
+-  This program is free software; you can redistribute it and/or modify
+-  it under the terms of the GNU General Public License as published by
+-  the Free Software Foundation; either version 2, or (at your option)
+-  any later version.
+-  
+-  This program is distributed in the hope that it will be useful,
+-  but WITHOUT ANY WARRANTY; without even the implied warranty of
+-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-  GNU General Public License for more details.
+-  
++  SPDX-License-Identifier: GPL-2.0-or-later
++
+ */
  
-diff --git a/src/composite-engine.c b/src/composite-engine.c
-index 96f850e..de2dad8 100644
---- a/src/composite-engine.c
-+++ b/src/composite-engine.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
+ #include <stdio.h>
+diff --git a/test-argb.sh b/test-argb.sh
+index 4ffd1ee..1b3d45b 100755
+--- a/test-argb.sh
++++ b/test-argb.sh
+@@ -1,6 +1,9 @@
+ #!/bin/bash
+ #
+ # test-argb.sh
++#
++# SPDX-License-Identifier: GPL-2.0-or-later
++#
+ # ====
+ #
+ # basically tests a argb window is rendered ok and doesn't crash matchbox
+diff --git a/test-dock.sh b/test-dock.sh
+index 849eecf..4369383 100755
+--- a/test-dock.sh
++++ b/test-dock.sh
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ # matchbox-panel test
+ #
+-#
++# SPDX-License-Identifier: GPL-2.0-or-later
  
-diff --git a/src/composite-engine.h b/src/composite-engine.h
-index c0b1341..639810d 100644
---- a/src/composite-engine.h
-+++ b/src/composite-engine.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
+ if [ -z $(which matchbox-panel|grep "/matchbox-panel") ]; then
+    echo "$0: 'matchbox-panel' missing! Have you installed Matchbox properly?"
+diff --git a/test-gconf.sh b/test-gconf.sh
+index 7612cb3..832f0d7 100755
+--- a/test-gconf.sh
++++ b/test-gconf.sh
+@@ -1,6 +1,8 @@
+ #!/bin/bash
+ #
+ # test-gconf.sh
++#
++# SPDX-License-Identifier: GPL-2.0-or-later
+ # ====
+ #
+ # Tests gconf key shortcut settings.
+diff --git a/test-interaction.sh b/test-interaction.sh
+index fe3a238..2a9845d 100755
+--- a/test-interaction.sh
++++ b/test-interaction.sh
+@@ -1,6 +1,8 @@
+ #!/bin/bash
+ #
+ # test-interaction.sh
++#
++# SPDX-License-Identifier: GPL-2.0-or-later
+ # ====
+ #
+ # Launches a number of window types, and then via 'xnee' automates
+diff --git a/test-windows.sh b/test-windows.sh
+index fc9d7f8..8829b10 100755
+--- a/test-windows.sh
++++ b/test-windows.sh
+@@ -1,5 +1,7 @@
+ #!/bin/bash
+ #
++# SPDX-License-Identifier: GPL-2.0-or-later
++#
+ # script which runs through all the window option tests
  
-diff --git a/src/desktop_client.c b/src/desktop_client.c
-index 984cab6..2f1ecef 100644
---- a/src/desktop_client.c
-+++ b/src/desktop_client.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
+ if [ \! -x winspew ]; then
+diff --git a/testrun.sh b/testrun.sh
+index dce949c..b73dbc6 100755
+--- a/testrun.sh
++++ b/testrun.sh
+@@ -1,5 +1,7 @@
+ #!/bin/bash
+ #
++# SPDX-License-Identifier: GPL-2.0-or-later
++#
+ # script for driving all the other Matchbox test scripts
+ #
+ # To add a new test, write a file name 'test-<test name>.sh' to the
+diff --git a/winspew.c b/winspew.c
+index 6cce391..e795c58 100644
+--- a/winspew.c
++++ b/winspew.c
+@@ -3,23 +3,15 @@
  
-diff --git a/src/desktop_client.h b/src/desktop_client.h
-index 9cfe904..153b2fb 100644
---- a/src/desktop_client.h
-+++ b/src/desktop_client.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
+   Copyright 2003 Matthew Allum
  
-diff --git a/src/dialog_client.c b/src/dialog_client.c
-index 399a364..da54710 100644
---- a/src/dialog_client.c
-+++ b/src/dialog_client.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
+-  This program is free software; you can redistribute it and/or modify
+-  it under the terms of the GNU General Public License as published by
+-  the Free Software Foundation; either version 2, or (at your option)
+-  any later version.
+-  
+-  This program is distributed in the hope that it will be useful,
+-  but WITHOUT ANY WARRANTY; without even the implied warranty of
+-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-  GNU General Public License for more details.
+-  
++  SPDX-License-Identifier: GPL-2.0-or-later
++ 
+ */
  
-diff --git a/src/dialog_client.h b/src/dialog_client.h
-index ed2685f..7764e88 100644
---- a/src/dialog_client.h
-+++ b/src/dialog_client.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
  
-diff --git a/src/dockbar_client.c b/src/dockbar_client.c
-index 836c003..8a929d4 100644
---- a/src/dockbar_client.c
-+++ b/src/dockbar_client.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,19 +6,11 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
--/* 
-+/*
-  *  a Dockbar is a *Panel*.
-  */
- 
-diff --git a/src/dockbar_client.h b/src/dockbar_client.h
-index 7d805ee..1bc1034 100644
---- a/src/dockbar_client.h
-+++ b/src/dockbar_client.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/ewmh.c b/src/ewmh.c
-index afcabe7..dccac67 100644
---- a/src/ewmh.c
-+++ b/src/ewmh.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/ewmh.h b/src/ewmh.h
-index 3e54c07..c6220c2 100644
---- a/src/ewmh.h
-+++ b/src/ewmh.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/keys.c b/src/keys.c
-index bc83bd4..19ec286 100644
---- a/src/keys.c
-+++ b/src/keys.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/keys.h b/src/keys.h
-index 8450e82..865d673 100644
---- a/src/keys.h
-+++ b/src/keys.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/list.c b/src/list.c
-index 2f6251f..a39e8a5 100644
---- a/src/list.c
-+++ b/src/list.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/list.h b/src/list.h
-index 9cdf1f1..9971d99 100644
---- a/src/list.h
-+++ b/src/list.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/main.c b/src/main.c
-index c201bc4..4c37679 100644
---- a/src/main.c
-+++ b/src/main.c
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/main_client.c b/src/main_client.c
-index cafe5a0..9640940 100644
---- a/src/main_client.c
-+++ b/src/main_client.c
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- #include "main_client.h"
-diff --git a/src/main_client.h b/src/main_client.h
-index 8f4decd..417354a 100644
---- a/src/main_client.h
-+++ b/src/main_client.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/matchbox-remote.c b/src/matchbox-remote.c
-index e6cc076..bcf2c36 100644
---- a/src/matchbox-remote.c
-+++ b/src/matchbox-remote.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- #define _GNU_SOURCE
-diff --git a/src/mbtheme-standalone.c b/src/mbtheme-standalone.c
-index b754a14..0528074 100644
---- a/src/mbtheme-standalone.c
-+++ b/src/mbtheme-standalone.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/mbtheme-standalone.h b/src/mbtheme-standalone.h
-index 7aa595a..e4490af 100644
---- a/src/mbtheme-standalone.h
-+++ b/src/mbtheme-standalone.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/mbtheme.c b/src/mbtheme.c
-index 821195a..7f7527b 100644
---- a/src/mbtheme.c
-+++ b/src/mbtheme.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/mbtheme.h b/src/mbtheme.h
-index aa9a7c5..e23ed95 100644
---- a/src/mbtheme.h
-+++ b/src/mbtheme.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/misc.c b/src/misc.c
-index 792ec08..3c34727 100644
---- a/src/misc.c
-+++ b/src/misc.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/misc.h b/src/misc.h
-index 383a76a..3597844 100644
---- a/src/misc.h
-+++ b/src/misc.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/select_client.c b/src/select_client.c
-index 0a6c540..56d3712 100644
---- a/src/select_client.c
-+++ b/src/select_client.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,19 +6,11 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
--/* 
-+/*
-  *  A 'select client' is the small titilebar task menu dropdown.
-  */
- 
-diff --git a/src/select_client.h b/src/select_client.h
-index e718cd4..eb04415 100644
---- a/src/select_client.h
-+++ b/src/select_client.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/session.c b/src/session.c
-index 8f08279..df06e72 100644
---- a/src/session.c
-+++ b/src/session.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/session.h b/src/session.h
-index b9fcf88..52d5829 100644
---- a/src/session.h
-+++ b/src/session.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/stack.c b/src/stack.c
-index c985fa2..62fc18b 100644
---- a/src/stack.c
-+++ b/src/stack.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/stack.h b/src/stack.h
-index 516fe00..c23cea6 100644
---- a/src/stack.h
-+++ b/src/stack.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/structs.h b/src/structs.h
-index 24985e7..dd9b0d0 100644
---- a/src/structs.h
-+++ b/src/structs.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/toolbar_client.c b/src/toolbar_client.c
-index 422791b..66af91d 100644
---- a/src/toolbar_client.c
-+++ b/src/toolbar_client.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/toolbar_client.h b/src/toolbar_client.h
-index 61c4281..57a4ce1 100644
---- a/src/toolbar_client.h
-+++ b/src/toolbar_client.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/toolbar_client_alt.c b/src/toolbar_client_alt.c
-index e7f6975..3a0c233 100644
---- a/src/toolbar_client_alt.c
-+++ b/src/toolbar_client_alt.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/wm.c b/src/wm.c
-index 0823fef..b1ce058 100644
---- a/src/wm.c
-+++ b/src/wm.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/wm.h b/src/wm.h
-index 52de97e..37f218c 100644
---- a/src/wm.h
-+++ b/src/wm.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/xml.c b/src/xml.c
-index 2a48f14..c7601bb 100644
---- a/src/xml.c
-+++ b/src/xml.c
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
-diff --git a/src/xml.h b/src/xml.h
-index ac0ab63..f737bae 100644
---- a/src/xml.h
-+++ b/src/xml.h
-@@ -1,4 +1,4 @@
--/* 
-+/*
-  *  Matchbox Window Manager - A lightweight window manager not for the
-  *                            desktop.
-  *
-@@ -6,15 +6,7 @@
-  *
-  *  Copyright (c) 2002, 2004 OpenedHand Ltd - http://o-hand.com
-  *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
-- *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-  *
-  */
- 
+ #include <X11/Xlib.h>
+ #include <X11/Xutil.h>
+ #include <X11/Xatom.h>
+- 
++
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
 -- 
 2.27.0
 
