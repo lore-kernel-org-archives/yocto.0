@@ -1,23 +1,23 @@
-Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
- by mx.groups.io with SMTP id smtpd.web10.13532.1596740351076148502
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+ by mx.groups.io with SMTP id smtpd.web11.13585.1596740570554881218
  for <yocto@lists.yoctoproject.org>;
- Thu, 06 Aug 2020 11:59:11 -0700
+ Thu, 06 Aug 2020 12:02:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: mzeng@windriver.com)
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: mzeng@windriver.com)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 076IwIMR000690
+	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 076J2npF017209
 	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Thu, 6 Aug 2020 11:59:00 -0700
+	for <yocto@lists.yoctoproject.org>; Thu, 6 Aug 2020 12:02:49 -0700 (PDT)
 Received: from yow-lpggp3.wrs.com (128.224.137.13) by ALA-HCA.corp.ad.wrs.com
  (147.11.189.50) with Microsoft SMTP Server id 14.3.487.0; Thu, 6 Aug 2020
- 11:58:16 -0700
-Received: by yow-lpggp3.wrs.com (Postfix, from userid 21151)	id EF24F200C4;
- Thu,  6 Aug 2020 14:58:15 -0400 (EDT)
+ 12:02:49 -0700
+Received: by yow-lpggp3.wrs.com (Postfix, from userid 21151)	id 8F120200C4;
+ Thu,  6 Aug 2020 15:02:48 -0400 (EDT)
 From: "Matthew" <matthew.zeng@windriver.com>
 To: <yocto@lists.yoctoproject.org>
-Subject: [matchbox-panel-manager][PATCH] Add SPDX-License-Identifier: GPL-2.0-or-later
-Date: Thu, 6 Aug 2020 14:58:15 -0400
-Message-ID: <20200806185815.32504-1-matthew.zeng@windriver.com>
+Subject: [matchbox-terminal][PATCH] Add SPDX-License-Identifier: GPL-2.0-or-later
+Date: Thu, 6 Aug 2020 15:02:48 -0400
+Message-ID: <20200806190248.34368-1-matthew.zeng@windriver.com>
 X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -25,35 +25,37 @@ Content-Type: text/plain
 
 Fixes [YOCTO #13319]
 
-Signed-off-by: Mingde (Matthew) Zeng <matthewzmd@gmail.com>
+Signed-off-by: Mingde (Matthew) Zeng <matthew.zeng@windriver.com>
 ---
- mbpanelmgr.c | 12 ++----------
- 1 file changed, 2 insertions(+), 10 deletions(-)
+ main.c | 15 ++-------------
+ 1 file changed, 2 insertions(+), 13 deletions(-)
 
-diff --git a/mbpanelmgr.c b/mbpanelmgr.c
-index 4d45665..c65d229 100644
---- a/mbpanelmgr.c
-+++ b/mbpanelmgr.c
-@@ -1,17 +1,9 @@
- /*
-- *  Gtk2 Based matchbox panel manager.   
-+ *  Gtk2 Based matchbox panel manager.
+diff --git a/main.c b/main.c
+index c0672df..dfa3634 100644
+--- a/main.c
++++ b/main.c
+@@ -1,19 +1,8 @@
+-/* 
++/*
+  * Copyright (C) 2007 OpenedHand Ltd
   *
-  *  Copyright 2003 Matthew Allum <mallum@handhelds.org>
+- * This program is free software; you can redistribute it and/or modify it under
+- * the terms of the GNU General Public License as published by the Free Software
+- * Foundation; either version 2 of the License, or (at your option) any later
+- * version.
++ * SPDX-License-Identifier: GPL-2.0-or-later
   *
-- *  This program is free software; you can redistribute it and/or modify
-- *  it under the terms of the GNU General Public License as published by
-- *  the Free Software Foundation; either version 2, or (at your option)
-- *  any later version.
+- * This program is distributed in the hope that it will be useful, but WITHOUT
+- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+- * details.
 - *
-- *  This program is distributed in the hope that it will be useful,
-- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *  GNU General Public License for more details.
-+ *  SPDX-License-Identifier: GPL-2.0-or-later
+- * You should have received a copy of the GNU General Public License along with
+- * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+- * Place - Suite 330, Boston, MA 02111-1307, USA.
   */
  
- #include <sys/types.h>
+ #include <gtk/gtk.h>
 -- 
 2.27.0
 
