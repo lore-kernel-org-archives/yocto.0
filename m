@@ -1,104 +1,671 @@
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
- by mx.groups.io with SMTP id smtpd.web12.12290.1596737157250411312
+Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
+ by mx.groups.io with SMTP id smtpd.web11.12958.1596738773665388923
  for <yocto@lists.yoctoproject.org>;
- Thu, 06 Aug 2020 11:05:57 -0700
+ Thu, 06 Aug 2020 11:32:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@broadcom.com header.s=google header.b=cSTf6feu;
- spf=permerror, err=parse error for token &{10 18 %{i}._ip.%{h}._ehlo.%{d}._spf.vali.email}: invalid domain name (domain: broadcom.com, ip: 209.85.214.179, mailfrom: scott.branden@broadcom.com)
-Received: by mail-pl1-f179.google.com with SMTP id g19so15616284plq.0
-        for <yocto@lists.yoctoproject.org>; Thu, 06 Aug 2020 11:05:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=t0sDlSrxS8GiURKZ6B0QteuCQRwSxu/Fg3IH7s4E5q4=;
-        b=cSTf6feu2QcRL+dIq4jzE+4J5uI7BqyS1uXDidYT8ssw06m0wfz10FKUt/AQF2+Nsx
-         assP3osYwmXVLvIH3aXPkP79pdLYmbDtO4+Yp9wxTyHGSg4rBaVThhqFpumSaAepSZog
-         QW7JY96cZQknajBp1Ywgdvtc3f0kKJ63IHRvg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=t0sDlSrxS8GiURKZ6B0QteuCQRwSxu/Fg3IH7s4E5q4=;
-        b=geVu75x1Mg/txbfUH1iIXe2aY1IYX8SVxvgC6fR8cMIOW2uOIDTpKRETPkatbjHAen
-         BKSXbzEyJH8B2kh2UQP9CuU81nOzqel7/Jb4o/x4WnxW2T/u5KehPS6zr+Qi1oBPj3Cz
-         Q6U/ydW9ODckJoL4ei/AdQ1d215YoS2XNOeIB5RnfBEenQgCpXoGxfmz40zV32oMJmLj
-         C/FO2A6UC9CeIGaqDdiu8lLx+zKWIOdgdNbGPe5m4WYsQ0QxJwWgx4xPg0j7gF82TsMb
-         qF9MMh7eC56xWggdxCho6rmIGC/mT9uDPg0yLSjQHZs8zZpHor3AhGUcXFLCg8XL9UBT
-         Tb7g==
-X-Gm-Message-State: AOAM530KwGq0HeFdU+7NxGPnfBvrgDpT2FcUTHKfa8YmRxKio3I+Cy68
-	dHFbzfewDT9udMLOsVuNb5gvtA==
-X-Google-Smtp-Source: ABdhPJzQDTr0uYmTotxc4klPD6r9LsizqjUHZwjhU2RQ8QjDRBR62JZpYhCm2ZIwMEr5AbkDu9y3/Q==
-X-Received: by 2002:a17:90a:33ab:: with SMTP id n40mr9770290pjb.74.1596737156287;
-        Thu, 06 Aug 2020 11:05:56 -0700 (PDT)
-Return-Path: <scott.branden@broadcom.com>
-Received: from [10.136.13.65] ([192.19.228.250])
-        by smtp.gmail.com with ESMTPSA id g12sm8559573pfb.190.2020.08.06.11.05.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Aug 2020 11:05:55 -0700 (PDT)
-Subject: Re: [yocto] Is http://downloads.yoctoproject.org/ down?
-From: "Scott Branden" <scott.branden@broadcom.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
- yocto@lists.yoctoproject.org
-Cc: Rick Liu <rick.liu@broadcom.com>,
- Jonathan Richardson <jonathan.richardson@broadcom.com>
-References: <20200512131738.GQ11927@denix.org>
- <4061.1596576995601033488@lists.yoctoproject.org>
- <14aa33ffb8218838763ba61c809149365d92ab98.camel@linuxfoundation.org>
- <b93acfa6-0d88-9542-8ab5-1372bf5cff18@broadcom.com>
-Message-ID: <4521ef13-3e15-0d57-11ad-a415b89b9e0f@broadcom.com>
-Date: Thu, 6 Aug 2020 11:05:50 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: mzeng@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 076IWWof032563
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
+	for <yocto@lists.yoctoproject.org>; Thu, 6 Aug 2020 11:32:42 -0700
+Received: from yow-lpggp3.wrs.com (128.224.137.13) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server id 14.3.487.0; Thu, 6 Aug 2020
+ 11:32:21 -0700
+Received: by yow-lpggp3.wrs.com (Postfix, from userid 21151)	id 37076200EE;
+ Thu,  6 Aug 2020 14:32:21 -0400 (EDT)
+From: "Matthew" <matthew.zeng@windriver.com>
+To: <yocto@lists.yoctoproject.org>
+Subject: [matchbox-keyboard][PATCH] Add SPDX-License-Identifier: LGPL-2.1
+Date: Thu, 6 Aug 2020 14:32:21 -0400
+Message-ID: <20200806183221.21751-1-matthew.zeng@windriver.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <b93acfa6-0d88-9542-8ab5-1372bf5cff18@broadcom.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-CA
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-We found the source of the uninative fetch problem:
+Fixes [YOCTO #13319]
 
-SOURCE_MIRROR_URL needs to be set in order for uninative to be picked up from local mirror.
+Signed-off-by: Mingde (Matthew) Zeng <matthew.zeng@windriver.com>
+---
+ applet/applet.c                          |  8 +-------
+ examples/matchbox-keyboard-gtk-embed.c   |  2 ++
+ gtk-im/im-context.c                      |  9 +--------
+ gtk-im/im-context.h                      |  9 +--------
+ gtk-im/im-module.c                       |  9 +--------
+ gtk-im/im-protocol.c                     |  9 +--------
+ gtk-im/im-protocol.h                     |  9 +--------
+ src/config-parser.c                      | 10 +---------
+ src/libmatchbox-keyboard.c               |  9 +--------
+ src/libmatchbox-keyboard.h               |  9 +--------
+ src/main.c                               | 10 +---------
+ src/matchbox-keyboard-image.c            |  9 +--------
+ src/matchbox-keyboard-key.c              | 10 +---------
+ src/matchbox-keyboard-layout.c           | 10 +---------
+ src/matchbox-keyboard-popup.c            |  9 +--------
+ src/matchbox-keyboard-popup.h            |  9 +--------
+ src/matchbox-keyboard-remote.c           |  9 +--------
+ src/matchbox-keyboard-remote.h           |  9 +--------
+ src/matchbox-keyboard-row.c              |  9 +--------
+ src/matchbox-keyboard-ui-cairo-backend.c |  9 +--------
+ src/matchbox-keyboard-ui-cairo-backend.h |  9 +--------
+ src/matchbox-keyboard-ui-xft-backend.c   |  9 +--------
+ src/matchbox-keyboard-ui-xft-backend.h   |  9 +--------
+ src/matchbox-keyboard-ui.c               |  9 +--------
+ src/matchbox-keyboard-xembed.c           |  9 +--------
+ src/matchbox-keyboard.c                  |  9 +--------
+ src/matchbox-keyboard.h                  |  9 +--------
+ src/mb-gtk-keyboard.c                    |  1 +
+ src/mb-gtk-keyboard.h                    |  1 +
+ src/util-list.c                          |  9 +--------
+ src/util.c                               |  9 +--------
+ 31 files changed, 32 insertions(+), 227 deletions(-)
 
-The standard PREMIRRORS mechanism doesn't work for this single tarball.
-So every time a clean poky build took place it always went to the internet to fetch the uninative tarball
-the first time and store it in the local build download.
-
-I think this should be clearly documented somewhere in the yocto manual?
-
-On 2020-08-05 10:07 a.m., Scott Branden wrote:
-> Hi Richard,
->
-> On 2020-08-05 2:50 a.m., Richard Purdie wrote:
->> On Tue, 2020-08-04 at 14:36 -0700, Scott Branden via
->> lists.yoctoproject.org wrote:
->>> With downloads.yoctoproject.org down again this begs the question:
->>>
->>> Why does uninative tarball get fetched by default from the internet
->>> every time?
->>> Why is it in not cached like every other tarball that is downloaded
->>> by recipes?
->>> The default behaviour for the yocto project should be to have the
->>> tarball stored in the yocto cache such that it is not fetched every
->>> time?
->> Those are good questions. 
->>
->> As far as I know on my own local builds, the uninative tarball *is*
->> cached locally in DL_DIR. We don't see repeated downloads on the
->> autobuilder either so it appears to work there too.
-> Yes, the uninative tarball *is* cached but I see repeated downloads.
->> If you're not seeing that it would definitely be something to
->> investigate.
-> I just did a clone of poky.git and the repeated downloads do NOT happen.
-> So I now need to investigate what is different when adding layers and conf settings
-> that is causing the issue.
->
->> Cheers,
->>
->> Richard
->>
-> Thanks for confirming the uninative caching should work, but it is not in my environment and I will have to investigate.
->
-> Scott
+diff --git a/applet/applet.c b/applet/applet.c
+index 69cc600..3fdd049 100644
+--- a/applet/applet.c
++++ b/applet/applet.c
+@@ -7,14 +7,8 @@
+  *  Ross Burton <ross@openedhand.com>
+  *  Stefan Schmidt <stefan@openmoko.org>
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
++ * SPDX-License-Identifier: LGPL-2.1
+  *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
+  */
+ 
+ #include <gtk/gtk.h>
+diff --git a/examples/matchbox-keyboard-gtk-embed.c b/examples/matchbox-keyboard-gtk-embed.c
+index bbf9b19..66f6a66 100644
+--- a/examples/matchbox-keyboard-gtk-embed.c
++++ b/examples/matchbox-keyboard-gtk-embed.c
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: LGPL-2.1 */
++
+ #include <gtk/gtk.h>
+ 
+ #include <fcntl.h>
+diff --git a/gtk-im/im-context.c b/gtk-im/im-context.c
+index 3e1749e..2c4cce1 100644
+--- a/gtk-im/im-context.c
++++ b/gtk-im/im-context.c
+@@ -5,14 +5,7 @@
+  *
+  *  Copyright (c) 2007-2012 Intel Corp
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/gtk-im/im-context.h b/gtk-im/im-context.h
+index 0ee6710..58ef159 100644
+--- a/gtk-im/im-context.h
++++ b/gtk-im/im-context.h
+@@ -5,14 +5,7 @@
+  *
+  *  Copyright (c) 2007-2012 Intel Corp
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/gtk-im/im-module.c b/gtk-im/im-module.c
+index d4734e1..049aa17 100644
+--- a/gtk-im/im-module.c
++++ b/gtk-im/im-module.c
+@@ -5,14 +5,7 @@
+  *
+  *  Copyright (c) 2007-2012 Intel Corp
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/gtk-im/im-protocol.c b/gtk-im/im-protocol.c
+index de98fd6..cbc8bd1 100644
+--- a/gtk-im/im-protocol.c
++++ b/gtk-im/im-protocol.c
+@@ -5,14 +5,7 @@
+  *
+  *  Copyright (c) 2007-2012 Intel Corp
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/gtk-im/im-protocol.h b/gtk-im/im-protocol.h
+index e189a76..ae2995b 100644
+--- a/gtk-im/im-protocol.h
++++ b/gtk-im/im-protocol.h
+@@ -5,14 +5,7 @@
+  *
+  *  Copyright (c) 2007-2012 Intel Corp
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/config-parser.c b/src/config-parser.c
+index fc0b903..4a30d2b 100644
+--- a/src/config-parser.c
++++ b/src/config-parser.c
+@@ -7,14 +7,7 @@
+  *  Copyright (c) 2005-2012 Intel Corp
+  *  Copyright (c) 2012 Vernier Software & Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+@@ -752,4 +745,3 @@ mb_kbd_config_load(MBKeyboard *kbd, char *variant, char *lang)
+ 
+   return retval;
+ }
+-
+diff --git a/src/libmatchbox-keyboard.c b/src/libmatchbox-keyboard.c
+index 1b3a051..4d73961 100644
+--- a/src/libmatchbox-keyboard.c
++++ b/src/libmatchbox-keyboard.c
+@@ -7,14 +7,7 @@
+  *
+  *  Copyright (c) 2012 Vernier Software and Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/libmatchbox-keyboard.h b/src/libmatchbox-keyboard.h
+index 7cbd4f8..45ce74b 100644
+--- a/src/libmatchbox-keyboard.h
++++ b/src/libmatchbox-keyboard.h
+@@ -7,14 +7,7 @@
+  *
+  *  Copyright (c) 2012 Vernier Software and Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/main.c b/src/main.c
+index 75c263f..d4e8b39 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -5,15 +5,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ #ifdef HAVE_CONFIG_H
+diff --git a/src/matchbox-keyboard-image.c b/src/matchbox-keyboard-image.c
+index 92485dc..723f510 100644
+--- a/src/matchbox-keyboard-image.c
++++ b/src/matchbox-keyboard-image.c
+@@ -5,14 +5,7 @@
+  *
+  *  Copyright (c) 2005-2012 Intel Corp
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/matchbox-keyboard-key.c b/src/matchbox-keyboard-key.c
+index 18305e4..5cb7907 100644
+--- a/src/matchbox-keyboard-key.c
++++ b/src/matchbox-keyboard-key.c
+@@ -7,14 +7,7 @@
+  *  Copyright (c) 2005-2012 Intel Corp
+  *  Copyright (c) 2012 Vernier Software & Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+@@ -873,4 +866,3 @@ mb_kbd_key_dump_key(MBKeyboardKey *key)
+   fprintf(stderr, "-------------------------------\n");
+ 
+ }
+-
+diff --git a/src/matchbox-keyboard-layout.c b/src/matchbox-keyboard-layout.c
+index e5e6b2a..04e3caa 100644
+--- a/src/matchbox-keyboard-layout.c
++++ b/src/matchbox-keyboard-layout.c
+@@ -7,14 +7,7 @@
+  *  Copyright (c) 2005-2012 Intel Corp
+  *  Copyright (c) 2012 Vernier Software & Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+@@ -77,4 +70,3 @@ mb_kbd_layout_rows(MBKeyboardLayout *layout)
+ {
+   return util_list_get_first(layout->rows);
+ }
+-
+diff --git a/src/matchbox-keyboard-popup.c b/src/matchbox-keyboard-popup.c
+index 8c35300..0e80d0d 100644
+--- a/src/matchbox-keyboard-popup.c
++++ b/src/matchbox-keyboard-popup.c
+@@ -6,14 +6,7 @@
+  *  Copyright (c) 2005-2012 Intel Corp
+  *  Copyright (c) 2012 Vernier Software and Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ #include <math.h>
+diff --git a/src/matchbox-keyboard-popup.h b/src/matchbox-keyboard-popup.h
+index 13787e1..ccf6483 100644
+--- a/src/matchbox-keyboard-popup.h
++++ b/src/matchbox-keyboard-popup.h
+@@ -5,14 +5,7 @@
+  *
+  *  Copyright (c) 2012 Vernier Software and Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/matchbox-keyboard-remote.c b/src/matchbox-keyboard-remote.c
+index 1d51cfb..e280348 100644
+--- a/src/matchbox-keyboard-remote.c
++++ b/src/matchbox-keyboard-remote.c
+@@ -5,14 +5,7 @@
+  *
+  *  Copyright (c) 2007-2012 Intel Corp
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/matchbox-keyboard-remote.h b/src/matchbox-keyboard-remote.h
+index 5c911f0..46e0d98 100644
+--- a/src/matchbox-keyboard-remote.h
++++ b/src/matchbox-keyboard-remote.h
+@@ -5,14 +5,7 @@
+  *
+  *  Copyright (c) 2005-2012 Intel Corp
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/matchbox-keyboard-row.c b/src/matchbox-keyboard-row.c
+index d69d20a..f163894 100644
+--- a/src/matchbox-keyboard-row.c
++++ b/src/matchbox-keyboard-row.c
+@@ -7,14 +7,7 @@
+  *  Copyright (c) 2005-2012 Intel Corp
+  *  Copyright (c) 2012 Vernier Software & Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/matchbox-keyboard-ui-cairo-backend.c b/src/matchbox-keyboard-ui-cairo-backend.c
+index 438e6e3..0b5ee4f 100644
+--- a/src/matchbox-keyboard-ui-cairo-backend.c
++++ b/src/matchbox-keyboard-ui-cairo-backend.c
+@@ -7,14 +7,7 @@
+  *  Copyright (c) 2005-2012 Intel Corp
+  *  Copyright (c) 2012 Vernier Software & Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/matchbox-keyboard-ui-cairo-backend.h b/src/matchbox-keyboard-ui-cairo-backend.h
+index 373f2fd..42d1706 100644
+--- a/src/matchbox-keyboard-ui-cairo-backend.h
++++ b/src/matchbox-keyboard-ui-cairo-backend.h
+@@ -7,14 +7,7 @@
+  *  Copyright (c) 2005-2012 Intel Corp
+  *  Copyright (c) 2012 Vernier Software & Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/matchbox-keyboard-ui-xft-backend.c b/src/matchbox-keyboard-ui-xft-backend.c
+index f7efc0f..26766a7 100644
+--- a/src/matchbox-keyboard-ui-xft-backend.c
++++ b/src/matchbox-keyboard-ui-xft-backend.c
+@@ -7,14 +7,7 @@
+  *  Copyright (c) 2005-2012 Intel Corp
+  *  Copyright (c) 2012 Vernier Software & Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/matchbox-keyboard-ui-xft-backend.h b/src/matchbox-keyboard-ui-xft-backend.h
+index 87c1262..8bbcdef 100644
+--- a/src/matchbox-keyboard-ui-xft-backend.h
++++ b/src/matchbox-keyboard-ui-xft-backend.h
+@@ -7,14 +7,7 @@
+  *  Copyright (c) 2005-2012 Intel Corp
+  *  Copyright (c) 2012 Vernier Software & Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/matchbox-keyboard-ui.c b/src/matchbox-keyboard-ui.c
+index 988504e..e0e67ba 100644
+--- a/src/matchbox-keyboard-ui.c
++++ b/src/matchbox-keyboard-ui.c
+@@ -7,14 +7,7 @@
+  *  Copyright (c) 2005-2012 Intel Corp
+  *  Copyright (c) 2012 Vernier Software & Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/matchbox-keyboard-xembed.c b/src/matchbox-keyboard-xembed.c
+index 9f2bdc0..3cd8b01 100644
+--- a/src/matchbox-keyboard-xembed.c
++++ b/src/matchbox-keyboard-xembed.c
+@@ -7,14 +7,7 @@
+  *  Copyright (c) 2005-2012 Intel Corp
+  *  Copyright (c) 2012 Vernier Software & Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/matchbox-keyboard.c b/src/matchbox-keyboard.c
+index 5dce4a3..1c6506d 100644
+--- a/src/matchbox-keyboard.c
++++ b/src/matchbox-keyboard.c
+@@ -7,14 +7,7 @@
+  *  Copyright (c) 2005-2012 Intel Corp
+  *  Copyright (c) 2012 Vernier Software & Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ #ifdef HAVE_CONFIG_H
+diff --git a/src/matchbox-keyboard.h b/src/matchbox-keyboard.h
+index 9654810..4cba305 100644
+--- a/src/matchbox-keyboard.h
++++ b/src/matchbox-keyboard.h
+@@ -7,14 +7,7 @@
+  *  Copyright (c) 2005-2012 Intel Corp
+  *  Copyright (c) 2012 Vernier Software & Technology
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/mb-gtk-keyboard.c b/src/mb-gtk-keyboard.c
+index e46d762..c35c3c4 100644
+--- a/src/mb-gtk-keyboard.c
++++ b/src/mb-gtk-keyboard.c
+@@ -1,4 +1,5 @@
+ /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*- */
++/* SPDX-License-Identifier: LGPL-2.1 */
+ 
+ #include "libmatchbox-keyboard.h"
+ #include "matchbox-keyboard.h"
+diff --git a/src/mb-gtk-keyboard.h b/src/mb-gtk-keyboard.h
+index 06eabcc..a5d31f1 100644
+--- a/src/mb-gtk-keyboard.h
++++ b/src/mb-gtk-keyboard.h
+@@ -1,4 +1,5 @@
+ /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*- */
++/* SPDX-License-Identifier: LGPL-2.1 */
+ 
+ #ifndef _MB_GTK_KEYBOARD_H
+ #define _MB_GTK_KEYBOARD_H
+diff --git a/src/util-list.c b/src/util-list.c
+index 664af94..37bc48d 100644
+--- a/src/util-list.c
++++ b/src/util-list.c
+@@ -5,14 +5,7 @@
+  *
+  *  Copyright (c) 2005-2012 Intel Corp
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+diff --git a/src/util.c b/src/util.c
+index ba20c53..560f451 100644
+--- a/src/util.c
++++ b/src/util.c
+@@ -5,14 +5,7 @@
+  *
+  *  Copyright (c) 2005-2012 Intel Corp
+  *
+- *  This program is free software; you can redistribute it and/or modify it
+- *  under the terms and conditions of the GNU Lesser General Public License,
+- *  version 2.1, as published by the Free Software Foundation.
+- *
+- *  This program is distributed in the hope it will be useful, but WITHOUT ANY
+- *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- *  FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for
+- *  more details.
++ *  SPDX-License-Identifier: LGPL-2.1
+  *
+  */
+ 
+-- 
+2.27.0
 
