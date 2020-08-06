@@ -1,47 +1,95 @@
 Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
- by mx.groups.io with SMTP id smtpd.web12.14463.1596743265013994458
+ by mx.groups.io with SMTP id smtpd.web12.14462.1596743265013680018
  for <yocto@lists.yoctoproject.org>;
  Thu, 06 Aug 2020 12:47:50 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: mzeng@windriver.com)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 076JlBFD002115
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 076JlBFF002115
 	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
 	for <yocto@lists.yoctoproject.org>; Thu, 6 Aug 2020 12:47:33 -0700
 Received: from yow-lpggp3.wrs.com (128.224.137.13) by ALA-HCA.corp.ad.wrs.com
  (147.11.189.50) with Microsoft SMTP Server id 14.3.487.0; Thu, 6 Aug 2020
  12:47:13 -0700
-Received: by yow-lpggp3.wrs.com (Postfix, from userid 21151)	id 08B1D201FA;
- Thu,  6 Aug 2020 15:47:12 -0400 (EDT)
+Received: by yow-lpggp3.wrs.com (Postfix, from userid 21151)	id 106D51FF3F;
+ Thu,  6 Aug 2020 15:47:13 -0400 (EDT)
 From: "Matthew" <matthew.zeng@windriver.com>
 To: <yocto@lists.yoctoproject.org>
-Subject: [matchbox-tests][PATCH] Add SPDX-License-Identifier: GPL-2.0-or-later
-Date: Thu, 6 Aug 2020 15:47:10 -0400
-Message-ID: <20200806194712.12526-1-matthew.zeng@windriver.com>
+Subject: [matchbox-window-manager-2][PATCH] Add SPDX-License-Identifier: GPL-2.0-or-later
+Date: Thu, 6 Aug 2020 15:47:11 -0400
+Message-ID: <20200806194712.12526-2-matthew.zeng@windriver.com>
 X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200806194712.12526-1-matthew.zeng@windriver.com>
+References: <20200806194712.12526-1-matthew.zeng@windriver.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-From: "Mingde (Matthew) Zeng" <matthewzmd@gmail.com>
-
 Fixes [YOCTO #13319]
 
-Signed-off-by: Mingde (Matthew) Zeng <matthewzmd@gmail.com>
+Signed-off-by: Mingde (Matthew) Zeng <matthew.zeng@windriver.com>
 ---
- COPYING             | 340 ++++++++++++++++++++++++++++++++++++++++++++
- argbtest.c          |   1 +
- gcov-wrapper.sh     |   4 +-
- libmb-tests.c       |   1 +
- sendkey.c           |  12 +-
- test-argb.sh        |   3 +
- test-dock.sh        |   2 +-
- test-gconf.sh       |   2 +
- test-interaction.sh |   2 +
- test-windows.sh     |   2 +
- testrun.sh          |   2 +
- winspew.c           |  14 +-
- 12 files changed, 361 insertions(+), 24 deletions(-)
+ COPYING                                       | 340 ++++++++++++++++++
+ matchbox/client-types/mb-wm-client-app.c      |   2 +
+ matchbox/client-types/mb-wm-client-app.h      |  10 +-
+ matchbox/client-types/mb-wm-client-desktop.c  |   2 +-
+ matchbox/client-types/mb-wm-client-desktop.h  |  10 +-
+ matchbox/client-types/mb-wm-client-dialog.c   |   2 +-
+ matchbox/client-types/mb-wm-client-dialog.h   |  10 +-
+ matchbox/client-types/mb-wm-client-input.c    |   2 +-
+ matchbox/client-types/mb-wm-client-input.h    |  10 +-
+ matchbox/client-types/mb-wm-client-menu.c     |   2 +-
+ matchbox/client-types/mb-wm-client-menu.h     |  10 +-
+ matchbox/client-types/mb-wm-client-note.c     |  11 +-
+ matchbox/client-types/mb-wm-client-note.h     |  10 +-
+ matchbox/client-types/mb-wm-client-override.c |  11 +-
+ matchbox/client-types/mb-wm-client-override.h |  10 +-
+ matchbox/client-types/mb-wm-client-panel.c    |   1 +
+ matchbox/client-types/mb-wm-client-panel.h    |  10 +-
+ matchbox/comp-mgr/mb-wm-comp-mgr-clutter.c    |  10 +-
+ matchbox/comp-mgr/mb-wm-comp-mgr-clutter.h    |  10 +-
+ matchbox/comp-mgr/mb-wm-comp-mgr-xrender.c    |  10 +-
+ matchbox/comp-mgr/mb-wm-comp-mgr-xrender.h    |  10 +-
+ matchbox/comp-mgr/mb-wm-comp-mgr.c            |  10 +-
+ matchbox/comp-mgr/mb-wm-comp-mgr.h            |  10 +-
+ matchbox/core/mb-window-manager.c             |  10 +-
+ matchbox/core/mb-window-manager.h             |  10 +-
+ matchbox/core/mb-wm-atoms.c                   |   1 +
+ matchbox/core/mb-wm-atoms.h                   |  10 +-
+ matchbox/core/mb-wm-client-base.c             |  10 +-
+ matchbox/core/mb-wm-client-base.h             |  10 +-
+ matchbox/core/mb-wm-client-window.c           |  10 +-
+ matchbox/core/mb-wm-client-window.h           |  10 +-
+ matchbox/core/mb-wm-client.c                  |  10 +-
+ matchbox/core/mb-wm-client.h                  |  10 +-
+ matchbox/core/mb-wm-debug.c                   |  10 +-
+ matchbox/core/mb-wm-debug.h                   |  10 +-
+ matchbox/core/mb-wm-decor.c                   |  10 +-
+ matchbox/core/mb-wm-decor.h                   |  10 +-
+ matchbox/core/mb-wm-keys.c                    |   1 +
+ matchbox/core/mb-wm-keys.h                    |  10 +-
+ matchbox/core/mb-wm-layout.c                  |   1 +
+ matchbox/core/mb-wm-layout.h                  |  10 +-
+ matchbox/core/mb-wm-macros.h                  |  10 +-
+ matchbox/core/mb-wm-main-context.c            |   1 +
+ matchbox/core/mb-wm-main-context.h            |  10 +-
+ matchbox/core/mb-wm-object-props.h            |   1 +
+ matchbox/core/mb-wm-object.c                  |  10 +-
+ matchbox/core/mb-wm-object.h                  |  10 +-
+ matchbox/core/mb-wm-props.c                   |   1 +
+ matchbox/core/mb-wm-props.h                   |  10 +-
+ matchbox/core/mb-wm-root-window.c             |  10 +-
+ matchbox/core/mb-wm-root-window.h             |  10 +-
+ matchbox/core/mb-wm-stack.c                   |  10 +-
+ matchbox/core/mb-wm-stack.h                   |  10 +-
+ matchbox/core/mb-wm-types.h                   |  10 +-
+ matchbox/core/mb-wm-util.c                    |   1 +
+ matchbox/core/mb-wm-util.h                    |   1 +
+ matchbox/core/mb-wm.h                         |  10 +-
+ matchbox/core/xas.c                           |   2 +
+ matchbox/core/xas.h                           |   2 +
+ util/matchbox-remote.c                        |  11 +-
+ 60 files changed, 402 insertions(+), 394 deletions(-)
  create mode 100644 COPYING
 
 diff --git a/COPYING b/COPYING
@@ -390,170 +438,1097 @@ index 0000000..d60c31a
 +consider it more useful to permit linking proprietary applications with the
 +library.  If this is what you want to do, use the GNU Library General
 +Public License instead of this License.
-diff --git a/argbtest.c b/argbtest.c
-index 13b93cc..13737ea 100644
---- a/argbtest.c
-+++ b/argbtest.c
+diff --git a/matchbox/client-types/mb-wm-client-app.c b/matchbox/client-types/mb-wm-client-app.c
+index 3aa9d2e..f2b6ef0 100644
+--- a/matchbox/client-types/mb-wm-client-app.c
++++ b/matchbox/client-types/mb-wm-client-app.c
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++
+ #include "mb-wm-client-app.h"
+ 
+ #include "mb-wm-theme.h"
+diff --git a/matchbox/client-types/mb-wm-client-app.h b/matchbox/client-types/mb-wm-client-app.h
+index 935a99c..4181e97 100644
+--- a/matchbox/client-types/mb-wm-client-app.h
++++ b/matchbox/client-types/mb-wm-client-app.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/client-types/mb-wm-client-desktop.c b/matchbox/client-types/mb-wm-client-desktop.c
+index 81ce628..1a528ee 100644
+--- a/matchbox/client-types/mb-wm-client-desktop.c
++++ b/matchbox/client-types/mb-wm-client-desktop.c
 @@ -1,3 +1,4 @@
 +/* SPDX-License-Identifier: GPL-2.0-or-later */
- #include <stdio.h>
- #include <stdlib.h>
- #include <unistd.h>
-diff --git a/gcov-wrapper.sh b/gcov-wrapper.sh
-index f56dcec..b1c75c3 100755
---- a/gcov-wrapper.sh
-+++ b/gcov-wrapper.sh
-@@ -1,8 +1,8 @@
- #!/bin/sh
- #
--# wrapper for generating gcov stats from matchbox source 
--#
-+# wrapper for generating gcov stats from matchbox source
- #
-+# SPDX-License-Identifier: GPL-2.0-or-later
+ #include "mb-wm-client-desktop.h"
+ #include "mb-wm-theme.h"
  
- if [ -z "$1" ] || [ -z "$2" ]; then
-    echo
-diff --git a/libmb-tests.c b/libmb-tests.c
-index 12b1802..250f727 100644
---- a/libmb-tests.c
-+++ b/libmb-tests.c
+@@ -193,4 +194,3 @@ mb_wm_client_desktop_new (MBWindowManager *wm, MBWMClientWindow *win)
+ 
+   return client;
+ }
+-
+diff --git a/matchbox/client-types/mb-wm-client-desktop.h b/matchbox/client-types/mb-wm-client-desktop.h
+index 128c450..55b1d6c 100644
+--- a/matchbox/client-types/mb-wm-client-desktop.h
++++ b/matchbox/client-types/mb-wm-client-desktop.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/client-types/mb-wm-client-dialog.c b/matchbox/client-types/mb-wm-client-dialog.c
+index e4bcdfb..7645899 100644
+--- a/matchbox/client-types/mb-wm-client-dialog.c
++++ b/matchbox/client-types/mb-wm-client-dialog.c
 @@ -1,3 +1,4 @@
 +/* SPDX-License-Identifier: GPL-2.0-or-later */
- #include <stdio.h>
- #include <stdlib.h>
- #include <string.h>
-diff --git a/sendkey.c b/sendkey.c
-index 73c2676..c9c6d6e 100644
---- a/sendkey.c
-+++ b/sendkey.c
-@@ -3,16 +3,8 @@
+ #include "mb-wm-client-dialog.h"
  
-   Copyright 2003 Matthew Allum
+ #include "mb-wm-theme.h"
+@@ -356,4 +357,3 @@ mb_wm_client_dialog_new (MBWindowManager *wm, MBWMClientWindow *win)
  
--  This program is free software; you can redistribute it and/or modify
--  it under the terms of the GNU General Public License as published by
--  the Free Software Foundation; either version 2, or (at your option)
--  any later version.
--  
--  This program is distributed in the hope that it will be useful,
--  but WITHOUT ANY WARRANTY; without even the implied warranty of
--  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--  GNU General Public License for more details.
--  
-+  SPDX-License-Identifier: GPL-2.0-or-later
-+
- */
+   return client;
+ }
+-
+diff --git a/matchbox/client-types/mb-wm-client-dialog.h b/matchbox/client-types/mb-wm-client-dialog.h
+index fd0eee3..3d9b283 100644
+--- a/matchbox/client-types/mb-wm-client-dialog.h
++++ b/matchbox/client-types/mb-wm-client-dialog.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
  
- #include <stdio.h>
-diff --git a/test-argb.sh b/test-argb.sh
-index 4ffd1ee..1b3d45b 100755
---- a/test-argb.sh
-+++ b/test-argb.sh
-@@ -1,6 +1,9 @@
- #!/bin/bash
- #
- # test-argb.sh
-+#
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+#
- # ====
- #
- # basically tests a argb window is rendered ok and doesn't crash matchbox
-diff --git a/test-dock.sh b/test-dock.sh
-index 849eecf..4369383 100755
---- a/test-dock.sh
-+++ b/test-dock.sh
-@@ -1,7 +1,7 @@
- #!/bin/sh
- # matchbox-panel test
- #
--#
-+# SPDX-License-Identifier: GPL-2.0-or-later
+diff --git a/matchbox/client-types/mb-wm-client-input.c b/matchbox/client-types/mb-wm-client-input.c
+index 3a63d40..d72e23b 100644
+--- a/matchbox/client-types/mb-wm-client-input.c
++++ b/matchbox/client-types/mb-wm-client-input.c
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include "mb-wm-client-input.h"
  
- if [ -z $(which matchbox-panel|grep "/matchbox-panel") ]; then
-    echo "$0: 'matchbox-panel' missing! Have you installed Matchbox properly?"
-diff --git a/test-gconf.sh b/test-gconf.sh
-index 7612cb3..832f0d7 100755
---- a/test-gconf.sh
-+++ b/test-gconf.sh
-@@ -1,6 +1,8 @@
- #!/bin/bash
- #
- # test-gconf.sh
-+#
-+# SPDX-License-Identifier: GPL-2.0-or-later
- # ====
- #
- # Tests gconf key shortcut settings.
-diff --git a/test-interaction.sh b/test-interaction.sh
-index fe3a238..2a9845d 100755
---- a/test-interaction.sh
-+++ b/test-interaction.sh
-@@ -1,6 +1,8 @@
- #!/bin/bash
- #
- # test-interaction.sh
-+#
-+# SPDX-License-Identifier: GPL-2.0-or-later
- # ====
- #
- # Launches a number of window types, and then via 'xnee' automates
-diff --git a/test-windows.sh b/test-windows.sh
-index fc9d7f8..8829b10 100755
---- a/test-windows.sh
-+++ b/test-windows.sh
-@@ -1,5 +1,7 @@
- #!/bin/bash
- #
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+#
- # script which runs through all the window option tests
+ static void
+@@ -181,4 +182,3 @@ mb_wm_client_input_detransitise (MBWindowManagerClient *client)
+ 				     MBWMClientReqGeomForced);
+     }
+ }
+-
+diff --git a/matchbox/client-types/mb-wm-client-input.h b/matchbox/client-types/mb-wm-client-input.h
+index 05ffabd..5fbe429 100644
+--- a/matchbox/client-types/mb-wm-client-input.h
++++ b/matchbox/client-types/mb-wm-client-input.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
  
- if [ \! -x winspew ]; then
-diff --git a/testrun.sh b/testrun.sh
-index dce949c..b73dbc6 100755
---- a/testrun.sh
-+++ b/testrun.sh
-@@ -1,5 +1,7 @@
- #!/bin/bash
- #
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+#
- # script for driving all the other Matchbox test scripts
- #
- # To add a new test, write a file name 'test-<test name>.sh' to the
-diff --git a/winspew.c b/winspew.c
-index 6cce391..e795c58 100644
---- a/winspew.c
-+++ b/winspew.c
-@@ -3,23 +3,15 @@
+diff --git a/matchbox/client-types/mb-wm-client-menu.c b/matchbox/client-types/mb-wm-client-menu.c
+index b68f771..2e51c58 100644
+--- a/matchbox/client-types/mb-wm-client-menu.c
++++ b/matchbox/client-types/mb-wm-client-menu.c
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include "mb-wm-client-menu.h"
  
-   Copyright 2003 Matthew Allum
+ #include "mb-wm-theme.h"
+@@ -153,4 +154,3 @@ mb_wm_client_menu_new (MBWindowManager *wm, MBWMClientWindow *win)
  
--  This program is free software; you can redistribute it and/or modify
--  it under the terms of the GNU General Public License as published by
--  the Free Software Foundation; either version 2, or (at your option)
--  any later version.
--  
--  This program is distributed in the hope that it will be useful,
--  but WITHOUT ANY WARRANTY; without even the implied warranty of
--  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--  GNU General Public License for more details.
--  
-+  SPDX-License-Identifier: GPL-2.0-or-later
-+ 
- */
+   return client;
+ }
+-
+diff --git a/matchbox/client-types/mb-wm-client-menu.h b/matchbox/client-types/mb-wm-client-menu.h
+index 4908736..93b8719 100644
+--- a/matchbox/client-types/mb-wm-client-menu.h
++++ b/matchbox/client-types/mb-wm-client-menu.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
  
+diff --git a/matchbox/client-types/mb-wm-client-note.c b/matchbox/client-types/mb-wm-client-note.c
+index d0bb770..65c861c 100644
+--- a/matchbox/client-types/mb-wm-client-note.c
++++ b/matchbox/client-types/mb-wm-client-note.c
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2007 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
  
- #include <X11/Xlib.h>
- #include <X11/Xutil.h>
- #include <X11/Xatom.h>
-- 
-+
- #include <stdio.h>
- #include <stdlib.h>
- #include <string.h>
+@@ -150,4 +142,3 @@ mb_wm_client_note_new (MBWindowManager *wm, MBWMClientWindow *win)
+ 
+   return client;
+ }
+-
+diff --git a/matchbox/client-types/mb-wm-client-note.h b/matchbox/client-types/mb-wm-client-note.h
+index 3a7d5ba..1a67ebe 100644
+--- a/matchbox/client-types/mb-wm-client-note.h
++++ b/matchbox/client-types/mb-wm-client-note.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2007 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/client-types/mb-wm-client-override.c b/matchbox/client-types/mb-wm-client-override.c
+index 238ce73..f516023 100644
+--- a/matchbox/client-types/mb-wm-client-override.c
++++ b/matchbox/client-types/mb-wm-client-override.c
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2007 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+@@ -121,4 +113,3 @@ mb_wm_client_override_new (MBWindowManager *wm, MBWMClientWindow *win)
+ 
+   return client;
+ }
+-
+diff --git a/matchbox/client-types/mb-wm-client-override.h b/matchbox/client-types/mb-wm-client-override.h
+index 7bf896a..fe2919d 100644
+--- a/matchbox/client-types/mb-wm-client-override.h
++++ b/matchbox/client-types/mb-wm-client-override.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2007 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/client-types/mb-wm-client-panel.c b/matchbox/client-types/mb-wm-client-panel.c
+index c915d6b..2031000 100644
+--- a/matchbox/client-types/mb-wm-client-panel.c
++++ b/matchbox/client-types/mb-wm-client-panel.c
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include "mb-wm-client-panel.h"
+ #include "mb-wm-theme.h"
+ 
+diff --git a/matchbox/client-types/mb-wm-client-panel.h b/matchbox/client-types/mb-wm-client-panel.h
+index e0b7d77..65d21d0 100644
+--- a/matchbox/client-types/mb-wm-client-panel.h
++++ b/matchbox/client-types/mb-wm-client-panel.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/comp-mgr/mb-wm-comp-mgr-clutter.c b/matchbox/comp-mgr/mb-wm-comp-mgr-clutter.c
+index 21d728f..1610afc 100644
+--- a/matchbox/comp-mgr/mb-wm-comp-mgr-clutter.c
++++ b/matchbox/comp-mgr/mb-wm-comp-mgr-clutter.c
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2008 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/comp-mgr/mb-wm-comp-mgr-clutter.h b/matchbox/comp-mgr/mb-wm-comp-mgr-clutter.h
+index f67f46c..8865046 100644
+--- a/matchbox/comp-mgr/mb-wm-comp-mgr-clutter.h
++++ b/matchbox/comp-mgr/mb-wm-comp-mgr-clutter.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2008 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/comp-mgr/mb-wm-comp-mgr-xrender.c b/matchbox/comp-mgr/mb-wm-comp-mgr-xrender.c
+index fccb0b0..7b2e382 100644
+--- a/matchbox/comp-mgr/mb-wm-comp-mgr-xrender.c
++++ b/matchbox/comp-mgr/mb-wm-comp-mgr-xrender.c
+@@ -7,15 +7,7 @@
+  *
+  *  Copyright (c) 2002, 2004, 2007, 2008 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/comp-mgr/mb-wm-comp-mgr-xrender.h b/matchbox/comp-mgr/mb-wm-comp-mgr-xrender.h
+index 8e09fd2..4a5576b 100644
+--- a/matchbox/comp-mgr/mb-wm-comp-mgr-xrender.h
++++ b/matchbox/comp-mgr/mb-wm-comp-mgr-xrender.h
+@@ -7,15 +7,7 @@
+  *
+  *  Copyright (c) 2002, 2004, 2007 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/comp-mgr/mb-wm-comp-mgr.c b/matchbox/comp-mgr/mb-wm-comp-mgr.c
+index 160303f..7ec8dd8 100644
+--- a/matchbox/comp-mgr/mb-wm-comp-mgr.c
++++ b/matchbox/comp-mgr/mb-wm-comp-mgr.c
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2002, 2004, 2007 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/comp-mgr/mb-wm-comp-mgr.h b/matchbox/comp-mgr/mb-wm-comp-mgr.h
+index 35ac83d..24b11b6 100644
+--- a/matchbox/comp-mgr/mb-wm-comp-mgr.h
++++ b/matchbox/comp-mgr/mb-wm-comp-mgr.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2002, 2004, 2007 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-window-manager.c b/matchbox/core/mb-window-manager.c
+index f6c2232..0a78bf6 100644
+--- a/matchbox/core/mb-window-manager.c
++++ b/matchbox/core/mb-window-manager.c
+@@ -7,15 +7,7 @@
+  *
+  *  Copyright (c) 2005, 2007, 2008 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ #include "mb-wm.h"
+diff --git a/matchbox/core/mb-window-manager.h b/matchbox/core/mb-window-manager.h
+index 3e83532..cc4d5f8 100644
+--- a/matchbox/core/mb-window-manager.h
++++ b/matchbox/core/mb-window-manager.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005, 2007 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-atoms.c b/matchbox/core/mb-wm-atoms.c
+index 5d7e805..7cf69dc 100644
+--- a/matchbox/core/mb-wm-atoms.c
++++ b/matchbox/core/mb-wm-atoms.c
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include "mb-wm.h"
+ 
+ void
+diff --git a/matchbox/core/mb-wm-atoms.h b/matchbox/core/mb-wm-atoms.h
+index ef06083..a5aab5d 100644
+--- a/matchbox/core/mb-wm-atoms.h
++++ b/matchbox/core/mb-wm-atoms.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-client-base.c b/matchbox/core/mb-wm-client-base.c
+index 6460b22..8c4527d 100644
+--- a/matchbox/core/mb-wm-client-base.c
++++ b/matchbox/core/mb-wm-client-base.c
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-client-base.h b/matchbox/core/mb-wm-client-base.h
+index edc8008..ea1f1b7 100644
+--- a/matchbox/core/mb-wm-client-base.h
++++ b/matchbox/core/mb-wm-client-base.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-client-window.c b/matchbox/core/mb-wm-client-window.c
+index 19aa703..4be1c1d 100644
+--- a/matchbox/core/mb-wm-client-window.c
++++ b/matchbox/core/mb-wm-client-window.c
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-client-window.h b/matchbox/core/mb-wm-client-window.h
+index 287f881..1b5c050 100644
+--- a/matchbox/core/mb-wm-client-window.h
++++ b/matchbox/core/mb-wm-client-window.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-client.c b/matchbox/core/mb-wm-client.c
+index f88a8d8..c71a389 100644
+--- a/matchbox/core/mb-wm-client.c
++++ b/matchbox/core/mb-wm-client.c
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-client.h b/matchbox/core/mb-wm-client.h
+index 8127b07..7e437ee 100644
+--- a/matchbox/core/mb-wm-client.h
++++ b/matchbox/core/mb-wm-client.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-debug.c b/matchbox/core/mb-wm-debug.c
+index 75d6e63..f2809a5 100644
+--- a/matchbox/core/mb-wm-debug.c
++++ b/matchbox/core/mb-wm-debug.c
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-debug.h b/matchbox/core/mb-wm-debug.h
+index 4c10be4..490dda0 100644
+--- a/matchbox/core/mb-wm-debug.h
++++ b/matchbox/core/mb-wm-debug.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-decor.c b/matchbox/core/mb-wm-decor.c
+index f4f171b..c2694fb 100644
+--- a/matchbox/core/mb-wm-decor.c
++++ b/matchbox/core/mb-wm-decor.c
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-decor.h b/matchbox/core/mb-wm-decor.h
+index 6adeadf..df3571f 100644
+--- a/matchbox/core/mb-wm-decor.h
++++ b/matchbox/core/mb-wm-decor.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-keys.c b/matchbox/core/mb-wm-keys.c
+index 7c32105..27398cf 100644
+--- a/matchbox/core/mb-wm-keys.c
++++ b/matchbox/core/mb-wm-keys.c
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include "mb-wm.h"
+ #include <ctype.h> 		/* isalpha etc */
+ 
+diff --git a/matchbox/core/mb-wm-keys.h b/matchbox/core/mb-wm-keys.h
+index af4dc02..0b72832 100644
+--- a/matchbox/core/mb-wm-keys.h
++++ b/matchbox/core/mb-wm-keys.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-layout.c b/matchbox/core/mb-wm-layout.c
+index 793276c..a2347ab 100644
+--- a/matchbox/core/mb-wm-layout.c
++++ b/matchbox/core/mb-wm-layout.c
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include "mb-wm.h"
+ #include "mb-wm-client-input.h"
+ 
+diff --git a/matchbox/core/mb-wm-layout.h b/matchbox/core/mb-wm-layout.h
+index 7ee61d6..51aaea5 100644
+--- a/matchbox/core/mb-wm-layout.h
++++ b/matchbox/core/mb-wm-layout.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-macros.h b/matchbox/core/mb-wm-macros.h
+index 5c8ab4b..c97caab 100644
+--- a/matchbox/core/mb-wm-macros.h
++++ b/matchbox/core/mb-wm-macros.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-main-context.c b/matchbox/core/mb-wm-main-context.c
+index 71d5d6c..f735f2e 100644
+--- a/matchbox/core/mb-wm-main-context.c
++++ b/matchbox/core/mb-wm-main-context.c
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include "mb-wm-main-context.h"
+ 
+ #include <sys/time.h>
+diff --git a/matchbox/core/mb-wm-main-context.h b/matchbox/core/mb-wm-main-context.h
+index d93574c..673a468 100644
+--- a/matchbox/core/mb-wm-main-context.h
++++ b/matchbox/core/mb-wm-main-context.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-object-props.h b/matchbox/core/mb-wm-object-props.h
+index bc1f753..e547058 100644
+--- a/matchbox/core/mb-wm-object-props.h
++++ b/matchbox/core/mb-wm-object-props.h
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ 
+ #ifndef _HAVE_MB_OBJECT_PROPS_H
+ #define _HAVE_MB_OBJECT_PROPS_H
+diff --git a/matchbox/core/mb-wm-object.c b/matchbox/core/mb-wm-object.c
+index 09a6ad4..32607f9 100644
+--- a/matchbox/core/mb-wm-object.c
++++ b/matchbox/core/mb-wm-object.c
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-object.h b/matchbox/core/mb-wm-object.h
+index 2df9ea5..eb49b52 100644
+--- a/matchbox/core/mb-wm-object.h
++++ b/matchbox/core/mb-wm-object.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-props.c b/matchbox/core/mb-wm-props.c
+index 01a74bb..340344b 100644
+--- a/matchbox/core/mb-wm-props.c
++++ b/matchbox/core/mb-wm-props.c
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include "mb-wm.h"
+ #include "xas.h"
+ 
+diff --git a/matchbox/core/mb-wm-props.h b/matchbox/core/mb-wm-props.h
+index 07418ca..05d9bfb 100644
+--- a/matchbox/core/mb-wm-props.h
++++ b/matchbox/core/mb-wm-props.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-root-window.c b/matchbox/core/mb-wm-root-window.c
+index 40e2732..46a65dc 100644
+--- a/matchbox/core/mb-wm-root-window.c
++++ b/matchbox/core/mb-wm-root-window.c
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2007 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-root-window.h b/matchbox/core/mb-wm-root-window.h
+index 7d3cdbe..bc914a0 100644
+--- a/matchbox/core/mb-wm-root-window.h
++++ b/matchbox/core/mb-wm-root-window.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2007 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-stack.c b/matchbox/core/mb-wm-stack.c
+index f75b228..b864a6f 100644
+--- a/matchbox/core/mb-wm-stack.c
++++ b/matchbox/core/mb-wm-stack.c
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-stack.h b/matchbox/core/mb-wm-stack.h
+index 58afc45..147144d 100644
+--- a/matchbox/core/mb-wm-stack.h
++++ b/matchbox/core/mb-wm-stack.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-types.h b/matchbox/core/mb-wm-types.h
+index 249c875..a3e93b4 100644
+--- a/matchbox/core/mb-wm-types.h
++++ b/matchbox/core/mb-wm-types.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/mb-wm-util.c b/matchbox/core/mb-wm-util.c
+index 792cb81..b153e32 100644
+--- a/matchbox/core/mb-wm-util.c
++++ b/matchbox/core/mb-wm-util.c
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include "mb-wm.h"
+ #include <stdarg.h>
+ 
+diff --git a/matchbox/core/mb-wm-util.h b/matchbox/core/mb-wm-util.h
+index 07e193d..56bcede 100644
+--- a/matchbox/core/mb-wm-util.h
++++ b/matchbox/core/mb-wm-util.h
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
+ #ifndef _MB_HAVE_UTIL_H
+ #define _MB_HAVE_UTIL_H
+ 
+diff --git a/matchbox/core/mb-wm.h b/matchbox/core/mb-wm.h
+index 0edbb04..ec51a49 100644
+--- a/matchbox/core/mb-wm.h
++++ b/matchbox/core/mb-wm.h
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2005 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ *  SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ 
+diff --git a/matchbox/core/xas.c b/matchbox/core/xas.c
+index 47329dc..fa7be07 100644
+--- a/matchbox/core/xas.c
++++ b/matchbox/core/xas.c
+@@ -7,6 +7,8 @@
+  * Copyright (C) 2002 Havoc Pennington
+  * Copyright (C) 1986, 1998  The Open Group
+  *
++ * SPDX-License-Identifier: GPL-2.0-or-later
++ *
+  * Permission to use, copy, modify, distribute, and sell this software
+  * and its documentation for any purpose is hereby granted without
+  * fee, provided that the above copyright notice appear in all copies
+diff --git a/matchbox/core/xas.h b/matchbox/core/xas.h
+index e9b7ca8..8d27cfd 100644
+--- a/matchbox/core/xas.h
++++ b/matchbox/core/xas.h
+@@ -7,6 +7,8 @@
+  * Copyright (C) 2002 Havoc Pennington
+  * Copyright (C) 1986, 1998  The Open Group
+  *
++ * SPDX-License-Identifier: GPL-2.0-or-later
++ *
+  * Permission to use, copy, modify, distribute, and sell this software
+  * and its documentation for any purpose is hereby granted without
+  * fee, provided that the above copyright notice appear in all copies
+diff --git a/util/matchbox-remote.c b/util/matchbox-remote.c
+index c83926e..78f1c6f 100644
+--- a/util/matchbox-remote.c
++++ b/util/matchbox-remote.c
+@@ -6,15 +6,7 @@
+  *
+  *  Copyright (c) 2008 OpenedHand Ltd - http://o-hand.com
+  *
+- *  This program is free software; you can redistribute it and/or modify
+- *  it under the terms of the GNU General Public License as published by
+- *  the Free Software Foundation; either version 2, or (at your option)
+- *  any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
++ * SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  */
+ #define _GNU_SOURCE
+@@ -336,4 +328,3 @@ int main(int argc, char* argv[])
+ 
+   return 0;
+ }
+-
 -- 
 2.27.0
 
