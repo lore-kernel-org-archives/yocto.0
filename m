@@ -1,105 +1,104 @@
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
- by mx.groups.io with SMTP id smtpd.web10.496.1596778124733250912
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.531.1596778613909251806
  for <yocto@lists.yoctoproject.org>;
- Thu, 06 Aug 2020 22:28:44 -0700
+ Thu, 06 Aug 2020 22:36:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=pKtp3mBG;
- spf=pass (domain: gmail.com, ip: 209.85.219.52, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f52.google.com with SMTP id x6so242421qvr.8
-        for <yocto@lists.yoctoproject.org>; Thu, 06 Aug 2020 22:28:44 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ujLKyWIP;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: raj.khem@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 8243BE01FA5; Thu,  6 Aug 2020 22:36:53 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.160.180 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89969E01FA3
+	for <yocto@yoctoproject.org>; Thu,  6 Aug 2020 22:36:51 -0700 (PDT)
+Received: by mail-qt1-f180.google.com with SMTP id 6so527728qtt.0
+        for <yocto@yoctoproject.org>; Thu, 06 Aug 2020 22:36:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=nS1JZJ8zUy9bbHwR4DTkYYw0er60mR0jIyIE/J6TDMU=;
-        b=pKtp3mBG+nMi8IbTcRuuB/g9xZW71Ujr1FqumeBJ2gTv+5rVeC/JPHyji6icxjKSRm
-         Ko3SuQ8b9yGfrXFVt0e8EiIYAiLwjeKGpyyPNtMV+UhNW77SUep4wlrVbcDcDpVKrbg+
-         uIYIRPiEZ/6VQWs9dhDGcKrfPLw/2YaAr+8ENE1VjpkXqYIwdlSgZtEPtqj8PW4k7hZN
-         n/5VNLSFapu20M6zXn+M0Rw12hnTuhMYl+k2xGtDFS+kIJ9IwozEicZwtb9YW0FzdnVQ
-         yL/geWxJ3hMro66qoksQJFQmNahYGDY5jo3Hinz03R0xcmUaS6eXUYwSSZFuMoTyDsx7
-         qtVg==
+        bh=zrO7S3uXlf/AhrNwf495JUx9sre9vXz7lWKROWCCRJU=;
+        b=ujLKyWIPY2sMsA13OOs5DxeSTg3KZnAJ0fW4RwsD+qgDiAyBvcx+mDKr7yF/lQmOei
+         mrumMpaeepKkQgH2BhMmj4Gb5SDr/kTlMSPBGYmjXtII/LaA1AaMsj8rXJfupw5NRkjZ
+         6khm3F2iQUVucM38bNxzMBpvE3lharsQp5FstuFwuEITDG/HBz7VPX+YaUFMFDsb0ZJ4
+         0IhUDZh2Zq1AX2pBUPTybydIhJDJWb34ZnlaLoz8V3imzUAwFKwvcxu2jJl54xanRoTa
+         O3vi8HNGWun45ErNRWCg5b+bkzJ3AzSvewZbBHaOE31e24zQueFjn4+q1h4wBfiCUYLN
+         dWrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=nS1JZJ8zUy9bbHwR4DTkYYw0er60mR0jIyIE/J6TDMU=;
-        b=kjB7aE/1aTeEQhbcs60rxcXLyzGQ820nGrCN6D4e76S7ME24Xg9uH0O3dr6Dy63451
-         bnaycTT1+MinIrgGHh++lnNKms3qhqzydkUmM7MccOrn+yO14uEn3aqZtV1eUJIaaoVU
-         O+jLGSZGL+T6rw0QPa/6MXZtIwnsXrNXWBBYq3YiXndfJBOr11qxma9b8W4MFqMeo1aD
-         soKxwvyJ9DsM7ADmm95u9m1qELxsxQ699U2oHY6L1P3ryeULJ+WafWDyeOy3qOF8ei/w
-         lOrROVDPB1dSoXJo/8Fkk2ON4P3aZ1Vx0R677LvzjpDhTwgWvjJX1/3UOj7cSA22ZIVE
-         N6CA==
-X-Gm-Message-State: AOAM532/uLjx3J2OeXj6BE+P3+IREcvGrKD1xYR87+mnaM8Q+cUUAQT7
-	sm4fyC0ofihqZPzQhSKN9aS3I5jHSMWXbz9xJ4OqeD+H
-X-Google-Smtp-Source: ABdhPJx3gwKnTdtNkumSf0W+RG0ahGIMwXA/LCgtG1wiprBO3Uxrb7iCzoCpjS3NztguruJ0UTTEm2bc6n/Js/w8ymo=
-X-Received: by 2002:ad4:5812:: with SMTP id dd18mr13253137qvb.23.1596778123599;
- Thu, 06 Aug 2020 22:28:43 -0700 (PDT)
+        bh=zrO7S3uXlf/AhrNwf495JUx9sre9vXz7lWKROWCCRJU=;
+        b=qi2ZKNftgx2PP8WKxuiR/D3yniYmi0NXHAt6d3IK47UvUQumcB17md3Al4ji4oxXQR
+         R/YD0xhrfvS0llIOxiX5egKi2vCSrFwhhsuxfnKCLDv7UlSuBLMQeunAyrvLOGISCzbp
+         9z7pgyW/U6zVvEbbCoOz7jfZn/Bncxnv2bUSI+eTE7/iHBjDVKciwR6birl65wm0rlCf
+         Xl0ug3ZcxXHfOSwo9/127z2EmVrABmsZy89+FcacWJoxQbOCYH37Fc8xSkZPVZ2W+DOX
+         GKwNL9zd9gi15/6ya0qOoZIh/ujlTLcH4PRQTcJ4LtVLdZ/SSxP8KP+tIJErT7KLL9n8
+         CJ5Q==
+X-Gm-Message-State: AOAM533hSuLIp6YfdfwYnhQ57JN7Yichx8bZmP7M4UMYwZ1Enl0c+Jai
+	UfE2puP2jT1BMMDPYHalefFxZROhDN7VOTbGgTQ5EQHonMw=
+X-Google-Smtp-Source: ABdhPJw9XHgyyTBgeuWTE107XpsE37vUNaN82ap4M+w1grpn3B+3Z2q4Nr4E7o37gDZtyzcRg8xaTfczj37+mC+aJa0=
+X-Received: by 2002:ac8:1344:: with SMTP id f4mr12490680qtj.285.1596778610733;
+ Thu, 06 Aug 2020 22:36:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200805071423.Horde.gFLTeIPgkH6Zz45SlgRXx8H@crashcourse.ca>
-In-Reply-To: <20200805071423.Horde.gFLTeIPgkH6Zz45SlgRXx8H@crashcourse.ca>
+References: <cb154246-04c9-d47e-e28f-d848f7d8baca@faresoftware.it>
+In-Reply-To: <cb154246-04c9-d47e-e28f-d848f7d8baca@faresoftware.it>
 From: "Khem Raj" <raj.khem@gmail.com>
-Date: Thu, 6 Aug 2020 22:28:17 -0700
-Message-ID: <CAMKF1so+mUm0fuweicp0VJ=_vPfTMJceoY-1F_OPdzoi1qDACQ@mail.gmail.com>
-Subject: Re: [yocto] when is it appropriate to push recipe enhancements (eg., class-nativesdk) upstream?
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: yocto@lists.yoctoproject.org
+Date: Thu, 6 Aug 2020 22:36:24 -0700
+Message-ID: <CAMKF1sqWQ0u1U8NXBQ_ks4rOzRmDyW5R9gY26NhCQKCSSgwSpA@mail.gmail.com>
+Subject: Re: [yocto] psplash and mountpoint -q
+To: Mauro Ziliani <mauro@faresoftware.it>
+Cc: Yocto Project <yocto@yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Aug 5, 2020 at 4:14 AM Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+On Wed, Aug 5, 2020 at 2:19 AM Mauro Ziliani <mauro@faresoftware.it> wrote:
 >
-> based on recipe from an existing (zeus-based) project, colleague asks
-> about a bbappend file, and whether it's appropriate that it be submitted
-> upstream as a patch -- this example involves "pciutils" recipe from
-> oe-core, but the question more generally covers any number of recipes.
+> Hi all.
 >
-> this particular code base has the following pciutils_%.bbappend file:
+> I'm working woth Zeus on intel platform
 >
-> === start ===
-> PACKAGECONFIG_class-nativesdk = ""
+> When the script is run in shutdown I get the error at line 28
 >
-> DISABLE_STATIC_pn-nativesdk-pciutils = ""
+> 26: export TMPDIR=/mnt/.psplash
+> 27: [ -d $TMPDIR ] || mkdir -p $TMPDIR
+> 28: if [ ! mountpoint -q $TMPDIR ]; then
+> 29:     mount tmpfs -t tmpfs $TMPDIR -o,size=40k
+> 30: fi
 >
-> # Need nativesdk-specific do_install due to ${sbindir} being set to usr/bin
-> do_install_class-nativesdk () {
->          oe_runmake DESTDIR=${D} install install-lib
+> So I change the line so
 >
->          oe_multilib_header pci/config.h
-> }
+> 28: if [ ! `mountpoint -q $TMPDIR` ]; then
 >
-> BBCLASSEXTEND += "nativesdk"
-> === end ===
 >
-> i'm looking at this for the first time and, sure, it appears to
-> extend the pciutils recipe for nativesdk. but if that's true, then
-> would it not make sense to submit that as a patch?
->
-> the current zeus "pciutils_3.6.2.bb" recipe doesn't extend the
-> recipe for nativesdk, so if this bbappend file actually correctly
-> does that, would it not make sense to contribute that enhancement
-> back?
->
+> Is this ok?
 
-yes, it would be good to send a patch to extend the recipe to upstream oe-core
-I also see the bbappend is using a greedy wildcard, sometimes they can
-be error prone when upgrading
-to newer versions of oe-core, so usually I like to recommend that
-create version specific bbappends so
-it reminds you of this quirk when recipe is upgraded underneath.
+checking for the return value of mountpount to be non-zero is the
+right thing to do here maybe more explicit check like
 
-> in general, there appear to be numerous recipes in this code base
-> that do little more than extend the recipe for native and nativesdk
-> because the oe-core (or meta-oe) recipes don't do that.
+mountpoint -q $TMPDIR
+if [ $? -ne 0 ]; then
+
+might do the trick as well.
 >
-> am i thinking about this correctly? it seems that, if local bbappend
-> content fixes or enhances a recipe, it would make sense to push that
-> fix so as to not have to carry around the bbappend files.
 >
-> thoughts? i'm not passing any judgment on the correctness of this
-> particular bbappend file, i'm more interested in the general
-> philosophy of pushing improvements to not have to keep carrying
-> them around in the local code base.
->
-> rday
->
+> MZ
 >
 > 
