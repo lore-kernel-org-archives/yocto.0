@@ -1,244 +1,221 @@
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
- by mx.groups.io with SMTP id smtpd.web12.2369.1596879336314954865
+Received: from mail-40130.protonmail.ch (mail-40130.protonmail.ch [185.70.40.130])
+ by mx.groups.io with SMTP id smtpd.web11.3654.1596886301815680551
  for <yocto@lists.yoctoproject.org>;
- Sat, 08 Aug 2020 02:35:36 -0700
+ Sat, 08 Aug 2020 04:31:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=MXtJdHGA;
- spf=pass (domain: gmail.com, ip: 209.85.218.46, mailfrom: lshllshl@gmail.com)
-Received: by mail-ej1-f46.google.com with SMTP id t10so153702ejs.8
-        for <yocto@lists.yoctoproject.org>; Sat, 08 Aug 2020 02:35:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=ae2m39r0QB2706ak9Bt5ubndgswnvs/CNWJ/RaJYNBY=;
-        b=MXtJdHGAFsu0o3OXn4Nzw0YQMUBANbacyPJCbS9jy+HG1kYvGktAgbJf0/IT/ZX0s0
-         RJGPIVS1o0p03ANHK1nnMJcAJ5Nwg59xmv3mf51QHPEYMZStg8r7T4VeF+qE4NhQI3LO
-         lCizokM0CPivr4tknNr9aVjNSKn+au/Bi975irStXZE7b22lt87EGHxUE5X9G7rQ7C2a
-         rdJGns3wljUkj+fsijxvqBxuoT9g+rPISXGOsjogqF1wHhd5eGQmFSkCy1n25CMn12M4
-         Sx+sChkoF+Ll88kuIW8OAOGjrICKYSEcQl641zTDgC1eMpCfdLQ+L3UJIOLlassSlOqk
-         MaNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=ae2m39r0QB2706ak9Bt5ubndgswnvs/CNWJ/RaJYNBY=;
-        b=fGZL5rlR5Xucq0fSiHWOuvoTMRFGA7XEEwR78viXgA+E6oZGAHCcEXlb8ZWDaki+lL
-         Q8wlbmXEcQ0tt5BfiNCv7qzB5tBVidxI1nhZq9EwXFZr7+uWBLq5PqdZo3gbiGxWTlhn
-         Uy2g6gvmaEQfRreEXvAyOHlmnQO4sVGBHlceoU3h/0ADj6NSK8+n6wRV5ZTHcaYznefP
-         3PdZOAMUMCmvbx9OjPaSkJA8ETD6GIJmg0jQNnZIe0B7KSFBsUqbuajcbFcjYHQ0oqNa
-         /E+X998q8FSUC0T8PUvE3AqnnGER7tf+neRdap05mukhr4Z1CIsMzl4RrE+WendzveSy
-         fZNw==
-X-Gm-Message-State: AOAM533kxyGAaSFYSzn7MBftk+RWnaahzZVa9fFK+F1E+UKwXjyfxBXh
-	Ylg3CA/xghJHQboH8v9IUxEVVzOde+Y=
-X-Google-Smtp-Source: ABdhPJyCprLBEiaVXR3zOkgBLLuRNb7osVTEjx1xqSJlPTtn9bbciHL89I1eFeC7dzPyhHF5ByTJ6Q==
-X-Received: by 2002:a17:906:68e:: with SMTP id u14mr14037286ejb.166.1596879334466;
-        Sat, 08 Aug 2020 02:35:34 -0700 (PDT)
-Return-Path: <lshllshl@gmail.com>
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com. [209.85.128.44])
-        by smtp.gmail.com with ESMTPSA id g21sm6957953edm.65.2020.08.08.02.35.33
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 08 Aug 2020 02:35:33 -0700 (PDT)
-Received: by mail-wm1-f44.google.com with SMTP id 184so3959737wmb.0
-        for <yocto@lists.yoctoproject.org>; Sat, 08 Aug 2020 02:35:33 -0700 (PDT)
-X-Received: by 2002:a1c:26c4:: with SMTP id m187mr16170506wmm.90.1596879333079;
- Sat, 08 Aug 2020 02:35:33 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAJCbrz4uDGFA4qe7SxLrKR4kDEzJDxgAp=EROAiDPtiORe2RXw@mail.gmail.com>
-In-Reply-To: <CAJCbrz4uDGFA4qe7SxLrKR4kDEzJDxgAp=EROAiDPtiORe2RXw@mail.gmail.com>
-From: "Sol" <lshllshl@gmail.com>
-Date: Sat, 8 Aug 2020 19:35:05 +1000
-X-Gmail-Original-Message-ID: <CABn82nzzGYUBuuz4jQngRnFe74WNKeWv5rE5B2DkAateRdybdg@mail.gmail.com>
-Message-ID: <CABn82nzzGYUBuuz4jQngRnFe74WNKeWv5rE5B2DkAateRdybdg@mail.gmail.com>
+ dkim=pass header.i=@protonmail.com header.s=protonmail header.b=qWrGgLJY;
+ spf=pass (domain: protonmail.com, ip: 185.70.40.130, mailfrom: codusnocturnus@protonmail.com)
+Date: Sat, 08 Aug 2020 11:31:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail; t=1596886299;
+	bh=BjAcQE+Ho7wrAqHz+qrAr1XtciJJ68Puftato5I99MY=;
+	h=Date:To:From:Reply-To:Subject:In-Reply-To:References:From;
+	b=qWrGgLJYPVGjnvVscYbc4uOQ/vCKwQa6bZdbU021gQFrUdS2AFEv86uIQG3ykodCb
+	 FF3cYX5Ct6rCDl7fcRmB9WKNODiy+FkgBzvpZaVn3WUi6pWg3y+xnFiQjTctdE1bxf
+	 ISuYf2VhyEFwMe7fJrhvnSkszkKHzxbHjKbWSKpo=
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+From: "codusnocturnus" <codusnocturnus@protonmail.com>
+Reply-To: codusnocturnus <codusnocturnus@protonmail.com>
 Subject: Re: [yocto] yocto compile simple c++
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000065d99205ac5a71b2"
+Message-ID: <WGlUj0r1MweEQZxlEr59Bx_beCU124WBWJ0Yc3GeoKi2kf-bfHDSsSlePOPyQ-r3vmEmkZXG7y_aD9BKPjWi57wn_Q9YHLvarUMIsB45XXU=@protonmail.com>
+In-Reply-To: <CAJCbrz4uDGFA4qe7SxLrKR4kDEzJDxgAp=EROAiDPtiORe2RXw@mail.gmail.com>
+References: <CAJCbrz4uDGFA4qe7SxLrKR4kDEzJDxgAp=EROAiDPtiORe2RXw@mail.gmail.com>
+MIME-Version: 1.0
+X-Spam-Status: No, score=-1.2 required=7.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,HTML_MESSAGE
+	shortcircuit=no autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on mail.protonmail.ch
+Content-Type: multipart/alternative;
+ boundary="b1_TtrD4qPlZiezUsm2GuVboeh7XF0sg2ZJLRNwYy9zo"
 
---00000000000065d99205ac5a71b2
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--b1_TtrD4qPlZiezUsm2GuVboeh7XF0sg2ZJLRNwYy9zo
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-As far as I know, you have to given a checksum for the license:
-LIC_FILES_CHKSUM =3D
-"file://gpl-2.0.txt;md5=3Dab04ac0f249af12befccb94447c08b77" or something l=
-ike
-that.
+Qml0YmFrZSBpcyB1bmFibGUgdG8gZmluZCB0aGUgbGljZW5zZSBmaWxlIGJlY2F1c2UgaXQncyBs
+b29raW5nIGluIHRoZSB3cm9uZyBwbGFjZS4gSWYgeW91IGxvb2sgYXQgdGhlIGNvbnRlbnRzIG9m
+IC9tZWRpYS9pY2Uvc2xvd19leHQ0L3lvY3RvX3Bva3kvYnVpbGQvdG1wL3dvcmsvYXJtdjd2ZXQy
+aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvaWNlX2hlbGxvd29ybGQvaGVsbG93b3JsZC0wLjEv
+aWNlX2hlbGxvd29ybGQtaGVsbG93b3JsZC8gLCB5b3Ugd2lsbCBwcm9iYWJseSBmaW5kIGl0IHRv
+IGJlIGVtcHR5LCBhbmQgeW91IHdpbGwgZmluZCBDT1BZSU5HLk1JVCBpbiB0aGUgZGlyZWN0b3J5
+IGFib3ZlIGl0LgoKVGhlIHJlYXNvbiBpcyB0aGF0ICR7U30gKHNlZSBodHRwczovL3d3dy55b2N0
+b3Byb2plY3Qub3JnL2RvY3MvMy4xLjIvcmVmLW1hbnVhbC9yZWYtbWFudWFsLmh0bWwjdmFyLVMp
+IGRlZmF1bHRzIHRvIGEgbG9jYXRpb24gd2hlcmUgYSB0YXJiYWxsIHdvdWxkIGJlIHVucGFja2Vk
+LCBidXQgeW91ciByZWNpcGUgaXNuJ3QgdXNpbmcgYSB0YXJiYWxsLgoKQWRkIHRoZSBmb2xsb3dp
+bmcgdG8geW91ciByZWNpcGU6ClMgPSAiJHtXT1JLRElSfSIKClRoYW5rcywKClNlbnQgd2l0aCBb
+UHJvdG9uTWFpbF0oaHR0cHM6Ly9wcm90b25tYWlsLmNvbSkgU2VjdXJlIEVtYWlsLgoK4oCQ4oCQ
+4oCQ4oCQ4oCQ4oCQ4oCQIE9yaWdpbmFsIE1lc3NhZ2Ug4oCQ4oCQ4oCQ4oCQ4oCQ4oCQ4oCQCk9u
+IFNhdHVyZGF5LCBBdWd1c3QgOCwgMjAyMCAyOjEyIEFNLCBTZXJnZXkgSXZhbm92IDxpY2Vnb29k
+MTk4MEBnbWFpbC5jb20+IHdyb3RlOgoKPiBIaSB0aGVyZS4KPiBJJ20gbmV3YmllIGliIHlvY3Rv
+IGFuZCAob2YgY291cnNlKSBub3RoaW5nIHdvcmtzIGZvciBtZSBmcm9tIHNjcmF0Y2guCj4gRm9y
+IHRlc3RpbmcgcHVycG9zZXMsIGkgd29yayB3aXRoIHlvY3RvIDMuMSBiYXNlZCBvbiA1ZDQ3Y2Rm
+NDQ4YjZjZmY1YmI3Y2M1YjBiYTA0MjZiODIzNWVjNDc4IHJldiBha2EgZHVuZmVsbC0yMy4wLjAK
+PiBNQUNISU5FID89ICJxZW11YXJtIiBhbmQgRElTVFJPID89ICJwb2t5IiAoYnR3IGkgdHJpZWQg
+cG9reS10b255IGFzIHdlbGwgYnV0IG1hY2hpbmUgZGlkbid0IHN0YXJ0IHByb3Blcmx5IHVuZGVy
+IHFlbXUpCj4KPiBJIGNyZWF0ZWQgbXkgbmV3IGxheWVyIHdpdGggbmV4dCBzdHJ1Y3R1cmU6Cj4g
+Lgo+IOKUnOKUgOKUgCBjb25mCj4g4pSCIOKUlOKUgOKUgCBsYXllci5jb25mCj4g4pSc4pSA4pSA
+IENPUFlJTkcuTUlUCj4g4pSc4pSA4pSAIFJFQURNRQo+IOKUlOKUgOKUgCByZWNpcGVzLWljZQo+
+IOKUnOKUgOKUgCBDT1BZSU5HLk1JVAo+IOKUlOKUgOKUgCBpY2VfaGVsbG93b3JsZAo+IOKUnOKU
+gOKUgCBDT1BZSU5HLk1JVAo+IOKUnOKUgOKUgCBmaWxlcwo+IOKUgiDilJzilIDilIAgQ09QWUlO
+Ry5NSVQKPiDilIIg4pSU4pSA4pSAIGljZV9oZWxsb3dvcmxkLmNwcAo+IOKUlOKUgOKUgCBpY2Vf
+aGVsbG93b3JsZF8wLjEuYmIKPgo+IChpIGNvcGllZCBDT1BZSU5HLk1JVCB0byApZXZlcnkgc2lu
+Z2xlIHBsYWNlIGJlY2F1c2Ugb2YgZXJyb3IgYmVsb3cpIGFuZCBpIG9idGFpbmVkOgo+Cj4gTk9U
+RTogRXhlY3V0aW5nIFRhc2tzCj4gV0FSTklORzogaWNlX2hlbGxvd29ybGQtaGVsbG93b3JsZC0w
+LjEgZG9fcG9wdWxhdGVfbGljOiBDb3VsZCBub3QgY29weSBsaWNlbnNlIGZpbGUgL21lZGlhL2lj
+ZS9zbG93X2V4dDQveW9jdG9fcG9reS9idWlsZC90bXAvd29yay9hcm12N3ZldDJoZi1uZW9uLXBv
+a3ktbGludXgtZ251ZWFiaS9pY2VfaGVsbG93b3JsZC9oZWxsb3dvcmxkLTAuMS9pY2VfaGVsbG93
+b3JsZC1oZWxsb3dvcmxkL0NPUFlJTkcuTUlUIHRvIC9tZWRpYS9pY2Uvc2xvd19leHQ0L3lvY3Rv
+X3Bva3kvYnVpbGQvdG1wL3dvcmsvYXJtdjd2ZXQyaGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkv
+aWNlX2hlbGxvd29ybGQvaGVsbG93b3JsZC0wLjEvbGljZW5zZS1kZXN0ZGlyL2ljZV9oZWxsb3dv
+cmxkL0NPUFlJTkcuTUlUOiBbRXJybm8gMl0gTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeTogJy9t
+ZWRpYS9pY2Uvc2xvd19leHQ0L3lvY3RvX3Bva3kvYnVpbGQvdG1wL3dvcmsvYXJtdjd2ZXQyaGYt
+bmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvaWNlX2hlbGxvd29ybGQvaGVsbG93b3JsZC0wLjEvaWNl
+X2hlbGxvd29ybGQtaGVsbG93b3JsZC9DT1BZSU5HLk1JVCcKPiBFUlJPUjogaWNlX2hlbGxvd29y
+bGQtaGVsbG93b3JsZC0wLjEgZG9fcG9wdWxhdGVfbGljOiBRQSBJc3N1ZTogaWNlX2hlbGxvd29y
+bGQ6IExJQ19GSUxFU19DSEtTVU0gcG9pbnRzIHRvIGFuIGludmFsaWQgZmlsZTogL21lZGlhL2lj
+ZS9zbG93X2V4dDQveW9jdG9fcG9reS9idWlsZC90bXAvd29yay9hcm12N3ZldDJoZi1uZW9uLXBv
+a3ktbGludXgtZ251ZWFiaS9pY2VfaGVsbG93b3JsZC9oZWxsb3dvcmxkLTAuMS9pY2VfaGVsbG93
+b3JsZC1oZWxsb3dvcmxkL0NPUFlJTkcuTUlUIFtsaWNlbnNlLWNoZWNrc3VtXQo+IEVSUk9SOiBp
+Y2VfaGVsbG93b3JsZC1oZWxsb3dvcmxkLTAuMSBkb19wb3B1bGF0ZV9saWM6IEZhdGFsIFFBIGVy
+cm9ycyBmb3VuZCwgZmFpbGluZyB0YXNrLgo+IEVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3Rv
+cmVkIGluOiAvbWVkaWEvaWNlL3Nsb3dfZXh0NC95b2N0b19wb2t5L2J1aWxkL3RtcC93b3JrL2Fy
+bXY3dmV0MmhmLW5lb24tcG9reS1saW51eC1nbnVlYWJpL2ljZV9oZWxsb3dvcmxkL2hlbGxvd29y
+bGQtMC4xL3RlbXAvbG9nLmRvX3BvcHVsYXRlX2xpYy4xMzM0NzcKPiBFUlJPUjogVGFzayAoL21l
+ZGlhL2ljZS9zbG93X2V4dDQveW9jdG9fcG9reS9tZXRhLWljZV9sYXllci9yZWNpcGVzLWljZS9p
+Y2VfaGVsbG93b3JsZC9pY2VfaGVsbG93b3JsZF8wLjEuYmI6ZG9fcG9wdWxhdGVfbGljKSBmYWls
+ZWQgd2l0aCBleGl0IGNvZGUgJzEnCj4gTk9URTogVGFza3MgU3VtbWFyeTogQXR0ZW1wdGVkIDIx
+NiB0YXNrcyBvZiB3aGljaCAyMTQgZGlkbid0IG5lZWQgdG8gYmUgcmVydW4gYW5kIDEgZmFpbGVk
+Lgo+Cj4gbXkgYmIgZmlsZSBpczoKPgo+IFNVTU1BUlkgPSAiUmVjaXBlIHRvIGJ1aWxkIHRoZSAn
+aGVsbG93b3JsZCcgaW4gY3BwIgo+IFNFQ1RJT04gPSAiaWNlIgo+IExJQ0VOU0U9Ik1JVCIKPiAj
+TElDRU5TRV9QQVRIICs9ICIke0xBWUVSRElSfSIKPgo+IFBOID0gImljZV9oZWxsb3dvcmxkIgo+
+IFBWID0gIjAuMSIKPgo+IFNJVEUgPSAiZmlsZTovLyIKPiBQQUNLQUdFX1ZFUlNJT05fTUFKT1Ig
+PSAiJHtAYmIuZGF0YS5nZXRWYXIoJ1BWJyxkLDEpLnNwbGl0KCcuJylbMF19Igo+IFBBQ0tBR0Vf
+VkVSU0lPTl9NSU5PUiA9ICIke0BiYi5kYXRhLmdldFZhcignUFYnLGQsMSkuc3BsaXQoJy4nKVsx
+XX0iCj4KPiBTUkNfVVJJID0gIiR7U0lURX0ke1BOfS5jcHAiCj4gU1JDX1VSSVttZDVzdW1dID0g
+ImJjOWRjNjRhNDRmOTY4NWQwMzEwYjk0NDAwYTQ2MzFjIgo+IFNSQ19VUklbc2hhMjU2c3VtXSA9
+ICI3ODllNjAwNzJlYTk2MzcxYTM1ZDU2NTNkNjY0YjRjNGI5MWU4MGNlMmVhNmQ1MjNkNmNhZWRh
+YjA2YTA3YTJhIgo+IExJQ19GSUxFU19DSEtTVU0gPSAiJHtTSVRFfUNPUFlJTkcuTUlUO21kNT0z
+ZGE5Y2ZiY2I3ODhjODBhMDM4NDM2MWI0ZGUyMDQyMCIKPgo+IGRvX2NvbXBpbGUoKSB7Cj4gJHtD
+WFh9ICR7UE59LmNwcCAtbyAke1BOfQo+IH0KPgo+IGRvX2luc3RhbGwoKSB7Cj4gaW5zdGFsbCAt
+ZCAke0R9JHtiaW5kaXJ9Cj4gaW5zdGFsbCAtbSAwNzU1ICR7UE59ICR7RH0ke2JpbmRpcn0KPiB9
+Cj4gd2hhdCBjb3VsZCBiZSB3cm9uZyBoZXJlPwo+IC0tCj4gS2luZCByZWdhcmRzLAo+IFNlcmdl
+eSBJdmFub3Y=
 
-Hope this helps.
+--b1_TtrD4qPlZiezUsm2GuVboeh7XF0sg2ZJLRNwYy9zo
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-On Sat, 8 Aug 2020 at 19:13, Sergey Ivanov <icegood1980@gmail.com> wrote:
+PGRpdj5CaXRiYWtlIGlzIHVuYWJsZSB0byBmaW5kIHRoZSBsaWNlbnNlIGZpbGUgYmVjYXVzZSBp
+dCdzIGxvb2tpbmcgaW4gdGhlIHdyb25nIHBsYWNlLiZuYnNwOyBJZiB5b3UgbG9vayBhdCB0aGUg
+Y29udGVudHMgb2YmbmJzcDs8c3BhbiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LCAy
+NTUsIDI1NSkiPjxzcGFuIHN0eWxlPSJjb2xvcjpyZ2IoODUsIDg1LCA4NSkiPjxzcGFuIHN0eWxl
+PSJmb250LWZhbWlseTpBcmlhbCwgJnF1b3Q7SGVsdmV0aWNhIE5ldWUmcXVvdDssIEhlbHZldGlj
+YSwgc2Fucy1zZXJpZiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxNHB4Ij4vbWVkaWEvaWNlL3Ns
+b3dfZXh0NC95b2N0b19wb2t5L2J1aWxkL3RtcC93b3JrL2FybXY3dmV0MmhmLW5lb24tcG9reS1s
+aW51eC1nbnVlYWJpL2ljZV9oZWxsb3dvcmxkL2hlbGxvd29ybGQtMC4xL2ljZV9oZWxsb3dvcmxk
+LWhlbGxvd29ybGQvICwgeW91IHdpbGwgcHJvYmFibHkgZmluZCBpdCB0byBiZSBlbXB0eSwgYW5k
+IHlvdSB3aWxsIGZpbmQgQ09QWUlORy5NSVQgaW4gdGhlIGRpcmVjdG9yeSBhYm92ZSBpdC48L3Nw
+YW4+PC9zcGFuPjwvc3Bhbj48L3NwYW4+PGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PHNw
+YW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6cmdiKDI1NSwgMjU1LCAyNTUpIj48c3BhbiBzdHls
+ZT0iY29sb3I6cmdiKDg1LCA4NSwgODUpIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWws
+ICZxdW90O0hlbHZldGljYSBOZXVlJnF1b3Q7LCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTRweCI+VGhlIHJlYXNvbiBpcyB0aGF0ICR7U30gKHNlZSA8L3Nw
+YW4+PC9zcGFuPjwvc3Bhbj48L3NwYW4+PGEgaHJlZj0iaHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0
+Lm9yZy9kb2NzLzMuMS4yL3JlZi1tYW51YWwvcmVmLW1hbnVhbC5odG1sI3Zhci1TIj5odHRwczov
+L3d3dy55b2N0b3Byb2plY3Qub3JnL2RvY3MvMy4xLjIvcmVmLW1hbnVhbC9yZWYtbWFudWFsLmh0
+bWwjdmFyLVM8L2E+KSZuYnNwOzxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUs
+IDI1NSwgMjU1KSI+PHNwYW4gc3R5bGU9ImNvbG9yOnJnYig4NSwgODUsIDg1KSI+PHNwYW4gc3R5
+bGU9ImZvbnQtZmFtaWx5OkFyaWFsLCAmcXVvdDtIZWx2ZXRpY2EgTmV1ZSZxdW90OywgSGVsdmV0
+aWNhLCBzYW5zLXNlcmlmIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0cHgiPmRlZmF1bHRzIHRv
+IGEgbG9jYXRpb24gd2hlcmUgYSB0YXJiYWxsIHdvdWxkIGJlIHVucGFja2VkLCBidXQgeW91ciBy
+ZWNpcGUgaXNuJ3QgdXNpbmcgYSB0YXJiYWxsLjwvc3Bhbj48L3NwYW4+PC9zcGFuPjwvc3Bhbj48
+L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkFkZCB0aGUgZm9sbG93aW5nIHRvIHlvdXIgcmVjaXBl
+Ojxicj48L2Rpdj48ZGl2PlMgPSAiJHtXT1JLRElSfSI8YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+
+PGRpdj5UaGFua3MsPGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXYgY2xhc3M9InByb3Rvbm1h
+aWxfc2lnbmF0dXJlX2Jsb2NrIj48ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9j
+ay11c2VyIHByb3Rvbm1haWxfc2lnbmF0dXJlX2Jsb2NrLWVtcHR5Ij48YnI+PC9kaXY+PGRpdiBj
+bGFzcz0icHJvdG9ubWFpbF9zaWduYXR1cmVfYmxvY2stcHJvdG9uIj5TZW50IHdpdGggPGEgaHJl
+Zj0iaHR0cHM6Ly9wcm90b25tYWlsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPlByb3Rvbk1haWw8L2E+
+IFNlY3VyZSBFbWFpbC48YnI+PC9kaXY+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj7igJDigJDi
+gJDigJDigJDigJDigJAgT3JpZ2luYWwgTWVzc2FnZSDigJDigJDigJDigJDigJDigJDigJA8YnI+
+PC9kaXY+PGRpdj4gT24gU2F0dXJkYXksIEF1Z3VzdCA4LCAyMDIwIDI6MTIgQU0sIFNlcmdleSBJ
+dmFub3YgJmx0O2ljZWdvb2QxOTgwQGdtYWlsLmNvbSZndDsgd3JvdGU6PGJyPjwvZGl2PjxkaXY+
+IDxicj48L2Rpdj48YmxvY2txdW90ZSBjbGFzcz0icHJvdG9ubWFpbF9xdW90ZSIgdHlwZT0iY2l0
+ZSI+PGRpdiBkaXI9Imx0ciI+PGRpdj48ZGl2PkhpIHRoZXJlLjxicj48L2Rpdj48ZGl2PkknbSBu
+ZXdiaWUgaWIgeW9jdG8gYW5kIChvZiBjb3Vyc2UpIG5vdGhpbmcgd29ya3MgZm9yIG1lIGZyb20g
+c2NyYXRjaC48YnI+PC9kaXY+PC9kaXY+PGRpdj5Gb3IgdGVzdGluZyBwdXJwb3NlcywgaSB3b3Jr
+IHdpdGggeW9jdG8gMy4xIGJhc2VkIG9uIDVkNDdjZGY0NDhiNmNmZjViYjdjYzViMGJhMDQyNmI4
+MjM1ZWM0NzggcmV2IGFrYSBkdW5mZWxsLTIzLjAuMDxicj48L2Rpdj48ZGl2Pk1BQ0hJTkUgPz0g
+InFlbXVhcm0iIGFuZCBESVNUUk8gPz0gInBva3kiIChidHcgaSB0cmllZCBwb2t5LXRvbnkgYXMg
+d2VsbCBidXQgbWFjaGluZSBkaWRuJ3Qgc3RhcnQgcHJvcGVybHkgdW5kZXIgcWVtdSk8YnI+PC9k
+aXY+PGRpdj48YnI+PC9kaXY+PGRpdj5JIGNyZWF0ZWQgbXkgbmV3IGxheWVyIHdpdGggbmV4dCBz
+dHJ1Y3R1cmU6PGJyPjwvZGl2PjxkaXY+Ljxicj48L2Rpdj48ZGl2PuKUnOKUgOKUgCBjb25mPGJy
+PjwvZGl2PjxkaXY+4pSCJm5ic3A7Jm5ic3A7IOKUlOKUgOKUgCBsYXllci5jb25mPGJyPjwvZGl2
+PjxkaXY+4pSc4pSA4pSAIENPUFlJTkcuTUlUPGJyPjwvZGl2PjxkaXY+4pSc4pSA4pSAIFJFQURN
+RTxicj48L2Rpdj48ZGl2PuKUlOKUgOKUgCByZWNpcGVzLWljZTxicj48L2Rpdj48ZGl2PiZuYnNw
+OyAmbmJzcDsg4pSc4pSA4pSAIENPUFlJTkcuTUlUPGJyPjwvZGl2PjxkaXY+Jm5ic3A7ICZuYnNw
+OyDilJTilIDilIAgaWNlX2hlbGxvd29ybGQ8YnI+PC9kaXY+PGRpdj4mbmJzcDsgJm5ic3A7ICZu
+YnNwOyAmbmJzcDsg4pSc4pSA4pSAIENPUFlJTkcuTUlUPGJyPjwvZGl2PjxkaXY+Jm5ic3A7ICZu
+YnNwOyAmbmJzcDsgJm5ic3A7IOKUnOKUgOKUgCBmaWxlczxicj48L2Rpdj48ZGl2PiZuYnNwOyAm
+bmJzcDsgJm5ic3A7ICZuYnNwOyDilIImbmJzcDsmbmJzcDsg4pSc4pSA4pSAIENPUFlJTkcuTUlU
+PGJyPjwvZGl2PjxkaXY+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7IOKUgiZuYnNwOyZuYnNw
+OyDilJTilIDilIAgaWNlX2hlbGxvd29ybGQuY3BwPGJyPjwvZGl2PjxkaXY+Jm5ic3A7ICZuYnNw
+OyAmbmJzcDsgJm5ic3A7IOKUlOKUgOKUgCA8YSBocmVmPSJodHRwOi8vaWNlX2hlbGxvd29ybGRf
+MC4xLmJiIj5pY2VfaGVsbG93b3JsZF8wLjEuYmI8L2E+PGJyPjwvZGl2PjxkaXY+PGRpdj48ZGl2
+PjxkaXY+PGJyPjwvZGl2PjxkaXY+PGRpdj4oaSBjb3BpZWQgQ09QWUlORy5NSVQgdG8gKWV2ZXJ5
+IHNpbmdsZSBwbGFjZSBiZWNhdXNlIG9mIGVycm9yIGJlbG93KSBhbmQgaSBvYnRhaW5lZDo8YnI+
+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5OT1RFOiBFeGVjdXRpbmcgVGFza3M8YnI+PC9kaXY+
+PGRpdj5XQVJOSU5HOiBpY2VfaGVsbG93b3JsZC1oZWxsb3dvcmxkLTAuMSBkb19wb3B1bGF0ZV9s
+aWM6IENvdWxkIG5vdCBjb3B5IGxpY2Vuc2UgZmlsZSAvbWVkaWEvaWNlL3Nsb3dfZXh0NC95b2N0
+b19wb2t5L2J1aWxkL3RtcC93b3JrL2FybXY3dmV0MmhmLW5lb24tcG9reS1saW51eC1nbnVlYWJp
+L2ljZV9oZWxsb3dvcmxkL2hlbGxvd29ybGQtMC4xL2ljZV9oZWxsb3dvcmxkLWhlbGxvd29ybGQv
+Q09QWUlORy5NSVQgdG8gL21lZGlhL2ljZS9zbG93X2V4dDQveW9jdG9fcG9reS9idWlsZC90bXAv
+d29yay9hcm12N3ZldDJoZi1uZW9uLXBva3ktbGludXgtZ251ZWFiaS9pY2VfaGVsbG93b3JsZC9o
+ZWxsb3dvcmxkLTAuMS9saWNlbnNlLWRlc3RkaXIvaWNlX2hlbGxvd29ybGQvQ09QWUlORy5NSVQ6
+IFtFcnJubyAyXSBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5OiAnL21lZGlhL2ljZS9zbG93X2V4
+dDQveW9jdG9fcG9reS9idWlsZC90bXAvd29yay9hcm12N3ZldDJoZi1uZW9uLXBva3ktbGludXgt
+Z251ZWFiaS9pY2VfaGVsbG93b3JsZC9oZWxsb3dvcmxkLTAuMS9pY2VfaGVsbG93b3JsZC1oZWxs
+b3dvcmxkL0NPUFlJTkcuTUlUJzxicj48L2Rpdj48ZGl2PkVSUk9SOiBpY2VfaGVsbG93b3JsZC1o
+ZWxsb3dvcmxkLTAuMSBkb19wb3B1bGF0ZV9saWM6IFFBIElzc3VlOiBpY2VfaGVsbG93b3JsZDog
+TElDX0ZJTEVTX0NIS1NVTSBwb2ludHMgdG8gYW4gaW52YWxpZCBmaWxlOiAvbWVkaWEvaWNlL3Ns
+b3dfZXh0NC95b2N0b19wb2t5L2J1aWxkL3RtcC93b3JrL2FybXY3dmV0MmhmLW5lb24tcG9reS1s
+aW51eC1nbnVlYWJpL2ljZV9oZWxsb3dvcmxkL2hlbGxvd29ybGQtMC4xL2ljZV9oZWxsb3dvcmxk
+LWhlbGxvd29ybGQvQ09QWUlORy5NSVQgW2xpY2Vuc2UtY2hlY2tzdW1dPGJyPjwvZGl2PjxkaXY+
+RVJST1I6IGljZV9oZWxsb3dvcmxkLWhlbGxvd29ybGQtMC4xIGRvX3BvcHVsYXRlX2xpYzogRmF0
+YWwgUUEgZXJyb3JzIGZvdW5kLCBmYWlsaW5nIHRhc2suPGJyPjwvZGl2PjxkaXY+RVJST1I6IExv
+Z2ZpbGUgb2YgZmFpbHVyZSBzdG9yZWQgaW46IC9tZWRpYS9pY2Uvc2xvd19leHQ0L3lvY3RvX3Bv
+a3kvYnVpbGQvdG1wL3dvcmsvYXJtdjd2ZXQyaGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvaWNl
+X2hlbGxvd29ybGQvaGVsbG93b3JsZC0wLjEvdGVtcC9sb2cuZG9fcG9wdWxhdGVfbGljLjEzMzQ3
+Nzxicj48L2Rpdj48ZGl2PkVSUk9SOiBUYXNrICgvbWVkaWEvaWNlL3Nsb3dfZXh0NC95b2N0b19w
+b2t5L21ldGEtaWNlX2xheWVyL3JlY2lwZXMtaWNlL2ljZV9oZWxsb3dvcmxkL2ljZV9oZWxsb3dv
+cmxkXzAuMS5iYjpkb19wb3B1bGF0ZV9saWMpIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMSc8YnI+
+PC9kaXY+PGRpdj5OT1RFOiBUYXNrcyBTdW1tYXJ5OiBBdHRlbXB0ZWQgMjE2IHRhc2tzIG9mIHdo
+aWNoIDIxNCBkaWRuJ3QgbmVlZCB0byBiZSByZXJ1biBhbmQgMSBmYWlsZWQuPGJyPjwvZGl2Pjxk
+aXY+PGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjwvZGl2PjxkaXY+PGRp
+dj5teSBiYiBmaWxlIGlzOjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PlNVTU1BUlkgPSAi
+UmVjaXBlIHRvIGJ1aWxkIHRoZSAnaGVsbG93b3JsZCcgaW4gY3BwIjxicj48L2Rpdj48ZGl2PlNF
+Q1RJT04gPSAiaWNlIjxicj48L2Rpdj48ZGl2PkxJQ0VOU0U9Ik1JVCI8YnI+PC9kaXY+PGRpdj4j
+TElDRU5TRV9QQVRIICs9ICIke0xBWUVSRElSfSI8YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRp
+dj5QTiA9ICJpY2VfaGVsbG93b3JsZCI8YnI+PC9kaXY+PGRpdj5QViA9ICIwLjEiPGJyPjwvZGl2
+PjxkaXY+PGJyPjwvZGl2PjxkaXY+U0lURSA9ICJmaWxlOi8vIjxicj48L2Rpdj48ZGl2PlBBQ0tB
+R0VfVkVSU0lPTl9NQUpPUiA9ICIke0BiYi5kYXRhLmdldFZhcignUFYnLGQsMSkuc3BsaXQoJy4n
+KVswXX0iPGJyPjwvZGl2PjxkaXY+UEFDS0FHRV9WRVJTSU9OX01JTk9SID0gIiR7QGJiLmRhdGEu
+Z2V0VmFyKCdQVicsZCwxKS5zcGxpdCgnLicpWzFdfSI8YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+
+PGRpdj5TUkNfVVJJID0gIiR7U0lURX0ke1BOfS5jcHAiPGJyPjwvZGl2PjxkaXY+U1JDX1VSSVtt
+ZDVzdW1dID0gImJjOWRjNjRhNDRmOTY4NWQwMzEwYjk0NDAwYTQ2MzFjIjxicj48L2Rpdj48ZGl2
+PlNSQ19VUklbc2hhMjU2c3VtXSA9ICI3ODllNjAwNzJlYTk2MzcxYTM1ZDU2NTNkNjY0YjRjNGI5
+MWU4MGNlMmVhNmQ1MjNkNmNhZWRhYjA2YTA3YTJhIjxicj48L2Rpdj48ZGl2PkxJQ19GSUxFU19D
+SEtTVU0gPSAiJHtTSVRFfUNPUFlJTkcuTUlUO21kNT0zZGE5Y2ZiY2I3ODhjODBhMDM4NDM2MWI0
+ZGUyMDQyMCI8YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5kb19jb21waWxlKCkgezxicj48
+L2Rpdj48ZGl2PiZuYnNwOyAmbmJzcDsgJHtDWFh9ICR7UE59LmNwcCAtbyAke1BOfTxicj48L2Rp
+dj48ZGl2Pn08YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5kb19pbnN0YWxsKCkgezxicj48
+L2Rpdj48ZGl2PiZuYnNwOyAmbmJzcDsgaW5zdGFsbCAtZCAke0R9JHtiaW5kaXJ9PGJyPjwvZGl2
+PjxkaXY+Jm5ic3A7ICZuYnNwOyBpbnN0YWxsIC1tIDA3NTUgJHtQTn0gJHtEfSR7YmluZGlyfTxi
+cj48L2Rpdj48ZGl2Pn08YnI+PC9kaXY+PC9kaXY+PGRpdj53aGF0IGNvdWxkIGJlIHdyb25nIGhl
+cmU/PGJyPjwvZGl2PjxkaXY+PGRpdj4tLSA8YnI+PC9kaXY+PGRpdiBkaXI9Imx0ciIgZGF0YS1z
+bWFydG1haWw9ImdtYWlsX3NpZ25hdHVyZSI+PGRpdj5LaW5kIHJlZ2FyZHMsPGJyPjwvZGl2Pjxk
+aXY+U2VyZ2V5IEl2YW5vdjxicj48L2Rpdj48L2Rpdj48L2Rpdj48L2Rpdj48L2Rpdj48L2Rpdj48
+L2Rpdj48L2Jsb2NrcXVvdGU+PGRpdj48YnI+PC9kaXY+
 
-> Hi there.
-> I'm newbie ib yocto and (of course) nothing works for me from scratch.
-> For testing purposes, i work with yocto 3.1 based on
-> 5d47cdf448b6cff5bb7cc5b0ba0426b8235ec478 rev aka dunfell-23.0.0
-> MACHINE ?=3D "qemuarm" and DISTRO ?=3D "poky" (btw i tried poky-tony as =
-well
-> but machine didn't start properly under qemu)
->
-> I created my new layer with next structure:
-> .
-> =E2=94=9C=E2=94=80=E2=94=80 conf
-> =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 layer.conf
-> =E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT
-> =E2=94=9C=E2=94=80=E2=94=80 README
-> =E2=94=94=E2=94=80=E2=94=80 recipes-ice
->     =E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT
->     =E2=94=94=E2=94=80=E2=94=80 ice_helloworld
->         =E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT
->         =E2=94=9C=E2=94=80=E2=94=80 files
->         =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT
->         =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 ice_helloworld.cpp
->         =E2=94=94=E2=94=80=E2=94=80 ice_helloworld_0.1.bb
->
-> (i copied COPYING.MIT to )every single place because of error below) and=
- i
-> obtained:
->
-> NOTE: Executing Tasks
-> WARNING: ice_helloworld-helloworld-0.1 do_populate_lic: Could not copy
-> license file
-> /media/ice/slow_ext4/yocto_poky/build/tmp/work/armv7vet2hf-neon-poky-lin=
-ux-gnueabi/ice_helloworld/helloworld-0.1/ice_helloworld-helloworld/COPYING.=
-MIT
-> to
-> /media/ice/slow_ext4/yocto_poky/build/tmp/work/armv7vet2hf-neon-poky-lin=
-ux-gnueabi/ice_helloworld/helloworld-0.1/license-destdir/ice_helloworld/COP=
-YING.MIT:
-> [Errno 2] No such file or directory:
-> '/media/ice/slow_ext4/yocto_poky/build/tmp/work/armv7vet2hf-neon-poky-li=
-nux-gnueabi/ice_helloworld/helloworld-0.1/ice_helloworld-helloworld/COPYING=
-.MIT'
-> ERROR: ice_helloworld-helloworld-0.1 do_populate_lic: QA Issue:
-> ice_helloworld: LIC_FILES_CHKSUM points to an invalid file:
-> /media/ice/slow_ext4/yocto_poky/build/tmp/work/armv7vet2hf-neon-poky-lin=
-ux-gnueabi/ice_helloworld/helloworld-0.1/ice_helloworld-helloworld/COPYING.=
-MIT
-> [license-checksum]
-> ERROR: ice_helloworld-helloworld-0.1 do_populate_lic: Fatal QA errors
-> found, failing task.
-> ERROR: Logfile of failure stored in:
-> /media/ice/slow_ext4/yocto_poky/build/tmp/work/armv7vet2hf-neon-poky-lin=
-ux-gnueabi/ice_helloworld/helloworld-0.1/temp/log.do_populate_lic.133477
-> ERROR: Task
-> (/media/ice/slow_ext4/yocto_poky/meta-ice_layer/recipes-ice/ice_hellowor=
-ld/ice_helloworld_0.1.bb:do_populate_lic)
-> failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 216 tasks of which 214 didn't need to be
-> rerun and 1 failed.
->
->
->
->
-> my bb file is:
->
-> SUMMARY =3D "Recipe to build the 'helloworld' in cpp"
-> SECTION =3D "ice"
-> LICENSE=3D"MIT"
-> #LICENSE_PATH +=3D "${LAYERDIR}"
->
-> PN =3D "ice_helloworld"
-> PV =3D "0.1"
->
-> SITE =3D "file://"
-> PACKAGE_VERSION_MAJOR =3D "${@bb.data.getVar('PV',d,1).split('.')[0]}"
-> PACKAGE_VERSION_MINOR =3D "${@bb.data.getVar('PV',d,1).split('.')[1]}"
->
-> SRC_URI =3D "${SITE}${PN}.cpp"
-> SRC_URI[md5sum] =3D "bc9dc64a44f9685d0310b94400a4631c"
-> SRC_URI[sha256sum] =3D
-> "789e60072ea96371a35d5653d664b4c4b91e80ce2ea6d523d6caedab06a07a2a"
-> LIC_FILES_CHKSUM =3D
-> "${SITE}COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b4de20420"
->
-> do_compile() {
->     ${CXX} ${PN}.cpp -o ${PN}
-> }
->
-> do_install() {
->     install -d ${D}${bindir}
->     install -m 0755 ${PN} ${D}${bindir}
-> }
->
-> what could be wrong here?
-> --
-> Kind regards,
-> Sergey Ivanov
->=20
->
 
---00000000000065d99205ac5a71b2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">As far as=C2=A0I know, you have to given a checksum for th=
-e license:<div>LIC_FILES_CHKSUM =3D &quot;file://gpl-2.0.txt;md5=3Dab04ac0f=
-249af12befccb94447c08b77&quot; or something=C2=A0like that.<br></div><div><=
-br></div><div>Hope this helps.</div></div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Sat, 8 Aug 2020 at 19:13, Sergey Iva=
-nov &lt;<a href=3D"mailto:icegood1980@gmail.com">icegood1980@gmail.com</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
-dir=3D"ltr"><div><div>Hi there.<br></div>I&#39;m newbie ib yocto and (of co=
-urse) nothing works for me from scratch.<br></div>For testing purposes, i w=
-ork with yocto 3.1 based on 5d47cdf448b6cff5bb7cc5b0ba0426b8235ec478 rev ak=
-a dunfell-23.0.0<br>MACHINE ?=3D &quot;qemuarm&quot; and DISTRO ?=3D &quot;=
-poky&quot; (btw i tried poky-tony as well but machine didn&#39;t start prop=
-erly under qemu)<br><br>I created my new layer with next structure:<br>.<br=
->=E2=94=9C=E2=94=80=E2=94=80 conf<br>=E2=94=82=C2=A0=C2=A0 =E2=94=94=E2=94=
-=80=E2=94=80 layer.conf<br>=E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT<br>=E2=
-=94=9C=E2=94=80=E2=94=80 README<br>=E2=94=94=E2=94=80=E2=94=80 recipes-ice=
-<br>=C2=A0 =C2=A0 =E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT<br>=C2=A0 =C2=A0 =
-=
-=E2=94=94=E2=94=80=E2=94=80 ice_helloworld<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=
-=E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =E2=
-=
-=94=9C=E2=94=80=E2=94=80 files<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =E2=94=82=C2=
-=
-=A0=C2=A0 =E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT<br>=C2=A0 =C2=A0 =C2=A0 =
-=
-=C2=A0 =E2=94=82=C2=A0=C2=A0 =E2=94=94=E2=94=80=E2=94=80 ice_helloworld.cp=
-p<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =E2=94=94=E2=94=80=E2=94=80 <a href=3D"htt=
-p://ice_helloworld_0.1.bb" target=3D"_blank">ice_helloworld_0.1.bb</a><br><=
-div><div><div><div><br></div><div>(i copied COPYING.MIT to )every single pl=
-ace because of error below) and i obtained:<br><br>NOTE: Executing Tasks<br=
->WARNING: ice_helloworld-helloworld-0.1 do_populate_lic: Could not copy lic=
-ense file /media/ice/slow_ext4/yocto_poky/build/tmp/work/armv7vet2hf-neon-p=
-oky-linux-gnueabi/ice_helloworld/helloworld-0.1/ice_helloworld-helloworld/C=
-OPYING.MIT to /media/ice/slow_ext4/yocto_poky/build/tmp/work/armv7vet2hf-ne=
-on-poky-linux-gnueabi/ice_helloworld/helloworld-0.1/license-destdir/ice_hel=
-loworld/COPYING.MIT: [Errno 2] No such file or directory: &#39;/media/ice/s=
-low_ext4/yocto_poky/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/ice_=
-helloworld/helloworld-0.1/ice_helloworld-helloworld/COPYING.MIT&#39;<br>ERR=
-OR: ice_helloworld-helloworld-0.1 do_populate_lic: QA Issue: ice_helloworld=
-: LIC_FILES_CHKSUM points to an invalid file: /media/ice/slow_ext4/yocto_po=
-ky/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/ice_helloworld/hellow=
-orld-0.1/ice_helloworld-helloworld/COPYING.MIT [license-checksum]<br>ERROR:=
- ice_helloworld-helloworld-0.1 do_populate_lic: Fatal QA errors found, fail=
-ing task.<br>ERROR: Logfile of failure stored in: /media/ice/slow_ext4/yoct=
-o_poky/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/ice_helloworld/he=
-lloworld-0.1/temp/log.do_populate_lic.133477<br>ERROR: Task (/media/ice/slo=
-w_ext4/yocto_poky/meta-ice_layer/recipes-ice/ice_helloworld/ice_helloworld_=
-0.1.bb:do_populate_lic) failed with exit code &#39;1&#39;<br>NOTE: Tasks Su=
-mmary: Attempted 216 tasks of which 214 didn&#39;t need to be rerun and 1 f=
-ailed.<br><br><br><br><br></div><div>my bb file is:<br><br>SUMMARY =3D &quo=
-t;Recipe to build the &#39;helloworld&#39; in cpp&quot;<br>SECTION =3D &quo=
-t;ice&quot;<br>LICENSE=3D&quot;MIT&quot;<br>#LICENSE_PATH +=3D &quot;${LAYE=
-RDIR}&quot;<br><br>PN =3D &quot;ice_helloworld&quot;<br>PV =3D &quot;0.1&qu=
-ot;<br><br>SITE =3D &quot;file://&quot;<br>PACKAGE_VERSION_MAJOR =3D &quot;=
-${@bb.data.getVar(&#39;PV&#39;,d,1).split(&#39;.&#39;)[0]}&quot;<br>PACKAGE=
-_VERSION_MINOR =3D &quot;${@bb.data.getVar(&#39;PV&#39;,d,1).split(&#39;.&#=
-39;)[1]}&quot;<br><br>SRC_URI =3D &quot;${SITE}${PN}.cpp&quot;<br>SRC_URI[m=
-d5sum] =3D &quot;bc9dc64a44f9685d0310b94400a4631c&quot;<br>SRC_URI[sha256su=
-m] =3D &quot;789e60072ea96371a35d5653d664b4c4b91e80ce2ea6d523d6caedab06a07a=
-2a&quot;<br>LIC_FILES_CHKSUM =3D &quot;${SITE}COPYING.MIT;md5=3D3da9cfbcb78=
-8c80a0384361b4de20420&quot;<br><br>do_compile() {<br>=C2=A0 =C2=A0 ${CXX} $=
-{PN}.cpp -o ${PN}<br>}<br><br>do_install() {<br>=C2=A0 =C2=A0 install -d ${=
-D}${bindir}<br>=C2=A0 =C2=A0 install -m 0755 ${PN} ${D}${bindir}<br>}<br><b=
-r></div><div>what could be wrong here?<br></div><div>-- <br><div dir=3D"ltr=
-">Kind regards,<br>Sergey Ivanov</div></div></div></div></div></div>
-<br>
-</blockquote></div>
-
---00000000000065d99205ac5a71b2--
+--b1_TtrD4qPlZiezUsm2GuVboeh7XF0sg2ZJLRNwYy9zo--
