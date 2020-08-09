@@ -1,72 +1,162 @@
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
- by mx.groups.io with SMTP id smtpd.web12.7161.1596900167924925676
+Received: from mail-qt1-f193.google.com (mail-qt1-f193.google.com [209.85.160.193])
+ by mx.groups.io with SMTP id smtpd.web11.18383.1596945065253531740
  for <yocto@lists.yoctoproject.org>;
- Sat, 08 Aug 2020 08:22:48 -0700
+ Sat, 08 Aug 2020 20:51:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=soKI95gM;
- spf=pass (domain: gmail.com, ip: 209.85.210.44, mailfrom: mr.nuke.me@gmail.com)
-Received: by mail-ot1-f44.google.com with SMTP id r21so3926327ota.10
-        for <yocto@lists.yoctoproject.org>; Sat, 08 Aug 2020 08:22:47 -0700 (PDT)
+ dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=RqeqSw/0;
+ spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 209.85.160.193, mailfrom: jpuhlman@mvista.com)
+Received: by mail-qt1-f193.google.com with SMTP id s23so4344030qtq.12
+        for <yocto@lists.yoctoproject.org>; Sat, 08 Aug 2020 20:51:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=mvista-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=8uX3ACdzeBVuq8Ubcctk7kClJYPbd/gn0Din2kEy2QE=;
-        b=soKI95gMUgQEw411QSTUUbhWt2MDkeG6nBfL8oGJvIazIqpElfCrNMKpvXLsVYc1sK
-         lyrF9BX/pVJkiFm1MwEyqV7XXqCO7HLyLibrITYOAZOtKXwe8WvNgNVj/33Vo+EWI/t5
-         avQs1j60XStcwlDrPqvtspL5/jebPiu/RGRJZzUeJrj4ZbQu0tHnQzfIpPhSJzvx3jvW
-         EzsVRcDrST1o+azFOcCqggUnfmmXudhxp5PQr/HVsmjPv3XPwwjAaZIXG1xMnZysmyMd
-         b+FrFPtVG5dsVL75ZfFnN4Ny/cW+xZhPWTvsFE/TcSErrwgc+DPiXaOgBOJGS0vcjDvh
-         YtZw==
+         :in-reply-to:content-language;
+        bh=P09nEo1Tf2Mk0PhW73RFbzIEEKDt2ATt607MK+vfALQ=;
+        b=RqeqSw/0320hZauJm+JfSikapbCcsKP0fVMJTd+DMyZbX4lOlBjpjEfwuVCMBn8lVF
+         AzcTJDWf5d3+u17cZDh6PO+ppWpD7uhvppl5JaRi4SCpIeYYthW8H11923e6339nk8Kp
+         yR4hmnWNAVs+AqUR/2LwXHyUKskKnIiAY/BxNkKbtifutaU8mIKcXLeZxkjRDkgAF3Li
+         ffBL3nNtJHofZ+lAMSU2aa3h+38tAtjXtihILdAW+8sFgEnM4G/tadv19PeMQvRnBUyv
+         +lXpgOrdtRNjYwpv/mxSxL3GkgWc2H6vFwljCJpw6+fOlKgHojOhJRZbFigGHNMQf7OD
+         YbhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=8uX3ACdzeBVuq8Ubcctk7kClJYPbd/gn0Din2kEy2QE=;
-        b=ARhJkd42FAtA+9cZozOvg34O3tx2FCnWW95+MBAKw1i8kdCMYMc828xWeEQw45qkwD
-         QPOI8xYtWPjwmpk1rxyKMU79gmpN+20ps+Oh90/tRnAlKIILSSfTq3g1k3q5rHEL/5WK
-         bonchqVVGCW/YrLBw+ho4DBxCt6da6LZ8uOYSqpbLnmFGrCgx6qjZPDVk1D3um0KR9Nu
-         Vyy7FyBQzqwPQoGsy79pxEGikukrhl7+fUTtkUN+8Y9UOTzbMwl7MRh3a474Hsr0PSFK
-         5Qo1tcZsCHh7S4q5PKSG3fptXo0fGnMcirQqnpq+XxMTf1HcFZ2V665wza8UKwyuRSXD
-         WPnA==
-X-Gm-Message-State: AOAM531vrOTeMnbA97fKTMRwfSX5vG70kCyM2UhUJ/laDZylP0FBzdGS
-	ecwvLT5n9ICvq78Gd4VvBaNrr0jnUgw=
-X-Google-Smtp-Source: ABdhPJwJOPdfzOmhNOk5lwBeuZlVLpqLnJginqCrT+5YrowZkbry5rE+fXEA6gMM0DuqnXK3wCn8ng==
-X-Received: by 2002:a9d:77cd:: with SMTP id w13mr15477683otl.146.1596900166982;
-        Sat, 08 Aug 2020 08:22:46 -0700 (PDT)
-Return-Path: <mr.nuke.me@gmail.com>
-Received: from nukexps.gtech ([2601:2c1:8501:182d::edf])
-        by smtp.gmail.com with ESMTPSA id i8sm2314242otr.59.2020.08.08.08.22.46
+         :user-agent:mime-version:in-reply-to:content-language;
+        bh=P09nEo1Tf2Mk0PhW73RFbzIEEKDt2ATt607MK+vfALQ=;
+        b=N/mOuRFpmtOahWtfm5f+xaGcRoLkI7FOZqSl2ogPmUVPmvkiWL3gIgVdUAlUUh1NU9
+         cXeMSutPTDJbDjLoLfZUFvCgfhRNH3xB+8Av9LqLex4H1QLp3iZ2eGBF2maY/9BaAFVQ
+         D5iVZbuwf7jyEl9QWrWzrwmqLmn6s86yIMAJokC2tz92Z70S2wJKFPJMq9e/tMEgmkPZ
+         +WONHugSKu13tmrPTyPWs9bzLWdN3z0yp6w1iJV+kyOFGekLraZGFkMYFErdNvetUxd+
+         3IUk+b1D3lZzOkXYzeb4K7njsOFQH+gh63MsQcf82Ftd0Q5wPaLJzkPlyvms0VfUgVb4
+         PMCw==
+X-Gm-Message-State: AOAM532fYkOyoykw20yTCPT2s4/eg1KAdRvNMc1QQGXOuvu+axrbYVRd
+	0L4HRRFOjXt+G7nE+tvAoVR6hw==
+X-Google-Smtp-Source: ABdhPJxBbeFrdTrUFyDa9c2rdh+0Pe8yJMsnyVZWL9SzKyC0qN2fIRwx9TXp+tzdtyLNLHgU6ppY+w==
+X-Received: by 2002:ac8:7959:: with SMTP id r25mr20433659qtt.85.1596945064425;
+        Sat, 08 Aug 2020 20:51:04 -0700 (PDT)
+Return-Path: <jpuhlman@mvista.com>
+Received: from ?IPv6:2600:1700:4c90:60a0:60de:efe0:93f3:c162? ([2600:1700:4c90:60a0:60de:efe0:93f3:c162])
+        by smtp.gmail.com with ESMTPSA id u37sm12797238qtj.47.2020.08.08.20.51.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 08 Aug 2020 08:22:46 -0700 (PDT)
-Subject: Re: [yocto] Yocto build failure -- supposedly due to opkg-4.2 download
-To: akuster808 <akuster808@gmail.com>, yocto@lists.yoctoproject.org
-References: <a2dcb62c-763f-ecfa-622e-abfbd84db1f3@gmail.com>
- <7a89b948-9cb8-32dc-122d-dc892f6e6b5a@gmail.com>
-From: "Alex G." <mr.nuke.me@gmail.com>
-Message-ID: <929fa99b-c8b7-d209-f714-96227c84a229@gmail.com>
-Date: Sat, 8 Aug 2020 10:22:46 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        Sat, 08 Aug 2020 20:51:03 -0700 (PDT)
+Subject: Re: [yocto] [meta-cgl][PATCH] ucarp: don't hardcode the path for ifconfig
+To: yocto@lists.yoctoproject.org, mingli.yu@windriver.com,
+ Mingli <mingli.yu@windriver.com>
+References: <20200807084715.3024520-1-mingli.yu@windriver.com>
+From: "Jeremy Puhlman" <jpuhlman@mvista.com>
+Message-ID: <7cdd8ff6-6af2-b8a2-3560-f604e3cad514@mvista.com>
+Date: Sat, 8 Aug 2020 20:51:00 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-In-Reply-To: <7a89b948-9cb8-32dc-122d-dc892f6e6b5a@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20200807084715.3024520-1-mingli.yu@windriver.com>
+Content-Type: multipart/alternative;
+ boundary="------------7FCC7CAED49AA47839D19721"
 Content-Language: en-US
+
+--------------7FCC7CAED49AA47839D19721
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 8/4/20 2:07 PM, akuster808 wrote:
-> 
-> 
-> On 8/4/20 12:00 PM, Alex G. wrote:
->> Hi,
->>
->> I'm trying to get started with yocto builds. My builds keep failing 
->> trying to build the qemu-x86 image.
-> 
-> If I am not mistaken, many of the servers are down including 
-> downloads.yoctoproject.org.
+Merged.
 
-That was it. Waited a day, and then I was able to build. Thank you!
+On 8/7/2020 1:47 AM, Yu, Mingli wrote:
+> From: Mingli Yu <mingli.yu@windriver.com>
+>
+> Don't hardcode the path for the ifconfig command in case the path
+> for ifconfig on the system may be different from the hardcoded.
+>
+> Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
+> ---
+>   meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh | 2 +-
+>   meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh   | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh
+> index a431c32..27e0d2b 100644
+> --- a/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh
+> +++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh
+> @@ -4,4 +4,4 @@ exec 2> /dev/null
+>   #/sbin/ip addr del "$2"/24 dev "$1"
+>   
+>   # or alternatively:
+> -/sbin/ifconfig "$1":254 down
+> +ifconfig "$1":254 down
+> diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh
+> index c1b8a4f..f81d578 100644
+> --- a/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh
+> +++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh
+> @@ -4,4 +4,4 @@ exec 2> /dev/null
+>   #/sbin/ip addr add "$2"/24 dev "$1"
+>   
+>   # or alternatively:
+> -/sbin/ifconfig "$1":254 "$2" netmask 255.255.255.0
+> +ifconfig "$1":254 "$2" netmask 255.255.255.0
+>
+> 
 
-Alex
+-- 
+Jeremy A. Puhlman
+jpuhlman@mvista.com
+
+
+--------------7FCC7CAED49AA47839D19721
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    Merged.<br>
+    <br>
+    <div class="moz-cite-prefix">On 8/7/2020 1:47 AM, Yu, Mingli wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20200807084715.3024520-1-mingli.yu@windriver.com">
+      <pre class="moz-quote-pre" wrap="">From: Mingli Yu <a class="moz-txt-link-rfc2396E" href="mailto:mingli.yu@windriver.com">&lt;mingli.yu@windriver.com&gt;</a>
+
+Don't hardcode the path for the ifconfig command in case the path
+for ifconfig on the system may be different from the hardcoded.
+
+Signed-off-by: Mingli Yu <a class="moz-txt-link-rfc2396E" href="mailto:mingli.yu@windriver.com">&lt;mingli.yu@windriver.com&gt;</a>
+---
+ meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh | 2 +-
+ meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh
+index a431c32..27e0d2b 100644
+--- a/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh
++++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh
+@@ -4,4 +4,4 @@ exec 2&gt; /dev/null
+ #/sbin/ip addr del "$2"/24 dev "$1"
+ 
+ # or alternatively:
+-/sbin/ifconfig "$1":254 down
++ifconfig "$1":254 down
+diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh
+index c1b8a4f..f81d578 100644
+--- a/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh
++++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh
+@@ -4,4 +4,4 @@ exec 2&gt; /dev/null
+ #/sbin/ip addr add "$2"/24 dev "$1"
+ 
+ # or alternatively:
+-/sbin/ifconfig "$1":254 "$2" netmask 255.255.255.0 
++ifconfig "$1":254 "$2" netmask 255.255.255.0
+</pre>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+Jeremy A. Puhlman
+<a class="moz-txt-link-abbreviated" href="mailto:jpuhlman@mvista.com">jpuhlman@mvista.com</a></pre>
+  </body>
+</html>
+
+--------------7FCC7CAED49AA47839D19721--
