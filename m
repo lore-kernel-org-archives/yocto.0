@@ -1,168 +1,173 @@
-Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
- by mx.groups.io with SMTP id smtpd.web10.40628.1597046421492750796
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+ by mx.groups.io with SMTP id smtpd.web12.52901.1597088784433420465
  for <yocto@lists.yoctoproject.org>;
- Mon, 10 Aug 2020 01:00:22 -0700
+ Mon, 10 Aug 2020 12:46:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp.bon.at (Postfix) with ESMTPSA id 4BQ7g63QvSz5tlR;
-	Mon, 10 Aug 2020 10:00:18 +0200 (CEST)
-Date: Mon, 10 Aug 2020 10:00:16 +0200
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: Sergey Ivanov <icegood1980@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] yocto compile simple c++
-Message-ID: <20200810080016.kwv4q2gk2y2dkz5a@qschulz>
-References: <CAJCbrz4uDGFA4qe7SxLrKR4kDEzJDxgAp=EROAiDPtiORe2RXw@mail.gmail.com>
+ dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=S/qBrkF/;
+ spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 209.85.215.171, mailfrom: jpuhlman@mvista.com)
+Received: by mail-pg1-f171.google.com with SMTP id x6so5510090pgx.12
+        for <yocto@lists.yoctoproject.org>; Mon, 10 Aug 2020 12:46:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mvista-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding:content-language;
+        bh=OjU6yP716ndRX4668/yH7yQWnTfJ/8uKFN+42loyu+M=;
+        b=S/qBrkF/tXPEPNorPUmM7IV4foASQc82/DuLA9478f9yj7+zSV/ppgFkz9QNRAqWuG
+         2P0LQrr7tHlqaiuMetrce1iBV6g9Z8cn/2xw9HQIzuWIH8Ul40nUnjR5tQfIxZjCfqrp
+         m5kYNNfE4C+lMU/B/gchLTwYZQx/qbZbJ1+Z0UlN6XY7FaJ/H4pRxhAqqzTqoxMgAVZX
+         FWjg8/t/LFzTsNQnDY+l6Za5AIhO0nUqQaycoobX3hhS13UaJC+ghZ1PTZOVj0kfYm3T
+         P53mMhBFFk48hZALFHzz0MasY+eb4MVUpCFhzFac1A4fJSfRr3ftN/cTGmnl36tM8FZh
+         mxEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=OjU6yP716ndRX4668/yH7yQWnTfJ/8uKFN+42loyu+M=;
+        b=n9xHqQStx9HAUN6lquurBfOB/lQbR0iBI9n7Bk7XTK+qK87xkAQVHLv5eudKrb5+7+
+         AVBPaU6S2GgvH1jhH1UWfB+pz7hzXMaMCWRl3+y+WLfafhmQu6HF2Jlxvg+dXZrJPIJC
+         tRrrbSHOZf4zv6ecNIQDICMAHwki98UxTt3UdOAsi1XcdX1wrE1jtE552VpoJNDv4/bY
+         lpgp+sncoNvGAKi6654HyW45uOsgKupfTaQTIK5DXtKzUOM1KNsaT9S+bHI8aZlwtfBT
+         d8uo0xsORvmTqxLOeevuGp63MsYNCaHyP/WI4iQKmSGdoq3ln/LShtRUPC0FRp+eayuh
+         5SFA==
+X-Gm-Message-State: AOAM533KWYVdIDFCrqzLtdzqm92y3KJAjbqO/P7OG1J/6udwk5CXTqmW
+	76breAFYONAyQFpo7jEEHHxAhmp+oNo=
+X-Google-Smtp-Source: ABdhPJyCjin+NAV39Cbw5X63pW6oUDNMEeKeqm2fT9v7VIDdtr/IewCxT4IQ7fSUXgH0Aad1c2kEEA==
+X-Received: by 2002:a63:6c0a:: with SMTP id h10mr23414715pgc.11.1597088783397;
+        Mon, 10 Aug 2020 12:46:23 -0700 (PDT)
+Return-Path: <jpuhlman@mvista.com>
+Received: from [192.168.1.128] (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
+        by smtp.gmail.com with ESMTPSA id t5sm19443639pgl.38.2020.08.10.12.46.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Aug 2020 12:46:22 -0700 (PDT)
+Subject: Re: [yocto] [meta-cgl][PATCH] ucarp: force to use TLS1.2 during do_fetch
+To: "Yu, Mingli" <mingli.yu@windriver.com>, yocto@lists.yoctoproject.org
+References: <16227A594D77C7C6.3435@lists.yoctoproject.org>
+ <2ef7a153-9aa5-0b2f-22a6-cf8ff7ec0e36@windriver.com>
+From: "Jeremy Puhlman" <jpuhlman@mvista.com>
+Message-ID: <f85c600e-53e7-f82e-424a-fec1a749c85f@mvista.com>
+Date: Mon, 10 Aug 2020 12:46:21 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-In-Reply-To: <CAJCbrz4uDGFA4qe7SxLrKR4kDEzJDxgAp=EROAiDPtiORe2RXw@mail.gmail.com>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <2ef7a153-9aa5-0b2f-22a6-cf8ff7ec0e36@windriver.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-Hi Sergey,
+Merged.
 
-On Sat, Aug 08, 2020 at 12:12:40PM +0300, Sergey Ivanov wrote:
-> Hi there.
-> I'm newbie ib yocto and (of course) nothing works for me from scratch.
-> For testing purposes, i work with yocto 3.1 based on
-> 5d47cdf448b6cff5bb7cc5b0ba0426b8235ec478 rev aka dunfell-23.0.0
-> MACHINE ?=3D "qemuarm" and DISTRO ?=3D "poky" (btw i tried poky-tony as=
- well
-> but machine didn't start properly under qemu)
->=20
-> I created my new layer with next structure:
-> .
-> =E2=94=9C=E2=94=80=E2=94=80 conf
-> =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 layer.conf
-> =E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT
-> =E2=94=9C=E2=94=80=E2=94=80 README
-> =E2=94=94=E2=94=80=E2=94=80 recipes-ice
->     =E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT
+On 8/9/2020 6:04 PM, Yu, Mingli wrote:
+> ping.
+>
+> Thanks,
+>
+> On 7/17/20 3:38 PM, Yu, Mingli wrote:
+>> From: Mingli Yu <mingli.yu@windriver.com>
+>>
+>> There comes below error when use buildtools [1]:
+>> $ bitbake -cfetch ucarp
+>> [snip]
+>> --2020-07-17 06:39:31-- 
+>> https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
+>> Resolving download.pureftpd.org... 37.59.238.213
+>> Connecting to download.pureftpd.org|37.59.238.213|:443... connected.
+>> GnuTLS: A TLS fatal alert has been received.
+>> GnuTLS: received alert [70]: Error in protocol version
+>> Unable to establish SSL connection.
+>>
+>> And can simply use below step to reproduce the above error.
+>> $ wget https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
+>> --2020-07-17 06:43:36-- 
+>> https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
+>> Resolving download.pureftpd.org... 37.59.238.213
+>> Connecting to download.pureftpd.org|37.59.238.213|:443... connected.
+>> GnuTLS: A TLS fatal alert has been received.
+>> GnuTLS: received alert [70]: Error in protocol version
+>> Unable to establish SSL connection.
+>>
+>> $ wget --version
+>> GNU Wget 1.20.3 built on linux-gnu.
+>>
+>> Currently wget uses gnutls as the ssl backend as the below logic
+>> in layers/openembedded-core/meta/recipes-extended/wget/wget.inc
+>> PACKAGECONFIG[gnutls] = "--with-ssl=gnutls,,gnutls"
+>>
+>> Check the link https://download.pureftpd.org/pub/ucarp/ and found
+>> the file https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
+>> already 10 years ago.
+>> ucarp-1.5.2.tar.gz                                 31-Jan-2010 
+>> 22:06              429089
+>>
+>> Meanwhile we can use gnutls-cli-debug to diagnose the 
+>> download.pureftpd.org
+>> which hosts ucarp and it doesn't support TLS 1.3 but supports TLS 1.2 
+>> instead
+>> as below.
+>> $ gnutls-cli-debug 37.59.238.213
+>> GnuTLS debug client 3.6.4
+>> Checking 37.59.238.213:443
+>>                          whether we need to disable TLS 1.2... no
+>>                          whether we need to disable TLS 1.1... no
+>>                          whether we need to disable TLS 1.0... no
+>>                          whether %NO_EXTENSIONS is required... no
+>>                                 whether %COMPAT is required... yes
+>>                               for TLS 1.0 (RFC2246) support... no
+>>   for TLS 1.0 (RFC2246) support with TLS 1.0 record version... no
+>>                               for TLS 1.1 (RFC4346) support... no
+>>                                    fallback from TLS 1.1 to... failed
+>>                               for TLS 1.2 (RFC5246) support... yes
+>>                               for TLS 1.3 (RFC8446) support... no
+>> [snip]
+>>
+>> $ wget --secure-protocol=TLSv1_2 
+>> https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
+>> --2020-07-17 07:07:08-- 
+>> https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
+>> Resolving download.pureftpd.org... 37.59.238.213
+>> Connecting to download.pureftpd.org|37.59.238.213|:443... connected.
+>> HTTP request sent, awaiting response... 200 OK
+>> Length: 429089 (419K) [text/plain]
+>> Saving to: 'ucarp-1.5.2.tar.gz'
+>>
+>> ucarp-1.5.2.tar.gz  100%[===================>] 419.03K 432KB/s    in 
+>> 1.0s
+>>
+>> 2020-07-17 07:07:16 (432 KB/s) - 'ucarp-1.5.2.tar.gz' saved 
+>> [429089/429089]
+>>
+>> Considering gnutls doesn't fallback to TLS 1.2 automatically, so 
+>> force ucarp
+>> to use TLS1.2 to fix the above do_fetch error.
+>>
+>> [1] 
+>> https://www.yoctoproject.org/docs/3.1/ref-manual/ref-manual.html#building-your-own-buildtools-tarball
+>>
+>> Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
+>> ---
+>>   meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb 
+>> b/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb
+>> index 6f30bf7..d17baa0 100644
+>> --- a/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb
+>> +++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb
+>> @@ -34,7 +34,7 @@ DEPENDS = "libpcap"
+>>     SYSTEMD_SERVICE_${PN} = "ucarp.service"
+>>   SYSTEMD_AUTO_ENABLE = "disable"
+>> -
+>> +export FETCHCMD_wget = "/usr/bin/env wget --secure-protocol=TLSv1_2 
+>> -t 2 -T 30 --passive-ftp --no-check-certificate"
+>>   EXTRA_OECONF += "--sysconfdir=${sysconfdir}/${BPN}"
+>>     # fix the perms for config.rpath
+>>
+>>
+>> 
+>>
+>
 
-No need.
+-- 
+Jeremy A. Puhlman
+jpuhlman@mvista.com
 
->     =E2=94=94=E2=94=80=E2=94=80 ice_helloworld
->         =E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT
-
-No need.
-
->         =E2=94=9C=E2=94=80=E2=94=80 files
->         =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT
->         =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 ice_helloworld.cpp
->         =E2=94=94=E2=94=80=E2=94=80 ice_helloworld_0.1.bb
->=20
-> (i copied COPYING.MIT to )every single place because of error below) an=
-d i
-> obtained:
->=20
-> NOTE: Executing Tasks
-> WARNING: ice_helloworld-helloworld-0.1 do_populate_lic: Could not copy
-> license file
-> /media/ice/slow_ext4/yocto_poky/build/tmp/work/armv7vet2hf-neon-poky-li=
-nux-gnueabi/ice_helloworld/helloworld-0.1/ice_helloworld-helloworld/COPYI=
-NG.MIT
-> to
-> /media/ice/slow_ext4/yocto_poky/build/tmp/work/armv7vet2hf-neon-poky-li=
-nux-gnueabi/ice_helloworld/helloworld-0.1/license-destdir/ice_helloworld/=
-COPYING.MIT:
-> [Errno 2] No such file or directory:
-> '/media/ice/slow_ext4/yocto_poky/build/tmp/work/armv7vet2hf-neon-poky-l=
-inux-gnueabi/ice_helloworld/helloworld-0.1/ice_helloworld-helloworld/COPY=
-ING.MIT'
-> ERROR: ice_helloworld-helloworld-0.1 do_populate_lic: QA Issue:
-> ice_helloworld: LIC_FILES_CHKSUM points to an invalid file:
-> /media/ice/slow_ext4/yocto_poky/build/tmp/work/armv7vet2hf-neon-poky-li=
-nux-gnueabi/ice_helloworld/helloworld-0.1/ice_helloworld-helloworld/COPYI=
-NG.MIT
-> [license-checksum]
-> ERROR: ice_helloworld-helloworld-0.1 do_populate_lic: Fatal QA errors
-> found, failing task.
-> ERROR: Logfile of failure stored in:
-> /media/ice/slow_ext4/yocto_poky/build/tmp/work/armv7vet2hf-neon-poky-li=
-nux-gnueabi/ice_helloworld/helloworld-0.1/temp/log.do_populate_lic.133477
-> ERROR: Task
-> (/media/ice/slow_ext4/yocto_poky/meta-ice_layer/recipes-ice/ice_hellowo=
-rld/ice_helloworld_0.1.bb:do_populate_lic)
-> failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 216 tasks of which 214 didn't need to be
-> rerun and 1 failed.
->=20
->=20
->=20
->=20
-> my bb file is:
->=20
-> SUMMARY =3D "Recipe to build the 'helloworld' in cpp"
-> SECTION =3D "ice"
-> LICENSE=3D"MIT"
-> #LICENSE_PATH +=3D "${LAYERDIR}"
->=20
-> PN =3D "ice_helloworld"
-
-No need, default is the name of the recipe file.
-
-> PV =3D "0.1"
->=20
-
-No need, default is the version in the recipe file (if there's one).
-
-meta-ice_layer/recipes-ice/ice_helloworld/ice_helloworld_0.1.bb will
-produce:
-PN =3D "ice_helloworld"
-PV =3D "0.1"
-
-> SITE =3D "file://"
-> PACKAGE_VERSION_MAJOR =3D "${@bb.data.getVar('PV',d,1).split('.')[0]}"
-> PACKAGE_VERSION_MINOR =3D "${@bb.data.getVar('PV',d,1).split('.')[1]}"
->=20
-> SRC_URI =3D "${SITE}${PN}.cpp"
-
-SRC_URI =3D "${SITE}/${PN}.cpp"
-
-> SRC_URI[md5sum] =3D "bc9dc64a44f9685d0310b94400a4631c"
-> SRC_URI[sha256sum] =3D
-> "789e60072ea96371a35d5653d664b4c4b91e80ce2ea6d523d6caedab06a07a2a"
-> LIC_FILES_CHKSUM =3D "${SITE}COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b=
-4de20420"
->=20
-
-LIC_FILES_CHKSUM =3D "${SITE}/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b4=
-de20420"
-
-> do_compile() {
->     ${CXX} ${PN}.cpp -o ${PN}
-> }
->=20
-
-Create a makefile/cmake instead, the logic of compiling your SW shouldn't=
- be
-in a build system.
-
-> do_install() {
->     install -d ${D}${bindir}
->     install -m 0755 ${PN} ${D}${bindir}
-> }
->=20
-
-Same, create an install target in your makefile. If you do this well,
-you don't even need your do_compile and do_install, it'll be
-"automagical".
-
-> what could be wrong here?
-> --=20
-
-1. Missing / in your paths.
-
-2. Also, **never** put uppercase letter or underscores in the name of
-a recipe. So your recipe should be:
-meta-ice_layer/recipes-ice/ice-helloworld/ice-helloworld_0.1.bb
-
-The underscore is used in multiple places internally to separate
-things so using an underscore is breaking some things in weird ways.
-
-Fix 1 and 2 at least, create a makefile for added best practices.
-
-Kind regards,
-Quentin
