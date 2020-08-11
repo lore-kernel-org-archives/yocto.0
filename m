@@ -1,173 +1,294 @@
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
- by mx.groups.io with SMTP id smtpd.web12.52901.1597088784433420465
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.5286.1597105418827755003
  for <yocto@lists.yoctoproject.org>;
- Mon, 10 Aug 2020 12:46:24 -0700
+ Mon, 10 Aug 2020 17:23:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=S/qBrkF/;
- spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 209.85.215.171, mailfrom: jpuhlman@mvista.com)
-Received: by mail-pg1-f171.google.com with SMTP id x6so5510090pgx.12
-        for <yocto@lists.yoctoproject.org>; Mon, 10 Aug 2020 12:46:24 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=LTo0EOuF;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id AE193E01FDB; Mon, 10 Aug 2020 17:23:38 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (sjolley.yp.pm[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.214.175 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0118FE01FD8
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2020 17:23:36 -0700 (PDT)
+Received: by mail-pl1-f175.google.com with SMTP id y6so5960805plt.3
+        for <yocto@yoctoproject.org>; Mon, 10 Aug 2020 17:23:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-transfer-encoding:content-language;
-        bh=OjU6yP716ndRX4668/yH7yQWnTfJ/8uKFN+42loyu+M=;
-        b=S/qBrkF/tXPEPNorPUmM7IV4foASQc82/DuLA9478f9yj7+zSV/ppgFkz9QNRAqWuG
-         2P0LQrr7tHlqaiuMetrce1iBV6g9Z8cn/2xw9HQIzuWIH8Ul40nUnjR5tQfIxZjCfqrp
-         m5kYNNfE4C+lMU/B/gchLTwYZQx/qbZbJ1+Z0UlN6XY7FaJ/H4pRxhAqqzTqoxMgAVZX
-         FWjg8/t/LFzTsNQnDY+l6Za5AIhO0nUqQaycoobX3hhS13UaJC+ghZ1PTZOVj0kfYm3T
-         P53mMhBFFk48hZALFHzz0MasY+eb4MVUpCFhzFac1A4fJSfRr3ftN/cTGmnl36tM8FZh
-         mxEg==
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=+FEcA2P3DPPDw2tvNnw4L8xWnAOUDQLWvBcyg48lDa0=;
+        b=LTo0EOuFmoZRB/xkeHxHg+vyr8IwOeBhQi5T95r3+V16Mm50B/6Th9yImf36KIh0cZ
+         L+b3fjER+jhN8urHLO8Y31Fi8BxsVPO0yZzeJPUBe2G7fPQQw12D70RwFk20Kun4jekJ
+         b/Vj70Of0qShFi37DjrRcxUqqhBv+4lVW41L/w8OevqMmDiM/rTdJNACWrv/hgHl8Odv
+         PKHQty1eWqblPscqfUirSRpT69GLMsTjyYSJhtrKYFPz82RhT/N1tjRIg+f9+JPPBtNi
+         YX/9Fbkvs7y/JaVu0/8P0KR/ql4ZJcS1kubKD8RzQjDPRycfZJlcu4Qs9Py7WESCnIQq
+         tbuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=OjU6yP716ndRX4668/yH7yQWnTfJ/8uKFN+42loyu+M=;
-        b=n9xHqQStx9HAUN6lquurBfOB/lQbR0iBI9n7Bk7XTK+qK87xkAQVHLv5eudKrb5+7+
-         AVBPaU6S2GgvH1jhH1UWfB+pz7hzXMaMCWRl3+y+WLfafhmQu6HF2Jlxvg+dXZrJPIJC
-         tRrrbSHOZf4zv6ecNIQDICMAHwki98UxTt3UdOAsi1XcdX1wrE1jtE552VpoJNDv4/bY
-         lpgp+sncoNvGAKi6654HyW45uOsgKupfTaQTIK5DXtKzUOM1KNsaT9S+bHI8aZlwtfBT
-         d8uo0xsORvmTqxLOeevuGp63MsYNCaHyP/WI4iQKmSGdoq3ln/LShtRUPC0FRp+eayuh
-         5SFA==
-X-Gm-Message-State: AOAM533KWYVdIDFCrqzLtdzqm92y3KJAjbqO/P7OG1J/6udwk5CXTqmW
-	76breAFYONAyQFpo7jEEHHxAhmp+oNo=
-X-Google-Smtp-Source: ABdhPJyCjin+NAV39Cbw5X63pW6oUDNMEeKeqm2fT9v7VIDdtr/IewCxT4IQ7fSUXgH0Aad1c2kEEA==
-X-Received: by 2002:a63:6c0a:: with SMTP id h10mr23414715pgc.11.1597088783397;
-        Mon, 10 Aug 2020 12:46:23 -0700 (PDT)
-Return-Path: <jpuhlman@mvista.com>
-Received: from [192.168.1.128] (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
-        by smtp.gmail.com with ESMTPSA id t5sm19443639pgl.38.2020.08.10.12.46.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Aug 2020 12:46:22 -0700 (PDT)
-Subject: Re: [yocto] [meta-cgl][PATCH] ucarp: force to use TLS1.2 during do_fetch
-To: "Yu, Mingli" <mingli.yu@windriver.com>, yocto@lists.yoctoproject.org
-References: <16227A594D77C7C6.3435@lists.yoctoproject.org>
- <2ef7a153-9aa5-0b2f-22a6-cf8ff7ec0e36@windriver.com>
-From: "Jeremy Puhlman" <jpuhlman@mvista.com>
-Message-ID: <f85c600e-53e7-f82e-424a-fec1a749c85f@mvista.com>
-Date: Mon, 10 Aug 2020 12:46:21 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=+FEcA2P3DPPDw2tvNnw4L8xWnAOUDQLWvBcyg48lDa0=;
+        b=K6NwPs9/7nREZIqq+P+VHOPLG3eupE+OdFey2x6eR3wkmSNfwMFp7OQqsfz4XsSTom
+         HiUHqY5P4e4ln/zy4cNdcON9fbk5gBHt6pk7laOxumT5N0tiKvuabRuLqSiaNSBuMoZu
+         z5QapINoNzRsXzDuD8yPZERc+HVtnKvb9BLpH9EeLdt+n3ytpVdeGVQw+jVUF4nHDOuA
+         owFzX3sFPGwJw8GzOZmhoiopsm4FdUXsPx9ikqoNR7SumzK14Q1TasKsIFJmSkfuzJez
+         JfRrwJ+w6d0bD7uZw0SWoI5BCOSCSPN35lJJdSQiem8tbvkALNGbxv7r2Qs2Y3d72qBO
+         InUA==
+X-Gm-Message-State: AOAM533tFKE/j3s2jJ3SOGBdaoNOxEzu3VI8Zlb+quEsn+BIr4z5SQOx
+	Q+sGgNW5yHAlNKbFgvO30Gc=
+X-Google-Smtp-Source: ABdhPJwWwk1lzIhQJsCKMQzLsfu+V2pVx2ruBYOMLg/dSon5QUACOXzpOczbEhZLun4LzQu8OgR+0g==
+X-Received: by 2002:a17:90a:19d1:: with SMTP id 17mr1808394pjj.93.1597105416450;
+        Mon, 10 Aug 2020 17:23:36 -0700 (PDT)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id r28sm22963694pfg.158.2020.08.10.17.23.35
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 10 Aug 2020 17:23:35 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 10 Aug 2020 17:23:36 -0700
+Message-ID: <0d0501d66f75$a7c17aa0$f7446fe0$@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <2ef7a153-9aa5-0b2f-22a6-cf8ff7ec0e36@windriver.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGWHGOeH8MTxIO1mF66CLYNa8NE0A==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0D06_01D66F3A.FB653AB0"
+Content-Language: en-us
 
-Merged.
+------=_NextPart_000_0D06_01D66F3A.FB653AB0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On 8/9/2020 6:04 PM, Yu, Mingli wrote:
-> ping.
->
-> Thanks,
->
-> On 7/17/20 3:38 PM, Yu, Mingli wrote:
->> From: Mingli Yu <mingli.yu@windriver.com>
->>
->> There comes below error when use buildtools [1]:
->> $ bitbake -cfetch ucarp
->> [snip]
->> --2020-07-17 06:39:31-- 
->> https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
->> Resolving download.pureftpd.org... 37.59.238.213
->> Connecting to download.pureftpd.org|37.59.238.213|:443... connected.
->> GnuTLS: A TLS fatal alert has been received.
->> GnuTLS: received alert [70]: Error in protocol version
->> Unable to establish SSL connection.
->>
->> And can simply use below step to reproduce the above error.
->> $ wget https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
->> --2020-07-17 06:43:36-- 
->> https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
->> Resolving download.pureftpd.org... 37.59.238.213
->> Connecting to download.pureftpd.org|37.59.238.213|:443... connected.
->> GnuTLS: A TLS fatal alert has been received.
->> GnuTLS: received alert [70]: Error in protocol version
->> Unable to establish SSL connection.
->>
->> $ wget --version
->> GNU Wget 1.20.3 built on linux-gnu.
->>
->> Currently wget uses gnutls as the ssl backend as the below logic
->> in layers/openembedded-core/meta/recipes-extended/wget/wget.inc
->> PACKAGECONFIG[gnutls] = "--with-ssl=gnutls,,gnutls"
->>
->> Check the link https://download.pureftpd.org/pub/ucarp/ and found
->> the file https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
->> already 10 years ago.
->> ucarp-1.5.2.tar.gz                                 31-Jan-2010 
->> 22:06              429089
->>
->> Meanwhile we can use gnutls-cli-debug to diagnose the 
->> download.pureftpd.org
->> which hosts ucarp and it doesn't support TLS 1.3 but supports TLS 1.2 
->> instead
->> as below.
->> $ gnutls-cli-debug 37.59.238.213
->> GnuTLS debug client 3.6.4
->> Checking 37.59.238.213:443
->>                          whether we need to disable TLS 1.2... no
->>                          whether we need to disable TLS 1.1... no
->>                          whether we need to disable TLS 1.0... no
->>                          whether %NO_EXTENSIONS is required... no
->>                                 whether %COMPAT is required... yes
->>                               for TLS 1.0 (RFC2246) support... no
->>   for TLS 1.0 (RFC2246) support with TLS 1.0 record version... no
->>                               for TLS 1.1 (RFC4346) support... no
->>                                    fallback from TLS 1.1 to... failed
->>                               for TLS 1.2 (RFC5246) support... yes
->>                               for TLS 1.3 (RFC8446) support... no
->> [snip]
->>
->> $ wget --secure-protocol=TLSv1_2 
->> https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
->> --2020-07-17 07:07:08-- 
->> https://download.pureftpd.org/pub/ucarp/ucarp-1.5.2.tar.gz
->> Resolving download.pureftpd.org... 37.59.238.213
->> Connecting to download.pureftpd.org|37.59.238.213|:443... connected.
->> HTTP request sent, awaiting response... 200 OK
->> Length: 429089 (419K) [text/plain]
->> Saving to: 'ucarp-1.5.2.tar.gz'
->>
->> ucarp-1.5.2.tar.gz  100%[===================>] 419.03K 432KB/s    in 
->> 1.0s
->>
->> 2020-07-17 07:07:16 (432 KB/s) - 'ucarp-1.5.2.tar.gz' saved 
->> [429089/429089]
->>
->> Considering gnutls doesn't fallback to TLS 1.2 automatically, so 
->> force ucarp
->> to use TLS1.2 to fix the above do_fetch error.
->>
->> [1] 
->> https://www.yoctoproject.org/docs/3.1/ref-manual/ref-manual.html#building-your-own-buildtools-tarball
->>
->> Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
->> ---
->>   meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb 
->> b/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb
->> index 6f30bf7..d17baa0 100644
->> --- a/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb
->> +++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb
->> @@ -34,7 +34,7 @@ DEPENDS = "libpcap"
->>     SYSTEMD_SERVICE_${PN} = "ucarp.service"
->>   SYSTEMD_AUTO_ENABLE = "disable"
->> -
->> +export FETCHCMD_wget = "/usr/bin/env wget --secure-protocol=TLSv1_2 
->> -t 2 -T 30 --passive-ftp --no-check-certificate"
->>   EXTRA_OECONF += "--sysconfdir=${sysconfdir}/${BPN}"
->>     # fix the perms for config.rpath
->>
->>
->> 
->>
->
+All,
 
--- 
-Jeremy A. Puhlman
-jpuhlman@mvista.com
+ 
 
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+ 
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
+
+ 
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 340
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
+being in "3.1" and then "3.2".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0D06_01D66F3A.FB653AB0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_10D2_01D66434.454A69F0";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
+starting to try and collect up and classify bugs which a newcomer to the =
+project would be able to work on in a way which means people can find =
+them. They're being listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
+><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 340 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_0D06_01D66F3A.FB653AB0--
