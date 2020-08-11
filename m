@@ -1,124 +1,186 @@
-Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
- by mx.groups.io with SMTP id smtpd.web12.400.1597167406495025352
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.1940.1597181142811320521
  for <yocto@lists.yoctoproject.org>;
- Tue, 11 Aug 2020 10:36:46 -0700
+ Tue, 11 Aug 2020 14:25:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=GocT7cQ8;
- spf=pass (domain: gmail.com, ip: 209.85.208.65, mailfrom: icegood1980@gmail.com)
-Received: by mail-ed1-f65.google.com with SMTP id v22so9701862edy.0
-        for <yocto@lists.yoctoproject.org>; Tue, 11 Aug 2020 10:36:46 -0700 (PDT)
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=hevh1kQF;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: twoerner@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 5760FE01FED; Tue, 11 Aug 2020 14:25:42 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (twoerner[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.222.172 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E7B1E01FA2
+	for <yocto@yoctoproject.org>; Tue, 11 Aug 2020 14:25:41 -0700 (PDT)
+Received: by mail-qk1-f172.google.com with SMTP id 2so229725qkf.10
+        for <yocto@yoctoproject.org>; Tue, 11 Aug 2020 14:25:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=YXuLouinFu9eujoBciZkEW0wMT/rKGSiX12eev53Cjc=;
-        b=GocT7cQ8XCgNaZ1fzLo0VOqQ7gKjYOmLcOGJFCwjJXxVL5Z6Aduo9+y/DyeHFifayB
-         EFGnIG6JDD4PwMyO3PVHxWsOBSpXk0xRWR+VZsZow0J1IZNBKwzZklDMgNoTy/JpmdbR
-         9MIU9fGMFMorPoMZk/kypp/7Dn7lyKc3/IaJh8L3IJicZONkv3s7Oz677mgh4i9x1CXF
-         lXxaJKL4FRmC46nz2Zk44oeCgCZFSQkAXaXVXIfzVdwtuSgfpygp09fDshmaFZ/FD3fe
-         VcxPCGrC23t/0LAsYP9YQW/nQoxg5d63uqSQSl6Ku3SfRxThT/wea1eqGXzi6eiY+WU6
-         E7Sg==
+        h=date:from:to:subject:message-id:mime-version:content-disposition
+         :content-transfer-encoding:user-agent;
+        bh=oE0ctw4Ygdn4CJdZcsm9XffeYUPp7toG+/KEPCCQsR4=;
+        b=hevh1kQF22vU5TiiftXJDGyRLXlyqZGz9Y6b4iVDZAFGQDPCNSwbynn2xpgVdRz40v
+         f/FNZQRplppNXVf/AQSQeTuWmED8zT4cTjD53s+lzXmVj9EGfTQQqOUbOSC7UEs8uo7A
+         mfEMUqqnheULBaBgmRt2mkBbAbmNAYXFF0TXe9zqRNk+n+zWmBvKD4KDS1pesmkqpkRd
+         wtAgiRusDaSVSRwV0/3pi3+H6gwMvYkgGueEqIIjQSRwo3DFknMaf3H1QZE55MK1kY2/
+         QlWrT+fXJw4LLFb1N0A2gzTLaBTeRTZHy+ymWVzNmLWJMnDLkKVNsCuhdmp8v4dbfDrr
+         Bhgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=YXuLouinFu9eujoBciZkEW0wMT/rKGSiX12eev53Cjc=;
-        b=QY6/GDTt2Wco3ccQuVj2t767t+6gfoDZ1unetVVwNIdbklQ/O15GXG39Sa4Gd+FkCi
-         1alI7w+8jikfidawJ/0mUILoo0j8YJcl+nCVIp+ftZU1jyZm+ri+NqnjLt2w4Ml5KfoS
-         zgZLWwZm577pJzrQlmEr3w7boZtSgDDz3iUBsN5Rr+iex71EniUH/sIF7qa3nB7KWgXK
-         OJcZj56AZLXPGCa9L4xOCtmHPB2qURNdWIfbfzabw+IWeSM9Emh8GYiwp2nuMfbK8H7n
-         CRaYAoc+lT8ixpa/tK2LItyP5vSGVG/K66EMi6iFTBQeffz9EEFvbUzEYNyVnrpE9Plp
-         fBxQ==
-X-Gm-Message-State: AOAM530v/l6ZCT4O1QRnpqRyNtu+azqG8KmhOlKevSlOfXTkY04/LKyg
-	QwkWyKbvzy3s+NEgqQ6s4pj5qxwnAI7Ji/ZMrujlnMSzmOY=
-X-Google-Smtp-Source: ABdhPJxGKl4d8JWuKgz+1vyM4g+LEQS3AQMgETUFaUaa0LDsxHX8JiEccXPVr7fgR8QrWoS/eWv5+iYwIgrHvaAeOQ0=
-X-Received: by 2002:a50:8f44:: with SMTP id 62mr28207436edy.3.1597167404494;
- Tue, 11 Aug 2020 10:36:44 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition:content-transfer-encoding:user-agent;
+        bh=oE0ctw4Ygdn4CJdZcsm9XffeYUPp7toG+/KEPCCQsR4=;
+        b=k9yV8Eua6YyxZJoZ2luEVTrkJcabC4xDvn5h5H7aXBow1H+BK5jCO8TBIGccHOjAk+
+         LbisJZR1kFyzyoaC6i1D/5A5WOH+8+qneT1nBn4PLVOK79igdCoyJv/pJt/Li6cP0juA
+         gkpoDfqWfmXCY0GhH/wk7AHWQQLhMHHUewIyomjgt+mF4kM8dxobtStMBllD34Y6IPZe
+         veqLtYT7zNLQKeACl9aQTlkoul0fBEZpExvT7j93xOyXfojQ96wFzEzmlFG7BNFXCTQY
+         QfvDbo1j8TniRU+LPm1DEGsk1CmGkR8VgXmxaLCUnZzmAWtiyeNe6R6xEH26UtgGmk8s
+         vmfg==
+X-Gm-Message-State: AOAM530rs2GOHokGIUiG49O7uiQSJDJl3xzm16XLpK7YLLFn0MJnKhJC
+	E0Unvt9GRi8b3rFPSevKrUW0yhHvEMk=
+X-Google-Smtp-Source: ABdhPJzdlwm0cHV6/9sR7IwPOwTer1ahZzFksrzCVBmiPy5n5MuSyYho4CoZN5nYjeKa4qBheX/hIw==
+X-Received: by 2002:ae9:e857:: with SMTP id a84mr3308197qkg.100.1597181139949;
+        Tue, 11 Aug 2020 14:25:39 -0700 (PDT)
+Received: from linux-uys3 ([206.248.190.95])
+        by smtp.gmail.com with ESMTPSA id x137sm114042qkb.47.2020.08.11.14.25.38
+        for <yocto@yoctoproject.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 11 Aug 2020 14:25:39 -0700 (PDT)
+Date: Tue, 11 Aug 2020 17:25:36 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Yocto Technical Team Minutes, Engineering Sync, for August 11 2020
+Message-ID: <20200811212536.GA29700@linux-uys3>
 MIME-Version: 1.0
-From: "Sergey Ivanov" <icegood1980@gmail.com>
-Date: Tue, 11 Aug 2020 20:36:33 +0300
-Message-ID: <CAJCbrz7gyBvKzyTjSFNBCiM2oZtj1E_ghGdcrP7jJaN-LbRDXg@mail.gmail.com>
-Subject: cmake-based project with system lib dependency
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000cab1f605ac9d8348"
-
---000000000000cab1f605ac9d8348
-Content-Type: text/plain; charset="UTF-8"
-
-Hi there.
-I want to configure the cmake-based project with dependency on library
-libuuid.
-The latter is located under util-linux and populated in my
-build/tmp/deploy/images/qemuarm/core-image-minimal-dev-qemuarm.manifest:
-
-util-linux-dev armv7vet2hf_neon 2.35.1 (here should be header as well and
-static library)
-...
-util-linux-uuidd armv7vet2hf_neon 2.35.1 (i believe the only library)
-...
-My bb file is:
-
-SUMMARY = "Recipe to build the 'helloworld-cpp-direct-compile' in cpp"
-SECTION = "common_templates"
-
-SRC_URI = "file://CMakeLists.txt \
-           file://foo.cpp \
-           file://foo.h "
-
-inherit pkgconfig cmake
-
-S = "${WORKDIR}"
-OECMAKE_GENERATOR = "Unix Makefiles"
-# project version seems to not be propagated properly
-EXTRA_OECMAKE="-DCMAKE_PROJECT_VERSION=${PV}"
-
-
-while my CMake file has:
-
-pkg_check_modules(uuid REQUIRED IMPORTED_TARGET "uuid >= 2.25")
-
-
-Now I obtain the error from cmake:
--- Checking for module 'uuid >= 2.25'
---   No package 'uuid' found
-CMake Error at
-recipe-sysroot-native/usr/share/cmake-3.16/Modules/FindPkgConfig.cmake:467
-
-What philosophy of yocto to make it work? In other words where 'stage' is
-supposed to be located so pkgconfig will find library?
-
--- 
-Kind regards,
-Sergey Ivanov
-
---000000000000cab1f605ac9d8348
-Content-Type: text/html; charset="UTF-8"
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
-r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div>Hi there. <br></div>I=
- want to configure the cmake-based project with dependency on library libuu=
-id.<br></div>The latter is located under util-linux and populated in my <br=
->build/tmp/deploy/images/qemuarm/core-image-minimal-dev-qemuarm.manifest:<d=
-iv><br clear=3D"all"><div><div>util-linux-dev armv7vet2hf_neon 2.35.1 (here=
- should be header as well and static library)<br></div><div>...<br></div><d=
-iv>util-linux-uuidd armv7vet2hf_neon 2.35.1 (i believe the only library)<br=
-></div><div>...</div><div>My bb file is:<br><br>SUMMARY =3D &quot;Recipe to=
- build the &#39;helloworld-cpp-direct-compile&#39; in cpp&quot;<br>SECTION =
-=3D &quot;common_templates&quot;<br><br>SRC_URI =3D &quot;file://CMakeLists=
-.txt \<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://foo.cpp \<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://foo.h &quot;<br><br>inherit pk=
-gconfig cmake<br><br>S =3D &quot;${WORKDIR}&quot;<br>OECMAKE_GENERATOR =3D =
-&quot;Unix Makefiles&quot;<br># project version seems to not be propagated =
-properly<br>EXTRA_OECMAKE=3D&quot;-DCMAKE_PROJECT_VERSION=3D${PV}&quot;</di=
-v><div><br></div><div><br></div><div>while my CMake file has:<br><br>pkg_ch=
-eck_modules(uuid REQUIRED IMPORTED_TARGET &quot;uuid &gt;=3D 2.25&quot;)</d=
-iv><div><br></div><div><br></div><div>Now I obtain the error from cmake:<br=
->-- Checking for module &#39;uuid &gt;=3D 2.25&#39;<br>-- =C2=A0 No package=
- &#39;uuid&#39; found<br>CMake Error at recipe-sysroot-native/usr/share/cma=
-ke-3.16/Modules/FindPkgConfig.cmake:467</div><div><br></div><div>What philo=
-sophy of yocto to make it work? In other words where &#39;stage&#39; is sup=
-posed to be located so pkgconfig will find library?<br></div><div><br></div=
-><div>-- <br><div dir=3D"ltr" class=3D"gmail_signature">Kind regards,<br>Se=
-rgey Ivanov</div></div></div></div></div></div></div></div></div></div></di=
-v>
+Yocto Technical Team Minutes, Engineering Sync, for August 11 2020
+archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7=
+QwKC5wWVDg9dDH4/edit
 
---000000000000cab1f605ac9d8348--
+=3D=3D disclaimer =3D=3D
+Best efforts are made to ensure the below is accurate and valid. However,
+errors sometimes happen. If any errors or omissions are found, please fee=
+l
+free to reply to this email with any corrections.
+
+=3D=3D attendees =3D=3D
+Trevor Woerner, Stephen Jolley, Armin Kuster, Bruce Ashfield, Jan-Simon
+M=C3=B6ller, Tim Orling, Jeremey Puhlmann, Paul Barker, Mark Morton, Alej=
+andro
+H, Randy MacLeod, Michael Halstead, Richard Purdie, Trevor Gamblin,
+(callin), Ross Burton, Peter Kjellerstedt, Steve Sakoman
+
+=3D=3D notes =3D=3D
+- 3.2-M2 out of QA, in final release process, looks good
+- now in 3.2-M3, last milestone for features
+- 3.2-M4, in september, only for bug fixes
+- 3.0.4 (last Zeus) should be built and out this week (if all goes well),
+  this is the =E2=80=9Cstutter step=E2=80=9D, then we go to 6 months
+- some more AB failures added to the list
+- some 3.2 bugs that don=E2=80=99t have owners
+
+=3D=3D general =3D=3D
+RP: some =E2=80=9Cold=E2=80=9D AB failures have reappeared, perhaps a loc=
+k file issue in
+    bitbake
+RP: there is a package data one that might be debuggable and reproducible
+
+RP: relatively quiet week, a couple bitbake patches (<something?>, colour=
+izing
+    output)
+
+MarkM: what=E2=80=99s the next step for sphinx?
+RP: a list was made of the areas to work on (from Nico), we just need peo=
+ple
+    to sign up
+RP: the one I=E2=80=99m going to look at is how to get the versioning to =
+work on the
+    website
+
+PaulB: meta-kernel layer, seems to be some issues with naming
+Ross: we have been using meta-kernel, i can see an argument to rename to
+    meta-mainline-kernel, perhaps, since meta-kernel is a bit generic
+RP: my concern is that meta-kernel doesn=E2=80=99t convey what it does
+PaulB: my intention was to make it a common place for common kernels (e.g=
+.
+    Linaro kernel can be used on a bunch of ARM boards). also my hope was=
+ to
+    support back to kernels that aren=E2=80=99t =E2=80=9Ccurrent=E2=80=9D=
+ (e.g. 4.4). so it=E2=80=99s
+    not just a =E2=80=9Cmainline=E2=80=9D layer
+RP: i believe there=E2=80=99s a way to get the mainline kernel with linux=
+-yocto
+PaulB: i need to be able to flick customers between, e.g. a 4.4 and a mai=
+nline
+    quickly
+TrevorW: the magic to get mainline with linux-yocto is to set
+    PREFERRED_PROVIDER to linux-yocto-dev
+RP: it=E2=80=99s a tricky situation, Bruce does a lot of work, sometimes =
+work that
+    doesn=E2=80=99t show up on the mailing list, I think collaborating wi=
+th him
+    would be a good approach. linux-yocto was created to reduce fragmenta=
+tion.
+    sometimes understanding linux-yocto can be tricky.
+PaulB: maybe just carrying any differences that we need relative to
+    linux-yocto might be better. some of my customers just want a raw mai=
+nline
+    (with no other patches) since they also support e.g. Debian
+Timo: one of the things i do over and over is explaining linux-yocto to p=
+eople
+    and how to use it
+TrevorW: it was my intent to explain scc files and kernel patches with th=
+e
+    last talk i gave at devday, if there are suggestions please let me kn=
+ow.
+    hopefully those videos get published
+Armin: one can use kernel branch overrides to use the v5.4/base (of
+    linux-yocto.git)
+RP: maybe we need more docs or information
+PaulB: meta-kernel was meant to be lightweight, it doesn=E2=80=99t get as=
+ much
+    testing as linux-yocto, it wasn=E2=80=99t meant to step on anyone=E2=80=
+=99s toes
+Timo: maybe this is an opportunity to take a look at the kernel developme=
+nt
+    manual and make sure it is up to date
+RP: maybe we could put a barebones kernel mainline recipe for the version=
+s
+    that are in each release (i=E2=80=99m not saying that=E2=80=99s a goo=
+d idea, i=E2=80=99m
+    just throwing out ideas), or maybe add more testing on AB for the
+    variations of kernels that area already in each release (e.g. the -rt
+    kernel)
+PaulB: this all sounds good
+TrevorW: a suggestion: rename recipes-kernel/linux to
+    recipes-kernel/linux-yocto and then create a recipes-kernel/linux-mai=
+nline
+    for PaulB=E2=80=99s work?
+RP: that would only make sense under the assumption that this would be me=
+rged
+    in oe-core
+PaulB: we=E2=80=99re a ways off from that conversation, if ever
+PaulB: i don=E2=80=99t think this is something that=E2=80=99s going to ge=
+t resolved for
+    M3, but maybe sometime after
