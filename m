@@ -1,159 +1,82 @@
-Received: from mail-vs1-f67.google.com (mail-vs1-f67.google.com [209.85.217.67])
- by mx.groups.io with SMTP id smtpd.web11.31867.1597615087475401168
- for <yocto@lists.yoctoproject.org>;
- Sun, 16 Aug 2020 14:58:07 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=MhPU/HVb;
- spf=pass (domain: gmail.com, ip: 209.85.217.67, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vs1-f67.google.com with SMTP id o184so7330198vsc.0
-        for <yocto@lists.yoctoproject.org>; Sun, 16 Aug 2020 14:58:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cgFbUU6Gts7CQBijtHd2ScAbzo+Z0IiKyfS7++fRqj4=;
-        b=MhPU/HVb/1K8dN2vPKmuhzffe27rX02NsYiaMXlkvPPBKzKzCuAhRne3bjvDS8HZyy
-         t7c7tQ10u9tMRTGIAlVrq4ZpWQrrmMvYjcbdKQTP8VP8qYpQGsTZzXBNEqsZCwDuZ8Gs
-         fJmkfmT9EfAij6l1Y5BPCcfIHp6yQv8gsG8XVdIa1i7IFbvp17pRPdoFex5Y44f9071/
-         qJO9ZE9lBA/nLAgtuYlMxvoOPwAESAX5wihzzSzEVav9JtnZr4HApZ8YMnz2jLEG2XAO
-         hW0Kr+Iat59K4G7esmCwGfXGzqSgcPJiTYyKrKXWNagYPYBVcZLmB4y1GDuAGu2FHUQW
-         oeyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cgFbUU6Gts7CQBijtHd2ScAbzo+Z0IiKyfS7++fRqj4=;
-        b=adfnKw18U2dsI8kljcY+jl5SW9QHqosFfoc+W7GfkJ+s7/e5mluQFp0U2Bd2OvGW/w
-         5giTHtkMIeY/sM9pNKaT9CK/TTj/YLuX3cNlqzTXjZMgWTGj5eSd4LNp8goEyYTmAFJU
-         EAoiC3Xc8CzFAg+VdBvYG6cVU1g5+M/FXB3O58jl/vLR3SUajiVvYwkjY00UhUTPxsDf
-         keyG5w8UuJxXKxVMWhjM6KSYfouAUPNJ7CHa8+k7WyWDIBpKX4iDFmuMXmP8pv/WrkI4
-         500S8+OGsch457QQbvGkAGfOHih5cuP4vj2PrzWZoLtMnlSYmlUGBaSjPRXNEqGGMZyv
-         4ufg==
-X-Gm-Message-State: AOAM533ucuOee05D1phlBcuBmvkP4ao38kjXooGixAPLC+4kV3R9eneH
-	IJhBAdif4d5BHdB332hrzSLUxb6gSH3INalbICQ=
-X-Google-Smtp-Source: ABdhPJw7x+w+YdtKAipI+ETV+ls4BCUG6YZew4/XJYACj9EiD2HluoE5bl0/1NGaJz49RYH66vQPAqj4HbtolLUhido=
-X-Received: by 2002:a67:f550:: with SMTP id z16mr6590281vsn.94.1597615086559;
- Sun, 16 Aug 2020 14:58:06 -0700 (PDT)
+Subject: Re: NO INTERNET ENVIRONMENT - USING PREMIRROR fails -> gstreamer1.0_1.12.2.bb:do_unpack failed due to a fetch issue
+To: yocto@lists.yoctoproject.org
+From: baranarman@gmail.com
+X-Originating-Location: Ankara, TR (213.14.123.114)
+X-Originating-Platform: Windows Chrome 84
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <20200816213935.7733-1-foss@0leil.net> <20200816213935.7733-5-foss@0leil.net>
-In-Reply-To: <20200816213935.7733-5-foss@0leil.net>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Sun, 16 Aug 2020 23:57:54 +0200
-Message-ID: <CANNYZj9Yiwb8D0Dyy_OW2j5K2OhWyXdp7KVL8y1Vw9ZALB29zQ@mail.gmail.com>
-Subject: Re: [yocto] [auh] [PATCH RESEND 5/5] consistent naming for upgradehelper.py
-To: Quentin Schulz <foss@0leil.net>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000b8e9be05ad05bfed"
+Date: Sun, 16 Aug 2020 23:50:51 -0700
+References: <3944.1595511409254609404@lists.yoctoproject.org>
+In-Reply-To: <3944.1595511409254609404@lists.yoctoproject.org>
+Message-ID: <7400.1597647051189438797@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="VVdhmjQQA6PUP8WaU5fm"
 
---000000000000b8e9be05ad05bfed
-Content-Type: text/plain; charset="UTF-8"
-
-Thanks, I have added this to AUH repo too now; I assume there are no
-changes in the re-sent patchset otherwise?
-
-Alex
-
-On Sun, 16 Aug 2020 at 23:39, Quentin Schulz <foss@0leil.net> wrote:
-
-> Rename upgradehelper.py into upgrade-helper.py since the conf file and the
-> git
-> repo are named with a dash to separate "upgrade" and "helper".
->
-> The documentation in the README and upgradehelper.py were also already
-> using
-> upgrade-helper.py instead of upgradehelper.py.
->
-> For all those reasons, let's be consistent and rename the python script.
->
-> Signed-off-by: Quentin Schulz <foss@0leil.net>
-> ---
->  - RESEND because I was not subscribed to the ML with this address already,
->
->  upgradehelper.py => upgrade-helper.py | 0
->  weeklyjob.sh                          | 2 +-
->  2 files changed, 1 insertion(+), 1 deletion(-)
->  rename upgradehelper.py => upgrade-helper.py (100%)
->
-> diff --git a/upgradehelper.py b/upgrade-helper.py
-> similarity index 100%
-> rename from upgradehelper.py
-> rename to upgrade-helper.py
-> diff --git a/weeklyjob.sh b/weeklyjob.sh
-> index 412685e..94598a2 100755
-> --- a/weeklyjob.sh
-> +++ b/weeklyjob.sh
-> @@ -20,7 +20,7 @@ git fetch origin
->  git checkout -B tmp-auh-upgrades origin/master
->
->  source $poky_dir/oe-init-build-env $build_dir
-> -$auh_dir/upgradehelper.py -e all
-> +$auh_dir/upgrade-helper.py -e all
->
->  # clean up to avoid the disk filling up
->  rm -rf $build_dir/tmp/
-> --
-> 2.26.2
->
-> 
->
-
---000000000000b8e9be05ad05bfed
-Content-Type: text/html; charset="UTF-8"
+--VVdhmjQQA6PUP8WaU5fm
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Thanks, I have added this to AUH repo too now; I assu=
-me there are no changes in the re-sent patchset otherwise?</div><div><br></=
-div><div>Alex<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
-" class=3D"gmail_attr">On Sun, 16 Aug 2020 at 23:39, Quentin Schulz &lt;<a =
-href=3D"mailto:foss@0leil.net">foss@0leil.net</a>&gt; wrote:<br></div><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
-1px solid rgb(204,204,204);padding-left:1ex">Rename upgradehelper.py into u=
-pgrade-helper.py since the conf file and the git<br>
-repo are named with a dash to separate &quot;upgrade&quot; and &quot;helpe=
-r&quot;.<br>
-<br>
-The documentation in the README and upgradehelper.py were also already usi=
-ng<br>
-upgrade-helper.py instead of upgradehelper.py.<br>
-<br>
-For all those reasons, let&#39;s be consistent and rename the python scrip=
-t.<br>
-<br>
-Signed-off-by: Quentin Schulz &lt;<a href=3D"mailto:foss@0leil.net" target=
-=
-=3D"_blank">foss@0leil.net</a>&gt;<br>
----<br>
-=C2=A0- RESEND because I was not subscribed to the ML with this address al=
-ready,<br>
-<br>
-=C2=A0upgradehelper.py =3D&gt; upgrade-helper.py | 0<br>
-=C2=A0weeklyjob.sh=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 2 +-<br>
-=C2=A02 files changed, 1 insertion(+), 1 deletion(-)<br>
-=C2=A0rename upgradehelper.py =3D&gt; upgrade-helper.py (100%)<br>
-<br>
-diff --git a/upgradehelper.py b/upgrade-helper.py<br>
-similarity index 100%<br>
-rename from upgradehelper.py<br>
-rename to upgrade-helper.py<br>
-diff --git a/weeklyjob.sh b/weeklyjob.sh<br>
-index 412685e..94598a2 100755<br>
---- a/weeklyjob.sh<br>
-+++ b/weeklyjob.sh<br>
-@@ -20,7 +20,7 @@ git fetch origin<br>
-=C2=A0git checkout -B tmp-auh-upgrades origin/master<br>
-<br>
-=C2=A0source $poky_dir/oe-init-build-env $build_dir<br>
--$auh_dir/upgradehelper.py -e all<br>
-+$auh_dir/upgrade-helper.py -e all<br>
-<br>
-=C2=A0# clean up to avoid the disk filling up<br>
-=C2=A0rm -rf $build_dir/tmp/<br>
--- <br>
-2.26.2<br>
-<br>
-<br>
-</blockquote></div>
+Hi Martin,
 
---000000000000b8e9be05ad05bfed--
+I am still stuck with this issue,
+I understood that the autogen.sh is the point where it wants to update the=
+ common submodule.
+
+*Even if BB_NO_NETWORK is set it still tries to access the* https://anongi=
+t.freedesktop.org/git/gstreamer/common.git ( https://anongit.freedesktop.or=
+g/git/gstreamer/common.git )
+Which I think is quite surprising!
+
+But about the following lines, I don't know how to do the described thing.
+
+>=20
+> Usually it was failing in do_configure when building without access to
+> this git repo, *we were adding "common" git repo to SRC_URI explicitly t=
+o
+> make sure that the right revision is always there with the gstreamer
+> sources and managed with bitbake fetcher (so that it's used from downloa=
+ds
+> directory instead of the fetch from internet every single time gst*
+> recipes are rebuilt for whatever reason)*.
+
+* What should i copy to my local? the content of https://anongit.freedeskt=
+op.org/git/gstreamer/common.git ??? shall i copy one file or complete direc=
+tory
+* And then in which file shall i add this url? /home/aselsan/imx-yocto-bsp=
+/sources/poky/meta/recipes-multimedia/gstreamer/gstreamer1.0_1.12.2.bb ? or=
+ in a new recipe
+* And is it enough just to add the path to SRC_URI or shall i also add the=
+ file also ?
+Regards,
+
+--VVdhmjQQA6PUP8WaU5fm
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Martin,<br /><br />I am still stuck with this issue,&nbsp;<br />I unders=
+tood that the autogen.sh is the point where it wants to update the common s=
+ubmodule.&nbsp;<br /><br /><strong>Even if BB_NO_NETWORK is set it still tr=
+ies to access the</strong> <a href=3D"https://anongit.freedesktop.org/git/g=
+streamer/common.git" target=3D"_blank" rel=3D"noopener">https://anongit.fre=
+edesktop.org/git/gstreamer/common.git&nbsp;</a><br />Which I think is quite=
+ surprising!<br /><br />But about the following lines, I don't know how to =
+do the described thing.&nbsp;<br />
+<blockquote>Usually it was failing in do_configure when building without a=
+ccess to this git repo, <strong>we were adding "common" git repo to SRC_URI=
+ explicitly to make sure that the right revision is always there with the g=
+streamer sources and managed with bitbake fetcher (so that it's used from d=
+ownloads directory instead of the fetch from internet every single time gst=
+* recipes are rebuilt for whatever reason)</strong>.</blockquote>
+<ol>
+<li>What should i copy to my local? the content of <a href=3D"https://anon=
+git.freedesktop.org/git/gstreamer/common.git" target=3D"_blank" rel=3D"noop=
+ener">https://anongit.freedesktop.org/git/gstreamer/common.git</a>&nbsp;???=
+ shall i copy one file or complete directory</li>
+<li>And then in which file shall i add this url? /home/aselsan/imx-yocto-b=
+sp/sources/poky/meta/recipes-multimedia/gstreamer/gstreamer1.0_1.12.2.bb ? =
+or in a new recipe</li>
+<li>And is it enough just to add the path to SRC_URI or shall i also add t=
+he file also ?</li>
+</ol>
+Regards,
+
+--VVdhmjQQA6PUP8WaU5fm--
