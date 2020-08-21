@@ -1,79 +1,73 @@
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
- by mx.groups.io with SMTP id smtpd.web12.133342.1598017552485321428
- for <yocto@lists.yoctoproject.org>;
- Fri, 21 Aug 2020 06:45:52 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=I/wBtnzN;
- spf=pass (domain: gmail.com, ip: 209.85.128.47, mailfrom: jpewhacker@gmail.com)
-Received: by mail-wm1-f47.google.com with SMTP id t14so1883004wmi.3
-        for <yocto@lists.yoctoproject.org>; Fri, 21 Aug 2020 06:45:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Qd++b1ig6F3gOAJcU0ysnfvsnrX2iFk+0VJaV4wA9RI=;
-        b=I/wBtnzNyEqK4/KmY/aC4P43FJjmGzIeWTvbB0OLMlo2jTIrHsbCfznFV9zFIZpToG
-         PYq8DGKwySte3BG2rnfEUlBeBlsTIm7pTe5d5ZyPOIO6xDXndK//RMC7iCK94rEyhV13
-         NAHzsj9emA6N/VEYH3gc6oPMSkQ3yD97U2SdNI8awA2sliXIhZSNyj8SVH3v+W2nUYmL
-         MjWwprft9HgMKCdNdCpIVzlRQCUrWw5ZlEPI0+GWAaDubWitMldJKFGcPPVP370lBciO
-         EZSj26aHNGqDCKjg3tyPS1sKFc+UxqMHtBoPPNRMrx1Suv1xiNi0Qm8sXUC18x7xtwAu
-         k+ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Qd++b1ig6F3gOAJcU0ysnfvsnrX2iFk+0VJaV4wA9RI=;
-        b=MvC55okIFFEztzzM/MpqHwgOrVmPlbXJbHSbbzpWG6XREu9sylXmF6Hla4gwgqMiWo
-         HXtcywpRK/eG9JT5hPlSo6WNVK+fXnqJUK+kJocb75oE4FsjBM/XLFQhd6rsAjqZBHJF
-         OrEMjd2wgx5+h5atSDvEAClTR5hh7kjCOGEIkh0FiwxhA0YLg7bqq+0470szZHaUrjF9
-         p5frq5eM6fBApmh2Pql94TksG07AIfPoNf6plMgNpchM4zDNHbhK00WXlyC/SRo4JLoC
-         EIglOY32ECoy4Zz2c7wplPe9GR3oBb7A33qWJFFJZGqrU+NvYv9MiocZEkFnWzfDmZKu
-         I6Wg==
-X-Gm-Message-State: AOAM530cSORbQJ7oDagXg+ccgXj1fJQOil1MziOaosKyDVybrduiLffB
-	8/rL59a+d/UMNbEmWtQRiwLX8Kt4uT5mIpf8dQ0=
-X-Google-Smtp-Source: ABdhPJw81ebelRB4Efi8rDuui+4UfgJJgDZSg8WVM6rygNSnxWus/naAv5BIrj7ORtiZaLICx9ygpPGQHwwMxLeFp1o=
-X-Received: by 2002:a7b:cb4d:: with SMTP id v13mr4178267wmj.56.1598017550775;
- Fri, 21 Aug 2020 06:45:50 -0700 (PDT)
+Subject: Question: how to properly enable PIC/PIE (Position Independent Code/Executable) in Yocto Warrior? #yocto #toolchain #linux
+To: yocto@lists.yoctoproject.org
+From: "Daniel" <daniel.wang@intusurg.com>
+X-Originating-Location: Dublin, California, US (73.93.113.143)
+X-Originating-Platform: Linux Chrome 84
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CA+FhBv9ZurpyfDd_33WVxKZk-TQBuiLYKQea=MqFvj_Jz0URig@mail.gmail.com>
-In-Reply-To: <CA+FhBv9ZurpyfDd_33WVxKZk-TQBuiLYKQea=MqFvj_Jz0URig@mail.gmail.com>
-From: "Joshua Watt" <JPEWhacker@gmail.com>
-Date: Fri, 21 Aug 2020 08:45:39 -0500
-Message-ID: <CAJdd5Gb3KMjeDw3TgamsBKHam6JjuBfDJ2L+GLUfqwoG-4fnWQ@mail.gmail.com>
-Subject: Re: [yocto] Changing SDKPATH
-To: Damien LEFEVRE <lefevre.da@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Date: Fri, 21 Aug 2020 11:50:10 -0700
+Message-ID: <8s3b.1598035810236704660.GG5T@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="90srwVMoHTRyNdm1m1Co"
 
-On Fri, Aug 21, 2020 at 8:30 AM Damien LEFEVRE <lefevre.da@gmail.com> wrote:
->
-> Hi,
->
-> I would need that to change the default location for the SDK install script to avoid mistakes with multiple SDKs and ease installations. How can I change the SDKPATH?
->
-> My distro includes conf/distro/poky.conf and I overwrite
-> SDKPATH = "/opt/${IMAGE_BASENAME}-${SDK_VERSION}-${DISTRO_CODENAME}-${MACHINE}"
+--90srwVMoHTRyNdm1m1Co
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-You can't include IMAGE_BASENAME in SDKPATH because it's not known at
-the time recipe are built; it's only defined when the final image is
-created. I'm guessing that's the source of your error.
+Hi all,
 
-For reference, we do:
+I'm using Yocto warrior building a system based on NIVIDA tegra TX2i. My t=
+ree is using an external toolchain, gcc linaro 7.2.1 (specified through EXT=
+ERNAL_TOOLCHAIN variable in local.conf). I'm confused on setting up securit=
+y flags.
 
-  SDKPATH = "/opt/toolchains/${DISTRO}-${MACHINE}/${SDK_VERSION}"
+In ,y local.conf, I have `GCCPIE ?=3D "--enable-default-pie"` enabled, but=
+ binaries built are not actually compiled with PIE not sure about PIC. I fo=
+und out that this is due to the following condition in security_flags.inc:
 
-and it works fine.
+```
 
->
-> If I set SDKPATH to something other than /opt/${DISTRO}/${SDK_VERSION} , nativesdk-libgcc-initial fails some sanity test:
-> ...
-> checking how to run the C preprocessor... x86_64-pokysdk-linux-gcc -E --sysroot=/data/yocto/zeus/build-jetson-xavier/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-libgcc-initial/7.3.0-r0/recipe-sysroot
-> configure: error: in `/data/yocto/zeus/build-jetson-xavier/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-libgcc-initial/7.3.0-r0/gcc-7.3.0/build.x86_64-pokysdk-linux.x86_64-pokysdk-linux/libgcc':
-> configure: error: C preprocessor "x86_64-pokysdk-linux-gcc -E --sysroot=/data/yocto/zeus/build-jetson-xavier/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-libgcc-initial/7.3.0-r0/recipe-sysroot " fails sanity check
-> See `config.log' for more details.
-> WARNING: exit code 1 from a shell command.
-> ...
->
-> Thanks,
-> -Damien
-> 
+# Inject pie flags into compiler flags if not configured with gcc itself
+
+# especially useful with external toolchains
+
+SECURITY_PIE_CFLAGS ?=3D "${@'' if '${GCCPIE}' else '-pie -fPIE'}"
+
+```
+
+So I tried to setup GCCPIE as `GCCPIE =3D ""`.=C2=A0 This actually include=
+s `-pie -fPIE` in gcc, but then the build failed when building attr_2.4.47.=
+ The error messages are pretty long if anyone want to see it I will attach =
+in a followup email.
+
+My question is that is there a way to properly add PIE or at least PIC for=
+ Yocto Warrior with external toolchain?
+
+Thanks
+-Daniel
+
+--90srwVMoHTRyNdm1m1Co
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hi all,<br /><br />I'm using Yocto warrior building a system based on NI=
+VIDA tegra TX2i. My tree is using an external toolchain, gcc linaro 7.2.1 (=
+specified through EXTERNAL_TOOLCHAIN variable in local.conf). I'm confused =
+on setting up security flags.<br /><br />In ,y local.conf, I have `GCCPIE ?=
+=
+=3D "--enable-default-pie"` enabled, but binaries built are not actually c=
+ompiled with PIE not sure about PIC. I found out that this is due to the fo=
+llowing condition in security_flags.inc:</p>
+<p>```</p>
+<p># Inject pie flags into compiler flags if not configured with gcc itsel=
+f</p>
+<p># especially useful with external toolchains</p>
+<p>SECURITY_PIE_CFLAGS ?=3D "${@'' if '${GCCPIE}' else '-pie -fPIE'}"</p>
+<p>```<br /><br />So I tried to setup GCCPIE as `GCCPIE =3D ""`.&nbsp; Thi=
+s actually includes `-pie -fPIE` in gcc, but then the build failed when bui=
+lding attr_2.4.47. The error messages are pretty long if anyone want to see=
+ it I will attach in a followup email.</p>
+<p>My question is that is there a way to properly add PIE or at least PIC =
+for Yocto Warrior with external toolchain?<br /><br />Thanks<br />-Daniel</=
+p>
+
+--90srwVMoHTRyNdm1m1Co--
