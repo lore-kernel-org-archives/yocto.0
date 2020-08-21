@@ -1,96 +1,70 @@
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
- by mx.groups.io with SMTP id smtpd.web10.134066.1598015693849618191
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+ by mx.groups.io with SMTP id smtpd.web11.133717.1598016364943076317
  for <yocto@lists.yoctoproject.org>;
- Fri, 21 Aug 2020 06:14:54 -0700
+ Fri, 21 Aug 2020 06:26:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=SwsaL+T+;
- spf=pass (domain: gmail.com, ip: 209.85.221.52, mailfrom: lefevre.da@gmail.com)
-Received: by mail-wr1-f52.google.com with SMTP id a15so1886129wrh.10
-        for <yocto@lists.yoctoproject.org>; Fri, 21 Aug 2020 06:14:53 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=gvFmqHce;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.53, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f53.google.com with SMTP id f7so1964155wrw.1
+        for <yocto@lists.yoctoproject.org>; Fri, 21 Aug 2020 06:26:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=2JsxU0LWlNCAyRLJKU9WeBgg63cenfgtFPoXUrBrW+4=;
-        b=SwsaL+T++HPb0lIgCo3E92GG3+qF1t0SPRHqm7RtGvDS2BTakMrN86vRfLYarjMYPK
-         boOllSRemZEQsiLf24nZCShhT5t7XCliAKG/YR7YoboPNHkaaSgeSvKCx3tsHsS0MHB+
-         iMPLRnfizZ54yPTVSws17SrzPbeCLE1ABxCuI7UPvAPz0m7qPIpRnHayn0GD1zi7NFMc
-         XGKQGbHzxeoF93oERwjbyqtVVDtT1V62kKA1tdXmOH8St7CmoGEAW8tAJTls/MMDZ65J
-         dvdNNvTDKJFc6mKVHmxNHZAkENVGhSONCiGUMiejg4gbE/qBkCg5WE4vmdg8YZGfKWZh
-         nimQ==
+        d=linuxfoundation.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=p2Oqmsat6x+p3JBZr4KVQlhGJrODihUYF6xtOoTdfDs=;
+        b=gvFmqHceELBZxsDbtavJ2y2OgbG8485U4rT1WXUFgTXXSjYsYql9TLDJ7m4nJpyPRi
+         1jhNCrEeWJZ7RVdTQznyWtC5zkqrmCGIfAhIwnjOPxCOdnjrmtkXIRWbK8QSYBsbBqxE
+         Hu+TbX8zOdfGiyy6XTPcht+bAMXI14LTxD+fc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=2JsxU0LWlNCAyRLJKU9WeBgg63cenfgtFPoXUrBrW+4=;
-        b=MMrR/fdTVoY2O/fAT49dOAv65yW0mj32KZKI5NQz606KWaVSNtfMtLnlJ0uXrImlFV
-         77Qdyyx2tmuJZLbP8jK2xfi7dxbZTYoHnH3GIX4gbbUDL+KH+qgsr/tWzL8zpXE7Shpf
-         eW8RlPFgv686Xoft7ll3h+T6A0t35RRLPJFgvLW3X5v19/aPzJFrpSTyXfHgh7BAlGro
-         PkIf2MX7paRMajsvqBrIhQcR5W+T70Qg8W2kQucHfAszNuTqr6CFt+5CYmuF3ZbUz9JO
-         xBM5RGYam9vrRpEj28bsWMwzJMUWJmQvucknspDapWw2jPaFjGo7DeBL5/QyVp4ATLxl
-         ITdQ==
-X-Gm-Message-State: AOAM531aoc9OtMHPrKq2HGeqIbAXvFXD1lZ5IMU718bEfXPuLr0aAFIS
-	OIclCOdxO5XPgKo4uFC71aQjSN9Y3uOfuYz7+e71DF5zjA==
-X-Google-Smtp-Source: ABdhPJx7N4X6mrATvfLBBBI9uw7nTOQfp2ZoNLD6Tz9qr4EMUyKPbD1JcJ1Trk2rt6LCzTlNW7uJ6w4lsb5A9dlZeVE=
-X-Received: by 2002:a5d:484d:: with SMTP id n13mr2691433wrs.297.1598015691915;
- Fri, 21 Aug 2020 06:14:51 -0700 (PDT)
-MIME-Version: 1.0
-From: "Damien LEFEVRE" <lefevre.da@gmail.com>
-Date: Fri, 21 Aug 2020 16:14:41 +0300
-Message-ID: <CA+FhBv9ZurpyfDd_33WVxKZk-TQBuiLYKQea=MqFvj_Jz0URig@mail.gmail.com>
-Subject: Changing SDKPATH
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=p2Oqmsat6x+p3JBZr4KVQlhGJrODihUYF6xtOoTdfDs=;
+        b=FKEyvvgKt4SzSPRVgLEtKMZDrJfsqyPAbqjo3WrLvQGa6Yi4BZcuZPGDtCRK7a3Brg
+         8AYubNT2jwy1GjQ/0EKc7Ss/GPM+M2ltpfkiY4jq3fb+nqYiCpQX+vClXrE3vSkN+9X2
+         ZqAYBBgWClD07w9dv8SoGzbZZUsMtezrEJpkZ9T3dnU2haFddzQoTaZ9nCd+1rzRi6L/
+         aQA3jtk6vrc2DHnC8fFyqVkQdrzVxU8yHgxfY45IlNpeyjirK7+pxldBhkFKUZQV7Hxt
+         8KtbKVBZBUKJGofkMhp8N0Nri5m8R9XeUIvlzio8sfHYBl7aWpazE19TLXy+R7op8A3g
+         WmvA==
+X-Gm-Message-State: AOAM533jox7fOjBerjsmTbQeiDzysnDaH9pvZdpSiIxdWH2LLWhFOdpQ
+	n1kaWeB1xFFamsMrRTOBMdVBpx6CRawl1Fyi
+X-Google-Smtp-Source: ABdhPJwx4Ti1j7WCjTTk1Qmiaee1bGwv5FHFQTMjYx1rBWnOu3Xws2st7N9p2mmZehKjKt24dc3T2g==
+X-Received: by 2002:adf:ee8e:: with SMTP id b14mr2949559wro.213.1598016363079;
+        Fri, 21 Aug 2020 06:26:03 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from hex.int.rpsys.net (d.d.0.9.8.0.3.8.5.d.6.d.5.a.5.4.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:45a5:d6d5:8308:90dd])
+        by smtp.gmail.com with ESMTPSA id t4sm890223wre.30.2020.08.21.06.26.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Aug 2020 06:26:02 -0700 (PDT)
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000a9841605ad630553"
+Cc: Joshua Watt <jpewhacker@gmail.com>
+Subject: [PATCH] [meta-mingw] nativesdk-packagegroup-sdk-host: Update to match oe-core default providers handling
+Date: Fri, 21 Aug 2020 14:26:01 +0100
+Message-Id: <20200821132601.1273935-1-richard.purdie@linuxfoundation.org>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
---000000000000a9841605ad630553
-Content-Type: text/plain; charset="UTF-8"
+This was repsonsible for some strange differences in behaviour between
+other OE-Core recipes and this one. Its assumed this package is present
+in any SDK build.
 
-Hi,
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ .../packagegroups/nativesdk-packagegroup-sdk-host.bbappend       | 1 +
+ 1 file changed, 1 insertion(+)
 
-I would need that to change the default location for the SDK install script
-to avoid mistakes with multiple SDKs and ease installations. How can I
-change the SDKPATH?
+diff --git a/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend b/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend
+index a9a51a6..b3ffb82 100644
+--- a/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend
++++ b/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend
+@@ -1,4 +1,5 @@
+ RDEPENDS_${PN}_mingw32 = "\
++    nativesdk-sdk-provides-dummy \
+     nativesdk-pkgconfig \
+     nativesdk-libtool \
+     nativesdk-qemu \
+-- 
+2.25.1
 
-My distro includes conf/distro/poky.conf and I overwrite
-SDKPATH =
-"/opt/${IMAGE_BASENAME}-${SDK_VERSION}-${DISTRO_CODENAME}-${MACHINE}"
-
-If I set SDKPATH to something other than /opt/${DISTRO}/${SDK_VERSION} ,
-nativesdk-libgcc-initial fails some sanity test:
-...
-checking how to run the C preprocessor... x86_64-pokysdk-linux-gcc -E
---sysroot=/data/yocto/zeus/build-jetson-xavier/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-libgcc-initial/7.3.0-r0/recipe-sysroot
-configure: error: in
-`/data/yocto/zeus/build-jetson-xavier/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-libgcc-initial/7.3.0-r0/gcc-7.3.0/build.x86_64-pokysdk-linux.x86_64-pokysdk-linux/libgcc':
-configure: error: C preprocessor "x86_64-pokysdk-linux-gcc -E
---sysroot=/data/yocto/zeus/build-jetson-xavier/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-libgcc-initial/7.3.0-r0/recipe-sysroot
-" fails sanity check
-See `config.log' for more details.
-WARNING: exit code 1 from a shell command.
-...
-
-Thanks,
--Damien
-
---000000000000a9841605ad630553
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<br><br>I would need that to change the default locatio=
-n for the SDK install script to avoid mistakes with multiple SDKs and ease =
-installations. How can I change the SDKPATH? <br><br>My distro=C2=A0include=
-s conf/distro/poky.conf and I overwrite<div>SDKPATH =3D &quot;/opt/${IMAGE_=
-BASENAME}-${SDK_VERSION}-${DISTRO_CODENAME}-${MACHINE}&quot;<br><br>If I se=
-t SDKPATH to something other than=C2=A0/opt/${DISTRO}/${SDK_VERSION} , nati=
-vesdk-libgcc-initial fails some sanity test:<br>...<br></div><div>checking =
-how to run the C preprocessor... x86_64-pokysdk-linux-gcc -E --sysroot=3D/d=
-ata/yocto/zeus/build-jetson-xavier/tmp/work/x86_64-nativesdk-pokysdk-linux/=
-nativesdk-libgcc-initial/7.3.0-r0/recipe-sysroot<br></div><div>configure: e=
-rror: in `/data/yocto/zeus/build-jetson-xavier/tmp/work/x86_64-nativesdk-po=
-kysdk-linux/nativesdk-libgcc-initial/7.3.0-r0/gcc-7.3.0/build.x86_64-pokysd=
-k-linux.x86_64-pokysdk-linux/libgcc&#39;:<br>configure: error: C preprocess=
-or &quot;x86_64-pokysdk-linux-gcc -E --sysroot=3D/data/yocto/zeus/build-jet=
-son-xavier/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-libgcc-initial=
-/7.3.0-r0/recipe-sysroot &quot; fails sanity check<br>See `config.log&#39; =
-for more details.<br>WARNING: exit code 1 from a shell command.<br></div><d=
-iv>...</div><div><br></div><div>Thanks,</div><div>-Damien</div></div>
-
---000000000000a9841605ad630553--
