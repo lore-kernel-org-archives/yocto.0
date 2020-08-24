@@ -1,217 +1,215 @@
-Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com [209.85.218.68])
- by mx.groups.io with SMTP id smtpd.web11.194293.1598274188498518623
+Received: from mail-il1-f196.google.com (mail-il1-f196.google.com [209.85.166.196])
+ by mx.groups.io with SMTP id smtpd.web11.194456.1598274630858664396
  for <yocto@lists.yoctoproject.org>;
- Mon, 24 Aug 2020 06:03:08 -0700
+ Mon, 24 Aug 2020 06:10:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=a267xkyd;
- spf=pass (domain: gmail.com, ip: 209.85.218.68, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-ej1-f68.google.com with SMTP id oz20so6840486ejb.5
-        for <yocto@lists.yoctoproject.org>; Mon, 24 Aug 2020 06:03:08 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=PIPxZMmJ;
+ spf=pass (domain: gmail.com, ip: 209.85.166.196, mailfrom: jpewhacker@gmail.com)
+Received: by mail-il1-f196.google.com with SMTP id v2so7164706ilq.4
+        for <yocto@lists.yoctoproject.org>; Mon, 24 Aug 2020 06:10:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=V7Wgp5a4T2nZxvPLqwxrhLork6p4ZIVvEkr7V6onKZs=;
-        b=a267xkyd110Gw5P4pLVEf1JOkGRugekAkPL9y4bhLBX2CEuL82tKQjhf196bMGcCXI
-         PutZgtJdAK9pclX8pQeU5U6wqCYN4ltSq0ao2K7P6pm9OLnL+pmo90F+6X0KLbB1wubj
-         fwe6BlqXMTY2pg+jTUwWVTpwNip24ruu9ViL4IHY+louwuZIvGh+w32CwpQ7bJbgeSE9
-         OCYy2X/lDMi74wMAZPpKgLF3U3oHq53r/0ikN0ic9x6ivsftPkXWZmBLh9wYDzENs5RI
-         tdN0qgFNrIVaOI0mkIN4DWgs1avpWmbYR/ffmhUEH3+f37iKNjOJVRNnKJdJYqy6vXP+
-         wvMg==
+        h=from:subject:to:references:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language;
+        bh=ggAh2unO6UG6TpzCBiWSg8dx3NvANYoHDLd0gy2oUmg=;
+        b=PIPxZMmJWUSgRMkRdS13ImqSlELxmtMSNXWU5u6udxeL9EkHXEabJsGVWr+/qqwnOU
+         YBmK1hMPom15gvKyrcv8pq+5cASO9nxRtUGQqnVz5rJ+2Q1/1VvKHfIqHrA/fmQj+VpJ
+         ccjzN4OVRTl6fkDU2S2Bdmw6cnlLmgqz2bt7rItdNSbnQ+MIzsOv37xLRGcP5jBsZpwj
+         V9BrqToLQ2wkC6uVEjmOTBU2fOdQhp5VWBeJEUBO3+coFBxM+WJ6ozyaAuTkbsSA5de4
+         E/vUmpEnKKeEOk/8pFwr3IVy5PLFEx+qm59cnME0QD7/XhiSNG/DunRFH/1bK1AHxo6t
+         QxbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=V7Wgp5a4T2nZxvPLqwxrhLork6p4ZIVvEkr7V6onKZs=;
-        b=FvFNx70rByYQcsGZ9EiZeiwdJ24XhmUqQq2Vkr7rccfhz0l9I7QOYdbJDzUd/Nt1Fv
-         Fi1xMTDUkjx1x2B1bv2+2twptI+9BHuYDl1vqyx2K5NCXulOpf6zb3y8szityRdDfqCc
-         /oM1b89cYW4MS30/7to1cDtfCDQUESl+2QMeI8gbOBrJTLaqsbi++NS37a9z/mrJm/gI
-         FlaKrZKIF5ZWPPx5Rc7ociY8tFhxNeegTooKrN0GchM2gDCK8lb6AP57HA0rKeDGYC60
-         hWNIIctPPAH846QnlS/bzIMLElhsskb/6SsemtZCnZYeqNdDgtj6WHpkgvq7/iF9zLnk
-         cdhA==
-X-Gm-Message-State: AOAM5338LVP228XaJuCI3+OaaTO9GBsIUD0icPz9imXel6p9yrKSncST
-	sF5mN4BtWzv0Rb/4KbH3o64X96frsLyxhGRFoEc=
-X-Google-Smtp-Source: ABdhPJz2DsYTif3+/FRC3iQBHLoZJJvQ+nbUZybJIVdCm0ubOiPF/ge+IzDWoX3Gb0flnUSkFN3lf8OPPFor6YYt/8E=
-X-Received: by 2002:a17:907:205c:: with SMTP id pg28mr5235348ejb.22.1598274186855;
- Mon, 24 Aug 2020 06:03:06 -0700 (PDT)
+        h=x-gm-message-state:from:subject:to:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language;
+        bh=ggAh2unO6UG6TpzCBiWSg8dx3NvANYoHDLd0gy2oUmg=;
+        b=POoVL/x+rihQIai4WC1/G7T8G8SQxJFj4OUUZpng3KktS0YyPgTXckpscotrHTbVWc
+         UdgMRpRXaHoGcGCKRdkdHAiA8WDJGRqVyc8XDQobhdpzDwK1NJZffC3O7BtmbEfpM3l/
+         LDQriRqvMvk872eYHdDT7BpJz+15pDJePleCX9TJ0r6LrE8bPDDMO2mY9R1Cdd4JvMkr
+         RaOYDTVWMDL8/mml4vSYgZ+USLFfHdWq2lBgSPoOteJlXgT27t6nbKTKH3Xxq3q5Nsk7
+         9oEz+Yzyi5ZwKON8aNEIf4b+RxsnIZKfPA4iZtEIanrCORSowZHskHQk6gh+M+DKOocv
+         70CQ==
+X-Gm-Message-State: AOAM5338cdomlPK5Y9ng6kqDEzMi7h/xKmp3WBORgd5XJF/oApL4sk8d
+	iOSkmv3oM9VT2PFlFLPPfQiD/ZXbpVE=
+X-Google-Smtp-Source: ABdhPJwM0ihuutQWXX30myiXWcIvy5D/J/yF86vHFIBZUyZkiJ2snjO7TN+ug5rpbiqaNHAhFBdgZg==
+X-Received: by 2002:a92:6a0c:: with SMTP id f12mr4543893ilc.213.1598274627772;
+        Mon, 24 Aug 2020 06:10:27 -0700 (PDT)
+Return-Path: <jpewhacker@gmail.com>
+Received: from ?IPv6:2605:a601:ac3d:c100:6dae:a176:f106:40a2? ([2605:a601:ac3d:c100:6dae:a176:f106:40a2])
+        by smtp.gmail.com with ESMTPSA id 202sm7236410ila.59.2020.08.24.06.10.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Aug 2020 06:10:27 -0700 (PDT)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+Subject: Re: [yocto] Additional log handler
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+ Konrad Weihmann <kweihmann@outlook.com>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <AM7PR05MB6881DD773BB8FDC78B4470E1A8590@AM7PR05MB6881.eurprd05.prod.outlook.com>
+ <e83e206763f44e2b5fd4622e8a336355df3bf655.camel@linuxfoundation.org>
+Message-ID: <5e250483-1277-7e3e-8422-a245e3978e15@gmail.com>
+Date: Mon, 24 Aug 2020 08:10:26 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <cover.1598036643.git.bruce.ashfield@gmail.com> <7c55666a460654d83b53caba996e787981d9f4ff.camel@intel.com>
-In-Reply-To: <7c55666a460654d83b53caba996e787981d9f4ff.camel@intel.com>
-From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
-Date: Mon, 24 Aug 2020 09:02:55 -0400
-Message-ID: <CADkTA4PMZL9BubYWJQ0-LxEy+DkLQSfJ9ZADpzrvZCkhojZdWw@mail.gmail.com>
-Subject: Re: [yocto] [PATCH 0/3] yocto-bsp/poky: kernel updates and default
-To: "Mittal, Anuj" <anuj.mittal@intel.com>
-Cc: "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000029470705ad9f35e3"
+In-Reply-To: <e83e206763f44e2b5fd4622e8a336355df3bf655.camel@linuxfoundation.org>
+Content-Type: multipart/alternative;
+ boundary="------------D05EAB3146E2A394ACC15C2E"
+Content-Language: en-US
 
---00000000000029470705ad9f35e3
-Content-Type: text/plain; charset="UTF-8"
+--------------D05EAB3146E2A394ACC15C2E
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sun, Aug 23, 2020 at 11:23 PM Mittal, Anuj <anuj.mittal@intel.com> wrote:
 
-> Hi Bruce,
+On 8/24/20 3:53 AM, Richard Purdie wrote:
+> On Sun, 2020-08-23 at 17:01 +0200, Konrad Weihmann wrote:
+>> Hi all,
+>>
+>> when running bitbake in CI I would like to add an additional log
+>> handler to used python logging to catch *ALL* (task warnings,
+>> dangling append, qa issues, a.s.o.), instead of manually grepping
+>> through the console  log.
+>> The information coming from this should be ideally be written to a
+>> file, file, which can then serve as some sort of report.
+>>
+>> Is there a way to do that?
+>>
+>> In theory it should be possible to hook to an (obviously non-
+>> existing)
+>> event and handle it from there, right?
+>>
+>> Or am I thinking in the wrong direction?
+>>
+>> Any pointers are appreciated from my side...
+> On the autobuilder the code simple watches the console log, filtering
+> on WARNING: and produces a separate warning stream. A non empty file
+> triggers the build to show a having warnings.
 >
-> On Fri, 2020-08-21 at 15:07 -0400, Bruce Ashfield wrote:
-> > From: Bruce Ashfield <bruce.ashfield@gmail.com>
-> >
-> > Richard,
-> >
-> > Similar to oe-core, these are the patches I'm carrying to update the
-> > reference BSPs to the latest 5.4 (we still need a 5.8 bbappend and
-> > confirmed booting), as well as a switch to 5.8 as the default.
-> >
-> > That being said, I'm not sure of the way you'd like the default
-> > kernel
-> > set to differentiate between the reference BSPs and qemu. So
-> > currently,
-> > I just have the single preferred version set.
-> >
+> At the bitbake level it would also definitely be possible, the log
+> messages are seen in the UI code as events and it can do whatever it
+> wants with them.
 >
-> Should we also update PREFERRED_VERSION for linux-yocto-tiny for poky-
-> tiny DISTRO? It is currently pointing to 5.0 ...
+> There was a also much more advanced log handling added recently through
+> the BB_LOGCONFIG variable. I'm not sure if that can define a completely
+> separate stream or not, I've not tried that.
+
+The newer log handling uses Python's structure logging configuration 
+[1], so you should be able to use whatever capabilities it has 
+(including logging different domains/levels to a separate file). In 
+fact, this is the only way logging is handled by core bitbake now; all 
+of the other logging mechanisms used by the UI are additional 
+configuration specified on top of the user's BB_LOGCONFIG file. If you 
+are interested, you can see this in bitbake/lib/bb/ui/knotty.py. In that 
+file is an additional tool that might be helpful. Around line 553, there 
+are two commented lines of code:
+
+     #import logging_tree
+     #logging_tree.printout()
+
+uncommenting them and installing the logging_tree python package will 
+make bitbake dump the entire structured logging configuration to stdout 
+on startup so you can look at it.
+
+
+[1]: https://docs.python.org/3/library/logging.config.html
+
 >
+> Cheers,
 >
-Yup.
-
-I take it that no one has been building that lately, since 5.0 zero has
-been gone for a while.
-
-I'll take the action to check that out and make the changes. I'll do it
-along with some -rt preferred versions.
-
-Bruce
-
-
-
-> Thanks,
->
-> Anuj
+> Richard
 >
 >
-> > Cheers,
-> >
-> > Bruce
-> >
-> > The following changes since commit
-> > c9d0bb421a2f7c6783f2c2bbf47c95da5537985d:
-> >
-> >   linux-yocto/5.8: update to v5.8.2 (2020-08-21 14:55:05 -0400)
-> >
-> > are available in the Git repository at:
-> >
-> >   git://git.yoctoproject.org/poky-contrib zedd/kernel-yocto
-> >
-> >
-> http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel-yocto
-> >
-> > Bruce Ashfield (3):
-> >   poky: set preferred version for linux-yocto to be v5.8
-> >   yocto-bsp: update to v5.4.56
-> >   yocto-bsp: update to v5.4.58
-> >
-> >  meta-poky/conf/distro/poky.conf                  |  2 +-
-> >  .../linux/linux-yocto_5.4.bbappend               | 16 ++++++++----
-> > ----
-> >  2 files changed, 9 insertions(+), 9 deletions(-)
-> >
-> > 
->
+> 
 
+--------------D05EAB3146E2A394ACC15C2E
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
--- 
-- Thou shalt not follow the NULL pointer, for chaos and madness await thee
-at its end
-- "Use the force Harry" - Gandalf, Star Trek II
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 8/24/20 3:53 AM, Richard Purdie
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:e83e206763f44e2b5fd4622e8a336355df3bf655.camel@linuxfoundation.org">
+      <pre class="moz-quote-pre" wrap="">On Sun, 2020-08-23 at 17:01 +0200, Konrad Weihmann wrote:
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">Hi all,
 
---00000000000029470705ad9f35e3
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+when running bitbake in CI I would like to add an additional log
+handler to used python logging to catch *ALL* (task warnings,
+dangling append, qa issues, a.s.o.), instead of manually grepping
+through the console  log.
+The information coming from this should be ideally be written to a
+file, file, which can then serve as some sort of report.
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
-t-size:small"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Sun, Aug 23, 2020 at 11:23 PM Mittal, Anuj &lt;<=
-a href=3D"mailto:anuj.mittal@intel.com">anuj.mittal@intel.com</a>&gt; wrote=
-:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Bruce,<br>
-<br>
-On Fri, 2020-08-21 at 15:07 -0400, Bruce Ashfield wrote:<br>
-&gt; From: Bruce Ashfield &lt;<a href=3D"mailto:bruce.ashfield@gmail.com" =
-target=3D"_blank">bruce.ashfield@gmail.com</a>&gt;<br>
-&gt; <br>
-&gt; Richard,<br>
-&gt; <br>
-&gt; Similar to oe-core, these are the patches I&#39;m carrying to update =
-the<br>
-&gt; reference BSPs to the latest 5.4 (we still need a 5.8 bbappend and<br=
->
-&gt; confirmed booting), as well as a switch to 5.8 as the default.<br>
-&gt; <br>
-&gt; That being said, I&#39;m not sure of the way you&#39;d like the defau=
-lt<br>
-&gt; kernel<br>
-&gt; set to differentiate between the reference BSPs and qemu. So<br>
-&gt; currently,<br>
-&gt; I just have the single preferred version set.<br>
-&gt; <br>
-<br>
-Should we also update PREFERRED_VERSION for linux-yocto-tiny for poky-<br>
-tiny DISTRO? It is currently pointing to 5.0 ...<br>
-<br></blockquote><div><br></div><div><div class=3D"gmail_default" style=3D=
-"font-size:small">Yup.</div><div class=3D"gmail_default" style=3D"font-size=
-:small"><br></div><div class=3D"gmail_default" style=3D"font-size:small">I =
-take it that no one has been building that lately, since 5.0 zero has been =
-gone for a while.</div><div class=3D"gmail_default" style=3D"font-size:smal=
-l"><br></div><div class=3D"gmail_default" style=3D"font-size:small">I&#39;l=
-l take the action to check that out and make the changes. I&#39;ll do it al=
-ong with some -rt preferred versions.</div><div class=3D"gmail_default" sty=
-le=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"font=
--size:small">Bruce</div><br></div><div>=C2=A0</div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex">
-Thanks,<br>
-<br>
-Anuj<br>
-<br>
-<br>
-&gt; Cheers,<br>
-&gt; <br>
-&gt; Bruce<br>
-&gt; <br>
-&gt; The following changes since commit<br>
-&gt; c9d0bb421a2f7c6783f2c2bbf47c95da5537985d:<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0linux-yocto/5.8: update to v5.8.2 (2020-08-21 14:55:05 -0=
-400)<br>
-&gt; <br>
-&gt; are available in the Git repository at:<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0git://<a href=3D"http://git.yoctoproject.org/poky-contrib=
-" rel=3D"noreferrer" target=3D"_blank">git.yoctoproject.org/poky-contrib</a=
-> zedd/kernel-yocto<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt; <a href=3D"http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=
-=3Dzedd/kernel-yocto" rel=3D"noreferrer" target=3D"_blank">http://git.yoct=
-oproject.org/cgit.cgi/poky-contrib/log/?h=3Dzedd/kernel-yocto</a><br>
-&gt; <br>
-&gt; Bruce Ashfield (3):<br>
-&gt;=C2=A0 =C2=A0poky: set preferred version for linux-yocto to be v5.8<br=
->
-&gt;=C2=A0 =C2=A0yocto-bsp: update to v5.4.56<br>
-&gt;=C2=A0 =C2=A0yocto-bsp: update to v5.4.58<br>
-&gt; <br>
-&gt;=C2=A0 meta-poky/conf/distro/poky.conf=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 2 +-<br>
-&gt;=C2=A0 .../linux/linux-yocto_5.4.bbappend=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0| 16 ++++++++----<br>
-&gt; ----<br>
-&gt;=C2=A0 2 files changed, 9 insertions(+), 9 deletions(-)<br>
-&gt; <br>
-&gt; <br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
-" class=3D"gmail_signature">- Thou shalt not follow the NULL pointer, for c=
-haos and madness await thee at its end<br>- &quot;Use the force Harry&quot;=
- - Gandalf, Star Trek II<br><br></div></div>
+Is there a way to do that?
 
---00000000000029470705ad9f35e3--
+In theory it should be possible to hook to an (obviously non-
+existing) 
+event and handle it from there, right?
+
+Or am I thinking in the wrong direction?
+
+Any pointers are appreciated from my side...
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+On the autobuilder the code simple watches the console log, filtering
+on WARNING: and produces a separate warning stream. A non empty file
+triggers the build to show a having warnings.
+
+At the bitbake level it would also definitely be possible, the log
+messages are seen in the UI code as events and it can do whatever it
+wants with them.
+
+There was a also much more advanced log handling added recently through
+the BB_LOGCONFIG variable. I'm not sure if that can define a completely
+separate stream or not, I've not tried that.</pre>
+    </blockquote>
+    <p>The newer log handling uses Python's structure logging
+      configuration [1], so you should be able to use whatever
+      capabilities it has (including logging different domains/levels to
+      a separate file). In fact, this is the only way logging is handled
+      by core bitbake now; all of the other logging mechanisms used by
+      the UI are additional configuration specified on top of the user's
+      BB_LOGCONFIG file. If you are interested, you can see this in
+      bitbake/lib/bb/ui/knotty.py. In that file is an additional tool
+      that might be helpful. Around line 553, there are two commented
+      lines of code:</p>
+    <p>    #import logging_tree<br>
+          #logging_tree.printout()<br>
+    </p>
+    <p>uncommenting them and installing the logging_tree python package
+      will make bitbake dump the entire structured logging configuration
+      to stdout on startup so you can look at it.<br>
+    </p>
+    <p><br>
+    </p>
+    <p>[1]: <a class="moz-txt-link-freetext" href="https://docs.python.org/3/library/logging.config.html">https://docs.python.org/3/library/logging.config.html</a><br>
+    </p>
+    <blockquote type="cite"
+cite="mid:e83e206763f44e2b5fd4622e8a336355df3bf655.camel@linuxfoundation.org">
+      <pre class="moz-quote-pre" wrap="">
+
+Cheers,
+
+Richard
+
+</pre>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------D05EAB3146E2A394ACC15C2E--
