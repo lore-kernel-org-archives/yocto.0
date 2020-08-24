@@ -1,81 +1,13787 @@
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
- by mx.groups.io with SMTP id smtpd.web12.194364.1598275618663347519
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.194587.1598276241326514518
  for <yocto@lists.yoctoproject.org>;
- Mon, 24 Aug 2020 06:26:59 -0700
+ Mon, 24 Aug 2020 06:37:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Ys5cDCG1;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.50, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f50.google.com with SMTP id u18so8326429wmc.3
-        for <yocto@lists.yoctoproject.org>; Mon, 24 Aug 2020 06:26:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=UhzPkMHOd/aUM9pD0O9vTg7gbavuZev5zteMzfLYLdo=;
-        b=Ys5cDCG1QZLSDzeJtTtEEMXo+tHVJMWO2ve3IUZcTcuVrVKQcR/IQgIdwdqLo9HKTn
-         pGW8NnN41huXnWKxCHSQkY/Hhhc1I8kMQYyTOPSLJXZACOgWVkO8TbVpN9TRcZFnCG9t
-         by9OBShwCJH4m5K6ALgs8MWnV/+s7pBxelVVo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=UhzPkMHOd/aUM9pD0O9vTg7gbavuZev5zteMzfLYLdo=;
-        b=HbKzk6xh0AJ7qHYY/jMVJnLPDj5X54gJKfayCwdF27Il8twG6+wfOZLoUQkgFydHRW
-         Go99FcMaAcQrfvHs+/Q0ORLSLhXvqSUydFU8EELt9IgncRZktcJcQt0tJg3BmdBY5xiw
-         tW2L0f74BL1A+aVhJAN5aUkkcti9o81xgMjCJKif2uEpnjKxrqzFpHdO8RGP8t97iCH1
-         vMfmmeWF9hnojErthJhfoehTPvmHLr64MXWOMvFFHqXNfFtayX5mjfLzgnoxGgix3deJ
-         7u8hvNqSuabDGZiagXJ6cm1vx1xTSpjzf2uCe0+PMnf99tDhqIxnLCaDAB2uBdNEzkI4
-         FRHw==
-X-Gm-Message-State: AOAM531IwVt8zavcKfIZE6x5wuXmoYNrG/FnA/1UYyRaIq8BbBVP+X2v
-	J+Mygh00baJLmoT29t5MjUkjXg==
-X-Google-Smtp-Source: ABdhPJzh2tHOP3daMopULgGV78KLSGUBxHr3wbeE2EHY6b3MAQj/XuV/rT+K5OczcHNlAxHKBRT37Q==
-X-Received: by 2002:a1c:e4c3:: with SMTP id b186mr5564882wmh.84.1598275616980;
-        Mon, 24 Aug 2020 06:26:56 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from d.d.0.9.8.0.3.8.5.d.6.d.5.a.5.4.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (d.d.0.9.8.0.3.8.5.d.6.d.5.a.5.4.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:45a5:d6d5:8308:90dd])
-        by smtp.gmail.com with ESMTPSA id u3sm23123300wml.44.2020.08.24.06.26.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Aug 2020 06:26:55 -0700 (PDT)
-Message-ID: <f5fefdf3d0e61080c8f36a76aec419274f0f3d2d.camel@linuxfoundation.org>
-Subject: Re: [yocto] Additional log handler
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Joshua Watt <jpewhacker@gmail.com>, Konrad Weihmann
- <kweihmann@outlook.com>,  "yocto@lists.yoctoproject.org"
- <yocto@lists.yoctoproject.org>
-Date: Mon, 24 Aug 2020 14:26:52 +0100
-In-Reply-To: <5e250483-1277-7e3e-8422-a245e3978e15@gmail.com>
-References: 
-	<AM7PR05MB6881DD773BB8FDC78B4470E1A8590@AM7PR05MB6881.eurprd05.prod.outlook.com>
-	 <e83e206763f44e2b5fd4622e8a336355df3bf655.camel@linuxfoundation.org>
-	 <5e250483-1277-7e3e-8422-a245e3978e15@gmail.com>
-User-Agent: Evolution 3.36.4-0ubuntu1 
+ dkim=pass header.i=@tecnint.it header.s=90c6e9a0-bda8-11e8-824d-948d2789e783 header.b=gGGLi1ME;
+ spf=softfail (domain: tecnint.it, ip: 140.211.169.56, mailfrom: manghilieri@tecnint.it)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id E28A2E01FDD; Mon, 24 Aug 2020 06:37:20 -0700 (PDT)
+Received: from zproxy2.mail3d.it (zproxy2.mail3d.it [212.78.3.135])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 414DBE01FC9
+	for <yocto@yoctoproject.org>; Mon, 24 Aug 2020 06:37:18 -0700 (PDT)
+Received: from zproxy2.mail3d.it (localhost.localdomain [127.0.0.1])
+	by zproxy2.mail3d.it (Postfix) with ESMTPS id 7294B100787;
+	Mon, 24 Aug 2020 15:37:17 +0200 (CEST)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by zproxy2.mail3d.it (Postfix) with ESMTP id 197C91007B0;
+	Mon, 24 Aug 2020 15:37:17 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 zproxy2.mail3d.it 197C91007B0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnint.it;
+	s=90C6E9A0-BDA8-11E8-824D-948D2789E783; t=1598276237;
+	bh=72V7D7/1BTqsQ5RRm5lGjfysfW4mfKnnAwcSEGoNgCI=;
+	h=To:From:Message-ID:Date:MIME-Version;
+	b=gGGLi1MEWkYB4JMJ2m4fFYALw2Xy+5v3pGhyzGPNDLcrf+1m711QvMEoglIcrqgdw
+	 DoRNuZZG58D2gIm+hGUBM7b2ZxqDe+CPL8vScC7JlFskH2MukO2xC849cw4frrD2KI
+	 B6Rrno1/GZkoIBXJb3zEOn7xYmqfx2cZPATnNUps=
+Received: from zproxy2.mail3d.it ([127.0.0.1])
+	by localhost (zproxy2.mail3d.it [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id eGQgklGwMPpL; Mon, 24 Aug 2020 15:37:16 +0200 (CEST)
+Received: from [11.1.0.153] (unknown [91.142.71.106])
+	by zproxy2.mail3d.it (Postfix) with ESMTPA id D39EF100781
+	for <yocto@yoctoproject.org>; Mon, 24 Aug 2020 15:37:16 +0200 (CEST)
+Subject: meta-security
+References: <5368c29c-0be9-53da-ebb7-5a64f106858f@tecnint.it>
+To: yocto@yoctoproject.org
+From: "Massimo Anghilieri" <manghilieri@tecnint.it>
+X-Forwarded-Message-Id: <5368c29c-0be9-53da-ebb7-5a64f106858f@tecnint.it>
+Message-ID: <4f1f98df-2513-99d5-881a-20dd15bac57e@tecnint.it>
+Date: Mon, 24 Aug 2020 15:37:16 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <5368c29c-0be9-53da-ebb7-5a64f106858f@tecnint.it>
+X-Groupsio-MsgNum: 50335
+Content-Type: multipart/mixed;
+ boundary="------------780E8B18B6E5712569C6D54C"
+Content-Language: en-GB
 
-On Mon, 2020-08-24 at 08:10 -0500, Joshua Watt wrote:
-> The newer log handling uses Python's structure logging configuration
-> [1], so you should be able to use whatever capabilities it has
-> (including logging different domains/levels to a separate file). In
-> fact, this is the only way logging is handled by core bitbake now;
-> all of the other logging mechanisms used by the UI are additional
-> configuration specified on top of the user's BB_LOGCONFIG file. If
-> you are interested, you can see this in bitbake/lib/bb/ui/knotty.py.
-> In that file is an additional tool that might be helpful. Around line
-> 553, there are two commented lines of code:
-> 
->     #import logging_tree
->     #logging_tree.printout()
-> 
-> uncommenting them and installing the logging_tree python package will
-> make bitbake dump the entire structured logging configuration to
-> stdout on startup so you can look at it.
+--------------780E8B18B6E5712569C6D54C
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-On a slightly different but related note, could we remove the
-debug_domains code now? I assume that can all be handled by
-BB_LOGCONFIG?
+Hello, I'm working with Yocto Sumo, I've successfully built and included=20
+in my image the sssd from meta-secutrity layer.
 
-Cheers,
+Now I need also SELimux in my image, but when including SELIinux I get=20
+the a do_configure failure=A0 for the SSSD package. I've atttached the lo=
+g=20
+file form bitbake. Can you pleass help me solving the problem?
 
-Richard
+Thank you very much
 
+Massimo
+
+
+
+
+--------------780E8B18B6E5712569C6D54C
+Content-Type: text/plain; charset=UTF-8;
+ name="config.log"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+ filename="config.log"
+
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by sssd configure 1.16.0, which was
+generated by GNU Autoconf 2.69.  Invocation command line was
+
+  $ ../sssd-1.16.0/configure --build=3Dx86_64-linux --host=3Daarch64-poky-l=
+inux --target=3Daarch64-poky-linux --prefix=3D/usr --exec_prefix=3D/usr --b=
+indir=3D/usr/bin --sbindir=3D/usr/sbin --libexecdir=3D/usr/libexec --datadi=
+r=3D/usr/share --sysconfdir=3D/etc --sharedstatedir=3D/com --localstatedir=
+=3D/var --libdir=3D/usr/lib --includedir=3D/usr/include --oldincludedir=3D/=
+usr/include --infodir=3D/usr/share/info --mandir=3D/usr/share/man --disable=
+-silent-rules --disable-dependency-tracking --with-libtool-sysroot=3D/opt/b=
+oards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work=
+/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot --disable-cifs-idmap-plug=
+in --without-nfsv4-idmapd-plugin --without-ipa-getkeytab --without-secrets =
+--without-kcm --without-secrets --with-manpages=3Dno --with-libnl=3Dno --wi=
+th-nscd=3D/usr/sbin --with-crypto=3Dnss --without-python2-bindings --withou=
+t-python3-bindings --with-samba=3Dno --with-selinux --with-ssh=3Dno --with-=
+systemdunitdir=3D --enable-nls
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname =3D tecubuntu16
+uname -m =3D x86_64
+uname -r =3D 4.15.0-112-generic
+uname -s =3D Linux
+uname -v =3D #113~16.04.1-Ubuntu SMP Fri Jul 10 04:37:08 UTC 2020
+
+/usr/bin/uname -p =3D unknown
+/bin/uname -X     =3D unknown
+
+/bin/arch              =3D unknown
+/usr/bin/arch -k       =3D unknown
+/usr/convex/getsysinfo =3D unknown
+/usr/bin/hostinfo      =3D unknown
+/bin/machine           =3D unknown
+/usr/bin/oslevel       =3D unknown
+/bin/universe          =3D unknown
+
+PATH: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/sources/pok=
+y/scripts
+PATH: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayl=
+and/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/usr/bi=
+n/aarch64-poky-linux
+PATH: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayl=
+and/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot/usr/bin/cross=
+scripts
+PATH: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayl=
+and/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/usr/sb=
+in
+PATH: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayl=
+and/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/usr/bi=
+n
+PATH: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayl=
+and/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/sbin
+PATH: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayl=
+and/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/bin
+PATH: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/sources/pok=
+y/bitbake/bin
+PATH: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayl=
+and/tmp/hosttools
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:3218: loading site script /opt/boards/variscite/imx8/linux/yocto_=
+sumo/var-fsl-yocto/sources/poky/meta/site/endian-little
+| ac_cv_c_littleendian=3D${ac_cv_c_littleendian=3Dyes}
+| ac_cv_c_bigendian=3D${ac_cv_c_bigendian=3Dno}
+|=20
+| # libnet
+| ac_cv_libnet_endianess=3D${ac_cv_libnet_endianess=3Dlil}
+|=20
+| # libmemcached
+| ac_cv_c_endian=3Dlittle
+configure:3218: loading site script /opt/boards/variscite/imx8/linux/yocto_=
+sumo/var-fsl-yocto/sources/poky/meta/site/arm-common
+| # general
+| ac_cv_va_val_copy=3D${ac_cv_va_val_copy=3Dyes}
+| ac_cv_func_lstat_dereferences_slashed_symlink=3D${ac_cv_func_lstat_derefe=
+rences_slashed_symlink=3Dyes}
+| ac_cv_func_lstat_empty_string_bug=3D${ac_cv_func_lstat_empty_string_bug=
+=3Dno}
+| ac_cv_func_stat_empty_string_bug=3D${ac_cv_func_stat_empty_string_bug=3Dn=
+o}
+| ac_cv_func_stat_ignores_trailing_slash=3D${ac_cv_func_stat_ignores_traili=
+ng_slash=3Dno}
+| ac_cv_header_netinet_sctp_h=3D${ac_cv_header_netinet_sctp_h=3Dno}
+| ac_cv_header_netinet_sctp_uio_h=3D${ac_cv_header_netinet_sctp_uio_h=3Dno}
+| ac_cv_sctp=3D${ac_cv_sctp=3Dno}
+|=20
+| # bash
+| ac_cv_c_long_double=3D${ac_cv_c_long_double=3Dyes}
+| bash_cv_func_sigsetjmp=3D${bash_cv_func_sigsetjmp=3Dmissing}
+|=20
+| # coreutils
+| utils_cv_sys_open_max=3D${utils_cv_sys_open_max=3D1019}
+|=20
+| # cvs
+| cvs_cv_func_printf_ptr=3D${cvs_cv_func_printf_ptr=3Dyes}
+|=20
+| # db (sleepycat)
+| db_cv_fcntl_f_setfd=3D${db_cv_fcntl_f_setfd=3Dyes}
+| db_cv_sprintf_count=3D${db_cv_sprintf_count=3Dyes}
+| db_cv_align_t=3D${db_cv_align_t=3D'unsigned long long'}
+| db_cv_alignp_t=3D${db_cv_alignp_t=3D'unsigned long'}
+|=20
+| # D-BUS
+| ac_cv_func_posix_getpwnam_r=3D${ac_cv_func_posix_getpwnam_r=3Dyes}
+|=20
+| # edb
+| db_cv_spinlocks=3D${db_cv_spinlocks=3Dno}
+|=20
+| # ettercap
+| ettercap_cv_type_socklen_t=3D${ettercap_cv_type_socklen_t=3Dyes}
+|=20
+| # fget
+| compat_cv_func_snprintf_works=3D${compat_cv_func_snprintf_works=3Dyes}
+| compat_cv_func_basename_works=3D${compat_cv_func_basename_works=3Dno}
+| compat_cv_func_dirname_works=3D${compat_cv_func_dirname_works=3Dno}
+|=20
+| # fnmatch
+| ac_cv_func_fnmatch_works=3D${ac_cv_func_fnmatch_works=3Dyes}
+|=20
+| # gettext
+| am_cv_func_working_getline=3D${am_cv_func_working_getline=3Dyes}
+|=20
+| # glib
+| glib_cv_stack_grows=3D${glib_cv_stack_grows=3Dno}
+| glib_cv_uscore=3D${glib_cv_uscore=3Dno}
+| glib_cv_use_pid_surrogate=3D${glib_cv_use_pid_surrogate=3Dyes}
+| glib_cv_has__inline=3D${glib_cv_has__inline=3Dyes}
+| glib_cv_has__inline__=3D${glib_cv_has__inline__=3Dyes}
+| glib_cv_hasinline=3D${glib_cv_hasinline=3Dyes}
+| glib_cv_sane_realloc=3D${glib_cv_sane_realloc=3Dyes}
+| glib_cv_uscore=3D${glib_cv_uscore=3Dno}
+| glib_cv_va_val_copy=3D${glib_cv_va_val_copy=3Dyes}
+| glib_cv_rtldglobal_broken=3D${glib_cv_rtldglobal_broken=3Dno}
+| glib_cv_sys_pthread_mutex_trylock_posix=3D${glib_cv_sys_pthread_mutex_try=
+lock_posix=3Dyes}
+| glib_cv_sys_pthread_getspecific_posix=3D${glib_cv_sys_pthread_getspecific=
+_posix=3Dyes}
+| glib_cv_sys_pthread_cond_timedwait_posix=3D${glib_cv_sys_pthread_cond_tim=
+edwait_posix=3Dyes}
+|=20
+| # glib-2.0
+| glib_cv_long_long_format=3D${glib_cv_long_long_format=3Dll}
+| glib_cv_sys_use_pid_niceness_surrogate=3D${glib_cv_sys_use_pid_niceness_s=
+urrogate=3Dyes}
+|=20
+| #gstreamer
+| as_cv_unaligned_access=3D${as_cv_unaligned_access=3Dno}
+|=20
+| # httppc
+| ac_cv_strerror_r_SUSv3=3D${ac_cv_strerror_r_SUSv3=3Dno}
+|=20
+| # lftp
+| ac_cv_need_trio=3D${ac_cv_need_trio=3Dno}
+| lftp_cv_va_val_copy=3D${lftp_cv_va_val_copy=3Dyes}
+|=20
+| # libesmtp
+| acx_working_snprintf=3D${acx_working_snprintf=3Dyes}
+|=20
+| # libidl
+| libIDL_cv_long_long_format=3D${libIDL_cv_long_long_format=3Dll}
+|=20
+| # libnet=20
+| ac_libnet_have_packet_socket=3D${ac_libnet_have_packet_socket=3Dyes}
+|=20
+| # libpcap
+| ac_cv_linux_vers=3D${ac_cv_linux_vers=3D2}
+|=20
+| # libxfce4util
+| with_broken_putenv=3D${with_broken_putenv=3Dno}
+|=20
+| # links
+| ac_cv_lib_png_png_create_info_struct=3D${ac_cv_lib_png_png_create_info_st=
+ruct=3Dyes}
+|=20
+| # mysql
+| mysql_cv_func_atomic_sub=3D${mysql_cv_func_atomic_sub=3Dno}
+| mysql_cv_func_atomic_add=3D${mysql_cv_func_atomic_add=3Dno}
+|=20
+| # nano
+| ac_cv_regexec_segfault_emptystr=3D${ac_cv_regexec_segfault_emptystr=3Dno}
+| nano_cv_func_regexec_segv_emptystr=3D${nano_cv_func_regexec_segv_emptystr=
+=3Dno}
+|=20
+| # php
+| ac_cv_pread=3D${ac_cv_pread=3Dno}
+| ac_cv_pwrite=3D${ac_cv_pwrite=3Dno}
+| php_cv_lib_cookie_io_functions_use_off64_t=3D${php_cv_lib_cookie_io_funct=
+ions_use_off64_t=3Dyes}
+|=20
+| # rsync
+| rsync_cv_HAVE_BROKEN_LARGEFILE=3D${rsync_cv_HAVE_BROKEN_LARGEFILE=3Dno}
+| rsync_cv_HAVE_SOCKETPAIR=3D${rsync_cv_HAVE_SOCKETPAIR=3Dyes}
+| rsync_cv_HAVE_LONGLONG=3D${rsync_cv_HAVE_LONGLONG=3Dyes}
+| rsync_cv_HAVE_OFF64_T=3D${rsync_cv_HAVE_OFF64_T=3Dno}
+| rsync_cv_HAVE_SHORT_INO_T=3D${rsync_cv_HAVE_SHORT_INO_T=3Dno}
+| rsync_cv_HAVE_UNSIGNED_CHAR=3D${rsync_cv_HAVE_UNSIGNED_CHAR=3Dno}
+| rsync_cv_HAVE_BROKEN_READDIR=3D${rsync_cv_HAVE_BROKEN_READDIR=3Dno}
+| rsync_cv_HAVE_GETTIMEOFDAY_TZ=3D${rsync_cv_HAVE_GETTIMEOFDAY_TZ=3Dyes}
+| rsync_cv_HAVE_SECURE_MKSTEMP=3D${rsync_cv_HAVE_SECURE_MKSTEMP=3Dyes}
+| rsync_cv_REPLACE_INET_NTOA=3D${rsync_cv_REPLACE_INET_NTOA=3Dno}
+| rsync_cv_REPLACE_INET_ATON=3D${rsync_cv_REPLACE_INET_ATON=3Dno}
+|=20
+| # screen
+| screen_cv_sys_bcopy_overlap=3D${screen_cv_sys_bcopy_overlap=3Dno}
+| screen_cv_sys_memcpy_overlap=3D${screen_cv_sys_memcpy_overlap=3Dno}
+| screen_cv_sys_memmove_overlap=3D${screen_cv_sys_memmove_overlap=3Dno}
+| screen_cv_sys_fifo_broken_impl=3D${screen_cv_sys_fifo_broken_impl=3Dyes}
+| screen_cv_sys_fifo_usable=3D${screen_cv_sys_fifo_usable=3Dyes}
+| screen_cv_sys_select_broken_retval=3D${screen_cv_sys_select_broken_retval=
+=3Dno}
+| screen_cv_sys_sockets_nofs=3D${screen_cv_sys_sockets_nofs=3Dno}
+| screen_cv_sys_sockets_usable=3D${screen_cv_sys_sockets_usable=3Dyes}
+| screen_cv_sys_terminfo_used=3D${screen_cv_sys_terminfo_used=3Dyes}
+|=20
+| # slrn
+| slrn_cv_va_val_copy=3D${slrn_cv_va_val_copy=3Dyes}
+|=20
+| # socat
+| ac_cv_ispeed_offset=3D${ac_cv_ispeed_offset=3D13}
+| sc_cv_termios_ispeed=3D${sc_cv_termios_ispeed=3Dyes}
+|=20
+| # ssh
+| ac_cv_have_space_d_name_in_struct_dirent=3D${ac_cv_dirent_have_space_d_na=
+me=3Dyes}
+| ac_cv_have_broken_snprintf=3D${ac_cv_have_broken_snprintf=3Dno}
+| ac_cv_have_accrights_in_msghdr=3D${ac_cv_have_accrights_in_msghdr=3Dno}
+| ac_cv_have_control_in_msghdr=3D${ac_cv_have_control_in_msghdr=3Dyes}
+| ac_cv_have_openpty_ctty_bug=3D${ac_cv_have_openpty_ctty_bug=3Dyes}
+|=20
+| # startup-notification
+| lf_cv_sane_realloc=3Dyes
+|=20
+| # xffm
+| jm_cv_func_working_readdir=3Dyes
+|=20
+| # evolution-data-server
+| ac_cv_libiconv_utf8=3D${ac_cv_libiconv_utf8=3Dyes}
+|=20
+configure:3218: loading site script /opt/boards/variscite/imx8/linux/yocto_=
+sumo/var-fsl-yocto/sources/poky/meta/site/arm-64
+| # definitions assuming 64-bit arm architecture
+|=20
+| # general
+| ac_cv_sizeof_wchar_t=3D4
+| ac_cv_sizeof_size_t=3D8
+| ac_cv_sizeof_ssize_t=3D8
+| ac_cv_alignof_char=3D1
+| ac_cv_alignof_double=3D8
+|=20
+| # glib
+| #glib_cv_sizeof_gmutex=3D${glib_cv_sizeof_gmutex=3D24}
+| #glib_cv_sizeof_system_thread=3D${glib_cv_sizeof_system_thread=3D4}
+| #glib_cv_sizeof_gmutex=3D${glib_cv_sizeof_gmutex=3D24}
+|=20
+| # glib-2.0
+| #glib_cv_sizeof_gmutex=3D${glib_cv_sizeof_gmutex=3D24}
+| #glib_cv_sizeof_intmax_t=3D${glib_cv_sizeof_intmax_t=3D8}
+| #glib_cv_sizeof_ptrdiff_t=3D${glib_cv_sizeof_ptrdiff_t=3D4}
+| #glib_cv_sizeof_size_t=3D${glib_cv_sizeof_size_t=3D4}
+| #glib_cv_sizeof_system_thread=3D${glib_cv_sizeof_system_thread=3D4}
+| ac_cv_alignof_guint32=3D4
+| ac_cv_alignof_guint64=3D8
+| ac_cv_alignof_unsigned_long=3D8
+|=20
+| # ORBit2 (should be in meta-gnome/site/arm-64)
+| #ac_cv_alignof_CORBA_boolean=3D1
+| #ac_cv_alignof_CORBA_char=3D1
+| #ac_cv_alignof_CORBA_double=3D8
+| #ac_cv_alignof_CORBA_float=3D4
+| #ac_cv_alignof_CORBA_long=3D4
+| #ac_cv_alignof_CORBA_long_double=3D8
+| #ac_cv_alignof_CORBA_long_long=3D8
+| #ac_cv_alignof_CORBA_octet=3D1
+| #ac_cv_alignof_CORBA_pointer=3D4
+| #ac_cv_alignof_CORBA_short=3D2
+| #ac_cv_alignof_CORBA_struct=3D1
+| #ac_cv_alignof_CORBA_wchar=3D2
+|=20
+| # at-spi2-core
+| ac_cv_alignof_dbind_pointer=3D8
+| ac_cv_alignof_dbind_struct=3D1
+| ac_cv_alignof_dbus_bool_t=3D4
+| ac_cv_alignof_dbus_int16_t=3D2
+| ac_cv_alignof_dbus_int32_t=3D4
+| ac_cv_alignof_dbus_int64_t=3D8
+|=20
+configure:3218: loading site script /opt/boards/variscite/imx8/linux/yocto_=
+sumo/var-fsl-yocto/sources/poky/meta/site/common-linux
+| # gettext - these add sleep delays otherwise
+| gl_cv_func_sleep_works=3D${gl_cv_func_sleep_works=3Dyes}
+| gl_cv_header_working_fcntl_h=3D${gl_cv_header_working_fcntl_h=3Dyes}
+|=20
+| # apr
+| ac_cv_file__dev_zero=3D${ac_cv_file__dev_zero=3Dyes}
+| ac_cv_sizeof_pid_t=3D${ac_cv_sizeof_pid_t=3D4}
+| ac_cv_func_pthread_key_delete=3D${ac_cv_func_pthread_key_delete=3Dyes}
+| apr_cv_tcp_nodelay_with_cork=3D${apr_cv_tcp_nodelay_with_cork=3Dyes}
+| apr_cv_process_shared_works=3D${apr_cv_process_shared_works=3Dno}
+|=20
+| # samba
+| samba_cv_HAVE_IFACE_AIX=3D${samba_cv_HAVE_IFACE_AIX=3Dno}
+| samba_cv_HAVE_IFACE_IFCONF=3D${samba_cv_HAVE_IFACE_IFCONF=3Dyes}
+| samba_cv_HAVE_IFACE_IFREQ=3D${samba_cv_HAVE_IFACE_IFREQ=3Dyes}
+| samba_cv_HAVE_IRIX_SPECIFIC_CAPABILITIES=3D${samba_cv_HAVE_IRIX_SPECIFIC_=
+CAPABILITIES=3Dno}
+|=20
+| # db
+| db_cv_path_ar=3D${db_cv_path_ar=3D/usr/bin/ar}
+| db_cv_path_chmod=3D${db_cv_path_chmod=3D/bin/chmod}
+| db_cv_path_cp=3D${db_cv_path_cp=3D/bin/cp}
+| db_cv_path_ln=3D${db_cv_path_ln=3D/bin/ln}
+| db_cv_path_mkdir=3D${db_cv_path_mkdir=3D/bin/mkdir}
+| db_cv_path_ranlib=3D${db_cv_path_ranlib=3D/usr/bin/ranlib}
+| db_cv_path_rm=3D${db_cv_path_rm=3D/bin/rm}
+| db_cv_path_sh=3D${db_cv_path_sh=3D/bin/sh}
+| db_cv_path_strip=3D${db_cv_path_strip=3D/usr/bin/strip}
+|=20
+| # bash
+| bash_cv_have_mbstate_t=3D${bash_cv_have_mbstate_t=3Dyes}
+| bash_cv_must_reinstall_sighandlers=3D${bash_cv_must_reinstall_sighandlers=
+=3Dno}
+| bash_cv_func_strcoll_broken=3D${bash_cv_func_strcoll_broken=3Dno}
+| bash_cv_dup2_broken=3D${bash_cv_dup2_broken=3Dno}
+| bash_cv_opendir_not_robust=3D${bash_cv_opendir_not_robust=3Dno}
+| bash_cv_type_rlimit=3D${bash_cv_type_rlimit=3Drlim_t}
+| bash_cv_getenv_redef=3D${bash_cv_getenv_redef=3Dyes}
+| bash_cv_ulimit_maxfds=3D${bash_cv_ulimit_maxfds=3Dyes}
+| bash_cv_getcwd_calls_popen=3D${bash_cv_getcwd_calls_popen=3Dno}
+| bash_cv_printf_a_format=3D${bash_cv_printf_a_format=3Dyes}
+| bash_cv_pgrp_pipe=3D${bash_cv_pgrp_pipe=3Dno}
+| bash_cv_job_control_missing=3D${bash_cv_job_control_missing=3Dpresent}
+| bash_cv_sys_named_pipes=3D${bash_cv_sys_named_pipes=3Dpresent}
+| bash_cv_unusable_rtsigs=3D${bash_cv_unusable_rtsigs=3Dno}
+|=20
+| # ccache
+| hw_cv_func_snprintf_c99=3D${hw_cv_func_snprintf_c99=3Dyes}
+| hw_cv_func_vsnprintf_c99=3D${hw_cv_func_vsnprintf_c99=3Dyes}
+|=20
+| # coreutils
+| gl_cv_func_fstatat_zero_flag=3D${gl_cv_func_fstatat_zero_flag=3Dyes}
+| gl_cv_have_proc_uptime=3D${gl_cv_have_proc_uptime=3Dyes}
+|=20
+| # mysql
+| ac_cv_sys_restartable_syscalls=3D${ac_cv_sys_restartable_syscalls=3Dyes}
+| ac_cv_conv_longlong_to_float=3D${ac_cv_conv_longlong_to_float=3Dyes}
+|=20
+| # TCL
+| tcl_cv_api_serial=3D${tcl_cv_api_serial=3Dtermios}
+|=20
+| # python
+| ac_cv_have_long_long_format=3Dyes
+|=20
+| # apache
+| ac_cv_o_nonblock_inherited=3D${ac_cv_o_nonblock_inherited=3Dno}
+|=20
+| # rsync
+| rsync_cv_HAVE_C99_VSNPRINTF=3D${rsync_cv_HAVE_C99_VSNPRINTF=3Dyes}
+configure:3218: loading site script /opt/boards/variscite/imx8/linux/yocto_=
+sumo/var-fsl-yocto/sources/poky/meta/site/common-glibc
+| # general
+| ac_cv_have_decl_sys_siglist=3D${ac_cv_have_decl_sys_siglist=3Dyes}
+| ac_cv_func_realloc_works=3D${ac_cv_func_realloc_works=3Dyes}
+| ac_cv_func_realloc_0_nonnull=3D${ac_cv_func_realloc_0_nonnull=3Dyes}
+| ac_cv_func_malloc_works=3D${ac_cv_func_malloc_works=3Dyes}
+| ac_cv_func_malloc_0_nonnull=3D${ac_cv_func_malloc_0_nonnull=3Dyes}
+| ac_cv_func_memcmp_working=3D${ac_cv_func_memcmp_working=3Dyes}
+| ac_cv_func_getpgrp_void=3Dyes
+| ac_cv_func_setpgrp_void=3Dyes
+| ac_cv_func_setgrent_void=3Dyes
+| ac_cv_func_getgrgid_r=3D${ac_cv_func_getgrgid_r=3Dyes}
+| ac_cv_func_getpwuid_r=3D${ac_cv_func_getpwuid_r=3Dyes}
+| ac_cv_func_posix_getpwuid_r=3D${ac_cv_func_posix_getpwuid_r=3Dyes}
+| ac_cv_func_posix_getgrgid_r=3D${ac_cv_func_posix_getgrgid_r=3Dyes}
+| ac_cv_type_uid_t=3D{ac_cv_type_uid_t=3Dyes}
+| ac_cv_func_getaddrinfo=3D${ac_cv_func_getaddrinfo=3Dyes}
+|=20
+| # bash
+| bash_cv_under_sys_siglist=3D${bash_cv_under_sys_siglist=3Dyes}
+| bash_cv_sys_siglist=3D${bash_cv_sys_siglist=3Dyes}
+| bash_cv_getcwd_malloc=3D${bash_cv_getcwd_malloc=3Dyes}
+|=20
+| # clamav
+| clamav_av_func_working_snprintf_long=3D${clamav_av_func_working_snprintf_=
+long=3Dyes}
+| clamav_av_have_in_port_t=3D${clamav_av_have_in_port_t=3Dyes}
+| clamav_av_have_in_addr_t=3D${clamav_av_have_in_addr_t=3Dyes}
+| ac_cv_func_mmap_fixed_mapped=3D${ac_cv_func_mmap_fixed_mapped=3Dyes}
+|=20
+| # coreutils
+| fu_cv_sys_stat_statfs2_bsize=3D${fu_cv_sys_stat_statfs2_bsize=3Dyes}
+|=20
+| # glib
+| glib_cv_strlcpy=3D${glib_cv_strlcpy=3Dno}
+| ac_cv_func_printf_unix98=3D${ac_cv_func_printf_unix98=3Dyes}
+| ac_cv_func_snprintf_c99=3D${ac_cv_func_snprintf_c99=3Dyes}
+| ac_cv_func_vsnprintf_c99=3D${ac_cv_func_vsnprintf_c99=3Dyes}
+| glib_cv_compliant_posix_memalign=3D${glib_cv_compliant_posix_memalign=3D1=
+}
+| glib_cv_long_long_format=3D${glib_cv_long_long_format=3Dll}
+| # glib-1.x requires this and pkgconfig-native / pkgconfig-nativesdk use
+| # that to avoid a dependency loop.
+| glib_cv___va_copy=3D${glib_cv___va_copy=3Dyes}
+| glib_cv_va_copy=3D${glib_cv_va_copy=3Dyes}
+| glib_cv_have_qsort_r=3D${glib_cv_have_qsort_r=3Dyes}
+|=20
+| #dbus-glib
+| ac_cv_have_abstract_sockets=3D${ac_cv_have_abstract_sockets=3Dyes}
+|=20
+| # gnucash
+| am_cv_scanf_lld=3D${am_cv_scanf_lld=3Dyes}
+|=20
+| # guile
+| ac_cv_func_pthread_attr_getstack=3D${ac_cv_func_pthread_attr_getstack=3Dy=
+es}
+|=20
+| #gcc-zlib
+| ac_cv_func_getpagesize=3D${ac_cv_func_getpagesize=3Dyes}
+| ac_cv_func_memcpy=3D${ac_cv_func_memcpy=3Dyes}
+| ac_cv_func_strerror=3D${ac_cv_func_strerror=3Dyes}
+|=20
+| # squid
+| ac_cv_af_unix_large_dgram=3D${ac_cv_af_unix_large_dgram=3Dyes}
+| ac_cv_func_setresuid=3D${ac_cv_func_setresuid=3Dyes}
+| ac_cv_func_va_copy=3D${ac_cv_func_va_copy=3Dyes}
+| ac_cv_func___va_copy=3D${ac_cv_func___va_copy=3Dyes}
+| ac_cv_epoll_works=3D${ac_cv_epoll_works=3Dyes}
+|=20
+| ac_cv_check_sjlj=3Dssjlj
+|=20
+| # m4
+| gt_cv_locale_fr=3D${gt_cv_locale_fr=3Dfr_FR}
+| gl_cv_func_btowc_eof=3D${gl_cv_func_btowc_eof=3Dyes}
+| gl_cv_func_wcrtomb_retval=3D${gl_cv_func_wcrtomb_retval=3Dyes}
+| gl_cv_func_wctob_works=3D${gl_cv_func_wctob_works=3Dyes}
+| gl_cv_func_mbrtowc_incomplete_state=3D${gl_cv_func_mbrtowc_incomplete_sta=
+te=3Dyes}
+| gl_cv_func_mbrtowc_sanitycheck=3D${gl_cv_func_mbrtowc_sanitycheck=3Dyes}
+| gl_cv_func_mbrtowc_null_arg=3D${gl_cv_func_mbrtowc_null_arg=3Dyes}
+| gl_cv_func_mbrtowc_retval=3D${gl_cv_func_mbrtowc_retval=3Dyes}
+| gl_cv_func_mbrtowc_nul_retval=3D${gl_cv_func_mbrtowc_nul_retval=3Dyes}
+|=20
+| # va_copy and _va_copy
+| ac_cv_va_copy=3D${ac_cv_va_copy=3Dyes}
+| ac_cv___va_copy=3D${ac_cv___va_copy=3Dyes}
+| ac_cv_func_va_copy=3D${ac_cv_func_va_copy=3Dyes}
+| ac_cv_func___va_copy=3D${ac_cv_func___va_copy=3Dyes}
+|=20
+| # Xorg
+| xorg_cv_malloc0_returns_null=3D${xorg_cv_malloc0_returns_null=3Dyes}
+configure:3218: loading site script /opt/boards/variscite/imx8/linux/yocto_=
+sumo/var-fsl-yocto/sources/poky/meta/site/common
+| # libelf
+| mr_cv_target_elf=3D${mr_cv_target_elf=3Dyes}
+|=20
+| # Normally kernels have /dev/random enabled
+| ac_cv_file__dev_random=3D${ac_cv_file__dev_random=3Dyes}
+|=20
+| # Avoid sudo to assume void for unsetenv in cross environment, or else it=
+ conflicts with
+| # target stdlib.h prototype which follows POSIX compiliance. Mark for ups=
+tream.
+| sudo_cv_func_unsetenv_void=3Dno
+|=20
+| # shadow dir info, to avoid searching build system
+| shadow_cv_maildir=3D${localstatedir}/spool/mail
+| shadow_cv_mailfile=3DMailbox
+| shadow_cv_utmpdir=3D${localstatedir}/run
+| shadow_cv_logdir=3D${localstatedir}/log
+| shadow_cv_passwd_dir=3D${bindir}
+|=20
+| # python: deactivate a runtime check for ipv6-support in python >=3D2.7.1=
+ that fails when cross-compiling
+| ac_cv_buggy_getaddrinfo=3Dno
+|=20
+| ac_cv_path_SED=3D${ac_cv_path_SED=3Dsed}
+configure:3218: loading site script /opt/boards/variscite/imx8/linux/yocto_=
+sumo/var-fsl-yocto/sources/meta-openembedded/meta-gnome/site/arm-64
+| # ORBit2
+| ac_cv_alignof_CORBA_boolean=3D1
+| ac_cv_alignof_CORBA_char=3D1
+| ac_cv_alignof_CORBA_double=3D8
+| ac_cv_alignof_CORBA_float=3D4
+| ac_cv_alignof_CORBA_long=3D4
+| ac_cv_alignof_CORBA_long_double=3D8
+| ac_cv_alignof_CORBA_long_long=3D8
+| ac_cv_alignof_CORBA_octet=3D1
+| ac_cv_alignof_CORBA_pointer=3D4
+| ac_cv_alignof_CORBA_short=3D2
+| ac_cv_alignof_CORBA_struct=3D1
+| ac_cv_alignof_CORBA_wchar=3D2
+configure:3218: loading site script /opt/boards/variscite/imx8/linux/yocto_=
+sumo/var-fsl-yocto/sources/meta-openembedded/meta-networking/site/endian-li=
+ttle
+| # rp-pppoe
+| rpppoe_cv_pack_bitfields=3D${rpppoe_cv_pack_bitfields=3Drev}
+configure:3218: loading site script /opt/boards/variscite/imx8/linux/yocto_=
+sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r=
+0/recipe-sysroot/usr/share/aarch64-poky-linux_config_site.d/ncurses_config
+| ac_cv_header_X=3D${ac_cv_header_X=3Dno}
+| ac_cv_header__CC=3D${ac_cv_header__CC=3Dno}
+| ac_cv_header__CFLAGS=3D${ac_cv_header__CFLAGS=3Dno}
+| ac_cv_header__CPPFLAGS=3D${ac_cv_header__CPPFLAGS=3Dno}
+| ac_cv_header___5=3D${ac_cv_header___5=3Dno}
+| ac_cv_header__c=3D${ac_cv_header__c=3Dno}
+| ac_cv_header_conftest__ac_ext=3D${ac_cv_header_conftest__ac_ext=3Dno}
+| ac_cv_header_curses_h=3D${ac_cv_header_curses_h=3Dyes}
+| ac_cv_header_inttypes_h=3D${ac_cv_header_inttypes_h=3Dyes}
+| ac_cv_header_memory_h=3D${ac_cv_header_memory_h=3Dyes}
+| ac_cv_header_ncurses_curses_h=3D${ac_cv_header_ncurses_curses_h=3Dno}
+| ac_cv_header_ncurses_h=3D${ac_cv_header_ncurses_h=3Dyes}
+| ac_cv_header_ncurses_termcap_h=3D${ac_cv_header_ncurses_termcap_h=3Dno}
+| ac_cv_header_stdc=3D${ac_cv_header_stdc=3Dyes}
+| ac_cv_header_stdint_h=3D${ac_cv_header_stdint_h=3Dyes}
+| ac_cv_header_stdlib_h=3D${ac_cv_header_stdlib_h=3Dyes}
+| ac_cv_header_string_h=3D${ac_cv_header_string_h=3Dyes}
+| ac_cv_header_strings_h=3D${ac_cv_header_strings_h=3Dyes}
+| ac_cv_header_sys_stat_h=3D${ac_cv_header_sys_stat_h=3Dyes}
+| ac_cv_header_sys_types_h=3D${ac_cv_header_sys_types_h=3Dyes}
+| ac_cv_header_unistd_h=3D${ac_cv_header_unistd_h=3Dyes}
+configure:3218: loading site script /opt/boards/variscite/imx8/linux/yocto_=
+sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r=
+0/recipe-sysroot/usr/share/aarch64-poky-linux_config_site.d/glibc_config
+| ac_cv_func___adjtimex=3D${ac_cv_func___adjtimex=3Dyes}
+| ac_cv_func___argz_count=3D${ac_cv_func___argz_count=3Dyes}
+| ac_cv_func___argz_next=3D${ac_cv_func___argz_next=3Dyes}
+| ac_cv_func___argz_stringify=3D${ac_cv_func___argz_stringify=3Dyes}
+| ac_cv_func___fpending=3D${ac_cv_func___fpending=3Dyes}
+| ac_cv_func___fsetlocking=3D${ac_cv_func___fsetlocking=3Dyes}
+| ac_cv_func___progname=3D${ac_cv_func___progname=3Dyes}
+| ac_cv_func___secure_getenv=3D${ac_cv_func___secure_getenv=3Dno}
+| ac_cv_func__obstack_free=3D${ac_cv_func__obstack_free=3Dyes}
+| ac_cv_func__setjmp=3D${ac_cv_func__setjmp=3Dyes}
+| ac_cv_func__sys_siglist=3D${ac_cv_func__sys_siglist=3Dyes}
+| ac_cv_func_a64l=3D${ac_cv_func_a64l=3Dyes}
+| ac_cv_func_abs=3D${ac_cv_func_abs=3Dyes}
+| ac_cv_func_access=3D${ac_cv_func_access=3Dyes}
+| ac_cv_func_alarm=3D${ac_cv_func_alarm=3Dyes}
+| ac_cv_func_alphasort=3D${ac_cv_func_alphasort=3Dyes}
+| ac_cv_func_argz_append=3D${ac_cv_func_argz_append=3Dyes}
+| ac_cv_func_argz_create_sep=3D${ac_cv_func_argz_create_sep=3Dyes}
+| ac_cv_func_argz_insert=3D${ac_cv_func_argz_insert=3Dyes}
+| ac_cv_func_argz_next=3D${ac_cv_func_argz_next=3Dyes}
+| ac_cv_func_argz_stringify=3D${ac_cv_func_argz_stringify=3Dyes}
+| ac_cv_func_asprintf=3D${ac_cv_func_asprintf=3Dyes}
+| ac_cv_func_atexit=3D${ac_cv_func_atexit=3Dyes}
+| ac_cv_func_atof=3D${ac_cv_func_atof=3Dyes}
+| ac_cv_func_atoi=3D${ac_cv_func_atoi=3Dyes}
+| ac_cv_func_bcmp=3D${ac_cv_func_bcmp=3Dyes}
+| ac_cv_func_bcopy=3D${ac_cv_func_bcopy=3Dyes}
+| ac_cv_func_bind_textdomain_codeset=3D${ac_cv_func_bind_textdomain_codeset=
+=3Dyes}
+| ac_cv_func_bindresvport=3D${ac_cv_func_bindresvport=3Dyes}
+| ac_cv_func_btowc=3D${ac_cv_func_btowc=3Dyes}
+| ac_cv_func_bzero=3D${ac_cv_func_bzero=3Dyes}
+| ac_cv_func_calloc=3D${ac_cv_func_calloc=3Dyes}
+| ac_cv_func_canonicalize_file_name=3D${ac_cv_func_canonicalize_file_name=
+=3Dyes}
+| ac_cv_func_catgets=3D${ac_cv_func_catgets=3Dyes}
+| ac_cv_func_cfgetospeed=3D${ac_cv_func_cfgetospeed=3Dyes}
+| ac_cv_func_cfsetispeed=3D${ac_cv_func_cfsetispeed=3Dyes}
+| ac_cv_func_cfsetspeed=3D${ac_cv_func_cfsetspeed=3Dyes}
+| ac_cv_func_chmod=3D${ac_cv_func_chmod=3Dyes}
+| ac_cv_func_chown=3D${ac_cv_func_chown=3Dyes}
+| ac_cv_func_chroot=3D${ac_cv_func_chroot=3Dyes}
+| ac_cv_func_clock=3D${ac_cv_func_clock=3Dyes}
+| ac_cv_func_close=3D${ac_cv_func_close=3Dyes}
+| ac_cv_func_closedir=3D${ac_cv_func_closedir=3Dyes}
+| ac_cv_func_closelog=3D${ac_cv_func_closelog=3Dyes}
+| ac_cv_func_confstr=3D${ac_cv_func_confstr=3Dyes}
+| ac_cv_func_connect=3D${ac_cv_func_connect=3Dyes}
+| ac_cv_func_daemon=3D${ac_cv_func_daemon=3Dyes}
+| ac_cv_func_dcgettext=3D${ac_cv_func_dcgettext=3Dyes}
+| ac_cv_func_difftime=3D${ac_cv_func_difftime=3Dyes}
+| ac_cv_func_dirfd=3D${ac_cv_func_dirfd=3Dyes}
+| ac_cv_func_dirname=3D${ac_cv_func_dirname=3Dyes}
+| ac_cv_func_dngettext=3D${ac_cv_func_dngettext=3Dyes}
+| ac_cv_func_dup2=3D${ac_cv_func_dup2=3Dyes}
+| ac_cv_func_ecvt=3D${ac_cv_func_ecvt=3Dyes}
+| ac_cv_func_endgrent=3D${ac_cv_func_endgrent=3Dyes}
+| ac_cv_func_endmntent=3D${ac_cv_func_endmntent=3Dyes}
+| ac_cv_func_endpwent=3D${ac_cv_func_endpwent=3Dyes}
+| ac_cv_func_endutent=3D${ac_cv_func_endutent=3Dyes}
+| ac_cv_func_endutxent=3D${ac_cv_func_endutxent=3Dyes}
+| ac_cv_func_epoll_ctl=3D${ac_cv_func_epoll_ctl=3Dyes}
+| ac_cv_func_err=3D${ac_cv_func_err=3Dyes}
+| ac_cv_func_ether_hostton=3D${ac_cv_func_ether_hostton=3Dyes}
+| ac_cv_func_ether_ntohost=3D${ac_cv_func_ether_ntohost=3Dyes}
+| ac_cv_func_euidaccess=3D${ac_cv_func_euidaccess=3Dyes}
+| ac_cv_func_execv=3D${ac_cv_func_execv=3Dyes}
+| ac_cv_func_fchdir=3D${ac_cv_func_fchdir=3Dyes}
+| ac_cv_func_fchmod=3D${ac_cv_func_fchmod=3Dyes}
+| ac_cv_func_fchmodat=3D${ac_cv_func_fchmodat=3Dyes}
+| ac_cv_func_fchown=3D${ac_cv_func_fchown=3Dyes}
+| ac_cv_func_fchownat=3D${ac_cv_func_fchownat=3Dyes}
+| ac_cv_func_fcntl=3D${ac_cv_func_fcntl=3Dyes}
+| ac_cv_func_fcvt=3D${ac_cv_func_fcvt=3Dyes}
+| ac_cv_func_fdatasync=3D${ac_cv_func_fdatasync=3Dyes}
+| ac_cv_func_fdopendir=3D${ac_cv_func_fdopendir=3Dyes}
+| ac_cv_func_feof_unlocked=3D${ac_cv_func_feof_unlocked=3Dyes}
+| ac_cv_func_fgets_unlocked=3D${ac_cv_func_fgets_unlocked=3Dyes}
+| ac_cv_func_fgetxattr=3D${ac_cv_func_fgetxattr=3Dyes}
+| ac_cv_func_finite=3D${ac_cv_func_finite=3Dyes}
+| ac_cv_func_flistxattr=3D${ac_cv_func_flistxattr=3Dyes}
+| ac_cv_func_flock=3D${ac_cv_func_flock=3Dyes}
+| ac_cv_func_flockfile=3D${ac_cv_func_flockfile=3Dyes}
+| ac_cv_func_fnmatch=3D${ac_cv_func_fnmatch=3Dyes}
+| ac_cv_func_fork=3D${ac_cv_func_fork=3Dyes}
+| ac_cv_func_fpathconf=3D${ac_cv_func_fpathconf=3Dyes}
+| ac_cv_func_fprintf=3D${ac_cv_func_fprintf=3Dyes}
+| ac_cv_func_free=3D${ac_cv_func_free=3Dyes}
+| ac_cv_func_freeaddrinfo=3D${ac_cv_func_freeaddrinfo=3Dyes}
+| ac_cv_func_freeifaddrs=3D${ac_cv_func_freeifaddrs=3Dyes}
+| ac_cv_func_fseeko=3D${ac_cv_func_fseeko=3Dyes}
+| ac_cv_func_fsetxattr=3D${ac_cv_func_fsetxattr=3Dyes}
+| ac_cv_func_fstat64=3D${ac_cv_func_fstat64=3Dyes}
+| ac_cv_func_fstat=3D${ac_cv_func_fstat=3Dyes}
+| ac_cv_func_fstatfs=3D${ac_cv_func_fstatfs=3Dyes}
+| ac_cv_func_fsync=3D${ac_cv_func_fsync=3Dyes}
+| ac_cv_func_ftello=3D${ac_cv_func_ftello=3Dyes}
+| ac_cv_func_ftime=3D${ac_cv_func_ftime=3Dyes}
+| ac_cv_func_ftruncate=3D${ac_cv_func_ftruncate=3Dyes}
+| ac_cv_func_funlockfile=3D${ac_cv_func_funlockfile=3Dyes}
+| ac_cv_func_futimes=3D${ac_cv_func_futimes=3Dyes}
+| ac_cv_func_futimesat=3D${ac_cv_func_futimesat=3Dyes}
+| ac_cv_func_gai_strerror=3D${ac_cv_func_gai_strerror=3Dyes}
+| ac_cv_func_gcvt=3D${ac_cv_func_gcvt=3Dyes}
+| ac_cv_func_getaddrinfo=3D${ac_cv_func_getaddrinfo=3Dyes}
+| ac_cv_func_getc_unlocked=3D${ac_cv_func_getc_unlocked=3Dyes}
+| ac_cv_func_getcwd=3D${ac_cv_func_getcwd=3Dyes}
+| ac_cv_func_getdelim=3D${ac_cv_func_getdelim=3Dyes}
+| ac_cv_func_getdomainname=3D${ac_cv_func_getdomainname=3Dyes}
+| ac_cv_func_getdtablesize=3D${ac_cv_func_getdtablesize=3Dyes}
+| ac_cv_func_getegid=3D${ac_cv_func_getegid=3Dyes}
+| ac_cv_func_getenv=3D${ac_cv_func_getenv=3Dyes}
+| ac_cv_func_geteuid=3D${ac_cv_func_geteuid=3Dyes}
+| ac_cv_func_getgid=3D${ac_cv_func_getgid=3Dyes}
+| ac_cv_func_getgrent=3D${ac_cv_func_getgrent=3Dyes}
+| ac_cv_func_getgrent_r=3D${ac_cv_func_getgrent_r=3Dyes}
+| ac_cv_func_getgrgid_r=3D${ac_cv_func_getgrgid_r=3Dyes}
+| ac_cv_func_getgrnam=3D${ac_cv_func_getgrnam=3Dyes}
+| ac_cv_func_getgrnam_r=3D${ac_cv_func_getgrnam_r=3Dyes}
+| ac_cv_func_getgrouplist=3D${ac_cv_func_getgrouplist=3Dyes}
+| ac_cv_func_getgroups=3D${ac_cv_func_getgroups=3Dyes}
+| ac_cv_func_gethostbyaddr_r=3D${ac_cv_func_gethostbyaddr_r=3Dyes}
+| ac_cv_func_gethostbyname2=3D${ac_cv_func_gethostbyname2=3Dyes}
+| ac_cv_func_gethostbyname=3D${ac_cv_func_gethostbyname=3Dyes}
+| ac_cv_func_gethostbyname_r=3D${ac_cv_func_gethostbyname_r=3Dyes}
+| ac_cv_func_gethostent=3D${ac_cv_func_gethostent=3Dyes}
+| ac_cv_func_gethostid=3D${ac_cv_func_gethostid=3Dyes}
+| ac_cv_func_gethostname=3D${ac_cv_func_gethostname=3Dyes}
+| ac_cv_func_getifaddrs=3D${ac_cv_func_getifaddrs=3Dyes}
+| ac_cv_func_getline=3D${ac_cv_func_getline=3Dyes}
+| ac_cv_func_getloadavg=3D${ac_cv_func_getloadavg=3Dyes}
+| ac_cv_func_getmntent=3D${ac_cv_func_getmntent=3Dyes}
+| ac_cv_func_getmsg=3D${ac_cv_func_getmsg=3Dyes}
+| ac_cv_func_getnameinfo=3D${ac_cv_func_getnameinfo=3Dyes}
+| ac_cv_func_getnetbyaddr_r=3D${ac_cv_func_getnetbyaddr_r=3Dyes}
+| ac_cv_func_getnetgrent_r=3D${ac_cv_func_getnetgrent_r=3Dyes}
+| ac_cv_func_getopt=3D${ac_cv_func_getopt=3Dyes}
+| ac_cv_func_getopt_long=3D${ac_cv_func_getopt_long=3Dyes}
+| ac_cv_func_getopt_long_only=3D${ac_cv_func_getopt_long_only=3Dyes}
+| ac_cv_func_getpagesize=3D${ac_cv_func_getpagesize=3Dyes}
+| ac_cv_func_getpass=3D${ac_cv_func_getpass=3Dyes}
+| ac_cv_func_getpeername=3D${ac_cv_func_getpeername=3Dyes}
+| ac_cv_func_getpgrp=3D${ac_cv_func_getpgrp=3Dyes}
+| ac_cv_func_getpid=3D${ac_cv_func_getpid=3Dyes}
+| ac_cv_func_getppid=3D${ac_cv_func_getppid=3Dyes}
+| ac_cv_func_getprotoent_r=3D${ac_cv_func_getprotoent_r=3Dyes}
+| ac_cv_func_getpwent=3D${ac_cv_func_getpwent=3Dyes}
+| ac_cv_func_getpwent_r=3D${ac_cv_func_getpwent_r=3Dyes}
+| ac_cv_func_getpwnam=3D${ac_cv_func_getpwnam=3Dyes}
+| ac_cv_func_getpwnam_r=3D${ac_cv_func_getpwnam_r=3Dyes}
+| ac_cv_func_getpwuid=3D${ac_cv_func_getpwuid=3Dyes}
+| ac_cv_func_getpwuid_r=3D${ac_cv_func_getpwuid_r=3Dyes}
+| ac_cv_func_getresuid=3D${ac_cv_func_getresuid=3Dyes}
+| ac_cv_func_getrlimit=3D${ac_cv_func_getrlimit=3Dyes}
+| ac_cv_func_getrusage=3D${ac_cv_func_getrusage=3Dyes}
+| ac_cv_func_getservbyname=3D${ac_cv_func_getservbyname=3Dyes}
+| ac_cv_func_getservbyname_r=3D${ac_cv_func_getservbyname_r=3Dyes}
+| ac_cv_func_getservbyport_r=3D${ac_cv_func_getservbyport_r=3Dyes}
+| ac_cv_func_getservent=3D${ac_cv_func_getservent=3Dyes}
+| ac_cv_func_getservent_r=3D${ac_cv_func_getservent_r=3Dyes}
+| ac_cv_func_getspnam=3D${ac_cv_func_getspnam=3Dyes}
+| ac_cv_func_getspnam_r=3D${ac_cv_func_getspnam_r=3Dyes}
+| ac_cv_func_gettimeofday=3D${ac_cv_func_gettimeofday=3Dyes}
+| ac_cv_func_getttyent=3D${ac_cv_func_getttyent=3Dyes}
+| ac_cv_func_getttynam=3D${ac_cv_func_getttynam=3Dyes}
+| ac_cv_func_getuid=3D${ac_cv_func_getuid=3Dyes}
+| ac_cv_func_getusershell=3D${ac_cv_func_getusershell=3Dyes}
+| ac_cv_func_getutent=3D${ac_cv_func_getutent=3Dyes}
+| ac_cv_func_getutid=3D${ac_cv_func_getutid=3Dyes}
+| ac_cv_func_getutline=3D${ac_cv_func_getutline=3Dyes}
+| ac_cv_func_getutmp=3D${ac_cv_func_getutmp=3Dyes}
+| ac_cv_func_getutmpx=3D${ac_cv_func_getutmpx=3Dyes}
+| ac_cv_func_getutxent=3D${ac_cv_func_getutxent=3Dyes}
+| ac_cv_func_getutxid=3D${ac_cv_func_getutxid=3Dyes}
+| ac_cv_func_getutxline=3D${ac_cv_func_getutxline=3Dyes}
+| ac_cv_func_getwd=3D${ac_cv_func_getwd=3Dyes}
+| ac_cv_func_getxattr=3D${ac_cv_func_getxattr=3Dyes}
+| ac_cv_func_glob=3D${ac_cv_func_glob=3Dyes}
+| ac_cv_func_gmtime=3D${ac_cv_func_gmtime=3Dyes}
+| ac_cv_func_gmtime_r=3D${ac_cv_func_gmtime_r=3Dyes}
+| ac_cv_func_grantpt=3D${ac_cv_func_grantpt=3Dyes}
+| ac_cv_func_group_member=3D${ac_cv_func_group_member=3Dyes}
+| ac_cv_func_herror=3D${ac_cv_func_herror=3Dyes}
+| ac_cv_func_hstrerror=3D${ac_cv_func_hstrerror=3Dyes}
+| ac_cv_func_iconv=3D${ac_cv_func_iconv=3Dyes}
+| ac_cv_func_iconv_open=3D${ac_cv_func_iconv_open=3Dyes}
+| ac_cv_func_if_freenameindex=3D${ac_cv_func_if_freenameindex=3Dyes}
+| ac_cv_func_if_indextoname=3D${ac_cv_func_if_indextoname=3Dyes}
+| ac_cv_func_if_nameindex=3D${ac_cv_func_if_nameindex=3Dyes}
+| ac_cv_func_if_nametoindex=3D${ac_cv_func_if_nametoindex=3Dyes}
+| ac_cv_func_index=3D${ac_cv_func_index=3Dyes}
+| ac_cv_func_inet_addr=3D${ac_cv_func_inet_addr=3Dyes}
+| ac_cv_func_inet_aton=3D${ac_cv_func_inet_aton=3Dyes}
+| ac_cv_func_inet_ntoa=3D${ac_cv_func_inet_ntoa=3Dyes}
+| ac_cv_func_inet_ntop=3D${ac_cv_func_inet_ntop=3Dyes}
+| ac_cv_func_inet_pton=3D${ac_cv_func_inet_pton=3Dyes}
+| ac_cv_func_initgroups=3D${ac_cv_func_initgroups=3Dyes}
+| ac_cv_func_innetgr=3D${ac_cv_func_innetgr=3Dyes}
+| ac_cv_func_iruserok=3D${ac_cv_func_iruserok=3Dyes}
+| ac_cv_func_isascii=3D${ac_cv_func_isascii=3Dyes}
+| ac_cv_func_isatty=3D${ac_cv_func_isatty=3Dyes}
+| ac_cv_func_isblank=3D${ac_cv_func_isblank=3Dyes}
+| ac_cv_func_isgraph=3D${ac_cv_func_isgraph=3Dyes}
+| ac_cv_func_isinf=3D${ac_cv_func_isinf=3Dyes}
+| ac_cv_func_isnan=3D${ac_cv_func_isnan=3Dyes}
+| ac_cv_func_isprint=3D${ac_cv_func_isprint=3Dyes}
+| ac_cv_func_isspace=3D${ac_cv_func_isspace=3Dyes}
+| ac_cv_func_iswalnum=3D${ac_cv_func_iswalnum=3Dyes}
+| ac_cv_func_iswcntrl=3D${ac_cv_func_iswcntrl=3Dyes}
+| ac_cv_func_iswctype=3D${ac_cv_func_iswctype=3Dyes}
+| ac_cv_func_iswprint=3D${ac_cv_func_iswprint=3Dyes}
+| ac_cv_func_iswspace=3D${ac_cv_func_iswspace=3Dyes}
+| ac_cv_func_iswupper=3D${ac_cv_func_iswupper=3Dyes}
+| ac_cv_func_isxdigit=3D${ac_cv_func_isxdigit=3Dyes}
+| ac_cv_func_kill=3D${ac_cv_func_kill=3Dyes}
+| ac_cv_func_killpg=3D${ac_cv_func_killpg=3Dyes}
+| ac_cv_func_lchown=3D${ac_cv_func_lchown=3Dyes}
+| ac_cv_func_lckpwdf=3D${ac_cv_func_lckpwdf=3Dyes}
+| ac_cv_func_lgetxattr=3D${ac_cv_func_lgetxattr=3Dyes}
+| ac_cv_func_link=3D${ac_cv_func_link=3Dyes}
+| ac_cv_func_listxattr=3D${ac_cv_func_listxattr=3Dyes}
+| ac_cv_func_llistxattr=3D${ac_cv_func_llistxattr=3Dyes}
+| ac_cv_func_localtime=3D${ac_cv_func_localtime=3Dyes}
+| ac_cv_func_localtime_r=3D${ac_cv_func_localtime_r=3Dyes}
+| ac_cv_func_lockf=3D${ac_cv_func_lockf=3Dyes}
+| ac_cv_func_lrand48=3D${ac_cv_func_lrand48=3Dyes}
+| ac_cv_func_lsearch=3D${ac_cv_func_lsearch=3Dyes}
+| ac_cv_func_lseek64=3D${ac_cv_func_lseek64=3Dyes}
+| ac_cv_func_lsetxattr=3D${ac_cv_func_lsetxattr=3Dyes}
+| ac_cv_func_lstat=3D${ac_cv_func_lstat=3Dyes}
+| ac_cv_func_mallinfo=3D${ac_cv_func_mallinfo=3Dyes}
+| ac_cv_func_malloc=3D${ac_cv_func_malloc=3Dyes}
+| ac_cv_func_mblen=3D${ac_cv_func_mblen=3Dyes}
+| ac_cv_func_mbrlen=3D${ac_cv_func_mbrlen=3Dyes}
+| ac_cv_func_mbrtowc=3D${ac_cv_func_mbrtowc=3Dyes}
+| ac_cv_func_mbsinit=3D${ac_cv_func_mbsinit=3Dyes}
+| ac_cv_func_mbsrtowcs=3D${ac_cv_func_mbsrtowcs=3Dyes}
+| ac_cv_func_mbtowc=3D${ac_cv_func_mbtowc=3Dyes}
+| ac_cv_func_memalign=3D${ac_cv_func_memalign=3Dyes}
+| ac_cv_func_memchr=3D${ac_cv_func_memchr=3Dyes}
+| ac_cv_func_memcmp=3D${ac_cv_func_memcmp=3Dyes}
+| ac_cv_func_memcpy=3D${ac_cv_func_memcpy=3Dyes}
+| ac_cv_func_memmove=3D${ac_cv_func_memmove=3Dyes}
+| ac_cv_func_mempcpy=3D${ac_cv_func_mempcpy=3Dyes}
+| ac_cv_func_memrchr=3D${ac_cv_func_memrchr=3Dyes}
+| ac_cv_func_memset=3D${ac_cv_func_memset=3Dyes}
+| ac_cv_func_mkdir=3D${ac_cv_func_mkdir=3Dyes}
+| ac_cv_func_mkdirat=3D${ac_cv_func_mkdirat=3Dyes}
+| ac_cv_func_mkdtemp=3D${ac_cv_func_mkdtemp=3Dyes}
+| ac_cv_func_mkfifo=3D${ac_cv_func_mkfifo=3Dyes}
+| ac_cv_func_mknod=3D${ac_cv_func_mknod=3Dyes}
+| ac_cv_func_mkstemp64=3D${ac_cv_func_mkstemp64=3Dyes}
+| ac_cv_func_mkstemp=3D${ac_cv_func_mkstemp=3Dyes}
+| ac_cv_func_mktime=3D${ac_cv_func_mktime=3Dyes}
+| ac_cv_func_mlock=3D${ac_cv_func_mlock=3Dyes}
+| ac_cv_func_mmap=3D${ac_cv_func_mmap=3Dyes}
+| ac_cv_func_mtrace=3D${ac_cv_func_mtrace=3Dyes}
+| ac_cv_func_munlock=3D${ac_cv_func_munlock=3Dyes}
+| ac_cv_func_munmap=3D${ac_cv_func_munmap=3Dyes}
+| ac_cv_func_nanosleep=3D${ac_cv_func_nanosleep=3Dyes}
+| ac_cv_func_nice=3D${ac_cv_func_nice=3Dyes}
+| ac_cv_func_nl_langinfo=3D${ac_cv_func_nl_langinfo=3Dyes}
+| ac_cv_func_ntp_adjtime=3D${ac_cv_func_ntp_adjtime=3Dyes}
+| ac_cv_func_ntp_gettime=3D${ac_cv_func_ntp_gettime=3Dyes}
+| ac_cv_func_on_exit=3D${ac_cv_func_on_exit=3Dyes}
+| ac_cv_func_open64=3D${ac_cv_func_open64=3Dyes}
+| ac_cv_func_open=3D${ac_cv_func_open=3Dyes}
+| ac_cv_func_openat=3D${ac_cv_func_openat=3Dyes}
+| ac_cv_func_opendir=3D${ac_cv_func_opendir=3Dyes}
+| ac_cv_func_openlog=3D${ac_cv_func_openlog=3Dyes}
+| ac_cv_func_pathconf=3D${ac_cv_func_pathconf=3Dyes}
+| ac_cv_func_pipe=3D${ac_cv_func_pipe=3Dyes}
+| ac_cv_func_poll=3D${ac_cv_func_poll=3Dyes}
+| ac_cv_func_popen=3D${ac_cv_func_popen=3Dyes}
+| ac_cv_func_posix_memalign=3D${ac_cv_func_posix_memalign=3Dyes}
+| ac_cv_func_prctl=3D${ac_cv_func_prctl=3Dyes}
+| ac_cv_func_pread=3D${ac_cv_func_pread=3Dyes}
+| ac_cv_func_printf=3D${ac_cv_func_printf=3Dyes}
+| ac_cv_func_pselect=3D${ac_cv_func_pselect=3Dyes}
+| ac_cv_func_pthread_mutex_lock=3D${ac_cv_func_pthread_mutex_lock=3Dyes}
+| ac_cv_func_ptsname=3D${ac_cv_func_ptsname=3Dyes}
+| ac_cv_func_putenv=3D${ac_cv_func_putenv=3Dyes}
+| ac_cv_func_putgrent=3D${ac_cv_func_putgrent=3Dyes}
+| ac_cv_func_putpwent=3D${ac_cv_func_putpwent=3Dyes}
+| ac_cv_func_putspent=3D${ac_cv_func_putspent=3Dyes}
+| ac_cv_func_pututline=3D${ac_cv_func_pututline=3Dyes}
+| ac_cv_func_pututxline=3D${ac_cv_func_pututxline=3Dyes}
+| ac_cv_func_putwc=3D${ac_cv_func_putwc=3Dyes}
+| ac_cv_func_pwrite=3D${ac_cv_func_pwrite=3Dyes}
+| ac_cv_func_qsort=3D${ac_cv_func_qsort=3Dyes}
+| ac_cv_func_raise=3D${ac_cv_func_raise=3Dyes}
+| ac_cv_func_rand=3D${ac_cv_func_rand=3Dyes}
+| ac_cv_func_rand_r=3D${ac_cv_func_rand_r=3Dyes}
+| ac_cv_func_random=3D${ac_cv_func_random=3Dyes}
+| ac_cv_func_re_comp=3D${ac_cv_func_re_comp=3Dyes}
+| ac_cv_func_re_exec=3D${ac_cv_func_re_exec=3Dyes}
+| ac_cv_func_re_search=3D${ac_cv_func_re_search=3Dyes}
+| ac_cv_func_read=3D${ac_cv_func_read=3Dyes}
+| ac_cv_func_readdir=3D${ac_cv_func_readdir=3Dyes}
+| ac_cv_func_readdir_r=3D${ac_cv_func_readdir_r=3Dyes}
+| ac_cv_func_readlink=3D${ac_cv_func_readlink=3Dyes}
+| ac_cv_func_realloc=3D${ac_cv_func_realloc=3Dyes}
+| ac_cv_func_realpath=3D${ac_cv_func_realpath=3Dyes}
+| ac_cv_func_recvmsg=3D${ac_cv_func_recvmsg=3Dyes}
+| ac_cv_func_regcomp=3D${ac_cv_func_regcomp=3Dyes}
+| ac_cv_func_regexec=3D${ac_cv_func_regexec=3Dyes}
+| ac_cv_func_remove=3D${ac_cv_func_remove=3Dyes}
+| ac_cv_func_rename=3D${ac_cv_func_rename=3Dyes}
+| ac_cv_func_rmdir=3D${ac_cv_func_rmdir=3Dyes}
+| ac_cv_func_rpmatch=3D${ac_cv_func_rpmatch=3Dyes}
+| ac_cv_func_rresvport_af=3D${ac_cv_func_rresvport_af=3Dyes}
+| ac_cv_func_ruserok=3D${ac_cv_func_ruserok=3Dyes}
+| ac_cv_func_ruserok_af=3D${ac_cv_func_ruserok_af=3Dyes}
+| ac_cv_func_sbrk=3D${ac_cv_func_sbrk=3Dyes}
+| ac_cv_func_scandir=3D${ac_cv_func_scandir=3Dyes}
+| ac_cv_func_sched_setscheduler=3D${ac_cv_func_sched_setscheduler=3Dyes}
+| ac_cv_func_sched_yield=3D${ac_cv_func_sched_yield=3Dyes}
+| ac_cv_func_select=3D${ac_cv_func_select=3Dyes}
+| ac_cv_func_semctl=3D${ac_cv_func_semctl=3Dyes}
+| ac_cv_func_semget=3D${ac_cv_func_semget=3Dyes}
+| ac_cv_func_sendmsg=3D${ac_cv_func_sendmsg=3Dyes}
+| ac_cv_func_setbuf=3D${ac_cv_func_setbuf=3Dyes}
+| ac_cv_func_setbuffer=3D${ac_cv_func_setbuffer=3Dyes}
+| ac_cv_func_setegid=3D${ac_cv_func_setegid=3Dyes}
+| ac_cv_func_setenv=3D${ac_cv_func_setenv=3Dyes}
+| ac_cv_func_seteuid=3D${ac_cv_func_seteuid=3Dyes}
+| ac_cv_func_setgid=3D${ac_cv_func_setgid=3Dyes}
+| ac_cv_func_setgroups=3D${ac_cv_func_setgroups=3Dyes}
+| ac_cv_func_sethostname=3D${ac_cv_func_sethostname=3Dyes}
+| ac_cv_func_setitimer=3D${ac_cv_func_setitimer=3Dyes}
+| ac_cv_func_setjmp=3D${ac_cv_func_setjmp=3Dyes}
+| ac_cv_func_setlinebuf=3D${ac_cv_func_setlinebuf=3Dyes}
+| ac_cv_func_setlocale=3D${ac_cv_func_setlocale=3Dyes}
+| ac_cv_func_setmntent=3D${ac_cv_func_setmntent=3Dyes}
+| ac_cv_func_setpgid=3D${ac_cv_func_setpgid=3Dyes}
+| ac_cv_func_setpgrp=3D${ac_cv_func_setpgrp=3Dyes}
+| ac_cv_func_setpriority=3D${ac_cv_func_setpriority=3Dyes}
+| ac_cv_func_setregid=3D${ac_cv_func_setregid=3Dyes}
+| ac_cv_func_setresgid=3D${ac_cv_func_setresgid=3Dyes}
+| ac_cv_func_setresuid=3D${ac_cv_func_setresuid=3Dyes}
+| ac_cv_func_setreuid=3D${ac_cv_func_setreuid=3Dyes}
+| ac_cv_func_setrlimit=3D${ac_cv_func_setrlimit=3Dyes}
+| ac_cv_func_setsid=3D${ac_cv_func_setsid=3Dyes}
+| ac_cv_func_setsockopt=3D${ac_cv_func_setsockopt=3Dyes}
+| ac_cv_func_settimeofday=3D${ac_cv_func_settimeofday=3Dyes}
+| ac_cv_func_setuid=3D${ac_cv_func_setuid=3Dyes}
+| ac_cv_func_setutent=3D${ac_cv_func_setutent=3Dyes}
+| ac_cv_func_setutxent=3D${ac_cv_func_setutxent=3Dyes}
+| ac_cv_func_setvbuf=3D${ac_cv_func_setvbuf=3Dyes}
+| ac_cv_func_setxattr=3D${ac_cv_func_setxattr=3Dyes}
+| ac_cv_func_sgetspent=3D${ac_cv_func_sgetspent=3Dyes}
+| ac_cv_func_shmat=3D${ac_cv_func_shmat=3Dyes}
+| ac_cv_func_shmctl=3D${ac_cv_func_shmctl=3Dyes}
+| ac_cv_func_shmdt=3D${ac_cv_func_shmdt=3Dyes}
+| ac_cv_func_shmget=3D${ac_cv_func_shmget=3Dyes}
+| ac_cv_func_shutdown=3D${ac_cv_func_shutdown=3Dyes}
+| ac_cv_func_sigaction=3D${ac_cv_func_sigaction=3Dyes}
+| ac_cv_func_sigaddset=3D${ac_cv_func_sigaddset=3Dyes}
+| ac_cv_func_sigaltstack=3D${ac_cv_func_sigaltstack=3Dyes}
+| ac_cv_func_sigblock=3D${ac_cv_func_sigblock=3Dyes}
+| ac_cv_func_sigemptyset=3D${ac_cv_func_sigemptyset=3Dyes}
+| ac_cv_func_sighold=3D${ac_cv_func_sighold=3Dyes}
+| ac_cv_func_siginterrupt=3D${ac_cv_func_siginterrupt=3Dyes}
+| ac_cv_func_signal=3D${ac_cv_func_signal=3Dyes}
+| ac_cv_func_sigprocmask=3D${ac_cv_func_sigprocmask=3Dyes}
+| ac_cv_func_sigset=3D${ac_cv_func_sigset=3Dyes}
+| ac_cv_func_sigsetmask=3D${ac_cv_func_sigsetmask=3Dyes}
+| ac_cv_func_sigstack=3D${ac_cv_func_sigstack=3Dyes}
+| ac_cv_func_sigsuspend=3D${ac_cv_func_sigsuspend=3Dyes}
+| ac_cv_func_sigvec=3D${ac_cv_func_sigvec=3Dno}
+| ac_cv_func_snprintf=3D${ac_cv_func_snprintf=3Dyes}
+| ac_cv_func_socket=3D${ac_cv_func_socket=3Dyes}
+| ac_cv_func_socketpair=3D${ac_cv_func_socketpair=3Dyes}
+| ac_cv_func_sprintf=3D${ac_cv_func_sprintf=3Dyes}
+| ac_cv_func_srand48=3D${ac_cv_func_srand48=3Dyes}
+| ac_cv_func_srand=3D${ac_cv_func_srand=3Dyes}
+| ac_cv_func_srandom=3D${ac_cv_func_srandom=3Dyes}
+| ac_cv_func_sscanf=3D${ac_cv_func_sscanf=3Dyes}
+| ac_cv_func_stat=3D${ac_cv_func_stat=3Dyes}
+| ac_cv_func_statfs=3D${ac_cv_func_statfs=3Dyes}
+| ac_cv_func_statvfs=3D${ac_cv_func_statvfs=3Dyes}
+| ac_cv_func_stime=3D${ac_cv_func_stime=3Dyes}
+| ac_cv_func_stpcpy=3D${ac_cv_func_stpcpy=3Dyes}
+| ac_cv_func_strcasecmp=3D${ac_cv_func_strcasecmp=3Dyes}
+| ac_cv_func_strcasestr=3D${ac_cv_func_strcasestr=3Dyes}
+| ac_cv_func_strchr=3D${ac_cv_func_strchr=3Dyes}
+| ac_cv_func_strchrnul=3D${ac_cv_func_strchrnul=3Dyes}
+| ac_cv_func_strcmp=3D${ac_cv_func_strcmp=3Dyes}
+| ac_cv_func_strcspn=3D${ac_cv_func_strcspn=3Dyes}
+| ac_cv_func_strdup=3D${ac_cv_func_strdup=3Dyes}
+| ac_cv_func_strerror=3D${ac_cv_func_strerror=3Dyes}
+| ac_cv_func_strerror_r=3D${ac_cv_func_strerror_r=3Dyes}
+| ac_cv_func_strftime=3D${ac_cv_func_strftime=3Dyes}
+| ac_cv_func_strlen=3D${ac_cv_func_strlen=3Dyes}
+| ac_cv_func_strncasecmp=3D${ac_cv_func_strncasecmp=3Dyes}
+| ac_cv_func_strncmp=3D${ac_cv_func_strncmp=3Dyes}
+| ac_cv_func_strndup=3D${ac_cv_func_strndup=3Dyes}
+| ac_cv_func_strnlen=3D${ac_cv_func_strnlen=3Dyes}
+| ac_cv_func_strpbrk=3D${ac_cv_func_strpbrk=3Dyes}
+| ac_cv_func_strptime=3D${ac_cv_func_strptime=3Dyes}
+| ac_cv_func_strrchr=3D${ac_cv_func_strrchr=3Dyes}
+| ac_cv_func_strsep=3D${ac_cv_func_strsep=3Dyes}
+| ac_cv_func_strsignal=3D${ac_cv_func_strsignal=3Dyes}
+| ac_cv_func_strspn=3D${ac_cv_func_strspn=3Dyes}
+| ac_cv_func_strstr=3D${ac_cv_func_strstr=3Dyes}
+| ac_cv_func_strtod=3D${ac_cv_func_strtod=3Dyes}
+| ac_cv_func_strtoimax=3D${ac_cv_func_strtoimax=3Dyes}
+| ac_cv_func_strtok_r=3D${ac_cv_func_strtok_r=3Dyes}
+| ac_cv_func_strtol=3D${ac_cv_func_strtol=3Dyes}
+| ac_cv_func_strtoll=3D${ac_cv_func_strtoll=3Dyes}
+| ac_cv_func_strtoul=3D${ac_cv_func_strtoul=3Dyes}
+| ac_cv_func_strtoull=3D${ac_cv_func_strtoull=3Dyes}
+| ac_cv_func_strtoumax=3D${ac_cv_func_strtoumax=3Dyes}
+| ac_cv_func_strverscmp=3D${ac_cv_func_strverscmp=3Dyes}
+| ac_cv_func_strxfrm=3D${ac_cv_func_strxfrm=3Dyes}
+| ac_cv_func_symlink=3D${ac_cv_func_symlink=3Dyes}
+| ac_cv_func_sync=3D${ac_cv_func_sync=3Dyes}
+| ac_cv_func_sys_siglist=3D${ac_cv_func_sys_siglist=3Dyes}
+| ac_cv_func_sysconf=3D${ac_cv_func_sysconf=3Dyes}
+| ac_cv_func_sysctl=3D${ac_cv_func_sysctl=3Dyes}
+| ac_cv_func_sysinfo=3D${ac_cv_func_sysinfo=3Dyes}
+| ac_cv_func_syslog=3D${ac_cv_func_syslog=3Dyes}
+| ac_cv_func_system=3D${ac_cv_func_system=3Dyes}
+| ac_cv_func_tcgetattr=3D${ac_cv_func_tcgetattr=3Dyes}
+| ac_cv_func_tcgetpgrp=3D${ac_cv_func_tcgetpgrp=3Dyes}
+| ac_cv_func_tcsetattr=3D${ac_cv_func_tcsetattr=3Dyes}
+| ac_cv_func_tcsetpgrp=3D${ac_cv_func_tcsetpgrp=3Dyes}
+| ac_cv_func_time=3D${ac_cv_func_time=3Dyes}
+| ac_cv_func_timegm=3D${ac_cv_func_timegm=3Dyes}
+| ac_cv_func_times=3D${ac_cv_func_times=3Dyes}
+| ac_cv_func_timezone=3D${ac_cv_func_timezone=3Dyes}
+| ac_cv_func_tmpnam=3D${ac_cv_func_tmpnam=3Dyes}
+| ac_cv_func_towlower=3D${ac_cv_func_towlower=3Dyes}
+| ac_cv_func_towupper=3D${ac_cv_func_towupper=3Dyes}
+| ac_cv_func_truncate=3D${ac_cv_func_truncate=3Dyes}
+| ac_cv_func_tsearch=3D${ac_cv_func_tsearch=3Dyes}
+| ac_cv_func_ttyname=3D${ac_cv_func_ttyname=3Dyes}
+| ac_cv_func_tzset=3D${ac_cv_func_tzset=3Dyes}
+| ac_cv_func_ulimit=3D${ac_cv_func_ulimit=3Dyes}
+| ac_cv_func_umask=3D${ac_cv_func_umask=3Dyes}
+| ac_cv_func_uname=3D${ac_cv_func_uname=3Dyes}
+| ac_cv_func_unlink=3D${ac_cv_func_unlink=3Dyes}
+| ac_cv_func_unsetenv=3D${ac_cv_func_unsetenv=3Dyes}
+| ac_cv_func_unshare=3D${ac_cv_func_unshare=3Dyes}
+| ac_cv_func_updwtmp=3D${ac_cv_func_updwtmp=3Dyes}
+| ac_cv_func_updwtmpx=3D${ac_cv_func_updwtmpx=3Dyes}
+| ac_cv_func_usleep=3D${ac_cv_func_usleep=3Dyes}
+| ac_cv_func_ustat=3D${ac_cv_func_ustat=3Dyes}
+| ac_cv_func_utime=3D${ac_cv_func_utime=3Dyes}
+| ac_cv_func_utimes=3D${ac_cv_func_utimes=3Dyes}
+| ac_cv_func_utmpname=3D${ac_cv_func_utmpname=3Dyes}
+| ac_cv_func_utmpxname=3D${ac_cv_func_utmpxname=3Dyes}
+| ac_cv_func_valloc=3D${ac_cv_func_valloc=3Dyes}
+| ac_cv_func_vasprintf=3D${ac_cv_func_vasprintf=3Dyes}
+| ac_cv_func_verrx=3D${ac_cv_func_verrx=3Dyes}
+| ac_cv_func_vfork=3D${ac_cv_func_vfork=3Dyes}
+| ac_cv_func_vfprintf=3D${ac_cv_func_vfprintf=3Dyes}
+| ac_cv_func_vfscanf=3D${ac_cv_func_vfscanf=3Dyes}
+| ac_cv_func_vhangup=3D${ac_cv_func_vhangup=3Dyes}
+| ac_cv_func_vprintf=3D${ac_cv_func_vprintf=3Dyes}
+| ac_cv_func_vsnprintf=3D${ac_cv_func_vsnprintf=3Dyes}
+| ac_cv_func_vsprintf=3D${ac_cv_func_vsprintf=3Dyes}
+| ac_cv_func_wait3=3D${ac_cv_func_wait3=3Dyes}
+| ac_cv_func_wait4=3D${ac_cv_func_wait4=3Dyes}
+| ac_cv_func_waitpid=3D${ac_cv_func_waitpid=3Dyes}
+| ac_cv_func_wcrtomb=3D${ac_cv_func_wcrtomb=3Dyes}
+| ac_cv_func_wcscoll=3D${ac_cv_func_wcscoll=3Dyes}
+| ac_cv_func_wcsdup=3D${ac_cv_func_wcsdup=3Dyes}
+| ac_cv_func_wcslen=3D${ac_cv_func_wcslen=3Dyes}
+| ac_cv_func_wctob=3D${ac_cv_func_wctob=3Dyes}
+| ac_cv_func_wctomb=3D${ac_cv_func_wctomb=3Dyes}
+| ac_cv_func_wctype=3D${ac_cv_func_wctype=3Dyes}
+| ac_cv_func_wcwidth=3D${ac_cv_func_wcwidth=3Dyes}
+| ac_cv_func_wmemchr=3D${ac_cv_func_wmemchr=3Dyes}
+| ac_cv_func_wmemcpy=3D${ac_cv_func_wmemcpy=3Dyes}
+| ac_cv_func_wmempcpy=3D${ac_cv_func_wmempcpy=3Dyes}
+| ac_cv_header_aio_h=3D${ac_cv_header_aio_h=3Dyes}
+| ac_cv_header_alloca_h=3D${ac_cv_header_alloca_h=3Dyes}
+| ac_cv_header_argz_h=3D${ac_cv_header_argz_h=3Dyes}
+| ac_cv_header_arpa_inet_h=3D${ac_cv_header_arpa_inet_h=3Dyes}
+| ac_cv_header_arpa_nameser_h=3D${ac_cv_header_arpa_nameser_h=3Dyes}
+| ac_cv_header_asm_byteorder_h=3D${ac_cv_header_asm_byteorder_h=3Dyes}
+| ac_cv_header_asm_ioctls_h=3D${ac_cv_header_asm_ioctls_h=3Dyes}
+| ac_cv_header_asm_page_h=3D${ac_cv_header_asm_page_h=3Dno}
+| ac_cv_header_asm_types_h=3D${ac_cv_header_asm_types_h=3Dyes}
+| ac_cv_header_assert_h=3D${ac_cv_header_assert_h=3Dyes}
+| ac_cv_header_byteswap_h=3D${ac_cv_header_byteswap_h=3Dyes}
+| ac_cv_header_ctype_h=3D${ac_cv_header_ctype_h=3Dyes}
+| ac_cv_header_dirent_h=3D${ac_cv_header_dirent_h=3Dyes}
+| ac_cv_header_dlfcn_h=3D${ac_cv_header_dlfcn_h=3Dyes}
+| ac_cv_header_elf_h=3D${ac_cv_header_elf_h=3Dyes}
+| ac_cv_header_endian_h=3D${ac_cv_header_endian_h=3Dyes}
+| ac_cv_header_err_h=3D${ac_cv_header_err_h=3Dyes}
+| ac_cv_header_errno_h=3D${ac_cv_header_errno_h=3Dyes}
+| ac_cv_header_execinfo_h=3D${ac_cv_header_execinfo_h=3Dyes}
+| ac_cv_header_fcntl_h=3D${ac_cv_header_fcntl_h=3Dyes}
+| ac_cv_header_features_h=3D${ac_cv_header_features_h=3Dyes}
+| ac_cv_header_float_h=3D${ac_cv_header_float_h=3Dyes}
+| ac_cv_header_fstab_h=3D${ac_cv_header_fstab_h=3Dyes}
+| ac_cv_header_ftw_h=3D${ac_cv_header_ftw_h=3Dyes}
+| ac_cv_header_getopt_h=3D${ac_cv_header_getopt_h=3Dyes}
+| ac_cv_header_glob_h=3D${ac_cv_header_glob_h=3Dyes}
+| ac_cv_header_grp_h=3D${ac_cv_header_grp_h=3Dyes}
+| ac_cv_header_iconv_h=3D${ac_cv_header_iconv_h=3Dyes}
+| ac_cv_header_ifaddrs_h=3D${ac_cv_header_ifaddrs_h=3Dyes}
+| ac_cv_header_inttypes_h=3D${ac_cv_header_inttypes_h=3Dyes}
+| ac_cv_header_langinfo_h=3D${ac_cv_header_langinfo_h=3Dyes}
+| ac_cv_header_lastlog_h=3D${ac_cv_header_lastlog_h=3Dyes}
+| ac_cv_header_libgen_h=3D${ac_cv_header_libgen_h=3Dyes}
+| ac_cv_header_libintl_h=3D${ac_cv_header_libintl_h=3Dyes}
+| ac_cv_header_limits_h=3D${ac_cv_header_limits_h=3Dyes}
+| ac_cv_header_linux_capability_h=3D${ac_cv_header_linux_capability_h=3Dyes=
+}
+| ac_cv_header_linux_fd_h=3D${ac_cv_header_linux_fd_h=3Dyes}
+| ac_cv_header_linux_fs_h=3D${ac_cv_header_linux_fs_h=3Dyes}
+| ac_cv_header_linux_hayesesp_h=3D${ac_cv_header_linux_hayesesp_h=3Dno}
+| ac_cv_header_linux_hdreg_h=3D${ac_cv_header_linux_hdreg_h=3Dyes}
+| ac_cv_header_linux_icmp_h=3D${ac_cv_header_linux_icmp_h=3Dyes}
+| ac_cv_header_linux_in6_h=3D${ac_cv_header_linux_in6_h=3Dyes}
+| ac_cv_header_linux_joystick_h=3D${ac_cv_header_linux_joystick_h=3Dyes}
+| ac_cv_header_linux_ptrace_h=3D${ac_cv_header_linux_ptrace_h=3Dyes}
+| ac_cv_header_linux_serial_h=3D${ac_cv_header_linux_serial_h=3Dyes}
+| ac_cv_header_linux_sonypi_h=3D${ac_cv_header_linux_sonypi_h=3Dyes}
+| ac_cv_header_linux_unistd_h=3D${ac_cv_header_linux_unistd_h=3Dyes}
+| ac_cv_header_linux_utsname_h=3D${ac_cv_header_linux_utsname_h=3Dyes}
+| ac_cv_header_linux_version_h=3D${ac_cv_header_linux_version_h=3Dyes}
+| ac_cv_header_locale_h=3D${ac_cv_header_locale_h=3Dyes}
+| ac_cv_header_malloc_h=3D${ac_cv_header_malloc_h=3Dyes}
+| ac_cv_header_math_h=3D${ac_cv_header_math_h=3Dyes}
+| ac_cv_header_mcheck_h=3D${ac_cv_header_mcheck_h=3Dyes}
+| ac_cv_header_memory_h=3D${ac_cv_header_memory_h=3Dyes}
+| ac_cv_header_mntent_h=3D${ac_cv_header_mntent_h=3Dyes}
+| ac_cv_header_mqueue_h=3D${ac_cv_header_mqueue_h=3Dyes}
+| ac_cv_header_net_if_h=3D${ac_cv_header_net_if_h=3Dyes}
+| ac_cv_header_net_route_h=3D${ac_cv_header_net_route_h=3Dyes}
+| ac_cv_header_netdb_h=3D${ac_cv_header_netdb_h=3Dyes}
+| ac_cv_header_netinet_ether_h=3D${ac_cv_header_netinet_ether_h=3Dyes}
+| ac_cv_header_netinet_in_h=3D${ac_cv_header_netinet_in_h=3Dyes}
+| ac_cv_header_netinet_ip6_h=3D${ac_cv_header_netinet_ip6_h=3Dyes}
+| ac_cv_header_netinet_ip_h=3D${ac_cv_header_netinet_ip_h=3Dyes}
+| ac_cv_header_netinet_tcp_h=3D${ac_cv_header_netinet_tcp_h=3Dyes}
+| ac_cv_header_netinet_udp_h=3D${ac_cv_header_netinet_udp_h=3Dyes}
+| ac_cv_header_netipx_ipx_h=3D${ac_cv_header_netipx_ipx_h=3Dyes}
+| ac_cv_header_paths_h=3D${ac_cv_header_paths_h=3Dyes}
+| ac_cv_header_poll_h=3D${ac_cv_header_poll_h=3Dyes}
+| ac_cv_header_pthread_h=3D${ac_cv_header_pthread_h=3Dyes}
+| ac_cv_header_pty_h=3D${ac_cv_header_pty_h=3Dyes}
+| ac_cv_header_pwd_h=3D${ac_cv_header_pwd_h=3Dyes}
+| ac_cv_header_regex_h=3D${ac_cv_header_regex_h=3Dyes}
+| ac_cv_header_resolv_h=3D${ac_cv_header_resolv_h=3Dyes}
+| ac_cv_header_rpc_rpc_h=3D${ac_cv_header_rpc_rpc_h=3Dno}
+| ac_cv_header_rpc_types_h=3D${ac_cv_header_rpc_types_h=3Dno}
+| ac_cv_header_sched_h=3D${ac_cv_header_sched_h=3Dyes}
+| ac_cv_header_scsi_scsi_h=3D${ac_cv_header_scsi_scsi_h=3Dyes}
+| ac_cv_header_search_h=3D${ac_cv_header_search_h=3Dyes}
+| ac_cv_header_semaphore_h=3D${ac_cv_header_semaphore_h=3Dyes}
+| ac_cv_header_setjmp_h=3D${ac_cv_header_setjmp_h=3Dyes}
+| ac_cv_header_sgtty_h=3D${ac_cv_header_sgtty_h=3Dyes}
+| ac_cv_header_shadow_h=3D${ac_cv_header_shadow_h=3Dyes}
+| ac_cv_header_signal_h=3D${ac_cv_header_signal_h=3Dyes}
+| ac_cv_header_stdarg_h=3D${ac_cv_header_stdarg_h=3Dyes}
+| ac_cv_header_stdbool_h=3D${ac_cv_header_stdbool_h=3Dyes}
+| ac_cv_header_stdc=3D${ac_cv_header_stdc=3Dyes}
+| ac_cv_header_stddef_h=3D${ac_cv_header_stddef_h=3Dyes}
+| ac_cv_header_stdint_h=3D${ac_cv_header_stdint_h=3Dyes}
+| ac_cv_header_stdio_h=3D${ac_cv_header_stdio_h=3Dyes}
+| ac_cv_header_stdlib_h=3D${ac_cv_header_stdlib_h=3Dyes}
+| ac_cv_header_string_h=3D${ac_cv_header_string_h=3Dyes}
+| ac_cv_header_strings_h=3D${ac_cv_header_strings_h=3Dyes}
+| ac_cv_header_stropts_h=3D${ac_cv_header_stropts_h=3Dyes}
+| ac_cv_header_sys_bitypes_h=3D${ac_cv_header_sys_bitypes_h=3Dyes}
+| ac_cv_header_sys_cdefs_h=3D${ac_cv_header_sys_cdefs_h=3Dyes}
+| ac_cv_header_sys_dir_h=3D${ac_cv_header_sys_dir_h=3Dyes}
+| ac_cv_header_sys_epoll_h=3D${ac_cv_header_sys_epoll_h=3Dyes}
+| ac_cv_header_sys_fcntl_h=3D${ac_cv_header_sys_fcntl_h=3Dyes}
+| ac_cv_header_sys_file_h=3D${ac_cv_header_sys_file_h=3Dyes}
+| ac_cv_header_sys_fsuid_h=3D${ac_cv_header_sys_fsuid_h=3Dyes}
+| ac_cv_header_sys_ioctl_h=3D${ac_cv_header_sys_ioctl_h=3Dyes}
+| ac_cv_header_sys_ipc_h=3D${ac_cv_header_sys_ipc_h=3Dyes}
+| ac_cv_header_sys_mman_h=3D${ac_cv_header_sys_mman_h=3Dyes}
+| ac_cv_header_sys_mount_h=3D${ac_cv_header_sys_mount_h=3Dyes}
+| ac_cv_header_sys_mtio_h=3D${ac_cv_header_sys_mtio_h=3Dyes}
+| ac_cv_header_sys_param_h=3D${ac_cv_header_sys_param_h=3Dyes}
+| ac_cv_header_sys_poll_h=3D${ac_cv_header_sys_poll_h=3Dyes}
+| ac_cv_header_sys_prctl_h=3D${ac_cv_header_sys_prctl_h=3Dyes}
+| ac_cv_header_sys_ptrace_h=3D${ac_cv_header_sys_ptrace_h=3Dyes}
+| ac_cv_header_sys_queue_h=3D${ac_cv_header_sys_queue_h=3Dyes}
+| ac_cv_header_sys_reg_h=3D${ac_cv_header_sys_reg_h=3Dno}
+| ac_cv_header_sys_resource_h=3D${ac_cv_header_sys_resource_h=3Dyes}
+| ac_cv_header_sys_select_h=3D${ac_cv_header_sys_select_h=3Dyes}
+| ac_cv_header_sys_sem_h=3D${ac_cv_header_sys_sem_h=3Dyes}
+| ac_cv_header_sys_shm_h=3D${ac_cv_header_sys_shm_h=3Dyes}
+| ac_cv_header_sys_signal_h=3D${ac_cv_header_sys_signal_h=3Dyes}
+| ac_cv_header_sys_socket_h=3D${ac_cv_header_sys_socket_h=3Dyes}
+| ac_cv_header_sys_socketvar_h=3D${ac_cv_header_sys_socketvar_h=3Dyes}
+| ac_cv_header_sys_soundcard_h=3D${ac_cv_header_sys_soundcard_h=3Dyes}
+| ac_cv_header_sys_stat_h=3D${ac_cv_header_sys_stat_h=3Dyes}
+| ac_cv_header_sys_statfs_h=3D${ac_cv_header_sys_statfs_h=3Dyes}
+| ac_cv_header_sys_statvfs_h=3D${ac_cv_header_sys_statvfs_h=3Dyes}
+| ac_cv_header_sys_stropts_h=3D${ac_cv_header_sys_stropts_h=3Dyes}
+| ac_cv_header_sys_swap_h=3D${ac_cv_header_sys_swap_h=3Dyes}
+| ac_cv_header_sys_sysctl_h=3D${ac_cv_header_sys_sysctl_h=3Dyes}
+| ac_cv_header_sys_sysinfo_h=3D${ac_cv_header_sys_sysinfo_h=3Dyes}
+| ac_cv_header_sys_sysmacros_h=3D${ac_cv_header_sys_sysmacros_h=3Dyes}
+| ac_cv_header_sys_termios_h=3D${ac_cv_header_sys_termios_h=3Dyes}
+| ac_cv_header_sys_time_h=3D${ac_cv_header_sys_time_h=3Dyes}
+| ac_cv_header_sys_timeb_h=3D${ac_cv_header_sys_timeb_h=3Dyes}
+| ac_cv_header_sys_times_h=3D${ac_cv_header_sys_times_h=3Dyes}
+| ac_cv_header_sys_timex_h=3D${ac_cv_header_sys_timex_h=3Dyes}
+| ac_cv_header_sys_types_h=3D${ac_cv_header_sys_types_h=3Dyes}
+| ac_cv_header_sys_uio_h=3D${ac_cv_header_sys_uio_h=3Dyes}
+| ac_cv_header_sys_un_h=3D${ac_cv_header_sys_un_h=3Dyes}
+| ac_cv_header_sys_unistd_h=3D${ac_cv_header_sys_unistd_h=3Dyes}
+| ac_cv_header_sys_user_h=3D${ac_cv_header_sys_user_h=3Dyes}
+| ac_cv_header_sys_utsname_h=3D${ac_cv_header_sys_utsname_h=3Dyes}
+| ac_cv_header_sys_vfs_h=3D${ac_cv_header_sys_vfs_h=3Dyes}
+| ac_cv_header_sys_wait_h=3D${ac_cv_header_sys_wait_h=3Dyes}
+| ac_cv_header_sysexits_h=3D${ac_cv_header_sysexits_h=3Dyes}
+| ac_cv_header_syslog_h=3D${ac_cv_header_syslog_h=3Dyes}
+| ac_cv_header_termio_h=3D${ac_cv_header_termio_h=3Dyes}
+| ac_cv_header_termios_h=3D${ac_cv_header_termios_h=3Dyes}
+| ac_cv_header_time_h=3D${ac_cv_header_time_h=3Dyes}
+| ac_cv_header_ttyent_h=3D${ac_cv_header_ttyent_h=3Dyes}
+| ac_cv_header_ulimit_h=3D${ac_cv_header_ulimit_h=3Dyes}
+| ac_cv_header_unistd_h=3D${ac_cv_header_unistd_h=3Dyes}
+| ac_cv_header_ustat_h=3D${ac_cv_header_ustat_h=3Dyes}
+| ac_cv_header_utime_h=3D${ac_cv_header_utime_h=3Dyes}
+| ac_cv_header_utmp_h=3D${ac_cv_header_utmp_h=3Dyes}
+| ac_cv_header_utmpx_h=3D${ac_cv_header_utmpx_h=3Dyes}
+| ac_cv_header_values_h=3D${ac_cv_header_values_h=3Dyes}
+| ac_cv_header_wchar_h=3D${ac_cv_header_wchar_h=3Dyes}
+| ac_cv_header_wctype_h=3D${ac_cv_header_wctype_h=3Dyes}
+| ac_cv_sizeof_char=3D${ac_cv_sizeof_char=3D1}
+| ac_cv_sizeof_char_p=3D${ac_cv_sizeof_char_p=3D8}
+| ac_cv_sizeof_double=3D${ac_cv_sizeof_double=3D8}
+| ac_cv_sizeof_float=3D${ac_cv_sizeof_float=3D4}
+| ac_cv_sizeof_int=3D${ac_cv_sizeof_int=3D4}
+| ac_cv_sizeof_long=3D${ac_cv_sizeof_long=3D8}
+| ac_cv_sizeof_long_double=3D${ac_cv_sizeof_long_double=3D16}
+| ac_cv_sizeof_long_int=3D${ac_cv_sizeof_long_int=3D8}
+| ac_cv_sizeof_long_long=3D${ac_cv_sizeof_long_long=3D8}
+| ac_cv_sizeof_long_long_int=3D${ac_cv_sizeof_long_long_int=3D8}
+| ac_cv_sizeof_short=3D${ac_cv_sizeof_short=3D2}
+| ac_cv_sizeof_short_int=3D${ac_cv_sizeof_short_int=3D2}
+| ac_cv_sizeof_signed_char=3D${ac_cv_sizeof_signed_char=3D1}
+| ac_cv_sizeof_unsigned_char=3D${ac_cv_sizeof_unsigned_char=3D1}
+| ac_cv_sizeof_unsigned_int=3D${ac_cv_sizeof_unsigned_int=3D4}
+| ac_cv_sizeof_unsigned_long=3D${ac_cv_sizeof_unsigned_long=3D8}
+| ac_cv_sizeof_unsigned_long_int=3D${ac_cv_sizeof_unsigned_long_int=3D8}
+| ac_cv_sizeof_unsigned_long_long_int=3D${ac_cv_sizeof_unsigned_long_long_i=
+nt=3D8}
+| ac_cv_sizeof_unsigned_short=3D${ac_cv_sizeof_unsigned_short=3D2}
+| ac_cv_sizeof_unsigned_short_int=3D${ac_cv_sizeof_unsigned_short_int=3D2}
+| ac_cv_sizeof_void_p=3D${ac_cv_sizeof_void_p=3D8}
+configure:3357: checking for aarch64-poky-linux-gcc
+configure:3384: result: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/var=
+iscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-=
+poky-linux/sssd/1.16.0-r0/recipe-sysroot
+configure:3653: checking for C compiler version
+configure:3662: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot --version >&5
+aarch64-poky-linux-gcc (GCC) 7.3.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:3673: $? =3D 0
+configure:3662: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -v >&5
+Using built-in specs.
+COLLECT_GCC=3Daarch64-poky-linux-gcc
+COLLECT_LTO_WRAPPER=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-y=
+octo/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysro=
+ot-native/usr/bin/aarch64-poky-linux/../../libexec/aarch64-poky-linux/gcc/a=
+arch64-poky-linux/7.3.0/lto-wrapper
+Target: aarch64-poky-linux
+Configured with: ../../../../../../work-shared/gcc-7.3.0-r0/gcc-7.3.0/confi=
+gure --build=3Dx86_64-linux --host=3Dx86_64-linux --target=3Daarch64-poky-l=
+inux --prefix=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/b=
+uild_xwayland/tmp/work/x86_64-linux/gcc-cross-aarch64/7.3.0-r0/recipe-sysro=
+ot-native/usr --exec_prefix=3D/opt/boards/variscite/imx8/linux/yocto_sumo/v=
+ar-fsl-yocto/build_xwayland/tmp/work/x86_64-linux/gcc-cross-aarch64/7.3.0-r=
+0/recipe-sysroot-native/usr --bindir=3D/opt/boards/variscite/imx8/linux/yoc=
+to_sumo/var-fsl-yocto/build_xwayland/tmp/work/x86_64-linux/gcc-cross-aarch6=
+4/7.3.0-r0/recipe-sysroot-native/usr/bin/aarch64-poky-linux --sbindir=3D/op=
+t/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/w=
+ork/x86_64-linux/gcc-cross-aarch64/7.3.0-r0/recipe-sysroot-native/usr/bin/a=
+arch64-poky-linux --libexecdir=3D/opt/boards/variscite/imx8/linux/yocto_sum=
+o/var-fsl-yocto/build_xwayland/tmp/work/x86_64-linux/gcc-cross-aarch64/7.3.=
+0-r0/recipe-sysroot-native/usr/libexec/aarch64-poky-linux --datadir=3D/opt/=
+boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/wor=
+k/x86_64-linux/gcc-cross-aarch64/7.3.0-r0/recipe-sysroot-native/usr/share -=
+-sysconfdir=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/bui=
+ld_xwayland/tmp/work/x86_64-linux/gcc-cross-aarch64/7.3.0-r0/recipe-sysroot=
+-native/etc --sharedstatedir=3D/opt/boards/variscite/imx8/linux/yocto_sumo/=
+var-fsl-yocto/build_xwayland/tmp/work/x86_64-linux/gcc-cross-aarch64/7.3.0-=
+r0/recipe-sysroot-native/com --localstatedir=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/x86_64-linux/gcc-cros=
+s-aarch64/7.3.0-r0/recipe-sysroot-native/var --libdir=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/x86_64-linux=
+/gcc-cross-aarch64/7.3.0-r0/recipe-sysroot-native/usr/lib/aarch64-poky-linu=
+x --includedir=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/=
+build_xwayland/tmp/work/x86_64-linux/gcc-cross-aarch64/7.3.0-r0/recipe-sysr=
+oot-native/usr/include --oldincludedir=3D/opt/boards/variscite/imx8/linux/y=
+octo_sumo/var-fsl-yocto/build_xwayland/tmp/work/x86_64-linux/gcc-cross-aarc=
+h64/7.3.0-r0/recipe-sysroot-native/usr/include --infodir=3D/opt/boards/vari=
+scite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/x86_64-li=
+nux/gcc-cross-aarch64/7.3.0-r0/recipe-sysroot-native/usr/share/info --mandi=
+r=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwaylan=
+d/tmp/work/x86_64-linux/gcc-cross-aarch64/7.3.0-r0/recipe-sysroot-native/us=
+r/share/man --disable-silent-rules --disable-dependency-tracking --with-lib=
+tool-sysroot=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/bu=
+ild_xwayland/tmp/work/x86_64-linux/gcc-cross-aarch64/7.3.0-r0/recipe-sysroo=
+t-native --enable-clocale=3Dgeneric --with-gnu-ld --enable-shared --enable-=
+languages=3Dc,c++ --enable-threads=3Dposix --disable-multilib --enable-c99 =
+--enable-long-long --enable-symvers=3Dgnu --enable-libstdcxx-pch --program-=
+prefix=3Daarch64-poky-linux- --without-local-prefix --enable-lto --enable-l=
+ibssp --enable-libitm --disable-bootstrap --disable-libmudflap --with-syste=
+m-zlib --with-linker-hash-style=3Dsysv --enable-linker-build-id --with-ppl=
+=3Dno --with-cloog=3Dno --enable-checking=3Drelease --enable-cheaders=3Dc_g=
+lobal --without-isl --with-gxx-include-dir=3D/not/exist/usr/include/c++/7.3=
+.0 --with-sysroot=3D/not/exist --with-build-sysroot=3D/opt/boards/variscite=
+/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/x86_64-linux/g=
+cc-cross-aarch64/7.3.0-r0/recipe-sysroot --without-long-double-128 --enable=
+-poison-system-directories --with-mpfr=3D/opt/boards/variscite/imx8/linux/y=
+octo_sumo/var-fsl-yocto/build_xwayland/tmp/work/x86_64-linux/gcc-cross-aarc=
+h64/7.3.0-r0/recipe-sysroot-native/usr --with-system-zlib --disable-nls --e=
+nable-initfini-array --enable-__cxa_atexit
+Thread model: posix
+gcc version 7.3.0 (GCC)=20
+configure:3673: $? =3D 0
+configure:3662: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -V >&5
+aarch64-poky-linux-gcc: error: unrecognized command line option '-V'
+aarch64-poky-linux-gcc: fatal error: no input files
+compilation terminated.
+configure:3673: $? =3D 1
+configure:3662: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -qversion >&5
+aarch64-poky-linux-gcc: error: unrecognized command line option '-qversion'=
+; did you mean '--version'?
+aarch64-poky-linux-gcc: fatal error: no input files
+compilation terminated.
+configure:3673: $? =3D 1
+configure:3693: checking whether the C compiler works
+configure:3715: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot  -O2 -pipe -g -feliminate-unused-debug-typ=
+es -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl=
+-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr/src=
+/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux=
+/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1=
+.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/imx8/=
+linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/s=
+ssd/1.16.0-r0/recipe-sysroot-native=3D   -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  >&5
+configure:3719: $? =3D 0
+configure:3767: result: yes
+configure:3770: checking for C compiler default output file name
+configure:3772: result: a.out
+configure:3778: checking for suffix of executables
+configure:3785: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unus=
+ed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_=
+sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r=
+0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/var=
+iscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-=
+poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D   -Wl,-O1 -Wl,--hash-sty=
+le=3Dgnu -Wl,--as-needed conftest.c  >&5
+configure:3789: $? =3D 0
+configure:3811: result:=20
+configure:3833: checking whether we are cross compiling
+configure:3871: result: yes
+configure:3876: checking for suffix of object files
+configure:3898: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug-=
+types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr/=
+src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/li=
+nux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sss=
+d/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/im=
+x8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linu=
+x/sssd/1.16.0-r0/recipe-sysroot-native=3D   conftest.c >&5
+configure:3902: $? =3D 0
+configure:3923: result: o
+configure:3927: checking whether we are using the GNU C compiler
+configure:3946: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug-=
+types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr/=
+src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/li=
+nux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sss=
+d/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/im=
+x8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linu=
+x/sssd/1.16.0-r0/recipe-sysroot-native=3D   conftest.c >&5
+configure:3946: $? =3D 0
+configure:3955: result: yes
+configure:3964: checking whether aarch64-poky-linux-gcc  --sysroot=3D/opt/b=
+oards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work=
+/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot accepts -g
+configure:3984: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -c -g  conftest.c >&5
+configure:3984: $? =3D 0
+configure:4025: result: yes
+configure:4042: checking for aarch64-poky-linux-gcc  --sysroot=3D/opt/board=
+s/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aar=
+ch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot option to accept ISO C89
+configure:4105: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot  -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D   conftest.c >&5
+configure:4105: $? =3D 0
+configure:4118: result: none needed
+configure:4143: checking whether aarch64-poky-linux-gcc  --sysroot=3D/opt/b=
+oards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work=
+/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot understands -c and -o tog=
+ether
+configure:4165: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -c conftest.c -o conftest2.o
+configure:4168: $? =3D 0
+configure:4165: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -c conftest.c -o conftest2.o
+configure:4168: $? =3D 0
+configure:4180: result: yes
+configure:4203: checking how to run the C preprocessor
+configure:4273: result: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/v=
+ariscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch6=
+4-poky-linux/sssd/1.16.0-r0/recipe-sysroot=20
+configure:4293: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscite=
+/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-l=
+inux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+configure:4293: $? =3D 0
+configure:4307: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscite=
+/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-l=
+inux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+conftest.c:9:10: fatal error: ac_nonexistent.h: No such file or directory
+ #include <ac_nonexistent.h>
+          ^~~~~~~~~~~~~~~~~~
+compilation terminated.
+configure:4307: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| /* end confdefs.h.  */
+| #include <ac_nonexistent.h>
+configure:4336: checking for grep that handles long lines and -e
+configure:4394: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl=
+-yocto/build_xwayland/tmp/hosttools/grep
+configure:4399: checking for egrep
+configure:4461: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl=
+-yocto/build_xwayland/tmp/hosttools/grep -E
+configure:4466: checking for ANSI C header files
+configure:4570: result: yes
+configure:4583: checking for sys/types.h
+configure:4583: result: yes
+configure:4583: checking for sys/stat.h
+configure:4583: result: yes
+configure:4583: checking for stdlib.h
+configure:4583: result: yes
+configure:4583: checking for string.h
+configure:4583: result: yes
+configure:4583: checking for memory.h
+configure:4583: result: yes
+configure:4583: checking for strings.h
+configure:4583: result: yes
+configure:4583: checking for inttypes.h
+configure:4583: result: yes
+configure:4583: checking for stdint.h
+configure:4583: result: yes
+configure:4583: checking for unistd.h
+configure:4583: result: yes
+configure:4596: checking minix/config.h usability
+configure:4596: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug-=
+types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr/=
+src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/li=
+nux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sss=
+d/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/im=
+x8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linu=
+x/sssd/1.16.0-r0/recipe-sysroot-native=3D   conftest.c >&5
+conftest.c:52:10: fatal error: minix/config.h: No such file or directory
+ #include <minix/config.h>
+          ^~~~~~~~~~~~~~~~
+compilation terminated.
+configure:4596: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| #include <minix/config.h>
+configure:4596: result: no
+configure:4596: checking minix/config.h presence
+configure:4596: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscite=
+/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-l=
+inux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+conftest.c:19:10: fatal error: minix/config.h: No such file or directory
+ #include <minix/config.h>
+          ^~~~~~~~~~~~~~~~
+compilation terminated.
+configure:4596: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| /* end confdefs.h.  */
+| #include <minix/config.h>
+configure:4596: result: no
+configure:4596: checking for minix/config.h
+configure:4596: result: no
+configure:4617: checking whether it is safe to define __EXTENSIONS__
+configure:4635: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug-=
+types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr/=
+src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/li=
+nux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sss=
+d/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/im=
+x8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linu=
+x/sssd/1.16.0-r0/recipe-sysroot-native=3D   conftest.c >&5
+configure:4635: $? =3D 0
+configure:4642: result: yes
+configure:4676: checking for a BSD-compatible install
+configure:4744: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl=
+-yocto/build_xwayland/tmp/hosttools/install -c
+configure:4755: checking whether build environment is sane
+configure:4770: result: yes
+configure:4817: checking for aarch64-poky-linux-strip
+configure:4844: result: aarch64-poky-linux-strip
+configure:4909: checking for a thread-safe mkdir -p
+configure:4948: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl=
+-yocto/build_xwayland/tmp/hosttools/mkdir -p
+configure:4955: checking for gawk
+configure:4971: found /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-y=
+octo/build_xwayland/tmp/hosttools/gawk
+configure:4982: result: gawk
+configure:4993: checking whether make sets $(MAKE)
+configure:5015: result: yes
+configure:5045: checking for style of include used by make
+configure:5073: result: GNU
+configure:5107: checking whether make supports nested variables
+configure:5124: result: yes
+
+configure:5203: checking how to create a pax tar archive
+configure:5214: tar --version
+tar (GNU tar) 1.28
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.htm=
+l>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by John Gilmore and Jay Fenlason.
+configure:5217: $? =3D 0
+configure:5257: tardir=3Dconftest.dir && eval tar --format=3Dposix -chf - "=
+$tardir" >conftest.tar
+configure:5260: $? =3D 0
+configure:5264: tar -xf - <conftest.tar
+configure:5267: $? =3D 0
+configure:5269: cat conftest.dir/file
+GrepMe
+configure:5272: $? =3D 0
+configure:5285: result: gnutar
+configure:5294: checking dependency style of aarch64-poky-linux-gcc  --sysr=
+oot=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayl=
+and/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot
+configure:5405: result: none
+configure:5469: checking for aarch64-poky-linux-ar
+configure:5496: result: aarch64-poky-linux-ar
+configure:5566: checking the archiver (aarch64-poky-linux-ar) interface
+configure:5582: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug-=
+types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr/=
+src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/li=
+nux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sss=
+d/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/im=
+x8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linu=
+x/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LARG=
+EFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:5582: $? =3D 0
+configure:5584: aarch64-poky-linux-ar cru libconftest.a conftest.o >&5
+aarch64-poky-linux-ar: `u' modifier ignored since `D' is the default (see `=
+U')
+configure:5587: $? =3D 0
+configure:5615: result: ar
+configure:5696: checking build system type
+configure:5710: result: x86_64-pc-linux-gnu
+configure:5730: checking host system type
+configure:5743: result: aarch64-poky-linux-gnu
+configure:5784: checking how to print strings
+configure:5811: result: printf
+configure:5832: checking for a sed that does not truncate output
+configure:5896: result: sed
+configure:5914: checking for fgrep
+configure:5976: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl=
+-yocto/build_xwayland/tmp/hosttools/grep -F
+configure:6011: checking for ld used by aarch64-poky-linux-gcc  --sysroot=
+=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland=
+/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot
+configure:6078: result: aarch64-poky-linux-ld --sysroot=3D/opt/boards/varis=
+cite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-po=
+ky-linux/sssd/1.16.0-r0/recipe-sysroot=20
+configure:6085: checking if the linker (aarch64-poky-linux-ld --sysroot=3D/=
+opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp=
+/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot ) is GNU ld
+configure:6100: result: yes
+configure:6112: checking for BSD- or MS-compatible name lister (nm)
+configure:6166: result: aarch64-poky-linux-nm
+configure:6296: checking the name lister (aarch64-poky-linux-nm) interface
+configure:6303: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug-=
+types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr/=
+src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/li=
+nux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sss=
+d/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/im=
+x8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linu=
+x/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LARG=
+EFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:6306: aarch64-poky-linux-nm "conftest.o"
+configure:6309: output
+0000000000000000 B some_variable
+configure:6316: result: BSD nm
+configure:6319: checking whether ln -s works
+configure:6323: result: yes
+configure:6331: checking the maximum length of command line arguments
+configure:6462: result: 1572864
+configure:6510: checking how to convert x86_64-pc-linux-gnu file names to a=
+arch64-poky-linux-gnu format
+configure:6550: result: func_convert_file_noop
+configure:6557: checking how to convert x86_64-pc-linux-gnu file names to t=
+oolchain format
+configure:6577: result: func_convert_file_noop
+configure:6584: checking for aarch64-poky-linux-ld --sysroot=3D/opt/boards/=
+variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch=
+64-poky-linux/sssd/1.16.0-r0/recipe-sysroot  option to reload object files
+configure:6591: result: -r
+configure:6625: checking for aarch64-poky-linux-objdump
+configure:6652: result: aarch64-poky-linux-objdump
+configure:6724: checking how to recognize dependent libraries
+configure:6924: result: pass_all
+configure:6969: checking for aarch64-poky-linux-dlltool
+configure:6999: result: no
+configure:7009: checking for dlltool
+configure:7039: result: no
+configure:7069: checking how to associate runtime and link libraries
+configure:7096: result: printf %s\n
+configure:7112: checking for aarch64-poky-linux-ar
+configure:7139: result: aarch64-poky-linux-ar
+configure:7220: checking for archiver @FILE support
+configure:7237: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug-=
+types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr/=
+src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/li=
+nux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sss=
+d/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/im=
+x8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linu=
+x/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LARG=
+EFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:7237: $? =3D 0
+configure:7240: aarch64-poky-linux-ar cru libconftest.a @conftest.lst >&5
+aarch64-poky-linux-ar: `u' modifier ignored since `D' is the default (see `=
+U')
+configure:7243: $? =3D 0
+configure:7248: aarch64-poky-linux-ar cru libconftest.a @conftest.lst >&5
+aarch64-poky-linux-ar: `u' modifier ignored since `D' is the default (see `=
+U')
+aarch64-poky-linux-ar: conftest.o: No such file or directory
+configure:7251: $? =3D 1
+configure:7263: result: @
+configure:7281: checking for aarch64-poky-linux-strip
+configure:7308: result: aarch64-poky-linux-strip
+configure:7380: checking for aarch64-poky-linux-ranlib
+configure:7407: result: aarch64-poky-linux-ranlib
+configure:7549: checking command to parse aarch64-poky-linux-nm output from=
+ aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0/recipe-sysroot object
+configure:7702: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug-=
+types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr/=
+src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/li=
+nux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sss=
+d/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/im=
+x8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linu=
+x/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LARG=
+EFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:7705: $? =3D 0
+configure:7709: aarch64-poky-linux-nm conftest.o \| sed -n -e 's/^.*[ ]\([A=
+BCDGIRSTW][ABCDGIRSTW]*\)[ ][ ]*\([_A-Za-z][_A-Za-z0-9]*\)$/\1 \2 \2/p' | s=
+ed '/ __gnu_lto/d' \> conftest.nm
+configure:7712: $? =3D 0
+configure:7778: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unus=
+ed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_=
+sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r=
+0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/var=
+iscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-=
+poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D6=
+4 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgnu=
+ -Wl,--as-needed conftest.c conftstm.o >&5
+configure:7781: $? =3D 0
+configure:7819: result: ok
+configure:7866: checking for sysroot
+configure:7901: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl=
+-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sys=
+root
+configure:7908: checking for a working dd
+configure:7946: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl=
+-yocto/build_xwayland/tmp/hosttools/dd
+configure:7950: checking how to truncate binary pipes
+configure:7965: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl=
+-yocto/build_xwayland/tmp/hosttools/dd bs=3D4096 count=3D1
+configure:8254: checking for aarch64-poky-linux-mt
+configure:8284: result: no
+configure:8294: checking for mt
+configure:8324: result: no
+configure:8344: checking if : is a manifest tool
+configure:8350: : '-?'
+configure:8358: result: no
+configure:9032: checking for dlfcn.h
+configure:9032: result: yes
+configure:9259: checking for objdir
+configure:9274: result: .libs
+configure:9534: checking if aarch64-poky-linux-gcc  --sysroot=3D/opt/boards=
+/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarc=
+h64-poky-linux/sssd/1.16.0-r0/recipe-sysroot supports -fno-rtti -fno-except=
+ions
+configure:9552: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug-=
+types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr/=
+src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/li=
+nux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sss=
+d/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/im=
+x8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linu=
+x/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LARG=
+EFILE_SOURCE -D_LARGEFILE64_SOURCE  -fno-rtti -fno-exceptions conftest.c >&=
+5
+cc1: warning: command line option '-fno-rtti' is valid for C++/ObjC++ but n=
+ot for C
+configure:9556: $? =3D 0
+configure:9569: result: no
+configure:9927: checking for aarch64-poky-linux-gcc  --sysroot=3D/opt/board=
+s/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aar=
+ch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot option to produce PIC
+configure:9934: result: -fPIC -DPIC
+configure:9942: checking if aarch64-poky-linux-gcc  --sysroot=3D/opt/boards=
+/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarc=
+h64-poky-linux/sssd/1.16.0-r0/recipe-sysroot PIC flag -fPIC -DPIC works
+configure:9960: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug-=
+types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr/=
+src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/li=
+nux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sss=
+d/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/im=
+x8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linu=
+x/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LARG=
+EFILE_SOURCE -D_LARGEFILE64_SOURCE  -fPIC -DPIC -DPIC conftest.c >&5
+configure:9964: $? =3D 0
+configure:9977: result: yes
+configure:10006: checking if aarch64-poky-linux-gcc  --sysroot=3D/opt/board=
+s/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aar=
+ch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot static flag -static works
+configure:10034: result: yes
+configure:10049: checking if aarch64-poky-linux-gcc  --sysroot=3D/opt/board=
+s/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aar=
+ch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot supports -c -o file.o
+configure:10070: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  -o out/conftest2.o conftest.c >&5
+configure:10074: $? =3D 0
+configure:10096: result: yes
+configure:10104: checking if aarch64-poky-linux-gcc  --sysroot=3D/opt/board=
+s/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aar=
+ch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot supports -c -o file.o
+configure:10151: result: yes
+configure:10184: checking whether the aarch64-poky-linux-gcc  --sysroot=3D/=
+opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp=
+/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot linker (aarch64-poky=
+-linux-ld --sysroot=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-y=
+octo/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysro=
+ot ) supports shared libraries
+configure:11443: result: yes
+configure:11480: checking whether -lc should be explicitly linked in
+configure:11488: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:11491: $? =3D 0
+configure:11506: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -shared  -fPIC -DPIC conftest.o  -v -Wl,-=
+soname -Wl,conftest -o conftest 2\>\&1 \| /opt/boards/variscite/imx8/linux/=
+yocto_sumo/var-fsl-yocto/build_xwayland/tmp/hosttools/grep  -lc  \>/dev/nul=
+l 2\>\&1
+configure:11509: $? =3D 0
+configure:11523: result: no
+configure:11683: checking dynamic linker characteristics
+configure:12264: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed -Wl,-rpath -Wl,/foo conftest.c  >&5
+configure:12264: $? =3D 0
+configure:12501: result: GNU/Linux ld.so
+configure:12623: checking how to hardcode library paths into programs
+configure:12648: result: immediate
+configure:13196: checking whether stripping libraries is possible
+configure:13201: result: yes
+configure:13236: checking if libtool supports shared libraries
+configure:13238: result: yes
+configure:13241: checking whether to build shared libraries
+configure:13266: result: yes
+configure:13269: checking whether to build static libraries
+configure:13273: result: no
+configure:13324: checking for library containing dlopen
+configure:13355: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c  >&5
+/tmp/ccotMPuM.o: In function `main':
+/usr/src/debug/sssd/1.16.0-r0/build/conftest.c:39: undefined reference to `=
+dlopen'
+collect2: error: ld returned 1 exit status
+configure:13355: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| /* end confdefs.h.  */
+|=20
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char dlopen ();
+| int
+| main ()
+| {
+| return dlopen ();
+|   ;
+|   return 0;
+| }
+configure:13355: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -ldl   >&5
+configure:13355: $? =3D 0
+configure:13372: result: -ldl
+configure:13462: checking for dlerror
+configure:13462: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -ldl  -ldl >&5
+configure:13462: $? =3D 0
+configure:13462: result: yes
+configure:13476: checking for shl_load
+configure:13476: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -ldl  >&5
+/tmp/cct8aSRW.o: In function `main':
+/usr/src/debug/sssd/1.16.0-r0/build/conftest.c:64: undefined reference to `=
+shl_load'
+collect2: error: ld returned 1 exit status
+configure:13476: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| /* end confdefs.h.  */
+| /* Define shl_load to an innocuous variant, in case <limits.h> declares s=
+hl_load.
+|    For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+| #define shl_load innocuous_shl_load
+|=20
+| /* System header to define __stub macros and hopefully few prototypes,
+|     which can conflict with char shl_load (); below.
+|     Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+|     <limits.h> exists even on freestanding compilers.  */
+|=20
+| #ifdef __STDC__
+| # include <limits.h>
+| #else
+| # include <assert.h>
+| #endif
+|=20
+| #undef shl_load
+|=20
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char shl_load ();
+| /* The GNU C library defines this for functions which it implements
+|     to always fail with ENOSYS.  Some functions are actually named
+|     something starting with __ and the normal name is an alias.  */
+| #if defined __stub_shl_load || defined __stub___shl_load
+| choke me
+| #endif
+|=20
+| int
+| main ()
+| {
+| return shl_load ();
+|   ;
+|   return 0;
+| }
+configure:13476: result: no
+configure:13483: checking for shl_load in -ldld
+configure:13508: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -ldld  -ldl  >&5
+/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tm=
+p/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/usr/bin/aarc=
+h64-poky-linux/../../libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/7.3.=
+0/ld: cannot find -ldld
+collect2: error: ld returned 1 exit status
+configure:13508: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| /* end confdefs.h.  */
+|=20
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char shl_load ();
+| int
+| main ()
+| {
+| return shl_load ();
+|   ;
+|   return 0;
+| }
+configure:13517: result: no
+configure:13563: checking for dld_link in -ldld
+configure:13588: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -ldld  -ldl  >&5
+/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tm=
+p/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/usr/bin/aarc=
+h64-poky-linux/../../libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/7.3.=
+0/ld: cannot find -ldld
+collect2: error: ld returned 1 exit status
+configure:13588: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| /* end confdefs.h.  */
+|=20
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char dld_link ();
+| int
+| main ()
+| {
+| return dld_link ();
+|   ;
+|   return 0;
+| }
+configure:13597: result: no
+configure:13634: checking whether NLS is requested
+configure:13643: result: yes
+configure:13683: checking for msgfmt
+configure: trying /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto=
+/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-n=
+ative/usr/bin/msgfmt...
+0 translated messages.
+configure:13715: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fs=
+l-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sy=
+sroot-native/usr/bin/msgfmt
+configure:13724: checking for gmsgfmt
+configure:13755: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fs=
+l-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sy=
+sroot-native/usr/bin/msgfmt
+configure:13805: checking for xgettext
+configure: trying /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto=
+/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-n=
+ative/usr/bin/xgettext...
+/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tm=
+p/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/usr/bin/xget=
+text: warning: file '/dev/null' extension '' is unknown; will try C
+configure:13837: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fs=
+l-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sy=
+sroot-native/usr/bin/xgettext
+configure:13882: checking for msgmerge
+configure: trying /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto=
+/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-n=
+ative/usr/bin/msgmerge...
+configure:13913: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fs=
+l-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sy=
+sroot-native/usr/bin/msgmerge
+configure:13971: checking for ld used by aarch64-poky-linux-gcc  --sysroot=
+=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland=
+/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot
+configure:14038: result: aarch64-poky-linux-ld --sysroot=3D/opt/boards/vari=
+scite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-p=
+oky-linux/sssd/1.16.0-r0/recipe-sysroot=20
+configure:14045: checking if the linker (aarch64-poky-linux-ld --sysroot=3D=
+/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tm=
+p/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot ) is GNU ld
+configure:14060: result: yes
+configure:14067: checking for shared library run path origin
+configure:14080: result: done
+configure:14652: checking for CFPreferencesCopyAppValue
+configure:14670: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c  -Wl,-framework -Wl,CoreFoundation >&5
+conftest.c:31:10: fatal error: CoreFoundation/CFPreferences.h: No such file=
+ or directory
+ #include <CoreFoundation/CFPreferences.h>
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+configure:14670: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| /* end confdefs.h.  */
+| #include <CoreFoundation/CFPreferences.h>
+| int
+| main ()
+| {
+| CFPreferencesCopyAppValue(NULL, NULL)
+|   ;
+|   return 0;
+| }
+configure:14679: result: no
+configure:14686: checking for CFLocaleCopyCurrent
+configure:14704: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c  -Wl,-framework -Wl,CoreFoundation >&5
+conftest.c:31:10: fatal error: CoreFoundation/CFLocale.h: No such file or d=
+irectory
+ #include <CoreFoundation/CFLocale.h>
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+configure:14704: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| /* end confdefs.h.  */
+| #include <CoreFoundation/CFLocale.h>
+| int
+| main ()
+| {
+| CFLocaleCopyCurrent();
+|   ;
+|   return 0;
+| }
+configure:14713: result: no
+configure:14762: checking for GNU gettext in libc
+configure:14791: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c  >&5
+configure:14791: $? =3D 0
+configure:14800: result: yes
+configure:15649: checking whether to use NLS
+configure:15651: result: yes
+configure:15654: checking where the gettext function comes from
+configure:15665: result: libc
+configure:15750: checking whether make supports nested variables
+configure:15767: result: yes
+configure:15791: checking for stdint.h
+configure:15791: result: yes
+configure:15791: checking for dlfcn.h
+configure:15791: result: yes
+configure:15804: checking for errno_t
+configure:15804: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:42:13: error: 'errno_t' undeclared (first use in this function);=
+ did you mean 'error_t'?
+ if (sizeof (errno_t))
+             ^~~~~~~
+             error_t
+conftest.c:42:13: note: each undeclared identifier is reported only once fo=
+r each function it appears in
+configure:15804: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| /* end confdefs.h.  */
+| #include <errno.h>
+|=20
+| int
+| main ()
+| {
+| if (sizeof (errno_t))
+| 	 return 0;
+|   ;
+|   return 0;
+| }
+configure:15804: result: no
+configure:15862: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:15862: $? =3D 0
+configure:15888: checking for library containing timer_create
+configure:15919: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c  >&5
+/tmp/ccXliABs.o: In function `main':
+/usr/src/debug/sssd/1.16.0-r0/build/conftest.c:49: undefined reference to `=
+timer_create'
+collect2: error: ld returned 1 exit status
+configure:15919: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| /* end confdefs.h.  */
+|=20
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char timer_create ();
+| int
+| main ()
+| {
+| return timer_create ();
+|   ;
+|   return 0;
+| }
+configure:15919: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -lrt   >&5
+configure:15919: $? =3D 0
+configure:15936: result: -lrt
+configure:15958: checking for utimensat
+configure:15958: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c  >&5
+configure:15958: $? =3D 0
+configure:15958: result: yes
+configure:15958: checking for futimens
+configure:15958: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c  >&5
+configure:15958: $? =3D 0
+configure:15958: result: yes
+configure:15972: checking for endian.h
+configure:15972: result: yes
+configure:15972: checking sys/endian.h usability
+configure:15972: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c:75:10: fatal error: sys/endian.h: No such file or directory
+ #include <sys/endian.h>
+          ^~~~~~~~~~~~~~
+compilation terminated.
+configure:15972: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| #include <sys/endian.h>
+configure:15972: result: no
+configure:15972: checking sys/endian.h presence
+configure:15972: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+conftest.c:42:10: fatal error: sys/endian.h: No such file or directory
+ #include <sys/endian.h>
+          ^~~~~~~~~~~~~~
+compilation terminated.
+configure:15972: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| /* end confdefs.h.  */
+| #include <sys/endian.h>
+configure:15972: result: no
+configure:15972: checking for sys/endian.h
+configure:15972: result: no
+configure:15972: checking for byteswap.h
+configure:15972: result: yes
+configure:15983: checking whether byte ordering is bigendian
+configure:16189: result: no
+configure:16274: Detected operating system type: debian
+configure:16319: checking for struct ucred.pid
+configure:16319: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:16319: $? =3D 0
+configure:16319: result: yes
+configure:16329: checking for struct ucred.uid
+configure:16329: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:16329: $? =3D 0
+configure:16329: result: yes
+configure:16339: checking for struct ucred.gid
+configure:16339: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:16339: $? =3D 0
+configure:16339: result: yes
+configure:17537: checking for aarch64-poky-linux-pkg-config
+configure:17570: result: no
+configure:17580: checking for pkg-config
+configure:17598: found /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-=
+yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysr=
+oot-native/usr/bin/pkg-config
+configure:17610: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fs=
+l-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sy=
+sroot-native/usr/bin/pkg-config
+configure:17622: WARNING: using cross tools not prefixed with host triplet
+configure:17635: checking pkg-config is at least version 0.9.0
+configure:17638: result: yes
+configure:17649: checking for POPT
+configure:17657: $PKG_CONFIG --exists --print-errors "popt"
+configure:17660: $? =3D 0
+configure:17675: $PKG_CONFIG --exists --print-errors "popt"
+configure:17678: $? =3D 0
+configure:17714: result: yes
+configure:17798: checking for TALLOC
+configure:17806: $PKG_CONFIG --exists --print-errors "talloc"
+configure:17809: $? =3D 0
+configure:17824: $PKG_CONFIG --exists --print-errors "talloc"
+configure:17827: $? =3D 0
+configure:17863: result: yes
+configure:17941: checking for TDB
+configure:17949: $PKG_CONFIG --exists --print-errors "tdb >=3D 1.1.3"
+configure:17952: $? =3D 0
+configure:17967: $PKG_CONFIG --exists --print-errors "tdb >=3D 1.1.3"
+configure:17970: $? =3D 0
+configure:18006: result: yes
+configure:18090: checking for TEVENT
+configure:18098: $PKG_CONFIG --exists --print-errors "tevent"
+configure:18101: $? =3D 0
+configure:18116: $PKG_CONFIG --exists --print-errors "tevent"
+configure:18119: $? =3D 0
+configure:18155: result: yes
+configure:18233: checking for LDB
+configure:18241: $PKG_CONFIG --exists --print-errors "ldb >=3D 0.9.2"
+configure:18244: $? =3D 0
+configure:18259: $PKG_CONFIG --exists --print-errors "ldb >=3D 0.9.2"
+configure:18262: $? =3D 0
+configure:18317: result: yes
+configure:18325: checking ldb.h usability
+configure:18325: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:18325: $? =3D 0
+configure:18325: result: yes
+configure:18325: checking ldb.h presence
+configure:18325: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+configure:18325: $? =3D 0
+configure:18325: result: yes
+configure:18325: checking for ldb.h
+configure:18325: result: yes
+configure:18330: checking for ldb_init in -lldb
+configure:18355: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -lldb -ltevent -ltdb -ldl -lldap  >&5
+configure:18355: $? =3D 0
+configure:18364: result: yes
+configure:18325: checking ldb_module.h usability
+configure:18325: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:18325: $? =3D 0
+configure:18325: result: yes
+configure:18325: checking ldb_module.h presence
+configure:18325: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+configure:18325: $? =3D 0
+configure:18325: result: yes
+configure:18325: checking for ldb_module.h
+configure:18325: result: yes
+configure:18330: checking for ldb_init in -lldb
+configure:18364: result: yes
+configure:18394: checking feature ldb runtime version check
+configure:18410: result: no
+configure:18414: ldb lib directory: /usr/lib/ldb
+configure:18423: checking for DHASH
+configure:18431: $PKG_CONFIG --exists --print-errors "dhash >=3D 0.4.2"
+configure:18434: $? =3D 0
+configure:18449: $PKG_CONFIG --exists --print-errors "dhash >=3D 0.4.2"
+configure:18452: $? =3D 0
+configure:18490: result: yes
+configure:18501: checking for COLLECTION
+configure:18509: $PKG_CONFIG --exists --print-errors "collection >=3D 0.5.1=
+"
+configure:18512: $? =3D 0
+configure:18527: $PKG_CONFIG --exists --print-errors "collection >=3D 0.5.1=
+"
+configure:18530: $? =3D 0
+configure:18568: result: yes
+configure:18576: checking for INI_CONFIG_V0
+configure:18585: $PKG_CONFIG --exists --print-errors "
+    ini_config >=3D 0.6.1"
+configure:18589: $? =3D 0
+configure:18606: $PKG_CONFIG --exists --print-errors "
+    ini_config >=3D 0.6.1"
+configure:18610: $? =3D 0
+configure:18655: result: yes
+configure:18669: checking for INI_CONFIG_V1
+configure:18678: $PKG_CONFIG --exists --print-errors "
+            ini_config >=3D 1.0.0"
+configure:18682: $? =3D 0
+configure:18699: $PKG_CONFIG --exists --print-errors "
+            ini_config >=3D 1.0.0"
+configure:18703: $? =3D 0
+configure:18750: result: yes
+configure:18764: checking for INI_CONFIG_V1_1
+configure:18773: $PKG_CONFIG --exists --print-errors "
+                    ini_config >=3D 1.1.0"
+configure:18777: $? =3D 0
+configure:18794: $PKG_CONFIG --exists --print-errors "
+                    ini_config >=3D 1.1.0"
+configure:18798: $? =3D 0
+configure:18845: result: yes
+configure:18859: checking for INI_CONFIG_V1_3
+configure:18868: $PKG_CONFIG --exists --print-errors "
+                            ini_config >=3D 1.3.0"
+Requested 'ini_config >=3D 1.3.0' but version of ini_config is 1.2.0
+You may find new versions of ini_config at http://fedorahosted.org/sssd/
+configure:18872: $? =3D 1
+configure:18889: $PKG_CONFIG --exists --print-errors "
+                            ini_config >=3D 1.3.0"
+Requested 'ini_config >=3D 1.3.0' but version of ini_config is 1.2.0
+You may find new versions of ini_config at http://fedorahosted.org/sssd/
+configure:18893: $? =3D 1
+Requested 'ini_config >=3D 1.3.0' but version of ini_config is 1.2.0
+You may find new versions of ini_config at http://fedorahosted.org/sssd/
+configure:18924: result: no
+configure:18927: WARNING: libini_config-devel >=3D 1.3.0 not available, usi=
+ng older version
+configure:18970: checking security/pam_appl.h usability
+configure:18970: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:18970: $? =3D 0
+configure:18970: result: yes
+configure:18970: checking security/pam_appl.h presence
+configure:18970: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+configure:18970: $? =3D 0
+configure:18970: result: yes
+configure:18970: checking for security/pam_appl.h
+configure:18970: result: yes
+configure:18975: checking for pam_get_item in -lpam
+configure:19000: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -lpam   >&5
+configure:19000: $? =3D 0
+configure:19009: result: yes
+configure:18970: checking security/pam_modules.h usability
+configure:18970: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:18970: $? =3D 0
+configure:18970: result: yes
+configure:18970: checking security/pam_modules.h presence
+configure:18970: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+configure:18970: $? =3D 0
+configure:18970: result: yes
+configure:18970: checking for security/pam_modules.h
+configure:18970: result: yes
+configure:18975: checking for pam_get_item in -lpam
+configure:19009: result: yes
+configure:19028: checking security/pam_ext.h usability
+configure:19028: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:19028: $? =3D 0
+configure:19028: result: yes
+configure:19028: checking security/pam_ext.h presence
+configure:19028: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+configure:19028: $? =3D 0
+configure:19028: result: yes
+configure:19028: checking for security/pam_ext.h
+configure:19028: result: yes
+configure:19028: checking security/pam_modutil.h usability
+configure:19028: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:19028: $? =3D 0
+configure:19028: result: yes
+configure:19028: checking security/pam_modutil.h presence
+configure:19028: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+configure:19028: $? =3D 0
+configure:19028: result: yes
+configure:19028: checking for security/pam_modutil.h
+configure:19028: result: yes
+configure:19041: checking security/pam_misc.h usability
+configure:19041: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:19041: $? =3D 0
+configure:19041: result: yes
+configure:19041: checking security/pam_misc.h presence
+configure:19041: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+configure:19041: $? =3D 0
+configure:19041: result: yes
+configure:19041: checking for security/pam_misc.h
+configure:19041: result: yes
+configure:19041: checking security/_pam_macros.h usability
+configure:19041: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:19041: $? =3D 0
+configure:19041: result: yes
+configure:19041: checking security/_pam_macros.h presence
+configure:19041: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+configure:19041: $? =3D 0
+configure:19041: result: yes
+configure:19041: checking for security/_pam_macros.h
+configure:19041: result: yes
+configure:19053: checking for security/openpam.h
+configure:19053: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c:92:10: fatal error: security/openpam.h: No such file or director=
+y
+ #include <security/openpam.h>
+          ^~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+configure:19053: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| /* end confdefs.h.  */
+|=20
+|       #ifdef HAVE_SECURITY_PAM_APPL_H
+|       #include <security/pam_appl.h>
+|       #endif
+|=20
+|=20
+| #include <security/openpam.h>
+configure:19053: result: no
+configure:19069: checking for misc_conv in -lpam_misc
+configure:19094: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -lpam_misc   >&5
+configure:19094: $? =3D 0
+configure:19103: result: yes
+configure:19116: checking for pam_modutil_getlogin
+configure:19116: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -lpam >&5
+configure:19116: $? =3D 0
+configure:19116: result: yes
+configure:19116: checking for pam_vsyslog
+configure:19116: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -lpam >&5
+configure:19116: $? =3D 0
+configure:19116: result: yes
+configure:19147: checking for ldap_search in -lldap
+configure:19172: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE   -Wl,-O1 -Wl,--hash-style=3Dg=
+nu -Wl,--as-needed conftest.c -lldap    >&5
+configure:19172: $? =3D 0
+configure:19181: result: yes
+configure:19309: checking for ber_pvt_opt_on in -llber
+configure:19334: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -llber   >&5
+configure:19334: $? =3D 0
+configure:19343: result: yes
+configure:19378: checking for ldap_control_create
+configure:19378: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE   -Wl,-O1 -Wl,--hash-style=3Dg=
+nu -Wl,--as-needed conftest.c   -llber -lldap >&5
+configure:19378: $? =3D 0
+configure:19378: result: yes
+configure:19378: checking for ldap_init_fd
+configure:19378: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE   -Wl,-O1 -Wl,--hash-style=3Dg=
+nu -Wl,--as-needed conftest.c   -llber -lldap >&5
+configure:19378: $? =3D 0
+configure:19378: result: yes
+configure:19378: checking for ldap_create_deref_control_value
+configure:19378: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE   -Wl,-O1 -Wl,--hash-style=3Dg=
+nu -Wl,--as-needed conftest.c   -llber -lldap >&5
+configure:19378: $? =3D 0
+configure:19378: result: yes
+configure:19378: checking for ldap_parse_derefresponse_control
+configure:19378: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE   -Wl,-O1 -Wl,--hash-style=3Dg=
+nu -Wl,--as-needed conftest.c   -llber -lldap >&5
+configure:19378: $? =3D 0
+configure:19378: result: yes
+configure:19378: checking for ldap_derefresponse_free
+configure:19378: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE   -Wl,-O1 -Wl,--hash-style=3Dg=
+nu -Wl,--as-needed conftest.c   -llber -lldap >&5
+configure:19378: $? =3D 0
+configure:19378: result: yes
+configure:19387: checking for struct ldap_conncb.lc_arg
+configure:19387: result: no
+configure:19430: checking for LDAPDerefRes
+configure:19430: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE   conftest.c >&5
+configure:19430: $? =3D 0
+configure:19430: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE   conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:98:27: error: expected expression before ')' token
+ if (sizeof ((LDAPDerefRes)))
+                           ^
+configure:19430: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| /* end confdefs.h.  */
+| #include <ldap.h>
+|=20
+| int
+| main ()
+| {
+| if (sizeof ((LDAPDerefRes)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:19430: result: yes
+configure:19444: checking for slapd
+configure:19477: result: no
+configure:19489: checking for ldapmodify
+configure:19517: result: no
+configure:19531: checking for PCRE
+configure:19539: $PKG_CONFIG --exists --print-errors "libpcre"
+configure:19542: $? =3D 0
+configure:19557: $PKG_CONFIG --exists --print-errors "libpcre"
+configure:19560: $? =3D 0
+configure:19596: result: yes
+configure:19601: $PKG_CONFIG --exists --print-errors "libpcre >=3D 7"
+configure:19604: $? =3D 0
+configure:19606: PCRE version is 7 or higher
+configure:19704: checking for aarch64-poky-linux-krb5-config
+configure:19737: result: no
+configure:19747: checking for krb5-config
+configure:19765: found /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-=
+yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysr=
+oot/usr/bin/crossscripts/krb5-config
+configure:19777: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fs=
+l-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sy=
+sroot/usr/bin/crossscripts/krb5-config
+configure:19799: checking for working krb5-config
+configure:19804: result: yes
+configure:19830: checking krb5.h usability
+configure:19830: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/linux/yoct=
+o_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0=
+-r0/recipe-sysroot/usr/include  conftest.c >&5
+configure:19830: $? =3D 0
+configure:19830: result: yes
+configure:19830: checking krb5.h presence
+configure:19830: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+configure:19830: $? =3D 0
+configure:19830: result: yes
+configure:19830: checking for krb5.h
+configure:19830: result: yes
+configure:19830: checking krb5/krb5.h usability
+configure:19830: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/linux/yoct=
+o_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0=
+-r0/recipe-sysroot/usr/include  conftest.c >&5
+configure:19830: $? =3D 0
+configure:19830: result: yes
+configure:19830: checking krb5/krb5.h presence
+configure:19830: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+configure:19830: $? =3D 0
+configure:19830: result: yes
+configure:19830: checking for krb5/krb5.h
+configure:19830: result: yes
+configure:19840: checking for krb5_ticket_times
+configure:19840: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/linux/yoct=
+o_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0=
+-r0/recipe-sysroot/usr/include  conftest.c >&5
+configure:19840: $? =3D 0
+configure:19840: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/linux/yoct=
+o_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0=
+-r0/recipe-sysroot/usr/include  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:105:32: error: expected expression before ')' token
+ if (sizeof ((krb5_ticket_times)))
+                                ^
+configure:19840: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| /* end confdefs.h.  */
+|  #ifdef HAVE_KRB5_KRB5_H
+|                  #include <krb5/krb5.h>
+|                  #else
+|                  #include <krb5.h>
+|                  #endif
+|=20
+|=20
+| int
+| main ()
+| {
+| if (sizeof ((krb5_ticket_times)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:19840: result: yes
+configure:19855: checking for krb5_times
+configure:19855: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/linux/yoct=
+o_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0=
+-r0/recipe-sysroot/usr/include  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:106:13: error: 'krb5_times' undeclared (first use in this functi=
+on); did you mean 'krb5_ticket'?
+ if (sizeof (krb5_times))
+             ^~~~~~~~~~
+             krb5_ticket
+conftest.c:106:13: note: each undeclared identifier is reported only once f=
+or each function it appears in
+configure:19855: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| /* end confdefs.h.  */
+|  #ifdef HAVE_KRB5_KRB5_H
+|                  #include <krb5/krb5.h>
+|                  #else
+|                  #include <krb5.h>
+|                  #endif
+|=20
+|=20
+| int
+| main ()
+| {
+| if (sizeof (krb5_times))
+| 	 return 0;
+|   ;
+|   return 0;
+| }
+configure:19855: result: no
+configure:19870: checking for krb5_trace_info
+configure:19870: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/linux/yoct=
+o_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0=
+-r0/recipe-sysroot/usr/include  conftest.c >&5
+configure:19870: $? =3D 0
+configure:19870: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/linux/yoct=
+o_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0=
+-r0/recipe-sysroot/usr/include  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:106:30: error: expected expression before ')' token
+ if (sizeof ((krb5_trace_info)))
+                              ^
+configure:19870: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| /* end confdefs.h.  */
+|  #ifdef HAVE_KRB5_KRB5_H
+|                  #include <krb5/krb5.h>
+|                  #else
+|                  #include <krb5.h>
+|                  #endif
+|=20
+|=20
+| int
+| main ()
+| {
+| if (sizeof ((krb5_trace_info)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:19870: result: yes
+configure:19909: checking for krb5_get_init_creds_opt_alloc
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_get_error_message
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_free_unparsed_name
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_get_init_creds_opt_set_expire_callback
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_get_init_creds_opt_set_fast_ccache_name
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_get_init_creds_opt_set_fast_flags
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_get_init_creds_opt_set_canonicalize
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_get_init_creds_opt_set_responder
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_parse_name_flags
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_unparse_name_flags
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_get_init_creds_opt_set_change_password_p=
+rompt
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_free_keytab_entry_contents
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_kt_free_entry
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_princ_realm
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+/tmp/ccRxPb0s.o: In function `main':
+/usr/src/debug/sssd/1.16.0-r0/build/conftest.c:144: undefined reference to =
+`krb5_princ_realm'
+collect2: error: ld returned 1 exit status
+configure:19909: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| /* end confdefs.h.  */
+| /* Define krb5_princ_realm to an innocuous variant, in case <limits.h> de=
+clares krb5_princ_realm.
+|    For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+| #define krb5_princ_realm innocuous_krb5_princ_realm
+|=20
+| /* System header to define __stub macros and hopefully few prototypes,
+|     which can conflict with char krb5_princ_realm (); below.
+|     Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+|     <limits.h> exists even on freestanding compilers.  */
+|=20
+| #ifdef __STDC__
+| # include <limits.h>
+| #else
+| # include <assert.h>
+| #endif
+|=20
+| #undef krb5_princ_realm
+|=20
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char krb5_princ_realm ();
+| /* The GNU C library defines this for functions which it implements
+|     to always fail with ENOSYS.  Some functions are actually named
+|     something starting with __ and the normal name is an alias.  */
+| #if defined __stub_krb5_princ_realm || defined __stub___krb5_princ_realm
+| choke me
+| #endif
+|=20
+| int
+| main ()
+| {
+| return krb5_princ_realm ();
+|   ;
+|   return 0;
+| }
+configure:19909: result: no
+configure:19909: checking for krb5_get_time_offsets
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_principal_get_realm
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+/tmp/ccBbgeCC.o: In function `main':
+/usr/src/debug/sssd/1.16.0-r0/build/conftest.c:145: undefined reference to =
+`krb5_principal_get_realm'
+collect2: error: ld returned 1 exit status
+configure:19909: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| /* end confdefs.h.  */
+| /* Define krb5_principal_get_realm to an innocuous variant, in case <limi=
+ts.h> declares krb5_principal_get_realm.
+|    For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+| #define krb5_principal_get_realm innocuous_krb5_principal_get_realm
+|=20
+| /* System header to define __stub macros and hopefully few prototypes,
+|     which can conflict with char krb5_principal_get_realm (); below.
+|     Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+|     <limits.h> exists even on freestanding compilers.  */
+|=20
+| #ifdef __STDC__
+| # include <limits.h>
+| #else
+| # include <assert.h>
+| #endif
+|=20
+| #undef krb5_principal_get_realm
+|=20
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char krb5_principal_get_realm ();
+| /* The GNU C library defines this for functions which it implements
+|     to always fail with ENOSYS.  Some functions are actually named
+|     something starting with __ and the normal name is an alias.  */
+| #if defined __stub_krb5_principal_get_realm || defined __stub___krb5_prin=
+cipal_get_realm
+| choke me
+| #endif
+|=20
+| int
+| main ()
+| {
+| return krb5_principal_get_realm ();
+|   ;
+|   return 0;
+| }
+configure:19909: result: no
+configure:19909: checking for krb5_cc_cache_match
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_timestamp_to_sfstring
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_set_trace_callback
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_find_authdata
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_kt_have_content
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19909: checking for krb5_cc_get_full_name
+configure:19909: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed conftest.c  -L/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot/usr/lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lk=
+rb5 -lk5crypto -lcom_err >&5
+configure:19909: $? =3D 0
+configure:19909: result: yes
+configure:19936: checking for krb5/locate_plugin.h
+configure:19936: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/linux/yoct=
+o_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0=
+-r0/recipe-sysroot/usr/include  conftest.c >&5
+configure:19936: $? =3D 0
+configure:19936: result: yes
+configure:19969: checking for krb5/localauth_plugin.h
+configure:19969: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/linux/yoct=
+o_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0=
+-r0/recipe-sysroot/usr/include  conftest.c >&5
+configure:19969: $? =3D 0
+configure:19969: result: yes
+configure:20010: checking for CARES
+configure:20018: $PKG_CONFIG --exists --print-errors "libcares"
+configure:20021: $? =3D 0
+configure:20036: $PKG_CONFIG --exists --print-errors "libcares"
+configure:20039: $? =3D 0
+configure:20075: result: yes
+configure:20162: checking for long long
+configure:20162: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20162: $? =3D 0
+configure:20162: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:155:24: error: expected expression before ')' token
+ if (sizeof ((long long)))
+                        ^
+configure:20162: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((long long)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20162: result: yes
+configure:20177: checking size of int
+configure:20196: result: 4
+configure:20210: checking size of char
+configure:20229: result: 1
+configure:20243: checking size of short
+configure:20262: result: 2
+configure:20276: checking size of long
+configure:20295: result: 8
+configure:20309: checking size of long long
+configure:20328: result: 8
+configure:20342: checking size of uid_t
+configure:20347: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20347: $? =3D 0
+configure:20347: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:161:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (uid_t))) <=3D 0)];
+            ^~~~~~~~~~
+configure:20347: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (uid_t))) <=3D 0)];
+| test_array [0] =3D 0;
+| return test_array [0];
+|=20
+|   ;
+|   return 0;
+| }
+configure:20347: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:161:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (uid_t))) <=3D 1)];
+            ^~~~~~~~~~
+configure:20347: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (uid_t))) <=3D 1)];
+| test_array [0] =3D 0;
+| return test_array [0];
+|=20
+|   ;
+|   return 0;
+| }
+configure:20347: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:161:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (uid_t))) <=3D 3)];
+            ^~~~~~~~~~
+configure:20347: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (uid_t))) <=3D 3)];
+| test_array [0] =3D 0;
+| return test_array [0];
+|=20
+|   ;
+|   return 0;
+| }
+configure:20347: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20347: $? =3D 0
+configure:20347: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20347: $? =3D 0
+configure:20347: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20347: $? =3D 0
+configure:20361: result: 4
+configure:20375: checking size of gid_t
+configure:20380: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20380: $? =3D 0
+configure:20380: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:162:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (gid_t))) <=3D 0)];
+            ^~~~~~~~~~
+configure:20380: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (gid_t))) <=3D 0)];
+| test_array [0] =3D 0;
+| return test_array [0];
+|=20
+|   ;
+|   return 0;
+| }
+configure:20380: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:162:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (gid_t))) <=3D 1)];
+            ^~~~~~~~~~
+configure:20380: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (gid_t))) <=3D 1)];
+| test_array [0] =3D 0;
+| return test_array [0];
+|=20
+|   ;
+|   return 0;
+| }
+configure:20380: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:162:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (gid_t))) <=3D 3)];
+            ^~~~~~~~~~
+configure:20380: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (gid_t))) <=3D 3)];
+| test_array [0] =3D 0;
+| return test_array [0];
+|=20
+|   ;
+|   return 0;
+| }
+configure:20380: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20380: $? =3D 0
+configure:20380: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20380: $? =3D 0
+configure:20380: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20380: $? =3D 0
+configure:20394: result: 4
+configure:20408: checking size of id_t
+configure:20413: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20413: $? =3D 0
+configure:20413: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:163:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (id_t))) <=3D 0)];
+            ^~~~~~~~~~
+configure:20413: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (id_t))) <=3D 0)];
+| test_array [0] =3D 0;
+| return test_array [0];
+|=20
+|   ;
+|   return 0;
+| }
+configure:20413: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:163:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (id_t))) <=3D 1)];
+            ^~~~~~~~~~
+configure:20413: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (id_t))) <=3D 1)];
+| test_array [0] =3D 0;
+| return test_array [0];
+|=20
+|   ;
+|   return 0;
+| }
+configure:20413: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:163:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (id_t))) <=3D 3)];
+            ^~~~~~~~~~
+configure:20413: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (id_t))) <=3D 3)];
+| test_array [0] =3D 0;
+| return test_array [0];
+|=20
+|   ;
+|   return 0;
+| }
+configure:20413: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20413: $? =3D 0
+configure:20413: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20413: $? =3D 0
+configure:20413: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20413: $? =3D 0
+configure:20427: result: 4
+configure:20442: checking for uint_t
+configure:20442: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:164:13: error: 'uint_t' undeclared (first use in this function);=
+ did you mean 'uint8_t'?
+ if (sizeof (uint_t))
+             ^~~~~~
+             uint8_t
+conftest.c:164:13: note: each undeclared identifier is reported only once f=
+or each function it appears in
+configure:20442: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof (uint_t))
+| 	 return 0;
+|   ;
+|   return 0;
+| }
+configure:20442: result: no
+configure:20453: checking for int8_t
+configure:20453: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20453: $? =3D 0
+configure:20453: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:21: error: expected expression before ')' token
+ if (sizeof ((int8_t)))
+                     ^
+configure:20453: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((int8_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20453: result: yes
+configure:20464: checking for uint8_t
+configure:20464: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20464: $? =3D 0
+configure:20464: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:22: error: expected expression before ')' token
+ if (sizeof ((uint8_t)))
+                      ^
+configure:20464: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((uint8_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20464: result: yes
+configure:20475: checking for int16_t
+configure:20475: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20475: $? =3D 0
+configure:20475: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:22: error: expected expression before ')' token
+ if (sizeof ((int16_t)))
+                      ^
+configure:20475: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((int16_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20475: result: yes
+configure:20486: checking for uint16_t
+configure:20486: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20486: $? =3D 0
+configure:20486: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:23: error: expected expression before ')' token
+ if (sizeof ((uint16_t)))
+                       ^
+configure:20486: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((uint16_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20486: result: yes
+configure:20499: checking for int32_t
+configure:20499: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20499: $? =3D 0
+configure:20499: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:22: error: expected expression before ')' token
+ if (sizeof ((int32_t)))
+                      ^
+configure:20499: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((int32_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20499: result: yes
+configure:20510: checking for uint32_t
+configure:20510: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20510: $? =3D 0
+configure:20510: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:23: error: expected expression before ')' token
+ if (sizeof ((uint32_t)))
+                       ^
+configure:20510: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((uint32_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20510: result: yes
+configure:20548: checking for int64_t
+configure:20548: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20548: $? =3D 0
+configure:20548: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:22: error: expected expression before ')' token
+ if (sizeof ((int64_t)))
+                      ^
+configure:20548: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((int64_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20548: result: yes
+configure:20559: checking for uint64_t
+configure:20559: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20559: $? =3D 0
+configure:20559: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:23: error: expected expression before ')' token
+ if (sizeof ((uint64_t)))
+                       ^
+configure:20559: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((uint64_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20559: result: yes
+configure:20571: checking for size_t
+configure:20571: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20571: $? =3D 0
+configure:20571: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:21: error: expected expression before ')' token
+ if (sizeof ((size_t)))
+                     ^
+configure:20571: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((size_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20571: result: yes
+configure:20582: checking for ssize_t
+configure:20582: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20582: $? =3D 0
+configure:20582: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:22: error: expected expression before ')' token
+ if (sizeof ((ssize_t)))
+                      ^
+configure:20582: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((ssize_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20582: result: yes
+configure:20598: checking size of off_t
+configure:20603: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20603: $? =3D 0
+configure:20603: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (off_t))) <=3D 0)];
+            ^~~~~~~~~~
+configure:20603: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (off_t))) <=3D 0)];
+| test_array [0] =3D 0;
+| return test_array [0];
+|=20
+|   ;
+|   return 0;
+| }
+configure:20603: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (off_t))) <=3D 1)];
+            ^~~~~~~~~~
+configure:20603: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (off_t))) <=3D 1)];
+| test_array [0] =3D 0;
+| return test_array [0];
+|=20
+|   ;
+|   return 0;
+| }
+configure:20603: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (off_t))) <=3D 3)];
+            ^~~~~~~~~~
+configure:20603: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (off_t))) <=3D 3)];
+| test_array [0] =3D 0;
+| return test_array [0];
+|=20
+|   ;
+|   return 0;
+| }
+configure:20603: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:165:12: error: size of array 'test_array' is negative
+ static int test_array [1 - 2 * !(((long int) (sizeof (off_t))) <=3D 7)];
+            ^~~~~~~~~~
+configure:20603: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| static int test_array [1 - 2 * !(((long int) (sizeof (off_t))) <=3D 7)];
+| test_array [0] =3D 0;
+| return test_array [0];
+|=20
+|   ;
+|   return 0;
+| }
+configure:20603: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20603: $? =3D 0
+configure:20603: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20603: $? =3D 0
+configure:20603: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20603: $? =3D 0
+configure:20603: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20603: $? =3D 0
+configure:20617: result: 8
+configure:20631: checking size of size_t
+configure:20650: result: 8
+configure:20664: checking size of ssize_t
+configure:20683: result: 8
+configure:20695: checking for intptr_t
+configure:20695: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20695: $? =3D 0
+configure:20695: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:168:23: error: expected expression before ')' token
+ if (sizeof ((intptr_t)))
+                       ^
+configure:20695: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| #define SIZEOF_OFF_T 8
+| #define SIZEOF_SIZE_T 8
+| #define SIZEOF_SSIZE_T 8
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((intptr_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20695: result: yes
+configure:20711: checking for uintptr_t
+configure:20711: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20711: $? =3D 0
+configure:20711: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:169:24: error: expected expression before ')' token
+ if (sizeof ((uintptr_t)))
+                        ^
+configure:20711: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| #define SIZEOF_OFF_T 8
+| #define SIZEOF_SIZE_T 8
+| #define SIZEOF_SSIZE_T 8
+| #define HAVE_INTPTR_T 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((uintptr_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20711: result: yes
+configure:20722: checking for ptrdiff_t
+configure:20722: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:20722: $? =3D 0
+configure:20722: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:169:24: error: expected expression before ')' token
+ if (sizeof ((ptrdiff_t)))
+                        ^
+configure:20722: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| #define SIZEOF_OFF_T 8
+| #define SIZEOF_SIZE_T 8
+| #define SIZEOF_SSIZE_T 8
+| #define HAVE_INTPTR_T 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| int
+| main ()
+| {
+| if (sizeof ((ptrdiff_t)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:20722: result: yes
+configure:20758: checking for nscd
+configure:20789: result: /usr/sbin
+configure:20797: checking for nscd
+configure:20806: result: yes
+configure:20815: checking for nsupdate
+configure:20845: result: /usr/bin
+configure:20853: checking for executable nsupdate
+configure:20861: result: yes
+configure:20864: checking for nsupdate 'realm' support'
+configure:20866: echo realm |$NSUPDATE >&2
+../sssd-1.16.0/configure: line 20867: /usr/bin: Is a directory
+configure:20869: $? =3D 126
+configure:20879: result: no
+configure:20881: WARNING: Will build without the 'realm' directive
+configure:20895: checking keyutils.h usability
+configure:20895: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+conftest.c:168:10: fatal error: keyutils.h: No such file or directory
+ #include <keyutils.h>
+          ^~~~~~~~~~~~
+compilation terminated.
+configure:20895: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| #define SIZEOF_OFF_T 8
+| #define SIZEOF_SIZE_T 8
+| #define SIZEOF_SSIZE_T 8
+| #define HAVE_INTPTR_T 1
+| #define NSCD_PATH "/usr/sbin"
+| #define NSUPDATE_PATH "/usr/bin"
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| #include <keyutils.h>
+configure:20895: result: no
+configure:20895: checking keyutils.h presence
+configure:20895: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+conftest.c:135:10: fatal error: keyutils.h: No such file or directory
+ #include <keyutils.h>
+          ^~~~~~~~~~~~
+compilation terminated.
+configure:20895: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| #define SIZEOF_OFF_T 8
+| #define SIZEOF_SIZE_T 8
+| #define SIZEOF_SSIZE_T 8
+| #define HAVE_INTPTR_T 1
+| #define NSCD_PATH "/usr/sbin"
+| #define NSUPDATE_PATH "/usr/bin"
+| /* end confdefs.h.  */
+| #include <keyutils.h>
+configure:20895: result: no
+configure:20895: checking for keyutils.h
+configure:20895: result: no
+configure:20949: WARNING: keyutils header files are not available
+configure:20965: $PKG_CONFIG --exists --print-errors "systemd"
+configure:20968: $? =3D 0
+configure:20976: $PKG_CONFIG --exists --print-errors "libsystemd"
+configure:20979: $? =3D 0
+configure:21006: checking for SYSTEMD_LOGIN
+configure:21014: $PKG_CONFIG --exists --print-errors "$login_lib_name"
+configure:21017: $? =3D 0
+configure:21032: $PKG_CONFIG --exists --print-errors "$login_lib_name"
+configure:21035: $? =3D 0
+configure:21073: result: yes
+configure:21095: checking for SYSTEMD_DAEMON
+configure:21103: $PKG_CONFIG --exists --print-errors "$daemon_lib_name"
+configure:21106: $? =3D 0
+configure:21121: $PKG_CONFIG --exists --print-errors "$daemon_lib_name"
+configure:21124: $? =3D 0
+configure:21162: result: yes
+configure:21190: checking for krb5-config
+configure:21220: result: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fs=
+l-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sy=
+sroot/usr/bin/crossscripts/krb5-config
+configure:21228: checking for supported MIT krb5 version
+configure:21241: result: yes
+configure:21256: WARNING: Cannot build PAC responder without Samba
+configure:21321: checking for sigprocmask
+configure:21321: result: yes
+configure:21321: checking for sigblock
+configure:21321: result: yes
+configure:21321: checking for sigaction
+configure:21321: result: yes
+configure:21321: checking for getpgrp
+configure:21321: result: yes
+configure:21321: checking for prctl
+configure:21321: result: yes
+configure:21603: checking for SASL
+configure:21611: $PKG_CONFIG --exists --print-errors "libsasl2"
+configure:21614: $? =3D 0
+configure:21629: $PKG_CONFIG --exists --print-errors "libsasl2"
+configure:21632: $? =3D 0
+configure:21668: result: yes
+configure:21921: checking for ns_name_compress in -lresolv
+configure:21946: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -lresolv -L  >&5
+aarch64-poky-linux-gcc: error: missing argument to '-L'
+configure:21946: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| #define SIZEOF_OFF_T 8
+| #define SIZEOF_SIZE_T 8
+| #define SIZEOF_SSIZE_T 8
+| #define HAVE_INTPTR_T 1
+| #define NSCD_PATH "/usr/sbin"
+| #define NSUPDATE_PATH "/usr/bin"
+| #define HAVE_SYSTEMD 1
+| #define HAVE_SYSTEMD_LOGIN 1
+| #define HAVE_SYSTEMD_DAEMON 1
+| #define HAVE_SIGPROCMASK 1
+| #define HAVE_SIGBLOCK 1
+| #define HAVE_SIGACTION 1
+| #define HAVE_GETPGRP 1
+| #define HAVE_PRCTL 1
+| /* end confdefs.h.  */
+|=20
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char ns_name_compress ();
+| int
+| main ()
+| {
+| return ns_name_compress ();
+|   ;
+|   return 0;
+| }
+configure:21955: result: no
+configure:21960: WARNING: No libresolv detected, some tests will not run
+configure:21976: checking for fakeroot
+configure:22004: result: no
+configure:22015: checking for py.test
+configure:22048: result: no
+configure:22944: checking for GLIB2
+configure:22952: $PKG_CONFIG --exists --print-errors "glib-2.0"
+configure:22955: $? =3D 0
+configure:22970: $PKG_CONFIG --exists --print-errors "glib-2.0"
+configure:22973: $? =3D 0
+configure:23028: result: yes
+configure:23037: checking for g_utf8_validate
+configure:23037: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -lglib-2.0 >&5
+configure:23037: $? =3D 0
+configure:23037: result: yes
+configure:24579: Will use init script type: sysv
+configure:24619: checking for service
+configure:24638: found /usr/sbin/service
+configure:24650: result: /usr/sbin/service
+configure:24658: checking for the executable "service"
+configure:24669: result: yes
+configure:24683: checking for DBUS
+configure:24691: $PKG_CONFIG --exists --print-errors "dbus-1"
+configure:24694: $? =3D 0
+configure:24709: $PKG_CONFIG --exists --print-errors "dbus-1"
+configure:24712: $? =3D 0
+configure:24767: result: yes
+configure:24783: checking for dbus_watch_get_unix_fd
+configure:24783: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot/usr/include/dbus-1.0 -I/opt/boards/variscite/im=
+x8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linu=
+x/sssd/1.16.0-r0/recipe-sysroot/usr/lib/dbus-1.0/include  -Wl,-O1 -Wl,--has=
+h-style=3Dgnu -Wl,--as-needed conftest.c -ldbus-1 >&5
+configure:24783: $? =3D 0
+configure:24783: result: yes
+configure:24790: checking for DBusBasicValue
+configure:24790: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/linux/yoct=
+o_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0=
+-r0/recipe-sysroot/usr/include/dbus-1.0 -I/opt/boards/variscite/imx8/linux/=
+yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.=
+16.0-r0/recipe-sysroot/usr/lib/dbus-1.0/include  conftest.c >&5
+configure:24790: $? =3D 0
+configure:24790: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/opt/boards/variscite/imx8/linux/yoct=
+o_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0=
+-r0/recipe-sysroot/usr/include/dbus-1.0 -I/opt/boards/variscite/imx8/linux/=
+yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.=
+16.0-r0/recipe-sysroot/usr/lib/dbus-1.0/include  conftest.c >&5
+conftest.c: In function 'main':
+conftest.c:154:29: error: expected expression before ')' token
+ if (sizeof ((DBusBasicValue)))
+                             ^
+configure:24790: $? =3D 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME "sssd"
+| #define PACKAGE_TARNAME "sssd"
+| #define PACKAGE_VERSION "1.16.0"
+| #define PACKAGE_STRING "sssd 1.16.0"
+| #define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define __EXTENSIONS__ 1
+| #define _ALL_SOURCE 1
+| #define _GNU_SOURCE 1
+| #define _POSIX_PTHREAD_SEMANTICS 1
+| #define _TANDEM_SOURCE 1
+| #define PACKAGE "sssd"
+| #define VERSION "1.16.0"
+| #define HAVE_DLFCN_H 1
+| #define LT_OBJDIR ".libs/"
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_LIBDLLOADER 1
+| #define ENABLE_NLS 1
+| #define HAVE_GETTEXT 1
+| #define HAVE_DCGETTEXT 1
+| #define PRERELEASE_VERSION ""
+| #define HAVE_STDINT_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_PTHREAD 1
+| #define HAVE_LIBRT 1
+| #define HAVE_UTIMENSAT 1
+| #define HAVE_FUTIMENS 1
+| #define HAVE_ENDIAN_H 1
+| #define HAVE_BYTESWAP_H 1
+| #define HAVE_LITTLE_ENDIAN 1
+| #define HAVE_STRUCT_UCRED_PID 1
+| #define HAVE_STRUCT_UCRED_UID 1
+| #define HAVE_STRUCT_UCRED_GID 1
+| #define HAVE_UCRED 1
+| #define DB_PATH ""SSS_STATEDIR"/db"
+| #define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+| #define PID_PATH ""VARDIR"/run"
+| #define LOG_PATH ""VARDIR"/log/sssd"
+| #define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+| #define PIPE_PATH ""SSS_STATEDIR"/pipes"
+| #define MCACHE_PATH ""SSS_STATEDIR"/mc"
+| #define DEFAULT_CCACHE_DIR "/tmp"
+| #define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+| #define TEST_DIR "."
+| #define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+| #define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+| #define HAVE_SELINUX 1
+| #define HAVE_NSCD /usr/sbin
+| #define IPA_GETKEYTAB_PATH "no"
+| #define HAVE_SEMANAGE 1
+| #define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+| #define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+| #define NOLOGIN_SHELL "/sbin/nologin"
+| #define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+| #define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+| #define BUILD_SUDO 1
+| #define BUILD_AUTOFS 1
+| #define BUILD_IFP 1
+| #define BUILD_LIBWBCLIENT 1
+| #define SSSD_USER "root"
+| #define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+| #define HAVE_LDB_H 1
+| #define HAVE_LDB_MODULE_H 1
+| #define HAVE_LIBINI_CONFIG_V0 1
+| #define HAVE_LIBINI_CONFIG_V1 1
+| #define HAVE_LIBINI_CONFIG_V1_1 1
+| #define HAVE_SECURITY_PAM_APPL_H 1
+| #define HAVE_SECURITY_PAM_MODULES_H 1
+| #define HAVE_SECURITY_PAM_EXT_H 1
+| #define HAVE_SECURITY_PAM_MODUTIL_H 1
+| #define HAVE_SECURITY_PAM_MISC_H 1
+| #define HAVE_SECURITY__PAM_MACROS_H 1
+| #define HAVE_PAM_MODUTIL_GETLOGIN 1
+| #define HAVE_PAM_VSYSLOG 1
+| #define HAVE_LDAP_CONTROL_CREATE 1
+| #define HAVE_LDAP_INIT_FD 1
+| #define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+| #define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+| #define HAVE_LDAP_DEREFRESPONSE_FREE 1
+| #define HAVE_KRB5_H 1
+| #define HAVE_KRB5_KRB5_H 1
+| #define HAVE_KRB5_TICKET_TIMES 1
+| #define HAVE_KRB5_TRACE_INFO 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+| #define HAVE_KRB5_GET_ERROR_MESSAGE 1
+| #define HAVE_KRB5_FREE_UNPARSED_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+| #define HAVE_KRB5_PARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+| #define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+| #define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+| #define HAVE_KRB5_KT_FREE_ENTRY 1
+| #define HAVE_KRB5_GET_TIME_OFFSETS 1
+| #define HAVE_KRB5_CC_CACHE_MATCH 1
+| #define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+| #define HAVE_KRB5_SET_TRACE_CALLBACK 1
+| #define HAVE_KRB5_FIND_AUTHDATA 1
+| #define HAVE_KRB5_KT_HAVE_CONTENT 1
+| #define HAVE_KRB5_CC_GET_FULL_NAME 1
+| #define HAVE_KRB5_LOCATOR_PLUGIN 1
+| #define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+| #define HAVE_LONG_LONG 1
+| #define SIZEOF_INT 4
+| #define SIZEOF_CHAR 1
+| #define SIZEOF_SHORT 2
+| #define SIZEOF_LONG 8
+| #define SIZEOF_LONG_LONG 8
+| #define SIZEOF_UID_T 4
+| #define SIZEOF_GID_T 4
+| #define SIZEOF_ID_T 4
+| #define uint_t unsigned int
+| #define SIZEOF_OFF_T 8
+| #define SIZEOF_SIZE_T 8
+| #define SIZEOF_SSIZE_T 8
+| #define HAVE_INTPTR_T 1
+| #define NSCD_PATH "/usr/sbin"
+| #define NSUPDATE_PATH "/usr/bin"
+| #define HAVE_SYSTEMD 1
+| #define HAVE_SYSTEMD_LOGIN 1
+| #define HAVE_SYSTEMD_DAEMON 1
+| #define HAVE_SIGPROCMASK 1
+| #define HAVE_SIGBLOCK 1
+| #define HAVE_SIGACTION 1
+| #define HAVE_GETPGRP 1
+| #define HAVE_PRCTL 1
+| #define HAVE_G_UTF8_VALIDATE 1
+| #define HAVE_GLIB2 1
+| #define NSCD_CONF_PATH "/etc/nscd.conf"
+| #define HAVE_SERVICE 1
+| #define SERVICE_PATH "/usr/sbin/service"
+| #define HAVE_DBUS_WATCH_GET_UNIX_FD 1
+| /* end confdefs.h.  */
+|  #include <dbus/dbus.h>
+|=20
+| int
+| main ()
+| {
+| if (sizeof ((DBusBasicValue)))
+| 	    return 0;
+|   ;
+|   return 0;
+| }
+configure:24790: result: yes
+configure:25056: checking for python2
+configure:25072: found /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-=
+yocto/build_xwayland/tmp/hosttools/python2
+configure:25084: result: yes
+configure:25095: checking for python2
+configure:25125: result: python2.7
+configure:25137: checking for python3
+configure:25165: result: python2.7
+configure:26008: checking python2.7 module: ldap
+configure:26016: result: no
+configure:26033: checking selinux/selinux.h usability
+configure:26033: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -c  -O2 -pipe -g -feliminate-unused-debug=
+-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr=
+/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LAR=
+GEFILE_SOURCE -D_LARGEFILE64_SOURCE  conftest.c >&5
+configure:26033: $? =3D 0
+configure:26033: result: yes
+configure:26033: checking selinux/selinux.h presence
+configure:26033: aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscit=
+e/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-=
+linux/sssd/1.16.0-r0/recipe-sysroot   conftest.c
+configure:26033: $? =3D 0
+configure:26033: result: yes
+configure:26033: checking for selinux/selinux.h
+configure:26033: result: yes
+configure:26038: checking for is_selinux_enabled in -lselinux
+configure:26063: aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot -o conftest  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto=
+_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-=
+r0=3D/usr/src/debug/sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native=3D  -D_FILE_OFFSET_BITS=3D=
+64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  -Wl,-O1 -Wl,--hash-style=3Dgn=
+u -Wl,--as-needed conftest.c -lselinux   >&5
+configure:26063: $? =3D 0
+configure:26072: result: yes
+configure:26091: checking for /etc/selinux/targeted/logins/
+configure:26097: error: cannot check for file existence when cross compilin=
+g
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv___va_copy=3Dyes
+ac_cv_af_unix_large_dgram=3Dyes
+ac_cv_alignof_CORBA_boolean=3D1
+ac_cv_alignof_CORBA_char=3D1
+ac_cv_alignof_CORBA_double=3D8
+ac_cv_alignof_CORBA_float=3D4
+ac_cv_alignof_CORBA_long=3D4
+ac_cv_alignof_CORBA_long_double=3D8
+ac_cv_alignof_CORBA_long_long=3D8
+ac_cv_alignof_CORBA_octet=3D1
+ac_cv_alignof_CORBA_pointer=3D4
+ac_cv_alignof_CORBA_short=3D2
+ac_cv_alignof_CORBA_struct=3D1
+ac_cv_alignof_CORBA_wchar=3D2
+ac_cv_alignof_char=3D1
+ac_cv_alignof_dbind_pointer=3D8
+ac_cv_alignof_dbind_struct=3D1
+ac_cv_alignof_dbus_bool_t=3D4
+ac_cv_alignof_dbus_int16_t=3D2
+ac_cv_alignof_dbus_int32_t=3D4
+ac_cv_alignof_dbus_int64_t=3D8
+ac_cv_alignof_double=3D8
+ac_cv_alignof_guint32=3D4
+ac_cv_alignof_guint64=3D8
+ac_cv_alignof_unsigned_long=3D8
+ac_cv_buggy_getaddrinfo=3Dno
+ac_cv_build=3Dx86_64-pc-linux-gnu
+ac_cv_c_bigendian=3Dno
+ac_cv_c_compiler_gnu=3Dyes
+ac_cv_c_endian=3Dlittle
+ac_cv_c_littleendian=3Dyes
+ac_cv_c_long_double=3Dyes
+ac_cv_check_sjlj=3Dssjlj
+ac_cv_conv_longlong_to_float=3Dyes
+ac_cv_dirent_have_space_d_name=3Dyes
+ac_cv_env_CARES_CFLAGS_set=3D
+ac_cv_env_CARES_CFLAGS_value=3D
+ac_cv_env_CARES_LIBS_set=3D
+ac_cv_env_CARES_LIBS_value=3D
+ac_cv_env_CC_set=3Dset
+ac_cv_env_CC_value=3D'aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/varis=
+cite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-po=
+ky-linux/sssd/1.16.0-r0/recipe-sysroot'
+ac_cv_env_CFLAGS_set=3Dset
+ac_cv_env_CFLAGS_value=3D' -O2 -pipe -g -feliminate-unused-debug-types -fde=
+bug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/=
+build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr/src/debug/=
+sssd/1.16.0-r0 -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_=
+sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r=
+0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/y=
+octo_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.1=
+6.0-r0/recipe-sysroot-native=3D '
+ac_cv_env_CHECK_CFLAGS_set=3D
+ac_cv_env_CHECK_CFLAGS_value=3D
+ac_cv_env_CHECK_LIBS_set=3D
+ac_cv_env_CHECK_LIBS_value=3D
+ac_cv_env_CMOCKA_CFLAGS_set=3D
+ac_cv_env_CMOCKA_CFLAGS_value=3D
+ac_cv_env_CMOCKA_LIBS_set=3D
+ac_cv_env_CMOCKA_LIBS_value=3D
+ac_cv_env_COLLECTION_CFLAGS_set=3D
+ac_cv_env_COLLECTION_CFLAGS_value=3D
+ac_cv_env_COLLECTION_LIBS_set=3D
+ac_cv_env_COLLECTION_LIBS_value=3D
+ac_cv_env_CPPFLAGS_set=3Dset
+ac_cv_env_CPPFLAGS_value=3D
+ac_cv_env_CPP_set=3Dset
+ac_cv_env_CPP_value=3D'aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/recipe-sysroot '
+ac_cv_env_CRYPTO_CFLAGS_set=3D
+ac_cv_env_CRYPTO_CFLAGS_value=3D
+ac_cv_env_CRYPTO_LIBS_set=3D
+ac_cv_env_CRYPTO_LIBS_value=3D
+ac_cv_env_CURL_CFLAGS_set=3D
+ac_cv_env_CURL_CFLAGS_value=3D
+ac_cv_env_CURL_LIBS_set=3D
+ac_cv_env_CURL_LIBS_value=3D
+ac_cv_env_DBUS_CFLAGS_set=3D
+ac_cv_env_DBUS_CFLAGS_value=3D
+ac_cv_env_DBUS_LIBS_set=3D
+ac_cv_env_DBUS_LIBS_value=3D
+ac_cv_env_DHASH_CFLAGS_set=3D
+ac_cv_env_DHASH_CFLAGS_value=3D
+ac_cv_env_DHASH_LIBS_set=3D
+ac_cv_env_DHASH_LIBS_value=3D
+ac_cv_env_GLIB2_CFLAGS_set=3D
+ac_cv_env_GLIB2_CFLAGS_value=3D
+ac_cv_env_GLIB2_LIBS_set=3D
+ac_cv_env_GLIB2_LIBS_value=3D
+ac_cv_env_HTTP_PARSER_CFLAGS_set=3D
+ac_cv_env_HTTP_PARSER_CFLAGS_value=3D
+ac_cv_env_HTTP_PARSER_LIBS_set=3D
+ac_cv_env_HTTP_PARSER_LIBS_value=3D
+ac_cv_env_INI_CONFIG_V0_CFLAGS_set=3D
+ac_cv_env_INI_CONFIG_V0_CFLAGS_value=3D
+ac_cv_env_INI_CONFIG_V0_LIBS_set=3D
+ac_cv_env_INI_CONFIG_V0_LIBS_value=3D
+ac_cv_env_INI_CONFIG_V1_1_CFLAGS_set=3D
+ac_cv_env_INI_CONFIG_V1_1_CFLAGS_value=3D
+ac_cv_env_INI_CONFIG_V1_1_LIBS_set=3D
+ac_cv_env_INI_CONFIG_V1_1_LIBS_value=3D
+ac_cv_env_INI_CONFIG_V1_3_CFLAGS_set=3D
+ac_cv_env_INI_CONFIG_V1_3_CFLAGS_value=3D
+ac_cv_env_INI_CONFIG_V1_3_LIBS_set=3D
+ac_cv_env_INI_CONFIG_V1_3_LIBS_value=3D
+ac_cv_env_INI_CONFIG_V1_CFLAGS_set=3D
+ac_cv_env_INI_CONFIG_V1_CFLAGS_value=3D
+ac_cv_env_INI_CONFIG_V1_LIBS_set=3D
+ac_cv_env_INI_CONFIG_V1_LIBS_value=3D
+ac_cv_env_JANSSON_CFLAGS_set=3D
+ac_cv_env_JANSSON_CFLAGS_value=3D
+ac_cv_env_JANSSON_LIBS_set=3D
+ac_cv_env_JANSSON_LIBS_value=3D
+ac_cv_env_JOURNALD_CFLAGS_set=3D
+ac_cv_env_JOURNALD_CFLAGS_value=3D
+ac_cv_env_JOURNALD_LIBS_set=3D
+ac_cv_env_JOURNALD_LIBS_value=3D
+ac_cv_env_KRB5_CFLAGS_set=3D
+ac_cv_env_KRB5_CFLAGS_value=3D
+ac_cv_env_KRB5_LIBS_set=3D
+ac_cv_env_KRB5_LIBS_value=3D
+ac_cv_env_LDB_CFLAGS_set=3D
+ac_cv_env_LDB_CFLAGS_value=3D
+ac_cv_env_LDB_LIBS_set=3D
+ac_cv_env_LDB_LIBS_value=3D
+ac_cv_env_LDFLAGS_set=3Dset
+ac_cv_env_LDFLAGS_value=3D'-Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed'
+ac_cv_env_LIBNL1_CFLAGS_set=3D
+ac_cv_env_LIBNL1_CFLAGS_value=3D
+ac_cv_env_LIBNL1_LIBS_set=3D
+ac_cv_env_LIBNL1_LIBS_value=3D
+ac_cv_env_LIBNL3_CFLAGS_set=3D
+ac_cv_env_LIBNL3_CFLAGS_value=3D
+ac_cv_env_LIBNL3_LIBS_set=3D
+ac_cv_env_LIBNL3_LIBS_value=3D
+ac_cv_env_LIBS_set=3D
+ac_cv_env_LIBS_value=3D
+ac_cv_env_LT_SYS_LIBRARY_PATH_set=3D
+ac_cv_env_LT_SYS_LIBRARY_PATH_value=3D
+ac_cv_env_NDR_KRB5PAC_CFLAGS_set=3D
+ac_cv_env_NDR_KRB5PAC_CFLAGS_value=3D
+ac_cv_env_NDR_KRB5PAC_LIBS_set=3D
+ac_cv_env_NDR_KRB5PAC_LIBS_value=3D
+ac_cv_env_NDR_NBT_CFLAGS_set=3D
+ac_cv_env_NDR_NBT_CFLAGS_value=3D
+ac_cv_env_NDR_NBT_LIBS_set=3D
+ac_cv_env_NDR_NBT_LIBS_value=3D
+ac_cv_env_NFSIDMAP_CFLAGS_set=3D
+ac_cv_env_NFSIDMAP_CFLAGS_value=3D
+ac_cv_env_NFSIDMAP_LIBS_set=3D
+ac_cv_env_NFSIDMAP_LIBS_value=3D
+ac_cv_env_NSS_CFLAGS_set=3D
+ac_cv_env_NSS_CFLAGS_value=3D
+ac_cv_env_NSS_LIBS_set=3D
+ac_cv_env_NSS_LIBS_value=3D
+ac_cv_env_PCRE_CFLAGS_set=3D
+ac_cv_env_PCRE_CFLAGS_value=3D
+ac_cv_env_PCRE_LIBS_set=3D
+ac_cv_env_PCRE_LIBS_value=3D
+ac_cv_env_PKG_CONFIG_set=3D
+ac_cv_env_PKG_CONFIG_value=3D
+ac_cv_env_POPT_CFLAGS_set=3D
+ac_cv_env_POPT_CFLAGS_value=3D
+ac_cv_env_POPT_LIBS_set=3D
+ac_cv_env_POPT_LIBS_value=3D
+ac_cv_env_PYTHON_set=3D
+ac_cv_env_PYTHON_value=3D
+ac_cv_env_SASL_CFLAGS_set=3D
+ac_cv_env_SASL_CFLAGS_value=3D
+ac_cv_env_SASL_LIBS_set=3D
+ac_cv_env_SASL_LIBS_value=3D
+ac_cv_env_SMBCLIENT_CFLAGS_set=3D
+ac_cv_env_SMBCLIENT_CFLAGS_value=3D
+ac_cv_env_SMBCLIENT_LIBS_set=3D
+ac_cv_env_SMBCLIENT_LIBS_value=3D
+ac_cv_env_SYSTEMD_DAEMON_CFLAGS_set=3D
+ac_cv_env_SYSTEMD_DAEMON_CFLAGS_value=3D
+ac_cv_env_SYSTEMD_DAEMON_LIBS_set=3D
+ac_cv_env_SYSTEMD_DAEMON_LIBS_value=3D
+ac_cv_env_SYSTEMD_LOGIN_CFLAGS_set=3D
+ac_cv_env_SYSTEMD_LOGIN_CFLAGS_value=3D
+ac_cv_env_SYSTEMD_LOGIN_LIBS_set=3D
+ac_cv_env_SYSTEMD_LOGIN_LIBS_value=3D
+ac_cv_env_TALLOC_CFLAGS_set=3D
+ac_cv_env_TALLOC_CFLAGS_value=3D
+ac_cv_env_TALLOC_LIBS_set=3D
+ac_cv_env_TALLOC_LIBS_value=3D
+ac_cv_env_TDB_CFLAGS_set=3D
+ac_cv_env_TDB_CFLAGS_value=3D
+ac_cv_env_TDB_LIBS_set=3D
+ac_cv_env_TDB_LIBS_value=3D
+ac_cv_env_TEVENT_CFLAGS_set=3D
+ac_cv_env_TEVENT_CFLAGS_value=3D
+ac_cv_env_TEVENT_LIBS_set=3D
+ac_cv_env_TEVENT_LIBS_value=3D
+ac_cv_env_UUID_CFLAGS_set=3D
+ac_cv_env_UUID_CFLAGS_value=3D
+ac_cv_env_UUID_LIBS_set=3D
+ac_cv_env_UUID_LIBS_value=3D
+ac_cv_env_build_alias_set=3Dset
+ac_cv_env_build_alias_value=3Dx86_64-linux
+ac_cv_env_host_alias_set=3Dset
+ac_cv_env_host_alias_value=3Daarch64-poky-linux
+ac_cv_env_target_alias_set=3Dset
+ac_cv_env_target_alias_value=3Daarch64-poky-linux
+ac_cv_epoll_works=3Dyes
+ac_cv_file__dev_random=3Dyes
+ac_cv_file__dev_zero=3Dyes
+ac_cv_func___adjtimex=3Dyes
+ac_cv_func___argz_count=3Dyes
+ac_cv_func___argz_next=3Dyes
+ac_cv_func___argz_stringify=3Dyes
+ac_cv_func___fpending=3Dyes
+ac_cv_func___fsetlocking=3Dyes
+ac_cv_func___progname=3Dyes
+ac_cv_func___secure_getenv=3Dno
+ac_cv_func___va_copy=3Dyes
+ac_cv_func__obstack_free=3Dyes
+ac_cv_func__setjmp=3Dyes
+ac_cv_func__sys_siglist=3Dyes
+ac_cv_func_a64l=3Dyes
+ac_cv_func_abs=3Dyes
+ac_cv_func_access=3Dyes
+ac_cv_func_alarm=3Dyes
+ac_cv_func_alphasort=3Dyes
+ac_cv_func_argz_append=3Dyes
+ac_cv_func_argz_create_sep=3Dyes
+ac_cv_func_argz_insert=3Dyes
+ac_cv_func_argz_next=3Dyes
+ac_cv_func_argz_stringify=3Dyes
+ac_cv_func_asprintf=3Dyes
+ac_cv_func_atexit=3Dyes
+ac_cv_func_atof=3Dyes
+ac_cv_func_atoi=3Dyes
+ac_cv_func_bcmp=3Dyes
+ac_cv_func_bcopy=3Dyes
+ac_cv_func_bind_textdomain_codeset=3Dyes
+ac_cv_func_bindresvport=3Dyes
+ac_cv_func_btowc=3Dyes
+ac_cv_func_bzero=3Dyes
+ac_cv_func_calloc=3Dyes
+ac_cv_func_canonicalize_file_name=3Dyes
+ac_cv_func_catgets=3Dyes
+ac_cv_func_cfgetospeed=3Dyes
+ac_cv_func_cfsetispeed=3Dyes
+ac_cv_func_cfsetspeed=3Dyes
+ac_cv_func_chmod=3Dyes
+ac_cv_func_chown=3Dyes
+ac_cv_func_chroot=3Dyes
+ac_cv_func_clock=3Dyes
+ac_cv_func_close=3Dyes
+ac_cv_func_closedir=3Dyes
+ac_cv_func_closelog=3Dyes
+ac_cv_func_confstr=3Dyes
+ac_cv_func_connect=3Dyes
+ac_cv_func_daemon=3Dyes
+ac_cv_func_dbus_watch_get_unix_fd=3Dyes
+ac_cv_func_dcgettext=3Dyes
+ac_cv_func_difftime=3Dyes
+ac_cv_func_dirfd=3Dyes
+ac_cv_func_dirname=3Dyes
+ac_cv_func_dlerror=3Dyes
+ac_cv_func_dngettext=3Dyes
+ac_cv_func_dup2=3Dyes
+ac_cv_func_ecvt=3Dyes
+ac_cv_func_endgrent=3Dyes
+ac_cv_func_endmntent=3Dyes
+ac_cv_func_endpwent=3Dyes
+ac_cv_func_endutent=3Dyes
+ac_cv_func_endutxent=3Dyes
+ac_cv_func_epoll_ctl=3Dyes
+ac_cv_func_err=3Dyes
+ac_cv_func_ether_hostton=3Dyes
+ac_cv_func_ether_ntohost=3Dyes
+ac_cv_func_euidaccess=3Dyes
+ac_cv_func_execv=3Dyes
+ac_cv_func_fchdir=3Dyes
+ac_cv_func_fchmod=3Dyes
+ac_cv_func_fchmodat=3Dyes
+ac_cv_func_fchown=3Dyes
+ac_cv_func_fchownat=3Dyes
+ac_cv_func_fcntl=3Dyes
+ac_cv_func_fcvt=3Dyes
+ac_cv_func_fdatasync=3Dyes
+ac_cv_func_fdopendir=3Dyes
+ac_cv_func_feof_unlocked=3Dyes
+ac_cv_func_fgets_unlocked=3Dyes
+ac_cv_func_fgetxattr=3Dyes
+ac_cv_func_finite=3Dyes
+ac_cv_func_flistxattr=3Dyes
+ac_cv_func_flock=3Dyes
+ac_cv_func_flockfile=3Dyes
+ac_cv_func_fnmatch=3Dyes
+ac_cv_func_fnmatch_works=3Dyes
+ac_cv_func_fork=3Dyes
+ac_cv_func_fpathconf=3Dyes
+ac_cv_func_fprintf=3Dyes
+ac_cv_func_free=3Dyes
+ac_cv_func_freeaddrinfo=3Dyes
+ac_cv_func_freeifaddrs=3Dyes
+ac_cv_func_fseeko=3Dyes
+ac_cv_func_fsetxattr=3Dyes
+ac_cv_func_fstat64=3Dyes
+ac_cv_func_fstat=3Dyes
+ac_cv_func_fstatfs=3Dyes
+ac_cv_func_fsync=3Dyes
+ac_cv_func_ftello=3Dyes
+ac_cv_func_ftime=3Dyes
+ac_cv_func_ftruncate=3Dyes
+ac_cv_func_funlockfile=3Dyes
+ac_cv_func_futimens=3Dyes
+ac_cv_func_futimes=3Dyes
+ac_cv_func_futimesat=3Dyes
+ac_cv_func_g_utf8_validate=3Dyes
+ac_cv_func_gai_strerror=3Dyes
+ac_cv_func_gcvt=3Dyes
+ac_cv_func_getaddrinfo=3Dyes
+ac_cv_func_getc_unlocked=3Dyes
+ac_cv_func_getcwd=3Dyes
+ac_cv_func_getdelim=3Dyes
+ac_cv_func_getdomainname=3Dyes
+ac_cv_func_getdtablesize=3Dyes
+ac_cv_func_getegid=3Dyes
+ac_cv_func_getenv=3Dyes
+ac_cv_func_geteuid=3Dyes
+ac_cv_func_getgid=3Dyes
+ac_cv_func_getgrent=3Dyes
+ac_cv_func_getgrent_r=3Dyes
+ac_cv_func_getgrgid_r=3Dyes
+ac_cv_func_getgrnam=3Dyes
+ac_cv_func_getgrnam_r=3Dyes
+ac_cv_func_getgrouplist=3Dyes
+ac_cv_func_getgroups=3Dyes
+ac_cv_func_gethostbyaddr_r=3Dyes
+ac_cv_func_gethostbyname2=3Dyes
+ac_cv_func_gethostbyname=3Dyes
+ac_cv_func_gethostbyname_r=3Dyes
+ac_cv_func_gethostent=3Dyes
+ac_cv_func_gethostid=3Dyes
+ac_cv_func_gethostname=3Dyes
+ac_cv_func_getifaddrs=3Dyes
+ac_cv_func_getline=3Dyes
+ac_cv_func_getloadavg=3Dyes
+ac_cv_func_getmntent=3Dyes
+ac_cv_func_getmsg=3Dyes
+ac_cv_func_getnameinfo=3Dyes
+ac_cv_func_getnetbyaddr_r=3Dyes
+ac_cv_func_getnetgrent_r=3Dyes
+ac_cv_func_getopt=3Dyes
+ac_cv_func_getopt_long=3Dyes
+ac_cv_func_getopt_long_only=3Dyes
+ac_cv_func_getpagesize=3Dyes
+ac_cv_func_getpass=3Dyes
+ac_cv_func_getpeername=3Dyes
+ac_cv_func_getpgrp=3Dyes
+ac_cv_func_getpgrp_void=3Dyes
+ac_cv_func_getpid=3Dyes
+ac_cv_func_getppid=3Dyes
+ac_cv_func_getprotoent_r=3Dyes
+ac_cv_func_getpwent=3Dyes
+ac_cv_func_getpwent_r=3Dyes
+ac_cv_func_getpwnam=3Dyes
+ac_cv_func_getpwnam_r=3Dyes
+ac_cv_func_getpwuid=3Dyes
+ac_cv_func_getpwuid_r=3Dyes
+ac_cv_func_getresuid=3Dyes
+ac_cv_func_getrlimit=3Dyes
+ac_cv_func_getrusage=3Dyes
+ac_cv_func_getservbyname=3Dyes
+ac_cv_func_getservbyname_r=3Dyes
+ac_cv_func_getservbyport_r=3Dyes
+ac_cv_func_getservent=3Dyes
+ac_cv_func_getservent_r=3Dyes
+ac_cv_func_getspnam=3Dyes
+ac_cv_func_getspnam_r=3Dyes
+ac_cv_func_gettimeofday=3Dyes
+ac_cv_func_getttyent=3Dyes
+ac_cv_func_getttynam=3Dyes
+ac_cv_func_getuid=3Dyes
+ac_cv_func_getusershell=3Dyes
+ac_cv_func_getutent=3Dyes
+ac_cv_func_getutid=3Dyes
+ac_cv_func_getutline=3Dyes
+ac_cv_func_getutmp=3Dyes
+ac_cv_func_getutmpx=3Dyes
+ac_cv_func_getutxent=3Dyes
+ac_cv_func_getutxid=3Dyes
+ac_cv_func_getutxline=3Dyes
+ac_cv_func_getwd=3Dyes
+ac_cv_func_getxattr=3Dyes
+ac_cv_func_glob=3Dyes
+ac_cv_func_gmtime=3Dyes
+ac_cv_func_gmtime_r=3Dyes
+ac_cv_func_grantpt=3Dyes
+ac_cv_func_group_member=3Dyes
+ac_cv_func_herror=3Dyes
+ac_cv_func_hstrerror=3Dyes
+ac_cv_func_iconv=3Dyes
+ac_cv_func_iconv_open=3Dyes
+ac_cv_func_if_freenameindex=3Dyes
+ac_cv_func_if_indextoname=3Dyes
+ac_cv_func_if_nameindex=3Dyes
+ac_cv_func_if_nametoindex=3Dyes
+ac_cv_func_index=3Dyes
+ac_cv_func_inet_addr=3Dyes
+ac_cv_func_inet_aton=3Dyes
+ac_cv_func_inet_ntoa=3Dyes
+ac_cv_func_inet_ntop=3Dyes
+ac_cv_func_inet_pton=3Dyes
+ac_cv_func_initgroups=3Dyes
+ac_cv_func_innetgr=3Dyes
+ac_cv_func_iruserok=3Dyes
+ac_cv_func_isascii=3Dyes
+ac_cv_func_isatty=3Dyes
+ac_cv_func_isblank=3Dyes
+ac_cv_func_isgraph=3Dyes
+ac_cv_func_isinf=3Dyes
+ac_cv_func_isnan=3Dyes
+ac_cv_func_isprint=3Dyes
+ac_cv_func_isspace=3Dyes
+ac_cv_func_iswalnum=3Dyes
+ac_cv_func_iswcntrl=3Dyes
+ac_cv_func_iswctype=3Dyes
+ac_cv_func_iswprint=3Dyes
+ac_cv_func_iswspace=3Dyes
+ac_cv_func_iswupper=3Dyes
+ac_cv_func_isxdigit=3Dyes
+ac_cv_func_kill=3Dyes
+ac_cv_func_killpg=3Dyes
+ac_cv_func_krb5_cc_cache_match=3Dyes
+ac_cv_func_krb5_cc_get_full_name=3Dyes
+ac_cv_func_krb5_find_authdata=3Dyes
+ac_cv_func_krb5_free_keytab_entry_contents=3Dyes
+ac_cv_func_krb5_free_unparsed_name=3Dyes
+ac_cv_func_krb5_get_error_message=3Dyes
+ac_cv_func_krb5_get_init_creds_opt_alloc=3Dyes
+ac_cv_func_krb5_get_init_creds_opt_set_canonicalize=3Dyes
+ac_cv_func_krb5_get_init_creds_opt_set_change_password_prompt=3Dyes
+ac_cv_func_krb5_get_init_creds_opt_set_expire_callback=3Dyes
+ac_cv_func_krb5_get_init_creds_opt_set_fast_ccache_name=3Dyes
+ac_cv_func_krb5_get_init_creds_opt_set_fast_flags=3Dyes
+ac_cv_func_krb5_get_init_creds_opt_set_responder=3Dyes
+ac_cv_func_krb5_get_time_offsets=3Dyes
+ac_cv_func_krb5_kt_free_entry=3Dyes
+ac_cv_func_krb5_kt_have_content=3Dyes
+ac_cv_func_krb5_parse_name_flags=3Dyes
+ac_cv_func_krb5_princ_realm=3Dno
+ac_cv_func_krb5_principal_get_realm=3Dno
+ac_cv_func_krb5_set_trace_callback=3Dyes
+ac_cv_func_krb5_timestamp_to_sfstring=3Dyes
+ac_cv_func_krb5_unparse_name_flags=3Dyes
+ac_cv_func_lchown=3Dyes
+ac_cv_func_lckpwdf=3Dyes
+ac_cv_func_ldap_control_create=3Dyes
+ac_cv_func_ldap_create_deref_control_value=3Dyes
+ac_cv_func_ldap_derefresponse_free=3Dyes
+ac_cv_func_ldap_init_fd=3Dyes
+ac_cv_func_ldap_parse_derefresponse_control=3Dyes
+ac_cv_func_lgetxattr=3Dyes
+ac_cv_func_link=3Dyes
+ac_cv_func_listxattr=3Dyes
+ac_cv_func_llistxattr=3Dyes
+ac_cv_func_localtime=3Dyes
+ac_cv_func_localtime_r=3Dyes
+ac_cv_func_lockf=3Dyes
+ac_cv_func_lrand48=3Dyes
+ac_cv_func_lsearch=3Dyes
+ac_cv_func_lseek64=3Dyes
+ac_cv_func_lsetxattr=3Dyes
+ac_cv_func_lstat=3Dyes
+ac_cv_func_lstat_dereferences_slashed_symlink=3Dyes
+ac_cv_func_lstat_empty_string_bug=3Dno
+ac_cv_func_mallinfo=3Dyes
+ac_cv_func_malloc=3Dyes
+ac_cv_func_malloc_0_nonnull=3Dyes
+ac_cv_func_malloc_works=3Dyes
+ac_cv_func_mblen=3Dyes
+ac_cv_func_mbrlen=3Dyes
+ac_cv_func_mbrtowc=3Dyes
+ac_cv_func_mbsinit=3Dyes
+ac_cv_func_mbsrtowcs=3Dyes
+ac_cv_func_mbtowc=3Dyes
+ac_cv_func_memalign=3Dyes
+ac_cv_func_memchr=3Dyes
+ac_cv_func_memcmp=3Dyes
+ac_cv_func_memcmp_working=3Dyes
+ac_cv_func_memcpy=3Dyes
+ac_cv_func_memmove=3Dyes
+ac_cv_func_mempcpy=3Dyes
+ac_cv_func_memrchr=3Dyes
+ac_cv_func_memset=3Dyes
+ac_cv_func_mkdir=3Dyes
+ac_cv_func_mkdirat=3Dyes
+ac_cv_func_mkdtemp=3Dyes
+ac_cv_func_mkfifo=3Dyes
+ac_cv_func_mknod=3Dyes
+ac_cv_func_mkstemp64=3Dyes
+ac_cv_func_mkstemp=3Dyes
+ac_cv_func_mktime=3Dyes
+ac_cv_func_mlock=3Dyes
+ac_cv_func_mmap=3Dyes
+ac_cv_func_mmap_fixed_mapped=3Dyes
+ac_cv_func_mtrace=3Dyes
+ac_cv_func_munlock=3Dyes
+ac_cv_func_munmap=3Dyes
+ac_cv_func_nanosleep=3Dyes
+ac_cv_func_nice=3Dyes
+ac_cv_func_nl_langinfo=3Dyes
+ac_cv_func_ntp_adjtime=3Dyes
+ac_cv_func_ntp_gettime=3Dyes
+ac_cv_func_on_exit=3Dyes
+ac_cv_func_open64=3Dyes
+ac_cv_func_open=3Dyes
+ac_cv_func_openat=3Dyes
+ac_cv_func_opendir=3Dyes
+ac_cv_func_openlog=3Dyes
+ac_cv_func_pam_modutil_getlogin=3Dyes
+ac_cv_func_pam_vsyslog=3Dyes
+ac_cv_func_pathconf=3Dyes
+ac_cv_func_pipe=3Dyes
+ac_cv_func_poll=3Dyes
+ac_cv_func_popen=3Dyes
+ac_cv_func_posix_getgrgid_r=3Dyes
+ac_cv_func_posix_getpwnam_r=3Dyes
+ac_cv_func_posix_getpwuid_r=3Dyes
+ac_cv_func_posix_memalign=3Dyes
+ac_cv_func_prctl=3Dyes
+ac_cv_func_pread=3Dyes
+ac_cv_func_printf=3Dyes
+ac_cv_func_printf_unix98=3Dyes
+ac_cv_func_pselect=3Dyes
+ac_cv_func_pthread_attr_getstack=3Dyes
+ac_cv_func_pthread_key_delete=3Dyes
+ac_cv_func_pthread_mutex_lock=3Dyes
+ac_cv_func_ptsname=3Dyes
+ac_cv_func_putenv=3Dyes
+ac_cv_func_putgrent=3Dyes
+ac_cv_func_putpwent=3Dyes
+ac_cv_func_putspent=3Dyes
+ac_cv_func_pututline=3Dyes
+ac_cv_func_pututxline=3Dyes
+ac_cv_func_putwc=3Dyes
+ac_cv_func_pwrite=3Dyes
+ac_cv_func_qsort=3Dyes
+ac_cv_func_raise=3Dyes
+ac_cv_func_rand=3Dyes
+ac_cv_func_rand_r=3Dyes
+ac_cv_func_random=3Dyes
+ac_cv_func_re_comp=3Dyes
+ac_cv_func_re_exec=3Dyes
+ac_cv_func_re_search=3Dyes
+ac_cv_func_read=3Dyes
+ac_cv_func_readdir=3Dyes
+ac_cv_func_readdir_r=3Dyes
+ac_cv_func_readlink=3Dyes
+ac_cv_func_realloc=3Dyes
+ac_cv_func_realloc_0_nonnull=3Dyes
+ac_cv_func_realloc_works=3Dyes
+ac_cv_func_realpath=3Dyes
+ac_cv_func_recvmsg=3Dyes
+ac_cv_func_regcomp=3Dyes
+ac_cv_func_regexec=3Dyes
+ac_cv_func_remove=3Dyes
+ac_cv_func_rename=3Dyes
+ac_cv_func_rmdir=3Dyes
+ac_cv_func_rpmatch=3Dyes
+ac_cv_func_rresvport_af=3Dyes
+ac_cv_func_ruserok=3Dyes
+ac_cv_func_ruserok_af=3Dyes
+ac_cv_func_sbrk=3Dyes
+ac_cv_func_scandir=3Dyes
+ac_cv_func_sched_setscheduler=3Dyes
+ac_cv_func_sched_yield=3Dyes
+ac_cv_func_select=3Dyes
+ac_cv_func_semctl=3Dyes
+ac_cv_func_semget=3Dyes
+ac_cv_func_sendmsg=3Dyes
+ac_cv_func_setbuf=3Dyes
+ac_cv_func_setbuffer=3Dyes
+ac_cv_func_setegid=3Dyes
+ac_cv_func_setenv=3Dyes
+ac_cv_func_seteuid=3Dyes
+ac_cv_func_setgid=3Dyes
+ac_cv_func_setgrent_void=3Dyes
+ac_cv_func_setgroups=3Dyes
+ac_cv_func_sethostname=3Dyes
+ac_cv_func_setitimer=3Dyes
+ac_cv_func_setjmp=3Dyes
+ac_cv_func_setlinebuf=3Dyes
+ac_cv_func_setlocale=3Dyes
+ac_cv_func_setmntent=3Dyes
+ac_cv_func_setpgid=3Dyes
+ac_cv_func_setpgrp=3Dyes
+ac_cv_func_setpgrp_void=3Dyes
+ac_cv_func_setpriority=3Dyes
+ac_cv_func_setregid=3Dyes
+ac_cv_func_setresgid=3Dyes
+ac_cv_func_setresuid=3Dyes
+ac_cv_func_setreuid=3Dyes
+ac_cv_func_setrlimit=3Dyes
+ac_cv_func_setsid=3Dyes
+ac_cv_func_setsockopt=3Dyes
+ac_cv_func_settimeofday=3Dyes
+ac_cv_func_setuid=3Dyes
+ac_cv_func_setutent=3Dyes
+ac_cv_func_setutxent=3Dyes
+ac_cv_func_setvbuf=3Dyes
+ac_cv_func_setxattr=3Dyes
+ac_cv_func_sgetspent=3Dyes
+ac_cv_func_shl_load=3Dno
+ac_cv_func_shmat=3Dyes
+ac_cv_func_shmctl=3Dyes
+ac_cv_func_shmdt=3Dyes
+ac_cv_func_shmget=3Dyes
+ac_cv_func_shutdown=3Dyes
+ac_cv_func_sigaction=3Dyes
+ac_cv_func_sigaddset=3Dyes
+ac_cv_func_sigaltstack=3Dyes
+ac_cv_func_sigblock=3Dyes
+ac_cv_func_sigemptyset=3Dyes
+ac_cv_func_sighold=3Dyes
+ac_cv_func_siginterrupt=3Dyes
+ac_cv_func_signal=3Dyes
+ac_cv_func_sigprocmask=3Dyes
+ac_cv_func_sigset=3Dyes
+ac_cv_func_sigsetmask=3Dyes
+ac_cv_func_sigstack=3Dyes
+ac_cv_func_sigsuspend=3Dyes
+ac_cv_func_sigvec=3Dno
+ac_cv_func_snprintf=3Dyes
+ac_cv_func_snprintf_c99=3Dyes
+ac_cv_func_socket=3Dyes
+ac_cv_func_socketpair=3Dyes
+ac_cv_func_sprintf=3Dyes
+ac_cv_func_srand48=3Dyes
+ac_cv_func_srand=3Dyes
+ac_cv_func_srandom=3Dyes
+ac_cv_func_sscanf=3Dyes
+ac_cv_func_stat=3Dyes
+ac_cv_func_stat_empty_string_bug=3Dno
+ac_cv_func_stat_ignores_trailing_slash=3Dno
+ac_cv_func_statfs=3Dyes
+ac_cv_func_statvfs=3Dyes
+ac_cv_func_stime=3Dyes
+ac_cv_func_stpcpy=3Dyes
+ac_cv_func_strcasecmp=3Dyes
+ac_cv_func_strcasestr=3Dyes
+ac_cv_func_strchr=3Dyes
+ac_cv_func_strchrnul=3Dyes
+ac_cv_func_strcmp=3Dyes
+ac_cv_func_strcspn=3Dyes
+ac_cv_func_strdup=3Dyes
+ac_cv_func_strerror=3Dyes
+ac_cv_func_strerror_r=3Dyes
+ac_cv_func_strftime=3Dyes
+ac_cv_func_strlen=3Dyes
+ac_cv_func_strncasecmp=3Dyes
+ac_cv_func_strncmp=3Dyes
+ac_cv_func_strndup=3Dyes
+ac_cv_func_strnlen=3Dyes
+ac_cv_func_strpbrk=3Dyes
+ac_cv_func_strptime=3Dyes
+ac_cv_func_strrchr=3Dyes
+ac_cv_func_strsep=3Dyes
+ac_cv_func_strsignal=3Dyes
+ac_cv_func_strspn=3Dyes
+ac_cv_func_strstr=3Dyes
+ac_cv_func_strtod=3Dyes
+ac_cv_func_strtoimax=3Dyes
+ac_cv_func_strtok_r=3Dyes
+ac_cv_func_strtol=3Dyes
+ac_cv_func_strtoll=3Dyes
+ac_cv_func_strtoul=3Dyes
+ac_cv_func_strtoull=3Dyes
+ac_cv_func_strtoumax=3Dyes
+ac_cv_func_strverscmp=3Dyes
+ac_cv_func_strxfrm=3Dyes
+ac_cv_func_symlink=3Dyes
+ac_cv_func_sync=3Dyes
+ac_cv_func_sys_siglist=3Dyes
+ac_cv_func_sysconf=3Dyes
+ac_cv_func_sysctl=3Dyes
+ac_cv_func_sysinfo=3Dyes
+ac_cv_func_syslog=3Dyes
+ac_cv_func_system=3Dyes
+ac_cv_func_tcgetattr=3Dyes
+ac_cv_func_tcgetpgrp=3Dyes
+ac_cv_func_tcsetattr=3Dyes
+ac_cv_func_tcsetpgrp=3Dyes
+ac_cv_func_time=3Dyes
+ac_cv_func_timegm=3Dyes
+ac_cv_func_times=3Dyes
+ac_cv_func_timezone=3Dyes
+ac_cv_func_tmpnam=3Dyes
+ac_cv_func_towlower=3Dyes
+ac_cv_func_towupper=3Dyes
+ac_cv_func_truncate=3Dyes
+ac_cv_func_tsearch=3Dyes
+ac_cv_func_ttyname=3Dyes
+ac_cv_func_tzset=3Dyes
+ac_cv_func_ulimit=3Dyes
+ac_cv_func_umask=3Dyes
+ac_cv_func_uname=3Dyes
+ac_cv_func_unlink=3Dyes
+ac_cv_func_unsetenv=3Dyes
+ac_cv_func_unshare=3Dyes
+ac_cv_func_updwtmp=3Dyes
+ac_cv_func_updwtmpx=3Dyes
+ac_cv_func_usleep=3Dyes
+ac_cv_func_ustat=3Dyes
+ac_cv_func_utime=3Dyes
+ac_cv_func_utimensat=3Dyes
+ac_cv_func_utimes=3Dyes
+ac_cv_func_utmpname=3Dyes
+ac_cv_func_utmpxname=3Dyes
+ac_cv_func_va_copy=3Dyes
+ac_cv_func_valloc=3Dyes
+ac_cv_func_vasprintf=3Dyes
+ac_cv_func_verrx=3Dyes
+ac_cv_func_vfork=3Dyes
+ac_cv_func_vfprintf=3Dyes
+ac_cv_func_vfscanf=3Dyes
+ac_cv_func_vhangup=3Dyes
+ac_cv_func_vprintf=3Dyes
+ac_cv_func_vsnprintf=3Dyes
+ac_cv_func_vsnprintf_c99=3Dyes
+ac_cv_func_vsprintf=3Dyes
+ac_cv_func_wait3=3Dyes
+ac_cv_func_wait4=3Dyes
+ac_cv_func_waitpid=3Dyes
+ac_cv_func_wcrtomb=3Dyes
+ac_cv_func_wcscoll=3Dyes
+ac_cv_func_wcsdup=3Dyes
+ac_cv_func_wcslen=3Dyes
+ac_cv_func_wctob=3Dyes
+ac_cv_func_wctomb=3Dyes
+ac_cv_func_wctype=3Dyes
+ac_cv_func_wcwidth=3Dyes
+ac_cv_func_wmemchr=3Dyes
+ac_cv_func_wmemcpy=3Dyes
+ac_cv_func_wmempcpy=3Dyes
+ac_cv_have_abstract_sockets=3Dyes
+ac_cv_have_accrights_in_msghdr=3Dno
+ac_cv_have_broken_snprintf=3Dno
+ac_cv_have_control_in_msghdr=3Dyes
+ac_cv_have_decl_sys_siglist=3Dyes
+ac_cv_have_long_long_format=3Dyes
+ac_cv_have_openpty_ctty_bug=3Dyes
+ac_cv_have_space_d_name_in_struct_dirent=3Dyes
+ac_cv_header_X=3Dno
+ac_cv_header__CC=3Dno
+ac_cv_header__CFLAGS=3Dno
+ac_cv_header__CPPFLAGS=3Dno
+ac_cv_header___5=3Dno
+ac_cv_header__c=3Dno
+ac_cv_header_aio_h=3Dyes
+ac_cv_header_alloca_h=3Dyes
+ac_cv_header_argz_h=3Dyes
+ac_cv_header_arpa_inet_h=3Dyes
+ac_cv_header_arpa_nameser_h=3Dyes
+ac_cv_header_asm_byteorder_h=3Dyes
+ac_cv_header_asm_ioctls_h=3Dyes
+ac_cv_header_asm_page_h=3Dno
+ac_cv_header_asm_types_h=3Dyes
+ac_cv_header_assert_h=3Dyes
+ac_cv_header_byteswap_h=3Dyes
+ac_cv_header_conftest__ac_ext=3Dno
+ac_cv_header_ctype_h=3Dyes
+ac_cv_header_curses_h=3Dyes
+ac_cv_header_dirent_h=3Dyes
+ac_cv_header_dlfcn_h=3Dyes
+ac_cv_header_elf_h=3Dyes
+ac_cv_header_endian_h=3Dyes
+ac_cv_header_err_h=3Dyes
+ac_cv_header_errno_h=3Dyes
+ac_cv_header_execinfo_h=3Dyes
+ac_cv_header_fcntl_h=3Dyes
+ac_cv_header_features_h=3Dyes
+ac_cv_header_float_h=3Dyes
+ac_cv_header_fstab_h=3Dyes
+ac_cv_header_ftw_h=3Dyes
+ac_cv_header_getopt_h=3Dyes
+ac_cv_header_glob_h=3Dyes
+ac_cv_header_grp_h=3Dyes
+ac_cv_header_iconv_h=3Dyes
+ac_cv_header_ifaddrs_h=3Dyes
+ac_cv_header_inttypes_h=3Dyes
+ac_cv_header_keyutils_h=3Dno
+ac_cv_header_krb5_h=3Dyes
+ac_cv_header_krb5_krb5_h=3Dyes
+ac_cv_header_krb5_localauth_plugin_h=3Dyes
+ac_cv_header_krb5_locate_plugin_h=3Dyes
+ac_cv_header_langinfo_h=3Dyes
+ac_cv_header_lastlog_h=3Dyes
+ac_cv_header_ldb_h=3Dyes
+ac_cv_header_ldb_module_h=3Dyes
+ac_cv_header_libgen_h=3Dyes
+ac_cv_header_libintl_h=3Dyes
+ac_cv_header_limits_h=3Dyes
+ac_cv_header_linux_capability_h=3Dyes
+ac_cv_header_linux_fd_h=3Dyes
+ac_cv_header_linux_fs_h=3Dyes
+ac_cv_header_linux_hayesesp_h=3Dno
+ac_cv_header_linux_hdreg_h=3Dyes
+ac_cv_header_linux_icmp_h=3Dyes
+ac_cv_header_linux_in6_h=3Dyes
+ac_cv_header_linux_joystick_h=3Dyes
+ac_cv_header_linux_ptrace_h=3Dyes
+ac_cv_header_linux_serial_h=3Dyes
+ac_cv_header_linux_sonypi_h=3Dyes
+ac_cv_header_linux_unistd_h=3Dyes
+ac_cv_header_linux_utsname_h=3Dyes
+ac_cv_header_linux_version_h=3Dyes
+ac_cv_header_locale_h=3Dyes
+ac_cv_header_malloc_h=3Dyes
+ac_cv_header_math_h=3Dyes
+ac_cv_header_mcheck_h=3Dyes
+ac_cv_header_memory_h=3Dyes
+ac_cv_header_minix_config_h=3Dno
+ac_cv_header_mntent_h=3Dyes
+ac_cv_header_mqueue_h=3Dyes
+ac_cv_header_ncurses_curses_h=3Dno
+ac_cv_header_ncurses_h=3Dyes
+ac_cv_header_ncurses_termcap_h=3Dno
+ac_cv_header_net_if_h=3Dyes
+ac_cv_header_net_route_h=3Dyes
+ac_cv_header_netdb_h=3Dyes
+ac_cv_header_netinet_ether_h=3Dyes
+ac_cv_header_netinet_in_h=3Dyes
+ac_cv_header_netinet_ip6_h=3Dyes
+ac_cv_header_netinet_ip_h=3Dyes
+ac_cv_header_netinet_sctp_h=3Dno
+ac_cv_header_netinet_sctp_uio_h=3Dno
+ac_cv_header_netinet_tcp_h=3Dyes
+ac_cv_header_netinet_udp_h=3Dyes
+ac_cv_header_netipx_ipx_h=3Dyes
+ac_cv_header_paths_h=3Dyes
+ac_cv_header_poll_h=3Dyes
+ac_cv_header_pthread_h=3Dyes
+ac_cv_header_pty_h=3Dyes
+ac_cv_header_pwd_h=3Dyes
+ac_cv_header_regex_h=3Dyes
+ac_cv_header_resolv_h=3Dyes
+ac_cv_header_rpc_rpc_h=3Dno
+ac_cv_header_rpc_types_h=3Dno
+ac_cv_header_sched_h=3Dyes
+ac_cv_header_scsi_scsi_h=3Dyes
+ac_cv_header_search_h=3Dyes
+ac_cv_header_security__pam_macros_h=3Dyes
+ac_cv_header_security_openpam_h=3Dno
+ac_cv_header_security_pam_appl_h=3Dyes
+ac_cv_header_security_pam_ext_h=3Dyes
+ac_cv_header_security_pam_misc_h=3Dyes
+ac_cv_header_security_pam_modules_h=3Dyes
+ac_cv_header_security_pam_modutil_h=3Dyes
+ac_cv_header_selinux_selinux_h=3Dyes
+ac_cv_header_semaphore_h=3Dyes
+ac_cv_header_setjmp_h=3Dyes
+ac_cv_header_sgtty_h=3Dyes
+ac_cv_header_shadow_h=3Dyes
+ac_cv_header_signal_h=3Dyes
+ac_cv_header_stdarg_h=3Dyes
+ac_cv_header_stdbool_h=3Dyes
+ac_cv_header_stdc=3Dyes
+ac_cv_header_stddef_h=3Dyes
+ac_cv_header_stdint_h=3Dyes
+ac_cv_header_stdio_h=3Dyes
+ac_cv_header_stdlib_h=3Dyes
+ac_cv_header_string_h=3Dyes
+ac_cv_header_strings_h=3Dyes
+ac_cv_header_stropts_h=3Dyes
+ac_cv_header_sys_bitypes_h=3Dyes
+ac_cv_header_sys_cdefs_h=3Dyes
+ac_cv_header_sys_dir_h=3Dyes
+ac_cv_header_sys_endian_h=3Dno
+ac_cv_header_sys_epoll_h=3Dyes
+ac_cv_header_sys_fcntl_h=3Dyes
+ac_cv_header_sys_file_h=3Dyes
+ac_cv_header_sys_fsuid_h=3Dyes
+ac_cv_header_sys_ioctl_h=3Dyes
+ac_cv_header_sys_ipc_h=3Dyes
+ac_cv_header_sys_mman_h=3Dyes
+ac_cv_header_sys_mount_h=3Dyes
+ac_cv_header_sys_mtio_h=3Dyes
+ac_cv_header_sys_param_h=3Dyes
+ac_cv_header_sys_poll_h=3Dyes
+ac_cv_header_sys_prctl_h=3Dyes
+ac_cv_header_sys_ptrace_h=3Dyes
+ac_cv_header_sys_queue_h=3Dyes
+ac_cv_header_sys_reg_h=3Dno
+ac_cv_header_sys_resource_h=3Dyes
+ac_cv_header_sys_select_h=3Dyes
+ac_cv_header_sys_sem_h=3Dyes
+ac_cv_header_sys_shm_h=3Dyes
+ac_cv_header_sys_signal_h=3Dyes
+ac_cv_header_sys_socket_h=3Dyes
+ac_cv_header_sys_socketvar_h=3Dyes
+ac_cv_header_sys_soundcard_h=3Dyes
+ac_cv_header_sys_stat_h=3Dyes
+ac_cv_header_sys_statfs_h=3Dyes
+ac_cv_header_sys_statvfs_h=3Dyes
+ac_cv_header_sys_stropts_h=3Dyes
+ac_cv_header_sys_swap_h=3Dyes
+ac_cv_header_sys_sysctl_h=3Dyes
+ac_cv_header_sys_sysinfo_h=3Dyes
+ac_cv_header_sys_sysmacros_h=3Dyes
+ac_cv_header_sys_termios_h=3Dyes
+ac_cv_header_sys_time_h=3Dyes
+ac_cv_header_sys_timeb_h=3Dyes
+ac_cv_header_sys_times_h=3Dyes
+ac_cv_header_sys_timex_h=3Dyes
+ac_cv_header_sys_types_h=3Dyes
+ac_cv_header_sys_uio_h=3Dyes
+ac_cv_header_sys_un_h=3Dyes
+ac_cv_header_sys_unistd_h=3Dyes
+ac_cv_header_sys_user_h=3Dyes
+ac_cv_header_sys_utsname_h=3Dyes
+ac_cv_header_sys_vfs_h=3Dyes
+ac_cv_header_sys_wait_h=3Dyes
+ac_cv_header_sysexits_h=3Dyes
+ac_cv_header_syslog_h=3Dyes
+ac_cv_header_termio_h=3Dyes
+ac_cv_header_termios_h=3Dyes
+ac_cv_header_time_h=3Dyes
+ac_cv_header_ttyent_h=3Dyes
+ac_cv_header_ulimit_h=3Dyes
+ac_cv_header_unistd_h=3Dyes
+ac_cv_header_ustat_h=3Dyes
+ac_cv_header_utime_h=3Dyes
+ac_cv_header_utmp_h=3Dyes
+ac_cv_header_utmpx_h=3Dyes
+ac_cv_header_values_h=3Dyes
+ac_cv_header_wchar_h=3Dyes
+ac_cv_header_wctype_h=3Dyes
+ac_cv_host=3Daarch64-poky-linux-gnu
+ac_cv_ispeed_offset=3D13
+ac_cv_lib_dld_dld_link=3Dno
+ac_cv_lib_dld_shl_load=3Dno
+ac_cv_lib_lber_ber_pvt_opt_on=3Dyes
+ac_cv_lib_ldap_ldap_search=3Dyes
+ac_cv_lib_ldb_ldb_init=3Dyes
+ac_cv_lib_pam_misc_misc_conv=3Dyes
+ac_cv_lib_pam_pam_get_item=3Dyes
+ac_cv_lib_png_png_create_info_struct=3Dyes
+ac_cv_lib_resolv_ns_name_compress=3Dno
+ac_cv_lib_selinux_is_selinux_enabled=3Dyes
+ac_cv_libiconv_utf8=3Dyes
+ac_cv_libnet_endianess=3Dlil
+ac_cv_linux_vers=3D2
+ac_cv_member_struct_ldap_conncb_lc_arg=3Dno
+ac_cv_member_struct_ucred_gid=3Dyes
+ac_cv_member_struct_ucred_pid=3Dyes
+ac_cv_member_struct_ucred_uid=3Dyes
+ac_cv_need_trio=3Dno
+ac_cv_o_nonblock_inherited=3Dno
+ac_cv_objext=3Do
+ac_cv_path_EGREP=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yoc=
+to/build_xwayland/tmp/hosttools/grep -E'
+ac_cv_path_FGREP=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yoc=
+to/build_xwayland/tmp/hosttools/grep -F'
+ac_cv_path_GMSGFMT=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yo=
+cto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroo=
+t-native/usr/bin/msgfmt
+ac_cv_path_GREP=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto=
+/build_xwayland/tmp/hosttools/grep
+ac_cv_path_KRB5_CONFIG=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fs=
+l-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sy=
+sroot/usr/bin/crossscripts/krb5-config
+ac_cv_path_MSGFMT=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yoc=
+to/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot=
+-native/usr/bin/msgfmt
+ac_cv_path_MSGMERGE=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-y=
+octo/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysro=
+ot-native/usr/bin/msgmerge
+ac_cv_path_NSCD=3D/usr/sbin
+ac_cv_path_NSUPDATE=3D/usr/bin
+ac_cv_path_PYTHON2=3Dpython2.7
+ac_cv_path_SED=3Dsed
+ac_cv_path_SERVICE=3D/usr/sbin/service
+ac_cv_path_XGETTEXT=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-y=
+octo/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysro=
+ot-native/usr/bin/xgettext
+ac_cv_path_ac_pt_KRB5_CONFIG=3D/opt/boards/variscite/imx8/linux/yocto_sumo/=
+var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/rec=
+ipe-sysroot/usr/bin/crossscripts/krb5-config
+ac_cv_path_ac_pt_PKG_CONFIG=3D/opt/boards/variscite/imx8/linux/yocto_sumo/v=
+ar-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/reci=
+pe-sysroot-native/usr/bin/pkg-config
+ac_cv_path_install=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-y=
+octo/build_xwayland/tmp/hosttools/install -c'
+ac_cv_path_lt_DD=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yoct=
+o/build_xwayland/tmp/hosttools/dd
+ac_cv_path_mkdir=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yoct=
+o/build_xwayland/tmp/hosttools/mkdir
+ac_cv_pread=3Dno
+ac_cv_prog_AR=3Daarch64-poky-linux-ar
+ac_cv_prog_AWK=3Dgawk
+ac_cv_prog_CC=3D'aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot'
+ac_cv_prog_CPP=3D'aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/varisci=
+te/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky=
+-linux/sssd/1.16.0-r0/recipe-sysroot '
+ac_cv_prog_HAVE_FAKEROOT=3Dno
+ac_cv_prog_HAVE_LDAPMODIFY=3Dno
+ac_cv_prog_HAVE_PYTHON2=3Dyes
+ac_cv_prog_HAVE_PYTHON3=3Dpython2.7
+ac_cv_prog_OBJDUMP=3Daarch64-poky-linux-objdump
+ac_cv_prog_RANLIB=3Daarch64-poky-linux-ranlib
+ac_cv_prog_STRIP=3Daarch64-poky-linux-strip
+ac_cv_prog_cc_c89=3D
+ac_cv_prog_cc_g=3Dyes
+ac_cv_prog_make_make_set=3Dyes
+ac_cv_pwrite=3Dno
+ac_cv_regexec_segfault_emptystr=3Dno
+ac_cv_safe_to_define___extensions__=3Dyes
+ac_cv_sctp=3Dno
+ac_cv_search_dlopen=3D-ldl
+ac_cv_search_timer_create=3D-lrt
+ac_cv_sizeof_char=3D1
+ac_cv_sizeof_char_p=3D8
+ac_cv_sizeof_double=3D8
+ac_cv_sizeof_float=3D4
+ac_cv_sizeof_gid_t=3D4
+ac_cv_sizeof_id_t=3D4
+ac_cv_sizeof_int=3D4
+ac_cv_sizeof_long=3D8
+ac_cv_sizeof_long_double=3D16
+ac_cv_sizeof_long_int=3D8
+ac_cv_sizeof_long_long=3D8
+ac_cv_sizeof_long_long_int=3D8
+ac_cv_sizeof_off_t=3D8
+ac_cv_sizeof_pid_t=3D4
+ac_cv_sizeof_short=3D2
+ac_cv_sizeof_short_int=3D2
+ac_cv_sizeof_signed_char=3D1
+ac_cv_sizeof_size_t=3D8
+ac_cv_sizeof_ssize_t=3D8
+ac_cv_sizeof_uid_t=3D4
+ac_cv_sizeof_unsigned_char=3D1
+ac_cv_sizeof_unsigned_int=3D4
+ac_cv_sizeof_unsigned_long=3D8
+ac_cv_sizeof_unsigned_long_int=3D8
+ac_cv_sizeof_unsigned_long_long_int=3D8
+ac_cv_sizeof_unsigned_short=3D2
+ac_cv_sizeof_unsigned_short_int=3D2
+ac_cv_sizeof_void_p=3D8
+ac_cv_sizeof_wchar_t=3D4
+ac_cv_strerror_r_SUSv3=3Dno
+ac_cv_sys_restartable_syscalls=3Dyes
+ac_cv_type_DBusBasicValue=3Dyes
+ac_cv_type_LDAPDerefRes=3Dyes
+ac_cv_type_errno_t=3Dno
+ac_cv_type_int16_t=3Dyes
+ac_cv_type_int32_t=3Dyes
+ac_cv_type_int64_t=3Dyes
+ac_cv_type_int8_t=3Dyes
+ac_cv_type_intptr_t=3Dyes
+ac_cv_type_krb5_ticket_times=3Dyes
+ac_cv_type_krb5_times=3Dno
+ac_cv_type_krb5_trace_info=3Dyes
+ac_cv_type_long_long=3Dyes
+ac_cv_type_ptrdiff_t=3Dyes
+ac_cv_type_size_t=3Dyes
+ac_cv_type_ssize_t=3Dyes
+ac_cv_type_uid_t=3D'{ac_cv_type_uid_t=3Dyes}'
+ac_cv_type_uint16_t=3Dyes
+ac_cv_type_uint32_t=3Dyes
+ac_cv_type_uint64_t=3Dyes
+ac_cv_type_uint8_t=3Dyes
+ac_cv_type_uint_t=3Dno
+ac_cv_type_uintptr_t=3Dyes
+ac_cv_va_copy=3Dyes
+ac_cv_va_val_copy=3Dyes
+acl_cv_hardcode_direct=3Dno
+acl_cv_hardcode_libdir_flag_spec=3D'${wl}-rpath ${wl}$libdir'
+acl_cv_hardcode_libdir_separator=3D
+acl_cv_hardcode_minus_L=3Dno
+acl_cv_libext=3Da
+acl_cv_libname_spec=3D'lib$name'
+acl_cv_library_names_spec=3D'$libname$shrext'
+acl_cv_path_LD=3D'aarch64-poky-linux-ld --sysroot=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot '
+acl_cv_prog_gnu_ld=3Dyes
+acl_cv_rpath=3Ddone
+acl_cv_shlibext=3Dso
+acl_cv_wl=3D-Wl,
+am_cv_CC_dependencies_compiler_type=3Dnone
+am_cv_ar_interface=3Dar
+am_cv_func_working_getline=3Dyes
+am_cv_make_support_nested_variables=3Dyes
+am_cv_prog_cc_c_o=3Dyes
+am_cv_prog_tar_pax=3Dgnutar
+am_cv_scanf_lld=3Dyes
+apr_cv_process_shared_works=3Dno
+apr_cv_tcp_nodelay_with_cork=3Dyes
+as_cv_unaligned_access=3Dno
+bash_cv_dup2_broken=3Dno
+bash_cv_func_sigsetjmp=3Dmissing
+bash_cv_func_strcoll_broken=3Dno
+bash_cv_getcwd_calls_popen=3Dno
+bash_cv_getcwd_malloc=3Dyes
+bash_cv_getenv_redef=3Dyes
+bash_cv_have_mbstate_t=3Dyes
+bash_cv_job_control_missing=3Dpresent
+bash_cv_must_reinstall_sighandlers=3Dno
+bash_cv_opendir_not_robust=3Dno
+bash_cv_pgrp_pipe=3Dno
+bash_cv_printf_a_format=3Dyes
+bash_cv_sys_named_pipes=3Dpresent
+bash_cv_sys_siglist=3Dyes
+bash_cv_type_rlimit=3Drlim_t
+bash_cv_ulimit_maxfds=3Dyes
+bash_cv_under_sys_siglist=3Dyes
+bash_cv_unusable_rtsigs=3Dno
+compat_cv_func_basename_works=3Dno
+compat_cv_func_dirname_works=3Dno
+compat_cv_func_snprintf_works=3Dyes
+cvs_cv_func_printf_ptr=3Dyes
+db_cv_align_t=3D'unsigned long long'
+db_cv_alignp_t=3D'unsigned long'
+db_cv_fcntl_f_setfd=3Dyes
+db_cv_path_ar=3D/usr/bin/ar
+db_cv_path_chmod=3D/bin/chmod
+db_cv_path_cp=3D/bin/cp
+db_cv_path_ln=3D/bin/ln
+db_cv_path_mkdir=3D/bin/mkdir
+db_cv_path_ranlib=3D/usr/bin/ranlib
+db_cv_path_rm=3D/bin/rm
+db_cv_path_sh=3D/bin/sh
+db_cv_path_strip=3D/usr/bin/strip
+db_cv_spinlocks=3Dno
+db_cv_sprintf_count=3Dyes
+ettercap_cv_type_socklen_t=3Dyes
+fu_cv_sys_stat_statfs2_bsize=3Dyes
+gl_cv_func_btowc_eof=3Dyes
+gl_cv_func_fstatat_zero_flag=3Dyes
+gl_cv_func_mbrtowc_incomplete_state=3Dyes
+gl_cv_func_mbrtowc_nul_retval=3Dyes
+gl_cv_func_mbrtowc_null_arg=3Dyes
+gl_cv_func_mbrtowc_retval=3Dyes
+gl_cv_func_mbrtowc_sanitycheck=3Dyes
+gl_cv_func_sleep_works=3Dyes
+gl_cv_func_wcrtomb_retval=3Dyes
+gl_cv_func_wctob_works=3Dyes
+gl_cv_have_proc_uptime=3Dyes
+gl_cv_header_working_fcntl_h=3Dyes
+glib_cv___va_copy=3Dyes
+glib_cv_compliant_posix_memalign=3D1
+glib_cv_has__inline=3Dyes
+glib_cv_has__inline__=3Dyes
+glib_cv_hasinline=3Dyes
+glib_cv_have_qsort_r=3Dyes
+glib_cv_long_long_format=3Dll
+glib_cv_rtldglobal_broken=3Dno
+glib_cv_sane_realloc=3Dyes
+glib_cv_stack_grows=3Dno
+glib_cv_strlcpy=3Dno
+glib_cv_sys_pthread_cond_timedwait_posix=3Dyes
+glib_cv_sys_pthread_getspecific_posix=3Dyes
+glib_cv_sys_pthread_mutex_trylock_posix=3Dyes
+glib_cv_sys_use_pid_niceness_surrogate=3Dyes
+glib_cv_uscore=3Dno
+glib_cv_use_pid_surrogate=3Dyes
+glib_cv_va_copy=3Dyes
+glib_cv_va_val_copy=3Dyes
+gt_cv_func_CFLocaleCopyCurrent=3Dno
+gt_cv_func_CFPreferencesCopyAppValue=3Dno
+gt_cv_func_gnugettext1_libc=3Dyes
+gt_cv_locale_fr=3Dfr_FR
+hw_cv_func_snprintf_c99=3Dyes
+hw_cv_func_vsnprintf_c99=3Dyes
+jm_cv_func_working_readdir=3Dyes
+lf_cv_sane_realloc=3Dyes
+lftp_cv_va_val_copy=3Dyes
+libIDL_cv_long_long_format=3Dll
+libltdl_cv_lib_dl_dlopen=3Dyes
+lt_cv_ar_at_file=3D@
+lt_cv_archive_cmds_need_lc=3Dno
+lt_cv_deplibs_check_method=3Dpass_all
+lt_cv_file_magic_cmd=3D'$MAGIC_CMD'
+lt_cv_file_magic_test_file=3D
+lt_cv_ld_reload_flag=3D-r
+lt_cv_nm_interface=3D'BSD nm'
+lt_cv_objdir=3D.libs
+lt_cv_path_LD=3D'aarch64-poky-linux-ld --sysroot=3D/opt/boards/variscite/im=
+x8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linu=
+x/sssd/1.16.0-r0/recipe-sysroot '
+lt_cv_path_NM=3Daarch64-poky-linux-nm
+lt_cv_path_mainfest_tool=3Dno
+lt_cv_prog_compiler_c_o=3Dyes
+lt_cv_prog_compiler_pic=3D'-fPIC -DPIC'
+lt_cv_prog_compiler_pic_works=3Dyes
+lt_cv_prog_compiler_rtti_exceptions=3Dno
+lt_cv_prog_compiler_static_works=3Dyes
+lt_cv_prog_gnu_ld=3Dyes
+lt_cv_sharedlib_from_linklib_cmd=3D'printf %s\n'
+lt_cv_shlibpath_overrides_runpath=3Dno
+lt_cv_sys_global_symbol_pipe=3D'sed -n -e '\''s/^.*[	 ]\([ABCDGIRSTW][ABCDG=
+IRSTW]*\)[	 ][	 ]*\([_A-Za-z][_A-Za-z0-9]*\)$/\1 \2 \2/p'\'' | sed '\''/ __=
+gnu_lto/d'\'''
+lt_cv_sys_global_symbol_to_c_name_address=3D'sed -n -e '\''s/^: \(.*\) .*$/=
+  {"\1", (void *) 0},/p'\'' -e '\''s/^[ABCDGIRSTW][ABCDGIRSTW]* .* \(.*\)$/=
+  {"\1", (void *) \&\1},/p'\'''
+lt_cv_sys_global_symbol_to_c_name_address_lib_prefix=3D'sed -n -e '\''s/^: =
+\(.*\) .*$/  {"\1", (void *) 0},/p'\'' -e '\''s/^[ABCDGIRSTW][ABCDGIRSTW]* =
+.* \(lib.*\)$/  {"\1", (void *) \&\1},/p'\'' -e '\''s/^[ABCDGIRSTW][ABCDGIR=
+STW]* .* \(.*\)$/  {"lib\1", (void *) \&\1},/p'\'''
+lt_cv_sys_global_symbol_to_cdecl=3D'sed -n -e '\''s/^T .* \(.*\)$/extern in=
+t \1();/p'\'' -e '\''s/^[ABCDGIRSTW][ABCDGIRSTW]* .* \(.*\)$/extern char \1=
+;/p'\'''
+lt_cv_sys_global_symbol_to_import=3D
+lt_cv_sys_lib_dlsearch_path_spec=3D'/usr/lib /lib'
+lt_cv_sys_max_cmd_len=3D1572864
+lt_cv_to_host_file_cmd=3Dfunc_convert_file_noop
+lt_cv_to_tool_file_cmd=3Dfunc_convert_file_noop
+lt_cv_truncate_bin=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-y=
+octo/build_xwayland/tmp/hosttools/dd bs=3D4096 count=3D1'
+mr_cv_target_elf=3Dyes
+mysql_cv_func_atomic_add=3Dno
+mysql_cv_func_atomic_sub=3Dno
+nano_cv_func_regexec_segv_emptystr=3Dno
+php_cv_lib_cookie_io_functions_use_off64_t=3Dyes
+pkg_cv_CARES_CFLAGS=3D
+pkg_cv_CARES_LIBS=3D-lcares
+pkg_cv_COLLECTION_CFLAGS=3D
+pkg_cv_COLLECTION_LIBS=3D-lcollection
+pkg_cv_DBUS_CFLAGS=3D'-I/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl=
+-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sys=
+root/usr/include/dbus-1.0 -I/opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe=
+-sysroot/usr/lib/dbus-1.0/include'
+pkg_cv_DBUS_LIBS=3D-ldbus-1
+pkg_cv_DHASH_CFLAGS=3D
+pkg_cv_DHASH_LIBS=3D-ldhash
+pkg_cv_GLIB2_CFLAGS=3D'-I/opt/boards/variscite/imx8/linux/yocto_sumo/var-fs=
+l-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sy=
+sroot/usr/include/glib-2.0 -I/opt/boards/variscite/imx8/linux/yocto_sumo/va=
+r-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recip=
+e-sysroot/usr/lib/glib-2.0/include'
+pkg_cv_GLIB2_LIBS=3D-lglib-2.0
+pkg_cv_INI_CONFIG_V0_CFLAGS=3D
+pkg_cv_INI_CONFIG_V0_LIBS=3D'-lini_config -lbasicobjects -lref_array -lcoll=
+ection'
+pkg_cv_INI_CONFIG_V1_1_CFLAGS=3D
+pkg_cv_INI_CONFIG_V1_1_LIBS=3D'-lini_config -lbasicobjects -lref_array -lco=
+llection'
+pkg_cv_INI_CONFIG_V1_CFLAGS=3D
+pkg_cv_INI_CONFIG_V1_LIBS=3D'-lini_config -lbasicobjects -lref_array -lcoll=
+ection'
+pkg_cv_LDB_CFLAGS=3D
+pkg_cv_LDB_LIBS=3D'-lldb -ltalloc'
+pkg_cv_PCRE_CFLAGS=3D
+pkg_cv_PCRE_LIBS=3D-lpcre
+pkg_cv_POPT_CFLAGS=3D
+pkg_cv_POPT_LIBS=3D-lpopt
+pkg_cv_SASL_CFLAGS=3D
+pkg_cv_SASL_LIBS=3D-lsasl2
+pkg_cv_SYSTEMD_DAEMON_CFLAGS=3D
+pkg_cv_SYSTEMD_DAEMON_LIBS=3D-lsystemd
+pkg_cv_SYSTEMD_LOGIN_CFLAGS=3D
+pkg_cv_SYSTEMD_LOGIN_LIBS=3D-lsystemd
+pkg_cv_TALLOC_CFLAGS=3D
+pkg_cv_TALLOC_LIBS=3D-ltalloc
+pkg_cv_TDB_CFLAGS=3D
+pkg_cv_TDB_LIBS=3D-ltdb
+pkg_cv_TEVENT_CFLAGS=3D
+pkg_cv_TEVENT_LIBS=3D'-ltevent -ltalloc'
+rpppoe_cv_pack_bitfields=3Drev
+rsync_cv_HAVE_BROKEN_LARGEFILE=3Dno
+rsync_cv_HAVE_BROKEN_READDIR=3Dno
+rsync_cv_HAVE_C99_VSNPRINTF=3Dyes
+rsync_cv_HAVE_GETTIMEOFDAY_TZ=3Dyes
+rsync_cv_HAVE_LONGLONG=3Dyes
+rsync_cv_HAVE_OFF64_T=3Dno
+rsync_cv_HAVE_SECURE_MKSTEMP=3Dyes
+rsync_cv_HAVE_SHORT_INO_T=3Dno
+rsync_cv_HAVE_SOCKETPAIR=3Dyes
+rsync_cv_HAVE_UNSIGNED_CHAR=3Dno
+rsync_cv_REPLACE_INET_ATON=3Dno
+rsync_cv_REPLACE_INET_NTOA=3Dno
+samba_cv_HAVE_IFACE_AIX=3Dno
+samba_cv_HAVE_IFACE_IFCONF=3Dyes
+samba_cv_HAVE_IFACE_IFREQ=3Dyes
+samba_cv_HAVE_IRIX_SPECIFIC_CAPABILITIES=3Dno
+sc_cv_termios_ispeed=3Dyes
+screen_cv_sys_bcopy_overlap=3Dno
+screen_cv_sys_fifo_broken_impl=3Dyes
+screen_cv_sys_fifo_usable=3Dyes
+screen_cv_sys_memcpy_overlap=3Dno
+screen_cv_sys_memmove_overlap=3Dno
+screen_cv_sys_select_broken_retval=3Dno
+screen_cv_sys_sockets_nofs=3Dno
+screen_cv_sys_sockets_usable=3Dyes
+screen_cv_sys_terminfo_used=3Dyes
+shadow_cv_logdir=3D/var/log
+shadow_cv_maildir=3D/var/spool/mail
+shadow_cv_mailfile=3DMailbox
+shadow_cv_passwd_dir=3D/usr/bin
+shadow_cv_utmpdir=3D/var/run
+slrn_cv_va_val_copy=3Dyes
+sudo_cv_func_unsetenv_void=3Dno
+tcl_cv_api_serial=3Dtermios
+utils_cv_sys_open_max=3D1019
+xorg_cv_malloc0_returns_null=3Dyes
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+ACLOCAL=3D'${SHELL} /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yoc=
+to/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/sssd-1.16.0/bu=
+ild/missing aclocal-1.15'
+ADD_FILES_DOMAIN_FALSE=3D''
+ADD_FILES_DOMAIN_TRUE=3D'#'
+AMDEPBACKSLASH=3D''
+AMDEP_FALSE=3D''
+AMDEP_TRUE=3D'#'
+AMTAR=3D'$${TAR-tar}'
+AM_BACKSLASH=3D'\'
+AM_DEFAULT_V=3D'$(AM_DEFAULT_VERBOSITY)'
+AM_DEFAULT_VERBOSITY=3D'1'
+AM_V=3D'$(V)'
+AR=3D'aarch64-poky-linux-ar'
+AUTOCONF=3D'${SHELL} /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yo=
+cto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/sssd-1.16.0/b=
+uild/missing autoconf'
+AUTOHEADER=3D'${SHELL} /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-=
+yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/sssd-1.16.0=
+/build/missing autoheader'
+AUTOMAKE=3D'${SHELL} /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yo=
+cto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/sssd-1.16.0/b=
+uild/missing automake-1.15'
+AWK=3D'gawk'
+BUILD_AUTOFS_FALSE=3D'#'
+BUILD_AUTOFS_TRUE=3D''
+BUILD_CIFS_IDMAP_PLUGIN_FALSE=3D''
+BUILD_CIFS_IDMAP_PLUGIN_TRUE=3D'#'
+BUILD_DBUS_TESTS_FALSE=3D'#'
+BUILD_DBUS_TESTS_TRUE=3D''
+BUILD_IFP_FALSE=3D'#'
+BUILD_IFP_TRUE=3D''
+BUILD_KCM_FALSE=3D''
+BUILD_KCM_TRUE=3D'#'
+BUILD_KRB5_LOCALAUTH_PLUGIN_FALSE=3D'#'
+BUILD_KRB5_LOCALAUTH_PLUGIN_TRUE=3D''
+BUILD_KRB5_LOCATOR_PLUGIN_FALSE=3D'#'
+BUILD_KRB5_LOCATOR_PLUGIN_TRUE=3D''
+BUILD_LIBWBCLIENT_FALSE=3D'#'
+BUILD_LIBWBCLIENT_TRUE=3D''
+BUILD_MANPAGES_FALSE=3D''
+BUILD_MANPAGES_TRUE=3D'#'
+BUILD_NFS_IDMAP_FALSE=3D''
+BUILD_NFS_IDMAP_TRUE=3D'#'
+BUILD_PAC_RESPONDER_FALSE=3D''
+BUILD_PAC_RESPONDER_TRUE=3D'#'
+BUILD_PYTHON2_BINDINGS_FALSE=3D''
+BUILD_PYTHON2_BINDINGS_TRUE=3D'#'
+BUILD_PYTHON3_BINDINGS_FALSE=3D''
+BUILD_PYTHON3_BINDINGS_TRUE=3D'#'
+BUILD_PYTHON_BINDINGS_FALSE=3D''
+BUILD_PYTHON_BINDINGS_TRUE=3D'#'
+BUILD_SAMBA_FALSE=3D''
+BUILD_SAMBA_TRUE=3D'#'
+BUILD_SECRETS_FALSE=3D''
+BUILD_SECRETS_TRUE=3D'#'
+BUILD_SELINUX_FALSE=3D'#'
+BUILD_SELINUX_TRUE=3D''
+BUILD_SEMANAGE_FALSE=3D'#'
+BUILD_SEMANAGE_TRUE=3D''
+BUILD_SSH_FALSE=3D''
+BUILD_SSH_TRUE=3D'#'
+BUILD_SUDO_FALSE=3D'#'
+BUILD_SUDO_TRUE=3D''
+BUILD_SYSTEMTAP_FALSE=3D''
+BUILD_SYSTEMTAP_TRUE=3D''
+BUILD_WITH_LIBCURL_FALSE=3D''
+BUILD_WITH_LIBCURL_TRUE=3D'#'
+CARES_CFLAGS=3D''
+CARES_LIBS=3D'-lcares'
+CC=3D'aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/imx8/linux/=
+yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.=
+16.0-r0/recipe-sysroot'
+CCDEPMODE=3D'depmode=3Dnone'
+CFLAGS=3D' -O2 -pipe -g -feliminate-unused-debug-types -fdebug-prefix-map=
+=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland=
+/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0=3D/usr/src/debug/sssd/1.16.0-r0=
+ -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-y=
+octo/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysro=
+ot=3D -fdebug-prefix-map=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot-native=3D  -D_FILE_OFFSET_BITS=3D64 -D_LARGEFILE_SOURCE -D_LARGEFIL=
+E64_SOURCE'
+CHECK_CFLAGS=3D''
+CHECK_LIBS=3D''
+CMOCKA_CFLAGS=3D''
+CMOCKA_LIBS=3D''
+COLLECTION_CFLAGS=3D''
+COLLECTION_LIBS=3D'-lcollection'
+CPP=3D'aarch64-poky-linux-gcc -E --sysroot=3D/opt/boards/variscite/imx8/lin=
+ux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd=
+/1.16.0-r0/recipe-sysroot '
+CPPFLAGS=3D''
+CRYPTO_CFLAGS=3D''
+CRYPTO_LIBS=3D''
+CURL_CFLAGS=3D''
+CURL_LIBS=3D''
+CYGPATH_W=3D'echo'
+DBUS_CFLAGS=3D'-I/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/=
+build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot/us=
+r/include/dbus-1.0 -I/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yo=
+cto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroo=
+t/usr/lib/dbus-1.0/include'
+DBUS_LIBS=3D'-ldbus-1'
+DEFS=3D''
+DEPDIR=3D'.deps'
+DHASH_CFLAGS=3D''
+DHASH_LIBS=3D'-ldhash'
+DLLTOOL=3D'false'
+DOCBOOK_XSLT=3D''
+DOXYGEN=3D''
+DSYMUTIL=3D''
+DTRACE=3D''
+DUMPBIN=3D''
+ECHO_C=3D''
+ECHO_N=3D'-n'
+ECHO_T=3D''
+EGREP=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xw=
+ayland/tmp/hosttools/grep -E'
+EXEEXT=3D''
+FGREP=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xw=
+ayland/tmp/hosttools/grep -F'
+GETTEXT_MACRO_VERSION=3D'0.19'
+GIT_CHECKOUT_FALSE=3D''
+GIT_CHECKOUT_TRUE=3D'#'
+GLIB2_CFLAGS=3D'-I/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto=
+/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot/u=
+sr/include/glib-2.0 -I/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-y=
+octo/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysro=
+ot/usr/lib/glib-2.0/include'
+GLIB2_LIBS=3D'-lglib-2.0'
+GMSGFMT=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_=
+xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/u=
+sr/bin/msgfmt'
+GMSGFMT_015=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/bu=
+ild_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-nati=
+ve/usr/bin/msgfmt'
+GPO_DEFAULT=3D'enforcing'
+GPO_DEFAULT_ENFORCING_FALSE=3D'#'
+GPO_DEFAULT_ENFORCING_TRUE=3D''
+GREP=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwa=
+yland/tmp/hosttools/grep'
+HAVE_CHECK_FALSE=3D''
+HAVE_CHECK_TRUE=3D''
+HAVE_CMOCKA_FALSE=3D''
+HAVE_CMOCKA_TRUE=3D''
+HAVE_DEBIAN_FALSE=3D'#'
+HAVE_DEBIAN_TRUE=3D''
+HAVE_DEVSHM_FALSE=3D''
+HAVE_DEVSHM_TRUE=3D''
+HAVE_DOXYGEN_FALSE=3D''
+HAVE_DOXYGEN_TRUE=3D''
+HAVE_FAKEROOT=3D'no'
+HAVE_FEDORA_FALSE=3D''
+HAVE_FEDORA_TRUE=3D'#'
+HAVE_GCC_FALSE=3D'#'
+HAVE_GCC_TRUE=3D''
+HAVE_GENTOO_FALSE=3D''
+HAVE_GENTOO_TRUE=3D'#'
+HAVE_INOTIFY_FALSE=3D''
+HAVE_INOTIFY_TRUE=3D''
+HAVE_LDAPMODIFY=3D'no'
+HAVE_LIBCRYPTO_FALSE=3D''
+HAVE_LIBCRYPTO_TRUE=3D'#'
+HAVE_LIBRESOLV_FALSE=3D''
+HAVE_LIBRESOLV_TRUE=3D'#'
+HAVE_MANPAGES=3D''
+HAVE_MANPAGES_FALSE=3D''
+HAVE_MANPAGES_TRUE=3D'#'
+HAVE_NSS_FALSE=3D'#'
+HAVE_NSS_TRUE=3D''
+HAVE_NSS_WRAPPER=3D''
+HAVE_NSS_WRAPPER_FALSE=3D''
+HAVE_NSS_WRAPPER_TRUE=3D''
+HAVE_PO4A_FALSE=3D'#'
+HAVE_PO4A_TRUE=3D''
+HAVE_POLKIT_RULES_D_FALSE=3D''
+HAVE_POLKIT_RULES_D_TRUE=3D''
+HAVE_PROFILE_CATALOGS_FALSE=3D''
+HAVE_PROFILE_CATALOGS_TRUE=3D'#'
+HAVE_PTHREAD_FALSE=3D'#'
+HAVE_PTHREAD_TRUE=3D''
+HAVE_PYTHON2=3D'yes'
+HAVE_PYTHON2_BINDINGS=3D''
+HAVE_PYTHON3=3D'python2.7'
+HAVE_PYTHON3_BINDINGS=3D''
+HAVE_REDHAT_FALSE=3D''
+HAVE_REDHAT_TRUE=3D'#'
+HAVE_SELINUX=3D'1'
+HAVE_SEMANAGE=3D'1'
+HAVE_SUSE_FALSE=3D''
+HAVE_SUSE_TRUE=3D'#'
+HAVE_SYSTEMD_UNIT_FALSE=3D''
+HAVE_SYSTEMD_UNIT_TRUE=3D'#'
+HAVE_SYSV_FALSE=3D'#'
+HAVE_SYSV_TRUE=3D''
+HAVE_UID_WRAPPER=3D''
+HAVE_UID_WRAPPER_FALSE=3D''
+HAVE_UID_WRAPPER_TRUE=3D''
+HTTP_PARSER_CFLAGS=3D''
+HTTP_PARSER_LIBS=3D''
+INI_CONFIG_CFLAGS=3D''
+INI_CONFIG_LIBS=3D'-lini_config -lbasicobjects -lref_array -lcollection'
+INI_CONFIG_V0_CFLAGS=3D''
+INI_CONFIG_V0_LIBS=3D'-lini_config -lbasicobjects -lref_array -lcollection'
+INI_CONFIG_V1_1_CFLAGS=3D''
+INI_CONFIG_V1_1_LIBS=3D'-lini_config -lbasicobjects -lref_array -lcollectio=
+n'
+INI_CONFIG_V1_3_CFLAGS=3D''
+INI_CONFIG_V1_3_LIBS=3D''
+INI_CONFIG_V1_CFLAGS=3D''
+INI_CONFIG_V1_LIBS=3D'-lini_config -lbasicobjects -lref_array -lcollection'
+INOTIFY_LIBS=3D''
+INSTALL_DATA=3D'${INSTALL} -m 644'
+INSTALL_PROGRAM=3D'${INSTALL}'
+INSTALL_SCRIPT=3D'${INSTALL}'
+INSTALL_STRIP_PROGRAM=3D'$(install_sh) -c -s'
+INTLLIBS=3D''
+INTL_MACOSX_LIBS=3D''
+JANSSON_CFLAGS=3D''
+JANSSON_LIBS=3D''
+JOURNALD_CFLAGS=3D''
+JOURNALD_LIBS=3D''
+KEYUTILS_LIBS=3D''
+KRB5_CFLAGS=3D'-I/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/=
+build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot/us=
+r/include'
+KRB5_CONFIG=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/bu=
+ild_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot/usr/=
+bin/crossscripts/krb5-config'
+KRB5_LIBS=3D'-L/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/bu=
+ild_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot/usr/=
+lib -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -pthread -lkrb5 -lk5cryp=
+to -lcom_err'
+LD=3D'aarch64-poky-linux-ld --sysroot=3D/opt/boards/variscite/imx8/linux/yo=
+cto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16=
+.0-r0/recipe-sysroot '
+LDB_CFLAGS=3D''
+LDB_LIBS=3D'-lldb'
+LDFLAGS=3D'-Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed'
+LIBADD_DL=3D'-ldl '
+LIBADD_DLD_LINK=3D''
+LIBADD_DLOPEN=3D'-ldl'
+LIBADD_SHL_LOAD=3D''
+LIBADD_TIMER=3D'-lrt '
+LIBICONV=3D'-liconv'
+LIBINTL=3D''
+LIBNL1_CFLAGS=3D''
+LIBNL1_LIBS=3D''
+LIBNL3_CFLAGS=3D''
+LIBNL3_LIBS=3D''
+LIBNL_CFLAGS=3D''
+LIBNL_LIBS=3D''
+LIBOBJS=3D''
+LIBS=3D''
+LIBTOOL=3D'$(top_builddir)/aarch64-poky-linux-libtool'
+LIPO=3D''
+LN_S=3D'ln -s'
+LTLIBICONV=3D'-liconv'
+LTLIBINTL=3D''
+LTLIBOBJS=3D''
+LT_DLLOADERS=3D' dlopen.la'
+LT_DLPREOPEN=3D'-dlpreopen dlopen.la '
+LT_SYS_LIBRARY_PATH=3D''
+MAKEINFO=3D'${SHELL} /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yo=
+cto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/sssd-1.16.0/b=
+uild/missing makeinfo'
+MANIFEST_TOOL=3D':'
+MKDIR_P=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_=
+xwayland/tmp/hosttools/mkdir -p'
+MSGFMT=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_x=
+wayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/us=
+r/bin/msgfmt'
+MSGFMT_015=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/bui=
+ld_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-nativ=
+e/usr/bin/msgfmt'
+MSGMERGE=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build=
+_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/=
+usr/bin/msgmerge'
+NDR_KRB5PAC_CFLAGS=3D''
+NDR_KRB5PAC_LIBS=3D''
+NDR_NBT_CFLAGS=3D''
+NDR_NBT_LIBS=3D''
+NFSIDMAP_CFLAGS=3D''
+NFSIDMAP_LIBS=3D''
+NFSIDMAP_OBJ=3D''
+NM=3D'aarch64-poky-linux-nm'
+NMEDIT=3D''
+NSCD=3D'/usr/sbin'
+NSCD_PATH=3D'/usr/sbin'
+NSS_CFLAGS=3D''
+NSS_LIBS=3D''
+NSUPDATE=3D'/usr/bin'
+OBJDUMP=3D'aarch64-poky-linux-objdump'
+OBJEXT=3D'o'
+OPENLDAP_CFLAGS=3D''
+OPENLDAP_LIBS=3D' -llber -lldap'
+OTOOL64=3D''
+OTOOL=3D''
+PACKAGE=3D'sssd'
+PACKAGE_BUGREPORT=3D'sssd-devel@lists.fedorahosted.org'
+PACKAGE_NAME=3D'sssd'
+PACKAGE_STRING=3D'sssd 1.16.0'
+PACKAGE_TARNAME=3D'sssd'
+PACKAGE_URL=3D''
+PACKAGE_VERSION=3D'1.16.0'
+PAM_LIBS=3D'-lpam'
+PAM_MISC_LIBS=3D'-lpam_misc'
+PATH_SEPARATOR=3D':'
+PCRE_CFLAGS=3D''
+PCRE_LIBS=3D'-lpcre'
+PKG_CONFIG=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/bui=
+ld_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-nativ=
+e/usr/bin/pkg-config'
+PO4A=3D''
+POPT_CFLAGS=3D''
+POPT_LIBS=3D'-lpopt'
+POSUB=3D'po'
+PRERELEASE_VERSION=3D''
+PYTEST=3D''
+PYTHON2=3D'python2.7'
+PYTHON2_CFLAGS=3D''
+PYTHON2_EXEC_PREFIX=3D''
+PYTHON2_INCLUDES=3D''
+PYTHON2_LIBS=3D''
+PYTHON2_PREFIX=3D''
+PYTHON2_VERSION=3D''
+PYTHON3=3D''
+PYTHON3_CFLAGS=3D''
+PYTHON3_EXEC_PREFIX=3D''
+PYTHON3_INCLUDES=3D''
+PYTHON3_LIBS=3D''
+PYTHON3_PREFIX=3D''
+PYTHON3_VERSION=3D''
+PYTHON=3D''
+PYTHON_CONFIG=3D''
+PYTHON_EXEC_PREFIX=3D''
+PYTHON_LIB_PREFIX=3D''
+PYTHON_PLATFORM=3D''
+PYTHON_PREFIX=3D''
+PYTHON_VERSION=3D''
+RANLIB=3D'aarch64-poky-linux-ranlib'
+RESOLV_CFLAGS=3D''
+RESOLV_LIBS=3D''
+SASL_CFLAGS=3D''
+SASL_LIBS=3D'-lsasl2'
+SED=3D'sed'
+SELINUX_LIBS=3D'-lselinux'
+SEMANAGE_LIBS=3D''
+SERVICE=3D'/usr/sbin/service'
+SET_MAKE=3D''
+SGML_CATALOG_FILES=3D'/etc/xml/catalog'
+SHELL=3D'/bin/bash'
+SLAPD=3D''
+SMBCLIENT_CFLAGS=3D''
+SMBCLIENT_LIBS=3D''
+SSSD_USER=3D'root'
+SSSD_USER_FALSE=3D''
+SSSD_USER_TRUE=3D'#'
+STRIP=3D'aarch64-poky-linux-strip'
+SYSTEMD_DAEMON_CFLAGS=3D''
+SYSTEMD_DAEMON_LIBS=3D'-lsystemd'
+SYSTEMD_LOGIN_CFLAGS=3D''
+SYSTEMD_LOGIN_LIBS=3D'-lsystemd'
+TALLOC_CFLAGS=3D''
+TALLOC_LIBS=3D'-ltalloc'
+TDB_CFLAGS=3D''
+TDB_LIBS=3D'-ltdb'
+TEST_DIR=3D'.'
+TEVENT_CFLAGS=3D''
+TEVENT_LIBS=3D'-ltevent -ltalloc'
+UNICODE_LIBS=3D'-lglib-2.0'
+USE_NLS=3D'yes'
+UUID_CFLAGS=3D''
+UUID_LIBS=3D''
+VERSION=3D'1.16.0'
+WANT_AUX_INFO_FALSE=3D''
+WANT_AUX_INFO_TRUE=3D'#'
+WITH_GLIB_FALSE=3D'#'
+WITH_GLIB_TRUE=3D''
+WITH_JOURNALD_FALSE=3D''
+WITH_JOURNALD_TRUE=3D'#'
+WITH_LIBUNISTRING_FALSE=3D''
+WITH_LIBUNISTRING_TRUE=3D'#'
+XGETTEXT=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build=
+_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/=
+usr/bin/xgettext'
+XGETTEXT_015=3D'/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/b=
+uild_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-nat=
+ive/usr/bin/xgettext'
+XGETTEXT_EXTRA_OPTIONS=3D''
+XMLLINT=3D''
+XSLTPROC=3D''
+abs_builddir=3D''
+ac_ct_AR=3D''
+ac_ct_CC=3D''
+ac_ct_DUMPBIN=3D''
+am__EXEEXT_FALSE=3D''
+am__EXEEXT_TRUE=3D''
+am__fastdepCC_FALSE=3D''
+am__fastdepCC_TRUE=3D'#'
+am__include=3D'include'
+am__isrc=3D' -I$(srcdir)'
+am__leading_dot=3D'.'
+am__nodep=3D''
+am__quote=3D''
+am__tar=3D'tar --format=3Dposix -chf - "$$tardir"'
+am__untar=3D'tar -xf -'
+appmodpath=3D'/usr/lib/sssd/modules'
+bindir=3D'/usr/bin'
+build=3D'x86_64-pc-linux-gnu'
+build_alias=3D'x86_64-linux'
+build_cpu=3D'x86_64'
+build_os=3D'linux-gnu'
+build_vendor=3D'pc'
+cifspluginpath=3D'/usr/lib/cifs-utils'
+config_def_ccache_dir=3D'/tmp'
+config_def_ccname_template=3D'FILE:%d/krb5cc_%U_XXXXXX'
+datadir=3D'/usr/share'
+datarootdir=3D'${prefix}/share'
+dbpath=3D'/var/lib/sss/db'
+docdir=3D'${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir=3D'${docdir}'
+environment_file=3D'/etc/sysconfig/sssd'
+exec_prefix=3D'/usr'
+gpocachepath=3D'/var/lib/sss/gpo_cache'
+host=3D'aarch64-poky-linux-gnu'
+host_alias=3D'aarch64-poky-linux'
+host_cpu=3D'aarch64'
+host_os=3D'linux-gnu'
+host_vendor=3D'poky'
+htmldir=3D'${docdir}'
+includedir=3D'/usr/include'
+infodir=3D'/usr/share/info'
+initdir=3D'/etc/rc.d/init.d'
+install_sh=3D'${SHELL} /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-=
+yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/sssd-1.16.0=
+/build/install-sh'
+krb5authdatapluginpath=3D'/usr/lib/krb5/plugins/authdata'
+krb5pluginpath=3D'/usr/lib/krb5/plugins/libkrb5'
+krb5rcachedir=3D'__LIBKRB5_DEFAULTS__'
+ldblibdir=3D'/usr/lib/ldb'
+libdir=3D'/usr/lib'
+libexecdir=3D'/usr/libexec'
+libwbclient_version=3D'0.14'
+libwbclient_version_info=3D'14:0:14'
+localedir=3D'${datarootdir}/locale'
+localstatedir=3D'/var'
+logpath=3D'/var/log/sssd'
+mandir=3D'/usr/share/man'
+mcpath=3D'/var/lib/sss/mc'
+mkdir_p=3D'$(MKDIR_P)'
+nfsidmaplibdir=3D'/usr/lib/libnfsidmap'
+nfslibpath=3D'/usr/lib'
+nsslibdir=3D'/usr/lib'
+oldincludedir=3D'/usr/include'
+pammoddir=3D'/usr/lib/security'
+pdfdir=3D'${docdir}'
+pidpath=3D'/var/run'
+pipepath=3D'/var/lib/sss/pipes'
+pkgpyexecdir=3D''
+pkgpythondir=3D''
+pluginpath=3D'/usr/lib/sssd'
+polkitdir=3D''
+prefix=3D'/usr'
+program_transform_name=3D's,x,x,'
+psdir=3D'${docdir}'
+pubconfpath=3D'/var/lib/sss/pubconf'
+py2execdir=3D''
+py3execdir=3D''
+pyexecdir=3D''
+python2dir=3D''
+python3dir=3D''
+pythondir=3D''
+runstatedir=3D'/var/run'
+sbindir=3D'/usr/sbin'
+secdbpath=3D'/var/lib/sss/secrets'
+session_recording_shell=3D'/usr/bin/tlog-rec-session'
+sharedbuilddir=3D'../sssd-1.16.0/sharedbuild'
+sharedstatedir=3D'/com'
+sudolibpath=3D'/usr/lib'
+sysconfdir=3D'/etc'
+systemdconfdir=3D''
+systemdunitdir=3D''
+tapset_dir=3D''
+target_alias=3D'aarch64-poky-linux'
+winbindpluginpath=3D'/usr/lib/samba/idmap'
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+/* confdefs.h */
+#define PACKAGE_NAME "sssd"
+#define PACKAGE_TARNAME "sssd"
+#define PACKAGE_VERSION "1.16.0"
+#define PACKAGE_STRING "sssd 1.16.0"
+#define PACKAGE_BUGREPORT "sssd-devel@lists.fedorahosted.org"
+#define PACKAGE_URL ""
+#define STDC_HEADERS 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+#define __EXTENSIONS__ 1
+#define _ALL_SOURCE 1
+#define _GNU_SOURCE 1
+#define _POSIX_PTHREAD_SEMANTICS 1
+#define _TANDEM_SOURCE 1
+#define PACKAGE "sssd"
+#define VERSION "1.16.0"
+#define HAVE_DLFCN_H 1
+#define LT_OBJDIR ".libs/"
+#define HAVE_LIBDL 1
+#define HAVE_DLERROR 1
+#define HAVE_LIBDLLOADER 1
+#define ENABLE_NLS 1
+#define HAVE_GETTEXT 1
+#define HAVE_DCGETTEXT 1
+#define PRERELEASE_VERSION ""
+#define HAVE_STDINT_H 1
+#define HAVE_DLFCN_H 1
+#define HAVE_PTHREAD 1
+#define HAVE_LIBRT 1
+#define HAVE_UTIMENSAT 1
+#define HAVE_FUTIMENS 1
+#define HAVE_ENDIAN_H 1
+#define HAVE_BYTESWAP_H 1
+#define HAVE_LITTLE_ENDIAN 1
+#define HAVE_STRUCT_UCRED_PID 1
+#define HAVE_STRUCT_UCRED_UID 1
+#define HAVE_STRUCT_UCRED_GID 1
+#define HAVE_UCRED 1
+#define DB_PATH ""SSS_STATEDIR"/db"
+#define DATA_PROVIDER_PLUGINS_PATH ""LIBDIR"/sssd"
+#define PID_PATH ""VARDIR"/run"
+#define LOG_PATH ""VARDIR"/log/sssd"
+#define PUBCONF_PATH ""SSS_STATEDIR"/pubconf"
+#define PIPE_PATH ""SSS_STATEDIR"/pipes"
+#define MCACHE_PATH ""SSS_STATEDIR"/mc"
+#define DEFAULT_CCACHE_DIR "/tmp"
+#define DEFAULT_CCNAME_TEMPLATE "FILE:%d/krb5cc_%U_XXXXXX"
+#define TEST_DIR "."
+#define KRB5_RCACHE_DIR "__LIBKRB5_DEFAULTS__"
+#define KRB5_CONF_PATH ""SYSCONFDIR"/krb5.conf"
+#define HAVE_SELINUX 1
+#define HAVE_NSCD /usr/sbin
+#define IPA_GETKEYTAB_PATH "no"
+#define HAVE_SEMANAGE 1
+#define AD_GPO_ACCESS_MODE_DEFAULT "enforcing"
+#define GPO_CACHE_PATH ""SSS_STATEDIR"/gpo_cache"
+#define NOLOGIN_SHELL "/sbin/nologin"
+#define SESSION_RECORDING_SHELL "/usr/bin/tlog-rec-session"
+#define APP_MODULES_PATH ""LIBDIR"/sssd/modules"
+#define BUILD_SUDO 1
+#define BUILD_AUTOFS 1
+#define BUILD_IFP 1
+#define BUILD_LIBWBCLIENT 1
+#define SSSD_USER "root"
+#define SECRETS_DB_PATH ""SSS_STATEDIR"/secrets"
+#define HAVE_LDB_H 1
+#define HAVE_LDB_MODULE_H 1
+#define HAVE_LIBINI_CONFIG_V0 1
+#define HAVE_LIBINI_CONFIG_V1 1
+#define HAVE_LIBINI_CONFIG_V1_1 1
+#define HAVE_SECURITY_PAM_APPL_H 1
+#define HAVE_SECURITY_PAM_MODULES_H 1
+#define HAVE_SECURITY_PAM_EXT_H 1
+#define HAVE_SECURITY_PAM_MODUTIL_H 1
+#define HAVE_SECURITY_PAM_MISC_H 1
+#define HAVE_SECURITY__PAM_MACROS_H 1
+#define HAVE_PAM_MODUTIL_GETLOGIN 1
+#define HAVE_PAM_VSYSLOG 1
+#define HAVE_LDAP_CONTROL_CREATE 1
+#define HAVE_LDAP_INIT_FD 1
+#define HAVE_LDAP_CREATE_DEREF_CONTROL_VALUE 1
+#define HAVE_LDAP_PARSE_DEREFRESPONSE_CONTROL 1
+#define HAVE_LDAP_DEREFRESPONSE_FREE 1
+#define HAVE_KRB5_H 1
+#define HAVE_KRB5_KRB5_H 1
+#define HAVE_KRB5_TICKET_TIMES 1
+#define HAVE_KRB5_TRACE_INFO 1
+#define HAVE_KRB5_GET_INIT_CREDS_OPT_ALLOC 1
+#define HAVE_KRB5_GET_ERROR_MESSAGE 1
+#define HAVE_KRB5_FREE_UNPARSED_NAME 1
+#define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_EXPIRE_CALLBACK 1
+#define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_CCACHE_NAME 1
+#define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_FAST_FLAGS 1
+#define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CANONICALIZE 1
+#define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_RESPONDER 1
+#define HAVE_KRB5_PARSE_NAME_FLAGS 1
+#define HAVE_KRB5_UNPARSE_NAME_FLAGS 1
+#define HAVE_KRB5_GET_INIT_CREDS_OPT_SET_CHANGE_PASSWORD_PROMPT 1
+#define HAVE_KRB5_FREE_KEYTAB_ENTRY_CONTENTS 1
+#define HAVE_KRB5_KT_FREE_ENTRY 1
+#define HAVE_KRB5_GET_TIME_OFFSETS 1
+#define HAVE_KRB5_CC_CACHE_MATCH 1
+#define HAVE_KRB5_TIMESTAMP_TO_SFSTRING 1
+#define HAVE_KRB5_SET_TRACE_CALLBACK 1
+#define HAVE_KRB5_FIND_AUTHDATA 1
+#define HAVE_KRB5_KT_HAVE_CONTENT 1
+#define HAVE_KRB5_CC_GET_FULL_NAME 1
+#define HAVE_KRB5_LOCATOR_PLUGIN 1
+#define HAVE_KRB5_LOCALAUTH_PLUGIN 1
+#define HAVE_LONG_LONG 1
+#define SIZEOF_INT 4
+#define SIZEOF_CHAR 1
+#define SIZEOF_SHORT 2
+#define SIZEOF_LONG 8
+#define SIZEOF_LONG_LONG 8
+#define SIZEOF_UID_T 4
+#define SIZEOF_GID_T 4
+#define SIZEOF_ID_T 4
+#define uint_t unsigned int
+#define SIZEOF_OFF_T 8
+#define SIZEOF_SIZE_T 8
+#define SIZEOF_SSIZE_T 8
+#define HAVE_INTPTR_T 1
+#define NSCD_PATH "/usr/sbin"
+#define NSUPDATE_PATH "/usr/bin"
+#define HAVE_SYSTEMD 1
+#define HAVE_SYSTEMD_LOGIN 1
+#define HAVE_SYSTEMD_DAEMON 1
+#define HAVE_SIGPROCMASK 1
+#define HAVE_SIGBLOCK 1
+#define HAVE_SIGACTION 1
+#define HAVE_GETPGRP 1
+#define HAVE_PRCTL 1
+#define HAVE_G_UTF8_VALIDATE 1
+#define HAVE_GLIB2 1
+#define NSCD_CONF_PATH "/etc/nscd.conf"
+#define HAVE_SERVICE 1
+#define SERVICE_PATH "/usr/sbin/service"
+#define HAVE_DBUS_WATCH_GET_UNIX_FD 1
+#define HAVE_DBUSBASICVALUE 1
+#define HAVE_SELINUX_SELINUX_H 1
+
+configure: exit 1
+
+
+--------------780E8B18B6E5712569C6D54C
+Content-Type: text/plain; charset=UTF-8;
+ name="log.do_configure.47032"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+ filename="log.do_configure.47032"
+
+DEBUG: SITE files ['endian-little', 'bit-64', 'arm-common', 'arm-64', 'comm=
+on-linux', 'common-glibc', 'aarch64-linux', 'common']
+DEBUG: Executing shell function autotools_preconfigure
+DEBUG: Shell function autotools_preconfigure finished
+DEBUG: Executing python function autotools_aclocals
+DEBUG: SITE files ['endian-little', 'bit-64', 'arm-common', 'arm-64', 'comm=
+on-linux', 'common-glibc', 'aarch64-linux', 'common']
+DEBUG: Python function autotools_aclocals finished
+DEBUG: Executing shell function do_configure
+automake (GNU automake) 1.15.1
+Copyright (C) 2017 Free Software Foundation, Inc.
+License GPLv2+: GNU GPL version 2 or later <http://gnu.org/licenses/gpl-2.0=
+.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Tom Tromey <tromey@redhat.com>
+       and Alexandre Duret-Lutz <adl@gnu.org>.
+AUTOV is 1.15
+NOTE: Executing ACLOCAL=3D"aclocal --system-acdir=3D/opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-lin=
+ux/sssd/1.16.0-r0/recipe-sysroot/usr/share/aclocal/ --automake-acdir=3D/opt=
+/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/wo=
+rk/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/usr/share/acloca=
+l-1.15" autoreconf --verbose --install --force --exclude=3Dautopoint -I /op=
+t/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/w=
+ork/aarch64-poky-linux/sssd/1.16.0-r0/sssd-1.16.0/ -I /opt/boards/variscite=
+/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-l=
+inux/sssd/1.16.0-r0/sssd-1.16.0/m4/ -I /opt/boards/variscite/imx8/linux/yoc=
+to_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.=
+0-r0/sssd-1.16.0/src/ -I /opt/boards/variscite/imx8/linux/yocto_sumo/var-fs=
+l-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sy=
+sroot-native/usr/share/aclocal/
+autoreconf: Entering directory `.'
+autoreconf: running: aclocal --system-acdir=3D/opt/boards/variscite/imx8/li=
+nux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sss=
+d/1.16.0-r0/recipe-sysroot/usr/share/aclocal/ --automake-acdir=3D/opt/board=
+s/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aar=
+ch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-native/usr/share/aclocal-1.15=
+ -I /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwaylan=
+d/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/sssd-1.16.0/ -I /opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/sssd-1.16.0/m4/ -I /opt/boards/variscite/imx8/li=
+nux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sss=
+d/1.16.0-r0/sssd-1.16.0/src/ -I /opt/boards/variscite/imx8/linux/yocto_sumo=
+/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/re=
+cipe-sysroot-native/usr/share/aclocal/ --force -I m4 -I .
+autoreconf: configure.ac: tracing
+autoreconf: running: libtoolize --copy --force
+libtoolize: putting auxiliary files in AC_CONFIG_AUX_DIR, 'build'.
+libtoolize: copying file 'build/ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
+libtoolize: copying file 'm4/libtool.m4'
+libtoolize: copying file 'm4/ltoptions.m4'
+libtoolize: copying file 'm4/ltsugar.m4'
+libtoolize: copying file 'm4/ltversion.m4'
+libtoolize: copying file 'm4/lt~obsolete.m4'
+autoreconf: running: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yo=
+cto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroo=
+t-native/usr/bin/autoconf --include=3D/opt/boards/variscite/imx8/linux/yoct=
+o_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0=
+-r0/sssd-1.16.0/ --include=3D/opt/boards/variscite/imx8/linux/yocto_sumo/va=
+r-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/sssd-=
+1.16.0/m4/ --include=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-=
+yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/sssd-1.16.0=
+/src/ --include=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto=
+/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot-n=
+ative/usr/share/aclocal/ --force
+autoreconf: running: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yo=
+cto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroo=
+t-native/usr/bin/autoheader --include=3D/opt/boards/variscite/imx8/linux/yo=
+cto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16=
+.0-r0/sssd-1.16.0/ --include=3D/opt/boards/variscite/imx8/linux/yocto_sumo/=
+var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/sss=
+d-1.16.0/m4/ --include=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fs=
+l-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/sssd-1.16=
+.0/src/ --include=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yoc=
+to/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot=
+-native/usr/share/aclocal/ --force
+autoreconf: running: automake --add-missing --copy --force-missing
+configure.ac:10: installing 'build/compile'
+configure.ac:17: installing 'build/missing'
+Makefile.am: installing 'build/depcomp'
+autoreconf: running: gnu-configize
+autoreconf: Leaving directory `.'
+NOTE: Running ../sssd-1.16.0/configure  --build=3Dx86_64-linux 		  --host=
+=3Daarch64-poky-linux 		  --target=3Daarch64-poky-linux 		  --prefix=3D/usr=
+ 		  --exec_prefix=3D/usr 		  --bindir=3D/usr/bin 		  --sbindir=3D/usr/sbin=
+ 		  --libexecdir=3D/usr/libexec 		  --datadir=3D/usr/share 		  --sysconfdi=
+r=3D/etc 		  --sharedstatedir=3D/com 		  --localstatedir=3D/var 		  --libdi=
+r=3D/usr/lib 		  --includedir=3D/usr/include 		  --oldincludedir=3D/usr/inc=
+lude 		  --infodir=3D/usr/share/info 		  --mandir=3D/usr/share/man 		  --di=
+sable-silent-rules 		  --disable-dependency-tracking 		  --with-libtool-sys=
+root=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xway=
+land/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot  --disable-c=
+ifs-idmap-plugin --without-nfsv4-idmapd-plugin --without-ipa-getkeytab   --=
+without-secrets --without-kcm    --without-secrets  --with-manpages=3Dno  -=
+-with-libnl=3Dno --with-nscd=3D/usr/sbin --with-crypto=3Dnss  --without-pyt=
+hon2-bindings  --without-python3-bindings  --with-samba=3Dno --with-selinux=
+  --with-ssh=3Dno  --with-systemdunitdir=3D --enable-nls=20
+configure: loading site script /opt/boards/variscite/imx8/linux/yocto_sumo/=
+var-fsl-yocto/sources/poky/meta/site/endian-little
+configure: loading site script /opt/boards/variscite/imx8/linux/yocto_sumo/=
+var-fsl-yocto/sources/poky/meta/site/arm-common
+configure: loading site script /opt/boards/variscite/imx8/linux/yocto_sumo/=
+var-fsl-yocto/sources/poky/meta/site/arm-64
+configure: loading site script /opt/boards/variscite/imx8/linux/yocto_sumo/=
+var-fsl-yocto/sources/poky/meta/site/common-linux
+configure: loading site script /opt/boards/variscite/imx8/linux/yocto_sumo/=
+var-fsl-yocto/sources/poky/meta/site/common-glibc
+configure: loading site script /opt/boards/variscite/imx8/linux/yocto_sumo/=
+var-fsl-yocto/sources/poky/meta/site/common
+configure: loading site script /opt/boards/variscite/imx8/linux/yocto_sumo/=
+var-fsl-yocto/sources/meta-openembedded/meta-gnome/site/arm-64
+configure: loading site script /opt/boards/variscite/imx8/linux/yocto_sumo/=
+var-fsl-yocto/sources/meta-openembedded/meta-networking/site/endian-little
+configure: loading site script /opt/boards/variscite/imx8/linux/yocto_sumo/=
+var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/rec=
+ipe-sysroot/usr/share/aarch64-poky-linux_config_site.d/ncurses_config
+configure: loading site script /opt/boards/variscite/imx8/linux/yocto_sumo/=
+var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/rec=
+ipe-sysroot/usr/share/aarch64-poky-linux_config_site.d/glibc_config
+checking for aarch64-poky-linux-gcc... aarch64-poky-linux-gcc  --sysroot=3D=
+/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tm=
+p/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables...=20
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot accepts -g... yes
+checking for aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/imx8=
+/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/=
+sssd/1.16.0-r0/recipe-sysroot option to accept ISO C89... none needed
+checking whether aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/=
+imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-li=
+nux/sssd/1.16.0-r0/recipe-sysroot understands -c and -o together... yes
+checking how to run the C preprocessor... aarch64-poky-linux-gcc -E --sysro=
+ot=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayla=
+nd/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot=20
+checking for grep that handles long lines and -e... /opt/boards/variscite/i=
+mx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/hosttools/grep
+checking for egrep... /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-y=
+octo/build_xwayland/tmp/hosttools/grep -E
+checking for ANSI C header files... (cached) yes
+checking for sys/types.h... (cached) yes
+checking for sys/stat.h... (cached) yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking for memory.h... (cached) yes
+checking for strings.h... (cached) yes
+checking for inttypes.h... (cached) yes
+checking for stdint.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking minix/config.h usability... no
+checking minix/config.h presence... no
+checking for minix/config.h... no
+checking whether it is safe to define __EXTENSIONS__... yes
+checking for a BSD-compatible install... /opt/boards/variscite/imx8/linux/y=
+octo_sumo/var-fsl-yocto/build_xwayland/tmp/hosttools/install -c
+checking whether build environment is sane... yes
+checking for aarch64-poky-linux-strip... aarch64-poky-linux-strip
+checking for a thread-safe mkdir -p... /opt/boards/variscite/imx8/linux/yoc=
+to_sumo/var-fsl-yocto/build_xwayland/tmp/hosttools/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for style of include used by make... GNU
+checking whether make supports nested variables... yes
+checking how to create a pax tar archive... gnutar
+checking dependency style of aarch64-poky-linux-gcc  --sysroot=3D/opt/board=
+s/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aar=
+ch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot... none
+checking for aarch64-poky-linux-ar... aarch64-poky-linux-ar
+checking the archiver (aarch64-poky-linux-ar) interface... ar
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... aarch64-poky-linux-gnu
+checking how to print strings... printf
+checking for a sed that does not truncate output... (cached) sed
+checking for fgrep... /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-y=
+octo/build_xwayland/tmp/hosttools/grep -F
+checking for ld used by aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/var=
+iscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-=
+poky-linux/sssd/1.16.0-r0/recipe-sysroot... aarch64-poky-linux-ld --sysroot=
+=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland=
+/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot=20
+checking if the linker (aarch64-poky-linux-ld --sysroot=3D/opt/boards/varis=
+cite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-po=
+ky-linux/sssd/1.16.0-r0/recipe-sysroot ) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... aarch64-poky-linux-n=
+m
+checking the name lister (aarch64-poky-linux-nm) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to aarch64-poky-linu=
+x-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format.=
+.. func_convert_file_noop
+checking for aarch64-poky-linux-ld --sysroot=3D/opt/boards/variscite/imx8/l=
+inux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/ss=
+sd/1.16.0-r0/recipe-sysroot  option to reload object files... -r
+checking for aarch64-poky-linux-objdump... aarch64-poky-linux-objdump
+checking how to recognize dependent libraries... pass_all
+checking for aarch64-poky-linux-dlltool... no
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for aarch64-poky-linux-ar... (cached) aarch64-poky-linux-ar
+checking for archiver @FILE support... @
+checking for aarch64-poky-linux-strip... (cached) aarch64-poky-linux-strip
+checking for aarch64-poky-linux-ranlib... aarch64-poky-linux-ranlib
+checking command to parse aarch64-poky-linux-nm output from aarch64-poky-li=
+nux-gcc  --sysroot=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yo=
+cto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroo=
+t object... ok
+checking for sysroot... /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl=
+-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sys=
+root
+checking for a working dd... /opt/boards/variscite/imx8/linux/yocto_sumo/va=
+r-fsl-yocto/build_xwayland/tmp/hosttools/dd
+checking how to truncate binary pipes... /opt/boards/variscite/imx8/linux/y=
+octo_sumo/var-fsl-yocto/build_xwayland/tmp/hosttools/dd bs=3D4096 count=3D1
+checking for aarch64-poky-linux-mt... no
+checking for mt... no
+checking if : is a manifest tool... no
+checking for dlfcn.h... (cached) yes
+checking for objdir... .libs
+checking if aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/imx8/=
+linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/s=
+ssd/1.16.0-r0/recipe-sysroot supports -fno-rtti -fno-exceptions... no
+checking for aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/imx8=
+/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/=
+sssd/1.16.0-r0/recipe-sysroot option to produce PIC... -fPIC -DPIC
+checking if aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/imx8/=
+linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/s=
+ssd/1.16.0-r0/recipe-sysroot PIC flag -fPIC -DPIC works... yes
+checking if aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/imx8/=
+linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/s=
+ssd/1.16.0-r0/recipe-sysroot static flag -static works... yes
+checking if aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/imx8/=
+linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/s=
+ssd/1.16.0-r0/recipe-sysroot supports -c -o file.o... yes
+checking if aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/variscite/imx8/=
+linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/s=
+ssd/1.16.0-r0/recipe-sysroot supports -c -o file.o... (cached) yes
+checking whether the aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/varisc=
+ite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-pok=
+y-linux/sssd/1.16.0-r0/recipe-sysroot linker (aarch64-poky-linux-ld --sysro=
+ot=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayla=
+nd/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot ) supports sha=
+red libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+checking for library containing dlopen... -ldl
+checking for dlerror... yes
+checking for shl_load... no
+checking for shl_load in -ldld... no
+checking for dld_link in -ldld... no
+checking whether NLS is requested... yes
+checking for msgfmt... /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-=
+yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysr=
+oot-native/usr/bin/msgfmt
+checking for gmsgfmt... /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl=
+-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sys=
+root-native/usr/bin/msgfmt
+checking for xgettext... /opt/boards/variscite/imx8/linux/yocto_sumo/var-fs=
+l-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sy=
+sroot-native/usr/bin/xgettext
+checking for msgmerge... /opt/boards/variscite/imx8/linux/yocto_sumo/var-fs=
+l-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sy=
+sroot-native/usr/bin/msgmerge
+checking for ld used by aarch64-poky-linux-gcc  --sysroot=3D/opt/boards/var=
+iscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-=
+poky-linux/sssd/1.16.0-r0/recipe-sysroot... aarch64-poky-linux-ld --sysroot=
+=3D/opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland=
+/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-sysroot=20
+checking if the linker (aarch64-poky-linux-ld --sysroot=3D/opt/boards/varis=
+cite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64-po=
+ky-linux/sssd/1.16.0-r0/recipe-sysroot ) is GNU ld... yes
+checking for shared library run path origin... done
+checking for CFPreferencesCopyAppValue... no
+checking for CFLocaleCopyCurrent... no
+checking for GNU gettext in libc... yes
+checking whether to use NLS... yes
+checking where the gettext function comes from... libc
+checking whether make supports nested variables... (cached) yes
+checking for stdint.h... (cached) yes
+checking for dlfcn.h... (cached) yes
+checking for errno_t... no
+checking for library containing timer_create... -lrt
+checking for utimensat... yes
+checking for futimens... yes
+checking for endian.h... (cached) yes
+checking sys/endian.h usability... no
+checking sys/endian.h presence... no
+checking for sys/endian.h... no
+checking for byteswap.h... (cached) yes
+checking whether byte ordering is bigendian... (cached) no
+configure: Detected operating system type: debian
+checking for struct ucred.pid... yes
+checking for struct ucred.uid... yes
+checking for struct ucred.gid... yes
+checking for aarch64-poky-linux-pkg-config... no
+checking for pkg-config... /opt/boards/variscite/imx8/linux/yocto_sumo/var-=
+fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe-=
+sysroot-native/usr/bin/pkg-config
+configure: WARNING: using cross tools not prefixed with host triplet
+checking pkg-config is at least version 0.9.0... yes
+checking for POPT... yes
+checking for TALLOC... yes
+checking for TDB... yes
+checking for TEVENT... yes
+checking for LDB... yes
+checking ldb.h usability... yes
+checking ldb.h presence... yes
+checking for ldb.h... yes
+checking for ldb_init in -lldb... yes
+checking ldb_module.h usability... yes
+checking ldb_module.h presence... yes
+checking for ldb_module.h... yes
+checking for ldb_init in -lldb... (cached) yes
+checking feature ldb runtime version check... no
+configure: ldb lib directory: /usr/lib/ldb
+checking for DHASH... yes
+checking for COLLECTION... yes
+checking for INI_CONFIG_V0... yes
+checking for INI_CONFIG_V1... yes
+checking for INI_CONFIG_V1_1... yes
+checking for INI_CONFIG_V1_3... no
+configure: WARNING: libini_config-devel >=3D 1.3.0 not available, using old=
+er version
+checking security/pam_appl.h usability... yes
+checking security/pam_appl.h presence... yes
+checking for security/pam_appl.h... yes
+checking for pam_get_item in -lpam... yes
+checking security/pam_modules.h usability... yes
+checking security/pam_modules.h presence... yes
+checking for security/pam_modules.h... yes
+checking for pam_get_item in -lpam... (cached) yes
+checking security/pam_ext.h usability... yes
+checking security/pam_ext.h presence... yes
+checking for security/pam_ext.h... yes
+checking security/pam_modutil.h usability... yes
+checking security/pam_modutil.h presence... yes
+checking for security/pam_modutil.h... yes
+checking security/pam_misc.h usability... yes
+checking security/pam_misc.h presence... yes
+checking for security/pam_misc.h... yes
+checking security/_pam_macros.h usability... yes
+checking security/_pam_macros.h presence... yes
+checking for security/_pam_macros.h... yes
+checking for security/openpam.h... no
+checking for misc_conv in -lpam_misc... yes
+checking for pam_modutil_getlogin... yes
+checking for pam_vsyslog... yes
+checking for ldap_search in -lldap... yes
+checking for ber_pvt_opt_on in -llber... yes
+checking for ldap_control_create... yes
+checking for ldap_init_fd... yes
+checking for ldap_create_deref_control_value... yes
+checking for ldap_parse_derefresponse_control... yes
+checking for ldap_derefresponse_free... yes
+checking for struct ldap_conncb.lc_arg... (cached) no
+checking for LDAPDerefRes... yes
+checking for slapd... no
+checking for ldapmodify... no
+checking for PCRE... yes
+configure: PCRE version is 7 or higher
+checking for aarch64-poky-linux-krb5-config... no
+checking for krb5-config... /opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe=
+-sysroot/usr/bin/crossscripts/krb5-config
+checking for working krb5-config... yes
+checking krb5.h usability... yes
+checking krb5.h presence... yes
+checking for krb5.h... yes
+checking krb5/krb5.h usability... yes
+checking krb5/krb5.h presence... yes
+checking for krb5/krb5.h... yes
+checking for krb5_ticket_times... yes
+checking for krb5_times... no
+checking for krb5_trace_info... yes
+checking for krb5_get_init_creds_opt_alloc... yes
+checking for krb5_get_error_message... yes
+checking for krb5_free_unparsed_name... yes
+checking for krb5_get_init_creds_opt_set_expire_callback... yes
+checking for krb5_get_init_creds_opt_set_fast_ccache_name... yes
+checking for krb5_get_init_creds_opt_set_fast_flags... yes
+checking for krb5_get_init_creds_opt_set_canonicalize... yes
+checking for krb5_get_init_creds_opt_set_responder... yes
+checking for krb5_parse_name_flags... yes
+checking for krb5_unparse_name_flags... yes
+checking for krb5_get_init_creds_opt_set_change_password_prompt... yes
+checking for krb5_free_keytab_entry_contents... yes
+checking for krb5_kt_free_entry... yes
+checking for krb5_princ_realm... no
+checking for krb5_get_time_offsets... yes
+checking for krb5_principal_get_realm... no
+checking for krb5_cc_cache_match... yes
+checking for krb5_timestamp_to_sfstring... yes
+checking for krb5_set_trace_callback... yes
+checking for krb5_find_authdata... yes
+checking for krb5_kt_have_content... yes
+checking for krb5_cc_get_full_name... yes
+checking for krb5/locate_plugin.h... yes
+checking for krb5/localauth_plugin.h... yes
+checking for CARES... yes
+checking for long long... yes
+checking size of int... (cached) 4
+checking size of char... (cached) 1
+checking size of short... (cached) 2
+checking size of long... (cached) 8
+checking size of long long... (cached) 8
+checking size of uid_t... 4
+checking size of gid_t... 4
+checking size of id_t... 4
+checking for uint_t... no
+checking for int8_t... yes
+checking for uint8_t... yes
+checking for int16_t... yes
+checking for uint16_t... yes
+checking for int32_t... yes
+checking for uint32_t... yes
+checking for int64_t... yes
+checking for uint64_t... yes
+checking for size_t... yes
+checking for ssize_t... yes
+checking size of off_t... 8
+checking size of size_t... (cached) 8
+checking size of ssize_t... (cached) 8
+checking for intptr_t... yes
+checking for uintptr_t... yes
+checking for ptrdiff_t... yes
+checking for nscd... /usr/sbin
+checking for nscd... yes
+checking for nsupdate... (cached) /usr/bin
+checking for executable nsupdate... yes
+checking for nsupdate 'realm' support'... no
+configure: WARNING: Will build without the 'realm' directive
+checking keyutils.h usability... no
+checking keyutils.h presence... no
+checking for keyutils.h... no
+configure: WARNING: keyutils header files are not available
+checking for SYSTEMD_LOGIN... yes
+checking for SYSTEMD_DAEMON... yes
+checking for krb5-config... /opt/boards/variscite/imx8/linux/yocto_sumo/var=
+-fsl-yocto/build_xwayland/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/recipe=
+-sysroot/usr/bin/crossscripts/krb5-config
+checking for supported MIT krb5 version... yes
+configure: WARNING: Cannot build PAC responder without Samba
+checking for sigprocmask... (cached) yes
+checking for sigblock... (cached) yes
+checking for sigaction... (cached) yes
+checking for getpgrp... (cached) yes
+checking for prctl... (cached) yes
+checking for SASL... yes
+checking for ns_name_compress in -lresolv... no
+configure: WARNING: No libresolv detected, some tests will not run
+checking for fakeroot... no
+checking for py.test... no
+checking for GLIB2... yes
+checking for g_utf8_validate... yes
+configure: Will use init script type: sysv
+checking for service... /usr/sbin/service
+checking for the executable "service"... yes
+checking for DBUS... yes
+checking for dbus_watch_get_unix_fd... yes
+checking for DBusBasicValue... yes
+checking for python2... yes
+checking for python2... (cached) python2.7
+checking for python3... (cached) python2.7
+checking python2.7 module: ldap... no
+checking selinux/selinux.h usability... yes
+checking selinux/selinux.h presence... yes
+checking for selinux/selinux.h... yes
+checking for is_selinux_enabled in -lselinux... yes
+checking for /etc/selinux/targeted/logins/... configure: error: cannot chec=
+k for file existence when cross compiling
+NOTE: The following config.log files may provide further information.
+NOTE: /opt/boards/variscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayl=
+and/tmp/work/aarch64-poky-linux/sssd/1.16.0-r0/build/config.log
+ERROR: configure failed
+WARNING: exit code 1 from a shell command.
+ERROR: Function failed: do_configure (log file is located at /opt/boards/va=
+riscite/imx8/linux/yocto_sumo/var-fsl-yocto/build_xwayland/tmp/work/aarch64=
+-poky-linux/sssd/1.16.0-r0/temp/log.do_configure.47032)
+
+
+--------------780E8B18B6E5712569C6D54C--
