@@ -1,187 +1,81 @@
-Subject: Cannot boot with systemd : Must be superuser to use mount
-To: yocto@lists.yoctoproject.org
-From: aiman.najjar@hurranet.com
-X-Originating-Location: Kissimmee, Florida, US (97.100.22.132)
-X-Originating-Platform: Linux Chrome 83
-User-Agent: GROUPS.IO Web Poster
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by mx.groups.io with SMTP id smtpd.web11.188009.1598239415963034685
+ for <yocto@lists.yoctoproject.org>;
+ Sun, 23 Aug 2020 20:23:36 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.120, mailfrom: anuj.mittal@intel.com)
+IronPort-SDR: IJx/GMW/TkZjNbnX4CBeWU8wZWmtNtAYjhOgjqKAkV+Frtf0OcvJbmxWWrc7cu25AVWH7DHE1u
+ G3ZpYfmVSdjg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9722"; a="153244123"
+X-IronPort-AV: E=Sophos;i="5.76,347,1592895600"; 
+   d="scan'208";a="153244123"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2020 20:23:35 -0700
+IronPort-SDR: GyX/ujdbBOrdr0GXywVQJJ5KxF3fjddGqfkH5ieoyeGV+zO/srG2nups/L7gDSqfHco6pXQWw2
+ vWnGW0t9sw2g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,347,1592895600"; 
+   d="scan'208";a="402131720"
+Received: from pgsmsx603.gar.corp.intel.com ([10.108.199.138])
+  by fmsmga001.fm.intel.com with ESMTP; 23 Aug 2020 20:23:34 -0700
+Received: from pgsmsx603.gar.corp.intel.com (10.108.199.138) by
+ pgsmsx603.gar.corp.intel.com (10.108.199.138) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 24 Aug 2020 11:23:33 +0800
+Received: from pgsmsx105.gar.corp.intel.com (10.221.44.96) by
+ pgsmsx603.gar.corp.intel.com (10.108.199.138) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
+ via Frontend Transport; Mon, 24 Aug 2020 11:23:33 +0800
+Received: from pgsmsx111.gar.corp.intel.com ([169.254.2.97]) by
+ PGSMSX105.gar.corp.intel.com ([169.254.4.108]) with mapi id 14.03.0439.000;
+ Mon, 24 Aug 2020 11:23:33 +0800
+From: "Anuj Mittal" <anuj.mittal@intel.com>
+To: "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
+	"bruce.ashfield@gmail.com" <bruce.ashfield@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] [PATCH 0/3] yocto-bsp/poky: kernel updates and default
+Thread-Topic: [yocto] [PATCH 0/3] yocto-bsp/poky: kernel updates and default
+Thread-Index: AQHWd+5se8uWA558hk+rnPZiOsBOzalGFeiA
+Date: Mon, 24 Aug 2020 03:23:32 +0000
+Message-ID: <7c55666a460654d83b53caba996e787981d9f4ff.camel@intel.com>
+References: <cover.1598036643.git.bruce.ashfield@gmail.com>
+In-Reply-To: <cover.1598036643.git.bruce.ashfield@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.255.145.178]
 MIME-Version: 1.0
-Date: Sun, 23 Aug 2020 19:00:40 -0700
-Message-ID: <KjFn.1598234440750313484.BYFX@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="73WHahmNl3QMY67IVZYZ"
-
---73WHahmNl3QMY67IVZYZ
+Return-Path: anuj.mittal@intel.com
+Content-Language: en-US
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-ID: <36E8FA34B9D5C946A7A16B7A5101CE7B@intel.com>
+Content-Transfer-Encoding: base64
 
-Hello all -
-
-I'm a beginner Ycoto user and I'm trying to build raspberrypi4-64 image fo=
-r my project. I've been able to build an image and boot it successfully ini=
-tially, but when I switched from sysvinit to systemd, and enable U-Boot, I'=
-m not longer able to boot.
-
-During boot process, I noticed all systemd services that try to mount part=
-itions are failing, including the following:
-
-Copy
-[ FAILED ] Failed to mount / var / volatile.
-[ FAILED ] Failed to mount Temporary Directory ( /tmp )
-
-When I use the emergency shell to check the logs of those systemd services=
-, I am seeing this error:
-
-"must be superuser to use mount."
-
-I even tried to manually mount partitions in the emergency shell using the=
- mount command, and I got the same error, when I run whoami , I see that I =
-am root user.
-
-Furthermore, when I list the files in the rootfs, everything is owned by u=
-id 1000, including /sbin/init , /bin/mount , /lib/systemd/sytemd =E2=80=A6 =
-I was under the impression those should be owned by root user.
-
-I would really appreciate any help, I cannot find anything online regardin=
-g this issue.
-
-Please see below my conf/local.conf:
-
-DISTRO_FEATURES +=3D " ${DISTRO_FEATURES_LIBC} wifi ipv4 virtualization sy=
-stemd"
-DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"
-VIRTUAL - RUNTIME_init_manager =3D "systemd"
-VIRTUAL - RUNTIME_initscripts =3D ""
-MACHINE_FEATURES_remove =3D "apm"
-IMAGE_FSTYPES =3D "rpi-sdimg"
-MACHINE =3D "raspberrypi4-64"
-DISABLE_SPLASH =3D "1"
-ENABLE_UART =3D "1"
-RPI_USE_U_BOOT =3D "1"
-PREFERRED_VERSION_linux - raspberrypi =3D "5.4.%"
-DISTRO =3D "poky"
-PACKAGE_CLASSES =3D "package_ipk"
-EXTRA_IMAGE_FEATURES =3D "debug-tweaks"
-IMAGE_INSTALL_append =3D " wpa-supplicant docker-ce python3-docker-compose=
- openssh avahi-daemon kernel-image kernel-devicetree"
-
---73WHahmNl3QMY67IVZYZ
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; font=
--size: 15.008px;">Hello all -</p>
-<p><span style=3D"color: #222222; font-family: Helvetica, Arial, sans-seri=
-f;"><span style=3D"font-size: 15.008px;">I'm a beginner Ycoto user and I'm =
-trying to build raspberrypi4-64 image for my project. I've been able to bui=
-ld an image and boot it successfully initially, but when I switched from sy=
-svinit to systemd, and enable U-Boot, I'm not longer able to boot.</span></=
-span></p>
-<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
-t-size: 15.008px;">During boot process, I noticed all systemd services that=
- try to mount partitions are failing, including the following:</p>
-<div class=3D"code-highlight" style=3D"color: #222222; font-family: Helvet=
-ica, Arial, sans-serif; font-size: 15.008px;">
-<div class=3D"bd-clipboard" style=3D"background-color: #f8f8f8; position: =
-relative; white-space: nowrap;"><span class=3D"btn-clipboard" style=3D"back=
-ground-color: transparent; border-radius: 2px; color: #333333; cursor: defa=
-ult; display: inline-block; font-size: 0.857143em; padding: 0.25em 0.4em;">=
-Copy</span></div>
-<pre style=3D"font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Lib=
-eration Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New=
-', monospace; font-size: 1em;"><code class=3D"hljs cs" style=3D"font-family=
-: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu San=
-s Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace; font-size: 1=
-em; overflow: auto; tab-size: 4; overflow-wrap: normal; display: block; pad=
-ding: 0.5em; max-height: 500px;">[<span class=3D"hljs-meta">FAILED</span>] =
-Failed to mount /<span class=3D"hljs-keyword" style=3D"color: var(--primary=
--very-high); font-weight: bold;">var</span>/<span class=3D"hljs-keyword" st=
-yle=3D"color: var(--primary-very-high); font-weight: bold;">volatile</span>=
-.
-[<span class=3D"hljs-meta">FAILED</span>] <span class=3D"hljs-function">Fa=
-iled to mount Temporary <span class=3D"hljs-title" style=3D"color: var(--hl=
-js-string); font-weight: bold;">Directory</span> (<span class=3D"hljs-param=
-s">/tmp</span>)
-</span></code></pre>
-</div>
-<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
-t-size: 15.008px;">When I use the emergency shell to check the logs of thos=
-e systemd services, I am seeing this error:</p>
-<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
-t-size: 15.008px;"><code style=3D"font-family: Consolas, Menlo, Monaco, 'Lu=
-cida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans =
-Mono', 'Courier New', monospace; font-size: 1em; color: var(--primary-very-=
-high); background: var(--hljs-bg);">"must be superuser to use mount."</code=
-></p>
-<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
-t-size: 15.008px;">I even tried to manually mount partitions in the emergen=
-cy shell using the mount command, and I got the same error, when I run&nbsp=
-;<code style=3D"font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Li=
-beration Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier Ne=
-w', monospace; font-size: 1em; color: var(--primary-very-high); background:=
- var(--hljs-bg);">whoami</code>, I see that I am root user.</p>
-<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
-t-size: 15.008px;">Furthermore, when I list the files in the rootfs, everyt=
-hing is owned by uid 1000, including&nbsp;<code style=3D"font-family: Conso=
-las, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono'=
-, 'Bitstream Vera Sans Mono', 'Courier New', monospace; font-size: 1em; col=
-or: var(--primary-very-high); background: var(--hljs-bg);">/sbin/init</code=
->,&nbsp;<code style=3D"font-family: Consolas, Menlo, Monaco, 'Lucida Consol=
-e', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Cou=
-rier New', monospace; font-size: 1em; color: var(--primary-very-high); back=
-ground: var(--hljs-bg);">/bin/mount</code>,&nbsp;<code style=3D"font-family=
-: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu San=
-s Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace; font-size: 1=
-em; color: var(--primary-very-high); background: var(--hljs-bg);">/lib/syst=
-emd/sytemd</code>&hellip; I was under the impression those should be owned =
-by root user.</p>
-<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
-t-size: 15.008px;">I would really appreciate any help, I cannot find anythi=
-ng online regarding this issue.</p>
-<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
-t-size: 15.008px;">Please see below my conf/local.conf:<span style=3D"color=
-: #bf2600;"></span></p>
-<div style=3D"color: #000000; background-color: #fffffe; font-family: SFMo=
-no-Medium, 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Mono', Menlo,=
- monospace; font-size: 13px; line-height: 18px; white-space: pre;">
-<div><span style=3D"color: #202020;">DISTRO_FEATURES</span> +=3D <span sty=
-le=3D"color: #bf2600;">" ${DISTRO_FEATURES_LIBC} wifi ipv4 virtualization s=
-ystemd"</span></div>
-<div><span style=3D"color: #202020;">DISTRO_FEATURES_BACKFILL_CONSIDERED</=
-span> =3D <span style=3D"color: #bf2600;">"sysvinit"</span></div>
-<div><span style=3D"color: #202020;">VIRTUAL</span>-<span style=3D"color: =
-#202020;">RUNTIME_init_manager</span> =3D <span style=3D"color: #bf2600;">"=
-systemd"</span></div>
-<div><span style=3D"color: #202020;">VIRTUAL</span>-<span style=3D"color: =
-#202020;">RUNTIME_initscripts</span> =3D <span style=3D"color: #bf2600;">""=
-</span></div>
-<div><span style=3D"color: #202020;">MACHINE_FEATURES_remove</span> =3D <s=
-pan style=3D"color: #bf2600;">"apm"</span></div>
-<div><span style=3D"color: #202020;">IMAGE_FSTYPES</span> =3D <span style=
-=3D"color: #bf2600;">"rpi-sdimg"</span></div>
-<div><span style=3D"color: #202020;">MACHINE</span> =3D <span style=3D"col=
-or: #bf2600;">"raspberrypi4-64"</span></div>
-<div><span style=3D"color: #202020;">DISABLE_SPLASH</span> =3D <span style=
-=
-=3D"color: #bf2600;">"1"</span></div>
-<div><span style=3D"color: #202020;">ENABLE_UART</span> =3D <span style=3D=
-"color: #bf2600;">"1"</span></div>
-<div><span style=3D"color: #202020;">RPI_USE_U_BOOT</span> =3D <span style=
-=
-=3D"color: #bf2600;">"1"</span></div>
-<div><span style=3D"color: #202020;">PREFERRED_VERSION_linux</span>-<span =
-style=3D"color: #202020;">raspberrypi</span> =3D <span style=3D"color: #bf2=
-600;">"5.4.%"</span></div>
-<div><span style=3D"color: #202020;">DISTRO</span> =3D <span style=3D"colo=
-r: #bf2600;">"poky"</span></div>
-<div><span style=3D"color: #202020;">PACKAGE_CLASSES</span> =3D <span styl=
-e=3D"color: #bf2600;">"package_ipk"</span></div>
-<div><span style=3D"color: #202020;">EXTRA_IMAGE_FEATURES</span> =3D <span=
- style=3D"color: #bf2600;">"debug-tweaks"</span></div>
-<div><span style=3D"color: #202020;">IMAGE_INSTALL_append</span> =3D <span=
- style=3D"color: #bf2600;">" wpa-supplicant docker-ce python3-docker-compos=
-e openssh avahi-daemon kernel-image kernel-devicetree"<br /><br /><br /></s=
-pan></div>
-<br />
-<div>&nbsp;</div>
-</div>
-
---73WHahmNl3QMY67IVZYZ--
+SGkgQnJ1Y2UsDQoNCk9uIEZyaSwgMjAyMC0wOC0yMSBhdCAxNTowNyAtMDQwMCwgQnJ1Y2UgQXNo
+ZmllbGQgd3JvdGU6DQo+IEZyb206IEJydWNlIEFzaGZpZWxkIDxicnVjZS5hc2hmaWVsZEBnbWFp
+bC5jb20+DQo+IA0KPiBSaWNoYXJkLA0KPiANCj4gU2ltaWxhciB0byBvZS1jb3JlLCB0aGVzZSBh
+cmUgdGhlIHBhdGNoZXMgSSdtIGNhcnJ5aW5nIHRvIHVwZGF0ZSB0aGUNCj4gcmVmZXJlbmNlIEJT
+UHMgdG8gdGhlIGxhdGVzdCA1LjQgKHdlIHN0aWxsIG5lZWQgYSA1LjggYmJhcHBlbmQgYW5kDQo+
+IGNvbmZpcm1lZCBib290aW5nKSwgYXMgd2VsbCBhcyBhIHN3aXRjaCB0byA1LjggYXMgdGhlIGRl
+ZmF1bHQuDQo+IA0KPiBUaGF0IGJlaW5nIHNhaWQsIEknbSBub3Qgc3VyZSBvZiB0aGUgd2F5IHlv
+dSdkIGxpa2UgdGhlIGRlZmF1bHQNCj4ga2VybmVsDQo+IHNldCB0byBkaWZmZXJlbnRpYXRlIGJl
+dHdlZW4gdGhlIHJlZmVyZW5jZSBCU1BzIGFuZCBxZW11LiBTbw0KPiBjdXJyZW50bHksDQo+IEkg
+anVzdCBoYXZlIHRoZSBzaW5nbGUgcHJlZmVycmVkIHZlcnNpb24gc2V0Lg0KPiANCg0KU2hvdWxk
+IHdlIGFsc28gdXBkYXRlIFBSRUZFUlJFRF9WRVJTSU9OIGZvciBsaW51eC15b2N0by10aW55IGZv
+ciBwb2t5LQ0KdGlueSBESVNUUk8/IEl0IGlzIGN1cnJlbnRseSBwb2ludGluZyB0byA1LjAgLi4u
+DQoNClRoYW5rcywNCg0KQW51ag0KDQoNCj4gQ2hlZXJzLA0KPiANCj4gQnJ1Y2UNCj4gDQo+IFRo
+ZSBmb2xsb3dpbmcgY2hhbmdlcyBzaW5jZSBjb21taXQNCj4gYzlkMGJiNDIxYTJmN2M2NzgzZjJj
+MmJiZjQ3Yzk1ZGE1NTM3OTg1ZDoNCj4gDQo+ICAgbGludXgteW9jdG8vNS44OiB1cGRhdGUgdG8g
+djUuOC4yICgyMDIwLTA4LTIxIDE0OjU1OjA1IC0wNDAwKQ0KPiANCj4gYXJlIGF2YWlsYWJsZSBp
+biB0aGUgR2l0IHJlcG9zaXRvcnkgYXQ6DQo+IA0KPiAgIGdpdDovL2dpdC55b2N0b3Byb2plY3Qu
+b3JnL3Bva3ktY29udHJpYiB6ZWRkL2tlcm5lbC15b2N0bw0KPiAgIA0KPiBodHRwOi8vZ2l0Lnlv
+Y3RvcHJvamVjdC5vcmcvY2dpdC5jZ2kvcG9reS1jb250cmliL2xvZy8/aD16ZWRkL2tlcm5lbC15
+b2N0bw0KPiANCj4gQnJ1Y2UgQXNoZmllbGQgKDMpOg0KPiAgIHBva3k6IHNldCBwcmVmZXJyZWQg
+dmVyc2lvbiBmb3IgbGludXgteW9jdG8gdG8gYmUgdjUuOA0KPiAgIHlvY3RvLWJzcDogdXBkYXRl
+IHRvIHY1LjQuNTYNCj4gICB5b2N0by1ic3A6IHVwZGF0ZSB0byB2NS40LjU4DQo+IA0KPiAgbWV0
+YS1wb2t5L2NvbmYvZGlzdHJvL3Bva3kuY29uZiAgICAgICAgICAgICAgICAgIHwgIDIgKy0NCj4g
+IC4uLi9saW51eC9saW51eC15b2N0b181LjQuYmJhcHBlbmQgICAgICAgICAgICAgICB8IDE2ICsr
+KysrKysrLS0tLQ0KPiAtLS0tDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwg
+OSBkZWxldGlvbnMoLSkNCj4gDQo+IA0K
