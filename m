@@ -1,104 +1,187 @@
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (EUR05-AM6-obe.outbound.protection.outlook.com [40.92.91.27])
- by mx.groups.io with SMTP id smtpd.web12.174811.1598194920337385211
- for <yocto@lists.yoctoproject.org>;
- Sun, 23 Aug 2020 08:02:01 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@outlook.com header.s=selector1 header.b=lFNo2DE4;
- spf=pass (domain: outlook.com, ip: 40.92.91.27, mailfrom: kweihmann@outlook.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IkfzN5taIL7znWXDaNRR5wOQB/Z8pjoJyjAildQm2uK+k0zrkz8jQGamywPxv1xQfdEfgA8VOLIlcj+whMCrJuSwbC4KTnFFw0LeD9ZO6C4qorjuU2B14KPwbCRuS2EJBYZBOhKwC+c9DvC7O+dEPlSmfbIekZz3DGOxRIXoPkq34uMyCBeaEqRpf8szwogP7ri8uBsuHztOEOdOLvPPQjVP2Y4bOATqvkT2JJs+Wio8roLZjWmi0g+G+cqDMgmbmmqcV8BqZm+hG2auF0W38sBpjmWsAl3yJ5+W0q86wXkT48BpGmvzX54mtAR2A3iZvD1DeGIKef3i1hM/M1AQ/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LwRzsEBnSaK5Lg3tWGADDl62cFbeyLuiMeAqBdG7rWs=;
- b=Wgm8ykIOUC+z28Ui7NMnhaah5lFzxjrasD+WvDiAjRQQMTVffxfbi8lASxcZBwuz3jG8jeYeTgDH4D4CLc+SPni6odZM45B9Lcy5AejbxF8B/BmB+qCu76VATgTIjOFXIt9X08jsM8WNoE8wKYmQvyfzZ91nzV1MPUOChJqR5RikBR0PS1+OW01ikMbQGe6e2QwDeW9FLriinHvjEBmWy0FcMaJZLRD8DSbuV6JhfzaLKIckl9zB9LtRct643n0Jjowf8SB+SN4Jj+Ago3g8q4cr0zCBO/QbIrVg6/Hy5llfOmhtz9ZopBWYRGYgH6bktDw6ceAhcapUrU7sLbOTGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LwRzsEBnSaK5Lg3tWGADDl62cFbeyLuiMeAqBdG7rWs=;
- b=lFNo2DE4/+iF73RTDB5xVXf43mmB28S/ADEUkcNbNIKHrmf28dW0Wme+2OJMlxVvtHh8PLrtLUkV6vCWlDN/pW/RYqKNr/Cmt26iljsMMBvWeH0HqH3+IeTt0oUW2LE59G+RKMxQoCAY+GIgy++YYS3aXkhUwhf1qSydLSN0QH1y5tXJNl3zj2Uc8IPe8un55BzPnIgoS8o83vCbSzZw/SazaWFlZdJtP+ejZhg7RNM5CiKA9S9mPaRDzH2Dv7DyE/RCr34sulESMNR9xC/qz7qc0Imk0CgKFyhMNCMlh2Gc/LY/V2+Yxzsj8A7wzYp6Bk0ulkl0eW3rxowAYcSTvQ==
-Received: from VI1EUR05FT020.eop-eur05.prod.protection.outlook.com
- (2a01:111:e400:fc12::4c) by
- VI1EUR05HT124.eop-eur05.prod.protection.outlook.com (2a01:111:e400:fc12::71)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.24; Sun, 23 Aug
- 2020 15:01:58 +0000
-Received: from AM7PR05MB6881.eurprd05.prod.outlook.com
- (2a01:111:e400:fc12::53) by VI1EUR05FT020.mail.protection.outlook.com
- (2a01:111:e400:fc12::192) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.24 via Frontend
- Transport; Sun, 23 Aug 2020 15:01:58 +0000
-X-IncomingTopHeaderMarker: 
- OriginalChecksum:6823E827099E81981B4C5FE5C4B8BBADDE1A609B0EBAAD3A394F98B882621887;UpperCasedChecksum:D57484CE7321C4A9653F47CB3F7E57778156805BBB623FC8B5096F744B52845E;SizeAsReceived:8575;Count:46
-Received: from AM7PR05MB6881.eurprd05.prod.outlook.com
- ([fe80::6c2d:49b3:994:890e]) by AM7PR05MB6881.eurprd05.prod.outlook.com
- ([fe80::6c2d:49b3:994:890e%7]) with mapi id 15.20.3305.026; Sun, 23 Aug 2020
- 15:01:58 +0000
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-From: "Konrad Weihmann" <kweihmann@outlook.com>
-Subject: Additional log handler
-Message-ID: 
- <AM7PR05MB6881DD773BB8FDC78B4470E1A8590@AM7PR05MB6881.eurprd05.prod.outlook.com>
-Date: Sun, 23 Aug 2020 17:01:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-X-ClientProxiedBy: AM6P195CA0037.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:209:87::14) To AM7PR05MB6881.eurprd05.prod.outlook.com
- (2603:10a6:20b:1a9::19)
-Return-Path: kweihmann@outlook.com
-X-Microsoft-Original-Message-ID: 
- <48dba44e-888c-a635-a1ee-5a0db96e905e@outlook.com>
+Subject: Cannot boot with systemd : Must be superuser to use mount
+To: yocto@lists.yoctoproject.org
+From: aiman.najjar@hurranet.com
+X-Originating-Location: Kissimmee, Florida, US (97.100.22.132)
+X-Originating-Platform: Linux Chrome 83
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.188.23] (87.150.42.139) by AM6P195CA0037.EURP195.PROD.OUTLOOK.COM (2603:10a6:209:87::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.24 via Frontend Transport; Sun, 23 Aug 2020 15:01:57 +0000
-X-Microsoft-Original-Message-ID: 
- <48dba44e-888c-a635-a1ee-5a0db96e905e@outlook.com>
-X-TMN: [wEfCk6H2osSctI3GO6ghwvOkxmNyqbw5]
-X-MS-PublicTrafficType: Email
-X-IncomingHeaderCount: 46
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-Correlation-Id: a16937db-9679-435d-dd62-08d847757b62
-X-MS-TrafficTypeDiagnostic: VI1EUR05HT124:
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	TOaV22fXhsQdnHDSn4Cq9znoSeEerAIydVPa9YLBwZ3lAfq1jNb4QgZWhQRJuuggn5nkQWOekzX4PY5uo43TAMfs7OP/onbDQjWcmDA1LDUFAREqhpOu/E1ocMSe+efOify6mH+eMkDzr3RmOT9VYOb7U0AxAitdLFvLQ+wL/H/xpLV61KMoXEy3OXq0fIS6NPHxnFjdrUEi1i2Bvu0uKw==
-X-MS-Exchange-AntiSpam-MessageData: 
-	mxfAHS3/QnjAWQ4vSk6DMx8z6xHQxrPoFuhI8OYHKJ81j4SKNLZTKqwzdigl3+eKr097LNmtzoXYZ79XQZ7aJFD75cJ//IIAiqe1bWUhzyX689ihiVdEP8EnujGtzseFbrtv3aBz8+c0QRkbQvo4hg==
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a16937db-9679-435d-dd62-08d847757b62
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2020 15:01:58.3068
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-AuthSource: 
-	VI1EUR05FT020.eop-eur05.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1EUR05HT124
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Date: Sun, 23 Aug 2020 19:00:40 -0700
+Message-ID: <KjFn.1598234440750313484.BYFX@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="73WHahmNl3QMY67IVZYZ"
 
-Hi all,
+--73WHahmNl3QMY67IVZYZ
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-when running bitbake in CI I would like to add an additional log handler 
-to used python logging to catch *ALL* (task warnings, dangling append, 
-qa issues, a.s.o.), instead of manually grepping through the console log.
-The information coming from this should be ideally be written to a file, 
-which can then serve as some sort of report.
+Hello all -
 
-Is there a way to do that?
+I'm a beginner Ycoto user and I'm trying to build raspberrypi4-64 image fo=
+r my project. I've been able to build an image and boot it successfully ini=
+tially, but when I switched from sysvinit to systemd, and enable U-Boot, I'=
+m not longer able to boot.
 
-In theory it should be possible to hook to an (obviously non-existing) 
-event and handle it from there, right?
+During boot process, I noticed all systemd services that try to mount part=
+itions are failing, including the following:
 
-Or am I thinking in the wrong direction?
+Copy
+[ FAILED ] Failed to mount / var / volatile.
+[ FAILED ] Failed to mount Temporary Directory ( /tmp )
 
-Any pointers are appreciated from my side...
+When I use the emergency shell to check the logs of those systemd services=
+, I am seeing this error:
 
-Regards
-Konrad
+"must be superuser to use mount."
+
+I even tried to manually mount partitions in the emergency shell using the=
+ mount command, and I got the same error, when I run whoami , I see that I =
+am root user.
+
+Furthermore, when I list the files in the rootfs, everything is owned by u=
+id 1000, including /sbin/init , /bin/mount , /lib/systemd/sytemd =E2=80=A6 =
+I was under the impression those should be owned by root user.
+
+I would really appreciate any help, I cannot find anything online regardin=
+g this issue.
+
+Please see below my conf/local.conf:
+
+DISTRO_FEATURES +=3D " ${DISTRO_FEATURES_LIBC} wifi ipv4 virtualization sy=
+stemd"
+DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"
+VIRTUAL - RUNTIME_init_manager =3D "systemd"
+VIRTUAL - RUNTIME_initscripts =3D ""
+MACHINE_FEATURES_remove =3D "apm"
+IMAGE_FSTYPES =3D "rpi-sdimg"
+MACHINE =3D "raspberrypi4-64"
+DISABLE_SPLASH =3D "1"
+ENABLE_UART =3D "1"
+RPI_USE_U_BOOT =3D "1"
+PREFERRED_VERSION_linux - raspberrypi =3D "5.4.%"
+DISTRO =3D "poky"
+PACKAGE_CLASSES =3D "package_ipk"
+EXTRA_IMAGE_FEATURES =3D "debug-tweaks"
+IMAGE_INSTALL_append =3D " wpa-supplicant docker-ce python3-docker-compose=
+ openssh avahi-daemon kernel-image kernel-devicetree"
+
+--73WHahmNl3QMY67IVZYZ
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; font=
+-size: 15.008px;">Hello all -</p>
+<p><span style=3D"color: #222222; font-family: Helvetica, Arial, sans-seri=
+f;"><span style=3D"font-size: 15.008px;">I'm a beginner Ycoto user and I'm =
+trying to build raspberrypi4-64 image for my project. I've been able to bui=
+ld an image and boot it successfully initially, but when I switched from sy=
+svinit to systemd, and enable U-Boot, I'm not longer able to boot.</span></=
+span></p>
+<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
+t-size: 15.008px;">During boot process, I noticed all systemd services that=
+ try to mount partitions are failing, including the following:</p>
+<div class=3D"code-highlight" style=3D"color: #222222; font-family: Helvet=
+ica, Arial, sans-serif; font-size: 15.008px;">
+<div class=3D"bd-clipboard" style=3D"background-color: #f8f8f8; position: =
+relative; white-space: nowrap;"><span class=3D"btn-clipboard" style=3D"back=
+ground-color: transparent; border-radius: 2px; color: #333333; cursor: defa=
+ult; display: inline-block; font-size: 0.857143em; padding: 0.25em 0.4em;">=
+Copy</span></div>
+<pre style=3D"font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Lib=
+eration Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New=
+', monospace; font-size: 1em;"><code class=3D"hljs cs" style=3D"font-family=
+: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu San=
+s Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace; font-size: 1=
+em; overflow: auto; tab-size: 4; overflow-wrap: normal; display: block; pad=
+ding: 0.5em; max-height: 500px;">[<span class=3D"hljs-meta">FAILED</span>] =
+Failed to mount /<span class=3D"hljs-keyword" style=3D"color: var(--primary=
+-very-high); font-weight: bold;">var</span>/<span class=3D"hljs-keyword" st=
+yle=3D"color: var(--primary-very-high); font-weight: bold;">volatile</span>=
+.
+[<span class=3D"hljs-meta">FAILED</span>] <span class=3D"hljs-function">Fa=
+iled to mount Temporary <span class=3D"hljs-title" style=3D"color: var(--hl=
+js-string); font-weight: bold;">Directory</span> (<span class=3D"hljs-param=
+s">/tmp</span>)
+</span></code></pre>
+</div>
+<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
+t-size: 15.008px;">When I use the emergency shell to check the logs of thos=
+e systemd services, I am seeing this error:</p>
+<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
+t-size: 15.008px;"><code style=3D"font-family: Consolas, Menlo, Monaco, 'Lu=
+cida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans =
+Mono', 'Courier New', monospace; font-size: 1em; color: var(--primary-very-=
+high); background: var(--hljs-bg);">"must be superuser to use mount."</code=
+></p>
+<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
+t-size: 15.008px;">I even tried to manually mount partitions in the emergen=
+cy shell using the mount command, and I got the same error, when I run&nbsp=
+;<code style=3D"font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Li=
+beration Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier Ne=
+w', monospace; font-size: 1em; color: var(--primary-very-high); background:=
+ var(--hljs-bg);">whoami</code>, I see that I am root user.</p>
+<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
+t-size: 15.008px;">Furthermore, when I list the files in the rootfs, everyt=
+hing is owned by uid 1000, including&nbsp;<code style=3D"font-family: Conso=
+las, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono'=
+, 'Bitstream Vera Sans Mono', 'Courier New', monospace; font-size: 1em; col=
+or: var(--primary-very-high); background: var(--hljs-bg);">/sbin/init</code=
+>,&nbsp;<code style=3D"font-family: Consolas, Menlo, Monaco, 'Lucida Consol=
+e', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Cou=
+rier New', monospace; font-size: 1em; color: var(--primary-very-high); back=
+ground: var(--hljs-bg);">/bin/mount</code>,&nbsp;<code style=3D"font-family=
+: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu San=
+s Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace; font-size: 1=
+em; color: var(--primary-very-high); background: var(--hljs-bg);">/lib/syst=
+emd/sytemd</code>&hellip; I was under the impression those should be owned =
+by root user.</p>
+<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
+t-size: 15.008px;">I would really appreciate any help, I cannot find anythi=
+ng online regarding this issue.</p>
+<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; fon=
+t-size: 15.008px;">Please see below my conf/local.conf:<span style=3D"color=
+: #bf2600;"></span></p>
+<div style=3D"color: #000000; background-color: #fffffe; font-family: SFMo=
+no-Medium, 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Mono', Menlo,=
+ monospace; font-size: 13px; line-height: 18px; white-space: pre;">
+<div><span style=3D"color: #202020;">DISTRO_FEATURES</span> +=3D <span sty=
+le=3D"color: #bf2600;">" ${DISTRO_FEATURES_LIBC} wifi ipv4 virtualization s=
+ystemd"</span></div>
+<div><span style=3D"color: #202020;">DISTRO_FEATURES_BACKFILL_CONSIDERED</=
+span> =3D <span style=3D"color: #bf2600;">"sysvinit"</span></div>
+<div><span style=3D"color: #202020;">VIRTUAL</span>-<span style=3D"color: =
+#202020;">RUNTIME_init_manager</span> =3D <span style=3D"color: #bf2600;">"=
+systemd"</span></div>
+<div><span style=3D"color: #202020;">VIRTUAL</span>-<span style=3D"color: =
+#202020;">RUNTIME_initscripts</span> =3D <span style=3D"color: #bf2600;">""=
+</span></div>
+<div><span style=3D"color: #202020;">MACHINE_FEATURES_remove</span> =3D <s=
+pan style=3D"color: #bf2600;">"apm"</span></div>
+<div><span style=3D"color: #202020;">IMAGE_FSTYPES</span> =3D <span style=
+=3D"color: #bf2600;">"rpi-sdimg"</span></div>
+<div><span style=3D"color: #202020;">MACHINE</span> =3D <span style=3D"col=
+or: #bf2600;">"raspberrypi4-64"</span></div>
+<div><span style=3D"color: #202020;">DISABLE_SPLASH</span> =3D <span style=
+=
+=3D"color: #bf2600;">"1"</span></div>
+<div><span style=3D"color: #202020;">ENABLE_UART</span> =3D <span style=3D=
+"color: #bf2600;">"1"</span></div>
+<div><span style=3D"color: #202020;">RPI_USE_U_BOOT</span> =3D <span style=
+=
+=3D"color: #bf2600;">"1"</span></div>
+<div><span style=3D"color: #202020;">PREFERRED_VERSION_linux</span>-<span =
+style=3D"color: #202020;">raspberrypi</span> =3D <span style=3D"color: #bf2=
+600;">"5.4.%"</span></div>
+<div><span style=3D"color: #202020;">DISTRO</span> =3D <span style=3D"colo=
+r: #bf2600;">"poky"</span></div>
+<div><span style=3D"color: #202020;">PACKAGE_CLASSES</span> =3D <span styl=
+e=3D"color: #bf2600;">"package_ipk"</span></div>
+<div><span style=3D"color: #202020;">EXTRA_IMAGE_FEATURES</span> =3D <span=
+ style=3D"color: #bf2600;">"debug-tweaks"</span></div>
+<div><span style=3D"color: #202020;">IMAGE_INSTALL_append</span> =3D <span=
+ style=3D"color: #bf2600;">" wpa-supplicant docker-ce python3-docker-compos=
+e openssh avahi-daemon kernel-image kernel-devicetree"<br /><br /><br /></s=
+pan></div>
+<br />
+<div>&nbsp;</div>
+</div>
+
+--73WHahmNl3QMY67IVZYZ--
