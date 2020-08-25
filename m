@@ -1,153 +1,384 @@
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
- by mx.groups.io with SMTP id smtpd.web11.6214.1598324927167406631
- for <yocto@lists.yoctoproject.org>;
- Mon, 24 Aug 2020 20:08:47 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=PaKkthLy;
- spf=pass (domain: gmail.com, ip: 209.85.222.172, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f172.google.com with SMTP id g26so9793613qka.3
-        for <yocto@lists.yoctoproject.org>; Mon, 24 Aug 2020 20:08:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=UKtta53p9yBLASSCKfgDXq96nCElS0LT3pvqexedcw0=;
-        b=PaKkthLyff93Vpc45cTADKm69uA0szKRifj4PUWgSSYkpqPN75NNl62jcPhC5KbZMZ
-         0tvywX0s3hP2K/zoeAl2E7PmSZItSPX9173S7aNrPgskYLANMQFM87vwM8lOTgREK9Fr
-         YSLe79P+mNZPF4Ol6+/MPjLtCmL3duEy+XYzJdl0aJ7BSd1nMICdvaz3Nc/tQ1EL1g0O
-         GYZQEmqEbgf1bh5qSWO6Y2tLuA7QNis5tbg7igQV/GmOTYidWwQjy0ntOJcHwFeKBjwE
-         EpCZmt1KD6GE0ZISShQ9d3++VhN6h6PxSECoE/1omtZ72+YFaNi7NcfReOQVD8c3BypZ
-         fg1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=UKtta53p9yBLASSCKfgDXq96nCElS0LT3pvqexedcw0=;
-        b=EQ0owNWgwE91y9u5r25JVw3n2FqX3oiFNFAbHIO8bv3pSo1qXRRouavEyuHf1JgUKd
-         q/uQLLqrqc4vgkZBdW59Bo+gfy7bRZuBihQvxgQle6q7KtEeAnMOfNkPq9EpGQTEV86w
-         wGpkGOn16LKRJqi1rOHPHkBpdO6LOIM/b6NtB6EmXHCOiYStj0RvFbYBVuYA4KfYlIla
-         rfjGXURhOPEthVSzJ5gGd7KrBvG6PpOYmGaulwWEHNo37AC1R6PkC6ckj+VBV19qpm1g
-         spKDDghxE375RrENvjMlr1rCibiyAWwCbmTEyJrRFkd2dAbORDrZzs/6qDlVC3wp+2zX
-         REQw==
-X-Gm-Message-State: AOAM531Vks+Lq52Iy8vDyaWIs9bjaN4TZ0FeYnS8mbgrjXs8dPhpDOEe
-	TQBT4rXwke8TxD8pMWkYfrl4s9IMoCOnSa9lLXc=
-X-Google-Smtp-Source: ABdhPJwZL0PX2bDTKtDnxBHJwhkzDKN4YqdVRagJC0ePjrrD/8Ln8/DI4UUDlBzAJdVsXPQE71x05rd4enbw7QDWqXM=
-X-Received: by 2002:a37:9b15:: with SMTP id d21mr7827866qke.9.1598324926087;
- Mon, 24 Aug 2020 20:08:46 -0700 (PDT)
+Subject: Re: #sdk -Standard SDK build with cmake and meta-clang gives error when I attempt topull in compiler-rt
+To: yocto@lists.yoctoproject.org
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+X-Originating-Location: US (149.32.192.43)
+X-Originating-Platform: Windows IE 11
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <BFF4.1597831628584042378.2lCW@lists.yoctoproject.org>
- <CAMKF1spzPrsr=Wcz0zcYiWuPhQgYA2dmxziq=dKg_q4ErKHa4g@mail.gmail.com> <CAAuRgKDYqZ2aEVu8KhZmvX975QbXq-Sob1q8RfhCCkRxw1Gm2w@mail.gmail.com>
-In-Reply-To: <CAAuRgKDYqZ2aEVu8KhZmvX975QbXq-Sob1q8RfhCCkRxw1Gm2w@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Mon, 24 Aug 2020 20:08:19 -0700
-Message-ID: <CAMKF1spKxuadQML7Kth=dap0L9agYvaUF4OmrKzrNYgQ+N5=+w@mail.gmail.com>
-Subject: Re: [yocto] ABI Version for MIPS platform changed from 0 to 5
-To: MikeB <mabnhdev@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Date: Tue, 25 Aug 2020 03:47:40 -0700
+References: <CAMKF1so3=f3tCEHNdCHS2iKU_NxdX4ciqKFEKtnqcO_33Vz-Bg@mail.gmail.com>
+In-Reply-To: <CAMKF1so3=f3tCEHNdCHS2iKU_NxdX4ciqKFEKtnqcO_33Vz-Bg@mail.gmail.com>
+Message-ID: <12084.1598352460742733934@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="hKq1XwQKY4QPipGFGsIH"
+
+--hKq1XwQKY4QPipGFGsIH
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 24, 2020 at 7:13 AM MikeB <mabnhdev@gmail.com> wrote:
->
-> Your solution worked great!  Thank you for that as I don't think I would =
-have tracked that down soon.
->
-> I now have a follow on problem that I have not been able to solve yet - m=
-ostly because my knowledge of the GNU toolchain is not very deep.
->
-> This problem only shows up in my Dunfell MIPS build - I also maintain x86=
-_64, AARCH64, and ARM platforms.
->
-> I use the SDK to build some proprietary apps.
->
-> I have a library libcommon.so that contains many functions used by the pr=
-oprietary apps.
->
-> I have an app that uses only a few of the functions in libcomon.so and no=
-ne of those functions have any further dependencies.
->
-> When I try to link the app using the Dunfell MIPS SDK, it looks like the =
-linker is including every function in libcommon.so into my app.  Many of th=
-e unused functions have further dependencies on other libraries which I do =
-not link in because this app isn't using any of those functions.
->
-> I've tried everything I can think of to fix this link failure, but no luc=
-k.
->
-> I assume I'm missing some linker flag now required in Dunfell, but I don'=
-t know which one.
->
-> Any thoughts on how to fix my linker failure?
+I think there is a problem with compiler-rt component and cmake=E2=80=A6
 
-which linker are you using by default, is it gold linker on other
-platforms and bfd linker on mips ?
-maybe you want to try --allow-shlib-undefined linker option.
+Doing bitbake compiler-rt produces:
 
+Initialising tasks: 100% |################################################=
+#####| Time: 0:00:00
+
+NOTE: Executing SetScene Tasks
+
+NOTE: Executing RunQueue Tasks
+
+ERROR: compiler-rt-5.0.1+gitAUTOINC+4b38c4038a-r0 do_configure: Function f=
+ailed: do_configure (log file is located at /disk0/scratch/smonsees/yocto/w=
+orkspace_2/meta-bae/meta-limws/builds/sbcb-default/tmp/work/corei7-64-poky-=
+linux/compiler-rt/5.0.1+gitAUTOINC+4b38c4038a-r0/temp/log.do_configure.1753=
+4)
+
+ERROR: Logfile of failure stored in: /disk0/scratch/smonsees/yocto/workspa=
+ce_2/meta-bae/meta-limws/builds/sbcb-default/tmp/work/corei7-64-poky-linux/=
+compiler-rt/5.0.1+gitAUTOINC+4b38c4038a-r0/temp/log.do_configure.17534
+
+Log data follows:
+
+| DEBUG: Executing shell function do_configure
+
+| -- The C compiler identification is GNU 7.3.0
+
+| -- The CXX compiler identification is GNU 7.3.0
+
+| -- The ASM compiler identification is GNU
+
+| -- Found assembler: /disk0/scratch/smonsees/yocto/workspace_2/meta-bae/m=
+eta-limws/builds/sbcb-default/tmp/work/corei7-64-poky-linux/compiler-rt/5.0=
+.1+gitAUTOINC+4b38c4038a-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux=
+/x86_64-poky-linux-gcc
+
+| -- Check for working C compiler: /disk0/scratch/smonsees/yocto/workspace=
+_2/meta-bae/meta-limws/builds/sbcb-default/tmp/work/corei7-64-poky-linux/co=
+mpiler-rt/5.0.1+gitAUTOINC+4b38c4038a-r0/recipe-sysroot-native/usr/bin/x86_=
+64-poky-linux/x86_64-poky-linux-gcc
+
+| -- Check for working C compiler: /disk0/scratch/smonsees/yocto/workspace=
+_2/meta-bae/meta-limws/builds/sbcb-default/tmp/work/corei7-64-poky-linux/co=
+mpiler-rt/5.0.1+gitAUTOINC+4b38c4038a-r0/recipe-sysroot-native/usr/bin/x86_=
+64-poky-linux/x86_64-poky-linux-gcc -- works
+
+| -- Detecting C compiler ABI info
+
+| -- Detecting C compiler ABI info - done
+
+| -- Detecting C compile features
+
+| -- Detecting C compile features - done
+
+| -- Check for working CXX compiler: /disk0/scratch/smonsees/yocto/workspa=
+ce_2/meta-bae/meta-limws/builds/sbcb-default/tmp/work/corei7-64-poky-linux/=
+compiler-rt/5.0.1+gitAUTOINC+4b38c4038a-r0/recipe-sysroot-native/usr/bin/x8=
+6_64-poky-linux/x86_64-poky-linux-g++
+
+| -- Check for working CXX compiler: /disk0/scratch/smonsees/yocto/workspa=
+ce_2/meta-bae/meta-limws/builds/sbcb-default/tmp/work/corei7-64-poky-linux/=
+compiler-rt/5.0.1+gitAUTOINC+4b38c4038a-r0/recipe-sysroot-native/usr/bin/x8=
+6_64-poky-linux/x86_64-poky-linux-g++ -- works
+
+| -- Detecting CXX compiler ABI info
+
+| -- Detecting CXX compiler ABI info - done
+
+| -- Detecting CXX compile features
+
+| -- Detecting CXX compile features - done
+
+| -- Looking for unwind.h
+
+| -- Looking for unwind.h - found
+
+| CMake Error at CMakeLists.txt:38 (find_package):
+
+|=C2=A0=C2=A0 By not providing "FindLLVM.cmake" in CMAKE_MODULE_PATH this =
+project has
+
+|=C2=A0=C2=A0 asked CMake to find a package configuration file provided by=
+ "LLVM", but
+
+|=C2=A0=C2=A0 CMake did not find one.
+
+|
+
+|=C2=A0=C2=A0 Could not find a package configuration file provided by "LLV=
+M" with any of
+
+|=C2=A0=C2=A0 the following names:
+
+|
+
+|=C2=A0=C2=A0=C2=A0=C2=A0 LLVMConfig.cmake
+
+|=C2=A0=C2=A0=C2=A0=C2=A0 llvm-config.cmake
+
+|
+
+|=C2=A0=C2=A0 Add the installation prefix of "LLVM" to CMAKE_PREFIX_PATH o=
+r set
+
+|=C2=A0=C2=A0 "LLVM_DIR" to a directory containing one of the above files.=
+=
+=C2=A0 If "LLVM"
+
+|=C2=A0=C2=A0 provides a separate development package or SDK, be sure it h=
+as been
+
+|=C2=A0=C2=A0 installed.
+
+|
+
+|
+
+| -- Configuring incomplete, errors occurred!
+
+| See also "/disk0/scratch/smonsees/yocto/workspace_2/meta-bae/meta-limws/=
+builds/sbcb-default/tmp/work/corei7-64-poky-linux/compiler-rt/5.0.1+gitAUTO=
+INC+4b38c4038a-r0/build/CMakeFiles/CMakeOutput.log".
+
+| WARNING: /disk0/scratch/smonsees/yocto/workspace_2/meta-bae/meta-limws/b=
+uilds/sbcb-default/tmp/work/corei7-64-poky-linux/compiler-rt/5.0.1+gitAUTOI=
+NC+4b38c4038a-r0/temp/run.do_configure.17534:1 exit 1 from 'cmake $oecmake_=
+sitefile /disk0/scratch/smonsees/yocto/workspace_2/meta-bae/meta-limws/buil=
+ds/sbcb-default/tmp/work/corei7-64-poky-linux/compiler-rt/5.0.1+gitAUTOINC+=
+4b38c4038a-r0/git -DCMAKE_INSTALL_PREFIX:PATH=3D/usr -DCMAKE_INSTALL_BINDIR=
+:PATH=3Dbin -DCMAKE_INSTALL_SBINDIR:PATH=3Dsbin -DCMAKE_INSTALL_LIBEXECDIR:=
+PATH=3Dlibexec -DCMAKE_INSTALL_SYSCONFDIR:PATH=3D/etc -DCMAKE_INSTALL_SHARE=
+DSTATEDIR:PATH=3D../com -DCMAKE_INSTALL_LOCALSTATEDIR:PATH=3D/var -DCMAKE_I=
+NSTALL_LIBDIR:PATH=3Dlib -DCMAKE_INSTALL_INCLUDEDIR:PATH=3Dinclude -DCMAKE_=
+INSTALL_DATAROOTDIR:PATH=3Dshare -DCMAKE_INSTALL_SO_NO_EXE=3D0 -DCMAKE_TOOL=
+CHAIN_FILE=3D/disk0/scratch/smonsees/yocto/workspace_2/meta-bae/meta-limws/=
+builds/sbcb-default/tmp/work/corei7-64-poky-linux/compiler-rt/5.0.1+gitAUTO=
+INC+4b38c4038a-r0/toolchain.cmake -DCMAKE_VERBOSE_MAKEFILE=3D1 -DCMAKE_NO_S=
+YSTEM_FROM_IMPORTED=3D1 -DCOMPILER_RT_STANDALONE_BUILD=3DON -DCOMPILER_RT_D=
+EFAULT_TARGET_TRIPLE=3Dx86_64-poky-linux -DCOMPILER_RT_BUILD_XRAY=3DOFF -G =
+Ninja ${PACKAGECONFIG_CONFARGS} -Wno-dev'
+
+| ERROR: Function failed: do_configure (log file is located at /disk0/scra=
+tch/smonsees/yocto/workspace_2/meta-bae/meta-limws/builds/sbcb-default/tmp/=
+work/corei7-64-poky-linux/compiler-rt/5.0.1+gitAUTOINC+4b38c4038a-r0/temp/l=
+og.do_configure.17534)
+
+ERROR: Task (/disk0/scratch/smonsees/yocto/workspace_2/poky/../meta-clang/=
+recipes-devtools/clang/compiler-rt_git.bb:do_configure) failed with exit co=
+de '1'
+
+NOTE: Tasks Summary: Attempted 495 tasks of which 488 didn't need to be re=
+run and 1 failed.
+
+Summary: 1 task failed:
+
+/disk0/scratch/smonsees/yocto/workspace_2/poky/../meta-clang/recipes-devto=
+ols/clang/compiler-rt_git.bb:do_configure
+
+--hKq1XwQKY4QPipGFGsIH
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-famil=
+y: 'Calibri',sans-serif; font-size: 11pt;">&nbsp;</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">I think there is a problem with=
+ compiler-rt component and cmake&hellip;</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">&nbsp;</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #000000; font-fami=
+ly: Times New Roman; font-size: medium;">Doing bitbake compiler-rt produces=
+:</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">&nbsp;</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">Initialising tasks: 100% |#####=
+################################################| Time: 0:00:00</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">NOTE: Executing SetScene Tasks<=
+/span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">NOTE: Executing RunQueue Tasks<=
+/span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">ERROR: compiler-rt-5.0.1+gitAUT=
+OINC+4b38c4038a-r0 do_configure: Function failed: do_configure (log file is=
+ located at /disk0/scratch/smonsees/yocto/workspace_2/meta-bae/meta-limws/b=
+uilds/sbcb-default/tmp/work/corei7-64-poky-linux/compiler-rt/5.0.1+gitAUTOI=
+NC+4b38c4038a-r0/temp/log.do_configure.17534)</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">ERROR: Logfile of failure store=
+d in: /disk0/scratch/smonsees/yocto/workspace_2/meta-bae/meta-limws/builds/=
+sbcb-default/tmp/work/corei7-64-poky-linux/compiler-rt/5.0.1+gitAUTOINC+4b3=
+8c4038a-r0/temp/log.do_configure.17534</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">Log data follows:</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| DEBUG: Executing shell functi=
+on do_configure</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- The C compiler identificat=
+ion is GNU 7.3.0</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- The CXX compiler identific=
+ation is GNU 7.3.0</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- The ASM compiler identific=
+ation is GNU</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Found assembler: /disk0/sc=
+ratch/smonsees/yocto/workspace_2/meta-bae/meta-limws/builds/sbcb-default/tm=
+p/work/corei7-64-poky-linux/compiler-rt/5.0.1+gitAUTOINC+4b38c4038a-r0/reci=
+pe-sysroot-native/usr/bin/x86_64-poky-linux/x86_64-poky-linux-gcc</span></p=
 >
-> Thanks, Mike
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Check for working C compil=
+er: /disk0/scratch/smonsees/yocto/workspace_2/meta-bae/meta-limws/builds/sb=
+cb-default/tmp/work/corei7-64-poky-linux/compiler-rt/5.0.1+gitAUTOINC+4b38c=
+4038a-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux/x86_64-poky-linux-=
+gcc</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Check for working C compil=
+er: /disk0/scratch/smonsees/yocto/workspace_2/meta-bae/meta-limws/builds/sb=
+cb-default/tmp/work/corei7-64-poky-linux/compiler-rt/5.0.1+gitAUTOINC+4b38c=
+4038a-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux/x86_64-poky-linux-=
+gcc -- works</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Detecting C compiler ABI i=
+nfo</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Detecting C compiler ABI i=
+nfo - done</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Detecting C compile featur=
+es</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Detecting C compile featur=
+es - done</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Check for working CXX comp=
+iler: /disk0/scratch/smonsees/yocto/workspace_2/meta-bae/meta-limws/builds/=
+sbcb-default/tmp/work/corei7-64-poky-linux/compiler-rt/5.0.1+gitAUTOINC+4b3=
+8c4038a-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux/x86_64-poky-linu=
+x-g++</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Check for working CXX comp=
+iler: /disk0/scratch/smonsees/yocto/workspace_2/meta-bae/meta-limws/builds/=
+sbcb-default/tmp/work/corei7-64-poky-linux/compiler-rt/5.0.1+gitAUTOINC+4b3=
+8c4038a-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux/x86_64-poky-linu=
+x-g++ -- works</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Detecting CXX compiler ABI=
+ info</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Detecting CXX compiler ABI=
+ info - done</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Detecting CXX compile feat=
+ures</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Detecting CXX compile feat=
+ures - done</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Looking for unwind.h</span=
+></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Looking for unwind.h - fou=
+nd</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| CMake Error at CMakeLists.txt=
+:38 (find_package):</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|&nbsp;&nbsp; By not providing =
+"FindLLVM.cmake" in CMAKE_MODULE_PATH this project has</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|&nbsp;&nbsp; asked CMake to fi=
+nd a package configuration file provided by "LLVM", but</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|&nbsp;&nbsp; CMake did not fin=
+d one.</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|&nbsp;&nbsp; Could not find a =
+package configuration file provided by "LLVM" with any of</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|&nbsp;&nbsp; the following nam=
+es:</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|&nbsp;&nbsp;&nbsp;&nbsp; LLVMC=
+onfig.cmake</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|&nbsp;&nbsp;&nbsp;&nbsp; llvm-=
+config.cmake</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|&nbsp;&nbsp; Add the installat=
+ion prefix of "LLVM" to CMAKE_PREFIX_PATH or set</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|&nbsp;&nbsp; "LLVM_DIR" to a d=
+irectory containing one of the above files.&nbsp; If "LLVM"</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|&nbsp;&nbsp; provides a separa=
+te development package or SDK, be sure it has been</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|&nbsp;&nbsp; installed.</span>=
+</p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">|</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| -- Configuring incomplete, er=
+rors occurred!</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| See also "/disk0/scratch/smon=
+sees/yocto/workspace_2/meta-bae/meta-limws/builds/sbcb-default/tmp/work/cor=
+ei7-64-poky-linux/compiler-rt/5.0.1+gitAUTOINC+4b38c4038a-r0/build/CMakeFil=
+es/CMakeOutput.log".</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| WARNING: /disk0/scratch/smons=
+ees/yocto/workspace_2/meta-bae/meta-limws/builds/sbcb-default/tmp/work/core=
+i7-64-poky-linux/compiler-rt/5.0.1+gitAUTOINC+4b38c4038a-r0/temp/run.do_con=
+figure.17534:1 exit 1 from 'cmake $oecmake_sitefile /disk0/scratch/smonsees=
+/yocto/workspace_2/meta-bae/meta-limws/builds/sbcb-default/tmp/work/corei7-=
+64-poky-linux/compiler-rt/5.0.1+gitAUTOINC+4b38c4038a-r0/git -DCMAKE_INSTAL=
+L_PREFIX:PATH=3D/usr -DCMAKE_INSTALL_BINDIR:PATH=3Dbin -DCMAKE_INSTALL_SBIN=
+DIR:PATH=3Dsbin -DCMAKE_INSTALL_LIBEXECDIR:PATH=3Dlibexec -DCMAKE_INSTALL_S=
+YSCONFDIR:PATH=3D/etc -DCMAKE_INSTALL_SHAREDSTATEDIR:PATH=3D../com -DCMAKE_=
+INSTALL_LOCALSTATEDIR:PATH=3D/var -DCMAKE_INSTALL_LIBDIR:PATH=3Dlib -DCMAKE=
+_INSTALL_INCLUDEDIR:PATH=3Dinclude -DCMAKE_INSTALL_DATAROOTDIR:PATH=3Dshare=
+ -DCMAKE_INSTALL_SO_NO_EXE=3D0 -DCMAKE_TOOLCHAIN_FILE=3D/disk0/scratch/smon=
+sees/yocto/workspace_2/meta-bae/meta-limws/builds/sbcb-default/tmp/work/cor=
+ei7-64-poky-linux/compiler-rt/5.0.1+gitAUTOINC+4b38c4038a-r0/toolchain.cmak=
+e -DCMAKE_VERBOSE_MAKEFILE=3D1 -DCMAKE_NO_SYSTEM_FROM_IMPORTED=3D1 -DCOMPIL=
+ER_RT_STANDALONE_BUILD=3DON -DCOMPILER_RT_DEFAULT_TARGET_TRIPLE=3Dx86_64-po=
+ky-linux -DCOMPILER_RT_BUILD_XRAY=3DOFF -G Ninja ${PACKAGECONFIG_CONFARGS} =
+-Wno-dev'</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">| ERROR: Function failed: do_co=
+nfigure (log file is located at /disk0/scratch/smonsees/yocto/workspace_2/m=
+eta-bae/meta-limws/builds/sbcb-default/tmp/work/corei7-64-poky-linux/compil=
+er-rt/5.0.1+gitAUTOINC+4b38c4038a-r0/temp/log.do_configure.17534)</span></p=
 >
->
-> On Thu, Aug 20, 2020 at 8:04 PM Khem Raj <raj.khem@gmail.com> wrote:
->>
->> On Wed, Aug 19, 2020 at 3:08 AM MikeB <mabnhdev@gmail.com> wrote:
->> >
->> > Reposting in the hopes of getting an answer - I'm stuck.
->> >
->> > I'm in the process of upgrading from Zeus to Dunfell.  For my MIPS pla=
-tform, the library ABI version has changed from 0 to 5.  I have some backwa=
-rd compatibility issues that require generating at least some libraries wit=
-h ABI version 0.  I've tried using -fabi_version=3D0 in my CCFLAGS, but tha=
-t seems to be ignored.  Can someone tell me how to set the ABI version back=
- to 0 in my image and SDK?
->> >
->> > I'm building for a custom MIPs platform running on a Cavium Octeon II =
-in 32-bit mode.
->> >
->> > TUNE_FEATURES  =3D "o32 bigendian fpu-hard octeon2"
->> >
->> > A current Dunfell shared library ELF Header looks like this:
->> >
->> > ELF Header:
->> >   Magic:   7f 45 4c 46 01 02 01 00 05 00 00 00 00 00 00 00
->> >   Class:                             ELF32
->> >   Data:                              2's complement, big endian
->> >   Version:                           1 (current)
->> >   OS/ABI:                            UNIX - System V
->> >   ABI Version:                       5
->> >   Type:                              DYN (Shared object file)
->> >   Machine:                           MIPS R3000
->> >   Version:                           0x1
->> >   Entry point address:               0x1630
->> >   Start of program headers:          52 (bytes into file)
->> >   Start of section headers:          22488 (bytes into file)
->> >   Flags:                             0x808d1107, noreorder, pic, cpic,=
- 32bitmode, octeon2, o32, mips64r2
->> >
->> > The same library built with Zeus looks like this.
->> >
->> > ELF Header:
->> >   Magic:   7f 45 4c 46 01 02 01 00 00 00 00 00 00 00 00 00
->> >   Class:                             ELF32
->> >   Data:                              2's complement, big endian
->> >   Version:                           1 (current)
->> >   OS/ABI:                            UNIX - System V
->> >   ABI Version:                       0
->> >   Type:                              DYN (Shared object file)
->> >   Machine:                           MIPS R3000
->> >   Version:                           0x1
->> >   Entry point address:               0x1500
->> >   Start of program headers:          52 (bytes into file)
->> >   Start of section headers:          22340 (bytes into file)
->> >   Flags:                             0x808d1107, noreorder, pic, cpic,=
- 32bitmode, octeon2, o32, mips64r2
->> >
->> > The ABI Version being the issue.
->> >
->>
->> This is due to switching default hash style from sysv to gnu starting
->> dunfell. You can switch back to sysv either via LDFLAGS
->> or explicitly define
->>
->> LINKER_HASH_STYLE_mipsarch =3D "sysv"
->>
->> in your distro.
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">ERROR: Task (/disk0/scratch/smo=
+nsees/yocto/workspace_2/poky/../meta-clang/recipes-devtools/clang/compiler-=
+rt_git.bb:do_configure) failed with exit code '1'</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">NOTE: Tasks Summary: Attempted =
+495 tasks of which 488 didn't need to be rerun and 1 failed.</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">&nbsp;</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">Summary: 1 task failed:</span><=
+/p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">&nbsp; /disk0/scratch/smonsees/=
+yocto/workspace_2/poky/../meta-clang/recipes-devtools/clang/compiler-rt_git=
+.bb:do_configure</span></p>
+<p style=3D"margin: 0in 0in 0pt;"><span style=3D"color: #1f497d; font-fami=
+ly: 'Calibri',sans-serif; font-size: 11pt;">&nbsp;</span></p>
+
+--hKq1XwQKY4QPipGFGsIH--
