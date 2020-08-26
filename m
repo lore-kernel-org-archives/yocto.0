@@ -1,139 +1,74 @@
-Received: from mail-ej1-f66.google.com (mail-ej1-f66.google.com [209.85.218.66])
- by mx.groups.io with SMTP id smtpd.web10.11503.1598446028898258790
+Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
+ by mx.groups.io with SMTP id smtpd.web11.12604.1598449032036765103
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 Aug 2020 05:47:09 -0700
+ Wed, 26 Aug 2020 06:37:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=eI91wct1;
- spf=pass (domain: gmail.com, ip: 209.85.218.66, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-ej1-f66.google.com with SMTP id d11so2610058ejt.13
-        for <yocto@lists.yoctoproject.org>; Wed, 26 Aug 2020 05:47:08 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Xw30mVMD;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.66, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f66.google.com with SMTP id s13so1775933wmh.4
+        for <yocto@lists.yoctoproject.org>; Wed, 26 Aug 2020 06:37:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nphnLqMZBpDhZFZDfbUWNRKOqDgQiFb+uizI2DJH1xk=;
-        b=eI91wct1zdk3e7bOtZMuNqujw99FakkMjNVtmNa7+Y9N7wU38CUCFY52pLF2WCUHdX
-         VJPQ05qS9+gqmKsRVyWvLNf7ZpXYrH6Ii04FUyS9GmanuxedQz/2aJLBzMeH1DjvfAeM
-         polbxDyC58aZYmqV+cc+enf+Xbw+S8yXTBvnBLU80Pur4GQ3DwFOV4rmraYK9Q4pfRWp
-         HMk/WBuAFqUKiHaDnnEsTlwOYq5utR8+XztEFpSTrw4TCcoY1gwGqgZ7L4Tq9g+DUx5P
-         pqtXAejNuSuPT1kN4AOVdRKo3K1bMBtpwh98iRCNahHhNd+2xuOzWnXzUalMXGSs+cbK
-         ppEw==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=FY1PwSFD6IvYBbwRP4KpXGMR6DmJAceHbHiXgVIr3Hc=;
+        b=Xw30mVMDI1E5Xm72uBK9R99KwFKVAsFomFF8XR7ru2F47PfdD7gOJsA56kN15Lt4HA
+         wLCmkUAx2o0khwKsCaVkG9KYtDFOt9lGndgTIP83QG3yjqkUkdaDpJ//A2VCPdyvrJhR
+         flfonvpe7NbktmPS+9aeSuaNEBtExnseS8Zk0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nphnLqMZBpDhZFZDfbUWNRKOqDgQiFb+uizI2DJH1xk=;
-        b=V0k+NlCrM5PY9Svvuq4Zcbh/rrsEwgh5xkXIpcTPFqGIHISgm7ZbsQWZLt3ylGQ6sv
-         7XVnyiMsgZ2xWqosAVPpgMug3Sfl3Jw7z781efCq8XYl8nVx17uz1XjLeOqRw6ykBpuP
-         kvE6uxS8NlNwvKM245yjFxKjF92lP6YYbBwWBymoTO5hJYRMfarh98RYlpM0g/UjGf6q
-         UZVRwp1zKP2gluq/xe/XHfVlg72HB5hDw6AmXIyHVy/GpDoynI07kY7QBayctHlP918K
-         iEGQ/bliscIDeJLk/vdIVyKmEWU61HoRNn+e0pJMNmnrYL7v3z5nMWsQO/Ks+fHVvAZZ
-         VvDw==
-X-Gm-Message-State: AOAM532czlKPYjoRwp6RYi95X/e8iKuPOfd9zRRlSIvW0f6GNdGcQ2NB
-	gf8eHj+wJJ0vPR1P0hOtc2zl4GgIHTJ/Lv4YDpA=
-X-Google-Smtp-Source: ABdhPJy3KIrNSayh21MFxtTj/PzHi8AuqnkbRF2PP/k3OCF4T3FyKZj510+BH5npY+t8Qvgl1QHc/9N/lUPgdNQ0TyM=
-X-Received: by 2002:a17:906:1b:: with SMTP id 27mr15362732eja.517.1598446027121;
- Wed, 26 Aug 2020 05:47:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200826061330.30586-1-kexin.hao@windriver.com>
-In-Reply-To: <20200826061330.30586-1-kexin.hao@windriver.com>
-From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
-Date: Wed, 26 Aug 2020 08:44:59 -0400
-Message-ID: <CADkTA4NSuRDHodH=gOJCs_PHficwOgiVUEg+nLAAJLqqVwTCVw@mail.gmail.com>
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=FY1PwSFD6IvYBbwRP4KpXGMR6DmJAceHbHiXgVIr3Hc=;
+        b=Q42wWZKAM3pXCWuUPuxRgmKScaSGWy9hU3LH7Z9UFDXTh3aMSUr0WnI2nebojVY5km
+         uanEw0F04TEi17mgOO61VYNhLBSWIyiG9y2P4wbFYqp3t6zr+9p9eUjFnVndp4P5VM0K
+         KlTqHzdUTOYItTSlo54tyj3P++krBrTOcYbe1LjlX4BPBrrsAvEn5dMOR6ikXoMyDRzI
+         H9MlRflEgMXjVfUIN8AI6vx+lNYBLjMB+gLFyRtNJaMbQ+DSpM0UJ4LhUmds09gAO+CE
+         socoKp4TSHX3hp4S9YL8JXTBKDJVvFy0roawToAiEjXPbcnlcNadr2UdANp7mwtsyDfL
+         3Xzg==
+X-Gm-Message-State: AOAM530gnHHAwq/aUf+BMgi2JtNxD9KCqALOQ2ijaQgfEWHHiDNMBbga
+	CnwblIYd1KIpxTPio2dSMKzvaA==
+X-Google-Smtp-Source: ABdhPJysMG9nQY5nRKaoggEUlpAsNT8PkhBZzGqf2H8yi+ZuT+22XWMrZxPx80yF/LxlFHTKRjcDKw==
+X-Received: by 2002:a05:600c:214e:: with SMTP id v14mr7342341wml.118.1598449030385;
+        Wed, 26 Aug 2020 06:37:10 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from d.9.b.8.7.0.d.0.8.3.5.0.7.0.4.c.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (d.9.b.8.7.0.d.0.8.3.5.0.7.0.4.c.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:c407:538:d07:8b9d])
+        by smtp.gmail.com with ESMTPSA id q6sm6059458wma.22.2020.08.26.06.37.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Aug 2020 06:37:08 -0700 (PDT)
+Message-ID: <48a73051d52905fa84dea36a494ccab708ef4369.camel@linuxfoundation.org>
 Subject: Re: [yocto] [PATCH] meta-yocto-bsp: Bump to the v5.8 kernel
-To: Kevin Hao <kexin.hao@windriver.com>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	Yocto Project <yocto@lists.yoctoproject.org>
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Bruce Ashfield <bruce.ashfield@gmail.com>, Kevin Hao
+	 <kexin.hao@windriver.com>
+Cc: Yocto Project <yocto@lists.yoctoproject.org>
+Date: Wed, 26 Aug 2020 14:37:06 +0100
+In-Reply-To: <CADkTA4NSuRDHodH=gOJCs_PHficwOgiVUEg+nLAAJLqqVwTCVw@mail.gmail.com>
+References: <20200826061330.30586-1-kexin.hao@windriver.com>
+	 <CADkTA4NSuRDHodH=gOJCs_PHficwOgiVUEg+nLAAJLqqVwTCVw@mail.gmail.com>
+User-Agent: Evolution 3.36.4-0ubuntu1 
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Wed, Aug 26, 2020 at 2:22 AM Kevin Hao <kexin.hao@windriver.com> wrote:
->
-> Boot test for all the supported boards. There is a kernel config
-> check warning for beaglebone-yocto, the fix [1] has been sent to
-> kernel-meta for merging.
->
-> [1] https://lists.yoctoproject.org/g/linux-yocto/message/8992
->
+On Wed, 2020-08-26 at 08:44 -0400, Bruce Ashfield wrote:
+> On Wed, Aug 26, 2020 at 2:22 AM Kevin Hao <kexin.hao@windriver.com>
+> wrote:
+> > Boot test for all the supported boards. There is a kernel config
+> > check warning for beaglebone-yocto, the fix [1] has been sent to
+> > kernel-meta for merging.
+> > 
+> > [1] https://lists.yoctoproject.org/g/linux-yocto/message/8992
+> > 
+> 
+> Thanks Kevin! Most appreciated.
+> 
+> I'll have that meta data change merged today.
 
-Thanks Kevin! Most appreciated.
-
-I'll have that meta data change merged today.
+Its timely and very much appreciated! Also merged now as testing was
+fine, thanks!
 
 Cheers,
 
-Bruce
+Richard
 
-> Signed-off-by: Kevin Hao <kexin.hao@windriver.com>
-> ---
->  .../conf/machine/beaglebone-yocto.conf        |  2 +-
->  meta-yocto-bsp/conf/machine/edgerouter.conf   |  2 +-
->  .../linux/linux-yocto_5.8.bbappend            | 23 +++++++++++++++++++
->  3 files changed, 25 insertions(+), 2 deletions(-)
->  create mode 100644 meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.8.bbappend
->
-> diff --git a/meta-yocto-bsp/conf/machine/beaglebone-yocto.conf b/meta-yocto-bsp/conf/machine/beaglebone-yocto.conf
-> index 5b481434bd89..b7defb0d0170 100644
-> --- a/meta-yocto-bsp/conf/machine/beaglebone-yocto.conf
-> +++ b/meta-yocto-bsp/conf/machine/beaglebone-yocto.conf
-> @@ -24,7 +24,7 @@ SERIAL_CONSOLES ?= "115200;ttyS0 115200;ttyO0 115200;ttyAMA0"
->  SERIAL_CONSOLES_CHECK = "${SERIAL_CONSOLES}"
->
->  PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
-> -PREFERRED_VERSION_linux-yocto ?= "5.4%"
-> +PREFERRED_VERSION_linux-yocto ?= "5.8%"
->
->  KERNEL_IMAGETYPE = "zImage"
->  KERNEL_DEVICETREE = "am335x-bone.dtb am335x-boneblack.dtb am335x-bonegreen.dtb"
-> diff --git a/meta-yocto-bsp/conf/machine/edgerouter.conf b/meta-yocto-bsp/conf/machine/edgerouter.conf
-> index d6fd934fa583..75bc5e5f28e7 100644
-> --- a/meta-yocto-bsp/conf/machine/edgerouter.conf
-> +++ b/meta-yocto-bsp/conf/machine/edgerouter.conf
-> @@ -11,7 +11,7 @@ KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
->  KERNEL_IMAGE_STRIP_EXTRA_SECTIONS  = ".comment"
->
->  PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
-> -PREFERRED_VERSION_linux-yocto ?= "5.4%"
-> +PREFERRED_VERSION_linux-yocto ?= "5.8%"
->
->  SERIAL_CONSOLES = "115200;ttyS0"
->  USE_VT ?= "0"
-> diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.8.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.8.bbappend
-> new file mode 100644
-> index 000000000000..5d844423afce
-> --- /dev/null
-> +++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.8.bbappend
-> @@ -0,0 +1,23 @@
-> +KBRANCH_genericx86  = "v5.8/standard/base"
-> +KBRANCH_genericx86-64  = "v5.8/standard/base"
-> +KBRANCH_edgerouter = "v5.8/standard/edgerouter"
-> +KBRANCH_beaglebone-yocto = "v5.8/standard/beaglebone"
-> +
-> +KMACHINE_genericx86 ?= "common-pc"
-> +KMACHINE_genericx86-64 ?= "common-pc-64"
-> +KMACHINE_beaglebone-yocto ?= "beaglebone"
-> +
-> +SRCREV_machine_genericx86 ?= "912adf166eb0688e011154048f5fa0e5863249c3"
-> +SRCREV_machine_genericx86-64 ?= "912adf166eb0688e011154048f5fa0e5863249c3"
-> +SRCREV_machine_edgerouter ?= "912adf166eb0688e011154048f5fa0e5863249c3"
-> +SRCREV_machine_beaglebone-yocto ?= "912adf166eb0688e011154048f5fa0e5863249c3"
-> +
-> +COMPATIBLE_MACHINE_genericx86 = "genericx86"
-> +COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
-> +COMPATIBLE_MACHINE_edgerouter = "edgerouter"
-> +COMPATIBLE_MACHINE_beaglebone-yocto = "beaglebone-yocto"
-> +
-> +LINUX_VERSION_genericx86 = "5.8.2"
-> +LINUX_VERSION_genericx86-64 = "5.8.2"
-> +LINUX_VERSION_edgerouter = "5.8.2"
-> +LINUX_VERSION_beaglebone-yocto = "5.8.2"
-> --
-> 2.26.2
->
-> 
-
-
-
--- 
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
