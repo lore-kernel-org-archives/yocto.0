@@ -1,71 +1,127 @@
-Received: from mail3.multitech.com (mail3.multitech.com [65.126.90.13])
- by mx.groups.io with SMTP id smtpd.web10.16176.1598459383983730744
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.16517.1598459797727467480
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 Aug 2020 09:29:44 -0700
+ Wed, 26 Aug 2020 09:36:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: multitech.com, ip: 65.126.90.13, mailfrom: prvs=15008cc0bf=john.klug@multitech.com)
-Received: from mail3.multitech.com (localhost.localdomain [127.0.0.1])
-	by localhost (Email Security Appliance) with SMTP id 61C95825A7_F468DF7B
-	for <yocto@lists.yoctoproject.org>; Wed, 26 Aug 2020 16:29:43 +0000 (GMT)
-Received: from EXCHDBPM1.dc.multitech.prv (unknown [192.168.11.6])
-	(using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
-	(Client CN "", Issuer "MultiTech Systems Intermediate CA 01" (verified OK))
-	by mail3.multitech.com (Sophos Email Appliance) with ESMTPS id B00628256A_F468DF6F
-	for <yocto@lists.yoctoproject.org>; Wed, 26 Aug 2020 16:29:42 +0000 (GMT)
-Received: from EXCHDBPM1.dc.multitech.prv (192.168.11.6) by
- EXCHDBPM1.dc.multitech.prv (192.168.11.6) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1847.3; Wed, 26 Aug 2020 11:29:42 -0500
-Received: from EXCHDBPM1.dc.multitech.prv ([192.168.11.6]) by
- EXCHDBPM1.dc.multitech.prv ([192.168.11.6]) with mapi id 15.01.1847.009; Wed,
- 26 Aug 2020 11:29:42 -0500
-From: "John Klug" <john.klug@multitech.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: Mono build has unresolved QA errors
-Thread-Topic: Mono build has unresolved QA errors
-Thread-Index: AdZ7FpUCYsdLWUDSRFSXiBjGcFReEwArx/Zg
-Date: Wed, 26 Aug 2020 16:29:42 +0000
-Message-ID: <d840ec3d94a7419aba10277a8214038b@multitech.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.11.45]
-MIME-Version: 1.0
-X-SASI-RCODE: 200
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NP9gYCCo;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: alex.kiernan@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 00F8BE020A8; Wed, 26 Aug 2020 09:36:36 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (alex.kiernan[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.128.48 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CFF9E020A6
+	for <yocto@yoctoproject.org>; Wed, 26 Aug 2020 09:36:35 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id o21so2428803wmc.0
+        for <yocto@yoctoproject.org>; Wed, 26 Aug 2020 09:36:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=78iP+Q3uAq51iUXRZKo288nklcL2fsGAbuju+skIt8s=;
+        b=NP9gYCCoiQbdEtHIb6IgEhqXED0Xgd9KHWm39IOy3pl9+vb8JvqQy/ggJYVily2kpX
+         EaQOiLuIvo6H3IgHjq7WNyxTo/fc5KIdcg7dIF1cEMC9XAfdSF2E3ztK/vF80TK6zojB
+         EqM9C0GdVsy1WrlF9kBupA4Mya+ClBcXG04yW/gCgyvQ/yOgv3k6sKf4MaeZaQltUKYt
+         7RDCaE8mlmC6a5tjDV9MCgGVBzN8T6hWT+NNEtpRQF/HfMtJjJMZ+6pmJ3tCw0Ab7jY3
+         vAGvjXu4O12zTH6aMuqMQaEU4ccovaYhADK7jUtBIMbj1vxmjcBnzH7YtAfiiGecbO3R
+         mYVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=78iP+Q3uAq51iUXRZKo288nklcL2fsGAbuju+skIt8s=;
+        b=XIZyUYIAbR3/UXzyr16tiT0U73nG9f75Gu18xAX3n8BYdm9ppSZNXNaAWOUY4Q0kec
+         Zi7a0T8qtn5ftjLUaIHc7O49m74LHU7fldXtCOeuQAmIn38rH/2usLZiKtzFbJZ7zqiG
+         EME2cakC774jGtENBpn1SMRtVhpsGgHAimkZLL+zAT32fSMGZIZLPPTPvA3XKUVfPYh2
+         5jub0xwLY+54cFQe9C/wkQl37O57TR/UTS9DtFujdxbMYKOI+xONIIJkCEXv6fH4EpxO
+         VP+BPF4FIL88uHPr52Nq0vK0klEVdDSA1z1xgtGg0H6httblf02ISytWwGiB3oVhYu/r
+         zkNQ==
+X-Gm-Message-State: AOAM530T532+zZh1KEUz3QeVNrhAmnbq7AYaHQk7jO5PBZQdqNYxTUDi
+	mryHzyY5+xPHUj+GZdVPL+cHtyeIMdY=
+X-Google-Smtp-Source: ABdhPJwBVGoKSojEXFMsIx8ICAzgwUCtr1LaQWjcT+V1aTo5HTYtvFwnYGC1bpvgUDsAWGec1tBRlQ==
+X-Received: by 2002:a7b:c84f:: with SMTP id c15mr8433488wml.133.1598459794828;
+        Wed, 26 Aug 2020 09:36:34 -0700 (PDT)
+Received: from localhost.localdomain (cust246-dsl91-135-6.idnet.net. [91.135.6.246])
+        by smtp.gmail.com with ESMTPSA id q8sm2519484wrx.79.2020.08.26.09.36.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Aug 2020 09:36:34 -0700 (PDT)
+From: "Alex Kiernan" <alex.kiernan@gmail.com>
+To: yocto@yoctoproject.org
+Cc: Alex Kiernan <alex.kiernan@gmail.com>
+Subject: [meta-selinux][PATCH] audit: Backport gcc10 fix for common default
+Date: Wed, 26 Aug 2020 17:35:26 +0100
+Message-Id: <20200826163526.32264-1-alex.kiernan@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
-Because my links turned into a redirect, I will translate into subject, aut=
-hor, and date from this mailing list on related topics:
+Signed-off-by: Alex Kiernan <alex.kiernan@gmail.com>
+---
 
-"mono yocto build" Bing Mao Sep 20 2018
-"mono build issue" M=E1t=E9 T=FCske Feb 7 2018
+ ...ns-need-to-be-external-when-building.patch | 28 +++++++++++++++++++
+ recipes-security/audit/audit_2.8.5.bb         |  1 +
+ 2 files changed, 29 insertions(+)
+ create mode 100644 recipes-security/audit/audit/0001-Header-definitions-need-to-be-external-when-building.patch
 
------Original Message-----
-From: John Klug=20
-Sent: Tuesday, August 25, 2020 3:12 PM
-To: yocto@lists.yoctoproject.org
-Subject: Mono build has unresolved QA errors
+diff --git a/recipes-security/audit/audit/0001-Header-definitions-need-to-be-external-when-building.patch b/recipes-security/audit/audit/0001-Header-definitions-need-to-be-external-when-building.patch
+new file mode 100644
+index 000000000000..65ea4783a801
+--- /dev/null
++++ b/recipes-security/audit/audit/0001-Header-definitions-need-to-be-external-when-building.patch
+@@ -0,0 +1,28 @@
++From 017e6c6ab95df55f34e339d2139def83e5dada1f Mon Sep 17 00:00:00 2001
++From: Steve Grubb <sgrubb@redhat.com>
++Date: Fri, 10 Jan 2020 21:13:50 -0500
++Subject: [PATCH] Header definitions need to be external when building with
++ -fno-common (which is default in GCC 10) - Tony Jones
++
++Upstream-Status: Backport
++Signed-off-by: Alex Kiernan <alex.kiernan@gmail.com>
++---
++ src/ausearch-common.h | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/src/ausearch-common.h b/src/ausearch-common.h
++index 6669203664ec..3040547afe95 100644
++--- a/src/ausearch-common.h
+++++ b/src/ausearch-common.h
++@@ -50,7 +50,7 @@ extern pid_t event_pid;
++ extern int event_exact_match;
++ extern uid_t event_uid, event_euid, event_loginuid;
++ extern const char *event_tuid, *event_teuid, *event_tauid;
++-slist *event_node_list;
+++extern slist *event_node_list;
++ extern const char *event_comm;
++ extern const char *event_filename;
++ extern const char *event_hostname;
++-- 
++2.17.1
++
+diff --git a/recipes-security/audit/audit_2.8.5.bb b/recipes-security/audit/audit_2.8.5.bb
+index af36ed5e2528..e3e5ddd541fc 100644
+--- a/recipes-security/audit/audit_2.8.5.bb
++++ b/recipes-security/audit/audit_2.8.5.bb
+@@ -11,6 +11,7 @@ SRC_URI = "git://github.com/linux-audit/${BPN}-userspace.git;branch=2.8_maintena
+            file://Add-substitue-functions-for-strndupa-rawmemchr.patch \
+            file://Fixed-swig-host-contamination-issue.patch \
+            file://0001-lib-i386_table.h-add-new-syscall.patch \
++           file://0001-Header-definitions-need-to-be-external-when-building.patch \
+            file://auditd \
+            file://auditd.service \
+            file://audit-volatile.conf \
+-- 
+2.17.1
 
-I am building the following version of meta-mono:
-commit 7a1e79ec48508edc19a33e8df567c49d0be3eb8c (HEAD, origin/thud)
-Merge: 6de5152 9977cab
-Author: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Date:   Wed May 27 13:36:43 2020 +0100
-
-The package mono 6.8.123 was built using Ubuntu 16.04.1.
-
-I am seeing RDEPENDS QA errors when building mono in Thud.  This is the fir=
-st:
-
-ERROR: mono-6.8.0.123-r0 do_package_qa: QA Issue: /usr/lib/mono/4.0-api/Sys=
-tem.Web.Http.dll contained in package mono-libs-4.0 requires mono(System.Ne=
-t.Http), but no providers found in RDEPENDS_mono-libs-4.0? [file-rdeps]
-
-These errors are also seen in these two posts that seem to be unresolved:
-
-https://www.yoctoproject.org/pipermail/yocto/2018-February/039930.html
-
-https://www.yoctoproject.org/pipermail/yocto/2018-September/042625.html
-=20
