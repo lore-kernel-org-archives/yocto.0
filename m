@@ -1,394 +1,160 @@
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
- by mx.groups.io with SMTP id smtpd.web12.6509.1598420190181683076
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (NAM10-MW2-obe.outbound.protection.outlook.com [40.107.94.48])
+ by mx.groups.io with SMTP id smtpd.web10.6865.1598422931056622232
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 Aug 2020 22:36:30 -0700
+ Tue, 25 Aug 2020 23:22:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@successful-com-au.20150623.gappssmtp.com header.s=20150623 header.b=gnO6+Mvd;
- spf=neutral (domain: successful.com.au, ip: 209.85.215.174, mailfrom: brendan@successful.com.au)
-Received: by mail-pg1-f174.google.com with SMTP id m34so464206pgl.11
-        for <yocto@lists.yoctoproject.org>; Tue, 25 Aug 2020 22:36:30 -0700 (PDT)
+ dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=JVPeh57m;
+ spf=pass (domain: windriver.com, ip: 40.107.94.48, mailfrom: kexin.hao@windriver.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=H8vhPUKjueaT4pEWr9PIw0G5O1fskpSU+NKb+0MvynfZ5R/gaUO55yQaxEE4elOw5z4UkDm0OAcglq/p5vvjpQau2SqLoVJHIu9va3li8N5jZd1DFTbhKM7xWCyMKJExRweMzcXMoj9Y72AK9mSztOanV3wcWrpzlZtR+Lw1a9OKzVJP4q2jdD7zi9tk4LPRbegIJiao9L7YM0XixK3RNzEQb6/ZtQZq9YkeU4syIJALGM9+gldpE8nRKtJDF4Oi6lKrMKwi53w1hZWhXeYh9ZO55uRFD2+9K/E0RiaFHTD+BAEm8FxFnW0E0d/rEbB/CTCCw2N7mAZDpKY9vygqMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=61xgHqElgvNsn9zuJ5+aoIRNS7yQLlyUnH4Zu2Hv3hM=;
+ b=jxYBEn1pVjENrgtYy+XcJfcz2fSJFoZMpdoYsdc0TDaK3CWSxhwVnQID+BXXabWwpSz7Fx/+vnHPHzXLADtMa0fmnV3EpdjPd1VhmvdJJxNCkJc9vWMsXhB3GQF+l+2Mve+M+9+UuOj1hcSoagp5wLINWrtmsVninbi14/gzV7ujvb3RMK++7Riv+WRhC1sui+kvl3uqCWeB+5VERutYo3JiA3ESWYzKYMRnPAYW1GbX3xmH658pIG4KRmPiYemzj9gxABq/FouHS4oSjqHFluMMQIknMRJDgFy3/LXIZoercoZWQ71L0CkskGrAwq1Xb2reh4TE1iO6Y5KaIhMTfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=successful-com-au.20150623.gappssmtp.com; s=20150623;
-        h=from:subject:to:message-id:date:user-agent:mime-version
-         :content-language;
-        bh=1Y0fDnU3P+tqOmx8+LvDI11VU4lGcBUGdLLk8iCqmUU=;
-        b=gnO6+MvdoLHOsHcaOOI+HO9ZqeHgsfhLOJ7BZjhkg7mvAtdrNdE02kN6Upp/oye7Gi
-         GuggNN8iGvR8i9zvfKZaVW2xXQIxBt6ZptdimnLcdzcxMGa/9tqdC5rzUgv2MQXzce1c
-         SFxes6Mu1WZNd08Gl+XzHzlJho2X0tZF7THLTmSWjoH+rRLIQa1852XUjwIVmsAyu09P
-         a+eGI2VmEhuKbTBVc1LekayTsbNv1P7ndKfTkKClcVZVVafTvbiaDndtC0hM/SwBe+Nt
-         cku032b4jf8J92fKxky9eMdefL25UTNplH9y7nfQv0wAU5Jl21DAeDpP8RrEA39SyvTy
-         n0Wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:subject:to:message-id:date:user-agent
-         :mime-version:content-language;
-        bh=1Y0fDnU3P+tqOmx8+LvDI11VU4lGcBUGdLLk8iCqmUU=;
-        b=EKw8UPgxEFdlzcSF9Rm3Bu0PnJ47F4OBHKFRuZzUI4bb2GBJAc7qzP4MAdBzrlxuO0
-         Mb+XRFMcJTMGLoNVpo6xR608nW27pT1AJFbZZKFVB5vYWvbWRTDZA5LZF+HvgDZleAuW
-         9kZlu2X/nvqZiIxJPn3E9HsIeLj0amjydLMzQYB/7cuP0cgk1Vku4yQiM2fkt+UlVFfi
-         INtnfNtOx6/9Wwy4DXcc67B7at7zpSFp6oXy5aN1wDo9X/xEOc7RC6IYSZbFNYucWXIv
-         GS7nqG/qb0DE+lJyuw8U15Zkhd5o1bAwL74ILzynupaxPdpagVp5KooQfltZGos1JzaJ
-         HMeQ==
-X-Gm-Message-State: AOAM530dmWqE21Tf/GTglSp4doezMWyS7RmJ6VZZr1bVK3VQ67KAwWo2
-	SZcMme08WbV+eKQGTQFdVial4zLiyuVGHAfu
-X-Google-Smtp-Source: ABdhPJwtTrolquKJnyYTOKZB4RIH0J65OXyWDFp0q3e68XP78czXm11NOjUafuDu9rqdGDZ75W5O4Q==
-X-Received: by 2002:aa7:9799:: with SMTP id o25mr329567pfp.109.1598420189017;
-        Tue, 25 Aug 2020 22:36:29 -0700 (PDT)
-Return-Path: <brendan@successful.com.au>
-Received: from ?IPv6:2406:3400:314:db20:c09:4dec:5f73:be5c? ([2406:3400:314:db20:c09:4dec:5f73:be5c])
-        by smtp.gmail.com with ESMTPSA id b18sm786738pjq.3.2020.08.25.22.36.27
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Aug 2020 22:36:28 -0700 (PDT)
-From: brendan@successful.com.au
-Subject: Help with yocto poky quick start
-To: yocto@lists.yoctoproject.org
-Message-ID: <67adbe86-79c9-2fac-3a16-4e768dc2a001@successful.com.au>
-Date: Wed, 26 Aug 2020 15:36:23 +1000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=61xgHqElgvNsn9zuJ5+aoIRNS7yQLlyUnH4Zu2Hv3hM=;
+ b=JVPeh57m0JePiS6NgeLHtejo+VLrzfjki9HuOurGKuBepzM531RqGzLgdW+HIg+C4rFbV43uCdjcDPQVT8o2qgAQ5Op4HKjVu8AWW6g8aHn5bmnAtzxBK2x6uDC1PoMYbB3fJFYHwJYAldcvS3OA07+HO6zRktp2Er9E9bpXPbk=
+Authentication-Results: linuxfoundation.org; dkim=none (message not signed)
+ header.d=none;linuxfoundation.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from DM6PR11MB4314.namprd11.prod.outlook.com (2603:10b6:5:1de::32)
+ by DM6PR11MB2697.namprd11.prod.outlook.com (2603:10b6:5:c3::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.19; Wed, 26 Aug
+ 2020 06:22:07 +0000
+Received: from DM6PR11MB4314.namprd11.prod.outlook.com
+ ([fe80::54d5:4c20:95f8:e637]) by DM6PR11MB4314.namprd11.prod.outlook.com
+ ([fe80::54d5:4c20:95f8:e637%4]) with mapi id 15.20.3305.026; Wed, 26 Aug 2020
+ 06:22:07 +0000
+From: "Kevin Hao" <kexin.hao@windriver.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+CC: Yocto Project <yocto@lists.yoctoproject.org>
+Subject: [PATCH] meta-yocto-bsp: Bump to the v5.8 kernel
+Date: Wed, 26 Aug 2020 14:13:30 +0800
+Message-ID: <20200826061330.30586-1-kexin.hao@windriver.com>
+X-Mailer: git-send-email 2.26.2
+X-ClientProxiedBy: HK2PR06CA0012.apcprd06.prod.outlook.com
+ (2603:1096:202:2e::24) To DM6PR11MB4314.namprd11.prod.outlook.com
+ (2603:10b6:5:1de::32)
+Return-Path: kexin.hao@windriver.com
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="------------709A1C332BBCAD5AD3EF9127"
-Content-Language: en-US
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from 255.255.255.255 (255.255.255.255) by HK2PR06CA0012.apcprd06.prod.outlook.com (2603:1096:202:2e::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.19 via Frontend Transport; Wed, 26 Aug 2020 06:22:06 +0000
+X-Mailer: git-send-email 2.26.2
+X-Originating-IP: [60.247.85.82]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: b2a17bc0-43e7-4655-9ada-08d849885b91
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2697:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: 
+	<DM6PR11MB2697BDD81F0224E84C477140E2540@DM6PR11MB2697.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	F2Y8+4/UnPV63pOZ0HJdHX2W4Ypr1+/BIGSfp+xjdjogZ2tOoE/FYbOg1JVGexGUXzygwCe/Lvw6tl42L6samZ06U4KCNVUDOij0KgB+6q66Y9OLBVezbY2JBQLM61ilCbXzVmA79K3rRjjl7bpnWeTHlV24mhWArba1j7+VIn2dcP0ipnp3HmQ5hf1c9GJDiQPogkAGeLmh2IOAcf6wf9jQzM9a7m/9VXhleXBGnwUG5y4/WT7SLHmV+jo/Q+qmnqjHE1yBzBZwTXsdMeAUmBswyAAKRny44J9moonGcxBuS4u1uOHu6XbUmyTbxuzwxc8pF6mAZ7ofuTbGrHUNvcAC8t2rfUIs1qhLuwf+WbONyiJUtLVfPc30szECkjcS5aPueFH+kx7ONMIp3VVKCw==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4314.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(346002)(39840400004)(396003)(376002)(366004)(52116002)(956004)(16576012)(966005)(478600001)(2906002)(316002)(8676002)(6916009)(83380400001)(86362001)(8936002)(186003)(2616005)(1076003)(66556008)(66946007)(4326008)(6666004)(6486002)(26005)(36756003)(5660300002)(66476007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	x26DX/L+/oFjquwmniOI27CP629zLq8EXxSDbwZnRCNOB2VoZmMXFI67oDsGEywiDjcC1+tZ1wKojGtPR/J80dIUatMpJq4m2IfESCgYaUp6PiqRjZJlsROATUdzhfu6a/bUU7DMnbLPQZIKqWYC3BCVvlNbjvwdYw2Qpol4qMhJ1r5uiiWMCofU1cYKqaldk2mgGQc3ib5c8t03omTckfHfHoYu1aYSzXKgPidR1ONtwgOtFUk8IsQ/DuWsy7iYpe21egdrROk7q0FVM4+Pp40NpGu66AhQ/5wx5kzye7moFQNQQuabOa0UORMfw9CmOVOdqhd03JjGVgfd6BcpvuJWsuUArXW20xkikGqRaNUoZOjQGbWDRdvHpi3rvADGcY0AxB/c327AgSmVdKyRjc3eCIBv2JYSx//N4w3CIpbJlCTRzDRN4dgxVQMZ4/stHgIlPP5Ng65nYNBc8o8RKA24YxZCCWHZrXZrrlNlc8dqcK7/qcaWuObZw9psR6gUvg9SUqTg062QlrD+M286xtR789i6+fLJj9rX7LeGrZc670lQkT9pXU2LHPzBOT8lc9xIYKXhmR9Kg5E5MfFEQgelCh+eXfkUQhApelhoQDj0/9y+AbZhHfp2qGGZR+8SIkDmxuGUXU97daJzm4PZpg==
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b2a17bc0-43e7-4655-9ada-08d849885b91
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4314.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2020 06:22:07.6272
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: is020eUcS2kzEdKc9RAFcZwFFG5tNSFNOOJhL1ACY3pzqGQQmesG+dpw4yWzG/GidIRvjEt4fOBi2x5SIY2SLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2697
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
---------------709A1C332BBCAD5AD3EF9127
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Boot test for all the supported boards. There is a kernel config
+check warning for beaglebone-yocto, the fix [1] has been sent to
+kernel-meta for merging.
 
-Hi,
+[1] https://lists.yoctoproject.org/g/linux-yocto/message/8992
 
-I'm new to Yocto and am trying to follow the quick start guide to get up 
-and running with poky.  I'm using the latest Dunfel 3.1.2.
+Signed-off-by: Kevin Hao <kexin.hao@windriver.com>
+---
+ .../conf/machine/beaglebone-yocto.conf        |  2 +-
+ meta-yocto-bsp/conf/machine/edgerouter.conf   |  2 +-
+ .../linux/linux-yocto_5.8.bbappend            | 23 +++++++++++++++++++
+ 3 files changed, 25 insertions(+), 2 deletions(-)
+ create mode 100644 meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.8.bba=
+ppend
 
-I'm running Debian 10 Buster in a VirtualBox VM (guest), on a Windows 10 
-Pro (host).
+diff --git a/meta-yocto-bsp/conf/machine/beaglebone-yocto.conf b/meta-yocto=
+-bsp/conf/machine/beaglebone-yocto.conf
+index 5b481434bd89..b7defb0d0170 100644
+--- a/meta-yocto-bsp/conf/machine/beaglebone-yocto.conf
++++ b/meta-yocto-bsp/conf/machine/beaglebone-yocto.conf
+@@ -24,7 +24,7 @@ SERIAL_CONSOLES ?=3D "115200;ttyS0 115200;ttyO0 115200;tt=
+yAMA0"
+ SERIAL_CONSOLES_CHECK =3D "${SERIAL_CONSOLES}"
+=20
+ PREFERRED_PROVIDER_virtual/kernel ?=3D "linux-yocto"
+-PREFERRED_VERSION_linux-yocto ?=3D "5.4%"
++PREFERRED_VERSION_linux-yocto ?=3D "5.8%"
+=20
+ KERNEL_IMAGETYPE =3D "zImage"
+ KERNEL_DEVICETREE =3D "am335x-bone.dtb am335x-boneblack.dtb am335x-bonegre=
+en.dtb"
+diff --git a/meta-yocto-bsp/conf/machine/edgerouter.conf b/meta-yocto-bsp/c=
+onf/machine/edgerouter.conf
+index d6fd934fa583..75bc5e5f28e7 100644
+--- a/meta-yocto-bsp/conf/machine/edgerouter.conf
++++ b/meta-yocto-bsp/conf/machine/edgerouter.conf
+@@ -11,7 +11,7 @@ KERNEL_ALT_IMAGETYPE =3D "vmlinux.bin"
+ KERNEL_IMAGE_STRIP_EXTRA_SECTIONS  =3D ".comment"
+=20
+ PREFERRED_PROVIDER_virtual/kernel ?=3D "linux-yocto"
+-PREFERRED_VERSION_linux-yocto ?=3D "5.4%"
++PREFERRED_VERSION_linux-yocto ?=3D "5.8%"
+=20
+ SERIAL_CONSOLES =3D "115200;ttyS0"
+ USE_VT ?=3D "0"
+diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.8.bbappend b=
+/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.8.bbappend
+new file mode 100644
+index 000000000000..5d844423afce
+--- /dev/null
++++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.8.bbappend
+@@ -0,0 +1,23 @@
++KBRANCH_genericx86  =3D "v5.8/standard/base"
++KBRANCH_genericx86-64  =3D "v5.8/standard/base"
++KBRANCH_edgerouter =3D "v5.8/standard/edgerouter"
++KBRANCH_beaglebone-yocto =3D "v5.8/standard/beaglebone"
++
++KMACHINE_genericx86 ?=3D "common-pc"
++KMACHINE_genericx86-64 ?=3D "common-pc-64"
++KMACHINE_beaglebone-yocto ?=3D "beaglebone"
++
++SRCREV_machine_genericx86 ?=3D "912adf166eb0688e011154048f5fa0e5863249c3"
++SRCREV_machine_genericx86-64 ?=3D "912adf166eb0688e011154048f5fa0e5863249c=
+3"
++SRCREV_machine_edgerouter ?=3D "912adf166eb0688e011154048f5fa0e5863249c3"
++SRCREV_machine_beaglebone-yocto ?=3D "912adf166eb0688e011154048f5fa0e58632=
+49c3"
++
++COMPATIBLE_MACHINE_genericx86 =3D "genericx86"
++COMPATIBLE_MACHINE_genericx86-64 =3D "genericx86-64"
++COMPATIBLE_MACHINE_edgerouter =3D "edgerouter"
++COMPATIBLE_MACHINE_beaglebone-yocto =3D "beaglebone-yocto"
++
++LINUX_VERSION_genericx86 =3D "5.8.2"
++LINUX_VERSION_genericx86-64 =3D "5.8.2"
++LINUX_VERSION_edgerouter =3D "5.8.2"
++LINUX_VERSION_beaglebone-yocto =3D "5.8.2"
+--=20
+2.26.2
 
-I'm having trouble with the build fetching files and getting checksum 
-mismatch, however if I download the troublesome file with wget then the 
-checksum is correct.
-
-How do I fix this?
-
-Everything seems very complex with Yocto, but maybe that's because I'm 
-new to it.
-
-
-    $ time bitbake core-image-sato
-    Loading cache: 100%
-    |###############################################################################|
-    Time: 0:00:01Loaded 1312 entries from dependency cache.
-    NOTE: Resolving any missing task queue dependencies
-
-    Build Configuration:
-    BB_VERSION           = "1.46.0"
-    BUILD_SYS            = "x86_64-linux"
-    NATIVELSBSTRING      = "universal"
-    TARGET_SYS           = "x86_64-poky-linux"
-    MACHINE              = "qemux86-64"
-    DISTRO               = "poky"
-    DISTRO_VERSION       = "3.1.2"
-    TUNE_FEATURES        = "m64 core2"
-    TARGET_FPU           = ""
-    meta
-    meta-poky
-    meta-yocto-bsp       =
-    "my-yocto-3.1.2:569b1f5d67c57de957e243997c53ec2f81dc8dfe"
-
-    Initialising tasks: 100%
-    |##########################################################################|
-    Time: 0:00:09Checking sstate mirror object availability: 100%
-    |##################################################| Time:
-    0:36:41Sstate summary: Wanted 2547 Found 0 Missed 2547 Current 228
-    (0% match, 8% complete)
-    NOTE: Executing Tasks
-    WARNING: m4-native-1.4.18-r0 do_fetch: Checksum mismatch for local
-    file
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz
-    Cleaning and trying again.
-    WARNING: m4-native-1.4.18-r0 do_fetch: Renaming
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz
-    to
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz_bad-checksum_e64407f9097a607b4463e0c82d898c19b0a3bfd2199d30337b5464d8b416e59c
-    WARNING: m4-native-1.4.18-r0 do_fetch: Checksum failure encountered
-    with download of https://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz - will
-    attempt other sources if available
-    WARNING: m4-native-1.4.18-r0 do_fetch: Checksum mismatch for local
-    file
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz
-    Cleaning and trying again.
-    WARNING: m4-native-1.4.18-r0 do_fetch: Renaming
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz
-    to
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz_bad-checksum_6a1537c79ea613aa70849d8f1f7eeb5a5dbbea3a9527d4aea33a1c8a88e80b9c
-    ERROR: m4-native-1.4.18-r0 do_fetch: Checksum failure fetching
-    https://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz
-    ERROR: m4-native-1.4.18-r0 do_fetch: Fetcher failure for URL:
-    'https://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz'. Checksum mismatch!
-    File:
-    '/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz'
-    has md5 checksum 6a289f7da1478d63683eb4ad976c3c99 when
-    a077779db287adf4e12a035029002d28 was expected
-    File:
-    '/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz'
-    has sha256 checksum
-    6a1537c79ea613aa70849d8f1f7eeb5a5dbbea3a9527d4aea33a1c8a88e80b9c
-    when
-    ab2633921a5cd38e48797bf5521ad259bdc4b979078034a3b790d7fec5493fab was
-    expected
-    If this change is expected (e.g. you have upgraded to a new version
-    without updating the checksums) then you can use these lines within
-    the recipe:
-    SRC_URI[sha256sum] =
-    "6a1537c79ea613aa70849d8f1f7eeb5a5dbbea3a9527d4aea33a1c8a88e80b9c"
-    Otherwise you should retry the download and/or check with upstream
-    to determine if the file has become corrupted or--- Starting bitbake
-    server pid 6121 at 2020-08-25 19:29:32.273325 ---
-    Started bitbake server pid 6121
-    DEBUG: BBCooker starting 1598398172.2817702
-    DEBUG: BBCooker pyinotify1 1598398172.2922668
-    DEBUG: BBCooker pyinotify2 1598398172.2926114
-    DEBUG: BBCooker pyinotify3 1598398172.2971811
-    DEBUG: BBCooker pyinotify complete 1598398172.2975075
-    DEBUG: Found bblayers.conf
-    (/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/conf/bblayers.conf)
-
-    DEBUG: Adding layer
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta
-    DEBUG: Adding layer
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta-poky
-    DEBUG: Adding layer
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta-yocto-bsp
-    DEBUG: CONF
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/conf/bitbake.conf:755:
-    including conf/abi_version.conf
-    DEBUG: CONF
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/conf/bitbake.conf:756:
-    including conf/site.conf
-    DEBUG: CONF file 'conf/site.conf' not found
-    DEBUG: CONF
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/conf/bitbake.conf:757:
-    including conf/auto.conf
-    DEBUG: CONF file 'conf/auto.conf' not found
-    DEBUG: CONF
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/conf/bitbake.conf:758:
-    including conf/local.conf
-    DEBUG: CONF
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/conf/bitbake.conf:759:
-    including conf/multiconfig/default.conf
-    DEBUG: CONF
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/conf/bitbake.conf:760:
-    including conf/mach...skipping...
-      otherwise unexpectedly modified.
-    ERROR: Logfile of failure stored in:
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/tmp/work/x86_64-linux/m4-native/1.4.18-r0/temp/log.do_fetch.10440
-    ERROR: Task
-    (/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/recipes-devtools/m4/m4-native_1.4.18.bb:do_fetch)
-    failed with exit code '1'
-    NOTE: Tasks Summary: Attempted 17 tasks of which 16 didn't need to
-    be rerun and 1 failed.
-
-    Summary: 1 task failed:
-    /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/recipes-devtools/m4/m4-native_1.4.18.bb:do_fetch
-
-    Summary: There were 5 WARNING messages shown.
-    Summary: There were 2 ERROR messages shown, returning a non-zero
-    exit code.
-
-    real    37m7.174s
-    user    0m2.521s
-    sys     0m1.431s
-
-
-Thanks,
-Brendan.
-
-
---------------709A1C332BBCAD5AD3EF9127
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <font color="#663300">Hi,<br>
-      <br>
-      I'm new to Yocto and am trying to follow the quick start guide to
-      get up and running with poky.  I'm using the latest Dunfel 3.1.2.<br>
-      <br>
-      I'm running Debian 10 Buster in a VirtualBox VM (guest), on a
-      Windows 10 Pro (host).<br>
-      <br>
-      I'm having trouble with the build fetching files and getting
-      checksum mismatch, however if I download the troublesome file with
-      wget then the checksum is correct.<br>
-      <br>
-      How do I fix this?<br>
-      <br>
-      Everything seems very complex with Yocto, but maybe that's because
-      I'm new to it.<br>
-      <br>
-      <br>
-    </font>
-    <blockquote><tt><font color="#663300">$ time bitbake core-image-sato</font></tt><tt><br>
-      </tt><tt><font color="#663300">Loading cache: 100%
-|###############################################################################|
-          Time: 0:00:01Loaded 1312 entries from dependency cache.</font></tt><tt><br>
-      </tt><tt><font color="#663300">NOTE: Resolving any missing task
-          queue dependencies</font></tt><tt><br>
-      </tt><tt><br>
-      </tt><tt><font color="#663300">Build Configuration:</font></tt><tt><br>
-      </tt><tt><font color="#663300">BB_VERSION           = "1.46.0"</font></tt><tt><br>
-      </tt><tt><font color="#663300">BUILD_SYS            =
-          "x86_64-linux"</font></tt><tt><br>
-      </tt><tt><font color="#663300">NATIVELSBSTRING      = "universal"</font></tt><tt><br>
-      </tt><tt><font color="#663300">TARGET_SYS           =
-          "x86_64-poky-linux"</font></tt><tt><br>
-      </tt><tt><font color="#663300">MACHINE              = "qemux86-64"</font></tt><tt><br>
-      </tt><tt><font color="#663300">DISTRO               = "poky"</font></tt><tt><br>
-      </tt><tt><font color="#663300">DISTRO_VERSION       = "3.1.2"</font></tt><tt><br>
-      </tt><tt><font color="#663300">TUNE_FEATURES        = "m64 core2"</font></tt><tt><br>
-      </tt><tt><font color="#663300">TARGET_FPU           = ""</font></tt><tt><br>
-      </tt><tt><font color="#663300">meta</font></tt><tt><br>
-      </tt><tt><font color="#663300">meta-poky</font></tt><tt><br>
-      </tt><tt><font color="#663300">meta-yocto-bsp       =
-          "my-yocto-3.1.2:569b1f5d67c57de957e243997c53ec2f81dc8dfe"</font></tt><tt><br>
-      </tt><tt><br>
-      </tt><tt><font color="#663300">Initialising tasks: 100%
-|##########################################################################|
-          Time: 0:00:09Checking sstate mirror object availability: 100%
-          |##################################################| Time:
-          0:36:41Sstate summary: Wanted 2547 Found 0 Missed 2547 Current
-          228 (0% match, 8% complete)</font></tt><tt><br>
-      </tt><tt><font color="#663300">NOTE: Executing Tasks</font></tt><tt><br>
-      </tt><tt><font color="#663300">WARNING: m4-native-1.4.18-r0
-          do_fetch: Checksum mismatch for local file
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz</font></tt><tt><br>
-      </tt><tt><font color="#663300">Cleaning and trying again.</font></tt><tt><br>
-      </tt><tt><font color="#663300">WARNING: m4-native-1.4.18-r0
-          do_fetch: Renaming
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz
-          to
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz_bad-checksum_e64407f9097a607b4463e0c82d898c19b0a3bfd2199d30337b5464d8b416e59c</font></tt><tt><br>
-      </tt><tt><font color="#663300">WARNING: m4-native-1.4.18-r0
-          do_fetch: Checksum failure encountered with download of <a
-            class="moz-txt-link-freetext"
-            href="https://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz"
-            moz-do-not-send="true">https://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz</a>
-          - will attempt other sources if available</font></tt><tt><br>
-      </tt><tt><font color="#663300">WARNING: m4-native-1.4.18-r0
-          do_fetch: Checksum mismatch for local file
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz</font></tt><tt><br>
-      </tt><tt><font color="#663300">Cleaning and trying again.</font></tt><tt><br>
-      </tt><tt><font color="#663300">WARNING: m4-native-1.4.18-r0
-          do_fetch: Renaming
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz
-          to
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz_bad-checksum_6a1537c79ea613aa70849d8f1f7eeb5a5dbbea3a9527d4aea33a1c8a88e80b9c</font></tt><tt><br>
-      </tt><tt><font color="#663300">ERROR: m4-native-1.4.18-r0
-          do_fetch: Checksum failure fetching <a
-            class="moz-txt-link-freetext"
-            href="https://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz"
-            moz-do-not-send="true">https://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz</a></font></tt><tt><br>
-      </tt><tt><font color="#663300">ERROR: m4-native-1.4.18-r0
-          do_fetch: Fetcher failure for URL: '<a
-            class="moz-txt-link-freetext"
-            href="https://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz"
-            moz-do-not-send="true">https://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz</a>'.
-          Checksum mismatch!</font></tt><tt><br>
-      </tt><tt><font color="#663300">File:
-'/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz'
-          has md5 checksum 6a289f7da1478d63683eb4ad976c3c99 when
-          a077779db287adf4e12a035029002d28 was expected</font></tt><tt><br>
-      </tt><tt><font color="#663300">File:
-'/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/downloads/m4-1.4.18.tar.gz'
-          has sha256 checksum
-          6a1537c79ea613aa70849d8f1f7eeb5a5dbbea3a9527d4aea33a1c8a88e80b9c
-          when
-          ab2633921a5cd38e48797bf5521ad259bdc4b979078034a3b790d7fec5493fab
-          was expected</font></tt><tt><br>
-      </tt><tt><font color="#663300">If this change is expected (e.g.
-          you have upgraded to a new version without updating the
-          checksums) then you can use these lines within the recipe:</font></tt><tt><br>
-      </tt><tt><font color="#663300">SRC_URI[sha256sum] =
-          "6a1537c79ea613aa70849d8f1f7eeb5a5dbbea3a9527d4aea33a1c8a88e80b9c"</font></tt><tt><br>
-      </tt><tt><font color="#663300">Otherwise you should retry the
-          download and/or check with upstream to determine if the file
-          has become corrupted or--- Starting bitbake server pid 6121 at
-          2020-08-25 19:29:32.273325 ---</font></tt><tt><br>
-      </tt><tt><font color="#663300">Started bitbake server pid 6121</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: BBCooker starting
-          1598398172.2817702</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: BBCooker pyinotify1
-          1598398172.2922668</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: BBCooker pyinotify2
-          1598398172.2926114</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: BBCooker pyinotify3
-          1598398172.2971811</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: BBCooker pyinotify complete
-          1598398172.2975075</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: Found bblayers.conf
-(/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/conf/bblayers.conf)     
-        </font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: Adding layer
-          /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: Adding layer
-          /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta-poky</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: Adding layer
-          /home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta-yocto-bsp</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: CONF
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/conf/bitbake.conf:755:
-          including conf/abi_version.conf</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: CONF
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/conf/bitbake.conf:756:
-          including conf/site.conf</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: CONF file 'conf/site.conf'
-          not found</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: CONF
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/conf/bitbake.conf:757:
-          including conf/auto.conf</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: CONF file 'conf/auto.conf'
-          not found</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: CONF
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/conf/bitbake.conf:758:
-          including conf/local.conf</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: CONF
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/conf/bitbake.conf:759:
-          including conf/multiconfig/default.conf</font></tt><tt><br>
-      </tt><tt><font color="#663300">DEBUG: CONF
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/conf/bitbake.conf:760:
-          including conf/mach...skipping...</font></tt><tt><br>
-      </tt><tt><font color="#663300"> otherwise unexpectedly modified.</font></tt><tt><br>
-      </tt><tt><font color="#663300">ERROR: Logfile of failure stored
-          in:
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/build/tmp/work/x86_64-linux/m4-native/1.4.18-r0/temp/log.do_fetch.10440</font></tt><tt><br>
-      </tt><tt><font color="#663300">ERROR: Task
-(/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/recipes-devtools/m4/m4-native_1.4.18.bb:do_fetch)
-          failed with exit code '1'</font></tt><tt><br>
-      </tt><tt><font color="#663300">NOTE: Tasks Summary: Attempted 17
-          tasks of which 16 didn't need to be rerun and 1 failed.</font></tt><tt><br>
-      </tt><tt><br>
-      </tt><tt><font color="#663300">Summary: 1 task failed:</font></tt><tt><br>
-      </tt><tt><font color="#663300"> 
-/home/brendan/SEPL/Projects/Erntec/PMU/yocto_trial/poky/meta/recipes-devtools/m4/m4-native_1.4.18.bb:do_fetch   
-        </font></tt><tt><br>
-      </tt><tt><font color="#663300">Summary: There were 5 WARNING
-          messages shown.</font></tt><tt><br>
-      </tt><tt><font color="#663300">Summary: There were 2 ERROR
-          messages shown, returning a non-zero exit code.</font></tt><tt><br>
-      </tt><tt><br>
-      </tt><tt><font color="#663300">real    37m7.174s</font></tt><tt><br>
-      </tt><tt><font color="#663300">user    0m2.521s</font></tt><tt><br>
-      </tt><tt><font color="#663300">sys     0m1.431s</font></tt><br>
-    </blockquote>
-    <font color="#663300"><br>
-      Thanks,<br>
-      Brendan.<br>
-      <br>
-    </font>
-  </body>
-</html>
-
---------------709A1C332BBCAD5AD3EF9127--
