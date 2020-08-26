@@ -1,74 +1,91 @@
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
- by mx.groups.io with SMTP id smtpd.web11.12604.1598449032036765103
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+ by mx.groups.io with SMTP id smtpd.web11.15551.1598457314626662122
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 Aug 2020 06:37:12 -0700
+ Wed, 26 Aug 2020 08:55:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Xw30mVMD;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.66, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f66.google.com with SMTP id s13so1775933wmh.4
-        for <yocto@lists.yoctoproject.org>; Wed, 26 Aug 2020 06:37:11 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=uTo62oKx;
+ spf=pass (domain: gmail.com, ip: 209.85.218.48, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-ej1-f48.google.com with SMTP id d11so3509719ejt.13
+        for <yocto@lists.yoctoproject.org>; Wed, 26 Aug 2020 08:55:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=FY1PwSFD6IvYBbwRP4KpXGMR6DmJAceHbHiXgVIr3Hc=;
-        b=Xw30mVMDI1E5Xm72uBK9R99KwFKVAsFomFF8XR7ru2F47PfdD7gOJsA56kN15Lt4HA
-         wLCmkUAx2o0khwKsCaVkG9KYtDFOt9lGndgTIP83QG3yjqkUkdaDpJ//A2VCPdyvrJhR
-         flfonvpe7NbktmPS+9aeSuaNEBtExnseS8Zk0=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gMcOA+Q2tS2ZRTez3OcSUaiRk+ImmNLY0cneyTIfsC4=;
+        b=uTo62oKxfJHUBr8WcmSJD2SBTxI7xxkZeSBaF35QrOHQkMGWGrYlkeR6B4QRlTzA1o
+         yFIJbog/9HIFhh4nZ/ZX5u9UDPWKYT20gwJ4d2ZRa+IEundgJxpX9lsfDKWHYIWoTQ+2
+         0QQO4Rob3NZwOMRUDIUY6Ii6oY6wVD/ZVt3bWFzHovIo2PCM0PodcEmBefOMyk+n0xO/
+         dBWybNirtywSO+vFYahQNmI+hHAApWKczy31TDZ00nURqoEmOV8b5mY+l65AjkBi/ya5
+         a+dQdLEyq0G0b4biNyIIp7OKDfT6h/aPiAvSk0BJQwvDbp8FKaKyh4lmWC1XxdC2vyV0
+         8GTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=FY1PwSFD6IvYBbwRP4KpXGMR6DmJAceHbHiXgVIr3Hc=;
-        b=Q42wWZKAM3pXCWuUPuxRgmKScaSGWy9hU3LH7Z9UFDXTh3aMSUr0WnI2nebojVY5km
-         uanEw0F04TEi17mgOO61VYNhLBSWIyiG9y2P4wbFYqp3t6zr+9p9eUjFnVndp4P5VM0K
-         KlTqHzdUTOYItTSlo54tyj3P++krBrTOcYbe1LjlX4BPBrrsAvEn5dMOR6ikXoMyDRzI
-         H9MlRflEgMXjVfUIN8AI6vx+lNYBLjMB+gLFyRtNJaMbQ+DSpM0UJ4LhUmds09gAO+CE
-         socoKp4TSHX3hp4S9YL8JXTBKDJVvFy0roawToAiEjXPbcnlcNadr2UdANp7mwtsyDfL
-         3Xzg==
-X-Gm-Message-State: AOAM530gnHHAwq/aUf+BMgi2JtNxD9KCqALOQ2ijaQgfEWHHiDNMBbga
-	CnwblIYd1KIpxTPio2dSMKzvaA==
-X-Google-Smtp-Source: ABdhPJysMG9nQY5nRKaoggEUlpAsNT8PkhBZzGqf2H8yi+ZuT+22XWMrZxPx80yF/LxlFHTKRjcDKw==
-X-Received: by 2002:a05:600c:214e:: with SMTP id v14mr7342341wml.118.1598449030385;
-        Wed, 26 Aug 2020 06:37:10 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from d.9.b.8.7.0.d.0.8.3.5.0.7.0.4.c.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (d.9.b.8.7.0.d.0.8.3.5.0.7.0.4.c.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:c407:538:d07:8b9d])
-        by smtp.gmail.com with ESMTPSA id q6sm6059458wma.22.2020.08.26.06.37.07
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gMcOA+Q2tS2ZRTez3OcSUaiRk+ImmNLY0cneyTIfsC4=;
+        b=ZsxmukVwMZFPyKOSACNpwbTwhhZDAwzMOSEaAtSBWnc6IWGr4d+pShBNJHl7x/skWz
+         ydthfInGiHcm/yKtao14r+2zPFi2xcNUpjYDY1v5LXg8dVi9MJ+7KYNcD1ULsd81tQAL
+         w/kgdgQj5wTKP6MdXdARQAAsEdIKNE6RXsDW+VEDe2t0DfyLAhXztIQHP/U3dZuYDcz3
+         ZkoX8wdZ0eSGhuERJJPLo0r97QR/go+II/y5f6xosd+Ls8aS2pzmXtE38+1G1UwL0uLG
+         BgHcbyFty113uscuKnBeMjND93RvPbiuAkvmDCA0kBjS72qLD53TIRwtScbYuJQICNvh
+         T/xQ==
+X-Gm-Message-State: AOAM533OR4up5rXLO/sZO+5TUeL1sZ+S2q4kKXTkJ7wDlncROUVXG07+
+	Qm2lDf2eCQkUuwiw/JuFYHjMVKuR+Vg=
+X-Google-Smtp-Source: ABdhPJxwyvZua6AoXt73Jca5uktmX9FZr+iCvYOXaZEcvC7P62YcljQGUDYcR3NEUF5yGgmNIc0e0Q==
+X-Received: by 2002:a17:906:38c7:: with SMTP id r7mr16858155ejd.118.1598457312820;
+        Wed, 26 Aug 2020 08:55:12 -0700 (PDT)
+Return-Path: <alex.kanavin@gmail.com>
+Received: from linux-f9zs.site ([2a02:2450:1011:56f:b652:c378:b428:fdf])
+        by smtp.gmail.com with ESMTPSA id lx15sm2626958ejb.66.2020.08.26.08.55.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Aug 2020 06:37:08 -0700 (PDT)
-Message-ID: <48a73051d52905fa84dea36a494ccab708ef4369.camel@linuxfoundation.org>
-Subject: Re: [yocto] [PATCH] meta-yocto-bsp: Bump to the v5.8 kernel
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Bruce Ashfield <bruce.ashfield@gmail.com>, Kevin Hao
-	 <kexin.hao@windriver.com>
-Cc: Yocto Project <yocto@lists.yoctoproject.org>
-Date: Wed, 26 Aug 2020 14:37:06 +0100
-In-Reply-To: <CADkTA4NSuRDHodH=gOJCs_PHficwOgiVUEg+nLAAJLqqVwTCVw@mail.gmail.com>
-References: <20200826061330.30586-1-kexin.hao@windriver.com>
-	 <CADkTA4NSuRDHodH=gOJCs_PHficwOgiVUEg+nLAAJLqqVwTCVw@mail.gmail.com>
-User-Agent: Evolution 3.36.4-0ubuntu1 
+        Wed, 26 Aug 2020 08:55:12 -0700 (PDT)
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>
+Subject: [PATCH yocto-autobuilder-helper] config.json: add binutils to images where it's required by tests
+Date: Wed, 26 Aug 2020 17:54:33 +0200
+Message-Id: <20200826155433.16346-1-alex.kanavin@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Wed, 2020-08-26 at 08:44 -0400, Bruce Ashfield wrote:
-> On Wed, Aug 26, 2020 at 2:22 AM Kevin Hao <kexin.hao@windriver.com>
-> wrote:
-> > Boot test for all the supported boards. There is a kernel config
-> > check warning for beaglebone-yocto, the fix [1] has been sent to
-> > kernel-meta for merging.
-> > 
-> > [1] https://lists.yoctoproject.org/g/linux-yocto/message/8992
-> > 
-> 
-> Thanks Kevin! Most appreciated.
-> 
-> I'll have that meta data change merged today.
+Previously it was pulled in implicitly via poky default config.
 
-Its timely and very much appreciated! Also merged now as testing was
-fine, thanks!
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+---
+ config.json | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-Cheers,
-
-Richard
+diff --git a/config.json b/config.json
+index b78cba7..25be864 100644
+--- a/config.json
++++ b/config.json
+@@ -452,6 +452,7 @@
+             "step2" : {
+                 "SANITYTARGETS" : "core-image-sato:do_testimage",
+                 "extravars" : [
++                    "IMAGE_INSTALL_append = ' binutils'",
+                     "TEST_SUITES_append = ' x32lib'"
+                 ]
+             }
+@@ -501,7 +502,7 @@
+                     "MULTILIBS = 'multilib:lib32'",
+                     "DEFAULTTUNE_virtclass-multilib-lib32 = 'x86'",
+                     "RPM_PREFER_ELF_ARCH = '1'",
+-                    "IMAGE_INSTALL_append = ' lib32-connman-gnome gdk-pixbuf-loader-jpeg lib32-gdk-pixbuf-loader-jpeg gdk-pixbuf-loader-png  lib32-gdk-pixbuf-loader-png pango-module-basic-fc lib32-pango-module-basic-fc'"
++                    "IMAGE_INSTALL_append = ' binutils lib32-connman-gnome gdk-pixbuf-loader-jpeg lib32-gdk-pixbuf-loader-jpeg gdk-pixbuf-loader-png  lib32-gdk-pixbuf-loader-png pango-module-basic-fc lib32-pango-module-basic-fc'"
+                 ]
+             },
+             "step4" : {
+@@ -514,7 +515,7 @@
+                     "MULTILIBS = 'multilib:lib32'",
+                     "DEFAULTTUNE_virtclass-multilib-lib32 = 'x86'",
+                     "RPM_PREFER_ELF_ARCH = '1'",
+-                    "IMAGE_INSTALL_append = ' lib32-connman-gnome gdk-pixbuf-loader-jpeg lib32-gdk-pixbuf-loader-jpeg gdk-pixbuf-loader-png  lib32-gdk-pixbuf-loader-png pango-module-basic-fc lib32-pango-module-basic-fc'"
++                    "IMAGE_INSTALL_append = ' binutils lib32-connman-gnome gdk-pixbuf-loader-jpeg lib32-gdk-pixbuf-loader-jpeg gdk-pixbuf-loader-png  lib32-gdk-pixbuf-loader-png pango-module-basic-fc lib32-pango-module-basic-fc'"
+                 ]
+             },
+             "step5" : {
+-- 
+2.28.0
 
