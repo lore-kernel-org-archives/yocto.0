@@ -1,91 +1,71 @@
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
- by mx.groups.io with SMTP id smtpd.web11.15551.1598457314626662122
+Received: from mail3.multitech.com (mail3.multitech.com [65.126.90.13])
+ by mx.groups.io with SMTP id smtpd.web10.16176.1598459383983730744
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 Aug 2020 08:55:15 -0700
+ Wed, 26 Aug 2020 09:29:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=uTo62oKx;
- spf=pass (domain: gmail.com, ip: 209.85.218.48, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ej1-f48.google.com with SMTP id d11so3509719ejt.13
-        for <yocto@lists.yoctoproject.org>; Wed, 26 Aug 2020 08:55:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=gMcOA+Q2tS2ZRTez3OcSUaiRk+ImmNLY0cneyTIfsC4=;
-        b=uTo62oKxfJHUBr8WcmSJD2SBTxI7xxkZeSBaF35QrOHQkMGWGrYlkeR6B4QRlTzA1o
-         yFIJbog/9HIFhh4nZ/ZX5u9UDPWKYT20gwJ4d2ZRa+IEundgJxpX9lsfDKWHYIWoTQ+2
-         0QQO4Rob3NZwOMRUDIUY6Ii6oY6wVD/ZVt3bWFzHovIo2PCM0PodcEmBefOMyk+n0xO/
-         dBWybNirtywSO+vFYahQNmI+hHAApWKczy31TDZ00nURqoEmOV8b5mY+l65AjkBi/ya5
-         a+dQdLEyq0G0b4biNyIIp7OKDfT6h/aPiAvSk0BJQwvDbp8FKaKyh4lmWC1XxdC2vyV0
-         8GTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=gMcOA+Q2tS2ZRTez3OcSUaiRk+ImmNLY0cneyTIfsC4=;
-        b=ZsxmukVwMZFPyKOSACNpwbTwhhZDAwzMOSEaAtSBWnc6IWGr4d+pShBNJHl7x/skWz
-         ydthfInGiHcm/yKtao14r+2zPFi2xcNUpjYDY1v5LXg8dVi9MJ+7KYNcD1ULsd81tQAL
-         w/kgdgQj5wTKP6MdXdARQAAsEdIKNE6RXsDW+VEDe2t0DfyLAhXztIQHP/U3dZuYDcz3
-         ZkoX8wdZ0eSGhuERJJPLo0r97QR/go+II/y5f6xosd+Ls8aS2pzmXtE38+1G1UwL0uLG
-         BgHcbyFty113uscuKnBeMjND93RvPbiuAkvmDCA0kBjS72qLD53TIRwtScbYuJQICNvh
-         T/xQ==
-X-Gm-Message-State: AOAM533OR4up5rXLO/sZO+5TUeL1sZ+S2q4kKXTkJ7wDlncROUVXG07+
-	Qm2lDf2eCQkUuwiw/JuFYHjMVKuR+Vg=
-X-Google-Smtp-Source: ABdhPJxwyvZua6AoXt73Jca5uktmX9FZr+iCvYOXaZEcvC7P62YcljQGUDYcR3NEUF5yGgmNIc0e0Q==
-X-Received: by 2002:a17:906:38c7:: with SMTP id r7mr16858155ejd.118.1598457312820;
-        Wed, 26 Aug 2020 08:55:12 -0700 (PDT)
-Return-Path: <alex.kanavin@gmail.com>
-Received: from linux-f9zs.site ([2a02:2450:1011:56f:b652:c378:b428:fdf])
-        by smtp.gmail.com with ESMTPSA id lx15sm2626958ejb.66.2020.08.26.08.55.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Aug 2020 08:55:12 -0700 (PDT)
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-Subject: [PATCH yocto-autobuilder-helper] config.json: add binutils to images where it's required by tests
-Date: Wed, 26 Aug 2020 17:54:33 +0200
-Message-Id: <20200826155433.16346-1-alex.kanavin@gmail.com>
-X-Mailer: git-send-email 2.28.0
+ dkim=missing; spf=pass (domain: multitech.com, ip: 65.126.90.13, mailfrom: prvs=15008cc0bf=john.klug@multitech.com)
+Received: from mail3.multitech.com (localhost.localdomain [127.0.0.1])
+	by localhost (Email Security Appliance) with SMTP id 61C95825A7_F468DF7B
+	for <yocto@lists.yoctoproject.org>; Wed, 26 Aug 2020 16:29:43 +0000 (GMT)
+Received: from EXCHDBPM1.dc.multitech.prv (unknown [192.168.11.6])
+	(using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
+	(Client CN "", Issuer "MultiTech Systems Intermediate CA 01" (verified OK))
+	by mail3.multitech.com (Sophos Email Appliance) with ESMTPS id B00628256A_F468DF6F
+	for <yocto@lists.yoctoproject.org>; Wed, 26 Aug 2020 16:29:42 +0000 (GMT)
+Received: from EXCHDBPM1.dc.multitech.prv (192.168.11.6) by
+ EXCHDBPM1.dc.multitech.prv (192.168.11.6) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1847.3; Wed, 26 Aug 2020 11:29:42 -0500
+Received: from EXCHDBPM1.dc.multitech.prv ([192.168.11.6]) by
+ EXCHDBPM1.dc.multitech.prv ([192.168.11.6]) with mapi id 15.01.1847.009; Wed,
+ 26 Aug 2020 11:29:42 -0500
+From: "John Klug" <john.klug@multitech.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: Mono build has unresolved QA errors
+Thread-Topic: Mono build has unresolved QA errors
+Thread-Index: AdZ7FpUCYsdLWUDSRFSXiBjGcFReEwArx/Zg
+Date: Wed, 26 Aug 2020 16:29:42 +0000
+Message-ID: <d840ec3d94a7419aba10277a8214038b@multitech.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.11.45]
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-SASI-RCODE: 200
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Previously it was pulled in implicitly via poky default config.
+Because my links turned into a redirect, I will translate into subject, aut=
+hor, and date from this mailing list on related topics:
 
-Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
----
- config.json | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+"mono yocto build" Bing Mao Sep 20 2018
+"mono build issue" M=E1t=E9 T=FCske Feb 7 2018
 
-diff --git a/config.json b/config.json
-index b78cba7..25be864 100644
---- a/config.json
-+++ b/config.json
-@@ -452,6 +452,7 @@
-             "step2" : {
-                 "SANITYTARGETS" : "core-image-sato:do_testimage",
-                 "extravars" : [
-+                    "IMAGE_INSTALL_append = ' binutils'",
-                     "TEST_SUITES_append = ' x32lib'"
-                 ]
-             }
-@@ -501,7 +502,7 @@
-                     "MULTILIBS = 'multilib:lib32'",
-                     "DEFAULTTUNE_virtclass-multilib-lib32 = 'x86'",
-                     "RPM_PREFER_ELF_ARCH = '1'",
--                    "IMAGE_INSTALL_append = ' lib32-connman-gnome gdk-pixbuf-loader-jpeg lib32-gdk-pixbuf-loader-jpeg gdk-pixbuf-loader-png  lib32-gdk-pixbuf-loader-png pango-module-basic-fc lib32-pango-module-basic-fc'"
-+                    "IMAGE_INSTALL_append = ' binutils lib32-connman-gnome gdk-pixbuf-loader-jpeg lib32-gdk-pixbuf-loader-jpeg gdk-pixbuf-loader-png  lib32-gdk-pixbuf-loader-png pango-module-basic-fc lib32-pango-module-basic-fc'"
-                 ]
-             },
-             "step4" : {
-@@ -514,7 +515,7 @@
-                     "MULTILIBS = 'multilib:lib32'",
-                     "DEFAULTTUNE_virtclass-multilib-lib32 = 'x86'",
-                     "RPM_PREFER_ELF_ARCH = '1'",
--                    "IMAGE_INSTALL_append = ' lib32-connman-gnome gdk-pixbuf-loader-jpeg lib32-gdk-pixbuf-loader-jpeg gdk-pixbuf-loader-png  lib32-gdk-pixbuf-loader-png pango-module-basic-fc lib32-pango-module-basic-fc'"
-+                    "IMAGE_INSTALL_append = ' binutils lib32-connman-gnome gdk-pixbuf-loader-jpeg lib32-gdk-pixbuf-loader-jpeg gdk-pixbuf-loader-png  lib32-gdk-pixbuf-loader-png pango-module-basic-fc lib32-pango-module-basic-fc'"
-                 ]
-             },
-             "step5" : {
--- 
-2.28.0
+-----Original Message-----
+From: John Klug=20
+Sent: Tuesday, August 25, 2020 3:12 PM
+To: yocto@lists.yoctoproject.org
+Subject: Mono build has unresolved QA errors
 
+I am building the following version of meta-mono:
+commit 7a1e79ec48508edc19a33e8df567c49d0be3eb8c (HEAD, origin/thud)
+Merge: 6de5152 9977cab
+Author: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Date:   Wed May 27 13:36:43 2020 +0100
+
+The package mono 6.8.123 was built using Ubuntu 16.04.1.
+
+I am seeing RDEPENDS QA errors when building mono in Thud.  This is the fir=
+st:
+
+ERROR: mono-6.8.0.123-r0 do_package_qa: QA Issue: /usr/lib/mono/4.0-api/Sys=
+tem.Web.Http.dll contained in package mono-libs-4.0 requires mono(System.Ne=
+t.Http), but no providers found in RDEPENDS_mono-libs-4.0? [file-rdeps]
+
+These errors are also seen in these two posts that seem to be unresolved:
+
+https://www.yoctoproject.org/pipermail/yocto/2018-February/039930.html
+
+https://www.yoctoproject.org/pipermail/yocto/2018-September/042625.html
+=20
