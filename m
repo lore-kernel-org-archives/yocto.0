@@ -1,127 +1,118 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.16517.1598459797727467480
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
+ by mx.groups.io with SMTP id smtpd.web10.373.1598461281634106180
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 Aug 2020 09:36:37 -0700
+ Wed, 26 Aug 2020 10:01:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=NP9gYCCo;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: alex.kiernan@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00F8BE020A8; Wed, 26 Aug 2020 09:36:36 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (alex.kiernan[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.128.48 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CFF9E020A6
-	for <yocto@yoctoproject.org>; Wed, 26 Aug 2020 09:36:35 -0700 (PDT)
-Received: by mail-wm1-f48.google.com with SMTP id o21so2428803wmc.0
-        for <yocto@yoctoproject.org>; Wed, 26 Aug 2020 09:36:35 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=A8uvNUxj;
+ spf=pass (domain: gmail.com, ip: 209.85.217.42, mailfrom: mdrizwan827@gmail.com)
+Received: by mail-vs1-f42.google.com with SMTP id e14so1319327vsa.9;
+        Wed, 26 Aug 2020 10:01:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=78iP+Q3uAq51iUXRZKo288nklcL2fsGAbuju+skIt8s=;
-        b=NP9gYCCoiQbdEtHIb6IgEhqXED0Xgd9KHWm39IOy3pl9+vb8JvqQy/ggJYVily2kpX
-         EaQOiLuIvo6H3IgHjq7WNyxTo/fc5KIdcg7dIF1cEMC9XAfdSF2E3ztK/vF80TK6zojB
-         EqM9C0GdVsy1WrlF9kBupA4Mya+ClBcXG04yW/gCgyvQ/yOgv3k6sKf4MaeZaQltUKYt
-         7RDCaE8mlmC6a5tjDV9MCgGVBzN8T6hWT+NNEtpRQF/HfMtJjJMZ+6pmJ3tCw0Ab7jY3
-         vAGvjXu4O12zTH6aMuqMQaEU4ccovaYhADK7jUtBIMbj1vxmjcBnzH7YtAfiiGecbO3R
-         mYVQ==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=m12TaRCya6U94fLCVkt5Ylm5rt+03KRTpDtPijGSmbQ=;
+        b=A8uvNUxjy+AgpDzAKT7ht8Iaui4m4WZWYoEJmeru9EHz0L3D556ZAKvDtrI09f4/UA
+         n2erH1x3CINcg76z5lkYmmOSwCkpR7mB0ybbZjhbyBYAZEp7PhXzTNWEjWvxTgviRe2w
+         OidmEp/LP0AL5whRsgGvwSEdB5CzEJFDoVdR4ySsga0aQkfqPinkpAyw+ia6ieCs7zyC
+         EpJ7s9rRgPyhDTBaLdUd+Fir1o9dmbIPhVugKEBV14qfCfC2/0H/3qZO17vx/Iis2zcs
+         KumijsUyZ9DV5aTA/AMYIcdUWRJMghyT5WVjVGzqEQsHPINA5RWc6MrfkWTpvoje+yr0
+         WwZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=78iP+Q3uAq51iUXRZKo288nklcL2fsGAbuju+skIt8s=;
-        b=XIZyUYIAbR3/UXzyr16tiT0U73nG9f75Gu18xAX3n8BYdm9ppSZNXNaAWOUY4Q0kec
-         Zi7a0T8qtn5ftjLUaIHc7O49m74LHU7fldXtCOeuQAmIn38rH/2usLZiKtzFbJZ7zqiG
-         EME2cakC774jGtENBpn1SMRtVhpsGgHAimkZLL+zAT32fSMGZIZLPPTPvA3XKUVfPYh2
-         5jub0xwLY+54cFQe9C/wkQl37O57TR/UTS9DtFujdxbMYKOI+xONIIJkCEXv6fH4EpxO
-         VP+BPF4FIL88uHPr52Nq0vK0klEVdDSA1z1xgtGg0H6httblf02ISytWwGiB3oVhYu/r
-         zkNQ==
-X-Gm-Message-State: AOAM530T532+zZh1KEUz3QeVNrhAmnbq7AYaHQk7jO5PBZQdqNYxTUDi
-	mryHzyY5+xPHUj+GZdVPL+cHtyeIMdY=
-X-Google-Smtp-Source: ABdhPJwBVGoKSojEXFMsIx8ICAzgwUCtr1LaQWjcT+V1aTo5HTYtvFwnYGC1bpvgUDsAWGec1tBRlQ==
-X-Received: by 2002:a7b:c84f:: with SMTP id c15mr8433488wml.133.1598459794828;
-        Wed, 26 Aug 2020 09:36:34 -0700 (PDT)
-Received: from localhost.localdomain (cust246-dsl91-135-6.idnet.net. [91.135.6.246])
-        by smtp.gmail.com with ESMTPSA id q8sm2519484wrx.79.2020.08.26.09.36.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Aug 2020 09:36:34 -0700 (PDT)
-From: "Alex Kiernan" <alex.kiernan@gmail.com>
-To: yocto@yoctoproject.org
-Cc: Alex Kiernan <alex.kiernan@gmail.com>
-Subject: [meta-selinux][PATCH] audit: Backport gcc10 fix for common default
-Date: Wed, 26 Aug 2020 17:35:26 +0100
-Message-Id: <20200826163526.32264-1-alex.kiernan@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=m12TaRCya6U94fLCVkt5Ylm5rt+03KRTpDtPijGSmbQ=;
+        b=ukLrkcadRwKtGH7uabalodyUcBQmOPJrNnZYxJSM/Y0faNII9EUhb6RbwBu0rsZ2Mq
+         yhGQsdv24eTMp/YbcsP3kPeKRO7+igSY94PNEUzyXPK816sVgOHrNOgYleVXtVJb6V/5
+         +D7mOBrlJU1QPOjgfhKC+0dCqtvIft0z/8KkagyszVAZSQNRjjlpGEW/0q8mdGa4Diy8
+         myiKKZ21DnpNsl2vvAL/LJcFRAwySoe391my2Y2+6FU+z7HI3pfRqwboAp85+Gg7tf9n
+         YF01nYOnzwn7Z8PUMj+ixWI/8p/PYi7JpeA+NAgZt9bjB7D4b0I+BtM0o8MdPJzXvbNU
+         QZkw==
+X-Gm-Message-State: AOAM531TySi0lqRDIOSF+K5Z7Wna/mdf68RxIblgda9PPDQDbBw0wGfI
+	Aj0Ma3TnQEbDQSmrflzctfdpNIJNxDL/aT7fiUupChlIS5I=
+X-Google-Smtp-Source: ABdhPJwAAZYZR3KdHrR5AjlY0VhFLk38OIL/Cp5+49kJfPimEwjseoQzvXVFCAyrtbrAKuAsfKuZW+Sf1PXVW9qHonU=
+X-Received: by 2002:a67:bb06:: with SMTP id m6mr10051901vsn.54.1598461280319;
+ Wed, 26 Aug 2020 10:01:20 -0700 (PDT)
+MIME-Version: 1.0
+From: "Riz" <mdrizwan827@gmail.com>
+Date: Wed, 26 Aug 2020 22:30:53 +0530
+Message-ID: <CA+FSg4r7ZkyPTFNcfK+bo_u9HSYZibeGDSGRppbadx1k-7juJQ@mail.gmail.com>
+Subject: Identifying already created partitions in wic
+To: yocto@lists.yoctoproject.org, intel-iot-refkit@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000ccfcae05adcac440"
 
-Signed-off-by: Alex Kiernan <alex.kiernan@gmail.com>
----
+--000000000000ccfcae05adcac440
+Content-Type: text/plain; charset="UTF-8"
 
- ...ns-need-to-be-external-when-building.patch | 28 +++++++++++++++++++
- recipes-security/audit/audit_2.8.5.bb         |  1 +
- 2 files changed, 29 insertions(+)
- create mode 100644 recipes-security/audit/audit/0001-Header-definitions-need-to-be-external-when-building.patch
+Hello,
+I have been trying to find out a better way to "identify" the already
+prepared partition in WKS.
+I have written a custom source WIC plugin that needs the information about
+the already prepared partitions above.
 
-diff --git a/recipes-security/audit/audit/0001-Header-definitions-need-to-be-external-when-building.patch b/recipes-security/audit/audit/0001-Header-definitions-need-to-be-external-when-building.patch
-new file mode 100644
-index 000000000000..65ea4783a801
---- /dev/null
-+++ b/recipes-security/audit/audit/0001-Header-definitions-need-to-be-external-when-building.patch
-@@ -0,0 +1,28 @@
-+From 017e6c6ab95df55f34e339d2139def83e5dada1f Mon Sep 17 00:00:00 2001
-+From: Steve Grubb <sgrubb@redhat.com>
-+Date: Fri, 10 Jan 2020 21:13:50 -0500
-+Subject: [PATCH] Header definitions need to be external when building with
-+ -fno-common (which is default in GCC 10) - Tony Jones
-+
-+Upstream-Status: Backport
-+Signed-off-by: Alex Kiernan <alex.kiernan@gmail.com>
-+---
-+ src/ausearch-common.h | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/src/ausearch-common.h b/src/ausearch-common.h
-+index 6669203664ec..3040547afe95 100644
-+--- a/src/ausearch-common.h
-++++ b/src/ausearch-common.h
-+@@ -50,7 +50,7 @@ extern pid_t event_pid;
-+ extern int event_exact_match;
-+ extern uid_t event_uid, event_euid, event_loginuid;
-+ extern const char *event_tuid, *event_teuid, *event_tauid;
-+-slist *event_node_list;
-++extern slist *event_node_list;
-+ extern const char *event_comm;
-+ extern const char *event_filename;
-+ extern const char *event_hostname;
-+-- 
-+2.17.1
-+
-diff --git a/recipes-security/audit/audit_2.8.5.bb b/recipes-security/audit/audit_2.8.5.bb
-index af36ed5e2528..e3e5ddd541fc 100644
---- a/recipes-security/audit/audit_2.8.5.bb
-+++ b/recipes-security/audit/audit_2.8.5.bb
-@@ -11,6 +11,7 @@ SRC_URI = "git://github.com/linux-audit/${BPN}-userspace.git;branch=2.8_maintena
-            file://Add-substitue-functions-for-strndupa-rawmemchr.patch \
-            file://Fixed-swig-host-contamination-issue.patch \
-            file://0001-lib-i386_table.h-add-new-syscall.patch \
-+           file://0001-Header-definitions-need-to-be-external-when-building.patch \
-            file://auditd \
-            file://auditd.service \
-            file://audit-volatile.conf \
--- 
-2.17.1
+For example,
+part / --source rootfs --label rootfs --ondisk sda
+part --source myplygin --label rootfs --ondisk sda
 
+The myplugin.py needs to know the first partition (/) which is already
+prepared.
+
+I got a reference from the Intel IOT-refkit, in which they identify based
+on the label.
+This is a somewhat restrictive approach I feel since it depends on the
+label and also the fact that squashfs doesn't support the label parameter
+itself.
+Reference here:
+https://github.com/intel/intel-iot-refkit/blob/master/meta-refkit-core/scripts/lib/wic/plugins/source/dm-verity.py
+
+I see that in partition.py, the rootfs partition is specified in the
+following format
+        rootfs = "%s/rootfs_%s.%s.%s" % (cr_workdir, self.label,
+                                         self.lineno, self.fstype)
+
+Hence I think the refkit implementation preferred to use labels rather than
+using lineno and fstype.
+
+So, is there any better way using which we can identify the already
+prepared partition?
+
+Can't we use some other unique identifier like a uuid provided by the user
+for the particular partitoin while* preparing the partition*?
+Is there any plan for doing it?
+
+Thanks you.
+.
+
+--000000000000ccfcae05adcac440
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello,<br><div>I have been trying to find out a=C2=A0bette=
+r=C2=A0way to &quot;identify&quot; the=C2=A0already prepared=C2=A0partition=
+ in WKS.</div><div>I have written a=C2=A0custom source WIC plugin that need=
+s=C2=A0the information about the already prepared partitions above.</div><d=
+iv><br></div><div>For example,</div><div>part / --source rootfs --label roo=
+tfs --ondisk sda=C2=A0</div><div>part --source myplygin=C2=A0--label rootfs=
+ --ondisk sda</div><div><br></div><div>The myplugin.py needs to know the fi=
+rst partition (/) which is already prepared.</div><div><br></div><div>I got=
+ a=C2=A0reference from the Intel IOT-refkit, in which they identify based o=
+n the label.</div><div>This is a somewhat restrictive approach I feel since=
+ it depends=C2=A0on the label and also the fact that squashfs doesn&#39;t s=
+upport the label parameter itself.</div><div>Reference here:=C2=A0<a href=
+=3D"https://github.com/intel/intel-iot-refkit/blob/master/meta-refkit-core/=
+scripts/lib/wic/plugins/source/dm-verity.py">https://github.com/intel/intel=
+-iot-refkit/blob/master/meta-refkit-core/scripts/lib/wic/plugins/source/dm-=
+verity.py</a></div><div><br></div><div>I see that in partition.py, the root=
+fs partition is specified in the following format</div><div>=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 rootfs =3D &quot;%s/rootfs_%s.%s.%s&quot; % (cr_workdir, self=
+.label,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0self.lineno, self.fstype)<br></div><div><br></div><div>Hence I th=
+ink the refkit implementation=C2=A0preferred to use=C2=A0labels rather than=
+ using lineno and fstype.</div><div><br></div><div>So, is=C2=A0there any be=
+tter way using which we can identify the already prepared partition?</div><=
+div><br></div><div>Can&#39;t we use some other unique identifier like a uui=
+d provided by the user for the particular partitoin while<b> preparing the =
+partition</b>?</div><div>Is there any plan for doing it?</div><div><br></di=
+v><div>Thanks you.<br></div><div>.</div></div>
+
+--000000000000ccfcae05adcac440--
