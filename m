@@ -1,78 +1,153 @@
-Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
- by mx.groups.io with SMTP id smtpd.web12.16645.1598527143988643012
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+ by mx.groups.io with SMTP id smtpd.web12.17952.1598532076427850053
  for <yocto@lists.yoctoproject.org>;
- Thu, 27 Aug 2020 04:19:04 -0700
+ Thu, 27 Aug 2020 05:41:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=XDC/SV+k;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.68, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f68.google.com with SMTP id a65so4791753wme.5
-        for <yocto@lists.yoctoproject.org>; Thu, 27 Aug 2020 04:19:03 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=IJDAigm6;
+ spf=pass (domain: gmail.com, ip: 209.85.160.181, mailfrom: jeanmarie.lemetayer@gmail.com)
+Received: by mail-qt1-f181.google.com with SMTP id e5so4365237qth.5
+        for <yocto@lists.yoctoproject.org>; Thu, 27 Aug 2020 05:41:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=+bZYQM++uL9yOOFwsthSaR6A39+I3LNYnQNSFpw2tmY=;
-        b=XDC/SV+kgw96Mtms7FllymQ0isPvSNTWJGc+FikFSjvvRt9bEceXT3lccXwlgu8/Lj
-         DRJw6jBt72TWIqNwT+QL9QxfQ6/A+IpMqmINxbCPoleLEyWYKsFg8Lj2FJxyhsw6AMmF
-         9yTmYxQaU2LcuV0kB17pK2ga6CbYkU3ZUnTe8=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WIlJzt+B9mB3KDZzSqkyD3ue10jthyk5dTNDY93auH8=;
+        b=IJDAigm6u4PpWZvU8pvuRHWwvwz2ybVE4UHJ4rQy3r1KxbCWKhn96Q/m5VZ5XtH5di
+         5JanMpuONVqbSvUmXRu1YGYhxIKKZ2sYKLMdKHaCGttM/3z8p5RLrmH8sDxBpFe13A2z
+         XdJIt6bAggrSUmrQKpak8vJvoLkSGXsYoxgiXLuXfP26G29e1MRwh2DH888Rqe11kC8E
+         uI1rzmezFaIHjxiSlywfvPf6dI/1EXZdUZrXgbTK7Z3lV+2kfWAFXQDUlT/SrT4KMuBM
+         voK549Uh/v0Q22PinHg9l222kLweqEMiVwTAO3ehGgpGKzKg1sU2hQCSNs47YPF4Ya2m
+         EeLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=+bZYQM++uL9yOOFwsthSaR6A39+I3LNYnQNSFpw2tmY=;
-        b=IqdS5Afl3Xe/+VI59XyCZxpBW9cIpJ4LwAO/g7uerCHePgd6+AqQN6fOfIx97TVFxE
-         6wPi8eZJKcQXtG4Tdqtg+DO+E8Ovph1E5ug0Y3GrF+mBgyKruxDK1zEy5/l0Owx5wamC
-         NKK47pfcfkiB7WaO+b4hZXKy7mVOt2KkDHKrJcz9CU+BpiOtdDzd4vtl3/Y++Zz1Th68
-         jqUnpxOBUO9XWUj+vStaYhr9xKbQ5yg+PCClJ3Nm10d1Wq74rdpZMXqgS6+soNQ97c9p
-         pY/0A9YoWFGrlm5drFZ+CrS9OKK81trt0hYGTrrNTWpIEJPFM0igS5ccWXmIzZTBWEmZ
-         zcFA==
-X-Gm-Message-State: AOAM533Bt9AENBkHATGDUUcBYlzdi2MSIFHwHT+BMYaY5cNeyNrgJ/MW
-	a7U4VrtyefWutPtnz7zBYQt4Zg==
-X-Google-Smtp-Source: ABdhPJykukT4MMTGOF0B0RwUGsIOpcs+PqTcX0IjNiR8eL1QRZtXeQ/KJKIO2idqymnTQhvu+dJB/g==
-X-Received: by 2002:a05:600c:2246:: with SMTP id a6mr11790559wmm.71.1598527142350;
-        Thu, 27 Aug 2020 04:19:02 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from d.9.b.8.7.0.d.0.8.3.5.0.7.0.4.c.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (d.9.b.8.7.0.d.0.8.3.5.0.7.0.4.c.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:c407:538:d07:8b9d])
-        by smtp.gmail.com with ESMTPSA id q7sm5813969wra.56.2020.08.27.04.19.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Aug 2020 04:19:01 -0700 (PDT)
-Message-ID: <d4c1cbf006037d60c74cca86029c4e1fc23cd0b1.camel@linuxfoundation.org>
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] config.json: add binutils to images where it's required by tests
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Date: Thu, 27 Aug 2020 12:19:00 +0100
-In-Reply-To: <CANNYZj_p0MiLb8LM-ZdZs8tyaDEcovrxNUz5SMXeECWvdT7Teg@mail.gmail.com>
-References: <20200826155433.16346-1-alex.kanavin@gmail.com>
-	 <75a92bc5a9b597f0610987d5ab4b7de9b53f79ba.camel@linuxfoundation.org>
-	 <CANNYZj-Fg0aiqK2QM__OC+3r2N5-THnsUYX5Pgtt+mjWDDq5zg@mail.gmail.com>
-	 <2fcbd0f884b6b53a4cdc7002c278eef3a7868c06.camel@linuxfoundation.org>
-	 <CANNYZj_p0MiLb8LM-ZdZs8tyaDEcovrxNUz5SMXeECWvdT7Teg@mail.gmail.com>
-User-Agent: Evolution 3.36.4-0ubuntu1 
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WIlJzt+B9mB3KDZzSqkyD3ue10jthyk5dTNDY93auH8=;
+        b=f73vmsQli+qlKrSPifpZXMVlyBoAFDA2OxfGKMyVdH/atd9RabfQ4JYGdpENdIfBRe
+         1EmnzmUJZ0/GbA89zbmI3vBPLNr6nLpFlwujJZ3dHP6WH/NBuGC9afaNX8oeu/fDIfoZ
+         BLUVTLE3vuYhRcSG6IClbgwkVDCdDbY7bR00EBHEdm0K59lr1zsOBefae5dWOo2Y+XNo
+         7PaYykgAMLkNWG8V7Y+iNRCpv82rxLWVAnUb33wDzHbsdVxfrxltZaNMFnTaHGZ8A10A
+         7ARYREX293N2jeRaxhtECu8SyXAiAxj43UES5VoyVz8iKjD9B7o3nH+wtK1bTTVJKRIj
+         liAg==
+X-Gm-Message-State: AOAM531CjWzuhYB5bnNsbUZIUA2qtxyTO0ITGSpiyhOP/C8V3MALdmtD
+	Axq76y4pFH8u53gK5Ui/k6IbqReCMSj4bkpF4go=
+X-Google-Smtp-Source: ABdhPJxdeFSkICe0wd6LTwPTf/Th46xF39flZ/u2nCM8GAaOuUpePgLpB7AyTI+/0FOSBR4VawL3G/ICCEfpEA+j+u4=
+X-Received: by 2002:aed:20cb:: with SMTP id 69mr19164060qtb.106.1598532074386;
+ Thu, 27 Aug 2020 05:41:14 -0700 (PDT)
 MIME-Version: 1.0
+References: <PR2PR08MB4651C91870E245E47710A7388B550@PR2PR08MB4651.eurprd08.prod.outlook.com>
+In-Reply-To: <PR2PR08MB4651C91870E245E47710A7388B550@PR2PR08MB4651.eurprd08.prod.outlook.com>
+From: "Jean-Marie Lemetayer" <jeanmarie.lemetayer@gmail.com>
+Date: Thu, 27 Aug 2020 14:41:01 +0200
+Message-ID: <CAAdc0hyA81s+yrL5jriPNb57xZt76FKmWMp1HFhGWVNGjJiofw@mail.gmail.com>
+Subject: Re: [yocto] devtool add <npmmodule> ignores "devDependencies" from package.json when generates npm-shrinkwrap.json file
+To: "Cardenas Jose Antonio (JCARDENA)" <joseantonio.cardenas@niko.eu>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000074b92105addb4024"
+
+--00000000000074b92105addb4024
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2020-08-27 at 13:01 +0200, Alexander Kanavin wrote:
-> On Wed, 26 Aug 2020 at 23:03, Richard Purdie <
-> richard.purdie@linuxfoundation.org> wrote:
-> > >  I didn't write either of the tests, but yes - I can work on this
-> > > tomorrow.
-> > 
-> > Right, I didn't write them either, they're rather old. I'm just
-> > thinking whilst we've gotten this far we may as well fix this
-> > properly
-> > and stop it being copy and pasted onward. I appreciate the help!
-> 
-> And done, patches sent :) Bonus fix: one of the multilib tests was
-> erroneously always skipped.
+Hi Jose,
 
-Thanks, much appreciated!
+You have to use devtool with the --npm-dev option.
 
-I had a question on the skipped test. I think its only applicable to
-one specific multilib test case...
+Best regards,
+Jean-Marie
 
-Cheers,
+On Thu, Aug 27, 2020 at 12:47 PM Cardenas Jose Antonio (JCARDENA) <
+joseantonio.cardenas@niko.eu> wrote:
 
-Richard
+> Hi all,
+>
+>
+>
+> Trying to create a recipe from scratch with =E2=80=9Cdevtool add=E2=80=
+=9D tool, a
+> npm-shrinkwrap.json file is created from reading of package.json from th=
+e
+> module that is going to be installed.
+>
+>
+>
+> The building goes fine but I can=E2=80=99t run the application in the ta=
+rget
+> because nodejs misses the modules placed in =E2=80=9CdevDependencies=E2=
+=80=9D from
+> package.json.
+>
+> I have tried to include NPM_INSTALL_DEV =3D "1" in the recipe but I get =
+an
+> error because the modules that appears in =E2=80=9CdevDependencies=E2=80=
+=
+=9D from
+> package.json are not included in npm-shrinkwrap.json.
+>
+> There is any way to regenerate npm-shrinkwrap.json with devtool taking i=
+n
+> account devdependencies or a way to create npm-shrinkwrap.json with
+> =E2=80=9Cdevtool add=E2=80=9D in a way that takes in account devDependen=
+cies?
+>
+>
+>
+> Regards
+>
+> Jose
+>=20
+>
 
+--00000000000074b92105addb4024
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Jose,<div><br></div><div>You have to use devtool with t=
+he --npm-dev option.</div><div><br></div><div>Best regards,</div><div>Jean-=
+Marie</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Thu, Aug 27, 2020 at 12:47 PM Cardenas Jose Antonio (JCARDENA=
+) &lt;<a href=3D"mailto:joseantonio.cardenas@niko.eu">joseantonio.cardenas@=
+niko.eu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex">
+
+
+
+
+
+<div lang=3D"ES">
+<div class=3D"gmail-m_-3381908830215761428WordSection1">
+<p class=3D"MsoNormal">Hi all, <u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Trying to create a recipe from=
+ scratch with =E2=80=9Cdevtool add=E2=80=9D tool, a npm-shrinkwrap.json fil=
+e is created from reading of package.json from the module that is going to =
+be installed.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">The building goes fine but I c=
+an=E2=80=99t run the application in the target because nodejs misses the mo=
+dules placed in =E2=80=9CdevDependencies=E2=80=9D from package.json.
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I have tried to include NPM_IN=
+STALL_DEV =3D &quot;1&quot; in the recipe but I get an error because the mo=
+dules that appears in =E2=80=9CdevDependencies=E2=80=9D from package.json a=
+re not included in npm-shrinkwrap.json.
+<br>
+<br>
+There is any way to regenerate npm-shrinkwrap.json with devtool taking in =
+account devdependencies or a way to create npm-shrinkwrap.json with =E2=80=
+=9Cdevtool add=E2=80=9D in a way that takes in account devDependencies?<u>=
+</u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Regards <u></u><u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Jose<u></u><u></u></span></p>
+</div>
+</div>
+
+<br>
+</blockquote></div>
+
+--00000000000074b92105addb4024--
