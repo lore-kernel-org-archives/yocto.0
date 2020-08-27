@@ -1,90 +1,78 @@
-Received: from mail-vs1-f65.google.com (mail-vs1-f65.google.com [209.85.217.65])
- by mx.groups.io with SMTP id smtpd.web11.16283.1598526130674683568
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
+ by mx.groups.io with SMTP id smtpd.web12.16645.1598527143988643012
  for <yocto@lists.yoctoproject.org>;
- Thu, 27 Aug 2020 04:02:10 -0700
+ Thu, 27 Aug 2020 04:19:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ulAqYV6R;
- spf=pass (domain: gmail.com, ip: 209.85.217.65, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vs1-f65.google.com with SMTP id u131so2565731vsu.11
-        for <yocto@lists.yoctoproject.org>; Thu, 27 Aug 2020 04:02:10 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=XDC/SV+k;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.68, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f68.google.com with SMTP id a65so4791753wme.5
+        for <yocto@lists.yoctoproject.org>; Thu, 27 Aug 2020 04:19:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AxpWwiQq6ZYHh8Y3YiW5FS2+/8sVFX9EhLiPyqDi6vE=;
-        b=ulAqYV6RiaDkR87QtkUwbWKteTfCuFVREK9qK+DSW+QJ4HAsitm9O7Rp8HFnCmUjY0
-         LrskvVPU1Ralr3CFkzT7leyybkpZHPpj/6hBAh/ZJrDNMWyzpXT91z655evQju09uP5O
-         Voy1FbEJggIbT2PLuGQvrrWQ8wVuC+O7dswowA4jorX40nYy00OyWE66rC8J/onc0u7X
-         2vIRH2heoPymlk7SCOXd7cVIyndgdP0Feq1hJO2mrqNLCeKiQJgBtI5A4UYL++o/Z9dn
-         tEGgQWN5PP2CRbcLhRIUZqzS+tm90Rn3DgVKa77lsEpHFo1+iF965oSAd/AVvN1xGymP
-         +Kqw==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=+bZYQM++uL9yOOFwsthSaR6A39+I3LNYnQNSFpw2tmY=;
+        b=XDC/SV+kgw96Mtms7FllymQ0isPvSNTWJGc+FikFSjvvRt9bEceXT3lccXwlgu8/Lj
+         DRJw6jBt72TWIqNwT+QL9QxfQ6/A+IpMqmINxbCPoleLEyWYKsFg8Lj2FJxyhsw6AMmF
+         9yTmYxQaU2LcuV0kB17pK2ga6CbYkU3ZUnTe8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AxpWwiQq6ZYHh8Y3YiW5FS2+/8sVFX9EhLiPyqDi6vE=;
-        b=Bx9uXH1lZlCoDv/QLz6jpgEg/2xWtzokRAGikTKZBFwb2VdJTi7IVVRhX46l1KNQka
-         HfNgbWGuBLiPx4zqbIaFP+TIO2HEnNcUXvxrlqdpczeS+HGtb/7N6DnzpSPnJDxAiGuU
-         pS7CBvj7dnklmZrgEnvrBzhI2ZbT2r9pUCwtTOo2vY1Vndb8f7D3AMXVM7JbLaieHA0O
-         HZgg2uXtDU1x+H6J1mnzmN/s46Zhn2ZjcY00hg4yKRV5LFvjHr2SNwk7xBWMv8pC1iJU
-         4PV5gMoBTbAkQn6JIHYwIRDM/92u9JclFmqxZXBchnOIFQq0647AKyUhuyBQIWsIvWCc
-         QjKQ==
-X-Gm-Message-State: AOAM5331YPJLJp5gURfb+xFFCwkmj5UmexBmbNwVmIcGWNrEYihybRyQ
-	8nmAwPdDk0S28mKWLjenCk4vaYbKrswwiYIFEfw=
-X-Google-Smtp-Source: ABdhPJwC8HS8vJRibPk31b338CEFZ/TBOrJQ31UqCkUXnMlbq0yQb94wzjUlpMsMVhTbZcTknmcLd2A5sUUYKTEx83I=
-X-Received: by 2002:a67:bd0f:: with SMTP id y15mr10941545vsq.47.1598526129820;
- Thu, 27 Aug 2020 04:02:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200826155433.16346-1-alex.kanavin@gmail.com>
- <75a92bc5a9b597f0610987d5ab4b7de9b53f79ba.camel@linuxfoundation.org>
- <CANNYZj-Fg0aiqK2QM__OC+3r2N5-THnsUYX5Pgtt+mjWDDq5zg@mail.gmail.com> <2fcbd0f884b6b53a4cdc7002c278eef3a7868c06.camel@linuxfoundation.org>
-In-Reply-To: <2fcbd0f884b6b53a4cdc7002c278eef3a7868c06.camel@linuxfoundation.org>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Thu, 27 Aug 2020 13:01:58 +0200
-Message-ID: <CANNYZj_p0MiLb8LM-ZdZs8tyaDEcovrxNUz5SMXeECWvdT7Teg@mail.gmail.com>
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=+bZYQM++uL9yOOFwsthSaR6A39+I3LNYnQNSFpw2tmY=;
+        b=IqdS5Afl3Xe/+VI59XyCZxpBW9cIpJ4LwAO/g7uerCHePgd6+AqQN6fOfIx97TVFxE
+         6wPi8eZJKcQXtG4Tdqtg+DO+E8Ovph1E5ug0Y3GrF+mBgyKruxDK1zEy5/l0Owx5wamC
+         NKK47pfcfkiB7WaO+b4hZXKy7mVOt2KkDHKrJcz9CU+BpiOtdDzd4vtl3/Y++Zz1Th68
+         jqUnpxOBUO9XWUj+vStaYhr9xKbQ5yg+PCClJ3Nm10d1Wq74rdpZMXqgS6+soNQ97c9p
+         pY/0A9YoWFGrlm5drFZ+CrS9OKK81trt0hYGTrrNTWpIEJPFM0igS5ccWXmIzZTBWEmZ
+         zcFA==
+X-Gm-Message-State: AOAM533Bt9AENBkHATGDUUcBYlzdi2MSIFHwHT+BMYaY5cNeyNrgJ/MW
+	a7U4VrtyefWutPtnz7zBYQt4Zg==
+X-Google-Smtp-Source: ABdhPJykukT4MMTGOF0B0RwUGsIOpcs+PqTcX0IjNiR8eL1QRZtXeQ/KJKIO2idqymnTQhvu+dJB/g==
+X-Received: by 2002:a05:600c:2246:: with SMTP id a6mr11790559wmm.71.1598527142350;
+        Thu, 27 Aug 2020 04:19:02 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from d.9.b.8.7.0.d.0.8.3.5.0.7.0.4.c.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (d.9.b.8.7.0.d.0.8.3.5.0.7.0.4.c.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:c407:538:d07:8b9d])
+        by smtp.gmail.com with ESMTPSA id q7sm5813969wra.56.2020.08.27.04.19.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Aug 2020 04:19:01 -0700 (PDT)
+Message-ID: <d4c1cbf006037d60c74cca86029c4e1fc23cd0b1.camel@linuxfoundation.org>
 Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] config.json: add binutils to images where it's required by tests
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000021d78005add9deee"
-
---00000000000021d78005add9deee
+Date: Thu, 27 Aug 2020 12:19:00 +0100
+In-Reply-To: <CANNYZj_p0MiLb8LM-ZdZs8tyaDEcovrxNUz5SMXeECWvdT7Teg@mail.gmail.com>
+References: <20200826155433.16346-1-alex.kanavin@gmail.com>
+	 <75a92bc5a9b597f0610987d5ab4b7de9b53f79ba.camel@linuxfoundation.org>
+	 <CANNYZj-Fg0aiqK2QM__OC+3r2N5-THnsUYX5Pgtt+mjWDDq5zg@mail.gmail.com>
+	 <2fcbd0f884b6b53a4cdc7002c278eef3a7868c06.camel@linuxfoundation.org>
+	 <CANNYZj_p0MiLb8LM-ZdZs8tyaDEcovrxNUz5SMXeECWvdT7Teg@mail.gmail.com>
+User-Agent: Evolution 3.36.4-0ubuntu1 
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Wed, 26 Aug 2020 at 23:03, Richard Purdie <
-richard.purdie@linuxfoundation.org> wrote:
+On Thu, 2020-08-27 at 13:01 +0200, Alexander Kanavin wrote:
+> On Wed, 26 Aug 2020 at 23:03, Richard Purdie <
+> richard.purdie@linuxfoundation.org> wrote:
+> > >  I didn't write either of the tests, but yes - I can work on this
+> > > tomorrow.
+> > 
+> > Right, I didn't write them either, they're rather old. I'm just
+> > thinking whilst we've gotten this far we may as well fix this
+> > properly
+> > and stop it being copy and pasted onward. I appreciate the help!
+> 
+> And done, patches sent :) Bonus fix: one of the multilib tests was
+> erroneously always skipped.
 
-> >  I didn't write either of the tests, but yes - I can work on this
-> > tomorrow.
->
-> Right, I didn't write them either, they're rather old. I'm just
-> thinking whilst we've gotten this far we may as well fix this properly
-> and stop it being copy and pasted onward. I appreciate the help!
->
+Thanks, much appreciated!
 
-And done, patches sent :) Bonus fix: one of the multilib tests was
-erroneously always skipped.
+I had a question on the skipped test. I think its only applicable to
+one specific multilib test case...
 
-Alex
+Cheers,
 
---00000000000021d78005add9deee
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Richard
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Wed, 26 Aug 2020 at 23:03, Richard Pur=
-die &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org">richard.purdi=
-e@linuxfoundation.org</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex">&gt;=C2=A0 I didn&#39;t wri=
-te either of the tests, but yes - I can work on this<br>
-&gt; tomorrow.<br>
-<br>
-Right, I didn&#39;t write them either, they&#39;re rather old. I&#39;m just=
-<br>
-thinking whilst we&#39;ve gotten this far we may as well fix this properly<=
-br>
-and stop it being copy and pasted onward. I appreciate the help!<br></block=
-quote><div><br></div><div>And done, patches sent :) Bonus fix: one of the m=
-ultilib tests was erroneously always skipped.</div><div><br></div><div>Alex=
-<br></div></div></div>
-
---00000000000021d78005add9deee--
