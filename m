@@ -1,229 +1,88 @@
-Received: from 15.mo5.mail-out.ovh.net (15.mo5.mail-out.ovh.net [178.33.107.29])
- by mx.groups.io with SMTP id smtpd.web10.38027.1598598890525187916
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+ by mx.groups.io with SMTP id smtpd.web11.38887.1598603237981246501
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Aug 2020 00:14:51 -0700
+ Fri, 28 Aug 2020 01:27:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 178.33.107.29, mailfrom: maciej.pijanowski@3mdeb.com)
-Received: from player737.ha.ovh.net (unknown [10.110.103.180])
-	by mo5.mail-out.ovh.net (Postfix) with ESMTP id 07301292DCC
-	for <yocto@lists.yoctoproject.org>; Fri, 28 Aug 2020 09:14:47 +0200 (CEST)
-Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
-	(Authenticated sender: maciej.pijanowski@3mdeb.com)
-	by player737.ha.ovh.net (Postfix) with ESMTPSA id 38780C209F36;
-	Fri, 28 Aug 2020 07:14:45 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-105G006797ccf36-603b-4534-92d1-f948e1a3f015,
-                    9E73030970DB4E3134A1432506E07132F5F86F52) smtp.auth=maciej.pijanowski@3mdeb.com
-Subject: Re: [yocto] Removing Python2 Completely
-To: Aashik Aswin <thisisaash9698@gmail.com>, yocto@lists.yoctoproject.org
-References: <CANVQz1acaPcBOLw7OWCD3sXBM4Q_iqC2bJcRRm_xQtgMtuYwhg@mail.gmail.com>
- <a61e089e-a927-cf88-c005-41f01e6fcf95@3mdeb.com>
- <CANVQz1aQH1DRheyAE70y+PuGMs9OZ6hhMGR=CkjpyMnP2e5rhQ@mail.gmail.com>
-From: "Maciej Pijanowski" <maciej.pijanowski@3mdeb.com>
-Message-ID: <3d0b2801-1120-fde4-ea56-0d364b12539c@3mdeb.com>
-Date: Fri, 28 Aug 2020 09:14:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ZXBX45I5;
+ spf=pass (domain: gmail.com, ip: 209.85.128.51, mailfrom: lefevre.da@gmail.com)
+Received: by mail-wm1-f51.google.com with SMTP id o21so152619wmc.0
+        for <yocto@lists.yoctoproject.org>; Fri, 28 Aug 2020 01:27:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=CGuXdlry9DU5jZTlC87FMYivU9gSakQWjPiQf7VKIcw=;
+        b=ZXBX45I5l9iVq/axxDUgG2OxLscILas64wSTHGBVI6a4Hv0AXa6WStbc5WtlXsvEiS
+         74v+JaoyrbNwvpgaBAvrwhamltnzaecYaWNuj8O9FFnCsd3mxJmQHrVOILtsPWO22E6p
+         rltltgg89MlOgZ8DMqJLEVoFruYBMUYAJsm0ssFYiXfvkF7mraMzpu6du9uRGqLTvOFL
+         cNENMUElu9FtG1oMveCJSL0fxtARwAbwJngD1Bos0qwVhHosI0zEHGTZRFczHzPEzeHY
+         daYbZJbZuP6MK4auJtyd1C91EzvjT6diTFl1w4sNjsJAOTAQXRnHoraSZAmvial8qH/R
+         isYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=CGuXdlry9DU5jZTlC87FMYivU9gSakQWjPiQf7VKIcw=;
+        b=spSmJydizY8+bTuSNCR1/qnjyqKUUrAh81iCme3vug3Zr/mqWw1TZTTzuB+wdDAe7Y
+         t0evxoZTt9hgwNs2MkYWHjCAQX893pz+LQ70NROlP1BQXaatT0FNyWZSPZjPbxwk3p61
+         pG70MlVgFzW4L1W5ydmSJdiu/UO2ioOXNfiskS4JnEMmTXlufxxtHku/OJh9zqTnxejT
+         A0fbr80kTfHn7807i9QNPt5QtrEEgU47QRZl/De38IflPfvHvG7MpTS+ipAZog9y2PO+
+         4PYkCwJV9l546E/Ro5EbugvaEUpSIxQ7/bl1wOy7GSikIFTQm3hX8Mde2ovhYdadXeal
+         zSJA==
+X-Gm-Message-State: AOAM5321tCMg0NDlqvU1oZUZfnO1vDkAlF/NFtOcpzrXPfbtzesUZGyM
+	aAnSRNd6zIWHmvfymaRS4KDfT+PMdWuRIeYRs4znCpun6Q==
+X-Google-Smtp-Source: ABdhPJzrtFHGlMuSUv5SS9YbygEL5asd0Nc4ait5IH+ldDgEnFLIrxSVFor2eA32hMkXHVELW/RYB+1r3gzexUwa8XQ=
+X-Received: by 2002:a1c:96d7:: with SMTP id y206mr473983wmd.9.1598603235897;
+ Fri, 28 Aug 2020 01:27:15 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CANVQz1aQH1DRheyAE70y+PuGMs9OZ6hhMGR=CkjpyMnP2e5rhQ@mail.gmail.com>
-X-Ovh-Tracer-Id: 12603042084433047046
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduiedruddviedguddufecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhepuffvfhfhkffffgggjggtsegrtderredtfeejnecuhfhrohhmpeforggtihgvjhcurfhijhgrnhhofihskhhiuceomhgrtghivghjrdhpihhjrghnohifshhkihesfehmuggvsgdrtghomheqnecuggftrfgrthhtvghrnhepteejjeeftddtledtkeffveffueegjeegieefgfevtdelfeduhffgffekheelvdejnecuffhomhgrihhnpeihohgtthhophhrohhjvggtthdrohhrghdpfehmuggvsgdrtghomhenucfkpheptddrtddrtddrtddpkeehrddvvddvrdduudejrddvvddvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeefjedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhg
-Content-Type: multipart/alternative;
- boundary="------------E15C81B3A739B4C8756190F5"
-Content-Language: en-US
+From: "Damien LEFEVRE" <lefevre.da@gmail.com>
+Date: Fri, 28 Aug 2020 11:27:05 +0300
+Message-ID: <CA+FhBv-72SsCNcRY2phG-vBZMV6n78O1K4h=DbUQOOLrJoeJ-Q@mail.gmail.com>
+Subject: How to generate opensource licenses credits web page
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000000336ab05adebd2f2"
 
---------------E15C81B3A739B4C8756190F5
-Content-Type: text/plain; charset=utf-8; format=flowed
+--0000000000000336ab05adebd2f2
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+I have a distro which is not using any package manager in the image. Images
+are deployed atomically.
+
+I'd like to make a script to generate the credits / acknowledgement web
+page for all the open source components to ease the task and make sure I
+don't forget anyone.
+
+In the actual image I have the list of the licenses in /usr/share/licenses/
+which is good, but I'm missing the SUMMARY, DESCRIPTION, and HOMEPAGE
+fields we declare in the recipes which would be nice to display
+
+Is there any built-in way to bring that information in the image?
+
+I noticed that in the image's build directory there is
+/image-name/1.0-r0/oe-rootfs-repo/aarch64/Packages which if I understand
+correctly has the ipk package list with the missing information.
+
+Is there a way to copy that file in the image after do_rootfs completes?
+
+Thanks,
+-Damien
+
+--0000000000000336ab05adebd2f2
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi,<br><br>I have a distro which is not using any package =
+manager in the image. Images are deployed atomically.<br><br>I&#39;d like t=
+o make a script to generate the credits / acknowledgement web page for all =
+the open source components to ease the task and make sure I don&#39;t forge=
+t anyone.<br><br>In the actual image I have the list of the licenses in /us=
+r/share/licenses/ which is good, but I&#39;m missing the SUMMARY, DESCRIPTI=
+ON, and HOMEPAGE fields we declare in the recipes which would be nice to di=
+splay<br><br>Is there any built-in way to bring that information in the ima=
+ge?<br><br>I noticed that in the image&#39;s build directory there is /imag=
+e-name/1.0-r0/oe-rootfs-repo/aarch64/Packages which if I understand correct=
+ly has the ipk package list with the missing information.<br><br>Is there a=
+ way to copy that file in the image after do_rootfs completes?<br><div><br>=
+</div><div>Thanks,</div><div>-Damien</div></div>
 
-On 28.08.2020 09:10, Aashik Aswin wrote:
-> Hi,
-> I am currently using Yocto Zeus. So is it safe to say that if we=20
-> remove all the Python2 calls from image, that itself will remove=20
-> Python2 overall ?
-
-If you want to remove python2 from the image, you need to make sure that=
-=20
-no other package installed
-to the image RDEPENDS (runtime dependency) on it. I would start with=20
-checking what still pulls the
-python2 to your image.
-
-https://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#usingpoky=
--debugging-dependencies
-
-Also, please reply to the list, not directly to just me.
-
->
-> Thanks,
-> Aashik
->
-> On Fri 28 Aug, 2020, 12:37 PM Maciej Pijanowski,=20
-> <maciej.pijanowski@3mdeb.com <mailto:maciej.pijanowski@3mdeb.com>> wrote=
-:
->
->
->     On 28.08.2020 09:04, Aashik Aswin wrote:
->>     Hi,
->>
->>     I am trying to remove Python2 and it's supporting modules
->>     completely from my Image, as I have moved all my code to Python3
->>     and hence no longer require Python2. I tried the
->>     IMAGE_INSTALL_remove variable but seems to have no effect. Is
->>     there a way I can remove Python2 without much changes to the
->>     layers and through configuration variables only ?
->
->     You can see what is pulling the python2 to the image (using the
->     bitbake -g for example).
->
->     Which Yocto release are you using? I believe the latest one
->     (Dunfell) is already python3 only.
->
->
->>
->>     Please point me to the correct mailer if=C2=A0 I am wrong.
->>
->>     Thanks,
->>     Aashik
->>
->     --=20
->     Maciej Pijanowski
->     Embedded Systems Engineer
->     GPG: 9963C36AAC3B2B46
->     https://3mdeb.com  | @3mdeb_com
->
->    =20
->
---=20
-Maciej Pijanowski
-Embedded Systems Engineer
-GPG: 9963C36AAC3B2B46
-https://3mdeb.com | @3mdeb_com
-
-
---------------E15C81B3A739B4C8756190F5
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 28.08.2020 09:10, Aashik Aswin
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CANVQz1aQH1DRheyAE70y+PuGMs9OZ6hhMGR=3DCkjpyMnP2e5rhQ@mail.gma=
-il.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUT=
-F-8">
-      <div dir=3D"auto">Hi,
-        <div dir=3D"auto">=C2=A0</div>
-        <div dir=3D"auto">I am currently using Yocto Zeus. So is it safe
-          to say that if we remove all the Python2 calls from image,
-          that itself will remove Python2 overall ?</div>
-      </div>
-    </blockquote>
-    <br>
-    If you want to remove python2 from the image, you need to make sure
-    that no other package installed<br>
-    to the image RDEPENDS (runtime dependency) on it. I would start with
-    checking what still pulls the<br>
-    python2 to your image.<br>
-    <br>
-    <p>
-<a class=3D"moz-txt-link-freetext" href=3D"https://www.yoctoproject.org/do=
-cs/1.8/ref-manual/ref-manual.html#usingpoky-debugging-dependencies">https:/=
-/www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#usingpoky-debuggi=
-ng-dependencies</a></p>
-    <p>Also, please reply to the list, not directly to just me.<br>
-    </p>
-    <blockquote type=3D"cite"
-cite=3D"mid:CANVQz1aQH1DRheyAE70y+PuGMs9OZ6hhMGR=3DCkjpyMnP2e5rhQ@mail.gma=
-il.com">
-      <div dir=3D"auto">
-        <div dir=3D"auto"><br>
-        </div>
-        <div dir=3D"auto">Thanks,</div>
-        <div dir=3D"auto">Aashik</div>
-      </div>
-      <br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Fri 28 Aug, 2020, 12:37 P=
-M
-          Maciej Pijanowski, &lt;<a
-            href=3D"mailto:maciej.pijanowski@3mdeb.com"
-            moz-do-not-send=3D"true">maciej.pijanowski@3mdeb.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0
-          .8ex;border-left:1px #ccc solid;padding-left:1ex">
-          <div>
-            <p><br>
-            </p>
-            <div>On 28.08.2020 09:04, Aashik Aswin wrote:<br>
-            </div>
-            <blockquote type=3D"cite">
-              <div dir=3D"ltr">Hi,
-                <div><br>
-                </div>
-                <div>I am trying to remove Python2 and it's supporting
-                  modules completely from my Image, as I have moved all
-                  my code to Python3 and hence no longer require
-                  Python2.=C2=A0<span>I tried the IMAGE_INSTALL_remove
-                    variable but seems to have no effect. Is there a way
-                    I can remove Python2 without much changes to the
-                    layers and through configuration variables only ?</spa=
-n></div>
-              </div>
-            </blockquote>
-            <p>You can see what is pulling the python2 to the image
-              (using the bitbake -g for example).<br>
-              <br>
-              Which Yocto release are you using? I believe the latest
-              one (Dunfell) is already python3 only.<br>
-            </p>
-            <p><br>
-            </p>
-            <blockquote type=3D"cite">
-              <div dir=3D"ltr">
-                <div><span><br>
-                  </span></div>
-                <div><span>Please point me to the correct mailer if=C2=A0 =
-I
-                    am wrong.</span></div>
-                <div><span><br>
-                  </span></div>
-                <div><span>Thanks,</span></div>
-                <div><span>Aashik</span></div>
-              </div>
-              <br>
-              <fieldset></fieldset>
-            </blockquote>
-            <pre cols=3D"72">--=20
-Maciej Pijanowski
-Embedded Systems Engineer
-GPG: 9963C36AAC3B2B46
-<a href=3D"https://3mdeb.com" target=3D"_blank" rel=3D"noreferrer" moz-do-=
-not-send=3D"true">https://3mdeb.com</a> | @3mdeb_com</pre>
-          </div>
-          <br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <pre class=3D"moz-signature" cols=3D"72">--=20
-Maciej Pijanowski
-Embedded Systems Engineer
-GPG: 9963C36AAC3B2B46
-<a class=3D"moz-txt-link-freetext" href=3D"https://3mdeb.com">https://3mde=
-b.com</a> | @3mdeb_com</pre>
-  </body>
-</html>
-
---------------E15C81B3A739B4C8756190F5--
+--0000000000000336ab05adebd2f2--
