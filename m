@@ -1,270 +1,124 @@
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (EUR01-DB5-obe.outbound.protection.outlook.com [40.107.15.50])
- by mx.groups.io with SMTP id smtpd.web12.43583.1598624168125868816
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.45221.1598627964403248469
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Aug 2020 07:16:09 -0700
+ Fri, 28 Aug 2020 08:19:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@niko.eu header.s=selector2 header.b=fQwP1X9V;
- spf=pass (domain: niko.eu, ip: 40.107.15.50, mailfrom: joseantonio.cardenas@niko.eu)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C4LHCEanxeBxLU29GIKbPCLXao307dGpOMluJM28z0bSTn0LT++SJI1MJ3xwtS9gfPumzvnZ8vBd7OXP5qXAYYOImMkM+El/8oREPpJTMQb/v0AueLld0fSLvrM66IBdzzwBbeelNKoWi0aDUVcfsSLS6sw+AqR/P3PtgAxU2B83vR6c+LixPlR+0qe7VSOwOxpHQOjM8BMJX42tNS+DGKQaU1xYyuY5LresjZpsflGeptbF+RV4zfwaakq1b/I4NG3KvxsvOzSuPJQW2WBXWpojAWDSRlRtOcYbfH8mWxYs1zu9md7T3vAjXB6E/nbGNxDiDE6T/LCPToEnWaIfhg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7yTBi6LriwXBMxih+jripaa3sB6FI2TBhQPTtphL/cQ=;
- b=LQCC1/nwj7hErqZJhHsDt4OVN6O2qNxd2AQOCyecBiMhVyFAeNZdUiOHfNmsP0iuZtkBnD/DchHnpG9+M1r8RpUaaka58R/Ar9Sb8mN/e8T3GeqkzjdTqXDiKrl+Cpl/tURS80N1BBl2KB83wMBDFwpOAWDr0su2gR3bbXdOfmjkO/rU8bxfgT/639cZixbl/IozDANv9PJ29mKh2GHGbH0wIuYlj9ihs0QMfOO9PEGRQsbw5yxfZN3+ZhVMm2EECRFuqti7kzINj7UwD5GyM+HnxAnABReeJst7dtSnKDEIqUi9UmHAskFaVOEhnnV4v+t/AMMiK4tKMWKBBaOExg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=niko.eu; dmarc=pass action=none header.from=niko.eu; dkim=pass
- header.d=niko.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=niko.eu; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7yTBi6LriwXBMxih+jripaa3sB6FI2TBhQPTtphL/cQ=;
- b=fQwP1X9Vl+oF2kdMwI3NBDQHd6djzfkQfNSJIY8dUSN1uCRDXe65BVtzVqZnsQXgw6mjNUlFvLgRr5d4MtZ+OB6p/Qonx89B0inFF5XzFNwsZcB5KeWy/pHWEq/R8dskb3zdpodhQswJOJws6PUARuUUOkfJjVwWiYySq0H97HY=
-Received: from PR2PR08MB4651.eurprd08.prod.outlook.com (2603:10a6:101:1c::10)
- by PR3PR08MB5644.eurprd08.prod.outlook.com (2603:10a6:102:86::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.21; Fri, 28 Aug
- 2020 14:16:05 +0000
-Received: from PR2PR08MB4651.eurprd08.prod.outlook.com
- ([fe80::e9:a178:7f75:48c1]) by PR2PR08MB4651.eurprd08.prod.outlook.com
- ([fe80::e9:a178:7f75:48c1%4]) with mapi id 15.20.3261.026; Fri, 28 Aug 2020
- 14:16:05 +0000
-From: "Cardenas Jose Antonio (JCARDENA)" <joseantonio.cardenas@niko.eu>
-To: Jean-Marie Lemetayer <jeanmarie.lemetayer@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] dist folder missing in npm build.
-Thread-Topic: [yocto] dist folder missing in npm build.
-Thread-Index: AdZ9IHYbc/gPo1sDSXiR7gxnHDL5ngAFXEcAAAPryJI=
-Date: Fri, 28 Aug 2020 14:16:05 +0000
-Message-ID: 
- <PR2PR08MB465126E72AAD99742BD584C08B520@PR2PR08MB4651.eurprd08.prod.outlook.com>
-References: 
- <PR2PR08MB46513AE9AE69434AF6E860EB8B520@PR2PR08MB4651.eurprd08.prod.outlook.com>,<CAAdc0hw-cRzUX4zHxgApvaUnR69TL9q_rZMtj3HoEQMZoU8-Mg@mail.gmail.com>
-In-Reply-To: 
- <CAAdc0hw-cRzUX4zHxgApvaUnR69TL9q_rZMtj3HoEQMZoU8-Mg@mail.gmail.com>
-Accept-Language: es-ES, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=niko.eu;
-x-originating-ip: [46.222.242.200]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 186e9e41-8155-4b4f-86ee-08d84b5ce6d8
-x-ms-traffictypediagnostic: PR3PR08MB5644:
-x-microsoft-antispam-prvs: 
- <PR3PR08MB564405151450BDBE37E8D0738B520@PR3PR08MB5644.eurprd08.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 8T2iQqChx0WavaqjIW3VY8S4p2xCv66IT5rUGnRNE+lWhbUaD7R32hDHtaYgBvQv9Mo236740s+Mr9XIE6fe4lrI1jp78DvEhvpZaXV9GiKqLPRQXWLj1CmSiex57Dph6UzgjrGcGFhcqMIgdUi+TTxDUbh+yzsgS12rLsi+aQhx4HPKWGHOwGo1dZ+Ew60aWUjpgGIE+xAJ6IqKweq2r/SqRuCd3Y6o6ViWMDGQdDp0vyVTwu9m37BUyCKossPtStH5tPknIW9Um/ON89JL8oxw8t2kOeM5S+rIAvBX2tb10NC9fXsLwIIXW+boGUmr80AwEy2RTMGf9dUnMozJhSHRsaww4lYH+6O998BhsiqbFATB1puVN2gF806kJUQtZ9gYhA+mdjxyhauMEnixGA==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PR2PR08MB4651.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(366004)(39850400004)(136003)(346002)(396003)(66446008)(71200400001)(66556008)(66476007)(86362001)(52536014)(33656002)(5660300002)(8676002)(76116006)(83380400001)(64756008)(478600001)(66946007)(53546011)(186003)(6506007)(26005)(6916009)(2906002)(966005)(316002)(7696005)(166002)(4326008)(45080400002)(8936002)(55016002)(9686003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 
- krYKgKuX6pEBxb405s59jDnmHOXaJ5XxFQXDErAMZVvDp/x1pAtjZzKBxHtCkniUVvJlkzpKehen8LN5yb5uG2GDvWEwruI7FmdfC9qg1Su8QFyXS9RMDZFSgi6MD+sYXZovBPFPY1zMtRdCMeMBspvDlRYRSsJ7VU1HVoHDXYcPQpBGreeY4quf2HsqdmNpckX8P5zmPm0I2W4WEs0EnxUkmNbJZzvUWBuz4Vz0e+VfM2+jFZaU+T2TMKHG/d8uVRN8qVQpq2e1ffIVVmn9EFHn2+CV0dstWc2NWOglgP1b06bnxY9WXaDiAMnpEvtE7P+oNGGgo/V2cFpfsIb+X0NdJsXWgamhk6fdaMUdbPaKtrG7935d2ESMAoSA5ZmpoInGzwW2OhkpKqr0qbnZ8QHlEvTAC04i5nA/h9HEGftEuOeB8D48RTVCw4gdz7dGUttXfPFOpzgsEOFsrCZDWv4wgVAXeFGXbEySXs3JMnyhD6wVt4uPlv7Y7eeU6CShUMGV9XXMTSi1vqFX8a2xcCpi1AFcR6KdlSTacEkJUTnYBj0D9ubZHgYhNHQfy1e/J23vlAFHMVryit1lU7b7IB//3Uv0kDSjyWklv4o0pkAaXz8k1wLX6MNWIIHNbtJlunEH7ltnPfW+OgZOEy6KGg==
-x-ms-exchange-transport-forked: True
+ dkim=missing; spf=softfail (domain: savoirfairelinux.com, ip: 140.211.169.56, mailfrom: sandra.tobajas@savoirfairelinux.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id E0766E020C2; Fri, 28 Aug 2020 08:19:23 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,URIBL_RED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	*  0.0 URIBL_RED Contains an URL listed in the URIBL redlist
+	*      [URIs: yoctoproject.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88E42E020C0
+	for <yocto@yoctoproject.org>; Fri, 28 Aug 2020 08:19:21 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id A7DE69C00B8;
+	Fri, 28 Aug 2020 11:19:20 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+	by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id LfzOFw3b4a61; Fri, 28 Aug 2020 11:19:20 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 1020B9C0280;
+	Fri, 28 Aug 2020 11:19:20 -0400 (EDT)
+X-Virus-Scanned: amavisd-new at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+	by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id 7Fiih3_wSKwr; Fri, 28 Aug 2020 11:19:19 -0400 (EDT)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id E8B1A9C00B8;
+	Fri, 28 Aug 2020 11:19:19 -0400 (EDT)
+Date: Fri, 28 Aug 2020 11:19:19 -0400 (EDT)
+From: "Sandra Tobajas" <sandra.tobajas@savoirfairelinux.com>
+To: joseantonio cardenas <JoseAntonio.Cardenas@niko.eu>
+Cc: yocto <yocto@yoctoproject.org>
+Message-ID: <166614646.1719840.1598627959904.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <PR2PR08MB465127414358B496F9CB6AD98B520@PR2PR08MB4651.eurprd08.prod.outlook.com>
+References: <1133236501.1694319.1598534181913.JavaMail.zimbra@savoirfairelinux.com> <PR2PR08MB465127414358B496F9CB6AD98B520@PR2PR08MB4651.eurprd08.prod.outlook.com>
+Subject: Re: [yocto] npmsw fetching error: package from npm-shrinkwrap is not downloaded so "Could not install from.../SONStream" as it does not contain a package.json file.
 MIME-Version: 1.0
-X-OriginatorOrg: niko.eu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PR2PR08MB4651.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 186e9e41-8155-4b4f-86ee-08d84b5ce6d8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2020 14:16:05.3920
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a4faf0fe-ff3f-4912-b675-3cfe1470e385
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hMV08TBYMwwWxM0iUGM1j3ho7bQ5zMvOyvtkDfnz0n2vDeeOtZR1jMDe6dXz+ddO/Ah2OmSc2ZxGe9lSL/EnwCvM2hUQgl5/1F6lMNoyX8Q=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR08MB5644
-Content-Language: es-ES
-Content-Type: multipart/alternative;
-	boundary="_000_PR2PR08MB465126E72AAD99742BD584C08B520PR2PR08MB4651eurp_"
-
---_000_PR2PR08MB465126E72AAD99742BD584C08B520PR2PR08MB4651eurp_
-Content-Type: text/plain; charset="Windows-1252"
+X-Mailer: Zimbra 8.8.15_GA_3945 (ZimbraWebClient - FF77 (Linux)/8.8.15_GA_3928)
+Thread-Topic: npmsw fetching error: package from npm-shrinkwrap is not downloaded so "Could not install from.../SONStream" as it does not contain a package.json file.
+Thread-Index: G9EVkOUtStCBkFrUHhftRSianmCmH4rPHf3AEwtM9WU=
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Jean-Marie, thank you for the info.
+Hi Jose,=20
 
-Do you know how we could do this extra build step? We are not sure about h=
-ow to do it.
+I have tested your npm-shrinkwrap.json file with this patch (https://patchw=
+ork.openembedded.org/patch/175755/) and it worked.
+Can you test it on your machine ?
+
+Regards,
+Sandra
+
+Sandra Tobajas
+Consultant en logiciel libre | Montr=C3=A9al, Qc
+Savoir-Faire Linux
+Bureau: (+1) 514-276-5468 # 329
+
+----- Original Message -----
+From: "joseantonio cardenas" <JoseAntonio.Cardenas@niko.eu>
+To: "Sandra Tobajas" <sandra.tobajas@savoirfairelinux.com>
+Cc: "yocto" <yocto@yoctoproject.org>
+Sent: Friday, August 28, 2020 9:44:59 AM
+Subject: RE: [yocto] npmsw fetching error: package from npm-shrinkwrap is n=
+ot downloaded so "Could not install from.../SONStream" as it does not conta=
+in a package.json file.
+
+Hi Sandra, thank you by your info. It was very useful to fetch development =
+modules from shrinkwrap file.=20
+
+I attach you the shrinkwrap file with no dependencies that I were trying to=
+ fetch.=20
 
 Regards.
-Jose
 
-Obtener Outlook para Android<https://aka.ms/ghei36>
+Jose.
 
-________________________________
-From: Jean-Marie Lemetayer <jeanmarie.lemetayer@gmail.com>
-Sent: Friday, August 28, 2020 2:22:32 PM
+-----Original Message-----
+From: Sandra Tobajas <sandra.tobajas@savoirfairelinux.com>=20
+Sent: jueves, 27 de agosto de 2020 15:16
 To: Cardenas Jose Antonio (JCARDENA) <JoseAntonio.Cardenas@niko.eu>
-Cc: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] dist folder missing in npm build.
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] npmsw fetching error: package from npm-shrinkwrap is n=
+ot downloaded so "Could not install from.../SONStream" as it does not conta=
+in a package.json file.
 
-CAUTION: This email originated from outside the organization. Do not click=
- on links or open attachments unless you recognize the sender and know the =
-content is safe.
+CAUTION: This email originated from outside the organization. Do not click =
+on links or open attachments unless you recognize the sender and know the c=
+ontent is safe.
 
 Hi Jose,
 
-Seeing your other email in the list, it seems that you are trying to
-build an angular or react application.
+It seems that all your dependencies are development dependencies tagged wit=
+h "dev":true in the npm-shrinkwrap.json file.
 
-Right now the build of these applications is not handled by Yocto yet.
+If all dependencies are for development purpose and if you want to install =
+the package as a development package, you can add:
 
-For an angular application you will need to pack the ng native tool
-and call it to generate the dist directory.
+npmsw://${THISDIR}/${PN}/npm-shrinkwrap.json;dev=3Dtrue
 
-For a react application you have to run the npm build script but the
-output files will be in a build directory.
+It seems that "npmsw.py" fetching code fails if you are trying to install a=
+ npm package with a npm-shrinkwrap.json file with no dependencies (as repor=
+ted by Jean-Marie and Randy).
+I am currently preparing a patch to solve the problem reported here: https:=
+//bugzilla.yoctoproject.org/show_bug.cgi?id=3D13901.
 
-Best regards,
-Jean-Marie
+If not, maybe you could send the full npm-shrinkwrap.json file to reproduce=
+ exactly the problem.
 
-On Fri, Aug 28, 2020 at 11:54 AM Cardenas Jose Antonio (JCARDENA)
-<joseantonio.cardenas@niko.eu> wrote:
->
-> Hi all,
->
->
->
-> i=92m trying to reproduce an older recipe that was built with npm. It se=
-ems that the older recipe copied server files from a =93dist=94 folder that=
- now is missing.
->
->
->
-> I show the install part of the recipe:
->
-> do_install() {
->
->     install -d ${D}/usr/httpd/zigbee-ui
->
->     cp -r ${S}/dist/* ${D}/usr/httpd/zigbee-ui
->
-> }
->
->
->
-> Someone knows what happened with this folder?
->
->
->
-> Regards
->
->
->
->=20
+Regards,
 
---_000_PR2PR08MB465126E72AAD99742BD584C08B520PR2PR08MB4651eurp_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+Sandra
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-=
-1252">
-</head>
-<body>
-<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fam=
-ily: sans-serif; font-size: 11pt; color: black; ">
-Hi Jean-Marie, thank you for the info. <br>
-<br>
-</div>
-<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fam=
-ily: sans-serif; font-size: 11pt; color: black; ">
-Do you know how we could do this extra build step? We are not sure about h=
-ow to do it.
-<br>
-<br>
-</div>
-<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fam=
-ily: sans-serif; font-size: 11pt; color: black; ">
-Regards. <br>
-</div>
-<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fam=
-ily: sans-serif; font-size: 11pt; color: black; ">
-Jose<span id=3D"ms-outlook-android-cursor"></span><br>
-<br>
-</div>
-<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fam=
-ily: sans-serif; font-size: 11pt; color: black; ">
-<span id=3D"OutlookSignature">
-<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fam=
-ily: sans-serif; font-size: 11pt; color: black; ">
-Obtener <a href=3D"https://aka.ms/ghei36">Outlook para Android</a></div>
-</span><br>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" s=
-tyle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Jean-Marie Lemetayer=
- &lt;jeanmarie.lemetayer@gmail.com&gt;<br>
-<b>Sent:</b> Friday, August 28, 2020 2:22:32 PM<br>
-<b>To:</b> Cardenas Jose Antonio (JCARDENA) &lt;JoseAntonio.Cardenas@niko.=
-eu&gt;<br>
-<b>Cc:</b> yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&g=
-t;<br>
-<b>Subject:</b> Re: [yocto] dist folder missing in npm build.</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt=
-;">
-<div class=3D"PlainText">CAUTION: This email originated from outside the o=
-rganization. Do not click on links or open attachments unless you recognize=
- the sender and know the content is safe.<br>
-<br>
-Hi Jose,<br>
-<br>
-Seeing your other email in the list, it seems that you are trying to<br>
-build an angular or react application.<br>
-<br>
-Right now the build of these applications is not handled by Yocto yet.<br>
-<br>
-For an angular application you will need to pack the ng native tool<br>
-and call it to generate the dist directory.<br>
-<br>
-For a react application you have to run the npm build script but the<br>
-output files will be in a build directory.<br>
-<br>
-Best regards,<br>
-Jean-Marie<br>
-<br>
-On Fri, Aug 28, 2020 at 11:54 AM Cardenas Jose Antonio (JCARDENA)<br>
-&lt;joseantonio.cardenas@niko.eu&gt; wrote:<br>
-&gt;<br>
-&gt; Hi all,<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; i=92m trying to reproduce an older recipe that was built with npm. It=
- seems that the older recipe copied server files from a =93dist=94 folder t=
-hat now is missing.<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; I show the install part of the recipe:<br>
-&gt;<br>
-&gt; do_install() {<br>
-&gt;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp; install -d ${D}/usr/httpd/zigbee-ui<br>
-&gt;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp; cp -r ${S}/dist/* ${D}/usr/httpd/zigbee-ui<br=
->
-&gt;<br>
-&gt; }<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; Someone knows what happened with this folder?<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; Regards<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; <br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_PR2PR08MB465126E72AAD99742BD584C08B520PR2PR08MB4651eurp_--
+Sandra Tobajas
+Consultant en logiciel libre | Montr=C3=A9al, Qc Savoir-Faire Linux
+Bureau: (+1) 514-276-5468 # 329
