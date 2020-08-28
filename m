@@ -1,82 +1,152 @@
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
- by mx.groups.io with SMTP id smtpd.web10.37898.1598598273101291145
+Received: from 5.mo69.mail-out.ovh.net (5.mo69.mail-out.ovh.net [46.105.43.105])
+ by mx.groups.io with SMTP id smtpd.web10.37929.1598598455713785691
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Aug 2020 00:04:33 -0700
+ Fri, 28 Aug 2020 00:07:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=tWLGKIo7;
- spf=pass (domain: gmail.com, ip: 209.85.166.171, mailfrom: thisisaash9698@gmail.com)
-Received: by mail-il1-f171.google.com with SMTP id q14so47725ilj.8
-        for <yocto@lists.yoctoproject.org>; Fri, 28 Aug 2020 00:04:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=lff0BhH+N8Erw9lK1QTkQh4XvkI1CEZ2zF5f0ybJP/s=;
-        b=tWLGKIo7p9PgUXbmC0dPzL5zek750Eo5sVaJgfpxQdBfN+Uj0ayMPjVM1cKUOKr/t1
-         G7MRNtw4WeoiXw3TPV/kwpDKhyU07O04K3j5nFy8vhreoN4uXu1YacxAdhPl/82mf2+N
-         yG0rszxlEKCBq6ZqhydER5PhTyNqefmazd5US7aNYjW7gOhaBX8ZUQ45xNoDiWn7eAJ7
-         xlnJRpTbe0xXB1QHnATZWi3Nz3P+6BwfTDCzP0bdm6q30M3l/9UWvFg6+Axh5W1FSOc4
-         GLz2n74WnpGyCGQuaqUaJNgFm++Z5ETHLm9oJx5Kzkc7ABeGirw7Fl7iLkOdUOSeO/eP
-         THXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=lff0BhH+N8Erw9lK1QTkQh4XvkI1CEZ2zF5f0ybJP/s=;
-        b=ZHeEDcxZj0chIbIOGyhjDzha28OK5iRHYfs4V3D2lygnZpOfY8fKD0Qu2H2z4FxPc1
-         lO4cyuoFYsc7114y/nyGzwXG6YHhOYuVUH9HUsUtJmWrMRvaZs9dBWmbusrMO30nwKVq
-         AZVYwV4s4xQhSPneYiCMeZPmFlMZ6O1JwHSHu6R1gRllFMbz3QKqlDL713Szd/XxQwns
-         b4d2xkqhY6YzETa0a1m/Cd0Zo2uvxgxfpkNR+pwnn0VOaQv7BUxKxnR9ZThClknNIHvY
-         knGD0WyGfP0VY5YteEnqyrapuNG5OXodZUo3lLbE/vcULqjRRHQOaIExn9sqCMmTRjii
-         QTEw==
-X-Gm-Message-State: AOAM533sg+6msiHWfFRFiEyWmbUP6ZQAP0VdHqnW2QyAP1fntQOPBfhD
-	+C9hfx5ABBAsIGvLL+P54AE8Qz0498XL7Z6+X8GDtNVPJB9CAQ==
-X-Google-Smtp-Source: ABdhPJzaAxTHRh9LBYsAjSNRney5txpS9VKWXkyrEEjra2k7xessXNDlLgZaGHREd/SAIW0Kymv/Wn3Ras0Wvin8fqE=
-X-Received: by 2002:a92:2550:: with SMTP id l77mr369309ill.63.1598598271898;
- Fri, 28 Aug 2020 00:04:31 -0700 (PDT)
-MIME-Version: 1.0
-From: thisisaash9698@gmail.com
-Date: Fri, 28 Aug 2020 12:34:20 +0530
-Message-ID: <CANVQz1acaPcBOLw7OWCD3sXBM4Q_iqC2bJcRRm_xQtgMtuYwhg@mail.gmail.com>
-Subject: Removing Python2 Completely
+ dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 46.105.43.105, mailfrom: maciej.pijanowski@3mdeb.com)
+Received: from player763.ha.ovh.net (unknown [10.110.103.91])
+	by mo69.mail-out.ovh.net (Postfix) with ESMTP id 644D49C80E
+	for <yocto@lists.yoctoproject.org>; Fri, 28 Aug 2020 09:07:33 +0200 (CEST)
+Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
+	(Authenticated sender: maciej.pijanowski@3mdeb.com)
+	by player763.ha.ovh.net (Postfix) with ESMTPSA id ABA46159624CE
+	for <yocto@lists.yoctoproject.org>; Fri, 28 Aug 2020 07:07:32 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-97G0027895aeb5-b72b-4bb8-8d27-e23b7597b390,
+                    9E73030970DB4E3134A1432506E07132F5F86F52) smtp.auth=maciej.pijanowski@3mdeb.com
+Subject: Re: [yocto] Removing Python2 Completely
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000022990705adeaaadb"
+References: <CANVQz1acaPcBOLw7OWCD3sXBM4Q_iqC2bJcRRm_xQtgMtuYwhg@mail.gmail.com>
+From: "Maciej Pijanowski" <maciej.pijanowski@3mdeb.com>
+Message-ID: <a61e089e-a927-cf88-c005-41f01e6fcf95@3mdeb.com>
+Date: Fri, 28 Aug 2020 09:07:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <CANVQz1acaPcBOLw7OWCD3sXBM4Q_iqC2bJcRRm_xQtgMtuYwhg@mail.gmail.com>
+X-Ovh-Tracer-Id: 12480600471115738630
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduiedruddviedgudduudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhepuffvfhfhkffffgggjggtsegrtderredtfeejnecuhfhrohhmpeforggtihgvjhcurfhijhgrnhhofihskhhiuceomhgrtghivghjrdhpihhjrghnohifshhkihesfehmuggvsgdrtghomheqnecuggftrfgrthhtvghrnhepteejjeeftddtledtkeffveffueegjeegieefgfevtdelfeduhffgffekheelvdejnecuffhomhgrihhnpeihohgtthhophhrohhjvggtthdrohhrghdpfehmuggvsgdrtghomhenucfkpheptddrtddrtddrtddpkeehrddvvddvrdduudejrddvvddvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeeifedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhg
+Content-Type: multipart/alternative;
+ boundary="------------3FDB96BC54FA1C16428E380E"
+Content-Language: en-US
 
---00000000000022990705adeaaadb
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-
-I am trying to remove Python2 and it's supporting modules completely from
-my Image, as I have moved all my code to Python3 and hence no longer
-require Python2. I tried the IMAGE_INSTALL_remove variable but seems to
-have no effect. Is there a way I can remove Python2 without much changes to
-the layers and through configuration variables only ?
-
-Please point me to the correct mailer if  I am wrong.
-
-Thanks,
-Aashik
-
---00000000000022990705adeaaadb
-Content-Type: text/html; charset="UTF-8"
+--------------3FDB96BC54FA1C16428E380E
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I am trying to remove Python2 and i=
-t&#39;s supporting modules completely from my Image, as I have moved all my=
- code to Python3 and hence no longer require Python2.=C2=A0<span style=3D"c=
-olor:rgb(36,39,41);font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,s=
-ans-serif;font-size:13px">I tried the IMAGE_INSTALL_remove variable but see=
-ms to have no effect. Is there a way I can remove Python2 without much chan=
-ges to the layers and through configuration variables only ?</span></div><d=
-iv><span style=3D"color:rgb(36,39,41);font-family:Arial,&quot;Helvetica Neu=
-e&quot;,Helvetica,sans-serif;font-size:13px"><br></span></div><div><span st=
-yle=3D"color:rgb(36,39,41);font-family:Arial,&quot;Helvetica Neue&quot;,Hel=
-vetica,sans-serif;font-size:13px">Please point me to the correct mailer if=
-=C2=A0 I am wrong.</span></div><div><span style=3D"color:rgb(36,39,41);font=
--family:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;font-size:13p=
-x"><br></span></div><div><span style=3D"color:rgb(36,39,41);font-family:Ari=
-al,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;font-size:13px">Thanks,<=
-/span></div><div><span style=3D"color:rgb(36,39,41);font-family:Arial,&quot=
-;Helvetica Neue&quot;,Helvetica,sans-serif;font-size:13px">Aashik</span></d=
-iv></div>
 
---00000000000022990705adeaaadb--
+On 28.08.2020 09:04, Aashik Aswin wrote:
+> Hi,
+>
+> I am trying to remove Python2 and it's supporting modules completely=20
+> from my Image, as I have moved all my code to Python3 and hence no=20
+> longer require Python2. I tried the IMAGE_INSTALL_remove variable but=20
+> seems to have no effect. Is there a way I can remove Python2 without=20
+> much changes to the layers and through configuration variables only ?
+
+You can see what is pulling the python2 to the image (using the bitbake=20
+-g for example).
+
+Which Yocto release are you using? I believe the latest one (Dunfell) is=
+=20
+already python3 only.
+
+
+>
+> Please point me to the correct mailer if=C2=A0 I am wrong.
+>
+> Thanks,
+> Aashik
+>
+>=20
+
+--=20
+Maciej Pijanowski
+Embedded Systems Engineer
+GPG: 9963C36AAC3B2B46
+https://3mdeb.com | @3mdeb_com
+
+
+--------------3FDB96BC54FA1C16428E380E
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
+8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 28.08.2020 09:04, Aashik Aswin
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CANVQz1acaPcBOLw7OWCD3sXBM4Q_iqC2bJcRRm_xQtgMtuYwhg@mail.gmail=
+.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUT=
+F-8">
+      <div dir=3D"ltr">Hi,
+        <div><br>
+        </div>
+        <div>I am trying to remove Python2 and it's supporting modules
+          completely from my Image, as I have moved all my code to
+          Python3 and hence no longer require Python2.=C2=A0<span
+            style=3D"color:rgb(36,39,41);font-family:Arial,&quot;Helvetica
+            Neue&quot;,Helvetica,sans-serif;font-size:13px">I tried the
+            IMAGE_INSTALL_remove variable but seems to have no effect.
+            Is there a way I can remove Python2 without much changes to
+            the layers and through configuration variables only ?</span></=
+div>
+      </div>
+    </blockquote>
+    <p>You can see what is pulling the python2 to the image (using the
+      bitbake -g for example).<br>
+      <br>
+      Which Yocto release are you using? I believe the latest one
+      (Dunfell) is already python3 only.<br>
+    </p>
+    <p><br>
+    </p>
+    <blockquote type=3D"cite"
+cite=3D"mid:CANVQz1acaPcBOLw7OWCD3sXBM4Q_iqC2bJcRRm_xQtgMtuYwhg@mail.gmail=
+.com">
+      <div dir=3D"ltr">
+        <div><span
+            style=3D"color:rgb(36,39,41);font-family:Arial,&quot;Helvetica
+            Neue&quot;,Helvetica,sans-serif;font-size:13px"><br>
+          </span></div>
+        <div><span
+            style=3D"color:rgb(36,39,41);font-family:Arial,&quot;Helvetica
+            Neue&quot;,Helvetica,sans-serif;font-size:13px">Please point
+            me to the correct mailer if=C2=A0 I am wrong.</span></div>
+        <div><span
+            style=3D"color:rgb(36,39,41);font-family:Arial,&quot;Helvetica
+            Neue&quot;,Helvetica,sans-serif;font-size:13px"><br>
+          </span></div>
+        <div><span
+            style=3D"color:rgb(36,39,41);font-family:Arial,&quot;Helvetica
+            Neue&quot;,Helvetica,sans-serif;font-size:13px">Thanks,</span>=
+</div>
+        <div><span
+            style=3D"color:rgb(36,39,41);font-family:Arial,&quot;Helvetica
+            Neue&quot;,Helvetica,sans-serif;font-size:13px">Aashik</span><=
+/div>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+</pre>
+    </blockquote>
+    <pre class=3D"moz-signature" cols=3D"72">--=20
+Maciej Pijanowski
+Embedded Systems Engineer
+GPG: 9963C36AAC3B2B46
+<a class=3D"moz-txt-link-freetext" href=3D"https://3mdeb.com">https://3mde=
+b.com</a> | @3mdeb_com</pre>
+  </body>
+</html>
+
+--------------3FDB96BC54FA1C16428E380E--
