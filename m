@@ -1,88 +1,228 @@
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
- by mx.groups.io with SMTP id smtpd.web11.38887.1598603237981246501
+Received: from EUR02-VE1-obe.outbound.protection.outlook.com (EUR02-VE1-obe.outbound.protection.outlook.com [40.107.2.63])
+ by mx.groups.io with SMTP id smtpd.web11.39660.1598607462825759867
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Aug 2020 01:27:18 -0700
+ Fri, 28 Aug 2020 02:37:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ZXBX45I5;
- spf=pass (domain: gmail.com, ip: 209.85.128.51, mailfrom: lefevre.da@gmail.com)
-Received: by mail-wm1-f51.google.com with SMTP id o21so152619wmc.0
-        for <yocto@lists.yoctoproject.org>; Fri, 28 Aug 2020 01:27:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=CGuXdlry9DU5jZTlC87FMYivU9gSakQWjPiQf7VKIcw=;
-        b=ZXBX45I5l9iVq/axxDUgG2OxLscILas64wSTHGBVI6a4Hv0AXa6WStbc5WtlXsvEiS
-         74v+JaoyrbNwvpgaBAvrwhamltnzaecYaWNuj8O9FFnCsd3mxJmQHrVOILtsPWO22E6p
-         rltltgg89MlOgZ8DMqJLEVoFruYBMUYAJsm0ssFYiXfvkF7mraMzpu6du9uRGqLTvOFL
-         cNENMUElu9FtG1oMveCJSL0fxtARwAbwJngD1Bos0qwVhHosI0zEHGTZRFczHzPEzeHY
-         daYbZJbZuP6MK4auJtyd1C91EzvjT6diTFl1w4sNjsJAOTAQXRnHoraSZAmvial8qH/R
-         isYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=CGuXdlry9DU5jZTlC87FMYivU9gSakQWjPiQf7VKIcw=;
-        b=spSmJydizY8+bTuSNCR1/qnjyqKUUrAh81iCme3vug3Zr/mqWw1TZTTzuB+wdDAe7Y
-         t0evxoZTt9hgwNs2MkYWHjCAQX893pz+LQ70NROlP1BQXaatT0FNyWZSPZjPbxwk3p61
-         pG70MlVgFzW4L1W5ydmSJdiu/UO2ioOXNfiskS4JnEMmTXlufxxtHku/OJh9zqTnxejT
-         A0fbr80kTfHn7807i9QNPt5QtrEEgU47QRZl/De38IflPfvHvG7MpTS+ipAZog9y2PO+
-         4PYkCwJV9l546E/Ro5EbugvaEUpSIxQ7/bl1wOy7GSikIFTQm3hX8Mde2ovhYdadXeal
-         zSJA==
-X-Gm-Message-State: AOAM5321tCMg0NDlqvU1oZUZfnO1vDkAlF/NFtOcpzrXPfbtzesUZGyM
-	aAnSRNd6zIWHmvfymaRS4KDfT+PMdWuRIeYRs4znCpun6Q==
-X-Google-Smtp-Source: ABdhPJzrtFHGlMuSUv5SS9YbygEL5asd0Nc4ait5IH+ldDgEnFLIrxSVFor2eA32hMkXHVELW/RYB+1r3gzexUwa8XQ=
-X-Received: by 2002:a1c:96d7:: with SMTP id y206mr473983wmd.9.1598603235897;
- Fri, 28 Aug 2020 01:27:15 -0700 (PDT)
+ dkim=pass header.i=@niko.eu header.s=selector2 header.b=t19iL9/X;
+ spf=pass (domain: niko.eu, ip: 40.107.2.63, mailfrom: joseantonio.cardenas@niko.eu)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RLKdrIu2/YVITZnTQrkZF8+mK/Eidt1g8NxjaBY7IRSQJvJSShZU27G4/0yONcTRdPrWSODBFypUeU7mvpQ/OZuE5mwwPMmSCdW3Q6jOUy14m9K0o+hPVwfXCVjHA6kEaSf4QwP2fQwS3vqsv+dAFXzbbupxmQtrjlWtvK9Ctj8ZAeq0POiC5xCfDqK7Q9/2FlWpLK9kqjbfBuZvENLWFvPUawQsJALmI9jQBrMH8LtcZLApV6d1eS8/XzPRDCi1zw/5h+nRBE+V9IWVXXdic8h5Pr80NJAV+TB8JCzpqEjCPq8Uj6G04trNI0PAMlH9Geng0mKbZR/EjPgZ7z+TRg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Nbw+8LxsTmc3IZS9WKbUFNhSTNIdEt6DgEcbXAr0TwM=;
+ b=YxjkyuAIDU3G5Y/up7U232/jwO2PzlRw8Blosgq3WdAm8U3HCmEXuOJvyxZTEC8oj8ubFIhTvWVTgBkh7QuAVwb6aKhpuobZIBjcTDmkRnJy8/HBMcpZZ/LCiZ3V3POT4J9psd8iy+ZmbVWiU72ukiYCmmNWnP+yIXiG8P7Sr4k8z3CSVbigFcQ+ce+eMdX5mnlw9YEbQ/V5HcveFNZhJBHIKcnv1iQNeswSNROXDTUH3puhYbg+eXEjPpLq2IJM7EtBiEptouO+wj+fdsf8Ar81xGsqbzi5Mfy+CFbVl9GJWePjNtdc6SyUg6C1FlEWMOORJZvrNwa1gqnBCDm8Mg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=niko.eu; dmarc=pass action=none header.from=niko.eu; dkim=pass
+ header.d=niko.eu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=niko.eu; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Nbw+8LxsTmc3IZS9WKbUFNhSTNIdEt6DgEcbXAr0TwM=;
+ b=t19iL9/XKBgkWBuaIqCoA5tlOtMshzdAr0Ggyv7HiVA2bztZlsTcsN3G5VMt28F6rSvr1efKkOm8xUZRcca2tWxAJ5H1WCwQgcr5o54erSLomL/cjqIuigSeW27puSWSg35g3YsIdso9oxRfN64Nm7L+fXeezyyae/XpTZSxJwY=
+Received: from PR2PR08MB4651.eurprd08.prod.outlook.com (2603:10a6:101:1c::10)
+ by PR3PR08MB5626.eurprd08.prod.outlook.com (2603:10a6:102:81::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.24; Fri, 28 Aug
+ 2020 09:37:38 +0000
+Received: from PR2PR08MB4651.eurprd08.prod.outlook.com
+ ([fe80::e9:a178:7f75:48c1]) by PR2PR08MB4651.eurprd08.prod.outlook.com
+ ([fe80::e9:a178:7f75:48c1%4]) with mapi id 15.20.3261.026; Fri, 28 Aug 2020
+ 09:37:38 +0000
+From: "Cardenas Jose Antonio (JCARDENA)" <joseantonio.cardenas@niko.eu>
+To: Jean-Marie Lemetayer <jeanmarie.lemetayer@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] devtool add <npmmodule> ignores "devDependencies" from package.json when generates npm-shrinkwrap.json file
+Thread-Topic: [yocto] devtool add <npmmodule> ignores "devDependencies" from
+ package.json when generates npm-shrinkwrap.json file
+Thread-Index: AdZ8XcXi9MQZrVMUQJSSCxrVlimgQQAEYvyAACvglMA=
+Date: Fri, 28 Aug 2020 09:37:37 +0000
+Message-ID: 
+ <PR2PR08MB4651C3DD8D4660860269A4A08B520@PR2PR08MB4651.eurprd08.prod.outlook.com>
+References: 
+ <PR2PR08MB4651C91870E245E47710A7388B550@PR2PR08MB4651.eurprd08.prod.outlook.com>
+ <CAAdc0hyA81s+yrL5jriPNb57xZt76FKmWMp1HFhGWVNGjJiofw@mail.gmail.com>
+In-Reply-To: 
+ <CAAdc0hyA81s+yrL5jriPNb57xZt76FKmWMp1HFhGWVNGjJiofw@mail.gmail.com>
+Accept-Language: es-ES, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=niko.eu;
+x-originating-ip: [46.222.242.200]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a0da42cd-5a59-46f6-24e4-08d84b3600a2
+x-ms-traffictypediagnostic: PR3PR08MB5626:
+x-microsoft-antispam-prvs: 
+ <PR3PR08MB56266C8B40F4BB61D8B5145F8B520@PR3PR08MB5626.eurprd08.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ KdUGaxlLxRoCl+r0hvWhzqlsIm8rD/Dk1BuRla10mvIDfPokOzjFnv0n0l/77rapM3JTFsR8/kj4aw1sOdVwwl64AEj2IyrcLOEU0YlgKQeYV8MuXphqx/jTR0zUViSgFB96SLT5RUeIddBnoVbN1CZ7bys9LodHGpbuWtQVCaI3uyjFrYdyCvWRo/Gp5F/F8oaKcti98JDA7gqLZzqwB7JUBHtMaOZ5vVXk2M5auha/CyiQpV2U1HxSHecrG4pqOSkZ+ofGi2GCqWt14jBB/Ahc1Nk1pJTsyaU5IG6JzoEt0PaXi82GGzv8EK8wNa1elCaELbZBfzhaKx8Lki6ks1G1Kzt7yVlyV8J3f11ANrDO4WOv7KB5qYzzVHjHYrg2VwRJdC//HNHy5jD6ZxhTnQ==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PR2PR08MB4651.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(376002)(39850400004)(136003)(366004)(346002)(8936002)(6916009)(966005)(4326008)(8676002)(5660300002)(2906002)(83380400001)(166002)(86362001)(52536014)(26005)(6506007)(9686003)(53546011)(55016002)(316002)(186003)(33656002)(7696005)(478600001)(71200400001)(64756008)(76116006)(66946007)(66446008)(66556008)(66476007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 
+ DDbb828gmcHIeSW0mwU7IcQ1it64eEC+vwZ83yTLyy0jj+Lki5WlZdXhbyFYK/dAPceOPz/95DOXh/56EKZWo5tYSwr/eedow50EoqUF6J4txsH2dZwVWZUEn73s62nlSkObXrXDV6MQ30qhTS8NNtVG0NREW52mfyCg41IQvGDlfPte5Np+S+xAaH2eg9wqYjKoFONFur1SpaXDv/G92/LaXx58HQo54Io+iKgiNwckhoGzDqveu7MPdOPjv9x+dQUhiVVkxoz7rpFkG7m5GNE0B0lwDcpCuB5WzKV2/+LyRrGvXi36xrb0sBRpR8q9/vDxkcR9Wxd5+2WMOuVSNpvDTtv95nq6EcmSfAw6kU9ryUEoNLEPRbDjVq5ikpqHjonq9a6pxSVudx8TFOVbqjK6p/0bsFGXscaoeKuKuwN2Aour1MMFyY1+Zy618g+KbARpX7LW9hfr0/OZQ87ArsWUjcm0fLN7c0MYoGhzhxsDRoWU5E6Ei/gEuJlv5+oB2Qdka8IsWOJcbdJ/lnw2OJtJfnUUBT4QG0VQIOFujeg32OeXCgTWVSXsoUwH6OmM65L35wDfTvxw5PCqOaf3JnYJAUmRtRlF/gIYXtdzNr0m415RK7Bf+xDy1PCwg7MlZSU2y2xraihf7VO3DR26ZQ==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-From: "Damien LEFEVRE" <lefevre.da@gmail.com>
-Date: Fri, 28 Aug 2020 11:27:05 +0300
-Message-ID: <CA+FhBv-72SsCNcRY2phG-vBZMV6n78O1K4h=DbUQOOLrJoeJ-Q@mail.gmail.com>
-Subject: How to generate opensource licenses credits web page
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000000336ab05adebd2f2"
+X-OriginatorOrg: niko.eu
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PR2PR08MB4651.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a0da42cd-5a59-46f6-24e4-08d84b3600a2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2020 09:37:38.1959
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a4faf0fe-ff3f-4912-b675-3cfe1470e385
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fbxvKpWKJPCLXkCmSvnypeQ1K/WYV75sBsqVN7Nwj4wS1FNaES86/8A/pAIw1lF5GSQMqwBalgHkSw63kbKcL3ikYkVSOgysBZYePyhjouU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR08MB5626
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_PR2PR08MB4651C3DD8D4660860269A4A08B520PR2PR08MB4651eurp_"
 
---0000000000000336ab05adebd2f2
-Content-Type: text/plain; charset="UTF-8"
+--_000_PR2PR08MB4651C3DD8D4660860269A4A08B520PR2PR08MB4651eurp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi,
+WWVzLCBpdCB3b3JrZWQhIFRoYW5rIHlvdSB2ZXJ5IG11Y2ghDQoNCkZyb206IEplYW4tTWFyaWUg
+TGVtZXRheWVyIDxqZWFubWFyaWUubGVtZXRheWVyQGdtYWlsLmNvbT4NClNlbnQ6IGp1ZXZlcywg
+MjcgZGUgYWdvc3RvIGRlIDIwMjAgMTQ6NDENClRvOiBDYXJkZW5hcyBKb3NlIEFudG9uaW8gKEpD
+QVJERU5BKSA8Sm9zZUFudG9uaW8uQ2FyZGVuYXNAbmlrby5ldT4NCkNjOiB5b2N0b0BsaXN0cy55
+b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBkZXZ0b29sIGFkZCA8bnBtbW9k
+dWxlPiBpZ25vcmVzICJkZXZEZXBlbmRlbmNpZXMiIGZyb20gcGFja2FnZS5qc29uIHdoZW4gZ2Vu
+ZXJhdGVzIG5wbS1zaHJpbmt3cmFwLmpzb24gZmlsZQ0KDQoNCkNBVVRJT046IFRoaXMgZW1haWwg
+b3JpZ2luYXRlZCBmcm9tIG91dHNpZGUgdGhlIG9yZ2FuaXphdGlvbi4gRG8gbm90IGNsaWNrIG9u
+IGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSByZWNvZ25pemUgdGhlIHNlbmRl
+ciBhbmQga25vdyB0aGUgY29udGVudCBpcyBzYWZlLg0KSGkgSm9zZSwNCg0KWW91IGhhdmUgdG8g
+dXNlIGRldnRvb2wgd2l0aCB0aGUgLS1ucG0tZGV2IG9wdGlvbi4NCg0KQmVzdCByZWdhcmRzLA0K
+SmVhbi1NYXJpZQ0KDQpPbiBUaHUsIEF1ZyAyNywgMjAyMCBhdCAxMjo0NyBQTSBDYXJkZW5hcyBK
+b3NlIEFudG9uaW8gKEpDQVJERU5BKSA8am9zZWFudG9uaW8uY2FyZGVuYXNAbmlrby5ldTxtYWls
+dG86am9zZWFudG9uaW8uY2FyZGVuYXNAbmlrby5ldT4+IHdyb3RlOg0KSGkgYWxsLA0KDQpUcnlp
+bmcgdG8gY3JlYXRlIGEgcmVjaXBlIGZyb20gc2NyYXRjaCB3aXRoIOKAnGRldnRvb2wgYWRk4oCd
+IHRvb2wsIGEgbnBtLXNocmlua3dyYXAuanNvbiBmaWxlIGlzIGNyZWF0ZWQgZnJvbSByZWFkaW5n
+IG9mIHBhY2thZ2UuanNvbiBmcm9tIHRoZSBtb2R1bGUgdGhhdCBpcyBnb2luZyB0byBiZSBpbnN0
+YWxsZWQuDQoNClRoZSBidWlsZGluZyBnb2VzIGZpbmUgYnV0IEkgY2Fu4oCZdCBydW4gdGhlIGFw
+cGxpY2F0aW9uIGluIHRoZSB0YXJnZXQgYmVjYXVzZSBub2RlanMgbWlzc2VzIHRoZSBtb2R1bGVz
+IHBsYWNlZCBpbiDigJxkZXZEZXBlbmRlbmNpZXPigJ0gZnJvbSBwYWNrYWdlLmpzb24uDQpJIGhh
+dmUgdHJpZWQgdG8gaW5jbHVkZSBOUE1fSU5TVEFMTF9ERVYgPSAiMSIgaW4gdGhlIHJlY2lwZSBi
+dXQgSSBnZXQgYW4gZXJyb3IgYmVjYXVzZSB0aGUgbW9kdWxlcyB0aGF0IGFwcGVhcnMgaW4g4oCc
+ZGV2RGVwZW5kZW5jaWVz4oCdIGZyb20gcGFja2FnZS5qc29uIGFyZSBub3QgaW5jbHVkZWQgaW4g
+bnBtLXNocmlua3dyYXAuanNvbi4NCg0KVGhlcmUgaXMgYW55IHdheSB0byByZWdlbmVyYXRlIG5w
+bS1zaHJpbmt3cmFwLmpzb24gd2l0aCBkZXZ0b29sIHRha2luZyBpbiBhY2NvdW50IGRldmRlcGVu
+ZGVuY2llcyBvciBhIHdheSB0byBjcmVhdGUgbnBtLXNocmlua3dyYXAuanNvbiB3aXRoIOKAnGRl
+dnRvb2wgYWRk4oCdIGluIGEgd2F5IHRoYXQgdGFrZXMgaW4gYWNjb3VudCBkZXZEZXBlbmRlbmNp
+ZXM/DQoNClJlZ2FyZHMNCkpvc2UNCg0K
 
-I have a distro which is not using any package manager in the image. Images
-are deployed atomically.
+--_000_PR2PR08MB4651C3DD8D4660860269A4A08B520PR2PR08MB4651eurp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I'd like to make a script to generate the credits / acknowledgement web
-page for all the open source components to ease the task and make sure I
-don't forget anyone.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
+OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTkN
+Cgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmki
+LHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28t
+c3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRT
+ZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzAuODVwdCAzLjBjbSA3
+MC44NXB0IDMuMGNtO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0K
+LS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpl
+eHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0
+ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6
+ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0t
+Pg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0K
+PGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
+bmc9IkVOLVVTIiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPlllcywgaXQgd29y
+a2VkISBUaGFuayB5b3UgdmVyeSBtdWNoITxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3Vh
+Z2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8ZGl2IHN0eWxl
+PSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBw
+dCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1V
+UyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIj4gSmVhbi1NYXJpZSBMZW1ldGF5
+ZXIgJmx0O2plYW5tYXJpZS5sZW1ldGF5ZXJAZ21haWwuY29tJmd0Ow0KPGJyPg0KPGI+U2VudDo8
+L2I+IGp1ZXZlcywgMjcgZGUgYWdvc3RvIGRlIDIwMjAgMTQ6NDE8YnI+DQo8Yj5Ubzo8L2I+IENh
+cmRlbmFzIEpvc2UgQW50b25pbyAoSkNBUkRFTkEpICZsdDtKb3NlQW50b25pby5DYXJkZW5hc0Bu
+aWtvLmV1Jmd0Ozxicj4NCjxiPkNjOjwvYj4geW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxi
+cj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBkZXZ0b29sIGFkZCAmbHQ7bnBtbW9kdWxl
+Jmd0OyBpZ25vcmVzICZxdW90O2RldkRlcGVuZGVuY2llcyZxdW90OyBmcm9tIHBhY2thZ2UuanNv
+biB3aGVuIGdlbmVyYXRlcyBucG0tc2hyaW5rd3JhcC5qc29uIGZpbGU8bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
+L286cD48L3A+DQo8dGFibGUgY2xhc3M9Ik1zb05vcm1hbFRhYmxlIiBib3JkZXI9IjAiIGNlbGxz
+cGFjaW5nPSIwIiBjZWxscGFkZGluZz0iMCIgYWxpZ249ImxlZnQiPg0KPHRib2R5Pg0KPHRyPg0K
+PHRkIHN0eWxlPSJiYWNrZ3JvdW5kOiNCQkE1NTU7cGFkZGluZzo1LjI1cHQgNS41cHQgNS4yNXB0
+IDEuNXB0Ij48L3RkPg0KPHRkIHdpZHRoPSIxMDAlIiBzdHlsZT0id2lkdGg6MTAwLjAlO2JhY2tn
+cm91bmQ6I0ZGRTU5OTtwYWRkaW5nOjUuMjVwdCAzLjc1cHQgNS4yNXB0IDExLjI1cHQ7d29yZC13
+cmFwOmJyZWFrLXdvcmQiPg0KPGRpdj4NCjxwIHN0eWxlPSJtc28tZWxlbWVudDpmcmFtZTttc28t
+ZWxlbWVudC1mcmFtZS1oc3BhY2U6Mi4yNXB0O21zby1lbGVtZW50LXdyYXA6YXJvdW5kO21zby1l
+bGVtZW50LWFuY2hvci12ZXJ0aWNhbDpwYXJhZ3JhcGg7bXNvLWVsZW1lbnQtYW5jaG9yLWhvcml6
+b250YWw6Y29sdW1uO21zby1oZWlnaHQtcnVsZTpleGFjdGx5Ij4NCjxiPjxzcGFuIHN0eWxlPSJm
+b250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMyMTIxMjEiPkNB
+VVRJT046PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVv
+dDssc2Fucy1zZXJpZjtjb2xvcjojMjEyMTIxIj4gVGhpcyBlbWFpbCBvcmlnaW5hdGVkIGZyb20g
+b3V0c2lkZSB0aGUgb3JnYW5pemF0aW9uLiBEbyBub3QgY2xpY2sgb24gbGlua3Mgb3Igb3BlbiBh
+dHRhY2htZW50cyB1bmxlc3MgeW91IHJlY29nbml6ZQ0KIHRoZSBzZW5kZXIgYW5kIGtub3cgdGhl
+IGNvbnRlbnQgaXMgc2FmZS4gPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L3RkPg0K
+PC90cj4NCjwvdGJvZHk+DQo8L3RhYmxlPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iY29sb3I6d2hpdGUiPkhpIEpvc2UsIDwvc3Bhbj48bzpwPjwvbzpw
+PjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPllvdSBoYXZlIHRvIHVzZSBkZXZ0
+b29sIHdpdGggdGhlIC0tbnBtLWRldiBvcHRpb24uPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkJlc3QgcmVnYXJkcyw8bzpwPjwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkplYW4tTWFyaWU8bzpwPjwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
+bzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gVGh1LCBBdWcg
+MjcsIDIwMjAgYXQgMTI6NDcgUE0gQ2FyZGVuYXMgSm9zZSBBbnRvbmlvIChKQ0FSREVOQSkgJmx0
+OzxhIGhyZWY9Im1haWx0bzpqb3NlYW50b25pby5jYXJkZW5hc0BuaWtvLmV1Ij5qb3NlYW50b25p
+by5jYXJkZW5hc0BuaWtvLmV1PC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8L2Rpdj4N
+CjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0ND
+IDEuMHB0O3BhZGRpbmc6MGNtIDBjbSAwY20gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2lu
+LXJpZ2h0OjBjbSI+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJt
+c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+SGkgYWxs
+LA0KPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdp
+bi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9v
+OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDph
+dXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyI+VHJ5aW5n
+IHRvIGNyZWF0ZSBhIHJlY2lwZSBmcm9tIHNjcmF0Y2ggd2l0aCDigJxkZXZ0b29sIGFkZOKAnSB0
+b29sLCBhIG5wbS1zaHJpbmt3cmFwLmpzb24gZmlsZSBpcyBjcmVhdGVkIGZyb20gcmVhZGluZyBv
+ZiBwYWNrYWdlLmpzb24gZnJvbSB0aGUgbW9kdWxlIHRoYXQgaXMgZ29pbmcNCiB0byBiZSBpbnN0
+YWxsZWQuPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
+Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3Bh
+biBsYW5nPSJFTi1VUyI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9t
+LWFsdDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyI+VGhlIGJ1aWxkaW5nIGdvZXMgZmluZSBidXQg
+SSBjYW7igJl0IHJ1biB0aGUgYXBwbGljYXRpb24gaW4gdGhlIHRhcmdldCBiZWNhdXNlIG5vZGVq
+cyBtaXNzZXMgdGhlIG1vZHVsZXMgcGxhY2VkIGluIOKAnGRldkRlcGVuZGVuY2llc+KAnSBmcm9t
+IHBhY2thZ2UuanNvbi4NCjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
+YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiPkkgaGF2ZSB0cmllZCB0byBpbmNsdWRlIE5QTV9JTlNU
+QUxMX0RFViA9ICZxdW90OzEmcXVvdDsgaW4gdGhlIHJlY2lwZSBidXQgSSBnZXQgYW4gZXJyb3Ig
+YmVjYXVzZSB0aGUgbW9kdWxlcyB0aGF0IGFwcGVhcnMgaW4g4oCcZGV2RGVwZW5kZW5jaWVz4oCd
+IGZyb20gcGFja2FnZS5qc29uIGFyZSBub3QNCiBpbmNsdWRlZCBpbiBucG0tc2hyaW5rd3JhcC5q
+c29uLiA8YnI+DQo8YnI+DQpUaGVyZSBpcyBhbnkgd2F5IHRvIHJlZ2VuZXJhdGUgbnBtLXNocmlu
+a3dyYXAuanNvbiB3aXRoIGRldnRvb2wgdGFraW5nIGluIGFjY291bnQgZGV2ZGVwZW5kZW5jaWVz
+IG9yIGEgd2F5IHRvIGNyZWF0ZSBucG0tc2hyaW5rd3JhcC5qc29uIHdpdGgg4oCcZGV2dG9vbCBh
+ZGTigJ0gaW4gYSB3YXkgdGhhdCB0YWtlcyBpbiBhY2NvdW50IGRldkRlcGVuZGVuY2llcz88L3Nw
+YW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdp
+bi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVO
+LVVTIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
+dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8i
+PjxzcGFuIGxhbmc9IkVOLVVTIj5SZWdhcmRzDQo8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdp
+bi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIj5Kb3NlPC9zcGFuPjxvOnA+PC9v
+OnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+PC9vOnA+
+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9o
+dG1sPg0K
 
-In the actual image I have the list of the licenses in /usr/share/licenses/
-which is good, but I'm missing the SUMMARY, DESCRIPTION, and HOMEPAGE
-fields we declare in the recipes which would be nice to display
-
-Is there any built-in way to bring that information in the image?
-
-I noticed that in the image's build directory there is
-/image-name/1.0-r0/oe-rootfs-repo/aarch64/Packages which if I understand
-correctly has the ipk package list with the missing information.
-
-Is there a way to copy that file in the image after do_rootfs completes?
-
-Thanks,
--Damien
-
---0000000000000336ab05adebd2f2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<br><br>I have a distro which is not using any package =
-manager in the image. Images are deployed atomically.<br><br>I&#39;d like t=
-o make a script to generate the credits / acknowledgement web page for all =
-the open source components to ease the task and make sure I don&#39;t forge=
-t anyone.<br><br>In the actual image I have the list of the licenses in /us=
-r/share/licenses/ which is good, but I&#39;m missing the SUMMARY, DESCRIPTI=
-ON, and HOMEPAGE fields we declare in the recipes which would be nice to di=
-splay<br><br>Is there any built-in way to bring that information in the ima=
-ge?<br><br>I noticed that in the image&#39;s build directory there is /imag=
-e-name/1.0-r0/oe-rootfs-repo/aarch64/Packages which if I understand correct=
-ly has the ipk package list with the missing information.<br><br>Is there a=
- way to copy that file in the image after do_rootfs completes?<br><div><br>=
-</div><div>Thanks,</div><div>-Damien</div></div>
-
---0000000000000336ab05adebd2f2--
+--_000_PR2PR08MB4651C3DD8D4660860269A4A08B520PR2PR08MB4651eurp_--
