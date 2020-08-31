@@ -1,94 +1,291 @@
-Received: from esa4.hc324-48.eu.iphmx.com (esa4.hc324-48.eu.iphmx.com [207.54.71.48])
- by mx.groups.io with SMTP id smtpd.web10.50929.1598871063559835839
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.146.1598912868429044108
  for <yocto@lists.yoctoproject.org>;
- Mon, 31 Aug 2020 03:51:04 -0700
+ Mon, 31 Aug 2020 15:27:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1 header.b=WXwUIJ/S;
- spf=pass (domain: bmw.de, ip: 207.54.71.48, mailfrom: prvs=505975d9f=mikko.rapeli@bmw.de)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=MAyRKtLS;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 0A51EE020EF; Mon, 31 Aug 2020 15:27:48 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (sjolley.yp.pm[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.215.177 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2752DE020ED
+	for <yocto@yoctoproject.org>; Mon, 31 Aug 2020 15:27:45 -0700 (PDT)
+Received: by mail-pg1-f177.google.com with SMTP id h12so1518554pgm.7
+        for <yocto@yoctoproject.org>; Mon, 31 Aug 2020 15:27:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1598871063; x=1630407063;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=veLeIqhoAVuWAyOzKNmndqqARqE2P9uFOAjXGZf7DgI=;
-  b=WXwUIJ/Sfb4ndS5QtVs8QchCpTiXpeTdX51VI5r+zXi4f6Z4civb85p1
-   Eve5L5vnWGjFIfHrHAiaOoHaSpUhqhCDW9rXkRjR1TZmD6OWyIg3qr99A
-   TcRK55OGt3KhB5aAdqVKT2h7P6wV99WZ6+T/MwILHaW3mInNvo1fqGAF+
-   Y=;
-Received: from esagw1.bmwgroup.com (HELO esagw1.muc) ([160.46.252.34]) by
- esa4.hc324-48.eu.iphmx.com with ESMTP/TLS; 31 Aug 2020 12:50:59 +0200
-Received: from esabb4.muc ([160.50.100.33])  by esagw1.muc with ESMTP/TLS;
- 31 Aug 2020 12:50:59 +0200
-Received: from smucm10l.bmwgroup.net (HELO smucm10l.europe.bmw.corp) ([160.48.96.48])
- by esabb4.muc with ESMTP/TLS; 31 Aug 2020 12:50:59 +0200
-Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10l.europe.bmw.corp
- (160.48.96.48) with Microsoft SMTP Server (TLS;
- Mon, 31 Aug 2020 12:50:59 +0200
-Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
- smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1497.006; Mon,
- 31 Aug 2020 12:50:59 +0200
-From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
-To: <alex.kanavin@gmail.com>
-CC: <majid.nasiry65@gmail.com>, <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Backport some packages
-Thread-Topic: [yocto] Backport some packages
-Thread-Index: AQHWf3Qs+tes241L+UO57M7xllCJ1KlR0voAgAAVzgA=
-Date: Mon, 31 Aug 2020 10:50:59 +0000
-Message-ID: <20200831105058.GE2162@korppu>
-References: <G4Or.1598863972268843731.gimU@lists.yoctoproject.org>
- <CANNYZj_VWjmPswgd_yfgBSYWtQU9fh5CHRpmATtPJ_V9QqGGMw@mail.gmail.com>
-In-Reply-To: <CANNYZj_VWjmPswgd_yfgBSYWtQU9fh5CHRpmATtPJ_V9QqGGMw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=qeJ5nu1eX2GQxEN/wPa4wCGptqwxBJHIydX2MR9hHAw=;
+        b=MAyRKtLSZyROhhuRqc5NudvcUCGyXWU9h3r53apzjAwSxx1TkrQLNSccJar1ajGPc8
+         nBH4yuvCt1FIk13HZl96zqfIFUqknPIuIvdyhMpfArb5rPT8s9zMd2qNOjgeRlCWLXhN
+         y5Wap/lttLyUbe6ZDC5rOkA/DrMI7TmzC1cSbaDWtmYYbRic356ZTzsnWOoBd/2O3Tg8
+         F0+ZcRNDCnEnMPyWs9OHKLYlINh2aSHzKqxK9uPnRqp4W99uhwmetP1x6zzKkgw3zMQA
+         GHS5JAc1MpSZrQluwyXhewDOS+zeJRkQHRxwUgaon694mF0BVj0LN2iBbgbkHxBSjKQl
+         1NFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=qeJ5nu1eX2GQxEN/wPa4wCGptqwxBJHIydX2MR9hHAw=;
+        b=UKvJecbHpKzz4u3BeL13tInpqqrloIoj6AnRb/nmtOGnj94XMpWuamZYN5GXV+Ab+P
+         YZe7I+RNBPZPNw5ncJd7IWN7N7/ImAQzmsZYRY9zl5TE1iUH2zk2lJVgTWXIZMm8jDUi
+         jeB/TOlVRXdZThZkcvkDUzNUSGH8N2Gze2lSvrSjG1d0/r3iCc1skZuFrvpN5s9IPG+b
+         seL3wdYj1qa3BsMfulqYEu3kZNafo76REz/QebhYki/ZnRxf3oboFL3AsSWoyfdFXYN4
+         zLb0Bgc7EO91bJoksDhk2/oveh5b5K/5EKIbBLZGE9eKWZy4+sceznAdA51AJ9LeiB1E
+         Hevw==
+X-Gm-Message-State: AOAM531e6MC6dcFLCzFqZb1YMqrxfrayal/7C/QrUs8+9AiGlJAYbasq
+	zI/r1yqRrQStvwOJI63Jzxo=
+X-Google-Smtp-Source: ABdhPJxuz3ES3FcpPM/5M5tq44XQIK4ocZpTWT/vvbDUM3RLM5r9Z5hGijmclqXkSo6h0msApzvRVA==
+X-Received: by 2002:a63:1052:: with SMTP id 18mr2924992pgq.311.1598912865477;
+        Mon, 31 Aug 2020 15:27:45 -0700 (PDT)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id u21sm606707pjn.27.2020.08.31.15.27.44
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 31 Aug 2020 15:27:44 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 31 Aug 2020 15:27:44 -0700
+Message-ID: <04ce01d67fe5$f2bc18a0$d83449e0$@gmail.com>
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <F4E56CF21FC9B4469D714286DB2C3CB9@bmwmail.corp>
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKINgZSm9100w+dxq5KpnNWmNs2zw==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_04CF_01D67FAB.465FB1A0"
+Content-Language: en-us
+
+------=_NextPart_000_04CF_01D67FAB.465FB1A0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 339
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.2", "3.3, "3.99" and "Future", the more pressing/urgent issues
+being in "3.2" and then "3.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_04CF_01D67FAB.465FB1A0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0A91_01D67A18.17890DB0";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
+starting to try and collect up and classify bugs which a newcomer to the =
+project would be able to work on in a way which means people can find =
+them. They're being listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 339 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.2&#8221;, &#8220;3.3, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.2&quot; and then &#8220;3.3&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-On Mon, Aug 31, 2020 at 11:32:56AM +0200, Alexander Kanavin wrote:
-> The best is to ask your BSP supplier to provide a new version of the BSP
-> that is compatible with recent Yocto versions.
->=20
-> Backporting userspace stuff is difficult or impossible.
-
-For those who aren't afraid to digging deeper, it is possible to limit
-the impact of BSP layers by e.g. restricting which recipes and bbappends
-get applied in your product via BBMASK in distro config for example.
-This enables much, much faster updates cycles since fixing one or two BSP =
-recipes
-for new yocto version is easier than waiting and possibly paying for a ful=
-l
-update with all bells and whistles.
-
-In many cases users don't need all patches and changes provided in BSP SW =
-layers.
-In some cases they are even undesirable.
-
-But yes, talking to BSP supplier(s) is a good start.
-
-Cheers,
-
--Mikko
-
-> Alex
->=20
-> On Mon, 31 Aug 2020 at 10:52, <majid.nasiry65@gmail.com> wrote:
->=20
-> > Hi
-> > How can I backport some package (e.g php, cmake). My BSP only work in =
-Krogoth
-> > version and I want to use some new package (e.g from Sumo version).
-> > I'm new in this stuffs. I don't know mybe the best way is I rewrite BS=
-Ps
-> > and update whole project, anyway I don't know how can I do this too!
-> >
-> > Please help=20
-> >
-
->=20
+------=_NextPart_000_04CF_01D67FAB.465FB1A0--
