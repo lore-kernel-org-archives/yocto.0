@@ -1,288 +1,160 @@
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
- by mx.groups.io with SMTP id smtpd.web12.10113.1598955932990183061
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+ by mx.groups.io with SMTP id smtpd.web12.10550.1598958022561412722
  for <yocto@lists.yoctoproject.org>;
- Tue, 01 Sep 2020 03:25:33 -0700
+ Tue, 01 Sep 2020 04:00:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theyoctojester-info.20150623.gappssmtp.com header.s=20150623 header.b=ONmKGu3Y;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.170, mailfrom: jester@theyoctojester.info)
-Received: by mail-lj1-f170.google.com with SMTP id k25so835976ljg.9
-        for <yocto@lists.yoctoproject.org>; Tue, 01 Sep 2020 03:25:32 -0700 (PDT)
+ dkim=pass header.i=@theyoctojester-info.20150623.gappssmtp.com header.s=20150623 header.b=0QaHzxAy;
+ spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.167.42, mailfrom: jester@theyoctojester.info)
+Received: by mail-lf1-f42.google.com with SMTP id j15so510407lfg.7
+        for <yocto@lists.yoctoproject.org>; Tue, 01 Sep 2020 04:00:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=theyoctojester-info.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QZY3Cwc5lEdh6YhvS5kyALx8WSHvZRO3wQsvEDme4Ac=;
-        b=ONmKGu3YI9AmY2HLS16XyhE1o/AzPoQx6VQEnd4K/EODV2MD1tFr8cM6CypZetRCzN
-         Lu/PRak1axsmwkc3QT79+UIxe6+gpvCYJOKp8hMj20oL2ocXmU8egZa2QCViwZcYLIlO
-         3MoYVtgGidp4GkeM6yWCdFk9boro/JpjSeuIMeT4CwkeCV+i5PVM24UL43y6zcM+g1rA
-         LlnK5FQfIzi6anSGX2VVlsOthZv7PtSYAqhyztScF3NwpLTM54L5D8tASotFIAZ55yEy
-         5a3ptjJrW1HxqEZOiJEEetr3tYTdAj2TWPmQwkfJAp3VopJ5YhrQ75M7FrOEQeUD8DEe
-         7+xA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=nI3+vAqe3TDckK4z4pJOrEmzFyBg0mtHSwxUHOexToc=;
+        b=0QaHzxAynz3g7EWkb19qfflSIReMsuoDFKw2DIvC9+usrTak4Ludp2LDibpR0vobDQ
+         mYeAT+0RFjMh6XwLbG+mAfstcGMc1pkDcLDv1Wn2cAWL+hwkf7mWIgjfKp8p1G4DMGTG
+         16d+nc3JfXvlY7OtlNIlQSdcDCdiptFaW96c9Nrp4smFFXlzVj5iMmIkYM1GKNz27Jnu
+         RhpopXw47vBA+m+pBDV2rsNb6vJxlOfo5c/vqf3MwOYPijWHUbZ+vjLec/2lezyRaz7S
+         V7ALOrj6k6vvQmNGF+yf6wJJtTkXTfejuP8wbzYlanAu2OmITW6WG0WQPX91WPx2rkKR
+         eC7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QZY3Cwc5lEdh6YhvS5kyALx8WSHvZRO3wQsvEDme4Ac=;
-        b=SNnJRGufjO28HoaLrUkuR/Z4CqXX8MsOsKNillYLZ/DXy6eOINVmYBwksQpHnlioOr
-         S9vBRzLFuKFtSxAOk+vEsT/RyzpDv4LbSSrEkViZTftDhOKcGkbEnKaW359ojWJkuTwj
-         +wAwev14eJ2MwznvNDhV6p3NZ/xDeIMXXagu7aXtA9mNi2DVhCncVrwEIignYuaHuEMe
-         EYi8HdkAkyw2ymjISC5bpuInXXWpCKWiHEpin4b3UAozXITBhMbnASJOdki8PVtuxMjx
-         QW8PLrV/mSgFV5mOBVLAN+p+G+gCxIOEhr2stXZjrxBIeoCupSRPE7NBvNMmmTvIEE6B
-         WPpg==
-X-Gm-Message-State: AOAM532cAZgh+Ho81vjxKVAqW1V5taGWQTO0WuGiWlnzikhQIxNKBi0D
-	2a0kavRVavEzC1GQIXDxI/GPKhW6hoyOV9J8BgnCkg==
-X-Google-Smtp-Source: ABdhPJw8Xh7mFy0n3TlJMaTzSWxGSytJu8gqZnMEKNk3kKA56MTqFNiGXgsgDlsI9jrj7/l0B7zswy0VPflgRVAO43A=
-X-Received: by 2002:a2e:9f0a:: with SMTP id u10mr234595ljk.140.1598955930698;
- Tue, 01 Sep 2020 03:25:30 -0700 (PDT)
+         :message-id:subject:to;
+        bh=nI3+vAqe3TDckK4z4pJOrEmzFyBg0mtHSwxUHOexToc=;
+        b=rchpuwqyQwa7GFDeCyk7uM4oI0AP6QsW/aMwuQPsYCetYg9NkDM1gcr+GBONNX0/JA
+         Vy7IhO7n6s1K37jJi1Lo269mPJFUJZFSIGrEGXDSKay9uKqeUnjjcq5Grc/Oz6j/6oHv
+         FLKbGEAFcwXUR0kUrBuND+NQmWYSIrTeR3JBUTD98zUre9UtV5jC+SRaxzWHxvNqNrPd
+         3iOhapimaEstU8xa0Trw3Hwst4cJ5lxWV9d3/ONjwI4+CZgLatFtIKGvR4XBJfgUP+v+
+         T0f+kUFGyIMKqOQLNwNoCgI/J+HbZK7tpZC07FC3OidZ0VfBZxUGnUd2bDdW9FHCnfnR
+         tPBQ==
+X-Gm-Message-State: AOAM532sj1u+Xi+5LABiCr0Kx+uJ+SqFTpmBPFSeWNe9qy/bCBDlg+ZE
+	9nGVCd0p01bZmcpZzpo1CTrEIiosBr+srEPsTRrBLw==
+X-Google-Smtp-Source: ABdhPJy/JSkmB3NMf5fD6FAQ3aBknbLv8FbHj6aTlgIXXrOrt4ej6odva2NktbA0dNUk0yaduUEeO6vAx1xK4WvnFuA=
+X-Received: by 2002:a19:8011:: with SMTP id b17mr318346lfd.212.1598958020273;
+ Tue, 01 Sep 2020 04:00:20 -0700 (PDT)
 MIME-Version: 1.0
-References: <8B1s.1598955769274779937.Mx7T@lists.yoctoproject.org>
-In-Reply-To: <8B1s.1598955769274779937.Mx7T@lists.yoctoproject.org>
+References: <CAEt6Nwq30AiBo6+u39HLubK511nLnkGg6DMoj2kQLVAzpWjkHw@mail.gmail.com>
+ <7070.1598957735098138146@lists.yoctoproject.org>
+In-Reply-To: <7070.1598957735098138146@lists.yoctoproject.org>
 From: "Josef Holzmayr-Khosh Amoz" <jester@theyoctojester.info>
-Date: Tue, 1 Sep 2020 12:25:04 +0200
-Message-ID: <CAEt6Nwq30AiBo6+u39HLubK511nLnkGg6DMoj2kQLVAzpWjkHw@mail.gmail.com>
-Subject: Re: [yocto] Information about Yocto Dunfell components version #dunfell
-To: Yocto_user <avinashyadav94it@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000042e67905ae3df052"
+Date: Tue, 1 Sep 2020 12:59:54 +0200
+Message-ID: <CAEt6Nwp7vAdgb4pPW+nT7MrM=JNJe_2J5d+e20X7MVbAMUeyoA@mail.gmail.com>
+Subject: Re: Private: Re: [yocto] Information about Yocto Dunfell components version #dunfell
+To: Yocto_user <avinashyadav94it@gmail.com>, yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000cf3fe305ae3e6c8d"
 
---00000000000042e67905ae3df052
+--000000000000cf3fe305ae3e6c8d
 Content-Type: text/plain; charset="UTF-8"
 
-Insert the package names into
-http://layers.openembedded.org/layerindex/branch/dunfell/recipes and see
-for yourself :)
+Well if it's not there, then it's not there. If something is not provided
+by a recipe, then it obviously has no defined version. Please note though
+that package/recipe names are not directly comparable between distributions
+like Ubuntu and the Yocto project ecosystem, as the names might differ
+slightly. Example: libtiff seems to be just "tiff".
 
-Greetz
+http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-multimedia/libtiff/tiff_4.1.0.bb?h=dunfell
 
-Am Di., 1. Sept. 2020 um 12:22 Uhr schrieb Yocto_user <
+Am Di., 1. Sept. 2020 um 12:55 Uhr schrieb Yocto_user <
 avinashyadav94it@gmail.com>:
 
-> Hi All,
->
-> I read the Dunfell release notes but couldn't find the version detail of
-> following components:
-> bzip2
-> cairo
-> faad2
-> fontconfig
-> freetype
+> Thanks Josef Holzmayr-Khosh Amoz for the link, but still few components
+> version is missing i.e.
 > gdkpixbuf
-> libav
-> libffi
 > libjpeg
-> libogg
-> libpng
 > libtiff
-> libvorbis
-> libxcursor
 > openexr
-> openssl
-> pango
-> pixman
 > stb-image
-> swscale
-> theora
-> x264
-> zlib
-> Please give me the version detail of these components,  we are planning to
-> use dunfell but before that we needed the version detail of all these
-> components in Yocto. 
->
+> swscale  all these are missing.
 
---00000000000042e67905ae3df052
+--000000000000cf3fe305ae3e6c8d
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Insert the package names into <a href=3D"http://layer=
-s.openembedded.org/layerindex/branch/dunfell/recipes">http://layers.openemb=
-edded.org/layerindex/branch/dunfell/recipes</a> and see for yourself :)</di=
-v><div><br></div><div>Greetz<br></div></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">Am Di., 1. Sept. 2020 um 12:22=C2=A0U=
-hr schrieb Yocto_user &lt;<a href=3D"mailto:avinashyadav94it@gmail.com">avi=
-nashyadav94it@gmail.com</a>&gt;:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex">Hi All,<br><br>I read the Dunfell release notes but couldn=
-&#39;t find the version detail of following components:<br>
-<table style=3D"width:70pt;height:84px" width=3D"93" cellspacing=3D"0" cel=
-lpadding=3D"0" border=3D"0"><colgroup><col style=3D"width:70pt" width=3D"93=
-"> </colgroup>
+<div dir=3D"ltr"><div>Well if it&#39;s not there, then it&#39;s not there. =
+If something is not provided by a recipe, then it obviously has no defined =
+version. Please note though that package/recipe names are not directly comp=
+arable between distributions like Ubuntu and the Yocto project ecosystem, a=
+s the names might differ slightly. Example: libtiff seems to be just &quot;=
+tiff&quot;.</div><div><br></div><div><a href=3D"http://cgit.openembedded.or=
+g/openembedded-core/tree/meta/recipes-multimedia/libtiff/tiff_4.1.0.bb?h=3D=
+dunfell">http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-m=
+ultimedia/libtiff/tiff_4.1.0.bb?h=3Ddunfell</a></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Am Di., 1. Sept. 202=
+0 um 12:55=C2=A0Uhr schrieb Yocto_user &lt;<a href=3D"mailto:avinashyadav94=
+it@gmail.com">avinashyadav94it@gmail.com</a>&gt;:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">Thanks=C2=A0Josef Holzmayr-Khosh Amoz for=
+ the link, but still few components version is missing i.e.<br>
+<table style=3D"width:70pt" width=3D"93" cellspacing=3D"0" cellpadding=3D"0=
+" border=3D"0">
 <tbody>
-<tr style=3D"height:14px">
-<td style=3D"height:14px;width:92.6667px;font-size:11pt;color:black;font-f=
-amily:Calibri,sans-serif;border:0.5pt solid rgb(165,165,165);background-ima=
-ge:initial;background-position:initial;background-size:initial;background-r=
-epeat:initial;background-origin:initial;background-clip:initial" height=3D"=
-19">bzip2</td>
-</tr>
-<tr style=3D"height:14px">
-<td style=3D"height:14px;font-size:11pt;color:black;font-family:Calibri,sa=
-ns-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;backg=
-round-position:initial;background-size:initial;background-repeat:initial;ba=
-ckground-origin:initial;background-clip:initial;width:92.6667px" height=3D"=
-19">cairo</td>
-</tr>
-<tr style=3D"height:14px">
-<td style=3D"height:14px;font-size:11pt;color:black;font-family:Calibri,sa=
-ns-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;backg=
-round-position:initial;background-size:initial;background-repeat:initial;ba=
-ckground-origin:initial;background-clip:initial;width:92.6667px" height=3D"=
-19">faad2</td>
-</tr>
-<tr style=3D"height:14px">
-<td style=3D"height:14px;font-size:11pt;color:black;font-family:Calibri,sa=
-ns-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;backg=
-round-position:initial;background-size:initial;background-repeat:initial;ba=
-ckground-origin:initial;background-clip:initial;width:92.6667px" height=3D"=
-19">fontconfig</td>
-</tr>
-<tr style=3D"height:14px">
-<td style=3D"height:14px;font-size:11pt;color:black;font-family:Calibri,sa=
-ns-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;backg=
-round-position:initial;background-size:initial;background-repeat:initial;ba=
-ckground-origin:initial;background-clip:initial;width:92.6667px" height=3D"=
-19">freetype</td>
-</tr>
-<tr style=3D"height:14px">
-<td style=3D"height:14px;font-size:11pt;color:black;font-family:Calibri,sa=
-ns-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;backg=
-round-position:initial;background-size:initial;background-repeat:initial;ba=
-ckground-origin:initial;background-clip:initial;width:92.6667px" height=3D"=
-19">gdkpixbuf</td>
+<tr style=3D"height:14.5pt">
+<td style=3D"height:14.5pt;width:70pt;font-size:11pt;color:black;font-famil=
+y:Calibri,sans-serif;border:0.5pt solid rgb(165,165,165);background-image:i=
+nitial;background-position:initial;background-size:initial;background-repea=
+t:initial;background-origin:initial;background-clip:initial" width=3D"93" h=
+eight=3D"19">gdkpixbuf</td>
 </tr>
 </tbody>
 </table>
-<table style=3D"width:70pt" width=3D"93" cellspacing=3D"0" cellpadding=3D"=
-0" border=3D"0"><colgroup><col style=3D"width:70pt" width=3D"93"> </colgrou=
-p>
+<table style=3D"width:70pt" width=3D"93" cellspacing=3D"0" cellpadding=3D"0=
+" border=3D"0">
 <tbody>
 <tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;width:70pt;font-size:11pt;color:black;font-fami=
-ly:Calibri,sans-serif;border:0.5pt solid rgb(165,165,165);background-image:=
-initial;background-position:initial;background-size:initial;background-repe=
-at:initial;background-origin:initial;background-clip:initial" width=3D"93" =
-height=3D"19">libav</td>
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">libffi</td=
->
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">libjpeg</t=
-d>
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">libogg</td=
->
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">libpng</td=
->
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">libtiff</t=
-d>
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">libvorbis<=
-/td>
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">libxcursor=
-</td>
+<td style=3D"height:14.5pt;width:70pt;font-size:11pt;color:black;font-famil=
+y:Calibri,sans-serif;border:0.5pt solid rgb(165,165,165);background-image:i=
+nitial;background-position:initial;background-size:initial;background-repea=
+t:initial;background-origin:initial;background-clip:initial" width=3D"93" h=
+eight=3D"19">libjpeg</td>
 </tr>
 </tbody>
 </table>
-<table style=3D"width:70pt" width=3D"93" cellspacing=3D"0" cellpadding=3D"=
-0" border=3D"0"><colgroup><col style=3D"width:70pt" width=3D"93"> </colgrou=
-p>
+<table style=3D"width:70pt" width=3D"93" cellspacing=3D"0" cellpadding=3D"0=
+" border=3D"0">
 <tbody>
 <tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;width:70pt;font-size:11pt;color:black;font-fami=
-ly:Calibri,sans-serif;border:0.5pt solid rgb(165,165,165);background-image:=
-initial;background-position:initial;background-size:initial;background-repe=
-at:initial;background-origin:initial;background-clip:initial" width=3D"93" =
-height=3D"19">openexr</td>
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">openssl</t=
-d>
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">pango</td>
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">pixman</td=
->
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">stb-image<=
-/td>
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">swscale</t=
-d>
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">theora</td=
->
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">x264</td>
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,=
-sans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;bac=
-kground-position:initial;background-size:initial;background-repeat:initial;=
-background-origin:initial;background-clip:initial" height=3D"19">zlib</td>
+<td style=3D"height:14.5pt;width:70pt;font-size:11pt;color:black;font-famil=
+y:Calibri,sans-serif;border:0.5pt solid rgb(165,165,165);background-image:i=
+nitial;background-position:initial;background-size:initial;background-repea=
+t:initial;background-origin:initial;background-clip:initial" width=3D"93" h=
+eight=3D"19">libtiff</td>
 </tr>
 </tbody>
 </table>
-<br>Please give me the version=C2=A0detail of these components,=C2=A0 we a=
-re planning to use dunfell but before that we needed the version detail of =
-all these components in Yocto.
-<br>
+<table style=3D"width:70pt" width=3D"93" cellspacing=3D"0" cellpadding=3D"0=
+" border=3D"0">
+<tbody>
+<tr style=3D"height:14.5pt">
+<td style=3D"height:14.5pt;width:70pt;font-size:11pt;color:black;font-famil=
+y:Calibri,sans-serif;border:0.5pt solid rgb(165,165,165);background-image:i=
+nitial;background-position:initial;background-size:initial;background-repea=
+t:initial;background-origin:initial;background-clip:initial" width=3D"93" h=
+eight=3D"19">openexr</td>
+</tr>
+</tbody>
+</table>
+<table style=3D"width:70pt" width=3D"93" cellspacing=3D"0" cellpadding=3D"0=
+" border=3D"0"><colgroup><col style=3D"width:70pt" width=3D"93"> </colgroup=
+>
+<tbody>
+<tr style=3D"height:14.5pt">
+<td style=3D"height:14.5pt;width:70pt;font-size:11pt;color:black;font-famil=
+y:Calibri,sans-serif;border:0.5pt solid rgb(165,165,165);background-image:i=
+nitial;background-position:initial;background-size:initial;background-repea=
+t:initial;background-origin:initial;background-clip:initial" width=3D"93" h=
+eight=3D"19">stb-image</td>
+</tr>
+<tr style=3D"height:14.5pt">
+<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,s=
+ans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;back=
+ground-position:initial;background-size:initial;background-repeat:initial;b=
+ackground-origin:initial;background-clip:initial" height=3D"19">swscale</td=
+>
+</tr>
+</tbody>
+</table>
+=C2=A0all these are missing.
 </blockquote></div>
 
---00000000000042e67905ae3df052--
+--000000000000cf3fe305ae3e6c8d--
