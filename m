@@ -1,160 +1,90 @@
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
- by mx.groups.io with SMTP id smtpd.web12.10550.1598958022561412722
+Received: from mail-oi1-f196.google.com (mail-oi1-f196.google.com [209.85.167.196])
+ by mx.groups.io with SMTP id smtpd.web11.10400.1598958224163415624
  for <yocto@lists.yoctoproject.org>;
- Tue, 01 Sep 2020 04:00:23 -0700
+ Tue, 01 Sep 2020 04:03:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theyoctojester-info.20150623.gappssmtp.com header.s=20150623 header.b=0QaHzxAy;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.167.42, mailfrom: jester@theyoctojester.info)
-Received: by mail-lf1-f42.google.com with SMTP id j15so510407lfg.7
-        for <yocto@lists.yoctoproject.org>; Tue, 01 Sep 2020 04:00:22 -0700 (PDT)
+ dkim=pass header.i=@konsulko.com header.s=google header.b=BGqp5Nfx;
+ spf=pass (domain: konsulko.com, ip: 209.85.167.196, mailfrom: paul.barker@konsulko.com)
+Received: by mail-oi1-f196.google.com with SMTP id 185so752872oie.11
+        for <yocto@lists.yoctoproject.org>; Tue, 01 Sep 2020 04:03:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=nI3+vAqe3TDckK4z4pJOrEmzFyBg0mtHSwxUHOexToc=;
-        b=0QaHzxAynz3g7EWkb19qfflSIReMsuoDFKw2DIvC9+usrTak4Ludp2LDibpR0vobDQ
-         mYeAT+0RFjMh6XwLbG+mAfstcGMc1pkDcLDv1Wn2cAWL+hwkf7mWIgjfKp8p1G4DMGTG
-         16d+nc3JfXvlY7OtlNIlQSdcDCdiptFaW96c9Nrp4smFFXlzVj5iMmIkYM1GKNz27Jnu
-         RhpopXw47vBA+m+pBDV2rsNb6vJxlOfo5c/vqf3MwOYPijWHUbZ+vjLec/2lezyRaz7S
-         V7ALOrj6k6vvQmNGF+yf6wJJtTkXTfejuP8wbzYlanAu2OmITW6WG0WQPX91WPx2rkKR
-         eC7Q==
+        d=konsulko.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ANOyegmVvtZgkOVDEMUresw2lNurrPPYaePUghSllhg=;
+        b=BGqp5NfxJ4pFU4fGGFKH9D4a8uPd6wGiV6+WiKDA2o2EDQS8nvRdKD/KqjfeCOxOX7
+         ZdNJvHxarOvNvJd0itxhq8/i9zISKcl5iDD2o1tAqIACLcFlZEqBFXu24tNy9WgStLq3
+         DFm3LqpJ1+S+CVSqW5qXkGtqYZpojNNE6o8Hc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=nI3+vAqe3TDckK4z4pJOrEmzFyBg0mtHSwxUHOexToc=;
-        b=rchpuwqyQwa7GFDeCyk7uM4oI0AP6QsW/aMwuQPsYCetYg9NkDM1gcr+GBONNX0/JA
-         Vy7IhO7n6s1K37jJi1Lo269mPJFUJZFSIGrEGXDSKay9uKqeUnjjcq5Grc/Oz6j/6oHv
-         FLKbGEAFcwXUR0kUrBuND+NQmWYSIrTeR3JBUTD98zUre9UtV5jC+SRaxzWHxvNqNrPd
-         3iOhapimaEstU8xa0Trw3Hwst4cJ5lxWV9d3/ONjwI4+CZgLatFtIKGvR4XBJfgUP+v+
-         T0f+kUFGyIMKqOQLNwNoCgI/J+HbZK7tpZC07FC3OidZ0VfBZxUGnUd2bDdW9FHCnfnR
-         tPBQ==
-X-Gm-Message-State: AOAM532sj1u+Xi+5LABiCr0Kx+uJ+SqFTpmBPFSeWNe9qy/bCBDlg+ZE
-	9nGVCd0p01bZmcpZzpo1CTrEIiosBr+srEPsTRrBLw==
-X-Google-Smtp-Source: ABdhPJy/JSkmB3NMf5fD6FAQ3aBknbLv8FbHj6aTlgIXXrOrt4ej6odva2NktbA0dNUk0yaduUEeO6vAx1xK4WvnFuA=
-X-Received: by 2002:a19:8011:: with SMTP id b17mr318346lfd.212.1598958020273;
- Tue, 01 Sep 2020 04:00:20 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=ANOyegmVvtZgkOVDEMUresw2lNurrPPYaePUghSllhg=;
+        b=SzmJ4QYBkKICGUyhYg1cCazaATlQX7coTLkz2t57VIJUvdivPzktYtWvs8KGhOU14B
+         rSkKTJLraZj45IH785TKDMLyJSoEUlBq2+Tq1yD/wrwsf/P1nabZBskLj2LWPCi1pGME
+         kacWqDLmZNgKTlG/Tn0YDTg0aIQx+Y1qM+YRxEUo5UwQ1OyXb6NH39koPh5gxYc6KVlP
+         wlXJ/Bdx93k7MUpHG/GlL+9+j4sBqJxsPDgMSyOtBgIyZzWBf/iyU8LYQ3BkMd29COpk
+         8KyL05BvMoF2fhZW1FXD+4+isLJ7KUHziKX9Ve6LyPVD88KGyhFeI1xwW0tGU1uHwbVw
+         i6KQ==
+X-Gm-Message-State: AOAM531IP0INaOnj0vtYhMLAsGwrh8sZREc84oQJlkQW6BbjPNLn/XU+
+	dPrHEBzJ3jNG+cwrf0aJcIjc0QwBasjNEeOzjMTm+w==
+X-Google-Smtp-Source: ABdhPJxktO7cRHuS6zaj5cXYmWHsfmf3XoIePfd9ZO+dFaNbkqZ0pqiDdYZC+r7d3VSnyBqTCf5IZriyeX1ou4JbDU8=
+X-Received: by 2002:aca:670b:: with SMTP id z11mr700514oix.6.1598958223519;
+ Tue, 01 Sep 2020 04:03:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEt6Nwq30AiBo6+u39HLubK511nLnkGg6DMoj2kQLVAzpWjkHw@mail.gmail.com>
- <7070.1598957735098138146@lists.yoctoproject.org>
-In-Reply-To: <7070.1598957735098138146@lists.yoctoproject.org>
-From: "Josef Holzmayr-Khosh Amoz" <jester@theyoctojester.info>
-Date: Tue, 1 Sep 2020 12:59:54 +0200
-Message-ID: <CAEt6Nwp7vAdgb4pPW+nT7MrM=JNJe_2J5d+e20X7MVbAMUeyoA@mail.gmail.com>
-Subject: Re: Private: Re: [yocto] Information about Yocto Dunfell components version #dunfell
-To: Yocto_user <avinashyadav94it@gmail.com>, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000cf3fe305ae3e6c8d"
-
---000000000000cf3fe305ae3e6c8d
+References: <8B1s.1598955769274779937.Mx7T@lists.yoctoproject.org> <CAEt6Nwq30AiBo6+u39HLubK511nLnkGg6DMoj2kQLVAzpWjkHw@mail.gmail.com>
+In-Reply-To: <CAEt6Nwq30AiBo6+u39HLubK511nLnkGg6DMoj2kQLVAzpWjkHw@mail.gmail.com>
+From: "Paul Barker" <pbarker@konsulko.com>
+Date: Tue, 1 Sep 2020 12:03:33 +0100
+Message-ID: <CAM9ZRVv77pUMpH5cZZYf5qhzpGjbtiR5q8q-ib=AQqEAOtLXzA@mail.gmail.com>
+Subject: Re: [yocto] Information about Yocto Dunfell components version #dunfell
+To: Josef Holzmayr-Khosh Amoz <jester@theyoctojester.info>
+Cc: Yocto_user <avinashyadav94it@gmail.com>, yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 
-Well if it's not there, then it's not there. If something is not provided
-by a recipe, then it obviously has no defined version. Please note though
-that package/recipe names are not directly comparable between distributions
-like Ubuntu and the Yocto project ecosystem, as the names might differ
-slightly. Example: libtiff seems to be just "tiff".
-
-http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-multimedia/libtiff/tiff_4.1.0.bb?h=dunfell
-
-Am Di., 1. Sept. 2020 um 12:55 Uhr schrieb Yocto_user <
-avinashyadav94it@gmail.com>:
-
-> Thanks Josef Holzmayr-Khosh Amoz for the link, but still few components
-> version is missing i.e.
-> gdkpixbuf
-> libjpeg
-> libtiff
-> openexr
-> stb-image
-> swscale  all these are missing.
-
---000000000000cf3fe305ae3e6c8d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Well if it&#39;s not there, then it&#39;s not there. =
-If something is not provided by a recipe, then it obviously has no defined =
-version. Please note though that package/recipe names are not directly comp=
-arable between distributions like Ubuntu and the Yocto project ecosystem, a=
-s the names might differ slightly. Example: libtiff seems to be just &quot;=
-tiff&quot;.</div><div><br></div><div><a href=3D"http://cgit.openembedded.or=
-g/openembedded-core/tree/meta/recipes-multimedia/libtiff/tiff_4.1.0.bb?h=3D=
-dunfell">http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-m=
-ultimedia/libtiff/tiff_4.1.0.bb?h=3Ddunfell</a></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Am Di., 1. Sept. 202=
-0 um 12:55=C2=A0Uhr schrieb Yocto_user &lt;<a href=3D"mailto:avinashyadav94=
-it@gmail.com">avinashyadav94it@gmail.com</a>&gt;:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">Thanks=C2=A0Josef Holzmayr-Khosh Amoz for=
- the link, but still few components version is missing i.e.<br>
-<table style=3D"width:70pt" width=3D"93" cellspacing=3D"0" cellpadding=3D"0=
-" border=3D"0">
-<tbody>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;width:70pt;font-size:11pt;color:black;font-famil=
-y:Calibri,sans-serif;border:0.5pt solid rgb(165,165,165);background-image:i=
-nitial;background-position:initial;background-size:initial;background-repea=
-t:initial;background-origin:initial;background-clip:initial" width=3D"93" h=
-eight=3D"19">gdkpixbuf</td>
-</tr>
-</tbody>
-</table>
-<table style=3D"width:70pt" width=3D"93" cellspacing=3D"0" cellpadding=3D"0=
-" border=3D"0">
-<tbody>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;width:70pt;font-size:11pt;color:black;font-famil=
-y:Calibri,sans-serif;border:0.5pt solid rgb(165,165,165);background-image:i=
-nitial;background-position:initial;background-size:initial;background-repea=
-t:initial;background-origin:initial;background-clip:initial" width=3D"93" h=
-eight=3D"19">libjpeg</td>
-</tr>
-</tbody>
-</table>
-<table style=3D"width:70pt" width=3D"93" cellspacing=3D"0" cellpadding=3D"0=
-" border=3D"0">
-<tbody>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;width:70pt;font-size:11pt;color:black;font-famil=
-y:Calibri,sans-serif;border:0.5pt solid rgb(165,165,165);background-image:i=
-nitial;background-position:initial;background-size:initial;background-repea=
-t:initial;background-origin:initial;background-clip:initial" width=3D"93" h=
-eight=3D"19">libtiff</td>
-</tr>
-</tbody>
-</table>
-<table style=3D"width:70pt" width=3D"93" cellspacing=3D"0" cellpadding=3D"0=
-" border=3D"0">
-<tbody>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;width:70pt;font-size:11pt;color:black;font-famil=
-y:Calibri,sans-serif;border:0.5pt solid rgb(165,165,165);background-image:i=
-nitial;background-position:initial;background-size:initial;background-repea=
-t:initial;background-origin:initial;background-clip:initial" width=3D"93" h=
-eight=3D"19">openexr</td>
-</tr>
-</tbody>
-</table>
-<table style=3D"width:70pt" width=3D"93" cellspacing=3D"0" cellpadding=3D"0=
-" border=3D"0"><colgroup><col style=3D"width:70pt" width=3D"93"> </colgroup=
+On Tue, 1 Sep 2020 at 11:25, Josef Holzmayr-Khosh Amoz
+<jester@theyoctojester.info> wrote:
 >
-<tbody>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;width:70pt;font-size:11pt;color:black;font-famil=
-y:Calibri,sans-serif;border:0.5pt solid rgb(165,165,165);background-image:i=
-nitial;background-position:initial;background-size:initial;background-repea=
-t:initial;background-origin:initial;background-clip:initial" width=3D"93" h=
-eight=3D"19">stb-image</td>
-</tr>
-<tr style=3D"height:14.5pt">
-<td style=3D"height:14.5pt;font-size:11pt;color:black;font-family:Calibri,s=
-ans-serif;border:0.5pt solid rgb(165,165,165);background-image:initial;back=
-ground-position:initial;background-size:initial;background-repeat:initial;b=
-ackground-origin:initial;background-clip:initial" height=3D"19">swscale</td=
+> Insert the package names into http://layers.openembedded.org/layerindex/branch/dunfell/recipes and see for yourself :)
 >
-</tr>
-</tbody>
-</table>
-=C2=A0all these are missing.
-</blockquote></div>
+> Greetz
+>
+> Am Di., 1. Sept. 2020 um 12:22 Uhr schrieb Yocto_user <avinashyadav94it@gmail.com>:
+>>
+>> Hi All,
+>>
+>> I read the Dunfell release notes but couldn't find the version detail of following components:
+>> bzip2
+>> cairo
+>> faad2
+>> fontconfig
+>> freetype
+>> gdkpixbuf
+>> libav
+>> libffi
+>> libjpeg
+>> libogg
+>> libpng
+>> libtiff
+>> libvorbis
+>> libxcursor
+>> openexr
+>> openssl
+>> pango
+>> pixman
+>> stb-image
+>> swscale
+>> theora
+>> x264
+>> zlib
+>>
+>> Please give me the version detail of these components,  we are planning to use dunfell but before that we needed the version detail of all these components in Yocto.
 
---000000000000cf3fe305ae3e6c8d--
+Also worth noting: The exact versions used will depend on which commit
+from the dunfell branch you choose. You should follow updates to the
+stable branch to get the latest security fixes for your packages so
+the versions should not be perfectly static anyway.
+
+-- 
+Paul Barker
+Konsulko Group
