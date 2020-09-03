@@ -1,126 +1,67 @@
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
- by mx.groups.io with SMTP id smtpd.web10.13707.1599067960853398546
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+ by mx.groups.io with SMTP id smtpd.web11.3120.1599092330019301138
  for <yocto@lists.yoctoproject.org>;
- Wed, 02 Sep 2020 10:32:41 -0700
+ Wed, 02 Sep 2020 17:18:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=BFzWD7qZ;
- spf=pass (domain: gmail.com, ip: 209.85.219.44, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f44.google.com with SMTP id x7so2593912qvi.5
-        for <yocto@lists.yoctoproject.org>; Wed, 02 Sep 2020 10:32:40 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=UzYPnabK;
+ spf=pass (domain: gmail.com, ip: 209.85.218.42, mailfrom: simonkbaby@gmail.com)
+Received: by mail-ej1-f42.google.com with SMTP id z23so1140659ejr.13
+        for <yocto@lists.yoctoproject.org>; Wed, 02 Sep 2020 17:18:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=BtaWeGJ7RlZQKxxk24v22033B7jAi2rVzBaCy+0SycU=;
-        b=BFzWD7qZr+tYXNYFPcSXPwO8oBQvPCNL58b8WSn8EfEjX4AXqP5Z589nHfQJPtkgIT
-         HEJk9nGiF0elfiM+avXgcEcv5DT3UPL4ICzfgf5hdWQoSBGmLZJ2kwpZ6Ls1n5aqPOLM
-         t+g4+uLYTsT/Yfi3ATnsXgabOFqrwWg+aXj6hfZ1OsIgI66+MN/HqBrujrhkXzJTKoiZ
-         5ZLW4QlqVECdqs8GcfLzs1LiFQBoiuoWOeu+vRMVkZFxDNgtc04j0ZFYchfRThOwQSK/
-         6KNYHfrTaaJnKFqvhNobW+9xrj+QwsZYFyqj8EYMC3qUQJIh7rMsbQT57KQntxJBPbfh
-         BmQA==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=+FtS/81eJ22uLoed1X+I7sXOOMYn8lWoHXCdfCP7zfw=;
+        b=UzYPnabKEG2TwVw1W7uPFiOBmkg783MhGLuco15xd1/vQB5xC1eyVoJ/gVSJGYsD3A
+         pAM4WrJVifnnyR2COvBGLFfKmGrPRuBO83iSngUOAE4gfdIoPQQeQcrLQPXtz0lpZKB8
+         7tr+/Z5QAyPwLmkl1BD/ergpzwxfJBDRlyy6/VVW0hVkdNy3JyeG24LgJOpdKu/Tp0TO
+         6wXeo7xEpwxy7cYr5ZdkrLyWfc0kw+09Iv/VUWTExHMfzGxkjMn3/6fCblG6NPBh+WCV
+         kTTa6c+u5MI34dMHkElxw8Isc/abcuyMPiY4dX3LEEiH7amAzc/0khHB9CNBzYwF7iWE
+         1mew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=BtaWeGJ7RlZQKxxk24v22033B7jAi2rVzBaCy+0SycU=;
-        b=PnBc6SSCwIEjsF9W01IBX3fFD8Ljb+O77y9hcJYyZYFJ+XLuOTF1UTsecjpIS+WfYi
-         xuG6ZJck+p/PPfrmOa9fLv6sCiy/Sguy9QJ3Htj++7gUfleDCyQ90/r4LQn8E/2x6kP3
-         6kg5cbpcduZA4OuzhMDJATARexzSVGP6FXFUk8PYv74GutLztAfp1kwHrw4rM2KJ0EvU
-         TQw8z+iaNIoug+P/Hz2Hvw/+Xx4SBIzovJ7AE92NlLQuPU1bavQedxfRmYZChMBpCfNT
-         btB6opN+aDGLoEyUCBz13TVVEhjjjL/EhFybcivPN6YNkeJ149ax0m931Egz5m9dud98
-         48Pw==
-X-Gm-Message-State: AOAM531Eym1jqhccvjnANXgArJb33vrcqXICisC/6IAMJ45Kg4or75v8
-	0SG3KGe5uXJNRx92yLY/fsRdDHU0D1bD7f5eQGU=
-X-Google-Smtp-Source: ABdhPJznWDIBiRABnFpw+9A/YjvhIMy0EpVcB9GV+vs4GQ6mWvRFa0ea0lbTWYsAzxHv1bHok+RAlFR9AibBuPG9u+E=
-X-Received: by 2002:a0c:e783:: with SMTP id x3mr7891752qvn.114.1599067959907;
- Wed, 02 Sep 2020 10:32:39 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=+FtS/81eJ22uLoed1X+I7sXOOMYn8lWoHXCdfCP7zfw=;
+        b=a5WkW1oQoHbr75Zg3bOUHLZJiHjyfPfJ3U5xzWWzeIZu72jUJ6Bz7/F6lsFnG8ayT0
+         zzjGBPnCImJjHEYEUA0o2Xs+hQHovInST6CD/XC9UAQd/2kmiGBrjlQ5ugo6AClUInz4
+         dXxS0pVlVOzmaSM/m6OFX38fj6q1WXOQ500J/GeI///jHaRDL98+FeLCJB29Fc5nZ5Za
+         w6XTOoiZX66C3PKMrEU+1r5fWfUfAHVNr2ZfrWSdRN5blSmWHLB+U+BtXWigPS+ts7+M
+         rjkG4SxuBEWX4cX68zhHn2cEEIuiTtac1TbfOCQPm2JEpCzUK7FUAu75JRfbpBPirAkF
+         1FgA==
+X-Gm-Message-State: AOAM531FfMbaqP616k/6Fdxme4fD5rd51zq2rC65+39Bt1ueP+I79S/3
+	r0uD41Rqas+hz5G/4iiqaew3cyAgziSWApwf9tZEzRLla7dFvA==
+X-Google-Smtp-Source: ABdhPJyqghWG0YGfEWzHbpFaklDb7wU6NW0WquoOhtUaMfbgoeEwtZPhLglZJ5uTWyqsJF6bt907PlBnPkPeGBdKPpA=
+X-Received: by 2002:a17:906:fcc8:: with SMTP id qx8mr628473ejb.13.1599092328016;
+ Wed, 02 Sep 2020 17:18:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <9QZb.1599045228761498654.9opf@lists.yoctoproject.org> <CAAfyv37uHzbqhCCV0tKCbKp4AfOm6VLGFQ0WRYV-vOiueOZ7tg@mail.gmail.com>
-In-Reply-To: <CAAfyv37uHzbqhCCV0tKCbKp4AfOm6VLGFQ0WRYV-vOiueOZ7tg@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Wed, 2 Sep 2020 10:32:13 -0700
-Message-ID: <CAMKF1somZ-N0nEGxbixbF6oDD4P2F=ez8MHS4wdUu8uN4Djohg@mail.gmail.com>
-Subject: Re: [yocto] How to integrate kernel-module in yocto-dunfell? #yocto #dunfell #apt #tx2 #kernel
-To: Marek Belisko <marek.belisko@gmail.com>
-Cc: kilian.brandt@tu-dresden.de, yocto@lists.yoctoproject.org
+From: simonkbaby@gmail.com
+Date: Wed, 2 Sep 2020 17:18:36 -0700
+Message-ID: <CAEFUPH3A6vnmB8X-43hchgJY2juvqJp_Lhf+e1iOv2GsPzZWLA@mail.gmail.com>
+Subject: Query on building applications and catch exceptions across different shared libraries
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000002cb00905ae5db212"
+
+--0000000000002cb00905ae5db212
 Content-Type: text/plain; charset="UTF-8"
+
+Hello,
+
+I have an issue with my throw , catch code in c++.  If i throw an error
+after the openssl library call, my application crashes.  If my application
+wishes to throw and catch exceptions across different shared libraries do
+we have any specific settings I can add in my bitbake recipe?
+
+regards
+Simon
+
+--0000000000002cb00905ae5db212
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 2, 2020 at 4:32 AM Marek Belisko <marek.belisko@gmail.com> wrot=
-e:
->
-> On Wed, Sep 2, 2020 at 1:13 PM <kilian.brandt@tu-dresden.de> wrote:
-> >
-> > Hey community,
-> >
-> > I'm trying to use this library [can-isotp][1] on a Jetson TX2 Board. T=
-he version of the running OS is: 0.0.8 (dunfell).
-> >
-> > From the docs of the library I get the following instructions:
-> >
-> > ```
-> >
-> > DOWNLOAD and BUILD
-> >
-> > 1. Download repository and enter the repositories root directory
-> >
-> >       git clone https://github.com/hartkopp/can-isotp.git
-> >
-> >       cd can-isotp
-> >
-> > 2. Build ISO-TP kernel module
-> >
-> >    Ensure build dependencies are installed. E.g. for Debian (or Ubuntu=
-):
-> >
-> >       sudo apt-get install build-essential linux-headers-$(uname -r)
-> >
-> >    To build:
-> >
-> >       (you need to be in the repositories root path)
-> >
-> >       make
-> >
-> >    To install (optional):
-> >
-> >       sudo make modules_install
-> >
-> >
-> > 3. When the PF_CAN core module is loaded ('modprobe can') the ISO-TP m=
-odule
-> >    can be loaded into the kernel with
-> >
-> >        insmod ./net/can/can-isotp.ko
-> >
-> >    When the can-isotp.ko module has been installed into the Linux Kern=
-els
-> >    modules directory (e.g. with 'make modules_install') the module sho=
-uld
-> >    load automatically when opening a CAN_ISOTP socket.
-> >
-> > ```
-> >
-> > I have some questions about that procedure. Can anybody give me an hin=
-t on how to install this module? Do I have to create a completly new yocto =
-image or is there any way to install kernel modules afterwards? I tried to =
-copy the folder onto the TX2 and install it by hand, but (as to be expected=
-) the make command is not found.
-> PLease take a look at :
-> https://www.yoctoproject.org/docs/2.6/kernel-dev/kernel-dev.html#working=
--with-out-of-tree-modules
-> where it is described how to compile out of tree modules.
-> >
+<div dir=3D"ltr">Hello,<div><br></div><div>I have an issue with my throw , =
+catch code in c++.=C2=A0 If i throw an error after the openssl library call=
+, my application crashes.=C2=A0 If my application wishes to throw and catch=
+ exceptions across different shared libraries do we have any specific setti=
+ngs I can add in my bitbake recipe?<br></div><div><br></div><div>regards</d=
+iv><div>Simon</div></div>
 
-in this case you might be lucky we already have recipe
-http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-extend=
-ed/socketcan/can-isotp_git.bb?h=3Dmaster
-its blacklisted because it needs work to fix build on 5.2+ kernel
-
-> > I would really appreciate any help ! Best regards,
-> >
-> >
-> >   [1]: https://github.com/hartkopp/can-isotp
-> >
->
-> marek
->=20
+--0000000000002cb00905ae5db212--
