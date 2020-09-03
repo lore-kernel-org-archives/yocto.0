@@ -1,63 +1,105 @@
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
- by mx.groups.io with SMTP id smtpd.web10.3786.1599094856202639960
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+ by mx.groups.io with SMTP id smtpd.web10.5703.1599102406334141508
  for <yocto@lists.yoctoproject.org>;
- Wed, 02 Sep 2020 18:00:56 -0700
+ Wed, 02 Sep 2020 20:06:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=QIhXg6F/;
- spf=pass (domain: gmail.com, ip: 209.85.160.178, mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f178.google.com with SMTP id b3so677340qtg.13
-        for <yocto@lists.yoctoproject.org>; Wed, 02 Sep 2020 18:00:56 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=QRQXspit;
+ spf=pass (domain: gmail.com, ip: 209.85.208.54, mailfrom: simonkbaby@gmail.com)
+Received: by mail-ed1-f54.google.com with SMTP id l17so1056977edq.12
+        for <yocto@lists.yoctoproject.org>; Wed, 02 Sep 2020 20:06:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=DrItuGClQIQ0gjFp/DNrqgFpo/IT+5WirSUagst4aDo=;
-        b=QIhXg6F/R/AVPHj1adbRtybvv+N13NH4ZMGVj2LhwvQivyYPUXb5MWtZIlMPrvWvXV
-         Hw2Ag8J9EVlVPfdZSqRn0f+PjYz2wgHjd6RQWmqlrBcENz5cPUS0+XJLutDmFBFu8/3+
-         GjeVyTo1XMUvUwrMa5GtLZMcxsa+32yin8eQ5M6MbXFkfZpblKImcIHVeSHfbnb1B/Bs
-         XLBGNyU9/dvxEg/jaS2f/Zlvv8xO0fG2l+pzMz4FDqPgjyQJYsAkba/4NKSqKEjVcPx+
-         u8HpodYio54T7KAnb4rLZkCCt1zQE47bCOEOrGR4F+oRdsrdH37413bOeKKYwuEDwSi0
-         hRBg==
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+         :cc;
+        bh=ecySdwD4gCcBJ9NmKoHzIwoK0sXMcOwFqJZtxZCg5OE=;
+        b=QRQXspitHEaVi6J1v0+bkqR91X+CXjJZOyjG2fYhbH3F3BueBVpB+pSpYbdbupLkCc
+         mtVZ7lkaD2tRLAnJaPNkjdPmkimNJ038tfUOW2yH5FWUl4c07+2eYSs5qCo3PGque9+B
+         WcS1DFcchVBjnfKWnO1QYiWViti+AnT9I9beOkjlCiqH4Vu5bgBWMh1rCW0Gb8gF2fCi
+         J+CT6n4J6mY/LhdgIqCC81Nt+9gvIEGS287DV+vnjOtmPq4xr6f95PujJtkWShcjRDPM
+         yEaYrhju/r95mdroTJRUJUGoZ8rZWEIYvGxLNJvYKr/Lcb3zGrXOWP2lVGQ5ynNUEXty
+         Hysg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=DrItuGClQIQ0gjFp/DNrqgFpo/IT+5WirSUagst4aDo=;
-        b=RyQUWJ+l9ankdg6y3Z1/gh2LdLDZlOFtv5fBURPYhY1x5tMCi6u+ly7Q9io6fgXLTj
-         Vl+tbCHXOopKrNIaG2+e4N0F6intJxKXFfvFcCh/Zm6mDXBoBisHVkF+mYXwyrSLbEAe
-         /ZxxZ8w2G7TU9NVGAZUz63btkAVNanjDQe6LRi5OqlmTB+0bthQh4x4xiWVMO28fOuol
-         0ot/3BK1fKWsbl60NHEmkbZoeO2Sad/bA/BbS6om0w1hq43D2CtL+Xodx4U7+JlTMlQl
-         Gm92rHuDZUJ9E17PnBr1TL+lwroJOn4S7hTfvbzaFuYD8HiPbgVQPyMn4WMRN1LiFCW1
-         Ez4w==
-X-Gm-Message-State: AOAM5321xfHrlrxnKhpkYxaAsS+dlRFZnV1woEpkSg++CkzAagbXU+mW
-	cSI3wtaw90EdoEx/rIilxNiHApTuvkANvI454gpTYjhQ14HGWA==
-X-Google-Smtp-Source: ABdhPJykk87i1Gj/z9znrSDxa6aBorrxmaNbZNaKpDN3Q3el1+QXbNpDjY2VIqcc+N4N8Xf1xxHkzTCvk8KcZwvPY/M=
-X-Received: by 2002:ac8:2962:: with SMTP id z31mr995047qtz.88.1599094854983;
- Wed, 02 Sep 2020 18:00:54 -0700 (PDT)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to:cc;
+        bh=ecySdwD4gCcBJ9NmKoHzIwoK0sXMcOwFqJZtxZCg5OE=;
+        b=DNrVGrKXfKdqgBs5ZSSy+GKieUtlpfQVnOhaqosggCEUOGzCDsHKjjNi5ppZcbyKBC
+         1gIrVXQq+l3bXG8+RAXqsVh7HmxpArlj4TVLHqdDhNTmtwJNx0JPgzvvnENln6ej9/Xl
+         gouW3Gu8NNjrhbm5d1uCj1ckyS/wxorsTZY8yiOx2n/po3awud+UWg7Z2g7JhiVpCpdB
+         r2LGnExPyfvqYQ1mCtZPrEIVJE0SWN6HepsS4Ek1xQNrakma/C00g5AQjlm3Z6IOlPlC
+         FZ0ysbxjkPpHz9+K8ZBlRgrAcL6JCmpurDP/RSIiuWpQ/bdlRjTm1/jHMUghNABp1Huc
+         zIig==
+X-Gm-Message-State: AOAM532kWsX6b2g818LwTambkyOs+kUWtB5hdcsO1nNtudJcWLaLUP6D
+	mr5jyW0Ov2koieAVd9vY8hYAT8p4zpk3dWUhOsg=
+X-Google-Smtp-Source: ABdhPJy5iTDOSs3yniGO4+2Py8oKKgomxBTi2T4MSrW7Beu0PRyKqsxZvQ6eUZxtBgg0/fPPi/VGe/FEuFTLxRBa+WM=
+X-Received: by 2002:a05:6402:b45:: with SMTP id bx5mr1022636edb.22.1599102404725;
+ Wed, 02 Sep 2020 20:06:44 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 2002:a05:6402:1770:0:0:0:0 with HTTP; Wed, 2 Sep 2020 20:06:44
+ -0700 (PDT)
+In-Reply-To: <CAMKF1so9gTfy5FuDJu0NvCp9j42SJT=7G+UFHjrbUDHqq2+w7Q@mail.gmail.com>
 References: <CAEFUPH3A6vnmB8X-43hchgJY2juvqJp_Lhf+e1iOv2GsPzZWLA@mail.gmail.com>
-In-Reply-To: <CAEFUPH3A6vnmB8X-43hchgJY2juvqJp_Lhf+e1iOv2GsPzZWLA@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Wed, 2 Sep 2020 18:00:28 -0700
-Message-ID: <CAMKF1so9gTfy5FuDJu0NvCp9j42SJT=7G+UFHjrbUDHqq2+w7Q@mail.gmail.com>
-Subject: Re: [yocto] Query on building applications and catch exceptions across different shared libraries
-To: SIMON BABY <simonkbaby@gmail.com>
-Cc: yocto@lists.yoctoproject.org
+ <CAMKF1so9gTfy5FuDJu0NvCp9j42SJT=7G+UFHjrbUDHqq2+w7Q@mail.gmail.com>
+From: "SIMON BABY" <simonkbaby@gmail.com>
+Date: Wed, 2 Sep 2020 20:06:44 -0700
+Message-ID: <CAEFUPH3POzgiRgC+TgBMw3ZAb4HDNvt4L3ZHb62tUVW5DqZ8rQ@mail.gmail.com>
+Subject: Re: Query on building applications and catch exceptions across different shared libraries
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000cb0f6b05ae600a32"
+
+--000000000000cb0f6b05ae600a32
 Content-Type: text/plain; charset="UTF-8"
+
+No I am not using -fexceptions compiler flag .
+
+Rgds
+Simon
+
+On Wednesday, September 2, 2020, Khem Raj <raj.khem@gmail.com> wrote:
+
+> On Wed, Sep 2, 2020 at 5:18 PM SIMON BABY <simonkbaby@gmail.com> wrote:
+> >
+> > Hello,
+> >
+> > I have an issue with my throw , catch code in c++.  If i throw an error
+> after the openssl library call, my application crashes.  If my application
+> wishes to throw and catch exceptions across different shared libraries do
+> we have any specific settings I can add in my bitbake recipe?
+> >
+>
+> are you using -fexceptions to compile your application ?
+>
+> > regards
+> > Simon
+> > 
+>
+
+--000000000000cb0f6b05ae600a32
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 2, 2020 at 5:18 PM SIMON BABY <simonkbaby@gmail.com> wrote:
->
-> Hello,
->
-> I have an issue with my throw , catch code in c++.  If i throw an error =
-after the openssl library call, my application crashes.  If my application =
-wishes to throw and catch exceptions across different shared libraries do w=
-e have any specific settings I can add in my bitbake recipe?
->
+No I am not using -fexceptions compiler flag .<div><br></div><div>Rgds</div=
+><div>Simon<br><br>On Wednesday, September 2, 2020, Khem Raj &lt;<a href=3D=
+"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
+id;padding-left:1ex">On Wed, Sep 2, 2020 at 5:18 PM SIMON BABY &lt;<a href=
+=3D"mailto:simonkbaby@gmail.com">simonkbaby@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hello,<br>
+&gt;<br>
+&gt; I have an issue with my throw , catch code in c++.=C2=A0 If i throw a=
+n error after the openssl library call, my application crashes.=C2=A0 If my=
+ application wishes to throw and catch exceptions across different shared l=
+ibraries do we have any specific settings I can add in my bitbake recipe?<b=
+r>
+&gt;<br>
+<br>
+are you using -fexceptions to compile your application ?<br>
+<br>
+&gt; regards<br>
+&gt; Simon<br>
+&gt; <br>
+</blockquote></div>
 
-are you using -fexceptions to compile your application ?
-
-> regards
-> Simon
->=20
+--000000000000cb0f6b05ae600a32--
