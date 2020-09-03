@@ -1,76 +1,148 @@
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
- by mx.groups.io with SMTP id smtpd.web12.6476.1599106020610564073
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+ by mx.groups.io with SMTP id smtpd.web10.7720.1599113128045554893
  for <yocto@lists.yoctoproject.org>;
- Wed, 02 Sep 2020 21:07:00 -0700
+ Wed, 02 Sep 2020 23:05:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Gs3qWP6D;
- spf=pass (domain: gmail.com, ip: 209.85.160.172, mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f172.google.com with SMTP id b3so931064qtg.13
-        for <yocto@lists.yoctoproject.org>; Wed, 02 Sep 2020 21:07:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=/SG84vErdHSMBd91Q9Zy56tTgTlqj5J0NPuQOnxnezA=;
-        b=Gs3qWP6DEHc2ZBXZq1BqzPDqVoguQDwJJtZjYAezy8Fl+y3Dfz3BQhSXMLI7cv6/uQ
-         WqajNPZbsd5a5BmzK/djdMXssh4+P3dNIvxFBTJy3sMzxyiWQO3RCn+cjDZi2BvMM9lf
-         y08YthXwc94psnRcN/kk4DvIj0ses8gzaRvBQUUv1v7N5xs5ETj0D87LMEpUvVtWKCON
-         A8TcRkfF1lbnmfY3ny4kGo0uhOWaWJPwyB+nGxgS5JVmVQu9U67wYA/FQKhX3nSrWI+P
-         UsFo8aGXl/qfZhiozB6TS7vjTvvFaMvCcH94UYhefTPyMrdzj22pu/4h3Wrcm4cgjlOp
-         aC/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=/SG84vErdHSMBd91Q9Zy56tTgTlqj5J0NPuQOnxnezA=;
-        b=AbnyFNJOVsSkxcqMs7+wh+bDXhK88gLwVMX98X7JbHktH/oE6s7aniG8LUqjoflGhM
-         jBxjiPauL9v4RFMEaj0JijjP8v5HWMlksDO/YNa2YNTEUrMzqiJQ5g3Wkr7MFf84MGM/
-         X8lXt7Ds26HOWxwxWyCpTjnIjgWixINQf8B8MGJo9L3EEMv6ncrVtoNmrEZse++/mQot
-         fbp3wFIJOrT/4v3TOn64DUvu2AqY/sKOE9YA3hCXycppgEztSikgEQFAk6SoF1GqKKZu
-         dA6wRYAWeu03XEc0XsciIIWTiceyQBipHjJzqQOA8saebyo7W2+m0ug/E7LFshB13OZl
-         dV+Q==
-X-Gm-Message-State: AOAM5302KuP6EuQM5PS2ILXXB4SV4IeFcpw9Evj6o9ZDUXzcCnCIxM5F
-	So9FTWA1Irx1dyGaYB2rkrH5c6NH/V0+C5SwbLE=
-X-Google-Smtp-Source: ABdhPJySF3lff6sadPnE4TTwpS/d9u3N4JYTni5A4s6UfPJ1vqiMgO6eZDsF+evlCLj03Nql4CSCnBhIYdbl2n40XDw=
-X-Received: by 2002:ac8:2962:: with SMTP id z31mr1604333qtz.88.1599106019578;
- Wed, 02 Sep 2020 21:06:59 -0700 (PDT)
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: mingli.yu@windriver.com)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com [147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 08365Bbf022802
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Wed, 2 Sep 2020 23:05:11 -0700 (PDT)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+ ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+ 14.3.487.0; Wed, 2 Sep 2020 23:04:58 -0700
+From: "Yu, Mingli" <mingli.yu@windriver.com>
+To: <yocto@lists.yoctoproject.org>, <jpuhlman@mvista.com>
+Subject: [meta-cgl][PATCH] pacemaker: Fix build with -fno-common
+Date: Thu, 3 Sep 2020 13:59:12 +0800
+Message-ID: <20200903055912.3422968-1-mingli.yu@windriver.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <CAEFUPH3A6vnmB8X-43hchgJY2juvqJp_Lhf+e1iOv2GsPzZWLA@mail.gmail.com>
- <CAMKF1so9gTfy5FuDJu0NvCp9j42SJT=7G+UFHjrbUDHqq2+w7Q@mail.gmail.com> <CAEFUPH3POzgiRgC+TgBMw3ZAb4HDNvt4L3ZHb62tUVW5DqZ8rQ@mail.gmail.com>
-In-Reply-To: <CAEFUPH3POzgiRgC+TgBMw3ZAb4HDNvt4L3ZHb62tUVW5DqZ8rQ@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Wed, 2 Sep 2020 21:06:33 -0700
-Message-ID: <CAMKF1sroPDhmDkHdCdYTUG6_L92nYrSvewbQ3BjPEwn2J6_-NQ@mail.gmail.com>
-Subject: Re: Query on building applications and catch exceptions across different shared libraries
-To: SIMON BABY <simonkbaby@gmail.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Wed, Sep 2, 2020 at 8:06 PM SIMON BABY <simonkbaby@gmail.com> wrote:
->
-> No I am not using -fexceptions compiler flag .
+From: Mingli Yu <mingli.yu@windriver.com>
 
-OK please add it to your CXXFLAGS and see if it helps.
+Starting with GCC >= 10.x, -fno-common is used as default
+instead of -fcommon.
 
->
-> Rgds
-> Simon
->
-> On Wednesday, September 2, 2020, Khem Raj <raj.khem@gmail.com> wrote:
->>
->> On Wed, Sep 2, 2020 at 5:18 PM SIMON BABY <simonkbaby@gmail.com> wrote:
->> >
->> > Hello,
->> >
->> > I have an issue with my throw , catch code in c++.  If i throw an err=
-or after the openssl library call, my application crashes.  If my applicati=
-on wishes to throw and catch exceptions across different shared libraries d=
-o we have any specific settings I can add in my bitbake recipe?
->> >
->>
->> are you using -fexceptions to compile your application ?
->>
->> > regards
->> > Simon
->> >=20
+Make the function definiton extern to fix the build failure.
+
+Set the default OCF_ROOT_DIR to $libdir/ocf to make the
+resource agents components more compatible.
+
+Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
+---
+ .../0001-Mark-declaration-with-extern.patch   | 46 +++++++++++++++++++
+ ...maker-set-OCF_ROOT_DIR-to-libdir-ocf.patch | 32 +++++++++++++
+ .../recipes-cgl/pacemaker/pacemaker_2.0.3.bb  |  2 +
+ 3 files changed, 80 insertions(+)
+ create mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-Mark-declaration-with-extern.patch
+ create mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-set-OCF_ROOT_DIR-to-libdir-ocf.patch
+
+diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-Mark-declaration-with-extern.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-Mark-declaration-with-extern.patch
+new file mode 100644
+index 0000000..5729447
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-Mark-declaration-with-extern.patch
+@@ -0,0 +1,46 @@
++From e1abd3b7c7a0122813e4d0abdb079df10104882c Mon Sep 17 00:00:00 2001
++From: Mingli Yu <mingli.yu@windriver.com>
++Date: Thu, 3 Sep 2020 04:44:09 +0000
++Subject: [PATCH] Mark declaration with extern
++
++Fixes build with gcc 10+
++
++Upstream-Status: Pending
++
++Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
++---
++ daemons/attrd/pacemaker-attrd.h | 4 ++--
++ daemons/execd/pacemaker-execd.h | 2 +-
++ 2 files changed, 3 insertions(+), 3 deletions(-)
++
++diff --git a/daemons/attrd/pacemaker-attrd.h b/daemons/attrd/pacemaker-attrd.h
++index cc8e29ee1..76778915e 100644
++--- a/daemons/attrd/pacemaker-attrd.h
+++++ b/daemons/attrd/pacemaker-attrd.h
++@@ -106,8 +106,8 @@ typedef struct attribute_value_s {
++         gboolean seen;
++ } attribute_value_t;
++ 
++-crm_cluster_t *attrd_cluster;
++-GHashTable *attributes;
+++extern crm_cluster_t *attrd_cluster;
+++extern GHashTable *attributes;
++ 
++ #define attrd_send_ack(client, id, flags) \
++     crm_ipcs_send_ack((client), (id), (flags), "ack", __FUNCTION__, __LINE__)
++diff --git a/daemons/execd/pacemaker-execd.h b/daemons/execd/pacemaker-execd.h
++index 4a52d9183..dab3ccdbe 100644
++--- a/daemons/execd/pacemaker-execd.h
+++++ b/daemons/execd/pacemaker-execd.h
++@@ -20,7 +20,7 @@
++ #    include <gnutls/gnutls.h>
++ #  endif
++ 
++-GHashTable *rsc_list;
+++extern GHashTable *rsc_list;
++ 
++ typedef struct lrmd_rsc_s {
++     char *rsc_id;
++-- 
++2.26.2
++
+diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-set-OCF_ROOT_DIR-to-libdir-ocf.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-set-OCF_ROOT_DIR-to-libdir-ocf.patch
+new file mode 100644
+index 0000000..1ff9c7d
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-set-OCF_ROOT_DIR-to-libdir-ocf.patch
+@@ -0,0 +1,32 @@
++From 3ca78a6441eefc26f18211375b18205ed6fc28c6 Mon Sep 17 00:00:00 2001
++From: Mingli Yu <mingli.yu@windriver.com>
++Date: Thu, 3 Sep 2020 05:26:36 +0000
++Subject: [PATCH] pacemaker: set OCF_ROOT_DIR to $libdir/ocf
++
++* Set the default OCF_ROOT_DIR to $libdir/ocf
++  to make the resource agents components more
++  compatible
++
++Upstream-Status: Pending
++
++Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
++---
++ configure.ac | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/configure.ac b/configure.ac
++index 58d39cdc0..eb4275560 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -315,7 +315,7 @@ dnl This defaults to /usr/lib rather than libdir because it's determined by the
++ dnl OCF project and not pacemaker. Even if a user wants to install pacemaker to
++ dnl /usr/local or such, the OCF agents will be expected in their usual
++ dnl location. However, we do give the user the option to override it.
++-OCF_ROOT_DIR="/usr/lib/ocf"
+++OCF_ROOT_DIR="$libdir/ocf"
++ AC_ARG_WITH([ocfdir],
++     [AS_HELP_STRING([--with-ocfdir=DIR],
++         [OCF resource agent root directory (advanced option: changing this may break other cluster components unless similarly configured) @<:@/usr/lib/ocf@:>@])],
++-- 
++2.26.2
++
+diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.3.bb b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.3.bb
+index 9b63acd..56f3bc4 100644
+--- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.3.bb
++++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.3.bb
+@@ -16,6 +16,8 @@ DEPENDS = "corosync libxslt libxml2 gnutls resource-agents libqb python3-native"
+ SRC_URI = "git://github.com/ClusterLabs/${BPN}.git \
+            file://0006-Fix-tools-Fix-definition-of-curses_indented_printf.patch \
+            file://0001-Fix-python3-usage.patch \
++           file://0001-Mark-declaration-with-extern.patch \
++           file://0001-pacemaker-set-OCF_ROOT_DIR-to-libdir-ocf.patch \
+            file://volatiles \
+            file://tmpfiles \
+           "
+-- 
+2.26.2
+
