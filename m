@@ -1,71 +1,112 @@
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
- by mx.groups.io with SMTP id smtpd.web11.32237.1599197658507428507
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+ by mx.groups.io with SMTP id smtpd.web12.1265.1599236218222329833
  for <yocto@lists.yoctoproject.org>;
- Thu, 03 Sep 2020 22:34:18 -0700
+ Fri, 04 Sep 2020 09:16:58 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=qVCb0O+F;
- spf=pass (domain: gmail.com, ip: 209.85.222.169, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f169.google.com with SMTP id u3so5344826qkd.9
-        for <yocto@lists.yoctoproject.org>; Thu, 03 Sep 2020 22:34:18 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ME0+iVDd;
+ spf=pass (domain: gmail.com, ip: 209.85.166.177, mailfrom: twoerner@gmail.com)
+Received: by mail-il1-f177.google.com with SMTP id w8so6830992ilj.8
+        for <yocto@lists.yoctoproject.org>; Fri, 04 Sep 2020 09:16:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=n4ytqiv1gPjgsDektleZl5P5lzwj2BrgoOjjYFX1xZ8=;
-        b=qVCb0O+FuGHrWPbZXI5FX1zVnZJKzYZtTyLsJzBianLk+PwI8g+qMlt9dWQyPe/y1b
-         vunj/zZn9EFIfxxyBprSwZScfL17JfMqDoWIak8qjLiYc1pqwn60Dr4DWH/mwPUSUhy8
-         B7isJY3YnslUD/QoCkEtGSPDHPp2lyyu7GyIhJk/K+Zm3u5fAgZswAZ8v38lQ11tRU2n
-         K8HJZQA8gZAJzd1N7iWbq2F0K9saZLMn8jBJ6wp4ZCCIfh47P03flx89KY7S2NoPnVXS
-         wrZbgH5y6EBlOCiILhk9TdWV+mWzjQUNUqiaDL2Ahu6cQr/4LtBiX+Zm/vKWvukQq5qP
-         XekA==
+        h=date:from:to:subject:message-id:mime-version:content-disposition
+         :content-transfer-encoding:user-agent;
+        bh=9YC1Y5sqxRupiyfcfXzwizYOTDp7ObE/glifAiF6XWA=;
+        b=ME0+iVDdXmtEtnlfCAdzbWAXt1bvs35hFVqEyyMlLzucK1I7wOziRPwwlCPUXhBR32
+         OsZtT85oKhefk9vbr5tDq97vkLEI1rf7bM4H3ta9ecgFAKtC3aCfbDLlHpX6EHYj+77G
+         RutTfEfq1k0UgTWdbdtFL3eYk3soz02l8OvoVNogNoCwkmfbzaIW1bDic/NDncCcXyG4
+         3Dp9ATBm6h/Egekn//Gk2cLvUEEZ60LvL556pC1eDDjLaAiKRw1f3eUJJL0P/KWtjyP1
+         pcCNwjElk4solfZL/skue79OKZhbTwEdzeTd5TcQSgN+re7MFF7jK28Bj+aibr6+33hP
+         TU/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=n4ytqiv1gPjgsDektleZl5P5lzwj2BrgoOjjYFX1xZ8=;
-        b=jAPuam9Ck6TZzP6GfR9UzoC9Ql/ke0/LWvSAurEQgaBbw40Dwm456YU4iAywSwVItQ
-         BNOaJDQiEmAtycUeUqDY8cYJH8MyykK7f8zANVknv/4EyukjE8MSHRypUVsOFeNJJsln
-         sJmcnYHliUhXAgR/i1Bcpl2Oxm8iaqwq4H/Y7ltuFYgfe8weHkEjhz6aynfZgneyfn4X
-         JggUvHzLQ19TOxXt5Rl8Q2V6BU1qnfHSwJ9Fcb2f4X6XNS5u6Xw7W8Q7QA099qXr33n0
-         zubJ9JinEFUyhcc0LGrY9rU6R4Bv6wU98H8x1/Gfvp+EA1z4gHEtYvZ2Nfe5Ynrhl28v
-         O+aQ==
-X-Gm-Message-State: AOAM53331a5vRqE2zVPuj6FDCwfn/eyHeb2R9jqjA9NIy+GqXTPctpP5
-	PS/iMRGkLwnXlb0euTsoaN5e91baJcz0oriM8P0=
-X-Google-Smtp-Source: ABdhPJyFQO/OhN0iEQfn43nLtUkA57MBnLq4mcca74qjXbyoZ8sSCCMLrMkwQvTLa0E20VbA6ent/BiYOComvdoa9TU=
-X-Received: by 2002:a05:620a:13f6:: with SMTP id h22mr6799686qkl.9.1599197657555;
- Thu, 03 Sep 2020 22:34:17 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition:content-transfer-encoding:user-agent;
+        bh=9YC1Y5sqxRupiyfcfXzwizYOTDp7ObE/glifAiF6XWA=;
+        b=n5tLmdNAa4xaB97iiLq1q1+XQbOAc0XwLuVw4f+33L0OdjPKr4r2S2VmXP2OHw86P6
+         1eKMDB22CEfzvEoAkavX1JTo4uP4Jz2tlV23T9pvAqaqRSP5DKo+mkOHiC2p2NTV/XvQ
+         YJX/DgLEjmpX1txADuAFi71wRnNo/S4RZn4Te4XPF+7l5Gan2ElRiBeC+a2jnclEDSij
+         o2zcRGvrmKNcAJ59ydD+Xf4pZAKZVE+o8iCdXs9Pu/GuDXg8Mzzt6V5RS5i5h76RquYq
+         1K85DYQ8jc32FPbBUAgzTfNwBD1FtAGZ6Zii6juMKfMqbGHGu2mPa9RivA0P6ZmRr2WE
+         8cGA==
+X-Gm-Message-State: AOAM531xpmAJl3aErGWtmhL1j00TCecJCWYcDPgNJ2VB6vxoXwCW6gij
+	B4nKKZm8J6Cxcgx82xXKnPKr3bg6nDY=
+X-Google-Smtp-Source: ABdhPJyjp6I1AO4mKOZuPTlAtNYEcJuwa7Pxd8f9D6zZ3bmkiLWODLR084J01z+NoWCj2FGxRa7lgw==
+X-Received: by 2002:a92:7a0a:: with SMTP id v10mr7656380ilc.99.1599236216931;
+        Fri, 04 Sep 2020 09:16:56 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from linux-uys3 ([206.248.190.95])
+        by smtp.gmail.com with ESMTPSA id p65sm3534447ill.23.2020.09.04.09.16.55
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 04 Sep 2020 09:16:56 -0700 (PDT)
+Date: Fri, 4 Sep 2020 12:16:53 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: Yocto Technical Team Minutes, Engineering Sync, for September 1, 2020
+Message-ID: <20200904161653.GA32319@linux-uys3>
 MIME-Version: 1.0
-References: <CANVQz1aNuRYNqpjsj+Z-SgtLx4N85a_BR_KCFajnD=cUUMtdAw@mail.gmail.com>
-In-Reply-To: <CANVQz1aNuRYNqpjsj+Z-SgtLx4N85a_BR_KCFajnD=cUUMtdAw@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Thu, 3 Sep 2020 22:33:51 -0700
-Message-ID: <CAMKF1spGxArogsS0xwmpC2YrxaZdsx05Ryi5jRxgGr_m8UbOww@mail.gmail.com>
-Subject: Re: [yocto] RootFS Size increase during Migration
-To: Aashik Aswin <thisisaash9698@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On Thu, Sep 3, 2020 at 10:18 PM Aashik Aswin <thisisaash9698@gmail.com> wrote:
->
-> Hi Developers,
->
-> I am migrating my code from Yocto Thud (4.19) Kernel to Yocto Zeus (5.4) Kernel.
->
-> The recipes and conf files are essentially the same, but I am seeing a substantial increase in the RootFS Size and Subsequent final image size (Close to 40 MB).
->
-> Any idea on how we can debug this or where we can start for inspecting why the image size increase.
->
+Yocto Technical Team Minutes, Engineering Sync, for September 1, 2020
+archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit
 
-Enable buildhistory in both builds
-https://www.yoctoproject.org/docs/3.1/dev-manual/dev-manual.html#enabling-and-disabling-build-history
-once you have it enabled build the images (assuming you are building
-in two different workspaces ) you can diff installed-package-sizes.txt
-from two builds
-and it should give you some hints, if you are switching the build in
-same workspace between two releases then you can do two builds and
-inside buildhistory
-folder run git show cmd which should show you delta between last two builds
+== disclaimer ==
+Best efforts are made to ensure the below is accurate and valid. However,
+errors sometimes happen. If any errors or omissions are found, please feel
+free to reply to this email with any corrections.
 
-> Thanks,
-> Aashik
-> 
+== attendees ==
+Trevor Woerner, Stephen Jolly, Jan-Simon Möller, Alejandro H, Bruce
+Ashfield, Armin Kuster, Richard Purdie, David Reyna, Steve Sakoman, Michael
+Halstead, Ross Burton, Paul Barker, Mark Morton, Scott Murray, Jeremy
+Puhlman, Joshua Watt, Jon Mason, Randy MacLeod
+
+== notes ==
+- entered m3 feature freeze
+- working on a couple patches for 3.2
+- bitbake server startup changed to avoid recently discovered issues will wait
+    for 3.3 to make default
+- one more round of recipe upgrades before m3 build (later this week)
+- -fno-common back to gcc10 default
+- still some AB issues
+- looking for help with unassigned bugs
+
+== general ==
+RP: list of 3.2 things:
+Mark’s hash equivalency prserv fix
+RP: where are we with bind?
+Armin: haven’t gotten around to sending them
+RP: please do so
+RP: want to get more of the AUH upgrades in too.
+RP: Alex has queued up the rest.
+RP: high priority bitbake bug on startup that needs to go in
+docs changes, we want to cut over to sphinx before m3
+
+TrevorW: what’s the -fno-common issue?
+RP: gcc changed defaults with gcc10, caused namespaces to overlap (and code
+    builds to fail), we temporarily switched away from the new default, waited
+    for upstream and created patches, now we can switch back to gcc10’s
+    default
+
+Joshua: what still needs to be done with the docs?
+RP: check Nico’s doc. right now: mostly marking up the code sections. please
+    coordinate on the mailing list
+
+PaulB: will be giving a talk at the upcoming Linaro Connect on license
+    compliance with Yocto, Linaro Connect (virtual) is supposed to be free to
+    attend this year
+
+RP: i’ve heard that YP was mentioned at last week’s Plumbers, does anyone
+    know when/where it could have been mentioned?
+(various): not sure
+Scott: I don’t see Khem here, maybe he was talking about it?
+TrevorW: Alistair Francis is a contributor to YP and RISC-V, it could have
+    been brought up in relation to that. the RISC-V YP BSP carries a lot of
+    patches
+
+Randy: Saul Wold is joining WR today!
+RP: glad to hear he’s returning to YP
