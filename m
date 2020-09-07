@@ -1,137 +1,94 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.4462.1599505634213759350
+ by mx.groups.io with SMTP id smtpd.web11.4533.1599505808077867759
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Sep 2020 12:07:14 -0700
+ Mon, 07 Sep 2020 12:10:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=MuTOer7X;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=IW/7NdtF;
  spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 08DC538C1176
-	for <yocto@yoctoproject.org>; Mon,  7 Sep 2020 12:07:13 -0700 (PDT)
-Received: by mail-pj1-f48.google.com with SMTP id b17so4690335pji.1
-        for <yocto@yoctoproject.org>; Mon, 07 Sep 2020 12:07:13 -0700 (PDT)
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id E95D138C1176
+	for <yocto@yoctoproject.org>; Mon,  7 Sep 2020 12:10:07 -0700 (PDT)
+Received: by mail-pg1-f177.google.com with SMTP id 67so8391727pgd.12
+        for <yocto@yoctoproject.org>; Mon, 07 Sep 2020 12:10:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:mime-version:content-language
          :thread-index;
-        bh=h/GW9ambf/AwOYBBcIRP2Zp/12M2u2Y2le835rBqgFU=;
-        b=MuTOer7Xa0Ok9YWIlKYxNiWAAGiX7eTVCKvI5yn/MSfha/J/kS4KNz+9ibW3FMbngX
-         8sbvePdDU5zOMmKU1VtRiyNeW6hGxkxRtAlmG1khXSv2BjabRXgdi73oWzZFQNaMyOcO
-         gBa/IKYU2Bn3mt4M16OxPvQFd7p5xZavsoloHk6eomZIF7S+cOXw/93O7GacyKsQ4UAF
-         J/B1PbMfEb+EWGauFtxasoeo6pVXKcH6Z7zP1IuDx/jCA1irOWm2BZ2U7xg7mBYWLWkB
-         VzaswL9Wa96fHH9vjlBlQ0WkXCzkpuqPlEBvcibBOqhZgK5MvBPVac4i713SMjM2X+ON
-         Ghug==
+        bh=HPKbJvgfXSkYgeSai/7+Fn1lygEpEOae844gT97q7iU=;
+        b=IW/7NdtFsYo0ED5bXmV4/gxjhsKrj6z1M7R93NHmEGu4nsQn3e0bl/jbILNPEEZzti
+         SO501Qeg/w8qmeRyxgW3gUjxSlDUD+aArM8EIa2IWK3Olm1uDmhCIi4bbQvGjRgU3Axg
+         5wOcTkNBIN4pmBcEe2GR9wduILrlt11qYGjbam08yt4jsEYtISJWwiXsC77TqGc1sCEo
+         rg2H6QgeUUCdDqVKBbBF1rsFuxDbSzxibN/dRllMhAaZn34KqFY0CVuzb2mU4gRnjKF1
+         Nlu7pzFRNL5WEQeMi/PMd45CUEHlpdgrHrn+4UUZ8gw84zFNFWSx8+m+x3vSZ5fS113D
+         7spg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-language:thread-index;
-        bh=h/GW9ambf/AwOYBBcIRP2Zp/12M2u2Y2le835rBqgFU=;
-        b=QvPXxWF16i7IteqcAH8qx7R92LL/kRME4VBulwRWKlyr0qSq7PvifaayF1tHFu/kPY
-         6l0V4Ht7l7Vs0d33j9LWHuGfI8RFuYWJ88/aeyRlG+IcwUEyysuS9uxJgyTxRkPAvM0d
-         uPyJ2tb1caNyDKJQuTuW8fUUOwa6IycBgFUnWqpuiBwKbQCvrTLYG2gMR4XpeM2eYc5M
-         Jc0Y1mpYsm1JuizkMKT/8LzXiYvfOwalraxo2t6p0gGzzoh0jwpRtcyO7OCexDCu/m8W
-         c5M+dfabvOin48qxSZQN/O2PYQGB04Hx5jTE34GORGB0CT6HELMZydKum7kZ4sUJUdrP
-         U6Bg==
-X-Gm-Message-State: AOAM533FjEOT/e5QVOFFGMwNyWa7XoZUivy69o9oIpQNCVAZmoERXXRR
-	f/EFrvs9rwxw9+xzDRgXTqI=
-X-Google-Smtp-Source: ABdhPJxuiVQPxUcVV03JY/dYco6GL6X9I7sj/ES3qhHCw/am45o5hR0dfRU9gN/uVO/U5CzQM3sZEw==
-X-Received: by 2002:a17:90a:e38a:: with SMTP id b10mr600729pjz.17.1599505632657;
-        Mon, 07 Sep 2020 12:07:12 -0700 (PDT)
+        bh=HPKbJvgfXSkYgeSai/7+Fn1lygEpEOae844gT97q7iU=;
+        b=OAKvngRaciwlKdlpj9g+EN+CQY1nvfmkd5RMcE3sm6mT2rRW9jzBPS8Gb1XjhwfXXL
+         aytdTkQPOpAm4uxjkUlra44P0291x/q3z1e0hjOdcP9QFFLfn97rarP5m0FzOP6BfpO+
+         UL6nf6wwT6zU0/LXFnoyTyj71w6gIYoGN0t2nzAw7dDVwcwE0q+augvZlGpDZZyeaoLt
+         7VYyiXJSw1sIMh7UCurh1xNeMtw/kUMTkJLk3+OTB/HnNJhYQS2Otqeogtg+lWGWA2EA
+         Bgt/hi2Eo11S7j+ZKIPenBbRiwa8nvd8SStyjzdNRFP3gSTC7+fgyo38xo9fMhBKGYzG
+         tMwQ==
+X-Gm-Message-State: AOAM533WmMU0cgNXpNQXuQnUgVsiQuKafZBKBIHzQP0qRmnwPnhpwK6B
+	4rCKewyJEGjLrLSeYtDnFvQ=
+X-Google-Smtp-Source: ABdhPJywoVLVAvYUc3G1HwSzd9Pm00MFSVmXOuz/2lAnkTRNmS18P4/j2tJv5y3qM2SO5RNNOBnYWw==
+X-Received: by 2002:a62:8443:: with SMTP id k64mr20673600pfd.252.1599505807575;
+        Mon, 07 Sep 2020 12:10:07 -0700 (PDT)
 Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-        by smtp.gmail.com with ESMTPSA id gl17sm5422068pjb.49.2020.09.07.12.07.12
+        by smtp.gmail.com with ESMTPSA id bb6sm9243168pjb.15.2020.09.07.12.10.07
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Sep 2020 12:07:12 -0700 (PDT)
+        Mon, 07 Sep 2020 12:10:07 -0700 (PDT)
 From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
 To: <yocto@yoctoproject.org>
-Subject: Current Autobuilder Intermittent bugs by the WW created.
-Date: Mon, 7 Sep 2020 12:07:12 -0700
-Message-ID: <03c401d6854a$17de0a30$479a1e90$@gmail.com>
+Subject: Enhancements/Bugs closed WW36!
+Date: Mon, 7 Sep 2020 12:10:07 -0700
+Message-ID: <03e601d6854a$80241210$806c3630$@gmail.com>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdaFSfsr/QUllTsCQdOTrOKoQKr9xQ==
+Thread-Index: AdaFSn/PcaFjcIfrTbafpeFol8CIzQ==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_03C5_01D6850F.6B8043A0"
+	boundary="----=_NextPart_000_03E7_01D6850F.D3C6E7C0"
 Content-Language: en-us
 
-------=_NextPart_000_03C5_01D6850F.6B8043A0
+------=_NextPart_000_03E7_01D6850F.D3C6E7C0
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
 All,
 
-Below is the list of open medium or higher bugs Autobuilder Intermittent
-bugs by the WW created.
+ 
+
+The below were the owners of enhancements or bugs closed during the last
+week!
 
 
-When
+Who
 
 Count
 
 
-2019WW47
-
-1
-
-
-2020WW8
-
-1
-
-
-2020WW24
-
-1
-
-
-2020WW25
-
-1
-
-
-2020WW29
-
-1
-
-
-2020WW30
-
-1
-
-
-2020WW31
+richard.purdie@linuxfoundation.org
 
 2
 
 
-2020WW33
+JPEWhacker@gmail.com
 
-5
-
-
-2020WW34
-
-2
+1
 
 
-2020WW35
-
-3
-
-
-2020WW36
-
-5
-
-
-2020WW37
+randy.macleod@windriver.com
 
 1
 
 
 Grand Total
 
-24
+4
 
 Thanks,
 
@@ -143,14 +100,15 @@ Yocto Project Program Manager
 
 *    Cell:                (208) 244-4460
 
-* Email:               <mailto:sjolley.yp.pm@gmail.com>
-sjolley.yp.pm@gmail.com
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
 
  
 
 
-------=_NextPart_000_03C5_01D6850F.6B8043A0
+------=_NextPart_000_03E7_01D6850F.D3C6E7C0
 Content-Type: text/html;
+	boundary="----=_NextPart_000_04DE_01D67FAC.54C9C4A0";
 	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -159,8 +117,8 @@ xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
 xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
-HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
 charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
 (filtered medium)"><style><!--
 /* Font Definitions */
@@ -186,13 +144,17 @@ p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
 	font-size:11.0pt;
 	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
 	{mso-style-type:personal-compose;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -205,16 +167,20 @@ div.WordSection1
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
 link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal><span style=3D'color:black'>All,<br><br>Below is the =
-list of open medium or higher bugs Autobuilder Intermittent bugs by the =
-WW created.<o:p></o:p></span></p><table class=3DMsoNormalTable =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>All,<o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:black'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:black'>The below were =
+the owners of enhancements or bugs closed during the last =
+week!<b><o:p></o:p></b></span></p><table class=3DMsoNormalTable =
 border=3D0 cellspacing=3D0 cellpadding=3D0 width=3D293 =
 style=3D'width:220.0pt;margin-left:-.15pt;border-collapse:collapse'><tr =
 style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
 style=3D'width:188.0pt;border:solid windowtext =
 1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal><b><span =
-style=3D'color:black'>When<o:p></o:p></span></b></p></td><td width=3D43 =
+style=3D'color:black'>Who<o:p></o:p></span></b></p></td><td width=3D43 =
 nowrap valign=3Dbottom style=3D'width:32.0pt;border:solid windowtext =
 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
@@ -223,74 +189,8 @@ style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
 style=3D'width:188.0pt;border:solid windowtext =
 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal><span =
-style=3D'color:black'>2019WW47<o:p></o:p></span></p></td><td width=3D43 =
-nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW8<o:p></o:p></span></p></td><td width=3D43 =
-nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW24<o:p></o:p></span></p></td><td width=3D43 =
-nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW25<o:p></o:p></span></p></td><td width=3D43 =
-nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW29<o:p></o:p></span></p></td><td width=3D43 =
-nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW30<o:p></o:p></span></p></td><td width=3D43 =
-nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW31<o:p></o:p></span></p></td><td width=3D43 =
-nowrap valign=3Dbottom =
+style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
+></p></td><td width=3D43 nowrap valign=3Dbottom =
 style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
 d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
@@ -300,52 +200,19 @@ style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
 style=3D'width:188.0pt;border:solid windowtext =
 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal><span =
-style=3D'color:black'>2020WW33<o:p></o:p></span></p></td><td width=3D43 =
-nowrap valign=3Dbottom =
+style=3D'color:black'>JPEWhacker@gmail.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
 style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
 d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
 style=3D'text-align:right'><span =
-style=3D'color:black'>5<o:p></o:p></span></p></td></tr><tr =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
 style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
 style=3D'width:188.0pt;border:solid windowtext =
 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal><span =
-style=3D'color:black'>2020WW34<o:p></o:p></span></p></td><td width=3D43 =
-nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW35<o:p></o:p></span></p></td><td width=3D43 =
-nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW36<o:p></o:p></span></p></td><td width=3D43 =
-nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>5<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW37<o:p></o:p></span></p></td><td width=3D43 =
-nowrap valign=3Dbottom =
+style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
+td><td width=3D43 nowrap valign=3Dbottom =
 style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
 d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
@@ -361,9 +228,8 @@ style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
 d windowtext 1.0pt;border-right:solid windowtext =
 1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal align=3Dright style=3D'text-align:right'><b><span =
-style=3D'color:black'>24<o:p></o:p></span></b></p></td></tr></table><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>Thanks,</span><o:p></o:p></p><p =
+style=3D'color:black'>4<o:p></o:p></span></b></p></td></tr></table><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
 style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
 style=3D'font-size:16.0pt;font-family:"Times New =
@@ -382,8 +248,8 @@ style=3D'font-size:9.0pt;font-family:"MS Sans =
 Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
 ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
 style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460</span><span style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:black'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
 style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
 lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
 MS";color:teal'>Email</span></b><span lang=3DFR =
@@ -392,10 +258,9 @@ Serif";color:teal'>:</span><span lang=3DFR =
 style=3D'font-size:9.0pt;font-family:"MS Sans =
 Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
 ;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com"><span =
-style=3D'color:#0563C1'>sjolley.yp.pm@gmail.com</span></a></span></u></sp=
-an><span lang=3DFR =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
 style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
 an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-------=_NextPart_000_03C5_01D6850F.6B8043A0--
+------=_NextPart_000_03E7_01D6850F.D3C6E7C0--
