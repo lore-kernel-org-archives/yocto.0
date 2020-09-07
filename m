@@ -1,109 +1,269 @@
-Received: from mail-il1-f196.google.com (mail-il1-f196.google.com [209.85.166.196])
- by mx.groups.io with SMTP id smtpd.web11.2450.1599500144408342818
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.4117.1599504666767150546
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Sep 2020 10:35:44 -0700
+ Mon, 07 Sep 2020 11:51:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bgdev-pl.20150623.gappssmtp.com header.s=20150623 header.b=2FrrRFZL;
- spf=none, err=SPF record not found (domain: bgdev.pl, ip: 209.85.166.196, mailfrom: brgl@bgdev.pl)
-Received: by mail-il1-f196.google.com with SMTP id y2so13084550ilp.7
-        for <yocto@lists.yoctoproject.org>; Mon, 07 Sep 2020 10:35:44 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=TJlutfZ1;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 074DC38C1176
+	for <yocto@yoctoproject.org>; Mon,  7 Sep 2020 11:51:06 -0700 (PDT)
+Received: by mail-pj1-f44.google.com with SMTP id mm21so7062270pjb.4
+        for <yocto@yoctoproject.org>; Mon, 07 Sep 2020 11:51:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2Vj+YYJI/+A6FvSvzKuwC9aQbs/IQg07eV9GsHjr8xU=;
-        b=2FrrRFZLmTqi9XhK/v5FUyM9J7qTk7seniaYq6CglNAgRG38KsZ2XZXvOULJ473pNa
-         whdiHovp8dhhbvbVklbj6PnQ2qcw9SeCodnvNDxete1o8c9a9h7PInD3CTYVULVSbXMj
-         CLf0YkL6fiY1fzjUu71MmtPOHgJM495U512glqG0Bw214JriZCEBl8/5TMCh38qTdDwq
-         NyN4yl5O6a++BjWuhCJpVbusLvIOmBynyCJCl/bzJ0lUSFSpYzgqJfMOI5/Qm8b330gY
-         SPjGmy4h0jpIcz2oosG9UfPRc5kbXPQ284gBlRs6kCS3QBHLvVHy92XiDLR26n9eN3Kj
-         OG5w==
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=PJWX0Z2yd2Nr5xeJmsvZ62K8G/j7fy6KMcSaOXzZpys=;
+        b=TJlutfZ17SxCdqdzplZoO2Q6e83lweT5G5bxEGGeMxNeh5nT//whyq2nliZvMLdiD6
+         X78v2M2CPbUgfOoDIAs8a/wMgJfxEa9/p0om6EiUwKRo5PpNRaJ8+80zG63vzJRsRFKD
+         B2sKSB7vHKv/Wni5u4fmr5K2SBVMwEmfiQLzy3OZPgeR+F6z8P2UwBh5pmktW+BwyqRM
+         ZVqU9LsIyduucLUQNc+GG0kzE0NdGjN9JMGkucEKhZlcBJUglCYnizeQsMhKjaYffRba
+         pdObBNKhRI1oPsqnqBIs9va/LuhZEP04PYpBSsnGY2OgqI3LI2WoAR6rc7zscUUx5oGL
+         fapQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2Vj+YYJI/+A6FvSvzKuwC9aQbs/IQg07eV9GsHjr8xU=;
-        b=CVoERrBpB9ID3v0b0IFxTfUrv8yoxIFq3bNj3SOjUFh9L+M4/1KY8oNbruAZcNEbNC
-         N11cxWG20dBDDmzVJ4Q6/jBMzV/cy9Pr/9KVPzO5PE1vHzux5vYi4vTepO0rrscORY3k
-         CtQVy63EI/S3Wms/4+nnHTzZoTlnLfb9WhqcdNKIBDeppC36Bd+CgAFtxPwZwaagZCDA
-         wesyrshzBiGyMPlqmBtzQ3A7HpXqES+zqA6FQONe9heHe0NxHVtBEcLiBTeV5KmBXNjd
-         JmogGfPvCSclaxjl4dNhTX3c/e17gzn3BAp4s8dFIHNIpjEIeM4mReasDEdkGFY+vL4W
-         hziA==
-X-Gm-Message-State: AOAM5322fp6jOiR7m/5aSr3zWqDFQSWdHroi8n51jzkF0NIP2556E3iw
-	ssQTyHlQ6zhlhKf8DE3gATFUpGEpsjaC6M7ylAs0ZA==
-X-Google-Smtp-Source: ABdhPJwK6XLwSSn3bX0frgxpyJBOgHiIJtnZsyWvnN/Ir4N2ImccgtoIyE+YKHDICxyXswkYL0hF9ZebPf/oE/nDwWA=
-X-Received: by 2002:a92:189:: with SMTP id 131mr20455302ilb.40.1599500143731;
- Mon, 07 Sep 2020 10:35:43 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=PJWX0Z2yd2Nr5xeJmsvZ62K8G/j7fy6KMcSaOXzZpys=;
+        b=pcP5tverSC8r5gJwN3RrKa205fK7xvEeo75Yl9sAIZwVorjg2oFm3npmRyWBf1KR2D
+         gSehmqj59OYlmjYWYDAIUbzu5+w7ZB7S9iqKNpVTTrZB9TkGcBaPpdXSNde97tA4wDbG
+         kJkSsGPEbZb/n+uE1OU3KTUfXbsPFv3vMCScOYNytKo1TU7R0zOgzZT6LbmMm1Ev2/lt
+         xfQc0oZI55PNA2FOu5WI+j3TJ7+MmbRYd/CMvweuK6E9WoRhoWkpOafL68p2OpQs+Zsm
+         xZ6pZyXYXEAD3ErJX3LUAAi47eBktgYaApdy6CnME8QEOSgwcFz2N1yVYNNFkQXec+Ap
+         19xQ==
+X-Gm-Message-State: AOAM532gOhOZ0N3UgKszixaG6UcRYTTYmfW1sbXe0DY2MdFzQYrZIynZ
+	6C9vDo5AEL/4fyTL9aXauSQ=
+X-Google-Smtp-Source: ABdhPJwOPhM20by2wESQMchjC/DXNWWv/OymarK/z25JuCt5lj0utbQkLbSlBZaVCaIgR0Ljy1v9Mg==
+X-Received: by 2002:a17:90a:fb52:: with SMTP id iq18mr541065pjb.207.1599504665500;
+        Mon, 07 Sep 2020 11:51:05 -0700 (PDT)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id v18sm15435367pfu.15.2020.09.07.11.51.04
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 07 Sep 2020 11:51:05 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 7 Sep 2020 11:51:05 -0700
+Message-ID: <03a701d68547$d7514c90$85f3e5b0$@gmail.com>
 MIME-Version: 1.0
-References: <20200907171737.108284-1-niko.mauno@vaisala.com>
-In-Reply-To: <20200907171737.108284-1-niko.mauno@vaisala.com>
-From: "Bartosz Golaszewski" <brgl@bgdev.pl>
-Date: Mon, 7 Sep 2020 19:35:32 +0200
-Message-ID: <CAMRc=MdGea6ojUTnvF8tixff2aAkUMrN7ryWioAYV2==jjUXAA@mail.gmail.com>
-Subject: Re: [meta-security][PATCH 0/6] Some small dm-verity improvements
-To: Niko Mauno <niko.mauno@vaisala.com>
-Cc: yocto@lists.yoctoproject.org, Armin Kuster <akuster808@gmail.com>, 
-	Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQExbqWCTAlvASZxZMyjPVpXbdI+KQ==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_03A8_01D6850D.2AF44950"
+Content-Language: en-us
 
-On Mon, Sep 7, 2020 at 7:17 PM Niko Mauno <niko.mauno@vaisala.com> wrote:
->
-> This set of patches addresses some small issues in dm-verity rootfs
-> facility, which were observed while making use of dm-verity-img.bbclass
-> to generate dm-verity rootfs images for real arm-based hardware. For
-> purposes of establishing this changeset, the default 'qemux86-64'
-> machine was used as a reference.
->
-> During testing/development the following additional settings were
-> defined in local.conf:
->
->   DM_VERITY_IMAGE = "core-image-minimal"
->   DM_VERITY_IMAGE_TYPE = "ext4"
->   IMAGE_CLASSES += "dm-verity-img"
->   INITRAMFS_IMAGE_BUNDLE = "1"
->   INITRAMFS_IMAGE = "dm-verity-image-initramfs"
->
-> And the following command line was used to test the changes with qemu:
->
->   KERNEL=.../build/tmp/deploy/images/qemux86-64/bzImage-initramfs-qemux86-64.bin \
->     QB_NET=none \
->     runqemu \
->     nographic \
->     qemuparams="-nic none" \
->     qemux86-64 \
->     .../build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64-*.rootfs.ext4.verity
->
->
-> Niko Mauno (6):
->   dm-verity-img.bbclass: Fix bashisms
->   dm-verity-img.bbclass: Reorder parse-time check
->   dm-verity-image-initramfs: Fix do_rootfs dependency
->   dm-verity-image-initramfs: Ensure verity hash sync
->   dm-verity-image-initramfs: Bind at do_image instead
->   linux-yocto(-dev): Add dm-verity fragment as needed
->
->  classes/dm-verity-img.bbclass                    | 12 ++++++------
->  recipes-core/images/dm-verity-image-initramfs.bb |  7 +++++--
->  recipes-kernel/linux/linux-yocto-dev.bbappend    |  1 +
->  recipes-kernel/linux/linux-yocto_5.%.bbappend    |  1 +
->  4 files changed, 13 insertions(+), 8 deletions(-)
->
-> --
-> 2.20.1
->
+------=_NextPart_000_03A8_01D6850D.2AF44950
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Hi Niko,
+All,
 
-I saw these patches and had to double-check just to realize my
-dm-verity patches actually got upstream to meta-security although I
-explicitly stated in the cover letter that they don't work with
-verified boot (which basically makes dm-verity useless).
+ 
 
-It's funny you sent them now because I just started working on a
-different approach that won't require the OE-core changes I posted a
-while ago and which were never merged because they broke some unit
-tests.
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
 
-Niko: do your changes allow this to work with verified boot on BeagleBone Black?
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
 
-Bartosz
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 339
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.2", "3.3, "3.99" and "Future", the more pressing/urgent issues
+being in "3.2" and then "3.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_03A8_01D6850D.2AF44950
+Content-Type: text/html;
+	boundary="----=_NextPart_000_04CF_01D67FAB.465FB1A0";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
+starting to try and collect up and classify bugs which a newcomer to the =
+project would be able to work on in a way which means people can find =
+them. They're being listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 339 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.2&#8221;, &#8220;3.3, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.2&quot; and then &#8220;3.3&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_03A8_01D6850D.2AF44950--
