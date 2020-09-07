@@ -1,76 +1,56 @@
-Received: from mx02.optimcloud.com (mx02.optimcloud.com [46.23.93.22])
- by mx.groups.io with SMTP id smtpd.web11.38221.1599472799833026019
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.43142.1599490431578775863
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Sep 2020 03:00:00 -0700
+ Mon, 07 Sep 2020 07:53:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=ZPoMOwzA;
- spf=none, err=SPF record not found (domain: optimcloud.com, ip: 46.23.93.22, mailfrom: yocto@optimcloud.com)
-Received: from mx02.optimcloud.com (localhost [127.0.0.1])
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTP id bb453796
-	for <yocto@lists.yoctoproject.org>;
-	Mon, 7 Sep 2020 11:59:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=
-	subject:to:references:from:message-id:date:mime-version
-	:in-reply-to:content-type:content-transfer-encoding; s=obsd; bh=
-	Jinp9UFvFfLOUjvJ6ankPgS71B6pd5/TRgMk5iu+eyw=; b=ZPoMOwzAye/ukztG
-	ar7Rg0rtPE9DVHuZsfqmmQWUfyd4KX+RvDaySaB1MAlyKM4YDGIZvUduKzy+IwK+
-	ADNa7sMHNdkI/4lbNY/chOhYRm9AkCxuj/Up3xIDEGMrAlx5H3YlgUIkfxvuqTLo
-	7KeI1vRi8UgvPd6VT+PPfJHsSI9s3ToKQPbpyzTktR2BHutF7j62yHHAoEFDoEvf
-	3rHsNtPRCA+uTSGcfbRVLWfrgXHZWnIKT/BceQW14r3h/PdYT+gsihQvVZPXoc/m
-	R5R/qVGyewhrRqIVvUDq7Cw1d3m1zhX7SSy+5b6OWyAh8WRF7ipffMjpXDJ4cGb2
-	PZ8j7g==
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=subject:to
-	:references:from:message-id:date:mime-version:in-reply-to
-	:content-type:content-transfer-encoding; q=dns; s=obsd; b=i9G/u3
-	yChWSCP4gb8wFdr63dooV+oMII7tmSFiXWHRA0mWFlPn+QnLwJIGQNVvvx+B2LCM
-	ky1TzAyheimGvcHi4s+o2QCSd06JDEQetXiPLydB5JZHcqNL5lzQ76tiyUlmDkgS
-	07B/AuUji1LIBu2BDWR0hmqbVsgeYhQ/dWy9ZBmBbbHAbPiU8tmO4rCzVfCUIAeE
-	tOVml4Wgfo3+ZbR8mvrp3YCK9ZSV8uP10B1/Jb1d4jL1ubY9dlaXPmQfZ2uYxp4i
-	H2tx4a6BioPEDw6+GJiovIKYR7pwcDbU+XO6tQKg5t63M401kCc9uxhE3pI2WkCM
-	OUoKUTmT3awmy+kA==
-Received: 
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTPSA id 6490086b (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO) auth=yes user=yocto@optimcloud.com
-	for <yocto@lists.yoctoproject.org>;
-	Mon, 7 Sep 2020 11:59:56 +0200 (CEST)
-Subject: Re: [yocto] bitbake recipe / Network UPS tool
-To: yocto@lists.yoctoproject.org
-References: <731bd3a4-f5e5-6b2b-a537-a2bcb87d986a@optimcloud.com>
- <22fba728-c053-d538-7faa-84e39c9f3206@3mdeb.com>
-From: "Yocto" <yocto@optimcloud.com>
-Message-ID: <cf7d62d9-b83f-f8f6-0511-e0697862ce65@optimcloud.com>
-Date: Mon, 7 Sep 2020 16:58:43 +0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+ dkim=pass header.i=@toganlabs-com.20150623.gappssmtp.com header.s=20150623 header.b=LFlmKO+Q;
+ spf=none, err=permanent DNS error (domain: toganlabs.com, ip: 198.145.29.25, mailfrom: pidge@toganlabs.com)
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 9E7E038C1129
+	for <yocto@yoctoproject.org>; Mon,  7 Sep 2020 07:53:50 -0700 (PDT)
+Received: by mail-qt1-f172.google.com with SMTP id v54so9942609qtj.7
+        for <yocto@yoctoproject.org>; Mon, 07 Sep 2020 07:53:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=rotAL4QCyIGNPUjw6MppgXTHWpmOUZRfEOHXIAwrHys=;
+        b=LFlmKO+Q/vrYnVHUzU8VE3/C4NiO2tetclkC/Yw4q0x9Zyqn+81DWxE90DMA1pLZwJ
+         gbHn0LSJrFssU0Y3F4sKJcbsI0zg+eUlhJoPZTr63PjwmuHfLas+Wf6Y20OIthGI0xXq
+         HqD3pXY1bhDZIcI+WMe9qNekn67B+fSfV4p0Xvy170XatEj4S/yV2f9CHincGzajkGmJ
+         p6JK0MUL1ExW2OztiGOwBlaEty+9ynxUg/3CV8Ob0iNd9ZKvLjfYMsPtck6tE4/FB1ng
+         ld4q5DdMuPTYVlqSv5ASiaNOI5kbD+Hm6hgyYc69cspBNhTz1gsfbsxq+e7TdrFxEW3Y
+         D14Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=rotAL4QCyIGNPUjw6MppgXTHWpmOUZRfEOHXIAwrHys=;
+        b=Em/cM80O9Ik8ZpytbCPU81S5/tl5p88yYisQ4KW+joMTMleNl/Et21dhJD4RfJDup8
+         RQoHZ0Td3q7K5hxUC0rk0/YXJPGF+TS/SB5tE66WIiMWCnHSAjoBR7NfHd4r/e7R206r
+         Gjvc8W6igBEk8bwVsA5t5r4ZPSvYp3NQ56XrohSVrxZltsvUML0WicPOBQnsJjGhmbsE
+         EAvO2D9Ru+BNKtb28/DCklyMj1JlVPz/mzym0yY90pJYRLT8OzYQSXDkbLttKp2frOwD
+         DfJsYtTFJJUPNmfE/o9jCalaNWkCg+EWWSuKad7P5VHHmar7xsPJnhrjv0HJMcwxa1Zl
+         JkdA==
+X-Gm-Message-State: AOAM530la8W2042KVKg0YgpMl1zkmqYXFqWdgTspl1huExn9Ee1ZdvGU
+	3TCp3Sj298xlG0voIzkATXEhT8hyaJASD6eQLrpgMEDC6O0ZhA==
+X-Google-Smtp-Source: ABdhPJynSmC218+WKjNqR+GeerGobfyqCnoWN94YITyNxs5vEFUIIv7shesp9YFF6xjSLgopnBFLZ3lG3C83VrgQOp4=
+X-Received: by 2002:ac8:615d:: with SMTP id d29mr20723079qtm.286.1599490429566;
+ Mon, 07 Sep 2020 07:53:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <22fba728-c053-d538-7faa-84e39c9f3206@3mdeb.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+From: "Eil?s N? Fhlannag?in" <pidge@toganlabs.com>
+Date: Mon, 7 Sep 2020 15:53:38 +0100
+Message-ID: <CANik3vHZ3K6fKpv3qdw7efugdCTywA1BxAWzPGTtpWnHCBU5rQ@mail.gmail.com>
+Subject: Multiconfig question
+To: Yocto <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
+Assuming this:
 
-On 9/7/20 1:23 PM, Maciej Pijanowski wrote:
->
-> Hi,
->
-> I happen to have this recipe lying around. I have not upstreamed it 
-> for some
-> reason (probably lack of time and I have not been using this package 
-> at the end,
-> so it is not properly tested out). I gave it a try today and at least 
-> it builds.
->
-> Please try it out: 
-> https://github.com/3mdeb/meta-openembedded/commit/e523d0bb4bddf0ef8521804459b265c14100f83c
->
-> If it works for you, please let me know. I would be happy to push the 
-> patches upstream.
->
-wow... much appreciated, probably just saved me a few headaches and a 
-ton of time.
+bitbake multiconfig:ConfigA:core-image-foo multiconfig:ConfigB:core-image-bar
 
-Ill get it onboard and configured and let you know how i make out!
+Is there a way during or before the rootfs of ConfigB:core-image-bar
+to tell what else was run during execution?
 
-I was actually surprised to not find it already in the tree....
+What I'm trying to do is set an mcdepends in ConfigB:core-image-bar to
+magically know everything else it was built with.
 
-Thanks
-
+-b
