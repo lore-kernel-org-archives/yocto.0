@@ -1,109 +1,102 @@
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
- by mx.groups.io with SMTP id smtpd.web12.6494.1599511869760471169
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.9009.1599520447548460781
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Sep 2020 13:51:10 -0700
+ Mon, 07 Sep 2020 16:14:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Hn5YNugZ;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.44, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f44.google.com with SMTP id e16so16962759wrm.2
-        for <yocto@lists.yoctoproject.org>; Mon, 07 Sep 2020 13:51:09 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=LNeWh9Zc;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: robert.berger.yocto.user@gmail.com)
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 167A938C0960
+	for <yocto@yoctoproject.org>; Mon,  7 Sep 2020 16:14:06 -0700 (PDT)
+Received: by mail-wr1-f54.google.com with SMTP id z1so17205731wrt.3
+        for <yocto@yoctoproject.org>; Mon, 07 Sep 2020 16:14:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=CBl1Oe2AKpoKDbQ/Z/q3f6irbVijIm6D5lFnxsdUed4=;
-        b=Hn5YNugZ08fYAY8xC3thahSTzwQQq3JN3Ad3+nPca+jVF9rsqSUacBGpfYN0PRDFGd
-         ayEGdqXyat44MGA33ew8YQpQkmuZbz/8Ii3x1vGx+xVxMii3bAPFgalPXgck5g6iWpfX
-         uh3UWobKYlGsmzeiNu+IuTUO099Ra2kRS7aoo=
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=iPXJXhjuznRxec0VUSelhrPrzDznlqtN8RmGzabwamw=;
+        b=LNeWh9ZcdKqFBLBp+HdAT3njk/FCAE1JI9dsxFqKk//3aJ6SLUgATKgTOvWRR3mZbq
+         aNaqSmfKjJNU2oCywBo1GgjTCOwLHMJC7BC6pB0HEpEj/Vxsj54Ur6N5y1K4vvsCRfl6
+         wUMAG8dmT5mI/FxYZukFCl6oiIpYH8Qa2t3Ez9cCDVD6RmKYSpb2txfx60rPdkueO057
+         wG77NxTJ6o0WLWkAAZNULwiBNVbekyBbiI2La8TooMXHjR6Ri1sFMVGNmhfWjXqzMvYA
+         EOzhQ+lSSuYtZ1rF0GTVwg2pbavuYNbZV53/pmG8yqB6xYmrjLniQO9Sosa80x9pqe9m
+         haww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CBl1Oe2AKpoKDbQ/Z/q3f6irbVijIm6D5lFnxsdUed4=;
-        b=WM5twiLHEEL0BFSbUFoGZDupcGUc+f/pzEPuyT9AokUm/gtVyw5s2UI5k+2Nc5scMZ
-         zS1aVP+dWn/UDG7M+Ueaq8lsS4ZFlLRFGfkgQ+Gt2O0wwwY8Q1lVacW6beoypoDSo2DO
-         1B6VSOxrj9lx2JJsr7BRhp9fcdz9V3/vnhsMns2h1QEaevnYUthlKYo7KS539tpQz3gd
-         O/7Akpdbq+a95coPfsRSVSVkzgTVq9Kifkf9f6SPNJAy7+ohuV3NlIJ6i65Nzfm4T3MN
-         WLVl8xtK6VHz6L23j36Ojgil/fSsGnDOwquHpNOhvYyJxNxttgIX9cAkT+L4YI+avDHo
-         u6uw==
-X-Gm-Message-State: AOAM531nFn8wrk0UmGwbzWl+GrDBMa0lw98UNUenvVAvti+jHKD+vVUV
-	HAwvrXjrzkXAhnejtZxuZiDdfmeNKwHFMg==
-X-Google-Smtp-Source: ABdhPJzqPmPRfs31CwUd8GduojcQ7MpI68w+JWPfxmynhBH/hRlq0rWKE5aIzENFo0qp5leNYeFHjQ==
-X-Received: by 2002:adf:f50a:: with SMTP id q10mr23036808wro.319.1599511868048;
-        Mon, 07 Sep 2020 13:51:08 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from hex.int.rpsys.net (e.4.4.b.0.8.f.4.f.c.f.0.9.0.5.8.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:8509:fcf:4f80:b44e])
-        by smtp.gmail.com with ESMTPSA id l16sm6821284wrb.70.2020.09.07.13.51.07
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Sep 2020 13:51:07 -0700 (PDT)
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org
-Subject: [PATCH][autobuilder-helper][zeus 32/32] scripts/utils: Ensure buildtools tarball hash matches any supplied value
-Date: Mon,  7 Sep 2020 21:50:34 +0100
-Message-Id: <20200907205034.1941516-33-richard.purdie@linuxfoundation.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200907205034.1941516-1-richard.purdie@linuxfoundation.org>
-References: <20200907205034.1941516-1-richard.purdie@linuxfoundation.org>
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=iPXJXhjuznRxec0VUSelhrPrzDznlqtN8RmGzabwamw=;
+        b=nqwyFf1fo4Ud19g62Jl60utQvCxmR/MSGt4Q6wM+L2tP9RegkdwZ36SsSfsoEN5Jdf
+         +gp40NhWhpO20+IEy6F33oboehfNWE7zNTDN1YSsfMY6YgVlWEfypTiFMC9S2gv4TuEi
+         DkC0EKYmrQ8G1Mcnh2/0bR4y5nqgZGnek7pq4fNZzK9X0m9naMilY5QxXxdLjSzYZnHn
+         ml0FGDkIIx0VdX1hLmX95Dno2T1O+hxSbG0HD00EzALikdYgn4QoZiTNMxdaRP3OKxVR
+         FqXVmdDk4OxMFmmKQzIwcgB8GA1s+CTbV+nIWVOazBPT1A7K8S837mZVQiTZmXmOxmbO
+         chow==
+X-Gm-Message-State: AOAM530s9Xx18twTklgU9NO7iWhmt955c1J3alb76AVZ+x3X7bfsZeeB
+	/uBC4BTzalkq/HmJADJx1J2jNe5TugU=
+X-Google-Smtp-Source: ABdhPJyyEd9TYy/kJ8D9iuciuPkytyMt+H++UDHG/5sFdJo5KDTFWbEFsrSu47ULxz3mibgsuT/qIQ==
+X-Received: by 2002:adf:ef45:: with SMTP id c5mr22791911wrp.37.1599520444434;
+        Mon, 07 Sep 2020 16:14:04 -0700 (PDT)
+Received: from [192.168.42.52] (ppp-2-86-237-227.home.otenet.gr. [2.86.237.227])
+        by smtp.gmail.com with ESMTPSA id o125sm30098794wma.27.2020.09.07.16.14.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Sep 2020 16:14:03 -0700 (PDT)
+Subject: Re: [yocto] Multiconfig question
+To: Eil?s N? Fhlannag?in <pidge@toganlabs.com>, Yocto <yocto@yoctoproject.org>
+References: <CANik3vHZ3K6fKpv3qdw7efugdCTywA1BxAWzPGTtpWnHCBU5rQ@mail.gmail.com>
+From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
+Message-ID: <4a2d5c03-35ff-eaf6-00a7-f701b3bef3b6@gmail.com>
+Date: Tue, 8 Sep 2020 02:14:01 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CANik3vHZ3K6fKpv3qdw7efugdCTywA1BxAWzPGTtpWnHCBU5rQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
----
- scripts/utils.py | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Hi,
 
-diff --git a/scripts/utils.py b/scripts/utils.py
-index 10e3cc1..46346fb 100644
---- a/scripts/utils.py
-+++ b/scripts/utils.py
-@@ -378,6 +378,25 @@ def getcomparisonbranch(ourconfig, reponame, branchname):
-         return branchname, None
-     return None, None
- 
-+def sha256_file(filename):
-+    """
-+    Return the hex string representation of the 256-bit SHA checksum of
-+    filename.
-+    """
-+    import hashlib
-+    import mmap
-+
-+    method = hashlib.sha256()
-+    with open(filename, "rb") as f:
-+        try:
-+            with mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ) as mm:
-+                for chunk in iter(lambda: mm.read(8192), b''):
-+                    method.update(chunk)
-+        except ValueError:
-+            # You can't mmap() an empty file so silence this exception
-+            pass
-+    return method.hexdigest()
-+
- def setup_buildtools_tarball(ourconfig, workername, btdir):
-     bttarball = None
-     if "buildtools" in ourconfig and workername:
-@@ -389,6 +408,9 @@ def setup_buildtools_tarball(ourconfig, workername, btdir):
- 
-     btenv = None
-     if bttarball:
-+        sha256 = None
-+        if ";" in bttarball:
-+            bttarball, sha256 = bttarball.split(";")
-         btdir = os.path.abspath(btdir)
-         if not os.path.exists(btdir):
-             btdlpath = getconfig("BASE_SHAREDDIR", ourconfig) + "/buildtools/" + os.path.basename(bttarball)
-@@ -401,6 +423,10 @@ def setup_buildtools_tarball(ourconfig, workername, btdir):
-                     with open(btlock, 'a+') as lf:
-                         fileno = lf.fileno()
-                         fcntl.flock(fileno, fcntl.LOCK_EX)
-+                        if sha256 and os.path.exists(btdlpath):
-+                            dl_sha256 = sha256_file(btdlpath)
-+                            if dl_sha256 != sha256:
-+                                os.unlink(btdlpath)
-                         if not os.path.exists(btdlpath):
-                             if bttarball.startswith("/"):
-                                 subprocess.check_call(["cp", bttarball, btdlpath])
--- 
-2.25.1
+Please see my comments in-line
+
+On 07/09/2020 17:53, Eil?s N? Fhlannag?in wrote:
+> Assuming this:
+> 
+> bitbake multiconfig:ConfigA:core-image-foo multiconfig:ConfigB:core-image-bar
+> 
+> Is there a way during or before the rootfs of ConfigB:core-image-bar
+> to tell what else was run during execution?
+> 
+> What I'm trying to do is set an mcdepends in ConfigB:core-image-bar to
+> magically know everything else it was built with.
+
+Does core-image-foo depend on core-image-bar or the other way around?
+
+I have something like that:
+
+mc:imx6q-phytec-mira-rdk-nand-resy-virt:core-image-minimal-virt-docker-ce-telegraf-prebuilt-mc
+
+which depends on
+
+mc:container-arm-v7-resy-container:app-container-image-telegraf-prebuilt-oci
+
+So the container image is being built and put into the rootfs of the 
+imx6q image. (without saying this explicitly on the command line).
+
+I use buildinfo for the container rootfs and the native rootfs so I know 
+which layers and which settings were used to build them and I can even 
+check this in runtime.
+
+> 
+> -b
+
+Regards,
+
+Robert
+
+> 
+> 
+> 
+> 
 
