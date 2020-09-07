@@ -1,354 +1,259 @@
-Received: from mx02.optimcloud.com (mx02.optimcloud.com [46.23.93.22])
- by mx.groups.io with SMTP id smtpd.web10.19769.1599398931226732446
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+ by mx.groups.io with SMTP id smtpd.web12.34324.1599451490921320724
  for <yocto@lists.yoctoproject.org>;
- Sun, 06 Sep 2020 06:28:52 -0700
+ Sun, 06 Sep 2020 21:04:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=yETcD4mV;
- spf=none, err=SPF record not found (domain: optimcloud.com, ip: 46.23.93.22, mailfrom: yocto@optimcloud.com)
-Received: from mx02.optimcloud.com (localhost [127.0.0.1])
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTP id f7133e94
-	for <yocto@lists.yoctoproject.org>;
-	Sun, 6 Sep 2020 15:28:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=to
-	:from:subject:message-id:date:mime-version:content-type
-	:content-transfer-encoding; s=obsd; bh=pJu9cutX1PCgqm+V0BPBvpy4v
-	yA79rC+mjjHKDM9rpo=; b=yETcD4mVOojO0kAP5KP2dQU/AchYCIfpY8dslwVPl
-	bvlEEt5iUzGFcQPTdwRVYHfVg2W+fmdN8hvDKfKldXLTZPY8DWEkxSA19EjxZ6O4
-	SuPNvfCZaSYvOwQM3W5/vCAK56LimxXVea9ClMlxs2vS4lNJgzoOVnnfWaP7pRPh
-	+yApLOz2U2aTj5lgKJn/usjMrqZBrkZHaC1h8i6PSyMuxOlNBs6HyCQpoPYCdezY
-	5lhQONnLLG0ehY8I0p1QGtOgWt0M/tsCM5kIbVDRvhMNql0dFuxsZcPBtqf/szOc
-	EYLs2cGYpBAjN25Quwy7ENzAYbmiQyIkSDFNR0GSMpZqQ==
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=to:from
-	:subject:message-id:date:mime-version:content-type
-	:content-transfer-encoding; q=dns; s=obsd; b=LSo4u3kzkNnIRd3Fzvb
-	AJWp8ohrIxFMPZgTamRrqEBMPcecKFiKfALMj0fr/ENeF+BnbwFrVjie48peVEZK
-	ezmFq6g9bd6VFZCOmzsX8QWCIU2YuIpguIOIPk7YsSPY47a/J2LNyfxlZEK94SeO
-	+qXGEvBsupAsPOmwwOrxfNFVQlGPo+eHYyqSL7M/oXlNz2OP2iZQC5E8GgCvnKyM
-	v8rxzc4A4qpo2zH4YtGMzNRR5sad5ggeMj0CL4T3AvAMeWb/RA783b6qvW4TI/BY
-	UYfzmTlGhDdoHnqGb6VBtnSYxh0d8+6IC08oJw7uQvxalqHkJ72QAc6IZSnfTsCh
-	fxw==
-Received: 
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTPSA id ce65a3b7 (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO) auth=yes user=yocto@optimcloud.com
-	for <yocto@lists.yoctoproject.org>;
-	Sun, 6 Sep 2020 15:28:47 +0200 (CEST)
-To: yocto@lists.yoctoproject.org
-From: "Yocto" <yocto@optimcloud.com>
-Subject: bitbake recipe / Network UPS tool
-Message-ID: <731bd3a4-f5e5-6b2b-a537-a2bcb87d986a@optimcloud.com>
-Date: Sun, 6 Sep 2020 20:27:29 +0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+ dkim=pass header.i=@wabco-auto-com.20150623.gappssmtp.com header.s=20150623 header.b=0Uef/Swp;
+ spf=pass (domain: wabco-auto.com, ip: 209.85.166.177, mailfrom: hariprasath.gujulanelango@wabco-auto.com)
+Received: by mail-il1-f177.google.com with SMTP id q6so11304569ild.12
+        for <yocto@lists.yoctoproject.org>; Sun, 06 Sep 2020 21:04:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=wabco-auto-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8Ie9FPg3eKHZcf3EPv8eS2jsmlfC254JAwZQjn9iApw=;
+        b=0Uef/Swp6qyQd7WayUNI9Y46nXIuHHvRKc03lXtN0GsDZ/MqIQNul+1Y3q5kPQzIHM
+         G8Ydhr5phhWvSMqEbfD4pl71qkm/HqAdTt5ThY9u9ty/NizfF4T6Irc8Z1Wxh56mj+l0
+         qxhnkpMnW2zSalC0y6nrr9DhAAF74wAH4/ddqA2Jw3ktmLRpwX8jfUCAcR0EyRPcZEzf
+         tpYdlRsLUu1Ywdgk2ZDRQ1vdBNRj+ZwSGEFvmQCEZ5N1zwf6ssmZ0Om0mulFm1V/IQUO
+         nTIrM0LlVMEZ1LN6mFxo+Zu9kHzBVbRx6v/t/FxO2o7nmbZylQOC3nN7Q2BWiy6gMrAA
+         ayxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8Ie9FPg3eKHZcf3EPv8eS2jsmlfC254JAwZQjn9iApw=;
+        b=FwWm434cawZ0TWbvkJUul72lJdH5dgjKbsDnldvTFLqqdlcb0tiUWzpykuZB/ntZq+
+         /mLWQM/UvIiT0uGLB130TT2v3RFUxnW38FmhAHanwwS5OFErFdIuAwwArR9imh6SbVib
+         n7jsWZ5UklM89vVprm9YOwYj89DCosZRy3NtMmXPf/tYMqMOfoFp3/FgU+0gHypyvZAi
+         6B9qwtpzKV0tUvaayUPFed0xv7HbNhHe5IMLkcOKL3iMxz5uRtHq3EYyDb9ZE4ajUluL
+         yLVMhuihm2Cw91DBaGyFs80DdCZUQq3+eroYgeujxg6LFIJLHzrxZRPu5m4JCFEZP+7m
+         cCZg==
+X-Gm-Message-State: AOAM5304+rsIS4zNa36ChgICl+Zgb55QLzMNdaAOuW1sScBuj+mhSAbN
+	Y+M0hWijiNllWpQOGj4yTN+hBwFQdC/VeJfd70SMlo4gb5LFsL+lVAattZZ9wl60AsYmlqbbdgI
+	c8G/pgiWdfYc6dDHgTjr+UAFHkmrjn5ahaw==
+X-Google-Smtp-Source: ABdhPJzCMrD7h9AqMLby850PnY4ZrqPf5ppMy3zzZqjf2Jd2lrGbBpB2wYajiJaIUtDBnmZWfIWT3SBR4Zr+oBu4+cg=
+X-Received: by 2002:a92:41c1:: with SMTP id o184mr10619426ila.70.1599451490169;
+ Sun, 06 Sep 2020 21:04:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+References: <CAMKF1soOUvdS9scA=1tyxoFcY=r=hgxhU_X9M8dGpKjT+MEVTA@mail.gmail.com>
+ <25048.1599317245296258980@lists.yoctoproject.org>
+In-Reply-To: <25048.1599317245296258980@lists.yoctoproject.org>
+From: hariprasath.gujulanelango@wabco-auto.com
+Date: Mon, 7 Sep 2020 09:34:38 +0530
+Message-ID: <CAB78Z-GpOB6i5fxJJtHNqdfMnpZ9qFdEm+ZFjaFmyr9qx1BP7g@mail.gmail.com>
+Subject: Re: [yocto] Build failure due to wic-tools dependency #yocto
+To: Hari Prasath Gujulan Elango <hariprasath.gujulanelango@wabco-auto.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000e8699a05aeb151a9"
 
-Okay heres the bitbake file, the archive manually extracts to, but if i 
-run bitbake nut
+--000000000000e8699a05aeb151a9
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SECTION = "console/network"
+Update:
 
-DESCRIPTION = "Network UPS Tools is a collection of programs which 
-provide a common\
-interface for monitoring and administering UPS, PDU and SCD hardware.\
-It uses a layered approach to connect all of the parts."\
+ I could able to see the e2fsprogs-native binaries generated under the
+below path.
+build/tmp/sysroots-components/x86_64/e2fsprogs-native/sbin
 
-LICENSE = "GPLv3"
+The PATH variable in the file
+"build/tmp/work/imx8mmddr4evk-poky-linux/nextgen-image/1.0-r0/temp/run.do_=
+image_wic.21626"
+is set to the following which doesn't include the above path.?Could it be
+that the yocto build system is unable to locate this binary ?
 
-SRC_URI = "https://github.com/networkupstools/nut/archive/v2.7.4.tar.gz"
+export
+PATH=3D"/home/hari/projects/tx-nextgen/linux-yocto-bsp/build/tmp/work/imx8=
+mmddr4evk-poky-linux/nextgen-image/1.0-r0/recipe-sysroot/usr/bin/crossscrip=
+ts:/home/hari/projects/tx-nextgen/linux-yocto-bsp/build/tmp/work/imx8mmddr4=
+evk-poky-linux/nextgen-image/1.0-r0/recipe-sysroot/opt/fsl-imx-wayland/5.4-=
+zeus/sysroots/x86_64-pokysdk-linux/usr/bin/crossscripts:/home/hari/projects=
+/tx-nextgen/linux-yocto-bsp/build/tmp/work/imx8mmddr4evk-poky-linux/nextgen=
+-image/1.0-r0/recipe-sysroot/usr/bin/crossscripts:/home/hari/projects/tx-ne=
+xtgen/linux-yocto-bsp/build/tmp/work/imx8mmddr4evk-poky-linux/nextgen-image=
+/1.0-r0/recipe-sysroot-native/usr/bin/python3-native:/home/hari/projects/tx=
+-nextgen/linux-yocto-bsp/sources/poky/scripts:/home/hari/projects/tx-nextge=
+n/linux-yocto-bsp/build/tmp/work/imx8mmddr4evk-poky-linux/nextgen-image/1.0=
+-r0/recipe-sysroot-native/usr/bin/aarch64-poky-linux:/home/hari/projects/tx=
+-nextgen/linux-yocto-bsp/build/tmp/work/imx8mmddr4evk-poky-linux/nextgen-im=
+age/1.0-r0/recipe-sysroot/usr/bin/crossscripts:/home/hari/projects/tx-nextg=
+en/linux-yocto-bsp/build/tmp/work/imx8mmddr4evk-poky-linux/nextgen-image/1.=
+0-r0/recipe-sysroot-native/usr/sbin:/home/hari/projects/tx-nextgen/linux-yo=
+cto-bsp/build/tmp/work/imx8mmddr4evk-poky-linux/nextgen-image/1.0-r0/recipe=
+-sysroot-native/usr/bin:/home/hari/projects/tx-nextgen/linux-yocto-bsp/buil=
+d/tmp/work/imx8mmddr4evk-poky-linux/nextgen-image/1.0-r0/recipe-sysroot-nat=
+ive/sbin:/home/hari/projects/tx-nextgen/linux-yocto-bsp/build/tmp/work/imx8=
+mmddr4evk-poky-linux/nextgen-image/1.0-r0/recipe-sysroot-native/bin:/home/h=
+ari/projects/tx-nextgen/linux-yocto-bsp/sources/poky/bitbake/bin:/home/hari=
+/projects/tx-nextgen/linux-yocto-bsp/build/tmp/hosttools"
 
-LIC_FILES_CHKSUM = 
-"file://LICENSE-GPL3;md5=f27defe1e96c2e1ecd4e0c9be8967949"
-
-SRC_URI[md5sum] = "81f5b97ed35fde35d57e1f87f23ad932"
-SRC_URI[sha256sum] = 
-"d580915fdf7090655c1c7c98eb116b61952553f06f0039b1f93c9f5a13e2d36b"
-
-S = "${WORKDIR}/${PN}-${PV}"
-
-#inherit autotools-brokensep
-inherit autotools
-
-EXTRA_OECONF = "--with-usb --with-serial --with-dev"
 
 
-running bitbake nut i get this result
+On Sat, Sep 5, 2020 at 8:17 PM hariprasath.gujulanelango via
+lists.yoctoproject.org <hariprasath.gujulanelango=3D
+wabco-auto.com@lists.yoctoproject.org> wrote:
 
-ERROR: nut-2.7.4-r0 do_configure: autoreconf execution failed.
-ERROR: nut-2.7.4-r0 do_configure: Execution of 
-'/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947' 
-failed with exit code 1:
-automake (GNU automake) 1.16.2
-Copyright (C) 2020 Free Software Foundation, Inc.
-License GPLv2+: GNU GPL version 2 or later 
-<https://gnu.org/licenses/gpl-2.0.html>
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
+> Hi There
+>
+> Thanks for your reply.As I already mentioned in my original post, this
+> dependency is already present in the wic-tools BB file. The git log also
+> shows the same as below
+>
+> commit b139ac4910a8c519076eaa865d9b0b7d9e604833
+> Author: Ed Bartosh <ed.bartosh@linux.intel.com>
+> Date:   Thu Jul 27 09:54:04 2017 +0300
+>
+>     wic-tools: add dependency to e2fsprogs-native
+>
+>     Added e2fsprogs-native to the list of dependencies for wic-tools
+>     as all fs-related utilities have to be in this list.
+>
+>     (From OE-Core rev: d0ebcf62109d6a131e02cd4c0f04bba203ed6579)
+>
+>     Signed-off-by: Ed Bartosh <ed.bartosh@linux.intel.com>
+>     Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+>
+>
+>=20
+>
 
-Written by Tom Tromey <tromey@redhat.com>
-        and Alexandre Duret-Lutz <adl@gnu.org>.
-AUTOV is 1.16
-autoreconf: Entering directory `.'
-autoreconf: configure.ac: not using Gettext
-autoreconf: running: aclocal 
---system-acdir=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot/usr/share/aclocal/ 
---automake-acdir=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal-1.16 
--I 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/nut-2.7.4/m4/ 
--I 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal/ 
---force -I m4
-autoreconf: configure.ac: tracing
-autoreconf: running: libtoolize --copy --force
-libtoolize: putting auxiliary files in AC_CONFIG_AUX_DIR, '.'.
-libtoolize: copying file './ltmain.sh'
-libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
-libtoolize: copying file 'm4/libtool.m4'
-libtoolize: copying file 'm4/ltoptions.m4'
-libtoolize: copying file 'm4/ltsugar.m4'
-libtoolize: copying file 'm4/ltversion.m4'
-libtoolize: copying file 'm4/lt~obsolete.m4'
-autoreconf: running: 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/bin/autoconf 
---include=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/nut-2.7.4/m4/ 
---include=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal/ 
---force
-autoreconf: running: 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/bin/autoheader 
---include=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/nut-2.7.4/m4/ 
---include=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal/ 
---force
-autoreconf: running: automake --add-missing --copy --force-missing
-configure.ac:19: installing './compile'
-configure.ac:15: installing './missing'
-clients/Makefile.am: installing './depcomp'
-configure.ac:1268: error: required file 
-'scripts/augeas/nutupsconf.aug.in' not found
-configure.ac:1268: error: required file 'scripts/devd/nut-usb.conf.in' 
-not found
-configure.ac:1268: error: required file 
-'scripts/udev/nut-usbups.rules.in' not found
-autoreconf: automake failed with exit status: 1
-WARNING: 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947:301 
-exit 1 from 'exit 1'
-WARNING: Backtrace (BB generated script):
-     #1: bbfatal_log, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 301
-     #2: die, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 246
-     #3: autotools_do_configure, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 234
-     #4: do_configure, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 150
-     #5: main, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 305
 
-Backtrace (metadata-relative locations):
-     #1: bbfatal_log, 
-/var/home/dingo/overc/poky/meta/classes/logging.bbclass, line 72
-     #2: die, /var/home/dingo/overc/poky/meta/classes/base.bbclass, line 56
-     #3: autotools_do_configure, 
-/var/home/dingo/overc/poky/meta/classes/autotools.bbclass, line 232
-     #4: do_configure, autogenerated, line 2
-ERROR: Logfile of failure stored in: 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/log.do_configure.635947
-Log data follows:
-| DEBUG: Executing shell function autotools_preconfigure
-| DEBUG: Shell function autotools_preconfigure finished
-| DEBUG: Executing python function autotools_aclocals
-| DEBUG: SITE files ['endian-little', 'common-linux', 'common-glibc', 
-'bit-64', 'x86_64-linux', 'common']
-| DEBUG: Python function autotools_aclocals finished
-| DEBUG: Executing shell function do_configure
-| automake (GNU automake) 1.16.2
-| Copyright (C) 2020 Free Software Foundation, Inc.
-| License GPLv2+: GNU GPL version 2 or later 
-<https://gnu.org/licenses/gpl-2.0.html>
-| This is free software: you are free to change and redistribute it.
-| There is NO WARRANTY, to the extent permitted by law.
-|
-| Written by Tom Tromey <tromey@redhat.com>
-|        and Alexandre Duret-Lutz <adl@gnu.org>.
-| AUTOV is 1.16
-| NOTE: Executing ACLOCAL="aclocal 
---system-acdir=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot/usr/share/aclocal/ 
---automake-acdir=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal-1.16" 
-autoreconf -Wcross --verbose --install --force --exclude=autopoint -I 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/nut-2.7.4/m4/ 
--I 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal/
-| autoreconf: Entering directory `.'
-| autoreconf: configure.ac: not using Gettext
-| autoreconf: running: aclocal 
---system-acdir=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot/usr/share/aclocal/ 
---automake-acdir=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal-1.16 
--I 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/nut-2.7.4/m4/ 
--I 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal/ 
---force -I m4
-| autoreconf: configure.ac: tracing
-| autoreconf: running: libtoolize --copy --force
-| libtoolize: putting auxiliary files in AC_CONFIG_AUX_DIR, '.'.
-| libtoolize: copying file './ltmain.sh'
-| libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
-| libtoolize: copying file 'm4/libtool.m4'
-| libtoolize: copying file 'm4/ltoptions.m4'
-| libtoolize: copying file 'm4/ltsugar.m4'
-| libtoolize: copying file 'm4/ltversion.m4'
-| libtoolize: copying file 'm4/lt~obsolete.m4'
-| autoreconf: running: 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/bin/autoconf 
---include=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/nut-2.7.4/m4/ 
---include=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal/ 
---force
-| autoreconf: running: 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/bin/autoheader 
---include=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/nut-2.7.4/m4/ 
---include=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal/ 
---force
-| autoreconf: running: automake --add-missing --copy --force-missing
-| configure.ac:19: installing './compile'
-| configure.ac:15: installing './missing'
-| clients/Makefile.am: installing './depcomp'
-| configure.ac:1268: error: required file 
-'scripts/augeas/nutupsconf.aug.in' not found
-| configure.ac:1268: error: required file 'scripts/devd/nut-usb.conf.in' 
-not found
-| configure.ac:1268: error: required file 
-'scripts/udev/nut-usbups.rules.in' not found
-| autoreconf: automake failed with exit status: 1
-| ERROR: autoreconf execution failed.
-| WARNING: 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947:301 
-exit 1 from 'exit 1'
-| WARNING: Backtrace (BB generated script):
-|     #1: bbfatal_log, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 301
-|     #2: die, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 246
-|     #3: autotools_do_configure, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 234
-|     #4: do_configure, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 150
-|     #5: main, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 305
-| ERROR: Execution of 
-'/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947' 
-failed with exit code 1:
-| automake (GNU automake) 1.16.2
-| Copyright (C) 2020 Free Software Foundation, Inc.
-| License GPLv2+: GNU GPL version 2 or later 
-<https://gnu.org/licenses/gpl-2.0.html>
-| This is free software: you are free to change and redistribute it.
-| There is NO WARRANTY, to the extent permitted by law.
-|
-| Written by Tom Tromey <tromey@redhat.com>
-|        and Alexandre Duret-Lutz <adl@gnu.org>.
-| AUTOV is 1.16
-| autoreconf: Entering directory `.'
-| autoreconf: configure.ac: not using Gettext
-| autoreconf: running: aclocal 
---system-acdir=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot/usr/share/aclocal/ 
---automake-acdir=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal-1.16 
--I 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/nut-2.7.4/m4/ 
--I 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal/ 
---force -I m4
-| autoreconf: configure.ac: tracing
-| autoreconf: running: libtoolize --copy --force
-| libtoolize: putting auxiliary files in AC_CONFIG_AUX_DIR, '.'.
-| libtoolize: copying file './ltmain.sh'
-| libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
-| libtoolize: copying file 'm4/libtool.m4'
-| libtoolize: copying file 'm4/ltoptions.m4'
-| libtoolize: copying file 'm4/ltsugar.m4'
-| libtoolize: copying file 'm4/ltversion.m4'
-| libtoolize: copying file 'm4/lt~obsolete.m4'
-| autoreconf: running: 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/bin/autoconf 
---include=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/nut-2.7.4/m4/ 
---include=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal/ 
---force
-| autoreconf: running: 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/bin/autoheader 
---include=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/nut-2.7.4/m4/ 
---include=/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/recipe-sysroot-native/usr/share/aclocal/ 
---force
-| autoreconf: running: automake --add-missing --copy --force-missing
-| configure.ac:19: installing './compile'
-| configure.ac:15: installing './missing'
-| clients/Makefile.am: installing './depcomp'
-| configure.ac:1268: error: required file 
-'scripts/augeas/nutupsconf.aug.in' not found
-| configure.ac:1268: error: required file 'scripts/devd/nut-usb.conf.in' 
-not found
-| configure.ac:1268: error: required file 
-'scripts/udev/nut-usbups.rules.in' not found
-| autoreconf: automake failed with exit status: 1
-| WARNING: 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947:301 
-exit 1 from 'exit 1'
-| WARNING: Backtrace (BB generated script):
-|     #1: bbfatal_log, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 301
-|     #2: die, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 246
-|     #3: autotools_do_configure, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 234
-|     #4: do_configure, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 150
-|     #5: main, 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/temp/run.do_configure.635947, 
-line 305
-|
-| Backtrace (metadata-relative locations):
-|     #1: bbfatal_log, 
-/var/home/dingo/overc/poky/meta/classes/logging.bbclass, line 72
-|     #2: die, /var/home/dingo/overc/poky/meta/classes/base.bbclass, line 56
-|     #3: autotools_do_configure, 
-/var/home/dingo/overc/poky/meta/classes/autotools.bbclass, line 232
-|     #4: do_configure, autogenerated, line 2
-ERROR: Task 
-(/var/home/dingo/overc/meta-ups/recipes-support/nut/nut_2.7.4.bb:do_configure) 
-failed with exit code '1'
-NOTE: Tasks Summary: Attempted 528 tasks of which 527 didn't need to be 
-rerun and 1 failed.
+--=20
+Best Regards,
+Hari Prasath
 
-Summary: 1 task failed:
-/var/home/dingo/overc/meta-ups/recipes-support/nut/nut_2.7.4.bb:do_configure
-Summary: There was 1 WARNING message shown.
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+--=20
 
-ls /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/
-build  license-destdir  nut-2.7.4  recipe-sysroot recipe-sysroot-native  
-temp
+Proprietary and confidential.=C2=A0It is for use by the addressee only. If=
+ you=20
+are not the addressee or=C2=A0If you received this email in error, please =
+notify=20
+the sender and delete it and any attachments. All communications are=20
+subject to our Data Protection Policy that can be found at=C2=A0
+https://www.wabco-auto.com/en/footer/legal/legal/privacy-statement/=20
+<https://www.wabco-auto.com/en/footer/legal/legal/privacy-statement/>=C2=
+=A0.=C2=A0By=20
+communicating with us via e-mail, you agree to the policy. WABCO does not=
+=20
+guarantee that this email has not been intercepted, amended, or is=20
+virus-free.=C2=A0No liability is accepted for viruses and it is your=20
+responsibility to scan any attachments.=C2=A0Technical data and/or informa=
+tion=20
+provided in this email or any attachment may be subject to U.S. export=20
+control laws. Export, re-export, diversion or disclosure contrary to U.S.=
+=20
+law is prohibited
 
-and ls 
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/nut/2.7.4-r0/nut-2.7.4
-aclocal.m4  autom4te.cache  compile       config.sub    COPYING docs     
-INSTALL      lib           ltmain.sh    Makefile.am NEWS     
-server       TODO
-AUTHORS     clients         conf          configure     data drivers  
-INSTALL.nut  LICENSE-GPL2  m4           Makefile.in README   
-test-driver  tools
-autogen.sh  common          config.guess  configure.ac  depcomp include  
-install-sh   LICENSE-GPL3  MAINTAINERS  missing scripts  tests        
-UPGRADING
+--000000000000e8699a05aeb151a9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Update:<div><br></div><div><p style=3D"box-sizing:border-b=
+ox;margin:0px 0px 15px;color:rgb(51,63,72);font-family:Arial,sans-serif;fon=
+t-size:16px">=C2=A0I could able to see the e2fsprogs-native binaries genera=
+ted under the below path.</p><div style=3D"box-sizing:border-box;color:rgb(=
+51,63,72);font-family:Arial,sans-serif;font-size:16px">build/tmp/sysroots-c=
+omponents/x86_64/e2fsprogs-native/sbin</div><div style=3D"box-sizing:border=
+-box;color:rgb(51,63,72);font-family:Arial,sans-serif;font-size:16px">=C2=
+=A0</div><div style=3D"box-sizing:border-box;color:rgb(51,63,72);font-fami=
+ly:Arial,sans-serif;font-size:16px">The PATH variable in the file &quot;bui=
+ld/tmp/work/imx8mmddr4evk-poky-linux/nextgen-image/1.0-r0/temp/run.do_image=
+_wic.21626&quot; is set to the following which doesn&#39;t include the abov=
+e path.?Could it be that the yocto build system is unable to locate this bi=
+nary ?</div><div style=3D"box-sizing:border-box;color:rgb(51,63,72);font-fa=
+mily:Arial,sans-serif;font-size:16px">=C2=A0</div><div style=3D"box-sizing:=
+border-box;color:rgb(51,63,72);font-family:Arial,sans-serif;font-size:16px"=
+>export PATH=3D&quot;/home/hari/projects/tx-nextgen/linux-yocto-bsp/build/t=
+mp/work/imx8mmddr4evk-poky-linux/nextgen-image/1.0-r0/recipe-sysroot/usr/bi=
+n/crossscripts:/home/hari/projects/tx-nextgen/linux-yocto-bsp/build/tmp/wor=
+k/imx8mmddr4evk-poky-linux/nextgen-image/1.0-r0/recipe-sysroot/opt/fsl-imx-=
+wayland/5.4-zeus/sysroots/x86_64-pokysdk-linux/usr/bin/crossscripts:/home/h=
+ari/projects/tx-nextgen/linux-yocto-bsp/build/tmp/work/imx8mmddr4evk-poky-l=
+inux/nextgen-image/1.0-r0/recipe-sysroot/usr/bin/crossscripts:/home/hari/pr=
+ojects/tx-nextgen/linux-yocto-bsp/build/tmp/work/imx8mmddr4evk-poky-linux/n=
+extgen-image/1.0-r0/recipe-sysroot-native/usr/bin/python3-native:/home/hari=
+/projects/tx-nextgen/linux-yocto-bsp/sources/poky/scripts:/home/hari/projec=
+ts/tx-nextgen/linux-yocto-bsp/build/tmp/work/imx8mmddr4evk-poky-linux/nextg=
+en-image/1.0-r0/recipe-sysroot-native/usr/bin/aarch64-poky-linux:/home/hari=
+/projects/tx-nextgen/linux-yocto-bsp/build/tmp/work/imx8mmddr4evk-poky-linu=
+x/nextgen-image/1.0-r0/recipe-sysroot/usr/bin/crossscripts:/home/hari/proje=
+cts/tx-nextgen/linux-yocto-bsp/build/tmp/work/imx8mmddr4evk-poky-linux/next=
+gen-image/1.0-r0/recipe-sysroot-native/usr/sbin:/home/hari/projects/tx-next=
+gen/linux-yocto-bsp/build/tmp/work/imx8mmddr4evk-poky-linux/nextgen-image/1=
+.0-r0/recipe-sysroot-native/usr/bin:/home/hari/projects/tx-nextgen/linux-yo=
+cto-bsp/build/tmp/work/imx8mmddr4evk-poky-linux/nextgen-image/1.0-r0/recipe=
+-sysroot-native/sbin:/home/hari/projects/tx-nextgen/linux-yocto-bsp/build/t=
+mp/work/imx8mmddr4evk-poky-linux/nextgen-image/1.0-r0/recipe-sysroot-native=
+/bin:/home/hari/projects/tx-nextgen/linux-yocto-bsp/sources/poky/bitbake/bi=
+n:/home/hari/projects/tx-nextgen/linux-yocto-bsp/build/tmp/hosttools&quot;<=
+/div></div><div style=3D"box-sizing:border-box;color:rgb(51,63,72);font-fam=
+ily:Arial,sans-serif;font-size:16px"><br></div><div style=3D"box-sizing:bor=
+der-box;color:rgb(51,63,72);font-family:Arial,sans-serif;font-size:16px"><b=
+r></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Sat, Sep 5, 2020 at 8:17 PM hariprasath.gujulanelango via <a hre=
+f=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a> &lt;haripras=
+ath.gujulanelango=3D<a href=3D"mailto:wabco-auto.com@lists.yoctoproject.org=
+">wabco-auto.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex">Hi There<br><br>Thanks for your repl=
+y.As I already mentioned in my original post, this dependency is already pr=
+esent in the wic-tools BB file. The git log also shows the same as below<br=
+><br>
+<div>commit b139ac4910a8c519076eaa865d9b0b7d9e604833</div>
+<div>Author: Ed Bartosh &lt;<a href=3D"mailto:ed.bartosh@linux.intel.com" =
+target=3D"_blank">ed.bartosh@linux.intel.com</a>&gt;</div>
+<div>Date:=C2=A0 =C2=A0Thu Jul 27 09:54:04 2017 +0300</div>
+<div>=C2=A0</div>
+<div>=C2=A0 =C2=A0 wic-tools: add dependency to e2fsprogs-native</div>
+<div>=C2=A0 =C2=A0=C2=A0</div>
+<div>=C2=A0 =C2=A0 Added e2fsprogs-native to the list of dependencies for =
+wic-tools</div>
+<div>=C2=A0 =C2=A0 as all fs-related utilities have to be in this list.</d=
+iv>
+<div>=C2=A0 =C2=A0=C2=A0</div>
+<div>=C2=A0 =C2=A0 (From OE-Core rev: d0ebcf62109d6a131e02cd4c0f04bba203ed=
+6579)</div>
+<div>=C2=A0 =C2=A0=C2=A0</div>
+<div>=C2=A0 =C2=A0 Signed-off-by: Ed Bartosh &lt;<a href=3D"mailto:ed.bart=
+osh@linux.intel.com" target=3D"_blank">ed.bartosh@linux.intel.com</a>&gt;</=
+div>
+<div>=C2=A0 =C2=A0 Signed-off-by: Richard Purdie &lt;<a href=3D"mailto:ric=
+hard.purdie@linuxfoundation.org" target=3D"_blank">richard.purdie@linuxfoun=
+dation.org</a>&gt;</div>
+<div><br><br></div>
+<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
+" class=3D"gmail_signature"><div dir=3D"ltr">Best Regards,<div>Hari Prasath=
+</div></div></div>
+
+<br>
+<div style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><hr>=
+</div><span style=3D"background-color:white"><font face=3D"Arial" size=3D"1=
+"><font color=3D"#808080" face=3D"Arial, Helvetica, sans-serif"><span style=
+=
+=3D"font-size:1.3em">Proprietary and confidential.=C2=A0</span></font><spa=
+n lang=3D"EN-GB" style=3D"color:rgb(128,128,128);font-family:Arial,Helvetic=
+a,sans-serif;font-size:1.3em">It is for use by the addressee only. If you a=
+re not the addressee or=C2=A0</span><font color=3D"#808080" face=3D"Arial, =
+Helvetica, sans-serif"><span style=3D"font-size:1.3em">If you received this=
+ email in error, please notify the sender and delete it and any attachments=
+. All communications are subject to our Data Protection Policy that can be =
+found at=C2=A0</span></font></font></span><a href=3D"https://www.wabco-auto=
+.com/en/footer/legal/legal/privacy-statement/" style=3D"color:rgb(17,85,204=
+);font-size:small;background-color:rgb(255,255,255)" target=3D"_blank">http=
+s://www.wabco-auto.com/<wbr>en/footer/legal/legal/privacy-<wbr>statement/</=
+a><span style=3D"background-color:white"><font face=3D"Arial" size=3D"1"><f=
+ont color=3D"#808080" face=3D"Arial, Helvetica, sans-serif"><span style=3D"=
+font-size:1.3em">=C2=A0.=C2=A0By communicating with us via e-mail, you agre=
+e to the policy. WABCO does not guarantee that this email has not been inte=
+rcepted, amended, or is virus-free.=C2=A0</span></font><span lang=3D"EN-GB"=
+ style=3D"color:rgb(128,128,128);font-family:Arial,Helvetica,sans-serif;fon=
+t-size:1.3em">No liability is accepted for viruses and it is your responsib=
+ility to scan any attachments.=C2=A0</span><font color=3D"#808080" face=3D"=
+Arial, Helvetica, sans-serif"><span style=3D"font-size:1.3em">Technical dat=
+a and/or information provided in this email or any attachment may be subjec=
+t to U.S. export control laws. Export, re-export, diversion or disclosure c=
+ontrary to U.S. law is prohibited</span></font></font></span>
+
+--000000000000e8699a05aeb151a9--
