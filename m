@@ -1,47 +1,47 @@
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
- by mx.groups.io with SMTP id smtpd.web10.6459.1599511838968155142
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+ by mx.groups.io with SMTP id smtpd.web12.6473.1599511839907770606
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Sep 2020 13:50:39 -0700
+ Mon, 07 Sep 2020 13:50:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=PcW63pPQ;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.45, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f45.google.com with SMTP id k15so16913267wrn.10
-        for <yocto@lists.yoctoproject.org>; Mon, 07 Sep 2020 13:50:38 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=iN8iHlV3;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.50, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f50.google.com with SMTP id e11so13013481wme.0
+        for <yocto@lists.yoctoproject.org>; Mon, 07 Sep 2020 13:50:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=Od1rX6Ci0Q8ganA+dWQY9YERBwi3R4no27O61wwdPuo=;
-        b=PcW63pPQvwKSN2DJOXbzV99tXlWiGD+LWYYJHRfHz029+XWo/sB9DkbiVYqAeeWbwB
-         azSwOEgZd/v0TZDi2vFOBu7yl4OiOCdPLloEWHr2OrWIOPCfJwwyH96ZmVoeJHPCbqZ7
-         JxjCY6SZrZT2KQcetnGrPZvwEjnHzTllP7EUo=
+        bh=21mngEhBmyHhQfojsyqR/5YiLoiHMEqHI0kd+pK0wF4=;
+        b=iN8iHlV3uby3AcEIM6Q2N4G6Jvq4+HzswMGVRt/RhTwMQhPp1ggwceiFWGwQFYE6cH
+         ZevYfIAOR/M1j4cJtSU1LmUyOcxUsU342wyzFz6Dmm/zoAg5xbdwEL6hUG+fZnwDE37/
+         REEhcupvug9MhzNBs5/3Gt31YCQUpY2LT2UuI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Od1rX6Ci0Q8ganA+dWQY9YERBwi3R4no27O61wwdPuo=;
-        b=UzTHNFPmdw+0r7axWNEjj9SSSL+Kbky4BI1Ml3lLhwa/MoocfoKuv01tWAD227J4gw
-         8n9BeohTqKl07SmIf98zOTMwYCJuhbAouToIT7gEjGILTARzeIrCm/JNsLJMvNDjtZkh
-         j8QG6tn7AsoozXnnymjRuKqTwEQdoTLfNnQ0ryRtUPFnumAarTaMYpvpkpiHIcpVTYqK
-         lJJeCZWmGVSMBapAggUHg7T0NYIEDRWyV8NaOIMOmV33oIb3EsGd2/AQeYEnRZDynKu1
-         Fs2A3o8X7h6sIzv4s9kEFgHfZyT08ZLtk2icBRFp/8u57Ui6tiltcnNKrQe4+UexoMjr
-         iYpA==
-X-Gm-Message-State: AOAM532qndqdmk0BxF8lHaZAfFLzmt9w0DxIsXQp2ShemlAJPORrrkCO
-	amhg7ndCI3YFyC3G4QXbFZx65u2Y9jSUkg==
-X-Google-Smtp-Source: ABdhPJzKp0NGYw0o+BnSttsH+m2T0Q3mK7u8eOXaFn6XjDXC/f6D5Ht2SQ8dunBb2rFu2b52tzBQsA==
-X-Received: by 2002:adf:9d44:: with SMTP id o4mr23572670wre.361.1599511837169;
-        Mon, 07 Sep 2020 13:50:37 -0700 (PDT)
+        bh=21mngEhBmyHhQfojsyqR/5YiLoiHMEqHI0kd+pK0wF4=;
+        b=SEqKm1eRp7O3d5PMBRXwMRbdjNsvnNxJ2bhNUdNM8GRCfE8A5m8FvW6zLHWQtcH2w0
+         VK/c4qcank4UQnGIuiFc2+udPyipwToclg/Po8CLYrR7mPQkM9xupqDLyRhmpjfX987/
+         XtXRUa6Na5DvJSSDrYw3LOF2tmFbwl1VWfydS2U86oPE5pOcdEP6spE6R6NOIPYDSQ7Z
+         FMCcleB6JOauewZhVaE/4g8ha0zg+Owm/x6OGY1ON1IiFtkgXPywLQvAkNOphMqa0acK
+         5INZ+Emr5taa0+IAp2azdFZKsCILvqL6z+K5+2joP7lqdmslkihi+d4BljlK4h53JoP/
+         tZLQ==
+X-Gm-Message-State: AOAM531jjwRkx3ABz7xRFw2NEuvH3G7I437wsW/H2MSLRhS3fuid2CWu
+	48DCFxYeObMY8We9e5S3aeLzWfXdDNG0Yw==
+X-Google-Smtp-Source: ABdhPJzQQAC+9OWyFbxHA3Z6oFmlYn9BweZAYEw+GTBj0Vl94sEkW/Jajpw0qG8ifkxvlWO34SDDmA==
+X-Received: by 2002:a1c:b407:: with SMTP id d7mr1072497wmf.59.1599511838147;
+        Mon, 07 Sep 2020 13:50:38 -0700 (PDT)
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from hex.int.rpsys.net (e.4.4.b.0.8.f.4.f.c.f.0.9.0.5.8.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:8509:fcf:4f80:b44e])
-        by smtp.gmail.com with ESMTPSA id l16sm6821284wrb.70.2020.09.07.13.50.36
+        by smtp.gmail.com with ESMTPSA id l16sm6821284wrb.70.2020.09.07.13.50.37
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Sep 2020 13:50:36 -0700 (PDT)
+        Mon, 07 Sep 2020 13:50:37 -0700 (PDT)
 From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Subject: [PATCH][autobuilder-helper][zeus 02/32] run-config: Add support for wrapping builds in a buildtools tarball
-Date: Mon,  7 Sep 2020 21:50:04 +0100
-Message-Id: <20200907205034.1941516-3-richard.purdie@linuxfoundation.org>
+Subject: [PATCH][autobuilder-helper][zeus 03/32] config.json: Enable buildtools for centos7 workers (as a test for now)
+Date: Mon,  7 Sep 2020 21:50:05 +0100
+Message-Id: <20200907205034.1941516-4-richard.purdie@linuxfoundation.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200907205034.1941516-1-richard.purdie@linuxfoundation.org>
 References: <20200907205034.1941516-1-richard.purdie@linuxfoundation.org>
@@ -50,57 +50,31 @@ Content-Transfer-Encoding: 8bit
 
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 ---
- scripts/run-config | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+ config.json | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/scripts/run-config b/scripts/run-config
-index a0e0204..161cca4 100755
---- a/scripts/run-config
-+++ b/scripts/run-config
-@@ -8,6 +8,8 @@ import os
- import sys
- import subprocess
- import errno
-+import fnmatch
-+import glob
+diff --git a/config.json b/config.json
+index 7a88e6e..a251d53 100644
+--- a/config.json
++++ b/config.json
+@@ -8,6 +8,8 @@
+     "BUILD_HISTORY_DIRECTPUSH" : ["poky:morty", "poky:pyro", "poky:rocko", "poky:sumo", "poky:thud", "poky:warrior", "poky:zeus", "poky:master"],
+     "BUILD_HISTORY_FORKPUSH" : {"poky-contrib:ross/mut" : "poky:master", "poky:master-next" : "poky:master"},
  
- import utils
- 
-@@ -92,6 +94,34 @@ if args.target in ourconfig['overrides']:
- 
- hp.printheader("Target task %s has %d steps" % (args.target, maxsteps))
- 
-+bttarball = None
-+if "buildtools" in ourconfig and args.workername:
-+    btcfg = utils.getconfig("buildtools", ourconfig)
-+    for entry in btcfg:
-+        if fnmatch.fnmatch(args.workername, entry):
-+            bttarball = btcfg[entry]
-+            break
++    "BUILDTOOLS_URL" : "http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.1_M2/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0%2Bsnapshot-20200122.sh",
 +
-+btenv = None
-+if bttarball:
-+    btdir = args.builddir + "../buildtools"
-+    if not os.path.exists(btdir):
-+        btdlpath = utils.getconfig("BASE_SHAREDDIR", ourconfig) + "/buildtools/" + os.path.basename(bttarball)
-+        if not os.path.exists(btdlpath):
-+            os.makedirs(os.path.dirname(btdlpath), exist_ok=True)
-+            subprocess.check_call(["wget", "-O", btdlpath, bttarball])
-+            os.chmod(btdlpath, 0o775)
-+        subprocess.check_call(["bash", btdlpath, "-d", btdir, "-y"])
-+    btenv = glob.glob(btdir + "/environment-setup*")
-+    # We either parse or wrap all our execution calls, rock and a hard place :(
-+    with open(btenv[0], "r") as f:
-+        for line in f.readlines():
-+            if line.startswith("export "):
-+                line = line.split(" ", 1)[1].split("=", 1)
-+                if "$PATH" in line[1]:
-+                    line[1] = line[1].replace("$PATH", os.environ["PATH"])
-+                os.environ[line[0]] = line[1]
-+
- finalret = 0
+     "REPO_STASH_DIR" : "${BASE_HOMEDIR}/git/mirror",
+     "TRASH_DIR" : "${BASE_HOMEDIR}/git/trash",
  
- def flush():
+@@ -955,5 +957,8 @@
+             "no-layer-add" : true
+         }
+ 
++    },
++    "buildtools" : {
++        "centos7*" : "${BUILDTOOLS_URL}"
+     }
+ }
 -- 
 2.25.1
 
