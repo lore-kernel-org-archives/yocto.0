@@ -1,47 +1,47 @@
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
- by mx.groups.io with SMTP id smtpd.web11.6481.1599511853314042268
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+ by mx.groups.io with SMTP id smtpd.web12.6485.1599511854422306299
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Sep 2020 13:50:53 -0700
+ Mon, 07 Sep 2020 13:50:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=OdRW49J0;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.45, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f45.google.com with SMTP id o5so16913552wrn.13
-        for <yocto@lists.yoctoproject.org>; Mon, 07 Sep 2020 13:50:53 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=bd9akhRI;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.42, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f42.google.com with SMTP id o5so16913579wrn.13
+        for <yocto@lists.yoctoproject.org>; Mon, 07 Sep 2020 13:50:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=UCZLqtq+1/TrKopg/+mCFO03D3doh2FhS6iSvWHlHaU=;
-        b=OdRW49J0XTPheGtKpAqLI8u0+bpftKUrWdRddYWyWj1nAU+mXGRHkeJZtKoU7LpBE6
-         BBWvVepeWO2kkZ+58s4xOCrrIJi0g2HmibVI+LpBQl4fxZdQ1151dSmR+6zYzZxfYxO5
-         Uj9eYXGoZqHIdIdZ8foHkLPCoLf0pbHV4QGo8=
+        bh=shMirzIo9FrdENzx7DL63y5ILhUV52HaraXtQxjv4nU=;
+        b=bd9akhRIXWMnI3MxrREfx4Pd+jbNJAoiQW/XY1CNquS4QJpJBXXoM1deIrnksHxELp
+         sUXowPIrqLbOjW54SbCtJHzS2eEC9Nyn2gHG14+7TUITJ3w0GBtvdrAXJnZjvayR/EcR
+         YSMZmBzCf0ylFUPFakgcd+Qo5UtT+ca69SLIc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=UCZLqtq+1/TrKopg/+mCFO03D3doh2FhS6iSvWHlHaU=;
-        b=RJwq0WQorDnlCLna+Gd/JGoXGQWWKtLio244VE38F5Cq/vnvyHqEmRTVaYA2kt2Mg8
-         WW2cvOudelQkFkxIYYkaG67H9m/xbI+pfZ+RBfeYlkbO64OSh1eTQXaADqwOsTPhi53C
-         JxxZ/AwAL5i77VQm9xQJTikkPshC+Vb7cRFBAxCdLNaqmTQC5whBtdejPILVBEJ38XLH
-         n+RzT6sfO/LJMMdg+NsS2e1EYC+YgCkYu3D2jjqTCE8eBcPYyhLqrTtJjc0NAIYWpmlg
-         EyK9IM+ue7ihie//qXUJhEYQVLl9zJBqHJWIO9tia2Xu7S3H+570hlYAefNO+NPhJMjo
-         84Pw==
-X-Gm-Message-State: AOAM531VrpGBa+c5lKvKcCUT60wEOW1rNmh1ftu7g+K+MZxWFVv6lBbT
-	Ya2AGil/qy9PiOMSe5g53kZXxBwHLn+lGg==
-X-Google-Smtp-Source: ABdhPJxFi316GSfjXq/oRJYBg7P6DrVJmuAdOm58KyBNjNvELmnX+n5xITldFW2QfZhynDU9WlxSqA==
-X-Received: by 2002:adf:cf01:: with SMTP id o1mr23668461wrj.421.1599511851537;
-        Mon, 07 Sep 2020 13:50:51 -0700 (PDT)
+        bh=shMirzIo9FrdENzx7DL63y5ILhUV52HaraXtQxjv4nU=;
+        b=a8oocqMpfOZFG2ohDqsNfYyrydESsfKbMV36JRR4S5Rd6uonj7jdWhQfy+2MjEnphN
+         cJEDFNvHd2S1SIMTQ0dGhABir2k2NlOScyOxNUlcOHRy/a0GHJcaUh9bTLEGJHeXol0Z
+         6nGsa4ng+swerO5c2yuvw6Xm17Sw/3RxrxtIvhXmey5u+/eFWxFGSbUOVcP7n4i6YUnj
+         CyaSoG3dlodrYt1J3LSeB8LtCwbKhC6Z5ts2ajG0GGb5X9xg8/Bn7jW7uUhvs2r0wnTh
+         CSQEzHlKRzqevYc0AIdQJmck8Den5sLWXV8tt43MDsiciKRS0yP5TYc2+m0HZMCA3n1Y
+         X+iQ==
+X-Gm-Message-State: AOAM53071wAAM6cSYY7sToTCUBPMYGz/i6PSckyyya8enGuBDADORdCr
+	mWsoq5eX/Fp+kGsiHVAZ0QA6WfukEl6KVw==
+X-Google-Smtp-Source: ABdhPJz7xQ/MijQnbHJjXz1AEKlZoV8hA4TDx29jCe46cJtx+fY+MiRcoEmB0OxI8ZECv7tWDpnXCw==
+X-Received: by 2002:a5d:6412:: with SMTP id z18mr23103250wru.30.1599511852662;
+        Mon, 07 Sep 2020 13:50:52 -0700 (PDT)
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from hex.int.rpsys.net (e.4.4.b.0.8.f.4.f.c.f.0.9.0.5.8.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:8509:fcf:4f80:b44e])
-        by smtp.gmail.com with ESMTPSA id l16sm6821284wrb.70.2020.09.07.13.50.50
+        by smtp.gmail.com with ESMTPSA id l16sm6821284wrb.70.2020.09.07.13.50.51
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Sep 2020 13:50:51 -0700 (PDT)
+        Mon, 07 Sep 2020 13:50:52 -0700 (PDT)
 From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Subject: [PATCH][autobuilder-helper][zeus 17/32] scripts/run-config: Share buildtools setup code with shared-repo-unpack
-Date: Mon,  7 Sep 2020 21:50:19 +0100
-Message-Id: <20200907205034.1941516-18-richard.purdie@linuxfoundation.org>
+Subject: [PATCH][autobuilder-helper][zeus 18/32] config.json: Use new buildtools tarball
+Date: Mon,  7 Sep 2020 21:50:20 +0100
+Message-Id: <20200907205034.1941516-19-richard.purdie@linuxfoundation.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200907205034.1941516-1-richard.purdie@linuxfoundation.org>
 References: <20200907205034.1941516-1-richard.purdie@linuxfoundation.org>
@@ -50,156 +50,23 @@ Content-Transfer-Encoding: 8bit
 
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 ---
- scripts/run-config         | 49 +------------------------------------
- scripts/shared-repo-unpack |  2 ++
- scripts/utils.py           | 50 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 53 insertions(+), 48 deletions(-)
+ config.json | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/scripts/run-config b/scripts/run-config
-index 45a417f..0134841 100755
---- a/scripts/run-config
-+++ b/scripts/run-config
-@@ -8,9 +8,6 @@ import os
- import sys
- import subprocess
- import errno
--import fnmatch
--import glob
--import fcntl
+diff --git a/config.json b/config.json
+index ef5ff6d..d494679 100644
+--- a/config.json
++++ b/config.json
+@@ -9,7 +9,8 @@
+     "BUILD_HISTORY_FORKPUSH" : {"poky-contrib:ross/mut" : "poky:master", "poky:master-next" : "poky:master"},
  
- import utils
+     "BUILDTOOLS_URL_TEMPLOCAL" : "/srv/autobuilder/autobuilder.yoctoproject.org/pub/non-release/20200309-15/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0+snapshot-20200309.sh",
+-    "BUILDTOOLS_URL" : "http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.1_M3/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0+snapshot-20200315.sh",
++    "BUILDTOOLS_URL_TEMPLOCAL2" : "http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.1_M3/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0+snapshot-20200315.sh",
++    "BUILDTOOLS_URL" : "/srv/autobuilder/autobuilder.yoctoproject.org/pub/non-release/20200427-22/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.1.sh",
  
-@@ -95,51 +92,7 @@ if args.target in ourconfig['overrides']:
- 
- hp.printheader("Target task %s has %d steps" % (args.target, maxsteps))
- 
--bttarball = None
--if "buildtools" in ourconfig and args.workername:
--    btcfg = utils.getconfig("buildtools", ourconfig)
--    for entry in btcfg:
--        if fnmatch.fnmatch(args.workername, entry):
--            bttarball = btcfg[entry]
--            break
--
--btenv = None
--if bttarball:
--    btdir = args.builddir + "/../buildtools"
--    if not os.path.exists(btdir):
--        btdlpath = utils.getconfig("BASE_SHAREDDIR", ourconfig) + "/buildtools/" + os.path.basename(bttarball)
--        print("Extracting buildtools %s" % bttarball)
--        btlock = btdlpath + ".lock"
--        if not os.path.exists(os.path.dirname(btdlpath)):
--            os.makedirs(os.path.dirname(btdlpath), exist_ok=True)
--        while True:
--            try:
--                with open(btlock, 'a+') as lf:
--                    fileno = lf.fileno()
--                    fcntl.flock(fileno, fcntl.LOCK_EX)
--                    if not os.path.exists(btdlpath):
--                        if bttarball.startswith("/"):
--                            subprocess.check_call(["cp", bttarball, btdlpath])
--                        else:
--                            subprocess.check_call(["wget", "-O", btdlpath, bttarball])
--                        os.chmod(btdlpath, 0o775)
--                break
--            except OSError:
--                # We raced with someone else, try again
--                pass
--        subprocess.check_call(["bash", btdlpath, "-d", btdir, "-y"])
--    btenv = glob.glob(btdir + "/environment-setup*")
--    print("Using buildtools %s" % btenv)
--    # We either parse or wrap all our execution calls, rock and a hard place :(
--    with open(btenv[0], "r") as f:
--        for line in f.readlines():
--            if line.startswith("export "):
--                line = line.strip().split(" ", 1)[1].split("=", 1)
--                if "$PATH" in line[1]:
--                    line[1] = line[1].replace("$PATH", os.environ["PATH"])
--                if line[1].startswith(("'", '"')):
--                    line[1] = line[1][1:-1]
--                os.environ[line[0]] = line[1]
-+utils.setup_buildtools_tarball(ourconfig, args.workername, args.builddir + "/../buildtools")
- 
- finalret = 0
- 
-diff --git a/scripts/shared-repo-unpack b/scripts/shared-repo-unpack
-index 4a2b1c9..7dc250c 100755
---- a/scripts/shared-repo-unpack
-+++ b/scripts/shared-repo-unpack
-@@ -61,6 +61,8 @@ for repo in sorted(repos.keys()):
-         if args.publish_dir:
-             utils.publishrepo(targetsubdir, repo, args.publish_dir)
- 
-+utils.setup_buildtools_tarball(ourconfig, args.workername, args.abworkdir + "/buildtools")
-+
- try:
-     subprocess.check_call([scriptsdir + "/layer-config", args.abworkdir, args.target])
- except subprocess.CalledProcessError as e:
-diff --git a/scripts/utils.py b/scripts/utils.py
-index 5542fe2..d7b9ae7 100644
---- a/scripts/utils.py
-+++ b/scripts/utils.py
-@@ -8,6 +8,9 @@ import codecs
- import sys
- import re
- import argparse
-+import fnmatch
-+import glob
-+import fcntl
- 
- #
- # Check if config contains all the listed params
-@@ -364,3 +367,50 @@ def getcomparisonbranch(ourconfig, reponame, branchname):
-     if (reponame + ":" + branchname) in getconfig("BUILD_HISTORY_DIRECTPUSH", ourconfig):
-         return branchname, None
-     return None, None
-+
-+def setup_buildtools_tarball(ourconfig, workername, btdir):
-+    bttarball = None
-+    if "buildtools" in ourconfig and workername:
-+        btcfg = getconfig("buildtools", ourconfig)
-+        for entry in btcfg:
-+            if fnmatch.fnmatch(workername, entry):
-+                bttarball = btcfg[entry]
-+                break
-+
-+    btenv = None
-+    if bttarball:
-+        btdir = os.path.abspath(btdir)
-+        if not os.path.exists(btdir):
-+            btdlpath = getconfig("BASE_SHAREDDIR", ourconfig) + "/buildtools/" + os.path.basename(bttarball)
-+            print("Extracting buildtools %s" % bttarball)
-+            btlock = btdlpath + ".lock"
-+            if not os.path.exists(os.path.dirname(btdlpath)):
-+                os.makedirs(os.path.dirname(btdlpath), exist_ok=True)
-+            while True:
-+                try:
-+                    with open(btlock, 'a+') as lf:
-+                        fileno = lf.fileno()
-+                        fcntl.flock(fileno, fcntl.LOCK_EX)
-+                        if not os.path.exists(btdlpath):
-+                            if bttarball.startswith("/"):
-+                                subprocess.check_call(["cp", bttarball, btdlpath])
-+                            else:
-+                                subprocess.check_call(["wget", "-O", btdlpath, bttarball])
-+                            os.chmod(btdlpath, 0o775)
-+                    break
-+                except OSError:
-+                    # We raced with someone else, try again
-+                    pass
-+            subprocess.check_call(["bash", btdlpath, "-d", btdir, "-y"])
-+        btenv = glob.glob(btdir + "/environment-setup*")
-+        print("Using buildtools %s" % btenv)
-+        # We either parse or wrap all our execution calls, rock and a hard place :(
-+        with open(btenv[0], "r") as f:
-+            for line in f.readlines():
-+                if line.startswith("export "):
-+                    line = line.strip().split(" ", 1)[1].split("=", 1)
-+                    if "$PATH" in line[1]:
-+                        line[1] = line[1].replace("$PATH", os.environ["PATH"])
-+                    if line[1].startswith(("'", '"')):
-+                        line[1] = line[1][1:-1]
-+                    os.environ[line[0]] = line[1]
+     "REPO_STASH_DIR" : "${BASE_HOMEDIR}/git/mirror",
+     "TRASH_DIR" : "${BASE_HOMEDIR}/git/trash",
 -- 
 2.25.1
 
