@@ -1,100 +1,246 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.14470.1599546366125430559
- for <yocto@lists.yoctoproject.org>;
- Mon, 07 Sep 2020 23:26:06 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=usvEVC4B;
- spf=none, err=SPF record not found (domain: optimcloud.com, ip: 198.145.29.25, mailfrom: yocto@optimcloud.com)
 Received: from mx02.optimcloud.com (mx02.optimcloud.com [46.23.93.22])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id CD26938C0894
-	for <yocto@yoctoproject.org>; Mon,  7 Sep 2020 23:26:04 -0700 (PDT)
+ by mx.groups.io with SMTP id smtpd.web12.14552.1599546521036209560
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 07 Sep 2020 23:28:44 -0700
+Authentication-Results: mx.groups.io;
+ dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=nh5CZAi7;
+ spf=none, err=SPF record not found (domain: optimcloud.com, ip: 46.23.93.22, mailfrom: yocto@optimcloud.com)
 Received: from mx02.optimcloud.com (localhost [127.0.0.1])
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTP id 9ca19389
-	for <yocto@yoctoproject.org>;
-	Tue, 8 Sep 2020 08:26:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=to
-	:from:subject:message-id:date:mime-version:content-type
-	:content-transfer-encoding; s=obsd; bh=OdJTa19JqtauYkiLQhziGM5oJ
-	CfraWlX+Rqqt8nrvkY=; b=usvEVC4Bma8/sQed11GbO7sP3R2/JXR0GDdmWbRVH
-	KGp1wsQgUGzmImG+CkNl2VSsarbxfm7XXDWz4NVYtIDczMny+763QJ7yl+Oj/l2D
-	71LMitgC+fsWeWw1AhuMWf2591danRnBRWYtdnTjVlr5bpZxvOoxkxwpWfHR62cy
-	+3vRqUukPF/1/ar9nH79h9Zcbxnfs5Fg5vx/6KIgovxATSVzXaQL45U/6SGCvhXI
-	lkiZ6cddsdKw/hSgMNPD3vu5DErSSV4/xOoOBNKR05DsfRicCDyVH1NQ0HJYicmD
-	8WNNv452OFMUKxQJLAGEhRQgmP7RD9z6QxVPZQJWiDoyg==
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=to:from
-	:subject:message-id:date:mime-version:content-type
-	:content-transfer-encoding; q=dns; s=obsd; b=eTbfKasKv1JgS5RZNdO
-	JSNEfw6pOk24C/DpLU9YSHKeZ3JJ4Un9R4oAFViRjlJbVkxwVZetyEF7LLtVEME7
-	0rNtloDImIjQ0PlizdJZokf4QrfvTYa/RdrlbxqqV8lOrT2U9WtxR5sfyasoFxI0
-	DlMIYyDVCPlf+/30o/fV3BY/vFebB9gUg/RmPB28v7NkUVqYJ2zB0RMzW7G1Npao
-	eG55naCbAK4YNW/EiicOT6kt4p7lMq0JFfmMpR2B9On2BRQB6tnscRGS1kQiGNJX
-	1aCV9NRj3CFYiA+gLXrMtBWFypXSR51dWxoIcw/sUW1TeWbdSga19dk/OwDcF15E
-	bTw==
+	by mx02.optimcloud.com (OpenSMTPD) with ESMTP id 28fe092c
+	for <yocto@lists.yoctoproject.org>;
+	Tue, 8 Sep 2020 08:28:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=
+	subject:to:references:from:message-id:date:mime-version
+	:in-reply-to:content-type; s=obsd; bh=d6BKYSILz/DycdQ/9QfBa4E3OO
+	Vih8pIpwuCOvPtK7Y=; b=nh5CZAi7r8wQfU9sJsHP2lBEOUtNOSuu98DZAbms++
+	iauo4CxLOjZeOfOJlYE/5K6Ns1+CqG/3TD4nd4ockUd/zv9ypMJ9Gh5TrG732djd
+	i5Zixof9A1YT/+ta9gkO8TeP6os27zPTXCUMzTXiQVW5tIjT04yDReZSA0QVFNh/
+	9WXbmymApnNQWagOt7dMIyWMKxLM5FtaY4qyoU3UZNo3nT6LD9LW7ieJ2L3KIkv2
+	wE/UxqmZtMkWrkp+oTSpIt0stdQDiMjvLTLNiL4VC6ZZ7zA2wybrvRv7i5su01ry
+	1Ny+eNlcuFYY/Q1L6tc0rVQ3gFMQq+2f5MksmqEfDEzg==
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=subject:to
+	:references:from:message-id:date:mime-version:in-reply-to
+	:content-type; q=dns; s=obsd; b=1BqMKzZ3Ghi6uUnpDmWs4Utfuu4FiMzb
+	QbFPyWyLJBWwiMb1fCc969xyvIBpp1zXDEMqim1Ey+tHcN9Su4df3dByNS/8YZQ/
+	qpxmhW0ZrqH2xeNlCqaWYOxvMBynBXy5rZX3ak4DkBspkpEqPs4daE+K+0XxbPkz
+	SXQyq4wNV1VumIWh+o77O0H93lBO6P7Yf2OcIskWWcWjkMkXhGaOFPBNILhvWAHN
+	iL8773wMu/u9ySXJL4o/PX12GHdi5Eethv5FMEjpMKANOWRZTRSD2fX+ktE4hPXp
+	cds6B+NejjCIzcRu6vB33TnXk0JpWgvDBfsm1glPTTmT9hT+nFuXTg==
 Received: 
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTPSA id a3065aae (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO) auth=yes user=yocto@optimcloud.com
-	for <yocto@yoctoproject.org>;
-	Tue, 8 Sep 2020 08:26:01 +0200 (CEST)
-To: Yocto <yocto@yoctoproject.org>
+	by mx02.optimcloud.com (OpenSMTPD) with ESMTPSA id 3061eefa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO) auth=yes user=yocto@optimcloud.com
+	for <yocto@lists.yoctoproject.org>;
+	Tue, 8 Sep 2020 08:28:37 +0200 (CEST)
+Subject: Re: [yocto] poky dhcpcd failed build
+To: yocto@lists.yoctoproject.org
+References: <1632BAF241A18982.9948@lists.yoctoproject.org>
 From: "Yocto" <yocto@optimcloud.com>
-Subject: poky dhcpcd failed build
-Message-ID: <3674f2d9-67c4-4a3d-c061-883668093ded@optimcloud.com>
-Date: Tue, 8 Sep 2020 13:24:46 +0700
+Message-ID: <ba50fb1b-8dca-86dd-4569-368c94257deb@optimcloud.com>
+Date: Tue, 8 Sep 2020 13:27:45 +0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <1632BAF241A18982.9948@lists.yoctoproject.org>
+Content-Type: multipart/alternative;
+ boundary="------------607575D14885E4671A696408"
 Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
 
-w
+--------------607575D14885E4671A696408
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+
+On 9/8/20 1:24 PM, Yocto wrote:
+> w
+> | collect2: error: ld returned 1 exit status
+> | make[1]: *** [Makefile:73: dhcpcd] Error 1
+> | make[1]: Leaving directory 
+> '/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src'
+> | make: *** [Makefile:24: all] Error 2
+> | WARNING: 
+> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983:190 
+> exit 1 from 'exit 1'
+> | WARNING: Backtrace (BB generated script):
+> |     #1: bbfatal_log, 
+> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983, 
+> line 190
+> |     #2: die, 
+> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983, 
+> line 165
+> |     #3: oe_runmake, 
+> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983, 
+> line 160
+> |     #4: autotools_do_compile, 
+> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983, 
+> line 155
+> |     #5: do_compile, 
+> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983, 
+> line 150
+> |     #6: main, 
+> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983, 
+> line 194
+> |
+> | Backtrace (metadata-relative locations):
+> |     #1: bbfatal_log, 
+> /var/home/dingo/overc/poky/meta/classes/logging.bbclass, line 72
+> |     #2: die, /var/home/dingo/overc/poky/meta/classes/base.bbclass, 
+> line 56
+> |     #3: oe_runmake, 
+> /var/home/dingo/overc/poky/meta/classes/base.bbclass, line 65
+> |     #4: autotools_do_compile, 
+> /var/home/dingo/overc/poky/meta/classes/autotools.bbclass, line 243
+> |     #5: do_compile, autogenerated, line 2
+> ERROR: Task 
+> (/var/home/dingo/overc/poky/meta/recipes-connectivity/dhcpcd/dhcpcd_9.1.4.bb:do_compile) 
+> failed with exit code '1'
+
+gcc/x86_64-overc-linux/10.2.0/ld: privsep-root.o: in function 
+`ps_root_dogetifaddrs':
+| /usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:374: 
+undefined reference to `ALIGN'
+| 
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: 
+/usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:375: 
+undefined reference to `ALIGN'
+| 
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: 
+/usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:376: 
+undefined reference to `ALIGN'
+| 
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: 
+/usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:378: 
+undefined reference to `ALIGN'
+| 
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: 
+/usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:380: 
+undefined reference to `ALIGN'
+| 
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: 
+privsep-root.o:/usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:382: 
+more undefined references to `ALIGN' follow
 | collect2: error: ld returned 1 exit status
-| make[1]: *** [Makefile:73: dhcpcd] Error 1
-| make[1]: Leaving directory=20
-'/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-=
-r0/dhcpcd-9.1.4/src'
-| make: *** [Makefile:24: all] Error 2
-| WARNING:=20
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983:190=20
-exit 1 from 'exit 1'
-| WARNING: Backtrace (BB generated script):
-| =C2=A0=C2=A0=C2=A0 #1: bbfatal_log,=20
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983,=20
-line 190
-| =C2=A0=C2=A0=C2=A0 #2: die,=20
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983,=20
-line 165
-| =C2=A0=C2=A0=C2=A0 #3: oe_runmake,=20
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983,=20
-line 160
-| =C2=A0=C2=A0=C2=A0 #4: autotools_do_compile,=20
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983,=20
-line 155
-| =C2=A0=C2=A0=C2=A0 #5: do_compile,=20
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983,=20
-line 150
-| =C2=A0=C2=A0=C2=A0 #6: main,=20
-/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983,=20
-line 194
-|
-| Backtrace (metadata-relative locations):
-| =C2=A0=C2=A0=C2=A0 #1: bbfatal_log,=20
-/var/home/dingo/overc/poky/meta/classes/logging.bbclass, line 72
-| =C2=A0=C2=A0=C2=A0 #2: die, /var/home/dingo/overc/poky/meta/classes/bas=
-e.bbclass, line 56
-| =C2=A0=C2=A0=C2=A0 #3: oe_runmake,=20
-/var/home/dingo/overc/poky/meta/classes/base.bbclass, line 65
-| =C2=A0=C2=A0=C2=A0 #4: autotools_do_compile,=20
-/var/home/dingo/overc/poky/meta/classes/autotools.bbclass, line 243
-| =C2=A0=C2=A0=C2=A0 #5: do_compile, autogenerated, line 2
-ERROR: Task=20
-(/var/home/dingo/overc/poky/meta/recipes-connectivity/dhcpcd/dhcpcd_9.1.4=
-.bb:do_compile)=20
-failed with exit code '1'
 
+
+>
+>
+> 
+
+--------------607575D14885E4671A696408
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 9/8/20 1:24 PM, Yocto wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:1632BAF241A18982.9948@lists.yoctoproject.org">w
+      <br>
+      | collect2: error: ld returned 1 exit status
+      <br>
+      | make[1]: *** [Makefile:73: dhcpcd] Error 1
+      <br>
+      | make[1]: Leaving directory
+'/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src'<br>
+      | make: *** [Makefile:24: all] Error 2
+      <br>
+      | WARNING:
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983:190
+      exit 1 from 'exit 1'
+      <br>
+      | WARNING: Backtrace (BB generated script):
+      <br>
+      |     #1: bbfatal_log,
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+      line 190
+      <br>
+      |     #2: die,
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+      line 165
+      <br>
+      |     #3: oe_runmake,
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+      line 160
+      <br>
+      |     #4: autotools_do_compile,
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+      line 155
+      <br>
+      |     #5: do_compile,
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+      line 150
+      <br>
+      |     #6: main,
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+      line 194
+      <br>
+      |
+      <br>
+      | Backtrace (metadata-relative locations):
+      <br>
+      |     #1: bbfatal_log,
+      /var/home/dingo/overc/poky/meta/classes/logging.bbclass, line 72
+      <br>
+      |     #2: die,
+      /var/home/dingo/overc/poky/meta/classes/base.bbclass, line 56
+      <br>
+      |     #3: oe_runmake,
+      /var/home/dingo/overc/poky/meta/classes/base.bbclass, line 65
+      <br>
+      |     #4: autotools_do_compile,
+      /var/home/dingo/overc/poky/meta/classes/autotools.bbclass, line
+      243
+      <br>
+      |     #5: do_compile, autogenerated, line 2
+      <br>
+      ERROR: Task
+(/var/home/dingo/overc/poky/meta/recipes-connectivity/dhcpcd/dhcpcd_9.1.4.bb:do_compile)
+      failed with exit code '1'
+      <br>
+    </blockquote>
+    <p>gcc/x86_64-overc-linux/10.2.0/ld: privsep-root.o: in function
+      `ps_root_dogetifaddrs':<br>
+      |
+      /usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:374:
+      undefined reference to `ALIGN'<br>
+      |
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld:
+/usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:375:
+      undefined reference to `ALIGN'<br>
+      |
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld:
+/usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:376:
+      undefined reference to `ALIGN'<br>
+      |
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld:
+/usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:378:
+      undefined reference to `ALIGN'<br>
+      |
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld:
+/usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:380:
+      undefined reference to `ALIGN'<br>
+      |
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld:
+privsep-root.o:/usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:382:
+      more undefined references to `ALIGN' follow<br>
+      | collect2: error: ld returned 1 exit status<br>
+      <br>
+    </p>
+    <p><br>
+    </p>
+    <blockquote type="cite"
+      cite="mid:1632BAF241A18982.9948@lists.yoctoproject.org">
+      <br>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------607575D14885E4671A696408--
