@@ -1,102 +1,126 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.9009.1599520447548460781
+ by mx.groups.io with SMTP id smtpd.web10.11295.1599529484346331879
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Sep 2020 16:14:07 -0700
+ Mon, 07 Sep 2020 18:44:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=LNeWh9Zc;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: robert.berger.yocto.user@gmail.com)
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 167A938C0960
-	for <yocto@yoctoproject.org>; Mon,  7 Sep 2020 16:14:06 -0700 (PDT)
-Received: by mail-wr1-f54.google.com with SMTP id z1so17205731wrt.3
-        for <yocto@yoctoproject.org>; Mon, 07 Sep 2020 16:14:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=iPXJXhjuznRxec0VUSelhrPrzDznlqtN8RmGzabwamw=;
-        b=LNeWh9ZcdKqFBLBp+HdAT3njk/FCAE1JI9dsxFqKk//3aJ6SLUgATKgTOvWRR3mZbq
-         aNaqSmfKjJNU2oCywBo1GgjTCOwLHMJC7BC6pB0HEpEj/Vxsj54Ur6N5y1K4vvsCRfl6
-         wUMAG8dmT5mI/FxYZukFCl6oiIpYH8Qa2t3Ez9cCDVD6RmKYSpb2txfx60rPdkueO057
-         wG77NxTJ6o0WLWkAAZNULwiBNVbekyBbiI2La8TooMXHjR6Ri1sFMVGNmhfWjXqzMvYA
-         EOzhQ+lSSuYtZ1rF0GTVwg2pbavuYNbZV53/pmG8yqB6xYmrjLniQO9Sosa80x9pqe9m
-         haww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=iPXJXhjuznRxec0VUSelhrPrzDznlqtN8RmGzabwamw=;
-        b=nqwyFf1fo4Ud19g62Jl60utQvCxmR/MSGt4Q6wM+L2tP9RegkdwZ36SsSfsoEN5Jdf
-         +gp40NhWhpO20+IEy6F33oboehfNWE7zNTDN1YSsfMY6YgVlWEfypTiFMC9S2gv4TuEi
-         DkC0EKYmrQ8G1Mcnh2/0bR4y5nqgZGnek7pq4fNZzK9X0m9naMilY5QxXxdLjSzYZnHn
-         ml0FGDkIIx0VdX1hLmX95Dno2T1O+hxSbG0HD00EzALikdYgn4QoZiTNMxdaRP3OKxVR
-         FqXVmdDk4OxMFmmKQzIwcgB8GA1s+CTbV+nIWVOazBPT1A7K8S837mZVQiTZmXmOxmbO
-         chow==
-X-Gm-Message-State: AOAM530s9Xx18twTklgU9NO7iWhmt955c1J3alb76AVZ+x3X7bfsZeeB
-	/uBC4BTzalkq/HmJADJx1J2jNe5TugU=
-X-Google-Smtp-Source: ABdhPJyyEd9TYy/kJ8D9iuciuPkytyMt+H++UDHG/5sFdJo5KDTFWbEFsrSu47ULxz3mibgsuT/qIQ==
-X-Received: by 2002:adf:ef45:: with SMTP id c5mr22791911wrp.37.1599520444434;
-        Mon, 07 Sep 2020 16:14:04 -0700 (PDT)
-Received: from [192.168.42.52] (ppp-2-86-237-227.home.otenet.gr. [2.86.237.227])
-        by smtp.gmail.com with ESMTPSA id o125sm30098794wma.27.2020.09.07.16.14.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Sep 2020 16:14:03 -0700 (PDT)
-Subject: Re: [yocto] Multiconfig question
-To: Eil?s N? Fhlannag?in <pidge@toganlabs.com>, Yocto <yocto@yoctoproject.org>
-References: <CANik3vHZ3K6fKpv3qdw7efugdCTywA1BxAWzPGTtpWnHCBU5rQ@mail.gmail.com>
-From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
-Message-ID: <4a2d5c03-35ff-eaf6-00a7-f701b3bef3b6@gmail.com>
-Date: Tue, 8 Sep 2020 02:14:01 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ dkim=missing; spf=softfail (domain: windriver.com, ip: 198.145.29.25, mailfrom: qi.chen@windriver.com)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 6A0AF38C0894
+	for <yocto@yoctoproject.org>; Mon,  7 Sep 2020 18:44:43 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 0881iBEH009327
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 7 Sep 2020 18:44:32 -0700
+Received: from ala-lpggp7.wrs.com (147.11.105.171) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.40) with Microsoft SMTP Server id 14.3.487.0; Mon, 7 Sep 2020
+ 18:44:07 -0700
+From: "Chen Qi" <Qi.Chen@windriver.com>
+To: <yocto@yoctoproject.org>
+Subject: [yocto][meta-selinux][PATCH] dhcp: remove bbappend file
+Date: Mon, 7 Sep 2020 18:44:07 -0700
+Message-ID: <20200908014407.9211-1-Qi.Chen@windriver.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <CANik3vHZ3K6fKpv3qdw7efugdCTywA1BxAWzPGTtpWnHCBU5rQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Issue: LINUXEXEC-9571
 
-Please see my comments in-line
+dhcp has been removed, thus removing its bbappend file.
 
-On 07/09/2020 17:53, Eil?s N? Fhlannag?in wrote:
-> Assuming this:
-> 
-> bitbake multiconfig:ConfigA:core-image-foo multiconfig:ConfigB:core-image-bar
-> 
-> Is there a way during or before the rootfs of ConfigB:core-image-bar
-> to tell what else was run during execution?
-> 
-> What I'm trying to do is set an mcdepends in ConfigB:core-image-bar to
-> magically know everything else it was built with.
+(LOCAL REV: NOT UPSTREAM) -- sent to yocto on 20200907
 
-Does core-image-foo depend on core-image-bar or the other way around?
+Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
+---
+ recipes-connectivity/dhcp/dhcp_%.bbappend   |  1 -
+ recipes-connectivity/dhcp/dhcp_selinux.inc  |  3 --
+ recipes-connectivity/dhcp/files/init-server | 52 ---------------------
+ 3 files changed, 56 deletions(-)
+ delete mode 100644 recipes-connectivity/dhcp/dhcp_%.bbappend
+ delete mode 100644 recipes-connectivity/dhcp/dhcp_selinux.inc
+ delete mode 100644 recipes-connectivity/dhcp/files/init-server
 
-I have something like that:
-
-mc:imx6q-phytec-mira-rdk-nand-resy-virt:core-image-minimal-virt-docker-ce-telegraf-prebuilt-mc
-
-which depends on
-
-mc:container-arm-v7-resy-container:app-container-image-telegraf-prebuilt-oci
-
-So the container image is being built and put into the rootfs of the 
-imx6q image. (without saying this explicitly on the command line).
-
-I use buildinfo for the container rootfs and the native rootfs so I know 
-which layers and which settings were used to build them and I can even 
-check this in runtime.
-
-> 
-> -b
-
-Regards,
-
-Robert
-
-> 
-> 
-> 
-> 
+diff --git a/recipes-connectivity/dhcp/dhcp_%.bbappend b/recipes-connecti=
+vity/dhcp/dhcp_%.bbappend
+deleted file mode 100644
+index 7719d3b..0000000
+--- a/recipes-connectivity/dhcp/dhcp_%.bbappend
++++ /dev/null
+@@ -1 +0,0 @@
+-require ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', '${BPN}_selin=
+ux.inc', '', d)}
+diff --git a/recipes-connectivity/dhcp/dhcp_selinux.inc b/recipes-connect=
+ivity/dhcp/dhcp_selinux.inc
+deleted file mode 100644
+index 08389f1..0000000
+--- a/recipes-connectivity/dhcp/dhcp_selinux.inc
++++ /dev/null
+@@ -1,3 +0,0 @@
+-inherit selinux
+-
+-FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+diff --git a/recipes-connectivity/dhcp/files/init-server b/recipes-connec=
+tivity/dhcp/files/init-server
+deleted file mode 100644
+index a0e901a..0000000
+--- a/recipes-connectivity/dhcp/files/init-server
++++ /dev/null
+@@ -1,52 +0,0 @@
+-#!/bin/sh
+-#
+-# $Id: dhcp3-server.init.d,v 1.4 2003/07/13 19:12:41 mdz Exp $
+-#
+-
+-test -f /usr/sbin/dhcpd || exit 0
+-
+-# It is not safe to start if we don't have a default configuration...
+-if [ ! -f /etc/default/dhcp-server ]; then
+-	echo "/etc/default/dhcp-server does not exist! - Aborting..."
+-	exit 0
+-fi
+-
+-# Read init script configuration (so far only interfaces the daemon
+-# should listen on.)
+-. /etc/default/dhcp-server
+-
+-# Restorecon for /var/lib/dhcp/{dhcpd.leases,dhcpd6.leases}
+-restorecon_dhcpd_leases(){
+-	test ! -x /sbin/restorecon || for x in dhcpd.leases dhcpd6.leases; do
+-		[ -f /var/lib/dhcp/$x ] && /sbin/restorecon -F /var/lib/dhcp/$x
+-	done
+-}
+-
+-case "$1" in
+-	start)
+-		echo -n "Starting DHCP server: "
+-		test -d /var/lib/dhcp/ || mkdir -p /var/lib/dhcp/
+-		test -f /var/lib/dhcp/dhcpd.leases || touch /var/lib/dhcp/dhcpd.leases=
+=09
+-		restorecon_dhcpd_leases
+-		start-stop-daemon -S -x /usr/sbin/dhcpd -- -q $INTERFACES -user dhcp -=
+group dhcp
+-		echo "."
+-		;;
+-	stop)
+-		echo -n "Stopping DHCP server: dhcpd3"
+-		start-stop-daemon -K -x /usr/sbin/dhcpd
+-		echo "."
+-		;;
+-	restart | force-reload)
+-		$0 stop
+-		sleep 2
+-		$0 start
+-		if [ "$?" !=3D "0" ]; then
+-			exit 1
+-		fi
+-		;;
+-	*)
+-		echo "Usage: /etc/init.d/dhcp-server {start|stop|restart|force-reload}=
+"
+-		exit 1=20
+-esac
+-
+-exit 0
+--=20
+2.21.0
 
