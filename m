@@ -1,153 +1,416 @@
-Received: from mail-ot1-f65.google.com (mail-ot1-f65.google.com [209.85.210.65])
- by mx.groups.io with SMTP id smtpd.web11.21645.1599576124516813169
+Received: from mx02.optimcloud.com (mx02.optimcloud.com [46.23.93.22])
+ by mx.groups.io with SMTP id smtpd.web12.22104.1599576406065385873
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Sep 2020 07:42:04 -0700
+ Tue, 08 Sep 2020 07:46:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=F1NmtMS7;
- spf=pass (domain: konsulko.com, ip: 209.85.210.65, mailfrom: paul.barker@konsulko.com)
-Received: by mail-ot1-f65.google.com with SMTP id 60so2140127otw.3
-        for <yocto@lists.yoctoproject.org>; Tue, 08 Sep 2020 07:42:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=dH6EcpxKX5YimFg4MvzHUuNds6XYcvXKPsuroZZZAZU=;
-        b=F1NmtMS75QyL7CyWfqAcuYx0ewMarfArx48RooBt3+hL115Obwe7EnIeZ1lmGE3XUz
-         boj9Xu5XA9AMU8Huz1GbxEG3yTEB36tyNLY8yIc/Mrclt+W2xhr41ToMdBtKkl0xCSai
-         19+0a2z9oUJd1Ktpabvaj6XYr+lngt4waJNNQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=dH6EcpxKX5YimFg4MvzHUuNds6XYcvXKPsuroZZZAZU=;
-        b=f1AxkFU7+ckfCW5QKYW8lnBvzXWWQx2W4ZU6PKRV/udWFWjOjnm1Fd90tHi7b1qe/Z
-         BeYcvfiYP7yQQxFcC9ZbNB5IPQ++taznq9Ffmf2WqOr6NVd9jd/3fE47ngI1/Xp1eEt/
-         40Kok629PGghH/9aKcshybDXppE2AgtFCC146WvP+U41xe81cJpcNacF3eUyZ4jbCIpZ
-         d9v2HXPlGtr2Vt3avso8Tmzp/8w8TvK7YWLT5eJCOuCiRYm/utifiButPnXGjS5I9WPj
-         NFjOtJaInO95RaiUVW4GJ9+XyHS2/2I3IGBiOsTUufkhkLB8ctj7VipKeSP8ZPynxkb0
-         6pNg==
-X-Gm-Message-State: AOAM5311SYdz7uSo0EmXG4liaVHUVtUCQEQwy3TdceeGDQWKz0ikhffG
-	VdRsolKnEY9Eg9IBjv9blpHl8zkJUkmQpNuZxjKS76ppkyk=
-X-Google-Smtp-Source: ABdhPJzRYpEsfgYD3I3I8ckU34qvNfI0dd/ZN25zpSQY+T4/Cam//WrlmPClOZ0vWcspuzSILHxWz0w1kPxdejKLXPQ=
-X-Received: by 2002:a05:6830:3097:: with SMTP id f23mr16611079ots.305.1599576123766;
- Tue, 08 Sep 2020 07:42:03 -0700 (PDT)
-MIME-Version: 1.0
-References: <3674f2d9-67c4-4a3d-c061-883668093ded@optimcloud.com>
- <CAM9ZRVsrMHicRmLPBeGefSS=WZgVEp+-joU95sZ_=WwJaf9zzg@mail.gmail.com> <d8bdfc43-e204-3eab-4582-af06b2309e2c@optimcloud.com>
-In-Reply-To: <d8bdfc43-e204-3eab-4582-af06b2309e2c@optimcloud.com>
-From: "Paul Barker" <pbarker@konsulko.com>
-Date: Tue, 8 Sep 2020 15:41:53 +0100
-Message-ID: <CAM9ZRVseC6sEWyW8uDaEO+=F+rB-cw3Dk8WeMtMn=24OprK35g@mail.gmail.com>
+ dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=GVxpzQMm;
+ spf=none, err=SPF record not found (domain: optimcloud.com, ip: 46.23.93.22, mailfrom: yocto@optimcloud.com)
+Received: from mx02.optimcloud.com (localhost [127.0.0.1])
+	by mx02.optimcloud.com (OpenSMTPD) with ESMTP id 76618d13
+	for <yocto@lists.yoctoproject.org>;
+	Tue, 8 Sep 2020 16:46:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=
+	subject:to:references:from:message-id:date:mime-version
+	:in-reply-to:content-type; s=obsd; bh=EzCk9stRk/EKl4DJSgnTinTjw1
+	FDo2HRR50i5FUwDhQ=; b=GVxpzQMmItMQYrXnq1KB3GvNH5+Y/KarUpgFSP/aFu
+	/SdWYqu0dzyNyY5V0Xh+cwR2GczeTXmw29wfpyVipl7yVtNcuHC1MFAjVmq86BAM
+	rb16Hvq4Sr6FMM7iEtFIy4NHT5UME0FxJtoaHc//mI+uhu0/OBuModraPxpCzbur
+	Cpan7riFesVFFdPZJArUs2vd0GuElo0SuswqBTh4KA+GeIuIsUaPksHBjBP5bQr6
+	46wrO1KBavsahuln8YntQmCh0v11j4VkM7ob4q/TEO53I3pU1FKAXHcGsh0oI3r+
+	K5B+b/v1ZEOE0YGlBceQHdP+nUMWPzvSpl1RID/Tr5Cw==
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=subject:to
+	:references:from:message-id:date:mime-version:in-reply-to
+	:content-type; q=dns; s=obsd; b=rjLB7Qth2j6Kytni5/W2Vz8e9/CtXSJM
+	ztXSQeeq1tVtDpJUcTc1GASbZO4qa00c7LWPTMyjSDnXB5tqwrnty1Be80QEREjM
+	9ggTtZ+rujeWQIacZXHsCtd6aXEjW0X5h+lzWTE5HSbPfL4MriePe2gCky4TMQa0
+	Yu9U0UiMB8obd7EZJPGQvbEVw8hRm9fwyXRTwXot9Nfh6eeAjFlxzuTG5JqQJNbT
+	Wxw8c1xJf3nMcVz5ZVSi5um0tXWRdao/kkf0hFboRiYjCMGeoP8qL5YnGSaDGR3F
+	1NTBJssTYlexNdz+cWzAywfm0pXsZGwjYncnWesm6M/AaSvYg97Pvw==
+Received: 
+	by mx02.optimcloud.com (OpenSMTPD) with ESMTPSA id 42c269b1 (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO) auth=yes user=yocto@optimcloud.com
+	for <yocto@lists.yoctoproject.org>;
+	Tue, 8 Sep 2020 16:46:42 +0200 (CEST)
 Subject: Re: [yocto] poky dhcpcd failed build
-To: Yocto <yocto@optimcloud.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+To: yocto@lists.yoctoproject.org
+References: <3674f2d9-67c4-4a3d-c061-883668093ded@optimcloud.com>
+ <CAM9ZRVsrMHicRmLPBeGefSS=WZgVEp+-joU95sZ_=WwJaf9zzg@mail.gmail.com>
+ <d8bdfc43-e204-3eab-4582-af06b2309e2c@optimcloud.com>
+ <CAM9ZRVseC6sEWyW8uDaEO+=F+rB-cw3Dk8WeMtMn=24OprK35g@mail.gmail.com>
+From: "Yocto" <yocto@optimcloud.com>
+Message-ID: <bc2ad109-65e6-37d6-fb32-de2d21a2bd73@optimcloud.com>
+Date: Tue, 8 Sep 2020 21:45:30 +0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
+MIME-Version: 1.0
+In-Reply-To: <CAM9ZRVseC6sEWyW8uDaEO+=F+rB-cw3Dk8WeMtMn=24OprK35g@mail.gmail.com>
+Content-Type: multipart/alternative;
+ boundary="------------CD57AC087B495DC061E9695C"
+Content-Language: en-US
 
-On Tue, 8 Sep 2020 at 15:17, Yocto <yocto@optimcloud.com> wrote:
->
->
-> On 9/8/20 7:57 PM, Paul Barker wrote:
->
-> On Tue, 8 Sep 2020 at 07:26, Yocto <yocto@optimcloud.com> wrote:
->
-> w
-> | collect2: error: ld returned 1 exit status
-> | make[1]: *** [Makefile:73: dhcpcd] Error 1
-> | make[1]: Leaving directory
-> '/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-=
-r0/dhcpcd-9.1.4/src'
-> | make: *** [Makefile:24: all] Error 2
-> | WARNING:
-> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983:190
-> exit 1 from 'exit 1'
-> | WARNING: Backtrace (BB generated script):
-> |     #1: bbfatal_log,
-> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983,
-> line 190
-> |     #2: die,
-> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983,
-> line 165
-> |     #3: oe_runmake,
-> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983,
-> line 160
-> |     #4: autotools_do_compile,
-> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983,
-> line 155
-> |     #5: do_compile,
-> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983,
-> line 150
-> |     #6: main,
-> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r=
-0/temp/run.do_compile.3649983,
-> line 194
-> |
-> | Backtrace (metadata-relative locations):
-> |     #1: bbfatal_log,
-> /var/home/dingo/overc/poky/meta/classes/logging.bbclass, line 72
-> |     #2: die, /var/home/dingo/overc/poky/meta/classes/base.bbclass, line=
- 56
-> |     #3: oe_runmake,
-> /var/home/dingo/overc/poky/meta/classes/base.bbclass, line 65
-> |     #4: autotools_do_compile,
-> /var/home/dingo/overc/poky/meta/classes/autotools.bbclass, line 243
-> |     #5: do_compile, autogenerated, line 2
-> ERROR: Task
-> (/var/home/dingo/overc/poky/meta/recipes-connectivity/dhcpcd/dhcpcd_9.1.4=
-.bb:do_compile)
-> failed with exit code '1'
->
-> Sorry to be blunt, but this email is meaningless. Please give some
-> context and use a name other than "Yocto". You're not likely to get
-> any helpful replies from an email like this.
->
-> for context, seems that the latest git commit for dhcpcd doesnt even buil=
-d.
->
-> gcc/x86_64-overc-linux/10.2.0/ld: privsep-root.o: in function `ps_root_do=
-getifaddrs':
-> | /usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:374: und=
-efined reference to `ALIGN'
-> | /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4=
--r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-o=
-verc-linux/gcc/x86_64-overc-linux/10.2.0/ld: /usr/src/debug/dhcpcd/9.1.4-r0=
-/dhcpcd-9.1.4/src/privsep-root.c:375: undefined reference to `ALIGN'
-> | /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4=
--r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-o=
-verc-linux/gcc/x86_64-overc-linux/10.2.0/ld: /usr/src/debug/dhcpcd/9.1.4-r0=
-/dhcpcd-9.1.4/src/privsep-root.c:376: undefined reference to `ALIGN'
-> | /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4=
--r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-o=
-verc-linux/gcc/x86_64-overc-linux/10.2.0/ld: /usr/src/debug/dhcpcd/9.1.4-r0=
-/dhcpcd-9.1.4/src/privsep-root.c:378: undefined reference to `ALIGN'
-> | /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4=
--r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-o=
-verc-linux/gcc/x86_64-overc-linux/10.2.0/ld: /usr/src/debug/dhcpcd/9.1.4-r0=
-/dhcpcd-9.1.4/src/privsep-root.c:380: undefined reference to `ALIGN'
-> | /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4=
--r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-o=
-verc-linux/gcc/x86_64-overc-linux/10.2.0/ld: privsep-root.o:/usr/src/debug/=
-dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:382: more undefined referen=
-ces to `ALIGN' follow
-> | collect2: error: ld returned 1 exit status
+--------------CD57AC087B495DC061E9695C
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+
+On 9/8/20 9:41 PM, Paul Barker wrote:
+> On Tue, 8 Sep 2020 at 15:17, Yocto <yocto@optimcloud.com> wrote:
+>>
+>> On 9/8/20 7:57 PM, Paul Barker wrote:
+>>
+>> On Tue, 8 Sep 2020 at 07:26, Yocto <yocto@optimcloud.com> wrote:
+>>
+>> w
+>> | collect2: error: ld returned 1 exit status
+>> | make[1]: *** [Makefile:73: dhcpcd] Error 1
+>> | make[1]: Leaving directory
+>> '/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src'
+>> | make: *** [Makefile:24: all] Error 2
+>> | WARNING:
+>> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983:190
+>> exit 1 from 'exit 1'
+>> | WARNING: Backtrace (BB generated script):
+>> |     #1: bbfatal_log,
+>> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+>> line 190
+>> |     #2: die,
+>> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+>> line 165
+>> |     #3: oe_runmake,
+>> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+>> line 160
+>> |     #4: autotools_do_compile,
+>> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+>> line 155
+>> |     #5: do_compile,
+>> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+>> line 150
+>> |     #6: main,
+>> /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+>> line 194
+>> |
+>> | Backtrace (metadata-relative locations):
+>> |     #1: bbfatal_log,
+>> /var/home/dingo/overc/poky/meta/classes/logging.bbclass, line 72
+>> |     #2: die, /var/home/dingo/overc/poky/meta/classes/base.bbclass, line 56
+>> |     #3: oe_runmake,
+>> /var/home/dingo/overc/poky/meta/classes/base.bbclass, line 65
+>> |     #4: autotools_do_compile,
+>> /var/home/dingo/overc/poky/meta/classes/autotools.bbclass, line 243
+>> |     #5: do_compile, autogenerated, line 2
+>> ERROR: Task
+>> (/var/home/dingo/overc/poky/meta/recipes-connectivity/dhcpcd/dhcpcd_9.1.4.bb:do_compile)
+>> failed with exit code '1'
+>>
+>> Sorry to be blunt, but this email is meaningless. Please give some
+>> context and use a name other than "Yocto". You're not likely to get
+>> any helpful replies from an email like this.
+>>
+>> for context, seems that the latest git commit for dhcpcd doesnt even build.
+>>
+>> gcc/x86_64-overc-linux/10.2.0/ld: privsep-root.o: in function `ps_root_dogetifaddrs':
+>> | /usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:374: undefined reference to `ALIGN'
+>> | /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: /usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:375: undefined reference to `ALIGN'
+>> | /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: /usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:376: undefined reference to `ALIGN'
+>> | /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: /usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:378: undefined reference to `ALIGN'
+>> | /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: /usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:380: undefined reference to `ALIGN'
+>> | /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: privsep-root.o:/usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:382: more undefined references to `ALIGN' follow
+>> | collect2: error: ld returned 1 exit status
+> What command did you run? What's your host distro, layers and
+> branches/version, local.conf contents, etc? You need to give enough
+> info for your issue to be understood.
+
+
+❯ bitbake cube-essential cube-dom0 cube-vrf cube-builder-initramfs 
+cube-builder cube-desktop cube-server cube-k8s-node
+WARNING: Host distribution "fedora-32" has not been validated with this 
+version of the build system; you may possibly experience unexpected 
+failures. It is recommended that you use a tested distribution.
+Loading cache: 100% 
+|##########################################################################################################################################################################################################################################################################################| 
+Time: 0:00:00
+Loaded 6981 entries from dependency cache.
+Parsing recipes: 100% 
+|########################################################################################################################################################################################################################################################################################| 
+Time: 0:00:03
+Parsing of 2845 .bb files complete (2843 cached, 2 parsed). 6983 
+targets, 211 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "1.47.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "fedora-32"
+TARGET_SYS           = "x86_64-overc-linux"
+MACHINE              = "intel-corei7-64"
+DISTRO               = "overc"
+DISTRO_VERSION       = "1.0"
+TUNE_FEATURES        = "m64 corei7"
+TARGET_FPU           = ""
+meta
+meta-poky
+meta-yocto-bsp       = "master:c25309ecde4e7ff81fb74a74fe06991dcdbbbfc8"
+meta-oe
+meta-python
+meta-networking
+meta-filesystems
+meta-multimedia
+meta-perl            = "master:b6ab91b594f10e74f86b69af956a4a3dc95570f4"
+meta-overc
+meta-cube            = "master:264d1d0949fb5e9ec8e39b1f7604086d59ec2047"
+meta-intel           = "master:58ce85f09cf28636a809891b254754c041c987b4"
+meta-virtualization  = "master:2711b81afd489d5b458617dfdfda520d8fe61f65"
+meta-cloud-services  = "master:c58fd2bea4d6ccd98d9f29bd7dcff96d7d99594d"
+meta-security        = "master:fa9f747360960f6af7454d534e45263bcc15c015"
+meta-selinux         = "master:15fed8756aa4828fa12a3d813754b4ca65a7607d"
+meta-gnome
+meta-xfce            = "master:b6ab91b594f10e74f86b69af956a4a3dc95570f4"
+meta-awnix           = "master:d9de1ff6bec994a23333fe3989329b684f22f3da"
+
+#
+# OverC updates
+#
+
+# set the machine
+MACHINE = "intel-corei7-64"
+#KMACHINE_genericx86-64 = "common-pc-64"
+KMACHINE_corei7-64-intel-common = "intel-corei7-64"
+
+
+# disto: replace the poky distro with:
+DISTRO = "overc"
+
+# IMPORTANT: remove 'image-mklibs image-prelink' from the default
+#            user classes. They break lxc-autostart.
+USER_CLASSES ?= "buildstats"
+INSANE_SKIP_zerotier = " already-stripped"
+IMAGE_FSTYPES_append = " tar.bz2"
+NOISO = "1"
+PACKAGE_CLASSES ?= "package_rpm"
+EXTRA_IMAGE_FEATURES += " package-management "
+IMAGE_INSTALL_append = " libvirt libvirt-libvirtd libvirt-virsh git htop 
+python3-pip wireguard-tools libgomp libgomp-dev libgomp-staticdev 
+glibc-gconvs glibc-utils nodejs nodejs-npm"
+ENABLE_BINARY_LOCALE_GENERATION = "1"
+CORE_IMAGE_EXTRA_INSTALL += " packagegroup-base-extended"
+PACKAGE_FEED_URIS = "http://cube-repo/repo"
+PACKAGE_FEED_BASE_PATHS = "rpm"
+PACKAGE_FEED_ARCHS = "core2_64 genericx86_64 x86 noarch"
+
+IMAGE_FSTYPES_remove = "hddimg wic wic.bmap"
+OVERC_ESSENTIAL_MODE = "read-write"
+PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
+
+
+>
+>> meaning dont use the name yocto@domain ?? it was just configured so all lists reguarding yocto went to a different email then personal... maybe it should be named something other then yocto... okay... but now unsub-resu to X lists... ughhhhhh
+>>
+> The email address is fine, just set a name other than "Yocto" in your
+> mail client. Using "Yocto" may confuse unfamiliar folks into thinking
+> you speak on behalf of the project. It also gets confusing when
+> multiple people set their name to "Yocto" when using these lists.
+>
+> Thanks,
+>
+>
+> 
+
+--------------CD57AC087B495DC061E9695C
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 9/8/20 9:41 PM, Paul Barker wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAM9ZRVseC6sEWyW8uDaEO+=F+rB-cw3Dk8WeMtMn=24OprK35g@mail.gmail.com">
+      <pre class="moz-quote-pre" wrap="">On Tue, 8 Sep 2020 at 15:17, Yocto <a class="moz-txt-link-rfc2396E" href="mailto:yocto@optimcloud.com">&lt;yocto@optimcloud.com&gt;</a> wrote:
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">
+
+On 9/8/20 7:57 PM, Paul Barker wrote:
+
+On Tue, 8 Sep 2020 at 07:26, Yocto <a class="moz-txt-link-rfc2396E" href="mailto:yocto@optimcloud.com">&lt;yocto@optimcloud.com&gt;</a> wrote:
+
+w
+| collect2: error: ld returned 1 exit status
+| make[1]: *** [Makefile:73: dhcpcd] Error 1
+| make[1]: Leaving directory
+'/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src'
+| make: *** [Makefile:24: all] Error 2
+| WARNING:
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983:190
+exit 1 from 'exit 1'
+| WARNING: Backtrace (BB generated script):
+|     #1: bbfatal_log,
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+line 190
+|     #2: die,
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+line 165
+|     #3: oe_runmake,
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+line 160
+|     #4: autotools_do_compile,
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+line 155
+|     #5: do_compile,
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+line 150
+|     #6: main,
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/temp/run.do_compile.3649983,
+line 194
+|
+| Backtrace (metadata-relative locations):
+|     #1: bbfatal_log,
+/var/home/dingo/overc/poky/meta/classes/logging.bbclass, line 72
+|     #2: die, /var/home/dingo/overc/poky/meta/classes/base.bbclass, line 56
+|     #3: oe_runmake,
+/var/home/dingo/overc/poky/meta/classes/base.bbclass, line 65
+|     #4: autotools_do_compile,
+/var/home/dingo/overc/poky/meta/classes/autotools.bbclass, line 243
+|     #5: do_compile, autogenerated, line 2
+ERROR: Task
+(/var/home/dingo/overc/poky/meta/recipes-connectivity/dhcpcd/dhcpcd_9.1.4.bb:do_compile)
+failed with exit code '1'
+
+Sorry to be blunt, but this email is meaningless. Please give some
+context and use a name other than "Yocto". You're not likely to get
+any helpful replies from an email like this.
+
+for context, seems that the latest git commit for dhcpcd doesnt even build.
+
+gcc/x86_64-overc-linux/10.2.0/ld: privsep-root.o: in function `ps_root_dogetifaddrs':
+| /usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:374: undefined reference to `ALIGN'
+| /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: /usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:375: undefined reference to `ALIGN'
+| /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: /usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:376: undefined reference to `ALIGN'
+| /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: /usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:378: undefined reference to `ALIGN'
+| /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: /usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:380: undefined reference to `ALIGN'
+| /var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/dhcpcd/9.1.4-r0/recipe-sysroot-native/usr/bin/x86_64-overc-linux/../../libexec/x86_64-overc-linux/gcc/x86_64-overc-linux/10.2.0/ld: privsep-root.o:/usr/src/debug/dhcpcd/9.1.4-r0/dhcpcd-9.1.4/src/privsep-root.c:382: more undefined references to `ALIGN' follow
+| collect2: error: ld returned 1 exit status
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
 What command did you run? What's your host distro, layers and
 branches/version, local.conf contents, etc? You need to give enough
-info for your issue to be understood.
+info for your issue to be understood.</pre>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>❯ bitbake cube-essential cube-dom0 cube-vrf
+      cube-builder-initramfs cube-builder cube-desktop cube-server
+      cube-k8s-node<br>
+      WARNING: Host distribution "fedora-32" has not been validated with
+      this version of the build system; you may possibly experience
+      unexpected failures. It is recommended that you use a tested
+      distribution.<br>
+      Loading cache: 100%
+|##########################################################################################################################################################################################################################################################################################|
+      Time: 0:00:00<br>
+      Loaded 6981 entries from dependency cache.<br>
+      Parsing recipes: 100%
+|########################################################################################################################################################################################################################################################################################|
+      Time: 0:00:03<br>
+      Parsing of 2845 .bb files complete (2843 cached, 2 parsed). 6983
+      targets, 211 skipped, 0 masked, 0 errors.<br>
+      NOTE: Resolving any missing task queue dependencies<br>
+      <br>
+      Build Configuration:<br>
+      BB_VERSION           = "1.47.0"<br>
+      BUILD_SYS            = "x86_64-linux"<br>
+      NATIVELSBSTRING      = "fedora-32"<br>
+      TARGET_SYS           = "x86_64-overc-linux"<br>
+      MACHINE              = "intel-corei7-64"<br>
+      DISTRO               = "overc"<br>
+      DISTRO_VERSION       = "1.0"<br>
+      TUNE_FEATURES        = "m64 corei7"<br>
+      TARGET_FPU           = ""<br>
+      meta                 <br>
+      meta-poky            <br>
+      meta-yocto-bsp       =
+      "master:c25309ecde4e7ff81fb74a74fe06991dcdbbbfc8"<br>
+      meta-oe              <br>
+      meta-python          <br>
+      meta-networking      <br>
+      meta-filesystems     <br>
+      meta-multimedia      <br>
+      meta-perl            =
+      "master:b6ab91b594f10e74f86b69af956a4a3dc95570f4"<br>
+      meta-overc           <br>
+      meta-cube            =
+      "master:264d1d0949fb5e9ec8e39b1f7604086d59ec2047"<br>
+      meta-intel           =
+      "master:58ce85f09cf28636a809891b254754c041c987b4"<br>
+      meta-virtualization  =
+      "master:2711b81afd489d5b458617dfdfda520d8fe61f65"<br>
+      meta-cloud-services  =
+      "master:c58fd2bea4d6ccd98d9f29bd7dcff96d7d99594d"<br>
+      meta-security        =
+      "master:fa9f747360960f6af7454d534e45263bcc15c015"<br>
+      meta-selinux         =
+      "master:15fed8756aa4828fa12a3d813754b4ca65a7607d"<br>
+      meta-gnome           <br>
+      meta-xfce            =
+      "master:b6ab91b594f10e74f86b69af956a4a3dc95570f4"<br>
+      meta-awnix           =
+      "master:d9de1ff6bec994a23333fe3989329b684f22f3da"<br>
+      <br>
+    </p>
+    <p>#<br>
+      # OverC updates<br>
+      #<br>
+      <br>
+      # set the machine<br>
+      MACHINE = "intel-corei7-64"<br>
+      #KMACHINE_genericx86-64 = "common-pc-64"<br>
+      KMACHINE_corei7-64-intel-common = "intel-corei7-64"<br>
+      <br>
+      <br>
+      # disto: replace the poky distro with:<br>
+      DISTRO = "overc"<br>
+      <br>
+      # IMPORTANT: remove 'image-mklibs image-prelink' from the default<br>
+      #            user classes. They break lxc-autostart.<br>
+      USER_CLASSES ?= "buildstats"<br>
+      INSANE_SKIP_zerotier = " already-stripped"<br>
+      IMAGE_FSTYPES_append = " tar.bz2"<br>
+      NOISO = "1"<br>
+      PACKAGE_CLASSES ?= "package_rpm"<br>
+      EXTRA_IMAGE_FEATURES += " package-management "<br>
+      IMAGE_INSTALL_append = " libvirt libvirt-libvirtd libvirt-virsh
+      git htop python3-pip wireguard-tools libgomp libgomp-dev
+      libgomp-staticdev glibc-gconvs glibc-utils nodejs nodejs-npm"<br>
+      ENABLE_BINARY_LOCALE_GENERATION = "1"<br>
+      CORE_IMAGE_EXTRA_INSTALL += " packagegroup-base-extended"<br>
+      PACKAGE_FEED_URIS = <a class="moz-txt-link-rfc2396E" href="http://cube-repo/repo">"http://cube-repo/repo"</a><br>
+      PACKAGE_FEED_BASE_PATHS = "rpm"<br>
+      PACKAGE_FEED_ARCHS = "core2_64 genericx86_64 x86 noarch"<br>
+      <br>
+      IMAGE_FSTYPES_remove = "hddimg wic wic.bmap"<br>
+      OVERC_ESSENTIAL_MODE = "read-write"<br>
+      PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"<br>
+      <br>
+    </p>
+    <p><br>
+    </p>
+    <blockquote type="cite"
+cite="mid:CAM9ZRVseC6sEWyW8uDaEO+=F+rB-cw3Dk8WeMtMn=24OprK35g@mail.gmail.com">
+      <pre class="moz-quote-pre" wrap="">
 
->
-> meaning dont use the name yocto@domain ?? it was just configured so all l=
-ists reguarding yocto went to a different email then personal... maybe it s=
-hould be named something other then yocto... okay... but now unsub-resu to =
-X lists... ughhhhhh
->
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">
+meaning dont use the name yocto@domain ?? it was just configured so all lists reguarding yocto went to a different email then personal... maybe it should be named something other then yocto... okay... but now unsub-resu to X lists... ughhhhhh
 
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
 The email address is fine, just set a name other than "Yocto" in your
 mail client. Using "Yocto" may confuse unfamiliar folks into thinking
 you speak on behalf of the project. It also gets confusing when
@@ -155,6 +418,13 @@ multiple people set their name to "Yocto" when using these lists.
 
 Thanks,
 
---=20
-Paul Barker
-Konsulko Group
+</pre>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------CD57AC087B495DC061E9695C--
