@@ -1,53 +1,50 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.6584.1599626371241139017
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+ by mx.groups.io with SMTP id smtpd.web12.6736.1599626887554408187
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Sep 2020 21:39:31 -0700
+ Tue, 08 Sep 2020 21:48:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=FACEj0gP;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: akuster808@gmail.com)
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 809F238C1241
-	for <yocto@yoctoproject.org>; Tue,  8 Sep 2020 21:39:30 -0700 (PDT)
-Received: by mail-pf1-f177.google.com with SMTP id l126so1058549pfd.5
-        for <yocto@yoctoproject.org>; Tue, 08 Sep 2020 21:39:30 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=uxXQ4+H1;
+ spf=pass (domain: gmail.com, ip: 209.85.216.54, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f54.google.com with SMTP id mm21so716145pjb.4
+        for <yocto@lists.yoctoproject.org>; Tue, 08 Sep 2020 21:48:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=to:from:subject:autocrypt:message-id:date:user-agent:mime-version
-         :content-transfer-encoding:content-language;
-        bh=0DiRblMDZxOr4A9Z741EOS5B1g3HBhrUCYYxV5rRtF4=;
-        b=FACEj0gP13YRnk2S8mAlI/1xtpXU4D7yMiC36gnm3wdVYZFSgB5Zg22l7dYlLPtTCg
-         NEonXwrGw+/RgDPm7WgdRlzNeoZpd209Dzx/oEKsSOcToO7uPseNeyhLcrUvWvzCV0er
-         WryHLoprmzZg+tLe0k2oED96ush0uq46SqLYt0VQzwssDG6gEsldQxlWQpa0pa4zqVRm
-         F+pUNW7HagdeffU0GCXlDmJJW4C5yBwP5BQRixLoBaxVoQJF1uGJrPMr2q9a0CebshP8
-         O62Z0IuirAyOE5oTDrTUUpOwTJ2D41+xAKWd4fAHZi8N5cuO37mpt78XOyzs1ZLbHBIH
-         j/Lg==
+        h=subject:references:to:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language;
+        bh=IJ6HMQkGHzvhYDDrdSK/QUN12bzsw7nfypPWT5vQ35E=;
+        b=uxXQ4+H128+E89r6we6/HJTOUv7SaafJEt7KI6boM7kLCXBBMzQD3kEeci3UlPIUxY
+         ilAvc6jrIa/OqPcDarQn2q0DzwZHH9AJ/iHeUukvgnPd4K9Vo32O/HqIV1VlVMlocG9e
+         IUs6Qn0iFk3VvfRvgR3whLj37kCqWMXSoR8WJNCCg6wUyI3hk0Ozz08VclqKAhh7K39O
+         av+Xx+a1h4Mx07CggqFHW7XRdxCpGUj/FXVCjxZRQh4DrGLOwECu4WCBlEXlhfgY6uSD
+         UoRDlV9ut2bZ0Mp5vb/7+yup6iJ7KlmEKS+Lzlb2TjqrCGwGOhtVV3z8F7PEGAqs4bB6
+         v+GQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:from:subject:autocrypt:message-id:date
-         :user-agent:mime-version:content-transfer-encoding:content-language;
-        bh=0DiRblMDZxOr4A9Z741EOS5B1g3HBhrUCYYxV5rRtF4=;
-        b=VMVYMmfkScC2q+7ZRau4hv2KjLo4TpEiVBYuLM69j63yiFNTp8D6IJMCWJSfo0GFGN
-         EskfZAX/iuoooZR2rJu5sz1iOL3+ZYDcJG6gOCEXS9UbxjcWo5qoLW0mijf3Ik2aJwFc
-         BbQ1z/KlIUKCuo3Rf4AuQ8TyP/XORtrgHaf1dcHDA+TNOmtZX1fe7r9Iz/nRYN5kmntP
-         Vk2lWw4nqPgDCROetmZTKKYFLZw2ZBRjoTOUPce6d4bpX3Wuf1WmtlNx4c36z9qUpTA0
-         lirwam1MojVXZXz4vgXV/mRWYvLJwhaWHJ0JmZSyMEVEzHC8gBq4zyVgiuPAejCvnJ1z
-         K8NQ==
-X-Gm-Message-State: AOAM530Q34kQ/1rgC24S83GOihc0nKrPH/NyqJ6F22lkrxpwq35M3cRR
-	y6OyH2R5v6/So5McWBs7fOA=
-X-Google-Smtp-Source: ABdhPJwwCllM9EzNQRdLI25HtJ06lkELpK5xT6Qk0BrKc0SCEsQ/59Dp1mBK6paF7wl7TXgm/ko76Q==
-X-Received: by 2002:a63:f606:: with SMTP id m6mr1624527pgh.193.1599626369614;
-        Tue, 08 Sep 2020 21:39:29 -0700 (PDT)
+        h=x-gm-message-state:subject:references:to:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language;
+        bh=IJ6HMQkGHzvhYDDrdSK/QUN12bzsw7nfypPWT5vQ35E=;
+        b=OplmZ7BUFzc6UVbX9JEUoTEJVeJEHUzvtDwg+pPASeP6/88fIDf+7Wc5KKJwqAlu0D
+         pCY66zUiwzsAtNc/XQ39hf5K6cMgBsf5NoyCGm1z30y7Fu4RUqyHJ19bPQgExIPTTnP2
+         f2K/0QnpkuYHLiS51FwvGwb14vZF6I0HBZ6DQQiFR0zsVjiigpYqROxAPzQJv34pzB3c
+         pCK1/bOeu7c85lOjidb5he6pzQzqoNJxywHtpdCs8LhOoXhvcnSRhWhuQs+ovpZlSSo1
+         cpoBvzXic2MeU7/XLzdkPFNoJUK4QhLP4+4XT83y5wJoL703qfdYJhJ+VVtoVq+EMpLk
+         QUyw==
+X-Gm-Message-State: AOAM530Xj2X5hLwsfnItGsqxLauPkQJeQeMNBdn2yGZrV1Kn4a5YEJ4V
+	HQ30VsTCeXv1/OUtPXSNCjB8wyM5fuI=
+X-Google-Smtp-Source: ABdhPJzFGwCQUoaX69+uY6/8Sp2H5LXV9UPZ0iEHLoUuak09jKD72MQbVPSo57AcI4sqjaMVI3p+zg==
+X-Received: by 2002:a17:90a:8d85:: with SMTP id d5mr1874454pjo.45.1599626887002;
+        Tue, 08 Sep 2020 21:48:07 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
 Received: from ?IPv6:2601:202:4180:a5c0:812e:2d2f:a669:186f? ([2601:202:4180:a5c0:812e:2d2f:a669:186f])
-        by smtp.gmail.com with ESMTPSA id z23sm957244pfg.220.2020.09.08.21.39.28
+        by smtp.gmail.com with ESMTPSA id p29sm771608pgl.34.2020.09.08.21.48.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Sep 2020 21:39:29 -0700 (PDT)
-To: "openembedded-core@openembedded.org"
- <openembedded-core@openembedded.org>,
- "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
- OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
- "bitbake-devel@lists.openembedded.org" <bitbake-devel@lists.openembedded.org>
+        Tue, 08 Sep 2020 21:48:06 -0700 (PDT)
+Subject: [yocto] Warrior and Thud stable branches
+References: <163303B5AC80ABDA.6229@lists.yoctoproject.org>
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>,
+ Patches and discussions about the oe-core layer
+ <openembedded-core@lists.openembedded.org>
 From: "akuster" <akuster808@gmail.com>
-Subject: Warrior and Thud stable branches
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
  Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
@@ -91,25 +88,68 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <da499e18-c719-1164-dc86-782da15a9c4b@gmail.com>
-Date: Tue, 8 Sep 2020 21:39:28 -0700
+X-Forwarded-Message-Id: <163303B5AC80ABDA.6229@lists.yoctoproject.org>
+Message-ID: <3fa28ecd-8696-ca8f-f47f-99696917d0a2@gmail.com>
+Date: Tue, 8 Sep 2020 21:48:05 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <163303B5AC80ABDA.6229@lists.yoctoproject.org>
+X-Groupsio-MsgNum: 50522
+Content-Type: multipart/mixed;
+ boundary="------------476902608704D7F4E8AFE132"
 Content-Language: en-US
+
+--------------476902608704D7F4E8AFE132
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+
+Sorry. still have the old email address in my contacts.
+
+re-sending.
+
+-------- Forwarded Message --------
+Subject: 	[yocto] Warrior and Thud stable branches
+Date: 	Tue, 8 Sep 2020 21:39:28 -0700
+From: 	akuster via lists.yoctoproject.org
+<akuster808=gmail.com@lists.yoctoproject.org>
+Reply-To: 	akuster808@gmail.com
+To: 	openembedded-core@openembedded.org
+<openembedded-core@openembedded.org>, yocto@yoctoproject.org
+<yocto@yoctoproject.org>, OpenEmbedded Devel List
+<openembedded-devel@lists.openembedded.org>,
+bitbake-devel@lists.openembedded.org <bitbake-devel@lists.openembedded.org>
+
+
 
 Hello,
 
 A few words regarding the older stable releases, Thud and Warrior.
 
 Thud no longer has an active Community Maintainer so this release with
-be move to the=C2=A0 EOL state.=C2=A0 Warrior did have a volunteer but no=
- activity
+be move to the  EOL state.  Warrior did have a volunteer but no activity
 to date and this branch will also move to the EOL state. This will take
 affect tomorrow (Wednesday PST).
 
 regards,
 Armin
 
+
+
+--------------476902608704D7F4E8AFE132
+Content-Type: text/plain; charset=UTF-8;
+ name="Attached Message Part"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="Attached Message Part"
+
+LT0tPS09LT0tPS09LT0tPS09LT0tPS0KTGlua3M6IFlvdSByZWNlaXZlIGFsbCBtZXNzYWdlcyBz
+ZW50IHRvIHRoaXMgZ3JvdXAuCgpWaWV3L1JlcGx5IE9ubGluZSAoIzUwNTIxKTogaHR0cHM6Ly9s
+aXN0cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vbWVzc2FnZS81MDUyMQpNdXRlIFRoaXMgVG9w
+aWM6IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9tdC83NjcyNjM4OS8zNjE2Njk4Ckdy
+b3VwIE93bmVyOiB5b2N0bytvd25lckBsaXN0cy55b2N0b3Byb2plY3Qub3JnClVuc3Vic2NyaWJl
+OiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by91bnN1YiAgW2FrdXN0ZXI4
+MDhAZ21haWwuY29tXQotPS09LT0tPS09LT0tPS09LT0tPS09LQoK
+
+--------------476902608704D7F4E8AFE132--
