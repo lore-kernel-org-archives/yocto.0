@@ -1,137 +1,261 @@
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
- by mx.groups.io with SMTP id smtpd.web12.14845.1599661719623095372
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web10.16805.1599667093502603762
  for <yocto@lists.yoctoproject.org>;
- Wed, 09 Sep 2020 07:28:39 -0700
+ Wed, 09 Sep 2020 08:58:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=iJctv1Jz;
- spf=pass (domain: gmail.com, ip: 209.85.216.44, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f44.google.com with SMTP id t7so1417669pjd.3
-        for <yocto@lists.yoctoproject.org>; Wed, 09 Sep 2020 07:28:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=PBILSNfNYAqtE2fR1fck/CSAP3j3mDz3qYxj6A3eXfw=;
-        b=iJctv1JzH7feDfsx4XPiDoO7QVLuAuXtdCUj39Y+++5nlLVUcZMstfpDEMLhw8KdLw
-         bfbeZoYyJrhypr7XvipsoE6oCdHuK3uiVQfX+SLrgSI3HMlWqOi4VtJZFZe975KTgUAj
-         wS8vRazxyvWGlNhs4Dtgp7gjiIDqNyU2Y5ZRvsv71guLAFOF7ebBNpTwXK5vCiOlR5lE
-         B8L3oO0CmV0M+3sgWAQr/1Ip5IgOJWpidq/nINWfezCAJQP2sYsrTz+1iarWvsjkqbbJ
-         +O+eXFOYvkbaaszvpZ58PYlAdvLQl3UWNFsbQGNDkrPfG6sn/qaHYbMYaV8BhTs4PfWd
-         RAvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-transfer-encoding:content-language;
-        bh=PBILSNfNYAqtE2fR1fck/CSAP3j3mDz3qYxj6A3eXfw=;
-        b=c1n2mZioJu/RBWdGQU83d//RptWcOIfULmSNV4ybPb8FEMFiy4S6/WHoA0wkDk7xBe
-         Bxv1Jeczm5Qw8pyTnDDsdHZv9doI9DtvCuK2VMgqdb8PIGcMZZ54N+P21vXpp/mfrtk5
-         WZefzQ53LE0Y/w1O6nfQb9XTP0jDtD3oHTWtIFBgugvhSj4/PQBcX9gjsIiJEH72reHO
-         BDl0szzxLb7kLHYN0kCGaCbE0eX2UsE+xr/GTpQr8lcg2Yw1bCbs4zPo4T9exVrjtEit
-         FYlkbGCtEVZOj9lCRIZCBBb4OeJXjHqNAv84dXpoyP4H5++w2n4mcGMnkx9CupMZCt7b
-         85lw==
-X-Gm-Message-State: AOAM530KOBZKkCuYAg3ZjDGluBNURa/oRnGbZ/nxAcWPT/DB0FBKO/zu
-	WO9KMNKZ/ckb1Wjb6nl86ZQ=
-X-Google-Smtp-Source: ABdhPJz10YAkNQyIdq9M7MitCpnrXwFuwJD90nMK2bKfJr0A6gsOPV2F0LF0s4q86BbI0LSE9E0q7g==
-X-Received: by 2002:a17:90a:5588:: with SMTP id c8mr1035672pji.224.1599661719123;
-        Wed, 09 Sep 2020 07:28:39 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from ?IPv6:2601:202:4180:a5c0:812e:2d2f:a669:186f? ([2601:202:4180:a5c0:812e:2d2f:a669:186f])
-        by smtp.gmail.com with ESMTPSA id y23sm2927837pfp.65.2020.09.09.07.28.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Sep 2020 07:28:38 -0700 (PDT)
-Subject: Re: [yocto] Outreachy internship project - license tracing enhancement
-To: paul.eggleton@microsoft.com,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Cc: Nicolas Dechesne <nicolas.dechesne@linaro.org>,
- "Richard Purdie (richard.purdie@linuxfoundation.org)"
- <richard.purdie@linuxfoundation.org>
-References: <KU1P153MB0101B0B12FE45FCAA37F173BFE260@KU1P153MB0101.APCP153.PROD.OUTLOOK.COM>
-From: "akuster" <akuster808@gmail.com>
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <466d0ae1-09e8-7d82-b077-50d0db3d07ec@gmail.com>
-Date: Wed, 9 Sep 2020 07:28:37 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=SKxAKGtm;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1599667093; x=1757347093;
+  h=from:to:subject:date:mime-version;
+  bh=5uc88Dnb6TK1gpfptNyIMB2iFdojl9V6uQiId9JcU5M=;
+  b=SKxAKGtmpqyAKVrHwycmUwye3gGiewXn4fqzUmjmGEpRn+C9Dyto+s54
+   CLpyDhSdi4RTh9VkrmNh/Hg0vCvftEhOjZHWjXEDnoUyTtcK2Jph2FETX
+   ifrfRqi1J2dMqR7ZTv5KPrbtqRmcG/HUr68KcfMAjmEeoLSBI2uw0wHMC
+   8=;
+IronPort-PHdr: =?us-ascii?q?9a23=3AbKTRGxw0FjLqGr3XCy+O+j09IxM/srCxBDY+r6Qd?=
+ =?us-ascii?q?0uoVKPad9pjvdHbS+e9qxAeQG9mCtbQd1red4/mocFdDyK7JiGoFfp1IWk1Nou?=
+ =?us-ascii?q?QttCtkPvS4D1bmJuXhdS0wEZcKflZk+3amLRodQ56mNBXdrXKo8DEdBAj0OxZr?=
+ =?us-ascii?q?KeTpAI7SiNm82/yv95HJbAhEmTuwbalvIBi2rQjducobjZZ/Iast1xXFpWdFdf?=
+ =?us-ascii?q?5Lzm1yP1KTmBj85sa0/JF99ilbpuws+c1dX6jkZqo0VbNXAigoPGAz/83rqALM?=
+ =?us-ascii?q?TRCT6XsGU2UZiQRHDg7Y5xznRJjxsy/6tu1g2CmGOMD9UL45VSi+46ptVRTljj?=
+ =?us-ascii?q?oMOTwk/2HNksF+jLxVrg+9pxJxwIDUYZ2aO/Vlc6zHYd8aR3BMUtpNWyBfBI63?=
+ =?us-ascii?q?cosBD/AGPeZdt4TxqVwArRy4BQm3Guzg1CRIimfr1qMnz+QuDx/G0xImH9kTrn?=
+ =?us-ascii?q?nfsdH5O6kPX+ywwqXD0DLOb+hK2Tjj9ojHbBYhreuJXbJ3d8rR0lcgGB3ejliL?=
+ =?us-ascii?q?soPqJS2a1v8NsmiA8+pvS+evi3U9pw5tpTivw94hh4/UjY0a1l7K7z92wJopJd?=
+ =?us-ascii?q?KmUk57Z8apHZ9Muy2EKoZ7XsIvTWF0tCg1yLALpYC2cDQLxZg52hPTdvOKf5aG?=
+ =?us-ascii?q?7x/9W+ucLip0inJrdr6jmhu+7VSsx+nyW8SyzV1EoC1FktzWuXAM0Rze8syHSv?=
+ =?us-ascii?q?pm8UeuwjmAyQHT6udYIU8qj6rbM4QtwqU3lpcVrE/NHTf2lV3rgKOKbEkp9Oql?=
+ =?us-ascii?q?5/75brn4ppKQLY55hwDmPqgzhsCzG+s1PwcUU2Wf4+ix17/u8EvkS7tQlPI2iL?=
+ =?us-ascii?q?PWsJXCKMQeoa62HhFa35446xa6EzemyNMYnWQbLF5deBKIkYzpO1bWLf/kF/i/?=
+ =?us-ascii?q?mEijkDJwx/3COrDsAYnBImbZnLfnZ7lx8VVTxxAtwtBE55NUEa0BL+z2Wk/qrt?=
+ =?us-ascii?q?DXEhg5Mwmsz+bmDtVyyJ8eVHqSDqOFKq/fv12F6vgxL+WSZIIZojfwJvk96/7r?=
+ =?us-ascii?q?l3A5mFsdfaez3ZsQbXC1Bu9mI1mHbnrynNgBF30Gvg85TOzsk12NTyBcZ22pUq?=
+ =?us-ascii?q?0n/D40FpmmDIfYRoCxnrOB2Ty7EodKaWBBD1CACW3oeJmcW/cQdCKSJddskzwD?=
+ =?us-ascii?q?Vbe9V48h0gqjtAv7y7p8MurU4TcUtJLk1Ndp++3Tkgky9SZzD8SfzW6CU310kn?=
+ =?us-ascii?q?kPRz8s06As6XB6nx2S1qNkhNRcFMdP/LVYVQwmMobGyO53AMy0XRjONJ/dWVGt?=
+ =?us-ascii?q?XtKOBTAqUsl30tgFf0FlAdKggxvfmS2wDOlGuaaMAcl+16XaxHX8PII18GrLyq?=
+ =?us-ascii?q?Qnx3JuAvZ0dCfu0rVj+hbeAcjMlEOCmquxXa4V0TXc73uOyHHIt0ZdBl0jGZ7Z?=
+ =?us-ascii?q?VGwSMxOF5e/y4VnPGuej?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2D9BAAm+1hf/0LhJQpfHgEBCxIMQIJyg?=
+ =?us-ascii?q?XeBNAqyAwsBAQEBAQEBAQEHARsUBAEBhl8lOBMCEAEBBgEBAQEBBgQBhkgBC4I?=
+ =?us-ascii?q?3IoNNXgGBACYBBBuDH4F+tFqBNIVThQCBOI8HPoNsB4p+IgSaAZxpBwOCZYhok?=
+ =?us-ascii?q?UEqhDCcJpJRn1cCBAIEBQIVgWuBenCDOQlHFwINjlaKK4NldDcCBgoBAQMJjTe?=
+ =?us-ascii?q?BEQEB?=
+X-IPAS-Result: =?us-ascii?q?A2D9BAAm+1hf/0LhJQpfHgEBCxIMQIJygXeBNAqyAwsBAQE?=
+ =?us-ascii?q?BAQEBAQEHARsUBAEBhl8lOBMCEAEBBgEBAQEBBgQBhkgBC4I3IoNNXgGBACYBB?=
+ =?us-ascii?q?BuDH4F+tFqBNIVThQCBOI8HPoNsB4p+IgSaAZxpBwOCZYhokUEqhDCcJpJRn1c?=
+ =?us-ascii?q?CBAIEBQIVgWuBenCDOQlHFwINjlaKK4NldDcCBgoBAQMJjTeBEQEB?=
+X-IronPort-AV: E=Sophos;i="5.76,409,1592870400"; 
+   d="scan'208,217";a="308649407"
+X-IronPort-AV: E=Sophos;i="5.76,359,1592870400"; 
+   d="scan'208,217";a="165997158"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: #sdk #yocto Appears SDK searching host for files that are only present on target side
+Thread-Topic: #sdk #yocto Appears SDK searching host for files that are only
+ present on target side
+Thread-Index: AdaGwB/KGZBqstnvRzSknWqboLZIrQ==
+Date: Wed, 9 Sep 2020 15:57:27 +0000
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.9.87]
 MIME-Version: 1.0
-In-Reply-To: <KU1P153MB0101B0B12FE45FCAA37F173BFE260@KU1P153MB0101.APCP153.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+Message-ID: <MADEUP.163328BFD191E99D.22921@lists.yoctoproject.org>
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_4312c3b3977547d3b8b1ba0f113c7410baesystemscom_"
+
+--_000_4312c3b3977547d3b8b1ba0f113c7410baesystemscom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+
+Looking to understand why the SDK is searching the host/native (x86_64-poky=
+sdk-linux) side when it should be looking at the target side (corei7-64-pok=
+y-linux) ...
+
+All the "crt" files are present under the target side.
+
+Can someone explain what might be miss-configured ?, or better, point me to=
+ a possible patch ?
+
+I have seen some talk on-line about similar issues, but no clear indication=
+ what the issue was, or how it was resolved...
+
+I am running Yocto clang 6.0.1, cmake 3.8.2, under "rocko", my SDK is a sta=
+ndard SDK, not extensible.
+
+11:31 smonsees@yix490016 ~/yocto/test/beignet-Release_v1.2/mybuild>make
+Scanning dependencies of target gbeinterp
+[  0%] Building CXX object backend/src/CMakeFiles/gbeinterp.dir/gbe_bin_int=
+erpreter.cpp.o
+[  0%] Linking CXX shared library libgbeinterp.so
+/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/lib=
+exec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find crt=
+i.o: No such file or directory
+/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/lib=
+exec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find crt=
+beginS.o: No such file or directory
+/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/lib=
+exec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find -ls=
+tdc++
+/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/lib=
+exec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find -lm
+/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/lib=
+exec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find -lg=
+cc_s
+/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/lib=
+exec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find -lc
+/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/lib=
+exec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find -lg=
+cc_s
+/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/lib=
+exec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find crt=
+endS.o: No such file or directory
+/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/lib=
+exec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find crt=
+n.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make[2]: *** [backend/src/libgbeinterp.so] Error 1
+make[1]: *** [backend/src/CMakeFiles/gbeinterp.dir/all] Error 2
+make: *** [all] Error 2
+11:31 smonsees@yix490016 ~/yocto/test/beignet-Release_v1.2/mybuild>
+
+Thanks,
+Steve
 
 
 
-On 9/9/20 3:51 AM, Paul Eggleton via lists.yoctoproject.org wrote:
-> Hi folks
+--_000_4312c3b3977547d3b8b1ba0f113c7410baesystemscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> I'd like to propose we put forward the following project proposal for an Outreachy internship (https://www.outreachy.org/communities/cfp/). I'm prepared to be the mentor for the project and Microsoft will provide funding. (Note that we haven't got our community re-registered with Outreachy or set this up as an intern project proposal yet - deadline for YP community registration is September 17th and for project submissions is September 24th). Here's the brief:
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Looking to understand why the SDK is searching the h=
+ost/native (x86_64-pokysdk-linux) side when it should be looking at the tar=
+get side (corei7-64-poky-linux) &#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">All the &#8220;crt&#8221; files are present under th=
+e target side. <o:p>
+</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can someone explain what might be miss-configured ?,=
+ or better, point me to a possible patch ?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have seen some talk on-line about similar issues, =
+but no clear indication what the issue was, or how it was resolved&#8230;<o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am running Yocto clang 6.0.1, cmake 3.8.2, under &=
+#8220;rocko&#8221;, my SDK is a standard SDK, not extensible.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">11:31 smonsees@yix490016 ~/yocto/test/beignet-Releas=
+e_v1.2/mybuild&gt;make<o:p></o:p></p>
+<p class=3D"MsoNormal">Scanning dependencies of target gbeinterp<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">[&nbsp; 0%] Building CXX object backend/src/CMakeFil=
+es/gbeinterp.dir/gbe_bin_interpreter.cpp.o<o:p></o:p></p>
+<p class=3D"MsoNormal">[&nbsp; 0%] Linking CXX shared library libgbeinterp.=
+so<o:p></o:p></p>
+<p class=3D"MsoNormal">/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_6=
+4-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/r=
+eal-ld: cannot find crti.o: No such file or directory<o:p></o:p></p>
+<p class=3D"MsoNormal">/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_6=
+4-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/r=
+eal-ld: cannot find crtbeginS.o: No such file or directory<o:p></o:p></p>
+<p class=3D"MsoNormal">/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_6=
+4-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/r=
+eal-ld: cannot find -lstdc&#43;&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_6=
+4-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/r=
+eal-ld: cannot find -lm<o:p></o:p></p>
+<p class=3D"MsoNormal">/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_6=
+4-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/r=
+eal-ld: cannot find -lgcc_s<o:p></o:p></p>
+<p class=3D"MsoNormal">/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_6=
+4-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/r=
+eal-ld: cannot find -lc<o:p></o:p></p>
+<p class=3D"MsoNormal">/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_6=
+4-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/r=
+eal-ld: cannot find -lgcc_s<o:p></o:p></p>
+<p class=3D"MsoNormal">/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_6=
+4-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/r=
+eal-ld: cannot find crtendS.o: No such file or directory<o:p></o:p></p>
+<p class=3D"MsoNormal">/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_6=
+4-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/r=
+eal-ld: cannot find crtn.o: No such file or directory<o:p></o:p></p>
+<p class=3D"MsoNormal">collect2: error: ld returned 1 exit status<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">make[2]: *** [backend/src/libgbeinterp.so] Error 1<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">make[1]: *** [backend/src/CMakeFiles/gbeinterp.dir/a=
+ll] Error 2<o:p></o:p></p>
+<p class=3D"MsoNormal">make: *** [all] Error 2<o:p></o:p></p>
+<p class=3D"MsoNormal">11:31 smonsees@yix490016 ~/yocto/test/beignet-Releas=
+e_v1.2/mybuild&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Steve<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-This sounds great.
-
-Are you looking for YP to take action on  registration or are you
-handling this?
-
--armin
->
-> -------------
-> Yocto Project License tracing enhancement
->  
-> The Yocto Project build system is typically used to build customised Linux images from source for embedded applications. Along with the image, a manifest of packages and their corresponding licenses is prepared, however the accuracy of the license information is dependent on the accuracy of the metadata we have for each package (i.e. what is in the recipe file). As part of the build, we have an internal mapping from output files to source files which is currently used to prepare source packages to aid in debugging, however with the presence of SPDX headers in source files it could also be used to allow tracing the license of sources used in building a package/image to help improve our metadata and future license manifests. A proof-of concept implementation of this has been put together [1] - during this internship a successful intern will:
-> 1) take the proof-of-concept implementation and get it to a state where it can be merged into the poky repository
-> 2) use the functionality to examine the accuracy of our license tagging (LICENSE fields in recipes); look for errors / noise in the comparison, and produce a simple report with the results
-> 3) run a check over sources in a world build looking for percentage coverage of SPDX headers, and run it for several past releases to see the change over time
->  
-> Bonus: assess the current state of meta-spdx-scanner; investigate what it would take to produce SPDX documents from build output (would likely require integration with Fossology).
->
-> [1] http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=rpurdie/license-experiments-osls
-> -------------
->
-> I'm making the assumption that we're OK with merging the PoC functionality in rather than just keeping it separate and using it for analysis - let me know if otherwise. What I'd really like to know is do people think that this is sufficient for a 3-month internship, assuming that the intern has limited to moderate familiarity with our codebase? Do we need to flesh it out further? Any modifications that you'd suggest to the work?
->
-> Thanks
-> Paul
->
-> 
-
+--_000_4312c3b3977547d3b8b1ba0f113c7410baesystemscom_--
