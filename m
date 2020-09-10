@@ -1,79 +1,77 @@
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
- by mx.groups.io with SMTP id smtpd.web12.20499.1599740764031871176
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+ by mx.groups.io with SMTP id smtpd.web11.20812.1599740764775041208
  for <yocto@lists.yoctoproject.org>;
- Thu, 10 Sep 2020 05:26:04 -0700
+ Thu, 10 Sep 2020 05:26:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=ZDS9yZB/;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.52, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f52.google.com with SMTP id j2so6485418wrx.7
-        for <yocto@lists.yoctoproject.org>; Thu, 10 Sep 2020 05:26:03 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=S7YxW2dK;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.48, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f48.google.com with SMTP id o5so6434948wrn.13
+        for <yocto@lists.yoctoproject.org>; Thu, 10 Sep 2020 05:26:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=lspzHZltQnY7AxwQAtRtWBKuKnTlQcoKt0tA8Rxz72A=;
-        b=ZDS9yZB/dKDucwCa1uWlh7Pdgi3LOEMV5A8UN/8FhIeSaE9SSFE9o0Qgyp/gP2NKmi
-         nhPUmOPJ/Eb+AcbB42EqOhcfCTTf3t+g4+U86yiVUe8lqx7IYAQiRXnwuytxnvYG8aea
-         H2XbKI3yfabGtZGZBQyCRDzK1g4erJbAUP1Os=
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=1Fk9K60Z+xZywbCquexP0fdmliNvHGJ4Iii5IJn/DDU=;
+        b=S7YxW2dKpiq7BARzijdjjUe+5za2w5opCCHPAwD8cAQhYLP8X5p0QKDLg42N6ZduDk
+         tQcUi6bpM7MUmL5km/Z26InWkVqHnQEpOobV2wLBBvO7ffY4j0g97fW2p5Ij96euzyZP
+         Rg2T7zGerUJuGLLHCTujk4OElDXskeCPJIHaA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=lspzHZltQnY7AxwQAtRtWBKuKnTlQcoKt0tA8Rxz72A=;
-        b=oERqFsNN540aUZytij4nkbiXSTTsGI3KBxPJ8a7M/YcU06ILAHuh0FA7IL4I/sTmOK
-         cjegfZtHOgjZUEilzBbnEjJ+JIz0F4URAjP3Q3Tk+e9bTsP15m1maFdO4c+d6Z4ADOTe
-         UA0FKDPBc3i015/iYgde0mtZ+CA6DzOkrh9pLF5eqHL5xNt6Cw2irBL7CiHN4/oCqJ5i
-         fWKq6T1wEFZBjyAcUPLllIf2nr+fxLmUvYjPvvobiPZMixl2x+O/d6FyS5+AMnXtxYHv
-         enj5SJzBhIps8x00yBjaFCGHYPr9NhSzIhbL9JOufS+BHBAHhK21KmYXzRgS5Q4B7E9S
-         ErdA==
-X-Gm-Message-State: AOAM533mHyV+BsspHj7lXglvmuwHJw8oo2pIQz3P/66WLNCiWxxlp0NO
-	WIyRo580kop+x27qo2SKQjlLXK8WsRbtHg==
-X-Google-Smtp-Source: ABdhPJy/IqiKw0W/U5buGxzhVprnR7h2hz5mYTnPJzI9RisZ2m+rsF9tGk95fhsuCwioNuGGu1Owcw==
-X-Received: by 2002:a5d:66c1:: with SMTP id k1mr8922776wrw.34.1599740762337;
-        Thu, 10 Sep 2020 05:26:02 -0700 (PDT)
+        bh=1Fk9K60Z+xZywbCquexP0fdmliNvHGJ4Iii5IJn/DDU=;
+        b=T9TJK9KmUTcZAM+VNKiCJK0riX12aj3EwgsrUSFF81TvwAmuB1d1Z1mDjHYsDMC6gs
+         Fm+Yhxu5//W2DXtZKZ3Nuo4PL00k4XTv7Ozbf85qZB3oTrhYEJpWqWTYWSf8rL0PCw4w
+         1dbKWk3JOKjhXqTUJkAGq27PHIxLL3NQBqu9VZnThnZdOYiX73Yhq/E7B9O2AaT+vFVB
+         PN4UTuivTKJhRtQEWZZostQ4RkX8njvYecQLji7YyiNKBnVhoNQYVxNYwH6cqYho3G/J
+         0sL8hq2kDT9reRMMZDNdE3g6I4F/l+oI/4AtL+f2jJLfiV0YPt/fyFQJl1N16p0pxAQo
+         KQDQ==
+X-Gm-Message-State: AOAM532eoKx8wdK45a/1PwIvmFDHOUTqylDoD210FP1zXPm9GnR8Cz7H
+	prfH6rUDFQuJRm6Ot8Byz/SKqloVR5WJ4Q==
+X-Google-Smtp-Source: ABdhPJwjXwtqa8E+1PrDCbZGs68OFKeWVgV2yusVzlJJ5HyqOE7M2MJJMg/DZoXyWggyfiio+utLAA==
+X-Received: by 2002:a5d:40cd:: with SMTP id b13mr8706882wrq.297.1599740763049;
+        Thu, 10 Sep 2020 05:26:03 -0700 (PDT)
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from hex.int.rpsys.net (2.f.a.6.5.4.b.4.5.7.2.f.a.5.0.6.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:605a:f275:4b45:6af2])
-        by smtp.gmail.com with ESMTPSA id x2sm7963465wrl.13.2020.09.10.05.26.01
+        by smtp.gmail.com with ESMTPSA id x2sm7963465wrl.13.2020.09.10.05.26.02
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 05:26:01 -0700 (PDT)
+        Thu, 10 Sep 2020 05:26:02 -0700 (PDT)
 From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Cc: Thomas Goodwin <btgoodwin@geontech.com>
-Subject: [PATCH][autobuilder-helper][warrior 10/41] shared-repo-unpack: suppressing exception, returning exit code
-Date: Thu, 10 Sep 2020 13:25:22 +0100
-Message-Id: <20200910122553.2040430-10-richard.purdie@linuxfoundation.org>
+Subject: [PATCH][autobuilder-helper][warrior 11/41] run-config: Preface log output with auto.conf settings to aid debugging
+Date: Thu, 10 Sep 2020 13:25:23 +0100
+Message-Id: <20200910122553.2040430-11-richard.purdie@linuxfoundation.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200910122553.2040430-1-richard.purdie@linuxfoundation.org>
 References: <20200910122553.2040430-1-richard.purdie@linuxfoundation.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Thomas Goodwin <btgoodwin@geontech.com>
-
-The preceeding errors that would be shown should be enough to
-identify the problem since it would have been a problem
-running bitbake-layers add-layer, indicating a misconfiguration
-of config.json.
-
-Signed-off-by: Thomas Goodwin <btgoodwin@geontech.com>
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 ---
- scripts/shared-repo-unpack | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ scripts/run-config | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/scripts/shared-repo-unpack b/scripts/shared-repo-unpack
-index 92f0ccf..4a2b1c9 100755
---- a/scripts/shared-repo-unpack
-+++ b/scripts/shared-repo-unpack
-@@ -61,4 +61,7 @@ for repo in sorted(repos.keys()):
-         if args.publish_dir:
-             utils.publishrepo(targetsubdir, repo, args.publish_dir)
+diff --git a/scripts/run-config b/scripts/run-config
+index 0097f97..b7540a5 100755
+--- a/scripts/run-config
++++ b/scripts/run-config
+@@ -121,6 +121,14 @@ def bitbakecmd(builddir, cmd, report, stepnum, logsuffix, oeenv=True):
+     print("Running '%s' with output to %s" % (cmd, log))
+     flush()
  
--subprocess.check_call([scriptsdir + "/layer-config", args.abworkdir, args.target])
-+try:
-+    subprocess.check_call([scriptsdir + "/layer-config", args.abworkdir, args.target])
-+except subprocess.CalledProcessError as e:
-+    sys.exit(e.returncode)
++    autoconf = builddir + "/conf/auto.conf"
++    if os.path.exists(autoconf):
++        with open(autoconf, "r") as inf, open(log, "a") as outf:
++            outf.write("auto.conf settings:\n")
++            for line in inf.readlines():
++                outf.write(line)
++            outf.write("\n")
++
+     with subprocess.Popen(cmd, shell=True, cwd=builddir + "/..", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=1) as p, open(log, 'ab') as f:
+         for line in p.stdout:
+             if not args.quietlogging:
 -- 
 2.25.1
 
