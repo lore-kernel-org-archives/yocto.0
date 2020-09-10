@@ -1,261 +1,221 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.25560.1599753953721754747
+Received: from EUR03-AM5-obe.outbound.protection.outlook.com (EUR03-AM5-obe.outbound.protection.outlook.com [40.107.3.81])
+ by mx.groups.io with SMTP id smtpd.web10.25949.1599754706796683840
  for <yocto@lists.yoctoproject.org>;
- Thu, 10 Sep 2020 09:05:53 -0700
+ Thu, 10 Sep 2020 09:18:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=nCk6lwDu;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: rehsack@gmail.com)
-Received: from mail-ej1-f66.google.com (mail-ej1-f66.google.com [209.85.218.66])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id D06D738C11E0
-	for <yocto@yoctoproject.org>; Thu, 10 Sep 2020 09:05:52 -0700 (PDT)
-Received: by mail-ej1-f66.google.com with SMTP id i22so9516783eja.5
-        for <yocto@yoctoproject.org>; Thu, 10 Sep 2020 09:05:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id;
-        bh=YrPBWxy+ZJY7vhM5dwBxvuFnPQcbcSTYJcZtzopP0cg=;
-        b=nCk6lwDup3HbjPYjK6Ssbng+1CxaFyBIx7Bxn0vGGlaJR05luZGsCxuCnvFs3c+pu9
-         eVl0I2lIbeFLX7oMp+j6Fko0dwns/qxbOykwPstHgypnnL7AQm/5oJNqVQO9ldOrdMUB
-         pTCr1kr75S6SIJmMJUErJI0txtQ0s/MaVm73K/yYDNcTAblE9nX+IEK+CnJ0c+lZY6RT
-         NO1CSylwVxPCSvz3uZSn6P+ldaFyH1t5MCeOwUhGB+COrSVgn8UBf8ulh/rXy+D4/CLW
-         JvfyEISZsqUY25nQSXH7NlDDEIfeoZAOV09l2+y9XqotIJSoehbAn92RNIKtQBslGNOA
-         QArA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
-        bh=YrPBWxy+ZJY7vhM5dwBxvuFnPQcbcSTYJcZtzopP0cg=;
-        b=syKLI76TeseoKGBgGEktBo0dmbHueHOIrN3pbYA52YvYBOILifEw4yCszGI4XFrhJt
-         go28nFmvfVgVpENEozCWH+MnFtNCJ7QSGvvpQmviE+Nhz3rG2YlUeI+p6B4e9Q/T78Zh
-         M9hIYw0NlK8NzT3gCistQ6eCqHX15BDZ97sL5eJUujuvdSpWGAWUMpNEesU/wsfGB0Qe
-         BlcnLuAbnzTJ2yjhkUjjKdqlx2TXVn6EoOcHmh7Yb5eklmAGEKvh8D3FeChpgcFCmVn6
-         NeMaE4lHnxzfpaj1aSuhQK8IlVKsIqChXKajvrp6TnsB+huaXgsOUqLNwq0YykNMkKEp
-         L58Q==
-X-Gm-Message-State: AOAM530JrlUbd51E4j6/OnGZvi6V+8Y5tbcy7AZyICWSWOWDMeuhbHa5
-	jKyukkTQibDMZsktkz0cojAOaj7DYWM=
-X-Google-Smtp-Source: ABdhPJz+SwsnHsV/lnjRrB9Cvdu/0u2TBdvRpEEiThByp+13IYrW5mICUAxKmlIOw/gzgdeL+OuusQ==
-X-Received: by 2002:a17:906:5488:: with SMTP id r8mr9355998ejo.483.1599753950908;
-        Thu, 10 Sep 2020 09:05:50 -0700 (PDT)
-Received: from beaker.muppets.liwing.de (p5b25b0d4.dip0.t-ipconnect.de. [91.37.176.212])
-        by smtp.gmail.com with ESMTPSA id ce14sm8018211edb.25.2020.09.10.09.05.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 09:05:50 -0700 (PDT)
-Sender: Jens Rehsack <rehsack@gmail.com>
-From: "Jens Rehsack" <rehsack@gmail.com>
-To: yocto@yoctoproject.org
-Cc: Jens Rehsack <sno@netbsd.org>
-Subject: [meta-security][PATCH] ibmswtpm2: update to 1637
-Date: Thu, 10 Sep 2020 18:05:32 +0200
-Message-Id: <20200910160532.28776-1-sno@netbsd.org>
-X-Mailer: git-send-email 2.17.1
+ dkim=fail reason="body hash did not verify" header.i=@vaisala.com header.s=selector2 header.b=n9tAu8OS;
+ spf=pass (domain: vaisala.com, ip: 40.107.3.81, mailfrom: niko.mauno@vaisala.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NL3DpzSfHa+elBuRPN4RdEF1iWUzDxziv0ufkQmNE1eW4khgfCfXmwJo72FaNjoqNBscC7Vh0SfsDYbfJutTP/OCB1cgqefTQIhkmKjEzbU18/b7Ph2SnnmXgLISHWfO55Lt4sDS03DOYRS+rTAYrM/Kn3dTQV5lIpSoZ8hUx8IapSxYnd5EDjH2BgquZyiIItSoPJftpX+JYHDxGiIwMSAgPfJk2wBgCmbmGSo8mOlt94JFBERHn2aawkgXEWAL26avSeThlKKjkh4DkY00+abAIVZy2fWg3HzzT0NXXYljHFOrozr6RdL1alZtw5JcgMFWS0A3AC5kG6W9hLSlFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=axXG9Au4lsRzp954afC/kUraJYcHTCcPib6x8FVZtRg=;
+ b=B0qyoFdKIuFmq1J8ODVuTbz5/jcKEhl++TY0+qZDGJINFureCh/es1ud8QTmTBe7x0DoF/saYScullM68IxaCagdwBl6joP+6YObneHHJvi70R2lwxhx245oWPh/rdtCSSc9TP5wP2vQez2oaFddUMi8pEI9UG0YChgHqihcVnPHC5S7RDxCOdGYHLXopQKlrHWPvqIMFLQBZ1njbJ/4fnt3sH74+uGdBb7GVu+v6w/yhBTlXdRXu+xWb0QdZX152LQL7C0uNVrq7kzmAcINCqvJBidf5wN/E5YyLMW9Xe5TRZi1V5olPWkTu3p/gwd8zUi2earIIDgyVYn2eAmXBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vaisala.com; dmarc=pass action=none header.from=vaisala.com;
+ dkim=pass header.d=vaisala.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vaisala.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=axXG9Au4lsRzp954afC/kUraJYcHTCcPib6x8FVZtRg=;
+ b=n9tAu8OSIw/ObcFVQ8WwIM2FqGlXNU89wWdNZUnzcqFagwnKQAzPjAN6vL9D0Ea1C6ULt/eHpgt59DbOFoYRljLwYMR2yyQSSlfA3QFt3XokiETAz2FN++fyvDlMp94EccVoPOVzfy9iN7vdoSdUhRTCx3AK3llR+VygPL8kthA=
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=vaisala.com;
+Received: from AM6PR06MB6198.eurprd06.prod.outlook.com (2603:10a6:20b:ff::26)
+ by AM6PR06MB5925.eurprd06.prod.outlook.com (2603:10a6:20b:2a::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Thu, 10 Sep
+ 2020 16:18:24 +0000
+Received: from AM6PR06MB6198.eurprd06.prod.outlook.com
+ ([fe80::a4e9:19eb:3dfb:f286]) by AM6PR06MB6198.eurprd06.prod.outlook.com
+ ([fe80::a4e9:19eb:3dfb:f286%6]) with mapi id 15.20.3370.016; Thu, 10 Sep 2020
+ 16:18:24 +0000
+From: "niko.mauno@vaisala.com" <niko.mauno@vaisala.com>
+To: yocto@lists.yoctoproject.org
+CC: akuster808@gmail.com,
+	brgl@bgdev.pl,
+	Niko Mauno <niko.mauno@vaisala.com>
+Subject: [meta-security][PATCH v2 00/12] dm-verity overhaul
+Date: Thu, 10 Sep 2020 16:17:47 +0000
+Message-ID: <20200910161759.87958-1-niko.mauno@vaisala.com>
+X-Mailer: git-send-email 2.20.1
+X-ClientProxiedBy: HE1PR0402CA0005.eurprd04.prod.outlook.com
+ (2603:10a6:3:d0::15) To AM6PR06MB6198.eurprd06.prod.outlook.com
+ (2603:10a6:20b:ff::26)
+Return-Path: niko.mauno@vaisala.com
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from hel-eptripper.corp.vaisala.com (193.143.230.131) by HE1PR0402CA0005.eurprd04.prod.outlook.com (2603:10a6:3:d0::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16 via Frontend Transport; Thu, 10 Sep 2020 16:18:23 +0000
+X-Mailer: git-send-email 2.20.1
+X-Originating-IP: [193.143.230.131]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: bd844e2e-e79a-4f16-c8bc-08d855a5246a
+X-MS-TrafficTypeDiagnostic: AM6PR06MB5925:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: 
+	<AM6PR06MB59252A5E98AF4B9F7F65F4B581270@AM6PR06MB5925.eurprd06.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	hKz0sXUOZ1jV1vnys6m+1STXiA4pqc+bZF89eVLygyOyBWbJzWgazljHkE+Ap95cs4QqVtr01sk5/0Q2z+gRqVwz8yL9XqcM7yHfuNrl2h6gtoRTQ3Xf+eaHUqA0pM7UhEglyKd27cZv/BxcbiOhOoJOf7Wrz7HrZDopaCjIatc1zZ5s96QnlW3lUQhcF6lsFrFJKia5v0DsQKyay15xss59lsFDHqHpUj4sB7+ozzGGDPXVrRW0Ffa/6T7SEQtuhKXfB6qGdvFfznhs6Tk7H6gXx85wDh1d9OpaS80BHkQYdAaRVzjqAvjdujOaFIc22PHqAq5l0CHcwVzxgHqeeOHztI0/anYVtYsffFewULdzB+qF92169irXb3GzSMP8KvL84vXzNcVVBOJyGpHAIA==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR06MB6198.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(39850400004)(376002)(136003)(366004)(478600001)(15650500001)(107886003)(316002)(86362001)(8676002)(6486002)(966005)(956004)(1076003)(5660300002)(2616005)(26005)(16526019)(186003)(8936002)(6666004)(36756003)(44832011)(66946007)(66556008)(66476007)(2906002)(52116002)(7696005)(6916009)(4326008)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	FYhtO2kfugqdD3gJ+soGLrVkWFkQ3Rt1YrfKdcwuk6UObc53u5lrogGWksOTFNGaM1kSMToTkGDGhhCO1VKFqRG2kWAYBSUiJ1H8UJ/caBpPqcYW3GnJlx5V87j+QWEOSr/dyoo9mTo0TXPpQriPJTuWC3Av/2nsogbPwcfNe198Ug1f+tszqAUOzVpBU7tulundUSQg/n0amT6vBI0jxzlZhBGhla8SPzY1pno0tFBpwgQYhA3cEl1E21oGJ2nVFRg95a1xU/AfLqGVnDY/VBitQt1WzgtE87fgfEoOsfLr3KgXgTrf/4d9NV6rdIMNT3ov/4FSdzEORmcknZu1dzZwoP2RTjDoVIoKND+HH/wGiNv/2qnktozm4yrBlfKrEiNz3Ox7Xhg1Mt3hUlsTugM31lgbDvxKidnnkfT54dtdCg8MW3hevy6o3KHP5s/CDJ8Pn2QbOsUD4VOcwJa4vmcU8LOSN3X97OZKRIygxR2hHcG/ML5g7mO5FmHI4oOtlceHf5SLA5KPhsv1J3jtpovnw2leyzpVDkE23V6/VF1D2TIRGdTdoPxBEM6Wewkfwg892V1GO1tzmatr4aTjm7n4Ohwr8f+peYnte1gdoEPYhPUQWty+morXnyG3sfXKEwvlXfq4hrocmYNPigu7Vg==
+X-OriginatorOrg: vaisala.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd844e2e-e79a-4f16-c8bc-08d855a5246a
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR06MB6198.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 16:18:24.3606
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 6d7393e0-41f5-4c2e-9b12-4c2be5da5c57
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XUUq3QHy+n6Yb11KMyvIyHHQKqebQk5bLjuMqi5eUR+tvlaCv7OhmbFELPR1WEutngpyBrKCIcR03Nu0gsu3lQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR06MB5925
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-Update ibmswtpm2 from 1628 to 1637. Build 1637 Includes:
-* Increase NV memory size to match PC Client RSA 3072 requirements
-* Add and fix ACT support
-* Update Visual Studio files to 2019.
+This set of patches addresses some small issues in dm-verity rootfs
+facility, which were observed while making use of dm-verity-img.bbclass
+to generate dm-verity rootfs images for real arm-based hardware. For
+purposes of establishing this changeset, the default 'qemux86-64'
+machine was used as a reference.
 
-Signed-off-by: Jens Rehsack <sno@netbsd.org>
----
- .../ibmswtpm2/files/fix-wrong-cast.patch      | 27 ++++++++++
- .../ibmswtpm2/files/remove_optimization.patch | 26 ----------
- .../ibmswtpm2/files/tune-makefile.patch       | 50 +++++++++++++++++++
- .../recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb  | 26 ----------
- .../recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb  | 30 +++++++++++
- 5 files changed, 107 insertions(+), 52 deletions(-)
- create mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/files/fix-wrong-cast.patch
- delete mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch
- create mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/files/tune-makefile.patch
- delete mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb
- create mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb
+During testing/development the following additional settings were
+defined in local.conf:
 
-diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/files/fix-wrong-cast.patch b/meta-tpm/recipes-tpm2/ibmswtpm2/files/fix-wrong-cast.patch
-new file mode 100644
-index 0000000..9f10fbe
---- /dev/null
-+++ b/meta-tpm/recipes-tpm2/ibmswtpm2/files/fix-wrong-cast.patch
-@@ -0,0 +1,27 @@
-+Fix strict aliasing issue of gcc10
-+
-+fixes:
-+
-+TpmFail.c: In function 'TpmLogFailure':
-+TpmFail.c:217:23: error: dereferencing type-punned pointer will break strict-aliasing rules [-Werror=strict-aliasing]
-+  217 |     s_failFunction = *(UINT32 *)&function; /* kgold */
-+      |                       ^~~~~~~~~~~~~~~~~~~
-+cc1: all warnings being treated as errors
-+
-+Upstream-Status: OE specific
-+
-+Signed-off-by: Jens Rehsack <sno@NetBSD.org>
-+
-+Index: src/TpmFail.c
-+===================================================================
-+--- src.orig/TpmFail.c	2020-09-10 15:43:57.085063875 +0200
-++++ src/TpmFail.c	2020-09-10 15:48:35.563302634 +0200
-+@@ -214,7 +214,7 @@
-+     // On a 64-bit machine, this may truncate the address of the string
-+     // of the function name where the error occurred.
-+ #if FAIL_TRACE
-+-    s_failFunction = *(UINT32 *)&function;	/* kgold */
-++    memcpy(&s_failFunction, function, sizeof(uint32_t));	/* kgold */
-+     s_failLine = line;
-+ #else
-+     s_failFunction = 0;
-diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch b/meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch
-deleted file mode 100644
-index 2919e2e..0000000
---- a/meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Allow recipe to overide optimization.
--
--fixes:
--
--397 | #  warning _FORTIFY_SOURCE requires compiling with optimization (-O)
--|       |    ^~~~~~~
--| cc1: all warnings being treated as errors
--
--
--Upstream-Status: OE specific
--
--Signed-off-by: Armin Kuster <akuster808@gmail.com>
--
--Index: src/makefile
--===================================================================
----- src.orig/makefile
--+++ src/makefile
--@@ -43,7 +43,7 @@ CC = /usr/bin/gcc
-- CCFLAGS = -Wall  			\
-- 	-Wmissing-declarations -Wmissing-prototypes -Wnested-externs \
-- 	-Werror -Wsign-compare \
---	 -c -ggdb -O0 			\
--+	 -c -ggdb -O 			\
-- 	-DTPM_POSIX			\
-- 	-D_POSIX_			\
-- 	-DTPM_NUVOTON
-diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/files/tune-makefile.patch b/meta-tpm/recipes-tpm2/ibmswtpm2/files/tune-makefile.patch
-new file mode 100644
-index 0000000..eebddb9
---- /dev/null
-+++ b/meta-tpm/recipes-tpm2/ibmswtpm2/files/tune-makefile.patch
-@@ -0,0 +1,50 @@
-+1) Allow recipe to overide optimization.
-+
-+fixes:
-+
-+397 | #  warning _FORTIFY_SOURCE requires compiling with optimization (-O)
-+|       |    ^~~~~~~
-+| cc1: all warnings being treated as errors
-+
-+2) Allow recipe to override OE related compile-/link-flags
-+
-+fixes:
-+
-+ERROR: QA Issue: File /usr/bin/tpm_server in package ibmswtpm2 doesn't have GNU_HASH (didn't pass LDFLAGS?) [ldflags]
-+
-+Upstream-Status: OE specific
-+
-+Signed-off-by: Jens Rehsack <sno@NetBSD.org>
-+
-+Index: src/makefile
-+===================================================================
-+--- src.orig/makefile
-++++ src/makefile
-+@@ -38,12 +38,10 @@
-+ #################################################################################
-+ 
-+ 
-+-CC = /usr/bin/gcc
-+-
-+ CCFLAGS = -Wall  			\
-+ 	-Wmissing-declarations -Wmissing-prototypes -Wnested-externs \
-+ 	-Werror -Wsign-compare \
-+-	 -c -ggdb -O0 			\
-++	 -c -ggdb -O 			\
-+ 	-DTPM_POSIX			\
-+ 	-D_POSIX_			\
-+ 	-DTPM_NUVOTON
-+@@ -79,11 +77,11 @@
-+ .PRECIOUS:	%.o
-+ 
-+ tpm_server:	$(OBJFILES)
-+-		$(CC) $(OBJFILES) $(LNFLAGS) -o tpm_server
-++		$(CCLD) $(OBJFILES) $(LDFLAGS) $(LNFLAGS) -o tpm_server
-+ 
-+ clean:		
-+ 		rm -f *.o tpm_server *~
-+ 
-+ %.o:		%.c
-+-		$(CC) $(CCFLAGS) $< -o $@
-++		$(CC) $(CCFLAGS) $(CFLAGS) $< -o $@
-+ 
-diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb
-deleted file mode 100644
-index 3373a30..0000000
---- a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb
-+++ /dev/null
-@@ -1,26 +0,0 @@
--SUMMARY = "IBM's Software TPM 2.0"
--LICENSE = "BSD"
--SECTION = "securty/tpm"
--LIC_FILES_CHKSUM = "file://../LICENSE;md5=1e023f61454ac828b4aa1bc4293f7d5f"
--
--DEPENDS = "openssl"
--
--SRC_URI = "https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm${PV}.tar.gz \
--           file://remove_optimization.patch \
--           "
--SRC_URI[md5sum] = "bfd3eca2411915f24de628b9ec36f259"
--SRC_URI[sha256sum] = "a8e874e7a1ae13a1290d7679d846281f72d0eb6a5e4cfbafca5297dbf4e29ea3"
--SRC_URI[sha1sum] = "7c8241a4e97a801eace9f0eea8cdda7c58114f7f"
--SRC_URI[sha384sum] = "eec25cc8ba0e3cb27d41ba4fa4c71d8158699953ccb61bb6d440236dcbd8f52b6954eaae9d640a713186e0b99311fd91"
--SRC_URI[sha512sum] = "ab47caa4406ba57c0afc6fadae304fc9ef5e3e125be0f2fb1955a419cf93cd5e9176e103f0b566825abc16cca00b795f98d2b407f0a2bf7b141ef4b025d907d0"
--
--S = "${WORKDIR}/src"
--
--do_compile () {
--   make CC='${CC}'
--}
--
--do_install () {
--   install -d ${D}/${bindir}
--   install -m 0755 tpm_server  ${D}/${bindir}
--}
-diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb
-new file mode 100644
-index 0000000..ff8c604
---- /dev/null
-+++ b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb
-@@ -0,0 +1,30 @@
-+SUMMARY = "IBM's Software TPM 2.0"
-+HOMEPAGE = "http://ibmswtpm.sourceforge.net/ibmswtpm2.html"
-+LICENSE = "BSD"
-+SECTION = "securty/tpm"
-+LIC_FILES_CHKSUM = "file://../LICENSE;md5=1e023f61454ac828b4aa1bc4293f7d5f"
-+
-+DEPENDS = "openssl"
-+
-+SRC_URI = "https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm${PV}.tar.gz \
-+           file://tune-makefile.patch \
-+           file://fix-wrong-cast.patch \
-+           "
-+SRC_URI[md5sum] = "43b217d87056e9155633925eb6ef749c"
-+SRC_URI[sha256sum] = "dd3a4c3f7724243bc9ebcd5c39bbf87b82c696d1c1241cb8e5883534f6e2e327"
-+SRC_URI[sha1sum] = "ab4b94079e57a86996991e8a2b749ce063e4ad3e"
-+SRC_URI[sha384sum] = "bbef16a934853ce78cba7ddc766aa9d7ef3cde3430a322b1be772bf3ad4bd6d413ae9c4de21bc1a4879d17dfe2aadc1d"
-+SRC_URI[sha512sum] = "007aa415cccf19a2bcf789c426727dc4032dcb04cc9d11eedc231d2add708c1134d3d5ee5cfbe7de68307c95fff7a30bd306fbd8d53c198a5ef348440440a6ed"
-+
-+S = "${WORKDIR}/src"
-+
-+CFLAGS += "-Wno-error=maybe-uninitialized"
-+
-+do_compile () {
-+   make CC='${CC}'
-+}
-+
-+do_install () {
-+   install -d ${D}/${bindir}
-+   install -m 0755 tpm_server  ${D}/${bindir}
-+}
--- 
-2.17.1
+  DM_VERITY_IMAGE =3D "core-image-minimal"
+  DM_VERITY_IMAGE_TYPE =3D "ext4"
+  IMAGE_CLASSES +=3D "dm-verity-img"
+  INITRAMFS_IMAGE_BUNDLE =3D "1"
+  INITRAMFS_IMAGE =3D "dm-verity-image-initramfs"
+
+And the following command line was used to test the changes with qemu:
+
+  KERNEL=3D.../build/tmp/deploy/images/qemux86-64/bzImage-initramfs-qemux86=
+-64.bin \
+    QB_NET=3Dnone \
+    runqemu \
+    nographic \
+    qemuparams=3D"-nic none" \
+    qemux86-64 \
+    .../build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64-*.=
+rootfs.ext4.verity
+
+Update since v1:
+
+Based on the feedback to v1 of the changeset, I was able to observe that
+if wic image type is used with this facility, it introduces circular
+dependency related to the
+
+  do_image_wic[recrdeptask] +=3D "do_deploy"
+
+declaration in meta/classes/image_types_wic.bbclass side, and on the
+other hand, related to the
+
+  do_rootfs[depends] +=3D "${DM_VERITY_IMAGE}:do_image_${DM_VERITY_IMAGE_TY=
+PE}"
+
+declaration in
+meta-security/recipes-core/images/dm-verity-image-initramfs.bb side.
+
+In order to mitigate this situation this version of changeset introduces
+a custom staging directory for passing DM_VERITY_IMAGE rootfs specific
+verity.env file to the initramfs image. While this may not be the most
+optimal solution to the issue of passing staging files from one image
+nested in another image, it should nevertheless resolve the issue in a
+(hopefully) non-conflicting fashion for the time being, making also
+'wic' images usable with the facility.
+
+Furthermore the original dm-verity initramfs /init facility was replaced
+to use existing poky-provided initramfs-framework suite complemented
+with a dm-verity specific module, and added also some optimizations to
+dm-verity-initramfs-image recipe, and a fix to a relevant wks.in file.
+
+In addition to testing this updated changeset against default
+'qemux86-64' machine, I also tested against 'beaglebone-yocto' machine
+and a BeableBone Black board, for which purpose I added also the
+following lines to local.conf:
+
+  MACHINE =3D "beaglebone-yocto"
+  IMAGE_BOOT_FILES_remove =3D "zImage"
+  IMAGE_BOOT_FILES_append =3D " zImage-initramfs-${MACHINE}.bin;zImage"
+  WKS_FILES =3D "${MACHINE}-verity.wks.in"
+
+Since I use poky master branch, I also had to introduce
+
+  CONFIG_MMC_SDHCI=3Dy
+  CONFIG_MMC_SDHCI_PLTFM=3Dy
+  CONFIG_MMC_SDHCI_OMAP=3Dy
+
+via a kernel config fragment to adapt to included change in kernel
+source tree
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit?h=
+=3Dv5.8&id=3D0b4edf111870b83ea77b1d7e16b8ceac29f9f388
+which otherwise prevented Linux from detecting neither eMMC or attached
+SD card on the BeagleBone Black board.
+
+When booting up the board from SD card which was programmed using
+resulting 'core-image-minimal-beaglebone-yocto.wic' file, e.g. the
+following lines were observed
+
+  Freeing unused kernel memory: 13312K
+  Run /init as init process
+  udevd[148]: starting version 3.2.9
+  udevd[149]: starting eudev-3.2.9
+  device-mapper: verity: sha256 using implementation &quot;sha256-generic&q=
+uot;
+  EXT4-fs (dm-0): mounted filesystem with ordered data mode. Opts: (null)
+  INIT: version  booting
+  Starting udev
+
+and after logging in via serial console checked that
+
+  root@beaglebone-yocto:~# grep ' / ' /proc/mounts=20
+  /dev/mapper/rootfs / ext4 ro,relatime 0 0
+
+Finally, at least one obvious caveat in current changeset is the added
+
+  do_image[nostamp] =3D "1"
+
+flag in dm-verity-image-initramfs.bb which seemed to have the impact of
+rendering sstate-cache artifacts for virtual/kernel unusable.
+
+Niko Mauno (12):
+  dm-verity-img.bbclass: Fix bashisms
+  dm-verity-img.bbclass: Reorder parse-time check
+  dm-verity-image-initramfs: Ensure verity hash sync
+  dm-verity-image-initramfs: Bind at do_image instead
+  linux-yocto(-dev): Add dm-verity fragment as needed
+  dm-verity-img.bbclass: Stage verity.env file
+  initramfs-framework: Add dmverity module
+  dm-verity-image-initramfs: Use initramfs-framework
+  dm-verity-initramfs-image: Cosmetic improvements
+  dm-verity-image-initramfs: Add base-passwd package
+  dm-verity-image-initramfs: Drop locales from image
+  beaglebone-yocto-verity.wks.in: Refer IMGDEPLOYDIR
+
+ classes/dm-verity-img.bbclass                 | 22 ++++----
+ .../images/dm-verity-image-initramfs.bb       | 28 ++++++----
+ .../initrdscripts/initramfs-dm-verity.bb      | 13 -----
+ .../initramfs-dm-verity/init-dm-verity.sh     | 46 ----------------
+ .../initramfs-framework/dmverity              | 54 +++++++++++++++++++
+ .../initramfs-framework_1.0.bbappend          | 16 ++++++
+ recipes-kernel/linux/linux-yocto-dev.bbappend |  1 +
+ recipes-kernel/linux/linux-yocto_5.%.bbappend |  1 +
+ wic/beaglebone-yocto-verity.wks.in            |  2 +-
+ 9 files changed, 104 insertions(+), 79 deletions(-)
+ delete mode 100644 recipes-core/initrdscripts/initramfs-dm-verity.bb
+ delete mode 100644 recipes-core/initrdscripts/initramfs-dm-verity/init-dm-=
+verity.sh
+ create mode 100644 recipes-core/initrdscripts/initramfs-framework/dmverity
+ create mode 100644 recipes-core/initrdscripts/initramfs-framework_1.0.bbap=
+pend
+
+--=20
+2.20.1
 
