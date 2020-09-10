@@ -1,103 +1,151 @@
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
- by mx.groups.io with SMTP id smtpd.web10.10337.1599696409932616764
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+ by mx.groups.io with SMTP id smtpd.web12.10394.1599697046213362468
  for <yocto@lists.yoctoproject.org>;
- Wed, 09 Sep 2020 17:06:50 -0700
+ Wed, 09 Sep 2020 17:17:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=bpUH/MBT;
- spf=pass (domain: gmail.com, ip: 209.85.210.170, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f170.google.com with SMTP id z19so3572682pfn.8
-        for <yocto@lists.yoctoproject.org>; Wed, 09 Sep 2020 17:06:49 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=gWbOxWN6;
+ spf=pass (domain: gmail.com, ip: 209.85.216.54, mailfrom: raj.khem@gmail.com)
+Received: by mail-pj1-f54.google.com with SMTP id kk9so2157711pjb.2
+        for <yocto@lists.yoctoproject.org>; Wed, 09 Sep 2020 17:17:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:organization:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=z1s4PGY0Yfgn5GBClnV1YkIhUaq26EIx+tvXIua68do=;
-        b=bpUH/MBTko4jIF07XcJN0x6nP9glx3MOzUp5JApndMnvtt4OmB4C3cMMAtdEZauHwP
-         /PLBjYsiuTP95T076kcm3U/M+E896XG/grF83ZLV8FvOCra6IFu61kX47VMjAnxTzz2D
-         QWSyXxd60MePblYc+1XVUvQCAwtH9Anc7QTdE6qHn59kFZJThqAmuXV+Duh30iVyx/GC
-         h1yqyAtEis/23QqbsurcTjKUa+DqfIMs2CaugxnEPUn4ud0MKFAhH/Seoj+WHzia4Xdc
-         hMS5kKQ+2qGVwFRvSTE0f2m1tzBQojEJpkwDwYF1SFric7dYBll0Lmo7GSfr14uZ+1dU
-         o1Sw==
+        bh=U7lTKof9Ij3pP0D9j49Rt2PU2LGxKJJiOdzKh8Ju/hg=;
+        b=gWbOxWN6yQLcLPwRql8M/jhuXnIly+Rb0sWTzPeJjYY2E2LdhIVdkfwomonnjlJyoA
+         4CClHFg2YecRh758peiBkbH2rOaoyvhsQ6pcFg0/P0XFHad4+slF2llMfbDSQB+YpzcP
+         cCxjDDg7UBfGLbaoc5ILY2Cq4MDnAK9yJpxj4SMBWVthiPG9ekzJ4dJETZooY1S/1G8f
+         skSPN2uwGSpV2AB7bzwoh5LHh1jXJSLbXdBolbN1gEFu9O5CsfM/7NHupuRlCItdedtH
+         QNUZBha55C6Amd5/+nYc55yAHQLdLfpzl0uR3UUwUNqKzYsQwKiJ26w9tn8/ioKvplF/
+         0gcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=z1s4PGY0Yfgn5GBClnV1YkIhUaq26EIx+tvXIua68do=;
-        b=BRGaAryip4TCpADFeI6RLYABmAbUCpSdRSEW6kl4N0H5ujizZ+GUfChbtJ9pzz6m4O
-         jO2u2iydKbm3wtySugNJ5/Pz7pxAHxqLnvoPQFSGkrj1tzdwC3lxfJYdG5gjWuld6eh0
-         T9/Z4EVIVOwCbaRkk5c3a+24K53wtgAfCBnX9lybPXjAQsXtV3ZAob6Hl9hV/RhJ7hQy
-         WSPrEXqYzYBmv9b+Yjd13ab1EMCWo6srVSJKYULranJbXSMJJfk1qr1LTreY5hKX+ekG
-         s5GLdGMHsmMCLsFFux4sDQJU8I81WIOf7qNyntwN1z6moksldS31bxE5hAc3N/o0maI8
-         ntJQ==
-X-Gm-Message-State: AOAM533ya7d+cJIXTKr2cIhFu2Zs1RWSz/kKtqqNpf/OkYkctzj9MdbL
-	yeyca2dRehzvSVTMOrmlcwEa+FvJrXaYGw==
-X-Google-Smtp-Source: ABdhPJy0hjSB4zSui0hoFIsTlykdzBruriWSqX3evsb9Qbv84l283mOPPfZWk0ctnOx212la1K4GFg==
-X-Received: by 2002:aa7:9aef:: with SMTP id y15mr2771312pfp.119.1599696409031;
-        Wed, 09 Sep 2020 17:06:49 -0700 (PDT)
+        bh=U7lTKof9Ij3pP0D9j49Rt2PU2LGxKJJiOdzKh8Ju/hg=;
+        b=TdqedM5ZllDAhdN/12x7P5DuuBEWsupcnWdd/Jms6PXyiI2jA1FCy8pFzSzynLZLcP
+         V0R9Ej43f5dmmn2EZh4uSW8xwpBWBqVnjvg77hxSAcsJyeayQ4xLyakXZMBKSqUwUUMJ
+         cFXGP02oVHQtWtrv2FvV7PzVSr/0BGkNdreXK8sk08QJL4ZvLkZb8570Q7xfGWAEv3Ei
+         EPnPtaB0GEeL1uKiOQz1fDYWnHskt6ou7bPpmukOVc0eDlhbA2OXfIjhn/nZM7isrRDx
+         PtS7rAOzsOuFymos54nVWZRYVEbV1ucHACXJpXo8aKYuDQ1B1EKfNxnAS22EST0926lh
+         /wPw==
+X-Gm-Message-State: AOAM530R5MgYkhMCObWbqY65LtsczR7T9SE9Jvg+uRGyUo7/p9eYGZsF
+	p923k1qkCY6MSe7fRlKD9JH+hg0clRgTfg==
+X-Google-Smtp-Source: ABdhPJzRKxw7vnfJHBxD/RwFi/HVJtHSX3K+XHP/FXrK2OAgLssptqt36PxlYL+uVVcDyUVM5h5f6Q==
+X-Received: by 2002:a17:90b:a0a:: with SMTP id gg10mr2884931pjb.20.1599697045389;
+        Wed, 09 Sep 2020 17:17:25 -0700 (PDT)
 Return-Path: <raj.khem@gmail.com>
 Received: from ?IPv6:2601:646:9200:4e0::ff6e? ([2601:646:9200:4e0::ff6e])
-        by smtp.gmail.com with ESMTPSA id u27sm3084230pgm.60.2020.09.09.17.06.48
+        by smtp.gmail.com with ESMTPSA id n128sm2990629pga.5.2020.09.09.17.17.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Sep 2020 17:06:48 -0700 (PDT)
-Subject: Re: [yocto] apt segmentation fault #apt #yocto #rocko
-To: Sourab B <sourab@relysys.co.in>, yocto@lists.yoctoproject.org
-References: <geDM.1599631034106601409.S117@lists.yoctoproject.org>
+        Wed, 09 Sep 2020 17:17:24 -0700 (PDT)
+Subject: Re: [yocto] #sdk #yocto Appears SDK searching host for files that are only present on target side
+To: steven.monsees@baesystems.com,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <MADEUP.163328BFD191E99D.22921@lists.yoctoproject.org>
 From: "Khem Raj" <raj.khem@gmail.com>
 Organization: HIMVIS LLC
-Message-ID: <77b78e28-0d08-a3f4-f109-0da9f3187934@gmail.com>
-Date: Wed, 9 Sep 2020 17:06:47 -0700
+Message-ID: <e8366385-c7a3-5313-0072-d19e05e2fb17@gmail.com>
+Date: Wed, 9 Sep 2020 17:17:23 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <geDM.1599631034106601409.S117@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <MADEUP.163328BFD191E99D.22921@lists.yoctoproject.org>
+Content-Type: text/plain; charset=windows-1252
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 
 
 
-On 9/8/20 10:57 PM, Sourab B wrote:
-> Hello all, i was trying to install Google coral PCIe driver from this
-> site:  https://coral.ai/docs/m2/get-started
-> <https://coral.ai/docs/m2/get-started> on my device. But i got
-> segmentation fault. I've done strace as well and I have attached
-> the log. I'm not quite sure what the issue is. 
-> *
-> Commands :
+On 9/9/20 8:57 AM, Monsees, Steven C (US) via lists.yoctoproject.org wrote:
+> �
 > 
-> *
-> echo "deb https://packages.cloud.google.com/apt
-> <https://packages.cloud.google.com/apt> coral-edgetpu-stable main" | tee
-> /etc/apt/sources.list.d/coral-edgetpu.list
+> Looking to understand why the SDK is searching the host/native
+> (x86_64-pokysdk-linux) side when it should be looking at the target side
+> (corei7-64-poky-linux) �
 > 
-> curl https://packages.cloud.google.com/apt/doc/apt-key.gpg
-> <https://packages.cloud.google.com/apt/doc/apt-key.gpg> | apt-key add -
+> �
 > 
-> *ERROR:*
-> curl https://packages.cloud.google.com/apt/doc/apt-key.gpg
-> <https://packages.cloud.google.com/apt/doc/apt-key.gpg> | apt-key add -
->   % Total    % Received % Xferd  Average Speed   Time    Time     Time
->  Current
->                                  Dload  Upload   Total   Spent    Left
->  Speed
-> 100   653  100   653    0     0   2176      0 --:--:-- --:--:-- --:--:--
->  2176
+> All the �crt� files are present under the target side.
 > 
-> gpg: signal [  174.686462] audit: type=1701 audit(1598596554.214:5):
-> auid=4294967295 uid=0 gid=0 ses=4294967295 pid=876 comm="gpg" exe="/usr/bi1
-> Segmentation fault caught ... exiting
-> Segmentation fault (core dumped)
+> �
+> 
+> Can someone explain what might be miss-configured ?, or better, point me
+> to a possible patch ?
+> 
+> �
+> 
+> I have seen some talk on-line about similar issues, but no clear
+> indication what the issue was, or how it was resolved�
+> 
+> �
+> 
+> I am running Yocto clang 6.0.1, cmake 3.8.2, under �rocko�, my SDK is a
+> standard SDK, not extensible.
+> 
+> �
+> 
+> 11:31 smonsees@yix490016 ~/yocto/test/beignet-Release_v1.2/mybuild>make
+> 
+> Scanning dependencies of target gbeinterp
+> 
+> [� 0%] Building CXX object
+> backend/src/CMakeFiles/gbeinterp.dir/gbe_bin_interpreter.cpp.o
+> 
+> [� 0%] Linking CXX shared library libgbeinterp.so
+> 
+> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld:
+> cannot find crti.o: No such file or directory
+> 
+> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld:
+> cannot find crtbeginS.o: No such file or directory
+> 
+> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld:
+> cannot find -lstdc++
+> 
+> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld:
+> cannot find -lm
+> 
+> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld:
+> cannot find -lgcc_s
+> 
+> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld:
+> cannot find -lc
+> 
+> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld:
+> cannot find -lgcc_s
+> 
+> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld:
+> cannot find crtendS.o: No such file or directory
+> 
+> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld:
+> cannot find crtn.o: No such file or directory
+> 
+> collect2: error: ld returned 1 exit status
+> 
+> make[2]: *** [backend/src/libgbeinterp.so] Error 1
+> 
+> make[1]: *** [backend/src/CMakeFiles/gbeinterp.dir/all] Error 2
+> 
+> make: *** [all] Error 2
+> 
+> 11:31 smonsees@yix490016 ~/yocto/test/beignet-Release_v1.2/mybuild>
 > 
 
-Discern between source distributions and binary distributions. Yocto
-project provides tools to build either of those, but it does not support
-  interoperability with other binary distros e.g. debian/ubuntu/fedora
-etc. so while your yocto based distro might be using apt for online
-package management, it does not mean it supports feeds from
-debian/ubuntu or other dpkg based distros. You have to have yocto based
-binary distro feeds.
 
+Perhaps you need to use ${CC} and ${CXX} etc. in your makefile, and also
+source the SDK environment script in shell, before using it.
+> �
+> 
+> Thanks,
+> 
+> Steve
+> 
+> �
+> 
+> �
+> 
 > 
 > 
 > 
