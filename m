@@ -1,68 +1,85 @@
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
- by mx.groups.io with SMTP id smtpd.web11.22165.1599744650397193814
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+ by mx.groups.io with SMTP id smtpd.web12.21894.1599744651985411290
  for <yocto@lists.yoctoproject.org>;
- Thu, 10 Sep 2020 06:30:50 -0700
+ Thu, 10 Sep 2020 06:30:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=aq6a0/Dk;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.48, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f48.google.com with SMTP id s13so48761wmh.4
-        for <yocto@lists.yoctoproject.org>; Thu, 10 Sep 2020 06:30:50 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=SrDACCIP;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.49, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f49.google.com with SMTP id q9so60049wmj.2
+        for <yocto@lists.yoctoproject.org>; Thu, 10 Sep 2020 06:30:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=9J2k7DsurTUAW2kRaEYPkxzwF1yMRS+lCQuv6qLI3Ds=;
-        b=aq6a0/DkE1TOilxZFN66UAnzQz/hqFWmdbXw/yVpzfUo05uozseXVqJrMYHOwHRe6p
-         l93zbg12bOYsOouuIj38Lukt4OGaWYkepJLhDJDG1cbIqx7xLgWiBtbKlUlDutc/uKYX
-         erlvGCuVj0B2fKpTQbomIXHf7qs7w0NWtYv9o=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=SjC+a2wFWht4zDlIhvQ+tHF3idtbgjZnYWfPUhxPPy0=;
+        b=SrDACCIP2cwPsDfkp7TaHRpcMxPEU+aD6oCdPxfmHaKDKTKTL1X5nNPgRvAXGt6R9u
+         J3JJrx/W48hjfJSFMW9FnRCChuk4h8OAv9uV4KAR7C/SwQdst2C+BYScathbusZRbjr+
+         FZJ0q9UE+OOv7CIyeQtt8TmDV4iOn+rjf2QwA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=9J2k7DsurTUAW2kRaEYPkxzwF1yMRS+lCQuv6qLI3Ds=;
-        b=Ld2jvRAO1lE2ZaCt4r9+osamw03+GzaJtjS9Op8dTl4NM7/K1aTnNNoWHp438zuDYs
-         JaJiClNecDRs70ewabh1V41pWZw3UxEu/Noj0Js5DRk9s+1xnXCfsX4ZJLWZiQjx7SdB
-         /81sdqnMBYgVnPliNuLLUP9IgYqPhEyuPs1lB6FuN2CP5bBm4NCjDVxvwP69OZdxL59J
-         T9nYyyreop7qHPwDHax9tIwG7vLHz4gjNzgB3JvbfO/oryUpw1ipmkD8/c2C0rKcTGYk
-         B7fiX/mcyOjlNKOBkbMJO9Q6LMv1Lx7LyCWERZ8yT7peeHSje6/8m34U5LXju918uSuN
-         BnXw==
-X-Gm-Message-State: AOAM530xAyNE059slOjbiOaXg+uv/ZG8/qiClzDMoZLqcDK0/Jemh1tC
-	iD7W18Ry3z+y1a8bFCeecp+vk0g3TvK2qQ==
-X-Google-Smtp-Source: ABdhPJwLwVi28qMqofPEDb9GEjFnTvD4rSNRtvR+BY0p3Tim0BlU4k6DyjKjk517oR2bLgTy8a7Lgw==
-X-Received: by 2002:a1c:1fcc:: with SMTP id f195mr66844wmf.127.1599744648695;
-        Thu, 10 Sep 2020 06:30:48 -0700 (PDT)
+        bh=SjC+a2wFWht4zDlIhvQ+tHF3idtbgjZnYWfPUhxPPy0=;
+        b=cZhy/W9657rWO7F7uSbVlwYqJGzveMC5pYbtyINOM1Pcn6BZa+gUGDgQgHCAYF+h9W
+         af3rHUP+zSJDZAN0Eq461L1BLylk0/aFEGqFvqvyGqdWy0w4BGPvBKJQQ8XaTmJmVTtH
+         N26t2m/GQEfs51EjHmpA7qVlhqxUe9GdCS7JiITLBKVLdBxiUzh142e71wnlZYZ/A9od
+         a/Aj0LcFHHbEh3ahChSId4zognVBNLVkTMAzAPiq1u6ufPvBCaUb9hEnbxpPe/02gaFU
+         ZEF9jGk7N+kyN2eSE1kMDoqpXWZ1g/tHlIr/bUZUKw2wcf4UfvL2UuDuOWPReFBJFlEx
+         Id1A==
+X-Gm-Message-State: AOAM533CIzrmoVCJNYDWnN+4BLZHx35k12T2CP4cnbvInoSxvFJ7Ly/A
+	SOppXR2RZyImH1SQ0wysSMAmzqwyPs1K4A==
+X-Google-Smtp-Source: ABdhPJy7PI7x7rUlDrhj2qjkrq2pSaqU9aCsdEnkIqAUwaC9x89vkoTjhf5PMpWBZcx7Km+w7cXiHw==
+X-Received: by 2002:a1c:7e83:: with SMTP id z125mr38816wmc.32.1599744650059;
+        Thu, 10 Sep 2020 06:30:50 -0700 (PDT)
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from hex.int.rpsys.net (2.f.a.6.5.4.b.4.5.7.2.f.a.5.0.6.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:605a:f275:4b45:6af2])
         by smtp.gmail.com with ESMTPSA id t1sm3522330wmi.16.2020.09.10.06.30.48
-        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 10 Sep 2020 06:30:48 -0700 (PDT)
 From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Subject: [PATCH][autobuilder-helper][thud 14/40] prepare-shared-repos: Really fix shell globbing
-Date: Thu, 10 Sep 2020 14:30:09 +0100
-Message-Id: <20200910133035.2044355-14-richard.purdie@linuxfoundation.org>
+Cc: Marco Cavallini <m.cavallini@koansoftware.com>
+Subject: [PATCH][autobuilder-helper][thud 15/40] config.json: Replaced occurrencies of /home/pokybuild with ${BASE_HOMEDIR}
+Date: Thu, 10 Sep 2020 14:30:10 +0100
+Message-Id: <20200910133035.2044355-15-richard.purdie@linuxfoundation.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200910133035.2044355-1-richard.purdie@linuxfoundation.org>
 References: <20200910133035.2044355-1-richard.purdie@linuxfoundation.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
+From: Marco Cavallini <m.cavallini@koansoftware.com>
+
+Signed-off-by: Marco Cavallini <m.cavallini@koansoftware.com>
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 ---
- scripts/prepare-shared-repos | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ config.json | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/scripts/prepare-shared-repos b/scripts/prepare-shared-repos
-index 2a2b343..8400d09 100755
---- a/scripts/prepare-shared-repos
-+++ b/scripts/prepare-shared-repos
-@@ -39,4 +39,4 @@ with tempfile.TemporaryDirectory(prefix="shared-repo-temp-", dir="/tmp") as temp
-         if args.publish_dir:
-             utils.publishrepo(tempdir, repo, args.publish_dir)
+diff --git a/config.json b/config.json
+index 637d416..a8aa288 100644
+--- a/config.json
++++ b/config.json
+@@ -16,8 +16,8 @@
+     "WEBPUBLISH_DIR" : "${BASE_SHAREDDIR}/",
+     "WEBPUBLISH_URL" : "https://autobuilder.yocto.io/",
  
--    subprocess.check_call(["rsync", "-a", tempdir + "/*", args.sharedsrcdir], shell=True)
-+    subprocess.check_call("rsync -a " + tempdir + "/* " + args.sharedsrcdir, shell=True)
+-    "BUILDPERF_STATEDIR" : "/home/pokybuild/buildperf",
+-    "BUILDPERF_RESULTSDIR" : "/home/pokybuild/buildperf-results",
++    "BUILDPERF_STATEDIR" : "${BASE_HOMEDIR}/buildperf",
++    "BUILDPERF_RESULTSDIR" : "${BASE_HOMEDIR}/buildperf-results",
+ 
+     "defaults" : {
+         "NEEDREPOS" : ["poky"],
+@@ -95,7 +95,7 @@
+             "SSTATEDIR_RELEASE" : ["SSTATE_DIR ?= '${HELPERBUILDDIR}/sstate'"],
+             "PACKAGE_CLASSES" : "package_rpm",
+             "EXTRAPLAINCMDS" : [
+-                "${SCRIPTSDIR}/build-perf-test-wrapper -r ${BUILDPERF_RESULTSDIR} -E yocto-perf@lists.yoctoproject.org -d ${BUILDPERF_STATEDIR}/downloads -w /home/pokybuild/build-perf-test -p ${HELPERRESULTSDIR}/${HELPERTARGET} -R ${HELPERREPONAME} -b ${HELPERBRANCHNAME} --push git@push.yoctoproject.org:yocto-buildstats"
++                "${SCRIPTSDIR}/build-perf-test-wrapper -r ${BUILDPERF_RESULTSDIR} -E yocto-perf@lists.yoctoproject.org -d ${BUILDPERF_STATEDIR}/downloads -w ${BASE_HOMEDIR}/build-perf-test -p ${HELPERRESULTSDIR}/${HELPERTARGET} -R ${HELPERREPONAME} -b ${HELPERBRANCHNAME} --push git@push.yoctoproject.org:yocto-buildstats"
+             ],
+             "extravars" : [
+                 "BB_NUMBER_THREADS = '24'",
 -- 
 2.25.1
 
