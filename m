@@ -1,160 +1,207 @@
-Received: from EUR03-AM5-obe.outbound.protection.outlook.com (EUR03-AM5-obe.outbound.protection.outlook.com [40.107.3.56])
- by mx.groups.io with SMTP id smtpd.web12.15075.1599716072701417285
- for <yocto@lists.yoctoproject.org>;
- Wed, 09 Sep 2020 22:34:34 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@topicbv.onmicrosoft.com header.s=selector2-topicbv-onmicrosoft-com header.b=vG+wZqew;
- spf=pass (domain: topicproducts.com, ip: 40.107.3.56, mailfrom: mike.looijmans@topicproducts.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=topicbv.onmicrosoft.com; s=selector2-topicbv-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CYTBqCeBQUckyo4p9fVPDQ0NQyT4liIOl1mVpy47Lps=;
- b=vG+wZqewjgkVJpdyPGUu+h7djw8XgMfBpBoA2LGCRSBTwVy76diMmnaH3oCDuRIUOJYETBqoNpaf5x+AvvEW73y0zTK0buFzcr8QHvsijlwrrRnZ26VNUM1ciZg0bfEZV/vBw9mFKql4yI26L4SCMDiXvg0Ku7IM4Af/dF2+z5I=
-Received: from AM0PR10CA0110.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:e6::27)
- by DB3PR0402MB3818.eurprd04.prod.outlook.com (2603:10a6:8:e::29) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.17; Thu, 10 Sep
- 2020 05:34:28 +0000
-Received: from HE1EUR01FT030.eop-EUR01.prod.protection.outlook.com
- (2603:10a6:208:e6:cafe::39) by AM0PR10CA0110.outlook.office365.com
- (2603:10a6:208:e6::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16 via Frontend
- Transport; Thu, 10 Sep 2020 05:34:28 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 40.68.112.65)
- smtp.mailfrom=topicproducts.com; lists.yoctoproject.org; dkim=none (message
- not signed) header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=topic.nl;
-Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
- designates 40.68.112.65 as permitted sender) receiver=protection.outlook.com;
- client-ip=40.68.112.65; helo=westeu12-emailsignatures-cloud.codetwo.com;
-Received: from westeu12-emailsignatures-cloud.codetwo.com (40.68.112.65) by
- HE1EUR01FT030.mail.protection.outlook.com (10.152.0.170) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3370.16 via Frontend Transport; Thu, 10 Sep 2020 05:34:28 +0000
-Received: from EUR03-AM5-obe.outbound.protection.outlook.com (104.47.8.53) by westeu12-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Thu, 10 Sep 2020 05:34:26 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Uq6F7Ilr3pqLrsP3xjNilnk6iv3kermo8VX0cuihUq2HNFwCn7Gx6BnnnwFcGwtcwNop067xWpVfKNL4WbHc8skqypMFQUrurDItcTjKfz9TBOYHXab6SgBH2JIPjZK7mcjxiniKcfRbHKaWeC1y2W3LgqlAZl4X8A8Yyw6V7bpB0SpR9n1ZfTtFMrzYe7wujDIdkYr9oPvD4AeQ9EwKbEVyQBdWONegCUoSeRnVdNXDfA45pa9B4PMZT9O6TLqo68HIN0dDw8nf51j2stieBuQg+Yc7gDPXiif+FcpuqwaPGe2FvgtvxKCLG/3/Bs/gsNLiTcsu1D/GzquuLfzCyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8YvEgs9siVwtNR+MtqfnMFmi5XRuJ4ohpDTm8CdGcGI=;
- b=PE4jPhxn3zXj/z8cNbLQNNbc9AMKpAd8nX6nUpM6DUVRoLBy+Z/9/jxAMQFh2t6qbVhF8QslQO+RV8jr0Cbne2efWclkw1WlhLCgmm7nI6BZ3Q0laCoQeGNdj7u/Xi9TTE3kuMoYY79OgMJkTz/1PrKKos46rEpeBhitXdGhadxy4bJ+oO+YXopdWjmu4w7sqR15ZtiNjRtkfiNL7tSp4i1FR7pyvaaaz1sL+IkVam9UHRQwBpo/7a79slEjzWcvrH0EngSdAc4Y2owc0Ej35pKeoPkV1P27P8kwRQwWADavobWYcW9AaOGCQEmi/CBJUNOg4/t2LeZa2H0DwufT8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
- dkim=pass header.d=topic.nl; arc=none
-Authentication-Results-Original: lists.yoctoproject.org; dkim=none (message
- not signed) header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=topic.nl;
-Received: from DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
- by DB8PR04MB5676.eurprd04.prod.outlook.com (2603:10a6:10:ab::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Thu, 10 Sep
- 2020 05:34:24 +0000
-Received: from DB8PR04MB6523.eurprd04.prod.outlook.com
- ([fe80::2d61:d6fe:3c2:3e14]) by DB8PR04MB6523.eurprd04.prod.outlook.com
- ([fe80::2d61:d6fe:3c2:3e14%3]) with mapi id 15.20.3348.019; Thu, 10 Sep 2020
- 05:34:24 +0000
-Subject: Re: [yocto] Compiling and packaging libraries
+Subject: Re: #sdk #yocto Appears SDK searching host for files that are only present on target side
 To: yocto@lists.yoctoproject.org
-References: <3Msx.1599382429896859430.R8sy@lists.yoctoproject.org>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.34d84742-1089-4763-8e30-ab523fa9ada9@emailsignatures365.codetwo.com>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.0d2bd5fa-15cc-4b27-b94e-83614f9e5b38.d1275142-5af0-40b3-8a70-fad8249e939a@emailsignatures365.codetwo.com>
-From: "Mike Looijmans" <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <cae221f7-b0de-2de0-052c-7b0c8b9a4e19@topic.nl>
-Date: Thu, 10 Sep 2020 07:34:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <3Msx.1599382429896859430.R8sy@lists.yoctoproject.org>
-X-ClientProxiedBy: AM0PR05CA0081.eurprd05.prod.outlook.com
- (2603:10a6:208:136::21) To DB8PR04MB6523.eurprd04.prod.outlook.com
- (2603:10a6:10:10f::26)
-Return-Path: mike.looijmans@topicproducts.com
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+X-Originating-Location: US (149.32.192.43)
+X-Originating-Platform: Windows IE 11
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.80.121] (81.173.50.109) by AM0PR05CA0081.eurprd05.prod.outlook.com (2603:10a6:208:136::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.19 via Frontend Transport; Thu, 10 Sep 2020 05:34:23 +0000
-X-Originating-IP: [81.173.50.109]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4bd16216-6661-480a-1fcc-08d8554b2fb1
-X-MS-TrafficTypeDiagnostic: DB8PR04MB5676:|DB3PR0402MB3818:
-X-Microsoft-Antispam-PRVS: 
-	<DB3PR0402MB3818427C8A039E151AEB839C96270@DB3PR0402MB3818.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 
- DYnixJZUCHo/nFDPwwIyhM/s7+kw82zxG0CDCg1ul3Uk0oxcIqOYvRyllBur+9DPria2fEaJCzEKoFmATQVs0fS+XJWBqFOocf0eAMq531jsUz90XyTZVUyYjmH74MaxJLSuQrykXb8BJe/pqVGOlsQDrr7LtGdUl/hppvN7EDNQddJADFfCYAZJ+kk3RXAcLvcPWIjfXGAMg7j8Ga3384nViL6FKsrj8pgH09nZKePdutdA1fTiW22okqi26w28x0BU71HAdbeBm8ndsoGnXzv9b92By7nMdTcXtBiaogRRN3CJL+yljl/3jSRoYsVQvlaD2f0LgHn4fBKWxsRr5mtVnelg6FATiFrIIzLlZf8jk3ITYEGEEEZhILehVSvUIFaiU+eSbxvwD+gUDUAIKNrG8OrQZVPmtqNGeVxQbaA4yUmr/CMupvZQqlioVXCbIlROyNd2TpVzGx04i4uPQg==
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6523.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(376002)(136003)(396003)(39840400004)(346002)(8676002)(66556008)(66946007)(66476007)(956004)(36756003)(186003)(42882007)(8936002)(16526019)(478600001)(31696002)(6916009)(2616005)(2906002)(44832011)(316002)(26005)(31686004)(53546011)(83380400001)(16576012)(5660300002)(6486002)(36916002)(52116002)(966005)(83170400001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: V3RjFem27QKVElHakbupPlV2VYG+6GlyKyvYIej8NO6MpG/nDXhwXrj7YbA2N+oJNaEc57Ch0BPKv5KgnkkdVBvG/pGaSoSRzGg/lIDFgdHmjeZi5dXh+jczgT0d6GY6eNmmfnj/Uu85m1rxcLrhU3VoF9jOIlcJMidXhOLKRmxfAjzwrkeb0PcSrSE1ghLzpEmWTDRJ38MheoDduG9CTgLZg2lR8aCdXfjRbT1Ox0orwJfrxZQ5gB1hkN70hJg3INMBeITE6GLM1HN0U5+OvrkVs4tc4LYtHyTOcW9IG/x0g5b3r22Mc+tyZ358NuXHQ2gYiIkm3JfR15c1Qa/M3pzWwFYZ4EC8QC2+mkw2h9NF7atYEueqslETjkIkkA037CEfv5IlxKWsTx3B9SJFMTm+KJIUQjDEY4esKgu3U9JbgiVuofieQqUMHIOSjHkjrJW1RNuieCZX5vLRybJG/YH+18xnYofh95Y4Tut5D4vAqwOOUfQ+FHI6XaDzYUU2gnJjE+U6DWi+Q8LUv/dTa4fnUrO66yl2284pstwsuaBHlBvDIJONd1NoXGQ4uenJTkYQeyVXi1CdIGg2LsApY6z2lSchcem7DRxIS4/JM9708VhXYT6+Gvq6UN0Z3YYX2wpBVrTXNJ9lCxnlo6v8Gw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB5676
-X-CodeTwo-MessageID: 6ae447a1-d1fe-4806-900e-a2463f72cce1.20200910053426@westeu12-emailsignatures-cloud.codetwo.com
-X-CodeTwoProcessed: true
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- HE1EUR01FT030.eop-EUR01.prod.protection.outlook.com
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	781b8a78-b319-47f7-20af-08d8554b2cae
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	AzFQSXimnDv5X05mqALmOOorwjRfopYYztUQNmVFfi8X/PDrcHfmi3qgVlKrSo0OQxGSAJk5+qRox7/AcueFyOL1ssLeNHhipbXETXo9r33iqQ8itT8eu3LUVuFFXIDzQkQ4TQuTwZRxb+IDKFSY1fpGpfWgR09sdTPzPXiwBPlfuls7Xr9UgrRghsOU9LsUAosMICE9ehRku9eLsj/3RDLyZ81CA8kNUTSJYZhzsQ/wKPOViF/aBwWyCVf+8UZ7IgbWPMOMSKkCykwkZwNgH4+xdezF8EMiJgqjPjIn18EuwS5vhWDb5MS9Gc5zv+nFClVQa5LESTbYigNvuq4OfPBHYMoWC36tJoY4qkAqnecs8DMEdCCb9lz0LbnVTW53J2NB/g0RBpgI+RAMulocCLwz3j+zu2uADETQT2VpsqrgkkHZ+L1R5UushN4v58LfWOrIgmKN/Hj2z7ZmqFVc9rZUP4KDEv0idjeEmBticnqTeYdGes31oRmZGi2GDHSv
-X-Forefront-Antispam-Report: 
-	CIP:40.68.112.65;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu12-emailsignatures-cloud.codetwo.com;PTR:westeu12-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(39840400004)(136003)(396003)(376002)(346002)(46966005)(966005)(316002)(70586007)(8936002)(7596003)(6486002)(36756003)(47076004)(356005)(5660300002)(44832011)(53546011)(15974865002)(16576012)(956004)(2906002)(7636003)(186003)(26005)(8676002)(6916009)(478600001)(70206006)(83380400001)(36916002)(83170400001)(16526019)(336012)(42882007)(2616005)(31696002)(82310400003)(31686004)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: topic.nl
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 05:34:28.3290
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4bd16216-6661-480a-1fcc-08d8554b2fb1
-X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[40.68.112.65];Helo=[westeu12-emailsignatures-cloud.codetwo.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	HE1EUR01FT030.eop-EUR01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3818
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-CA
+Date: Thu, 10 Sep 2020 03:53:38 -0700
+References: <e8366385-c7a3-5313-0072-d19e05e2fb17@gmail.com>
+In-Reply-To: <e8366385-c7a3-5313-0072-d19e05e2fb17@gmail.com>
+Message-ID: <14341.1599735218188160836@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="xdeOQdbiJoF5R5VO2NIv"
+
+--xdeOQdbiJoF5R5VO2NIv
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-The simplest solution is to use autotools or Cmake for your project. That w=
-ill=20
-automatically "do the right thing" to get the library properly installed a=
-nd=20
-registered.
+fyi...
 
-Even if your project is just one C file and a header, putting that in=20
-autotools or cmake is less work than getting all the nitty bits in a=20
-hand-crafted Makefile right.
+I am using CMake with GNU, that is what is required for the=C2=A0build.
 
+I do source the SDK environment script prior to attempting build.
 
+Here is my current environment-setup-corei7-64-poky-linux script created b=
+y SDK:
 
-Met vriendelijke groet / kind regards,
+# Check for LD_LIBRARY_PATH being set, which can break SDK and generally i=
+s a bad practice
+# http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN80
+# http://xahlee.info/UnixResource_dir/_/ldpath.html
+# Only disable this check if you are absolutely know what you are doing!
+if [ ! -z "$LD_LIBRARY_PATH" ]; then
+echo "Your environment is misconfigured, you probably need to 'unset LD_LI=
+BRARY_PATH'"
+echo "but please check why this was set in the first place and that it's s=
+afe to unset."
+echo "The SDK will not operate correctly in most cases when LD_LIBRARY_PAT=
+H is set."
+echo "For more references see:"
+echo " http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#A=
+EN80 "
+echo " http://xahlee.info/UnixResource_dir/_/ldpath.html "
+return 1
+fi
+export SYSROOTS=3D/ede/smonsees/yocto/testSDK/sysroots
+export SDKTARGETSYSROOT=3D/disk0/scratch/smonsees/yocto/testSDK/sysroots/c=
+orei7-64-poky-linux
+export PATH=3D/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysd=
+k-linux/usr/bin:/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokys=
+dk-linux/usr/sbin:/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pok=
+ysdk-linux/bin:/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysd=
+k-linux/sbin:/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-=
+linux/usr/bin/../x86_64-pokysdk-linux/bin:/disk0/scratch/smonsees/yocto/tes=
+tSDK/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux:/disk0/scratch=
+/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-l=
+inux-musl:/disk0/scratch/smonsees/yocto/testSDK/sysroots/corei7-64-poky-lin=
+ux/usr/lib/../lib/:/disk0/scratch/smonsees/yocto/testSDK/sysroots/corei7-64=
+-poky-linux/usr/lib/../lib/x86_64-poky-linux/7.3.0/:$PATH
+export PKG_CONFIG_SYSROOT_DIR=3D$SDKTARGETSYSROOT
+export PKG_CONFIG_PATH=3D$SDKTARGETSYSROOT/usr/lib/pkgconfig:$SDKTARGETSYS=
+ROOT/usr/share/pkgconfig
+export CONFIG_SITE=3D/disk0/scratch/smonsees/yocto/testSDK/site-config-cor=
+ei7-64-poky-linux
+export OECORE_NATIVE_SYSROOT=3D"/disk0/scratch/smonsees/yocto/testSDK/sysr=
+oots/x86_64-pokysdk-linux"
+export OECORE_TARGET_SYSROOT=3D"$SDKTARGETSYSROOT"
+export OECORE_ACLOCAL_OPTS=3D"-I /disk0/scratch/smonsees/yocto/testSDK/sys=
+roots/x86_64-pokysdk-linux/usr/share/aclocal"
+unset command_not_found_handle
+export CC=3D"x86_64-poky-linux-gcc=C2=A0 -v -m64 -march=3Dcorei7 -mtune=3D=
+corei7 -mfpmath=3Dsse -msse4.2 --sysroot=3D$SDKTARGETSYSROOT"
+export CXX=3D"x86_64-poky-linux-g++=C2=A0 -v -m64 -march=3Dcorei7 -mtune=
+=3Dcorei7 -mfpmath=3Dsse -msse4.2 --sysroot=3D$SDKTARGETSYSROOT"
+export CPP=3D"x86_64-poky-linux-gcc -v -E=C2=A0 -m64 -march=3Dcorei7 -mtun=
+e=3Dcorei7 -mfpmath=3Dsse -msse4.2 --sysroot=3D$SDKTARGETSYSROOT"
+export AS=3D"x86_64-poky-linux-as=C2=A0 "
+export LD=3D"x86_64-poky-linux-ld=C2=A0 --sysroot=3D$SDKTARGETSYSROOT"
+export GDB=3Dx86_64-poky-linux-gdb
+export STRIP=3Dx86_64-poky-linux-strip
+export RANLIB=3Dx86_64-poky-linux-ranlib
+export OBJCOPY=3Dx86_64-poky-linux-objcopy
+export OBJDUMP=3Dx86_64-poky-linux-objdump
+export AR=3Dx86_64-poky-linux-ar
+export NM=3Dx86_64-poky-linux-nm
+export M4=3Dm4
+export TARGET_PREFIX=3Dx86_64-poky-linux-
+export CONFIGURE_FLAGS=3D"--target=3Dx86_64-poky-linux --host=3Dx86_64-pok=
+y-linux --build=3Dx86_64-linux --with-libtool-sysroot=3D$SDKTARGETSYSROOT"
+export CFLAGS=3D" --sysroot=3D$SDKTARGETSYSROOT -O2 -pipe -g -feliminate-u=
+nused-debug-types"
+export CXXFLAGS=3D" --sysroot=3D$SDKTARGETSYSROOT -O2 -pipe -g -feliminate=
+-unused-debug-types"
+export LDFLAGS=3D" -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed"
+export CPPFLAGS=3D""
+export KCFLAGS=3D"--sysroot=3D$SDKTARGETSYSROOT"
+export OECORE_DISTRO_VERSION=3D"2.4.1"
+export OECORE_SDK_VERSION=3D"2.4.1"
+export ARCH=3Dx86
+export CROSS_COMPILE=3Dx86_64-poky-linux-
 
-Mike Looijmans
-System Expert
+# Append environment subscripts
+if [ -d "$OECORE_TARGET_SYSROOT/environment-setup.d" ]; then
+for envfile in $OECORE_TARGET_SYSROOT/environment-setup.d/*.sh; do
+. $envfile
+done
+fi
+if [ -d "$OECORE_NATIVE_SYSROOT/environment-setup.d" ]; then
+for envfile in $OECORE_NATIVE_SYSROOT/environment-setup.d/*.sh; do
+. $envfile
+done
+fi
+export CLANGCC=3D"x86_64-poky-linux-clang -m64 -march=3Dcorei7 -mtune=3Dco=
+rei7 -mfpmath=3Dsse -msse4.2 -mlittle-endian --sysroot=3D$SDKTARGETSYSROOT"
+export CLANGCXX=3D"x86_64-poky-linux-clang++ -m64 -march=3Dcorei7 -mtune=
+=3Dcorei7 -mfpmath=3Dsse -msse4.2 -mlittle-endian --sysroot=3D$SDKTARGETSY=
+SROOT"
+export CLANGCPP=3D"x86_64-poky-linux-clang -E -m64 -march=3Dcorei7 -mtune=
+=3Dcorei7 -mfpmath=3Dsse -msse4.2 -mlittle-endian --sysroot=3D$SDKTARGETSY=
+SROOT"
 
+and
 
-TOPIC Embedded Products B.V.
-Materiaalweg 4, 5681 RJ Best
-The Netherlands
+--xdeOQdbiJoF5R5VO2NIv
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-T: +31 (0) 499 33 69 69
-E: mike.looijmans@topicproducts.com
-W: www.topicproducts.com
+<p><br />fyi...<br /><br />I am using CMake with GNU, that is what is requi=
+red for the&nbsp;build. <br /><br />I do source the SDK environment script =
+prior to attempting build.<br /><br />Here is my current environment-setup-=
+corei7-64-poky-linux script created by SDK:<br /><br /># Check for LD_LIBRA=
+RY_PATH being set, which can break SDK and generally is a bad practice<br /=
+># <a href=3D"http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.=
+html#AEN80">http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.ht=
+ml#AEN80</a><br /># <a href=3D"http://xahlee.info/UnixResource_dir/_/ldpath=
+.html">http://xahlee.info/UnixResource_dir/_/ldpath.html</a><br /># Only di=
+sable this check if you are absolutely know what you are doing!<br />if [ !=
+ -z "$LD_LIBRARY_PATH" ]; then<br />&nbsp;&nbsp;&nbsp; echo "Your environme=
+nt is misconfigured, you probably need to 'unset LD_LIBRARY_PATH'"<br />&nb=
+sp;&nbsp;&nbsp; echo "but please check why this was set in the first place =
+and that it's safe to unset."<br />&nbsp;&nbsp;&nbsp; echo "The SDK will no=
+t operate correctly in most cases when LD_LIBRARY_PATH is set."<br />&nbsp;=
+&nbsp;&nbsp; echo "For more references see:"<br />&nbsp;&nbsp;&nbsp; echo "=
+&nbsp; <a href=3D"http://tldp.org/HOWTO/Program-Library-HOWTO/shared-librar=
+ies.html#AEN80">http://tldp.org/HOWTO/Program-Library-HOWTO/shared-librarie=
+s.html#AEN80</a>"<br />&nbsp;&nbsp;&nbsp; echo "&nbsp; <a href=3D"http://xa=
+hlee.info/UnixResource_dir/_/ldpath.html">http://xahlee.info/UnixResource_d=
+ir/_/ldpath.html</a>"<br />&nbsp;&nbsp;&nbsp; return 1<br />fi<br />export =
+SYSROOTS=3D/ede/smonsees/yocto/testSDK/sysroots<br />export SDKTARGETSYSROO=
+T=3D/disk0/scratch/smonsees/yocto/testSDK/sysroots/corei7-64-poky-linux<br =
+/>export PATH=3D/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokys=
+dk-linux/usr/bin:/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-poky=
+sdk-linux/usr/sbin:/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-po=
+kysdk-linux/bin:/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokys=
+dk-linux/sbin:/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk=
+-linux/usr/bin/../x86_64-pokysdk-linux/bin:/disk0/scratch/smonsees/yocto/te=
+stSDK/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux:/disk0/scratc=
+h/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-=
+linux-musl:/disk0/scratch/smonsees/yocto/testSDK/sysroots/corei7-64-poky-li=
+nux/usr/lib/../lib/:/disk0/scratch/smonsees/yocto/testSDK/sysroots/corei7-6=
+4-poky-linux/usr/lib/../lib/x86_64-poky-linux/7.3.0/:$PATH<br />export PKG_=
+CONFIG_SYSROOT_DIR=3D$SDKTARGETSYSROOT<br />export PKG_CONFIG_PATH=3D$SDKTA=
+RGETSYSROOT/usr/lib/pkgconfig:$SDKTARGETSYSROOT/usr/share/pkgconfig<br />ex=
+port CONFIG_SITE=3D/disk0/scratch/smonsees/yocto/testSDK/site-config-corei7=
+-64-poky-linux<br />export OECORE_NATIVE_SYSROOT=3D"/disk0/scratch/smonsees=
+/yocto/testSDK/sysroots/x86_64-pokysdk-linux"<br />export OECORE_TARGET_SYS=
+ROOT=3D"$SDKTARGETSYSROOT"<br />export OECORE_ACLOCAL_OPTS=3D"-I /disk0/scr=
+atch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/share/aclocal=
+"<br />unset command_not_found_handle<br />export CC=3D"x86_64-poky-linux-g=
+cc&nbsp; -v -m64 -march=3Dcorei7 -mtune=3Dcorei7 -mfpmath=3Dsse -msse4.2 --=
+sysroot=3D$SDKTARGETSYSROOT"<br />export CXX=3D"x86_64-poky-linux-g++&nbsp;=
+ -v -m64 -march=3Dcorei7 -mtune=3Dcorei7 -mfpmath=3Dsse -msse4.2 --sysroot=
+=3D$SDKTARGETSYSROOT"<br />export CPP=3D"x86_64-poky-linux-gcc -v -E&nbsp;=
+ -m64 -march=3Dcorei7 -mtune=3Dcorei7 -mfpmath=3Dsse -msse4.2 --sysroot=3D$=
+SDKTARGETSYSROOT"<br />export AS=3D"x86_64-poky-linux-as&nbsp; "<br />expor=
+t LD=3D"x86_64-poky-linux-ld&nbsp; --sysroot=3D$SDKTARGETSYSROOT"<br />expo=
+rt GDB=3Dx86_64-poky-linux-gdb<br />export STRIP=3Dx86_64-poky-linux-strip<=
+br />export RANLIB=3Dx86_64-poky-linux-ranlib<br />export OBJCOPY=3Dx86_64-=
+poky-linux-objcopy<br />export OBJDUMP=3Dx86_64-poky-linux-objdump<br />exp=
+ort AR=3Dx86_64-poky-linux-ar<br />export NM=3Dx86_64-poky-linux-nm<br />ex=
+port M4=3Dm4<br />export TARGET_PREFIX=3Dx86_64-poky-linux-<br />export CON=
+FIGURE_FLAGS=3D"--target=3Dx86_64-poky-linux --host=3Dx86_64-poky-linux --b=
+uild=3Dx86_64-linux --with-libtool-sysroot=3D$SDKTARGETSYSROOT"<br />export=
+ CFLAGS=3D" --sysroot=3D$SDKTARGETSYSROOT -O2 -pipe -g -feliminate-unused-d=
+ebug-types"<br />export CXXFLAGS=3D" --sysroot=3D$SDKTARGETSYSROOT -O2 -pip=
+e -g -feliminate-unused-debug-types"<br />export LDFLAGS=3D" -Wl,-O1 -Wl,--=
+hash-style=3Dgnu -Wl,--as-needed"<br />export CPPFLAGS=3D""<br />export KCF=
+LAGS=3D"--sysroot=3D$SDKTARGETSYSROOT"<br />export OECORE_DISTRO_VERSION=3D=
+"2.4.1"<br />export OECORE_SDK_VERSION=3D"2.4.1"<br />export ARCH=3Dx86<br =
+/>export CROSS_COMPILE=3Dx86_64-poky-linux-</p>
+<p># Append environment subscripts<br />if [ -d "$OECORE_TARGET_SYSROOT/en=
+vironment-setup.d" ]; then<br />&nbsp;&nbsp;&nbsp; for envfile in $OECORE_T=
+ARGET_SYSROOT/environment-setup.d/*.sh; do<br />&nbsp;&nbsp;&nbsp;&nbsp; . =
+$envfile<br />&nbsp;&nbsp;&nbsp; done<br />fi<br />if [ -d "$OECORE_NATIVE_=
+SYSROOT/environment-setup.d" ]; then<br />&nbsp;&nbsp;&nbsp; for envfile in=
+ $OECORE_NATIVE_SYSROOT/environment-setup.d/*.sh; do<br />&nbsp;&nbsp;&nbsp=
+;&nbsp; . $envfile<br />&nbsp;&nbsp;&nbsp; done<br />fi<br />export CLANGCC=
+=
+=3D"x86_64-poky-linux-clang -m64 -march=3Dcorei7 -mtune=3Dcorei7 -mfpmath=
+=3Dsse -msse4.2 -mlittle-endian --sysroot=3D$SDKTARGETSYSROOT"<br />export=
+ CLANGCXX=3D"x86_64-poky-linux-clang++ -m64 -march=3Dcorei7 -mtune=3Dcorei7=
+ -mfpmath=3Dsse -msse4.2 -mlittle-endian --sysroot=3D$SDKTARGETSYSROOT"<br =
+/>export CLANGCPP=3D"x86_64-poky-linux-clang -E -m64 -march=3Dcorei7 -mtune=
+=
+=3Dcorei7 -mfpmath=3Dsse -msse4.2 -mlittle-endian --sysroot=3D$SDKTARGETSY=
+SROOT"<br /><br /><br />&nbsp;and</p>
 
-Please consider the environment before printing this e-mail
-On 06-09-2020 10:53, majid.nasiry65 via lists.yoctoproject.org wrote:
-> Hi
-> I wrote a recipe for adding a library to my image it compile correctly b=
-ut I=20
-> have issues in installing it and I got "-dev package contains non-symlin=
-k .so"=20
-> error.
-> I know default method for install libraries is versioned mode and I need=
- to=20
-> make symbolic links, but I don't know how?
-> Another question is what is difference between -dev and -dbg output?
->=20
->=20
->=20
->=20
-
+--xdeOQdbiJoF5R5VO2NIv--
