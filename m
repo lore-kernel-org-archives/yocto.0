@@ -1,71 +1,81 @@
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
- by mx.groups.io with SMTP id smtpd.web10.20787.1599740777060945494
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+ by mx.groups.io with SMTP id smtpd.web11.20821.1599740777971253205
  for <yocto@lists.yoctoproject.org>;
- Thu, 10 Sep 2020 05:26:17 -0700
+ Thu, 10 Sep 2020 05:26:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=aQcbtHCf;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.46, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f46.google.com with SMTP id w2so5446894wmi.1
-        for <yocto@lists.yoctoproject.org>; Thu, 10 Sep 2020 05:26:16 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=XYSgjSsc;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.51, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f51.google.com with SMTP id l9so5598329wme.3
+        for <yocto@lists.yoctoproject.org>; Thu, 10 Sep 2020 05:26:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=x2/5dtkT62IIJHRNhSOyZJFt8QxpMdSH2d7hDcOJRIE=;
-        b=aQcbtHCfNBjaTYfJWOgjMRzhA/FYKdCLunkHkNjUlefHvbinZeVyIk7XGNmRLQoIZE
-         YZHttJ5OXm0TeTXxvSXS+7CWPgIgetTEhYb9M0Ak0v9XzAUFbfznX1WB2VQ9AqCqcNQv
-         x5ffTWxXSiJbOOJSC3kb66mhgEpzwC0/C5Uh4=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=iCg1vkAf3wTBCxWLh50ok3Cihkl3VnVN9gu2yOzlVXQ=;
+        b=XYSgjSscIXBm69s4wzaUy48c9oUs94CJbnqqB8PmOS6Epro7mjf47HlSTd/2x6cFcR
+         Qj5/DkbQ67hC2uYQAgSaWxna1AFDh/envr/pDrMZDdFEqnRZe5KSz9ipnxgUnsbcnZEi
+         LyX1QLSlG8fR3BgHwgUZ3TW04UUd3gsVA7L3A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=x2/5dtkT62IIJHRNhSOyZJFt8QxpMdSH2d7hDcOJRIE=;
-        b=hSY/+PPk98KRrW/fPTM0cDXEDEwdLmMe3qLgc+4brhAsAodP6Hpdg9HAZywqZTaxNd
-         X2T0Wc7JbUFjXO0AwUaDNw2jEiia90xfL9Bo9q8J4Soq/OFk2nnx+k9xawM+ovFA13sw
-         urJI1VeLtjbjSWbKc467Tu4C8UTwhm+N6zhDwc/0uSjyj7UPuzhssKKmncNF55u4oplc
-         snbngIpa/aS4v0ZMdPBg49LaXPZTz3LK39N7nW3oiyeMx0984jAEczaYLMQ982YNX9XM
-         Z2OYpNqXqK/SaeCWSKflcHdvEavf6oxtCqdJCNcE5dr22dwqVTKQoKHtSvHyqUgigDK7
-         1JwQ==
-X-Gm-Message-State: AOAM532qfcqrtTsIwS9zW1VhFXPaDSxa33RSUzNw789SLV1cuVUbSoLU
-	mf4qk6EHIMCH77NOrbAnRajQ5Yv/g0znng==
-X-Google-Smtp-Source: ABdhPJw2BG3EssdubLm0q7RHs/3R2+YQL3jMjKSGedRYTKqjlJ/eNM4U5GMRU9Yegi6hB/7X/Ols6A==
-X-Received: by 2002:a1c:1b8f:: with SMTP id b137mr8858289wmb.151.1599740775362;
-        Thu, 10 Sep 2020 05:26:15 -0700 (PDT)
+        bh=iCg1vkAf3wTBCxWLh50ok3Cihkl3VnVN9gu2yOzlVXQ=;
+        b=FThmDkpzre0XZohQrfxMv53zNv1yRSVVG9bm2HTfZkXxSPccckdMiVJi4FjL7kvokU
+         AK5jZbYJ23ym13Rv/uvCjP/ShImrvjSTR+eCH+CpWFM1IUf92dM0d5aMurOITGJTHT4P
+         5GBLctMtMNnunHpS8BzMwbchPAYgM12rNTX/B6qxu4lGSoMx3SmTX7b3BbiarGPGjzOo
+         +JbP5mAuTZTM8uWMmbkoCQOO7b8lc8J+j5sfnLnS7NVHTNdNJMVXqrQSTnFfPUPjUwNy
+         fPugW5Akbtmqx+ITcD/v2Pi5696v7Z88jAY+Gnf14ySkmbGqGrYPvSu/Lx4F0R0uTFiJ
+         8NyA==
+X-Gm-Message-State: AOAM531rWmju1dGP+6/vaeqsmM1SZKortC3bknLxkat4qRZZ3a1pi8G9
+	OjBsxsdNn8385qjCReQDSKEoYS1bWA/g+A==
+X-Google-Smtp-Source: ABdhPJzoN9vrhlcQwpAC+CJuenuVrKZ08aNjIBAMFOoZ2ZgtT9ldDajBZdM/MlH5BpUU4/TTcWMoXw==
+X-Received: by 2002:a7b:cbd4:: with SMTP id n20mr8848546wmi.105.1599740776291;
+        Thu, 10 Sep 2020 05:26:16 -0700 (PDT)
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from hex.int.rpsys.net (2.f.a.6.5.4.b.4.5.7.2.f.a.5.0.6.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:605a:f275:4b45:6af2])
-        by smtp.gmail.com with ESMTPSA id x2sm7963465wrl.13.2020.09.10.05.26.14
-        for <yocto@lists.yoctoproject.org>
+        by smtp.gmail.com with ESMTPSA id x2sm7963465wrl.13.2020.09.10.05.26.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 05:26:14 -0700 (PDT)
+        Thu, 10 Sep 2020 05:26:15 -0700 (PDT)
 From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Subject: [PATCH][autobuilder-helper][warrior 23/41] config.json: Apply buildtools tarball to centos7 perf worker too
-Date: Thu, 10 Sep 2020 13:25:35 +0100
-Message-Id: <20200910122553.2040430-23-richard.purdie@linuxfoundation.org>
+Cc: Steve Sakoman <steve@sakoman.com>
+Subject: [PATCH][autobuilder-helper][warrior 24/41] scripts/utils.py: Fix confusing naming of getcomparisonbranch() return value
+Date: Thu, 10 Sep 2020 13:25:36 +0100
+Message-Id: <20200910122553.2040430-24-richard.purdie@linuxfoundation.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200910122553.2040430-1-richard.purdie@linuxfoundation.org>
 References: <20200910122553.2040430-1-richard.purdie@linuxfoundation.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
+From: Steve Sakoman <steve@sakoman.com>
+
+This code was copy/pasted but in this case the variables should
+be called "compare", not base.
+
+Signed-off-by: Steve Sakoman <steve@sakoman.com>
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 ---
- config.json | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ scripts/utils.py | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/config.json b/config.json
-index ea5947e..b5d8264 100644
---- a/config.json
-+++ b/config.json
-@@ -874,6 +874,7 @@
-     },
-     "buildtools" : {
-         "debian8*" : "${BUILDTOOLS_URL}",
--        "centos7*" : "${BUILDTOOLS_URL}"
-+        "centos7*" : "${BUILDTOOLS_URL}",
-+        "perf-centos7*" : "${BUILDTOOLS_URL}"
-     }
- }
+diff --git a/scripts/utils.py b/scripts/utils.py
+index 68652d9..5542fe2 100644
+--- a/scripts/utils.py
++++ b/scripts/utils.py
+@@ -358,9 +358,9 @@ def getcomparisonbranch(ourconfig, reponame, branchname):
+     if (reponame + ":" + branchname) in getconfig("BUILD_HISTORY_FORKPUSH", ourconfig):
+         base = getconfig("BUILD_HISTORY_FORKPUSH", ourconfig)[reponame + ":" + branchname]
+         if base:
+-            baserepo, basebranch = base.split(":")
+-            print("Comparing to %s\n" % (basebranch))
+-            return branchname, basebranch
++            comparerepo, comparebranch = base.split(":")
++            print("Comparing to %s\n" % (comparebranch))
++            return branchname, comparebranch
+     if (reponame + ":" + branchname) in getconfig("BUILD_HISTORY_DIRECTPUSH", ourconfig):
+         return branchname, None
+     return None, None
 -- 
 2.25.1
 
