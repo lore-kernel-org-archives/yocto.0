@@ -1,148 +1,111 @@
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
- by mx.groups.io with SMTP id smtpd.web10.27307.1599758360309592819
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+ by mx.groups.io with SMTP id smtpd.web11.1889.1599802600137553149
  for <yocto@lists.yoctoproject.org>;
- Thu, 10 Sep 2020 10:19:20 -0700
+ Thu, 10 Sep 2020 22:36:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=VLDIRlvg;
- spf=pass (domain: gmail.com, ip: 209.85.160.170, mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f170.google.com with SMTP id g3so5451141qtq.10
-        for <yocto@lists.yoctoproject.org>; Thu, 10 Sep 2020 10:19:20 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=XP91ZfbS;
+ spf=pass (domain: gmail.com, ip: 209.85.221.178, mailfrom: kerenyi.nagy.zoltan@gmail.com)
+Received: by mail-vk1-f178.google.com with SMTP id c25so2135034vkm.1
+        for <yocto@lists.yoctoproject.org>; Thu, 10 Sep 2020 22:36:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=K7qZxmYfLYv/r7kuABEE517lpklycmtpYErMwpVXZKE=;
-        b=VLDIRlvg65W1W29nONkpZ55mxtI9jUEXpBTd3v7w9aoFcIAjAC78DgsWQcg/7u1wje
-         y9qPMakURKM7JA5ER6m6Ss31W0lmvTRtGTuDbNGnCMp3xWkQpFXFrnHHBfG73paKlJ3K
-         jHU8BRVHbMB7EyS5QLpD3LPV4NhMpSuPKI7ftKRRaF1sOhlZHZ+AR1q3H46jTklnn8qA
-         ZC2b0usbqS8BBOSXKEzuMXWQoyLSQUKxrsi57quyErEDbGl/Ot8Gjp6WEoob4p67OKdQ
-         /YnICL0iQD9LFj/17WuSXBs3qO13payAyWIC1RsLwdUTvYt5hHbEAMxD1GlWrGseic2H
-         5yIw==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=wE4o+xpP7qC5ZM2T6K+w7ErjUc3ZqW6TWu6cll9+WYc=;
+        b=XP91ZfbSqG1auuN6VZTCEWQxCGCaLdeylERIbGNxdInKi+XpiS7KbF1cakPqm4S9y2
+         iYs3K8KhFU/y66OKCB1Ba2Mdi4YT9TPxfkdQB3dQ/Xi19khdILAPjU5JmbwT/QZHfArT
+         fb8kA8Xdof5rVsQFhqKKXlKsgzD029BLiY6Jpnz77aO/owdBLLP9eqBOzGHa94Ezf94g
+         edP6ZLGcA4/A1Ry06iDNtZD1PRAdKOi66z9w0TY4+N7gFCsPaUHVkGv9+9tal0C1Enus
+         HCgMjU4cSwz9/i9RJszKAkQku+RhrBaJPubYkhKgrpdIxAeVCajV4U0TyQxSiicc73ff
+         JZPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=K7qZxmYfLYv/r7kuABEE517lpklycmtpYErMwpVXZKE=;
-        b=fMESg+GgqijfVdnJRzTlmMNb1fW9PeFUtwKpagyCELQYZoAdtmQr/xOjv8ZGKBELGQ
-         je4qchbPnipDgyrixK45OYSSfYGnpk85nfJD2592H0Z4DQos8k/3a4prS6HbDe4dn/G8
-         lAB7NFQkDAMmLE8IN7wBp0eWmQZY3TTToZhvrxliFCZgUfM4hxvY+HMknmJfmHWZm4oj
-         IVSQV/wmiWulevt1jAQYS6tBjKW7rUF6WHozto7Jb6tuEq2q3XFnDBIf6DMDvgnob62b
-         eQ7ULN7wkzrZa97cD84gxEFs9SF81K2aVeJDTCz9F9M7P+emKrqrv5pqI8wNaZeQzeka
-         jceg==
-X-Gm-Message-State: AOAM532iRzyC938/7SkTYQWNX36EGX2D6l2Wu7gC8C1uy6JXd3/8xBT4
-	h8NM9XSPlBm9m1Aj57HNkAIgzxPwP497jt3ydZY=
-X-Google-Smtp-Source: ABdhPJzfF4BhssamEeq52wqrUpsLUbku0rcvJiOnG0UTAVj++/Bl9NpsCgrdtKfVVb7Svx1cAyLQh7kzVL9dgRB76vo=
-X-Received: by 2002:ac8:72d6:: with SMTP id o22mr9072366qtp.53.1599758359243;
- Thu, 10 Sep 2020 10:19:19 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=wE4o+xpP7qC5ZM2T6K+w7ErjUc3ZqW6TWu6cll9+WYc=;
+        b=IuO3Q7i0lvxnDSWtF/10t/0LXL6CZWf7+HK42ljoh1uW22ZIvB2KqqTuPkRtYav6RS
+         vLlO64OOyYjuMif0MBXqjD3KTK9Nx8sE0hV7B609JZ3COYgDdWbC/vp0FNyweNLJVymz
+         SkkBtyXBSWMS0hx/OH4FQCyaNlvc2hzoTAiJfUqlxRsiQZ3zRmsZCd+ewlevi+qyd0fa
+         R4YwZYhO8d8QVJIvSjpZS+n7diFZF1zaAYr/ca44F4tHtJ3o6iGHhlUyvhsbNvb2eKUQ
+         Ez+Xkaza8yNX6AZaWY7bkcj3tmtwUsengm1NJtyrs2ZD5o+I+zPlxFpirUygF84pYYcV
+         10Vw==
+X-Gm-Message-State: AOAM530E/Qk+dYDqiLsfuYQLncIY5elR/77LiBvcFp/FCfCPQlEsR+dS
+	zlZtdXK1Ca7xK3wGjMtledtR3t5xp8ngCTamzyy3YUM3V5KR4w==
+X-Google-Smtp-Source: ABdhPJzsRDK7Fj9dr8/7tpjS8/rcerBDYkMsxFKx/7cLOeNMH6ggdLFQLxu+3SBVt//GVjbQPlyIy7grxZAJwjQNgYc=
+X-Received: by 2002:a1f:ecc3:: with SMTP id k186mr109033vkh.26.1599802598730;
+ Thu, 10 Sep 2020 22:36:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <MADEUP.163328BFD191E99D.22921@lists.yoctoproject.org>
-In-Reply-To: <MADEUP.163328BFD191E99D.22921@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Thu, 10 Sep 2020 10:18:53 -0700
-Message-ID: <CAMKF1srHH2rMbXymC735jrDmWtNhzt_6K_nd9p6uJ-_ZvJjnKw@mail.gmail.com>
-Subject: Re: [yocto] #sdk #yocto Appears SDK searching host for files that are only present on target side
-To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+From: kerenyi.nagy.zoltan@gmail.com
+Date: Fri, 11 Sep 2020 07:36:02 +0200
+Message-ID: <CAHwRhWbSTGiRK-LvMvJRH4r3uaSJQ9DJZekKrSjStOobT6GEGw@mail.gmail.com>
+Subject: vwdial
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000009bb13105af031110"
+
+--0000000000009bb13105af031110
 Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+First of all, thank you for accepting me to this mailing list.
+I got a Barix ipam400 OEM board, and now I've found myself in the situation
+that vwdial would not compile.
+
+The error message is this when bitBake:
+
+
+
+
+
+*ERROR: Nothing RPROVIDES 'vwdial' (but
+/home/kerenyiz/oe-core/build/../stuff/meta-barix-sdk/recipes-core/images/core-image-barix-sdk.bb
+<http://core-image-barix-sdk.bb> RDEPENDS on or otherwise requires it)NOTE:
+Runtime target 'vwdial' is unbuildable, removing...Missing or unbuildable
+dependency chain was: ['vwdial']ERROR: Required build target
+'core-image-barix-sdk' has no buildable providers.Missing or unbuildable
+dependency chain was: ['core-image-barix-sdk', 'vwdial']*
+
+I've visited openembedded and downloaded the latest (1.6) bb recipe and
+patch file, but I cant figure out what's wrong.
+Definitely the bb recipe file is there.
+
+Do you have any idea how to proceed?
+
+Thanks
+
+Zolee
+
+--0000000000009bb13105af031110
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-its looking for tools in sdk dir, which is normal. I wonder if your
-apps cmake files should be using CC or CLANGCC to do linking.
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"color:#333399">Hi,</=
+div><div class=3D"gmail_default" style=3D"color:#333399"><br></div><div cla=
+ss=3D"gmail_default" style=3D"color:#333399">First of all, thank you for ac=
+cepting me to this mailing list.</div><div class=3D"gmail_default" style=3D=
+"color:#333399">I got a Barix ipam400 OEM board, and now I&#39;ve found mys=
+elf in the situation that vwdial would not compile.</div><div class=3D"gmai=
+l_default" style=3D"color:#333399"><br></div><div class=3D"gmail_default" s=
+tyle=3D"color:#333399">The error message is this when bitBake:<br></div><di=
+v class=3D"gmail_default" style=3D"color:#333399"><br></div><div class=3D"g=
+mail_default" style=3D"color:#333399"><i>ERROR: Nothing RPROVIDES &#39;vwdi=
+al&#39; (but /home/kerenyiz/oe-core/build/../stuff/meta-barix-sdk/recipes-c=
+ore/images/<a href=3D"http://core-image-barix-sdk.bb">core-image-barix-sdk.=
+bb</a> RDEPENDS on or otherwise requires it)<br>NOTE: Runtime target &#39;v=
+wdial&#39; is unbuildable, removing...<br>Missing or unbuildable dependency=
+ chain was: [&#39;vwdial&#39;]<br>ERROR: Required build target &#39;core-im=
+age-barix-sdk&#39; has no buildable providers.<br>Missing or unbuildable de=
+pendency chain was: [&#39;core-image-barix-sdk&#39;, &#39;vwdial&#39;]</i><=
+/div><div class=3D"gmail_default" style=3D"color:#333399"><br></div><div cl=
+ass=3D"gmail_default" style=3D"color:#333399">I&#39;ve visited openembedded=
+ and downloaded the latest (1.6) bb recipe and patch file, but I cant figur=
+e out what&#39;s wrong.</div><div class=3D"gmail_default" style=3D"color:#3=
+33399">Definitely the bb recipe file is there.</div><div class=3D"gmail_def=
+ault" style=3D"color:#333399"><br></div><div class=3D"gmail_default" style=
+=3D"color:#333399">Do you have any idea how to proceed?</div><div class=3D"=
+gmail_default" style=3D"color:#333399"><br></div><div class=3D"gmail_defaul=
+t" style=3D"color:#333399">Thanks</div><div class=3D"gmail_default" style=
+=3D"color:#333399"><br></div><div class=3D"gmail_default" style=3D"color:#3=
+33399">Zolee<br></div><div class=3D"gmail_default" style=3D"color:#333399">=
+<br></div><div class=3D"gmail_default" style=3D"color:#333399"><br></div><d=
+iv class=3D"gmail_default" style=3D"color:#333399"><br></div></div>
 
-On Wed, Sep 9, 2020 at 8:58 AM Monsees, Steven C (US) via
-lists.yoctoproject.org
-<steven.monsees=3Dbaesystems.com@lists.yoctoproject.org> wrote:
->
->
->
-> Looking to understand why the SDK is searching the host/native (x86_64-p=
-okysdk-linux) side when it should be looking at the target side (corei7-64-=
-poky-linux) =E2=80=A6
->
->
->
-> All the =E2=80=9Ccrt=E2=80=9D files are present under the target side.
->
->
->
-> Can someone explain what might be miss-configured ?, or better, point me=
- to a possible patch ?
->
->
->
-> I have seen some talk on-line about similar issues, but no clear indicat=
-ion what the issue was, or how it was resolved=E2=80=A6
->
->
->
-> I am running Yocto clang 6.0.1, cmake 3.8.2, under =E2=80=9Crocko=E2=80=
-=9D, my SDK is a standard SDK, not extensible.
->
->
->
-> 11:31 smonsees@yix490016 ~/yocto/test/beignet-Release_v1.2/mybuild>make
->
-> Scanning dependencies of target gbeinterp
->
-> [  0%] Building CXX object backend/src/CMakeFiles/gbeinterp.dir/gbe_bin_=
-interpreter.cpp.o
->
-> [  0%] Linking CXX shared library libgbeinterp.so
->
-> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/=
-libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find =
-crti.o: No such file or directory
->
-> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/=
-libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find =
-crtbeginS.o: No such file or directory
->
-> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/=
-libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find =
--lstdc++
->
-> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/=
-libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find =
--lm
->
-> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/=
-libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find =
--lgcc_s
->
-> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/=
-libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find =
--lc
->
-> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/=
-libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find =
--lgcc_s
->
-> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/=
-libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find =
-crtendS.o: No such file or directory
->
-> /disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/=
-libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/7.3.0/real-ld: cannot find =
-crtn.o: No such file or directory
->
-> collect2: error: ld returned 1 exit status
->
-> make[2]: *** [backend/src/libgbeinterp.so] Error 1
->
-> make[1]: *** [backend/src/CMakeFiles/gbeinterp.dir/all] Error 2
->
-> make: *** [all] Error 2
->
-> 11:31 smonsees@yix490016 ~/yocto/test/beignet-Release_v1.2/mybuild>
->
->
->
-> Thanks,
->
-> Steve
->
->
->
->
->
->=20
+--0000000000009bb13105af031110--
