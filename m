@@ -1,272 +1,230 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.3156.1599809668390787413
+ by mx.groups.io with SMTP id smtpd.web11.3188.1599809864981312549
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Sep 2020 00:34:28 -0700
+ Fri, 11 Sep 2020 00:37:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=rchvlfST;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=fYSMBwhh;
  spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: rehsack@gmail.com)
-Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com [209.85.218.68])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 3CAF238C087B
-	for <yocto@yoctoproject.org>; Fri, 11 Sep 2020 00:34:27 -0700 (PDT)
-Received: by mail-ej1-f68.google.com with SMTP id p9so12458411ejf.6
-        for <yocto@yoctoproject.org>; Fri, 11 Sep 2020 00:34:27 -0700 (PDT)
+Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com [209.85.208.67])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id C4BA838C08CF
+	for <yocto@yoctoproject.org>; Fri, 11 Sep 2020 00:37:44 -0700 (PDT)
+Received: by mail-ed1-f67.google.com with SMTP id t16so8971474edw.7
+        for <yocto@yoctoproject.org>; Fri, 11 Sep 2020 00:37:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id;
-        bh=7IXMb58ADhzSni2GiyntuxjZXu3W80mzggBMJo9a/as=;
-        b=rchvlfSTpnIXK76BK2QHDLhzT6eUEdkbFuqF3wkUSsQES0w39gb6ADep39xwxLMKOj
-         14tPdYSAFKFuYMwPogRGnbxKI1mOfXncRczDtwJEaWVmUvEtRMmP4waRS7Mz7c1TBnGm
-         iih7roTLkriskktiRvEUBc8RGce5DwuCly5Q7P5FliyNYmWi0ncnM6YPAoyhIbGgc/6q
-         7jUvXdln1PWAUCfBZgLnCpwDx1vkF5/nVIZ1upIrtKeWkFG1+qs8D1tFW+IXwpVebMqb
-         hCBLRDmICmG70QNEWwjI2205WP0GDMUva3VBj3mJAqQjpRYraraYpxghOjWk87tI2c0U
-         plUQ==
+        bh=Q9YzJZqihxkVbRlOYAV2y6Jlw62hugEh9SLKr+ZOB8Q=;
+        b=fYSMBwhh16SJkKfn0sIqmwZBuXrhnhh/35saVPlpW2VSixBL/wlbTNhNmPpmwFGWlE
+         zGjEScRL/1avVY3gzy1nHbVc3yHDaC2b0D7aZOnjMyEUdgqsYCzBvXknJLOyy1SYOZIg
+         EQNoL+OuTKb/lJLvoNnHlKHsK9PpW2YrN8VuhOlpBTGPiNTF47977Qv5qXzpl+bh001t
+         BKjyDfQ/3CGsZK3zF1Hh/M26BvKnR6hQcKsANUKa28+OlnTZUGoL5DaCgdvZxop8mgZ2
+         SRcpvSnxwv4WiIQgrhUQ3mq0bR9/+mW5v0ica5VPcPYsVdChHWQKf5zW6Q6kPaLjP8KJ
+         tUyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
-        bh=7IXMb58ADhzSni2GiyntuxjZXu3W80mzggBMJo9a/as=;
-        b=XHIc58afKX5XzMNe42tzq4Ky0ZK9fu0zR8xjET7NoTpzCug2ogi0XrhQaEQoEWcO7L
-         xrgym+EIOJpmtjckC9CSU2D4GMFMooFuBDapP/Ebz3fLiP5/oNtJuylSwPu7IxMjYjp6
-         /4wezFyKxGnY8tl5yFN1AVghbHm+yYYQ30emSZudPvgqr4j+F43K1rPLdI7n+qipvYDT
-         O2zGPt8OBvvyFcwWdrVOQ2KgKJTeDiFKdrGEsgv3q3Cx47O38ZQ749cMzNDgqdngb5Cp
-         krY8FPUdiikWPjJD3Hagu2YkQaPH3kVsJMRI+0TDfC3uI0ER6A/StuRa4Tptw6TCZNp0
-         1F5w==
-X-Gm-Message-State: AOAM533Cz7WAXvzhlVEgnv/0RTbExQepcF6A5B+9yrl7cYs2YARJKdyJ
-	7tdYGKCNxUYotqpVaey8dG5QgePjNo0=
-X-Google-Smtp-Source: ABdhPJwI1/VQFn6BKQKEfyEwQgx3TBhdKMT4cC6q6byPHbx/jmjeL5aHaBy5XnyNStpjgfkrXi7ykQ==
-X-Received: by 2002:a17:906:ce3b:: with SMTP id sd27mr767758ejb.433.1599809665279;
-        Fri, 11 Sep 2020 00:34:25 -0700 (PDT)
+        bh=Q9YzJZqihxkVbRlOYAV2y6Jlw62hugEh9SLKr+ZOB8Q=;
+        b=RO8Ga6qXXJ8Bg7sDFt2nPtq+9h01zZNpsxJhbDgS8PzLgE6KwJWIMl9ELYArs5MPCo
+         o9tkjmejP4oQ53QmtBstDveR6lPItU/y59zN7y0L20LktZwXrZsqOV3glRaAJmqueEKd
+         niDN6NcGVrtZpfT7s46cGpm47K2WYbcoEHWNmG9h84Vjv1qmriTRLV5tYU0tPD3NXg87
+         V9Iqwvx2icXeXpVV6nKALexM7huI4WtKYf303WtsFuTH0Jww5SHOU+0w71ElAjGZDuOC
+         Ru7vwMXwfX27fb5wjofkvnp96nFwk3sAJQZAK5p4OuMx1WJbZU5F1xL13cvtahbGJCvB
+         pwIQ==
+X-Gm-Message-State: AOAM530+Dc3EVH5XKpEIlJ50zxvy9GTsBNnupF2EAowO4ZhrXQVIXbOb
+	/TjPVmXD/6y3hy72lVLQwXkx3B4dJUo=
+X-Google-Smtp-Source: ABdhPJzcLE9Lo+2pvMSfJ/AGiNkfQxW2WZx18aLr6vQWqtfJgO6GLYW6nNYXEULlFubUXHHOlt/GvQ==
+X-Received: by 2002:a05:6402:503:: with SMTP id m3mr699509edv.45.1599809863019;
+        Fri, 11 Sep 2020 00:37:43 -0700 (PDT)
 Received: from beaker.muppets.liwing.de (p5b25b0d4.dip0.t-ipconnect.de. [91.37.176.212])
-        by smtp.gmail.com with ESMTPSA id g11sm967792edj.85.2020.09.11.00.34.24
+        by smtp.gmail.com with ESMTPSA id v4sm974775eje.39.2020.09.11.00.37.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Sep 2020 00:34:24 -0700 (PDT)
+        Fri, 11 Sep 2020 00:37:42 -0700 (PDT)
 Sender: Jens Rehsack <rehsack@gmail.com>
 From: "Jens Rehsack" <rehsack@gmail.com>
 To: yocto@yoctoproject.org
 Cc: Jens Rehsack <sno@netbsd.org>
-Subject: [meta-security][PATCH v2] ibmswtpm2: update to 1637
-Date: Fri, 11 Sep 2020 09:34:08 +0200
-Message-Id: <20200911073408.16407-1-sno@NetBSD.org>
+Subject: [meta-security][PATCH] ibmtpm2tss: add recipe
+Date: Fri, 11 Sep 2020 09:37:32 +0200
+Message-Id: <20200911073732.16460-1-sno@NetBSD.org>
 X-Mailer: git-send-email 2.17.1
 
 From: Jens Rehsack <sno@netbsd.org>
 
-Update ibmswtpm2 from 1628 to 1637. Build 1637 Includes:
-* Increase NV memory size to match PC Client RSA 3072 requirements
-* Add and fix ACT support
-* Update Visual Studio files to 2019.
+Add recipe for companion of IBM Software TPM 2.0 - IBM's TPM 2.0 TSS.
+It's a user space TSS for TPM 2.0.
 
 Signed-off-by: Jens Rehsack <sno@netbsd.org>
 ---
- .../ibmswtpm2/files/fix-wrong-cast.patch      | 27 ++++++++++
- .../ibmswtpm2/files/remove_optimization.patch | 26 ----------
- .../ibmswtpm2/files/tune-makefile.patch       | 50 +++++++++++++++++++
- .../recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb  | 26 ----------
- .../recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb  | 39 +++++++++++++++
- 5 files changed, 116 insertions(+), 52 deletions(-)
- create mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/files/fix-wrong-cast.patch
- delete mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch
- create mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/files/tune-makefile.patch
- delete mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb
- create mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb
+ ...efile.am-expand-wildcards-in-prereqs.patch | 125 ++++++++++++++++++
+ .../ibmtpm2tss/ibmtpm2tss_1.5.0.bb            |  27 ++++
+ 2 files changed, 152 insertions(+)
+ create mode 100644 meta-tpm/recipes-tpm2/ibmtpm2tss/ibmtpm2tss/0001-utils-12-Makefile.am-expand-wildcards-in-prereqs.patch
+ create mode 100644 meta-tpm/recipes-tpm2/ibmtpm2tss/ibmtpm2tss_1.5.0.bb
 
-diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/files/fix-wrong-cast.patch b/meta-tpm/recipes-tpm2/ibmswtpm2/files/fix-wrong-cast.patch
+diff --git a/meta-tpm/recipes-tpm2/ibmtpm2tss/ibmtpm2tss/0001-utils-12-Makefile.am-expand-wildcards-in-prereqs.patch b/meta-tpm/recipes-tpm2/ibmtpm2tss/ibmtpm2tss/0001-utils-12-Makefile.am-expand-wildcards-in-prereqs.patch
 new file mode 100644
-index 0000000..f2938e0
+index 0000000..8b13fb6
 --- /dev/null
-+++ b/meta-tpm/recipes-tpm2/ibmswtpm2/files/fix-wrong-cast.patch
-@@ -0,0 +1,27 @@
-+Fix strict aliasing issue of gcc10
++++ b/meta-tpm/recipes-tpm2/ibmtpm2tss/ibmtpm2tss/0001-utils-12-Makefile.am-expand-wildcards-in-prereqs.patch
+@@ -0,0 +1,125 @@
++From 26091b7830d84a12308442b238652ee9475d407b Mon Sep 17 00:00:00 2001
++From: Jens Rehsack <sno@netbsd.org>
++Date: Fri, 11 Sep 2020 07:46:41 +0200
++Subject: [PATCH] utils{,12}/Makefile.am: expand wildcards in prereqs
 +
-+fixes:
-+
-+TpmFail.c: In function 'TpmLogFailure':
-+TpmFail.c:217:23: error: dereferencing type-punned pointer will break strict-aliasing rules [-Werror=strict-aliasing]
-+  217 |     s_failFunction = *(UINT32 *)&function; /* kgold */
-+      |                       ^~~~~~~~~~~~~~~~~~~
-+cc1: all warnings being treated as errors
++Expand wildcards of required sources to avoid errors like:
++make[2]: *** No rule to make target 'man/man1/*.1', needed by 'all-am'.  Stop.
++make[2]: *** Waiting for unfinished jobs....
 +
 +Upstream-Status: Submitted
 +
-+Signed-off-by: Jens Rehsack <sno@NetBSD.org>
++Signed-off-by: Jens Rehsack <sno@netbsd.org>
++---
++ utils/Makefile.am   | 75 +++++++++++++++++++++++++++++++++++++++++++--
++ utils12/Makefile.am |  8 ++++-
++ 2 files changed, 79 insertions(+), 4 deletions(-)
 +
-+Index: src/TpmFail.c
-+===================================================================
-+--- src.orig/TpmFail.c	2020-09-10 15:43:57.085063875 +0200
-++++ src/TpmFail.c	2020-09-10 15:48:35.563302634 +0200
-+@@ -214,7 +214,7 @@
-+     // On a 64-bit machine, this may truncate the address of the string
-+     // of the function name where the error occurred.
-+ #if FAIL_TRACE
-+-    s_failFunction = *(UINT32 *)&function;	/* kgold */
-++    memcpy(&s_failFunction, function, sizeof(uint32_t));	/* kgold */
-+     s_failLine = line;
-+ #else
-+     s_failFunction = 0;
-diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch b/meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch
-deleted file mode 100644
-index 2919e2e..0000000
---- a/meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Allow recipe to overide optimization.
--
--fixes:
--
--397 | #  warning _FORTIFY_SOURCE requires compiling with optimization (-O)
--|       |    ^~~~~~~
--| cc1: all warnings being treated as errors
--
--
--Upstream-Status: OE specific
--
--Signed-off-by: Armin Kuster <akuster808@gmail.com>
--
--Index: src/makefile
--===================================================================
----- src.orig/makefile
--+++ src/makefile
--@@ -43,7 +43,7 @@ CC = /usr/bin/gcc
-- CCFLAGS = -Wall  			\
-- 	-Wmissing-declarations -Wmissing-prototypes -Wnested-externs \
-- 	-Werror -Wsign-compare \
---	 -c -ggdb -O0 			\
--+	 -c -ggdb -O 			\
-- 	-DTPM_POSIX			\
-- 	-D_POSIX_			\
-- 	-DTPM_NUVOTON
-diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/files/tune-makefile.patch b/meta-tpm/recipes-tpm2/ibmswtpm2/files/tune-makefile.patch
-new file mode 100644
-index 0000000..eebddb9
---- /dev/null
-+++ b/meta-tpm/recipes-tpm2/ibmswtpm2/files/tune-makefile.patch
-@@ -0,0 +1,50 @@
-+1) Allow recipe to overide optimization.
-+
-+fixes:
-+
-+397 | #  warning _FORTIFY_SOURCE requires compiling with optimization (-O)
-+|       |    ^~~~~~~
-+| cc1: all warnings being treated as errors
-+
-+2) Allow recipe to override OE related compile-/link-flags
-+
-+fixes:
-+
-+ERROR: QA Issue: File /usr/bin/tpm_server in package ibmswtpm2 doesn't have GNU_HASH (didn't pass LDFLAGS?) [ldflags]
-+
-+Upstream-Status: OE specific
-+
-+Signed-off-by: Jens Rehsack <sno@NetBSD.org>
-+
-+Index: src/makefile
-+===================================================================
-+--- src.orig/makefile
-++++ src/makefile
-+@@ -38,12 +38,10 @@
-+ #################################################################################
++diff --git a/utils/Makefile.am b/utils/Makefile.am
++index 1e51fe3..170a26e 100644
++--- a/utils/Makefile.am
+++++ b/utils/Makefile.am
++@@ -81,9 +81,78 @@ libibmtssutils_la_LIBADD = libibmtss.la $(LIBCRYPTO_LIBS)
 + 
-+ 
-+-CC = /usr/bin/gcc
++ noinst_HEADERS = CommandAttributes.h imalib.h tssdev.h ntc2lib.h tssntc.h Commands_fp.h objecttemplates.h tssproperties.h cryptoutils.h Platform.h tssauth.h tsssocket.h ekutils.h eventlib.h tssccattributes.h
++ # install every header in ibmtss
++-nobase_include_HEADERS = ibmtss/*.h
 +-
-+ CCFLAGS = -Wall  			\
-+ 	-Wmissing-declarations -Wmissing-prototypes -Wnested-externs \
-+ 	-Werror -Wsign-compare \
-+-	 -c -ggdb -O0 			\
-++	 -c -ggdb -O 			\
-+ 	-DTPM_POSIX			\
-+ 	-D_POSIX_			\
-+ 	-DTPM_NUVOTON
-+@@ -79,11 +77,11 @@
-+ .PRECIOUS:	%.o
++-notrans_man_MANS = man/man1/*.1
+++nobase_include_HEADERS = ibmtss/ActivateCredential_fp.h ibmtss/ActivateIdentity_fp.h ibmtss/BaseTypes.h \
+++	ibmtss/CertifyCreation_fp.h ibmtss/Certify_fp.h ibmtss/CertifyX509_fp.h ibmtss/ChangeEPS_fp.h \
+++	ibmtss/ChangePPS_fp.h ibmtss/ClearControl_fp.h ibmtss/Clear_fp.h ibmtss/ClockRateAdjust_fp.h \
+++	ibmtss/ClockSet_fp.h ibmtss/Commit_fp.h ibmtss/ContextLoad_fp.h ibmtss/ContextSave_fp.h \
+++	ibmtss/CreateEndorsementKeyPair_fp.h ibmtss/Create_fp.h ibmtss/CreateLoaded_fp.h \
+++	ibmtss/CreatePrimary_fp.h ibmtss/CreateWrapKey_fp.h ibmtss/DictionaryAttackLockReset_fp.h \
+++	ibmtss/DictionaryAttackParameters_fp.h ibmtss/Duplicate_fp.h ibmtss/ECC_Parameters_fp.h \
+++	ibmtss/ECDH_KeyGen_fp.h ibmtss/ECDH_ZGen_fp.h ibmtss/EC_Ephemeral_fp.h ibmtss/EncryptDecrypt2_fp.h \
+++	ibmtss/EncryptDecrypt_fp.h ibmtss/EventSequenceComplete_fp.h ibmtss/EvictControl_fp.h ibmtss/Extend_fp.h \
+++	ibmtss/FlushContext_fp.h ibmtss/FlushSpecific_fp.h ibmtss/GetCapability12_fp.h ibmtss/GetCapability_fp.h \
+++	ibmtss/GetCommandAuditDigest_fp.h ibmtss/GetRandom_fp.h ibmtss/GetSessionAuditDigest_fp.h \
+++	ibmtss/GetTestResult_fp.h ibmtss/GetTime_fp.h ibmtss/Hash_fp.h ibmtss/HashSequenceStart_fp.h \
+++	ibmtss/HierarchyChangeAuth_fp.h ibmtss/HierarchyControl_fp.h ibmtss/HMAC_fp.h ibmtss/HMAC_Start_fp.h \
+++	ibmtss/Implementation.h ibmtss/Import_fp.h ibmtss/IncrementalSelfTest_fp.h ibmtss/LoadExternal_fp.h \
+++	ibmtss/Load_fp.h ibmtss/LoadKey2_fp.h ibmtss/MakeCredential_fp.h ibmtss/MakeIdentity_fp.h ibmtss/NTC_fp.h \
+++	ibmtss/NV_Certify_fp.h ibmtss/NV_ChangeAuth_fp.h ibmtss/NV_DefineSpace12_fp.h ibmtss/NV_DefineSpace_fp.h \
+++	ibmtss/NV_Extend_fp.h ibmtss/NV_GlobalWriteLock_fp.h ibmtss/NV_Increment_fp.h ibmtss/NV_Read_fp.h \
+++	ibmtss/NV_ReadLock_fp.h ibmtss/NV_ReadPublic_fp.h ibmtss/NV_ReadValueAuth_fp.h ibmtss/NV_ReadValue_fp.h \
+++	ibmtss/NV_SetBits_fp.h ibmtss/NV_UndefineSpace_fp.h ibmtss/NV_UndefineSpaceSpecial_fp.h ibmtss/NV_Write_fp.h \
+++	ibmtss/NV_WriteLock_fp.h ibmtss/NV_WriteValueAuth_fp.h ibmtss/NV_WriteValue_fp.h ibmtss/ObjectChangeAuth_fp.h \
+++	ibmtss/OIAP_fp.h ibmtss/OSAP_fp.h ibmtss/OwnerReadInternalPub_fp.h ibmtss/OwnerSetDisable_fp.h \
+++	ibmtss/Parameters12.h ibmtss/Parameters.h ibmtss/PCR_Allocate_fp.h ibmtss/PCR_Event_fp.h ibmtss/PCR_Extend_fp.h \
+++	ibmtss/PcrRead12_fp.h ibmtss/PCR_Read_fp.h ibmtss/PCR_Reset12_fp.h ibmtss/PCR_Reset_fp.h ibmtss/PCR_SetAuthPolicy_fp.h \
+++	ibmtss/PCR_SetAuthValue_fp.h ibmtss/PolicyAuthorize_fp.h ibmtss/PolicyAuthorizeNV_fp.h ibmtss/PolicyAuthValue_fp.h \
+++	ibmtss/PolicyCommandCode_fp.h ibmtss/PolicyCounterTimer_fp.h ibmtss/PolicyCpHash_fp.h ibmtss/PolicyDuplicationSelect_fp.h \
+++	ibmtss/PolicyGetDigest_fp.h ibmtss/PolicyLocality_fp.h ibmtss/PolicyNameHash_fp.h ibmtss/PolicyNV_fp.h \
+++	ibmtss/PolicyNvWritten_fp.h ibmtss/PolicyOR_fp.h ibmtss/PolicyPassword_fp.h ibmtss/PolicyPCR_fp.h \
+++	ibmtss/PolicyPhysicalPresence_fp.h ibmtss/PolicyRestart_fp.h ibmtss/PolicySecret_fp.h ibmtss/PolicySigned_fp.h \
+++	ibmtss/PolicyTemplate_fp.h ibmtss/PolicyTicket_fp.h ibmtss/PP_Commands_fp.h ibmtss/Quote2_fp.h ibmtss/Quote_fp.h \
+++	ibmtss/ReadClock_fp.h ibmtss/ReadPubek_fp.h ibmtss/ReadPublic_fp.h ibmtss/Rewrap_fp.h ibmtss/RSA_Decrypt_fp.h \
+++	ibmtss/RSA_Encrypt_fp.h ibmtss/SelfTest_fp.h ibmtss/SequenceComplete_fp.h ibmtss/SequenceUpdate_fp.h \
+++	ibmtss/SetAlgorithmSet_fp.h ibmtss/SetCommandCodeAuditStatus_fp.h ibmtss/SetPrimaryPolicy_fp.h ibmtss/Shutdown_fp.h \
+++	ibmtss/Sign12_fp.h ibmtss/Sign_fp.h ibmtss/StartAuthSession_fp.h ibmtss/Startup12_fp.h ibmtss/Startup_fp.h \
+++	ibmtss/StirRandom_fp.h ibmtss/TakeOwnership_fp.h ibmtss/TestParms_fp.h ibmtss/TPMB.h ibmtss/TpmBuildSwitches.h \
+++	ibmtss/tpmconstants12.h ibmtss/tpmstructures12.h ibmtss/tpmtypes12.h ibmtss/TPM_Types.h ibmtss/tsscrypto.h \
+++	ibmtss/tsscryptoh.h ibmtss/tsserror12.h ibmtss/tsserror.h ibmtss/tssfile.h ibmtss/tss.h ibmtss/tssmarshal12.h \
+++	ibmtss/tssmarshal.h ibmtss/tssprintcmd.h ibmtss/tssprint.h ibmtss/tssresponsecode.h ibmtss/tsstransmit.h \
+++	ibmtss/tssutils.h ibmtss/Unmarshal12_fp.h ibmtss/Unmarshal_fp.h ibmtss/Unseal_fp.h ibmtss/VerifySignature_fp.h \
+++	ibmtss/ZGen_2Phase_fp.h
+++
+++notrans_man_MANS = man/man1/tssactivatecredential.1 man/man1/tsscertify.1 man/man1/tsscertifycreation.1 \
+++	man/man1/tsscertifyx509.1 man/man1/tsschangeeps.1 man/man1/tsschangepps.1 man/man1/tssclear.1 \
+++	man/man1/tssclearcontrol.1 man/man1/tssclockrateadjust.1 man/man1/tssclockset.1 man/man1/tsscommit.1 \
+++	man/man1/tsscontextload.1 man/man1/tsscontextsave.1 man/man1/tsscreate.1 man/man1/tsscreateek.1 \
+++	man/man1/tsscreateekcert.1 man/man1/tsscreateloaded.1 man/man1/tsscreateprimary.1 \
+++	man/man1/tssdictionaryattacklockreset.1 man/man1/tssdictionaryattackparameters.1 man/man1/tssduplicate.1 \
+++	man/man1/tsseccparameters.1 man/man1/tssecephemeral.1 man/man1/tssencryptdecrypt.1 man/man1/tsseventextend.1 \
+++	man/man1/tsseventsequencecomplete.1 man/man1/tssevictcontrol.1 man/man1/tssflushcontext.1 man/man1/tssgetcapability.1 \
+++	man/man1/tssgetcommandauditdigest.1 man/man1/tssgetcryptolibrary.1 man/man1/tssgetrandom.1 \
+++	man/man1/tssgetsessionauditdigest.1 man/man1/tssgettestresult.1 man/man1/tssgettime.1 man/man1/tsshash.1 \
+++	man/man1/tsshashsequencestart.1 man/man1/tsshierarchychangeauth.1 man/man1/tsshierarchycontrol.1 \
+++	man/man1/tsshmac.1 man/man1/tsshmacstart.1 man/man1/tssimaextend.1 man/man1/tssimport.1 man/man1/tssimportpem.1 \
+++	man/man1/tssload.1 man/man1/tssloadexternal.1 man/man1/tssmakecredential.1 man/man1/tssntc2getconfig.1 \
+++	man/man1/tssntc2lockconfig.1 man/man1/tssntc2preconfig.1 man/man1/tssnvcertify.1 man/man1/tssnvchangeauth.1 \
+++	man/man1/tssnvdefinespace.1 man/man1/tssnvextend.1 man/man1/tssnvglobalwritelock.1 man/man1/tssnvincrement.1 \
+++	man/man1/tssnvread.1 man/man1/tssnvreadlock.1 man/man1/tssnvreadpublic.1 man/man1/tssnvsetbits.1 \
+++	man/man1/tssnvundefinespace.1 man/man1/tssnvundefinespacespecial.1 man/man1/tssnvwrite.1 man/man1/tssnvwritelock.1 \
+++	man/man1/tssobjectchangeauth.1 man/man1/tsspcrallocate.1 man/man1/tsspcrevent.1 man/man1/tsspcrextend.1 \
+++	man/man1/tsspcrread.1 man/man1/tsspcrreset.1 man/man1/tsspolicyauthorize.1 man/man1/tsspolicyauthorizenv.1 \
+++	man/man1/tsspolicyauthvalue.1 man/man1/tsspolicycommandcode.1 man/man1/tsspolicycountertimer.1 \
+++	man/man1/tsspolicycphash.1 man/man1/tsspolicyduplicationselect.1 man/man1/tsspolicygetdigest.1 \
+++	man/man1/tsspolicymaker.1 man/man1/tsspolicymakerpcr.1 man/man1/tsspolicynamehash.1 man/man1/tsspolicynv.1 \
+++	man/man1/tsspolicynvwritten.1 man/man1/tsspolicyor.1 man/man1/tsspolicypassword.1 man/man1/tsspolicypcr.1 \
+++	man/man1/tsspolicyrestart.1 man/man1/tsspolicysecret.1 man/man1/tsspolicysigned.1 man/man1/tsspolicytemplate.1 \
+++	man/man1/tsspolicyticket.1 man/man1/tsspowerup.1 man/man1/tssprintattr.1 man/man1/tsspublicname.1 \
+++	man/man1/tssquote.1 man/man1/tssreadclock.1 man/man1/tssreadpublic.1 man/man1/tssreturncode.1 \
+++	man/man1/tssrewrap.1 man/man1/tssrsadecrypt.1 man/man1/tssrsaencrypt.1 man/man1/tsssequencecomplete.1 \
+++	man/man1/tsssequenceupdate.1 man/man1/tsssetcommandcodeauditstatus.1 man/man1/tsssetprimarypolicy.1 \
+++	man/man1/tssshutdown.1 man/man1/tsssign.1 man/man1/tsssignapp.1 man/man1/tssstartauthsession.1 \
+++	man/man1/tssstartup.1 man/man1/tssstirrandom.1 man/man1/tsstimepacket.1 man/man1/tsstpm2pem.1 \
+++	man/man1/tsstpmcmd.1 man/man1/tsstpmpublic2eccpoint.1 man/man1/tssunseal.1 man/man1/tssverifysignature.1 \
+++	man/man1/tsswriteapp.1 man/man1/tsszgen2phase.1
 + 
-+ tpm_server:	$(OBJFILES)
-+-		$(CC) $(OBJFILES) $(LNFLAGS) -o tpm_server
-++		$(CCLD) $(OBJFILES) $(LDFLAGS) $(LNFLAGS) -o tpm_server
++ if CONFIG_TPM20
++ noinst_HEADERS += tss20.h tssauth20.h ibmtss/tssprintcmd.h
++diff --git a/utils12/Makefile.am b/utils12/Makefile.am
++index a01f47c..e9fe61e 100644
++--- a/utils12/Makefile.am
+++++ b/utils12/Makefile.am
++@@ -9,7 +9,13 @@ libibmtssutils12_la_CFLAGS = -I$(top_srcdir)/utils
++ # result: [current-age].age.revision
++ libibmtssutils12_la_LDFLAGS = -version-info @TSSLIB_VERSION_INFO@ ../utils/libibmtss.la
 + 
-+ clean:		
-+ 		rm -f *.o tpm_server *~
++-notrans_man_MANS = man/man1/*.1
+++notrans_man_MANS = man/man1/tss1activateidentity.1 man/man1/tss1createekcert.1 man/man1/tss1createendorsementkeypair.1 \
+++	man/man1/tss1createwrapkey.1 man/man1/tss1eventextend.1 man/man1/tss1extend.1 man/man1/tss1flushspecific.1 \
+++	man/man1/tss1getcapability.1 man/man1/tss1imaextend.1 man/man1/tss1loadkey2.1 man/man1/tss1makeekblob.1 \
+++	man/man1/tss1makeidentity.1 man/man1/tss1nvdefinespace.1 man/man1/tss1nvreadvalue.1 man/man1/tss1nvreadvalueauth.1 \
+++	man/man1/tss1nvwritevalue.1 man/man1/tss1nvwritevalueauth.1 man/man1/tss1oiap.1 man/man1/tss1osap.1 \
+++	man/man1/tss1ownerreadinternalpub.1 man/man1/tss1ownersetdisable.1 man/man1/tss1pcrread.1 man/man1/tss1quote2.1 \
+++	man/man1/tss1sign.1 man/man1/tss1startup.1 man/man1/tss1takeownership.1 man/man1/tss1tpminit.1
++ noinst_HEADERS = ekutils12.h
 + 
-+ %.o:		%.c
-+-		$(CC) $(CCFLAGS) $< -o $@
-++		$(CC) $(CCFLAGS) $(CFLAGS) $< -o $@
-+ 
-diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb
-deleted file mode 100644
-index 3373a30..0000000
---- a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb
-+++ /dev/null
-@@ -1,26 +0,0 @@
--SUMMARY = "IBM's Software TPM 2.0"
--LICENSE = "BSD"
--SECTION = "securty/tpm"
--LIC_FILES_CHKSUM = "file://../LICENSE;md5=1e023f61454ac828b4aa1bc4293f7d5f"
--
--DEPENDS = "openssl"
--
--SRC_URI = "https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm${PV}.tar.gz \
--           file://remove_optimization.patch \
--           "
--SRC_URI[md5sum] = "bfd3eca2411915f24de628b9ec36f259"
--SRC_URI[sha256sum] = "a8e874e7a1ae13a1290d7679d846281f72d0eb6a5e4cfbafca5297dbf4e29ea3"
--SRC_URI[sha1sum] = "7c8241a4e97a801eace9f0eea8cdda7c58114f7f"
--SRC_URI[sha384sum] = "eec25cc8ba0e3cb27d41ba4fa4c71d8158699953ccb61bb6d440236dcbd8f52b6954eaae9d640a713186e0b99311fd91"
--SRC_URI[sha512sum] = "ab47caa4406ba57c0afc6fadae304fc9ef5e3e125be0f2fb1955a419cf93cd5e9176e103f0b566825abc16cca00b795f98d2b407f0a2bf7b141ef4b025d907d0"
--
--S = "${WORKDIR}/src"
--
--do_compile () {
--   make CC='${CC}'
--}
--
--do_install () {
--   install -d ${D}/${bindir}
--   install -m 0755 tpm_server  ${D}/${bindir}
--}
-diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb
++ bin_PROGRAMS = activateidentity createendorsementkeypair createwrapkey extend flushspecific getcapability loadkey2 makeidentity nvdefinespace nvreadvalueauth nvreadvalue nvwritevalueauth nvwritevalue oiap osap ownerreadinternalpub ownersetdisable pcrread quote2 sign startup takeownership tpminit createekcert makeekblob eventextend imaextend
++-- 
++2.17.1
++
+diff --git a/meta-tpm/recipes-tpm2/ibmtpm2tss/ibmtpm2tss_1.5.0.bb b/meta-tpm/recipes-tpm2/ibmtpm2tss/ibmtpm2tss_1.5.0.bb
 new file mode 100644
-index 0000000..32afd37
+index 0000000..18ad7eb
 --- /dev/null
-+++ b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb
-@@ -0,0 +1,39 @@
-+SUMMARY = "IBM's Software TPM 2.0"
-+DESCRIPTION = "The software TPM 2.0 is targeted toward application development, \
-+education, and virtualization. \
-+\
-+The intent is that an application can be developed using the software TPM. \
-+The application should then run using a hardware TPM without changes. \
-+Advantages of this approach: \
-+* In contrast to a hardware TPM, it runs on many platforms and it's generally faster. \
-+* Application software errors are easily reversed by simply removing the TPM state and starting over. \
-+* Difficult crypto errors are quickly debugged by looking inside the TPM."
-+HOMEPAGE = "http://ibmswtpm.sourceforge.net/ibmswtpm2.html"
++++ b/meta-tpm/recipes-tpm2/ibmtpm2tss/ibmtpm2tss_1.5.0.bb
+@@ -0,0 +1,27 @@
++SUMMARY = "IBM's Software TPM 2.0 TSS"
++DESCRIPTION = "This is a user space TSS for TPM 2.0. It implements the \
++functionality equivalent to (but not API compatible with) the TCG TSS \
++working group's ESAPI, SAPI, and TCTI API's (and perhaps more) but with a \
++hopefully simpler interface. \
++It comes with over 110 'TPM tools' samples that can be used for scripted \
++apps, rapid prototyping, education, and debugging. \
++It also comes with a web based TPM interface, suitable for a demo to an \
++audience that is unfamiliar with TCG technology. It is also useful for \
++basic TPM management."
++HOMEPAGE = "http://ibmswtpm.sourceforge.net/ibmtss2.html"
 +LICENSE = "BSD"
 +SECTION = "securty/tpm"
-+LIC_FILES_CHKSUM = "file://../LICENSE;md5=1e023f61454ac828b4aa1bc4293f7d5f"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=1e023f61454ac828b4aa1bc4293f7d5f"
 +
-+DEPENDS = "openssl"
++DEPENDS = "openssl ibmswtpm2"
 +
-+SRC_URI = "https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm${PV}.tar.gz \
-+           file://tune-makefile.patch \
-+           file://fix-wrong-cast.patch \
++inherit autotools pkgconfig
++
++SRCREV = "aa6c6ec83793ba21782033c03439977c26d3cc87"
++SRC_URI = " git://git.code.sf.net/p/ibmtpm20tss/tss;nobranch=1 \
++           file://0001-utils-12-Makefile.am-expand-wildcards-in-prereqs.patch \
 +           "
-+SRC_URI[md5sum] = "43b217d87056e9155633925eb6ef749c"
-+SRC_URI[sha256sum] = "dd3a4c3f7724243bc9ebcd5c39bbf87b82c696d1c1241cb8e5883534f6e2e327"
-+SRC_URI[sha1sum] = "ab4b94079e57a86996991e8a2b749ce063e4ad3e"
-+SRC_URI[sha384sum] = "bbef16a934853ce78cba7ddc766aa9d7ef3cde3430a322b1be772bf3ad4bd6d413ae9c4de21bc1a4879d17dfe2aadc1d"
-+SRC_URI[sha512sum] = "007aa415cccf19a2bcf789c426727dc4032dcb04cc9d11eedc231d2add708c1134d3d5ee5cfbe7de68307c95fff7a30bd306fbd8d53c198a5ef348440440a6ed"
 +
-+S = "${WORKDIR}/src"
++EXTRA_OECONF = "--disable-tpm-1.2"
 +
-+CFLAGS += "-Wno-error=maybe-uninitialized"
-+
-+do_compile () {
-+   make CC='${CC}'
-+}
-+
-+do_install () {
-+   install -d ${D}/${bindir}
-+   install -m 0755 tpm_server  ${D}/${bindir}
-+}
++S = "${WORKDIR}/git"
 -- 
 2.17.1
 
