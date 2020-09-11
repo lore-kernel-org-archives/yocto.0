@@ -1,305 +1,209 @@
-Received: from 4.mo6.mail-out.ovh.net (4.mo6.mail-out.ovh.net [87.98.184.159])
- by mx.groups.io with SMTP id smtpd.web12.4040.1599814487114908810
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web11.5639.1599822202812909170
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Sep 2020 01:54:47 -0700
+ Fri, 11 Sep 2020 04:03:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 87.98.184.159, mailfrom: maciej.pijanowski@3mdeb.com)
-Received: from player771.ha.ovh.net (unknown [10.110.171.125])
-	by mo6.mail-out.ovh.net (Postfix) with ESMTP id A92FA225B3E
-	for <yocto@lists.yoctoproject.org>; Fri, 11 Sep 2020 10:54:44 +0200 (CEST)
-Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
-	(Authenticated sender: maciej.pijanowski@3mdeb.com)
-	by player771.ha.ovh.net (Postfix) with ESMTPSA id A28B416206A8E;
-	Fri, 11 Sep 2020 08:54:42 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-103G0057102a32b-c1ff-417a-a02f-09a60df23e94,
-                    FEA04CA934EAFC19CB9B611886D27DABA2B0533E) smtp.auth=maciej.pijanowski@3mdeb.com
-Subject: Re: [yocto] vwdial
-To: Zoltan Kerenyi Nagy <kerenyi.nagy.zoltan@gmail.com>,
- yocto@lists.yoctoproject.org
-References: <CAHwRhWbSTGiRK-LvMvJRH4r3uaSJQ9DJZekKrSjStOobT6GEGw@mail.gmail.com>
- <e1a91dcb-c79b-109e-9bf1-007ca69c49de@3mdeb.com>
- <CAHwRhWYMYCDAdD_i_ZsuRK+1WGdto0TYkzBXHkWgaTG2hVQCfQ@mail.gmail.com>
-From: "Maciej Pijanowski" <maciej.pijanowski@3mdeb.com>
-Message-ID: <d07b0c1d-08b5-2036-79d4-ffd46f0a9661@3mdeb.com>
-Date: Fri, 11 Sep 2020 10:54:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ dkim=fail reason="signature has expired" header.i=@baesystems.com header.s=trusted01 header.b=fYcZQNIk;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1599822203; x=1757502203;
+  h=from:to:cc:subject:date:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=+vryeZSssY9Td+GNPbGOPegbaIpUTPjKHKFdRhD3Nbc=;
+  b=fYcZQNIkQWr0PAO8qLsGGeHkvfpYTYmDMButkMo61FgrsXL8JHf4WM/h
+   BoVISrKaVY5IqUquIC3UJ6QYvK++OLdnXpfNzuGnaSQ1aQ7UIK6QvQUGS
+   CvYDbGJB7oZHzOovQ1SlB9mtqvxS7RSYSbf6kPoRaYq76yheYolV75wmo
+   g=;
+IronPort-PHdr: =?us-ascii?q?9a23=3A6iuaOh2lokJni5N1smDT+DRfVm0co7zxezQtwd8Z?=
+ =?us-ascii?q?sesUKfrxwZ3uMQTl6Ol3ixeRBMOHsqwC0reH+Pi/EUU7or+5+EgYd5JNUxJXwe?=
+ =?us-ascii?q?43pCcHRPC/NEvgMfTxZDY7FskRHHVs/nW8LFQHUJ2mPw6arXK99yMdFQviPgRp?=
+ =?us-ascii?q?OOv1BpTSj8Oq3Oyu5pHfeQpFiCe8bL9oMRm7rQHcusYKjYZgN6081gbHrnxUdu?=
+ =?us-ascii?q?pM2GhmP0iTnxHy5sex+J5s7SFdsO8/+sBDTKv3Yb02QaRXAzo6PW814tbrtQTY?=
+ =?us-ascii?q?QguU+nQcSGQWnQFWDAXD8Rr3Q43+sir+tup6xSmaIcj7Rq06VDi+86tmTgLjhT?=
+ =?us-ascii?q?wZPDAl7m7Yls1wjLpaoB2/oRx/35XUa5yROPZnY6/RYc8WSW9HU81MVSJOH5m8?=
+ =?us-ascii?q?YpMPAeQfIOhYs4fzqVgArRS8BAmjGOzhxTBTi3/qxqI60fgtHR3a0AEiGd8FrX?=
+ =?us-ascii?q?TarM/yNKcXSe25wq7GzTLFb/NNxzjy9pPIfgg8qv+RQbJ/b9TRxlcpFwjYkFib?=
+ =?us-ascii?q?tIjpMD2I2OgIvWSQ8u1tVfmzi2E5tQF+vD6vyt0pionOgIIV0U7L+jtiwIsuPt?=
+ =?us-ascii?q?K3UlB0YcWkEZtLqyGVKY52Qtg4T250vyY6z6QLtJimdycF1Jop3QTQa+Cbc4eW?=
+ =?us-ascii?q?+BLjUv6cLSt4in9nd7yzmRa//Eygx+HgS8W4zlZHozRLnNTPtX0A2QDe58uER/?=
+ =?us-ascii?q?Zy4kutxTiB2gTQ5+9LPU05larVJ4MvzLM2i5Edv0PDHirsl0X3iq+bbl4k+um1?=
+ =?us-ascii?q?5Ov5ebrmvIWTN4lohQH+KKghhsu/AeEgPgkOWGiU5fi81Lr7/U3jR7VKjOM5nb?=
+ =?us-ascii?q?XFsJzAIsQbvKG5DxdJ0oYn9hm/Fy2q0NMCnXkINF5EdwiIj4jtO17QPv/0F/a/?=
+ =?us-ascii?q?g1KikDdswf3NI77vAo3VI3TejLvtZ7hw5kxGxAYt09xS54hYB7ABLf7rR0P9qM?=
+ =?us-ascii?q?bUAxA2PgCux+vrEtZw24EYVGmSGKGWKrnSvkWN5u83JumMY5IatyjlJvg+4v7u?=
+ =?us-ascii?q?kWc5mVgAfam1xZcXaG63HvBhI0iBfXrtjc0OEWEPvgolSOHmlEGOXSJOa3qoWa?=
+ =?us-ascii?q?Iz/Cs3B5m8AojdXYCsgKeB3DulEZ1TfWBKEEyDEXDtd4mcWvcMbjydItN5nzAZ?=
+ =?us-ascii?q?SbStUYEs2BO0uAPk1bZqLvDY9ywYuJ770dh6/ezTlRU89TxuCMSd1nmAT3ponm?=
+ =?us-ascii?q?wWWT85wqZ/rVZ4yleE16h4mOJXGsJI5/5SSQg1L4DTz/d6CtDpRgLOYNKJSE28?=
+ =?us-ascii?q?Ttq6BjExS8o9w8USbEZlB9WikhfD0jKqAr8Si7OLGJs0/7nY33jwPMZ9123G2L?=
+ =?us-ascii?q?MhjlkhXsRPKWqmhrZl9wjUBY7GjVmWl7qweaQbxi7N+zTL8GyVoUsNUBJsSb6X?=
+ =?us-ascii?q?GjcbZ1DKtpLo4UjeSKe0DrYqORcHztSNbaQNe9rikVIBWfH4Jd6NXmSqhm2MCA?=
+ =?us-ascii?q?aUk7OQcJLxKSJa2CTGFFNCggcY4XGeLw88Cyy95WXEA3thUkPoaF/rtvR4s26x?=
+ =?us-ascii?q?HXMzmiWHaEsp6L244QIYg/aRUfxbirYJvyEJsDR4EVyn1tTdC5yLoA83L4tGZt?=
+ =?us-ascii?q?ZoqnJA03nUuhc5dqe8Ir5vgBY1O0RKhAKkn0FsFohenM5sqXQs1wd/MoqS2V5a?=
+ =?us-ascii?q?ZiiE0JXrfLbQLz+hr1iUd6fK1wSGg56t8aAV5aF98g27sQ=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2DkAwBRWFtf/0HhJQpfHAEBAQEBAQcBA?=
+ =?us-ascii?q?RIBAQQEAQFAgU+DGoE0CoQuiQqIJ4ECmTGBaQsBAQEBAQEBAQEIARgNCgQBAYR?=
+ =?us-ascii?q?LAheCDSU4EwIQAQEGAQEBAQEGBAGGSAyCNwUCAx8BBoMLAQEBAQMBIhEaByQMB?=
+ =?us-ascii?q?AIBCBEEAQEBAgIjAwICAiYJARQBCAgBAQQOBQgVBIMGgwuyfHaBMoQ7AYYXgQ4?=
+ =?us-ascii?q?qhU1LNQ2ILz6BEYJbBy4+gkUMCwMBAYEnARIBOIMAgj4iBJAxgnCjXQcDgmWIa?=
+ =?us-ascii?q?4p9hkYqgwmBJ4hLk2WZSINjkGOEKQIEAgQFAhWBa4EKcHCDOQkWMRcCDY4qGBS?=
+ =?us-ascii?q?DOoJZgjuFQnQCATQCBgoBAQMJjWpcgREBAQ?=
+X-IPAS-Result: =?us-ascii?q?A2DkAwBRWFtf/0HhJQpfHAEBAQEBAQcBARIBAQQEAQFAgU+?=
+ =?us-ascii?q?DGoE0CoQuiQqIJ4ECmTGBaQsBAQEBAQEBAQEIARgNCgQBAYRLAheCDSU4EwIQA?=
+ =?us-ascii?q?QEGAQEBAQEGBAGGSAyCNwUCAx8BBoMLAQEBAQMBIhEaByQMBAIBCBEEAQEBAgI?=
+ =?us-ascii?q?jAwICAiYJARQBCAgBAQQOBQgVBIMGgwuyfHaBMoQ7AYYXgQ4qhU1LNQ2ILz6BE?=
+ =?us-ascii?q?YJbBy4+gkUMCwMBAYEnARIBOIMAgj4iBJAxgnCjXQcDgmWIa4p9hkYqgwmBJ4h?=
+ =?us-ascii?q?Lk2WZSINjkGOEKQIEAgQFAhWBa4EKcHCDOQkWMRcCDY4qGBSDOoJZgjuFQnQCA?=
+ =?us-ascii?q?TQCBgoBAQMJjWpcgREBAQ?=
+X-IronPort-AV: E=Sophos;i="5.76,415,1592870400"; 
+   d="scan'208";a="309184827"
+X-IronPort-AV: E=Sophos;i="5.76,415,1592870400"; 
+   d="scan'208";a="84878492"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: Leon Woestenberg <leon@sidebranch.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] #sdk #yocto Appears SDK searching host for files that are only present on target side
+Thread-Topic: [yocto] #sdk #yocto Appears SDK searching host for files that
+ are only present on target side
+Thread-Index: AdaGwB/KGZBqstnvRzSknWqboLZIrQAaSh+AABY4hAAAKz5fAAABKpYw
+Date: Fri, 11 Sep 2020 11:02:58 +0000
+In-Reply-To: <CAMjhiJiehQOgjUYdgXsEPvXT7wrzTTcbPb0UsireZEh_tOr_fg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.9.87]
 MIME-Version: 1.0
-In-Reply-To: <CAHwRhWYMYCDAdD_i_ZsuRK+1WGdto0TYkzBXHkWgaTG2hVQCfQ@mail.gmail.com>
-X-Ovh-Tracer-Id: 4274760475479453190
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduiedrudehledgudduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtsegrtderredtfeejnecuhfhrohhmpeforggtihgvjhcurfhijhgrnhhofihskhhiuceomhgrtghivghjrdhpihhjrghnohifshhkihesfehmuggvsgdrtghomheqnecuggftrfgrthhtvghrnhepheefvdetvddugffgheeiueejvddvteeileektdefteegjeehgedvvefhkefguefgnecuffhomhgrihhnpeeiuddrsggspdgtohhrvgdqihhmrghgvgdqsggrrhhigidqshgukhdrsggspdefmhguvggsrdgtohhmpdihohgtthhophhrohhjvggtthdrohhrghenucfkpheptddrtddrtddrtddpkeehrddvvddvrdduudejrddvvddvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeejuddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhg
-Content-Type: multipart/alternative;
- boundary="------------45A22A5B86B5CC904407E967"
+Message-ID: <MADEUP.1633B5D20250DB51.2201@lists.yoctoproject.org>
 Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---------------45A22A5B86B5CC904407E967
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-
-On 11.09.2020 10:43, Zoltan Kerenyi Nagy wrote:
-> Hi, thanks, yes it was a misspelling, however it's still broken:
->
-> /NOTE: Resolving any missing task queue dependencies
-> ERROR: Nothing PROVIDES 'wvstreams' (but 
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-connectivity/wvdial/wvdial_1.61.bb 
-> <http://wvdial_1.61.bb> DEPENDS on or otherwise requires it)
-> ERROR: wvstreams was skipped: Recipe is blacklisted: BROKEN: fails to 
-> build with gcc-6 - the recipe will be removed on 2017-09-01 unless the 
-> issue is fixed
-> NOTE: Runtime target 'wvdial' is unbuildable, removing...
-> Missing or unbuildable dependency chain was: ['wvdial', 'wvstreams']
-> ERROR: Required build target 'core-image-barix-sdk' has no buildable 
-> providers.
-> Missing or unbuildable dependency chain was: ['core-image-barix-sdk', 
-> 'wvdial', 'wvstreams']/
-
-
-You should keep list on the copy while responding. It looks like you 
-have some old Yocto revision
-and pulled in one recipe from master to it? Which Yocto revision is that?
-You can't expect that things will **just work** when doing such stuff.
-
-The error produced is pretty descriptive.
-
->
-> On Fri, 11 Sep 2020 at 07:44, Maciej Pijanowski 
-> <maciej.pijanowski@3mdeb.com <mailto:maciej.pijanowski@3mdeb.com>> wrote:
->
->
->     On 11.09.2020 07:36, Zoltan Kerenyi Nagy wrote:
->>     Hi,
->>
->>     First of all, thank you for accepting me to this mailing list.
->>     I got a Barix ipam400 OEM board, and now I've found myself in the
->>     situation that vwdial would not compile.
->>
->>     The error message is this when bitBake:
->>
->>     /ERROR: Nothing RPROVIDES 'vwdial' (but
->>     /home/kerenyiz/oe-core/build/../stuff/meta-barix-sdk/recipes-core/images/core-image-barix-sdk.bb
->>     <http://core-image-barix-sdk.bb> RDEPENDS on or otherwise
->>     requires it)
->>     NOTE: Runtime target 'vwdial' is unbuildable, removing...
->>     Missing or unbuildable dependency chain was: ['vwdial']
->>     ERROR: Required build target 'core-image-barix-sdk' has no
->>     buildable providers.
->>     Missing or unbuildable dependency chain was:
->>     ['core-image-barix-sdk', 'vwdial']/
->>
->>     I've visited openembedded and downloaded the latest (1.6) bb
->>     recipe and patch file, but I cant figure out what's wrong.
->>     Definitely the bb recipe file is there.
->>
->>     Do you have any idea how to proceed?
->     Yes, you got the recipe name wrong. It's wvdial
->>
->>     Thanks
->>
->>     Zolee
->>
->>
->>
->>
->     -- 
->     Maciej Pijanowski
->     Embedded Systems Engineer
->     GPG: 9963C36AAC3B2B46
->     https://3mdeb.com  | @3mdeb_com
->
->     
->
--- 
-Maciej Pijanowski
-Embedded Systems Engineer
-GPG: 9963C36AAC3B2B46
-https://3mdeb.com | @3mdeb_com
-
-
---------------45A22A5B86B5CC904407E967
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 11.09.2020 10:43, Zoltan Kerenyi
-      Nagy wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAHwRhWYMYCDAdD_i_ZsuRK+1WGdto0TYkzBXHkWgaTG2hVQCfQ@mail.gmail=
-.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUT=
-F-8">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_default" style=3D"color:#333399">Hi, thanks, y=
-es
-          it was a misspelling, however it's still broken:</div>
-        <div class=3D"gmail_default" style=3D"color:#333399"><br>
-        </div>
-        <div class=3D"gmail_default" style=3D"color:#333399"><i>NOTE:
-            Resolving any missing task queue dependencies<br>
-            ERROR: Nothing PROVIDES 'wvstreams' (but
-/home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-co=
-nnectivity/wvdial/<a
-              href=3D"http://wvdial_1.61.bb" moz-do-not-send=3D"true">wvdi=
-al_1.61.bb</a>
-            DEPENDS on or otherwise requires it)<br>
-            ERROR: wvstreams was skipped: Recipe is blacklisted: BROKEN:
-            fails to build with gcc-6 - the recipe will be removed on
-            2017-09-01 unless the issue is fixed<br>
-            NOTE: Runtime target 'wvdial' is unbuildable, removing...<br>
-            Missing or unbuildable dependency chain was: ['wvdial',
-            'wvstreams']<br>
-            ERROR: Required build target 'core-image-barix-sdk' has no
-            buildable providers.<br>
-            Missing or unbuildable dependency chain was:
-            ['core-image-barix-sdk', 'wvdial', 'wvstreams']</i></div>
-      </div>
-    </blockquote>
-    <p><br>
-    </p>
-    <p>You should keep list on the copy while responding. It looks like
-      you have some old Yocto revision<br>
-      and pulled in one recipe from master to it? Which Yocto revision
-      is that?<br>
-      You can't expect that things will **just work** when doing such
-      stuff.<br>
-      <br>
-      The error produced is pretty descriptive.<br>
-    </p>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAHwRhWYMYCDAdD_i_ZsuRK+1WGdto0TYkzBXHkWgaTG2hVQCfQ@mail.gmail=
-.com"><br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Fri, 11 Sep 2020 at 07:44=
-,
-          Maciej Pijanowski &lt;<a
-            href=3D"mailto:maciej.pijanowski@3mdeb.com"
-            moz-do-not-send=3D"true">maciej.pijanowski@3mdeb.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div>
-            <p><br>
-            </p>
-            <div>On 11.09.2020 07:36, Zoltan Kerenyi Nagy wrote:<br>
-            </div>
-            <blockquote type=3D"cite">
-              <div dir=3D"ltr">
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-">Hi,</div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-"><br>
-                </div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-">First
-                  of all, thank you for accepting me to this mailing
-                  list.</div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-">I
-                  got a Barix ipam400 OEM board, and now I've found
-                  myself in the situation that vwdial would not compile.</=
-div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-"><br>
-                </div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-">The
-                  error message is this when bitBake:<br>
-                </div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-"><br>
-                </div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-"><i>ERROR:
-                    Nothing RPROVIDES 'vwdial' (but
-/home/kerenyiz/oe-core/build/../stuff/meta-barix-sdk/recipes-core/images/<=
-a
-                      href=3D"http://core-image-barix-sdk.bb"
-                      target=3D"_blank" moz-do-not-send=3D"true">core-imag=
-e-barix-sdk.bb</a>
-                    RDEPENDS on or otherwise requires it)<br>
-                    NOTE: Runtime target 'vwdial' is unbuildable,
-                    removing...<br>
-                    Missing or unbuildable dependency chain was:
-                    ['vwdial']<br>
-                    ERROR: Required build target 'core-image-barix-sdk'
-                    has no buildable providers.<br>
-                    Missing or unbuildable dependency chain was:
-                    ['core-image-barix-sdk', 'vwdial']</i></div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-"><br>
-                </div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-">I've
-                  visited openembedded and downloaded the latest (1.6)
-                  bb recipe and patch file, but I cant figure out what's
-                  wrong.</div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-">Definitely
-                  the bb recipe file is there.</div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-"><br>
-                </div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-">Do
-                  you have any idea how to proceed?</div>
-              </div>
-            </blockquote>
-            Yes, you got the recipe name wrong. It's wvdial<br>
-            <blockquote type=3D"cite">
-              <div dir=3D"ltr">
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-"><br>
-                </div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-">Thanks</div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-"><br>
-                </div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-">Zolee<br>
-                </div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-"><br>
-                </div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-"><br>
-                </div>
-                <div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-"><br>
-                </div>
-              </div>
-              <br>
-              <fieldset></fieldset>
-            </blockquote>
-            <pre cols=3D"72">--=20
-Maciej Pijanowski
-Embedded Systems Engineer
-GPG: 9963C36AAC3B2B46
-<a href=3D"https://3mdeb.com" target=3D"_blank" moz-do-not-send=3D"true">h=
-ttps://3mdeb.com</a> | @3mdeb_com</pre>
-          </div>
-          <br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <pre class=3D"moz-signature" cols=3D"72">--=20
-Maciej Pijanowski
-Embedded Systems Engineer
-GPG: 9963C36AAC3B2B46
-<a class=3D"moz-txt-link-freetext" href=3D"https://3mdeb.com">https://3mde=
-b.com</a> | @3mdeb_com</pre>
-  </body>
-</html>
-
---------------45A22A5B86B5CC904407E967--
+DQpMZW9uOg0KDQpUaGFuayB5b3UgZm9yIHJlc3BvbmRpbmcsIGhvd2V2ZXIgSSBhbSBhbHJlYWR5
+IGRvaW5nIHRoZXNlIHN0ZXBzIGFuZCBlbnZpcm9ubWVudCBhcHBlYXJzIHRvIGJlIHNldHRpbmcg
+dXAgY29ycmVjdGx5Li4uIG15IHByb2JsZW0gc2VlbXMgdG8gd2hlbiBydW5uaW5nIG1ha2UgYWZ0
+ZXIgY29uZmlnLg0KDQpJIHRvbyBhbSB1c2luZyBnY2MgY3VycmVudGx5LCBJIGRvIG5vdCBzZWVt
+IHRvIGhhdmUgYW4gaXNzdWUgY29tcGlsaW5nIHNtYWxsIHNpbXBsZSBwcm9ncmFtcyBsaWtlIGhl
+bGxvLCBmaWJvbm5hY2ksIGV0Yy4NCg0KVGhlcmUgaXMgc29tZXRoaW5nIGdvaW5nIGJldHdlZW4g
+dGhlIFNESy9jbWFrZS4uLg0KDQpJIGFtIGdvaW5nIHRvIHRyeSB1c2luZyBjbGFuZiBhbmQgc2Vl
+IGlmIGl0IGJlaGF2ZXMgdGhlIHNhbWUgd2F5IHRvZGF5Lg0KDQpUaGFua3MgYWdhaW4sDQpTdGV2
+ZQ0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogTGVvbiBXb2VzdGVuYmVyZyBb
+bWFpbHRvOmxlb25Ac2lkZWJyYW5jaC5jb21dIA0KU2VudDogRnJpZGF5LCBTZXB0ZW1iZXIgMTEs
+IDIwMjAgMzozMiBBTQ0KVG86IE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgPHN0ZXZlbi5tb25zZWVz
+QGJhZXN5c3RlbXMuY29tPg0KQ2M6IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClN1Ympl
+Y3Q6IFJlOiBbeW9jdG9dICNzZGsgI3lvY3RvIEFwcGVhcnMgU0RLIHNlYXJjaGluZyBob3N0IGZv
+ciBmaWxlcyB0aGF0IGFyZSBvbmx5IHByZXNlbnQgb24gdGFyZ2V0IHNpZGUNCg0KKioqIFdBUk5J
+TkcgKioqDQpFWFRFUk5BTCBFTUFJTCAtLSBUaGlzIG1lc3NhZ2Ugb3JpZ2luYXRlcyBmcm9tIG91
+dHNpZGUgb3VyIG9yZ2FuaXphdGlvbi4NCg0KDQpIZWxsbyBTdGV2ZW4sDQoNCnlvdSBtZW50aW9u
+IHlvdSB1c2UgQ01ha2Ugd2l0aCB0aGUgWW9jdG8gKHN0YW5kYXJkKSBTREsuDQoNCkFmdGVyIHlv
+dSBzb3VyY2VkIHRoZSBTREsgZW52aXJvbm1lbnQgc2NyaXB0LCB3aGF0IGlzIHRoZSBvdXRwdXQg
+b2YgIndoaWNoIGNtYWtlIiA/DQoNCkRvIHlvdSB1c2UgdGhlIGNtYWtlIHRvb2xjaGFpbiBjb25m
+aWd1cmF0aW9uIGZpbGUgcHJvdmlkZWQgYnkgdGhlIFNESz8NCihDTUFLRV9UT09MQ0hBSU5fRklM
+RSkNCg0KSW4gbXkgY29uZi9sb2NhbC5jb25mIEkgbWFrZSBzdXJlIEkgaGF2ZSBhIG5hdGl2ZSBj
+bWFrZSBpbmNsdWRlZCBpbiB0aGUgU0RLOg0KDQojIERvZXMgbm90IHdvcmssIHdpbGwgZGVzdHJv
+eSBUT09MQ0hBSU5fSE9TVF9UQVNLICNUT09MQ0hBSU5fSE9TVF9UQVNLICs9ICJuYXRpdmVzZGst
+Y21ha2UiDQojIFRoaXMgaXMgYSB3b3JrLWFyb3VuZCAod2UgbmVlZCB0byBleHRyYSBzcGFjZSBo
+ZXJlIGJlY2F1c2UgX2FwcGVuZCB3aWxsIG5vdCBhZGQgaXQgZm9yIHVzKS4NClRPT0xDSEFJTl9I
+T1NUX1RBU0tfYXBwZW5kID0gIiBuYXRpdmVzZGstY21ha2UiDQoNCkFuZCB0aGlzIGlzIGhvdyBJ
+IGNvbXBpbGUgYW4gYXBwbGljYXRpb24gdXNpbmcgU0RLIGFuZCBDTWFrZToNCg0KICAgICAgICAo
+c291cmNlIC90bXAvb2Utc2RrLWNtYWtlL2Vudmlyb25tZW50LXNldHVwLWNvcmUyLTY0LW9lLWxp
+bnV4LW11c2wgJiYgXA0KICAgICAgICBjZCBteWFwcC1jbWFrZSAmJiBcDQogICAgICAgIG1rZGly
+IC1wIGJ1aWxkX3NkayAmJiBcDQogICAgICAgIGNkIGJ1aWxkX3NkayAmJiBcDQogICAgICAgIGNt
+YWtlIC1EQ01BS0VfVE9PTENIQUlOX0ZJTEU9JCRPRUNPUkVfTkFUSVZFX1NZU1JPT1QvdXNyL3No
+YXJlL2NtYWtlL09FVG9vbGNoYWluQ29uZmlnLmNtYWtlDQotRENNQUtFX1ZFUkJPU0VfTUFLRUZJ
+TEU9MSAuIC4uICYmIFwNCiAgICAgICAgbWFrZSkNCg0KKEkgYW0gdXNpbmcgZ2NjLCBJIEkgd2ls
+bCB2ZXJpZnkgdGhpcyBzZXR1cCBpZiBJIHN3aXRjaCB0byBjbGFuZy4pDQoNClJlZ2FyZHMsDQot
+LQ0KTGVvbiBXb2VzdGVuYmVyZw0KbGVvbkBzaWRlYnJhbmNoLmNvbQ0KTTogKzMxIDYgNDcyIDMw
+IDM3Mg0KDQpTaWRlYnJhbmNoIEVtYmVkZGVkIFN5c3RlbXMNCkVpbmRob3ZlbiwgVGhlIE5ldGhl
+cmxhbmRzDQpodHRwOi8vd3d3LnNpZGVicmFuY2guY29tDQoNCk9uIFRodSwgU2VwIDEwLCAyMDIw
+IGF0IDEyOjUzIFBNIE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgdmlhIGxpc3RzLnlvY3RvcHJvamVj
+dC5vcmcgPHN0ZXZlbi5tb25zZWVzPWJhZXN5c3RlbXMuY29tQGxpc3RzLnlvY3RvcHJvamVjdC5v
+cmc+IHdyb3RlOg0KPg0KPg0KPiBmeWkuLi4NCj4NCj4gSSBhbSB1c2luZyBDTWFrZSB3aXRoIEdO
+VSwgdGhhdCBpcyB3aGF0IGlzIHJlcXVpcmVkIGZvciB0aGUgYnVpbGQuDQo+DQo+IEkgZG8gc291
+cmNlIHRoZSBTREsgZW52aXJvbm1lbnQgc2NyaXB0IHByaW9yIHRvIGF0dGVtcHRpbmcgYnVpbGQu
+DQo+DQo+IEhlcmUgaXMgbXkgY3VycmVudCBlbnZpcm9ubWVudC1zZXR1cC1jb3JlaTctNjQtcG9r
+eS1saW51eCBzY3JpcHQgY3JlYXRlZCBieSBTREs6DQo+DQo+ICMgQ2hlY2sgZm9yIExEX0xJQlJB
+UllfUEFUSCBiZWluZyBzZXQsIHdoaWNoIGNhbiBicmVhayBTREsgYW5kIA0KPiBnZW5lcmFsbHkg
+aXMgYSBiYWQgcHJhY3RpY2UgIyANCj4gaHR0cDovL3RsZHAub3JnL0hPV1RPL1Byb2dyYW0tTGli
+cmFyeS1IT1dUTy9zaGFyZWQtbGlicmFyaWVzLmh0bWwjQUVOOA0KPiAwICMgaHR0cDovL3hhaGxl
+ZS5pbmZvL1VuaXhSZXNvdXJjZV9kaXIvXy9sZHBhdGguaHRtbA0KPiAjIE9ubHkgZGlzYWJsZSB0
+aGlzIGNoZWNrIGlmIHlvdSBhcmUgYWJzb2x1dGVseSBrbm93IHdoYXQgeW91IGFyZSBkb2luZyEN
+Cj4gaWYgWyAhIC16ICIkTERfTElCUkFSWV9QQVRIIiBdOyB0aGVuDQo+ICAgICBlY2hvICJZb3Vy
+IGVudmlyb25tZW50IGlzIG1pc2NvbmZpZ3VyZWQsIHlvdSBwcm9iYWJseSBuZWVkIHRvICd1bnNl
+dCBMRF9MSUJSQVJZX1BBVEgnIg0KPiAgICAgZWNobyAiYnV0IHBsZWFzZSBjaGVjayB3aHkgdGhp
+cyB3YXMgc2V0IGluIHRoZSBmaXJzdCBwbGFjZSBhbmQgdGhhdCBpdCdzIHNhZmUgdG8gdW5zZXQu
+Ig0KPiAgICAgZWNobyAiVGhlIFNESyB3aWxsIG5vdCBvcGVyYXRlIGNvcnJlY3RseSBpbiBtb3N0
+IGNhc2VzIHdoZW4gTERfTElCUkFSWV9QQVRIIGlzIHNldC4iDQo+ICAgICBlY2hvICJGb3IgbW9y
+ZSByZWZlcmVuY2VzIHNlZToiDQo+ICAgICBlY2hvICIgIGh0dHA6Ly90bGRwLm9yZy9IT1dUTy9Q
+cm9ncmFtLUxpYnJhcnktSE9XVE8vc2hhcmVkLWxpYnJhcmllcy5odG1sI0FFTjgwIg0KPiAgICAg
+ZWNobyAiICBodHRwOi8veGFobGVlLmluZm8vVW5peFJlc291cmNlX2Rpci9fL2xkcGF0aC5odG1s
+Ig0KPiAgICAgcmV0dXJuIDENCj4gZmkNCj4gZXhwb3J0IFNZU1JPT1RTPS9lZGUvc21vbnNlZXMv
+eW9jdG8vdGVzdFNESy9zeXNyb290cw0KPiBleHBvcnQgDQo+IFNES1RBUkdFVFNZU1JPT1Q9L2Rp
+c2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8vdGVzdFNESy9zeXNyb290cy9jb3JlaTcNCj4gLTY0
+LXBva3ktbGludXggZXhwb3J0IA0KPiBQQVRIPS9kaXNrMC9zY3JhdGNoL3Ntb25zZWVzL3lvY3Rv
+L3Rlc3RTREsvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGluDQo+IHV4L3Vzci9iaW46L2Rpc2sw
+L3NjcmF0Y2gvc21vbnNlZXMveW9jdG8vdGVzdFNESy9zeXNyb290cy94ODZfNjQtcG9reXMNCj4g
+ZGstbGludXgvdXNyL3NiaW46L2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8vdGVzdFNESy9z
+eXNyb290cy94ODZfNg0KPiA0LXBva3lzZGstbGludXgvYmluOi9kaXNrMC9zY3JhdGNoL3Ntb25z
+ZWVzL3lvY3RvL3Rlc3RTREsvc3lzcm9vdHMveDg2DQo+IF82NC1wb2t5c2RrLWxpbnV4L3NiaW46
+L2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8vdGVzdFNESy9zeXNyb290cy8NCj4geDg2XzY0
+LXBva3lzZGstbGludXgvdXNyL2Jpbi8uLi94ODZfNjQtcG9reXNkay1saW51eC9iaW46L2Rpc2sw
+L3NjcmF0Yw0KPiBoL3Ntb25zZWVzL3lvY3RvL3Rlc3RTREsvc3lzcm9vdHMveDg2XzY0LXBva3lz
+ZGstbGludXgvdXNyL2Jpbi94ODZfNjQtDQo+IHBva3ktbGludXg6L2Rpc2swL3NjcmF0Y2gvc21v
+bnNlZXMveW9jdG8vdGVzdFNESy9zeXNyb290cy94ODZfNjQtcG9reXMNCj4gZGstbGludXgvdXNy
+L2Jpbi94ODZfNjQtcG9reS1saW51eC1tdXNsOi9kaXNrMC9zY3JhdGNoL3Ntb25zZWVzL3lvY3Rv
+Lw0KPiB0ZXN0U0RLL3N5c3Jvb3RzL2NvcmVpNy02NC1wb2t5LWxpbnV4L3Vzci9saWIvLi4vbGli
+LzovZGlzazAvc2NyYXRjaC9zDQo+IG1vbnNlZXMveW9jdG8vdGVzdFNESy9zeXNyb290cy9jb3Jl
+aTctNjQtcG9reS1saW51eC91c3IvbGliLy4uL2xpYi94ODYNCj4gXzY0LXBva3ktbGludXgvNy4z
+LjAvOiRQQVRIIGV4cG9ydCANCj4gUEtHX0NPTkZJR19TWVNST09UX0RJUj0kU0RLVEFSR0VUU1lT
+Uk9PVA0KPiBleHBvcnQgDQo+IFBLR19DT05GSUdfUEFUSD0kU0RLVEFSR0VUU1lTUk9PVC91c3Iv
+bGliL3BrZ2NvbmZpZzokU0RLVEFSR0VUU1lTUk9PVC8NCj4gdXNyL3NoYXJlL3BrZ2NvbmZpZyBl
+eHBvcnQgDQo+IENPTkZJR19TSVRFPS9kaXNrMC9zY3JhdGNoL3Ntb25zZWVzL3lvY3RvL3Rlc3RT
+REsvc2l0ZS1jb25maWctY29yZWk3LTYNCj4gNC1wb2t5LWxpbnV4IGV4cG9ydCANCj4gT0VDT1JF
+X05BVElWRV9TWVNST09UPSIvZGlzazAvc2NyYXRjaC9zbW9uc2Vlcy95b2N0by90ZXN0U0RLL3N5
+c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4Ig0KPiBleHBvcnQgT0VDT1JFX1RBUkdFVF9TWVNS
+T09UPSIkU0RLVEFSR0VUU1lTUk9PVCINCj4gZXhwb3J0IE9FQ09SRV9BQ0xPQ0FMX09QVFM9Ii1J
+IC9kaXNrMC9zY3JhdGNoL3Ntb25zZWVzL3lvY3RvL3Rlc3RTREsvc3lzcm9vdHMveDg2XzY0LXBv
+a3lzZGstbGludXgvdXNyL3NoYXJlL2FjbG9jYWwiDQo+IHVuc2V0IGNvbW1hbmRfbm90X2ZvdW5k
+X2hhbmRsZQ0KPiBleHBvcnQgQ0M9Ing4Nl82NC1wb2t5LWxpbnV4LWdjYyAgLXYgLW02NCAtbWFy
+Y2g9Y29yZWk3IC1tdHVuZT1jb3JlaTcgLW1mcG1hdGg9c3NlIC1tc3NlNC4yIC0tc3lzcm9vdD0k
+U0RLVEFSR0VUU1lTUk9PVCINCj4gZXhwb3J0IENYWD0ieDg2XzY0LXBva3ktbGludXgtZysrICAt
+diAtbTY0IC1tYXJjaD1jb3JlaTcgLW10dW5lPWNvcmVpNyAtbWZwbWF0aD1zc2UgLW1zc2U0LjIg
+LS1zeXNyb290PSRTREtUQVJHRVRTWVNST09UIg0KPiBleHBvcnQgQ1BQPSJ4ODZfNjQtcG9reS1s
+aW51eC1nY2MgLXYgLUUgIC1tNjQgLW1hcmNoPWNvcmVpNyAtbXR1bmU9Y29yZWk3IC1tZnBtYXRo
+PXNzZSAtbXNzZTQuMiAtLXN5c3Jvb3Q9JFNES1RBUkdFVFNZU1JPT1QiDQo+IGV4cG9ydCBBUz0i
+eDg2XzY0LXBva3ktbGludXgtYXMgICINCj4gZXhwb3J0IExEPSJ4ODZfNjQtcG9reS1saW51eC1s
+ZCAgLS1zeXNyb290PSRTREtUQVJHRVRTWVNST09UIg0KPiBleHBvcnQgR0RCPXg4Nl82NC1wb2t5
+LWxpbnV4LWdkYg0KPiBleHBvcnQgU1RSSVA9eDg2XzY0LXBva3ktbGludXgtc3RyaXANCj4gZXhw
+b3J0IFJBTkxJQj14ODZfNjQtcG9reS1saW51eC1yYW5saWIgZXhwb3J0IA0KPiBPQkpDT1BZPXg4
+Nl82NC1wb2t5LWxpbnV4LW9iamNvcHkgZXhwb3J0IA0KPiBPQkpEVU1QPXg4Nl82NC1wb2t5LWxp
+bnV4LW9iamR1bXAgZXhwb3J0IEFSPXg4Nl82NC1wb2t5LWxpbnV4LWFyIA0KPiBleHBvcnQgTk09
+eDg2XzY0LXBva3ktbGludXgtbm0gZXhwb3J0IE00PW00IGV4cG9ydCANCj4gVEFSR0VUX1BSRUZJ
+WD14ODZfNjQtcG9reS1saW51eC0gZXhwb3J0IA0KPiBDT05GSUdVUkVfRkxBR1M9Ii0tdGFyZ2V0
+PXg4Nl82NC1wb2t5LWxpbnV4IC0taG9zdD14ODZfNjQtcG9reS1saW51eCAtLWJ1aWxkPXg4Nl82
+NC1saW51eCAtLXdpdGgtbGlidG9vbC1zeXNyb290PSRTREtUQVJHRVRTWVNST09UIg0KPiBleHBv
+cnQgQ0ZMQUdTPSIgLS1zeXNyb290PSRTREtUQVJHRVRTWVNST09UIC1PMiAtcGlwZSAtZyAtZmVs
+aW1pbmF0ZS11bnVzZWQtZGVidWctdHlwZXMiDQo+IGV4cG9ydCBDWFhGTEFHUz0iIC0tc3lzcm9v
+dD0kU0RLVEFSR0VUU1lTUk9PVCAtTzIgLXBpcGUgLWcgLWZlbGltaW5hdGUtdW51c2VkLWRlYnVn
+LXR5cGVzIg0KPiBleHBvcnQgTERGTEFHUz0iIC1XbCwtTzEgLVdsLC0taGFzaC1zdHlsZT1nbnUg
+LVdsLC0tYXMtbmVlZGVkIg0KPiBleHBvcnQgQ1BQRkxBR1M9IiINCj4gZXhwb3J0IEtDRkxBR1M9
+Ii0tc3lzcm9vdD0kU0RLVEFSR0VUU1lTUk9PVCINCj4gZXhwb3J0IE9FQ09SRV9ESVNUUk9fVkVS
+U0lPTj0iMi40LjEiDQo+IGV4cG9ydCBPRUNPUkVfU0RLX1ZFUlNJT049IjIuNC4xIg0KPiBleHBv
+cnQgQVJDSD14ODYNCj4gZXhwb3J0IENST1NTX0NPTVBJTEU9eDg2XzY0LXBva3ktbGludXgtDQo+
+DQo+ICMgQXBwZW5kIGVudmlyb25tZW50IHN1YnNjcmlwdHMNCj4gaWYgWyAtZCAiJE9FQ09SRV9U
+QVJHRVRfU1lTUk9PVC9lbnZpcm9ubWVudC1zZXR1cC5kIiBdOyB0aGVuDQo+ICAgICBmb3IgZW52
+ZmlsZSBpbiAkT0VDT1JFX1RBUkdFVF9TWVNST09UL2Vudmlyb25tZW50LXNldHVwLmQvKi5zaDsg
+ZG8NCj4gICAgICAuICRlbnZmaWxlDQo+ICAgICBkb25lDQo+IGZpDQo+IGlmIFsgLWQgIiRPRUNP
+UkVfTkFUSVZFX1NZU1JPT1QvZW52aXJvbm1lbnQtc2V0dXAuZCIgXTsgdGhlbg0KPiAgICAgZm9y
+IGVudmZpbGUgaW4gJE9FQ09SRV9OQVRJVkVfU1lTUk9PVC9lbnZpcm9ubWVudC1zZXR1cC5kLyou
+c2g7IGRvDQo+ICAgICAgLiAkZW52ZmlsZQ0KPiAgICAgZG9uZQ0KPiBmaQ0KPiBleHBvcnQgQ0xB
+TkdDQz0ieDg2XzY0LXBva3ktbGludXgtY2xhbmcgLW02NCAtbWFyY2g9Y29yZWk3IC1tdHVuZT1j
+b3JlaTcgLW1mcG1hdGg9c3NlIC1tc3NlNC4yIC1tbGl0dGxlLWVuZGlhbiAtLXN5c3Jvb3Q9JFNE
+S1RBUkdFVFNZU1JPT1QiDQo+IGV4cG9ydCBDTEFOR0NYWD0ieDg2XzY0LXBva3ktbGludXgtY2xh
+bmcrKyAtbTY0IC1tYXJjaD1jb3JlaTcgLW10dW5lPWNvcmVpNyAtbWZwbWF0aD1zc2UgLW1zc2U0
+LjIgLW1saXR0bGUtZW5kaWFuIC0tc3lzcm9vdD0kU0RLVEFSR0VUU1lTUk9PVCINCj4gZXhwb3J0
+IENMQU5HQ1BQPSJ4ODZfNjQtcG9reS1saW51eC1jbGFuZyAtRSAtbTY0IC1tYXJjaD1jb3JlaTcg
+LW10dW5lPWNvcmVpNyAtbWZwbWF0aD1zc2UgLW1zc2U0LjIgLW1saXR0bGUtZW5kaWFuIC0tc3lz
+cm9vdD0kU0RLVEFSR0VUU1lTUk9PVCINCj4NCj4NCj4gIGFuZA0KPg0KPiANCg==
