@@ -1,125 +1,91 @@
-Subject: Re: #yocto - mongodb files missing
-To: yocto@lists.yoctoproject.org
-From: srijan.nandi@gmail.com
-X-Originating-Location: Ahmedabad, Gujarat, IN (14.102.160.178)
-X-Originating-Platform: Mac Safari 13.1
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+ by mx.groups.io with SMTP id smtpd.web10.4004.1599814465282380651
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 11 Sep 2020 01:54:25 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=PNYn+6yw;
+ spf=pass (domain: gmail.com, ip: 209.85.217.54, mailfrom: kerenyi.nagy.zoltan@gmail.com)
+Received: by mail-vs1-f54.google.com with SMTP id y194so4981015vsc.4
+        for <yocto@lists.yoctoproject.org>; Fri, 11 Sep 2020 01:54:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=jg0U1+1GmDwtPx8blCJ6ujmfj33H+xz0rMmaaHyrLFg=;
+        b=PNYn+6ywQDI3VcC/++Wj5bgIh7TcYxcopmUqxOwgxQEa7i/Z7UsJvjbD+NH5BGAtg/
+         Zxu4OinIP98gIJ8EoNOVIbjsQ06NAl2iWPi8b+fCaYL1IzFR1KBOUQKlGjaELrHLAv+c
+         4NFvXxdEj/DTXaDB6oJgMaigce29XS6V2RW+yIVrdQoTDkTBI1z70Sv/y1s8YTbjppA7
+         TgkQbhpt32S0Fsabr/gV9ltKSz865vXyq9GAf+0xAGkAMdpJHAyiJs8ufyPycqmo2YZF
+         MP1SAnTrhbqXzpFI2lxMtzObCSR4IKp8/8lCf03prU1Qzvrrk/NArk6ogNJ9lqyo73O+
+         oVEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=jg0U1+1GmDwtPx8blCJ6ujmfj33H+xz0rMmaaHyrLFg=;
+        b=PPzhJr2rXowYXVw1t/lkTxZAGzzRgrfKbI2v3eEk/46Rb/W8sRmSqtJ/68l3leTh8J
+         yKzS9VsVwsMEUjo3Cyxdt9A5ywJ4sPMRHfLzzcXT00roAk+NFMsQEfMi5G8esvZoRRjk
+         D0TQqszo9kE3x6Z7Wx7dOY7dZQFE0oxzU/hXcV+w/aWIrHXzgpZE8aydin7z0OhBj83H
+         +eGeGw3TA8nu3S5lMLqOkDJhcUeXd0R3w91a8r7JUUc4rt6OYiCf7sdKnbUvMx700dOv
+         ik4rTNJGQYuV5TwydcFdvgokxVTW/NpgXPWm4AXBskPUkp6wTK4sN8AcVm/AycLoidYD
+         GO+A==
+X-Gm-Message-State: AOAM5328FJ8QA6k+Gd9wvLhdV88u44X+0YMP7Vf9vNLGGmiscyXtOJEb
+	XhJZoKzd6taqz+sLv7419wyfzQq6mVvWfx1Bo2pqn+v00nUT1w==
+X-Google-Smtp-Source: ABdhPJxKI0jx8AKTO7XHn2wHt6kAEQLqDpCwz8ONWq7DJQ8rW3Wv+EwN5FY6d0auHMSjLNXDk1jdmZMFFrCJZTiiGZs=
+X-Received: by 2002:a67:31cb:: with SMTP id x194mr503000vsx.28.1599814464137;
+ Fri, 11 Sep 2020 01:54:24 -0700 (PDT)
 MIME-Version: 1.0
-Date: Fri, 11 Sep 2020 01:25:13 -0700
-References: <CAB2nKc-Yzdkfi50JCw_LUmXDh3ZET+2bpEY1BRjFP30qGLPstQ@mail.gmail.com>
-In-Reply-To: <CAB2nKc-Yzdkfi50JCw_LUmXDh3ZET+2bpEY1BRjFP30qGLPstQ@mail.gmail.com>
-Message-ID: <22857.1599812713820570273@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="WrGYOAGV9cJ2K9woPtUb"
+From: "Zoltan Kerenyi Nagy" <kerenyi.nagy.zoltan@gmail.com>
+Date: Fri, 11 Sep 2020 10:53:48 +0200
+Message-ID: <CAHwRhWb9uMoJW8kkQse3z4v1gDY9EqMyyrrdcA3i=Mt62LWaKA@mail.gmail.com>
+Subject: vwdial
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000d76c4305af05d45e"
 
---WrGYOAGV9cJ2K9woPtUb
-Content-Type: text/plain; charset="utf-8"
+--000000000000d76c4305af05d45e
+Content-Type: text/plain; charset="UTF-8"
+
+I changed the vwdial recipy file for what I've found on openembedded.
+I think now the error is only with *wvstreams*
+
+
+
+
+
+
+
+*NOTE: Resolving any missing task queue dependenciesERROR: Nothing PROVIDES
+'wvstreams' (but
+/home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-connectivity/wvdial/wvdial_1.61.bb
+<http://wvdial_1.61.bb> DEPENDS on or otherwise requires it)ERROR:
+wvstreams was skipped: Recipe is blacklisted: BROKEN: fails to build with
+gcc-6 - the recipe will be removed on 2017-09-01 unless the issue is
+fixedNOTE: Runtime target 'wvdial' is unbuildable, removing...Missing or
+unbuildable dependency chain was: ['wvdial', 'wvstreams']ERROR: Required
+build target 'core-image-barix-sdk' has no buildable providers.Missing or
+unbuildable dependency chain was: ['core-image-barix-sdk', 'wvdial',
+'wvstreams']*
+
+--000000000000d76c4305af05d45e
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Thank you, Vincent.
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"color:#333399"><div =
+class=3D"gmail_default" style=3D"color:rgb(51,51,153)">I changed the vwdial=
+ recipy file for what I&#39;ve found on openembedded.<br></div><div class=
+=3D"gmail_default" style=3D"color:rgb(51,51,153)">I think now the error is =
+only with <b>wvstreams</b><br></div><div class=3D"gmail_default" style=3D"c=
+olor:rgb(51,51,153)"><br></div><div class=3D"gmail_default" style=3D"color:=
+rgb(51,51,153)"><i>NOTE: Resolving any missing task queue dependencies<br>E=
+RROR: Nothing PROVIDES &#39;wvstreams&#39; (but /home/kerenyiz/oe-core/buil=
+d/../stuff/meta-openembedded/meta-oe/recipes-connectivity/wvdial/<a href=3D=
+"http://wvdial_1.61.bb" target=3D"_blank">wvdial_1.61.bb</a> DEPENDS on or =
+otherwise requires it)<br>ERROR:
+ wvstreams was skipped: Recipe is blacklisted: BROKEN: fails to build=20
+with gcc-6 - the recipe will be removed on 2017-09-01 unless the issue=20
+is fixed<br>NOTE: Runtime target &#39;wvdial&#39; is unbuildable, removing.=
+..<br>Missing or unbuildable dependency chain was: [&#39;wvdial&#39;, &#39;=
+wvstreams&#39;]<span class=3D"gmail-im"><br>ERROR: Required build target &#=
+39;core-image-barix-sdk&#39; has no buildable providers.<br></span>Missing =
+or unbuildable dependency chain was: [&#39;core-image-barix-sdk&#39;, &#39;=
+wvdial&#39;, &#39;wvstreams&#39;]</i></div></div></div>
 
-I was finally able to make a .bbappend file and here is what I have made.
-
-FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
-
-SRC_URI +=3D "file://mongod \
-file://mongod.service \
-file://mongod.conf \
-"
-
-inherit systemd useradd
-
-USERADD_PACKAGES =3D "${PN}"
-GROUPADD_PACKAGES =3D "${PN}"
-GROUPADD_PARAM_${PN} =3D "${PN}"
-USERADD_PARAM_${PN} =3D " \
---system --no-create-home \
---shell /bin/false \
--g ${PN} \
-${PN}"
-
-SYSTEMD_SERVICE_${PN} =3D "mongod.service"
-SYSTEMD_AUTO_ENABLE =3D "enable"
-
-do_install_append() {
-install -d ${D}${sysconfdir}
-install -d ${D}${localstatedir} ${D}${localstatedir}/log ${D}${localstated=
-ir}/log/mongodb
-chown -R mongodb:mongodb ${D}${localstatedir}/log/mongodb
-install -d ${D}${sysconfdir}/sysconfig
-install -c -m 0644 ${WORKDIR}/mongod.conf ${D}${sysconfdir}
-chown mongodb:mongodb ${D}${sysconfdir}/mongod.conf
-install -c -m 0644 ${WORKDIR}/mongod ${D}${sysconfdir}/sysconfig
-chown mongodb:mongodb ${D}${sysconfdir}/sysconfig/mongod
-install -d ${D}${localstatedir} ${D}${localstatedir}/lib ${D}${localstated=
-ir}/lib/mongodb
-chown -R mongodb:mongodb ${D}${localstatedir}/lib/mongodb
-
-if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}=
-; then
-install -d ${D}${systemd_system_unitdir}
-install -c -m 0644 ${WORKDIR}/mongod.service ${D}${systemd_system_unitdir}
-fi
-}
-
-Thanks and Regards,
--=3DSrijan Nandi
-
---WrGYOAGV9cJ2K9woPtUb
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Thank you, Vincent.<br /><br />I was finally able to make a .bbappend file =
-and here is what I have made.<br /><br />
-<div>FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"</div>
-<div>&nbsp;</div>
-<div>SRC_URI +=3D "file://mongod \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; file://mongod.service \</di=
-v>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; file://mongod.conf \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"</div>
-<div>&nbsp;</div>
-<div>inherit systemd useradd</div>
-<div>&nbsp;</div>
-<div>USERADD_PACKAGES =3D "${PN}"</div>
-<div>GROUPADD_PACKAGES =3D "${PN}"</div>
-<div>GROUPADD_PARAM_${PN} =3D "${PN}"</div>
-<div>USERADD_PARAM_${PN} =3D " \</div>
-<div>&nbsp; &nbsp; --system --no-create-home \</div>
-<div>&nbsp; &nbsp; --shell /bin/false \</div>
-<div>&nbsp; &nbsp; -g ${PN} \</div>
-<div>&nbsp; &nbsp; ${PN}"</div>
-<div>&nbsp;</div>
-<div>SYSTEMD_SERVICE_${PN} =3D "mongod.service"</div>
-<div>SYSTEMD_AUTO_ENABLE =3D "enable"</div>
-<div>&nbsp;</div>
-<div>do_install_append() {</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; install -d ${D}${sysconfdir}</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; install -d ${D}${localstatedir} ${D}${loc=
-alstatedir}/log ${D}${localstatedir}/log/mongodb</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; chown -R mongodb:mongodb ${D}${localstate=
-dir}/log/mongodb</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; install -d ${D}${sysconfdir}/sysconfig</d=
-iv>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; install -c -m 0644 ${WORKDIR}/mongod.conf=
- ${D}${sysconfdir}</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; chown mongodb:mongodb ${D}${sysconfdir}/m=
-ongod.conf</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; install -c -m 0644 ${WORKDIR}/mongod ${D}=
-${sysconfdir}/sysconfig</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; chown mongodb:mongodb ${D}${sysconfdir}/s=
-ysconfig/mongod</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; install -d ${D}${localstatedir} ${D}${loc=
-alstatedir}/lib ${D}${localstatedir}/lib/mongodb</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; chown -R mongodb:mongodb ${D}${localstate=
-dir}/lib/mongodb</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; if ${@bb.utils.contains('DISTRO_FEATURES'=
-, 'systemd', 'true', 'false', d)}; then</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; install -d ${D}${systemd_sy=
-stem_unitdir}</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; install -c -m 0644 ${WORKDI=
-R}/mongod.service ${D}${systemd_system_unitdir}</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; fi</div>
-<div>}<br /><br />Thanks and Regards,<br />-=3DSrijan Nandi</div>
-
---WrGYOAGV9cJ2K9woPtUb--
+--000000000000d76c4305af05d45e--
