@@ -1,92 +1,125 @@
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
- by mx.groups.io with SMTP id smtpd.web11.3655.1599812251881805678
- for <yocto@lists.yoctoproject.org>;
- Fri, 11 Sep 2020 01:17:32 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ZOS6Zoza;
- spf=pass (domain: gmail.com, ip: 209.85.128.44, mailfrom: vincent.prince.fr@gmail.com)
-Received: by mail-wm1-f44.google.com with SMTP id e11so3552449wme.0
-        for <yocto@lists.yoctoproject.org>; Fri, 11 Sep 2020 01:17:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=AQ03ttqDcpb9zRGwA56xEmNxg2CsPeo0ZOKIXV5jiOQ=;
-        b=ZOS6Zoza5P8vDcO2JqHpLRVRojtP/SDh5iNnpw/dNGClX1oqthi0eGKJSgE+v0tBM3
-         A9Ua8DwcLFsYzdgFw2XqrW6oR/P9XbwlFeB0LB4Cv+Hd22kL7/FXdav3eP+xI7crqUWY
-         QXe5/i60KPg9XXiccXIvJR5gfiKmEKP9OWzxgeEB84TBACppAxnDaFyioSYU++ZELHkC
-         PdW0/0riNvn68eQ/y28SFByPsUAJNmlTMN46ijOTTN7+Him90K1i2zVNZaOWVTg+KRE3
-         qKamG/MnwwSqXZ34zEXzi/4V2UeX2mBDMHhAKiJ2j/05YohZkeDLYwTNCgx9KTK/Fe1R
-         NjjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=AQ03ttqDcpb9zRGwA56xEmNxg2CsPeo0ZOKIXV5jiOQ=;
-        b=rRRVEQ0iu4GDFN6VeOMpC1+UOzpijgrfMN9QzRZXJxaYDLtPytjwzO+0Z54SUOdd9D
-         Nq+3j7lifQHi+CSihvD118DdR5Oj65yGsjukzdUo2eJ3hBYjCohyQxuouzFqaBArJcN9
-         5c59ZkE0rubs1E9tuzuaB3enbxqhc01sqhzl2afUzqTUFpdFg5Wfs6hkRnylqQ7MsCJO
-         R+mBTW98Eq3/bBTbMoCoDrN6n44CK3EZGFHM+FOi27L8X9Ke4EPfHABEc/lnHH34evO8
-         d0b2bRd+9ftzuXmvDl3ZTQRGEmsWOnxrlq+hSW8yurmJB7ZjBuKmcQcBxzQynx1ROrzv
-         VhxA==
-X-Gm-Message-State: AOAM533H6OF609unQp1LwaIqcRFb7qzB+DloqxSxjItuXR5U3gP9NFqD
-	R0RLVp3H+kfwVfS/+3c0gzkE1EMkAsbtlaf9Emau6LVADLU=
-X-Google-Smtp-Source: ABdhPJygcXrt67SRXHlDvj6bBm6186fC4e8uNdd9hS5Na5fZvhwAgQImIZebUDY+ut1z4PhqRXuI9dDw8zL+goetliA=
-X-Received: by 2002:a1c:f608:: with SMTP id w8mr1033837wmc.161.1599812250186;
- Fri, 11 Sep 2020 01:17:30 -0700 (PDT)
+Subject: Re: #yocto - mongodb files missing
+To: yocto@lists.yoctoproject.org
+From: srijan.nandi@gmail.com
+X-Originating-Location: Ahmedabad, Gujarat, IN (14.102.160.178)
+X-Originating-Platform: Mac Safari 13.1
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <4MZH.1594831374892060912.PgYp@lists.yoctoproject.org>
-In-Reply-To: <4MZH.1594831374892060912.PgYp@lists.yoctoproject.org>
-From: "nefethael" <vincent.prince.fr@gmail.com>
-Date: Fri, 11 Sep 2020 10:17:18 +0200
-Message-ID: <CAB2nKc-Yzdkfi50JCw_LUmXDh3ZET+2bpEY1BRjFP30qGLPstQ@mail.gmail.com>
-Subject: Re: [yocto] #yocto - mongodb files missing
-To: srijan.nandi@gmail.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Date: Fri, 11 Sep 2020 01:25:13 -0700
+References: <CAB2nKc-Yzdkfi50JCw_LUmXDh3ZET+2bpEY1BRjFP30qGLPstQ@mail.gmail.com>
+In-Reply-To: <CAB2nKc-Yzdkfi50JCw_LUmXDh3ZET+2bpEY1BRjFP30qGLPstQ@mail.gmail.com>
+Message-ID: <22857.1599812713820570273@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="WrGYOAGV9cJ2K9woPtUb"
+
+--WrGYOAGV9cJ2K9woPtUb
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Thank you, Vincent.
 
-Here's an example of mongodb_%.bbappend file:
+I was finally able to make a .bbappend file and here is what I have made.
 
---------------------------------------------------------------------------=
----
 FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
 
-SRC_URI +=3D "file://mongod.conf file://mongod.service"
+SRC_URI +=3D "file://mongod \
+file://mongod.service \
+file://mongod.conf \
+"
 
-inherit systemd
+inherit systemd useradd
 
-do_install_append() {
-    # config
-    install -d ${D}${sysconfdir}
-    install -m 0644 ${WORKDIR}/mongod.conf ${D}${sysconfdir}/
-
-    # systemd
-    install -d ${D}${systemd_unitdir}/system/
-    install -m 0644 ${WORKDIR}/mongod.service ${D}${systemd_unitdir}/syste=
-m/
-}
+USERADD_PACKAGES =3D "${PN}"
+GROUPADD_PACKAGES =3D "${PN}"
+GROUPADD_PARAM_${PN} =3D "${PN}"
+USERADD_PARAM_${PN} =3D " \
+--system --no-create-home \
+--shell /bin/false \
+-g ${PN} \
+${PN}"
 
 SYSTEMD_SERVICE_${PN} =3D "mongod.service"
---------------------------------------------------------------------------=
----
+SYSTEMD_AUTO_ENABLE =3D "enable"
 
-And create a folder meta-x/recipes-dbs/mongodb/files with
-mongod.service and mongod.conf in it.
+do_install_append() {
+install -d ${D}${sysconfdir}
+install -d ${D}${localstatedir} ${D}${localstatedir}/log ${D}${localstated=
+ir}/log/mongodb
+chown -R mongodb:mongodb ${D}${localstatedir}/log/mongodb
+install -d ${D}${sysconfdir}/sysconfig
+install -c -m 0644 ${WORKDIR}/mongod.conf ${D}${sysconfdir}
+chown mongodb:mongodb ${D}${sysconfdir}/mongod.conf
+install -c -m 0644 ${WORKDIR}/mongod ${D}${sysconfdir}/sysconfig
+chown mongodb:mongodb ${D}${sysconfdir}/sysconfig/mongod
+install -d ${D}${localstatedir} ${D}${localstatedir}/lib ${D}${localstated=
+ir}/lib/mongodb
+chown -R mongodb:mongodb ${D}${localstatedir}/lib/mongodb
 
-Best Regards,
-Vincent
+if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}=
+; then
+install -d ${D}${systemd_system_unitdir}
+install -c -m 0644 ${WORKDIR}/mongod.service ${D}${systemd_system_unitdir}
+fi
+}
 
-Le mar. 21 juil. 2020 =C3=A0 12:11, <srijan.nandi@gmail.com> a =C3=A9crit =
-:
->
-> Hello Everyone,
->
-> I have built mongodb on zeus. It seems the mongod.service and mongod.con=
-f files are missing. Can anyone show me the procedure to build a .bbappend =
-file to add those.
->
-> Thanks and Regards,
-> -=3DSrijan Nandi=20
+Thanks and Regards,
+-=3DSrijan Nandi
+
+--WrGYOAGV9cJ2K9woPtUb
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thank you, Vincent.<br /><br />I was finally able to make a .bbappend file =
+and here is what I have made.<br /><br />
+<div>FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"</div>
+<div>&nbsp;</div>
+<div>SRC_URI +=3D "file://mongod \</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; file://mongod.service \</di=
+v>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; file://mongod.conf \</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"</div>
+<div>&nbsp;</div>
+<div>inherit systemd useradd</div>
+<div>&nbsp;</div>
+<div>USERADD_PACKAGES =3D "${PN}"</div>
+<div>GROUPADD_PACKAGES =3D "${PN}"</div>
+<div>GROUPADD_PARAM_${PN} =3D "${PN}"</div>
+<div>USERADD_PARAM_${PN} =3D " \</div>
+<div>&nbsp; &nbsp; --system --no-create-home \</div>
+<div>&nbsp; &nbsp; --shell /bin/false \</div>
+<div>&nbsp; &nbsp; -g ${PN} \</div>
+<div>&nbsp; &nbsp; ${PN}"</div>
+<div>&nbsp;</div>
+<div>SYSTEMD_SERVICE_${PN} =3D "mongod.service"</div>
+<div>SYSTEMD_AUTO_ENABLE =3D "enable"</div>
+<div>&nbsp;</div>
+<div>do_install_append() {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; install -d ${D}${sysconfdir}</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; install -d ${D}${localstatedir} ${D}${loc=
+alstatedir}/log ${D}${localstatedir}/log/mongodb</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; chown -R mongodb:mongodb ${D}${localstate=
+dir}/log/mongodb</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; install -d ${D}${sysconfdir}/sysconfig</d=
+iv>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; install -c -m 0644 ${WORKDIR}/mongod.conf=
+ ${D}${sysconfdir}</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; chown mongodb:mongodb ${D}${sysconfdir}/m=
+ongod.conf</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; install -c -m 0644 ${WORKDIR}/mongod ${D}=
+${sysconfdir}/sysconfig</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; chown mongodb:mongodb ${D}${sysconfdir}/s=
+ysconfig/mongod</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; install -d ${D}${localstatedir} ${D}${loc=
+alstatedir}/lib ${D}${localstatedir}/lib/mongodb</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; chown -R mongodb:mongodb ${D}${localstate=
+dir}/lib/mongodb</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; if ${@bb.utils.contains('DISTRO_FEATURES'=
+, 'systemd', 'true', 'false', d)}; then</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; install -d ${D}${systemd_sy=
+stem_unitdir}</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; install -c -m 0644 ${WORKDI=
+R}/mongod.service ${D}${systemd_system_unitdir}</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; fi</div>
+<div>}<br /><br />Thanks and Regards,<br />-=3DSrijan Nandi</div>
+
+--WrGYOAGV9cJ2K9woPtUb--
