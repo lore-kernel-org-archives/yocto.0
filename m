@@ -1,207 +1,272 @@
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
- by mx.groups.io with SMTP id smtpd.web12.3149.1599809521717989746
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.3156.1599809668390787413
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Sep 2020 00:32:03 -0700
+ Fri, 11 Sep 2020 00:34:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sidebranch-com.20150623.gappssmtp.com header.s=20150623 header.b=A2ywT7kT;
- spf=softfail (domain: sidebranch.com, ip: 209.85.160.169, mailfrom: leon@sidebranch.com)
-Received: by mail-qt1-f169.google.com with SMTP id e7so7112337qtj.11
-        for <yocto@lists.yoctoproject.org>; Fri, 11 Sep 2020 00:32:01 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=rchvlfST;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: rehsack@gmail.com)
+Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com [209.85.218.68])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 3CAF238C087B
+	for <yocto@yoctoproject.org>; Fri, 11 Sep 2020 00:34:27 -0700 (PDT)
+Received: by mail-ej1-f68.google.com with SMTP id p9so12458411ejf.6
+        for <yocto@yoctoproject.org>; Fri, 11 Sep 2020 00:34:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sidebranch-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=nvbXc1KEqPnrCTWtdxlM+3IF0lCWO8bP44G5JGjlNXI=;
-        b=A2ywT7kTd/5YrPmWjLXSiQ2HeFOGtqxvHaH/msg3BYx2ic/jeA0+jwXsBRYY+y7GtK
-         qyapbDuPHjuGIuGslwL9Rl/mK5XAf+6HZrT+r4FUMHxeBPXD5lPvb80J+SJwi8h935h0
-         xGWm4FVJwoRaeKuLVyhfXm62zdmxVoB/ZJ436Uc4hCJxxXiMCwVbP7dpAMridVQhr29+
-         DHFIMWsUVq5CqJy7rGrOaSI+joWqk4KfA9TRXQzwromEtMU5+qqOhdwOfzAdMxToRNxM
-         +JZydnUOGm3iCs3q/zX+AqHrd1TAwJQDGMFr8uCLIVjJX051QS4LitYQFDCX27GNQUZa
-         m5fw==
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id;
+        bh=7IXMb58ADhzSni2GiyntuxjZXu3W80mzggBMJo9a/as=;
+        b=rchvlfSTpnIXK76BK2QHDLhzT6eUEdkbFuqF3wkUSsQES0w39gb6ADep39xwxLMKOj
+         14tPdYSAFKFuYMwPogRGnbxKI1mOfXncRczDtwJEaWVmUvEtRMmP4waRS7Mz7c1TBnGm
+         iih7roTLkriskktiRvEUBc8RGce5DwuCly5Q7P5FliyNYmWi0ncnM6YPAoyhIbGgc/6q
+         7jUvXdln1PWAUCfBZgLnCpwDx1vkF5/nVIZ1upIrtKeWkFG1+qs8D1tFW+IXwpVebMqb
+         hCBLRDmICmG70QNEWwjI2205WP0GDMUva3VBj3mJAqQjpRYraraYpxghOjWk87tI2c0U
+         plUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=nvbXc1KEqPnrCTWtdxlM+3IF0lCWO8bP44G5JGjlNXI=;
-        b=PKo8Lwit5pAMOLEkBKqYSRfJSdjOrut2/K85DPGSo7GZGvPsoXrMuvAZLqZlsetKWu
-         rXbwnnbWI59PzuaJVLJdtfR30pj41xCPxpVNBNV+ADOhqRipjF/98Pbkw/qHbqcFHOBA
-         KC9XUsCWqi2QbmdBdyXtAJhwb9aXa0Dbciwb+2czkOUXNya1TQLEZT+3g2f/lQHtZqcW
-         rw6yHI1FordMNeuOFNa7bmNsZeGnhw6JGvK+tkxVLJJLDRIZb4HAog8M6a0UbMYu9Kbo
-         T2H8gLvx2ioQctu+6XbL72VSq4NT3ENLSB74KiIaclGjHKzWIOkRZlpd3FVrxA+HaZl8
-         xNtA==
-X-Gm-Message-State: AOAM5304G23koY3Rw4zJMwgLeA0mT6nr2yUh2Sf6vROBUZwXBC7Fa/ut
-	uThZ19jIEhQbUh7JB0I8/Dcs7wKbtYQYDhrnHZ61/g==
-X-Google-Smtp-Source: ABdhPJwtAGAKP+jc8bMvYo4EMityFALp+vbCRgk7JXPo830vks3WgozLr6Wrd+t/h16t5t35GXogjXisZ1/BX0hKWIw=
-X-Received: by 2002:ac8:4e24:: with SMTP id d4mr662836qtw.28.1599809520764;
- Fri, 11 Sep 2020 00:32:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <e8366385-c7a3-5313-0072-d19e05e2fb17@gmail.com> <14341.1599735218188160836@lists.yoctoproject.org>
-In-Reply-To: <14341.1599735218188160836@lists.yoctoproject.org>
-From: "Leon Woestenberg" <leon@sidebranch.com>
-Date: Fri, 11 Sep 2020 09:31:50 +0200
-Message-ID: <CAMjhiJiehQOgjUYdgXsEPvXT7wrzTTcbPb0UsireZEh_tOr_fg@mail.gmail.com>
-Subject: Re: [yocto] #sdk #yocto Appears SDK searching host for files that are only present on target side
-To: steven.monsees@baesystems.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
+        bh=7IXMb58ADhzSni2GiyntuxjZXu3W80mzggBMJo9a/as=;
+        b=XHIc58afKX5XzMNe42tzq4Ky0ZK9fu0zR8xjET7NoTpzCug2ogi0XrhQaEQoEWcO7L
+         xrgym+EIOJpmtjckC9CSU2D4GMFMooFuBDapP/Ebz3fLiP5/oNtJuylSwPu7IxMjYjp6
+         /4wezFyKxGnY8tl5yFN1AVghbHm+yYYQ30emSZudPvgqr4j+F43K1rPLdI7n+qipvYDT
+         O2zGPt8OBvvyFcwWdrVOQ2KgKJTeDiFKdrGEsgv3q3Cx47O38ZQ749cMzNDgqdngb5Cp
+         krY8FPUdiikWPjJD3Hagu2YkQaPH3kVsJMRI+0TDfC3uI0ER6A/StuRa4Tptw6TCZNp0
+         1F5w==
+X-Gm-Message-State: AOAM533Cz7WAXvzhlVEgnv/0RTbExQepcF6A5B+9yrl7cYs2YARJKdyJ
+	7tdYGKCNxUYotqpVaey8dG5QgePjNo0=
+X-Google-Smtp-Source: ABdhPJwI1/VQFn6BKQKEfyEwQgx3TBhdKMT4cC6q6byPHbx/jmjeL5aHaBy5XnyNStpjgfkrXi7ykQ==
+X-Received: by 2002:a17:906:ce3b:: with SMTP id sd27mr767758ejb.433.1599809665279;
+        Fri, 11 Sep 2020 00:34:25 -0700 (PDT)
+Received: from beaker.muppets.liwing.de (p5b25b0d4.dip0.t-ipconnect.de. [91.37.176.212])
+        by smtp.gmail.com with ESMTPSA id g11sm967792edj.85.2020.09.11.00.34.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Sep 2020 00:34:24 -0700 (PDT)
+Sender: Jens Rehsack <rehsack@gmail.com>
+From: "Jens Rehsack" <rehsack@gmail.com>
+To: yocto@yoctoproject.org
+Cc: Jens Rehsack <sno@netbsd.org>
+Subject: [meta-security][PATCH v2] ibmswtpm2: update to 1637
+Date: Fri, 11 Sep 2020 09:34:08 +0200
+Message-Id: <20200911073408.16407-1-sno@NetBSD.org>
+X-Mailer: git-send-email 2.17.1
 
-Hello Steven,
+From: Jens Rehsack <sno@netbsd.org>
 
-you mention you use CMake with the Yocto (standard) SDK.
+Update ibmswtpm2 from 1628 to 1637. Build 1637 Includes:
+* Increase NV memory size to match PC Client RSA 3072 requirements
+* Add and fix ACT support
+* Update Visual Studio files to 2019.
 
-After you sourced the SDK environment script, what is the output of
-"which cmake" ?
+Signed-off-by: Jens Rehsack <sno@netbsd.org>
+---
+ .../ibmswtpm2/files/fix-wrong-cast.patch      | 27 ++++++++++
+ .../ibmswtpm2/files/remove_optimization.patch | 26 ----------
+ .../ibmswtpm2/files/tune-makefile.patch       | 50 +++++++++++++++++++
+ .../recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb  | 26 ----------
+ .../recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb  | 39 +++++++++++++++
+ 5 files changed, 116 insertions(+), 52 deletions(-)
+ create mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/files/fix-wrong-cast.patch
+ delete mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch
+ create mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/files/tune-makefile.patch
+ delete mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb
+ create mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb
 
-Do you use the cmake toolchain configuration file provided by the SDK?
-(CMAKE_TOOLCHAIN_FILE)
+diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/files/fix-wrong-cast.patch b/meta-tpm/recipes-tpm2/ibmswtpm2/files/fix-wrong-cast.patch
+new file mode 100644
+index 0000000..f2938e0
+--- /dev/null
++++ b/meta-tpm/recipes-tpm2/ibmswtpm2/files/fix-wrong-cast.patch
+@@ -0,0 +1,27 @@
++Fix strict aliasing issue of gcc10
++
++fixes:
++
++TpmFail.c: In function 'TpmLogFailure':
++TpmFail.c:217:23: error: dereferencing type-punned pointer will break strict-aliasing rules [-Werror=strict-aliasing]
++  217 |     s_failFunction = *(UINT32 *)&function; /* kgold */
++      |                       ^~~~~~~~~~~~~~~~~~~
++cc1: all warnings being treated as errors
++
++Upstream-Status: Submitted
++
++Signed-off-by: Jens Rehsack <sno@NetBSD.org>
++
++Index: src/TpmFail.c
++===================================================================
++--- src.orig/TpmFail.c	2020-09-10 15:43:57.085063875 +0200
+++++ src/TpmFail.c	2020-09-10 15:48:35.563302634 +0200
++@@ -214,7 +214,7 @@
++     // On a 64-bit machine, this may truncate the address of the string
++     // of the function name where the error occurred.
++ #if FAIL_TRACE
++-    s_failFunction = *(UINT32 *)&function;	/* kgold */
+++    memcpy(&s_failFunction, function, sizeof(uint32_t));	/* kgold */
++     s_failLine = line;
++ #else
++     s_failFunction = 0;
+diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch b/meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch
+deleted file mode 100644
+index 2919e2e..0000000
+--- a/meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch
++++ /dev/null
+@@ -1,26 +0,0 @@
+-Allow recipe to overide optimization.
+-
+-fixes:
+-
+-397 | #  warning _FORTIFY_SOURCE requires compiling with optimization (-O)
+-|       |    ^~~~~~~
+-| cc1: all warnings being treated as errors
+-
+-
+-Upstream-Status: OE specific
+-
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+-
+-Index: src/makefile
+-===================================================================
+---- src.orig/makefile
+-+++ src/makefile
+-@@ -43,7 +43,7 @@ CC = /usr/bin/gcc
+- CCFLAGS = -Wall  			\
+- 	-Wmissing-declarations -Wmissing-prototypes -Wnested-externs \
+- 	-Werror -Wsign-compare \
+--	 -c -ggdb -O0 			\
+-+	 -c -ggdb -O 			\
+- 	-DTPM_POSIX			\
+- 	-D_POSIX_			\
+- 	-DTPM_NUVOTON
+diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/files/tune-makefile.patch b/meta-tpm/recipes-tpm2/ibmswtpm2/files/tune-makefile.patch
+new file mode 100644
+index 0000000..eebddb9
+--- /dev/null
++++ b/meta-tpm/recipes-tpm2/ibmswtpm2/files/tune-makefile.patch
+@@ -0,0 +1,50 @@
++1) Allow recipe to overide optimization.
++
++fixes:
++
++397 | #  warning _FORTIFY_SOURCE requires compiling with optimization (-O)
++|       |    ^~~~~~~
++| cc1: all warnings being treated as errors
++
++2) Allow recipe to override OE related compile-/link-flags
++
++fixes:
++
++ERROR: QA Issue: File /usr/bin/tpm_server in package ibmswtpm2 doesn't have GNU_HASH (didn't pass LDFLAGS?) [ldflags]
++
++Upstream-Status: OE specific
++
++Signed-off-by: Jens Rehsack <sno@NetBSD.org>
++
++Index: src/makefile
++===================================================================
++--- src.orig/makefile
+++++ src/makefile
++@@ -38,12 +38,10 @@
++ #################################################################################
++ 
++ 
++-CC = /usr/bin/gcc
++-
++ CCFLAGS = -Wall  			\
++ 	-Wmissing-declarations -Wmissing-prototypes -Wnested-externs \
++ 	-Werror -Wsign-compare \
++-	 -c -ggdb -O0 			\
+++	 -c -ggdb -O 			\
++ 	-DTPM_POSIX			\
++ 	-D_POSIX_			\
++ 	-DTPM_NUVOTON
++@@ -79,11 +77,11 @@
++ .PRECIOUS:	%.o
++ 
++ tpm_server:	$(OBJFILES)
++-		$(CC) $(OBJFILES) $(LNFLAGS) -o tpm_server
+++		$(CCLD) $(OBJFILES) $(LDFLAGS) $(LNFLAGS) -o tpm_server
++ 
++ clean:		
++ 		rm -f *.o tpm_server *~
++ 
++ %.o:		%.c
++-		$(CC) $(CCFLAGS) $< -o $@
+++		$(CC) $(CCFLAGS) $(CFLAGS) $< -o $@
++ 
+diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb
+deleted file mode 100644
+index 3373a30..0000000
+--- a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1628.bb
++++ /dev/null
+@@ -1,26 +0,0 @@
+-SUMMARY = "IBM's Software TPM 2.0"
+-LICENSE = "BSD"
+-SECTION = "securty/tpm"
+-LIC_FILES_CHKSUM = "file://../LICENSE;md5=1e023f61454ac828b4aa1bc4293f7d5f"
+-
+-DEPENDS = "openssl"
+-
+-SRC_URI = "https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm${PV}.tar.gz \
+-           file://remove_optimization.patch \
+-           "
+-SRC_URI[md5sum] = "bfd3eca2411915f24de628b9ec36f259"
+-SRC_URI[sha256sum] = "a8e874e7a1ae13a1290d7679d846281f72d0eb6a5e4cfbafca5297dbf4e29ea3"
+-SRC_URI[sha1sum] = "7c8241a4e97a801eace9f0eea8cdda7c58114f7f"
+-SRC_URI[sha384sum] = "eec25cc8ba0e3cb27d41ba4fa4c71d8158699953ccb61bb6d440236dcbd8f52b6954eaae9d640a713186e0b99311fd91"
+-SRC_URI[sha512sum] = "ab47caa4406ba57c0afc6fadae304fc9ef5e3e125be0f2fb1955a419cf93cd5e9176e103f0b566825abc16cca00b795f98d2b407f0a2bf7b141ef4b025d907d0"
+-
+-S = "${WORKDIR}/src"
+-
+-do_compile () {
+-   make CC='${CC}'
+-}
+-
+-do_install () {
+-   install -d ${D}/${bindir}
+-   install -m 0755 tpm_server  ${D}/${bindir}
+-}
+diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb
+new file mode 100644
+index 0000000..32afd37
+--- /dev/null
++++ b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1637.bb
+@@ -0,0 +1,39 @@
++SUMMARY = "IBM's Software TPM 2.0"
++DESCRIPTION = "The software TPM 2.0 is targeted toward application development, \
++education, and virtualization. \
++\
++The intent is that an application can be developed using the software TPM. \
++The application should then run using a hardware TPM without changes. \
++Advantages of this approach: \
++* In contrast to a hardware TPM, it runs on many platforms and it's generally faster. \
++* Application software errors are easily reversed by simply removing the TPM state and starting over. \
++* Difficult crypto errors are quickly debugged by looking inside the TPM."
++HOMEPAGE = "http://ibmswtpm.sourceforge.net/ibmswtpm2.html"
++LICENSE = "BSD"
++SECTION = "securty/tpm"
++LIC_FILES_CHKSUM = "file://../LICENSE;md5=1e023f61454ac828b4aa1bc4293f7d5f"
++
++DEPENDS = "openssl"
++
++SRC_URI = "https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm${PV}.tar.gz \
++           file://tune-makefile.patch \
++           file://fix-wrong-cast.patch \
++           "
++SRC_URI[md5sum] = "43b217d87056e9155633925eb6ef749c"
++SRC_URI[sha256sum] = "dd3a4c3f7724243bc9ebcd5c39bbf87b82c696d1c1241cb8e5883534f6e2e327"
++SRC_URI[sha1sum] = "ab4b94079e57a86996991e8a2b749ce063e4ad3e"
++SRC_URI[sha384sum] = "bbef16a934853ce78cba7ddc766aa9d7ef3cde3430a322b1be772bf3ad4bd6d413ae9c4de21bc1a4879d17dfe2aadc1d"
++SRC_URI[sha512sum] = "007aa415cccf19a2bcf789c426727dc4032dcb04cc9d11eedc231d2add708c1134d3d5ee5cfbe7de68307c95fff7a30bd306fbd8d53c198a5ef348440440a6ed"
++
++S = "${WORKDIR}/src"
++
++CFLAGS += "-Wno-error=maybe-uninitialized"
++
++do_compile () {
++   make CC='${CC}'
++}
++
++do_install () {
++   install -d ${D}/${bindir}
++   install -m 0755 tpm_server  ${D}/${bindir}
++}
+-- 
+2.17.1
 
-In my conf/local.conf I make sure I have a native cmake included in the SD=
-K:
-
-# Does not work, will destroy TOOLCHAIN_HOST_TASK
-#TOOLCHAIN_HOST_TASK +=3D "nativesdk-cmake"
-# This is a work-around (we need to extra space here because _append
-will not add it for us).
-TOOLCHAIN_HOST_TASK_append =3D " nativesdk-cmake"
-
-And this is how I compile an application using SDK and CMake:
-
-        (source /tmp/oe-sdk-cmake/environment-setup-core2-64-oe-linux-musl=
- && \
-        cd myapp-cmake && \
-        mkdir -p build_sdk && \
-        cd build_sdk && \
-        cmake -DCMAKE_TOOLCHAIN_FILE=3D$$OECORE_NATIVE_SYSROOT/usr/share/c=
-make/OEToolchainConfig.cmake
--DCMAKE_VERBOSE_MAKEFILE=3D1 . .. && \
-        make)
-
-(I am using gcc, I I will verify this setup if I switch to clang.)
-
-Regards,
---=20
-Leon Woestenberg
-leon@sidebranch.com
-M: +31 6 472 30 372
-
-Sidebranch Embedded Systems
-Eindhoven, The Netherlands
-http://www.sidebranch.com
-
-On Thu, Sep 10, 2020 at 12:53 PM Monsees, Steven C (US) via
-lists.yoctoproject.org
-<steven.monsees=3Dbaesystems.com@lists.yoctoproject.org> wrote:
->
->
-> fyi...
->
-> I am using CMake with GNU, that is what is required for the build.
->
-> I do source the SDK environment script prior to attempting build.
->
-> Here is my current environment-setup-corei7-64-poky-linux script created=
- by SDK:
->
-> # Check for LD_LIBRARY_PATH being set, which can break SDK and generally=
- is a bad practice
-> # http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN8=
-0
-> # http://xahlee.info/UnixResource_dir/_/ldpath.html
-> # Only disable this check if you are absolutely know what you are doing!
-> if [ ! -z "$LD_LIBRARY_PATH" ]; then
->     echo "Your environment is misconfigured, you probably need to 'unset=
- LD_LIBRARY_PATH'"
->     echo "but please check why this was set in the first place and that =
-it's safe to unset."
->     echo "The SDK will not operate correctly in most cases when LD_LIBRA=
-RY_PATH is set."
->     echo "For more references see:"
->     echo "  http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries=
-.html#AEN80"
->     echo "  http://xahlee.info/UnixResource_dir/_/ldpath.html"
->     return 1
-> fi
-> export SYSROOTS=3D/ede/smonsees/yocto/testSDK/sysroots
-> export SDKTARGETSYSROOT=3D/disk0/scratch/smonsees/yocto/testSDK/sysroots=
-/corei7-64-poky-linux
-> export PATH=3D/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-poky=
-sdk-linux/usr/bin:/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pok=
-ysdk-linux/usr/sbin:/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-p=
-okysdk-linux/bin:/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-poky=
-sdk-linux/sbin:/disk0/scratch/smonsees/yocto/testSDK/sysroots/x86_64-pokysd=
-k-linux/usr/bin/../x86_64-pokysdk-linux/bin:/disk0/scratch/smonsees/yocto/t=
-estSDK/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux:/disk0/scrat=
-ch/smonsees/yocto/testSDK/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky=
--linux-musl:/disk0/scratch/smonsees/yocto/testSDK/sysroots/corei7-64-poky-l=
-inux/usr/lib/../lib/:/disk0/scratch/smonsees/yocto/testSDK/sysroots/corei7-=
-64-poky-linux/usr/lib/../lib/x86_64-poky-linux/7.3.0/:$PATH
-> export PKG_CONFIG_SYSROOT_DIR=3D$SDKTARGETSYSROOT
-> export PKG_CONFIG_PATH=3D$SDKTARGETSYSROOT/usr/lib/pkgconfig:$SDKTARGETS=
-YSROOT/usr/share/pkgconfig
-> export CONFIG_SITE=3D/disk0/scratch/smonsees/yocto/testSDK/site-config-c=
-orei7-64-poky-linux
-> export OECORE_NATIVE_SYSROOT=3D"/disk0/scratch/smonsees/yocto/testSDK/sy=
-sroots/x86_64-pokysdk-linux"
-> export OECORE_TARGET_SYSROOT=3D"$SDKTARGETSYSROOT"
-> export OECORE_ACLOCAL_OPTS=3D"-I /disk0/scratch/smonsees/yocto/testSDK/s=
-ysroots/x86_64-pokysdk-linux/usr/share/aclocal"
-> unset command_not_found_handle
-> export CC=3D"x86_64-poky-linux-gcc  -v -m64 -march=3Dcorei7 -mtune=3Dcor=
-ei7 -mfpmath=3Dsse -msse4.2 --sysroot=3D$SDKTARGETSYSROOT"
-> export CXX=3D"x86_64-poky-linux-g++  -v -m64 -march=3Dcorei7 -mtune=3Dco=
-rei7 -mfpmath=3Dsse -msse4.2 --sysroot=3D$SDKTARGETSYSROOT"
-> export CPP=3D"x86_64-poky-linux-gcc -v -E  -m64 -march=3Dcorei7 -mtune=
-=3Dcorei7 -mfpmath=3Dsse -msse4.2 --sysroot=3D$SDKTARGETSYSROOT"
-> export AS=3D"x86_64-poky-linux-as  "
-> export LD=3D"x86_64-poky-linux-ld  --sysroot=3D$SDKTARGETSYSROOT"
-> export GDB=3Dx86_64-poky-linux-gdb
-> export STRIP=3Dx86_64-poky-linux-strip
-> export RANLIB=3Dx86_64-poky-linux-ranlib
-> export OBJCOPY=3Dx86_64-poky-linux-objcopy
-> export OBJDUMP=3Dx86_64-poky-linux-objdump
-> export AR=3Dx86_64-poky-linux-ar
-> export NM=3Dx86_64-poky-linux-nm
-> export M4=3Dm4
-> export TARGET_PREFIX=3Dx86_64-poky-linux-
-> export CONFIGURE_FLAGS=3D"--target=3Dx86_64-poky-linux --host=3Dx86_64-p=
-oky-linux --build=3Dx86_64-linux --with-libtool-sysroot=3D$SDKTARGETSYSROOT=
-"
-> export CFLAGS=3D" --sysroot=3D$SDKTARGETSYSROOT -O2 -pipe -g -feliminate=
--unused-debug-types"
-> export CXXFLAGS=3D" --sysroot=3D$SDKTARGETSYSROOT -O2 -pipe -g -felimina=
-te-unused-debug-types"
-> export LDFLAGS=3D" -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed"
-> export CPPFLAGS=3D""
-> export KCFLAGS=3D"--sysroot=3D$SDKTARGETSYSROOT"
-> export OECORE_DISTRO_VERSION=3D"2.4.1"
-> export OECORE_SDK_VERSION=3D"2.4.1"
-> export ARCH=3Dx86
-> export CROSS_COMPILE=3Dx86_64-poky-linux-
->
-> # Append environment subscripts
-> if [ -d "$OECORE_TARGET_SYSROOT/environment-setup.d" ]; then
->     for envfile in $OECORE_TARGET_SYSROOT/environment-setup.d/*.sh; do
->      . $envfile
->     done
-> fi
-> if [ -d "$OECORE_NATIVE_SYSROOT/environment-setup.d" ]; then
->     for envfile in $OECORE_NATIVE_SYSROOT/environment-setup.d/*.sh; do
->      . $envfile
->     done
-> fi
-> export CLANGCC=3D"x86_64-poky-linux-clang -m64 -march=3Dcorei7 -mtune=3D=
-corei7 -mfpmath=3Dsse -msse4.2 -mlittle-endian --sysroot=3D$SDKTARGETSYSROO=
-T"
-> export CLANGCXX=3D"x86_64-poky-linux-clang++ -m64 -march=3Dcorei7 -mtune=
-=
-=3Dcorei7 -mfpmath=3Dsse -msse4.2 -mlittle-endian --sysroot=3D$SDKTARGETSY=
-SROOT"
-> export CLANGCPP=3D"x86_64-poky-linux-clang -E -m64 -march=3Dcorei7 -mtun=
-e=3Dcorei7 -mfpmath=3Dsse -msse4.2 -mlittle-endian --sysroot=3D$SDKTARGETSY=
-SROOT"
->
->
->  and
->
->=20
