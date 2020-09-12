@@ -1,68 +1,114 @@
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
- by mx.groups.io with SMTP id smtpd.web10.12903.1599890964583521512
- for <yocto@lists.yoctoproject.org>;
- Fri, 11 Sep 2020 23:09:24 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Yz6OJC5k;
- spf=pass (domain: gmail.com, ip: 209.85.215.178, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f178.google.com with SMTP id l191so7957198pgd.5
-        for <yocto@lists.yoctoproject.org>; Fri, 11 Sep 2020 23:09:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=It4053Rpql71QIZudXzbvfd2MjnmJ7hJioVjXtXCUeo=;
-        b=Yz6OJC5k8X2E1IVwqUCFv+isbdQY6Sz386TWC87IhB+oSQ5XDsF6mmLkOueLJtGRoU
-         jlfF7Essiaa2hJW+3lLglEmchdFbPwlsY/VsUrWdtAMJCPjNR+81MegWh4uBMUBr5kyE
-         xPoH44hxuORt3zxMyzbvv42+Z27qvTqk4NKRkK9hhyD13VTHHwupJBmFalG7KbNcLFs/
-         oiOX7vVNt+Dr5oU23qW7COThbuNcDX0JjtsGpA40cUGM5SfXK9Ye4w/47jHybb0NCTYs
-         HsYG+h5YNoQJ8v1pMN44cYhS7YrwYnRIOalKL9ZtlKpDwiwMB7NkM+OMWTQQ5gp0/r0u
-         e3/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=It4053Rpql71QIZudXzbvfd2MjnmJ7hJioVjXtXCUeo=;
-        b=oD9fGGcaFXvm7PYJ8SX6VioEP0LzzIvIjuC28pzB3ZcrL2LBxESeOLiOlVfKRVLtll
-         iDRcDkTXUl5TKoIgWVuhZ++umCb59YgonyFJfahuXOaLo01m3+maU3W/kO6Rgr4QIdEP
-         MAZ23JSry95fYR1yhA+J5CJmBL0QKlETFxhaIepfdhC4dfre9h2ecj7riRzDhdXDuNtM
-         JUemue3fd19MJAGgYyIlCNpikSfZzvLqmi/Lab0BO1I87n2kaCKmrCc1sA3gyQjNMWE2
-         KCoW1PmKdLxcSo4AiwhqTUrGxNJ408+9lGURNokGiWOtpocPGiToQk7stZpX7+3m04w4
-         bEQQ==
-X-Gm-Message-State: AOAM532VVI27gFtRSht1mN5BtiX8UqYB1wVfKt/edWaJtVg/uGfYl/ug
-	IxLv9M4zo/l6wB7QHS84ut90H2vYlHM=
-X-Google-Smtp-Source: ABdhPJyfHOzdOE2rdmVD7ZHk+e5ioqmcivTXXPSaF7t4GQCBBcCUdRBzwqSb1WhAzr7usm8Yl++j6Q==
-X-Received: by 2002:a62:7ed5:0:b029:13e:d13d:a086 with SMTP id z204-20020a627ed50000b029013ed13da086mr5124006pfc.29.1599890963437;
-        Fri, 11 Sep 2020 23:09:23 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:9d9a:aa32:31fc:b6f0])
-        by smtp.gmail.com with ESMTPSA id z4sm4019986pfr.197.2020.09.11.23.09.22
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Sep 2020 23:09:22 -0700 (PDT)
-From: "akuster" <akuster808@gmail.com>
+Subject: Install headers to /usr/include/
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] packagegroup-core-security: dont include suricata on riscv or ppc
-Date: Fri, 11 Sep 2020 23:09:21 -0700
-Message-Id: <20200912060921.10943-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
+From: majid.nasiry65@gmail.com
+X-Originating-Location: Zanjan, IR (89.47.196.86)
+X-Originating-Platform: Windows Chrome 85
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Sat, 12 Sep 2020 02:58:04 -0700
+Message-ID: <S7DH.1599904684034190186.Nbaq@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="IytUvSZvTQNh4TMVwKK3"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-core/packagegroup/packagegroup-core-security.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--IytUvSZvTQNh4TMVwKK3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/recipes-core/packagegroup/packagegroup-core-security.bb b/recipes-core/packagegroup/packagegroup-core-security.bb
-index c6342fd..6aa0d6c 100644
---- a/recipes-core/packagegroup/packagegroup-core-security.bb
-+++ b/recipes-core/packagegroup/packagegroup-core-security.bb
-@@ -55,7 +55,7 @@ SUMMARY_packagegroup-security-ids = "Security Intrusion Detection systems"
- RDEPENDS_packagegroup-security-ids = " \
-     tripwire \
-     samhain-standalone \
--    suricata \
-+    ${@bb.utils.contains_any("TUNE_FEATURES", "ppc7400 riscv32 riscv64", "", " suricata",d)} \
-     "
- 
- SUMMARY_packagegroup-security-mac = "Security Mandatory Access Control systems"
--- 
-2.17.1
+Hi
+I have a recipe for a library. It install .so files correctly but headers =
+not installed. It can install files any where except /usr/inclue/ directory=
+.
+>=20
+>=20
+> SUMMARY =3D "An=C2=A0open=C2=A0source=C2=A0library=C2=A0for=C2=A0DNP3"
+> HOMEPAGE =3D "http://dnp3.github.io/"
+> SECTION =3D "libs"
+> DEPENDS =3D ""
+> LICENSE =3D "Apache-2.0"
+> LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D3b83ef96387f14655fc854ddc3c6b=
+d57"
+>=20
+>=20
+> SRCREV =3D "639edaf1a5d2d74bc04efdd9ddf165bc14a06390"
+> SRC_URI =3D "git://github.com/dnp3/opendnp3.git;branch=3Drelease"
+>=20
+> S =3D " ${WORKDIR} /git"
+>=20
+> EXTRA_OECMAKE +=3D "-DNP3_TLS=3DON"
+>=20
+> do_install_append (){
+> install=C2=A0-d ${D}${includedir}
+> cp=C2=A0-r ${S} /cpp/lib/include/opendnp3 ${D}${includedir}
+> }
+>=20
+> FILES_${PN} +=3D " ${includedir} "
+>=20
+> inherit cmake
+>=20
 
+Where is my mistake?
+Thanks.
+
+>=20
+>=20
+>
+
+--IytUvSZvTQNh4TMVwKK3
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi<br />I have a recipe for a library. It install .so files correctly but h=
+eaders not installed. It can install files any where except /usr/inclue/ di=
+rectory.&nbsp;
+<blockquote>
+<div style=3D"color: #d4d4d4; background-color: #1e1e1e; font-family: Cons=
+olas, 'Courier New', monospace; line-height: 19px; white-space: pre;">
+<div><span style=3D"color: #9cdcfe;">SUMMARY</span>&nbsp;=3D&nbsp;<span st=
+yle=3D"color: #ce9178;">"An&nbsp;open&nbsp;source&nbsp;library&nbsp;for&nbs=
+p;DNP3"</span></div>
+<div><span style=3D"color: #9cdcfe;">HOMEPAGE</span>&nbsp;=3D&nbsp;<span s=
+tyle=3D"color: #ce9178;">"http://dnp3.github.io/"</span></div>
+<div><span style=3D"color: #9cdcfe;">SECTION</span>&nbsp;=3D&nbsp;<span st=
+yle=3D"color: #ce9178;">"libs"</span></div>
+<div><span style=3D"color: #9cdcfe;">DEPENDS</span>&nbsp;=3D&nbsp;<span st=
+yle=3D"color: #ce9178;">""</span></div>
+<div><span style=3D"color: #9cdcfe;">LICENSE</span>&nbsp;=3D&nbsp;<span st=
+yle=3D"color: #ce9178;">"Apache-2.0"</span></div>
+<div><span style=3D"color: #9cdcfe;">LIC_FILES_CHKSUM</span>&nbsp;=3D&nbsp=
+;<span style=3D"color: #ce9178;">"file://LICENSE;md5=3D3b83ef96387f14655fc8=
+54ddc3c6bd57"</span></div>
+<br /><br />
+<div><span style=3D"color: #9cdcfe;">SRCREV</span>&nbsp;=3D&nbsp;<span sty=
+le=3D"color: #ce9178;">"639edaf1a5d2d74bc04efdd9ddf165bc14a06390"</span></d=
+iv>
+<div><span style=3D"color: #9cdcfe;">SRC_URI</span>&nbsp;=3D&nbsp;<span st=
+yle=3D"color: #ce9178;">"git://github.com/dnp3/opendnp3.git;branch=3Dreleas=
+e"</span>&nbsp;</div>
+<br />
+<div><span style=3D"color: #9cdcfe;">S</span>&nbsp;=3D&nbsp;<span style=3D=
+"color: #ce9178;">"</span><span style=3D"color: #569cd6;">${WORKDIR}</span>=
+<span style=3D"color: #ce9178;">/git"</span></div>
+<br />
+<div><span style=3D"color: #9cdcfe;">EXTRA_OECMAKE</span>&nbsp;+=3D&nbsp;<=
+span style=3D"color: #ce9178;">"-DNP3_TLS=3DON"</span></div>
+<br />
+<div><span style=3D"color: #dcdcaa;">do_install_append</span>(){</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;install&nbsp;-d&nbsp;<span style=3D"color: #9=
+cdcfe;">${D}${includedir}</span></div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;cp&nbsp;-r&nbsp;<span style=3D"color: #9cdcfe=
+;">${S}</span>/cpp/lib/include/opendnp3&nbsp;<span style=3D"color: #9cdcfe;=
+">${D}${includedir}</span></div>
+<div>}</div>
+<br />
+<div><span style=3D"color: #9cdcfe;">FILES_${PN}</span>&nbsp;+=3D&nbsp;<sp=
+an style=3D"color: #ce9178;">"</span><span style=3D"color: #569cd6;">${incl=
+udedir}</span><span style=3D"color: #ce9178;">"</span></div>
+<br /><span style=3D"color: #c586c0;">inherit</span>&nbsp;cmake</div>
+</blockquote>
+Where is my mistake?&nbsp;<br />Thanks.<br /><br />
+<blockquote>
+<div style=3D"color: #d4d4d4; background-color: #1e1e1e; font-family: Cons=
+olas, 'Courier New', monospace; line-height: 19px; white-space: pre;">&nbsp=
+;</div>
+</blockquote>
+
+--IytUvSZvTQNh4TMVwKK3--
