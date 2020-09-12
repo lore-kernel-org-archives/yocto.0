@@ -1,51 +1,49 @@
 Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com [209.85.210.196])
- by mx.groups.io with SMTP id smtpd.web10.20201.1599925500288233858
+ by mx.groups.io with SMTP id smtpd.web12.19990.1599925818101598308
  for <yocto@lists.yoctoproject.org>;
- Sat, 12 Sep 2020 08:45:00 -0700
+ Sat, 12 Sep 2020 08:50:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ovk4uMpV;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=klMqUfiq;
  spf=pass (domain: gmail.com, ip: 209.85.210.196, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f196.google.com with SMTP id k15so9315039pfc.12
-        for <yocto@lists.yoctoproject.org>; Sat, 12 Sep 2020 08:45:00 -0700 (PDT)
+Received: by mail-pf1-f196.google.com with SMTP id c196so9486372pfc.0
+        for <yocto@lists.yoctoproject.org>; Sat, 12 Sep 2020 08:50:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=bZDDGp5ymbvC7ntagcdLaBxX90n6h5GhHqa2i6yO8FE=;
-        b=ovk4uMpV9vH0+BZ0r6f3431Gc+cqge3AJqjvH+vSQ4WvxogO9VgP2K+9lRlU3SWOM+
-         AcAXjVIEV6j9j4nKM0Mw0gxdtH5r7/89Jogx3UDnnqZOZQfKT2coDSF77krP8Xgd2qFu
-         aLJ3ux9mO/DBfdAqcOJnFT8M0MTVzYwSDiipZo0BjIt55kaZq4qeWnoeZNfX//immcXw
-         U6dlKFUFGOusK89nb/cMAElYqaIvEw5khl+0lwNKdqAPpxFgV1jlZtwSPQ+BWHCUWmhN
-         BhUgW3C/75BLjgZPdzlDqqPW4IlifGCm54tQakdn3dkMDWJRhjHa33BVm2UMkeToD/NU
-         MxaQ==
+        bh=x9HDjoTHSMek/Y7Rmok/TGnRtRgfdWrgbdivrnX/f04=;
+        b=klMqUfiqsRHGz1if5cAQATdVwLfnZGVx1TJXraabMEaV3+SwK/vBiambCHBeeMkto+
+         Ksa97yfXy8yGOIvHe1VZiKkQAarlGjQQ6s51MTtlqMclCnxaPSWCvp+t47phAWeUTBZ/
+         qsEUIYcLrggF1kJfGFVCbB/QRlTD+41rDr9ZIzbkemtqNCMQu3iDfImVo09aOr9dgYSB
+         7p8FcOvzXvLFAKPHQK/QU2xPVsGMaed4PHpYgx+W2uCJBjeN8Jc5GtTHB7IEzv79AWCr
+         bnMWcgHYgmQA/hW7mzLGEKy1svEVvkDjp8ZklKpoY5+0F9nBig7GRSH+gWBhQq+TLtBR
+         N2QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-transfer-encoding:content-language;
-        bh=bZDDGp5ymbvC7ntagcdLaBxX90n6h5GhHqa2i6yO8FE=;
-        b=BzR9EaphM+IhtmMxGSOSgxtID0N8SFchRmjJHzLMaEDe3OChhp0up90DidiOPtxYzY
-         c7+SUbzgPFId/permD6AjFQPkU3K00bh4HTa5nNr5Fl+tahYYgyR/AFEBu4z5co9gIoj
-         IAMiZSbp2Nooz3Bv7kbeGz29oQ9TPio6LXN/5FTPIalCSIAD3er+aasmOt6Y4TtnNrnn
-         hHeCBLYbd/KDFPBnV2mEWPwFQmkdKZ8PdCzEN6URKtjirbKHdk7H6TgEHfM0gYJyxrnx
-         EkEBJxBqKupnTQOL12d6+uV8eDzHaYS2uYgejAbyjW9eR05RsI52vOTUB83/r6ItdPeY
-         G9tw==
-X-Gm-Message-State: AOAM531zxtR5f9HFOoxQXx2rjTZhHnDYhw4fFPjGTLUHw6b/GDK1r84W
-	4w5IbtGDFztRbquMaLlLolE=
-X-Google-Smtp-Source: ABdhPJyGS9erc/4JFypfW0sFljrm+zQiF0i+fuTv/6zlSYoiJaeTvFsUBizqkvq/ZXKjU4cS7v7U8g==
-X-Received: by 2002:a05:6a00:23c4:: with SMTP id g4mr6701344pfc.40.1599925499752;
-        Sat, 12 Sep 2020 08:44:59 -0700 (PDT)
+        bh=x9HDjoTHSMek/Y7Rmok/TGnRtRgfdWrgbdivrnX/f04=;
+        b=LJXxmIqtNhLWUIG0VARFxlzvCEcB5ai8g5WoJ4nn8/PctGwDVkIWN3cstGjcjeRvsi
+         5t24G6rrDzmuhyRnWFQxu0a20X+fU6zII0M/V5dfXIx0/R8HEiYmvm2+fiMFmUHf85uq
+         8+O20Hc0Qcm6EXXyogofgvXVh/2rcdZqGsjpN9tpZiGyKT2aLaI77lBi7hXhP5QVOpLR
+         7V/Zv3ipYbc3C7c7EQ9pgEPh9M1+OHCCiBNzDf3d+cCtq2EeJlbBwtg64Jhqo4THLyTF
+         lWhK/hFA5TnkRgBdGTBfoM9D5C6cHZus1AS77KVwZBDmYVhpn3G2NE+3vp1wYM8jTVaS
+         UGAw==
+X-Gm-Message-State: AOAM530ojeXGCo55JFI1X194+vlXxJfHbLDlT+lONzSFyB+0p0kccqkL
+	yTzXjON4s3yWCAwlX2jBTSE=
+X-Google-Smtp-Source: ABdhPJxGEVR+mZ2vsw4LO6sXM7wu6YxIgkwewE/8QkzYfPScfb9B6RXt/bDJcPE6RoH4PpWU8hw8Sw==
+X-Received: by 2002:a63:3483:: with SMTP id b125mr5218910pga.24.1599925817511;
+        Sat, 12 Sep 2020 08:50:17 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from ?IPv6:2601:202:4180:a5c0:e1aa:69c3:1411:f726? ([2601:202:4180:a5c0:e1aa:69c3:1411:f726])
-        by smtp.gmail.com with ESMTPSA id m17sm3131388pjn.54.2020.09.12.08.44.58
+        by smtp.gmail.com with ESMTPSA id l7sm4332955pjz.56.2020.09.12.08.50.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Sep 2020 08:44:59 -0700 (PDT)
+        Sat, 12 Sep 2020 08:50:17 -0700 (PDT)
 Subject: Re: [meta-security][PATCH 0/6] Some small dm-verity improvements
-To: Bartosz Golaszewski <brgl@bgdev.pl>, Niko Mauno <niko.mauno@vaisala.com>
-Cc: yocto@lists.yoctoproject.org,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>
+To: Niko Mauno <niko.mauno@vaisala.com>, yocto@lists.yoctoproject.org
+Cc: brgl@bgdev.pl, bgolaszewski@baylibre.com
 References: <20200907171737.108284-1-niko.mauno@vaisala.com>
- <CAMRc=MdGea6ojUTnvF8tixff2aAkUMrN7ryWioAYV2==jjUXAA@mail.gmail.com>
 From: "akuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -90,90 +88,65 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <cd8bafcf-3f27-8a33-2453-4209e6e80d75@gmail.com>
-Date: Sat, 12 Sep 2020 08:44:58 -0700
+Message-ID: <d3aa515a-4d75-fd30-4069-3e3a684f4c92@gmail.com>
+Date: Sat, 12 Sep 2020 08:50:16 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <CAMRc=MdGea6ojUTnvF8tixff2aAkUMrN7ryWioAYV2==jjUXAA@mail.gmail.com>
+In-Reply-To: <20200907171737.108284-1-niko.mauno@vaisala.com>
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 
 
-On 9/7/20 10:35 AM, Bartosz Golaszewski wrote:
-> On Mon, Sep 7, 2020 at 7:17 PM Niko Mauno <niko.mauno@vaisala.com> wrot=
-e:
->> This set of patches addresses some small issues in dm-verity rootfs
->> facility, which were observed while making use of dm-verity-img.bbclas=
-s
->> to generate dm-verity rootfs images for real arm-based hardware. For
->> purposes of establishing this changeset, the default 'qemux86-64'
->> machine was used as a reference.
->>
->> During testing/development the following additional settings were
->> defined in local.conf:
->>
->>   DM_VERITY_IMAGE =3D "core-image-minimal"
->>   DM_VERITY_IMAGE_TYPE =3D "ext4"
->>   IMAGE_CLASSES +=3D "dm-verity-img"
->>   INITRAMFS_IMAGE_BUNDLE =3D "1"
->>   INITRAMFS_IMAGE =3D "dm-verity-image-initramfs"
->>
->> And the following command line was used to test the changes with qemu:=
+On 9/7/20 10:17 AM, Niko Mauno wrote:
+> This set of patches addresses some small issues in dm-verity rootfs
+> facility, which were observed while making use of dm-verity-img.bbclass
+> to generate dm-verity rootfs images for real arm-based hardware. For
+> purposes of establishing this changeset, the default 'qemux86-64'
+> machine was used as a reference.
+>
+> During testing/development the following additional settings were
+> defined in local.conf:
+>
+>   DM_VERITY_IMAGE = "core-image-minimal"
+>   DM_VERITY_IMAGE_TYPE = "ext4"
+>   IMAGE_CLASSES += "dm-verity-img"
+>   INITRAMFS_IMAGE_BUNDLE = "1"
+>   INITRAMFS_IMAGE = "dm-verity-image-initramfs"
 
->>
->>   KERNEL=3D.../build/tmp/deploy/images/qemux86-64/bzImage-initramfs-qe=
-mux86-64.bin \
->>     QB_NET=3Dnone \
->>     runqemu \
->>     nographic \
->>     qemuparams=3D"-nic none" \
->>     qemux86-64 \
->>     .../build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-=
-64-*.rootfs.ext4.verity
->>
->>
->> Niko Mauno (6):
->>   dm-verity-img.bbclass: Fix bashisms
->>   dm-verity-img.bbclass: Reorder parse-time check
->>   dm-verity-image-initramfs: Fix do_rootfs dependency
->>   dm-verity-image-initramfs: Ensure verity hash sync
->>   dm-verity-image-initramfs: Bind at do_image instead
->>   linux-yocto(-dev): Add dm-verity fragment as needed
->>
->>  classes/dm-verity-img.bbclass                    | 12 ++++++------
->>  recipes-core/images/dm-verity-image-initramfs.bb |  7 +++++--
->>  recipes-kernel/linux/linux-yocto-dev.bbappend    |  1 +
->>  recipes-kernel/linux/linux-yocto_5.%.bbappend    |  1 +
->>  4 files changed, 13 insertions(+), 8 deletions(-)
->>
->> --
->> 2.20.1
->>
-> Hi Niko,
->
-> I saw these patches and had to double-check just to realize my
-> dm-verity patches actually got upstream to meta-security although I
-> explicitly stated in the cover letter that they don't work with
-> verified boot (which basically makes dm-verity useless).
-I suspect It didn't register.=C2=A0 In the end it did have a silver linin=
-g as
-it was work that could be leveraged.=C2=A0 This is on the core values of =
-open
-sources.
+I have used the above and added it to the gitlab-ci.
 
-- armin
+> And the following command line was used to test the changes with qemu:
 >
-> It's funny you sent them now because I just started working on a
-> different approach that won't require the OE-core changes I posted a
-> while ago and which were never merged because they broke some unit
-> tests.
->
-> Niko: do your changes allow this to work with verified boot on BeagleBo=
-ne Black?
->
-> Bartosz
+>   KERNEL=.../build/tmp/deploy/images/qemux86-64/bzImage-initramfs-qemux86-64.bin \
+>     QB_NET=none \
+>     runqemu \
+>     nographic \
+>     qemuparams="-nic none" \
+>     qemux86-64 \
+>     .../build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64-*.rootfs.ext4.verity
 
+Thanks for the example. I should help in creating a selfttest.
+
+series merged.
+
+-armin
+>
+>
+> Niko Mauno (6):
+>   dm-verity-img.bbclass: Fix bashisms
+>   dm-verity-img.bbclass: Reorder parse-time check
+>   dm-verity-image-initramfs: Fix do_rootfs dependency
+>   dm-verity-image-initramfs: Ensure verity hash sync
+>   dm-verity-image-initramfs: Bind at do_image instead
+>   linux-yocto(-dev): Add dm-verity fragment as needed
+>
+>  classes/dm-verity-img.bbclass                    | 12 ++++++------
+>  recipes-core/images/dm-verity-image-initramfs.bb |  7 +++++--
+>  recipes-kernel/linux/linux-yocto-dev.bbappend    |  1 +
+>  recipes-kernel/linux/linux-yocto_5.%.bbappend    |  1 +
+>  4 files changed, 13 insertions(+), 8 deletions(-)
+>
 
