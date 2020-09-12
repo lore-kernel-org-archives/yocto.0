@@ -1,49 +1,50 @@
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
- by mx.groups.io with SMTP id smtpd.web10.20307.1599925852240326618
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.20016.1599925893644841947
  for <yocto@lists.yoctoproject.org>;
- Sat, 12 Sep 2020 08:50:52 -0700
+ Sat, 12 Sep 2020 08:51:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=fnBMJwuD;
- spf=pass (domain: gmail.com, ip: 209.85.214.182, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f182.google.com with SMTP id e4so2362730pln.10
-        for <yocto@lists.yoctoproject.org>; Sat, 12 Sep 2020 08:50:52 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Ei8QpMfh;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: akuster808@gmail.com)
+Received: from mail-pj1-f67.google.com (mail-pj1-f67.google.com [209.85.216.67])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 741EE38C1336
+	for <yocto@yoctoproject.org>; Sat, 12 Sep 2020 08:51:33 -0700 (PDT)
+Received: by mail-pj1-f67.google.com with SMTP id a9so3208237pjg.1
+        for <yocto@yoctoproject.org>; Sat, 12 Sep 2020 08:51:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=1u2qXoZ07pESRhdGJi8BBm0c1jBybHff5qdDWrlE2DA=;
-        b=fnBMJwuDF2LfzykL1EQnrPbclmpgicbCxV0GhJuNwaW7zApbXbvKozQR1xN4NqY1WP
-         bcjIxNuL3/0Dt7gNQKMUi1PfGKaEr7IKYgoSdYJM+0KpbEpyv/rJWmDlaka6dsm1TF4T
-         QAdDVsxIe7qST5p+zu8cvWMRye82oBfXLbKHESLjokmY09D2psEmY3XNVRXYDFnDl0bK
-         fzgPEiqb4DQndF9paDcb/kiB7CFkBbF50QhX5ohxMkXArC0U2/GA2aSWuLGIP0z0sx3Z
-         WjwjAlDkP4K3hAKgPUGEoNpL7jmDOidNX5VPfrUmWWzQzXAiRzkTcSo7wPr50acr/M+O
-         /Jzw==
+        bh=W7ulW6fBiyRgEJrT29jSM8IZ+cTcrP+exiC9HfClvkA=;
+        b=Ei8QpMfhJM+l2VQkJTsgWfP9yQ64Avb0f4rdGW0PcOYrzpcdP1mhWkE2x8lLBG7Z2j
+         Fd4sfAeXbNb1iOcW9MawErTir6K6/5cPS1x2nr4jGZozDidZM1WSCb61CwHH7lj2Xz0a
+         8DTbNX6k/laPlbN7PQVun4GWRbNePhfCOPjKfOsbpZwLcN8ggsQ5/GMwJc5C56kAav+C
+         IdAa3/MDqOEYkxoQHmZB8yHtsyzTzWUxmdizKU4gi81dSuuhZcFJ4AFULUMpDfQViKsH
+         Z22rjuxxlLI/I6YEmIIa+CgieHcFwI3J0/pKhhRm3xvPumGGViu4N0kigPULtXUC38rc
+         cCGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
          :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
          :content-language;
-        bh=1u2qXoZ07pESRhdGJi8BBm0c1jBybHff5qdDWrlE2DA=;
-        b=Glk2gs6X4VCyUtudE8tSdSDGSHUsf9u4z3ZJ8kFcj5pfApYsKQKRWv2xNxZXhpqhRX
-         SN6ZrQIVeUctoNGuldZts7a3Ua81DxJqrq9w9L/LzC6rKFdinPOkfl18P6TVVQ45xGd4
-         B4MWjGOs5+1suCW6ZxONFK258oJmh3J2MMHDU5IiLc0/PcauRf1zZTpULF5bk6mdUKWX
-         4PY+JC8pPLkPp5DQcFOP82VOZJ+MDE7Zqva20bboMwWVQuLOojsk52X/eW36IyY1EV99
-         OYKqcvpSvcqVSU9NhQ+mfEWS7V8SP7AqVzjuijeQ7ezs8uw1mf9FO9gy6e+bVLXV8JRU
-         ZoFA==
-X-Gm-Message-State: AOAM5314zgrTMlPXBNENL2jvleNg+N2N0k/fLMxJAZDeAU6G3afa4isJ
-	WABVloHtKytCJbL1+tlIfbm3/t0oP/U=
-X-Google-Smtp-Source: ABdhPJz8kOsy5yu/a8/Puv88N8IRwT8YUsRc1Uh0GPi6gBU2jFijKfrQkdTugVip8SEQwhe6aHpg1g==
-X-Received: by 2002:a17:90a:7ac1:: with SMTP id b1mr6680968pjl.121.1599925851527;
-        Sat, 12 Sep 2020 08:50:51 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
+        bh=W7ulW6fBiyRgEJrT29jSM8IZ+cTcrP+exiC9HfClvkA=;
+        b=YzYMOptsj+gQ5zYTxn1IFvMiEZ5A1BenhP1mZLGoZ9JLx9t+7C+HvPVeSHXsMXUxvU
+         AuxMWz3drEZA8ngY+o6mzKK3sHFXZfqg4R4J55xYDaH1tlPAWeHKdV/GKmjbpVAVPLes
+         TkUmyVbWbL0DuItlNYugM/bE7aplmXNyHP7D/i0dh075Qlpegy2r1Sslg3xfGKSaaD91
+         Mzb3eFWOPonMRu1DGFSuG4PEBXj69YDllMidvHblxt56TBHKk0Bg7FjExJ9ptigJV7oQ
+         VfDH04yS9mL08An3MzaYCIms1NACSZnD0U4tGkV0YLhCojF9it56K/kK0HwxnH55pzcA
+         72CQ==
+X-Gm-Message-State: AOAM5329dmI1P79AJelnVSYyastHv4jbvy4ZoKmRBv2sT8f2lPD4FjUH
+	GwMWSIh6HKtV9z5T1n7n8dadp3RTUDY=
+X-Google-Smtp-Source: ABdhPJxQh9szKlkBWGvTbDgaAOfSpuTGA91wjTnavHpqV6x2Ylc8mSA8k7uRCMqKGsrZ4iRHtcOQsw==
+X-Received: by 2002:a17:90a:5a48:: with SMTP id m8mr6837401pji.181.1599925892823;
+        Sat, 12 Sep 2020 08:51:32 -0700 (PDT)
 Received: from ?IPv6:2601:202:4180:a5c0:e1aa:69c3:1411:f726? ([2601:202:4180:a5c0:e1aa:69c3:1411:f726])
-        by smtp.gmail.com with ESMTPSA id e125sm5571408pfe.154.2020.09.12.08.50.50
+        by smtp.gmail.com with ESMTPSA id q24sm5563963pfs.206.2020.09.12.08.51.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Sep 2020 08:50:51 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][PATCH] sssd: Make manpages buildable
-To: =?UTF-8?Q?Jonatan_P=c3=a5lsson?= <jonatan.p@gmail.com>,
- yocto@lists.yoctoproject.org
-References: <20200825120118.370966-1-jonatan.p@gmail.com>
+        Sat, 12 Sep 2020 08:51:32 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH] trousers: Fix the problem that do_package fails when multilib is enabled.
+To: zhengruoqin <zhengrq.fnst@cn.fujitsu.com>, yocto@yoctoproject.org
+References: <1599542889-126645-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
 From: "akuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -88,99 +89,45 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <419ba2d0-1dd2-0de3-ba71-1aa5702e50c4@gmail.com>
-Date: Sat, 12 Sep 2020 08:50:50 -0700
+Message-ID: <ae22eea3-d04d-3ad7-b315-0c290ebfcda0@gmail.com>
+Date: Sat, 12 Sep 2020 08:51:31 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200825120118.370966-1-jonatan.p@gmail.com>
+In-Reply-To: <1599542889-126645-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 merged
-
 thanks
 
-On 8/25/20 5:01 AM, Jonatan Pålsson wrote:
-> Some XML related fixes are needed to make the sssd manpages buildable
+On 9/7/20 10:28 PM, zhengruoqin wrote:
+> The following error will occur when multilib is enabled:
+> ERROR: trousers-0.3.14+gitAUTOINC+e74dd1d967-r0 do_package: QA Issue: trousers: Files/directories were installed but not shipped in any package:
+>   /lib
+>   /lib/systemd
+>   /lib/systemd/system
+>   /lib/systemd/system/tcsd.service
 >
-> Signed-off-by: Jonatan Pålsson <jonatan.p@gmail.com>
+> Signed-off-by: Zheng Ruoqin <zhengrq.fnst@cn.fujitsu.com>
 > ---
->  ...AC_CHECK_FILE-when-building-manpages.patch | 34 +++++++++++++++++++
->  recipes-security/sssd/sssd_1.16.4.bb          |  4 ++-
->  2 files changed, 37 insertions(+), 1 deletion(-)
->  create mode 100644 recipes-security/sssd/files/0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpages.patch
+>  meta-tpm/recipes-tpm/trousers/trousers_git.bb | 2 ++
+>  1 file changed, 2 insertions(+)
 >
-> diff --git a/recipes-security/sssd/files/0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpages.patch b/recipes-security/sssd/files/0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpages.patch
-> new file mode 100644
-> index 0000000..b64670c
-> --- /dev/null
-> +++ b/recipes-security/sssd/files/0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpages.patch
-> @@ -0,0 +1,34 @@
-> +From d54aa109600bcd02bf72cfe64c01935890a102a1 Mon Sep 17 00:00:00 2001
-> +From: =?UTF-8?q?Jonatan=20P=C3=A5lsson?= <jonatan.p@gmail.com>
-> +Date: Fri, 21 Aug 2020 14:45:10 +0200
-> +Subject: [PATCH] build: Don't use AC_CHECK_FILE when building manpages
-> +MIME-Version: 1.0
-> +Content-Type: text/plain; charset=UTF-8
-> +Content-Transfer-Encoding: 8bit
-> +
-> +AC_CHECK_FILE does not support cross-compilation, and will only check
-> +the host rootfs. Replace AC_CHECK_FILE with a 'test -f <FILE>' instead,
-> +to allow building manpages when cross-compiling.
-> +
-> +Upstream-status: Submitted [https://github.com/SSSD/sssd/pull/5289]
-> +Signed-off-by: Jonatan Pålsson <jonatan.p@gmail.com>
-> +---
-> + src/external/docbook.m4 | 2 +-
-> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> +
-> +diff --git a/src/external/docbook.m4 b/src/external/docbook.m4
-> +index deb8632fa..acdc89a68 100644
-> +--- a/src/external/docbook.m4
-> ++++ b/src/external/docbook.m4
-> +@@ -18,7 +18,7 @@ dnl Checks if the XML catalog given by FILE exists and
-> + dnl if a particular URI appears in the XML catalog
-> + AC_DEFUN([CHECK_STYLESHEET],
-> + [
-> +-  AC_CHECK_FILE($1, [], [AC_MSG_ERROR([could not find XML catalog])])
-> ++  AS_IF([test -f "$1"], [], [AC_MSG_ERROR([could not find XML catalog])])
-> + 
-> +   AC_MSG_CHECKING([for ifelse([$3],,[$2],[$3]) in XML catalog])
-> +   if AC_RUN_LOG([$XSLTPROC --catalogs --nonet --noout "$2" >&2]); then
-> +-- 
-> +2.26.1
-> +
-> diff --git a/recipes-security/sssd/sssd_1.16.4.bb b/recipes-security/sssd/sssd_1.16.4.bb
-> index 2c3c803..916f1ac 100644
-> --- a/recipes-security/sssd/sssd_1.16.4.bb
-> +++ b/recipes-security/sssd/sssd_1.16.4.bb
-> @@ -17,6 +17,7 @@ SRC_URI = "https://releases.pagure.org/SSSD/${BPN}/${BP}.tar.gz \
->             file://sssd.conf \
->             file://volatiles.99_sssd \
->             file://fix-ldblibdir.patch \
-> +           file://0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpages.patch \
->             "
+> diff --git a/meta-tpm/recipes-tpm/trousers/trousers_git.bb b/meta-tpm/recipes-tpm/trousers/trousers_git.bb
+> index 992e7f2..27b4e2f 100644
+> --- a/meta-tpm/recipes-tpm/trousers/trousers_git.bb
+> +++ b/meta-tpm/recipes-tpm/trousers/trousers_git.bb
+> @@ -104,6 +104,8 @@ FILES_${PN}-doc = " \
+>  	${mandir}/man8 \
+>  	"
 >  
->  SRC_URI[md5sum] = "757bbb6f15409d8d075f4f06cb678d50"
-> @@ -41,7 +42,7 @@ PACKAGECONFIG[autofs] = "--with-autofs, --with-autofs=no"
->  PACKAGECONFIG[crypto] = "--with-crypto=libcrypto, , libcrypto"
->  PACKAGECONFIG[curl] = "--with-kcm, --without-kcm, curl jansson"
->  PACKAGECONFIG[infopipe] = "--with-infopipe, --with-infopipe=no, "
-> -PACKAGECONFIG[manpages] = "--with-manpages, --with-manpages=no"
-> +PACKAGECONFIG[manpages] = "--with-manpages, --with-manpages=no, libxslt-native docbook-xml-dtd4-native docbook-xsl-stylesheets-native"
->  PACKAGECONFIG[nl] = "--with-libnl, --with-libnl=no, libnl"
->  PACKAGECONFIG[nscd] = "--with-nscd=${sbindir}, --with-nscd=no "
->  PACKAGECONFIG[nss] = "--with-crypto=nss, ,nss,"
-> @@ -60,6 +61,7 @@ EXTRA_OECONF += " \
->      --enable-pammoddir=${base_libdir}/security \
->      --without-python2-bindings \
->      --without-secrets \
-> +    --with-xml-catalog-path=${STAGING_ETCDIR_NATIVE}/xml/catalog \
->  "
+> +FILES_${PN} += "${systemd_unitdir}/*" 
+> +
+>  INITSCRIPT_NAME = "trousers"
+>  INITSCRIPT_PARAMS = "start 99 2 3 4 5 . stop 19 0 1 6 ."
 >  
->  do_configure_prepend() {
 >
 > 
 
