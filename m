@@ -1,49 +1,49 @@
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
- by mx.groups.io with SMTP id smtpd.web10.39025.1600007189546391221
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+ by mx.groups.io with SMTP id smtpd.web12.38939.1600007204990090102
  for <yocto@lists.yoctoproject.org>;
- Sun, 13 Sep 2020 07:26:29 -0700
+ Sun, 13 Sep 2020 07:26:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=RISH78mf;
- spf=pass (domain: gmail.com, ip: 209.85.210.174, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f174.google.com with SMTP id z19so10397245pfn.8
-        for <yocto@lists.yoctoproject.org>; Sun, 13 Sep 2020 07:26:29 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=rpItrHMS;
+ spf=pass (domain: gmail.com, ip: 209.85.210.176, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f176.google.com with SMTP id o68so10541141pfg.2
+        for <yocto@lists.yoctoproject.org>; Sun, 13 Sep 2020 07:26:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=jtiP2rsBB4brkO3FOK0jefS7dReVFbXhFZRpONBZC94=;
-        b=RISH78mf2QzoVqFCrhxqbl5uMyjBPh3Bq0BNLFQAmowdhXYslxTXJ7jr5G6lOOswKN
-         FbJnZOfOS/4H8SFAgQYgujWyRH5cE+YoaqhOD6dnpTroonGr6itxWi+30eh4OEm/5ae+
-         dp5QZSTc+44RYpS33LqbhNkzy2G3hDmofkrhumFdhgaEQlEZWZP+tA1h+mitNEUbPSzx
-         DydBCiHIGl1rNCS3P40rlcMsJwC/DCfAKpPIdP1ytNosLnBN5qTj4eARxqWQR7rZCX5C
-         vZ1fqfL3KgB/OA02GHasEI40LLMMF02uJnMB3bPqgscaDc24QvsjZHRtafyPjYBFhddB
-         7fhA==
+        bh=mCeWDvFoB43QoXgSHeHYL7hpjhKZSwi6nZV77I/lh+w=;
+        b=rpItrHMSp2Ms9ogo9/4VhCqyWtwCkeM6NjxfubutOO/1ykugrT39syeH5FPdpSVjsG
+         WqrITl7BZVuWfc9qRqNBr0zbp5rLaxudE35V2pzMRfokphvA2pZABBnWyTMO+AV0ltQ8
+         5sAJKmk5eMx5XljJC1neL+u7Ul0t5u5LLRO64VNqF7mVdC6yYuxWiBHZw2sJHkiquhPr
+         knC4PeLRb7PcwB4y3z2g3x/jqCZweDlU3HlYcWbxQU2MW+TMfbSj3VtWh4D6vRFwt6v7
+         FQ1eGXmUltXBmxP5e1q8lyHRATf0LgiN4hYS/d1q8hyxVrg7PEFjT9ddUpbiCEv0Gj3a
+         QQcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
          :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
          :content-language;
-        bh=jtiP2rsBB4brkO3FOK0jefS7dReVFbXhFZRpONBZC94=;
-        b=acgxaXUTx4I9WEPkNWnEFMJeM6XbfczmBlkQpVE3pID8JVcHsQY1dOGbK/xOn7AkyK
-         UsSk/VtROM0TvKYK7PCl/v8I3DeSs+gMbGcRZ07vaECntfPQ3338B12S/7bOlqe/JDYq
-         x+AEC43gC1l5KUm6sZl8V5eiGE5X2WvRx7TYYcm8kXrSpGhWQM7315UmeIl6cPp6jgIH
-         f1eNM5Kj+UDtLsEc9XBquCm18447aoLqNPtqArYLfQQTWmKCI83qSQhtMFjCtsun/PBH
-         Qkiwnu+sK0hOvslsyLjewbbrKwSAMjkQ8e9SfEsWEKp2kh2iZBXYa43HuPsiGe1sHrMH
-         7NGg==
-X-Gm-Message-State: AOAM532/w/bkQCjy7ayyKmMQ6n+36MW1YTUe6LCN8SrNgflLkm7WKi7+
-	724vVxm7S0MzINmX+rqnAXNuZykIp6A=
-X-Google-Smtp-Source: ABdhPJxrrlfIXKQxJhNSlpybImkCjOL3FaGBoYljC69qy7/vZAmbdmvqRfJT8kxMreK0a+9ySs5Yjg==
-X-Received: by 2002:a62:7743:0:b029:13c:1611:658e with SMTP id s64-20020a6277430000b029013c1611658emr9759108pfc.11.1600007188810;
-        Sun, 13 Sep 2020 07:26:28 -0700 (PDT)
+        bh=mCeWDvFoB43QoXgSHeHYL7hpjhKZSwi6nZV77I/lh+w=;
+        b=LlQULcQlxGIJMA4U3nK8oWnTP7XITUuNXyj+Kxck5GADbegSQVOstARo2FjL/ufb7N
+         w3L4rSb3IsEaZt0bHTZvxmQL3d5yAHoOrpBGWAC1znuz0q+4ziVnArzoMV2JY05qynds
+         vsv2W+UqWBjbt/cYqB0gdtID1At2jua5F94qQ8eRzqFLdmzrwjRNF5OYFuOnnUukWXf8
+         y6nvE2WGO8HrysiaPNtWMVXg/AtTngatSaHmyTc67J/zWhuX9jYq6AlQ0WuHalhaU+hn
+         g7gvGLOqUJ9+ksV3BKQVq8LX+qPDfgo3QZjVxppVwcZCmRiB/R5w0ZZuXqwc+sDh7p3h
+         573w==
+X-Gm-Message-State: AOAM533TXei6/pj7qFcJIdNslww5hXnEpPFdq/v4VuFNrymclLQmeg3/
+	Sk27aN5po2GtrILO8Ouwmt04GegVCxc=
+X-Google-Smtp-Source: ABdhPJxiQT3LD3S7edoizfjuP0bp9LHMUGhd1FjFNa1lSuTHDOBZlPRQs1syvImEX6ENku0aNgz7ew==
+X-Received: by 2002:a63:806:: with SMTP id 6mr802660pgi.71.1600007204421;
+        Sun, 13 Sep 2020 07:26:44 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from ?IPv6:2601:202:4180:a5c0:e1aa:69c3:1411:f726? ([2601:202:4180:a5c0:e1aa:69c3:1411:f726])
-        by smtp.gmail.com with ESMTPSA id b2sm1105388pfp.3.2020.09.13.07.26.28
+        by smtp.gmail.com with ESMTPSA id b10sm7519214pff.85.2020.09.13.07.26.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 13 Sep 2020 07:26:28 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][dunfell][PATCH] clamav: add INSTALL_CLAMAV_CVD flag to do_install
+        Sun, 13 Sep 2020 07:26:44 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][master][dunfell][PATCH] clamav: update SO_VER to 9.0.4
 To: Charlie Davies <charles.davies@whitetree.xyz>,
  yocto@lists.yoctoproject.org
-References: <20200910135315.12377-1-charles.davies@whitetree.xyz>
+References: <20200910141123.14207-1-charles.davies@whitetree.xyz>
 From: "akuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -88,43 +88,39 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <09c45fa4-3523-b03b-1fa4-ca96e4ad78b9@gmail.com>
-Date: Sun, 13 Sep 2020 07:26:27 -0700
+Message-ID: <a7912586-c692-1f63-74a5-8d21e05c1fc9@gmail.com>
+Date: Sun, 13 Sep 2020 07:26:43 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200910135315.12377-1-charles.davies@whitetree.xyz>
+In-Reply-To: <20200910141123.14207-1-charles.davies@whitetree.xyz>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-merged
+merged to both.
 
-On 9/10/20 6:53 AM, Charlie Davies wrote:
-> Recipe provides INSTALL_CLAMAV_CVD flag to bypass clamav
-> cvd db creation. During do_install this flag should be
-> used to conditionally skip install of cvd db if needed.
->
+thanks
+
+On 9/10/20 7:11 AM, Charlie Davies wrote:
 > Signed-off-by: Charlie Davies <charles.davies@whitetree.xyz>
 > ---
->  recipes-scanners/clamav/clamav_0.101.5.bb | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  recipes-scanners/clamav/clamav_0.101.5.bb | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
 > diff --git a/recipes-scanners/clamav/clamav_0.101.5.bb b/recipes-scanners/clamav/clamav_0.101.5.bb
-> index 2ea2c9b..770186a 100644
+> index 2ea2c9b..30c8c08 100644
 > --- a/recipes-scanners/clamav/clamav_0.101.5.bb
 > +++ b/recipes-scanners/clamav/clamav_0.101.5.bb
-> @@ -89,7 +89,9 @@ do_install_append_class-target () {
->      install -m 0644 ${WORKDIR}/volatiles.03_clamav  ${D}${sysconfdir}/default/volatiles/volatiles.03_clamav
->      sed -i -e 's#${STAGING_DIR_HOST}##g' ${D}${libdir}/pkgconfig/libclamav.pc
->      rm ${D}/${libdir}/libclamav.so
-> -    install -m 666 ${S}/clamav_db/* ${D}/${localstatedir}/lib/clamav/.
-> +    if [ "${INSTALL_CLAMAV_CVD}" = "1" ]; then
-> +        install -m 666 ${S}/clamav_db/* ${D}/${localstatedir}/lib/clamav/.
-> +    fi
->      if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)};then
->          install -D -m 0644 ${WORKDIR}/clamav.service ${D}${systemd_unitdir}/system/clamav.service
->          install -d ${D}${sysconfdir}/tmpfiles.d
+> @@ -23,7 +23,7 @@ SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=rel/0.101 \
+>  S = "${WORKDIR}/git"
+>  
+>  LEAD_SONAME = "libclamav.so"
+> -SO_VER = "9.0.2"
+> +SO_VER = "9.0.4"
+>  
+>  inherit autotools pkgconfig useradd systemd multilib_header multilib_script
+>  
 >
 > 
 
