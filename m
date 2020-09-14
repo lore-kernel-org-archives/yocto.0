@@ -1,41 +1,165 @@
-Received: from smtprelay.hostedemail.com (smtprelay.hostedemail.com [216.40.44.224])
- by mx.groups.io with SMTP id smtpd.web12.58010.1600081751332729980
- for <yocto@lists.yoctoproject.org>;
- Mon, 14 Sep 2020 04:09:11 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: sdcsystems.com, ip: 216.40.44.224, mailfrom: andy.pont@sdcsystems.com)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-	by smtprelay02.hostedemail.com (Postfix) with ESMTP id 1FD6E3CC77
-	for <yocto@lists.yoctoproject.org>; Mon, 14 Sep 2020 11:09:10 +0000 (UTC)
-X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
-X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,andy.pont@sdcsystems.com,,RULES_HIT:41:152:355:379:988:989:1260:1261:1277:1311:1313:1314:1345:1381:1437:1513:1515:1516:1518:1521:1534:1539:1593:1594:1711:1714:1730:1747:1777:1792:2393:2559:2562:2692:3138:3139:3140:3141:3142:3351:3622:3865:3867:3868:3870:3872:3874:4384:5007:6119:6670:7652:7903:10004:10400:10848:11026:11473:11658:11914:12043:12296:12438:12663:12679:13069:13071:13095:13311:13357:14180:14181:14685:14721:21080:21325:21433:21451:21627:21740:30054,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:1,LUA_SUMMARY:none
-X-HE-Tag: pet54_2b03eed27108
-X-Filterd-Recvd-Size: 1638
-Received: from [192.168.10.145] (leeshill.plus.com [81.174.243.117])
-	(Authenticated sender: andy.pont@sdcsystems.com)
-	by omf13.hostedemail.com (Postfix) with ESMTPA
-	for <yocto@lists.yoctoproject.org>; Mon, 14 Sep 2020 11:09:09 +0000 (UTC)
-From: "Andy Pont" <andy.pont@sdcsystems.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Tuning 'cortexa53-crypto' has no defined features, and cannot be used.
-Date: Mon, 14 Sep 2020 11:09:06 +0000
-Message-Id: <emac58a899-1ccd-408b-8b46-bb6d355c7619@andys-imac.leeshillfarm.local>
-Reply-To: "Andy Pont" <andy.pont@sdcsystems.com>
-User-Agent: eM_Client/8.0.2958.0
-Mime-Version: 1.0
-Content-Type: text/plain; format=flowed; charset=utf-8
+Subject: #yocto Problem compiling binutils-2.32.0-r0 on zeus
+To: yocto@lists.yoctoproject.org
+From: srijan.nandi@gmail.com
+X-Originating-Location: Ahmedabad, Gujarat, IN (14.102.160.178)
+X-Originating-Platform: Mac Safari 13.1
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Mon, 14 Sep 2020 08:08:19 -0700
+Message-ID: <6z5Y.1600096099772471549.tRF3@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="UscdDZznmkV34ixyfco5"
+
+--UscdDZznmkV34ixyfco5
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,=0A=0AI am trying to get an older meta-layer (meta-maaxboard) that wa=
-s =0Adeveloped for Sumo to work with Zeus.  When I try to build =E2=80=9Cbi=
-tbake =0Acore-image-minimal=E2=80=9D then the sanity checker gives the foll=
-owing error =0Abefore aborting:=0A=0AError, the PACKAGE_ARCHS variable (all =
-any noarch =0A${PACKAGE_EXTRA_ARCHS_tune-cortexa53-crypto} maaxboard_ddr4_=
-2g_sdcard) =0Afor DEFAULTTUNE (cortexa53-crypto) does not contain TUNE_PKGA=
-RCH =0A(${@bb.utils.contains('TUNE_FEATURES', 'aarch64', 'aarch64', =0A'${A=
-RMPKGARCH_tune-cortexa53-crypto}' ,d)}).Toolchain tunings invalid:=0ATuning =
-'cortexa53-crypto' has no defined features, and cannot be used.=0A=0AI don=
-=E2=80=99t understand what the error message actually means to know how to =
-=0Ago about resolving it.  Can anyone point me in the right direction?=0A=
-=0A-Andy.
+I am trying to compile=C2=A0binutils-2.32.0-r0 on zeus. I am getting the fo=
+llowing error:
 
+DEBUG: Executing python function do_unpack
+DEBUG: Executing python function base_do_unpack
+DEBUG: Running 'export PSEUDO_DISABLED=3D1; unset _PYTHON_SYSCONFIGDATA_NA=
+ME; export PATH=3D"/opt/grays-poky/build-grays/tmp/sysroots-uninative/x86_6=
+4-linux/usr/bin:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/bi=
+nutils/2.32.0-r0/recipe-sysroot-native/usr/bin/chrpath-native:/opt/grays-po=
+ky/scripts:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/binutil=
+s/2.32.0-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux:/opt/grays-poky=
+/build-grays/tmp/work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot=
+/usr/bin/crossscripts:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-li=
+nux/binutils/2.32.0-r0/recipe-sysroot-native/usr/sbin:/opt/grays-poky/build=
+-grays/tmp/work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-nativ=
+e/usr/bin:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/binutils=
+/2.32.0-r0/recipe-sysroot-native/sbin:/opt/grays-poky/build-grays/tmp/work/=
+core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-native/bin:/opt/grays=
+-poky/bitbake/bin:/opt/grays-poky/build-grays/tmp/hosttools"; export HOME=
+=3D"/home/srijan.nandi"; git -c core.fsyncobjectfiles=3D0 branch --contain=
+s b8c1f608db9ef3edd483d21a921d1fbedc71df6f --list binutils-2_32-branch 2> /=
+dev/null | wc -l' in /opt/grays-poky/build-grays/downloads/git2/sourceware.=
+org.git.binutils-gdb.git
+DEBUG: Running export PSEUDO_DISABLED=3D1; unset _PYTHON_SYSCONFIGDATA_NAM=
+E; export PATH=3D"/opt/grays-poky/build-grays/tmp/sysroots-uninative/x86_64=
+-linux/usr/bin:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/bin=
+utils/2.32.0-r0/recipe-sysroot-native/usr/bin/chrpath-native:/opt/grays-pok=
+y/scripts:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/binutils=
+/2.32.0-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux:/opt/grays-poky/=
+build-grays/tmp/work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot/=
+usr/bin/crossscripts:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-lin=
+ux/binutils/2.32.0-r0/recipe-sysroot-native/usr/sbin:/opt/grays-poky/build-=
+grays/tmp/work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-native=
+/usr/bin:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/binutils/=
+2.32.0-r0/recipe-sysroot-native/sbin:/opt/grays-poky/build-grays/tmp/work/c=
+ore2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-native/bin:/opt/grays-=
+poky/bitbake/bin:/opt/grays-poky/build-grays/tmp/hosttools"; export HOME=3D=
+"/home/srijan.nandi"; git -c core.fsyncobjectfiles=3D0 clone -s -n /opt/gra=
+ys-poky/build-grays/downloads/git2/sourceware.org.git.binutils-gdb.git/ /op=
+t/grays-poky/build-grays/tmp/work/core2-64-poky-linux/binutils/2.32.0-r0/gi=
+t/
+ERROR: Fetcher failure: Fetch command export PSEUDO_DISABLED=3D1; unset _P=
+YTHON_SYSCONFIGDATA_NAME; export PATH=3D"/opt/grays-poky/build-grays/tmp/sy=
+sroots-uninative/x86_64-linux/usr/bin:/opt/grays-poky/build-grays/tmp/work/=
+core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-native/usr/bin/chrpat=
+h-native:/opt/grays-poky/scripts:/opt/grays-poky/build-grays/tmp/work/core2=
+-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-native/usr/bin/x86_64-poky=
+-linux:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/binutils/2.=
+32.0-r0/recipe-sysroot/usr/bin/crossscripts:/opt/grays-poky/build-grays/tmp=
+/work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-native/usr/sbin=
+:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/binutils/2.32.0-r=
+0/recipe-sysroot-native/usr/bin:/opt/grays-poky/build-grays/tmp/work/core2-=
+64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-native/sbin:/opt/grays-poky=
+/build-grays/tmp/work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot=
+-native/bin:/opt/grays-poky/bitbake/bin:/opt/grays-poky/build-grays/tmp/hos=
+ttools"; export HOME=3D"/home/srijan.nandi"; git -c core.fsyncobjectfiles=
+=3D0 clone -s -n /opt/grays-poky/build-grays/downloads/git2/sourceware.org=
+.git.binutils-gdb.git/ /opt/grays-poky/build-grays/tmp/work/core2-64-poky-l=
+inux/binutils/2.32.0-r0/git/ failed with exit code 128, output:
+fatal: repository '/opt/grays-poky/build-grays/downloads/git2/sourceware.o=
+rg.git.binutils-gdb.git/' does not exist
+
+DEBUG: Python function base_do_unpack finished
+DEBUG: Python function do_unpack finished
+
+Now I checked and saw that the said directory (/opt/grays-poky/build-grays=
+/downloads/git2/sourceware.org.git.binutils-gdb.git/) does exist. I even tr=
+ied to change the permission to 777, but still the same issue.
+
+Any help will be greatly appreciated.
+
+Thanks and Regards,
+-=3DSrijan Nandi
+
+--UscdDZznmkV34ixyfco5
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I am trying to compile&nbsp;binutils-2.32.0-r0 on zeus. I am getting the fo=
+llowing error:<br /><br />
+<div>DEBUG: Executing python function do_unpack</div>
+<div>DEBUG: Executing python function base_do_unpack</div>
+<div>DEBUG: Running 'export PSEUDO_DISABLED=3D1; unset _PYTHON_SYSCONFIGDA=
+TA_NAME; export PATH=3D"/opt/grays-poky/build-grays/tmp/sysroots-uninative/=
+x86_64-linux/usr/bin:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-lin=
+ux/binutils/2.32.0-r0/recipe-sysroot-native/usr/bin/chrpath-native:/opt/gra=
+ys-poky/scripts:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/bi=
+nutils/2.32.0-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux:/opt/grays=
+-poky/build-grays/tmp/work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sy=
+sroot/usr/bin/crossscripts:/opt/grays-poky/build-grays/tmp/work/core2-64-po=
+ky-linux/binutils/2.32.0-r0/recipe-sysroot-native/usr/sbin:/opt/grays-poky/=
+build-grays/tmp/work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-=
+native/usr/bin:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/bin=
+utils/2.32.0-r0/recipe-sysroot-native/sbin:/opt/grays-poky/build-grays/tmp/=
+work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-native/bin:/opt/=
+grays-poky/bitbake/bin:/opt/grays-poky/build-grays/tmp/hosttools"; export H=
+OME=3D"/home/srijan.nandi"; git -c core.fsyncobjectfiles=3D0 branch --conta=
+ins b8c1f608db9ef3edd483d21a921d1fbedc71df6f --list binutils-2_32-branch 2&=
+gt; /dev/null | wc -l' in /opt/grays-poky/build-grays/downloads/git2/source=
+ware.org.git.binutils-gdb.git</div>
+<div>DEBUG: Running export PSEUDO_DISABLED=3D1; unset _PYTHON_SYSCONFIGDAT=
+A_NAME; export PATH=3D"/opt/grays-poky/build-grays/tmp/sysroots-uninative/x=
+86_64-linux/usr/bin:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linu=
+x/binutils/2.32.0-r0/recipe-sysroot-native/usr/bin/chrpath-native:/opt/gray=
+s-poky/scripts:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/bin=
+utils/2.32.0-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux:/opt/grays-=
+poky/build-grays/tmp/work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sys=
+root/usr/bin/crossscripts:/opt/grays-poky/build-grays/tmp/work/core2-64-pok=
+y-linux/binutils/2.32.0-r0/recipe-sysroot-native/usr/sbin:/opt/grays-poky/b=
+uild-grays/tmp/work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-n=
+ative/usr/bin:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/binu=
+tils/2.32.0-r0/recipe-sysroot-native/sbin:/opt/grays-poky/build-grays/tmp/w=
+ork/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-native/bin:/opt/g=
+rays-poky/bitbake/bin:/opt/grays-poky/build-grays/tmp/hosttools"; export HO=
+ME=3D"/home/srijan.nandi"; git -c core.fsyncobjectfiles=3D0 clone -s -n /op=
+t/grays-poky/build-grays/downloads/git2/sourceware.org.git.binutils-gdb.git=
+/ /opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/binutils/2.32.0-=
+r0/git/</div>
+<div>ERROR: Fetcher failure: Fetch command export PSEUDO_DISABLED=3D1; uns=
+et _PYTHON_SYSCONFIGDATA_NAME; export PATH=3D"/opt/grays-poky/build-grays/t=
+mp/sysroots-uninative/x86_64-linux/usr/bin:/opt/grays-poky/build-grays/tmp/=
+work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-native/usr/bin/c=
+hrpath-native:/opt/grays-poky/scripts:/opt/grays-poky/build-grays/tmp/work/=
+core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-native/usr/bin/x86_64=
+-poky-linux:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/binuti=
+ls/2.32.0-r0/recipe-sysroot/usr/bin/crossscripts:/opt/grays-poky/build-gray=
+s/tmp/work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-native/usr=
+/sbin:/opt/grays-poky/build-grays/tmp/work/core2-64-poky-linux/binutils/2.3=
+2.0-r0/recipe-sysroot-native/usr/bin:/opt/grays-poky/build-grays/tmp/work/c=
+ore2-64-poky-linux/binutils/2.32.0-r0/recipe-sysroot-native/sbin:/opt/grays=
+-poky/build-grays/tmp/work/core2-64-poky-linux/binutils/2.32.0-r0/recipe-sy=
+sroot-native/bin:/opt/grays-poky/bitbake/bin:/opt/grays-poky/build-grays/tm=
+p/hosttools"; export HOME=3D"/home/srijan.nandi"; git -c core.fsyncobjectfi=
+les=3D0 clone -s -n /opt/grays-poky/build-grays/downloads/git2/sourceware.o=
+rg.git.binutils-gdb.git/ /opt/grays-poky/build-grays/tmp/work/core2-64-poky=
+-linux/binutils/2.32.0-r0/git/ failed with exit code 128, output:</div>
+<div>fatal: repository '/opt/grays-poky/build-grays/downloads/git2/sourcew=
+are.org.git.binutils-gdb.git/' does not exist</div>
+<div>&nbsp;</div>
+<div>DEBUG: Python function base_do_unpack finished</div>
+<div>DEBUG: Python function do_unpack finished<br /><br />Now I checked an=
+d saw that the said directory (/opt/grays-poky/build-grays/downloads/git2/s=
+ourceware.org.git.binutils-gdb.git/) does exist. I even tried to change the=
+ permission to 777, but still the same issue.</div>
+<div>&nbsp;</div>
+<div>Any help will be greatly appreciated.<br /><br />Thanks and Regards,<=
+/div>
+<div>-=3DSrijan Nandi</div>
+
+--UscdDZznmkV34ixyfco5--
