@@ -1,122 +1,326 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.67503.1600105806076707215
- for <yocto@lists.yoctoproject.org>;
- Mon, 14 Sep 2020 10:50:06 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: sakuraus.com, ip: 198.145.29.25, mailfrom: gwilson@sakuraus.com)
-Received: from outbound-ip28a.ess.barracuda.com (outbound-ip28a.ess.barracuda.com [209.222.82.210])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 35C2B38C1167
-	for <yocto@yoctoproject.org>; Mon, 14 Sep 2020 10:50:05 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by mx2.us-east-2a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NO); Mon, 14 Sep 2020 17:50:03 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
- (10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Mon, 14
- Sep 2020 10:49:59 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
- ([::1]) with mapi id 15.01.0669.032; Mon, 14 Sep 2020 10:49:59 -0700
-From: "Greg Wilson-Lindberg" <gwilson@sakuraus.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Patching file contained in downloaded recipe
-Thread-Topic: Patching file contained in downloaded recipe
-Thread-Index: AdaKvu9SsfsGiLwuTWqezHSnEiALBA==
-Date: Mon, 14 Sep 2020 17:49:59 +0000
-Message-ID: <8b4672f4a9ae48278785886362fc5bfe@sakuraus.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.5.142]
+Subject: Ethernet device with systemd-networkd on Yocto won't work (rejects ARP replies), but does work with /etc/network/interfaces #systemd #yocto
+To: yocto@lists.yoctoproject.org
+From: eliranl@amazon.com
+X-Originating-Location: Frankfurt am Main, Hesse, DE (54.239.6.186)
+X-Originating-Platform: Linux Firefox 80
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-BESS-ID: 1600105798-893002-12926-2106-2
-X-BESS-VER: 2019.1_20200914.1702
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.226894 [from 
-	cloudscan18-48.us-east-2b.ess.aws.cudaops.com]
-	Rule breakdown below
-	 pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in message 
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_8b4672f4a9ae48278785886362fc5bfesakurauscom_"
+Date: Mon, 14 Sep 2020 11:31:21 -0700
+Message-ID: <mu1M.1600108281958934138.htNV@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="X8WDFXqy7PFCWhEUrlg0"
 
---_000_8b4672f4a9ae48278785886362fc5bfesakurauscom_
-Content-Type: text/plain; charset="us-ascii"
+--X8WDFXqy7PFCWhEUrlg0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-I have a recipe that has a .service file in one of its files directories th=
-at I need to patch.
+Hi,
+(since this is a long post, i divided it to sections)
 
-I haven't been able to figure out how to specify the directory of the file =
-that needs to be patched. I can't seem to get the patch to apply to the fil=
-es directory, do I need to specify the /lib/systemd/system directory into t=
-he PATCHDIR option or is there another way that would work better?
+*TL;DR*
 
-Regards
-Greg
+I have a networking issue in my Yocto dist; Somehow,=C2=A0my ethernet devi=
+ce won't work with systemd-networkd, but will work with /etc/network/interf=
+aces.
 
---_000_8b4672f4a9ae48278785886362fc5bfesakurauscom_
-Content-Type: text/html; charset="us-ascii"
+*Problem*
+I have an Nvidia Jetson AGX Xavier device which runs a Yocto Thud distribu=
+tion based on meta-tegra's=C2=A0tegra-minimal-initramfs ( https://github.co=
+m/OE4T/meta-tegra/blob/master/recipes-core/images/tegra-minimal-initramfs.b=
+b ) , which is a small initrd for Jetson Xavier, except it was modified to =
+run with coreutils instead of busybox, and with systemd.
+
+It has an eth0 device which is configured (with a config file in /etc/syst=
+emd/network) with a static IP address. The Xavier's Ethernet port is connec=
+ted directly to another Ubuntu PC, which is also on the same subnet with a =
+different static IP address.
+
+I cannot get the Xavier's network device to work with systemd-networkd;
+
+Once the device boots into the initrd, it appears as if the network device=
+ is configured correctly:
+
+* `ifconfig` shows that eth0 is configured with the correct IP address
+* The following messages appear in 'dmesg':
+[=C2=A0=C2=A0 12.390612] gpio tegra-gpio wake20 for gpio=3D52(G:4)
+[=C2=A0=C2=A0 15.242016] eqos 2490000.ether_qos eth0: Link is Up - 1Gbps/F=
+ull - flow control off
+
+However, when I ping the Ubuntu machine on the other end of the cable, the=
+re's no response.
+
+*Debugging*
+
+* When running tcpdump on the Ubuntu machine, it shows that the Ubuntu mac=
+hine receives an ARP request, and sends a reply back:
+
+>=20
+> 20:00:55.280337 ARP, Request who-has 192.168.13.10 tell 192.168.13.6,
+> length 46
+> 20:00:55.280362 ARP, Reply 192.168.13.10 is-at 3c:fd:fe:81:f1:93 (oui
+> Unknown), length 28
+> 20:00:56.291843 ARP, Request who-has 192.168.13.10 tell 192.168.13.6,
+> length 46
+> 20:00:56.291866 ARP, Reply 192.168.13.10 is-at 3c:fd:fe:81:f1:93 (oui
+> Unknown), length 28
+
+* But, the arp cache on the Xavier is not updated after that; Running 'cat=
+ /proc/net/arp' on the Xavier device shows that:
+
+>=20
+>=20
+>=20
+> xavier:~$ cat /proc/net/arp
+> IP address=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 HW type=C2=A0=C2=A0=C2=A0=
+=
+=C2=A0 Flags=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 HW address=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Mask=C2=A0=C2=A0=C2=A0=
+=
+=C2=A0
+> Device
+> 192.168.13.10=C2=A0=C2=A0=C2=A0 0x1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 0x0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 00:00:00:=
+00:00:00=C2=A0=C2=A0=C2=A0=C2=A0 *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0
+> eth0
+>=20
+>=20
+
+(192.168.13.0 is the address of the machine i tried to ping. as you can se=
+e its MAC address is not updated).
+
+* There are no iptable rules in the Xavier (according to iptables -L).
+* Running 'networkctl status' on the device, shows that its State is "rout=
+able (configuring)", however i'm not sure if it's a problem or not, after s=
+earching what it means.
+
+* I've also tried to look if I somehow installed another networking servic=
+e that conflicts with systemd-networkd, but it doesn't seem like it:
+
+>=20
+>=20
+>=20
+> xavier:~$ systemctl list-units|grep -i net|awk '{print $1}'
+> sys-devices-2490000.ether_qos-net-eth0.device
+> sys-devices-virtual-net-dummy0.device
+> sys-subsystem-net-devices-dummy0.device
+> sys-subsystem-net-devices-eth0.device
+> systemd-resolved.service
+> network-online.target
+> network.target
+> nss-lookup.target
+>=20
+>=20
+
+*Using /etc/network/interface does work*
+
+If i 'move' to using /etc/network/interfaces by doing:
+
+1. Running: systemctl stop systemd-networkd.{socket,service}
+
+2. Write an equivalent configuration in /etc/network/interfaces
+
+3. Restart eth0: ifconfig eth0 down; ifconfig eth0 up
+
+Then, all of a sudden the ping works.
+
+*My configuration*
+
+* In order to use systemd-networkd, I have tried various combinations of t=
+he following configuration parameters in my local.conf, after searching var=
+ious resources=C2=A0on the internet for=C2=A0using systemd on Yocto:
+
+>=20
+>=20
+>=20
+> DISTRO_FEATURES_append =3D " systemd coreutils procps"
+> VIRTUAL-RUNTIME_init_manager =3D "systemd"
+> VIRTUAL-RUNTIME_initscripts =3D "systemd-compat-units"
+> DISTRO_FEATURES_remove =3D " sysvinit"
+> PREFERRED_PROVIDER_udev =3D "systemd"
+> VIRTUAL-RUNTIME_syslog =3D ""
+> VIRTUAL-RUNTIME_login_manager =3D "shadow"
+> #DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"
+> PREFERRED_PROVIDER_virtual/base-utils =3D "coreutils"
+> VIRTUAL-RUNTIME_base-utils =3D "coreutils"
+> DISTRO_FEATURES_remove +=3D "wayland directfb busybox"
+> VIRTUAL-RUNTIME_base-utils-syslog =3D ""
+> PACKAGECONFIG_append_pn-systemd =3D "
+>=20
+>=20
+
+And none of it seemed to work.
+
+* The following is the non-working systemd network device configuration fi=
+le:
+
+>=20
+>=20
+>=20
+> [Match]
+> Name=3Deth0
+>=20
+> [Network]
+> Address=3D192.168.13.6/24
+> Gateway=3D192.168.13.10
+>=20
+>=20
+
+* And the following is the working equivalent /etc/network/interfaces file=
+:
+
+>=20
+>=20
+>=20
+> auto eth0
+> iface eth0 inet static
+> address 192.168.13.6
+> netmask 255.255.255.0
+>=20
+>=20
+
+----
+
+I also didn't find a post with similar symptoms.
+
+Does anyone have an idea on how to debug this?
+
+Please accept my apologies if this isn't the right forum, i wasn't sure wh=
+ere to sent it to.
+
+Thanks,
+
+Eliran
+
+--X8WDFXqy7PFCWhEUrlg0
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">I have a recipe that has a .service file in one of i=
-ts files directories that I need to patch.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I haven&#8217;t been able to figure out how to speci=
-fy the directory of the file that needs to be patched. I can&#8217;t seem t=
-o get the patch to apply to the files directory, do I need to specify the /=
-lib/systemd/system directory into the PATCHDIR
- option or is there another way that would work better?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards<o:p></o:p></p>
-<p class=3D"MsoNormal">Greg<o:p></o:p></p>
-</div>
-</body>
-</html>
+Hi,<br />(since this is a long post, i divided it to sections)<br /><br /><=
+span style=3D"font-size: 14pt;"><strong>TL;DR</strong></span><br />
+<p>I have a networking issue in my Yocto dist; Somehow,&nbsp;my ethernet d=
+evice won't work with systemd-networkd, but will work with /etc/network/int=
+erfaces.<br /><br /><span style=3D"font-size: 14pt;"><strong>Problem</stron=
+g></span><br />I have an Nvidia Jetson AGX Xavier device which runs a Yocto=
+ Thud distribution based on<a href=3D"https://github.com/OE4T/meta-tegra/bl=
+ob/master/recipes-core/images/tegra-minimal-initramfs.bb" target=3D"_blank"=
+ rel=3D"nofollow noopener"> meta-tegra's&nbsp;tegra-minimal-initramfs</a>, =
+which is a small initrd for Jetson Xavier, except it was modified to run wi=
+th coreutils instead of busybox, and with systemd.</p>
+<p>It has an eth0 device which is configured (with a config file in<span c=
+lass=3D"st">&nbsp;/etc/systemd/network)</span> with a static IP address. Th=
+e Xavier's Ethernet port is connected directly to another Ubuntu PC, which =
+is also on the same subnet with a different static IP address.</p>
+<p>I cannot get the Xavier's network device to work with systemd-networkd;=
+</p>
+<p>Once the device boots into the initrd, it appears as if the network dev=
+ice is configured correctly:</p>
+<ul>
+<li>`ifconfig` shows that eth0 is configured with the correct IP address</=
+li>
+<li>The following messages appear in 'dmesg':<br />[&nbsp;&nbsp; 12.390612=
+] gpio tegra-gpio wake20 for gpio=3D52(G:4)<br />[&nbsp;&nbsp; 15.242016] e=
+qos 2490000.ether_qos eth0: Link is Up - 1Gbps/Full - flow control off</li>
+</ul>
+<p>However, when I ping the Ubuntu machine on the other end of the cable, =
+there's no response.</p>
+<p><br /><span style=3D"font-size: 14pt;"><strong>Debugging</strong></span=
+></p>
+<ul>
+<li>When running tcpdump on the Ubuntu machine, it shows that the Ubuntu m=
+achine receives an ARP request, and sends a reply back:</li>
+</ul>
+<blockquote>20:00:55.280337 ARP, Request who-has 192.168.13.10 tell 192.16=
+8.13.6, length 46<br />20:00:55.280362 ARP, Reply 192.168.13.10 is-at 3c:fd=
+:fe:81:f1:93 (oui Unknown), length 28<br />20:00:56.291843 ARP, Request who=
+-has 192.168.13.10 tell 192.168.13.6, length 46<br />20:00:56.291866 ARP, R=
+eply 192.168.13.10 is-at 3c:fd:fe:81:f1:93 (oui Unknown), length 28</blockq=
+uote>
+<ul>
+<li>But, the arp cache on the Xavier is not updated after that; Running 'c=
+at /proc/net/arp' on the Xavier device shows that:</li>
+</ul>
+<blockquote>
+<p>xavier:~$ cat /proc/net/arp <br />IP address&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; HW type&nbsp;&nbsp;&nbsp;&nbsp; Flags&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; HW address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; Mask&nbsp;&nbsp;&nbsp;&nbsp; Device<br />192.168.13.10&nbsp;&nbs=
+p;&nbsp; 0x1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 00:00:00:00:00:00&nbsp;&nbsp;&nbsp;&n=
+bsp; *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eth0</p>
+</blockquote>
+<div style=3D"padding-left: 30px;">(192.168.13.0 is the address of the mac=
+hine i tried to ping. as you can see its MAC address is not updated).</div>
+<p>&nbsp;</p>
+<ul>
+<li>There are no iptable rules in the Xavier (according to iptables -L).</=
+li>
+<li>Running 'networkctl status' on the device, shows that its State is "ro=
+utable (configuring)", however i'm not sure if it's a problem or not, after=
+ searching what it means.</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>I've also tried to look if I somehow installed another networking serv=
+ice that conflicts with systemd-networkd, but it doesn't seem like it:</li>
+</ul>
+<blockquote>
+<p>xavier:~$ systemctl list-units|grep -i net|awk '{print $1}'<br />sys-de=
+vices-2490000.ether_qos-net-eth0.device<br />sys-devices-virtual-net-dummy0=
+.device<br />sys-subsystem-net-devices-dummy0.device<br />sys-subsystem-net=
+-devices-eth0.device<br />systemd-resolved.service<br />network-online.targ=
+et<br />network.target<br />nss-lookup.target</p>
+</blockquote>
+<p><span style=3D"font-size: 14pt;"><strong>Using /etc/network/interface d=
+oes work</strong></span></p>
+<p>If i 'move' to using /etc/network/interfaces by doing:</p>
+<p>1. Running: systemctl stop systemd-networkd.{socket,service}</p>
+<p>2. Write an equivalent configuration in /etc/network/interfaces</p>
+<p>3. Restart eth0: ifconfig eth0 down; ifconfig eth0 up</p>
+<p>Then, all of a sudden the ping works.</p>
+<p><br /><strong><span style=3D"font-size: 14pt;">My configuration</span><=
+/strong></p>
+<ul>
+<li>In order to use systemd-networkd, I have tried various combinations of=
+ the following configuration parameters in my local.conf, after searching v=
+arious resources&nbsp;on the internet for&nbsp;using systemd on Yocto:</li>
+</ul>
+<blockquote>
+<p>DISTRO_FEATURES_append =3D " systemd coreutils procps"<br />VIRTUAL-RUN=
+TIME_init_manager =3D "systemd"<br />VIRTUAL-RUNTIME_initscripts =3D "syste=
+md-compat-units"<br />DISTRO_FEATURES_remove =3D " sysvinit"<br />PREFERRED=
+_PROVIDER_udev =3D "systemd"<br />VIRTUAL-RUNTIME_syslog =3D ""<br />VIRTUA=
+L-RUNTIME_login_manager =3D "shadow"<br />#DISTRO_FEATURES_BACKFILL_CONSIDE=
+RED =3D "sysvinit"<br />PREFERRED_PROVIDER_virtual/base-utils =3D "coreutil=
+s"<br />VIRTUAL-RUNTIME_base-utils =3D "coreutils"<br />DISTRO_FEATURES_rem=
+ove +=3D "wayland directfb busybox"<br />VIRTUAL-RUNTIME_base-utils-syslog =
+=
+=3D ""<br />PACKAGECONFIG_append_pn-systemd =3D "</p>
+</blockquote>
+<p style=3D"padding-left: 30px;">And none of it seemed to work.</p>
+<ul>
+<li>The following is the non-working systemd network device configuration =
+file:</li>
+</ul>
+<blockquote>
+<p>[Match]<br />Name=3Deth0<br /><br />[Network]<br />Address=3D192.168.13=
+.6/24<br />Gateway=3D192.168.13.10</p>
+</blockquote>
+<ul>
+<li>And the following is the working equivalent /etc/network/interfaces fi=
+le:</li>
+</ul>
+<blockquote>
+<p>auto eth0<br />iface eth0 inet static <br />&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; address 192=
+.168.13.6 <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; netmask 255.255.255.0</p>
+</blockquote>
+<p>----<br /><br />I also didn't find a post with similar symptoms.</p>
+<p>Does anyone have an idea on how to debug this?<br /><br /><br /></p>
+<p>Please accept my apologies if this isn't the right forum, i wasn't sure=
+ where to sent it to.</p>
+<p>Thanks,</p>
+Eliran
 
---_000_8b4672f4a9ae48278785886362fc5bfesakurauscom_--
+--X8WDFXqy7PFCWhEUrlg0--
