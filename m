@@ -1,207 +1,195 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.73050.1600121117676353822
+ by mx.groups.io with SMTP id smtpd.web11.512.1600122765908955297
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Sep 2020 15:05:17 -0700
+ Mon, 14 Sep 2020 15:32:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: sakuraus.com, ip: 198.145.29.25, mailfrom: gwilson@sakuraus.com)
-Received: from outbound-ip28b.ess.barracuda.com (outbound-ip28b.ess.barracuda.com [209.222.82.225])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 1608538C0892
-	for <yocto@yoctoproject.org>; Mon, 14 Sep 2020 15:05:16 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by mx2.us-east-2b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NO); Mon, 14 Sep 2020 22:05:13 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
- (10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Mon, 14
- Sep 2020 15:03:08 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
- ([::1]) with mapi id 15.01.0669.032; Mon, 14 Sep 2020 15:03:08 -0700
-From: "Greg Wilson-Lindberg" <gwilson@sakuraus.com>
-To: Chuck Wolber <chuckwolber@gmail.com>
-CC: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: [yocto] Patching file contained in downloaded recipe
-Thread-Topic: [yocto] Patching file contained in downloaded recipe
-Thread-Index: AdaKvu9SsfsGiLwuTWqezHSnEiALBAAS6xCAAAp+pmA=
-Date: Mon, 14 Sep 2020 22:03:08 +0000
-Message-ID: <22e72ecdacbd42d0a4b29ed78d941f3d@sakuraus.com>
-References: <8b4672f4a9ae48278785886362fc5bfe@sakuraus.com>
- <CAB=6tBQUugFx=Zg7W+_i=_WbQ0fhqPv0TZO2ctaoJh+1T_dQUQ@mail.gmail.com>
-In-Reply-To: <CAB=6tBQUugFx=Zg7W+_i=_WbQ0fhqPv0TZO2ctaoJh+1T_dQUQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.5.142]
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ojiuqIdY;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: chuckwolber@gmail.com)
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 21B0D38C0885
+	for <yocto@yoctoproject.org>; Mon, 14 Sep 2020 15:32:45 -0700 (PDT)
+Received: by mail-pl1-f171.google.com with SMTP id c3so255816plz.5
+        for <yocto@yoctoproject.org>; Mon, 14 Sep 2020 15:32:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hCOmQVrFxr01xUq7ZSn67KkFWNM0y7cwigJK0SvBub4=;
+        b=ojiuqIdYdgZA8RfKtI8Kpg5UfqvqL7N9T9dNQwgJSMh0sSmKV0pLJ1pNeVV/j93ioS
+         1gVQfEqNtg2zryk2oeoNUdZjfeSWYd3U+0YVTokgLibivc1jd8gWCAYGzobLdShVFSIm
+         w6KPSWUM5Dw7XTa60L4oF16dmxkFgDYHnsxgWk+D1Gf4S+BuqtVvPwIJWpT+IMPDKV72
+         w7w2Ukh2p0+ylElLad1c2bWyvBlLxHH0KG3DnBI3/hnfdoeCY0cU1npgs14HnPDwyUYh
+         J15xEaozcnEQ5LYQ3iYFcbQkCx0sWNSnXxIAQZjPJRYw9pWw35yLwliqM/Un2TVIoUGn
+         NteQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hCOmQVrFxr01xUq7ZSn67KkFWNM0y7cwigJK0SvBub4=;
+        b=DEZ2ullgPLXLjw4IUnyFp48rHvVMmCu2u2baEUHP6X4LdZCoSnC5LmsVltZOQMlSkK
+         j+LSWzCwj50xLfDbS6PTKV9N5aI7uPG0EMgEg/IB845OWVY/HKTxIz2cqfo1Tgyzzm+Z
+         yxWIxgUbGkaI7hMHz9YNhXCzvVJxfdBUAtHT4rzebzBnX+woUpvZDkcLQNxktSfrqvlR
+         pcYzyIiOBdTeAx/rSYNCzWEKB9jqL2hkZZlCMtXDMl9WYXqI70DMYiCVhjBd0j8MXMr8
+         OAQAPdB3rFzQVAN1RzYwiy7US6AjZCXmOhLGGoKInX8iCHGx8YKMABJwIDIQlP0q5PX6
+         0+kg==
+X-Gm-Message-State: AOAM530fQbGR7+OCguH7rEwBqd95qQq9nCEoIM8u8clhhcAAzcja/gsf
+	R+InHGuyjEghRfUUu0OWpEtoDwhjRdhw3FysrOc=
+X-Google-Smtp-Source: ABdhPJxvn0qKRrw5KhYH//c7SgLmYFm7OhX5hVIxqpAvZbHE0B2aftGvg9kW10x6+SosbzYOjZQQiVfz+S04YrkrCg0=
+X-Received: by 2002:a17:90a:ec0b:: with SMTP id l11mr1315989pjy.144.1600122764589;
+ Mon, 14 Sep 2020 15:32:44 -0700 (PDT)
 MIME-Version: 1.0
-X-BESS-ID: 1600121113-893003-17196-18646-1
-X-BESS-VER: 2019.1_20200914.1702
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.226899 [from 
-	cloudscan15-223.us-east-2a.ess.aws.cudaops.com]
-	Rule breakdown below
-	 pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in message 
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_22e72ecdacbd42d0a4b29ed78d941f3dsakurauscom_"
+References: <8b4672f4a9ae48278785886362fc5bfe@sakuraus.com>
+ <CAB=6tBQUugFx=Zg7W+_i=_WbQ0fhqPv0TZO2ctaoJh+1T_dQUQ@mail.gmail.com> <22e72ecdacbd42d0a4b29ed78d941f3d@sakuraus.com>
+In-Reply-To: <22e72ecdacbd42d0a4b29ed78d941f3d@sakuraus.com>
+From: "Chuck Wolber" <chuckwolber@gmail.com>
+Date: Mon, 14 Sep 2020 15:32:33 -0700
+Message-ID: <CAB=6tBQTEbevjKYwhtarrk_GhXgSXVkLQgiFqYPssBTo32j99Q@mail.gmail.com>
+Subject: Re: [yocto] Patching file contained in downloaded recipe
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000fafd3605af4d9cf6"
 
---_000_22e72ecdacbd42d0a4b29ed78d941f3dsakurauscom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000fafd3605af4d9cf6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgQ2h1Y2ssDQoNCg0KRnJvbTogQ2h1Y2sgV29sYmVyIDxjaHVja3dvbGJlckBnbWFpbC5jb20+
-DQpTZW50OiBNb25kYXksIFNlcHRlbWJlciAxNCwgMjAyMCAxMjo0OCBQTQ0KVG86IEdyZWcgV2ls
-c29uLUxpbmRiZXJnIDxHV2lsc29uQHNha3VyYXVzLmNvbT4NCkNjOiBZb2N0byBsaXN0IGRpc2N1
-c3Npb24gPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpTdWJqZWN0OiBSZTogW3lvY3RvXSBQYXRj
-aGluZyBmaWxlIGNvbnRhaW5lZCBpbiBkb3dubG9hZGVkIHJlY2lwZQ0KDQpPbiBNb24sIFNlcCAx
-NCwgMjAyMCBhdCAxMDo1MCBBTSBHcmVnIFdpbHNvbi1MaW5kYmVyZyA8Z3dpbHNvbkBzYWt1cmF1
-cy5jb208bWFpbHRvOmd3aWxzb25Ac2FrdXJhdXMuY29tPj4gd3JvdGU6DQpJIGhhdmUgYSByZWNp
-cGUgdGhhdCBoYXMgYSAuc2VydmljZSBmaWxlIGluIG9uZSBvZiBpdHMgZmlsZXMgZGlyZWN0b3Jp
-ZXMgdGhhdCBJIG5lZWQgdG8gcGF0Y2guDQoNCkkgaGF2ZW7igJl0IGJlZW4gYWJsZSB0byBmaWd1
-cmUgb3V0IGhvdyB0byBzcGVjaWZ5IHRoZSBkaXJlY3Rvcnkgb2YgdGhlIGZpbGUgdGhhdCBuZWVk
-cyB0byBiZSBwYXRjaGVkLiBJIGNhbuKAmXQgc2VlbSB0byBnZXQgdGhlIHBhdGNoIHRvIGFwcGx5
-IHRvIHRoZSBmaWxlcyBkaXJlY3RvcnksIGRvIEkgbmVlZCB0byBzcGVjaWZ5IHRoZSAvbGliL3N5
-c3RlbWQvc3lzdGVtIGRpcmVjdG9yeSBpbnRvIHRoZSBQQVRDSERJUiBvcHRpb24gb3IgaXMgdGhl
-cmUgYW5vdGhlciB3YXkgdGhhdCB3b3VsZCB3b3JrIGJldHRlcj8NCg0KQXJlIHlvdSBwYXRjaGlu
-ZyBhbiBleGlzdGluZyB1cHN0cmVhbSByZWNpcGU/IE9yIHlvdXIgb3duIHJlY2lwZT8gSW4gdGhl
-IGZvcm1lciBjYXNlLCB5b3Ugd291bGQgdXNlIGEgLmJiYXBwZW5kIHJlY2lwZS4NCg0KPHJlcGx5
-Pg0KSSBhbSBwYXRjaGluZyBhIHJlY2lwZSB0aGF0IGlzIGluY2x1ZGVkIHdpdGggdGhlIFlvY3Rv
-IHN5c3RlbSB0aGF0IEkgZG93bmxvYWQuIFRoZSAuc3lzdGVtIGZpbGUgdGhhdCBJIG5lZWQgdG8g
-bW9kaWZ5IGlzIGluIG9uZSBvZiB0aGUgZmlsZSBkaXJlY3RvcmllcyB0aGF0IGFyZSBwYXJ0IG9m
-IHRoZSByZWNpcGUuDQoNCkkgaGF2ZSBhIC5iYmFwcGVuZCByZWNpcGUgdGhhdCBpcyBiZWluZyBw
-aWNrZWQgdXAsIGJ1dCBiZWNhdXNlIHRoZSBmaWxlIHRoYXQgSSB3YW50IHRvIHBhdGNoIGlzIHBh
-cnQgb2YgdGhlIHJlY2lwZSBhbmQgbm90IHBhcnQgb2Ygd2hhdCBhIHJlY2lwZSB3b3VsZCBkb3du
-bG9hZCBpZiBpdCB3ZXJlIGJ1aWxkaW5nIHNvbWV0aGluZyBmcm9tIHNvdXJjZSwgdGhlIHBhdGNo
-IHN5c3RlbSBpcyBub3QgZmluZGluZyBpdC4NCg0KPHJlcGx5Lz4NCg0KSW4gZWl0aGVyIGNhc2Us
-IGl0IGFsbCBkZXBlbmRzIG9uIGhvdyB0aGUgc2VydmljZSBmaWxlIGlzIGdlbmVyYXRlZC4gSWYg
-aXQgaXMgcGFydCBvZiB0aGUgc291cmNlIGNvZGUsIHRoZW4geW91IGp1c3QgY3JlYXRlIGEgcGF0
-Y2ggYWdhaW5zdCB0aGUgc291cmNlIHRyZWUgYW5kIHJlZmVyZW5jZSB0aGF0IHBhdGNoIGluIGEg
-cmVjaXBlIGFzIGEgU1JDX1VSSV9hcHBlbmQuIElmIHlvdSBnZW5lcmF0ZSBpdCBhcyBwYXJ0IG9m
-IGEgYnVpbGQsIHRoZW4geW91IHdvdWxkIGVpdGhlciBwYXRjaCB0aGUgYnVpbGQgcHJvZHVjdCAo
-bGVzcyBkZXNpcmFibGUpLCBvciBwYXRjaCB0aGUgY29kZSB0aGF0IGdlbmVyYXRlcyB0aGUgc2Vy
-dmljZSBmaWxlIChtb3JlIGRlc2lyYWJsZSkuDQoNCjxyZXBseT4NClBhcnQgb2YgbXkgcXVlc3Rp
-b24gd2FzLCBjb3VsZCBJIHVzZSB0aGUgUEFUQ0hESVIgb3B0aW9uIHRvIHNwZWNpZnkgdGhlIC9s
-aWIvc3lzdGVtZC9zeXN0ZW0vZmlsZS5zZXJ2aWNlIGZpbGUgdG8gZ2V0IHRoZSBwYXRjaCB0byBy
-dW4gYWdhaW5zdCB0aGUg4oCYY29waWVk4oCZIHZlcnNpb24gb2YgdGhlIGZpbGU/DQoNClNvcnJ5
-IGZvciB0aGUgd2VpcmQg4oCcPHJlcGx5PuKApjxyZXBseVw+4oCdIGJsb2NrcywgSeKAmW0gc3R1
-Y2sgd2l0aCBPdXRsb29rIGZvciBlbWFpbCBhbmQgSSBjYW7igJl0IGZpZ3VyZSBvdXQgaG93IHRv
-IGdldCBpdCB0byBpbmRlbnQgdGhlIGVtYWlsIEnigJltIHJlcGx5aW5nIHRvIGFuZCBsZXQgbWUg
-Y29tbWVudCBpbiBsaW5lIHdpdGhvdXQgaW5kZW50aW5nIG15IHJlcGxpZXMgYWxzby4NCg0KUmVn
-YXJkcywgR3JlZw0KPHJlcGx5XD4NCg0KLi5DaDpXLi4NCg0KLS0NCiJQZXJmZWN0aW9uIG11c3Qg
-YmUgcmVhY2hlZCBieSBkZWdyZWVzOyBzaGUgcmVxdWlyZXMgdGhlIHNsb3cgaGFuZCBvZiB0aW1l
-LiIgLSBWb2x0YWlyZQ0K
+On Mon, Sep 14, 2020 at 3:05 PM Greg Wilson-Lindberg <GWilson@sakuraus.com>
+wrote:
 
---_000_22e72ecdacbd42d0a4b29ed78d941f3dsakurauscom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> Hi Chuck,
+>
+>
+>
+> I am patching a recipe that is included with the Yocto system that I
+> download. The .system file that I need to modify is in one of the file
+> directories that are part of the recipe.
+>
+>
+>
+> I have a .bbappend recipe that is being picked up, but because the file
+> that I want to patch is part of the recipe and not part of what a recipe
+> would download if it were building something from source, the patch syste=
+m
+> is not finding it.
+>
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
-Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
-OnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25h
-bC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5k
-b3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0K
-CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
-CXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0K
-ZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1b
-aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1h
-eD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
-PG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9
-IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9k
-eSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJX
-b3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGkgQ2h1Y2ssPG86cD48L286cD48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5v
-bmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDQuMHB0
-Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUx
-RTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48Yj5Gcm9tOjwvYj4gQ2h1Y2sgV29sYmVyICZsdDtjaHVja3dvbGJlckBnbWFpbC5jb20mZ3Q7
-IDxicj4NCjxiPlNlbnQ6PC9iPiBNb25kYXksIFNlcHRlbWJlciAxNCwgMjAyMCAxMjo0OCBQTTxi
-cj4NCjxiPlRvOjwvYj4gR3JlZyBXaWxzb24tTGluZGJlcmcgJmx0O0dXaWxzb25Ac2FrdXJhdXMu
-Y29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gWW9jdG8gbGlzdCBkaXNjdXNzaW9uICZsdDt5b2N0b0B5
-b2N0b3Byb2plY3Qub3JnJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBQYXRj
-aGluZyBmaWxlIGNvbnRhaW5lZCBpbiBkb3dubG9hZGVkIHJlY2lwZTxvOnA+PC9vOnA+PC9wPg0K
-PC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
-Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gTW9uLCBTZXAg
-MTQsIDIwMjAgYXQgMTA6NTAgQU0gR3JlZyBXaWxzb24tTGluZGJlcmcgJmx0OzxhIGhyZWY9Im1h
-aWx0bzpnd2lsc29uQHNha3VyYXVzLmNvbSI+Z3dpbHNvbkBzYWt1cmF1cy5jb208L2E+Jmd0OyB3
-cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGJsb2NrcXVvdGUg
-c3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGlu
-ZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4N
-CjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9w
-LWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5JIGhhdmUgYSByZWNpcGUgdGhh
-dCBoYXMgYSAuc2VydmljZSBmaWxlIGluIG9uZSBvZiBpdHMgZmlsZXMgZGlyZWN0b3JpZXMgdGhh
-dCBJIG5lZWQgdG8gcGF0Y2guPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
-dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8i
-PiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
-YXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5JIGhhdmVu4oCZ
-dCBiZWVuIGFibGUgdG8gZmlndXJlIG91dCBob3cgdG8gc3BlY2lmeSB0aGUgZGlyZWN0b3J5IG9m
-IHRoZSBmaWxlIHRoYXQgbmVlZHMgdG8gYmUgcGF0Y2hlZC4gSSBjYW7igJl0IHNlZW0gdG8gZ2V0
-IHRoZSBwYXRjaCB0byBhcHBseSB0byB0aGUgZmlsZXMgZGlyZWN0b3J5LCBkbyBJIG5lZWQgdG8N
-CiBzcGVjaWZ5IHRoZSAvbGliL3N5c3RlbWQvc3lzdGVtIGRpcmVjdG9yeSBpbnRvIHRoZSBQQVRD
-SERJUiBvcHRpb24gb3IgaXMgdGhlcmUgYW5vdGhlciB3YXkgdGhhdCB3b3VsZCB3b3JrIGJldHRl
-cj88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2
-Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5BcmUgeW91IHBhdGNoaW5nIGFu
-IGV4aXN0aW5nIHVwc3RyZWFtIHJlY2lwZT8gT3IgeW91ciBvd24gcmVjaXBlPyBJbiB0aGUgZm9y
-bWVyIGNhc2UsIHlvdSB3b3VsZCB1c2UgYSAuYmJhcHBlbmQgcmVjaXBlLjxvOnA+PC9vOnA+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj4mbHQ7cmVwbHkmZ3Q7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5JIGFtIHBhdGNoaW5nIGEgcmVjaXBlIHRoYXQgaXMgaW5jbHVkZWQgd2l0aCB0aGUgWW9j
-dG8gc3lzdGVtIHRoYXQgSSBkb3dubG9hZC4gVGhlIC5zeXN0ZW0gZmlsZSB0aGF0IEkgbmVlZCB0
-byBtb2RpZnkgaXMgaW4gb25lIG9mIHRoZSBmaWxlIGRpcmVjdG9yaWVzIHRoYXQgYXJlIHBhcnQg
-b2YgdGhlIHJlY2lwZS48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBoYXZlIGEgLmJiYXBwZW5k
-IHJlY2lwZSB0aGF0IGlzIGJlaW5nIHBpY2tlZCB1cCwgYnV0IGJlY2F1c2UgdGhlIGZpbGUgdGhh
-dCBJIHdhbnQgdG8gcGF0Y2ggaXMgcGFydCBvZiB0aGUgcmVjaXBlIGFuZCBub3QgcGFydCBvZiB3
-aGF0IGEgcmVjaXBlIHdvdWxkIGRvd25sb2FkIGlmIGl0IHdlcmUgYnVpbGRpbmcgc29tZXRoaW5n
-IGZyb20gc291cmNlLCB0aGUgcGF0Y2ggc3lzdGVtIGlzIG5vdCBmaW5kaW5nIGl0LjxvOnA+PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj4mbHQ7cmVwbHkvJmd0OzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JbiBlaXRoZXIgY2FzZSwgaXQgYWxsIGRlcGVu
-ZHMgb24gaG93IHRoZSBzZXJ2aWNlIGZpbGUgaXMgZ2VuZXJhdGVkLiBJZiBpdCBpcyBwYXJ0IG9m
-IHRoZSBzb3VyY2UgY29kZSwgdGhlbiB5b3UganVzdCBjcmVhdGUgYSBwYXRjaCBhZ2FpbnN0IHRo
-ZSBzb3VyY2UgdHJlZSBhbmQgcmVmZXJlbmNlIHRoYXQgcGF0Y2ggaW4gYSByZWNpcGUgYXMgYSBT
-UkNfVVJJX2FwcGVuZC4gSWYgeW91IGdlbmVyYXRlIGl0IGFzDQogcGFydCBvZiBhIGJ1aWxkLCB0
-aGVuIHlvdSB3b3VsZCBlaXRoZXIgcGF0Y2ggdGhlIGJ1aWxkIHByb2R1Y3QgKGxlc3MgZGVzaXJh
-YmxlKSwgb3IgcGF0Y2ggdGhlIGNvZGUgdGhhdCBnZW5lcmF0ZXMgdGhlIHNlcnZpY2UgZmlsZSAo
-bW9yZSBkZXNpcmFibGUpLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
-cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbHQ7cmVwbHkmZ3Q7PG86
-cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5QYXJ0IG9mIG15IHF1ZXN0aW9uIHdh
-cywgY291bGQgSSB1c2UgdGhlIFBBVENIRElSIG9wdGlvbiB0byBzcGVjaWZ5IHRoZSAvbGliL3N5
-c3RlbWQvc3lzdGVtL2ZpbGUuc2VydmljZSBmaWxlIHRvIGdldCB0aGUgcGF0Y2ggdG8gcnVuIGFn
-YWluc3QgdGhlIOKAmGNvcGllZOKAmSB2ZXJzaW9uIG9mIHRoZSBmaWxlPw0KPG86cD48L286cD48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPlNvcnJ5IGZvciB0aGUgd2VpcmQg4oCcJmx0O3JlcGx5Jmd0O+KApiZsdDty
-ZXBseVwmZ3Q74oCdIGJsb2NrcywgSeKAmW0gc3R1Y2sgd2l0aCBPdXRsb29rIGZvciBlbWFpbCBh
-bmQgSSBjYW7igJl0IGZpZ3VyZSBvdXQgaG93IHRvIGdldCBpdCB0byBpbmRlbnQgdGhlIGVtYWls
-IEnigJltIHJlcGx5aW5nIHRvIGFuZCBsZXQgbWUgY29tbWVudCBpbiBsaW5lIHdpdGhvdXQgaW5k
-ZW50aW5nIG15IHJlcGxpZXMgYWxzby48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+UmVnYXJkcywg
-R3JlZzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jmx0O3JlcGx5XCZndDs8
-bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Li5D
-aDpXLi48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPi0tIDxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1
-b3Q7Ij4mcXVvdDtQZXJmZWN0aW9uIG11c3QgYmUgcmVhY2hlZCBieSBkZWdyZWVzOyBzaGUgcmVx
-dWlyZXMgdGhlIHNsb3cgaGFuZCBvZiB0aW1lLiZxdW90OyAtIFZvbHRhaXJlPC9zcGFuPjwvYj48
-bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8
-L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
---_000_22e72ecdacbd42d0a4b29ed78d941f3dsakurauscom_--
+In that case, your best bet is to probably write a do_*_append() function
+into the bbappend recipe so you can jump in after one of the build steps
+and apply your patch during the appropriate stage. Refer to section 28.1 of
+the Mega Manual for all of the build tasks, and pick one that seems
+sensible. For example, you can write a do_install_append() function, and
+then prepend ${B} to the path that the service file typically shows up at
+to access it. From there, it is a simple matter of using typical commands
+to apply whatever patch you want.
+
+I have no doubt that other, more experienced people on the Yocto project,
+may suggest a better target than do_install, so listen to them if any
+should jump in and offer sensible correction to what I am saying.
+
+
+Part of my question was, could I use the PATCHDIR option to specify the
+> /lib/systemd/system/file.service file to get the patch to run against the
+> =E2=80=98copied=E2=80=99 version of the file?
+>
+
+Given the example above, you would simply use
+${B}/lib/systemd/system/file.service and use garden variety command line
+tools to apply the patch.
+
+
+
+> Sorry for the weird =E2=80=9C<reply>=E2=80=A6<reply\>=E2=80=9D blocks, I=
+=E2=80=99m stuck with Outlook for
+> email and I can=E2=80=99t figure out how to get it to indent the email I=
+=E2=80=99m replying
+> to and let me comment in line without indenting my replies also.
+>
+
+
+No worries. I used to use mutt and pine, which were really good at inline
+posting. Alas, I have moved on to gmail, which is not so good, and comes
+into conflict in places such as this. We make-do of course...
+
+..Ch:W..
+
+--=20
+*"Perfection must be reached by degrees; she requires the slow hand of
+time." - Voltaire*
+
+--000000000000fafd3605af4d9cf6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 14, 2020 at 3:05 PM Greg =
+Wilson-Lindberg &lt;<a href=3D"mailto:GWilson@sakuraus.com">GWilson@sakurau=
+s.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_-6797130851735085699WordSection1">
+<p class=3D"MsoNormal">Hi Chuck,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div style=3D"border-color:currentcolor currentcolor currentcolor blue;bord=
+er-style:none none none solid;border-width:medium medium medium 1.5pt;paddi=
+ng:0in 0in 0in 4pt"><div><div><div>
+<p class=3D"MsoNormal">I am patching a recipe that is included with the Yoc=
+to system that I download. The .system file that I need to modify is in one=
+ of the file directories that are part of the recipe.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I have a .bbappend recipe that is being picked up, b=
+ut because the file that I want to patch is part of the recipe and not part=
+ of what a recipe would download if it were building something from source,=
+ the patch system is not finding it.</p></div></div></div></div></div></div=
+></blockquote><div><br></div><div><br></div><div>In that case, your best be=
+t is to probably write a do_*_append() function into the bbappend recipe so=
+ you can jump in after one of the build steps and apply your patch during t=
+he appropriate stage. Refer to section 28.1 of the Mega Manual for all of t=
+he build tasks, and pick one that seems sensible. For example, you can writ=
+e a do_install_append() function, and then prepend ${B} to the path that th=
+e service file typically shows up at to access it. From there, it is a simp=
+le matter of using typical commands to apply whatever patch you want.</div>=
+<div><br></div><div>I have no doubt that other, more experienced people on =
+the Yocto project, may suggest a better target than do_install, so listen t=
+o them if any should jump in and offer sensible correction to what I am say=
+ing.<br></div><div>=C2=A0</div><div><br></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex"><div lang=3D"EN-US"><div class=3D"gmail-m_-67971308517=
+35085699WordSection1"><div style=3D"border-color:currentcolor currentcolor =
+currentcolor blue;border-style:none none none solid;border-width:medium med=
+ium medium 1.5pt;padding:0in 0in 0in 4pt"><div><div><div>
+<p class=3D"MsoNormal">Part of my question was, could I use the PATCHDIR op=
+tion to specify the /lib/systemd/system/file.service file to get the patch =
+to run against the =E2=80=98copied=E2=80=99 version of the file?
+</p></div></div></div></div></div></div></blockquote><div><br></div><div>Gi=
+ven the example above, you would simply use ${B}/lib/systemd/system/file.se=
+rvice and use garden variety command line tools to apply the patch.<br></di=
+v><div><br></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div lang=3D"EN-US"><div class=3D"gmail-m_-6797130851735085699Wo=
+rdSection1"><div style=3D"border-color:currentcolor currentcolor currentcol=
+or blue;border-style:none none none solid;border-width:medium medium medium=
+ 1.5pt;padding:0in 0in 0in 4pt"><div><div><div><p class=3D"MsoNormal"><u></=
+u><u></u></p>
+
+<p class=3D"MsoNormal">Sorry for the weird =E2=80=9C&lt;reply&gt;=E2=80=A6&=
+lt;reply\&gt;=E2=80=9D blocks, I=E2=80=99m stuck with Outlook for email and=
+ I can=E2=80=99t figure out how to get it to indent the email I=E2=80=99m r=
+eplying to and let me comment in line without indenting my replies also.</p=
+></div></div></div></div></div></div></blockquote><div><br></div><div><br><=
+/div><div>No worries. I used to use mutt and pine, which were really good a=
+t inline posting. Alas, I have moved on to gmail, which is not so good, and=
+ comes into conflict in places such as this. We make-do of course...<br></d=
+iv><div><br></div><div>..Ch:W..<br clear=3D"all"></div></div><br>-- <br><di=
+v dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div><b><span styl=
+e=3D"font-family:monospace">&quot;Perfection must be reached by degrees; sh=
+e requires the slow hand of time.&quot; - Voltaire</span></b></div></div></=
+div></div>
+
+--000000000000fafd3605af4d9cf6--
