@@ -1,195 +1,269 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.512.1600122765908955297
+ by mx.groups.io with SMTP id smtpd.web12.5441.1600140054716214334
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Sep 2020 15:32:46 -0700
+ Mon, 14 Sep 2020 20:20:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ojiuqIdY;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: chuckwolber@gmail.com)
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 21B0D38C0885
-	for <yocto@yoctoproject.org>; Mon, 14 Sep 2020 15:32:45 -0700 (PDT)
-Received: by mail-pl1-f171.google.com with SMTP id c3so255816plz.5
-        for <yocto@yoctoproject.org>; Mon, 14 Sep 2020 15:32:45 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=MvAFfCcq;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id C7EBE38C0854
+	for <yocto@yoctoproject.org>; Mon, 14 Sep 2020 20:20:53 -0700 (PDT)
+Received: by mail-pg1-f173.google.com with SMTP id g29so1252248pgl.2
+        for <yocto@yoctoproject.org>; Mon, 14 Sep 2020 20:20:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hCOmQVrFxr01xUq7ZSn67KkFWNM0y7cwigJK0SvBub4=;
-        b=ojiuqIdYdgZA8RfKtI8Kpg5UfqvqL7N9T9dNQwgJSMh0sSmKV0pLJ1pNeVV/j93ioS
-         1gVQfEqNtg2zryk2oeoNUdZjfeSWYd3U+0YVTokgLibivc1jd8gWCAYGzobLdShVFSIm
-         w6KPSWUM5Dw7XTa60L4oF16dmxkFgDYHnsxgWk+D1Gf4S+BuqtVvPwIJWpT+IMPDKV72
-         w7w2Ukh2p0+ylElLad1c2bWyvBlLxHH0KG3DnBI3/hnfdoeCY0cU1npgs14HnPDwyUYh
-         J15xEaozcnEQ5LYQ3iYFcbQkCx0sWNSnXxIAQZjPJRYw9pWw35yLwliqM/Un2TVIoUGn
-         NteQ==
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=Of7/hQ68qKjjaWm96I+S3+OFnlnH6TDFdqcZRp9oq6Y=;
+        b=MvAFfCcqTsLBrTRRfVVK7T+iQSxnaAtbRqr3VrtC4uvka6l79WbgWAP1s0mJlK12Is
+         Yobq3EsZ3rriTzMYdVYHqZu9vccEMGgdgiUEcblN+6ZKzVIeH1OwPa73MPicUygMruGz
+         4JrfGb5ePG2qfeEilttsRqUoPOn7LwEIQoPkGEl/3+HM0jL5gUe7mpem0rH+rFO9pXxR
+         PWdCc+Td7CWkZfs8Tc9tfvB5wFQdSI5D4TUKytffnM8ZTkJo0q3mggWYnOhMCRzJBHq0
+         QK3hEy9hxjDnLm4U2MW/suY3nDAUh6DlpwqJdr/GACO3EOWucY7qSL0GBv2Ty+jCMYAn
+         4oJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hCOmQVrFxr01xUq7ZSn67KkFWNM0y7cwigJK0SvBub4=;
-        b=DEZ2ullgPLXLjw4IUnyFp48rHvVMmCu2u2baEUHP6X4LdZCoSnC5LmsVltZOQMlSkK
-         j+LSWzCwj50xLfDbS6PTKV9N5aI7uPG0EMgEg/IB845OWVY/HKTxIz2cqfo1Tgyzzm+Z
-         yxWIxgUbGkaI7hMHz9YNhXCzvVJxfdBUAtHT4rzebzBnX+woUpvZDkcLQNxktSfrqvlR
-         pcYzyIiOBdTeAx/rSYNCzWEKB9jqL2hkZZlCMtXDMl9WYXqI70DMYiCVhjBd0j8MXMr8
-         OAQAPdB3rFzQVAN1RzYwiy7US6AjZCXmOhLGGoKInX8iCHGx8YKMABJwIDIQlP0q5PX6
-         0+kg==
-X-Gm-Message-State: AOAM530fQbGR7+OCguH7rEwBqd95qQq9nCEoIM8u8clhhcAAzcja/gsf
-	R+InHGuyjEghRfUUu0OWpEtoDwhjRdhw3FysrOc=
-X-Google-Smtp-Source: ABdhPJxvn0qKRrw5KhYH//c7SgLmYFm7OhX5hVIxqpAvZbHE0B2aftGvg9kW10x6+SosbzYOjZQQiVfz+S04YrkrCg0=
-X-Received: by 2002:a17:90a:ec0b:: with SMTP id l11mr1315989pjy.144.1600122764589;
- Mon, 14 Sep 2020 15:32:44 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=Of7/hQ68qKjjaWm96I+S3+OFnlnH6TDFdqcZRp9oq6Y=;
+        b=pb8tvMhm/lZosrVbjYDMVFIeXcbE82xHjTkIkXCRHPnkS2xBL62eZ2T/a6ZDVvoyh7
+         UcXHP9L5gFHUVSNYwj8Ic+cj9Q+yQk2RdCS9syVNWRlzf3pZ4Vy86bMXLiTJkvuCJHO9
+         FBIE4pncArv8Qd1TNreNVeWfuaJDHSU/unfyuw+MVXbKpGa/UC4X138uLe/KY6/BdYYY
+         Uorzia4srIBaEwaTixQwwnsnlwRePU/EWgWClZigm/lvWIyXJVKBZgILBu039iwa6wt9
+         Cw+OjOJLP/Zp7TzbkLBuOVxO+N0lgx+LpcI7U0++WCw1zi78KmCRaqnXHpy5fqE91yN9
+         fUFw==
+X-Gm-Message-State: AOAM530KwGV0VMScVW7VBuG1aGkv8+hQIRAAu9DVIP6oje5gVWqtPk3a
+	9tnSL9WHCAnq0DlNyCa3lac=
+X-Google-Smtp-Source: ABdhPJy3u3Ap0YdQOc40uY7t5pzM24AoDGAKOlF+TT4jVJA5SEde9biPX9Md2EcsPFOL2Rkg3NQprA==
+X-Received: by 2002:a65:4505:: with SMTP id n5mr12912825pgq.229.1600140053263;
+        Mon, 14 Sep 2020 20:20:53 -0700 (PDT)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id i25sm9957293pgi.9.2020.09.14.20.20.52
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 14 Sep 2020 20:20:52 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 14 Sep 2020 20:20:52 -0700
+Message-ID: <0fb701d68b0f$380d62e0$a82828a0$@gmail.com>
 MIME-Version: 1.0
-References: <8b4672f4a9ae48278785886362fc5bfe@sakuraus.com>
- <CAB=6tBQUugFx=Zg7W+_i=_WbQ0fhqPv0TZO2ctaoJh+1T_dQUQ@mail.gmail.com> <22e72ecdacbd42d0a4b29ed78d941f3d@sakuraus.com>
-In-Reply-To: <22e72ecdacbd42d0a4b29ed78d941f3d@sakuraus.com>
-From: "Chuck Wolber" <chuckwolber@gmail.com>
-Date: Mon, 14 Sep 2020 15:32:33 -0700
-Message-ID: <CAB=6tBQTEbevjKYwhtarrk_GhXgSXVkLQgiFqYPssBTo32j99Q@mail.gmail.com>
-Subject: Re: [yocto] Patching file contained in downloaded recipe
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000fafd3605af4d9cf6"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGA3a0bMQGhIGG2VNlGw9jd/+YpHQ==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0FB8_01D68AD4.8BAF7540"
+Content-Language: en-us
 
---000000000000fafd3605af4d9cf6
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_0FB8_01D68AD4.8BAF7540
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 338
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.2", "3.3, "3.99" and "Future", the more pressing/urgent issues
+being in "3.2" and then "3.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0FB8_01D68AD4.8BAF7540
+Content-Type: text/html;
+	boundary="----=_NextPart_000_03A8_01D6850D.2AF44950";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 14, 2020 at 3:05 PM Greg Wilson-Lindberg <GWilson@sakuraus.com>
-wrote:
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
+starting to try and collect up and classify bugs which a newcomer to the =
+project would be able to work on in a way which means people can find =
+them. They're being listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 338 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.2&#8221;, &#8220;3.3, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.2&quot; and then &#8220;3.3&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-> Hi Chuck,
->
->
->
-> I am patching a recipe that is included with the Yocto system that I
-> download. The .system file that I need to modify is in one of the file
-> directories that are part of the recipe.
->
->
->
-> I have a .bbappend recipe that is being picked up, but because the file
-> that I want to patch is part of the recipe and not part of what a recipe
-> would download if it were building something from source, the patch syste=
-m
-> is not finding it.
->
-
-
-In that case, your best bet is to probably write a do_*_append() function
-into the bbappend recipe so you can jump in after one of the build steps
-and apply your patch during the appropriate stage. Refer to section 28.1 of
-the Mega Manual for all of the build tasks, and pick one that seems
-sensible. For example, you can write a do_install_append() function, and
-then prepend ${B} to the path that the service file typically shows up at
-to access it. From there, it is a simple matter of using typical commands
-to apply whatever patch you want.
-
-I have no doubt that other, more experienced people on the Yocto project,
-may suggest a better target than do_install, so listen to them if any
-should jump in and offer sensible correction to what I am saying.
-
-
-Part of my question was, could I use the PATCHDIR option to specify the
-> /lib/systemd/system/file.service file to get the patch to run against the
-> =E2=80=98copied=E2=80=99 version of the file?
->
-
-Given the example above, you would simply use
-${B}/lib/systemd/system/file.service and use garden variety command line
-tools to apply the patch.
-
-
-
-> Sorry for the weird =E2=80=9C<reply>=E2=80=A6<reply\>=E2=80=9D blocks, I=
-=E2=80=99m stuck with Outlook for
-> email and I can=E2=80=99t figure out how to get it to indent the email I=
-=E2=80=99m replying
-> to and let me comment in line without indenting my replies also.
->
-
-
-No worries. I used to use mutt and pine, which were really good at inline
-posting. Alas, I have moved on to gmail, which is not so good, and comes
-into conflict in places such as this. We make-do of course...
-
-..Ch:W..
-
---=20
-*"Perfection must be reached by degrees; she requires the slow hand of
-time." - Voltaire*
-
---000000000000fafd3605af4d9cf6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 14, 2020 at 3:05 PM Greg =
-Wilson-Lindberg &lt;<a href=3D"mailto:GWilson@sakuraus.com">GWilson@sakurau=
-s.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex">
-
-
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_-6797130851735085699WordSection1">
-<p class=3D"MsoNormal">Hi Chuck,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div style=3D"border-color:currentcolor currentcolor currentcolor blue;bord=
-er-style:none none none solid;border-width:medium medium medium 1.5pt;paddi=
-ng:0in 0in 0in 4pt"><div><div><div>
-<p class=3D"MsoNormal">I am patching a recipe that is included with the Yoc=
-to system that I download. The .system file that I need to modify is in one=
- of the file directories that are part of the recipe.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I have a .bbappend recipe that is being picked up, b=
-ut because the file that I want to patch is part of the recipe and not part=
- of what a recipe would download if it were building something from source,=
- the patch system is not finding it.</p></div></div></div></div></div></div=
-></blockquote><div><br></div><div><br></div><div>In that case, your best be=
-t is to probably write a do_*_append() function into the bbappend recipe so=
- you can jump in after one of the build steps and apply your patch during t=
-he appropriate stage. Refer to section 28.1 of the Mega Manual for all of t=
-he build tasks, and pick one that seems sensible. For example, you can writ=
-e a do_install_append() function, and then prepend ${B} to the path that th=
-e service file typically shows up at to access it. From there, it is a simp=
-le matter of using typical commands to apply whatever patch you want.</div>=
-<div><br></div><div>I have no doubt that other, more experienced people on =
-the Yocto project, may suggest a better target than do_install, so listen t=
-o them if any should jump in and offer sensible correction to what I am say=
-ing.<br></div><div>=C2=A0</div><div><br></div><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex"><div lang=3D"EN-US"><div class=3D"gmail-m_-67971308517=
-35085699WordSection1"><div style=3D"border-color:currentcolor currentcolor =
-currentcolor blue;border-style:none none none solid;border-width:medium med=
-ium medium 1.5pt;padding:0in 0in 0in 4pt"><div><div><div>
-<p class=3D"MsoNormal">Part of my question was, could I use the PATCHDIR op=
-tion to specify the /lib/systemd/system/file.service file to get the patch =
-to run against the =E2=80=98copied=E2=80=99 version of the file?
-</p></div></div></div></div></div></div></blockquote><div><br></div><div>Gi=
-ven the example above, you would simply use ${B}/lib/systemd/system/file.se=
-rvice and use garden variety command line tools to apply the patch.<br></di=
-v><div><br></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div lang=3D"EN-US"><div class=3D"gmail-m_-6797130851735085699Wo=
-rdSection1"><div style=3D"border-color:currentcolor currentcolor currentcol=
-or blue;border-style:none none none solid;border-width:medium medium medium=
- 1.5pt;padding:0in 0in 0in 4pt"><div><div><div><p class=3D"MsoNormal"><u></=
-u><u></u></p>
-
-<p class=3D"MsoNormal">Sorry for the weird =E2=80=9C&lt;reply&gt;=E2=80=A6&=
-lt;reply\&gt;=E2=80=9D blocks, I=E2=80=99m stuck with Outlook for email and=
- I can=E2=80=99t figure out how to get it to indent the email I=E2=80=99m r=
-eplying to and let me comment in line without indenting my replies also.</p=
-></div></div></div></div></div></div></blockquote><div><br></div><div><br><=
-/div><div>No worries. I used to use mutt and pine, which were really good a=
-t inline posting. Alas, I have moved on to gmail, which is not so good, and=
- comes into conflict in places such as this. We make-do of course...<br></d=
-iv><div><br></div><div>..Ch:W..<br clear=3D"all"></div></div><br>-- <br><di=
-v dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div><b><span styl=
-e=3D"font-family:monospace">&quot;Perfection must be reached by degrees; sh=
-e requires the slow hand of time.&quot; - Voltaire</span></b></div></div></=
-div></div>
-
---000000000000fafd3605af4d9cf6--
+------=_NextPart_000_0FB8_01D68AD4.8BAF7540--
