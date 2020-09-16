@@ -1,184 +1,77 @@
-Received: from dmzms99802.na.baesystems.com (dmzms99802.na.baesystems.com [149.32.232.66])
- by mx.groups.io with SMTP id smtpd.web10.2229.1600274144104931241
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+ by mx.groups.io with SMTP id smtpd.web11.730.1600278316949659176
  for <yocto@lists.yoctoproject.org>;
- Wed, 16 Sep 2020 09:35:49 -0700
+ Wed, 16 Sep 2020 10:45:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=gTdoALTL;
- spf=pass (domain: baesystems.com, ip: 149.32.232.66, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1600274144; x=1757954144;
-  h=from:to:cc:subject:date:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=bRe3hSysc9+Bmgk7e03k/UdSV9QSsiabsHsgAh5Njj0=;
-  b=gTdoALTL8NDM1nmX8FbZ8WO/+yirKesKeY/jYP7jbLqcrYZEdfuJLMBS
-   Fwt+rF91bXyNkp+xdaTlYHAc4KRMpVqjzZZDtvhCZn9cEShrNSQqgnIe8
-   zAjf8ciMxCHYgBV8Q63OajOKKOwEpnWCMxLLsEamawzVExeo01SDbdJVc
-   U=;
-IronPort-PHdr: =?us-ascii?q?9a23=3AtVzEkhKNiFdKMZ1Ma9mcpTZWNBhigK39O0sv0rFi?=
- =?us-ascii?q?tYgXKv/5rarrMEGX3/hxlliBBdydt6sbzbKM+PG8ESxYuNDd6S5EKMQNHzY+yu?=
- =?us-ascii?q?wu1zQ6B8CEDUCpZNXLVAcdWPp4aVl+4nugOlJUEsutL3fbo3m18CJAUk6nbVk9?=
- =?us-ascii?q?Kev6AJPdgNqq3O6u5ZLTfx9IhD2gar9uMRm6twrcutQUjId4Nqo91BTFr39Hdu?=
- =?us-ascii?q?9LwW9kOU+fkwzz68ut/ZNv6Thct+4k+8VdTaj0YqM0QKBCAj87KW41/srrtRfC?=
- =?us-ascii?q?TQuL+HQRV3gdnwRLDQbY8hz0R4/9vSTmuOVz3imaJtD2QqsvWTu+9adrSQTnhz?=
- =?us-ascii?q?kBOjUk7WzYkM1wjKZcoBK8uxxyxpPfbY+JOPZieK7WYMgXTnRdUMlPSyNBA5u8?=
- =?us-ascii?q?b4oRAOoHIeZYtJT2q18XoRejGQWgGObjxzlVjXH0wKI6yfwsHwHY0gI9A9IAvn?=
- =?us-ascii?q?farNv3O6cTTe+7w6bHwC7fb/xN2zfx9JTEfgwjrPyKQLl+cdDRyU4qFw7dgFme?=
- =?us-ascii?q?rovlPzWO1usTrWeb9PJsXv+yhW47tQ5xvCagxsExgYTXm4kZzl7L+zh8zIo7ON?=
- =?us-ascii?q?a1T1V7YcK6H5tOqS6aMZF6QsYlQ2FuoyY11KMJuYWgcScR0pso2QXfavycc4iU?=
- =?us-ascii?q?/B3jUf2RLS1ki3JifbKynhC/+lWvxePgTMe7ykpKrjZbndnWsHAAzxPd59SHR/?=
- =?us-ascii?q?Zg/0qv1iqC2gHO5uxHP006m7bWJp4iz7IulZcesVjOEC/4lknriKKaa0op9+u2?=
- =?us-ascii?q?5+j7YLjru5uROo1yhwrjMaougtSyDfkkPgQUUWWW+/6w2KP98UD5WrlHj/w7nr?=
- =?us-ascii?q?HEvJzGP8gWqaG0DxVR34o56BuyDTGr28kCk3YdNlJKYheHgpDsO1HJPf/3E++y?=
- =?us-ascii?q?g0+pkDd33/DGOaDhAonVInjDjrjhebF95lZAxwUp1tBQ+5dUCqoFLf/3WUL9qM?=
- =?us-ascii?q?LUAgU/MwOu2eroE89y2Z0FWWOPGa+ZLL3dsVqT5u41P+aMY4oVtC78K/gj+fHu?=
- =?us-ascii?q?kWc0lUIBcaWz05Yaamq0Eup4L0iZe3bhg9YMHX8PvgUkTezqjFOCUSRUZ3a3R6?=
- =?us-ascii?q?88/S07B5y4DYjdQIChmrmB3CC9Hp1NeG9JFEuMHGzzeIqeRfgMcyKTItR9kjMa?=
- =?us-ascii?q?ULihUJUt2g2ptA//07ZnNPbb+jUEtZL/09h4/+3SlRYu+jxoCMSQyGWNT2Bvnm?=
- =?us-ascii?q?MUXD86xqB+oUthxVef1qh4m+ZYFdtR5/xXTgg6KYTQz+tgC9D9CUr9eYKqSFuj?=
- =?us-ascii?q?Cu+vA3llVNszhdwObkNVFNCrjxSF1C2vVew7jbuOUdYR9aTH0nXqY45G13vY2a?=
- =?us-ascii?q?9ppBFmf/AOfyXynbJy6QXVQYvOlV6Umr2Cf60Rxz/W6GqG1iyFu0QOA104arnM?=
- =?us-ascii?q?QX1KPhielt/+/E6XCub2Ubk=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2BAAwCiPWJf/0LhJQpfHQEBAQEJARIBB?=
- =?us-ascii?q?QUBQIFPgxqBNAqEL5E5ig2QKIFpCwEBAQEBAQEBAQgBGAsMBAEBhEsCF4IMJTg?=
- =?us-ascii?q?TAhABAQYBAQEBAQYEAYZIDII3KQGDEQEBAQEDASIRGisMBAIBCBEEAQEBAgIjA?=
- =?us-ascii?q?wICAh8HCQEUAQgIAQEEDgUIFQSDBoJLAz20T3aBMoQ7AYEXgkMNgiQJAYEEKoZ?=
- =?us-ascii?q?NDYEDhyw+hCE+ghorFwQBgScBEgEoECOCXYJgBJMmoyNRBwOCZYhzhlKELYFLh?=
- =?us-ascii?q?H4qhDCcSYVtl2CCaJIrAgQCBAUCFYFrgQpwcIM5CUcXAg2OKxeIYoVCdAIBNAI?=
- =?us-ascii?q?GAQkBAQMJjBstgQaBEQEB?=
-X-IPAS-Result: =?us-ascii?q?A2BAAwCiPWJf/0LhJQpfHQEBAQEJARIBBQUBQIFPgxqBNAq?=
- =?us-ascii?q?EL5E5ig2QKIFpCwEBAQEBAQEBAQgBGAsMBAEBhEsCF4IMJTgTAhABAQYBAQEBA?=
- =?us-ascii?q?QYEAYZIDII3KQGDEQEBAQEDASIRGisMBAIBCBEEAQEBAgIjAwICAh8HCQEUAQg?=
- =?us-ascii?q?IAQEEDgUIFQSDBoJLAz20T3aBMoQ7AYEXgkMNgiQJAYEEKoZNDYEDhyw+hCE+g?=
- =?us-ascii?q?horFwQBgScBEgEoECOCXYJgBJMmoyNRBwOCZYhzhlKELYFLhH4qhDCcSYVtl2C?=
- =?us-ascii?q?CaJIrAgQCBAUCFYFrgQpwcIM5CUcXAg2OKxeIYoVCdAIBNAIGAQkBAQMJjBstg?=
- =?us-ascii?q?QaBEQEB?=
-X-IronPort-AV: E=Sophos;i="5.76,433,1592870400"; 
-   d="scan'208";a="445971753"
-X-IronPort-AV: E=Sophos;i="5.76,433,1592870400"; 
-   d="scan'208";a="166626307"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: Khem Raj <raj.khem@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] #yocto #sdk - meta-clang undefined references
-Thread-Topic: [yocto] #yocto #sdk - meta-clang undefined references
-Thread-Index: AdaLmOq5qmQi1ELyRo6IcXbt7Io+kQALJ08AACBkSscAAA59MA==
-Date: Wed, 16 Sep 2020 16:35:39 +0000
-In-Reply-To: <CAMKF1sq8OxLu_Pyfbfi5Ww-i2-QttiCWEZ-SU+agW5D46vstGA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.9.87]
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=gbnfkvpe;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.210.171, mailfrom: mhalstead@linuxfoundation.org)
+Received: by mail-pf1-f171.google.com with SMTP id l126so4414321pfd.5
+        for <yocto@lists.yoctoproject.org>; Wed, 16 Sep 2020 10:45:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vU+5JwSylKw5wFW2yq1XbUDSp4DzGhIbTECK2YuTeZc=;
+        b=gbnfkvpevYOuqDB8UZHoYeC58+Q1MKCA3PqKHBFtCztrlaQECAIiErvKk/PHIrOKKb
+         +X2rjkb+yXxu41egQjLFu7+ISZQ618kDRE2l7HBJmttj8y6t7Cac2ogaLVoK8fAdXLkp
+         5TdNePLCmovr8Ajp3yRLfbYxZFe6c+0I5uztc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vU+5JwSylKw5wFW2yq1XbUDSp4DzGhIbTECK2YuTeZc=;
+        b=SLWsSnXcgvfFn9c5gDgNFa4J0BdRitsGxwDvCODKzGozQ7V6KdraBFroTvKLakW7Kp
+         FNgc50KBJCQVafRwMFYdT15ivTkyj3Ew2OKfjSloDD0F1J46Nh6J8BWWAQ+fvp0vUg3y
+         fs/YSk4+Ct7hjECQySBOQaVE4c9UOAYioLB0u/DlDPOJBv3BI3NveoUzwhyo83v/Uhvr
+         VXhW7iB4AB+zOWCdi8gs/VWqSqYGtMEiN6r1BEeNDBYNwlHVpeJFyXIDm5pyh5CwftFj
+         EcS4wq/iKqw4pUE1Y+BLm5cp4eXM+J9KSMerOUPSPC7HbZhFyAivesYrKWAYidPXsZAI
+         s/8Q==
+X-Gm-Message-State: AOAM531JGJQp0LaPoYZlc6iUV68ZhoIlfz1ktxwBMbqiIOk8IuD1LQ5l
+	Cjv40pfXn4kQvi9PFFhVVR675S+TeatD/A==
+X-Google-Smtp-Source: ABdhPJzp/+mDqUaZcLxE0wCiObeKOKkWwxwGN0J1JKUdXX8jkqb/dVYM+d0CIaqRPhmgGnBI3D7RdA==
+X-Received: by 2002:a63:e00a:: with SMTP id e10mr19880749pgh.423.1600278316229;
+        Wed, 16 Sep 2020 10:45:16 -0700 (PDT)
+Return-Path: <mhalstead@linuxfoundation.org>
+Received: from localhost.yoctoproject.org (c-67-160-163-132.hsd1.or.comcast.net. [67.160.163.132])
+        by smtp.gmail.com with ESMTPSA id j144sm18124781pfd.106.2020.09.16.10.45.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Sep 2020 10:45:15 -0700 (PDT)
+From: "Michael Halstead" <mhalstead@linuxfoundation.org>
+To: yocto@lists.yoctoproject.org
+Cc: Michael Halstead <mhalstead@linuxfoundation.org>
+Subject: [PATCH yocto-autobuilder-helper] janitor: Add the systemd unit file used on the autobuilder
+Date: Wed, 16 Sep 2020 10:44:13 -0700
+Message-Id: <20200916174413.297497-1-mhalstead@linuxfoundation.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Return-Path: steven.monsees@baesystems.com
-Message-ID: <MADEUP.163550DC298AD642.8964@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 
-DQpZZXMsIEkgZGlkIHRoaXMuLi4gSSBhbSBjdXJyZW50bHkgZG93biB0byAxIGlzc3VlOg0KDQoN
-Ci9lZGUvc21vbnNlZXMveW9jdG8vdGVzdC9iZWlnbmV0LVJlbGVhc2VfdjEuMy9iYWNrZW5kL3Ny
-Yy9sbHZtL2xsdm1fdG9fZ2VuLmNwcDogSW4gZnVuY3Rpb24g4oCYYm9vbCBnYmU6Omxsdm1Ub0dl
-bihnYmU6OmlyOjpVbml0JiwgY29uc3Qgdm9pZCosIGludCwgYm9vbCwgaW50LCBzdGQ6Ol9fY3h4
-MTE6OnN0cmluZyYp4oCZOg0KL2VkZS9zbW9uc2Vlcy95b2N0by90ZXN0L2JlaWduZXQtUmVsZWFz
-ZV92MS4zL2JhY2tlbmQvc3JjL2xsdm0vbGx2bV90b19nZW4uY3BwOjMyNTo2ODogZXJyb3I6IG5v
-IG1hdGNoaW5nIGZ1bmN0aW9uIGZvciBjYWxsIHRvIOKAmGxsdm06OkxMVk1Db250ZXh0OjpzZXRE
-aWFnbm9zdGljSGFuZGxlcih2b2lkICgqKShjb25zdCBsbHZtOjpEaWFnbm9zdGljSW5mbyYsIHZv
-aWQqKSwgZ2JlOjpnYmVEaWFnbm9zdGljQ29udGV4dCop4oCZDQogICAgIG1vZC5nZXRDb250ZXh0
-KCkuc2V0RGlhZ25vc3RpY0hhbmRsZXIoJmdiZURpYWdub3N0aWNIYW5kbGVyLCZkYyk7DQogICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIF4NCkluIGZpbGUgaW5jbHVkZWQgZnJvbSAvb3B0L2xpbXdzLzIuNC4xL3N5c3Jvb3Rz
-L2xsdm0tY2xhbmcvaW5jbHVkZS9sbHZtL0lSL01ldGFkYXRhLmg6MzA6MCwNCiAgICAgICAgICAg
-ICAgICAgZnJvbSAvb3B0L2xpbXdzLzIuNC4xL3N5c3Jvb3RzL2xsdm0tY2xhbmcvaW5jbHVkZS9s
-bHZtL0lSL1RyYWNraW5nTURSZWYuaDoxNywNCiAgICAgICAgICAgICAgICAgZnJvbSAvb3B0L2xp
-bXdzLzIuNC4xL3N5c3Jvb3RzL2xsdm0tY2xhbmcvaW5jbHVkZS9sbHZtL0lSL0RlYnVnTG9jLmg6
-MTgsDQogICAgICAgICAgICAgICAgIGZyb20gL29wdC9saW13cy8yLjQuMS9zeXNyb290cy9sbHZt
-LWNsYW5nL2luY2x1ZGUvbGx2bS9JUi9JbnN0cnVjdGlvbi5oOjIyLA0KICAgICAgICAgICAgICAg
-ICBmcm9tIC9vcHQvbGltd3MvMi40LjEvc3lzcm9vdHMvbGx2bS1jbGFuZy9pbmNsdWRlL2xsdm0v
-SVIvQmFzaWNCbG9jay5oOjIzLA0KICAgICAgICAgICAgICAgICBmcm9tIC9lZGUvc21vbnNlZXMv
-eW9jdG8vdGVzdC9iZWlnbmV0LVJlbGVhc2VfdjEuMy9iYWNrZW5kL3NyYy9sbHZtL2xsdm1faW5j
-bHVkZXMuaHBwOjMwLA0KICAgICAgICAgICAgICAgICBmcm9tIC9lZGUvc21vbnNlZXMveW9jdG8v
-dGVzdC9iZWlnbmV0LVJlbGVhc2VfdjEuMy9iYWNrZW5kL3NyYy9sbHZtL2xsdm1fdG9fZ2VuLmNw
-cDoyNToNCi9vcHQvbGltd3MvMi40LjEvc3lzcm9vdHMvbGx2bS1jbGFuZy9pbmNsdWRlL2xsdm0v
-SVIvTExWTUNvbnRleHQuaDoyMTM6ODogbm90ZTogY2FuZGlkYXRlOiB2b2lkIGxsdm06OkxMVk1D
-b250ZXh0OjpzZXREaWFnbm9zdGljSGFuZGxlcihzdGQ6OnVuaXF1ZV9wdHI8bGx2bTo6RGlhZ25v
-c3RpY0hhbmRsZXI+JiYsIGJvb2wpDQogICB2b2lkIHNldERpYWdub3N0aWNIYW5kbGVyKHN0ZDo6
-dW5pcXVlX3B0cjxEaWFnbm9zdGljSGFuZGxlcj4gJiZESCwNCiAgICAgICAgXn5+fn5+fn5+fn5+
-fn5+fn5+fn4NCi9vcHQvbGltd3MvMi40LjEvc3lzcm9vdHMvbGx2bS1jbGFuZy9pbmNsdWRlL2xs
-dm0vSVIvTExWTUNvbnRleHQuaDoyMTM6ODogbm90ZTogICBubyBrbm93biBjb252ZXJzaW9uIGZv
-ciBhcmd1bWVudCAxIGZyb20g4oCYdm9pZCAoKikoY29uc3QgbGx2bTo6RGlhZ25vc3RpY0luZm8m
-LCB2b2lkKinigJkgdG8g4oCYc3RkOjp1bmlxdWVfcHRyPGxsdm06OkRpYWdub3N0aWNIYW5kbGVy
-PiYm4oCZDQptYWtlWzJdOiAqKiogW2JhY2tlbmQvc3JjL0NNYWtlRmlsZXMvZ2JlLmRpci9sbHZt
-L2xsdm1fdG9fZ2VuLmNwcC5vXSBFcnJvciAxDQptYWtlWzFdOiAqKiogW2JhY2tlbmQvc3JjL0NN
-YWtlRmlsZXMvZ2JlLmRpci9hbGxdIEVycm9yIDINCm1ha2U6ICoqKiBbYWxsXSBFcnJvciAyDQox
-MToyNyBzbW9uc2Vlc0B5aXg0OTAwMTYgfi95b2N0by90ZXN0L2JlaWduZXQtUmVsZWFzZV92MS4z
-L215YnVpbGQ+DQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBLaGVtIFJhaiBb
-bWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0gDQpTZW50OiBXZWRuZXNkYXksIFNlcHRlbWJlciAx
-NiwgMjAyMCAxMjozMiBQTQ0KVG86IE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgPHN0ZXZlbi5tb25z
-ZWVzQGJhZXN5c3RlbXMuY29tPg0KQ2M6IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClN1
-YmplY3Q6IFJlOiBbeW9jdG9dICN5b2N0byAjc2RrIC0gbWV0YS1jbGFuZyB1bmRlZmluZWQgcmVm
-ZXJlbmNlcw0KDQoqKiogV0FSTklORyAqKioNCkVYVEVSTkFMIEVNQUlMIC0tIFRoaXMgbWVzc2Fn
-ZSBvcmlnaW5hdGVzIGZyb20gb3V0c2lkZSBvdXIgb3JnYW5pemF0aW9uLg0KDQoNCnRoYXQgbWVh
-bnMgeW91ciBsaW5rIHN0ZXAgaXMgbm90IGxpbmtpbmcgbGliY2xhbmcgcHJvcGVybHkgaW50byB5
-b3VyIGFwcCwgcGVyaGFwcyBjaGFuZ2UgdGhlIG9yZGVyIHNvIC1sY2xhbmcgYXBwZWFycyBsYXN0
-DQoNCk9uIFdlZCwgU2VwIDE2LCAyMDIwIGF0IDQ6MDYgQU0gTW9uc2VlcywgU3RldmVuIEMgKFVT
-KSA8c3RldmVuLm1vbnNlZXNAYmFlc3lzdGVtcy5jb20+IHdyb3RlOg0KPg0KPg0KPg0KPiBJdCBz
-aG91bGQgYmUgbGlua2luZyBpbiBsaWJjbGFuZyAsIEkgd2lsbCB2YWxpZGF0ZS4uLg0KPg0KPiBO
-b3RlIHBlcmZvcm1pbmcgJ25tJyBvbiBsaWJjbGFuZyBhcHBlYXIgdG8gc2hvdyB0aGUgbWFqb3Jp
-dHkgcHJlc2VudC4uLg0KPg0KPiBRdWVzdGlvbjogaWYgSSBuZWVkZWQgdG8gaW5jbHVkZSBhIGxp
-YnJhcnksIHdoYXQvaG93IHdvdWxkIEkgbW9kaWZ5IGEgcmVjaXBlIHVuZGVyIFlvY3RvIHRvIGJl
-IHN1cmUgdG8gaW5jbHVkZS9saW5rIGluIHRoZSBsaWJyYXJ5ID8NCj4NCj4gVGhhbmtzLA0KPiBT
-dGV2ZQ0KPg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBLaGVtIFJhaiBb
-bWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0NCj4gU2VudDogVHVlc2RheSwgU2VwdGVtYmVyIDE1
-LCAyMDIwIDU6MDYgUE0NCj4gVG86IE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgPHN0ZXZlbi5tb25z
-ZWVzQGJhZXN5c3RlbXMuY29tPg0KPiBDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0K
-PiBTdWJqZWN0OiBSZTogW3lvY3RvXSAjeW9jdG8gI3NkayAtIG1ldGEtY2xhbmcgdW5kZWZpbmVk
-IHJlZmVyZW5jZXMNCj4NCj4gKioqIFdBUk5JTkcgKioqDQo+IEVYVEVSTkFMIEVNQUlMIC0tIFRo
-aXMgbWVzc2FnZSBvcmlnaW5hdGVzIGZyb20gb3V0c2lkZSBvdXIgb3JnYW5pemF0aW9uLg0KPg0K
-Pg0KPiBPbiBUdWUsIFNlcCAxNSwgMjAyMCBhdCAxMjo1NiBQTSBNb25zZWVzLCBTdGV2ZW4gQyAo
-VVMpIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnIDxzdGV2ZW4ubW9uc2Vlcz1iYWVzeXN0ZW1z
-LmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3JnPiB3cm90ZToNCj4gPg0KPiA+DQo+ID4NCj4gPiBJ
-IGFtIGJ1aWxkaW5nIG1ldGEtY2xhbmcgKHN1bW8gYmFzZWQgNi4wLjEpLCB3aXRoIGNtYWtlICgz
-LjguMiksIGFsbCANCj4gPiB1bmRlciBhIHN0YW5kYXJkIFNESyDigJxyb2NrbyBiYXNlZOKAnSAo
-Mi40LjEp4oCmDQo+ID4NCj4gPg0KPiA+DQo+ID4gQXJlIHRoZSBmb2xsb3dpbmcgcm91dGluZXMg
-YWNjZXNzaWJsZS9zdXBwb3J0ZWQgdW5kZXIgbWV0YS1jbGFuZyA/DQo+ID4NCj4gPg0KPiA+DQo+
-ID4gbGliZ2JlLnNvOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBjbGFuZzo6RGlhZ25vc3RpY0lE
-czo6fkRpYWdub3N0aWNJRHMoKScNCj4gPg0KPiA+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJlZmVy
-ZW5jZSB0byBgY2xhbmc6OlRleHREaWFnbm9zdGljUHJpbnRlcjo6VGV4dERpYWdub3N0aWNQcmlu
-dGVyKGxsdm06OnJhd19vc3RyZWFtJiwgY2xhbmc6OkRpYWdub3N0aWNPcHRpb25zKiwgYm9vbCkn
-DQo+ID4NCj4gPiBsaWJnYmUuc286IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYGNsYW5nOjpEaWFn
-bm9zdGljc0VuZ2luZTo6fkRpYWdub3N0aWNzRW5naW5lKCknDQo+ID4NCj4gPiBsaWJnYmUuc286
-IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYGNsYW5nOjpDb21waWxlckludm9jYXRpb246OkNyZWF0
-ZUZyb21BcmdzKGNsYW5nOjpDb21waWxlckludm9jYXRpb24mLCBjaGFyIGNvbnN0KiBjb25zdCos
-IGNoYXIgY29uc3QqIGNvbnN0KiwgY2xhbmc6OkRpYWdub3N0aWNzRW5naW5lJiknDQo+ID4NCj4g
-PiBsaWJnYmUuc286IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYGNsYW5nOjpDb21waWxlckludm9j
-YXRpb25CYXNlOjp+Q29tcGlsZXJJbnZvY2F0aW9uQmFzZSgpJw0KPiA+DQo+ID4gbGliZ2JlLnNv
-OiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBjbGFuZzo6UENIQ29udGFpbmVyT3BlcmF0aW9uczo6
-UENIQ29udGFpbmVyT3BlcmF0aW9ucygpJw0KPiA+DQo+ID4gbGliZ2JlLnNvOiB1bmRlZmluZWQg
-cmVmZXJlbmNlIHRvIGBjbGFuZzo6Q29tcGlsZXJJbnN0YW5jZTo6Y3JlYXRlRGlhZ25vc3RpY3Mo
-Y2xhbmc6OkRpYWdub3N0aWNDb25zdW1lciosIGJvb2wpJw0KPiA+DQo+ID4gbGliZ2JlLnNvOiB1
-bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBjbGFuZzo6RGlhZ25vc3RpY3NFbmdpbmU6OkRpYWdub3N0
-aWNzRW5naW5lKGxsdm06OkludHJ1c2l2ZVJlZkNudFB0cjxjbGFuZzo6RGlhZ25vc3RpY0lEcz4s
-IGNsYW5nOjpEaWFnbm9zdGljT3B0aW9ucyosIGNsYW5nOjpEaWFnbm9zdGljQ29uc3VtZXIqLCBi
-b29sKScNCj4gPg0KPiA+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgY2xhbmc6
-OkNvZGVHZW5PcHRpb25zOjpDb2RlR2VuT3B0aW9ucygpJw0KPiA+DQo+ID4gbGliZ2JlLnNvOiB1
-bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBjbGFuZzo6Q29tcGlsZXJJbnN0YW5jZTo6fkNvbXBpbGVy
-SW5zdGFuY2UoKScNCj4gPg0KPiA+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBg
-Y2xhbmc6OkNvbXBpbGVySW5zdGFuY2U6OkNvbXBpbGVySW5zdGFuY2Uoc3RkOjpzaGFyZWRfcHRy
-PGNsYW5nOjpQQ0hDb250YWluZXJPcGVyYXRpb25zPiwgY2xhbmc6Ok1lbW9yeUJ1ZmZlckNhY2hl
-KiknDQo+ID4NCj4gPiBsaWJnYmUuc286IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYGNsYW5nOjpF
-bWl0TExWTU9ubHlBY3Rpb246OkVtaXRMTFZNT25seUFjdGlvbihsbHZtOjpMTFZNQ29udGV4dCop
-Jw0KPiA+DQo+ID4gbGliZ2JlLnNvOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBjbGFuZzo6Q29t
-cGlsZXJJbnN0YW5jZTo6RXhlY3V0ZUFjdGlvbihjbGFuZzo6RnJvbnRlbmRBY3Rpb24mKScNCj4g
-Pg0KPiA+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgY2xhbmc6OkNvbXBpbGVy
-SW52b2NhdGlvbkJhc2U6OkNvbXBpbGVySW52b2NhdGlvbkJhc2UoKScNCj4gPg0KPiA+IGxpYmdi
-ZS5zbzogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgY2xhbmc6OkNvbXBpbGVySW5zdGFuY2U6OnNl
-dEludm9jYXRpb24oc3RkOjpzaGFyZWRfcHRyPGNsYW5nOjpDb21waWxlckludm9jYXRpb24+KScN
-Cj4gPg0KPiA+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgY2xhbmc6OkNvZGVH
-ZW5BY3Rpb246OnRha2VNb2R1bGUoKScNCj4gPg0KPiA+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJl
-ZmVyZW5jZSB0byBgY2xhbmc6OkRpYWdub3N0aWNJRHM6OkRpYWdub3N0aWNJRHMoKScNCj4gPg0K
-Pg0KPiBhcmUgeW91IGxpbmtpbmcgdGhpcyBsaWJyYXJ5IHdpdGggbGliY2xhbmcgPyBzZWNvbmRs
-eSwgYWxzbyBjaGVjayB0aGF0IA0KPiBpdHMgbm90IGVtaXR0aW5nIGJ1bmNoIG9mIGxpYnJhcmll
-cyB3aGljaCBuZWVkcyB0byB0aGVuIGluZGl2aWR1YWxseSANCj4gbGlua2VkDQo+DQo+ID4NCj4g
-Pg0KPiA+IHRoYW5rcywNCj4gPg0KPiA+IFN0ZXZlDQo+ID4NCj4gPiANCg==
+Signed-off-by: Michael Halstead <mhalstead@linuxfoundation.org>
+---
+ janitor/ab-janitor.service | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 janitor/ab-janitor.service
+
+diff --git a/janitor/ab-janitor.service b/janitor/ab-janitor.service
+new file mode 100644
+index 0000000..5e834af
+--- /dev/null
++++ b/janitor/ab-janitor.service
+@@ -0,0 +1,14 @@
++# /etc/systemd/system/ab-janitor.service
++[Unit]
++Description=Autobuilder Janitor Service
++After=network-online.target
++Wants=network-online.target
++
++[Service]
++User=pokybuild
++WorkingDirectory=/home/pokybuild
++Type=simple
++ExecStart=/usr/bin/python3 /home/pokybuild/yocto-autobuilder-helper/janitor/ab-janitor
++
++[Install]
++WantedBy=multi-user.target
+-- 
+2.26.2
+
