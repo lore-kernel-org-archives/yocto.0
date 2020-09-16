@@ -1,187 +1,169 @@
-Received: from dmzms99802.na.baesystems.com (dmzms99802.na.baesystems.com [149.32.232.66])
- by mx.groups.io with SMTP id smtpd.web11.759.1600270652380614587
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+ by mx.groups.io with SMTP id smtpd.web11.2089.1600273807548558248
  for <yocto@lists.yoctoproject.org>;
- Wed, 16 Sep 2020 08:37:35 -0700
+ Wed, 16 Sep 2020 09:30:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=G1iN7zv3;
- spf=pass (domain: baesystems.com, ip: 149.32.232.66, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1600270652; x=1757950652;
-  h=from:to:cc:subject:date:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=IPjMftxXOj9tnNF/9YBj1cyeNYu3b5wd11X8Q6DmQrQ=;
-  b=G1iN7zv39nDstvt52A+HGUGawG8ZzdeV4rc45ThEWJbOhR8FAbeMykdi
-   2/+gs7DfhlXGOzFacnHQ2t6jRSMiVQuSTvSvNBlaUFx170EYc4LAwGMpj
-   yO19u9AKh13SpT99O5rZ9M/wzQhneZYa5NsYpPuzh5T02xMk2f7Z+xZJ9
-   Q=;
-IronPort-PHdr: =?us-ascii?q?9a23=3AJCDmBB2dNo1Rr9pRsmDT+DRfVm0co7zxezQtwd8Z?=
- =?us-ascii?q?sesWI/zxwZ3uMQTl6Ol3ixeRBMOHsq0C07Cd4/+oGTRZp8rY7jZaKN0EfiRGoP?=
- =?us-ascii?q?1epxYnDs+BBB+zB9/RRAt+Iv5/UkR49WqwK0lfFZW2TVTTpnqv8WxaQU2nZkJ6?=
- =?us-ascii?q?KevvB4Hdkdm82fys9J3PeQVIgye2ba9vIBmsogjdq8sbjZF+JqovxRfEoXlFcP?=
- =?us-ascii?q?lSyW90OF6fhRnx6tqx8ZJ57yhcp/ct/NNcXKvneKg1UaZWByk8PWAv483ruxjD?=
- =?us-ascii?q?TQ+R6XYZT24bjBlGDRXb4R/jRpv+vTf0ueR72CmBIM35Vqs0Vii476dqUxDnli?=
- =?us-ascii?q?EKPCMk/W7Ni8xwiKVboA+9pxF63oXZbp2ZOOZ4c6jAZt4RW3ZPUdhNWCxAGoO8?=
- =?us-ascii?q?bpUAD+wdPeZDsoLxo0ICoQaiCQWwAe/izCJDiH3r0q0gy+kvER/I0hE8H9wAs3?=
- =?us-ascii?q?rUotf6NKYOXu66w6bF1inDYOhU2Tvh9ITEbhIsrPeRVrxwa8rRzkwvGhvLgluX?=
- =?us-ascii?q?rozlOSiV2foTvGiA9+ZrSP+hi3I5pAFvvDevwNonh5fUjY4RxF/K6CB1zIgoLt?=
- =?us-ascii?q?C/U057fcCrEIVOuCGcLYd2R8QiQ2dzuCkk1LIGooW2czMQx5s53B7ea+eHc5SW?=
- =?us-ascii?q?7RLmT+adOyt3hHVgeL+mgRu57EevxPHmWMauzFZKsjRKksPKtn0V2BLe9siKR+?=
- =?us-ascii?q?Z880muxTuC1h3f5+JaLE46iafWK50szqAzm5cTrUnNHiH4lFjygaOLeUgp+fak?=
- =?us-ascii?q?5/jlb7j7opKRNYl5gRz9PKQ2gsGzHPg0PhIAUmWZ4+iwybnu8EPjTLhLj/A6ir?=
- =?us-ascii?q?TVvIzAKckUqaO1GQtY3pwg5hu9CTqtzc4WkmMdLF1ffRKKl43pO1bTL//mFfq/?=
- =?us-ascii?q?mFGskCtzx/DBI73hHo3BLnjdn7flerZw80hcyAo1zd9F4pJUEbIMLfLvVkPtqd?=
- =?us-ascii?q?DUFBk5PBauz+n8EtpyyJgeWGKUAq+FLqzStESI6vgzLOmLYY8ZoDf9K/476P7y?=
- =?us-ascii?q?lXI1hEMRcbOn0JYVcny0A/BrLkuDbXftg9oNCWIKsRA/TOzuhl2CSzlTZ3OqUq?=
- =?us-ascii?q?In+jE0FpymApnFRoy3hbyB2yG7HoZIaW9YEVCBCmzneJ+aVPcXaCOSOdNhnSIB?=
- =?us-ascii?q?Vbi6UYMuyRautArix7p9MuXU4jEYtY7k1NVt5+zTkg099SBzD8mG12GNTnp0nn?=
- =?us-ascii?q?8TRzMs3KF/plByykuE0ahgmfxYEt5T6O1VXQcmL5LcyPZ6C9+hEj7GK52sT1C9?=
- =?us-ascii?q?T9i9RXkKUt8vztlGSA49Ju7jxFiXxDanHbIT0bmMAoc5/7n01XH8PNdm13vDz+?=
- =?us-ascii?q?8qiFxwBoNsNWCjzpR29UCHHYfL1UaZmqOCeqEV3SqL/2CGmzmgpkZdBURVVqPe?=
- =?us-ascii?q?UH0EIgPtsdnn60WKZPfuNI9meEMV0tKPNKZMLNjui05LSezLMt3TeHOqh2q1Hl?=
- =?us-ascii?q?CDwbbaP9miQHkUwCiIUBtMqAsU53vTcFFmXio=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2A9AgC1MGJf/0LBJQpfHAEBAQEBAQcBA?=
- =?us-ascii?q?RIBAQQEAQFAgU+DGoEgFAqEL5E6ig2QKIFpCwEBAQEBAQEBAQgBGAcQBAEBhEs?=
- =?us-ascii?q?CF4IMJTgTAhABAQYBAQEBAQYEAYZIDII3KQGDEQEBAQECAQEiEUUMBAIBCBEEA?=
- =?us-ascii?q?QEBAgIjAwICAh8HChQBCAgBAQQBDQUIgx+CSwMOtQB2gTKFU4JKDYIkgQ4qhlq?=
- =?us-ascii?q?BA4E+hW4+hCE+ghpCBAGBJwESASgQI4JdgmAEkyajI1EHA4JliHOKf4FLhH4qh?=
- =?us-ascii?q?DCcSYVtjQKNRpIrAgQCBAUCFYFrgQpwcIM5CUcXAg2OKxeIYoVCdAIBNAIGAQk?=
- =?us-ascii?q?BAQMJjBstgQaBEQEB?=
-X-IPAS-Result: =?us-ascii?q?A2A9AgC1MGJf/0LBJQpfHAEBAQEBAQcBARIBAQQEAQFAgU+?=
- =?us-ascii?q?DGoEgFAqEL5E6ig2QKIFpCwEBAQEBAQEBAQgBGAcQBAEBhEsCF4IMJTgTAhABA?=
- =?us-ascii?q?QYBAQEBAQYEAYZIDII3KQGDEQEBAQECAQEiEUUMBAIBCBEEAQEBAgIjAwICAh8?=
- =?us-ascii?q?HChQBCAgBAQQBDQUIgx+CSwMOtQB2gTKFU4JKDYIkgQ4qhlqBA4E+hW4+hCE+g?=
- =?us-ascii?q?hpCBAGBJwESASgQI4JdgmAEkyajI1EHA4JliHOKf4FLhH4qhDCcSYVtjQKNRpI?=
- =?us-ascii?q?rAgQCBAUCFYFrgQpwcIM5CUcXAg2OKxeIYoVCdAIBNAIGAQkBAQMJjBstgQaBE?=
- =?us-ascii?q?QEB?=
-X-IronPort-AV: E=Sophos;i="5.76,433,1592870400"; 
-   d="scan'208";a="445946781"
-X-IronPort-AV: E=Sophos;i="5.76,433,1592870400"; 
-   d="scan'208";a="220995742"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>, Khem Raj
-	<raj.khem@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] #yocto #sdk - meta-clang undefined references
-Thread-Topic: [yocto] #yocto #sdk - meta-clang undefined references
-Thread-Index: AdaLmOq5qmQi1ELyRo6IcXbt7Io+kQALJ08AABQBsfAAByDloAADJXRg
-Date: Wed, 16 Sep 2020 15:37:29 +0000
-In-Reply-To: <MADEUP.1635489BF915C597.13893@lists.yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.9.87]
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=O4IytoUJ;
+ spf=pass (domain: gmail.com, ip: 209.85.219.47, mailfrom: raj.khem@gmail.com)
+Received: by mail-qv1-f47.google.com with SMTP id cy2so3870463qvb.0
+        for <yocto@lists.yoctoproject.org>; Wed, 16 Sep 2020 09:30:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=GQNaWYHukekNxql1NVMGMPCPRYwil2Z5mxq3a/5g9mk=;
+        b=O4IytoUJSm7Q40XkiGVbKmHpMtF1ql1zKUIv/KQ/luv5leaMCWbm0kHwVMx/TBQWqQ
+         +Gux2s3HOQhCakfCEtuZFbl0anXg8ltRQgoiZXGerVT8/kFj40lY1qWKMtan87iQnC+8
+         G3f+rqbTSPosHQF2U3RHOlfN5HtVRjLo449RSHXREtNLJIoHC5LMHq+gCobsFAdhsjDK
+         SI8cZhgMomNalziQjE90YkUosQvF3I3EtbxQ+RXP5J/mMUKwKlqZ9aHkJnA/tlsV4AmJ
+         JtBwe+/aqMBtxE7e2FcWnHfV42w1+ftLIh2Etz3X+pTmy0BC5eB//shLhNncme4dsbZB
+         285g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=GQNaWYHukekNxql1NVMGMPCPRYwil2Z5mxq3a/5g9mk=;
+        b=NsDJdFscWnbTie528i4EmPT/yzYuDpKsAk+w0X4K0en5mBhWMDxhkOFyR2XEht8FTm
+         pjJ3M13HJUbHGIVRvLSriGoyT8oE6WKfptEZua/Zh9jzTrn0pevVW97PoQIr/cSRt2G8
+         A71iBE56mIJ5MMB0wTtDXtApcIvhwNphKTrgP49xqj0tpJuUIoUPGasw2CRZm3B0gpZx
+         4+uGGeNB1LXprIVy6ipdiQABtqY2xmCvYdIBQGIhSxhOvKf2554/LBRkaIFHK9gMJMcp
+         dowuhCuDzgM1gLJo0aO2gIxEonkvTrmzbZvAbmhxIpizhY0M6RFYFTKCuAklOv7WslwW
+         0yLQ==
+X-Gm-Message-State: AOAM531DelGqJNVkYGn3XuX0laWTVTQDKyVwq4KSg0TFvKtV84PySiAT
+	VvJlQ2lfJjzBG9uS6wzhu+VtnIfDW+7Xeqs7Bkk=
+X-Google-Smtp-Source: ABdhPJyq0MWlYocPY8+GxZLvA73V0Y+Kr5FlEJqvNjSuBZI6N9wfhtKZW/kTcw1oKbPi6bojIdwUhqcXULZArSdA734=
+X-Received: by 2002:a0c:e892:: with SMTP id b18mr24347518qvo.5.1600273806403;
+ Wed, 16 Sep 2020 09:30:06 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <MADEUP.16354DAEBC9A1C48.5749@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+References: <MADEUP.1635489BF915C597.13893@lists.yoctoproject.org>
+In-Reply-To: <MADEUP.1635489BF915C597.13893@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Wed, 16 Sep 2020 09:29:40 -0700
+Message-ID: <CAMKF1srDRo0fsqdFCSJs1+kyA+4+2=F0HRAMZ8U0ANEHDfq4zg@mail.gmail.com>
+Subject: Re: [yocto] #yocto #sdk - meta-clang undefined references
+To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-DQpGb3VuZCBhIGNtYWtlIGlzc3VlIGFuZCBmaXhlZCBhbG1vc3QgYWxsIG9mIGl0LCBkb3duIHRv
-IDEgbWlzc2luZyByZWZlcmVuY2U6DQoNCg0KL2VkZS9zbW9uc2Vlcy95b2N0by90ZXN0L2JlaWdu
-ZXQtUmVsZWFzZV92MS4zL2JhY2tlbmQvc3JjL2xsdm0vbGx2bV90b19nZW4uY3BwOiBJbiBmdW5j
-dGlvbiDigJhib29sIGdiZTo6bGx2bVRvR2VuKGdiZTo6aXI6OlVuaXQmLCBjb25zdCB2b2lkKiwg
-aW50LCBib29sLCBpbnQsIHN0ZDo6X19jeHgxMTo6c3RyaW5nJinigJk6DQovZWRlL3Ntb25zZWVz
-L3lvY3RvL3Rlc3QvYmVpZ25ldC1SZWxlYXNlX3YxLjMvYmFja2VuZC9zcmMvbGx2bS9sbHZtX3Rv
-X2dlbi5jcHA6MzI1OjY4OiBlcnJvcjogbm8gbWF0Y2hpbmcgZnVuY3Rpb24gZm9yIGNhbGwgdG8g
-4oCYbGx2bTo6TExWTUNvbnRleHQ6OnNldERpYWdub3N0aWNIYW5kbGVyKHZvaWQgKCopKGNvbnN0
-IGxsdm06OkRpYWdub3N0aWNJbmZvJiwgdm9pZCopLCBnYmU6OmdiZURpYWdub3N0aWNDb250ZXh0
-KinigJkNCiAgICAgbW9kLmdldENvbnRleHQoKS5zZXREaWFnbm9zdGljSGFuZGxlcigmZ2JlRGlh
-Z25vc3RpY0hhbmRsZXIsJmRjKTsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXg0KSW4gZmlsZSBpbmNsdWRlZCBmcm9t
-IC9vcHQvbGltd3MvMi40LjEvc3lzcm9vdHMvbGx2bS1jbGFuZy9pbmNsdWRlL2xsdm0vSVIvTWV0
-YWRhdGEuaDozMDowLA0KICAgICAgICAgICAgICAgICBmcm9tIC9vcHQvbGltd3MvMi40LjEvc3lz
-cm9vdHMvbGx2bS1jbGFuZy9pbmNsdWRlL2xsdm0vSVIvVHJhY2tpbmdNRFJlZi5oOjE3LA0KICAg
-ICAgICAgICAgICAgICBmcm9tIC9vcHQvbGltd3MvMi40LjEvc3lzcm9vdHMvbGx2bS1jbGFuZy9p
-bmNsdWRlL2xsdm0vSVIvRGVidWdMb2MuaDoxOCwNCiAgICAgICAgICAgICAgICAgZnJvbSAvb3B0
-L2xpbXdzLzIuNC4xL3N5c3Jvb3RzL2xsdm0tY2xhbmcvaW5jbHVkZS9sbHZtL0lSL0luc3RydWN0
-aW9uLmg6MjIsDQogICAgICAgICAgICAgICAgIGZyb20gL29wdC9saW13cy8yLjQuMS9zeXNyb290
-cy9sbHZtLWNsYW5nL2luY2x1ZGUvbGx2bS9JUi9CYXNpY0Jsb2NrLmg6MjMsDQogICAgICAgICAg
-ICAgICAgIGZyb20gL2VkZS9zbW9uc2Vlcy95b2N0by90ZXN0L2JlaWduZXQtUmVsZWFzZV92MS4z
-L2JhY2tlbmQvc3JjL2xsdm0vbGx2bV9pbmNsdWRlcy5ocHA6MzAsDQogICAgICAgICAgICAgICAg
-IGZyb20gL2VkZS9zbW9uc2Vlcy95b2N0by90ZXN0L2JlaWduZXQtUmVsZWFzZV92MS4zL2JhY2tl
-bmQvc3JjL2xsdm0vbGx2bV90b19nZW4uY3BwOjI1Og0KL29wdC9saW13cy8yLjQuMS9zeXNyb290
-cy9sbHZtLWNsYW5nL2luY2x1ZGUvbGx2bS9JUi9MTFZNQ29udGV4dC5oOjIxMzo4OiBub3RlOiBj
-YW5kaWRhdGU6IHZvaWQgbGx2bTo6TExWTUNvbnRleHQ6OnNldERpYWdub3N0aWNIYW5kbGVyKHN0
-ZDo6dW5pcXVlX3B0cjxsbHZtOjpEaWFnbm9zdGljSGFuZGxlcj4mJiwgYm9vbCkNCiAgIHZvaWQg
-c2V0RGlhZ25vc3RpY0hhbmRsZXIoc3RkOjp1bmlxdWVfcHRyPERpYWdub3N0aWNIYW5kbGVyPiAm
-JkRILA0KICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn5+fg0KL29wdC9saW13cy8yLjQuMS9zeXNy
-b290cy9sbHZtLWNsYW5nL2luY2x1ZGUvbGx2bS9JUi9MTFZNQ29udGV4dC5oOjIxMzo4OiBub3Rl
-OiAgIG5vIGtub3duIGNvbnZlcnNpb24gZm9yIGFyZ3VtZW50IDEgZnJvbSDigJh2b2lkICgqKShj
-b25zdCBsbHZtOjpEaWFnbm9zdGljSW5mbyYsIHZvaWQqKeKAmSB0byDigJhzdGQ6OnVuaXF1ZV9w
-dHI8bGx2bTo6RGlhZ25vc3RpY0hhbmRsZXI+JibigJkNCm1ha2VbMl06ICoqKiBbYmFja2VuZC9z
-cmMvQ01ha2VGaWxlcy9nYmUuZGlyL2xsdm0vbGx2bV90b19nZW4uY3BwLm9dIEVycm9yIDENCm1h
-a2VbMV06ICoqKiBbYmFja2VuZC9zcmMvQ01ha2VGaWxlcy9nYmUuZGlyL2FsbF0gRXJyb3IgMg0K
-bWFrZTogKioqIFthbGxdIEVycm9yIDINCjExOjI3IHNtb25zZWVzQHlpeDQ5MDAxNiB+L3lvY3Rv
-L3Rlc3QvYmVpZ25ldC1SZWxlYXNlX3YxLjMvbXlidWlsZD4NCg0KDQotLS0tLU9yaWdpbmFsIE1l
-c3NhZ2UtLS0tLQ0KRnJvbTogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlv
-Y3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBNb25zZWVzLCBTdGV2ZW4g
-QyAoVVMpIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnDQpTZW50OiBXZWRuZXNkYXksIFNlcHRl
-bWJlciAxNiwgMjAyMCAxMDowNSBBTQ0KVG86IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+
-DQpDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10g
-I3lvY3RvICNzZGsgLSBtZXRhLWNsYW5nIHVuZGVmaW5lZCByZWZlcmVuY2VzDQoNCioqKiBXQVJO
-SU5HICoqKg0KRVhURVJOQUwgRU1BSUwgLS0gVGhpcyBtZXNzYWdlIG9yaWdpbmF0ZXMgZnJvbSBv
-dXRzaWRlIG91ciBvcmdhbml6YXRpb24uDQoNCg0KDQpJIGNhbiBzZWUgdGhhdCBsaWJjbGFuZyBp
-cyBiZWluZyBpbmNsdWRlZC4uLnNvLCBub3Qgc3VyZSB3aHkgd2hlbiBsaW5raW5nIGFuIGV4ZWN1
-dGFibGUgdGhlc2UgcmVmZXJlbmNlcyBhcmUgbWlzc2luZy4uLg0KDQotLS0tLU9yaWdpbmFsIE1l
-c3NhZ2UtLS0tLQ0KRnJvbTogTW9uc2VlcywgU3RldmVuIEMgKFVTKSANClNlbnQ6IFdlZG5lc2Rh
-eSwgU2VwdGVtYmVyIDE2LCAyMDIwIDc6MDYgQU0NClRvOiAnS2hlbSBSYWonIDxyYWoua2hlbUBn
-bWFpbC5jb20+DQpDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUkU6
-IFt5b2N0b10gI3lvY3RvICNzZGsgLSBtZXRhLWNsYW5nIHVuZGVmaW5lZCByZWZlcmVuY2VzDQoN
-Cg0KDQpJdCBzaG91bGQgYmUgbGlua2luZyBpbiBsaWJjbGFuZyAsIEkgd2lsbCB2YWxpZGF0ZS4u
-Lg0KDQpOb3RlIHBlcmZvcm1pbmcgJ25tJyBvbiBsaWJjbGFuZyBhcHBlYXIgdG8gc2hvdyB0aGUg
-bWFqb3JpdHkgcHJlc2VudC4uLg0KDQpRdWVzdGlvbjogaWYgSSBuZWVkZWQgdG8gaW5jbHVkZSBh
-IGxpYnJhcnksIHdoYXQvaG93IHdvdWxkIEkgbW9kaWZ5IGEgcmVjaXBlIHVuZGVyIFlvY3RvIHRv
-IGJlIHN1cmUgdG8gaW5jbHVkZS9saW5rIGluIHRoZSBsaWJyYXJ5ID8NCg0KVGhhbmtzLA0KU3Rl
-dmUNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEtoZW0gUmFqIFttYWlsdG86
-cmFqLmtoZW1AZ21haWwuY29tXQ0KU2VudDogVHVlc2RheSwgU2VwdGVtYmVyIDE1LCAyMDIwIDU6
-MDYgUE0NClRvOiBNb25zZWVzLCBTdGV2ZW4gQyAoVVMpIDxzdGV2ZW4ubW9uc2Vlc0BiYWVzeXN0
-ZW1zLmNvbT4NCkNjOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTog
-W3lvY3RvXSAjeW9jdG8gI3NkayAtIG1ldGEtY2xhbmcgdW5kZWZpbmVkIHJlZmVyZW5jZXMNCg0K
-KioqIFdBUk5JTkcgKioqDQpFWFRFUk5BTCBFTUFJTCAtLSBUaGlzIG1lc3NhZ2Ugb3JpZ2luYXRl
-cyBmcm9tIG91dHNpZGUgb3VyIG9yZ2FuaXphdGlvbi4NCg0KDQpPbiBUdWUsIFNlcCAxNSwgMjAy
-MCBhdCAxMjo1NiBQTSBNb25zZWVzLCBTdGV2ZW4gQyAoVVMpIHZpYSBsaXN0cy55b2N0b3Byb2pl
-Y3Qub3JnIDxzdGV2ZW4ubW9uc2Vlcz1iYWVzeXN0ZW1zLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qu
-b3JnPiB3cm90ZToNCj4NCj4NCj4NCj4gSSBhbSBidWlsZGluZyBtZXRhLWNsYW5nIChzdW1vIGJh
-c2VkIDYuMC4xKSwgd2l0aCBjbWFrZSAoMy44LjIpLCBhbGwgDQo+IHVuZGVyIGEgc3RhbmRhcmQg
-U0RLIOKAnHJvY2tvIGJhc2Vk4oCdICgyLjQuMSnigKYNCj4NCj4NCj4NCj4gQXJlIHRoZSBmb2xs
-b3dpbmcgcm91dGluZXMgYWNjZXNzaWJsZS9zdXBwb3J0ZWQgdW5kZXIgbWV0YS1jbGFuZyA/DQo+
-DQo+DQo+DQo+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgY2xhbmc6OkRpYWdu
-b3N0aWNJRHM6On5EaWFnbm9zdGljSURzKCknDQo+DQo+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJl
-ZmVyZW5jZSB0byBgY2xhbmc6OlRleHREaWFnbm9zdGljUHJpbnRlcjo6VGV4dERpYWdub3N0aWNQ
-cmludGVyKGxsdm06OnJhd19vc3RyZWFtJiwgY2xhbmc6OkRpYWdub3N0aWNPcHRpb25zKiwgYm9v
-bCknDQo+DQo+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgY2xhbmc6OkRpYWdu
-b3N0aWNzRW5naW5lOjp+RGlhZ25vc3RpY3NFbmdpbmUoKScNCj4NCj4gbGliZ2JlLnNvOiB1bmRl
-ZmluZWQgcmVmZXJlbmNlIHRvIGBjbGFuZzo6Q29tcGlsZXJJbnZvY2F0aW9uOjpDcmVhdGVGcm9t
-QXJncyhjbGFuZzo6Q29tcGlsZXJJbnZvY2F0aW9uJiwgY2hhciBjb25zdCogY29uc3QqLCBjaGFy
-IGNvbnN0KiBjb25zdCosIGNsYW5nOjpEaWFnbm9zdGljc0VuZ2luZSYpJw0KPg0KPiBsaWJnYmUu
-c286IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYGNsYW5nOjpDb21waWxlckludm9jYXRpb25CYXNl
-Ojp+Q29tcGlsZXJJbnZvY2F0aW9uQmFzZSgpJw0KPg0KPiBsaWJnYmUuc286IHVuZGVmaW5lZCBy
-ZWZlcmVuY2UgdG8gYGNsYW5nOjpQQ0hDb250YWluZXJPcGVyYXRpb25zOjpQQ0hDb250YWluZXJP
-cGVyYXRpb25zKCknDQo+DQo+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgY2xh
-bmc6OkNvbXBpbGVySW5zdGFuY2U6OmNyZWF0ZURpYWdub3N0aWNzKGNsYW5nOjpEaWFnbm9zdGlj
-Q29uc3VtZXIqLCBib29sKScNCj4NCj4gbGliZ2JlLnNvOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRv
-IGBjbGFuZzo6RGlhZ25vc3RpY3NFbmdpbmU6OkRpYWdub3N0aWNzRW5naW5lKGxsdm06OkludHJ1
-c2l2ZVJlZkNudFB0cjxjbGFuZzo6RGlhZ25vc3RpY0lEcz4sIGNsYW5nOjpEaWFnbm9zdGljT3B0
-aW9ucyosIGNsYW5nOjpEaWFnbm9zdGljQ29uc3VtZXIqLCBib29sKScNCj4NCj4gbGliZ2JlLnNv
-OiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBjbGFuZzo6Q29kZUdlbk9wdGlvbnM6OkNvZGVHZW5P
-cHRpb25zKCknDQo+DQo+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgY2xhbmc6
-OkNvbXBpbGVySW5zdGFuY2U6On5Db21waWxlckluc3RhbmNlKCknDQo+DQo+IGxpYmdiZS5zbzog
-dW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgY2xhbmc6OkNvbXBpbGVySW5zdGFuY2U6OkNvbXBpbGVy
-SW5zdGFuY2Uoc3RkOjpzaGFyZWRfcHRyPGNsYW5nOjpQQ0hDb250YWluZXJPcGVyYXRpb25zPiwg
-Y2xhbmc6Ok1lbW9yeUJ1ZmZlckNhY2hlKiknDQo+DQo+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJl
-ZmVyZW5jZSB0byBgY2xhbmc6OkVtaXRMTFZNT25seUFjdGlvbjo6RW1pdExMVk1Pbmx5QWN0aW9u
-KGxsdm06OkxMVk1Db250ZXh0KiknDQo+DQo+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJlZmVyZW5j
-ZSB0byBgY2xhbmc6OkNvbXBpbGVySW5zdGFuY2U6OkV4ZWN1dGVBY3Rpb24oY2xhbmc6OkZyb250
-ZW5kQWN0aW9uJiknDQo+DQo+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgY2xh
-bmc6OkNvbXBpbGVySW52b2NhdGlvbkJhc2U6OkNvbXBpbGVySW52b2NhdGlvbkJhc2UoKScNCj4N
-Cj4gbGliZ2JlLnNvOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBjbGFuZzo6Q29tcGlsZXJJbnN0
-YW5jZTo6c2V0SW52b2NhdGlvbihzdGQ6OnNoYXJlZF9wdHI8Y2xhbmc6OkNvbXBpbGVySW52b2Nh
-dGlvbj4pJw0KPg0KPiBsaWJnYmUuc286IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYGNsYW5nOjpD
-b2RlR2VuQWN0aW9uOjp0YWtlTW9kdWxlKCknDQo+DQo+IGxpYmdiZS5zbzogdW5kZWZpbmVkIHJl
-ZmVyZW5jZSB0byBgY2xhbmc6OkRpYWdub3N0aWNJRHM6OkRpYWdub3N0aWNJRHMoKScNCj4NCg0K
-YXJlIHlvdSBsaW5raW5nIHRoaXMgbGlicmFyeSB3aXRoIGxpYmNsYW5nID8gc2Vjb25kbHksIGFs
-c28gY2hlY2sgdGhhdCBpdHMgbm90IGVtaXR0aW5nIGJ1bmNoIG9mIGxpYnJhcmllcyB3aGljaCBu
-ZWVkcyB0byB0aGVuIGluZGl2aWR1YWxseSBsaW5rZWQNCg0KPg0KPg0KPiB0aGFua3MsDQo+DQo+
-IFN0ZXZlDQo+DQo+IA0K
+Can you inspect the clang libs for these symbols?
+
+On Wed, Sep 16, 2020 at 7:04 AM Monsees, Steven C (US) via
+lists.yoctoproject.org
+<steven.monsees=3Dbaesystems.com@lists.yoctoproject.org> wrote:
+>
+>
+> I can see that libclang is being included...so, not sure why when linkin=
+g an executable these references are missing...
+>
+> -----Original Message-----
+> From: Monsees, Steven C (US)
+> Sent: Wednesday, September 16, 2020 7:06 AM
+> To: 'Khem Raj' <raj.khem@gmail.com>
+> Cc: yocto@lists.yoctoproject.org
+> Subject: RE: [yocto] #yocto #sdk - meta-clang undefined references
+>
+>
+>
+> It should be linking in libclang , I will validate...
+>
+> Note performing 'nm' on libclang appear to show the majority present...
+>
+> Question: if I needed to include a library, what/how would I modify a re=
+cipe under Yocto to be sure to include/link in the library ?
+>
+> Thanks,
+> Steve
+>
+> -----Original Message-----
+> From: Khem Raj [mailto:raj.khem@gmail.com]
+> Sent: Tuesday, September 15, 2020 5:06 PM
+> To: Monsees, Steven C (US) <steven.monsees@baesystems.com>
+> Cc: yocto@lists.yoctoproject.org
+> Subject: Re: [yocto] #yocto #sdk - meta-clang undefined references
+>
+> *** WARNING ***
+> EXTERNAL EMAIL -- This message originates from outside our organization.
+>
+>
+> On Tue, Sep 15, 2020 at 12:56 PM Monsees, Steven C (US) via lists.yoctop=
+roject.org <steven.monsees=3Dbaesystems.com@lists.yoctoproject.org> wrote:
+> >
+> >
+> >
+> > I am building meta-clang (sumo based 6.0.1), with cmake (3.8.2), all
+> > under a standard SDK =E2=80=9Crocko based=E2=80=9D (2.4.1)=E2=80=A6
+> >
+> >
+> >
+> > Are the following routines accessible/supported under meta-clang ?
+> >
+> >
+> >
+> > libgbe.so: undefined reference to `clang::DiagnosticIDs::~DiagnosticID=
+s()'
+> >
+> > libgbe.so: undefined reference to `clang::TextDiagnosticPrinter::TextD=
+iagnosticPrinter(llvm::raw_ostream&, clang::DiagnosticOptions*, bool)'
+> >
+> > libgbe.so: undefined reference to `clang::DiagnosticsEngine::~Diagnost=
+icsEngine()'
+> >
+> > libgbe.so: undefined reference to `clang::CompilerInvocation::CreateFr=
+omArgs(clang::CompilerInvocation&, char const* const*, char const* const*, =
+clang::DiagnosticsEngine&)'
+> >
+> > libgbe.so: undefined reference to `clang::CompilerInvocationBase::~Com=
+pilerInvocationBase()'
+> >
+> > libgbe.so: undefined reference to `clang::PCHContainerOperations::PCHC=
+ontainerOperations()'
+> >
+> > libgbe.so: undefined reference to `clang::CompilerInstance::createDiag=
+nostics(clang::DiagnosticConsumer*, bool)'
+> >
+> > libgbe.so: undefined reference to `clang::DiagnosticsEngine::Diagnosti=
+csEngine(llvm::IntrusiveRefCntPtr<clang::DiagnosticIDs>, clang::DiagnosticO=
+ptions*, clang::DiagnosticConsumer*, bool)'
+> >
+> > libgbe.so: undefined reference to `clang::CodeGenOptions::CodeGenOptio=
+ns()'
+> >
+> > libgbe.so: undefined reference to `clang::CompilerInstance::~CompilerI=
+nstance()'
+> >
+> > libgbe.so: undefined reference to `clang::CompilerInstance::CompilerIn=
+stance(std::shared_ptr<clang::PCHContainerOperations>, clang::MemoryBufferC=
+ache*)'
+> >
+> > libgbe.so: undefined reference to `clang::EmitLLVMOnlyAction::EmitLLVM=
+OnlyAction(llvm::LLVMContext*)'
+> >
+> > libgbe.so: undefined reference to `clang::CompilerInstance::ExecuteAct=
+ion(clang::FrontendAction&)'
+> >
+> > libgbe.so: undefined reference to `clang::CompilerInvocationBase::Comp=
+ilerInvocationBase()'
+> >
+> > libgbe.so: undefined reference to `clang::CompilerInstance::setInvocat=
+ion(std::shared_ptr<clang::CompilerInvocation>)'
+> >
+> > libgbe.so: undefined reference to `clang::CodeGenAction::takeModule()'
+> >
+> > libgbe.so: undefined reference to `clang::DiagnosticIDs::DiagnosticIDs=
+()'
+> >
+>
+> are you linking this library with libclang ? secondly, also check that i=
+ts not emitting bunch of libraries which needs to then individually linked
+>
+> >
+> >
+> > thanks,
+> >
+> > Steve
+> >
+> >
+>
+>=20
+>
