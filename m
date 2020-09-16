@@ -1,67 +1,57 @@
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
- by mx.groups.io with SMTP id smtpd.web11.2089.1600273807548558248
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+ by mx.groups.io with SMTP id smtpd.web12.2224.1600273967540594081
  for <yocto@lists.yoctoproject.org>;
- Wed, 16 Sep 2020 09:30:07 -0700
+ Wed, 16 Sep 2020 09:32:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=O4IytoUJ;
- spf=pass (domain: gmail.com, ip: 209.85.219.47, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f47.google.com with SMTP id cy2so3870463qvb.0
-        for <yocto@lists.yoctoproject.org>; Wed, 16 Sep 2020 09:30:07 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Ai3sFWI9;
+ spf=pass (domain: gmail.com, ip: 209.85.160.174, mailfrom: raj.khem@gmail.com)
+Received: by mail-qt1-f174.google.com with SMTP id g3so6575828qtq.10
+        for <yocto@lists.yoctoproject.org>; Wed, 16 Sep 2020 09:32:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=GQNaWYHukekNxql1NVMGMPCPRYwil2Z5mxq3a/5g9mk=;
-        b=O4IytoUJSm7Q40XkiGVbKmHpMtF1ql1zKUIv/KQ/luv5leaMCWbm0kHwVMx/TBQWqQ
-         +Gux2s3HOQhCakfCEtuZFbl0anXg8ltRQgoiZXGerVT8/kFj40lY1qWKMtan87iQnC+8
-         G3f+rqbTSPosHQF2U3RHOlfN5HtVRjLo449RSHXREtNLJIoHC5LMHq+gCobsFAdhsjDK
-         SI8cZhgMomNalziQjE90YkUosQvF3I3EtbxQ+RXP5J/mMUKwKlqZ9aHkJnA/tlsV4AmJ
-         JtBwe+/aqMBtxE7e2FcWnHfV42w1+ftLIh2Etz3X+pTmy0BC5eB//shLhNncme4dsbZB
-         285g==
+        bh=Gd5ujzFq5g5Picf0mlMQSYlKAdsTophLLUMJItYCdMU=;
+        b=Ai3sFWI9LhTS6N+jItYBoyx6fInzuvewlVHgOhrn8Li9BAbN2WeL1c3z+ExT42jkPr
+         /2ZlaDqxBTN3SdRyAywngNc/ZI482rJLVho/ZoEY0TQzMdGeWZViEAHHTv8ilbNYX1oH
+         DJMzcxhJos21hdEmaZXeO0U//Z1BNd2P5FxVCekzFhAfc2xCMt6qRZaU6cV3yCTGd9oM
+         MZLNBaNYkUEepYpBLgXNXXNA2StRqwM80fLSVNnB252DLilMEsNwwuqu7efsyvy84XUl
+         X9V+GVoGoq28ojJOBYhVxbtZKDKigHhZysUA0wKkKmYu16l9hZ/GufA/udcr8Tt3rx8d
+         tlLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=GQNaWYHukekNxql1NVMGMPCPRYwil2Z5mxq3a/5g9mk=;
-        b=NsDJdFscWnbTie528i4EmPT/yzYuDpKsAk+w0X4K0en5mBhWMDxhkOFyR2XEht8FTm
-         pjJ3M13HJUbHGIVRvLSriGoyT8oE6WKfptEZua/Zh9jzTrn0pevVW97PoQIr/cSRt2G8
-         A71iBE56mIJ5MMB0wTtDXtApcIvhwNphKTrgP49xqj0tpJuUIoUPGasw2CRZm3B0gpZx
-         4+uGGeNB1LXprIVy6ipdiQABtqY2xmCvYdIBQGIhSxhOvKf2554/LBRkaIFHK9gMJMcp
-         dowuhCuDzgM1gLJo0aO2gIxEonkvTrmzbZvAbmhxIpizhY0M6RFYFTKCuAklOv7WslwW
-         0yLQ==
-X-Gm-Message-State: AOAM531DelGqJNVkYGn3XuX0laWTVTQDKyVwq4KSg0TFvKtV84PySiAT
-	VvJlQ2lfJjzBG9uS6wzhu+VtnIfDW+7Xeqs7Bkk=
-X-Google-Smtp-Source: ABdhPJyq0MWlYocPY8+GxZLvA73V0Y+Kr5FlEJqvNjSuBZI6N9wfhtKZW/kTcw1oKbPi6bojIdwUhqcXULZArSdA734=
-X-Received: by 2002:a0c:e892:: with SMTP id b18mr24347518qvo.5.1600273806403;
- Wed, 16 Sep 2020 09:30:06 -0700 (PDT)
+        bh=Gd5ujzFq5g5Picf0mlMQSYlKAdsTophLLUMJItYCdMU=;
+        b=QpFo5yNiambf8Xty8++T93bs48t1q9+wNU2dQAeO/b2tiFzrPkTkmTFT6rvLp3F8hF
+         qJRZQrASwUpNn0VduX4hHCLN+AO4LWGjJqIKVa5+VdZY0pI0Q5qXYAXKhfGuQqPsv9P6
+         iO4XTDgIN+KI1fD5G0E7uPr8j99dhoXYv+irqQt/0jFCy36ol3gBas6qGXXe7jwZixCN
+         yYY10hi7Gj3vG4q0vbLeDzZ8+XP/hSFXpYELbr6g1fSDpFq0bQcnkHw1qdwzrx8BMPcq
+         /ZY0jP/TaXnhIdCEzRPD8pKrTI0jcJs/YSm5YZRNcDqB7TvKL643O4nbB2U4GaLyAmZB
+         6COA==
+X-Gm-Message-State: AOAM530Zp8BCh2CQumFK8oG5rci3wgfmnY/MK1DsacossJ4HfzcMGM2A
+	uQriuP1uKXIKk34pe4c/NEgFkGP64o3laMaXv9c=
+X-Google-Smtp-Source: ABdhPJyFObzatHfTRm9y8f+AF8Ky3yyLklA43jhpI8NqEcYgLD0OSIa3+fehEVWmMe7BnbP89otCvSxU89MnZkoUz1A=
+X-Received: by 2002:ac8:544f:: with SMTP id d15mr19261868qtq.378.1600273966632;
+ Wed, 16 Sep 2020 09:32:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <MADEUP.1635489BF915C597.13893@lists.yoctoproject.org>
-In-Reply-To: <MADEUP.1635489BF915C597.13893@lists.yoctoproject.org>
+References: <CAMKF1sohUwxX+-7953QE29_HOFTfvuL6o7_d9TMvjBnSN3QW1A@mail.gmail.com>
+ <5f61f1b4.1c69fb81.6463d.72cfSMTPIN_ADDED_MISSING@mx.google.com>
+In-Reply-To: <5f61f1b4.1c69fb81.6463d.72cfSMTPIN_ADDED_MISSING@mx.google.com>
 From: "Khem Raj" <raj.khem@gmail.com>
-Date: Wed, 16 Sep 2020 09:29:40 -0700
-Message-ID: <CAMKF1srDRo0fsqdFCSJs1+kyA+4+2=F0HRAMZ8U0ANEHDfq4zg@mail.gmail.com>
+Date: Wed, 16 Sep 2020 09:32:20 -0700
+Message-ID: <CAMKF1sq8OxLu_Pyfbfi5Ww-i2-QttiCWEZ-SU+agW5D46vstGA@mail.gmail.com>
 Subject: Re: [yocto] #yocto #sdk - meta-clang undefined references
 To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
 Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Can you inspect the clang libs for these symbols?
+that means your link step is not linking libclang properly into your
+app, perhaps change the order so -lclang appears last
 
-On Wed, Sep 16, 2020 at 7:04 AM Monsees, Steven C (US) via
-lists.yoctoproject.org
-<steven.monsees=3Dbaesystems.com@lists.yoctoproject.org> wrote:
->
->
-> I can see that libclang is being included...so, not sure why when linkin=
-g an executable these references are missing...
->
-> -----Original Message-----
-> From: Monsees, Steven C (US)
-> Sent: Wednesday, September 16, 2020 7:06 AM
-> To: 'Khem Raj' <raj.khem@gmail.com>
-> Cc: yocto@lists.yoctoproject.org
-> Subject: RE: [yocto] #yocto #sdk - meta-clang undefined references
+On Wed, Sep 16, 2020 at 4:06 AM Monsees, Steven C (US)
+<steven.monsees@baesystems.com> wrote:
 >
 >
 >
@@ -163,7 +153,4 @@ ts not emitting bunch of libraries which needs to then individually linked
 > >
 > > Steve
 > >
-> >
->
->=20
->
+> >=20
