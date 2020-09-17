@@ -1,208 +1,143 @@
-Received: from hosting.emcodev.net (hosting.emcodev.net [178.18.92.162])
- by mx.groups.io with SMTP id smtpd.web12.10923.1600331075859708408
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.11138.1600332192658785946
  for <yocto@lists.yoctoproject.org>;
- Thu, 17 Sep 2020 01:24:37 -0700
+ Thu, 17 Sep 2020 01:43:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@basmevissen.nl header.s=default header.b=pWcEDfk8;
- spf=pass (domain: basmevissen.nl, ip: 178.18.92.162, mailfrom: abuse@basmevissen.nl)
-Received: from hosting.emcodev.net (localhost [127.0.0.1])
-	by hosting.emcodev.net (Postfix) with ESMTP id 37A66212021;
-	Thu, 17 Sep 2020 10:24:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=basmevissen.nl;
-	s=default; t=1600331070; h=from:from:sender:reply-to:subject:subject:date:date:
-	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-	 content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nlDRmlV7dw6680VbVUUmtFsE4quoO8/fLI3Hxot99/o=;
-	b=pWcEDfk8cSrJ0jBg1X00ypd19+91UwIeNPPGa7UvbOxUgCJ6FRDcC/zAmn0li0iHOeWFr5
-	BO1JfrW/EHoTpggkEG29O3rscmHDbW1axW5OmadYvsC3KQVFTfDkE9IRvIY6/ZrQjAlFEv
-	RaKX3Eb3xIlWbaQ3NZw/+7zem9B0CC90eTakBCN73+noztEilrcFpybGRon74vE4bCBYuC
-	DxrTSaT0wDwmItkpBd8ei2tn3RsruoxMXXsbGNdXNnYQ4q/iYA7aSHieX6Qnu08U01EGuA
-	LCC9GtPERQquKxZ/d35r3/jG2z4VeQEFXpTEJTKHlGjjalbI/U/1+s/4yk6h1XGazpeBsS
-	gicQYFG8tPq34W/46vsOFPAfFWcdEoprHtgAjsFzQ8L++SWESdXOay9VyaiLhbZkgXQWDy
-	JSPnYtqY9QaN61423O9Zan9Mr/JTK97a7YTSlm+/1KoMzE82WglCDQEXS2KQWkjjEsQui6
-	7OTpJ7xRtG7DMrUbfoCZoV0Jd7b9QTuzaLIe7FN2c6qaQSDbaXavloGVIqh7KFiUWy6vYl
-	lvGz8238qCG9X7UFq4hTxjFUaKgugt+UreBBpyPf8f2SM1zdAes9VE/+Ntm0+ge9HMdLYI
-	ofX2HCu3LwVYLySztf1tlZpLfqfWm2gfenfYcdPw2LHZ3p7ezYcxs=
+ dkim=pass header.i=@konsulko.com header.s=google header.b=hfFdZhUS;
+ spf=softfail (domain: konsulko.com, ip: 198.145.29.25, mailfrom: paul.barker@konsulko.com)
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id C4B8938C0896
+	for <yocto@yoctoproject.org>; Thu, 17 Sep 2020 01:43:11 -0700 (PDT)
+Received: by mail-oi1-f175.google.com with SMTP id a3so1605899oib.4
+        for <yocto@yoctoproject.org>; Thu, 17 Sep 2020 01:43:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=qKjlbmE1DLxEy+/g8koHdy61fD+FTbsZgLsIxXA3diw=;
+        b=hfFdZhUSpvlyeNfHaN/XZXrt6ZiIQAGYemFdP6TSq20LBjbvOvMxyIN0jsXMR1LHmL
+         dODEezniSCMcAASF5lGL7diXkVsqqhmqDymLSGCWwn9gbKoM73XoxFf9CLRA80ZCBsD8
+         hUmSNFKafPi2TayygR2oIflqF5trqjm0cUT9Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=qKjlbmE1DLxEy+/g8koHdy61fD+FTbsZgLsIxXA3diw=;
+        b=Z+jQdEklSyx4EcxgZBwlh7rZZUPByPXp9cjR6Y6yIH7ufePLAth0NEOapKdw9uObmX
+         3MOhezSc1k+ui+ZtiPP2XWc688g1L049dj6TRLHYIKLQGMXoflCwqy7UoiW18Zu6NSSn
+         mNKxepLaTJdh8NiXsAE1pZgD2pip4E7A1wBeL1OkLzkPAAVhENbK9yD1nNJGii7gPu//
+         Ikf/YP7Vv3nQyeG+xrpzmh1+xf5Yl8tUIsN77kzFKte5P8KrR6IpT6mfbVof+dKFnqQy
+         gqN7Pp0289wO1Xb4Lwf69eUuT4MZRHuAdsE5OQBNc91gn1JXVMpunCaBESx1haTcesRW
+         w2iA==
+X-Gm-Message-State: AOAM530Bw7DbCsd4USaHXJXrmZjDnZjwzQzGF+2X/T/4rliQTHSVUBI7
+	JnMR1mwjr0aSG8lpHfJt/43TrB/UCIAqHR0H8W5pnVsHXP9C1Q==
+X-Google-Smtp-Source: ABdhPJwJjmDSVUeBPSDWHDfksHevcpHw5kkcbjmbO/xZmXRJloTLr0W5knwdahR1xbfuc85FRNAGrkghoyhpv1JCZYU=
+X-Received: by 2002:aca:d946:: with SMTP id q67mr5535676oig.27.1600332190242;
+ Thu, 17 Sep 2020 01:43:10 -0700 (PDT)
 MIME-Version: 1.0
-Date: Thu, 17 Sep 2020 10:24:30 +0200
-From: "Bas Mevissen" <abuse@basmevissen.nl>
-To: Zoltan Kerenyi Nagy <kerenyi.nagy.zoltan@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] wvdial
-In-Reply-To: <CAHwRhWYozz7T9j_8TbpuamuQzOSgXpLRcaEqeHS_BdYeYe2+5g@mail.gmail.com>
-References: <CAHwRhWYozz7T9j_8TbpuamuQzOSgXpLRcaEqeHS_BdYeYe2+5g@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.7
-Message-ID: <4e6453ce1cb4e056215b5aebf079c4d1@basmevissen.nl>
-X-Sender: abuse@basmevissen.nl
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+From: "Paul Barker" <pbarker@konsulko.com>
+Date: Thu, 17 Sep 2020 09:43:00 +0100
+Message-ID: <CAM9ZRVubA=8LS+tVtSdVZ8+hiu3+9UahCywBLHqdDLca3HScNg@mail.gmail.com>
+Subject: RFC: Changes to meta-kernel layer
+To: Yocto discussion list <yocto@yoctoproject.org>
+Cc: Ross Burton <ross@burtonini.com>, Jon Mason <jdmason@kudzu.us>
+Content-Type: multipart/alternative; boundary="000000000000b8ef4005af7e5f08"
+
+--000000000000b8ef4005af7e5f08
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2020-09-17 10:02, Zoltan Kerenyi Nagy wrote:
+Hi folks,
 
-> Hi,
->=20
-> Here is the error now, all the files are there, it says that=20
-> 04_signed_request.diff is not there:
->=20
-> WARNING: wvstreams-4.6.1-r0 do_fetch: Failed to fetch URL=20
-> file://04_signed_request.diff, attempting MIRRORS if available
-> ERROR: wvstreams-4.6.1-r0 do_fetch: Fetcher failure: Unable to find=20
-> file file://04_signed_request.diff anywhere. The paths that were=20
-> searched were:
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/wvstreams-4.6.1/nodistro
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/wvstreams/nodistro
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/files/nodistro
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/wvstreams-4.6.1/barix-ipam400
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/wvstreams/barix-ipam400
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/files/barix-ipam400
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/wvstreams-4.6.1/sun8i
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/wvstreams/sun8i
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/files/sun8i
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/wvstreams-4.6.1/armv7ve
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/wvstreams/armv7ve
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/files/armv7ve
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/wvstreams-4.6.1/arm
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/wvstreams/arm
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/files/arm
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/wvstreams-4.6.1/
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/wvstreams/
-> /home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes-=
-connectivity/wvstreams/files/
-> /home/kerenyiz/oe-core/build/downloads
-> ERROR: wvstreams-4.6.1-r0 do_fetch: Fetcher failure for URL:=20
-> 'file://04_signed_request.diff'. Unable to fetch URL from any source.
+After a bit of a break I'm looking again at the meta-kernel layer and I've
+got some changes planned. I'd like to get some feedback on these from
+anyone who has looked at or used the meta-kernel layer.
 
-It is the first local file on the list, so this hints that it is=20
-probably a file location issue and not a file naming one.
+1) Change the name to meta-vanilla-kernel. This reflects the focus on
+providing a fast moving layer for vanilla kernel recipes, covering only
+what is available on kernel.org. Other common kernel recipes (e.g. Linaro
+or Android common kernels) will no longer be considered for acceptance into
+this layer. This clear focus should hopefully reduce some of the confusion
+about the goals of this layer.
 
-> ERROR: wvstreams-4.6.1-r0 do_fetch: Function failed: base_do_fetch
-> ERROR: Logfile of failure stored in:=20
-> /home/kerenyiz/oe-core/build/tmp-glibc/work/cortexa7hf-neon-vfpv4-oe-lin=
-ux-gnueabi/wvstreams/4.6.1-r0/temp/log.do_fetch.8864
-> ERROR: Task=20
-> (/home/kerenyiz/oe-core/build/../stuff/meta-openembedded/meta-oe/recipes=
--connectivity/wvstreams/wvstreams_4.6.1.bb:do_fetch)=20
-> failed with exit code '1'
->=20
-> Here i sthe folder structure:
->=20
-> =E2=94=9C=E2=94=80=E2=94=80 file
+2) The dunfell branch will no longer get new non-LTS kernel recipes.
+Providing non-LTS recipes on a stable branch has led to people depending on
+kernels which are now out of their support period - I'd like to drop the
+recipes for the 5.3.y and 5.6.y kernels but users are depending on them so
+I'll have to keep them. To avoid this proliferating, only LTS kernels and
+the bleeding edge mainline recipe will be updated on the stable branch from
+now on.
 
-Here is your problem: this directory should be named "wvstreams"
+3) Aggressively drop end-of-life kernels on the master branch.
 
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 0001-build-fix-parallel-make.pat=
-ch
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 0001-Check-for-limits.h-during-c=
-onfigure.patch
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 0001-Forward-port-to-OpenSSL-1.1=
-.x.patch
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 0002-wvrules.mk-Use-_DEFAULT_SOU=
-RCE.patch
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 0002-wvtask-Dont-use-ucontext-on=
--non-glibc-systems.patch
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 0003-wvtask-Check-for-HAVE_LIBC_=
-STACK_END-only-on-glibc-s.patch
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 0004-wvcrash-Replace-use-of-base=
-name-API.patch
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 0005-check-for-libexecinfo-durin=
-g-configure.patch
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 04_signed_request.diff
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 05_gcc.diff
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 06_gcc-4.7.diff
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 07_buildflags.diff
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 argp.patch
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 gcc-6.patch
-> =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 openssl-buildfix.patch
-> =E2=94=94=E2=94=80=E2=94=80 wvstreams_4.6.1.bb
->=20
-> And this is the recipie file:
->=20
-> HOMEPAGE =3D "http://alumnit.ca/wiki/index.php?page=3DWvStreams"
-> SUMMARY =3D "WvStreams is a network programming library in C++"
->=20
-> LICENSE =3D "LGPLv2"
-> LIC_FILES_CHKSUM =3D=20
-> "file://LICENSE;md5=3D55ca817ccb7d5b5b66355690e9abc605"
->=20
-> DEPENDS =3D "zlib openssl (>=3D 0.9.8) dbus readline"
-> DEPENDS_append_libc-musl =3D " argp-standalone libexecinfo"
->=20
-> SRC_URI =3D "http://${BPN}.googlecode.com/files/${BP}.tar.gz \
-> file://04_signed_request.diff \
-> file://05_gcc.diff \
-> file://06_gcc-4.7.diff \
-> file://07_buildflags.diff \
-> file://gcc-6.patch \
-> file://argp.patch \
-> file://0001-Check-for-limits.h-during-configure.patch \
-> file://0002-wvtask-Dont-use-ucontext-on-non-glibc-systems.patch \
-> file://0003-wvtask-Check-for-HAVE_LIBC_STACK_END-only-on-glibc-s.patch=
-=20
-> \
-> file://0004-wvcrash-Replace-use-of-basename-API.patch \
-> file://0005-check-for-libexecinfo-during-configure.patch \
-> file://0001-build-fix-parallel-make.patch \
-> file://0002-wvrules.mk-Use-_DEFAULT_SOURCE.patch \
-> file://openssl-buildfix.patch \
-> file://0001-Forward-port-to-OpenSSL-1.1.x.patch \
-> "
->=20
-> SRC_URI[md5sum] =3D "2760dac31a43d452a19a3147bfde571c"
-> SRC_URI[sha256sum] =3D=20
-> "8403f5fbf83aa9ac0c6ce15d97fd85607488152aa84e007b7d0621b8ebc07633"
->=20
-> inherit autotools-brokensep pkgconfig
->=20
-> TARGET_CFLAGS_append =3D " -fno-tree-dce -fno-optimize-sibling-calls"
->=20
-> LDFLAGS_append =3D " -Wl,-rpath-link,${CROSS_DIR}/${TARGET_SYS}/lib"
->=20
-> EXTRA_OECONF =3D " --without-tcl --without-qt --without-pam=20
-> --without-valgrind"
->=20
-> PACKAGES_prepend =3D "libuniconf "
-> PACKAGES_prepend =3D "uniconfd "
-> PACKAGES_prepend =3D "libwvstreams-base "
-> PACKAGES_prepend =3D "libwvstreams-extras "
-> PACKAGES_prepend =3D "${PN}-valgrind "
->=20
-> RPROVIDES_${PN}-dbg +=3D "libuniconf-dbg uniconfd-dbg=20
-> libwvstreams-base-dbg libwvstreams-extras-dbg"
->=20
-> FILES_libuniconf     =3D "${libdir}/libuniconf.so.*"
->=20
-> FILES_uniconfd     =3D "${sbindir}/uniconfd ${sysconfdir}/uniconf.conf=
-=20
-> ${localstatedir}/uniconf"
->=20
-> FILES_libwvstreams-base     =3D "${libdir}/libwvutils.so.*"
->=20
-> FILES_libwvstreams-extras     =3D "${libdir}/libwvbase.so.*=20
-> ${libdir}/libwvstreams.so.*"
->=20
-> FILES_${PN}-valgrind =3D "${libdir}/valgrind/wvstreams.supp"
-> RDEPENDS_${PN} +=3D "perl"
->=20
->=20
+4) Drop all non-LTS kernel recipes in the gatesgarth branch when it is
+created.
 
+5) Document the test coverage for meta-kernel. We don't test perf, lttng or
+any out-of-tree modules. This layer isn't meant to replace the linux-yocto
+recipes, the goals are different. If you're releasing products based on
+meta-kernel you obviously need to do your own testing on the components
+you're actually using.
 
+6) Document the policy for kernel patches. Patches for the kernel will only
+be carried in this layer as a last resort. Kernel patches should be
+submitted upstream and go through the usual process for inclusion in the
+stable kernel releases.
+
+7) Disable GitLab CI for this layer. It's costing me about =C2=A370 per mon=
+th to
+run CI for this layer and I need to eliminate that expense. If anyone can
+sponsor this or host the CI service that would be welcome.
+
+8) Add Jon Mason and Ross Burton (both at ARM) as backup maintainers to
+reduce the bus factor for the layer. I'll continue to be the primary
+maintainer for this layer but this will give some coverage if I'm unable to
+continue working on it.
+
+Thanks,
+
+--=20
+Paul Barker
+Konsulko Group
+
+--000000000000b8ef4005af7e5f08
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi folks,<div><br></div><div>After a bit of a break I&#39;=
+m looking again at the meta-kernel layer and I&#39;ve got some changes plan=
+ned. I&#39;d like to get some feedback on these from anyone who has looked =
+at or used the meta-kernel layer.</div><div><br></div><div>1) Change the na=
+me to meta-vanilla-kernel. This reflects the focus on providing a fast movi=
+ng layer for vanilla kernel recipes, covering only what is available on <a =
+href=3D"http://kernel.org">kernel.org</a>. Other common kernel recipes (e.g=
+. Linaro or Android common kernels) will no longer be considered for accept=
+ance into this layer. This clear focus should hopefully reduce some of the =
+confusion about the goals of this layer.</div><div><br></div><div>2) The=C2=
+=A0dunfell branch will no longer get new non-LTS kernel recipes. Providing =
+non-LTS recipes on a stable branch has led to people depending on kernels w=
+hich are now out of their support period - I&#39;d like to drop the recipes=
+ for the 5.3.y and 5.6.y kernels but users are depending on them so I&#39;l=
+l have to keep them. To avoid this proliferating, only LTS kernels and the =
+bleeding edge mainline recipe will be updated on the stable branch from now=
+ on.</div><div><br></div><div>3) Aggressively drop end-of-life kernels on t=
+he master branch.</div><div><br></div><div>4) Drop all non-LTS kernel recip=
+es in the gatesgarth branch when it is created.</div><div><br></div><div>5)=
+ Document the test coverage for meta-kernel. We don&#39;t test perf, lttng =
+or any out-of-tree modules. This layer isn&#39;t meant to replace the linux=
+-yocto recipes, the goals are different. If you&#39;re releasing products b=
+ased on meta-kernel you obviously need to do your own testing on the compon=
+ents you&#39;re actually using.</div><div><br></div><div>6) Document the po=
+licy for kernel patches. Patches for the kernel will only be carried in thi=
+s layer as a last resort. Kernel patches should be submitted upstream and g=
+o through the usual process for inclusion in the stable kernel releases.</d=
+iv><div></div><div><br></div><div>7) Disable GitLab CI for this layer. It&#=
+39;s costing me about =C2=A370 per month to run CI for this layer and I nee=
+d to eliminate that expense. If anyone can sponsor this or host the CI serv=
+ice that would be welcome.</div><div><br></div><div>8) Add Jon Mason and Ro=
+ss Burton (both at ARM) as backup maintainers to reduce the bus factor for =
+the layer. I&#39;ll continue to be the primary maintainer for this layer bu=
+t this will give some coverage if I&#39;m unable to continue working on it.=
+</div><div><br></div><div>Thanks,</div><div><div><br></div>-- <br><div dir=
+=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div =
+dir=3D"ltr">Paul Barker<div>Konsulko Group</div></div></div></div></div>
+
+--000000000000b8ef4005af7e5f08--
