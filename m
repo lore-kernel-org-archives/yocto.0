@@ -1,143 +1,133 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.11138.1600332192658785946
+ by mx.groups.io with SMTP id smtpd.web11.11789.1600335613606756423
  for <yocto@lists.yoctoproject.org>;
- Thu, 17 Sep 2020 01:43:12 -0700
+ Thu, 17 Sep 2020 02:40:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=hfFdZhUS;
- spf=softfail (domain: konsulko.com, ip: 198.145.29.25, mailfrom: paul.barker@konsulko.com)
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id C4B8938C0896
-	for <yocto@yoctoproject.org>; Thu, 17 Sep 2020 01:43:11 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id a3so1605899oib.4
-        for <yocto@yoctoproject.org>; Thu, 17 Sep 2020 01:43:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=qKjlbmE1DLxEy+/g8koHdy61fD+FTbsZgLsIxXA3diw=;
-        b=hfFdZhUSpvlyeNfHaN/XZXrt6ZiIQAGYemFdP6TSq20LBjbvOvMxyIN0jsXMR1LHmL
-         dODEezniSCMcAASF5lGL7diXkVsqqhmqDymLSGCWwn9gbKoM73XoxFf9CLRA80ZCBsD8
-         hUmSNFKafPi2TayygR2oIflqF5trqjm0cUT9Y=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=qKjlbmE1DLxEy+/g8koHdy61fD+FTbsZgLsIxXA3diw=;
-        b=Z+jQdEklSyx4EcxgZBwlh7rZZUPByPXp9cjR6Y6yIH7ufePLAth0NEOapKdw9uObmX
-         3MOhezSc1k+ui+ZtiPP2XWc688g1L049dj6TRLHYIKLQGMXoflCwqy7UoiW18Zu6NSSn
-         mNKxepLaTJdh8NiXsAE1pZgD2pip4E7A1wBeL1OkLzkPAAVhENbK9yD1nNJGii7gPu//
-         Ikf/YP7Vv3nQyeG+xrpzmh1+xf5Yl8tUIsN77kzFKte5P8KrR6IpT6mfbVof+dKFnqQy
-         gqN7Pp0289wO1Xb4Lwf69eUuT4MZRHuAdsE5OQBNc91gn1JXVMpunCaBESx1haTcesRW
-         w2iA==
-X-Gm-Message-State: AOAM530Bw7DbCsd4USaHXJXrmZjDnZjwzQzGF+2X/T/4rliQTHSVUBI7
-	JnMR1mwjr0aSG8lpHfJt/43TrB/UCIAqHR0H8W5pnVsHXP9C1Q==
-X-Google-Smtp-Source: ABdhPJwJjmDSVUeBPSDWHDfksHevcpHw5kkcbjmbO/xZmXRJloTLr0W5knwdahR1xbfuc85FRNAGrkghoyhpv1JCZYU=
-X-Received: by 2002:aca:d946:: with SMTP id q67mr5535676oig.27.1600332190242;
- Thu, 17 Sep 2020 01:43:10 -0700 (PDT)
+ dkim=fail reason="body hash did not verify" header.i=@basmevissen.nl header.s=default header.b=MwwOE17F;
+ spf=softfail (domain: basmevissen.nl, ip: 198.145.29.25, mailfrom: abuse@basmevissen.nl)
+Received: from hosting.emcodev.net (hosting.emcodev.net [178.18.92.162])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 3929438C0858
+	for <yocto@yoctoproject.org>; Thu, 17 Sep 2020 02:40:13 -0700 (PDT)
+Received: from hosting.emcodev.net (localhost [127.0.0.1])
+	by hosting.emcodev.net (Postfix) with ESMTP id 088BE12A03C;
+	Thu, 17 Sep 2020 11:40:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=basmevissen.nl;
+	s=default; t=1600335612; h=from:from:sender:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+	 content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=XeL/3cry4FOGiaOPRtjZ6NehMcohI3St4qjRwhXxdqw=;
+	b=MwwOE17F+lYjGhuUbI5nHn+E/UcCsgsIgcRR6B5kx0Ui3pE0f9Xy2uBpQNcTYrkNcF+K5k
+	PEf0LPdaJTIkiW5pLEnFUamOgI6qKJ/NOPscqAdHwS8iLo5ubuDxcdsbCOdh4iY/8gl4nI
+	E6CEUJP12V59M1NaVogQ9N+p5ZHuH2JYGKHLuNPGQFUDOMloRJwpzDG7pY8O5yKhWPzEu8
+	4cbc6/DZoTdosy0/5LTkMJjWPqvrijxV6frZmFySoLcNqKTy9gE6GztmdxcXZ1H787LEaL
+	6mkdpLZ58eBrshfEsCel3MvQWz0nH3Pk10vRpiyTPRDoD9yg7qsDUETMikMjqjFSAfr4/E
+	9+SaGopAlGf6Oq0ii/N27++UKXl8kyQJLrPVv5v1pRf+WYTAzZfAeYllhiZ0gVu7PJ6z7T
+	q7bsRhaHgiDQo6O86KVldMFSZIxRXAXt/L4QrlovV3UiteeM6kbL+gSk7fDJYPaDeuGDOO
+	dik7d18NjJjx0N/ree9cCqDAEpw39S3TfkJmL8PyZh365VMYdN32sDXgSWo3p0e0TxOPts
+	MBvFg5HQ14CZf6NyekDVlcSrdiBF4vQEa73rQCmm++N8wYYMXmpdGHehUPlOGs9oavtDiM
+	Lhp/ksVTjNW3ANii+A9mn766LEAfXh6JHkQTxPOzzrg7yjZDOfCd0=
 MIME-Version: 1.0
-From: "Paul Barker" <pbarker@konsulko.com>
-Date: Thu, 17 Sep 2020 09:43:00 +0100
-Message-ID: <CAM9ZRVubA=8LS+tVtSdVZ8+hiu3+9UahCywBLHqdDLca3HScNg@mail.gmail.com>
-Subject: RFC: Changes to meta-kernel layer
-To: Yocto discussion list <yocto@yoctoproject.org>
-Cc: Ross Burton <ross@burtonini.com>, Jon Mason <jdmason@kudzu.us>
-Content-Type: multipart/alternative; boundary="000000000000b8ef4005af7e5f08"
-
---000000000000b8ef4005af7e5f08
-Content-Type: text/plain; charset="UTF-8"
+Date: Thu, 17 Sep 2020 11:40:12 +0200
+From: "Bas Mevissen" <abuse@basmevissen.nl>
+To: Paul Barker <pbarker@konsulko.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>, Ross Burton
+ <ross@burtonini.com>, Jon Mason <jdmason@kudzu.us>
+Subject: Re: [yocto] RFC: Changes to meta-kernel layer
+In-Reply-To: <CAM9ZRVubA=8LS+tVtSdVZ8+hiu3+9UahCywBLHqdDLca3HScNg@mail.gmail.com>
+References: <CAM9ZRVubA=8LS+tVtSdVZ8+hiu3+9UahCywBLHqdDLca3HScNg@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.4.7
+Message-ID: <8562d008e8e3d6847d804c989d3c792d@basmevissen.nl>
+X-Sender: abuse@basmevissen.nl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi folks,
+On 2020-09-17 10:43, Paul Barker wrote:
 
-After a bit of a break I'm looking again at the meta-kernel layer and I've
-got some changes planned. I'd like to get some feedback on these from
-anyone who has looked at or used the meta-kernel layer.
+> Hi folks,
+>=20
+> After a bit of a break I'm looking again at the meta-kernel layer and=20
+> I've got some changes planned. I'd like to get some feedback on these=20
+> from anyone who has looked at or used the meta-kernel layer.
+>=20
+> 1) Change the name to meta-vanilla-kernel. This reflects the focus on=20
+> providing a fast moving layer for vanilla kernel recipes, covering only=
+=20
+> what is available on kernel.org. Other common kernel recipes (e.g.=20
+> Linaro or Android common kernels) will no longer be considered for=20
+> acceptance into this layer. This clear focus should hopefully reduce=20
+> some of the confusion about the goals of this layer.
+>=20
 
-1) Change the name to meta-vanilla-kernel. This reflects the focus on
-providing a fast moving layer for vanilla kernel recipes, covering only
-what is available on kernel.org. Other common kernel recipes (e.g. Linaro
-or Android common kernels) will no longer be considered for acceptance into
-this layer. This clear focus should hopefully reduce some of the confusion
-about the goals of this layer.
+I would suggest calling it something like meta-kernel.org then. Naming=20
+something "vanilla" might cause confusion as well.
 
-2) The dunfell branch will no longer get new non-LTS kernel recipes.
-Providing non-LTS recipes on a stable branch has led to people depending on
-kernels which are now out of their support period - I'd like to drop the
-recipes for the 5.3.y and 5.6.y kernels but users are depending on them so
-I'll have to keep them. To avoid this proliferating, only LTS kernels and
-the bleeding edge mainline recipe will be updated on the stable branch from
-now on.
+> 2) The dunfell branch will no longer get new non-LTS kernel recipes.=20
+> Providing non-LTS recipes on a stable branch has led to people=20
+> depending on kernels which are now out of their support period - I'd=20
+> like to drop the recipes for the 5.3.y and 5.6.y kernels but users are=
+=20
+> depending on them so I'll have to keep them. To avoid this=20
+> proliferating, only LTS kernels and the bleeding edge mainline recipe=20
+> will be updated on the stable branch from now on.
+>=20
+I would recommend maintaining a "kernel-stable" moving target recipe=20
+that tracks the latest stable version of kernel.org. This is of use for=20
+people needing a very recent kernel, while needing a stable environment=20
+for the rest of the system (so where master is no option).
 
-3) Aggressively drop end-of-life kernels on the master branch.
+> 3) Aggressively drop end-of-life kernels on the master branch.
+>=20
+Always good to keep the amount of kernels at an absolut minimum to limit=
+=20
+the amount of testing and maintenance.
 
-4) Drop all non-LTS kernel recipes in the gatesgarth branch when it is
-created.
+> 4) Drop all non-LTS kernel recipes in the gatesgarth branch when it is=
+=20
+> created.
+>=20
+See 2); additionally the next-to-be-lts might be considered
 
-5) Document the test coverage for meta-kernel. We don't test perf, lttng or
-any out-of-tree modules. This layer isn't meant to replace the linux-yocto
-recipes, the goals are different. If you're releasing products based on
-meta-kernel you obviously need to do your own testing on the components
-you're actually using.
+> 5) Document the test coverage for meta-kernel. We don't test perf,=20
+> lttng or any out-of-tree modules. This layer isn't meant to replace the=
+=20
+> linux-yocto recipes, the goals are different. If you're releasing=20
+> products based on meta-kernel you obviously need to do your own testing=
+=20
+> on the components you're actually using.
+>=20
+> 6) Document the policy for kernel patches. Patches for the kernel will=
+=20
+> only be carried in this layer as a last resort. Kernel patches should=20
+> be submitted upstream and go through the usual process for inclusion in=
+=20
+> the stable kernel releases.
+>=20
+> 7) Disable GitLab CI for this layer. It's costing me about =C2=A370 per=
+=20
+> month to run CI for this layer and I need to eliminate that expense. If=
+=20
+> anyone can sponsor this or host the CI service that would be welcome.
+>=20
+> 8) Add Jon Mason and Ross Burton (both at ARM) as backup maintainers to=
+=20
+> reduce the bus factor for the layer. I'll continue to be the primary=20
+> maintainer for this layer but this will give some coverage if I'm=20
+> unable to continue working on it.
+>=20
+And spreading the workload of course!
 
-6) Document the policy for kernel patches. Patches for the kernel will only
-be carried in this layer as a last resort. Kernel patches should be
-submitted upstream and go through the usual process for inclusion in the
-stable kernel releases.
+> Thanks,
+>=20
+> --
+>=20
+> Paul Barker
+> Konsulko Group
+>=20
+>=20
 
-7) Disable GitLab CI for this layer. It's costing me about =C2=A370 per mon=
-th to
-run CI for this layer and I need to eliminate that expense. If anyone can
-sponsor this or host the CI service that would be welcome.
+Regards,
 
-8) Add Jon Mason and Ross Burton (both at ARM) as backup maintainers to
-reduce the bus factor for the layer. I'll continue to be the primary
-maintainer for this layer but this will give some coverage if I'm unable to
-continue working on it.
-
-Thanks,
-
---=20
-Paul Barker
-Konsulko Group
-
---000000000000b8ef4005af7e5f08
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi folks,<div><br></div><div>After a bit of a break I&#39;=
-m looking again at the meta-kernel layer and I&#39;ve got some changes plan=
-ned. I&#39;d like to get some feedback on these from anyone who has looked =
-at or used the meta-kernel layer.</div><div><br></div><div>1) Change the na=
-me to meta-vanilla-kernel. This reflects the focus on providing a fast movi=
-ng layer for vanilla kernel recipes, covering only what is available on <a =
-href=3D"http://kernel.org">kernel.org</a>. Other common kernel recipes (e.g=
-. Linaro or Android common kernels) will no longer be considered for accept=
-ance into this layer. This clear focus should hopefully reduce some of the =
-confusion about the goals of this layer.</div><div><br></div><div>2) The=C2=
-=A0dunfell branch will no longer get new non-LTS kernel recipes. Providing =
-non-LTS recipes on a stable branch has led to people depending on kernels w=
-hich are now out of their support period - I&#39;d like to drop the recipes=
- for the 5.3.y and 5.6.y kernels but users are depending on them so I&#39;l=
-l have to keep them. To avoid this proliferating, only LTS kernels and the =
-bleeding edge mainline recipe will be updated on the stable branch from now=
- on.</div><div><br></div><div>3) Aggressively drop end-of-life kernels on t=
-he master branch.</div><div><br></div><div>4) Drop all non-LTS kernel recip=
-es in the gatesgarth branch when it is created.</div><div><br></div><div>5)=
- Document the test coverage for meta-kernel. We don&#39;t test perf, lttng =
-or any out-of-tree modules. This layer isn&#39;t meant to replace the linux=
--yocto recipes, the goals are different. If you&#39;re releasing products b=
-ased on meta-kernel you obviously need to do your own testing on the compon=
-ents you&#39;re actually using.</div><div><br></div><div>6) Document the po=
-licy for kernel patches. Patches for the kernel will only be carried in thi=
-s layer as a last resort. Kernel patches should be submitted upstream and g=
-o through the usual process for inclusion in the stable kernel releases.</d=
-iv><div></div><div><br></div><div>7) Disable GitLab CI for this layer. It&#=
-39;s costing me about =C2=A370 per month to run CI for this layer and I nee=
-d to eliminate that expense. If anyone can sponsor this or host the CI serv=
-ice that would be welcome.</div><div><br></div><div>8) Add Jon Mason and Ro=
-ss Burton (both at ARM) as backup maintainers to reduce the bus factor for =
-the layer. I&#39;ll continue to be the primary maintainer for this layer bu=
-t this will give some coverage if I&#39;m unable to continue working on it.=
-</div><div><br></div><div>Thanks,</div><div><div><br></div>-- <br><div dir=
-=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div =
-dir=3D"ltr">Paul Barker<div>Konsulko Group</div></div></div></div></div>
-
---000000000000b8ef4005af7e5f08--
+Bas.
