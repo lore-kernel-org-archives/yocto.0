@@ -1,73 +1,121 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.12032.1600336559771507323
+ by mx.groups.io with SMTP id smtpd.web11.12064.1600336877114352125
  for <yocto@lists.yoctoproject.org>;
- Thu, 17 Sep 2020 02:56:00 -0700
+ Thu, 17 Sep 2020 03:01:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bytesatwork-ch.20150623.gappssmtp.com header.s=20150623 header.b=DcFgONwO;
- spf=softfail (domain: bytesatwork.ch, ip: 198.145.29.25, mailfrom: daniel.ammann@bytesatwork.ch)
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id A248F38C0896
-	for <yocto@yoctoproject.org>; Thu, 17 Sep 2020 02:55:59 -0700 (PDT)
-Received: by mail-ej1-f48.google.com with SMTP id u21so2443997eja.2
-        for <yocto@yoctoproject.org>; Thu, 17 Sep 2020 02:55:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytesatwork-ch.20150623.gappssmtp.com; s=20150623;
-        h=to:from:subject:message-id:date:user-agent:mime-version
-         :content-language:content-transfer-encoding;
-        bh=a8MBdZt/pWTJDnyENqPWExwRnCMt4wKalBDlz9HYksU=;
-        b=DcFgONwOFL50krLi0Y+QNwLxUqamLVZQHHNUKq5kn59eIAk6T665TCvlbX2L1HUQag
-         rbPW9P/M5qfwKFMepDygLSUCx3k1On+UrCUw9C5IuEo7DzIsaBnQH09aI3xQGJ11iHub
-         rLbHERy1FZHnlknfXKVS7gQjYecPPsBXWGbtFeN341LDUliNONvOFfTF0i96oxEpdEHl
-         8cncujvyBVZnoZaVrUTV88Uif9QyvigeiwlSJrD5JRyyETgCIIx8T9+nBuW3qbrhc8by
-         Rf1vMPm2MQxgMRQvc9oe+ZGPcgVSncNWVd/QMJBlHqFhQRY9yngCynlc2ovrij8rqZC1
-         1J7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-         :mime-version:content-language:content-transfer-encoding;
-        bh=a8MBdZt/pWTJDnyENqPWExwRnCMt4wKalBDlz9HYksU=;
-        b=YLkin28HAAq52ILQN3p2qkgeeTXaE9QvZ0LuCKf/60cLPZCn4QotxhPDBbaZ64iU5j
-         gj/2H5WQQjoMVvLpkA2x2IUlAD9W29qObHH/FHolHpGGNexUpl4og4NMuXXuOuefFc/M
-         tt3bCrlJRm0p24bdTJC1+LJ0QgF7kEPAdaAylzoRDDDpDcNjB7BhjQmnKC/fuiXJtAuB
-         kFiudZz8gGGtDd68gBFLv9/w2EjI2MO5eo88ea1/8/lTVkO4xUAEA5EXU7Dh370UEL02
-         2qTJQ/jVaXPwykHTLxT1Nr7NDlkdyOI6ke2YgpqHUPQEEmgnlSKWQZhEz33A5mvSh5BG
-         A/LA==
-X-Gm-Message-State: AOAM5303E4sF5nsK8zm0i2sKTQ9by1x3v7qDcnREuBGu0aR4T92MdEQg
-	30G/2v8DWE7/87eMYQq3cbTVfDVdYKzy5gXp
-X-Google-Smtp-Source: ABdhPJyGSayxet7FEtJi1OA6HcQqI1q//+KP3/eKfVHvScGVEOx/X7YecbBUOdlhTPbptv8asPqwZg==
-X-Received: by 2002:a17:906:f8d1:: with SMTP id lh17mr28962062ejb.409.1600336557958;
-        Thu, 17 Sep 2020 02:55:57 -0700 (PDT)
-Received: from [172.16.80.6] (162.40.150.83.ftth.as8758.net. [83.150.40.162])
-        by smtp.gmail.com with ESMTPSA id q26sm14703527ejr.97.2020.09.17.02.55.57
-        for <yocto@yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Sep 2020 02:55:57 -0700 (PDT)
-To: Yocto discussion list <yocto@yoctoproject.org>
-From: "Daniel Ammann" <daniel.ammann@bytesatwork.ch>
-Subject: split rootfs into partitions for rauc
-Message-ID: <d09fbb41-d45b-9047-cb78-c3cd45f7fa09@bytesatwork.ch>
-Date: Thu, 17 Sep 2020 11:55:56 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+ dkim=missing; spf=softfail (domain: embed.me.uk, ip: 198.145.29.25, mailfrom: ml@embed.me.uk)
+Received: from outbound.soverin.net (outbound.soverin.net [116.202.65.218])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 3105C38C0896
+	for <yocto@yoctoproject.org>; Thu, 17 Sep 2020 03:01:16 -0700 (PDT)
+Received: from smtp.soverin.net (unknown [10.10.3.24])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by outbound.soverin.net (Postfix) with ESMTPS id A9B2060236;
+	Thu, 17 Sep 2020 10:01:14 +0000 (UTC)
+Received: from smtp.soverin.net (smtp.soverin.net [159.69.232.138]) by soverin.net
+From: "Jack Mitchell" <ml@embed.me.uk>
+Subject: Re: [yocto] RFC: Changes to meta-kernel layer
+To: Bas Mevissen <abuse@basmevissen.nl>, Paul Barker <pbarker@konsulko.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+ Ross Burton <ross@burtonini.com>, Jon Mason <jdmason@kudzu.us>
+References: <CAM9ZRVubA=8LS+tVtSdVZ8+hiu3+9UahCywBLHqdDLca3HScNg@mail.gmail.com>
+ <8562d008e8e3d6847d804c989d3c792d@basmevissen.nl>
+Message-ID: <ee5263da-717e-878d-8049-c033ffb1601d@embed.me.uk>
+Date: Thu, 17 Sep 2020 11:01:11 +0100
 MIME-Version: 1.0
+In-Reply-To: <8562d008e8e3d6847d804c989d3c792d@basmevissen.nl>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Language: en-US-large
+Content-Transfer-Encoding: quoted-printable
 
-Hi
+On 17/09/2020 10:40, Bas Mevissen wrote:
+> On 2020-09-17 10:43, Paul Barker wrote:
+>=20
+>> Hi folks,
+>>
+>> After a bit of a break I'm looking again at the meta-kernel layer and
+>> I've got some changes planned. I'd like to get some feedback on these
+>> from anyone who has looked at or used the meta-kernel layer.
+>>
+>> 1) Change the name to meta-vanilla-kernel. This reflects the focus on
+>> providing a fast moving layer for vanilla kernel recipes, covering
+>> only what is available on kernel.org. Other common kernel recipes
+>> (e.g. Linaro or Android common kernels) will no longer be considered
+>> for acceptance into this layer. This clear focus should hopefully
+>> reduce some of the confusion about the goals of this layer.
+>>
+>=20
+> I would suggest calling it something like meta-kernel.org then. Naming
+> something "vanilla" might cause confusion as well.
 
-Is it possible to split a rootfs image into two images for two partitions?
-Let's say I have a rootfs, but I want to split out /usr/local/applicationx into
-a separate image so that I can have it on a different partition. The goal is to
-have two ext4 images, one with everything except /usr/local/applicationx and
-one with just /usr/local/applicationx.
+I wasn't going to be blamed for the bike shedding of this but as we've
+gotten started I'll stick my oar in. My suggestion would be
+meta-mainline-kernel, meta-linux-kernel or potentially
+meta-upstream-kernel but I'm not so keen on that. Vanilla is a confusing
+term for people not in the game and you know at some point there will be
+a "vanilla-pi" or "vanilla" board where you're going to hit confusion.
 
-Thanks, Daniel
+As an aside I saw no issues with meta-kernel as it's _the_ Linux kernel
+from _the_ Linux kernel git repositories. Confusion due to doublespeak
+from downstream kernel vendors should be corrected and not adhered to.
 
--- 
-bytes at work
-Technoparkstrasse 7
-CH-8406 Winterthur
-Switzerland
+>=20
+>> 2) The dunfell branch will no longer get new non-LTS kernel recipes.
+>> Providing non-LTS recipes on a stable branch has led to people
+>> depending on kernels which are now out of their support period - I'd
+>> like to drop the recipes for the 5.3.y and 5.6.y kernels but users are
+>> depending on them so I'll have to keep them. To avoid this
+>> proliferating, only LTS kernels and the bleeding edge mainline recipe
+>> will be updated on the stable branch from now >>
+>> 3) Aggressively drop end-of-life kernels on the master branch.
+>>
+>> 4) Drop all non-LTS kernel recipes in the gatesgarth branch when it is
+>> created.
+>>
 
-phone: +41 52 550 50 67
+I think these are fair, I can't speak for how other people are using the
+layer but I would imagine as with most embedded boards, they're using
+the tooling rather than the plain upstream recipes and the real value is
+in catching problems with -next kernel compilation early and the
+fixes/features pushed back to kernel.bbclass.
+
+>> 5) Document the test coverage for meta-kernel. We don't test perf,
+>> lttng or any out-of-tree modules. This layer isn't meant to replace
+>> the linux-yocto recipes, the goals are different. If you're releasing
+>> products based on meta-kernel you obviously need to do your own
+>> testing on the components you're actually using.
+
+I wouldn't be expecting anything more than basic build and boot on qemu
+to be fair. Again, IMO the value of this is in the toolchain test and
+tooling.
+
+>>
+>> 6) Document the policy for kernel patches. Patches for the kernel will
+>> only be carried in this layer as a last resort. Kernel patches should
+>> be submitted upstream and go through the usual process for inclusion
+>> in the stable kernel releases.
+
+Compilation patches only I would say.
+
+>>
+>> 7) Disable GitLab CI for this layer. It's costing me about =C2=A370 pe=
+r
+>> month to run CI for this layer and I need to eliminate that expense.
+>> If anyone can sponsor this or host the CI service that would be welcom=
+e.
+>>
+>> 8) Add Jon Mason and Ross Burton (both at ARM) as backup maintainers
+>> to reduce the bus factor for the layer. I'll continue to be the
+>> primary maintainer for this layer but this will give some coverage if
+>> I'm unable to continue working on it.
+>>
+>> Thanks,
+>>
+>> --=20
+>>
+>> Paul Barker
+>> Konsulko Group
+>>
+
+Cheers,
+Jack.
