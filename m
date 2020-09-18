@@ -1,120 +1,117 @@
-Subject: #yocto systemd not able to start sshd after a reboot
-To: yocto@lists.yoctoproject.org
-From: srijan.nandi@gmail.com
-X-Originating-Location: Ahmedabad, Gujarat, IN (14.102.160.178)
-X-Originating-Platform: Mac Safari 13.1
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+ by mx.groups.io with SMTP id smtpd.web10.938.1600447047149448346
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 18 Sep 2020 09:37:27 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=UW8hjIud;
+ spf=pass (domain: gmail.com, ip: 209.85.222.176, mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f176.google.com with SMTP id g72so6792112qke.8
+        for <yocto@lists.yoctoproject.org>; Fri, 18 Sep 2020 09:37:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jFS2RpSk/MD7ohCYPGPrhSmwTvMvkGkhZNbo7sqshRU=;
+        b=UW8hjIudJr6bftyWlQKtix4fl+vCbz+cfXefjZJrcVXULNzZzG7NkFvL17eXhPX5NC
+         DV96AmdVJ3uig7xVGgPozz/5Bwu/P+7I1huEWnzoNyOuRSGj9q4V24QiM13lYA2bgm4/
+         nrV83Pr5nOnUcapjZjKud8xXxtBmkwAoUs3tq55IwnXGLelR24wSivzTHHA7p0OapvQl
+         Uk9B3pIU4bLWf20LzTNymLMAGNNn4X9w66CmwzILkdEMHRMGdkYfj8M5YzeAUvQyz7Tk
+         YJ0bFrtRDCxpEgWP9aFeiCHVTDQf32zwer7xiEs+/GusI5YyE/YfpipNOPN6uCPZmcLe
+         H7vA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jFS2RpSk/MD7ohCYPGPrhSmwTvMvkGkhZNbo7sqshRU=;
+        b=t6hVqOOktK+1U2l10e2UDi0nTqpe1SgkBUX2sf5sF5He8c6BWUadr+m/DeDy6WepjD
+         qdqdQFT09wp8O/Mr8+Qg3UTfyG4umq4T0foNPI3wMspoaJyIngNrLC80Yon7Ed0m1r2i
+         UVuGi2x7PTjgQS9QeF6a3KJ+xxXVuGwwUVEDhf4Xu1Z2bEPFfEXR4yjp2gW5iljtRdeN
+         oRv5dzHsCU5vUtkLPA+pq2hjE5FXpgjkSseQfOATDW41lO9go2qhSOtdnELWvvREchjC
+         aGMV/AbGnAlCgJvcGCqKIG/g/87nidpepK8okJ0oQ/TNLG4k8Zu6djDPdiooc4oXatxN
+         cnJA==
+X-Gm-Message-State: AOAM531lcs3bdO83HNvX54aRxt//+F6SXlovVO75jGYYqFHY3N0tpAdb
+	Wa8LCdywj71YKL0xgh8vau3LhL/hZKWthLnCro0=
+X-Google-Smtp-Source: ABdhPJztERgsNiQ1KnlZTbu7ZAVtZIlpMGV9SDKz40zX82jUf7K/Poy1Y9S9OW+5ToiWRQWLDqqM4Ew5aEmX6Hu5vvI=
+X-Received: by 2002:a37:9046:: with SMTP id s67mr34007739qkd.212.1600447046109;
+ Fri, 18 Sep 2020 09:37:26 -0700 (PDT)
 MIME-Version: 1.0
-Date: Fri, 18 Sep 2020 08:29:22 -0700
-Message-ID: <Oz9Q.1600442962283102903.Grzg@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="SHi2Ir5HvfNWqdt79eRa"
+References: <Oz9Q.1600442962283102903.Grzg@lists.yoctoproject.org>
+In-Reply-To: <Oz9Q.1600442962283102903.Grzg@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Fri, 18 Sep 2020 09:37:00 -0700
+Message-ID: <CAMKF1soA8avt3X2CUY7M29aEo5dJZ2enUnEyOYK1Yq1eK9Deew@mail.gmail.com>
+Subject: Re: [yocto] #yocto systemd not able to start sshd after a reboot
+To: srijan.nandi@gmail.com
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
---SHi2Ir5HvfNWqdt79eRa
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+does something like this work?
 
-I am facing a peculiar problem with openssh. I have built=C2=A0openssh_8.0p=
-1on zeus.
-
-The sshd.service file is as follows:
 [Unit]
-Description=3DOpenSSH server daemon
-Documentation=3Dman:sshd(8) man:sshd_config(5)
-After=3Dsshdgenkeys.service
-Wants=3Dsshdgenkeys.service
+Description=OpenSSH Daemon
+Wants=sshdgenkeys.service
+After=sshdgenkeys.service
+After=network.target
 
 [Service]
-Type=3Dsimple
-PIDFile=3D/var/run/sshd.pid
-EnvironmentFile=3D-/etc/default/sshd
-ExecStart=3D/usr/sbin/sshd -D $OPTIONS
-ExecReload=3D/bin/kill -HUP $MAINPID
-ExecStop=3D/bin/kill $MAINPID
-PermissionsStartOnly=3Dtrue
-KillMode=3Dprocess
-Restart=3Don-failure
-StandardError=3Dsyslog
+ExecStart=/usr/bin/sshd -D
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
 
 [Install]
-WantedBy=3Dmulti-user.target
+WantedBy=multi-user.target
 
-It starts without issues, if i do a systemctl start sshd.service. If I do =
-a test of the config file it does not come up with any errors:
-
-genericx86-64:~$ sudo /usr/sbin/sshd -t
-genericx86-64:~$
-
-Problem:
-If I reboot the server, sshd does not start. There is no error on syslog. =
-I have enabled debug logging, still no logs in syslog.
-
-# Logging
-SyslogFacility DAEMON
-LogLevel DEBUG3
-
-Even systemctl is-enabled sshd shows as enabled.
-
-After a reboot, if I do a systemctl status sshd it shows:
-Loaded: loaded =C2=A0(/lib/systemd/system/sshd.service; enabled; vendor pr=
-eset: enabled)
-Active: inactive (dead)
-
-If I manually run systemctl start sshd.service, everything works perfectly=
- well without issues. sshd start on 0.0.0.0:2224 and I am able to ssh in as=
- well.
-
-It's just that systemctl is not able to start sshd after a reboot and ther=
-e is no error that i can find or debug. Absolutely run out of ideas to reso=
-lve this. Any help will be greatly appreciated.
-
-Thanks and Regards,
--=3DSrijan Nandi
-
---SHi2Ir5HvfNWqdt79eRa
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-I am facing a peculiar problem with openssh. I have built&nbsp;openssh_8.0p=
-1on zeus.&nbsp;<br /><br />The sshd.service file is as follows:<br />
-<div>[Unit]</div>
-<div>Description=3DOpenSSH server daemon</div>
-<div>Documentation=3Dman:sshd(8) man:sshd_config(5)</div>
-<div>After=3Dsshdgenkeys.service</div>
-<div>Wants=3Dsshdgenkeys.service</div>
-<div>&nbsp;</div>
-<div>[Service]</div>
-<div>Type=3Dsimple</div>
-<div>PIDFile=3D/var/run/sshd.pid</div>
-<div>EnvironmentFile=3D-/etc/default/sshd</div>
-<div>ExecStart=3D/usr/sbin/sshd -D $OPTIONS</div>
-<div>ExecReload=3D/bin/kill -HUP $MAINPID</div>
-<div>ExecStop=3D/bin/kill $MAINPID</div>
-<div>PermissionsStartOnly=3Dtrue</div>
-<div>KillMode=3Dprocess</div>
-<div>Restart=3Don-failure</div>
-<div>StandardError=3Dsyslog</div>
-<div>&nbsp;</div>
-<div>[Install]</div>
-<div>WantedBy=3Dmulti-user.target<br /><br />It starts without issues, if =
-i do a systemctl start sshd.service. If I do a test of the config file it d=
-oes not come up with any errors:<br /><br />
-<div>genericx86-64:~$ sudo /usr/sbin/sshd -t</div>
-<div>genericx86-64:~$&nbsp;<br /><br />Problem:<br />If I reboot the serve=
-r, sshd does not start. There is no error on syslog. I have enabled debug l=
-ogging, still no logs in syslog.<br /><br />
-<div># Logging</div>
-<div>SyslogFacility DAEMON</div>
-<div>LogLevel DEBUG3<br /><br />Even systemctl is-enabled sshd shows as en=
-abled.<br /><br />After a reboot, if I do a systemctl status sshd it shows:=
-<br />Loaded: loaded &nbsp;(/lib/systemd/system/sshd.service; enabled; vend=
-or preset: enabled)<br />Active: inactive (dead)<br /><br />If I manually r=
-un systemctl start sshd.service, everything works perfectly well without is=
-sues. sshd start on 0.0.0.0:2224 and I am able to ssh in as well.<br /><br =
-/>It's just that systemctl is not able to start sshd after a reboot and the=
-re is no error that i can find or debug. Absolutely run out of ideas to res=
-olve this. Any help will be greatly appreciated.<br /><br />Thanks and Rega=
-rds,<br />-=3DSrijan Nandi</div>
-</div>
-</div>
-
---SHi2Ir5HvfNWqdt79eRa--
+On Fri, Sep 18, 2020 at 8:29 AM <srijan.nandi@gmail.com> wrote:
+>
+> I am facing a peculiar problem with openssh. I have built openssh_8.0p1on zeus.
+>
+> The sshd.service file is as follows:
+> [Unit]
+> Description=OpenSSH server daemon
+> Documentation=man:sshd(8) man:sshd_config(5)
+> After=sshdgenkeys.service
+> Wants=sshdgenkeys.service
+>
+> [Service]
+> Type=simple
+> PIDFile=/var/run/sshd.pid
+> EnvironmentFile=-/etc/default/sshd
+> ExecStart=/usr/sbin/sshd -D $OPTIONS
+> ExecReload=/bin/kill -HUP $MAINPID
+> ExecStop=/bin/kill $MAINPID
+> PermissionsStartOnly=true
+> KillMode=process
+> Restart=on-failure
+> StandardError=syslog
+>
+> [Install]
+> WantedBy=multi-user.target
+>
+> It starts without issues, if i do a systemctl start sshd.service. If I do a test of the config file it does not come up with any errors:
+>
+> genericx86-64:~$ sudo /usr/sbin/sshd -t
+> genericx86-64:~$
+>
+> Problem:
+> If I reboot the server, sshd does not start. There is no error on syslog. I have enabled debug logging, still no logs in syslog.
+>
+> # Logging
+> SyslogFacility DAEMON
+> LogLevel DEBUG3
+>
+> Even systemctl is-enabled sshd shows as enabled.
+>
+> After a reboot, if I do a systemctl status sshd it shows:
+> Loaded: loaded  (/lib/systemd/system/sshd.service; enabled; vendor preset: enabled)
+> Active: inactive (dead)
+>
+> If I manually run systemctl start sshd.service, everything works perfectly well without issues. sshd start on 0.0.0.0:2224 and I am able to ssh in as well.
+>
+> It's just that systemctl is not able to start sshd after a reboot and there is no error that i can find or debug. Absolutely run out of ideas to resolve this. Any help will be greatly appreciated.
+>
+> Thanks and Regards,
+> -=Srijan Nandi
+>
+> 
+>
