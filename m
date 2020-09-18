@@ -1,99 +1,189 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.7351.1600412431064711919
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by mx.groups.io with SMTP id smtpd.web11.8199.1600416928608651202
  for <yocto@lists.yoctoproject.org>;
- Fri, 18 Sep 2020 00:00:31 -0700
+ Fri, 18 Sep 2020 01:15:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=YVnAzSp4;
- spf=softfail (domain: linuxfoundation.org, ip: 198.145.29.25, mailfrom: richard.purdie@linuxfoundation.org)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 700BE38C06B9
-	for <yocto@yoctoproject.org>; Fri, 18 Sep 2020 00:00:30 -0700 (PDT)
-Received: by mail-wr1-f46.google.com with SMTP id g4so4455428wrs.5
-        for <yocto@yoctoproject.org>; Fri, 18 Sep 2020 00:00:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=fh/E4oshFPdniX3nE3iYI+//7wZarat7kTSwldkkl+c=;
-        b=YVnAzSp4xjoxagAQbpclDD/VEL8js+aH+6mdnb83nCh120uSJjk3pDW9l6Uf4EI7dR
-         JuPR0fMrniT06r/+wENyZKMQqd0BY7vXz4RhaYsBzCW1OkvPHUESpOSQgSe+Ydob7u3p
-         daCsd5uX/qBlmvWU7lYKLOtuALzk/g6Jj8DhE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=fh/E4oshFPdniX3nE3iYI+//7wZarat7kTSwldkkl+c=;
-        b=mFRxVRLBRnMBZH28SOIx4aY1tt+JfFQ1v6rKuwtqs9qMOM6B1W3xdBaIq0vSXF4kwu
-         T91fq+HZlhmFwnJ9GtpVDoLobYkA7oDXK6ardSBtrXTRlYikM74EGJoGLRRrm+O8bm+H
-         K0z0jwJD52kO9Nk+5JNIk+7+azwHHKcHXMIzWTAFLX6yyDVMspreWd91tTcnfRiyTx7/
-         COFGVlUNCm6JBtHkBRIB+3Tgeob5JKOGxWa9dLv0t5JTWqUuvjSufOSM31wow8C9l0EY
-         /WQmssTzkkZZuQBck+TPJlfYJa7//MV16YuQHrJHMdrfqfL/a9exw6jBwu42xnwSiv2/
-         Z8MA==
-X-Gm-Message-State: AOAM533vmlgx1FZ/3pV//OQtTF+JVc2yzcXPd06WpfDKDdG1JBnHrgAg
-	HvUqTdZpV1mzO4RoUJ0tOVd+8A==
-X-Google-Smtp-Source: ABdhPJxyPb6hj0ZcYnkItDLWZ0onMH8p5DrDNDaWXOgONLcKh93OnhXisLXzmD3Mb72TleHiZQWeUg==
-X-Received: by 2002:a5d:5702:: with SMTP id a2mr35402162wrv.284.1600412428939;
-        Fri, 18 Sep 2020 00:00:28 -0700 (PDT)
-Received: from 7.1.a.4.b.6.6.4.7.f.7.9.a.9.8.c.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (7.1.a.4.b.6.6.4.7.f.7.9.a.9.8.c.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:c89a:97f7:466b:4a17])
-        by smtp.gmail.com with ESMTPSA id v17sm3817955wrc.23.2020.09.18.00.00.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Sep 2020 00:00:27 -0700 (PDT)
-Message-ID: <6f05819fc1ea465af800397daee81309dce7de6d.camel@linuxfoundation.org>
-Subject: Re: [yocto] do_unpack() ISO Image
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Chuck Wolber <chuckwolber@gmail.com>, Yocto-mailing-list
-	 <yocto@yoctoproject.org>
-Date: Fri, 18 Sep 2020 08:00:25 +0100
-In-Reply-To: <CAB=6tBRCEGBX4nfSj1THDqnO3HDZBk33xHAm=V+3vRwO5MbZyg@mail.gmail.com>
-References: 
-	<CAB=6tBRCEGBX4nfSj1THDqnO3HDZBk33xHAm=V+3vRwO5MbZyg@mail.gmail.com>
-User-Agent: Evolution 3.36.4-0ubuntu1 
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+ dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.24, mailfrom: yock.gen.mah@intel.com)
+IronPort-SDR: 6AgqOrWcW0O3/2lRnaU8vN5K7KyAEnkyZdiGGjsvXjXQOs5i0TpDtaJuFvp6Zi+g9M2yXAI/x4
+ O618k62Ma3wQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="160805810"
+X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; 
+   d="scan'208";a="160805810"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2020 01:15:21 -0700
+IronPort-SDR: bzWwTp8d1esP8WzZ1pS3PKGLsS0YWqSLe63nxujrq7liugklqQPbXBmPoONeiVm/HSwC/7UCg7
+ 53k77BwRkMnQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; 
+   d="scan'208";a="289269231"
+Received: from andromeda02.png.intel.com ([10.221.183.11])
+  by fmsmga008.fm.intel.com with ESMTP; 18 Sep 2020 01:15:20 -0700
+From: yock.gen.mah@intel.com
+To: yocto@lists.yoctoproject.org
+Subject: [meta-zephyr][PATCH v2] zephyr-kernel: add Zephyr RTOS version 2.3.0 support
+Date: Fri, 18 Sep 2020 16:15:12 +0800
+Message-Id: <1600416912-6158-1-git-send-email-yock.gen.mah@intel.com>
+X-Mailer: git-send-email 2.7.4
 
-On Thu, 2020-09-17 at 20:09 -0700, Chuck Wolber wrote:
-> 
-> Hi all,
-> 
-> I have a need to unpack an ISO image during do_unpack. This does not
-> appear to be one of the extensions that is handled by default, so I
-> am working out a way to use xorriso to do this for me.
-> 
-> I can get this to work in the following way, but it involves calling
-> an executable running on the build host, which only works by luck
-> since the host executable is the same architecture as what I am
-> currently building. I would like to do this in a portable way that
-> does not break when I try to build for a different architecture.
-> 
-> DEPENDS += "xorriso"
-> 
-> do_unpack_append() {
->     bb.build.exec_func('unpack_iso', d)
-> }
-> 
-> unpack_iso() {
->    /usr/bin/xorriso -osirrox on -indev ${WORKDIR}/${PN}_${PV}.iso
-> -extract / ${S}
-> }
-> 
-> 
-> From looking at base.bbclass, it _seems_ as if my solution involves
-> something like this:
-> 
-> d.appendVarFlag('do_unpack', 'depends', '
-> xorriso:do_populate_sysroot')
-> 
-> But it is unclear exactly where that would go within my recipe. Any
-> thoughts?
+From: yockgenm <yock.gen.mah@intel.com>
 
-You can do the same thing with:
+Signed-off-by: yockgenm <yock.gen.mah@intel.com>
+---
+ classes/zephyr-kernel-src.bbclass                  | 12 ++++----
+ .../qemu/{qemu_4.2.%.bbappend => qemu_%.bbappend}  |  0
+ .../zephyr-kernel/zephyr-kernel-common.inc         |  1 +
+ .../zephyr-kernel/zephyr-kernel-src_2.2.bb         | 33 ----------------------
+ .../zephyr-kernel/zephyr-kernel-src_2.3.bb         | 24 ++++++++++++++++
+ .../zephyr-kernel/zephyr-kernel-test.inc           |  5 ++--
+ 6 files changed, 34 insertions(+), 41 deletions(-)
+ rename recipes-devtools/qemu/{qemu_4.2.%.bbappend => qemu_%.bbappend} (100%)
+ delete mode 100644 recipes-kernel/zephyr-kernel/zephyr-kernel-src_2.2.bb
+ create mode 100644 recipes-kernel/zephyr-kernel/zephyr-kernel-src_2.3.bb
 
-do_unpack[depends] += " xorriso:do_populate_sysroot"
-
-but note that you want xorriso-native, not xorriso.
-
-Cheers,
-
-Richard
+diff --git a/classes/zephyr-kernel-src.bbclass b/classes/zephyr-kernel-src.bbclass
+index 653cb9b..d202293 100644
+--- a/classes/zephyr-kernel-src.bbclass
++++ b/classes/zephyr-kernel-src.bbclass
+@@ -1,13 +1,15 @@
+ #Set relevant variables based on Zephyr kernel version
+ 
+-PREFERRED_VERSION_zephyr-kernel ??= "2.2.0"
++PREFERRED_VERSION_zephyr-kernel ??= "2.3.0"
+ 
+-SRCREV = "d39cb42d0920d5658fad358ad5b91de75d747a20"
++SRCREV = "b8c78e254ff875680e99c9f131fbe285c4575927"
++SRCREV_cmsis = "542b2296e6d515b265e25c6b7208e8fea3014f90"
+ 
+-SRC_URI = "git://github.com/zephyrproject-rtos/zephyr.git;protocol=https;branch=v2.2-branch \
++SRC_URI = "git://github.com/zephyrproject-rtos/zephyr.git;protocol=https;branch=v2.3-branch \
++           git://github.com/zephyrproject-rtos/cmsis.git;protocol=https;destsuffix=git/modules/cmsis;name=cmsis \
+           file://0001-cmake-add-yocto-toolchain.patch \
+         "
+-PV = "2.2.0"
++PV = "2.3.0"
+ LICENSE = "Apache-2.0"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=fa818a259cbed7ce8bc2a22d35a464fc"
+ 
+@@ -15,7 +17,7 @@ ZEPHYR_TEST_SRCDIR = "tests/legacy/kernel/"
+ 
+ python () {
+     src_pn = d.getVar('PREFERRED_VERSION_zephyr-kernel', True)
+-    if src_pn == '2.2.0':
++    if src_pn == '2.3.0':
+         return
+     else:
+         bb.error("Unsupported Zephyr kernel version requested")
+diff --git a/recipes-devtools/qemu/qemu_4.2.%.bbappend b/recipes-devtools/qemu/qemu_%.bbappend
+similarity index 100%
+rename from recipes-devtools/qemu/qemu_4.2.%.bbappend
+rename to recipes-devtools/qemu/qemu_%.bbappend
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+index d7147d5..aaf71a8 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+@@ -14,6 +14,7 @@ ZEPHYR_MAKE_OUTPUT = "zephyr.elf"
+ 
+ 
+ EXTRA_OECMAKE = " -DZEPHYR_BASE=${S} -DZEPHYR_GCC_VARIANT=yocto -DBOARD=${BOARD} -DARCH=${ARCH} -DCROSS_COMPILE=${CROSS_COMPILE} -DZEPHYR_SYSROOT=${ZEPHYR_SYSROOT} -DZEPHYR_TOOLCHAIN_VARIANT=yocto"
++EXTRA_OECMAKE_append_arm = " -DZEPHYR_MODULES=${S}/modules/cmsis"
+ export ZEPHYR_BASE="${S}"
+ 
+ 
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src_2.2.bb b/recipes-kernel/zephyr-kernel/zephyr-kernel-src_2.2.bb
+deleted file mode 100644
+index a3e1c28..0000000
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src_2.2.bb
++++ /dev/null
+@@ -1,33 +0,0 @@
+-
+-LICENSE = "Apache-2.0"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=fa818a259cbed7ce8bc2a22d35a464fc"
+-
+-# tag v2.2
+-SRCREV="d39cb42d0920d5658fad358ad5b91de75d747a20"
+-SRC_URI = "git://github.com/zephyrproject-rtos/zephyr.git;protocol=https;branch=v2.2-branch \
+-          file://0001-cmake-add-yocto-toolchain.patch \
+-        "
+-inherit cmake 
+-PV = "2.2.0"
+-S = "${WORKDIR}/git"
+-
+-IMAGE_NO_MANIFEST = "1"
+-INHIBIT_DEFAULT_DEPS = "1"
+-
+-do_configure[noexec] = "1"
+-do_compile[noexec] = "1"
+-
+-do_compile () {
+-}
+-
+-do_install () {
+-    kerneldir=${D}/usr/src/zephyr
+-    install -d $kerneldir
+-    cp -r ${S}/* $kerneldir
+-}
+-
+-PACKAGES = "${PN}"
+-FILES_${PN} = "/usr/src/zephyr"
+-
+-SYSROOT_DIRS += "/usr/src/zephyr"
+-
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src_2.3.bb b/recipes-kernel/zephyr-kernel/zephyr-kernel-src_2.3.bb
+new file mode 100644
+index 0000000..8e8b5b8
+--- /dev/null
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src_2.3.bb
+@@ -0,0 +1,24 @@
++
++inherit zephyr-kernel-src
++inherit cmake
++
++S = "${WORKDIR}/git"
++
++IMAGE_NO_MANIFEST = "1"
++INHIBIT_DEFAULT_DEPS = "1"
++
++do_configure[noexec] = "1"
++do_compile[noexec] = "1"
++
++
++do_install () {
++    kerneldir=${D}/usr/src/zephyr
++    install -d $kerneldir
++    cp -r ${S}/* $kerneldir
++}
++
++PACKAGES = "${PN}"
++FILES_${PN} = "/usr/src/zephyr"
++
++SYSROOT_DIRS += "/usr/src/zephyr"
++
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
+index 65da7e8..faf28bd 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
+@@ -1,4 +1,4 @@
+-ZEPHYRTESTS_remove = "fifo fp_sharing lifo mbox mem_heap mem_pool \
++ZEPHYRTESTS_remove = "fifo fpu_sharing lifo mbox mem_heap mem_pool \
+     mem_protect mem_slab msgq mutex pipe profiling sched semaphore \
+     stack threads tickless timer workq"
+ 
+@@ -23,12 +23,11 @@ ZEPHYRTESTS_remove = "gen_isr_table spinlock smp mp"
+ ZEPHYRTESTS = " \
+     common \
+     context \
+-    critical \
+     device \
+     early_sleep \
+     fatal \
+     fifo \
+-    fp_sharing \
++    fpu_sharing \
+     gen_isr_table \
+     interrupt \
+     lifo \
+-- 
+2.7.4
 
