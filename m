@@ -1,138 +1,281 @@
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
- by mx.groups.io with SMTP id smtpd.web12.6357.1600495456969399431
- for <yocto@lists.yoctoproject.org>;
- Fri, 18 Sep 2020 23:04:17 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=frgFVEwc;
- spf=pass (domain: gmail.com, ip: 209.85.215.170, mailfrom: raj.khem@gmail.com)
-Received: by mail-pg1-f170.google.com with SMTP id k14so4728394pgi.9
-        for <yocto@lists.yoctoproject.org>; Fri, 18 Sep 2020 23:04:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ZSjez374oo4fNdmHL2jNLKNpYSeDEfrar5aXtEGNjDw=;
-        b=frgFVEwcGGPecOSF4mcBgOfd55aIuoffPpZJ1m7tLFV+4Ld5jpmIwySbgIcnMmj2aD
-         W/0e/zBQMUhhYY9brZL7hXdJJfkCoOvHIaTZSLQBWrRzBlz4bHsWCsOqM+ohYhBjmp9n
-         6wBuxsEw1Daqf8zEmGN+LnD43Bg7ECojh10YweJifrdfhxVLCt2wWtxhqb5rzJ8G8pkN
-         E6lyVYLeEMlQuXt93EPwwvecREW24eHYfaT/dQwl/d2IjQe+vCzskciMvnccMHyk+XcV
-         Jqxsui7/oIGpotp7i7C8HP2+qQlEBX7JaUloQLdcfqBG/jo3xTqAy8x9fkXZ5U152Xa5
-         rODg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=ZSjez374oo4fNdmHL2jNLKNpYSeDEfrar5aXtEGNjDw=;
-        b=FV8ZnemigbDhbUrBHtJevsTC+QWiOG6Wc+CYXBUmq/cxw76cMHLnegc8Omqy2U2QoM
-         vB9ElSDilQL2jR4nw6Jef9iLQs6HTvaLJy/xnsF91/g3qwg6nyGxKi7z9SbytrwY6vGr
-         2dDibMSHEiCcWZ96dYHR6jX7KCFYmlMT1YBbyyQb1e04a/i7QMGCJ8p682TBuj7YGyVf
-         sEg/7/5PIzHkmiSRs27+CNX2feLEUZlAt+JwbeigYL5GojQNYN81kZ5pAxr/P1FjpjsD
-         PfRZLE1HxlPmXE1LCvW7jlOrytNjwFguZMZYqXeWmB/wl8D4vO7G+KCa9b2IzSlq+Bwx
-         OCug==
-X-Gm-Message-State: AOAM530uTGVf4VKaBgcaQlAvzb1nAM8+0gsQpZkeS12XovY1F3sMAYdU
-	CjmpLSTCKE3I+FVBErSsuCy5STYHLua7jg==
-X-Google-Smtp-Source: ABdhPJw/Ga+NbNL+3Hd/YU/vdEQ2AhFpPUX3XyH3DrUrlM+mq6JHm1sFjLeqdt1oShEzUGhj36Fumw==
-X-Received: by 2002:a63:f70e:: with SMTP id x14mr29502605pgh.407.1600495455804;
-        Fri, 18 Sep 2020 23:04:15 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:8d7e:79c0:27e5:7d4? ([2601:646:9200:4e0:8d7e:79c0:27e5:7d4])
-        by smtp.gmail.com with ESMTPSA id h1sm4461112pji.52.2020.09.18.23.04.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Sep 2020 23:04:15 -0700 (PDT)
-Subject: Re: [yocto] Yocto recipe for Tailscale #yocto #golang
-To: mthompson@dustyrobotics.com, yocto@lists.yoctoproject.org
-References: <554d231986639cbe9b6a77c36b41a9947e0458a3.camel@delisys.ch>
- <23477.1600472819113950080@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <8132db85-5881-636e-c091-d84c47efe4fe@gmail.com>
-Date: Fri, 18 Sep 2020 23:04:14 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.2.2
+Subject: Re: Yocto recipe for Tailscale #yocto #golang
+To: yocto@lists.yoctoproject.org
+From: "Mike Thompson" <mthompson@dustyrobotics.com>
+X-Originating-Location: San Carlos, California, US (73.222.39.199)
+X-Originating-Platform: Linux Chrome 85
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <23477.1600472819113950080@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+Date: Sat, 19 Sep 2020 03:13:36 -0700
+References: <8132db85-5881-636e-c091-d84c47efe4fe@gmail.com>
+In-Reply-To: <8132db85-5881-636e-c091-d84c47efe4fe@gmail.com>
+Message-ID: <1315.1600510416708828939@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="XjhiMQM1PzqtbOidRn6b"
 
+--XjhiMQM1PzqtbOidRn6b
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+Inheriting from go-mod didn't make any difference that I could tell.
 
-On 9/18/20 4:46 PM, Mike Thompson via lists.yoctoproject.org wrote:
-> OK, I'm making some progress a Bitbake recipe for the Tailscale client 
-> built using Go from various samples I found in the OpenEmbedded layers.
-> However, I'm running into import issues during compilation and I'm 
-> hoping a person familiar with Go might be able to provide some hints. 
->  From what I can tell, Go packages to are allowed to declare that they 
-> must be imported using a specific name 
-> <https://golang.org/cmd/go/#hdr-Import_path_checking> and it seems that 
-> declaration is included in the Tailscale source code.
-> Is there a way to craft the Bitbake recipe to honor that requirement for 
-> the Tailscale Go source code?
-> Currently, my Bitbake recipe for Tailscale looks as shown below.
-> tailscale_1.0.5.bb
-> -----------------------------------------------------------------
-> SUMMARY = "Tailscale client and daemon for Linux"
-> HOMEPAGE = "github.com/tailscale/tailscale"
-> LICENSE = "DWTFYW"
-> LIC_FILES_CHKSUM = 
-> "file://src/${GO_IMPORT}/LICENSE;md5=d995c1c44529856a0f35a5ad43e51cc5"
-> GO_IMPORT = "github.com/tailscale/tailscale"
-> SRC_URI = "git://${GO_IMPORT};nobranch=1;tag=v${PV}"
-> inherit go
-> GO_INSTALL = "${GO_IMPORT}/cmd/tailscale"
-> RDEPENDS_${PN}-dev += "bash"
-> -----------------------------------------------------------------
-> The Bitbake output with the import error is below:
-> -----------------------------------------------------------------
-> $ bitbake tailscale
-> ...
-> NOTE: Executing Tasks
-> ERROR: tailscale-1.0.5-r0 do_compile: Execution of 
-> '/home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/temp/run.do_compile.10615' 
-> failed with exit code 1:
-> can't load package: package 
-> github.com/tailscale/tailscale/cmd/tailscale: code in directory 
-> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build/src/github.com/tailscale/tailscale/cmd/tailscale 
-> expects import "tailscale.com/cmd/tailscale"
-> can't load package: package .: no Go files in 
-> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build
-> WARNING: exit code 1 from a shell command.
-> ERROR: Logfile of failure stored in: 
-> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/temp/log.do_compile.10615
-> Log data follows:
-> | DEBUG: Executing shell function do_compile
-> | can't load package: package 
-> github.com/tailscale/tailscale/cmd/tailscale: code in directory 
-> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build/src/github.com/tailscale/tailscale/cmd/tailscale 
-> expects import "tailscale.com/cmd/tailscale"
-> | can't load package: package .: no Go files in 
-> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build
-> | WARNING: exit code 1 from a shell command.
-> | ERROR: Execution of 
-> '/home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/temp/run.do_compile.10615' 
-> failed with exit code 1:
-> | can't load package: package 
-> github.com/tailscale/tailscale/cmd/tailscale: code in directory 
-> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build/src/github.com/tailscale/tailscale/cmd/tailscale 
-> expects import "tailscale.com/cmd/tailscale"
-> | can't load package: package .: no Go files in 
-> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build
-> | WARNING: exit code 1 from a shell command.
-> |
-> ERROR: Task 
-> (/home/mike/Development/markbot_linux/sources/meta-markbot/recipes-tailscale/tailscale/tailscale_1.0.5.bb:do_compile) 
-> failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 2253 tasks of which 2245 didn't need to 
-> be rerun and 1 failed.
-> -----------------------------------------------------------------
-> Thanks,
-> Mike Thompson
+This is what I have so far for the Tailscale recipe.=C2=A0 I'm resolving d=
+ependencies with individual Bitbake files that pull in each dependency as I=
+ find them.
 
+---------------------------------------------
 
-perhaps you need to inherit go-mod as well, if its using modules.
+# tailscale_1.0.5.bb
 
-> 
-> 
-> 
-> 
+SUMMARY =3D "Tailscale client and daemon for Linux"
+
+HOMEPAGE =3D "github.com/tailscale/tailscale"
+
+LICENSE =3D "CLOSED"
+
+LIC_FILES_CHKSUM =3D "file://src/${GO_IMPORT}/LICENSE;md5=3Dd995c1c4452985=
+6a0f35a5ad43e51cc5"
+
+SRC_URI =3D "git://github.com/tailscale/tailscale.git;nobranch=3D1;tag=3Dv=
+${PV}"
+
+DEPENDS +=3D "github.com-apenwarr-fixconsole \
+
+github.com-coreos-go-iptable \
+
+github.com-godbus-dbus \
+
+github.com-golang-groupcache \
+
+github.com-jsimonetti-rtnetlink \
+
+github.com-klauspost-compress \
+
+github.com-mdlayher-netlink \
+
+github.com-pborman-getopt \
+
+github.com-peterbourgon-ff \
+
+github.com-tailscale-wireguard-go \
+
+github.com-tcnksm-go-httpstat \
+
+github.com-toqueteos-webbrowser \
+
+golang.org-x \
+
+go4.org-mem \
+
+inet.af-netaddr \
+
+rsc.io-goversion \
+
+"
+
+inherit go
+
+inherit go-mod
+
+GO_IMPORT =3D "tailscale.com"
+
+GO_INSTALL =3D "${GO_IMPORT}/cmd/tailscale"
+
+RDEPENDS_${PN}-dev +=3D "bash"
+
+---------------------------------------------
+
+Unfortunately, the golang.org-x.bb recipe is turning into an endless sourc=
+e of dependencies during do_compile stage.=C2=A0 I feel I must be on the wr=
+ong track.
+
+Is there a way to package up the following so that just what is needed by =
+Tailscale is included, but dependencies not needed by Tailscale are ignored=
+?
+
+---------------------------------------------
+# golang.org-x.bb
+DESCRIPTION =3D "Go X libraries"
+
+SRC_URI =3D "\
+git://github.com/golang/mod.git;protocol=3Dhttps;name=3Dmod;destsuffix=3D$=
+{PN}-${PV}/src/golang.org/x/mod \
+git://github.com/golang/net.git;protocol=3Dhttps;name=3Dnet;destsuffix=3D$=
+{PN}-${PV}/src/golang.org/x/net \
+git://github.com/golang/sys.git;protocol=3Dhttps;name=3Dsys;destsuffix=3D$=
+{PN}-${PV}/src/golang.org/x/sys \
+git://github.com/golang/text.git;protocol=3Dhttps;name=3Dtext;destsuffix=
+=3D${PN}-${PV}/src/golang.org/x/text \
+git://github.com/golang/time.git;protocol=3Dhttps;name=3Dtime;destsuffix=
+=3D${PN}-${PV}/src/golang.org/x/time \
+git://github.com/golang/sync.git;protocol=3Dhttps;name=3Dsync;destsuffix=
+=3D${PN}-${PV}/src/golang.org/x/sync \
+git://github.com/golang/tools.git;protocol=3Dhttps;name=3Dtools;destsuffix=
+=
+=3D${PN}-${PV}/src/golang.org/x/tools \
+git://github.com/golang/build.git;protocol=3Dhttps;name=3Dbuild;destsuffix=
+=
+=3D${PN}-${PV}/src/golang.org/x/build \
+git://github.com/golang/oauth2.git;protocol=3Dhttps;name=3Doauth2;destsuff=
+ix=3D${PN}-${PV}/src/golang.org/x/oauth2 \
+git://github.com/golang/crypto.git;protocol=3Dhttps;name=3Dcrypto;destsuff=
+ix=3D${PN}-${PV}/src/golang.org/x/crypto \
+git://github.com/golang/xerrors.git;protocol=3Dhttps;name=3Dxerrors;destsu=
+ffix=3D${PN}-${PV}/src/golang.org/x/xerrors \
+"
+SRCREV_FORMAT =3D "golang"
+SRCREV_mod =3D "${AUTOREV}"
+SRCREV_net =3D "${AUTOREV}"
+SRCREV_sys =3D "${AUTOREV}"
+SRCREV_text =3D "${AUTOREV}"
+SRCREV_time =3D "${AUTOREV}"
+SRCREV_sync =3D "${AUTOREV}"
+SRCREV_tools =3D "${AUTOREV}"
+SRCREV_build =3D "${AUTOREV}"
+SRCREV_oauth2 =3D "${AUTOREV}"
+SRCREV_crypto =3D "${AUTOREV}"
+SRCREV_xerrors =3D "${AUTOREV}"
+
+LICENSE =3D "MIT"
+LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade698e0b=
+cf8506ecda2f7b4f302"
+
+inherit go
+GO_IMPORT =3D "golang.org/x"
+---------------------------------------------
+
+Thanks,
+
+Mike Thompson
+
+--XjhiMQM1PzqtbOidRn6b
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Inheriting from go-mod didn't make any difference that I could tell.</p>
+<p>&nbsp;</p>
+<p>This is what I have so far for the Tailscale recipe.&nbsp; I'm resolvin=
+g dependencies with individual Bitbake files that pull in each dependency a=
+s I find them.</p>
+<p>&nbsp;</p>
+<p>---------------------------------------------</p>
+<p style=3D"line-height: 1.42857;"># tailscale_1.0.5.bb</p>
+<p>SUMMARY =3D "Tailscale client and daemon for Linux"</p>
+<p>HOMEPAGE =3D "github.com/tailscale/tailscale"</p>
+<p>&nbsp;</p>
+<p>LICENSE =3D "CLOSED"</p>
+<p>LIC_FILES_CHKSUM =3D "file://src/${GO_IMPORT}/LICENSE;md5=3Dd995c1c4452=
+9856a0f35a5ad43e51cc5"</p>
+<p>&nbsp;</p>
+<p>SRC_URI =3D "git://github.com/tailscale/tailscale.git;nobranch=3D1;tag=
+=3Dv${PV}"</p>
+<p>&nbsp;</p>
+<p>DEPENDS +=3D "github.com-apenwarr-fixconsole \</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; github.com-coreos-go-iptable =
+\</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; github.com-godbus-dbus \</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; github.com-golang-groupcache =
+\</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; github.com-jsimonetti-rtnetli=
+nk \</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; github.com-klauspost-compress=
+ \</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; github.com-mdlayher-netlink \=
+</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; github.com-pborman-getopt \</=
+p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; github.com-peterbourgon-ff \<=
+/p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; github.com-tailscale-wireguar=
+d-go \</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; github.com-tcnksm-go-httpstat=
+ \</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; github.com-toqueteos-webbrows=
+er \</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; golang.org-x \</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; go4.org-mem \</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; inet.af-netaddr \</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rsc.io-goversion \</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"</p>
+<p>&nbsp;</p>
+<p>inherit go</p>
+<p>inherit go-mod</p>
+<p>GO_IMPORT =3D "tailscale.com"</p>
+<p>GO_INSTALL =3D "${GO_IMPORT}/cmd/tailscale"</p>
+<p>&nbsp;</p>
+<p>RDEPENDS_${PN}-dev +=3D "bash"</p>
+<div>
+<p style=3D"line-height: 1.42857;">---------------------------------------=
+------</p>
+</div>
+<div>Unfortunately, the golang.org-x.bb recipe is turning into an endless =
+source of dependencies during do_compile stage.&nbsp; I feel I must be on t=
+he wrong track.</div>
+<div>&nbsp;</div>
+<div>Is there a way to package up the following so that just what is neede=
+d by Tailscale is included, but dependencies not needed by Tailscale are ig=
+nored?</div>
+<div>&nbsp;</div>
+<div>---------------------------------------------</div>
+<div># golang.org-x.bb</div>
+<div>DESCRIPTION =3D "Go X libraries"</div>
+<div>&nbsp;</div>
+<div>SRC_URI =3D "\</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;git://github.com/golang/mod.git;pro=
+tocol=3Dhttps;name=3Dmod;destsuffix=3D${PN}-${PV}/src/golang.org/x/mod \</d=
+iv>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;git://github.com/golang/net.git;pro=
+tocol=3Dhttps;name=3Dnet;destsuffix=3D${PN}-${PV}/src/golang.org/x/net \</d=
+iv>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;git://github.com/golang/sys.git;pro=
+tocol=3Dhttps;name=3Dsys;destsuffix=3D${PN}-${PV}/src/golang.org/x/sys \</d=
+iv>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;git://github.com/golang/text.git;pr=
+otocol=3Dhttps;name=3Dtext;destsuffix=3D${PN}-${PV}/src/golang.org/x/text \=
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;git://github.com/golang/time.git;pr=
+otocol=3Dhttps;name=3Dtime;destsuffix=3D${PN}-${PV}/src/golang.org/x/time \=
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;git://github.com/golang/sync.git;pr=
+otocol=3Dhttps;name=3Dsync;destsuffix=3D${PN}-${PV}/src/golang.org/x/sync \=
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;git://github.com/golang/tools.git;p=
+rotocol=3Dhttps;name=3Dtools;destsuffix=3D${PN}-${PV}/src/golang.org/x/tool=
+s \</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;git://github.com/golang/build.git;p=
+rotocol=3Dhttps;name=3Dbuild;destsuffix=3D${PN}-${PV}/src/golang.org/x/buil=
+d \</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;git://github.com/golang/oauth2.git;=
+protocol=3Dhttps;name=3Doauth2;destsuffix=3D${PN}-${PV}/src/golang.org/x/oa=
+uth2 \</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;git://github.com/golang/crypto.git;=
+protocol=3Dhttps;name=3Dcrypto;destsuffix=3D${PN}-${PV}/src/golang.org/x/cr=
+ypto \</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;git://github.com/golang/xerrors.git=
+;protocol=3Dhttps;name=3Dxerrors;destsuffix=3D${PN}-${PV}/src/golang.org/x/=
+xerrors \</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"</div>
+<div>SRCREV_FORMAT =3D "golang"</div>
+<div>SRCREV_mod =3D "${AUTOREV}"</div>
+<div>SRCREV_net =3D "${AUTOREV}"</div>
+<div>SRCREV_sys =3D "${AUTOREV}"</div>
+<div>SRCREV_text =3D "${AUTOREV}"</div>
+<div>SRCREV_time =3D "${AUTOREV}"</div>
+<div>SRCREV_sync =3D "${AUTOREV}"</div>
+<div>SRCREV_tools =3D "${AUTOREV}"</div>
+<div>SRCREV_build =3D "${AUTOREV}"</div>
+<div>SRCREV_oauth2 =3D "${AUTOREV}"</div>
+<div>SRCREV_crypto =3D "${AUTOREV}"</div>
+<div>SRCREV_xerrors =3D "${AUTOREV}"</div>
+<div>&nbsp;</div>
+<div>LICENSE =3D "MIT"</div>
+<div>LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade6=
+98e0bcf8506ecda2f7b4f302"</div>
+<div>&nbsp;</div>
+<div>inherit go</div>
+<div>GO_IMPORT =3D "golang.org/x"</div>
+<div>---------------------------------------------</div>
+<div>&nbsp;</div>
+<div>Thanks,</div>
+<div>&nbsp;</div>
+<div>Mike Thompson</div>
+
+--XjhiMQM1PzqtbOidRn6b--
