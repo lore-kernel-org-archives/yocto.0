@@ -1,229 +1,67 @@
-Subject: Re: Yocto recipe for Tailscale #yocto #golang
-To: yocto@lists.yoctoproject.org
-From: "Mike Thompson" <mthompson@dustyrobotics.com>
-X-Originating-Location: US (157.22.13.92)
-X-Originating-Platform: Linux Chrome 85
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+ by mx.groups.io with SMTP id smtpd.web10.4310.1600485020812912420
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 18 Sep 2020 20:10:21 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=KVFxoJAt;
+ spf=pass (domain: gmail.com, ip: 209.85.219.47, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-qv1-f47.google.com with SMTP id q10so4089251qvs.1
+        for <yocto@lists.yoctoproject.org>; Fri, 18 Sep 2020 20:10:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PnJ850L3tFBjhuGFLJdX6WPhBaEC3l3MQ7GoQw3wISE=;
+        b=KVFxoJAtk30I+wcuYR00Po26ihqHY3opa0aV6FffwhODahl1IHjTpA3nJy2FVWxVpy
+         G5sCcCtTiI7uLKYZ24ObAMRtgDqbYonds8RaSnK1hLPion6THk1I8/lbDDY2gH7sNsK8
+         UT0nb/0QSgEUjmWfCjYySAcGgHHHsCALckmi1wU2QDH6zaqdfB1YFTkEX+jw6t1WcvC6
+         M8gq5CtGYL91MettaM2fNDeHQz588yQl9gsxEubO/udkRdT2a+gg2T8YGqxpAxhV61+M
+         dYx3iI/TQKznWN+PpTN9OzxwpoiNWJT9XLKbBXRum1JcjSPz/yktPimsxJwYhlG/1nuo
+         Zvbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PnJ850L3tFBjhuGFLJdX6WPhBaEC3l3MQ7GoQw3wISE=;
+        b=C/4Iov4By5cRM6dHmTzz5sOlbJcfMXYK9cxK1PXOEFj7+rP3z19sx89aSdMhYMIYOY
+         0rjEhGVvTytwkqFRg5eLX+fQsR4B3gobzmBapekYk5j0ffI21zV4v5CQEpImq0Xdi1KH
+         9yaRScz4dEfBQWPvDJox+kIKqwU5dIX4EuwgSrYLIlsYQj3awp6GqB+ejuLg5x2oNLTt
+         eIcCG74HJogX4VQu5M12SKCuhkSCxk4xB0jRUM4jkO3fHiArejiokAO+pStovXWS+rYI
+         gVaOotVxa8dQp7v7TLQJVwgLgbbh2HJZy1unDsw31vIBb4B3K1Mr2F84ndd3/8bJ8vot
+         c0wA==
+X-Gm-Message-State: AOAM530iQxygzfw2g6M/Rq7jmr1XHQ18Vo8KOWrq8d9/e4gOSOamLaVs
+	TGibb++XBx8LFib+qLI9+60DjYCDaypG8NfOBcE=
+X-Google-Smtp-Source: ABdhPJxzTeD87vfQn61gdlK+lgkV9tXXH+C4WOypjRM1VUfxnTIW3KDWIqpVcd6nKoA3fBhpp5YswPDyeU9CDq1hh2Y=
+X-Received: by 2002:a05:6214:9c3:: with SMTP id dp3mr19985225qvb.37.1600485019691;
+ Fri, 18 Sep 2020 20:10:19 -0700 (PDT)
 MIME-Version: 1.0
-Date: Fri, 18 Sep 2020 16:46:59 -0700
-References: <554d231986639cbe9b6a77c36b41a9947e0458a3.camel@delisys.ch>
-In-Reply-To: <554d231986639cbe9b6a77c36b41a9947e0458a3.camel@delisys.ch>
-Message-ID: <23477.1600472819113950080@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="Kcm5Ci6tgi0zMJSa3WpN"
+References: <CAMKF1soA8avt3X2CUY7M29aEo5dJZ2enUnEyOYK1Yq1eK9Deew@mail.gmail.com>
+ <19470.1600452249763974200@lists.yoctoproject.org>
+In-Reply-To: <19470.1600452249763974200@lists.yoctoproject.org>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Sat, 19 Sep 2020 05:10:08 +0200
+Message-ID: <CAGAf8Ly1TKgL5JLo41Bi7MKp-TosaRCFr1NMa3DaL5HBMkX=Bg@mail.gmail.com>
+Subject: Re: [yocto] #yocto systemd not able to start sshd after a reboot
+To: srijan.nandi@gmail.com
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
---Kcm5Ci6tgi0zMJSa3WpN
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hello Srijan,
 
-OK, I'm making some progress a Bitbake recipe for the Tailscale client buil=
-t using Go from various samples I found in the OpenEmbedded layers.
+Did you recap/look into this sshd.service file?
+https://lists.yoctoproject.org/g/yocto/message/49993
 
-However, I'm running into import issues during compilation and I'm hoping =
-a person familiar with Go might be able to provide some hints. From what I =
-can tell, Go packages to are allowed to declare that they must be imported =
-using a specific name ( https://golang.org/cmd/go/#hdr-Import_path_checking=
- ) and it seems that declaration is included in the Tailscale source code.
+Zoran
+_______
 
-Is there a way to craft the Bitbake recipe to honor that requirement for t=
-he Tailscale Go source code?
-
-Currently, my Bitbake recipe for Tailscale looks as shown below.
-
-tailscale_1.0.5.bb
------------------------------------------------------------------
-SUMMARY =3D "Tailscale client and daemon for Linux"
-HOMEPAGE =3D "github.com/tailscale/tailscale"
-LICENSE =3D "DWTFYW"
-LIC_FILES_CHKSUM =3D "file://src/${GO_IMPORT}/LICENSE;md5=3Dd995c1c4452985=
-6a0f35a5ad43e51cc5"
-
-GO_IMPORT =3D "github.com/tailscale/tailscale"
-SRC_URI =3D "git://${GO_IMPORT};nobranch=3D1;tag=3Dv${PV}"
-
-inherit go
-
-GO_INSTALL =3D "${GO_IMPORT}/cmd/tailscale"
-
-RDEPENDS_${PN}-dev +=3D "bash"
------------------------------------------------------------------
-
-The Bitbake output with the import error is below:
-
------------------------------------------------------------------
-$ bitbake tailscale
-...
-NOTE: Executing Tasks
-ERROR: tailscale-1.0.5-r0 do_compile: Execution of '/home/mike/Development=
-/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5=
--r0/temp/run.do_compile.10615' failed with exit code 1:
-can't load package: package github.com/tailscale/tailscale/cmd/tailscale: =
-code in directory /home/mike/Development/markbot_linux/build_markbot/tmp/wo=
-rk/corei7-64-dusty-linux/tailscale/1.0.5-r0/build/src/github.com/tailscale/=
-tailscale/cmd/tailscale expects import "tailscale.com/cmd/tailscale"
-can't load package: package .: no Go files in /home/mike/Development/markb=
-ot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/bu=
-ild
-WARNING: exit code 1 from a shell command.
-
-ERROR: Logfile of failure stored in: /home/mike/Development/markbot_linux/=
-build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/temp/log.do=
-_compile.10615
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| can't load package: package github.com/tailscale/tailscale/cmd/tailscale=
-: code in directory /home/mike/Development/markbot_linux/build_markbot/tmp/=
-work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build/src/github.com/tailscal=
-e/tailscale/cmd/tailscale expects import "tailscale.com/cmd/tailscale"
-| can't load package: package .: no Go files in /home/mike/Development/mar=
-kbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/=
-build
-| WARNING: exit code 1 from a shell command.
-| ERROR: Execution of '/home/mike/Development/markbot_linux/build_markbot/=
-tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/temp/run.do_compile.10615=
-' failed with exit code 1:
-| can't load package: package github.com/tailscale/tailscale/cmd/tailscale=
-: code in directory /home/mike/Development/markbot_linux/build_markbot/tmp/=
-work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build/src/github.com/tailscal=
-e/tailscale/cmd/tailscale expects import "tailscale.com/cmd/tailscale"
-| can't load package: package .: no Go files in /home/mike/Development/mar=
-kbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/=
-build
-| WARNING: exit code 1 from a shell command.
-|
-ERROR: Task (/home/mike/Development/markbot_linux/sources/meta-markbot/rec=
-ipes-tailscale/tailscale/tailscale_1.0.5.bb:do_compile) failed with exit co=
-de '1'
-NOTE: Tasks Summary: Attempted 2253 tasks of which 2245 didn't need to be =
-rerun and 1 failed.
------------------------------------------------------------------
-
-Thanks,
-
-Mike Thompson
-
---Kcm5Ci6tgi0zMJSa3WpN
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>OK, I'm making some progress a Bitbake recipe for the Tailscale client=
- built using Go from various samples I found in the OpenEmbedded layers.</d=
-iv>
-<div>&nbsp;</div>
-<div>However, I'm running into import issues during compilation and I'm ho=
-ping a person familiar with Go might be able to provide some hints.&nbsp;<s=
-pan style=3D"color: #242729; font-family: Arial, 'Helvetica Neue', Helvetic=
-a, sans-serif; font-size: 15px;">From what I can tell, Go packages to are a=
-llowed to&nbsp;</span><a style=3D"box-sizing: inherit; background-color: #f=
-fffff; color: var(--blue-700); text-decoration-line: underline; margin: 0px=
-; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-ea=
-st-asian: inherit; font-stretch: inherit; line-height: inherit; font-family=
-: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 15px; vertical=
--align: baseline; cursor: pointer;" href=3D"https://golang.org/cmd/go/#hdr-=
-Import_path_checking" rel=3D"nofollow noreferrer">declare that they must be=
- imported using a specific name</a><span style=3D"color: #242729; font-fami=
-ly: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 15px;">&nbsp=
-;and it seems that declaration is included in the Tailscale source code.</s=
-pan></div>
-<div>
-<div style=3D"line-height: 1.42857;">&nbsp;</div>
-<div style=3D"line-height: 1.42857;"><span style=3D"color: #242729; font-f=
-amily: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 15px;">Is=
- there a way to craft the Bitbake recipe to honor that requirement for the =
-Tailscale Go source code?</span></div>
-</div>
-<div>&nbsp;</div>
-<div>Currently, my Bitbake recipe for Tailscale looks as shown below.&nbsp=
-;&nbsp;</div>
-<div>&nbsp;</div>
-<div>tailscale_1.0.5.bb</div>
-<div>-----------------------------------------------------------------</di=
-v>
-<div>SUMMARY =3D "Tailscale client and daemon for Linux"</div>
-<div>HOMEPAGE =3D "github.com/tailscale/tailscale"</div>
-<div>LICENSE =3D "DWTFYW"</div>
-<div>LIC_FILES_CHKSUM =3D "file://src/${GO_IMPORT}/LICENSE;md5=3Dd995c1c44=
-529856a0f35a5ad43e51cc5"</div>
-<div>&nbsp;</div>
-<div>GO_IMPORT =3D "github.com/tailscale/tailscale"</div>
-<div>SRC_URI =3D "git://${GO_IMPORT};nobranch=3D1;tag=3Dv${PV}"</div>
-<div>&nbsp;</div>
-<div>inherit go</div>
-<div>&nbsp;</div>
-<div>GO_INSTALL =3D "${GO_IMPORT}/cmd/tailscale"</div>
-<div>&nbsp;</div>
-<div>RDEPENDS_${PN}-dev +=3D "bash"</div>
-<div>-----------------------------------------------------------------</di=
-v>
-<div>&nbsp;</div>
-<div>The Bitbake output with the import error is below:</div>
-<div>&nbsp;</div>
-<div>
-<div style=3D"line-height: 1.42857;">-------------------------------------=
-----------------------------</div>
-<div style=3D"line-height: 1.42857;">
-<div style=3D"line-height: 1.42857;">
-<div style=3D"line-height: 1.42857;">$ bitbake tailscale</div>
-<div style=3D"line-height: 1.42857;">...</div>
-<div style=3D"line-height: 1.42857;">NOTE: Executing Tasks</div>
-<div style=3D"line-height: 1.42857;">ERROR: tailscale-1.0.5-r0 do_compile:=
- Execution of '/home/mike/Development/markbot_linux/build_markbot/tmp/work/=
-corei7-64-dusty-linux/tailscale/1.0.5-r0/temp/run.do_compile.10615' failed =
-with exit code 1:</div>
-<div style=3D"line-height: 1.42857;">can't load package: package github.co=
-m/tailscale/tailscale/cmd/tailscale: code in directory /home/mike/Developme=
-nt/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0=
-.5-r0/build/src/github.com/tailscale/tailscale/cmd/tailscale expects import=
- "tailscale.com/cmd/tailscale"</div>
-<div style=3D"line-height: 1.42857;">can't load package: package .: no Go =
-files in /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7=
--64-dusty-linux/tailscale/1.0.5-r0/build</div>
-<div style=3D"line-height: 1.42857;">WARNING: exit code 1 from a shell com=
-mand.</div>
-<div style=3D"line-height: 1.42857;">&nbsp;</div>
-<div style=3D"line-height: 1.42857;">ERROR: Logfile of failure stored in: =
-/home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty=
--linux/tailscale/1.0.5-r0/temp/log.do_compile.10615</div>
-<div style=3D"line-height: 1.42857;">Log data follows:</div>
-<div style=3D"line-height: 1.42857;">| DEBUG: Executing shell function do_=
-compile</div>
-<div style=3D"line-height: 1.42857;">| can't load package: package github.=
-com/tailscale/tailscale/cmd/tailscale: code in directory /home/mike/Develop=
-ment/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1=
-.0.5-r0/build/src/github.com/tailscale/tailscale/cmd/tailscale expects impo=
-rt "tailscale.com/cmd/tailscale"</div>
-<div style=3D"line-height: 1.42857;">| can't load package: package .: no G=
-o files in /home/mike/Development/markbot_linux/build_markbot/tmp/work/core=
-i7-64-dusty-linux/tailscale/1.0.5-r0/build</div>
-<div style=3D"line-height: 1.42857;">| WARNING: exit code 1 from a shell c=
-ommand.</div>
-<div style=3D"line-height: 1.42857;">| ERROR: Execution of '/home/mike/Dev=
-elopment/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailsca=
-le/1.0.5-r0/temp/run.do_compile.10615' failed with exit code 1:</div>
-<div style=3D"line-height: 1.42857;">| can't load package: package github.=
-com/tailscale/tailscale/cmd/tailscale: code in directory /home/mike/Develop=
-ment/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1=
-.0.5-r0/build/src/github.com/tailscale/tailscale/cmd/tailscale expects impo=
-rt "tailscale.com/cmd/tailscale"</div>
-<div style=3D"line-height: 1.42857;">| can't load package: package .: no G=
-o files in /home/mike/Development/markbot_linux/build_markbot/tmp/work/core=
-i7-64-dusty-linux/tailscale/1.0.5-r0/build</div>
-<div style=3D"line-height: 1.42857;">| WARNING: exit code 1 from a shell c=
-ommand.</div>
-<div style=3D"line-height: 1.42857;">|&nbsp;</div>
-<div style=3D"line-height: 1.42857;">ERROR: Task (/home/mike/Development/m=
-arkbot_linux/sources/meta-markbot/recipes-tailscale/tailscale/tailscale_1.0=
-.5.bb:do_compile) failed with exit code '1'</div>
-<div style=3D"line-height: 1.42857;">NOTE: Tasks Summary: Attempted 2253 t=
-asks of which 2245 didn't need to be rerun and 1 failed.</div>
-<div>-----------------------------------------------------------------</di=
-v>
-</div>
-<div style=3D"line-height: 1.42857;">&nbsp;</div>
-<div style=3D"line-height: 1.42857;">Thanks,</div>
-<div style=3D"line-height: 1.42857;">&nbsp;</div>
-<div style=3D"line-height: 1.42857;">Mike Thompson</div>
-<div style=3D"line-height: 1.42857;">&nbsp;</div>
-</div>
-</div>
-
---Kcm5Ci6tgi0zMJSa3WpN--
+On Fri, Sep 18, 2020 at 8:07 PM <srijan.nandi@gmail.com> wrote:
+>
+> Hello Khem,
+>
+> With the above sshd.service file the sshd daemon fails to start. It gives an error "(code=exited, status=203/EXEC)".
+>
+> Cannot figure out as to why the systemd for sshd fails to work, while the other systemd files are working perfectly fine.
+>
+> -=Srijan Nandi
+> 
+>
