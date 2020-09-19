@@ -1,67 +1,138 @@
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
- by mx.groups.io with SMTP id smtpd.web10.4310.1600485020812912420
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+ by mx.groups.io with SMTP id smtpd.web12.6357.1600495456969399431
  for <yocto@lists.yoctoproject.org>;
- Fri, 18 Sep 2020 20:10:21 -0700
+ Fri, 18 Sep 2020 23:04:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=KVFxoJAt;
- spf=pass (domain: gmail.com, ip: 209.85.219.47, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-qv1-f47.google.com with SMTP id q10so4089251qvs.1
-        for <yocto@lists.yoctoproject.org>; Fri, 18 Sep 2020 20:10:20 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=frgFVEwc;
+ spf=pass (domain: gmail.com, ip: 209.85.215.170, mailfrom: raj.khem@gmail.com)
+Received: by mail-pg1-f170.google.com with SMTP id k14so4728394pgi.9
+        for <yocto@lists.yoctoproject.org>; Fri, 18 Sep 2020 23:04:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PnJ850L3tFBjhuGFLJdX6WPhBaEC3l3MQ7GoQw3wISE=;
-        b=KVFxoJAtk30I+wcuYR00Po26ihqHY3opa0aV6FffwhODahl1IHjTpA3nJy2FVWxVpy
-         G5sCcCtTiI7uLKYZ24ObAMRtgDqbYonds8RaSnK1hLPion6THk1I8/lbDDY2gH7sNsK8
-         UT0nb/0QSgEUjmWfCjYySAcGgHHHsCALckmi1wU2QDH6zaqdfB1YFTkEX+jw6t1WcvC6
-         M8gq5CtGYL91MettaM2fNDeHQz588yQl9gsxEubO/udkRdT2a+gg2T8YGqxpAxhV61+M
-         dYx3iI/TQKznWN+PpTN9OzxwpoiNWJT9XLKbBXRum1JcjSPz/yktPimsxJwYhlG/1nuo
-         Zvbg==
+        h=subject:to:references:from:organization:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ZSjez374oo4fNdmHL2jNLKNpYSeDEfrar5aXtEGNjDw=;
+        b=frgFVEwcGGPecOSF4mcBgOfd55aIuoffPpZJ1m7tLFV+4Ld5jpmIwySbgIcnMmj2aD
+         W/0e/zBQMUhhYY9brZL7hXdJJfkCoOvHIaTZSLQBWrRzBlz4bHsWCsOqM+ohYhBjmp9n
+         6wBuxsEw1Daqf8zEmGN+LnD43Bg7ECojh10YweJifrdfhxVLCt2wWtxhqb5rzJ8G8pkN
+         E6lyVYLeEMlQuXt93EPwwvecREW24eHYfaT/dQwl/d2IjQe+vCzskciMvnccMHyk+XcV
+         Jqxsui7/oIGpotp7i7C8HP2+qQlEBX7JaUloQLdcfqBG/jo3xTqAy8x9fkXZ5U152Xa5
+         rODg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PnJ850L3tFBjhuGFLJdX6WPhBaEC3l3MQ7GoQw3wISE=;
-        b=C/4Iov4By5cRM6dHmTzz5sOlbJcfMXYK9cxK1PXOEFj7+rP3z19sx89aSdMhYMIYOY
-         0rjEhGVvTytwkqFRg5eLX+fQsR4B3gobzmBapekYk5j0ffI21zV4v5CQEpImq0Xdi1KH
-         9yaRScz4dEfBQWPvDJox+kIKqwU5dIX4EuwgSrYLIlsYQj3awp6GqB+ejuLg5x2oNLTt
-         eIcCG74HJogX4VQu5M12SKCuhkSCxk4xB0jRUM4jkO3fHiArejiokAO+pStovXWS+rYI
-         gVaOotVxa8dQp7v7TLQJVwgLgbbh2HJZy1unDsw31vIBb4B3K1Mr2F84ndd3/8bJ8vot
-         c0wA==
-X-Gm-Message-State: AOAM530iQxygzfw2g6M/Rq7jmr1XHQ18Vo8KOWrq8d9/e4gOSOamLaVs
-	TGibb++XBx8LFib+qLI9+60DjYCDaypG8NfOBcE=
-X-Google-Smtp-Source: ABdhPJxzTeD87vfQn61gdlK+lgkV9tXXH+C4WOypjRM1VUfxnTIW3KDWIqpVcd6nKoA3fBhpp5YswPDyeU9CDq1hh2Y=
-X-Received: by 2002:a05:6214:9c3:: with SMTP id dp3mr19985225qvb.37.1600485019691;
- Fri, 18 Sep 2020 20:10:19 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=ZSjez374oo4fNdmHL2jNLKNpYSeDEfrar5aXtEGNjDw=;
+        b=FV8ZnemigbDhbUrBHtJevsTC+QWiOG6Wc+CYXBUmq/cxw76cMHLnegc8Omqy2U2QoM
+         vB9ElSDilQL2jR4nw6Jef9iLQs6HTvaLJy/xnsF91/g3qwg6nyGxKi7z9SbytrwY6vGr
+         2dDibMSHEiCcWZ96dYHR6jX7KCFYmlMT1YBbyyQb1e04a/i7QMGCJ8p682TBuj7YGyVf
+         sEg/7/5PIzHkmiSRs27+CNX2feLEUZlAt+JwbeigYL5GojQNYN81kZ5pAxr/P1FjpjsD
+         PfRZLE1HxlPmXE1LCvW7jlOrytNjwFguZMZYqXeWmB/wl8D4vO7G+KCa9b2IzSlq+Bwx
+         OCug==
+X-Gm-Message-State: AOAM530uTGVf4VKaBgcaQlAvzb1nAM8+0gsQpZkeS12XovY1F3sMAYdU
+	CjmpLSTCKE3I+FVBErSsuCy5STYHLua7jg==
+X-Google-Smtp-Source: ABdhPJw/Ga+NbNL+3Hd/YU/vdEQ2AhFpPUX3XyH3DrUrlM+mq6JHm1sFjLeqdt1oShEzUGhj36Fumw==
+X-Received: by 2002:a63:f70e:: with SMTP id x14mr29502605pgh.407.1600495455804;
+        Fri, 18 Sep 2020 23:04:15 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:4e0:8d7e:79c0:27e5:7d4? ([2601:646:9200:4e0:8d7e:79c0:27e5:7d4])
+        by smtp.gmail.com with ESMTPSA id h1sm4461112pji.52.2020.09.18.23.04.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Sep 2020 23:04:15 -0700 (PDT)
+Subject: Re: [yocto] Yocto recipe for Tailscale #yocto #golang
+To: mthompson@dustyrobotics.com, yocto@lists.yoctoproject.org
+References: <554d231986639cbe9b6a77c36b41a9947e0458a3.camel@delisys.ch>
+ <23477.1600472819113950080@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <8132db85-5881-636e-c091-d84c47efe4fe@gmail.com>
+Date: Fri, 18 Sep 2020 23:04:14 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.2.2
 MIME-Version: 1.0
-References: <CAMKF1soA8avt3X2CUY7M29aEo5dJZ2enUnEyOYK1Yq1eK9Deew@mail.gmail.com>
- <19470.1600452249763974200@lists.yoctoproject.org>
-In-Reply-To: <19470.1600452249763974200@lists.yoctoproject.org>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Sat, 19 Sep 2020 05:10:08 +0200
-Message-ID: <CAGAf8Ly1TKgL5JLo41Bi7MKp-TosaRCFr1NMa3DaL5HBMkX=Bg@mail.gmail.com>
-Subject: Re: [yocto] #yocto systemd not able to start sshd after a reboot
-To: srijan.nandi@gmail.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <23477.1600472819113950080@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 
-Hello Srijan,
 
-Did you recap/look into this sshd.service file?
-https://lists.yoctoproject.org/g/yocto/message/49993
 
-Zoran
-_______
+On 9/18/20 4:46 PM, Mike Thompson via lists.yoctoproject.org wrote:
+> OK, I'm making some progress a Bitbake recipe for the Tailscale client 
+> built using Go from various samples I found in the OpenEmbedded layers.
+> However, I'm running into import issues during compilation and I'm 
+> hoping a person familiar with Go might be able to provide some hints. 
+>  From what I can tell, Go packages to are allowed to declare that they 
+> must be imported using a specific name 
+> <https://golang.org/cmd/go/#hdr-Import_path_checking> and it seems that 
+> declaration is included in the Tailscale source code.
+> Is there a way to craft the Bitbake recipe to honor that requirement for 
+> the Tailscale Go source code?
+> Currently, my Bitbake recipe for Tailscale looks as shown below.
+> tailscale_1.0.5.bb
+> -----------------------------------------------------------------
+> SUMMARY = "Tailscale client and daemon for Linux"
+> HOMEPAGE = "github.com/tailscale/tailscale"
+> LICENSE = "DWTFYW"
+> LIC_FILES_CHKSUM = 
+> "file://src/${GO_IMPORT}/LICENSE;md5=d995c1c44529856a0f35a5ad43e51cc5"
+> GO_IMPORT = "github.com/tailscale/tailscale"
+> SRC_URI = "git://${GO_IMPORT};nobranch=1;tag=v${PV}"
+> inherit go
+> GO_INSTALL = "${GO_IMPORT}/cmd/tailscale"
+> RDEPENDS_${PN}-dev += "bash"
+> -----------------------------------------------------------------
+> The Bitbake output with the import error is below:
+> -----------------------------------------------------------------
+> $ bitbake tailscale
+> ...
+> NOTE: Executing Tasks
+> ERROR: tailscale-1.0.5-r0 do_compile: Execution of 
+> '/home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/temp/run.do_compile.10615' 
+> failed with exit code 1:
+> can't load package: package 
+> github.com/tailscale/tailscale/cmd/tailscale: code in directory 
+> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build/src/github.com/tailscale/tailscale/cmd/tailscale 
+> expects import "tailscale.com/cmd/tailscale"
+> can't load package: package .: no Go files in 
+> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build
+> WARNING: exit code 1 from a shell command.
+> ERROR: Logfile of failure stored in: 
+> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/temp/log.do_compile.10615
+> Log data follows:
+> | DEBUG: Executing shell function do_compile
+> | can't load package: package 
+> github.com/tailscale/tailscale/cmd/tailscale: code in directory 
+> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build/src/github.com/tailscale/tailscale/cmd/tailscale 
+> expects import "tailscale.com/cmd/tailscale"
+> | can't load package: package .: no Go files in 
+> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build
+> | WARNING: exit code 1 from a shell command.
+> | ERROR: Execution of 
+> '/home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/temp/run.do_compile.10615' 
+> failed with exit code 1:
+> | can't load package: package 
+> github.com/tailscale/tailscale/cmd/tailscale: code in directory 
+> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build/src/github.com/tailscale/tailscale/cmd/tailscale 
+> expects import "tailscale.com/cmd/tailscale"
+> | can't load package: package .: no Go files in 
+> /home/mike/Development/markbot_linux/build_markbot/tmp/work/corei7-64-dusty-linux/tailscale/1.0.5-r0/build
+> | WARNING: exit code 1 from a shell command.
+> |
+> ERROR: Task 
+> (/home/mike/Development/markbot_linux/sources/meta-markbot/recipes-tailscale/tailscale/tailscale_1.0.5.bb:do_compile) 
+> failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 2253 tasks of which 2245 didn't need to 
+> be rerun and 1 failed.
+> -----------------------------------------------------------------
+> Thanks,
+> Mike Thompson
 
-On Fri, Sep 18, 2020 at 8:07 PM <srijan.nandi@gmail.com> wrote:
->
-> Hello Khem,
->
-> With the above sshd.service file the sshd daemon fails to start. It gives an error "(code=exited, status=203/EXEC)".
->
-> Cannot figure out as to why the systemd for sshd fails to work, while the other systemd files are working perfectly fine.
->
-> -=Srijan Nandi
+
+perhaps you need to inherit go-mod as well, if its using modules.
+
 > 
->
+> 
+> 
+> 
