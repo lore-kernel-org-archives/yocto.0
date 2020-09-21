@@ -1,64 +1,67 @@
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by mx.groups.io with SMTP id smtpd.web11.33962.1600657897880018675
- for <yocto@lists.yoctoproject.org>;
- Sun, 20 Sep 2020 20:11:38 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.93, mailfrom: naveen.kumar.saini@intel.com)
-IronPort-SDR: TXGrWJguzkS7p/h1AUvDA1yf0BlobKnM81eHZkeWxGWnKx60KK65qv7iJn6iL166TXpAlmPY/U
- rpG2L/wKPVzQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9750"; a="157682598"
-X-IronPort-AV: E=Sophos;i="5.77,285,1596524400"; 
-   d="scan'208";a="157682598"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Sep 2020 20:11:34 -0700
-IronPort-SDR: YlvJ4uO2pEZscXdjpbR+Kqq39HeV11xpRY6LhBahwfRXZ6ebkbYSPkXQAwgsTCvdxFbaY9c4ww
- dQeQ9uVB1u2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,285,1596524400"; 
-   d="scan'208";a="411936675"
-Received: from andromeda02.png.intel.com ([10.221.183.11])
-  by fmsmga001.fm.intel.com with ESMTP; 20 Sep 2020 20:11:33 -0700
-From: "Naveen Saini" <naveen.kumar.saini@intel.com>
+Subject: Can't found the zip.h during bitbake #yocto #devtool
 To: yocto@lists.yoctoproject.org
-Subject: [meta-zephyr][PATCH] README.txt: update doc
-Date: Mon, 21 Sep 2020 11:11:31 +0800
-Message-Id: <20200921031131.35919-1-naveen.kumar.saini@intel.com>
-X-Mailer: git-send-email 2.27.0
+From: "Jaymin Dabhi" <jaymin.dabhi@vivaldi.net>
+X-Originating-Location: Ghaziabad, Uttar Pradesh, IN (14.99.145.142)
+X-Originating-Platform: Linux Chrome 85
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Date: Mon, 21 Sep 2020 00:40:40 -0700
+Message-ID: <x65f.1600674040918174696.8JJ1@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="H542m18zQmKcXPjD5cCw"
 
-Add python dependencies.
+--H542m18zQmKcXPjD5cCw
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
----
- README.txt | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+Team,
 
-diff --git a/README.txt b/README.txt
-index 208843b..be1ea39 100644
---- a/README.txt
-+++ b/README.txt
-@@ -8,11 +8,17 @@ https://wiki.yoctoproject.org/wiki/TipsAndTricks/BuildingZephyrImages
- Prerequisites:
- ==============
- 
--Yocto distro (master)"
-+This layer depends on:
-+    Yocto distro (master)
-+        git://git.yoctoproject.org/poky
-+    Python layer (meta-openembedded/meta-python)
-+        git://git.openembedded.org/meta-openembedded
- 
- Modify local conf by adding:
-     DISTRO="zephyr"
- 
-+Add "meta-openembedded/meta-oe" to BBLAYERS
-+Add "meta-openembedded/meta-python" to BBLAYERS
- Add "meta-zephyr" to BBLAYERS
- 
- Building and Running Zephyr Samples
--- 
-2.27.0
+I need to include zip.h header file in one of my C code (#include <zip.h>)=
+.
+I have created a .bb file and added following command for compilation:
 
+>=20
+> ${CC} -Wall -I/usr/include/libxml2 -o my_code my_code.c -lxml2 -lzip -lz
+
+But, during bitbake it says:
+
+>=20
+> | In file included from fota_update.c:1:0:
+> | fota_update.h:5:17: fatal error: zip.h: No such file or directory
+> |=C2=A0 #include <zip.h>
+> |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^
+> | compilation terminated.
+>=20
+
+Using the same compilation command, I am able to compile the code on my PC=
+. But, can't compile with Yocto.
+
+I have tried with lzip and zip packages by adding into local.conf, but did=
+n't work.
+
+Which zip package I need to use for including the zip.h header file?
+
+--H542m18zQmKcXPjD5cCw
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Team,<br /><br />I need to include zip.h header file in one of my C code (#=
+include &lt;zip.h&gt;).<br />I have created a .bb file and added following =
+command for compilation:<br />
+<blockquote>${CC} -Wall -I/usr/include/libxml2 -o my_code my_code.c -lxml2=
+ -lzip -lz</blockquote>
+But, during bitbake it says:<br /><br />
+<blockquote>
+<div>| In file included from fota_update.c:1:0:</div>
+<div>| fota_update.h:5:17: fatal error: zip.h: No such file or directory</=
+div>
+<div>|&nbsp; #include &lt;zip.h&gt;</div>
+<div>|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^</di=
+v>
+<div>| compilation terminated.</div>
+</blockquote>
+<div>Using the same compilation command, I am able to compile the code on =
+my PC. But, can't compile with Yocto.<br /><br />I have tried with lzip and=
+ zip packages by adding into local.conf, but didn't work.<br /><br />Which =
+zip package I need to use for including the zip.h header file?</div>
+
+--H542m18zQmKcXPjD5cCw--
