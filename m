@@ -1,80 +1,77 @@
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
- by mx.groups.io with SMTP id smtpd.web10.52166.1600723296109824095
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.52923.1600724815189561876
  for <yocto@lists.yoctoproject.org>;
- Mon, 21 Sep 2020 14:21:36 -0700
+ Mon, 21 Sep 2020 14:46:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=jORs7O9U;
- spf=pass (domain: gmail.com, ip: 209.85.219.49, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f49.google.com with SMTP id p15so8281901qvk.5
-        for <yocto@lists.yoctoproject.org>; Mon, 21 Sep 2020 14:21:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uE5dMRON1sos1ZVoukPjRrFxlaVPEB12QhmoZsW8ZMI=;
-        b=jORs7O9UwWf6ycJg/X7kuW8BpJJwqA02i192el9z57Wb8U605lf7cYtZpHVkbhT7LM
-         iFt4zcKIcxuisHsqKQfphkLNLs6JhmANfQ9gvMK76dFqXTe4Wlnufk8iMxr82thESpFo
-         WyuTJgMOj4c6FUXlXflss0Kf92DpaG2TQJM2mDKTFJrtscm0nSiJq16Bf2oIk8FQVjXp
-         MEeFxlX19ejdkU/YYz0fn2ld53w5pquxyUGydJpcE8mJBjoNkhf5zYG0qMn1F/fPMVcH
-         Pc7rEah7KjsP3PKRyIbs6Iy0s6/sJHGAMw46vJp9fLJ0wBNXlB1zpBjetWtQg1UEl2nP
-         p8+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uE5dMRON1sos1ZVoukPjRrFxlaVPEB12QhmoZsW8ZMI=;
-        b=K6pF5Vlmn/uoY4OtMqrBduF4azFc0uR+UMIVxdK5dA/awWby/t2hPCPmMjPK6YbSSQ
-         Bop0jmTABVh+DbGi3ez8OqcNDeotSwIGHMwcW0Qh/1r25mHiKieAPpGgUdHA3rZbWSsF
-         4EvM1Ej1+Ig2O2bP76FhqcCGBroyO8+ZUFcKnRCcWk3iahMfw8JJbVPqlgVg+saG/6FD
-         Dgflj2/iFxan4yXRcckf0Qrr5Tygs9kj/ijOdiQccdztA9kQCFu19pFGTACyq/86lMSZ
-         YO8SZ/IEezpcrSzsfv+R02/DdpC24/rrGd9eZuxUr2ltbZu6tgWoKgeGegocnwShB93W
-         lb8Q==
-X-Gm-Message-State: AOAM533caAmmC3MhfbDGmFJGsoMIuXPCz5jlqyQZFbA5dcIYO6N4TADP
-	H2YBvtNN58RQ/rKJ6ohgZ8sYPR9c7IkJFfEYIlM=
-X-Google-Smtp-Source: ABdhPJwLWHcsUht6ymYWu/vFty2nFk7OYvMRdtU+FFE9SoTupy9oOkI41iGuCoxJd8U0yCkNuEPpjiSIVb83R3Ix9i0=
-X-Received: by 2002:a0c:e892:: with SMTP id b18mr2202020qvo.5.1600723295178;
- Mon, 21 Sep 2020 14:21:35 -0700 (PDT)
+ dkim=missing; spf=none, err=SPF record not found (domain: sakuraus.com, ip: 198.145.29.25, mailfrom: gwilson@sakuraus.com)
+Received: from outbound-ip28a.ess.barracuda.com (outbound-ip28a.ess.barracuda.com [209.222.82.210])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 2D1B838C12EB
+	for <yocto@yoctoproject.org>; Mon, 21 Sep 2020 14:46:54 -0700 (PDT)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by mx2.us-east-2a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NO); Mon, 21 Sep 2020 21:46:52 +0000
+Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
+ (10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Mon, 21
+ Sep 2020 14:46:51 -0700
+Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
+ ([::1]) with mapi id 15.01.0669.032; Mon, 21 Sep 2020 14:46:51 -0700
+From: "Greg Wilson-Lindberg" <gwilson@sakuraus.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: RDEPENDS problem
+Thread-Topic: RDEPENDS problem
+Thread-Index: AdaQXQorFPK9I51CRFiKRZQEARyBsw==
+Date: Mon, 21 Sep 2020 21:46:51 +0000
+Message-ID: <8db68087bc7e4b248070690947f6eb64@sakuraus.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.5.155]
 MIME-Version: 1.0
-References: <x65f.1600674040918174696.8JJ1@lists.yoctoproject.org>
-In-Reply-To: <x65f.1600674040918174696.8JJ1@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Mon, 21 Sep 2020 14:21:09 -0700
-Message-ID: <CAMKF1soKZu-bmmwtBeA0-zsGJfSSS6nk=PXE=x1=wBWee8RtAQ@mail.gmail.com>
-Subject: Re: [yocto] Can't found the zip.h during bitbake #yocto #devtool
-To: jaymin.dabhi@vivaldi.net
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+X-BESS-ID: 1600724812-893002-1402-200747-1
+X-BESS-VER: 2019.1_20200918.2058
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.20
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.227053 [from 
+	cloudscan22-227.us-east-2b.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+	0.20 BSF_SC0_SA074b         META: Custom Rule SA074b 
+X-BESS-Outbound-Spam-Status: SCORE=0.20 using account:ESS29408 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_SA074b
+X-BESS-BRTS-Status: 1
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Add
 
-DEPENDS += "libzip"
+=A0I have a custom recipe that copies a .so, that libMotors.so calls functi=
+ons in another libcanfestival.so.
 
-in failing recipe ( .bb) file.
+When I first added in the copy of the .so
+I didn't have an RDEPENDS and Yocto printed out an warning listing the pack=
+age that it wanted. I added an RDEPENDS_${PN}=20
+with all of the packages listed, but I'm still getting an error for the fir=
+st libMotors.so:
 
-On Mon, Sep 21, 2020 at 12:40 AM Jaymin Dabhi via
-lists.yoctoproject.org
-<jaymin.dabhi=vivaldi.net@lists.yoctoproject.org> wrote:
->
-> Team,
->
-> I need to include zip.h header file in one of my C code (#include <zip.h>).
-> I have created a .bb file and added following command for compilation:
->
-> ${CC} -Wall -I/usr/include/libxml2 -o my_code my_code.c -lxml2 -lzip -lz
->
-> But, during bitbake it says:
->
-> | In file included from fota_update.c:1:0:
-> | fota_update.h:5:17: fatal error: zip.h: No such file or directory
-> |  #include <zip.h>
-> |                  ^
-> | compilation terminated.
->
-> Using the same compilation command, I am able to compile the code on my PC. But, can't compile with Yocto.
->
-> I have tried with lzip and zip packages by adding into local.conf, but didn't work.
->
-> Which zip package I need to use for including the zip.h header file?
->
-> 
->
+ERROR: userconfig-1.0-r0 do_package_qa: QA Issue: /home/sakura/lib/libMotor=
+s.so.1.0.0 contained in package userconfig requires libcanfestival.so, but =
+no providers found in RDEPENDS_userconfig? [file-rdeps]
+
+In userdepends I added:
+
+RDEPENDS_${PN} +=3D "canfestival libelf libgcrypt pcsc-lite-lib qtbase qtde=
+clarative qtserialport zint"
+
+Package canfestival_3-asc in has:
+
+FILES_${PN} =3D "/usr/lib/libcanfestival.so /usr/lib/libcanfestival_unix.so=
+ /usr/lib/libcanfestival_can_socket.so"
+
+which seems to me like it should satisfy the requirements of the RDEPENDS, =
+but it is not. bitbake initially gave me a warning=20
+that listed canfestival as needing to be added to an RDEPENDS for userconfi=
+g. But now it is saying that it can't figure out
+what package supplies the libcanfestival.so file.
+
+Can someone help me to understand what is going on? How do I explicitly say=
+ that a package supplies a given file?=
