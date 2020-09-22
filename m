@@ -1,155 +1,87 @@
-Received: from 4.mo6.mail-out.ovh.net (4.mo6.mail-out.ovh.net [87.98.184.159])
- by mx.groups.io with SMTP id smtpd.web12.1022.1600750500483749767
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+ by mx.groups.io with SMTP id smtpd.web12.2220.1600756930369266475
  for <yocto@lists.yoctoproject.org>;
- Mon, 21 Sep 2020 21:55:01 -0700
+ Mon, 21 Sep 2020 23:42:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 87.98.184.159, mailfrom: maciej.pijanowski@3mdeb.com)
-Received: from player755.ha.ovh.net (unknown [10.110.115.178])
-	by mo6.mail-out.ovh.net (Postfix) with ESMTP id 79D06227DA7
-	for <yocto@lists.yoctoproject.org>; Tue, 22 Sep 2020 06:54:58 +0200 (CEST)
-Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
-	(Authenticated sender: maciej.pijanowski@3mdeb.com)
-	by player755.ha.ovh.net (Postfix) with ESMTPSA id C5D521673DF9A
-	for <yocto@lists.yoctoproject.org>; Tue, 22 Sep 2020 04:54:57 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-98R002621a37e7-af84-40c8-af2e-aa6e807ae873,
-                    95AFC2FAD2FB182CF8B327B6F57E1D19FBE29F14) smtp.auth=maciej.pijanowski@3mdeb.com
-Subject: Re: [yocto] RDEPENDS problem
-To: yocto@lists.yoctoproject.org
-References: <8db68087bc7e4b248070690947f6eb64@sakuraus.com>
-From: "Maciej Pijanowski" <maciej.pijanowski@3mdeb.com>
-Message-ID: <7b358546-b987-e1ee-dc10-f8f296cafd27@3mdeb.com>
-Date: Tue, 22 Sep 2020 06:54:56 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=S/TCRXtS;
+ spf=pass (domain: gmail.com, ip: 209.85.215.174, mailfrom: raj.khem@gmail.com)
+Received: by mail-pg1-f174.google.com with SMTP id o25so6197584pgm.0
+        for <yocto@lists.yoctoproject.org>; Mon, 21 Sep 2020 23:42:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=to:references:from:organization:subject:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=tbTb7OFfGQDaDOudPHp0kiOilk+kanBT3fttHgJ6CDY=;
+        b=S/TCRXtSQBa3SsreoSRMAyCknGm3UZ1RqTVsYhpVbOGeD+//IxzGUd+w6UKfnncyno
+         eVaxSF48C2jSfLZ+94PUDcqnR//DDIIGe9P0+Bl4LgZ7BEH+7JJ4eOO6noKCcmbk9Fkr
+         C1MN4NpuTNhzMBT0Ewr7QjMLmuDa1oYmAdOnfCKQORPIdc/x7VHkEpwhdqNh7JMvWtIw
+         jlWeBc0CmAdhA7BdZj6q3/+Tu78zoPI4EuMM/95iYpqQdhRN5g33B/hzITAxOH3gfYcN
+         J9XD4FvoM4BhwBX+xQeOPTeKC0vZbY6vYlN7/F2SQR5aTcNI0+zFNS6OHvecINMwOJFD
+         pUWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:references:from:organization:subject
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=tbTb7OFfGQDaDOudPHp0kiOilk+kanBT3fttHgJ6CDY=;
+        b=su69F0BFjYq8tuTOV4vddkDfo3Z3A1oSXECTsJA7KkA84TXnMnHWymFVny5pvCVPsO
+         4b+QtM6lpyOQwK2GKcTlFrnRSOShti2tf1QpkdCmnMhWF1fl1XxuGjExWC5lml1hDyhI
+         6CTg3SBYIzdRKn5YIltk+XRQivVhMV+fDQsYLhaOoDCr4qvZGfzars22RB4A70Zg6qsU
+         vIJJ8gaDhHmdSWxErdfypQbWgG2ydHvMaXvs3qgSNL0NUmQd4iyn3SYegt9WLzuW+0b1
+         GGIFUV7RNlbjK8i5/2EbykjmIjroEzE9Ed1qA93sBGiu1YFEyNbzkxIh4fiU/irr7lu9
+         OYdA==
+X-Gm-Message-State: AOAM533ynUdtS5soGWEgRE5Hy06gCmXPeCtV7UBWqVjGYBR31EjdjYC1
+	ROTAFt054jkJnX4GIfXPxIPS7xzzW3TCrw==
+X-Google-Smtp-Source: ABdhPJws5nQ16aP/BiXj3k8rrtYdA8gH+PWw84cPyNx7Hj9xV5JmXJ+HyW4svqbc/icgaFnCGgFqEw==
+X-Received: by 2002:a62:fc07:0:b029:142:2501:34f5 with SMTP id e7-20020a62fc070000b0290142250134f5mr2924374pfh.78.1600756929231;
+        Mon, 21 Sep 2020 23:42:09 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:4e0:28e0:938b:f1c2:a4a6? ([2601:646:9200:4e0:28e0:938b:f1c2:a4a6])
+        by smtp.gmail.com with ESMTPSA id l14sm1268672pjy.1.2020.09.21.23.42.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Sep 2020 23:42:08 -0700 (PDT)
+To: Matteo Facchinetti <matteo.facchinetti@sirius-es.it>,
+ yocto@lists.yoctoproject.org
+References: <CAAjAsizfFN2RFj-ve2Fx0NPTd9jLSHp1NtShjy_TnUVW7c8yvA@mail.gmail.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Subject: Re: [yocto] preistall package when use a package manager
+Message-ID: <7403e7d6-b6ba-6879-b25a-8919694ca609@gmail.com>
+Date: Mon, 21 Sep 2020 23:42:07 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.2.2
 MIME-Version: 1.0
-In-Reply-To: <8db68087bc7e4b248070690947f6eb64@sakuraus.com>
-X-Ovh-Tracer-Id: 9484862294498618886
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrudefgdeludcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhepuffvfhfhkffffgggjggtsegrtderredtfeehnecuhfhrohhmpeforggtihgvjhcurfhijhgrnhhofihskhhiuceomhgrtghivghjrdhpihhjrghnohifshhkihesfehmuggvsgdrtghomheqnecuggftrfgrthhtvghrnhepjedtjefglefhhedtveeijedtvefhleevtdffhfegtedvgfegtddvheeivdekgeefnecuffhomhgrihhnpehlihgstggrnhhfvghsthhivhgrlhdrshhopdihohgtthhophhrohhjvggtthdrohhrghdpfehmuggvsgdrtghomhenucfkpheptddrtddrtddrtddpkeehrddvvddvrdduudejrddvvddvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeehhedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhg
-Content-Type: multipart/alternative;
- boundary="------------9D0812993F2797E24F6FD897"
-Content-Language: en-US
-
---------------9D0812993F2797E24F6FD897
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAAjAsizfFN2RFj-ve2Fx0NPTd9jLSHp1NtShjy_TnUVW7c8yvA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 
 
-On 21.09.2020 23:46, Greg Wilson-Lindberg wrote:
->  =A0I have a custom recipe that copies a .so, that libMotors.so calls fu=
-nctions in another libcanfestival.so.
->
-> When I first added in the copy of the .so
-> I didn't have an RDEPENDS and Yocto printed out an warning listing the p=
-ackage that it wanted. I added an RDEPENDS_${PN}
-> with all of the packages listed, but I'm still getting an error for the =
-first libMotors.so:
->
-> ERROR: userconfig-1.0-r0 do_package_qa: QA Issue: /home/sakura/lib/libMo=
-tors.so.1.0.0 contained in package userconfig requires libcanfestival.so, b=
-ut no providers found in RDEPENDS_userconfig? [file-rdeps]
->
-> In userdepends I added:
->
-> RDEPENDS_${PN} +=3D "canfestival libelf libgcrypt pcsc-lite-lib qtbase q=
-tdeclarative qtserialport zint"
->
-> Package canfestival_3-asc in has:
->
-> FILES_${PN} =3D "/usr/lib/libcanfestival.so /usr/lib/libcanfestival_unix=
-.so /usr/lib/libcanfestival_can_socket.so"
->
-> which seems to me like it should satisfy the requirements of the RDEPEND=
-S, but it is not. bitbake initially gave me a warning
-> that listed canfestival as needing to be added to an RDEPENDS for userco=
-nfig. But now it is saying that it can't figure out
-> what package supplies the libcanfestival.so file.
->
-> Can someone help me to understand what is going on? How do I explicitly =
-say that a package supplies a given file?
-You could try with PROVIDES:=20
-https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-PR=
-OVIDES
->
->=20
->
---=20
-Maciej Pijanowski
-Embedded Systems Engineer
-GPG: 9963C36AAC3B2B46
-https://3mdeb.com | @3mdeb_com
+
+On 9/21/20 1:28 AM, Matteo Facchinetti wrote:
+> Hi,
+> 
+> I need to preinstall a package in a specific directory in my target image.
+> 
+> In detail I use RPM package manager and I like to include RPM 
+> packages in my target to provide a way to install services only when used.
+> This is useful when you don't have an internet connection.
+> 
+> Is there a way to do this?
+> Opinions are welcome.
+
+it seems you want to bundle unstalled packages ( rpms ) in your 
+firmware, perhaps you can look at adding a ROOTFS_POSTPROCESS_COMMAND 
+and copy the needed packages, but you need to be sure that all 
+dependencies(rpms) are also made available as part of this bundle
+and you have to check this consistency everytime you update firmware
 
 
---------------9D0812993F2797E24F6FD897
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html;
-      charset=3Dwindows-1252">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 21.09.2020 23:46, Greg
-      Wilson-Lindberg wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:8db68087bc7e4b248070690947f6eb64@sakuraus.com">
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-=A0I have a custom recipe that copies a .so, that libMotors.so calls funct=
-ions in another libcanfestival.so.
-
-When I first added in the copy of the .so
-I didn't have an RDEPENDS and Yocto printed out an warning listing the pac=
-kage that it wanted. I added an RDEPENDS_${PN}=20
-with all of the packages listed, but I'm still getting an error for the fi=
-rst libMotors.so:
-
-ERROR: userconfig-1.0-r0 do_package_qa: QA Issue: /home/sakura/lib/libMoto=
-rs.so.1.0.0 contained in package userconfig requires libcanfestival.so, but=
- no providers found in RDEPENDS_userconfig? [file-rdeps]
-
-In userdepends I added:
-
-RDEPENDS_${PN} +=3D "canfestival libelf libgcrypt pcsc-lite-lib qtbase qtd=
-eclarative qtserialport zint"
-
-Package canfestival_3-asc in has:
-
-FILES_${PN} =3D "/usr/lib/libcanfestival.so /usr/lib/libcanfestival_unix.s=
-o /usr/lib/libcanfestival_can_socket.so"
-
-which seems to me like it should satisfy the requirements of the RDEPENDS,=
- but it is not. bitbake initially gave me a warning=20
-that listed canfestival as needing to be added to an RDEPENDS for userconf=
-ig. But now it is saying that it can't figure out
-what package supplies the libcanfestival.so file.
-
-Can someone help me to understand what is going on? How do I explicitly sa=
-y that a package supplies a given file?</pre>
-    </blockquote>
-    You could try with PROVIDES:
-<a class=3D"moz-txt-link-freetext" href=3D"https://www.yoctoproject.org/do=
-cs/latest/ref-manual/ref-manual.html#var-PROVIDES">https://www.yoctoproject=
-.org/docs/latest/ref-manual/ref-manual.html#var-PROVIDES</a><br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:8db68087bc7e4b248070690947f6eb64@sakuraus.com"><br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-
-
-</pre>
-    </blockquote>
-    <pre class=3D"moz-signature" cols=3D"72">--=20
-Maciej Pijanowski
-Embedded Systems Engineer
-GPG: 9963C36AAC3B2B46
-<a class=3D"moz-txt-link-freetext" href=3D"https://3mdeb.com">https://3mde=
-b.com</a> | @3mdeb_com</pre>
-  </body>
-</html>
-
---------------9D0812993F2797E24F6FD897--
+> 
+> Regards,
+> Matteo
+> Sirius Electronic Systems
+> 
+> 
+> 
+> 
