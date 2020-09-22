@@ -1,90 +1,155 @@
-Received: from mail-qv1-f65.google.com (mail-qv1-f65.google.com [209.85.219.65])
- by mx.groups.io with SMTP id smtpd.web11.1437.1600731258277870538
+Received: from 4.mo6.mail-out.ovh.net (4.mo6.mail-out.ovh.net [87.98.184.159])
+ by mx.groups.io with SMTP id smtpd.web12.1022.1600750500483749767
  for <yocto@lists.yoctoproject.org>;
- Mon, 21 Sep 2020 16:34:18 -0700
+ Mon, 21 Sep 2020 21:55:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kudzu-us.20150623.gappssmtp.com header.s=20150623 header.b=hCRUs+7y;
- spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.219.65, mailfrom: jdmason@kudzu.us)
-Received: by mail-qv1-f65.google.com with SMTP id cr8so8506332qvb.10
-        for <yocto@lists.yoctoproject.org>; Mon, 21 Sep 2020 16:34:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kudzu-us.20150623.gappssmtp.com; s=20150623;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=MOrUO1SKYDhsyT3zkS3d8doF81cyA5RxMAXXNExmqpY=;
-        b=hCRUs+7yTSrkJI2jrcRDwMiXoKxX0+1PLgvRmvxp08e72MYwIN+FHX8iJ+wtYHuq2g
-         OB74qaJ79/6rWwQlSG46fqMxwpZg9wo3O1cH5md+iKo7zE+CLIY5Qc9cyzg0CQGsCr9E
-         RcT1Wjwd7veIVmmYgjIWj+COYL6EcPGmb6ut3zVCm6Ew4sXQTi+613M/M4yYhC++vtj1
-         jJe2R2gh3CqNh1FXyzjlXgpV9RgYVMFBExks4fTckbLUYTEohgdPvfegceKNy02SBPst
-         5XXl4QrIThgu8ZDS/7IyfYaWBOyPhLnt4TAkLodG/Jkr66W3EwwZ6PoPDPHyn9boRs6v
-         j33A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=MOrUO1SKYDhsyT3zkS3d8doF81cyA5RxMAXXNExmqpY=;
-        b=h4lr8kf5WE04VVUsNGCtCZ6OdIoIylRvF9HPP1lvqHIxwXlxpW73w4JH1+fTd0qMRs
-         I//GVCuocfTevy6pZN9l2HSNh+Kn+DkyFdrqUYIFpCYqJF82kqahl5KGalRj4bT5CthO
-         llr/yMdvVhZbPgAzykHtvNk5UD/K//B/6zw9EGrBU20gh96CT4Ilwd9Lvv7XA+i5guD0
-         f/n7MiUW42m5XKKHNtBSsVyIYTwsEftSLS88uZ82m3wrW031scJRMnjBWJJc5Iu1HZ7D
-         nR6e5DzStfZYqLqgZececFRTOJ26Tm3z5hQ29FTSs0hRMSBloM2Am5NeN94DUxeCU45w
-         cBjg==
-X-Gm-Message-State: AOAM5336dr91H+kp9JZnz7uBnDpiXRF/0I0Q476lX7IumT8zuo6vBNnS
-	H87YFJBWTKeUJelxWOIzdDxLD2Jh1TbcZywR
-X-Google-Smtp-Source: ABdhPJwWvMmD9hn/fzoru7Ob9l2n1JWqVxsCe+lO/+fWrHlIFsBG8s2Fj6hqqWehmKnNNJ/f5xX/Kw==
-X-Received: by 2002:a0c:b343:: with SMTP id a3mr2839362qvf.41.1600731257274;
-        Mon, 21 Sep 2020 16:34:17 -0700 (PDT)
-Return-Path: <jdmason@kudzu.us>
-Received: from localhost ([136.56.1.171])
-        by smtp.gmail.com with ESMTPSA id q3sm10365303qkq.132.2020.09.21.16.34.16
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Sep 2020 16:34:16 -0700 (PDT)
-From: "Jon Mason" <jdmason@kudzu.us>
-X-Google-Original-From: Jon Mason <jon.mason@arm.com>
+ dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 87.98.184.159, mailfrom: maciej.pijanowski@3mdeb.com)
+Received: from player755.ha.ovh.net (unknown [10.110.115.178])
+	by mo6.mail-out.ovh.net (Postfix) with ESMTP id 79D06227DA7
+	for <yocto@lists.yoctoproject.org>; Tue, 22 Sep 2020 06:54:58 +0200 (CEST)
+Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
+	(Authenticated sender: maciej.pijanowski@3mdeb.com)
+	by player755.ha.ovh.net (Postfix) with ESMTPSA id C5D521673DF9A
+	for <yocto@lists.yoctoproject.org>; Tue, 22 Sep 2020 04:54:57 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-98R002621a37e7-af84-40c8-af2e-aa6e807ae873,
+                    95AFC2FAD2FB182CF8B327B6F57E1D19FBE29F14) smtp.auth=maciej.pijanowski@3mdeb.com
+Subject: Re: [yocto] RDEPENDS problem
 To: yocto@lists.yoctoproject.org
-Subject: [meta-zephyr][morty PATCH] zephyr-kernel: update URLs
-Date: Mon, 21 Sep 2020 19:33:57 -0400
-Message-Id: <20200921233357.25245-1-jon.mason@arm.com>
-X-Mailer: git-send-email 2.20.1
+References: <8db68087bc7e4b248070690947f6eb64@sakuraus.com>
+From: "Maciej Pijanowski" <maciej.pijanowski@3mdeb.com>
+Message-ID: <7b358546-b987-e1ee-dc10-f8f296cafd27@3mdeb.com>
+Date: Tue, 22 Sep 2020 06:54:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <8db68087bc7e4b248070690947f6eb64@sakuraus.com>
+X-Ovh-Tracer-Id: 9484862294498618886
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrudefgdeludcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhepuffvfhfhkffffgggjggtsegrtderredtfeehnecuhfhrohhmpeforggtihgvjhcurfhijhgrnhhofihskhhiuceomhgrtghivghjrdhpihhjrghnohifshhkihesfehmuggvsgdrtghomheqnecuggftrfgrthhtvghrnhepjedtjefglefhhedtveeijedtvefhleevtdffhfegtedvgfegtddvheeivdekgeefnecuffhomhgrihhnpehlihgstggrnhhfvghsthhivhgrlhdrshhopdihohgtthhophhrohhjvggtthdrohhrghdpfehmuggvsgdrtghomhenucfkpheptddrtddrtddrtddpkeehrddvvddvrdduudejrddvvddvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeehhedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhg
+Content-Type: multipart/alternative;
+ boundary="------------9D0812993F2797E24F6FD897"
+Content-Language: en-US
 
-URLs no longer point to a valid location.  Update to the current
-location.
+--------------9D0812993F2797E24F6FD897
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Jon Mason <jon.mason@arm.com>
----
- classes/zephyr-kernel-src.bbclass                     | 2 +-
- recipes-kernel/zephyr-kernel/zephyr-kernel-src_1.6.bb | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/classes/zephyr-kernel-src.bbclass b/classes/zephyr-kernel-src.bbclass
-index d7aa81bfaa62..cd1503dc1299 100644
---- a/classes/zephyr-kernel-src.bbclass
-+++ b/classes/zephyr-kernel-src.bbclass
-@@ -3,7 +3,7 @@
- PREFERRED_VERSION_zephyr-kernel ??= "1.6.0"
- 
- SRCREV = "d4e799d77a36eaf6d678b357c207411ec32b2d62"
--SRC_URI = "git://gerrit.zephyrproject.org/r/zephyr.git;protocol=https;branch=v1.6.0-branch \
-+SRC_URI = "git://github.com/zephyrproject-rtos/zephyr.git;protocol=https;branch=v1.6-branch \
-           file://Makefile.toolchain.yocto "
- PV = "1.6.0"
- 
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src_1.6.bb b/recipes-kernel/zephyr-kernel/zephyr-kernel-src_1.6.bb
-index df373e850c94..b47e8ac1b7d0 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src_1.6.bb
-+++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src_1.6.bb
-@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=fa818a259cbed7ce8bc2a22d35a464fc"
- 
- # tag v1.6.0
- SRCREV="d4e799d77a36eaf6d678b357c207411ec32b2d62"
--SRC_URI = "git://gerrit.zephyrproject.org/r/zephyr.git;protocol=https;branch=v1.6.0-branch"
-+SRC_URI = "git://github.com/zephyrproject-rtos/zephyr.git;protocol=https;branch=v1.6-branch"
- SRC_URI += "file://Makefile.toolchain.yocto"
- 
- PV = "1.6.0"
--- 
-2.20.1
+On 21.09.2020 23:46, Greg Wilson-Lindberg wrote:
+>  =A0I have a custom recipe that copies a .so, that libMotors.so calls fu=
+nctions in another libcanfestival.so.
+>
+> When I first added in the copy of the .so
+> I didn't have an RDEPENDS and Yocto printed out an warning listing the p=
+ackage that it wanted. I added an RDEPENDS_${PN}
+> with all of the packages listed, but I'm still getting an error for the =
+first libMotors.so:
+>
+> ERROR: userconfig-1.0-r0 do_package_qa: QA Issue: /home/sakura/lib/libMo=
+tors.so.1.0.0 contained in package userconfig requires libcanfestival.so, b=
+ut no providers found in RDEPENDS_userconfig? [file-rdeps]
+>
+> In userdepends I added:
+>
+> RDEPENDS_${PN} +=3D "canfestival libelf libgcrypt pcsc-lite-lib qtbase q=
+tdeclarative qtserialport zint"
+>
+> Package canfestival_3-asc in has:
+>
+> FILES_${PN} =3D "/usr/lib/libcanfestival.so /usr/lib/libcanfestival_unix=
+.so /usr/lib/libcanfestival_can_socket.so"
+>
+> which seems to me like it should satisfy the requirements of the RDEPEND=
+S, but it is not. bitbake initially gave me a warning
+> that listed canfestival as needing to be added to an RDEPENDS for userco=
+nfig. But now it is saying that it can't figure out
+> what package supplies the libcanfestival.so file.
+>
+> Can someone help me to understand what is going on? How do I explicitly =
+say that a package supplies a given file?
+You could try with PROVIDES:=20
+https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-PR=
+OVIDES
+>
+>=20
+>
+--=20
+Maciej Pijanowski
+Embedded Systems Engineer
+GPG: 9963C36AAC3B2B46
+https://3mdeb.com | @3mdeb_com
 
+
+--------------9D0812993F2797E24F6FD897
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html;
+      charset=3Dwindows-1252">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 21.09.2020 23:46, Greg
+      Wilson-Lindberg wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:8db68087bc7e4b248070690947f6eb64@sakuraus.com">
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+=A0I have a custom recipe that copies a .so, that libMotors.so calls funct=
+ions in another libcanfestival.so.
+
+When I first added in the copy of the .so
+I didn't have an RDEPENDS and Yocto printed out an warning listing the pac=
+kage that it wanted. I added an RDEPENDS_${PN}=20
+with all of the packages listed, but I'm still getting an error for the fi=
+rst libMotors.so:
+
+ERROR: userconfig-1.0-r0 do_package_qa: QA Issue: /home/sakura/lib/libMoto=
+rs.so.1.0.0 contained in package userconfig requires libcanfestival.so, but=
+ no providers found in RDEPENDS_userconfig? [file-rdeps]
+
+In userdepends I added:
+
+RDEPENDS_${PN} +=3D "canfestival libelf libgcrypt pcsc-lite-lib qtbase qtd=
+eclarative qtserialport zint"
+
+Package canfestival_3-asc in has:
+
+FILES_${PN} =3D "/usr/lib/libcanfestival.so /usr/lib/libcanfestival_unix.s=
+o /usr/lib/libcanfestival_can_socket.so"
+
+which seems to me like it should satisfy the requirements of the RDEPENDS,=
+ but it is not. bitbake initially gave me a warning=20
+that listed canfestival as needing to be added to an RDEPENDS for userconf=
+ig. But now it is saying that it can't figure out
+what package supplies the libcanfestival.so file.
+
+Can someone help me to understand what is going on? How do I explicitly sa=
+y that a package supplies a given file?</pre>
+    </blockquote>
+    You could try with PROVIDES:
+<a class=3D"moz-txt-link-freetext" href=3D"https://www.yoctoproject.org/do=
+cs/latest/ref-manual/ref-manual.html#var-PROVIDES">https://www.yoctoproject=
+.org/docs/latest/ref-manual/ref-manual.html#var-PROVIDES</a><br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:8db68087bc7e4b248070690947f6eb64@sakuraus.com"><br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+
+
+</pre>
+    </blockquote>
+    <pre class=3D"moz-signature" cols=3D"72">--=20
+Maciej Pijanowski
+Embedded Systems Engineer
+GPG: 9963C36AAC3B2B46
+<a class=3D"moz-txt-link-freetext" href=3D"https://3mdeb.com">https://3mde=
+b.com</a> | @3mdeb_com</pre>
+  </body>
+</html>
+
+--------------9D0812993F2797E24F6FD897--
