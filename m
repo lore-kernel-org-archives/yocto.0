@@ -1,244 +1,258 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.17357.1600876722575841375
+Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com [209.85.218.67])
+ by mx.groups.io with SMTP id smtpd.web10.4072.1600889128819260879
  for <yocto@lists.yoctoproject.org>;
- Wed, 23 Sep 2020 08:58:43 -0700
+ Wed, 23 Sep 2020 12:25:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 198.145.29.25, mailfrom: randy.macleod@windriver.com)
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 60AB838C1459
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2020 08:58:42 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 08NFwfQY015468
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2020 08:58:41 -0700 (PDT)
-Received: from [172.25.44.2] (172.25.44.2) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Wed, 23 Sep
- 2020 08:58:40 -0700
-Subject: Re: [yocto] [meta-cgl][PATCH] meta-cgl-common: depend on meta-python2 layer
-To: Chen Qi <Qi.Chen@windriver.com>, <yocto@yoctoproject.org>
-References: <20200923080109.24229-1-Qi.Chen@windriver.com>
-From: "Randy MacLeod" <randy.macleod@windriver.com>
-Message-ID: <3e915e94-4ebf-1100-45d7-f09a7a8f4cdd@windriver.com>
-Date: Wed, 23 Sep 2020 11:58:37 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=X2mj4Wy/;
+ spf=pass (domain: gmail.com, ip: 209.85.218.67, mailfrom: kergoth@gmail.com)
+Received: by mail-ej1-f67.google.com with SMTP id r7so1137177ejs.11
+        for <yocto@lists.yoctoproject.org>; Wed, 23 Sep 2020 12:25:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=W2RPhBsrF/3cXViwUk4AyE/llCCIsMGz9D2Bt/f0bTI=;
+        b=X2mj4Wy/SOJc1ZN3YChnusbPGj97pLKa7JlF5mR4/j0J/9AYMbyFomuQkAxnD9Uigx
+         7wVWcPPw1UM9WWrfcThwYvE4uvEF1sqjtablYKw4TWdrXqlwcMDVwaJivxlAphwL8T7Q
+         RifwWviR8Pq5D6nKTaa5BpvkVNJ6AqUWm0h5PDrefTeRKhmR0aN1l4uIEYJI/DnxD9WC
+         fhEwfsgYgPtyRuAUqg6K64yN5OS8TaWuL3WPylIwLyUs5ecy8XruxIXlcDzQRsp233cZ
+         T6mj1cs1rF9qQ2arYCkBXjgjHU9UTyhIiddFYmVwzj3hY8m9AOZvmkVV03L8QTFvs1HH
+         jC4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=W2RPhBsrF/3cXViwUk4AyE/llCCIsMGz9D2Bt/f0bTI=;
+        b=lnaeUUSQya18Txh45X2aAW/fYeTenxktOzELIHHXQTTzzYpJnl/07dYMWOan/o/MyW
+         azStGsHl5Qe62N0ovHZFqhubnzpzdBtH7BwrbmVegdmA3Hj8NgPU3k+R5d4T20aklg4r
+         lE6vh6xf4ey1CU8OLAtVo7V7T3X1GC4n8o02v8KVor2RZr3F3kJ9Q46q0D7i9J5QwZHl
+         /+j1RGTUi9PB/GWmC7pgdA+0WcTaRSqVKS2jxF4n7tgjEbmMUSiXwB9JPeb/bfJXq89j
+         Bxa7jua2VnaMp6pSoOnaSuxWjIrzzPiQl23ncyv9oIOG3PH9EhQko+gzyonUUh6WlnDB
+         DHDA==
+X-Gm-Message-State: AOAM530dNeS/yNhHQ3+/+OMAA4T+xrR73ru6PbS7dF6TJSi1MrRFKRUi
+	s6OVs++TZWFm4bcWCvrmDj6kEcUAxms0L+LkHvA=
+X-Google-Smtp-Source: ABdhPJzqCRnxyz7k2iSsKw1oIs3ygTeJ9vyAyD5beZOXswBAoSoHrvC3XV/97CGTFyDvhMOvyeNiSf+5MAqAbwRVtr8=
+X-Received: by 2002:a17:906:370a:: with SMTP id d10mr1198913ejc.393.1600889127177;
+ Wed, 23 Sep 2020 12:25:27 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200923080109.24229-1-Qi.Chen@windriver.com>
-X-Originating-IP: [172.25.44.2]
-Content-Type: multipart/alternative;
-	boundary="------------F53A5C7CF365B5DCBE76E12F"
-Content-Language: en-CA
+References: <20200918122951.23340-1-samuli.piippo@qt.io> <CAJdd5GYfG-_fMFepyL4V1PFcdcvHsQbODaa1bTii-QTaJx6b0Q@mail.gmail.com>
+ <CABXoSoWyKbeUw67t6EYEiaEhpaaMD2r65BLzh5Bgymyi6_gHBA@mail.gmail.com> <CAJdd5GYoKM8ij=Q5Ro6_KD5TK1U3AmoR=Nv4JCEZJUvH4RjOsw@mail.gmail.com>
+In-Reply-To: <CAJdd5GYoKM8ij=Q5Ro6_KD5TK1U3AmoR=Nv4JCEZJUvH4RjOsw@mail.gmail.com>
+From: kergoth@gmail.com
+Date: Wed, 23 Sep 2020 12:25:16 -0700
+Message-ID: <CABcZANnX6-f1SmJw_Mz=KJMSADFUN-=mgQyh=oK09C6JraR90g@mail.gmail.com>
+Subject: Re: [yocto] [meta-mingw][PATCH] Override SDK_VENDOR
+To: Joshua Watt <JPEWhacker@gmail.com>
+Cc: Samuli Piippo <samuli.piippo@gmail.com>, Samuli Piippo <samuli.piippo@qt.io>, 
+	yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000c015ae05b0000b66"
 
---------------F53A5C7CF365B5DCBE76E12F
-Content-Type: text/plain; charset="utf-8"; format=flowed
+--000000000000c015ae05b0000b66
+Content-Type: text/plain; charset="UTF-8"
+
+Assuming AB success, is this also suitable for stable branches like dunfell?
+
+On Mon, Sep 21, 2020 at 6:21 AM Joshua Watt <JPEWhacker@gmail.com> wrote:
+
+>
+>
+> On Mon, Sep 21, 2020, 8:12 AM Samuli Piippo <samuli.piippo@gmail.com>
+> wrote:
+>
+>>
+>> On Mon, 21 Sep 2020 at 15:53, Joshua Watt <JPEWhacker@gmail.com> wrote:
+>>
+>>> On Fri, Sep 18, 2020 at 7:30 AM Samuli Piippo <samuli.piippo@qt.io>
+>>> wrote:
+>>> >
+>>> > Set SDK_VENDOR to '-w64', which makes the host triplet match what GCC
+>>> > expect to find when using mingw32-w64. This enables features that are
+>>> > not functional in the classic mingw32, but have been implemented in the
+>>> > mingw32-w64.
+>>>
+>>> Does this enable it for the i686 toolchain also? Does that make sense?
+>>>
+>>
+>> This enables it for both x86_64-mingw32 and i686-mingw32 targets and it
+>> makes sense
+>> since it's not about the target bitness but the mingw implementation. w64
+>> has support
+>> for both targets and provides improved support over the original mingw32.
+>>
+>
+> Thanks. I figured that was the case. This is testing on the AB.
+>
+>
+>>
+>>> >
+>>> > Disable 32bit libs from the runtime component when compiling for 64bit,
+>>> > which were enabled as a side effect of the GCC config change.
+>>> >
+>>> > Signed-off-by: Samuli Piippo <samuli.piippo@qt.io>
+>>> > ---
+>>> >  conf/machine-sdk/include/mingw32-common.inc                    | 3 +++
+>>> >  .../mingw-w64/nativesdk-mingw-w64-runtime_7.0.0.bb             | 2 ++
+>>> >  2 files changed, 5 insertions(+)
+>>> >
+>>> > diff --git a/conf/machine-sdk/include/mingw32-common.inc
+>>> b/conf/machine-sdk/include/mingw32-common.inc
+>>> > index 9011ded..bc6c91e 100644
+>>> > --- a/conf/machine-sdk/include/mingw32-common.inc
+>>> > +++ b/conf/machine-sdk/include/mingw32-common.inc
+>>> > @@ -1,4 +1,7 @@
+>>> >  SDK_OS = "mingw32"
+>>> > +SDK_VENDOR_mingw32 = "-w64"
+>>> > +SDK_VENDOR_sdkmingw32 = "-w64"
+>>> > +
+>>> >  NATIVESDKLIBC = "libc-mingw"
+>>> >
+>>> >
+>>> PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-for-gcc_mingw32 =
+>>> "nativesdk-mingw-w64-runtime"
+>>> > diff --git a/recipes-devtools/mingw-w64/
+>>> nativesdk-mingw-w64-runtime_7.0.0.bb b/recipes-devtools/mingw-w64/
+>>> nativesdk-mingw-w64-runtime_7.0.0.bb
+>>> > index cf39c6a..9f79ffe 100644
+>>> > --- a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_7.0.0.bb
+>>> > +++ b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_7.0.0.bb
+>>> > @@ -19,6 +19,8 @@ PROVIDES += "virtual/nativesdk-libintl"
+>>> >
+>>> >  TOOLCHAIN_OPTIONS = " --sysroot=${STAGING_DIR_TARGET}"
+>>> >
+>>> > +EXTRA_OECONF_x86-64 = "--disable-lib32"
+>>> > +
+>>> >  do_configure() {
+>>> >      oe_runconf
+>>> >  }
+>>> > --
+>>> > 2.17.1
+>>> >
+>>>
+>>>
+>>>
+>>>
+> 
+>
+>
+
+-- 
+Christopher Larson
+kergoth at gmail dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Senior Software Engineer, Mentor Graphics
+
+--000000000000c015ae05b0000b66
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2020-09-23 4:01 a.m., Chen Qi wrote:
-> It requires meta-python2 to be there at the moment.
-> More specifically, the crmsh recipe needs python-setuptools-native.
-
-Hi Qi,
-
-Are you sure?
-It looks like crmsh moved to python3 a while ago as
-indicated below.
-
-If there's still a dependency, please open an issue:
-
-https://github.com/ClusterLabs/crmsh/issues?q=3Dis%3Aissue+is%3Aopen+setup=
-tools
-
-Thanks,
-
-../Randy
-
-
-$ cd .../crmsh.git
-
-$ git status
-HEAD detached at 4.2.0
-nothing to commit, working tree clean
-
-$ grep -r setuptools *
-
-contrib/setup.py:from setuptools import setup
-crmsh.spec.in:BuildRequires:=C2=A0 python3-setuptools
-doc/website-v1/development.adoc:* `setuptools`
-Dockerfile:RUN zypper -n --gpg-auto-import-keys ref && zypper -n=20
---gpg-auto-import-keys in pacemaker python3 python3-lxml=20
-python3-python-dateutil python3-parallax libglue-devel=20
-python3-setuptools python3-tox asciidoc autoconf automake make pkgconfig=
-=20
-which libxslt-tools mailx procps python3-nose python3-PyYAML=20
-python3-curses tar
-README.md:It then calls the python setuptools setup.py to actually=20
-process the
-setup.py:from setuptools import setup
-
-
-git log -1 --stat 845af7b9fb7a4c212d2e67b8a44cf655e702edaa
-commit 845af7b9fb7a4c212d2e67b8a44cf655e702edaa
-Author: Kristoffer Gr=C3=B6nlund <krig@koru.se>
-Date:=C2=A0=C2=A0 Fri Oct 27 05:47:02 2017
-
- =C2=A0=C2=A0=C2=A0 dev: Updated spec file
-
- =C2=A0crmsh.spec | 106=20
-+++++++++++++++++...+++++++++-----------------------------------------
- =C2=A01 file changed, 65 insertions(+), 41 deletions(-)
-
-$ grep setuptools crmsh.spec.in
-BuildRequires:=C2=A0 python3-setuptools
-
-
->
-> Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
-> ---
->   meta-cgl-common/conf/layer.conf | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/meta-cgl-common/conf/layer.conf b/meta-cgl-common/conf/laye=
-r.conf
-> index 6035b4b..6b689ea 100644
-> --- a/meta-cgl-common/conf/layer.conf
-> +++ b/meta-cgl-common/conf/layer.conf
-> @@ -9,7 +9,7 @@ BBFILE_COLLECTIONS +=3D "cgl-common"
->   BBFILE_PATTERN_cgl-common =3D "^${LAYERDIR}/"
->   BBFILE_PRIORITY_cgl-common =3D "7"
->  =20
-> -LAYERDEPENDS_cgl-common =3D "core openembedded-layer networking-layer p=
-erl-layer filesystems-layer security selinux"
-> +LAYERDEPENDS_cgl-common =3D "core openembedded-layer networking-layer p=
-erl-layer filesystems-layer security selinux meta-python2"
->  =20
->   LAYERSERIES_COMPAT_cgl-common =3D "warrior zeus dunfell"
->  =20
->
->=20
->
-
---=20
-# Randy MacLeod
-# Wind River Linux
-
-
---------------F53A5C7CF365B5DCBE76E12F
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
-8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2020-09-23 4:01 a.m., Chen Qi wrote:=
+<div dir=3D"ltr">Assuming AB success, is this also suitable for stable bran=
+ches like dunfell?</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">On Mon, Sep 21, 2020 at 6:21 AM Joshua Watt &lt;<a href=
+=3D"mailto:JPEWhacker@gmail.com">JPEWhacker@gmail.com</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto"><di=
+v><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Mon, Sep 21, 2020, 8:12 AM Samuli Piippo &lt;<a href=3D"mailto:samuli.pi=
+ippo@gmail.com" target=3D"_blank">samuli.piippo@gmail.com</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon,=
+ 21 Sep 2020 at 15:53, Joshua Watt &lt;<a href=3D"mailto:JPEWhacker@gmail.c=
+om" rel=3D"noreferrer" target=3D"_blank">JPEWhacker@gmail.com</a>&gt; wrote=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Fri, Sep 18=
+, 2020 at 7:30 AM Samuli Piippo &lt;<a href=3D"mailto:samuli.piippo@qt.io" =
+rel=3D"noreferrer" target=3D"_blank">samuli.piippo@qt.io</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Set SDK_VENDOR to &#39;-w64&#39;, which makes the host triplet match =
+what GCC<br>
+&gt; expect to find when using mingw32-w64. This enables features that are=
 <br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:20200923080109.24229-1-Qi.Chen@windriver.com">
-      <pre class=3D"moz-quote-pre" wrap=3D"">It requires meta-python2 to b=
-e there at the moment.
-More specifically, the crmsh recipe needs python-setuptools-native.</pre>
-    </blockquote>
-    <p>Hi Qi,<br>
-    </p>
-    <p>Are you sure? <br>
-      It looks like crmsh moved to python3 a while ago as<br>
-      indicated below.</p>
-    <p>If there's still a dependency, please open an issue:</p>
-    <p>=C2=A0=C2=A0
-<a class=3D"moz-txt-link-freetext" href=3D"https://github.com/ClusterLabs/=
-crmsh/issues?q=3Dis%3Aissue+is%3Aopen+setuptools">https://github.com/Cluste=
-rLabs/crmsh/issues?q=3Dis%3Aissue+is%3Aopen+setuptools</a></p>
-    <p>Thanks,<br>
-    </p>
-    <p>../Randy<br>
-    </p>
-    <p><br>
-    </p>
-    <p>$ cd .../crmsh.git <br>
-    </p>
-    <p>$ git status<br>
-      HEAD detached at 4.2.0<br>
-      nothing to commit, working tree clean<br>
-      <br>
-    </p>
-    <p>$ grep -r setuptools *</p>
-    contrib/setup.py:from setuptools import setup<br>
-    crmsh.spec.in:BuildRequires:=C2=A0 python3-setuptools<br>
-    doc/website-v1/development.adoc:* `setuptools`<br>
-    Dockerfile:RUN zypper -n --gpg-auto-import-keys ref &amp;&amp;
-    zypper -n --gpg-auto-import-keys in pacemaker python3 python3-lxml
-    python3-python-dateutil python3-parallax libglue-devel
-    python3-setuptools python3-tox asciidoc autoconf automake make
-    pkgconfig which libxslt-tools mailx procps python3-nose
-    python3-PyYAML python3-curses tar<br>
-    README.md:It then calls the python setuptools setup.py to actually
-    process the<br>
-    setup.py:from setuptools import setup<br>
-    <p><br>
-    </p>
-    <p>git log -1 --stat 845af7b9fb7a4c212d2e67b8a44cf655e702edaa<br>
-      commit 845af7b9fb7a4c212d2e67b8a44cf655e702edaa<br>
-      Author: Kristoffer Gr=C3=B6nlund <a class=3D"moz-txt-link-rfc2396E" =
-href=3D"mailto:krig@koru.se">&lt;krig@koru.se&gt;</a><br>
-      Date:=C2=A0=C2=A0 Fri Oct 27 05:47:02 2017<br>
-      <br>
-      =C2=A0=C2=A0=C2=A0 dev: Updated spec file<br>
-      <br>
-      =C2=A0crmsh.spec | 106
-      +++++++++++++++++...+++++++++---------------------------------------=
---<br>
-      =C2=A01 file changed, 65 insertions(+), 41 deletions(-)<br>
-      <br>
-    </p>
-    <p>$ grep setuptools crmsh.spec.in <br>
-      BuildRequires:=C2=A0 python3-setuptools<br>
-      <br>
-    </p>
-    <p><br>
-    </p>
-    <blockquote type=3D"cite"
-      cite=3D"mid:20200923080109.24229-1-Qi.Chen@windriver.com">
-      <pre class=3D"moz-quote-pre" wrap=3D"">
+&gt; not functional in the classic mingw32, but have been implemented in t=
+he<br>
+&gt; mingw32-w64.<br>
+<br>
+Does this enable it for the i686 toolchain also? Does that make sense?<br>=
+</blockquote><div><br></div><div>This enables it for both x86_64-mingw32 an=
+d i686-mingw32 targets and it makes sense</div><div>since it&#39;s not abou=
+t the target bitness but the mingw implementation. w64 has support</div><di=
+v>for both targets and provides improved support over the original mingw32.=
+<br></div></div></div></blockquote></div></div><div dir=3D"auto"><br></div>=
+<div dir=3D"auto">Thanks. I figured that was the case. This is testing on t=
+he AB.</div><div dir=3D"auto"><br></div><div dir=3D"auto"><div class=3D"gma=
+il_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
+"><div class=3D"gmail_quote"><div></div><div>=C2=A0</div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">
+&gt;<br>
+&gt; Disable 32bit libs from the runtime component when compiling for 64bi=
+t,<br>
+&gt; which were enabled as a side effect of the GCC config change.<br>
+&gt;<br>
+&gt; Signed-off-by: Samuli Piippo &lt;<a href=3D"mailto:samuli.piippo@qt.i=
+o" rel=3D"noreferrer" target=3D"_blank">samuli.piippo@qt.io</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 conf/machine-sdk/include/mingw32-common.inc=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 3 +++<br>
+&gt;=C2=A0 .../mingw-w64/<a href=3D"http://nativesdk-mingw-w64-runtime_7.0=
+.0.bb" rel=3D"noreferrer noreferrer" target=3D"_blank">nativesdk-mingw-w64-=
+runtime_7.0.0.bb</a>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 2 ++<=
+br>
+&gt;=C2=A0 2 files changed, 5 insertions(+)<br>
+&gt;<br>
+&gt; diff --git a/conf/machine-sdk/include/mingw32-common.inc b/conf/machi=
+ne-sdk/include/mingw32-common.inc<br>
+&gt; index 9011ded..bc6c91e 100644<br>
+&gt; --- a/conf/machine-sdk/include/mingw32-common.inc<br>
+&gt; +++ b/conf/machine-sdk/include/mingw32-common.inc<br>
+&gt; @@ -1,4 +1,7 @@<br>
+&gt;=C2=A0 SDK_OS =3D &quot;mingw32&quot;<br>
+&gt; +SDK_VENDOR_mingw32 =3D &quot;-w64&quot;<br>
+&gt; +SDK_VENDOR_sdkmingw32 =3D &quot;-w64&quot;<br>
+&gt; +<br>
+&gt;=C2=A0 NATIVESDKLIBC =3D &quot;libc-mingw&quot;<br>
+&gt;<br>
+&gt;=C2=A0 PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-for-gcc_=
+mingw32 =3D &quot;nativesdk-mingw-w64-runtime&quot;<br>
+&gt; diff --git a/recipes-devtools/mingw-w64/<a href=3D"http://nativesdk-m=
+ingw-w64-runtime_7.0.0.bb" rel=3D"noreferrer noreferrer" target=3D"_blank">=
+nativesdk-mingw-w64-runtime_7.0.0.bb</a> b/recipes-devtools/mingw-w64/<a hr=
+ef=3D"http://nativesdk-mingw-w64-runtime_7.0.0.bb" rel=3D"noreferrer norefe=
+rrer" target=3D"_blank">nativesdk-mingw-w64-runtime_7.0.0.bb</a><br>
+&gt; index cf39c6a..9f79ffe 100644<br>
+&gt; --- a/recipes-devtools/mingw-w64/<a href=3D"http://nativesdk-mingw-w6=
+4-runtime_7.0.0.bb" rel=3D"noreferrer noreferrer" target=3D"_blank">natives=
+dk-mingw-w64-runtime_7.0.0.bb</a><br>
+&gt; +++ b/recipes-devtools/mingw-w64/<a href=3D"http://nativesdk-mingw-w6=
+4-runtime_7.0.0.bb" rel=3D"noreferrer noreferrer" target=3D"_blank">natives=
+dk-mingw-w64-runtime_7.0.0.bb</a><br>
+&gt; @@ -19,6 +19,8 @@ PROVIDES +=3D &quot;virtual/nativesdk-libintl&quot;=
+<br>
+&gt;<br>
+&gt;=C2=A0 TOOLCHAIN_OPTIONS =3D &quot; --sysroot=3D${STAGING_DIR_TARGET}&=
+quot;<br>
+&gt;<br>
+&gt; +EXTRA_OECONF_x86-64 =3D &quot;--disable-lib32&quot;<br>
+&gt; +<br>
+&gt;=C2=A0 do_configure() {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 oe_runconf<br>
+&gt;=C2=A0 }<br>
+&gt; --<br>
+&gt; 2.17.1<br>
+&gt;<br>
+<br>
+<br>
+<br>
+</blockquote></div></div>
+</blockquote></div></div></div>
+<br>
+<br>
+<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
+" class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">Christop=
+her Larson<br>kergoth at gmail dot com<br>Founder - BitBake, OpenEmbedded, =
+OpenZaurus<br>Senior Software Engineer, Mentor Graphics</div></div></div></=
+div>
 
-Signed-off-by: Chen Qi <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:Q=
-i.Chen@windriver.com">&lt;Qi.Chen@windriver.com&gt;</a>
----
- meta-cgl-common/conf/layer.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta-cgl-common/conf/layer.conf b/meta-cgl-common/conf/layer.=
-conf
-index 6035b4b..6b689ea 100644
---- a/meta-cgl-common/conf/layer.conf
-+++ b/meta-cgl-common/conf/layer.conf
-@@ -9,7 +9,7 @@ BBFILE_COLLECTIONS +=3D "cgl-common"
- BBFILE_PATTERN_cgl-common =3D "^${LAYERDIR}/"
- BBFILE_PRIORITY_cgl-common =3D "7"
-=20
--LAYERDEPENDS_cgl-common =3D "core openembedded-layer networking-layer per=
-l-layer filesystems-layer security selinux"
-+LAYERDEPENDS_cgl-common =3D "core openembedded-layer networking-layer per=
-l-layer filesystems-layer security selinux meta-python2"
-=20
- LAYERSERIES_COMPAT_cgl-common =3D "warrior zeus dunfell"
-=20
-</pre>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-
-
-</pre>
-    </blockquote>
-    <p><br>
-    </p>
-    <pre class=3D"moz-signature" cols=3D"72">--=20
-# Randy MacLeod
-# Wind River Linux</pre>
-  </body>
-</html>
-
---------------F53A5C7CF365B5DCBE76E12F--
+--000000000000c015ae05b0000b66--
