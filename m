@@ -1,151 +1,77 @@
-Received: from 15.mo4.mail-out.ovh.net (15.mo4.mail-out.ovh.net [91.121.62.11])
- by mx.groups.io with SMTP id smtpd.web12.6631.1600840095155299562
+Received: from mail-ej1-f66.google.com (mail-ej1-f66.google.com [209.85.218.66])
+ by mx.groups.io with SMTP id smtpd.web11.7175.1600842309418276953
  for <yocto@lists.yoctoproject.org>;
- Tue, 22 Sep 2020 22:48:15 -0700
+ Tue, 22 Sep 2020 23:25:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 91.121.62.11, mailfrom: maciej.pijanowski@3mdeb.com)
-Received: from player735.ha.ovh.net (unknown [10.108.42.23])
-	by mo4.mail-out.ovh.net (Postfix) with ESMTP id AB5E524D286
-	for <yocto@lists.yoctoproject.org>; Wed, 23 Sep 2020 07:48:12 +0200 (CEST)
-Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
-	(Authenticated sender: maciej.pijanowski@3mdeb.com)
-	by player735.ha.ovh.net (Postfix) with ESMTPSA id B73E6162CCFC1;
-	Wed, 23 Sep 2020 05:48:10 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-95G0015ca34aa8-73f6-4dbe-8d77-217b3524e38e,
-                    0897AC35D414BC0FF54F436431B58D99D524B177) smtp.auth=maciej.pijanowski@3mdeb.com
-Subject: Re: [yocto] bitbake recipe / Network UPS tool
-To: Yocto <yocto@optimcloud.com>, yocto@lists.yoctoproject.org
-References: <731bd3a4-f5e5-6b2b-a537-a2bcb87d986a@optimcloud.com>
- <22fba728-c053-d538-7faa-84e39c9f3206@3mdeb.com>
- <cf7d62d9-b83f-f8f6-0511-e0697862ce65@optimcloud.com>
-From: "Maciej Pijanowski" <maciej.pijanowski@3mdeb.com>
-Message-ID: <e7697c2c-f867-3000-a58b-24e222b80243@3mdeb.com>
-Date: Wed, 23 Sep 2020 07:48:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=eDece3bW;
+ spf=pass (domain: gmail.com, ip: 209.85.218.66, mailfrom: adrian.freihofer@gmail.com)
+Received: by mail-ej1-f66.google.com with SMTP id u21so26189729eja.2
+        for <yocto@lists.yoctoproject.org>; Tue, 22 Sep 2020 23:25:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hOOoM4tsMHIgPtCCkvmjagUxoRGDjq781Rk10UzRsQ4=;
+        b=eDece3bWeHangg4LbmistcvYjziNCJRyQ0PCuM5CPNktyAGvuMNw4dzp8FbtbizeEk
+         i3rH1Cgrdvt3Z+qSfLDRxQEemSzyI24FOZ/7C6jPR3Ad7es64EA1kYZe0bIUncOtM6Ys
+         /OWby4PZU5qKFfGdzOeJIJ7egsyrBVjtIesRrzlB9UCMORYScmpqS3zZ2FAU8jTyM13c
+         oG6gWUstZfl8LEu1EOVSCjWomtpNtz1IfNtVL1jmSAPos65aA6a5srEjx3PY0ZPEU2TZ
+         /7xJGcO+dr5OJSwmxfWk/8ada0fb/YYdf80ZvY0B3WKnYK4P5yLrGLUQV+u/+OPXa2x4
+         6kgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hOOoM4tsMHIgPtCCkvmjagUxoRGDjq781Rk10UzRsQ4=;
+        b=i5efvtd2s6goMuvoBUYnCK0J9RBo6wsj375Eb+LHiD52xBwJsPVToOEsc8HO4LhF6Q
+         AX78olw2MOoIYgpCi4NoMd/pAKyI556E83v+HcuftcInt9wZBCUgeDG+whPZja16R/9+
+         YfB4oLsig8YebyI6033P4+l5WG1NAj80Tdb+fZVOeBPRRQNcuPXnQCd8JJDCTUnf58/e
+         E/j3V3WsIdqiJRRXgKBGjNKDPIFdbiS5WhANOzrPjqH3mxXg9XfVe0Tlpf1g4+9Sopj3
+         V7l50M4hHWnQDwY0dotsqoBnTfFajXd4TqaZ6wrGpz+XVrkUYVeK5Q7pq2/R4zfX94vj
+         cFuA==
+X-Gm-Message-State: AOAM531aRjZp1UGE03ihthaP9obknCGEReFVC0nPnr2giP/fElb3qpOs
+	05P+UfufNFWpGrW6mHxhbhduXcmVvs8Tog==
+X-Google-Smtp-Source: ABdhPJwNQjKsTGqLVDuDF7Kqg7jX1f3djuYtQesj2lffPRZofesaMbGmPfP9humjh6w8Ltdwg15NcA==
+X-Received: by 2002:a17:906:c1d7:: with SMTP id bw23mr9114167ejb.171.1600842307702;
+        Tue, 22 Sep 2020 23:25:07 -0700 (PDT)
+Return-Path: <adrian.freihofer@gmail.com>
+Received: from md2ramxc.ad001.siemens.net (c-82-192-240-69.customer.ggaweb.ch. [82.192.240.69])
+        by smtp.gmail.com with ESMTPSA id j18sm8669073edj.62.2020.09.22.23.25.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Sep 2020 23:25:07 -0700 (PDT)
+From: "Adrian Freihofer" <adrian.freihofer@gmail.com>
+X-Google-Original-From: Adrian Freihofer <adrian.freihofer@siemens.com>
+To: yocto@lists.yoctoproject.org
+Cc: Adrian Freihofer <adrian.freihofer@siemens.com>
+Subject: [meta-security][master][dunfell][PATCH] gitignore added
+Date: Wed, 23 Sep 2020 08:25:03 +0200
+Message-Id: <20200923062503.708024-1-adrian.freihofer@siemens.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <cf7d62d9-b83f-f8f6-0511-e0697862ce65@optimcloud.com>
-X-Ovh-Tracer-Id: 16256868758817877510
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrudehgddutddtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefuvfhfhffkffgfgggjtgesrgdtreertdefjeenucfhrhhomhepofgrtghivghjucfrihhjrghnohifshhkihcuoehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmqeenucggtffrrghtthgvrhhnpefhgefgieejhfejveehieeiieeuleelfefguefhveefiedvkeeuieekieeggfdugeenucffohhmrghinhepghhithhhuhgsrdgtohhmpdihohgtthhophhrohhjvggtthdrohhrghdpfehmuggvsgdrtghomhenucfkpheptddrtddrtddrtddpkeehrddvvddvrdduudejrddvvddvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeefhedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhg
-Content-Type: multipart/alternative;
- boundary="------------893CD79BAAFD98AB247752DF"
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
---------------893CD79BAAFD98AB247752DF
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+After running testimage there are some python left overs at
+lib/oeqa/runtime/cases/__pycache__/
 
+Signed-off-by: Adrian Freihofer <adrian.freihofer@siemens.com>
+---
+ .gitignore | 7 +++++++
+ 1 file changed, 7 insertions(+)
+ create mode 100644 .gitignore
 
-On 07.09.2020 11:58, Yocto wrote:
->
-> On 9/7/20 1:23 PM, Maciej Pijanowski wrote:
->>
->> Hi,
->>
->> I happen to have this recipe lying around. I have not upstreamed it 
->> for some
->> reason (probably lack of time and I have not been using this package 
->> at the end,
->> so it is not properly tested out). I gave it a try today and at least 
->> it builds.
->>
->> Please try it out: 
->> https://github.com/3mdeb/meta-openembedded/commit/e523d0bb4bddf0ef8521804459b265c14100f83c
->>
->> If it works for you, please let me know. I would be happy to push the 
->> patches upstream.
->>
-> wow... much appreciated, probably just saved me a few headaches and a 
-> ton of time.
->
-> Ill get it onboard and configured and let you know how i make out!
->
-> I was actually surprised to not find it already in the tree....
-Have you got a chance to test something?
->
-> Thanks
->
->
-> 
-
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..c01df45
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,7 @@
++*.pyc
++*.pyo
++/*.patch
++*.swp
++*.orig
++*.rej
++*~
 -- 
-Maciej Pijanowski
-Embedded Systems Engineer
-GPG: 9963C36AAC3B2B46
-https://3mdeb.com | @3mdeb_com
+2.26.2
 
-
---------------893CD79BAAFD98AB247752DF
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 07.09.2020 11:58, Yocto wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:cf7d62d9-b83f-f8f6-0511-e0697862ce65@optimcloud.com">
-      <br>
-      On 9/7/20 1:23 PM, Maciej Pijanowski wrote:
-      <br>
-      <blockquote type="cite">
-        <br>
-        Hi,
-        <br>
-        <br>
-        I happen to have this recipe lying around. I have not upstreamed
-        it for some
-        <br>
-        reason (probably lack of time and I have not been using this
-        package at the end,
-        <br>
-        so it is not properly tested out). I gave it a try today and at
-        least it builds.
-        <br>
-        <br>
-        Please try it out:
-<a class="moz-txt-link-freetext" href="https://github.com/3mdeb/meta-openembedded/commit/e523d0bb4bddf0ef8521804459b265c14100f83c">https://github.com/3mdeb/meta-openembedded/commit/e523d0bb4bddf0ef8521804459b265c14100f83c</a><br>
-        <br>
-        If it works for you, please let me know. I would be happy to
-        push the patches upstream.
-        <br>
-        <br>
-      </blockquote>
-      wow... much appreciated, probably just saved me a few headaches
-      and a ton of time.
-      <br>
-      <br>
-      Ill get it onboard and configured and let you know how i make out!
-      <br>
-      <br>
-      I was actually surprised to not find it already in the tree....
-      <br>
-    </blockquote>
-    Have you got a chance to test something?<br>
-    <blockquote type="cite"
-      cite="mid:cf7d62d9-b83f-f8f6-0511-e0697862ce65@optimcloud.com">
-      <br>
-      Thanks
-      <br>
-      <br>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
-</pre>
-    </blockquote>
-    <pre class="moz-signature" cols="72">-- 
-Maciej Pijanowski
-Embedded Systems Engineer
-GPG: 9963C36AAC3B2B46
-<a class="moz-txt-link-freetext" href="https://3mdeb.com">https://3mdeb.com</a> | @3mdeb_com</pre>
-  </body>
-</html>
-
---------------893CD79BAAFD98AB247752DF--
