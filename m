@@ -1,71 +1,308 @@
-Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
- by mx.groups.io with SMTP id smtpd.web10.708.1601049611503400360
+Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
+ by mx.groups.io with SMTP id smtpd.web12.4728.1601059715880012490
  for <yocto@lists.yoctoproject.org>;
- Fri, 25 Sep 2020 09:00:12 -0700
+ Fri, 25 Sep 2020 11:48:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.16, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp2.bon.at (Postfix) with ESMTPSA id 4Byc7X6PCWz5tlC;
-	Fri, 25 Sep 2020 18:00:08 +0200 (CEST)
-Date: Fri, 25 Sep 2020 18:00:07 +0200
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: Bel Hadj Salem Talel <bhstalel@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] setup.py no such file or directory
-Message-ID: <20200925160007.rchieyod4atltcy5@qschulz>
-References: <wZbD.1601046731917768605.B1ZA@lists.yoctoproject.org>
+ dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: randy.macleod@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 08PIlmcN023723
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Fri, 25 Sep 2020 11:48:08 -0700
+Received: from [172.25.44.2] (172.25.44.2) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Fri, 25 Sep
+ 2020 11:47:55 -0700
+Subject: Re: [OE-core] [PATCH] pseudo: do not expand symlinks in /proc
+To: Sakib Sajal <sakib.sajal@windriver.com>,
+        "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+CC: <seebs@seebs.net>, Matt Cowell <matt.cowell@nokia.com>
+References: <20200925170532.19685-1-sakib.sajal@windriver.com>
+Reply-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+Message-ID: <3f474697-4594-a2f3-9988-55ef2b2d9eb5@windriver.com>
+Date: Fri, 25 Sep 2020 14:47:52 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <wZbD.1601046731917768605.B1ZA@lists.yoctoproject.org>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+In-Reply-To: <20200925170532.19685-1-sakib.sajal@windriver.com>
+X-Originating-IP: [172.25.44.2]
+Content-Type: multipart/alternative;
+	boundary="------------7F5FD1E8AA2E5D175C664DE8"
+Content-Language: en-CA
 
-On Fri, Sep 25, 2020 at 08:12:11AM -0700, Bel Hadj Salem Talel wrote:
-> Hi Community,
-> 
-> I have a python module which I downloaded from github containing a setup.py as all python modules.
-> When I create a recipe with devtool it compiles correctly with no problem, but when I copy paste the same recipe source from workspace recipes to an official meta recipe I got this error :
-> > 
-> > 
-> > /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/python3-wirepas_messaging/1.4.0-r0/recipe-sysroot-native/usr/bin/python3-native/python3:
-> > can't open file 'setup.py': [Errno 2] No such file or directory
-> 
-> Here is the recipe by devtool:
-> 
-> ##############
-> 
-> SUMMARY = "Wirepas gateway transport service that connects the local dbus to a remote MQTT broker."
-> HOMEPAGE = "https://github.com/wirepas/gateway"
-> LICENSE = "Apache"
-> LIC_FILES_CHKSUM = "file://LICENSE;md5=cb6bb17b0d0cca188339074207e9f4d8"
-> SRC_URI = "file:///media/talel/data/multigate/multigate/meta-wirepas/recipes-wirepas/wirepas-gateway/files/wirepas_gateway-${PV}/wp-gateway.zip"
+--------------7F5FD1E8AA2E5D175C664DE8
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail5.wrs.com id 08PIlmcN023723
 
-If your recipe is in:
-/media/talel/data/multigate/multigate/meta-wirepas/recipes-wirepas/wirepas-gateway/
-and wp-gateway.zip is in:
-/media/talel/data/multigate/multigate/meta-wirepas/recipes-wirepas/wirepas-gateway/files/wirepas_gateway-1.4.0
-just put:
-SRC_URI = "file://wirepas_gateway-${PN}/wp-gateway.zip"
+pseduo patches are usually sent to the yocto list so
+I've added that list and only BCCed oe-core here so
+people know where to look for follow-up.
 
-I'd suggest putting your .zip file in:
-/media/talel/data/multigate/multigate/meta-wirepas/recipes-wirepas/wirepas-gateway/wirepas_gateway-1.4.0
-(note the missing files directory), in which case, your SRC_URI would
-be:
-SRC_URI = "file://wp-gateway.zip"
 
-Also... This looks like you're taking code from
-https://github.com/wirepas/gateway ? Have you thought of using the git
-repo directly? e.g. devtool add python3-wirepas-gateway
-https://github.com/wirepas/gateway.git?
+On 2020-09-25 1:05 p.m., Sakib Sajal wrote:
+> From: Matt Cowell <matt.cowell@nokia.com>
+>
+> Some symlinks in /proc, such as those under /proc/[pid]/fd,
+> /proc/[pid]/cwd, and /proc/[pid]/exe that are not real and should not
+> have readlink called on them.  These look like symlinks, but behave like
+> hardlinks.  Readlink does not return actual paths.  Previously
+> pseudo_fix_path would expand files such as /dev/stdin to paths such as
+> /proc/6680/fd/pipe:[1270830076] which do not exist.
+>
+> This issue affects:
+> - deleted files
+> - deleted directories
+> - fifos
+> - sockets
+> - anon_inodes (epoll, eventfd, inotify, signalfd, timerfd, etc)
+>
+> Testing:
+> timed builds before and after applying patch, without significant
+> measurable difference.
+> $ bitbake -c compile <image>; time bitbake <image>
+>
+> installed pseudo on an image and was unable to reproduce the test
+> on bug report after applying the patch.
 
-It'll use the latest commit in master but it's changeable, and it is way
-more maintainable IMO compared to a tarball you manually download every
-now and then.
+There might be a better test so please let Sakib know if so.
 
-Please do NOT use _ in your recipe filename, so rename your recipe to
-python3-wirepas-messaging.
+Sakib,
+ =C2=A0 If there's a v2 or in future work, please give the actual results
+such as:
 
-Please answer to all when you're answering back to me or anyone in this
-community, so people could benefit from the solution or discussion
-around the issue,
-Quentin
+ =C2=A0 5 trials with an average time of 18m:14s and a range of 22 seconds
+ =C2=A0 on a build host that no one else was using.
+
+This will help people to understand what you mean by
+ =C2=A0=C2=A0 "without significant measurable difference.
+
+Thanks for testing and sending this change.
+
+../Randy
+
+>
+> FIXES: Bug 13288
+>
+> Signed-off-by: Sakib Sajal <sakib.sajal@windriver.com>
+> ---
+>   pseudo_util.c | 27 +++++++++++++++++++++++++++
+>   1 file changed, 27 insertions(+)
+>
+> diff --git a/pseudo_util.c b/pseudo_util.c
+> index c867ed6..bce4d1e 100644
+> --- a/pseudo_util.c
+> +++ b/pseudo_util.c
+> @@ -21,6 +21,8 @@
+>   #include <sys/time.h>
+>   #include <unistd.h>
+>   #include <limits.h>
+> +#include <sys/vfs.h>
+> +#include <linux/magic.h>
+>  =20
+>   /* see the comments below about (*real_regcomp)() */
+>   #include <dlfcn.h>
+> @@ -29,6 +31,11 @@
+>   #include "pseudo_ipc.h"
+>   #include "pseudo_db.h"
+>  =20
+> +/* O_PATH is defined in glibc 2.16 and later only */
+> +#ifndef O_PATH
+> +#define O_PATH          010000000
+> +#endif
+> +
+>   struct pseudo_variables {
+>   =09char *key;
+>   =09size_t key_len;
+> @@ -677,6 +684,26 @@ pseudo_append_element(char *newpath, char *root, si=
+ze_t allocated, char **pcurre
+>   =09 */
+>   =09if (!leave_this && is_dir) {
+>   =09	int is_link =3D S_ISLNK(buf->st_mode);
+> +
+> +	=09/* do not expand symlinks in the proc filesystem, since they may no=
+t be real */
+> +	=09if (is_link) {
+> +	=09	struct statfs sfs;
+> +	=09	int fd;
+> +
+> +	=09	/* statfs follows symlinks, so use fstatfs */
+> +	=09	fd =3D open(newpath, O_CLOEXEC | O_PATH | O_NOFOLLOW);
+> +	=09	if (-1 !=3D fd) {
+> +	=09	=09if (0 =3D=3D fstatfs(fd, &sfs) && sfs.f_type =3D=3D PROC_SUPER_=
+MAGIC) {
+> +	=09	=09	pseudo_debug(PDBGF_PATH | PDBGF_VERBOSE,
+> +	=09	=09	=09"pae: '%s' is procfs symlink, not expanding\n",
+> +	=09	=09	=09newpath);
+> +	=09	=09	is_link =3D 0;
+> +	=09	=09}
+> +
+> +	=09	=09close(fd);
+> +	=09	}
+> +	=09}
+> +
+>   =09	if (link_recursion >=3D PSEUDO_MAX_LINK_RECURSION && is_link) {
+>   =09	=09pseudo_diag("link recursion too deep, not expanding path '%s'.\=
+n", newpath);
+>   =09	=09is_link =3D 0;
+>
+>=20
+>
+
+--=20
+# Randy MacLeod
+# Wind River Linux
+
+
+--------------7F5FD1E8AA2E5D175C664DE8
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail5.wrs.com id 08PIlmcN023723
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
+8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">pseduo patches are usually sent to the
+      yocto list so<br>
+      I've added that list and only BCCed oe-core here so<br>
+      people know where to look for follow-up.</div>
+    <div class=3D"moz-cite-prefix"><br>
+    </div>
+    <div class=3D"moz-cite-prefix"><br>
+    </div>
+    <div class=3D"moz-cite-prefix">On 2020-09-25 1:05 p.m., Sakib Sajal
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:20200925170532.19685-1-sakib.sajal@windriver.com">
+      <pre class=3D"moz-quote-pre" wrap=3D"">From: Matt Cowell <a class=3D=
+"moz-txt-link-rfc2396E" href=3D"mailto:matt.cowell@nokia.com">&lt;matt.cowe=
+ll@nokia.com&gt;</a>
+
+Some symlinks in /proc, such as those under /proc/[pid]/fd,
+/proc/[pid]/cwd, and /proc/[pid]/exe that are not real and should not
+have readlink called on them.  These look like symlinks, but behave like
+hardlinks.  Readlink does not return actual paths.  Previously
+pseudo_fix_path would expand files such as /dev/stdin to paths such as
+/proc/6680/fd/pipe:[1270830076] which do not exist.
+
+This issue affects:
+- deleted files
+- deleted directories
+- fifos
+- sockets
+- anon_inodes (epoll, eventfd, inotify, signalfd, timerfd, etc)
+
+Testing:
+timed builds before and after applying patch, without significant
+measurable difference.
+$ bitbake -c compile &lt;image&gt;; time bitbake &lt;image&gt;
+
+installed pseudo on an image and was unable to reproduce the test
+on bug report after applying the patch.</pre>
+    </blockquote>
+    <p>There might be a better test so please let Sakib know if so.</p>
+    Sakib,<br>
+    =C2=A0 If there's a v2 or in future work, please give the actual resul=
+ts
+    <br>
+    such as:
+    <p>=C2=A0 5 trials with an average time of 18m:14s and a range of 22
+      seconds<br>
+      =C2=A0 on a build host that no one else was using.<br>
+    </p>
+    <p>This will help people to understand what you mean by<br>
+      =C2=A0=C2=A0 "without significant measurable difference.</p>
+    <p>Thanks for testing and sending this change.<br>
+    </p>
+    <p>../Randy<br>
+    </p>
+    <blockquote type=3D"cite"
+      cite=3D"mid:20200925170532.19685-1-sakib.sajal@windriver.com">
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+
+FIXES: Bug 13288
+
+Signed-off-by: Sakib Sajal <a class=3D"moz-txt-link-rfc2396E" href=3D"mail=
+to:sakib.sajal@windriver.com">&lt;sakib.sajal@windriver.com&gt;</a>
+---
+ pseudo_util.c | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+diff --git a/pseudo_util.c b/pseudo_util.c
+index c867ed6..bce4d1e 100644
+--- a/pseudo_util.c
++++ b/pseudo_util.c
+@@ -21,6 +21,8 @@
+ #include &lt;sys/time.h&gt;
+ #include &lt;unistd.h&gt;
+ #include &lt;limits.h&gt;
++#include &lt;sys/vfs.h&gt;
++#include &lt;linux/magic.h&gt;
+=20
+ /* see the comments below about (*real_regcomp)() */
+ #include &lt;dlfcn.h&gt;
+@@ -29,6 +31,11 @@
+ #include "pseudo_ipc.h"
+ #include "pseudo_db.h"
+=20
++/* O_PATH is defined in glibc 2.16 and later only */
++#ifndef O_PATH
++#define O_PATH          010000000
++#endif
++
+ struct pseudo_variables {
+ =09char *key;
+ =09size_t key_len;
+@@ -677,6 +684,26 @@ pseudo_append_element(char *newpath, char *root, size=
+_t allocated, char **pcurre
+ =09 */
+ =09if (!leave_this &amp;&amp; is_dir) {
+ =09	int is_link =3D S_ISLNK(buf-&gt;st_mode);
++
++	=09/* do not expand symlinks in the proc filesystem, since they may not =
+be real */
++	=09if (is_link) {
++	=09	struct statfs sfs;
++	=09	int fd;
++
++	=09	/* statfs follows symlinks, so use fstatfs */
++	=09	fd =3D open(newpath, O_CLOEXEC | O_PATH | O_NOFOLLOW);
++	=09	if (-1 !=3D fd) {
++	=09	=09if (0 =3D=3D fstatfs(fd, &amp;sfs) &amp;&amp; sfs.f_type =3D=3D P=
+ROC_SUPER_MAGIC) {
++	=09	=09	pseudo_debug(PDBGF_PATH | PDBGF_VERBOSE,
++	=09	=09	=09"pae: '%s' is procfs symlink, not expanding\n",
++	=09	=09	=09newpath);
++	=09	=09	is_link =3D 0;
++	=09	=09}
++
++	=09	=09close(fd);
++	=09	}
++	=09}
++
+ =09	if (link_recursion &gt;=3D PSEUDO_MAX_LINK_RECURSION &amp;&amp; is_li=
+nk) {
+ =09	=09pseudo_diag("link recursion too deep, not expanding path '%s'.\n",=
+ newpath);
+ =09	=09is_link =3D 0;
+</pre>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+
+
+</pre>
+    </blockquote>
+    <p><br>
+    </p>
+    <pre class=3D"moz-signature" cols=3D"72">--=20
+# Randy MacLeod
+# Wind River Linux</pre>
+  </body>
+</html>
+
+--------------7F5FD1E8AA2E5D175C664DE8--
