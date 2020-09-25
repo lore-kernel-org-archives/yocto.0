@@ -1,80 +1,70 @@
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
- by mx.groups.io with SMTP id smtpd.web10.566.1601009302745099684
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.2163.1601017648971789386
  for <yocto@lists.yoctoproject.org>;
- Thu, 24 Sep 2020 21:48:22 -0700
+ Fri, 25 Sep 2020 00:07:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=XKTyphyg;
- spf=pass (domain: gmail.com, ip: 209.85.166.176, mailfrom: thisisaash9698@gmail.com)
-Received: by mail-il1-f176.google.com with SMTP id q4so1162144ils.4
-        for <yocto@lists.yoctoproject.org>; Thu, 24 Sep 2020 21:48:22 -0700 (PDT)
+ dkim=pass header.i=@bytesatwork-ch.20150623.gappssmtp.com header.s=20150623 header.b=bJdd+okP;
+ spf=softfail (domain: bytesatwork.ch, ip: 198.145.29.25, mailfrom: daniel.ammann@bytesatwork.ch)
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id EB16D38C1106
+	for <yocto@yoctoproject.org>; Fri, 25 Sep 2020 00:07:27 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id j2so1405905eds.9
+        for <yocto@yoctoproject.org>; Fri, 25 Sep 2020 00:07:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=hL0sY2UuJkpr/prCrDiA71hSonNSpgfcJwBNHEfeJvg=;
-        b=XKTyphygMv0FrTcUhezkgKIM3Mv3bZZwJ2QMomu7LegscAhsptMu7SJjagiC4AZ57u
-         VhshPg51/WCZRkIeoDGgXMgqqdKeyPw/vLgtYuvqw2jGcU1Ba3Qixvms30GwlwUgzGgH
-         ixWApKwPlamOG+EAVTE8+VJ6Ouh88IOIDYkYi8u54PTzC4prvfbQMYcq+58yqUYoWdYK
-         emdA74wykmBXlfHJmteF6377j1aBM95Xk2UM5cP2/KjFAHxy2pnvqRiycUOJvupAiSwU
-         9sii0CI7Of1tVo8v70Yce9vQBfv/JicUvjko1q6rC8fW/e+zpNigMbatBPFFgyZXWIfa
-         4mTg==
+        d=bytesatwork-ch.20150623.gappssmtp.com; s=20150623;
+        h=to:from:subject:message-id:date:user-agent:mime-version
+         :content-language:content-transfer-encoding;
+        bh=AELa7XuMrvQpOt2VeNmv7qP2Mo1c6leT1zkWPbyLFsU=;
+        b=bJdd+okPEj6LSlbzgIyIcIyN4TjRNQWnnfFojL1Nn6THLqKK600gD6+4L+pZIaMdU0
+         FRQSsZv6Zh+Vhjyq9DRjqzg1wTVitzEuuEVXh93MnglWpqZsSIOudcMf6Fqu/rYlNI3q
+         7Zi2yXu1vJ4mTdfIaufe6CNDqBVMQPfuUJh0KSLmBklz2by8HtbAD2u6R/v4TJzhOa4w
+         pR3kYz3o69Xz5+lpffULLSb+gswPemUY+sRgLOq9ctFv/+MWeNcV64aK81ESNaSBJGUe
+         ALG4zbridt4UmhLnvqklWFeplsA239sGNKm3l/FkmePKEKkqefXGR6AgMRjeEnVlc/Wz
+         9pVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=hL0sY2UuJkpr/prCrDiA71hSonNSpgfcJwBNHEfeJvg=;
-        b=QqT9NqiVva0cq3hTKd2bkhLZ/k79plMfi3/kVEFd7om6ezxB101qVQlHZCvW+m2fWx
-         Y36+M9Kxh7IzvLIQaw8LyJ+A/blrHtkTCs95jBWEhqGKQESru/NCFHDkW+tTFKBdpS8F
-         Q+B+fpJiOObI9rCFbTcq8LyMPih3pqxBm1pvh7qC31JNCG6rLBYX7PyFEkRHuZcw+nnz
-         gmMjFLfgaNpyX05kt/Rpemmbzujlcb9KD1IAQ5/NUsGMpdEcTAo9QFdZiTXP5PaJiLmH
-         6xWfdLpkOWH1xfyT45S5ww3BPCxPfgDQFjZuXRmM0UGnze98wefNwIu4ElBzNTcGWb92
-         q29A==
-X-Gm-Message-State: AOAM531J5RWrxis8TDBb5d/M9UduokxXLhC7vTaEwHum/seGlQBbQFNC
-	RAzNrm3M0b7kexTUpQrtlI8vPyQXzyVxipwNNzoqI6bGWQ1t1g==
-X-Google-Smtp-Source: ABdhPJww+e0pDqz9/ING+HuqrSwW9t/LX0eFJasw+tz7c0FRpwFrtW335YYZxGpn6j4M24Cld6uA9HUOshvhZCicoTw=
-X-Received: by 2002:a05:6e02:eb0:: with SMTP id u16mr1709083ilj.291.1601009301707;
- Thu, 24 Sep 2020 21:48:21 -0700 (PDT)
+        h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+         :mime-version:content-language:content-transfer-encoding;
+        bh=AELa7XuMrvQpOt2VeNmv7qP2Mo1c6leT1zkWPbyLFsU=;
+        b=ovfGKYCslFZG1W9HRbN9GDZVFzzDC7+QFdV7nwO99SFNDNYfDLi/DwtAQLgInXE54R
+         /SLlbJJKmFj8SnrLYAHhOfHoOEtIYL2kp3VqMteoMZ5mSfJFnh8lowaC9J7npI8lzkAO
+         APLFFFLo5rGCMlhAxFqKcUPkA1EmO3YFkv+NU+mSrH84AKR9LwT2EqvtaJm0YeGs01w/
+         XgkgfDBfQ6f6BMET4fXegaLemZnlaXjiulmRrkz7ejXytYNujr6e7K8avTO/DNgnCxCJ
+         3On2WReiVg/cdxMQCj8kzOOcHxASItPYMu4IuE08ElArXe9zccE+UwgOHVeAC3HiaPu3
+         PoNw==
+X-Gm-Message-State: AOAM531+Oz3Yp1hp9RdA6tRx0RJ5RctxqgWt57U2lsyt3qCRhaOsR6pW
+	jQwqXYdvhJB8gerazPyNAKVPsI39ppOpRgPX
+X-Google-Smtp-Source: ABdhPJzchQU/JfxZ3HwNdofYR3WQY/25AFsvHHx6oYmDhZRtSb4lHw9uhSkiJW/zCbbivVitKfsmYg==
+X-Received: by 2002:aa7:c419:: with SMTP id j25mr2517525edq.109.1601017646033;
+        Fri, 25 Sep 2020 00:07:26 -0700 (PDT)
+Received: from [192.168.2.42] (162.40.150.83.ftth.as8758.net. [83.150.40.162])
+        by smtp.gmail.com with ESMTPSA id b16sm1245342eju.64.2020.09.25.00.07.25
+        for <yocto@yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Sep 2020 00:07:25 -0700 (PDT)
+To: yocto@yoctoproject.org
+From: "Daniel Ammann" <daniel.ammann@bytesatwork.ch>
+Subject: Per recipe licenses with dependencies
+Message-ID: <3b6d1659-5abf-846c-2bf7-7950657904b7@bytesatwork.ch>
+Date: Fri, 25 Sep 2020 09:07:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-From: "Aashik Aswin" <thisisaash9698@gmail.com>
-Date: Fri, 25 Sep 2020 10:18:10 +0530
-Message-ID: <CANVQz1YKCHHsGGhq=7+y2fZ25G2KU+KKOha9pc+0=3Ucg=C0zQ@mail.gmail.com>
-Subject: SIGINT Issues with Zeus Migration
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000b5e04805b01c06d5"
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---000000000000b5e04805b01c06d5
-Content-Type: text/plain; charset="UTF-8"
+Hi
 
-Hello Developers,
+Is there a tool or an simple way to create a list of licenses used by a recipe
+(in contrast to an image)? It should include all of the dependencies as well.
 
-I recently migrated all my platform Recipes from Thud (Linux 4.19) to Zeus
-(5.4). I understand there might be compatibility issues and was able to fix
-most of them.
+Thanks, Daniel
 
-However one issue I am facing is that in the newly migrated Zeus Image is
-that I am not able to send SIGINT to commands such as Ping, tail etc. I am
-only able to run them in non-interactive mode. I have to reboot the box if
-I executed those above commands in interactive mode.
+-- 
+bytes at work
+Technoparkstrasse 7
+CH-8406 Winterthur
+Switzerland
 
-Can anyone suggest which recipe/config can be a good starting point?
-
-Please let me know your suggestions.
-
-Thanks,
-Aashik
-
---000000000000b5e04805b01c06d5
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello Developers,<div><br></div><div>I recently migrated a=
-ll my platform Recipes from Thud (Linux 4.19) to Zeus (5.4). I understand t=
-here might be compatibility issues and was able to fix most of them.</div><=
-div><br></div><div>However one issue I am facing is that in the newly migra=
-ted Zeus Image is that I am not able to send SIGINT to commands such as Pin=
-g, tail etc. I am only able to run them in non-interactive mode. I have to =
-reboot the box if I executed those above commands in interactive mode.=C2=
-=A0</div><div><br></div><div>Can anyone suggest which=C2=A0recipe/config ca=
-n be a good starting point?</div><div><br></div><div>Please let me know you=
-r suggestions.</div><div><br></div><div>Thanks,</div><div>Aashik</div></div=
->
-
---000000000000b5e04805b01c06d5--
+phone: +41 52 550 50 67
