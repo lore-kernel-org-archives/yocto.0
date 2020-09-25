@@ -1,57 +1,108 @@
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
- by mx.groups.io with SMTP id smtpd.web12.9808.1601045528750953529
- for <yocto@lists.yoctoproject.org>;
- Fri, 25 Sep 2020 07:52:09 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=aUSPqEYt;
- spf=pass (domain: linaro.org, ip: 209.85.219.170, mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-yb1-f170.google.com with SMTP id k18so2219729ybh.1
-        for <yocto@lists.yoctoproject.org>; Fri, 25 Sep 2020 07:52:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=+C0hwbxqIGISx7QiUL/TI88sY46OHS9n9n1bxx3q2mk=;
-        b=aUSPqEYt4LZfEgCUSPePl6ulN/SWPvGnmy2tm5cukpZJzy0keMJr1dTbgtQPLJryeu
-         3i4mXJgi7vrXDkT0N1YYiMHS0SKRTaDF1mhQ9wFHWMNp5/DMqzW4NDfLSUBErCZw3krj
-         c37qYd8aFags3tHqBZUrLSNfw0X3VCKKtfdgb8Mz063QM3gv1psrCNPOVl3JNgeaf+Rx
-         /l/v5p0Eh7LRWr8KbIcKj0qvZEJZMBTvcZpEhBb59vqz/aPoTNmkK52ilgYEOoYHyGSL
-         kVnid+bodJpe/lYfEMBjonY/gEVPp0ImtgE+75KujZh9FuOdid6K2VD/T5B0hww0IcDc
-         3t5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=+C0hwbxqIGISx7QiUL/TI88sY46OHS9n9n1bxx3q2mk=;
-        b=YSCQNo4xkOANFwD4s8tCxn+SFFD7/Ch4FWGsiVmv80OWhZoKgDm4ImzZ5bp6vXLf9B
-         krwoilBpilQBzfXPLim5cNsWhDUL56NrPv+cmJ4/+m9SJZA04HVz95H/Jux937ONg8GO
-         2jxhORh7Tw79JOnymCtPsgdFXoEzCzwzLTpbNe7WtTB9WlfPrcF0d2Bc5zHqfMeIWSo4
-         2d9zOTOnH39hiIBn5sPiJH+ZGBlhB6Rh5H+vhyPsJM2EaQ/5Jb7QvLjKE5kJ6UGGnMuc
-         UCTiy4puo45AsMnomz4jUWhtD0t5tCX/M8S3AWPKXVVx7H0Op3uJezjt2IjK+7x/sVQs
-         +KVg==
-X-Gm-Message-State: AOAM5320yOPbA2MNl4homL8ExfTnXWKcG7mZGBhdW3rczlFPM5CtaXao
-	XxXPnMYufjCGH1jBVyAFxeHEETboj9SfEuA82KA8iNcIyBDNtZ86
-X-Google-Smtp-Source: ABdhPJyrnzemIXulpRPROZOKQlq3AcM8Oa3wZdRLGGZ8KrljzWKr8BP+ZUlUm1RntuNFO+AFPrC2fOavjho/XkQhV80=
-X-Received: by 2002:a25:bd41:: with SMTP id p1mr6263515ybm.475.1601045527287;
- Fri, 25 Sep 2020 07:52:07 -0700 (PDT)
-MIME-Version: 1.0
-From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
-Date: Fri, 25 Sep 2020 16:51:56 +0200
-Message-ID: <CAP71Wjyydx5eLOFGv108gV3a1PPM8DUOMeQWtL51TjDGU+JCXA@mail.gmail.com>
-Subject: Build and integration engineer for Yocto Project
+Subject: setup.py no such file or directory
 To: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
+X-Originating-Location: Zriba-Village, Gouvernorat de Nabeul, TN (41.226.168.190)
+X-Originating-Platform: Linux Firefox 80
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Fri, 25 Sep 2020 08:12:11 -0700
+Message-ID: <wZbD.1601046731917768605.B1ZA@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="NRoRRg8yE3p4YLMiGhqj"
 
-hi there,
+--NRoRRg8yE3p4YLMiGhqj
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-The The Yocto Project is looking to hire a build and integration
-engineer to join our developers community and assist the Yocto Project
-Architect in a wide array of tasks. We expect to build a long term
-relationship with an engineer, and estimate that the workload for a
-senior engineer should be no more than 50%.
+Hi Community,
 
-To learn more about this RFQ, please check this:
-https://www.yoctoproject.org/yocto-project-build-integration-engineer-request-for-quote/
+I have a python module which I downloaded from github containing a setup.p=
+y as all python modules.
+When I create a recipe with devtool it compiles correctly with no problem,=
+ but when I copy paste the same recipe source from workspace recipes to an =
+official meta recipe I got this error :
+>=20
+>=20
+> /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/python3-w=
+irepas_messaging/1.4.0-r0/recipe-sysroot-native/usr/bin/python3-native/pyth=
+on3:
+> can't open file 'setup.py': [Errno 2] No such file or directory
 
-Any questions, feel free to contact me.
+Here is the recipe by devtool:
 
-cheers
-nico
+##############
+
+SUMMARY =3D "Wirepas gateway transport service that connects the local dbu=
+s to a remote MQTT broker."
+HOMEPAGE =3D "https://github.com/wirepas/gateway"
+LICENSE =3D "Apache"
+LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dcb6bb17b0d0cca188339074207e9f4d=
+8"
+SRC_URI =3D "file:///media/talel/data/multigate/multigate/meta-wirepas/rec=
+ipes-wirepas/wirepas-gateway/files/wirepas_gateway-${PV}/wp-gateway.zip"
+inherit setuptools3
+RDEPENDS_${PN} +=3D "python3-pyyaml python3-grpcio python3-paho-mqtt pytho=
+n3-pydbus"
+RDEPENDS_${PN} +=3D "python3-core python3-datetime python3-io python3-json=
+ python3-logging python3-netclient python3-paho-mqtt python3-pydbus python3=
+-pygobject python3-pyyaml python3-threading"
+DEPENDS +=3D "systemd"
+
+##############
+
+I copy paste the same recipe source to a recipe under meta-wirepas/recipes=
+-wirepas of mine, and copied the SRC_URI =3D "file:///media/talel/data/mult=
+igate/multigate/meta-wirepas/recipes-wirepas/wirepas-gateway/files/wirepas_=
+gateway-${PV}/wp-gateway.zip" zip file under "files", and I got the error.
+
+I don't know what is the difference, I think devtool created the recipe wi=
+th .bbappend containing :
+
+inherit externalsrc
+EXTERNALSRC =3D "/media/talel/data/menzu-zeus/menzu/workspace/sources/wire=
+pas-gateway"
+EXTERNALSRC_BUILD =3D "/media/talel/data/menzu-zeus/menzu/workspace/source=
+s/wirepas-gateway"
+
+######
+
+Is it the source of the problem, or how can I fix the issue ?
+
+Thanks, Talel
+
+--NRoRRg8yE3p4YLMiGhqj
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Community,<br /><br />I have a python module which I downloaded from git=
+hub containing a setup.py as all python modules.<br />When I create a recip=
+e with devtool it compiles correctly with no problem, but when I copy paste=
+ the same recipe source from workspace recipes to an official meta recipe I=
+ got this error :
+<blockquote>/media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux=
+/python3-wirepas_messaging/1.4.0-r0/recipe-sysroot-native/usr/bin/python3-n=
+ative/python3: can't open file 'setup.py': [Errno 2] No such file or direct=
+ory</blockquote>
+Here is the recipe by devtool:<br /><br />##############<br /><br />SUMMAR=
+Y =3D "Wirepas gateway transport service that connects the local dbus to a =
+remote MQTT broker."<br />HOMEPAGE =3D "https://github.com/wirepas/gateway"=
+<br />LICENSE =3D "Apache"<br />LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D=
+cb6bb17b0d0cca188339074207e9f4d8"<br />SRC_URI =3D "file:///media/talel/dat=
+a/multigate/multigate/meta-wirepas/recipes-wirepas/wirepas-gateway/files/wi=
+repas_gateway-${PV}/wp-gateway.zip"<br />inherit setuptools3<br />RDEPENDS_=
+${PN} +=3D "python3-pyyaml python3-grpcio python3-paho-mqtt python3-pydbus"=
+<br />RDEPENDS_${PN} +=3D "python3-core python3-datetime python3-io python3=
+-json python3-logging python3-netclient python3-paho-mqtt python3-pydbus py=
+thon3-pygobject python3-pyyaml python3-threading"<br />DEPENDS +=3D "system=
+d"<br /><br />##############<br /><br />I copy paste the same recipe source=
+ to a recipe under meta-wirepas/recipes-wirepas of mine, and copied the SRC=
+_URI =3D "file:///media/talel/data/multigate/multigate/meta-wirepas/recipes=
+-wirepas/wirepas-gateway/files/wirepas_gateway-${PV}/wp-gateway.zip" zip fi=
+le under "files", and I got the error.<br /><br />I don't know what is the =
+difference, I think devtool created the recipe with .bbappend containing :<=
+br /><br />inherit externalsrc<br />EXTERNALSRC =3D "/media/talel/data/menz=
+u-zeus/menzu/workspace/sources/wirepas-gateway"<br />EXTERNALSRC_BUILD =3D =
+"/media/talel/data/menzu-zeus/menzu/workspace/sources/wirepas-gateway"<br /=
+><br />######<br /><br />Is it the source of the problem, or how can I fix =
+the issue ? <br /><br />Thanks, Talel<br /><br /><br /><br />
+
+--NRoRRg8yE3p4YLMiGhqj--
