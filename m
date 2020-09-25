@@ -1,80 +1,94 @@
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
- by mx.groups.io with SMTP id smtpd.web10.3482.1601024082172461230
- for <yocto@lists.yoctoproject.org>;
- Fri, 25 Sep 2020 01:54:43 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sidebranch-com.20150623.gappssmtp.com header.s=20150623 header.b=sOZeCrkf;
- spf=softfail (domain: sidebranch.com, ip: 209.85.222.174, mailfrom: leon@sidebranch.com)
-Received: by mail-qk1-f174.google.com with SMTP id n133so2046060qkn.11
-        for <yocto@lists.yoctoproject.org>; Fri, 25 Sep 2020 01:54:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sidebranch-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zYSYvsAbe+MciqPZP1sS2NDD/Uie8vcCzFF9h7fAeuo=;
-        b=sOZeCrkf29PHGspe3BkT2/P+1SP9+1QYG4n0SL/4RlLNZa+OeaDxUmoRDdqADEt06I
-         6jpbC41GsM/P0tN/3119ASFpujOubRHSkDR2n0BxtP8if53ap1G4gsGeTVj4qNR1faYo
-         kL4dmueVwa6Bx8GiaiR2ldJl6ptyvgBTIzLT/F8Me4I48bGWwbJYnheUSRZeNXeFvurb
-         /u32oP9viXk2eZhS8cK4vjoOkNelBMvKznWh/c2oQgrN4TCppptVX9hId6EG58Qd7OXN
-         wnXxCA7SW0eKiruV4jvCYQzS5kmHAeZ8SQJq3xFCkeZ5SOBZI5PotR2Gv8YSBkTI8R1S
-         Djrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zYSYvsAbe+MciqPZP1sS2NDD/Uie8vcCzFF9h7fAeuo=;
-        b=KmiMXzJQwdqBOF+b/oH1nC7UWTs0hspFdwJrGSMIuP7XK3fzwzCtt7+gLMhHBi1YYP
-         qLM+MMU7pmJhMJw9VFSlkIazoDh9wzTmP32j80yPfpkVeHAG7mfhQSS1IKh+WtiJ20VL
-         fttXBzDqhIHY5sCvugFTNIS4EOnxeSieM1Hf9Jbq2xdzmsYfFFsHmFGM9etntE+6Bzoq
-         kbkWrNi//8aZ7pgUQPi0HwCxqb+nELmCuHq3PcCmiKZj9tJFZMLwfLBgqXcJdWlVVtks
-         FVihycF97G43hvxnhybD47JNniX5GUw8Ev+IKSjldmJyHacdx+22RuQIdDvp9QPAjZ7A
-         43nA==
-X-Gm-Message-State: AOAM532c6Sifn6hojLgpKEnymOVPlhw25yN5R308oePWct4gPQLTg5Z8
-	c2ebwPARDfBBLRYn5g2CxBL/jc98+qsNwS+dRpE1yA==
-X-Google-Smtp-Source: ABdhPJzr+I+jGHaETtBbFRm36p1j8QVdBJpcMKVAsOJJrdvR3YvDk35dqrqpbFdS8gQWgkAGX0A0DHi9vuUsIKvavxg=
-X-Received: by 2002:a05:620a:15c7:: with SMTP id o7mr3094581qkm.486.1601024081197;
- Fri, 25 Sep 2020 01:54:41 -0700 (PDT)
+Subject: sd-bus.h not found when compiling #yocto
+To: yocto@lists.yoctoproject.org
+From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
+X-Originating-Location: TN (193.95.99.62)
+X-Originating-Platform: Linux Firefox 80
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CANVQz1YKCHHsGGhq=7+y2fZ25G2KU+KKOha9pc+0=3Ucg=C0zQ@mail.gmail.com>
- <CAGAf8LzKyimthOQXbm6ryP6+tBMMc0abYe9z_a-9m3CzRSn62Q@mail.gmail.com>
-In-Reply-To: <CAGAf8LzKyimthOQXbm6ryP6+tBMMc0abYe9z_a-9m3CzRSn62Q@mail.gmail.com>
-From: "Leon Woestenberg" <leon@sidebranch.com>
-Date: Fri, 25 Sep 2020 10:54:30 +0200
-Message-ID: <CAMjhiJhg2XYo+XG8WrnzehcGyUR_X=+OTVeoiwpPWeiABFXt8Q@mail.gmail.com>
-Subject: Re: [yocto] SIGINT Issues with Zeus Migration
-To: Zoran <zoran.stojsavljevic@gmail.com>
-Cc: Aashik Aswin <thisisaash9698@gmail.com>, yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Date: Fri, 25 Sep 2020 02:08:17 -0700
+Message-ID: <BA1A.1601024897483922946.J5j4@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="I2D2ihKzNH3F63cIC198"
 
-Hi Aashik, Zoran,
+--I2D2ihKzNH3F63cIC198
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi All,
+I'm trying to create a recipe for wirepas_gateway , it is a python project=
+, but it uses systemd dbus , and there is a .c file that includes=C2=A0 #in=
+clude <systemd/sd-bus.h>
+I tried to add "systemd" and "libsystemd" to RDPENDS, but same error keeps=
+ showing :
 
-On Fri, Sep 25, 2020 at 10:02 AM Zoran <zoran.stojsavljevic@gmail.com> wrote:
->
-> > ...that I am not able to send SIGINT to commands such as Ping, tail etc.\
+>=20
+> dbus_c.c:9:10: fatal error: systemd/sd-bus.h: No such file or directory|=
+=
+=C2=A0=C2=A0
+> 9 | #include <systemd/sd-bus.h>
 
-Aashik, how are you sending the signal? Using CTRL-C or using the
-"kill" command?
+Here is my recipe:
+>=20
+> SUMMARY =3D "Wirepas gateway transport service that connects the local d=
+bus
+> to a remote MQTT broker."
 
->
-> Please, do the following: issue in zeus xterm the command: man signal
-> and read it.
->
-That reads to use sigaction() instead of signal() I would assume.
+>=20
+> HOMEPAGE =3D "https://github.com/wirepas/gateway"
 
-> Then execute the following code (ad-hoc from the top of my head):
-> <...>
-> This program serves the double purpose:
-> [1] Gives you the address of the old SIGINT handler which was executed
-> prior execution of this code;
-> [2] After execution, repeat the routine (ping) and see if <ctrl c>
-> terminates the ping process.
->
+>=20
+> LICENSE =3D "Apache"
 
-Zoran, are you suggesting that program will change the signal handler
-to default even after it has exited, and for the subsequent ping
-command?
+>=20
+> LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dcb6bb17b0d0cca188339074207e9f=
+4d8"
 
-Regards,
+>=20
+> SRC_URI =3D
+> "file:///home/talel/Desktop/wirepas_gateway-${PV}/wp-gateway.zip"
 
-Leon.
+>=20
+> inherit setuptools3
+
+>=20
+> RDEPENDS_${PN} +=3D "libsystemd python3-pyyaml python3-grpcio
+> python3-paho-mqtt python3-pydbus python3-wirepas_messaging"
+
+>=20
+> RDEPENDS_${PN} +=3D "python3-core python3-datetime python3-io python3-js=
+on
+> python3-logging python3-netclient python3-paho-mqtt python3-pygobject
+> python3-pyyaml python3-threading"
+
+How can I solve the issue ?
+
+Thanks, Talel
+
+--I2D2ihKzNH3F63cIC198
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi All,<br />I'm trying to create a recipe for wirepas_gateway , it is a py=
+thon project, but it uses systemd dbus , and there is a .c file that includ=
+es&nbsp; #include &lt;systemd/sd-bus.h&gt;<br />I tried to add "systemd" an=
+d "libsystemd" to RDPENDS, but same error keeps showing : <br />
+<blockquote>dbus_c.c:9:10: fatal error: systemd/sd-bus.h: No such file or =
+directory|&nbsp;&nbsp;&nbsp;&nbsp; 9 | #include &lt;systemd/sd-bus.h&gt;</b=
+lockquote>
+Here is my recipe:
+<blockquote>SUMMARY =3D "Wirepas gateway transport service that connects t=
+he local dbus to a remote MQTT broker."</blockquote>
+<blockquote>HOMEPAGE =3D "https://github.com/wirepas/gateway"</blockquote>
+<blockquote>LICENSE =3D "Apache"</blockquote>
+<blockquote>LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dcb6bb17b0d0cca18833=
+9074207e9f4d8"</blockquote>
+<blockquote>SRC_URI =3D "file:///home/talel/Desktop/wirepas_gateway-${PV}/=
+wp-gateway.zip"</blockquote>
+<blockquote>inherit setuptools3</blockquote>
+<blockquote>RDEPENDS_${PN} +=3D "libsystemd python3-pyyaml python3-grpcio =
+python3-paho-mqtt python3-pydbus python3-wirepas_messaging"</blockquote>
+<blockquote>RDEPENDS_${PN} +=3D "python3-core python3-datetime python3-io =
+python3-json python3-logging python3-netclient python3-paho-mqtt python3-py=
+gobject python3-pyyaml python3-threading"</blockquote>
+<br />How can I solve the issue ? <br /><br />Thanks, Talel
+
+--I2D2ihKzNH3F63cIC198--
