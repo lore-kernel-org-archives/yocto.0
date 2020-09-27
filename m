@@ -1,168 +1,92 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.22280.1601240552485496145
+Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com [209.85.215.195])
+ by mx.groups.io with SMTP id smtpd.web12.23747.1601245000604079589
  for <yocto@lists.yoctoproject.org>;
- Sun, 27 Sep 2020 14:02:32 -0700
+ Sun, 27 Sep 2020 15:16:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kpnmail.nl header.s=kpnmail01 header.b=gWzsXmpg;
- spf=none, err=permanent DNS error (domain: iae.nl, ip: 198.145.29.25, mailfrom: pwr@iae.nl)
-Received: from cpsmtpb-ews03.kpnxchange.com (cpsmtpb-ews03.kpnxchange.com [213.75.39.6])
-	by mail.yoctoproject.org (Postfix) with ESMTP id 80D2A38C0857
-	for <yocto@yoctoproject.org>; Sun, 27 Sep 2020 14:02:31 -0700 (PDT)
-Received: from cpsps-ews09.kpnxchange.com ([10.94.84.176]) by cpsmtpb-ews03.kpnxchange.com with Microsoft SMTPSVC(8.5.9600.16384);
-	 Sun, 27 Sep 2020 23:02:28 +0200
-X-Brand: +YTO/YbK+g==
-X-KPN-SpamVerdict: e1=0;e2=0;e3=0;e4=(e1=10;e3=10;e2=11;e4=10);EVW:Whi
-	te;BM:NotScanned;FinalVerdict:Clean
-X-CMAE-Analysis: v=2.4 cv=YfkDWydf c=1 sm=1 tr=0 ts=5f70fde4
-	 cx=a_idp_e a=ShNidqeCEQB33TAKUUzslw==:117
-	 a=xRGMmYaI5WpIYOJh0XI+dg==:17 a=8SZ6bD3cDFYA:10 a=reM5J-MqmosA:10
-	 a=r77TgQKjGQsHNAKrUKIA:9 a=CCpqsmhAAAAA:8 a=EQbXkLW0EEH5WHw0xwIA:9
-	 a=QEXdDO2ut3YA:10 a=10jmkRBKaHMA:10 a=WzZ83YflHa6Cok1XqIEA:9
-	 a=vEOJn7dbhwOyDMD6:21 a=_W_S_7VecoQA:10 a=ul9cdbp4aOFLsgKbc677:22
-X-CM-AcctID: kpn@feedback.cloudmark.com
-Received: from smtp.kpnmail.nl ([195.121.84.11]) by cpsps-ews09.kpnxchange.com over TLS secured channel with Microsoft SMTPSVC(8.5.9600.16384);
-	 Sun, 27 Sep 2020 23:02:27 +0200
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=bioC/IYx;
+ spf=pass (domain: gmail.com, ip: 209.85.215.195, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f195.google.com with SMTP id 197so6581394pge.8
+        for <yocto@lists.yoctoproject.org>; Sun, 27 Sep 2020 15:16:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=kpnmail.nl; s=kpnmail01;
-	h=content-type:mime-version:date:message-id:subject:from:to;
-	bh=7rHVPwmsabok8aaIzg2viDGgyaVjX/94QCeilthf1iQ=;
-	b=gWzsXmpg3gn9oWEh+RdmxpJsaKTPQ7fJAQ6O4yXn5yh364Cy6n+h4xLnndCBL65VYLyt8/tkOgWOV
-	 SEzLsAbpjASfJkf5c2lEPYG9trUZWQCXR/mjcyV4w0H3yrTdUydlarHprk92rH8NHa6c87FAp419Tt
-	 l9nL+WSW6hF5gEkI=
-X-Originating-IP: 86.89.1.39
-Received: from [192.168.3.42] (86-89-1-39.fixed.kpn.net [86.89.1.39])
-	by smtp.kpnmail.nl (Halon) with ESMTP
-	id c046fe01-0104-11eb-811f-00505699b758;
-	Sun, 27 Sep 2020 23:02:28 +0200 (CEST)
-To: yocto@yoctoproject.org
-Reply-To: yocto@yoctoproject.org
-From: "Robert" <pwr@iae.nl>
-Subject: poky-dunfell-23.0.2: WARNING: Your host glibc verson (2.32) is newer than that in uninative (2.31). Disabling uninative so that sstate is not corrupted.
-Message-ID: <3293b1b2-36fe-3bec-e0b7-07cd228fc4c7@iae.nl>
-Date: Sun, 27 Sep 2020 23:02:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
-MIME-Version: 1.0
-X-OriginalArrivalTime: 27 Sep 2020 21:02:27.0887 (UTC) FILETIME=[81CFCBF0:01D69511]
-X-RcptDomain: yoctoproject.org
-Content-Type: multipart/alternative;
- boundary="------------F95EFA95881216AFBEE28B0A"
-Content-Language: en-GB
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id;
+        bh=BDkblC4etvHQehtbwJaH/sWgaX/J5F1GxLQ5bt463pw=;
+        b=bioC/IYxVQgHixzVI3HCdk80vUkmnZPNDH7d9ZM5MIooKnNJbXR1WP9V4SWYllCYma
+         x5IVF8ik/Uz5L3YadM8Epv8UcIXcZgbExkqW/s6Y8GhNlaiqppFw+YGApzcCvMFYhtPr
+         PCgAsN11k7nESl5mu8/zoFt36Wvig0DRGoFs8zWUrb9T5guit6ksgIt2fgaVSipolU/R
+         Oo9bZzzsOTLMGSy8QtRlvSr7HO8YFSElLhV9lk0uxjKgv/6XFD/epVY8Qcyp/Q6AarI+
+         gsErgGsMmc4ZRQ0ISJK1cfCM2PIuKv9GNGBu8XnEUPyIAA+162CPJNP7HbTO3fIs+L/Z
+         Hz+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=BDkblC4etvHQehtbwJaH/sWgaX/J5F1GxLQ5bt463pw=;
+        b=Brg6vMyBcEJLhDL2Al6Wi5wNWAYBC9CU46EkcZ74x7zaCS5kARkmAggV/Gu5xTuK30
+         TZlslytSI4FMbEOsb48OGPR4f8oO5iH61ukKHB4mMtbDxblFr5MliegKybOZdC/bzttD
+         7UDbobNkAbXmiO+toDkwG/Bp23X0srxL0SLb5o+boQ619hzoqOdOYym+8njuSDJ+iQ7p
+         4JAvl8kuWUZCaS3O/yYnJXOM1HlxEpxtBwNF+vujiafe9rGw1oZLoCPTCtvt76dBszMp
+         C7kblkHnLhN92TlkCF5bmt4OBEuzPclRZDdPMGcsXi0PnSzUvd2nHj7ON+qwvC6NIOTg
+         Kxbg==
+X-Gm-Message-State: AOAM533nnz9/bO1kx067QaQl8Ai6YsUh5FxDygPBajGDT5FKzUYz9zf+
+	A1SNVhU+G5WlMpisuPX25PkWS6EoFhA=
+X-Google-Smtp-Source: ABdhPJx4ZuByhiKXq8vuR1YHmv9u1GsZ7SyJvvOKE6deq31VwW9Y5CDoC+vPdYdHjuZnaJo5OTIcpA==
+X-Received: by 2002:a63:36cc:: with SMTP id d195mr7073599pga.426.1601244999756;
+        Sun, 27 Sep 2020 15:16:39 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net ([2601:202:4180:a5c0::41a6])
+        by smtp.gmail.com with ESMTPSA id 138sm9553916pfu.180.2020.09.27.15.16.38
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Sep 2020 15:16:39 -0700 (PDT)
+From: "akuster" <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH 1/2] softHSM: add pkg
+Date: Sun, 27 Sep 2020 15:16:36 -0700
+Message-Id: <20200927221637.6725-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
---------------F95EFA95881216AFBEE28B0A
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/softHSM/softhsm_2.6.1.bb | 30 +++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+ create mode 100644 recipes-security/softHSM/softhsm_2.6.1.bb
 
-Hello list,
+diff --git a/recipes-security/softHSM/softhsm_2.6.1.bb b/recipes-security/softHSM/softhsm_2.6.1.bb
+new file mode 100644
+index 0000000..74e837a
+--- /dev/null
++++ b/recipes-security/softHSM/softhsm_2.6.1.bb
+@@ -0,0 +1,30 @@
++SUMMARY = "SoftHSM is an implementation of a cryptographic store accessible through a PKCS #11 interface."
++HOMEPAGE = "www.opendnssec.org"
++
++LICENSE = "BSD"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=ef3f77a3507c3d91e75b9f2bdaee4210"
++
++DEPENDS = "sqlite3"
++
++SRC_URI = "https://dist.opendnssec.org/source/softhsm-2.6.1.tar.gz"
++SRC_URI[sha256sum] = "61249473054bcd1811519ef9a989a880a7bdcc36d317c9c25457fc614df475f2"
++
++inherit autotools pkgconfig siteinfo
++
++EXTRA_OECONF += " --with-sqlite3=${STAGING_DIR_HOST}/usr"
++EXTRA_OECONF += "${@oe.utils.conditional('SITEINFO_BITS', '64', ' --enable-64bit', '', d)}"
++
++PACKAGECONFIG ?= "pk11 openssl"
++
++PACKAGECONFIG[npm] = ",--disable-non-paged-memory"
++PACKAGECONFIG[ecc] = "--enable-ecc,--disable-ecc"
++PACKAGECONFIG[gost] = "--enable-gost,--disable-gost"
++PACKAGECONFIG[eddsa] = "--enable-eddsa, --disable-eddsa"
++PACKAGECONFIG[fips] = "--enable-fips, --disable-fips"
++PACKAGECONFIG[notvisable] = "--disable-visibility"
++PACKAGECONFIG[openssl] = "--with-openssl=${STAGING_DIR_HOST}/usr --with-crypto-backend=openssl, --without-openssl, openssl, openssl"
++PACKAGECONFIG[botan] = "--with-botan=${STAGING_DIR_HOST}/usr --with-crypto-backend=botan, --without-botan, botan"
++PACKAGECONFIG[migrate] = "--with-migrate"
++PACKAGECONFIG[pk11] = "--enable-p11-kit --with-p11-kit==${STAGING_DIR_HOST}/usr, --without-p11-kit, p11-kit, p11-kit"
++
++RDEPENDS_${PN} = "sqlite3"
+-- 
+2.17.1
 
-The warning in the subject has turned into an error.
-
-I'm building a Yocto project based on poky-dunfell-23.0.2
-
-I get this error:
-ERROR: dpkg-native-1.19.7-r0 do_compile: oe_runmake failed
-
-| ../../../dpkg-1.19.7/lib/compat/strsignal.c: In function =E2=80=98test_=
-strsignal=E2=80=99:
-| ../../../dpkg-1.19.7/lib/compat/strsignal.c:71:10: error:=20
-=E2=80=98sys_siglist=E2=80=99 undeclared (first use in this function)
-|=C2=A0=C2=A0=C2=A0 71 |=C2=A0=C2=A0 return sys_siglist[s];
-
-I found the reason for this error:
-Release notes of glibc 2.32:
-https://sourceware.org/pipermail/libc-announce/2020/000029.html
-
-* The deprecated arrays *sys_siglist*, _sys_siglist, and sys_sigabbrev
- =C2=A0 are no longer available to newly linked binaries, and their decla=
-rations
- =C2=A0 have been *removed* from <string.h>.=C2=A0 They are exported sole=
-ly as
- =C2=A0 compatibility symbols to support old binaries.=C2=A0 All programs=
- should use
- =C2=A0 strsignal instead.
-
-
-To solve it I could downgrade the glibc library version of my system=20
-(general consensus on forums is that, that is a bad idea).
-Other option:
-In the master branch I find a recipe for dpkg 1.20.5, can I simply=20
-upgrade the dpkg version (1.19.7) in the dunfell release with the master =
-
-branch version (1.20.5)?
-Could it break anything and how do I know it will solve my problem?=20
-Other then try it.
-Or is there another solution?
-
-uname -rmo
-Linux 5.4.64-1-MANJARO=C2=A0 x86_64 GNU/Linux
-
-Thanks,
-Robert.
-
-
---------------F95EFA95881216AFBEE28B0A
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-
-    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    Hello list,<br>
-    <br>
-    The warning in the subject has turned into an error.<br>
-    <br>
-    I'm building a Yocto project based on poky-dunfell-23.0.2<br>
-    <br>
-    I get this error:<br>
-    ERROR: dpkg-native-1.19.7-r0 do_compile: oe_runmake failed<br>
-    <br>
-    | ../../../dpkg-1.19.7/lib/compat/strsignal.c: In function
-    =E2=80=98test_strsignal=E2=80=99:<br>
-    | ../../../dpkg-1.19.7/lib/compat/strsignal.c:71:10: error:
-    =E2=80=98sys_siglist=E2=80=99 undeclared (first use in this function)=
-<br>
-    |=C2=A0=C2=A0=C2=A0 71 |=C2=A0=C2=A0 return sys_siglist[s];<br>
-    <br>
-    I found the reason for this error:<br>
-    Release notes of glibc 2.32:<br>
-    <a class=3D"moz-txt-link-freetext" href=3D"https://sourceware.org/pip=
-ermail/libc-announce/2020/000029.html">https://sourceware.org/pipermail/l=
-ibc-announce/2020/000029.html</a><br>
-    <br>
-    * The deprecated arrays <b>sys_siglist</b>, _sys_siglist, and
-    sys_sigabbrev<br>
-    =C2=A0 are no longer available to newly linked binaries, and their
-    declarations<br>
-    =C2=A0 have been <b>removed</b> from &lt;string.h&gt;.=C2=A0 They are=
-
-    exported solely as<br>
-    =C2=A0 compatibility symbols to support old binaries.=C2=A0 All progr=
-ams
-    should use<br>
-    =C2=A0 strsignal instead.<br>
-    <br>
-    <br>
-    To solve it I could downgrade the glibc library version of my system
-    (general consensus on forums is that, that is a bad idea).<br>
-    Other option:<br>
-    In the master branch I find a recipe for dpkg 1.20.5, can I simply
-    upgrade the dpkg version (1.19.7) in the dunfell release with the
-    master branch version (1.20.5)?<br>
-    Could it break anything and how do I know it will solve my problem?
-    Other then try it.<br>
-    Or is there another solution?<br>
-    <br>
-    uname -rmo<br>
-    Linux 5.4.64-1-MANJARO=C2=A0 x86_64 GNU/Linux<br>
-    <br>
-    Thanks,<br>
-    Robert.<br>
-    <br>
-  </body>
-</html>
-
---------------F95EFA95881216AFBEE28B0A--
