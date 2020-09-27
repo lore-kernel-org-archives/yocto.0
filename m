@@ -1,228 +1,54 @@
-Subject: Re: sd-bus.h not found even with DEPENDS += "systemd"
-To: yocto@lists.yoctoproject.org
-From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
-X-Originating-Location: TN (197.27.17.252)
-X-Originating-Platform: Linux Firefox 80
-User-Agent: GROUPS.IO Web Poster
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+ by mx.groups.io with SMTP id smtpd.web10.9191.1601196195067233151
+ for <yocto@lists.yoctoproject.org>;
+ Sun, 27 Sep 2020 01:43:15 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: mingli.yu@windriver.com)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com [147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 08R8hCR2023575
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Sun, 27 Sep 2020 01:43:13 -0700 (PDT)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+ ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+ 14.3.487.0; Sun, 27 Sep 2020 01:42:53 -0700
+From: "Yu, Mingli" <mingli.yu@windriver.com>
+To: <jpuhlman@mvista.com>, <yocto@lists.yoctoproject.org>
+Subject: [PATCH] cluster-glue: improve reproducibility
+Date: Sun, 27 Sep 2020 16:42:03 +0800
+Message-ID: <20200927084203.41056-1-mingli.yu@windriver.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Date: Sat, 26 Sep 2020 12:58:30 -0700
-References: <KGlH.1601145148652845133.saWp@lists.yoctoproject.org>
-In-Reply-To: <KGlH.1601145148652845133.saWp@lists.yoctoproject.org>
-Message-ID: <1379.1601150310877010917@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="vraeFtQ21ycOHJQyZdWh"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
---vraeFtQ21ycOHJQyZdWh
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+From: Mingli Yu <mingli.yu@windriver.com>
 
-HI Again,
+Remove the build path info from the files such as drac5,
+kdumpcheck and etc to improve reproducibility.
 
-The systemd issue is solved by installing the libsystemd in my native host=
-, but I got another problem linking the lib with "ld" :
+Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
+---
+ .../recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb        | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-| /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/wirepas-s=
-ink-tool/1.0-r0/recipe-sysroot-native/usr/bin/aarch64-poky-linux/../../libe=
-xec/aarch64-poky-linux/gcc/aarch64-poky-linux/9.2.0/ld: c-mesh-api/lib/buil=
-d/mesh_api_lib.a(logger.o): Relocations in generic ELF (EM: 62)
-| /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/wirepas-s=
-ink-tool/1.0-r0/recipe-sysroot-native/usr/bin/aarch64-poky-linux/../../libe=
-xec/aarch64-poky-linux/gcc/aarch64-poky-linux/9.2.0/ld: c-mesh-api/lib/buil=
-d/mesh_api_lib.a(logger.o): Relocations in generic ELF (EM: 62)
-| /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/wirepas-s=
-ink-tool/1.0-r0/recipe-sysroot-native/usr/bin/aarch64-poky-linux/../../libe=
-xec/aarch64-poky-linux/gcc/aarch64-poky-linux/9.2.0/ld: c-mesh-api/lib/buil=
-d/mesh_api_lib.a: error adding symbols: file in wrong format
-| collect2: error: ld returned 1 exit status
-| makefile:102: recipe for target 'build/sinkService' failed
+diff --git a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
+index d9df83b..1e4529d 100644
+--- a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
++++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
+@@ -62,6 +62,13 @@ do_install_append() {
+ 	install -d ${D}${sysconfdir}/tmpfiles.d
+ 	install -m 0644 ${WORKDIR}/tmpfiles ${D}${sysconfdir}/tmpfiles.d/${PN}.conf
+ 
++	# remove buildpath
++	tempdirs=$(grep -Rn ${HOSTTOOLS_DIR} ${D}/* | awk -F: '{print $1}' | uniq)
++	for temdir in $tempdirs
++	do
++	    sed -i "s:${HOSTTOOLS_DIR}/::g" $temdir
++	done
++
+     oe_multilib_header heartbeat/glue_config.h
+ }
+ 
+-- 
+2.26.2
 
-Here is the Makefile:
-
----------------------------
-
-# Makefile for Wirepas Dbus Sink module
-
-# Toolchain
-CC=C2=A0 ?=3D gcc
-AS=C2=A0 ?=3D as
-LD=C2=A0 ?=3D ld
-AR=C2=A0 ?=3D ar
-
-# Paths, including trailing path separator
-SOURCEPREFIX=C2=A0=C2=A0 :=3D source/
-BUILDPREFIX=C2=A0=C2=A0=C2=A0 :=3D build/
-
-# This example needs the mesh lib
-MESH_LIB_FOLDER :=3D c-mesh-api/lib/
-MESH_LIB :=3D $(MESH_LIB_FOLDER)build/mesh_api_lib.a
-
-# General compiler flags
-CFLAGS=C2=A0 :=3D -std=3Dgnu99 -Wall -Werror -O
-
-# Targets definition
-MAIN_APP :=3D sinkService
-
-TARGET_APP :=3D $(BUILDPREFIX)$(MAIN_APP)
-
-# Add Api header (including logger files)
-CFLAGS=C2=A0 +=3D -I$(MESH_LIB_FOLDER)api
-# Add pthtread lib as needed by Mesh Lib
-LDFLAGS +=3D -pthread
-# Add Reentrant flag as using pthread
-CFLAGS=C2=A0 +=3D -D_REENTRANT
-
-# Add systemd lib as needed for sd-bus
-LDFLAGS +=3D -lsystemd
-
-# Add current directory for headers
-CFLAGS=C2=A0 +=3D -I$(SOURCEPREFIX)
-
-# Specific sources for this application
-SOURCES :=3D $(SOURCEPREFIX)main.c
-SOURCES +=3D $(SOURCEPREFIX)config.c
-SOURCES +=3D $(SOURCEPREFIX)data.c
-SOURCES +=3D $(SOURCEPREFIX)otap.c
-
-OBJECTS :=3D $(patsubst $(SOURCEPREFIX)%,=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 \
-$(BUILDPREFIX)%,=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 \
-$(SOURCES:.c=3D.o))
-
-# Functions
-
-# Also create the target directory if it does not exist
-define COMPILE
-echo "=C2=A0 CC $(2)"
-mkdir -p $(dir $(1))
-$(CC) $(CFLAGS) -c -o $(1) $(2)
-endef
-
-define LINK
-echo "=C2=A0 Linking $(1)"
-$(CC) $(CFLAGS) -o $(1) $(2) $(MESH_LIB) $(LDFLAGS)
-endef
-
-define CLEAN
-echo "=C2=A0 Cleaning up"
-$(RM) -r $(BUILDPREFIX)
-make -C $(MESH_LIB_FOLDER) clean
-endef
-
-# Target rules
-
-# Use dependency files automatically generated by GCC.
-# First collect all C source files
-AUTODEPS :=3D $(patsubst $(SOURCEPREFIX)%.c, $(BUILDPREFIX)%.d, $(SOURCES)=
-)
-
-ifeq ($(V),1)
-# "V=3D1" on command line, print commands.
-else
-# Default, do not print commands.
-.SILENT:
-endif
-
-.PHONY: all
-all: app
-
-app: $(TARGET_APP)
-
-.PHONY: clean
-clean:
-$(call CLEAN)
-
-$(MESH_LIB_FOLDER):
-$(error Please add the c-mesh-api library under c-mesh-api folder.\
-It is needed to handle dualmcu protocol)
-
-.PHONY: $(MESH_LIB)
-$(MESH_LIB): $(MESH_LIB_FOLDER)
-make -C $(MESH_LIB_FOLDER)
-
-$(BUILDPREFIX)%.o: $(SOURCEPREFIX)%.c
-$(call COMPILE,$@,$<)
-
-$(BUILDPREFIX)$(MAIN_APP): $(OBJECTS) $(MESH_LIB)
-$(call LINK,$@,$^)
-
----------------------------
-
-What is wrong ?
-
-Thanks ,Talel
-
---vraeFtQ21ycOHJQyZdWh
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-HI Again,<br /><br />The systemd issue is solved by installing the libsyste=
-md in my native host, but I got another problem linking the lib with "ld" :=
-<br /><br />| /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linu=
-x/wirepas-sink-tool/1.0-r0/recipe-sysroot-native/usr/bin/aarch64-poky-linux=
-/../../libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/9.2.0/ld: c-mesh-a=
-pi/lib/build/mesh_api_lib.a(logger.o): Relocations in generic ELF (EM: 62)<=
-br />| /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/wirep=
-as-sink-tool/1.0-r0/recipe-sysroot-native/usr/bin/aarch64-poky-linux/../../=
-libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/9.2.0/ld: c-mesh-api/lib/=
-build/mesh_api_lib.a(logger.o): Relocations in generic ELF (EM: 62)<br />| =
-/media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/wirepas-sink=
--tool/1.0-r0/recipe-sysroot-native/usr/bin/aarch64-poky-linux/../../libexec=
-/aarch64-poky-linux/gcc/aarch64-poky-linux/9.2.0/ld: c-mesh-api/lib/build/m=
-esh_api_lib.a: error adding symbols: file in wrong format<br />| collect2: =
-error: ld returned 1 exit status<br />| makefile:102: recipe for target 'bu=
-ild/sinkService' failed<br /><br />Here is the Makefile:<br /><br />-------=
---------------------<br /><br /># Makefile for Wirepas Dbus Sink module<br =
-/><br /># Toolchain<br />CC&nbsp; ?=3D gcc<br />AS&nbsp; ?=3D as<br />LD&nb=
-sp; ?=3D ld<br />AR&nbsp; ?=3D ar<br /><br /># Paths, including trailing pa=
-th separator<br />SOURCEPREFIX&nbsp;&nbsp; :=3D source/<br />BUILDPREFIX&nb=
-sp;&nbsp;&nbsp; :=3D build/<br /><br /># This example needs the mesh lib<br=
- />MESH_LIB_FOLDER :=3D c-mesh-api/lib/<br />MESH_LIB :=3D $(MESH_LIB_FOLDE=
-R)build/mesh_api_lib.a<br /><br /># General compiler flags<br />CFLAGS&nbsp=
-; :=3D -std=3Dgnu99 -Wall -Werror -O<br /><br /># Targets definition<br />M=
-AIN_APP :=3D sinkService<br /><br />TARGET_APP :=3D $(BUILDPREFIX)$(MAIN_AP=
-P)<br /><br /># Add Api header (including logger files)<br />CFLAGS&nbsp; +=
-=
-=3D -I$(MESH_LIB_FOLDER)api<br /># Add pthtread lib as needed by Mesh Lib<=
-br />LDFLAGS +=3D -pthread<br /># Add Reentrant flag as using pthread<br />=
-CFLAGS&nbsp; +=3D -D_REENTRANT<br /><br /># Add systemd lib as needed for s=
-d-bus<br />LDFLAGS +=3D -lsystemd<br /><br /># Add current directory for he=
-aders<br />CFLAGS&nbsp; +=3D -I$(SOURCEPREFIX)<br /><br /># Specific source=
-s for this application<br />SOURCES :=3D $(SOURCEPREFIX)main.c<br />SOURCES=
- +=3D $(SOURCEPREFIX)config.c<br />SOURCES +=3D $(SOURCEPREFIX)data.c<br />=
-SOURCES +=3D $(SOURCEPREFIX)otap.c<br /><br />OBJECTS :=3D $(patsubst $(SOU=
-RCEPREFIX)%,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br />&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; $(BUILDPREFIX)%,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $(SOU=
-RCES:.c=3D.o))<br /><br /># Functions<br /><br /># Also create the target d=
-irectory if it does not exist<br />define COMPILE<br />&nbsp;&nbsp; &nbsp;e=
-cho "&nbsp; CC $(2)"<br />&nbsp;&nbsp; &nbsp;mkdir -p $(dir $(1))<br />&nbs=
-p;&nbsp; &nbsp;$(CC) $(CFLAGS) -c -o $(1) $(2)<br />endef<br /><br />define=
- LINK<br />&nbsp;&nbsp; &nbsp;echo "&nbsp; Linking $(1)"<br />&nbsp;&nbsp; =
-&nbsp;$(CC) $(CFLAGS) -o $(1) $(2) $(MESH_LIB) $(LDFLAGS)<br />endef<br /><=
-br />define CLEAN<br />&nbsp;&nbsp; &nbsp;echo "&nbsp; Cleaning up"<br />&n=
-bsp;&nbsp; &nbsp;$(RM) -r $(BUILDPREFIX)<br />&nbsp;&nbsp; &nbsp;make -C $(=
-MESH_LIB_FOLDER) clean<br />endef<br /><br /># Target rules<br /><br /># Us=
-e dependency files automatically generated by GCC.<br /># First collect all=
- C source files<br />AUTODEPS :=3D $(patsubst $(SOURCEPREFIX)%.c, $(BUILDPR=
-EFIX)%.d, $(SOURCES))<br /><br />ifeq ($(V),1)<br /># "V=3D1" on command li=
-ne, print commands.<br />else<br /># Default, do not print commands.<br />.=
-SILENT:<br />endif<br /><br />.PHONY: all<br />all: app<br /><br />app: $(T=
-ARGET_APP)<br /><br />.PHONY: clean<br />clean:<br />&nbsp;&nbsp; &nbsp;$(c=
-all CLEAN)<br /><br />$(MESH_LIB_FOLDER):<br />&nbsp;&nbsp; &nbsp;$(error P=
-lease add the c-mesh-api library under c-mesh-api folder.\<br />&nbsp;&nbsp=
-; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; It is needed to handle dualmc=
-u protocol)<br /><br />.PHONY: $(MESH_LIB)<br />$(MESH_LIB): $(MESH_LIB_FOL=
-DER)<br />&nbsp;&nbsp; &nbsp;make -C $(MESH_LIB_FOLDER)<br /><br />$(BUILDP=
-REFIX)%.o: $(SOURCEPREFIX)%.c<br />&nbsp;&nbsp; &nbsp;$(call COMPILE,$@,$&l=
-t;)<br /><br />$(BUILDPREFIX)$(MAIN_APP): $(OBJECTS) $(MESH_LIB)<br />&nbsp=
-;&nbsp; &nbsp;$(call LINK,$@,$^)<br /><br />---------------------------<br =
-/><br />What is wrong ?<br /><br />Thanks ,Talel
-
---vraeFtQ21ycOHJQyZdWh--
