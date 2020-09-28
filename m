@@ -1,150 +1,663 @@
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by mx.groups.io with SMTP id smtpd.web12.38556.1601304782531122971
+Received: from vadc01-egs01.gd-ms.com (vadc01-egs01.gd-ms.com [137.100.132.43])
+ by mx.groups.io with SMTP id smtpd.web10.41334.1601311584272369332
  for <yocto@lists.yoctoproject.org>;
- Mon, 28 Sep 2020 07:53:03 -0700
+ Mon, 28 Sep 2020 09:46:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=Ah2i5G8i;
- spf=pass (domain: intel.com, ip: 134.134.136.31, mailfrom: sangeeta.jain@intel.com)
-IronPort-SDR: cxMmL6wfHfRQJcjgpVHtE2G35ZkCC7rjSv1ezQcvFl0VuWcg9TwDhl697PQqXaTDNMoOEw/0eJ
- 7j/V+os44Oxg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9757"; a="223599128"
-X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; 
-   d="scan'208";a="223599128"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2020 07:53:01 -0700
-IronPort-SDR: 9orlANriCmUvXR9aKSvmWpvXQtOBcLWeOxSwZEFWyqVU9Gy8qV3hkXk/AfmEGeTtYI60YknqLi
- qKliC0JEIbVg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; 
-   d="scan'208";a="384442009"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
-  by orsmga001.jf.intel.com with ESMTP; 28 Sep 2020 07:53:01 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 28 Sep 2020 07:53:01 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Mon, 28 Sep 2020 07:53:01 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Mon, 28 Sep 2020 07:52:59 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CUVN7Nbe0MlU6NekO5Rja86bs70fCd3WIWMZdSUXsSZNvnVzm1elBwGevEIYFhd0LTuJDJ7AR2XH4B4u8ABbZ9UhyHjVVV9tBz+kwkrNz/FTT+NGyPbW4qL3XuOwICYEJcOgr6EfoGZxlTs38VnllASqfRU27agE6HQ686P99sdon0iL9lYVgevwt6EVGeniPyloW8yoJXNVpWpH4BwbP2YPL7gcB8iTQczByZgIB12Itw+r3ydVfl32gp3wVI8+5upSvhX6EljgUNvGuATYBizFlAB44TEq4zXaIY9as8ScmRcWJ9WC1PCXvyQLj9ckHLHY7oIcaYLmdxSeu9d76w==
+ dkim=missing; spf=pass (domain: gd-ms.com, ip: 137.100.132.43, mailfrom: donald.usry@gd-ms.com)
+IronPort-SDR: Vhkm6KsKEVPlZwZzC90gY7rlEf1p+sTfiTYzcGk/iMiAr8BjyS0OSJp/+A0lC4Lphh4opYd7To
+ I8TXT/J4uMSQ==
+Received: from unknown (HELO eadc-e-fmsprd01.eadc-e.gd-ais.com) ([10.96.30.97])
+  by vadc01-egs01.gd-ms.com with ESMTP; 28 Sep 2020 12:46:23 -0400
+Received: from VADC-MMB04.GD-MS.US (vadc-mmb04.gd-ms.us [10.132.100.64])
+	by eadc-e-fmsprd01.eadc-e.gd-ais.com (Postfix) with ESMTPS id 7DAB7A6803B
+	for <yocto@lists.yoctoproject.org>; Mon, 28 Sep 2020 16:46:23 +0000 (UTC)
+Received: from VADC-MCA02.GD-MS.US (10.132.100.43) by VADC-MMB04.GD-MS.US
+ (10.132.100.64) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 28 Sep
+ 2020 12:46:23 -0400
+Received: from USG02-CY1-obe.outbound.protection.office365.us (137.100.132.86)
+ by VADC-MCA02.GD-MS.US (10.132.100.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2 via Frontend Transport; Mon, 28 Sep 2020 12:46:22 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
+ b=ct8NWOCkz+VItci7qVm66+18Ll1Or+kPc8EInKtkgL8URNnyH/uGIs+kntrIVpaJOSf8w4wi7FCqLd1hG6F+TvlaiaTqPZ6YZAvEoCcqhM69Knmxqi0+bdNBD6CNhKpE2yaTDih7J47wIa6t8qTezkUnnUJd9ZMF/1ycBg0KH3A44wE7A9jZJtwJmNLqgqif+mjYqXTtw/PX8cbztaAZ8/clPJlh6JHsSXt/CsaX0h0a5arLDigUCv+Kk1Lgx+tIzqKAdA2HBLX6oQ4sCj/rE6yrTi2xw2Y1nmHXbyZscVFIGOR0bMWlyYg8Y5j0+3YCy8L7FNrlJ0PH7P2SJNaO4Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
+ s=arcselector5401;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I96mXoZh0Fn78dcb2UVG+lXj6nxjx0ALqL0TSjUqhNg=;
- b=DFnThWkYn0vxbUcuIzXIoc78psgKKuGZFcZ7vn+rn/sBV02+Va7I8Ff3Cw2+AIScyywc+6d5C4173r7v9VbeSGeB2Qeca/v/9EEcUjxY8GFlNUbdkknNxBk00jfVk/Ozvo78cGYy5O25eJgR/TAU8YnPYrTEiUrNGT6kv6/ilj4LdLhq6OLixbePuQv9Rgb76ymqiRyTvLsc0kFKwROV5F8MaHHUNOv/xfK05FgeL1OAmDy3MnH54tta8uaY+wTxrB1vZbRWLZLmF0qGxqJtc0gGPsuyENZKAeLpihwRPT2u6big5LYCchXT8RY1i83jTQ/MAH+y0x6EAwoknWDP5A==
+ bh=6R7vlaoz5f68z9z6MVt3yVFvOrp9IqTLWwHMnLchH3w=;
+ b=0rJxR5/NtniX7U2vi0BkaeC7zlHKlbnk26nbSeFKiBJgt8Zk4Z7fyn0zSHU1ZwVC6YR2kE9zAeEaBV/e5gtrSJShJ+FIbLc5EgKvbseSGoz6kj7AXF97n1y9GvExgAVQyrJty+D0Yj5c0L9E34OthX6LGdSjmeXSAi7bEATOIHKVOU+iNe6vhHqY5rAFRSgadYXSELVyuQSqQcvCl+Hlp3ALgUX6CdTpP601CZNz81FRZB/r3ksRSQzWpNJ+VbwUoF0gwXhydQMGd+iJY5/JjHpL9sBkq9NJ8T2ksf48GEmCrawkVTjptEwHUx4wSy4nWAFgAYUJTBH+VZq67nryjA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I96mXoZh0Fn78dcb2UVG+lXj6nxjx0ALqL0TSjUqhNg=;
- b=Ah2i5G8iJcaYQNtds+NxrtNHOwT118KweFCloOFCpDQG5XihEgSd1m95Ut3HVlgOCgFN0kL1SE8bZ2c+6bNwE49L6Nhot2nVEcv5am4tZ7Zs7Q7Y1cZ7o59x434bS/D9lWfXhHOrM6sNIa+4kFFoe4UXtliOTyCi4Tsq8ET4A3Q=
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com (2603:10b6:a03:b1::33)
- by BY5PR11MB4435.namprd11.prod.outlook.com (2603:10b6:a03:1ce::30) with
+ smtp.mailfrom=gd-ms.com; dmarc=pass action=none header.from=gd-ms.com;
+ dkim=pass header.d=gd-ms.com; arc=none
+Received: from SN5P110MB0366.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:419::16)
+ by SN5P110MB0399.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:41a::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20; Mon, 28 Sep
- 2020 14:52:59 +0000
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::406e:4a1b:25b8:da3f]) by BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::406e:4a1b:25b8:da3f%7]) with mapi id 15.20.3412.029; Mon, 28 Sep 2020
- 14:52:59 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>, Yocto Project
-	<yocto@lists.yoctoproject.org>
-CC: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
-	"yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
-	<apoorv.sangal@intel.com>, "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "Chan,
- Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>, "akuster808@gmail.com"
-	<akuster808@gmail.com>, "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
-	Steve Sakoman <steve@sakoman.com>, "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
-Subject: Re: QA notification for completed autobuilder build (yocto-3.1.3.rc1)
-Thread-Topic: QA notification for completed autobuilder build
- (yocto-3.1.3.rc1)
-Thread-Index: AQHWk0lI7KSPn8kdfkaK9GnZFRt7Kql+JceQ
-Date: Mon, 28 Sep 2020 14:52:59 +0000
-Message-ID: <BYAPR11MB362478819B6CB4E384648962E3350@BYAPR11MB3624.namprd11.prod.outlook.com>
-References: <20200924111808.4B9ED1A00A2@debian8-ty-1.yocto.io>
- <032da6fc700a4018bc7e8d86fd188ad6b40fce36.camel@linuxfoundation.org>
-In-Reply-To: <032da6fc700a4018bc7e8d86fd188ad6b40fce36.camel@linuxfoundation.org>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.24; Mon, 28 Sep
+ 2020 16:46:20 +0000
+Received: from SN5P110MB0366.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::80a9:4dbf:36e:9b48]) by SN5P110MB0366.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::80a9:4dbf:36e:9b48%10]) with mapi id 15.20.3412.024; Mon, 28 Sep 2020
+ 16:46:20 +0000
+From: "Donald Usry" <Donald.Usry@gd-ms.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: #devtool fails on unpack of u-boot-ti-staging
+Thread-Topic: #devtool fails on unpack of u-boot-ti-staging
+Thread-Index: AdaVtr0eWnlEYSOTR7yD0EhCjADc8g==
+Date: Mon, 28 Sep 2020 16:46:20 +0000
+Message-ID: <SN5P110MB036630D9D7E4E0A7B7954E14AA350@SN5P110MB0366.NAMP110.PROD.OUTLOOK.COM>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-authentication-results: linuxfoundation.org; dkim=none (message not signed)
- header.d=none;linuxfoundation.org; dmarc=none action=none
- header.from=intel.com;
-x-originating-ip: [115.133.103.117]
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=gd-ms.com;
+x-originating-ip: [137.100.137.27]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1828c0f1-1684-47f0-0b95-08d863be3122
-x-ms-traffictypediagnostic: BY5PR11MB4435:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BY5PR11MB44355B6FFA8B6CB5D0A74903E3350@BY5PR11MB4435.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-office365-filtering-correlation-id: c9d7a584-2006-4c35-14a3-08d863ce0719
+x-ms-traffictypediagnostic: SN5P110MB0399:
+x-microsoft-antispam-prvs: <SN5P110MB0399EC46A7BE07B2C6978BF4AA350@SN5P110MB0399.NAMP110.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: BUAreL9GjDSNGOPAeazq3h8SxAitg+IdtadIVaCf/dGT1kWU0pcdKSiXx/QB9zvyiOa7dGu1L9+A1TsNzfz8rpi/oEH+TPnnVtC+OOJVjAspPupoYvo2P4dof4GM4C2/AxIV9fgn3HoYWqjj7d6WmiR89hqw02ug9oSzavNBw9QaMlYZ6XWSt1cfWj5W0Mkw5fjPlI38mKd4WJ2vKXDanNy8t56szlgHxF6NLv/2wXwyIBEIKTkG94HxdvQags6cQtKNHmY+cynBLb8ssWesZk5w6aS9/Ebw2QRvQzVA7jCeHIZb77c6Br3gRebb9UeXDb8OQ3PtRQpgcN7IpxX1zNrXKIAb2Zdx1o7Q005cedw99rGSowhrVNCOUhaR5/zAlMtJAYnfawXnHZfxBqmrbCcqWYcjRpuoUqt1DOWYllDA1fPv4P01GCDvdfjXqjP42Jk6Ipm8jQOhAa/LgAMLCQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3624.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(376002)(346002)(136003)(366004)(396003)(86362001)(83380400001)(33656002)(9686003)(15650500001)(52536014)(55016002)(186003)(8936002)(8676002)(64756008)(66446008)(54906003)(66476007)(66556008)(71200400001)(66946007)(76116006)(316002)(53546011)(6506007)(26005)(110136005)(2906002)(4326008)(478600001)(966005)(7696005)(5660300002)(107886003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: nkqVmkARKVnvZeDp+d6Q22s9gijFG7TR//F1iUSt0TGU1flJ6ZSca8ZkoIbdzHyKV3e8LvNxa5crum4lBb6G115FasCnZWKREhVHI+dn76wEc2ojGnAyYaCo0nd+9E/Sa888go8eR/Tc6zoJi24TNN7UAj93DD+6LuuHjT+TTLjT0cmvIMYhkVNKgudjx8T/MQZZf+7WQLYauwWHm+lqLR6gV7t4ZvzfByOLSucXxrXxwvlH/qqYxDVf9T5zPeyxxoxwS7UuuGx6+ns8ABDIBjReKoRrS9BmuUH9Cy9KYaI4ybcQPD+Bp3vRiQH3dEbcySkTrUAyt4lH+AJuBIx/4dTGay3whHsQSUeyQDmrwqh+xW529YwX8o892u0I4LhXdnl4lt14MviFvnJX1Tsgr3w6oXNgoHEdp5fyOh4Zelz/rqDdXUYUULXB1biDHE+G4u+pDkzMsfBOgwzXRi4nJwPxGot7M2NZf9vyPpOxYcpB1mYaw2HMEA3tUImfbBye/18uMCj9riUfa1oNMOdJlfjtLJHhbpaa0QUlWhP27eKwQzcKLED+MCbm5dj2LjrQJAIeGqG5qBxcLGXXisQ++mdHAcG5LNHB1I1MdfqsskIbyccTW1xYnD1+FpcDd8LhDUBTo+hAhtePVXG3FHXaWA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN5P110MB0366.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(366004)(6916009)(55016002)(86362001)(52536014)(64756008)(66476007)(6506007)(33656002)(66556008)(66446008)(498600001)(8936002)(66946007)(76116006)(186003)(9686003)(7696005)(26005)(8676002)(71200400001)(2906002)(5660300002)(166002)(83380400001);DIR:OUT;SFP:1102;
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3624.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1828c0f1-1684-47f0-0b95-08d863be3122
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Sep 2020 14:52:59.0606
+X-MS-Exchange-CrossTenant-AuthSource: SN5P110MB0366.NAMP110.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: c9d7a584-2006-4c35-14a3-08d863ce0719
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Sep 2020 16:46:20.5502
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-id: 7c5a26cf-ddf0-400c-9703-4070b4e3a54d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nf8U+a1EHFXwouSLHMlr3i538tvc0/VJJuqYAZRZnU+QYOM8D8yk8WVajFUinhfKagV6cCKtNEIh5A2BhG6XqA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB4435
-Return-Path: sangeeta.jain@intel.com
-X-OriginatorOrg: intel.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN5P110MB0399
+X-OriginatorOrg: gd-ms.com
+X-TM-SNTS-SMTP: 
+	4F069E405EB0158227FE94BDAE45FA01F2756AC7E91AE78A840D2593B76229B22000:8
+X-Content-Scanned: Fidelis Mail
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/alternative;
+	boundary="_000_SN5P110MB036630D9D7E4E0A7B7954E14AA350SN5P110MB0366NAMP_"
 
-SGkgYWxsLA0KDQpJbnRlbCBhbmQgV1IgWVAgUUEgaXMgbm93IGRvaW5nIFFBIGV4ZWN1dGlvbiBm
-b3IgWVAgYnVpbGQgeW9jdG8tMy4xLjMucmMxDQpXZSBhcmUgcGxhbm5pbmcgdG8gZXhlY3V0ZSBm
-b2xsb3dpbmcgdGVzdHMgZm9yIHRoaXMgY3ljbGU6DQoNCk9FUUEtbWFudWFsIHRlc3RzIGZvciBm
-b2xsb3dpbmcgbW9kdWxlOg0KMS4gT0UtQ29yZQ0KMi4gQlNQLWh3DQoNClJ1bnRpbWUgYXV0byB0
-ZXN0IGZvciBmb2xsb3dpbmcgcGxhdGZvcm1zOg0KMS4gTWlubm93VHVyYm90IDMyLWJpdA0KMi4g
-Q29mZmVlIExha2UNCjMuIE5VQyA3DQo0LiBOVUMgNg0KNS4gRWRnZXJvdXRlcg0KNi4gQmVhZ2xl
-Ym9uZQ0KDQpFVEEgZm9yIGNvbXBsZXRpb24gaXMgbmV4dCBUaHVyc2RheSwgT2N0b2JlciAwMS4N
-Cg0KVGhhbmtzLA0KU2FuZ2VldGENCg0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+
-IEZyb206IFJpY2hhcmQgUHVyZGllIDxyaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5kYXRpb24ub3Jn
-Pg0KPiBTZW50OiBGcmlkYXksIDI1IFNlcHRlbWJlciwgMjAyMCAxMDozNiBQTQ0KPiBUbzogWW9j
-dG8gUHJvamVjdCA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4NCj4gQ2M6IG90YXZpb0Bv
-c3N5c3RlbXMuY29tLmJyOyB5aS56aGFvQHdpbmRyaXZlci5jb207IFNhbmdhbCwgQXBvb3J2DQo+
-IDxhcG9vcnYuc2FuZ2FsQGludGVsLmNvbT47IFllb2gsIEVlIFBlbmcgPGVlLnBlbmcueWVvaEBp
-bnRlbC5jb20+OyBDaGFuLA0KPiBBYXJvbiBDaHVuIFlldyA8YWFyb24uY2h1bi55ZXcuY2hhbkBp
-bnRlbC5jb20+Ow0KPiByaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5kYXRpb24ub3JnOyBha3VzdGVy
-ODA4QGdtYWlsLmNvbTsNCj4gc2pvbGxleS55cC5wbUBnbWFpbC5jb207IEphaW4sIFNhbmdlZXRh
-IDxzYW5nZWV0YS5qYWluQGludGVsLmNvbT47IFN0ZXZlDQo+IFNha29tYW4gPHN0ZXZlQHNha29t
-YW4uY29tPg0KPiBTdWJqZWN0OiBGd2Q6IFFBIG5vdGlmaWNhdGlvbiBmb3IgY29tcGxldGVkIGF1
-dG9idWlsZGVyIGJ1aWxkICh5b2N0by0zLjEuMy5yYzEpDQo+IA0KPiBbdGhlIG9yaWdpbmFsIGVt
-YWlsIGJvdW5jZWQgZm9yIHNvbWUgcmVhc29uLCByZXNlbmRpbmcgdG8gdGhlIGxpc3RdDQo+IA0K
-PiBBIGJ1aWxkIGZsYWdnZWQgZm9yIFFBICh5b2N0by0zLjEuMy5yYzEpIHdhcyBjb21wbGV0ZWQg
-b24gdGhlIGF1dG9idWlsZGVyIGFuZCBpcw0KPiBhdmFpbGFibGUgYXQ6DQo+IA0KPiANCj4gICAg
-IGh0dHBzOi8vYXV0b2J1aWxkZXIueW9jdG8uaW8vcHViL3JlbGVhc2VzL3lvY3RvLTMuMS4zLnJj
-MQ0KPiANCj4gDQo+IEJ1aWxkIGhhc2ggaW5mb3JtYXRpb246DQo+IA0KPiBiaXRiYWtlOiAxOGUx
-OTU3MzM3ZmQ5ZjA2YmM2NzNkMjhkZDRmODI3NzMyMWQwN2JjDQo+IG1ldGEtYXJtOiBjN2ExYTVm
-OWZkNDE1ZTNhZTEwNzhjMmExZDZhZjljMjVlOWU2NDk4DQo+IG1ldGEtZ3BsdjI6IDYwYjI1MWMy
-NWJhODdlOTQ2YTBjYTRjZGM4ZDE3YjFjYjA5MjkyYWMNCj4gbWV0YS1pbnRlbDogZDcxMzRlODY1
-NzQxNzI3ODRmOTAxMTdjMDNhMDEyZTAwNDhkOGJjYg0KPiBtZXRhLWtlcm5lbDogY2I3ZjBkYzVi
-YjFlYTA5OThjOGQ0ZmNiNDg2MTQ4ZDRjYWI1NzVmNA0KPiBtZXRhLW1pbmd3OiA1MjRkZTY4NjIw
-NWI1ZDY3MzY2NjFkNDUzMmY1Zjk4ZmVlODU4OWI3DQo+IG9lY29yZTogYjM5YmRhNGNjNjJkYjEy
-YzBlZGZiZTQ4OWQ1YTdmNTk4OGVkZTZhOQ0KPiBwb2t5OiAwMTJhZDEwYTg5YTg4OWMyMWU2N2My
-N2RjMzdkMjI1MjAyMTI1NDhmDQo+IA0KPiANCj4gDQo+IFRoaXMgaXMgYW4gYXV0b21hdGVkIG1l
-c3NhZ2UgZnJvbSB0aGUgWW9jdG8gUHJvamVjdCBBdXRvYnVpbGRlcg0KPiBHaXQ6IGdpdDovL2dp
-dC55b2N0b3Byb2plY3Qub3JnL3lvY3RvLWF1dG9idWlsZGVyMg0KPiBFbWFpbDogcmljaGFyZC5w
-dXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZw0KPiANCg0K
+--_000_SN5P110MB036630D9D7E4E0A7B7954E14AA350SN5P110MB0366NAMP_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Using 'devtool modify u-boot-ti-staging' fails on do_unpack with "Exception=
+: ModuleNotFoundError: No module named '_sysconfigdata'". I pulled a fresh =
+copy of Poky and tried 'devtool modify u-boot' with the default machine and=
+ the same exception occurs. I have tried others. For example, performing 'd=
+evtool modify linux-ti-staging' yields no issues.
+
+Build Configuration:
+BB_VERSION           =3D "1.46.0"
+BUILD_SYS            =3D "x86_64-linux"
+NATIVELSBSTRING      =3D "universal"
+TARGET_SYS           =3D "arm-poky-linux-gnueabi"
+MACHINE              =3D "am335x-evm"
+DISTRO               =3D "poky"
+DISTRO_VERSION       =3D "3.1.3"
+TUNE_FEATURES        =3D "arm armv7a vfp thumb neon callconvention-hard"
+TARGET_FPU           =3D "hard"
+
+meta
+meta-poky            =3D "dunfell:012ad10a89a889c21e67c27dc37d22520212548f"
+meta-ti              =3D "master:2e95912f57a66a6a6879b053ba08faec5a6e4500"
+meta-arm
+meta-arm-toolchain   =3D "dunfell:c4f04f3fb66f8f4365b08b553af8206372e90a63"
+workspace            =3D "dunfell:012ad10a89a889c21e67c27dc37d22520212548f"
+
+Initialising tasks: 100% |#################################################=
+###########################################################################=
+######################################| Time: 0:00:00
+Sstate summary: Wanted 0 Found 0 Missed 0 Current 20 (0% match, 100% comple=
+te)
+NOTE: Executing Tasks
+ERROR: Error executing a python function in exec_python_func() autogenerate=
+d:
+
+The stack trace of python calls that resulted in this exception/failure was=
+:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+     0001:
+*** 0002:devtool_post_unpack(d)
+     0003:
+File: '/home/dusry/workspace/poky/meta/classes/devtool-source.bbclass', lin=
+eno: 68, function: devtool_post_unpack
+     0064:}
+     0065:
+     0066:
+     0067:python devtool_post_unpack() {
+*** 0068:    import oe.recipeutils
+     0069:    import shutil
+     0070:    sys.path.insert(0, os.path.join(d.getVar('COREBASE'), 'script=
+s', 'lib'))
+     0071:    import scriptutils
+     0072:    from devtool import setup_git_repo
+File: '/home/dusry/workspace/poky/meta/lib/oe/recipeutils.py', lineno: 21, =
+function: <module>
+     0017:import shutil
+     0018:import re
+     0019:import fnmatch
+     0020:import glob
+*** 0021:import bb.tinfoil
+     0022:
+     0023:from collections import OrderedDict, defaultdict
+     0024:from bb.utils import vercmp_string
+     0025:
+File: '/home/dusry/workspace/poky/bitbake/lib/bb/tinfoil.py', lineno: 19, f=
+unction: <module>
+     0015:from collections import OrderedDict, defaultdict
+     0016:from functools import partial
+     0017:
+     0018:import bb.cache
+*** 0019:import bb.cooker
+     0020:import bb.providers
+     0021:import bb.taskdata
+     0022:import bb.utils
+     0023:import bb.command
+File: '/home/dusry/workspace/poky/bitbake/lib/bb/cooker.py', lineno: 25, fu=
+nction: <module>
+     0021:import bb, bb.exceptions, bb.command
+     0022:from bb import utils, data, parse, event, cache, providers, taskd=
+ata, runqueue, build
+     0023:import queue
+     0024:import signal
+*** 0025:import prserv.serv
+     0026:import pyinotify
+     0027:import json
+     0028:import pickle
+     0029:import codecs
+File: '/home/dusry/workspace/poky/bitbake/lib/prserv/serv.py', lineno: 7, f=
+unction: <module>
+     0003:#
+     0004:
+     0005:import os,sys,logging
+     0006:import signal, time
+*** 0007:from xmlrpc.server import SimpleXMLRPCServer, SimpleXMLRPCRequestH=
+andler
+     0008:import threading
+     0009:import queue
+     0010:import socket
+     0011:import io
+File: '/usr/lib/python3.8/xmlrpc/server.py', lineno: 117, function: <module=
+>
+     0113:import socketserver
+     0114:import sys
+     0115:import os
+     0116:import re
+*** 0117:import pydoc
+     0118:import traceback
+     0119:try:
+     0120:    import fcntl
+     0121:except ImportError:
+File: '/usr/lib/python3.8/pydoc.py', lineno: 370, function: <module>
+     0366:    return module
+     0367:
+     0368:# ---------------------------------------------------- formatter =
+base class
+     0369:
+*** 0370:class Doc:
+     0371:
+     0372:    PYTHONDOCS =3D os.environ.get("PYTHONDOCS",
+     0373:                                "https://docs.python.org/%d.%d/li=
+brary<https://docs.python.org/%25d.%25d/library>"
+     0374:                                % sys.version_info[:2])
+File: '/usr/lib/python3.8/pydoc.py', lineno: 400, function: Doc
+     0396:        raise TypeError(message)
+     0397:
+     0398:    docmodule =3D docclass =3D docroutine =3D docother =3D docpro=
+perty =3D docdata =3D fail
+     0399:
+*** 0400:    def getdocloc(self, object, basedir=3Dsysconfig.get_path('stdl=
+ib')):
+     0401:        """Return the location of module docs or None"""
+     0402:
+     0403:        try:
+     0404:            file =3D inspect.getabsfile(object)
+File: '/usr/lib/python3.8/sysconfig.py', lineno: 512, function: get_path
+     0508:    """Return a path corresponding to the scheme.
+     0509:
+     0510:    ``scheme`` is the install scheme name.
+     0511:    """
+*** 0512:    return get_paths(scheme, vars, expand)[name]
+     0513:
+     0514:
+     0515:def get_config_vars(*args):
+     0516:    """With no arguments, return a dictionary of all configuratio=
+n
+File: '/usr/lib/python3.8/sysconfig.py', lineno: 502, function: get_paths
+     0498:    ``scheme`` is the install scheme name. If not provided, it wi=
+ll
+     0499:    return the default scheme for the current platform.
+     0500:    """
+     0501:    if expand:
+*** 0502:        return _expand_vars(scheme, vars)
+     0503:    else:
+     0504:        return _INSTALL_SCHEMES[scheme]
+     0505:
+     0506:
+File: '/usr/lib/python3.8/sysconfig.py', lineno: 172, function: _expand_var=
+s
+     0168:def _expand_vars(scheme, vars):
+     0169:    res =3D {}
+     0170:    if vars is None:
+     0171:        vars =3D {}
+*** 0172:    _extend_dict(vars, get_config_vars())
+     0173:
+     0174:    for key, value in _INSTALL_SCHEMES[scheme].items():
+     0175:        if os.name in ('posix', 'nt'):
+     0176:            value =3D os.path.expanduser(value)
+File: '/usr/lib/python3.8/sysconfig.py', lineno: 550, function: get_config_=
+vars
+     0546:
+     0547:        if os.name =3D=3D 'nt':
+     0548:            _init_non_posix(_CONFIG_VARS)
+     0549:        if os.name =3D=3D 'posix':
+*** 0550:            _init_posix(_CONFIG_VARS)
+     0551:        # For backward compatibility, see issue19555
+     0552:        SO =3D _CONFIG_VARS.get('EXT_SUFFIX')
+     0553:        if SO is not None:
+     0554:            _CONFIG_VARS['SO'] =3D SO
+File: '/usr/lib/python3.8/sysconfig.py', lineno: 421, function: _init_posix
+     0417:def _init_posix(vars):
+     0418:    """Initialize the module as appropriate for POSIX systems."""
+     0419:    # _sysconfigdata is generated at build time, see _generate_po=
+six_vars()
+     0420:    name =3D _get_sysconfigdata_name()
+*** 0421:    _temp =3D __import__(name, globals(), locals(), ['build_time_v=
+ars'], 0)
+     0422:    build_time_vars =3D _temp.build_time_vars
+     0423:    vars.update(build_time_vars)
+     0424:
+     0425:def _init_non_posix(vars):
+Exception: ModuleNotFoundError: No module named '_sysconfigdata'
+
+--_000_SN5P110MB036630D9D7E4E0A7B7954E14AA350SN5P110MB0366NAMP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Using &#8216;devtool modify u-boot-ti-staging&#8217;=
+ fails on do_unpack with &#8220;Exception: ModuleNotFoundError: No module n=
+amed '_sysconfigdata'&#8221;. I pulled a fresh copy of Poky and tried &#821=
+6;devtool modify u-boot&#8217; with the default machine and the same except=
+ion
+ occurs. I have tried others. For example, performing &#8216;devtool modify=
+ linux-ti-staging&#8217; yields no issues.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Build Configuration:<o:p></o:p></p>
+<p class=3D"MsoNormal">BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; =3D &quot;1.46.0&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;x86_64-linux&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">NATIVELSBSTRING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &q=
+uot;universal&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; =3D &quot;arm-poky-linux-gnueabi&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;am335x-evm&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;poky&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">DISTRO_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+=3D &quot;3.1.3&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; =3D &quot;arm armv7a vfp thumb neon callconvention-hard&quot;<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; =3D &quot;hard&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-poky&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;dunfell:012ad10a89a889c21e67c27dc37d22520=
+212548f&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-ti&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;master:2e95912f57a66a6a6879b053=
+ba08faec5a6e4500&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-arm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></p>
+<p class=3D"MsoNormal">meta-arm-toolchain&nbsp;&nbsp; =3D &quot;dunfell:c4f=
+04f3fb66f8f4365b08b553af8206372e90a63&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">workspace&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;dunfell:012ad10a89a889c21e67c27dc37d22520=
+212548f&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Initialising tasks: 100% |##########################=
+###########################################################################=
+#############################################################| Time: 0:00:0=
+0<o:p></o:p></p>
+<p class=3D"MsoNormal">Sstate summary: Wanted 0 Found 0 Missed 0 Current 20=
+ (0% match, 100% complete)<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: Executing Tasks<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Error executing a python function in exec_pyt=
+hon_func() autogenerated:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The stack trace of python calls that resulted in thi=
+s exception/failure was:<o:p></o:p></p>
+<p class=3D"MsoNormal">File: 'exec_python_func() autogenerated', lineno: 2,=
+ function: &lt;module&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0001:<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0002:devtool_post_unpack(d)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0003:<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/home/dusry/workspace/poky/meta/classes/devto=
+ol-source.bbclass', lineno: 68, function: devtool_post_unpack<o:p></o:p></p=
+>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0064:}<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0065:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0066:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0067:python devtool_post_un=
+pack() {<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0068:&nbsp;&nbsp;&nbsp; import oe.recipeutils<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0069:&nbsp;&nbsp;&nbsp; imp=
+ort shutil<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0070:&nbsp; &nbsp;&nbsp;sys=
+.path.insert(0, os.path.join(d.getVar('COREBASE'), 'scripts', 'lib'))<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0071:&nbsp;&nbsp;&nbsp; imp=
+ort scriptutils<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0072:&nbsp;&nbsp;&nbsp; fro=
+m devtool import setup_git_repo<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/home/dusry/workspace/poky/meta/lib/oe/recipe=
+utils.py', lineno: 21, function: &lt;module&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0017:import shutil<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0018:import re<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0019:import fnmatch<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0020:import glob<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">*** 0021:import bb.tinfoil<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0022:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0023:from collections impor=
+t OrderedDict, defaultdict<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0024:from bb.utils import v=
+ercmp_string<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0025:<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/home/dusry/workspace/poky/bitbake/lib/bb/tin=
+foil.py', lineno: 19, function: &lt;module&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0015:from collections impor=
+t OrderedDict, defaultdict<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0016:from functools import =
+partial<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0017:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0018:import bb.cache<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">*** 0019:import bb.cooker<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0020:import bb.providers<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0021:import bb.taskdata<o:p=
+></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0022:import bb.utils<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0023:import bb.command<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">File: '/home/dusry/workspace/poky/bitbake/lib/bb/coo=
+ker.py', lineno: 25, function: &lt;module&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0021:import bb, bb.exceptio=
+ns, bb.command<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0022:from bb import utils, =
+data, parse, event, cache, providers, taskdata, runqueue, build<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0023:import queue<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0024:import signal<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">*** 0025:import prserv.serv<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0026:import pyinotify<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0027:import json<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0028:import pickle<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0029:import codecs<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">File: '/home/dusry/workspace/poky/bitbake/lib/prserv=
+/serv.py', lineno: 7, function: &lt;module&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0003:#<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0004:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0005:import os,sys,logging<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0006:import signal, time<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">*** 0007:from xmlrpc.server import SimpleXMLRPCServe=
+r, SimpleXMLRPCRequestHandler<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0008:import threading<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0009:import queue<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0010:import socket<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0011:import io<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">File: '/usr/lib/python3.8/xmlrpc/server.py', lineno:=
+ 117, function: &lt;module&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0113:import socketserver<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0114:import sys<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0115:import os<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0116:import re<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">*** 0117:import pydoc<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0118:import traceback<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0119:try:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0120:&nbsp;&nbsp;&nbsp; imp=
+ort fcntl<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0121:except ImportError:<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">File: '/usr/lib/python3.8/pydoc.py', lineno: 370, fu=
+nction: &lt;module&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0366:&nbsp;&nbsp;&nbsp; ret=
+urn module<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0367:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0368:# --------------------=
+-------------------------------- formatter base class<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0369:<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0370:class Doc:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0371:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0372:&nbsp;&nbsp;&nbsp; PYT=
+HONDOCS =3D os.environ.get(&quot;PYTHONDOCS&quot;,<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0373:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; &quot;<a href=3D"https://docs.python.org/%25d.%25d/library">=
+https://docs.python.org/%d.%d/library</a>&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0374:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; % sys.version_info[:2])<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/usr/lib/python3.8/pydoc.py', lineno: 400, fu=
+nction: Doc<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0396:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; raise TypeError(message)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0397:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0398:&nbsp;&nbsp;&nbsp; doc=
+module =3D docclass =3D docroutine =3D docother =3D docproperty =3D docdata=
+ =3D fail<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0399:<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0400:&nbsp;&nbsp;&nbsp; def getdocloc(self, obje=
+ct, basedir=3Dsysconfig.get_path('stdlib')):<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0401:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; &quot;&quot;&quot;Return the location of module docs o=
+r None&quot;&quot;&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0402:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0403:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; try:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0404:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file =3D inspect.getabsfile(ob=
+ject)<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/usr/lib/python3.8/sysconfig.py', lineno: 512=
+, function: get_path<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0508:&nbsp;&nbsp;&nbsp; &qu=
+ot;&quot;&quot;Return a path corresponding to the scheme.<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0509:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0510:&nbsp;&nbsp;&nbsp; ``s=
+cheme`` is the install scheme name.<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0511:&nbsp;&nbsp;&nbsp; &qu=
+ot;&quot;&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0512:&nbsp;&nbsp;&nbsp; return get_paths(scheme,=
+ vars, expand)[name]<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0513:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0514:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0515:def get_config_vars(*a=
+rgs):<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0516:&nbsp;&nbsp;&nbsp; &qu=
+ot;&quot;&quot;With no arguments, return a dictionary of all configuration<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/usr/lib/python3.8/sysconfig.py', lineno: 502=
+, function: get_paths<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0498:&nbsp;&nbsp;&nbsp; ``s=
+cheme`` is the install scheme name. If not provided, it will<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0499:&nbsp;&nbsp;&nbsp; ret=
+urn the default scheme for the current platform.<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0500:&nbsp;&nbsp;&nbsp; &qu=
+ot;&quot;&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0501:&nbsp;&nbsp;&nbsp; if =
+expand:<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0502:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+return _expand_vars(scheme, vars)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0503:&nbsp;&nbsp;&nbsp; els=
+e:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0504:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; return _INSTALL_SCHEMES[scheme]<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0505:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0506:<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/usr/lib/python3.8/sysconfig.py', lineno: 172=
+, function: _expand_vars<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0168:def _expand_vars(schem=
+e, vars):<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0169:&nbsp;&nbsp;&nbsp; res=
+ =3D {}<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0170:&nbsp;&nbsp;&nbsp; if =
+vars is None:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0171:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; vars =3D {}<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0172:&nbsp;&nbsp;&nbsp; _extend_dict(vars, get_c=
+onfig_vars())<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0173:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0174:&nbsp;&nbsp;&nbsp; for=
+ key, value in _INSTALL_SCHEMES[scheme].items():<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0175:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; if os.name in ('posix', 'nt'):<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0176:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value =3D os.path.expanduser(v=
+alue)<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/usr/lib/python3.8/sysconfig.py', lineno: 550=
+, function: get_config_vars<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0546:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0547:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; if os.name =3D=3D 'nt':<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0548:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _init_non_posix(_CONFIG_VARS)<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0549:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; if os.name =3D=3D 'posix':<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0550:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; _init_posix(_CONFIG_VARS)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0551:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; # For backward compatibility, see issue19555<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0552:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; SO =3D _CONFIG_VARS.get('EXT_SUFFIX')<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0553:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; if SO is not None:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0554:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _CONFIG_VARS['SO'] =3D SO<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">File: '/usr/lib/python3.8/sysconfig.py', lineno: 421=
+, function: _init_posix<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0417:def _init_posix(vars):=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0418:&nbsp;&nbsp;&nbsp; &qu=
+ot;&quot;&quot;Initialize the module as appropriate for POSIX systems.&quot=
+;&quot;&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0419:&nbsp;&nbsp;&nbsp; # _=
+sysconfigdata is generated at build time, see _generate_posix_vars()<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0420:&nbsp;&nbsp;&nbsp; nam=
+e =3D _get_sysconfigdata_name()<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0421:&nbsp;&nbsp;&nbsp; _temp =3D __import__(nam=
+e, globals(), locals(), ['build_time_vars'], 0)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0422:&nbsp;&nbsp;&nbsp; bui=
+ld_time_vars =3D _temp.build_time_vars<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0423:&nbsp;&nbsp;&nbsp; var=
+s.update(build_time_vars)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0424:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0425:def _init_non_posix(va=
+rs):<o:p></o:p></p>
+<p class=3D"MsoNormal">Exception: ModuleNotFoundError: No module named '_sy=
+sconfigdata'<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_SN5P110MB036630D9D7E4E0A7B7954E14AA350SN5P110MB0366NAMP_--
