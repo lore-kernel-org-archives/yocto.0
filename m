@@ -1,118 +1,166 @@
-Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
- by mx.groups.io with SMTP id smtpd.web12.41536.1601312018877307433
+Received: from cpsmtpb-ews02.kpnxchange.com (cpsmtpb-ews02.kpnxchange.com [213.75.39.5])
+ by mx.groups.io with SMTP id smtpd.web10.41652.1601312421454210908
  for <yocto@lists.yoctoproject.org>;
- Mon, 28 Sep 2020 09:53:39 -0700
+ Mon, 28 Sep 2020 10:00:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=mtVUZYs/;
- spf=pass (domain: gmail.com, ip: 209.85.218.65, mailfrom: martin.jansa@gmail.com)
-Received: by mail-ej1-f65.google.com with SMTP id i26so9478000ejb.12
-        for <yocto@lists.yoctoproject.org>; Mon, 28 Sep 2020 09:53:38 -0700 (PDT)
+ dkim=pass header.i=@kpnmail.nl header.s=kpnmail01 header.b=szNEOAV4;
+ spf=none, err=permanent DNS error (domain: iae.nl, ip: 213.75.39.5, mailfrom: pwr@iae.nl)
+Received: from cpsps-ews06.kpnxchange.com ([10.94.84.173]) by cpsmtpb-ews02.kpnxchange.com with Microsoft SMTPSVC(8.5.9600.16384);
+	 Mon, 28 Sep 2020 19:00:20 +0200
+X-Brand: /q/rzKX13g==
+X-KPN-SpamVerdict: e1=0;e2=0;e3=0;e4=(e1=10;e3=10;e2=11;e4=10);EVW:Whi
+	te;BM:NotScanned;FinalVerdict:Clean
+X-CMAE-Analysis: v=2.4 cv=AfEPo1bG c=1 sm=1 tr=0 ts=5f7216a4
+	 cx=a_idp_e a=ShNidqeCEQB33TAKUUzslw==:117
+	 a=xRGMmYaI5WpIYOJh0XI+dg==:17 a=8SZ6bD3cDFYA:10 a=reM5J-MqmosA:10
+	 a=r77TgQKjGQsHNAKrUKIA:9 a=ag1SF4gXAAAA:8 a=iGHA9ds3AAAA:8
+	 a=kRv5r8a0sMTu49lv2_gA:9 a=QEXdDO2ut3YA:10 a=pGLkceISAAAA:8
+	 a=JOt566P0vwDK0lubDaEA:9 a=epOQBjIpjK_1C6Ob:21 a=_W_S_7VecoQA:10
+	 a=Yupwre4RP9_Eg_Bd0iYG:22 a=nM-MV4yxpKKO9kiQg6Ot:22
+X-CM-AcctID: kpn@feedback.cloudmark.com
+Received: from smtp.kpnmail.nl ([195.121.84.11]) by cpsps-ews06.kpnxchange.com over TLS secured channel with Microsoft SMTPSVC(8.5.9600.16384);
+	 Mon, 28 Sep 2020 19:00:20 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=W6dStprcMfEyFA2D0pXPnoVEF4/XTqMsPQbgnzZA8xs=;
-        b=mtVUZYs/NP7n5godxgYdMFU6pqLjlkeOVKlBJI0PQfYIKmppJqrvGV2WBIFj8tiOk6
-         XBvYZzva70iNwATPqBb9rQd3C00K6x+yWmhCu+VO+YsZOTuvcx1m5FB3eihQGaJdsifE
-         qFYb0bqd7QQ65l2KySwfyjsdN+DxpYsirfPwn09zc8lfV7S6LwU0+JewxDm187c7U1G5
-         uCKhgFRl+Bkb3u6M06i0Otps0a/E7dzFNbjqfXcIEfZJEMDs3TsOHIEy6YZkONbbUFH5
-         HWt2xD0bHzHunH24y/q3y4w6ypZjReTNB+trHybtFOEzB1KoOEy5xAAFWEy87u1a4BKn
-         ZMvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=W6dStprcMfEyFA2D0pXPnoVEF4/XTqMsPQbgnzZA8xs=;
-        b=rLuspHRoi/mgJMPmqIgcVfTe47IDfv76tF11bGHgJEjei33xzKUoQkjbH/RDJR/QgU
-         Vjyxh/Kre6tySc2w1uJidGj7yjn74l+Bw3j3qDGVWA0IJoqFKfEYMerDDbeD/6y6W9kW
-         5bUH0IsqOM37eAoAVxt5eSOnNhayIkQ8dpTlChhoD7z+z+2z7+eiSgEHb40lbQM/7JKE
-         b/K/f972sQGsjwCXI8bN2zWu8Y8TqhZVTDkI/74mQXDt1SNE1Frz/FOopweZTscKpJcZ
-         /UE3u7Otq8pg3s1wxg14/Ke23BDPyG7yXuuLX0DCZoPRWTI8Avwon2JBiwuSkN2PHOYO
-         lsYQ==
-X-Gm-Message-State: AOAM533RF/Cbpyar/8sVbgJNiQKoaxa70mJKDDa1I/AKAoESz3OzVzIO
-	Zjt/5VAnEOYtMr7jPo2/ipaqDUj/j+toL/yo0J8=
-X-Google-Smtp-Source: ABdhPJyTrcnCoavedxk/dla+DUAiDlB2NLxA0yD6m+DW7vTyJfUkEVfWXh40KsRrth9CieBCNtWF/+nzVujSd/cd1PQ=
-X-Received: by 2002:a17:906:4b18:: with SMTP id y24mr2509624eju.471.1601312017269;
- Mon, 28 Sep 2020 09:53:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <3293b1b2-36fe-3bec-e0b7-07cd228fc4c7@iae.nl> <CA+chaQc2Cbwnd7A30B03os3xeec-JQe28DVw-7cWartjThuLZQ@mail.gmail.com>
- <7cf9c1af-ac0c-4178-df9d-5d7a76d89821@iae.nl> <9d39a91d32658aa446ae91840d64536f9b78a781.camel@linuxfoundation.org>
-In-Reply-To: <9d39a91d32658aa446ae91840d64536f9b78a781.camel@linuxfoundation.org>
-From: "Martin Jansa" <Martin.Jansa@gmail.com>
-Date: Mon, 28 Sep 2020 18:53:26 +0200
-Message-ID: <CA+chaQc+8=k8wbpddwzdwfv_TC3Nn+aWdzmOf_prv096h7KzeQ@mail.gmail.com>
+	d=kpnmail.nl; s=kpnmail01;
+	h=content-type:mime-version:date:message-id:from:to:subject;
+	bh=O8D1UKZnab2t5/OCQE6NoStpM6OM2p3vnG+sZAopzFo=;
+	b=szNEOAV4/QqO3Gxzt0740I8TbzdL2qbX5bqE7/Lgos1Xds0CNK1lBPd4hZmV3xhMUYNbL7D9C1UNV
+	 JJUVPvf1VyyEF9CFFnANb3o232K93KezAdF3VUbhqAkmdBl61h4Tz1jNDFA+UKerbgUqpbfd24xzPu
+	 zB0GxwE4fYUmt/no=
+X-Originating-IP: 86.89.1.39
+Received: from [192.168.3.42] (86-89-1-39.fixed.kpn.net [86.89.1.39])
+	by smtp.kpnmail.nl (Halon) with ESMTP
+	id 1736e8b9-01ac-11eb-811f-00505699b758;
+	Mon, 28 Sep 2020 19:00:20 +0200 (CEST)
 Subject: Re: [yocto] poky-dunfell-23.0.2: WARNING: Your host glibc verson (2.32) is newer than that in uninative (2.31). Disabling uninative so that sstate is not corrupted.
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, Steve Sakoman <sakoman@gmail.com>
-Content-Type: multipart/alternative; boundary="000000000000f6c9b705b06281db"
+To: yocto@lists.yoctoproject.org
+References: <3293b1b2-36fe-3bec-e0b7-07cd228fc4c7@iae.nl>
+ <CA+chaQc2Cbwnd7A30B03os3xeec-JQe28DVw-7cWartjThuLZQ@mail.gmail.com>
+ <7cf9c1af-ac0c-4178-df9d-5d7a76d89821@iae.nl>
+ <9d39a91d32658aa446ae91840d64536f9b78a781.camel@linuxfoundation.org>
+ <CA+chaQc+8=k8wbpddwzdwfv_TC3Nn+aWdzmOf_prv096h7KzeQ@mail.gmail.com>
+Reply-To: yocto@lists.yoctoproject.org
+From: "Robert" <pwr@iae.nl>
+Message-ID: <24cfc432-cd47-961e-a686-6701a98b364d@iae.nl>
+Date: Mon, 28 Sep 2020 19:00:19 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+MIME-Version: 1.0
+In-Reply-To: <CA+chaQc+8=k8wbpddwzdwfv_TC3Nn+aWdzmOf_prv096h7KzeQ@mail.gmail.com>
+Return-Path: pwr@iae.nl
+X-OriginalArrivalTime: 28 Sep 2020 17:00:20.0087 (UTC) FILETIME=[D8FB3070:01D695B8]
+X-RcptDomain: lists.yoctoproject.org
+Content-Type: multipart/alternative;
+ boundary="------------58AEE9EABACBBF1CD1F7B90B"
+Content-Language: en-GB
 
---000000000000f6c9b705b06281db
-Content-Type: text/plain; charset="UTF-8"
+--------------58AEE9EABACBBF1CD1F7B90B
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I was able to reproduce this in one of my build setups and confirm that
-backporting this commit helps (and haven't found any other issues while
-building our images).
+Correct, I can also confirm the backport works in getting it compiled.
+Thanks.
 
-I've sent the backport request now.
-
-On Mon, Sep 28, 2020 at 1:46 PM Richard Purdie <
-richard.purdie@linuxfoundation.org> wrote:
-
-> On Mon, 2020-09-28 at 10:34 +0200, Robert wrote:
-> > I tried the latest uninative from the same link, it will remove the
-> > warning but it doesn't solve the problem.
-> > If something else is wrong/different I would very much like a
-> > suggestion where to start looking for this difference.
-> > Finding something that isn't there is not easy :-\
+On 28-09-2020 18:53, Martin Jansa wrote:
+> I was able to reproduce this in one of my build setups and confirm 
+> that backporting this commit helps (and haven't found any other issues 
+> while building our images).
 >
-> You could try backporting:
+> I've sent the backport request now.
+>
+> On Mon, Sep 28, 2020 at 1:46 PM Richard Purdie 
+> <richard.purdie@linuxfoundation.org 
+> <mailto:richard.purdie@linuxfoundation.org>> wrote:
+>
+>     On Mon, 2020-09-28 at 10:34 +0200, Robert wrote:
+>     > I tried the latest uninative from the same link, it will remove the
+>     > warning but it doesn't solve the problem.
+>     > If something else is wrong/different I would very much like a
+>     > suggestion where to start looking for this difference.
+>     > Finding something that isn't there is not easy :-\
+>
+>     You could try backporting:
+>
+>     http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=94b1d77472ad335f26ca4ea6ec8c5b399368c06e
+>
+>     Cheers,
+>
+>     Richard
 >
 >
-> http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=94b1d77472ad335f26ca4ea6ec8c5b399368c06e
 >
-> Cheers,
->
-> Richard
 >
 >
 > 
 >
->
 
---000000000000f6c9b705b06281db
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I was able to reproduce this in one of my build setups and=
- confirm that backporting this commit helps (and haven&#39;t found any othe=
-r issues while building our images).<div><br></div><div>I&#39;ve sent the b=
-ackport request now.</div></div><br><div class=3D"gmail_quote"><div dir=3D"=
-ltr" class=3D"gmail_attr">On Mon, Sep 28, 2020 at 1:46 PM Richard Purdie &l=
-t;<a href=3D"mailto:richard.purdie@linuxfoundation.org">richard.purdie@linu=
-xfoundation.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex">On Mon, 2020-09-28 at 10:34 +0200, Robert wrote:<br>
-&gt; I tried the latest uninative from the same link, it will remove the<b=
-r>
-&gt; warning but it doesn&#39;t solve the problem.<br>
-&gt; If something else is wrong/different I would very much like a<br>
-&gt; suggestion where to start looking for this difference.<br>
-&gt; Finding something that isn&#39;t there is not easy :-\<br>
-<br>
-You could try backporting:<br>
-<br>
-<a href=3D"http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=3D94b1d774=
-72ad335f26ca4ea6ec8c5b399368c06e" rel=3D"noreferrer" target=3D"_blank">http=
-://git.yoctoproject.org/cgit.cgi/poky/commit/?id=3D94b1d77472ad335f26ca4ea6=
-ec8c5b399368c06e</a><br>
-<br>
-Cheers,<br>
-<br>
-Richard<br>
-<br>
-<br>
-<br>
-<br>
-</blockquote></div>
+--------------58AEE9EABACBBF1CD1F7B90B
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---000000000000f6c9b705b06281db--
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <div class="moz-cite-prefix">Correct, I can also confirm the
+      backport works in getting it compiled.<br>
+      Thanks.<br>
+      <br>
+      On 28-09-2020 18:53, Martin Jansa wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CA+chaQc+8=k8wbpddwzdwfv_TC3Nn+aWdzmOf_prv096h7KzeQ@mail.gmail.com">
+      <div dir="ltr">I was able to reproduce this in one of my build
+        setups and confirm that backporting this commit helps (and
+        haven't found any other issues while building our images).
+        <div><br>
+        </div>
+        <div>I've sent the backport request now.</div>
+      </div>
+      <br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">On Mon, Sep 28, 2020 at 1:46
+          PM Richard Purdie &lt;<a
+            href="mailto:richard.purdie@linuxfoundation.org"
+            moz-do-not-send="true">richard.purdie@linuxfoundation.org</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class="gmail_quote">On Mon, 2020-09-28 at 10:34
+          +0200, Robert wrote:<br>
+          &gt; I tried the latest uninative from the same link, it will
+          remove the<br>
+          &gt; warning but it doesn't solve the problem.<br>
+          &gt; If something else is wrong/different I would very much
+          like a<br>
+          &gt; suggestion where to start looking for this difference.<br>
+          &gt; Finding something that isn't there is not easy :-\<br>
+          <br>
+          You could try backporting:<br>
+          <br>
+          <a
+href="http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=94b1d77472ad335f26ca4ea6ec8c5b399368c06e"
+            rel="noreferrer" target="_blank" moz-do-not-send="true">http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=94b1d77472ad335f26ca4ea6ec8c5b399368c06e</a><br>
+          <br>
+          Cheers,<br>
+          <br>
+          Richard<br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+
+
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------58AEE9EABACBBF1CD1F7B90B--
