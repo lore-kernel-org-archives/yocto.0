@@ -1,418 +1,112 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.10855.1601343515112628905
+ by mx.groups.io with SMTP id smtpd.web10.11211.1601344133610506503
  for <yocto@lists.yoctoproject.org>;
- Mon, 28 Sep 2020 18:38:35 -0700
+ Mon, 28 Sep 2020 18:48:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=vJBKG3eN;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=bwtYSD9l;
  spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id F32E238C06F7
-	for <yocto@yoctoproject.org>; Mon, 28 Sep 2020 18:38:33 -0700 (PDT)
-Received: by mail-pf1-f172.google.com with SMTP id k8so2958301pfk.2
-        for <yocto@yoctoproject.org>; Mon, 28 Sep 2020 18:38:33 -0700 (PDT)
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id CD04C38C06F7
+	for <yocto@yoctoproject.org>; Mon, 28 Sep 2020 18:48:52 -0700 (PDT)
+Received: by mail-pg1-f176.google.com with SMTP id u24so2546269pgi.1
+        for <yocto@yoctoproject.org>; Mon, 28 Sep 2020 18:48:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:mime-version:content-language
          :thread-index;
-        bh=o4EE1tRy7k9tel8xFJomXZ4NdapFw2MiL0XlmsLJ+Cw=;
-        b=vJBKG3eNFIhCUuw3gge/uvccbsQt/A8drY/nQGTvLYrSx8f+T2d/kxXs1VKVKBAUw5
-         WzeDM8kSGbCfkPfLMbkHfrPFwfY6Sr3J69c2f6XsW/HzE+es1pxFsFPTASq9eLZRE3/C
-         JNJQmlF2NkZADs0ZRKfdGERyNzyiAbK+xY0Qi874qo3zgyZMpd6DNzkUP9hKjvqkKJdu
-         7zfpxLcDMpyKZQMOvvdFbanessAj8sxLQShVyDdp16GjXxKFVnTc7SP03LrNPdr92+3M
-         dHUkg1/d3RAEjqnu7fa7F05yw46uZqJbCR/I0hFalOp4FJ7H//ixOqjlabNDmiNDWZNw
-         aa1A==
+        bh=DtMK3xSnZq8kRgw6AJTa3gSs4i+w70EF+CpJ2jqOOZQ=;
+        b=bwtYSD9ldQLuruy9YwEKZU6Wgt6AuQvi+3g0alW6+8rB24eEP0JI2RkylPOHDcBamg
+         UN7ZIwNzOBdkExvLdR2NJLC5qcduttJV/AORdTdjFApDRHlrWNio9y3JLJNbOtv6teVJ
+         XKw7pY2ikXBtdLpVIVSEvGAW/l5VL2YBgXyQjQERPF6VAx7YEmkRQvOEGMosIPBbQgfL
+         0MYmzVRDvp1AaN8I1YGnr/YD+1xo9LgTKAD5CAk4CjNyxokt3ZAjEmhtSPHrzSrAtCrJ
+         YsbSSLqKHQ2ftU59HLCnQQ+EhvDrmz9nkUS4MWAbsglItR15bincRus+9w42ggnZQL97
+         tiqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-language:thread-index;
-        bh=o4EE1tRy7k9tel8xFJomXZ4NdapFw2MiL0XlmsLJ+Cw=;
-        b=F0i9O1bwQHEWYBPCQdfPBCSOMqbIbV+RHxfdft5vWpFy+IbdMHzNyCVQqK1aetlODy
-         efNVfwNNn4RUlAIo+yaf/KbPwwS9S1Adr5pheTL9iRFx7v9VdZhq2if/K4W8S0QcPeAL
-         SEdFEDXjVSrqa4MRjCgzP3nr3cr/Jtyh4f6ggBhU46w+Ye8exgn1cqfAu9X18qGm7EbL
-         MnsnR0WTBOSetIg0DOy8gfBL0Hvb/0LxkYtMwOwJF2fBHfBLLy3o5Q7L5FPqpV44jq5N
-         05S9v/2zRpfqIHjlfoD5gVTc5+itUgtJvW96TFwUMmVLIFxJXtd8jESiKhoJcCntfx4D
-         t0wg==
-X-Gm-Message-State: AOAM5324gOIKBD3mUB0e6/xgGztaikb/85QlMpmbD5hguHWYzfoHqQq5
-	Q2ylshJ3MWpH9mnLCpPyIrk=
-X-Google-Smtp-Source: ABdhPJz7IKQaY9EjO97FKDqGhU0Ldq8NCdJEHM/WEsJrTUiZBeWBodn46ebkLiV9vxMgdf8JuoKTtg==
-X-Received: by 2002:a62:6147:0:b029:142:2501:34e8 with SMTP id v68-20020a6261470000b0290142250134e8mr1852791pfb.65.1601343513561;
-        Mon, 28 Sep 2020 18:38:33 -0700 (PDT)
+        bh=DtMK3xSnZq8kRgw6AJTa3gSs4i+w70EF+CpJ2jqOOZQ=;
+        b=qgzAsSyWHfahHuRJazQdbh573XvbkQLjSdnMEYxxONCv2k6F+QJT5VaFDHFvZ7qtvI
+         TGSCD9cV8JEkhfm7IUouikzNSuxX4u1isCtNJZOwD71Q/Ff40Mfi6zhqOxTYX3UsFioR
+         7bk8t89C4csQr5DEOBP7sx+Pe16zhJh+pPWpy9W9hmiyKyF3OkIat+xo9deeQtKZEKeP
+         8Pnfu1PHOcWm9gC3+6nYRQAtlUA5rXENoNhlp9ckzedNxkgswnIpO2f29vMZt5HRDDtM
+         Pb+Zs/Y+it7IJhbhMBJYfbDYegAov3jWIfJq1grc7QFl0yPGtqHAqZLDWRqR6Wxg+NIH
+         Tb0A==
+X-Gm-Message-State: AOAM533vR3JZeNCvw5F87OQZH+zOeEmDvbmSxyB0ycsVwRI9UqHmVCnn
+	3OGV0vpyUhe+0OuXAkCXV2TVWOm4xSRQ9A==
+X-Google-Smtp-Source: ABdhPJxrk7nTnydvVs8whieEBxGWjylUjHZa5IYTGne6VRpIIIvNsO4lcDVdRK/Cy2ZsL9tofsfaxw==
+X-Received: by 2002:a63:c547:: with SMTP id g7mr1417395pgd.234.1601344132425;
+        Mon, 28 Sep 2020 18:48:52 -0700 (PDT)
 Received: from skjolley (wsip-184-183-149-66.ph.ph.cox.net. [184.183.149.66])
-        by smtp.gmail.com with ESMTPSA id z23sm3056422pfj.177.2020.09.28.18.38.32
+        by smtp.gmail.com with ESMTPSA id 187sm3212995pfx.174.2020.09.28.18.48.51
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 28 Sep 2020 18:38:32 -0700 (PDT)
+        Mon, 28 Sep 2020 18:48:51 -0700 (PDT)
 From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
 To: <yocto@yoctoproject.org>
-Subject: Current Autobuilder Intermittent bugs by the WW created or closed.
-Date: Mon, 28 Sep 2020 18:38:32 -0700
-Message-ID: <0c6e01d69601$3da8e1a0$b8faa4e0$@gmail.com>
+Subject: Enhancements/Bugs closed WW39!
+Date: Mon, 28 Sep 2020 18:48:51 -0700
+Message-ID: <0c7d01d69602$aeb50c10$0c1f2430$@gmail.com>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQKWxT2B9P77QZ3tpkhbZ+81+DyOxQ==
+Thread-Index: AdaWAptPwDXtV0R0RCq3ptDT24CJuA==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0C6F_01D695C6.9151D1D0"
+	boundary="----=_NextPart_000_0C7E_01D695C8.0256D050"
 Content-Language: en-us
 
-------=_NextPart_000_0C6F_01D695C6.9151D1D0
+------=_NextPart_000_0C7E_01D695C8.0256D050
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
 All,
 
-Below are the lists of open and closed medium or higher Autobuilder
-Intermittent bugs by the WW created or closed.
+The below were the owners of enhancements or bugs closed during the last
+week!
 
 
-WW Opened
-
-WW Closed
-
-Status
+Who
 
 Count
 
 
-2018WW48
-
-2020WW26
-
-Closed
-
-1
-
-
-2018WW49
-
-2020WW28
-
-Closed
-
-1
-
-
-2019WW26
-
-2020WW31
-
-Closed
-
-1
-
-
-2019WW43
-
-2020WW30
-
-Closed
-
-1
-
-
-2019WW47
-
- 
-
-Open
-
-1
-
-
-2019WW51
-
-2020WW30
-
-Closed
-
-1
-
-
-2020WW13
-
-2020WW30
-
-Closed
-
-1
-
-
-2020WW21
-
-2020WW30
-
-Closed
-
-1
-
-
-2020WW21
-
-2020WW33
-
-Closed
-
-1
-
-
-2020WW23
-
-2020WW27
-
-Closed
-
-1
-
-
-2020WW8
-
- 
-
-Open
-
-2
-
-
-2020WW8
-
-2020WW29
-
-Closed
-
-1
-
-
-2020WW24
-
- 
-
-Open
-
-1
-
-
-2020WW24
-
-2020WW34
-
-Closed
-
-1
-
-
-2020WW25
-
- 
-
-Open
-
-1
-
-
-2020WW25
-
-2020WW27
-
-Closed
-
-1
-
-
-2020WW25
-
-2020WW33
-
-Closed
-
-1
-
-
-2020WW26
-
-2020WW26
-
-Closed
-
-2
-
-
-2020WW26
-
-2020WW28
-
-Closed
-
-1
-
-
-2020WW27
-
-2020WW28
-
-Closed
-
-1
-
-
-2020WW28
-
-2020WW29
-
-Closed
-
-1
-
-
-2020WW29
-
- 
-
-Open
-
-1
-
-
-2020WW30
-
- 
-
-Open
-
-1
-
-
-2020WW31
-
- 
-
-Open
-
-2
-
-
-2020WW33
-
- 
-
-Open
+richard.purdie@linuxfoundation.org
 
 5
 
 
-2020WW33
-
-2020WW34
-
-Closed
-
-2
-
-
-2020WW33
-
-2020WW35
-
-Closed
+sangeeta.jain@intel.com
 
 1
 
 
-2020WW34
-
- 
-
-Open
-
-2
-
-
-2020WW34
-
-2020WW34
-
-Closed
+randy.macleod@windriver.com
 
 1
 
 
-2020WW35
-
- 
-
-Open
-
-2
-
-
-2020WW35
-
-2020WW39
-
-Closed
+ross@burtonini.com
 
 1
 
 
-2020WW36
-
- 
-
-Open
-
-2
-
-
-2020WW36
-
-2020WW37
-
-Closed
-
-2
-
-
-2020WW36
-
-2020WW39
-
-Closed
+khairul.rohaizzat.jamaluddin@intel.com
 
 1
 
 
-2020WW37
-
- 
-
-Open
+michael@yoctoproject.org
 
 1
 
 
-2020WW38
-
-2020WW39
-
-Closed
+david.reyna@windriver.com
 
 1
-
-
-2020WW39
-
- 
-
-Open
-
-2
 
 
 Grand Total
 
- 
-
- 
-
-50
+11
 
 Thanks,
 
@@ -430,9 +124,9 @@ Yocto Project Program Manager
  
 
 
-------=_NextPart_000_0C6F_01D695C6.9151D1D0
+------=_NextPart_000_0C7E_01D695C8.0256D050
 Content-Type: text/html;
-	boundary="----=_NextPart_000_04AE_01D690B3.73D716F0";
+	boundary="----=_NextPart_000_0500_01D690B5.8679AE10";
 	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -491,867 +185,108 @@ div.WordSection1
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
 link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal><span style=3D'color:black'>All,<br><br>Below are the =
-lists of open and closed medium or higher Autobuilder Intermittent bugs =
-by the WW created or closed.</span><b><span =
-style=3D'color:black'><o:p></o:p></span></b></p><table =
-class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 =
-width=3D284 =
-style=3D'width:212.7pt;margin-left:-.15pt;border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
+class=3DMsoNormal><span style=3D'color:black'>All,<br><br>The below were =
+the owners of enhancements or bugs closed during the last =
+week!<o:p></o:p></span></p><table class=3DMsoNormalTable border=3D0 =
+cellspacing=3D0 cellpadding=3D0 width=3D293 =
+style=3D'width:220.0pt;margin-left:-.15pt;border-collapse:collapse'><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
 1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span style=3D'color:black'>WW =
-Opened<o:p></o:p></span></b></p></td><td width=3D83 nowrap =
-valign=3Dbottom style=3D'width:62.25pt;border:solid windowtext =
+class=3DMsoNormal><b><span =
+style=3D'color:black'>Who<o:p></o:p></span></b></p></td><td width=3D43 =
+nowrap valign=3Dbottom style=3D'width:32.0pt;border:solid windowtext =
 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>WW Closed<o:p></o:p></span></b></p></td><td =
-width=3D54 nowrap valign=3Dbottom style=3D'width:40.6pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Status<o:p></o:p></span></b></p></td><td =
-width=3D51 nowrap valign=3Dbottom style=3D'width:38.1pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
 style=3D'color:black'>Count<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal><span =
-style=3D'color:black'>2018WW48<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW26<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2018WW49<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW28<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2019WW26<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW31<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2019WW43<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW30<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2019WW47<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Open<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2019WW51<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW30<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW13<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW30<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW21<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW30<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW21<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW33<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW23<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW27<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW8<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Open<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW8<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW29<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW24<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Open<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW24<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW34<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW25<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Open<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW25<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW27<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW25<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW33<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW26<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW26<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW26<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW28<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW27<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW28<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW28<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW29<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW29<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Open<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW30<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Open<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW31<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Open<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW33<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Open<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
+style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
+></p></td><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
 d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
 style=3D'text-align:right'><span =
 style=3D'color:black'>5<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal><span =
-style=3D'color:black'>2020WW33<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW34<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW33<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW35<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
+style=3D'color:black'>sangeeta.jain@intel.com<o:p></o:p></span></p></td><=
+td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
 d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
 style=3D'text-align:right'><span =
 style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal><span =
-style=3D'color:black'>2020WW34<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Open<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW34<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW34<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
+style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
+td><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
 d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
 style=3D'text-align:right'><span =
 style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal><span =
-style=3D'color:black'>2020WW35<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Open<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW35<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW39<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
+style=3D'color:black'>ross@burtonini.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
 d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
 style=3D'text-align:right'><span =
 style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal><span =
-style=3D'color:black'>2020WW36<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Open<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW36<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW37<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW36<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW39<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
+style=3D'color:black'>khairul.rohaizzat.jamaluddin@intel.com<o:p></o:p></=
+span></p></td><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
 d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
 style=3D'text-align:right'><span =
 style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal><span =
-style=3D'color:black'>2020WW37<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Open<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
+style=3D'color:black'>michael@yoctoproject.org<o:p></o:p></span></p></td>=
+<td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
 d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
 style=3D'text-align:right'><span =
 style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal><span =
-style=3D'color:black'>2020WW38<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2020WW39<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Closed<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
+style=3D'color:black'>david.reyna@windriver.com<o:p></o:p></span></p></td=
+><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
 d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
 style=3D'text-align:right'><span =
 style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>2020WW39<o:p></o:p></span></p></td><td width=3D83 =
-nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>Open<o:p></o:p></span></p></td><td width=3D51 =
-nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D96 nowrap valign=3Dbottom =
-style=3D'width:71.75pt;border:solid windowtext =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
 1.0pt;border-top:none;background:#DCE6F1;padding:0in 5.4pt 0in =
 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
 style=3D'color:black'>Grand Total<o:p></o:p></span></b></p></td><td =
-width=3D83 nowrap valign=3Dbottom =
-style=3D'width:62.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D54 nowrap valign=3Dbottom =
-style=3D'width:40.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D51 nowrap valign=3Dbottom =
-style=3D'width:38.1pt;border-top:none;border-left:none;border-bottom:soli=
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
 d windowtext 1.0pt;border-right:solid windowtext =
 1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal align=3Dright style=3D'text-align:right'><b><span =
-style=3D'color:black'>50<o:p></o:p></span></b></p></td></tr></table><p =
+style=3D'color:black'>11<o:p></o:p></span></b></p></td></tr></table><p =
 class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
 style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
@@ -1386,4 +321,4 @@ href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
 style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
 an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-------=_NextPart_000_0C6F_01D695C6.9151D1D0--
+------=_NextPart_000_0C7E_01D695C8.0256D050--
