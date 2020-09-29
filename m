@@ -1,90 +1,269 @@
-Received: from mail-qt1-f193.google.com (mail-qt1-f193.google.com [209.85.160.193])
- by mx.groups.io with SMTP id smtpd.web11.7203.1601331986203184032
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.10645.1601342160268726536
  for <yocto@lists.yoctoproject.org>;
- Mon, 28 Sep 2020 15:26:26 -0700
+ Mon, 28 Sep 2020 18:16:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kudzu-us.20150623.gappssmtp.com header.s=20150623 header.b=Q+hbY6Nn;
- spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.160.193, mailfrom: jdmason@kudzu.us)
-Received: by mail-qt1-f193.google.com with SMTP id a4so2102442qth.0
-        for <yocto@lists.yoctoproject.org>; Mon, 28 Sep 2020 15:26:26 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=kEssqgMM;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 81AE438C06CF
+	for <yocto@yoctoproject.org>; Mon, 28 Sep 2020 18:15:59 -0700 (PDT)
+Received: by mail-pf1-f179.google.com with SMTP id b124so2854421pfg.13
+        for <yocto@yoctoproject.org>; Mon, 28 Sep 2020 18:15:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kudzu-us.20150623.gappssmtp.com; s=20150623;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=it+j7TxTrQx4yqvpZkpm4jRT9iK9NdjjBc9/H1xQwjE=;
-        b=Q+hbY6Nn8UedtlJSa4m+DRDl7rEH1ApKLHwXIQ1lJgJUso2Ix8xB3ACGFKZxy7eY9n
-         RisM5FATNhp7FUpg+ywg9BtxBZH5eGPWoKWQRtSDPOA2CFYupqLzG6fIZNOKHeRfO5rK
-         gPcvwV3v7UtADAuPH8cIhPd3QSLOFy8m852Sdh6MgZtj6ZkP3NWkB14ROgO06/D2jYBF
-         v4iYJP6OCCrv1hvc0z8mEOSXhDN0zKxOjR1S7j5uklSkhh1MUV0zewn71hnhbiJGJ3si
-         F+l0bFXbiXHBrxso/g866PkVOQsBQcJlNRVYjN/jZ704W9Ux6cVYhiocknySMs7V6lW6
-         rTyA==
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=pt9yWm9lulqT1+i85hmDEKJwAxryp2hSpQrodIZzv9Q=;
+        b=kEssqgMMAzcGsaqcbJaH1nq8j6bQldAvXR5A7mcMGBWXizQUTIE9Lo+BjOorPuzhgQ
+         Iu9uu68UtUfwQ46P2RlUUgyTGkOfZCMKAC8sHDzgNk4zLiYqhESFNJFF5J7DDVsDLqJK
+         WlfYhtkPSx+VVhOYp3VSNhSBXshg22LHiOUFsIJiaV2x0LQSbtDqYBRSP6fqx+mKb0CW
+         qXqzqR9SpqrrK1UhF9Cjz2rUA93V/Eh+r2f9H2C020iVmeEwG9Qnys/XeU2Lqbko4kZi
+         ZbG8sbYh1z13v9mlx7gFWWhr2RLDdiJYUFIN7LdTgAa/7L7gddW+M/n09FMY7n6SBUIK
+         gF1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=it+j7TxTrQx4yqvpZkpm4jRT9iK9NdjjBc9/H1xQwjE=;
-        b=WO81yiH5NQI20poPR/MTwZHGNSXO8KZPCTH+3Vw6CvojmiGEckV5NQD1+oM2cdatzk
-         28rmLGv7C05Sd/3bysPXFceOFkqNu+HrchCSeo76sllfnCG10wih71bdkYPVO12PEOVo
-         blKt2Oymhrx4k4/e0cXaBizVOkaoefkUS4LCFahMIKu2CL7i/VIlUfDrw+wqPlzjuN2u
-         35lTl7H8On94PcrKCSTtjbqmTC0Id6zh6IhChiLGarVTF6xFA+lejvXkt8XFmt2KK/Dd
-         PVmUYKPDo3k59ps+vULC2z0kG8xC8CNP4drmNntHh8PoIfs2iGPz0whqas5LwUEKzRo8
-         AXKw==
-X-Gm-Message-State: AOAM532xm5S3xJaW5plJXZUhEo22oj6EiA5dF6kKAf7FmzHjrp+Etolu
-	vu11P8AZvTaFfYsCApvIzII05/TtWW+D0ytH
-X-Google-Smtp-Source: ABdhPJwpK3OITi+42lovanTFrs2YROZpivBIwtTbcJ8Aj4Wsiiqqnh3F+uAAqnDCPYqPs2RrNWJ11g==
-X-Received: by 2002:ac8:76cb:: with SMTP id q11mr303783qtr.63.1601331985018;
-        Mon, 28 Sep 2020 15:26:25 -0700 (PDT)
-Return-Path: <jdmason@kudzu.us>
-Received: from localhost ([136.56.1.171])
-        by smtp.gmail.com with ESMTPSA id z2sm2428422qkg.40.2020.09.28.15.26.24
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2020 15:26:24 -0700 (PDT)
-From: "Jon Mason" <jdmason@kudzu.us>
-X-Google-Original-From: Jon Mason <jon.mason@arm.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-zephyr][PATCH] zephyr.bbclass: Add ability to set board
-Date: Mon, 28 Sep 2020 18:26:20 -0400
-Message-Id: <20200928222620.16007-1-jon.mason@arm.com>
-X-Mailer: git-send-email 2.20.1
+         :content-language:thread-index;
+        bh=pt9yWm9lulqT1+i85hmDEKJwAxryp2hSpQrodIZzv9Q=;
+        b=AUepx9kL+eFyR7eTKV4mMEr+gkijnwfn03/HfuFSCCC1zA1oZQWUCSCu1CiqpR3c7P
+         Q3snFh/8MZrj6wEzXdBDLMAA6q44VR/bXYSm9EvM6/F4kxklzloPwwnMq4LrtHHiwv+7
+         eBgAuR72liQCkcUQx33PQ3YqDgT26Iuru9IdS2W+DxFqWKV5YzjRe8CF3PkFYantp1u0
+         NLdh/8GCOaCEk1jEery2CSR8VbxJO8nxpB4JYy993hJlMl10R8LiJBz+JZkRLA/UJKvM
+         Km5NqVdA+sLBwf61A6j8wzbzot/eClXY3s2D91VxiCRnMGNfD4b7Bl5c7OzyW5GAMF00
+         PniQ==
+X-Gm-Message-State: AOAM533090hPsgFRjcyyCsBU2+FDDusRqgqUbu/lE7MApDdWq3gyuraV
+	SteeBdTLQ36o/IIb6xgVSd4=
+X-Google-Smtp-Source: ABdhPJzeYIdfEio3o4CHCqv8BMF1kouQoZK8x/QF67yjPci4O30obc1niFmXBC/hvZaczew3RtbeGQ==
+X-Received: by 2002:a62:1e81:0:b029:142:2dad:a68 with SMTP id e123-20020a621e810000b02901422dad0a68mr1771479pfe.5.1601342158919;
+        Mon, 28 Sep 2020 18:15:58 -0700 (PDT)
+Received: from skjolley (wsip-184-183-149-66.ph.ph.cox.net. [184.183.149.66])
+        by smtp.gmail.com with ESMTPSA id e62sm3003858pfh.76.2020.09.28.18.15.57
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 28 Sep 2020 18:15:58 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 28 Sep 2020 18:15:57 -0700
+Message-ID: <0c4b01d695fe$165417d0$42fc4770$@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKS7fidGzT5VQ8HnILNpjn3dEn94w==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0C4C_01D695C3.69F67850"
+Content-Language: en-us
 
-Currently, there is no ability to set the board used by Zephyr.  This
-limits the ability to set the board to something other than the machine
-name.  By setting up an intermediate variable, ZEPHYR_BOARD, this can be
-set by those that know better (with the default to use the machine name
-as before).
+------=_NextPart_000_0C4C_01D695C3.69F67850
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jon Mason <jon.mason@arm.com>
----
- classes/zephyr.bbclass | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+All,
 
-diff --git a/classes/zephyr.bbclass b/classes/zephyr.bbclass
-index 3ea074613117..ead762aea11c 100644
---- a/classes/zephyr.bbclass
-+++ b/classes/zephyr.bbclass
-@@ -1,5 +1,3 @@
--
--
- inherit terminal
  
- OE_TERMINAL_EXPORTS += "HOST_EXTRACFLAGS HOSTLDFLAGS TERMINFO CROSS_CURSES_LIB CROSS_CURSES_INC"
-@@ -10,11 +8,12 @@ CROSS_CURSES_INC = '-DCURSES_LOC="<curses.h>"'
- TERMINFO = "${STAGING_DATADIR_NATIVE}/terminfo"
- 
- KCONFIG_CONFIG_COMMAND ??= "menuconfig"
-+ZEPHYR_BOARD ?= "${MACHINE}"
- 
- python () {
-     # Translate MACHINE into Zephyr BOARD
-     # Zephyr BOARD is basically our MACHINE, except we must use "-" instead of "_"
--    board = d.getVar('MACHINE',True)
-+    board = d.getVar('ZEPHYR_BOARD', True)
-     board = board.replace('-', '_')
-     d.setVar('BOARD',board)
- }
--- 
-2.20.1
 
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 334
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.2", "3.3, "3.99" and "Future", the more pressing/urgent issues
+being in "3.2" and then "3.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0C4C_01D695C3.69F67850
+Content-Type: text/html;
+	boundary="----=_NextPart_000_04A4_01D690B2.C4526180";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
+starting to try and collect up and classify bugs which a newcomer to the =
+project would be able to work on in a way which means people can find =
+them. They're being listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 334 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.2&#8221;, &#8220;3.3, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.2&quot; and then &#8220;3.3&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_0C4C_01D695C3.69F67850--
