@@ -1,82 +1,80 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.6038.1601502844833339006
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+ by mx.groups.io with SMTP id smtpd.web12.6122.1601503015515157341
  for <yocto@lists.yoctoproject.org>;
- Wed, 30 Sep 2020 14:54:04 -0700
+ Wed, 30 Sep 2020 14:56:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=u2hKR2nS;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: raj.khem@gmail.com)
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id B17A138C1292
-	for <yocto@yoctoproject.org>; Wed, 30 Sep 2020 14:54:04 -0700 (PDT)
-Received: by mail-qv1-f54.google.com with SMTP id j3so1780340qvi.7
-        for <yocto@yoctoproject.org>; Wed, 30 Sep 2020 14:54:04 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=nI3GWPH1;
+ spf=pass (domain: gmail.com, ip: 209.85.160.181, mailfrom: raj.khem@gmail.com)
+Received: by mail-qt1-f181.google.com with SMTP id y11so2619951qtn.9
+        for <yocto@lists.yoctoproject.org>; Wed, 30 Sep 2020 14:56:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=BN1cQ7n+V7mvxh914mWZM8t3yGl9ql1pfq3oX+zeVM0=;
-        b=u2hKR2nSYu0DxbartnFFDmUu8ZIeE4b3u/wMnMlYqW3LmlRWpqQVN9ysks0OXh4iyG
-         4OKzea8nzVpbg5AF9dMZSkRcE06ubHwoqGFpnUM13SKy93M+lqFEaqQDl/ouAYQpG8BJ
-         NWQ64kNM0XG38DDY3v1NZ0NbfhUlvrmfaJzULzqs85obYdPPqCA8dXtCT/cgDnKsF73t
-         qmoV0rxRXJQwVr/3B3czG5PqT9xGuHWr7kabXD5hzjOQiPSbVeKLfWo+xCERDgot+L4y
-         szB4GRolEYhdkTSjH1FuzB5UlRYSU2jMBQiEoZVBvEH5Bhd35kIN7KjB491D7kmekcQa
-         CxNQ==
+        bh=HFKYgqmq+CH69G1bMPLVIHCUnclu5k0vtjQLaeOrSdk=;
+        b=nI3GWPH11CxiJCseZSl6Y7GN7f6upl0ATATsBkdCtJlu2SxxchIX65AHWfsvy9ENky
+         KldOXVHHyDUvYzKOiUZRKKUeur+5RUcq0OtcS0vIihxUE6i4GlP/66Arg5LxuqjE1S02
+         V1A2NLFAde7FwWoL1OxIIsyg281vBJozyZgKZvKLIiVSSGguRpp8EeVirc6AllLQbmG9
+         lK8jdLxE2Ot7IRjTQOu84wzsjGS3c37+vJWD7LS8hd6i80LM7Q4m0FrXZAyZqYg7PzXy
+         JLGKh8RrgbFFtRMG0Fbf+Z/ZNNiP28AQvLCFiUMms2w1xYnQrLyuVKpk9020nenIjjIc
+         PR2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=BN1cQ7n+V7mvxh914mWZM8t3yGl9ql1pfq3oX+zeVM0=;
-        b=bKqXuvPH6A7X61ZwKD0+HrCUyav3PJ/kkp3jdn/yXr5lUt6ZRoctR+QeV/mw0XLv/h
-         8YeyZrbyLd2bZw/OhKX3zzpEZqSafQw5oOG3ncd38ThVbav+g/GXOXBPqkDLpCJ1PpzJ
-         ZgaNEuccsJ7h7ojAP3gHw/LWHkuL341VDuQFNPQa2qX/1e7tlObUIqp5BRFJUWwzCidj
-         tEYGKuJR7eqjtBy4NbwlZT8ebhEWfl5fyJryG+gG2xSCCiNS1PE5X252aBkVKzCg0RY6
-         ZuExWx8J/jDbQVcwkQ1C07RJmDZbXtzTKIzaH5Sz5rbAK0oFxBQzZz2wbEja8wRlzvAA
-         KB6Q==
-X-Gm-Message-State: AOAM531MEiZmn1Jg6OLAZF5mUatZOhViLyQVUkOf4I7rXFFIrFnVI4Cz
-	1l0EB9ZTogy6CQ8dqfaa3hBBnvd4MjWIUeIFspE=
-X-Google-Smtp-Source: ABdhPJx9NxmIyjHFZp5+3Syu3a0ffAGiUL8z+r4TXKfqcszoMdLSQfurVc+9XQJD3idF0ymNGit5FjAHuA7eyO5j0Pg=
-X-Received: by 2002:a0c:8f02:: with SMTP id z2mr4453981qvd.21.1601502843773;
- Wed, 30 Sep 2020 14:54:03 -0700 (PDT)
+        bh=HFKYgqmq+CH69G1bMPLVIHCUnclu5k0vtjQLaeOrSdk=;
+        b=AiU3K5OCsLbN07EDTRWofgBFd0pUXwm7TaYlfbaPFVe9W3NbGPwsiE/eecOQfunxjQ
+         fd0OHBVsqnAK6AsZhxJfccmewofyTepepe66IMpVkzCuTqJZ/GuXGsNKo1TT+EQT30Eb
+         kKf2oKqvlvGrcVISuAiDhqVBpj0Umff9hQu2jmHkP0O0Gee8zjFdke85W5K7CnDpAzZB
+         iZKcZvuthiMQhmpVYP11iJ/U36+30EXjoLNuvbMKu6a5lPJE18oNM7I54P4hfe04cisC
+         wvspzPjLFsTcYR5AN93ksNIz8VU8Q1/Ev604YUdw2zwLBakW2W2F1XF0dV7KozPelvMt
+         U4Yg==
+X-Gm-Message-State: AOAM530THQbDs+uS5dOQC+W6MOe+ZUI3dtBrt6l0uJ3yUkIQitG05692
+	E+FMPBOlybW6UgsKrOhHh9F+RSM7N5vSVeUyQEM=
+X-Google-Smtp-Source: ABdhPJx06UkMvKKJA8htff5iv4bv3QQH53bUrQ022SwQXWeaRfkt2P6TvpVfIWRluJhUpqkPZXxf9U5MSGh6AtrmI+U=
+X-Received: by 2002:ac8:3417:: with SMTP id u23mr4410562qtb.80.1601503014558;
+ Wed, 30 Sep 2020 14:56:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAAfyv34GQkg9=sqsJONK3JxPF-CRdN+jxEpg3zG+LqewdTCa8A@mail.gmail.com>
-In-Reply-To: <CAAfyv34GQkg9=sqsJONK3JxPF-CRdN+jxEpg3zG+LqewdTCa8A@mail.gmail.com>
+References: <MKuL.1601449233670704784.ogc9@lists.yoctoproject.org>
+In-Reply-To: <MKuL.1601449233670704784.ogc9@lists.yoctoproject.org>
 From: "Khem Raj" <raj.khem@gmail.com>
-Date: Wed, 30 Sep 2020 14:53:37 -0700
-Message-ID: <CAMKF1so4RwFehGNM_pczekY_gj8Lmod=+Y-4=iGTHJcF4Of8-A@mail.gmail.com>
-Subject: Re: [yocto] development package in rootfs
-To: Marek Belisko <marek.belisko@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
+Date: Wed, 30 Sep 2020 14:56:28 -0700
+Message-ID: <CAMKF1son5dsNM4RX4MWvMxByAfkFx749+mcsJj+0WU6ik2j1gg@mail.gmail.com>
+Subject: Re: [yocto] Kernel panic after failing to load libssl.so.1.0.0 #kernel
+To: aravind.chittapur@gmail.com
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 
-do bitbake -g <your-image>
+you need to add openssl to RDEPENDS for busybox.
 
-that should dump the dependencies in a dotty file.
-
-On Wed, Sep 30, 2020 at 12:42 AM Marek Belisko <marek.belisko@gmail.com> wrote:
+On Wed, Sep 30, 2020 at 12:00 AM <aravind.chittapur@gmail.com> wrote:
 >
-> Hi,
+> I have patched busybox httpd with open ssl APIs to support https. I have patched Makefile.flags to include opessl library as below.
+> -------------------------------------
+> --- busybox-1.23.2/Makefile.flags 2020-05-25 13:52:54.424147022 +0200
+> +++ busybox-1.23.2/Makefile_edit.flags 2020-05-25 14:18:23.328520511 +0200
+> @@ -126,6 +126,10 @@
+>  LDLIBS += m
+>  endif
 >
-> I'm facing some strange issue that after my image rebuild I see in
-> do_rootfs log that the -dev package of some go application is
-> installed. Which is not what I want and I'm not sure how it get to
-> rootfs because I don't have explicitly set -dev package. Any ideas how
-> to debug it? I'm using rocko poky release.
+> +# Openssl Library
+> +#LDLIBS += openssl
+> +LDLIBS += m ssl
+> +
+>  ifeq ($(CONFIG_PAM),y)
+>  # libpam uses libpthread, so for static builds busybox must be linked to
+>  # libpthread. On some platforms that requires an explicit -lpthread, so
+> --------------------------------------------------------
+> I am able to rebake busybox without any errors. I tested the https functionality by pushing the busybox binary using adb to the /data/ folder.
+> When I flash the firmware image to the board, while booting the kernel I get the following error.
+> "/bin/sh: error while loading shared libraries: libssl.so.1.0.0: cannot open shared object file: No such file or directory"
+> After this Kernel panic happens.
+> libssl.so.1.0.0 is present in /usr/lib. I don't why it fails to load. I need help in resolving this problem.
 >
-> Thanks and BR,
+> Thanks,
+> Aravind
 >
-> marek
 >
-> --
-> as simple and primitive as possible
-> -------------------------------------------------
-> Marek Belisko - OPEN-NANDRA
-> Freelance Developer
->
-> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-> Tel: +421 915 052 184
-> skype: marekwhite
-> twitter: #opennandra
-> web: http://open-nandra.com
 >
 > 
 >
