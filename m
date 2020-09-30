@@ -1,44 +1,64 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.3668.1601423383554771492
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+ by mx.groups.io with SMTP id smtpd.web12.8669.1601442938501892973
  for <yocto@lists.yoctoproject.org>;
- Tue, 29 Sep 2020 16:49:43 -0700
+ Tue, 29 Sep 2020 22:15:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 198.145.29.25, mailfrom: denis@denix.org)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 1EFB238C0638
-	for <yocto@yoctoproject.org>; Tue, 29 Sep 2020 16:49:42 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id CEE0540C1F;
-	Tue, 29 Sep 2020 23:49:40 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id dNgq95zhhVks; Tue, 29 Sep 2020 23:49:40 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6AEAF40B96;
-	Tue, 29 Sep 2020 23:49:36 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id BC7BB17447E; Tue, 29 Sep 2020 19:49:35 -0400 (EDT)
-Date: Tue, 29 Sep 2020 19:49:35 -0400
-From: "Denys Dmytriyenko" <denis@denix.org>
-To: "openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	openembedded-architecture <openembedded-architecture@lists.openembedded.org>,
-	Yocto Project <yocto@yoctoproject.org>,
-	openembedded-members@lists.openembedded.org
-Subject: OpenEmbedded Happy Hour September 30 9pm/2100 UTC
-Message-ID: <20200929234935.GW19155@denix.org>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=J3p3ETBL;
+ spf=pass (domain: gmail.com, ip: 209.85.160.174, mailfrom: raj.khem@gmail.com)
+Received: by mail-qt1-f174.google.com with SMTP id a4so309841qth.0
+        for <yocto@lists.yoctoproject.org>; Tue, 29 Sep 2020 22:15:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jv67hluFyFx15cI2T8zae2YV7vBDYfP1P+YM3w4DJDE=;
+        b=J3p3ETBLWlitxWYV/99v4jytc1TO8rvK4WaHEzzJLLK4FsLAg3gBGBrv3RVcym/+6c
+         QGH8TxrQVkPEtvJ5cXl4WA3rNxQClnfFBWvWHOQhdCP/od1W6/TKeQX6YfSM/iPsVhVG
+         gUPTBGv6etslOZMXlU8lqMky992imoN3tFrcTWwQuOR79FJsioHnU/UOOP8JNE4nhP5i
+         Ui9nrO4lCR4Wl/Sgv+TkNrOL31P8YjcV72HYGqX0xxg08te5dW5/sCQVtwLuBIGzLdE7
+         IT4Nj4hGojx0GsoeIHPmRP1+zszcmAnzZ2o2hLVdcuCty3Cix8+U4TyMJmUJIHaZYVhd
+         ka8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jv67hluFyFx15cI2T8zae2YV7vBDYfP1P+YM3w4DJDE=;
+        b=YGPLfZu2QKSC16JLEfELLjmCiRVCSqNxHA/bk684sNYI7eMX5MmNahazrgArIrBqy7
+         2dlx6OYP4R6cB6UZTzUdv+pBuFa6Ce8D7FZ8AJB4Jz41wpUvMTESANgq2SAvom8Btay2
+         81EE9eIqbqVoq8wbQ5ChLq20/98oTT+ttNL4/AyZEyjL8X+ZLot+MSbGh++/oXgIe+wc
+         mqtEERfnD2pVSh+donST/4KCuDRGzqWa9krnfQhTs4ZazlRetY2rSYC315dH1ybQklux
+         kZpYDYd6wR/JkU6hzW/bH/+DkeTqy5jDMbiu1FyNTTbBfoWpJWMf0p/tHFj2F/b9fBEa
+         eIyA==
+X-Gm-Message-State: AOAM533qpzx20+but0+uyFPv9cAPQuXG95DCVmWJdcAQxLF1ILVaAQwE
+	dJf7Yra435A4fv0UMm0q6wW+LSGVRnKd6pY6GqQ=
+X-Google-Smtp-Source: ABdhPJyQ+L0m81r1dASDIrIAU2OeL3NEIL+uR7/dOIaTfXQKZOqYCW0XrciWcKJ3cDD58sQzS+3qIeWrWajVawIHgCY=
+X-Received: by 2002:ac8:3417:: with SMTP id u23mr576828qtb.80.1601442937569;
+ Tue, 29 Sep 2020 22:15:37 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <MADEUP.16390554C73CDE44.27822@lists.yoctoproject.org> <2629.1601402747635234276@lists.yoctoproject.org>
+In-Reply-To: <2629.1601402747635234276@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Tue, 29 Sep 2020 22:15:11 -0700
+Message-ID: <CAMKF1sq4-=OaYmX2qLakrwCT2Pkt-LFr5-+OJ6orbfdtqvVppQ@mail.gmail.com>
+Subject: Re: [yocto] #yocto #linux #systemd Having issues building command line utilities: ntpq, timedatectl, and ntpstat into kernel image
+To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-Just a reminder about our upcoming OpenEmbedded Happy Hour on September 30 for 
-Oceania/Asia timezones @ 2100/9pm UTC (5pm EDT):
+what all functionality are you looking for. E.g. there is date utility
+and hwclock  utility which can help you manipulate system time. you
+could also look into ntpd and/or chrony for Network time setting etc.
 
-https://www.openembedded.org/wiki/Calendar
-https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+September+30&iso=20200930T21
-
--- 
-Denys
+On Tue, Sep 29, 2020 at 11:05 AM Monsees, Steven C (US) via
+lists.yoctoproject.org
+<steven.monsees=baesystems.com@lists.yoctoproject.org> wrote:
+>
+>
+> Currently not using system as our default init system (investigating why but this might not be an option).
+>
+> Is there any other utility I might use under Yocto to get similar data as that produced by timedatectl ?
+>
+> Thanks,
+> Steve
+> 
+>
