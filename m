@@ -1,68 +1,52 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.10057.1601451755820396799
+Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
+ by mx.groups.io with SMTP id smtpd.web11.12354.1601461520229609779
  for <yocto@lists.yoctoproject.org>;
- Wed, 30 Sep 2020 00:42:35 -0700
+ Wed, 30 Sep 2020 03:25:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Zyeyurjd;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 343EB38C06B0
-	for <yocto@yoctoproject.org>; Wed, 30 Sep 2020 00:42:35 -0700 (PDT)
-Received: by mail-ej1-f50.google.com with SMTP id p15so1361594ejm.7
-        for <yocto@yoctoproject.org>; Wed, 30 Sep 2020 00:42:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=EPqRF+S26nCDxCwQgpYGdKYaX8DK/Kg/Ml0IUOYMn8o=;
-        b=Zyeyurjdnw0dBvmSka5VDpyFOI3ai+OKNonwXINCVCKU2yXk72lUH7hIzEXbIe67r1
-         Mwf3DW9xJQm63mhFyp+OxuPVImOfGzA/jOY1rAhKcAt6hQH+mG+36o/PjIvUS8LkIYpc
-         sG9AD4TIt/JehstJjmn+jQykBTZPcJK55dL5XypVR40IAhZmdsMhskwMP1i2YUFTTdU4
-         Kkd6it7Xcj2dDjgIU1wNxU+R8RxEmT81U3elXZ4gFO0SuU+Z7f99T+ButLvmvYFJDmLt
-         ZMneOczjywuLRA0MqTToWPfg8QwRYw7XC1jh7cTYAod00NQHf056kAfCKhnQ59TCG2OG
-         Z9cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=EPqRF+S26nCDxCwQgpYGdKYaX8DK/Kg/Ml0IUOYMn8o=;
-        b=SEJX0BJ0fCj83jV/AnGu7IFzURyLsQE429sf3YWdlLICsW5cPhwiaxqd1rNTBkG+2V
-         q08+SUTbu+fYRegZ6Y2QiWcJx5xodz9ooQuA8HoXLhfOKgUgJGgvHtHa8oOLep1mGG3P
-         xyCtDHoygNDxoQdVqtKU/NwE7V8WvI40WRhvpVuo4+HqAMhyfkWSlN4jS2hhEOEgal3m
-         oaleYHG1nSzGWUNKHoplE4DN24ouati2Knl2ksNpA8KHcCMJDXMek5CxiEfMqIyVU5jB
-         KgcuNT9fX7y/6jOGfZ8WFlbKydt924UC4/r1nyKgWMeo7sVbT2bQ5haX8i2Ipmw+rXmg
-         i2xA==
-X-Gm-Message-State: AOAM532kCMw4hOwQwE6QTEDtbfLVXD+KMyIQJ2/doMx+P+bIZLzrSn8s
-	mfFsJ+fgPKd1dgud5Gq93xbaFBV2Cett4Dn7k98dZN/jKLc=
-X-Google-Smtp-Source: ABdhPJzHoINOZ3+BpziCLDdxkFn+cvkMLndqs52P2lTVwaw3bb4CSUoNRZhhTxrbB6LN0Orfa0Nlyjapq0D6LD3M1HQ=
-X-Received: by 2002:a17:906:5812:: with SMTP id m18mr1602823ejq.204.1601451753363;
- Wed, 30 Sep 2020 00:42:33 -0700 (PDT)
-MIME-Version: 1.0
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Wed, 30 Sep 2020 09:42:22 +0200
-Message-ID: <CAAfyv34GQkg9=sqsJONK3JxPF-CRdN+jxEpg3zG+LqewdTCa8A@mail.gmail.com>
-Subject: development package in rootfs
-To: yocto <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+ dkim=pass header.i=@kapsi.fi header.s=20161220 header.b=fu3dqtMQ;
+ spf=pass (domain: kapsi.fi, ip: 91.232.154.25, mailfrom: antime@kapsi.fi)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+	 s=20161220; h=To:Date:Message-Id:Subject:Mime-Version:
+	Content-Transfer-Encoding:Content-Type:From:Sender:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=0VqVEc/WvdRmSDUrg1njmIFHcpXQ8qNGXnNeza6pIL8=; b=fu3dqtMQwIo076atqlguHcE6Md
+	xVGOWNyDGiuyKN7rj9ntSCHMPSXVQHHoJqm2xi77D7eows3bnqed2bHnPgrTaElwZAxCLyWoeZuaF
+	iZ/GISqb0ClkZj+XMUUKYhNgQ7b1LH/s8qfMinKbwWEKQYD3JYCWj3+cJUWION1KSoopD5+vJtczX
+	Iu0M9fezm1ZWymTC9Iftj67Pk1CssWjuVMh05TYL37Ay8e4wDRNTG8dZEOgigOLibsgvToAOeXu+e
+	UfqgoWIJrzaEB2u02JUiTGJqIsXB47lI6qC4fyVr0W3SPuvJoJkig77cTYQGBzbfnFh66JQK5IvRA
+	4Wt40QVQ==;
+Received: from 89-27-44-133.bb.dnainternet.fi ([89.27.44.133] helo=[192.168.1.58])
+	by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.89)
+	(envelope-from <Anders.Montonen@iki.fi>)
+	id 1kNZIT-0003Rh-2h
+	for yocto@lists.yoctoproject.org; Wed, 30 Sep 2020 13:25:17 +0300
+From: "Anders Montonen" <Anders.Montonen@iki.fi>
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.15\))
+Subject: Warrior uninative
+Message-Id: <3289A4D6-56DE-4EC8-AE90-9005550F16F3@iki.fi>
+Date: Wed, 30 Sep 2020 13:25:16 +0300
+To: yocto@lists.yoctoproject.org
+X-Mailer: Apple Mail (2.3445.104.15)
+X-SA-Exim-Connect-IP: 89.27.44.133
+X-SA-Exim-Mail-From: Anders.Montonen@iki.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-I'm facing some strange issue that after my image rebuild I see in
-do_rootfs log that the -dev package of some go application is
-installed. Which is not what I want and I'm not sure how it get to
-rootfs because I don't have explicitly set -dev package. Any ideas how
-to debug it? I'm using rocko poky release.
+The checksum of =
+<https://downloads.yoctoproject.org/releases/uninative/2.7/x86_64-nativesd=
+k-libc.tar.xz> doesn=E2=80=99t match what=E2=80=99s specified in =
+yocto-uninative.inc. The actual checksum seems to match an older commit, =
+so at least there=E2=80=99s nothing untowards going on.
 
-Thanks and BR,
+I realize that the Warrior branch is officially EOL, but I still think =
+this should be fixed.
 
-marek
-
--- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
-
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+Regards,
+Anders Montonen=
