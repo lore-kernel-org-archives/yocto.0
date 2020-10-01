@@ -1,155 +1,78 @@
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by mx.groups.io with SMTP id smtpd.web10.6906.1601536669808876011
+Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com [209.85.221.68])
+ by mx.groups.io with SMTP id smtpd.web10.8687.1601545177792655199
  for <yocto@lists.yoctoproject.org>;
- Thu, 01 Oct 2020 00:17:50 -0700
+ Thu, 01 Oct 2020 02:39:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=fxJ5S6W6;
- spf=pass (domain: intel.com, ip: 134.134.136.65, mailfrom: sangeeta.jain@intel.com)
-IronPort-SDR: NX6SEWSbYD5uUOYvvFY93kNPaNj11FaecfNIPt6Se6h/j9An/1oXsvZWruC8Lm1JSCpU+CxJ3I
- uBZiXo1EVX3g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="162712193"
-X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; 
-   d="scan'208";a="162712193"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2020 00:17:47 -0700
-IronPort-SDR: Li5dYjY64SMalsnYKGmSx8VBzQEWRSWVrMyqL74LzQerlIy+g3ZL89kF08vZpwfKI4o5Q5xxHk
- Bp/uTmlpaANA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; 
-   d="scan'208";a="351006294"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
-  by FMSMGA003.fm.intel.com with ESMTP; 01 Oct 2020 00:17:47 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 1 Oct 2020 00:17:46 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 1 Oct 2020 00:17:46 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Thu, 1 Oct 2020 00:17:46 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Thu, 1 Oct 2020 00:17:44 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ObR2k2k6NoEAA8XFSPm9PD8w+IMmuM5VL82mqWnpgRr/wnKNIJOcMmXop67rQEjGo6VB9i5JlFzlzsTEQnMPqE0L9WnqrcWNhPHrkZTb3BQVtk+1c/0IZqgSSTEyR5hvVDoNIi9GMpKZl+3EyjqjWDcX93fGxkrAucFgg43ZCQp4qmu0de8dcUN9QwpEzvcwkfzVsvR5/USCBCAKLqLg0jeh1iWcFHPzOV1Fyy84WITh9D3mW731TYs/WOuyj40QWUrdIwWFmxopzquernBasXOURQPICEs/S9lSGCS+9zMFWEbqrV2H8vOB57PFAaTo8+hapsGk539lSpcxge/n4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wSjgOhaCnfteL/CTRc398w8XTrojQyxm6rsxJ222hmw=;
- b=P1ApI5RH00S18gO4viM4BDw75NyDAptQ9XPhABuggMr/RnkvWePhGQltJqjnhXM9+ubFL68nth2iuPeUqPmM5WJOoG2m3NGB2zh/dsQAhFNWXJSUDCp7XWsSulxvBT/gOUewCdDcw4dSUBfhOGFACJARjs2L6bWS5P02zsaNAaqRtiEf47PAABgvep8yqQmtuyJsv7Z5HibkMXYqbfMocz7I5r/8dtVlqkrbSw/pHYsMHldUpoyqFc8GLFAqH/q9KPBhZKp5JAuoQUS4KdAgX2k9rDEO+WKIDoEvR6pMv2J5IcU2XjGUoKPeIoNUbJVoHGSjoeu8ckgULqa6KGn6GA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wSjgOhaCnfteL/CTRc398w8XTrojQyxm6rsxJ222hmw=;
- b=fxJ5S6W687sjZocyIJ8uTzOIgq4jmab0xyORtcEjuf2EhXgIW8RmTUSJ1wwPXAO8sJ3fEjSq5g+tA3LFkEhAZmPuRkkLg+IN5EWZimH531MylEfR+/KFSZ7eNKyZ7Q/ebchVVLaINJYeaBdMiCZDFieB4EoT+tDw7dSfST812g0=
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com (2603:10b6:a03:b1::33)
- by BY5PR11MB4306.namprd11.prod.outlook.com (2603:10b6:a03:1bb::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.36; Thu, 1 Oct
- 2020 07:17:43 +0000
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::406e:4a1b:25b8:da3f]) by BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::406e:4a1b:25b8:da3f%7]) with mapi id 15.20.3433.032; Thu, 1 Oct 2020
- 07:17:43 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>, Yocto Project
-	<yocto@lists.yoctoproject.org>, openembedded-core
-	<openembedded-core@lists.openembedded.org>
-CC: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
-	"yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
-	<apoorv.sangal@intel.com>, "Chan, Aaron Chun Yew"
-	<aaron.chun.yew.chan@intel.com>, "akuster808@gmail.com"
-	<akuster808@gmail.com>, "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
-	Steve Sakoman <steve@sakoman.com>, "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
-Subject: Re: QA notification for completed autobuilder build (yocto-3.1.3.rc1)
-Thread-Topic: QA notification for completed autobuilder build
- (yocto-3.1.3.rc1)
-Thread-Index: AQHWk0lI7KSPn8kdfkaK9GnZFRt7KqmCXphg
-Date: Thu, 1 Oct 2020 07:17:43 +0000
-Message-ID: <BYAPR11MB3624450DA1C599EFE37175F9E3300@BYAPR11MB3624.namprd11.prod.outlook.com>
-References: <20200924111808.4B9ED1A00A2@debian8-ty-1.yocto.io>
- <032da6fc700a4018bc7e8d86fd188ad6b40fce36.camel@linuxfoundation.org>
-In-Reply-To: <032da6fc700a4018bc7e8d86fd188ad6b40fce36.camel@linuxfoundation.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-authentication-results: linuxfoundation.org; dkim=none (message not signed)
- header.d=none;linuxfoundation.org; dmarc=none action=none
- header.from=intel.com;
-x-originating-ip: [115.133.103.117]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: eed4f82d-18f4-4f40-a9b9-08d865da172e
-x-ms-traffictypediagnostic: BY5PR11MB4306:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BY5PR11MB43065B53A35EB4162E424E60E3300@BY5PR11MB4306.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: iRwAjKF43aTfHZFoD/wIBtM3OSthKAkXuP5PIatB1Zhbv8UYyIACEG3Oe0BPT8anXPe3uphC1mMdPuoc/sqYEm78LVtPw33P/OxrsZSo2fHlhH+0BCER73nG/6J/AAxqSRPMY89DtwFOIwFu1Q2MmRnDRlXSz1fvug52KBn4kPHJVtdc8HXsk5hB7G/7L0e5JWIWtM8ogBNN5AcNR9PKhqsS4JD2k9cuEICze8mWq2jdSAZkloja0uaXRHUf3UT+dMCryA2GahVkh0UD4WAfPQ9C0GXA3Blc3WdGfGjIEra/nQ3XeVh6GseYnhQiwP+hGCAeFsQqrIk5e1my2ErZMrmgqb714QwZ0cz4z1kL8oRcIri1OKqwGizFSheiddkcKabMSj8PXMhmM8lPaXS0tg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3624.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(39860400002)(396003)(366004)(136003)(8676002)(110136005)(316002)(54906003)(66946007)(76116006)(9686003)(66446008)(64756008)(7696005)(5660300002)(6506007)(186003)(66556008)(26005)(53546011)(52536014)(83380400001)(966005)(66476007)(55016002)(71200400001)(107886003)(8936002)(33656002)(15650500001)(2906002)(478600001)(86362001)(83080400001)(4326008);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: a4RdZSkJlgAi5tZz3AG565Y2F3EMxtHAPVxAoKQqQbqeGnFY13D+ojDq01/FY2Vf0WzYED/j/g1r9pNOoHDXxAzyY8DHABuHtdV6ADTUYhhXuTGVy2F3RnBfRbryjSHGBdAFDNuIpFVpUADgzk6odru9SJ56oB5sNG7lJEy9+DnXrToQAbZgIKL12gGhuxWpGareJLuctxJOf6C7EyKWGB8usUKStvJpC0OA6776JosRULgY6S1pKqHl7RTF3om4t+Dbq4TomkAHYwKSLzKUkliamRTf2/CUnsmeHjYujkyu88uc+ygv+DaiOH8NGHciMRZKG43mpU7HKOqTBK/t487kHFrX12Ct0sm5pkuEyhgq0zpVilq7ScES/ou9x/gCiX6gmCDrdzkftnKt+dbpnXENN4k3RY1eyjVuSsExXHRHunXinHRtlY0048ElG5+pTjxCMgxBorPU1QmNhh6ej3QN+Y+a6BhVWXQtKowzY+gh4GOUThW8Rpik3417zWoBTnKDqETQ/6a55ECihmYtg7wWBnMzByoMOwYoiIZEoU+qHZpLb7KHQDRzkUAuPOaRonWkBt8Y3gs68GxkQ6UxayRQmCgEM6f7retVCZJHlRMQ39ezeJv6poMObB6nSYPqNd4fzxdYCNbHWwGnno/Vtg==
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=GLeekTve;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.68, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f68.google.com with SMTP id s12so4855369wrw.11
+        for <yocto@lists.yoctoproject.org>; Thu, 01 Oct 2020 02:39:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=HsAg3ySwdscBgJjs7AcHfv96So853Ne2MAiQyeS32nA=;
+        b=GLeekTveIPillJn+cJ8l1rEMaDKHWvNdK8yJ4BdzJ/BNF0N8EjfDli+CaqRvkgEmFR
+         tDRHylDKlDUq/cXuqzM/8WJsx84pyFHM0J8drgx49pr2bZoOrWRyAfpLCVKMEZxb+FZJ
+         xBaeHlqxQQR/Shxrjl2ewNqJWb9TyYhRnIwKs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=HsAg3ySwdscBgJjs7AcHfv96So853Ne2MAiQyeS32nA=;
+        b=KkuW+YVy26T4lGXqfAy+318FxnnNjJgI5rLmD/lryP8/ZfdxXsybqgBwjDtkya5PHP
+         mIxeBOqWJqSZdGqtrdYNO9XlXm4liZvUs9sup6kxMRICiDKBx9hz5KR3LewTbSI8PTiI
+         2D6Z0jmNPsuWmKFOLwR8v3U0RrBgBQPPLgcTMkORQPIf0X7Om7pRrGUS4vdppKiljNdj
+         VwfXCgCrWrU4vj2Bk8++hHc3cPV3w+YBcptOBNFqjKwob2iCQs5vmI6t6OMYlUEzOn+D
+         VZFqWbFs9EmXFyXY1G3wZK3yR3L1aAcwEGsZkvZ/lMbAHdL+HDKvGtuX8NsstUElx7nH
+         Pj4g==
+X-Gm-Message-State: AOAM533ckVFpsSSsFu67jd4g42D16lwmFKslYaddcwfukfV55QqfE7Bs
+	DnbMITwWbhRN2NrFZ67E7K4aIg==
+X-Google-Smtp-Source: ABdhPJxWN9I7tSPyoQdFi/FT9/GHLTX8QKJ5I0+2oEaoSb469cvfuJv0nfRJ8FT27t0sA3hmCytdVg==
+X-Received: by 2002:a5d:4a4b:: with SMTP id v11mr7728060wrs.36.1601545176181;
+        Thu, 01 Oct 2020 02:39:36 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from 7.f.c.3.4.0.2.3.2.2.3.7.e.3.c.9.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (7.f.c.3.4.0.2.3.2.2.3.7.e.3.c.9.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:9c3e:7322:3204:3cf7])
+        by smtp.gmail.com with ESMTPSA id q12sm8057494wrs.48.2020.10.01.02.39.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Oct 2020 02:39:35 -0700 (PDT)
+Message-ID: <f26652375f130067d2bc2eb14bde36d45091a8e3.camel@linuxfoundation.org>
+Subject: Re: [yocto] Perl-Native compilation for THUD in Red Hat 8
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Aashik Aswin <thisisaash9698@gmail.com>, yocto@lists.yoctoproject.org
+Date: Thu, 01 Oct 2020 10:39:32 +0100
+In-Reply-To: <CANVQz1YkLgLj-Eq2bcYz933Lp4G-qvQ7=uWeq2XPjs8jRvFCcg@mail.gmail.com>
+References: 
+	<CANVQz1YkLgLj-Eq2bcYz933Lp4G-qvQ7=uWeq2XPjs8jRvFCcg@mail.gmail.com>
+User-Agent: Evolution 3.36.4-0ubuntu1 
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3624.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eed4f82d-18f4-4f40-a9b9-08d865da172e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2020 07:17:43.7386
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tCfBfGLyK+44cuSPW8hw0b+6Zk83REPBL74+vvyBsEktIGWxI5hw7RLf96UYnohU+GzdrR5OJHVP6aso1r6zxg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB4306
-Return-Path: sangeeta.jain@intel.com
-X-OriginatorOrg: intel.com
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-SGVsbG8gYWxsLA0KDQpUaGlzIGlzIHRoZSBmdWxsIHJlcG9ydCBmb3IgeW9jdG8tMy4xLjMucmMx
-OiAgDQpodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL2NnaXQvY2dpdC5jZ2kveW9jdG8tdGVz
-dHJlc3VsdHMtY29udHJpYi90cmVlLz9oPWludGVsLXlvY3RvLXRlc3RyZXN1bHRzDQoNCj09PT09
-PT0gU3VtbWFyeSA9PT09PT09PQ0KTm8gaGlnaCBtaWxlc3RvbmUgZGVmZWN0cy4gIA0KTm8gbmV3
-IGRlZmVjdHMgYXJlIGZvdW5kIGluIHRoaXMgY3ljbGUuDQoNCnBlcmwgcHRlc3QgZmFpbGVkIChC
-VUcgaWQ6MTQwNzEpDQoNCj09PT09PT0gQnVncyA9PT09PT09PQ0KaHR0cHM6Ly9idWd6aWxsYS55
-b2N0b3Byb2plY3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0xNDA3MQ0KDQpUaGFua3MsDQpTYW5nZWV0
-YQ0KDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogUmljaGFyZCBQdXJk
-aWUgPHJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmc+DQo+IFNlbnQ6IEZyaWRheSwg
-MjUgU2VwdGVtYmVyLCAyMDIwIDEwOjM2IFBNDQo+IFRvOiBZb2N0byBQcm9qZWN0IDx5b2N0b0Bs
-aXN0cy55b2N0b3Byb2plY3Qub3JnPg0KPiBDYzogb3RhdmlvQG9zc3lzdGVtcy5jb20uYnI7IHlp
-LnpoYW9Ad2luZHJpdmVyLmNvbTsgU2FuZ2FsLCBBcG9vcnYNCj4gPGFwb29ydi5zYW5nYWxAaW50
-ZWwuY29tPjsgWWVvaCwgRWUgUGVuZyA8ZWUucGVuZy55ZW9oQGludGVsLmNvbT47IENoYW4sDQo+
-IEFhcm9uIENodW4gWWV3IDxhYXJvbi5jaHVuLnlldy5jaGFuQGludGVsLmNvbT47DQo+IHJpY2hh
-cmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmc7IGFrdXN0ZXI4MDhAZ21haWwuY29tOw0KPiBz
-am9sbGV5LnlwLnBtQGdtYWlsLmNvbTsgSmFpbiwgU2FuZ2VldGEgPHNhbmdlZXRhLmphaW5AaW50
-ZWwuY29tPjsgU3RldmUNCj4gU2Frb21hbiA8c3RldmVAc2Frb21hbi5jb20+DQo+IFN1YmplY3Q6
-IEZ3ZDogUUEgbm90aWZpY2F0aW9uIGZvciBjb21wbGV0ZWQgYXV0b2J1aWxkZXIgYnVpbGQgKHlv
-Y3RvLTMuMS4zLnJjMSkNCj4gDQo+IFt0aGUgb3JpZ2luYWwgZW1haWwgYm91bmNlZCBmb3Igc29t
-ZSByZWFzb24sIHJlc2VuZGluZyB0byB0aGUgbGlzdF0NCj4gDQo+IEEgYnVpbGQgZmxhZ2dlZCBm
-b3IgUUEgKHlvY3RvLTMuMS4zLnJjMSkgd2FzIGNvbXBsZXRlZCBvbiB0aGUgYXV0b2J1aWxkZXIg
-YW5kIGlzDQo+IGF2YWlsYWJsZSBhdDoNCj4gDQo+IA0KPiAgICAgaHR0cHM6Ly9hdXRvYnVpbGRl
-ci55b2N0by5pby9wdWIvcmVsZWFzZXMveW9jdG8tMy4xLjMucmMxDQo+IA0KPiANCj4gQnVpbGQg
-aGFzaCBpbmZvcm1hdGlvbjoNCj4gDQo+IGJpdGJha2U6IDE4ZTE5NTczMzdmZDlmMDZiYzY3M2Qy
-OGRkNGY4Mjc3MzIxZDA3YmMNCj4gbWV0YS1hcm06IGM3YTFhNWY5ZmQ0MTVlM2FlMTA3OGMyYTFk
-NmFmOWMyNWU5ZTY0OTgNCj4gbWV0YS1ncGx2MjogNjBiMjUxYzI1YmE4N2U5NDZhMGNhNGNkYzhk
-MTdiMWNiMDkyOTJhYw0KPiBtZXRhLWludGVsOiBkNzEzNGU4NjU3NDE3Mjc4NGY5MDExN2MwM2Ew
-MTJlMDA0OGQ4YmNiDQo+IG1ldGEta2VybmVsOiBjYjdmMGRjNWJiMWVhMDk5OGM4ZDRmY2I0ODYx
-NDhkNGNhYjU3NWY0DQo+IG1ldGEtbWluZ3c6IDUyNGRlNjg2MjA1YjVkNjczNjY2MWQ0NTMyZjVm
-OThmZWU4NTg5YjcNCj4gb2Vjb3JlOiBiMzliZGE0Y2M2MmRiMTJjMGVkZmJlNDg5ZDVhN2Y1OTg4
-ZWRlNmE5DQo+IHBva3k6IDAxMmFkMTBhODlhODg5YzIxZTY3YzI3ZGMzN2QyMjUyMDIxMjU0OGYN
-Cj4gDQo+IA0KPiANCj4gVGhpcyBpcyBhbiBhdXRvbWF0ZWQgbWVzc2FnZSBmcm9tIHRoZSBZb2N0
-byBQcm9qZWN0IEF1dG9idWlsZGVyDQo+IEdpdDogZ2l0Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcv
-eW9jdG8tYXV0b2J1aWxkZXIyDQo+IEVtYWlsOiByaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5kYXRp
-b24ub3JnDQo+IA0KDQo=
+On Thu, 2020-10-01 at 11:59 +0530, Aashik Aswin wrote:
+> Hi Developers,
+> 
+> I recently migrated my machine to Red Hat 8 , I am using Yocto Thud
+> to build my customized yocto image. 
+> However, I am seeing the following Build Issue while compiling Perl-
+> native
+> 
+> /usr/include/errno.h:48:10: fatal error: bits/types/error_t.h: No
+> such file or directory
+> |  #include <bits/types/error_t.h>
+> |           ^~~~~~~~~~~~~~~~~~~~~~
+> | compilation terminated.
+> 
+> Is there a way that this dependency can be moved to Yocto itself, or
+> is there some alternate way we can try out.
+
+The challenge is that we need some kind of functional compiler. You're
+trying to use a much more modern system that didn't exist when thud was
+released. Thud is now outside of its support window too.
+
+I'd suggest using a buildtools-extended-tarball to allow thud to build.
+
+Cheers,
+
+Richard
+
