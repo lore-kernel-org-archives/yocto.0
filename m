@@ -1,196 +1,143 @@
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
- by mx.groups.io with SMTP id smtpd.web10.12613.1601558851087394285
+Received: from dmzms99802.na.baesystems.com (dmzms99802.na.baesystems.com [149.32.232.66])
+ by mx.groups.io with SMTP id smtpd.web10.511.1601563324519781451
  for <yocto@lists.yoctoproject.org>;
- Thu, 01 Oct 2020 06:27:31 -0700
+ Thu, 01 Oct 2020 07:42:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=l0UUDRjK;
- spf=pass (domain: gmail.com, ip: 209.85.210.45, mailfrom: jpewhacker@gmail.com)
-Received: by mail-ot1-f45.google.com with SMTP id g96so5330047otb.12
-        for <yocto@lists.yoctoproject.org>; Thu, 01 Oct 2020 06:27:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nDOVMPiOuzKIW3Nq8gKchaicbF54l9LTlVEiRfAs0Qs=;
-        b=l0UUDRjKC8fwug1XzZdQVHnAZAROs4xyC49BRgAeXsAZYFpZcmj9zHhBh3w4Rem7p4
-         JKvdIbacLBu6Y5xDad1KyYa0TQGiCfSLYBd3a7bv5aHGrzMxtm1xcsftIxLk8+WBqPeq
-         Wu4U3wldvQGCD+TgElo8nRaAwOiD4qxoyengAV6OYSFJkCqMvapVlx5gkD3s/2lDNJCN
-         htkOwm+tamS2febPmM4KQAIw7wYTtnczcBb+EioPCwlQVDO4XiVFNz/8PnWNircCecar
-         73Ne6UXLQaeGazmqLFm1zrfVBSZ+2e3FrDjskhiJT1NqPitYwNpSLu5ALggF8F5rbUzH
-         GcDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nDOVMPiOuzKIW3Nq8gKchaicbF54l9LTlVEiRfAs0Qs=;
-        b=E7PyQFh8e3I6OiU1zKRfVr+hy22Tf1goEvgcCV6KXd6NAlaWbkMk8bMeDKzYsRX0I4
-         uXEy0qByKJ8OfDBAB4qO326PyfrdKx6WgSjo6U4jUlMuVamlwu4fmJZHe1HHrXTS4/Kq
-         nII3SO/2Y0XYsPMYt4HVd/xZRO9D2GpvORPhkjOXhBlVsujUbR4eLTaygGw79syS6s7J
-         Acilxzm2R8d5uLSHGkILWnZUW/5FE2HHbeKzzwc9FBRkGHnGWsS0mX7V0rnEldI2WaVV
-         v8Wy9Z5z0iQud2q/uDktg7jgpiJupI9aZ3SnwBO1HoDa9iH98BaW7BemjlbqmVOsb+tU
-         xCyQ==
-X-Gm-Message-State: AOAM531B6MvcV7oNmRRtcEbwKtK/6QnLd/vTDYL9SJ+5iYNbbNtC9VGA
-	B74QJsaaa8n3GKCFWx2cXer5uaV9naY=
-X-Google-Smtp-Source: ABdhPJyykzUypCwOPN1DMzwnNjVJMlsqazwyDi7gF+rVl4lbCmn39ZqZ8ZfGWv0fJ+kPsUELJgn6Og==
-X-Received: by 2002:a9d:2c26:: with SMTP id f35mr5068433otb.0.1601558850113;
-        Thu, 01 Oct 2020 06:27:30 -0700 (PDT)
-Return-Path: <jpewhacker@gmail.com>
-Received: from localhost.localdomain ([2605:a601:ac3d:c100:e3e8:d9:3a56:e27d])
-        by smtp.gmail.com with ESMTPSA id l25sm1195085otb.4.2020.10.01.06.27.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Oct 2020 06:27:29 -0700 (PDT)
-From: "Joshua Watt" <JPEWhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Peter Kjellerstedt <pkj@axis.com>,
-	Khem Raj <raj.khem@gmail.com>,
-	Joshua Watt <JPEWhacker@gmail.com>
-Subject: [yocto][meta-gplv2][PATCH] gnupg: Build with "-fcommon"
-Date: Thu,  1 Oct 2020 08:27:27 -0500
-Message-Id: <20201001132727.36297-1-JPEWhacker@gmail.com>
-X-Mailer: git-send-email 2.28.0
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=itWU0tcR;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.66, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1601563324; x=1759243324;
+  h=from:to:subject:date:mime-version;
+  bh=QfBRNsFPMlPzMHQOr+aVW59DRFgAlf8y0x2UbDq2JNM=;
+  b=itWU0tcRg2iyJbiiGs3pQVPaFK+VDJf6KSm8s23psUaIWcJZfNTZcxoB
+   /FcASaGMLI8xpMwJ+wtICsqDv74hWcAouJVd4O+HOcxDUP8SPLXWoLXkM
+   R0xc16pqi2FZYjG8LeU6QemdvDDSjNNSbt2nRugBepxwmfG1GXTODQQax
+   I=;
+IronPort-PHdr: =?us-ascii?q?9a23=3Aw/ODkxxCUxHyxmrXCy+O+j09IxM/srCxBDY+r6Qd?=
+ =?us-ascii?q?2uIXIJqq85mqBkHD//Il1AaPAdyErakYwLqO+4nbGkU4qa6bt34DdJEeHzQksu?=
+ =?us-ascii?q?4x2zIaPcieFEfgJ+TrZSFpVO5LVVti4m3peRMNQJW2aFLduGC94iAPERvjKwV1?=
+ =?us-ascii?q?Ov71GonPhMiryuy+4ZLebxhKiTanb75/Ixq6oAbNusILnYZsN6E9xwfTrHBVYe?=
+ =?us-ascii?q?pW32RoJVySnxb4+Mi9+YNo/jpTtfw86cNOSL32cKskQ7NWCjQmKH0169bwtRbf?=
+ =?us-ascii?q?VwuP52ATXXsQnxFVHgXK9hD6XpP2sivnqupw3TSRMMPqQbwoXzmp8qFmQwLqhi?=
+ =?us-ascii?q?gaLT406GHZhNJtgqJHrhyvpB1/zJLbb4yOLvVyYqHdcMkGSWZdQMpcUTFKDIOm?=
+ =?us-ascii?q?b4sICuoMJehUoY76p1sIthuxGxejBPj3xjRVm3H2wbM10/o/HgHAwQctAc8FvH?=
+ =?us-ascii?q?Dao9voMaseX/2+wa7TzTXfcfxWxyny6I7SfhAkpvGMW6lwftTPxkk0DA7KlU+f?=
+ =?us-ascii?q?ppL+PzKVzeQNr3aU7+97Ve61l2EnrARxryGpy8wxhYbHmpgbxUrY9SVl3ok1P9?=
+ =?us-ascii?q?u4RVZ1b9OqDJZdtiOXOopoTs8/XWxluyY3x7kJtJO0YSQExpQqyRHCZ/GDcYWF?=
+ =?us-ascii?q?4h3uWeeMLTpmgH9oe7Gyiguv/UavzOD3S8q60E5SoyZYjtXArH4A2h7J5sSZVP?=
+ =?us-ascii?q?dw/l2t1DeO2gzL9+1IPVo4mKXUJpI7xrM8jJkevEbFEyTrgkv5lrWWeV8h+uWw?=
+ =?us-ascii?q?7uTnZajpqYGEOo9vjwH+LrwumsuiAeQkKgQOX3aU+eC71LD74UL2Wq5KgeEzkq?=
+ =?us-ascii?q?nCtJ3XIccWqrKnDwNP1IYs8QyzACy839sGhnkGLElFeA6ZgIjsIFHCOuz3DfC6?=
+ =?us-ascii?q?g1i0kTdrwe7JPqH5D5nQMnTPirnscLRn50JC1gY+zcpT6pNVB70ZJfL8QE7xtN?=
+ =?us-ascii?q?jWDh8jNAy0xv7qCM5h1owAR2KAHKmZPLnXsV+P4OIvOPeDa5EOuDvmMPcq/eDh?=
+ =?us-ascii?q?jWQ5mF8GYammw54XaGuiEvt6JEWZZGLggs0dHmcSogo+UOvqhUWCUD5Ue3myQ6?=
+ =?us-ascii?q?U86yo/CIKnFofDWputjKaB3Se8ApJWemdGCkiWEXfvdYWLResDaD6ILs9miDwE?=
+ =?us-ascii?q?Wuvpd4h0nwCpvxP9475mNfbPvDwfvo7kzMJy5eDYiVc17zM+R5CM1GqRSElwn3?=
+ =?us-ascii?q?gUXHkn26tjplRnzVWO2rQ+hOZXQ499/fRMB00fMpjHwuFhT5jJRg/fc9HBYx7m?=
+ =?us-ascii?q?f+7nS3llVc483dIIJUN6Hc6vgwvr1SOnGK4Oi7GOH9o/9aeKjCu5HNp013uTjP?=
+ =?us-ascii?q?pptFIhWMYabWA=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2D7BACj6XVf/0LhJQpfgQmCcoF3gT6yH?=
+ =?us-ascii?q?gsBAQEBAQEBAQEIAS8EAQGHAyZLAhABAQYBAQEBAQYEAYZJC4I3IoNNXgEMdCY?=
+ =?us-ascii?q?BBBuDH4F+qyKBNIVThHkJAZA5Po8TBJo2nRAHA4JnmlEroRctkmCgDgIEAgQFA?=
+ =?us-ascii?q?hWDZXCDOk8XAg2cZoErAgYKAQEDCY4BgREBAQ?=
+X-IPAS-Result: =?us-ascii?q?A2D7BACj6XVf/0LhJQpfgQmCcoF3gT6yHgsBAQEBAQEBAQE?=
+ =?us-ascii?q?IAS8EAQGHAyZLAhABAQYBAQEBAQYEAYZJC4I3IoNNXgEMdCYBBBuDH4F+qyKBN?=
+ =?us-ascii?q?IVThHkJAZA5Po8TBJo2nRAHA4JnmlEroRctkmCgDgIEAgQFAhWDZXCDOk8XAg2?=
+ =?us-ascii?q?cZoErAgYKAQEDCY4BgREBAQ?=
+X-IronPort-AV: E=Sophos;i="5.77,323,1596499200"; 
+   d="scan'208,217";a="450214989"
+X-IronPort-AV: E=Sophos;i="5.77,323,1596499200"; 
+   d="scan'208,217";a="167977654"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: #yocto #sdk DRM and DRM_INTEL
+Thread-Topic: #yocto #sdk DRM and DRM_INTEL
+Thread-Index: AdaYAOXn37kC1RwQQECrCJWOkgqhUA==
+Date: Thu, 1 Oct 2020 14:41:59 +0000
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.9.87]
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Return-Path: steven.monsees@baesystems.com
+Message-ID: <MADEUP.1639E55C3AA99317.26131@lists.yoctoproject.org>
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_54c1a02c7a1d4b2b8501b8367b1d4089baesystemscom_"
 
-The patch from f9761c0 ("gnupg: Make it build with GCC 10 (which uses
--fno-common by default)") doesn't work in all cases, such as when
-building gnupg-native. Instead of trying to patch around it, re-enable
-the -fcommon flag explicitly to keep the build the same as it was before
-GCC 10 changed the default.
+--_000_54c1a02c7a1d4b2b8501b8367b1d4089baesystemscom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This reverts commit f9761c01495cd52ce88e33fbc8824f882cf80288.
 
-Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
----
- ...th-GCC-10-which-uses-fno-common-by-d.patch | 93 -------------------
- recipes-support/gnupg/gnupg_1.4.7.bb          |  7 +-
- 2 files changed, 5 insertions(+), 95 deletions(-)
- delete mode 100644 recipes-support/gnupg/gnupg-1.4.7/0001-Make-it-build-with-GCC-10-which-uses-fno-common-by-d.patch
+Does Yocto support drm & drm_intel  ?, If so at what Yocto version was supp=
+ort added ?
 
-diff --git a/recipes-support/gnupg/gnupg-1.4.7/0001-Make-it-build-with-GCC-10-which-uses-fno-common-by-d.patch b/recipes-support/gnupg/gnupg-1.4.7/0001-Make-it-build-with-GCC-10-which-uses-fno-common-by-d.patch
-deleted file mode 100644
-index 2f84155..0000000
---- a/recipes-support/gnupg/gnupg-1.4.7/0001-Make-it-build-with-GCC-10-which-uses-fno-common-by-d.patch
-+++ /dev/null
-@@ -1,93 +0,0 @@
--From 1d0141d77d4f81cfa3213370fb7eeddbf53fc085 Mon Sep 17 00:00:00 2001
--From: Peter Kjellerstedt <pkj@axis.com>
--Date: Tue, 1 Sep 2020 00:29:22 +0200
--Subject: [PATCH] Make it build with GCC 10 (which uses -fno-common by default)
--
--Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-----
-- g10/options.h    | 3 +--
-- include/cipher.h | 2 +-
-- include/iobuf.h  | 2 +-
-- include/memory.h | 2 +-
-- include/mpi.h    | 2 +-
-- tools/mpicalc.c  | 1 +
-- 6 files changed, 6 insertions(+), 6 deletions(-)
--
--diff --git a/g10/options.h b/g10/options.h
--index c5f0f22..33ed333 100644
----- a/g10/options.h
--+++ b/g10/options.h
--@@ -28,8 +28,7 @@
-- #include "packet.h"
-- 
-- #ifndef EXTERN_UNLESS_MAIN_MODULE
---/* Norcraft can't cope with common symbols */
---#if defined (__riscos__) && !defined (INCLUDED_BY_MAIN_MODULE)
--+#if !defined (INCLUDED_BY_MAIN_MODULE)
-- #define EXTERN_UNLESS_MAIN_MODULE extern
-- #else
-- #define EXTERN_UNLESS_MAIN_MODULE 
--diff --git a/include/cipher.h b/include/cipher.h
--index 168ab41..794c12b 100644
----- a/include/cipher.h
--+++ b/include/cipher.h
--@@ -109,7 +109,7 @@ struct gcry_md_context {
-- typedef struct gcry_md_context *MD_HANDLE;
-- 
-- #ifndef EXTERN_UNLESS_MAIN_MODULE
---#if defined (__riscos__) && !defined (INCLUDED_BY_MAIN_MODULE)
--+#if !defined (INCLUDED_BY_MAIN_MODULE)
-- #define EXTERN_UNLESS_MAIN_MODULE extern
-- #else
-- #define EXTERN_UNLESS_MAIN_MODULE 
--diff --git a/include/iobuf.h b/include/iobuf.h
--index a1d58c9..25f682b 100644
----- a/include/iobuf.h
--+++ b/include/iobuf.h
--@@ -73,7 +73,7 @@ struct iobuf_struct {
-- };
-- 
-- #ifndef EXTERN_UNLESS_MAIN_MODULE
---#if defined (__riscos__) && !defined (INCLUDED_BY_MAIN_MODULE)
--+#if !defined (INCLUDED_BY_MAIN_MODULE)
-- #define EXTERN_UNLESS_MAIN_MODULE extern
-- #else
-- #define EXTERN_UNLESS_MAIN_MODULE 
--diff --git a/include/memory.h b/include/memory.h
--index 895d8a7..217d316 100644
----- a/include/memory.h
--+++ b/include/memory.h
--@@ -87,7 +87,7 @@ unsigned secmem_get_flags(void);
-- #define DBG_MEMSTAT   memory_stat_debug_mode
-- 
-- #ifndef EXTERN_UNLESS_MAIN_MODULE
---#if defined (__riscos__) && !defined (INCLUDED_BY_MAIN_MODULE)
--+#if !defined (INCLUDED_BY_MAIN_MODULE)
-- #define EXTERN_UNLESS_MAIN_MODULE extern
-- #else
-- #define EXTERN_UNLESS_MAIN_MODULE 
--diff --git a/include/mpi.h b/include/mpi.h
--index 81061d3..d529bda 100644
----- a/include/mpi.h
--+++ b/include/mpi.h
--@@ -38,7 +38,7 @@
-- #include "memory.h"
-- 
-- #ifndef EXTERN_UNLESS_MAIN_MODULE
---#if defined (__riscos__) && !defined (INCLUDED_BY_MAIN_MODULE)
--+#if !defined (INCLUDED_BY_MAIN_MODULE)
-- #define EXTERN_UNLESS_MAIN_MODULE extern
-- #else
-- #define EXTERN_UNLESS_MAIN_MODULE 
--diff --git a/tools/mpicalc.c b/tools/mpicalc.c
--index 1df27d9..647dfbd 100644
----- a/tools/mpicalc.c
--+++ b/tools/mpicalc.c
--@@ -30,6 +30,7 @@
-- #include <stdlib.h>
-- #include <ctype.h>
-- 
--+#define INCLUDED_BY_MAIN_MODULE 1
-- #include "util.h"
-- #include "mpi.h"
-- #include "i18n.h"
-diff --git a/recipes-support/gnupg/gnupg_1.4.7.bb b/recipes-support/gnupg/gnupg_1.4.7.bb
-index 6258809..f02aaba 100644
---- a/recipes-support/gnupg/gnupg_1.4.7.bb
-+++ b/recipes-support/gnupg/gnupg_1.4.7.bb
-@@ -20,8 +20,7 @@ SRC_URI = "${GNUPG_MIRROR}/gnupg/gnupg-${PV}.tar.bz2 \
-            file://CVE-2013-4242.patch \
-            file://fix-ustar-check-issue.patch \
-            file://0001-Make-it-build-with-gettext-0.20.patch \
--           file://0001-Make-it-build-with-GCC-10-which-uses-fno-common-by-d.patch \
--           "
-+          "
- 
- SRC_URI[md5sum] = "b06a141cca5cd1a55bbdd25ab833303c"
- SRC_URI[sha256sum] = "69d18b7d193f62ca27ed4febcb4c9044aa0c95305d3258fe902e2fae5fc6468d"
-@@ -89,6 +88,10 @@ EXTRA_OECONF = "--disable-ldap \
- BUILD_CFLAGS += "-fgnu89-inline"
- CFLAGS += "-fgnu89-inline"
- 
-+# Force -fcommon to avoid issues with GCC 10 (which defaults to -fno-common)
-+BUILD_CFLAGS += "-fcommon"
-+CFLAGS += "-fcommon"
-+
- do_install () {
- 	autotools_do_install
- 	install -d ${D}${docdir}/${BPN}
--- 
-2.28.0
+Thanks,
+Steve
 
+--_000_54c1a02c7a1d4b2b8501b8367b1d4089baesystemscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Does Yocto support drm &amp; drm_intel&nbsp; ?, If s=
+o at what Yocto version was support added ?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Steve<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_54c1a02c7a1d4b2b8501b8367b1d4089baesystemscom_--
