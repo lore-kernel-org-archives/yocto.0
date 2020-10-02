@@ -1,380 +1,75 @@
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
- by mx.groups.io with SMTP id smtpd.web11.109.1601654954189221300
+Received: from mail-oi1-f195.google.com (mail-oi1-f195.google.com [209.85.167.195])
+ by mx.groups.io with SMTP id smtpd.web11.110.1601654954966881000
  for <yocto@lists.yoctoproject.org>;
- Fri, 02 Oct 2020 09:09:14 -0700
+ Fri, 02 Oct 2020 09:09:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=BYru7THW;
- spf=pass (domain: gmail.com, ip: 209.85.167.172, mailfrom: akuster808@gmail.com)
-Received: by mail-oi1-f172.google.com with SMTP id w141so1711798oia.2
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=bvzUpPWc;
+ spf=pass (domain: gmail.com, ip: 209.85.167.195, mailfrom: akuster808@gmail.com)
+Received: by mail-oi1-f195.google.com with SMTP id v20so1710335oiv.3
         for <yocto@lists.yoctoproject.org>; Fri, 02 Oct 2020 09:09:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=Sly4yHMuu5slUMrJpyV7OLc2Q3m3J2Z5UgScZhXHEe0=;
-        b=BYru7THWZ62O4p1vsQYsZETrowUjEpEB0B0/bukiNkjeDkAtYGh2TtALU4gd0rz/Xn
-         y5lTFAxKL3rXH6W9zrBHj9SqiGphI8m/i9Ej+S6IpzfSD5Fi/+mNQlzHV54Dy+52ZDuX
-         PFLSUFEHv7/MXQ0xXVFlWK4uONRpRMSz4pc2sQhK9h7HzdVNqJ9zoYlgj0rsK8MJ3uIP
-         6s4XWKauOOhXsMOKt7iVlKaTJ3v7MWEpJwhvrEOvMXfmB/jC6paNdt+997kJ9u8CcrRy
-         MznouDUhazIQk0NWcp8i4P0HREhKlkddJAOaO7N/LMkpo2ZUuLSi5BHqELwmBYYTdEvS
-         wG/g==
+        h=from:to:subject:date:message-id:in-reply-to:references;
+        bh=T3C/QTwk2y3wlJl/DHM+fa/vwBb4pqB2SXmVscYL2vk=;
+        b=bvzUpPWcPBvGrAeV9CtvWC/BzGZtR7kU9n8PFMkfGYZ70a02FQ8x+ht0qmWEZoHSRZ
+         u2lbXtWQeSXKRssdGE832j5hHumSf0TuOTKW8fOEVieS6HNEize8U1A6SX9fLQmp+tF7
+         mkWgXczPorEpiz6ai6NM8hvjEBRyhNk7k5Df9fEXFVRZFfWHnizT0iUL/m9Gx33Tl9Qd
+         YRxC6aCpF6BeLjVz2G3WOKNb0wiXhnx8LOcJDxaYatLrJSbCi1OdAbtt9vGxwhodb2mR
+         TUwlLlS7vk1dXvBJpw6Y84zewgJV56KyydV0MuOyqHjrYVO8Ppk9rY7TZR49y+y0n3zN
+         B4gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=Sly4yHMuu5slUMrJpyV7OLc2Q3m3J2Z5UgScZhXHEe0=;
-        b=CsP9nAxmkWWXK15mNqxaK5fMrUdW0McfVx5AGzn3NG16Sn7R+KA56h18eHcgm4S1Mw
-         Wt+tayyxxRYfIw4duz+3NbXHT4Ag+BoIxn5Bm5lSyNxrTDc/7awMaPSTmNGXpZJbH4c0
-         JCyybXg4TDb/0xlR6jXgndiAProG80DnbK6wfJxgbNM/15iVm+K+zlhe1OmcQAWfmi2B
-         dwR0SmI0PMojHJ1rr78uyf89jjRhvtUu0AvLmH5WYPzzxjFbtEaxG7zU6Je/WQ1Ec5CG
-         8njUngzcmSKjA738Qz9Ibc+1p6QqV6c0k+tuDH7Mp7Z4LBUUbdJrF3sLT57WAGr8TNu8
-         n48A==
-X-Gm-Message-State: AOAM533kuNen2wq21/Ubr27rq4kw9dhnugYVvYOjLHAKxSz0VJKmpV0z
-	hE4KhKShm3tDVlqOmz9iJo8fJNfzXq8=
-X-Google-Smtp-Source: ABdhPJwEEIo6hdhu2bR7M05lpe1jMCaMLvgcO8AuPQbj7Z9+WSfVXWtj6zSKd3/Gnez1tJnwu+bzlg==
-X-Received: by 2002:aca:da41:: with SMTP id r62mr1656870oig.108.1601654952996;
-        Fri, 02 Oct 2020 09:09:12 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references;
+        bh=T3C/QTwk2y3wlJl/DHM+fa/vwBb4pqB2SXmVscYL2vk=;
+        b=WpyVSe3TbtWy22xThrabtsn4wavmPaGt4LP8Y+8Lz4mf7bhUfd+BpqU1DA7s6P04EO
+         tJfaiNse/rKPV3eQD9ULtYSn3uKrw48lnaYOCwdLIoi8vp9n0yHsQe2g4S/meZm0RO9o
+         K5UhyJvya7DKo5zhLm4r1hk/xYCzzp6LIfXtDc9fw81WKeCjep2hXVmwyrelgjz0eRLY
+         m7O6c1bWmn0Oq5PoLIbaMFqTh6R7m8rrQjgGPnRBmpHxzgztI27Ws9VeRr3vufRGyKEL
+         JAkji66WCpPgXyAGtG9Z6TSNg8wR5T5Qm74lxCZmysFwZwvUxNF+Ye9oXuXDyJOqMjOY
+         eWmA==
+X-Gm-Message-State: AOAM531wC4ucBJ0QHD7q0Rbl0co/AFNHS9S5MnusicZntGhvCrf0M7F6
+	cevWkPIIdUPHYUGN+VZxT/3t6T7N670=
+X-Google-Smtp-Source: ABdhPJzzKEfw51FjWgMtVKndqw6T7f24UUKeXqs7FYrmTXy4DuofFve6gdzdhO0EuTLmgl4xACCn9w==
+X-Received: by 2002:aca:ea89:: with SMTP id i131mr1651164oih.88.1601654954116;
+        Fri, 02 Oct 2020 09:09:14 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:4430:89:b82a:ed5a])
-        by smtp.gmail.com with ESMTPSA id f11sm522627oot.4.2020.10.02.09.09.12
+        by smtp.gmail.com with ESMTPSA id f11sm522627oot.4.2020.10.02.09.09.13
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Oct 2020 09:09:12 -0700 (PDT)
+        Fri, 02 Oct 2020 09:09:13 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/2] apparmor: fix build issue with ptest enabled.
-Date: Fri,  2 Oct 2020 09:09:09 -0700
-Message-Id: <20201002160910.25309-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/2] security-test-image: tweak to get more tests to runn
+Date: Fri,  2 Oct 2020 09:09:10 -0700
+Message-Id: <20201002160910.25309-2-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
-
-minor spacing cleanup
+In-Reply-To: <20201002160910.25309-1-akuster808@gmail.com>
+References: <20201002160910.25309-1-akuster808@gmail.com>
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-mac/AppArmor/apparmor_2.13.4.bb       | 181 +++++++++---------
- ...-Don-t-build-syscall_sysctl-if-missi.patch |  96 ++++++++++
- 2 files changed, 186 insertions(+), 91 deletions(-)
- create mode 100644 recipes-mac/AppArmor/files/0001-regression-tests-Don-t-build-syscall_sysctl-if-missi.patch
+ recipes-core/images/security-test-image.bb | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/recipes-mac/AppArmor/apparmor_2.13.4.bb b/recipes-mac/AppArmor/apparmor_2.13.4.bb
-index dcdc1f7..6ba1ea8 100644
---- a/recipes-mac/AppArmor/apparmor_2.13.4.bb
-+++ b/recipes-mac/AppArmor/apparmor_2.13.4.bb
-@@ -14,16 +14,17 @@ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=fd57a4b0bc782d7b80fd431f10bbf9d0"
- DEPENDS = "bison-native apr gettext-native coreutils-native"
+diff --git a/recipes-core/images/security-test-image.bb b/recipes-core/images/security-test-image.bb
+index babe3fd..54d8978 100644
+--- a/recipes-core/images/security-test-image.bb
++++ b/recipes-core/images/security-test-image.bb
+@@ -8,4 +8,11 @@ TEST_SUITES = "ssh ping ptest apparmor clamav samhain sssd tripwire checksec sma
  
- SRC_URI = " \
--	git://gitlab.com/apparmor/apparmor.git;protocol=https;branch=apparmor-2.13 \
--	file://disable_perl_h_check.patch \
--	file://crosscompile_perl_bindings.patch \
--	file://apparmor.rc \
--	file://functions \
--	file://apparmor \
--	file://apparmor.service \
--	file://0001-Makefile.am-suppress-perllocal.pod.patch \
--	file://run-ptest \
--	"
-+    git://gitlab.com/apparmor/apparmor.git;protocol=https;branch=apparmor-2.13 \
-+    file://disable_perl_h_check.patch \
-+    file://crosscompile_perl_bindings.patch \
-+    file://apparmor.rc \
-+    file://functions \
-+    file://apparmor \
-+    file://apparmor.service \
-+    file://0001-Makefile.am-suppress-perllocal.pod.patch \
-+    file://run-ptest \
-+    file://0001-regression-tests-Don-t-build-syscall_sysctl-if-missi.patch \
-+    "
+ INSTALL_CLAMAV_CVD = "1"
  
- SRCREV = "df0ac742f7a1146181d8734d03334494f2015134"
- S = "${WORKDIR}/git"
-@@ -54,76 +55,76 @@ python() {
- DISABLE_STATIC = ""
- 
- do_configure() {
--	cd ${S}/libraries/libapparmor
--	aclocal
--	autoconf --force
--	libtoolize --automake -c --force
--	automake -ac
--	./configure ${CONFIGUREOPTS} ${EXTRA_OECONF}
-+    cd ${S}/libraries/libapparmor
-+    aclocal
-+    autoconf --force
-+    libtoolize --automake -c --force
-+    automake -ac
-+    ./configure ${CONFIGUREOPTS} ${EXTRA_OECONF}
- }
- 
- do_compile () {
--        # Fixes:
--        # | sed -ie 's///g' Makefile.perl
--        # | sed: -e expression #1, char 0: no previous regular expression
--        #| Makefile:478: recipe for target 'Makefile.perl' failed
--        sed -i "s@sed -ie 's///g' Makefile.perl@@" ${S}/libraries/libapparmor/swig/perl/Makefile
--
--
--	oe_runmake -C ${B}/libraries/libapparmor
--        oe_runmake -C ${B}/binutils
--        oe_runmake -C ${B}/utils
--        oe_runmake -C ${B}/parser
--        oe_runmake -C ${B}/profiles
--
--	if test -z "${HTTPD}" ; then
--        	oe_runmake -C ${B}/changehat/mod_apparmor
--	fi	
--
--	if test -z "${PAMLIB}" ; then
--        	oe_runmake -C ${B}/changehat/pam_apparmor
--	fi
-+    # Fixes:
-+    # | sed -ie 's///g' Makefile.perl
-+    # | sed: -e expression #1, char 0: no previous regular expression
-+    #| Makefile:478: recipe for target 'Makefile.perl' failed
-+    sed -i "s@sed -ie 's///g' Makefile.perl@@" ${S}/libraries/libapparmor/swig/perl/Makefile
+-IMAGE_ROOTFS_EXTRA_SPACE = "5242880"
++IMAGE_OVERHEAD_FACTOR = "1.0"
++IMAGE_ROOTFS_EXTRA_SPACE = "1124288"
 +
++# ptests need more memory than standard to avoid the OOM killer
++# also lttng-tools needs /tmp that has at least 1G
++QB_MEM = "-m 2048"
 +
-+    oe_runmake -C ${B}/libraries/libapparmor
-+    oe_runmake -C ${B}/binutils
-+    oe_runmake -C ${B}/utils
-+    oe_runmake -C ${B}/parser
-+    oe_runmake -C ${B}/profiles
-+
-+    if test -z "${HTTPD}" ; then
-+        oe_runmake -C ${B}/changehat/mod_apparmor
-+    fi
-+
-+    if test -z "${PAMLIB}" ; then
-+        oe_runmake -C ${B}/changehat/pam_apparmor
-+    fi
- }
- 
- do_install () {
--	install -d ${D}/${INIT_D_DIR}
--	install -d ${D}/lib/apparmor
--	oe_runmake -C ${B}/libraries/libapparmor DESTDIR="${D}" install
--	oe_runmake -C ${B}/binutils DESTDIR="${D}" install
--	oe_runmake -C ${B}/utils DESTDIR="${D}" install
--	oe_runmake -C ${B}/parser DESTDIR="${D}" install
--	oe_runmake -C ${B}/profiles DESTDIR="${D}" install
--
--	# If perl is disabled this script won't be any good
--	if ! ${@bb.utils.contains('PACKAGECONFIG','perl','true','false', d)}; then
--		rm -f ${D}${sbindir}/aa-notify
--	fi
--
--	if ! ${@bb.utils.contains('PACKAGECONFIG','aa-decode','true','false', d)}; then
--		rm -f ${D}${sbindir}/aa-decode
--	fi
--
--	if test -z "${HTTPD}" ; then
--		oe_runmake -C ${B}/changehat/mod_apparmor DESTDIR="${D}" install
--	fi
--
--	if test -z "${PAMLIB}" ; then
--		oe_runmake -C ${B}/changehat/pam_apparmor DESTDIR="${D}" install
--	fi
--
--	# aa-easyprof is installed by python-tools-setup.py, fix it up
--	sed -i -e 's:/usr/bin/env.*:/usr/bin/python3:' ${D}${bindir}/aa-easyprof
--	chmod 0755 ${D}${bindir}/aa-easyprof
--
--	install ${WORKDIR}/apparmor ${D}/${INIT_D_DIR}/apparmor
--	install ${WORKDIR}/functions ${D}/lib/apparmor
--	sed -i -e 's/getconf _NPROCESSORS_ONLN/nproc/' ${D}/lib/apparmor/functions
--	sed -i -e 's/ls -AU/ls -A/' ${D}/lib/apparmor/functions  
--
--	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
--		install -d ${D}${systemd_system_unitdir}
--		install -m 0644 ${WORKDIR}/apparmor.service ${D}${systemd_system_unitdir}
--	fi
-+    install -d ${D}/${INIT_D_DIR}
-+    install -d ${D}/lib/apparmor
-+    oe_runmake -C ${B}/libraries/libapparmor DESTDIR="${D}" install
-+    oe_runmake -C ${B}/binutils DESTDIR="${D}" install
-+    oe_runmake -C ${B}/utils DESTDIR="${D}" install
-+    oe_runmake -C ${B}/parser DESTDIR="${D}" install
-+    oe_runmake -C ${B}/profiles DESTDIR="${D}" install
-+
-+    # If perl is disabled this script won't be any good
-+    if ! ${@bb.utils.contains('PACKAGECONFIG','perl','true','false', d)}; then
-+        rm -f ${D}${sbindir}/aa-notify
-+    fi
-+
-+    if ! ${@bb.utils.contains('PACKAGECONFIG','aa-decode','true','false', d)}; then
-+        rm -f ${D}${sbindir}/aa-decode
-+    fi
-+
-+    if test -z "${HTTPD}" ; then
-+        oe_runmake -C ${B}/changehat/mod_apparmor DESTDIR="${D}" install
-+    fi
-+
-+    if test -z "${PAMLIB}" ; then
-+        oe_runmake -C ${B}/changehat/pam_apparmor DESTDIR="${D}" install
-+    fi
-+
-+    # aa-easyprof is installed by python-tools-setup.py, fix it up
-+    sed -i -e 's:/usr/bin/env.*:/usr/bin/python3:' ${D}${bindir}/aa-easyprof
-+    chmod 0755 ${D}${bindir}/aa-easyprof
-+
-+    install ${WORKDIR}/apparmor ${D}/${INIT_D_DIR}/apparmor
-+    install ${WORKDIR}/functions ${D}/lib/apparmor
-+    sed -i -e 's/getconf _NPROCESSORS_ONLN/nproc/' ${D}/lib/apparmor/functions
-+    sed -i -e 's/ls -AU/ls -A/' ${D}/lib/apparmor/functions  
-+
-+    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
-+        install -d ${D}${systemd_system_unitdir}
-+        install -m 0644 ${WORKDIR}/apparmor.service ${D}${systemd_system_unitdir}
-+    fi
- }
- 
- #Building ptest on arm fails.
-@@ -136,30 +137,28 @@ do_compile_ptest_arm () {
- }
- 
- do_compile_ptest () {
--        oe_runmake -C ${B}/tests/regression/apparmor
--        oe_runmake -C ${B}/parser/tst
--        oe_runmake -C ${B}/libraries/libapparmor
-+    sed -i -e 's/cpp \-dM/${HOST_PREFIX}gcc \-dM/' ${B}/tests/regression/apparmor/Makefile
-+    oe_runmake -C ${B}/tests/regression/apparmor
-+    oe_runmake -C ${B}/libraries/libapparmor
- }
- 
- do_install_ptest () {
--	t=${D}/${PTEST_PATH}/testsuite
--	install -d ${t}
--	install -d ${t}/tests/regression/apparmor
--	cp -rf ${B}/tests/regression/apparmor ${t}/tests/regression
-+    t=${D}/${PTEST_PATH}/testsuite
-+    install -d ${t}
-+    install -d ${t}/tests/regression/apparmor
-+    cp -rf ${B}/tests/regression/apparmor ${t}/tests/regression
- 
--	install -d ${t}/parser/tst
--	cp -rf ${B}/parser/tst ${t}/parser
--	cp ${B}/parser/apparmor_parser ${t}/parser
--	cp ${B}/parser/frob_slack_rc ${t}/parser
-+    cp ${B}/parser/apparmor_parser ${t}/parser
-+    cp ${B}/parser/frob_slack_rc ${t}/parser
- 
--	install -d ${t}/libraries/libapparmor
--	cp -rf ${B}/libraries/libapparmor ${t}/libraries
-+    install -d ${t}/libraries/libapparmor
-+    cp -rf ${B}/libraries/libapparmor ${t}/libraries
- 
--	install -d ${t}/common
--	cp -rf ${B}/common ${t}
-+    install -d ${t}/common
-+    cp -rf ${B}/common ${t}
- 
--	install -d ${t}/binutils
--	cp -rf ${B}/binutils ${t}
-+    install -d ${t}/binutils
-+    cp -rf ${B}/binutils ${t}
- }
- 
- #Building ptest on arm fails.
-diff --git a/recipes-mac/AppArmor/files/0001-regression-tests-Don-t-build-syscall_sysctl-if-missi.patch b/recipes-mac/AppArmor/files/0001-regression-tests-Don-t-build-syscall_sysctl-if-missi.patch
-new file mode 100644
-index 0000000..3cd1e88
---- /dev/null
-+++ b/recipes-mac/AppArmor/files/0001-regression-tests-Don-t-build-syscall_sysctl-if-missi.patch
-@@ -0,0 +1,96 @@
-+From 7a7c7fb346ded6f017c8df44486778a5f032d41a Mon Sep 17 00:00:00 2001
-+From: John Johansen <john.johansen@canonical.com>
-+Date: Tue, 29 Sep 2020 03:05:22 -0700
-+Subject: [PATCH] regression tests: Don't build syscall_sysctl if missing
-+ kernel headers
-+
-+sys/sysctl.h is not guaranteed to exist anymore since
-+https://sourceware.org/pipermail/glibc-cvs/2020q2/069366.html
-+
-+which is a follow on to the kernel commit
-+61a47c1ad3a4 sysctl: Remove the sysctl system call
-+
-+While the syscall_sysctl currently checks if the kernel supports
-+sysctrs before running the tests. The tests can't even build if the
-+kernel headers don't have the sysctl defines.
-+
-+Fixes: https://gitlab.com/apparmor/apparmor/-/issues/119
-+Fixes: https://bugs.launchpad.net/apparmor/+bug/1897288
-+MR: https://gitlab.com/apparmor/apparmor/-/merge_requests/637
-+Signed-off-by: John Johansen <john.johansen@canonical.com>
-+Acked-by: Steve Beattie <steve.beattie@canonical.com>
-+(cherry picked from commit 2e5a266eb715fc7e526520235a6450444775791f)
-+
-+Upstream-Status: Backport
-+Signed-off-by: Armin Kuster <akuster808@gmail.com>
-+
-+---
-+ tests/regression/apparmor/Makefile          | 10 +++++++++-
-+ tests/regression/apparmor/syscall_sysctl.sh | 15 +++++++++++----
-+ 2 files changed, 20 insertions(+), 5 deletions(-)
-+
-+diff --git a/tests/regression/apparmor/Makefile b/tests/regression/apparmor/Makefile
-+index 198ca421..c3d0cfb7 100644
-+--- a/tests/regression/apparmor/Makefile
-++++ b/tests/regression/apparmor/Makefile
-+@@ -69,6 +69,9 @@ endif # USE_SYSTEM
-+ 
-+ CFLAGS += -g -O0 -Wall -Wstrict-prototypes
-+ 
-++USE_SYSCTL:=$(shell echo "#include <sys/sysctl.h>" | cpp -dM >/dev/null 2>/dev/null && echo true)
-++
-++
-+ SRC=access.c \
-+     at_secure.c \
-+     introspect.c \
-+@@ -130,7 +133,6 @@ SRC=access.c \
-+     syscall_sethostname.c \
-+     syscall_setdomainname.c \
-+     syscall_setscheduler.c \
-+-    syscall_sysctl.c \
-+     sysctl_proc.c \
-+     tcp.c \
-+     transition.c \
-+@@ -146,6 +148,12 @@ ifneq (,$(findstring $(shell uname -i),i386 i486 i586 i686 x86 x86_64))
-+ SRC+=syscall_ioperm.c syscall_iopl.c
-+ endif
-+ 
-++#only do sysctl syscall test if defines installed and OR supported by the
-++# kernel
-++ifeq ($(USE_SYSCTL),true)
-++SRC+=syscall_sysctl.c
-++endif
-++
-+ #only do dbus if proper libs are installl
-+ ifneq (,$(shell pkg-config --exists dbus-1 && echo TRUE))
-+ SRC+=dbus_eavesdrop.c dbus_message.c dbus_service.c dbus_unrequested_reply.c
-+diff --git a/tests/regression/apparmor/syscall_sysctl.sh b/tests/regression/apparmor/syscall_sysctl.sh
-+index f93946f3..5f856984 100644
-+--- a/tests/regression/apparmor/syscall_sysctl.sh
-++++ b/tests/regression/apparmor/syscall_sysctl.sh
-+@@ -148,11 +148,18 @@ test_sysctl_proc()
-+ # check if the kernel supports CONFIG_SYSCTL_SYSCALL
-+ # generally we want to encourage kernels to disable it, but if it's
-+ # enabled we want to test against it
-+-settest syscall_sysctl
-+-if ! res="$(${test} ro 2>&1)" && [ "$res" = "FAIL: sysctl read failed - Function not implemented" ] ; then
-+-    echo "	WARNING: syscall sysctl not implemented, skipping tests ..."
-++# In addition test that sysctl exists in the kernel headers, if it does't
-++# then we can't even built the syscall_sysctl test
-++if  echo "#include <sys/sysctl.h>" | cpp -dM >/dev/null 2>/dev/null ; then
-++    settest syscall_sysctl
-++
-++    if ! res="$(${test} ro 2>&1)" && [ "$res" = "FAIL: sysctl read failed - Function not implemented" ] ; then
-++	echo "	WARNING: syscall sysctl not implemented, skipping tests ..."
-++    else
-++	test_syscall_sysctl
-++    fi
-+ else
-+-    test_syscall_sysctl
-++    echo "	WARNING: syscall sysctl not supported by kernel headers, skipping tests ..."
-+ fi
-+ 
-+ # now test /proc/sys/ paths
-+-- 
-+2.17.1
-+
++PTEST_EXPECT_FAILURE = "1"
 -- 
 2.17.1
 
