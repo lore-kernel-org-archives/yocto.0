@@ -1,72 +1,108 @@
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
- by mx.groups.io with SMTP id smtpd.web12.3169.1601714759958445044
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.96])
+ by mx.groups.io with SMTP id smtpd.web11.28649.1601878719437721082
  for <yocto@lists.yoctoproject.org>;
- Sat, 03 Oct 2020 01:46:00 -0700
+ Sun, 04 Oct 2020 23:18:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmx.net header.s=badeba3b8450 header.b=b4qfc/E0;
- spf=pass (domain: gmx.de, ip: 212.227.17.20, mailfrom: dominic.sacre@gmx.de)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=badeba3b8450; t=1601714758;
-	bh=v5IjAxZtAfePva8jn67CzKgSBBThthtWpyKhnLRslio=;
-	h=X-UI-Sender-Class:From:Subject:To:Date;
-	b=b4qfc/E0J/Z2qWyFtZmhKYYjLsRm4r9RsRTD6ap88nrNWbBNNrLhwN9vcjv1pbDzl
-	 f50IJagQpOHKUKGGd+SsusCSS1nt5uTrNKLAcD5Vd9ouEb+cQqic9omygwENC1vCKy
-	 WfKwAfMnSTp5BW2AwC/B+GrWLU4cS8VCvo37i8VI=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.42.23] ([92.73.48.157]) by mail.gmx.com (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MQeA2-1k4KsF40Qg-00Nkak for
- <yocto@lists.yoctoproject.org>; Sat, 03 Oct 2020 10:45:58 +0200
-From: =?UTF-8?B?RG9taW5pYyBTYWNyw6k=?= <dominic.sacre@gmx.de>
-Subject: Timestamps in local time instead of UTC
-To: yocto@lists.yoctoproject.org
-Message-ID: <1011436f-bc7b-88e8-e78f-798594202c8e@gmx.de>
-Date: Sat, 3 Oct 2020 10:43:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+ dkim=pass header.i=@trackman.com header.s=selector1 header.b=LFBS1NwM;
+ spf=pass (domain: trackman.com, ip: 40.107.21.96, mailfrom: hhj@trackman.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LNiFizLkttcABNueXhiZyTGbJQhhVFjZeJDG4YCFiP4OuUYGhgaMftZrtxhbSR/p4cdpVzBjx0d2BEfaWmI6WOxdtXa6xG462ggL4rFFsReT6Q0Qm1brdXPJ9dHtFHJR2GLJ9W6O2i4W0sb/TOsLb1VOyQcWDEQaN+WjXtEePksX8RvlbB2b+kniDccg+s7EeZ1J0tNH5b3iejcByxMzLQUNyhpAMVg9ruXnPa6y+sIL3oK9C/+SQRFrR/2heopzrjhhbaRMh0AWk0gXWCfHU7fx8OybljWbuoesxF6dUX1+psp2kO7zXWkwAdcjdWR3+9NqovrzH38tQko7RuTaTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=moVdS/14z9dCU9AodNbw1y1IE9gH1nbTFz1SmwexUCs=;
+ b=IXE7c3q2thgjblr9ijkU6jNCi1MOutL32i3i38tRUEPgaNrM1DnX5f8GT1QvcFz0dEv/Lv7lqlPBFhZszmBFwVzVRQjpdpFTMWVLu89oH2930W4gDoep/E17q91ConGbqyGkzKFd1jHMYpNikNFqdRGWT0DxiwyGLrBlH86L1JhWElXQkJ2cgDZJg7+c0AHt/C7kB/nEMkrCDEVC/GsDyZSDkriJ6nZo80siYMro1ytOZyjDr/ItnuR+ev7Ms5iWVGnwUJUTdNGXWtCN31Kcaal8Dcr/bBdVew36woWJcz2Bjq6sVIIIEUZhbZu2NGsyPWi1aPmusE6kMzZDu9tbwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=trackman.com; dmarc=pass action=none header.from=trackman.com;
+ dkim=pass header.d=trackman.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=trackman.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=moVdS/14z9dCU9AodNbw1y1IE9gH1nbTFz1SmwexUCs=;
+ b=LFBS1NwMKMioY37mGmHRXNxVKcwnyTivjmdxozUJPyHFLErCZG1nWt28q3Tom4eguAOGBOYPojKq44hSfYOvwB+P9TJlOSKSGNyjctOgMb94d70Lk48g2cgJUbR5R7CvwEz8WIdtS7D3ytpOsVxdvYKfljwEElJORsSXNdH44lA=
+Received: from AM6PR07MB6181.eurprd07.prod.outlook.com (2603:10a6:20b:3f::14)
+ by AM7PR07MB6439.eurprd07.prod.outlook.com (2603:10a6:20b:13d::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.13; Mon, 5 Oct
+ 2020 06:18:36 +0000
+Received: from AM6PR07MB6181.eurprd07.prod.outlook.com
+ ([fe80::97:e978:281d:3a8]) by AM6PR07MB6181.eurprd07.prod.outlook.com
+ ([fe80::97:e978:281d:3a8%6]) with mapi id 15.20.3455.020; Mon, 5 Oct 2020
+ 06:18:36 +0000
+From: hhj@trackman.com
+To: Khem Raj <raj.khem@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] #yocto #sdk How to add *-dev packages to sdk installer and not to target rootfs
+Thread-Topic: [yocto] #yocto #sdk How to add *-dev packages to sdk installer
+ and not to target rootfs
+Thread-Index: AQHWmIlhqelnQXZ0ikmTvdpGNopkRqmEka0AgAPuMDA=
+Date: Mon, 5 Oct 2020 06:18:35 +0000
+Message-ID: 
+ <AM6PR07MB618112CCAFD0E5531F60E232D20C0@AM6PR07MB6181.eurprd07.prod.outlook.com>
+References: <bCQA.1601621878946819360.YFe5@lists.yoctoproject.org>
+ <CAMKF1sp5vcZKJmO474gRvwNaUbtGiSFW-nAYGR5c=ROTbJsCYQ@mail.gmail.com>
+In-Reply-To: 
+ <CAMKF1sp5vcZKJmO474gRvwNaUbtGiSFW-nAYGR5c=ROTbJsCYQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=trackman.com;
+x-originating-ip: [87.116.45.194]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e2b872cb-bcce-4a96-2137-08d868f67e36
+x-ms-traffictypediagnostic: AM7PR07MB6439:
+x-microsoft-antispam-prvs: 
+ <AM7PR07MB64397C95D36B7A1E22C603C9D20C0@AM7PR07MB6439.eurprd07.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ vl/cQT85caaBah8rmpaS3+BzZGCKnVJK3BIoWXQjEbv3W7JCHL8e+hPHRM+347okvo05u3HZrTxs/cjDnCO2yXkcSvUOTa3y37uRPj/7+Fpd2Hy4TLLQYDg0AbYgGFxWwubHWU5haxNZ1buUITamMC1tZAVtQYgRxkGxn37GbKuezpSx81l0AC61bhXwpcGuvbgbHOqljd7/f9ArTBw64jRDTRBL/MAGkpAg+DhlPPc27E6W6836XSNs9voAFPqrvkvimnHP++G40lra9HTxfXEF6rYtP/lHx5B7nEdwHmu/BaRJMwutau6m08yVrMxvfqxs2yNC09f2J1nY3PRwL2eg9JNukAPMKaXYshs1StX/w+Dvn4Cg2iIRL6RV3J8uvQ9WVCo1ItNY/brTzG0jlw==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR07MB6181.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(366004)(39840400004)(136003)(346002)(2906002)(6916009)(86362001)(6506007)(53546011)(83380400001)(83080400001)(4326008)(52536014)(966005)(186003)(5660300002)(26005)(316002)(45080400002)(8676002)(478600001)(8936002)(33656002)(76116006)(55016002)(66556008)(64756008)(9686003)(71200400001)(66946007)(66446008)(66476007)(7696005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: 
+ vVi5MY4ap3RJ5GPxpLbOQdLsJRVsjRVjV45whdZ5RoU4GZEOMLzqbEC04dRBXr38CoFd9Qg+YqR14URlRVqsIPJXshUjQM1m5qAcLNJObyLtRDXyqm6NxFHmC9Y/rfmHn+Q6izwIUFP7veTsDJupDSehEvPkXlKo8rA3iS9QHmEhOcczY48ZLnWi/BSvWxSAiSAzlE9w2/Q4VzM25rKJf1F0GOe3US32WnTrwqVm07WFRy1sFBvSF2r/kz0Nm6ZFM22Qt26vieNnKmzKS4Gthi4m66IsvCxxEM3BCeqKW0Yk1EEPWAWMz4vXj4nLEycEMfwoclq6qhv9FkTr2J1+8NC33jUqJsmar+k3f4uEI1RF6tJzL6kDWRawS3r4q53WFqaPF1vJQ7g9zN4QVUIngdNkQ2GbKcEVm3P5YdbNCewf7e+vS/r/RvUlwSkhr4RQs5mNRdGvY2Z4KmlEK4FdeEGYs0j/9P5P6rfuRc1IPTUxkaIi79Cpo4wzZ2cuG2CLTDXSh793Dds2dq9QMnYGJPrrvyYptMwQs33FA0U//tkPVNL7O68qhJ0I6DTi8ot+P03EKHWNuxDa8QU2AiL7rzu64N7iojs2R1Te0syvIkcZ467CXrh9jvhTg8CVwt+AaLkXu6A0ICcwJNFi1zJasg==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:FQoXtRosqKAOrmMEwS8b4PWXq24Pgm0cJRyjCNl+KlG3kNPtVYa
- JPSrbSj+2+usGQCVuIIE+gmqk1oN+Rvc60RmwJDAbC1ektwAN9EPDUg8MlZnwY7R5kJL9o9
- kSfZEUZtngWrKkgeXDSDYmUl3H+Hymm/XlTvDBX+XrEZ7lb3soqpNWRyd/+MDsKQ54za6HY
- kg0+aRMatpmdeakt6IfgQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:oCK0fYWfbYs=:KHNKcnGJsSYgjQyViQziAh
- T5zfVbbNBXJfL9gGS+NZtcLB21BcGRcA/Y1s4IhHO01u6weMNTJbcE0XD+t4pLow6q/bTrPqQ
- uOKfSJUqUpyZn9HgpKQNnw3N51COgPO0BjoUkLNG0nhuIhEyH1K1k3RdqPMUMFvPNLnHosQc1
- xmXrgaSg/6mlhFsOgvY3xcjftrZ1TVQeHfyyZaKo7lihT+eVEk8YMbGStaDmGU7yiH+8RsQ2a
- LIRFSBZ5fcl3A2nERx/nmoHKHedKrpw9CEvoTRj/HmvNBbpzo52cuYGyypo7V99iKU91PueAk
- ERaRcZ4OZl39yd0LwMHCH6fMUdeaqJ2FvkinNpLLj78Fozvm2TD+f08A++amJF+8T0keK80Rd
- iX0GEyiMVrAzr0IPMcO2REOxRqioUMqFxfOAzBXHdnfIPfeonv1WbYkCR0hvWrF8G8F8oBJ2O
- wjfmI0DN+x4b5o+QTi+Vzj7rOGovGJLBRNo62QtsOe+OW6H1wNFc4uNrYDLw7wBea2Qz3JMiH
- CCsh0VLhCd9/0XbSZoOAa6dF0uonV56P1tFUOel/2NZklZC/adVVFVtc+E0SwVN907f/P2Lko
- ptMUTqGuzxihQghSR0FdZTVyuYQ6TIPd4B6m/PmvLTHJKIX79VZI4zKIBP2qK+tcsJmK0qZPO
- 6MN3SCFOON6Arj9bW9zpPOWZd34bvZ1PyFa0k/0DVDsgnm8Ml4Twih8vioorBp41/PPJL7XyK
- R7ZjyxzXClP+iNNNramDTNU42uD2Ek2RmrxiQ6OCRWJMMl3g3I2IRkc8ZGkOWeH19w721llMt
- 348KM21m1krGbyS44F7iEbnI3bbfEIoyJqBbR6ovvQMtLc4KVjb4yQ+4GOgIZEWfwVEFb/KDy
- roGSu7qiRKkmvrgTfz02itk1mOYPglxtbmiosGt8XlX45KIAYfVYxjxLKhbXZQXRkfCjOtsJE
- kRUcAi95poWmvkXuyyGk4dp4KXYdKTOFpNoLGeFtesstb1unlVIRNsxZDyoN1woWwcbShE9wl
- q+1pxLkZim1IW3+PzG3oc9AstOK+xZsxRU06a9waSMcJvHVS9c8M56T1NgSPa65TYQJR5Zh7c
- /VEcHCvYj3YGFVDQff1UpvF1wxSa+pw60rFTcm0sVwAji6emuutCyih+RxkqJm4l7ZM5cGyWe
- UN+kuGpZxqYPnpvAwtRPU31HgmNBUnH1au5vsslgqeTDz1IyYcAT23Exdso2/rL8PYYSD+ADR
- OcxxF1HtdxgR+Ia0bx3AVoHuWxdEE4Uaiq43CQQ==
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-OriginatorOrg: trackman.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR07MB6181.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2b872cb-bcce-4a96-2137-08d868f67e36
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Oct 2020 06:18:36.0196
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eb272a1e-e767-4041-9363-f8736579f898
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: v94YSakhR70XNzFsMbzJAva7oseYZhgUFE0p+HISvAjKNKQUiNE1+or35GUDu5fcknrE0I7p7vcRcJ7FNCatDQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR07MB6439
 Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi,
-
-I'm trying to get my builds to use timestamps in local time rather than
-UTC. In order to do that, I've added the following to my local.conf, as
-had been suggested on this list before:
-
-DATE :=3D "${@time.strftime('%Y%m%d',time.localtime())}"
-TIME :=3D "${@time.strftime('%H%M%S',time.localtime())}"
-
-Now, if I run "bitbake -e", I can see that my setting takes precedence
-over Bitbake's default, and all timestamps are in local time.
-However, when I actually build a target, all timestamps are still in UTC.
-
-Why doesn't "bitbake -e" reflect the actual environment of the build?
-And is there a way to achieve what I'm trying to do?
-
-Thanks,
-Dominic
+VGhlIHRhcmdldCByb290ZnMgaXMgdGhlIGltYWdlIHdoaWNoICItYyBwb3B1bGF0ZV9zZGsiIGlz
+IGJ1aWxkIGZyb20uIEkgaGF2ZSBhY3R1YWxseSBtb2RpZmllZCB0aGUgcG9wdWxhdGVfc2RrIHJl
+Y2lwZSB0byBpbmNsdWRlIHRoZSByb290ZnMgaW4gdGhlIHNkayB0b2dldGhlciB3aXRoIHRoZSBz
+eXNyb290cyBmb3IgdGFyZ2V0IGFuZCBob3N0LiBJbiB0aGlzIHdheSB0aGUgYXBwbGljYXRpb25z
+IGNhbiBiZSBhZGRlZCB0byB0aGUgcm9vdGZzIHRvIGdlbmVyYXRlIHRoZSBjb21wbGV0ZSBmdyBm
+b3IgdGhlIGRldmljZSAtIHdlIGRvIG5vdCB1cGRhdGUgYXBwbGljYXRpb25zIHdpdGggaW5kaXZp
+ZHVhbCBwYWNrYWdlcyBidXQgYXMgYSBjb21wbGV0ZSBpbWFnZS4gT3VyIHJvb3RmcyBpcyBkZCdl
+ZCB0byB0aGUgcGFydGl0aW9uIGFuZCBpcyByZWFkIG9ubHkgZm9yIG1heGltdW0gcmVsaWFiaWxp
+dHkuIA0KSXQgd291bGQgYmUgbmljZSBpZiAqLWRldiBwYWNrYWdlcyBjb3VsZCBiZSBzcGVjaWZp
+ZWQgdG8gaW5jbHVkZWQgaW4gdGhlIHNkayBzeXNyb290cyBvbmx5IHNpbmNlIHdlIGRvIG5vdCBu
+ZWVkIHRoZW0gaW4gdGhlIHRhZ2V0IHJvb3Rmcy4NCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0t
+LS0NCkZyb206IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+IA0KU2VudDogRnJpZGF5LCAy
+IE9jdG9iZXIgMjAyMCAxOS4yOA0KVG86IEhlbnJpayBIYXVnYWFyZCBKZW5zZW4gPGhoakB0cmFj
+a21hbi5jb20+DQpDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6
+IFt5b2N0b10gI3lvY3RvICNzZGsgSG93IHRvIGFkZCAqLWRldiBwYWNrYWdlcyB0byBzZGsgaW5z
+dGFsbGVyIGFuZCBub3QgdG8gdGFyZ2V0IHJvb3Rmcw0KDQpPbiBUaHUsIE9jdCAxLCAyMDIwIGF0
+IDExOjU4IFBNIDxoaGpAdHJhY2ttYW4uY29tPiB3cm90ZToNCj4NCj4gV2UgdXNlIHRoZSAic3Rh
+bmRhcmQiIFNESyB0byBwcm92aWRlIGEgYmFzaWMgbGludXggZmlsZXN5c3RlbSBpbmNsdWRpbmcg
+bGlicmFyaWVzICB0byBiZSB1c2VkIGZvciBhcHBsaWNhdGlvbiBkZXZlbG9wbWVudCAoYmFzZWQg
+b24gY21ha2UpIGluIHRoZSBTREsuIFNvIHdlIG5lZWQgdGhlICotZGV2IHBhY2thZ2VzIGZvciB0
+aGUgbGlicmFyaWVzIHRvIGJlIGF2YWlsYWJsZSBpbiB0aGUgdGFyZ2V0ICJzeXNyb290IiBpbiB0
+aGUgU0RLIGJ1dCBub3QgaW4gdGhlIHRhcmdldCByb290ZnMuIEhvdyBjYW4gdGhpcyBiZSBjb25m
+aWd1cmVkPw0KDQpzdGFuZGFyZCBTREsgY2FuIG9ubHkgYnVpbGQgYXBwbGljYXRpb25zIGFuZCBp
+dCBoYXMgLWRldiBwYWNrYWdlcyBpbmNsdWRlZCBpbiBpdCBwZXIgeW91ciBpbWFnZSAoIGlmIHlv
+dSBidWlsdCBTREsgd2l0aCAtY3BvcHVsYXRlX3Nkaykgd2hlcmUgZG9lcyB0YXJnZXQgcm9vdGZz
+IGNvbWUgZnJvbSA/DQoNCj4gQlIncw0KPiBIZW5yaWsNCj4gDQo+DQo=
