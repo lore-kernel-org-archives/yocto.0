@@ -1,44 +1,75 @@
-Received: from linuxplesk15.openhost.net.nz (linuxplesk15.openhost.net.nz [119.47.118.83])
- by mx.groups.io with SMTP id smtpd.web11.2764.1602013713727885128
- for <yocto@lists.yoctoproject.org>;
- Tue, 06 Oct 2020 12:48:34 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: bluelightning.org, ip: 119.47.118.83, mailfrom: bluelightning@bluelightning.org)
-Received: from linc.localnet (unknown [151.210.231.35])
-	by linuxplesk15.openhost.net.nz (Postfix) with ESMTPSA id A1C84A2184;
-	Wed,  7 Oct 2020 08:48:29 +1300 (NZDT)
-Authentication-Results: linuxplesk15.openhost.net.nz;
-        spf=pass (sender IP is 151.210.231.35) smtp.mailfrom=bluelightning@bluelightning.org smtp.helo=linc.localnet
-Received-SPF: pass (linuxplesk15.openhost.net.nz: connection is authenticated)
-From: "Paul Eggleton" <bluelightning@bluelightning.org>
-To: Yocto_user <avinashyadav94it@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Automated script to know all the Recipes details
-Date: Wed, 07 Oct 2020 08:48:29 +1300
-Message-ID: <9770154.nUPlyArG6x@linc>
-In-Reply-To: <OFd6.1601554575247865340.Fx0w@lists.yoctoproject.org>
-References: <OFd6.1601554575247865340.Fx0w@lists.yoctoproject.org>
+Subject: Perl populate sysroot fails (yocto 2.0.3)
+To: yocto@lists.yoctoproject.org
+From: "Varangu-Booth, Valen" <Valen.Varangu-Booth@christiedigital.com>
+X-Originating-Location: US (216.94.43.6)
+X-Originating-Platform: Linux Firefox 80
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Date: Tue, 06 Oct 2020 13:36:45 -0700
+Message-ID: <80lf.1602016605600037019.YDxX@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="LRHmWys1Ro4IvlPu072y"
 
-Hi there
+--LRHmWys1Ro4IvlPu072y
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Friday, 2 October 2020 01:16:15 NZDT Yocto_user wrote:
-> Hi, do we have any automated script that we can run in Yocto 3.0 Zues
-> release or any general release to get all these information of all the
-> packages installed in a particular Yocto release: 
-> 1. Name
-> 2. Version
-> 3. Homepage link of the Recipes from where it was downloaded.
+Hi all,
 
-So if you're familiar with Python you could fairly quickly write a script to 
-iterate over recipes and get these values using tinfoil:
+I'm trying to re-create a build that was previously made by someone else (=
+in an effort to reproduce an exact old build). This is based on Yocto 2.0.3=
+.
+I'm encountering an issue in do_populate_sysroot for Perl, where it fails =
+because /usr/lib/perl5 already exists. (See details below:)
 
-  https://wiki.yoctoproject.org/wiki/TipsAndTricks/Tinfoil
+Exception: CalledProcessError: Command 'cd YOCTO_ROOT/build/tmp/work/corei=
+7-64-poky-linux/perl/5.22.0-r0/sysroot-destdir; find . -type d -print | tar=
+ -cf - -C YOCTO_ROOT/build/tmp/work/corei7-64-poky-linux/perl/5.22.0-r0/sys=
+root-destdir -p --files-from - --no-recursion | tar -xf - -C YOCTO_ROOT/bui=
+ld/tmp/sysroots/intel-corei7-64' returned non-zero exit status 2 with outpu=
+t tar: ./usr/lib/perl5: Cannot create symlink to 'perl': File exists
+tar: ./usr/lib/perl5: Cannot create symlink to 'perl': File exists
+tar: ./usr/lib/perl5: Cannot create symlink to 'perl': File exists
 
-Cheers,
-Paul
+The issue seems to always occur when the sstate-cache is present, so do_po=
+pulate_sysroot_setscene fails first, then it tries to build from scratch an=
+d do_populate_sysroot fails as well.
+I have seen it in a completely fresh build as well, though this seems inte=
+rmittent (or I haven't yet nailed down what changes when it does/doesn't ha=
+ppen).
 
+It seems like somehow some recipe ahead of Perl is putting something in /u=
+sr/lib/perl5 and perhaps some kind of race condition caused this to be inte=
+rmittent?
 
+Any input would be greatly appreciated, eventually I will get this onto a =
+newer version of Yocto but first I need to be able to reliably re-create th=
+is exact build.
 
+--LRHmWys1Ro4IvlPu072y
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi all, <br /><br />I'm trying to re-create a build that was previously mad=
+e by someone else (in an effort to reproduce an exact old build). This is b=
+ased on Yocto 2.0.3.<br />I'm encountering an issue in do_populate_sysroot =
+for Perl, where it fails because /usr/lib/perl5 already exists. (See detail=
+s below:) <br /><br />Exception: CalledProcessError: Command 'cd YOCTO_ROOT=
+/build/tmp/work/corei7-64-poky-linux/perl/5.22.0-r0/sysroot-destdir; find .=
+ -type d -print | tar -cf - -C YOCTO_ROOT/build/tmp/work/corei7-64-poky-lin=
+ux/perl/5.22.0-r0/sysroot-destdir -p --files-from - --no-recursion | tar -x=
+f - -C YOCTO_ROOT/build/tmp/sysroots/intel-corei7-64' returned non-zero exi=
+t status 2 with output tar: ./usr/lib/perl5: Cannot create symlink to 'perl=
+': File exists<br />tar: ./usr/lib/perl5: Cannot create symlink to 'perl': =
+File exists<br />tar: ./usr/lib/perl5: Cannot create symlink to 'perl': Fil=
+e exists<br /><br />The issue seems to always occur when the sstate-cache i=
+s present, so do_populate_sysroot_setscene fails first, then it tries to bu=
+ild from scratch and do_populate_sysroot fails as well.<br />I have seen it=
+ in a completely fresh build as well, though this seems intermittent (or I =
+haven't yet nailed down what changes when it does/doesn't happen).<br /><br=
+ />It seems like somehow some recipe ahead of Perl is putting something in =
+/usr/lib/perl5 and perhaps some kind of race condition caused this to be in=
+termittent?<br /><br />Any input would be greatly appreciated, eventually I=
+ will get this onto a newer version of Yocto but first I need to be able to=
+ reliably re-create this exact build.
+
+--LRHmWys1Ro4IvlPu072y--
