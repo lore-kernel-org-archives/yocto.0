@@ -1,90 +1,75 @@
-Subject: Only index.html is cloned in private repo clone recipe #yocto
-To: yocto@lists.yoctoproject.org
-From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
-X-Originating-Location: Tunis, Gouvernorat de Tunis, TN (41.226.168.190)
-X-Originating-Platform: Linux Firefox 81
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-oi1-f193.google.com (mail-oi1-f193.google.com [209.85.167.193])
+ by mx.groups.io with SMTP id smtpd.web11.8565.1602059656445355418
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 07 Oct 2020 01:34:16 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@konsulko.com header.s=google header.b=WzP5sGGK;
+ spf=pass (domain: konsulko.com, ip: 209.85.167.193, mailfrom: paul.barker@konsulko.com)
+Received: by mail-oi1-f193.google.com with SMTP id 26so1597334ois.5
+        for <yocto@lists.yoctoproject.org>; Wed, 07 Oct 2020 01:34:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sRoR/ZetFuExo6dSeZ0Ru4rU0iDbtioxqjjMGz7tKcQ=;
+        b=WzP5sGGK8nM7IlvGsYcN66PwKQKk2NqqQt9mvWQ+kny4e+/wu6LBFWow+ijkVylAjf
+         CAxmaaOLYdWZ987TGxVGnukr7b77oDZqRlnepy9nnzJ0A/75j4vXHrKqWIYU2StRpIZV
+         PX+3B/FQ66v31sBgh+Yg+KjbfFXsQloQXGSTc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sRoR/ZetFuExo6dSeZ0Ru4rU0iDbtioxqjjMGz7tKcQ=;
+        b=oihSLswJUxar1UMppY85HRu+MaikcgiTDj2k+uUXBkE3g6wzelzTK3oMHcrRlsZzCF
+         8VGUHYxFp/AT8Grf9hle3DQ/HcuGeNWYyBkV+1vq14NuXJCSkV1dmWH4oluwqpf8cTZJ
+         8fIVqkzHH9E/WezW2l8Zz5W6eNTVeKI/XBPXvW9+prorsIg6Ua5hl0ILnNfjfag36JMr
+         n/fKC4R0tlMoEksgvxuI3IQrjWt8WhXqSod9dCA6drTj4wfh7Vq8ijLGonMSauDEfc3m
+         5ljjeg6w3xhlDxQK5SpKwkPraJy6i7+rX2qzmvqYib5rlvmfv0GqlUbfa4m0RGpcBqvS
+         NhxQ==
+X-Gm-Message-State: AOAM532bsMOez/z3WJyhxdOikJtfDrrKjJcz/QDKOjwba1J6WORFruLa
+	jSwnauYvzhZ0kbho0k9S7UALGI3uCl2HXSMewtOjdg==
+X-Google-Smtp-Source: ABdhPJwx5Aq1tPV1OZbcr+IcUJ80Rkxn9JokC2ioElkc+rSNkinrsvorPkDNLo8IHqvLXnBPXpBru1C2ZczEoymGgO4=
+X-Received: by 2002:aca:3e08:: with SMTP id l8mr1224162oia.152.1602059655742;
+ Wed, 07 Oct 2020 01:34:15 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 07 Oct 2020 01:29:34 -0700
-Message-ID: <9pqx.1602059374076294998.H2RR@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="PeZLDnFUIxn2JLIC554f"
+References: <9pqx.1602059374076294998.H2RR@lists.yoctoproject.org>
+In-Reply-To: <9pqx.1602059374076294998.H2RR@lists.yoctoproject.org>
+From: "Paul Barker" <pbarker@konsulko.com>
+Date: Wed, 7 Oct 2020 09:34:05 +0100
+Message-ID: <CAM9ZRVtfC7BBtSC0YoBX3VzM8RmYQZp1LDSp7FA5ZUmSAmE-OA@mail.gmail.com>
+Subject: Re: [yocto] Only index.html is cloned in private repo clone recipe #yocto
+To: Bel Hadj Salem Talel <bhstalel@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
---PeZLDnFUIxn2JLIC554f
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Wed, 7 Oct 2020 at 09:29, Bel Hadj Salem Talel <bhstalel@gmail.com> wrote:
+>
+> Hello All,
+>
+> I have a private git repo which is in a local gitlab server.
+> Here is the local repo domain: http://gitlab.tools.comp.local/comp/sense/sense_frontend
+> I already saved the git credentials (username and password) , and I created this recipe:
+>
+> LICENSE = "CLOSED"
+> SRCURL = "http://gitlab.tools.comp.local/comp/sense/sense_frontend"
+> SRCBRANCH = "master"
+> SRCPROTO = "https"
+> # Define the source for this recipe
+> SRC_URI += "${SRCURL};protocol=${SRCPROTO};branch=${SRCBRANCH}"
+> SRC_URI[md5sum] = "1becf51a6312d09f0c1c22120efd499c"
+> SRC_URI[sha256sum] = "142e3af77b6851b614d07012abce145ce2526b8d0d95e7a94cff62f0e6432d26"
+>
+> When I do do_fetch and do_unpack I only see the index.html file of the repo is downloaded.
+> What is the problem ?
+> How can I solve this?
 
-Hello All,
+SRC_URI should start with "git://" to do a git clone. The "protocol"
+field can then be set to http, https or ssh if needed, I see you've
+already got that set to https after expansion so you should just need
+to change your SRCURL value.
 
-I have a private git repo which is in a local gitlab server.
-Here is the local repo domain: http://gitlab.tools.comp.local/comp/sense/s=
-ense_frontend
-I already saved the git credentials (username and password) , and I create=
-d this recipe:
+Thanks,
 
-LICENSE =3D "CLOSED"
-SRCURL =3D "http://gitlab.tools.comp.local/ comp /sense/sense_frontend"
-SRCBRANCH =3D "master"
-SRCPROTO =3D "https"
-# Define the source for this recipe
-SRC_URI +=3D " ${ SRCURL} ;protocol=3D ${ SRCPROTO} ;branch=3D ${ SRCBRANC=
-H} "
-SRC_URI[md5sum] =3D "1becf51a6312d09f0c1c22120efd499c"
-SRC_URI[sha256sum] =3D "142e3af77b6851b614d07012abce145ce2526b8d0d95e7a94c=
-ff62f0e6432d26"
-
-When I do do_fetch and do_unpack I only see the index.html file of the rep=
-o is downloaded.
-What is the problem ?
-How can I solve this?
-
-Thanks, Talel
-
---PeZLDnFUIxn2JLIC554f
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello All,<br /><br />I have a private git repo which is in a local gitlab =
-server.<br />Here is the local repo domain: <a href=3D"http://gitlab.tools.=
-comp.local/comp/sense/sense_frontend" target=3D"_blank" rel=3D"noopener">ht=
-tp://gitlab.tools.comp.local/comp/sense/sense_frontend</a><br />I already s=
-aved the git credentials (username and password) , and I created this recip=
-e:<br /><br /><span style=3D"color: #268bd2;">LICENSE</span><span style=3D"=
-color: #bbbbbb;"> </span><span style=3D"color: #859900;">=3D</span><span st=
-yle=3D"color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"CLOSED"</s=
-pan><br /><span style=3D"color: #268bd2;">SRCURL</span><span style=3D"color=
-: #bbbbbb;"> </span><span style=3D"color: #859900;">=3D</span><span style=
-=3D"color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"http://gitla=
-b.tools.comp.local/</span><span style=3D"color: #2aa198;"><span style=3D"co=
-lor: #2aa198;">comp</span>/sense/sense_frontend"<br /></span>
-<div><span style=3D"color: #268bd2;">SRCBRANCH</span><span style=3D"color:=
- #bbbbbb;"> </span><span style=3D"color: #859900;">=3D</span><span style=3D=
-"color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"master"</span></=
-div>
-<div><span style=3D"color: #268bd2;">SRCPROTO</span><span style=3D"color: =
-#bbbbbb;"> </span><span style=3D"color: #859900;">=3D</span><span style=3D"=
-color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"https"</span></di=
-v>
-<div><span style=3D"color: #657b83; font-style: italic;"># Define the sour=
-ce for this recipe</span></div>
-<div><span style=3D"color: #268bd2;">SRC_URI</span><span style=3D"color: #=
-bbbbbb;"> </span><span style=3D"color: #859900;">+=3D</span><span style=3D"=
-color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"</span><span styl=
-e=3D"color: #859900;">${</span><span style=3D"color: #268bd2;">SRCURL}</spa=
-n><span style=3D"color: #2aa198;">;protocol=3D</span><span style=3D"color: =
-#859900;">${</span><span style=3D"color: #268bd2;">SRCPROTO}</span><span st=
-yle=3D"color: #2aa198;">;branch=3D</span><span style=3D"color: #859900;">${=
-</span><span style=3D"color: #268bd2;">SRCBRANCH}</span><span style=3D"colo=
-r: #2aa198;">"</span></div>
-<div><span style=3D"color: #268bd2;">SRC_URI[md5sum]</span><span style=3D"=
-color: #bbbbbb;"> </span><span style=3D"color: #859900;">=3D</span><span st=
-yle=3D"color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"1becf51a63=
-12d09f0c1c22120efd499c"</span></div>
-<span style=3D"color: #268bd2;">SRC_URI[sha256sum]</span><span style=3D"co=
-lor: #bbbbbb;"> </span><span style=3D"color: #859900;">=3D</span><span styl=
-e=3D"color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"142e3af77b68=
-51b614d07012abce145ce2526b8d0d95e7a94cff62f0e6432d26"</span><span style=3D"=
-color: #2aa198;"></span><br /><br />When I do do_fetch and do_unpack I only=
- see the index.html file of the repo is downloaded. <br />What is the probl=
-em ?<br />How can I solve this?<br /><br />Thanks, Talel<br />
-
---PeZLDnFUIxn2JLIC554f--
+-- 
+Paul Barker
+Konsulko Group
