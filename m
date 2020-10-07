@@ -1,43 +1,28 @@
-Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
- by mx.groups.io with SMTP id smtpd.web11.3076.1602082541445938117
- for <yocto@lists.yoctoproject.org>;
- Wed, 07 Oct 2020 07:55:42 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp.bon.at (Postfix) with ESMTPSA id 4C5y7Z6Bt3z5tlF;
-	Wed,  7 Oct 2020 16:55:38 +0200 (CEST)
-Date: Wed, 7 Oct 2020 16:55:37 +0200
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: Bel Hadj Salem Talel <bhstalel@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] NPM package recipe, npm not found
-Message-ID: <20201007145537.higgcang7dgyaied@qschulz>
-References: <iWTs.1602082318809855540.VrN5@lists.yoctoproject.org>
+Subject: Re: NPM package recipe, npm not found
+To: yocto@lists.yoctoproject.org
+From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
+X-Originating-Location: Tunis, Gouvernorat de Tunis, TN (41.226.168.190)
+X-Originating-Platform: Linux Firefox 81
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <iWTs.1602082318809855540.VrN5@lists.yoctoproject.org>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Date: Wed, 07 Oct 2020 08:28:44 -0700
+References: <20201007145537.higgcang7dgyaied@qschulz>
+In-Reply-To: <20201007145537.higgcang7dgyaied@qschulz>
+Message-ID: <4092.1602084524845593040@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="TCuEekjjTKZ0HhT2OU0b"
 
-Hi Talel,
+--TCuEekjjTKZ0HhT2OU0b
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 07, 2020 at 07:51:58AM -0700, Bel Hadj Salem Talel wrote:
-> Hi,
-> 
-> I'm trying to make a recipe for an NPM package.
-> The source files are local.
-> Here is my recipe:
-> 
-> LICENSE="CLOSED"
-> SRC_URI+="file://sense-web_${PV].zip"
-> S=${WORKDIR}
-> DEPENDS+="nodejs"
+You are right, it needs nodejs-native in DEPENDS. Now it is working
+Thanks a lot.
 
-Just guessing but probably nodejs-native here?
+--TCuEekjjTKZ0HhT2OU0b
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Although, you might want to have a look at the npm.bbclass and try to
-inherit it. Considering how complex the class looks like, it might be
-easier to get started with the class and fix what needs to be fixed.
+You are right, it needs nodejs-native in DEPENDS. Now it is working<br />Th=
+anks a lot.
 
-Quentin
+--TCuEekjjTKZ0HhT2OU0b--
