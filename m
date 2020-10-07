@@ -1,83 +1,43 @@
-Subject: NPM package recipe, npm not found
-To: yocto@lists.yoctoproject.org
-From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
-X-Originating-Location: TN (193.95.99.62)
-X-Originating-Platform: Linux Firefox 81
-User-Agent: GROUPS.IO Web Poster
+Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
+ by mx.groups.io with SMTP id smtpd.web11.3076.1602082541445938117
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 07 Oct 2020 07:55:42 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp.bon.at (Postfix) with ESMTPSA id 4C5y7Z6Bt3z5tlF;
+	Wed,  7 Oct 2020 16:55:38 +0200 (CEST)
+Date: Wed, 7 Oct 2020 16:55:37 +0200
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: Bel Hadj Salem Talel <bhstalel@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] NPM package recipe, npm not found
+Message-ID: <20201007145537.higgcang7dgyaied@qschulz>
+References: <iWTs.1602082318809855540.VrN5@lists.yoctoproject.org>
 MIME-Version: 1.0
-Date: Wed, 07 Oct 2020 07:51:58 -0700
-Message-ID: <iWTs.1602082318809855540.VrN5@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="MBxOOguNCe4VLYIQnTV3"
+In-Reply-To: <iWTs.1602082318809855540.VrN5@lists.yoctoproject.org>
+User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---MBxOOguNCe4VLYIQnTV3
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Talel,
 
-Hi,
+On Wed, Oct 07, 2020 at 07:51:58AM -0700, Bel Hadj Salem Talel wrote:
+> Hi,
+> 
+> I'm trying to make a recipe for an NPM package.
+> The source files are local.
+> Here is my recipe:
+> 
+> LICENSE="CLOSED"
+> SRC_URI+="file://sense-web_${PV].zip"
+> S=${WORKDIR}
+> DEPENDS+="nodejs"
 
-I'm trying to make a recipe for an NPM package.
-The source files are local.
-Here is my recipe:
+Just guessing but probably nodejs-native here?
 
-LICENSE=3D"CLOSED"
-SRC_URI+=3D"file://sense-web_${PV].zip"
-S=3D${WORKDIR}
-DEPENDS+=3D"nodejs"
-do_compile(){
-export HOME=3D${S}
-npm install
-npm run-script build
-}
+Although, you might want to have a look at the npm.bbclass and try to
+inherit it. Considering how complex the class looks like, it might be
+easier to get started with the class and fix what needs to be fixed.
 
-*The following error appears:*
-
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/sense-web=
-/1.0-r0/temp/run.do_compile.11622: 107: /media/talel/data/menzu-zeus/menzu/=
-tmp/work/aarch64-poky-linux/sense-web/1.0-r0/temp/run.do_compile.11622: npm=
-: not found
-| WARNING: exit code 127 from a shell command.
-| ERROR: Execution of '/media/talel/data/menzu-zeus/menzu/tmp/work/aarch64=
--poky-linux/sense-web/1.0-r0/temp/run.do_compile.11622' failed with exit co=
-de 127:
-| /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/sense-web=
-/1.0-r0/temp/run.do_compile.11622: 107: /media/talel/data/menzu-zeus/menzu/=
-tmp/work/aarch64-poky-linux/sense-web/1.0-r0/temp/run.do_compile.11622: npm=
-: not found
-| WARNING: exit code 127 from a shell command.
-|
-
-I did the same steps in devshell of nodejs and everything is correct.
-I tried to add the recipe with devtool , devtool add sense-web_1.0.zip but=
- it failed.
-
-Any ideas?
-Thanks, Talel
-
---MBxOOguNCe4VLYIQnTV3
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,<br /><br />I'm trying to make a recipe for an NPM package.<br />The sou=
-rce files are local.<br />Here is my recipe:<br /><br />LICENSE=3D"CLOSED"<=
-br />SRC_URI+=3D"file://sense-web_${PV].zip"<br />S=3D${WORKDIR}<br />DEPEN=
-DS+=3D"nodejs"<br />do_compile(){<br />&nbsp; export HOME=3D${S}<br />&nbsp=
-; npm install<br />&nbsp; npm run-script build<br />}<br /><br /><strong>Th=
-e following error appears:</strong><br /><br />Log data follows:<br />| DEB=
-UG: Executing shell function do_compile<br />| /media/talel/data/menzu-zeus=
-/menzu/tmp/work/aarch64-poky-linux/sense-web/1.0-r0/temp/run.do_compile.116=
-22: 107: /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/sen=
-se-web/1.0-r0/temp/run.do_compile.11622: npm: not found<br />| WARNING: exi=
-t code 127 from a shell command.<br />| ERROR: Execution of '/media/talel/d=
-ata/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/sense-web/1.0-r0/temp/run.=
-do_compile.11622' failed with exit code 127:<br />| /media/talel/data/menzu=
--zeus/menzu/tmp/work/aarch64-poky-linux/sense-web/1.0-r0/temp/run.do_compil=
-e.11622: 107: /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linu=
-x/sense-web/1.0-r0/temp/run.do_compile.11622: npm: not found<br />| WARNING=
-: exit code 127 from a shell command.<br />|<br /><br />I did the same step=
-s in devshell of nodejs and everything is correct.<br />I tried to add the =
-recipe with devtool , devtool add sense-web_1.0.zip but it failed.<br /><br=
- />Any ideas?<br />Thanks, Talel
-
---MBxOOguNCe4VLYIQnTV3--
+Quentin
