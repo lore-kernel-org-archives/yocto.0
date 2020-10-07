@@ -1,74 +1,83 @@
-Subject: Re: Only index.html is cloned in private repo clone recipe #yocto
+Subject: NPM package recipe, npm not found
 To: yocto@lists.yoctoproject.org
 From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
 X-Originating-Location: TN (193.95.99.62)
 X-Originating-Platform: Linux Firefox 81
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Wed, 07 Oct 2020 01:42:59 -0700
-References: <CAM9ZRVtfC7BBtSC0YoBX3VzM8RmYQZp1LDSp7FA5ZUmSAmE-OA@mail.gmail.com>
-In-Reply-To: <CAM9ZRVtfC7BBtSC0YoBX3VzM8RmYQZp1LDSp7FA5ZUmSAmE-OA@mail.gmail.com>
-Message-ID: <30730.1602060179317171509@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="7ZCAMPTQAyupDcE9sjdN"
+Date: Wed, 07 Oct 2020 07:51:58 -0700
+Message-ID: <iWTs.1602082318809855540.VrN5@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="MBxOOguNCe4VLYIQnTV3"
 
---7ZCAMPTQAyupDcE9sjdN
+--MBxOOguNCe4VLYIQnTV3
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
-Thanks for the quick reply ,
-Actually I was wrong about https, I changed it to http and added: SRCURL =
-=3D " git://gitlab.tools.comp.local/comp/sense/sense_frontend" ( http://gi=
-tlab.tools.comp.local/comp/sense/sense_frontend" )
-instead of SRCURL =3D " http://gitlab.tools.comp.local/comp/sense/sense_fr=
-ontend"
 
-Now when I do_fetch:
+I'm trying to make a recipe for an NPM package.
+The source files are local.
+Here is my recipe:
 
-############
-ERROR: sense-web-1.0-r0 do_fetch:
-Fetcher failure for URL: 'git://gitlab.tools. comp ( http://gitlab.tools.c=
-omp.local/comp/sense/sense_frontend" ).local/ comp ( http://gitlab.tools.co=
-mp.local/comp/sense/sense_frontend" ) /sense/sense_frontend;protocol=3Dhttp=
-;branch=3Dmaster'.
-Please set a valid SRCREV for url ['SRCREV_default_pn-sense-web', 'SRCREV_=
-default', 'SRCREV_pn-sense-web', 'SRCREV']
-(possible key names are git://gitlab.tools. comp ( http://gitlab.tools.com=
-p.local/comp/sense/sense_frontend" ).local/ comp ( http://gitlab.tools.comp=
-.local/comp/sense/sense_frontend" ) /sense/sense_frontend;protocol=3Dhttp;b=
-ranch=3Dmaster, or use a ;rev=3DX URL parameter)
-############
+LICENSE=3D"CLOSED"
+SRC_URI+=3D"file://sense-web_${PV].zip"
+S=3D${WORKDIR}
+DEPENDS+=3D"nodejs"
+do_compile(){
+export HOME=3D${S}
+npm install
+npm run-script build
+}
 
-I'm trying to understand the issue for my Yocto knowledge.
-Can you help me understand this or fix the issue ?
+*The following error appears:*
 
-Thanks alot for the help.
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/sense-web=
+/1.0-r0/temp/run.do_compile.11622: 107: /media/talel/data/menzu-zeus/menzu/=
+tmp/work/aarch64-poky-linux/sense-web/1.0-r0/temp/run.do_compile.11622: npm=
+: not found
+| WARNING: exit code 127 from a shell command.
+| ERROR: Execution of '/media/talel/data/menzu-zeus/menzu/tmp/work/aarch64=
+-poky-linux/sense-web/1.0-r0/temp/run.do_compile.11622' failed with exit co=
+de 127:
+| /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/sense-web=
+/1.0-r0/temp/run.do_compile.11622: 107: /media/talel/data/menzu-zeus/menzu/=
+tmp/work/aarch64-poky-linux/sense-web/1.0-r0/temp/run.do_compile.11622: npm=
+: not found
+| WARNING: exit code 127 from a shell command.
+|
 
---7ZCAMPTQAyupDcE9sjdN
+I did the same steps in devshell of nodejs and everything is correct.
+I tried to add the recipe with devtool , devtool add sense-web_1.0.zip but=
+ it failed.
+
+Any ideas?
+Thanks, Talel
+
+--MBxOOguNCe4VLYIQnTV3
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,<br />Thanks for the quick reply ,<br />Actually I was wrong about https=
-, I changed it to http and added: SRCURL =3D "<a href=3D"http://gitlab.tool=
-s.comp.local/comp/sense/sense_frontend&quot;" target=3D"_blank" rel=3D"noop=
-ener">git://gitlab.tools.comp.local/comp/sense/sense_frontend"</a><br />ins=
-tead of SRCURL =3D "<a href=3D"http://gitlab.tools.comp.local/comp/sense/se=
-nse_frontend&quot;" target=3D"_blank" rel=3D"noopener">http://gitlab.tools.=
-comp.local/comp/sense/sense_frontend"</a><br /><br />Now when I do_fetch:<b=
-r /><br />############<br />ERROR: sense-web-1.0-r0 do_fetch: <br />Fetcher=
- failure for URL: 'git://gitlab.tools.<a href=3D"http://gitlab.tools.comp.l=
-ocal/comp/sense/sense_frontend&quot;" target=3D"_blank" rel=3D"noopener">co=
-mp</a>.local/<a href=3D"http://gitlab.tools.comp.local/comp/sense/sense_fro=
-ntend&quot;" target=3D"_blank" rel=3D"noopener">comp</a>/sense/sense_fronte=
-nd;protocol=3Dhttp;branch=3Dmaster'. <br />Please set a valid SRCREV for ur=
-l ['SRCREV_default_pn-sense-web', 'SRCREV_default', 'SRCREV_pn-sense-web', =
-'SRCREV'] <br />(possible key names are git://gitlab.tools.<a href=3D"http:=
-//gitlab.tools.comp.local/comp/sense/sense_frontend&quot;" target=3D"_blank=
-" rel=3D"noopener">comp</a>.local/<a href=3D"http://gitlab.tools.comp.local=
-/comp/sense/sense_frontend&quot;" target=3D"_blank" rel=3D"noopener">comp</=
-a>/sense/sense_frontend;protocol=3Dhttp;branch=3Dmaster, or use a ;rev=3DX =
-URL parameter)<br />############<br /><br />I'm trying to understand the is=
-sue for my Yocto knowledge.<br />Can you help me understand this or fix the=
- issue ?<br /><br />Thanks alot for the help.
+Hi,<br /><br />I'm trying to make a recipe for an NPM package.<br />The sou=
+rce files are local.<br />Here is my recipe:<br /><br />LICENSE=3D"CLOSED"<=
+br />SRC_URI+=3D"file://sense-web_${PV].zip"<br />S=3D${WORKDIR}<br />DEPEN=
+DS+=3D"nodejs"<br />do_compile(){<br />&nbsp; export HOME=3D${S}<br />&nbsp=
+; npm install<br />&nbsp; npm run-script build<br />}<br /><br /><strong>Th=
+e following error appears:</strong><br /><br />Log data follows:<br />| DEB=
+UG: Executing shell function do_compile<br />| /media/talel/data/menzu-zeus=
+/menzu/tmp/work/aarch64-poky-linux/sense-web/1.0-r0/temp/run.do_compile.116=
+22: 107: /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/sen=
+se-web/1.0-r0/temp/run.do_compile.11622: npm: not found<br />| WARNING: exi=
+t code 127 from a shell command.<br />| ERROR: Execution of '/media/talel/d=
+ata/menzu-zeus/menzu/tmp/work/aarch64-poky-linux/sense-web/1.0-r0/temp/run.=
+do_compile.11622' failed with exit code 127:<br />| /media/talel/data/menzu=
+-zeus/menzu/tmp/work/aarch64-poky-linux/sense-web/1.0-r0/temp/run.do_compil=
+e.11622: 107: /media/talel/data/menzu-zeus/menzu/tmp/work/aarch64-poky-linu=
+x/sense-web/1.0-r0/temp/run.do_compile.11622: npm: not found<br />| WARNING=
+: exit code 127 from a shell command.<br />|<br /><br />I did the same step=
+s in devshell of nodejs and everything is correct.<br />I tried to add the =
+recipe with devtool , devtool add sense-web_1.0.zip but it failed.<br /><br=
+ />Any ideas?<br />Thanks, Talel
 
---7ZCAMPTQAyupDcE9sjdN--
+--MBxOOguNCe4VLYIQnTV3--
