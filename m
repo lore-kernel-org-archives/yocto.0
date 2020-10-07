@@ -1,28 +1,26 @@
-Subject: Re: NPM package recipe, npm not found
+Subject: Introduction #yocto #python #linux
 To: yocto@lists.yoctoproject.org
-From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
-X-Originating-Location: Tunis, Gouvernorat de Tunis, TN (41.226.168.190)
+From: idadelm@gmail.com
+X-Originating-Location: Bamenda, North-West Region, CM (129.0.101.3)
 X-Originating-Platform: Linux Firefox 81
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Wed, 07 Oct 2020 08:28:44 -0700
-References: <20201007145537.higgcang7dgyaied@qschulz>
-In-Reply-To: <20201007145537.higgcang7dgyaied@qschulz>
-Message-ID: <4092.1602084524845593040@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="TCuEekjjTKZ0HhT2OU0b"
+Date: Wed, 07 Oct 2020 09:38:50 -0700
+Message-ID: <9Lrh.1602088730896348466.Aw6g@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="3suHE8Z8xthkp4WjKK46"
 
---TCuEekjjTKZ0HhT2OU0b
+--3suHE8Z8xthkp4WjKK46
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-You are right, it needs nodejs-native in DEPENDS. Now it is working
-Thanks a lot.
+Hello, I'm Ida Delphine and I'm new to the Yocto Project. Excited to contri=
+bute to the Yocto project and hopefully become an outreachy intern.
 
---TCuEekjjTKZ0HhT2OU0b
+--3suHE8Z8xthkp4WjKK46
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-You are right, it needs nodejs-native in DEPENDS. Now it is working<br />Th=
-anks a lot.
+Hello, I'm Ida Delphine and I'm new to the Yocto Project. Excited to contri=
+bute to the Yocto project and hopefully become an outreachy intern.
 
---TCuEekjjTKZ0HhT2OU0b--
+--3suHE8Z8xthkp4WjKK46--
