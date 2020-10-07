@@ -1,57 +1,90 @@
-Received: from MTA-05-4.privateemail.com (MTA-05-4.privateemail.com [198.54.127.60])
- by mx.groups.io with SMTP id smtpd.web12.3043.1602033650497090333
- for <yocto@lists.yoctoproject.org>;
- Tue, 06 Oct 2020 18:20:50 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: whitetree.xyz, ip: 198.54.127.60, mailfrom: charles.davies@whitetree.xyz)
-Received: from MTA-05.privateemail.com (localhost [127.0.0.1])
-	by MTA-05.privateemail.com (Postfix) with ESMTP id 89D116004E;
-	Tue,  6 Oct 2020 21:20:49 -0400 (EDT)
-Received: from localhost.localdomain (unknown [10.20.151.220])
-	by MTA-05.privateemail.com (Postfix) with ESMTPA id 507816004C;
-	Wed,  7 Oct 2020 01:20:48 +0000 (UTC)
-From: "Charlie Davies" <charles.davies@whitetree.xyz>
+Subject: Only index.html is cloned in private repo clone recipe #yocto
 To: yocto@lists.yoctoproject.org
-Cc: Charlie Davies <charles.davies@whitetree.xyz>
-Subject: [meta-security][zeus][PATCH 1/1] clamav: add INSTALL_CLAMAV_CVD flag to do_install
-Date: Wed,  7 Oct 2020 02:20:06 +0100
-Message-Id: <20201007012006.2579-1-charles.davies@whitetree.xyz>
-X-Mailer: git-send-email 2.28.0
+From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
+X-Originating-Location: Tunis, Gouvernorat de Tunis, TN (41.226.168.190)
+X-Originating-Platform: Linux Firefox 81
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-Virus-Scanned: ClamAV using ClamSMTP
+Date: Wed, 07 Oct 2020 01:29:34 -0700
+Message-ID: <9pqx.1602059374076294998.H2RR@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="PeZLDnFUIxn2JLIC554f"
+
+--PeZLDnFUIxn2JLIC554f
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Recipe provides INSTALL_CLAMAV_CVD flag to bypass clamav
-cvd db creation. During do_install this flag should be
-used to conditionally skip install of cvd db if needed.
+Hello All,
 
-Signed-off-by: Charlie Davies <charles.davies@whitetree.xyz>
----
- recipes-security/clamav/clamav_0.99.4.bb | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+I have a private git repo which is in a local gitlab server.
+Here is the local repo domain: http://gitlab.tools.comp.local/comp/sense/s=
+ense_frontend
+I already saved the git credentials (username and password) , and I create=
+d this recipe:
 
-diff --git a/recipes-security/clamav/clamav_0.99.4.bb b/recipes-security/=
-clamav/clamav_0.99.4.bb
-index a340b48..1ee3f58 100644
---- a/recipes-security/clamav/clamav_0.99.4.bb
-+++ b/recipes-security/clamav/clamav_0.99.4.bb
-@@ -102,7 +102,10 @@ do_install_append_class-target () {
-     install -m 0644 ${WORKDIR}/volatiles.03_clamav  ${D}${sysconfdir}/de=
-fault/volatiles/volatiles.03_clamav
-     sed -i -e 's#${STAGING_DIR_HOST}##g' ${D}${libdir}/pkgconfig/libclam=
-av.pc
-     rm ${D}/${libdir}/libclamav.so
--    install -m 666 ${S}/clamav_db/* ${D}/${localstatedir}/lib/clamav/.
-+    if [ "${INSTALL_CLAMAV_CVD}" =3D "1" ]; then
-+        bbnote "CLAMAV installing cvd"
-+        install -m 666 ${S}/clamav_db/* ${D}/${localstatedir}/lib/clamav=
-/.
-+    fi
-     if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d=
-)};then
-         install -D -m 0644 ${WORKDIR}/clamav.service ${D}${systemd_unitd=
-ir}/system/clamav.service
-         install -d ${D}${sysconfdir}/tmpfiles.d
---=20
-2.28.0
+LICENSE =3D "CLOSED"
+SRCURL =3D "http://gitlab.tools.comp.local/ comp /sense/sense_frontend"
+SRCBRANCH =3D "master"
+SRCPROTO =3D "https"
+# Define the source for this recipe
+SRC_URI +=3D " ${ SRCURL} ;protocol=3D ${ SRCPROTO} ;branch=3D ${ SRCBRANC=
+H} "
+SRC_URI[md5sum] =3D "1becf51a6312d09f0c1c22120efd499c"
+SRC_URI[sha256sum] =3D "142e3af77b6851b614d07012abce145ce2526b8d0d95e7a94c=
+ff62f0e6432d26"
 
+When I do do_fetch and do_unpack I only see the index.html file of the rep=
+o is downloaded.
+What is the problem ?
+How can I solve this?
+
+Thanks, Talel
+
+--PeZLDnFUIxn2JLIC554f
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello All,<br /><br />I have a private git repo which is in a local gitlab =
+server.<br />Here is the local repo domain: <a href=3D"http://gitlab.tools.=
+comp.local/comp/sense/sense_frontend" target=3D"_blank" rel=3D"noopener">ht=
+tp://gitlab.tools.comp.local/comp/sense/sense_frontend</a><br />I already s=
+aved the git credentials (username and password) , and I created this recip=
+e:<br /><br /><span style=3D"color: #268bd2;">LICENSE</span><span style=3D"=
+color: #bbbbbb;"> </span><span style=3D"color: #859900;">=3D</span><span st=
+yle=3D"color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"CLOSED"</s=
+pan><br /><span style=3D"color: #268bd2;">SRCURL</span><span style=3D"color=
+: #bbbbbb;"> </span><span style=3D"color: #859900;">=3D</span><span style=
+=3D"color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"http://gitla=
+b.tools.comp.local/</span><span style=3D"color: #2aa198;"><span style=3D"co=
+lor: #2aa198;">comp</span>/sense/sense_frontend"<br /></span>
+<div><span style=3D"color: #268bd2;">SRCBRANCH</span><span style=3D"color:=
+ #bbbbbb;"> </span><span style=3D"color: #859900;">=3D</span><span style=3D=
+"color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"master"</span></=
+div>
+<div><span style=3D"color: #268bd2;">SRCPROTO</span><span style=3D"color: =
+#bbbbbb;"> </span><span style=3D"color: #859900;">=3D</span><span style=3D"=
+color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"https"</span></di=
+v>
+<div><span style=3D"color: #657b83; font-style: italic;"># Define the sour=
+ce for this recipe</span></div>
+<div><span style=3D"color: #268bd2;">SRC_URI</span><span style=3D"color: #=
+bbbbbb;"> </span><span style=3D"color: #859900;">+=3D</span><span style=3D"=
+color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"</span><span styl=
+e=3D"color: #859900;">${</span><span style=3D"color: #268bd2;">SRCURL}</spa=
+n><span style=3D"color: #2aa198;">;protocol=3D</span><span style=3D"color: =
+#859900;">${</span><span style=3D"color: #268bd2;">SRCPROTO}</span><span st=
+yle=3D"color: #2aa198;">;branch=3D</span><span style=3D"color: #859900;">${=
+</span><span style=3D"color: #268bd2;">SRCBRANCH}</span><span style=3D"colo=
+r: #2aa198;">"</span></div>
+<div><span style=3D"color: #268bd2;">SRC_URI[md5sum]</span><span style=3D"=
+color: #bbbbbb;"> </span><span style=3D"color: #859900;">=3D</span><span st=
+yle=3D"color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"1becf51a63=
+12d09f0c1c22120efd499c"</span></div>
+<span style=3D"color: #268bd2;">SRC_URI[sha256sum]</span><span style=3D"co=
+lor: #bbbbbb;"> </span><span style=3D"color: #859900;">=3D</span><span styl=
+e=3D"color: #bbbbbb;"> </span><span style=3D"color: #2aa198;">"142e3af77b68=
+51b614d07012abce145ce2526b8d0d95e7a94cff62f0e6432d26"</span><span style=3D"=
+color: #2aa198;"></span><br /><br />When I do do_fetch and do_unpack I only=
+ see the index.html file of the repo is downloaded. <br />What is the probl=
+em ?<br />How can I solve this?<br /><br />Thanks, Talel<br />
+
+--PeZLDnFUIxn2JLIC554f--
