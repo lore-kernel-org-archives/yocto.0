@@ -1,73 +1,73 @@
-Received: from mail-lj1-f196.google.com (mail-lj1-f196.google.com [209.85.208.196])
- by mx.groups.io with SMTP id smtpd.web12.7518.1602146248462991890
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+ by mx.groups.io with SMTP id smtpd.web11.7876.1602148314469860881
  for <yocto@lists.yoctoproject.org>;
- Thu, 08 Oct 2020 01:37:28 -0700
+ Thu, 08 Oct 2020 02:11:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=GRc2BiOL;
- spf=pass (domain: burtonini.com, ip: 209.85.208.196, mailfrom: ross@burtonini.com)
-Received: by mail-lj1-f196.google.com with SMTP id a23so4048843ljp.5
-        for <yocto@lists.yoctoproject.org>; Thu, 08 Oct 2020 01:37:28 -0700 (PDT)
+ dkim=pass header.i=@konsulko.com header.s=google header.b=PVzEk9hE;
+ spf=pass (domain: konsulko.com, ip: 209.85.167.172, mailfrom: paul.barker@konsulko.com)
+Received: by mail-oi1-f172.google.com with SMTP id u17so5615148oie.3
+        for <yocto@lists.yoctoproject.org>; Thu, 08 Oct 2020 02:11:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
+        d=konsulko.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SrOy9TLa7M1qX1Uh4MF+2doqQGoF0uQfv4npuNx3U+c=;
-        b=GRc2BiOLMG/tXa1nQIJQn2RoLl6CPOIbhR2uH2o5KjASgUQ2Ucv8XwAJ9JfXL4KhZd
-         u/pBX1GxxI+Iusv7VJ/uPrGqUh1I3ilErl0AOXDfL+5M3OFufFTmJAbVFChk1CjFKyYj
-         WtYODlDnvNUZsZ9Gj47KSLhuVkpoTMSqD9+Me1Yn6FKXpzp5uXdILmuMTMeDy2sZoi9+
-         5MoVeED+NhU3ngkYxhSjOzCjC3lOZ3FZ0vSF2VTTNUkYj/L331DM6SKgYqIDN0xXK+E7
-         jAeP9r47ZPqEWyFKQEuvgTGjkeqD5nzUvRkFkvm7EMza351wCiyVeJ/tbyUub37GMkxh
-         yjAA==
+         :cc:content-transfer-encoding;
+        bh=aEzvmz+VZ+TVMGZlHDJA/B9LqdKDDTC9XQwYz8xpf5s=;
+        b=PVzEk9hEb7ulcLtNAW8b9GRtFau0TGqBsocMiLCukA29yGaafTjuhPrpDY4wmlrXJx
+         t456XTLsGx4jbJALToJDEotny4X92XQ2dZeQkeJv3ByXvq1HzPwhZpQaLAugQsh8nZ8k
+         2jxej1IdzjkyQN4XmZ/Y0EEYtP/Fa2T/q+uxw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SrOy9TLa7M1qX1Uh4MF+2doqQGoF0uQfv4npuNx3U+c=;
-        b=iV+kMJnyAd4IObKI6TWpPwNirmHHxNAWesoOUFdhR05669DgVJFe73BfRkRRouR2PL
-         MIgELJQ/g6v+7drD4l9+aVAzLndAo7eEzVheIH2tJ/gXBKYMJ0WJA0K9NPY0dK9RGlR7
-         4aN6OiehYcdwJlYQkDgpU9cKOi+K2SFxZnVcu3U/KZK2pCvn5sUWImfhO9coK9zcOjSd
-         bMgqW9Hu9rXxjsqHuZB3GQYJw8XsOe9NoJrBfZXQRgMyyxLCPEb0JW8OIXtjiDv6jx+c
-         WjGi3bGg1qGihiKZo4WtGnCigAPOBwlWJNnucMgPVmeuWM5NYRTKY/sNLq9YCMx54qpo
-         Q0eA==
-X-Gm-Message-State: AOAM530XXo5wiIhgU4Y/FcxawkUN/EK8CIJOxtcbkc54mXoYpckF3NvQ
-	o2kJorIoSOtZHZeWKokN5zuTM2PaclzfJgcX5/MQ8Q==
-X-Google-Smtp-Source: ABdhPJwSDfC2HglzlnLMqgprriIYof6QsHdWB8IKL/SWLDZd4rgRsDNWq5FGK8QlxLL8fg54u73q0sfKyyW7DfON6/E=
-X-Received: by 2002:a2e:b0cb:: with SMTP id g11mr2857834ljl.397.1602146246217;
- Thu, 08 Oct 2020 01:37:26 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=aEzvmz+VZ+TVMGZlHDJA/B9LqdKDDTC9XQwYz8xpf5s=;
+        b=g1C4GdmqdZfyo2YeGUj7oPVp8LGnHyDgSq3oPwW6X21OFgt7OI1q6glA+3va4I9ZTY
+         HxXPts+3zx28yj8xkSWW1s/PLk7YSCDORoFG4vXcDxvZyEROianpnVsqBJu1aN297xNw
+         1uoVe6vE2dPNalEP09bXFPnLG56pa1OTmLN4fvqZ0A8ODG+u2L5cZOQiO1A3Wac0SgvB
+         Y16IM1TitoSV2MiqQTCEkskFqDeD9IQeqGkhUD4FNpI4DvSPlJs3/opnufgky3jmsnzF
+         /pZzKNBcV5ucmMpIA19qK26XyLz03E4rtxuMw5Z03nhJLg10/WN2qqjk1qzleiDcOa9F
+         WX6A==
+X-Gm-Message-State: AOAM530v5GY1LszUj9ZxL6Dhn+YuDcbxZPzbZGXHrPaxI4y9OUSL/g0Z
+	fTCL4CbdzMyKID/WYZtycY0BHcsazw1w5TCzIq5bZQ==
+X-Google-Smtp-Source: ABdhPJxVM2uV/GgBg7NYy8K64rDsyPH4AImbOS7ntdi/ncqQMdLQ7HZdCd3EWyB1L5fGcfaknVZq/4wfSVQMan+Cc/0=
+X-Received: by 2002:aca:d946:: with SMTP id q67mr4443980oig.27.1602148313762;
+ Thu, 08 Oct 2020 02:11:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAM9ZRVtfC7BBtSC0YoBX3VzM8RmYQZp1LDSp7FA5ZUmSAmE-OA@mail.gmail.com>
- <30730.1602060179317171509@lists.yoctoproject.org>
-In-Reply-To: <30730.1602060179317171509@lists.yoctoproject.org>
-From: "Ross Burton" <ross@burtonini.com>
-Date: Thu, 8 Oct 2020 09:37:15 +0100
-Message-ID: <CAAnfSTshcSvkcabVBW31SwHH=CsCQAiH7Gynid_WyUSX+7Nq2A@mail.gmail.com>
-Subject: Re: [yocto] Only index.html is cloned in private repo clone recipe #yocto
-To: Bel Hadj Salem Talel <bhstalel@gmail.com>
+References: <aCvF.1602139866465607883.3w6m@lists.yoctoproject.org>
+In-Reply-To: <aCvF.1602139866465607883.3w6m@lists.yoctoproject.org>
+From: "Paul Barker" <pbarker@konsulko.com>
+Date: Thu, 8 Oct 2020 10:11:44 +0100
+Message-ID: <CAM9ZRVvVNPq9AkN3JxLOMQ50rf1UPSFnR-10yFBHV4Z2nAmVEg@mail.gmail.com>
+Subject: =?UTF-8?B?UmU6IFt5b2N0b10gQnVnemlsbGEg4oCTIEJ1ZyAxMzUyOSAjeW9jdG8=?=
+To: idadelm@gmail.com
 Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 7 Oct 2020 at 09:43, Bel Hadj Salem Talel <bhstalel@gmail.com> wrote:
-> Thanks for the quick reply ,
-> Actually I was wrong about https, I changed it to http and added: SRCURL = "git://gitlab.tools.comp.local/comp/sense/sense_frontend"
-> instead of SRCURL = "http://gitlab.tools.comp.local/comp/sense/sense_frontend"
+On Thu, 8 Oct 2020 at 07:51, <idadelm@gmail.com> wrote:
 >
-> Now when I do_fetch:
+> Hey everybody, I introduced myself yesterday being new to the Yocto proje=
+ct and also hoping to become an outreachy intern for this project. I came a=
+cross the Bugzilla link and chose a bug I wish to fix. What I am to do is "=
+add SPDX headers to all source files of the prelink-cross repository". I al=
+ready cloned the repo and started working on it. What I did in all the .c a=
+nd .h source files was remove the license text at the top of the files and =
+place only the SPDX license identifiers which is commented out. I'm about c=
+ommitting my changes and I hope I am doing things right.
 >
-> ############
-> ERROR: sense-web-1.0-r0 do_fetch:
-> Fetcher failure for URL: 'git://gitlab.tools.comp.local/comp/sense/sense_frontend;protocol=http;branch=master'.
-> Please set a valid SRCREV for url ['SRCREV_default_pn-sense-web', 'SRCREV_default', 'SRCREV_pn-sense-web', 'SRCREV']
-> (possible key names are git://gitlab.tools.comp.local/comp/sense/sense_frontend;protocol=http;branch=master, or use a ;rev=X URL parameter)
-> ############
->
-> I'm trying to understand the issue for my Yocto knowledge.
-> Can you help me understand this or fix the issue ?
+> Thanks you all for the support.
 
-The git fetcher needs to know what SHA to unpack.  You haven't set
-SRCREV, you can either set it to the specific SHA or to "${AUTOREV}"
-if you want it to refetch every time it builds.
+This sounds like a helpful contribution.
 
-Note that the [md5sum] and [sha256sum] flags are only needed for HTTP
-downloads, so you can delete these lines.
+To submit this please follow the guidelines in
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded.
+You should also check the README in the repository you're making
+changes to for additional contribution instructions.
 
-Ross
+If you have any questions or difficulties please reach out via IRC or
+email and we'll be happy to help.
+
+Thanks,
+
+--=20
+Paul Barker
+Konsulko Group
