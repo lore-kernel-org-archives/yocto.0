@@ -1,129 +1,72 @@
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
- by mx.groups.io with SMTP id smtpd.web12.8226.1602149449827893607
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.8599.1602150687940743314
  for <yocto@lists.yoctoproject.org>;
- Thu, 08 Oct 2020 02:30:50 -0700
+ Thu, 08 Oct 2020 02:51:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=gPPVc1VE;
- spf=pass (domain: gmail.com, ip: 209.85.218.43, mailfrom: idadelm@gmail.com)
-Received: by mail-ej1-f43.google.com with SMTP id c22so7145612ejx.0
-        for <yocto@lists.yoctoproject.org>; Thu, 08 Oct 2020 02:30:49 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=AwpV5dkQ;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: balazovic.peter@gmail.com)
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id D745D38C0889
+	for <yocto@yoctoproject.org>; Thu,  8 Oct 2020 02:51:26 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id 67so5527935iob.8
+        for <yocto@yoctoproject.org>; Thu, 08 Oct 2020 02:51:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5GXOm4AaaEm0YZTDmvHB3ygnrVPxv1MvCHFER7U0oMQ=;
-        b=gPPVc1VEMaWaHO3twq8xl5eb1gXaGo9JTqljPsEAV3o1TxSbz624u21WUJ1IyT2Uvd
-         cpYdXL8zY0KceipFiBwD4GM1WVpyDSoMyEUU1D1NYdY9Ee+bSjomBgmlKTjYxzZjwM4e
-         3Ul/5Cbv8be93GrGDJ3NL5wqJboVRZBkW4OIAp6UzYIuICFoqyQJexYBdEWKealrf3rP
-         0uTP5Szm5Jl4na5MzvAXVyiMUvPJ9l5oHHNF98cNbPQpQqzkBQw1neRT+vHz6HEgd1es
-         2INq6PyOOstPCmb27+hMo6YJ/wDkcpCftPx4UBpFAoIZ12e7BvdyGYj8389yk/+v20qb
-         keJg==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=ophiGgqAV+Genlede+Qw01rIleKYV8DC+T3zdX3N5x8=;
+        b=AwpV5dkQ4jf+A7F9yBBNJkTjaB+dl/zd77sC2PnDNm9MlKKHnFzm0nRth51vXO7KDi
+         hSWKhvhq5OgtM0CmXRgPKrwttq3U75aA3Dvj4RMejZLWJkmrSZra6nzjAxBGY+lNbbMk
+         EtE3Ftiw2uVJk8Sv8BOQcWLEPbO7y2c9CzCpvnomAdqmmShitsrqOi+Jx1FajSUL/R3o
+         mXDIa8/8IADcPlEbeU6PuLj14n/1xG3lpkES8mzOo9NC3HDHnZewWvme9D73JS5bmrJ+
+         NJWQ3e1jC2cgq8ira9/kVEDUdSxXbUtaE80OuCYeCKRPnER8JnoxKH+fdrETUadoLc8I
+         mn0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5GXOm4AaaEm0YZTDmvHB3ygnrVPxv1MvCHFER7U0oMQ=;
-        b=GSvDyY8Qo/HFHcIsnx5ZcTYkGCvWU1C5wbf5/NGl2Ka989Q34y344SRNyrzmQEGLNd
-         Y9Uww3tq9iU9QtH9SxcSGacSXL/V6gdcVUSYmGH+4p8zjB37U6Or4Y1DvbenX93ex3TV
-         sXMlJfxndDyzGb1OfZr4sfeFYXPiYdkF40AIoyuCQ2nj16AgLKav7M5iBpkS3nHs3jam
-         j3yijfgRfaqihkpNFKPPnakqkwD6SmFVDTAV9VGA47o85IJErGgotZk7S0+vbMsXe932
-         blG3ATdpF8qyrUmMFx6tbxBYEXJ6sIls6ZUkfPOsLCoAsNvCEAj3a93HGBmzDcNrDFq4
-         Spbw==
-X-Gm-Message-State: AOAM532vgx9WCe/RUlkIh/h/UMCPhoWts7zgQ1woQNFFIHPDyC9DXtLM
-	75NukjI+BKngMamrV5znHUxWiNYlMikQeYYODXc=
-X-Google-Smtp-Source: ABdhPJwQdF7JHSr8PCgoG5Nq5F8OMcMsynruIMMKCZpJ07QBLfmvinGtH7sa3yMfU2e/Zl0tnw5LYoHJpfnoqIG600U=
-X-Received: by 2002:a17:906:1955:: with SMTP id b21mr8057931eje.42.1602149448161;
- Thu, 08 Oct 2020 02:30:48 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=ophiGgqAV+Genlede+Qw01rIleKYV8DC+T3zdX3N5x8=;
+        b=GvxtlywTRx2/Lgf4XPHE02hz2NDUkERl+YyjOJpZ5CS6PKuPb4KT5liW5A+daV+GSU
+         4fdtetFRPMO4++ritFRBo8yTXH/fCX5YT35T6NWv/IyTzr1jQxVAXu/cxJ8/cEYorF1M
+         NcTEbv4Yq3OwWWqh80yKapKJIn3Wli6gGeugFZc/C86SU7nKvqHZt2l266tJB9k2S9xj
+         3JOuXJx3zSRNEEP3GOLKEtbcRUCO+rMm0kzKWcOMKtwNlRdNQR4oChj4+VE2Yok/zDmq
+         Co+ftTcoINMuzjO2Es/pHIQSMSeeRjuwsAFrD95zJJhqTgEb5GrgGaFzX0zCeX2Fc15w
+         T0mw==
+X-Gm-Message-State: AOAM532FUhi9QfVwHSlNl84kaz9VHz86mHt4ITBxJR2OE8cuUUd2VIjI
+	MCvzAifmDBf8/cgl3DZtU7dRI3EEikcwZRbhRltiS2fxo2WAbA==
+X-Google-Smtp-Source: ABdhPJzY4I2b2JPsoW+MT3AwutOZMFkcJdtDygM+PPHKf8kDPzEpF868/5qBUM5N+UFBdRAk8Vp+SGkYgGnbX96TV4g=
+X-Received: by 2002:a5d:97c2:: with SMTP id k2mr5499349ios.9.1602150685906;
+ Thu, 08 Oct 2020 02:51:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <aCvF.1602139866465607883.3w6m@lists.yoctoproject.org> <CAM9ZRVvVNPq9AkN3JxLOMQ50rf1UPSFnR-10yFBHV4Z2nAmVEg@mail.gmail.com>
-In-Reply-To: <CAM9ZRVvVNPq9AkN3JxLOMQ50rf1UPSFnR-10yFBHV4Z2nAmVEg@mail.gmail.com>
-From: idadelm@gmail.com
-Date: Thu, 8 Oct 2020 10:30:36 +0100
-Message-ID: <CAN7sTgsXK5zMbd+nBSvScXiDDpM=rJ3-AwxATPxbOLNCekX2ag@mail.gmail.com>
-Subject: =?UTF-8?B?UmU6IFt5b2N0b10gQnVnemlsbGEg4oCTIEJ1ZyAxMzUyOSAjeW9jdG8=?=
-To: Paul Barker <pbarker@konsulko.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000bc1c8305b1257cc5"
+From: "Peter Balazovic" <balazovic.peter@gmail.com>
+Date: Thu, 8 Oct 2020 11:51:15 +0200
+Message-ID: <CAFq4t4i8VoPepAnDFEjQ7unNS13tyY_X=z-=iPaiWBDDfqX38w@mail.gmail.com>
+Subject: Application development under WSLv2/vscode
+To: Yocto list discussion <yocto@yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000829c5205b125c6c4"
 
---000000000000bc1c8305b1257cc5
+--000000000000829c5205b125c6c4
 Content-Type: text/plain; charset="UTF-8"
 
-Thank you, I will do that.
+Hello all,
 
-On Thu, Oct 8, 2020 at 10:11 AM Paul Barker <pbarker@konsulko.com> wrote:
+I'm using Windows Subsystem for Linux, where I have Yocto build project.
+I'm using VS Code trying to compile but I use "source environment ..." to
+activate the SDK. How to activate the "source environment ..."
+automatically either during the start WSLv2 or before VSCode build
+(Configure Build Task)?
 
-> On Thu, 8 Oct 2020 at 07:51, <idadelm@gmail.com> wrote:
-> >
-> > Hey everybody, I introduced myself yesterday being new to the Yocto
-> project and also hoping to become an outreachy intern for this project. I
-> came across the Bugzilla link and chose a bug I wish to fix. What I am to
-> do is "add SPDX headers to all source files of the prelink-cross
-> repository". I already cloned the repo and started working on it. What I
-> did in all the .c and .h source files was remove the license text at the
-> top of the files and place only the SPDX license identifiers which is
-> commented out. I'm about committing my changes and I hope I am doing things
-> right.
-> >
-> > Thanks you all for the support.
->
-> This sounds like a helpful contribution.
->
-> To submit this please follow the guidelines in
-> https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded.
-> You should also check the README in the repository you're making
-> changes to for additional contribution instructions.
->
-> If you have any questions or difficulties please reach out via IRC or
-> email and we'll be happy to help.
->
-> Thanks,
->
-> --
-> Paul Barker
-> Konsulko Group
->
+Thank you.
+Peter
 
---000000000000bc1c8305b1257cc5
+--000000000000829c5205b125c6c4
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thank you, I will do that.=C2=A0<br></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 8, 2020 =
-at 10:11 AM Paul Barker &lt;<a href=3D"mailto:pbarker@konsulko.com">pbarker=
-@konsulko.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex">On Thu, 8 Oct 2020 at 07:51, &lt;<a href=3D"mailto:idadelm@gma=
-il.com" target=3D"_blank">idadelm@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hey everybody, I introduced myself yesterday being new to the Yocto pr=
-oject and also hoping to become an outreachy intern for this project. I cam=
-e across the Bugzilla link and chose a bug I wish to fix. What I am to do i=
-s &quot;add SPDX headers to all source files of the prelink-cross repositor=
-y&quot;. I already cloned the repo and started working on it. What I did in=
- all the .c and .h source files was remove the license text at the top of t=
-he files and place only the SPDX license identifiers which is commented out=
-. I&#39;m about committing my changes and I hope I am doing things right.<b=
-r>
-&gt;<br>
-&gt; Thanks you all for the support.<br>
-<br>
-This sounds like a helpful contribution.<br>
-<br>
-To submit this please follow the guidelines in<br>
-<a href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenE=
-mbedded" rel=3D"noreferrer" target=3D"_blank">https://www.openembedded.org/=
-wiki/How_to_submit_a_patch_to_OpenEmbedded</a>.<br>
-You should also check the README in the repository you&#39;re making<br>
-changes to for additional contribution instructions.<br>
-<br>
-If you have any questions or difficulties please reach out via IRC or<br>
-email and we&#39;ll be happy to help.<br>
-<br>
-Thanks,<br>
-<br>
--- <br>
-Paul Barker<br>
-Konsulko Group<br>
-</blockquote></div>
+<div dir=3D"ltr"><div>Hello all,</div><div><br></div><div>I&#39;m using Win=
+dows Subsystem for Linux, where I have Yocto build project. I&#39;m using V=
+S Code trying to compile but I use &quot;source environment ...&quot; to ac=
+tivate the SDK. How to activate the &quot;source environment ...&quot; auto=
+matically=C2=A0either during the start WSLv2 or before VSCode build (Config=
+ure Build Task)?<br></div><div><br></div><div>Thank you.</div><div>Peter</d=
+iv></div>
 
---000000000000bc1c8305b1257cc5--
+--000000000000829c5205b125c6c4--
