@@ -1,1562 +1,978 @@
-Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com [209.85.218.67])
- by mx.groups.io with SMTP id smtpd.web10.5524.1602213942129491093
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+ by mx.groups.io with SMTP id smtpd.web11.5891.1602216265719823654
  for <yocto@lists.yoctoproject.org>;
- Thu, 08 Oct 2020 20:25:42 -0700
+ Thu, 08 Oct 2020 21:04:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Ps7pBw3k;
- spf=pass (domain: gmail.com, ip: 209.85.218.67, mailfrom: idadelm@gmail.com)
-Received: by mail-ej1-f67.google.com with SMTP id c22so11070659ejx.0
-        for <yocto@lists.yoctoproject.org>; Thu, 08 Oct 2020 20:25:41 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NW0LQNy/;
+ spf=pass (domain: gmail.com, ip: 209.85.167.179, mailfrom: idadelm@gmail.com)
+Received: by mail-oi1-f179.google.com with SMTP id u17so8904310oie.3
+        for <yocto@lists.yoctoproject.org>; Thu, 08 Oct 2020 21:04:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=xWiycf4FxzEPhCKoSK7KgIyNVAzalk0ODuQ8z0e5Dkw=;
-        b=Ps7pBw3kesEOXDIVMN7B74V7Sn5gxV7+YEqZ4Mt0KiEb0t0HK5g4wJ7LXp6SdUc2St
-         N2RJoEfeLfJJtStbSyKjTxeCnCsdSdMB/KR7KviqlfWoi48NSPND9pU7Z0f8mzS3/Q6T
-         J9Aj/Ub8HqjOTgOwPbOwSCCQrgS5ysjWm2fRH/2+H69+7S2EY0Cp/fkffixTZiIH4xs+
-         pQUQHSh9B8+1o1sy8j/308FU6SOCfon2yKUzmnHodiUvTYPgbc4pGIGoygcKCH6xWVO2
-         /deLuqvqfI8I1FsWog6qy8i/UMVZ6sxR/Rauok0NJ3flKslnE11p/xfRUWgTkYMG7qPN
-         2K2Q==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=k2aQFnrzF+UAXj+1MD60U9Rh4fRX1UsXKB9xAhTkgxw=;
+        b=NW0LQNy/0K1o4TX0RjfAFmCgupFjPP3fUn202V0MikvgC1/mzAj21Q6ehThcM6LVdD
+         Lz/6k/81rSMZGDw+NU/13Ty5tWilz5UqsXD2OaUhgbSfGExlCYvjLHGYHZMCrSkOJd6m
+         Vx2765h2bPbLxUPFrY2tnLeQwZSR4Yq8E28B/zlukdT0tSmUpOH/vd3mithKq9LgQjZk
+         DuqGICRv2WwmcM6GtUNnhtO/8J1aZ4sYp0hFIxY0ELxIACWrXII0rYBlZzBl+MeNgs+/
+         tQ4HZKVE1oPDaudEJYjXkeP73hSwMZIObNGxamKvoZFnBm8HCRfQllIypBOHea/44n8S
+         CXWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=xWiycf4FxzEPhCKoSK7KgIyNVAzalk0ODuQ8z0e5Dkw=;
-        b=RS/XV+c7iOFd9PPaETApTW6nk+9clDeuAE3+IDUWx0OFXrsyS0JQ8X8EXYQLNvVosu
-         NhgDBtMK/jNWnJ8jTwdT9DlO1Q9SgRs0bc+3BtmTWKxxlRP82nAHq/y/ypXH+cgSTSdL
-         39m5lUNXTeO/k76hoz/sC/K0RoVMoV7XwLGMounsV6zDDPUO4RMlaRcLmhy+XHCJwbzc
-         HmfWztXZLk97Zor+BwoVZzLF3YT6TCvAPKSO6z8GGO5in28owyJV8b3d/SeT5Nw9WYMb
-         kIt4KOdDqlTtuQ4exRPCYCApEPFpL7zhCRhnR4yv6m7fR6aJz2HIX5pJbC9tyo+T2x/R
-         JqaA==
-X-Gm-Message-State: AOAM530nKkLsRQvl9rMVrGHMY4hOYliPmiYsNO+lis7iQz4qkrzupNLh
-	8isCBZbUw64gusQczMJNMpBp/QL1BeEGZB8t
-X-Google-Smtp-Source: ABdhPJxz+oL8Iha6l3XMCmpiu3pXbmgbMEgv8FgocMhJt7GQ1pn2aSmkRACFdl1+VGrcNWgvEXBJ6g==
-X-Received: by 2002:a17:906:d8b6:: with SMTP id qc22mr12373332ejb.196.1602213938433;
-        Thu, 08 Oct 2020 20:25:38 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=k2aQFnrzF+UAXj+1MD60U9Rh4fRX1UsXKB9xAhTkgxw=;
+        b=sQ8or/5r8jbk+Z7e/9XM2/nAN/pd3m3dbH+Id0BrgtrA1hL5B/5+S+pbutMQnq4q+S
+         VWFCet1tsnZEtAVwc2Jx4BA9tYGzESaCUr4d271gzDKnrbQhJHq4YYzHvbw/Nz5Lir0n
+         RPzHgb9Cy9p4aZ34z+riSK2psf1yQLwsv6wmT4svsrpvEKCS4y3fZXGCTIeL4bJZi3U6
+         fY+XqSRJkWPlE9+U6KW/tIH0RA4+Hk9JVWSYpoOQpjE9S4tsZBCm0vZCYYXOLPiJBdW0
+         qXWbjvQXg+azwKboR1+eM6nXASAtiVLe8qFvUAFqI5dpEmWNvTjfYGxW3xZ6HAnhD9Ej
+         /pLA==
+X-Gm-Message-State: AOAM533oXWk1BXXs5WX/huRIHaQjX7viICQSlMP615bOk0ZNx2dWNMUY
+	d77wsCUREQw4DpZEL7VhHtLSIQ1aE0xhypO2
+X-Google-Smtp-Source: ABdhPJwNpVWgINkTHVlWVpG12//OzxC6abvJwT0sP7mcazlmjXDiQb/OQdvNHqhF4tObKtbMbuunjQ==
+X-Received: by 2002:aca:4848:: with SMTP id v69mr1342348oia.25.1602216264104;
+        Thu, 08 Oct 2020 21:04:24 -0700 (PDT)
 Return-Path: <idadelm@gmail.com>
 Received: from localhost.localdomain ([129.0.101.27])
-        by smtp.gmail.com with ESMTPSA id g8sm5408161ejp.73.2020.10.08.20.25.36
+        by smtp.gmail.com with ESMTPSA id 92sm5650718otl.1.2020.10.08.21.04.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Oct 2020 20:25:37 -0700 (PDT)
+        Thu, 08 Oct 2020 21:04:23 -0700 (PDT)
 From: "Meh Mbeh Ida Delphine" <idadelm@gmail.com>
 To: yocto@lists.yoctoproject.org
-Cc: mark.hatle@kernel.crashing.org,
+Cc: paul.eggleton@linux.intel.com,
 	Meh Mbeh Ida Delphine <idadelm@gmail.com>
-Subject: [prelink-cross][PATCH v4] Add SPDX license headers to all source files
-Date: Fri,  9 Oct 2020 04:25:21 +0100
-Message-Id: <20201009032521.7722-1-idadelm@gmail.com>
+Subject: [layerindex-web][PATCH] Add SPDX license headers to layerindex-web source files
+Date: Fri,  9 Oct 2020 05:03:15 +0100
+Message-Id: <20201009040315.10133-1-idadelm@gmail.com>
 X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Added SPDX headers in all source files except src/makecrc.c since it is not copyrighted.
-Skipped Makefile.am as well.
-Also cleared redundant license text.
-Updated README file with correct email addresses.
+Added SPDX identifiers to all .py files except those in migrations directory.
 
-Fixes: [YOCTO #13529]
+Fixes: [YOCTO #13527]
 
 Signed-off-by: Meh Mbeh Ida Delphine <idadelm@gmail.com>
 ---
+ __init__.py                               | 1 +
+ docker/settings.py                        | 2 ++
+ dockersetup.py                            | 2 ++
+ layerindex/__init__.py                    | 5 +++++
+ layerindex/admin.py                       | 2 ++
+ layerindex/auth_forms.py                  | 2 ++
+ layerindex/auth_views.py                  | 2 ++
+ layerindex/bulkchange.py                  | 2 ++
+ layerindex/context_processors.py          | 2 ++
+ layerindex/forms.py                       | 2 ++
+ layerindex/layerconfparse.py              | 1 +
+ layerindex/middleware.py                  | 2 ++
+ layerindex/models.py                      | 2 ++
+ layerindex/querysethelper.py              | 8 ++++++++
+ layerindex/recipedesc.py                  | 2 ++
+ layerindex/recipeparse.py                 | 2 ++
+ layerindex/restperm.py                    | 6 ++++++
+ layerindex/restviews.py                   | 2 ++
+ layerindex/securityquestions.py           | 8 ++++++++
+ layerindex/tasks.py                       | 2 ++
+ layerindex/templatetags/__init__.py       | 5 +++++
+ layerindex/templatetags/extrafilters.py   | 6 ++++++
+ layerindex/tools/fedora-fetch.py          | 2 ++
+ layerindex/tools/fixup_duplicates.py      | 2 ++
+ layerindex/tools/github-fetch.py          | 2 ++
+ layerindex/tools/import_classic.py        | 2 ++
+ layerindex/tools/import_classic_wiki.py   | 2 ++
+ layerindex/tools/import_layer.py          | 2 ++
+ layerindex/tools/import_layers.py         | 2 ++
+ layerindex/tools/import_otherdistro.py    | 2 ++
+ layerindex/tools/import_project.py        | 2 ++
+ layerindex/tools/import_wiki_layers.py    | 2 ++
+ layerindex/tools/site_name.py             | 2 ++
+ layerindex/tools/update_classic_status.py | 2 ++
+ layerindex/tools/webapi-test.py           | 2 ++
+ layerindex/update.py                      | 2 ++
+ layerindex/update_layer.py                | 2 ++
+ layerindex/urls.py                        | 2 ++
+ layerindex/urls_branch.py                 | 2 ++
+ layerindex/utils.py                       | 2 ++
+ layerindex/views.py                       | 2 ++
+ manage.py                                 | 2 ++
+ password_validation.py                    | 5 +++++
+ pytest.ini                                | 5 +++++
+ rrs/__init__.py                           | 5 +++++
+ rrs/admin.py                              | 2 ++
+ rrs/apps.py                               | 6 ++++++
+ rrs/context_processors.py                 | 2 ++
+ rrs/models.py                             | 2 ++
+ rrs/tools/common.py                       | 2 ++
+ rrs/tools/dump_upgrades.py                | 2 ++
+ rrs/tools/historytool.py                  | 2 ++
+ rrs/tools/rrs_distros.py                  | 2 ++
+ rrs/tools/rrs_maintainer_history.py       | 2 ++
+ rrs/tools/rrs_upgrade_history.py          | 2 ++
+ rrs/tools/rrs_upstream_email.py           | 2 ++
+ rrs/tools/rrs_upstream_history.py         | 2 ++
+ rrs/tools/upgrade_history_internal.py     | 2 ++
+ rrs/urls.py                               | 8 ++++++++
+ rrs/views.py                              | 8 ++++++++
+ rrs/wsgi.py                               | 6 ++++++
+ settings.py                               | 2 ++
+ tests/test_update.py                      | 2 ++
+ urls.py                                   | 2 ++
+ wsgi.py                                   | 5 +++++
+ 65 files changed, 186 insertions(+)
 
-Changes in V4:
- * Add [YOCTO #13529] tag to git commit log instead of subject line
- * Updated the README file with right email addresses
-
-Changes in V3:
- * Address review comments
- * Change subject line to reflect what the patch is trying to do
-
-Changes in V2:
- * Address review comments
-
- README             |  4 ++--
- src/arch-alpha.c   | 15 ++-------------
- src/arch-arm.c     | 15 ++-------------
- src/arch-cris.c    | 15 ++-------------
- src/arch-i386.c    | 15 ++-------------
- src/arch-ia64.c    | 15 ++-------------
- src/arch-mips.c    | 16 ++--------------
- src/arch-ppc.c     | 15 ++-------------
- src/arch-ppc64.c   | 15 ++-------------
- src/arch-s390.c    | 15 ++-------------
- src/arch-s390x.c   | 15 ++-------------
- src/arch-sh.c      | 15 ++-------------
- src/arch-sparc.c   | 16 +++-------------
- src/arch-sparc64.c | 15 ++-------------
- src/arch-x86_64.c  | 15 ++-------------
- src/cache.c        | 15 ++-------------
- src/canonicalize.c | 16 ++--------------
- src/checksum.c     | 15 ++-------------
- src/conflict.c     | 15 ++-------------
- src/crc32.c        | 15 ++-------------
- src/cxx.c          | 15 ++-------------
- src/data.c         | 15 ++-------------
- src/doit.c         | 15 ++-------------
- src/dso.c          | 15 ++-------------
- src/dwarf2.c       | 15 ++-------------
- src/dwarf2.h       | 15 ++-------------
- src/exec.c         | 15 ++-------------
- src/execle_open.c  | 15 ++-------------
- src/execstack.c    | 15 ++-------------
- src/fptr.c         | 15 ++-------------
- src/fptr.h         | 15 ++-------------
- src/gather.c       | 15 ++-------------
- src/get.c          | 15 ++-------------
- src/hashtab.c      | 17 ++---------------
- src/hashtab.h      | 16 +++-------------
- src/layout.c       | 15 ++-------------
- src/layout.h       | 15 ++-------------
- src/main.c         | 15 ++-------------
- src/md5.c          | 16 ++--------------
- src/md5.h          | 15 ++-------------
- src/mdebug.c       | 15 ++-------------
- src/prelink.c      | 15 ++-------------
- src/prelink.h      | 15 ++-------------
- src/prelinktab.h   | 15 ++-------------
- src/reloc-info.c   | 15 ++-------------
- src/reloc-info.h   | 15 ++-------------
- src/reloc.c        | 15 ++-------------
- src/reloc.h        | 15 ++-------------
- src/sha.c          |  4 ++++
- src/sha.h          |  4 ++++
- src/space.c        | 15 ++-------------
- src/space.h        | 15 ++-------------
- src/stabs.c        | 15 ++-------------
- src/undo.c         | 15 ++-------------
- src/undoall.c      | 15 ++-------------
- src/verify.c       | 15 ++-------------
- 56 files changed, 118 insertions(+), 696 deletions(-)
-
-diff --git a/README b/README
-index 2d8893b..5f91fab 100644
---- a/README
-+++ b/README
-@@ -13,8 +13,8 @@ Patch submission
- When submitting patches to the cross-prelink project, please do the
- following:
- 
--To: mark.hatle@windriver.com
--Cc: yocto@yoctoproject.org
-+To: mark.hatle@kernel.crashing.org
-+Cc: yocto@lists.yoctoproject.org
- 
- Subject: [prelink-cross] ....
- 
-diff --git a/src/arch-alpha.c b/src/arch-alpha.c
-index 7802a3e..bc5c192 100644
---- a/src/arch-alpha.c
-+++ b/src/arch-alpha.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2009 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/arch-arm.c b/src/arch-arm.c
-index eec7c57..b5ea886 100644
---- a/src/arch-arm.c
-+++ b/src/arch-arm.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2004, 2009, 2011, 2013 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/arch-cris.c b/src/arch-cris.c
-index 3272779..634bf9f 100644
---- a/src/arch-cris.c
-+++ b/src/arch-cris.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2004, 2009 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/arch-i386.c b/src/arch-i386.c
-index a1e0fcc..5a0b2ca 100644
---- a/src/arch-i386.c
-+++ b/src/arch-i386.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2009, 2011 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/arch-ia64.c b/src/arch-ia64.c
-index 6039115..56196de 100644
---- a/src/arch-ia64.c
-+++ b/src/arch-ia64.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2009 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/arch-mips.c b/src/arch-mips.c
-index 02c608f..2875ec3 100644
---- a/src/arch-mips.c
-+++ b/src/arch-mips.c
-@@ -2,20 +2,8 @@
-    Written by Richard Sandiford <richard@codesourcery.com>, 2006
-    Updated by Maciej W. Rozycki <macro@codesourcery.com>, 2008.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
--
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- /* GENERAL NOTES
- 
-    The psABI defines R_MIPS_REL32 as A - EA + S, where the value of EA
-diff --git a/src/arch-ppc.c b/src/arch-ppc.c
-index e22e5d5..e296d79 100644
---- a/src/arch-ppc.c
-+++ b/src/arch-ppc.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2009, 2011 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/arch-ppc64.c b/src/arch-ppc64.c
-index a764b99..3f2c375 100644
---- a/src/arch-ppc64.c
-+++ b/src/arch-ppc64.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2002, 2003, 2004, 2009 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2002.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/arch-s390.c b/src/arch-s390.c
-index e5fe130..1a65f5c 100644
---- a/src/arch-s390.c
-+++ b/src/arch-s390.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2009, 2010, 2013 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/arch-s390x.c b/src/arch-s390x.c
-index e4d82f7..926cfa2 100644
---- a/src/arch-s390x.c
-+++ b/src/arch-s390x.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2009, 2013 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/arch-sh.c b/src/arch-sh.c
-index 1b11312..a852266 100644
---- a/src/arch-sh.c
-+++ b/src/arch-sh.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2009 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/arch-sparc.c b/src/arch-sparc.c
-index e016a79..41b297d 100644
---- a/src/arch-sparc.c
-+++ b/src/arch-sparc.c
-@@ -1,19 +1,9 @@
- /* Copyright (C) 2001, 2002, 2004, 2009 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+/*
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/arch-sparc64.c b/src/arch-sparc64.c
-index aee4601..c6a1027 100644
---- a/src/arch-sparc64.c
-+++ b/src/arch-sparc64.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2004, 2009 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/arch-x86_64.c b/src/arch-x86_64.c
-index 2f6c551..249661a 100644
---- a/src/arch-x86_64.c
-+++ b/src/arch-x86_64.c
-@@ -3,19 +3,8 @@
-    Copyright (C) 2011 Wind River Systems, Inc.
-    x32 support by Mark Hatle <mark.hatle@windriver.com>
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/cache.c b/src/cache.c
-index 1cc3217..b476581 100644
---- a/src/cache.c
-+++ b/src/cache.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2006, 2013 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/canonicalize.c b/src/canonicalize.c
-index 79df44e..e94ec06 100644
---- a/src/canonicalize.c
-+++ b/src/canonicalize.c
-@@ -2,20 +2,8 @@
-    Copyright (C) 1996-2002, 2004, 2005, 2006 Free Software Foundation, Inc.
-    This file is part of the GNU C Library.
- 
--   The GNU C Library is free software; you can redistribute it and/or
--   modify it under the terms of the GNU Lesser General Public
--   License as published by the Free Software Foundation; either
--   version 2.1 of the License, or (at your option) any later version.
--
--   The GNU C Library is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
--   Lesser General Public License for more details.
--
--   You should have received a copy of the GNU Lesser General Public
--   License along with the GNU C Library; if not, write to the Free
--   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
--   02111-1307 USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <assert.h>
- #include <stdlib.h>
-diff --git a/src/checksum.c b/src/checksum.c
-index 20a23a0..5c80fc5 100644
---- a/src/checksum.c
-+++ b/src/checksum.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/conflict.c b/src/conflict.c
-index 5613ace..83713c5 100644
---- a/src/conflict.c
-+++ b/src/conflict.c
-@@ -3,19 +3,8 @@
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
-    Updated by Maciej W. Rozycki <macro@codesourcery.com>, 2008.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/crc32.c b/src/crc32.c
-index f36abb5..81e990b 100644
---- a/src/crc32.c
-+++ b/src/crc32.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <stdint.h>
-diff --git a/src/cxx.c b/src/cxx.c
-index 4391ebe..4b911a9 100644
---- a/src/cxx.c
-+++ b/src/cxx.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2007, 2009 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <alloca.h>
-diff --git a/src/data.c b/src/data.c
-index 751f96f..d648744 100644
---- a/src/data.c
-+++ b/src/data.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include "prelink.h"
-diff --git a/src/doit.c b/src/doit.c
-index 3784866..42e6819 100644
---- a/src/doit.c
-+++ b/src/doit.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2003, 2004, 2005, 2007 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <alloca.h>
-diff --git a/src/dso.c b/src/dso.c
-index 949abf9..9cce846 100644
---- a/src/dso.c
-+++ b/src/dso.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2006, 2010 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/dwarf2.c b/src/dwarf2.c
-index b9588b1..d230bb7 100644
---- a/src/dwarf2.c
-+++ b/src/dwarf2.c
-@@ -2,19 +2,8 @@
-    Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/dwarf2.h b/src/dwarf2.h
-index b0c80b6..888f2c7 100644
---- a/src/dwarf2.h
-+++ b/src/dwarf2.h
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2009, 2010, 2011, 2012 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #define DW_TAG_padding			0x00
- #define DW_TAG_array_type		0x01
-diff --git a/src/exec.c b/src/exec.c
-index ca7fd14..431690e 100644
---- a/src/exec.c
-+++ b/src/exec.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2006 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/execle_open.c b/src/execle_open.c
-index 2ee5cbc..0d4bef5 100644
---- a/src/execle_open.c
-+++ b/src/execle_open.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <errno.h>
-diff --git a/src/execstack.c b/src/execstack.c
-index 97fb453..fe044c5 100644
---- a/src/execstack.c
-+++ b/src/execstack.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2003, 2005, 2010 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2003.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <errno.h>
-diff --git a/src/fptr.c b/src/fptr.c
-index cfe3aed..65a2804 100644
---- a/src/fptr.c
-+++ b/src/fptr.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2007 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/fptr.h b/src/fptr.h
-index 36ef7c6..c4ce3f7 100644
---- a/src/fptr.h
-+++ b/src/fptr.h
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #ifndef FPTR_H
- #define FPTR_H
-diff --git a/src/gather.c b/src/gather.c
-index 277f1b5..0d1e7c4 100644
---- a/src/gather.c
-+++ b/src/gather.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2006, 2007 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/get.c b/src/get.c
-index 0659962..bb58b1e 100644
---- a/src/get.c
-+++ b/src/get.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2007, 2009 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/hashtab.c b/src/hashtab.c
-index fa27446..7dc389d 100644
---- a/src/hashtab.c
-+++ b/src/hashtab.c
-@@ -2,21 +2,8 @@
-    Copyright (C) 1999, 2000, 2001 Free Software Foundation, Inc.
-    Contributed by Vladimir Makarov (vmakarov@cygnus.com).
- 
--This file is part of the libiberty library.
--Libiberty is free software; you can redistribute it and/or
--modify it under the terms of the GNU Library General Public
--License as published by the Free Software Foundation; either
--version 2 of the License, or (at your option) any later version.
--
--Libiberty is distributed in the hope that it will be useful,
--but WITHOUT ANY WARRANTY; without even the implied warranty of
--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
--Library General Public License for more details.
--
--You should have received a copy of the GNU Library General Public
--License along with libiberty; see the file COPYING.LIB.  If
--not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
--Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- /* This package implements basic hash table functionality.  It is possible
-    to search for an entry, create an entry and destroy an entry.
-diff --git a/src/hashtab.h b/src/hashtab.h
-index 31e63e0..d3f297f 100644
---- a/src/hashtab.h
-+++ b/src/hashtab.h
-@@ -2,19 +2,8 @@
-    Copyright (C) 1999, 2000 Free Software Foundation, Inc.
-    Contributed by Vladimir Makarov (vmakarov@cygnus.com).
- 
--This program is free software; you can redistribute it and/or modify
--it under the terms of the GNU General Public License as published by
--the Free Software Foundation; either version 2 of the License, or
--(at your option) any later version.
--
--This program is distributed in the hope that it will be useful,
--but WITHOUT ANY WARRANTY; without even the implied warranty of
--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--GNU General Public License for more details.
--
--You should have received a copy of the GNU General Public License
--along with this program; if not, write to the Free Software
--Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- /* This package implements basic hash table functionality.  It is possible
-    to search for an entry, create an entry and destroy an entry.
-@@ -29,6 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-    expanded by creation of new hash table and transferring elements from
-    the old table to the new table.  */
- 
+diff --git a/__init__.py b/__init__.py
+index e69de29..d589fc3 100644
+--- a/__init__.py
++++ b/__init__.py
+@@ -0,0 +1 @@
++# SPDX-License-Identifier: MIT
+\ No newline at end of file
+diff --git a/docker/settings.py b/docker/settings.py
+index fb7d376..7330ab9 100644
+--- a/docker/settings.py
++++ b/docker/settings.py
+@@ -2,6 +2,8 @@
+ #
+ # Based on settings.py from the Django project template
+ # Copyright (c) Django Software Foundation and individual contributors.
++#
++# SPDX-License-Identifier: MIT
+ 
+ import os
+ 
+diff --git a/dockersetup.py b/dockersetup.py
+index 3cc8b2d..e45a846 100755
+--- a/dockersetup.py
++++ b/dockersetup.py
+@@ -6,6 +6,8 @@
+ # Author: Amber Elliot <amber.n.elliot@intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ # This script will make a cluster of 5 containers:
+ #
+diff --git a/layerindex/__init__.py b/layerindex/__init__.py
+index e69de29..83d0f2f 100644
+--- a/layerindex/__init__.py
++++ b/layerindex/__init__.py
+@@ -0,0 +1,5 @@
++# Copyright (C) 2014 Intel Corporation
++#
++# Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+\ No newline at end of file
+diff --git a/layerindex/admin.py b/layerindex/admin.py
+index 9ef781d..9ed6102 100644
+--- a/layerindex/admin.py
++++ b/layerindex/admin.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2013 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ from layerindex.models import *
+ from django.contrib import admin
+diff --git a/layerindex/auth_forms.py b/layerindex/auth_forms.py
+index fc3d2d1..7af48f9 100644
+--- a/layerindex/auth_forms.py
++++ b/layerindex/auth_forms.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2018 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ from captcha.fields import CaptchaField
+ from django import forms
+diff --git a/layerindex/auth_views.py b/layerindex/auth_views.py
+index 152f171..08e0334 100644
+--- a/layerindex/auth_views.py
++++ b/layerindex/auth_views.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2018 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ from django.contrib import messages
+ from django.contrib.auth import logout
+diff --git a/layerindex/bulkchange.py b/layerindex/bulkchange.py
+index 3d1ee2b..6382053 100644
+--- a/layerindex/bulkchange.py
++++ b/layerindex/bulkchange.py
+@@ -5,6 +5,8 @@
+ # Copyright (C) 2013, 2016, 2018 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import sys
+ import os
+diff --git a/layerindex/context_processors.py b/layerindex/context_processors.py
+index 3352e63..2cc0380 100644
+--- a/layerindex/context_processors.py
++++ b/layerindex/context_processors.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2013, 2018 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ from layerindex.models import Branch, LayerItem, SiteNotice
+ from django.contrib.sites.models import Site
+diff --git a/layerindex/forms.py b/layerindex/forms.py
+index 4061d4b..9615859 100644
+--- a/layerindex/forms.py
++++ b/layerindex/forms.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2013, 2016-2019 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import re
+ from collections import OrderedDict
+diff --git a/layerindex/layerconfparse.py b/layerindex/layerconfparse.py
+index a812140..84ec005 100644
+--- a/layerindex/layerconfparse.py
++++ b/layerindex/layerconfparse.py
+@@ -5,6 +5,7 @@
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
+ #
++# SPDX-License-Identifier: MIT
+ 
+ import sys
+ import os
+diff --git a/layerindex/middleware.py b/layerindex/middleware.py
+index afe34a3..527cc8b 100644
+--- a/layerindex/middleware.py
++++ b/layerindex/middleware.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2019 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ from django.utils.deprecation import MiddlewareMixin
+ from django.http import HttpResponseRedirect
+diff --git a/layerindex/models.py b/layerindex/models.py
+index 99c68e1..329cc33 100644
+--- a/layerindex/models.py
++++ b/layerindex/models.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2013-2018 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ from django.db import models
+ from datetime import datetime
+diff --git a/layerindex/querysethelper.py b/layerindex/querysethelper.py
+index 5a856ee..fb26a17 100644
+--- a/layerindex/querysethelper.py
++++ b/layerindex/querysethelper.py
+@@ -1,3 +1,11 @@
++# layerindex-web - queryset helper definitions
++#
++# Copyright (C) 2013-2018 Intel Corporation
++#
++# Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
 +
- #ifndef __HASHTAB_H__
- #define __HASHTAB_H__
+ import operator
+ import functools
+ from django.db.models import Q, CharField
+diff --git a/layerindex/recipedesc.py b/layerindex/recipedesc.py
+index 26280ee..be47f6e 100644
+--- a/layerindex/recipedesc.py
++++ b/layerindex/recipedesc.py
+@@ -4,6 +4,8 @@
+ #
+ # Copyright (C) 2012 Intel Corporation
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
++#
++# SPDX-License-Identifier: MIT
  
-diff --git a/src/layout.c b/src/layout.c
-index 859ab66..29be7a3 100644
---- a/src/layout.c
-+++ b/src/layout.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2006, 2011 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ import sys
+ import os.path
+diff --git a/layerindex/recipeparse.py b/layerindex/recipeparse.py
+index 35867ad..62c08e9 100644
+--- a/layerindex/recipeparse.py
++++ b/layerindex/recipeparse.py
+@@ -4,6 +4,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
  
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <alloca.h>
-diff --git a/src/layout.h b/src/layout.h
-index f481d22..1b10bc0 100644
---- a/src/layout.h
-+++ b/src/layout.h
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2004, 2006 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #ifndef LAYOUT_H
- #define LAYOUT_H
-diff --git a/src/main.c b/src/main.c
-index 6ba89d5..39e44ad 100644
---- a/src/main.c
-+++ b/src/main.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2007, 2010, 2011 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <errno.h>
-diff --git a/src/md5.c b/src/md5.c
-index 0d2fdef..19a8e0b 100644
---- a/src/md5.c
-+++ b/src/md5.c
-@@ -4,21 +4,9 @@
-    NOTE: The canonical source of this file is maintained with the GNU C
-    Library.  Bugs can be reported to bug-glibc@prep.ai.mit.edu.
- 
--   This program is free software; you can redistribute it and/or modify it
--   under the terms of the GNU General Public License as published by the
--   Free Software Foundation; either version 2, or (at your option) any
--   later version.
- 
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
--
--/* Written by Ulrich Drepper <drepper@gnu.ai.mit.edu>, 1995.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <sys/types.h>
- #include <stdlib.h>
-diff --git a/src/md5.h b/src/md5.h
-index 55f6195..eb0b85e 100644
---- a/src/md5.h
-+++ b/src/md5.h
-@@ -4,19 +4,8 @@
-    NOTE: The canonical source of this file is maintained with the GNU C
-    Library.  Bugs can be reported to bug-glibc@prep.ai.mit.edu.
- 
--   This program is free software; you can redistribute it and/or modify it
--   under the terms of the GNU General Public License as published by the
--   Free Software Foundation; either version 2, or (at your option) any
--   later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #ifndef _MD5_H
- #define _MD5_H 1
-diff --git a/src/mdebug.c b/src/mdebug.c
-index 4c22d2f..eb6d1b5 100644
---- a/src/mdebug.c
-+++ b/src/mdebug.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/prelink.c b/src/prelink.c
-index 64c4fea..bf774c9 100644
---- a/src/prelink.c
-+++ b/src/prelink.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2006, 2007 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/prelink.h b/src/prelink.h
-index 39c4390..4c4c243 100644
---- a/src/prelink.h
-+++ b/src/prelink.h
-@@ -4,19 +4,8 @@
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
-    Updated by Maciej W. Rozycki <macro@codesourcery.com>, 2008.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #ifndef PRELINK_H
- #define PRELINK_H
-diff --git a/src/prelinktab.h b/src/prelinktab.h
-index f41c79c..a404292 100644
---- a/src/prelinktab.h
-+++ b/src/prelinktab.h
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #ifndef PRELINKTAB_H
- #define PRELINKTAB_H
-diff --git a/src/reloc-info.c b/src/reloc-info.c
-index 4ce333c..d51cfc1 100644
---- a/src/reloc-info.c
-+++ b/src/reloc-info.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2008 CodeSourcery
-    Written by Maciej W. Rozycki <macro@codesourcery.com>, 2008.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- 
-diff --git a/src/reloc-info.h b/src/reloc-info.h
-index a8f8b7c..592a92c 100644
---- a/src/reloc-info.h
-+++ b/src/reloc-info.h
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2008 CodeSourcery
-    Written by Maciej W. Rozycki <macro@codesourcery.com>, 2008.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #ifndef RELOC_INFO_H
- #define RELOC_INFO_H
-diff --git a/src/reloc.c b/src/reloc.c
-index deb0abe..9883dc7 100644
---- a/src/reloc.c
-+++ b/src/reloc.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2005 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #include <config.h>
- #include <assert.h>
-diff --git a/src/reloc.h b/src/reloc.h
-index a2ceff9..ee91f7e 100644
---- a/src/reloc.h
-+++ b/src/reloc.h
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
- 
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
- 
- #ifndef RELOC_H
- #define RELOC_H
-diff --git a/src/sha.c b/src/sha.c
-index cfbc956..f979bc4 100644
---- a/src/sha.c
-+++ b/src/sha.c
-@@ -1,3 +1,7 @@
-+/*
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
+ import sys
+ import os
+diff --git a/layerindex/restperm.py b/layerindex/restperm.py
+index fb9f715..5d74c66 100644
+--- a/layerindex/restperm.py
++++ b/layerindex/restperm.py
+@@ -1,3 +1,9 @@
++# Copyright (C) 2013-2018 Intel Corporation
++#
++# Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
 +
- /* sha.c - Functions to compute the SHA1 hash (message-digest) of files
-    or blocks of memory.  Complies to the NIST specification FIPS-180-1.
+ from rest_framework import permissions
  
-diff --git a/src/sha.h b/src/sha.h
-index 13583e3..810072b 100644
---- a/src/sha.h
-+++ b/src/sha.h
-@@ -1,3 +1,7 @@
-+/*
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
+ class ReadOnlyPermission(permissions.BasePermission):
+diff --git a/layerindex/restviews.py b/layerindex/restviews.py
+index 7de4cd7..91779f5 100644
+--- a/layerindex/restviews.py
++++ b/layerindex/restviews.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2014, 2016-2019 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ from layerindex.models import Branch, LayerItem, LayerMaintainer, YPCompatibleVersion, LayerNote, LayerBranch, LayerDependency, Recipe, Machine, Distro, BBClass, Source, Patch, PackageConfig, StaticBuildDep, DynamicBuildDep, RecipeFileDependency, BBAppend, IncFile
+ from rest_framework import viewsets, serializers, pagination
+diff --git a/layerindex/securityquestions.py b/layerindex/securityquestions.py
+index a6a0e1c..1883b11 100644
+--- a/layerindex/securityquestions.py
++++ b/layerindex/securityquestions.py
+@@ -1,3 +1,11 @@
++# layerindex-web - Security Questions
++#
++# Copyright (C) 2013-2018 Intel Corporation
++#
++# Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
 +
- /* sha.h - Declaration of functions and datatypes for SHA1 sum computing
-    library functions.
+ security_questions = ["What was the name of your first pet?",
+                        "What was the last name of your third grade teacher?",
+                        "What is your favorite pizza topping?",
+diff --git a/layerindex/tasks.py b/layerindex/tasks.py
+index ae62b91..da85539 100644
+--- a/layerindex/tasks.py
++++ b/layerindex/tasks.py
+@@ -4,6 +4,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
  
-diff --git a/src/space.c b/src/space.c
-index 4bd4760..8223daf 100644
---- a/src/space.c
-+++ b/src/space.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2004, 2006, 2007 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ from celery import Celery
+ from django.core.mail import EmailMessage
+diff --git a/layerindex/templatetags/__init__.py b/layerindex/templatetags/__init__.py
+index e69de29..c88e412 100644
+--- a/layerindex/templatetags/__init__.py
++++ b/layerindex/templatetags/__init__.py
+@@ -0,0 +1,5 @@
++# Copyright (C) 2017, 2018 Intel Corporation
++#
++# Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+\ No newline at end of file
+diff --git a/layerindex/templatetags/extrafilters.py b/layerindex/templatetags/extrafilters.py
+index d79f9a1..2a9e764 100644
+--- a/layerindex/templatetags/extrafilters.py
++++ b/layerindex/templatetags/extrafilters.py
+@@ -1,3 +1,9 @@
++# Copyright (C) 2017, 2018 Intel Corporation
++#
++# Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
++
+ from django import template
+ from .. import utils
  
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
+diff --git a/layerindex/tools/fedora-fetch.py b/layerindex/tools/fedora-fetch.py
+index 492082a..a16fc80 100755
+--- a/layerindex/tools/fedora-fetch.py
++++ b/layerindex/tools/fedora-fetch.py
+@@ -5,6 +5,8 @@
+ # Copyright (C) 2017, 2018 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
  
- #include <config.h>
- #include <assert.h>
-diff --git a/src/space.h b/src/space.h
-index 5c9f725..59d087c 100644
---- a/src/space.h
-+++ b/src/space.h
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2004 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ import sys
+ import os
+diff --git a/layerindex/tools/fixup_duplicates.py b/layerindex/tools/fixup_duplicates.py
+index 5abe2c2..6c60959 100644
+--- a/layerindex/tools/fixup_duplicates.py
++++ b/layerindex/tools/fixup_duplicates.py
+@@ -6,6 +6,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
  
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
  
- #ifndef SPACE_H
- #define SPACE_H
-diff --git a/src/stabs.c b/src/stabs.c
-index c0a5a6a..fd0ca28 100644
---- a/src/stabs.c
-+++ b/src/stabs.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2005, 2006 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ import sys
+diff --git a/layerindex/tools/github-fetch.py b/layerindex/tools/github-fetch.py
+index 11c977a..0dbe509 100755
+--- a/layerindex/tools/github-fetch.py
++++ b/layerindex/tools/github-fetch.py
+@@ -5,6 +5,8 @@
+ # Copyright (C) 2017 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
  
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
+ import sys
+ import os
+diff --git a/layerindex/tools/import_classic.py b/layerindex/tools/import_classic.py
+index fca054c..0216221 100755
+--- a/layerindex/tools/import_classic.py
++++ b/layerindex/tools/import_classic.py
+@@ -6,6 +6,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
  
- #include <config.h>
- #include <assert.h>
-diff --git a/src/undo.c b/src/undo.c
-index 4c38dab..e6cfae3 100644
---- a/src/undo.c
-+++ b/src/undo.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2001, 2002, 2003, 2005, 2010 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
  
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
+ import sys
+diff --git a/layerindex/tools/import_classic_wiki.py b/layerindex/tools/import_classic_wiki.py
+index bfebcd9..aa33b7a 100755
+--- a/layerindex/tools/import_classic_wiki.py
++++ b/layerindex/tools/import_classic_wiki.py
+@@ -7,6 +7,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
  
- #include <config.h>
- #include <assert.h>
-diff --git a/src/undoall.c b/src/undoall.c
-index 55d2a0b..44a0b4e 100644
---- a/src/undoall.c
-+++ b/src/undoall.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2002, 2005 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2002.
+ import sys
+ import os.path
+diff --git a/layerindex/tools/import_layer.py b/layerindex/tools/import_layer.py
+index ace58e5..dfe887c 100755
+--- a/layerindex/tools/import_layer.py
++++ b/layerindex/tools/import_layer.py
+@@ -6,6 +6,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
  
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
  
- #include <config.h>
- #include <alloca.h>
-diff --git a/src/verify.c b/src/verify.c
-index 7f530c0..991794a 100644
---- a/src/verify.c
-+++ b/src/verify.c
-@@ -1,19 +1,8 @@
- /* Copyright (C) 2002, 2003, 2006, 2007, 2010 Red Hat, Inc.
-    Written by Jakub Jelinek <jakub@redhat.com>, 2002.
+ import sys
+diff --git a/layerindex/tools/import_layers.py b/layerindex/tools/import_layers.py
+index 3548568..57b0f86 100755
+--- a/layerindex/tools/import_layers.py
++++ b/layerindex/tools/import_layers.py
+@@ -6,6 +6,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
  
--   This program is free software; you can redistribute it and/or modify
--   it under the terms of the GNU General Public License as published by
--   the Free Software Foundation; either version 2, or (at your option)
--   any later version.
--
--   This program is distributed in the hope that it will be useful,
--   but WITHOUT ANY WARRANTY; without even the implied warranty of
--   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--   GNU General Public License for more details.
--
--   You should have received a copy of the GNU General Public License
--   along with this program; if not, write to the Free Software Foundation,
--   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*/
  
- #include <config.h>
- #include <assert.h>
+ import sys
+diff --git a/layerindex/tools/import_otherdistro.py b/layerindex/tools/import_otherdistro.py
+index 46eeeca..0c6640f 100755
+--- a/layerindex/tools/import_otherdistro.py
++++ b/layerindex/tools/import_otherdistro.py
+@@ -6,6 +6,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ 
+ import sys
+diff --git a/layerindex/tools/import_project.py b/layerindex/tools/import_project.py
+index 27a0de3..44cf6cc 100755
+--- a/layerindex/tools/import_project.py
++++ b/layerindex/tools/import_project.py
+@@ -9,6 +9,8 @@
+ # Author: Liam R. Howlett <liam.howlett@windriver.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ from urllib.parse import urlparse
+ import logging
+diff --git a/layerindex/tools/import_wiki_layers.py b/layerindex/tools/import_wiki_layers.py
+index 71f26ea..707d90e 100755
+--- a/layerindex/tools/import_wiki_layers.py
++++ b/layerindex/tools/import_wiki_layers.py
+@@ -6,6 +6,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ 
+ import sys
+diff --git a/layerindex/tools/site_name.py b/layerindex/tools/site_name.py
+index 836a0c1..e1cff02 100755
+--- a/layerindex/tools/site_name.py
++++ b/layerindex/tools/site_name.py
+@@ -6,6 +6,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import sys
+ import os
+diff --git a/layerindex/tools/update_classic_status.py b/layerindex/tools/update_classic_status.py
+index 4edfc75..0bcf2e7 100755
+--- a/layerindex/tools/update_classic_status.py
++++ b/layerindex/tools/update_classic_status.py
+@@ -6,6 +6,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import sys
+ import os
+diff --git a/layerindex/tools/webapi-test.py b/layerindex/tools/webapi-test.py
+index 20fc36b..562fbe2 100755
+--- a/layerindex/tools/webapi-test.py
++++ b/layerindex/tools/webapi-test.py
+@@ -5,6 +5,8 @@
+ # Copyright (C) 2019 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import sys
+ import os
+diff --git a/layerindex/update.py b/layerindex/update.py
+index e2aa96e..5a2642b 100755
+--- a/layerindex/update.py
++++ b/layerindex/update.py
+@@ -6,6 +6,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ 
+ import sys
+diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
+index 1e5950c..42f99be 100644
+--- a/layerindex/update_layer.py
++++ b/layerindex/update_layer.py
+@@ -6,6 +6,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ 
+ import sys
+diff --git a/layerindex/urls.py b/layerindex/urls.py
+index ab2d028..7264b11 100644
+--- a/layerindex/urls.py
++++ b/layerindex/urls.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2013, 2018 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ from django.conf.urls import *
+ from django.views.generic import TemplateView, DetailView, ListView, RedirectView
+diff --git a/layerindex/urls_branch.py b/layerindex/urls_branch.py
+index 9756f90..86b8b77 100644
+--- a/layerindex/urls_branch.py
++++ b/layerindex/urls_branch.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2013-2016 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ from django.conf.urls import *
+ from django.views.defaults import page_not_found
+diff --git a/layerindex/utils.py b/layerindex/utils.py
+index 2a1689b..9e28668 100644
+--- a/layerindex/utils.py
++++ b/layerindex/utils.py
+@@ -4,6 +4,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import sys
+ import os
+diff --git a/layerindex/views.py b/layerindex/views.py
+index 83adb6a..91b3280 100644
+--- a/layerindex/views.py
++++ b/layerindex/views.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2013-2018 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import os
+ import sys
+diff --git a/manage.py b/manage.py
+index a815fa3..0c073ac 100755
+--- a/manage.py
++++ b/manage.py
+@@ -6,6 +6,8 @@
+ #
+ # Copyright (c) Django Software Foundation and individual contributors.
+ # All rights reserved.
++#
++# SPDX-License-Identifier: MIT
+ 
+ import os
+ import sys
+diff --git a/password_validation.py b/password_validation.py
+index 8669250..8c2fbbe 100644
+--- a/password_validation.py
++++ b/password_validation.py
+@@ -1,3 +1,8 @@
++# Copyright (c) Django Software Foundation and individual contributors.
++# All rights reserved.
++#
++# SPDX-License-Identifier: MIT
++
+ from django.core.exceptions import ValidationError
+ from django.utils.translation import ugettext as _
+ 
+diff --git a/pytest.ini b/pytest.ini
+index c067b05..a8d7834 100644
+--- a/pytest.ini
++++ b/pytest.ini
+@@ -1,3 +1,8 @@
++# Copyright (c) Django Software Foundation and individual contributors.
++# All rights reserved.
++#
++# SPDX-License-Identifier: MIT
++
+ [pytest]
+ DJANGO_SETTINGS_MODULE = settings
+ norecursedirs = .git layers
+diff --git a/rrs/__init__.py b/rrs/__init__.py
+index 3eab2fe..e2e9143 100644
+--- a/rrs/__init__.py
++++ b/rrs/__init__.py
+@@ -1,2 +1,7 @@
++# Copyright (C) 2014 Intel Corporation
++#
++# Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ default_app_config = 'rrs.apps.RecipeReportingSystemConfig'
+diff --git a/rrs/admin.py b/rrs/admin.py
+index a4712f2..402279f 100644
+--- a/rrs/admin.py
++++ b/rrs/admin.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2014 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ from django.utils.functional import curry
+ 
+diff --git a/rrs/apps.py b/rrs/apps.py
+index ea25060..1230718 100644
+--- a/rrs/apps.py
++++ b/rrs/apps.py
+@@ -1,3 +1,9 @@
++# Copyright (C) 2014 Intel Corporation
++#
++# Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
++
+ from django.apps import AppConfig
+ 
+ 
+diff --git a/rrs/context_processors.py b/rrs/context_processors.py
+index 0d79bd1..52e2c30 100644
+--- a/rrs/context_processors.py
++++ b/rrs/context_processors.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2014 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import settings
+ from django.contrib.sites.models import Site
+diff --git a/rrs/models.py b/rrs/models.py
+index ba7e63c..f1bb527 100644
+--- a/rrs/models.py
++++ b/rrs/models.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2014 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import sys
+ import os
+diff --git a/rrs/tools/common.py b/rrs/tools/common.py
+index 6149792..1ce5dd5 100644
+--- a/rrs/tools/common.py
++++ b/rrs/tools/common.py
+@@ -4,6 +4,8 @@
+ # Author: Anibal Limon <anibal.limon@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import sys
+ import os
+diff --git a/rrs/tools/dump_upgrades.py b/rrs/tools/dump_upgrades.py
+index 011b91e..982f5a3 100755
+--- a/rrs/tools/dump_upgrades.py
++++ b/rrs/tools/dump_upgrades.py
+@@ -5,6 +5,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ 
+ import sys
+diff --git a/rrs/tools/historytool.py b/rrs/tools/historytool.py
+index 06456d1..9f03ade 100755
+--- a/rrs/tools/historytool.py
++++ b/rrs/tools/historytool.py
+@@ -6,6 +6,8 @@
+ # Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ 
+ import sys
+diff --git a/rrs/tools/rrs_distros.py b/rrs/tools/rrs_distros.py
+index e803328..e4c6045 100755
+--- a/rrs/tools/rrs_distros.py
++++ b/rrs/tools/rrs_distros.py
+@@ -6,6 +6,8 @@
+ # Author: Anibal Limon <anibal.limon@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import sys
+ import os.path
+diff --git a/rrs/tools/rrs_maintainer_history.py b/rrs/tools/rrs_maintainer_history.py
+index b5cc510..15e1d17 100755
+--- a/rrs/tools/rrs_maintainer_history.py
++++ b/rrs/tools/rrs_maintainer_history.py
+@@ -6,6 +6,8 @@
+ # Author: Anibal Limon <anibal.limon@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import sys
+ import os.path
+diff --git a/rrs/tools/rrs_upgrade_history.py b/rrs/tools/rrs_upgrade_history.py
+index 5070cc2..9b74a05 100755
+--- a/rrs/tools/rrs_upgrade_history.py
++++ b/rrs/tools/rrs_upgrade_history.py
+@@ -9,6 +9,8 @@
+ #          Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import sys
+ import os.path
+diff --git a/rrs/tools/rrs_upstream_email.py b/rrs/tools/rrs_upstream_email.py
+index 0c3dbe2..8a6b188 100755
+--- a/rrs/tools/rrs_upstream_email.py
++++ b/rrs/tools/rrs_upstream_email.py
+@@ -7,6 +7,8 @@
+ # Author: Aníbal Limón <anibal.limon@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import sys
+ import os.path
+diff --git a/rrs/tools/rrs_upstream_history.py b/rrs/tools/rrs_upstream_history.py
+index 4451c15..7dbf64c 100755
+--- a/rrs/tools/rrs_upstream_history.py
++++ b/rrs/tools/rrs_upstream_history.py
+@@ -6,6 +6,8 @@
+ # Author: Anibal Limon <anibal.limon@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ import sys
+ import os.path
+diff --git a/rrs/tools/upgrade_history_internal.py b/rrs/tools/upgrade_history_internal.py
+index f48ea71..e3a96d9 100644
+--- a/rrs/tools/upgrade_history_internal.py
++++ b/rrs/tools/upgrade_history_internal.py
+@@ -7,6 +7,8 @@
+ #          Paul Eggleton <paul.eggleton@linux.intel.com>
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ 
+ import sys
+diff --git a/rrs/urls.py b/rrs/urls.py
+index 30d86b7..63426a9 100644
+--- a/rrs/urls.py
++++ b/rrs/urls.py
+@@ -1,3 +1,11 @@
++# rrs-web - URLS
++#
++# Copyright (C) 2014 Intel Corporation
++#
++# Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
++
+ from django.conf.urls import include, url
+ 
+ from rrs.models import Release, Milestone
+diff --git a/rrs/views.py b/rrs/views.py
+index 9c36a48..68fc4f9 100644
+--- a/rrs/views.py
++++ b/rrs/views.py
+@@ -1,3 +1,11 @@
++# rrs-web - views
++#
++# Copyright (C) 2014 Intel Corporation
++#
++# Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
++
+ import urllib
+ 
+ import csv
+diff --git a/rrs/wsgi.py b/rrs/wsgi.py
+index 1d7e7b7..c25232e 100644
+--- a/rrs/wsgi.py
++++ b/rrs/wsgi.py
+@@ -1,3 +1,9 @@
++# Copyright (C) 2014 Intel Corporation
++#
++# Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
++
+ import os
+ 
+ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+diff --git a/settings.py b/settings.py
+index 525a0c1..1dd6ebc 100644
+--- a/settings.py
++++ b/settings.py
+@@ -2,6 +2,8 @@
+ #
+ # Based on settings.py from the Django project template
+ # Copyright (c) Django Software Foundation and individual contributors.
++#
++# SPDX-License-Identifier: MIT
+ 
+ import os
+ 
+diff --git a/tests/test_update.py b/tests/test_update.py
+index e00775d..588b2ed 100644
+--- a/tests/test_update.py
++++ b/tests/test_update.py
+@@ -3,6 +3,8 @@
+ # Copyright (C) 2018 Intel Corporation
+ #
+ # Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
+ 
+ # NOTE: requires pytest-django. Run using "pytest" from the root
+ # of the repository (add -s to avoid suppressing the output of commands
+diff --git a/urls.py b/urls.py
+index 67d64b2..76f2f73 100644
+--- a/urls.py
++++ b/urls.py
+@@ -4,6 +4,8 @@
+ #
+ # Copyright (c) Django Software Foundation and individual contributors.
+ # All rights reserved.
++#
++# SPDX-License-Identifier: MIT
+ 
+ from django.conf.urls import include, url
+ from django.urls import reverse_lazy
+diff --git a/wsgi.py b/wsgi.py
+index 99f0915..b0d82ac 100644
+--- a/wsgi.py
++++ b/wsgi.py
+@@ -1,3 +1,8 @@
++# Copyright (c) Django Software Foundation and individual contributors.
++# All rights reserved.
++#
++# SPDX-License-Identifier: MIT
++
+ import os, sys
+ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+ sys.path.append('/var/www/html/layerindex')
 -- 
 2.17.1
 
