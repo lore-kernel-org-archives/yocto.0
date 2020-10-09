@@ -1,114 +1,93 @@
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
- by mx.groups.io with SMTP id smtpd.web12.14590.1602252496267087788
+Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com [209.85.215.195])
+ by mx.groups.io with SMTP id smtpd.web10.14658.1602252496840757030
  for <yocto@lists.yoctoproject.org>;
  Fri, 09 Oct 2020 07:08:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=BE6N3fT6;
- spf=pass (domain: gmail.com, ip: 209.85.215.171, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f171.google.com with SMTP id g29so7282701pgl.2
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=uWKyMksQ;
+ spf=pass (domain: gmail.com, ip: 209.85.215.195, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f195.google.com with SMTP id 7so7242862pgm.11
         for <yocto@lists.yoctoproject.org>; Fri, 09 Oct 2020 07:08:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=N7FXqgVarlTFsX0K0AolqHUsxe94yEJF8D0dndcKKrY=;
-        b=BE6N3fT6F5JzN80QFIJFtWkZcGy0WE8Ksv4UJOSBjlbZ4K9jd826VAPxlwLIzl3/ry
-         r0NnoIRDIL793IYDwcj4grBt72OWW2sOcrvLtjZu7m/KNW5s1HHRjh1foDbnZZS1a+ZZ
-         wsc2IzjSTVt1+9ZJg9xKNYpNFtZmj/QVD+cYcjEOmmbMp2WI35S+HLFCN+y2jHIH15NG
-         xAJn5DWDohGHoG5+IjNqYukccPGY56wTkK1wDaTK6aTqfcgB7m1WIuXyW2pEGKnJSxNL
-         i5CUBYotj1kC1RvwLwdozyvtCcnuFZXwxkkuus9jsY+Suya2X01DR8ANtq6AabiALR2C
-         n7Gw==
+        bh=xNZbbUtxp3Dsup11XTqE+9CFfF9Fd9fE4g1FEquJWcs=;
+        b=uWKyMksQWjHtX5IL/ADaUppSo7IRNU9ZdpFDW38zRbdCSMyoMD4ilETYZjzJwVdCA4
+         iP4AwyQbQDxeYrYCiwMW9ppw82VyLfN3+ci5GuQdD4+h1XQg3tspK9iMSo6ekFD22A42
+         9SctYOx6WtolV97uW3EkPm5NLQ1sPz3UWU2KlwxuQ8/ASSl6sccS2OS9Pb6ew6U/g2nI
+         DNBs2bOcHcpAucKa/yqRLt6HU56wI/R4RD58EvSzfR+m4PUPBwQgc74qwflwcTzwc0Pe
+         Up6vTWC5RPsHerbgFj/hlZ5UGVp1zcAo821AX7JHNFTrTEb70vEBTCgdFhHyybDDTm/B
+         JKkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=N7FXqgVarlTFsX0K0AolqHUsxe94yEJF8D0dndcKKrY=;
-        b=gbxzMxi2F7M5P8zIYP8tydp8WVgIA83m0El9uucy2T6xQdm+sX4Ql+JXFrxXfnLy1I
-         W8xLpwQ22Wacd1r19ZfW/FGzq7HHW2Avf3/DT63LrY8r8Uuu8/Tk0Q+VDP61hoixF9XZ
-         55XvuT4Y3wu0avktyZtdIYX4bWfCDVM0zZ5pKzyBmtEcgqpg3O91EsUYn8nbmDM4y5uF
-         mdsj43Sv1y0nLAYFwsuTQAf0EAh+WyoTBiwZJHjlUbwAaI4eqxsDEpKjn6UzuXeIGnL/
-         XAmX4kAzsQNz/DjUIH9I0LunXmkx5gl64z56bHX8aPJmQQfQKgruxA6YmuxZz+3eKMVb
-         8/ng==
-X-Gm-Message-State: AOAM5318Zt65WMw0Vi6RJzv2ojxZ360ve7nf4mROU33NVcw/+HAouvFc
-	Id8K0S2+TqOcnWfp9QGy/qaLR6B7Rv0=
-X-Google-Smtp-Source: ABdhPJzYCX7azvJ7WmxrOUTmpkasnixRxLJOkmcd+JQ99DxyvWUQu8pxYCHfC8akjWR50r+xFaPrFQ==
-X-Received: by 2002:a17:90a:e98b:: with SMTP id v11mr4771798pjy.97.1602252495374;
-        Fri, 09 Oct 2020 07:08:15 -0700 (PDT)
+        bh=xNZbbUtxp3Dsup11XTqE+9CFfF9Fd9fE4g1FEquJWcs=;
+        b=FF6lo7euGfzDgS21zjcvy9mUIpLBQtAA1x/V801bBecxkk0Kap0m/akVz/4reNZ7Wq
+         kKvmjqNr4LDr1atE7MP935cMSND3r8niP24Wr8CToSQRRcTHVUwPqZqZ1kBAgZPSsbTC
+         i2QSF6JeaKwdaD+J7P1OE81QRWFH9zPNNIytDfeWWwiHOhxBSL6Tois68uh6+xIK+06s
+         Vlu3j7pJPTpg6uV59xT/7GgWOz+ifF2zJZqOhtP5Y7tuVQiqpu4ggBKrlFqnOIstmD7q
+         v/ugQjweuiwwR8TdDd6ccwroar6BYKb/90w6shyC9MfNwPtwjIKcpjYsLfbKnI2pCrDX
+         qmig==
+X-Gm-Message-State: AOAM531NByp1N4Kqr5y72cQW+oNfk6RbrBJIrFJSwtypQvBn3sDk4TM4
+	cNi3oum2yVF7zT+dLHjIC/SlUbqAzZ0=
+X-Google-Smtp-Source: ABdhPJym7h/mPJPBTZknqZ0JaQYL5O3K3lXVv+hKGPSk2f0QZb6324DgsUQWF4qLX/8Wuux3TKsmpw==
+X-Received: by 2002:aa7:8397:0:b029:13e:d13d:a07c with SMTP id u23-20020aa783970000b029013ed13da07cmr11900889pfm.19.1602252496258;
+        Fri, 09 Oct 2020 07:08:16 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net ([2601:202:4180:a5c0:f1c6:e45a:6950:664b])
-        by smtp.gmail.com with ESMTPSA id k9sm10119710pfc.96.2020.10.09.07.08.14
+        by smtp.gmail.com with ESMTPSA id k9sm10119710pfc.96.2020.10.09.07.08.15
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 09 Oct 2020 07:08:15 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/7] gitlab-ci: add qemux86 and qemuarm64 musl builds
-Date: Fri,  9 Oct 2020 07:08:07 -0700
-Message-Id: <20201009140812.21765-2-akuster808@gmail.com>
+Subject: [meta-security][PATCH 3/7] ecryptfs-utils: fix musl build
+Date: Fri,  9 Oct 2020 07:08:08 -0700
+Message-Id: <20201009140812.21765-3-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201009140812.21765-1-akuster808@gmail.com>
 References: <20201009140812.21765-1-akuster808@gmail.com>
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .gitlab-ci.yml         |  9 +++++++++
- kas/qemuarm64-musl.yml | 10 ++++++++++
- kas/qemux86-musl.yml   | 10 ++++++++++
- 3 files changed, 29 insertions(+)
- create mode 100644 kas/qemuarm64-musl.yml
- create mode 100644 kas/qemux86-musl.yml
+ .../ecryptfs-utils/ecryptfs-utils_111.bb          |  1 +
+ .../files/define_musl_sword_type.patch            | 15 +++++++++++++++
+ 2 files changed, 16 insertions(+)
+ create mode 100644 recipes-security/ecryptfs-utils/files/define_musl_sword_type.patch
 
-diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
-index 0be5741..50bfe4f 100644
---- a/.gitlab-ci.yml
-+++ b/.gitlab-ci.yml
-@@ -126,6 +126,15 @@ qemux86-64-multi:
-   script:
-   - kas build --target security-build-image kas/$CI_JOB_NAME.yml 
+diff --git a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
+index d8cd06f..4a99b5a 100644
+--- a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
++++ b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
+@@ -16,6 +16,7 @@ SRC_URI = "\
+     file://ecryptfs-utils-CVE-2016-6224.patch \
+     file://0001-avoid-race-condition.patch \
+     file://ecryptfs.service \
++    file://define_musl_sword_type.patch \
+     "
  
-+qemux86-musl:
-+  extends: .build
-+  script:
-+  - kas build --target security-build-image kas/$CI_JOB_NAME.yml 
-+
-+qemuarm64-musl:
-+  extends: .build
-+  script:
-+  - kas build --target security-build-image kas/$CI_JOB_NAME.yml 
- 
- qemux86-test:
-   extends: .build
-diff --git a/kas/qemuarm64-musl.yml b/kas/qemuarm64-musl.yml
+ SRC_URI[md5sum] = "83513228984f671930752c3518cac6fd"
+diff --git a/recipes-security/ecryptfs-utils/files/define_musl_sword_type.patch b/recipes-security/ecryptfs-utils/files/define_musl_sword_type.patch
 new file mode 100644
-index 0000000..b353eb4
+index 0000000..3b29be0
 --- /dev/null
-+++ b/kas/qemuarm64-musl.yml
-@@ -0,0 +1,10 @@
-+header:
-+  version: 8
-+  includes:
-+    - kas-security-base.yml
-+
-+local_conf_header:
-+    musl: |
-+        TCLIBC = "musl"
-+
-+machine: qemuarm64
-diff --git a/kas/qemux86-musl.yml b/kas/qemux86-musl.yml
-new file mode 100644
-index 0000000..61d9572
---- /dev/null
-+++ b/kas/qemux86-musl.yml
-@@ -0,0 +1,10 @@
-+header:
-+  version: 8
-+  includes:
-+    - kas-security-base.yml
-+
-+local_conf_header:
-+    musl: |
-+        TCLIBC = "musl"
-+
-+machine: qemux86
++++ b/recipes-security/ecryptfs-utils/files/define_musl_sword_type.patch
+@@ -0,0 +1,15 @@
++Index: ecryptfs-utils-111/src/utils/mount.ecryptfs_private.c
++===================================================================
++--- ecryptfs-utils-111.orig/src/utils/mount.ecryptfs_private.c
+++++ ecryptfs-utils-111/src/utils/mount.ecryptfs_private.c
++@@ -45,6 +45,10 @@
++ #include <values.h>
++ #include "../include/ecryptfs.h"
++ 
+++#ifndef __SWORD_TYPE
+++typedef __typeof__( ((struct statfs *)0)->f_type )	__SWORD_TYPE;
+++#endif
+++
++ /* Perhaps a future version of this program will allow these to be configurable
++  * by the system administrator (or user?) at run time.  For now, these are set
++  * to reasonable values to reduce the burden of input validation.
 -- 
 2.17.1
 
