@@ -1,50 +1,49 @@
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
- by mx.groups.io with SMTP id smtpd.web11.15080.1602253634663864629
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+ by mx.groups.io with SMTP id smtpd.web11.15199.1602253953312998841
  for <yocto@lists.yoctoproject.org>;
- Fri, 09 Oct 2020 07:27:14 -0700
+ Fri, 09 Oct 2020 07:32:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=c3g9nrxu;
- spf=pass (domain: gmail.com, ip: 209.85.214.175, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f175.google.com with SMTP id h2so4523531pll.11
-        for <yocto@lists.yoctoproject.org>; Fri, 09 Oct 2020 07:27:14 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ZKlWdWbC;
+ spf=pass (domain: gmail.com, ip: 209.85.210.172, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f172.google.com with SMTP id y14so7013610pfp.13
+        for <yocto@lists.yoctoproject.org>; Fri, 09 Oct 2020 07:32:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=vlK4MnZtVcFr5iHvHXVxU+sZ+bRUpY2XhYCVMHl0jYI=;
-        b=c3g9nrxuxoLCY751cEfOtXyD99dCW+fRycpFmVYpJ/RScY98kgiKlHUaFP9+stoGam
-         OKzz4xS+YyOcyePUiYeGOJ3aIvtR+FIfuu5Lls1C8t8uqKD7RDlzRrn8AZFNoXR8W1Cj
-         GOqwGJ0HNqLgNrLIvVtuGkqs90IohEOrYyEWsmBfuq0WT7b9FnIip+0AFzZcjd0uW7dI
-         V+mcG1hpDOInEU639BANTngehfAyICVp1f1kBJ2VwlczqLL7adHiu0frvvLbWMpojsbG
-         d29mDOfgCp3IfugRKoW5/wUp9b2b3aF8rpu+NG7BO/1pt7TLcW3+2kqeBOLK9LRGKN97
-         gduw==
+        bh=sUBLgKA7mCNQUfZLbUBaMS7mpo/nhqbjdmwrKiaFiv8=;
+        b=ZKlWdWbCko0JTvh2mZEZt1RaFQbkhS/FnjlKp067ivrox0LOPQKX6ciqbxknrd+BW8
+         DSrI+seRmKLbULChd+2v1GFmbGoNkXkHFQQuCcwAaRjgp8/ZzKUyvjmclUU6zB537eJ2
+         r8pmUmj4Z8bVJHhM56wnSF+RPPtujsoELtBSUe5a9CnJiKNmlvet5vyvXZ1vvhNh3nPR
+         hk86+1QIJPr+d3O/16x1v9GZowfRpqPoFLlpSj8fqr6X/zNYAfq7ISsQZKerqjcfjsZE
+         oatYKjKV36FoPwDmaRDnxTGrGqwQc2A9ZuozktNPa3+JZXdwD8spSEx34+90ZAyJeiD/
+         p6GQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
          :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
          :content-language;
-        bh=vlK4MnZtVcFr5iHvHXVxU+sZ+bRUpY2XhYCVMHl0jYI=;
-        b=O+IUGmLQYnk3xfRlR/fe90i5ALekjCiS7g0lW9cxlVOuGd+uVXi+epbWzjEtIlC1AZ
-         wtiKCapG03DFOyIZV5n8WPAz/kjAoz/V015U3eDX618K8HR0HUHYhetqlHVd97rkPI23
-         T+YBzRgYS93rzGKaNzTV0gNNYxYdNT0CuPvblIXWpc9EFvIqMnG4qGVV/pEHcRyBFSdb
-         7mEKpxhte9l11yrVz5b9AbszqJdZebiRQDDc69b+3rrAhy4JfagzsBUinDBv1z8AGLJB
-         9B2K5LtsfpIHdWfnrvmVlZf6EpggDnpSBwB9M1bd6OuMASspj4iGE9zhWQy1YHHGP2+B
-         GoRQ==
-X-Gm-Message-State: AOAM5327+kGaNkEknQ8TiKBknSMHqF4wcyBmYMfB+8+fHCxoMZjVidkA
-	2gQ8BgjbYuU8spWdRf/MnOfipSwtDD8=
-X-Google-Smtp-Source: ABdhPJzU3WBfr+8LVd2mS2s3MAPOeUQkyVdFngh+YYJQPQysHfQvxKSpKimWn/wIwdLabJ7sgdeV/w==
-X-Received: by 2002:a17:902:8b89:b029:d2:4345:5dd with SMTP id ay9-20020a1709028b89b02900d2434505ddmr12890399plb.57.1602253633956;
-        Fri, 09 Oct 2020 07:27:13 -0700 (PDT)
+        bh=sUBLgKA7mCNQUfZLbUBaMS7mpo/nhqbjdmwrKiaFiv8=;
+        b=ZYLbSXkZtgDwJaKI8r/gvzhcRySUPILieUR9by6UGYJPqP3BH9V7SYy2tupzCWgGfR
+         XZzqFPuJ8npOX9Wwr/FF8VBx+fdL1cLWQsbQuLH51JnoFRfiqB+F86Uaq8I4i7s5ScC5
+         q342veZqEZRSU6F79HAujubJtCIJXUpwWDy1mNJsdtNhPC+72BJe5qX+CF1WvBLaKeM8
+         3F3SHjmu15xVj3YZ9Ev+KWSD9Y0dTcG9jogYdZy7OkRs0oAYkx5uqOvVvboJVvHoGld4
+         BlLwB4XL8N6hy6wAWavY5Pcrx1/vmasoFJZtMXN++OD/WUwW1XMMBxlh7xWWgW+qg2MD
+         qHRA==
+X-Gm-Message-State: AOAM533Ev5u3C3nUWEW74ADwu+f/SUaaOYHUutFVbZjJQqMwdqxcLE9x
+	EA7bEmt4k0e2/rBXN3p3ZfkxnAFG/E4=
+X-Google-Smtp-Source: ABdhPJzThjN++5q6d0VePhcWRatjzLM36crUUxDXPj435EdxxXUKMzMBiiIQoeF1O9SAWsncn7XFaA==
+X-Received: by 2002:a63:fa4f:: with SMTP id g15mr1728181pgk.52.1602253952405;
+        Fri, 09 Oct 2020 07:32:32 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from ?IPv6:2601:202:4180:a5c0:f1c6:e45a:6950:664b? ([2601:202:4180:a5c0:f1c6:e45a:6950:664b])
-        by smtp.gmail.com with ESMTPSA id j20sm11422512pfd.40.2020.10.09.07.27.13
-        for <yocto@lists.yoctoproject.org>
+        by smtp.gmail.com with ESMTPSA id r3sm11234697pfl.67.2020.10.09.07.32.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Oct 2020 07:27:13 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][PATCH 5/7] sssd: update to latest ltm 1.16.5
-To: yocto@lists.yoctoproject.org
-References: <20201009140812.21765-1-akuster808@gmail.com>
- <163C5828A1566392.8231@lists.yoctoproject.org>
+        Fri, 09 Oct 2020 07:32:31 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][zeus][PATCH 1/1] clamav: add INSTALL_CLAMAV_CVD flag to do_install
+To: Charlie Davies <charles.davies@whitetree.xyz>,
+ yocto@lists.yoctoproject.org
+References: <20201007012006.2579-1-charles.davies@whitetree.xyz>
 From: "akuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -89,102 +88,48 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <0527960d-d743-0418-bf76-0e712ec8bdb9@gmail.com>
-Date: Fri, 9 Oct 2020 07:27:11 -0700
+Message-ID: <6cddd642-6d7b-4442-efda-e02c503d4cab@gmail.com>
+Date: Fri, 9 Oct 2020 07:32:30 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <163C5828A1566392.8231@lists.yoctoproject.org>
+In-Reply-To: <20201007012006.2579-1-charles.davies@whitetree.xyz>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 
-this needs "musl-nscd" which was submitted to meta-oe if you plan on
-building for musl
 
- 
-
-On 10/9/20 7:08 AM, akuster via lists.yoctoproject.org wrote:
-> fix musl support
+On 10/6/20 6:20 PM, Charlie Davies wrote:
+> Recipe provides INSTALL_CLAMAV_CVD flag to bypass clamav
+> cvd db creation. During do_install this flag should be
+> used to conditionally skip install of cvd db if needed.
 >
-> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> Signed-off-by: Charlie Davies <charles.davies@whitetree.xyz>
+
+merged.
+
+thanks
 > ---
->  ...defines-which-otherwise-are-availabl.patch | 32 +++++++++++++++++++
->  .../sssd/{sssd_1.16.4.bb => sssd_1.16.5.bb}   |  8 +++--
->  2 files changed, 37 insertions(+), 3 deletions(-)
->  create mode 100644 recipes-security/sssd/files/0002-Provide-missing-defines-which-otherwise-are-availabl.patch
->  rename recipes-security/sssd/{sssd_1.16.4.bb => sssd_1.16.5.bb} (94%)
+>  recipes-security/clamav/clamav_0.99.4.bb | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 >
-> diff --git a/recipes-security/sssd/files/0002-Provide-missing-defines-which-otherwise-are-availabl.patch b/recipes-security/sssd/files/0002-Provide-missing-defines-which-otherwise-are-availabl.patch
-> new file mode 100644
-> index 0000000..1a22332
-> --- /dev/null
-> +++ b/recipes-security/sssd/files/0002-Provide-missing-defines-which-otherwise-are-availabl.patch
-> @@ -0,0 +1,32 @@
-> +From 37a0999e5a9f54e1c61a02a7fbab6fcd04738b3c Mon Sep 17 00:00:00 2001
-> +From: Armin Kuster <akuster808@gmail.com>
-> +Date: Thu, 8 Oct 2020 05:54:13 -0700
-> +Subject: [PATCH] Provide missing defines which otherwise are available on
-> + glibc system headers
-> +
-> +Signed-off-by: Armin Kuster <akuster808@gmail.com>
-> +
-> +Upsteam-Status: Pending
-> +
-> +---
-> + src/util/util.h | 4 ++++
-> + 1 file changed, 4 insertions(+)
-> +
-> +diff --git a/src/util/util.h b/src/util/util.h
-> +index 8a754dbfd..6e55b4bdc 100644
-> +--- a/src/util/util.h
-> ++++ b/src/util/util.h
-> +@@ -76,6 +76,10 @@
-> + #define MAX(a, b)  (((a) > (b)) ? (a) : (b))
-> + #endif
-> + 
-> ++#ifndef ALLPERMS
-> ++# define ALLPERMS (S_ISUID|S_ISGID|S_ISVTX|S_IRWXU|S_IRWXG|S_IRWXO)/* 07777 */
-> ++#endif
-> ++
-> + #define SSSD_MAIN_OPTS SSSD_DEBUG_OPTS
-> + 
-> + #define SSSD_SERVER_OPTS(uid, gid) \
-> +-- 
-> +2.17.1
-> +
-> diff --git a/recipes-security/sssd/sssd_1.16.4.bb b/recipes-security/sssd/sssd_1.16.5.bb
-> similarity index 94%
-> rename from recipes-security/sssd/sssd_1.16.4.bb
-> rename to recipes-security/sssd/sssd_1.16.5.bb
-> index e54fa98..9784ec7 100644
-> --- a/recipes-security/sssd/sssd_1.16.4.bb
-> +++ b/recipes-security/sssd/sssd_1.16.5.bb
-> @@ -6,7 +6,9 @@ LICENSE = "GPLv3+"
->  LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
->  
->  DEPENDS = "openldap cyrus-sasl libtdb ding-libs libpam c-ares krb5 autoconf-archive"
-> -DEPENDS += "libldb dbus libtalloc libpcre glib-2.0 popt e2fsprogs libtevent"
-> +DEPENDS_append = " libldb dbus libtalloc libpcre glib-2.0 popt e2fsprogs libtevent"
-> +
-> +DEPENDS_append_libc-musl = " musl-nscd"
->  
->  # If no crypto has been selected, default to DEPEND on nss, since that's what
->  # sssd will pick if no active choice is made during configure
-> @@ -19,10 +21,10 @@ SRC_URI = "https://releases.pagure.org/SSSD/${BPN}/${BP}.tar.gz \
->             file://fix-ldblibdir.patch \
->             file://0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpages.patch \
->             file://0001-nss-Collision-with-external-nss-symbol.patch \
-> +           file://0002-Provide-missing-defines-which-otherwise-are-availabl.patch \
->             "
->  
-> -SRC_URI[md5sum] = "757bbb6f15409d8d075f4f06cb678d50"
-> -SRC_URI[sha256sum] = "6bb212cd6b75b918e945c24e7c3f95a486fb54d7f7d489a9334cfa1a1f3bf959"
-> +SRC_URI[sha256sum] = "2e1a7bf036b583f686d35164f2d79bdf4857b98f51fe8b0d17aa0fa756e4d0c0"
->  
->  inherit autotools pkgconfig gettext python3-dir features_check systemd
->  
+> diff --git a/recipes-security/clamav/clamav_0.99.4.bb b/recipes-security/clamav/clamav_0.99.4.bb
+> index a340b48..1ee3f58 100644
+> --- a/recipes-security/clamav/clamav_0.99.4.bb
+> +++ b/recipes-security/clamav/clamav_0.99.4.bb
+> @@ -102,7 +102,10 @@ do_install_append_class-target () {
+>      install -m 0644 ${WORKDIR}/volatiles.03_clamav  ${D}${sysconfdir}/default/volatiles/volatiles.03_clamav
+>      sed -i -e 's#${STAGING_DIR_HOST}##g' ${D}${libdir}/pkgconfig/libclamav.pc
+>      rm ${D}/${libdir}/libclamav.so
+> -    install -m 666 ${S}/clamav_db/* ${D}/${localstatedir}/lib/clamav/.
+> +    if [ "${INSTALL_CLAMAV_CVD}" = "1" ]; then
+> +        bbnote "CLAMAV installing cvd"
+> +        install -m 666 ${S}/clamav_db/* ${D}/${localstatedir}/lib/clamav/.
+> +    fi
+>      if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)};then
+>          install -D -m 0644 ${WORKDIR}/clamav.service ${D}${systemd_unitdir}/system/clamav.service
+>          install -d ${D}${sysconfdir}/tmpfiles.d
 >
 > 
 >
