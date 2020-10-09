@@ -1,48 +1,50 @@
-Received: from mail-pg1-f194.google.com (mail-pg1-f194.google.com [209.85.215.194])
- by mx.groups.io with SMTP id smtpd.web12.14991.1602253461902885831
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+ by mx.groups.io with SMTP id smtpd.web11.15080.1602253634663864629
  for <yocto@lists.yoctoproject.org>;
- Fri, 09 Oct 2020 07:24:22 -0700
+ Fri, 09 Oct 2020 07:27:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=AFP4XFyl;
- spf=pass (domain: gmail.com, ip: 209.85.215.194, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f194.google.com with SMTP id o25so7318272pgm.0
-        for <yocto@lists.yoctoproject.org>; Fri, 09 Oct 2020 07:24:21 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=c3g9nrxu;
+ spf=pass (domain: gmail.com, ip: 209.85.214.175, mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f175.google.com with SMTP id h2so4523531pll.11
+        for <yocto@lists.yoctoproject.org>; Fri, 09 Oct 2020 07:27:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=eKprgSBJpcGJ6dsyFLD0h9grL18+ODv23B4zgubEr2Y=;
-        b=AFP4XFylbxCo28GCpaCGrUdvzUK0p/N7ZHKMyrDdCaaZ0A8n/NfMFtTQaDBVcuMVpr
-         9O7UuPh6XUXcEtQffLt82WHVN9IsWNf3QXU/N5jYzgOoD/MXZwFLPPcmBuy0Q25VWbOp
-         6at44hOFKTe32j84qQZMvfWGOKKKyBE8ko9kD389iE9ywGEEU6k4xPoj7qv60wQ4N2xX
-         /2Iu2i1GCevg9Oe45zZqbuWr0LQTtBgXFLKJvP0FzEuOMW6dDsUyI6CSAhFXC8ef+wi7
-         ko8FXI9VPvAtAi5DYbvmUIePS9PuFcFiDb5naApOfnyL3lI8QMIndrnD5NuOHD+qfUYn
-         mcvA==
+        bh=vlK4MnZtVcFr5iHvHXVxU+sZ+bRUpY2XhYCVMHl0jYI=;
+        b=c3g9nrxuxoLCY751cEfOtXyD99dCW+fRycpFmVYpJ/RScY98kgiKlHUaFP9+stoGam
+         OKzz4xS+YyOcyePUiYeGOJ3aIvtR+FIfuu5Lls1C8t8uqKD7RDlzRrn8AZFNoXR8W1Cj
+         GOqwGJ0HNqLgNrLIvVtuGkqs90IohEOrYyEWsmBfuq0WT7b9FnIip+0AFzZcjd0uW7dI
+         V+mcG1hpDOInEU639BANTngehfAyICVp1f1kBJ2VwlczqLL7adHiu0frvvLbWMpojsbG
+         d29mDOfgCp3IfugRKoW5/wUp9b2b3aF8rpu+NG7BO/1pt7TLcW3+2kqeBOLK9LRGKN97
+         gduw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
          :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
          :content-language;
-        bh=eKprgSBJpcGJ6dsyFLD0h9grL18+ODv23B4zgubEr2Y=;
-        b=I5II4VogHA+6RIvrD3JPOybCI63/kTsAmxN+dXnFfKGjbPZg0+NZPeoYStTELxAz12
-         N34VGQC+bNFk3WWqlP7nHWjCi4mwwqmUwDCSJ27dO+lLw//u9m2w6VJ9h6jx6ema5N7s
-         Zod3lZYTKDIZMk9xdIY1lJXtjw7GEMfLspNZTCVtkrL+ZhE0dYltfEX/qJqj7uj5UbFU
-         RVHDbpax3OSS8coLBBgubfZW5P5sY4s98VMvdET9U/Oa853DTJXj2bQ4ghwiZfPHa0XF
-         HEZrH/ldFAu5pD42zvN6CvkM1dL8pR/VHZfnMhJtZhQug/wYVUQyUXt0bD6gjjAVFKJw
-         JXFw==
-X-Gm-Message-State: AOAM533LbqO6Qz9zCp757ii/mrZKGwENIWVdRw3yU87dk/bBBLJ0JsnA
-	zLQKf06hwHEta9eET2Yi+vgA0DBEY78=
-X-Google-Smtp-Source: ABdhPJx74ccQvTBy8X10TVIzyzBHWx3BAT1IHlR+lEWVROKqEVBq7+j0+m6Br1pML/MFcFTCzThfNg==
-X-Received: by 2002:a17:90a:62c4:: with SMTP id k4mr4859999pjs.174.1602253460848;
-        Fri, 09 Oct 2020 07:24:20 -0700 (PDT)
+        bh=vlK4MnZtVcFr5iHvHXVxU+sZ+bRUpY2XhYCVMHl0jYI=;
+        b=O+IUGmLQYnk3xfRlR/fe90i5ALekjCiS7g0lW9cxlVOuGd+uVXi+epbWzjEtIlC1AZ
+         wtiKCapG03DFOyIZV5n8WPAz/kjAoz/V015U3eDX618K8HR0HUHYhetqlHVd97rkPI23
+         T+YBzRgYS93rzGKaNzTV0gNNYxYdNT0CuPvblIXWpc9EFvIqMnG4qGVV/pEHcRyBFSdb
+         7mEKpxhte9l11yrVz5b9AbszqJdZebiRQDDc69b+3rrAhy4JfagzsBUinDBv1z8AGLJB
+         9B2K5LtsfpIHdWfnrvmVlZf6EpggDnpSBwB9M1bd6OuMASspj4iGE9zhWQy1YHHGP2+B
+         GoRQ==
+X-Gm-Message-State: AOAM5327+kGaNkEknQ8TiKBknSMHqF4wcyBmYMfB+8+fHCxoMZjVidkA
+	2gQ8BgjbYuU8spWdRf/MnOfipSwtDD8=
+X-Google-Smtp-Source: ABdhPJzU3WBfr+8LVd2mS2s3MAPOeUQkyVdFngh+YYJQPQysHfQvxKSpKimWn/wIwdLabJ7sgdeV/w==
+X-Received: by 2002:a17:902:8b89:b029:d2:4345:5dd with SMTP id ay9-20020a1709028b89b02900d2434505ddmr12890399plb.57.1602253633956;
+        Fri, 09 Oct 2020 07:27:13 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from ?IPv6:2601:202:4180:a5c0:f1c6:e45a:6950:664b? ([2601:202:4180:a5c0:f1c6:e45a:6950:664b])
-        by smtp.gmail.com with ESMTPSA id q135sm2937799pfq.135.2020.10.09.07.24.18
+        by smtp.gmail.com with ESMTPSA id j20sm11422512pfd.40.2020.10.09.07.27.13
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Oct 2020 07:24:19 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][PATCH 1/3] initramfs-framework/dmverity: add retry loop for slow boot devices
-To: Naveen Saini <naveen.kumar.saini@intel.com>, yocto@lists.yoctoproject.org
-References: <20201002025352.18830-1-naveen.kumar.saini@intel.com>
+        Fri, 09 Oct 2020 07:27:13 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH 5/7] sssd: update to latest ltm 1.16.5
+To: yocto@lists.yoctoproject.org
+References: <20201009140812.21765-1-akuster808@gmail.com>
+ <163C5828A1566392.8231@lists.yoctoproject.org>
 From: "akuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -87,109 +89,102 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <d4c64563-e92b-5632-3a71-ec059cc060c1@gmail.com>
-Date: Fri, 9 Oct 2020 07:24:18 -0700
+Message-ID: <0527960d-d743-0418-bf76-0e712ec8bdb9@gmail.com>
+Date: Fri, 9 Oct 2020 07:27:11 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201002025352.18830-1-naveen.kumar.saini@intel.com>
+In-Reply-To: <163C5828A1566392.8231@lists.yoctoproject.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 
+this needs "musl-nscd" which was submitted to meta-oe if you plan on
+building for musl
 
-On 10/1/20 7:53 PM, Naveen Saini wrote:
-> Detection of USB devices by the kernel is slow enough. We need to
-> keep trying for a while (default: 5s seconds, controlled by roottimeout=<seconds>)
-> and sleep between each attempt (default: one second, rootdelay=<seconds>).
+ 
+
+On 10/9/20 7:08 AM, akuster via lists.yoctoproject.org wrote:
+> fix musl support
 >
-> Fix is based on https://git.yoctoproject.org/cgit.cgi/poky/commit/meta/recipes-core/initrdscripts/initramfs-framework/rootfs?id=ee6a6c3461694ce09789bf4d852cea2e22fc95e4
->
-> Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+> Signed-off-by: Armin Kuster <akuster808@gmail.com>
 > ---
->  .../initramfs-framework/dmverity              | 64 +++++++++++--------
->  1 file changed, 37 insertions(+), 27 deletions(-)
-
-series merge.
-
-thanks
+>  ...defines-which-otherwise-are-availabl.patch | 32 +++++++++++++++++++
+>  .../sssd/{sssd_1.16.4.bb => sssd_1.16.5.bb}   |  8 +++--
+>  2 files changed, 37 insertions(+), 3 deletions(-)
+>  create mode 100644 recipes-security/sssd/files/0002-Provide-missing-defines-which-otherwise-are-availabl.patch
+>  rename recipes-security/sssd/{sssd_1.16.4.bb => sssd_1.16.5.bb} (94%)
 >
-> diff --git a/recipes-core/initrdscripts/initramfs-framework/dmverity b/recipes-core/initrdscripts/initramfs-framework/dmverity
-> index bb07aab..888052c 100644
-> --- a/recipes-core/initrdscripts/initramfs-framework/dmverity
-> +++ b/recipes-core/initrdscripts/initramfs-framework/dmverity
-> @@ -10,33 +10,43 @@ dmverity_run() {
->  
->      . /usr/share/misc/dm-verity.env
->  
-> -    case "${bootparam_root}" in
-> -        ID=*)
-> -            RDEV="$(realpath /dev/disk/by-id/${bootparam_root#ID=})"
-> -            ;;
-> -        LABEL=*)
-> -            RDEV="$(realpath /dev/disk/by-label/${bootparam_root#LABEL=})"
-> -            ;;
-> -        PARTLABEL=*)
-> -            RDEV="$(realpath /dev/disk/by-partlabel/${bootparam_root#PARTLABEL=})"
-> -            ;;
-> -        PARTUUID=*)
-> -            RDEV="$(realpath /dev/disk/by-partuuid/${bootparam_root#PARTUUID=})"
-> -            ;;
-> -        PATH=*)
-> -            RDEV="$(realpath /dev/disk/by-path/${bootparam_root#PATH=})"
-> -            ;;
-> -        UUID=*)
-> -            RDEV="$(realpath /dev/disk/by-uuid/${bootparam_root#UUID=})"
-> -            ;;
-> -        *)
-> -            RDEV="${bootparam_root}"
-> -    esac
-> -
-> -    if ! [ -b "${RDEV}" ]; then
-> -        echo "Root device resolution failed"
-> -        exit 1
-> -    fi
-> +    C=0
-> +    delay=${bootparam_rootdelay:-1}
-> +    timeout=${bootparam_roottimeout:-5}
-> +    RDEV="$(realpath /dev/disk/by-partuuid/${bootparam_root#PARTUUID=})"
-> +    while [ ! -b "${RDEV}" ]; do
-> +        if [ $(( $C * $delay )) -gt $timeout ]; then
-> +            fatal "Root device resolution failed"
-> +            exit 1
-> +        fi
+> diff --git a/recipes-security/sssd/files/0002-Provide-missing-defines-which-otherwise-are-availabl.patch b/recipes-security/sssd/files/0002-Provide-missing-defines-which-otherwise-are-availabl.patch
+> new file mode 100644
+> index 0000000..1a22332
+> --- /dev/null
+> +++ b/recipes-security/sssd/files/0002-Provide-missing-defines-which-otherwise-are-availabl.patch
+> @@ -0,0 +1,32 @@
+> +From 37a0999e5a9f54e1c61a02a7fbab6fcd04738b3c Mon Sep 17 00:00:00 2001
+> +From: Armin Kuster <akuster808@gmail.com>
+> +Date: Thu, 8 Oct 2020 05:54:13 -0700
+> +Subject: [PATCH] Provide missing defines which otherwise are available on
+> + glibc system headers
 > +
-> +        case "${bootparam_root}" in
-> +            ID=*)
-> +                RDEV="$(realpath /dev/disk/by-id/${bootparam_root#ID=})"
-> +                ;;
-> +            LABEL=*)
-> +                RDEV="$(realpath /dev/disk/by-label/${bootparam_root#LABEL=})"
-> +                ;;
-> +            PARTLABEL=*)
-> +                RDEV="$(realpath /dev/disk/by-partlabel/${bootparam_root#PARTLABEL=})"
-> +                ;;
-> +            PARTUUID=*)
-> +                RDEV="$(realpath /dev/disk/by-partuuid/${bootparam_root#PARTUUID=})"
-> +                ;;
-> +            PATH=*)
-> +                RDEV="$(realpath /dev/disk/by-path/${bootparam_root#PATH=})"
-> +                ;;
-> +            UUID=*)
-> +                RDEV="$(realpath /dev/disk/by-uuid/${bootparam_root#UUID=})"
-> +                ;;
-> +            *)
-> +                RDEV="${bootparam_root}"
-> +        esac
-> +        debug "Sleeping for $delay second(s) to wait root to settle..."
-> +        sleep $delay
-> +        C=$(( $C + 1 ))
+> +Signed-off-by: Armin Kuster <akuster808@gmail.com>
 > +
-> +    done
+> +Upsteam-Status: Pending
+> +
+> +---
+> + src/util/util.h | 4 ++++
+> + 1 file changed, 4 insertions(+)
+> +
+> +diff --git a/src/util/util.h b/src/util/util.h
+> +index 8a754dbfd..6e55b4bdc 100644
+> +--- a/src/util/util.h
+> ++++ b/src/util/util.h
+> +@@ -76,6 +76,10 @@
+> + #define MAX(a, b)  (((a) > (b)) ? (a) : (b))
+> + #endif
+> + 
+> ++#ifndef ALLPERMS
+> ++# define ALLPERMS (S_ISUID|S_ISGID|S_ISVTX|S_IRWXU|S_IRWXG|S_IRWXO)/* 07777 */
+> ++#endif
+> ++
+> + #define SSSD_MAIN_OPTS SSSD_DEBUG_OPTS
+> + 
+> + #define SSSD_SERVER_OPTS(uid, gid) \
+> +-- 
+> +2.17.1
+> +
+> diff --git a/recipes-security/sssd/sssd_1.16.4.bb b/recipes-security/sssd/sssd_1.16.5.bb
+> similarity index 94%
+> rename from recipes-security/sssd/sssd_1.16.4.bb
+> rename to recipes-security/sssd/sssd_1.16.5.bb
+> index e54fa98..9784ec7 100644
+> --- a/recipes-security/sssd/sssd_1.16.4.bb
+> +++ b/recipes-security/sssd/sssd_1.16.5.bb
+> @@ -6,7 +6,9 @@ LICENSE = "GPLv3+"
+>  LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
 >  
->      veritysetup \
->          --data-block-size=1024 \
+>  DEPENDS = "openldap cyrus-sasl libtdb ding-libs libpam c-ares krb5 autoconf-archive"
+> -DEPENDS += "libldb dbus libtalloc libpcre glib-2.0 popt e2fsprogs libtevent"
+> +DEPENDS_append = " libldb dbus libtalloc libpcre glib-2.0 popt e2fsprogs libtevent"
+> +
+> +DEPENDS_append_libc-musl = " musl-nscd"
+>  
+>  # If no crypto has been selected, default to DEPEND on nss, since that's what
+>  # sssd will pick if no active choice is made during configure
+> @@ -19,10 +21,10 @@ SRC_URI = "https://releases.pagure.org/SSSD/${BPN}/${BP}.tar.gz \
+>             file://fix-ldblibdir.patch \
+>             file://0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpages.patch \
+>             file://0001-nss-Collision-with-external-nss-symbol.patch \
+> +           file://0002-Provide-missing-defines-which-otherwise-are-availabl.patch \
+>             "
+>  
+> -SRC_URI[md5sum] = "757bbb6f15409d8d075f4f06cb678d50"
+> -SRC_URI[sha256sum] = "6bb212cd6b75b918e945c24e7c3f95a486fb54d7f7d489a9334cfa1a1f3bf959"
+> +SRC_URI[sha256sum] = "2e1a7bf036b583f686d35164f2d79bdf4857b98f51fe8b0d17aa0fa756e4d0c0"
+>  
+>  inherit autotools pkgconfig gettext python3-dir features_check systemd
+>  
 >
 > 
 >
