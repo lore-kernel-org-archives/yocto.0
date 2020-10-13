@@ -1,2555 +1,1409 @@
-Received: from mx02.optimcloud.com (mx02.optimcloud.com [46.23.93.22])
- by mx.groups.io with SMTP id smtpd.web10.6950.1602576425801869120
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.13856.1602600789777691800
  for <yocto@lists.yoctoproject.org>;
- Tue, 13 Oct 2020 01:07:07 -0700
+ Tue, 13 Oct 2020 07:53:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=CSWUwAT3;
- spf=none, err=SPF record not found (domain: optimcloud.com, ip: 46.23.93.22, mailfrom: yocto@optimcloud.com)
-Received: from mx02.optimcloud.com (localhost [127.0.0.1])
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTP id faf7cbd6;
-	Tue, 13 Oct 2020 10:06:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=
-	subject:to:cc:references:from:message-id:date:mime-version
-	:in-reply-to:content-type; s=obsd; bh=/lVK3MJqY7bOnyZnjGMJPoHIlR
-	PSKItar6idQX0RXMg=; b=CSWUwAT35wPU1Utqw3fH9P+2RVwQ1e2nLoWepX9di1
-	l1rBjNPy9UzrJum49/c6yHb2K2R3/zM1DVCT6Atr4+NzZegXaYur/ANcKhYdPZvW
-	gbPeSfjYWjNbuK9Imw7m+bJl/rrTqmMkTsL8FiWyk1M/FaiAuNuSDIAMxYADq87f
-	tUZAHSiKOdEzQTZvZa56BMWvitgYORrsENUsmGMyXxJvWA90UGK9EMk+t0HW1Muf
-	YGvsO5vJNws+kVYhrzmKwsJpOYR0Pslkfps23leFdRyFjve0gn0IPKSvIt/W+snR
-	037PMHCW+Kwep0PoU/6++KI6Tp1b1aRkmb/afyeGgA/A==
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=subject:to
-	:cc:references:from:message-id:date:mime-version:in-reply-to
-	:content-type; q=dns; s=obsd; b=s16criP0xEiO0jn/jstO1HA16Juvve0U
-	PPGr66/V0KamZHfHFJ/qV8+/TS5Jt3A2iRPkNuJUyQsfuvTT9OKqpD1HKD83TsoT
-	z4z0T1HksoxmQFVwuiTWTXVGLpJuM44AKH61ka41e90mJjUGbfcTbgVZ7QBSsRlR
-	/60xQpNcIq7zxDACj9VepTikZEf3Gr0NCqcd4hAAEtkEXnt6Bx+vIDM5LiZqGFYO
-	e3ocbBOM3JQecnqrJ2oAetGZXlFD2vLuv0yvRWV8+ZYHEtjpo5f4XuuGQcbcFr0S
-	eBVD9z9656r25uCZh8LrT6mvzJ9XpqORf9yvG/bGGPPoka+oVZfGvg==
-Received: 
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTPSA id 1390f984 (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO) auth=yes user=yocto@optimcloud.com;
-	Tue, 13 Oct 2020 10:06:56 +0200 (CEST)
-Subject: Re: [yocto] virglrenderer fatal error: gbm.h: No such file or directory
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-References: <db432deb-9818-206d-9d3f-ff7ac8342f60@optimcloud.com>
- <CANNYZj9Wt+fc8d0ETvpcJDs6JG8zbjWdFX946_Xo+T6nSSYW_w@mail.gmail.com>
-From: "Yocto" <yocto@optimcloud.com>
-Message-ID: <8e61138a-372e-ae5b-3ad1-3f74372d6d0f@optimcloud.com>
-Date: Tue, 13 Oct 2020 15:06:49 +0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=OKJDhXvW;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 9FE9538C1193
+	for <yocto@yoctoproject.org>; Tue, 13 Oct 2020 07:53:08 -0700 (PDT)
+Received: by mail-pg1-f174.google.com with SMTP id f5so719868pgb.1
+        for <yocto@yoctoproject.org>; Tue, 13 Oct 2020 07:53:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=NbgEq/ND5NzEMJPtQw4r/9mkr7OJNLbzUK6UKNXx3Dk=;
+        b=OKJDhXvWsO8UlzAJw60gjf04rVz62R6+kwNY9C5cmcO9iWXYsbKouIVNBpg1rkgykQ
+         2d2LOBqmfIM1PXEJAlk49+4BoLBYBgF1vE9utEGHgXd+uRFZj8l2TPuTb0CyyzNrslPo
+         eFNn+1+XsD8KrUAMcoRnTAJ1y2FLd9DLeVW5Rlm/KYzKXqPkBS3v91UFNnEWmZAigDrY
+         oQ3MGdUi4FQHpDx8kTTIvuaCAaoz48jebUDw+BbWudemdRrgrRJsZ3YZSHwJGdBpTAeH
+         KUO8q1dYEeh8NXwHf2+PMQ0sbyoSILMqt9C7JIHkycAbifLzlgoUdhfs7KsGZgsmxqVd
+         5IIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=NbgEq/ND5NzEMJPtQw4r/9mkr7OJNLbzUK6UKNXx3Dk=;
+        b=sX7+aCma5TVHUC5Ic9l91eS1qnuZMLUCoex+5ia5+7VQVyUPNLLvlIjxoAzl5TuLaO
+         hT4QuIIbMOzlHNwPRYw8mcogmkRGjAbm75LqIW/sRYMIUqBq/GFaiAvxYUqIWFTvpjxu
+         O/0u0pMwnzFRZcBKCQjE7pfWhciVy5oE/ZXSdp3ytVqRffQLGsBJ5eSkAZEvfwq0J6lK
+         OoUFJKmlLD4WyK/DD6FW7SzFBJZnRKzUWWnVVR+GjtPQUqJC8KC7WqQoRgtmC/6xr7FH
+         ouxDIQ2K2d3ZzUMK7V/dS2MyEWrasUYCL+EEt0oTURCuLE26kyWQMAx5FqPcjxPGyQWV
+         zPqQ==
+X-Gm-Message-State: AOAM530wDYHHh36ZToq89j2oKvITetmbOjAwEsDeh5rvfreNrd6GmW+P
+	orqcNUH9C1vllOoUB4/14XA=
+X-Google-Smtp-Source: ABdhPJytoIeJCrCPMWkW1siQ0GWTT48Ng/MS1tFRKQgK14uAmOgrRmaiRC5/IwO/SqCXOePrXCvkXw==
+X-Received: by 2002:a63:5a11:: with SMTP id o17mr16953298pgb.287.1602600788009;
+        Tue, 13 Oct 2020 07:53:08 -0700 (PDT)
+Received: from skjolley (wsip-184-183-149-66.ph.ph.cox.net. [184.183.149.66])
+        by smtp.gmail.com with ESMTPSA id c77sm21315208pfb.177.2020.10.13.07.53.06
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 13 Oct 2020 07:53:07 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Status WW41'20
+Date: Tue, 13 Oct 2020 07:53:07 -0700
+Message-ID: <155f01d6a170$902ee5d0$b08cb170$@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CANNYZj9Wt+fc8d0ETvpcJDs6JG8zbjWdFX946_Xo+T6nSSYW_w@mail.gmail.com>
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdahcG7cBmn0dccNSVWqNtzt3O1djQ==
 Content-Type: multipart/alternative;
- boundary="------------3576BDFECDBA804CF3489AE3"
-Content-Language: en-US
+	boundary="----=_NextPart_000_1560_01D6A135.E3D2CCF0"
+Content-Language: en-us
 
---------------3576BDFECDBA804CF3489AE3
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+------=_NextPart_000_1560_01D6A135.E3D2CCF0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-its building from meta-tegra ....
+Current Dev Position: YP 3.2 M4
 
-On 10/13/20 2:56 PM, Alexander Kanavin wrote:
-> Virgl only has been verified with Mesa, if your bsp provides something 
-> else for virtual/libgl, it is not going to work. Please ask your bsp 
-> supplier (Nvidia I guess?) what to do.
->
-> Alex
->
-> On Tue 13. Oct 2020 at 6.28, Yocto <yocto@optimcloud.com 
-> <mailto:yocto@optimcloud.com>> wrote:
->
->     virglrenderer appears broken, occurs on both Fedora-32 and Debian-10
->
->     Build Configuration:
->     BB_VERSION           = "1.47.0"
->     BUILD_SYS            = "x86_64-linux"
->     NATIVELSBSTRING      = "fedora-32"
->     TARGET_SYS           = "aarch64-overc-linux"
->     MACHINE              = "jetson-xavier-nx-devkit"
->     DISTRO               = "overc"
->     DISTRO_VERSION       = "1.0"
->     TUNE_FEATURES        = "aarch64 armv8a crc"
->     TARGET_FPU           = ""
->     meta
->     meta-poky
->     meta-yocto-bsp       =
->     "master:0c0b236b4c72d30e0e88f5f0310476569d444e83"
->     meta-tegra           =
->     "master:01c3205183af0236101b423d48a8af167baee8b1"
->     meta-oe
->     meta-python
->     meta-networking
->     meta-filesystems
->     meta-gnome
->     meta-xfce
->     meta-multimedia
->     meta-perl            =
->     "master:d25d21a8b40d3fe29298f3aa43328477ce4d8ee7"
->     meta-overc
->     meta-cube            =
->     "master:264d1d0949fb5e9ec8e39b1f7604086d59ec2047"
->     meta-awnix           =
->     "master:c616414c6ed4f6f2ab75703ce5a3e84acacd3c47"
->     meta-virtualization  =
->     "master:43a5cc7f031da1ef75b1ff33def3ef4984ad72e3"
->     meta-cloud-services  =
->     "master:910195eb791d754d394ba1013a258ab120c995e9"
->     meta-security        =
->     "master:3ce8b759c97706d6f78928c38b6ebac4edfd95a5"
->     meta-selinux         =
->     "master:6e1100d29aec118df2025c46c77f4c8aa8da4e76"
->
->
->     ❯ cat
->     /var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/log.do_compile.754739
->     DEBUG: Executing shell function do_compile
->     [1/15] rm -f src/gallium/libgallium.a &&
->     aarch64-overc-linux-gcc-ar csrD
->     src/gallium/libgallium.a
->     src/gallium/libgallium.a.p/meson-generated_.._u_format_table.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_format.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_texture.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_hash_table.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_debug.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_cpu_detect.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_bitmask.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_surface.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_math.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_debug_describe.c.o
->     src/gallium/libgallium.a.p/auxiliary_cso_cache_cso_cache.c.o
->     src/gallium/libgallium.a.p/auxiliary_cso_cache_cso_hash.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_dump.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_ureg.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_build.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_scan.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_info.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_parse.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_text.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_strings.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_sanity.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_iterate.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_util.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_transform.c.o
->     src/gallium/libgallium.a.p/auxiliary_os_os_misc.c.o
->     [2/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Ivtest/virgl_test_server.p -Ivtest -I../git/vtest
->     -I../git/src/gallium/include -I../git/src/gallium/auxiliary
->     -I../git/src/gallium/auxiliary/util -I. -I../git -Isrc -I../git/src
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -MD -MQ vtest/virgl_test_server.p/vtest_shm.c.o -MF
->     vtest/virgl_test_server.p/vtest_shm.c.o.d -o
->     vtest/virgl_test_server.p/vtest_shm.c.o -c ../git/vtest/vtest_shm.c
->     [3/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_debug.c.o -MF
->     src/libvirgl.a.p/vrend_debug.c.o.d -o
->     src/libvirgl.a.p/vrend_debug.c.o
->     -c ../git/src/vrend_debug.c
->     FAILED: src/libvirgl.a.p/vrend_debug.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_debug.c.o -MF
->     src/libvirgl.a.p/vrend_debug.c.o.d -o
->     src/libvirgl.a.p/vrend_debug.c.o
->     -c ../git/src/vrend_debug.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/vrend_debug.c:26:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [4/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_renderer.c.o -MF
->     src/libvirgl.a.p/vrend_renderer.c.o.d -o
->     src/libvirgl.a.p/vrend_renderer.c.o -c ../git/src/vrend_renderer.c
->     FAILED: src/libvirgl.a.p/vrend_renderer.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_renderer.c.o -MF
->     src/libvirgl.a.p/vrend_renderer.c.o.d -o
->     src/libvirgl.a.p/vrend_renderer.c.o -c ../git/src/vrend_renderer.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/vrend_renderer.c:49:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [5/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_blitter.c.o -MF
->     src/libvirgl.a.p/vrend_blitter.c.o.d -o
->     src/libvirgl.a.p/vrend_blitter.c.o -c ../git/src/vrend_blitter.c
->     FAILED: src/libvirgl.a.p/vrend_blitter.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_blitter.c.o -MF
->     src/libvirgl.a.p/vrend_blitter.c.o.d -o
->     src/libvirgl.a.p/vrend_blitter.c.o -c ../git/src/vrend_blitter.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/vrend_blitter.c:48:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [6/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Ivtest/virgl_test_server.p -Ivtest -I../git/vtest
->     -I../git/src/gallium/include -I../git/src/gallium/auxiliary
->     -I../git/src/gallium/auxiliary/util -I. -I../git -Isrc -I../git/src
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -MD -MQ vtest/virgl_test_server.p/vtest_server.c.o -MF
->     vtest/virgl_test_server.p/vtest_server.c.o.d -o
->     vtest/virgl_test_server.p/vtest_server.c.o -c
->     ../git/vtest/vtest_server.c
->     [7/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirglrenderer.so.1.4.2.p -Isrc -I../git/src
->     -I../git/src/gallium/include -I../git/src/gallium/auxiliary
->     -I../git/src/gallium/auxiliary/util -I. -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ
->     src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o
->     -MF src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o.d -o
->     src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o -c
->     ../git/src/virglrenderer.c
->     FAILED: src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirglrenderer.so.1.4.2.p -Isrc -I../git/src
->     -I../git/src/gallium/include -I../git/src/gallium/auxiliary
->     -I../git/src/gallium/auxiliary/util -I. -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ
->     src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o
->     -MF src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o.d -o
->     src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o -c
->     ../git/src/virglrenderer.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/virglrenderer.c:37:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [8/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_formats.c.o -MF
->     src/libvirgl.a.p/vrend_formats.c.o.d -o
->     src/libvirgl.a.p/vrend_formats.c.o -c ../git/src/vrend_formats.c
->     FAILED: src/libvirgl.a.p/vrend_formats.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_formats.c.o -MF
->     src/libvirgl.a.p/vrend_formats.c.o.d -o
->     src/libvirgl.a.p/vrend_formats.c.o -c ../git/src/vrend_formats.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/vrend_formats.c:26:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [9/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_decode.c.o -MF
->     src/libvirgl.a.p/vrend_decode.c.o.d -o
->     src/libvirgl.a.p/vrend_decode.c.o
->     -c ../git/src/vrend_decode.c
->     FAILED: src/libvirgl.a.p/vrend_decode.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_decode.c.o -MF
->     src/libvirgl.a.p/vrend_decode.c.o.d -o
->     src/libvirgl.a.p/vrend_decode.c.o
->     -c ../git/src/vrend_decode.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/vrend_decode.c:34:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [10/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/virgl_glx_context.c.o -MF
->     src/libvirgl.a.p/virgl_glx_context.c.o.d -o
->     src/libvirgl.a.p/virgl_glx_context.c.o -c
->     ../git/src/virgl_glx_context.c
->     FAILED: src/libvirgl.a.p/virgl_glx_context.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/virgl_glx_context.c.o -MF
->     src/libvirgl.a.p/virgl_glx_context.c.o.d -o
->     src/libvirgl.a.p/virgl_glx_context.c.o -c
->     ../git/src/virgl_glx_context.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/virgl_glx.h:27,
->                       from ../git/src/virgl_glx_context.c:32:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [11/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Ivtest/virgl_test_server.p -Ivtest -I../git/vtest
->     -I../git/src/gallium/include -I../git/src/gallium/auxiliary
->     -I../git/src/gallium/auxiliary/util -I. -I../git -Isrc -I../git/src
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -MD -MQ vtest/virgl_test_server.p/vtest_renderer.c.o -MF
->     vtest/virgl_test_server.p/vtest_renderer.c.o.d -o
->     vtest/virgl_test_server.p/vtest_renderer.c.o -c
->     ../git/vtest/vtest_renderer.c
->     ninja: build stopped: subcommand failed.
->     WARNING:
->     /var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739:152
->
->     exit 1 from 'ninja -v -j 16'
->     WARNING: Backtrace (BB generated script):
->          #1: meson_do_compile,
->     /var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739,
->
->     line 152
->          #2: do_compile,
->     /var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739,
->
->     line 147
->          #3: main,
->     /var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739,
->
->     line 156
->     ERROR: Execution of
->     '/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739'
->
->     failed with exit code 1:
->     [1/15] rm -f src/gallium/libgallium.a &&
->     aarch64-overc-linux-gcc-ar csrD
->     src/gallium/libgallium.a
->     src/gallium/libgallium.a.p/meson-generated_.._u_format_table.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_format.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_texture.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_hash_table.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_debug.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_cpu_detect.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_bitmask.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_surface.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_math.c.o
->     src/gallium/libgallium.a.p/auxiliary_util_u_debug_describe.c.o
->     src/gallium/libgallium.a.p/auxiliary_cso_cache_cso_cache.c.o
->     src/gallium/libgallium.a.p/auxiliary_cso_cache_cso_hash.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_dump.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_ureg.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_build.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_scan.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_info.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_parse.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_text.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_strings.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_sanity.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_iterate.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_util.c.o
->     src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_transform.c.o
->     src/gallium/libgallium.a.p/auxiliary_os_os_misc.c.o
->     [2/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Ivtest/virgl_test_server.p -Ivtest -I../git/vtest
->     -I../git/src/gallium/include -I../git/src/gallium/auxiliary
->     -I../git/src/gallium/auxiliary/util -I. -I../git -Isrc -I../git/src
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -MD -MQ vtest/virgl_test_server.p/vtest_shm.c.o -MF
->     vtest/virgl_test_server.p/vtest_shm.c.o.d -o
->     vtest/virgl_test_server.p/vtest_shm.c.o -c ../git/vtest/vtest_shm.c
->     [3/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_debug.c.o -MF
->     src/libvirgl.a.p/vrend_debug.c.o.d -o
->     src/libvirgl.a.p/vrend_debug.c.o
->     -c ../git/src/vrend_debug.c
->     FAILED: src/libvirgl.a.p/vrend_debug.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_debug.c.o -MF
->     src/libvirgl.a.p/vrend_debug.c.o.d -o
->     src/libvirgl.a.p/vrend_debug.c.o
->     -c ../git/src/vrend_debug.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/vrend_debug.c:26:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [4/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_renderer.c.o -MF
->     src/libvirgl.a.p/vrend_renderer.c.o.d -o
->     src/libvirgl.a.p/vrend_renderer.c.o -c ../git/src/vrend_renderer.c
->     FAILED: src/libvirgl.a.p/vrend_renderer.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_renderer.c.o -MF
->     src/libvirgl.a.p/vrend_renderer.c.o.d -o
->     src/libvirgl.a.p/vrend_renderer.c.o -c ../git/src/vrend_renderer.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/vrend_renderer.c:49:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [5/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_blitter.c.o -MF
->     src/libvirgl.a.p/vrend_blitter.c.o.d -o
->     src/libvirgl.a.p/vrend_blitter.c.o -c ../git/src/vrend_blitter.c
->     FAILED: src/libvirgl.a.p/vrend_blitter.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_blitter.c.o -MF
->     src/libvirgl.a.p/vrend_blitter.c.o.d -o
->     src/libvirgl.a.p/vrend_blitter.c.o -c ../git/src/vrend_blitter.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/vrend_blitter.c:48:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [6/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Ivtest/virgl_test_server.p -Ivtest -I../git/vtest
->     -I../git/src/gallium/include -I../git/src/gallium/auxiliary
->     -I../git/src/gallium/auxiliary/util -I. -I../git -Isrc -I../git/src
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -MD -MQ vtest/virgl_test_server.p/vtest_server.c.o -MF
->     vtest/virgl_test_server.p/vtest_server.c.o.d -o
->     vtest/virgl_test_server.p/vtest_server.c.o -c
->     ../git/vtest/vtest_server.c
->     [7/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirglrenderer.so.1.4.2.p -Isrc -I../git/src
->     -I../git/src/gallium/include -I../git/src/gallium/auxiliary
->     -I../git/src/gallium/auxiliary/util -I. -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ
->     src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o
->     -MF src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o.d -o
->     src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o -c
->     ../git/src/virglrenderer.c
->     FAILED: src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirglrenderer.so.1.4.2.p -Isrc -I../git/src
->     -I../git/src/gallium/include -I../git/src/gallium/auxiliary
->     -I../git/src/gallium/auxiliary/util -I. -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ
->     src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o
->     -MF src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o.d -o
->     src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o -c
->     ../git/src/virglrenderer.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/virglrenderer.c:37:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [8/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_formats.c.o -MF
->     src/libvirgl.a.p/vrend_formats.c.o.d -o
->     src/libvirgl.a.p/vrend_formats.c.o -c ../git/src/vrend_formats.c
->     FAILED: src/libvirgl.a.p/vrend_formats.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_formats.c.o -MF
->     src/libvirgl.a.p/vrend_formats.c.o.d -o
->     src/libvirgl.a.p/vrend_formats.c.o -c ../git/src/vrend_formats.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/vrend_formats.c:26:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [9/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_decode.c.o -MF
->     src/libvirgl.a.p/vrend_decode.c.o.d -o
->     src/libvirgl.a.p/vrend_decode.c.o
->     -c ../git/src/vrend_decode.c
->     FAILED: src/libvirgl.a.p/vrend_decode.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_decode.c.o -MF
->     src/libvirgl.a.p/vrend_decode.c.o.d -o
->     src/libvirgl.a.p/vrend_decode.c.o
->     -c ../git/src/vrend_decode.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/vrend_decode.c:34:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [10/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/virgl_glx_context.c.o -MF
->     src/libvirgl.a.p/virgl_glx_context.c.o.d -o
->     src/libvirgl.a.p/virgl_glx_context.c.o -c
->     ../git/src/virgl_glx_context.c
->     FAILED: src/libvirgl.a.p/virgl_glx_context.c.o
->     aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Isrc/libvirgl.a.p -Isrc -I../git/src -I../git/src/gallium/include
->     -I../git/src/gallium/auxiliary -I../git/src/gallium/auxiliary/util
->     -I.
->     -I../git
->     -I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
->
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -fPIC -pthread -MD -MQ src/libvirgl.a.p/virgl_glx_context.c.o -MF
->     src/libvirgl.a.p/virgl_glx_context.c.o.d -o
->     src/libvirgl.a.p/virgl_glx_context.c.o -c
->     ../git/src/virgl_glx_context.c
->     In file included from ../git/src/vrend_renderer.h:34,
->                       from ../git/src/virgl_glx.h:27,
->                       from ../git/src/virgl_glx_context.c:32:
->     ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such file or
->     directory
->         28 | #include <gbm.h>
->            |          ^~~~~~~
->     compilation terminated.
->     [11/15] aarch64-overc-linux-gcc -march=armv8-a+crc
->     --sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
->
->     -Ivtest/virgl_test_server.p -Ivtest -I../git/vtest
->     -I../git/src/gallium/include -I../git/src/gallium/auxiliary
->     -I../git/src/gallium/auxiliary/util -I. -I../git -Isrc -I../git/src
->     -fdiagnostics-color=always -DNDEBUG -pipe -D_FILE_OFFSET_BITS=64
->     -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1
->     -Werror=implicit-function-declaration -Werror=missing-prototypes
->     -Wmissing-prototypes -Werror=int-to-pointer-cast
->     -fvisibility=hidden -O2
->     -g -feliminate-unused-debug-types
->     -fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
->
->     -fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
->
->     -MD -MQ vtest/virgl_test_server.p/vtest_renderer.c.o -MF
->     vtest/virgl_test_server.p/vtest_renderer.c.o.d -o
->     vtest/virgl_test_server.p/vtest_renderer.c.o -c
->     ../git/vtest/vtest_renderer.c
->     ninja: build stopped: subcommand failed.
->     WARNING:
->     /var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739:152
->
->     exit 1 from 'ninja -v -j 16'
->     WARNING: Backtrace (BB generated script):
->          #1: meson_do_compile,
->     /var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739,
->
->     line 152
->          #2: do_compile,
->     /var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739,
->
->     line 147
->          #3: main,
->     /var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739,
->
->     line 156
->
->     Backtrace (metadata-relative locations):
->          #1: meson_do_compile,
->     /home/dingo/overc/poky/meta/classes/meson.bbclass, line 180
->          #2: do_compile, autogenerated, line 2
->
->
->     
->
+Next Deadline: YP 3.2 M4 Feature Freeze - Now
 
---------------3576BDFECDBA804CF3489AE3
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+ 
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>its building from meta-tegra .... <br>
-    </p>
-    <div class="moz-cite-prefix">On 10/13/20 2:56 PM, Alexander Kanavin
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CANNYZj9Wt+fc8d0ETvpcJDs6JG8zbjWdFX946_Xo+T6nSSYW_w@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="auto">Virgl only has been verified with Mesa, if your
-        bsp provides something else for virtual/libgl, it is not going
-        to work. Please ask your bsp supplier (Nvidia I guess?) what to
-        do. </div>
-      <div dir="auto"><br>
-      </div>
-      <div dir="auto">Alex</div>
-      <div><br>
-        <div class="gmail_quote">
-          <div dir="ltr" class="gmail_attr">On Tue 13. Oct 2020 at 6.28,
-            Yocto &lt;<a href="mailto:yocto@optimcloud.com"
-              moz-do-not-send="true">yocto@optimcloud.com</a>&gt; wrote:<br>
-          </div>
-          <blockquote class="gmail_quote" style="margin:0px 0px 0px
-0.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)">virglrenderer
-            appears broken, occurs on both Fedora-32 and Debian-10<br>
-            <br>
-            Build Configuration:<br>
-            BB_VERSION           = "1.47.0"<br>
-            BUILD_SYS            = "x86_64-linux"<br>
-            NATIVELSBSTRING      = "fedora-32"<br>
-            TARGET_SYS           = "aarch64-overc-linux"<br>
-            MACHINE              = "jetson-xavier-nx-devkit"<br>
-            DISTRO               = "overc"<br>
-            DISTRO_VERSION       = "1.0"<br>
-            TUNE_FEATURES        = "aarch64 armv8a crc"<br>
-            TARGET_FPU           = ""<br>
-            meta<br>
-            meta-poky<br>
-            meta-yocto-bsp       =
-            "master:0c0b236b4c72d30e0e88f5f0310476569d444e83"<br>
-            meta-tegra           =
-            "master:01c3205183af0236101b423d48a8af167baee8b1"<br>
-            meta-oe<br>
-            meta-python<br>
-            meta-networking<br>
-            meta-filesystems<br>
-            meta-gnome<br>
-            meta-xfce<br>
-            meta-multimedia<br>
-            meta-perl            =
-            "master:d25d21a8b40d3fe29298f3aa43328477ce4d8ee7"<br>
-            meta-overc<br>
-            meta-cube            =
-            "master:264d1d0949fb5e9ec8e39b1f7604086d59ec2047"<br>
-            meta-awnix           =
-            "master:c616414c6ed4f6f2ab75703ce5a3e84acacd3c47"<br>
-            meta-virtualization  =
-            "master:43a5cc7f031da1ef75b1ff33def3ef4984ad72e3"<br>
-            meta-cloud-services  =
-            "master:910195eb791d754d394ba1013a258ab120c995e9"<br>
-            meta-security        =
-            "master:3ce8b759c97706d6f78928c38b6ebac4edfd95a5"<br>
-            meta-selinux         =
-            "master:6e1100d29aec118df2025c46c77f4c8aa8da4e76"<br>
-            <br>
-            <br>
-            ❯ cat <br>
-/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/log.do_compile.754739<br>
-            DEBUG: Executing shell function do_compile<br>
-            [1/15] rm -f src/gallium/libgallium.a &amp;&amp;
-            aarch64-overc-linux-gcc-ar csrD <br>
-            src/gallium/libgallium.a <br>
-src/gallium/libgallium.a.p/meson-generated_.._u_format_table.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_format.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_texture.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_hash_table.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_debug.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_cpu_detect.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_bitmask.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_surface.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_math.c.o <br>
-src/gallium/libgallium.a.p/auxiliary_util_u_debug_describe.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_cso_cache_cso_cache.c.o
-            <br>
-            src/gallium/libgallium.a.p/auxiliary_cso_cache_cso_hash.c.o
-            <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_dump.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_ureg.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_build.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_scan.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_info.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_parse.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_text.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_strings.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_sanity.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_iterate.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_util.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_transform.c.o
-            <br>
-            src/gallium/libgallium.a.p/auxiliary_os_os_misc.c.o<br>
-            [2/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Ivtest/virgl_test_server.p -Ivtest -I../git/vtest <br>
-            -I../git/src/gallium/include -I../git/src/gallium/auxiliary
-            <br>
-            -I../git/src/gallium/auxiliary/util -I. -I../git -Isrc
-            -I../git/src <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -MD -MQ vtest/virgl_test_server.p/vtest_shm.c.o -MF <br>
-            vtest/virgl_test_server.p/vtest_shm.c.o.d -o <br>
-            vtest/virgl_test_server.p/vtest_shm.c.o -c
-            ../git/vtest/vtest_shm.c<br>
-            [3/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_debug.c.o -MF
-            <br>
-            src/libvirgl.a.p/vrend_debug.c.o.d -o
-            src/libvirgl.a.p/vrend_debug.c.o <br>
-            -c ../git/src/vrend_debug.c<br>
-            FAILED: src/libvirgl.a.p/vrend_debug.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_debug.c.o -MF
-            <br>
-            src/libvirgl.a.p/vrend_debug.c.o.d -o
-            src/libvirgl.a.p/vrend_debug.c.o <br>
-            -c ../git/src/vrend_debug.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/vrend_debug.c:26:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [4/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_renderer.c.o
-            -MF <br>
-            src/libvirgl.a.p/vrend_renderer.c.o.d -o <br>
-            src/libvirgl.a.p/vrend_renderer.c.o -c
-            ../git/src/vrend_renderer.c<br>
-            FAILED: src/libvirgl.a.p/vrend_renderer.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_renderer.c.o
-            -MF <br>
-            src/libvirgl.a.p/vrend_renderer.c.o.d -o <br>
-            src/libvirgl.a.p/vrend_renderer.c.o -c
-            ../git/src/vrend_renderer.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/vrend_renderer.c:49:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [5/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_blitter.c.o
-            -MF <br>
-            src/libvirgl.a.p/vrend_blitter.c.o.d -o <br>
-            src/libvirgl.a.p/vrend_blitter.c.o -c
-            ../git/src/vrend_blitter.c<br>
-            FAILED: src/libvirgl.a.p/vrend_blitter.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_blitter.c.o
-            -MF <br>
-            src/libvirgl.a.p/vrend_blitter.c.o.d -o <br>
-            src/libvirgl.a.p/vrend_blitter.c.o -c
-            ../git/src/vrend_blitter.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/vrend_blitter.c:48:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [6/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Ivtest/virgl_test_server.p -Ivtest -I../git/vtest <br>
-            -I../git/src/gallium/include -I../git/src/gallium/auxiliary
-            <br>
-            -I../git/src/gallium/auxiliary/util -I. -I../git -Isrc
-            -I../git/src <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -MD -MQ vtest/virgl_test_server.p/vtest_server.c.o -MF <br>
-            vtest/virgl_test_server.p/vtest_server.c.o.d -o <br>
-            vtest/virgl_test_server.p/vtest_server.c.o -c
-            ../git/vtest/vtest_server.c<br>
-            [7/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirglrenderer.so.1.4.2.p -Isrc -I../git/src <br>
-            -I../git/src/gallium/include -I../git/src/gallium/auxiliary
-            <br>
-            -I../git/src/gallium/auxiliary/util -I. -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ
-            src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o <br>
-            -MF src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o.d -o <br>
-            src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o -c <br>
-            ../git/src/virglrenderer.c<br>
-            FAILED: src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirglrenderer.so.1.4.2.p -Isrc -I../git/src <br>
-            -I../git/src/gallium/include -I../git/src/gallium/auxiliary
-            <br>
-            -I../git/src/gallium/auxiliary/util -I. -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ
-            src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o <br>
-            -MF src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o.d -o <br>
-            src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o -c <br>
-            ../git/src/virglrenderer.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/virglrenderer.c:37:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [8/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_formats.c.o
-            -MF <br>
-            src/libvirgl.a.p/vrend_formats.c.o.d -o <br>
-            src/libvirgl.a.p/vrend_formats.c.o -c
-            ../git/src/vrend_formats.c<br>
-            FAILED: src/libvirgl.a.p/vrend_formats.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_formats.c.o
-            -MF <br>
-            src/libvirgl.a.p/vrend_formats.c.o.d -o <br>
-            src/libvirgl.a.p/vrend_formats.c.o -c
-            ../git/src/vrend_formats.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/vrend_formats.c:26:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [9/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_decode.c.o -MF
-            <br>
-            src/libvirgl.a.p/vrend_decode.c.o.d -o
-            src/libvirgl.a.p/vrend_decode.c.o <br>
-            -c ../git/src/vrend_decode.c<br>
-            FAILED: src/libvirgl.a.p/vrend_decode.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_decode.c.o -MF
-            <br>
-            src/libvirgl.a.p/vrend_decode.c.o.d -o
-            src/libvirgl.a.p/vrend_decode.c.o <br>
-            -c ../git/src/vrend_decode.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/vrend_decode.c:34:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [10/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ
-            src/libvirgl.a.p/virgl_glx_context.c.o -MF <br>
-            src/libvirgl.a.p/virgl_glx_context.c.o.d -o <br>
-            src/libvirgl.a.p/virgl_glx_context.c.o -c
-            ../git/src/virgl_glx_context.c<br>
-            FAILED: src/libvirgl.a.p/virgl_glx_context.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ
-            src/libvirgl.a.p/virgl_glx_context.c.o -MF <br>
-            src/libvirgl.a.p/virgl_glx_context.c.o.d -o <br>
-            src/libvirgl.a.p/virgl_glx_context.c.o -c
-            ../git/src/virgl_glx_context.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/virgl_glx.h:27,<br>
-                              from ../git/src/virgl_glx_context.c:32:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [11/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Ivtest/virgl_test_server.p -Ivtest -I../git/vtest <br>
-            -I../git/src/gallium/include -I../git/src/gallium/auxiliary
-            <br>
-            -I../git/src/gallium/auxiliary/util -I. -I../git -Isrc
-            -I../git/src <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -MD -MQ vtest/virgl_test_server.p/vtest_renderer.c.o -MF <br>
-            vtest/virgl_test_server.p/vtest_renderer.c.o.d -o <br>
-            vtest/virgl_test_server.p/vtest_renderer.c.o -c <br>
-            ../git/vtest/vtest_renderer.c<br>
-            ninja: build stopped: subcommand failed.<br>
-            WARNING: <br>
-/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739:152
-            <br>
-            exit 1 from 'ninja -v -j 16'<br>
-            WARNING: Backtrace (BB generated script):<br>
-                 #1: meson_do_compile, <br>
-/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739,
-            <br>
-            line 152<br>
-                 #2: do_compile, <br>
-/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739,
-            <br>
-            line 147<br>
-                 #3: main, <br>
-/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739,
-            <br>
-            line 156<br>
-            ERROR: Execution of <br>
-'/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739'
-            <br>
-            failed with exit code 1:<br>
-            [1/15] rm -f src/gallium/libgallium.a &amp;&amp;
-            aarch64-overc-linux-gcc-ar csrD <br>
-            src/gallium/libgallium.a <br>
-src/gallium/libgallium.a.p/meson-generated_.._u_format_table.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_format.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_texture.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_hash_table.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_debug.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_cpu_detect.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_bitmask.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_surface.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_util_u_math.c.o <br>
-src/gallium/libgallium.a.p/auxiliary_util_u_debug_describe.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_cso_cache_cso_cache.c.o
-            <br>
-            src/gallium/libgallium.a.p/auxiliary_cso_cache_cso_hash.c.o
-            <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_dump.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_ureg.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_build.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_scan.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_info.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_parse.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_text.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_strings.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_sanity.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_iterate.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_util.c.o <br>
-            src/gallium/libgallium.a.p/auxiliary_tgsi_tgsi_transform.c.o
-            <br>
-            src/gallium/libgallium.a.p/auxiliary_os_os_misc.c.o<br>
-            [2/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Ivtest/virgl_test_server.p -Ivtest -I../git/vtest <br>
-            -I../git/src/gallium/include -I../git/src/gallium/auxiliary
-            <br>
-            -I../git/src/gallium/auxiliary/util -I. -I../git -Isrc
-            -I../git/src <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -MD -MQ vtest/virgl_test_server.p/vtest_shm.c.o -MF <br>
-            vtest/virgl_test_server.p/vtest_shm.c.o.d -o <br>
-            vtest/virgl_test_server.p/vtest_shm.c.o -c
-            ../git/vtest/vtest_shm.c<br>
-            [3/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_debug.c.o -MF
-            <br>
-            src/libvirgl.a.p/vrend_debug.c.o.d -o
-            src/libvirgl.a.p/vrend_debug.c.o <br>
-            -c ../git/src/vrend_debug.c<br>
-            FAILED: src/libvirgl.a.p/vrend_debug.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_debug.c.o -MF
-            <br>
-            src/libvirgl.a.p/vrend_debug.c.o.d -o
-            src/libvirgl.a.p/vrend_debug.c.o <br>
-            -c ../git/src/vrend_debug.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/vrend_debug.c:26:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [4/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_renderer.c.o
-            -MF <br>
-            src/libvirgl.a.p/vrend_renderer.c.o.d -o <br>
-            src/libvirgl.a.p/vrend_renderer.c.o -c
-            ../git/src/vrend_renderer.c<br>
-            FAILED: src/libvirgl.a.p/vrend_renderer.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_renderer.c.o
-            -MF <br>
-            src/libvirgl.a.p/vrend_renderer.c.o.d -o <br>
-            src/libvirgl.a.p/vrend_renderer.c.o -c
-            ../git/src/vrend_renderer.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/vrend_renderer.c:49:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [5/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_blitter.c.o
-            -MF <br>
-            src/libvirgl.a.p/vrend_blitter.c.o.d -o <br>
-            src/libvirgl.a.p/vrend_blitter.c.o -c
-            ../git/src/vrend_blitter.c<br>
-            FAILED: src/libvirgl.a.p/vrend_blitter.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_blitter.c.o
-            -MF <br>
-            src/libvirgl.a.p/vrend_blitter.c.o.d -o <br>
-            src/libvirgl.a.p/vrend_blitter.c.o -c
-            ../git/src/vrend_blitter.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/vrend_blitter.c:48:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [6/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Ivtest/virgl_test_server.p -Ivtest -I../git/vtest <br>
-            -I../git/src/gallium/include -I../git/src/gallium/auxiliary
-            <br>
-            -I../git/src/gallium/auxiliary/util -I. -I../git -Isrc
-            -I../git/src <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -MD -MQ vtest/virgl_test_server.p/vtest_server.c.o -MF <br>
-            vtest/virgl_test_server.p/vtest_server.c.o.d -o <br>
-            vtest/virgl_test_server.p/vtest_server.c.o -c
-            ../git/vtest/vtest_server.c<br>
-            [7/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirglrenderer.so.1.4.2.p -Isrc -I../git/src <br>
-            -I../git/src/gallium/include -I../git/src/gallium/auxiliary
-            <br>
-            -I../git/src/gallium/auxiliary/util -I. -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ
-            src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o <br>
-            -MF src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o.d -o <br>
-            src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o -c <br>
-            ../git/src/virglrenderer.c<br>
-            FAILED: src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirglrenderer.so.1.4.2.p -Isrc -I../git/src <br>
-            -I../git/src/gallium/include -I../git/src/gallium/auxiliary
-            <br>
-            -I../git/src/gallium/auxiliary/util -I. -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ
-            src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o <br>
-            -MF src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o.d -o <br>
-            src/libvirglrenderer.so.1.4.2.p/virglrenderer.c.o -c <br>
-            ../git/src/virglrenderer.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/virglrenderer.c:37:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [8/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_formats.c.o
-            -MF <br>
-            src/libvirgl.a.p/vrend_formats.c.o.d -o <br>
-            src/libvirgl.a.p/vrend_formats.c.o -c
-            ../git/src/vrend_formats.c<br>
-            FAILED: src/libvirgl.a.p/vrend_formats.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_formats.c.o
-            -MF <br>
-            src/libvirgl.a.p/vrend_formats.c.o.d -o <br>
-            src/libvirgl.a.p/vrend_formats.c.o -c
-            ../git/src/vrend_formats.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/vrend_formats.c:26:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [9/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_decode.c.o -MF
-            <br>
-            src/libvirgl.a.p/vrend_decode.c.o.d -o
-            src/libvirgl.a.p/vrend_decode.c.o <br>
-            -c ../git/src/vrend_decode.c<br>
-            FAILED: src/libvirgl.a.p/vrend_decode.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ src/libvirgl.a.p/vrend_decode.c.o -MF
-            <br>
-            src/libvirgl.a.p/vrend_decode.c.o.d -o
-            src/libvirgl.a.p/vrend_decode.c.o <br>
-            -c ../git/src/vrend_decode.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/vrend_decode.c:34:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [10/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ
-            src/libvirgl.a.p/virgl_glx_context.c.o -MF <br>
-            src/libvirgl.a.p/virgl_glx_context.c.o.d -o <br>
-            src/libvirgl.a.p/virgl_glx_context.c.o -c
-            ../git/src/virgl_glx_context.c<br>
-            FAILED: src/libvirgl.a.p/virgl_glx_context.c.o<br>
-            aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Isrc/libvirgl.a.p -Isrc -I../git/src
-            -I../git/src/gallium/include <br>
-            -I../git/src/gallium/auxiliary
-            -I../git/src/gallium/auxiliary/util -I. <br>
-            -I../git <br>
--I/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot/usr/include/libdrm
-            <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -fPIC -pthread -MD -MQ
-            src/libvirgl.a.p/virgl_glx_context.c.o -MF <br>
-            src/libvirgl.a.p/virgl_glx_context.c.o.d -o <br>
-            src/libvirgl.a.p/virgl_glx_context.c.o -c
-            ../git/src/virgl_glx_context.c<br>
-            In file included from ../git/src/vrend_renderer.h:34,<br>
-                              from ../git/src/virgl_glx.h:27,<br>
-                              from ../git/src/virgl_glx_context.c:32:<br>
-            ../git/src/virgl_gbm.h:28:10: fatal error: gbm.h: No such
-            file or directory<br>
-                28 | #include &lt;gbm.h&gt;<br>
-                   |          ^~~~~~~<br>
-            compilation terminated.<br>
-            [11/15] aarch64-overc-linux-gcc -march=armv8-a+crc <br>
---sysroot=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot
-            <br>
-            -Ivtest/virgl_test_server.p -Ivtest -I../git/vtest <br>
-            -I../git/src/gallium/include -I../git/src/gallium/auxiliary
-            <br>
-            -I../git/src/gallium/auxiliary/util -I. -I../git -Isrc
-            -I../git/src <br>
-            -fdiagnostics-color=always -DNDEBUG -pipe
-            -D_FILE_OFFSET_BITS=64 <br>
-            -std=gnu11 -DHAVE_CONFIG_H=1 -D_GNU_SOURCE=1 <br>
-            -Werror=implicit-function-declaration
-            -Werror=missing-prototypes <br>
-            -Wmissing-prototypes -Werror=int-to-pointer-cast
-            -fvisibility=hidden -O2 <br>
-            -g -feliminate-unused-debug-types <br>
--fmacro-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0=/usr/src/debug/virglrenderer/0.8.2-r0
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot=
-            <br>
--fdebug-prefix-map=/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/recipe-sysroot-native=
-            <br>
-            -MD -MQ vtest/virgl_test_server.p/vtest_renderer.c.o -MF <br>
-            vtest/virgl_test_server.p/vtest_renderer.c.o.d -o <br>
-            vtest/virgl_test_server.p/vtest_renderer.c.o -c <br>
-            ../git/vtest/vtest_renderer.c<br>
-            ninja: build stopped: subcommand failed.<br>
-            WARNING: <br>
-/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739:152
-            <br>
-            exit 1 from 'ninja -v -j 16'<br>
-            WARNING: Backtrace (BB generated script):<br>
-                 #1: meson_do_compile, <br>
-/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739,
-            <br>
-            line 152<br>
-                 #2: do_compile, <br>
-/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739,
-            <br>
-            line 147<br>
-                 #3: main, <br>
-/var/home/dingo/overc/xavier/tmp/work/armv8a-overc-linux/virglrenderer/0.8.2-r0/temp/run.do_compile.754739,
-            <br>
-            line 156<br>
-            <br>
-            Backtrace (metadata-relative locations):<br>
-                 #1: meson_do_compile, <br>
-            /home/dingo/overc/poky/meta/classes/meson.bbclass, line 180<br>
-                 #2: do_compile, autogenerated, line 2<br>
-            <br>
-            <br>
-            <br>
-            <br>
-          </blockquote>
-        </div>
-      </div>
-    </blockquote>
-  </body>
-</html>
+Next Team Meetings:
 
---------------3576BDFECDBA804CF3489AE3--
+*	Bug Triage meeting Thursday Oct. 15th at 7:30am PDT (
+<https://zoom.us/j/454367603?pwd=ZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09>
+https://zoom.us/j/454367603?pwd=ZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09)
+*	Monthly Project Meeting Tuesday Nov.. 3rd at 8am PDT (
+<https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09>
+https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09
+<https://zoom.us/j/990892712> )
+*	Weekly Engineering Sync Tuesday Oct. 13th at 8am PDT (
+<https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09>
+https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09
+<https://zoom.us/j/990892712> )
+*	Twitch -  See https://www.twitch.tv/theyoctojester
+
+ 
+
+Key Status/Updates:
+
+*	YP 3.1.3 has been released.
+*	We are now (over)due to build M4 rc1. There are currently three high
+bugs blocking the final M4 build, a buildtools issue where buildtools needs
+updating in the install script, a toaster issue with recent bitbake cooker
+process changes and a missing kea init script..
+*	Major pseudo changes have been merged and are now testing cleanly on
+the testing infrastructure. The known community reported issues have also
+been resolved and a couple of underlying pseudo bugs discovered and fixed
+too. Interestingly there was around a 2GB reduction in the size of the
+pseudo databases for core-image-sato after the path filtering was added.
+*	Victor did some great work in understanding why qemumips was so much
+slower than qemumips64 and by changing the number of TLBs (easy in
+software!). we were able to see a 40% speedup in 32 mips qemu test execution
+times. A further piece of good news is upstream look willing to add
+functionality which lets us configure the number of TLBs so we shouldn't
+have to maintain anything out of tree, thanks Victor!
+*	Unfortunately, intermittent autobuilder issues are still occurring,
+whilst reducing in frequency and number, possibly due to less frequency full
+rebuilds. You can see the list of failures we're continuing to see by
+searching for the "AB-INT" tag in bugzilla:
+<https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=AB-INT>
+https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=AB-INT
+
+Help with any of these would be much appreciated, unfortunately it is
+proving hard to find anyone interested in helping figure these out and they
+significantly hamper our testing.
+
+ 
+
+Ways to contribute:
+
+*	There are bugs identified as possible for newcomers to the project:
+<https://wiki.yoctoproject.org/wiki/Newcomers>
+https://wiki.yoctoproject.org/wiki/Newcomers
+*	There are bugs that are currently unassigned for YP 3.2. See:
+<https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_3.2_Unassigned_Enha
+ncements.2FBugs>
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_3.2_Unassigned_Enhan
+cements.2FBugs
+*	We'd welcome new maintainers for recipes in OE-Core. Please see the
+list at:
+<http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/include/mai
+ntainers.inc>
+http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/include/main
+tainers.inc and discuss with the existing maintainer, or ask on the OE-Core
+mailing list. We will likely move a chunk of these to "Unassigned" soon to
+help facilitate this.
+
+ 
+
+YP 3.2 Milestone Dates:
+
+*	YP 3.2 M4 build date 2020/10/5
+*	YP 3.2 M4 Release date 2020/10/30
+
+ 
+
+Planned upcoming dot releases:
+
+*	YP 3.1.3 has been released..
+*	YP 3.1.4 build date 2020/11/2
+*	YP 3.1.4 release date 2020/11/13
+
+ 
+
+Tracking Metrics:
+
+*	WDD 2506 (last week 2498) (
+<https://wiki.yoctoproject.org/charts/combo.html>
+https://wiki.yoctoproject.org/charts/combo.html)
+*	Poky Patch Metrics  
+
+*	Total patches found: 1273 (last week 1271)
+*	Patches in the Pending State: 494 (39%) [last week 493 (39%)]
+
+ 
+
+The Yocto Project's technical governance is through its Technical Steering
+Committee, more information is available at:
+
+ <https://wiki.yoctoproject.org/wiki/TSC>
+https://wiki.yoctoproject.org/wiki/TSC
+
+ 
+
+The Status reports are now stored on the wiki at:
+<https://wiki.yoctoproject.org/wiki/Weekly_Status>
+https://wiki.yoctoproject.org/wiki/Weekly_Status
+
+ 
+
+[If anyone has suggestions for other information you'd like to see on this
+weekly status update, let us know!]
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_1560_01D6A135.E3D2CCF0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_08AA_01D69BB6.5956C420";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:193613166;
+	mso-list-template-ids:1563614012;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:342975191;
+	mso-list-template-ids:1489435962;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2
+	{mso-list-id:467014104;
+	mso-list-template-ids:-1613955364;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3
+	{mso-list-id:618873105;
+	mso-list-template-ids:-1134632334;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4
+	{mso-list-id:622885077;
+	mso-list-template-ids:-911694026;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l4:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5
+	{mso-list-id:681667614;
+	mso-list-template-ids:2013966;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l5:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l5:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6
+	{mso-list-id:731388325;
+	mso-list-template-ids:-231298908;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l6:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7
+	{mso-list-id:947009358;
+	mso-list-template-ids:-914606404;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8
+	{mso-list-id:1083259537;
+	mso-list-template-ids:575325366;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l8:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l8:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9
+	{mso-list-id:1417243945;
+	mso-list-template-ids:991463606;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l9:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10
+	{mso-list-id:1707367615;
+	mso-list-template-ids:-798969192;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l10:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l10:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11
+	{mso-list-id:1724792596;
+	mso-list-template-ids:574642168;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l11:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l11:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Current Dev =
+Position: YP 3.2 M4</span><o:p></o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Next Deadline: YP =
+3.2 M4 Feature Freeze - Now</span><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Next Team =
+Meetings:</span><o:p></o:p></p><ul style=3D'margin-top:0in' =
+type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Bug Triage meeting Thursday =
+Oct. 15th at 7:30am PDT (<a =
+href=3D"https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz0=
+9"><span =
+style=3D'color:#1155CC'>https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y=
+0bFd5aVpHVVZ6dz09</span></a>)<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Monthly Project Meeting Tuesday =
+Nov.. 3rd at 8am PDT (<a =
+href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT0=
+9"><span =
+style=3D'color:#1155CC'>https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck8=
+1bkcrYjRrcmJsUT09</span></a><a =
+href=3D"https://zoom.us/j/990892712"><span =
+style=3D'color:#1155CC'>)</span></a><o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Weekly Engineering Sync Tuesday =
+Oct. 13th at 8am PDT (<a =
+href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT0=
+9"><span =
+style=3D'color:#1155CC'>https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck8=
+1bkcrYjRrcmJsUT09</span></a><a =
+href=3D"https://zoom.us/j/990892712"><span =
+style=3D'color:#1155CC'>)</span></a><o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Twitch -&nbsp; See =
+https://www.twitch.tv/theyoctojester<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Key =
+Status/Updates:</span><o:p></o:p></p><ul style=3D'margin-top:0in' =
+type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l2 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.3 has been =
+released.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l2 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>We are now (over)due to build =
+M4 rc1. There are currently three high bugs blocking the final M4 build, =
+a buildtools issue where buildtools needs updating in the install =
+script, a toaster issue with recent bitbake cooker process changes and a =
+missing kea init script..<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l2 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Major pseudo changes have been =
+merged and are now testing cleanly on the testing infrastructure. The =
+known community reported issues have also been resolved and a couple of =
+underlying pseudo bugs discovered and fixed too. Interestingly there was =
+around a 2GB reduction in the size of the pseudo databases for =
+core-image-sato after the path filtering was =
+added.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l2 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Victor did some great work in =
+understanding why qemumips was so much slower than qemumips64 and by =
+changing the number of TLBs (easy in software!). we were able to see a =
+40% speedup in 32 mips qemu test execution times. A further piece of =
+good news is upstream look willing to add functionality which lets us =
+configure the number of TLBs so we shouldn&#8217;t have to maintain =
+anything out of tree, thanks Victor!<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l2 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Unfortunately, intermittent =
+autobuilder issues are still occurring, whilst reducing in frequency and =
+number, possibly due to less frequency full rebuilds. You can see the =
+list of failures we&#8217;re continuing to see by searching for the =
+&#8220;AB-INT&#8221; tag in bugzilla: <a =
+href=3D"https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DAB-IN=
+T"><span =
+style=3D'color:#1155CC'>https://bugzilla.yoctoproject.org/buglist.cgi?qui=
+cksearch=3DAB-INT</span></a><o:p></o:p></span></li></ul><p =
+style=3D'mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin=
+-left:.5in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Help with any of =
+these would be much appreciated, unfortunately it is proving hard to =
+find anyone interested in helping figure these out and they =
+significantly hamper our testing.<o:p></o:p></span></p><p =
+style=3D'margin:0in'><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Ways to =
+contribute:</span><o:p></o:p></p><ul style=3D'margin-top:0in' =
+type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
+level1 lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>There are bugs identified as =
+possible for newcomers to the project: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Newcomers"><span =
+style=3D'color:#1155CC'>https://wiki.yoctoproject.org/wiki/Newcomers</spa=
+n></a><o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
+level1 lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>There are bugs that are =
+currently unassigned for YP 3.2. See: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_3.2_Unass=
+igned_Enhancements.2FBugs"><span =
+style=3D'color:#1155CC'>https://wiki.yoctoproject.org/wiki/Bug_Triage#Med=
+ium.2B_3.2_Unassigned_Enhancements.2FBugs</span></a><o:p></o:p></span></l=
+i><li style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
+level1 lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>We&#8217;d welcome new =
+maintainers for recipes in OE-Core. Please see the list at: <a =
+href=3D"http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/i=
+nclude/maintainers.inc"><span =
+style=3D'color:#1155CC'>http://git.yoctoproject.org/cgit.cgi/poky/tree/me=
+ta/conf/distro/include/maintainers.inc</span></a> and discuss with the =
+existing maintainer, or ask on the OE-Core mailing list. We will likely =
+move a chunk of these to &#8220;Unassigned&#8221; soon to help =
+facilitate this.<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>YP 3.2 Milestone =
+Dates:</span><o:p></o:p></p><ul style=3D'margin-top:0in' type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
+lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.2 M4 build date =
+2020/10/5<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
+lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.2 M4 Release date =
+2020/10/30<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Planned upcoming =
+dot releases:</span><o:p></o:p></p><ul style=3D'margin-top:0in' =
+type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l8 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.3 has been =
+released..<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l8 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.4 build date =
+2020/11/2<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l8 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.4 release date =
+2020/11/13<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Tracking =
+Metrics:</span><o:p></o:p></p><ul style=3D'margin-top:0in' =
+type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l0 level1 =
+lfo12;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>WDD 2506 (last week =
+2498)</span><span style=3D'font-family:Consolas'> (</span><span =
+style=3D'font-family:"Arial",sans-serif'><a =
+href=3D"https://wiki.yoctoproject.org/charts/combo.html"><span =
+style=3D'color:#1155CC'>https://wiki.yoctoproject.org/charts/combo.html</=
+span></a></span><span style=3D'font-family:Consolas'>)</span><span =
+style=3D'font-family:"Arial",sans-serif'><o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l0 level1 =
+lfo12;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Poky Patch =
+Metrics&nbsp;&nbsp;</span><span =
+style=3D'font-family:Consolas'><o:p></o:p></span></li><ul =
+style=3D'margin-top:0in' type=3Dcircle><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l0 level2 =
+lfo12;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Total patches found: 1273 (last =
+week 1271)<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l0 level2 =
+lfo12;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Patches in the Pending State: =
+494 (39%) [last week 493 (39%)]</span><span =
+style=3D'font-family:Consolas'><o:p></o:p></span></li></ul></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>The Yocto =
+Project&#8217;s technical governance is through its Technical Steering =
+Committee, more information is available at:</span><o:p></o:p></p><p =
+style=3D'margin:0in'><a =
+href=3D"https://wiki.yoctoproject.org/wiki/TSC"><span =
+style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://wiki.yocto=
+project.org/wiki/TSC</span></a><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>The Status reports =
+are now stored on the wiki at: </span><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status"><span =
+style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://wiki.yocto=
+project.org/wiki/Weekly_Status</span></a><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>[If anyone has =
+suggestions for other information you&#8217;d like to see on this weekly =
+status update, let us know!]</span><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_1560_01D6A135.E3D2CCF0--
