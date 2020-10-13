@@ -1,79 +1,93 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.1207.1602608219418037095
+ by mx.groups.io with SMTP id smtpd.web11.1202.1602608258421703985
  for <yocto@lists.yoctoproject.org>;
- Tue, 13 Oct 2020 09:56:59 -0700
+ Tue, 13 Oct 2020 09:57:38 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=permerror, err=parse error for token &{10 18 questdiagnostics.com}: parse error for token &{10 18 spf.messagelabs.com}: parse error for token &{10 18 nets1.spf.messagelabs.com}: limit exceeded (domain: essvote.com, ip: 198.145.29.25, mailfrom: michael.davis@essvote.com)
-Received: from us-smtp-delivery-164.mimecast.com (us-smtp-delivery-164.mimecast.com [63.128.21.164])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 83FDD38C1164
-	for <yocto@yoctoproject.org>; Tue, 13 Oct 2020 09:56:58 -0700 (PDT)
+Received: from us-smtp-delivery-164.mimecast.com (us-smtp-delivery-164.mimecast.com [216.205.24.164])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id A4FCB38C1164
+	for <yocto@yoctoproject.org>; Tue, 13 Oct 2020 09:57:37 -0700 (PDT)
 Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam04lp2056.outbound.protection.outlook.com [104.47.45.56]) (Using
+ (mail-co1nam04lp2051.outbound.protection.outlook.com [104.47.45.51]) (Using
  TLS) by relay.mimecast.com with ESMTP id
- us-mta-308-eI2a6QfVNHGVWY8ANDl6XA-1; Tue, 13 Oct 2020 12:56:55 -0400
-X-MC-Unique: eI2a6QfVNHGVWY8ANDl6XA-1
+ us-mta-565-6B59ywJ1OIuTF6kSkTHb-A-1; Tue, 13 Oct 2020 12:57:33 -0400
+X-MC-Unique: 6B59ywJ1OIuTF6kSkTHb-A-1
 Received: from DM6PR17MB2474.namprd17.prod.outlook.com (2603:10b6:5:69::15) by
  DM5PR17MB2027.namprd17.prod.outlook.com (2603:10b6:3:8d::23) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3455.29; Tue, 13 Oct 2020 16:56:53 +0000
+ 15.20.3455.29; Tue, 13 Oct 2020 16:57:31 +0000
 Received: from DM6PR17MB2474.namprd17.prod.outlook.com
  ([fe80::4014:9f67:6ee6:f1b4]) by DM6PR17MB2474.namprd17.prod.outlook.com
  ([fe80::4014:9f67:6ee6:f1b4%6]) with mapi id 15.20.3477.020; Tue, 13 Oct 2020
- 16:56:53 +0000
+ 16:57:31 +0000
 From: "Davis, Michael" <michael.davis@essvote.com>
-To: yocto@yoctoproject.org
-CC: Michael Davis <michael.davis@essvote.com>
-Subject: [meta-openssl102-fips][PATCH] conf/layer.conf: Add dunfell to LAYERSERIES_COMPAT
-Date: Tue, 13 Oct 2020 11:56:40 -0500
-Message-ID: <20201013165640.147029-1-michael.davis@essvote.com>
-X-Mailer: git-send-email 2.26.2
-X-Originating-IP: [23.152.176.73]
-X-ClientProxiedBy: SN4PR0501CA0035.namprd05.prod.outlook.com
- (2603:10b6:803:40::48) To DM6PR17MB2474.namprd17.prod.outlook.com
- (2603:10b6:5:69::15)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-openssl102-fips][PATCH] conf/layer.conf: Add dunfell to LAYERSERIES_COMPAT
+Thread-Topic: [meta-openssl102-fips][PATCH] conf/layer.conf: Add dunfell to
+ LAYERSERIES_COMPAT
+Thread-Index: AQHWoYHa209o+Q2T10O9P8Izl21CsamVwLjw
+Date: Tue, 13 Oct 2020 16:57:31 +0000
+Message-ID: <DM6PR17MB2474222FDEF38C84DFBFAA5DF8040@DM6PR17MB2474.namprd17.prod.outlook.com>
+References: <20201013165640.147029-1-michael.davis@essvote.com>
+In-Reply-To: <20201013165640.147029-1-michael.davis@essvote.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [23.152.176.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: cd6eb595-906b-4d1a-d1ee-08d86f991351
+x-ms-traffictypediagnostic: DM5PR17MB2027:
+x-microsoft-antispam-prvs: <DM5PR17MB202716ADEF594A309BD2C8D3F8040@DM5PR17MB2027.namprd17.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:398
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0
+x-microsoft-antispam-message-info: odEjsHhfDhy/1RmB2HQPRW9dRU6fUk2V89sYvKhfeqe9CPm9GiBTFFev6dihHLm5FPxmrTzKPymhsbZfIPW6P/cnRDLrkPRlHGu0g366+Y5T8aMN0CVFmOxdvlDzVSzhU1C4+l/tuTlDBkMZ2wXlTzbZ5MflV+jcv3aJiTC4kojOlCDtxiQVrOBfLEfVljL/Np/Z5G7BPnThws+e+np8tYcFVx0J0VDeN9WzPzVEUHJE1pXcqoLx5idad64lWhXujdU29rR6o938PjrBoDmk6tNWF9EFXw0oDGVHN6WHp55DytnxlqqYpusOUsKV0OuQJwtp01TtMJ+tDkC7U1RuKw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR17MB2474.namprd17.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(39840400004)(136003)(366004)(83380400001)(33656002)(66556008)(64756008)(66476007)(26005)(76116006)(66446008)(66946007)(86362001)(6916009)(478600001)(2906002)(316002)(9686003)(8676002)(55016002)(7696005)(8936002)(5660300002)(186003)(4744005)(6506007)(71200400001)(52536014)(53546011);DIR:OUT;SFP:1101
+x-ms-exchange-antispam-messagedata: xnHnv/a1FyW7Xo58ofarWpjuIUAW4hXmWAroargV2FbhRzeIxv9L9OMVUnvtF1+qUN03j9nbdGkHNYhuXMQeBxHxI/i47cDmdXPE7bCXUG7Zh1BolKiGm4ouiLI5+38YSRWT0Ho3cDF4HlRHyrzkFRLua/wANPbZp7QD0alO9mBNyF9xc6+mhOEvbaSHQ1u2DuGDtTUXBFNNCzP/bBc35WVmo930ppOZ6cXHcPQANylfp73pnLcwR2OqSZSVmD4Ni0DNanKXU8UPxwvSMbjKI7oK69iFdWexAf1jiioiu8OfZBmTYSwx0qVYQcnthGt+OdQmp8V5K1G7GPfTf9PFWDv4MA7fxCgwLiImGwmCdu5kRnbp7V+BJilHntZ7xfIfs4x6NRoqKI1ft+zPkLK9lhMEXvfV0EkHV/Xk2ssYcnwV+qmHVrizfVrFT5y2wAvgdUssMpsX2EHzQjhVM8ryr7bfUW5e6sUYaO1dVb6M7Eltn3BtchRk2jvKpldADF5VZ+H+8qie71/tnu2Uj4dP2Rmc2q7lCb0XJp6I8Yrbl1uZjjT6XA7Vw4zaNWdqi/ia0e5/ICRIT4vMPcB/FqGS8c4/K8wkXIEGffadh2QAUCsA/1XWu93PSQxyRzeYFd+GyJyWtpluCWffLl/PO/dwgw==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (23.152.176.73) by SN4PR0501CA0035.namprd05.prod.outlook.com (2603:10b6:803:40::48) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.13 via Frontend Transport; Tue, 13 Oct 2020 16:56:53 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a7ee58dd-3adb-4fec-cf63-08d86f98fc72
-X-MS-TrafficTypeDiagnostic: DM5PR17MB2027:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR17MB202794ACB6A05323F8A7E31FF8040@DM5PR17MB2027.namprd17.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:296
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0
-X-Microsoft-Antispam-Message-Info: wUAcHmayTxEwFJxoJeAyxywqvyd8l25F737dCutmKV3/mFp2tC6dwubunuicJAX61XTFX7CtkAT9kUntJBBloqHnfzR7uCNh1YlQ6gGMKcF1Yb96izoM1W481j5udKGTZ7Mm4axtFtTLt+m6dqLMJPvIHbuMnmBiWXPcnvwBCqqqigINMKlwz7Ea0bVgtw6wc70fkp+jEOE9/7DQA3tpXUtrNDfkWSUoahy7klbrtRAuwUPyeHBckzxi4sJodJWllHF2ei+XzOpfQ1IPMKQC+gkm1RfrWprjBRIjV9lrmS14+a2enyKjaju3hwXutWkMttSNvBv5OKevyK0gWcn5LSxWc8q9ADQ2ABLT5uTz1eZSAQA/22sISlwXnLvyD+mi
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR17MB2474.namprd17.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(39830400003)(346002)(136003)(366004)(2616005)(956004)(83380400001)(66556008)(66476007)(26005)(66946007)(86362001)(44832011)(69590400008)(6916009)(478600001)(6486002)(2906002)(316002)(6512007)(107886003)(8676002)(52116002)(4326008)(6666004)(8936002)(5660300002)(1076003)(186003)(16526019)(36756003)(4744005)(6506007);DIR:OUT;SFP:1101
-X-MS-Exchange-AntiSpam-MessageData: O/biZJ6WkRtyrfoE7ukk7He8HN6KmSK7Wl8PQKeve/wrsXPdOF3llChMYnF2UdKulKTYmCm/UjI8SeuYPqBlE0W4YRRzLt9U6hzKljMQ7itGHxO6e4Ueku9Bu7Yx/vyFJBBvUuUq4TM6g85ixigBfVYsH9BJR8LgCoV38SFd2MtcCeqoTLLid5axo72SwGa/xu7PT7aP45N1PljT8C0q7Df+p4RLriQseZEQunGzu7PYPk5SD3ipT5nnHYxqv9RjBYGf6mW/sdht969OvjfZ/YsWUTyM8Wf1KiArmocNiMHjW8kmdvYP5jgGeCXUtOrZqJJgxNfz910+Ww+1aQ84Q6zJkeXFNpIvUZ6iU3T1rxBA6UfdZFUITdSRdITfQ95RJG+FE6KHfqKyKrheGPvjpf4sisJbThd2WQ6vEmA9Gw1U34c5hdSmtMMdySDhOSRIb+XF+vLHDupV8Y+af8jSeUZ96W5sJs1VDcN99vfOJsEHdt7M6RuftgE5gM3kGre8xt3EYPdEp+h9N4Q3meZLNOe5t07tPoLYb+MBl+URD8LrB0dz8aASpGQUJKHVdeq8H3usXDnkt8EIz8+BL/vzJry0dLr6cijc6ZAZzBEgH2zgU+HCI3x9YokxQivANxeLkMgNBo0nzzb/o16p5pBb+w==
 X-OriginatorOrg: essvote.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7ee58dd-3adb-4fec-cf63-08d86f98fc72
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR17MB2474.namprd17.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2020 16:56:53.6068
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR17MB2474.namprd17.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd6eb595-906b-4d1a-d1ee-08d86f991351
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Oct 2020 16:57:31.5924
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 55818b27-dd2b-48d7-b7c5-95b96a0b1261
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qNrJN7vjhPMR/+5B7227UdMMU+6/WpUs33gzLCIxAlucLRUIbwhuMHPnMU2vYHgfnvwKDkYK92VJoSoDmRpt9T7eDpoXcL8b/qYa/x0n1WA=
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 55818b27-dd2b-48d7-b7c5-95b96a0b1261
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cLDHlr3VI8bexRbfm9QR3KeSfkpEa9HpPTcsJSp7yJscxz9Ro7DPRaim5CJy/G7PfWHN8JpZ02jTN/laVwsliRYy6R4RGYtStwTXMbkV/DI=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR17MB2027
 Authentication-Results: relay.mimecast.com;
 	auth=pass smtp.auth=CUSA64A369 smtp.mailfrom=michael.davis@essvote.com
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: essvote.com
 Content-Type: multipart/alternative;
-	boundary="MCBoundary=_12010131256552631"
+	boundary="MCBoundary=_12010131257350171"
 
---MCBoundary=_12010131256552631
-Content-Transfer-Encoding: quoted-printable
+--MCBoundary=_12010131257350171
+Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Sorry about the spam the [meta-openssl102-fips] kept getting eaten by a mis=
+sing -.
+
+
+-----Original Message-----
+From: Davis, Michael=20
+Sent: Tuesday, October 13, 2020 11:57 AM
+To: yocto@yoctoproject.org
+Cc: Davis, Michael <michael.davis@essvote.com>
+Subject: [meta-openssl102-fips][PATCH] conf/layer.conf: Add dunfell to LAYE=
+RSERIES_COMPAT
 
 Signed-off-by: Michael Davis <michael.davis@essvote.com>
 ---
  conf/layer.conf | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 892cf79..1559f57 100644
+diff --git a/conf/layer.conf b/conf/layer.conf index 892cf79..1559f57 10064=
+4
 --- a/conf/layer.conf
 +++ b/conf/layer.conf
 @@ -10,7 +10,7 @@ BBFILE_PRIORITY_meta-openssl-one-zero-two-fips =3D "5"
@@ -85,7 +99,7 @@ index 892cf79..1559f57 100644
 =20
  LAYERPATH_meta-openssl-one-zero-two-fips =3D "${LAYERDIR}"
 =20
---=20
+--
 2.26.2
 
 CONFIDENTIALITY NOTICE:
@@ -102,19 +116,31 @@ may be unlawful. If you are not an intended recipient of this e-mail transm=
 ission, please notify the sender by return e-mail and permanently
 delete any record of this transmission. Your cooperation is appreciated.
 
---MCBoundary=_12010131256552631
+--MCBoundary=_12010131257350171
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/html; charset=UTF-8
 
 <html><head><style type=3D"text/css">.style1 {font-family: "Times New Roman=
-";}</style></head><body>Signed-off-by: Michael Davis &lt;michael.davis@essv=
-ote.com&gt;<BR>
+";}</style></head><body>Sorry about the spam the [meta-openssl102-fips] kep=
+t getting eaten by a missing -.<BR>
+<BR>
+<BR>
+-----Original Message-----<BR>
+From: Davis, Michael <BR>
+Sent: Tuesday, October 13, 2020 11:57 AM<BR>
+To: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><BR=
+>
+Cc: Davis, Michael &lt;michael.davis@essvote.com&gt;<BR>
+Subject: [meta-openssl102-fips][PATCH] conf/layer.conf: Add dunfell to LAYE=
+RSERIES_COMPAT<BR>
+<BR>
+Signed-off-by: Michael Davis &lt;michael.davis@essvote.com&gt;<BR>
 ---<BR>
  conf/layer.conf | 2 +-<BR>
  1 file changed, 1 insertion(+), 1 deletion(-)<BR>
 <BR>
-diff --git a/conf/layer.conf b/conf/layer.conf<BR>
-index 892cf79..1559f57 100644<BR>
+diff --git a/conf/layer.conf b/conf/layer.conf index 892cf79..1559f57 10064=
+4<BR>
 --- a/conf/layer.conf<BR>
 +++ b/conf/layer.conf<BR>
 @@ -10,7 +10,7 @@ BBFILE_PRIORITY_meta-openssl-one-zero-two-fips =3D &quot;=
@@ -128,7 +154,7 @@ uot;<BR>
  <BR>
  LAYERPATH_meta-openssl-one-zero-two-fips =3D &quot;${LAYERDIR}&quot;<BR>
  <BR>
--- <BR>
+--<BR>
 2.26.2<BR>
 
 <br><br><p style=3D"font-family: Verdana; font-size:10pt; color:#666666;"><=
@@ -149,4 +175,4 @@ ion is appreciated.
 To find out more <a href=3D"http://www.essvote.com/legal/" target=3D"_blank=
 ">Click Here</a>.</p></body></html>
 
---MCBoundary=_12010131256552631--
+--MCBoundary=_12010131257350171--
