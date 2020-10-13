@@ -1,131 +1,152 @@
-Received: from mail-oo1-f65.google.com (mail-oo1-f65.google.com [209.85.161.65])
- by mx.groups.io with SMTP id smtpd.web12.14052.1602601226019447890
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.1091.1602607958567418147
  for <yocto@lists.yoctoproject.org>;
- Tue, 13 Oct 2020 08:00:26 -0700
+ Tue, 13 Oct 2020 09:52:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=XT8gJH4p;
- spf=pass (domain: gmail.com, ip: 209.85.161.65, mailfrom: jpewhacker@gmail.com)
-Received: by mail-oo1-f65.google.com with SMTP id z1so4967796ooj.3
-        for <yocto@lists.yoctoproject.org>; Tue, 13 Oct 2020 08:00:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:subject:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=bu2aXgnxDw0s0TXY3d+5Z87uRMMUVfjORQSLxpxt8jg=;
-        b=XT8gJH4ptUMq953mhkTHLO4XpjYa1rG0BR80FZg+90FiFSb/mbY5p9PgPu2Vizw92J
-         2CJOnJgQ8pA4CdbYuIuej2sSH3NDhAg86iNYaIS5PRr+yk2AqYdASwWCFrBcyferjSMK
-         VKpkwuueq+dtV+AnPTkVcCuFtkAjqfWw2EAUJA14mT6KvaY7IQGvdjIRGf0vvJTlYErb
-         ldzzDVGK6hvmiw9z43H0sA9Ubto/HgLbee6pcQaY2tlocJDLQx19AgpGhax89c4BZdI9
-         a64grnFNLEr4oAvQ7U/BGZ9wuVZcpEZH6TjMyoTs75rIREb2Lnlj50rbAmtIWVaE6QkJ
-         Tx/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:subject:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=bu2aXgnxDw0s0TXY3d+5Z87uRMMUVfjORQSLxpxt8jg=;
-        b=XIuS9i6VrvRUp6SBKDNhxgBHMpzC6TGFZniw42ddFpG7ncoNaiGZARBBOhFP2sNXRX
-         zKn0e7pM+HUsNKb758WDffNTS0pZxUArVU8izlmvn7t4KfVr2yviZcEFVuIAhipAZNdY
-         zjhmA/dX7T9X5DKUFojHy6anoBfFWHmWZ8vBB99K+X4hKeaeWTF+2fHQpyz5eVQfLvHg
-         iXr2KiccD2AzGcv+TQFjDTzZDKsb1lh26ZtZ+EhRZ+1R7iJcl7jipNbZURwM6mGtdg2G
-         uZrJH0kCH91ZumzyBvFm3V7YRFv6M8pWBVBEqPKgwaSz0fwX5n2sGUJ0Nm3NvXWw8Rm4
-         oOgA==
-X-Gm-Message-State: AOAM530aFBLOwfbqCBjoOJxprt9D+J4shwmWHcBRIRaFlObcdYuyy1In
-	hruXq4e94VFaH4dNFDzr7SV6wPNx+Go=
-X-Google-Smtp-Source: ABdhPJygfgNhCsCJ39jYKrlfQincpo90tUyUP789EFWbj7GyF0+ATPnKHq7wNRGbKd4JfK297WuR1A==
-X-Received: by 2002:a4a:9644:: with SMTP id r4mr9928207ooi.12.1602601225048;
-        Tue, 13 Oct 2020 08:00:25 -0700 (PDT)
-Return-Path: <jpewhacker@gmail.com>
-Received: from ?IPv6:2605:a601:ac3d:c100:e3e8:d9:3a56:e27d? ([2605:a601:ac3d:c100:e3e8:d9:3a56:e27d])
-        by smtp.gmail.com with ESMTPSA id b3sm10918069oie.49.2020.10.13.08.00.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Oct 2020 08:00:24 -0700 (PDT)
-From: "Joshua Watt" <JPEWhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-Subject: Re: [yocto] [meta-gplv2] [PATCH] gnupg: Make it build with GCC 10 (which uses -fno-common by default)
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>,
- Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-References: <20200831224444.16097-1-pkj@axis.com>
- <CAJdd5GakOno5nBi4HicYQ=PFrwo6o_GD8+C2Pfn4nr-7+Y_6OQ@mail.gmail.com>
- <CAMKF1soCn187tLQbrbtGg2_gWyS=+gU8q7utwo8J0Bdu+NQrbw@mail.gmail.com>
- <CAJdd5GbfPOcAFk5cZfthBK=jL_yNypqFNeVtvC0snh9rBsj_5g@mail.gmail.com>
- <39a0f312f43f4a19919eeec0451ff8d3@XBOX03.axis.com>
-Message-ID: <c0df4f49-c051-b3a5-358e-36416deb5126@gmail.com>
-Date: Tue, 13 Oct 2020 10:00:23 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ dkim=missing; spf=permerror, err=parse error for token &{10 18 questdiagnostics.com}: parse error for token &{10 18 spf.messagelabs.com}: parse error for token &{10 18 nets1.spf.messagelabs.com}: limit exceeded (domain: essvote.com, ip: 198.145.29.25, mailfrom: michael.davis@essvote.com)
+Received: from us-smtp-delivery-164.mimecast.com (us-smtp-delivery-164.mimecast.com [216.205.24.164])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 6A8CB38C1164
+	for <yocto@yoctoproject.org>; Tue, 13 Oct 2020 09:52:37 -0700 (PDT)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11lp2172.outbound.protection.outlook.com [104.47.56.172])
+ (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-441-cIqP2Ph-Ov2cEdHvUoZbAA-1; Tue, 13 Oct 2020 12:52:31 -0400
+X-MC-Unique: cIqP2Ph-Ov2cEdHvUoZbAA-1
+Received: from DM6PR17MB2474.namprd17.prod.outlook.com (2603:10b6:5:69::15) by
+ DM5PR17MB2027.namprd17.prod.outlook.com (2603:10b6:3:8d::23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3455.29; Tue, 13 Oct 2020 16:52:29 +0000
+Received: from DM6PR17MB2474.namprd17.prod.outlook.com
+ ([fe80::4014:9f67:6ee6:f1b4]) by DM6PR17MB2474.namprd17.prod.outlook.com
+ ([fe80::4014:9f67:6ee6:f1b4%6]) with mapi id 15.20.3477.020; Tue, 13 Oct 2020
+ 16:52:29 +0000
+From: "Davis, Michael" <michael.davis@essvote.com>
+To: yocto@yoctoproject.org
+CC: Michael Davis <michael.davis@essvote.com>
+Subject: [PATCH] conf/layer.conf: Add dunfell to LAYERSERIES_COMPAT
+Date: Tue, 13 Oct 2020 11:52:16 -0500
+Message-ID: <20201013165216.146141-1-michael.davis@essvote.com>
+X-Mailer: git-send-email 2.26.2
+X-Originating-IP: [23.152.176.73]
+X-ClientProxiedBy: SN1PR12CA0048.namprd12.prod.outlook.com
+ (2603:10b6:802:20::19) To DM6PR17MB2474.namprd17.prod.outlook.com
+ (2603:10b6:5:69::15)
 MIME-Version: 1.0
-In-Reply-To: <39a0f312f43f4a19919eeec0451ff8d3@XBOX03.axis.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (23.152.176.73) by SN1PR12CA0048.namprd12.prod.outlook.com (2603:10b6:802:20::19) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.20 via Frontend Transport; Tue, 13 Oct 2020 16:52:29 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c260d348-4318-4ff5-73bc-08d86f985f12
+X-MS-TrafficTypeDiagnostic: DM5PR17MB2027:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR17MB2027EE1FB6BD0909571ADA34F8040@DM5PR17MB2027.namprd17.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:296
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0
+X-Microsoft-Antispam-Message-Info: M0WOkd/5Al9GHF7nii0EL9IRXy+fpOX/9GBCrtLu+LRKxslm1tgLTNfzsMWBSdAyOuZ8ylfCpCsqrgE2SdHHhrf89+1SFuK1ex9x1UKs0n/MbheyzyW6R5ALh3Qhx8I5tTXFrXgx/RXUhbxzrMS0gWS7j2LDfMcoTpGsuZxCYVLDxgMjsAIOnGWxwJKBpvQDDlBN/cdVS0w67EFyRu5ejI76p5nYVYFmb2fTDYXbBkv49yHfHTVQ4SkGOiLHOMqjhm1/KTQ5fISS/FGO+U0ly4nRfn0DtRgSi8uyqcmcZY6a9qP1Ra763OK3c/ghpMJxSec2TmyyLG1toi7cNLhqBRTnuR9/QnMJTs5JVgine1LFO47HVDXt5NyScLBIbVmn
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR17MB2474.namprd17.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(39840400004)(136003)(366004)(2616005)(956004)(83380400001)(66556008)(66476007)(26005)(66946007)(86362001)(44832011)(69590400008)(6916009)(478600001)(6486002)(2906002)(316002)(6512007)(107886003)(8676002)(52116002)(4326008)(6666004)(8936002)(5660300002)(1076003)(186003)(16526019)(36756003)(4744005)(6506007);DIR:OUT;SFP:1101
+X-MS-Exchange-AntiSpam-MessageData: nLEPGE2McTNPCZzk2hchksDUErOfe/CX8Snp67YBzhbAetd+BtVZZkdBqc+SIysbO48WyXDChA2nEH24StOe+scVnf9VRyoCscx8IyT01xDCy1jc2wRDzYB+wNxz5GkjLdIYYXL/EhgRrsHCD4ZP/e0RB4IYz0cbRRFYC/1MAeW9xTAZ5MotfNfsOv6IxEPuhLHyBGnxqbeH840qtOubHv/FG5pzuPxtU7TEyD0+yh8hr/MuYwcylHiyVgbnq1ER6Fzc1xTWUX8ted/9rG4mwvhZhezjpidcDNgeBpqd8aYnr2XVucimEFTFR2iAbVWbZdCjbxhTfCA1USmLIJ7hiqh9+ppSkm5hJH9DfLRk1pwomyJdmUmTyNLS5iT0mX+wH6k0riWECEmV8tDtbTseLwP4y+ox5/IEJRLNmh/MY3jNZMhoUR6h96R16XL9fwT2JapLN5L20JPX6N9fEXF2X0URMWv4/RjqidcbHcVH1WQdo9zNVzUDFo6+lb4RDKtppH7MdP8FvI7UiJw/PHWd2TzxXGlbh+dLo4H/lBFBFIivhw8EpD1vUErdkuIgagoTl+SDMsJTORuwfe+mpA1gN/6PKeY1ciXQTobmCRxa/lc0talNDKq0kD+fA7H/DbvZbjLCsYflGhQGi3NQYmd7KQ==
+X-OriginatorOrg: essvote.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c260d348-4318-4ff5-73bc-08d86f985f12
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR17MB2474.namprd17.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2020 16:52:29.5441
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 55818b27-dd2b-48d7-b7c5-95b96a0b1261
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lKwXjW1ZLANjDvL0zSkKJYkQSIGWTK3aQr8fdcwAw0wCDyBTzLuTx2Vkt8/LF/5YCl0ZdGRlPUT4Aameo8bUFEzDyMcAaeZ1IhnHVv/1Yb4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR17MB2027
+Authentication-Results: relay.mimecast.com;
+	auth=pass smtp.auth=CUSA64A369 smtp.mailfrom=michael.davis@essvote.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: essvote.com
+Content-Type: multipart/alternative;
+	boundary="MCBoundary=_12010131252331271"
+
+--MCBoundary=_12010131252331271
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+
+Signed-off-by: Michael Davis <michael.davis@essvote.com>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 892cf79..1559f57 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -10,7 +10,7 @@ BBFILE_PRIORITY_meta-openssl-one-zero-two-fips =3D "5"
+=20
+ LAYERVERSION_meta-openssl-one-zero-two-fips =3D "1"
+=20
+-LAYERSERIES_COMPAT_meta-openssl-one-zero-two-fips =3D "zeus"
++LAYERSERIES_COMPAT_meta-openssl-one-zero-two-fips =3D "zeus dunfell"
+=20
+ LAYERPATH_meta-openssl-one-zero-two-fips =3D "${LAYERDIR}"
+=20
+--=20
+2.26.2
+
+CONFIDENTIALITY NOTICE:
+
+This e-mail transmission and any documents, files or previous e-mail messag=
+es attached to it may contain information that is=20
+confidential, protected by the attorney/client or other privileges, and may=
+ constitute non-public information. It is intended to be
+conveyed only to the designated recipient(s) named above.=20
+
+Any unauthorized use, reproduction, forwarding, distribution or other disse=
+mination of this transmission is strictly prohibited and=20
+may be unlawful. If you are not an intended recipient of this e-mail transm=
+ission, please notify the sender by return e-mail and permanently
+delete any record of this transmission. Your cooperation is appreciated.
+
+--MCBoundary=_12010131252331271
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+
+<html><head><style type=3D"text/css">.style1 {font-family: "Times New Roman=
+";}</style></head><body>Signed-off-by: Michael Davis &lt;michael.davis@essv=
+ote.com&gt;<BR>
+---<BR>
+ conf/layer.conf | 2 +-<BR>
+ 1 file changed, 1 insertion(+), 1 deletion(-)<BR>
+<BR>
+diff --git a/conf/layer.conf b/conf/layer.conf<BR>
+index 892cf79..1559f57 100644<BR>
+--- a/conf/layer.conf<BR>
++++ b/conf/layer.conf<BR>
+@@ -10,7 +10,7 @@ BBFILE_PRIORITY_meta-openssl-one-zero-two-fips =3D &quot;=
+5&quot;<BR>
+ <BR>
+ LAYERVERSION_meta-openssl-one-zero-two-fips =3D &quot;1&quot;<BR>
+ <BR>
+-LAYERSERIES_COMPAT_meta-openssl-one-zero-two-fips =3D &quot;zeus&quot;<BR>
++LAYERSERIES_COMPAT_meta-openssl-one-zero-two-fips =3D &quot;zeus dunfell&q=
+uot;<BR>
+ <BR>
+ LAYERPATH_meta-openssl-one-zero-two-fips =3D &quot;${LAYERDIR}&quot;<BR>
+ <BR>
+-- <BR>
+2.26.2<BR>
+
+<br><br><p style=3D"font-family: Verdana; font-size:10pt; color:#666666;"><=
+b>
+CONFIDENTIALITY NOTICE:</b></p><p style=3D"font-family: Verdana; font-size:=
+8pt; color:#666666;">This e-mail transmission and any documents, files or p=
+revious e-mail messages attached to it may contain information that is conf=
+idential, protected by the attorney/client or other privileges, and may con=
+stitute non-public information. It is intended to be conveyed only to the d=
+esignated recipient(s) named above.<br><br>Any unauthorized use, reproducti=
+on, forwarding, distribution or other dissemination of this transmission is=
+ strictly prohibited and may be <b>unlawful.</b> If you are not an intended=
+ recipient of this email transmission, please notify the sender by return e=
+-mail and permanently delete any record of this transmission. Your cooperat=
+ion is appreciated.
 
 
-On 10/5/20 3:36 PM, Peter Kjellerstedt wrote:
->> -----Original Message-----
->> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
->> Behalf Of Joshua Watt
->> Sent: den 1 oktober 2020 15:27
->> To: Khem Raj <raj.khem@gmail.com>
->> Cc: Peter Kjellerstedt <peter.kjellerstedt@axis.com>;
->> yocto@lists.yoctoproject.org
->> Subject: Re: [yocto] [meta-gplv2] [PATCH] gnupg: Make it build with GCC
->> 10 (which uses -fno-common by default)
->>
->> On Wed, Sep 30, 2020 at 4:34 PM Khem Raj <raj.khem@gmail.com> wrote:
->>> On Wed, Sep 30, 2020 at 1:37 PM Joshua Watt <JPEWhacker@gmail.com>
->> wrote:
->>>> With this patch applied, I get the following errors when using the
->>>> latest master branches:
->>>>
->>>> | ../mpi/libmpi.a(mpiutil.o): In function `mpi_alloc_limb_space':
->>>> | mpiutil.c:(.text+0x84): undefined reference to `memory_debug_mode'
->>>> | ../mpi/libmpi.a(mpiutil.o): In function `mpi_alloc':
->>>> | mpiutil.c:(.text+0xda): undefined reference to `memory_debug_mode'
->>>> | ../mpi/libmpi.a(mpiutil.o): In function `mpi_alloc_secure':
->>>> | mpiutil.c:(.text+0x14a): undefined reference to `memory_debug_mode'
->>>> | ../mpi/libmpi.a(mpiutil.o): In function `mpi_free_limb_space':
->>>> | mpiutil.c:(.text+0x1c7): undefined reference to `memory_debug_mode'
->>>> | ../mpi/libmpi.a(mpiutil.o): In function `mpi_free':
->>>> | mpiutil.c:(.text+0x267): undefined reference to `memory_debug_mode'
->>>> | ../util/libutil.a(iobuf.o): In function `file_filter':
->>>> | iobuf.c:(.text+0x1c0): undefined reference to `iobuf_debug_mode'
->>>> | iobuf.c:(.text+0x1ea): undefined reference to `iobuf_debug_mode'
->>>> | iobuf.c:(.text+0x2e0): undefined reference to `iobuf_debug_mode'
->>>> | iobuf.c:(.text+0x305): undefined reference to `iobuf_debug_mode'
->>>> | ../util/libutil.a(iobuf.o): In function `underflow':
->>>> | iobuf.c:(.text+0x4b3): undefined reference to `iobuf_debug_mode'
->>>> | ../util/libutil.a(iobuf.o):iobuf.c:(.text+0x567): more undefined
->>>> references to `iobuf_debug_mode' follow
->>>> | collect2: error: ld returned 1 exit status
->>>>
->>>> If I revert this commit, gnupg-native will again build correctly. Any
->>>> ideas?
-> Interesting. I had not considered building the recipes from
-> meta-gplv2 for native as we only use them for target builds.
->
->>> does it help if you add -fno-common to native CFLAGS
->> No. It works in all cases if I remove the patch and use "-fcommon"
->> though. Oddly enough, in my build having the patch caused the target
->> recipe to fail one way, and not having it caused it to fail another
->> way....
-> Are you saying you still have build failures when building gnupg for
-> target as well, with the patch applied?
->
->> not sure what's going on there, but I suspect for something
->> this old, adding "-fcommon" to restore the original behavior makes the
->> most sense.
-> Anyway, I get the same errors as above when I try building it for
-> native using gcc 9.3.1. I'll look into it and see if I can improve
-> the patch, or if I will have to resort to using -fcommon.
+To find out more <a href=3D"http://www.essvote.com/legal/" target=3D"_blank=
+">Click Here</a>.</p></body></html>
 
-Any update on this?
-
-FWIW, I think with something this old it's probably best to keep the 
--fcommon behavior rather than try to patch around it.
-
-
->
-> //Peter
->
+--MCBoundary=_12010131252331271--
