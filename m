@@ -1,75 +1,90 @@
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
- by mx.groups.io with SMTP id smtpd.web12.6060.1602739599421906172
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+ by mx.groups.io with SMTP id smtpd.web10.6042.1602739600233765176
  for <yocto@lists.yoctoproject.org>;
- Wed, 14 Oct 2020 22:26:39 -0700
+ Wed, 14 Oct 2020 22:26:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=gU5O7IdL;
- spf=pass (domain: gmail.com, ip: 209.85.210.48, mailfrom: akuster808@gmail.com)
-Received: by mail-ot1-f48.google.com with SMTP id l4so1839756ota.7
-        for <yocto@lists.yoctoproject.org>; Wed, 14 Oct 2020 22:26:39 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=o8ylKWSB;
+ spf=pass (domain: gmail.com, ip: 209.85.210.50, mailfrom: akuster808@gmail.com)
+Received: by mail-ot1-f50.google.com with SMTP id d28so1869725ote.1
+        for <yocto@lists.yoctoproject.org>; Wed, 14 Oct 2020 22:26:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=SFJiGxe+BdmpKenj+TL/tLKDPsA9X1OIhiut0mlT0jQ=;
-        b=gU5O7IdLl13oLFaCyGI2wD1ei5VgrmNTmihR9TrdUooVCBrXlNZc8Nf89IV/phuQ9Q
-         y7GoRAMyld13ub9eQ5wHtXZt/b1v+37640Qz4nf0GdjFSz2DiHTRZBOHvH/5frjbWIwn
-         XYNd2Q9nbC+rZY+XskIttWdwpQ5jVY7Uj4/qUciAQB7hAdmx8cUBMG/x55/2OyoSSuPu
-         725i6YN6G8tmWqnansLrN1K16mMlc83h3qs7B32Ib2ym3tLU1eUGqZ1te6vndWtaLO3r
-         AJk3QbflaSr0cpj9Y5bzJMKOntJ6jWBD0jJlR4xlr6jMPnD/6Du1UlGypbqPBHBzMLH3
-         ayqg==
+        bh=8TUeBOZkeq9l36rHyl9znwIrSKc69SLY4Vaq7fn0nD8=;
+        b=o8ylKWSB2PqqV91c0bucR+P2UQNEgnUeSw/3LoCPUXytYGw23ZXrx20yVvAJrAfuOf
+         RkVoXglzNDWLlM/1CYl3OghcX7SRI1zMeOUgNzqFyp07lvwXw019ZeZuAnP6X4Ox9kvw
+         fT4bPyl11OWAWzDzcUQ1rPTRhShO4GU75YvLgLGyeP0BmHh+6dj7oiDB7hxgal1boVGa
+         BlLLXUkTyawTwhKG43HiAH7sWD9oid6S5lCyye7kakUZc/MNr3kv7+J6xa31h7VzDRlM
+         3CHUm/ftaHGTNcIFswlGKEkx4oOxFy9h47xqNSYLYwXhQiv2WI2GLnyCNPvyXZ6KNUnJ
+         DtsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=SFJiGxe+BdmpKenj+TL/tLKDPsA9X1OIhiut0mlT0jQ=;
-        b=CPR6rThMj1L+cmodPMLDk8q/RJYFEprm5hqmro3KuHHcPu9PiHg92nN/XZvQpvyHJw
-         T1AhBP5HuBy8WaGrMlcTFq0z/8cmV80w4QBF9a3KEXDu+fvjdto7G4bZJt1bCMQwa+yy
-         sQ5mWdyV/FKPaZinXr8MISW+juUD+m7ipnyXr9fWWI3o0R0BkY7RcoLOZ8L1Ijyr5H2b
-         Gl0FMp4Q7fj2U81BGXoBoHMqpn8pqpQjBgFij99DIYHtMt7u/74k8BQZV5CrjeynBXU0
-         XCueeaHOUkhfKuVd4WI/GprXbaVtBmKFu3OURr62jFl3b2NRZ+g/hOjN4fwd0nnbCeWu
-         XXDg==
-X-Gm-Message-State: AOAM530WiGj7W0dGC2fj8OZr3jyNuWxVDdNS8ZNeCl/4B+nLyT1SWfPE
-	pzKWAwqmru0R9H0agNiH99Za6+raL2U=
-X-Google-Smtp-Source: ABdhPJzzzPMohG968tpxpPp7WqQvv+4OqkVZnPN3y1+tDZnkEJaQWV14tY7kDaqDqJyoN6dOI8M5Xw==
-X-Received: by 2002:a9d:32e:: with SMTP id 43mr1610727otv.144.1602739598547;
-        Wed, 14 Oct 2020 22:26:38 -0700 (PDT)
+        bh=8TUeBOZkeq9l36rHyl9znwIrSKc69SLY4Vaq7fn0nD8=;
+        b=OBetyMegH+RsfW62QUY8DofaHkQaM2eqoNxwYzpzsxVTRsW5t3FYgM/AmAE4o6pLQd
+         d/9l2/SI0XALy8Lkl7F/bmE7RglhhIPcx66y0oahsgygeZikkr1+MluOVaz3kmjT/ir7
+         5+H9YDA8k8P6YWyoDnhZroGVP6zfx+mB6DyI3jQTcu8weKBKF3KoJH0sQlZcuEO9cX+e
+         dxx4Mts+rTNEjxMr/eZmuBIuR3zJYkNoVepsnp0XnuWCcneLU9mhRC1EmbmhvrwPSqEc
+         Nm3oSaVyD09uXc9T+qqrmHI5zwz8kYn777JVgqVFAkrwRO+yxXz9ZwIYyfSxhkFUVnPK
+         4ORg==
+X-Gm-Message-State: AOAM530B6Af5dlTqzQGLHj9cO1BZCJwsjAGLRGWy1ZPo/GOfl3dHPYJ2
+	RwFb2bu7ph0ORR4Cjh2288afgV+Bexc=
+X-Google-Smtp-Source: ABdhPJzDzf6KNQlUqvzAiIxaeK2Bi4ORv3Vex5Kj/gFWLS2OY/fJrQg3JJSHKNNw6/M2AxXj9vgkFg==
+X-Received: by 2002:a05:6830:1f01:: with SMTP id u1mr1493838otg.271.1602739599460;
+        Wed, 14 Oct 2020 22:26:39 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:20b4:de17:4e9:6126])
-        by smtp.gmail.com with ESMTPSA id l3sm679049oth.36.2020.10.14.22.26.37
+        by smtp.gmail.com with ESMTPSA id l3sm679049oth.36.2020.10.14.22.26.38
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Oct 2020 22:26:38 -0700 (PDT)
+        Wed, 14 Oct 2020 22:26:39 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 3/5] tpm2-abrmd: update to 2.3.3
-Date: Wed, 14 Oct 2020 22:26:32 -0700
-Message-Id: <20201015052634.23810-3-akuster808@gmail.com>
+Subject: [meta-security][PATCH 4/5] tpm2-tools: update to 4.3.0
+Date: Wed, 14 Oct 2020 22:26:33 -0700
+Message-Id: <20201015052634.23810-4-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201015052634.23810-1-akuster808@gmail.com>
 References: <20201015052634.23810-1-akuster808@gmail.com>
 
+LIC_FILES_CHKSUM changes do to added Copyright
+
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../tpm2-abrmd/{tpm2-abrmd_2.3.0.bb => tpm2-abrmd_2.3.3.bb}     | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename meta-tpm/recipes-tpm2/tpm2-abrmd/{tpm2-abrmd_2.3.0.bb => tpm2-abrmd_2.3.3.bb} (97%)
+ .../{tpm2-pkcs11_1.2.0.bb => tpm2-pkcs11_1.3.0.bb}            | 0
+ .../tpm2-tools/{tpm2-tools_4.1.3.bb => tpm2-tools_4.3.0.bb}   | 4 ++--
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+ rename meta-tpm/recipes-tpm2/tpm2-pkcs11/{tpm2-pkcs11_1.2.0.bb => tpm2-pkcs11_1.3.0.bb} (100%)
+ rename meta-tpm/recipes-tpm2/tpm2-tools/{tpm2-tools_4.1.3.bb => tpm2-tools_4.3.0.bb} (64%)
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.3.0.bb b/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.3.3.bb
-similarity index 97%
-rename from meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.3.0.bb
-rename to meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.3.3.bb
-index 991364a..d2a1c47 100644
---- a/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.3.0.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.3.3.bb
-@@ -18,7 +18,7 @@ SRC_URI = "\
-     file://tpm2-abrmd.default \
- "
+diff --git a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.2.0.bb b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.3.0.bb
+similarity index 100%
+rename from meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.2.0.bb
+rename to meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.3.0.bb
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.3.bb b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.3.0.bb
+similarity index 64%
+rename from meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.3.bb
+rename to meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.3.0.bb
+index ae01d5e..5bd26ab 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.3.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.3.0.bb
+@@ -1,13 +1,13 @@
+ SUMMARY = "Tools for TPM2."
+ DESCRIPTION = "tpm2-tools"
+ LICENSE = "BSD-3-Clause"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=0eb1216e46938bd723098d93a23c3bcc"
++LIC_FILES_CHKSUM = "file://doc/LICENSE;md5=a846608d090aa64494c45fc147cc12e3"
+ SECTION = "tpm"
  
--SRCREV = "ac82192df1158cb58eac02777cf15c965b02cfbc"
-+SRCREV = "4cdda466010a3699ebe967d990ac715ae3de7d35"
+ DEPENDS = "tpm2-abrmd tpm2-tss openssl curl autoconf-archive"
  
- S = "${WORKDIR}/git"
+ SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz"
  
+-SRC_URI[sha256sum] = "bb5d3310620e75468fe33dbd530bd73dd648c70ec707b4579c74d9f63fc82704"
++SRC_URI[sha256sum] = "ae009b3495b44a16faa3d94d41ac9c9d99c71723482efad53c5eea17eeed80fc"
+ 
+ inherit autotools pkgconfig bash-completion
 -- 
 2.17.1
 
