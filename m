@@ -1,82 +1,85 @@
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
- by mx.groups.io with SMTP id smtpd.web12.9436.1602759152289643110
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+ by mx.groups.io with SMTP id smtpd.web10.13993.1602773195121043397
  for <yocto@lists.yoctoproject.org>;
- Thu, 15 Oct 2020 03:52:32 -0700
+ Thu, 15 Oct 2020 07:46:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Zh9eJciM;
- spf=pass (domain: gmail.com, ip: 209.85.217.43, mailfrom: nikhilvp29@gmail.com)
-Received: by mail-vs1-f43.google.com with SMTP id u74so1231957vsc.2
-        for <yocto@lists.yoctoproject.org>; Thu, 15 Oct 2020 03:52:32 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=KaSnwUBT;
+ spf=pass (domain: gmail.com, ip: 209.85.167.169, mailfrom: mr.nuke.me@gmail.com)
+Received: by mail-oi1-f169.google.com with SMTP id c13so3364247oiy.6
+        for <yocto@lists.yoctoproject.org>; Thu, 15 Oct 2020 07:46:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=3WOaXCw5omtCaO8H+WwVIph+X30AsW8cZ4giD8CxVEk=;
-        b=Zh9eJciM1iVS/CNgFaR/DMCDzatJuEqXjdPs6uvflVkgOYu8umobgwHROjYkx5gzWN
-         lApMpwuo2LdytT0Cc9X31FEIsPhYFoEr/G+jQHeO2QEZxVZEmv4fTEqe6U6NcdMkaMxY
-         4Rs7eftivsjHfP1Yki2ueBVuACZiOW5mFZ7Q4guIIwPtUIl0ASPlTJ1Bf8dS+9D+rxZh
-         juzuBZH8k/snm754YWmQ1YWrxnYejW+tLr/iR2RpgEv+c+4EKa7AHDuiyKvx5ZVzFCRn
-         mxMZNQTLqO/jCzJPBkOS49bYW/mE3VQ5yg++LadtqOnIm4OAzqnB7Krcj4vMLwYGXBDB
-         6/NQ==
+        h=to:from:subject:message-id:date:user-agent:mime-version
+         :content-language:content-transfer-encoding;
+        bh=pkOycCxzZsOF3FwDlZxKDTXLiOlscUK7gsXqEKiOCgI=;
+        b=KaSnwUBT11yL7mLQmG7qkgJugCeGIKNnibooiCMVHleBfbuRsu1tq3UxCbgRx37a6y
+         WxoPrHgxEB2/KItzINi5YVFzw9mWMIk4Jb8X52La5zdriYbC0MOYgDD0V9F+HSyfOFUQ
+         tjrbnhrNIZ8e4/dj75Z2ju/xeGwyeXm7lNHreKVwDhSosaw1+OHaQlDKD8l2p/7wS0u0
+         mWo6sCAHhqUdmuAtyLINVmNyoAXUB+SHagsY+/6Mh+D5omEeeCpXp809KaVAjfbcG2av
+         o5dQbDeWqiMC6mxr3AYHHIsfcIH3xHmbWNXHYETt/3sNqZajrIC8xHz3rr6hK4/bpzPU
+         dOJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=3WOaXCw5omtCaO8H+WwVIph+X30AsW8cZ4giD8CxVEk=;
-        b=IIqf+gA11EBclJGrxg88sCbwYp5HfkKk/4B83RdzHxPRe1s4UYZgQEcvoy0W0Ppjqt
-         fQTNiBgpX8rLQzwrCg4pkUGrUqci1TMrtB6RlfSMggbbTUxCUyXekX4Sbdv2q3Y6LZUj
-         VVRzD1tVu0fjHXYLQTk1LDx4ZNOaNTYZbjdJ1x6Gz+xQSK/vjlpfqirVlsZ6buy6vnkl
-         1X4C8b0wmnrA4v1FEGAEPq4ZAo8pyGLmi5dbvlhi1rS+ipyh6GZxlTrdNYdPaZ11RsVi
-         qmzvj1YiaDVslA4dQepF7/MaLvZcpmrZE25brqHy8EjgOu6UkTkFXPSzyrgE/AEySdhv
-         xo6g==
-X-Gm-Message-State: AOAM531ATPg24J/79Y8WFvjSh5iES7hvA2SM8MPgvApu89pqd62jGtZX
-	LtSDlGiZ72vznfe4GBEbprStUnmK9gZ59KT4IZXAQD5zPL0=
-X-Google-Smtp-Source: ABdhPJw40IdF8CDHbvpZmkzYX1Xy0BwKODCaAZFyMm0HDHTqICyqon9zL2hd0Nc9f40u4Xjm/ZU+2fl19lhnXrUCvRU=
-X-Received: by 2002:a67:2f81:: with SMTP id v123mr2034869vsv.16.1602759150948;
- Thu, 15 Oct 2020 03:52:30 -0700 (PDT)
-MIME-Version: 1.0
-From: "NIKHIL PATIL" <nikhilvp29@gmail.com>
-Date: Thu, 15 Oct 2020 16:22:19 +0530
-Message-ID: <CAJw=dJ-UPSPnJ2Xi6EhxV4TC5BRU8ENTy8yaLBJQ_O7byPxvzw@mail.gmail.com>
-Subject: i2c and i2s configuartion in yocto.
+        h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+         :mime-version:content-language:content-transfer-encoding;
+        bh=pkOycCxzZsOF3FwDlZxKDTXLiOlscUK7gsXqEKiOCgI=;
+        b=KYnczFJE1XwwqTrP+MEfsMH/FUoWqCan+SvGyw5fV+ZReNVXt1PxYrfi5UrowDUaKy
+         N/ZR64OE5+UAADdcRs6L12y9Oovh4hZLiwvN7+Fx5ZTibdZgteaeufLW0oG3fCHikBLz
+         dP1efRUEFY0kf0rGtXiPit4WYlCj6k4MdSbxo4NCWc9W8/xASYWa0JF/5Wns1rak0jV2
+         Vv1kcNZYcMRbqUaXZcan/vJHV3+Z2Oy+0nDGzo7uykg1NECOqSFuiQj0cya5PXEVia+P
+         ZHGdVm8SPj0CjUbzO0bUfNzfzkOJOnyrV0s0jh7yJg/t6RB66271D2wgawD4d3jmPotQ
+         bTOg==
+X-Gm-Message-State: AOAM530BxApF/qAun6ly3ShFE9cDxTri9kL+7I5ZKn6QEJXIzPLYQ3fH
+	mEMCF18ktaiBjFwkXe+4gM2NO3olRPE=
+X-Google-Smtp-Source: ABdhPJylEnLHJIwf3kXgZs9szZHyre9P+1zBHrjMoRX8dw597+nykb7k/wcgRHc22oRtyLVUJE5pAw==
+X-Received: by 2002:aca:7582:: with SMTP id q124mr2258960oic.106.1602773194032;
+        Thu, 15 Oct 2020 07:46:34 -0700 (PDT)
+Return-Path: <mr.nuke.me@gmail.com>
+Received: from nuclearis2-1.gtech (c-98-195-139-126.hsd1.tx.comcast.net. [98.195.139.126])
+        by smtp.gmail.com with ESMTPSA id u186sm1385051oia.51.2020.10.15.07.46.33
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Oct 2020 07:46:33 -0700 (PDT)
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000da543c05b1b371cc"
+From: "Alex G." <mr.nuke.me@gmail.com>
+Subject: How to assemble FIT images with linux and OPTEE?
+Message-ID: <e7cca6ee-ca65-9d07-354e-070bf8b63614@gmail.com>
+Date: Thu, 15 Oct 2020 09:46:32 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---000000000000da543c05b1b371cc
-Content-Type: text/plain; charset="UTF-8"
+Hi,
 
-Hi team,
-      We are using audio codec (tlv320aic3109) connected to soc (intel
-E3900) via i2c . i2s is for audio transfer . ( Soc is a master and codec as
-a slave) .
+I'm trying to write a recipe for a secure boot flow. It would look 
+something like this:
 
-         We are Using yocto sdk for x86 platform . for x86 platform , dts
-file is not there , so where i can mention all codec related stuffs.  ( If
-it is ARM architecture means dts file there and we can mention codec stuffs
-there.)
+	images {
+		optee@1 { "path/to/tee.bin" }
+		linux@2 { "path/to/zImage" }
+		fdt@board { ... }
+	}
+	configurations {
+		secure {
+			kernel = "optee@1";
+			loadables = "linux@2";
+			fdt = "fdt@board";
+		}
+	}
 
-        I enabled driver (tlv320aic32xx.c) in menuconfig. for i2cdetect
-command it shows slave address . but MCLK i am not getting on
-Oscilloscope while probing .
-1) how we can configure for i2c and i2s in yocto ?
-2) how we can initiate a MCLK from Soc side ?
-3) Instead of dts file what is there for x86 arch ?
+I've tried to "inherit kernel-fitimage", but soon learned of a couple of 
+limitations:
+	* images: No way to add an optee binary
+	* configurations: No way to add a "loadables"
 
---000000000000da543c05b1b371cc
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Secondly, since this approach would use files from several packages, I 
+think it would be better to have the recipe separate from the kernel 
+build. Bot how would I use files from another recipe? All I could figure 
+out was to first put them in ${DEPLOY_DIR_IMAGE}.
 
-<div dir=3D"ltr">Hi team,<div><div>=C2=A0 =C2=A0 =C2=A0 We are using audio =
-codec (tlv320aic3109) connected to soc (intel E3900) via i2c . i2s is for a=
-udio transfer . ( Soc is a master and codec as a slave) .</div><div>=C2=A0 =
-=C2=A0 =C2=A0</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0We are Using yoct=
-o sdk for x86 platform . for x86 platform , dts file is not there , so wher=
-e i can mention all codec related stuffs.=C2=A0 ( If it is ARM architecture=
- means dts file there and we can mention codec stuffs there.)</div><div>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 I enabled dr=
-iver (tlv320aic32xx.c) in menuconfig. for i2cdetect command it shows slave =
-address=C2=A0. but MCLK i am not getting on Oscilloscope=C2=A0while probing=
- .</div><div>1) how we can configure for i2c and i2s in yocto ?</div><div>2=
-) how we can initiate a MCLK from Soc side ?=C2=A0 =C2=A0</div><div>3) Inst=
-ead=C2=A0of dts file what is there for x86 arch ?</div></div><div>=C2=A0</d=
-iv></div>
+What would be the "correct" way to write such a recipe?
 
---000000000000da543c05b1b371cc--
+Alex
