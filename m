@@ -1,145 +1,77 @@
-Subject: Re: Pinging problem
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+ by mx.groups.io with SMTP id smtpd.web10.6041.1602739597718476569
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 14 Oct 2020 22:26:37 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=dJ/6hm8x;
+ spf=pass (domain: gmail.com, ip: 209.85.210.51, mailfrom: akuster808@gmail.com)
+Received: by mail-ot1-f51.google.com with SMTP id 32so1854823otm.3
+        for <yocto@lists.yoctoproject.org>; Wed, 14 Oct 2020 22:26:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id;
+        bh=iBNjOf0m1DuHgGDFcoq1ol2l8tA+41LuaIkPWOl52ew=;
+        b=dJ/6hm8xEqM0QOvNwZ0vWR6EioolO29M2ATzup/Z3V4zR3rKw1AHRkO2Gq2QWimXq+
+         bXuOAFfp3wCY8H7JvjMJ5pWbJD5k6g2rsMg3TP9M2Ki1IDPMhYPV94X5Mj3vj4OWOfjn
+         AHfPoRWWBJ1J3Yw1FCkyL2Dc855L2lshAcj3rX1fgp2lvY2pmfiUHi/HRAyi/jCL8PwJ
+         spF9WDEj6bxIFGeD2aMq6A/2mw76v46qBkdbt3dY5FKT2VIA1IcnVxmKZG77UJdua5Ia
+         PovrltvPDVzgUPeIT6qlBeFaZX3ZSEy+aOcgjkchVeTboUGEiH7eaccuavyndsgUoxUJ
+         NpXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=iBNjOf0m1DuHgGDFcoq1ol2l8tA+41LuaIkPWOl52ew=;
+        b=CaeH2FWpTSL/O/prP9aXrHoS4RFd0ivEmZZXM0xi/FXUwMPuEra9Obj3ph68QkDKa/
+         M+OMtWP0ZfKx0Dh0S+DatkC2lb6LN/4XetarSZm6eHCM2pNoLxAmGWew1hZVn9XrWV68
+         0C/24sgKWQ+UIgnDRvipBopwmKYPajh2rXHd5zJRTahRF6VjgEE+/vqr+CSU8ZDbt/Wk
+         DBOK6hs4ouODE6XXd5ZXbXl5g8UqoRh41sLjOnIEZgTJxoqOR7nJFOI7/d2O8Xx5dzK2
+         m+ZM15khbHODkQa+eo/cx5iCiQ2l5CbJoMj+roU0+EoMIm2/sNoAMs39CyD1CiPWGjXD
+         wgyg==
+X-Gm-Message-State: AOAM530puJndYyDtclSpiHsNFuEAV6ITuW3JEPuXwwFJsc4mmXnDn0/p
+	fF3QNHRY95s25zmDIwv0IgGfPghzwEQ=
+X-Google-Smtp-Source: ABdhPJwC+B10pviq03MoE9c1FZhOP376hi7tbxtmxRByxolw+N/KVrkKS8HeGb8u2XX/zKFN77hZUQ==
+X-Received: by 2002:a05:6830:14d0:: with SMTP id t16mr1453564otq.362.1602739596744;
+        Wed, 14 Oct 2020 22:26:36 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:20b4:de17:4e9:6126])
+        by smtp.gmail.com with ESMTPSA id l3sm679049oth.36.2020.10.14.22.26.35
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Oct 2020 22:26:36 -0700 (PDT)
+From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-From: "jchludzinski" <jchludzinski@vivaldi.net>
-X-Originating-Location: Herndon, Virginia, US (104.129.194.117)
-X-Originating-Platform: Linux Chrome 85
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Wed, 14 Oct 2020 14:38:30 -0700
-References: <GqDD.1602705385322002102.L0e6@lists.yoctoproject.org>
-In-Reply-To: <GqDD.1602705385322002102.L0e6@lists.yoctoproject.org>
-Message-ID: <21493.1602711510510267551@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="NdUR2u9c8sMcwi2S6klP"
+Subject: [meta-security][PATCH 1/5] tpm2-tss: update to 2.4.3
+Date: Wed, 14 Oct 2020 22:26:30 -0700
+Message-Id: <20201015052634.23810-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
---NdUR2u9c8sMcwi2S6klP
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+includes: CVE-2020-24455
 
-After I checked the networking status: $ systemctl status networking
-I found: " Unit networking.service is masked. "
-So, I unmasked the service: $ systemctl unmask networking
-Then started it: $ systemctl start=C2=A0networking
-Then, check status: $ systemctl status networking
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../tpm2-tss/{tpm2-tss_2.4.1.bb => tpm2-tss_2.4.3.bb}         | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+ rename meta-tpm/recipes-tpm2/tpm2-tss/{tpm2-tss_2.4.1.bb => tpm2-tss_2.4.3.bb} (94%)
 
->=20
->=20
->> networking.service - LSB: Raise network interfaces.
->=20
->=20
->> Loaded: loaded (/etc/init.d/networking; generated)
->=20
->=20
->> Active: [[0;1;31mfailed[[0m (Result: exit-code) since Tue 2020-05-12
->> 15:18:58 UTC; 1h 14min ago
->=20
->=20
->> Docs: man:systemd-sysv-generator(8)
->=20
->=20
->> Process: 736 ExecStart=3D/etc/init.d/networking start [[0;1;31m(code=3D=
-exited,
->> status=3D1/FAILURE)[[0m
->=20
->=20
->> May 12 15:18:58 arria10 systemd[1]: Starting LSB: Raise network
->> interfaces....
->=20
->=20
->> May 12 15:18:58 arria10 networking[736]: Configuring network interfaces=
-...
->> ip: RTNETLINK answers: File exists
->=20
->=20
->> May 12 15:18:58 arria10 systemd[1]:
->> [[0;1;39m[[0;1;31m[[0;1;39mnetworking.service: Control process exited,
->> code=3Dexited, status=3D1/FAILUR
->=20
->=20
->> E[[0m
->=20
->=20
->> May 12 15:18:58 arria10 systemd[1]:
->> [[0;1;38;5;185m[[0;1;39m[[0;1;38;5;185mnetworking.service: Failed with
->> result 'exit-code'.[[0m
->=20
->=20
->> May 12 15:18:58 arria10 systemd[1]: [[0;1;31m[[0;1;39m[[0;1;31mFailed t=
-o
->> start LSB: Raise network interfaces..
->=20
->
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.4.1.bb b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.4.3.bb
+similarity index 94%
+rename from meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.4.1.bb
+rename to meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.4.3.bb
+index 22b961d..78be513 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.4.1.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.4.3.bb
+@@ -6,10 +6,8 @@ SECTION = "tpm"
+ 
+ DEPENDS = "autoconf-archive-native libgcrypt openssl"
+ 
+-SRCREV = "a99e733ba66c359502689a9c42fd5e02ed1dd7d6"
+-
+ SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz"
+-SRC_URI[sha256sum] = "58d7afcab9ff3daaafb5316e57d2c211118334b470d5a5bc6ceace6f89a1e60d"
++SRC_URI[sha256sum] = "e294677f8993234d0adfa191a5cbf9c5b83cc60c724c233e3d631c26712abea0"
+ 
+ inherit autotools pkgconfig systemd extrausers
+ 
+-- 
+2.17.1
 
---NdUR2u9c8sMcwi2S6klP
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p style=3D"margin-bottom: 1rem; color: #2c363a; font-family: Roboto, sans-=
-serif;">After I checked the networking status:&nbsp;<span style=3D"font-wei=
-ght: bolder;">$ systemctl status networking</span><br />I found: "<em>Unit =
-networking.service is masked.</em>"<br />So, I unmasked the service:&nbsp;<=
-span style=3D"font-weight: bolder;">$ systemctl unmask networking</span><br=
- />Then started it:&nbsp;&nbsp;<span style=3D"font-weight: bold;">$ systemc=
-tl start&nbsp;networking<br /></span>Then, check status:&nbsp;<span style=
-=3D"font-weight: bold;">$ systemctl status</span><span style=3D"font-weigh=
-t: bold;">&nbsp;</span><span style=3D"font-weight: bold;">networking</span>=
-<span style=3D"font-weight: bold;"><br /></span></p>
-<blockquote style=3D"margin-top: 2px; margin-bottom: 2px; overflow: hidden=
-; text-overflow: ellipsis; color: #152a78; border-left-width: 2px; border-l=
-eft-color: #152a78; border-right: 2px solid #152a78; background-color: rgba=
-(241, 243, 244, 0.5); padding: 0px 0.4em; font-family: Roboto, sans-serif;"=
->
-<blockquote style=3D"margin-top: 2px; margin-bottom: 2px; overflow: hidden=
-; text-overflow: ellipsis; color: #205a24; border-left-width: 2px; border-l=
-eft-color: #205a24; border-right: 2px solid #205a24; padding: 0px 0.4em;">n=
-etworking.service - LSB: Raise network interfaces.</blockquote>
-<blockquote style=3D"margin-top: 2px; margin-bottom: 2px; overflow: hidden=
-; text-overflow: ellipsis; color: #205a24; border-left-width: 2px; border-l=
-eft-color: #205a24; border-right: 2px solid #205a24; padding: 0px 0.4em;">&=
-nbsp; &nbsp;Loaded: loaded (/etc/init.d/networking; generated)</blockquote>
-<blockquote style=3D"margin-top: 2px; margin-bottom: 2px; overflow: hidden=
-; text-overflow: ellipsis; color: #205a24; border-left-width: 2px; border-l=
-eft-color: #205a24; border-right: 2px solid #205a24; padding: 0px 0.4em;">&=
-nbsp; &nbsp;Active: [[0;1;31mfailed[[0m (Result: exit-code) since Tue 2020-=
-05-12 15:18:58 UTC; 1h 14min ago</blockquote>
-<blockquote style=3D"margin-top: 2px; margin-bottom: 2px; overflow: hidden=
-; text-overflow: ellipsis; color: #205a24; border-left-width: 2px; border-l=
-eft-color: #205a24; border-right: 2px solid #205a24; padding: 0px 0.4em;">&=
-nbsp; &nbsp; &nbsp;Docs: man:systemd-sysv-generator(8)</blockquote>
-<blockquote style=3D"margin-top: 2px; margin-bottom: 2px; overflow: hidden=
-; text-overflow: ellipsis; color: #205a24; border-left-width: 2px; border-l=
-eft-color: #205a24; border-right: 2px solid #205a24; padding: 0px 0.4em;">&=
-nbsp; Process: 736 ExecStart=3D/etc/init.d/networking start [[0;1;31m(code=
-=3Dexited, status=3D1/FAILURE)[[0m</blockquote>
-<blockquote style=3D"margin-top: 2px; margin-bottom: 2px; overflow: hidden=
-; text-overflow: ellipsis; color: #205a24; border-left-width: 2px; border-l=
-eft-color: #205a24; border-right: 2px solid #205a24; padding: 0px 0.4em;">M=
-ay 12 15:18:58 arria10 systemd[1]: Starting LSB: Raise network interfaces..=
-..</blockquote>
-<blockquote style=3D"margin-top: 2px; margin-bottom: 2px; overflow: hidden=
-; text-overflow: ellipsis; color: #205a24; border-left-width: 2px; border-l=
-eft-color: #205a24; border-right: 2px solid #205a24; padding: 0px 0.4em;">M=
-ay 12 15:18:58 arria10 networking[736]: Configuring network interfaces... i=
-p: RTNETLINK answers: File exists</blockquote>
-<blockquote style=3D"margin-top: 2px; margin-bottom: 2px; overflow: hidden=
-; text-overflow: ellipsis; color: #205a24; border-left-width: 2px; border-l=
-eft-color: #205a24; border-right: 2px solid #205a24; padding: 0px 0.4em;">M=
-ay 12 15:18:58 arria10 systemd[1]: [[0;1;39m[[0;1;31m[[0;1;39mnetworking.se=
-rvice: Control process exited, code=3Dexited, status=3D1/FAILUR</blockquote=
->
-<blockquote style=3D"margin-top: 2px; margin-bottom: 2px; overflow: hidden=
-; text-overflow: ellipsis; color: #205a24; border-left-width: 2px; border-l=
-eft-color: #205a24; border-right: 2px solid #205a24; padding: 0px 0.4em;">E=
-[[0m</blockquote>
-<blockquote style=3D"margin-top: 2px; margin-bottom: 2px; overflow: hidden=
-; text-overflow: ellipsis; color: #205a24; border-left-width: 2px; border-l=
-eft-color: #205a24; border-right: 2px solid #205a24; padding: 0px 0.4em;">M=
-ay 12 15:18:58 arria10 systemd[1]: [[0;1;38;5;185m[[0;1;39m[[0;1;38;5;185mn=
-etworking.service: Failed with result 'exit-code'.[[0m</blockquote>
-<blockquote style=3D"margin-top: 2px; margin-bottom: 2px; overflow: hidden=
-; text-overflow: ellipsis; color: #205a24; border-left-width: 2px; border-l=
-eft-color: #205a24; border-right: 2px solid #205a24; padding: 0px 0.4em;">M=
-ay 12 15:18:58 arria10 systemd[1]: [[0;1;31m[[0;1;39m[[0;1;31mFailed to sta=
-rt LSB: Raise network interfaces..</blockquote>
-</blockquote>
-
---NdUR2u9c8sMcwi2S6klP--
