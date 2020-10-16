@@ -1,199 +1,133 @@
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
- by mx.groups.io with SMTP id smtpd.web11.7115.1602820290679225030
+Received: from mail-ot1-f65.google.com (mail-ot1-f65.google.com [209.85.210.65])
+ by mx.groups.io with SMTP id smtpd.web12.7642.1602822050342460648
  for <yocto@lists.yoctoproject.org>;
- Thu, 15 Oct 2020 20:51:31 -0700
+ Thu, 15 Oct 2020 21:20:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=JSi57med;
- spf=pass (domain: gmail.com, ip: 209.85.208.45, mailfrom: idadelm@gmail.com)
-Received: by mail-ed1-f45.google.com with SMTP id t21so837405eds.6
-        for <yocto@lists.yoctoproject.org>; Thu, 15 Oct 2020 20:51:30 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=N8cV9m2i;
+ spf=pass (domain: gmail.com, ip: 209.85.210.65, mailfrom: akuster808@gmail.com)
+Received: by mail-ot1-f65.google.com with SMTP id f37so1248481otf.12
+        for <yocto@lists.yoctoproject.org>; Thu, 15 Oct 2020 21:20:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=2iVbX8eAJBWDMUzGxvJQz5gnyykzJvWbrZzdad54YRI=;
-        b=JSi57medUDs43woX/4OuihbHw6gZ8FBEGbGqv+a+4FeTmJOgrnz315p+dSZG0JqBkC
-         +bvQb8gAz9P4SzFDOAb39/LysTZKInEe0+Wi86Dw/stqNV7eePooLLrNjyPCvqxplt+l
-         0N+4z1hfxuGyiSfqPu2fsUBHG1gYvXkqz2hR/J0D28Ryu/OpnSogZ+uBGjMo9yiXunHo
-         DQH7xheKk55vNQSOIkaPteLoeZ/K4h7jvEfZJ2vGRInIcgvfUtvc1rxbwboxLm2BjpK3
-         svWggayDg2LUrh1kKpVDyUA9VEj5A2vAALc1NssWuMhbUnkg0eOz7fK93iW6jQ6/VbJD
-         6r7A==
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=jUkir+HkZYxk5lWkgs+VJmzcAuX+3fUq39I75y31kHw=;
+        b=N8cV9m2iiZJ7APPM3I0iSBjgnB+NZ4K5Qbk1wNX8mqhv6Yr3x+t+aBepZVv2smhUQ9
+         /aos/GhmfQ10+LA1HXtEt+WyAA2mqvxMR9cgh3gZB9dJUOdWMFTEEF7Lnx+Defn+Nz3y
+         +Lhy1lt2vaIfCD3IrfpB3mhRdmmZoihzN8DYPRCqfx1KdiB2aVS34+nth8Q8AZRTCCQH
+         ApGmG/KFjTaHIgVCjJvsqOfoDkO+Ype5atOOMeMrnM92d/8XuAfhS4UIhxxpIl/xYdHR
+         lir6gyw7fDeS3NqIBOT6FxkiVrn6JlPfm5lfVaGy1E9kIiexH1jPdb14ebTbuolM1uh8
+         Z7Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=2iVbX8eAJBWDMUzGxvJQz5gnyykzJvWbrZzdad54YRI=;
-        b=B3bnTeLEoQ5qOYac6LDIROin22x9sulVl8znCPNE6am0SkCIS+IELKec5YH0mUJPXe
-         ViQiuqpv3ARdoj3iua6PDiROFWkwR0zZXRLd+NJgfNHC5hEUC7JFHk5saRDThk5kDoWB
-         TB+7cRyCH6mkCyY/ztxnl7JLSlyvvuj4BIzH1Har7OEis7ifjH0U7G9sli4x1T4l72jm
-         G9BV13LPwempxM/fojcYq8EIkFIoheEs7a/S7+DUvdJhpxIlFp2wXBfXx2ZYyL9khqra
-         FFWeZG47rv0t8a08LPSdPUuhkSeaOX1I02qPDNKc6Tc0jKQKsfnxI9K1IYNQzIPBkUKi
-         PALA==
-X-Gm-Message-State: AOAM531xLwnX8o2L4zH9meDU27uIpy6QWznjgEFr+epFuV1Bz7rvLq2D
-	KSU7QVWyyZmxPJVY65NKxY5G6QL67DuuL+7H7g/P5y8iJrQ=
-X-Google-Smtp-Source: ABdhPJxnQniax0py76EWfJ1dqKU41vWHmK8kgPbfLgIaqZ0zKmWl3fpmHj9ToNFoUAv7+DMxuIdwiI/nNYkQ0OvbDaM=
-X-Received: by 2002:a05:6402:6d0:: with SMTP id n16mr1695485edy.133.1602820288755;
- Thu, 15 Oct 2020 20:51:28 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=jUkir+HkZYxk5lWkgs+VJmzcAuX+3fUq39I75y31kHw=;
+        b=QgtWf5lv3AyBM2yOJir7hprR/vboaw38ZQ8qo1M/nl6zeQwE0nrMzeqPIPDxQlxLsl
+         ANy/slzR2BX/xHm7+jfNQSyNWBPGZyrkG2rcWk+nnWWrcUyJ0PMj3fjSxRdN2dS86ebV
+         BBzGKZBCzRoEMclsmcXuExqCSBtJKPdA82jVfZ8OIa3oWyFweLxqEYDfaogH/07ebKDV
+         5ufGgOrNrYVLqt5TziZu1IDlWdE9zLuoWlH5aUd1GzM7w/363wl5SqXs8GL6RILcHT+Q
+         RKqh7uiUvBhwbvmbocyoyCO1G6NOiWEnax3BKqMsXdyey6U1xUo1tsJAbngX2fXA18Ol
+         KKhg==
+X-Gm-Message-State: AOAM532b/CTx1VcO36+QDL+sKu2jOsfNnP6+zexU7ldR1PC5q5Y7Krxd
+	+mYWNb8g6VCzzR4uAiH9sjN8z4fSQmg=
+X-Google-Smtp-Source: ABdhPJyyQNFLIgYtfXFQBlWDbOSGVk5YI7yTzUCMitVJ+cFf7Squc7JP03PhDOBy5dPtCVb66UZEIA==
+X-Received: by 2002:a9d:ac9:: with SMTP id 67mr1274491otq.321.1602822049177;
+        Thu, 15 Oct 2020 21:20:49 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from ?IPv6:2601:202:4180:a5c0:65ad:e112:5db1:721c? ([2601:202:4180:a5c0:65ad:e112:5db1:721c])
+        by smtp.gmail.com with ESMTPSA id a4sm614807oif.3.2020.10.15.21.20.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Oct 2020 21:20:48 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH] scap-security-guide: add expat-native to DEPENDS
+To: "Yu, Mingli" <mingli.yu@windriver.com>, yocto@lists.yoctoproject.org
+References: <20201014094420.45715-1-mingli.yu@windriver.com>
+From: "akuster" <akuster808@gmail.com>
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <80f00fc7-15d3-fe87-95bc-50ab799eda58@gmail.com>
+Date: Thu, 15 Oct 2020 21:20:47 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <4y2O.1602815692990017151.jX30@lists.yoctoproject.org> <CAN7sTgsMRS=5H55WkbgfA-FLxMRuhq7pA84GvHE8Lyxxa1u6rA@mail.gmail.com>
-In-Reply-To: <CAN7sTgsMRS=5H55WkbgfA-FLxMRuhq7pA84GvHE8Lyxxa1u6rA@mail.gmail.com>
-From: "Meh Mbeh Ida Delphine" <idadelm@gmail.com>
-Date: Fri, 16 Oct 2020 04:51:17 +0100
-Message-ID: <CAN7sTguMQO6H+7gR=4j3fFR2_ygEEHpVTEkiVsGMJHw5L_UJgg@mail.gmail.com>
-Subject: Re: [yocto] Enhance yocto Project license tracing #yocto
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000f339ac05b1c1ad4f"
+In-Reply-To: <20201014094420.45715-1-mingli.yu@windriver.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
---000000000000f339ac05b1c1ad4f
-Content-Type: text/plain; charset="UTF-8"
 
-Hi Dorinda,
 
-I believe you are an outreachy applicant like me. This task you have chosen
-is what the selected intern will work on from my understanding. As of now
-we are still applicants.
-
-For now we still have to make at least one contribution to the yocto
-project before we submit our final applications. We were provided with the
-bugzilla link for newcomers to find bugs and fix:
-https://wiki.yoctoproject.org/wiki/Newcomers
-
-If you could fix a bug there and submit a patch, I think you are good to go.
-
-You could still go back and re-read the information on this project's page
-on the outreachy website:
-https://www.outreachy.org/outreachy-december-2020-internship-round/communities/yocto-project/
-
-Cheers,
-Ida.
-
-On Fri, 16 Oct 2020, 4:32 am Meh Mbeh Ida Delphine, <idadelm@gmail.com>
-wrote:
-
-> Hi Dorinda,
+On 10/14/20 2:44 AM, Yu, Mingli wrote:
+> From: Mingli Yu <mingli.yu@windriver.com>
 >
-> I believe you are an outreachy applicant like me. This task you have
-> chosen is what the selected intern will work on from my understanding. As
-> of now we are still applicants.
->
-> For now we still have to make at least one contribution to the yocto
-> project before we submit our final applications. We were provided with the
-> bugzilla link for newcomers to find bugs and fix:
-> https://wiki.yoctoproject.org/wiki/Newcomers
->
-> If you could fix a bug there and submit a patch, I think you are good to
-> go.
->
-> You could still go back and re-read the information on this project's page
-> on the outreachy website:
->
-> https://www.outreachy.org/outreachy-december-2020-internship-round/communities/yocto-project/
->
-> Cheers,
-> Ida.
->
-> On Fri, 16 Oct 2020, 3:35 am Dorinda, <dorindabassey@gmail.com> wrote:
->
->> Hi,
->> i merged the latest commit made here to my local branch repository.
->> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/?h=rpurdie/license-experiments-osls
->> But I am unsure how to go about the next task ->
->> " 2) use the functionality to examine the accuracy of our license tagging
->> (LICENSE fields in recipes); look for errors / noise in the comparison, and
->> produce a simple report with the results"
->> Does this mean I would have to build an image from my local Branch
->> containing the merged file? And after running the build, enable the error
->> reporting tool?
->> 
->>
->>
+> Add expat-native to DEPENDS to fix the below do_configure error:
+> | CMake Error at CMakeLists.txt:165 (message):
+> |  xmlwf is required!
+merged.
 
---000000000000f339ac05b1c1ad4f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+thanks
+>
+> Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
+> ---
+>  .../scap-security-guide/scap-security-guide.inc                 | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide.inc b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide.inc
+> index 66c2623..32fce0f 100644
+> --- a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide.inc
+> +++ b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide.inc
+> @@ -6,7 +6,7 @@ HOME_URL = "https://www.open-scap.org/security-policies/scap-security-guide/"
+>  LIC_FILES_CHKSUM = "file://LICENSE;md5=97662e4486d9a1d09f358851d9f41a1a"
+>  LICENSE = "LGPL-2.1"
+>  
+> -DEPENDS = "openscap-native python3 python3-pyyaml-native python3-jinja2-native libxml2-native"
+> +DEPENDS = "openscap-native python3 python3-pyyaml-native python3-jinja2-native libxml2-native expat-native"
+>  
+>  S = "${WORKDIR}/git"
+>  
+>
+> 
+>
 
-<div dir=3D"auto"><span style=3D"font-family:sans-serif;font-size:12.8px">H=
-i Dorinda,</span><div dir=3D"auto" style=3D"font-family:sans-serif;font-siz=
-e:12.8px"><br></div><div dir=3D"auto" style=3D"font-family:sans-serif;font-=
-size:12.8px">I believe you are an outreachy applicant like me. This task yo=
-u have chosen is what the selected intern will work on from my understandin=
-g. As of now we are still applicants.</div><div dir=3D"auto" style=3D"font-=
-family:sans-serif;font-size:12.8px"><br></div><div dir=3D"auto" style=3D"fo=
-nt-family:sans-serif;font-size:12.8px">For now we still have to make at lea=
-st one contribution to the yocto project before we submit our final applica=
-tions. We were provided with the bugzilla link for newcomers to find bugs a=
-nd fix:</div><div dir=3D"auto" style=3D"font-family:sans-serif;font-size:12=
-.8px"><span style=3D"color:rgb(51,51,51);font-family:&#39;-apple-system&#39=
-;,&#39;blinkmacsystemfont&#39;,&#39;segoe ui&#39;,&#39;roboto&#39;,&#39;hel=
-vetica neue&#39;,&#39;arial&#39;,&#39;noto sans&#39;,sans-serif,&#39;apple =
-color emoji&#39;,&#39;segoe ui emoji&#39;,&#39;segoe ui symbol&#39;,&#39;no=
-to color emoji&#39;;font-size:16px;background-color:rgb(255,255,255)"><a hr=
-ef=3D"https://wiki.yoctoproject.org/wiki/Newcomers" style=3D"text-decoratio=
-n-line:none;color:rgb(66,133,244)">https://wiki.yoctoproject.org/wiki/Newco=
-mers</a></span><br></div><div dir=3D"auto" style=3D"font-family:sans-serif;=
-font-size:12.8px"><br></div><div dir=3D"auto" style=3D"font-family:sans-ser=
-if;font-size:12.8px">If you could fix a bug there and submit a patch, I thi=
-nk you are good to go.</div><div dir=3D"auto" style=3D"font-family:sans-ser=
-if;font-size:12.8px"><br></div><div dir=3D"auto" style=3D"font-family:sans-=
-serif;font-size:12.8px">You could still go back and re-read the information=
- on this project&#39;s page on the outreachy website:</div><div dir=3D"auto=
-" style=3D"font-family:sans-serif;font-size:12.8px"><a href=3D"https://www.=
-outreachy.org/outreachy-december-2020-internship-round/communities/yocto-pr=
-oject/" style=3D"text-decoration-line:none;color:rgb(66,133,244)">https://w=
-ww.outreachy.org/outreachy-december-2020-internship-round/communities/yocto=
--project/</a><br></div><div dir=3D"auto" style=3D"font-family:sans-serif;fo=
-nt-size:12.8px"><br></div><div dir=3D"auto" style=3D"font-family:sans-serif=
-;font-size:12.8px">Cheers,</div><div dir=3D"auto" style=3D"font-family:sans=
--serif;font-size:12.8px">Ida.</div></div><br><div class=3D"gmail_quote"><di=
-v dir=3D"ltr" class=3D"gmail_attr">On Fri, 16 Oct 2020, 4:32 am Meh Mbeh Id=
-a Delphine, &lt;<a href=3D"mailto:idadelm@gmail.com">idadelm@gmail.com</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"auto">Hi Dor=
-inda,<div dir=3D"auto"><br></div><div dir=3D"auto">I believe you are an out=
-reachy applicant like me. This task you have chosen is what the selected in=
-tern will work on from my understanding. As of now we are still applicants.=
-</div><div dir=3D"auto"><br></div><div dir=3D"auto">For now we still have t=
-o make at least one contribution to the yocto project before we submit our =
-final applications. We were provided with the bugzilla link for newcomers t=
-o find bugs and fix:</div><div dir=3D"auto"><span style=3D"color:rgb(51,51,=
-51);font-family:-apple-system,blinkmacsystemfont,&quot;segoe ui&quot;,robot=
-o,&quot;helvetica neue&quot;,arial,&quot;noto sans&quot;,sans-serif,&quot;a=
-pple color emoji&quot;,&quot;segoe ui emoji&quot;,&quot;segoe ui symbol&quo=
-t;,&quot;noto color emoji&quot;;font-size:16px;background-color:rgb(255,255=
-,255)"><a href=3D"https://wiki.yoctoproject.org/wiki/Newcomers" target=3D"_=
-blank" rel=3D"noreferrer">https://wiki.yoctoproject.org/wiki/Newcomers</a><=
-/span><br></div><div dir=3D"auto"><br></div><div dir=3D"auto">If you could =
-fix a bug there and submit a patch, I think you are good to go.</div><div d=
-ir=3D"auto"><br></div><div dir=3D"auto">You could still go back and re-read=
- the information on this project&#39;s page on the outreachy website:</div>=
-<div dir=3D"auto"><a href=3D"https://www.outreachy.org/outreachy-december-2=
-020-internship-round/communities/yocto-project/" target=3D"_blank" rel=3D"n=
-oreferrer">https://www.outreachy.org/outreachy-december-2020-internship-rou=
-nd/communities/yocto-project/</a><br></div><div dir=3D"auto"><br></div><div=
- dir=3D"auto">Cheers,</div><div dir=3D"auto">Ida.</div></div><br><div class=
-=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, 16 Oct 2020=
-, 3:35 am Dorinda, &lt;<a href=3D"mailto:dorindabassey@gmail.com" target=3D=
-"_blank" rel=3D"noreferrer">dorindabassey@gmail.com</a>&gt; wrote:<br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
-px #ccc solid;padding-left:1ex">Hi,<br><span style=3D"font-weight:bold">i m=
-erged the latest commit made here to my local branch repository. <a href=3D=
-"http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/?h=3Drpurdie/licens=
-e-experiments-osls" rel=3D"noreferrer noreferrer" target=3D"_blank">http://=
-git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/?h=3Drpurdie/license-experi=
-ments-osls</a></span><br>But I am unsure how to go about the next task -&gt=
-;<br><span style=3D"font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe=
- UI&#39;,Roboto,&#39;Helvetica Neue&#39;,Arial,&#39;Noto Sans&#39;,sans-ser=
-if,&#39;Apple Color Emoji&#39;,&#39;Segoe UI Emoji&#39;,&#39;Segoe UI Symbo=
-l&#39;,&#39;Noto Color Emoji&#39;;font-size:16px">&quot; 2) use the functio=
-nality to examine the accuracy of our license tagging (LICENSE fields in re=
-cipes); look for errors / noise in the comparison, and produce a simple rep=
-ort with the results&quot;<br></span>Does this mean I would have to build a=
-n image from my local Branch containing the merged file? And after running =
-the build, enable the error reporting tool?
-<br>
-<br>
-<br>
-</blockquote></div>
-</blockquote></div>
-
---000000000000f339ac05b1c1ad4f--
