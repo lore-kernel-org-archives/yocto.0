@@ -1,85 +1,62 @@
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
- by mx.groups.io with SMTP id smtpd.web10.13993.1602773195121043397
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.5122.1602812475324085072
  for <yocto@lists.yoctoproject.org>;
- Thu, 15 Oct 2020 07:46:35 -0700
+ Thu, 15 Oct 2020 18:41:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=KaSnwUBT;
- spf=pass (domain: gmail.com, ip: 209.85.167.169, mailfrom: mr.nuke.me@gmail.com)
-Received: by mail-oi1-f169.google.com with SMTP id c13so3364247oiy.6
-        for <yocto@lists.yoctoproject.org>; Thu, 15 Oct 2020 07:46:35 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=PWpoCmTn;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: jupiter.hce@gmail.com)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 4DBD338C1194
+	for <yocto@yoctoproject.org>; Thu, 15 Oct 2020 18:41:14 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id h9so610293ybm.4
+        for <yocto@yoctoproject.org>; Thu, 15 Oct 2020 18:41:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=to:from:subject:message-id:date:user-agent:mime-version
-         :content-language:content-transfer-encoding;
-        bh=pkOycCxzZsOF3FwDlZxKDTXLiOlscUK7gsXqEKiOCgI=;
-        b=KaSnwUBT11yL7mLQmG7qkgJugCeGIKNnibooiCMVHleBfbuRsu1tq3UxCbgRx37a6y
-         WxoPrHgxEB2/KItzINi5YVFzw9mWMIk4Jb8X52La5zdriYbC0MOYgDD0V9F+HSyfOFUQ
-         tjrbnhrNIZ8e4/dj75Z2ju/xeGwyeXm7lNHreKVwDhSosaw1+OHaQlDKD8l2p/7wS0u0
-         mWo6sCAHhqUdmuAtyLINVmNyoAXUB+SHagsY+/6Mh+D5omEeeCpXp809KaVAjfbcG2av
-         o5dQbDeWqiMC6mxr3AYHHIsfcIH3xHmbWNXHYETt/3sNqZajrIC8xHz3rr6hK4/bpzPU
-         dOJQ==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=VUoKIIlzLMEz+GeLNEcnLyQIUsxR2cMc4zFNCdDjTfk=;
+        b=PWpoCmTnp5enYst0NwEoeuafXyOF51YMXLoQD6UgGPtXGxidaaOKDmmmVvKe1NrUWj
+         dnWEofip177Md0E6Bal6HqFjPV9EEMwaP/22nAn1ZGIRP6js9gLp2gJ5ijEfw9hsVDhd
+         39S7x/RndYd4TUc+Dg5t6Cm8TbHPqU8A9aBF0yS9Czcx+ka40CTGaUdXErlcwcewa/iD
+         4kxn84hbZcX1v2MCMZfY6mg+KY+xkx5qF71QWg2i758tdHz+FAwIC5W1Eg4tOdaLL7KB
+         pZqs2nUDmT7R3PD9PLh7OVceDjy53bOmiA+xZZYljW4hVPwxwrrKsDbE/Qn6Mhz7UOtg
+         /2OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-         :mime-version:content-language:content-transfer-encoding;
-        bh=pkOycCxzZsOF3FwDlZxKDTXLiOlscUK7gsXqEKiOCgI=;
-        b=KYnczFJE1XwwqTrP+MEfsMH/FUoWqCan+SvGyw5fV+ZReNVXt1PxYrfi5UrowDUaKy
-         N/ZR64OE5+UAADdcRs6L12y9Oovh4hZLiwvN7+Fx5ZTibdZgteaeufLW0oG3fCHikBLz
-         dP1efRUEFY0kf0rGtXiPit4WYlCj6k4MdSbxo4NCWc9W8/xASYWa0JF/5Wns1rak0jV2
-         Vv1kcNZYcMRbqUaXZcan/vJHV3+Z2Oy+0nDGzo7uykg1NECOqSFuiQj0cya5PXEVia+P
-         ZHGdVm8SPj0CjUbzO0bUfNzfzkOJOnyrV0s0jh7yJg/t6RB66271D2wgawD4d3jmPotQ
-         bTOg==
-X-Gm-Message-State: AOAM530BxApF/qAun6ly3ShFE9cDxTri9kL+7I5ZKn6QEJXIzPLYQ3fH
-	mEMCF18ktaiBjFwkXe+4gM2NO3olRPE=
-X-Google-Smtp-Source: ABdhPJylEnLHJIwf3kXgZs9szZHyre9P+1zBHrjMoRX8dw597+nykb7k/wcgRHc22oRtyLVUJE5pAw==
-X-Received: by 2002:aca:7582:: with SMTP id q124mr2258960oic.106.1602773194032;
-        Thu, 15 Oct 2020 07:46:34 -0700 (PDT)
-Return-Path: <mr.nuke.me@gmail.com>
-Received: from nuclearis2-1.gtech (c-98-195-139-126.hsd1.tx.comcast.net. [98.195.139.126])
-        by smtp.gmail.com with ESMTPSA id u186sm1385051oia.51.2020.10.15.07.46.33
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Oct 2020 07:46:33 -0700 (PDT)
-To: yocto@lists.yoctoproject.org
-From: "Alex G." <mr.nuke.me@gmail.com>
-Subject: How to assemble FIT images with linux and OPTEE?
-Message-ID: <e7cca6ee-ca65-9d07-354e-070bf8b63614@gmail.com>
-Date: Thu, 15 Oct 2020 09:46:32 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=VUoKIIlzLMEz+GeLNEcnLyQIUsxR2cMc4zFNCdDjTfk=;
+        b=juYTsoLi0J+e4ZdxmyodERXNOARY5QW8WagEcJFqauRIegJR0J18fa+nw3sEr9u7DW
+         sOpuUi2QA0wN8XVfJUFSZRSxxbNgOHy3VaduBnSn64uq0gkZ/V7cU7VfT11hE30bJ6Ry
+         nY9ShXwtahWtWqKr3LT8ROtadhjjB+amxNDJ3DRl3ca3RdBvvZ8kddBiU2h+j6stQxSH
+         5sdYnHE8uELDdGUnYPUEmt5lWC17O+bqXuSaPJOVQfWnNN+NYRgCoJW/gu15pvuTqLes
+         C+WAQCCqA/U03F5jhhln+P9976uJkQNgWGhF9XUa9kmnPtGBa6tj8vRLJVFd9gD6fHRT
+         +w4g==
+X-Gm-Message-State: AOAM533KgyW8kQ7IfoefWQ3WOhuS6mtfzeR2iUXKzyjChHJDEM9kwj/X
+	tLcpIx1+XHzwEUcc7sqXGL7qALCw3qUkrOML/THCYd+1Rd8=
+X-Google-Smtp-Source: ABdhPJwR3PhLwZO4NVOH77qTqOKZWxwHUKKDauEwd4YzAVTn2cHYic+Y5SvC3yqDRZekZdmntNkes7VMulPRb4tpZ6Q=
+X-Received: by 2002:a25:5f52:: with SMTP id h18mr1550630ybm.289.1602812473028;
+ Thu, 15 Oct 2020 18:41:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Received: by 2002:a25:1882:0:0:0:0:0 with HTTP; Thu, 15 Oct 2020 18:41:12
+ -0700 (PDT)
+From: "JH" <jupiter.hce@gmail.com>
+Date: Fri, 16 Oct 2020 12:41:12 +1100
+Message-ID: <CAA=hcWS+VYh+hsddCUfi+5o7K5XJEHds4VnBA_-gZg+6n-aT5g@mail.gmail.com>
+Subject: Where to download zeus 0011-linux-user-remove-host-stime-syscall.patch?
+To: Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+I failed qemu-native/4.1.0-r0/qemu-4.1.0/linux-user/syscall.c:7657:
+undefined reference to `stime' running zeus on Ubuntu 20.04, googling
+to find a patch is needed to fix the bug, where can I download that
+patch file for zeus?
 
-I'm trying to write a recipe for a secure boot flow. It would look 
-something like this:
+recipes-devtools/qemu/qemu/0011-linux-user-remove-host-stime-syscall.patch
 
-	images {
-		optee@1 { "path/to/tee.bin" }
-		linux@2 { "path/to/zImage" }
-		fdt@board { ... }
-	}
-	configurations {
-		secure {
-			kernel = "optee@1";
-			loadables = "linux@2";
-			fdt = "fdt@board";
-		}
-	}
+I understand new version fixed that issue, but I am not in position to
+update the new version right now.
 
-I've tried to "inherit kernel-fitimage", but soon learned of a couple of 
-limitations:
-	* images: No way to add an optee binary
-	* configurations: No way to add a "loadables"
+Thank you.
 
-Secondly, since this approach would use files from several packages, I 
-think it would be better to have the recipe separate from the kernel 
-build. Bot how would I use files from another recipe? All I could figure 
-out was to first put them in ${DEPLOY_DIR_IMAGE}.
+Kind regards,
 
-What would be the "correct" way to write such a recipe?
-
-Alex
+jupiter
