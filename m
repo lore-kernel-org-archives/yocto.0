@@ -1,133 +1,77 @@
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
- by mx.groups.io with SMTP id smtpd.web10.7846.1602823132723783829
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.9078.1602829696731221437
  for <yocto@lists.yoctoproject.org>;
- Thu, 15 Oct 2020 21:38:52 -0700
+ Thu, 15 Oct 2020 23:28:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=TIZMtpWq;
- spf=pass (domain: gmail.com, ip: 209.85.167.174, mailfrom: akuster808@gmail.com)
-Received: by mail-oi1-f174.google.com with SMTP id m128so1034563oig.7
-        for <yocto@lists.yoctoproject.org>; Thu, 15 Oct 2020 21:38:52 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=nR3SfDMC;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: raj.khem@gmail.com)
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 94FB938C129F
+	for <yocto@yoctoproject.org>; Thu, 15 Oct 2020 23:28:16 -0700 (PDT)
+Received: by mail-qv1-f53.google.com with SMTP id de3so639072qvb.5
+        for <yocto@yoctoproject.org>; Thu, 15 Oct 2020 23:28:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=8P2owM7cRYWCK/PZh+FE+j2VD5cBHxe+pj7Ii3MnCVI=;
-        b=TIZMtpWqq5DYP0o9M+BQL4gO/TDu5Oy4gFiaBJq1Zn5BbHv8dG2SSXG9lxV2qS/gT3
-         LGZ4NpVfkElZpjkLFCgwHbj0mo7Qq+z1w5SCccpK6LXV7TQn2ZDs/QBaqJc55yea39S3
-         RXV2Nun8R/UVI81IvQcatcEawRqgC4y6yBqi2Ph5ixi4CJdJ1XVF4sa6o5/0uGWSNziP
-         1WxoUL/NXhFPP6hkCPAr4FMKw7syG67BLq7lm1NrZncPV3sDsvA11B5fUS2sYmNB2XV2
-         T9PGHfpEWjEEjlPvOuRFa/mTgoYM8D880BKD2KQiurMVx8vxweb2T+nLK5uODana/0i7
-         z9/A==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+Psor/7lGzZTH/k//U+mf85snCCLdKj+l4bvuYYd6Rk=;
+        b=nR3SfDMCIP1u3s/abyKhr2kGftFtHPiyT4Gnvdy8I5RlP8g7RGHbhfl1Z3IjHAZ+Np
+         liH04Xh0dIxWU5D7C/UNRF6yeejEF9+AjZY4brqoLCkrI31uP0nyLBn+x6ogQgMFhhSF
+         hYDF0KiC1Wvi38OUV1HAOeJGW4lNO1GDlpBt0Jxo+1M+densXsBV7Jnowpy4og62/TSr
+         t5Chf6Mb3TfsBSJKpys7LyF9EgBPqcjjfKCuwBxMLFHiaqVtv22KKJmZ8hcRJXDaYvu5
+         OpUbmV1eqW89AoUCopmW79mAigpmGbWFTD66TkxF1MJjHR425C9QPjdfO9zE3pupes8+
+         sWCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=8P2owM7cRYWCK/PZh+FE+j2VD5cBHxe+pj7Ii3MnCVI=;
-        b=nb8NS/Jss736gSxLXv0oehTPhiijDDW/Miw2nJ4qNo/TPKvv6uMCkVZfqcOLHJLDpm
-         i8Fp9XiWNOOmTVe3hHKbbS1S0nmIXtkwmsaK/Szgd9eeynN3VDM6Z86uJvtGryjxuUmt
-         L/64IHSgifF+rq5xKsnrieFKpg7r6mk4uFyMey7ZFpU5NYTYAzAkcTAUEj5DW+wHjhUO
-         MNMRz+7PsmVCHuq1fE7dA+gFJT8v0zagdBYWp4yt7YNnAoGPbUiIIiS5ySdPwLz5Onfq
-         LLsQrrAaeBdkIdWL50sCkkt/1z0pJClrtCqmo130STFQuRoFE2mikRi7W7sQnjfnu3hb
-         SWYg==
-X-Gm-Message-State: AOAM5323c/9fVwWiIq8LKj1R4iPF5UV9LclcxhtTV8KN/u2cu4LgHjDB
-	tJWb3Sv8YSd0xL994Fnf5RWgfb2vwYo=
-X-Google-Smtp-Source: ABdhPJxRMrSk8+9tm+mnOg8DQJoGC9Rd5/5zb82b33MgZB4d5FW9ZTSJTLBLd+5aXUi1w5ys5Nd8DA==
-X-Received: by 2002:aca:3fc4:: with SMTP id m187mr1251119oia.59.1602823131876;
-        Thu, 15 Oct 2020 21:38:51 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:65ad:e112:5db1:721c])
-        by smtp.gmail.com with ESMTPSA id m29sm607782otj.38.2020.10.15.21.38.51
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Oct 2020 21:38:51 -0700 (PDT)
-From: "akuster" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] meta-securtiy: Add gatesgarth to LAYERSERIES_COMPAT
-Date: Thu, 15 Oct 2020 21:38:50 -0700
-Message-Id: <20201016043850.24267-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+Psor/7lGzZTH/k//U+mf85snCCLdKj+l4bvuYYd6Rk=;
+        b=TYZGarSw5czT0/tVw2IKyNfbYEmn8d/VfuEL6DmSMlfJ7I9/h//ukDY+vKaiRgP/94
+         SOr4E8o7VdkFl/MDqBsvZpsk3o1YqjXGMARUtam06d4WCnrUyRPBR5B0Bqu7R7rvAyR9
+         kVqqDfvgSu+QBWqxFSh0Dbrku8qB2z1P6sK5jlbuIkiVuWHKoqhAmPO6y8iG5S0KvNSG
+         4X+TbQsB+VpokPGc0Kh260ICW1SwjIEo+0ZtKHtlNfQGLKdWrMYqDt2RtBkwmuHJLumd
+         quCZR9CJuaSurP3mscNLFreqTZa7whWQnL98DLP36wLw9f05Mt930wPQuivjSfaMouhN
+         aPYA==
+X-Gm-Message-State: AOAM53290/FSPEvyzUtVfAdDQWxuReheV66n3rzalRDJzmrs9Ppap69g
+	ZDGkYnfVnuIKS1YD1KCqhY3KIR95zkJElaIvf38=
+X-Google-Smtp-Source: ABdhPJydkYpiT3hvJ1Z6A2qXfNPNPQ982Fvl4y49M8sEEPBlrk17NCrYaro2mAbY/5VqJRUdMtaZHn8Uc1H7VjjHaYo=
+X-Received: by 2002:a0c:b65b:: with SMTP id q27mr2520042qvf.8.1602829695334;
+ Thu, 15 Oct 2020 23:28:15 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAA=hcWTT+EjGhk_XN-ErdXmXJeZvFfje=rL7+O84HtmvC0uJsA@mail.gmail.com>
+In-Reply-To: <CAA=hcWTT+EjGhk_XN-ErdXmXJeZvFfje=rL7+O84HtmvC0uJsA@mail.gmail.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Thu, 15 Oct 2020 23:27:49 -0700
+Message-ID: <CAMKF1srurSsrbwJMAzTTRNEYX0eqPmCQn8t1u8kHbXkMz878=A@mail.gmail.com>
+Subject: Re: [OE-core] Where to download zeus 0011-linux-user-remove-host-stime-syscall.patch?
+To: JH <jupiter.hce@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>, 
+	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- conf/layer.conf                          | 2 +-
- meta-hardening/conf/layer.conf           | 2 +-
- meta-integrity/conf/layer.conf           | 2 +-
- meta-security-compliance/conf/layer.conf | 2 +-
- meta-security-isafw/conf/layer.conf      | 2 +-
- meta-tpm/conf/layer.conf                 | 2 +-
- 6 files changed, 6 insertions(+), 6 deletions(-)
+ubuntu 20.04 is not a supported host for zeus see
+https://www.yoctoproject.org/docs/3.0/ref-manual/ref-manual.html#detailed-supported-distros
+so perhaps you might want to use a supported host e.g. 18.04 or 19.04
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 2c3bd96..8c0254b 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -9,6 +9,6 @@ BBFILE_COLLECTIONS += "security"
- BBFILE_PATTERN_security = "^${LAYERDIR}/"
- BBFILE_PRIORITY_security = "8"
- 
--LAYERSERIES_COMPAT_security = "dunfell"
-+LAYERSERIES_COMPAT_security = "gatesgarth"
- 
- LAYERDEPENDS_security = "core openembedded-layer perl-layer networking-layer meta-python"
-diff --git a/meta-hardening/conf/layer.conf b/meta-hardening/conf/layer.conf
-index 5896214..22d8874 100644
---- a/meta-hardening/conf/layer.conf
-+++ b/meta-hardening/conf/layer.conf
-@@ -8,6 +8,6 @@ BBFILE_COLLECTIONS += "harden-layer"
- BBFILE_PATTERN_harden-layer = "^${LAYERDIR}/"
- BBFILE_PRIORITY_harden-layer = "10"
- 
--LAYERSERIES_COMPAT_harden-layer = "dunfell"
-+LAYERSERIES_COMPAT_harden-layer = "gatesgarth"
- 
- LAYERDEPENDS_harden-layer = "core openembedded-layer"
-diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
-index 6075df9..76374eb 100644
---- a/meta-integrity/conf/layer.conf
-+++ b/meta-integrity/conf/layer.conf
-@@ -20,7 +20,7 @@ INTEGRITY_BASE := '${LAYERDIR}'
- # interactive shell is enough.
- OE_TERMINAL_EXPORTS += "INTEGRITY_BASE"
- 
--LAYERSERIES_COMPAT_integrity = "dunfell"
-+LAYERSERIES_COMPAT_integrity = "gatesgarth"
- # ima-evm-utils depends on keyutils from meta-oe
- LAYERDEPENDS_integrity = "core openembedded-layer"
- 
-diff --git a/meta-security-compliance/conf/layer.conf b/meta-security-compliance/conf/layer.conf
-index 965c837..db243f7 100644
---- a/meta-security-compliance/conf/layer.conf
-+++ b/meta-security-compliance/conf/layer.conf
-@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "scanners-layer"
- BBFILE_PATTERN_scanners-layer = "^${LAYERDIR}/"
- BBFILE_PRIORITY_scanners-layer = "10"
- 
--LAYERSERIES_COMPAT_scanners-layer = "dunfell"
-+LAYERSERIES_COMPAT_scanners-layer = "gatesgarth"
- 
- LAYERDEPENDS_scanners-layer = "core openembedded-layer meta-python"
- 
-diff --git a/meta-security-isafw/conf/layer.conf b/meta-security-isafw/conf/layer.conf
-index 63f990a..b8ee1c0 100644
---- a/meta-security-isafw/conf/layer.conf
-+++ b/meta-security-isafw/conf/layer.conf
-@@ -14,4 +14,4 @@ LAYERVERSION_security-isafw = "1"
- 
- LAYERDEPENDS_security-isafw = "core"
- 
--LAYERSERIES_COMPAT_security-isafw = "dunfell"
-+LAYERSERIES_COMPAT_security-isafw = "gatesgarth"
-diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
-index 46d0279..cd62fba 100644
---- a/meta-tpm/conf/layer.conf
-+++ b/meta-tpm/conf/layer.conf
-@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "tpm-layer"
- BBFILE_PATTERN_tpm-layer = "^${LAYERDIR}/"
- BBFILE_PRIORITY_tpm-layer = "10"
- 
--LAYERSERIES_COMPAT_tpm-layer = "dunfell"
-+LAYERSERIES_COMPAT_tpm-layer = "gatesgarth"
- 
- LAYERDEPENDS_tpm-layer = " \
-     core \
--- 
-2.17.1
-
+On Thu, Oct 15, 2020 at 8:32 PM JH <jupiter.hce@gmail.com> wrote:
+>
+> My apology if I posted duplicated messages, I don't know what's wrong
+> with the gmail, send emails could not find in Sent Mail folder.
+>
+> I failed to run zeus on Ubuntu20.04:
+>
+> -- x86_64-linux/qemu-native/4.1.0-r0/qemu-4.1.0/linux-user/syscall.c:7657:
+> undefined reference to `stime'
+>
+> Googling to find a 0011-linux-user-remove-host-stime-syscall.patch is
+> needed, I am not in the position to update from zeus to new versions,
+> a quick fix is to apply the patch.
+>
+> Thank you and appreciate it.
+>
+> Kind regards,
+>
+> jupiter
+>
+> 
+>
