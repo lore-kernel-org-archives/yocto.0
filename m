@@ -1,169 +1,111 @@
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
- by mx.groups.io with SMTP id smtpd.web12.2931.1602957831471307671
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+ by mx.groups.io with SMTP id smtpd.web10.3007.1602957832746435318
  for <yocto@lists.yoctoproject.org>;
- Sat, 17 Oct 2020 11:03:51 -0700
+ Sat, 17 Oct 2020 11:03:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=eNU7qlqP;
- spf=pass (domain: gmail.com, ip: 209.85.216.49, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f49.google.com with SMTP id ds1so3049190pjb.5
-        for <yocto@lists.yoctoproject.org>; Sat, 17 Oct 2020 11:03:51 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=MQGdhHvN;
+ spf=pass (domain: gmail.com, ip: 209.85.216.54, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f54.google.com with SMTP id g16so3052770pjv.3
+        for <yocto@lists.yoctoproject.org>; Sat, 17 Oct 2020 11:03:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=uu7Oe3wGggZXSqyCpr6MgBCF0nZ8Bttz+zPPTYBu/CM=;
-        b=eNU7qlqPSuR1TepIgNvsh/M0jY/Mo50kty0IqpDY1Do8Hu/pWpg7csI21qoRImhhNY
-         EsW3i4B5BpjsDyTwmCCevk4mBE0ofpZ+VrHFZkq4A7M4XCYAywIhAOGmw1/w6b1iXLVo
-         GUkgDLpItyMwi0L+mlWxOZDoun5nssbZOzcRq83BseTUY6Uip0ttuX3bbneyTY5bt8g6
-         63PwhB/98d8xe1IH5C55hQtF4r6C/Rod+EQRDNjnQxt26YSAQCjDB66B9jAaraZVa8cZ
-         ipbu/SVhpL+ZSr984nWaLh/RaEdorRFTnUUDYx1rbMRsT35HmuOh5pweyb/97+BehAsy
-         bcdA==
+        bh=7+wUSAllf+oA5/SdKn9AU+t9JK88thd5oSDzVXY9Vqo=;
+        b=MQGdhHvNgsX0HmO6uAdv7jfREhJnxu9I9ThaZhhxdDAKXlys/COVe+jmKnb9RbpnX9
+         s1up02Shuc45Yt/wcUIEPPz8BmwaIRxy8Z6z+g7vfEXJY53545uq59mq7pSQOAQGsbQl
+         6Vj5u5GoeK8gVPj935TEaPRzH7o3OsCYOslOJQmXO8xSOgObv2EaoGQ4aAynMgiyUuOt
+         TvRO4x/eJ//nOyMOaAiIhE1/jk5dCLFwEgIo8rfXrkRm6l8Nxg/PvDiO7IcL8d4z90dp
+         d1izL83590cWNyMTpoD4OAgoeHfTENsji5Qv2O0ucmgAQPczMcZwCdGFFwxPYepD1ZqQ
+         CONw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=uu7Oe3wGggZXSqyCpr6MgBCF0nZ8Bttz+zPPTYBu/CM=;
-        b=T3AT8YanD2fhRW9pdzp4XtIdvLVz2Wya/N3DGhl7ifo5I+bXrE1WJOzcHA5VmMvOrO
-         4P2Ecopl1L+3jeq4H6JMjMnDs7t3G8Mfroqb2LMj06AeXOsiHud7jKqP/9sVk2ggyH0A
-         sEVZN+9s4Arib9QKubWRi6e0PpPBvT6n4mSEYI/Qml5ahgbopnyl8OWzsOSFB3RB65cK
-         6tLO/FTYmWqFqIWF+5wZNuR59OPIAwsPurPvQlzP200obmJpOJkC7YQXXEPXqa+6FeeK
-         gsG66YvVs2w7Hi6bG+LHocR6o5j5Lk0ugl9XLDO1VZ9HrynD/5ATbcbZv+MkPsoWAAyj
-         cGbw==
-X-Gm-Message-State: AOAM531HjP7UhhWVl+fnCBIwjEbO43nZU8y71Em3pua65YsAQcYnpShJ
-	2emPANJpEvkn2Fu146H0deD1rS6nj5E=
-X-Google-Smtp-Source: ABdhPJwwoZFuQkvzi6xw02jCJhMsJlDwwMHqp0IZzp7Z9pO1clCqvMjEOyIzZu6rTE69sMYQIfaLLw==
-X-Received: by 2002:a17:902:9a87:b029:d2:1ec0:4373 with SMTP id w7-20020a1709029a87b02900d21ec04373mr9679349plp.40.1602957830833;
-        Sat, 17 Oct 2020 11:03:50 -0700 (PDT)
+        bh=7+wUSAllf+oA5/SdKn9AU+t9JK88thd5oSDzVXY9Vqo=;
+        b=bv1fkjyK/7XPP1uhdp58jS5TNRjStWztVJ1BFZkY7xruTfpUGCYS3yfDXlFq+xIBsc
+         X6D+2kyeg7fO3tT/CGwuQGDUvjeOZbHhskxFsGQWtA8gWDcHm4FN+clpl49j2oR9Gbki
+         5DweS4PYjlgKVBSRX/baxIPt58Xy6Ep/pmqzbC1cf5zVqzqhhOKkULjcdT0pc9IAOPcL
+         8X7gUttOkey4bP0NJ+x6iWe8Jdbse4MvvVsSd6hBW2iE7SpoJ6ozGfwobDyuNB6Jk/r2
+         WTf73pqwUXyhyE+IrsucRN4sj0ACdQmOCUCbDq3vux1ekywcYUT4bBOga0wttA1jvBHP
+         5h2Q==
+X-Gm-Message-State: AOAM532lbAgo09G9QaDd81FamUvrVlVruA+cvVVt8/G25U7ezDT5kqLs
+	0aXpH32airEstQT7Qh0WKqqrmjtPLzI=
+X-Google-Smtp-Source: ABdhPJxkPQDYvgGMVx6achRdbSFIMFflbs5v4BQGqRqBSM2Mt4IQbG4HO3fIXgYIlRXJ3ecASTwieg==
+X-Received: by 2002:a17:902:aa8a:b029:d3:c9dd:77d1 with SMTP id d10-20020a170902aa8ab02900d3c9dd77d1mr9954493plr.0.1602957832120;
+        Sat, 17 Oct 2020 11:03:52 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:b4d6:f32b:75d2:1966])
         by smtp.gmail.com with ESMTPSA id jx17sm6495898pjb.10.2020.10.17.11.03.50
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Oct 2020 11:03:50 -0700 (PDT)
+        Sat, 17 Oct 2020 11:03:51 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [dunfell 15/32] dm-verity-image-initramfs: Use initramfs-framework
-Date: Sat, 17 Oct 2020 11:03:12 -0700
-Message-Id: <1e1944d13c2a9d41ef58ffffdec2df6a4e08b9f3.1602957519.git.akuster@mvista.com>
+Subject: [dunfell 16/32] dm-verity-initramfs-image: Cosmetic improvements
+Date: Sat, 17 Oct 2020 11:03:13 -0700
+Message-Id: <5f2c8e8e25744236e20fa3bd504cd9f07add4d28.1602957519.git.akuster@mvista.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1602957519.git.akuster@mvista.com>
 References: <cover.1602957519.git.akuster@mvista.com>
 
 From: "niko.mauno@vaisala.com" <niko.mauno@vaisala.com>
 
-Switch from this layer's initramfs-dm-verity recipe to poky-provided
-initramfs-framework suite to manage veritysetup et al.
-
-This commit also removes initramfs-dm-verity recipe which is not
-referred from elsewhere in this meta layer.
-
-Also update the install path of dm-verity.env from /usr/share to
-/usr/share/misc in order to better comply with FHS3.0, see
-https://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s11.html#usrsharemiscMiscellaneousArchitecture
+- revise declaration ordering as suggested by oe-stylize.py
+ - sort PACKAGE_INSTALL entries in alphabetic order
+ - split long command line in deploy_verity_hash()
 
 Signed-off-by: Niko Mauno <niko.mauno@vaisala.com>
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
-(cherry picked from commit 45e8b20cd022eb7b20d72c23db9fcc6824f08c7a)
+(cherry picked from commit 1d21cec5fda489f9ed7c1132b0abc18db3af6d41)
 ---
- .../images/dm-verity-image-initramfs.bb       |  5 +-
- .../initrdscripts/initramfs-dm-verity.bb      | 13 ------
- .../initramfs-dm-verity/init-dm-verity.sh     | 46 -------------------
- 3 files changed, 3 insertions(+), 61 deletions(-)
- delete mode 100644 recipes-core/initrdscripts/initramfs-dm-verity.bb
- delete mode 100644 recipes-core/initrdscripts/initramfs-dm-verity/init-dm-verity.sh
+ .../images/dm-verity-image-initramfs.bb       | 20 ++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
 
 diff --git a/recipes-core/images/dm-verity-image-initramfs.bb b/recipes-core/images/dm-verity-image-initramfs.bb
-index e791c19..6a1058d 100644
+index 6a1058d..0fdb46c 100644
 --- a/recipes-core/images/dm-verity-image-initramfs.bb
 +++ b/recipes-core/images/dm-verity-image-initramfs.bb
-@@ -4,7 +4,8 @@ DESCRIPTION = "Simple initramfs image for mounting the rootfs over the verity de
- IMAGE_FEATURES = ""
+@@ -1,19 +1,21 @@
+ DESCRIPTION = "Simple initramfs image for mounting the rootfs over the verity device mapper."
+ 
+-# We want a clean, minimal image.
+-IMAGE_FEATURES = ""
++inherit core-image
  
  PACKAGE_INSTALL = " \
--    initramfs-dm-verity \
-+    initramfs-module-dmverity \
-+    initramfs-module-udev \
+-    initramfs-module-dmverity \
+-    initramfs-module-udev \
      base-files \
      busybox \
-     util-linux-mount \
-@@ -24,6 +25,6 @@ IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
- inherit core-image
+-    util-linux-mount \
+-    udev \
+     cryptsetup \
++    initramfs-module-dmverity \
++    initramfs-module-udev \
+     lvm2-udevrules \
++    udev \
++    util-linux-mount \
+ "
  
++# We want a clean, minimal image.
++IMAGE_FEATURES = ""
++
+ # Can we somehow inspect reverse dependencies to avoid these variables?
+ do_image[depends] += "${DM_VERITY_IMAGE}:do_image_${DM_VERITY_IMAGE_TYPE}"
+ 
+@@ -22,9 +24,9 @@ do_image[nostamp] = "1"
+ 
+ IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
+ 
+-inherit core-image
+-
  deploy_verity_hash() {
--    install -D -m 0644 ${STAGING_VERITY_DIR}/${DM_VERITY_IMAGE}.${DM_VERITY_IMAGE_TYPE}.verity.env ${IMAGE_ROOTFS}${datadir}/dm-verity.env
-+    install -D -m 0644 ${STAGING_VERITY_DIR}/${DM_VERITY_IMAGE}.${DM_VERITY_IMAGE_TYPE}.verity.env ${IMAGE_ROOTFS}${datadir}/misc/dm-verity.env
+-    install -D -m 0644 ${STAGING_VERITY_DIR}/${DM_VERITY_IMAGE}.${DM_VERITY_IMAGE_TYPE}.verity.env ${IMAGE_ROOTFS}${datadir}/misc/dm-verity.env
++    install -D -m 0644 \
++        ${STAGING_VERITY_DIR}/${DM_VERITY_IMAGE}.${DM_VERITY_IMAGE_TYPE}.verity.env \
++        ${IMAGE_ROOTFS}${datadir}/misc/dm-verity.env
  }
  IMAGE_PREPROCESS_COMMAND += "deploy_verity_hash;"
-diff --git a/recipes-core/initrdscripts/initramfs-dm-verity.bb b/recipes-core/initrdscripts/initramfs-dm-verity.bb
-deleted file mode 100644
-index b614956..0000000
---- a/recipes-core/initrdscripts/initramfs-dm-verity.bb
-+++ /dev/null
-@@ -1,13 +0,0 @@
--SUMMARY = "Simple init script that uses devmapper to mount the rootfs in read-only mode protected by dm-verity"
--LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
--
--SRC_URI = "file://init-dm-verity.sh"
--
--do_install() {
--    install -m 0755 ${WORKDIR}/init-dm-verity.sh ${D}/init
--    install -d ${D}/dev
--    mknod -m 622 ${D}/dev/console c 5 1
--}
--
--FILES_${PN} = "/init /dev/console"
-diff --git a/recipes-core/initrdscripts/initramfs-dm-verity/init-dm-verity.sh b/recipes-core/initrdscripts/initramfs-dm-verity/init-dm-verity.sh
-deleted file mode 100644
-index 307d2c7..0000000
---- a/recipes-core/initrdscripts/initramfs-dm-verity/init-dm-verity.sh
-+++ /dev/null
-@@ -1,46 +0,0 @@
--#!/bin/sh
--
--PATH=/sbin:/bin:/usr/sbin:/usr/bin
--RDEV=""
--ROOT_DIR="/new_root"
--
--mkdir -p /proc
--mkdir -p /sys
--mkdir -p /run
--mkdir -p /tmp
--mount -t proc proc /proc
--mount -t sysfs sysfs /sys
--mount -t devtmpfs none /dev
--
--udevd --daemon
--udevadm trigger --type=subsystems --action=add
--udevadm trigger --type=devices --action=add
--udevadm settle --timeout=10
--
--for PARAM in $(cat /proc/cmdline); do
--	case $PARAM in
--		root=*)
--			RDEV=${PARAM#root=}
--			;;
--	esac
--done
--
--if ! [ -b $RDEV ]; then
--	echo "Missing root command line argument!"
--	exit 1
--fi
--
--case $RDEV in
--	UUID=*)
--		RDEV=$(realpath /dev/disk/by-uuid/${RDEV#UUID=})
--		;;
--esac
--
--. /usr/share/dm-verity.env
--
--echo "Mounting $RDEV over dm-verity as the root filesystem"
--
--veritysetup --data-block-size=1024 --hash-offset=$DATA_SIZE create rootfs $RDEV $RDEV $ROOT_HASH
--mkdir -p $ROOT_DIR
--mount -o ro /dev/mapper/rootfs $ROOT_DIR
--exec switch_root $ROOT_DIR /sbin/init
 -- 
 2.17.1
 
