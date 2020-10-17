@@ -1,139 +1,109 @@
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
- by mx.groups.io with SMTP id smtpd.web12.2921.1602957823232336128
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+ by mx.groups.io with SMTP id smtpd.web12.2922.1602957824009578971
  for <yocto@lists.yoctoproject.org>;
- Sat, 17 Oct 2020 11:03:43 -0700
+ Sat, 17 Oct 2020 11:03:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=LYUICeOP;
- spf=pass (domain: gmail.com, ip: 209.85.215.182, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f182.google.com with SMTP id o7so3400381pgv.6
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=PQ5dVxbn;
+ spf=pass (domain: gmail.com, ip: 209.85.214.181, mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f181.google.com with SMTP id o9so2895367plx.10
         for <yocto@lists.yoctoproject.org>; Sat, 17 Oct 2020 11:03:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=K4ZS1dXHLXQXx8P72s4zM3X8KPrqYSr3rieN438Gf5g=;
-        b=LYUICeOPAZC7aM5u1YHzmh66sb+jeMiAKGiH+mzxLslXZL//06QbUqeF1M1bId/Y5i
-         KZYvcoZ+KePUz0mDB2O64Eo6/HEVA+N/2TPzYohybKkRepTFIj97PMxY553WEtwkpkUx
-         BUKUiQpasA6hXF7zTMg/FvGPfIKwN0JaeO0ndZP8DdpgkG/Bi/BuPdyOG6hy9MW6Rz2b
-         tBRya4igHXjzSYYpjh4YG6h6uWInKKjFojbgagwWF9Y0EHur0fOPxRXj2gFGrnt8G5Xa
-         q/86A/SAmV1NPKtG6I+E1j4NKypR0p9jJJjsKcOchJUf9RSacn+7hruhGCNeRaCYeqat
-         WNOg==
+        h=from:to:subject:date:message-id:in-reply-to:references;
+        bh=vGHE6TjYnhCbG+jQIJN2Yqdgi3TbnP+1ASPccVBm8FI=;
+        b=PQ5dVxbnwry3mRYc7erAxebZzPVFSoUgOs5e+BTjjXMpl+46kKMuO4i5AHlot62MnF
+         ODqBJSUSAJtcpCjCxh/N8tWiYnQRRgygqHHQb5MgzfMxjKUsuE0CYnE1sjIyAqAryoQ0
+         DHdUV82uc1IiI4LBqYnseD0Vc52vThRxXdXBX/nh//Q3F/Bf4lwujdP2puoVgkzhMy/s
+         1pka8xIyeCDqvRY3i/RQYGC+T7avWzW1KFZ4AMmsrNhxTZuKv/rw3VYiUc9Mg5ak2Q5E
+         qdfxLr3gQo9JwxRAgIz/+idBkHUBFmD+lL/CCd26tLgbrUSRoQhbocIL7+Tc0W6/ksO4
+         F84g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=K4ZS1dXHLXQXx8P72s4zM3X8KPrqYSr3rieN438Gf5g=;
-        b=hl0VZJt22UC2BcJ55cIz2JxDHoGK9tfrRTMWgLhBhxPlsus62c5u1IRKmPRvH6uhTG
-         x6lkWxGH59olQzj6anGEXczjxxlOKU79h4g80DHmNBiTQ6TExqQHOzEMgVKNCVya2rjd
-         J/PHHJAisbEO2QKOzwrKmX4/jKPln6ZX33Jl1J/bXSm52TuGoHdrY66CkKfRmq8p73zx
-         TH1nqdcMV0sTdpYLd8S7/OVS2gtcbelamp9E5vTP4I43tDwRSfzEpYnuZ8c3JcjM/5k+
-         emjw6nYE0YRf93zuv2GIeHQ0nxO+bqJGO2TqQ7Jz9aRod6lSQw0+hGDF02vNflMvCc8X
-         PVmQ==
-X-Gm-Message-State: AOAM532DakkJN+JmTBLAFMjWr+uZsymAEpy5DQBw8aLKr5eTl+k7In0i
-	pt3qvSE1w7W1z+s7pWsXCcfsnJbHltE=
-X-Google-Smtp-Source: ABdhPJzHLH37RWs8hLSeGNhYOuP2wfkgGbohJ0GqsyqffoGykQV2cTRGrFBu1kceOroq9Kj9zgoM0Q==
-X-Received: by 2002:a63:a546:: with SMTP id r6mr7940243pgu.160.1602957822549;
-        Sat, 17 Oct 2020 11:03:42 -0700 (PDT)
+         :references;
+        bh=vGHE6TjYnhCbG+jQIJN2Yqdgi3TbnP+1ASPccVBm8FI=;
+        b=ml15E5GDTMzZxYWatuuIPHy/2rzArYqC4ASfsDkivQb6niKl86SKhP6ZNixsqbNgWK
+         r7ddAUOc33gEy1hv9qRKuJUnFRmiCJ2oD5XE0TqHHB1Fh+9ew5KqUjnX76ZCpiiIJ4U/
+         Uw8KyjwJ/As04pRQccB0UWJTo6rv0Ry++KFXaJqUaRbFvgGfEF/hNkD42t9E5+1wgGmj
+         ZhnjQP2l0q/dAOeC0ePhcW+3QGf+YWwxe1zUgrsiDIENwo4OsX8JN7LWMdEGeHwhZ1ZW
+         uWGX1hrQpmls2aEZ7qkYogaxbYooHUe5VV3MtWCOars5zy9xbOOqGlXumQUWTev9xqJ8
+         8XmA==
+X-Gm-Message-State: AOAM531BVcu22E1tuCpZ86ywf3mntev7n5TQJpa4nggNZNSuBwVgVWCC
+	6tRJ3zMZ4YR4X+eh5+MClvRYb6zZRJY=
+X-Google-Smtp-Source: ABdhPJwBKhxyJhZ6x8mcQ0n25KSzI8QeEuRlh0ehKZD3GZ2W4mGzx9qOBvCtq4+cRfIUhtIL8fEhoA==
+X-Received: by 2002:a17:90a:67c7:: with SMTP id g7mr9996060pjm.140.1602957823358;
+        Sat, 17 Oct 2020 11:03:43 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:b4d6:f32b:75d2:1966])
-        by smtp.gmail.com with ESMTPSA id jx17sm6495898pjb.10.2020.10.17.11.03.41
+        by smtp.gmail.com with ESMTPSA id jx17sm6495898pjb.10.2020.10.17.11.03.42
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Oct 2020 11:03:42 -0700 (PDT)
+        Sat, 17 Oct 2020 11:03:43 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [dunfell 07/32] sssd: Make manpages buildable
-Date: Sat, 17 Oct 2020 11:03:04 -0700
-Message-Id: <369a7bd1292a1483dae0db42902d9a2d8c598fe8.1602957519.git.akuster@mvista.com>
+Subject: [dunfell 08/32] dm-verity-img.bbclass: Fix bashisms
+Date: Sat, 17 Oct 2020 11:03:05 -0700
+Message-Id: <c85640cf54aa26fc8df7d33428aebbc4103956c9.1602957519.git.akuster@mvista.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1602957519.git.akuster@mvista.com>
 References: <cover.1602957519.git.akuster@mvista.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-From: Jonatan Pålsson <jonatan.p@gmail.com>
+From: "niko.mauno@vaisala.com" <niko.mauno@vaisala.com>
 
-Some XML related fixes are needed to make the sssd manpages buildable
+Resort to printf in order to avoid usage of non-POSIX compliant echo
+flags. This mitigates following errors visible in console during
+boot-up with image that has been built on a host that symlinks
+'/bin/sh' to 'dash':
 
-Signed-off-by: Jonatan Pålsson <jonatan.p@gmail.com>
+  /init: /usr/share/dm-verity.env: line 1: -NE_UUID: not found
+  /init: /usr/share/dm-verity.env: line 2: -ne: not found
+  /init: /usr/share/dm-verity.env: line 3: 642864e8-6a17-46b9-ba1e-9386a3909c8d: not found
+  /init: /usr/share/dm-verity.env: line 4: -NE_HASH_TYPE: not found
+  /init: /usr/share/dm-verity.env: line 5: -ne: not found
+  /init: /usr/share/dm-verity.env: line 6: 1: not found
+  /init: /usr/share/dm-verity.env: line 7: -NE_DATA_BLOCKS: not found
+  /init: /usr/share/dm-verity.env: line 8: -ne: not found
+  /init: /usr/share/dm-verity.env: line 9: 12064: not found
+  /init: /usr/share/dm-verity.env: line 10: -NE_DATA_BLOCK_SIZE: not found
+  /init: /usr/share/dm-verity.env: line 11: -ne: not found
+  /init: /usr/share/dm-verity.env: line 12: 1024: not found
+  /init: /usr/share/dm-verity.env: line 13: -NE_HASH_BLOCK_SIZE: not found
+  /init: /usr/share/dm-verity.env: line 14: -ne: not found
+  /init: /usr/share/dm-verity.env: line 15: 4096: not found
+  /init: /usr/share/dm-verity.env: line 16: -NE_HASH_ALGORITHM: not found
+  /init: /usr/share/dm-verity.env: line 17: -ne: not found
+  /init: /usr/share/dm-verity.env: line 18: sha256: not found
+  /init: /usr/share/dm-verity.env: line 19: -NE_SALT: not found
+  /init: /usr/share/dm-verity.env: line 20: -ne: not found
+  /init: /usr/share/dm-verity.env: line 21: 19d98185b42a897a37db6c56c7470ab2d455f0de46daa0df735eee6263816439: not found
+  /init: /usr/share/dm-verity.env: line 22: -NE_ROOT_HASH: not found
+  /init: /usr/share/dm-verity.env: line 23: -ne: not found
+  /init: /usr/share/dm-verity.env: line 24: 298d75fc2ea27fe594b6a37158a6ae7538e77d918bab98c475934f625de0e4ab: not found
+
+Signed-off-by: Niko Mauno <niko.mauno@vaisala.com>
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
-(cherry picked from commit 5efa53b2b2bab6f2d8589624c1700d1e66f29683)
+(cherry picked from commit ad55aaca1be60f6c1b066782e7ee6f6f323ffbbf)
 ---
- ...AC_CHECK_FILE-when-building-manpages.patch | 34 +++++++++++++++++++
- recipes-security/sssd/sssd_1.16.4.bb          |  4 ++-
- 2 files changed, 37 insertions(+), 1 deletion(-)
- create mode 100644 recipes-security/sssd/files/0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpages.patch
+ classes/dm-verity-img.bbclass | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/recipes-security/sssd/files/0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpages.patch b/recipes-security/sssd/files/0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpages.patch
-new file mode 100644
-index 0000000..b64670c
---- /dev/null
-+++ b/recipes-security/sssd/files/0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpages.patch
-@@ -0,0 +1,34 @@
-+From d54aa109600bcd02bf72cfe64c01935890a102a1 Mon Sep 17 00:00:00 2001
-+From: =?UTF-8?q?Jonatan=20P=C3=A5lsson?= <jonatan.p@gmail.com>
-+Date: Fri, 21 Aug 2020 14:45:10 +0200
-+Subject: [PATCH] build: Don't use AC_CHECK_FILE when building manpages
-+MIME-Version: 1.0
-+Content-Type: text/plain; charset=UTF-8
-+Content-Transfer-Encoding: 8bit
-+
-+AC_CHECK_FILE does not support cross-compilation, and will only check
-+the host rootfs. Replace AC_CHECK_FILE with a 'test -f <FILE>' instead,
-+to allow building manpages when cross-compiling.
-+
-+Upstream-status: Submitted [https://github.com/SSSD/sssd/pull/5289]
-+Signed-off-by: Jonatan Pålsson <jonatan.p@gmail.com>
-+---
-+ src/external/docbook.m4 | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/src/external/docbook.m4 b/src/external/docbook.m4
-+index deb8632fa..acdc89a68 100644
-+--- a/src/external/docbook.m4
-++++ b/src/external/docbook.m4
-+@@ -18,7 +18,7 @@ dnl Checks if the XML catalog given by FILE exists and
-+ dnl if a particular URI appears in the XML catalog
-+ AC_DEFUN([CHECK_STYLESHEET],
-+ [
-+-  AC_CHECK_FILE($1, [], [AC_MSG_ERROR([could not find XML catalog])])
-++  AS_IF([test -f "$1"], [], [AC_MSG_ERROR([could not find XML catalog])])
-+ 
-+   AC_MSG_CHECKING([for ifelse([$3],,[$2],[$3]) in XML catalog])
-+   if AC_RUN_LOG([$XSLTPROC --catalogs --nonet --noout "$2" >&2]); then
-+-- 
-+2.26.1
-+
-diff --git a/recipes-security/sssd/sssd_1.16.4.bb b/recipes-security/sssd/sssd_1.16.4.bb
-index 2c3c803..916f1ac 100644
---- a/recipes-security/sssd/sssd_1.16.4.bb
-+++ b/recipes-security/sssd/sssd_1.16.4.bb
-@@ -17,6 +17,7 @@ SRC_URI = "https://releases.pagure.org/SSSD/${BPN}/${BP}.tar.gz \
-            file://sssd.conf \
-            file://volatiles.99_sssd \
-            file://fix-ldblibdir.patch \
-+           file://0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpages.patch \
-            "
+diff --git a/classes/dm-verity-img.bbclass b/classes/dm-verity-img.bbclass
+index 1c0e29b..6faed5b 100644
+--- a/classes/dm-verity-img.bbclass
++++ b/classes/dm-verity-img.bbclass
+@@ -32,9 +32,9 @@ process_verity() {
+     # just trim all white-spaces.
+     IFS=":"
+     while read KEY VAL; do
+-        echo -ne "$KEY" | tr '[:lower:]' '[:upper:]' | sed 's/ /_/g' >> $ENV
+-        echo -ne "=" >> $ENV
+-        echo "$VAL" | tr -d " \t" >> $ENV
++        printf '%s=%s\n' \
++            "$(echo "$KEY" | tr '[:lower:]' '[:upper:]' | sed 's/ /_/g')" \
++            "$(echo "$VAL" | tr -d ' \t')" >> $ENV
+     done
  
- SRC_URI[md5sum] = "757bbb6f15409d8d075f4f06cb678d50"
-@@ -41,7 +42,7 @@ PACKAGECONFIG[autofs] = "--with-autofs, --with-autofs=no"
- PACKAGECONFIG[crypto] = "--with-crypto=libcrypto, , libcrypto"
- PACKAGECONFIG[curl] = "--with-kcm, --without-kcm, curl jansson"
- PACKAGECONFIG[infopipe] = "--with-infopipe, --with-infopipe=no, "
--PACKAGECONFIG[manpages] = "--with-manpages, --with-manpages=no"
-+PACKAGECONFIG[manpages] = "--with-manpages, --with-manpages=no, libxslt-native docbook-xml-dtd4-native docbook-xsl-stylesheets-native"
- PACKAGECONFIG[nl] = "--with-libnl, --with-libnl=no, libnl"
- PACKAGECONFIG[nscd] = "--with-nscd=${sbindir}, --with-nscd=no "
- PACKAGECONFIG[nss] = "--with-crypto=nss, ,nss,"
-@@ -60,6 +61,7 @@ EXTRA_OECONF += " \
-     --enable-pammoddir=${base_libdir}/security \
-     --without-python2-bindings \
-     --without-secrets \
-+    --with-xml-catalog-path=${STAGING_ETCDIR_NATIVE}/xml/catalog \
- "
- 
- do_configure_prepend() {
+     # Add partition size
 -- 
 2.17.1
 
