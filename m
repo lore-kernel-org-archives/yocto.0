@@ -1,71 +1,79 @@
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
- by mx.groups.io with SMTP id smtpd.web10.3014.1602957843410016242
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+ by mx.groups.io with SMTP id smtpd.web12.2944.1602957844502301534
  for <yocto@lists.yoctoproject.org>;
- Sat, 17 Oct 2020 11:04:03 -0700
+ Sat, 17 Oct 2020 11:04:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=WtaRba/b;
- spf=pass (domain: gmail.com, ip: 209.85.210.176, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f176.google.com with SMTP id x13so3417700pfa.9
-        for <yocto@lists.yoctoproject.org>; Sat, 17 Oct 2020 11:04:03 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=jvjNABxF;
+ spf=pass (domain: gmail.com, ip: 209.85.210.177, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f177.google.com with SMTP id 10so3422236pfp.5
+        for <yocto@lists.yoctoproject.org>; Sat, 17 Oct 2020 11:04:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=NjX4o5i+ExA5+ARr+b6LjsTVZTs94TCAfy2iJrMiDj4=;
-        b=WtaRba/bXMLkPfTK76osQTvL1H/uzLgNpD08LsLzyXRCMyvYcpA2WiTAFAF5AdNDqW
-         ixGrpho1/OZo+v8iA+Ljrf34d3tg8h0Z2RWAtXu4DrtT+mDjtFHsUhWHpNxcCWuXU7TN
-         ka2gAbb7VRAhymE6wXFoFlaafFNhEt3TwCW0TAlondJ8od1YqTc+1jUzO0Y2xv0bLAjf
-         +C1xb2ttqHazDA+aA1T2u1LK0MCoTNODiYhCtfL1E4iJD0Z2R6JRrkTIj2zhaNmB3pTg
-         vJ0ghs0MgrFiFzNGWClVGO+k6ccUPHuf7MruIkvDT3g2RNQJ0dluK6TX4nuu8eg6NdkI
-         Djgg==
+        bh=XJYXJpQ16RbCg8OlJJMJUdaBpMXZxCmsddRsvVYr158=;
+        b=jvjNABxFgZD8UB01p/hnO+N0/OgsUdR49LY/RYja4Y5/Cjg+0L269nRyDx9YZKfP6C
+         iId2Y/1Ssbbf8i1hLwgxMeiE68FlrhTaryllwEI1XLnZRxdj9OPoBsohRcMFoTOOy8tT
+         2tbh2Jw6e9PKnz9DnNy4F+ETlT/jZNuE3uxmoaKIvfao7OG8B+pO6/LUpMchK+zlGC7J
+         GH7PIEvi5LXkppr+SrGdG0oRyHZUlEsBUQLw+B3Y6bMz97S3I+Hq5Vtk4YP7enV1zBbO
+         axGM+fV3g0QAgVBgqbhTsRUWzGnaV9i9fDA4WIO89/bUfmJ9RWFeUZ6Bgntizm2RdUyo
+         4O9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=NjX4o5i+ExA5+ARr+b6LjsTVZTs94TCAfy2iJrMiDj4=;
-        b=b8alync3w7+9HzQU0STRDB9jH2IlR27RcmUf/4uioYEo7GCKQ43t6K2kFBExXcvNLg
-         NgtggsNpQ8Tz5BFi2/gDV+1MpE8y2KEzoBf7L60yQjcdG9AYYcJ6t0jYzpaglZ4s1Ihm
-         w80ndLhDWyXBEAzLtEfo3J4FbTieWz7A8w2kJmlqaZK6pY8q3vm4KWJ2BUOhNmatIUjC
-         SifwBMm6F3OzCxQjFNcGoxB8kwqc9391WoAO/VUTE+jfkHXUo3eL8jxOPvJJ9s0WNGfg
-         9+qDmhzV07dmidPEpsx423R2wG0+x5SaZpreRXV1x4IUFNbNj4jFSTQm/2EIE6BXwjGw
-         O1Eg==
-X-Gm-Message-State: AOAM531AxgjEmC13usZ18e9NBJflHeDKOu/W/Y4+/8kh/f8GuJk9tDDj
-	GJmnK4Ef63lgz9FFDNDVmDc5MMLdnlY=
-X-Google-Smtp-Source: ABdhPJx1URkQByD8Lb6u+AREl2EgsHELKVzLRejN7DlEAq5IsETTyTneFWVn3+vWt7dTgrgddU1Qsw==
-X-Received: by 2002:a62:7d15:0:b029:155:29ed:db4c with SMTP id y21-20020a627d150000b029015529eddb4cmr9619410pfc.77.1602957842727;
-        Sat, 17 Oct 2020 11:04:02 -0700 (PDT)
+        bh=XJYXJpQ16RbCg8OlJJMJUdaBpMXZxCmsddRsvVYr158=;
+        b=bz1IAT4nIKcR/4nBT6q6+jQmS3sfdu0xxlTEabWf/ducTFKi60cs8mg34QlMyouPvW
+         qqB1hWmx77OnnogLwconXXrdwd9D/FgVUlKW9B9i8jxTafNHl0YOfbk2VBrm0sIi7DGY
+         n3+5AAjX+tYfgVnWwY7uoWO1tU1G2/vUqhEODewWR2wkv/Xa+BIKG/1XFOWnmvtN6egb
+         JwGLEzw6YaZKU5+/5gQhT144EhKWK9iwHyLxxuAgnoesdbk/85YX1mGQxQ+by35/goEI
+         xgqirziJmCw0bO5OOqAB0Sogm+CQOtTXHgi9ZoHMsGUMp/aW2KWQsij3rsnD3iSVDjYp
+         aBbw==
+X-Gm-Message-State: AOAM533pIG0R+ej1pG90g+WGHvF7GbCG0RXLp7aoCa/e6EEkh1INhHD8
+	qaxjL+2utQUkOtCPyNV5TwqrMab8eAs=
+X-Google-Smtp-Source: ABdhPJxFYv+9NUfyct4ahAauxxn8zumF801TMNxjHQg3nsPvSADFB/4Mu3PMomJHft1VzhxDNdMTcw==
+X-Received: by 2002:aa7:8429:0:b029:155:d4ac:3914 with SMTP id q9-20020aa784290000b0290155d4ac3914mr9747548pfn.33.1602957843904;
+        Sat, 17 Oct 2020 11:04:03 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:b4d6:f32b:75d2:1966])
-        by smtp.gmail.com with ESMTPSA id jx17sm6495898pjb.10.2020.10.17.11.04.01
+        by smtp.gmail.com with ESMTPSA id jx17sm6495898pjb.10.2020.10.17.11.04.02
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Oct 2020 11:04:02 -0700 (PDT)
+        Sat, 17 Oct 2020 11:04:03 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [dunfell 26/32] packagegroup-core-security: remove clamav from musl image
-Date: Sat, 17 Oct 2020 11:03:23 -0700
-Message-Id: <d2b9de25cbd9fa1a93205b9ef3ef57129c87ee33.1602957519.git.akuster@mvista.com>
+Subject: [dunfell 27/32] scap-security-guide: add expat-native to DEPENDS
+Date: Sat, 17 Oct 2020 11:03:24 -0700
+Message-Id: <717a38a8e475876286bcb788d24e868cb8308737.1602957519.git.akuster@mvista.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1602957519.git.akuster@mvista.com>
 References: <cover.1602957519.git.akuster@mvista.com>
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
-(cherry picked from commit 496a734c14fc72250979a4e7eb69c5d541ffd870)
----
- recipes-security/packagegroup/packagegroup-core-security.bb | 1 +
- 1 file changed, 1 insertion(+)
+From: Mingli Yu <mingli.yu@windriver.com>
 
-diff --git a/recipes-security/packagegroup/packagegroup-core-security.bb b/recipes-security/packagegroup/packagegroup-core-security.bb
-index 72ca0f4..fd6da9e 100644
---- a/recipes-security/packagegroup/packagegroup-core-security.bb
-+++ b/recipes-security/packagegroup/packagegroup-core-security.bb
-@@ -39,6 +39,7 @@ RDEPENDS_packagegroup-security-scanners = "\
-     checksecurity \
-     ${@bb.utils.contains_any("TUNE_FEATURES", "riscv32 riscv64", "", " clamav clamav-freshclam clamav-cvd",d)} \
-     "
-+RDEPENDS_packagegroup-security-scanners_remove_libc-musl = "clamav clamav-freshclam clamav-cvd"
+Add expat-native to DEPENDS to fix the below do_configure error:
+| CMake Error at CMakeLists.txt:165 (message):
+|  xmlwf is required!
+
+Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+(cherry picked from commit 4c2f7ffd492c7083273aca7cc718802279f05ce2)
+---
+ .../scap-security-guide/scap-security-guide.inc                 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide.inc b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide.inc
+index 66c2623..32fce0f 100644
+--- a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide.inc
++++ b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide.inc
+@@ -6,7 +6,7 @@ HOME_URL = "https://www.open-scap.org/security-policies/scap-security-guide/"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=97662e4486d9a1d09f358851d9f41a1a"
+ LICENSE = "LGPL-2.1"
  
- SUMMARY_packagegroup-security-audit = "Security Audit tools "
- RDEPENDS_packagegroup-security-audit = " \
+-DEPENDS = "openscap-native python3 python3-pyyaml-native python3-jinja2-native libxml2-native"
++DEPENDS = "openscap-native python3 python3-pyyaml-native python3-jinja2-native libxml2-native expat-native"
+ 
+ S = "${WORKDIR}/git"
+ 
 -- 
 2.17.1
 
