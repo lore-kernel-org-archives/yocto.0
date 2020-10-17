@@ -1,79 +1,78 @@
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
- by mx.groups.io with SMTP id smtpd.web11.3059.1602957845746121844
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+ by mx.groups.io with SMTP id smtpd.web10.3015.1602957846654156492
  for <yocto@lists.yoctoproject.org>;
- Sat, 17 Oct 2020 11:04:05 -0700
+ Sat, 17 Oct 2020 11:04:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=lW1Sn7Pj;
- spf=pass (domain: gmail.com, ip: 209.85.216.47, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f47.google.com with SMTP id j8so3242805pjy.5
-        for <yocto@lists.yoctoproject.org>; Sat, 17 Oct 2020 11:04:05 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=mKITSCWB;
+ spf=pass (domain: gmail.com, ip: 209.85.214.172, mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f172.google.com with SMTP id b19so2920231pld.0
+        for <yocto@lists.yoctoproject.org>; Sat, 17 Oct 2020 11:04:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=bt/SVAjsV6SHYRBjIBqFwXbF8q0HEWbigwy7MWn+ERg=;
-        b=lW1Sn7PjRhcJ+KDlcGwX045ZD7CWgekZZ/pH4m6GTiwPDLcNIRWmBP+BKurT1l3rLm
-         tl8x/ppXQDLkaO1u6UtoRMhk11MtTRi1I1uUd9gr6WPYu7ghdGlbUdl+JZwgUyL7ZeL1
-         09JRD9iPgI4unsUNzldeIcc3+n43bRQz1y/U13zMwkc5rTnTfiOfNxYoWFWbU/m3xEe/
-         kOf7vNDkoLtWgSH24t5GqK4ngmEgp9NIv3WGqZb4n3s9htcWlp2Ho7GUHh9WEO48DKLB
-         lrLoqe90Hv0pW/brWfxlG+bdNtNF0xo7dLRMFNMGfzClK5DOQeNDOf02CtRoTbcyexZ5
-         lAww==
+        bh=mCjnOFkzepBwMyQKRv4Vi/JwErWA6Av875eAKnQHTjw=;
+        b=mKITSCWBjjlUNcVlCv0qXH4jRBD9SPZHV2OK82o9qyPEl+yQsvSQT6vwfYTIDGXbjs
+         suExdqZY3LSGFCBSzA8COzLuFtKGtURabwyIGWCb9jA+h3QLOhPaGSIPXb/ZRtjWe+AJ
+         sDExsLXVGRgI0zbzZX9aaW1y8HOfJiW7zsf8OMTtIlqpr7rTZBy8XHwP8aBn/CAZok+a
+         5wl5MT/HFUfUjNJQUqS0h/chL7lZjYpmmq9w3+D3ApknKUIZ2wk4GXulsKMD51i22Kx6
+         4YVVvJ0NmX8lb+Tw1ifuPhPOADxVGeX/zLy6nor9hAp0CBTBvZKgx67iadTMYDUCT2Rc
+         Vo1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=bt/SVAjsV6SHYRBjIBqFwXbF8q0HEWbigwy7MWn+ERg=;
-        b=W6TodBiXbGs7cOGNbeJb8vZxBCbdXWDtoRQe0zJCIVRZG0YwSM7ZZwg32qUZoqvvob
-         6pTqSB9tXInrS6B/kglX9CMncYfZMTa+6xUGb7chYgPRfilWKqe+tntXINJGcKBJgs/L
-         gKx0vcJ9Y9HX0BnU3t1DMcLGqNEOW+luKwjG1c8LoZv0t2zZ3ZvH+Bp6Yr3ug+IUP5UJ
-         IESO8iqsb090Rm7mWrVKt2ae5x/jl1lpZ7s67XN/NvrYmf7DoYddoNF60U/nWKcDk4Mh
-         AW3//HhwXRZnBcY0a36YN9Bv3K9wg4pRTsuS0nlSDnRnQepmHLSBn0sYuSeRyY9o8S1O
-         EeSA==
-X-Gm-Message-State: AOAM530tWjjozNbqhzn74fwFJOsee790XQO12L52n2iXZ5s9/nvWtz9x
-	H+iOenSqfE/ARIv2iaNBrDnCGGiOBhQ=
-X-Google-Smtp-Source: ABdhPJyyyvK7h7+4+qm4lqy6YV/nnYB51GNTDObEXLLta98SxamqkyHJ+rD9qSslgMNuTM8viJ49kQ==
-X-Received: by 2002:a17:90a:a394:: with SMTP id x20mr9738923pjp.213.1602957845136;
-        Sat, 17 Oct 2020 11:04:05 -0700 (PDT)
+        bh=mCjnOFkzepBwMyQKRv4Vi/JwErWA6Av875eAKnQHTjw=;
+        b=MIymj3ZUWRj+yyeD7NxOzZU10yY1K8glnbLY5LK4wCjVsklYz6EC0YKGE3X00Y+o5n
+         Xh9UXzCz9WeR1KP3uteCEbBb2ZH1IHnU478wHlTYqazVjyN8iJYrg95jsLu0JqiEn5Gj
+         XKAqjm+wrC2Q715kPaUIxd7kK2U7OH1VtGVaCz3pYyuO/iCBnprgs3LaXCWKjRFliPzB
+         gUJOYKZfaOCz4dIzZ1QiX5vowO34yfChygw+1F628ZcoN7m4DMBnTgvopabJ9UGNf/i2
+         oGhIuAVl4DH77jUTOeTVBw9WXu9OThAcMmSo3n2qasqB7oRKPa1QHdGZVdHliH96t0bJ
+         a2NA==
+X-Gm-Message-State: AOAM5329iI8h0I0TVxJfFrYuAzqekX5HdcQZXcoNjgkm+7S0vmJcxat4
+	g3UIOxdq0DauSxhAYQLOU2LnZe5djW4=
+X-Google-Smtp-Source: ABdhPJyHt2jBvBMcPsUVSJ3l+kbLWvMMiAovc9uiQk0ADmTmRqRb69/4WrbrIQ75jcN/H8ICf5x4Zg==
+X-Received: by 2002:a17:90a:ee87:: with SMTP id i7mr9495253pjz.25.1602957846037;
+        Sat, 17 Oct 2020 11:04:06 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:b4d6:f32b:75d2:1966])
-        by smtp.gmail.com with ESMTPSA id jx17sm6495898pjb.10.2020.10.17.11.04.04
+        by smtp.gmail.com with ESMTPSA id jx17sm6495898pjb.10.2020.10.17.11.04.05
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Oct 2020 11:04:04 -0700 (PDT)
+        Sat, 17 Oct 2020 11:04:05 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [dunfell 28/32] layer.conf: use += instead of := to update BBFILES
-Date: Sat, 17 Oct 2020 11:03:25 -0700
-Message-Id: <4963043a05da763f5a92b21911c0b8940deb28f9.1602957519.git.akuster@mvista.com>
+Subject: [dunfell 29/32] ibmswtpm2: fix QA warning
+Date: Sat, 17 Oct 2020 11:03:26 -0700
+Message-Id: <16b5bdec29cdb1f281007ad7e087b88235a4e1a9.1602957519.git.akuster@mvista.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1602957519.git.akuster@mvista.com>
 References: <cover.1602957519.git.akuster@mvista.com>
 
-From: Sajjad Ahmed <sajjad_ahmed@mentor.com>
+ibmswtpm2 doesn't have GNU_HASH (didn't pass LDFLAGS?) [ldflags
 
-Updating BBFILES with := isn't the standard way and can break
-parsing under certain conditions, instead use += which is widely used.
-
-Signed-off-by: Sajjad Ahmed <sajjad_ahmed@mentor.com>
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
-(cherry picked from commit 63e1cf3ffa26a4e820ec8d882e67e438aa0d23ee)
 ---
- meta-integrity/conf/layer.conf | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1563.bb | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
-index b4edac3..6072e6d 100644
---- a/meta-integrity/conf/layer.conf
-+++ b/meta-integrity/conf/layer.conf
-@@ -2,8 +2,7 @@
- BBPATH =. "${LAYERDIR}:"
+diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1563.bb b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1563.bb
+index 8054226..a892761 100644
+--- a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1563.bb
++++ b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1563.bb
+@@ -16,6 +16,8 @@ SRC_URI[sha512sum] = "ff0b9e5f0d0070eb572b23641f7a0e70a8bc65cbf4b59dca1778be3bb0
  
- # We have a packages directory, add to BBFILES
--BBFILES := "${BBFILES} \
--            ${LAYERDIR}/recipes-*/*/*.bb \
-+BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-             ${LAYERDIR}/recipes-*/*/*.bbappend"
+ S = "${WORKDIR}/src"
  
- BBFILE_COLLECTIONS += "integrity"
++INSANE_SKIP_${PN} += "ldflags"
++
+ do_compile () {
+    make CC='${CC}'
+ }
+@@ -24,4 +26,3 @@ do_install () {
+    install -d ${D}/${bindir}
+    install -m 0755 tpm_server  ${D}/${bindir}
+ }
+-
 -- 
 2.17.1
 
