@@ -1,76 +1,167 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.26748.1603045917506085310
- for <yocto@lists.yoctoproject.org>;
- Sun, 18 Oct 2020 11:31:57 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 198.145.29.25, mailfrom: rpjday@crashcourse.ca)
-Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 4FE4B38C090B
-	for <yocto@yoctoproject.org>; Sun, 18 Oct 2020 11:31:57 -0700 (PDT)
-Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:45090 helo=localhost.localdomain)
-	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.93)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1kUDTH-003FGR-QT
-	for yocto@yoctoproject.org; Sun, 18 Oct 2020 14:31:56 -0400
-Date: Sun, 18 Oct 2020 14:31:52 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: slightly weird use of PACKAGECONFIG in bbappend file?
-Message-ID: <alpine.LFD.2.23.451.2010181418430.14910@localhost.localdomain>
+Subject: Yocto - glib-gettextize: not found #yocto
+To: yocto@lists.yoctoproject.org
+From: zidouhzakaria@gmail.com
+X-Originating-Location: Paris, Île-de-France, FR (82.248.8.219)
+X-Originating-Platform: Linux Chrome 85
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+Date: Sun, 18 Oct 2020 14:00:15 -0700
+Message-ID: <qp1q.1603054815281667643.UQQK@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="D65zPenm0kLfKuKth3j9"
 
+--D65zPenm0kLfKuKth3j9
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-  currently updating lots of YP class notes, and writing a short
-section on "coding style", and ran across the following oddity(?)
-related to PACKAGECONFIG (all on master branches).
+I'm trying to compile a recipe based on autotools, but it still fails in do=
+_configure:
 
-  i noticed in oe-core, qemu.inc:
+glib-gettextize: not found
 
-  PACKAGECONFIG[spice] = "--enable-spice,--disable-spice,spice"
+However, I have glib-2.0 in my DEPENDS which generates the glib-2.0-dev pa=
+ckage containing the binary. In glib.inc file :
 
-fair enough, that defines a setting for "spice" related to qemu.
-however, for reasons that would make no sense to anyone but me, i
-ended up at meta-cloud-services/meta-openstack/qemu_5.%.bbappend,
-which conditionally requires qemu-openstack.inc, which contains:
+[...]    
+   FILES_${PN}-dev +=3D "[...]
+                           ${bindir}/glib-gettextize \
+[...]
 
-/// start
+Do you have any ideas ?
 
-PACKAGECONFIG[spice] = "--enable-spice,--disable-spice,spice,"
-PACKAGECONFIG[libseccomp] = "--enable-seccomp,--disable-seccomp,libseccomp,libseccomp"
+Thanks
 
-PACKAGECONFIG ?= "fdt virtfs libcap-ng"
-PACKAGECONFIG_x86 ?= "fdt spice virtfs libcap-ng"
-PACKAGECONFIG_x86-64 ?= "fdt spice virtfs libcap-ng"
+--D65zPenm0kLfKuKth3j9
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-PACKAGECONFIG_class-native = "fdt"
-PACKAGECONFIG_class-nativesdk = "fdt"
+<p style=3D"margin-bottom: var(--s-prose-spacing); padding: 0px; border: 0p=
+x; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-st=
+retch: inherit; line-height: inherit; font-family: Arial, 'Helvetica Neue',=
+ Helvetica, sans-serif; font-size: 15px; vertical-align: baseline; box-sizi=
+ng: inherit; clear: both; color: #242729;">I'm trying to compile a recipe b=
+ased on autotools, but it still fails in do_configure:</p>
+<pre style=3D"margin-bottom: calc(var(--s-prose-spacing) + 0.4em); padding=
+: 12px; font-variant-numeric: inherit; font-variant-east-asian: inherit; fo=
+nt-stretch: inherit; line-height: 1.30769; font-family: Consolas, Menlo, Mo=
+naco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream V=
+era Sans Mono', 'Courier New', monospace, sans-serif; vertical-align: basel=
+ine; box-sizing: inherit; width: auto; max-height: 600px; background-color:=
+ var(--highlight-bg); border-radius: 5px; overflow-wrap: normal; color: var=
+(--highlight-color); border: 0px initial initial;"><code style=3D"margin: 0=
+px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: i=
+nherit; font-stretch: inherit; line-height: inherit; font-family: Consolas,=
+ Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'B=
+itstream Vera Sans Mono', 'Courier New', monospace, sans-serif; font-size: =
+13px; vertical-align: baseline; box-sizing: inherit; white-space: inherit;"=
+>glib-gettextize: not found
+</code></pre>
+<div>
+<p style=3D"margin-bottom: var(--s-prose-spacing); padding: 0px; border: 0=
+px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-s=
+tretch: inherit; line-height: inherit; font-family: Arial, 'Helvetica Neue'=
+, Helvetica, sans-serif; font-size: 15px; vertical-align: baseline; box-siz=
+ing: inherit; clear: both; color: #242729;">However, I have glib-2.0 in my&=
+nbsp;<code style=3D"margin: 0px; border: 0px; font-style: inherit; font-var=
+iant: inherit; font-weight: inherit; font-stretch: inherit; line-height: in=
+herit; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation =
+Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monos=
+pace, sans-serif; font-size: 13px; vertical-align: baseline; box-sizing: in=
+herit; background-color: var(--black-075); white-space: pre-wrap; color: va=
+r(--black-800); border-radius: 3px;">DEPENDS</code>&nbsp;which generates th=
+e&nbsp;<code style=3D"margin: 0px; border: 0px; font-style: inherit; font-v=
+ariant: inherit; font-weight: inherit; font-stretch: inherit; line-height: =
+inherit; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberatio=
+n Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', mon=
+ospace, sans-serif; font-size: 13px; vertical-align: baseline; box-sizing: =
+inherit; background-color: var(--black-075); white-space: pre-wrap; color: =
+var(--black-800); border-radius: 3px;">glib-2.0-dev</code>&nbsp;package con=
+taining the binary. In&nbsp;<code style=3D"margin: 0px; border: 0px; font-s=
+tyle: inherit; font-variant: inherit; font-weight: inherit; font-stretch: i=
+nherit; line-height: inherit; font-family: Consolas, Menlo, Monaco, 'Lucida=
+ Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono=
+', 'Courier New', monospace, sans-serif; font-size: 13px; vertical-align: b=
+aseline; box-sizing: inherit; background-color: var(--black-075); white-spa=
+ce: pre-wrap; color: var(--black-800); border-radius: 3px;">glib.inc</code>=
+&nbsp;file :</p>
+</div>
+<div><br />
+<pre style=3D"margin-bottom: calc(var(--s-prose-spacing) + 0.4em); padding=
+: 12px; font-variant-numeric: inherit; font-variant-east-asian: inherit; fo=
+nt-stretch: inherit; line-height: 1.30769; font-family: Consolas, Menlo, Mo=
+naco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream V=
+era Sans Mono', 'Courier New', monospace, sans-serif; vertical-align: basel=
+ine; box-sizing: inherit; width: auto; max-height: 600px; background-color:=
+ var(--highlight-bg); border-radius: 5px; overflow-wrap: normal; color: var=
+(--highlight-color); border: 0px initial initial;"><code style=3D"margin: 0=
+px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: i=
+nherit; font-stretch: inherit; line-height: inherit; font-family: Consolas,=
+ Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'B=
+itstream Vera Sans Mono', 'Courier New', monospace, sans-serif; font-size: =
+13px; vertical-align: baseline; box-sizing: inherit; white-space: inherit;"=
+><span style=3D"background-color: #ffffff;">[...]    
+    FILES_${PN}-dev +=3D "[...]
+                            ${bindir}/glib-gettextize \
+[...]</span><br /><br /><br /></code></pre>
+<div class=3D"s-prose js-post-body" style=3D"margin: 0px 0px 5px; padding:=
+ 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: =
+inherit; font-stretch: inherit; line-height: var(--s-prose-line-height); fo=
+nt-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 15px;=
+ vertical-align: baseline; box-sizing: inherit; --s-prose-line-height: 1.5;=
+ --s-prose-spacing: 1.1em; --s-prose-spacing-condensed: calc(var(--s-prose-=
+spacing) / 2); overflow-wrap: break-word; width: 469px; color: #242729; whi=
+te-space: normal; background-color: #ffffff;">
+<p style=3D"margin-bottom: 0px; padding: 0px; border: 0px; font-style: inh=
+erit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; l=
+ine-height: inherit; font-family: inherit; vertical-align: baseline; box-si=
+zing: inherit; clear: both;">Do you have any ideas ?<br /><br />Thanks&nbsp=
+;</p>
+</div>
+<pre style=3D"margin-bottom: calc(var(--s-prose-spacing) + 0.4em); padding=
+: 12px; font-variant-numeric: inherit; font-variant-east-asian: inherit; fo=
+nt-stretch: inherit; line-height: 1.30769; font-family: Consolas, Menlo, Mo=
+naco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream V=
+era Sans Mono', 'Courier New', monospace, sans-serif; vertical-align: basel=
+ine; box-sizing: inherit; width: auto; max-height: 600px; background-color:=
+ var(--highlight-bg); border-radius: 5px; overflow-wrap: normal; color: var=
+(--highlight-color); border: 0px initial initial;"><code style=3D"margin: 0=
+px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: i=
+nherit; font-stretch: inherit; line-height: inherit; font-family: Consolas,=
+ Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'B=
+itstream Vera Sans Mono', 'Courier New', monospace, sans-serif; font-size: =
+13px; vertical-align: baseline; box-sizing: inherit; white-space: inherit;"=
+></code></pre>
+<div class=3D"mt24 mb12" style=3D"padding: 0px; border: 0px; font-variant-=
+numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; =
+line-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans=
+-serif; vertical-align: baseline; box-sizing: inherit; color: #242729; whit=
+e-space: normal; background-color: #ffffff; margin: 24px !important 0px 12p=
+x !important 0px;">
+<div class=3D"post-taglist grid gs4 gsy fd-column" style=3D"margin: -2px 0=
+px 10px; padding: 0px; border: 0px; font-style: inherit; font-variant: inhe=
+rit; font-weight: inherit; font-stretch: inherit; line-height: inherit; fon=
+t-family: inherit; vertical-align: baseline; box-sizing: inherit; display: =
+flex; clear: both; flex-direction: column !important;">
+<div class=3D"grid ps-relative" style=3D"margin: 2px 0px; padding: 0px; bo=
+rder: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit=
+; font-stretch: inherit; line-height: inherit; font-family: inherit; vertic=
+al-align: baseline; box-sizing: inherit; display: flex; position: relative =
+!important;">&nbsp;</div>
+</div>
+</div>
+<pre style=3D"margin-bottom: calc(var(--s-prose-spacing) + 0.4em); padding=
+: 12px; font-variant-numeric: inherit; font-variant-east-asian: inherit; fo=
+nt-stretch: inherit; line-height: 1.30769; font-family: Consolas, Menlo, Mo=
+naco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream V=
+era Sans Mono', 'Courier New', monospace, sans-serif; vertical-align: basel=
+ine; box-sizing: inherit; width: auto; max-height: 600px; background-color:=
+ var(--highlight-bg); border-radius: 5px; overflow-wrap: normal; color: var=
+(--highlight-color); border: 0px initial initial;"><code style=3D"margin: 0=
+px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: i=
+nherit; font-stretch: inherit; line-height: inherit; font-family: Consolas,=
+ Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'B=
+itstream Vera Sans Mono', 'Courier New', monospace, sans-serif; font-size: =
+13px; vertical-align: baseline; box-sizing: inherit; white-space: inherit;"=
+></code></pre>
+</div>
 
-/// end
-
-  i have no problem with a recipe bbappend file selecting or
-deselecting PACKAGECONFIG settings, but it looks just weird for a
-bbappend file to define *new* PACKAGECONFIG settings -- that would
-seem to be a property restricted to the base .bb recipe file for any
-recipe.
-
-  so in the above meta-openstack file, the line related to "spice" is
-clearly redundant, but the line related to "libseccomp" just looks
-weird as that should be defined in the qemu base recipe, no?
-
-  or am i misunderstanding something again?
-
-rday
+--D65zPenm0kLfKuKth3j9--
