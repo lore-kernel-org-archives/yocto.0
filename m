@@ -1,153 +1,276 @@
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [85.220.165.71])
- by mx.groups.io with SMTP id smtpd.web10.3506.1603134003172711361
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.5522.1603140642229946930
  for <yocto@lists.yoctoproject.org>;
- Mon, 19 Oct 2020 12:00:03 -0700
+ Mon, 19 Oct 2020 13:50:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: pengutronix.de, ip: 85.220.165.71, mailfrom: ejo@pengutronix.de)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=localhost)
-	by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <ejo@pengutronix.de>)
-	id 1kUaO1-0005GZ-ES; Mon, 19 Oct 2020 21:00:01 +0200
-Message-ID: <0630d92b2896cd0bec2adc4bc37510fc053184fa.camel@pengutronix.de>
-Subject: Re: [yocto] Generating non-rootfs file system images as update artifacts for multi-partition image updates
-From: "Enrico J?rns" <ejo@pengutronix.de>
-To: Stefano Babic <sbabic@denx.de>, yocto@lists.yoctoproject.org
-Cc: jlu <jlu@pengutronix.de>, ejo <ejo@pengutronix.de>
-Date: Mon, 19 Oct 2020 20:59:59 +0200
-In-Reply-To: <7cbd24d7-1240-c944-83ba-fe23e39f3cce@denx.de>
-References: <38cd4e9f948e734b3f32b4273fdde8d244507a37.camel@pengutronix.de>
-	 <7cbd24d7-1240-c944-83ba-fe23e39f3cce@denx.de>
-User-Agent: Evolution 3.36.4-2 
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=QDEP5VoX;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 4EB2238C084F
+	for <yocto@yoctoproject.org>; Mon, 19 Oct 2020 13:50:41 -0700 (PDT)
+Received: by mail-pj1-f46.google.com with SMTP id lw2so473972pjb.3
+        for <yocto@yoctoproject.org>; Mon, 19 Oct 2020 13:50:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=iU5CgXFZDw8E57fJ3CLCX0IA3VSBP+bFSbFjO0IoyB4=;
+        b=QDEP5VoXU+h/Drk9pnzcBcN6AzsSK+UUv1vqt+QlbxFnyllHewgXblYjw2CVYGzMip
+         RY9xcoErD/vdQcJmtKyhYfEHdb9yjk53VKLBClKOIOYqNZeebnrmrQKCO9A2cIUWNj6M
+         5ObgJY8Xbx5XXQZsb6SAT/6K3P1xaWp28PqthmTmtVM7kstERh8Noj7Dup6Rq2GPNMcQ
+         KZISCTzeXhkM1F5rx7wQV0ibiAF5hcseTlenOQZzN+HAmmFO5tnFCG9BYUGh+d5+J55R
+         rHAgBle7lAXV2oN1nHkXE4mulEKQvG/deQOF07AQnCxS49oDzhIKhkyM8LEeUilg1A/A
+         oH0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=iU5CgXFZDw8E57fJ3CLCX0IA3VSBP+bFSbFjO0IoyB4=;
+        b=ayiLwiVMwdOXCAzZIMR8Hvuz/yPGhl7KzFR0TtqsJUnKEbOUUklxTYdbEXHL+H7p8g
+         ythBdd1gAv34u7Nv57GmaeNpwlyBJHtlULOLeS0dmdIKdLAGAMLnt7y+NpwFSJ0GQMfe
+         fkR6p8PiLcvQ9R2hj9tG/s1fYa5NrDC2aJSoPSCHXi0IijspRZ7XYZG2DKVYWHdRtrue
+         vbfktE8Qi6eEaWTT32XX7FDgnBlXRHPqMbTtKRm7KxBgK+fZ/gpIvMiBbQ7fXSE8uQj5
+         h37eAox/k5mjgvFanhojAihIVrwGgNYIcs8yXVJRgUCmPPJU0EciwBJ+hc35PMj+CGsV
+         xJhg==
+X-Gm-Message-State: AOAM530pt875YiyxJTA0iKdkVmwXn6RsVORaKYc4syGXzDNzAtFDTui0
+	Qamlf2Ga5/4axsXH3M/vU5A=
+X-Google-Smtp-Source: ABdhPJwaroa1EQ+iZhLGmiPFa8YFsIa7ynZg+ELzkUKw/2Uekm5tDNvUJ4KBMLPa1IWluYpHx3XYYA==
+X-Received: by 2002:a17:902:64c8:b029:d3:c693:8ce8 with SMTP id y8-20020a17090264c8b02900d3c6938ce8mr1534326pli.27.1603140640779;
+        Mon, 19 Oct 2020 13:50:40 -0700 (PDT)
+Received: from skjolley (wsip-184-183-149-66.ph.ph.cox.net. [184.183.149.66])
+        by smtp.gmail.com with ESMTPSA id f71sm628790pfa.155.2020.10.19.13.50.39
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 19 Oct 2020 13:50:39 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 19 Oct 2020 13:50:40 -0700
+Message-ID: <161901d6a659$817b7420$84725c60$@gmail.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: ejo@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKb84Fjzd3BpCXwXHTmhVKO6RNP4w==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_161A_01D6A61E.D51D5F70"
+Content-Language: en-us
 
-Hi Stefano,
+------=_NextPart_000_161A_01D6A61E.D51D5F70
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Am Montag, den 19.10.2020, 18:23 +0200 schrieb Stefano Babic:
-> Hi Enrico,
-> 
-> On 19.10.20 17:43, Enrico J?rns wrote:
-> > Hi,
-> > 
-> > as I did not have much success with my question in the OR irc, let's
-> > try it here in a more verbose way. ;)
-> > 
-> > Imagine I have an A+B redundant boot system, with additional bootloader
-> > and separate home or application file system. Thus my layout would be
-> > like:
-> > 
-> > p1: bootloader
-> > p2: rootfs A
-> > p3: rootfs B
-> > p4: appfs A
-> > p5: appfs B
-> > 
-> > where rootfs A + appfs A form a logical unit with respect to the image-
-> > based update handling.
-> > 
-> > No my question is: How do I generate the images required for the
-> > bootloader partition and/or the appfs partition with the OE standard
-> > image generation mechanisms?
-> > 
-> > We have a working solution with the 'genimage' tool for quite some
-> > time, but I wonder if that could be done with the more tightly
-> > integrated wic, too.
-> > 
-> > 
-> > To my understanding, the way of creating something like a bootloader
-> > image or an application file system is by using wic's image split
-> > capabilities and doing (non-redundant example):
-> > 
-> > part /boot --source rootfs (or some plugin)
-> > part / ... --source rootfs
-> > part /app  --source rootfs
-> 
-> I had the same use case as you, and I could use something like
-> 
-> part /app --source rawcopy --sourceparams="file=..."
-> 
-> and the file points to the image I want to put on the partition.
+All,
 
-my intention was a bit different I think. I actually wanted to generate
-the /app out of the rootfs image. But then re-use the resulting image.
+ 
 
-To be honest I am less interested in the resulting disk image but in
-the intermediate artifacts.
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
 
-I've heard some older discussions on how to generate a separate /home
-partition and a separate /data partition and it always turned out that
-generating the single monolithic rootfs first and splitting it on a
-per-folder base later is a straight-forward approach for most
-scenarios.
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-Trying to get yocto to build images that do not contain things like
-base-files, etc. was always painful and never meant to be supported
-afaik.
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-> > This will create multiple file system images out of the prior monolitic
-> > rootfs one. It also does all necessary changes for mounting, like
-> > modifying the rootfs /etc/fstab etc.
-> > Thus, using these generated images in my update scenario would be the
-> > way to go for me.
-> > 
-> > 
-> > BUT, currently I do not see any straight-forward way of how to use
-> > them. One could add them to what the image_wic* image fstypes generate,
-> > but this will violate the default rule that each image fstype generates
-> > exactly one image.
-> > And the generated images are a little hard to reference as one cannot
-> > give them names (which is probably a negligable issue) and they do not
-> > have a fstype extension.
-> > The more sever issue is that I would also like to have archives (like
-> > tar.bz2) of the content of /app or /boot as I can use them quite good
-> > for installing to partitions whose size and other parameters I do not
-> > know very beforehand (also applicable to UBI volumes).
-> > 
-> > But, at the moment there does not seem to be a designated way of doing
-> > something like I intended. I wonder how others solve the generation of
-> > non-rootfs images with YP/OE?
-> > 
-> > Or did I miss something that already exists for this?
-> 
-> I have not a straightforward solution. I inherited just "image" and I
-> cleaned up at the end with a ROOTFS_POSTPROCESS_COMMAND what was
-> superfluous. Maybe forcing packagegroup-core-boot can be an option.
+ 
 
-Yes, this would be the 'hacky' solution to the problem. Actually, I
-would prefer finding a solution that is supported out-of-the-box and
-compatible with how OE sees the generation of images.
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 337
+unassigned or newcomer bugs.
 
-Thus re-using the wic fs artifacts appears to be one possible straight-
-forward solution to me. The only thing is that I actually would not
-even need the disk image itself probably.
+ 
 
-A syntax could look like
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.2", "3.3, "3.99" and "Future", the more pressing/urgent issues
+being in "3.2" and then "3.3".
 
-part / --source rootfs output=my-rootfs-without-appfs.ext4 --fstype=ext4
-part /app --source rootfs output=my-appfs.tar.bz --fstype=tar.bz2
-part /home --source rootfs output=my-homefs.ext4 --fstype=ext4
+ 
 
-Another option could be to introduce some kind of syntax in the file
-system generation classes. But I have neither a clue on how to do that
-without violating the current behavior of creating only one image per
-image type nor a good idea yet on how to name the artifacts.
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
 
-> Best regards,
-> Stefano
+ 
 
-Thanks Stefano and best regards
+Thanks,
 
-Enrico
+ 
 
-> 
--- 
-Pengutronix e.K.                           | Enrico Jörns                |
-Embedded Linux Consulting & Support        | https://www.pengutronix.de/ |
-Steuerwalder Str. 21                       | Phone: +49-5121-206917-180  |
-31137 Hildesheim, Germany                  | Fax:   +49-5121-206917-9    |
+Stephen K. Jolley
 
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_161A_01D6A61E.D51D5F70
+Content-Type: text/html;
+	boundary="----=_NextPart_000_1146_01D6A094.CB279060";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 337 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.2&#8221;, &#8220;3.3, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.2&quot; and then &#8220;3.3&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_161A_01D6A61E.D51D5F70--
