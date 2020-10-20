@@ -1,68 +1,64 @@
-Subject: meta-flutter build
-To: yocto@lists.yoctoproject.org
-From: yuvaraj.velumani@denso-ten.com
-X-Originating-Location: West Bloomfield, Michigan, US (206.181.20.218)
-X-Originating-Platform: Windows Chrome 86
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Mon, 19 Oct 2020 22:55:11 -0700
-Message-ID: <8aM2.1603173311133989262.CmtF@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="hYJjty8WYVRDB86yfjFh"
+Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com [209.85.215.196])
+ by mx.groups.io with SMTP id smtpd.web12.1611.1603175943177979212
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 19 Oct 2020 23:39:04 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@miraclelinux-com.20150623.gappssmtp.com header.s=20150623 header.b=WU6L1LsW;
+ spf=pass (domain: miraclelinux.com, ip: 209.85.215.196, mailfrom: taisei.nakano@miraclelinux.com)
+Received: by mail-pg1-f196.google.com with SMTP id r10so477021pgb.10
+        for <yocto@lists.yoctoproject.org>; Mon, 19 Oct 2020 23:39:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=miraclelinux-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id;
+        bh=mBHc7lN8u5NY/94UuJTp0PvMirc4pOqdsS69cXoWLDk=;
+        b=WU6L1LsWB59djwQiFBhYKdrg6NZWqlHxwoii/kePJLbMgEKyro6bE3vJcTyu6zUV9n
+         SlqzOKg35IYVj8bXnx07ohuj9J3aR5Y3fzEw051PQnVaxGZs25VcqySJtn0MfPctOwXt
+         OtpmoUuw56tDl6Kj3VdU/ot3UjWi6Cc3ynisvlhnMLq0vH5ge2Kezyt0aGYHp/Q2AGge
+         bf3JzJjfpjrqz8hs1HDgn9hVcNhZ+Un1EULSL6cF32mYi8PbrjCY/H0heXOZGXXkibc9
+         Gq+r/SARp4KCAN43br+pL8WjtfhsEm/u0T/exwi1R8Zhui4OK8NMw1/3QaPJDOzeyqt7
+         WDmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=mBHc7lN8u5NY/94UuJTp0PvMirc4pOqdsS69cXoWLDk=;
+        b=YZTTJDpGzozNmcuH84rV9Xsxssq/Ij263u68hnL0UxeQVldVFtHCZJT10wc9yeLZN7
+         tJoTtQET6Oi5Sdtdwg9QJGYu6uX6QASI+gDFjIG+YbeKeGRGO2BqXX9h1f267STjcNCh
+         YwmMGXsz1x++MulLVJLb2ESjuzavYaYhk8TzPBapPIkBXB8nKFj5tTi2xEsO/fjT/8o0
+         LENSAOzrNt0JLK9MPBvjdztjXjO6WrqrU6+MAKhHGO85MWzIY5NvwbcuVOwEmuhEytSx
+         Exzvc/6mATLMfjY2BytEHM5+xCa7x1lYeqbv1/im6/YxELEgfSyV4E+W5C/FO+ffFrHC
+         xlYw==
+X-Gm-Message-State: AOAM530D/46X/2szt/ZYK8YDyiu30pxnIU26Ym6OQLmPKhoX4vW7tACL
+	dypfpktGhWUZ2JfXc8XXRUp4og==
+X-Google-Smtp-Source: ABdhPJzNzbdjuo1NkAJI3LAFBxSOpePSyXCkBBN0dbqvIQ3osromeYPqrmde6OM+gHH9BoLYnDRJwQ==
+X-Received: by 2002:a63:d315:: with SMTP id b21mr1408916pgg.331.1603175942769;
+        Mon, 19 Oct 2020 23:39:02 -0700 (PDT)
+Return-Path: <taisei.nakano@miraclelinux.com>
+Received: from localhost.localdomain (h175-177-044-207.catv02.itscom.jp. [175.177.44.207])
+        by smtp.gmail.com with ESMTPSA id f21sm982998pfn.173.2020.10.19.23.39.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Oct 2020 23:39:02 -0700 (PDT)
+From: taisei.nakano@miraclelinux.com
+To: openembedded-devel@lists.openembedded.org
+Cc: yocto@lists.yoctoproject.org,
+	Taisei Nakano <taisei.nakano@miraclelinux.com>
+Subject: [meta-oe][PATCH 0/1] add GPLv2 to anthy's license
+Date: Tue, 20 Oct 2020 15:38:36 +0900
+Message-Id: <20201020063837.21217-1-taisei.nakano@miraclelinux.com>
+X-Mailer: git-send-email 2.17.1
 
---hYJjty8WYVRDB86yfjFh
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hello all,
+I have checked the license of Anthy package. I found the LGPLv2.1 in
+COPYING and GPLv2 in alt-cannadic/COPYING.
+However the recipe LICENSE description is LGPLv2.1.
+I would like to correct the description as follow. Could you help me how
+to commit?
 
-Hello,
+Taisei Nakano (1):
+  anthy: add GPLv2 to LICENSE and add LIC_FILES_CHKSUM
 
-I have downloaded meta-flutter from https://github.com/jwinarske/meta-flut=
-ter. ( https://github.com/jwinarske/meta-flutter )
-I tried to build the recipes using the below commands,
-$ source poky/oe-init-build-env build
-build$ bitbake flutter-engine
+ meta-oe/recipes-support/anthy/anthy_9100h.bb | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-But it give me the following error
-ERROR: Task
-(/ poky/meta-flutter/recipes-graphics/flutter-engine/flutter-engine_git.bb=
-:do_patch ( http://mio.ten.fujitsu.com/yvelumani/harmony/code/8155_agl/apps=
-/apps_proc/poky/meta-flutter/recipes-graphics/flutter-engine/flutter-engine=
-_git.bb:do_patch ) ) failed with exit code '1'
-KeyError: 'meta-flutter'
+-- 
+2.17.1
 
-I also tried building depo-tools manually (bitbake depot-tools), it give m=
-e License issue. depot-tools was skipped: it has an incompatible license: G=
-PLv3
-
-Regards,
-Yuvaraj
-
---hYJjty8WYVRDB86yfjFh
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello,&nbsp;<br /><br />I have downloaded meta-flutter from&nbsp;<a href=3D=
-"https://github.com/jwinarske/meta-flutter" target=3D"_blank" rel=3D"noopen=
-er">https://github.com/jwinarske/meta-flutter.</a><br />I tried to build th=
-e recipes using the below commands,&nbsp;<br />$ source poky/oe-init-build-=
-env build<br />build$ bitbake flutter-engine<br /><br />But it give me the =
-following error<br />ERROR: Task<br /><span style=3D"color: #172b4d; font-f=
-amily: 'Rounded Mplus 1p';">(/</span><a class=3D"external-link" style=3D"fo=
-nt-family: 'Rounded Mplus 1p'; background-color: #ffffff; color: #0052cc;" =
-href=3D"http://mio.ten.fujitsu.com/yvelumani/harmony/code/8155_agl/apps/app=
-s_proc/poky/meta-flutter/recipes-graphics/flutter-engine/flutter-engine_git=
-.bb:do_patch" rel=3D"nofollow">poky/meta-flutter/recipes-graphics/flutter-e=
-ngine/flutter-engine_git.bb:do_patch</a><span style=3D"color: #172b4d; font=
--family: 'Rounded Mplus 1p';">) failed with exit code '1'<br /></span><span=
- style=3D"color: #172b4d; font-family: 'Rounded Mplus 1p';">KeyError: 'meta=
--flutter'<br /></span><span style=3D"color: #172b4d; font-family: 'Rounded =
-Mplus 1p';"><span style=3D"color: #172b4d; font-family: 'Rounded Mplus 1p';=
-"><br />I also tried building depo-tools manually (bitbake depot-tools), it=
- give me License issue.</span></span><hr /><span style=3D"color: #172b4d; f=
-ont-family: 'Rounded Mplus 1p';"></span><s style=3D"color: #172b4d; font-fa=
-mily: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu=
-, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;">depot-tools was=
- skipped: it has an incompatible license: GPLv3</s><span style=3D"color: #1=
-72b4d; font-family: 'Rounded Mplus 1p';"><br /><br />Regards,<br />Yuvaraj<=
-br /></span>
-
---hYJjty8WYVRDB86yfjFh--
