@@ -1,141 +1,407 @@
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (NAM12-MW2-obe.outbound.protection.outlook.com [40.107.244.45])
- by mx.groups.io with SMTP id smtpd.web10.9927.1603156764935821556
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+ by mx.groups.io with SMTP id smtpd.web10.10128.1603157738659200605
  for <yocto@lists.yoctoproject.org>;
- Mon, 19 Oct 2020 18:19:25 -0700
+ Mon, 19 Oct 2020 18:35:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=ZFtZszwt;
- spf=pass (domain: windriver.com, ip: 40.107.244.45, mailfrom: randy.macleod@windriver.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RtBIj3JLsPnQ5T7W9ROGee97Ewi1FoIt1mJBtL0Sd0icRmlXIj9xEt+lG/KE1Vd+xXIKnlr71d6uHfcaxb2O+dxMR6ZgJqQd3zbQHfvvg1j3oowFTJhlI4tLK2zB0FzYgoVZ7g9aGFivXZAxxWSezbA7q6CD3jdPPf3OeJBoWh+sFlbT0gujXPZtACPA/Xgwcj7ZKAS9goQPSZCSprf4p9V+LlUIcDLaZnDlOvQMna2sSe0hUAps1jKBKEIQHOuPAmZCfZGrm66d2jtnQawmJXmj4DAODaU29kcKM+vwEC/M7wVTTGM1n4XLRkLP+BCp98GtmTcWJSp7gHG0JTHB5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8A6vocFX73gFnC0e/QY+B2NRbGn9JlWGEDzxlutQpcs=;
- b=BPuJPI8p4Z1k3p5A1trp63ZMDrSSD+rXokIXvnVhn0WxUENWXAIirizuyoSCA9+AItO37cxknd9U8bgyUawhWWCnzTRL18I1VNNC/3Vn+GD9Hq6bi19PAkRvbHykgzLqpueQpJ3T/mxwUtnxQ/hTGe/a3VPPaZpFs5P2JsfrSLc4oQIoXRAzwfQbZ3nLEG83hpToiUv4Y5ZgrEvu1P5Oo3tKG7N2K1Gboeks7UKlr+zEmTZEYeuDoUKkWCXsbio6p/oAQNoa4RvP7+n1znPQeiHK5n5R5xL4UWEsJUxTOybNcoxdJqexj4I1Y0BLCLSN5Vu8JEhQ4a6fxP5O2FweGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=O6PsQ8+2;
+ spf=pass (domain: gmail.com, ip: 209.85.214.177, mailfrom: chuckwolber@gmail.com)
+Received: by mail-pl1-f177.google.com with SMTP id r10so82483plx.3
+        for <yocto@lists.yoctoproject.org>; Mon, 19 Oct 2020 18:35:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=windriversystems.onmicrosoft.com;
- s=selector2-windriversystems-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8A6vocFX73gFnC0e/QY+B2NRbGn9JlWGEDzxlutQpcs=;
- b=ZFtZszwtTFyxSuXg/YJeAj9tDxEG/iyy/ChPYT5oyfqt2CWvbTRXVe5lGkiilRXuL+QLd9++2w8TSEMTJBpTTNkt8gEibjIRqKPtTkU3j/FZLUls0tmktrepOuUha2Oyxu9wzZv2ljyOSUiWJynbx9KWmq1HL3S9o2+iZaSD8bc=
-Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=windriver.com;
-Received: from SN6PR11MB2703.namprd11.prod.outlook.com (2603:10b6:805:59::18)
- by SA2PR11MB5067.namprd11.prod.outlook.com (2603:10b6:806:111::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.25; Tue, 20 Oct
- 2020 01:19:23 +0000
-Received: from SN6PR11MB2703.namprd11.prod.outlook.com
- ([fe80::cc77:c9c8:8d2b:bb35]) by SN6PR11MB2703.namprd11.prod.outlook.com
- ([fe80::cc77:c9c8:8d2b:bb35%6]) with mapi id 15.20.3477.028; Tue, 20 Oct 2020
- 01:19:23 +0000
-Subject: Re: [yocto] dnf error coming while compiling core-image-sato image.
-To: NIKHIL PATIL <nikhilvp29@gmail.com>, yocto+help@lists.yoctoproject.org,
- yocto@lists.yoctoproject.org
-References: <CAJw=dJ8rCUx1SOe4ai-cVs3BPaS8MePVw+Uh967ZOeaDoWXm5g@mail.gmail.com>
-From: "Randy MacLeod" <randy.macleod@windriver.com>
-Message-ID: <b1644126-1fe8-764b-6ff9-51e25bde59ec@windriver.com>
-Date: Mon, 19 Oct 2020 21:19:20 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <CAJw=dJ8rCUx1SOe4ai-cVs3BPaS8MePVw+Uh967ZOeaDoWXm5g@mail.gmail.com>
-X-Originating-IP: [198.48.226.187]
-X-ClientProxiedBy: BYAPR08CA0012.namprd08.prod.outlook.com
- (2603:10b6:a03:100::25) To SN6PR11MB2703.namprd11.prod.outlook.com
- (2603:10b6:805:59::18)
-Return-Path: randy.macleod@windriver.com
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4zeN8rwplv9fSTD6elz4uYbkDfQnv3bnqE/EXHVNXd0=;
+        b=O6PsQ8+2O1UZ9HWsQ1VN5H0lCKCbRKNQ9gresKKTgeKc8gCIMJ2tkm5C/W5JtQT0kM
+         2X9tbc2KfQIgRy84R9E+NNYRWz8+6TOScs5FgZKcgy6TZffEvX8E579QK8VmQ6g7jOOg
+         59j3KVJzF33UcM+LHskUSrT6G69T1oJ+hrm1JugzxxheXyvwUm2200bIeZSlymoC9dKp
+         m8VRTkgYbu145dFC17Nwet/T3WX5EjgflvizibiJ6Vr0jqPCoXM+dJiHgx2KEn/VNClD
+         RCRCNYniWYBk0mWZRPtjjmvkI+1NYZmueHi/IgAO9MZe5+edH2uIqnNRcVSvpgOU7Bca
+         1zTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4zeN8rwplv9fSTD6elz4uYbkDfQnv3bnqE/EXHVNXd0=;
+        b=VyaPOoPYE4h5ohxG89RCunvrIVzguANJzVt6SUv5UYTaL0lcF/p9OvA58ufluXERQ9
+         WR9PkW3/vWSJi5WgKaA+j7fMQEtW+X7UkGg/kaNjkH/AK4K8BwgXuiETpIR5LSMuGaPT
+         INv/YRpIyAa9RotAERBACNfbjJ0FJripYz0U3Xq8W7XL9SW6iwfZxLzmIVD52y4dbIGt
+         yPOVsxy6gw95UFhES/x9MMUr0A8YCuLoiaKunmnBScyOCPuE1OhH2hnnS4qYBSB0nZfN
+         wzt+M/wHI4iEz/X7TRCWpRT9dEZez2EEvGKAdVuBovCYSbVZ1IQpseViDKORi0eGR/Rf
+         671A==
+X-Gm-Message-State: AOAM530Za77rxfUJ1FVz6jqfatw4N9tfXb9hBwEkCo+tc0u77KGitbmL
+	47ZX1T7rkDskbf7q8/E+HXPXl2FIk3rIFPBjsRbM+qu2/oLrfg==
+X-Google-Smtp-Source: ABdhPJx7OZULMoZOTX/BtkSoIZUZo26p6kalAAhcIKko5obhJngB0m0VkvZCUQRmb7gDYvQmSS5BuDk+ckdC1qZKR98=
+X-Received: by 2002:a17:90a:dc07:: with SMTP id i7mr583265pjv.111.1603157737716;
+ Mon, 19 Oct 2020 18:35:37 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.25.44.2] (198.48.226.187) by BYAPR08CA0012.namprd08.prod.outlook.com (2603:10b6:a03:100::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.24 via Frontend Transport; Tue, 20 Oct 2020 01:19:22 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c6e4d21b-8194-474c-daf3-08d874962d86
-X-MS-TrafficTypeDiagnostic: SA2PR11MB5067:
-X-Microsoft-Antispam-PRVS: 
-	<SA2PR11MB50673D4D0D45A5FEA54990E8F81F0@SA2PR11MB5067.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2399;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	kzxg549p4udGENdkvgQHhDM3/3oZlJV4VezCCzN1sx+7OqzbcyxjtrXcEYapJ+Cf03mk30RGKF8Ztxqj/Ay8gANR8meN67Pnfim3frusAKyXEazI+qqaQkwSHer4Lb5OXnrxVuoWRr9UMl79SacD46CuvGCinerVOPdVDe8/8gzA1k8iiNejsJ3T9hw2/X6fs3XZLtUpYY8eo5j16+4W8vgavbqo1MPW6qowONDphgKBEri+rTUMKDkZ+vkixQWsAPRdOwUpvH1hjXCjguSOJe9c14JNWAFMeDR8TkVF9WhfCdTDh/0jhk1P0rlHIt6RwWZaFiRxYTDUoLqayaBmYbDjwJTW3M09LwdR2DJKChr8rJ5fYk1FAH0BP7NP5zE80LXiH4ajBPa1Se+jZp1AWfBsm4da5pP7//OYmqdxuJXklUqCauxIUHN02oM7R8xAOAf9e3jwwGydySnSQlkuIA==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB2703.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(376002)(396003)(366004)(39850400004)(31696002)(316002)(53546011)(6486002)(2906002)(966005)(5660300002)(86362001)(8936002)(52116002)(956004)(36756003)(16526019)(26005)(2616005)(186003)(16576012)(66556008)(66946007)(83380400001)(66476007)(478600001)(8676002)(4001150100001)(31686004)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: 
-	5ar3lfN9IHaT8NQE97ZS8ECdtpQqZNh/SdidYoLMu3QNaTMBVqWQ7WSlOZDrYEd24bmc8Gb0Y6epKHznwNUF1h2wUGZXZ8PFM0Mn6MtTyWvCxqqffwrJYZSwxnFdjEgWYF7j9dvUJH5e2noVxn58d8gu/PgigvJfi9VZqumztBNd1BSpQ5MZMxDEyDNrKpVPRaI/gQzboTOqryc1PKQogmu/kBHdV7pXJgcm7pr+4YgfbS8d2t21T2YKmw4kNlIzqe6tLZUepFPTukbDG7Zo2greYPOAP1N0BxdI0+wrnBM+3OJkn5ENdu7od1WN638x8W5x0VeTC6F6fGM6sYPtpdkp1OBRluD3MFQA2rqZH0Kc4KNAtnXMCgb8IZc4zw46iL9GbIJPUKukFa5nW5Bwyxubn1qks3M8yxXSu+W3LxIACS9PSIExUr1inNrBOTWOrjKm1gGLUK/LlfuUU1skrMJTZBX4lhJJwA7WGh724soJNqQGGi3pYj4LDAocN9ZUiC6JsPbeioiiSgn3VXca20ZFWErsksnfbEd5Z9o92hajVnCOR9eu3vmz2fde4PAS+EOuEuvyqa5Qn4zpqFRv1qiC3RmAeqpxPFV/pmFhHrEtNdxkc4wvR9uH109CAPSPmJniUfYbqzJdBLYc6ll5ug==
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6e4d21b-8194-474c-daf3-08d874962d86
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB2703.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2020 01:19:23.1923
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CpMif9bt+01w0KJEu6660je0gLrw7+az1iekSys64vNCUTbx/lOEfBUUiOllT/bAw1IeiEJkHkQnBce618uJRW5OSJQMirQDaDqQByp6IQo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5067
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-CA
+References: <38cd4e9f948e734b3f32b4273fdde8d244507a37.camel@pengutronix.de>
+ <7cbd24d7-1240-c944-83ba-fe23e39f3cce@denx.de> <0630d92b2896cd0bec2adc4bc37510fc053184fa.camel@pengutronix.de>
+In-Reply-To: <0630d92b2896cd0bec2adc4bc37510fc053184fa.camel@pengutronix.de>
+From: "Chuck Wolber" <chuckwolber@gmail.com>
+Date: Mon, 19 Oct 2020 18:35:26 -0700
+Message-ID: <CAB=6tBSBAHDS-1kAYPU0XKv9MeOCEa_MHGQ83jVYjg3CNdZ+fg@mail.gmail.com>
+Subject: Re: [yocto] Generating non-rootfs file system images as update artifacts for multi-partition image updates
+To: "Enrico J?rns" <ejo@pengutronix.de>
+Cc: Stefano Babic <sbabic@denx.de>, yocto@lists.yoctoproject.org, jlu <jlu@pengutronix.de>
+Content-Type: multipart/alternative; boundary="00000000000079c16305b2103fd8"
+
+--00000000000079c16305b2103fd8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2020-10-18 6:41 a.m., NIKHIL PATIL wrote:
-> Hi team ,
->  =C2=A0 =C2=A0 =C2=A0 I am getting continuously=C2=A0dnf error, How we c=
-an resolve=C2=A0these .
+I do not know if this precisely answers your question, but creating bbclass
+functionality to create a different type of image may be the way to go.
 
-Hi Nikhil,
+What you are suggesting sounds similar to this:
 
-What exact steps did you take before getting this error and
-what build host are you using?
+https://git.yoctoproject.org/cgit/cgit.cgi/meta-virtualization/tree/classe=
+s/image-oci.bbclass?h=3Dmaster
 
-Are you able to build core-image-minimal using oe-core/master
-and the default local.conf for qemux86-64?
+..Ch:W..
 
-../Randy
+On Mon, Oct 19, 2020 at 12:00 PM Enrico J?rns <ejo@pengutronix.de> wrote:
 
+> Hi Stefano,
+>
+> Am Montag, den 19.10.2020, 18:23 +0200 schrieb Stefano Babic:
+> > Hi Enrico,
+> >
+> > On 19.10.20 17:43, Enrico J?rns wrote:
+> > > Hi,
+> > >
+> > > as I did not have much success with my question in the OR irc, let's
+> > > try it here in a more verbose way. ;)
+> > >
+> > > Imagine I have an A+B redundant boot system, with additional bootloa=
+der
+> > > and separate home or application file system. Thus my layout would b=
+e
+> > > like:
+> > >
+> > > p1: bootloader
+> > > p2: rootfs A
+> > > p3: rootfs B
+> > > p4: appfs A
+> > > p5: appfs B
+> > >
+> > > where rootfs A + appfs A form a logical unit with respect to the ima=
+ge-
+> > > based update handling.
+> > >
+> > > No my question is: How do I generate the images required for the
+> > > bootloader partition and/or the appfs partition with the OE standard
+> > > image generation mechanisms?
+> > >
+> > > We have a working solution with the 'genimage' tool for quite some
+> > > time, but I wonder if that could be done with the more tightly
+> > > integrated wic, too.
+> > >
+> > >
+> > > To my understanding, the way of creating something like a bootloader
+> > > image or an application file system is by using wic's image split
+> > > capabilities and doing (non-redundant example):
+> > >
+> > > part /boot --source rootfs (or some plugin)
+> > > part / ... --source rootfs
+> > > part /app  --source rootfs
+> >
+> > I had the same use case as you, and I could use something like
+> >
+> > part /app --source rawcopy --sourceparams=3D"file=3D..."
+> >
+> > and the file points to the image I want to put on the partition.
+>
+> my intention was a bit different I think. I actually wanted to generate
+> the /app out of the rootfs image. But then re-use the resulting image.
+>
+> To be honest I am less interested in the resulting disk image but in
+> the intermediate artifacts.
+>
+> I've heard some older discussions on how to generate a separate /home
+> partition and a separate /data partition and it always turned out that
+> generating the single monolithic rootfs first and splitting it on a
+> per-folder base later is a straight-forward approach for most
+> scenarios.
+>
+> Trying to get yocto to build images that do not contain things like
+> base-files, etc. was always painful and never meant to be supported
+> afaik.
+>
+> > > This will create multiple file system images out of the prior monoli=
+tic
+> > > rootfs one. It also does all necessary changes for mounting, like
+> > > modifying the rootfs /etc/fstab etc.
+> > > Thus, using these generated images in my update scenario would be th=
+e
+> > > way to go for me.
+> > >
+> > >
+> > > BUT, currently I do not see any straight-forward way of how to use
+> > > them. One could add them to what the image_wic* image fstypes genera=
+te,
+> > > but this will violate the default rule that each image fstype genera=
+tes
+> > > exactly one image.
+> > > And the generated images are a little hard to reference as one canno=
+t
+> > > give them names (which is probably a negligable issue) and they do n=
+ot
+> > > have a fstype extension.
+> > > The more sever issue is that I would also like to have archives (lik=
+e
+> > > tar.bz2) of the content of /app or /boot as I can use them quite goo=
+d
+> > > for installing to partitions whose size and other parameters I do no=
+t
+> > > know very beforehand (also applicable to UBI volumes).
+> > >
+> > > But, at the moment there does not seem to be a designated way of doi=
+ng
+> > > something like I intended. I wonder how others solve the generation =
+of
+> > > non-rootfs images with YP/OE?
+> > >
+> > > Or did I miss something that already exists for this?
+> >
+> > I have not a straightforward solution. I inherited just "image" and I
+> > cleaned up at the end with a ROOTFS_POSTPROCESS_COMMAND what was
+> > superfluous. Maybe forcing packagegroup-core-boot can be an option.
+>
+> Yes, this would be the 'hacky' solution to the problem. Actually, I
+> would prefer finding a solution that is supported out-of-the-box and
+> compatible with how OE sees the generation of images.
+>
+> Thus re-using the wic fs artifacts appears to be one possible straight-
+> forward solution to me. The only thing is that I actually would not
+> even need the disk image itself probably.
+>
+> A syntax could look like
+>
+> part / --source rootfs output=3Dmy-rootfs-without-appfs.ext4 --fstype=3D=
+ext4
+> part /app --source rootfs output=3Dmy-appfs.tar.bz --fstype=3Dtar.bz2
+> part /home --source rootfs output=3Dmy-homefs.ext4 --fstype=3Dext4
+>
+> Another option could be to introduce some kind of syntax in the file
+> system generation classes. But I have neither a clue on how to do that
+> without violating the current behavior of creating only one image per
+> image type nor a good idea yet on how to name the artifacts.
+>
+> > Best regards,
+> > Stefano
+>
+> Thanks Stefano and best regards
+>
+> Enrico
+>
+> >
+> --
+> Pengutronix e.K.                           | Enrico J=C3=B6rns          =
+      |
+> Embedded Linux Consulting & Support        | https://www.pengutronix.de/=
+ |
+> Steuerwalder Str. 21                       | Phone: +49-5121-206917-180 =
+ |
+> 31137 Hildesheim, Germany                  | Fax:   +49-5121-206917-9   =
+ |
+>
+>
 >=20
-> core-image-sato-1.0-r0 do_rootfs: Could not invoke dnf. Command=20
-> '/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky=
--linux/core-image-sato/1.0-r0/recipe-sysroot-native/usr/bin/dnf=20
-> -y -c=20
-> /data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-=
-linux/core-image-sato/1.0-r0/rootfs/etc/dnf/dnf.conf=20
-> --setopt=3Dreposdir=3D/data/pradeep/inti_dmsv/yocto_build/build/tmp/work=
-/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/rootfs/etc/yum.repos.d=
-=20
-> --repofrompath=3Doe-repo,/data/pradeep/inti_dmsv/yocto_build/build/tmp/w=
-ork/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/oe-rootfs-repo=20
-> --installroot=3D/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel=
-_corei7_64-poky-linux/core-image-sato/1.0-r0/rootfs=20
-> --setopt=3Dlogdir=3D/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/i=
-ntel_corei7_64-poky-linux/core-image-sato/1.0-r0/temp=20
-> -x packagegroup-core-apl-extra --nogpgcheck install autoconf-archive dnf=
-=
-=20
-> gstreamer1.0-vaapi iqvlinux jhi kernel-modules libtcti-device0=20
-> libtcti-device-dev libtcti-device-staticdev libtcti-socket0=20
-> libtcti-socket-dev libtcti-socket-staticdev libsapi0 libsapi-dev=20
-> libsapi-staticdev libva mesa-glxinfo libmraa1 nodejs=20
-> packagegroup-base-extended packagegroup-core-audio-essential=20
-> packagegroup-core-boot packagegroup-core-buildessential-extended=20
-> packagegroup-core-graphics-essential packagegroup-core-ssh-dropbear=20
-> packagegroup-core-tools-testapps packagegroup-core-x11-base=20
-> packagegroup-core-x11-sato psplash rpm run-postinsts swig tpm2-abrmd=20
-> usb-modeswitch usb-modeswitch-data va-intel wayland weston=20
-> weston-examples xinit-env xserver-xorg locale-base-en-us=20
-> locale-base-en-gb' returned 1:
-> Added oe-repo repo from=20
-> /data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-=
-linux/core-image-sato/1.0-r0/oe-rootfs-repo
->=20
->=20
->=20
->=20
->=20
-
+>
+>
 
 --=20
-# Randy MacLeod
-# Wind River Linux
+*"Perfection must be reached by degrees; she requires the slow hand of
+time." - Voltaire*
+
+--00000000000079c16305b2103fd8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I do not know if this precisely answers your question=
+, but creating bbclass functionality to create a different type of image ma=
+y be the way to go. <br></div><div><br></div><div>What you are suggesting s=
+ounds similar to this:</div><div><br></div><div><a href=3D"https://git.yoct=
+oproject.org/cgit/cgit.cgi/meta-virtualization/tree/classes/image-oci.bbcla=
+ss?h=3Dmaster">https://git.yoctoproject.org/cgit/cgit.cgi/meta-virtualizati=
+on/tree/classes/image-oci.bbclass?h=3Dmaster</a></div><div><br></div><div>.=
+.Ch:W..<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">On Mon, Oct 19, 2020 at 12:00 PM Enrico J?rns &lt;<a href=
+=3D"mailto:ejo@pengutronix.de">ejo@pengutronix.de</a>&gt; wrote:<br></div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">Hi Stefano,<br>
+<br>
+Am Montag, den 19.10.2020, 18:23 +0200 schrieb Stefano Babic:<br>
+&gt; Hi Enrico,<br>
+&gt; <br>
+&gt; On 19.10.20 17:43, Enrico J?rns wrote:<br>
+&gt; &gt; Hi,<br>
+&gt; &gt; <br>
+&gt; &gt; as I did not have much success with my question in the OR irc, l=
+et&#39;s<br>
+&gt; &gt; try it here in a more verbose way. ;)<br>
+&gt; &gt; <br>
+&gt; &gt; Imagine I have an A+B redundant boot system, with additional boo=
+tloader<br>
+&gt; &gt; and separate home or application file system. Thus my layout wou=
+ld be<br>
+&gt; &gt; like:<br>
+&gt; &gt; <br>
+&gt; &gt; p1: bootloader<br>
+&gt; &gt; p2: rootfs A<br>
+&gt; &gt; p3: rootfs B<br>
+&gt; &gt; p4: appfs A<br>
+&gt; &gt; p5: appfs B<br>
+&gt; &gt; <br>
+&gt; &gt; where rootfs A + appfs A form a logical unit with respect to the=
+ image-<br>
+&gt; &gt; based update handling.<br>
+&gt; &gt; <br>
+&gt; &gt; No my question is: How do I generate the images required for the=
+<br>
+&gt; &gt; bootloader partition and/or the appfs partition with the OE stan=
+dard<br>
+&gt; &gt; image generation mechanisms?<br>
+&gt; &gt; <br>
+&gt; &gt; We have a working solution with the &#39;genimage&#39; tool for =
+quite some<br>
+&gt; &gt; time, but I wonder if that could be done with the more tightly<b=
+r>
+&gt; &gt; integrated wic, too.<br>
+&gt; &gt; <br>
+&gt; &gt; <br>
+&gt; &gt; To my understanding, the way of creating something like a bootlo=
+ader<br>
+&gt; &gt; image or an application file system is by using wic&#39;s image =
+split<br>
+&gt; &gt; capabilities and doing (non-redundant example):<br>
+&gt; &gt; <br>
+&gt; &gt; part /boot --source rootfs (or some plugin)<br>
+&gt; &gt; part / ... --source rootfs<br>
+&gt; &gt; part /app=C2=A0 --source rootfs<br>
+&gt; <br>
+&gt; I had the same use case as you, and I could use something like<br>
+&gt; <br>
+&gt; part /app --source rawcopy --sourceparams=3D&quot;file=3D...&quot;<br=
+>
+&gt; <br>
+&gt; and the file points to the image I want to put on the partition.<br>
+<br>
+my intention was a bit different I think. I actually wanted to generate<br=
+>
+the /app out of the rootfs image. But then re-use the resulting image.<br>
+<br>
+To be honest I am less interested in the resulting disk image but in<br>
+the intermediate artifacts.<br>
+<br>
+I&#39;ve heard some older discussions on how to generate a separate /home<=
+br>
+partition and a separate /data partition and it always turned out that<br>
+generating the single monolithic rootfs first and splitting it on a<br>
+per-folder base later is a straight-forward approach for most<br>
+scenarios.<br>
+<br>
+Trying to get yocto to build images that do not contain things like<br>
+base-files, etc. was always painful and never meant to be supported<br>
+afaik.<br>
+<br>
+&gt; &gt; This will create multiple file system images out of the prior mo=
+nolitic<br>
+&gt; &gt; rootfs one. It also does all necessary changes for mounting, lik=
+e<br>
+&gt; &gt; modifying the rootfs /etc/fstab etc.<br>
+&gt; &gt; Thus, using these generated images in my update scenario would b=
+e the<br>
+&gt; &gt; way to go for me.<br>
+&gt; &gt; <br>
+&gt; &gt; <br>
+&gt; &gt; BUT, currently I do not see any straight-forward way of how to u=
+se<br>
+&gt; &gt; them. One could add them to what the image_wic* image fstypes ge=
+nerate,<br>
+&gt; &gt; but this will violate the default rule that each image fstype ge=
+nerates<br>
+&gt; &gt; exactly one image.<br>
+&gt; &gt; And the generated images are a little hard to reference as one c=
+annot<br>
+&gt; &gt; give them names (which is probably a negligable issue) and they =
+do not<br>
+&gt; &gt; have a fstype extension.<br>
+&gt; &gt; The more sever issue is that I would also like to have archives =
+(like<br>
+&gt; &gt; tar.bz2) of the content of /app or /boot as I can use them quite=
+ good<br>
+&gt; &gt; for installing to partitions whose size and other parameters I d=
+o not<br>
+&gt; &gt; know very beforehand (also applicable to UBI volumes).<br>
+&gt; &gt; <br>
+&gt; &gt; But, at the moment there does not seem to be a designated way of=
+ doing<br>
+&gt; &gt; something like I intended. I wonder how others solve the generat=
+ion of<br>
+&gt; &gt; non-rootfs images with YP/OE?<br>
+&gt; &gt; <br>
+&gt; &gt; Or did I miss something that already exists for this?<br>
+&gt; <br>
+&gt; I have not a straightforward solution. I inherited just &quot;image&q=
+uot; and I<br>
+&gt; cleaned up at the end with a ROOTFS_POSTPROCESS_COMMAND what was<br>
+&gt; superfluous. Maybe forcing packagegroup-core-boot can be an option.<b=
+r>
+<br>
+Yes, this would be the &#39;hacky&#39; solution to the problem. Actually, =
+I<br>
+would prefer finding a solution that is supported out-of-the-box and<br>
+compatible with how OE sees the generation of images.<br>
+<br>
+Thus re-using the wic fs artifacts appears to be one possible straight-<br=
+>
+forward solution to me. The only thing is that I actually would not<br>
+even need the disk image itself probably.<br>
+<br>
+A syntax could look like<br>
+<br>
+part / --source rootfs output=3Dmy-rootfs-without-appfs.ext4 --fstype=3Dex=
+t4<br>
+part /app --source rootfs output=3D<a href=3D"http://my-appfs.tar.bz" rel=
+=3D"noreferrer" target=3D"_blank">my-appfs.tar.bz</a> --fstype=3Dtar.bz2<b=
+r>
+part /home --source rootfs output=3Dmy-homefs.ext4 --fstype=3Dext4<br>
+<br>
+Another option could be to introduce some kind of syntax in the file<br>
+system generation classes. But I have neither a clue on how to do that<br>
+without violating the current behavior of creating only one image per<br>
+image type nor a good idea yet on how to name the artifacts.<br>
+<br>
+&gt; Best regards,<br>
+&gt; Stefano<br>
+<br>
+Thanks Stefano and best regards<br>
+<br>
+Enrico<br>
+<br>
+&gt; <br>
+-- <br>
+Pengutronix e.K.=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| Enrico J=C3=B6rns=C2=A0 =C2=A0 =
+=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |<br>
+Embedded Linux Consulting &amp; Support=C2=A0 =C2=A0 =C2=A0 =C2=A0 | <a hr=
+ef=3D"https://www.pengutronix.de/" rel=3D"noreferrer" target=3D"_blank">htt=
+ps://www.pengutronix.de/</a> |<br>
+Steuerwalder Str. 21=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| Phone: +49-5121-206917-180=C2=A0 |<br>
+31137 Hildesheim, Germany=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=
+=C2=A0 =C2=A0 | Fax:=C2=A0 =C2=A0+49-5121-206917-9=C2=A0 =C2=A0 |<br>
+<br>
+<br>
+<br>
+<br>
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"=
+gmail_signature"><div dir=3D"ltr"><div><b><span style=3D"font-family:monosp=
+ace">&quot;Perfection must be reached by degrees; she requires the slow han=
+d of time.&quot; - Voltaire</span></b></div></div></div>
+
+--00000000000079c16305b2103fd8--
