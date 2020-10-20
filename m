@@ -1,34 +1,44 @@
-Subject: Re: network-manager #yocto #nmcli
-To: yocto@lists.yoctoproject.org
-From: "Zoltan Kerenyi Nagy" <kerenyi.nagy.zoltan@gmail.com>
-X-Originating-Location: Kiskunhalas, Bács-Kiskun, HU (84.1.252.39)
-X-Originating-Platform: Linux Firefox 73
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Tue, 20 Oct 2020 06:51:33 -0700
+Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
+ by mx.groups.io with SMTP id smtpd.web12.7008.1603202342730694397
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 20 Oct 2020 06:59:03 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.16, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp2.bon.at (Postfix) with ESMTPSA id 4CFwGC3xDBz5tlM;
+	Tue, 20 Oct 2020 15:58:59 +0200 (CEST)
+Date: Tue, 20 Oct 2020 15:58:58 +0200
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: Zoltan Kerenyi Nagy <kerenyi.nagy.zoltan@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] network-manager #yocto #nmcli
+Message-ID: <20201020135858.vhaorqro77ncpzwm@qschulz>
 References: <20201020085740.wmadecvuajrpcit7@qschulz>
-In-Reply-To: <20201020085740.wmadecvuajrpcit7@qschulz>
-Message-ID: <2995.1603201893466943819@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="o9pUoy0wCFLVWBtBe1S1"
+ <2995.1603201893466943819@lists.yoctoproject.org>
+MIME-Version: 1.0
+In-Reply-To: <2995.1603201893466943819@lists.yoctoproject.org>
+User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---o9pUoy0wCFLVWBtBe1S1
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Tue, Oct 20, 2020 at 06:51:33AM -0700, Zoltan Kerenyi Nagy wrote:
+> * I hope this is gona be public *
+> 
 
-* I hope this is gona be public *
+It is, you just answered the wrong mail so my answer isn't in the body
+of this mail.
 
-I did a diff between your recommended file, and mine, there is no diff, si=
-nce it's from the same source.
-I understand that I had to install network-manager-nmcli, but how? In the =
-do_install_append() function??
+> I did a diff between your recommended file, and mine, there is no diff, since it's from the same source.
+> I understand that I had to install network-manager-nmcli, but how? In the do_install_append() function??
 
---o9pUoy0wCFLVWBtBe1S1
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+You don't need to change anything in the networkmanager recipe. You need
+to add networkmanager-nmcli to the packages installed in your image and
+that is done in your image recipe by usually adding it to IMAGE_INSTALL.
 
-* I hope this is gona be public *<br /><br />I did a diff between your reco=
-mmended file, and mine, there is no diff, since it's from the same source.<=
-br />I understand that I had to install network-manager-nmcli, but how? In =
-the do_install_append() function??
+I can recommend the videos from our YoctoProject Youtube channel to get
+started on Yocto: https://www.youtube.com/watch?v=ThTl4FItfMI&list=PLD4M5FoHz-TxMfBFrDKfIS_GLY25Qsfyj
 
---o9pUoy0wCFLVWBtBe1S1--
+We also have great docs at: https://docs.yoctoproject.org.
+
+Cheers,
+Quentin
