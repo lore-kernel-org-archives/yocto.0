@@ -1,17 +1,17 @@
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (NAM10-DM6-obe.outbound.protection.outlook.com [40.107.93.54])
- by mx.groups.io with SMTP id smtpd.web12.10036.1603156617318362072
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (NAM12-MW2-obe.outbound.protection.outlook.com [40.107.244.45])
+ by mx.groups.io with SMTP id smtpd.web10.9927.1603156764935821556
  for <yocto@lists.yoctoproject.org>;
- Mon, 19 Oct 2020 18:16:57 -0700
+ Mon, 19 Oct 2020 18:19:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=YacPUd7/;
- spf=pass (domain: windriver.com, ip: 40.107.93.54, mailfrom: randy.macleod@windriver.com)
+ dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=ZFtZszwt;
+ spf=pass (domain: windriver.com, ip: 40.107.244.45, mailfrom: randy.macleod@windriver.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dPDEp6BJJ8bHgFg5bRbzGbJ0P9JFf4frMXTXDBZpbsWwTYNTieMjY957NYtnNiD54GcmguxJHpGY5605HwrQHxJGNOAjwIebuBPnwX3T0R64lt/sUHfH7Ans0GOesUGLbdeOVBpU/DdfxTJ/nAZQdhMLpalTAGRs/F/ia3BuxA4MhykJCq2IZMIlSSKgt8zV/cmMxoO46mLIZdYQMILk+JVR4syPNHbT0GnpmzNcvUyql0wc9jd7X7gHuZvioqHTMy0k69pDNnjuW1vm2l03ZnVe5houladhv2d2ZanKWc/3jEHoiyjxRTKrsbLmvCssTXBOMQFtRUhQwKIvEjBL2A==
+ b=RtBIj3JLsPnQ5T7W9ROGee97Ewi1FoIt1mJBtL0Sd0icRmlXIj9xEt+lG/KE1Vd+xXIKnlr71d6uHfcaxb2O+dxMR6ZgJqQd3zbQHfvvg1j3oowFTJhlI4tLK2zB0FzYgoVZ7g9aGFivXZAxxWSezbA7q6CD3jdPPf3OeJBoWh+sFlbT0gujXPZtACPA/Xgwcj7ZKAS9goQPSZCSprf4p9V+LlUIcDLaZnDlOvQMna2sSe0hUAps1jKBKEIQHOuPAmZCfZGrm66d2jtnQawmJXmj4DAODaU29kcKM+vwEC/M7wVTTGM1n4XLRkLP+BCp98GtmTcWJSp7gHG0JTHB5Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tmwxEuxppgMDxVvubOZNpdbtrLopxzZeIkHzrELSQmE=;
- b=SiVXkK3pF6cyH4fU+9O9F9FF9XhyXVus4o2h+pJVfAx95MNe6MXZszjibiN9QJKm5lS2BCmkie/fn3t/8onxCJ/2O/psz9JvOfxE22wpzDAUFI9Oo/nbgKASz1+5JD8c5B3KHkYkCOB6mHIGFL6MFp2Fe3DorHt5lDqTcfMxDlaExrpn34ctbuOTtYTzX/1RQMSwPa5RikKBmBImBHrL0Q+GuGfR9whD4Co0SS260wS6TCzqglHYmdbLPCcZM3ZQB6x2m6j/mQpBBwWONkhUZBAv4uxZJJXEAMMBLFF6vsyq8fuPGMc7Be5GLQMYDVpFPvcf9+DiOBQj1Arm6Y8svQ==
+ bh=8A6vocFX73gFnC0e/QY+B2NRbGn9JlWGEDzxlutQpcs=;
+ b=BPuJPI8p4Z1k3p5A1trp63ZMDrSSD+rXokIXvnVhn0WxUENWXAIirizuyoSCA9+AItO37cxknd9U8bgyUawhWWCnzTRL18I1VNNC/3Vn+GD9Hq6bi19PAkRvbHykgzLqpueQpJ3T/mxwUtnxQ/hTGe/a3VPPaZpFs5P2JsfrSLc4oQIoXRAzwfQbZ3nLEG83hpToiUv4Y5ZgrEvu1P5Oo3tKG7N2K1Gboeks7UKlr+zEmTZEYeuDoUKkWCXsbio6p/oAQNoa4RvP7+n1znPQeiHK5n5R5xL4UWEsJUxTOybNcoxdJqexj4I1Y0BLCLSN5Vu8JEhQ4a6fxP5O2FweGw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
@@ -19,150 +19,123 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=windriversystems.onmicrosoft.com;
  s=selector2-windriversystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tmwxEuxppgMDxVvubOZNpdbtrLopxzZeIkHzrELSQmE=;
- b=YacPUd7/uZvXBhhl/atIEFAjr/YJhkv+lTFp0csveija2P4bAUPn0WTj1OnAPiN8VWOd0KWWu7Ldel+MdFekRVVGXcyrcrssDW7D6EUKodKJFGflPS06lrX85AOOtHyc/9S3YCWDaqrN5xLcwTET0SjGhMniGKClaOlmoBhJDY0=
+ bh=8A6vocFX73gFnC0e/QY+B2NRbGn9JlWGEDzxlutQpcs=;
+ b=ZFtZszwtTFyxSuXg/YJeAj9tDxEG/iyy/ChPYT5oyfqt2CWvbTRXVe5lGkiilRXuL+QLd9++2w8TSEMTJBpTTNkt8gEibjIRqKPtTkU3j/FZLUls0tmktrepOuUha2Oyxu9wzZv2ljyOSUiWJynbx9KWmq1HL3S9o2+iZaSD8bc=
 Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
  header.d=none;lists.yoctoproject.org; dmarc=none action=none
  header.from=windriver.com;
 Received: from SN6PR11MB2703.namprd11.prod.outlook.com (2603:10b6:805:59::18)
- by SA0PR11MB4622.namprd11.prod.outlook.com (2603:10b6:806:9c::7) with
+ by SA2PR11MB5067.namprd11.prod.outlook.com (2603:10b6:806:111::14) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.25; Tue, 20 Oct
- 2020 01:16:55 +0000
+ 2020 01:19:23 +0000
 Received: from SN6PR11MB2703.namprd11.prod.outlook.com
  ([fe80::cc77:c9c8:8d2b:bb35]) by SN6PR11MB2703.namprd11.prod.outlook.com
  ([fe80::cc77:c9c8:8d2b:bb35%6]) with mapi id 15.20.3477.028; Tue, 20 Oct 2020
- 01:16:55 +0000
-Subject: Re: [yocto] do_fetch error while compiling code
-To: NIKHIL PATIL <nikhilvp29@gmail.com>
-Cc: yocto+help@lists.yoctoproject.org, yocto@lists.yoctoproject.org
-References: <163EBFF88F24F1D5.13652@lists.yoctoproject.org>
- <CAJw=dJ8=oxhUA0rRWkH+04Qu0mm8ewExUG+xd0hLki5ij1xfNQ@mail.gmail.com>
+ 01:19:23 +0000
+Subject: Re: [yocto] dnf error coming while compiling core-image-sato image.
+To: NIKHIL PATIL <nikhilvp29@gmail.com>, yocto+help@lists.yoctoproject.org,
+ yocto@lists.yoctoproject.org
+References: <CAJw=dJ8rCUx1SOe4ai-cVs3BPaS8MePVw+Uh967ZOeaDoWXm5g@mail.gmail.com>
 From: "Randy MacLeod" <randy.macleod@windriver.com>
-Message-ID: <7949d3ce-c7c6-d9ac-3191-00050151acf5@windriver.com>
-Date: Mon, 19 Oct 2020 21:16:45 -0400
+Message-ID: <b1644126-1fe8-764b-6ff9-51e25bde59ec@windriver.com>
+Date: Mon, 19 Oct 2020 21:19:20 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
-In-Reply-To: <CAJw=dJ8=oxhUA0rRWkH+04Qu0mm8ewExUG+xd0hLki5ij1xfNQ@mail.gmail.com>
+In-Reply-To: <CAJw=dJ8rCUx1SOe4ai-cVs3BPaS8MePVw+Uh967ZOeaDoWXm5g@mail.gmail.com>
 X-Originating-IP: [198.48.226.187]
-X-ClientProxiedBy: BY5PR17CA0030.namprd17.prod.outlook.com
- (2603:10b6:a03:1b8::43) To SN6PR11MB2703.namprd11.prod.outlook.com
+X-ClientProxiedBy: BYAPR08CA0012.namprd08.prod.outlook.com
+ (2603:10b6:a03:100::25) To SN6PR11MB2703.namprd11.prod.outlook.com
  (2603:10b6:805:59::18)
 Return-Path: randy.macleod@windriver.com
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.25.44.2] (198.48.226.187) by BY5PR17CA0030.namprd17.prod.outlook.com (2603:10b6:a03:1b8::43) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.22 via Frontend Transport; Tue, 20 Oct 2020 01:16:54 +0000
+Received: from [172.25.44.2] (198.48.226.187) by BYAPR08CA0012.namprd08.prod.outlook.com (2603:10b6:a03:100::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.24 via Frontend Transport; Tue, 20 Oct 2020 01:19:22 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7301a1a0-73ca-4599-f389-08d87495d546
-X-MS-TrafficTypeDiagnostic: SA0PR11MB4622:
+X-MS-Office365-Filtering-Correlation-Id: c6e4d21b-8194-474c-daf3-08d874962d86
+X-MS-TrafficTypeDiagnostic: SA2PR11MB5067:
 X-Microsoft-Antispam-PRVS: 
-	<SA0PR11MB4622A42E81AB71E65B19FA94F81F0@SA0PR11MB4622.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+	<SA2PR11MB50673D4D0D45A5FEA54990E8F81F0@SA2PR11MB5067.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2399;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	CeaF02eRemcQXMhW5ZXA4/wYIRTXX1mEsXRCqci+a+xvG+CbKqT812K/CblEbo2wbUO5EgR5epJEAPYZ3EoC6PSfdg7gKEAHmE9GIrigmMmiqg7DXX9ItxiIZSzTH3zCOdUH21JuJxUC3gYdzF1H+8EyOfwVHyNIfkibq6+3j3bo/3fhH9g7Vv4dFw4bW7KhhtuWrri0ct8bYM7xd2V2g4oqUGuS8IPso70T2AbkLp+nRV+ZJdMAnBJzUrJo5L4yMd1ZdJmDO6w9bhTtvJzFAn+9DqYa478QkWFkIR8SOm5vaJLh3e8x/WpGUJY+1AHup6ZzZOtRgHXo0X4dON//mz71j/H/nDBNVUzqM4VkqhuW3Loiit5IlbT9qEftAjZIXrvIKqfEoh20F2V3yvMqEKGMad4q2qo5uhKrhDPxv1S2UNKQog1aSIH/Y037p+g+gFj3yhBvxsasZnQkUVL6YQ==
+	kzxg549p4udGENdkvgQHhDM3/3oZlJV4VezCCzN1sx+7OqzbcyxjtrXcEYapJ+Cf03mk30RGKF8Ztxqj/Ay8gANR8meN67Pnfim3frusAKyXEazI+qqaQkwSHer4Lb5OXnrxVuoWRr9UMl79SacD46CuvGCinerVOPdVDe8/8gzA1k8iiNejsJ3T9hw2/X6fs3XZLtUpYY8eo5j16+4W8vgavbqo1MPW6qowONDphgKBEri+rTUMKDkZ+vkixQWsAPRdOwUpvH1hjXCjguSOJe9c14JNWAFMeDR8TkVF9WhfCdTDh/0jhk1P0rlHIt6RwWZaFiRxYTDUoLqayaBmYbDjwJTW3M09LwdR2DJKChr8rJ5fYk1FAH0BP7NP5zE80LXiH4ajBPa1Se+jZp1AWfBsm4da5pP7//OYmqdxuJXklUqCauxIUHN02oM7R8xAOAf9e3jwwGydySnSQlkuIA==
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB2703.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(346002)(39850400004)(396003)(376002)(31686004)(86362001)(83380400001)(6486002)(5660300002)(2906002)(31696002)(6916009)(52116002)(36756003)(4001150100001)(6666004)(66946007)(66556008)(4326008)(26005)(8936002)(53546011)(16526019)(16576012)(478600001)(8676002)(316002)(66476007)(956004)(2616005)(966005)(186003)(43740500002);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB2703.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(376002)(396003)(366004)(39850400004)(31696002)(316002)(53546011)(6486002)(2906002)(966005)(5660300002)(86362001)(8936002)(52116002)(956004)(36756003)(16526019)(26005)(2616005)(186003)(16576012)(66556008)(66946007)(83380400001)(66476007)(478600001)(8676002)(4001150100001)(31686004)(43740500002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData: 
-	G18CXTun6YYYbNoE/19ibTBDE0/9QMniinNW06pziU6ctiqMf3pPwRcTuJUDA6sJfMC0H/+n8Ax6MsG2eiw6MEwwF2d+qu51ydbY7xV8i8leAwAmrfyESZ52RpedyyrruzMCYqcgp2D+Xx7mThuLFS+TYdNJpeOscAGXW8wWsVNs94cuVODOYEYxUpILXW32EZkf9qjShcJqKoaF80ZyxNK/k3hEEp2qcBslSwrViqbRTPDdHKYu3Fq+LHV61B1L6gRNIhBy2D3JvbhN+qF13QaC5CcqlAA6yc2VVoBp68s/7ixP+DhmMdqK/0imy2Ql9pTqzhVVqlA9aMjjiQWbrlwf6TyRqnBkzK3HNIdf0nxrpjzg8j63fPbeqi7XrcVwOrf1gWq0KC/AfYdKIZFOYHvl/pOQQ9uWJEfInuGMbz5QNijcDGqn9T/iEUyO+EURkaFYbv7OAtsTPC0waHrlCqHo3iqOheMSBGPuBDJQeSJW5BUrvBNIG36RHCnsFGXuQ+EkogWGbQlw9SiPQZtYwUwpRdIh0aqc3e3bM+RrJNRFZhSuLUFKbTPjNGkQpJJFiXQWvKr7GdP4dy3bHF3VOn19TfREneawzrF5v8Qf4b3u9WLugEhar28VS9qo0UbqhbBxIXhvF8C+5JmomMJelw==
+	5ar3lfN9IHaT8NQE97ZS8ECdtpQqZNh/SdidYoLMu3QNaTMBVqWQ7WSlOZDrYEd24bmc8Gb0Y6epKHznwNUF1h2wUGZXZ8PFM0Mn6MtTyWvCxqqffwrJYZSwxnFdjEgWYF7j9dvUJH5e2noVxn58d8gu/PgigvJfi9VZqumztBNd1BSpQ5MZMxDEyDNrKpVPRaI/gQzboTOqryc1PKQogmu/kBHdV7pXJgcm7pr+4YgfbS8d2t21T2YKmw4kNlIzqe6tLZUepFPTukbDG7Zo2greYPOAP1N0BxdI0+wrnBM+3OJkn5ENdu7od1WN638x8W5x0VeTC6F6fGM6sYPtpdkp1OBRluD3MFQA2rqZH0Kc4KNAtnXMCgb8IZc4zw46iL9GbIJPUKukFa5nW5Bwyxubn1qks3M8yxXSu+W3LxIACS9PSIExUr1inNrBOTWOrjKm1gGLUK/LlfuUU1skrMJTZBX4lhJJwA7WGh724soJNqQGGi3pYj4LDAocN9ZUiC6JsPbeioiiSgn3VXca20ZFWErsksnfbEd5Z9o92hajVnCOR9eu3vmz2fde4PAS+EOuEuvyqa5Qn4zpqFRv1qiC3RmAeqpxPFV/pmFhHrEtNdxkc4wvR9uH109CAPSPmJniUfYbqzJdBLYc6ll5ug==
 X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7301a1a0-73ca-4599-f389-08d87495d546
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6e4d21b-8194-474c-daf3-08d874962d86
 X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB2703.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2020 01:16:55.1440
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2020 01:19:23.1923
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ALTzjnC2VOoLzmM6O2c8YXRIkBBNTZRqi6EGTxPf091IKz2d+0j2TKHf7FGkIEASltouJo2zk6LZcNaNO3ntkxSHE7poSUfu5Fc6HhQ0StM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4622
+X-MS-Exchange-CrossTenant-UserPrincipalName: CpMif9bt+01w0KJEu6660je0gLrw7+az1iekSys64vNCUTbx/lOEfBUUiOllT/bAw1IeiEJkHkQnBce618uJRW5OSJQMirQDaDqQByp6IQo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5067
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-CA
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
 
-T24gMjAyMC0xMC0xOCAyOjE4IGEubS4sIE5JS0hJTCBQQVRJTCB3cm90ZToNCj4gaGkgLA0KPiAg
-wqAgwqAgV2UgdG90YWxseSBzdHVjayBoZXJlICwgaWYgYW55b25lIGtub3dzIHBsZWFzZSBsZXQg
-dXMga25vdy4NCj4gDQo+IE9uIFNhdCwgT2N0IDE3LCAyMDIwIGF0IDM6NDMgUE0gTklLSElMIFBB
-VElMIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnIA0KPiA8aHR0cDovL2xpc3RzLnlvY3RvcHJv
-amVjdC5vcmc+IA0KPiA8bmlraGlsdnAyOT1nbWFpbC5jb21AbGlzdHMueW9jdG9wcm9qZWN0Lm9y
-ZyANCj4gPG1haWx0bzpnbWFpbC5jb21AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4+IHdyb3RlOg0K
-PiANCj4gICAgIEhpIFRlYW0gLA0KPiAgICAgIMKgIMKgIMKgIFdlIGFyZSBjb21waWxpbmcgYSBz
-b3VyY2UgY29kZSBpbiB5b2N0byAuIGJ1dCB3aGlsZQ0KPiAgICAgY29tcGlsaW5nIHdlIGFyZSBn
-ZXR0aW5nIGZvbGxvd2luZyBlcnJvciAuIHdlIGFyZSBub3QgYWJsZSB0byBmaW5kDQo+ICAgICBz
-b2x1dGlvbiBmb3IgdGhlc2UgLg0KPiANCj4gICAgIEVSUk9SOiBUYXNrDQo+ICAgICAoL2RhdGEv
-cHJhZGVlcC9pbnRpX2Rtc3YveW9jdG9fYnVpbGQvbWV0YS9yZWNpcGVzLW11bHRpbWVkaWEvbGli
-c25kZmlsZS9saWJzbmRmaWxlMV8xLjAuMjguYmI6ZG9fZmV0Y2gpDQo+ICAgICBmYWlsZWQgd2l0
-aCBleGl0IGNvZGUgJzEnDQo+ICAgICBFUlJPUjogbGlieGN1cnNvci0xXzEuMS4xNS1yMCBkb19m
-ZXRjaDogRmV0Y2hlciBmYWlsdXJlOiBGZXRjaA0KPiAgICAgY29tbWFuZCBleHBvcnQgUFNFVURP
-X0RJU0FCTEVEPTE7IGV4cG9ydA0KPiAgICAgUEFUSD0iL2RhdGEvcHJhZGVlcC9pbnRpX2Rtc3Yv
-eW9jdG9fYnVpbGQvYnVpbGQvdG1wL3N5c3Jvb3RzLXVuaW5hdGl2ZS94ODZfNjQtbGludXgvdXNy
-L2JpbjovZGF0YS9wcmFkZWVwL2ludGlfZG1zdi95b2N0b19idWlsZC9zY3JpcHRzOi9kYXRhL3By
-YWRlZXAvaW50aV9kbXN2L3lvY3RvX2J1aWxkL2J1aWxkL3RtcC93b3JrL2NvcmVpNy02NC1wb2t5
-LWxpbnV4L2xpYnhjdXJzb3IvMV8xLjEuMTUtcjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlL3Vzci9i
-aW4veDg2XzY0LXBva3ktbGludXg6L2RhdGEvcHJhZGVlcC9pbnRpX2Rtc3YveW9jdG9fYnVpbGQv
-YnVpbGQvdG1wL3dvcmsvY29yZWk3LTY0LXBva3ktbGludXgvbGlieGN1cnNvci8xXzEuMS4xNS1y
-MC9yZWNpcGUtc3lzcm9vdC91c3IvYmluL2Nyb3Nzc2NyaXB0czovZGF0YS9wcmFkZWVwL2ludGlf
-ZG1zdi95b2N0b19idWlsZC9idWlsZC90bXAvd29yay9jb3JlaTctNjQtcG9reS1saW51eC9saWJ4
-Y3Vyc29yLzFfMS4xLjE1LXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3Ivc2JpbjovZGF0YS9w
-cmFkZWVwL2ludGlfZG1zdi95b2N0b19idWlsZC9idWlsZC90bXAvd29yay9jb3JlaTctNjQtcG9r
-eS1saW51eC9saWJ4Y3Vyc29yLzFfMS4xLjE1LXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3Iv
-YmluOi9kYXRhL3ByYWRlZXAvaW50aV9kbXN2L3lvY3RvX2J1aWxkL2J1aWxkL3RtcC93b3JrL2Nv
-cmVpNy02NC1wb2t5LWxpbnV4L2xpYnhjdXJzb3IvMV8xLjEuMTUtcjAvcmVjaXBlLXN5c3Jvb3Qt
-bmF0aXZlL3NiaW46L2RhdGEvcHJhZGVlcC9pbnRpX2Rtc3YveW9jdG9fYnVpbGQvYnVpbGQvdG1w
-L3dvcmsvY29yZWk3LTY0LXBva3ktbGludXgvbGlieGN1cnNvci8xXzEuMS4xNS1yMC9yZWNpcGUt
-c3lzcm9vdC1uYXRpdmUvYmluOi9kYXRhL3ByYWRlZXAvaW50aV9kbXN2L3lvY3RvX2J1aWxkL2Jp
-dGJha2UvYmluOi9kYXRhL3ByYWRlZXAvaW50aV9kbXN2L3lvY3RvX2J1aWxkL2J1aWxkL3RtcC9o
-b3N0dG9vbHMiOw0KPiAgICAgZXhwb3J0IEhPTUU9Ii9ob21lL3ByYWRlZXAiOyAvdXNyL2Jpbi9l
-bnYgd2dldCAtdCAyIC1UIDMwDQo+ICAgICAtLXBhc3NpdmUtZnRwIC0tbm8tY2hlY2stY2VydGlm
-aWNhdGUgLVANCj4gICAgIC9kYXRhL3ByYWRlZXAvaW50aV9kbXN2L3lvY3RvX2J1aWxkL2J1aWxk
-L2Rvd25sb2Fkcw0KPiAgICAgJ2h0dHA6Ly94b3JnLmZyZWVkZXNrdG9wLm9yZy9yZWxlYXNlcy9p
-bmRpdmlkdWFsL2xpYi9saWJYY3Vyc29yLTEuMS4xNS50YXIuYnoyJw0KPiAgICAgLS1wcm9ncmVz
-cz1kb3QgLXYgZmFpbGVkIHdpdGggZXhpdCBjb2RlIDQsIG91dHB1dDoNCj4gICAgIC0tMjAyMC0x
-MC0xNyAwOToyMDoyMC0tDQo+ICAgICBodHRwOi8veG9yZy5mcmVlZGVza3RvcC5vcmcvcmVsZWFz
-ZXMvaW5kaXZpZHVhbC9saWIvbGliWGN1cnNvci0xLjEuMTUudGFyLmJ6Mg0KPiAgICAgUmVzb2x2
-aW5nIHhvcmcuZnJlZWRlc2t0b3Aub3JnIDxodHRwOi8veG9yZy5mcmVlZGVza3RvcC5vcmc+DQo+
-ICAgICAoeG9yZy5mcmVlZGVza3RvcC5vcmcgPGh0dHA6Ly94b3JnLmZyZWVkZXNrdG9wLm9yZz4p
-Li4uDQo+ICAgICAxMzEuMjUyLjIxMC4xNzYsIDI2MTA6MTA6MjA6NzIyOmE4MDA6ZmY6ZmVkYTo0
-NzBmDQo+ICAgICBDb25uZWN0aW5nIHRvIHhvcmcuZnJlZWRlc2t0b3Aub3JnIDxodHRwOi8veG9y
-Zy5mcmVlZGVza3RvcC5vcmc+DQo+ICAgICAoeG9yZy5mcmVlZGVza3RvcC5vcmcNCj4gICAgIDxo
-dHRwOi8veG9yZy5mcmVlZGVza3RvcC5vcmc+KXwxMzEuMjUyLjIxMC4xNzZ8OjgwLi4uIGNvbm5l
-Y3RlZC4NCj4gICAgIEhUVFAgcmVxdWVzdCBzZW50LCBhd2FpdGluZyByZXNwb25zZS4uLiBSZWFk
-IGVycm9yIChDb25uZWN0aW9uIHRpbWVkDQo+ICAgICBvdXQpIGluIGhlYWRlcnMuDQo+ICAgICBS
-ZXRyeWluZy4NCj4gDQo+ICAgICAtLTIwMjAtMTAtMTcgMDk6MjA6NTItLSDCoCh0cnk6IDIpDQo+
-ICAgICBodHRwOi8veG9yZy5mcmVlZGVza3RvcC5vcmcvcmVsZWFzZXMvaW5kaXZpZHVhbC9saWIv
-bGliWGN1cnNvci0xLjEuMTUudGFyLmJ6Mg0KPiAgICAgQ29ubmVjdGluZyB0byB4b3JnLmZyZWVk
-ZXNrdG9wLm9yZyA8aHR0cDovL3hvcmcuZnJlZWRlc2t0b3Aub3JnPg0KPiAgICAgKHhvcmcuZnJl
-ZWRlc2t0b3Aub3JnDQo+ICAgICA8aHR0cDovL3hvcmcuZnJlZWRlc2t0b3Aub3JnPil8MTMxLjI1
-Mi4yMTAuMTc2fDo4MC4uLiBjb25uZWN0ZWQuDQo+ICAgICBIVFRQIHJlcXVlc3Qgc2VudCwgYXdh
-aXRpbmcgcmVzcG9uc2UuLi4gUmVhZCBlcnJvciAoQ29ubmVjdGlvbiB0aW1lZA0KPiAgICAgb3V0
-KSBpbiBoZWFkZXJzLg0KPiAgICAgR2l2aW5nIHVwLg0KPiANCj4gICAgIEVSUk9SOiBsaWJ4Y3Vy
-c29yLTFfMS4xLjE1LXIwIGRvX2ZldGNoOiBGZXRjaGVyIGZhaWx1cmUgZm9yIFVSTDoNCj4gICAg
-ICdodHRwOi8veG9yZy5mcmVlZGVza3RvcC5vcmcvcmVsZWFzZXMvaW5kaXZpZHVhbC9saWIvbGli
-WGN1cnNvci0xLjEuMTUudGFyLmJ6MicuDQo+ICAgICBVbmFibGUgdG8gZmV0Y2ggVVJMIGZyb20g
-YW55IHNvdXJjZS4NCj4gICAgIEVSUk9SOiBsaWJ4Y3Vyc29yLTFfMS4xLjE1LXIwIGRvX2ZldGNo
-OiBGdW5jdGlvbiBmYWlsZWQ6IGJhc2VfZG9fZmV0Y2gNCj4gICAgIEVSUk9SOiBMb2dmaWxlIG9m
-IGZhaWx1cmUgc3RvcmVkIGluOg0KPiAgICAgL2RhdGEvcHJhZGVlcC9pbnRpX2Rtc3YveW9jdG9f
-YnVpbGQvYnVpbGQvdG1wL3dvcmsvY29yZWk3LTY0LXBva3ktbGludXgvbGlieGN1cnNvci8xXzEu
-MS4xNS1yMC90ZW1wL2xvZy5kb19mZXRjaC4xOTg1OQ0KPiAgICAgRVJST1I6IFRhc2sNCj4gICAg
-ICgvZGF0YS9wcmFkZWVwL2ludGlfZG1zdi95b2N0b19idWlsZC9tZXRhL3JlY2lwZXMtZ3JhcGhp
-Y3MveG9yZy1saWIvbGlieGN1cnNvcl8xLjEuMTUuYmI6ZG9fZmV0Y2gpDQo+ICAgICBmYWlsZWQg
-d2l0aCBleGl0IGNvZGUgJzEnDQo+IA0KPiANCj4gICAgICp3aGF0IHdpbGwgYmUgdGhlIHNvbHV0
-aW9uIGZvciB0aGVzZSA/Kg0KDQpIaSBOaWtoaWwsDQoNCg0KJGNkIC90bXA7IHdnZXQgDQpodHRw
-Oi8veG9yZy5mcmVlZGVza3RvcC5vcmcvcmVsZWFzZXMvaW5kaXZpZHVhbC9saWIvbGliWGN1cnNv
-ci0xLjEuMTUudGFyLmJ6Mg0KDQp3b3JrcyBmb3IgbWUgc28gaXQncyBub3QgdGhlIHVwc3RyZWFt
-IHdlYiBzZXJ2ZXIgYXQgbGVhc3QgYXQgdGhpcw0KaW5zdGFudC4NCg0KQ2FuIHlvdSBydW4gdGhp
-cyB3Z2V0IGNvbW1hbmQgbWFudWFsbHkgdG8gZG93bmxvYWQgdGhlIHRhcmJhbGw/DQpEbyB5b3Ug
-aGF2ZSBhIHN5c3RlbSBvciBjb3Jwb3JhdGUgZmlyZXdhbGwgY2F1c2luZyBwcm9ibGVtcz8NCklm
-IHNvIGZpeCB0aGF0IG9yIGRvIHRoZSBkb3dubG9hZCBzb21ld2hlcmUgZWxzZSBhbmQgYnJpbmcg
-dGhlIHNvdXJjZXMNCnRvIHRoZSBidWlsZCBtYWNoaW5lIGFmdGVyIGNsZWFyaW5nIHRoYXQgd2l0
-aCB0aGUgcGVvcGxlIHdobyBhcmUNCnJlc3BvbnNpYmxlIGZvciB5b3VyIHdvcmtwbGFjZSdzIHNl
-Y3VyaXR5Lg0KDQpJIGhhdmVuJ3QgdXNlZCB0aGlzIGFuZCBJIGRvbid0IGtub3cgaWYgaXQncyB1
-cCB0byBkYXRlIGJ5IHlvdSBtaWdodA0KcmVhZDoNCiAgICBodHRwczovL3dpa2kueW9jdG9wcm9q
-ZWN0Lm9yZy93aWtpL1dvcmtpbmdfQmVoaW5kX2FfTmV0d29ya19Qcm94eQ0KDQpJZiB0aGlzIGRv
-ZXNuJ3Qgd29yayBmb3IgeW91IHRoZXJlIGFyZSBjb21tZXJjaWFsIHNvbHV0aW9ucyB0aGF0IHBy
-b3ZpZGUNCnN1cHBvcnQgZm9yIFlvY3RvIGFuZCBhbHNvIGRlbGl2ZXIgYWxsIHRoZSBzb3VyY2Vz
-IHRoYXQgeW91J2xsIG5lZWQuDQoNCkxldCBtZSBhbmQgdGhlIGxpc3Qga25vdyBob3cgaXQgZ29l
-cy4NCg0KV2VsY29tZSB0byBZb2N0byBhbmQgZ29vZCBsdWNrLA0KDQouLi9SYW5keQ0KDQo+IA0K
-PiANCj4gDQo+IA0KPiANCj4gDQo+IA0KDQoNCi0tIA0KIyBSYW5keSBNYWNMZW9kDQojIFdpbmQg
-Uml2ZXIgTGludXgNCg==
+On 2020-10-18 6:41 a.m., NIKHIL PATIL wrote:
+> Hi team ,
+>  =C2=A0 =C2=A0 =C2=A0 I am getting continuously=C2=A0dnf error, How we c=
+an resolve=C2=A0these .
+
+Hi Nikhil,
+
+What exact steps did you take before getting this error and
+what build host are you using?
+
+Are you able to build core-image-minimal using oe-core/master
+and the default local.conf for qemux86-64?
+
+../Randy
+
+>=20
+> core-image-sato-1.0-r0 do_rootfs: Could not invoke dnf. Command=20
+> '/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky=
+-linux/core-image-sato/1.0-r0/recipe-sysroot-native/usr/bin/dnf=20
+> -y -c=20
+> /data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-=
+linux/core-image-sato/1.0-r0/rootfs/etc/dnf/dnf.conf=20
+> --setopt=3Dreposdir=3D/data/pradeep/inti_dmsv/yocto_build/build/tmp/work=
+/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/rootfs/etc/yum.repos.d=
+=20
+> --repofrompath=3Doe-repo,/data/pradeep/inti_dmsv/yocto_build/build/tmp/w=
+ork/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/oe-rootfs-repo=20
+> --installroot=3D/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel=
+_corei7_64-poky-linux/core-image-sato/1.0-r0/rootfs=20
+> --setopt=3Dlogdir=3D/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/i=
+ntel_corei7_64-poky-linux/core-image-sato/1.0-r0/temp=20
+> -x packagegroup-core-apl-extra --nogpgcheck install autoconf-archive dnf=
+=
+=20
+> gstreamer1.0-vaapi iqvlinux jhi kernel-modules libtcti-device0=20
+> libtcti-device-dev libtcti-device-staticdev libtcti-socket0=20
+> libtcti-socket-dev libtcti-socket-staticdev libsapi0 libsapi-dev=20
+> libsapi-staticdev libva mesa-glxinfo libmraa1 nodejs=20
+> packagegroup-base-extended packagegroup-core-audio-essential=20
+> packagegroup-core-boot packagegroup-core-buildessential-extended=20
+> packagegroup-core-graphics-essential packagegroup-core-ssh-dropbear=20
+> packagegroup-core-tools-testapps packagegroup-core-x11-base=20
+> packagegroup-core-x11-sato psplash rpm run-postinsts swig tpm2-abrmd=20
+> usb-modeswitch usb-modeswitch-data va-intel wayland weston=20
+> weston-examples xinit-env xserver-xorg locale-base-en-us=20
+> locale-base-en-gb' returned 1:
+> Added oe-repo repo from=20
+> /data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-=
+linux/core-image-sato/1.0-r0/oe-rootfs-repo
+>=20
+>=20
+>=20
+>=20
+>=20
+
+
+--=20
+# Randy MacLeod
+# Wind River Linux
