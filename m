@@ -1,265 +1,119 @@
-Received: from mx02.optimcloud.com (mx02.optimcloud.com [46.23.93.22])
- by mx.groups.io with SMTP id smtpd.web09.7080.1603256434309942417
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by mx.groups.io with SMTP id smtpd.web08.7319.1603258552698389712
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 Oct 2020 22:00:35 -0700
+ Tue, 20 Oct 2020 22:35:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=WnWgbJtm;
- spf=none, err=SPF record not found (domain: optimcloud.com, ip: 46.23.93.22, mailfrom: yocto@optimcloud.com)
-Received: from mx02.optimcloud.com (localhost [127.0.0.1])
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTP id da2bad0e
-	for <yocto@lists.yoctoproject.org>;
-	Wed, 21 Oct 2020 07:00:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=
-	subject:to:references:from:message-id:date:mime-version
-	:in-reply-to:content-type; s=obsd; bh=0EhSzMVX1Pht7u9nBuyaxb2sWF
-	aKKlRAB5OAno1AX0c=; b=WnWgbJtm98aKb7ewGTx35cqEZuXfcO8cCRntdRvknD
-	TfV5Kqc/Rb2PNcpozxNfrKrZ1CEpGg1657BZI9AHCzSVGoyLpOtVIWkGhqIod/JF
-	qZu/4+U0LForisNi3AGtO6q7G3YfJe5utgJZz8JFCNoYh5JBANkPWP0Prs4UoFZJ
-	ouUQeRK257Qgj1PdBM7XOgsiE5eKRRXS2VoA5lSNGeLFjrqalbcBFoJXm8MYHFfd
-	fFQ2KZiyrj8oN30xXQKTnXz/RnlANs0xU8Es/eYsWEgWZdSpT/el48CDqz1Vd/UZ
-	7ZfikEUcFXB6pGeUmQJyBeXU2px0vz8rWLuqoUbITGzw==
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=subject:to
-	:references:from:message-id:date:mime-version:in-reply-to
-	:content-type; q=dns; s=obsd; b=ox4R36DBIP7A1CGtMJS35hdvFy50Mt2M
-	K4UZT4nzaCryCrjcIzVZRYGM1fXO7dscg2NUAoIwESVAEzuBto/KaDHHyk2zAW6h
-	HJe/UlOQeBLRVDl4F8tX9Jrn2IX2ZVyLjIJmqahCND98LFo/Bolf8Iek1EerxmOb
-	OAbRGWgQA9WSN9UduGEk3sCTYnm7awduQGdwCvByxO4qwj921rbU5qQS/iRjvzEI
-	MFb8RXFb1FFfPRePOywSkonasmditc6GNI4P+AbUfecF8xKDZeV7wJUBaieCrTMA
-	QBXVIfaPWvvFmvQsDDaeME756irUTcDbUqrkhPXM5/33Q+VzzIiLlQ==
-Received: 
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTPSA id 2182b0af (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO) auth=yes user=yocto@optimcloud.com
-	for <yocto@lists.yoctoproject.org>;
-	Wed, 21 Oct 2020 07:00:29 +0200 (CEST)
-Subject: Re: [yocto] dnf error coming while compiling core-image-sato image.
-To: yocto@lists.yoctoproject.org
-References: <CAJw=dJ8rCUx1SOe4ai-cVs3BPaS8MePVw+Uh967ZOeaDoWXm5g@mail.gmail.com>
- <b1644126-1fe8-764b-6ff9-51e25bde59ec@windriver.com>
- <CAJw=dJ_QWnF3bnKCWEuW8PrX32c2nXOdbnA1rBD=Ah55QvpjEg@mail.gmail.com>
-From: "Yocto" <yocto@optimcloud.com>
-Message-ID: <2946109b-fe92-243c-87fb-296c406c1569@optimcloud.com>
-Date: Wed, 21 Oct 2020 12:00:23 +0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+ dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.88, mailfrom: naveen.kumar.saini@intel.com)
+IronPort-SDR: DkOSwuOSWvgqjunh+jGCs7Lsb3zIW8Y85+HtNUhVYXQTLKXD7gzg1sSZVsUZqwR3dvcR+RXskH
+ 3OaRFb1RmNUg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9780"; a="184969438"
+X-IronPort-AV: E=Sophos;i="5.77,400,1596524400"; 
+   d="scan'208";a="184969438"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2020 22:35:51 -0700
+IronPort-SDR: G0ZGkz01DsKhQ95OXaqH9bx+zhGeeus3jsaqHJcp3ircd0vXLlZCj8JrKbiunODJBuqr9vhX+Q
+ v0825CJwwAsA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,400,1596524400"; 
+   d="scan'208";a="466176890"
+Received: from kmsmsx601.gar.corp.intel.com ([172.21.219.141])
+  by orsmga004.jf.intel.com with ESMTP; 20 Oct 2020 22:35:50 -0700
+Received: from kmsmsx603.gar.corp.intel.com (172.21.219.143) by
+ kmsmsx601.gar.corp.intel.com (172.21.219.141) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 21 Oct 2020 13:35:49 +0800
+Received: from kmsmsx603.gar.corp.intel.com ([172.21.219.143]) by
+ kmsmsx603.gar.corp.intel.com ([172.21.219.143]) with mapi id 15.01.1713.004;
+ Wed, 21 Oct 2020 13:35:49 +0800
+From: "Naveen Saini" <naveen.kumar.saini@intel.com>
+To: Ross Burton <ross.burton@arm.com>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+Subject: Re: [meta-zephyr][PATCH] zephyr: use TCLIBC=newlib directly
+Thread-Topic: [meta-zephyr][PATCH] zephyr: use TCLIBC=newlib directly
+Thread-Index: AQHWpt6LxzB7jS1O/0eIMuxvSROcL6mhiQkw
+Date: Wed, 21 Oct 2020 05:35:49 +0000
+Message-ID: <aa6dbe8064824081b832cb11cfe98eb2@intel.com>
+References: <20201020124254.471303-1-ross.burton@arm.com>
+In-Reply-To: <20201020124254.471303-1-ross.burton@arm.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+x-originating-ip: [10.108.32.68]
 MIME-Version: 1.0
-In-Reply-To: <CAJw=dJ_QWnF3bnKCWEuW8PrX32c2nXOdbnA1rBD=Ah55QvpjEg@mail.gmail.com>
-Content-Type: multipart/alternative;
- boundary="------------0778F80674DAE4EFCA0708CC"
 Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---------------0778F80674DAE4EFCA0708CC
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Few kernel testcases have dependencies on gperf-native, so we should keep i=
+t in DEPENDS.
 
+Regards,
+Naveen
 
-On 10/20/20 8:06 PM, NIKHIL PATIL wrote:
-> I changed in local.conf (ostree related stuffs ), and put it for 
-> compilation , that time i got these error
->
-> On Tue, Oct 20, 2020 at 6:49 AM Randy MacLeod 
-> <randy.macleod@windriver.com <mailto:randy.macleod@windriver.com>> wrote:
->
->     On 2020-10-18 6:41 a.m., NIKHIL PATIL wrote:
->     > Hi team ,
->     >        I am getting continuously dnf error, How we can
->     resolve these .
->
->     Hi Nikhil,
->
->     What exact steps did you take before getting this error and
->     what build host are you using?
->
->     Are you able to build core-image-minimal using oe-core/master
->     and the default local.conf for qemux86-64?
->
->     ../Randy
->
-I can confirm that Ive also seen this trying to build in the Yocto build 
-appliance I downloaded yesterday....
+-----Original Message-----
+From: Ross Burton <ross.burton@arm.com>=20
+Sent: Tuesday, October 20, 2020 8:43 PM
+To: yocto@lists.yoctoproject.org
+Cc: Saini, Naveen Kumar <naveen.kumar.saini@intel.com>
+Subject: [meta-zephyr][PATCH] zephyr: use TCLIBC=3Dnewlib directly
 
+Instead of setting TCLIBC=3Dbaremetal and then adding newlib in various pla=
+ces, just set TCLIBC=3Dnewlib directly.
 
+This also means we can use the standard DEPENDS instead of reinventing them=
+.
 
->     >
->     > core-image-sato-1.0-r0 do_rootfs: Could not invoke dnf. Command
->     >
->     '/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/recipe-sysroot-native/usr/bin/dnf
->
->     > -y -c
->     >
->     /data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/rootfs/etc/dnf/dnf.conf
->
->     >
->     --setopt=reposdir=/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/rootfs/etc/yum.repos.d
->
->     >
->     --repofrompath=oe-repo,/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/oe-rootfs-repo
->
->     >
->     --installroot=/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/rootfs
->
->     >
->     --setopt=logdir=/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/temp
->
->     > -x packagegroup-core-apl-extra --nogpgcheck install
->     autoconf-archive dnf
->     > gstreamer1.0-vaapi iqvlinux jhi kernel-modules libtcti-device0
->     > libtcti-device-dev libtcti-device-staticdev libtcti-socket0
->     > libtcti-socket-dev libtcti-socket-staticdev libsapi0 libsapi-dev
->     > libsapi-staticdev libva mesa-glxinfo libmraa1 nodejs
->     > packagegroup-base-extended packagegroup-core-audio-essential
->     > packagegroup-core-boot packagegroup-core-buildessential-extended
->     > packagegroup-core-graphics-essential packagegroup-core-ssh-dropbear
->     > packagegroup-core-tools-testapps packagegroup-core-x11-base
->     > packagegroup-core-x11-sato psplash rpm run-postinsts swig
->     tpm2-abrmd
->     > usb-modeswitch usb-modeswitch-data va-intel wayland weston
->     > weston-examples xinit-env xserver-xorg locale-base-en-us
->     > locale-base-en-gb' returned 1:
->     > Added oe-repo repo from
->     >
->     /data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/oe-rootfs-repo
->     >
->     >
->     >
->     >
->     >
->
->
->     -- 
->     # Randy MacLeod
->     # Wind River Linux
->
->
-> 
->
+Signed-off-by: Ross Burton <ross.burton@arm.com>
+---
+ conf/distro/zephyr.conf                               | 7 +------
+ recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc | 3 ---
+ 2 files changed, 1 insertion(+), 9 deletions(-)
 
---------------0778F80674DAE4EFCA0708CC
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+diff --git a/conf/distro/zephyr.conf b/conf/distro/zephyr.conf index 44448a=
+f..a98da32 100644
+--- a/conf/distro/zephyr.conf
++++ b/conf/distro/zephyr.conf
+@@ -5,16 +5,11 @@ DISTRO_VERSION =3D "1.0"
+=20
+ TARGET_VENDOR =3D "-yocto"
+=20
+-TCLIBC =3D "baremetal"
+-TCLIBCAPPEND =3D ""
++TCLIBC =3D "newlib"
+=20
+ TEST_TARGET =3D "QemuTargetZephyr"
+ TEST_SUITES =3D "zephyr"
+=20
+-PREFERRED_PROVIDER_virtual/libc =3D "newlib"
+-PREFERRED_PROVIDER_virtual/libiconv =3D "newlib"
+-
+-TOOLCHAIN_TARGET_TASK +=3D " newlib"
+ INHERIT +=3D "siteinfo-zephyr"
+=20
+ INHERIT +=3D "uninative"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc b/recipe=
+s-kernel/zephyr-kernel/zephyr-kernel-common.inc
+index 7fa4b25..b947472 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+@@ -19,9 +19,6 @@ EXTRA_OECMAKE_append_arm =3D " -DZEPHYR_MODULES=3D${S}/mo=
+dules/cmsis"
+ export ZEPHYR_BASE=3D"${S}"
+=20
+=20
+-# We always need a toolchain to cross-compile.
+-INHIBIT_DEFAULT_DEPS =3D "1"
+-DEPENDS +=3D "gcc-cross-${TARGET_ARCH} libgcc ${TOOLCHAIN_TARGET_TASK} gpe=
+rf-native"
+ DEPENDS +=3D " python3-pyelftools-native python3-pyyaml-native python3-pyk=
+walify-native"
+ CROSS_COMPILE =3D "${STAGING_BINDIR_TOOLCHAIN}/${TARGET_PREFIX}"
+=20
+--
+2.25.1
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 10/20/20 8:06 PM, NIKHIL PATIL
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAJw=dJ_QWnF3bnKCWEuW8PrX32c2nXOdbnA1rBD=Ah55QvpjEg@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="ltr">I changed in local.conf (ostree related stuffs ),
-        and put it for compilation , that time i got these error </div>
-      <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Tue, Oct 20, 2020 at 6:49
-          AM Randy MacLeod &lt;<a
-            href="mailto:randy.macleod@windriver.com"
-            moz-do-not-send="true">randy.macleod@windriver.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On
-          2020-10-18 6:41 a.m., NIKHIL PATIL wrote:<br>
-          &gt; Hi team ,<br>
-          &gt;        I am getting continuously dnf error, How we can
-          resolve these .<br>
-          <br>
-          Hi Nikhil,<br>
-          <br>
-          What exact steps did you take before getting this error and<br>
-          what build host are you using?<br>
-          <br>
-          Are you able to build core-image-minimal using oe-core/master<br>
-          and the default local.conf for qemux86-64?<br>
-          <br>
-          ../Randy<br>
-          <br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <p>I can confirm that Ive also seen this trying to build in the
-      Yocto build appliance I downloaded yesterday....<br>
-    </p>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
-    <blockquote type="cite"
-cite="mid:CAJw=dJ_QWnF3bnKCWEuW8PrX32c2nXOdbnA1rBD=Ah55QvpjEg@mail.gmail.com">
-      <div class="gmail_quote">
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          &gt; <br>
-          &gt; core-image-sato-1.0-r0 do_rootfs: Could not invoke dnf.
-          Command <br>
-          &gt;
-'/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/recipe-sysroot-native/usr/bin/dnf
-          <br>
-          &gt; -y -c <br>
-          &gt;
-/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/rootfs/etc/dnf/dnf.conf
-          <br>
-          &gt;
---setopt=reposdir=/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/rootfs/etc/yum.repos.d
-          <br>
-          &gt;
---repofrompath=oe-repo,/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/oe-rootfs-repo
-          <br>
-          &gt;
---installroot=/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/rootfs
-          <br>
-          &gt;
---setopt=logdir=/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/temp
-          <br>
-          &gt; -x packagegroup-core-apl-extra --nogpgcheck install
-          autoconf-archive dnf <br>
-          &gt; gstreamer1.0-vaapi iqvlinux jhi kernel-modules
-          libtcti-device0 <br>
-          &gt; libtcti-device-dev libtcti-device-staticdev
-          libtcti-socket0 <br>
-          &gt; libtcti-socket-dev libtcti-socket-staticdev libsapi0
-          libsapi-dev <br>
-          &gt; libsapi-staticdev libva mesa-glxinfo libmraa1 nodejs <br>
-          &gt; packagegroup-base-extended
-          packagegroup-core-audio-essential <br>
-          &gt; packagegroup-core-boot
-          packagegroup-core-buildessential-extended <br>
-          &gt; packagegroup-core-graphics-essential
-          packagegroup-core-ssh-dropbear <br>
-          &gt; packagegroup-core-tools-testapps
-          packagegroup-core-x11-base <br>
-          &gt; packagegroup-core-x11-sato psplash rpm run-postinsts swig
-          tpm2-abrmd <br>
-          &gt; usb-modeswitch usb-modeswitch-data va-intel wayland
-          weston <br>
-          &gt; weston-examples xinit-env xserver-xorg locale-base-en-us
-          <br>
-          &gt; locale-base-en-gb' returned 1:<br>
-          &gt; Added oe-repo repo from <br>
-          &gt;
-/data/pradeep/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-sato/1.0-r0/oe-rootfs-repo<br>
-          &gt; <br>
-          &gt; <br>
-          &gt; <br>
-          &gt; <br>
-          &gt; <br>
-          <br>
-          <br>
-          -- <br>
-          # Randy MacLeod<br>
-          # Wind River Linux<br>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
-
-
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------0778F80674DAE4EFCA0708CC--
