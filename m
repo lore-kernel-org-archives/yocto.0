@@ -1,86 +1,65 @@
-Received: from gateway34.websitewelcome.com (gateway34.websitewelcome.com [192.185.148.109])
- by mx.groups.io with SMTP id smtpd.web11.11507.1603378280586548700
+Received: from 2.mo179.mail-out.ovh.net (2.mo179.mail-out.ovh.net [178.33.250.45])
+ by mx.groups.io with SMTP id smtpd.web11.960.1603386688773335504
  for <yocto@lists.yoctoproject.org>;
- Thu, 22 Oct 2020 07:51:20 -0700
+ Thu, 22 Oct 2020 10:11:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: dajac.com, ip: 192.185.148.109, mailfrom: pratham.ovalekar@dajac.com)
-Received: from cm17.websitewelcome.com (cm17.websitewelcome.com [100.42.49.20])
-	by gateway34.websitewelcome.com (Postfix) with ESMTP id 19652FE3E9
-	for <yocto@lists.yoctoproject.org>; Thu, 22 Oct 2020 09:51:20 -0500 (CDT)
-Received: from gator3290.hostgator.com ([198.57.247.254])
-	by cmsmtp with SMTP
-	id VbvzkS5KAPiqfVbvzkWjnM; Thu, 22 Oct 2020 09:51:20 -0500
-X-Authority-Reason: nr=8
-Received: from 75-15-4-89.uvs.iplsin.sbcglobal.net ([75.15.4.89]:57968 helo=[192.168.0.132])
-	by gator3290.hostgator.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.93)
-	(envelope-from <pratham.ovalekar@dajac.com>)
-	id 1kVbvz-002Bbx-5i
-	for yocto@lists.yoctoproject.org; Thu, 22 Oct 2020 09:51:19 -0500
+ dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 178.33.250.45, mailfrom: maciej.pijanowski@3mdeb.com)
+Received: from player793.ha.ovh.net (unknown [10.109.146.76])
+	by mo179.mail-out.ovh.net (Postfix) with ESMTP id 25A8717A354
+	for <yocto@lists.yoctoproject.org>; Thu, 22 Oct 2020 19:11:25 +0200 (CEST)
+Received: from 3mdeb.com (89-66-159-90.dynamic.chello.pl [89.66.159.90])
+	(Authenticated sender: maciej.pijanowski@3mdeb.com)
+	by player793.ha.ovh.net (Postfix) with ESMTPSA id 3F0E61773AED7;
+	Thu, 22 Oct 2020 17:11:24 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-98R002372c6d1e-b8ba-4378-9dae-cb6a6f5d3619,
+                    6E4D179B5BD680EC962F27E4EA386A87D849C8B4) smtp.auth=maciej.pijanowski@3mdeb.com
 To: yocto@lists.yoctoproject.org
-From: "Prathamesh Ovalekar" <pratham.ovalekar@dajac.com>
-Subject: [Yocto] Sama5D3 UART1 configuration | Device tree
-Message-ID: <0fadb696-688d-fe07-cfd9-3d16840739a0@dajac.com>
-Date: Thu, 22 Oct 2020 10:51:19 -0400
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
+Cc: akuster808@gmail.com
+From: "Maciej Pijanowski" <maciej.pijanowski@3mdeb.com>
+Subject: State of qemuppc64
+Message-ID: <428851cf-9d68-b608-5efd-8916c6dd621a@3mdeb.com>
+Date: Thu, 22 Oct 2020 19:11:22 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator3290.hostgator.com
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - dajac.com
-X-BWhitelist: no
-X-Source-IP: 75.15.4.89
-X-Source-L: No
-X-Exim-ID: 1kVbvz-002Bbx-5i
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 75-15-4-89.uvs.iplsin.sbcglobal.net ([192.168.0.132]) [75.15.4.89]:57968
-X-Source-Auth: pratham.ovalekar@dajac.com
-X-Email-Count: 5
-X-Source-Cap: ZGFqYWNpbmM7ZGFqYWNpbmM7Z2F0b3IzMjkwLmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-Ovh-Tracer-Id: 13636055249136922166
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrjeekgddvkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhepvffhuffkffgfgggtgfesthejredttdefjeenucfhrhhomhepofgrtghivghjucfrihhjrghnohifshhkihcuoehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmqeenucggtffrrghtthgvrhhnpeekvefgieehgefgkeetgeefveelleefkeffhfdvtedukeetteegjeduhfeifeegudenucffohhmrghinhepghhithhhuhgsrdgtohhmpdihohgtthhophhrohhjvggtthdrohhrghdpohhpvghnvghmsggvugguvggurdhorhhgpdefmhguvggsrdgtohhmnecukfhppedtrddtrddtrddtpdekledrieeirdduheelrdeltdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejleefrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepmhgrtghivghjrdhpihhjrghnohifshhkihesfehmuggvsgdrtghomhdprhgtphhtthhopeihohgtthhosehlihhsthhsrdihohgtthhophhrohhjvggtthdrohhrgh
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
 
-Hello everyone,
+Hello,
 
-I am a newbie in Yocto.
+I need to build a development environment for ppc64 (POWER9).
+I wanted to use Yocto to build ppc64 QEMU images. I'm starting with
+big endian as I need to test out this one first.
 
-I am using a custom board based on the sama5d3_xplained board,
+I was surprised to see that there is no qemuppc64 target, so I have
+just started my own here [1]. I want to use the POWER9 tune and POWER9
+CPU in QEMU. It is already supported in recent QEMU as we have already
+been running some firmware images.
 
-Goal: Currently the Port Pins: PA30 and PA31 are I2C lines (I2C0 TWD0=20
-and TWCK0), I would like to use them as UART Lines (UART1 RX and TX)
+I've been trying to find something about qemuppc64 and Yocto and found
+just some old meta layer [2] and a thread on adding qemuppc64 support
+to the linux-yocto [3]. The last part (yocto-kernel-cache) was merged and
+is still there. There are some more unmerged patches in this regard
+though [4].
 
-What I have done till now: Modified the at91-sama5d3_xplained.dts file
+Do you know what is the status there? I would be happy to help moving it
+forward.
 
- =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 Removed: =C2=A0=C2=A0=C2=A0 i2c0: =
-i2c@f0014000 {
- =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0 =C2=
-=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=
-=C2=A0=C2=A0 =C2=A0 pinctrl-0 =3D <&pinctrl_i2c0_pu>;
- =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0 =C2=A0=C2=
-=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=
-=C2=A0=C2=A0 =C2=A0 status =3D "okay";
- =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=
-=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 };
+[1]
+https://github.com/3mdeb/meta-ppc64/blob/master/conf/machine/qemuppc64.conf
+[2] https://github.com/akuster/meta-qemu-bsps
+[3]https://www.yoctoproject.org/pipermail/linux-yocto/2014-September/003184.html
+[4]
+https://patchwork.openembedded.org/project/oe-core/patches/?submitter=11275&state=&q=ppc64&archive=both&delegate=
 
- =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 Added: =C2=A0=C2=A0=C2=A0 =C2=A0=C2=
-=A0=C2=A0 uart1: serial@f8028000 {
- =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0 =C2=
-=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=
- status =3D "okay";
- =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0 =C2=A0=C2=A0 =C2=A0=C2=
-=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0 };
-
-
-After the build process, I assumed that the output .dtb file will be=20
-modified. But it remained the same.
-
-Is there something that I am missing out?
-
-Pratham
+-- 
+Maciej Pijanowski
+Embedded Systems Engineer
+GPG: 9963C36AAC3B2B46
+https://3mdeb.com | @3mdeb_com
 
