@@ -1,103 +1,150 @@
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
- by mx.groups.io with SMTP id smtpd.web12.65.1603387301233838177
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
+ by mx.groups.io with SMTP id smtpd.web11.1412.1603392659863260966
  for <yocto@lists.yoctoproject.org>;
- Thu, 22 Oct 2020 10:21:41 -0700
+ Thu, 22 Oct 2020 11:51:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=q0ZaJSgB;
- spf=pass (domain: gmail.com, ip: 209.85.210.171, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f171.google.com with SMTP id e15so1539138pfh.6
-        for <yocto@lists.yoctoproject.org>; Thu, 22 Oct 2020 10:21:41 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=XTTp3P5o;
+ spf=pass (domain: gmail.com, ip: 209.85.221.175, mailfrom: nikhilvp29@gmail.com)
+Received: by mail-vk1-f175.google.com with SMTP id y10so614686vkl.5;
+        Thu, 22 Oct 2020 11:50:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=cKuPiUnrBSc9s5I068buHac0DCcnGM8urmHjXA050Eg=;
-        b=q0ZaJSgBqdCD4UfV1WnSnxRh0q03nFafLgDkSQxxnDXbpWjaoAYsCHhZbJo5MeBzqg
-         7RKv5g07IdN58aE/bp3xDFWWpQ9PP9VHOnx+s5SEA32NbNIJSDgCG249nJfcp6LbrVff
-         DXJFFv+WqiJja1m2eCBNWRruvP/QsU7V1zHYUdYEfXI+ZSG7Vm6V/pnzUw4krBuzEyVa
-         npWtfFPSQkXukGh0ZMzodpDu2ePyz1EZWDHm8Tna/FIqRvyq7XZLjoaihIodIBIXaimR
-         7+81ytIGdY8J/Zr2EWMsLdTyid8IPpPHQChOAyxpYRSsoYhCz4Uh1acnStrx9Mt1kafF
-         xRSA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=i1SHvYbUBFl6QW9r8iV1cIsyf/x/OzuglQrl6yLfXmQ=;
+        b=XTTp3P5ozy7xE4MKx9A0uu9WJ5z7aKwytOSn5kb5WCpnC43q2YqtUZI8XIcws8zfvB
+         KNnABosG0rk4T4mhxsiaz6b5Gaj/UOFo7Ski7losZX0toht3pATWhdzPv4yW/WYZ5rpW
+         pnXzn9o6G1WSWJ5J/5ZNno5Nk8PUBmB5XRswvQbdVkIwCp/HRQ4wHUddWiHVJcLLfAMt
+         HSOwJFKmKCdon7jJx3ONs8bKu6dG56s1HXLeAriQBvqcNX1orxGETDb1kQki/KaMPwAo
+         BiWcaeb3boe2q8ZaHqU0lGLIJ5KF+j44O5mjCV+c1vIincafld4gr96EsOw+AuXJljjy
+         bGgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=cKuPiUnrBSc9s5I068buHac0DCcnGM8urmHjXA050Eg=;
-        b=TASCjRqqO6HTP1HB4sstDWB/8qjOJfJ6LNqT6G7EzSKGGC82mglzEq7skbz6SoAa1L
-         syxcSDzs/dbzxgCsGW43oN+BoU9FedB5wIjmiiulsD8dX/irTcdwRUQmdkPofVx9esOI
-         Jp1Mi5EnIYRM7WcfxUk5aAiN/UH4s+dnwZy+96HjOtx50I+ppmKkbAyO3bUFBBaK4KsO
-         rnNPJvxWP8VBN2PY7TnJ6eWF2GYQ2OzSK5bD1OHBG+OPqBeM6rk7MdWj8U7YjgeK+42O
-         fHBfinkWVP0j7ZoNUjooyjqj+9+OygCBxNx6O3lGkls2L0QAW/FwdKZPNS+C9wmLPtfG
-         cWEQ==
-X-Gm-Message-State: AOAM5303DoHZbRVHPL0hTooeqIRvxXXMYtE0XUL9e20l0m+M9cxYCxLe
-	pdYUGqe76V3anRVjDdt79XQ=
-X-Google-Smtp-Source: ABdhPJz/W9RIjhRprEvOAE67pggY8BNfCFD4WyJfa3lpe2IJDf07f24/bi/PqsCWNdfFInKMEjrUkA==
-X-Received: by 2002:a63:184:: with SMTP id 126mr2063660pgb.43.1603387300565;
-        Thu, 22 Oct 2020 10:21:40 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:913f:dc36:bf23:12ab? ([2601:646:9200:4e0:913f:dc36:bf23:12ab])
-        by smtp.gmail.com with ESMTPSA id ei4sm2612549pjb.4.2020.10.22.10.21.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Oct 2020 10:21:39 -0700 (PDT)
-Subject: Re: [yocto] State of qemuppc64
-To: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>,
- yocto@lists.yoctoproject.org
-Cc: akuster808@gmail.com
-References: <428851cf-9d68-b608-5efd-8916c6dd621a@3mdeb.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <eb5948e3-b391-deb5-c8c6-9cfe78d8b5de@gmail.com>
-Date: Thu, 22 Oct 2020 10:21:37 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.3.3
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i1SHvYbUBFl6QW9r8iV1cIsyf/x/OzuglQrl6yLfXmQ=;
+        b=NhU9tsuyzAdrGqdKwVUbApvsBjOqqEenyT1R4cKx2qz0rJ0FNzoi/ytYEOXdXAiYj1
+         6JB2GIWYzrZGp5Ns3tTZ6vvnA9pa7/gElk/H6qU1vBTe0UEBf/6QzkJKFuVzE1R6Hvbi
+         r8zsRCizeOIxHrH29T3ANOpqK+ifRAi9qYZorlJjRz2S6aX/auGqGe7GQvPeuVp0TYRL
+         zUQWNuoKo3HswcXbEXB3NNgtFYKrsuas5UKQIW/nP+tFocvgvsMM92y5R1+gHRItHhyR
+         xl65CalNntCsz6poap3HStMFLxYgMpfMX3eEbXpyknD5mhUXkrLV1EVJugmbhoG/EpJ3
+         su0Q==
+X-Gm-Message-State: AOAM531OAqwerRppEYHg93t1hMSr5nm39dVON9RXAWm9V0vmQGuQs4nU
+	L9/EcAmelF+yBUrwCnhkENYjg6IYwtlQJhllKdI=
+X-Google-Smtp-Source: ABdhPJwYaq86zD5YMAt2dekGEErdM0EfqD5DACO+QR6eSgvV0fAsksnzW2HZwuUh1fvPCU7FoM+IQ3/B55A05YwhO0Y=
+X-Received: by 2002:a1f:3655:: with SMTP id d82mr3122233vka.22.1603392658792;
+ Thu, 22 Oct 2020 11:50:58 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <428851cf-9d68-b608-5efd-8916c6dd621a@3mdeb.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <CAJw=dJ_LgOdKN8OLccHU8+37m_zfTYxoQ3ev93DYiqxog6Z9gQ@mail.gmail.com>
+ <CANNYZj-8XTh9=r=nU8oV0A_qLJO7MpTPDp9PLfnibDSNdwnWwQ@mail.gmail.com> <16404822B4B906DE.30171@lists.yoctoproject.org>
+In-Reply-To: <16404822B4B906DE.30171@lists.yoctoproject.org>
+From: "NIKHIL PATIL" <nikhilvp29@gmail.com>
+Date: Fri, 23 Oct 2020 00:20:47 +0530
+Message-ID: <CAJw=dJ8LyrwA=JNJ4V38mB_RLA_8_7ZJwO1jQmz7+PONqTH4HQ@mail.gmail.com>
+Subject: Re: [yocto] Included conf files in our receipes.
+To: Nikhil Patil <nikhilvp29@gmail.com>
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>, yocto+help@lists.yoctoproject.org, 
+	yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000dce50c05b246f176"
 
-Hi Maciej
+--000000000000dce50c05b246f176
+Content-Type: text/plain; charset="UTF-8"
 
-I have set of patches that I carry to support qemuppc64
+Hi ,
+    Where we can add new meta layers instead of bblayers.conf ? Is there
+any other file is there to add meta layers ?
 
-https://github.com/YoeDistro/openembedded-core/commit/885104134403da36b9ecb47ced6423e183262392
+On Thu, Oct 22, 2020 at 3:29 PM NIKHIL PATIL via lists.yoctoproject.org
+<nikhilvp29=gmail.com@lists.yoctoproject.org> wrote:
 
-https://github.com/YoeDistro/openembedded-core/commit/aa9797636a6039ede752a57b05f839ce641e3cfc
+> Hi ,
+>       1) U mean that , i need to create  for eg. *core-image-nikhil.bb
+> <http://core-image-nikhil.bb> *and inside that i need to give
+> IMAGE_INSTALL_APPEND = "minicom"  right ?
+>
+>       2) Before we are including meta layers in bblayer.conf  .  *but any
+> other file so we can include our new meta layers (for eg . meta-test ) * ?
+>
+>
+> On Thu, Oct 22, 2020 at 3:09 PM Alexander Kanavin <alex.kanavin@gmail.com>
+> wrote:
+>
+>> You should make a new image recipe, and define what goes into it there.
+>>
+>> Alex
+>>
+>> On Thu, 22 Oct 2020 at 11:03, NIKHIL PATIL <nikhilvp29@gmail.com> wrote:
+>>
+>>> Hi Team ,
+>>>        We are using yocto sdk for intel leafhill board. For our
+>>> development purpose we are changing in local.conf. (for eg.  if i want
+>>> minicom package means we are doing IMAGE_INSTALL_APPEND += "minicom" ).
+>>>        But , As per requirement we dont want these ( means adding in
+>>> local.conf and bblayer.conf ) , so every needed packages (eg. minicom)  how
+>>> we can add packages in our meta-layer (like eg. meta-test ) . so all
+>>> required packages will come with our core image .
+>>>
+>>>    *how we can achieve these ?*
+>>>
+>>>
+>>>
+>>>
+> 
+>
+>
 
-you can plant them on top of master oe-core or poky and
-try out. I haven't built it in months so maybe a bit jaded.
+--000000000000dce50c05b246f176
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/22/20 10:11 AM, Maciej Pijanowski wrote:
-> Hello,
-> 
-> I need to build a development environment for ppc64 (POWER9).
-> I wanted to use Yocto to build ppc64 QEMU images. I'm starting with
-> big endian as I need to test out this one first.
-> 
-> I was surprised to see that there is no qemuppc64 target, so I have
-> just started my own here [1]. I want to use the POWER9 tune and POWER9
-> CPU in QEMU. It is already supported in recent QEMU as we have already
-> been running some firmware images.
-> 
-> I've been trying to find something about qemuppc64 and Yocto and found
-> just some old meta layer [2] and a thread on adding qemuppc64 support
-> to the linux-yocto [3]. The last part (yocto-kernel-cache) was merged and
-> is still there. There are some more unmerged patches in this regard
-> though [4].
-> 
-> Do you know what is the status there? I would be happy to help moving it
-> forward.
-> 
-> [1]
-> https://github.com/3mdeb/meta-ppc64/blob/master/conf/machine/qemuppc64.conf
-> [2] https://github.com/akuster/meta-qemu-bsps
-> [3]https://www.yoctoproject.org/pipermail/linux-yocto/2014-September/003184.html
-> [4]
-> https://patchwork.openembedded.org/project/oe-core/patches/?submitter=11275&state=&q=ppc64&archive=both&delegate=
-> 
-> 
-> 
-> 
-> 
+<div dir=3D"ltr">Hi ,<div>=C2=A0 =C2=A0 Where we can add new meta layers in=
+stead=C2=A0of bblayers.conf ? Is there any other file is there to add meta =
+layers ?</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Thu, Oct 22, 2020 at 3:29 PM NIKHIL PATIL via <a href=
+=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a> &lt;nikhilvp=
+29=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org">gmail.com@lists.yo=
+ctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex"><div dir=3D"ltr">Hi ,<div>=C2=A0 =C2=A0 =C2=A0 1) U mean that=
+ , i need to create=C2=A0 for eg. <b><a href=3D"http://core-image-nikhil.bb=
+" target=3D"_blank">core-image-nikhil.bb</a> </b>and inside that i need to =
+give IMAGE_INSTALL_APPEND =3D &quot;minicom&quot;=C2=A0 right ?</div><div><=
+br></div><div>=C2=A0 =C2=A0 =C2=A0 2) Before we are including meta layers i=
+n bblayer.conf=C2=A0 .=C2=A0 <b>but any other file so we can include our ne=
+w meta layers (for eg . meta-test )=C2=A0</b>=C2=A0?</div><div>=C2=A0 =C2=
+=A0=C2=A0<br><table cellpadding=3D"0" style=3D"border-collapse:collapse;ta=
+ble-layout:fixed;width:803px"></table><table cellpadding=3D"0" style=3D"bor=
+der-collapse:collapse;margin-top:0px;width:auto;font-family:Roboto,RobotoDr=
+aft,Helvetica,Arial,sans-serif;font-size:14px;letter-spacing:0.2px;display:=
+block"></table></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Thu, Oct 22, 2020 at 3:09 PM Alexander Kanavin &lt;=
+<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.kanavin@gm=
+ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex"><div dir=3D"ltr"><div>You should make a new image recipe, and define=
+ what goes into it there.</div><div><br></div><div>Alex<br></div></div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 22=
+ Oct 2020 at 11:03, NIKHIL PATIL &lt;<a href=3D"mailto:nikhilvp29@gmail.com=
+" target=3D"_blank">nikhilvp29@gmail.com</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Team ,<div>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0We are using yocto sdk for intel leafhill board. F=
+or our development purpose we are changing in local.conf. (for eg.=C2=A0 if=
+ i want minicom package means we are doing IMAGE_INSTALL_APPEND +=3D &quot;=
+minicom&quot; ).</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0But , As per requirem=
+ent we dont=C2=A0want these ( means adding in local.conf and bblayer.conf )=
+ , so every needed packages (eg. minicom)=C2=A0 how we can add packages in =
+our meta-layer (like eg. meta-test ) . so all required packages will come w=
+ith our core image .=C2=A0</div><div>=C2=A0</div><div>=C2=A0 =C2=A0<b>how w=
+e can achieve these ?</b></div></div>
+<br>
+<br>
+<br>
+</blockquote></div>
+</blockquote></div>
+<br>
+<br>
+<br>
+</blockquote></div>
+
+--000000000000dce50c05b246f176--
