@@ -1,127 +1,101 @@
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
- by mx.groups.io with SMTP id smtpd.web08.8224.1603360780763033132
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+ by mx.groups.io with SMTP id smtpd.web08.11717.1603377982305551594
  for <yocto@lists.yoctoproject.org>;
- Thu, 22 Oct 2020 02:59:41 -0700
+ Thu, 22 Oct 2020 07:46:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=gbg4ag6V;
- spf=pass (domain: gmail.com, ip: 209.85.217.43, mailfrom: nikhilvp29@gmail.com)
-Received: by mail-vs1-f43.google.com with SMTP id u7so506826vsq.11;
-        Thu, 22 Oct 2020 02:59:40 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=JvWD+B5d;
+ spf=pass (domain: gmail.com, ip: 209.85.210.45, mailfrom: mr.nuke.me@gmail.com)
+Received: by mail-ot1-f45.google.com with SMTP id h62so1691028oth.9
+        for <yocto@lists.yoctoproject.org>; Thu, 22 Oct 2020 07:46:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DOM5jlMP+gMVjhx+Jq45MeM46zYGj8620xYbY39V5IQ=;
-        b=gbg4ag6VSjEy4XteHcH09/+5MOHzoYzr7bp1fRNR6clv4BakeoNxHAHpv5apY4eIKh
-         CxlvyTaK6GladunjiSg9fGPaUc5A6cF5ESxhHYe5qGpW+S+fd6XoL2UdZTAnK7fglo0I
-         3rY22R+r6P4DzeUeQjroTEWNdbWgRmH43KGyb1odT77SuQKP6XqP/3bhcuUdrjWFFESg
-         ptBI8i2dpZrpLmgYvRt7NgDmdjuccK2N+kVsFGTbCZHcIEihjm/cGKSK0TQf1j1YG/vn
-         IzzvdxqlQ5T8ZXl0t8A6PiSu3X6xfSdWU4vBrIHlYOh2mTOud696cdrDQtamXDr2wTVQ
-         Is2w==
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=A1cKse2sJzv0SGRzAIFj/QFgwsdV/cFHTsKx7+UlQvQ=;
+        b=JvWD+B5dHrshKjjCHGhA63RwJxOwUWMbwBpDB7MnNiv3mc0uzRZ6pRamBTTanWediT
+         uFRC0k53lLwvhoXK6rjeTkc7b8LuHrGRqyocVjj+idIx6yaTW8lJrEKmF/CMuX+HlxYs
+         y8BjfudaWLSIjJduTdxEXODYh4W9/GNlXlwXxzk6AZJskuU8RJJ6kegrPwcIx9Y3edMD
+         5JHrmMzH5gbyxRDThKcuBu/Kgnk7mFAl9HfwGShvN1kHnEHoV4A1nkbfT//6D3GPyYLU
+         ry9+nq4uKdpIg4dPQAHFLSejD3RSFWhU4FkV016A/QLlPOwdgLVDHoxXJ9cs2huvUQAB
+         UwCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DOM5jlMP+gMVjhx+Jq45MeM46zYGj8620xYbY39V5IQ=;
-        b=YhXELm+FjjZkpKZhUAihW3sKeIYOu298v3z3sbGoLzz5AWc0yFsVHo5ryiEYX0osa/
-         rRRJ/4GqoyLfKXTNioPKVbb/g3kV48YKIxZsG5Q6pldttS/eilRz4uR3ho4bOcvGzj9q
-         Lxtx6CPBXjd7A1lqyV1rtmuFPxlfK3VNe7kUq6+Ip5NAsVf1m2GYB4D77aFTRsXJKfna
-         ROf0Y4wwDdPN0hPxBTZkC9NC8mIuGBEIEb9FIq9yQrC4lmD2srH7pN5r4NP5i0LSoNlB
-         NDE/AiHbdfW1x3C4wvc1OFREbzd+ApSTpEhvtlAz9h7P4IDXd0dRggMQrcwKRprUJJj8
-         AHew==
-X-Gm-Message-State: AOAM533fElw+bKNGoLvJIFmgjP2TiXMgZO87Tp+B3dwfMJXzWEUGUVDm
-	WOSGKbrC0zpjpxaVodTAnBO4axMnE2LXn4TubDw=
-X-Google-Smtp-Source: ABdhPJya6xG0+g5xQiC467wBw+ZKLcAVTP+6cwYpT3awS6K+kwBOleymigPLUGbL0zIjzs31+HGhtwt20Tw54UaZqio=
-X-Received: by 2002:a67:c11d:: with SMTP id d29mr744911vsj.23.1603360779771;
- Thu, 22 Oct 2020 02:59:39 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=A1cKse2sJzv0SGRzAIFj/QFgwsdV/cFHTsKx7+UlQvQ=;
+        b=kpu4XnxlClz93T66veSSPR83xSkWuxyEh4Z5uYSCtZ5ddNjS2Mtbxfi+L1koJhSPpS
+         RM54MBPE+KtBsDfFnh+nbuE0tXYQkVRrj/FGXVuD4gDo8TmF6BpCJrUOK1ik/pInXaWH
+         ZO9mKwjO++UTJrjaksTzwX0GpyPB1GTYN1LyU/Odv1q9m+fBRaB81/CwtRBIWAyEkRUW
+         qTcoIhUryVaA3rMu7prTrvEpk/s31/KkGSjlqy3SIsDR7zE0UXTu8ceY6TfGEQlnq3Eq
+         kZ/YDN+HjXwKKk1gfOyGImiOTEAdybogmygjkHlgPNF6K/yXHdIvSkQm7uDOSshlmshG
+         mSKQ==
+X-Gm-Message-State: AOAM531MHypiE8jAtl3NfMmv5IO/+Ca2XxHNvcrX8HwVeXfd8uYNGtcP
+	HWCTeqW745veev0itsLhVgI3ZY+znXPjcA==
+X-Google-Smtp-Source: ABdhPJxWE8s+vfOpeVTh9k6IXrxqkg4CLXaWqVsNXU0vGb+CnZbXtvQlrT/H0Rk3Zkpc/86iT68Ceg==
+X-Received: by 2002:a05:6830:113:: with SMTP id i19mr1962362otp.263.1603377981338;
+        Thu, 22 Oct 2020 07:46:21 -0700 (PDT)
+Return-Path: <mr.nuke.me@gmail.com>
+Received: from nuclearis2-1.gtech (c-98-195-139-126.hsd1.tx.comcast.net. [98.195.139.126])
+        by smtp.gmail.com with ESMTPSA id j21sm450708otq.18.2020.10.22.07.46.20
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Oct 2020 07:46:20 -0700 (PDT)
+Subject: Re: [yocto] How to assemble FIT images with linux and OPTEE?
+To: yocto@lists.yoctoproject.org
+References: <163E31BAB70D36EC.4805@lists.yoctoproject.org>
+From: "Alex G." <mr.nuke.me@gmail.com>
+Message-ID: <872912d8-26b7-5791-5111-c079e19d2a6a@gmail.com>
+Date: Thu, 22 Oct 2020 09:46:20 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-References: <CAJw=dJ_LgOdKN8OLccHU8+37m_zfTYxoQ3ev93DYiqxog6Z9gQ@mail.gmail.com>
- <CANNYZj-8XTh9=r=nU8oV0A_qLJO7MpTPDp9PLfnibDSNdwnWwQ@mail.gmail.com>
-In-Reply-To: <CANNYZj-8XTh9=r=nU8oV0A_qLJO7MpTPDp9PLfnibDSNdwnWwQ@mail.gmail.com>
-From: "NIKHIL PATIL" <nikhilvp29@gmail.com>
-Date: Thu, 22 Oct 2020 15:29:28 +0530
-Message-ID: <CAJw=dJ91VCXT=L+S4v9g9bFVzSCDuDOjSeMdKdVs3zboOSoC3g@mail.gmail.com>
-Subject: Re: [yocto] Included conf files in our receipes.
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: yocto+help@lists.yoctoproject.org, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000b9a2f505b23f85b2"
+In-Reply-To: <163E31BAB70D36EC.4805@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
---000000000000b9a2f505b23f85b2
-Content-Type: text/plain; charset="UTF-8"
+On 10/15/20 9:46 AM, Alex G. via lists.yoctoproject.org wrote:
+> Hi,
+> 
+> I'm trying to write a recipe for a secure boot flow. It would look 
+> something like this:
+> 
+>      images {
+>          optee@1 { "path/to/tee.bin" }
+>          linux@2 { "path/to/zImage" }
+>          fdt@board { ... }
+>      }
+>      configurations {
+>          secure {
+>              kernel = "optee@1";
+>              loadables = "linux@2";
+>              fdt = "fdt@board";
+>          }
+>      }
 
-Hi ,
-      1) U mean that , i need to create  for eg. *core-image-nikhil.bb
-<http://core-image-nikhil.bb> *and inside that i need to give
-IMAGE_INSTALL_APPEND = "minicom"  right ?
+Hi,
 
-      2) Before we are including meta layers in bblayer.conf  .  *but any
-other file so we can include our new meta layers (for eg . meta-test ) * ?
+A quick follow-up. Was wondering if anyone has had to bundle OPTEE and 
+linux before.
 
+Alex
 
-On Thu, Oct 22, 2020 at 3:09 PM Alexander Kanavin <alex.kanavin@gmail.com>
-wrote:
-
-> You should make a new image recipe, and define what goes into it there.
->
+> 
+> I've tried to "inherit kernel-fitimage", but soon learned of a couple of 
+> limitations:
+>      * images: No way to add an optee binary
+>      * configurations: No way to add a "loadables"
+> 
+> Secondly, since this approach would use files from several packages, I 
+> think it would be better to have the recipe separate from the kernel 
+> build. Bot how would I use files from another recipe? All I could figure 
+> out was to first put them in ${DEPLOY_DIR_IMAGE}.
+> 
+> What would be the "correct" way to write such a recipe?
+> 
 > Alex
->
-> On Thu, 22 Oct 2020 at 11:03, NIKHIL PATIL <nikhilvp29@gmail.com> wrote:
->
->> Hi Team ,
->>        We are using yocto sdk for intel leafhill board. For our
->> development purpose we are changing in local.conf. (for eg.  if i want
->> minicom package means we are doing IMAGE_INSTALL_APPEND += "minicom" ).
->>        But , As per requirement we dont want these ( means adding in
->> local.conf and bblayer.conf ) , so every needed packages (eg. minicom)  how
->> we can add packages in our meta-layer (like eg. meta-test ) . so all
->> required packages will come with our core image .
->>
->>    *how we can achieve these ?*
->>
->> 
->>
->>
-
---000000000000b9a2f505b23f85b2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi ,<div>=C2=A0 =C2=A0 =C2=A0 1) U mean that , i need to c=
-reate=C2=A0 for eg. <b><a href=3D"http://core-image-nikhil.bb">core-image-n=
-ikhil.bb</a> </b>and inside that i need to give IMAGE_INSTALL_APPEND =3D &q=
-uot;minicom&quot;=C2=A0 right ?</div><div><br></div><div>=C2=A0 =C2=A0 =C2=
-=A0 2) Before we are including meta layers in bblayer.conf=C2=A0 .=C2=A0 <=
-b>but any other file so we can include our new meta layers (for eg . meta-t=
-est )=C2=A0</b>=C2=A0?</div><div>=C2=A0 =C2=A0=C2=A0<br><table cellpadding=
-=3D"0" class=3D"gmail-cf gmail-ix" style=3D"border-collapse:collapse;table=
--layout:fixed;width:803px"></table><table cellpadding=3D"0" class=3D"gmail-=
-cf gmail-gJ" style=3D"border-collapse:collapse;margin-top:0px;width:auto;fo=
-nt-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:14px;lett=
-er-spacing:0.2px;display:block"></table></div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 22, 2020 at 3:09 =
-PM Alexander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kan=
-avin@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex"><div dir=3D"ltr"><div>You should make a new image recipe, and=
- define what goes into it there.</div><div><br></div><div>Alex<br></div></d=
-iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Thu, 22 Oct 2020 at 11:03, NIKHIL PATIL &lt;<a href=3D"mailto:nikhilvp29@gm=
-ail.com" target=3D"_blank">nikhilvp29@gmail.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Team ,<d=
-iv>=C2=A0 =C2=A0 =C2=A0 =C2=A0We are using yocto sdk for intel leafhill boa=
-rd. For our development purpose we are changing in local.conf. (for eg.=C2=
-=A0 if i want minicom package means we are doing IMAGE_INSTALL_APPEND +=3D=
- &quot;minicom&quot; ).</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0But , As per r=
-equirement we dont=C2=A0want these ( means adding in local.conf and bblayer=
-.conf ) , so every needed packages (eg. minicom)=C2=A0 how we can add packa=
-ges in our meta-layer (like eg. meta-test ) . so all required packages will=
- come with our core image .=C2=A0</div><div>=C2=A0</div><div>=C2=A0 =C2=A0<=
-b>how we can achieve these ?</b></div></div>
-<br>
-<br>
-<br>
-</blockquote></div>
-</blockquote></div>
-
---000000000000b9a2f505b23f85b2--
+> 
+> 
+> 
+> 
