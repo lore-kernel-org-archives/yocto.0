@@ -1,64 +1,71 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.6144.1603347068170358110
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
+ by mx.groups.io with SMTP id smtpd.web11.7546.1603357371396352771
  for <yocto@lists.yoctoproject.org>;
- Wed, 21 Oct 2020 23:11:08 -0700
+ Thu, 22 Oct 2020 02:02:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=NhH8UJdP;
- spf=none, err=SPF record not found (domain: optimcloud.com, ip: 198.145.29.25, mailfrom: yocto@optimcloud.com)
-Received: from mx02.optimcloud.com (mx02.optimcloud.com [46.23.93.22])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 000B038C1143
-	for <yocto@yoctoproject.org>; Wed, 21 Oct 2020 23:11:06 -0700 (PDT)
-Received: from mx02.optimcloud.com (localhost [127.0.0.1])
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTP id 07a2f35b;
-	Thu, 22 Oct 2020 08:11:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=date
-	:subject:message-id:from:to:in-reply-to:mime-version
-	:content-type:content-transfer-encoding; s=obsd; bh=XKIvZ1X1BIWX
-	pJy19yQ7pLYcGHAQHZz9vYuROpFThFI=; b=NhH8UJdPAqvRuokKoXqu6gJIVLyN
-	D1ehzEsHYNySTu5clIFO/6LwQPkS/pk5pEn9ThDTbxexRLDLQDgfIlAnziAgDA11
-	RtoBIdtVZZHiHs+sbljS3TSzOb98L/8HA50IJw/3vDQ5JjYV6P4UyIinUODrpxpF
-	Ra9vEHN2ZpcZbdINrBXaLt2Df8jCARwxCEBoeUpF1C7B8lzi9oLWXm6u+ofeTgdG
-	LfYxCWLJ0BUMGCoscVQzCqweuzfhBcI0msRolNZrYil5PpQ4Acd1EnKFZyjjSHp9
-	OEZ4RksYsHXJshQs7Q0sDsxgCT0f/wRgfLU3zJt2djEjQmlmKNjg0doS2g==
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=date
-	:subject:message-id:from:to:in-reply-to:mime-version
-	:content-type:content-transfer-encoding; q=dns; s=obsd; b=IiczxN
-	EKhGxSNKSqzd7oPNB/6NAgmQ5Gw5+DVnUVl1H8t6ByYwoOfrLISwlN46cVKNk/Uw
-	R3H/J/jaqyTSmsc2Mta7QN4xdovlt1KSxXfQEth4rynXaFSwG3vnqGajxaNOKA+W
-	7x7pTc5MaG6giqzKzfyIGmUBpQ+eadpj3JSnRhijX6/caxouG7yn1zWSCeH/ngT9
-	Ig/xqIQoNG6rjMh5ySKtRBIRv8nJlTeuF5y2gC/IMrqhqIHjAX9udBHXW+1A6M3B
-	AANpM+y1IZ1gfk2e1WfMYEBx2sngzya/Su6NwGn2dCtpQLCygorJEn9M9BiyDALn
-	OQO1uox0ZOeD1sZQ==
-Received: 
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTPSA id 2be4006b (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO) auth=yes user=yocto@optimcloud.com;
-	Thu, 22 Oct 2020 08:11:02 +0200 (CEST)
-Date: Thu, 22 Oct 2020 13:10:53 +0700
-Subject: Re: [yocto] readonly rootfs -> make files writable
-Message-ID: <onc77t8ekt75c6bdkfe9o3m9.1603347053766@optimcloud.com>
-From: "Yocto" <yocto@optimcloud.com>
-To: Marek Belisko <marek.belisko@gmail.com>, yocto <yocto@yoctoproject.org>
-In-Reply-To: <CAAfyv35LXFqRUd+cW-U2F0MPCCej5X=H7gf6Jkv9mNimtX6CvA@mail.gmail.com>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=lDHjrlVh;
+ spf=pass (domain: gmail.com, ip: 209.85.222.54, mailfrom: nikhilvp29@gmail.com)
+Received: by mail-ua1-f54.google.com with SMTP id f15so250956uaq.9;
+        Thu, 22 Oct 2020 02:02:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=rtF/OzMLuhObUQDtkBjYaNkomAzqh4gmZUBikzwQYVI=;
+        b=lDHjrlVhRpRkFGtEJlrXHrlS/5qMvXCOAZWuvU9qEhb+LrQkOpKPfRDb0awqEoufdy
+         RHCbvzeoTqyzP1jSk8TuMCHdqLnXfEKTKhWs/2yUppza4LNizH54oV7JLugXCNZ65C+D
+         ulLLng2KsOdE4O/ILrmGPVJOUzHoboKr/Fhe5vV/WQmyyKVw5UgE10BksecbCp8cGaYd
+         sNRYzD+xsVgVpL/Awp23xjH/O02gzh1wKoWuVov+WKPsyzBe8fWoS0vX1D71FfGG4EdA
+         Of4bCfy9hG8OtWsKYLspQpJcvzzLlq0zDBY2IpYCt0xeCEKYVN76LQ4RhyL4UVXlDKQs
+         oU6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=rtF/OzMLuhObUQDtkBjYaNkomAzqh4gmZUBikzwQYVI=;
+        b=KDy5pFmqLL0cVLjaa7K9EZtCIRoIONvNH6mrxo6m2Tjrv8rno/XyQdOZPU8CwM8ede
+         NQO4JiuPGAXCkfRkVgLnj4yn4AM6HTkIxOvQ7w1dC7mtZJJ3a4c3qwPFZsXeJRlk7Xle
+         J1J3bx5So8m0ZlHEmZHdo/56toNDiUT+TUZKHZh0tvF6RgJTFszbVIVavmcQtLINGqP1
+         P2zYJZ2wfh3yZ8e0UFmBtNAUQ7cqlakfKDN6n7O+rQe/umy+go+IaP4RBwvLccXf2uSg
+         7WFxFGEebTp2+HXjmSyhFjt+EQmjRDlyGgsjZPv92oLAzeLZ5HQc3YfuM/s68sIxeftg
+         pQ1Q==
+X-Gm-Message-State: AOAM532UIvEfhCFSINfHsantqh3fqiLJXbNAVpTvni+JaBl6vb9UTUr2
+	xsH59c4tI42/Gg6Jdip+r4RwL7BQ664aoOQgNwF66mTquF4=
+X-Google-Smtp-Source: ABdhPJwzckKFXNjXsFADah1vls5r0jBentP/DBSmE3WROdRPbPEYv1S4e4CcEOkgwiHNYWgdK39oQC3EUuQ+2UlHSKk=
+X-Received: by 2002:ab0:658c:: with SMTP id v12mr590749uam.39.1603357370115;
+ Thu, 22 Oct 2020 02:02:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+From: "NIKHIL PATIL" <nikhilvp29@gmail.com>
+Date: Thu, 22 Oct 2020 14:32:38 +0530
+Message-ID: <CAJw=dJ_LgOdKN8OLccHU8+37m_zfTYxoQ3ev93DYiqxog6Z9gQ@mail.gmail.com>
+Subject: Included conf files in our receipes.
+To: yocto+help@lists.yoctoproject.org, yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000007e6a5c05b23eba17"
 
-CgoKClNlbnQgdmlhIEJsYWNrQmVycnkgSHViKyBJbmJveCBmb3IgQW5kcm9pZAoKCgnCoCBPcmln
-aW5hbCBNZXNzYWdlIMKgCQoKCkZyb206IG1hcmVrLmJlbGlza29AZ21haWwuY29tClNlbnQ6IE9j
-dG9iZXIgMjIsIDIwMjAgMTI6NTMKVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcKU3ViamVjdDog
-W3lvY3RvXSByZWFkb25seSByb290ZnMgLT4gbWFrZSBmaWxlcyB3cml0YWJsZQoKCkhpLAoKSSdt
-IHVzaW5nIHRoZSByZWFkLW9ubHkgcm9vdGZzIGZlYXR1cmUgb24gbXkgc3lzdGVtLCBidXQgZm9y
-IHNvbWUKcGFja2FnZXMgd2hpY2ggSSdtIGludGVncmF0aW5nIGl0IG1ha2VzIHRyb3VibGUuIEkg
-dXNlZCB2b2xhdGlsZS1iaW5kcwpyZWNpcGUgdG8gbW91bnQgY2hhbmdlcyBpbiBvdmVybGF5ZnMg
-KG9uIG90aGVyIHBhcnRpdGlvbikgYnV0IGFmdGVyCnJlYm9vdCBmaWxlcyBhcmUgbG9zdCAod2hl
-biBtb3VudCB2b2xhdGlsZSBkaXJlY3RvcnkpLiBBbm90aGVyCmFwcHJvYWNoIHdoaWNoIGNhbWUg
-dG8gbXkgbWluZCBpcyB0byBzeW1saW5rIGFsbCBmaWxlcy9kaXJzIHRvIG90aGVyCnBhcnRpdGlv
-bnMgYnV0IHRvIG1lIGl0IGxvb2tzIGxpa2Ugb3ZlcmtpbGwuIEV4aXN0cyB0aGVyZSBzb21lIG90
-aGVyCm1lY2hhbmlzbSBJIGNhbiB1c2UgdG8ga2VlcCBmaWxlIHByZXNlcnZlZCBhbmQgc3RpbGwg
-aGF2ZSByZWFkb25seQpyb290ZnMgZnVuY3Rpb25hbGl0eT8KClRoYW5rcyBhbmQgQlIsCgpTb3Vu
-ZHMgbGlrZSBvcy10cmVlIGNvdWxkIGJlIGEgZ29vZCBvcHRpb24gaGVyZSB3aXRoIGltbXV0YWJs
-ZSByb290ZnMKCgptYXJlawoKLS0KYXMgc2ltcGxlIGFuZCBwcmltaXRpdmUgYXMgcG9zc2libGUK
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpNYXJlayBC
-ZWxpc2tvIC0gT1BFTi1OQU5EUkEKRnJlZWxhbmNlIERldmVsb3BlcgoKUnVza2EgTm92YSBWZXMg
-MjE5IHwgUHJlc292LCAwODAwNSBTbG92YWsgUmVwdWJsaWMKVGVsOiArNDIxIDkxNSAwNTIgMTg0
-CnNreXBlOiBtYXJla3doaXRlCnR3aXR0ZXI6ICNvcGVubmFuZHJhCndlYjogaHR0cDovL29wZW4t
-bmFuZHJhLmNvbQoKCgoK
+--0000000000007e6a5c05b23eba17
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Team ,
+       We are using yocto sdk for intel leafhill board. For our development
+purpose we are changing in local.conf. (for eg.  if i want minicom package
+means we are doing IMAGE_INSTALL_APPEND += "minicom" ).
+       But , As per requirement we dont want these ( means adding in
+local.conf and bblayer.conf ) , so every needed packages (eg. minicom)  how
+we can add packages in our meta-layer (like eg. meta-test ) . so all
+required packages will come with our core image .
+
+   *how we can achieve these ?*
+
+--0000000000007e6a5c05b23eba17
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Team ,<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0We are using yoct=
+o sdk for intel leafhill board. For our development purpose we are changing=
+ in local.conf. (for eg.=C2=A0 if i want minicom package means we are doing=
+ IMAGE_INSTALL_APPEND +=3D &quot;minicom&quot; ).</div><div>=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0But , As per requirement we dont=C2=A0want these ( means addin=
+g in local.conf and bblayer.conf ) , so every needed packages (eg. minicom)=
+=C2=A0 how we can add packages in our meta-layer (like eg. meta-test ) . so=
+ all required packages will come with our core image .=C2=A0</div><div>=C2=
+=A0</div><div>=C2=A0 =C2=A0<b>how we can achieve these ?</b></div></div>
+
+--0000000000007e6a5c05b23eba17--
