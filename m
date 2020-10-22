@@ -1,150 +1,150 @@
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
- by mx.groups.io with SMTP id smtpd.web11.1412.1603392659863260966
+Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
+ by mx.groups.io with SMTP id smtpd.web09.24.1603402631792673098
  for <yocto@lists.yoctoproject.org>;
- Thu, 22 Oct 2020 11:51:00 -0700
+ Thu, 22 Oct 2020 14:37:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=XTTp3P5o;
- spf=pass (domain: gmail.com, ip: 209.85.221.175, mailfrom: nikhilvp29@gmail.com)
-Received: by mail-vk1-f175.google.com with SMTP id y10so614686vkl.5;
-        Thu, 22 Oct 2020 11:50:59 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=AD1OWGbM;
+ spf=pass (domain: gmail.com, ip: 209.85.218.65, mailfrom: martin.jansa@gmail.com)
+Received: by mail-ej1-f65.google.com with SMTP id c15so4526000ejs.0
+        for <yocto@lists.yoctoproject.org>; Thu, 22 Oct 2020 14:37:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=i1SHvYbUBFl6QW9r8iV1cIsyf/x/OzuglQrl6yLfXmQ=;
-        b=XTTp3P5ozy7xE4MKx9A0uu9WJ5z7aKwytOSn5kb5WCpnC43q2YqtUZI8XIcws8zfvB
-         KNnABosG0rk4T4mhxsiaz6b5Gaj/UOFo7Ski7losZX0toht3pATWhdzPv4yW/WYZ5rpW
-         pnXzn9o6G1WSWJ5J/5ZNno5Nk8PUBmB5XRswvQbdVkIwCp/HRQ4wHUddWiHVJcLLfAMt
-         HSOwJFKmKCdon7jJx3ONs8bKu6dG56s1HXLeAriQBvqcNX1orxGETDb1kQki/KaMPwAo
-         BiWcaeb3boe2q8ZaHqU0lGLIJ5KF+j44O5mjCV+c1vIincafld4gr96EsOw+AuXJljjy
-         bGgw==
+        bh=bIRfR1gc4T/RybYsh65SnZo+1zX3T7c/Dy8bUh8SVeo=;
+        b=AD1OWGbM/fbQH6CoKuY2zstraT9E+EKEx8dmpa17Q66y4V2QJoAHSqXT7H9Z7wgHQp
+         9kdNfN8AlwoYDJ1B/FMQwMKCA/AYTKE5ACSowWDz3hIi7cCUNpqzZuR8vN7nqQLWo0un
+         JlfkkPcGOWT5KaOAR8cZE+/uuLN8BQP6RbvUllRlacB0A4dZmWdCXkZZikArjWqWXxP1
+         Ji9kZMs+0g+tySWY58AFm5ZumHeOedY+v+xkDhneB6BTFseZorv7o/R2w3zAe5j3Qg5p
+         AC50cXfzy8RlWMtw0kqYw3NHVQHfLWfNhTqMwflPsA0MPk9sDSmmcrBOlHrjDTOVwTGC
+         AGTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=i1SHvYbUBFl6QW9r8iV1cIsyf/x/OzuglQrl6yLfXmQ=;
-        b=NhU9tsuyzAdrGqdKwVUbApvsBjOqqEenyT1R4cKx2qz0rJ0FNzoi/ytYEOXdXAiYj1
-         6JB2GIWYzrZGp5Ns3tTZ6vvnA9pa7/gElk/H6qU1vBTe0UEBf/6QzkJKFuVzE1R6Hvbi
-         r8zsRCizeOIxHrH29T3ANOpqK+ifRAi9qYZorlJjRz2S6aX/auGqGe7GQvPeuVp0TYRL
-         zUQWNuoKo3HswcXbEXB3NNgtFYKrsuas5UKQIW/nP+tFocvgvsMM92y5R1+gHRItHhyR
-         xl65CalNntCsz6poap3HStMFLxYgMpfMX3eEbXpyknD5mhUXkrLV1EVJugmbhoG/EpJ3
-         su0Q==
-X-Gm-Message-State: AOAM531OAqwerRppEYHg93t1hMSr5nm39dVON9RXAWm9V0vmQGuQs4nU
-	L9/EcAmelF+yBUrwCnhkENYjg6IYwtlQJhllKdI=
-X-Google-Smtp-Source: ABdhPJwYaq86zD5YMAt2dekGEErdM0EfqD5DACO+QR6eSgvV0fAsksnzW2HZwuUh1fvPCU7FoM+IQ3/B55A05YwhO0Y=
-X-Received: by 2002:a1f:3655:: with SMTP id d82mr3122233vka.22.1603392658792;
- Thu, 22 Oct 2020 11:50:58 -0700 (PDT)
+        bh=bIRfR1gc4T/RybYsh65SnZo+1zX3T7c/Dy8bUh8SVeo=;
+        b=Hwxe5BPP1uBW4e7opfMfuAjzU0pvFZ4e3dStluT6i+99xtm+jO135y8bvxvj4mfGAh
+         W0fGeFiZ4BW9DSLxEkcJWG/hajFYSvHpj5YXuHP8TshezLRYrRBf/k9+iwxp0lSEpCDq
+         X8fh8ifpX+vdcxKrB37upvgghf3BdnMxqTIXOkIHMTnAtXjVGtjVZ7m/nGHbzH8W9wgV
+         DXKgfeywtsqUo8mrhHujr3m94JXH4KR/tzVzVFOicVS8XMuvQybwaiZ9u17K8SpHNl2n
+         0FIy/1gjBF1RlS5nFq40H8KGZGhkE8xEGV0ae19BLbUxzZ1/w6dw4/6GHTZBLNULeBqC
+         lknA==
+X-Gm-Message-State: AOAM533tK7nTvQqQvRxHcielFPmdtzG0Nokse9n5NaPKLSpzjASg+IGO
+	WlHyolHVCBplgEbEFJsU8vVlFIKjfu+LTkAq/Pw=
+X-Google-Smtp-Source: ABdhPJxW/VdRrYpDmGlJ9NrbYbv2Sjz9Y/SA6kPt/0P6tiOu2CVUisH8Kkmt+uhzH+T1tx6m+usmiLoUF+EOFgTyWDE=
+X-Received: by 2002:a17:906:a454:: with SMTP id cb20mr4433273ejb.137.1603402630145;
+ Thu, 22 Oct 2020 14:37:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAJw=dJ_LgOdKN8OLccHU8+37m_zfTYxoQ3ev93DYiqxog6Z9gQ@mail.gmail.com>
- <CANNYZj-8XTh9=r=nU8oV0A_qLJO7MpTPDp9PLfnibDSNdwnWwQ@mail.gmail.com> <16404822B4B906DE.30171@lists.yoctoproject.org>
-In-Reply-To: <16404822B4B906DE.30171@lists.yoctoproject.org>
-From: "NIKHIL PATIL" <nikhilvp29@gmail.com>
-Date: Fri, 23 Oct 2020 00:20:47 +0530
-Message-ID: <CAJw=dJ8LyrwA=JNJ4V38mB_RLA_8_7ZJwO1jQmz7+PONqTH4HQ@mail.gmail.com>
-Subject: Re: [yocto] Included conf files in our receipes.
-To: Nikhil Patil <nikhilvp29@gmail.com>
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>, yocto+help@lists.yoctoproject.org, 
-	yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000dce50c05b246f176"
+References: <CANx9H-DFtcdnZwDqHEPg4t5ySyJe++KS8hO9QDFX5r31KLz3Ww@mail.gmail.com>
+In-Reply-To: <CANx9H-DFtcdnZwDqHEPg4t5ySyJe++KS8hO9QDFX5r31KLz3Ww@mail.gmail.com>
+From: "Martin Jansa" <Martin.Jansa@gmail.com>
+Date: Thu, 22 Oct 2020 23:36:59 +0200
+Message-ID: <CA+chaQfL9RtRiJYph7=yGxMrgoiOPRovdfJOPf524vXY-bD7aQ@mail.gmail.com>
+Subject: Re: [OE-core] Let me tell you how I really feel. Zero filter. If you need meta-python2, you need to become a maintainer. Immediately. Period.
+To: Tim Orling <ticotimo@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	openembedded-core <openembedded-core@lists.openembedded.org>, 
+	"openembedded-devel@lists.openembedded.org" <Openembedded-devel@lists.openembedded.org>
+Content-Type: multipart/alternative; boundary="00000000000033ae5205b249441b"
 
---000000000000dce50c05b246f176
+--00000000000033ae5205b249441b
 Content-Type: text/plain; charset="UTF-8"
 
-Hi ,
-    Where we can add new meta layers instead of bblayers.conf ? Is there
-any other file is there to add meta layers ?
+There were only a few changes needed between dunfell and gatesgarth to keep
+it building and I feel guilty for sending half of them - and pinging you on
+FB :).
 
-On Thu, Oct 22, 2020 at 3:29 PM NIKHIL PATIL via lists.yoctoproject.org
-<nikhilvp29=gmail.com@lists.yoctoproject.org> wrote:
+I don't have interest in python2, but it's still used by quite a few
+components included in other layers are care about (e.g. qtwebengine in
+meta-qt5, chromium in meta-browser -
+https://bugs.chromium.org/p/chromium/issues/detail?id=942720 is still quite
+far from finished) and at LGE we maintain meta-ros
+https://github.com/ros/meta-ros which contains support for ROS 1 Melodic
+which is usually used with python2 and support ends May 2023 (together with
+Ubuntu Bionic it's usually used with: http://wiki.ros.org/Distributions -
+just today I've separated meta-ros-python2 layer with python2 recipes which
+disappeared from oe-core in warrior and were never re-introduced in
+meta-python2 (like nose and numpy).
 
-> Hi ,
->       1) U mean that , i need to create  for eg. *core-image-nikhil.bb
-> <http://core-image-nikhil.bb> *and inside that i need to give
-> IMAGE_INSTALL_APPEND = "minicom"  right ?
+If you're looking for someone just keeping it buildable, then you can sign
+me up. If it gets more annoying to maintain in future we can also split it
+for pythonnative.bbclass and python recipe itself - to keep just the bare
+minimum of recipes which are actively being used without all the other junk.
+
+Cheers,
+
+On Wed, Oct 21, 2020 at 2:48 AM Tim Orling <ticotimo@gmail.com> wrote:
+
+> I have absolutely no need for python2, I made this abundantly clear when I
+> created the meta-python2 layer.
 >
->       2) Before we are including meta layers in bblayer.conf  .  *but any
-> other file so we can include our new meta layers (for eg . meta-test ) * ?
+> If you depend upon continuing support of python2 via the meta-python2
+> layer, this is your call to arms.
 >
+> I was originally intending to abdicate any support after the 3.1 "dunfell"
+> release, but managed to somehow continue supporting it into the crest of
+> the 3.2 "gatesgarth" release.
 >
-> On Thu, Oct 22, 2020 at 3:09 PM Alexander Kanavin <alex.kanavin@gmail.com>
-> wrote:
+> I will stop all support and actively refuse lo respond to any emails and
+> this layer will be dead and I have zero care in the world that it stops
+> being useful. I do not use it. I do not depend upon it. You are not paying
+> me to do this. You cannot pay me enough to do this. Period. Support
+> yourself.
 >
->> You should make a new image recipe, and define what goes into it there.
->>
->> Alex
->>
->> On Thu, 22 Oct 2020 at 11:03, NIKHIL PATIL <nikhilvp29@gmail.com> wrote:
->>
->>> Hi Team ,
->>>        We are using yocto sdk for intel leafhill board. For our
->>> development purpose we are changing in local.conf. (for eg.  if i want
->>> minicom package means we are doing IMAGE_INSTALL_APPEND += "minicom" ).
->>>        But , As per requirement we dont want these ( means adding in
->>> local.conf and bblayer.conf ) , so every needed packages (eg. minicom)  how
->>> we can add packages in our meta-layer (like eg. meta-test ) . so all
->>> required packages will come with our core image .
->>>
->>>    *how we can achieve these ?*
->>>
->>>
->>>
->>>
+> If this is not clear enough, I am happy to have a virtual video call with
+> you that you will not like.
+>
+> --moto-timo
+>
 > 
 >
 >
 
---000000000000dce50c05b246f176
+--00000000000033ae5205b249441b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi ,<div>=C2=A0 =C2=A0 Where we can add new meta layers in=
-stead=C2=A0of bblayers.conf ? Is there any other file is there to add meta =
-layers ?</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Thu, Oct 22, 2020 at 3:29 PM NIKHIL PATIL via <a href=
-=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a> &lt;nikhilvp=
-29=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org">gmail.com@lists.yo=
-ctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex"><div dir=3D"ltr">Hi ,<div>=C2=A0 =C2=A0 =C2=A0 1) U mean that=
- , i need to create=C2=A0 for eg. <b><a href=3D"http://core-image-nikhil.bb=
-" target=3D"_blank">core-image-nikhil.bb</a> </b>and inside that i need to =
-give IMAGE_INSTALL_APPEND =3D &quot;minicom&quot;=C2=A0 right ?</div><div><=
-br></div><div>=C2=A0 =C2=A0 =C2=A0 2) Before we are including meta layers i=
-n bblayer.conf=C2=A0 .=C2=A0 <b>but any other file so we can include our ne=
-w meta layers (for eg . meta-test )=C2=A0</b>=C2=A0?</div><div>=C2=A0 =C2=
-=A0=C2=A0<br><table cellpadding=3D"0" style=3D"border-collapse:collapse;ta=
-ble-layout:fixed;width:803px"></table><table cellpadding=3D"0" style=3D"bor=
-der-collapse:collapse;margin-top:0px;width:auto;font-family:Roboto,RobotoDr=
-aft,Helvetica,Arial,sans-serif;font-size:14px;letter-spacing:0.2px;display:=
-block"></table></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
-class=3D"gmail_attr">On Thu, Oct 22, 2020 at 3:09 PM Alexander Kanavin &lt;=
-<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.kanavin@gm=
-ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex"><div dir=3D"ltr"><div>You should make a new image recipe, and define=
- what goes into it there.</div><div><br></div><div>Alex<br></div></div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 22=
- Oct 2020 at 11:03, NIKHIL PATIL &lt;<a href=3D"mailto:nikhilvp29@gmail.com=
-" target=3D"_blank">nikhilvp29@gmail.com</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Team ,<div>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0We are using yocto sdk for intel leafhill board. F=
-or our development purpose we are changing in local.conf. (for eg.=C2=A0 if=
- i want minicom package means we are doing IMAGE_INSTALL_APPEND +=3D &quot;=
-minicom&quot; ).</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0But , As per requirem=
-ent we dont=C2=A0want these ( means adding in local.conf and bblayer.conf )=
- , so every needed packages (eg. minicom)=C2=A0 how we can add packages in =
-our meta-layer (like eg. meta-test ) . so all required packages will come w=
-ith our core image .=C2=A0</div><div>=C2=A0</div><div>=C2=A0 =C2=A0<b>how w=
-e can achieve these ?</b></div></div>
-<br>
-<br>
-<br>
-</blockquote></div>
-</blockquote></div>
+<div dir=3D"ltr">There were only a few changes needed between dunfell and g=
+atesgarth to keep it building and I feel guilty for sending half of them - =
+and pinging you on FB :).<div><br></div><div>I don&#39;t have interest in p=
+ython2, but it&#39;s still used by quite a few components included in other=
+ layers are care about (e.g. qtwebengine in meta-qt5, chromium in meta-brow=
+ser -=C2=A0<a href=3D"https://bugs.chromium.org/p/chromium/issues/detail?id=
+=
+=3D942720">https://bugs.chromium.org/p/chromium/issues/detail?id=3D942720<=
+/a> is still quite far from finished) and at LGE we maintain meta-ros=C2=A0=
+<a href=3D"https://github.com/ros/meta-ros">https://github.com/ros/meta-ros=
+</a> which contains support for ROS 1 Melodic which is usually used with py=
+thon2 and support ends May 2023 (together with Ubuntu Bionic it&#39;s usual=
+ly used with: <a href=3D"http://wiki.ros.org/Distributions">http://wiki.ros=
+.org/Distributions</a> - just today I&#39;ve separated meta-ros-python2 lay=
+er with python2 recipes which disappeared from oe-core in warrior and were =
+never re-introduced in meta-python2 (like nose and numpy).</div><div><br></=
+div><div>If you&#39;re looking for someone just keeping it buildable, then =
+you can sign me up. If it gets more annoying to maintain in future we can a=
+lso split it for pythonnative.bbclass and python recipe itself - to keep ju=
+st the bare minimum of recipes which are actively being used without all th=
+e other junk.</div><div><br></div><div>Cheers,</div></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Oct 21, 2020 at=
+ 2:48 AM Tim Orling &lt;<a href=3D"mailto:ticotimo@gmail.com">ticotimo@gmai=
+l.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex"><div dir=3D"ltr">I have absolutely no need for python2, I made this ab=
+undantly clear when I created the meta-python2 layer.<div><br></div><div>If=
+ you depend upon continuing support of python2 via the meta-python2 layer, =
+this is your call to arms.</div><div><br></div><div>I was originally intend=
+ing to abdicate any support after the 3.1 &quot;dunfell&quot; release, but =
+managed to somehow continue supporting it into the crest of the 3.2 &quot;g=
+atesgarth&quot; release.</div><div><br></div><div>I will stop all support a=
+nd actively refuse lo respond to any emails and this layer will be dead and=
+ I have zero care in the world that it stops being useful. I do not use it.=
+ I do not depend upon it. You are not paying me to do this. You cannot pay =
+me enough to do this. Period. Support yourself.</div><div><br></div><div>If=
+ this is not clear enough, I am happy to have a virtual video call with you=
+ that you will not like.</div><div><br></div><div>--moto-timo</div></div>
 <br>
 <br>
 <br>
 </blockquote></div>
 
---000000000000dce50c05b246f176--
+--00000000000033ae5205b249441b--
