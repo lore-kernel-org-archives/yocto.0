@@ -1,217 +1,80 @@
-Received: from mail-ua1-f67.google.com (mail-ua1-f67.google.com [209.85.222.67])
- by mx.groups.io with SMTP id smtpd.web09.17413.1603570942805146951
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.17146.1603571057542198014
  for <yocto@lists.yoctoproject.org>;
- Sat, 24 Oct 2020 13:22:23 -0700
+ Sat, 24 Oct 2020 13:24:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=WAEYTS4P;
- spf=pass (domain: gmail.com, ip: 209.85.222.67, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f67.google.com with SMTP id q20so1655232uar.7
-        for <yocto@lists.yoctoproject.org>; Sat, 24 Oct 2020 13:22:22 -0700 (PDT)
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=qhuytA6o;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: alex.kanavin@gmail.com)
+Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id D057938C08C4
+	for <yocto@yoctoproject.org>; Sat, 24 Oct 2020 13:24:16 -0700 (PDT)
+Received: by mail-ej1-f65.google.com with SMTP id ce10so7481003ejc.5
+        for <yocto@yoctoproject.org>; Sat, 24 Oct 2020 13:24:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zXj+aCbeW7Oz3pnsElgHzpcmirexNOqC3yVTeCP3LPM=;
-        b=WAEYTS4PbLxZLSJf5Iv8708uc7wAmAIPPDIKFlL78Mdd2ghj4i3f522Y1aMl1zU6jC
-         XiOMUZl2LiglgMnuZxIlVgwhVaUwqefTggYnZDQ7gwO+rYxfLkUHW9flUBQaB2jkAMO+
-         NKfMAI+95FkFeAQrDTiTtPodQnSKLgyDpOOzJ/OzMmwmbafj1/qbQlYoNnt5i/LohrhZ
-         YROhf11aX0V+YTszxW/pGhw59iUD37M+/yk8AWDgJEYpiQ+3O6+gU+dj2WX6cE9xWclv
-         hFVub2DNUr22e0FV8H4nyjUK3iDwDq8oy6MDAv1yXMdo6G9jgmaz3Pc/OnisjvZApZr5
-         u1SQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1P23WFnfxzsTHFX3oD+WgPkC6/uRrhKb05l9X+eai2g=;
+        b=qhuytA6oXHCGiw8uHp2MQI4egF9UOsWWn54UsZhuyiXBlSdaa9Jw/3QysPjdMyznid
+         t1xYHXzEgckLQW7OVr3xlwSGw6jQmiqDPvsaMgwS9x3XjTw0E6fL+J6sBZEshpO+J6sy
+         gbB9fXTF0TcLLuiYANg7ZUelq+a3IMcUl1Mnwc6O2VnGDr1QWU9M6ADaZLO8/bWv0XNI
+         99W+7qFSab3iGi1vKYCcJu7VEULRgSUM9VsTlDmqyjxRK1f8kmmuenR8RyxYyovVuDPo
+         +QK4apnYL2uee9urxwInvQK9r3vCcJknxWvmCMOxmxw48AxDPso9jWQyNlnzsqQgKrpH
+         7YlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zXj+aCbeW7Oz3pnsElgHzpcmirexNOqC3yVTeCP3LPM=;
-        b=qHoo+V1EA3Ul4jtpOJQq6o+4cI+ajNoannUokUefud2OcklZ4/YYsoARVh55OOWC7+
-         MU+G7nShaU1uN0pqeLswm4vxEWPPc9wdHhmnDoykdH+GB3HXqIyt6fy6xnv/A0ZEJWkw
-         yNcUHaXYxROHzSFA+dziU60o/Uao/DQCJAL8nAIWtgYp3q3uTLjiJoVcjPIjsTLa2qob
-         hl6PYZ7G3rDRIVus4nmN8QnEKfdbZ3UNFNDWEXX8R00gbD8IsvqBNaF/4b94TzZFtwYt
-         u1F/sqnXjrBQh7UQjnxVofKw9v483UESYZm0j0njpH6PsvkbqHAh6ryx2bxqe0LqkISv
-         /IKg==
-X-Gm-Message-State: AOAM533MFnD9CdS5sPiKQDqP9f2iCZYYMOhMLwPNxxqaQvZjGl24+7fP
-	96Z3Fr5H4CV/snsJtdXMjOmjV45XlrEqwN6Qkp4=
-X-Google-Smtp-Source: ABdhPJxg4VP+SQPmo5lv8eUvERjtmPbqRcoj0r4zK5x7eTnjONAKAGuPNYqa+4aR7jhmBe4/1+M0UjQ4qAY9Qe9Jzzs=
-X-Received: by 2002:ab0:7143:: with SMTP id k3mr8450123uao.93.1603570942007;
- Sat, 24 Oct 2020 13:22:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <CANx9H-DFtcdnZwDqHEPg4t5ySyJe++KS8hO9QDFX5r31KLz3Ww@mail.gmail.com>
- <1640E842B1461A14.10923@lists.yoctoproject.org> <CAGAf8LwEANwgRoXr39xJ1BP5t3XYb9B_8Sf2fYBx_-CfiRAB9Q@mail.gmail.com>
-In-Reply-To: <CAGAf8LwEANwgRoXr39xJ1BP5t3XYb9B_8Sf2fYBx_-CfiRAB9Q@mail.gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1P23WFnfxzsTHFX3oD+WgPkC6/uRrhKb05l9X+eai2g=;
+        b=QkkQCpV9iwLurrCQmamHnMtbuut60hlx8dsFuHajRfR8QEjP4zXX48nUhYaYSrXomY
+         FatNMUdKqIyYfFV2wj7krJH/sWp2P2Hz4x0XBO0bTtmIn7dZfaQexVJZCpf3/o1ozqGW
+         7pRTo098NF+BhjoyuPt3gPD6pRW069cGxVlZeQ7iqB/OQmkFh8lOsEsQnEDmKupyUuTL
+         xMAl828rko5Plfvg+q9dw9KHF3qEs5RWSLgkADNw2Ag5NT9gm1YkrystgqS6xT+UPbce
+         gJcYTg/y0PH5tixGPMK7V0TF56iBbECOONm3dB2mVkp9u8rw7UzS9hgLZV6H52bJBlHY
+         6WOA==
+X-Gm-Message-State: AOAM531xt/p36NsF0WOEWbfjMahjHZ23GnEeGdb8u6zZTUMN+k1U/aaE
+	Jzy/F8hUOYCbYvyEYglNq4o=
+X-Google-Smtp-Source: ABdhPJxZ2SjPHn0nH30VxEAs8dyvtXjeCeqtfIduw3DC8Nd+FXn8vmRi06YiV8NJmWSeVXQccpP5Ew==
+X-Received: by 2002:a17:906:12cf:: with SMTP id l15mr8755769ejb.540.1603571055241;
+        Sat, 24 Oct 2020 13:24:15 -0700 (PDT)
+Received: from linux-f9zs.fritz.box ([2a02:2450:1011:4f7:596d:bf31:3950:5bda])
+        by smtp.gmail.com with ESMTPSA id p10sm2861316ejy.68.2020.10.24.13.24.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Oct 2020 13:24:14 -0700 (PDT)
 From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Sat, 24 Oct 2020 22:22:09 +0200
-Message-ID: <CANNYZj_g=0mt7d+f4Gu0HhmikgZ8M6gpGStZLtsDgRqSBXH+vQ@mail.gmail.com>
-Subject: Re: [yocto] Let me tell you how I really feel. Zero filter. If you need meta-python2, you need to become a maintainer. Immediately. Period.
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Cc: Tim Orling <ticotimo@gmail.com>, yocto@lists.yoctoproject.org, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	"openembedded-devel@lists.openembedded.org" <Openembedded-devel@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="0000000000005ede9a05b270747a"
-
---0000000000005ede9a05b270747a
-Content-Type: text/plain; charset="UTF-8"
-
-I am not complaining or bragging. I only want to set expectations, in
-public, and clearly. Otherwise some people will treat the project
-contributors as their unpaid contractors, and get upset when help is not
-given, or work is not done for them.
-
-Alex
-
-On Sat, 24 Oct 2020 at 19:38, Zoran Stojsavljevic <
-zoran.stojsavljevic@gmail.com> wrote:
-
-> Alex,
->
-> Either do it voluntarily, either do not.
->
-> Do not complain, or brag about it.
->
-> We all understand Open Source rules, or we do not, do we???
->
-> Thank you,
-> Zoran Stojsavljevic
-> _______
->
->
->
->
->
-> On Sat, Oct 24, 2020 at 12:54 PM Zoran via lists.yoctoproject.org
-> <zoran.stojsavljevic=gmail.com@lists.yoctoproject.org> wrote:
-> >
-> > > I have absolutely no need for python2, I made this abundantly
-> > > clear when I created the meta-python2 layer.
-> >
-> > WTH? Let me tell you how I really feel.
-> >
-> > I  have absolutely no need for python2, as well.
-> >
-> > > You are not paying me to do this. You cannot pay me enough
-> > > to do this. Period. Support yourself.
-> >
-> > What is the amount of cash for you, you'll consider it enough to
-> > do that???
-> >
-> > Better... What is the real message behind this/yours "announcement"?
-> >
-> > Thank you,
-> > Zoran
-> > _______
-> >
-> > On Wed, Oct 21, 2020 at 2:48 AM Tim Orling <ticotimo@gmail.com> wrote:
-> > >
-> > > I have absolutely no need for python2, I made this abundantly clear
-> when I created the meta-python2 layer.
-> > >
-> > > If you depend upon continuing support of python2 via the meta-python2
-> layer, this is your call to arms.
-> > >
-> > > I was originally intending to abdicate any support after the 3.1
-> "dunfell" release, but managed to somehow continue supporting it into the
-> crest of the 3.2 "gatesgarth" release.
-> > >
-> > > I will stop all support and actively refuse lo respond to any emails
-> and this layer will be dead and I have zero care in the world that it stops
-> being useful. I do not use it. I do not depend upon it. You are not paying
-> me to do this. You cannot pay me enough to do this. Period. Support
-> yourself.
-> > >
-> > > If this is not clear enough, I am happy to have a virtual video call
-> with you that you will not like.
-> > >
-> > > --moto-timo
-> > >
-> > >
-> >
-> > 
-> >
->
-
---0000000000005ede9a05b270747a
-Content-Type: text/html; charset="UTF-8"
+To: opkg-devel@googlegroups.com,
+	yocto@yoctoproject.org
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>
+Subject: [opkg-utils PATCH] update-alternatives: correctly match priority
+Date: Sat, 24 Oct 2020 22:24:05 +0200
+Message-Id: <20201024202405.27503-1-alex.kanavin@gmail.com>
+X-Mailer: git-send-email 2.28.0
+MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I am not complaining or bragging. I only want to set =
-expectations, in public, and clearly. Otherwise some people will treat the =
-project contributors as their unpaid contractors, and get upset when help i=
-s not given, or work is not done for them.</div><div><br></div><div>Alex<br=
-></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Sat, 24 Oct 2020 at 19:38, Zoran Stojsavljevic &lt;<a href=3D"mai=
-lto:zoran.stojsavljevic@gmail.com">zoran.stojsavljevic@gmail.com</a>&gt; wr=
-ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Alex,<br>
-<br>
-Either do it voluntarily, either do not.<br>
-<br>
-Do not complain, or brag about it.<br>
-<br>
-We all understand Open Source rules, or we do not, do we???<br>
-<br>
-Thank you,<br>
-Zoran Stojsavljevic<br>
-_______<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-On Sat, Oct 24, 2020 at 12:54 PM Zoran via <a href=3D"http://lists.yoctopr=
-oject.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.org</a><=
-br>
-&lt;zoran.stojsavljevic=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.o=
-rg" target=3D"_blank">gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br>
-&gt;<br>
-&gt; &gt; I have absolutely no need for python2, I made this abundantly<br=
->
-&gt; &gt; clear when I created the meta-python2 layer.<br>
-&gt;<br>
-&gt; WTH? Let me tell you how I really feel.<br>
-&gt;<br>
-&gt; I=C2=A0 have absolutely no need for python2, as well.<br>
-&gt;<br>
-&gt; &gt; You are not paying me to do this. You cannot pay me enough<br>
-&gt; &gt; to do this. Period. Support yourself.<br>
-&gt;<br>
-&gt; What is the amount of cash for you, you&#39;ll consider it enough to<=
-br>
-&gt; do that???<br>
-&gt;<br>
-&gt; Better... What is the real message behind this/yours &quot;announceme=
-nt&quot;?<br>
-&gt;<br>
-&gt; Thank you,<br>
-&gt; Zoran<br>
-&gt; _______<br>
-&gt;<br>
-&gt; On Wed, Oct 21, 2020 at 2:48 AM Tim Orling &lt;<a href=3D"mailto:tico=
-timo@gmail.com" target=3D"_blank">ticotimo@gmail.com</a>&gt; wrote:<br>
-&gt; &gt;<br>
-&gt; &gt; I have absolutely no need for python2, I made this abundantly cl=
-ear when I created the meta-python2 layer.<br>
-&gt; &gt;<br>
-&gt; &gt; If you depend upon continuing support of python2 via the meta-py=
-thon2 layer, this is your call to arms.<br>
-&gt; &gt;<br>
-&gt; &gt; I was originally intending to abdicate any support after the 3.1=
- &quot;dunfell&quot; release, but managed to somehow continue supporting it=
- into the crest of the 3.2 &quot;gatesgarth&quot; release.<br>
-&gt; &gt;<br>
-&gt; &gt; I will stop all support and actively refuse lo respond to any em=
-ails and this layer will be dead and I have zero care in the world that it =
-stops being useful. I do not use it. I do not depend upon it. You are not p=
-aying me to do this. You cannot pay me enough to do this. Period. Support y=
-ourself.<br>
-&gt; &gt;<br>
-&gt; &gt; If this is not clear enough, I am happy to have a virtual video =
-call with you that you will not like.<br>
-&gt; &gt;<br>
-&gt; &gt; --moto-timo<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
-</blockquote></div>
+It should always be at the end of string, otherwise something
+like "/usr/bin/python3.9-config 123" will erroneously match
+against priority 9.
 
---0000000000005ede9a05b270747a--
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+---
+ update-alternatives | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/update-alternatives b/update-alternatives
+index 1389b3f..e0b31bf 100644
+--- a/update-alternatives
++++ b/update-alternatives
+@@ -94,7 +94,7 @@ add_alt() {
+ 	local path=3D"$2"
+ 	local priority=3D"$3"
+ 	remove_alt $name $path
+-	if grep -qw "$priority" $ad/$name; then
++	if grep -qw "$priority"$ $ad/$name; then
+ 		echo "Warn: update-alternatives: $name has multiple providers with the=
+ same priority, please check $ad/$name for details"
+ 	fi
+ 	echo "$path $priority" >> $ad/$name
+--=20
+2.28.0
+
