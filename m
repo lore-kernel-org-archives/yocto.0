@@ -1,92 +1,185 @@
-Received: from mail-io1-f65.google.com (mail-io1-f65.google.com [209.85.166.65])
- by mx.groups.io with SMTP id smtpd.web11.10154.1603536840219411365
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+ by mx.groups.io with SMTP id smtpd.web10.10427.1603538379297363823
  for <yocto@lists.yoctoproject.org>;
- Sat, 24 Oct 2020 03:54:00 -0700
+ Sat, 24 Oct 2020 04:19:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=lsAPI3yK;
- spf=pass (domain: gmail.com, ip: 209.85.166.65, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-io1-f65.google.com with SMTP id q25so5086056ioh.4
-        for <yocto@lists.yoctoproject.org>; Sat, 24 Oct 2020 03:54:00 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=QlwVnPQx;
+ spf=pass (domain: gmail.com, ip: 209.85.222.50, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-ua1-f50.google.com with SMTP id 91so51176uar.5
+        for <yocto@lists.yoctoproject.org>; Sat, 24 Oct 2020 04:19:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=PtqGUiNJeSB+HP3MkEvurjxrr3Nw//IP8Y9xrjlwVhs=;
-        b=lsAPI3yKLFEhNE/v7NvCVn+f6q1nCxZxztbqnS1gV+QuK3JymW/2dVnMoNAkU9Fk0n
-         VRLdmVtU/R4L0C62jAFMvCcItsGkZdeEPyzj4DDPpjMUb8ZeklYLizIOKC+/Fyqxuhlz
-         iZibhFPsIAWpkWKxyMkBptcl35AnKpWLfxf4kXkJQYzn/ofHL0VdK2Wm/XDV5RlYO9kG
-         +53I8WzyDaZSZARtMYViutQzCkjeKHYVS/8eDNF7gL2D6C/H5/wBLcfs5BQUYpZy307h
-         Zvix+sqQvXNWF6PuRbL5MWx0sy/AMYMHP953t0Qqbrij2KY8DPuybGqdwgGoRTqWfYvc
-         uXLQ==
+         :cc;
+        bh=3aPa7KJV90OYdyxdAZirKnG+aN8dFky5AeGXtcNx8JQ=;
+        b=QlwVnPQx0Y5FhCEWgev/+vxnq4TPRg6laXUXCsRNHKCM6m5D3liblL8wGVKBGglvKB
+         c24+BO4NwrkXGb4pCqc1Bpz037uSq3SXV0icq0d1w2JyHtdLRx05fES6FHCZa8/4p+Z4
+         qmGt/SmE08Sp+vWX55v6+KTEkxCzVyqiiLVTAY4/6NuL/5QPWtKUQZ18mZD7YXSKsUmb
+         2y0rHB7G/U7oppN84F+88jSply3rDx8U0m+pk39V4GLRAccBMWpZznKB3CUPaRY7cBcu
+         9e+T8oqUNUSGTfjmZbn7006ur9eH5fDP2GYZFBgFKe/yfm6SKvJAhOFXM2ftx5khIUbT
+         fhig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=PtqGUiNJeSB+HP3MkEvurjxrr3Nw//IP8Y9xrjlwVhs=;
-        b=HuUxkHOKy9ci9EG05L0GYMF6E6LU/jJAlGnFZYbQO4phBTCFx0VtNz2UOw89F1JeIX
-         DIefiDX3zO6dssv0z70jnm9lgOXD8tWG2GbZHyFO0JGMywDAPeliS6KrWZHklMRvr8m8
-         Yyyl/0whgh6aNm/Cnwbt2IdbR823J45DStuREe0uzp6HOpzIq+jlMbasTCl2Q8MP47Bk
-         XuVtwlZjHR3uerdTDK0ig46qR03otvZr02nneubO7vCMzFQms2jRy7pJlGOIP9pRqKBp
-         1MMMHV0IIR7ai8Fa1aI18yqqCs+GRPymlCQhb4MZV6ikhXGbjs2heOQ3iQbxXodrqk3A
-         Na+w==
-X-Gm-Message-State: AOAM533I8YAACMTmSz4SwSr4zEl1HY+a1YtmEoSm/hswijeankCt1Yfw
-	YmOGcgqLdavTQtGRzWgj56QBaIAo7zNwBrMMbE8=
-X-Google-Smtp-Source: ABdhPJydrrZDtx0zm6zTA0xkWtm/wVHt9LY7mYCv39POp5g6EGpfvyA5hOGJR4Rby/fElmIIRKyPDyp+lumvQOY/m6M=
-X-Received: by 2002:a02:5849:: with SMTP id f70mr5077624jab.97.1603536839259;
- Sat, 24 Oct 2020 03:53:59 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=3aPa7KJV90OYdyxdAZirKnG+aN8dFky5AeGXtcNx8JQ=;
+        b=W5cvFE6HgmlBBaipgat8Lq6KipxQcsbZA6Qi7K0JomJRViACn2TzScUb41DEnX8plN
+         S9Qc1nHHNCfkL5We0C2Aa52YzCapFKoG6A2kyf2BRkFS4odTSEaMLPDhK8XL4j8CNc/6
+         lZhi1SLA9F622oc9leaCw2sUjtI1JqiMCGDHDuokP0gcTv+bULlgvBO6qls5XtpYEh9w
+         WDceebX6OXjvz6b0c2F7kYn3MoF7jyNWfe0tYq/du4RAEFVSOtTxVZ/rICooVLerf77f
+         7hfvYcasPzpua7u5+jxICLfnrKbd4HnzD97GQMscidb10N7dUrShhICHDh4dTq+tLG4p
+         KgYA==
+X-Gm-Message-State: AOAM531KQ+DC5ahQPb5EgtLvGHESpdB9YqeiMeU7Fgx2HLV//pJg+IE5
+	733GOHC0E6i49BbQ66GGsSYKAPTR3oQiL236eAw=
+X-Google-Smtp-Source: ABdhPJzVbd6DeZdc85AHxA3ChE8feFiGmS3J5pcoqvEVuyyZ5y1yz7iefQwIxymjkGPCi9KYwjQBJ+UTnklNnztZHbM=
+X-Received: by 2002:ab0:2156:: with SMTP id t22mr6244445ual.71.1603538378370;
+ Sat, 24 Oct 2020 04:19:38 -0700 (PDT)
 MIME-Version: 1.0
 References: <CANx9H-DFtcdnZwDqHEPg4t5ySyJe++KS8hO9QDFX5r31KLz3Ww@mail.gmail.com>
-In-Reply-To: <CANx9H-DFtcdnZwDqHEPg4t5ySyJe++KS8hO9QDFX5r31KLz3Ww@mail.gmail.com>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Sat, 24 Oct 2020 12:53:48 +0200
-Message-ID: <CAGAf8Lxi0r2ak62JMAGwRbsO=9b5yXWQyDj5PH4g8uauSDZDYw@mail.gmail.com>
+ <CAGAf8Lxi0r2ak62JMAGwRbsO=9b5yXWQyDj5PH4g8uauSDZDYw@mail.gmail.com>
+In-Reply-To: <CAGAf8Lxi0r2ak62JMAGwRbsO=9b5yXWQyDj5PH4g8uauSDZDYw@mail.gmail.com>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Sat, 24 Oct 2020 13:19:27 +0200
+Message-ID: <CANNYZj9jwk5kH2CAfUNXp7VmufS2rd6R1ZpHJBJiUZ5uzvSGVA@mail.gmail.com>
 Subject: Re: [yocto] Let me tell you how I really feel. Zero filter. If you need meta-python2, you need to become a maintainer. Immediately. Period.
-To: Tim Orling <ticotimo@gmail.com>
-Cc: yocto@lists.yoctoproject.org, 
+To: Zoran <zoran.stojsavljevic@gmail.com>
+Cc: Tim Orling <ticotimo@gmail.com>, 
 	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	"openembedded-devel@lists.openembedded.org" <Openembedded-devel@lists.openembedded.org>
+	"openembedded-devel@lists.openembedded.org" <Openembedded-devel@lists.openembedded.org>, yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000006d309505b268df4c"
+
+--0000000000006d309505b268df4c
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-> I have absolutely no need for python2, I made this abundantly
-> clear when I created the meta-python2 layer.
+I guess some people or companies somehow felt entitled to Tim doing
+continuing python2 layer support for them in a particularly annoying way,
+and this was a reality check for them.
+We are all volunteers and we owe nothing to anyone. If you don=E2=80=99t l=
+ike this
+proposition, get a commercial support contract or hire more people to do
+the work you want to be done.
 
-WTH? Let me tell you how I really feel.
+Alex
 
-I  have absolutely no need for python2, as well.
+On Sat 24. Oct 2020 at 12.54, Zoran <zoran.stojsavljevic@gmail.com> wrote:
 
-> You are not paying me to do this. You cannot pay me enough
-> to do this. Period. Support yourself.
-
-What is the amount of cash for you, you'll consider it enough to
-do that???
-
-Better... What is the real message behind this/yours "announcement"?
-
-Thank you,
-Zoran
-_______
-
-On Wed, Oct 21, 2020 at 2:48 AM Tim Orling <ticotimo@gmail.com> wrote:
+> > I have absolutely no need for python2, I made this abundantly
+> > clear when I created the meta-python2 layer.
 >
-> I have absolutely no need for python2, I made this abundantly clear when=
- I created the meta-python2 layer.
+> WTH? Let me tell you how I really feel.
 >
-> If you depend upon continuing support of python2 via the meta-python2 la=
-yer, this is your call to arms.
+> I  have absolutely no need for python2, as well.
 >
-> I was originally intending to abdicate any support after the 3.1 "dunfel=
-l" release, but managed to somehow continue supporting it into the crest of=
- the 3.2 "gatesgarth" release.
+> > You are not paying me to do this. You cannot pay me enough
+> > to do this. Period. Support yourself.
 >
-> I will stop all support and actively refuse lo respond to any emails and=
- this layer will be dead and I have zero care in the world that it stops be=
-ing useful. I do not use it. I do not depend upon it. You are not paying me=
- to do this. You cannot pay me enough to do this. Period. Support yourself.
+> What is the amount of cash for you, you'll consider it enough to
+> do that???
 >
-> If this is not clear enough, I am happy to have a virtual video call wit=
-h you that you will not like.
+> Better... What is the real message behind this/yours "announcement"?
 >
-> --moto-timo
+> Thank you,
+> Zoran
+> _______
+>
+> On Wed, Oct 21, 2020 at 2:48 AM Tim Orling <ticotimo@gmail.com> wrote:
+> >
+> > I have absolutely no need for python2, I made this abundantly clear wh=
+en
+> I created the meta-python2 layer.
+> >
+> > If you depend upon continuing support of python2 via the meta-python2
+> layer, this is your call to arms.
+> >
+> > I was originally intending to abdicate any support after the 3.1
+> "dunfell" release, but managed to somehow continue supporting it into th=
+e
+> crest of the 3.2 "gatesgarth" release.
+> >
+> > I will stop all support and actively refuse lo respond to any emails a=
+nd
+> this layer will be dead and I have zero care in the world that it stops
+> being useful. I do not use it. I do not depend upon it. You are not payi=
+ng
+> me to do this. You cannot pay me enough to do this. Period. Support
+> yourself.
+> >
+> > If this is not clear enough, I am happy to have a virtual video call
+> with you that you will not like.
+> >
+> > --moto-timo
+> >
+> >
 >
 >=20
+>
+>
+
+--0000000000006d309505b268df4c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">I guess some people or companies somehow felt entitled to=
+ Tim doing continuing python2 layer support for them in a particularly anno=
+ying way, and this was a reality check for them.=C2=A0</div><div dir=3D"aut=
+o">We are all volunteers and we owe nothing to anyone. If you don=E2=80=99t=
+ like this proposition, get a commercial support contract or hire more peop=
+le to do the work you want to be done.</div><div dir=3D"auto"><br></div><di=
+v dir=3D"auto">Alex</div><div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Sat 24. Oct 2020 at 12.54, Zoran &lt;<a href=3D"=
+mailto:zoran.stojsavljevic@gmail.com">zoran.stojsavljevic@gmail.com</a>&gt;=
+ wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;bo=
+rder-left-color:rgb(204,204,204)">&gt; I have absolutely no need for python=
+2, I made this abundantly<br>
+&gt; clear when I created the meta-python2 layer.<br>
+<br>
+WTH? Let me tell you how I really feel.<br>
+<br>
+I=C2=A0 have absolutely no need for python2, as well.<br>
+<br>
+&gt; You are not paying me to do this. You cannot pay me enough<br>
+&gt; to do this. Period. Support yourself.<br>
+<br>
+What is the amount of cash for you, you&#39;ll consider it enough to<br>
+do that???<br>
+<br>
+Better... What is the real message behind this/yours &quot;announcement&qu=
+ot;?<br>
+<br>
+Thank you,<br>
+Zoran<br>
+_______<br>
+<br>
+On Wed, Oct 21, 2020 at 2:48 AM Tim Orling &lt;<a href=3D"mailto:ticotimo@=
+gmail.com" target=3D"_blank">ticotimo@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; I have absolutely no need for python2, I made this abundantly clear w=
+hen I created the meta-python2 layer.<br>
+&gt;<br>
+&gt; If you depend upon continuing support of python2 via the meta-python2=
+ layer, this is your call to arms.<br>
+&gt;<br>
+&gt; I was originally intending to abdicate any support after the 3.1 &quo=
+t;dunfell&quot; release, but managed to somehow continue supporting it into=
+ the crest of the 3.2 &quot;gatesgarth&quot; release.<br>
+&gt;<br>
+&gt; I will stop all support and actively refuse lo respond to any emails =
+and this layer will be dead and I have zero care in the world that it stops=
+ being useful. I do not use it. I do not depend upon it. You are not paying=
+ me to do this. You cannot pay me enough to do this. Period. Support yourse=
+lf.<br>
+&gt;<br>
+&gt; If this is not clear enough, I am happy to have a virtual video call =
+with you that you will not like.<br>
+&gt;<br>
+&gt; --moto-timo<br>
+&gt;<br>
+&gt; <br>
+<br>
+<br>
+<br>
+</blockquote></div></div>
+
+--0000000000006d309505b268df4c--
