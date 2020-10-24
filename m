@@ -1,117 +1,128 @@
-Received: from mail-il1-f194.google.com (mail-il1-f194.google.com [209.85.166.194])
- by mx.groups.io with SMTP id smtpd.web11.14967.1603561104817693943
+Received: from mail-pf1-f193.google.com (mail-pf1-f193.google.com [209.85.210.193])
+ by mx.groups.io with SMTP id smtpd.web11.17133.1603570329047186283
  for <yocto@lists.yoctoproject.org>;
- Sat, 24 Oct 2020 10:38:24 -0700
+ Sat, 24 Oct 2020 13:12:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=mtWfVvLo;
- spf=pass (domain: gmail.com, ip: 209.85.166.194, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-il1-f194.google.com with SMTP id j17so4448495ilr.2
-        for <yocto@lists.yoctoproject.org>; Sat, 24 Oct 2020 10:38:24 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=jmiAOhAG;
+ spf=pass (domain: gmail.com, ip: 209.85.210.193, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f193.google.com with SMTP id e15so3818000pfh.6
+        for <yocto@lists.yoctoproject.org>; Sat, 24 Oct 2020 13:12:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=ERY4WT5/kw1Pznf0I9GWFNAxQn8heU+OLRnmM3KMQzc=;
-        b=mtWfVvLoKjBDL5M/uoSg+/jkwazMJaKVjzfJVo5JQSFFVjbBpuSV6VoKLk3ns96h+U
-         VfScIO0PYLx7QtJSKjcVO6wOt+TAoVbHQbI4QOTw+aR1G11sgeEYfD+5ILmi/rzzdd+N
-         bE9jtSL9B9xMkvSs3qKvz0DWdJ905qg0KVNmXYch5kFY5pdaES3Luhal85U2SkfiP+oB
-         vly0bR07Y5noz9Obhey6hOxM+JN41OC8GqVoD+eCVBzw2xhCfVpvLS89UFR16XPtC8hZ
-         cDJOis2BJFqY7L5azcRgrGN6WMMmASEwYTwiP8hGmdGRw6Omw2wapH82butT3R4tX34a
-         JIsg==
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=JJWY3q3So2nn2I93n7pp1uN+xJ5zYCrd1vSe5iUcVFw=;
+        b=jmiAOhAGMAV+9PhedgzShqi+sb0yC/V/9+1LRO+QkFWWJrTJ7IwH21cnNwtO4eG7iy
+         C5ox+Y0+t6U1wlDbdmcxvqexvf9XTg9110k7LDGjJq795c9+RkMmjDEpd1dMW755xjIn
+         /QI17ZgCO2XfeCL48j3fdXBpKnXfROIgCPybK0tgKOyrvLrc8G4PsWU72UrA98SMOqap
+         lyEjizYvbCdLyGIM5Z6hIs4ev/d3ZsDuoEUZh96dOPTn7ukWFzlkQo1fnOmOQPSqJOra
+         XSql0B2gZYMKAQnhmVFHKXa667hq2guSDcNU9waE3IVIP5bT+haoV8CZpJUa+6WRUoRp
+         fufg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=ERY4WT5/kw1Pznf0I9GWFNAxQn8heU+OLRnmM3KMQzc=;
-        b=Ud0tSgQJibS6l/vxEhOiCa7dV/xU3e7vpdkmL8/T/KhkngH7cjnaiwZxcpEAVJf6S8
-         bKU3ESDHKgu5ah0BowOW+Gd5IwZUVtc48ZWuFsgnFfWBzzRUMmvvpPRdu3w4UqZhRGwG
-         z9QPWK8+DcbLcJU3mVHvRDK8aUShOpiPv88DtXDx11jJawQNQku2L43vQhkXwd83N2Eq
-         hhrAeq2BvoOztrDZL7D0Mzjx+h1ccOZ+E7sOgyOw4y+lXQiWsxih1KZBPmv+yP9sG489
-         wn9vL7/q4QgMEbffFu5V2RaItFdbqC85b0Gpl8WzLK9Td2Y3oQMNWD/3+JtUoUreQ2r/
-         MQMw==
-X-Gm-Message-State: AOAM530ijVHYWHYEKFOPd+e2TbZLKaFmsKBY+HqwpgTo/4McwJi6R6Ov
-	gHjNDrDvEMdk/LcfqqlDPiMN6GGxtZtI53u786E=
-X-Google-Smtp-Source: ABdhPJzrH7N9jsMApSNww9usehW8LlxIUT+MN9PZ7TEgzHLrN6aRvsYTP7596HjDtFFUE2JvBxxj74OaBkaxsOoFArA=
-X-Received: by 2002:a92:c5ce:: with SMTP id s14mr5883000ilt.40.1603561104072;
- Sat, 24 Oct 2020 10:38:24 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=JJWY3q3So2nn2I93n7pp1uN+xJ5zYCrd1vSe5iUcVFw=;
+        b=cAFc/qskzysmHjnq+qWwte6PIRR5TFFkHSMw02uafYDwuNI+cnX8Z6zlSCxuTD8QfC
+         ObOlC/hjKM5onc2dGYRW3jPzj41bnrz4ssbQhzLQbC1CaBlpYdlZKf6V+XNo3Iv3Ez3h
+         Ig2cicT19r/t1q/QnUA0N0PpBdOhuiLfeldribFBqDEOahLnvn2gSEsr4aUwLZehMbXf
+         rSgnYsee20s+tBXNStMmRP3NoQu2h1BEmpkzcQnzb6ZPKHZBmmzIKHf9Nh96npvqG7Jb
+         fJg7sEf0rrHre/31sZIBY7BpbZKE6Y8GMPcAiKeCQmQulA4Vg7eYIdQeM1qa6Tw/i71M
+         +Dug==
+X-Gm-Message-State: AOAM530/NN1rQ0XdtOwjYqOud/RToYmly6bINSw6o+V/AseHziZ/TNxW
+	Zlk8vh42hC6Yk15ChVCdXqYzNLzjIkw=
+X-Google-Smtp-Source: ABdhPJy4QzKZHmXE+P/ur2EOlFGXbA+MV4V3f73yr0qTY1xeSNSDf3PJ11N6fIvBI/ktohMjETLo1g==
+X-Received: by 2002:a62:be04:0:b029:15d:7423:e320 with SMTP id l4-20020a62be040000b029015d7423e320mr1542619pff.42.1603570328385;
+        Sat, 24 Oct 2020 13:12:08 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from ?IPv6:2601:202:4180:a5c0:701b:4aa7:d15c:d4f6? ([2601:202:4180:a5c0:701b:4aa7:d15c:d4f6])
+        by smtp.gmail.com with ESMTPSA id h20sm1525125pgv.23.2020.10.24.13.12.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 24 Oct 2020 13:12:07 -0700 (PDT)
+Subject: Re: [meta-security][meta-integrity][PATCH] layer.conf: use += instead of := to update BBFILES
+To: Sajjad Ahmed <sajjad_ahmed@mentor.com>, yocto@lists.yoctoproject.org
+References: <20201015094139.427487-1-sajjad_ahmed@mentor.com>
+From: "akuster" <akuster808@gmail.com>
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <0a330745-f3c3-707b-19db-f461af746b68@gmail.com>
+Date: Sat, 24 Oct 2020 13:12:06 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <CANx9H-DFtcdnZwDqHEPg4t5ySyJe++KS8hO9QDFX5r31KLz3Ww@mail.gmail.com>
- <1640E842B1461A14.10923@lists.yoctoproject.org>
-In-Reply-To: <1640E842B1461A14.10923@lists.yoctoproject.org>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Sat, 24 Oct 2020 19:38:12 +0200
-Message-ID: <CAGAf8LwEANwgRoXr39xJ1BP5t3XYb9B_8Sf2fYBx_-CfiRAB9Q@mail.gmail.com>
-Subject: Re: [yocto] Let me tell you how I really feel. Zero filter. If you need meta-python2, you need to become a maintainer. Immediately. Period.
-To: Alexander Kanavin <alex.kanavin@gmail.com>, 
-	Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Cc: Tim Orling <ticotimo@gmail.com>, yocto@lists.yoctoproject.org, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	"openembedded-devel@lists.openembedded.org" <Openembedded-devel@lists.openembedded.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20201015094139.427487-1-sajjad_ahmed@mentor.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Alex,
+merged.
 
-Either do it voluntarily, either do not.
-
-Do not complain, or brag about it.
-
-We all understand Open Source rules, or we do not, do we???
-
-Thank you,
-Zoran Stojsavljevic
-_______
+thanks
 
 
+On 10/15/20 2:41 AM, Sajjad Ahmed wrote:
+> Updating BBFILES with := isn't the standard way and can break
+> parsing under certain conditions, instead use += which is widely used.
+>
+> Signed-off-by: Sajjad Ahmed <sajjad_ahmed@mentor.com>
+> ---
+>  meta-integrity/conf/layer.conf | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
+> index f905b0b..6075df9 100644
+> --- a/meta-integrity/conf/layer.conf
+> +++ b/meta-integrity/conf/layer.conf
+> @@ -2,8 +2,7 @@
+>  BBPATH =. "${LAYERDIR}:"
+>  
+>  # We have a packages directory, add to BBFILES
+> -BBFILES := "${BBFILES} \
+> -            ${LAYERDIR}/recipes-*/*/*.bb \
+> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>              ${LAYERDIR}/recipes-*/*/*.bbappend"
+>  
+>  BBFILE_COLLECTIONS += "integrity"
 
-
-
-On Sat, Oct 24, 2020 at 12:54 PM Zoran via lists.yoctoproject.org
-<zoran.stojsavljevic=3Dgmail.com@lists.yoctoproject.org> wrote:
->
-> > I have absolutely no need for python2, I made this abundantly
-> > clear when I created the meta-python2 layer.
->
-> WTH? Let me tell you how I really feel.
->
-> I  have absolutely no need for python2, as well.
->
-> > You are not paying me to do this. You cannot pay me enough
-> > to do this. Period. Support yourself.
->
-> What is the amount of cash for you, you'll consider it enough to
-> do that???
->
-> Better... What is the real message behind this/yours "announcement"?
->
-> Thank you,
-> Zoran
-> _______
->
-> On Wed, Oct 21, 2020 at 2:48 AM Tim Orling <ticotimo@gmail.com> wrote:
-> >
-> > I have absolutely no need for python2, I made this abundantly clear wh=
-en I created the meta-python2 layer.
-> >
-> > If you depend upon continuing support of python2 via the meta-python2 =
-layer, this is your call to arms.
-> >
-> > I was originally intending to abdicate any support after the 3.1 "dunf=
-ell" release, but managed to somehow continue supporting it into the crest =
-of the 3.2 "gatesgarth" release.
-> >
-> > I will stop all support and actively refuse lo respond to any emails a=
-nd this layer will be dead and I have zero care in the world that it stops =
-being useful. I do not use it. I do not depend upon it. You are not paying =
-me to do this. You cannot pay me enough to do this. Period. Support yoursel=
-f.
-> >
-> > If this is not clear enough, I am happy to have a virtual video call w=
-ith you that you will not like.
-> >
-> > --moto-timo
-> >
-> >
->
->=20
->
