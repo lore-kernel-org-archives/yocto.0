@@ -1,48 +1,50 @@
-Received: from mail-pf1-f193.google.com (mail-pf1-f193.google.com [209.85.210.193])
- by mx.groups.io with SMTP id smtpd.web11.17133.1603570329047186283
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
+ by mx.groups.io with SMTP id smtpd.web09.17361.1603570716981832072
  for <yocto@lists.yoctoproject.org>;
- Sat, 24 Oct 2020 13:12:09 -0700
+ Sat, 24 Oct 2020 13:18:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=jmiAOhAG;
- spf=pass (domain: gmail.com, ip: 209.85.210.193, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f193.google.com with SMTP id e15so3818000pfh.6
-        for <yocto@lists.yoctoproject.org>; Sat, 24 Oct 2020 13:12:09 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=t5PBHEMe;
+ spf=pass (domain: gmail.com, ip: 209.85.214.196, mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f196.google.com with SMTP id 1so2757375ple.2
+        for <yocto@lists.yoctoproject.org>; Sat, 24 Oct 2020 13:18:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=JJWY3q3So2nn2I93n7pp1uN+xJ5zYCrd1vSe5iUcVFw=;
-        b=jmiAOhAGMAV+9PhedgzShqi+sb0yC/V/9+1LRO+QkFWWJrTJ7IwH21cnNwtO4eG7iy
-         C5ox+Y0+t6U1wlDbdmcxvqexvf9XTg9110k7LDGjJq795c9+RkMmjDEpd1dMW755xjIn
-         /QI17ZgCO2XfeCL48j3fdXBpKnXfROIgCPybK0tgKOyrvLrc8G4PsWU72UrA98SMOqap
-         lyEjizYvbCdLyGIM5Z6hIs4ev/d3ZsDuoEUZh96dOPTn7ukWFzlkQo1fnOmOQPSqJOra
-         XSql0B2gZYMKAQnhmVFHKXa667hq2guSDcNU9waE3IVIP5bT+haoV8CZpJUa+6WRUoRp
-         fufg==
+        bh=o/nun52lZcjH0X6vhJPaHeibKjovbJz+/zuvHXZ0ilo=;
+        b=t5PBHEMe8DZiALn5EI5gkqfxlJaGOpI/RwKFok0gPW7OdWvz4DnvLF1Ct9Oax49M0w
+         g+mrbdCNjbNbbJH2vs4ymIrMAO7Djk4g8U+CyM5iolTomMq8bUlZCFTBgHpARyaJrPQE
+         nvBMVqx3otXYAU6/CZgVXHiUsHvnoa8ODsD5O9HBzDYYrhDLY/1anUK8F8s1AfffkdiE
+         M3xsv9mjmKKuDZUWONEgJBQ1wimPdlmtyLDFC1sZ1pUWI0kYqbYvmKyHgPe0u9W7xSwu
+         npV2MJvrJ4f7GYPp0lHH4h5B5jUo6osU3cNWF49jxbXoxL801FK2quIyZkwtPZxgJF9C
+         eAag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
-         :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=JJWY3q3So2nn2I93n7pp1uN+xJ5zYCrd1vSe5iUcVFw=;
-        b=cAFc/qskzysmHjnq+qWwte6PIRR5TFFkHSMw02uafYDwuNI+cnX8Z6zlSCxuTD8QfC
-         ObOlC/hjKM5onc2dGYRW3jPzj41bnrz4ssbQhzLQbC1CaBlpYdlZKf6V+XNo3Iv3Ez3h
-         Ig2cicT19r/t1q/QnUA0N0PpBdOhuiLfeldribFBqDEOahLnvn2gSEsr4aUwLZehMbXf
-         rSgnYsee20s+tBXNStMmRP3NoQu2h1BEmpkzcQnzb6ZPKHZBmmzIKHf9Nh96npvqG7Jb
-         fJg7sEf0rrHre/31sZIBY7BpbZKE6Y8GMPcAiKeCQmQulA4Vg7eYIdQeM1qa6Tw/i71M
-         +Dug==
-X-Gm-Message-State: AOAM530/NN1rQ0XdtOwjYqOud/RToYmly6bINSw6o+V/AseHziZ/TNxW
-	Zlk8vh42hC6Yk15ChVCdXqYzNLzjIkw=
-X-Google-Smtp-Source: ABdhPJy4QzKZHmXE+P/ur2EOlFGXbA+MV4V3f73yr0qTY1xeSNSDf3PJ11N6fIvBI/ktohMjETLo1g==
-X-Received: by 2002:a62:be04:0:b029:15d:7423:e320 with SMTP id l4-20020a62be040000b029015d7423e320mr1542619pff.42.1603570328385;
-        Sat, 24 Oct 2020 13:12:08 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-transfer-encoding:content-language;
+        bh=o/nun52lZcjH0X6vhJPaHeibKjovbJz+/zuvHXZ0ilo=;
+        b=Dka7TiXdm4+oqJAf8Zn97nCfnTFvxhz2DMlNS9KraV0ktpoanDB2g6LdxvLoqlZ5Uy
+         7l+wCYN4si8IzHaiRIw/bPBAg+0JCb1ji5+vD+M6W8ju2PuWzOtBDONNwMzacvUdff+O
+         vuhUggwFrynKKXqXQ8ss4Qc6RPj2ZJEPs2OOlw4XF/OQFXQV521+O9VGhNdyOGbptYY5
+         fXKi+Z+q1LO0N+/GHoZZeCg33SEz/jaK+2yQ+LU7BYQbPAfC7TpnG04oQ8WFkWyIqlfN
+         POIUTzAByF/2U3ju0ZGIM9vllfeVaujaqzSVLmNGz7AwrSa4RmZtltY8Z3mKbfq1lQBv
+         qrTA==
+X-Gm-Message-State: AOAM5332q9ykClmJyZJQcYAi/5xOsxUbN0fSQb+8tgYgHoootIA/mHfy
+	n9iSXC8/Bw+IZjYz7MxQBIH6fTXL7kw=
+X-Google-Smtp-Source: ABdhPJyG8O0NOVkSfcE6EBWCyeuBbVwlCGCLZ2kojpoSDUDiOSksWPyUwC+QH9WZ17phxivzlI4T7g==
+X-Received: by 2002:a17:90b:4d0d:: with SMTP id mw13mr8899369pjb.36.1603570716172;
+        Sat, 24 Oct 2020 13:18:36 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from ?IPv6:2601:202:4180:a5c0:701b:4aa7:d15c:d4f6? ([2601:202:4180:a5c0:701b:4aa7:d15c:d4f6])
-        by smtp.gmail.com with ESMTPSA id h20sm1525125pgv.23.2020.10.24.13.12.06
+        by smtp.gmail.com with ESMTPSA id p62sm7020649pfb.180.2020.10.24.13.18.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Oct 2020 13:12:07 -0700 (PDT)
-Subject: Re: [meta-security][meta-integrity][PATCH] layer.conf: use += instead of := to update BBFILES
-To: Sajjad Ahmed <sajjad_ahmed@mentor.com>, yocto@lists.yoctoproject.org
-References: <20201015094139.427487-1-sajjad_ahmed@mentor.com>
+        Sat, 24 Oct 2020 13:18:35 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH] meta-securtiy: Add gatesgarth to LAYERSERIES_COMPAT
+To: Martin Jansa <martin.jansa@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+References: <20201016043850.24267-1-akuster808@gmail.com>
+ <CA+chaQdg+r0WrM_gMpZfY3SkX7TObEcOSikJppTphgGmxWmUFg@mail.gmail.com>
 From: "akuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -87,42 +89,121 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <0a330745-f3c3-707b-19db-f461af746b68@gmail.com>
-Date: Sat, 24 Oct 2020 13:12:06 -0700
+Message-ID: <7a674cc9-9542-f9c6-ed7a-b0f39c19d190@gmail.com>
+Date: Sat, 24 Oct 2020 13:18:34 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201015094139.427487-1-sajjad_ahmed@mentor.com>
+In-Reply-To: <CA+chaQdg+r0WrM_gMpZfY3SkX7TObEcOSikJppTphgGmxWmUFg@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
 
-merged.
-
-thanks
 
 
-On 10/15/20 2:41 AM, Sajjad Ahmed wrote:
-> Updating BBFILES with := isn't the standard way and can break
-> parsing under certain conditions, instead use += which is widely used.
+On 10/19/20 7:52 AM, Martin Jansa wrote:
+> Small typo in commit summary, but other than that please merge :).
 >
-> Signed-off-by: Sajjad Ahmed <sajjad_ahmed@mentor.com>
-> ---
->  meta-integrity/conf/layer.conf | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
+thanks for the feedback.
+
+merge to gatesgarth
+-armin
+> On Fri, Oct 16, 2020 at 6:39 AM akuster <akuster808@gmail.com
+> <mailto:akuster808@gmail.com>> wrote:
 >
-> diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
-> index f905b0b..6075df9 100644
-> --- a/meta-integrity/conf/layer.conf
-> +++ b/meta-integrity/conf/layer.conf
-> @@ -2,8 +2,7 @@
->  BBPATH =. "${LAYERDIR}:"
->  
->  # We have a packages directory, add to BBFILES
-> -BBFILES := "${BBFILES} \
-> -            ${LAYERDIR}/recipes-*/*/*.bb \
-> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
->              ${LAYERDIR}/recipes-*/*/*.bbappend"
->  
->  BBFILE_COLLECTIONS += "integrity"
+>     Signed-off-by: Armin Kuster <akuster808@gmail.com
+>     <mailto:akuster808@gmail.com>>
+>     ---
+>      conf/layer.conf                          | 2 +-
+>      meta-hardening/conf/layer.conf           | 2 +-
+>      meta-integrity/conf/layer.conf           | 2 +-
+>      meta-security-compliance/conf/layer.conf | 2 +-
+>      meta-security-isafw/conf/layer.conf      | 2 +-
+>      meta-tpm/conf/layer.conf                 | 2 +-
+>      6 files changed, 6 insertions(+), 6 deletions(-)
+>
+>     diff --git a/conf/layer.conf b/conf/layer.conf
+>     index 2c3bd96..8c0254b 100644
+>     --- a/conf/layer.conf
+>     +++ b/conf/layer.conf
+>     @@ -9,6 +9,6 @@ BBFILE_COLLECTIONS += "security"
+>      BBFILE_PATTERN_security = "^${LAYERDIR}/"
+>      BBFILE_PRIORITY_security = "8"
+>
+>     -LAYERSERIES_COMPAT_security = "dunfell"
+>     +LAYERSERIES_COMPAT_security = "gatesgarth"
+>
+>      LAYERDEPENDS_security = "core openembedded-layer perl-layer
+>     networking-layer meta-python"
+>     diff --git a/meta-hardening/conf/layer.conf
+>     b/meta-hardening/conf/layer.conf
+>     index 5896214..22d8874 100644
+>     --- a/meta-hardening/conf/layer.conf
+>     +++ b/meta-hardening/conf/layer.conf
+>     @@ -8,6 +8,6 @@ BBFILE_COLLECTIONS += "harden-layer"
+>      BBFILE_PATTERN_harden-layer = "^${LAYERDIR}/"
+>      BBFILE_PRIORITY_harden-layer = "10"
+>
+>     -LAYERSERIES_COMPAT_harden-layer = "dunfell"
+>     +LAYERSERIES_COMPAT_harden-layer = "gatesgarth"
+>
+>      LAYERDEPENDS_harden-layer = "core openembedded-layer"
+>     diff --git a/meta-integrity/conf/layer.conf
+>     b/meta-integrity/conf/layer.conf
+>     index 6075df9..76374eb 100644
+>     --- a/meta-integrity/conf/layer.conf
+>     +++ b/meta-integrity/conf/layer.conf
+>     @@ -20,7 +20,7 @@ INTEGRITY_BASE := '${LAYERDIR}'
+>      # interactive shell is enough.
+>      OE_TERMINAL_EXPORTS += "INTEGRITY_BASE"
+>
+>     -LAYERSERIES_COMPAT_integrity = "dunfell"
+>     +LAYERSERIES_COMPAT_integrity = "gatesgarth"
+>      # ima-evm-utils depends on keyutils from meta-oe
+>      LAYERDEPENDS_integrity = "core openembedded-layer"
+>
+>     diff --git a/meta-security-compliance/conf/layer.conf
+>     b/meta-security-compliance/conf/layer.conf
+>     index 965c837..db243f7 100644
+>     --- a/meta-security-compliance/conf/layer.conf
+>     +++ b/meta-security-compliance/conf/layer.conf
+>     @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "scanners-layer"
+>      BBFILE_PATTERN_scanners-layer = "^${LAYERDIR}/"
+>      BBFILE_PRIORITY_scanners-layer = "10"
+>
+>     -LAYERSERIES_COMPAT_scanners-layer = "dunfell"
+>     +LAYERSERIES_COMPAT_scanners-layer = "gatesgarth"
+>
+>      LAYERDEPENDS_scanners-layer = "core openembedded-layer meta-python"
+>
+>     diff --git a/meta-security-isafw/conf/layer.conf
+>     b/meta-security-isafw/conf/layer.conf
+>     index 63f990a..b8ee1c0 100644
+>     --- a/meta-security-isafw/conf/layer.conf
+>     +++ b/meta-security-isafw/conf/layer.conf
+>     @@ -14,4 +14,4 @@ LAYERVERSION_security-isafw = "1"
+>
+>      LAYERDEPENDS_security-isafw = "core"
+>
+>     -LAYERSERIES_COMPAT_security-isafw = "dunfell"
+>     +LAYERSERIES_COMPAT_security-isafw = "gatesgarth"
+>     diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
+>     index 46d0279..cd62fba 100644
+>     --- a/meta-tpm/conf/layer.conf
+>     +++ b/meta-tpm/conf/layer.conf
+>     @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "tpm-layer"
+>      BBFILE_PATTERN_tpm-layer = "^${LAYERDIR}/"
+>      BBFILE_PRIORITY_tpm-layer = "10"
+>
+>     -LAYERSERIES_COMPAT_tpm-layer = "dunfell"
+>     +LAYERSERIES_COMPAT_tpm-layer = "gatesgarth"
+>
+>      LAYERDEPENDS_tpm-layer = " \
+>          core \
+>     -- 
+>     2.17.1
+>
+>
+>     
+>
 
