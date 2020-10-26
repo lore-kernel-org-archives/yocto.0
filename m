@@ -1,115 +1,191 @@
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (NAM11-DM6-obe.outbound.protection.outlook.com [40.107.223.53])
- by mx.groups.io with SMTP id smtpd.web09.9293.1603692902275697272
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by mx.groups.io with SMTP id smtpd.web08.9574.1603695993849240606
  for <yocto@lists.yoctoproject.org>;
- Sun, 25 Oct 2020 23:15:02 -0700
+ Mon, 26 Oct 2020 00:06:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=fH3idYRQ;
- spf=pass (domain: windriver.com, ip: 40.107.223.53, mailfrom: mingli.yu@windriver.com)
+ dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=ViNmCp/H;
+ spf=pass (domain: intel.com, ip: 134.134.136.100, mailfrom: sangeeta.jain@intel.com)
+IronPort-SDR: FemGug8wz1lx4+IqtLlHZUSOULc+AXi91+KFwP9p6yqLEmMC/W/lRqacm+IB+tjlsOfb8XN2UU
+ AG9PFKlNiItQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9785"; a="232076326"
+X-IronPort-AV: E=Sophos;i="5.77,417,1596524400"; 
+   d="scan'208";a="232076326"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Oct 2020 00:06:29 -0700
+IronPort-SDR: zouYlvkVx9e+QrUtnkjiXjYqL6sgl5ODxQ9Dt0Epwzt3cPPB8vToNEVfEHcdNQamPZMkz0+Pol
+ t3ST/m3avAyQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,417,1596524400"; 
+   d="scan'208";a="360284781"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
+  by FMSMGA003.fm.intel.com with ESMTP; 26 Oct 2020 00:06:29 -0700
+Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
+ ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 26 Oct 2020 00:06:28 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 26 Oct 2020 00:06:28 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Mon, 26 Oct 2020 00:06:28 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.175)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Mon, 26 Oct 2020 00:06:23 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RZ5r/tSeOUF258EoOLvcBdqkbCLBfLV3pH3dVZKpvc5es1Jnvu3puA4bMImwlLLr1GR9Swy9TMluD66k5KxguexgSEPcT8aSkHle4yzyKzcojZZZuv4rEa8FyX9qBYck2ajCFRNgTHQm1HqLapigbg2WKMLCgz1rTxz+tn4SgRumKA3qiXajr6rrZlBMeoQkm0Xu6wnaoAG+JdWf1kUSxjfHvegQrjlIkd18XDw2YNo0O02yM1NxA/jVp9NFooCpXHJ5XZZMCCTAoSVagOO+Fe5GwFyCrelYKJPihTXcaUD2oM+KeFdCtNvpRbHVAEFjcZNds13JIVceEEjeFzL1AQ==
+ b=d82cGcWNE4GfR+fsruyX7Su/0BEHydOnU1lDjEr9i3KRpCdKEomHVhd5ndi4iKz7o2a2nPNp4YXAmEX9No6YtMTyAf/o6M4WOvazkOC8XwvspZQM2e+yicfzIAeCR3/3spcdHQKWLdL348r4BN6gdPIp2YXOqVSfs3jcoNyGbvUq7oor3U+vMRV4AO/qz0o7tu/qgX4yFohbeyb8ffv6H7L8pmZnGMiMl53MeoQDu0zq0kCiXkyv0EVLOO95PQS0ue1sZpe3R4u5vLUGjP8WNloplMiOgtQg68hSWPCxCiyzBIo7+EqdKgXRlRqHum/pRCq2bHQymfDypHYF7YoToA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Viv5ymapsrNsgzfW89GXFFO0HTnPq21jxRiwKrOQjoo=;
- b=QWcak/mBPVEITi91zXpDPCy9RCwu+RE5Ejz4AFOT0No65+BXn1wztMEU2enYNSmyC3O9yFVBCEtukUqJisvDT8URRn8LwCsgyPP5U5Vpvi8IIxYTcyq84ymCNF+29W+aTuwHQYwowdj+jKsa9tYUifvS91KED6BarPvxGj+j+fhC+w0I1dvxWUxoCSbdYBgg2garLOk8UKoQEhP9M80NnQSmZjAC65tKQDMYuoAH9Z6yynvtKKtVITZTvBH1jp3ftr9t1whPF8y+yAQbzYAn4DAClLmo1XFG7/Zp/k7sgWYDbBU1m1pP0euXU7qepQUrEnyzblvgpDN2Fyz4u+AUkw==
+ bh=dOy5LCIYDcxR2u55+oIBUYUMZdROE5SdBYesaqmaZ3A=;
+ b=g/MZksqNECWATyQ8CPttvA/HzoRnDogiAIfbNErByyMlyqJ5UwVz8eWqG8zCE2jOqb8AlaW0aMmsALTPADX2aFzcZQuNEn3j70xoHJHkZx2aykhjy3/GRep5uFAHFMgO1d3x202HvN7146rm1tt+lgXRDj6fa6TzN4XzBVgxMwsft16vOTncmevc917vnO57eLW7miV+NFsFQIdszyaGPlNgn+xY2wvQaiMboYDOXsAJqzo7NOY2fb7Xl9f76jfUfh5LPmC4F0OPDmRICFXVuvTX20+KkymjjDYO2c3FAdNyvRqQXFr2kBCBNoarzozal8x/ykUp2p+0oSQuSy7nCw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=windriversystems.onmicrosoft.com;
- s=selector2-windriversystems-onmicrosoft-com;
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Viv5ymapsrNsgzfW89GXFFO0HTnPq21jxRiwKrOQjoo=;
- b=fH3idYRQ/Qedn301Ervh69S5ssUMLMeeutbpcQewWMoxvMmPzH1LWEeqYpFORjDwGTUmqBu2KTLs/Oeo2p/BhqHRQrpWBV5W3vJbl3UCcJzqKM2g16Whd1eJRrtN2cETJRmr1sZuRI6XaKB3g5VOe6xcxEctmgs69m2fmX8zkFs=
-Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=windriver.com;
-Received: from CO1PR11MB5009.namprd11.prod.outlook.com (2603:10b6:303:9e::11)
- by MWHPR11MB1440.namprd11.prod.outlook.com (2603:10b6:301:7::23) with
+ bh=dOy5LCIYDcxR2u55+oIBUYUMZdROE5SdBYesaqmaZ3A=;
+ b=ViNmCp/H43g/4NDwsD3eCstXPmOS1BdjM0EtvRZmW0zgZI6HmQathrAr3N3fZte11Br4iKJboCUKuo+7nRuL8Bnddr0XxK8PIFfPhamzJi5f2IWPX0aqpWofyzEvV5UXkPfgq8nDJ5Cm39o7BooLNb9peucusChvtZcIHCHjxFo=
+Received: from BYAPR11MB3624.namprd11.prod.outlook.com (2603:10b6:a03:b1::33)
+ by BYAPR11MB3558.namprd11.prod.outlook.com (2603:10b6:a03:b3::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.20; Mon, 26 Oct
- 2020 06:15:00 +0000
-Received: from CO1PR11MB5009.namprd11.prod.outlook.com
- ([fe80::105b:9105:2a38:9e9f]) by CO1PR11MB5009.namprd11.prod.outlook.com
- ([fe80::105b:9105:2a38:9e9f%7]) with mapi id 15.20.3477.028; Mon, 26 Oct 2020
- 06:15:00 +0000
-Subject: Re: [yocto] [meta-cgl][PATCH] heartbeat: don't use trailing slash in S
-From: "Yu, Mingli" <mingli.yu@windriver.com>
-To: jpuhlman@mvista.com, yocto@lists.yoctoproject.org
-References: <163FEC4439522E5C.25444@lists.yoctoproject.org>
-Message-ID: <dc3f26d2-504a-e9e9-2b1d-7910247e3ebb@windriver.com>
-Date: Mon, 26 Oct 2020 14:13:21 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <163FEC4439522E5C.25444@lists.yoctoproject.org>
-X-Originating-IP: [60.247.85.82]
-X-ClientProxiedBy: HK2PR06CA0016.apcprd06.prod.outlook.com
- (2603:1096:202:2e::28) To CO1PR11MB5009.namprd11.prod.outlook.com
- (2603:10b6:303:9e::11)
-Return-Path: mingli.yu@windriver.com
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.23; Mon, 26 Oct
+ 2020 07:06:21 +0000
+Received: from BYAPR11MB3624.namprd11.prod.outlook.com
+ ([fe80::54ff:e9af:311:a985]) by BYAPR11MB3624.namprd11.prod.outlook.com
+ ([fe80::54ff:e9af:311:a985%7]) with mapi id 15.20.3499.019; Mon, 26 Oct 2020
+ 07:06:21 +0000
+From: "Sangeeta Jain" <sangeeta.jain@intel.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+CC: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
+	"yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
+	<apoorv.sangal@intel.com>, "Chan, Aaron Chun Yew"
+	<aaron.chun.yew.chan@intel.com>, "richard.purdie@linuxfoundation.org"
+	<richard.purdie@linuxfoundation.org>, "akuster808@gmail.com"
+	<akuster808@gmail.com>, "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
+	"Tummalapalli, Vineela" <vineela.tummalapalli@intel.com>, "Teoh, Jay Shen"
+	<jay.shen.teoh@intel.com>
+Subject: Re: [yocto] QA notification for completed autobuilder build (yocto-3.2.rc1)
+Thread-Topic: [yocto] QA notification for completed autobuilder build
+ (yocto-3.2.rc1)
+Thread-Index: AQHWpv8YGcjMroQZV0ScEd/oabnWDqmpfqMg
+Date: Mon, 26 Oct 2020 07:06:21 +0000
+Message-ID: <BYAPR11MB3624C502B36E80A6A1BBCB41E3190@BYAPR11MB3624.namprd11.prod.outlook.com>
+References: <20201020163538.0C38244D07F@centos7-ty-4.yocto.io>
+In-Reply-To: <20201020163538.0C38244D07F@centos7-ty-4.yocto.io>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=intel.com;
+x-originating-ip: [115.133.103.117]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c6451956-1e32-4594-6101-08d8797da4af
+x-ms-traffictypediagnostic: BYAPR11MB3558:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BYAPR11MB35581DED006CF612DE6B54F4E3190@BYAPR11MB3558.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: U9wf4VLS63F7PqOALXLWSPh9/RWUeO43V6w2fJVBU2fxf0lKzq2ND1DzD+MeE/cdkWru7i2DV3hEfePgKHoP+B27WCBFPgP0raMopgfr/xWhjxXek5AMKhUXEMT+/BQ2ZlhVxH4CFr0lHELspcvH5VRqQwCuS5pGbn16211GtrUaSIngWuNwjlb1Ev59RIuXzYWKAMAXrFeXNVOAeSve9RQ0ZquwiWchpX2wco5FTIGUYJNst0XGQNa01I1nj4Li/4a1iNGQzFZ07TWOiKrwu20SVGdyJD/lP4aaiW1KpU6OJnbd1EHjVkePfM/qYboSLO4gM1w4jeHXqwzhPTP19mKMcCzXe1AJy4Dn420apVi7j0UeJFJYCe46uEOPo2T9TH9Xc/nKhUkv8nWTIEXf0Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3624.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(396003)(39860400002)(136003)(366004)(7696005)(6506007)(2906002)(8676002)(53546011)(4326008)(186003)(107886003)(54906003)(9686003)(52536014)(66556008)(66476007)(316002)(66946007)(66446008)(26005)(64756008)(966005)(55016002)(15650500001)(478600001)(33656002)(86362001)(83380400001)(71200400001)(76116006)(8936002)(110136005)(5660300002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: hPR73BTBVIdXe9pj2d6x+bLW+RvXKTtnjjsqqLJlZpMIykZ6WHyefJywiN/HYl2yx/ppW/PcvJddEuBsmWlipu4iZbZRi37W02bt05flOU9Q7b15UvDmmnh64tCB4pJHhOlGjfZPvP2x+hKtYdhmVUq75an0OGWr0rONmDNnAJhECE4Je1hULkGL/vDfmVV/2YR35oa3N8KbKwbE5IWbsGoPB2G7mhp6Z1LSJMa9UUxWhXamnB5q84v5CEY/M8RSjogECa2trcXvHihPhhq9qw0NBOkO1GQegXS0VrYyEaPpMq840++z8zK2Dq1+S8jhcw9TUrnzXQLbWJIHwY0f+asiKqbHdFvbf+2tWFxkrFFVrhIAsFbfNF8zqIIzSIsPo6XVEaWRczmbxeWxOWDplkhELndm1bfPU321WzEwAqUq0pU+4D56p/F5Lm2OsS4ZUB9vsDWPoIKuam9Zcm2na4YX6W1cjhmNC/69fizfgaaOevq9JgmdIGG+FK1D5lAUgUI+9rdcp/RhDEdfXEfLfYF90d92tQ01kFk9+G9VJT1euuuI10jqyPurUjaWM+VakAGD/OK6LyaYQhLfLkZ4ch0Wtu1Sub9Zw+ODY3wkdGQEmiSx1jaob/GmyxzPO1mB+7aej4kWVW4k2M2gL8rLbA==
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [128.224.162.139] (60.247.85.82) by HK2PR06CA0016.apcprd06.prod.outlook.com (2603:1096:202:2e::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.19 via Frontend Transport; Mon, 26 Oct 2020 06:14:59 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3f7da0f8-0c5f-4fc3-a4e9-08d8797677fe
-X-MS-TrafficTypeDiagnostic: MWHPR11MB1440:
-X-Microsoft-Antispam-PRVS: 
-	<MWHPR11MB14407028A1498ADAEF1DB925F1190@MWHPR11MB1440.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:486;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	Kem+Su1Le/U4alq5yfqdWx2Rw/LLXns3xLp0sk8CMLMEuPrNhYL9iiSq3Y1h70FDcqv4HXwjU9TQrc2N/UmA0SlPt/bP5iTL3S5gPCI6BT1xTkszVQGPGAETMNrFSVm5NXICuPsfG5CeG2gBTSm41hldM6J0+LDmH28OOrijkvKE0DXs8OhJcJUeCJUEnrz+Q7/lWWIP+5sUBA7/1/FGTkEVZmi3tg0H/mTSl/I/JJibg3/p8KPYH8BEGzK+8ffSObBHCtQTlv3kDhYkoZfWnoO9fvVF1cEIvtmTCA8cMjVzq3HI/l/a71NsI0VJCkgJ7RImn00OoxtkvgVvBwVPrLJw+qP/u2OdX7H1HML+pHs7Ttweiq84SfYyqd9Aw6QVmUCcvlpd5NuAghoJ5FECe68eyi+Y3qxsA/1nAlbbk66mwl3bncRjtxtQnE9UttYbUN86lGgOWt0S4UZU1xD0dNK2pYRtu1kR5QLrgS7qJSQ=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5009.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(396003)(346002)(39840400004)(376002)(956004)(31696002)(16576012)(26005)(8676002)(86362001)(5660300002)(6666004)(2906002)(478600001)(52116002)(6486002)(36756003)(316002)(83380400001)(2616005)(6706004)(8936002)(66556008)(16526019)(66476007)(66946007)(186003)(31686004)(966005)(53546011)(78286007)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: 
-	L4BNqmpw5DTM6HUolee9UhwTe9x9e+ed+o0qEtB9w1JZ8WfoG/X7MpzxFy57hSYLOS3y1TSmDtGbdULyXDlatT1K/0h23hRm3QpELi3cfHZYt+2fXzoTjdSkYyl5UAyvJwI8xgdu3joJdy6LJC1W4F3XQn+W24lJ/IXy7SBP9wAc5ylIxAJMZz/rx5SVSbCdWdF6nNzaM87MTLxiOsx98YurX+kxwYQG3l0AFUg02w/oghkNSl/0yc8BsfvXj7Xco+Znt1WPIxfa9lio41crs65vZDG62R1XVn6KEN/toDY51yj77f2ql8jNTNtMWQlefHQFvqtyc3Ca2qJ+uimpnDLRfbwIF4pr9E2tsBM72WXedHscy27j6QIOwICeBVnfgfUGZzrDYIZi3UDdvSSono+i+YwevbeMaGcIKgHuSujN00jai/oXyLvWcNSQV+PwzWqjt6TCZYIVZGQrnQvnUK4sdj4hPcv8dK2B5EIL8XE81nZmnBtJTYLWFPpa9dBgCxhIGnLMjOjsL4/9p4Pd2ewoV91PiP/UgtO6NIU3MjIX0Kk5gic8EH2pNTebIsbRNsdJf8EVrWLsOvZ/UCY2lqTernso7RI4hGNCGaATBZfYqD8Vk+q7nJVeSzWh5gGz8FPWlELoS0ebWNfm7rtR8g==
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f7da0f8-0c5f-4fc3-a4e9-08d8797677fe
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5009.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2020 06:15:00.1225
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3624.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6451956-1e32-4594-6101-08d8797da4af
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Oct 2020 07:06:21.2295
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BT5yVYtESeS8kEuXcflO9VlPA0WmYHiaIKy2sN1aYKEtO9NjO2NQsuLb9vXxuxh9bCItWu7aSS9oXH9P8a/63w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1440
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2ZigSS2q3MGO3f1vLC1gTS7LkNKQNqjmQFl2afnXDsrxloaJfI76VXD6oJNxUgD7Ph9Fjb4fr/6cT8xIYWN02w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3558
+Return-Path: sangeeta.jain@intel.com
+X-OriginatorOrg: intel.com
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Ping.
+Hello all,
+
+This is the full report for yocto-3.2.rc1: =20
+https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
+h=3Dintel-yocto-testresults
+
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+No new defects are found.
+No high milestone defects.
+
+glib-2.0 ptest failed (BUG id:14106)
+ =20
+Bugs verified:
+
+BUG id:14050 - [QA 3.2 M3 RC1] failure in ptest : parted component
+   Verified Fixed.
+
+Existing bugs observed in this release:
+
+valgrind ptest failed (BUG id:14051)
+   Updated with 2 ptests passed and 3 new failures.
+ =20
+=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14106
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14050
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14051
 
 Thanks,
+Sangeeta
 
-On 10/21/20 1:54 PM, Yu, Mingli wrote:
-> From: Mingli Yu <mingli.yu@windriver.com>
-> 
-> * see oe-core base.bbclass changes from:
->    https://lists.openembedded.org/g/openembedded-core/message/143159
->    https://lists.openembedded.org/g/openembedded-core/message/143161
-> 
-> Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
-> ---
->   meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.6.bb | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.6.bb b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.6.bb
-> index 35fee43..5031c64 100644
-> --- a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.6.bb
-> +++ b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.6.bb
-> @@ -38,7 +38,7 @@ SRC_URI = " \
->   "
->   SRC_URI[md5sum] = "101c8f507b1f407468d5ef15ae6719da"
->   SRC_URI[sha256sum] = "851d2add2c129fef9fede764fec80229e1f6e7295e0e979950d10258648b462c"
-> -S = "${WORKDIR}/Heartbeat-3-0-958e11be8686/"
-> +S = "${WORKDIR}/Heartbeat-3-0-958e11be8686"
->   DEPENDS = "cluster-glue corosync gnutls libxslt-native xmlto-native docbook-xml-dtd4-native docbook-xsl-stylesheets-native intltool"
->   RDEPENDS_${PN} += "python"
->   inherit autotools-brokensep pkgconfig useradd
-> 
-> 
-> 
-> 
-> 
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
+> Behalf Of Pokybuild User
+> Sent: Wednesday, 21 October, 2020 12:36 AM
+> To: yocto@lists.yoctoproject.org
+> Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv
+> <apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>;
+> Chan, Aaron Chun Yew <aaron.chun.yew.chan@intel.com>;
+> richard.purdie@linuxfoundation.org; akuster808@gmail.com;
+> sjolley.yp.pm@gmail.com; Jain, Sangeeta <sangeeta.jain@intel.com>
+> Subject: [yocto] QA notification for completed autobuilder build (yocto-
+> 3.2.rc1)
+>=20
+>=20
+> A build flagged for QA (yocto-3.2.rc1) was completed on the autobuilder a=
+nd
+> is available at:
+>=20
+>=20
+>     https://autobuilder.yocto.io/pub/releases/yocto-3.2.rc1
+>=20
+>=20
+> Build hash information:
+>=20
+> bitbake: 9345d257ced432adc2d16af20ace58cc7c086aab
+> meta-arm: b419151acd2761d0e2723f0d0c0bbbed00c45c5b
+> meta-gplv2: 6e8e969590a22a729db1ff342de57f2fd5d02d43
+> meta-intel: 0e4b3cb01735bdc5ebf50c547927f1f59b0248d2
+> meta-kernel: dbf8bdfa6683404e5071feb47ef6aa347cab1b01
+> meta-mingw: d2809d7c93bdb46014e1f8b3b0a4f42030078905
+> oecore: ea8ba9a15bcec7f5fbce1f40170298f87a808249
+> poky: 4e4a302e37ac06543e9983773cdb4caf7728330d
+>=20
+>=20
+>=20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>=20
+>=20
+>=20
