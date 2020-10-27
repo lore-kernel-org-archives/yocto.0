@@ -1,120 +1,105 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.1658.1603824308636259763
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+ by mx.groups.io with SMTP id smtpd.web10.1660.1603824470743854416
  for <yocto@lists.yoctoproject.org>;
- Tue, 27 Oct 2020 11:45:08 -0700
+ Tue, 27 Oct 2020 11:47:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=PYQR9Zhq;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 8CC0238C0697
-	for <yocto@yoctoproject.org>; Tue, 27 Oct 2020 11:45:07 -0700 (PDT)
-Received: by mail-ed1-f53.google.com with SMTP id l16so2545369eds.3
-        for <yocto@yoctoproject.org>; Tue, 27 Oct 2020 11:45:07 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=WHdHd45Z;
+ spf=pass (domain: gmail.com, ip: 209.85.160.169, mailfrom: raj.khem@gmail.com)
+Received: by mail-qt1-f169.google.com with SMTP id r8so1778521qtp.13
+        for <yocto@lists.yoctoproject.org>; Tue, 27 Oct 2020 11:47:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=ulN+DO0XnOn30V9OOqE8s7EYtMx+FaseT96rel87B6A=;
-        b=PYQR9ZhqedaWskxEF3/EGqog9ZsSxrbU+UPljQzPYOVIw/nzxkOr/4s/0AxXoc4nM0
-         WSdRifsxcZVmKUPOVDtMwNKRHB3erdWTxMZ4+ZMdyyJ4tnemL8zA7Q3MLVUUVZ3H+Sf2
-         mNbfyYv4YxvE/4rv1fr0wCu6+WjNqY+f38A2hpgO2cdH/kfMiJ1B6Z4rNjSbAQNvKKQh
-         HIo+J8z1ve192ebQPh7vAoRnibz82RN8SC7GzHg5j3tFVtjEd2tKIUUm6HTXXFR/8eJs
-         85p6Ytt4pI3HR6J0ukkJXJ8vwfDmCEbyavBJf6exr8S79npqV4osfNDy70nzALmNg5wf
-         h19A==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=vnEgF4Gwo26iWQxq1bsvAdA1kPl5XUkKpqxg0rNmXiY=;
+        b=WHdHd45ZwOsd6DbZ5KEylDCmj2atmIgaRorwP2WYWFh9fGBvQGeDs+MG0JwzAfbe5w
+         rQmJ+4aVvKSYx0Y7Rd3+ElL+FaN/mKYD0XtmbdfeultWZzWbpigTslR5zOTvHVTN2167
+         vomDi/AYD1cDfvg4ZpEcdhWXhKdKKG349SDtwzioZayY0H8CdR4e3glAIwBIcZdlXqzb
+         wzOZ//EIdesYXqAWJT2KY5re45G14E8w80tX1AIBvF2sYRaiuMjdQTyMvir0NvRSZtjM
+         q6fPLMNioBeLZXcfn+9e4UA071c6sDYTT7xp6JF8XXw18omGehXgxEvMa6/ch7ehLo2y
+         0nKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=ulN+DO0XnOn30V9OOqE8s7EYtMx+FaseT96rel87B6A=;
-        b=gSbN2EjrPQJW0YNzw9jAVYu2ntwVMPTXbMMvDkBC+4M+rUHh6HabNbCUwbuVRPMsUG
-         WKBwGTef6V98b7cOr41jbiSeaXhzSoMCOBSeegO1A/tJC/f1EhyUck4ILaLv0Yu/jlQe
-         R7KkESbwJ6AQLedp86pBDxgnJRJ3P47WmIDY6FeyMWOkervqQ3hHYV1tQ7ilTy2weiUw
-         op3Cws/BPmgz+zonLVxZPvlLygwgrOlFA5liTJaiKfISXEHTe/6fNBN9kD8w8J7MazVH
-         CE0avq2lU3lhAg1xNMOnPdYOc4GfW7JbUv48vEJGf9GNMrHfyk0Ud9e9Jo8GZS/TTxgi
-         98xw==
-X-Gm-Message-State: AOAM531rmbg0WIcsupEDuNaKpl2h8nTQprCPFCjNKIjXN7QgxrYsUZ0q
-	A0+9/UF6iDr8WjJxUtIMf2FVxBgcqM7sVxQX3JnwaVi/KOE/TQ==
-X-Google-Smtp-Source: ABdhPJyHIXFAeZiD/fsnnOPRl3nQ7dIdnGtvbzO71+HlA1MjX+OIDB/0lDNmO+Vo5AvQ8Todm2NeTJHDgeH1fSh9178=
-X-Received: by 2002:a05:6402:156:: with SMTP id s22mr3798536edu.178.1603824305492;
- Tue, 27 Oct 2020 11:45:05 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=vnEgF4Gwo26iWQxq1bsvAdA1kPl5XUkKpqxg0rNmXiY=;
+        b=RxSXBBRZfAt7k+v+wLcZ6oJjqoPW8baqetnpuFfOUjmU+CyE3x9jHi6X9mxnWNQN0T
+         doCvL7al9tAd7PmOI90KRL+1KKQjEFmJ8Jp6TvHgrIL2rgZTUv2J8Q4RoZtY7WXyNNNd
+         xk/ZmLwbHEhQHGJ/YeX8uz/PQCbyTKf5qqa/N4fPwprUGdlVUIbzi5ZID28IoKajvLQu
+         G87rOK5I2XPMulmOPSJxbcx7/QhiP1wRnWFDfMo5FXBqJvEmFNcxSTk5g1Dev3b+0Jt4
+         zf78FCl1OyM0N9t4/xtzqnGjxCRR01NuG6WC3xAyepJ0s5Z+9u3ub8YtYBiPClkgdJWJ
+         qC5Q==
+X-Gm-Message-State: AOAM532LeAxWF1lqGT32qSXXwyzdu9y/cUYcpJuf/4U4CDSheza0f3Zi
+	a+9/Yf6OiLSfxTMQJnfgCtJAISpfxQi/D33XKzY=
+X-Google-Smtp-Source: ABdhPJzqjS05kpoOaMhFKow2S9lciZCRw6gY1GmnBc+W7kYbGEIe9tQybOUxYNL5Sr62N0VeD0UNmdymS7tHXKxb2V0=
+X-Received: by 2002:ac8:5a82:: with SMTP id c2mr3680458qtc.378.1603824469565;
+ Tue, 27 Oct 2020 11:47:49 -0700 (PDT)
 MIME-Version: 1.0
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Tue, 27 Oct 2020 19:44:53 +0100
-Message-ID: <CAAfyv35_J=4QFENqP9w_TcqJk_oSrOqC-tUfkFJrTvvJh4ybHg@mail.gmail.com>
-Subject: dlib recipe linking issue
-To: yocto <yocto@yoctoproject.org>
+References: <vd2P.1603821894021570632.tZcu@lists.yoctoproject.org>
+In-Reply-To: <vd2P.1603821894021570632.tZcu@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Tue, 27 Oct 2020 11:47:23 -0700
+Message-ID: <CAMKF1so-4dhrQ6nUa7mVXG4Z7Z0r-GQpFicgEK--DAQm-Fjdrg@mail.gmail.com>
+Subject: Re: [yocto] Recent issues with BB_DONT_CACHE?
+To: Andrew Geissler <geissonator@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Tue, Oct 27, 2020 at 11:05 AM Andrew Geissler <geissonator@gmail.com> wr=
+ote:
+>
+> Over in the OpenBMC project, we rebased on yocto master (https://gerrit.=
+openbmc-project.xyz/c/openbmc/openbmc/+/37488). After this we started seein=
+g intermittent issues with our os-release.bb recipe. We have a .bbappend in=
+ our meta-phosphor layer (https://github.com/openbmc/openbmc/blob/583147ea4=
+5f94ee363e9ae30ccb65b9ed1561b54/meta-phosphor/recipes-core/os-release/os-re=
+lease.bbappend) that issues git commands to use the git hash to fill in our=
+ os-release.
+>
+> After updating to the latest poky, sometimes the build works fine, other=
+ times we run into https://github.com/openbmc/openbmc/issues/3720
+>
+> ERROR=EF=BF=BD[0m: =EF=BF=BD[31mWhen reparsing /var/lib/jenkins-slave/wo=
+rkspace/ci-meta/distro/ubuntu/label/docker-builder/target/witherspoon/openb=
+mc/meta/recipes-core/os-release/os-release.bb:do_compile, the basehash valu=
+e changed from 5da39bb75d4e4256ff7e589f6204c0ee79f16031e54aa78a23d630633bec=
+ceac to c266b6051c26e27a7f5585d632b703511a7a9657fa2960515b570d3ef54a8ef2. T=
+he metadata is not deterministic and this needs to be fixed.=EF=BF=BD[0m
+>
+> After some debug, it appears as if occasionally, bitbake is using the ss=
+tate cached os-release initially, and then during the build process it move=
+s to using the correct hash id. This then causes the above error. We had is=
+sues with this way back in the day when we first introduced this bbappend a=
+nd the solution was to add this to that recipe:
+>
+> BB_DONT_CACHE =3D "1"
+>
+> I don't see anything in that commit list from poky that looks suspicious=
+ but it definitely started happening when we brought that in. I tried modif=
+ying our os-release.bbappend to only run once during the compile phase but =
+that caused issues where sometimes the os-release field in our flash image =
+was incorrect (https://gerrit.openbmc-project.xyz/c/openbmc/meta-phosphor/+=
+/37705 is the revert of that try)
 
-I'm creating a recipe for the dlib library. Source also contains
-python bindings so my recipe looks like:
+You can add a function and use nostamp on it so it gets executed every
+time, something like
+https://github.com/YoeDistro/yoe-distro/blob/dunfell/sources/meta-yoe/reci=
+pes-core/images/updater.inc#L27-L47
+for ideas
 
-SUMMARY = "A toolkit for making real world machine learning and data
-analysis applications"
-HOMEPAGE = "https://github.com/davisking/dlib"
+secondly, https://github.com/openbmc/openbmc/blob/583147ea45f94ee363e9ae30=
+ccb65b9ed1561b54/meta-phosphor/recipes-core/os-release/os-release.bbappend#=
+L38
+seems to be
+interesting what is the intention here ?
 
-LICENSE = "Boost-Software"
-LIC_FILES_CHKSUM =
-"file://dlib/LICENSE.txt;md5=2c7a3fa82e66676005cd4ee2608fd7d2 \
+I think it would be better to have this data extraction added to
+bitbake so it can be run at the beginning when layers are parsed, it
+already is dumping build configuration so latch on
+to it would get you what you want.
 
-file://dlib/external/pybind11/LICENSE;md5=beb87117af69fd10fbf9fb14c22a2e62
-\
-
-file://dlib/external/libpng/LICENSE;md5=243135ddedf702158f9170807cbcfb66
-\
-
-file://docs/docs/license.xml;md5=2e6ff4080dcb217d4d300b90e9aabb5b \
-
-file://examples/LICENSE_FOR_EXAMPLE_PROGRAMS.txt;md5=57eee82829ed297e23d84de5f905afee
-\
-
-file://examples/video_frames/license.txt;md5=127ee508b60a6be9dea8af3b441993dc
-\
-
-file://python_examples/LICENSE_FOR_EXAMPLE_PROGRAMS.txt;md5=064f53ab40ea2b6a4bba1324149e4fde"
-
-SRC_URI = "git://github.com/davisking/dlib.git;protocol=https"
-
-PV = "1.0+git${SRCPV}"
-SRCREV = "3b794540baeabbcd033b544230401967106d5483"
-
-S = "${WORKDIR}/git"
-
-inherit setuptools3
-
-DEPENDS += "python3 cmake-native"
-
-FILES_${PN}-dev += "${libdir}/cmake/dlib"
-
-EXTRA_OECMAKE += "-DDLIB_NO_GUI_SUPPORT=ON -DBUILD_SHARED_LIBS=ON
--DDLIB_USE_CUDA=OFF"
-
-Problem is to build python bindings because it builds the first c++
-code using cmake and pybind11. I hit the first issue described here:
-https://github.com/davisking/dlib/issues/2220 and resolved it simply
-by commenting out code which compares python binary and toolchain
-binary.
-
-Then compilation seems to progress but there is again an issue with
-linkin because it tries to link with x86-64 python libraries instead
-of arm python3 libs. Any ideas how to solve this issue or anyone can
-share a working recipe.
-
-Thanks and BR,
-
-marek
-
-
-
-
-
--- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
-
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+>
+>
+>=20
+>
