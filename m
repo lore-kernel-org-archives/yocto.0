@@ -1,260 +1,276 @@
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (NAM11-DM6-obe.outbound.protection.outlook.com [40.107.223.61])
- by mx.groups.io with SMTP id smtpd.web11.10795.1603985959220141878
+Received: from dmzms99802.na.baesystems.com (dmzms99802.na.baesystems.com [149.32.232.66])
+ by mx.groups.io with SMTP id smtpd.web08.1219.1603995150974835953
  for <yocto@lists.yoctoproject.org>;
- Thu, 29 Oct 2020 08:39:20 -0700
+ Thu, 29 Oct 2020 11:12:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sierrawireless.com header.s=selector1 header.b=sXIsELlG;
- spf=pass (domain: sierrawireless.com, ip: 40.107.223.61, mailfrom: dwatkins@sierrawireless.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jT3EP+IQBDGpuQgh3CPJ+gbuq9uDjV4LqK/ONhF3w9OfI0etW4wGSQE45WcwZ4Hs+oxy6HDyyRMcrOYfd7VFf19IljAWokt1fpekJ2q5tu3w8pduhMcIxKf7VMajgowitmmplouTDsNGA1v28G0ww58JgmXb8DMoJp1YYudRkLVrBslucTM7yetegswAEgikIMMrzjsgViHLjgy6MHgQB2Cb1H0NtG5LxGmhwlKRevo+lXVZ//Q2YgztJW87mnq2gVRv/9Go6UWa0GHMvBBySF6OHZl3Z3hehLF8cD0trCUgj+/dWTTxoV6qTaQvD7bOGKp9RbeR6dEeHFbcuhKevg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1a4raOoLAMFzHwHzyHh+Y5HCoW8JFlDf5Njov+K/X24=;
- b=eeszfY4C0FT8E15S1eKTLBCSZxjF16JpcT7PWDcmyx9GwCwjhXYVV/4VnYhjWdt0G9mlbHwQCM2r+0xygeR6gksqcjXdHaMbJ10h7ZNDTTfCeh86OfUM/z6qGI07L63ELtVoloeaK5P4kPULp4ITxNq4yqilztd/bQQP3ph3z3JVohk15BKvmaDAO3aUGinBho+JM9K8fT0lqOS2GybNadyNc3Gi+dhi53VUtig8/yXGh+Gnt6rU157AFvU/OfnX8QR5wg4jr/ABBfF63NEOjKy1nakNhHeeZlco+jwbtvXGDFhQE/of3E/qLtJPXJeF/nJeLT4rEGYPueg+UFgFiA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=sierrawireless.com; dmarc=pass action=none
- header.from=sierrawireless.com; dkim=pass header.d=sierrawireless.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sierrawireless.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1a4raOoLAMFzHwHzyHh+Y5HCoW8JFlDf5Njov+K/X24=;
- b=sXIsELlGLV0f52Ic7ufTQ9hx5VqV5FFvhmcSvEYoT5V3P6bNi35T5rbg5nEqW8NcgkznF1MmuoL0me0ZRjpwFzP5ahQJPjN2SRLhTradqIo0OErnbmBbzdnisfFcdcXVykTGUFmXlYSrN6S1IvbB6UhAgG6NaUqky6aHQD9vOj4=
-Received: from MWHPR02MB2429.namprd02.prod.outlook.com (2603:10b6:300:40::7)
- by MWHPR0201MB3500.namprd02.prod.outlook.com (2603:10b6:301:80::27) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.21; Thu, 29 Oct
- 2020 15:39:17 +0000
-Received: from MWHPR02MB2429.namprd02.prod.outlook.com
- ([fe80::ccf9:c0fc:7306:fc21]) by MWHPR02MB2429.namprd02.prod.outlook.com
- ([fe80::ccf9:c0fc:7306:fc21%7]) with mapi id 15.20.3499.027; Thu, 29 Oct 2020
- 15:39:17 +0000
-From: "Darcy Watkins" <dwatkins@sierrawireless.com>
+ dkim=fail reason="signature has expired" header.i=@baesystems.com header.s=trusted01 header.b=eXHIQI56;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.66, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1603995150; x=1761675150;
+  h=from:to:subject:date:mime-version;
+  bh=dOItVw30maLYsC6A5SWk1xRYJMzKilRHjYDFdrBo77E=;
+  b=eXHIQI56xZQQySX8NwkBlX3dqcY9Bz6i91UUq8BefaSXFx/kjJEcGMJ9
+   xJ/j1M5ZaLIW/RuMdTvnsa6wVUGN2Xa45qaMNel1kCtG52EyGCUCnNytG
+   JjGwXqz/+7o4u8bdvvOFyLHx0n59eOV1gZhG6wGjLmUMkcSC6GzkS0TVC
+   Y=;
+IronPort-PHdr: =?us-ascii?q?9a23=3AEm4HtBFVknS3adjXl1ekap1GYnF86YWxBRYc798d?=
+ =?us-ascii?q?s5kLTJ76p8++bnLW6fgltlLVR4KTs6sC17OJ9fG7EjVYvN6oizMrSNR0TRgLiM?=
+ =?us-ascii?q?EbzUQLIfWuLgnFFsPsdDEwB89YVVVorDmROElRH9viNRWJ+iXhpTEdFQ/iOgVr?=
+ =?us-ascii?q?O+/7BpDdj9it1+C15pbffxhEiCCybL9vLhi6twHcu8cZjYd/Nqo8ygbCr2dVde?=
+ =?us-ascii?q?hR2W5mP0+YkQzm5se38p5j8iBQtOwk+sVdT6j0fLk2QKJBAjg+PG87+MPktR/Y?=
+ =?us-ascii?q?TQuS/XQcSXkZkgBJAwfe8h73WIr6vzbguep83CmaOtD2TawxVD+/4apnVAPkhS?=
+ =?us-ascii?q?EaPDM/7WrZiNF/jLhDrRyhuRJx3pLUbo+WOvp/YqzScsgXSnBdUsZTTSFNHp+w?=
+ =?us-ascii?q?Y5UJAuEcPehYtY79p14WoBewAgesA+XvyiRWiXDoxq02y/kqHxza3AM+AdIBrn?=
+ =?us-ascii?q?LUp8jrOawPVey6wrTGwTDNY/hL3jr985TIfQ4/of6SW7J8a8/RyU4pFwPekFqf?=
+ =?us-ascii?q?t5flMiiO2esXrWeb9OphVfmzi2E5rgFxuSKjydsrionMn48YzE3P+iplzogvP9?=
+ =?us-ascii?q?K4VFJ7bsC+EJtWryyUOJd6T94jTm9mtyg3y70ItJyncSUIx5kq2gDTZ+GIfYWM?=
+ =?us-ascii?q?4hzuWuecLClliX9mdryyhwu//Eu+x+D/WcS50UhGoyxYmdfCsXAN0gbc6smBSv?=
+ =?us-ascii?q?Zl/kah3iqA1xzU6uFcO0A0kqjbJIA9zb4sjJYTtl7DHiDwlU7rj6GWbl0p9vW0?=
+ =?us-ascii?q?5+j9bLjrpIWQO5JwhwzwKKgjm82yDfwlPgQSRWSW9uux2Kfn8EHjQ7hHjPs7mb?=
+ =?us-ascii?q?TDvp/AP8QUvKu5DhdQ0oYk9hmwES+r0M8dnXkbNFJFfw+Hj5TxN1HOPv/4CfC/?=
+ =?us-ascii?q?jkyqkDdrwfDJJLjhAo7OI3XDjLvtYatx51RayAUp19xQ/IhbBa8aIPPzQU/xqM?=
+ =?us-ascii?q?LXDhoiMwCu3+nnD9B92psfWWKJHKCZLLvfvUKU6u41LeSBZpUZtCv5JvUr/fLj?=
+ =?us-ascii?q?jH40lUcYfaaz3JsXbH64Hu5hI0WceXfsmcsBHnkUvgUgSuzmkliCUTlVZ3apQa?=
+ =?us-ascii?q?0z+Co7BZm9AojZWI+tm7yA3DynHpJIY2BGEUqAHmvvd4WBQ/sMcj6dItd9kjwY?=
+ =?us-ascii?q?UrisU48g1Rayuw/mzLpqNe7U+iwDtZL/z9h5/e3SlRYu+jxoCMSdy3uNT2Z2nm?=
+ =?us-ascii?q?wWWzA2wLpzoUtnyleMguBEhKkSBNtY+/RhVgYhKYWa3utxF9fqQAXDc9yVDlG8?=
+ =?us-ascii?q?TZ/uVSA2Rc4269sPeFpmXcSlhQzExzCtAbIei/qMHpNioYzG2H2kbeN6zW3L2b?=
+ =?us-ascii?q?Jlx2I6T9VCMyWNzu5CzEmZT9rSj0iHmqDscKMaxyPA70+JxGeVrVpEXQtrF67C?=
+ =?us-ascii?q?WCZMNQPtsd3l6xaaHPeVArM9P14ZxA=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2ArBAB3BZtf/0LBJQpigQmBT4EjgXeBN?=
+ =?us-ascii?q?QqvcIF8CwEBAQEBAQEBAQgBJQoEAQGGVCY2Bw4CEAEBBgEBAQEBBgQBhlEBC4I?=
+ =?us-ascii?q?3IoNNXgGBACYBBBuDH4F+gQ2vKYE0hFJBRIULBgkBgS6PFz6HOwSHUwSacp0nB?=
+ =?us-ascii?q?wOCbIkIkXEroWWTRIp3lUYCBAIEBQIVgVsFggVwgzpPFwINlySFRHQCNgIGCgE?=
+ =?us-ascii?q?BAwmNN4ERAQE?=
+X-IPAS-Result: =?us-ascii?q?A2ArBAB3BZtf/0LBJQpigQmBT4EjgXeBNQqvcIF8CwEBAQE?=
+ =?us-ascii?q?BAQEBAQgBJQoEAQGGVCY2Bw4CEAEBBgEBAQEBBgQBhlEBC4I3IoNNXgGBACYBB?=
+ =?us-ascii?q?BuDH4F+gQ2vKYE0hFJBRIULBgkBgS6PFz6HOwSHUwSacp0nBwOCbIkIkXEroWW?=
+ =?us-ascii?q?TRIp3lUYCBAIEBQIVgVsFggVwgzpPFwINlySFRHQCNgIGCgEBAwmNN4ERAQE?=
+X-IronPort-AV: E=Sophos;i="5.77,430,1596499200"; 
+   d="scan'208,217";a="458119672"
+X-IronPort-AV: E=Sophos;i="5.77,430,1596499200"; 
+   d="scan'208,217";a="228933590"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
 To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Meta-java - openjdk-8-native - fatal error: sys/sdt.h: No such file or directory
-Thread-Topic: Meta-java - openjdk-8-native  - fatal error: sys/sdt.h: No such
- file or directory
-Thread-Index: AQHWrgmpoJSWph3x7UGL3WqDTU5PRA==
-Date: Thu, 29 Oct 2020 15:39:17 +0000
-Message-ID: <DC32F424-95C9-4BD6-8AA2-EEE978BDC4E0@sierrawireless.com>
-Accept-Language: en-CA, en-US
+Subject: #yocto
+Thread-Topic: #yocto
+Thread-Index: AdauHqVuE12fTwzmSx2Wpb9V7e3RXg==
+Date: Thu, 29 Oct 2020 18:12:28 +0000
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/16.42.20101102
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=sierrawireless.com;
-x-originating-ip: [2001:569:720b:b200:a13e:6ce:db6f:f4e0]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: d60a734f-50e3-4ddd-0b3b-08d87c20cc0a
-x-ms-traffictypediagnostic: MWHPR0201MB3500:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: 
- <MWHPR0201MB350066D04208528EA1A199B3B2140@MWHPR0201MB3500.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- HuLxB8dFT1auQTAh/dt4GSBAoNNXqtgReSfGNAfWo1SUobBfz+vuCFn69UEH8nEvyAp2umrsNm6l2XvlhWFrZ2Rv71VERpCjrZo23RhDFeJUe/53crrQ+AN+2YRB9rg7XcAt45NRBfsCFj1C23duXkW07nuoxdvpL0oUPxXb6sMhDfd1Az00GzTth+DblZmhb2OM6U7fHpFwh+04iG/JGWt2mLhh/0WxHPUFNWQNtNZFOacd7qMMRggHG5ByeUPRObY3UmqhMhwRSzwjBEZJmUOvOjWCqYaST1OQkVWKZzzW3HnYJYtJgL8Wh0WLq+AJ2fz7Y//3/L2jJ7AEFw8RMobQ8KdWIpn5S9Vyl3tqTczNXcWuFN1T9NNMfwiorBHrIcagBfvWnZ7SKR4WPw+5ow==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR02MB2429.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39860400002)(366004)(346002)(396003)(376002)(6506007)(186003)(5660300002)(36756003)(76116006)(66946007)(66476007)(66556008)(64756008)(478600001)(66446008)(86362001)(6512007)(83380400001)(2616005)(6916009)(2906002)(9326002)(33656002)(8676002)(8936002)(71200400001)(316002)(6486002)(166002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 
- ZSm069LzU+KA9GZkdLwCIPPqzEbif0ynP/TiKfahnPek6mJJUEMIX2xCgPihZU2+5IrvSFvRKfarYJKrwWeDmcJEL7YgW1r5Dx1vGyA1yhdN5vRk0rLxjhb0SeF2Wl355KJp3fmK9ha3Tsj/6uqqXqAI1wjFDjnqE/ldX2MLkMe810e2dmol1yXTchk5GM1xc7K0z+tgY3fJ6Z1DZ9Rt0iqesjkvRNch4UOb+kHB3oyebvFRsmOdz+IIUy3NUHK+05Pl7m/bS3H6EuU35nBskw7crLsmEKfPglnGQA9DLAN6XU0xvbIi0V3jsusrxKlBjS/WBP2HbT2gp0jRO3rCGoCUK172JJazUuGEdoCrTFDPjwc0PVo+R+utkBna29r4qOSbExwSaR8Q4ErHrSRecTCEAm4Es4iYvk9qp0jP0GxV973tE8aXpKn5YwXgEMjBQUnbzIK71KdFtjzJ/3DsU2GnFnyfgIYdH0M/AtICb9pg93PvufDZckSoahK0xJZx5M3oQRNAs+UUGyjWXBBRG+BNkhf7lH9Y3SwIEItgw2vwpuFJ9+2K1pl+g5Ef4BpsAKZQsl01mWpvsgfwoglqyUrx8XCMzuDaDbCR2PmRVRECnQPzObPqz6G2RYk/P0OTaM7xDcJrL/RmT4oYZts4eW0pQhGx18z0KB5Bdrma+MdcsVtFXPY7s8B5hfExyaGiNAOhhu2sk60g4bsWHzsZvQ==
+x-originating-ip: [10.44.9.87]
 MIME-Version: 1.0
-X-OriginatorOrg: sierrawireless.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR02MB2429.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d60a734f-50e3-4ddd-0b3b-08d87c20cc0a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Oct 2020 15:39:17.5493
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jCTNYKJiNpRJ4yWRwPgB0Ol7JRM6k5LLIc3ADNJQFAo1CHJsC3zYWB3eU5dKCAHxAvajIxKq/7nRtA81fNbEUn0bwlJfKRI2Apm1Ug8gvvM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR0201MB3500
+Return-Path: steven.monsees@baesystems.com
+Message-ID: <MADEUP.164289180B0E099B.10645@lists.yoctoproject.org>
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_DC32F42495C94BD68AA2EEE978BDC4E0sierrawirelesscom_"
+	boundary="_000_7b370191e0ec4a15849fa1af5ce30b6dbaesystemscom_"
 
---_000_DC32F42495C94BD68AA2EEE978BDC4E0sierrawirelesscom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_7b370191e0ec4a15849fa1af5ce30b6dbaesystemscom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-SGksDQoNCk9wZW5qZGstOC1uYXRpdmUgYnJlYWtzIGR1ZSB0byBzb21lIG1peHVwIHJlbGF0ZWQg
-dG8gc2R0Lmggbm90IGZvdW5kDQoNCkR1bmZlbGwgYnJhbmNoIGJ1aWx0IG9uIENlbnRPUzcgd2l0
-aCB0aGUgYnVpbGR0b29scyBpbnN0YWxsZWQuDQoNClRoaXMgaXMgZmlyc3QgYXR0ZW1wdCB3aXRo
-IGR1bmZlbGwuICBXYXJyaW9yIGJ1aWx0IG9wZW5qZGstOC1uYXRpdmUgT0sNCg0KSSByZW1lbWJl
-ciBzZWVpbmcgc29tZXRoaW5nIGxpa2UgdGhpcyBsb25nIGFnbyBidXQgSSBkb27igJl0IHJlbWVt
-YmVyIHRoZSBmaXguDQoNCg0KLS0tLS0tLS0NCg0KfCAvaG9tZS9kd2F0a2lucy93b3Jrc3BhY2Uv
-emV0YS91cGdyYWRlLXlvY3RvX21nOTAtTUctb3MvYnVpbGQvdG1wL3dvcmsveDg2XzY0LWxpbnV4
-L29wZW5qZGstOC1uYXRpdmUvMjcyLXIwL2pkazh1LWpkazh1MjcyLWdhL2hvdHNwb3Qvc3JjL3No
-YXJlL3ZtL3V0aWxpdGllcy9kdHJhY2UuaHBwOjMxOjEwOiBmYXRhbCBlcnJvcjogc3lzL3NkdC5o
-OiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5DQp8ICAgIDMxIHwgI2luY2x1ZGUgPHN5cy9zZHQu
-aD4NCnwgICAgICAgfCAgICAgICAgICBefn5+fn5+fn5+fg0KfCBjb21waWxhdGlvbiB0ZXJtaW5h
-dGVkLg0KfCBtYWtlWzZdOiAqKiogWy9ob21lL2R3YXRraW5zL3dvcmtzcGFjZS96ZXRhL3VwZ3Jh
-ZGUteW9jdG9fbWc5MC1NRy1vcy9idWlsZC90bXAvd29yay94ODZfNjQtbGludXgvb3Blbmpkay04
-LW5hdGl2ZS8yNzItcjAvamRrOHUtamRrOHUyNzItZ2EvaG90c3BvdC9tYWtlL2xpbnV4L21ha2Vm
-aWxlcy92bS5tYWtlOjMxMDogcHJlY29tcGlsZWQuaHBwLmdjaF0gRXJyb3IgMQ0KfCBtYWtlWzVd
-OiAqKiogWy9ob21lL2R3YXRraW5zL3dvcmtzcGFjZS96ZXRhL3VwZ3JhZGUteW9jdG9fbWc5MC1N
-Ry1vcy9idWlsZC90bXAvd29yay94ODZfNjQtbGludXgvb3Blbmpkay04LW5hdGl2ZS8yNzItcjAv
-amRrOHUtamRrOHUyNzItZ2EvaG90c3BvdC9tYWtlL2xpbnV4L21ha2VmaWxlcy90b3AubWFrZTox
-MTk6IHRoZV92bV0gRXJyb3IgMg0KfCBtYWtlWzRdOiAqKiogWy9ob21lL2R3YXRraW5zL3dvcmtz
-cGFjZS96ZXRhL3VwZ3JhZGUteW9jdG9fbWc5MC1NRy1vcy9idWlsZC90bXAvd29yay94ODZfNjQt
-bGludXgvb3Blbmpkay04LW5hdGl2ZS8yNzItcjAvamRrOHUtamRrOHUyNzItZ2EvaG90c3BvdC9t
-YWtlL2xpbnV4L01ha2VmaWxlOjI4NDogcHJvZHVjdF0gRXJyb3IgMg0KfCBtYWtlWzNdOiAqKiog
-W01ha2VmaWxlOjIzMTogZ2VuZXJpY19idWlsZDJdIEVycm9yIDINCnwgbWFrZVsyXTogKioqIFtN
-YWtlZmlsZToxNzc6IHByb2R1Y3RdIEVycm9yIDINCnwgbWFrZVsxXTogKioqIFtIb3RzcG90V3Jh
-cHBlci5nbWs6NDU6IC9ob21lL2R3YXRraW5zL3dvcmtzcGFjZS96ZXRhL3VwZ3JhZGUteW9jdG9f
-bWc5MC1NRy1vcy9idWlsZC90bXAvd29yay94ODZfNjQtbGludXgvb3Blbmpkay04LW5hdGl2ZS8y
-NzItcjAvYnVpbGQvaG90c3BvdC9faG90c3BvdC50aW1lc3RhbXBdIEVycm9yIDINCnwgbWFrZTog
-KioqIFsvaG9tZS9kd2F0a2lucy93b3Jrc3BhY2UvemV0YS91cGdyYWRlLXlvY3RvX21nOTAtTUct
-b3MvYnVpbGQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L29wZW5qZGstOC1uYXRpdmUvMjcyLXIwL2pk
-azh1LWpkazh1MjcyLWdhLy9tYWtlL01haW4uZ21rOjExMDogaG90c3BvdC1vbmx5XSBFcnJvciAy
-DQp8IFdBUk5JTkc6IC9ob21lL2R3YXRraW5zL3dvcmtzcGFjZS96ZXRhL3VwZ3JhZGUteW9jdG9f
-bWc5MC1NRy1vcy9idWlsZC90bXAvd29yay94ODZfNjQtbGludXgvb3Blbmpkay04LW5hdGl2ZS8y
-NzItcjAvdGVtcC9ydW4uZG9fY29tcGlsZS4yNzEzNjoxIGV4aXQgMSBmcm9tICdleGl0IDEnDQp8
-DQpFUlJPUjogVGFzayAoL2hvbWUvZHdhdGtpbnMvd29ya3NwYWNlL3pldGEvdXBncmFkZS15b2N0
-b19tZzkwLU1HLW9zL3Vwc3RyZWFtL3lvY3RvL21ldGEtamF2YS9yZWNpcGVzLWNvcmUvb3Blbmpk
-ay9vcGVuamRrLTgtbmF0aXZlXzI3Mi5iYjpkb19jb21waWxlKSBmYWlsZWQgd2l0aCBleGl0IGNv
-ZGUgJzEnDQpOT1RFOiBUYXNrcyBTdW1tYXJ5OiBBdHRlbXB0ZWQgOTczIHRhc2tzIG9mIHdoaWNo
-IDk2NiBkaWRuJ3QgbmVlZCB0byBiZSByZXJ1biBhbmQgMSBmYWlsZWQuDQoNClN1bW1hcnk6IDEg
-dGFzayBmYWlsZWQ6DQogIC9ob21lL2R3YXRraW5zL3dvcmtzcGFjZS96ZXRhL3VwZ3JhZGUteW9j
-dG9fbWc5MC1NRy1vcy91cHN0cmVhbS95b2N0by9tZXRhLWphdmEvcmVjaXBlcy1jb3JlL29wZW5q
-ZGsvb3Blbmpkay04LW5hdGl2ZV8yNzIuYmI6ZG9fY29tcGlsZQ0KU3VtbWFyeTogVGhlcmUgd2Fz
-IDEgV0FSTklORyBtZXNzYWdlIHNob3duLg0KU3VtbWFyeTogVGhlcmUgd2VyZSAyIEVSUk9SIG1l
-c3NhZ2VzIHNob3duLCByZXR1cm5pbmcgYSBub24temVybyBleGl0IGNvZGUuDQoNCg0KDQoNClJl
-Z2FyZHMsDQoNCkRhcmN5DQoNCkRhcmN5IFdhdGtpbnMgOjogIFNlbmlvciBTdGFmZiBFbmdpbmVl
-ciwgRmlybXdhcmUNCg0KU0lFUlJBIFdJUkVMRVNTDQpEaXJlY3QgICsxIDYwNCAyMzMgNzk4OSAg
-IDo6ICBGYXggICsxIDYwNCAyMzEgMTEwOSAgOjogIE1haW4gICsxIDYwNCAyMzEgMTEwMA0KMTM4
-MTEgV2lyZWxlc3MgV2F5ICA6OiBSaWNobW9uZCwgQkMgQ2FuYWRhIFY2ViAzQTQNCltNNF0NCmR3
-YXRraW5zQHNpZXJyYXdpcmVsZXNzLmNvbTxtYWlsdG86ZHdhdGtpbnNAc2llcnJhd2lyZWxlc3Mu
-Y29tPiA6OiB3d3cuc2llcnJhd2lyZWxlc3MuY29tPGh0dHA6Ly93d3cuc2llcnJhd2lyZWxlc3Mu
-Y29tLz4NCg==
 
---_000_DC32F42495C94BD68AA2EEE978BDC4E0sierrawirelesscom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <257CDA9AB4E77E4291A0E0723A04B26E@namprd02.prod.outlook.com>
-Content-Transfer-Encoding: base64
+I am currently looking at porting from "rocko" to "zeus"...
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
-bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
-IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
-IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3Jt
-YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0KCWZvbnQtc2l6
-ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0Kc3Bhbi5FbWFp
-bFN0eWxlMTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtY29tcG9zZTsNCglmb250LWZhbWls
-eToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZh
-dWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
-IixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBw
-dDsNCgltYXJnaW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0O30NCmRpdi5Xb3JkU2VjdGlv
-bjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT4NCjwvaGVhZD4NCjxib2R5IGxh
-bmc9IkVOLUNBIiBsaW5rPSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiIgc3R5bGU9IndvcmQtd3Jh
-cDpicmVhay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj5IaSw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T3Blbmpkay04LW5hdGl2ZSBicmVh
-a3MgZHVlIHRvIHNvbWUgbWl4dXAgcmVsYXRlZCB0byBzZHQuaCBub3QgZm91bmQ8bzpwPjwvbzpw
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+RHVuZmVsbCBicmFuY2ggYnVpbHQgb24gQ2VudE9TNyB3aXRoIHRoZSBi
-dWlsZHRvb2xzIGluc3RhbGxlZC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhpcyBpcyBmaXJz
-dCBhdHRlbXB0IHdpdGggZHVuZmVsbC4mbmJzcDsgV2FycmlvciBidWlsdCBvcGVuamRrLTgtbmF0
-aXZlIE9LPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgcmVtZW1iZXIgc2VlaW5nIHNvbWV0aGlu
-ZyBsaWtlIHRoaXMgbG9uZyBhZ28gYnV0IEkgZG9u4oCZdCByZW1lbWJlciB0aGUgZml4LjxvOnA+
-PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPi0tLS0tLS0tPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpw
-PiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPnwgL2hvbWUvZHdhdGtpbnMv
-d29ya3NwYWNlL3pldGEvdXBncmFkZS15b2N0b19tZzkwLU1HLW9zL2J1aWxkL3RtcC93b3JrL3g4
-Nl82NC1saW51eC9vcGVuamRrLTgtbmF0aXZlLzI3Mi1yMC9qZGs4dS1qZGs4dTI3Mi1nYS9ob3Rz
-cG90L3NyYy9zaGFyZS92bS91dGlsaXRpZXMvZHRyYWNlLmhwcDozMToxMDogZmF0YWwgZXJyb3I6
-IHN5cy9zZHQuaDogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeTxvOnA+PC9vOnA+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+fCZuYnNwOyZuYnNwOyZuYnNwOyAzMSB8ICNpbmNsdWRlICZsdDtz
-eXMvc2R0LmgmZ3Q7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj58Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHwmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgXn5+fn5+fn5+fn48bzpwPjwvbzpwPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPnwgY29tcGlsYXRpb24gdGVybWluYXRlZC48bzpwPjwvbzpw
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPnwgbWFrZVs2XTogKioqIFsvaG9tZS9kd2F0a2lu
-cy93b3Jrc3BhY2UvemV0YS91cGdyYWRlLXlvY3RvX21nOTAtTUctb3MvYnVpbGQvdG1wL3dvcmsv
-eDg2XzY0LWxpbnV4L29wZW5qZGstOC1uYXRpdmUvMjcyLXIwL2pkazh1LWpkazh1MjcyLWdhL2hv
-dHNwb3QvbWFrZS9saW51eC9tYWtlZmlsZXMvdm0ubWFrZTozMTA6IHByZWNvbXBpbGVkLmhwcC5n
-Y2hdIEVycm9yIDE8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPnwgbWFrZVs1
-XTogKioqIFsvaG9tZS9kd2F0a2lucy93b3Jrc3BhY2UvemV0YS91cGdyYWRlLXlvY3RvX21nOTAt
-TUctb3MvYnVpbGQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L29wZW5qZGstOC1uYXRpdmUvMjcyLXIw
-L2pkazh1LWpkazh1MjcyLWdhL2hvdHNwb3QvbWFrZS9saW51eC9tYWtlZmlsZXMvdG9wLm1ha2U6
-MTE5OiB0aGVfdm1dIEVycm9yIDI8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PnwgbWFrZVs0XTogKioqIFsvaG9tZS9kd2F0a2lucy93b3Jrc3BhY2UvemV0YS91cGdyYWRlLXlv
-Y3RvX21nOTAtTUctb3MvYnVpbGQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L29wZW5qZGstOC1uYXRp
-dmUvMjcyLXIwL2pkazh1LWpkazh1MjcyLWdhL2hvdHNwb3QvbWFrZS9saW51eC9NYWtlZmlsZToy
-ODQ6IHByb2R1Y3RdIEVycm9yIDI8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PnwgbWFrZVszXTogKioqIFtNYWtlZmlsZToyMzE6IGdlbmVyaWNfYnVpbGQyXSBFcnJvciAyPG86
-cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj58IG1ha2VbMl06ICoqKiBbTWFrZWZp
-bGU6MTc3OiBwcm9kdWN0XSBFcnJvciAyPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj58IG1ha2VbMV06ICoqKiBbSG90c3BvdFdyYXBwZXIuZ21rOjQ1OiAvaG9tZS9kd2F0a2lu
-cy93b3Jrc3BhY2UvemV0YS91cGdyYWRlLXlvY3RvX21nOTAtTUctb3MvYnVpbGQvdG1wL3dvcmsv
-eDg2XzY0LWxpbnV4L29wZW5qZGstOC1uYXRpdmUvMjcyLXIwL2J1aWxkL2hvdHNwb3QvX2hvdHNw
-b3QudGltZXN0YW1wXSBFcnJvciAyPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij58IG1ha2U6ICoqKiBbL2hvbWUvZHdhdGtpbnMvd29ya3NwYWNlL3pldGEvdXBncmFkZS15b2N0
-b19tZzkwLU1HLW9zL2J1aWxkL3RtcC93b3JrL3g4Nl82NC1saW51eC9vcGVuamRrLTgtbmF0aXZl
-LzI3Mi1yMC9qZGs4dS1qZGs4dTI3Mi1nYS8vbWFrZS9NYWluLmdtazoxMTA6IGhvdHNwb3Qtb25s
-eV0gRXJyb3IgMjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+fCBXQVJOSU5H
-OiAvaG9tZS9kd2F0a2lucy93b3Jrc3BhY2UvemV0YS91cGdyYWRlLXlvY3RvX21nOTAtTUctb3Mv
-YnVpbGQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L29wZW5qZGstOC1uYXRpdmUvMjcyLXIwL3RlbXAv
-cnVuLmRvX2NvbXBpbGUuMjcxMzY6MSBleGl0IDEgZnJvbSAnZXhpdCAxJzxvOnA+PC9vOnA+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+fCA8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPkVSUk9SOiBUYXNrICgvaG9tZS9kd2F0a2lucy93b3Jrc3BhY2UvemV0YS91cGdyYWRl
-LXlvY3RvX21nOTAtTUctb3MvdXBzdHJlYW0veW9jdG8vbWV0YS1qYXZhL3JlY2lwZXMtY29yZS9v
-cGVuamRrL29wZW5qZGstOC1uYXRpdmVfMjcyLmJiOmRvX2NvbXBpbGUpIGZhaWxlZCB3aXRoIGV4
-aXQgY29kZSAnMSc8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk5PVEU6IFRh
-c2tzIFN1bW1hcnk6IEF0dGVtcHRlZCA5NzMgdGFza3Mgb2Ygd2hpY2ggOTY2IGRpZG4ndCBuZWVk
-IHRvIGJlIHJlcnVuIGFuZCAxIGZhaWxlZC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+U3VtbWFy
-eTogMSB0YXNrIGZhaWxlZDo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZu
-YnNwOyAvaG9tZS9kd2F0a2lucy93b3Jrc3BhY2UvemV0YS91cGdyYWRlLXlvY3RvX21nOTAtTUct
-b3MvdXBzdHJlYW0veW9jdG8vbWV0YS1qYXZhL3JlY2lwZXMtY29yZS9vcGVuamRrL29wZW5qZGst
-OC1uYXRpdmVfMjcyLmJiOmRvX2NvbXBpbGU8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPlN1bW1hcnk6IFRoZXJlIHdhcyAxIFdBUk5JTkcgbWVzc2FnZSBzaG93bi48bzpwPjwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlN1bW1hcnk6IFRoZXJlIHdlcmUgMiBFUlJP
-UiBtZXNzYWdlcyBzaG93biwgcmV0dXJuaW5nIGEgbm9uLXplcm8gZXhpdCBjb2RlLjxvOnA+PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7PC9zcGFuPjwvYj48
-c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiPlJlZ2FyZHMsPC9zcGFuPjwvYj48c3BhbiBsYW5n
-PSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+
-PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOzwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiPjxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9
-IkVOLVVTIj5EYXJjeTwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJz
-cDs8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+RGFyY3kgV2F0a2lucyA6
-OiZuYnNwOyZuYnNwO1NlbmlvciBTdGFmZiBFbmdpbmVlciwgRmlybXdhcmU8L3NwYW4+PC9iPjxz
-cGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJF
-Ti1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNw
-YW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjpyZWQiPlNJRVJSQSBXSVJFTEVTUzwvc3Bhbj48
-L2I+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjpyZWQiPjxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5EaXJlY3QmbmJz
-cDsgKzEgNjA0IDIzMyA3OTg5Jm5ic3A7ICZuYnNwOzo6Jm5ic3A7Jm5ic3A7RmF4Jm5ic3A7Jm5i
-c3A7KzEgNjA0IDIzMSAxMTA5Jm5ic3A7IDo6Jm5ic3A7Jm5ic3A7TWFpbiZuYnNwOyZuYnNwOysx
-IDYwNCAyMzEgMTEwMDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIGxhbmc9IkVOLVVTIj4xMzgxMSBXaXJlbGVzcyBXYXkmbmJzcDsgOjombmJzcDtSaWNo
-bW9uZCwgQkMgQ2FuYWRhIFY2ViAzQTQ8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+W000XTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48YSBocmVmPSJtYWlsdG86
-ZHdhdGtpbnNAc2llcnJhd2lyZWxlc3MuY29tIj48c3BhbiBzdHlsZT0iY29sb3I6IzA1NjNDMSI+
-ZHdhdGtpbnNAc2llcnJhd2lyZWxlc3MuY29tPC9zcGFuPjwvYT4mbmJzcDs6OiZuYnNwOzxhIGhy
-ZWY9Imh0dHA6Ly93d3cuc2llcnJhd2lyZWxlc3MuY29tLyI+PHNwYW4gc3R5bGU9ImNvbG9yOiMw
-NTYzQzEiPnd3dy5zaWVycmF3aXJlbGVzcy5jb208L3NwYW4+PC9hPg0KPC9zcGFuPjxvOnA+PC9v
-OnA+PC9wPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+Under your migration pages, I saw that in the project 2.7 release the follo=
+wing change occurred to BitBake:
 
---_000_DC32F42495C94BD68AA2EEE978BDC4E0sierrawirelesscom_--
+"Bitbake now checks BBFILE_COLLECTIONS<https://docs.yoctoproject.org/ref-ma=
+nual/ref-variables.html#term-BBFILE_COLLECTIONS> for duplicate entries and =
+triggers an error if any are found."
+
+Does this imply that Yocto/BitBake would now throw a "duplicate BBFILE_COLL=
+ECTIONS", if say prior to 2.7 one had 2 layers such as:
+
+
+(1)    ./workspace_1/poky/../meta-intel
+
+(2)    ./workspace_1/poky/../meta-1/meta-2/meta-intel
+
+Where #1 was the actual meta-intel recipe, and #2 was for modification/conf=
+iguration of #1 ?
+
+Thanks,
+Steve
+
+
+
+--_000_7b370191e0ec4a15849fa1af5ce30b6dbaesystemscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.xref
+	{mso-style-name:xref;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:496579035;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-2032000940 -1685177216 67698713 67698715 67698703 6=
+7698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-text:"\(%1\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am currently looking at porting from &#8220;rocko&=
+#8221; to &#8220;zeus&#8221;&#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Under your migration pages, I saw that in the projec=
+t 2.7 release the following change occurred to BitBake:
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN" style=3D"font-family:&quot;Verdana=
+&quot;,sans-serif;color:#333333">&#8220;Bitbake now checks
+<a href=3D"https://docs.yoctoproject.org/ref-manual/ref-variables.html#term=
+-BBFILE_COLLECTIONS">
+<span class=3D"xref"><span style=3D"color:#444444">BBFILE_COLLECTIONS</span=
+></span></a> for duplicate entries and triggers an error if any are found.&=
+#8221;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN" style=3D"color:#333333"><o:p>&nbsp=
+;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN" style=3D"color:#333333">Does this =
+imply that Yocto/BitBake would now throw a &#8220;duplicate BBFILE_COLLECTI=
+ONS&#8221;, if say prior to 2.7 one had 2 layers such as:<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN" style=3D"color:#333333"><o:p>&nbsp=
+;</o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span lang=3D"EN" style=3D"color:#333333"><spa=
+n style=3D"mso-list:Ignore">(1)<span style=3D"font:7.0pt &quot;Times New Ro=
+man&quot;">&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN" style=3D"color:#333333">./=
+workspace_1/poky/../meta-intel<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span lang=3D"EN" style=3D"color:#333333"><spa=
+n style=3D"mso-list:Ignore">(2)<span style=3D"font:7.0pt &quot;Times New Ro=
+man&quot;">&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN" style=3D"color:#333333">./=
+workspace_1/poky/../meta-1/meta-2/meta-intel<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN" style=3D"color:#333333"><o:p>&nbsp=
+;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN" style=3D"color:#333333">Where #1 w=
+as the actual meta-intel recipe, and #2 was for modification/configuration =
+of #1 ?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN" style=3D"color:#333333"><o:p>&nbsp=
+;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN" style=3D"color:#333333">Thanks,<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN" style=3D"color:#333333">Steve<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_7b370191e0ec4a15849fa1af5ce30b6dbaesystemscom_--
