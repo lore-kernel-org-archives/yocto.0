@@ -1,343 +1,489 @@
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (NAM12-MW2-obe.outbound.protection.outlook.com [40.107.244.85])
- by mx.groups.io with SMTP id smtpd.web08.15706.1604073382941852707
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+ by mx.groups.io with SMTP id smtpd.web11.19340.1604086541551540610
  for <yocto@lists.yoctoproject.org>;
- Fri, 30 Oct 2020 08:56:23 -0700
+ Fri, 30 Oct 2020 12:35:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sierrawireless.com header.s=selector1 header.b=tGhKTiv7;
- spf=pass (domain: sierrawireless.com, ip: 40.107.244.85, mailfrom: dwatkins@sierrawireless.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F7nM+UHcdwHCOuBR+Yur66GeRh3/qY/ycWBcWQNKEvuJb7dTl/h5KlpGUAoBq59Mi2LgCFaskbeeAomJLYIwHvD1MhPF6eXc/kDZj+sQ+65KiGvjicIdIq8wzbNhF7z93ECgU/LN1PyLUvWXA8h3cXOHJ7KeV7Sqfr1IvtI8eoxz4iFCztcuKQwsapRZzK3DtyVpfX0b2lmk80QQjvrFl186QSd6MxTzJxe1L3LWsnGn9u9LIgsCbuRaCr6gAQFgaxALgllqVxmvZSY1eeisYbKpZRhUfsN0AVrssmqa3f6RXNNheWJEQlObxZrVbqLi21kCvT1t8EJoMC0Gd5Ed2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=r6fFg3JqOWzd3z5X03OST+swoqn6B1Db2cCOAx5DDlA=;
- b=cENAx1pLqfWlnUU7EDQKaST+KCY591OtePCZb3L28eXI5MdwRkqlNdEUJLTKWTXmKfLGhZZp7qTseo0ykbtKqpQt+mxvCMxDYK6e/FrZh5P3GJeNAx13aBuTZd6igcAlvNS8StioOjYkIbKD9uLN6uzuQNygQ14zGwi0EJqi5I12TgrXYYTU6391/maBxpkhHB+cdZ14Yi1mojXn7ZlL3+3sjJoWhMBmmnPfv4a7xWpSQnHWx721m7xvam6i6Y/0TC/f4rg303Y55j/Qii7dwVx//w5QGRiPJJfFYqWnSay+rEOskjFyg7oS7WO7htcd0c7voOS01HaBx65SpPYREA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=sierrawireless.com; dmarc=pass action=none
- header.from=sierrawireless.com; dkim=pass header.d=sierrawireless.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sierrawireless.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=r6fFg3JqOWzd3z5X03OST+swoqn6B1Db2cCOAx5DDlA=;
- b=tGhKTiv7COVr3Og80ySwBtVhbVIzOD0BLD2jocHxC3JH7nXsIiJpbnQcsmoKxTzHESzKD8glvc/6vVHyEyg3q2ZKcwAlA9fI2StkoP9Dmm4osYWpUDJFwONUGuUb23NT3LdTDPCEl6ouQahPlyafaEzZGnO6ca4uuRCUEDv1/BE=
-Received: from MWHPR02MB2429.namprd02.prod.outlook.com (2603:10b6:300:40::7)
- by MWHPR02MB2320.namprd02.prod.outlook.com (2603:10b6:300:5d::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.27; Fri, 30 Oct
- 2020 15:56:20 +0000
-Received: from MWHPR02MB2429.namprd02.prod.outlook.com
- ([fe80::ccf9:c0fc:7306:fc21]) by MWHPR02MB2429.namprd02.prod.outlook.com
- ([fe80::ccf9:c0fc:7306:fc21%7]) with mapi id 15.20.3499.027; Fri, 30 Oct 2020
- 15:56:20 +0000
-From: "Darcy Watkins" <dwatkins@sierrawireless.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: Meta-java - openjdk-8-native - fatal error: sys/sdt.h: No such file or directory
-Thread-Topic: Meta-java - openjdk-8-native  - fatal error: sys/sdt.h: No such
- file or directory
-Thread-Index: AQHWrgmpoJSWph3x7UGL3WqDTU5PRKmv2PwA
-Date: Fri, 30 Oct 2020 15:56:19 +0000
-Message-ID: <2C643F69-583B-4A22-835F-5D0DAD8A58E3@sierrawireless.com>
-References: <DC32F424-95C9-4BD6-8AA2-EEE978BDC4E0@sierrawireless.com>
-In-Reply-To: <DC32F424-95C9-4BD6-8AA2-EEE978BDC4E0@sierrawireless.com>
-Accept-Language: en-CA, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/16.42.20101102
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=sierrawireless.com;
-x-originating-ip: [2001:569:720b:b200:78c4:60f0:371b:26ac]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 3600c9dd-a5e3-419f-1209-08d87cec57fb
-x-ms-traffictypediagnostic: MWHPR02MB2320:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: 
- <MWHPR02MB2320C7C1C674EAB2AAE58BA0B2150@MWHPR02MB2320.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- xDKPiMVlg/LD/rv17fudIblxTvl4PEzIeUqaSshrmjH7ZCP35Y6h5v7dIntYPt23IhbfrNlP9tzbLlm7jtboVvOi9mTbdcQTOrQIY9FZNydzc71meMKmEIeK9Dkt9z7UCj6wfYbPop6I5yCfaSyN3iU8sTP0cvw1wrTQ2yk0HbLsOW0DYpmYlui+PLScxsirSoU3qIxA9AMC9Ck9dF4B0rIDZ1WRttV8m5AKs/LQxQvNw+qYgkEuhaVFG6FjAvQ4WuZqc4gEnzM5kSkITM/VUmUxCh9PEqRql/zOwrXczM+RzWyLLNu39U/3my0HW/PGdGt9JW777G3V3D6KNlOg4eKqmsuEWJU7PGm3jk2sx8C7yWp74KnQ0xn12a/8pkRJvNXcMDAe1VAVgH1CUALdiA==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR02MB2429.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(136003)(39860400002)(346002)(366004)(396003)(66556008)(66476007)(86362001)(2616005)(64756008)(66446008)(5660300002)(9326002)(6512007)(33656002)(8936002)(6486002)(76116006)(2906002)(316002)(66946007)(36756003)(53546011)(83380400001)(6916009)(186003)(478600001)(71200400001)(166002)(6506007)(8676002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 
- ecmAC2fm2F7KC+0nDj+YXzo1Nd6+dcN1wBqKL6S3udDK9zk61NPwcTVgwGWgG/2ErDhsKw4Op3dZ+4XeAT+/DatPSfedNuShXHnx2Cy47rwObBKaaY6weIFcOS+A25w1TEpVtNsjM0/Hwo+jXPLhS1TQP8L1IJddtGYzkmwAVW11sJCVjz1sZZFci9k8eWvB2E2bO/kswWoBgFtf0VCcZMc2xqyvuf4n0vMv2mbIiWxfb5qlo4EC/AxciRSvCIOMYzyCzvFfJD/ncwxyVN45DOL9i+NyoM4avG4JwLZzXQisvQKB24DRd+hwzmuMAQe2zb7wES1bOrHC9XNbcEHqpU1EeGC09Ii7rZmL0DnWPJKJt3KWwVEqQxtk6xEZ3J1YUMlM0l77grqQ01iPrDYCiVdT838FqCEziAX5foSM/BZUC7BFkRkKOTZO0aGfXJcme+A422l9JTZZiDc2gntwHxbiSi+ww36lcSQaIjKwgxfTu2QHJ63k2qUNMoFAxn9rKEPGbMXb0yonuF02AMKdjzuDWPEoezrhURqaCeDoM79Pz64gLIU8xODtoupXoKK7tOLgNsIwI8XxoI4PESfMMuf3/w7Yyfsc/2W7HpplTpJ+Prz9rtwONTNqidXfS6i2nCnpl4Vf577WQrXJSVhA9H2/jxpmKvNCLgkiVZE3kTedYOBgaeYAem7NB3EilRU9WFgs/GIX39BJwSmY1gcziw==
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=mtqsCjjV;
+ spf=pass (domain: gmail.com, ip: 209.85.214.177, mailfrom: chuckwolber@gmail.com)
+Received: by mail-pl1-f177.google.com with SMTP id w11so3452545pll.8
+        for <yocto@lists.yoctoproject.org>; Fri, 30 Oct 2020 12:35:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9QrfU37XTEjLttRVNolN22UvGUOir1BLpFX+sNbb/eo=;
+        b=mtqsCjjVgo2CxxyKPMXV9te2Bdz+r6uE6BgJWZhhaeMrSNwK6lOW2DL60UU/GqNcwV
+         +Biu5PzcymC74x28ia9jUzN7rjFeBO3EtINPL6GaeX3rRpUdUgdNSop1iAC1BgMFDSJt
+         1HxTVJymKNQSD5cNfhqZoHwGVjDU73S8Jo0F0zkF3XvXtNcWrJnhTeHfMYNTXFvCk+xm
+         1k30NR5wBzF66dohXe1ti94t/ECbpw7K0zH1XbKRAi1ZnNTQ+9W19jwA7Koe7JSO+WOK
+         i2oTqf6560qG+mZ89Xaa/XRBmjjRVZHNV1IYtH4M8OHsPq/GO5xdqkYzTxO4AJ3JX9hV
+         +d1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9QrfU37XTEjLttRVNolN22UvGUOir1BLpFX+sNbb/eo=;
+        b=podCvhl3kive7MbYnE7+VnB3ubUsy3GuQLMYYsQm1hxZSDvRaQKU8sAS3p6D1WPFYC
+         BbrDV5WK0h4dA1ZL37GFfNu9T4/GJg19hmg73OcLZ9fzVDmPUeyyhzPJKnlwxazb3gBc
+         v9FVRgLhJbhsucv8XJzguUEhM5ReYrVIZogmcwnffbcR/NTRYuNj/LTtsBHOkXZpsCI4
+         d76XRQTYv2lxIXwCnne1XeZH5iatcdIOG4E2SOfKRiUlN31EQh4EkEVIVtK/XzLmXdZE
+         WD1SOu9fwVAE5JdgPblN1EcoI5mjk6FXmWUz8o5z05wJbKiS8FzAboRJG/0dF7lahlb3
+         c/bQ==
+X-Gm-Message-State: AOAM533LracPe3pmXZz1YHMkCZuJb6QNRV8LOtBeTeSzvacfvavy8m9H
+	meSJfdnzgQHpE8jtOHLGC0s1hX8TXIGm3rY1kF4=
+X-Google-Smtp-Source: ABdhPJyIF8dL3PyRl3fV7GumOGR0G5RQmuBCRsuZe9uM7y70DD37Bc/ghalX4ZmbtSsPc0GAUMXyE676OfdOA0FQiig=
+X-Received: by 2002:a17:902:a60c:b029:d5:dc92:a1ca with SMTP id
+ u12-20020a170902a60cb02900d5dc92a1camr10641916plq.16.1604086540861; Fri, 30
+ Oct 2020 12:35:40 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: sierrawireless.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR02MB2429.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3600c9dd-a5e3-419f-1209-08d87cec57fb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Oct 2020 15:56:20.0909
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: uESfh2HRBg+uvTWn+dHOkVtwsUJqjweTPRI8Z3oY/OuqXJDKiYR8ahEtusZ0W5ft5nTnqfhuEaXM8ZUzt+PLTZ2JF3Hw+w8yu9Y8T/DTe9o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB2320
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_2C643F69583B4A22835F5D0DAD8A58E3sierrawirelesscom_"
+References: <DC32F424-95C9-4BD6-8AA2-EEE978BDC4E0@sierrawireless.com> <2C643F69-583B-4A22-835F-5D0DAD8A58E3@sierrawireless.com>
+In-Reply-To: <2C643F69-583B-4A22-835F-5D0DAD8A58E3@sierrawireless.com>
+From: "Chuck Wolber" <chuckwolber@gmail.com>
+Date: Fri, 30 Oct 2020 12:35:29 -0700
+Message-ID: <CAB=6tBT22k0rcpEMh2xRGYAQGjrO2SEWZRYoqzWcFj62hQZ22g@mail.gmail.com>
+Subject: Re: [yocto] Meta-java - openjdk-8-native - fatal error: sys/sdt.h: No such file or directory
+To: Darcy Watkins <dwatkins@sierrawireless.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000007505f305b2e8801a"
 
---_000_2C643F69583B4A22835F5D0DAD8A58E3sierrawirelesscom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000007505f305b2e8801a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGksDQoNCk15IGhvc3QgT1MgaGFzIHN5c3RlbXRhcC1zZHQtZGV2ZWwgaW5zdGFsbGVkIGZvciBz
-b21lIHJlYXNvbi4gIEkgdGVtcG9yYXJpbHkgcmVuYW1lZCB0aGUgc2R0LmggdG8gZ2V0IGl0IG91
-dCBvZiB0aGUgd2F5IGFuZCB0aGUgYnVpbGQgd29ya2VkLg0KDQpJZiBhbGwgSSBoYXZlIHRvIGRv
-IGlzIHJlbW92ZSB0aGF0IHBhY2thZ2UgKGFuZCBob3BlZnVsbHkgbm90IG5lZWQgc29tZXRoaW5n
-IHRoYXQgZGVwZW5kcyBvbiBpdCkgdGhlbiB0aGF0IHdvcmtzIG91dCBPSy4NCg0KT24gdGhlIG90
-aGVyIGhhbmQsIHRoaXMgY291bGQgYmUgYW4gaW5kaWNhdGlvbiB0aGF0IHdoZW4gYnVpbGRpbmcg
-b3Blbmpkay04LW5hdGl2ZSwgdGhlIHJlY2lwZSBpcyBub3QgcHJvcGVybHkgZGlzdGluZ3Vpc2hp
-bmcgdGhlIG5hdGl2ZSAodGFyZ2V0KSBzeXNyb290IHZlcnN1cyB0aGUgaG9zdCBzeXNyb290IChm
-b3IgdGhlIEdDQyBvbiB0aGUgc3lzdGVtKS4gIE9yIHRoZSBmYWN0IHRoYXQgdGhlIGJ1aWxkdG9v
-bHMgYXJlIHVzZWQgZG9lc27igJl0IHByZXZlbnQgaXQgZnJvbSBzdGlsbCBjaGVja2luZyB0aGUg
-aG9zdCBzeXN0ZW3igJlzIHN5c3Jvb3QuDQoNCkZvciBub3csIHRoZSBhbnN3ZXIgaXMgZG9u4oCZ
-dCBoYXZlIHN5c3RlbXRhcC1zZHQtZGV2ZWwgb24geW91ciBDZW50T1M3IHN5c3RlbSAob3IgdXNl
-IGEgZG9ja2VyIGNvbnRhaW5lciB3aXRob3V0IGl0KS4NCg0KDQoNClJlZ2FyZHMsDQoNCkRhcmN5
-DQoNCkRhcmN5IFdhdGtpbnMgOjogIFNlbmlvciBTdGFmZiBFbmdpbmVlciwgRmlybXdhcmUNCg0K
-U0lFUlJBIFdJUkVMRVNTDQpEaXJlY3QgICsxIDYwNCAyMzMgNzk4OSAgIDo6ICBGYXggICsxIDYw
-NCAyMzEgMTEwOSAgOjogIE1haW4gICsxIDYwNCAyMzEgMTEwMA0KMTM4MTEgV2lyZWxlc3MgV2F5
-ICA6OiBSaWNobW9uZCwgQkMgQ2FuYWRhIFY2ViAzQTQNCltNNF0NCmR3YXRraW5zQHNpZXJyYXdp
-cmVsZXNzLmNvbTxtYWlsdG86ZHdhdGtpbnNAc2llcnJhd2lyZWxlc3MuY29tPiA6OiB3d3cuc2ll
-cnJhd2lyZWxlc3MuY29tPGh0dHA6Ly93d3cuc2llcnJhd2lyZWxlc3MuY29tLz4NCg0KRnJvbTog
-RGFyY3kgV2F0a2lucyA8ZHdhdGtpbnNAc2llcnJhd2lyZWxlc3MuY29tPg0KRGF0ZTogVGh1cnNk
-YXksIE9jdG9iZXIgMjksIDIwMjAgYXQgODozOSBBTQ0KVG86ICJ5b2N0b0BsaXN0cy55b2N0b3By
-b2plY3Qub3JnIiA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4NClN1YmplY3Q6IE1ldGEt
-amF2YSAtIG9wZW5qZGstOC1uYXRpdmUgLSBmYXRhbCBlcnJvcjogc3lzL3NkdC5oOiBObyBzdWNo
-IGZpbGUgb3IgZGlyZWN0b3J5DQoNCkhpLA0KDQpPcGVuamRrLTgtbmF0aXZlIGJyZWFrcyBkdWUg
-dG8gc29tZSBtaXh1cCByZWxhdGVkIHRvIHNkdC5oIG5vdCBmb3VuZA0KDQpEdW5mZWxsIGJyYW5j
-aCBidWlsdCBvbiBDZW50T1M3IHdpdGggdGhlIGJ1aWxkdG9vbHMgaW5zdGFsbGVkLg0KDQpUaGlz
-IGlzIGZpcnN0IGF0dGVtcHQgd2l0aCBkdW5mZWxsLiAgV2FycmlvciBidWlsdCBvcGVuamRrLTgt
-bmF0aXZlIE9LDQoNCkkgcmVtZW1iZXIgc2VlaW5nIHNvbWV0aGluZyBsaWtlIHRoaXMgbG9uZyBh
-Z28gYnV0IEkgZG9u4oCZdCByZW1lbWJlciB0aGUgZml4Lg0KDQoNCi0tLS0tLS0tDQoNCnwgL2hv
-bWUvZHdhdGtpbnMvd29ya3NwYWNlL3pldGEvdXBncmFkZS15b2N0b19tZzkwLU1HLW9zL2J1aWxk
-L3RtcC93b3JrL3g4Nl82NC1saW51eC9vcGVuamRrLTgtbmF0aXZlLzI3Mi1yMC9qZGs4dS1qZGs4
-dTI3Mi1nYS9ob3RzcG90L3NyYy9zaGFyZS92bS91dGlsaXRpZXMvZHRyYWNlLmhwcDozMToxMDog
-ZmF0YWwgZXJyb3I6IHN5cy9zZHQuaDogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQ0KfCAgICAz
-MSB8ICNpbmNsdWRlIDxzeXMvc2R0Lmg+DQp8ICAgICAgIHwgICAgICAgICAgXn5+fn5+fn5+fn4N
-CnwgY29tcGlsYXRpb24gdGVybWluYXRlZC4NCnwgbWFrZVs2XTogKioqIFsvaG9tZS9kd2F0a2lu
-cy93b3Jrc3BhY2UvemV0YS91cGdyYWRlLXlvY3RvX21nOTAtTUctb3MvYnVpbGQvdG1wL3dvcmsv
-eDg2XzY0LWxpbnV4L29wZW5qZGstOC1uYXRpdmUvMjcyLXIwL2pkazh1LWpkazh1MjcyLWdhL2hv
-dHNwb3QvbWFrZS9saW51eC9tYWtlZmlsZXMvdm0ubWFrZTozMTA6IHByZWNvbXBpbGVkLmhwcC5n
-Y2hdIEVycm9yIDENCnwgbWFrZVs1XTogKioqIFsvaG9tZS9kd2F0a2lucy93b3Jrc3BhY2UvemV0
-YS91cGdyYWRlLXlvY3RvX21nOTAtTUctb3MvYnVpbGQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L29w
-ZW5qZGstOC1uYXRpdmUvMjcyLXIwL2pkazh1LWpkazh1MjcyLWdhL2hvdHNwb3QvbWFrZS9saW51
-eC9tYWtlZmlsZXMvdG9wLm1ha2U6MTE5OiB0aGVfdm1dIEVycm9yIDINCnwgbWFrZVs0XTogKioq
-IFsvaG9tZS9kd2F0a2lucy93b3Jrc3BhY2UvemV0YS91cGdyYWRlLXlvY3RvX21nOTAtTUctb3Mv
-YnVpbGQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L29wZW5qZGstOC1uYXRpdmUvMjcyLXIwL2pkazh1
-LWpkazh1MjcyLWdhL2hvdHNwb3QvbWFrZS9saW51eC9NYWtlZmlsZToyODQ6IHByb2R1Y3RdIEVy
-cm9yIDINCnwgbWFrZVszXTogKioqIFtNYWtlZmlsZToyMzE6IGdlbmVyaWNfYnVpbGQyXSBFcnJv
-ciAyDQp8IG1ha2VbMl06ICoqKiBbTWFrZWZpbGU6MTc3OiBwcm9kdWN0XSBFcnJvciAyDQp8IG1h
-a2VbMV06ICoqKiBbSG90c3BvdFdyYXBwZXIuZ21rOjQ1OiAvaG9tZS9kd2F0a2lucy93b3Jrc3Bh
-Y2UvemV0YS91cGdyYWRlLXlvY3RvX21nOTAtTUctb3MvYnVpbGQvdG1wL3dvcmsveDg2XzY0LWxp
-bnV4L29wZW5qZGstOC1uYXRpdmUvMjcyLXIwL2J1aWxkL2hvdHNwb3QvX2hvdHNwb3QudGltZXN0
-YW1wXSBFcnJvciAyDQp8IG1ha2U6ICoqKiBbL2hvbWUvZHdhdGtpbnMvd29ya3NwYWNlL3pldGEv
-dXBncmFkZS15b2N0b19tZzkwLU1HLW9zL2J1aWxkL3RtcC93b3JrL3g4Nl82NC1saW51eC9vcGVu
-amRrLTgtbmF0aXZlLzI3Mi1yMC9qZGs4dS1qZGs4dTI3Mi1nYS8vbWFrZS9NYWluLmdtazoxMTA6
-IGhvdHNwb3Qtb25seV0gRXJyb3IgMg0KfCBXQVJOSU5HOiAvaG9tZS9kd2F0a2lucy93b3Jrc3Bh
-Y2UvemV0YS91cGdyYWRlLXlvY3RvX21nOTAtTUctb3MvYnVpbGQvdG1wL3dvcmsveDg2XzY0LWxp
-bnV4L29wZW5qZGstOC1uYXRpdmUvMjcyLXIwL3RlbXAvcnVuLmRvX2NvbXBpbGUuMjcxMzY6MSBl
-eGl0IDEgZnJvbSAnZXhpdCAxJw0KfA0KRVJST1I6IFRhc2sgKC9ob21lL2R3YXRraW5zL3dvcmtz
-cGFjZS96ZXRhL3VwZ3JhZGUteW9jdG9fbWc5MC1NRy1vcy91cHN0cmVhbS95b2N0by9tZXRhLWph
-dmEvcmVjaXBlcy1jb3JlL29wZW5qZGsvb3Blbmpkay04LW5hdGl2ZV8yNzIuYmI6ZG9fY29tcGls
-ZSkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJw0KTk9URTogVGFza3MgU3VtbWFyeTogQXR0ZW1w
-dGVkIDk3MyB0YXNrcyBvZiB3aGljaCA5NjYgZGlkbid0IG5lZWQgdG8gYmUgcmVydW4gYW5kIDEg
-ZmFpbGVkLg0KDQpTdW1tYXJ5OiAxIHRhc2sgZmFpbGVkOg0KICAvaG9tZS9kd2F0a2lucy93b3Jr
-c3BhY2UvemV0YS91cGdyYWRlLXlvY3RvX21nOTAtTUctb3MvdXBzdHJlYW0veW9jdG8vbWV0YS1q
-YXZhL3JlY2lwZXMtY29yZS9vcGVuamRrL29wZW5qZGstOC1uYXRpdmVfMjcyLmJiOmRvX2NvbXBp
-bGUNClN1bW1hcnk6IFRoZXJlIHdhcyAxIFdBUk5JTkcgbWVzc2FnZSBzaG93bi4NClN1bW1hcnk6
-IFRoZXJlIHdlcmUgMiBFUlJPUiBtZXNzYWdlcyBzaG93biwgcmV0dXJuaW5nIGEgbm9uLXplcm8g
-ZXhpdCBjb2RlLg0KDQoNCg0KDQpSZWdhcmRzLA0KDQpEYXJjeQ0KDQpEYXJjeSBXYXRraW5zIDo6
-ICBTZW5pb3IgU3RhZmYgRW5naW5lZXIsIEZpcm13YXJlDQoNClNJRVJSQSBXSVJFTEVTUw0KRGly
-ZWN0ICArMSA2MDQgMjMzIDc5ODkgICA6OiAgRmF4ICArMSA2MDQgMjMxIDExMDkgIDo6ICBNYWlu
-ICArMSA2MDQgMjMxIDExMDANCjEzODExIFdpcmVsZXNzIFdheSAgOjogUmljaG1vbmQsIEJDIENh
-bmFkYSBWNlYgM0E0DQpbTTRdDQpkd2F0a2luc0BzaWVycmF3aXJlbGVzcy5jb208bWFpbHRvOmR3
-YXRraW5zQHNpZXJyYXdpcmVsZXNzLmNvbT4gOjogd3d3LnNpZXJyYXdpcmVsZXNzLmNvbTxodHRw
-Oi8vd3d3LnNpZXJyYXdpcmVsZXNzLmNvbS8+DQo=
+I have bumbled into a few recipes like that as well. It caused some concern
+because bitbake is supposed to avoid contamination like that.
 
---_000_2C643F69583B4A22835F5D0DAD8A58E3sierrawirelesscom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <EC1EE6A0454BDD44925C8EBE7E2A5E1D@namprd02.prod.outlook.com>
-Content-Transfer-Encoding: base64
+You can use the ERROR_QA variable to do compile-host-path and
+install-host-path checks in your distro config. That should produce errors
+when something like your issue happens.
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
-bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
-IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
-IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3Jt
-YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0KCWZvbnQtc2l6
-ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBz
-cGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsN
-Cgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uRW1haWxTdHlsZTE5DQoJe21zby1z
-dHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNl
-cmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5
-cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjEN
-Cgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA3Mi4wcHQgNzIuMHB0IDcy
-LjBwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5
-bGU+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1DQSIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBs
-ZSIgc3R5bGU9IndvcmQtd3JhcDpicmVhay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9u
-MSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IaSw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+TXkg
-aG9zdCBPUyBoYXMgc3lzdGVtdGFwLXNkdC1kZXZlbCBpbnN0YWxsZWQgZm9yIHNvbWUgcmVhc29u
-LiZuYnNwOyBJIHRlbXBvcmFyaWx5IHJlbmFtZWQgdGhlIHNkdC5oIHRvIGdldCBpdCBvdXQgb2Yg
-dGhlIHdheSBhbmQgdGhlIGJ1aWxkIHdvcmtlZC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SWYg
-YWxsIEkgaGF2ZSB0byBkbyBpcyByZW1vdmUgdGhhdCBwYWNrYWdlIChhbmQgaG9wZWZ1bGx5IG5v
-dCBuZWVkIHNvbWV0aGluZyB0aGF0IGRlcGVuZHMgb24gaXQpIHRoZW4gdGhhdCB3b3JrcyBvdXQg
-T0suPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIHRoZSBvdGhlciBoYW5kLCB0aGlzIGNvdWxk
-IGJlIGFuIGluZGljYXRpb24gdGhhdCB3aGVuIGJ1aWxkaW5nIG9wZW5qZGstOC1uYXRpdmUsIHRo
-ZSByZWNpcGUgaXMgbm90IHByb3Blcmx5IGRpc3Rpbmd1aXNoaW5nIHRoZSBuYXRpdmUgKHRhcmdl
-dCkgc3lzcm9vdCB2ZXJzdXMgdGhlIGhvc3Qgc3lzcm9vdCAoZm9yIHRoZSBHQ0Mgb24gdGhlIHN5
-c3RlbSkuJm5ic3A7IE9yIHRoZSBmYWN0IHRoYXQgdGhlIGJ1aWxkdG9vbHMNCiBhcmUgdXNlZCBk
-b2VzbuKAmXQgcHJldmVudCBpdCBmcm9tIHN0aWxsIGNoZWNraW5nIHRoZSBob3N0IHN5c3RlbeKA
-mXMgc3lzcm9vdC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Rm9yIG5vdywgdGhlIGFuc3dlciBp
-cyBkb27igJl0IGhhdmUgc3lzdGVtdGFwLXNkdC1kZXZlbCBvbiB5b3VyIENlbnRPUzcgc3lzdGVt
-IChvciB1c2UgYSBkb2NrZXIgY29udGFpbmVyIHdpdGhvdXQgaXQpLjxvOnA+PC9vOnA+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOzxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8
-L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+UmVnYXJkcyw8L3NwYW4+PC9i
-PjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7PC9zcGFuPjwvYj48c3BhbiBsYW5n
-PSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+
-PHNwYW4gbGFuZz0iRU4tVVMiPkRhcmN5PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyI+PG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0i
-RU4tVVMiPiZuYnNwOzwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIj5EYXJj
-eSBXYXRraW5zIDo6Jm5ic3A7Jm5ic3A7U2VuaW9yIFN0YWZmIEVuZ2luZWVyLCBGaXJtd2FyZTwv
-c3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8L3NwYW4+PC9iPjxz
-cGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOnJlZCI+U0lFUlJBIFdJUkVM
-RVNTPC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOnJlZCI+PG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
-PkRpcmVjdCZuYnNwOyArMSA2MDQgMjMzIDc5ODkmbmJzcDsgJm5ic3A7OjombmJzcDsmbmJzcDtG
-YXgmbmJzcDsmbmJzcDsrMSA2MDQgMjMxIDExMDkmbmJzcDsgOjombmJzcDsmbmJzcDtNYWluJm5i
-c3A7Jm5ic3A7KzEgNjA0IDIzMSAxMTAwPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjEzODExIFdpcmVsZXNzIFdheSZuYnNwOyA6
-OiZuYnNwO1JpY2htb25kLCBCQyBDYW5hZGEgVjZWIDNBNDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5bTTRdPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxhIGhy
-ZWY9Im1haWx0bzpkd2F0a2luc0BzaWVycmF3aXJlbGVzcy5jb20iPjxzcGFuIHN0eWxlPSJjb2xv
-cjojMDU2M0MxIj5kd2F0a2luc0BzaWVycmF3aXJlbGVzcy5jb208L3NwYW4+PC9hPiZuYnNwOzo6
-Jm5ic3A7PGEgaHJlZj0iaHR0cDovL3d3dy5zaWVycmF3aXJlbGVzcy5jb20vIj48c3BhbiBzdHls
-ZT0iY29sb3I6IzA1NjNDMSI+d3d3LnNpZXJyYXdpcmVsZXNzLmNvbTwvc3Bhbj48L2E+DQo8L3Nw
-YW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAj
-QjVDNERGIDEuMHB0O3BhZGRpbmc6My4wcHQgMGNtIDBjbSAwY20iPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPkZyb206
-IDwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPkRh
-cmN5IFdhdGtpbnMgJmx0O2R3YXRraW5zQHNpZXJyYXdpcmVsZXNzLmNvbSZndDs8YnI+DQo8Yj5E
-YXRlOiA8L2I+VGh1cnNkYXksIE9jdG9iZXIgMjksIDIwMjAgYXQgODozOSBBTTxicj4NCjxiPlRv
-OiA8L2I+JnF1b3Q7eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyZxdW90OyAmbHQ7eW9jdG9A
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZyZndDs8YnI+DQo8Yj5TdWJqZWN0OiA8L2I+TWV0YS1qYXZh
-IC0gb3Blbmpkay04LW5hdGl2ZSAtIGZhdGFsIGVycm9yOiBzeXMvc2R0Lmg6IE5vIHN1Y2ggZmls
-ZSBvciBkaXJlY3Rvcnk8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+SGksPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJz
-cDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9wZW5qZGstOC1uYXRpdmUg
-YnJlYWtzIGR1ZSB0byBzb21lIG1peHVwIHJlbGF0ZWQgdG8gc2R0Lmggbm90IGZvdW5kPG86cD48
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPkR1bmZlbGwgYnJhbmNoIGJ1aWx0IG9uIENlbnRPUzcgd2l0aCB0
-aGUgYnVpbGR0b29scyBpbnN0YWxsZWQuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoaXMgaXMg
-Zmlyc3QgYXR0ZW1wdCB3aXRoIGR1bmZlbGwuJm5ic3A7IFdhcnJpb3IgYnVpbHQgb3Blbmpkay04
-LW5hdGl2ZSBPSzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86
-cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIHJlbWVtYmVyIHNlZWluZyBzb21l
-dGhpbmcgbGlrZSB0aGlzIGxvbmcgYWdvIGJ1dCBJIGRvbuKAmXQgcmVtZW1iZXIgdGhlIGZpeC48
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj4tLS0tLS0tLTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj58IC9ob21lL2R3YXRr
-aW5zL3dvcmtzcGFjZS96ZXRhL3VwZ3JhZGUteW9jdG9fbWc5MC1NRy1vcy9idWlsZC90bXAvd29y
-ay94ODZfNjQtbGludXgvb3Blbmpkay04LW5hdGl2ZS8yNzItcjAvamRrOHUtamRrOHUyNzItZ2Ev
-aG90c3BvdC9zcmMvc2hhcmUvdm0vdXRpbGl0aWVzL2R0cmFjZS5ocHA6MzE6MTA6IGZhdGFsIGVy
-cm9yOiBzeXMvc2R0Lmg6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3Rvcnk8bzpwPjwvbzpwPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPnwmbmJzcDsmbmJzcDsmbmJzcDsgMzEgfCAjaW5jbHVkZSAm
-bHQ7c3lzL3NkdC5oJmd0OzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+fCZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyB8Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IF5+fn5+fn5+fn5+PG86cD48L286cD48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj58IGNvbXBpbGF0aW9uIHRlcm1pbmF0ZWQuPG86cD48
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj58IG1ha2VbNl06ICoqKiBbL2hvbWUvZHdh
-dGtpbnMvd29ya3NwYWNlL3pldGEvdXBncmFkZS15b2N0b19tZzkwLU1HLW9zL2J1aWxkL3RtcC93
-b3JrL3g4Nl82NC1saW51eC9vcGVuamRrLTgtbmF0aXZlLzI3Mi1yMC9qZGs4dS1qZGs4dTI3Mi1n
-YS9ob3RzcG90L21ha2UvbGludXgvbWFrZWZpbGVzL3ZtLm1ha2U6MzEwOiBwcmVjb21waWxlZC5o
-cHAuZ2NoXSBFcnJvciAxPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj58IG1h
-a2VbNV06ICoqKiBbL2hvbWUvZHdhdGtpbnMvd29ya3NwYWNlL3pldGEvdXBncmFkZS15b2N0b19t
-ZzkwLU1HLW9zL2J1aWxkL3RtcC93b3JrL3g4Nl82NC1saW51eC9vcGVuamRrLTgtbmF0aXZlLzI3
-Mi1yMC9qZGs4dS1qZGs4dTI3Mi1nYS9ob3RzcG90L21ha2UvbGludXgvbWFrZWZpbGVzL3RvcC5t
-YWtlOjExOTogdGhlX3ZtXSBFcnJvciAyPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj58IG1ha2VbNF06ICoqKiBbL2hvbWUvZHdhdGtpbnMvd29ya3NwYWNlL3pldGEvdXBncmFk
-ZS15b2N0b19tZzkwLU1HLW9zL2J1aWxkL3RtcC93b3JrL3g4Nl82NC1saW51eC9vcGVuamRrLTgt
-bmF0aXZlLzI3Mi1yMC9qZGs4dS1qZGs4dTI3Mi1nYS9ob3RzcG90L21ha2UvbGludXgvTWFrZWZp
-bGU6Mjg0OiBwcm9kdWN0XSBFcnJvciAyPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj58IG1ha2VbM106ICoqKiBbTWFrZWZpbGU6MjMxOiBnZW5lcmljX2J1aWxkMl0gRXJyb3Ig
-MjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+fCBtYWtlWzJdOiAqKiogW01h
-a2VmaWxlOjE3NzogcHJvZHVjdF0gRXJyb3IgMjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+fCBtYWtlWzFdOiAqKiogW0hvdHNwb3RXcmFwcGVyLmdtazo0NTogL2hvbWUvZHdh
-dGtpbnMvd29ya3NwYWNlL3pldGEvdXBncmFkZS15b2N0b19tZzkwLU1HLW9zL2J1aWxkL3RtcC93
-b3JrL3g4Nl82NC1saW51eC9vcGVuamRrLTgtbmF0aXZlLzI3Mi1yMC9idWlsZC9ob3RzcG90L19o
-b3RzcG90LnRpbWVzdGFtcF0gRXJyb3IgMjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+fCBtYWtlOiAqKiogWy9ob21lL2R3YXRraW5zL3dvcmtzcGFjZS96ZXRhL3VwZ3JhZGUt
-eW9jdG9fbWc5MC1NRy1vcy9idWlsZC90bXAvd29yay94ODZfNjQtbGludXgvb3Blbmpkay04LW5h
-dGl2ZS8yNzItcjAvamRrOHUtamRrOHUyNzItZ2EvL21ha2UvTWFpbi5nbWs6MTEwOiBob3RzcG90
-LW9ubHldIEVycm9yIDI8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPnwgV0FS
-TklORzogL2hvbWUvZHdhdGtpbnMvd29ya3NwYWNlL3pldGEvdXBncmFkZS15b2N0b19tZzkwLU1H
-LW9zL2J1aWxkL3RtcC93b3JrL3g4Nl82NC1saW51eC9vcGVuamRrLTgtbmF0aXZlLzI3Mi1yMC90
-ZW1wL3J1bi5kb19jb21waWxlLjI3MTM2OjEgZXhpdCAxIGZyb20gJ2V4aXQgMSc8bzpwPjwvbzpw
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPnwgPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj5FUlJPUjogVGFzayAoL2hvbWUvZHdhdGtpbnMvd29ya3NwYWNlL3pldGEvdXBn
-cmFkZS15b2N0b19tZzkwLU1HLW9zL3Vwc3RyZWFtL3lvY3RvL21ldGEtamF2YS9yZWNpcGVzLWNv
-cmUvb3Blbmpkay9vcGVuamRrLTgtbmF0aXZlXzI3Mi5iYjpkb19jb21waWxlKSBmYWlsZWQgd2l0
-aCBleGl0IGNvZGUgJzEnPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5OT1RF
-OiBUYXNrcyBTdW1tYXJ5OiBBdHRlbXB0ZWQgOTczIHRhc2tzIG9mIHdoaWNoIDk2NiBkaWRuJ3Qg
-bmVlZCB0byBiZSByZXJ1biBhbmQgMSBmYWlsZWQuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlN1
-bW1hcnk6IDEgdGFzayBmYWlsZWQ6PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij4mbmJzcDsgL2hvbWUvZHdhdGtpbnMvd29ya3NwYWNlL3pldGEvdXBncmFkZS15b2N0b19tZzkw
-LU1HLW9zL3Vwc3RyZWFtL3lvY3RvL21ldGEtamF2YS9yZWNpcGVzLWNvcmUvb3Blbmpkay9vcGVu
-amRrLTgtbmF0aXZlXzI3Mi5iYjpkb19jb21waWxlPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj5TdW1tYXJ5OiBUaGVyZSB3YXMgMSBXQVJOSU5HIG1lc3NhZ2Ugc2hvd24uPG86
-cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5TdW1tYXJ5OiBUaGVyZSB3ZXJlIDIg
-RVJST1IgbWVzc2FnZXMgc2hvd24sIHJldHVybmluZyBhIG5vbi16ZXJvIGV4aXQgY29kZS48bzpw
-PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOzwvc3Bhbj48
-L2I+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJF
-Ti1VUyI+UmVnYXJkcyw8L3NwYW4+PC9iPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOzwvc3Bhbj48L2I+PG86cD48L286cD48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+RGFyY3k8L3Nw
-YW4+PC9iPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFu
-Zz0iRU4tVVMiPiZuYnNwOzwvc3Bhbj48L2I+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+RGFyY3kgV2F0a2lucyA6OiZuYnNwOyZuYnNw
-O1NlbmlvciBTdGFmZiBFbmdpbmVlciwgRmlybXdhcmU8L3NwYW4+PC9iPjxvOnA+PC9vOnA+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOzwvc3Bh
-bj48L2I+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5n
-PSJFTi1VUyIgc3R5bGU9ImNvbG9yOnJlZCI+U0lFUlJBIFdJUkVMRVNTPC9zcGFuPjwvYj48bzpw
-PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5EaXJl
-Y3QmbmJzcDsgKzEgNjA0IDIzMyA3OTg5Jm5ic3A7ICZuYnNwOzo6Jm5ic3A7Jm5ic3A7RmF4Jm5i
-c3A7Jm5ic3A7KzEgNjA0IDIzMSAxMTA5Jm5ic3A7IDo6Jm5ic3A7Jm5ic3A7TWFpbiZuYnNwOyZu
-YnNwOysxIDYwNCAyMzEgMTEwMDwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4xMzgxMSBXaXJlbGVzcyBXYXkmbmJzcDsgOjombmJz
-cDtSaWNobW9uZCwgQkMgQ2FuYWRhIFY2ViAzQTQ8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+W000XTwvc3Bhbj48bzpwPjwvbzpw
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48YSBocmVmPSJt
-YWlsdG86ZHdhdGtpbnNAc2llcnJhd2lyZWxlc3MuY29tIj48c3BhbiBzdHlsZT0iY29sb3I6IzA1
-NjNDMSI+ZHdhdGtpbnNAc2llcnJhd2lyZWxlc3MuY29tPC9zcGFuPjwvYT4mbmJzcDs6OiZuYnNw
-OzxhIGhyZWY9Imh0dHA6Ly93d3cuc2llcnJhd2lyZWxlc3MuY29tLyI+PHNwYW4gc3R5bGU9ImNv
-bG9yOiMwNTYzQzEiPnd3dy5zaWVycmF3aXJlbGVzcy5jb208L3NwYW4+PC9hPg0KPC9zcGFuPjxv
-OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+..Ch:W..
 
---_000_2C643F69583B4A22835F5D0DAD8A58E3sierrawirelesscom_--
+On Fri, Oct 30, 2020 at 8:56 AM Darcy Watkins <dwatkins@sierrawireless.com=
+>
+wrote:
+
+> Hi,
+>
+>
+>
+> My host OS has systemtap-sdt-devel installed for some reason.  I
+> temporarily renamed the sdt.h to get it out of the way and the build wor=
+ked.
+>
+>
+>
+> If all I have to do is remove that package (and hopefully not need
+> something that depends on it) then that works out OK.
+>
+>
+>
+> On the other hand, this could be an indication that when building
+> openjdk-8-native, the recipe is not properly distinguishing the native
+> (target) sysroot versus the host sysroot (for the GCC on the system).  O=
+r
+> the fact that the buildtools are used doesn=E2=80=99t prevent it from st=
+ill
+> checking the host system=E2=80=99s sysroot.
+>
+>
+>
+> For now, the answer is don=E2=80=99t have systemtap-sdt-devel on your Ce=
+ntOS7
+> system (or use a docker container without it).
+>
+>
+>
+>
+>
+>
+>
+> *Regards,*
+>
+>
+>
+> *Darcy*
+>
+>
+>
+> *Darcy Watkins ::  Senior Staff Engineer, Firmware*
+>
+>
+>
+> *SIERRA WIRELESS*
+>
+> Direct  +1 604 233 7989   ::  Fax  +1 604 231 1109  ::  Main  +1 604 231
+> 1100
+>
+> 13811 Wireless Way  :: Richmond, BC Canada V6V 3A4
+>
+> [M4]
+>
+> dwatkins@sierrawireless.com :: www.sierrawireless.com
+>
+>
+>
+> *From: *Darcy Watkins <dwatkins@sierrawireless.com>
+> *Date: *Thursday, October 29, 2020 at 8:39 AM
+> *To: *"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+> *Subject: *Meta-java - openjdk-8-native - fatal error: sys/sdt.h: No suc=
+h
+> file or directory
+>
+>
+>
+> Hi,
+>
+>
+>
+> Openjdk-8-native breaks due to some mixup related to sdt.h not found
+>
+>
+>
+> Dunfell branch built on CentOS7 with the buildtools installed.
+>
+>
+>
+> This is first attempt with dunfell.  Warrior built openjdk-8-native OK
+>
+>
+>
+> I remember seeing something like this long ago but I don=E2=80=99t remem=
+ber the
+> fix.
+>
+>
+>
+>
+>
+> --------
+>
+>
+>
+> |
+> /home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-os/build/tmp/work/x8=
+6_64-linux/openjdk-8-native/272-r0/jdk8u-jdk8u272-ga/hotspot/src/share/vm/u=
+tilities/dtrace.hpp:31:10:
+> fatal error: sys/sdt.h: No such file or directory
+>
+> |    31 | #include <sys/sdt.h>
+>
+> |       |          ^~~~~~~~~~~
+>
+> | compilation terminated.
+>
+> | make[6]: ***
+> [/home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-os/build/tmp/work/x=
+86_64-linux/openjdk-8-native/272-r0/jdk8u-jdk8u272-ga/hotspot/make/linux/ma=
+kefiles/vm.make:310:
+> precompiled.hpp.gch] Error 1
+>
+> | make[5]: ***
+> [/home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-os/build/tmp/work/x=
+86_64-linux/openjdk-8-native/272-r0/jdk8u-jdk8u272-ga/hotspot/make/linux/ma=
+kefiles/top.make:119:
+> the_vm] Error 2
+>
+> | make[4]: ***
+> [/home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-os/build/tmp/work/x=
+86_64-linux/openjdk-8-native/272-r0/jdk8u-jdk8u272-ga/hotspot/make/linux/Ma=
+kefile:284:
+> product] Error 2
+>
+> | make[3]: *** [Makefile:231: generic_build2] Error 2
+>
+> | make[2]: *** [Makefile:177: product] Error 2
+>
+> | make[1]: *** [HotspotWrapper.gmk:45:
+> /home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-os/build/tmp/work/x8=
+6_64-linux/openjdk-8-native/272-r0/build/hotspot/_hotspot.timestamp]
+> Error 2
+>
+> | make: ***
+> [/home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-os/build/tmp/work/x=
+86_64-linux/openjdk-8-native/272-r0/jdk8u-jdk8u272-ga//make/Main.gmk:110:
+> hotspot-only] Error 2
+>
+> | WARNING:
+> /home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-os/build/tmp/work/x8=
+6_64-linux/openjdk-8-native/272-r0/temp/run.do_compile.27136:1
+> exit 1 from 'exit 1'
+>
+> |
+>
+> ERROR: Task
+> (/home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-os/upstream/yocto/m=
+eta-java/recipes-core/openjdk/openjdk-8-native_272.bb:do_compile)
+> failed with exit code '1'
+>
+> NOTE: Tasks Summary: Attempted 973 tasks of which 966 didn't need to be
+> rerun and 1 failed.
+>
+>
+>
+> Summary: 1 task failed:
+>
+>
+> /home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-os/upstream/yocto/me=
+ta-java/recipes-core/openjdk/openjdk-8-native_272.bb:
+> do_compile
+>
+> Summary: There was 1 WARNING message shown.
+>
+> Summary: There were 2 ERROR messages shown, returning a non-zero exit co=
+de.
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *Regards,*
+>
+>
+>
+> *Darcy*
+>
+>
+>
+> *Darcy Watkins ::  Senior Staff Engineer, Firmware*
+>
+>
+>
+> *SIERRA WIRELESS*
+>
+> Direct  +1 604 233 7989   ::  Fax  +1 604 231 1109  ::  Main  +1 604 231
+> 1100
+>
+> 13811 Wireless Way  :: Richmond, BC Canada V6V 3A4
+>
+> [M4]
+>
+> dwatkins@sierrawireless.com :: www.sierrawireless.com
+>
+>=20
+>
+>
+
+--=20
+*"Perfection must be reached by degrees; she requires the slow hand of
+time." - Voltaire*
+
+--0000000000007505f305b2e8801a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I have bumbled into a few recipes like that as well. =
+It caused some concern because bitbake is supposed to avoid contamination l=
+ike that.</div><div><br></div><div>You can use the ERROR_QA variable to do =
+compile-host-path and install-host-path checks in your distro config. That =
+should produce errors when something like your issue happens.</div><div><br=
+></div><div>..Ch:W..<br></div></div><br><div class=3D"gmail_quote"><div dir=
+=
+=3D"ltr" class=3D"gmail_attr">On Fri, Oct 30, 2020 at 8:56 AM Darcy Watkin=
+s &lt;<a href=3D"mailto:dwatkins@sierrawireless.com">dwatkins@sierrawireles=
+s.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex">
+
+
+
+
+
+<div style=3D"overflow-wrap: break-word;" lang=3D"EN-CA">
+<div class=3D"gmail-m_-3505909838115742910WordSection1">
+<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">My host OS has systemtap-sdt-devel installed for so=
+me reason.=C2=A0 I temporarily renamed the sdt.h to get it out of the way a=
+nd the build worked.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">If all I have to do is remove that package (and hop=
+efully not need something that depends on it) then that works out OK.<u></u=
+><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">On the other hand, this could be an indication that=
+ when building openjdk-8-native, the recipe is not properly distinguishing =
+the native (target) sysroot versus the host sysroot (for the GCC on the sys=
+tem).=C2=A0 Or the fact that the buildtools
+ are used doesn=E2=80=99t prevent it from still checking the host system=
+=E2=80=99s sysroot.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">For now, the answer is don=E2=80=99t have systemtap=
+-sdt-devel on your CentOS7 system (or use a docker container without it).<u=
+></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p=
+>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">=C2=A0</span></b><span lang=
+=
+=3D"EN-US"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">Regards,</span></b><span la=
+ng=3D"EN-US"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">=C2=A0</span></b><span lang=
+=
+=3D"EN-US"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">Darcy</span></b><span lang=
+=3D"EN-US"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">=C2=A0</span></b><span lang=
+=
+=3D"EN-US"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">Darcy Watkins ::=C2=A0=C2=
+=A0Senior Staff Engineer, Firmware</span></b><span lang=3D"EN-US"><u></u><=
+u></u></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">=C2=A0</span></b><span lang=
+=
+=3D"EN-US"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:red" lang=3D"EN-US">SIERRA =
+WIRELESS</span></b><span style=3D"color:red" lang=3D"EN-US"><u></u><u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Direct=C2=A0 +1 604 233 7989=
+=C2=A0 =C2=A0::=C2=A0=C2=A0Fax=C2=A0=C2=A0+1 604 231 1109=C2=A0 ::=C2=A0=
+=C2=A0Main=C2=A0=C2=A0+1 604 231 1100<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">13811 Wireless Way=C2=A0 ::=C2=
+=
+=A0Richmond, BC Canada V6V 3A4<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">[M4]<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><a href=3D"mailto:dwatkins@sie=
+rrawireless.com" target=3D"_blank"><span style=3D"color:rgb(5,99,193)">dwat=
+kins@sierrawireless.com</span></a>=C2=A0::=C2=A0<a href=3D"http://www.sierr=
+awireless.com/" target=3D"_blank"><span style=3D"color:rgb(5,99,193)">www.s=
+ierrawireless.com</span></a>
+</span><u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div style=3D"border-color:rgb(181,196,223) currentcolor currentcolor;bord=
+er-style:solid none none;border-width:1pt medium medium;padding:3pt 0cm 0cm=
+">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12pt;color:black">From:=
+ </span></b><span style=3D"font-size:12pt;color:black">Darcy Watkins &lt;<a=
+ href=3D"mailto:dwatkins@sierrawireless.com" target=3D"_blank">dwatkins@sie=
+rrawireless.com</a>&gt;<br>
+<b>Date: </b>Thursday, October 29, 2020 at 8:39 AM<br>
+<b>To: </b>&quot;<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D=
+"_blank">yocto@lists.yoctoproject.org</a>&quot; &lt;<a href=3D"mailto:yocto=
+@lists.yoctoproject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>=
+&gt;<br>
+<b>Subject: </b>Meta-java - openjdk-8-native - fatal error: sys/sdt.h: No =
+such file or directory<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Openjdk-8-native breaks due to some mixup related t=
+o sdt.h not found<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Dunfell branch built on CentOS7 with the buildtools=
+ installed.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">This is first attempt with dunfell.=C2=A0 Warrior b=
+uilt openjdk-8-native OK<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">I remember seeing something like this long ago but =
+I don=E2=80=99t remember the fix.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">--------<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">| /home/dwatkins/workspace/zeta/upgrade-yocto_mg90-=
+MG-os/build/tmp/work/x86_64-linux/openjdk-8-native/272-r0/jdk8u-jdk8u272-ga=
+/hotspot/src/share/vm/utilities/dtrace.hpp:31:10: fatal error: sys/sdt.h: N=
+o such file or directory<u></u><u></u></p>
+<p class=3D"MsoNormal">|=C2=A0=C2=A0=C2=A0 31 | #include &lt;sys/sdt.h&gt;=
+<u></u><u></u></p>
+<p class=3D"MsoNormal">|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=
+=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~~~~<u></u><u></u></p>
+<p class=3D"MsoNormal">| compilation terminated.<u></u><u></u></p>
+<p class=3D"MsoNormal">| make[6]: *** [/home/dwatkins/workspace/zeta/upgra=
+de-yocto_mg90-MG-os/build/tmp/work/x86_64-linux/openjdk-8-native/272-r0/jdk=
+8u-jdk8u272-ga/hotspot/make/linux/makefiles/vm.make:310: precompiled.hpp.gc=
+h] Error 1<u></u><u></u></p>
+<p class=3D"MsoNormal">| make[5]: *** [/home/dwatkins/workspace/zeta/upgra=
+de-yocto_mg90-MG-os/build/tmp/work/x86_64-linux/openjdk-8-native/272-r0/jdk=
+8u-jdk8u272-ga/hotspot/make/linux/makefiles/top.make:119: the_vm] Error 2<u=
+></u><u></u></p>
+<p class=3D"MsoNormal">| make[4]: *** [/home/dwatkins/workspace/zeta/upgra=
+de-yocto_mg90-MG-os/build/tmp/work/x86_64-linux/openjdk-8-native/272-r0/jdk=
+8u-jdk8u272-ga/hotspot/make/linux/Makefile:284: product] Error 2<u></u><u><=
+/u></p>
+<p class=3D"MsoNormal">| make[3]: *** [Makefile:231: generic_build2] Error=
+ 2<u></u><u></u></p>
+<p class=3D"MsoNormal">| make[2]: *** [Makefile:177: product] Error 2<u></=
+u><u></u></p>
+<p class=3D"MsoNormal">| make[1]: *** [HotspotWrapper.gmk:45: /home/dwatki=
+ns/workspace/zeta/upgrade-yocto_mg90-MG-os/build/tmp/work/x86_64-linux/open=
+jdk-8-native/272-r0/build/hotspot/_hotspot.timestamp] Error 2<u></u><u></u>=
+</p>
+<p class=3D"MsoNormal">| make: *** [/home/dwatkins/workspace/zeta/upgrade-=
+yocto_mg90-MG-os/build/tmp/work/x86_64-linux/openjdk-8-native/272-r0/jdk8u-=
+jdk8u272-ga//make/Main.gmk:110: hotspot-only] Error 2<u></u><u></u></p>
+<p class=3D"MsoNormal">| WARNING: /home/dwatkins/workspace/zeta/upgrade-yo=
+cto_mg90-MG-os/build/tmp/work/x86_64-linux/openjdk-8-native/272-r0/temp/run=
+.do_compile.27136:1 exit 1 from &#39;exit 1&#39;<u></u><u></u></p>
+<p class=3D"MsoNormal">| <u></u><u></u></p>
+<p class=3D"MsoNormal">ERROR: Task (/home/dwatkins/workspace/zeta/upgrade-=
+yocto_mg90-MG-os/upstream/yocto/meta-java/recipes-core/openjdk/openjdk-8-na=
+tive_272.bb:do_compile) failed with exit code &#39;1&#39;<u></u><u></u></p>
+<p class=3D"MsoNormal">NOTE: Tasks Summary: Attempted 973 tasks of which 9=
+66 didn&#39;t need to be rerun and 1 failed.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Summary: 1 task failed:<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 /home/dwatkins/workspace/zeta/upgrade-yocto_=
+mg90-MG-os/upstream/yocto/meta-java/recipes-core/openjdk/openjdk-8-native_2=
+72.bb:do_compile<u></u><u></u></p>
+<p class=3D"MsoNormal">Summary: There was 1 WARNING message shown.<u></u><=
+u></u></p>
+<p class=3D"MsoNormal">Summary: There were 2 ERROR messages shown, returni=
+ng a non-zero exit code.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u></u></p=
+>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">=C2=A0</span></b><u></u><u>=
+</u></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">Regards,</span></b><u></u><=
+u></u></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">=C2=A0</span></b><u></u><u>=
+</u></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">Darcy</span></b><u></u><u><=
+/u></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">=C2=A0</span></b><u></u><u>=
+</u></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">Darcy Watkins ::=C2=A0=C2=
+=A0Senior Staff Engineer, Firmware</span></b><u></u><u></u></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">=C2=A0</span></b><u></u><u>=
+</u></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:red" lang=3D"EN-US">SIERRA =
+WIRELESS</span></b><u></u><u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Direct=C2=A0 +1 604 233 7989=
+=C2=A0 =C2=A0::=C2=A0=C2=A0Fax=C2=A0=C2=A0+1 604 231 1109=C2=A0 ::=C2=A0=
+=C2=A0Main=C2=A0=C2=A0+1 604 231 1100</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">13811 Wireless Way=C2=A0 ::=C2=
+=
+=A0Richmond, BC Canada V6V 3A4</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">[M4]</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><a href=3D"mailto:dwatkins@sie=
+rrawireless.com" target=3D"_blank"><span style=3D"color:rgb(5,99,193)">dwat=
+kins@sierrawireless.com</span></a>=C2=A0::=C2=A0<a href=3D"http://www.sierr=
+awireless.com/" target=3D"_blank"><span style=3D"color:rgb(5,99,193)">www.s=
+ierrawireless.com</span></a>
+</span><u></u><u></u></p>
+</div>
+</div>
+
+<br>
+<br>
+<br>
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"=
+gmail_signature"><div dir=3D"ltr"><div><b><span style=3D"font-family:monosp=
+ace">&quot;Perfection must be reached by degrees; she requires the slow han=
+d of time.&quot; - Voltaire</span></b></div></div></div>
+
+--0000000000007505f305b2e8801a--
