@@ -1,68 +1,91 @@
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
- by mx.groups.io with SMTP id smtpd.web11.29100.1604311532975858725
- for <yocto@lists.yoctoproject.org>;
- Mon, 02 Nov 2020 02:05:33 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=NSesH7Wc;
- spf=pass (domain: gmail.com, ip: 209.85.219.172, mailfrom: jupiter.hce@gmail.com)
-Received: by mail-yb1-f172.google.com with SMTP id f140so11282847ybg.3
-        for <yocto@lists.yoctoproject.org>; Mon, 02 Nov 2020 02:05:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-         :cc;
-        bh=mRCG83sDTBCDeoLR4T8BepC3QEqGnw4jyU6mGezZNcU=;
-        b=NSesH7WcRaEwBpNRbkpvm7PIsyYGaCVySre1XQXVuLpAqnMKi3epc3QlMDrkKl6o8c
-         WoDynyIHBJaMlzo7MsEfqf75U1rY+TS0PcVK6EdeDrr7HXM93Mx7QHDtWYn+D79Bk+xc
-         UK/kFWvZ+cJJIqXtVoC2L55T1+6ir/J9vMI2TsV8VeiMNSVo5gSk9hsHsztXoLyqG91A
-         B/W11cJEOye4ElfaGGECplNk06YqO1uyQl1uVKZOtDC+QMHYLgkdllfSqnTrzhTaRpB7
-         kL76oIjWUZxxbfluWsczqp5g2psDgoIBeitHE6Dl0KNnuUIe91L/A2u87giz7u4q8MON
-         VlZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-         :message-id:subject:to:cc;
-        bh=mRCG83sDTBCDeoLR4T8BepC3QEqGnw4jyU6mGezZNcU=;
-        b=HpyTI4mpf0MLuGVe/zv6TAyQ6IZWeqSM8VmSntQ2Hoa+LY2M3uTfJi7qFP5Yn+5vRI
-         a5yeG0YsD+xIzIw9zThwf2740AIm3k3hIif3qhbUipTyzYbWmTbo8uLU2CPweHf8uYeY
-         xRzN2eA8xBr9GEW5tTaDupGdSQeyn4jlHMP9HAIYD7iwnpAeHqkUIIg536ySxvJESKuc
-         e79JOTyqRepftB2hB5vZ+B0ui0FIYdeTaTMjfEf8Vc4vROBq6PRrJH8pvVpHPPwTXP+B
-         M9zCGaC7plGae3apVGJ4HmBSCTqvvORXXE3jj0iV1rIlka+HlbhxgTecUYCFgdGxiX7n
-         APUA==
-X-Gm-Message-State: AOAM5327qOUvFmZ7sephM0VjpZRHuqNHHSTv2ylO4cw/OXcBq/gHPASV
-	M+8WMEiw1tgB6uRNgQfu2vVfxyhsu3KPYpSdIg4=
-X-Google-Smtp-Source: ABdhPJwAZbA12nwYEsSSauTirbupeMTRaSY0DYsxgK6LvMHyAp8+HdLwwiuzIb9JBjpIcFfvVxs2ws6xlsFLaN2b9/8=
-X-Received: by 2002:a25:4cc7:: with SMTP id z190mr20010273yba.405.1604311532239;
- Mon, 02 Nov 2020 02:05:32 -0800 (PST)
+Subject: Re: #yocto
+To: yocto@lists.yoctoproject.org
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+X-Originating-Location: US (149.32.192.43)
+X-Originating-Platform: Windows IE 11
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Received: by 2002:a25:a16a:0:0:0:0:0 with HTTP; Mon, 2 Nov 2020 02:05:31 -0800 (PST)
-In-Reply-To: <a0bbb02c-14e6-e687-9d6b-28d8ed72d002@googlemail.com>
-References: <CAA=hcWQnJ1yRTwPF+9kubSt6FQPxwCRYFwXcYR8RnVLs4LMb7A@mail.gmail.com>
- <2234110.ZDGxJVC3CD@ada> <CAA=hcWSAsKEcFaR1dCpCey_m2Z2zOxYT1N8NNjL6bNQxSrHj1A@mail.gmail.com>
- <a0bbb02c-14e6-e687-9d6b-28d8ed72d002@googlemail.com>
-From: "JH" <jupiter.hce@gmail.com>
-Date: Mon, 2 Nov 2020 21:05:31 +1100
-Message-ID: <CAA=hcWSUrd9HcHQ8FZ-shBux6Air9BOTJV7yqQJSBcFLgZah0A@mail.gmail.com>
-Subject: Re: [yocto] Install Yocto image and backup
-To: matthias.schoepfer@googlemail.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Date: Mon, 02 Nov 2020 04:36:55 -0800
+References: <f2d33431-6a8c-43e6-abdf-c9909e15591e@email.android.com>
+In-Reply-To: <f2d33431-6a8c-43e6-abdf-c9909e15591e@email.android.com>
+Message-ID: <24906.1604320615591404696@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="5W6LpyBq5oaDusGLLNdV"
 
-Thanks Matthias,
+--5W6LpyBq5oaDusGLLNdV
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-> The A/B partitioning is very common and I would argue, it is the
-> simplest way if you want you OTA Update to be safe in regards of any
-> errors (user unplugging etc.) that may happen during write / switching
-> to new software. If you can spare the extra partitions on your NAND, my
-> advice would be to do it exactly that way, and use a common tool for
-> that (i.e. swupate, rauc, ... ).
+I am not sure I am following ...
 
-We don't have OTA update for RO kernel and rootfs yet, I'll take the
-advice for running OTA A/B partitioning when the requirement is
-coming.
+#1 is the actual package being built, #2 is the mods to the recipes for th=
+e image I am building...
 
-Thank you all for your kind responses.
+(1)./workspace_1/poky/../meta-intel
 
-Kind regards,
+(2)./workspace_1/poky/../meta-1/meta-2/meta-intel
+These directories share the same name, but the local.conf for #2 requires =
+a unique BBFILE_COLLECTIONS name now ?
 
-- jupiter
+If I change the BBFILE_COLLECTIONS name to be unique,=C2=A0 I see the foll=
+owing error:
+
+--- Starting bitbake server pid 12022 at 2020-11-02 07:19:06.133802 ---
+ERROR: Unable to parse Var <AVAILABLE_LICENSES[:=3D]>
+Traceback (most recent call last):
+File "Var <AVAILABLE_LICENSES[:=3D]>", line 1, in <module>
+File "/disk0/scratch/smonsees/yocto/workspace_3/poky/meta/classes/license.=
+bbclass", line 275, in available_licenses(d=3D<bb.data_smart.DataSmart obje=
+ct at 0x7fc921cbdda0>):
+for lic_dir in lic_dirs:
+>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 licenses +=3D os.listdir(lic_d=
+ir)
+
+bb.data_smart.ExpansionError: Failure expanding variable AVAILABLE_LICENSE=
+S[:=3D], expression was ${@' '.join(available_licenses(d))} which triggered=
+ exception FileNotFoundError: [Errno 2] No such file or directory: '/disk0/=
+scratch/smonsees/yocto/workspace_3/poky/../meta-bae/meta-limws/meta-intel/c=
+ustom-licenses'
+
+--5W6LpyBq5oaDusGLLNdV
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<br/>I am not sure I am following ...<br/><br/>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN" sty=
+le=3D"color: #333333;">#1 is the actual package being built, #2 is the mods=
+ to the recipes for the image I am building... </span></p>
+<p class=3D"DefangedMsoListParagraph" style=3D"margin-bottom:0px;"><span l=
+ang=3D"EN" style=3D"color: #333333;"><span>=C2=A0=C2=A0=C2=A0 (1)<span styl=
+e=3D"font: 7pt/normal &#39;Times New Roman&#39;; font-size-adjust: none; fo=
+nt-stretch: normal;">=C2=A0=C2=A0=C2=A0 </span></span></span><span lang=3D"=
+EN" style=3D"color: #333333;">./workspace_1/poky/../meta-intel</span></p>
+<p class=3D"DefangedMsoListParagraph" style=3D"margin-bottom:0px;"><span l=
+ang=3D"EN" style=3D"color: #333333;"><span>=C2=A0=C2=A0=C2=A0 (2)<span styl=
+e=3D"font: 7pt/normal &#39;Times New Roman&#39;; font-size-adjust: none; fo=
+nt-stretch: normal;">=C2=A0=C2=A0=C2=A0 </span></span></span><span lang=3D"=
+EN" style=3D"color: #333333;">./workspace_1/poky/../meta-1/meta-2/meta-inte=
+l<br/>These directories share the same name, but the local.conf for #2 requ=
+ires a unique BBFILE_COLLECTIONS name now ?<br/><br/>If I change the BBFILE=
+_COLLECTIONS name to be unique,=C2=A0 I see the following error:<br/><br/>-=
+-- Starting bitbake server pid 12022 at 2020-11-02 07:19:06.133802 ---<br/>=
+ERROR: Unable to parse Var &lt;AVAILABLE_LICENSES[:=3D]&gt;<br/>Traceback (=
+most recent call last):<br/>=C2=A0 File &#34;Var &lt;AVAILABLE_LICENSES[:=
+=3D]&gt;&#34;, line 1, in &lt;module&gt;<br/>=C2=A0 File &#34;/disk0/scrat=
+ch/smonsees/yocto/workspace_3/poky/meta/classes/license.bbclass&#34;, line =
+275, in available_licenses(d=3D&lt;bb.data_smart.DataSmart object at 0x7fc9=
+21cbdda0&gt;):<br/>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for lic=
+_dir in lic_dirs:<br/>=C2=A0=C2=A0=C2=A0 &gt;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=
+=C2=A0=C2=A0 licenses +=3D os.listdir(lic_dir)<br/>=C2=A0=C2=A0=C2=A0=C2=
+=A0 <br/>bb.data_smart.ExpansionError: Failure expanding variable AVAILABL=
+E_LICENSES[:=3D], expression was <a href=3D"mailto:${@&#39;">${@&#39;</a> &=
+#39;.join(available_licenses(d))} which triggered exception FileNotFoundErr=
+or: [Errno 2] No such file or directory: &#39;/disk0/scratch/smonsees/yocto=
+/workspace_3/poky/../meta-bae/meta-limws/meta-intel/custom-licenses&#39;</s=
+pan></p>
+<p class=3D"DefangedMsoListParagraph" style=3D"margin-bottom:0px;"><span l=
+ang=3D"EN" style=3D"color: #333333;"><br/><br/></span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN" sty=
+le=3D"color: #333333;">=C2=A0</span></p>
+
+--5W6LpyBq5oaDusGLLNdV--
