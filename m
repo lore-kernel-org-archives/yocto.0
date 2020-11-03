@@ -1,49 +1,104 @@
-Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
- by mx.groups.io with SMTP id smtpd.web09.2710.1604402204368041164
- for <yocto@lists.yoctoproject.org>;
- Tue, 03 Nov 2020 03:16:45 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kapsi.fi header.s=20161220 header.b=F29IWNxl;
- spf=pass (domain: kapsi.fi, ip: 91.232.154.25, mailfrom: antime@kapsi.fi)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-	 s=20161220; h=To:Date:Message-Id:Subject:Mime-Version:
-	Content-Transfer-Encoding:Content-Type:From:Sender:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=rHHPBcanORkP0D1bNYPKBhx3qRmJxIo4SEjXmrT/Mbs=; b=F29IWNxl4g4V7oybRdrsxYDGmK
-	UvXfs3LUUs2XcVoo+MIH326GZF6DsXfYZO5JoVaLlux5AIvGp5yOtpYqRavtQgevk3moQEcVwagFJ
-	SNx+C2kNWSKCoYbXouyi+2n5a1j8kMdwyBayESHEOueUfczI9sA20T6nbTV483p4aNVjXNPdsLeoE
-	UfA1iqH+MQ/wkqX/EKE4w+Y56JExWojU1A0dpjno7IyL7yEgIJczkcTNTFMOyXi6fKnVUjcWeKu3I
-	0TggDQ9cwYBNlZ6fKy3WdP1eZa3r3giVVsyNwXMWEikEJ2ebxSjd7DWvSeMBiHAm78wYBuaSOqv/o
-	YbL6baQg==;
-Received: from 89-27-44-133.bb.dnainternet.fi ([89.27.44.133] helo=[192.168.1.58])
-	by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.89)
-	(envelope-from <Anders.Montonen@iki.fi>)
-	id 1kZuIr-0004YE-AI
-	for yocto@lists.yoctoproject.org; Tue, 03 Nov 2020 13:16:41 +0200
-From: "Anders Montonen" <Anders.Montonen@iki.fi>
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.15\))
-Subject: Reproducible builds and RPM packages
-Message-Id: <043D5DC3-E1B8-4305-B707-AD9C3AA10D39@iki.fi>
-Date: Tue, 3 Nov 2020 13:16:40 +0200
+Subject: Re: #yocto -zeus
 To: yocto@lists.yoctoproject.org
-X-Mailer: Apple Mail (2.3445.104.15)
-X-SA-Exim-Connect-IP: 89.27.44.133
-X-SA-Exim-Mail-From: Anders.Montonen@iki.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
-Content-Type: text/plain;
-	charset=utf-8
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+X-Originating-Location: US (149.32.192.43)
+X-Originating-Platform: Windows IE 11
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Tue, 03 Nov 2020 06:41:46 -0800
+References: <VI1PR01MB64625A11D49D0373A1D1D6A9A8100@VI1PR01MB6462.eurprd01.prod.exchangelabs.com>
+In-Reply-To: <VI1PR01MB64625A11D49D0373A1D1D6A9A8100@VI1PR01MB6462.eurprd01.prod.exchangelabs.com>
+Message-ID: <18906.1604414506455858702@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="fE2QWjNdkx5r5nUxLCPr"
+
+--fE2QWjNdkx5r5nUxLCPr
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Note went and modified ./meta/recipes-core/ovmf/ovmf_git.bb to use "http"..=
+.
 
-When going from Zeus to Dunfell, I noticed that all files on the rootfs =
-had timestamps long in the past, which I assume is from reproducible =
-builds now being on by default. While that is a good thing, running =
-=E2=80=9Crpm -V=E2=80=9D on any installed package now reports that the =
-mtime differs. Is this the intentional behavior?
+When I change to use http I get the following error now,=C2=A0NOTE: I see =
+the same error with new check sum values every time I update checksums and =
+rebuild...
 
-Regards,
-Anders Montonen=
+WARNING: ovmf-native-edk2-stable201905-r0 do_fetch: Checksum mismatch for =
+local file /disk0/scratch/smonsees/yocto/workspace_3/downloads/intel/edk2.g=
+it
+Cleaning and trying again.
+WARNING: ovmf-native-edk2-stable201905-r0 do_fetch: Renaming /disk0/scratc=
+h/smonsees/yocto/workspace_3/downloads/intel/edk2.git to /disk0/scratch/smo=
+nsees/yocto/workspace_3/downloads/intel/edk2.git_bad-checksum_e5feebc5dc55e=
+02d9d26c3ecce2f696c
+WARNING: ovmf-native-edk2-stable201905-r0 do_fetch: Checksum failure encou=
+ntered with download of https://github.com/tianocore/edk2.git;branch=3Dmast=
+er;protocol=3Dhttps - will attempt other sources if available
+ERROR: ovmf-native-edk2-stable201905-r0 do_fetch: Fetcher failure for URL:=
+ 'https://github.com/tianocore/edk2.git;branch=3Dmaster;protocol=3Dhttps'. =
+Checksum mismatch!
+File: '/disk0/scratch/smonsees/yocto/workspace_3/downloads/intel/edk2.git'=
+ has md5 checksum e5feebc5dc55e02d9d26c3ecce2f696c when b285f3c0bc1fc983c4c=
+3eb2d47fc27bc was expected
+File: '/disk0/scratch/smonsees/yocto/workspace_3/downloads/intel/edk2.git'=
+ has sha256 checksum df09a56b38195dc68d1a83f31287e38669c165eb637739660216bb=
+c71aa694af when bb9d1df02a645dcd071d2d0540156be96c3c5a616ef93ff9872bd86b3c3=
+5e77e was expected
+If this change is expected (e.g. you have upgraded to a new version withou=
+t updating the checksums) then you can use these lines within the recipe:
+SRC_URI[md5sum] =3D "e5feebc5dc55e02d9d26c3ecce2f696c"
+SRC_URI[sha256sum] =3D "df09a56b38195dc68d1a83f31287e38669c165eb6377396602=
+16bbc71aa694af"
+Otherwise you should retry the download and/or check with upstream to dete=
+rmine if the file has become corrupted or otherwise unexpectedly modified.
+
+ERROR: ovmf-native-edk2-stable201905-r0 do_fetch: Fetcher failure for URL:=
+ 'https://github.com/tianocore/edk2.git;branch=3Dmaster;protocol=3Dhttps'. =
+Unable to fetch URL from any source.
+ERROR: Logfile of failure stored in: /disk0/scratch/smonsees/yocto/workspa=
+ce_3/meta-bae/meta-limws/builds/sbcb-default/tmp/work/x86_64-linux/ovmf-nat=
+ive/edk2-stable201905-r0/temp/log.do_fetch.19694
+ERROR: Task (virtual:native:/disk0/scratch/smonsees/yocto/workspace_3/poky=
+/meta/recipes-core/ovmf/ovmf_git.bb:do_fetch) failed with exit code '1'
+
+--fE2QWjNdkx5r5nUxLCPr
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p><br />Note went and modified ./meta/recipes-core/ovmf/ovmf_git.bb to use=
+ "http"...<br /><br />When I change to use http I get the following error n=
+ow,&nbsp;NOTE: I see the same error with new check sum values every time I =
+update checksums and rebuild...<br /><br />WARNING: ovmf-native-edk2-stable=
+201905-r0 do_fetch: Checksum mismatch for local file /disk0/scratch/smonsee=
+s/yocto/workspace_3/downloads/intel/edk2.git<br />Cleaning and trying again=
+.<br />WARNING: ovmf-native-edk2-stable201905-r0 do_fetch: Renaming /disk0/=
+scratch/smonsees/yocto/workspace_3/downloads/intel/edk2.git to /disk0/scrat=
+ch/smonsees/yocto/workspace_3/downloads/intel/edk2.git_bad-checksum_e5feebc=
+5dc55e02d9d26c3ecce2f696c<br />WARNING: ovmf-native-edk2-stable201905-r0 do=
+_fetch: Checksum failure encountered with download of <a href=3D"https://gi=
+thub.com/tianocore/edk2.git;branch=3Dmaster;protocol=3Dhttps">https://githu=
+b.com/tianocore/edk2.git;branch=3Dmaster;protocol=3Dhttps</a> - will attemp=
+t other sources if available<br />ERROR: ovmf-native-edk2-stable201905-r0 d=
+o_fetch: Fetcher failure for URL: 'https://github.com/tianocore/edk2.git;br=
+anch=3Dmaster;protocol=3Dhttps'. Checksum mismatch!<br />File: '/disk0/scra=
+tch/smonsees/yocto/workspace_3/downloads/intel/edk2.git' has md5 checksum e=
+5feebc5dc55e02d9d26c3ecce2f696c when b285f3c0bc1fc983c4c3eb2d47fc27bc was e=
+xpected<br />File: '/disk0/scratch/smonsees/yocto/workspace_3/downloads/int=
+el/edk2.git' has sha256 checksum df09a56b38195dc68d1a83f31287e38669c165eb63=
+7739660216bbc71aa694af when bb9d1df02a645dcd071d2d0540156be96c3c5a616ef93ff=
+9872bd86b3c35e77e was expected<br />If this change is expected (e.g. you ha=
+ve upgraded to a new version without updating the checksums) then you can u=
+se these lines within the recipe:<br />SRC_URI[md5sum] =3D "e5feebc5dc55e02=
+d9d26c3ecce2f696c"<br />SRC_URI[sha256sum] =3D "df09a56b38195dc68d1a83f3128=
+7e38669c165eb637739660216bbc71aa694af"<br />Otherwise you should retry the =
+download and/or check with upstream to determine if the file has become cor=
+rupted or otherwise unexpectedly modified.</p>
+<p>ERROR: ovmf-native-edk2-stable201905-r0 do_fetch: Fetcher failure for U=
+RL: 'https://github.com/tianocore/edk2.git;branch=3Dmaster;protocol=3Dhttps=
+'. Unable to fetch URL from any source.<br />ERROR: Logfile of failure stor=
+ed in: /disk0/scratch/smonsees/yocto/workspace_3/meta-bae/meta-limws/builds=
+/sbcb-default/tmp/work/x86_64-linux/ovmf-native/edk2-stable201905-r0/temp/l=
+og.do_fetch.19694<br />ERROR: Task (virtual:native:/disk0/scratch/smonsees/=
+yocto/workspace_3/poky/meta/recipes-core/ovmf/ovmf_git.bb:do_fetch) failed =
+with exit code '1'</p>
+
+--fE2QWjNdkx5r5nUxLCPr--
