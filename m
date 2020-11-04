@@ -1,111 +1,137 @@
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
- by mx.groups.io with SMTP id smtpd.web11.16379.1604513066191536737
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
+ by mx.groups.io with SMTP id smtpd.web11.17591.1604518369523590862
  for <yocto@lists.yoctoproject.org>;
- Wed, 04 Nov 2020 10:04:26 -0800
+ Wed, 04 Nov 2020 11:32:49 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ivIbicCF;
- spf=pass (domain: gmail.com, ip: 209.85.219.45, mailfrom: krantzj84@gmail.com)
-Received: by mail-qv1-f45.google.com with SMTP id dj6so6355637qvb.3
-        for <yocto@lists.yoctoproject.org>; Wed, 04 Nov 2020 10:04:26 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=bJVpSxH2;
+ spf=pass (domain: gmail.com, ip: 209.85.222.52, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-ua1-f52.google.com with SMTP id 91so6381617uar.5
+        for <yocto@lists.yoctoproject.org>; Wed, 04 Nov 2020 11:32:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=M9WvAv+QbEtpVVFSj2zCUUpWCeEv7F0wyoKp7gzI1sI=;
-        b=ivIbicCFJjDlDK4cCKbkySQzHCoY+4+0tKATCdXPTEK+oPAdBp1umzpNjiJK2accZE
-         4XJiRc7eGqpOCRtEPZKjhijQenQYKJnBhPMZFNZSwRnlq9EIKE+HjtutUpf8q+Pr4VtM
-         E7fl1H2jNmiY1pAwu7IpMsr6zuxGPvk5ZzBbzKQZz4Pqv98ZfXzIukVILLzc0IsPNpD+
-         f87EQGv+CS/MIpFy+RHj9mCXjmzaUW3inTXFWM5dXj1uqDBbDmqjw0bb/84kFIvIdb0X
-         qYDq4Jm4KgapqqWGn66vMxKD6U/cghXTjYjDTRnzmGtC29x8ySYjWq/R3FCGNf/KLmL/
-         h0EQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uyx3kNPTuSak9MS9Refl6vml2s7fsE5+Db+hfUmZokg=;
+        b=bJVpSxH2/BkCRuD4lLiY5Dpfd6h23WIDuDr5yeC4bZaoavMcFaLT9QqNC7Xc3cwuzE
+         RpCcy0WMi9XLsabHf/NntMKaiILJoyQIGgF3ifMGkhhbzFd+MfHa+qCoXnrcvL1Xnyz+
+         S8gvyiu1in5BntSy76SDkZDKdn7SH4Pk90OqAgMasuLqBKVez88eesgQi9i1MPQxyisl
+         VGtsXZRJ92Q+E0Q2JQ+JwWJFRSbTTevWGnuSAumftzZs3Xh/oFirPy22/coKc6QKk8B5
+         x5V5ihagnYOAmhfy04unua3xwBm3t86krAEW9yTinR2xRnsmpE3i314oVGCJ3u4d0a20
+         2sqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=M9WvAv+QbEtpVVFSj2zCUUpWCeEv7F0wyoKp7gzI1sI=;
-        b=H46JbGuWM3xpEmDu1HJjVAlZfHlYURlKIus0HCYxVLu11iQKDA/7EeAds5RpUk48S3
-         12TZBGEJ7b/mreTxWuY6+IKGE8mHOjOlnt1RATcErCgquWrse7B8b6BwOAW1FQeazn3j
-         sn4NpG13N70W9KgK6kyyM/lnGPwZjZhZLfs92nUucQzigk7pp6R9WgD9bbRy6NxFcNHK
-         HNIYJbrQ+HwpwxBXkl8VQU7lNAu2uEPNA1Tx61wS/RRXjoVH/+CE7veomNSSYznvVPD0
-         VPtH+vyKjUizFRF7H0pz+XNmwEVGElVBaRc6Q6KkJo/wyhHidem8J6i2zjJfKQNHgguF
-         K69g==
-X-Gm-Message-State: AOAM533/i/y98t4IWrDemE47sVfx9v3L9/i/lcUrG3knEKVOH+y/PL5T
-	mQp+DwsZgLVP65ZoaYgwVNteGSfJGomGR6z3706V/uT5En56Dg==
-X-Google-Smtp-Source: ABdhPJxKKSWih00LuUDsCD4lriN1btLMAEaaXr0AEbuWTCeZi3siJX/AeNcLD0uuIBR+kcM3EV2SF1/z+OyAtBvCuK0=
-X-Received: by 2002:ad4:4443:: with SMTP id l3mr15896571qvt.53.1604513065047;
- Wed, 04 Nov 2020 10:04:25 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uyx3kNPTuSak9MS9Refl6vml2s7fsE5+Db+hfUmZokg=;
+        b=NGeVPuutVHZxL0A+ZoRqrogXbdY4GFHIMl7pilJ9X4tFfxzqtug+F+QbLkfZ0M7ws9
+         Uo8GvrGyXHrVVqIduADuG31+/P8XzosdKWEnX7ni6c2u95s5cYQxLoC+nQ74HmEoR16j
+         taE1/5S3zGxPWcEY/cTUsiRdqp6K/RzVxRmkHWrlmYoBPooQaWA79FWMmjxYnmu7Jm2y
+         Ndh+lUGqZdnnrWpfmAnWzX3MDq/BmVrhA0Npvl6QZOR4KQ1QeZG6VhDUYT4DslLQwwh3
+         00viUZskYr65B5yAOrKxFQfRZEvZr7EKzChk1tNCoQunNEXngFXeBcst4+IbErrfxktj
+         vqLw==
+X-Gm-Message-State: AOAM532Fx5Xg/acBEi6B8s5GiN1uow3toxd77DwZbvrHmYmCg+jjfvau
+	xtcl9YycNAsLIxjkFYfmdPphLzXprVsNnua793E=
+X-Google-Smtp-Source: ABdhPJwfFv1EH8vq56mCKKNrnWlPLVeHhJKf4WWXM80ma4H0kbicfbfj7kG+SYq9yyB8Im3w6v0FC2J9Y4/xuUv++y0=
+X-Received: by 2002:ab0:20b0:: with SMTP id y16mr9648840ual.93.1604518368676;
+ Wed, 04 Nov 2020 11:32:48 -0800 (PST)
 MIME-Version: 1.0
-From: krantzj84@gmail.com
-Date: Wed, 4 Nov 2020 13:04:13 -0500
-Message-ID: <CAFVJ0t4U0PWpKK4-X0Tpim6Ee6yCcrJbBi_1b54KBrjwbKcOfg@mail.gmail.com>
-Subject: Removing postinst script in bbappend
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000479a6a05b34bcf2c"
+References: <CAFVJ0t4U0PWpKK4-X0Tpim6Ee6yCcrJbBi_1b54KBrjwbKcOfg@mail.gmail.com>
+In-Reply-To: <CAFVJ0t4U0PWpKK4-X0Tpim6Ee6yCcrJbBi_1b54KBrjwbKcOfg@mail.gmail.com>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Wed, 4 Nov 2020 20:32:37 +0100
+Message-ID: <CANNYZj8MKQDX-3PbThzoPOf5JE+Kq+BmcUdbxs87HOBmCWi_zg@mail.gmail.com>
+Subject: Re: [yocto] Removing postinst script in bbappend
+To: Jim Krantz <krantzj84@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000066909805b34d0b50"
 
---000000000000479a6a05b34bcf2c
+--00000000000066909805b34d0b50
 Content-Type: text/plain; charset="UTF-8"
 
-Hey folks,
+What recipe is it and what layer is it in?
 
-We're doing builds using Yocto 3.1 and are attempting to revise a recipe
-from another layer we don't control. The recipe we want to make alterations
-to is from an open source project, so we'd prefer to not make changes
-directly to the recipe, rather change it using a bbappend.
+Alex
 
-The issue we're having is that the recipe has a pkg_postinst_ontarget
-function defined, but we have our filesystem set to read only via
-'read-only-rootfs'. The result is a build time failure:
+On Wed 4. Nov 2020 at 19.04, Jim Krantz <krantzj84@gmail.com> wrote:
 
-'The following packages could not be configured offline and rootfs is
-read-only: ['<package>']
+> Hey folks,
+>
+> We're doing builds using Yocto 3.1 and are attempting to revise a recipe
+> from another layer we don't control. The recipe we want to make alterations
+> to is from an open source project, so we'd prefer to not make changes
+> directly to the recipe, rather change it using a bbappend.
+>
+> The issue we're having is that the recipe has a pkg_postinst_ontarget
+> function defined, but we have our filesystem set to read only via
+> 'read-only-rootfs'. The result is a build time failure:
+>
+> 'The following packages could not be configured offline and rootfs is
+> read-only: ['<package>']
+>
+> Looking at the Yocto code, it appears that this error is detected by
+> checking for the presence of any files in the image rootfs/rpm-postinsts
+> directory. If something is found and the rootfs is read only, then the
+> error above is thrown and the build fails.
+>
+> We also looked at emit_pkgdata() and noted it was checking for the
+> pkg_postinst/pkg_postinst_ontarget globals, so we attempted to add a task
+> that set those to 'None', hoping it would result in the conditional checks
+> for these resolving to 'false', however this did not seem to work either.
+> I'm somewhat new to Yocto, so may have misunderstood how this code is
+> applied.
+>
+> We've also tried simpler solutions, like implementing a blank
+> pkg_postinst_ontarget_{PN} and using deltask, however this also failed.
+>
+> So the question I have is: is there a way for us to remove the
+> pkg_postinst_ontarget_{PN} from the recipe in the original layer using a
+> bbappend file in our layer, so that the read only error is not thrown?
+>
+> Thanks!
+>
+> 
+>
+>
 
-Looking at the Yocto code, it appears that this error is detected by
-checking for the presence of any files in the image rootfs/rpm-postinsts
-directory. If something is found and the rootfs is read only, then the
-error above is thrown and the build fails.
-
-We also looked at emit_pkgdata() and noted it was checking for the
-pkg_postinst/pkg_postinst_ontarget globals, so we attempted to add a task
-that set those to 'None', hoping it would result in the conditional checks
-for these resolving to 'false', however this did not seem to work either.
-I'm somewhat new to Yocto, so may have misunderstood how this code is
-applied.
-
-We've also tried simpler solutions, like implementing a blank
-pkg_postinst_ontarget_{PN} and using deltask, however this also failed.
-
-So the question I have is: is there a way for us to remove the
-pkg_postinst_ontarget_{PN} from the recipe in the original layer using a
-bbappend file in our layer, so that the read only error is not thrown?
-
-Thanks!
-
---000000000000479a6a05b34bcf2c
+--00000000000066909805b34d0b50
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hey folks,<div><br></div><div>We&#39;re doing builds using=
- Yocto 3.1 and are attempting to revise a recipe from another layer we don&=
-#39;t control. The recipe we want to make alterations to is from an open so=
-urce project, so we&#39;d prefer to not make changes directly to the recipe=
-, rather change it using a bbappend.=C2=A0</div><div><br></div><div>The iss=
-ue we&#39;re having is that the recipe has a pkg_postinst_ontarget function=
- defined, but we have our filesystem set to read only via &#39;read-only-ro=
-otfs&#39;. The result is a build time failure:</div><div><br></div><div>&#3=
-9;The following packages could not be configured offline and rootfs is read=
--only: [&#39;&lt;package&gt;&#39;]</div><div><br></div><div>Looking at the =
-Yocto code, it appears that this error is detected by checking for the pres=
-ence of any files in the image rootfs/rpm-postinsts directory. If something=
- is found and the rootfs is read only, then the error above is thrown and t=
-he build fails.=C2=A0</div><div><br></div><div>We also looked at emit_pkgda=
-ta() and noted it was checking for the pkg_postinst/pkg_postinst_ontarget g=
-lobals, so we attempted to add a task that set those to &#39;None&#39;, hop=
-ing it would result in the conditional checks for these resolving to &#39;f=
-alse&#39;, however this did not seem to work either. I&#39;m somewhat new t=
-o Yocto, so may have misunderstood how this code is applied.</div><div><br>=
-</div><div>We&#39;ve also tried simpler solutions, like implementing a blan=
-k pkg_postinst_ontarget_{PN} and using deltask, however this also failed.=
-=C2=A0</div><div><br></div><div>So the question I have is: is there a way f=
-or us to remove the pkg_postinst_ontarget_{PN} from the recipe in the origi=
-nal layer using a bbappend file in our layer, so that the read only error i=
-s not thrown?</div><div><br></div><div>Thanks!</div></div>
+<div dir=3D"auto">What recipe is it and what layer is it in?</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Alex</div><div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed 4. Nov 2020 at 19.04=
+, Jim Krantz &lt;<a href=3D"mailto:krantzj84@gmail.com">krantzj84@gmail.com=
+</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-lef=
+t:1ex;border-left-color:rgb(204,204,204)"><div dir=3D"ltr">Hey folks,<div><=
+br></div><div>We&#39;re doing builds using Yocto 3.1 and are attempting to =
+revise a recipe from another layer we don&#39;t control. The recipe we want=
+ to make alterations to is from an open source project, so we&#39;d prefer =
+to not make changes directly to the recipe, rather change it using a bbappe=
+nd.=C2=A0</div><div><br></div><div>The issue we&#39;re having is that the r=
+ecipe has a pkg_postinst_ontarget function defined, but we have our filesys=
+tem set to read only via &#39;read-only-rootfs&#39;. The result is a build =
+time failure:</div><div><br></div><div>&#39;The following packages could no=
+t be configured offline and rootfs is read-only: [&#39;&lt;package&gt;&#39;=
+]</div><div><br></div><div>Looking at the Yocto code, it appears that this =
+error is detected by checking for the presence of any files in the image ro=
+otfs/rpm-postinsts directory. If something is found and the rootfs is read =
+only, then the error above is thrown and the build fails.=C2=A0</div><div><=
+br></div><div>We also looked at emit_pkgdata() and noted it was checking fo=
+r the pkg_postinst/pkg_postinst_ontarget globals, so we attempted to add a =
+task that set those to &#39;None&#39;, hoping it would result in the condit=
+ional checks for these resolving to &#39;false&#39;, however this did not s=
+eem to work either. I&#39;m somewhat new to Yocto, so may have misunderstoo=
+d how this code is applied.</div><div><br></div><div>We&#39;ve also tried s=
+impler solutions, like implementing a blank pkg_postinst_ontarget_{PN} and =
+using deltask, however this also failed.=C2=A0</div><div><br></div><div>So =
+the question I have is: is there a way for us to remove the pkg_postinst_on=
+target_{PN} from the recipe in the original layer using a bbappend file in =
+our layer, so that the read only error is not thrown?</div><div><br></div><=
+div>Thanks!</div></div>
+<br>
+<br>
+<br>
+</blockquote></div></div>
 
---000000000000479a6a05b34bcf2c--
+--00000000000066909805b34d0b50--
