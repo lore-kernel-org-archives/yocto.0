@@ -1,131 +1,443 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.14035.1604501821453783038
- for <yocto@lists.yoctoproject.org>;
- Wed, 04 Nov 2020 06:57:01 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=eW7t2oNb;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: akuster808@gmail.com)
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 2816B38C06E0
-	for <yocto@yoctoproject.org>; Wed,  4 Nov 2020 06:57:01 -0800 (PST)
-Received: by mail-pg1-f170.google.com with SMTP id t14so16827371pgg.1
-        for <yocto@yoctoproject.org>; Wed, 04 Nov 2020 06:57:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=YtWiO6SeStSVU/SknJ1wqnFXXREjS1VUnFrAT5r+qyI=;
-        b=eW7t2oNbM9bhxGQlLqBQTkESTMrJzvu0jR2cGnWXbv/RVFwg2jaHE9Kyk2LUES93cF
-         zfp31jUTbW0S3Ow7ksqBG2YVFyGXud923eduWVMfteNKzLBUKUE4JiJsJACpJ6hMaKU6
-         hy4FjIuZOmHmm71W2uQjrig5SEWGBU9JrO/mtcGHEsG7p8qFsSV4TBnVqlQzUQ6fMm4K
-         9/qwLNRJho3szBOFzXIXVCiDXfPeEmGRAzDKuxIO5hNWlH0PO6MJCS1s0Lc+ntI1jEO7
-         1dIf9V4qYO1CRYs4k7YEn+DeV/Iv8+8G11KX5bo0qmZvGOcYsZLTRCUps2P1C6av3lpD
-         tbaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
-         :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=YtWiO6SeStSVU/SknJ1wqnFXXREjS1VUnFrAT5r+qyI=;
-        b=LgDfRKE9NWaqg3XttWlUt9Y4c1ryHxJzncwFNzONWqKUjMZhZy6ejZL4o124Ki8h3l
-         zuD2WLQmuZXWC4vwXfNAymmrQbTzWxrBQIbwfCDUYWMwPiFndb4o/eMONEjxRbj671TP
-         ywC+5z3D/9UnclXCD2BpWVsaHkaGrGu7g35YR8bTLjgM3lBkYV2vWgHvbFeVxBtf4UCV
-         IcCzgo9EZJKOrcn72SzIttzOvyVfsqZf4IjJVzEe5Fp80ZQA3tFst1+9b7orCEC8I3AA
-         Fk5Jh/jlBhb4F3gfecx3ep1uE0gaQzpthXkK6TfUq+IDtsmm2o1/So05zTTSAQ+OcYv6
-         mG6A==
-X-Gm-Message-State: AOAM532RCjZvYTEdxMGIhZgUWjhfT5f9/iu551zimPbAiefjsoqK0pod
-	ZXA93pK3F6oWjxfZulqmGMWYoDSQ2sg=
-X-Google-Smtp-Source: ABdhPJw6prTT2801Ers3H8Im8mzbIKzOCk/fysaVwqwMmIaIeamrNLK8Ed2I/kHu0svvNSY4pawcXQ==
-X-Received: by 2002:a65:5944:: with SMTP id g4mr12439133pgu.446.1604501820529;
-        Wed, 04 Nov 2020 06:57:00 -0800 (PST)
-Received: from ?IPv6:2601:202:4180:a5c0:30:8e77:15b6:d55c? ([2601:202:4180:a5c0:30:8e77:15b6:d55c])
-        by smtp.gmail.com with ESMTPSA id z22sm2826989pfa.220.2020.11.04.06.56.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Nov 2020 06:57:00 -0800 (PST)
-Subject: Re: [yocto] [meta-security][PATCH 2/2] clamav: unify volatiles file name
-To: Yi Zhao <yi.zhao@windriver.com>, yocto@yoctoproject.org
-References: <20201102091119.15649-1-yi.zhao@windriver.com>
- <20201102091119.15649-2-yi.zhao@windriver.com>
-From: "akuster" <akuster808@gmail.com>
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <8c41cc65-721f-6377-07de-77a7d07a52c3@gmail.com>
-Date: Wed, 4 Nov 2020 06:56:59 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Subject: Cmake CROSS COMPILE problem [PLEASE HELP, URGENT] #yocto #toolchain #sdk
+To: yocto@lists.yoctoproject.org
+From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
+X-Originating-Location: TN (197.27.106.84)
+X-Originating-Platform: Linux Firefox 82
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <20201102091119.15649-2-yi.zhao@windriver.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Date: Wed, 04 Nov 2020 09:03:35 -0800
+Message-ID: <35SW.1604509415488140085.romI@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="kKJIOMaTRFgqTimCrYDt"
 
-merged
-thanks
+--kKJIOMaTRFgqTimCrYDt
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi All,
 
-On 11/2/20 1:11 AM, Yi Zhao wrote:
-> Make the volatiles file name starts with digital.
->
-> Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-> ---
->  recipes-scanners/clamav/clamav_0.101.5.bb | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/recipes-scanners/clamav/clamav_0.101.5.bb b/recipes-scanners/clamav/clamav_0.101.5.bb
-> index 47fbae4..7dad263 100644
-> --- a/recipes-scanners/clamav/clamav_0.101.5.bb
-> +++ b/recipes-scanners/clamav/clamav_0.101.5.bb
-> @@ -86,7 +86,7 @@ do_install_append_class-target () {
->  
->      install -m 644 ${WORKDIR}/clamd.conf ${D}/${sysconfdir}
->      install -m 644 ${WORKDIR}/freshclam.conf ${D}/${sysconfdir}
-> -    install -m 0644 ${WORKDIR}/volatiles.03_clamav  ${D}${sysconfdir}/default/volatiles/volatiles.03_clamav
-> +    install -m 0644 ${WORKDIR}/volatiles.03_clamav  ${D}${sysconfdir}/default/volatiles/03_clamav
->      sed -i -e 's#${STAGING_DIR_HOST}##g' ${D}${libdir}/pkgconfig/libclamav.pc
->      rm ${D}/${libdir}/libclamav.so
->      if [ "${INSTALL_CLAMAV_CVD}" = "1" ]; then
->
-> 
->
+I'm in serious task here and I need to cross compile a Cmake project.
+I need to send an SDK to a client with steps to cross compile the project.
+This project is compiling successfully via a Yocto recipe that inherits cm=
+ake.
+I extracted an SDK from the main image adding TOOLCHAIN_HOST_TASK_append=
+=3D" nativesdk-cmake" to add the Toolchain cmake file which is located und=
+er: /home/talel/Documents/sensesdk/sysroots/x86_64-pokysdk-linux/usr/share/=
+cmake/OEToolchainConfig.cmake :
+Here is its content:
 
+*set( CMAKE_SYSTEM_NAME Linux )*
+*set( CMAKE_C_FLAGS $ENV{CFLAGS} CACHE STRING "" FORCE )*
+*set( CMAKE_CXX_FLAGS $ENV{CXXFLAGS}=C2=A0 CACHE STRING "" FORCE )*
+*set( CMAKE_ASM_FLAGS ${CMAKE_C_FLAGS} CACHE STRING "" FORCE )*
+*set( CMAKE_LDFLAGS_FLAGS ${CMAKE_CXX_FLAGS} CACHE STRING "" FORCE )*
+*set( CMAKE_SYSROOT $ENV{OECORE_TARGET_SYSROOT} )*
+*set( CMAKE_FIND_ROOT_PATH $ENV{OECORE_TARGET_SYSROOT} )*
+*set( CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER )*
+*set( CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY )*
+*set( CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY )*
+*set( CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY )*
+*set(CMAKE_FIND_LIBRARY_CUSTOM_LIB_SUFFIX "$ENV{OE_CMAKE_FIND_LIBRARY_CUST=
+OM_LIB_SUFFIX}")*
+*# Set CMAKE_SYSTEM_PROCESSOR from the sysroot name (assuming processor-di=
+stro-os).*
+*if ($ENV{SDKTARGETSYSROOT} MATCHES "/sysroots/([a-zA-Z0-9_-]+)-.+-.+")*
+*set(CMAKE_SYSTEM_PROCESSOR ${CMAKE_MATCH_1})*
+*endif()*
+*# Include the toolchain configuration subscripts*
+*file( GLOB toolchain_config_files "${CMAKE_TOOLCHAIN_FILE}.d/*.cmake" )*
+*foreach(config ${toolchain_config_files})*
+*include(${config})*
+*endforeach()*
+
+The project is working with gRPC and Protobuf. There is a .cmake files tha=
+t are responsible for searching for gRPC and Protobuf libs
+
+Here is what I tried after sourcing the SDK environment:
+1) A simple "cmake .." with no options:
+
+*Setting build type to 'RelWithDebInfo' as none was specified.*
+*-- Toolchain file defaulted to '/home/talel/Documents/sensesdk/sysroots/x=
+86_64-pokysdk-linux/usr/share/cmake/OEToolchainConfig.cmake'*
+*-- The C compiler identification is GNU 7.3.0*
+*-- The CXX compiler identification is GNU 7.3.0*
+*-- Check for working C compiler: /home/talel/Documents/sensesdk/sysroots/=
+x86_64-pokysdk-linux/usr/bin/aarch64-poky-linux/aarch64-poky-linux-gcc*
+*-- Check for working C compiler: /home/talel/Documents/sensesdk/sysroots/=
+x86_64-pokysdk-linux/usr/bin/aarch64-poky-linux/aarch64-poky-linux-gcc -- w=
+orks*
+*-- Detecting C compiler ABI info*
+*-- Detecting C compiler ABI info - done*
+*-- Detecting C compile features*
+*-- Detecting C compile features - done*
+*-- Check for working CXX compiler: /home/talel/Documents/sensesdk/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/aarch64-poky-linux/aarch64-poky-linux-g++*
+*-- Check for working CXX compiler: /home/talel/Documents/sensesdk/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/aarch64-poky-linux/aarch64-poky-linux-g++ --=
+ works*
+*-- Detecting CXX compiler ABI info*
+*-- Detecting CXX compiler ABI info - done*
+*-- Detecting CXX compile features*
+*-- Detecting CXX compile features - done*
+*CMake Warning at /home/talel/Documents/sensesdk/sysroots/x86_64-pokysdk-l=
+inux/usr/share/cmake-3.16/Modules/FindProtobuf.cmake:499 (message):*
+*Protobuf compiler version 3.12.3 doesn't match library version 3.11.4*
+*Call Stack (most recent call first):*
+*CMakeLists.txt:23 (find_package)*
+*-- Found Protobuf: /home/talel/Documents/sensesdk/sysroots/aarch64-poky-l=
+inux/usr/lib/libprotobuf.so;-lpthread (found version "3.11.4")*
+*-- Could NOT find gRPC (missing: GRPC_CPP_PLUGIN)*
+*-- Configuring done*
+*-- Generating done*
+*-- Build files have been written to: /home/talel/Desktop/sense_software_2=
+/build*
+
+protobuf is found, but not gRPC, now when I make:
+*make[2]: *** No rule to make target 'GRPC_CPP_PLUGIN-NOTFOUND', needed by=
+ 'protos/sense_api_settings.grpc.pb.cc'.=C2=A0 Stop.*
+*CMakeFiles/Makefile2:734: recipe for target 'protos/CMakeFiles/sense_api_=
+settings_grpc.dir/all' failed*
+*make[1]: *** [protos/CMakeFiles/sense_api_settings_grpc.dir/all] Error 2*
+*Makefile:129: recipe for target 'all' failed*
+*make: *** [all] Error 2
+
+* I searched for a solution and I added the *-DCMAKE_PREFIX_PATH=3D/home/t=
+alel/Documents/sensesdk/sysroots/aarch64-poky-linux/usr* option to my SDK r=
+ootfs
+Here is the result of cmake..:
+
+*-- Check for working C compiler: /home/talel/Documents/sensesdk/sysroots/=
+x86_64-pokysdk-linux/usr/bin/aarch64-poky-linux/aarch64-poky-linux-gcc -- b=
+roken*
+*CMake Error at /home/talel/Documents/sensesdk/sysroots/x86_64-pokysdk-lin=
+ux/usr/share/cmake-3.16/Modules/CMakeTestCCompiler.cmake:60 (message):*
+*The C compiler*
+*"/home/talel/Documents/sensesdk/sysroots/x86_64-pokysdk-linux/usr/bin/aar=
+ch64-poky-linux/aarch64-poky-linux-gcc"*
+*is not able to compile a simple test program.*
+*It fails with the following output:*
+*Change Dir: /home/talel/Desktop/sense_software_2/build/CMakeFiles/CMakeTm=
+p*
+*Run Build Command(s):/home/talel/Documents/sensesdk/sysroots/aarch64-poky=
+-linux/usr/bin/make cmTC_2a27c/fast && /home/talel/Documents/sensesdk/sysro=
+ots/aarch64-poky-linux/usr/bin/make: 1: /home/talel/Documents/sensesdk/sysr=
+oots/aarch64-poky-linux/usr/bin/make: Syntax error: word unexpected (expect=
+ing ")")*
+
+I tried to add C and CXX options : *-DCMAKE_C_COMPILER_WORKS=3D1 -DCMAKE_C=
+XX_COMPILER_WORKS=3D1* :
+Now it shows this:
+
+*/home/talel/Documents/sensesdk/sysroots/aarch64-poky-linux/usr/bin/protoc=
+: 1: /home/talel/Documents/sensesdk/sysroots/aarch64-poky-linux/usr/bin/pro=
+toc: ELF=02=01=01=02=EF=BF=BD=01=14=12@2@8: not found*
+*/home/talel/Documents/sensesdk/sysroots/aarch64-poky-linux/usr/bin/protoc=
+: 2: /home/talel/Documents/sensesdk/sysroots/aarch64-poky-linux/usr/bin/pro=
+toc: Syntax error: ")" unexpected*
+*CMake Warning at /home/talel/Documents/sensesdk/sysroots/x86_64-pokysdk-l=
+inux/usr/share/cmake-3.16/Modules/FindProtobuf.cmake:499 (message):*
+*Protobuf compiler version doesn't match library version 3.11.4*
+
+and now when I make same error ; syntax error in protobuf
+
+Here is the main CMakeLists:
+cmake_minimum_required (VERSION 3.5)
+
+set (ex_ver "01" )
+
+# Set a default build type if none was specified
+if ( NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+message ( "Setting build type to 'RelWithDebInfo' as none was specified." =
+)
+set (CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Choose the type of buil=
+d." FORCE)
+# Set the possible values of build type for cmake-gui
+set_property ( CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release"
+"MinSizeRel" "RelWithDebInfo" )
+endif ()
+
+project (ex VERSION ${ ex_ver })
+
+# set the C++ standard to C++ 11
+set (CMAKE_CXX_STANDARD 11)
+
+list (APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+
+include (CompileProtos)
+set (protobuf_MODULE_COMPATIBLE TRUE )
+find_package (Protobuf REQUIRED)
+#find_package(gRPC REQUIRED)
+
+set (_PROTOBUF_LIBPROTOBUF protobuf::libprotobuf)
+if (CMAKE_CROSSCOMPILING)
+find_program (_PROTOBUF_PROTOC protoc)
+find_program (_gRPC_CPP_PLUGIN grpc_cpp_plugin)
+else ()
+set (_PROTOBUF_PROTOC $<TARGET_FILE:protobuf::protoc>)
+endif ()
+#message(STATUS "Using protobuf ${protobuf_VERSION}")
+
+# Find gRPC installation
+# Looks for gRPCConfig.cmake file installed by gRPC's cmake installation.
+find_package (GRPC REQUIRED)
+
+set (_GRPC_GRPCPP_REFLECTION gRPC::grpc++_reflection)
+if (CMAKE_CROSSCOMPILING)
+find_program (_GRPC_CPP_PLUGIN_EXECUTABLE grpc_cpp_plugin)
+else ()
+set (_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:gRPC::grpc_cpp_plugin>)
+endif ()
+
+# uncomment for PC
+#find_package(fmt REQUIRED)
+#add_compile_definitions(SPDLOG_FMT_EXTERNAL)
+
+#Add sub-directories
+add_subdirectory (protos)
+add_subdirectory (systemd)
+add_subdirectory (certs)
+add_subdirectory (services)
+add_subdirectory (lib)
+add_subdirectory (tools)
+add_subdirectory (core)
+
+Help me please on this. It is really urgent, I tried a lot.
+Thanks, Talel
+
+--kKJIOMaTRFgqTimCrYDt
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi All,<br /><br />I'm in serious task here and I need to cross compile a C=
+make project.<br />I need to send an SDK to a client with steps to cross co=
+mpile the project.<br />This project is compiling successfully via a Yocto =
+recipe that inherits cmake.<br />I extracted an SDK from the main image add=
+ing TOOLCHAIN_HOST_TASK_append=3D" nativesdk-cmake" to add the Toolchain cm=
+ake file which is located under: /home/talel/Documents/sensesdk/sysroots/x8=
+6_64-pokysdk-linux/usr/share/cmake/OEToolchainConfig.cmake :<br />Here is i=
+ts content:<br /><br /><strong>set( CMAKE_SYSTEM_NAME Linux )</strong><br /=
+><strong>set( CMAKE_C_FLAGS $ENV{CFLAGS} CACHE STRING "" FORCE )</strong><b=
+r /><strong>set( CMAKE_CXX_FLAGS $ENV{CXXFLAGS}&nbsp; CACHE STRING "" FORCE=
+ )</strong><br /><strong>set( CMAKE_ASM_FLAGS ${CMAKE_C_FLAGS} CACHE STRING=
+ "" FORCE )</strong><br /><strong>set( CMAKE_LDFLAGS_FLAGS ${CMAKE_CXX_FLAG=
+S} CACHE STRING "" FORCE )</strong><br /><strong>set( CMAKE_SYSROOT $ENV{OE=
+CORE_TARGET_SYSROOT} )</strong><br /><strong>set( CMAKE_FIND_ROOT_PATH $ENV=
+{OECORE_TARGET_SYSROOT} )</strong><br /><strong>set( CMAKE_FIND_ROOT_PATH_M=
+ODE_PROGRAM NEVER )</strong><br /><strong>set( CMAKE_FIND_ROOT_PATH_MODE_LI=
+BRARY ONLY )</strong><br /><strong>set( CMAKE_FIND_ROOT_PATH_MODE_INCLUDE O=
+NLY )</strong><br /><strong>set( CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY )</=
+strong><br /><strong>set(CMAKE_FIND_LIBRARY_CUSTOM_LIB_SUFFIX "$ENV{OE_CMAK=
+E_FIND_LIBRARY_CUSTOM_LIB_SUFFIX}")</strong><br /><strong># Set CMAKE_SYSTE=
+M_PROCESSOR from the sysroot name (assuming processor-distro-os).</strong><=
+br /><strong>if ($ENV{SDKTARGETSYSROOT} MATCHES "/sysroots/([a-zA-Z0-9_-]+)=
+-.+-.+")</strong><br /><strong>&nbsp; set(CMAKE_SYSTEM_PROCESSOR ${CMAKE_MA=
+TCH_1})</strong><br /><strong>endif()</strong><br /><strong># Include the t=
+oolchain configuration subscripts</strong><br /><strong>file( GLOB toolchai=
+n_config_files "${CMAKE_TOOLCHAIN_FILE}.d/*.cmake" )</strong><br /><strong>=
+foreach(config ${toolchain_config_files})</strong><br /><strong>&nbsp;&nbsp=
+;&nbsp; include(${config})</strong><br /><strong>endforeach()</strong><br /=
+><br /><br />The project is working with gRPC and Protobuf. There is a .cma=
+ke files that are responsible for searching for gRPC and Protobuf libs<br /=
+><br />Here is what I tried after sourcing the SDK environment:<br />1) A s=
+imple "cmake .." with no options:<br /><br /><strong>Setting build type to =
+'RelWithDebInfo' as none was specified.</strong><br /><strong>-- Toolchain =
+file defaulted to '/home/talel/Documents/sensesdk/sysroots/x86_64-pokysdk-l=
+inux/usr/share/cmake/OEToolchainConfig.cmake'</strong><br /><strong>-- The =
+C compiler identification is GNU 7.3.0</strong><br /><strong>-- The CXX com=
+piler identification is GNU 7.3.0</strong><br /><strong>-- Check for workin=
+g C compiler: /home/talel/Documents/sensesdk/sysroots/x86_64-pokysdk-linux/=
+usr/bin/aarch64-poky-linux/aarch64-poky-linux-gcc</strong><br /><strong>-- =
+Check for working C compiler: /home/talel/Documents/sensesdk/sysroots/x86_6=
+4-pokysdk-linux/usr/bin/aarch64-poky-linux/aarch64-poky-linux-gcc -- works<=
+/strong><br /><strong>-- Detecting C compiler ABI info</strong><br /><stron=
+g>-- Detecting C compiler ABI info - done</strong><br /><strong>-- Detectin=
+g C compile features</strong><br /><strong>-- Detecting C compile features =
+- done</strong><br /><strong>-- Check for working CXX compiler: /home/talel=
+/Documents/sensesdk/sysroots/x86_64-pokysdk-linux/usr/bin/aarch64-poky-linu=
+x/aarch64-poky-linux-g++</strong><br /><strong>-- Check for working CXX com=
+piler: /home/talel/Documents/sensesdk/sysroots/x86_64-pokysdk-linux/usr/bin=
+/aarch64-poky-linux/aarch64-poky-linux-g++ -- works</strong><br /><strong>-=
+- Detecting CXX compiler ABI info</strong><br /><strong>-- Detecting CXX co=
+mpiler ABI info - done</strong><br /><strong>-- Detecting CXX compile featu=
+res</strong><br /><strong>-- Detecting CXX compile features - done</strong>=
+<br /><strong>CMake Warning at /home/talel/Documents/sensesdk/sysroots/x86_=
+64-pokysdk-linux/usr/share/cmake-3.16/Modules/FindProtobuf.cmake:499 (messa=
+ge):</strong><br /><strong>&nbsp; Protobuf compiler version 3.12.3 doesn't =
+match library version 3.11.4</strong><br /><strong>Call Stack (most recent =
+call first):</strong><br /><strong>&nbsp; CMakeLists.txt:23 (find_package)<=
+/strong><br /><strong>-- Found Protobuf: /home/talel/Documents/sensesdk/sys=
+roots/aarch64-poky-linux/usr/lib/libprotobuf.so;-lpthread (found version "3=
+.11.4") </strong><br /><strong>-- Could NOT find gRPC (missing: GRPC_CPP_PL=
+UGIN) </strong><br /><strong>-- Configuring done</strong><br /><strong>-- G=
+enerating done</strong><br /><strong>-- Build files have been written to: /=
+home/talel/Desktop/sense_software_2/build</strong><br /><br />protobuf is f=
+ound, but not gRPC, now when I make: <br /><strong>make[2]: *** No rule to =
+make target 'GRPC_CPP_PLUGIN-NOTFOUND', needed by 'protos/sense_api_setting=
+s.grpc.pb.cc'.&nbsp; Stop.</strong><br /><strong>CMakeFiles/Makefile2:734: =
+recipe for target 'protos/CMakeFiles/sense_api_settings_grpc.dir/all' faile=
+d</strong><br /><strong>make[1]: *** [protos/CMakeFiles/sense_api_settings_=
+grpc.dir/all] Error 2</strong><br /><strong>Makefile:129: recipe for target=
+ 'all' failed</strong><br /><strong>make: *** [all] Error 2<br /><br /></st=
+rong>I searched for a solution and I added the<strong> -DCMAKE_PREFIX_PATH=
+=3D/home/talel/Documents/sensesdk/sysroots/aarch64-poky-linux/usr</strong>=
+ option to my SDK rootfs<br />Here is the result of cmake..:<br /><br /><st=
+rong>-- Check for working C compiler: /home/talel/Documents/sensesdk/sysroo=
+ts/x86_64-pokysdk-linux/usr/bin/aarch64-poky-linux/aarch64-poky-linux-gcc -=
+- broken</strong><br /><strong>CMake Error at /home/talel/Documents/sensesd=
+k/sysroots/x86_64-pokysdk-linux/usr/share/cmake-3.16/Modules/CMakeTestCComp=
+iler.cmake:60 (message):</strong><br /><strong>&nbsp; The C compiler</stron=
+g><br /><strong>&nbsp;&nbsp;&nbsp; "/home/talel/Documents/sensesdk/sysroots=
+/x86_64-pokysdk-linux/usr/bin/aarch64-poky-linux/aarch64-poky-linux-gcc"</s=
+trong><br /><strong>&nbsp; is not able to compile a simple test program.</s=
+trong><br /><strong>&nbsp; It fails with the following output:</strong><br =
+/><strong>&nbsp;&nbsp;&nbsp; Change Dir: /home/talel/Desktop/sense_software=
+_2/build/CMakeFiles/CMakeTmp</strong><br /><strong>&nbsp;&nbsp;&nbsp; Run B=
+uild Command(s):/home/talel/Documents/sensesdk/sysroots/aarch64-poky-linux/=
+usr/bin/make cmTC_2a27c/fast &amp;&amp; /home/talel/Documents/sensesdk/sysr=
+oots/aarch64-poky-linux/usr/bin/make: 1: /home/talel/Documents/sensesdk/sys=
+roots/aarch64-poky-linux/usr/bin/make: Syntax error: word unexpected (expec=
+ting ")")</strong><br /><br />I tried to add C and CXX options : <strong>-D=
+CMAKE_C_COMPILER_WORKS=3D1 -DCMAKE_CXX_COMPILER_WORKS=3D1</strong>:<br />No=
+w it shows this:<br /><br /><strong>/home/talel/Documents/sensesdk/sysroots=
+/aarch64-poky-linux/usr/bin/protoc: 1: /home/talel/Documents/sensesdk/sysro=
+ots/aarch64-poky-linux/usr/bin/protoc: ELF=02=01=01=02=EF=BF=BD=01=14=12@2@=
+8: not found</strong><br /><strong>/home/talel/Documents/sensesdk/sysroots/=
+aarch64-poky-linux/usr/bin/protoc: 2: /home/talel/Documents/sensesdk/sysroo=
+ts/aarch64-poky-linux/usr/bin/protoc: Syntax error: ")" unexpected</strong>=
+<br /><strong>CMake Warning at /home/talel/Documents/sensesdk/sysroots/x86_=
+64-pokysdk-linux/usr/share/cmake-3.16/Modules/FindProtobuf.cmake:499 (messa=
+ge):</strong><br /><strong>&nbsp; Protobuf compiler version doesn't match l=
+ibrary version 3.11.4</strong><br /><br />and now when I make same error ; =
+syntax error in protobuf<br /><br />Here is the main CMakeLists:<br />
+<div style=3D"color: #eeffff; background-color: #263238; font-family: ''Ca=
+scadia Code','Fantasque Sans Mono','Droid Sans Mono', 'monospace', monospac=
+e, 'Droid Sans Fallback'', 'Droid Sans Mono', 'monospace', monospace, 'Droi=
+d Sans Fallback'; font-weight: normal; font-size: 20px; line-height: 27px; =
+white-space: pre;">
+<div><span style=3D"color: #c792ea;">cmake_minimum_required</span><span st=
+yle=3D"color: #eeffff;"> (VERSION 3.5)</span></div>
+<br />
+<div><span style=3D"color: #c792ea;">set</span><span style=3D"color: #eeff=
+ff;">(ex_ver </span><span style=3D"color: #c3e88d;">"01"</span><span style=
+=3D"color: #eeffff;">)</span></div>
+<br />
+<div><span style=3D"color: #546e7a; font-style: italic;"># Set a default b=
+uild type if none was specified</span></div>
+<div><span style=3D"color: #c792ea;">if</span><span style=3D"color: #eefff=
+f;">(</span><span style=3D"color: #c792ea;">NOT</span><span style=3D"color:=
+ #eeffff;"> CMAKE_BUILD_TYPE </span><span style=3D"color: #c792ea;">AND</sp=
+an><span style=3D"color: #eeffff;"> </span><span style=3D"color: #c792ea;">=
+NOT</span><span style=3D"color: #eeffff;"> CMAKE_CONFIGURATION_TYPES)</span=
+></div>
+<div><span style=3D"color: #c792ea;"> message</span><span style=3D"color: =
+#eeffff;">(</span><span style=3D"color: #c3e88d;">"Setting build type to 'R=
+elWithDebInfo' as none was specified."</span><span style=3D"color: #eeffff;=
+">)</span></div>
+<div><span style=3D"color: #c792ea;"> set</span><span style=3D"color: #eef=
+fff;">(CMAKE_BUILD_TYPE RelWithDebInfo </span><span style=3D"color: #c792ea=
+;">CACHE</span><span style=3D"color: #eeffff;"> </span><span style=3D"color=
+: #c792ea;">STRING</span><span style=3D"color: #eeffff;"> </span><span styl=
+e=3D"color: #c3e88d;">"Choose the type of build."</span><span style=3D"colo=
+r: #eeffff;"> FORCE)</span></div>
+<div><span style=3D"color: #eeffff;"> </span><span style=3D"color: #546e7a=
+; font-style: italic;"># Set the possible values of build type for cmake-gu=
+i</span></div>
+<div><span style=3D"color: #c792ea;"> set_property</span><span style=3D"co=
+lor: #eeffff;">(</span><span style=3D"color: #c792ea;">CACHE</span><span st=
+yle=3D"color: #eeffff;"> CMAKE_BUILD_TYPE PROPERTY STRINGS </span><span sty=
+le=3D"color: #c3e88d;">"Debug"</span><span style=3D"color: #eeffff;"> </spa=
+n><span style=3D"color: #c3e88d;">"Release"</span></div>
+<div><span style=3D"color: #eeffff;"> </span><span style=3D"color: #c3e88d=
+;">"MinSizeRel"</span><span style=3D"color: #eeffff;"> </span><span style=
+=3D"color: #c3e88d;">"RelWithDebInfo"</span><span style=3D"color: #eeffff;=
+">)</span></div>
+<div><span style=3D"color: #c792ea;">endif</span><span style=3D"color: #ee=
+ffff;">()</span></div>
+<br />
+<div><span style=3D"color: #c792ea;">project</span><span style=3D"color: #=
+eeffff;">(ex VERSION ${</span><span style=3D"color: #eeffff;"><span style=
+=3D"color: #eeffff;">ex_ver</span>})</span></div>
+<br />
+<div><span style=3D"color: #546e7a; font-style: italic;"># set the C++ sta=
+ndard to C++ 11</span></div>
+<div><span style=3D"color: #c792ea;">set</span><span style=3D"color: #eeff=
+ff;">(CMAKE_CXX_STANDARD 11)</span></div>
+<br />
+<div><span style=3D"color: #c792ea;">list</span><span style=3D"color: #eef=
+fff;">(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)</span></div>
+<br />
+<div><span style=3D"color: #c792ea;">include</span><span style=3D"color: #=
+eeffff;">(CompileProtos)</span></div>
+<div><span style=3D"color: #c792ea;">set</span><span style=3D"color: #eeff=
+ff;">(protobuf_MODULE_COMPATIBLE </span><span style=3D"color: #c792ea;">TRU=
+E</span><span style=3D"color: #eeffff;">)</span></div>
+<div><span style=3D"color: #c792ea;">find_package</span><span style=3D"col=
+or: #eeffff;">(Protobuf REQUIRED)</span></div>
+<div><span style=3D"color: #546e7a; font-style: italic;">#find_package(gRP=
+C REQUIRED)</span></div>
+<br />
+<div><span style=3D"color: #c792ea;"> set</span><span style=3D"color: #eef=
+fff;">(_PROTOBUF_LIBPROTOBUF protobuf::libprotobuf)</span></div>
+<div><span style=3D"color: #c792ea;">if</span><span style=3D"color: #eefff=
+f;">(CMAKE_CROSSCOMPILING)</span></div>
+<div><span style=3D"color: #c792ea;"> find_program</span><span style=3D"co=
+lor: #eeffff;">(_PROTOBUF_PROTOC protoc)</span></div>
+<div><span style=3D"color: #c792ea;"> find_program</span><span style=3D"co=
+lor: #eeffff;">(_gRPC_CPP_PLUGIN grpc_cpp_plugin)</span></div>
+<div><span style=3D"color: #c792ea;">else</span><span style=3D"color: #eef=
+fff;">()</span></div>
+<div><span style=3D"color: #c792ea;"> set</span><span style=3D"color: #eef=
+fff;">(_PROTOBUF_PROTOC $&lt;TARGET_FILE:protobuf::protoc&gt;)</span></div>
+<div><span style=3D"color: #c792ea;">endif</span><span style=3D"color: #ee=
+ffff;">()</span></div>
+<div><span style=3D"color: #546e7a; font-style: italic;">#message(STATUS "=
+Using protobuf ${protobuf_VERSION}")</span></div>
+<br />
+<div><span style=3D"color: #eeffff;"> </span><span style=3D"color: #546e7a=
+; font-style: italic;"># Find gRPC installation</span></div>
+<div><span style=3D"color: #546e7a; font-style: italic;"># Looks for gRPCC=
+onfig.cmake file installed by gRPC's cmake installation.</span></div>
+<div><span style=3D"color: #c792ea;">find_package</span><span style=3D"col=
+or: #eeffff;">(GRPC REQUIRED)</span></div>
+<br />
+<div><span style=3D"color: #c792ea;">set</span><span style=3D"color: #eeff=
+ff;">(_GRPC_GRPCPP_REFLECTION gRPC::grpc++_reflection)</span></div>
+<div><span style=3D"color: #c792ea;">if</span><span style=3D"color: #eefff=
+f;">(CMAKE_CROSSCOMPILING)</span></div>
+<div><span style=3D"color: #c792ea;"> find_program</span><span style=3D"co=
+lor: #eeffff;">(_GRPC_CPP_PLUGIN_EXECUTABLE grpc_cpp_plugin)</span></div>
+<div><span style=3D"color: #c792ea;">else</span><span style=3D"color: #eef=
+fff;">()</span></div>
+<div><span style=3D"color: #c792ea;"> set</span><span style=3D"color: #eef=
+fff;">(_GRPC_CPP_PLUGIN_EXECUTABLE $&lt;TARGET_FILE:gRPC::grpc_cpp_plugin&g=
+t;)</span></div>
+<div><span style=3D"color: #c792ea;">endif</span><span style=3D"color: #ee=
+ffff;">()</span></div>
+<br />
+<div><span style=3D"color: #546e7a; font-style: italic;"># uncomment for P=
+C</span></div>
+<div><span style=3D"color: #546e7a; font-style: italic;">#find_package(fmt=
+ REQUIRED)</span></div>
+<div><span style=3D"color: #546e7a; font-style: italic;">#add_compile_defi=
+nitions(SPDLOG_FMT_EXTERNAL)</span></div>
+<br />
+<div><span style=3D"color: #546e7a; font-style: italic;">#Add sub-director=
+ies</span></div>
+<div><span style=3D"color: #c792ea;">add_subdirectory</span><span style=3D=
+"color: #eeffff;">(protos)</span></div>
+<div><span style=3D"color: #c792ea;">add_subdirectory</span><span style=3D=
+"color: #eeffff;">(systemd)</span></div>
+<div><span style=3D"color: #c792ea;">add_subdirectory</span><span style=3D=
+"color: #eeffff;">(certs)</span></div>
+<div><span style=3D"color: #c792ea;">add_subdirectory</span><span style=3D=
+"color: #eeffff;">(services)</span></div>
+<div><span style=3D"color: #c792ea;">add_subdirectory</span><span style=3D=
+"color: #eeffff;">(lib)</span></div>
+<div><span style=3D"color: #c792ea;">add_subdirectory</span><span style=3D=
+"color: #eeffff;">(tools)</span></div>
+<div><span style=3D"color: #c792ea;">add_subdirectory</span><span style=3D=
+"color: #eeffff;">(core)</span></div>
+<br /><br /></div>
+<br />Help me please on this. It is really urgent, I tried a lot.<br />Tha=
+nks, Talel
+
+--kKJIOMaTRFgqTimCrYDt--
