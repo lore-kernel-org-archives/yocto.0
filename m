@@ -1,191 +1,201 @@
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
- by mx.groups.io with SMTP id smtpd.web10.19161.1604524443403746417
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (NAM11-BN8-obe.outbound.protection.outlook.com [40.107.236.78])
+ by mx.groups.io with SMTP id smtpd.web10.19302.1604525045066845696
  for <yocto@lists.yoctoproject.org>;
- Wed, 04 Nov 2020 13:14:03 -0800
+ Wed, 04 Nov 2020 13:24:05 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=axMn2HWX;
- spf=pass (domain: gmail.com, ip: 209.85.160.181, mailfrom: krantzj84@gmail.com)
-Received: by mail-qt1-f181.google.com with SMTP id r8so9713qtp.13
-        for <yocto@lists.yoctoproject.org>; Wed, 04 Nov 2020 13:14:03 -0800 (PST)
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=LiHGqvyi;
+ spf=pass (domain: windriver.com, ip: 40.107.236.78, mailfrom: randy.macleod@windriver.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gk2K/vXnRrv1C7RmropwferVWv8Uu0IKP25F38Nu2neFvYJkDv0ZH6Abm+SRnM5C51Oql2HVI63qI4x8wWn/4UDiTimXsmS+eWvrvj7JgSe6DA0QdiufTt8fpbHjWsCtsj+duK15OCWfrQhHacBGM9WaJHILxv6dqo9xZYEGLnSafyrceNuV/31+EPWbScCig5RldOV5BTTDzv17hEuEyPdFZ9wBypeGZRxvolcIZ+qiF31F42Y6ko0EVFfmYtrEqnpKvDQXTOUzO51549VHsCkQux8Pc6NR51YmSUDFvyuAPYo28kCq2yQiX2XkfQtlov1X8DsdbMdmExFBQeX+kg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kp/P6xXUv9XEkP+dM8jLRe/bGhovVBBdQ6gAK/nAk2c=;
+ b=MxJU+8DG3cotOMysAOLS8arcvNWZcCrag2m1PyM8Rz6vVGotvRt+A5Bp50w7mf7u6NN21lTrKFHNYVHZUgnZNVh/esanvcYC+6NFKqgWeKnxMxtBH4Wkhi0SouaRwfsCZrzvuKwsVhlb/yYReEaW4W9P9lXdFFP/vWTJv5J54cY0RxBf1WTGK5NzUgrJHIvsyWBMpAClWXgT292b2JPJU2QrYCweojn5G3jdEfy+rerVH7Wi5htfkeF1/TieeTMltLiG93LDknwrixZElDp4tY+xM5ndJrnpVdAHnUdb7yJhC5qxhu8aCVQMgn3eBvAqExLB52WQhBh66N4UMGhQQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3NYvyuqAdrU4XD+0dU27kwk9lfYWfnOWGfu1e18Ke44=;
-        b=axMn2HWXwpnbvnKpKg/sdis6r1rKZfW+9boRhX44jrFjgdKXUgL5Kj4N3GHk8S9SpP
-         vPaF3nGvH7ME4eilR+SEiYIxvcVja5U5Sx2LTXpaCLtT5CJAz1uQo8FbYrHJymjXvm0o
-         ekFFA2zflKry1zWYk4S8d8Km3O3zgxfhkh2zIRSYpvk267cDYLWsXZzWfvNL7svjP8pX
-         vjrqMte0obpjCRNV0gb8ciwDeKnOGfISoPXggRZqTpr3JYciYvWeBOKY/SBWGI/JlDXh
-         B+iyxnJ+LX4OQOv/o+EurwPmxYAH/hGWq1Wl5WP8N4QRDHI+yb2nAtWxaKEDg6x6H3e9
-         ZcRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3NYvyuqAdrU4XD+0dU27kwk9lfYWfnOWGfu1e18Ke44=;
-        b=CmoyYrvb8e0/TTrsPqEh5jvd3dyrqjdelfeUweheEFu1TAICAhKlI8jg4uFlUm6xzf
-         JSNCr9fur/YnLqpbLxo64QGa1DjMRcYNRen3Dg7oeZnq9Sskw+PEjIYmxe/wW9jW6243
-         NgQdzIzMXF6sTvqTfL3fVCnqiz/JS0wajaJg5i+w9315AZrXEE+Uhkt8FDfu/r56lL2r
-         quQqKcZcywVvchlVAfAIGiizJEIbqDi0Vc/D77iuV5YGSV2MfoVEizqc8WH/XQwxAX0y
-         j+OUxQQN2N2p4M8eIUgmS+37irXdlziXk41LeGmzRhe0eh3kIa+Otyv3vs/aTaH8c9lU
-         VVJQ==
-X-Gm-Message-State: AOAM533KW5bFVfq9JZ50gd6aEIYUyoTZA3dU2nQe/Xgj8VQg097Joc9F
-	9BMWFJZZ+1YSbyCBfylRjIfqeGPXRJmhriUxgYo=
-X-Google-Smtp-Source: ABdhPJwoMwBig6k5BhYgXLAksMXudRtDkLwb1TgXAEVc8At+A6EDqqoprptNIsvJH0G263TgNepWl13yFtP0FpufFzk=
-X-Received: by 2002:ac8:4b45:: with SMTP id e5mr18214018qts.367.1604524442549;
- Wed, 04 Nov 2020 13:14:02 -0800 (PST)
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kp/P6xXUv9XEkP+dM8jLRe/bGhovVBBdQ6gAK/nAk2c=;
+ b=LiHGqvyiqPi+SlRCYrsMn93hjAnA4OBAOvYKcVzgRXXv69hRN/ZJ3FXVuki3h/Ynq3WEegaM4pHPGMayQCIIIRyqoztkzNH27BRcsQJ+JB6L0xathwSG1949D5uiOVXheR/Hy8mibQehzmAdsIuCSpLnaymD+KUGWQfU1RaY0wY=
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from BN6PR1101MB2276.namprd11.prod.outlook.com
+ (2603:10b6:405:4e::18) by BN6PR1101MB2195.namprd11.prod.outlook.com
+ (2603:10b6:405:5a::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.22; Wed, 4 Nov
+ 2020 21:24:03 +0000
+Received: from BN6PR1101MB2276.namprd11.prod.outlook.com
+ ([fe80::1105:8ad7:b702:a12f]) by BN6PR1101MB2276.namprd11.prod.outlook.com
+ ([fe80::1105:8ad7:b702:a12f%11]) with mapi id 15.20.3499.032; Wed, 4 Nov 2020
+ 21:24:03 +0000
+Subject: Re: [yocto] Reproducible builds and RPM packages
+To: Anders Montonen <Anders.Montonen@iki.fi>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <043D5DC3-E1B8-4305-B707-AD9C3AA10D39@iki.fi>
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+Message-ID: <11326493-aab5-655d-9ade-d485e0c1c710@windriver.com>
+Date: Wed, 4 Nov 2020 16:23:59 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <043D5DC3-E1B8-4305-B707-AD9C3AA10D39@iki.fi>
+X-Originating-IP: [198.48.226.187]
+X-ClientProxiedBy: SJ0PR03CA0079.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::24) To BN6PR1101MB2276.namprd11.prod.outlook.com
+ (2603:10b6:405:4e::18)
+Return-Path: randy.macleod@windriver.com
 MIME-Version: 1.0
-References: <CAFVJ0t4U0PWpKK4-X0Tpim6Ee6yCcrJbBi_1b54KBrjwbKcOfg@mail.gmail.com>
- <CANNYZj8MKQDX-3PbThzoPOf5JE+Kq+BmcUdbxs87HOBmCWi_zg@mail.gmail.com>
- <CAFVJ0t7Du9yPskG8Eef1HB5zUG+MwXtOBv66DC9p4DL1vir5yg@mail.gmail.com> <CANNYZj-UaKnGYp8OMct4SJs2-jc8ZjFZM_Z2zBbOK4OqkCg6QQ@mail.gmail.com>
-In-Reply-To: <CANNYZj-UaKnGYp8OMct4SJs2-jc8ZjFZM_Z2zBbOK4OqkCg6QQ@mail.gmail.com>
-From: "Jim Krantz" <krantzj84@gmail.com>
-Date: Wed, 4 Nov 2020 16:13:50 -0500
-Message-ID: <CAFVJ0t6tVNkz6+YAzHfnQ=S2+jzmJdEE0yj907CXJVSB8GZODQ@mail.gmail.com>
-Subject: Re: [yocto] Removing postinst script in bbappend
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000006e822505b34e75c7"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.25.44.2] (198.48.226.187) by SJ0PR03CA0079.namprd03.prod.outlook.com (2603:10b6:a03:331::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.19 via Frontend Transport; Wed, 4 Nov 2020 21:24:02 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0eac37ca-5d4c-4b4d-9324-08d88107f3cb
+X-MS-TrafficTypeDiagnostic: BN6PR1101MB2195:
+X-Microsoft-Antispam-PRVS: 
+	<BN6PR1101MB21958D48D12B56D3D04D9647F8EF0@BN6PR1101MB2195.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	VjFK7M+LvDM1PZ7oX3nb4R7ROF57oJPk2D9r/G/w2QBgv2zHx6/j2ePXrd1+NTr7BKCPe7ygX/gYPvA2cmKULZgVBuYTWmD8Nbd/GrxoZb3NTn6vkLn/gWw2kyJEBxMTBnI2QlstX9X1FoCVK/6aFwHbE062QMsmA76W9n9KntTXfeYu438KLL5ym5REywmIY6Os6xgf+Zc8ozBxUjPf/+E/siQYPRmUlU8Pn0Sp0msBEQep0xrSjHRn+KFkxzBatDS8byUpi5GyuTCYHb3shDy2Wa0L21Ch9FBorC5IqXsBORuKOVv9F6ZxnlmMQHQT1ZGkS7LiQY5CypxV895cKn6/2q2mQCMa4NzmyccBB36GirYOa+LLH4aD1MAsH0Hc07V59TDVWMRP3xVsUtTXl9YCOeE0YZ1SDWBVxL32lovolnoyV9MsD9qEhnwKYfUbC51ULHBwplk/+s5ht5EXGQ==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR1101MB2276.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39850400004)(396003)(366004)(376002)(346002)(36756003)(966005)(5660300002)(33964004)(16576012)(110136005)(31686004)(66946007)(8936002)(166002)(52116002)(6486002)(186003)(2906002)(6666004)(16526019)(86362001)(26005)(66556008)(316002)(66476007)(478600001)(15188445003)(53546011)(31696002)(8676002)(2616005)(956004)(83380400001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	0pQ724W9+JlekpIk96zMo4rR5HNbcMAZ7ik75+Z1cYqefdywchjEeUGzhSXdsA/uO1BenhkelwF+t3PF6alLJrts8Tx4z3mbRLTLBnDg2IfjTJYXE8dxVBiR6z3Lzn73XntAMu/PkryDNfAHZKNoT6IC4r9AfvfvNy0h7xqyjt0FASH6y+udjzTjR9XfF2Lh7uQQG6iZrMPqBg4uiTRgXuyZlycNrBQh2HtRHnqEAU/UxBFg7TaE64weY97NLoe/cYdtJrFfBLwBEEdDI1R7qrXQ8e6sfw/tBVIepqIqgO3V13g88NmouU6wQZYHwmcJZcy8jZhiePL7vKPhbVOCIhSEdAhJ2buFGWgyVXNw2cheDMW+WJmEgDGHh9AsD4ZmFc/U5N/iymR9rRR1C+YaWjzaIhlv9RkuWxWo4CE1keBETJw8jo+uaXxUvhKLRwzvAK4OqN2ZCUHT7GJNLNLkCIcvtk+4ERaB2ZPbS4ekN9Y5zrv/oDvzj+yQ1nB3xytsxOIzPa69iK06vJSTl/6q3Bj+YA30il5Vu1WPXPMgiHxG9ywJ91EtkB9n2co3jcfC7phOcGMHgZvj/uGQqrIPW+DuszPw/ysvHvcsycP6yY0eFYDg/k3rB77SlaDsOCj75a0ZgT5NjMvpy0jhLNVGbw==
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0eac37ca-5d4c-4b4d-9324-08d88107f3cb
+X-MS-Exchange-CrossTenant-AuthSource: BN6PR1101MB2276.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2020 21:24:02.9763
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EXsGCte1KETfH182z90Zu0JPgiv9ExvUUerIpmNuk6Xh7G+GelhfBWboeNJt/rwT6OmTo5tRV6ztnPPKcXZDdbI6qYj2DDxmFXGzpIR4szQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1101MB2195
+Content-Type: multipart/alternative;
+ boundary="------------2F14B33832755FE367CA7CE3"
+Content-Language: en-CA
 
---0000000000006e822505b34e75c7
-Content-Type: text/plain; charset="UTF-8"
+--------------2F14B33832755FE367CA7CE3
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-It's a simple operation. They check for the existence of
-/etc/apparmor.d/cache. If it doesn't exist, then they create it as a
-directory.
-
-I'm not sure why it can't be moved elsewhere, as we're not the maintainers.
-I could reach out and find out, though.
-
-On Wed, Nov 4, 2020 at 3:38 PM Alexander Kanavin <alex.kanavin@gmail.com>
-wrote:
-
-> The right way would be to fix the recipe I think? What is doing that has
-> to happen only on target and can't be done during do_rootfs?
+On 2020-11-03 6:16 a.m., Anders Montonen wrote:
+> Hi,
 >
-> Alex
+> When going from Zeus to Dunfell, I noticed that all files on the 
+> rootfs had timestamps long in the past, which I assume is from 
+> reproducible builds now being on by default. While that is a good 
+> thing, running “rpm -V” on any installed package now reports that the 
+> mtime differs. Is this the intentional behavior?
+
+Hi Anders,
+
+I haven't played with that for a while but I'm pretty sure the answer is 
+yes, it's intentional.
+
+You can read about reproducible builds here:
+    https://wiki.yoctoproject.org/wiki/Reproducible_Builds
+and compare to the source if needed:
+https://git.openembedded.org/openembedded-core/tree/meta/classes/reproducible_build.bbclass?id=189630ca6cdf7ceb6cf9b8f9d86c58997f505efc&h=dunfell
+
+I don't see it in the documentation yet:
+http://docs.yoctoproject.org/search.html?q=reproducible&check_keywords=yes&area=default
+
+but I didn't do more than skim those search results.
+
+If you also can't find it in the docs, would you be able to make a first 
+draft of that and contribute to the project?
+
+If so please read and ask for guidance on: docs@lists.yoctoproject.org
+
+Thanks,
+
+../Randy
+
 >
-> On Wed, 4 Nov 2020 at 21:19, Jim Krantz <krantzj84@gmail.com> wrote:
+> Regards,
+> Anders Montonen
 >
->> The recipe is apparmor, layer is meta-security.
->>
->> We're currently using the 2.x recipe, however the 3.x recipe appears to
->> have the same function.
->>
->>
->> On Wed, Nov 4, 2020 at 2:32 PM Alexander Kanavin <alex.kanavin@gmail.com>
->> wrote:
->>
->>> What recipe is it and what layer is it in?
->>>
->>> Alex
->>>
->>> On Wed 4. Nov 2020 at 19.04, Jim Krantz <krantzj84@gmail.com> wrote:
->>>
->>>> Hey folks,
->>>>
->>>> We're doing builds using Yocto 3.1 and are attempting to revise a
->>>> recipe from another layer we don't control. The recipe we want to make
->>>> alterations to is from an open source project, so we'd prefer to not make
->>>> changes directly to the recipe, rather change it using a bbappend.
->>>>
->>>> The issue we're having is that the recipe has a pkg_postinst_ontarget
->>>> function defined, but we have our filesystem set to read only via
->>>> 'read-only-rootfs'. The result is a build time failure:
->>>>
->>>> 'The following packages could not be configured offline and rootfs is
->>>> read-only: ['<package>']
->>>>
->>>> Looking at the Yocto code, it appears that this error is detected by
->>>> checking for the presence of any files in the image rootfs/rpm-postinsts
->>>> directory. If something is found and the rootfs is read only, then the
->>>> error above is thrown and the build fails.
->>>>
->>>> We also looked at emit_pkgdata() and noted it was checking for the
->>>> pkg_postinst/pkg_postinst_ontarget globals, so we attempted to add a task
->>>> that set those to 'None', hoping it would result in the conditional checks
->>>> for these resolving to 'false', however this did not seem to work either.
->>>> I'm somewhat new to Yocto, so may have misunderstood how this code is
->>>> applied.
->>>>
->>>> We've also tried simpler solutions, like implementing a blank
->>>> pkg_postinst_ontarget_{PN} and using deltask, however this also failed.
->>>>
->>>> So the question I have is: is there a way for us to remove the
->>>> pkg_postinst_ontarget_{PN} from the recipe in the original layer using a
->>>> bbappend file in our layer, so that the read only error is not thrown?
->>>>
->>>> Thanks!
->>>>
->>>> 
->>>>
->>>>
+> 
+>
 
---0000000000006e822505b34e75c7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+-- 
+# Randy MacLeod
+# Wind River Linux
 
-<div dir=3D"ltr">It&#39;s a simple operation. They check for the existence =
-of /etc/apparmor.d/cache. If it doesn&#39;t exist, then they create it as a=
- directory.=C2=A0<div><br></div><div>I&#39;m not sure why it can&#39;t be m=
-oved elsewhere, as we&#39;re not the maintainers. I could reach out and fin=
-d out, though.=C2=A0</div></div><br><div class=3D"gmail_quote"><div dir=3D"=
-ltr" class=3D"gmail_attr">On Wed, Nov 4, 2020 at 3:38 PM Alexander Kanavin =
-&lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gmail.com</a>&gt=
-; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div di=
-r=3D"ltr"><div>The right way would be to fix the recipe I think? What is do=
-ing that has to happen only on target and can&#39;t be done during do_rootf=
-s?</div><div><br></div><div>Alex<br></div></div><br><div class=3D"gmail_quo=
-te"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, 4 Nov 2020 at 21:19, Jim =
-Krantz &lt;<a href=3D"mailto:krantzj84@gmail.com" target=3D"_blank">krantzj=
-84@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex"><div dir=3D"ltr">The recipe is apparmor, layer is meta-security=
-.=C2=A0<div><br></div><div>We&#39;re currently using the 2.x recipe, howeve=
-r the 3.x recipe appears to have the same function.</div><div><br></div></d=
-iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Wed, Nov 4, 2020 at 2:32 PM Alexander Kanavin &lt;<a href=3D"mailto:alex.ka=
-navin@gmail.com" target=3D"_blank">alex.kanavin@gmail.com</a>&gt; wrote:<br=
-></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">=
-What recipe is it and what layer is it in?</div><div dir=3D"auto"><br></div=
-><div dir=3D"auto">Alex</div><div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Wed 4. Nov 2020 at 19.04, Jim Krantz &lt;=
-<a href=3D"mailto:krantzj84@gmail.com" target=3D"_blank">krantzj84@gmail.co=
-m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
-:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
-><div dir=3D"ltr">Hey folks,<div><br></div><div>We&#39;re doing builds usin=
-g Yocto 3.1 and are attempting to revise a recipe from another layer we don=
-&#39;t control. The recipe we want to make alterations to is from an open s=
-ource project, so we&#39;d prefer to not make changes directly to the recip=
-e, rather change it using a bbappend.=C2=A0</div><div><br></div><div>The is=
-sue we&#39;re having is that the recipe has a pkg_postinst_ontarget functio=
-n defined, but we have our filesystem set to read only via &#39;read-only-r=
-ootfs&#39;. The result is a build time failure:</div><div><br></div><div>&#=
-39;The following packages could not be configured offline and rootfs is rea=
-d-only: [&#39;&lt;package&gt;&#39;]</div><div><br></div><div>Looking at the=
- Yocto code, it appears that this error is detected by checking for the pre=
-sence of any files in the image rootfs/rpm-postinsts directory. If somethin=
-g is found and the rootfs is read only, then the error above is thrown and =
-the build fails.=C2=A0</div><div><br></div><div>We also looked at emit_pkgd=
-ata() and noted it was checking for the pkg_postinst/pkg_postinst_ontarget =
-globals, so we attempted to add a task that set those to &#39;None&#39;, ho=
-ping it would result in the conditional checks for these resolving to &#39;=
-false&#39;, however this did not seem to work either. I&#39;m somewhat new =
-to Yocto, so may have misunderstood how this code is applied.</div><div><br=
-></div><div>We&#39;ve also tried simpler solutions, like implementing a bla=
-nk pkg_postinst_ontarget_{PN} and using deltask, however this also failed.=
-=C2=A0</div><div><br></div><div>So the question I have is: is there a way =
-for us to remove the pkg_postinst_ontarget_{PN} from the recipe in the orig=
-inal layer using a bbappend file in our layer, so that the read only error =
-is not thrown?</div><div><br></div><div>Thanks!</div></div>
-<br>
-<br>
-<br>
-</blockquote></div></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
 
---0000000000006e822505b34e75c7--
+--------------2F14B33832755FE367CA7CE3
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <div class="moz-cite-prefix">On 2020-11-03 6:16 a.m., Anders
+      Montonen wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:043D5DC3-E1B8-4305-B707-AD9C3AA10D39@iki.fi">
+      
+      <div class="BodyFragment"><font size="2"><span style="font-size:11pt;">
+            <div class="PlainText">Hi,<br>
+              <br>
+              When going from Zeus to Dunfell, I noticed that all files
+              on the rootfs had timestamps long in the past, which I
+              assume is from reproducible builds now being on by
+              default. While that is a good thing, running “rpm -V” on
+              any installed package now reports that the mtime differs.
+              Is this the intentional behavior?<br>
+            </div>
+          </span></font></div>
+    </blockquote>
+    <p>Hi Anders,<br>
+    </p>
+    <p><font size="2">I haven't played with that for a while but I'm
+        pretty sure the answer is yes, it's intentional.</font></p>
+    <p><font size="2">You can read about </font><font size="2">reproducible
+        builds here:</font><br>
+      &nbsp;&nbsp; <a class="moz-txt-link-freetext" href="https://wiki.yoctoproject.org/wiki/Reproducible_Builds">https://wiki.yoctoproject.org/wiki/Reproducible_Builds</a><br>
+      and compare to the source if needed:<br>
+      &nbsp;&nbsp;
+<a class="moz-txt-link-freetext" href="https://git.openembedded.org/openembedded-core/tree/meta/classes/reproducible_build.bbclass?id=189630ca6cdf7ceb6cf9b8f9d86c58997f505efc&amp;h=dunfell">https://git.openembedded.org/openembedded-core/tree/meta/classes/reproducible_build.bbclass?id=189630ca6cdf7ceb6cf9b8f9d86c58997f505efc&amp;h=dunfell</a></p>
+    <p>I don't see it in the documentation yet:<br>
+      &nbsp;&nbsp;
+<a class="moz-txt-link-freetext" href="http://docs.yoctoproject.org/search.html?q=reproducible&amp;check_keywords=yes&amp;area=default">http://docs.yoctoproject.org/search.html?q=reproducible&amp;check_keywords=yes&amp;area=default</a></p>
+    <p>but I didn't do more than skim those search results.<br>
+    </p>
+    <p>If you also can't find it in the docs, would you be able to make
+      a first draft of that and contribute to the project?</p>
+    <p>If so please read and ask for guidance on:
+      <a class="moz-txt-link-abbreviated" href="mailto:docs@lists.yoctoproject.org">docs@lists.yoctoproject.org</a></p>
+    <p>Thanks,</p>
+    <p>../Randy<br>
+    </p>
+    <blockquote type="cite" cite="mid:043D5DC3-E1B8-4305-B707-AD9C3AA10D39@iki.fi">
+      <div class="BodyFragment"><font size="2"><span style="font-size:11pt;">
+            <div class="PlainText">
+              <br>
+              Regards,<br>
+              Anders Montonen</div>
+          </span></font></div>
+      <div class="BodyFragment"><font size="2"><span style="font-size:11pt;">
+            <div class="PlainText"><br>
+              <br>
+              <br>
+            </div>
+          </span></font></div>
+    </blockquote>
+    <p><br>
+    </p>
+    <pre class="moz-signature" cols="72">-- 
+# Randy MacLeod
+# Wind River Linux</pre>
+  </body>
+</html>
+
+--------------2F14B33832755FE367CA7CE3--
