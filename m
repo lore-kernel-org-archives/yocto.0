@@ -1,50 +1,51 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.14030.1604501809954400930
+ by mx.groups.io with SMTP id smtpd.web09.14035.1604501821453783038
  for <yocto@lists.yoctoproject.org>;
- Wed, 04 Nov 2020 06:56:50 -0800
+ Wed, 04 Nov 2020 06:57:01 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ccUEZyv7;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=eW7t2oNb;
  spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: akuster808@gmail.com)
-Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com [209.85.215.193])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id DEE5B38C069F
-	for <yocto@yoctoproject.org>; Wed,  4 Nov 2020 06:56:48 -0800 (PST)
-Received: by mail-pg1-f193.google.com with SMTP id x13so16793280pgp.7
-        for <yocto@yoctoproject.org>; Wed, 04 Nov 2020 06:56:48 -0800 (PST)
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 2816B38C06E0
+	for <yocto@yoctoproject.org>; Wed,  4 Nov 2020 06:57:01 -0800 (PST)
+Received: by mail-pg1-f170.google.com with SMTP id t14so16827371pgg.1
+        for <yocto@yoctoproject.org>; Wed, 04 Nov 2020 06:57:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=VfZjfdbJFF8Nt+wcj09396RqTKKhPHsDuZbR0kMgUvs=;
-        b=ccUEZyv7aAUPesLYFslTc5fe1/HqVJtEqqdjDlFAROaPrTu0Eg0UmFWbuBYCi5D4Bl
-         ygqvl6zHabXmRJ6wtSD/Q4nuZ53xyzUY1qTqWvCZJHLnlBK2F6rg5yibjqAu5dwtYTNY
-         u5tySquRbANVblUGLuVY15u9Dpk3OahOz5+llQHAryGnFjNrNXGpDYQqpGWTEHSwWTT7
-         Ls+rFeu79d1z1nvVRki71B6NyHgGYB7ppuPeAcNLWWjyLtKZJWslNn/PL1/ap7KOcX7u
-         AVUlEo1bQu+mwI2ssLA5sw3EId/pNdsFETprARLM2OHFBFO/sCwttzuz/QFD/1QYcuZK
-         gByg==
+        bh=YtWiO6SeStSVU/SknJ1wqnFXXREjS1VUnFrAT5r+qyI=;
+        b=eW7t2oNbM9bhxGQlLqBQTkESTMrJzvu0jR2cGnWXbv/RVFwg2jaHE9Kyk2LUES93cF
+         zfp31jUTbW0S3Ow7ksqBG2YVFyGXud923eduWVMfteNKzLBUKUE4JiJsJACpJ6hMaKU6
+         hy4FjIuZOmHmm71W2uQjrig5SEWGBU9JrO/mtcGHEsG7p8qFsSV4TBnVqlQzUQ6fMm4K
+         9/qwLNRJho3szBOFzXIXVCiDXfPeEmGRAzDKuxIO5hNWlH0PO6MJCS1s0Lc+ntI1jEO7
+         1dIf9V4qYO1CRYs4k7YEn+DeV/Iv8+8G11KX5bo0qmZvGOcYsZLTRCUps2P1C6av3lpD
+         tbaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
          :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
          :content-language;
-        bh=VfZjfdbJFF8Nt+wcj09396RqTKKhPHsDuZbR0kMgUvs=;
-        b=XJVLQ/bnpPZP0JH4ZGzGo/sSo4iK8UWGXWR9Z+n3t2GhtFcFChfjNtYMIaJRrNzhgP
-         z7kPP2CtZk01I+TvDykKMybzWHZZ7w3oxyCXs4O5+upnJIDP8CPc0pVCt0DWWZtmBsPe
-         p8Uu//al4lODz/eTHDcrz6N/si6Z6nFimvbvRAbXh9lMpBL4BvNVw5gRLAeFt0mfY44/
-         vnsQ85qy6Op5XqNOlWwXpBS9CaFRxsfo+xggzWYoNJ5ENojYtKlCqp64xe18Hbg9CuN+
-         WyK6NotaJId9n1ad1k1t7DKEf8usIBSXdiWIAE0PSpmYYhGCwCVb8BS0PZAkj6KCXIET
-         S3pQ==
-X-Gm-Message-State: AOAM531dgCIkQ0JJtL6G/Uq3PtaCAM5qxWUZfjiLh6HqMkAb1Hj6vMJs
-	5A446dWM+Vk0aWxUdZNqaAiyc16W6nw=
-X-Google-Smtp-Source: ABdhPJyeIghhFSn0+i0s8lHDYd9Hzx0gY/uD9QZKlYQnsQ1qSVU8doxuD460LxdOmTD+L292BPZdXg==
-X-Received: by 2002:a17:90a:a595:: with SMTP id b21mr4555089pjq.3.1604501807924;
-        Wed, 04 Nov 2020 06:56:47 -0800 (PST)
+        bh=YtWiO6SeStSVU/SknJ1wqnFXXREjS1VUnFrAT5r+qyI=;
+        b=LgDfRKE9NWaqg3XttWlUt9Y4c1ryHxJzncwFNzONWqKUjMZhZy6ejZL4o124Ki8h3l
+         zuD2WLQmuZXWC4vwXfNAymmrQbTzWxrBQIbwfCDUYWMwPiFndb4o/eMONEjxRbj671TP
+         ywC+5z3D/9UnclXCD2BpWVsaHkaGrGu7g35YR8bTLjgM3lBkYV2vWgHvbFeVxBtf4UCV
+         IcCzgo9EZJKOrcn72SzIttzOvyVfsqZf4IjJVzEe5Fp80ZQA3tFst1+9b7orCEC8I3AA
+         Fk5Jh/jlBhb4F3gfecx3ep1uE0gaQzpthXkK6TfUq+IDtsmm2o1/So05zTTSAQ+OcYv6
+         mG6A==
+X-Gm-Message-State: AOAM532RCjZvYTEdxMGIhZgUWjhfT5f9/iu551zimPbAiefjsoqK0pod
+	ZXA93pK3F6oWjxfZulqmGMWYoDSQ2sg=
+X-Google-Smtp-Source: ABdhPJw6prTT2801Ers3H8Im8mzbIKzOCk/fysaVwqwMmIaIeamrNLK8Ed2I/kHu0svvNSY4pawcXQ==
+X-Received: by 2002:a65:5944:: with SMTP id g4mr12439133pgu.446.1604501820529;
+        Wed, 04 Nov 2020 06:57:00 -0800 (PST)
 Received: from ?IPv6:2601:202:4180:a5c0:30:8e77:15b6:d55c? ([2601:202:4180:a5c0:30:8e77:15b6:d55c])
-        by smtp.gmail.com with ESMTPSA id y1sm2613301pjl.12.2020.11.04.06.56.46
+        by smtp.gmail.com with ESMTPSA id z22sm2826989pfa.220.2020.11.04.06.56.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Nov 2020 06:56:47 -0800 (PST)
-Subject: Re: [yocto] [meta-security][PATCH 1/2] suricata: unify volatiles file name
+        Wed, 04 Nov 2020 06:57:00 -0800 (PST)
+Subject: Re: [yocto] [meta-security][PATCH 2/2] clamav: unify volatiles file name
 To: Yi Zhao <yi.zhao@windriver.com>, yocto@yoctoproject.org
 References: <20201102091119.15649-1-yi.zhao@windriver.com>
+ <20201102091119.15649-2-yi.zhao@windriver.com>
 From: "akuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -89,42 +90,41 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <6aa84b2c-15db-eb8c-fcc1-31c327c3d87f@gmail.com>
-Date: Wed, 4 Nov 2020 06:56:45 -0800
+Message-ID: <8c41cc65-721f-6377-07de-77a7d07a52c3@gmail.com>
+Date: Wed, 4 Nov 2020 06:56:59 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201102091119.15649-1-yi.zhao@windriver.com>
+In-Reply-To: <20201102091119.15649-2-yi.zhao@windriver.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
+merged
+thanks
 
 
 On 11/2/20 1:11 AM, Yi Zhao wrote:
 > Make the volatiles file name starts with digital.
-merged
-
-thanks
 >
 > Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 > ---
->  recipes-ids/suricata/suricata_4.1.9.bb | 2 +-
+>  recipes-scanners/clamav/clamav_0.101.5.bb | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/recipes-ids/suricata/suricata_4.1.9.bb b/recipes-ids/suricata/suricata_4.1.9.bb
-> index 135871c..3f7beaa 100644
-> --- a/recipes-ids/suricata/suricata_4.1.9.bb
-> +++ b/recipes-ids/suricata/suricata_4.1.9.bb
-> @@ -55,7 +55,7 @@ do_install_append () {
->      oe_runmake install-rules DESTDIR=${D}
+> diff --git a/recipes-scanners/clamav/clamav_0.101.5.bb b/recipes-scanners/clamav/clamav_0.101.5.bb
+> index 47fbae4..7dad263 100644
+> --- a/recipes-scanners/clamav/clamav_0.101.5.bb
+> +++ b/recipes-scanners/clamav/clamav_0.101.5.bb
+> @@ -86,7 +86,7 @@ do_install_append_class-target () {
 >  
->      install -d ${D}${sysconfdir}/suricata ${D}${sysconfdir}/default/volatiles
-> -    install -m 0644 ${WORKDIR}/volatiles.03_suricata  ${D}${sysconfdir}/default/volatiles/volatiles.03_suricata
-> +    install -m 0644 ${WORKDIR}/volatiles.03_suricata  ${D}${sysconfdir}/default/volatiles/03_suricata
->  
->      install -m 0644 ${S}/threshold.config ${D}${sysconfdir}/suricata
->  
+>      install -m 644 ${WORKDIR}/clamd.conf ${D}/${sysconfdir}
+>      install -m 644 ${WORKDIR}/freshclam.conf ${D}/${sysconfdir}
+> -    install -m 0644 ${WORKDIR}/volatiles.03_clamav  ${D}${sysconfdir}/default/volatiles/volatiles.03_clamav
+> +    install -m 0644 ${WORKDIR}/volatiles.03_clamav  ${D}${sysconfdir}/default/volatiles/03_clamav
+>      sed -i -e 's#${STAGING_DIR_HOST}##g' ${D}${libdir}/pkgconfig/libclamav.pc
+>      rm ${D}/${libdir}/libclamav.so
+>      if [ "${INSTALL_CLAMAV_CVD}" = "1" ]; then
 >
 > 
 >
