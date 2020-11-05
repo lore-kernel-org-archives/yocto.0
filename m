@@ -1,78 +1,112 @@
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
- by mx.groups.io with SMTP id smtpd.web08.11136.1604597618291379982
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web09.335.1604600215823636421
  for <yocto@lists.yoctoproject.org>;
- Thu, 05 Nov 2020 09:33:38 -0800
+ Thu, 05 Nov 2020 10:16:58 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=KZHg/iNi;
- spf=pass (domain: gmail.com, ip: 209.85.216.50, mailfrom: raj.khem@gmail.com)
-Received: by mail-pj1-f50.google.com with SMTP id k2so426768pjg.2
-        for <yocto@lists.yoctoproject.org>; Thu, 05 Nov 2020 09:33:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=rX0rPxxjWch9tZroSM9iFOxFomvIgUUyA7refFGqlIA=;
-        b=KZHg/iNiezePEbnR3x9Fl/3hRyY4pI+r0e93y0KbPQmjhtgTxOLIpuNvtUpReObkFI
-         LqgE3NUi6orK/RFh9i92WclZNJvSgO0ldgbA59CpPz6d5kY1WT4HJf4CH0OfvvaeF1w5
-         YQ0b5o6hJaQXwTct2sYLadi8tf3S5LstsPnEyZRgQwXf4f2r1i9N7BIUF9M+GFfvPGlK
-         inQJbkgdg+kiUT98w4G0MyUPzs1auN3eAl2g4Wv0TwcRwefQXzz4OGB0wDcg7jlgvHOe
-         M7/1MmbQQIPwe/n3TWXvC9deoKePZdmimmnyhPfvq7DhRIjRMvJqx1G/iGU3XrlwxFP4
-         N8fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=rX0rPxxjWch9tZroSM9iFOxFomvIgUUyA7refFGqlIA=;
-        b=plcZyn/aCF0BvjYuu4TO0L+aMEau+joMKN1tivXIBojgucxCNVB9IJNyO6xMRIE/9T
-         cSiSAIDe4WyXGrxgGpnjj8v8Ez9ccr0kSEpcacRl04DX6dlaipLVrb6PaVrSysiM0HTS
-         bFwH4Y/PoGAmrnuC0W6RIG2oedt59NWMqVrwBLAV2ayUl3wu+1JLZcpWjM6xszte5Mp9
-         NwJ0mdCt+uFHInTRrbYN3sui3Kzfg3FmBL4Td8PxbOjebndRIyuHzNFWVv9r3jwbesb3
-         SMLOakhns15ucTVYtcaCpYIXk6K22hMU7ZBGRpKlSYNFkHfodggHfj6lBNDd0EzfPY09
-         WJcg==
-X-Gm-Message-State: AOAM5313+6frvdh8bA2p8rf31mpMQ/GWRvkeGBlpffliifABQ/Ej9OWB
-	sFIBKAardHSrqXOfTK+KgUOdppp5Giw8Ew==
-X-Google-Smtp-Source: ABdhPJwm0KOk/fOCW+HqOSngOQzyo4z6kXZitfTvDANDyN9jyTXYr8HEEKm+z5uygdpC9B5gFh98UA==
-X-Received: by 2002:a17:90a:474b:: with SMTP id y11mr3421044pjg.114.1604597617496;
-        Thu, 05 Nov 2020 09:33:37 -0800 (PST)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:6955:62e2:f0f4:7e8d? ([2601:646:9200:4e0:6955:62e2:f0f4:7e8d])
-        by smtp.gmail.com with ESMTPSA id n5sm2964659pgm.82.2020.11.05.09.33.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Nov 2020 09:33:36 -0800 (PST)
+ dkim=fail reason="signature has expired" header.i=@baesystems.com header.s=trusted01 header.b=QF1Ugwyf;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1604600215; x=1762280215;
+  h=from:to:subject:date:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=R4dhoGz8Cogwbrch7tRFOuVH8GOpKioMR0qo8cEvplY=;
+  b=QF1Ugwyfdtrz7iul9yeC+B05vOaGeVol6oK4Faa9JuHW7uhxly3XJsaj
+   5l7fjiMENWJZZ+QFQjtk12ZnfWSBx+OAK/Aic3CyzsqpPuepCGrdeTUoW
+   lmCU/SsrffllmhlWlBIKWQ9ygSxccmacwtdsKbp4H21xizlZt0/JiqdKG
+   8=;
+IronPort-PHdr: =?us-ascii?q?9a23=3ArSBTZRUpeEpy7utZigPSkbmvXc7V8LGtZVwlr6E/?=
+ =?us-ascii?q?grcLSJyIuqrYZRWGuKdThVPEFb/W9+hDw7KP9fy5BipZucnK6ShYOLV3FDY9wf?=
+ =?us-ascii?q?0MmAIhBMPXQWbaF9XNKxIAIcJZSVV+9Gu6O0UGUOz3ZlnVv2HgpWVKQka3OgV6?=
+ =?us-ascii?q?PPn6FZDPhMqrye+y54fTYwJVjzahfL9+Nhq7oRjTu8UMnIduNqQ8xhTUrndUZe?=
+ =?us-ascii?q?hd2H9lK0+Ukxvg/Mm74YRt8z5Xu/Iv9s5AVbv1cqElRrFGDzooLn446tTzuRbM?=
+ =?us-ascii?q?UQWA6H0cUn4LkhVTGAjK8Av6XpbqvSTksOd2xTSXMtf3TbAwXjSi8rtrRRr1gy?=
+ =?us-ascii?q?oJKzI17GfagdFrgalFvByuuQBww4/MYIGUKvV+eL/dfcgHTmZFR8pdSjBNDp+5?=
+ =?us-ascii?q?Y4YJEuEPP/tXr5PlqlUOsxWwGBWsCu3sxD9GhHD23LE13esuHgzdwAwgBtAOvG?=
+ =?us-ascii?q?jIoNnpKqsfV/2+wqnSzTXEavNbwTnx5o/PchAnuvGDQ6x/cdHJxUIyCg3Fkkuf?=
+ =?us-ascii?q?qZL7MDOTy+8ArXWQ4+5uWuyyjmIrpRx6rz+0xscwlIbJmJwaylbe+SV8x4Y1I8?=
+ =?us-ascii?q?a4R1Blbt6/C5ZfrDuVOJVtQsIiWGFopDg1yrgduZKhYCcKz5EnygfZZveafIeG?=
+ =?us-ascii?q?/gjtW/yNITdkmn1lYrS/ig6v/EW+zuDyWce53VlFoydZkNTBtn8D2gDP58WbSv?=
+ =?us-ascii?q?Vw8ESs1DWN2g7d9O1JIU86mbbUJpMi3LI9mYYfvETDEyL1nkj9kaGYdkIh+uey?=
+ =?us-ascii?q?6uTnZK3rp5+bN4BolgH+Nbwumta4AeQ6LAcBQ3Sb9f671L358k30RqhBgP4ukq?=
+ =?us-ascii?q?TBrZzWOd4Xq6C7DgNPz4ou7xiyAy2n3dkZhXULMU5JdAiIgoXmIV3DJOr0APS9?=
+ =?us-ascii?q?jlmqjTxl3erJPqf7DZXINnXDlbDhcqtj5ENE0wozyMxf54pTCrEcPPL/Qk/xu8?=
+ =?us-ascii?q?LcDh8+KwG0xebnCNNn2YMbQmKCAa+UPL/OvVOV/O4vJfODaJUOtznnNfcl/P7v?=
+ =?us-ascii?q?jWQlmVADeKmpxoEbZ2y/HvRjO0mZYHzsjckdEWoSowYyUPbmhVOAXDJJenq/W6?=
+ =?us-ascii?q?wx6is6BY+nFYvDQ5qigL2F3Ce1BJ1WYWVGB0iXEXf0aYqERekDaCSILs9klTwE?=
+ =?us-ascii?q?U6OhRJE/2hG1rwL10KBoIfTP+iwYrpLjyMZ65+jIlR0o6TN0CMGd33mXT25ohm?=
+ =?us-ascii?q?MIWyM23KdnrE19zVeMzbR4g/tDGNxX5vNJSRs6NYXGw+16DND9Rh7BftCRSFa8?=
+ =?us-ascii?q?RdWmAy8+Qc4tw9MUZEZ9Adqi3Vj/2H+JA7IQ34aCBtRg6KvemXvxKsNVxHPP1a?=
+ =?us-ascii?q?1nhF4jFI8Hf3yhjbJ43wzSHJLS1VSenLqtbb4b3iPG6CGE12XE9BVJVwVsVo3B?=
+ =?us-ascii?q?XGsDfQ3Hqt/l4VvYSL2jAqhhNRFOn52sMKxPP5fMilNdSfr4fJzlf2+vlmH4Ll?=
+ =?us-ascii?q?7I+4jNJsK+YHkQwijbTk0DlRse8G2uPwEzHTa6v2/bF3plEle5MBCkyvV3tH7u?=
+ =?us-ascii?q?Fhx89AqNdUA0kuPtohM=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2BzAwCOQKRf/0LBJQpigliEUAqwFIFoC?=
+ =?us-ascii?q?wEBAQEBAQEBAQgBLwQBAYRKAoIPJjcGDhIBAQYCAQEBBgQBhl2CNykBgxEBAQU?=
+ =?us-ascii?q?6RAcEAgEIEQQBAQEeCQcyFAkIAQEEARIItw+BNIVXhGoJAZBFPoQjPoQJARIBh?=
+ =?us-ascii?q?he4JQcDgm2bACuEQp0rk02gRAIEAgQFAhWBaoELcHCECRcCDZxodE8JjTeBEQE?=
+ =?us-ascii?q?B?=
+X-IPAS-Result: =?us-ascii?q?A2BzAwCOQKRf/0LBJQpigliEUAqwFIFoCwEBAQEBAQEBAQg?=
+ =?us-ascii?q?BLwQBAYRKAoIPJjcGDhIBAQYCAQEBBgQBhl2CNykBgxEBAQU6RAcEAgEIEQQBA?=
+ =?us-ascii?q?QEeCQcyFAkIAQEEARIItw+BNIVXhGoJAZBFPoQjPoQJARIBhhe4JQcDgm2bACu?=
+ =?us-ascii?q?EQp0rk02gRAIEAgQFAhWBaoELcHCECRcCDZxodE8JjTeBEQEB?=
+X-IronPort-AV: E=Sophos;i="5.77,454,1596499200"; 
+   d="scan'208";a="323901766"
+X-IronPort-AV: E=Sophos;i="5.77,454,1596499200"; 
+   d="scan'208";a="230363084"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: Khem Raj <raj.khem@gmail.com>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] #yocto overriding a task in a recipe
-To: steven.monsees@baesystems.com,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-References: <MADEUP.16449EFACAB396B5.26023@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <a51177de-9356-86a5-307b-6adabc0d1c85@gmail.com>
-Date: Thu, 5 Nov 2020 09:33:35 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.4.0
+Thread-Topic: [yocto] #yocto overriding a task in a recipe
+Thread-Index: AdazbDgVLjGNiuR5Sj6hwBOxOFBjdQAV3p+AAAphmyA=
+Date: Thu, 5 Nov 2020 17:36:50 +0000
+In-Reply-To: <a51177de-9356-86a5-307b-6adabc0d1c85@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.9.87]
 MIME-Version: 1.0
-In-Reply-To: <MADEUP.16449EFACAB396B5.26023@lists.yoctoproject.org>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+Return-Path: steven.monsees@baesystems.com
+Message-ID: <MADEUP.1644AF659A89D377.30315@lists.yoctoproject.org>
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+
+Thanks... that's what I saw this morning...
+
+-----Original Message-----
+From: yocto@lists.yoctoproject.org [mailto:yocto@lists.yoctoproject.org] On=
+ Behalf Of Khem Raj
+Sent: Thursday, November 05, 2020 12:34 PM
+To: Monsees, Steven C (US) <steven.monsees@baesystems.com>; yocto@lists.yoc=
+toproject.org
+Subject: Re: [yocto] #yocto overriding a task in a recipe
+
+*** WARNING ***
+EXTERNAL EMAIL -- This message originates from outside our organization.
 
 
 
-On 11/5/20 4:13 AM, Monsees, Steven C (US) via lists.yoctoproject.org wrote:
-> If a recipe has a task “do_something() {…stuff…}”, and for some reason I 
-> do not want that task to execute its steps, but a different series of 
-> steps, can I over-ride the task from a .bbapend by supplying the same 
-> routine with different steps (“do_something() {…new stuff…}”) ?
-> 
+On 11/5/20 4:13 AM, Monsees, Steven C (US) via lists.yoctoproject.org wrote=
+:
+> If a recipe has a task "do_something() {...stuff...}", and for some reaso=
+n=20
+> I do not want that task to execute its steps, but a different series=20
+> of steps, can I over-ride the task from a .bbapend by supplying the=20
+> same routine with different steps ("do_something() {...new stuff...}") ?
+>=20
 
-it depends, if the task is having appends etc. they will still be 
-applied. but main task you can override.
+it depends, if the task is having appends etc. they will still be applied. =
+but main task you can override.
 
 > Thanks,
-> 
+>=20
 > Steve
-> 
-> 
-> 
-> 
-> 
+>=20
+>=20
+>=20
+>=20
+>=20
