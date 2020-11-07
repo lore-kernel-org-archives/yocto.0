@@ -1,170 +1,98 @@
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
- by mx.groups.io with SMTP id smtpd.web10.568.1604727769746196161
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+ by mx.groups.io with SMTP id smtpd.web08.4137.1604757227666123810
  for <yocto@lists.yoctoproject.org>;
- Fri, 06 Nov 2020 21:42:50 -0800
+ Sat, 07 Nov 2020 05:53:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=iBV7PkHB;
- spf=pass (domain: gmail.com, ip: 209.85.222.176, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f176.google.com with SMTP id b18so3200341qkc.9
-        for <yocto@lists.yoctoproject.org>; Fri, 06 Nov 2020 21:42:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bkGeMWeWQpGKrnoyyNClrK7BD5pAQdH0p5m/xkyhITY=;
-        b=iBV7PkHBtJGscdjirIrMQjHzGw0qkyDT4pTKlnrmAXf+wh8URGH7ycTUGjIbYN9kk9
-         mo4h84Jtxkrs/7I5GK24lOv8GgiRFFq9XyT+lV/lyC8USd+TtCHVkk84BuIzBYHMiG49
-         RoldExb+4dlqVbpMTIvY+oqYn4vSux5LFRhioYe7C2ng6ua+o71LD+KpusjsgodI2KcH
-         PJFxKeTuDLs/l+eFfRz/4alfxvhqreqU4AbT0xmm57b0yolexwUt7BuK4eTTrlMLLFM7
-         Pm1IJVL6FCcplr7CP7/3zFvwiT0OcpF0A1oSDDJEJCmVBE1pgO9Mk5qYCWNuuzeqjhfB
-         CVRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bkGeMWeWQpGKrnoyyNClrK7BD5pAQdH0p5m/xkyhITY=;
-        b=XZeOpDhF4fkNDCrGSjYHyh4Ug1TR5/pTHavpbuF8P84pFtJp2IA6oQSXumS11zxljG
-         i37ooUFYLF5stZOKot/3GiPtNSmrDVUGfF+WuQy/RUmFpESUxIc1Qm/xaadZjKGqIdey
-         zzX4TORwaOaMViPdnI++VU1CAR1dbDYfnSl82tlimyTXSo0ZOcNNv0P7E5CzafLKwxI0
-         dEzMb3w+VkDth39f+irLMPPsNUrI7+dJRXDZDzmm3s08uBOhU6GDt41c2KQm1N4HP06x
-         etCsol+1DFQYtZLTmSoDKhA2xD0O72n3MfS/ypgVYX3HgWNSIgbiMsAN7/ffW4bEw1Or
-         wn8g==
-X-Gm-Message-State: AOAM533EETbHEPLTcbzyI3pXJT6HLKkc1+yAG3G7VzcNb7T9zITQozTf
-	qK3kEUw8eZHp4G4wKGvyZ1egRLKyS4uJJxJJAsM=
-X-Google-Smtp-Source: ABdhPJxplbRfs/JCtRP/YNfZnHQWVbXIH/ns894YMwra8t6n1/9CA1KH3nNwFuzeiuWqGc4dQAG+EvZ3VTjcTcc5hnM=
-X-Received: by 2002:a37:6195:: with SMTP id v143mr4695446qkb.71.1604727768761;
- Fri, 06 Nov 2020 21:42:48 -0800 (PST)
-MIME-Version: 1.0
-References: <3rpq.1604716265989001199.J0NK@lists.yoctoproject.org>
-In-Reply-To: <3rpq.1604716265989001199.J0NK@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Fri, 6 Nov 2020 21:42:22 -0800
-Message-ID: <CAMKF1sqd4K_5B7P8QHSC83vCw7CLwsJhV3bYusuq_k8t+yGhgQ@mail.gmail.com>
-Subject: Re: [yocto] Trying to compile hping3 from sources #devtool
-To: Vaijayanthi <vaijayanthi@silver-peak.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+ dkim=pass header.i=@fastmail.fm header.s=fm1 header.b=X/x8th+Q;
+ spf=pass (domain: fastmail.fm, ip: 64.147.123.20, mailfrom: manwag@fastmail.fm)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.west.internal (Postfix) with ESMTP id A1316EAA
+	for <yocto@lists.yoctoproject.org>; Sat,  7 Nov 2020 08:53:46 -0500 (EST)
+Received: from imap9 ([10.202.2.59])
+  by compute3.internal (MEProxy); Sat, 07 Nov 2020 08:53:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.fm; h=
+	mime-version:message-id:date:from:to:subject:content-type; s=
+	fm1; bh=uaSQf7X4r2GzUauTnLYC2jqQvcGj8C5ADSENLZ8V0c4=; b=X/x8th+Q
+	Vh90O1qkfKOA/AbthP0oThptCsHaUL5DuVHyzLTmea60QBT/4Kp9Zrty64FzvMJI
+	qYM86WnZUe7dAlosTBXy8AFrZvwcWo1sJRZyX9Ho4i6JoJM5onblh0X8O2BKeYZ/
+	Lzx3NNou6eo3Ulo/uWme7Ah8aXhvedGVct7CgTT5vp+lXo840kAn3QcqFlv0Z/W/
+	b0Er+zXS1NYiRDGoICwfjvT6jbgTFBHiQWjbiv3OfVCHqewEqXqpxJF53eYRh9RJ
+	wfq9XKwfyYV2DGsVzFl5B/H1GpllBJBetxdzYA55ky5BUq7c77+xyKsh2rU8ZVxb
+	TDVOVczKIQhT2w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=content-type:date:from:message-id
+	:mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm1; bh=uaSQf7X4r2GzUauTnLYC2jqQvcGj8
+	C5ADSENLZ8V0c4=; b=ImLSzgECe4dmPjsgS76fBmZn0RvXUuY/bB7Koq0B+Elea
+	V9jCIaDSCB1Kc7l0ykYJ2wFdzdld5PSSswbnErMQbNa7qh1Q4PVXIWhRFSUSk1pv
+	JELgjXIiLeQH3BcqnMYyzCOxsQvl1RXt0hQaf44XoKOMBI+XpPftnXyOY6yjRJqA
+	lLOLj7jtbWIuOVg/qYtiowwvoeLDfqVHCtuWZvkYS3VXNUTQHgzphRYRoQ6baUwM
+	rYPeS/larok9sWboynaeTrdGsAG3HmazqaDTs9x0XKsLEjTpyXoZWCNHApt9dBNx
+	VuRkIdgsPaV9uoxz214o0TJYSMGjqXWQaLyLT5aJQ==
+X-ME-Sender: <xms:6qamX0x5ow9r4tmP9LKSuBFMH_ylSYXdVFXOyd2KZw62H4xyD3wIpg>
+    <xme:6qamX4QJm4lLiLbSEQFvPytE7AYUNZT5bl4FYr4znVNK4gO2VvhaYdx8ULbVD8qjB
+    0aBKpVEBNoUkSD3>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudduuddgheelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfffhffvufgtsehttdertd
+    erredtnecuhfhrohhmpedfofgrnhhuvghlucghrghgvghsrhgvihhthhgvrhdfuceoofgr
+    nhghrghgsefhrghsthforghilhdrhffoqeenucggtffrrghtthgvrhhnpefhtefhleehje
+    efjeefudeugeetieefffffheehiedugfehleejhffhtddtleefudenucffohhmrghinhep
+    hihotghtohhprhhojhgvtghtrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrg
+    hrrghmpehmrghilhhfrhhomhepofgrnhghrghgsefhrghsthforghilhdrhffo
+X-ME-Proxy: <xmx:6qamX2X9nxbTwGrDYlttuhdrxNLIqZvuL4ookrhFyjfXHeQEXdc5-Q>
+    <xmx:6qamXygOx9MsSciiWRxI553hos73u6sqVYepkcmVMHJz11BwbOOk5Q>
+    <xmx:6qamX2C7nPtPbZfO50UdRVbZ53sdlwtLLrqGaCHAlBG8VfNiHDEaGg>
+    <xmx:6qamX5NBtdQGTsstBBqlgwa2HQ5CY4ZfjFef8ASLlNerqRdaFlf3BA>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id F10251C026F; Sat,  7 Nov 2020 08:53:45 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.3.0-570-gba0a262-fm-20201106.001-gba0a2623
+Mime-Version: 1.0
+Message-Id: <030738f3-1403-4071-8fdd-de7731cca65a@www.fastmail.com>
+Date: Sat, 07 Nov 2020 14:53:25 +0100
+From: ManWag@FastMail.FM
+To: yocto@lists.yoctoproject.org
+Subject: Syntax of multiconfig
+Content-Type: text/plain
 
-whats the name of your recipe ? secondly hping3 requires libtcl8.6.so
-seems to be troublesome because its asking
-for devel package not the original library, I wonder why, can you find
-out the linker cmdline where ping3 is getting linked ?
+Hello all,
 
-On Fri, Nov 6, 2020 at 6:31 PM Vaijayanthi <vaijayanthi@silver-peak.com> wrote:
->
-> Hi, I am using devtool add hping3 https://github.com/antirez/hping to add hping3 as part of our custom image. Here is my recipe:
->
-> # Recipe created by recipetool
->
-> # This is the basis of a recipe and may need further editing in order to be fully functional.
->
-> # (Feel free to remove these comments when editing.)
->
->
->
-> # WARNING: the following LICENSE and LIC_FILES_CHKSUM values are best guesses - it is
->
-> # your responsibility to verify that the values are complete and correct.
->
-> #
->
-> # The following license files were not able to be identified and are
->
-> # represented as "Unknown" below, you will need to check them yourself:
->
-> #   COPYING
->
-> LICENSE = "GPLv2"
->
-> LIC_FILES_CHKSUM = "file://COPYING;md5=3728a6c4c9630a9e796ad4b82dacd887"
->
->
->
-> SRC_URI = "git://github.com/antirez/hping;protocol=https"
->
->
->
-> # Modify these as desired
->
-> PV = "1.0+git${SRCPV}"
->
-> SRCREV = "3547c7691742c6eaa31f8402e0ccbb81387c1b99"
->
->
->
-> S = "${WORKDIR}/git"
->
->
->
-> #DEPENDS = "libpcap"
->
-> RDEPENDS_${PN} += " libpcap tcl-lib tcl"
->
->
->
-> # NOTE: no Makefile found, unable to determine what needs to be done
->
->
->
-> do_configure () {
->
->     # Specify any needed configure commands here
->
->     CONFIGOSTYPE="LINUX" ./configure
->
-> }
->
->
->
-> do_compile () {
->
->     # Specify compilation commands here
->
->     make
->
-> }
->
-> do_install() {
->
->     #install -Dm755 ${B}/libpcap.so.0.8 ${D}${libdir}/libpcap.so.0.8
->
->     #ln -sf libpcap.so.0.8 ${D}${libdir}/libpcap.so
->
->     #install -Dm755 ${B}/libtcl8.6.so ${D}${libdir}/libtcl8.6.so
->
->     #ln -sf libtcl8.6.so ${D}${libdir}/libtcl8.6.so
->
->     install -m 0755 -d ${D}${sbindir} ${D}/${mandir} ${D}${docdir}/hping3
->
->     install -m 0755 hping3 ${D}/${sbindir}
->
->     install -m 0644 docs/hping3.8 ${D}/${mandir}
->
->     install -m 0644 docs/HPING2-HOWTO.txt docs/HPING2-IS-OPEN \
->
->         docs/MORE-FUN-WITH-IPID docs/SPOOFED_SCAN.txt \
->
->         docs/AS-BACKDOOR docs/APD.txt ${D}${docdir}/hping3
->
-> }
->
->
->
-> #INSANE_SKIP_${PN}-dev = "ldflags"
->
-> #INSANE_SKIP_${PN} = "ldflags"
->
-> #INSANE_SKIP_${PN} += "file-rdeps dev-deps"
->
->
-> How do I add this to my custom bitbake layer? Also, make is complaining about
-> ERROR: hping3-1.0+git999-r0 do_package_qa: QA Issue: /usr/sbin/hping3 contained in package hping3 requires libpcap.so.0.8()(64bit), but no providers found in RDEPENDS_hping3? [file-rdeps]
-> ERROR: hping3-1.0+git999-r0 do_package_qa: QA Issue: /usr/sbin/hping3 contained in package hping3 requires libtcl8.6.so()(64bit), but no providers found in RDEPENDS_hping3? [file-rdeps]
-> ERROR: hping3-1.0+git999-r0 do_package_qa: QA run found fatal errors. Please consider fixing them.
->
-> Please let me know what I should I do next to integrate this recipe with my custom meta layer and also, address the make failures.
->
->
->
-> 
->
+I'm trying the become acquainted with the multiconfig feature. I read the relevant chapters in the BitBake User Manual, but some questions I have suggest I did not yet get the whole picture.
+
+
+1.)
+In [1] the following examples are given:
+
+`$ bitbake mc::target mc:target1:target mc:target2:target`
+
+What does the `mc::target` stand for? If I omit the multiconfigname, is the target getting built for all configured multibuildnames?
+
+[1] https://www.yoctoproject.org/docs/latest/bitbake-user-manual/bitbake-user-manual.html#executing-a-multiple-configuration-build
+
+
+2.)
+In [2], the following example is given:
+
+`task_or_package[mcdepends] = "mc:from_multiconfig:to_multiconfig:recipe_name:task_on_which_to_depend"`
+`image_task[mcdepends] = "mc:target1:target2:image2:rootfs_task"`
+
+I do not understand why the `from_multiconfig` needs to be given at all. Isn't this redundant information? Per my understanding, when I'm having bitbake bake an image `my-image`, and this image includes a recipe which has such a multiconfig dependency, `from_multiconfig` must be `my-image` as well. So why the need for `from_multiconfig` at all?
+
+I think it wouldn't just add any value, but would actively prevent this recipe/package to be included in images getting built in other configurations.
+
+So I probably my understanding here is wrong.
+
+[2] https://www.yoctoproject.org/docs/latest/bitbake-user-manual/bitbake-user-manual.html#bb-enabling-multiple-configuration-build-dependencies
+
+
+3.)
+The links above are using `target_1` and `target_2` for as configuration names. I think this is misleading, as target already refers to the recipe/package or image bitbake is building. How can I contribute to the BitBake documentation?
+
+I checked [3] but couldn't see anything referencing the documentation.
+
+[3] https://wiki.yoctoproject.org/wiki/Newcomers#How_to_Contribute
+
+
+Best regards
+Manuel
