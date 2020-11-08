@@ -1,95 +1,86 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.15580.1604826573372901047
+ by mx.groups.io with SMTP id smtpd.web12.17658.1604840394883336624
  for <yocto@lists.yoctoproject.org>;
- Sun, 08 Nov 2020 01:09:33 -0800
+ Sun, 08 Nov 2020 04:59:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=PBTIkzzW;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: alex.kanavin@gmail.com)
-Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com [209.85.218.68])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id D84E138C06EF
-	for <yocto@yoctoproject.org>; Sun,  8 Nov 2020 01:09:32 -0800 (PST)
-Received: by mail-ej1-f68.google.com with SMTP id w13so7924170eju.13
-        for <yocto@yoctoproject.org>; Sun, 08 Nov 2020 01:09:32 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=KlgQ8WPx;
+ spf=softfail (domain: linuxfoundation.org, ip: 198.145.29.25, mailfrom: richard.purdie@linuxfoundation.org)
+Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com [209.85.221.66])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 3F51038C0636
+	for <yocto@yoctoproject.org>; Sun,  8 Nov 2020 04:59:54 -0800 (PST)
+Received: by mail-wr1-f66.google.com with SMTP id b8so5953048wrn.0
+        for <yocto@yoctoproject.org>; Sun, 08 Nov 2020 04:59:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rIQwCSJsmDf1nc6tPmPOo0w+v7W5S3M9Wq4HU3F+9FY=;
-        b=PBTIkzzWHWaFEnuH5/Uaao1IaoaqXgrGEgAP6iSxGbicLmVxOjv+6Djr+wdY9dDUPL
-         /9qsiqUm4wckorAOc4piEWNFP+6FTYaypsGdeCzvqeSrjHlExoNUNHmOGh6k0Qb3ovaL
-         O6fZCVnixHDtk3UmM+Fc/wabwAf/2UzidT/uPQtr6rPb8qd64RkpsU0I5gQZd25g2x7G
-         bBXbasGmGih1yJnixW+rbCBmNKdTsk4CkG3XiisO9nqaj6AXFyRkrq+NbmBhSkstry56
-         2m76/cKbHkOSRVf7k6/VHz/fXBmiUqsizHkPLhP8dFnvdGWggCn3agvEyIw1e+L/bPSi
-         nONg==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=8tCNRIXqLBW8rNbw9oEvmJmpS8PCW2/zW2WD0ftaHQg=;
+        b=KlgQ8WPxmDjZ6Yl4LGOHmQEJ/wXVwBk8q2G7Z614L0SAtGzuMRrJFoAFLugyVSd8/u
+         ty/sfQ+ELqvw3hn9hpk+YDONovR7IixeYw7TAJtZDA0uHi+bqbBL/sXrKvtRtXXe3wK1
+         5AOelPxTLVBvGxEqFQosqNugbW/OQUsUB0KH4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rIQwCSJsmDf1nc6tPmPOo0w+v7W5S3M9Wq4HU3F+9FY=;
-        b=ZhDVUZYjjloybzAKTnkEBFEuetcE7l9pWpo22eL6z4s6Bq3WDX4vVkwsCLKeW0zz4V
-         RKbUUVRrIpw3ehw3EChBDQBtrk8lquoJCYy5JhiG0zkJME9QdG9sRMGM0b8JxkpPJ/Wv
-         1cbx7ligWNQFROPP0eHTrNKxZflbWRVdxXtnswG+cwgTlBL3Rmgoo6FNbFvOMVMGGEaE
-         E2ddDYGTszzO8IkGcTh3y55TCnP3opvkYWIiLSgSWTRA80bD1i/auiOadvEdG6Z8APOE
-         aBym76z7SS0Sh40Iy/je0PyAZh6GW68RH4HK0pBeGMYJLcbpx34AXbKpUfvq2UUgwelA
-         n5Qg==
-X-Gm-Message-State: AOAM531wZY7qdUOYCMDjGTcBFik4wRIgz7013MuNsZrorRB4uQLfRlAW
-	NOJZThtSdlv8JBKRHYGJXgr8zw5ryFQpoQ==
-X-Google-Smtp-Source: ABdhPJxhbqV1INxuupuLn2CIC6oHAh5gc0HiXpOtlDY0xy6zrPagM7L8ibE2a+YVlfQ3OXsGWIBs4w==
-X-Received: by 2002:a17:906:b150:: with SMTP id bt16mr10315864ejb.257.1604826571148;
-        Sun, 08 Nov 2020 01:09:31 -0800 (PST)
-Received: from linux-f9zs.fritz.box ([2a02:2450:1011:4f7:596d:bf31:3950:5bda])
-        by smtp.gmail.com with ESMTPSA id p1sm2804940edx.4.2020.11.08.01.09.29
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=8tCNRIXqLBW8rNbw9oEvmJmpS8PCW2/zW2WD0ftaHQg=;
+        b=Pn1tOPW8wvVPcPGmPJdRXStf6WsBZeAz3H86nvJ7OEVug/cMrhmQm0CJ/F8Wkib3M0
+         4KUvzXJGIEPx8cBYrvXDxZAUF1ltjlp/VHr0hLJWXy5LicmCKE9zhpG3SMtUIcOuxy95
+         WG0YIf/3NsSvpNbg04iEoeMoxsIPFKd68eeVidnJ5O1ORJQ9iWbuL21nykphM41zJCjV
+         0WxO5J6iTqF/nBzPVHTA0VeDwYR4zizPFojDuDPTCQ4aGP9u3RcjooyYUhYujgwSS4vM
+         g7cQDgPlKC/l2FCwvp8ThWEBOWsy0lxkYuBdLHc+Joqf/WsZwBQW8+65dow/PBKDVgdW
+         FGfw==
+X-Gm-Message-State: AOAM531mtSNXh3wbdz5O6C8U1it++RCNYSD21UX1Vwiw+EoTqvqe9u3L
+	lk7BWXrTe0LDipL1pvsmIOvEuw==
+X-Google-Smtp-Source: ABdhPJwswpCxr+byKA8ipLQS88+a/KttoH1SR698hVfVOby4SLZSPj0ac26szrmhQ/fkU9jaB3ckdw==
+X-Received: by 2002:adf:e88b:: with SMTP id d11mr4230237wrm.4.1604840392850;
+        Sun, 08 Nov 2020 04:59:52 -0800 (PST)
+Received: from 7.e.4.c.9.7.4.3.c.6.2.9.7.2.8.5.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (7.e.4.c.9.7.4.3.c.6.2.9.7.2.8.5.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:5827:926c:3479:c4e7])
+        by smtp.gmail.com with ESMTPSA id v19sm1076704wrf.40.2020.11.08.04.59.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Nov 2020 01:09:30 -0800 (PST)
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-To: yocto@yoctoproject.org
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-Subject: [yocto-autobuilder2][PATCH] schedulers.py: run performance builds only 2x a day, not 4x
-Date: Sun,  8 Nov 2020 10:09:23 +0100
-Message-Id: <20201108090923.3079-1-alex.kanavin@gmail.com>
-X-Mailer: git-send-email 2.29.1
+        Sun, 08 Nov 2020 04:59:52 -0800 (PST)
+Message-ID: <9f76d20390e74a51e338ade333a1f7a11ae7daec.camel@linuxfoundation.org>
+Subject: Re: [yocto] [yocto-autobuilder2][PATCH] schedulers.py: run performance builds only 2x a day, not 4x
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Alexander Kanavin <alex.kanavin@gmail.com>, yocto@yoctoproject.org
+Date: Sun, 08 Nov 2020 12:59:49 +0000
+In-Reply-To: <20201108090923.3079-1-alex.kanavin@gmail.com>
+References: <20201108090923.3079-1-alex.kanavin@gmail.com>
+User-Agent: Evolution 3.36.4-0ubuntu1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-The same builds are included in a-full, so they tend to get queued up
-and cause delays in builds completion, as there's only a single worker
-allocated to them. Let's run them less frequently to mitigate the delays.
+On Sun, 2020-11-08 at 10:09 +0100, Alexander Kanavin wrote:
+> The same builds are included in a-full, so they tend to get queued up
+> and cause delays in builds completion, as there's only a single worker
+> allocated to them. Let's run them less frequently to mitigate the delays.
+> 
+> Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+> ---
+>  schedulers.py | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/schedulers.py b/schedulers.py
+> index 2e8f3d5..ca63c9f 100644
+> --- a/schedulers.py
+> +++ b/schedulers.py
+> @@ -306,11 +306,11 @@ schedulers.append(sched.Nightly(name='nightly-quick', branch='master', propertie
+>  schedulers.append(sched.Nightly(name='nightly-full', branch='master', properties=parent_default_props('a-full'),
+>                    builderNames=['a-full'], hour=1, minute=0, dayOfWeek=6))
+>  
+> -# Run the build performance tests at 3am, 9am, 3pm and 9pm
+> +# Run the build performance tests at 3am and 3pm
+>  schedulers.append(sched.Nightly(name='nightly-buildperf-ubuntu1604', branch='master', properties=parent_default_props('buildperf-ubuntu1604'),
+> -                  builderNames=['buildperf-ubuntu1604'], hour=[3,9,15,21], minute=0))
+> +                  builderNames=['buildperf-ubuntu1604'], hour=[3,15], minute=0))
+>  schedulers.append(sched.Nightly(name='nightly-buildperf-centos7', branch='master', properties=parent_default_props('buildperf-centos7'),
+> -                  builderNames=['buildperf-centos7'], hour=[3,9,15,21], minute=0))
+> +                  builderNames=['buildperf-centos7'], hour=[3,15], minute=0))
 
-Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
----
- schedulers.py | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+I've been wondering about this but I suspect we should drop them from 
+a-full instead...
 
-diff --git a/schedulers.py b/schedulers.py
-index 2e8f3d5..ca63c9f 100644
---- a/schedulers.py
-+++ b/schedulers.py
-@@ -306,11 +306,11 @@ schedulers.append(sched.Nightly(name=3D'nightly-qui=
-ck', branch=3D'master', propertie
- schedulers.append(sched.Nightly(name=3D'nightly-full', branch=3D'master'=
-, properties=3Dparent_default_props('a-full'),
-                   builderNames=3D['a-full'], hour=3D1, minute=3D0, dayOf=
-Week=3D6))
-=20
--# Run the build performance tests at 3am, 9am, 3pm and 9pm
-+# Run the build performance tests at 3am and 3pm
- schedulers.append(sched.Nightly(name=3D'nightly-buildperf-ubuntu1604', b=
-ranch=3D'master', properties=3Dparent_default_props('buildperf-ubuntu1604=
-'),
--                  builderNames=3D['buildperf-ubuntu1604'], hour=3D[3,9,1=
-5,21], minute=3D0))
-+                  builderNames=3D['buildperf-ubuntu1604'], hour=3D[3,15]=
-, minute=3D0))
- schedulers.append(sched.Nightly(name=3D'nightly-buildperf-centos7', bran=
-ch=3D'master', properties=3Dparent_default_props('buildperf-centos7'),
--                  builderNames=3D['buildperf-centos7'], hour=3D[3,9,15,2=
-1], minute=3D0))
-+                  builderNames=3D['buildperf-centos7'], hour=3D[3,15], m=
-inute=3D0))
-=20
- # Run the AUH on the 15th of every month
- schedulers.append(sched.Nightly(name=3D'nightly-auh', branch=3D'master',=
- properties=3Dparent_default_props('auh'),
---=20
-2.29.1
+Cheers,
+
+Richard
 
