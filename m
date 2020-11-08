@@ -1,81 +1,80 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.17488.1604841931764028614
+ by mx.groups.io with SMTP id smtpd.web08.17495.1604841974826549725
  for <yocto@lists.yoctoproject.org>;
- Sun, 08 Nov 2020 05:25:31 -0800
+ Sun, 08 Nov 2020 05:26:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=LIGMRXlz;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=qRU5fqyx;
  spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: alex.kanavin@gmail.com)
-Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 1FA2E38C0636
-	for <yocto@yoctoproject.org>; Sun,  8 Nov 2020 05:25:31 -0800 (PST)
-Received: by mail-ej1-f65.google.com with SMTP id gn41so8435026ejc.4
-        for <yocto@yoctoproject.org>; Sun, 08 Nov 2020 05:25:31 -0800 (PST)
+Received: from mail-vs1-f66.google.com (mail-vs1-f66.google.com [209.85.217.66])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id AE89438C0636
+	for <yocto@yoctoproject.org>; Sun,  8 Nov 2020 05:26:14 -0800 (PST)
+Received: by mail-vs1-f66.google.com with SMTP id l22so3426781vsa.4
+        for <yocto@yoctoproject.org>; Sun, 08 Nov 2020 05:26:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7DBAEWU8P0CdzbhSaKxFGNHD62JpZ7tX5BxTd4F0mZc=;
-        b=LIGMRXlzN1+iwSUMMFP24Kyuicu4xdbF7YRXksJH5ZhsVFpSc9C6kjOQc48jADpoEl
-         jketgCrmKazHvA+g03domfa48WuRD5VWIyYBOl6uCgGDXZu2fiyOCFIdbqvvDD7YsB8V
-         3n+fFpq1iSu2uXfyIV+EO+Mt6ze686rlaUGRTpqT/sraiCLy6klA7EgBEl5HQ9w7SrKC
-         YskLL+fB3pXYJNE4fh4YQdeyugrmls6cH1Xa+UlYrqQqZIXQ1aFLwd3nTBnnkKbgDGZC
-         9lGsEU73QPh4UnOTW3katZ86FgkMkxk4si/JnOf1hiqGoDSakPHvwA2vBrn1KMROYWkd
-         q+HA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0uJ0frQlWpvvLBDEqp+4hB7TpmvDc8DWBnXBN2ovHRc=;
+        b=qRU5fqyxq2cLUFkZ+u+zD1roxm4eVNmSYMGar9v7I27B145EuRweRi0n3ZP8zOB1US
+         +h5m6lxpAbEkhrMwVsyZdDHJDD4jxRoCcB7g6Mm6C22POz9ss8H7d5b54PFKJFliybIb
+         k0G1a+P3IY0sATcizenevpnhz6BvNn/aNebxq0Of6sklejmR0C8ZjX0xhEgROTwKDpVM
+         biPXpiKtVuzG/Wzql7uTw26od04suUmbsENM4cCw8irlvse96ruZ0Walu/RB+EVJr1k8
+         adSA2SFG8UavxupinVY+g1pQgx4DZZOSO4N7FndUjQZgXtsZj8jgyipxEXnfF5oK0Tbd
+         TwUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7DBAEWU8P0CdzbhSaKxFGNHD62JpZ7tX5BxTd4F0mZc=;
-        b=r1Ts2hVj7qVOt5f4L3gllFtF6fYYTfRDz6vU/gO/ROrsVuLQ4i3EjcW04FiUBbRS4i
-         12pJAb91SuSc9hpUmx960dGHOahayDFaQbQEIF9Qpe1dHYAN48+BpBKgCPvJnVRT0HYU
-         KbMHsHlgw8lxXMnfqQBHiuUgjgsqdbHkGByAQEdbZh+oP/SVPKe5KMV11mIIQInnn5Wi
-         nRA3MiSLjke/VDHtzvP3FK07oMau2wdyKmFxcVWz5Ly7BbThGOFJVxRyHiukgGpXL+hs
-         mBDxO/3J2/6B0VQyDRm2u0SElrpNYFkJFaSsdNrVzRGb1rEzX84UYASELxr9JEcGSTFf
-         0tUQ==
-X-Gm-Message-State: AOAM531d5DpDAUxojf3q5397m815k9nnlXrxKwAVwtlM01ecWKqENyEP
-	mz/NTfmiZcOEPCG/aY9oYguvQ81k1vvSvg==
-X-Google-Smtp-Source: ABdhPJyCO7Phvr/KrntrgTEDyahpGuZuR1KOj1xt92sl4P5TDE78bqr+KO5bAaIgKVfOHViZ9RUm3Q==
-X-Received: by 2002:a17:906:6d52:: with SMTP id a18mr10468186ejt.224.1604841929534;
-        Sun, 08 Nov 2020 05:25:29 -0800 (PST)
-Received: from linux-f9zs.fritz.box ([2a02:2450:1011:4f7:596d:bf31:3950:5bda])
-        by smtp.gmail.com with ESMTPSA id b13sm6021084edk.22.2020.11.08.05.25.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Nov 2020 05:25:29 -0800 (PST)
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-To: yocto@yoctoproject.org
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-Subject: [yocto-autobuilder2][PATCH] config.py: drop buildperf jobs from a-full builds
-Date: Sun,  8 Nov 2020 14:25:23 +0100
-Message-Id: <20201108132523.5181-1-alex.kanavin@gmail.com>
-X-Mailer: git-send-email 2.29.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0uJ0frQlWpvvLBDEqp+4hB7TpmvDc8DWBnXBN2ovHRc=;
+        b=jqBOQXWThronvLcogrJi9W+F1iYxw6CUnNs0YtuseI0vYkeBBMOdrR7uLzmaI0Ezzb
+         FTij45jaG6Q76XLoEaNttTuH4AiEUf3GP+KbYqsLsVEtwOtW+J5GbCRZ/EW+rel8nrbL
+         pFCYe8AUkiFvgtnWr2gb1ZkoWdd/L1ymlZEqc95cDfSrjst2u/y8rdoYpx78Sw3Q0dlm
+         08n65KOCNf+M+0Hye31nlqYgmLxgnBcgldjdxstZqETwDaaYQkFDFIoNsedPQ96eLQzJ
+         lw6afb/LlwOa4bSBqjDMZsWTGyefgN3zyRLfih9ym6pENEKJcL6TrTHN8is0R6AVOv7b
+         frzA==
+X-Gm-Message-State: AOAM532ne2uDqnGPl6duOWT+263AXiqTnkGUxcLhUkrJvxwvQnsOZ9gF
+	hIjlGrvmquyvb3+ulVcBo757XTLYT13wGvZws/Zpm06H6lw=
+X-Google-Smtp-Source: ABdhPJzB6VEJwC17jmWLLcU9neSSIf9NQXFt7Di3sgkMsNP+n0YO4oVN7pfeI9cnv7aas42/hCkxqxjCZy4ZRJUuEBk=
+X-Received: by 2002:a05:6102:215:: with SMTP id z21mr4991945vsp.51.1604841973875;
+ Sun, 08 Nov 2020 05:26:13 -0800 (PST)
 MIME-Version: 1.0
+References: <20201108090923.3079-1-alex.kanavin@gmail.com> <9f76d20390e74a51e338ade333a1f7a11ae7daec.camel@linuxfoundation.org>
+In-Reply-To: <9f76d20390e74a51e338ade333a1f7a11ae7daec.camel@linuxfoundation.org>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Sun, 8 Nov 2020 14:26:02 +0100
+Message-ID: <CANNYZj9MxkicwgD65AVdDNeXZ-6UWsnm2zCS9Ao7HSWyc0n11A@mail.gmail.com>
+Subject: Re: [yocto] [yocto-autobuilder2][PATCH] schedulers.py: run performance builds only 2x a day, not 4x
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000c6067e05b39863f6"
+
+--000000000000c6067e05b39863f6
+Content-Type: text/plain; charset="UTF-8"
+
+On Sun, 8 Nov 2020 at 13:59, Richard Purdie <
+richard.purdie@linuxfoundation.org> wrote:
+
+>
+> I've been wondering about this but I suspect we should drop them from
+> a-full instead...
+>
+
+Sure, I sent a patch for that.
+
+Alex
+
+--000000000000c6067e05b39863f6
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Those are run on a separate schedule, and in context of a-full
-only cause delays due to queues forming for single available workers.
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Sun, 8 Nov 2020 at 13:59, Richard Purdie &lt;<a href=3D"mailto:ri=
+chard.purdie@linuxfoundation.org">richard.purdie@linuxfoundation.org</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
+I&#39;ve been wondering about this but I suspect we should drop them from <=
+br>
+a-full instead...<br></blockquote><div><br></div><div>Sure, I sent a patch =
+for that.</div><div><br></div><div>Alex<br></div></div></div>
 
-Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
----
- config.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/config.py b/config.py
-index 086c557..6e7afe6 100644
---- a/config.py
-+++ b/config.py
-@@ -77,7 +77,7 @@ trigger_builders_wait_quick =3D trigger_builders_wait_s=
-hared + [
- trigger_builders_wait_full =3D trigger_builders_wait_shared + [
-     "qemumips-alt", "edgerouter-alt", "mpc8315e-rdb-alt", "qemuppc-alt",=
- "qemux86-world-alt",
-     "oe-selftest-ubuntu", "oe-selftest-debian", "oe-selftest-fedora", "o=
-e-selftest-centos",
--    "qemux86-64-ptest", "buildperf-ubuntu1604", "buildperf-centos7", "qe=
-mux86-64-ltp",
-+    "qemux86-64-ptest", "qemux86-64-ltp",
-     "qemuarm64-ptest", "qemuarm64-ltp", "meta-intel", "meta-arm"
- ]
-=20
---=20
-2.29.1
-
+--000000000000c6067e05b39863f6--
