@@ -1,86 +1,81 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.17658.1604840394883336624
+ by mx.groups.io with SMTP id smtpd.web08.17488.1604841931764028614
  for <yocto@lists.yoctoproject.org>;
- Sun, 08 Nov 2020 04:59:54 -0800
+ Sun, 08 Nov 2020 05:25:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=KlgQ8WPx;
- spf=softfail (domain: linuxfoundation.org, ip: 198.145.29.25, mailfrom: richard.purdie@linuxfoundation.org)
-Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com [209.85.221.66])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 3F51038C0636
-	for <yocto@yoctoproject.org>; Sun,  8 Nov 2020 04:59:54 -0800 (PST)
-Received: by mail-wr1-f66.google.com with SMTP id b8so5953048wrn.0
-        for <yocto@yoctoproject.org>; Sun, 08 Nov 2020 04:59:54 -0800 (PST)
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=LIGMRXlz;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: alex.kanavin@gmail.com)
+Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 1FA2E38C0636
+	for <yocto@yoctoproject.org>; Sun,  8 Nov 2020 05:25:31 -0800 (PST)
+Received: by mail-ej1-f65.google.com with SMTP id gn41so8435026ejc.4
+        for <yocto@yoctoproject.org>; Sun, 08 Nov 2020 05:25:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=8tCNRIXqLBW8rNbw9oEvmJmpS8PCW2/zW2WD0ftaHQg=;
-        b=KlgQ8WPxmDjZ6Yl4LGOHmQEJ/wXVwBk8q2G7Z614L0SAtGzuMRrJFoAFLugyVSd8/u
-         ty/sfQ+ELqvw3hn9hpk+YDONovR7IixeYw7TAJtZDA0uHi+bqbBL/sXrKvtRtXXe3wK1
-         5AOelPxTLVBvGxEqFQosqNugbW/OQUsUB0KH4=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7DBAEWU8P0CdzbhSaKxFGNHD62JpZ7tX5BxTd4F0mZc=;
+        b=LIGMRXlzN1+iwSUMMFP24Kyuicu4xdbF7YRXksJH5ZhsVFpSc9C6kjOQc48jADpoEl
+         jketgCrmKazHvA+g03domfa48WuRD5VWIyYBOl6uCgGDXZu2fiyOCFIdbqvvDD7YsB8V
+         3n+fFpq1iSu2uXfyIV+EO+Mt6ze686rlaUGRTpqT/sraiCLy6klA7EgBEl5HQ9w7SrKC
+         YskLL+fB3pXYJNE4fh4YQdeyugrmls6cH1Xa+UlYrqQqZIXQ1aFLwd3nTBnnkKbgDGZC
+         9lGsEU73QPh4UnOTW3katZ86FgkMkxk4si/JnOf1hiqGoDSakPHvwA2vBrn1KMROYWkd
+         q+HA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=8tCNRIXqLBW8rNbw9oEvmJmpS8PCW2/zW2WD0ftaHQg=;
-        b=Pn1tOPW8wvVPcPGmPJdRXStf6WsBZeAz3H86nvJ7OEVug/cMrhmQm0CJ/F8Wkib3M0
-         4KUvzXJGIEPx8cBYrvXDxZAUF1ltjlp/VHr0hLJWXy5LicmCKE9zhpG3SMtUIcOuxy95
-         WG0YIf/3NsSvpNbg04iEoeMoxsIPFKd68eeVidnJ5O1ORJQ9iWbuL21nykphM41zJCjV
-         0WxO5J6iTqF/nBzPVHTA0VeDwYR4zizPFojDuDPTCQ4aGP9u3RcjooyYUhYujgwSS4vM
-         g7cQDgPlKC/l2FCwvp8ThWEBOWsy0lxkYuBdLHc+Joqf/WsZwBQW8+65dow/PBKDVgdW
-         FGfw==
-X-Gm-Message-State: AOAM531mtSNXh3wbdz5O6C8U1it++RCNYSD21UX1Vwiw+EoTqvqe9u3L
-	lk7BWXrTe0LDipL1pvsmIOvEuw==
-X-Google-Smtp-Source: ABdhPJwswpCxr+byKA8ipLQS88+a/KttoH1SR698hVfVOby4SLZSPj0ac26szrmhQ/fkU9jaB3ckdw==
-X-Received: by 2002:adf:e88b:: with SMTP id d11mr4230237wrm.4.1604840392850;
-        Sun, 08 Nov 2020 04:59:52 -0800 (PST)
-Received: from 7.e.4.c.9.7.4.3.c.6.2.9.7.2.8.5.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (7.e.4.c.9.7.4.3.c.6.2.9.7.2.8.5.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:5827:926c:3479:c4e7])
-        by smtp.gmail.com with ESMTPSA id v19sm1076704wrf.40.2020.11.08.04.59.52
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7DBAEWU8P0CdzbhSaKxFGNHD62JpZ7tX5BxTd4F0mZc=;
+        b=r1Ts2hVj7qVOt5f4L3gllFtF6fYYTfRDz6vU/gO/ROrsVuLQ4i3EjcW04FiUBbRS4i
+         12pJAb91SuSc9hpUmx960dGHOahayDFaQbQEIF9Qpe1dHYAN48+BpBKgCPvJnVRT0HYU
+         KbMHsHlgw8lxXMnfqQBHiuUgjgsqdbHkGByAQEdbZh+oP/SVPKe5KMV11mIIQInnn5Wi
+         nRA3MiSLjke/VDHtzvP3FK07oMau2wdyKmFxcVWz5Ly7BbThGOFJVxRyHiukgGpXL+hs
+         mBDxO/3J2/6B0VQyDRm2u0SElrpNYFkJFaSsdNrVzRGb1rEzX84UYASELxr9JEcGSTFf
+         0tUQ==
+X-Gm-Message-State: AOAM531d5DpDAUxojf3q5397m815k9nnlXrxKwAVwtlM01ecWKqENyEP
+	mz/NTfmiZcOEPCG/aY9oYguvQ81k1vvSvg==
+X-Google-Smtp-Source: ABdhPJyCO7Phvr/KrntrgTEDyahpGuZuR1KOj1xt92sl4P5TDE78bqr+KO5bAaIgKVfOHViZ9RUm3Q==
+X-Received: by 2002:a17:906:6d52:: with SMTP id a18mr10468186ejt.224.1604841929534;
+        Sun, 08 Nov 2020 05:25:29 -0800 (PST)
+Received: from linux-f9zs.fritz.box ([2a02:2450:1011:4f7:596d:bf31:3950:5bda])
+        by smtp.gmail.com with ESMTPSA id b13sm6021084edk.22.2020.11.08.05.25.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Nov 2020 04:59:52 -0800 (PST)
-Message-ID: <9f76d20390e74a51e338ade333a1f7a11ae7daec.camel@linuxfoundation.org>
-Subject: Re: [yocto] [yocto-autobuilder2][PATCH] schedulers.py: run performance builds only 2x a day, not 4x
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Alexander Kanavin <alex.kanavin@gmail.com>, yocto@yoctoproject.org
-Date: Sun, 08 Nov 2020 12:59:49 +0000
-In-Reply-To: <20201108090923.3079-1-alex.kanavin@gmail.com>
-References: <20201108090923.3079-1-alex.kanavin@gmail.com>
-User-Agent: Evolution 3.36.4-0ubuntu1 
+        Sun, 08 Nov 2020 05:25:29 -0800 (PST)
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+To: yocto@yoctoproject.org
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>
+Subject: [yocto-autobuilder2][PATCH] config.py: drop buildperf jobs from a-full builds
+Date: Sun,  8 Nov 2020 14:25:23 +0100
+Message-Id: <20201108132523.5181-1-alex.kanavin@gmail.com>
+X-Mailer: git-send-email 2.29.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, 2020-11-08 at 10:09 +0100, Alexander Kanavin wrote:
-> The same builds are included in a-full, so they tend to get queued up
-> and cause delays in builds completion, as there's only a single worker
-> allocated to them. Let's run them less frequently to mitigate the delays.
-> 
-> Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
-> ---
->  schedulers.py | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/schedulers.py b/schedulers.py
-> index 2e8f3d5..ca63c9f 100644
-> --- a/schedulers.py
-> +++ b/schedulers.py
-> @@ -306,11 +306,11 @@ schedulers.append(sched.Nightly(name='nightly-quick', branch='master', propertie
->  schedulers.append(sched.Nightly(name='nightly-full', branch='master', properties=parent_default_props('a-full'),
->                    builderNames=['a-full'], hour=1, minute=0, dayOfWeek=6))
->  
-> -# Run the build performance tests at 3am, 9am, 3pm and 9pm
-> +# Run the build performance tests at 3am and 3pm
->  schedulers.append(sched.Nightly(name='nightly-buildperf-ubuntu1604', branch='master', properties=parent_default_props('buildperf-ubuntu1604'),
-> -                  builderNames=['buildperf-ubuntu1604'], hour=[3,9,15,21], minute=0))
-> +                  builderNames=['buildperf-ubuntu1604'], hour=[3,15], minute=0))
->  schedulers.append(sched.Nightly(name='nightly-buildperf-centos7', branch='master', properties=parent_default_props('buildperf-centos7'),
-> -                  builderNames=['buildperf-centos7'], hour=[3,9,15,21], minute=0))
-> +                  builderNames=['buildperf-centos7'], hour=[3,15], minute=0))
+Those are run on a separate schedule, and in context of a-full
+only cause delays due to queues forming for single available workers.
 
-I've been wondering about this but I suspect we should drop them from 
-a-full instead...
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+---
+ config.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Cheers,
-
-Richard
+diff --git a/config.py b/config.py
+index 086c557..6e7afe6 100644
+--- a/config.py
++++ b/config.py
+@@ -77,7 +77,7 @@ trigger_builders_wait_quick =3D trigger_builders_wait_s=
+hared + [
+ trigger_builders_wait_full =3D trigger_builders_wait_shared + [
+     "qemumips-alt", "edgerouter-alt", "mpc8315e-rdb-alt", "qemuppc-alt",=
+ "qemux86-world-alt",
+     "oe-selftest-ubuntu", "oe-selftest-debian", "oe-selftest-fedora", "o=
+e-selftest-centos",
+-    "qemux86-64-ptest", "buildperf-ubuntu1604", "buildperf-centos7", "qe=
+mux86-64-ltp",
++    "qemux86-64-ptest", "qemux86-64-ltp",
+     "qemuarm64-ptest", "qemuarm64-ltp", "meta-intel", "meta-arm"
+ ]
+=20
+--=20
+2.29.1
 
