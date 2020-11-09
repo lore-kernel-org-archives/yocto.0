@@ -1,50 +1,50 @@
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
- by mx.groups.io with SMTP id smtpd.web10.8648.1604910747697150154
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+ by mx.groups.io with SMTP id smtpd.web09.8737.1604910749266729946
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 Nov 2020 00:32:28 -0800
+ Mon, 09 Nov 2020 00:32:29 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=bABZqQ0x;
- spf=pass (domain: gmail.com, ip: 209.85.218.54, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ej1-f54.google.com with SMTP id i19so10983455ejx.9
-        for <yocto@lists.yoctoproject.org>; Mon, 09 Nov 2020 00:32:27 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=o5g52t3V;
+ spf=pass (domain: gmail.com, ip: 209.85.208.51, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-ed1-f51.google.com with SMTP id q3so7776157edr.12
+        for <yocto@lists.yoctoproject.org>; Mon, 09 Nov 2020 00:32:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=i4pb33aykyQxLNP8NaaFnf49YJP38o9/jxlgdBQd8a8=;
-        b=bABZqQ0xp5HZ5IzGhx3Excy5VXeIPS9KLZbAAGlLv/iRo+xqOdRNKof05vhizwk/KS
-         U1rZ3UBwxRcH/wanBQqfeUoaqHpddrTaBHTVrqkE7+spNP1Amm0XMfihXi7pyjji/bnx
-         M50pRmTVe7NLz6pWjmyIPWkqaXy2bqSaCZhhjsipbElluIJAwpFss9lJYsmXZqRO1z38
-         uY4Hy/btUTnI8t4nGwyO89qd/DebNJ3IQ6pVcsi66oYBZW9xS96mW8L3HDCHjJnu0Kny
-         Gz/p2oQxmAAmizge46liVtqEp8aXCem5Erk+/kCsgROQtxygjr3WIXh6zpKVYQ4rqKuH
-         u2Zw==
+        bh=f/J1I0AHucUCSXClhokwFUWwc0V+eoTrIZiVS6lCWeo=;
+        b=o5g52t3VTS/YZW8/7mBMOeIc3S5USXErUwpA+9YuO2OPhNNvgyx5py4LN5AyIjJ1PN
+         LolDPgNLpsBjvXnOJ/ULjUj671w0Hc3ecRCG8n0L++j/obfX37Y4eSc9Z7wcfU1P5w/L
+         /92RBgKn2QY4HZlsBfnNyd1codNENsrscGx1uxNnP/MDh/MTEEBHExrl07Mfcgjlv+Hm
+         +/9Y97XM4ynfbr0JD63Ef5BvabwSHsmnRxG50gTz4WeX5HQ4TfxNIPZUdygIxdJkOpZL
+         uBHOZeP7Qrzd6roQ+4Xq9EuQIkfRZSQVuqwrAwiXRO4NAdOgaOjdo57j/QRL2vmyXU5E
+         +zzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=i4pb33aykyQxLNP8NaaFnf49YJP38o9/jxlgdBQd8a8=;
-        b=qlSSVEKf7Gd2v25mLowHC1t/ddwyNfLNB0fCNyBruWUowADpTloZ1zoRr8zWcTHgtL
-         64HLiV+h4m+PYgGgyWYHuvjqbVdrQrf8Oe0KiOovSAp47/nUK/RhUIKy20uJciPd438T
-         UagANMQGYiHw90/hizY4Zmx4SQTtSbam35lFw2vil/yhHzoel37/Rt8+FKrddEzYg7q+
-         TRAuNxHnBZpsZfF1F/fC8zzRXCu/yN6x5KKI+rC72uA2snu2eBX+mr3Co+taKRiOBjGn
-         aHanAGJQDnxd4Bpb0Fy935NuujZ9h3V5Gp91btezaDKdkcNrC5L6edw5w/lTJEJBECE4
-         EwOA==
-X-Gm-Message-State: AOAM5327cwsO0gMTelUoCEwsVBvsOpQgZ/EUkRityGjEnucF51ncIePB
-	nu+WXReGFTy08uKGnRdZyY/62SGaUfQpaQ==
-X-Google-Smtp-Source: ABdhPJybV7QGaDsPVvKtuwpk6/Cu8oV8us7nhNVFZfCX2iuQtmMBULAln2+33/7lxPWZqZ05nwsjiA==
-X-Received: by 2002:a17:906:b292:: with SMTP id q18mr13664064ejz.93.1604910746021;
-        Mon, 09 Nov 2020 00:32:26 -0800 (PST)
+        bh=f/J1I0AHucUCSXClhokwFUWwc0V+eoTrIZiVS6lCWeo=;
+        b=EpL+Ebv7VDd8Dzghe+C9v/2wOAv6mGroduaFYvdYF8f/qf57zl1j8V/oBMO6icRVoR
+         wOXoFhIkT8/t8Y0nVZs8tDKJDlNVbLHgRT6mMhkWImFDLRqf504MQJeHgu1qxZDttoZO
+         2wJDAZ1QKKyLKmWV8W9f7uokK89BtZMZwpbZjyMJTXG7zDuHD+6wx6LSe5DslZ6oPRTM
+         UmwRJq5faA1j5r4ZseSU1ldAjp69vCiqxarp/Zfp0jJzFsBwWPsFEhs1NQJIj3FE5jpf
+         JSQyKDfB0yugZMTr7/1PbiL3BWeOilFZgBgNoDQXnBOWT/lZ2YKPyb2gjCql+VCsMe37
+         ZcKQ==
+X-Gm-Message-State: AOAM533Ass2LtDhjzNWyUAjO9q47yZoSEu1B1fUhyCqvESi2zVFQ+ijd
+	imsFfLfG5j12vcCg1Eo6hDZKeN7OCY4C7g==
+X-Google-Smtp-Source: ABdhPJxPbguFNT3W6NFYHQm4nCKE/DqSCBAE4p1bSozzLuIqAmGmgwvdlYQSG6K/HsrkAObXMnQm2g==
+X-Received: by 2002:a05:6402:b3b:: with SMTP id bo27mr13739775edb.376.1604910747645;
+        Mon, 09 Nov 2020 00:32:27 -0800 (PST)
 Return-Path: <alex.kanavin@gmail.com>
 Received: from linux-f9zs.fritz.box ([2a02:2450:1011:4f7:596d:bf31:3950:5bda])
-        by smtp.gmail.com with ESMTPSA id d23sm8191927edp.36.2020.11.09.00.32.25
+        by smtp.gmail.com with ESMTPSA id d23sm8191927edp.36.2020.11.09.00.32.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2020 00:32:25 -0800 (PST)
+        Mon, 09 Nov 2020 00:32:27 -0800 (PST)
 From: "Alexander Kanavin" <alex.kanavin@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-Subject: [RFC PATCH 2/5] config.json: transition ptests to weston-based images
-Date: Mon,  9 Nov 2020 09:32:03 +0100
-Message-Id: <20201109083206.16832-2-alex.kanavin@gmail.com>
+Subject: [RFC PATCH 4/5] config.json: pam is required when weston starts under systemd
+Date: Mon,  9 Nov 2020 09:32:05 +0100
+Message-Id: <20201109083206.16832-4-alex.kanavin@gmail.com>
 X-Mailer: git-send-email 2.29.1
 In-Reply-To: <20201109083206.16832-1-alex.kanavin@gmail.com>
 References: <20201109083206.16832-1-alex.kanavin@gmail.com>
@@ -53,52 +53,31 @@ Content-Transfer-Encoding: 8bit
 
 Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
 ---
- config.json | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ config.json | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/config.json b/config.json
-index 6d50a36..3e60d15 100644
+index def8d5a..51a540c 100644
 --- a/config.json
 +++ b/config.json
-@@ -87,16 +87,16 @@
-         },
-         "ptest-qemu" : {
-             "BUILDINFO" : true,
--            "BBTARGETS" : "core-image-sato-ptest",
--            "SANITYTARGETS" : "core-image-sato-ptest:do_testimage",
-+            "BBTARGETS" : "core-image-weston-ptest-all",
-+            "SANITYTARGETS" : "core-image-weston-ptest-all:do_testimage",
-             "extravars" : [
-                 "TEST_SUITES = 'ping ssh ptest'"
-             ]
-         },
-         "ptest-qemu-fast" : {
-             "BUILDINFO" : true,
--            "BBTARGETS" : "core-image-sato-ptest-fast",
--            "SANITYTARGETS" : "core-image-sato-ptest-fast:do_testimage",
-+            "BBTARGETS" : "core-image-weston-ptest-fast",
-+            "SANITYTARGETS" : "core-image-weston-ptest-fast:do_testimage",
-             "extravars" : [
-                 "TEST_SUITES = 'ping ssh ptest'"
-             ]
-@@ -116,7 +116,7 @@
-         "arch-hw" : {
-             "BUILDINFO" : true,
-             "step1" : {
--                "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato-ptest core-image-sato:do_populate_sdk",
-+                "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-weston-ptest-all core-image-sato:do_populate_sdk",
-                 "SANITYTARGETS" : "core-image-sato:do_testsdk"
-             }
-         },
-@@ -303,7 +303,7 @@
-              },
-             "step2" : {
-                 "MACHINE" : "qemux86-64",
--                "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato-sdk-ptest core-image-sato:do_populate_sdk",
-+                "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-weston-ptest-all core-image-sato:do_populate_sdk",
-                 "SANITYTARGETS" : "core-image-sato:do_testsdk"
- 
-             },
+@@ -861,7 +861,7 @@
+                 "BBTARGETS" : "core-image-weston",
+                 "SANITYTARGETS" : "core-image-weston:do_testimage",
+                 "extravars" : [
+-                    "DISTRO_FEATURES_append = ' systemd'",
++                    "DISTRO_FEATURES_append = ' pam systemd'",
+                     "VIRTUAL-RUNTIME_init_manager = 'systemd'",
+                     "TEST_SUITES_append = ' systemd'"
+                 ]
+@@ -879,7 +879,7 @@
+                 "SANITYTARGETS" : "core-image-weston:do_testimage",
+                 "extravars" : [
+                     "TEST_SUITES_append = ' systemd'",
+-                    "DISTRO_FEATURES_append = ' systemd'",
++                    "DISTRO_FEATURES_append = ' pam systemd'",
+                     "VIRTUAL-RUNTIME_init_manager = 'systemd'",
+                     "DISTRO_FEATURES_BACKFILL_CONSIDERED = 'sysvinit'"
+                 ]
 -- 
 2.29.1
 
