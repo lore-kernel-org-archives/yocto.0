@@ -1,50 +1,97 @@
-Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
- by mx.groups.io with SMTP id smtpd.web10.17702.1604953737810384355
- for <yocto@lists.yoctoproject.org>;
- Mon, 09 Nov 2020 12:28:59 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kapsi.fi header.s=20161220 header.b=yJoi2EsT;
- spf=pass (domain: kapsi.fi, ip: 91.232.154.25, mailfrom: antime@kapsi.fi)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-	 s=20161220; h=To:Date:Message-Id:Subject:Mime-Version:
-	Content-Transfer-Encoding:Content-Type:From:Sender:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ixe7AgmulDjhoCr4Em8FRoKuF8CoxS6ol5HK11HAF5c=; b=yJoi2EsTBr5gfff9FppobjQLVx
-	bo93zUKSgUZFCZ0Uu+zXbKQ2YJQ30FPFyzYdeA+WRwIh7RmRss6hpBi1LcW9Bra5enhm1p2qGfgwy
-	mKMaKX1MNJTM8Fi7OlEwNRkK5mGzi+id3rCPWaWFff6whXT3xgbkR5cmczyzXtgI98JKHT1Sks5bn
-	9DyFXPMn9GrSELcZqNBKqwNUrzZcMDBNkaOLKlhnDyN7GDraTTjORvsXb2f4wmKNs0V5NeK9VMRIL
-	sV91/OygycwruS674iEFZrwGK8Z6jMpAby/Vq7xAqqGJXGcCAPJyczq6LP7jEp19CIpIF+zybbNPs
-	D91vyO0A==;
-Received: from 89-27-44-133.bb.dnainternet.fi ([89.27.44.133] helo=[192.168.1.58])
-	by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.89)
-	(envelope-from <Anders.Montonen@iki.fi>)
-	id 1kcDmY-00028H-Kf
-	for yocto@lists.yoctoproject.org; Mon, 09 Nov 2020 22:28:54 +0200
-From: "Anders Montonen" <Anders.Montonen@iki.fi>
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.15\))
-Subject: Yoctoproject.org cgit tags CSS
-Message-Id: <4D84553A-FE9E-4D28-B1EF-A39364CCA107@iki.fi>
-Date: Mon, 9 Nov 2020 22:28:53 +0200
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-X-Mailer: Apple Mail (2.3445.104.15)
-X-SA-Exim-Connect-IP: 89.27.44.133
-X-SA-Exim-Mail-From: Anders.Montonen@iki.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
-Content-Type: text/plain;
-	charset=utf-8
+Subject: #devtool #toolchain #yocto #warning
+To: yocto@lists.yoctoproject.org
+From: yuvaraj.velumani@denso-ten.com
+X-Originating-Location: Novi, Michigan, US (206.181.20.218)
+X-Originating-Platform: Windows Chrome 86
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Mon, 09 Nov 2020 13:20:03 -0800
+Message-ID: <D5Fk.1604956803346533189.RJ8L@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="PFo1obC12tzGW5sVJpcc"
+
+--PFo1obC12tzGW5sVJpcc
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-Since some time, the tags in the log view of yoctoproject.org=E2=80=99s =
-cgit have not been highlighted correctly. The problem seems to be that =
-in the HTML, tags are given the class =E2=80=9Ctag-annotated-deco=E2=80=9D=
-, which doesn=E2=80=99t exist in the CSS. The CSS does have a =
-=E2=80=9Ctag-deco=E2=80=9D style which is probably what=E2=80=99s =
-intended.
+I am trying to use meta-flutter to my Renesas R-Car build environment.
+I get the below error, can anyone help me. I am not sure if it is network =
+issue or I need to do add/remove additional configurations.
 
-Regards,
-Anders Montonen=
+* Error: Command 'cipd ensure -log-level error -root /home /yvelumani/code=
+/H3/new10202020/build/tmp/work/aarch64-poky-linux/flutter-engine/git-r0/git=
+ ( http://mio.ten.fujitsu.com/yvelumani/harmony/code/H3/new10202020/build/t=
+mp/work/aarch64-poky-linux/flutter-engine/git-r0/git ) -ensure-file /tmp/tm=
+pHyUQvg.ensure' returned non-zero exit status 2
+* wget: --user-agent: Invalid value =E2=80=98depot_tools/HEAD\n???=E2=80=
+=99.
+* Error: Command 'cipd ensure -log-level error -root /home/ yvelumani/code=
+/H3/new10202020/build/tmp/work/aarch64-poky-linux/flutter-engine/git-r0/git=
+ ( http://mio.ten.fujitsu.com/yvelumani/harmony/code/H3/new10202020/build/t=
+mp/work/aarch64-poky-linux/flutter-engine/git-r0/git ) -ensure-file /tmp/tm=
+pjHd8PA.ensure' returned non-zero exit status 2
+* CalledProcessError: Command 'git -c core.deltaBaseCacheLimit=3D2g clone =
+--no-checkout --progress git@github.com :flutter/engine.git /home /yveluman=
+i/code/H3/new10202020/build/tmp/work/aarch64-poky-linux/flutter-engine/git-=
+r0/git/src/_gclient_flutter_JwGg9o ( http://mio.ten.fujitsu.com/yvelumani/h=
+armony/code/H3/new10202020/build/tmp/work/aarch64-poky-linux/flutter-engine=
+/git-r0/git/src/_gclient_flutter_JwGg9o ) '
+* OSError: [Errno 2] No such file or directory: '/home /yvelumani/code/H3/=
+new10202020/build/tmp/work/aarch64-poky-linux/flutter-engine/git-r0/git/src=
+/_gclient_flutter_JwGg9o ( http://mio.ten.fujitsu.com/yvelumani/harmony/cod=
+e/H3/new10202020/build/tmp/work/aarch64-poky-linux/flutter-engine/git-r0/gi=
+t/src/_gclient_flutter_JwGg9o ) '
+* ERROR: Function failed: do_patch 'exit 1 from 'gclient.py sync --nohooks=
+ --no-history --revision 678b96d4e3af62b1218775bcd5ccbcaaf6e9835a -j 12 -v'
+
+Thanks in advance
+
+--PFo1obC12tzGW5sVJpcc
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<br /><br />I am trying to use meta-flutter to my Renesas R-Car build en=
+vironment.<br />I get the below error, can anyone help me. I am not sure if=
+ it is network issue or I need to do add/remove additional configurations.<=
+br /><br />
+<ul style=3D"margin: 10px 0px 0px; padding-left: 22px; list-style-type: sq=
+uare; color: #172b4d; font-family: -apple-system, BlinkMacSystemFont, 'Sego=
+e UI', Roboto, Oxygen, Ubuntu, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',=
+ sans-serif;">
+<li>Error: Command 'cipd ensure -log-level error -root /home<a class=3D"ex=
+ternal-link" style=3D"color: #0052cc;" href=3D"http://mio.ten.fujitsu.com/y=
+velumani/harmony/code/H3/new10202020/build/tmp/work/aarch64-poky-linux/flut=
+ter-engine/git-r0/git" rel=3D"nofollow">/yvelumani/code/H3/new10202020/buil=
+d/tmp/work/aarch64-poky-linux/flutter-engine/git-r0/git</a>&nbsp;-ensure-fi=
+le /tmp/tmpHyUQvg.ensure' returned non-zero exit status 2</li>
+<li>wget: --user-agent: Invalid value &lsquo;depot_tools/HEAD\n???&rsquo;.=
+</li>
+<li>Error: Command 'cipd ensure -log-level error -root /home/<a class=3D"e=
+xternal-link" style=3D"color: #0052cc;" href=3D"http://mio.ten.fujitsu.com/=
+yvelumani/harmony/code/H3/new10202020/build/tmp/work/aarch64-poky-linux/flu=
+tter-engine/git-r0/git" rel=3D"nofollow">yvelumani/code/H3/new10202020/buil=
+d/tmp/work/aarch64-poky-linux/flutter-engine/git-r0/git</a>&nbsp;-ensure-fi=
+le /tmp/tmpjHd8PA.ensure' returned non-zero exit status 2</li>
+<li>CalledProcessError: Command 'git -c core.deltaBaseCacheLimit=3D2g clon=
+e --no-checkout --progress&nbsp;<a class=3D"external-link" style=3D"color: =
+#0052cc;" href=3D"mailto:git@github.com" rel=3D"nofollow">git@github.com</a=
+>:flutter/engine.git /home<a class=3D"external-link" style=3D"color: #0052c=
+c;" href=3D"http://mio.ten.fujitsu.com/yvelumani/harmony/code/H3/new1020202=
+0/build/tmp/work/aarch64-poky-linux/flutter-engine/git-r0/git/src/_gclient_=
+flutter_JwGg9o" rel=3D"nofollow">/yvelumani/code/H3/new10202020/build/tmp/w=
+ork/aarch64-poky-linux/flutter-engine/git-r0/git/src/_gclient_flutter_JwGg9=
+o</a>'</li>
+<li>OSError: [Errno 2] No such file or directory: '/home<a class=3D"extern=
+al-link" style=3D"color: #0052cc;" href=3D"http://mio.ten.fujitsu.com/yvelu=
+mani/harmony/code/H3/new10202020/build/tmp/work/aarch64-poky-linux/flutter-=
+engine/git-r0/git/src/_gclient_flutter_JwGg9o" rel=3D"nofollow">/yvelumani/=
+code/H3/new10202020/build/tmp/work/aarch64-poky-linux/flutter-engine/git-r0=
+/git/src/_gclient_flutter_JwGg9o</a>'</li>
+<li>ERROR: Function failed: do_patch 'exit 1 from 'gclient.py sync --nohoo=
+ks --no-history --revision 678b96d4e3af62b1218775bcd5ccbcaaf6e9835a -j 12 -=
+v'</li>
+</ul>
+&nbsp;<br /><br />Thanks in advance
+
+--PFo1obC12tzGW5sVJpcc--
