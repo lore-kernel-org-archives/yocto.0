@@ -1,55 +1,50 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.27160.1605014181459388147
- for <yocto@lists.yoctoproject.org>;
- Tue, 10 Nov 2020 05:16:22 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=parse error for token &{10 18 a1.net}: parse error for token &{10 18 spf.a1.net}: parse error for token &{10 18 a1telekom.at}: parse error for token &{10 18 spf.qb-feedback.com}: parse error for token &{10 18 spf2.qb-feedback.com}: limit exceeded (domain: streamunlimited.com, ip: 198.145.29.25, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from bsmtp3.bon.at (bsmtp3.bon.at [213.33.87.17])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 6748138C06E0;
-	Tue, 10 Nov 2020 05:16:20 -0800 (PST)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp3.bon.at (Postfix) with ESMTPSA id 4CVpKF2nPRz5tlG;
-	Tue, 10 Nov 2020 14:16:16 +0100 (CET)
-Date: Tue, 10 Nov 2020 14:16:15 +0100
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: "ouyangxuan10@163.com" <ouyangxuan10@163.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"yocto-builds@yoctoproject.org" <yocto-builds@yoctoproject.org>,
-	"yocto-builds-bounces@yoctoproject.org" <yocto-builds-bounces@yoctoproject.org>,
-	"yocto-bounces@yoctoproject.org" <yocto-bounces@yoctoproject.org>
-Subject: Re: [yocto]: When compiling code, how to make a package not hash checked?
-Message-ID: <20201110131615.3zygqndgrdn74ih2@qschulz>
-References: <3535c9.4dde.175b2462e71.Coremail.ouyangxuan10@163.com>
+Subject: python3-psycopg2cffi DEPENDS error cffi
+To: yocto@lists.yoctoproject.org
+From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
+X-Originating-Location: TN (197.27.81.144)
+X-Originating-Platform: Linux Firefox 82
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <3535c9.4dde.175b2462e71.Coremail.ouyangxuan10@163.com>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Date: Tue, 10 Nov 2020 05:23:09 -0800
+Message-ID: <sd9w.1605014589683022175.fL1s@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="LROpzXKZVTBRye60DEXk"
+
+--LROpzXKZVTBRye60DEXk
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Byron,
+HI All,
+I created a recipe with pipoe for python3-psycopg2cffi when compiling this=
+ error occured:
 
-On Tue, Nov 10, 2020 at 09:09:05PM +0800, ouyangxuan10@163.com wrote:
-> Dear all=EF=BC=8C
 >=20
->=20
-> I would like to ask the reasons for the following problems and how to s=
-olve them? When compiling a program, how to make a package not hash check=
-ed?
->=20
+> ERROR: Do not try to fetch `cffi>=3D1.0' for building. Please add its na=
+tive
+> recipe to DEPENDS.
 
-Did you execute the commands that were suggested in the log you sent?
+I created a recipe for python3-cffi and I made it native with BBCLASSEXTEN=
+D =3D "native" and it depends also on python3-pycparser which is already na=
+tive and exist.
+Then I added DEPENDS =3D "python3-cffi" to python3-psycopg2cffi recipe but=
+ failed with same error, I tried to rename the python3-cffi to just cffi bu=
+t same error.
 
-Can you send us the content of the log of the second command please?
+What I'm missing ?
+Thanks ,Talel
 
-Basically, two possible ways this happens:
- 1. you modified the recipe while bitbake was running. Solution =3D> don'=
-t
- do that.
- 2. bitbake parses tasks multiple times during a run, therefore, if a
- variable changes between parses your task will have a different hash.
- This usually happens with DATETIME. If you don't absolutely need this
- variable, remove it or find a replacement. If you have to, I think the
- vardepsexclude variable flag is the way to do it?
+--LROpzXKZVTBRye60DEXk
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Quentin
+HI All,<br />I created a recipe with pipoe for python3-psycopg2cffi when co=
+mpiling this error occured:<br />
+<blockquote>ERROR: Do not try to fetch `cffi&gt;=3D1.0' for building. Plea=
+se add its native recipe to DEPENDS.</blockquote>
+I created a recipe for python3-cffi and I made it native with BBCLASSEXTEN=
+D =3D "native" and it depends also on python3-pycparser which is already na=
+tive and exist.<br />Then I added DEPENDS =3D "python3-cffi" to python3-psy=
+copg2cffi recipe but failed with same error, I tried to rename the python3-=
+cffi to just cffi but same error.<br /><br />What I'm missing ?<br />Thanks=
+ ,Talel
+
+--LROpzXKZVTBRye60DEXk--
