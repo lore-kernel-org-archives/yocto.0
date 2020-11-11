@@ -1,97 +1,65 @@
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
- by mx.groups.io with SMTP id smtpd.web12.3629.1605079126883312602
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+ by mx.groups.io with SMTP id smtpd.web09.3640.1605080150421701141
  for <yocto@lists.yoctoproject.org>;
- Tue, 10 Nov 2020 23:18:47 -0800
+ Tue, 10 Nov 2020 23:35:50 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=IPz5OZL8;
- spf=pass (domain: gmail.com, ip: 209.85.221.43, mailfrom: robert.berger.yocto.user@gmail.com)
-Received: by mail-wr1-f43.google.com with SMTP id b6so1511041wrt.4
-        for <yocto@lists.yoctoproject.org>; Tue, 10 Nov 2020 23:18:46 -0800 (PST)
+ dkim=pass header.i=@theyoctojester-info.20150623.gappssmtp.com header.s=20150623 header.b=wTLdfmst;
+ spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.171, mailfrom: jester@theyoctojester.info)
+Received: by mail-lj1-f171.google.com with SMTP id q19so936354ljc.10
+        for <yocto@lists.yoctoproject.org>; Tue, 10 Nov 2020 23:35:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:cc:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=55XmZhY+lCXokho0tnDWThOtnr5rm9d3Z/Qh0GxilPc=;
-        b=IPz5OZL8PIF+61f9cSkgryYR8xVmji9dZdZre3wZTCBq9sg5HunbukvA0AciP2XAXJ
-         LI4ckUs7iBRrj33ccFc7MQwpHemyurTyB2hLoZYXaWsO3Ed/taCM7Gt1H/TWmB5oOR9T
-         MTKULMUb0EEh7TwGGElmaABtIQSQdUZ3PtkgkzJvyBzQjKzMCUhA1yD7uRujp67Q4J9g
-         tIrmOF4ck/vRVToHVT6eHTNf89vKQP2P7Opugfwgyj7v7jRqqgjRCk/H7IWauNKMIK/6
-         sxt9jMqTRaCzK9vZ8nMQm/TdnAfKA8sg3V20oFicUAP6/4qAzc0XHu0+fkK0CgyopTvr
-         m3/A==
+        d=theyoctojester-info.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DuTbLDfadqAWbOuCq10KB6jVg18I1NEiCvWQI5OrVhc=;
+        b=wTLdfmst1AKOpEZE/7Ad3pUueDAs9HL/g4vtD/gMLlzuLF7QKfWRUG7FQ7SlvqcYhF
+         xycRTdzcaoLCseeDNzcUMr0rB181JAwumEHK7Qtx4zMkBR99dZVzuNCcs2yujzeGNlZ7
+         dTwJS1IrrlfXAwrxBLWRpv2cScbFj+wWK/I5WOMPjCvHCqMEJh7RM2Akc0Z+nkWOsGeH
+         gc8gopUoeH+vG0cimtAPHCXWaq0SXGfxFyXdAilZQt7htmnyr+3OQ1rDebZh480mE/6j
+         eTuieua2gXZS8BExPxK6S/3aklSCnN7OmwnjP+uCe49Zil4y2B/7v6Qkzt4Y0PibcNqJ
+         9OmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:cc:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=55XmZhY+lCXokho0tnDWThOtnr5rm9d3Z/Qh0GxilPc=;
-        b=dAggOFQss8MVEkLlWaTJ25mZdGW+BZZPcIzkyd+F23WgU7P0J1OU9Z9XPHTwNWjCGz
-         K5j0ZZwxF9qxszAvyoVCuJVuaMMY0zDoQU2ALHeGtnXXqFmMQmKvyDOA6MT3vHytqOin
-         ytqlXS+YwlNUIHEGUhasHW4firv7CC0rtg6IkAAnLyhpF1vcEh/LnJE+IaKOQHwCNd61
-         sKnFXDJem8msUQT2d8FDACxjj2xq5YcVu0SipvCtx0DzyMD3gLezrw2rnz+/V45SnfA9
-         SddpI6c6mSzqZFkM1dHC+kaB0BH+hCFmH9+dYptY8XHSfPltM+MzfqH+fqowTQGvusN7
-         lFog==
-X-Gm-Message-State: AOAM531DhYPxWcElfikBEuqh05KUf2UHq9jTK6EEU4vUORVQpxez8kxs
-	ZvUI6/NDQo+NG6eUAqMPn7s=
-X-Google-Smtp-Source: ABdhPJwwQ5csBhlOCG4aRd0mw/pkgpoX/hmUOwEa+DICosIsqqdren16p0JOdzCEPalIBh+u6YxDaw==
-X-Received: by 2002:adf:e3c9:: with SMTP id k9mr28339259wrm.275.1605079125280;
-        Tue, 10 Nov 2020 23:18:45 -0800 (PST)
-Return-Path: <robert.berger.yocto.user@gmail.com>
-Received: from [192.168.42.52] (ppp-2-84-14-95.home.otenet.gr. [2.84.14.95])
-        by smtp.gmail.com with ESMTPSA id v189sm1517797wmg.14.2020.11.10.23.18.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2020 23:18:44 -0800 (PST)
-Subject: Re: [yocto] Error when building eSDK for a `docker load`able tarball
-To: Manuel Wagesreither <ManWag@FastMail.FM>, yocto@lists.yoctoproject.org
-References: <327508fa-a802-4fe2-b398-fdfa0c608a44@www.fastmail.com>
-From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
-Cc: Bruce Ashfield <bruce.ashfield@gmail.com>, jester@theyoctojester.info
-Message-ID: <3223ae35-537c-48dc-1301-5a3c29dafd92@gmail.com>
-Date: Wed, 11 Nov 2020 09:18:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DuTbLDfadqAWbOuCq10KB6jVg18I1NEiCvWQI5OrVhc=;
+        b=PYPt7iKmjoaQTfGhjMJW+lQUqumXXP0YCpV/Sef4zJ/xFIACsoZhz4mjrmSlUgyYEv
+         xTKNb5aJirLkKdbpP8+t/3FJgF3qooDnvkZVgfxJI5G7290bUcZzcCPYT7HcZ/osWZht
+         5KBMBRYUlQR8OoGxuQWRxXtdTdU0howiPo00rB18e/mLsVXsicvlyXY9oxJwdF3Dozek
+         ZPSQBfPrStqr3H6A9kIH1UYBLEif3R1a8YBhl+6VmihQuIiWjW1eYrlkuyZltTd5ovz+
+         yOWxdqsCEYR5Atsnji1ij0Gjeh9N2zrs3d0HJc6kGWuW8NPMcAq9/S/Vti521Eoqrse0
+         3M8w==
+X-Gm-Message-State: AOAM531lsFJSCpqT3JcS7lws4F6igemjvE+aTFnT6w/3yXvSTJv06L6/
+	HrSdu4B77FbVP0bu+nQ09hZGBSMeT98F+K3LWm3CLQ==
+X-Google-Smtp-Source: ABdhPJybHlVYG/w/1XttxiOPTyAVRvcB1kyhC4a3BOtVBizZePgTZYQROTASZK5b/u/xF+Z8U3JZIaFKXHeS7ukuu9I=
+X-Received: by 2002:a2e:b805:: with SMTP id u5mr6259321ljo.15.1605080148495;
+ Tue, 10 Nov 2020 23:35:48 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <327508fa-a802-4fe2-b398-fdfa0c608a44@www.fastmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <327508fa-a802-4fe2-b398-fdfa0c608a44@www.fastmail.com> <3223ae35-537c-48dc-1301-5a3c29dafd92@gmail.com>
+In-Reply-To: <3223ae35-537c-48dc-1301-5a3c29dafd92@gmail.com>
+From: "Josef Holzmayr" <jester@theyoctojester.info>
+Date: Wed, 11 Nov 2020 08:35:20 +0100
+Message-ID: <CAEt6NwoVMRc9-0vromdmoZeXRWthTguREXt8T5kXq+fLDaim+A@mail.gmail.com>
+Subject: Re: [yocto] Error when building eSDK for a `docker load`able tarball
+To: "Robert Berger@yocto.user" <robert.berger.yocto.user@gmail.com>
+Cc: Manuel Wagesreither <ManWag@fastmail.fm>, yocto@lists.yoctoproject.org, 
+	Bruce Ashfield <bruce.ashfield@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+Howdy!
 
-And as far as I understand you tried to build some extensible SDK 
-against an x86-64 container.
+Am Mi., 11. Nov. 2020 um 08:18 Uhr schrieb Robert Berger@yocto.user
+<robert.berger.yocto.user@gmail.com>:
+<snip>
 
-Please note, that my SDK most likely contains a bit more than the 
-"standard" stuff[0], but this should not make much of a difference here.
+> So it looks like it's extensible SDK specific.
+>
+> Can you please try with the "standard" sdk instead of the extensible sdk
+> to see if this works for you?
 
-[0] 
-https://gitlab.com/meta-layers/meta-resy/-/blob/dunfell/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend
+<snip>
 
-I take a container-x86-64:
+Tried that. Standard SDK works, it's definitely related to the tasks
+of the eSDK.
 
-bitbake app-container-image-mosquitto-oci [1]
-
-[1] https://pastebin.com/T9hX1H8f
-
-bitbake app-container-image-mosquitto-oci -c populate_sdk [2]
-
-[2] https://pastebin.com/eujc57DG
-
-bitbake app-container-image-mosquitto-oci -c populate_sdk_ext
-
-breaks in a similar way[3]
-
-[3] https://pastebin.com/rV9ewZa9
-
-So it looks like it's extensible SDK specific.
-
-Can you please try with the "standard" sdk instead of the extensible sdk 
-to see if this works for you?
-
-You might want to play with IMAGE_CONTAINER_NO_DUMMY = "1" which is 
-defined in poky/meta/classes/image-container.bbclass and try to build a 
-container with a kernel as a workaround in case you build an eSDK.
-
-Regards,
-
-Robert
-
+Greetz
