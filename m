@@ -1,91 +1,97 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.3359.1605078279597753332
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+ by mx.groups.io with SMTP id smtpd.web12.3629.1605079126883312602
  for <yocto@lists.yoctoproject.org>;
- Tue, 10 Nov 2020 23:04:40 -0800
+ Tue, 10 Nov 2020 23:18:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1 header.b=qd4ch3pW;
- spf=neutral (domain: bmw.de, ip: 198.145.29.25, mailfrom: prvs=577f07fd8=mikko.rapeli@bmw.de)
-Received: from esa11.hc324-48.eu.iphmx.com (esa11.hc324-48.eu.iphmx.com [207.54.69.30])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 702B838C04F0
-	for <yocto@yoctoproject.org>; Wed, 11 Nov 2020 07:04:38 +0000 (UTC)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=IPz5OZL8;
+ spf=pass (domain: gmail.com, ip: 209.85.221.43, mailfrom: robert.berger.yocto.user@gmail.com)
+Received: by mail-wr1-f43.google.com with SMTP id b6so1511041wrt.4
+        for <yocto@lists.yoctoproject.org>; Tue, 10 Nov 2020 23:18:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1605078278; x=1636614278;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=a72OBZRVADR9RR3qK6/aBjIMRU94aTIUMRfhDjPmEBQ=;
-  b=qd4ch3pW7b8zZ5MnvwSABo72/BBJUh+Z0zeQunuk5d2mn/8cOv64xYFE
-   kA0HGLNxNodvM9oatjBHd9wK1VplPbk6lmdB3Rhm1UYDRpJ5uUnmB+mP2
-   uitXsgGf++IBB5rPgF+doUkHpajYIiKEq4XQNqN1mxUuoAcozQiO0jDXE
-   0=;
-Received: from esagw3.bmwgroup.com (HELO esagw3.muc) ([160.46.252.35]) by
- esa11.hc324-48.eu.iphmx.com with ESMTP/TLS; 11 Nov 2020 08:04:34 +0100
-Received: from esabb3.muc ([160.50.100.30])  by esagw3.muc with ESMTP/TLS;
- 11 Nov 2020 08:04:26 +0100
-Received: from smucm10j.bmwgroup.net (HELO smucm10j.europe.bmw.corp) ([160.48.96.46])
- by esabb3.muc with ESMTP/TLS; 11 Nov 2020 08:04:26 +0100
-Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10j.europe.bmw.corp
- (160.48.96.46) with Microsoft SMTP Server (TLS;
- Wed, 11 Nov 2020 08:04:25 +0100
-Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
- smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1497.007; Wed,
- 11 Nov 2020 08:04:26 +0100
-From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
-To: <marek.belisko@gmail.com>
-CC: <yocto@yoctoproject.org>
-Subject: Re: [yocto] python bump
-Thread-Topic: [yocto] python bump
-Thread-Index: AQHWt5Gg7fGcj3SXV0e7nDkMy5aaNqnCceCA
-Date: Wed, 11 Nov 2020 07:04:26 +0000
-Message-ID: <20201111070425.GM1246345@korppu>
-References: <CAAfyv37ayVuQRRk+oKAX_=HtMeN_oGW+tCGCw2F8GEPBOzCdbQ@mail.gmail.com>
-In-Reply-To: <CAAfyv37ayVuQRRk+oKAX_=HtMeN_oGW+tCGCw2F8GEPBOzCdbQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:cc:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=55XmZhY+lCXokho0tnDWThOtnr5rm9d3Z/Qh0GxilPc=;
+        b=IPz5OZL8PIF+61f9cSkgryYR8xVmji9dZdZre3wZTCBq9sg5HunbukvA0AciP2XAXJ
+         LI4ckUs7iBRrj33ccFc7MQwpHemyurTyB2hLoZYXaWsO3Ed/taCM7Gt1H/TWmB5oOR9T
+         MTKULMUb0EEh7TwGGElmaABtIQSQdUZ3PtkgkzJvyBzQjKzMCUhA1yD7uRujp67Q4J9g
+         tIrmOF4ck/vRVToHVT6eHTNf89vKQP2P7Opugfwgyj7v7jRqqgjRCk/H7IWauNKMIK/6
+         sxt9jMqTRaCzK9vZ8nMQm/TdnAfKA8sg3V20oFicUAP6/4qAzc0XHu0+fkK0CgyopTvr
+         m3/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:cc:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=55XmZhY+lCXokho0tnDWThOtnr5rm9d3Z/Qh0GxilPc=;
+        b=dAggOFQss8MVEkLlWaTJ25mZdGW+BZZPcIzkyd+F23WgU7P0J1OU9Z9XPHTwNWjCGz
+         K5j0ZZwxF9qxszAvyoVCuJVuaMMY0zDoQU2ALHeGtnXXqFmMQmKvyDOA6MT3vHytqOin
+         ytqlXS+YwlNUIHEGUhasHW4firv7CC0rtg6IkAAnLyhpF1vcEh/LnJE+IaKOQHwCNd61
+         sKnFXDJem8msUQT2d8FDACxjj2xq5YcVu0SipvCtx0DzyMD3gLezrw2rnz+/V45SnfA9
+         SddpI6c6mSzqZFkM1dHC+kaB0BH+hCFmH9+dYptY8XHSfPltM+MzfqH+fqowTQGvusN7
+         lFog==
+X-Gm-Message-State: AOAM531DhYPxWcElfikBEuqh05KUf2UHq9jTK6EEU4vUORVQpxez8kxs
+	ZvUI6/NDQo+NG6eUAqMPn7s=
+X-Google-Smtp-Source: ABdhPJwwQ5csBhlOCG4aRd0mw/pkgpoX/hmUOwEa+DICosIsqqdren16p0JOdzCEPalIBh+u6YxDaw==
+X-Received: by 2002:adf:e3c9:: with SMTP id k9mr28339259wrm.275.1605079125280;
+        Tue, 10 Nov 2020 23:18:45 -0800 (PST)
+Return-Path: <robert.berger.yocto.user@gmail.com>
+Received: from [192.168.42.52] (ppp-2-84-14-95.home.otenet.gr. [2.84.14.95])
+        by smtp.gmail.com with ESMTPSA id v189sm1517797wmg.14.2020.11.10.23.18.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Nov 2020 23:18:44 -0800 (PST)
+Subject: Re: [yocto] Error when building eSDK for a `docker load`able tarball
+To: Manuel Wagesreither <ManWag@FastMail.FM>, yocto@lists.yoctoproject.org
+References: <327508fa-a802-4fe2-b398-fdfa0c608a44@www.fastmail.com>
+From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
+Cc: Bruce Ashfield <bruce.ashfield@gmail.com>, jester@theyoctojester.info
+Message-ID: <3223ae35-537c-48dc-1301-5a3c29dafd92@gmail.com>
+Date: Wed, 11 Nov 2020 09:18:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <327508fa-a802-4fe2-b398-fdfa0c608a44@www.fastmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <62FB82DC5939D14AA39D1CDD0CA950EF@bmwmail.corp>
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
 Hi,
 
-On Tue, Nov 10, 2020 at 07:44:39PM +0100, Marek Belisko wrote:
-> Hi,
->=20
-> I'm using poky release thud and would like to bump python3 to 3.8.x. I
-> took recipe from most recent poky version but I'm hitting issue with
-> e.g. meson build like:
-> Log data follows:
-> | DEBUG: Executing shell function do_configure
-> | Traceback (most recent call last):
-> |   File "setup.py", line 25, in <module>
-> |     from setuptools import setup
-> | ModuleNotFoundError: No module named 'setuptools'
->=20
-> Are there some other things I need to take care when want to bump python3=
-?
+And as far as I understand you tried to build some extensible SDK 
+against an x86-64 container.
 
-When backporting changes, I find it better to cherry-pick the changes for e=
-.g.
-python3 update from master to the old branch that I have to use. In my case=
- I can
-not update anything which breaks ABIs on target images but can update all
-development tools like python3. Often fixes and/or updates to components wh=
-ich
-fail to build are also easy to find from master and cherry-pick, especially=
- if you
-don't need to build all recipes from poky but only a certain subset. Over
-time this will make your local branch look horrible though, but at least
-merges from stable branches will in most cases work, if they are still aliv=
-e.
+Please note, that my SDK most likely contains a bit more than the 
+"standard" stuff[0], but this should not make much of a difference here.
 
-But like Alex said, using 3.1 dunfell LTS or 3.2 gatesgarth would be better=
-.
+[0] 
+https://gitlab.com/meta-layers/meta-resy/-/blob/dunfell/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend
 
-Hope this helps,
+I take a container-x86-64:
 
--Mikko=
+bitbake app-container-image-mosquitto-oci [1]
+
+[1] https://pastebin.com/T9hX1H8f
+
+bitbake app-container-image-mosquitto-oci -c populate_sdk [2]
+
+[2] https://pastebin.com/eujc57DG
+
+bitbake app-container-image-mosquitto-oci -c populate_sdk_ext
+
+breaks in a similar way[3]
+
+[3] https://pastebin.com/rV9ewZa9
+
+So it looks like it's extensible SDK specific.
+
+Can you please try with the "standard" sdk instead of the extensible sdk 
+to see if this works for you?
+
+You might want to play with IMAGE_CONTAINER_NO_DUMMY = "1" which is 
+defined in poky/meta/classes/image-container.bbclass and try to build a 
+container with a kernel as a workaround in case you build an eSDK.
+
+Regards,
+
+Robert
+
