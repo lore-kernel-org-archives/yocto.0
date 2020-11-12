@@ -1,166 +1,188 @@
-Received: from dmzms99802.na.baesystems.com (dmzms99802.na.baesystems.com [149.32.232.66])
- by mx.groups.io with SMTP id smtpd.web10.3227.1605182583943219645
- for <yocto@lists.yoctoproject.org>;
- Thu, 12 Nov 2020 04:03:06 -0800
-Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@baesystems.com header.s=trusted01 header.b=btjcDyvB;
- spf=pass (domain: baesystems.com, ip: 149.32.232.66, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1605182583; x=1762862583;
-  h=from:to:subject:date:mime-version;
-  bh=Hf+RjtXKz1I88uYo8fBxR3IEaX5QqNDKygimx3qdlY8=;
-  b=btjcDyvBbGN9d3y8tN1kIfcXDW5Fx0XzvjITF6PEgT/HKCJiGMGtJzko
-   IUkjCzu9jSSYmGhNi8Fr5AYiSuNVhcpvnLRzS1wAz2M1SetCKbnu1Gz9A
-   E8iTWb60MVj6ZDDIcJKclW/oWtBIBsyDUnx12gp1uFbs2+72yUjhJEcnL
-   c=;
-IronPort-PHdr: =?us-ascii?q?9a23=3AKvUtSBWD53J5RapLDg/YhuzY0oHV8LGtZVwlr6E/?=
- =?us-ascii?q?grcLSJyIuqrYbRyDt8tkgFKBZ4jH8fUM07OQ7/m/HzVaut3Z4DgrS99lb1c9k8?=
- =?us-ascii?q?IYnggtUoauKHbQC7rUVRE8B9lIT1R//nu2YgB/Ecf6YEDO8DXptWZBUhrwOhBo?=
- =?us-ascii?q?KevrB4Xck9q41/yo+53Ufg5EmCexbal9IRmrrwjdrNQajZVsJ6o+1hfEoWZDdv?=
- =?us-ascii?q?hLy29vOV+dhQv36N2q/J5k/SRQuvYh+NBFXK7nYak2TqFWASo/PWwt68LlqRfM?=
- =?us-ascii?q?TQ2U5nsBSWoWiQZHAxLE7B7hQJj8tDbxu/dn1ymbOc32Sq00WSin4qx2RhLklD?=
- =?us-ascii?q?sLOjgk+2zRl8d+jr9UoAi5qhJ/3YDafZ2VOvR9cKPcYdwVSnFMUdxNWyxDGI6w?=
- =?us-ascii?q?c5cDA/QHMO1Fr4f9vVwOrR6mCAWiA+3vzTlIhmTo0qIkyOQtCRzN0hE8H90Qrn?=
- =?us-ascii?q?TbstP1P7oMXOuoyKXHwyjNY/ZY1Tzg74XIaQwhru+SXb1ud8rd00wvFwTDjlWL?=
- =?us-ascii?q?t4PqISiV2/8WvGeB8eVgTuKui3U7qw5vpziv3d0ghZXOhoIQ013J8zhyz4kpK9?=
- =?us-ascii?q?OiUkF7fcKkH4VKtyGcL4Z4TM0vTn1ptSs4y7AKp4O3cTYJxZknwxPSZPOKf5WG?=
- =?us-ascii?q?7B/jW+idPDN1iXBldb+whhu+7Fatx+n/W8S3zVtGsyVLn9/RvX4Ozxze8tWLRu?=
- =?us-ascii?q?dn8kqv2zuDzR7f5v9ELEwulKfWK4YtzqMsmpYJvknOETX6lUHsgKKVdEgp/PWj?=
- =?us-ascii?q?5f79bbX8vJCcMpd5igT5MqszhMOyGf84Mg0SX2iD/uS8yaHj8VX5QLpUiv02lb?=
- =?us-ascii?q?HUsIzVJMsBoK65BhRV34I/5xqjEzuqzc4UnX8dI15fYx2IlZbmO0rOIfDjEfew?=
- =?us-ascii?q?nVGskCxxy//aOb3hB43BLnnFkLj/YbZw81NQxBYpwd1R5Z9YEK8NLOzzV0Prtd?=
- =?us-ascii?q?HVDgc1MwmuzObmDNV92JkeWWWKAqKBK6PSrUGH5vwxLOmKfoMVvTH9K/4+5/Hw?=
- =?us-ascii?q?k3A5gkQQcrKz0pQJc3C5Hu9mI1mHbnrpmdcNC3sFvg07TODykl2NTSZTZ2quX6?=
- =?us-ascii?q?I7/jw6CIWmApvfRoCqm7GB2Ca7HoZKZmBdEFyNEXDoeJmYW/cLcCKSOMhhkj4a?=
- =?us-ascii?q?Wre9V48tzxautBX1y+kvEu2BsDwfvo7k/Nx0/PHI0wA1/iBzF96a0WyGUydzhG?=
- =?us-ascii?q?xCD2sn26tjpmR5y0yfyu5phPdEEsRJ4PFEWRt8MoTTmb9UEdf3D0jkedGSRVu9?=
- =?us-ascii?q?Bp2dHTwvQ9R56JdOXn08UZ32lQzOwSesRboSkaeGCYcc+KvRxGnqO8t40DDN06?=
- =?us-ascii?q?x33ApueddGKWDz3v03zAPUHYOcy0g=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2D7BACsI61f/0HhJQpigQmCcoF7gUCyA?=
- =?us-ascii?q?wsBAQEBAQEBAQEIAS8EAQGGZyY4EwIQAQEGAQEBAQEGBAGGUguCNyKDTV4BDHQ?=
- =?us-ascii?q?mAQQbgx+BfrF5gTSFV4RzCQGBLo8cPo8VBJp/nSwHA4JtmwsrgxmPYY59k1GgT?=
- =?us-ascii?q?wIEAgQFAhWBa4F6cIM6TxcCDZxogSwCBgoBAQMJjTcyXwEB?=
-X-IPAS-Result: =?us-ascii?q?A2D7BACsI61f/0HhJQpigQmCcoF7gUCyAwsBAQEBAQEBAQE?=
- =?us-ascii?q?IAS8EAQGGZyY4EwIQAQEGAQEBAQEGBAGGUguCNyKDTV4BDHQmAQQbgx+BfrF5g?=
- =?us-ascii?q?TSFV4RzCQGBLo8cPo8VBJp/nSwHA4JtmwsrgxmPYY59k1GgTwIEAgQFAhWBa4F?=
- =?us-ascii?q?6cIM6TxcCDZxogSwCBgoBAQMJjTcyXwEB?=
-X-IronPort-AV: E=Sophos;i="5.77,471,1596499200"; 
-   d="scan'208,217";a="463063607"
-X-IronPort-AV: E=Sophos;i="5.77,471,1596499200"; 
-   d="scan'208,217";a="91135390"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: #yocto "zeus"
-Thread-Topic: #yocto "zeus"
-Thread-Index: Ada4655XkpGu+2/XTAO/9E8TyS2IKA==
-Date: Thu, 12 Nov 2020 12:03:01 +0000
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.9.87]
+Subject: Qtwebengine recipe in yocto zeus (latest version) #yocto #zeus #qt
+To: yocto@lists.yoctoproject.org
+From: anthony.marchand@navocap.com
+X-Originating-Location: Suresnes, Île-de-France, FR (159.180.227.154)
+X-Originating-Platform: Linux Firefox 82
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Return-Path: steven.monsees@baesystems.com
-Message-ID: <MADEUP.1646C10EBE4A8CF0.4377@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_200fcfe507b44a41ab52c6acf5a20a33baesystemscom_"
+Date: Thu, 12 Nov 2020 08:29:08 -0800
+Message-ID: <OqRF.1605198548382378294.0Na5@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="7NwGgeMzAWOtjEH4JmGA"
 
---_000_200fcfe507b44a41ab52c6acf5a20a33baesystemscom_
-Content-Type: text/plain; charset="us-ascii"
+--7NwGgeMzAWOtjEH4JmGA
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
+Hello.
+I hope you're going well in this period.
+I'm working with yocto (zeus version) with a soc i.MX6 and kernel 4.19. Ac=
+tually, I meet a weird issue about the recipe "qtwebengine" in all of my pr=
+ojects that are using zeus version.
+The compilation was working fine until there, but since approximatively tw=
+o weeks, with no particular reason, whatever the project I want to compile,=
+ I'm unable to compile qtwebengine and making a rootfs image with it inside=
+.
 
-This is probably a simple question, but since I am new to yocto there is a =
-lot to learn...
+So I have tested:
 
-How do I establish kernel access permissions for the "zeus" kernel so that =
-when my application is up and running, (or an application startup script), =
-can create read/write files for access/updating in the "/etc" and "/dev" di=
-rectories ?
+1) bitbake qtwebengine
+2) bitbake myimage
 
-In the few cases I do this I am seeing unable to open errors...
-Note the same code appears to work correctly under "rocko"...
+PS: myimage contain the recipe qtwebengine.
 
-Thanks,
-Steve
+But whatever the bitbake commands 1 or 2, Bitbake shows me the same error =
+I don't understand and this error follows:
 
---_000_200fcfe507b44a41ab52c6acf5a20a33baesystemscom_
-Content-Type: text/html; charset="us-ascii"
+--------------------------------------------------------------------------=
+---------
+| In file included from /usr/include/bits/errno.h:26:0,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from /usr/include/errno.h:28,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from /usr/include/c++/7/cerrno:42,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from /usr/include/c++/7/ext/string_conversi=
+ons.h:44,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from /usr/include/c++/7/bits/basic_string.h=
+:6361,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from /usr/include/c++/7/string:52,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from /usr/include/c++/7/stdexcept:39,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from /usr/include/c++/7/array:39,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from /usr/include/c++/7/tuple:39,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from /usr/include/c++/7/bits/unique_ptr.h:3=
+7,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from /usr/include/c++/7/memory:80,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from ../../../../git/src/3rdparty/chromium/=
+v8/src/torque/cfg.h:9,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from ./../../../../git/src/3rdparty/chromiu=
+m/v8/src/torque/cfg.cc:5,
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from v8_snapshot/gen/v8/torque_base_jumbo_1=
+.cc:5:
+| /usr/include/linux/errno.h:1:10: fatal error: asm/errno.h: No such file =
+or directory
+|=C2=A0 #include <asm/errno.h>
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~~~~~=
+~
+| compilation terminated.
+...
+| Makefile.gn_run:340: recipe for target 'run_ninja' failed
+| make[3]: *** [run_ninja] Error 1
+| make[3]: Leaving directory '/home/yocto/Dev/build_zeus/tmp/work/cortexa9=
+t2hf-neon-mx6qdl-poky-linux-gnueabi/qtwebengine/5.13.0+gitAUTOINC+5d4bac57a=
+0_8a28c0bb19-r0/build/src/core'
+| Makefile:82: recipe for target 'sub-gn_run-pro-make_first' failed
+| make[2]: *** [sub-gn_run-pro-make_first] Error 2
+| make[2]: Leaving directory '/home/yocto/Dev/build_zeus/tmp/work/cortexa9=
+t2hf-neon-mx6qdl-poky-linux-gnueabi/qtwebengine/5.13.0+gitAUTOINC+5d4bac57a=
+0_8a28c0bb19-r0/build/src/core'
+| Makefile:76: recipe for target 'sub-core-make_first' failed
+| make[1]: *** [sub-core-make_first] Error 2
+| make[1]: Leaving directory '/home/yocto/Dev/build_zeus/tmp/work/cortexa9=
+t2hf-neon-mx6qdl-poky-linux-gnueabi/qtwebengine/5.13.0+gitAUTOINC+5d4bac57a=
+0_8a28c0bb19-r0/build/src'
+| Makefile:48: recipe for target 'sub-src-make_first' failed
+| make: *** [sub-src-make_first] Error 2
+| WARNING: exit code 1 from a shell command.
+|
+ERROR: Task (/home/yocto/Dev/build_zeus/../meta-qt5/recipes-qt/qt5/qtweben=
+gine_git.bb:do_compile) failed with exit code '1'
+--------------------------------------------------------------------------=
+---------
+
+I don't understand why bitbake don't find '<asm/errno.h>', because it is p=
+resent in the kernel 4.19 and in my host system ubuntu 18. Furthermore, I d=
+on't understand the problem with run_ninja.
+
+I try to change my PC for compilation, but I have got the same error. The =
+PC I use to compile with bitbake got 20 cores intel xeon and 32GB of ram. I=
+ think the problem is not from here. :-)
+
+Does someone already meet this problem?
+
+Does someone know where could be the problem?
+
+Thanks for all and best reguards: Anthony.
+
+--7NwGgeMzAWOtjEH4JmGA
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">This is probably a simple question, but since I am n=
-ew to yocto there is a lot to learn&#8230;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">How do I establish kernel access permissions for the=
- &#8220;zeus&#8221; kernel so that when my application is up and running, (=
-or an application startup script), can create read/write files for access/u=
-pdating in the &#8221;/etc&#8221; and &#8220;/dev&#8221; directories ?<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">In the few cases I do this I am seeing unable to ope=
-n errors&#8230;
-<o:p></o:p></p>
-<p class=3D"MsoNormal">Note the same code appears to work correctly under &=
-#8220;rocko&#8221;&#8230;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Steve<o:p></o:p></p>
-</div>
-</body>
-</html>
+Hello.<br />I hope you're going well in this period.<br />I'm working with =
+yocto (zeus version) with a soc i.MX6 and kernel 4.19. Actually, I meet a w=
+eird issue about the recipe "qtwebengine" in all of my projects that are us=
+ing zeus version.<br />The compilation was working fine until there, but si=
+nce approximatively two weeks, with no particular reason, whatever the proj=
+ect I want to compile, I'm unable to compile qtwebengine and making a rootf=
+s image with it inside.<br /><br />So I have tested:<br /><br />1) bitbake =
+qtwebengine<br />2) bitbake myimage<br /><br />PS: myimage contain the reci=
+pe qtwebengine.<br /><br />But whatever the bitbake commands 1 or 2, Bitbak=
+e shows me the same error I don't understand and this error follows:<br /><=
+br />----------------------------------------------------------------------=
+-------------<br />| In file included from /usr/include/bits/errno.h:26:0,<=
+br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from /usr/include/errno.h:28,<br />|&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; from /usr/include/c++/7/cerrno:42,<br />|&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; from /usr/include/c++/7/ext/string_conversions.h:44,<br />=
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; from /usr/include/c++/7/bits/basic_string.h:63=
+61,<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from /usr/include/c++/7/string:52,<br=
+ />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from /usr/include/c++/7/stdexcept:39,<br />=
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; from /usr/include/c++/7/array:39,<br />|&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; from /usr/include/c++/7/tuple:39,<br />|&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; from /usr/include/c++/7/bits/unique_ptr.h:37,<br />|&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; from /usr/include/c++/7/memory:80,<br />|&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; from ../../../../git/src/3rdparty/chromium/v8/src/torque/cfg.=
+h:9,<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from ./../../../../git/src/3rdparty/=
+chromium/v8/src/torque/cfg.cc:5,<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from v8_=
+snapshot/gen/v8/torque_base_jumbo_1.cc:5:<br />| /usr/include/linux/errno.h=
+:1:10: fatal error: asm/errno.h: No such file or directory<br />|&nbsp; #in=
+clude &lt;asm/errno.h&gt;<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; ^~~~~~~~~~~~~<br />| compilation terminated.<br />...<br =
+/>| Makefile.gn_run:340: recipe for target 'run_ninja' failed<br />| make[3=
+]: *** [run_ninja] Error 1<br />| make[3]: Leaving directory '/home/yocto/D=
+ev/build_zeus/tmp/work/cortexa9t2hf-neon-mx6qdl-poky-linux-gnueabi/qtwebeng=
+ine/5.13.0+gitAUTOINC+5d4bac57a0_8a28c0bb19-r0/build/src/core'<br />| Makef=
+ile:82: recipe for target 'sub-gn_run-pro-make_first' failed<br />| make[2]=
+: *** [sub-gn_run-pro-make_first] Error 2<br />| make[2]: Leaving directory=
+ '/home/yocto/Dev/build_zeus/tmp/work/cortexa9t2hf-neon-mx6qdl-poky-linux-g=
+nueabi/qtwebengine/5.13.0+gitAUTOINC+5d4bac57a0_8a28c0bb19-r0/build/src/cor=
+e'<br />| Makefile:76: recipe for target 'sub-core-make_first' failed<br />=
+| make[1]: *** [sub-core-make_first] Error 2<br />| make[1]: Leaving direct=
+ory '/home/yocto/Dev/build_zeus/tmp/work/cortexa9t2hf-neon-mx6qdl-poky-linu=
+x-gnueabi/qtwebengine/5.13.0+gitAUTOINC+5d4bac57a0_8a28c0bb19-r0/build/src'=
+<br />| Makefile:48: recipe for target 'sub-src-make_first' failed<br />| m=
+ake: *** [sub-src-make_first] Error 2<br />| WARNING: exit code 1 from a sh=
+ell command.<br />| <br />ERROR: Task (/home/yocto/Dev/build_zeus/../meta-q=
+t5/recipes-qt/qt5/qtwebengine_git.bb:do_compile) failed with exit code '1'<=
+br />----------------------------------------------------------------------=
+-------------<br /><br />I don't understand why bitbake don't find '&lt;asm=
+/errno.h&gt;', because it is present in the kernel 4.19 and in my host syst=
+em ubuntu 18. Furthermore, I don't understand the problem with run_ninja.<b=
+r /><br />I try to change my PC for compilation, but I have got the same er=
+ror. The PC I use to compile with bitbake got 20 cores intel xeon and 32GB =
+of ram. I think the problem is not from here. :-)<br /><br />Does someone a=
+lready meet this problem?<br /><br />Does someone know where could be the p=
+roblem?<br /><br />Thanks for all and best reguards: Anthony.
 
---_000_200fcfe507b44a41ab52c6acf5a20a33baesystemscom_--
+--7NwGgeMzAWOtjEH4JmGA--
