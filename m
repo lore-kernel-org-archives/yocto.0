@@ -1,93 +1,77 @@
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
- by mx.groups.io with SMTP id smtpd.web10.7950.1605289907127870608
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.8638.1605291623268114758
  for <yocto@lists.yoctoproject.org>;
- Fri, 13 Nov 2020 09:51:47 -0800
+ Fri, 13 Nov 2020 10:20:23 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=S8niGBh/;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.51, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f51.google.com with SMTP id p22so9045185wmg.3
-        for <yocto@lists.yoctoproject.org>; Fri, 13 Nov 2020 09:51:46 -0800 (PST)
+ dkim=fail reason="body hash did not verify" header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=REMVkrAV;
+ spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 198.145.29.25, mailfrom: jpuhlman@mvista.com)
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 81DAB38C1314
+	for <yocto@yoctoproject.org>; Fri, 13 Nov 2020 18:20:22 +0000 (UTC)
+Received: by mail-oi1-f176.google.com with SMTP id q206so11323933oif.13
+        for <yocto@yoctoproject.org>; Fri, 13 Nov 2020 10:20:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=4nOSIQ3x8qn3fbxZ/wIaOP5jf0QnZQV+vtuSB4qLL2s=;
-        b=S8niGBh/XTfcafLTyTcRPsJAdgeo8lrlW3dIHXxECfT9qu14udTsWm9u+kf983RRqD
-         OQ3bgh9n3wx/+jtvDVc13a58MTExjeWJkd7wfBYPdcfkiF9Whm1WIHpRKTgRl/nO31ZJ
-         k/jQJUvjWfhKqtXb41hiYfgXve9wBXJspJRL4=
+        d=mvista-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Igm379vOwkftgLLY1qxyVrscafD7wbDq7KSjE+WmFxw=;
+        b=REMVkrAV6voC5jp4NWtkfka0nPmT+Aiarn+JwuS8TITw3U83+5dEwbqGScU1ioseyv
+         LsTmn74ex3YHIRRPuY5b56SGUMQeYZ/XLyL6WvCrydAi+QBv/uYSReWKW5egrp8ppTKD
+         BU+RKf6uQ1tczWGJxGdW7NjxraBSGW2BV/aytFnc0oqWyl0bLuDLW87RvLGynecbtiMu
+         0Bfeo5v4sAePDJ0xWrSkpMoPpKQhq9y9C49kd8rX51BGE9xQ5fHb3ro4JjfL6FLwyWVz
+         zJOcP/L11lSz0LBilJJhkCIov9Xv9Y+4q4R1wcVFNGCHZN6oOp4E2loQQBGSUdUFFFOb
+         48Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=4nOSIQ3x8qn3fbxZ/wIaOP5jf0QnZQV+vtuSB4qLL2s=;
-        b=AYNNo8erpSFtCimh4iaCm13RKt5449VOKxJARFNvK4JBOcqwGbTGUQ6vYfZbDvU2d0
-         /6mV4CnYcRAsAi8rGRUJdIolu+82ZK7MjbnPTn1zy/yPMxV5qSkm/iSUza8dXeFeZE/I
-         AY6W3ihfose5+WO4HZZVwrxyAMelw6auonfHEJ0rDRU4qKOAIPa1+mqvEpPh2oENY7ZB
-         VLp7EBQ779cCosL/bRwQ9edUCEM3WmtnK1AFLbtqp5WWH7vteFtcE3mUpfJsTyRHmpQF
-         P/iYFE37PikQPahr9TePNu/2Pe8Ez7pRE5ZMwhwF+FOf119C+Ubzq8HZ/qUOi7MJYETM
-         YwXg==
-X-Gm-Message-State: AOAM533J8qLZbXxltTkNuBMS7mwtGLwJcQi/ZTEMMuEan97y141Ynvwl
-	KASpKewIUwdFZzraIH3iwyD7rg==
-X-Google-Smtp-Source: ABdhPJwX/hMlyND+sDjfvnIfr9INPjEs2eRTErtSr7jPkdhMGvoeBa1L7nP1KQsi56q+bXLZpK0N6Q==
-X-Received: by 2002:a1c:e006:: with SMTP id x6mr3757114wmg.107.1605289903319;
-        Fri, 13 Nov 2020 09:51:43 -0800 (PST)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from e.3.a.b.8.4.f.3.4.e.5.7.b.c.8.4.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (e.3.a.b.8.4.f.3.4.e.5.7.b.c.8.4.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:48cb:75e4:3f48:ba3e])
-        by smtp.gmail.com with ESMTPSA id p10sm12235486wre.2.2020.11.13.09.51.42
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Igm379vOwkftgLLY1qxyVrscafD7wbDq7KSjE+WmFxw=;
+        b=LREn/FT/B3mARcdbPpDyFsgR5MfdhAMtbnIN+Az2Mk2wvpCVzwPiKpMYUG470lPGib
+         AMxgGckW9GtbFHg1868DIKpd6TMA5OcT203irxvQ6KaE2yhAzIYMlsG0jlw/1+/ZJqrR
+         klEvNrM3ozndEzD4kTo77ZpEuem+hqyS+HaFHHWihC88s2bAMgErT/yOOsiuraGOzDGn
+         F0MwLqVSQQ//j85nM5enTtzr62AYiO2ApBzA5O+l1FpKVDvcVdkB5fynHJJUjdpwa8g+
+         yWmLUec8Oakva9MhTF1izicRzBCkK7MXaICGd97rq4w3+PflVdA7vl6PX25QqYeNWzxy
+         /Gsg==
+X-Gm-Message-State: AOAM530BHvMcGArsay0ux2IdvzTT3v8+0Ws1A5AJvnbf/6RNYw0s1eMb
+	eMZBwMpwwwo2oAItvk2xOK0nEg==
+X-Google-Smtp-Source: ABdhPJwavaS7IkN4aU+ryaXX4gTkDZnVeMYSGE2e1IMyiy59TYvYl72A2RLJxKE2WBqgGr7B+WTGEA==
+X-Received: by 2002:aca:4fc7:: with SMTP id d190mr2381510oib.13.1605291618308;
+        Fri, 13 Nov 2020 10:20:18 -0800 (PST)
+Received: from workhorse.localdomain (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
+        by smtp.gmail.com with ESMTPSA id r188sm2025704oia.13.2020.11.13.10.20.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2020 09:51:42 -0800 (PST)
-Message-ID: <6de317826cd5a4a944b4d08fd78688a6675b7dde.camel@linuxfoundation.org>
-Subject: Re: [yocto] Reproducible builds and RPM packages
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Jate Sujjavanich <jatedev@gmail.com>, yocto@lists.yoctoproject.org
-Date: Fri, 13 Nov 2020 17:51:40 +0000
-In-Reply-To: <27035.1605224608148078000@lists.yoctoproject.org>
-References: <78CCF97C-A2F1-4755-AFCC-726ED8400D3B@iki.fi>
-	 <27035.1605224608148078000@lists.yoctoproject.org>
-User-Agent: Evolution 3.36.4-0ubuntu1 
+        Fri, 13 Nov 2020 10:20:17 -0800 (PST)
+Received: by workhorse.localdomain (Postfix, from userid 1000)
+	id 643AC2A0B9E; Fri, 13 Nov 2020 10:20:16 -0800 (PST)
+From: "Jeremy Puhlman" <jpuhlman@mvista.com>
+To: yocto@yoctoproject.org
+Cc: "Jeremy A. Puhlman" <jpuhlman@mvista.com>
+Subject: [meta-cgl][PATCH] layer.conf: add gatesgarth
+Date: Fri, 13 Nov 2020 10:20:09 -0800
+Message-Id: <20201113182009.29013-1-jpuhlman@mvista.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2020-11-12 at 15:43 -0800, Jate Sujjavanich wrote:
-> I have sussed out several behaviors of the image build having to do
-> with reproducible builds. It seems like bitbake creates the rpm with
-> the correct modification times per the reproducible_builds bbclass.
-> When do_rootfs installs the packages, the timestamps seem correct.
-> 
-> The function reproducible_final_image_task sets all files in rootfs
-> to be REPRODUCIBLE_TIMESTAMP_ROOTFS which is the last commit time in
-> poky by default. This occurs after package installation and before
-> image creation.
-> 
-> When the image creation code runs, it seems like each utility has
-> different behavior on respecting SOURCE_DATE_EPOCH in the
-> environment. The ext3 utility allowed mtime's beyond the default
-> value of 0. The squashfs utility enforced the restriction of no
-> mtime's being beyond 0 seconds since the epoch. Once I set this to
-> the build timestamp (DATETIME) in the image recipe, the squashfs
-> image had correct times.
-> 
-> So to get this working, you'd need to disable
-> reproducible_final_image_task, and make sure the image creation
-> utility is not wiping out the modification times of files created by
-> rpm.
-> 
-> I'd argue that we'd want reproducible_final_image_task to not
-> override all the mtime's of files. We probably have to check the
-> other file system type to see their behavior with SOURCE_DATE_EPOCH
-> as well.
+Signed-off-by: Jeremy A. Puhlman <jpuhlman@mvista.com>
+---
+ meta-cgl-common/conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks for mentioning that, it does sound like that is doing something
-we no longer should be doing now source_date_epoch is working in most
-packages properly.
-
-There are some files such as the rpm database and any other files not
-under control of package management which would need this handling to
-have the images be 100% reproducible so its not entirely
-straightforward though.
-
-Cheers,
-
-Richard
+diff --git a/meta-cgl-common/conf/layer.conf b/meta-cgl-common/conf/layer=
+.conf
+index 6035b4b..8100e23 100644
+--- a/meta-cgl-common/conf/layer.conf
++++ b/meta-cgl-common/conf/layer.conf
+@@ -11,6 +11,6 @@ BBFILE_PRIORITY_cgl-common =3D "7"
+=20
+ LAYERDEPENDS_cgl-common =3D "core openembedded-layer networking-layer pe=
+rl-layer filesystems-layer security selinux"
+=20
+-LAYERSERIES_COMPAT_cgl-common =3D "warrior zeus dunfell"
++LAYERSERIES_COMPAT_cgl-common =3D "warrior zeus dunfell gatesgarth"
+=20
+ require conf/distro/include/cgl_common_security_flags.inc
+--=20
+2.20.1
 
