@@ -1,76 +1,93 @@
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
- by mx.groups.io with SMTP id smtpd.web11.8137.1605289816844850039
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+ by mx.groups.io with SMTP id smtpd.web10.7950.1605289907127870608
  for <yocto@lists.yoctoproject.org>;
- Fri, 13 Nov 2020 09:50:16 -0800
+ Fri, 13 Nov 2020 09:51:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=l+7xCkpm;
- spf=pass (domain: gmail.com, ip: 209.85.210.179, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f179.google.com with SMTP id y7so8198043pfq.11
-        for <yocto@lists.yoctoproject.org>; Fri, 13 Nov 2020 09:50:16 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=S8niGBh/;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.51, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f51.google.com with SMTP id p22so9045185wmg.3
+        for <yocto@lists.yoctoproject.org>; Fri, 13 Nov 2020 09:51:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=KoEgtz/4Gl1dRLtquJIDPpjMHWQhoCX45xoO+RZ3R0Q=;
-        b=l+7xCkpmN5CnjGVBP+EpqcMDeDcjd45BWxAUK+ow0aRe7+a4JM9ab8b27Krfowj+Po
-         PwO43jIPjgUY0vV4KuSPzjZcUl8yYUodH+JY0/TbtISqAFEpoUtKTEHzss9QViBjFFOj
-         NEOPCV8cbObp7WArimEoEesPodHSvtbO8r7YmtWUKulyb+7k3Uj5ItOuEL7TfoWomqAS
-         9UvXDsc0/N4H2U08hH91mvxpZIcCESsiFGwnqJ1Ntpef9rJ6h9CNjs7N0kh+2HBYRvCz
-         xvnhbHlkUKuzpECslrLwUWs3yS5ybuQ3Cotq1Cd6bRI/ZjO2HpLuH5nOptf0cQyw/sSF
-         efrg==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=4nOSIQ3x8qn3fbxZ/wIaOP5jf0QnZQV+vtuSB4qLL2s=;
+        b=S8niGBh/XTfcafLTyTcRPsJAdgeo8lrlW3dIHXxECfT9qu14udTsWm9u+kf983RRqD
+         OQ3bgh9n3wx/+jtvDVc13a58MTExjeWJkd7wfBYPdcfkiF9Whm1WIHpRKTgRl/nO31ZJ
+         k/jQJUvjWfhKqtXb41hiYfgXve9wBXJspJRL4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=KoEgtz/4Gl1dRLtquJIDPpjMHWQhoCX45xoO+RZ3R0Q=;
-        b=btBX5Y7GFhiOlmcPMVtpZcVQSjtjsMM4Mz5/7PZ8rfAO48Upj+ru334RAgSJGlN6mk
-         nJBSXXZlQTnWLqr8T8wyzcoHlqLDz/BcB3xbLT9tf2E/GCyLdmycX9hvurYy8M0xru8V
-         xpDJXdmDWA7JVttqIzeboT++TrghYLzkcvQU5GpzOPW9CUXpw+Gefd2mJZfiAF6vpn6Q
-         Ik7GSAOf5cbceSffdBzBhkPkRu9nEo5+5Hi1HTndDH8ZE+PwEcR6qPt8NF8gaGofwFVy
-         W6lkmqNYfhG0hAvsyBsF5uC2vrOqjOzEamEZORABNi/m+GGF93+o/Za2Fwq+Ilnz1lQy
-         NjYQ==
-X-Gm-Message-State: AOAM5315OS9YUcNeVH9cBXjFOGs9Y/8c5VPwubTImDdREtrDifgvzrBw
-	MVwOKk5TiMQBt1HOqWS9HcqXIi08QAqBMA==
-X-Google-Smtp-Source: ABdhPJzHqSLsMzKooG1k8x7jqyiUBkNskeLFc4XIEvVv1oxINxrh0dBvv5Kld/g9mzBpmBGT+384kQ==
-X-Received: by 2002:a05:6a00:2d9:b029:18e:f4a2:d1a7 with SMTP id b25-20020a056a0002d9b029018ef4a2d1a7mr3005408pft.75.1605289813265;
-        Fri, 13 Nov 2020 09:50:13 -0800 (PST)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:2d0a:525f:8d30:8b71? ([2601:646:9200:4e0:2d0a:525f:8d30:8b71])
-        by smtp.gmail.com with ESMTPSA id x123sm10507041pfb.212.2020.11.13.09.50.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Nov 2020 09:50:12 -0800 (PST)
-Subject: Re: [yocto] How to remove Kernel headers from SDK
-To: Bel Hadj Salem Talel <bhstalel@gmail.com>, yocto@lists.yoctoproject.org
-References: <26L1.1605273643978706653.a0RI@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <72ddb61b-e70e-7273-1a18-19b8e49ff334@gmail.com>
-Date: Fri, 13 Nov 2020 09:50:11 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.4.3
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=4nOSIQ3x8qn3fbxZ/wIaOP5jf0QnZQV+vtuSB4qLL2s=;
+        b=AYNNo8erpSFtCimh4iaCm13RKt5449VOKxJARFNvK4JBOcqwGbTGUQ6vYfZbDvU2d0
+         /6mV4CnYcRAsAi8rGRUJdIolu+82ZK7MjbnPTn1zy/yPMxV5qSkm/iSUza8dXeFeZE/I
+         AY6W3ihfose5+WO4HZZVwrxyAMelw6auonfHEJ0rDRU4qKOAIPa1+mqvEpPh2oENY7ZB
+         VLp7EBQ779cCosL/bRwQ9edUCEM3WmtnK1AFLbtqp5WWH7vteFtcE3mUpfJsTyRHmpQF
+         P/iYFE37PikQPahr9TePNu/2Pe8Ez7pRE5ZMwhwF+FOf119C+Ubzq8HZ/qUOi7MJYETM
+         YwXg==
+X-Gm-Message-State: AOAM533J8qLZbXxltTkNuBMS7mwtGLwJcQi/ZTEMMuEan97y141Ynvwl
+	KASpKewIUwdFZzraIH3iwyD7rg==
+X-Google-Smtp-Source: ABdhPJwX/hMlyND+sDjfvnIfr9INPjEs2eRTErtSr7jPkdhMGvoeBa1L7nP1KQsi56q+bXLZpK0N6Q==
+X-Received: by 2002:a1c:e006:: with SMTP id x6mr3757114wmg.107.1605289903319;
+        Fri, 13 Nov 2020 09:51:43 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from e.3.a.b.8.4.f.3.4.e.5.7.b.c.8.4.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (e.3.a.b.8.4.f.3.4.e.5.7.b.c.8.4.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:48cb:75e4:3f48:ba3e])
+        by smtp.gmail.com with ESMTPSA id p10sm12235486wre.2.2020.11.13.09.51.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Nov 2020 09:51:42 -0800 (PST)
+Message-ID: <6de317826cd5a4a944b4d08fd78688a6675b7dde.camel@linuxfoundation.org>
+Subject: Re: [yocto] Reproducible builds and RPM packages
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Jate Sujjavanich <jatedev@gmail.com>, yocto@lists.yoctoproject.org
+Date: Fri, 13 Nov 2020 17:51:40 +0000
+In-Reply-To: <27035.1605224608148078000@lists.yoctoproject.org>
+References: <78CCF97C-A2F1-4755-AFCC-726ED8400D3B@iki.fi>
+	 <27035.1605224608148078000@lists.yoctoproject.org>
+User-Agent: Evolution 3.36.4-0ubuntu1 
 MIME-Version: 1.0
-In-Reply-To: <26L1.1605273643978706653.a0RI@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-
-
-On 11/13/20 5:20 AM, Bel Hadj Salem Talel wrote:
-> Hi All,
-> I need to deliver an SDK for arch64 but without Kernel headers that one 
-> can build Kernel modules with them. (/usr/include/linux/* , ...)
-> I only need to deliver an SDK with toolchain and minimal headers for 
-> compilation such as "stdio.h" , ...
+On Thu, 2020-11-12 at 15:43 -0800, Jate Sujjavanich wrote:
+> I have sussed out several behaviors of the image build having to do
+> with reproducible builds. It seems like bitbake creates the rpm with
+> the correct modification times per the reproducible_builds bbclass.
+> When do_rootfs installs the packages, the timestamps seem correct.
 > 
-> How can I do it ?
+> The function reproducible_final_image_task sets all files in rootfs
+> to be REPRODUCIBLE_TIMESTAMP_ROOTFS which is the last commit time in
+> poky by default. This occurs after package installation and before
+> image creation.
+> 
+> When the image creation code runs, it seems like each utility has
+> different behavior on respecting SOURCE_DATE_EPOCH in the
+> environment. The ext3 utility allowed mtime's beyond the default
+> value of 0. The squashfs utility enforced the restriction of no
+> mtime's being beyond 0 seconds since the epoch. Once I set this to
+> the build timestamp (DATETIME) in the image recipe, the squashfs
+> image had correct times.
+> 
+> So to get this working, you'd need to disable
+> reproducible_final_image_task, and make sure the image creation
+> utility is not wiping out the modification times of files created by
+> rpm.
+> 
+> I'd argue that we'd want reproducible_final_image_task to not
+> override all the mtime's of files. We probably have to check the
+> other file system type to see their behavior with SOURCE_DATE_EPOCH
+> as well.
 
+Thanks for mentioning that, it does sound like that is doing something
+we no longer should be doing now source_date_epoch is working in most
+packages properly.
 
-perhaps bitbak meta-toolchain would suffice
+There are some files such as the rpm database and any other files not
+under control of package management which would need this handling to
+have the images be 100% reproducible so its not entirely
+straightforward though.
 
-> Thanks, Talel
-> 
-> 
-> 
-> 
+Cheers,
+
+Richard
+
