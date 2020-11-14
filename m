@@ -1,46 +1,43 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.5530.1605359097535130554
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+ by mx.groups.io with SMTP id smtpd.web08.10308.1605380833667995038
  for <yocto@lists.yoctoproject.org>;
- Sat, 14 Nov 2020 05:04:57 -0800
+ Sat, 14 Nov 2020 11:07:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=l7cuoBtr;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: vvavrychuk@gmail.com)
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 5F0FE38C0892
-	for <yocto@yoctoproject.org>; Sat, 14 Nov 2020 13:04:56 +0000 (UTC)
-Received: by mail-ej1-f48.google.com with SMTP id w13so17782399eju.13
-        for <yocto@yoctoproject.org>; Sat, 14 Nov 2020 05:04:56 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=rcz9Qn3W;
+ spf=pass (domain: gmail.com, ip: 209.85.208.43, mailfrom: vvavrychuk@gmail.com)
+Received: by mail-ed1-f43.google.com with SMTP id d18so1656806edt.7
+        for <yocto@lists.yoctoproject.org>; Sat, 14 Nov 2020 11:07:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:from:date:message-id:subject:to:cc;
         bh=ZjLXWm0zblA/mVHNPhaAfQ0UfVy7BV8LVFFj7biFtBM=;
-        b=l7cuoBtrckCgUkWYKCSnViN8dNCTHqJpCLPzq1F4rCdlBy1sOCvxSluBNxj8LYYH97
-         Xg4RiwxNf1SoNCEECFWfJgpt9h27FRbAbKrE7SPQnI47quTxvWbzlfRanAQ5B5XFWIRV
-         hHevG4FTDQID+bqX/yYXncYnBvx+5fGZZTr1siLPh1FHmlkZjSmwM28p7HiLBzDZeqrP
-         Ism7SQA+pr0nGA5J4YmSBQyb12S4ZCkua5EG145w53IQkvh+yafNKyahU2cHkQAptC+a
-         2zW755/ZH8pDPTfKQeXaN+LOl6qqCyCUMm458X3bBSCqKA+Tj3W+GwcCsOnzuO28vAIz
-         eFRw==
+        b=rcz9Qn3WCapuDK+ial81X7+Ybaw9BXtDGGZV/OoO+H33A6hCfLgHwVU4zElalgP7tA
+         JuRtS1vgB197XMP9A5ntPEuVexMN4LZVMfMxoDlHlAd2zznk7bIaMwCgB2dIlqqSYfjb
+         FI8PYLXjL5LkDCQpTWM6nM/I2ck1wb8oC5H+8XzrxLm1rF4UlpyvXQtpnU1cAr+iAUav
+         wC5hnVBmxC4zqJkSRlQZhmhAsmN1P8sDYGb9AWbKcpwe18F7wvQy5YVpUhWnF61itUnf
+         g65uG/WigzZWFDgZlyKUPJoHar6jvaFwYUAtOQXeKD1V3MbVXYnaqsuIWN/DouHCudwD
+         3itA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
         bh=ZjLXWm0zblA/mVHNPhaAfQ0UfVy7BV8LVFFj7biFtBM=;
-        b=k+FbdhxRcrGbUlJQBQMAqhsbdt9amhX1qUI5p9dVuGZFGnSWxzYsXIg6QUo8P1iz9O
-         k4/EsUZ2NkEktAGQ9T+nga5OiJ4VTKpH5g/CpT2m/2R/28bOV2A32JmIcx0TR1JXScsM
-         DrJq2UysrNlpXkurS7ic9aeUqqlTaxrN5mYYqyc7gqPssrB0qOicY2NghuoTsNttq/e7
-         NWm+ZZG1BGI+5r2Cj0fNwYttE1N+24y0mKoE1P0mDq381F8we76+ShWG41lGLIVMPEEo
-         2I+wi8jWCoDDBPu00YLzGO2ag896SQJU1m7VGeyfFnUTjLDtD61/hMUgLZb/lC+UJ/Sf
-         wkPg==
-X-Gm-Message-State: AOAM531YdGui8ocAFcEuct9wtEHyvC6fo9zSHmsudQmNW9v2OcJYw2B6
-	RP8lgI/+ANwR9Nej0ByORxQb15P9BVcROgm/YUXV8tuNCI8DQg==
-X-Google-Smtp-Source: ABdhPJyKIF6qHaqoJmJO/zC9pqcMKZOb70uG6RPWvX4Y75+bnTzJtZMvaUhRhpSHBV+itFrAvqvZf5o+o0Sr4bmUYVg=
-X-Received: by 2002:a17:906:ce24:: with SMTP id sd4mr6360168ejb.432.1605359094326;
- Sat, 14 Nov 2020 05:04:54 -0800 (PST)
+        b=gLWYA0CLp7eIhtYRLvsHYlACnZDRnoi4zx5EZW/axm3x3lQB+wC85v6qQeTpHxV7v0
+         P1YWzh7XmJSoXYlc+IVbppslGuHS8QxLS1sJa3uia0mVwkTzTTdhtUxZlAGKMsEcvfTP
+         G9JLC5mdqvQRGwOGIaGqs8SlB6Eu8xwQ6Fm/ClvZiNNzBBwxlKV6InXZXW276gatJ/x5
+         3zLpAd/sePaGhtfzVadZZmYFmfr0L5QaE7LapA2JPY4XWBYRGCxaDvpsr1xYMua/4HvS
+         fZDx6ydW1OpA9k/k5QIWoo3xH5nPLRgTJ/bDOluExFoWzRDdGIBQjPCqhyt/EnM6lJRs
+         lywg==
+X-Gm-Message-State: AOAM532kCJwXLCZxRqAlH3I6s0mFvO6qRYT1pQc/gfJ6gKRNXheWcKOl
+	ivFPrfBe4refHhwe5kHA+9J5YXn+egsBVsc6duKsDPAv0pZ0tw==
+X-Google-Smtp-Source: ABdhPJzP7OcKCsu+fvnK8rR2IBzViyZPzRDCjwqgn6T3nWZ2C76ObMYaQRqzqgVxrVNzMyWxf+a4eGesiaG8hNqTtTI=
+X-Received: by 2002:aa7:d801:: with SMTP id v1mr8498495edq.250.1605380831899;
+ Sat, 14 Nov 2020 11:07:11 -0800 (PST)
 MIME-Version: 1.0
 From: "Vasyl Vavrychuk" <vvavrychuk@gmail.com>
-Date: Sat, 14 Nov 2020 15:04:42 +0200
-Message-ID: <CAGj4m+4pxh=Voy6J1ru4AjoL8=vj40jMUop6cG7NG57CLjoD+Q@mail.gmail.com>
-Subject: Single page view of a particular manua
-To: yocto@yoctoproject.org
+Date: Sat, 14 Nov 2020 21:06:58 +0200
+Message-ID: <CAGj4m+4QE_Ujcoaq+pFgpku+sgkd8AARU5O7+W7X4MQCHHb6vw@mail.gmail.com>
+Subject: Single page view of a particular manual
+To: yocto@lists.yoctoproject.org
 Cc: Nicolas Dechesne <nicolas.dechesne@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 
