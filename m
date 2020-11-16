@@ -1,104 +1,357 @@
-Received: from wp115.webpack.hosteurope.de (wp115.webpack.hosteurope.de [80.237.132.122])
- by mx.groups.io with SMTP id smtpd.web11.42293.1605562815511685498
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.42605.1605565685992019422
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Nov 2020 13:40:16 -0800
+ Mon, 16 Nov 2020 14:28:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: domaigne.com, ip: 80.237.132.122, mailfrom: tech@domaigne.com)
-Received: from app06-neu.ox.hosteurope.de ([92.51.170.140]); authenticated
-	by wp115.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.0:ECDHE_RSA_AES_256_CBC_SHA1:256)
-	id 1kemEO-0006s6-Mp; Mon, 16 Nov 2020 22:40:12 +0100
-Date: Mon, 16 Nov 2020 22:40:12 +0100 (CET)
-From: "Loic Domaigne" <tech@domaigne.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Message-ID: <144200357.169828.1605562812623@ox.hosteurope.de>
-In-Reply-To: <CANNYZj8DyMD=LgwWK27VBjx_JnJEOQTbMPPDOCwrgtghzJpmoQ@mail.gmail.com>
-References: <14212713.119725.1605031437350@ox.hosteurope.de>
- <CANNYZj8DyMD=LgwWK27VBjx_JnJEOQTbMPPDOCwrgtghzJpmoQ@mail.gmail.com>
-Subject: Re: [yocto] Missing vardeps in meta/classes/roofs_rpm.bbclass?
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=A8zE6d5I;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: martin.jansa@gmail.com)
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 77A6138C052B
+	for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 22:28:04 +0000 (UTC)
+Received: by mail-ej1-f53.google.com with SMTP id o9so26686109ejg.1
+        for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 14:28:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1wXses8KhCiprURBTJjP/uvwYYeTJNZtsraP7mjUVmo=;
+        b=A8zE6d5I3JyoqIXZIPUW2EuMWfPrf8Uqk+3sOvwWz6ZC+3h93LlQFbVTKK+xfJ9AcK
+         o7TXgr+AXrSaW85PR9PJ5ofFbpE3rvquV2fvtbKlNRJHP2cDB7wTPDwdQNu7XVcFf0Wz
+         MYYf/GRrXO2D2eqePZfo1i+PPlSSWwsU5UzaaT+x6jzIgSTqnuuG4VNogmWlxTyO+/SQ
+         FHWXXr7dCStnznxKOSkTdTitH8KhMfJuZ3hqrExh3qahqy+gNkctN7GEXovikgwcivet
+         wOu1ulkhM8JgVzjngYinXX8RcxjHs4PP019/Ny+R2EUAODricmlfd5ramSLnqB1CztXl
+         /sIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1wXses8KhCiprURBTJjP/uvwYYeTJNZtsraP7mjUVmo=;
+        b=nOnb+e51WdwpdfRzVaIIZ9Rf5jyio0U98jqFfuWHYmMhHPrI5n/+51kaFTFHSa3mYn
+         922lcgcgcCehsm7JgSxn7mDksuQ4QPeJ/IBs3rY/lyP9K+b3MJbuJJxr5tGNQidS8Pl0
+         IVsGijfb0Yx3h5XAcp4/m0GQxTyQlaMhYypLr2/fY/WqVOWbu5nZlIAmregxX+W2jnSy
+         N46JKx8FUW5hhOxZEWYqeJtFDwis+TboVZJXxSJpts1bz43ZSnzcC/cFWqwB8ctMj8/j
+         tzW4ISDjz+V5uMsxkcA0vnD1mLImyy6loL39T6xuPKhSKM5wuhpcA4VeoLNGy5QDaJNP
+         pVVA==
+X-Gm-Message-State: AOAM5339gOqOBC+jR90KRbkHURmR1mwIU9jxYm3q/XQT6eHBNe+qT1yE
+	7tCSlGWpcNdsw9mnodE3/kg+AQpL4MYLjmXabFQ=
+X-Google-Smtp-Source: ABdhPJwUR7JdzXdEJPN4Vd8Nn8bB5JYBqhlpZShe0MfDDXKFzlZP3YDnR6Aj8cPmcMh7LDvDpZRXK/PQ5FswmWbz1JM=
+X-Received: by 2002:a17:906:94d4:: with SMTP id d20mr16283127ejy.392.1605565682960;
+ Mon, 16 Nov 2020 14:28:02 -0800 (PST)
 MIME-Version: 1.0
-X-Priority: 3
-Importance: Normal
-X-Mailer: Open-Xchange Mailer v7.10.4-Rev11
-X-Originating-IP: 178.26.128.131
-X-Originating-Client: open-xchange-appsuite
-X-Originating-Sender: tech@domaigne.com
-X-bounce-key: webpack.hosteurope.de;tech@domaigne.com;1605562815;22eea462;
-X-HE-SMSGID: 1kemEO-0006s6-Mp
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com>
+ <3274cdf6-ce13-15ca-9e9f-df1ffa751798@gmail.com> <CAAfyv37bu4gurw1nNF9Bi3X4vNsW7FwtEuU7S-2iHp1TQmfi=Q@mail.gmail.com>
+In-Reply-To: <CAAfyv37bu4gurw1nNF9Bi3X4vNsW7FwtEuU7S-2iHp1TQmfi=Q@mail.gmail.com>
+From: "Martin Jansa" <Martin.Jansa@gmail.com>
+Date: Mon, 16 Nov 2020 23:27:51 +0100
+Message-ID: <CA+chaQdQgTp=CxNrj1BOB60ra4PakJoHNNC7euZzt4pH-J_=hA@mail.gmail.com>
+Subject: Re: [yocto] KeyError: 'getpwuid(): uid not found: 1000' in do_package phase
+To: Marek Belisko <marek.belisko@gmail.com>
+Cc: Joshua Watt <jpewhacker@gmail.com>, yocto <yocto@yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000324e0705b440e467"
 
-Hi Alex,
+--000000000000324e0705b440e467
+Content-Type: text/plain; charset="UTF-8"
 
-just did it:
-https://lists.openembedded.org/g/openembedded-core/message/144671
+https://github.com/webOS-ports/meta-webos-ports/commit/9fd17a67cdbed92df13a14b002a189b4c6c2d442
 
---
-Cheers!
-Loic
+is an example where it triggers this error, but doesn't trigger the more
+common host-user-contaminated QA error (unless you happened to use UID 1001
+on host for the user running bitbake).
 
-> On 11/10/2020 7:18 PM Alexander Kanavin <alex.kanavin@gmail.com> wrote:
+Similarly when the files are "installed" with e.g. "cp -a" for which layers
+usually use "cp -R --no-dereference --preserve=mode,links -v".
+
+On Mon, Nov 16, 2020 at 10:10 PM Marek Belisko <marek.belisko@gmail.com>
+wrote:
+
+> On Mon, Nov 16, 2020 at 9:52 PM Joshua Watt <jpewhacker@gmail.com> wrote:
+> >
+> >
+> > On 11/16/20 2:38 PM, Marek Belisko wrote:
+> >
+> > Hi,
+> >
+> > I'm bumping my project based on zeus to dunfell. I've update all
+> > layers and in one of my recipes I'm seeing following issue (not see on
+> > zeus at all):
+> > WARNING: cv-my-test-1.0-r0 do_package: KeyError in ./package/srv/10%.png
+> > ERROR: cv-my-test-1.0-r0 do_package: Error executing a python function
+> > in exec_python_func() autogenerated:
+> >
+> > The stack trace of python calls that resulted in this exception/failure
+> was:
+> > File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+> >      0001:
+> >  *** 0002:sstate_report_unihash(d)
+> >      0003:
+> > File: '/home/ubuntu/projects/my-test-/poky/meta/classes/sstate.bbclass',
+> > lineno: 840, function: sstate_report_unihash
+> >      0836:    report_unihash = getattr(bb.parse.siggen,
+> 'report_unihash', None)
+> >      0837:
+> >      0838:    if report_unihash:
+> >      0839:        ss = sstate_state_fromvars(d)
+> >  *** 0840:        report_unihash(os.getcwd(), ss['task'], d)
+> >      0841:}
+> >      0842:
+> >      0843:#
+> >      0844:# Shell function to decompress and prepare a package for
+> installation
+> > File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/siggen.py',
+> > lineno: 555, function: report_unihash
+> >      0551:
+> >      0552:            if "." in self.method:
+> >      0553:                (module, method) = self.method.rsplit('.', 1)
+> >      0554:                locs['method'] =
+> > getattr(importlib.import_module(module), method)
+> >  *** 0555:                outhash = bb.utils.better_eval('method(path,
+> > sigfile, task, d)', locs)
+> >      0556:            else:
+> >      0557:                outhash = bb.utils.better_eval(self.method +
+> > '(path, sigfile, task, d)', locs)
+> >      0558:
+> >      0559:            try:
+> > File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/utils.py',
+> > lineno: 420, function: better_eval
+> >      0416:    if extraglobals:
+> >      0417:        ctx = copy.copy(ctx)
+> >      0418:        for g in extraglobals:
+> >      0419:            ctx[g] = extraglobals[g]
+> >  *** 0420:    return eval(source, ctx, locals)
+> >      0421:
+> >      0422:@contextmanager
+> >      0423:def fileslocked(files):
+> >      0424:    """Context manager for locking and unlocking file locks."""
+> > File: '<string>', lineno: 1, function: <module>
+> >   File "<string>", line 1, in <module>
+> >
+> > File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
+> > lineno: 595, function: OEOuthashBasic
+> >      0591:            process(root)
+> >      0592:            for f in files:
+> >      0593:                if f == 'fixmepath':
+> >      0594:                    continue
+> >  *** 0595:                process(os.path.join(root, f))
+> >      0596:    finally:
+> >      0597:        os.chdir(prev_dir)
+> >      0598:
+> >      0599:    return h.hexdigest()
+> > File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
+> > lineno: 551, function: process
+> >      0547:                    add_perm(stat.S_IXOTH, 'x')
+> >      0548:
+> >      0549:                if include_owners:
+> >      0550:                    try:
+> >  *** 0551:                        update_hash(" %10s" %
+> > pwd.getpwuid(s.st_uid).pw_name)
+> >      0552:                        update_hash(" %10s" %
+> > grp.getgrgid(s.st_gid).gr_name)
+> >      0553:                    except KeyError:
+> >      0554:                        bb.warn("KeyError in %s" % path)
+> >      0555:                        raise
+> > Exception: KeyError: 'getpwuid(): uid not found: 1000'
+> >
+> > ERROR: Logfile of failure stored in:
+> >
+> /home/ubuntu/projects/my-test-/build/tmp/work/aarch64-poky-linux/cv-my-test/1.0-r0/temp/log.do_package.27454
+> >
+> > Is this known issue or something related to my host setup?
+> >
+> > This means the recipe is having host contamination (where the UID of the
+> user doing the build is leaking into the file system).
+> Some ideas what can be the source of that. This recipe is basically
+> just copying files from archive to final rootfs without any special
+> processing or so.
+> >
+> > Thanks and BR,
+> >
+> > marek
+> >
+> >
+> >
+> >
+>
+> BR,
+>
+> marek
+>
 > 
->  
-> This seems like you need to make a patch (for master branch) and send it to
-> oe-core list? :)
-> 
-> Alex
-> 
-> On Tue, 10 Nov 2020 at 19:04, Loic Domaigne <tech@domaigne.com> wrote:
-> 
-> > Salut,
-> >
-> > We were playing with rpm package management lately.
-> >
-> > To configure the yum repos in the image, we're setting the following
-> > variables in conf/local.conf:
-> > FEED_PACKAGE_URIS
-> > FEED_PACKAGE_BASE_PATHS
-> >
-> > We made a typo, and forgot the S at the end of FEED_PACKAGE_BASE_PATHS
-> > Not surprising, the repo file generated didn't have the right url:
-> >
-> > $ cat oe-remote-repo-user1.repo
-> > [oe-remote-repo-user1]
-> > name=OE Remote Repo: user1
-> > baseurl=http://192.168.7.1/user1
-> > gpgcheck=0
-> >
-> >
-> > After fixing the typo and bitbaking the image again, still no avail.
-> > The repo file remains unchanged.
-> >
-> > In fact, changing FEED_PACKAGE_BASE_PATHS did not re-trigger a new image
-> > build. We found this behavior surprising.
-> >
-> > AFAICS:
-> > 1) As per oe/lib/meta/lib/oe/rootfs.py and lib/oe/package_manager.py, the
-> > URL is defined as the join paths of FEED_PACKAGE_URIS and
-> > FEED_PACKAGE_BASE_PATHS.
-> > 2) However, in meta/classes/rootfs_rpm.bbclass, do_rootfs only specifies a
-> > build dependency to FEED_PACKAGE_URIS:
-> > do_rootfs[vardeps] += "PACKAGE_FEED_URIS"
-> >
-> > Shouldn't the rootfs task depend on both PACKAGE_FEEDS_URIS and
-> > PACKAGE_FEED_BASE_PATHS, ie.
-> > do_rootfs[vardeps] += "PACKAGE_FEED_URIS PACKAGE_FEED_BASE_PATHS"
-> >
-> > After fixing this dependency, the repo file got updated as expected:
-> > cat oe-remote-repo-user1-rpm.repo
-> > [oe-remote-repo-user1-rpm]
-> > name=OE Remote Repo: user1 rpm
-> > baseurl=http://192.168.7.1/user1/rpm
-> > gpgcheck=0
-> >
-> > Does that make sense?
-> >
-> > I have conducted this analysis on Zeus. The problem isn't fixed with
-> > Dunfell AFAICS. Also, the other package classes (deb,ipk) are impacted as
-> > well.
-> >
-> > Hope this helps!
-> > Loic
-> >
-> > 
-> >
-> >
+>
+>
+
+--000000000000324e0705b440e467
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><a href=3D"https://github.com/webOS-ports/meta-webos-ports=
+/commit/9fd17a67cdbed92df13a14b002a189b4c6c2d442">https://github.com/webOS-=
+ports/meta-webos-ports/commit/9fd17a67cdbed92df13a14b002a189b4c6c2d442</a><=
+br><div><br></div><div>is an example where it triggers this error, but does=
+n&#39;t trigger the more common host-user-contaminated QA error (unless you=
+ happened=C2=A0to use UID 1001 on host for the user running bitbake).</div>=
+<div><br></div><div>Similarly when the files are &quot;installed&quot; with=
+ e.g. &quot;cp -a&quot; for which layers usually use &quot;cp -R --no-deref=
+erence --preserve=3Dmode,links -v&quot;.</div></div><br><div class=3D"gmail=
+_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Nov 16, 2020 at 10:10=
+ PM Marek Belisko &lt;<a href=3D"mailto:marek.belisko@gmail.com">marek.beli=
+sko@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex">On Mon, Nov 16, 2020 at 9:52 PM Joshua Watt &lt;<a href=3D"mai=
+lto:jpewhacker@gmail.com" target=3D"_blank">jpewhacker@gmail.com</a>&gt; wr=
+ote:<br>
+&gt;<br>
+&gt;<br>
+&gt; On 11/16/20 2:38 PM, Marek Belisko wrote:<br>
+&gt;<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; I&#39;m bumping my project based on zeus to dunfell. I&#39;ve update =
+all<br>
+&gt; layers and in one of my recipes I&#39;m seeing following issue (not s=
+ee on<br>
+&gt; zeus at all):<br>
+&gt; WARNING: cv-my-test-1.0-r0 do_package: KeyError in ./package/srv/10%.=
+png<br>
+&gt; ERROR: cv-my-test-1.0-r0 do_package: Error executing a python functio=
+n<br>
+&gt; in exec_python_func() autogenerated:<br>
+&gt;<br>
+&gt; The stack trace of python calls that resulted in this exception/failu=
+re was:<br>
+&gt; File: &#39;exec_python_func() autogenerated&#39;, lineno: 2, function=
+: &lt;module&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0001:<br>
+&gt;=C2=A0 *** 0002:sstate_report_unihash(d)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0003:<br>
+&gt; File: &#39;/home/ubuntu/projects/my-test-/poky/meta/classes/sstate.bb=
+class&#39;,<br>
+&gt; lineno: 840, function: sstate_report_unihash<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0836:=C2=A0 =C2=A0 report_unihash =3D getattr(bb.=
+parse.siggen, &#39;report_unihash&#39;, None)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0837:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0838:=C2=A0 =C2=A0 if report_unihash:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0839:=C2=A0 =C2=A0 =C2=A0 =C2=A0 ss =3D sstate_st=
+ate_fromvars(d)<br>
+&gt;=C2=A0 *** 0840:=C2=A0 =C2=A0 =C2=A0 =C2=A0 report_unihash(os.getcwd()=
+, ss[&#39;task&#39;], d)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0841:}<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0842:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0843:#<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0844:# Shell function to decompress and prepare a=
+ package for installation<br>
+&gt; File: &#39;/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/siggen.=
+py&#39;,<br>
+&gt; lineno: 555, function: report_unihash<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0551:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0552:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if=
+ &quot;.&quot; in self.method:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0553:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 (module, method) =3D self.method.rsplit(&#39;.&#39;, 1)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0554:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 locs[&#39;method&#39;] =3D<br>
+&gt; getattr(importlib.import_module(module), method)<br>
+&gt;=C2=A0 *** 0555:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 outhash =3D bb.utils.better_eval(&#39;method(path,<br>
+&gt; sigfile, task, d)&#39;, locs)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0556:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 el=
+se:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0557:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 outhash =3D bb.utils.better_eval(self.method +<br>
+&gt; &#39;(path, sigfile, task, d)&#39;, locs)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0558:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0559:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 tr=
+y:<br>
+&gt; File: &#39;/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/utils.p=
+y&#39;,<br>
+&gt; lineno: 420, function: better_eval<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0416:=C2=A0 =C2=A0 if extraglobals:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0417:=C2=A0 =C2=A0 =C2=A0 =C2=A0 ctx =3D copy.cop=
+y(ctx)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0418:=C2=A0 =C2=A0 =C2=A0 =C2=A0 for g in extragl=
+obals:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0419:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ct=
+x[g] =3D extraglobals[g]<br>
+&gt;=C2=A0 *** 0420:=C2=A0 =C2=A0 return eval(source, ctx, locals)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0421:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0422:@contextmanager<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0423:def fileslocked(files):<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0424:=C2=A0 =C2=A0 &quot;&quot;&quot;Context mana=
+ger for locking and unlocking file locks.&quot;&quot;&quot;<br>
+&gt; File: &#39;&lt;string&gt;&#39;, lineno: 1, function: &lt;module&gt;<b=
+r>
+&gt;=C2=A0 =C2=A0File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt=
+;<br>
+&gt;<br>
+&gt; File: &#39;/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.=
+py&#39;,<br>
+&gt; lineno: 595, function: OEOuthashBasic<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0591:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pr=
+ocess(root)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0592:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fo=
+r f in files:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0593:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 if f =3D=3D &#39;fixmepath&#39;:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0594:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 continue<br>
+&gt;=C2=A0 *** 0595:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 process(os.path.join(root, f))<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0596:=C2=A0 =C2=A0 finally:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0597:=C2=A0 =C2=A0 =C2=A0 =C2=A0 os.chdir(prev_di=
+r)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0598:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0599:=C2=A0 =C2=A0 return h.hexdigest()<br>
+&gt; File: &#39;/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.=
+py&#39;,<br>
+&gt; lineno: 551, function: process<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0547:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 add_perm(stat.S_IXOTH, &#39;x&#39;)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0548:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0549:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 if include_owners:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0550:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 try:<br>
+&gt;=C2=A0 *** 0551:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 update_hash(&quot; %10s&quot; %<br>
+&gt; pwd.getpwuid(s.st_uid).pw_name)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0552:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 update_hash(&quot; %10s&quot; %<=
+br>
+&gt; grp.getgrgid(s.st_gid).gr_name)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0553:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 except KeyError:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0554:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.warn(&quot;KeyError in %s&quo=
+t; % path)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 0555:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 raise<br>
+&gt; Exception: KeyError: &#39;getpwuid(): uid not found: 1000&#39;<br>
+&gt;<br>
+&gt; ERROR: Logfile of failure stored in:<br>
+&gt; /home/ubuntu/projects/my-test-/build/tmp/work/aarch64-poky-linux/cv-m=
+y-test/1.0-r0/temp/log.do_package.27454<br>
+&gt;<br>
+&gt; Is this known issue or something related to my host setup?<br>
+&gt;<br>
+&gt; This means the recipe is having host contamination (where the UID of =
+the user doing the build is leaking into the file system).<br>
+Some ideas what can be the source of that. This recipe is basically<br>
+just copying files from archive to final rootfs without any special<br>
+processing or so.<br>
+&gt;<br>
+&gt; Thanks and BR,<br>
+&gt;<br>
+&gt; marek<br>
+&gt;<br>
+&gt;<br>
+&gt; <br>
+&gt;<br>
+<br>
+BR,<br>
+<br>
+marek<br>
+<br>
+<br>
+<br>
+</blockquote></div>
+
+--000000000000324e0705b440e467--
