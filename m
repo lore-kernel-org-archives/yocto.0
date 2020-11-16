@@ -1,49 +1,180 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.41188.1605559148924767560
+ by mx.groups.io with SMTP id smtpd.web12.41300.1605559923589799211
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Nov 2020 12:39:09 -0800
+ Mon, 16 Nov 2020 12:52:03 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=cT1E3zhx;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id C716438C0529
-	for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 20:39:08 +0000 (UTC)
-Received: by mail-ed1-f53.google.com with SMTP id v22so20109005edt.9
-        for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 12:39:08 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=gQV8O++n;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: jpewhacker@gmail.com)
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id E0A2738C0529
+	for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 20:52:02 +0000 (UTC)
+Received: by mail-oi1-f174.google.com with SMTP id m17so20268942oie.4
+        for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 12:52:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=yc3Vfw991pDjIYgjGIYsy5PRz1IYol7lhYuog80SdDw=;
-        b=cT1E3zhxwdGpUtcQnnTvnNuVbKPnR12oiWutA3fZXwGFsWwf7wJAEl75jTIjpin3dk
-         hdhjcx0IZO4LIfeD58zXKCMYusdTzN965j4DvMd702Vt//RTWoeEkTWtfQP0WbZz1Zqq
-         An/dmmB13M+ROenbjD18IuZRnpeiB1TofwxY+cbVUEjE14LdsRuY42XePHyJ/BNt/cqC
-         r0v0nXhp5qJUIGdirGCGO3VBMaQkZQ0vXaumVpFLU/e4RJ4ke/zKacudlo3FM0KQeLiX
-         0/z5n40sJ6uPc0p5Fax+FHVavfjXdZGzV9g+5XmDjGRYDmnrUvKhCBEl/HA+VrMIK+Li
-         CykQ==
+        h=from:subject:to:references:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language;
+        bh=sdB+7M3BsYm5RuhMREPu6fjKj4x/9NOrAUlHcAI3w3M=;
+        b=gQV8O++nFLPWdoP21q7kKQDaj1M5rgJh+1yCTufI9zK2WwAt++y9OM1muk3p9iMJvH
+         3Hq6CzlH7PeJFo/S8pjeukeL52CxNFTBHux5rLcLnHJ2ZQNpcILUL3aAslDFyXtMeQ5s
+         Ce9XBSXkWn2zC1LEv/sX5mO/zkD4sfo2xfoIonC6x3R7a3Fo0D/LRgqbIL8CgrxKZkMo
+         aw5nRkz2cXoLeZyHbZ/C5f5N1XZecDON/qs7weLfE7qTdS7SHdoSfcA+Gu/pYeAKT4nZ
+         sqprdwUcRrKy7RgjRZit/3axOAE2C0tgVK68gdKs7cOvvs4ihqWBFT2P6PAwCsw0xfhN
+         wk9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=yc3Vfw991pDjIYgjGIYsy5PRz1IYol7lhYuog80SdDw=;
-        b=SPV5d1VaPruqYyTQeXq7JRDtNJpdqRBTve3MXa0aZFJU4cZVetBSFwhH7siDfe8l/F
-         amdKT3UubpHpi5WSps0T2LAuc7hQOQeTibX4rXWI7lOTKh3X+C6fnl9JXdK/c8ekFR99
-         PMVhVsDGAKYy+Igis4doEyxFiMCbNvhXoFy4ZaWJU4kqL8MUec2kq/iKOJ62KfN0NLEM
-         jgdI4W88gHqNoOIq9zApRFMidKzNIQVBCNk9dQZMNMA31IiYRbZ8WpvE+PuaEuPxBqp5
-         Q2BQ2vTwwqeosBkkrJsFh8zrWnbvTuUJ5GGTKUkLKWs4+vroP0lphZkXGc52x95ou7GW
-         Gldw==
-X-Gm-Message-State: AOAM530BgU+9Vbn4394hUJ+UZoKpCRFg1vMgswcfWfvhrDCTRzBYBeXc
-	4u1t2BS+gys0NNtrvPtzULXn4NLelFClViQNURDyVWR3hFo1+w==
-X-Google-Smtp-Source: ABdhPJyRpCPyC2S49iYwOmsf7cl2tULKNtMUQ2XU5WH31xKax6w9Sx8kEuKvv7T7qSz1+z+3Ux3o4HF0SJ7mFbXqvz4=
-X-Received: by 2002:a05:6402:88d:: with SMTP id e13mr18014693edy.366.1605559146979;
- Mon, 16 Nov 2020 12:39:06 -0800 (PST)
+        h=x-gm-message-state:from:subject:to:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language;
+        bh=sdB+7M3BsYm5RuhMREPu6fjKj4x/9NOrAUlHcAI3w3M=;
+        b=hrIsh2eZ2aOST1i+9ZyOX2cjZIuovOaTeb9W1CTiz4x+xh4M/i0g2aBUnu0xSyND6r
+         gBDxmgBYjBpP1EK08Tk8RH/w0GA4LprciaBXiEhGgvPMINcCJWVpI9v3nI4Acxmk6zOC
+         GPJHpbGgknlE665YOsGCowLP1onuFTLbKkMALqcpUccl1Rq64swI/vRuG47s2uMRT536
+         Y0sULb0uIneyihYR0cxlnNCmPHhG9q72ZHVNoNM+n9lSy5UlE5wZwKKJUJ5o9/ZA9GB/
+         1T/h0Olroa3e4ulLBu+CKiU0nZF2fwyL2FcSFrMu2r/9Z5e3tM1I6IW3amI38bojjcCi
+         JOvA==
+X-Gm-Message-State: AOAM530pzNZKA9i+Q+xAOptF1wbOeSIyG94ysZHvxXkh/bCkJYKu0naJ
+	/QHoiQfb9XCFGJ5zVnG0kqLrQEpo0NInAA==
+X-Google-Smtp-Source: ABdhPJy7X88cLI4z9f9HtAXpcgn1UzHd0uHpl2oNVNHQMHFksjQuIu7urCE6z20VvoWX6IgDj4yEYw==
+X-Received: by 2002:aca:7250:: with SMTP id p77mr386468oic.130.1605559921972;
+        Mon, 16 Nov 2020 12:52:01 -0800 (PST)
+Received: from ?IPv6:2605:a601:ac3d:c100:e3e8:d9:3a56:e27d? ([2605:a601:ac3d:c100:e3e8:d9:3a56:e27d])
+        by smtp.gmail.com with ESMTPSA id l1sm5017720otj.17.2020.11.16.12.52.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Nov 2020 12:52:01 -0800 (PST)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+Subject: Re: [yocto] KeyError: 'getpwuid(): uid not found: 1000' in do_package phase
+To: Marek Belisko <marek.belisko@gmail.com>, yocto <yocto@yoctoproject.org>
+References: <CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com>
+Message-ID: <3274cdf6-ce13-15ca-9e9f-df1ffa751798@gmail.com>
+Date: Mon, 16 Nov 2020 14:52:00 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Mon, 16 Nov 2020 21:38:54 +0100
-Message-ID: <CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com>
-Subject: KeyError: 'getpwuid(): uid not found: 1000' in do_package phase
-To: yocto <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com>
+Content-Type: multipart/alternative;
+ boundary="------------B5A0D80C01907EC89815D2E0"
+Content-Language: en-US
 
-Hi,
+--------------B5A0D80C01907EC89815D2E0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+
+On 11/16/20 2:38 PM, Marek Belisko wrote:
+> Hi,
+>
+> I'm bumping my project based on zeus to dunfell. I've update all
+> layers and in one of my recipes I'm seeing following issue (not see on
+> zeus at all):
+> WARNING: cv-my-test-1.0-r0 do_package: KeyError in ./package/srv/10%.png
+> ERROR: cv-my-test-1.0-r0 do_package: Error executing a python function
+> in exec_python_func() autogenerated:
+>
+> The stack trace of python calls that resulted in this exception/failure was:
+> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+>       0001:
+>   *** 0002:sstate_report_unihash(d)
+>       0003:
+> File: '/home/ubuntu/projects/my-test-/poky/meta/classes/sstate.bbclass',
+> lineno: 840, function: sstate_report_unihash
+>       0836:    report_unihash = getattr(bb.parse.siggen, 'report_unihash', None)
+>       0837:
+>       0838:    if report_unihash:
+>       0839:        ss = sstate_state_fromvars(d)
+>   *** 0840:        report_unihash(os.getcwd(), ss['task'], d)
+>       0841:}
+>       0842:
+>       0843:#
+>       0844:# Shell function to decompress and prepare a package for installation
+> File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/siggen.py',
+> lineno: 555, function: report_unihash
+>       0551:
+>       0552:            if "." in self.method:
+>       0553:                (module, method) = self.method.rsplit('.', 1)
+>       0554:                locs['method'] =
+> getattr(importlib.import_module(module), method)
+>   *** 0555:                outhash = bb.utils.better_eval('method(path,
+> sigfile, task, d)', locs)
+>       0556:            else:
+>       0557:                outhash = bb.utils.better_eval(self.method +
+> '(path, sigfile, task, d)', locs)
+>       0558:
+>       0559:            try:
+> File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/utils.py',
+> lineno: 420, function: better_eval
+>       0416:    if extraglobals:
+>       0417:        ctx = copy.copy(ctx)
+>       0418:        for g in extraglobals:
+>       0419:            ctx[g] = extraglobals[g]
+>   *** 0420:    return eval(source, ctx, locals)
+>       0421:
+>       0422:@contextmanager
+>       0423:def fileslocked(files):
+>       0424:    """Context manager for locking and unlocking file locks."""
+> File: '<string>', lineno: 1, function: <module>
+>    File "<string>", line 1, in <module>
+>
+> File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
+> lineno: 595, function: OEOuthashBasic
+>       0591:            process(root)
+>       0592:            for f in files:
+>       0593:                if f == 'fixmepath':
+>       0594:                    continue
+>   *** 0595:                process(os.path.join(root, f))
+>       0596:    finally:
+>       0597:        os.chdir(prev_dir)
+>       0598:
+>       0599:    return h.hexdigest()
+> File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
+> lineno: 551, function: process
+>       0547:                    add_perm(stat.S_IXOTH, 'x')
+>       0548:
+>       0549:                if include_owners:
+>       0550:                    try:
+>   *** 0551:                        update_hash(" %10s" %
+> pwd.getpwuid(s.st_uid).pw_name)
+>       0552:                        update_hash(" %10s" %
+> grp.getgrgid(s.st_gid).gr_name)
+>       0553:                    except KeyError:
+>       0554:                        bb.warn("KeyError in %s" % path)
+>       0555:                        raise
+> Exception: KeyError: 'getpwuid(): uid not found: 1000'
+>
+> ERROR: Logfile of failure stored in:
+> /home/ubuntu/projects/my-test-/build/tmp/work/aarch64-poky-linux/cv-my-test/1.0-r0/temp/log.do_package.27454
+>
+> Is this known issue or something related to my host setup?
+
+This means the recipe is having host contamination (where the UID of the 
+user doing the build is leaking into the file system).
+
+>
+> Thanks and BR,
+>
+> marek
+>
+>
+> 
+>
+
+--------------B5A0D80C01907EC89815D2E0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 11/16/20 2:38 PM, Marek Belisko
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com">
+      <pre class="moz-quote-pre" wrap="">Hi,
 
 I'm bumping my project based on zeus to dunfell. I've update all
 layers and in one of my recipes I'm seeing following issue (not see on
@@ -53,7 +184,7 @@ ERROR: cv-my-test-1.0-r0 do_package: Error executing a python function
 in exec_python_func() autogenerated:
 
 The stack trace of python calls that resulted in this exception/failure was:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+File: 'exec_python_func() autogenerated', lineno: 2, function: &lt;module&gt;
      0001:
  *** 0002:sstate_report_unihash(d)
      0003:
@@ -93,8 +224,8 @@ lineno: 420, function: better_eval
      0422:@contextmanager
      0423:def fileslocked(files):
      0424:    """Context manager for locking and unlocking file locks."""
-File: '<string>', lineno: 1, function: <module>
-  File "<string>", line 1, in <module>
+File: '&lt;string&gt;', lineno: 1, function: &lt;module&gt;
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
 
 File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
 lineno: 595, function: OEOuthashBasic
@@ -125,20 +256,28 @@ Exception: KeyError: 'getpwuid(): uid not found: 1000'
 ERROR: Logfile of failure stored in:
 /home/ubuntu/projects/my-test-/build/tmp/work/aarch64-poky-linux/cv-my-test/1.0-r0/temp/log.do_package.27454
 
-Is this known issue or something related to my host setup?
+Is this known issue or something related to my host setup?</pre>
+    </blockquote>
+    <p>This means the recipe is having host contamination (where the UID
+      of the user doing the build is leaking into the file system).<br>
+    </p>
+    <blockquote type="cite"
+cite="mid:CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com">
+      <pre class="moz-quote-pre" wrap="">
 
 Thanks and BR,
 
 marek
 
--- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+</pre>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------B5A0D80C01907EC89815D2E0--
