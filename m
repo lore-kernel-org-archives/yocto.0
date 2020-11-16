@@ -1,96 +1,104 @@
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web10.35075.1605536655003685337
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+ by mx.groups.io with SMTP id smtpd.web09.35343.1605536773944414735
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Nov 2020 06:24:17 -0800
+ Mon, 16 Nov 2020 06:26:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=YXRgBO2T;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1605536655; x=1763216655;
-  h=from:to:subject:date:mime-version;
-  bh=GxIJIBUHItKgqhsuJjX2cTXpHrBxm57pZd5ASUzu9EE=;
-  b=YXRgBO2TFGwYJ/YWMTqnnuWhVBMW9LS/XZAw+qPwQWffawdJqgHRfdHU
-   p/wIWjgU+//WTqCptj6BcJzee3tAQy+knbM/fhCYXaZDIkqQ7FJH+jGuH
-   pCAHrY53YZDqSnJzS7a7G4t5caZJRb0mx4qZJllLYg4Ew/aTUWJDBC+UO
-   c=;
-IronPort-PHdr: =?us-ascii?q?9a23=3A3GS6KB0pzvpawR5fsmDT+DRfVm0co7zxezQtwd8Z?=
- =?us-ascii?q?seMeLvad9pjvdHbS+e9qxAeQG9mCtLQd0LOd7fyocFdDyK7JiGoFfp1IWk1Nou?=
- =?us-ascii?q?QttCtkPvS4D1bmJuXhdS0wEZcKflZk+3amLRodQ56mNBXdrXKo8DEdBAj0OxZr?=
- =?us-ascii?q?KeTpAI7SiNm82/yv95HJbAhEmTiwbalvIBi4sAnducgbjIR/Iast1xXFpWdFdf?=
- =?us-ascii?q?5Lzm1yP1KTmBj85sa0/JF99ilbpuws+c1dX6jkZqo0VbNXAigoPGAz/83rqALM?=
- =?us-ascii?q?TRCT6XsGU2UZiQRHDg7Y5xznRJjxsy/6tu1g2CmGOMD9UL45VSi+46ptVRTljj?=
- =?us-ascii?q?oMOTwk/2HNksF+jLxVrg+9pxJxwIDUYZ2aO/Vlc6zHYd8aR3BMUtpNWyBfBI63?=
- =?us-ascii?q?cosBD/AGPeZdt4TxqVwArRy4BQm3Guzg1CRIimfr1qMnz+QuDx/G0xImH9kTrn?=
- =?us-ascii?q?nfsdH5O6kPX+ywwqXD0DLOb+hK2Tjj9ojHbBYhreuJXbJ3d8rR0lcgGB3ejliL?=
- =?us-ascii?q?soPqJS2a1v8NsmiA8+pvS+evi3U9pw5tpTivw94hh4/UjY0a1l7K7z92wJopJd?=
- =?us-ascii?q?KmUk57Z8apHpVeuiyGNoZ7QMIvT391tCskybALuZq2cScFxZg6yRDSa/OJf5WM?=
- =?us-ascii?q?7x/hVOucLjZ1iG97db+7hBu/8lWtxvDzWMSyzV1ErTJFn8HRunwRzRDe5MqKRu?=
- =?us-ascii?q?Fj8ku/2TuDzQHe5+BcLUwpiabXMZEsz7EqmpcXq0jOHS37lUPrh6GMbEok4PKn?=
- =?us-ascii?q?6+H/b7XjoZ+TKpF7hxnlMqQrhsy/GeM4MhUSX2SD+eSzyrnj/UrhTbpWlPI2ib?=
- =?us-ascii?q?XWsJXBJckfoqO0ABNZ3pg55xa5FTiqys8XkmMZI1JeeBOHlJTpNE/LIPDjF/uw?=
- =?us-ascii?q?n1OskDJzy/DHOL3uHInNI2DenLv9Z7pw5UxRxBAtwdxB559YELAMLfPrVk/0rt?=
- =?us-ascii?q?PYDxs5MwKuw+bgDdVwzpgeWX6RDa+HLqzSt0WE5ucoI+mKf48apijyK+M+6vH1?=
- =?us-ascii?q?l3A2h0QdfKmy3ZsLdn+4G+9mL1+Fbnrrh9cNCX0KsRYmTOz2lF2CViZeZna1X6?=
- =?us-ascii?q?0g+jE7D5mrDYPCRoC2nLyBxz23H51RZm9aFlCMFm/od5+DW/cOdi2dPtNhniYD?=
- =?us-ascii?q?Vbi7RI9ynS2p4UXrzLF7KcLQ+zYErtTy09Np4PXJkhM//iAyCN6SmSnZXmZ/gm?=
- =?us-ascii?q?QgQz4twLs5sEt21lCby696jvdEU9tJ6KUafB09MMuW6ut8EN3/QUaJRcuEVlug?=
- =?us-ascii?q?Cv7uQQwKD5h5l8QSblhwHZOniRbY0iexK7UcmqeaH4A597ma1H/0cZUug03a3b?=
- =?us-ascii?q?Us2gF1CvBEMner0/Zy?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2D7BADhirJf/0LhJQpigQmCcoF7gUCyA?=
- =?us-ascii?q?gsBAQEBAQEBAQEIAS8EAQGGayY4EwIQAQEGAQEBAQEGBAGGUguCNyKDTV4BDHQ?=
- =?us-ascii?q?mAQQbgx+BfrELgTSFV4RoCQGBLo8dPo8VBJsCnSwHA4Jtj3OLGSuheZNSoFMCB?=
- =?us-ascii?q?AIEBQIVgWuBenCDOk8XAg2caIErAgYKAQEDCY03gREBAQ?=
-X-IPAS-Result: =?us-ascii?q?A2D7BADhirJf/0LhJQpigQmCcoF7gUCyAgsBAQEBAQEBAQE?=
- =?us-ascii?q?IAS8EAQGGayY4EwIQAQEGAQEBAQEGBAGGUguCNyKDTV4BDHQmAQQbgx+BfrELg?=
- =?us-ascii?q?TSFV4RoCQGBLo8dPo8VBJsCnSwHA4Jtj3OLGSuheZNSoFMCBAIEBQIVgWuBenC?=
- =?us-ascii?q?DOk8XAg2caIErAgYKAQEDCY03gREBAQ?=
-X-IronPort-AV: E=Sophos;i="5.77,482,1596499200"; 
-   d="scan'208,217";a="326458503"
-X-IronPort-AV: E=Sophos;i="5.77,482,1596499200"; 
-   d="scan'208,217";a="172286522"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: #yocto bbappend question
-Thread-Topic: #yocto bbappend question
-Thread-Index: Ada8Ip3M51rFt1N3QHGPBpOAzwgAuA==
-Date: Mon, 16 Nov 2020 14:24:07 +0000
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.9.87]
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=JMXe2kEo;
+ spf=pass (domain: gmail.com, ip: 209.85.167.174, mailfrom: jpewhacker@gmail.com)
+Received: by mail-oi1-f174.google.com with SMTP id w188so18976234oib.1
+        for <yocto@lists.yoctoproject.org>; Mon, 16 Nov 2020 06:26:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:subject:to:references:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language;
+        bh=4jKhzcOSOZyPOCvhyFiiTJ9CCmHDAnrRyZjVS6lKGa8=;
+        b=JMXe2kEoLJDS406LWFV0t9Kel8eAln3Mcsua9M/SoNLRJ5iGv7eMNTQYek92aufKF4
+         RLgJhLZRpqm1B6jAQvCSAKTcovnmj/G1HrfOguUaZ0CQm2hJztfddtzr5cweiUWJLZHf
+         1XHTjakSv0qBDlvAHGIVRcnbaFyTBARhynAdhQGCltwLhrmTNH7gFG6NFziSdmexA3YF
+         EY87+drrUGTa5W1YAeZc724QPYfIB0JzsMNFAK79r2Okf7LLF6KSiQ2rTehGcHyKK1ku
+         qnvFs148pTppnKYtJsaZamDp3x2jRBU27p+DnBclvQsRS2tkrniXBhXGGNBbToXB66TQ
+         bh2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:to:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language;
+        bh=4jKhzcOSOZyPOCvhyFiiTJ9CCmHDAnrRyZjVS6lKGa8=;
+        b=lVPRrW/7DQdF7us/IxmjoKL0kTL36Z46xdFQpIhNRDl+3MSPD5z5aIJKdrnZkLNLbO
+         fkQywBdKu9hSlW1K3H/QR2YkAue9PrQ3ElcdjZPbGUqjPrRJSebnEMlPG/pQLue4YX2M
+         VjDDo3OwQ1q5UUo5YoPzdQl+oi/TInbpbqyuaJ7Nx39Tu04/8vgthRTMhfPCwz0IxCK3
+         guKNAfcdCAdF6OZjZnKD+2QmBwO2TQdZz2iHu2ovx4gHXcWqKi8cSbE1AFz0OFYH+Hit
+         3bq7MjrDj6AAD3VrGgRm6ktoC6C1IJRYnkAhwLRuUiXgOo6wU4gGr5rHEhHaIgKElKIN
+         x72g==
+X-Gm-Message-State: AOAM532zN9IuLMFwPIxnzckG2IGjrb/6ABWj5AyGPp93EaH4DQgMQ4WG
+	Y4lzLoLIMaXpMTu5vrHDzC3VeF6z0pbXTg==
+X-Google-Smtp-Source: ABdhPJy/9i7XbzQS1AjIEvvKJVNFImRrPSiZogjYP6BJil9hhea/gccbzUviK2a94X6CKuwyO76fGA==
+X-Received: by 2002:aca:4797:: with SMTP id u145mr10739060oia.0.1605536772944;
+        Mon, 16 Nov 2020 06:26:12 -0800 (PST)
+Return-Path: <jpewhacker@gmail.com>
+Received: from ?IPv6:2605:a601:ac3d:c100:e3e8:d9:3a56:e27d? ([2605:a601:ac3d:c100:e3e8:d9:3a56:e27d])
+        by smtp.gmail.com with ESMTPSA id x8sm4868054ooc.44.2020.11.16.06.26.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Nov 2020 06:26:12 -0800 (PST)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+Subject: Re: [yocto] #yocto bbappend question
+To: steven.monsees@baesystems.com,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <MADEUP.164803157796BF81.27635@lists.yoctoproject.org>
+Message-ID: <1ce957ae-725b-352e-b403-6aa13b2b690a@gmail.com>
+Date: Mon, 16 Nov 2020 08:26:11 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Return-Path: steven.monsees@baesystems.com
-Message-ID: <MADEUP.164803157796BF81.27635@lists.yoctoproject.org>
-Content-Language: en-US
+In-Reply-To: <MADEUP.164803157796BF81.27635@lists.yoctoproject.org>
 Content-Type: multipart/alternative;
-	boundary="_000_2f7e1585e8fc4fa28c932f498c4f70cfbaesystemscom_"
+ boundary="------------B7D4F18D4A5F9441E3582193"
+Content-Language: en-US
 
---_000_2f7e1585e8fc4fa28c932f498c4f70cfbaesystemscom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--------------B7D4F18D4A5F9441E3582193
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-If a recipe has a "do_install_append" can I create a bbappend file to do a =
-"do_install_append_append" in order to change 1 line in that routine, or do=
- I need to just
-replace the "do_install_append" routine  entirely with a copy and the modif=
-ied line?
-
---_000_2f7e1585e8fc4fa28c932f498c4f70cfbaesystemscom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 11/16/20 8:24 AM, Monsees, Steven C (US) via lists.yoctoproject.org 
+wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
+> If a recipe has a “do_install_append” can I create a bbappend file to 
+> do a “do_install_append_append” in order to change 1 line in that 
+> routine, or do I need to just
+>
+> replace the “do_install_append” routine entirely with a copy and the 
+> modified line?
+>
+AFAIK, there is no way to replace a do_install_append from another 
+.bbappend; you'll have to modify the original.
+
+>
+> 
+>
+
+--------------B7D4F18D4A5F9441E3582193
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 11/16/20 8:24 AM, Monsees, Steven C
+      (US) via lists.yoctoproject.org wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:MADEUP.164803157796BF81.27635@lists.yoctoproject.org">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
 /* Font Definitions */
 @font-face
 	{font-family:"Cambria Math";
@@ -125,23 +133,36 @@ span.EmailStyle17
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+<o:shapedefaults v:ext="edit" spidmax="1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">If a recipe has a &#8220;do_install_append&#8221; ca=
-n I create a bbappend file to do a &#8220;do_install_append_append&#8221; i=
-n order to change 1 line in that routine, or do I need to just<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">replace the &#8220;do_install_append&#8221; routine&=
-nbsp; entirely with a copy and the modified line?<o:p></o:p></p>
-</div>
-</body>
+      <div class="WordSection1">
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">If a recipe has a “do_install_append” can I
+          create a bbappend file to do a “do_install_append_append” in
+          order to change 1 line in that routine, or do I need to just<o:p></o:p></p>
+        <p class="MsoNormal">replace the “do_install_append” routine 
+          entirely with a copy and the modified line?</p>
+      </div>
+    </blockquote>
+    <p>AFAIK, there is no way to replace a do_install_append from
+      another .bbappend; you'll have to modify the original.<br>
+    </p>
+    <blockquote type="cite"
+      cite="mid:MADEUP.164803157796BF81.27635@lists.yoctoproject.org">
+      <div class="WordSection1">
+        <p class="MsoNormal"><o:p></o:p></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+
+
+</pre>
+    </blockquote>
+  </body>
 </html>
 
---_000_2f7e1585e8fc4fa28c932f498c4f70cfbaesystemscom_--
+--------------B7D4F18D4A5F9441E3582193--
