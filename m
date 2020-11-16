@@ -1,50 +1,50 @@
-Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
- by mx.groups.io with SMTP id smtpd.web10.35578.1605538800066191562
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
+ by mx.groups.io with SMTP id smtpd.web10.36926.1605543663384611179
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Nov 2020 07:00:00 -0800
+ Mon, 16 Nov 2020 08:21:03 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=gHtd2s6k;
- spf=pass (domain: burtonini.com, ip: 209.85.128.68, mailfrom: ross@burtonini.com)
-Received: by mail-wm1-f68.google.com with SMTP id 10so24003599wml.2
-        for <yocto@lists.yoctoproject.org>; Mon, 16 Nov 2020 06:59:59 -0800 (PST)
+ dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=mcMMgYTm;
+ spf=pass (domain: burtonini.com, ip: 209.85.221.67, mailfrom: ross@burtonini.com)
+Received: by mail-wr1-f67.google.com with SMTP id u12so12098957wrt.0
+        for <yocto@lists.yoctoproject.org>; Mon, 16 Nov 2020 08:21:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=burtonini-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=hWioXEjjEuONKqZ4yzo8s0xei5t/zLBdhJqAAw5LKwE=;
-        b=gHtd2s6kKLgcda2aqt1ySW5Hx2DQntPE3KK4B51Dz29GXl5gyiOOKrg3ppSYYdWneq
-         X7N1Mi9+G3dC81jTzwTCtrphySSwRD3tmXzSLzn6sgYqI7P0736N6h1++mtbB2G1dUy0
-         PoIsHlMPK3qnJdLNPHCKwLdAlZIJIqIgMm9gftDRiH8QjNmhUzf5TMaqmeta5EPlMnR4
-         nzwwkwU/4J03N5cS3EM8IIuDNH2X684JIk04+HguOLF9VOcBpx/2MCDQOyxq6j8CDQkY
-         rBkB/1f4KKR/y3t9VhotKtEJebSxKhEB+6Z8KhwIOHVDG+h7Mbb81vSvrkF+rSTt04Md
-         Oz6w==
+        bh=bDZjA6imk2tYzNKiimmt4OSCP7Ol89DBKbr8qdg2m7w=;
+        b=mcMMgYTmJcEqWLgr5zfcVTtj/XKynm9Eg+Fgwf3E0egnX8QOOZ61N2gtH8sssVEr8Z
+         cfD+TTVvRJ9f5YC4rDkDL+fnYAAlIk432xdPfpGlzrD5+pJRADrhyfFQMXTaJQQ7I6N5
+         8KO8oXdQyfvkQRWjSytyYp3z0fwxQ2DsOweJZT6zHiYT26Ph8yhn85xeNydEmpIKakTx
+         Xt/reThGLJ9OdUd8QYrF7FKIxDwS0zuOStJGc3ju9cmzhNq5ihHXBelyeT6lrLi3ch9U
+         IF/DCRjDYnOKAvkSWomRjyNzstjB5e3NbdOpefnkwBoyPwuQTaesvzUWx+bZKhlzu1WB
+         UfbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=hWioXEjjEuONKqZ4yzo8s0xei5t/zLBdhJqAAw5LKwE=;
-        b=ASSJ3nuj1pS0DcYtsay870ixYB+3YAeLiHdaPdNvSCV6TEA1Swzi8PWg21lsJCb9YJ
-         +fpAfsmaPomtxD8+ZYNnC5FU5xZfbHo70Z+RYW4Lxlvmm0pIf5vtB48xtQOJhaHp/iIm
-         iKtd72PUE5vNReQCG0nX6AyMlDwlQrmrMkJsgAQq5JvkN2x3oZUdvYlI3Tp5v15Eg7Yg
-         FiybR+esa4Cx1McVsRdINjl+bAbXjEE5f1hEn/AHqPGPbaoaRx1g/sSraqhzNlQQA9m1
-         AE4eSpMkMiylXzSilo3eaaIRt4MWFXwS/oTt4DJTzWPwHXQFYTw+j5oPxkVGr0RumKz0
-         V3hQ==
-X-Gm-Message-State: AOAM530Dby9+zQbSD7TrENr80v3yWTzLDDJtXWbkE3jeUXVY2xVVNN07
-	+N0MXpXdGpk180aoP+uUl+iRQbwBwrcqcuCsR/I=
-X-Google-Smtp-Source: ABdhPJwwA+fOBBdYmzqNVvSP702hP4fsBkbly1tFVAKetuqh5WqQbxdfwOmOQpRYdsdbBYSE1r7zrw==
-X-Received: by 2002:a7b:c309:: with SMTP id k9mr15536660wmj.14.1605538798237;
-        Mon, 16 Nov 2020 06:59:58 -0800 (PST)
+        bh=bDZjA6imk2tYzNKiimmt4OSCP7Ol89DBKbr8qdg2m7w=;
+        b=W2rQKyYpbIunqI3MIz7Zmgkb6cr59B/0f1BXxPV+4w+V7Asrw7rxqIBj9dqzNK1LfA
+         isk2fuKmjpK6KjYOs57pxTNvZO9yBPjacyUD5IrWkVh1S/D1cOwiVRMi1+q6NHUsh79a
+         4JR0Gg6P3sS0KLp8BVxbi/p0Qeb3XVbvcKuRecZ2St2RaVxpTmkQO4j/HQ7aS2MBk87H
+         V+nCX7x9IIiPpsefJ/z1JHc4ZJTXkouljsEDeyvtM2cGUoe/Gh7mFUlscHMfDy8p2Aej
+         fgr/zHEUOWUu2kVJSmmGmthbbpKcOYUzs2rudaFjKNZP5BndvLa+6+PJO7RlV1NUb3VW
+         7sZg==
+X-Gm-Message-State: AOAM531tBlhwSOLlSLitwZU7Y7d5GmHVGcEtBnLWuuD4qsk9T8abU9FC
+	pH5X64Tl+hcbLsZ7hDUg6g+68LjkPS7/f9N6IvQ=
+X-Google-Smtp-Source: ABdhPJz0qKCLMTAfl0SaTBld5O8TT4hG8a8PZI9QN3AXRp/Xc2PDH2d+8c4iZpYJPMrNAg6kYYTgRg==
+X-Received: by 2002:adf:e611:: with SMTP id p17mr21090405wrm.180.1605543661398;
+        Mon, 16 Nov 2020 08:21:01 -0800 (PST)
 Return-Path: <ross@burtonini.com>
 Received: from localhost.localdomain (35.106.2.81.in-addr.arpa. [81.2.106.35])
-        by smtp.gmail.com with ESMTPSA id x63sm21190150wmb.48.2020.11.16.06.59.57
+        by smtp.gmail.com with ESMTPSA id m22sm24682800wrb.97.2020.11.16.08.21.00
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 16 Nov 2020 06:59:57 -0800 (PST)
+        Mon, 16 Nov 2020 08:21:00 -0800 (PST)
 From: "Ross Burton" <ross@burtonini.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder2 PATCH] config.json: drop redundant meta-kernel mentions
-Date: Mon, 16 Nov 2020 14:59:55 +0000
-Message-Id: <20201116145955.7393-1-ross@burtonini.com>
+Subject: [yocto-autobuilder2 PATCH] config.py: remove redundant meta-kernel references
+Date: Mon, 16 Nov 2020 16:20:56 +0000
+Message-Id: <20201116162056.8790-1-ross@burtonini.com>
 X-Mailer: git-send-email 2.24.3 (Apple Git-128)
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -53,24 +53,38 @@ From: Ross Burton <ross.burton@arm.com>
 
 Signed-off-by: Ross Burton <ross.burton@arm.com>
 ---
- config.json | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ config.py | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/config.json b/config.json
-index 11a2664..c57260a 100644
---- a/config.json
-+++ b/config.json
-@@ -275,9 +275,8 @@
-             "TEMPLATE" : "ltp-qemu"
-         },
-         "meta-arm" : {
--            "NEEDREPOS" : ["poky", "meta-arm", "meta-kernel"],
-+            "NEEDREPOS" : ["poky", "meta-arm"],
-             "ADDLAYER" : [
--                "${BUILDDIR}/../meta-kernel",
-                 "${BUILDDIR}/../meta-arm/meta-arm-toolchain",
-                 "${BUILDDIR}/../meta-arm/meta-arm",
-                 "${BUILDDIR}/../meta-arm/meta-arm-bsp"
+diff --git a/config.py b/config.py
+index 035a2f8..271e6b0 100644
+--- a/config.py
++++ b/config.py
+@@ -6,14 +6,14 @@ buildertorepos = {
+     "a-quick": ["poky", "meta-intel", "oecore", "bitbake",
+                 "meta-mingw", "meta-gplv2"],
+     "a-full": ["poky", "meta-intel", "oecore", "bitbake",
+-                "meta-mingw", "meta-gplv2", "meta-arm", "meta-kernel"],
++                "meta-mingw", "meta-gplv2", "meta-arm"],
+     "non-gpl3": ["poky", "meta-gplv2"],
+     "meta-mingw": ["poky", "meta-mingw"],
+     "qa-extras": ["poky", "meta-mingw"],
+     "meta-oe": ["poky", "meta-openembedded"],
+     "meta-virt": ["poky", "meta-openembedded", "meta-virtualization"],
+     "meta-intel": ["poky", "meta-intel"],
+-    "meta-arm": ["poky", "meta-arm", "meta-kernel"],
++    "meta-arm": ["poky", "meta-arm"],
+     "qemuarm-oecore": ["oecore", "bitbake"],
+     "checkuri": ["poky"],
+     "check-layer": ["poky", "meta-mingw", "meta-gplv2"],
+@@ -43,7 +43,6 @@ repos = {
+     "meta-gplv2": ["git://git.yoctoproject.org/meta-gplv2", "master"],
+     "meta-openembedded": ["git://git.openembedded.org/meta-openembedded", "master"],
+     "meta-virtualization": ["git://git.yoctoproject.org/meta-virtualization", "master"],
+-    "meta-kernel": ["https://gitlab.com/openembedded/community/meta-kernel.git", "master"],
+     "yocto-docs": ["git://git.yoctoproject.org/yocto-docs", "master"]
+ }
+ 
 -- 
 2.24.3 (Apple Git-128)
 
