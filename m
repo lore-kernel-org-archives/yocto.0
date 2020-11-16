@@ -1,67 +1,59 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.41300.1605559923589799211
+ by mx.groups.io with SMTP id smtpd.web08.41519.1605561015378233718
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Nov 2020 12:52:03 -0800
+ Mon, 16 Nov 2020 13:10:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=gQV8O++n;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: jpewhacker@gmail.com)
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id E0A2738C0529
-	for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 20:52:02 +0000 (UTC)
-Received: by mail-oi1-f174.google.com with SMTP id m17so20268942oie.4
-        for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 12:52:02 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=usMbmoQ9;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 65B5338C0529
+	for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 21:10:14 +0000 (UTC)
+Received: by mail-ej1-f44.google.com with SMTP id o9so26436490ejg.1
+        for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 13:10:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:subject:to:references:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language;
-        bh=sdB+7M3BsYm5RuhMREPu6fjKj4x/9NOrAUlHcAI3w3M=;
-        b=gQV8O++nFLPWdoP21q7kKQDaj1M5rgJh+1yCTufI9zK2WwAt++y9OM1muk3p9iMJvH
-         3Hq6CzlH7PeJFo/S8pjeukeL52CxNFTBHux5rLcLnHJ2ZQNpcILUL3aAslDFyXtMeQ5s
-         Ce9XBSXkWn2zC1LEv/sX5mO/zkD4sfo2xfoIonC6x3R7a3Fo0D/LRgqbIL8CgrxKZkMo
-         aw5nRkz2cXoLeZyHbZ/C5f5N1XZecDON/qs7weLfE7qTdS7SHdoSfcA+Gu/pYeAKT4nZ
-         sqprdwUcRrKy7RgjRZit/3axOAE2C0tgVK68gdKs7cOvvs4ihqWBFT2P6PAwCsw0xfhN
-         wk9A==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UfG7+8mfGq3B2LGMr4ecrBpQl8mtlANu/qGxDuTJZFo=;
+        b=usMbmoQ9v+0+BZrGTXGD48NVa2uDWibVv0GPAvHm+RVje8C++RtvWWd8rynuWMGkP1
+         8tBlFbGAXeJv64cl4sXSe3ol2qndwN5KKM/jMBoFX5ZrJkKxevlgz4qZjnXIYqJ6qkR5
+         IxJzgIbyuK6Ti+B05ZHeKUwgEJJc6YsH3BW5WWjmj1sFBZUOVe06qCS/ZAyN56o85lUS
+         bmSLedzTb0KjV1bAQWLvtsoJZINRtAuqi8aiVYynajxdYBFQZ5ZVMbfA9MY2rANMzA0s
+         2AxTAdiGnSbZ2XhUbGDayndE+yqx/rwylkuFcC/u68210BltBlqsKNok0xj/O4Cv3Ddp
+         QA9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:subject:to:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language;
-        bh=sdB+7M3BsYm5RuhMREPu6fjKj4x/9NOrAUlHcAI3w3M=;
-        b=hrIsh2eZ2aOST1i+9ZyOX2cjZIuovOaTeb9W1CTiz4x+xh4M/i0g2aBUnu0xSyND6r
-         gBDxmgBYjBpP1EK08Tk8RH/w0GA4LprciaBXiEhGgvPMINcCJWVpI9v3nI4Acxmk6zOC
-         GPJHpbGgknlE665YOsGCowLP1onuFTLbKkMALqcpUccl1Rq64swI/vRuG47s2uMRT536
-         Y0sULb0uIneyihYR0cxlnNCmPHhG9q72ZHVNoNM+n9lSy5UlE5wZwKKJUJ5o9/ZA9GB/
-         1T/h0Olroa3e4ulLBu+CKiU0nZF2fwyL2FcSFrMu2r/9Z5e3tM1I6IW3amI38bojjcCi
-         JOvA==
-X-Gm-Message-State: AOAM530pzNZKA9i+Q+xAOptF1wbOeSIyG94ysZHvxXkh/bCkJYKu0naJ
-	/QHoiQfb9XCFGJ5zVnG0kqLrQEpo0NInAA==
-X-Google-Smtp-Source: ABdhPJy7X88cLI4z9f9HtAXpcgn1UzHd0uHpl2oNVNHQMHFksjQuIu7urCE6z20VvoWX6IgDj4yEYw==
-X-Received: by 2002:aca:7250:: with SMTP id p77mr386468oic.130.1605559921972;
-        Mon, 16 Nov 2020 12:52:01 -0800 (PST)
-Received: from ?IPv6:2605:a601:ac3d:c100:e3e8:d9:3a56:e27d? ([2605:a601:ac3d:c100:e3e8:d9:3a56:e27d])
-        by smtp.gmail.com with ESMTPSA id l1sm5017720otj.17.2020.11.16.12.52.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Nov 2020 12:52:01 -0800 (PST)
-From: "Joshua Watt" <JPEWhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-Subject: Re: [yocto] KeyError: 'getpwuid(): uid not found: 1000' in do_package phase
-To: Marek Belisko <marek.belisko@gmail.com>, yocto <yocto@yoctoproject.org>
-References: <CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com>
-Message-ID: <3274cdf6-ce13-15ca-9e9f-df1ffa751798@gmail.com>
-Date: Mon, 16 Nov 2020 14:52:00 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UfG7+8mfGq3B2LGMr4ecrBpQl8mtlANu/qGxDuTJZFo=;
+        b=Owm5YppD+5/izgmN3csZtVtnu1SwWwRYEKNwhxAfwZJmvhCAI12GiDm4QiMXRAMO8+
+         0TtULnkfhMfzl7LRIGaGTh17cPDhulQBqeor+woejjlt9nCTfa/B0AEqG5kNLq1pD4fZ
+         0F76K0YcICcWAcvXCEdTmxPrCEE2ITl3snHwTpnGc+lnhSiqpf19XX1kdcrg++hfEKsd
+         inOe+ijnDQtOOdPUEB/j2ia++g76IqE679YIzkJZSTHMtQwb67xL8JBCFaUpzplJjrga
+         t8qim/fVAjlHhivr3bsDSC8Hh0UY7KeTIx77SR1ZqXlg38ZlJqsH34j+n/zwzp9Zbilg
+         dENw==
+X-Gm-Message-State: AOAM5324/WRkAKGx1OPVJ3IHxZBwEVKMWzXfMrSg6yp028bQTBpjzIa5
+	jq82n3J6dJM9hyZynw5BNQfpd7gWtwmImGSpkvWqJ7zmI6A=
+X-Google-Smtp-Source: ABdhPJxw9Etsia0y3Q2uZECKTN7A5/IF34dbQoBQ8OQ2ersnuvARxBLHDmEzJbexHd/DBjcQULcxss1t/lAlR5Gfbuk=
+X-Received: by 2002:a17:906:a444:: with SMTP id cb4mr17015458ejb.416.1605561012819;
+ Mon, 16 Nov 2020 13:10:12 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com>
-Content-Type: multipart/alternative;
- boundary="------------B5A0D80C01907EC89815D2E0"
-Content-Language: en-US
+References: <CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com>
+ <3274cdf6-ce13-15ca-9e9f-df1ffa751798@gmail.com>
+In-Reply-To: <3274cdf6-ce13-15ca-9e9f-df1ffa751798@gmail.com>
+From: "Marek Belisko" <marek.belisko@gmail.com>
+Date: Mon, 16 Nov 2020 22:10:00 +0100
+Message-ID: <CAAfyv37bu4gurw1nNF9Bi3X4vNsW7FwtEuU7S-2iHp1TQmfi=Q@mail.gmail.com>
+Subject: Re: [yocto] KeyError: 'getpwuid(): uid not found: 1000' in do_package phase
+To: Joshua Watt <jpewhacker@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
---------------B5A0D80C01907EC89815D2E0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-
-On 11/16/20 2:38 PM, Marek Belisko wrote:
+On Mon, Nov 16, 2020 at 9:52 PM Joshua Watt <jpewhacker@gmail.com> wrote:
+>
+>
+> On 11/16/20 2:38 PM, Marek Belisko wrote:
+>
 > Hi,
 >
 > I'm bumping my project based on zeus to dunfell. I've update all
@@ -73,82 +65,83 @@ On 11/16/20 2:38 PM, Marek Belisko wrote:
 >
 > The stack trace of python calls that resulted in this exception/failure was:
 > File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->       0001:
->   *** 0002:sstate_report_unihash(d)
->       0003:
+>      0001:
+>  *** 0002:sstate_report_unihash(d)
+>      0003:
 > File: '/home/ubuntu/projects/my-test-/poky/meta/classes/sstate.bbclass',
 > lineno: 840, function: sstate_report_unihash
->       0836:    report_unihash = getattr(bb.parse.siggen, 'report_unihash', None)
->       0837:
->       0838:    if report_unihash:
->       0839:        ss = sstate_state_fromvars(d)
->   *** 0840:        report_unihash(os.getcwd(), ss['task'], d)
->       0841:}
->       0842:
->       0843:#
->       0844:# Shell function to decompress and prepare a package for installation
+>      0836:    report_unihash = getattr(bb.parse.siggen, 'report_unihash', None)
+>      0837:
+>      0838:    if report_unihash:
+>      0839:        ss = sstate_state_fromvars(d)
+>  *** 0840:        report_unihash(os.getcwd(), ss['task'], d)
+>      0841:}
+>      0842:
+>      0843:#
+>      0844:# Shell function to decompress and prepare a package for installation
 > File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/siggen.py',
 > lineno: 555, function: report_unihash
->       0551:
->       0552:            if "." in self.method:
->       0553:                (module, method) = self.method.rsplit('.', 1)
->       0554:                locs['method'] =
+>      0551:
+>      0552:            if "." in self.method:
+>      0553:                (module, method) = self.method.rsplit('.', 1)
+>      0554:                locs['method'] =
 > getattr(importlib.import_module(module), method)
->   *** 0555:                outhash = bb.utils.better_eval('method(path,
+>  *** 0555:                outhash = bb.utils.better_eval('method(path,
 > sigfile, task, d)', locs)
->       0556:            else:
->       0557:                outhash = bb.utils.better_eval(self.method +
+>      0556:            else:
+>      0557:                outhash = bb.utils.better_eval(self.method +
 > '(path, sigfile, task, d)', locs)
->       0558:
->       0559:            try:
+>      0558:
+>      0559:            try:
 > File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/utils.py',
 > lineno: 420, function: better_eval
->       0416:    if extraglobals:
->       0417:        ctx = copy.copy(ctx)
->       0418:        for g in extraglobals:
->       0419:            ctx[g] = extraglobals[g]
->   *** 0420:    return eval(source, ctx, locals)
->       0421:
->       0422:@contextmanager
->       0423:def fileslocked(files):
->       0424:    """Context manager for locking and unlocking file locks."""
+>      0416:    if extraglobals:
+>      0417:        ctx = copy.copy(ctx)
+>      0418:        for g in extraglobals:
+>      0419:            ctx[g] = extraglobals[g]
+>  *** 0420:    return eval(source, ctx, locals)
+>      0421:
+>      0422:@contextmanager
+>      0423:def fileslocked(files):
+>      0424:    """Context manager for locking and unlocking file locks."""
 > File: '<string>', lineno: 1, function: <module>
->    File "<string>", line 1, in <module>
+>   File "<string>", line 1, in <module>
 >
 > File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
 > lineno: 595, function: OEOuthashBasic
->       0591:            process(root)
->       0592:            for f in files:
->       0593:                if f == 'fixmepath':
->       0594:                    continue
->   *** 0595:                process(os.path.join(root, f))
->       0596:    finally:
->       0597:        os.chdir(prev_dir)
->       0598:
->       0599:    return h.hexdigest()
+>      0591:            process(root)
+>      0592:            for f in files:
+>      0593:                if f == 'fixmepath':
+>      0594:                    continue
+>  *** 0595:                process(os.path.join(root, f))
+>      0596:    finally:
+>      0597:        os.chdir(prev_dir)
+>      0598:
+>      0599:    return h.hexdigest()
 > File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
 > lineno: 551, function: process
->       0547:                    add_perm(stat.S_IXOTH, 'x')
->       0548:
->       0549:                if include_owners:
->       0550:                    try:
->   *** 0551:                        update_hash(" %10s" %
+>      0547:                    add_perm(stat.S_IXOTH, 'x')
+>      0548:
+>      0549:                if include_owners:
+>      0550:                    try:
+>  *** 0551:                        update_hash(" %10s" %
 > pwd.getpwuid(s.st_uid).pw_name)
->       0552:                        update_hash(" %10s" %
+>      0552:                        update_hash(" %10s" %
 > grp.getgrgid(s.st_gid).gr_name)
->       0553:                    except KeyError:
->       0554:                        bb.warn("KeyError in %s" % path)
->       0555:                        raise
+>      0553:                    except KeyError:
+>      0554:                        bb.warn("KeyError in %s" % path)
+>      0555:                        raise
 > Exception: KeyError: 'getpwuid(): uid not found: 1000'
 >
 > ERROR: Logfile of failure stored in:
 > /home/ubuntu/projects/my-test-/build/tmp/work/aarch64-poky-linux/cv-my-test/1.0-r0/temp/log.do_package.27454
 >
 > Is this known issue or something related to my host setup?
-
-This means the recipe is having host contamination (where the UID of the 
-user doing the build is leaking into the file system).
-
+>
+> This means the recipe is having host contamination (where the UID of the user doing the build is leaking into the file system).
+Some ideas what can be the source of that. This recipe is basically
+just copying files from archive to final rootfs without any special
+processing or so.
 >
 > Thanks and BR,
 >
@@ -158,126 +151,6 @@ user doing the build is leaking into the file system).
 > 
 >
 
---------------B5A0D80C01907EC89815D2E0
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 11/16/20 2:38 PM, Marek Belisko
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com">
-      <pre class="moz-quote-pre" wrap="">Hi,
-
-I'm bumping my project based on zeus to dunfell. I've update all
-layers and in one of my recipes I'm seeing following issue (not see on
-zeus at all):
-WARNING: cv-my-test-1.0-r0 do_package: KeyError in ./package/srv/10%.png
-ERROR: cv-my-test-1.0-r0 do_package: Error executing a python function
-in exec_python_func() autogenerated:
-
-The stack trace of python calls that resulted in this exception/failure was:
-File: 'exec_python_func() autogenerated', lineno: 2, function: &lt;module&gt;
-     0001:
- *** 0002:sstate_report_unihash(d)
-     0003:
-File: '/home/ubuntu/projects/my-test-/poky/meta/classes/sstate.bbclass',
-lineno: 840, function: sstate_report_unihash
-     0836:    report_unihash = getattr(bb.parse.siggen, 'report_unihash', None)
-     0837:
-     0838:    if report_unihash:
-     0839:        ss = sstate_state_fromvars(d)
- *** 0840:        report_unihash(os.getcwd(), ss['task'], d)
-     0841:}
-     0842:
-     0843:#
-     0844:# Shell function to decompress and prepare a package for installation
-File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/siggen.py',
-lineno: 555, function: report_unihash
-     0551:
-     0552:            if "." in self.method:
-     0553:                (module, method) = self.method.rsplit('.', 1)
-     0554:                locs['method'] =
-getattr(importlib.import_module(module), method)
- *** 0555:                outhash = bb.utils.better_eval('method(path,
-sigfile, task, d)', locs)
-     0556:            else:
-     0557:                outhash = bb.utils.better_eval(self.method +
-'(path, sigfile, task, d)', locs)
-     0558:
-     0559:            try:
-File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/utils.py',
-lineno: 420, function: better_eval
-     0416:    if extraglobals:
-     0417:        ctx = copy.copy(ctx)
-     0418:        for g in extraglobals:
-     0419:            ctx[g] = extraglobals[g]
- *** 0420:    return eval(source, ctx, locals)
-     0421:
-     0422:@contextmanager
-     0423:def fileslocked(files):
-     0424:    """Context manager for locking and unlocking file locks."""
-File: '&lt;string&gt;', lineno: 1, function: &lt;module&gt;
-  File "&lt;string&gt;", line 1, in &lt;module&gt;
-
-File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
-lineno: 595, function: OEOuthashBasic
-     0591:            process(root)
-     0592:            for f in files:
-     0593:                if f == 'fixmepath':
-     0594:                    continue
- *** 0595:                process(os.path.join(root, f))
-     0596:    finally:
-     0597:        os.chdir(prev_dir)
-     0598:
-     0599:    return h.hexdigest()
-File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
-lineno: 551, function: process
-     0547:                    add_perm(stat.S_IXOTH, 'x')
-     0548:
-     0549:                if include_owners:
-     0550:                    try:
- *** 0551:                        update_hash(" %10s" %
-pwd.getpwuid(s.st_uid).pw_name)
-     0552:                        update_hash(" %10s" %
-grp.getgrgid(s.st_gid).gr_name)
-     0553:                    except KeyError:
-     0554:                        bb.warn("KeyError in %s" % path)
-     0555:                        raise
-Exception: KeyError: 'getpwuid(): uid not found: 1000'
-
-ERROR: Logfile of failure stored in:
-/home/ubuntu/projects/my-test-/build/tmp/work/aarch64-poky-linux/cv-my-test/1.0-r0/temp/log.do_package.27454
-
-Is this known issue or something related to my host setup?</pre>
-    </blockquote>
-    <p>This means the recipe is having host contamination (where the UID
-      of the user doing the build is leaking into the file system).<br>
-    </p>
-    <blockquote type="cite"
-cite="mid:CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com">
-      <pre class="moz-quote-pre" wrap="">
-
-Thanks and BR,
+BR,
 
 marek
-
-</pre>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
-
-
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------B5A0D80C01907EC89815D2E0--
