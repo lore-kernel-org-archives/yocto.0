@@ -1,156 +1,104 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.41519.1605561015378233718
+Received: from wp115.webpack.hosteurope.de (wp115.webpack.hosteurope.de [80.237.132.122])
+ by mx.groups.io with SMTP id smtpd.web11.42293.1605562815511685498
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Nov 2020 13:10:15 -0800
+ Mon, 16 Nov 2020 13:40:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=usMbmoQ9;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 65B5338C0529
-	for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 21:10:14 +0000 (UTC)
-Received: by mail-ej1-f44.google.com with SMTP id o9so26436490ejg.1
-        for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 13:10:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UfG7+8mfGq3B2LGMr4ecrBpQl8mtlANu/qGxDuTJZFo=;
-        b=usMbmoQ9v+0+BZrGTXGD48NVa2uDWibVv0GPAvHm+RVje8C++RtvWWd8rynuWMGkP1
-         8tBlFbGAXeJv64cl4sXSe3ol2qndwN5KKM/jMBoFX5ZrJkKxevlgz4qZjnXIYqJ6qkR5
-         IxJzgIbyuK6Ti+B05ZHeKUwgEJJc6YsH3BW5WWjmj1sFBZUOVe06qCS/ZAyN56o85lUS
-         bmSLedzTb0KjV1bAQWLvtsoJZINRtAuqi8aiVYynajxdYBFQZ5ZVMbfA9MY2rANMzA0s
-         2AxTAdiGnSbZ2XhUbGDayndE+yqx/rwylkuFcC/u68210BltBlqsKNok0xj/O4Cv3Ddp
-         QA9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UfG7+8mfGq3B2LGMr4ecrBpQl8mtlANu/qGxDuTJZFo=;
-        b=Owm5YppD+5/izgmN3csZtVtnu1SwWwRYEKNwhxAfwZJmvhCAI12GiDm4QiMXRAMO8+
-         0TtULnkfhMfzl7LRIGaGTh17cPDhulQBqeor+woejjlt9nCTfa/B0AEqG5kNLq1pD4fZ
-         0F76K0YcICcWAcvXCEdTmxPrCEE2ITl3snHwTpnGc+lnhSiqpf19XX1kdcrg++hfEKsd
-         inOe+ijnDQtOOdPUEB/j2ia++g76IqE679YIzkJZSTHMtQwb67xL8JBCFaUpzplJjrga
-         t8qim/fVAjlHhivr3bsDSC8Hh0UY7KeTIx77SR1ZqXlg38ZlJqsH34j+n/zwzp9Zbilg
-         dENw==
-X-Gm-Message-State: AOAM5324/WRkAKGx1OPVJ3IHxZBwEVKMWzXfMrSg6yp028bQTBpjzIa5
-	jq82n3J6dJM9hyZynw5BNQfpd7gWtwmImGSpkvWqJ7zmI6A=
-X-Google-Smtp-Source: ABdhPJxw9Etsia0y3Q2uZECKTN7A5/IF34dbQoBQ8OQ2ersnuvARxBLHDmEzJbexHd/DBjcQULcxss1t/lAlR5Gfbuk=
-X-Received: by 2002:a17:906:a444:: with SMTP id cb4mr17015458ejb.416.1605561012819;
- Mon, 16 Nov 2020 13:10:12 -0800 (PST)
+ dkim=missing; spf=none, err=permanent DNS error (domain: domaigne.com, ip: 80.237.132.122, mailfrom: tech@domaigne.com)
+Received: from app06-neu.ox.hosteurope.de ([92.51.170.140]); authenticated
+	by wp115.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.0:ECDHE_RSA_AES_256_CBC_SHA1:256)
+	id 1kemEO-0006s6-Mp; Mon, 16 Nov 2020 22:40:12 +0100
+Date: Mon, 16 Nov 2020 22:40:12 +0100 (CET)
+From: "Loic Domaigne" <tech@domaigne.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Message-ID: <144200357.169828.1605562812623@ox.hosteurope.de>
+In-Reply-To: <CANNYZj8DyMD=LgwWK27VBjx_JnJEOQTbMPPDOCwrgtghzJpmoQ@mail.gmail.com>
+References: <14212713.119725.1605031437350@ox.hosteurope.de>
+ <CANNYZj8DyMD=LgwWK27VBjx_JnJEOQTbMPPDOCwrgtghzJpmoQ@mail.gmail.com>
+Subject: Re: [yocto] Missing vardeps in meta/classes/roofs_rpm.bbclass?
 MIME-Version: 1.0
-References: <CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com>
- <3274cdf6-ce13-15ca-9e9f-df1ffa751798@gmail.com>
-In-Reply-To: <3274cdf6-ce13-15ca-9e9f-df1ffa751798@gmail.com>
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Mon, 16 Nov 2020 22:10:00 +0100
-Message-ID: <CAAfyv37bu4gurw1nNF9Bi3X4vNsW7FwtEuU7S-2iHp1TQmfi=Q@mail.gmail.com>
-Subject: Re: [yocto] KeyError: 'getpwuid(): uid not found: 1000' in do_package phase
-To: Joshua Watt <jpewhacker@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+X-Priority: 3
+Importance: Normal
+X-Mailer: Open-Xchange Mailer v7.10.4-Rev11
+X-Originating-IP: 178.26.128.131
+X-Originating-Client: open-xchange-appsuite
+X-Originating-Sender: tech@domaigne.com
+X-bounce-key: webpack.hosteurope.de;tech@domaigne.com;1605562815;22eea462;
+X-HE-SMSGID: 1kemEO-0006s6-Mp
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Nov 16, 2020 at 9:52 PM Joshua Watt <jpewhacker@gmail.com> wrote:
->
->
-> On 11/16/20 2:38 PM, Marek Belisko wrote:
->
-> Hi,
->
-> I'm bumping my project based on zeus to dunfell. I've update all
-> layers and in one of my recipes I'm seeing following issue (not see on
-> zeus at all):
-> WARNING: cv-my-test-1.0-r0 do_package: KeyError in ./package/srv/10%.png
-> ERROR: cv-my-test-1.0-r0 do_package: Error executing a python function
-> in exec_python_func() autogenerated:
->
-> The stack trace of python calls that resulted in this exception/failure was:
-> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->      0001:
->  *** 0002:sstate_report_unihash(d)
->      0003:
-> File: '/home/ubuntu/projects/my-test-/poky/meta/classes/sstate.bbclass',
-> lineno: 840, function: sstate_report_unihash
->      0836:    report_unihash = getattr(bb.parse.siggen, 'report_unihash', None)
->      0837:
->      0838:    if report_unihash:
->      0839:        ss = sstate_state_fromvars(d)
->  *** 0840:        report_unihash(os.getcwd(), ss['task'], d)
->      0841:}
->      0842:
->      0843:#
->      0844:# Shell function to decompress and prepare a package for installation
-> File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/siggen.py',
-> lineno: 555, function: report_unihash
->      0551:
->      0552:            if "." in self.method:
->      0553:                (module, method) = self.method.rsplit('.', 1)
->      0554:                locs['method'] =
-> getattr(importlib.import_module(module), method)
->  *** 0555:                outhash = bb.utils.better_eval('method(path,
-> sigfile, task, d)', locs)
->      0556:            else:
->      0557:                outhash = bb.utils.better_eval(self.method +
-> '(path, sigfile, task, d)', locs)
->      0558:
->      0559:            try:
-> File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/utils.py',
-> lineno: 420, function: better_eval
->      0416:    if extraglobals:
->      0417:        ctx = copy.copy(ctx)
->      0418:        for g in extraglobals:
->      0419:            ctx[g] = extraglobals[g]
->  *** 0420:    return eval(source, ctx, locals)
->      0421:
->      0422:@contextmanager
->      0423:def fileslocked(files):
->      0424:    """Context manager for locking and unlocking file locks."""
-> File: '<string>', lineno: 1, function: <module>
->   File "<string>", line 1, in <module>
->
-> File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
-> lineno: 595, function: OEOuthashBasic
->      0591:            process(root)
->      0592:            for f in files:
->      0593:                if f == 'fixmepath':
->      0594:                    continue
->  *** 0595:                process(os.path.join(root, f))
->      0596:    finally:
->      0597:        os.chdir(prev_dir)
->      0598:
->      0599:    return h.hexdigest()
-> File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
-> lineno: 551, function: process
->      0547:                    add_perm(stat.S_IXOTH, 'x')
->      0548:
->      0549:                if include_owners:
->      0550:                    try:
->  *** 0551:                        update_hash(" %10s" %
-> pwd.getpwuid(s.st_uid).pw_name)
->      0552:                        update_hash(" %10s" %
-> grp.getgrgid(s.st_gid).gr_name)
->      0553:                    except KeyError:
->      0554:                        bb.warn("KeyError in %s" % path)
->      0555:                        raise
-> Exception: KeyError: 'getpwuid(): uid not found: 1000'
->
-> ERROR: Logfile of failure stored in:
-> /home/ubuntu/projects/my-test-/build/tmp/work/aarch64-poky-linux/cv-my-test/1.0-r0/temp/log.do_package.27454
->
-> Is this known issue or something related to my host setup?
->
-> This means the recipe is having host contamination (where the UID of the user doing the build is leaking into the file system).
-Some ideas what can be the source of that. This recipe is basically
-just copying files from archive to final rootfs without any special
-processing or so.
->
-> Thanks and BR,
->
-> marek
->
->
+Hi Alex,
+
+just did it:
+https://lists.openembedded.org/g/openembedded-core/message/144671
+
+--
+Cheers!
+Loic
+
+> On 11/10/2020 7:18 PM Alexander Kanavin <alex.kanavin@gmail.com> wrote:
 > 
->
-
-BR,
-
-marek
+>  
+> This seems like you need to make a patch (for master branch) and send it to
+> oe-core list? :)
+> 
+> Alex
+> 
+> On Tue, 10 Nov 2020 at 19:04, Loic Domaigne <tech@domaigne.com> wrote:
+> 
+> > Salut,
+> >
+> > We were playing with rpm package management lately.
+> >
+> > To configure the yum repos in the image, we're setting the following
+> > variables in conf/local.conf:
+> > FEED_PACKAGE_URIS
+> > FEED_PACKAGE_BASE_PATHS
+> >
+> > We made a typo, and forgot the S at the end of FEED_PACKAGE_BASE_PATHS
+> > Not surprising, the repo file generated didn't have the right url:
+> >
+> > $ cat oe-remote-repo-user1.repo
+> > [oe-remote-repo-user1]
+> > name=OE Remote Repo: user1
+> > baseurl=http://192.168.7.1/user1
+> > gpgcheck=0
+> >
+> >
+> > After fixing the typo and bitbaking the image again, still no avail.
+> > The repo file remains unchanged.
+> >
+> > In fact, changing FEED_PACKAGE_BASE_PATHS did not re-trigger a new image
+> > build. We found this behavior surprising.
+> >
+> > AFAICS:
+> > 1) As per oe/lib/meta/lib/oe/rootfs.py and lib/oe/package_manager.py, the
+> > URL is defined as the join paths of FEED_PACKAGE_URIS and
+> > FEED_PACKAGE_BASE_PATHS.
+> > 2) However, in meta/classes/rootfs_rpm.bbclass, do_rootfs only specifies a
+> > build dependency to FEED_PACKAGE_URIS:
+> > do_rootfs[vardeps] += "PACKAGE_FEED_URIS"
+> >
+> > Shouldn't the rootfs task depend on both PACKAGE_FEEDS_URIS and
+> > PACKAGE_FEED_BASE_PATHS, ie.
+> > do_rootfs[vardeps] += "PACKAGE_FEED_URIS PACKAGE_FEED_BASE_PATHS"
+> >
+> > After fixing this dependency, the repo file got updated as expected:
+> > cat oe-remote-repo-user1-rpm.repo
+> > [oe-remote-repo-user1-rpm]
+> > name=OE Remote Repo: user1 rpm
+> > baseurl=http://192.168.7.1/user1/rpm
+> > gpgcheck=0
+> >
+> > Does that make sense?
+> >
+> > I have conducted this analysis on Zeus. The problem isn't fixed with
+> > Dunfell AFAICS. Also, the other package classes (deb,ipk) are impacted as
+> > well.
+> >
+> > Hope this helps!
+> > Loic
+> >
+> > 
+> >
+> >
