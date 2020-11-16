@@ -1,87 +1,144 @@
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
- by mx.groups.io with SMTP id smtpd.web12.37172.1605544045997511176
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web09.41188.1605559148924767560
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Nov 2020 08:27:26 -0800
+ Mon, 16 Nov 2020 12:39:09 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=b/jUBdH6;
- spf=pass (domain: linaro.org, ip: 209.85.219.178, mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-yb1-f178.google.com with SMTP id v92so16185413ybi.4
-        for <yocto@lists.yoctoproject.org>; Mon, 16 Nov 2020 08:27:25 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=cT1E3zhx;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id C716438C0529
+	for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 20:39:08 +0000 (UTC)
+Received: by mail-ed1-f53.google.com with SMTP id v22so20109005edt.9
+        for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 12:39:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6em7TvMHn68E0MkSXvQohjRd9t43ShjHychxNUqgNt8=;
-        b=b/jUBdH6fqCry/IglcV2NGhZC2wPRXzxurq8m6ojarXaT4IOoxrt9mX+xG2jJkHBHI
-         +mMrQBezykk751A1sDxp8kJqKhG/liakYBmHatKrcNPIBVP6p4Ud1TI7J5OHYPQB9lL1
-         nBmy0iug9ZRlP/gENDnZ/ZApFatfR4puJbXd3605J0fyeKhJhf3s67SOHynr+hRNNXd1
-         8YtBeF/v+N40uPevEtfK5GrJ/u9NytTX2Bz0oPiAKK0Xg1x5Ua+yIz/GvdNV1+x7//LG
-         hVRbbTUYbda576I1I6aHspMYknwOJcWBNA7dxUNLxMmzy6uFuYbMNL+K1kNYQk+yCae2
-         pXng==
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=yc3Vfw991pDjIYgjGIYsy5PRz1IYol7lhYuog80SdDw=;
+        b=cT1E3zhxwdGpUtcQnnTvnNuVbKPnR12oiWutA3fZXwGFsWwf7wJAEl75jTIjpin3dk
+         hdhjcx0IZO4LIfeD58zXKCMYusdTzN965j4DvMd702Vt//RTWoeEkTWtfQP0WbZz1Zqq
+         An/dmmB13M+ROenbjD18IuZRnpeiB1TofwxY+cbVUEjE14LdsRuY42XePHyJ/BNt/cqC
+         r0v0nXhp5qJUIGdirGCGO3VBMaQkZQ0vXaumVpFLU/e4RJ4ke/zKacudlo3FM0KQeLiX
+         0/z5n40sJ6uPc0p5Fax+FHVavfjXdZGzV9g+5XmDjGRYDmnrUvKhCBEl/HA+VrMIK+Li
+         CykQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6em7TvMHn68E0MkSXvQohjRd9t43ShjHychxNUqgNt8=;
-        b=IBxxvYMqpmdseWLKl3h4FE3xud6cfOHaGAD5arZKhXe6bRzdqDwd8WHszGvzJZU6WT
-         XP2TpR5KnRHww61YWf5K8ZbLYYg2wi4Gapx81f1mtFAe/MLsq+/+uhGUrpCKSgw+SHnU
-         nI+s016PG08YSBEpK7r1uBXVV40NTvlc+FAAGXyM6NHNMksFyLicy+BW/T1yRxKdhnEv
-         tvNGgbagLtCtSbb1yuymj3VPH/69LP7819N5LywoRLPA4pj9jAL3iW6z0UEblxOlPoDt
-         AMZBZVD1HYYh2lbqnEY1xv0DL8Ay7wTpDMSNNdmOaOf3N7YwkWCu6m0ckknzKmJALNWO
-         3ZJg==
-X-Gm-Message-State: AOAM533+ohRYSAqBhzojCw+SOoBnpPUKsEm9iKfP+R+pJB7CfmPcpv3W
-	UZoqt9/x+E50diRcyofvxwu4FdzFUqMUNLBMswRrCg==
-X-Google-Smtp-Source: ABdhPJwsDTV+wqXd3+Z6QCgYKpW8s650pni6x53kj4wIWXaeI32q0O8rqhf0XU1BVUe7nuPBLg31Ulf9ANeZt2hHZAE=
-X-Received: by 2002:a25:6e8b:: with SMTP id j133mr20751689ybc.273.1605544044994;
- Mon, 16 Nov 2020 08:27:24 -0800 (PST)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=yc3Vfw991pDjIYgjGIYsy5PRz1IYol7lhYuog80SdDw=;
+        b=SPV5d1VaPruqYyTQeXq7JRDtNJpdqRBTve3MXa0aZFJU4cZVetBSFwhH7siDfe8l/F
+         amdKT3UubpHpi5WSps0T2LAuc7hQOQeTibX4rXWI7lOTKh3X+C6fnl9JXdK/c8ekFR99
+         PMVhVsDGAKYy+Igis4doEyxFiMCbNvhXoFy4ZaWJU4kqL8MUec2kq/iKOJ62KfN0NLEM
+         jgdI4W88gHqNoOIq9zApRFMidKzNIQVBCNk9dQZMNMA31IiYRbZ8WpvE+PuaEuPxBqp5
+         Q2BQ2vTwwqeosBkkrJsFh8zrWnbvTuUJ5GGTKUkLKWs4+vroP0lphZkXGc52x95ou7GW
+         Gldw==
+X-Gm-Message-State: AOAM530BgU+9Vbn4394hUJ+UZoKpCRFg1vMgswcfWfvhrDCTRzBYBeXc
+	4u1t2BS+gys0NNtrvPtzULXn4NLelFClViQNURDyVWR3hFo1+w==
+X-Google-Smtp-Source: ABdhPJyRpCPyC2S49iYwOmsf7cl2tULKNtMUQ2XU5WH31xKax6w9Sx8kEuKvv7T7qSz1+z+3Ux3o4HF0SJ7mFbXqvz4=
+X-Received: by 2002:a05:6402:88d:: with SMTP id e13mr18014693edy.366.1605559146979;
+ Mon, 16 Nov 2020 12:39:06 -0800 (PST)
 MIME-Version: 1.0
-References: <CAGj4m+4QE_Ujcoaq+pFgpku+sgkd8AARU5O7+W7X4MQCHHb6vw@mail.gmail.com>
- <CAP71Wjwpt9QtWVEieJ-U0jimk2ZOTvrmdt9bSHLri8KwDcmBjA@mail.gmail.com> <CAGj4m+75ODJhe9rdKZDT4fc2g-Z5mea7VLmQZM5oiMEsHGaz6Q@mail.gmail.com>
-In-Reply-To: <CAGj4m+75ODJhe9rdKZDT4fc2g-Z5mea7VLmQZM5oiMEsHGaz6Q@mail.gmail.com>
-From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
-Date: Mon, 16 Nov 2020 17:27:14 +0100
-Message-ID: <CAP71WjwYYYaNF3UgArcTwRsxqGKnqbuZwmwZCmGuji+-etaxjg@mail.gmail.com>
-Subject: Re: Single page view of a particular manual
-To: Vasyl Vavrychuk <vvavrychuk@gmail.com>
-Cc: yocto@lists.yoctoproject.org
+From: "Marek Belisko" <marek.belisko@gmail.com>
+Date: Mon, 16 Nov 2020 21:38:54 +0100
+Message-ID: <CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com>
+Subject: KeyError: 'getpwuid(): uid not found: 1000' in do_package phase
+To: yocto <yocto@yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-hi Vasyl,
+Hi,
 
-On Mon, Nov 16, 2020 at 12:55 PM Vasyl Vavrychuk <vvavrychuk@gmail.com> wrote:
->
-> Hi, Nicolas,
->
-> Thank you for your reply.
->
-> On Sun, Nov 15, 2020 at 8:06 PM Nicolas Dechesne
-> <nicolas.dechesne@linaro.org> wrote:
-> >
-> > Can you please describe what you are doing in the webpage? It should
-> > You need to select "All in one Mega manual" in the
-> > dropdown menu on the top left corner of the page. When you do that, it
-> > should bring you to this URL:
-> > https://docs.yoctoproject.org/singleindex.html
-> >
-> > Which contains the whole YP docs in a 'single' html page.
->
-> But as far as I remember, previously I could have a single page view
-> of a particular manual, for example "Development Tasks Manual", etc.
-> It is much more useful than complete single page view of all documents
-> at the same time (but this one is useful too in some cases).
+I'm bumping my project based on zeus to dunfell. I've update all
+layers and in one of my recipes I'm seeing following issue (not see on
+zeus at all):
+WARNING: cv-my-test-1.0-r0 do_package: KeyError in ./package/srv/10%.png
+ERROR: cv-my-test-1.0-r0 do_package: Error executing a python function
+in exec_python_func() autogenerated:
 
-Ah, you're right. It was possible with the previous docs, but not
-anymore. With the Sphinx based docs the whole Yocto Project docs is
-just "one set", not a collection of 'manuals'. So currently the single
-html page includes the entire documentation set.
+The stack trace of python calls that resulted in this exception/failure was:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+     0001:
+ *** 0002:sstate_report_unihash(d)
+     0003:
+File: '/home/ubuntu/projects/my-test-/poky/meta/classes/sstate.bbclass',
+lineno: 840, function: sstate_report_unihash
+     0836:    report_unihash = getattr(bb.parse.siggen, 'report_unihash', None)
+     0837:
+     0838:    if report_unihash:
+     0839:        ss = sstate_state_fromvars(d)
+ *** 0840:        report_unihash(os.getcwd(), ss['task'], d)
+     0841:}
+     0842:
+     0843:#
+     0844:# Shell function to decompress and prepare a package for installation
+File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/siggen.py',
+lineno: 555, function: report_unihash
+     0551:
+     0552:            if "." in self.method:
+     0553:                (module, method) = self.method.rsplit('.', 1)
+     0554:                locs['method'] =
+getattr(importlib.import_module(module), method)
+ *** 0555:                outhash = bb.utils.better_eval('method(path,
+sigfile, task, d)', locs)
+     0556:            else:
+     0557:                outhash = bb.utils.better_eval(self.method +
+'(path, sigfile, task, d)', locs)
+     0558:
+     0559:            try:
+File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/utils.py',
+lineno: 420, function: better_eval
+     0416:    if extraglobals:
+     0417:        ctx = copy.copy(ctx)
+     0418:        for g in extraglobals:
+     0419:            ctx[g] = extraglobals[g]
+ *** 0420:    return eval(source, ctx, locals)
+     0421:
+     0422:@contextmanager
+     0423:def fileslocked(files):
+     0424:    """Context manager for locking and unlocking file locks."""
+File: '<string>', lineno: 1, function: <module>
+  File "<string>", line 1, in <module>
 
-There is no 'easy' way to change that though. I am definitely
-interested to gather more feedback about that. We made a conscious
-choice to get this way, It's different, and if it's causing more pain,
-we should know and discuss..
+File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
+lineno: 595, function: OEOuthashBasic
+     0591:            process(root)
+     0592:            for f in files:
+     0593:                if f == 'fixmepath':
+     0594:                    continue
+ *** 0595:                process(os.path.join(root, f))
+     0596:    finally:
+     0597:        os.chdir(prev_dir)
+     0598:
+     0599:    return h.hexdigest()
+File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
+lineno: 551, function: process
+     0547:                    add_perm(stat.S_IXOTH, 'x')
+     0548:
+     0549:                if include_owners:
+     0550:                    try:
+ *** 0551:                        update_hash(" %10s" %
+pwd.getpwuid(s.st_uid).pw_name)
+     0552:                        update_hash(" %10s" %
+grp.getgrgid(s.st_gid).gr_name)
+     0553:                    except KeyError:
+     0554:                        bb.warn("KeyError in %s" % path)
+     0555:                        raise
+Exception: KeyError: 'getpwuid(): uid not found: 1000'
 
-I heard complaints before that we had too 'many' manuals, and it was
-hard to know which one to open, which is the opposite of what you are
-asking ;)
+ERROR: Logfile of failure stored in:
+/home/ubuntu/projects/my-test-/build/tmp/work/aarch64-poky-linux/cv-my-test/1.0-r0/temp/log.do_package.27454
 
-let's see if we can gather more feedback.
+Is this known issue or something related to my host setup?
+
+Thanks and BR,
+
+marek
+
+-- 
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
