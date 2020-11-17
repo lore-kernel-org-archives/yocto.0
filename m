@@ -1,61 +1,220 @@
-Subject: How to generate the SDK for RPI3 #dunfell #raspberrypi #sdk
-To: yocto@lists.yoctoproject.org
-From: prashantsingh@dialtronics.com
-X-Originating-Location: Hyderabad, Telangana, IN (183.83.218.146)
-X-Originating-Platform: Linux Firefox 82
-User-Agent: GROUPS.IO Web Poster
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.7758.1605619126103994503
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 17 Nov 2020 05:18:47 -0800
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=permerror, err=parse error for token &{10 18 spf.server-he.de}: parse error for token &{10 18 spfb.server-he.de}: parse error for token &{10 18 ispgateway.de}: limit exceeded (domain: delisys.ch, ip: 198.145.29.25, mailfrom: n.jeker@delisys.ch)
+Received: from wp323.webpack.hosteurope.de (wp323.webpack.hosteurope.de [80.237.133.92])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 93FF438C04BB
+	for <yocto@yoctoproject.org>; Tue, 17 Nov 2020 13:18:41 +0000 (UTC)
+Received: from 22.71.14.46.static.wline.lns.sme.cust.swisscom.ch ([46.14.71.22] helo=[192.168.120.138]); authenticated
+	by wp323.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	id 1kf0sZ-0004hE-Do; Tue, 17 Nov 2020 14:18:39 +0100
+Message-ID: <feda2c563a65d246df52372b7b8777b694ec84f1.camel@delisys.ch>
+Subject: Re: [yocto] KeyError: 'getpwuid(): uid not found: 1000' in do_package phase
+From: "Nicolas Jeker" <n.jeker@delisys.ch>
+To: Martin Jansa <Martin.Jansa@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Date: Tue, 17 Nov 2020 14:18:38 +0100
+In-Reply-To: <CA+chaQdQgTp=CxNrj1BOB60ra4PakJoHNNC7euZzt4pH-J_=hA@mail.gmail.com>
+References: 
+	<CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com>
+	 <3274cdf6-ce13-15ca-9e9f-df1ffa751798@gmail.com>
+	 <CAAfyv37bu4gurw1nNF9Bi3X4vNsW7FwtEuU7S-2iHp1TQmfi=Q@mail.gmail.com>
+	 <CA+chaQdQgTp=CxNrj1BOB60ra4PakJoHNNC7euZzt4pH-J_=hA@mail.gmail.com>
+User-Agent: Evolution 3.38.1 
 MIME-Version: 1.0
-Date: Tue, 17 Nov 2020 00:38:14 -0800
-Message-ID: <EPFL.1605602294543987637.0RqK@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="3KMrpCC8dGw7YZP2rbEW"
-
---3KMrpCC8dGw7YZP2rbEW
-Content-Type: text/plain; charset="utf-8"
+X-bounce-key: webpack.hosteurope.de;n.jeker@delisys.ch;1605619121;b62a915d;
+X-HE-SMSGID: 1kf0sZ-0004hE-Do
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Team,
+On Mon, 2020-11-16 at 23:27 +0100, Martin Jansa wrote:
+> https://github.com/webOS-ports/meta-webos-ports/commit/9fd17a67cdbed92d=
+f13a14b002a189b4c6c2d442
+>=20
+> is an example where it triggers this error, but doesn't trigger the
+> more common host-user-contaminated QA error (unless you happened=C2=A0t=
+o
+> use UID 1001 on host for the user running bitbake).
+>=20
+> Similarly when the files are "installed" with e.g. "cp -a" for which
+> layers usually use "cp -R --no-dereference --preserve=3Dmode,links -v".
 
-I've built OS for rpi3 using dunfell yocto. I've also generated SDK for th=
-e same, for that I've added these info in my local.conf file-
+On a related note, the do_install reference in the manual gives some
+advice on how to use cp and tar without contaminating the build.
 
-*TOOLCHAIN_TARGET_TASK_append =3D " python3-dev kernel-dev kernel-devsrc"*
-*TOOLCHAIN_HOST_TASK_append =3D " nativesdk-cmake"*
+The relevant part:
 
-and after this, it is generating kernel source also in SDK, but when I'm s=
-etting environment and utilizing kernel source to compile my kernel, then I=
-'m getting following error-
+Safe methods for installing files include the following:
+ * The install utility. This utility is the preferred method.
+ * The cp command with the "--no-preserve=3Downership" option.
+ * The tar command with the "--no-same-owner" option. See the
+   bin_package.bbclass file in the meta/classes directory of the
+   Source Directory for an example.
 
-*make[2]: *** No rule to make target 'init/main.o', needed by 'init/built-=
-in.a'.=C2=A0 Stop.*
-*Makefile:1732: recipe for target 'init' failed*
-*make[1]: *** [init] Error 2*
-*make[1]: Leaving directory '/opt/poky/3.1.2/sysroots/cortexa7t2hf-neon-vf=
-pv4-poky-linux-gnueabi/lib/modules/5.4.64-v7/build'*
-*Makefile:23: recipe for target 'default' failed*
-*make: *** [default] Error 2*
+https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#re=
+f-tasks-install
 
-So please help me resolve this issue, and if I'm missing any thing to add =
-in local.conf file, so help me in that to generate proper sdk.
+> On Mon, Nov 16, 2020 at 10:10 PM Marek Belisko <
+> marek.belisko@gmail.com> wrote:
+> > On Mon, Nov 16, 2020 at 9:52 PM Joshua Watt <jpewhacker@gmail.com>
+> > wrote:
+> > >=20
+> > >=20
+> > > On 11/16/20 2:38 PM, Marek Belisko wrote:
+> > >=20
+> > > Hi,
+> > >=20
+> > > I'm bumping my project based on zeus to dunfell. I've update all
+> > > layers and in one of my recipes I'm seeing following issue (not
+> > see on
+> > > zeus at all):
+> > > WARNING: cv-my-test-1.0-r0 do_package: KeyError in
+> > ./package/srv/10%.png
+> > > ERROR: cv-my-test-1.0-r0 do_package: Error executing a python
+> > function
+> > > in exec_python_func() autogenerated:
+> > >=20
+> > > The stack trace of python calls that resulted in this
+> > exception/failure was:
+> > > File: 'exec_python_func() autogenerated', lineno: 2, function:
+> > <module>
+> > > =C2=A0 =C2=A0 =C2=A0 0001:
+> > > =C2=A0 *** 0002:sstate_report_unihash(d)
+> > > =C2=A0 =C2=A0 =C2=A0 0003:
+> > > File: '/home/ubuntu/projects/my-test-
+> > /poky/meta/classes/sstate.bbclass',
+> > > lineno: 840, function: sstate_report_unihash
+> > > =C2=A0 =C2=A0 =C2=A0 0836:=C2=A0 =C2=A0 report_unihash =3D getattr(=
+bb.parse.siggen,
+> > 'report_unihash', None)
+> > > =C2=A0 =C2=A0 =C2=A0 0837:
+> > > =C2=A0 =C2=A0 =C2=A0 0838:=C2=A0 =C2=A0 if report_unihash:
+> > > =C2=A0 =C2=A0 =C2=A0 0839:=C2=A0 =C2=A0 =C2=A0 =C2=A0 ss =3D sstate=
+_state_fromvars(d)
+> > > =C2=A0 *** 0840:=C2=A0 =C2=A0 =C2=A0 =C2=A0 report_unihash(os.getcw=
+d(), ss['task'], d)
+> > > =C2=A0 =C2=A0 =C2=A0 0841:}
+> > > =C2=A0 =C2=A0 =C2=A0 0842:
+> > > =C2=A0 =C2=A0 =C2=A0 0843:#
+> > > =C2=A0 =C2=A0 =C2=A0 0844:# Shell function to decompress and prepar=
+e a package
+> > for installation
+> > > File: '/home/ubuntu/projects/my-test-
+> > /poky/bitbake/lib/bb/siggen.py',
+> > > lineno: 555, function: report_unihash
+> > > =C2=A0 =C2=A0 =C2=A0 0551:
+> > > =C2=A0 =C2=A0 =C2=A0 0552:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ if "." in self.method:
+> > > =C2=A0 =C2=A0 =C2=A0 0553:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 (module, method) =3D
+> > self.method.rsplit('.', 1)
+> > > =C2=A0 =C2=A0 =C2=A0 0554:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 locs['method'] =3D
+> > > getattr(importlib.import_module(module), method)
+> > > =C2=A0 *** 0555:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 outhash =3D
+> > bb.utils.better_eval('method(path,
+> > > sigfile, task, d)', locs)
+> > > =C2=A0 =C2=A0 =C2=A0 0556:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ else:
+> > > =C2=A0 =C2=A0 =C2=A0 0557:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 outhash =3D
+> > bb.utils.better_eval(self.method +
+> > > '(path, sigfile, task, d)', locs)
+> > > =C2=A0 =C2=A0 =C2=A0 0558:
+> > > =C2=A0 =C2=A0 =C2=A0 0559:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ try:
+> > > File: '/home/ubuntu/projects/my-test-
+> > /poky/bitbake/lib/bb/utils.py',
+> > > lineno: 420, function: better_eval
+> > > =C2=A0 =C2=A0 =C2=A0 0416:=C2=A0 =C2=A0 if extraglobals:
+> > > =C2=A0 =C2=A0 =C2=A0 0417:=C2=A0 =C2=A0 =C2=A0 =C2=A0 ctx =3D copy.=
+copy(ctx)
+> > > =C2=A0 =C2=A0 =C2=A0 0418:=C2=A0 =C2=A0 =C2=A0 =C2=A0 for g in extr=
+aglobals:
+> > > =C2=A0 =C2=A0 =C2=A0 0419:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ ctx[g] =3D extraglobals[g]
+> > > =C2=A0 *** 0420:=C2=A0 =C2=A0 return eval(source, ctx, locals)
+> > > =C2=A0 =C2=A0 =C2=A0 0421:
+> > > =C2=A0 =C2=A0 =C2=A0 0422:@contextmanager
+> > > =C2=A0 =C2=A0 =C2=A0 0423:def fileslocked(files):
+> > > =C2=A0 =C2=A0 =C2=A0 0424:=C2=A0 =C2=A0 """Context manager for lock=
+ing and unlocking file
+> > locks."""
+> > > File: '<string>', lineno: 1, function: <module>
+> > > =C2=A0 =C2=A0File "<string>", line 1, in <module>
+> > >=20
+> > > File: '/home/ubuntu/projects/my-test-
+> > /poky/meta/lib/oe/sstatesig.py',
+> > > lineno: 595, function: OEOuthashBasic
+> > > =C2=A0 =C2=A0 =C2=A0 0591:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ process(root)
+> > > =C2=A0 =C2=A0 =C2=A0 0592:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ for f in files:
+> > > =C2=A0 =C2=A0 =C2=A0 0593:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 if f =3D=3D 'fixmepath':
+> > > =C2=A0 =C2=A0 =C2=A0 0594:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 continue
+> > > =C2=A0 *** 0595:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 process(os.path.join(root, f))
+> > > =C2=A0 =C2=A0 =C2=A0 0596:=C2=A0 =C2=A0 finally:
+> > > =C2=A0 =C2=A0 =C2=A0 0597:=C2=A0 =C2=A0 =C2=A0 =C2=A0 os.chdir(prev=
+_dir)
+> > > =C2=A0 =C2=A0 =C2=A0 0598:
+> > > =C2=A0 =C2=A0 =C2=A0 0599:=C2=A0 =C2=A0 return h.hexdigest()
+> > > File: '/home/ubuntu/projects/my-test-
+> > /poky/meta/lib/oe/sstatesig.py',
+> > > lineno: 551, function: process
+> > > =C2=A0 =C2=A0 =C2=A0 0547:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 add_perm(stat.S_IXOTH, 'x')
+> > > =C2=A0 =C2=A0 =C2=A0 0548:
+> > > =C2=A0 =C2=A0 =C2=A0 0549:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 if include_owners:
+> > > =C2=A0 =C2=A0 =C2=A0 0550:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 try:
+> > > =C2=A0 *** 0551:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 update_hash(" %10s" %
+> > > pwd.getpwuid(s.st_uid).pw_name)
+> > > =C2=A0 =C2=A0 =C2=A0 0552:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 update_hash(" %10s" %
+> > > grp.getgrgid(s.st_gid).gr_name)
+> > > =C2=A0 =C2=A0 =C2=A0 0553:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 except KeyError:
+> > > =C2=A0 =C2=A0 =C2=A0 0554:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.warn("KeyError in %s" %
+> > path)
+> > > =C2=A0 =C2=A0 =C2=A0 0555:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 raise
+> > > Exception: KeyError: 'getpwuid(): uid not found: 1000'
+> > >=20
+> > > ERROR: Logfile of failure stored in:
+> > > /home/ubuntu/projects/my-test-/build/tmp/work/aarch64-poky-
+> > linux/cv-my-test/1.0-r0/temp/log.do_package.27454
+> > >=20
+> > > Is this known issue or something related to my host setup?
+> > >=20
+> > > This means the recipe is having host contamination (where the UID
+> > of the user doing the build is leaking into the file system).
+> > Some ideas what can be the source of that. This recipe is basically
+> > just copying files from archive to final rootfs without any special
+> > processing or so.
+> > >=20
+> > > Thanks and BR,
+> > >=20
+> > > marek
+> > >=20
+> > >=20
+> > >=20
+> > >=20
+> >=20
+> > BR,
+> >=20
+> > marek
+> >=20
+> >=20
+> >=20
+>=20
 
---3KMrpCC8dGw7YZP2rbEW
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Team,<br /><br />I've built OS for rpi3 using dunfell yocto. I've also g=
-enerated SDK for the same, for that I've added these info in my local.conf =
-file-<br /><br /><strong>TOOLCHAIN_TARGET_TASK_append =3D " python3-dev ker=
-nel-dev kernel-devsrc"</strong><br /><strong>TOOLCHAIN_HOST_TASK_append =3D=
- " nativesdk-cmake"</strong><br /><br />and after this, it is generating ke=
-rnel source also in SDK, but when I'm setting environment and utilizing ker=
-nel source to compile my kernel, then I'm getting following error-<br /><br=
- /><strong>make[2]: *** No rule to make target 'init/main.o', needed by 'in=
-it/built-in.a'.&nbsp; Stop.</strong><br /><strong>Makefile:1732: recipe for=
- target 'init' failed</strong><br /><strong>make[1]: *** [init] Error 2</st=
-rong><br /><strong>make[1]: Leaving directory '/opt/poky/3.1.2/sysroots/cor=
-texa7t2hf-neon-vfpv4-poky-linux-gnueabi/lib/modules/5.4.64-v7/build'</stron=
-g><br /><strong>Makefile:23: recipe for target 'default' failed</strong><br=
- /><strong>make: *** [default] Error 2</strong><br /><br /><br />So please =
-help me resolve this issue, and if I'm missing any thing to add in local.co=
-nf file, so help me in that to generate proper sdk.
-
---3KMrpCC8dGw7YZP2rbEW--
