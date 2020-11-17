@@ -1,357 +1,276 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.42605.1605565685992019422
+ by mx.groups.io with SMTP id smtpd.web10.1664.1605574959151658703
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Nov 2020 14:28:06 -0800
+ Mon, 16 Nov 2020 17:02:39 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=A8zE6d5I;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: martin.jansa@gmail.com)
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 77A6138C052B
-	for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 22:28:04 +0000 (UTC)
-Received: by mail-ej1-f53.google.com with SMTP id o9so26686109ejg.1
-        for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 14:28:04 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=pnpx7yDZ;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 76D5438C0529
+	for <yocto@yoctoproject.org>; Tue, 17 Nov 2020 01:02:38 +0000 (UTC)
+Received: by mail-pl1-f180.google.com with SMTP id x15so9315364pll.2
+        for <yocto@yoctoproject.org>; Mon, 16 Nov 2020 17:02:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1wXses8KhCiprURBTJjP/uvwYYeTJNZtsraP7mjUVmo=;
-        b=A8zE6d5I3JyoqIXZIPUW2EuMWfPrf8Uqk+3sOvwWz6ZC+3h93LlQFbVTKK+xfJ9AcK
-         o7TXgr+AXrSaW85PR9PJ5ofFbpE3rvquV2fvtbKlNRJHP2cDB7wTPDwdQNu7XVcFf0Wz
-         MYYf/GRrXO2D2eqePZfo1i+PPlSSWwsU5UzaaT+x6jzIgSTqnuuG4VNogmWlxTyO+/SQ
-         FHWXXr7dCStnznxKOSkTdTitH8KhMfJuZ3hqrExh3qahqy+gNkctN7GEXovikgwcivet
-         wOu1ulkhM8JgVzjngYinXX8RcxjHs4PP019/Ny+R2EUAODricmlfd5ramSLnqB1CztXl
-         /sIQ==
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=3BtBLIUtMd2u7PPcLsKM8DqKhlvt1jL5bXXaU4vpyI0=;
+        b=pnpx7yDZYLmUAs7PbHGYlZYHGTuXOTv1hZiGhs6auX0NaQTXd8hw+aRMQzHVjrL9yg
+         0LVA4ACXcOk3N2Fslnf6+MPbR4qGI9axB58xOOn7RG1al2iaM3d5G/Atoi7vUWmZBi+a
+         3YB9hsMvl/fWVkH8DFFRw8lOdBqeVbpPJ3uIktdbN/g41/sNsnRO39e6xpruAVhe6jKx
+         VvDR2bfJ2SyC7xzJVPFiBaT7A+alx/nykbes1eYgaSMYVcctYhJWnnLrUagJWNoEVDXU
+         Pdadv65t8DutDlmc9aY+EJIdcWDgAD6Ft0h9HBpvy3kQp5CXyx0StbUOLiWrHu7wLyBp
+         BnlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1wXses8KhCiprURBTJjP/uvwYYeTJNZtsraP7mjUVmo=;
-        b=nOnb+e51WdwpdfRzVaIIZ9Rf5jyio0U98jqFfuWHYmMhHPrI5n/+51kaFTFHSa3mYn
-         922lcgcgcCehsm7JgSxn7mDksuQ4QPeJ/IBs3rY/lyP9K+b3MJbuJJxr5tGNQidS8Pl0
-         IVsGijfb0Yx3h5XAcp4/m0GQxTyQlaMhYypLr2/fY/WqVOWbu5nZlIAmregxX+W2jnSy
-         N46JKx8FUW5hhOxZEWYqeJtFDwis+TboVZJXxSJpts1bz43ZSnzcC/cFWqwB8ctMj8/j
-         tzW4ISDjz+V5uMsxkcA0vnD1mLImyy6loL39T6xuPKhSKM5wuhpcA4VeoLNGy5QDaJNP
-         pVVA==
-X-Gm-Message-State: AOAM5339gOqOBC+jR90KRbkHURmR1mwIU9jxYm3q/XQT6eHBNe+qT1yE
-	7tCSlGWpcNdsw9mnodE3/kg+AQpL4MYLjmXabFQ=
-X-Google-Smtp-Source: ABdhPJwUR7JdzXdEJPN4Vd8Nn8bB5JYBqhlpZShe0MfDDXKFzlZP3YDnR6Aj8cPmcMh7LDvDpZRXK/PQ5FswmWbz1JM=
-X-Received: by 2002:a17:906:94d4:: with SMTP id d20mr16283127ejy.392.1605565682960;
- Mon, 16 Nov 2020 14:28:02 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=3BtBLIUtMd2u7PPcLsKM8DqKhlvt1jL5bXXaU4vpyI0=;
+        b=OyfxydYOq+i0g94EsOLjuV6Iz/E5wLQK7S9T6kyC1WA6SyUevGhFh4f99nyO2g3YjU
+         DshbOgh9VrNoLId6wkPxG9f7AiX2b3pKKGGvK77mN2mbpuFqWdWB0YaPfnCRaPlMY/+a
+         qlSk5HyJEAqkntk2HR06LOXWrFbh6KMlW0KJXieFAU1sIT3WUyC8rW+BxF0eKcxZsorw
+         ET/dUc4AEDnvLRfndOQlGUiLSKnlbdYRhSFDUZnS4eJlBfxLRglineLAx9FUA0DRBm26
+         K+qxCY2xJftVUazA7KH4OT2muxD6r1MqQtcgQxxHOLBkVGUh6LOd7frylwOksvGR9iYg
+         Vtcw==
+X-Gm-Message-State: AOAM533JCMgrNQs/vo9Tkon9B074H2YuEcJQXdYIwcZrBq0C2/RJX7Q1
+	cxtm3UXk9tdoepC+ZkpInqc=
+X-Google-Smtp-Source: ABdhPJygA6BZCMREILEQizRbuIZW2OreeyDyFAmzzMeV6eDNgEOBq5h99lDDSvSvb4fq6EcxOTBDKg==
+X-Received: by 2002:a17:902:c383:b029:d6:991c:671b with SMTP id g3-20020a170902c383b02900d6991c671bmr14711323plg.51.1605574957901;
+        Mon, 16 Nov 2020 17:02:37 -0800 (PST)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id g2sm17968066pfq.107.2020.11.16.17.02.36
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 16 Nov 2020 17:02:37 -0800 (PST)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 16 Nov 2020 17:02:36 -0800
+Message-ID: <0da801d6bc7d$57609690$0621c3b0$@gmail.com>
 MIME-Version: 1.0
-References: <CAAfyv37AKHE-wqqkLisZ_OpZhaPSpD2rd7LzEaYMVUvvpUrHEg@mail.gmail.com>
- <3274cdf6-ce13-15ca-9e9f-df1ffa751798@gmail.com> <CAAfyv37bu4gurw1nNF9Bi3X4vNsW7FwtEuU7S-2iHp1TQmfi=Q@mail.gmail.com>
-In-Reply-To: <CAAfyv37bu4gurw1nNF9Bi3X4vNsW7FwtEuU7S-2iHp1TQmfi=Q@mail.gmail.com>
-From: "Martin Jansa" <Martin.Jansa@gmail.com>
-Date: Mon, 16 Nov 2020 23:27:51 +0100
-Message-ID: <CA+chaQdQgTp=CxNrj1BOB60ra4PakJoHNNC7euZzt4pH-J_=hA@mail.gmail.com>
-Subject: Re: [yocto] KeyError: 'getpwuid(): uid not found: 1000' in do_package phase
-To: Marek Belisko <marek.belisko@gmail.com>
-Cc: Joshua Watt <jpewhacker@gmail.com>, yocto <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000324e0705b440e467"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQL12a4cwi8s2kkXPd3eHgL5TRnL/A==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0DA9_01D6BC3A.493F2B50"
+Content-Language: en-us
 
---000000000000324e0705b440e467
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_0DA9_01D6BC3A.493F2B50
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-https://github.com/webOS-ports/meta-webos-ports/commit/9fd17a67cdbed92df13a14b002a189b4c6c2d442
+All,
 
-is an example where it triggers this error, but doesn't trigger the more
-common host-user-contaminated QA error (unless you happened to use UID 1001
-on host for the user running bitbake).
+ 
 
-Similarly when the files are "installed" with e.g. "cp -a" for which layers
-usually use "cp -R --no-dereference --preserve=mode,links -v".
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
 
-On Mon, Nov 16, 2020 at 10:10 PM Marek Belisko <marek.belisko@gmail.com>
-wrote:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-> On Mon, Nov 16, 2020 at 9:52 PM Joshua Watt <jpewhacker@gmail.com> wrote:
-> >
-> >
-> > On 11/16/20 2:38 PM, Marek Belisko wrote:
-> >
-> > Hi,
-> >
-> > I'm bumping my project based on zeus to dunfell. I've update all
-> > layers and in one of my recipes I'm seeing following issue (not see on
-> > zeus at all):
-> > WARNING: cv-my-test-1.0-r0 do_package: KeyError in ./package/srv/10%.png
-> > ERROR: cv-my-test-1.0-r0 do_package: Error executing a python function
-> > in exec_python_func() autogenerated:
-> >
-> > The stack trace of python calls that resulted in this exception/failure
-> was:
-> > File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-> >      0001:
-> >  *** 0002:sstate_report_unihash(d)
-> >      0003:
-> > File: '/home/ubuntu/projects/my-test-/poky/meta/classes/sstate.bbclass',
-> > lineno: 840, function: sstate_report_unihash
-> >      0836:    report_unihash = getattr(bb.parse.siggen,
-> 'report_unihash', None)
-> >      0837:
-> >      0838:    if report_unihash:
-> >      0839:        ss = sstate_state_fromvars(d)
-> >  *** 0840:        report_unihash(os.getcwd(), ss['task'], d)
-> >      0841:}
-> >      0842:
-> >      0843:#
-> >      0844:# Shell function to decompress and prepare a package for
-> installation
-> > File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/siggen.py',
-> > lineno: 555, function: report_unihash
-> >      0551:
-> >      0552:            if "." in self.method:
-> >      0553:                (module, method) = self.method.rsplit('.', 1)
-> >      0554:                locs['method'] =
-> > getattr(importlib.import_module(module), method)
-> >  *** 0555:                outhash = bb.utils.better_eval('method(path,
-> > sigfile, task, d)', locs)
-> >      0556:            else:
-> >      0557:                outhash = bb.utils.better_eval(self.method +
-> > '(path, sigfile, task, d)', locs)
-> >      0558:
-> >      0559:            try:
-> > File: '/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/utils.py',
-> > lineno: 420, function: better_eval
-> >      0416:    if extraglobals:
-> >      0417:        ctx = copy.copy(ctx)
-> >      0418:        for g in extraglobals:
-> >      0419:            ctx[g] = extraglobals[g]
-> >  *** 0420:    return eval(source, ctx, locals)
-> >      0421:
-> >      0422:@contextmanager
-> >      0423:def fileslocked(files):
-> >      0424:    """Context manager for locking and unlocking file locks."""
-> > File: '<string>', lineno: 1, function: <module>
-> >   File "<string>", line 1, in <module>
-> >
-> > File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
-> > lineno: 595, function: OEOuthashBasic
-> >      0591:            process(root)
-> >      0592:            for f in files:
-> >      0593:                if f == 'fixmepath':
-> >      0594:                    continue
-> >  *** 0595:                process(os.path.join(root, f))
-> >      0596:    finally:
-> >      0597:        os.chdir(prev_dir)
-> >      0598:
-> >      0599:    return h.hexdigest()
-> > File: '/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.py',
-> > lineno: 551, function: process
-> >      0547:                    add_perm(stat.S_IXOTH, 'x')
-> >      0548:
-> >      0549:                if include_owners:
-> >      0550:                    try:
-> >  *** 0551:                        update_hash(" %10s" %
-> > pwd.getpwuid(s.st_uid).pw_name)
-> >      0552:                        update_hash(" %10s" %
-> > grp.getgrgid(s.st_gid).gr_name)
-> >      0553:                    except KeyError:
-> >      0554:                        bb.warn("KeyError in %s" % path)
-> >      0555:                        raise
-> > Exception: KeyError: 'getpwuid(): uid not found: 1000'
-> >
-> > ERROR: Logfile of failure stored in:
-> >
-> /home/ubuntu/projects/my-test-/build/tmp/work/aarch64-poky-linux/cv-my-test/1.0-r0/temp/log.do_package.27454
-> >
-> > Is this known issue or something related to my host setup?
-> >
-> > This means the recipe is having host contamination (where the UID of the
-> user doing the build is leaking into the file system).
-> Some ideas what can be the source of that. This recipe is basically
-> just copying files from archive to final rootfs without any special
-> processing or so.
-> >
-> > Thanks and BR,
-> >
-> > marek
-> >
-> >
-> >
-> >
->
-> BR,
->
-> marek
->
-> 
->
->
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
---000000000000324e0705b440e467
-Content-Type: text/html; charset="UTF-8"
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 322
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.2", "3.3, "3.99" and "Future", the more pressing/urgent issues
+being in "3.2" and then "3.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0DA9_01D6BC3A.493F2B50
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0E27_01D6B6B1.FAB08F70";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><a href=3D"https://github.com/webOS-ports/meta-webos-ports=
-/commit/9fd17a67cdbed92df13a14b002a189b4c6c2d442">https://github.com/webOS-=
-ports/meta-webos-ports/commit/9fd17a67cdbed92df13a14b002a189b4c6c2d442</a><=
-br><div><br></div><div>is an example where it triggers this error, but does=
-n&#39;t trigger the more common host-user-contaminated QA error (unless you=
- happened=C2=A0to use UID 1001 on host for the user running bitbake).</div>=
-<div><br></div><div>Similarly when the files are &quot;installed&quot; with=
- e.g. &quot;cp -a&quot; for which layers usually use &quot;cp -R --no-deref=
-erence --preserve=3Dmode,links -v&quot;.</div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Nov 16, 2020 at 10:10=
- PM Marek Belisko &lt;<a href=3D"mailto:marek.belisko@gmail.com">marek.beli=
-sko@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex">On Mon, Nov 16, 2020 at 9:52 PM Joshua Watt &lt;<a href=3D"mai=
-lto:jpewhacker@gmail.com" target=3D"_blank">jpewhacker@gmail.com</a>&gt; wr=
-ote:<br>
-&gt;<br>
-&gt;<br>
-&gt; On 11/16/20 2:38 PM, Marek Belisko wrote:<br>
-&gt;<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; I&#39;m bumping my project based on zeus to dunfell. I&#39;ve update =
-all<br>
-&gt; layers and in one of my recipes I&#39;m seeing following issue (not s=
-ee on<br>
-&gt; zeus at all):<br>
-&gt; WARNING: cv-my-test-1.0-r0 do_package: KeyError in ./package/srv/10%.=
-png<br>
-&gt; ERROR: cv-my-test-1.0-r0 do_package: Error executing a python functio=
-n<br>
-&gt; in exec_python_func() autogenerated:<br>
-&gt;<br>
-&gt; The stack trace of python calls that resulted in this exception/failu=
-re was:<br>
-&gt; File: &#39;exec_python_func() autogenerated&#39;, lineno: 2, function=
-: &lt;module&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0001:<br>
-&gt;=C2=A0 *** 0002:sstate_report_unihash(d)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0003:<br>
-&gt; File: &#39;/home/ubuntu/projects/my-test-/poky/meta/classes/sstate.bb=
-class&#39;,<br>
-&gt; lineno: 840, function: sstate_report_unihash<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0836:=C2=A0 =C2=A0 report_unihash =3D getattr(bb.=
-parse.siggen, &#39;report_unihash&#39;, None)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0837:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0838:=C2=A0 =C2=A0 if report_unihash:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0839:=C2=A0 =C2=A0 =C2=A0 =C2=A0 ss =3D sstate_st=
-ate_fromvars(d)<br>
-&gt;=C2=A0 *** 0840:=C2=A0 =C2=A0 =C2=A0 =C2=A0 report_unihash(os.getcwd()=
-, ss[&#39;task&#39;], d)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0841:}<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0842:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0843:#<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0844:# Shell function to decompress and prepare a=
- package for installation<br>
-&gt; File: &#39;/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/siggen.=
-py&#39;,<br>
-&gt; lineno: 555, function: report_unihash<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0551:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0552:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if=
- &quot;.&quot; in self.method:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0553:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 (module, method) =3D self.method.rsplit(&#39;.&#39;, 1)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0554:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 locs[&#39;method&#39;] =3D<br>
-&gt; getattr(importlib.import_module(module), method)<br>
-&gt;=C2=A0 *** 0555:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 outhash =3D bb.utils.better_eval(&#39;method(path,<br>
-&gt; sigfile, task, d)&#39;, locs)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0556:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 el=
-se:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0557:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 outhash =3D bb.utils.better_eval(self.method +<br>
-&gt; &#39;(path, sigfile, task, d)&#39;, locs)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0558:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0559:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 tr=
-y:<br>
-&gt; File: &#39;/home/ubuntu/projects/my-test-/poky/bitbake/lib/bb/utils.p=
-y&#39;,<br>
-&gt; lineno: 420, function: better_eval<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0416:=C2=A0 =C2=A0 if extraglobals:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0417:=C2=A0 =C2=A0 =C2=A0 =C2=A0 ctx =3D copy.cop=
-y(ctx)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0418:=C2=A0 =C2=A0 =C2=A0 =C2=A0 for g in extragl=
-obals:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0419:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ct=
-x[g] =3D extraglobals[g]<br>
-&gt;=C2=A0 *** 0420:=C2=A0 =C2=A0 return eval(source, ctx, locals)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0421:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0422:@contextmanager<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0423:def fileslocked(files):<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0424:=C2=A0 =C2=A0 &quot;&quot;&quot;Context mana=
-ger for locking and unlocking file locks.&quot;&quot;&quot;<br>
-&gt; File: &#39;&lt;string&gt;&#39;, lineno: 1, function: &lt;module&gt;<b=
-r>
-&gt;=C2=A0 =C2=A0File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt=
-;<br>
-&gt;<br>
-&gt; File: &#39;/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.=
-py&#39;,<br>
-&gt; lineno: 595, function: OEOuthashBasic<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0591:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pr=
-ocess(root)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0592:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fo=
-r f in files:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0593:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 if f =3D=3D &#39;fixmepath&#39;:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0594:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 continue<br>
-&gt;=C2=A0 *** 0595:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 process(os.path.join(root, f))<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0596:=C2=A0 =C2=A0 finally:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0597:=C2=A0 =C2=A0 =C2=A0 =C2=A0 os.chdir(prev_di=
-r)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0598:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0599:=C2=A0 =C2=A0 return h.hexdigest()<br>
-&gt; File: &#39;/home/ubuntu/projects/my-test-/poky/meta/lib/oe/sstatesig.=
-py&#39;,<br>
-&gt; lineno: 551, function: process<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0547:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 add_perm(stat.S_IXOTH, &#39;x&#39;)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0548:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0549:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 if include_owners:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0550:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 try:<br>
-&gt;=C2=A0 *** 0551:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 update_hash(&quot; %10s&quot; %<br>
-&gt; pwd.getpwuid(s.st_uid).pw_name)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0552:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 update_hash(&quot; %10s&quot; %<=
-br>
-&gt; grp.getgrgid(s.st_gid).gr_name)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0553:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 except KeyError:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0554:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.warn(&quot;KeyError in %s&quo=
-t; % path)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 0555:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 raise<br>
-&gt; Exception: KeyError: &#39;getpwuid(): uid not found: 1000&#39;<br>
-&gt;<br>
-&gt; ERROR: Logfile of failure stored in:<br>
-&gt; /home/ubuntu/projects/my-test-/build/tmp/work/aarch64-poky-linux/cv-m=
-y-test/1.0-r0/temp/log.do_package.27454<br>
-&gt;<br>
-&gt; Is this known issue or something related to my host setup?<br>
-&gt;<br>
-&gt; This means the recipe is having host contamination (where the UID of =
-the user doing the build is leaking into the file system).<br>
-Some ideas what can be the source of that. This recipe is basically<br>
-just copying files from archive to final rootfs without any special<br>
-processing or so.<br>
-&gt;<br>
-&gt; Thanks and BR,<br>
-&gt;<br>
-&gt; marek<br>
-&gt;<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
-<br>
-BR,<br>
-<br>
-marek<br>
-<br>
-<br>
-<br>
-</blockquote></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 322 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.2&#8221;, &#8220;3.3, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.2&quot; and then &#8220;3.3&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
---000000000000324e0705b440e467--
+------=_NextPart_000_0DA9_01D6BC3A.493F2B50--
