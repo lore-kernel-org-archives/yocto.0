@@ -1,44 +1,87 @@
-Subject: Re: How to disable specific default recipe to be included in Yocto? #linux #yocto #cups #hplip
-To: yocto@lists.yoctoproject.org
-From: "Shamil Khan" <shamil.khan@exaleapsemi.com>
-X-Originating-Location: Hyderabad, Telangana, IN (14.98.179.254)
-X-Originating-Platform: Linux Chrome 84
-User-Agent: GROUPS.IO Web Poster
+Received: from exchange.sewerin.com (exchange.sewerin.com [92.39.20.236])
+ by mx.groups.io with SMTP id smtpd.web11.21406.1605686749244252514
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 18 Nov 2020 00:05:50 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@lists.yoctoproject.org header.s=20140610 header.b=ueVRqnUT;
+ spf=softfail (domain: lists.yoctoproject.org, ip: 92.39.20.236, mailfrom: yocto@lists.yoctoproject.org)
+Received: from Pickup by Exchange.sewerin.de with Microsoft SMTP Server id
+ 15.0.1395.4; Wed, 18 Nov 2020 07:57:58 +0000
+X-Sender: bounce+53643+51414+3618059+6691491@lists.yoctoproject.org
+X-Receiver: Bastian.Ruppert@sewerin.com
+x-endofinjectedxheaders: 5023
+X-Received: by 127.0.0.2 with SMTP id 4qxEYY3619394xLmqrqWVhKr; Tue, 17 Nov 2020 22:07:19 -0800
+X-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+ by mx.groups.io with SMTP id smtpd.web11.20507.1605678037866479777
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 17 Nov 2020 21:40:38 -0800
+X-Received: by mail-qk1-f182.google.com with SMTP id y197so754371qkb.7
+        for <yocto@lists.yoctoproject.org>; Tue, 17 Nov 2020 21:40:37 -0800 (PST)
+X-Gm-Message-State: o5ypYce329FJwSraD6Rlv4V9x3618059AA=
+X-Google-Smtp-Source: ABdhPJwt3IMXMiWqyypq9XXvKuTrz820T2mGre0iX+O93FqqzlXFZE2qA9/TovhAsOmsbpal2+sJyrbcWfmHwGcg07k=
+X-Received: by 2002:a37:9441:: with SMTP id w62mr3313091qkd.474.1605678036940;
+ Tue, 17 Nov 2020 21:40:36 -0800 (PST)
 MIME-Version: 1.0
-Date: Tue, 17 Nov 2020 23:38:11 -0800
-References: <TrZe.1596525506407384003.CLar@lists.yoctoproject.org>
-In-Reply-To: <TrZe.1596525506407384003.CLar@lists.yoctoproject.org>
-Message-ID: <5848.1605685091547445364@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="nxtjdf6edItLrAH8Wxm2"
+References: <aWty.1605668341566593814.GDqu@lists.yoctoproject.org>
+In-Reply-To: <aWty.1605668341566593814.GDqu@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Tue, 17 Nov 2020 21:40:10 -0800
+X-OldMsgId: <CAMKF1sriFvsJbpDYGdQOxTuMtXLBBCbDNxO=c+E2zcxPSp_ogA@mail.gmail.com>
+Subject: Re: [yocto] qtwayland compile issue 5.15 #dunfell
+To: sateesh m <sateesh0457@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Precedence: Bulk
+List-Unsubscribe: <https://lists.yoctoproject.org/g/yocto/unsub>
+Sender: <yocto@lists.yoctoproject.org>
+List-Id: <yocto.lists.yoctoproject.org>
+Mailing-List: list yocto@lists.yoctoproject.org; contact yocto+owner@lists.yoctoproject.org
+List-Post: <mailto:yocto@lists.yoctoproject.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=lists.yoctoproject.org; q=dns/txt; s=20140610; t=1605679639;
+ bh=UMi3rQx80TCtAdbUDjdk1JF3J00tMze1puAIiC6ERBU=;
+ h=Cc:Content-Type:Date:From:Subject:To;
+ b=ueVRqnUTGqHupBTs/zAMvPUDutuNQ+doKqlIi2WWmHrVuFhPg8XHPFeNsWyk4WPBqjp
+ aN5/gvQxpnFoldJiDDPfSJsa15kMpB4V8aWWvEjBO3GdN/EsVaZ3emXGQGCk3K1X7bruU
+ VsPlOYBaa8REr9eeuV8/DgNjkpIRh3B37Hc=
+Return-Path: bounce+53643+51414+3618059+6691491@lists.yoctoproject.org
+X-GFI-SMTP-Submission: 1
+X-GFI-SMTP-HelloDomain: web01.groups.io
+X-GFI-SMTP-RemoteIP: 66.175.222.12
+Received-SPF: Pass (Exchange.sewerin.de: domain of
+ yocto@lists.yoctoproject.org designates 66.175.222.12 as permitted sender)
+ receiver=Exchange.sewerin.de; client-ip=66.175.222.12; helo=web01.groups.io;
+X-OldMsgId: <b5f609cdf1f546aaa23f421e8d8cafee@Exchange.sewerin.de>
+Message-ID: <MADEUP.16488B9785EAF15B.27344@lists.yoctoproject.org>
+Content-Type: multipart/mixed; boundary="eBXPotGsSunCrOAZtXnl"
 
---nxtjdf6edItLrAH8Wxm2
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+--eBXPotGsSunCrOAZtXnl
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+Find  QSizeF
 
-You can use BBMASK variable in your configuration file to prevent bitbake =
-from parsing certain recipes.
+newSize(qMax(width, 1.0), qMax(height, 1.0));
 
-For example,
-BBMASK =3D "example.bb"
-Here, BitBake ignores the example.bb recipe.
+in src/compositor/extensions/qwaylandxdgshellv5.cpp
 
-Hope this helps!
+and change it to
+newSize(qMax((double)width, 1.0), qMax((double)height, 1.0));
 
---nxtjdf6edItLrAH8Wxm2
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+and see if it helps.
 
-<p style=3D"line-height: 1.42857;"><span style=3D"white-space: pre-wrap;">H=
-i,</span></p>
-<p style=3D"line-height: 1.42857;"><span style=3D"white-space: pre-wrap;">=
-You can use BBMASK variable in your configuration file to prevent bitbake f=
-rom parsing certain recipes.</span></p>
-<p style=3D"line-height: 1.42857;"><span style=3D"white-space: pre-wrap;">=
-For example,<br />BBMASK =3D "example.bb"<br />Here, BitBake ignores the ex=
-ample.bb recipe.</span><span style=3D"white-space: pre-wrap;"></span></p>
-<p style=3D"line-height: 1.42857;"><span style=3D"white-space: pre-wrap;">=
-Hope this helps!</span></p>
+On Tue, Nov 17, 2020 at 6:59 PM sateesh m <sateesh0457@gmail.com> wrote:
+>
+> Hi Guys,
+>
+>               I am getting qtwayland building issue using dunfell version. can  anybody help me to solve this issue.
+>
+>
+>
+> Regards,
+> Sateesh
+> 
+>
 
---nxtjdf6edItLrAH8Wxm2--
+
+
+
+--eBXPotGsSunCrOAZtXnl--
