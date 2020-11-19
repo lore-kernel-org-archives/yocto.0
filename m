@@ -1,150 +1,155 @@
-Received: from dmzms99802.na.baesystems.com (dmzms99802.na.baesystems.com [149.32.232.66])
- by mx.groups.io with SMTP id smtpd.web12.8077.1605787433232680738
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
+ by mx.groups.io with SMTP id smtpd.web08.8908.1605790825619795417
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Nov 2020 04:03:55 -0800
+ Thu, 19 Nov 2020 05:00:25 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=AlpQf8VA;
- spf=pass (domain: baesystems.com, ip: 149.32.232.66, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1605787433; x=1763467433;
-  h=from:to:subject:date:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=4XM03bQdrykqaCLxK0v8LcgnSQDifU+ub43Ptzn/OGY=;
-  b=AlpQf8VA+XPMw/SWm0X8N+Rd6Atut+wSXQq/x2V2oGXI35eu48PUB1pP
-   sPjXHkV5tmHs3cZcawi5eGKTJ8rtxd25YWIWynphbEqpdstPKHMY03DgT
-   bJuWv9XtdStOL6ePuXCBHt+AqtFYLV5WfIEcAS+Avj3n55Yb8mXYNJyCU
-   U=;
-IronPort-PHdr: =?us-ascii?q?9a23=3AjqCGlBx1729uZ73XCy+O+j09IxM/srCxBDY+r6Qd?=
- =?us-ascii?q?0usULPad9pjvdHbS+e9qxAeQG9mCtLQd0LWd6PyocFdDyK7JiGoFfp1IWk1Nou?=
- =?us-ascii?q?QttCtkPvS4D1bmJuXhdS0wEZcKflZk+3amLRodQ56mNBXdrXKo8DEdBAj0OxZr?=
- =?us-ascii?q?KeTpAI7SiNm82/yv95HJbAhEmTiwbalvIBi4rwjduccbjIR/Iast1xXFpWdFdf?=
- =?us-ascii?q?5Lzm1yP1KTmBj85sa0/JF99ilbpuws+c1dX6jkZqo0VbNXAigoPGAz/83rqALM?=
- =?us-ascii?q?TRCT6XsGU2UZiQRHDg7Y5xznRJjxsy/6tu1g2CmGOMD9UL45VSi+46ptVRTlkz?=
- =?us-ascii?q?kMOSIn/27Li8xwlKNbrwynpxxj2I7ffYWZOONjcq/BYd8WQGxMVdtTWSNcGIOx?=
- =?us-ascii?q?d4sBAfQcM+ZEoYfzpFUOohm/BQawC+3gxSRFhmPv3a04z+gtDR3K0BImEtkTsH?=
- =?us-ascii?q?rUttL1NKIKXOy7y6fIyjPDb+hI1jjj84jEag0qr+yQXb1ub8re108vHB7bg16N?=
- =?us-ascii?q?rYDqMS6b2uEDv2OG6OdgTv6vhHA5qw5vpDij3MIsio7PhoIO1F/L6z55zZ0uKt?=
- =?us-ascii?q?KiVkF7et6lEIBMty6EMot2WdkuTH1vuCY/07ALv4OwcycWxpo93RHfd+CHfJaS?=
- =?us-ascii?q?4hLlTOucPCl1iXZqdr+xiBu//lStx+/8W8e7zFtHsjZInNnCu30O1BHe6MaJRu?=
- =?us-ascii?q?V980muxTqC2APe5v9LLEwolafWK50sz7gtnZQdtkTDGzX5mETwjKKOdkQk/fSn?=
- =?us-ascii?q?6/jgYrX+vJ+cMI10hR/iPaQygMC/Bv44MgcIUmOG+uq8zKXu8VDlTLlQgPA7kL?=
- =?us-ascii?q?PVvI3eKMkVvKK0Ag9Y3p4+5xqjFTur39sVkWMDIV5fex+KjY7kMEzULv/iF/ew?=
- =?us-ascii?q?mVGsnS9ux/DBI7LuHI3ALmPGkLf9ZbZ97FNcyBYrwdBf+Z1UDrYBLertWkDrtN?=
- =?us-ascii?q?zYCBo5MxewzuvjDNhxyp4SVXiJAqCDKq/dqkWH6fw0I+iMf48VpCjyK/0+5/L0?=
- =?us-ascii?q?kXA5nlodcbGo3ZsRdn+4AuxrL1iFbXb2jNoME30Gshc6QeHkklGPUD5ea263X6?=
- =?us-ascii?q?0m5zE7DIymDZ3ERoComLGBxzu7EYNIZm9YDFCAC3Lod4KCW/cXdi2dPNRhnycf?=
- =?us-ascii?q?Wre7VYAhzhGvtBTmy7V5K+rU4TcUuo7k1Nhw/+HTjw099SRoD8SB1GGAV2F1nm?=
- =?us-ascii?q?QUSD8q26Byukh9ylaY0ahkmPxUD9xS5/RVXQcmMp7c1/Z6C9fwWg3fYtiJVEyq?=
- =?us-ascii?q?QtK8ATE+HZoNxIo0akBxCp2Hhxvn0i2mS+sPnrqHFdox+6nY0n/9D9l8zXrc1b?=
- =?us-ascii?q?cslR8tRc4ZcSXsl6l06w/7A4/Sj17fhqGhaaMExinP+Wyfi22UswsQBB93WrnC?=
- =?us-ascii?q?dXQefVfN68X+7V/FV6WpC7ksLk1G08HUeYVQbdi8x3BBQuzuNc+aK1mtlnm9A1?=
- =?us-ascii?q?6jjvOxV8ugMzEGwCjDBU5ClgcV5nuLLiA0Dyq6snnCATl1U1noZhW/oqFFtHqn?=
- =?us-ascii?q?QxpsnEmxZEp72u/wo0ZNiA=3D=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2DeAwDiXbZf/0HBJQpigQmEbYE2CpVbm?=
- =?us-ascii?q?kWBaAsBAQEBAQEBAQEIARgNCgQBAYRKAoIqJjgTAhABAQYBAQEBAQYEAYZRDII?=
- =?us-ascii?q?3KQGDEQEBAQQBOUsEAgEIEQQBAQEeCQcoChQJCAEBBAESCIMfgxWtfXSBNIRSQ?=
- =?us-ascii?q?YU8CQGBLo8dPoQjPoI+HwMCgScBEgFThUQEuDQHA4JtiRKLIYZeK4REnTiTVIs?=
- =?us-ascii?q?BlVgCBAIEBQIVgWuBCnBwgzkJRxcCDZckhUR0AjUCBgoBAQMJjTeBEQEB?=
-X-IPAS-Result: =?us-ascii?q?A2DeAwDiXbZf/0HBJQpigQmEbYE2CpVbmkWBaAsBAQEBAQE?=
- =?us-ascii?q?BAQEIARgNCgQBAYRKAoIqJjgTAhABAQYBAQEBAQYEAYZRDII3KQGDEQEBAQQBO?=
- =?us-ascii?q?UsEAgEIEQQBAQEeCQcoChQJCAEBBAESCIMfgxWtfXSBNIRSQYU8CQGBLo8dPoQ?=
- =?us-ascii?q?jPoI+HwMCgScBEgFThUQEuDQHA4JtiRKLIYZeK4REnTiTVIsBlVgCBAIEBQIVg?=
- =?us-ascii?q?WuBCnBwgzkJRxcCDZckhUR0AjUCBgoBAQMJjTeBEQEB?=
-X-IronPort-AV: E=Sophos;i="5.77,490,1596499200"; 
-   d="scan'208";a="464578443"
-X-IronPort-AV: E=Sophos;i="5.77,490,1596499200"; 
-   d="scan'208";a="447106802"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: Randy MacLeod <randy.macleod@windriver.com>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] #yocto
-Thread-Topic: [yocto] #yocto
-Thread-Index: Ada9q0Gah+MAkjdpRLyRArogF5D01gAiczoAAA16IGA=
-Date: Thu, 19 Nov 2020 12:03:49 +0000
-In-Reply-To: <4a1f6e6d-dcbc-044c-7ff3-22d4a7b1b667@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.9.87]
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=VSYbqoaC;
+ spf=pass (domain: gmail.com, ip: 209.85.217.47, mailfrom: nikhilvp29@gmail.com)
+Received: by mail-vs1-f47.google.com with SMTP id s123so2303417vsc.0
+        for <yocto@lists.yoctoproject.org>; Thu, 19 Nov 2020 05:00:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JNhr+3yL3ywHvK2JbzXnSTZWCrUK/ATg9g+HWbM1aso=;
+        b=VSYbqoaCYg6ej5/erSSxjfunSGSdS9Y0weGfxRCaqMlfaxdOC7rl+iUgoF1NrCe0OH
+         q0ibI0sTK13d0XesIGL3Tf0Skrnbc1L2g+YmKrsoGS3/b6hHHPbKkQp7vVHwKky7+Ckx
+         QLTsKN6NpZ1nLEpEcp1I0rFckii6Y4W89S4Kya2kkWYe5up6dknLVi+6zVRoXeQOdGgD
+         65g3s0wdLJrDhizp8firAuGW46DdDjyvcsrhE99JHQGJ+z0ukG0IHWnzBv5ztXasPmmo
+         TqMrLnxoedFvG+41LQu3bgzxEhvqic/KMy4CJJkD/NtO4KUWQVrYZK5bUCtBFvhAt0Y1
+         29mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JNhr+3yL3ywHvK2JbzXnSTZWCrUK/ATg9g+HWbM1aso=;
+        b=Wds80075Rg8GNRN7003srje9QPRjRMG73GxPbid9UTJ1WXCz6lBLvvHbLzPwotsMfn
+         JQ3I2i9397w6wrXeoTeBJbQVInz9iPBjmhepWeJTgtHF+jC7nyEhJ1Rj2fic2vQ+e2GW
+         eHU9Dhz9FXxoN8L2t0Qax/59JP5SOfUfHTrVerHHtIANghm20OnYK6MRSh22aWasQDdN
+         JjZWQ+CK5iE2LYl4/mMUDve0osDQidRj6aQjapYk1NzIsYaWkLDxmpnSviVeIfJwu2yk
+         7JCwScCr88wghBdIjreps8RqQQ04ImE5uxYKwJGGJXxSgznX1pHtm7wzAEtX/MpzHdYx
+         6k7A==
+X-Gm-Message-State: AOAM532TEgWUwYboKceB2G+VK9rLYnXouunyD4SFkrgEa36rynOz/zmc
+	9nn6m0f0ux+rMFU4HnJEHBeuM+D+ADBAtvRaYiLjfgxMLaO3Kw==
+X-Google-Smtp-Source: ABdhPJxmDIZ28szYIwuXGwTuhke5YMDxBtQSXhWmTrUmGbFuea7ma0dr+L7yG88btjww4oqwL/Br7OkDSsoXmRYE6Zo=
+X-Received: by 2002:a67:f403:: with SMTP id p3mr8338911vsn.16.1605790824500;
+ Thu, 19 Nov 2020 05:00:24 -0800 (PST)
 MIME-Version: 1.0
-Return-Path: steven.monsees@baesystems.com
-Message-ID: <MADEUP.1648E72A44BA6104.20312@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+References: <CAJw=dJ9E4e1g_V1NnZj6adf415GAK_DO1VNjS3EmnJXyTiEiQA@mail.gmail.com>
+ <20201119091631.riqm2r2gtnou2cie@qschulz> <CAJw=dJ9Yy8sBWDMT8mpnjDQBjd7AA_MBL5bNukvPXUjCeKmbdw@mail.gmail.com>
+ <20201119111831.agmgsv577robrg5p@qschulz>
+In-Reply-To: <20201119111831.agmgsv577robrg5p@qschulz>
+From: "NIKHIL PATIL" <nikhilvp29@gmail.com>
+Date: Thu, 19 Nov 2020 18:30:13 +0530
+Message-ID: <CAJw=dJ8TYZ6NEg7n30=yfiXYOOusJd8_ULbWLF4kJmzi1Oi9nw@mail.gmail.com>
+Subject: Re: [yocto] Enaable to add binary in /usr/bin using .bb file
+To: Quentin Schulz <quentin.schulz@streamunlimited.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000ad939d05b4754f27"
+
+--000000000000ad939d05b4754f27
+Content-Type: text/plain; charset="UTF-8"
+
+Hi ,
+   Thank You very much , we are able to copy obexpushd to /usr/bin using
+.bb file.
+
+  I have one more dout ;
+1)  We created our own custom image (*bitbake core-image-xxxx*) , after
+flashing image to board . when we run *obexpushd binary  *it shows as
+follows :-
+
+root@intel-corei7-64:~#
+root@intel-corei7-64:~# obexpushd
+-sh: /usr/bin/obexpushd: No such file or directory
+root@intel-corei7-64:~# cd /usr/bin
+root@intel-corei7-64:/usr/bin# ls | grep obexpush
+obexpushd
+root@intel-corei7-64:/usr/bin#
+
+Even though binary is there it shows no such file or directory.
+
+2) But when we are flashing a sato image (*bitbake* *core-image-sato-sdk *)
+, that time *obexpushd* binary is working fine .
+
+    Why it is happening like these ?
+    Is there any permission related issue with custom image and sato image ?
+
+
+On Thu, Nov 19, 2020 at 4:48 PM Quentin Schulz <
+quentin.schulz@streamunlimited.com> wrote:
+
+> Hi,
+>
+> On Thu, Nov 19, 2020 at 04:45:19PM +0530, NIKHIL PATIL wrote:
+> > Hi ,
+> >      Yours correct only , but the thing is we are taking*
+> binary(obexpushd)*
+> > from other source and only need to copy that binary into* /usr/bin* of
+> our
+> > platform(*intel board*).
+> >
+> >      Hence how we can achieve these using .bb file ? is there any sample
+> > example .
+> >
+>
+> I gave you what you have to do in the previous mail. Remove the last two
+> lines of your bb file.
+>
+> If it does not work, give the full error logs and what you're trying to
+> achieve and what you have.
+>
+> Quentin
+>
+
+--000000000000ad939d05b4754f27
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi ,<div>=C2=A0 =C2=A0Thank You very much , we are able to=
+ copy obexpushd to /usr/bin using .bb file.=C2=A0=C2=A0</div><div><br></div=
+><div>=C2=A0 I have one more dout=C2=A0;</div><div>1)=C2=A0 We created our =
+own custom=C2=A0image (<b>bitbake core-image-xxxx</b>) , after flashing ima=
+ge to board . when we run <b>obexpushd binary=C2=A0 </b>it shows as follows=
+ :-</div><div>=C2=A0 =C2=A0=C2=A0</div>root@intel-corei7-64:~# <br>root@int=
+el-corei7-64:~# obexpushd<br>-sh: /usr/bin/obexpushd: No such file or direc=
+tory<br>root@intel-corei7-64:~# cd /usr/bin =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 <br>root@intel-corei7-64:/usr/bin# ls | grep obexpush<br>obexpushd<br>r=
+oot@intel-corei7-64:/usr/bin# <br><br><div>Even though binary is there it s=
+hows no such file or directory.</div><div><br></div><div>2) But when we are=
+ flashing a sato image (<b>bitbake</b>=C2=A0<b>core-image-sato-sdk </b>) , =
+that time <b>obexpushd</b> binary is working fine .</div><div>=C2=A0 =C2=A0=
+=C2=A0</div><div>=C2=A0 =C2=A0 Why it is happening like these ?</div><div>=
+=C2=A0 =C2=A0 Is there any permission related issue with custom=C2=A0image =
+and sato image ?</div><div>=C2=A0</div></div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 19, 2020 at 4:48 PM Quen=
+tin Schulz &lt;<a href=3D"mailto:quentin.schulz@streamunlimited.com">quenti=
+n.schulz@streamunlimited.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">Hi,<br>
+<br>
+On Thu, Nov 19, 2020 at 04:45:19PM +0530, NIKHIL PATIL wrote:<br>
+&gt; Hi ,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 Yours correct only , but the thing is we are takin=
+g* binary(obexpushd)*<br>
+&gt; from other source and only need to copy that binary into* /usr/bin* of=
+ our<br>
+&gt; platform(*intel board*).<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 Hence how we can achieve these using .bb file ? is=
+ there any sample<br>
+&gt; example .<br>
+&gt; <br>
+<br>
+I gave you what you have to do in the previous mail. Remove the last two<br=
+>
+lines of your bb file.<br>
+<br>
+If it does not work, give the full error logs and what you&#39;re trying to=
+<br>
+achieve and what you have.<br>
+<br>
+Quentin<br>
+</blockquote></div>
 
-Intel based platform, quick build under "zeus" does not show issue...
-
-I do not see issue under "rocko"...
-Currently porting "rocko" to "zeus", Gatesgarth port is next after zeus run=
-s clean...
-
-I am assuming this banner is part of Yocto, are you now attempting to reser=
-ve/use a serial device (ttyS0) here ?
-
-Can you possibly point me as to where this is being done ?, and is this a c=
-onfigurable option ?
-
-Thanks,
-Steve
-
------Original Message-----
-From: yocto@lists.yoctoproject.org [mailto:yocto@lists.yoctoproject.org] On=
- Behalf Of Randy MacLeod
-Sent: Wednesday, November 18, 2020 7:30 PM
-To: Monsees, Steven C (US) <steven.monsees@baesystems.com>; yocto@lists.yoc=
-toproject.org
-Subject: Re: [yocto] #yocto
-
-*** WARNING ***
-EXTERNAL EMAIL -- This message originates from outside our organization.
-
-
-On 2020-11-18 8:08 a.m., Monsees, Steven C (US) via lists.yoctoproject.org =
-wrote:
-> I was going through the kernel boot output and saw the following=20
-> output, can someone tell me why this might be popping up and how I=20
-> might modify configuration to resolve? :
->=20
-> .
->=20
-> .
->=20
-> LIMWS (BAE LIMWS base distro) 3.0.4 sbcb-default ttyS0
->=20
-> -sh: cannot set terminal process group (1137): Inappropriate ioctl for=20
-> device
->=20
-> -sh: no job control in this shell
-
-Hi Steve,
-
-Can you describe your build host and environment and what steps you take to=
-  encounter this error?  Does it happen with poky/gatesgarth?
-
-What happens if you follow the steps for:
-=20
-http://docs.yoctoproject.org/brief-yoctoprojectqs/brief-yoctoprojectqs.html
-
-../Randy
->=20
-> .
->=20
-> .
->=20
-> Thanks,
->=20
-> Steve
->=20
->=20
->=20
->=20
->=20
-
-
---
-# Randy MacLeod
-# Wind River Linux
+--000000000000ad939d05b4754f27--
