@@ -1,112 +1,139 @@
 Received: from exchange.sewerin.com (exchange.sewerin.com [92.39.20.236])
- by mx.groups.io with SMTP id smtpd.web11.13236.1605808448335830726
+ by mx.groups.io with SMTP id smtpd.web10.12995.1605808614468729352
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Nov 2020 09:54:09 -0800
+ Thu, 19 Nov 2020 09:56:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@lists.yoctoproject.org header.s=20140610 header.b=ZgQ5apEX;
+ dkim=pass header.i=@lists.yoctoproject.org header.s=20140610 header.b=l130D/T9;
  spf=softfail (domain: lists.yoctoproject.org, ip: 92.39.20.236, mailfrom: yocto@lists.yoctoproject.org)
 Received: from Pickup by Exchange.sewerin.de with Microsoft SMTP Server id
- 15.0.1395.4; Thu, 19 Nov 2020 04:00:55 +0000
-X-Sender: bounce+53643+51424+3618059+6691491@lists.yoctoproject.org
+ 15.0.1395.4; Thu, 19 Nov 2020 09:24:31 +0000
+X-Sender: bounce+53643+51430+3618059+6691491@lists.yoctoproject.org
 X-Receiver: Bastian.Ruppert@sewerin.com
-x-endofinjectedxheaders: 7537
-X-Received: by 127.0.0.2 with SMTP id ohU8YY3619394x8YUMjVoWiH; Wed, 18 Nov 2020 19:58:45 -0800
-X-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by mx.groups.io with SMTP id smtpd.web11.4402.1605756723422466650
+x-endofinjectedxheaders: 7022
+X-Received: by 127.0.0.2 with SMTP id BkrQYY3619394xJk5VsJJwgn; Thu, 19 Nov 2020 01:16:47 -0800
+X-Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
+ by mx.groups.io with SMTP id smtpd.web12.6628.1605777399336134552
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Nov 2020 19:32:03 -0800
-IronPort-SDR: zOKXiPYy/fvZMJB8Wan+ZsAU1REd3zhzJdYpCh2244IV8GtKDo/T5+8MO85bAzpOzWrMWEx84c
- ei15h0ZF9mwA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9809"; a="170444487"
-X-IronPort-AV: E=Sophos;i="5.77,489,1596524400"; 
-   d="scan'208";a="170444487"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-X-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Nov 2020 19:32:01 -0800
-IronPort-SDR: 9Mkx2ciibgYlWwKW4vQ2XNa1/ze10TJjsLTNnCre0W+nViAqebWsbXDEu6JyMb+EIL5AnQV/At
- TerX9uYJIhrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,489,1596524400"; 
-   d="scan'208";a="359778360"
-X-Received: from kmsmsx601.gar.corp.intel.com ([172.21.219.141])
-  by fmsmga004.fm.intel.com with ESMTP; 18 Nov 2020 19:32:00 -0800
-X-Received: from pgsmsx601.gar.corp.intel.com (10.108.199.136) by
- kmsmsx601.gar.corp.intel.com (172.21.219.141) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 19 Nov 2020 11:31:59 +0800
-X-Received: from pgsmsx601.gar.corp.intel.com ([10.108.199.136]) by
- pgsmsx601.gar.corp.intel.com ([10.108.199.136]) with mapi id 15.01.1713.004;
- Thu, 19 Nov 2020 11:31:59 +0800
-From: "Anuj Mittal" <anuj.mittal@intel.com>
-To: "ross@burtonini.com" <ross@burtonini.com>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] [yocto-autobuilder2 PATCH] config.json: drop redundant meta-kernel mentions
-Thread-Topic: [yocto] [yocto-autobuilder2 PATCH] config.json: drop redundant
- meta-kernel mentions
-Thread-Index: AQHWvCkrR1R/qvj9R0uiFCuy6Gnv7KnOSqMA
-Date: Thu, 19 Nov 2020 03:31:59 +0000
-X-OldMsgId: <0958f2d64707ab1f8619d03bfebffe66b3bcaaf3.camel@intel.com>
-References: <20201116145955.7393-1-ross@burtonini.com>
-In-Reply-To: <20201116145955.7393-1-ross@burtonini.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.108.32.68]
+ Thu, 19 Nov 2020 01:16:40 -0800
+X-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp.bon.at (Postfix) with ESMTPSA id 4CcDZS3TjBz5tlS;
+	Thu, 19 Nov 2020 10:16:32 +0100 (CET)
+Date: Thu, 19 Nov 2020 10:16:31 +0100
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: NIKHIL PATIL <nikhilvp29@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Enaable to add binary in /usr/bin using .bb file
+X-OldMsgId: <20201119091631.riqm2r2gtnou2cie@qschulz>
+References: <CAJw=dJ9E4e1g_V1NnZj6adf415GAK_DO1VNjS3EmnJXyTiEiQA@mail.gmail.com>
 MIME-Version: 1.0
+In-Reply-To: <CAJw=dJ9E4e1g_V1NnZj6adf415GAK_DO1VNjS3EmnJXyTiEiQA@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Precedence: Bulk
 List-Unsubscribe: <https://lists.yoctoproject.org/g/yocto/unsub>
 Sender: <yocto@lists.yoctoproject.org>
 List-Id: <yocto.lists.yoctoproject.org>
 Mailing-List: list yocto@lists.yoctoproject.org; contact yocto+owner@lists.yoctoproject.org
 List-Post: <mailto:yocto@lists.yoctoproject.org>
-X-Gm-Message-State: Nhr3MGzdR4JRPLSE8GSDI9oCx3618059AA=
+X-Gm-Message-State: TAfcBnzu9OOTqjHnxtQ7nou0x3618059AA=
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=lists.yoctoproject.org; q=dns/txt; s=20140610; t=1605758325;
- bh=7JsbtAOr+IXoF4Ci08x9I6FEVJrz8douHAdrMBSGjvE=;
- h=Content-Type:Date:From:Subject:To;
- b=ZgQ5apEXEDRnEyZtgAfezCbSQnavg5dVXNy6FClMIRqiUZFxMpFJJr+HFCAZjBmhFoy
- /PSkqmdSHsMY6Gd8f0KcXX8FcWN0si4JrLsq8POTiXamgejC/jWWvx9ZBqZYqNasCpxOo
- ud78VnVQrELlEkw5mYpxMmiiaS3rC0gsGWg=
-Return-Path: bounce+53643+51424+3618059+6691491@lists.yoctoproject.org
+ d=lists.yoctoproject.org; q=dns/txt; s=20140610; t=1605777407;
+ bh=Yx4xR1KaO7ud/jwHhKjcJuyRJJ+BZ5IP3gW5RSS+h8w=;
+ h=Cc:Content-Type:Date:From:Subject:To;
+ b=l130D/T9USoZWyCOWHUOErRBJ7+p0pRXJaMVm5fS//rLt+86XJN1z+BAl8y90odFsKk
+ NhgbAp5f0hhGw0hFeOMxZ9cYW+qI5+LtxyTqggVVXiClLgTYyFNtEcwk0lpgdNbYnmBWs
+ l1f9/tan1dgPrfySYkvRmTU5hsECBUEYf3A=
+Return-Path: bounce+53643+51430+3618059+6691491@lists.yoctoproject.org
 X-GFI-SMTP-Submission: 1
 X-GFI-SMTP-HelloDomain: web01.groups.io
 X-GFI-SMTP-RemoteIP: 66.175.222.12
 Received-SPF: Pass (Exchange.sewerin.de: domain of
  yocto@lists.yoctoproject.org designates 66.175.222.12 as permitted sender)
  receiver=Exchange.sewerin.de; client-ip=66.175.222.12; helo=web01.groups.io;
-X-OldMsgId: <888a382972384477b015a904c47168da@Exchange.sewerin.de>
-Message-ID: <MADEUP.1648FA46C6C361C3.2089@lists.yoctoproject.org>
-Content-Type: multipart/mixed; boundary="HgI8PZCHNrPdBVAEiTr2"
+X-OldMsgId: <fbc3263e38574b7baec81ba7faafd684@Exchange.sewerin.de>
+Message-ID: <MADEUP.1648FA6D635D9AFA.20312@lists.yoctoproject.org>
+Content-Type: multipart/mixed; boundary="VTvduVBkLdAAEUR0mLgt"
 
---HgI8PZCHNrPdBVAEiTr2
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <EEAB3ACA6EC71A4A84C0E1CCF4894B98@intel.com>
-Content-Transfer-Encoding: base64
+--VTvduVBkLdAAEUR0mLgt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-SGkgUm9zcw0KDQpPbiBNb24sIDIwMjAtMTEtMTYgYXQgMTQ6NTkgKzAwMDAsIFJvc3MgQnVydG9u
-IHdyb3RlOg0KPiBGcm9tOiBSb3NzIEJ1cnRvbiA8cm9zcy5idXJ0b25AYXJtLmNvbT4NCj4gDQoN
-CkZvciBnYXRlc2dhcnRoLCB0aGlzIGlzIGNhdXNpbmc6DQoNCkZpbGVOb3RGb3VuZEVycm9yOiBb
-RXJybm8gMl0gTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeToNCicvaG9tZS9wb2t5YnVpbGQveW9j
-dG8td29ya2VyL21ldGEtYXJtL2J1aWxkL3JlcG9zL21ldGEta2VybmVsJw0KDQpodHRwczovL2F1
-dG9idWlsZGVyLnlvY3RvcHJvamVjdC5vcmcvdHlwaG9vbi8jL2J1aWxkZXJzLzExMy9idWlsZHMv
-NDcyDQoNCm1ldGEtYXJtIGdhdGVzZ2FydGggbmVlZHMgbWV0YS1rZXJuZWw/DQoNClRoYW5rcywN
-Cg0KQW51ag0KDQo+IFNpZ25lZC1vZmYtYnk6IFJvc3MgQnVydG9uIDxyb3NzLmJ1cnRvbkBhcm0u
-Y29tPg0KPiAtLS0NCj4gwqBjb25maWcuanNvbiB8IDMgKy0tDQo+IMKgMSBmaWxlIGNoYW5nZWQs
-IDEgaW5zZXJ0aW9uKCspLCAyIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2NvbmZp
-Zy5qc29uIGIvY29uZmlnLmpzb24NCj4gaW5kZXggMTFhMjY2NC4uYzU3MjYwYSAxMDA2NDQNCj4g
-LS0tIGEvY29uZmlnLmpzb24NCj4gKysrIGIvY29uZmlnLmpzb24NCj4gQEAgLTI3NSw5ICsyNzUs
-OCBAQA0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIlRFTVBMQVRFIiA6ICJsdHAtcWVtdSIN
-Cj4gwqDCoMKgwqDCoMKgwqDCoCB9LA0KPiDCoMKgwqDCoMKgwqDCoMKgICJtZXRhLWFybSIgOiB7
-DQo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJORUVEUkVQT1MiIDogWyJwb2t5IiwgIm1ldGEt
-YXJtIiwgIm1ldGEta2VybmVsIl0sDQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJORUVEUkVQ
-T1MiIDogWyJwb2t5IiwgIm1ldGEtYXJtIl0sDQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAi
-QURETEFZRVIiIDogWw0KPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICIke0JVSUxE
-RElSfS8uLi9tZXRhLWtlcm5lbCIsDQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-ICIke0JVSUxERElSfS8uLi9tZXRhLWFybS9tZXRhLWFybS10b29sY2hhaW4iLA0KPiDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiJHtCVUlMRERJUn0vLi4vbWV0YS1hcm0vbWV0YS1h
-cm0iLA0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiJHtCVUlMRERJUn0vLi4v
-bWV0YS1hcm0vbWV0YS1hcm0tYnNwIg0KPiANCj4gDQo+IA0KDQoNCg0KDQo=
+Hi,
 
---HgI8PZCHNrPdBVAEiTr2--
+On Thu, Nov 19, 2020 at 01:13:43PM +0530, NIKHIL PATIL wrote:
+> Hi ,
+>     I want to add binary in /usr/bin , for these i made own .bb file (
+> obexpushtest.bb),      When i am compiling obexpushtest package separately
+
+You're not compiling a package, you're compiling a recipe named
+obexpushtest whose output is packages (one of which is named the same as
+the recipe, hence the confusion).
+
+> that time it is compiling fine  , but when i am adding obexpushtest in
+> local.conf as a IMAGE_INSTALL , i am getting error.
+> 
+
+But here, you're adding a package into an image. Effectively, the first
+and second commands you ran don't do the same thing.
+
+> ## Error :-
+> 
+> /data/nikhil/inti_dmsv/yocto_build/build/tmp/work/intel_corei7_64-poky-linux/core-image-intel/1.0-r0/oe-rootfs-repo
+> Last metadata expiration check: 0:00:01 ago on Thu 19 Nov 2020 05:57:19 AM
+> UTC.
+> No match for argument: obexpushtest
+> Error: Unable to find a match
+> 
+> ## obexpushtest.bb file :-
+> 
+>     # file recipes-kernel/linux-firmware/linux-firmware_%.bbappend
+> SUMMARY = "tset_mount example"
+> SECTION = "test_mount"
+> LICENSE = "MIT"
+> LIC_FILES_CHKSUM =
+> "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+> 
+> S = "${WORKDIR}"
+> 
+> SRC_URI += "file://obexpushd"
+> 
+> INSANE_SKIP_${PN} = "ldflags"
+> INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+> INHIBIT_PACKAGE_STRIP = "1"
+> 
+
+You should probably inherit bin_package but override do_install
+(otherwise you'll have an issue with the do_install task coming from the
+bin_package bbclass trying to pack your whole ${WORKDIR} (S) which
+include way too many files you're not interested in).
+
+> do_install_append () {
+
+No need for _append since the following is the only thing your recipe
+will do, so better just override do_install.
+
+>         install -d ${D}/${bindir}
+>         install -m 0644 ${WORKDIR}/obexpushd ${D}/${bindir}
+>         cp ${WORKDIR}/obexpushd ${D}/${bindir}
+> }
+> 
+> # NOTE: Use "=+" instead of "+=". Otherwise, the file is placed into the
+> linux-firmware package.
+> PACKAGES =+ "${PN}-example"
+> FILES_${PN}-example = "/usr/bin/obexpushd"
+
+Here's the issue, you put your file into the obexpushtest-example and
+I'm pretty sure that your obexpushtest package is actually empty and by
+default empty packages are removed, hence why the image recipe can't
+include this package.
+
+IMHO, no need for your PACKAGES and FILES variables as the default will
+put your binary in the obexpushtest package, and since your recipe isn't
+creating any other package (explicitly), I don't see the use for a new
+package.
+
+Quentin
+
+
+
+
+--VTvduVBkLdAAEUR0mLgt--
