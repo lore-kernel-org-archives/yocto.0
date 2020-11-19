@@ -1,136 +1,106 @@
-Received: from gateway20.websitewelcome.com (gateway20.websitewelcome.com [192.185.49.40])
- by mx.groups.io with SMTP id smtpd.web09.17127.1605825436178338565
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com [209.85.208.195])
+ by mx.groups.io with SMTP id smtpd.web08.17280.1605826067407987482
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Nov 2020 14:37:16 -0800
+ Thu, 19 Nov 2020 14:47:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: dajac.com, ip: 192.185.49.40, mailfrom: pratham.ovalekar@dajac.com)
-Received: from cm13.websitewelcome.com (cm13.websitewelcome.com [100.42.49.6])
-	by gateway20.websitewelcome.com (Postfix) with ESMTP id D9862400CE520
-	for <yocto@lists.yoctoproject.org>; Thu, 19 Nov 2020 16:33:59 -0600 (CST)
-Received: from gator3290.hostgator.com ([198.57.247.254])
-	by cmsmtp with SMTP
-	id fsYFk8jDeYLDnfsYFk9UOO; Thu, 19 Nov 2020 16:37:15 -0600
-X-Authority-Reason: nr=8
-Received: from 75-15-4-89.uvs.iplsin.sbcglobal.net ([75.15.4.89]:63560 helo=[192.168.0.132])
-	by gator3290.hostgator.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.93)
-	(envelope-from <pratham.ovalekar@dajac.com>)
-	id 1kfsYE-003HD6-NC
-	for yocto@lists.yoctoproject.org; Thu, 19 Nov 2020 16:37:14 -0600
-From: "Prathamesh Ovalekar" <pratham.ovalekar@dajac.com>
-To: yocto@lists.yoctoproject.org
-Subject: [yocto] U-Boot sama5d3 xplained issue
-Message-ID: <080574f8-ae94-3283-0653-631dc7563b49@dajac.com>
-Date: Thu, 19 Nov 2020 17:37:13 -0500
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.1
+ dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=goUpwJU1;
+ spf=pass (domain: burtonini.com, ip: 209.85.208.195, mailfrom: ross@burtonini.com)
+Received: by mail-lj1-f195.google.com with SMTP id l10so8035064lji.4
+        for <yocto@lists.yoctoproject.org>; Thu, 19 Nov 2020 14:47:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UxfHSw2mdy93EOqM+CDn7T8H1oWSjCVEbFzadUAQhT8=;
+        b=goUpwJU1O3nKEHM9TRO1e/Z9NFHUUXam/ANVIU/CAQdWUrvOVdvZeAUbPXYTZQg0Cd
+         t/hf55TjrAtTT06cbzDJL+r7BUE2Ef8XWxu9o4OEOXGjTMteIUcXVkF1wZAgt5hZXzJw
+         LJ5cZ7+vZ9mYQu+NANa6ViGjsgo08sWH+siW8aUf5ad7bYpsyNdNnMVVv9XTNWxUNIqx
+         ajezYtJNkjXXSNSbm38sz49Kdjhs3xuRR6JzJ3UV18YJpKv75s/sZGHJuyLsKlPmG6Ln
+         1j2+eou9pAqEdNnFe2X0FGrbsKESMxoxBxNjVRVDYAx+H/DS3/TnyF3l+IN28A4+MisE
+         k1XQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UxfHSw2mdy93EOqM+CDn7T8H1oWSjCVEbFzadUAQhT8=;
+        b=HgS9gSEbSfPAF4axGjeliJkyH+KIPNcjCscdyUYKfMvr0TlOphF9OAjsf20NrDZu/g
+         IFGPdSNZTGg8rtott7lS6SdiE3N4H7CeIpYjbuD9406snZ9XY2rJGzcNp0Ca78rtPWhE
+         Z4cxYd4frZEjcHDEFeZZ52mdrmz4bhdM7/g/XyPhah8Wmbmn0oruv54yUkjioUCaGZun
+         0HB+YQ0aETV9lJS9IoOI19Xo1WBvvUrPttf/PUSiIdxjRKNZG78ofWdF6iLWYX6MvPTd
+         maNzCqB4dN6SqyVcyZx44Bm0dBjgsKYexQ2xS3XSibjCci3RLhLkZeOze2+sH0Px0Qxb
+         3NFg==
+X-Gm-Message-State: AOAM5329/LwgCkUfJw9/m81gSQQz7GX4CyjtvfvekGi9nqP6Id9d3U4n
+	GNv3Fwt0dvLxz2zHis8ldN91+hcmRpF//4ml+f0KjA==
+X-Google-Smtp-Source: ABdhPJyuOAXiYNpRagxk9A+is8cxqdHTWVeHSwyMyMeG/9cDq4JgrJ+WAvml0zbM+61O4Rw8q8xK9WRt0Yj7U2gpmUc=
+X-Received: by 2002:a2e:9f08:: with SMTP id u8mr6298786ljk.352.1605826065355;
+ Thu, 19 Nov 2020 14:47:45 -0800 (PST)
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator3290.hostgator.com
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - dajac.com
-X-BWhitelist: no
-X-Source-IP: 75.15.4.89
-X-Source-L: No
-X-Exim-ID: 1kfsYE-003HD6-NC
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 75-15-4-89.uvs.iplsin.sbcglobal.net ([192.168.0.132]) [75.15.4.89]:63560
-X-Source-Auth: pratham.ovalekar@dajac.com
-X-Email-Count: 1
-X-Source-Cap: ZGFqYWNpbmM7ZGFqYWNpbmM7Z2F0b3IzMjkwLmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-Content-Type: multipart/alternative;
- boundary="------------DBFEAF327838D42D6A8334E7"
-Content-Language: en-US
+References: <20201116145955.7393-1-ross@burtonini.com> <0958f2d64707ab1f8619d03bfebffe66b3bcaaf3.camel@intel.com>
+ <CAAnfSTtcnt+R=VLc=qhKknmzKJnZFA7U0ATdEGQ2Gtcs1EJwzA@mail.gmail.com>
+In-Reply-To: <CAAnfSTtcnt+R=VLc=qhKknmzKJnZFA7U0ATdEGQ2Gtcs1EJwzA@mail.gmail.com>
+From: "Ross Burton" <ross@burtonini.com>
+Date: Thu, 19 Nov 2020 22:47:34 +0000
+Message-ID: <CAAnfSTtfkcXq=CU4XJ=REm6uhV4rF_3Jp6paV2S9aerWTzLqRQ@mail.gmail.com>
+Subject: Re: [yocto] [yocto-autobuilder2 PATCH] config.json: drop redundant meta-kernel mentions
+To: "Mittal, Anuj" <anuj.mittal@intel.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
---------------DBFEAF327838D42D6A8334E7
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+I was wrong. :). The change to the controller has been reverted, and
+will be restarted tomorrow if that is okay.
 
-Hello everyone,
+Sorry about that,
+Ross
 
-System: sama5d3_xplained board
-
-I have a question regarding the configuration and build of u-boot.
-We have a build that was implemented earlier. I am trying to make some=20
-changes to it.
-
-Change 1: Change the auto boot delay to 1 second.
-Change 2: Add an auto boot command to set a gpio.
-
-I am aware of the environment variables:=C2=A0 CONFIG_BOOTDELAY and=20
-CONFIG_BOOTCOMMAND (needed for the changes above.)
-I tried modifying the=C2=A0 " configs/sama5d3_xplained_nandflash_defconfi=
-g "
-
-Question 1: Do I need to create an *.config file using the make menuconfi=
-g?
-
-Question 2: How do I create the u-boot.bin . Does this=C2=A0 depend on th=
-e=20
-Linux build?
- =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=
-=A0 =C2=A0=C2=A0=C2=A0 I know that there is an environment variable:=20
-CONFIG_BOOTARGS that needs to be populated.
-
---=20
-Pratham Ovalekar
-
-
---------------DBFEAF327838D42D6A8334E7
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-
-    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    Hello everyone,<br>
-    <br>
-    System: sama5d3_xplained board<br>
-    <br>
-    I have a question regarding the configuration and build of u-boot.<br=
+On Thu, 19 Nov 2020 at 15:45, Ross Burton <ross@burtonini.com> wrote:
 >
-    We have a build that was implemented earlier. I am trying to make
-    some changes to it.<br>
-    <br>
-    Change 1: Change the <span style=3D"color: rgb(36, 39, 41);
-      font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica,
-      sans-serif; font-size: 15px; font-style: normal;
-      font-variant-ligatures: normal; font-variant-caps: normal;
-      font-weight: 400; letter-spacing: normal; orphans: 2; text-align:
-      left; text-indent: 0px; text-transform: none; white-space: normal;
-      widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;
-      background-color: rgb(255, 255, 255); text-decoration-style:
-      initial; text-decoration-color: initial; display: inline
-      !important; float: none;">auto boot delay to 1 second.<br>
-      Change 2: Add an auto boot command to set a gpio.<br>
-      <br>
-      I am aware of the environment variables:=C2=A0 CONFIG_BOOTDELAY and=
- </span>CONFIG_BOOTCOMMAND
-    (needed for the changes above.)<br>
-    I tried modifying the=C2=A0 "
-    configs/sama5d3_xplained_nandflash_defconfig "<br>
-    <br>
-    Question 1: Do I need to create an *.config file using the make
-    menuconfig?<br>
-    <br>
-    Question 2: How do I create the u-boot.bin . Does this=C2=A0 depend o=
-n
-    the Linux build?<br>
-    =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
-=C2=A0 =C2=A0=C2=A0=C2=A0 I know that there is an environment variable:
-    CONFIG_BOOTARGS that needs to be populated.<br>
-    <pre class=3D"moz-signature" cols=3D"72">--=20
-Pratham Ovalekar
-</pre>
-  </body>
-</html>
-
---------------DBFEAF327838D42D6A8334E7--
+> Yes.  My understanding is that there's separate branches for each
+> target?  This is for master and not gatesgarth.
+>
+> Ross
+>
+> On Thu, 19 Nov 2020 at 03:32, Mittal, Anuj <anuj.mittal@intel.com> wrote:
+> >
+> > Hi Ross
+> >
+> > On Mon, 2020-11-16 at 14:59 +0000, Ross Burton wrote:
+> > > From: Ross Burton <ross.burton@arm.com>
+> > >
+> >
+> > For gatesgarth, this is causing:
+> >
+> > FileNotFoundError: [Errno 2] No such file or directory:
+> > '/home/pokybuild/yocto-worker/meta-arm/build/repos/meta-kernel'
+> >
+> > https://autobuilder.yoctoproject.org/typhoon/#/builders/113/builds/472
+> >
+> > meta-arm gatesgarth needs meta-kernel?
+> >
+> > Thanks,
+> >
+> > Anuj
+> >
+> > > Signed-off-by: Ross Burton <ross.burton@arm.com>
+> > > ---
+> > >  config.json | 3 +--
+> > >  1 file changed, 1 insertion(+), 2 deletions(-)
+> > >
+> > > diff --git a/config.json b/config.json
+> > > index 11a2664..c57260a 100644
+> > > --- a/config.json
+> > > +++ b/config.json
+> > > @@ -275,9 +275,8 @@
+> > >              "TEMPLATE" : "ltp-qemu"
+> > >          },
+> > >          "meta-arm" : {
+> > > -            "NEEDREPOS" : ["poky", "meta-arm", "meta-kernel"],
+> > > +            "NEEDREPOS" : ["poky", "meta-arm"],
+> > >              "ADDLAYER" : [
+> > > -                "${BUILDDIR}/../meta-kernel",
+> > >                  "${BUILDDIR}/../meta-arm/meta-arm-toolchain",
+> > >                  "${BUILDDIR}/../meta-arm/meta-arm",
+> > >                  "${BUILDDIR}/../meta-arm/meta-arm-bsp"
+> > >
+> > > 
+> > >
+> >
