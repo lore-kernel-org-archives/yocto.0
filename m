@@ -1,53 +1,53 @@
 Received: from exchange.sewerin.com (exchange.sewerin.com [92.39.20.236])
- by mx.groups.io with SMTP id smtpd.web11.13627.1605809945561172455
+ by mx.groups.io with SMTP id smtpd.web12.13399.1605810085383147414
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Nov 2020 10:19:06 -0800
+ Thu, 19 Nov 2020 10:21:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@lists.yoctoproject.org header.s=20140610 header.b=qIrjOUho;
+ dkim=fail reason="body hash did not verify" header.i=@lists.yoctoproject.org header.s=20140610 header.b=OlJg4MvH;
  spf=softfail (domain: lists.yoctoproject.org, ip: 92.39.20.236, mailfrom: yocto@lists.yoctoproject.org)
 Received: from Pickup by Exchange.sewerin.de with Microsoft SMTP Server id
- 15.0.1395.4; Thu, 19 Nov 2020 04:27:31 +0000
-X-Sender: bounce+53643+51425+3618059+6691491@lists.yoctoproject.org
+ 15.0.1395.4; Thu, 19 Nov 2020 07:29:44 +0000
+X-Sender: bounce+53643+51426+3618059+6691491@lists.yoctoproject.org
 X-Receiver: Bastian.Ruppert@sewerin.com
-x-endofinjectedxheaders: 17255
-X-Received: by 127.0.0.2 with SMTP id AL0DYY3619394xTLivqXVFV6; Wed, 18 Nov 2020 20:26:34 -0800
-X-Received: from sonic310-22.consmr.mail.gq1.yahoo.com (sonic310-22.consmr.mail.gq1.yahoo.com
- [98.137.69.148]) by mx.groups.io with SMTP id smtpd.web12.4490.1605758393008944782
- for <yocto@lists.yoctoproject.org>; Wed, 18 Nov 2020 19:59:53 -0800
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1605758392; bh=PxtNVLGBfaxNJPSudvsiEFcMi4DAIryk85Q5ng+rS4k=;
- h=Subject:To:From:Date:From:Subject; b=GlnBjfJRxxSXrsDAHYbhZ1tOydsUkMsqsFgsJwsRZlhLmKw119SkbX7kX5vyzfg1wtAUXyhNXJjBbJRpA/IMU40o4DIiO1d3b/CUb/4ZP2dw3yiuIBDBqnEjFFoLrL9fkxsVNXRAJnOw3RiJIBYH4i95wdgTWw9D31kzCJYp+O2L4IXAC081qOjVME/l+vux4Dii4UEMKm6yFjBRAk2AvHgEpRYCjPRxbrIgJ5bkE82vfZ7l+IWpYh2uEKB03jRblqskkHgPgPKjWw9Y6iZo+xZWwtQS9PVhwQiYIyHI0SNlrt0kTW89cLFvsIyv7SmAx8AuPzcDObW6X/88+q1cSA==
-X-YMail-OSG: RlaCHpIVM1mvLXLL3fPR8V8IgWoHuIFKzHcfAMrGtqYzjBzXqWtCFJZNYQYiex2 7Yru6pSLai3oKxKcatLxsxvRF.icYv5HSf8RvMarJv7xQZcl2vZXOj15JrBST5NI8ZawPbYrAJ2J
- P3j2Xx5E_H8CKYqU0SjzoPbU8ZpZIb6fA9gJnCrvj4RDEn3RAbYga7koPSKZ_wb0vkAUkWFDA7E7 iFMrrd_2a0j.XOxcqw5yqrZC5kc4IQEpPGB9VNsXf5Xj3F.BBBk2AL3PRP4D.J48cXsFfMHjxtjH
- SmU4UVHXLU1FTFlPJMyIASaZb1Ke4C6b9EpB2Y9lW5Ri_dI..rK7S7uIbPBvqPNYIK3pmdvyjyy4 6hZLyJJzLZKhpEQ36OaZmkX1jTkqG7Hd9jrRSSoaBryx_fUVh1k_MHtWEX5eA1.jiKynNmq.swLv
- dgomx2JsIYbfRCJiGL6gFPe.KfA8MqO1DSgGY2nz1xjUe1Yzo87wckQOMJRHb2GkaW2.vawbcBds 63BBKL.1id3bsvDYzIWp.l3CrNaP.l4wh7dyY5PzO1nQkLv47oEm1q4I.6jcRrFPiApTl7CNjKiq
- mdsyw.ivrWG2DdRoz0_c_vhyumRHCpEmpgLXnfmLb35wjNh8ed3ZQVn0vCdGN.SjP2jcwSww.OBx oiq1_FsL6v_0IsbmnFSwnOVeNSw44YMZhtIO7Ybfk5W54Mqe2x86lr_SlNqgH_oAYBHD4fdbP1eZ
- dglBj8LTTxmMTepfOg5yQ6iu2bxZs.ByDyrs_eZqNGmRf1J4t47g5ONZMxJ9eyFDjGm7OXmVIumx 7ANty4Oq70BAlWpBO5fPJ3VomgCQ32tzIp6JRs.2ElvsMNhoRPog_uFSycJoHO8lUgCuj5B78PHI
- mmeHTVlaV749ipDbxygaRT3KxvSW2TRhixXXos9lYBufwI2.Djk0Vf4QYunj7bsNzb1ldDlIMmCF 6cy6E7xbpQ1FFNNvGvl4zAzQQwEJuGVl6Wux6JbrPt3kPjbl9aLvoNIfNX3IykKx7.UdVz0IgOPN
- TjXV72uZlHwKcN_.SsxhIwO8A7sOvAykdq0AQ7R30.uBLniVZmRM4PwzBEqm_J.OhKCbupIOvTw4 Qw5hcYKRU4gZfPsuU8sGLtqyn6s8VAI4wot0gMZIqfGCNdnrL54fbp5puHQcSbKdsgnGGZFKfbp4
- m4AWwJxsMD6tKJB7fpr1a.fUYrh6FXFeZ3qKN_6Dfu6gp4DVzvuJHmUF6OeT9MD_s_yZH.PrDtez 0p0STEDabyGAoDWtrlBmOMF4Gs.2_Zd0cDwIIPHb1W4jW8pfJlJddg2sx_58OiUe8qxr01Ul7Zij
- KU6lBKxrF9QCs9WHIpOIa..eszfOe6WrAfhi2BwX7XLGRiQLGv7BEElN5E4zTkrq90Z3laS0cR.Q YG257LtVCDiBHwz1yRTwvdBwAAU_LIs6dxWQNg2aR.hUyAF.uLK02URXjuzqEjK8H8VbvUVO4fng
- Sj6rK3XfFnZfHa.z1TLIGC5SUK89OTrbU5h4kKePVEb.Q0ljr.sXKZYExLQ6NLJh_4b7xnCYLls3 etaxLzRgCPJ6l0sl.Qb930Bw9qkC4DNw76epZCk_lYm9EvSaRfNvuKkvFOGVFdaSbtTvRlFq54bj
- ZlU0zoo34iZtRu0Xtt3erHRjE0RtTsqFQcL.9yPKBsPjWcQ9e3H37oRxADcKY6rBYkPt_OHKeVJi e2tKD12UfDUqOrtTaWoIM9tyUOX8MD8k2Mozt3IE7iGUotiLo9uTTakPnKz_s1mjn0xQSIOcyKua
- .Mq8xYPyaSZ81WFlYDdE8fs8tvPzcdTGwcAV8NxcC4axSd1mVSf5ZpaP_b5VKeW.q9DGPF5OlUmG jbrJO7nepup8ip5YSMdXTuqRDedyd9kqiAL_ymTMEiKulWtz7kGOFU2EFv.FQmVG3jDVFjXFteBb
- FSsqmr8ebWUrI1ytk1LB2wUSuHxyu2t9igPCt_9AxkGCZlZ5Q2BMEvj3Gxsc0dNQonhvLkDAwpqH 537QgDTzT78.7dWh9tQM_ZopAy7OuNETCEy7HArL_8OJQidqB5EdpCAiFdYO2FC_80y72iGSN9sm
- 7S7ipY0lp_wsLi7jt6ac85X3S7rRKEu8iSjg2v3vw60u68UoLBaYrRxUuvuKpp1_uztCsTh7.iNF FzssigU25eU_kwom1XDDRMft7MbgY7SMYxsBlZcACdVsCIHAEAKx35sb5FQSO5iYPpJKdbprOD47
- KwSNaZii0u5jIMZsv9FYgUXR.Wniv2w4R5MTavoh0huHmLHvwCEc8m1lrXSd2Y.S8EdKIzU4Xq7d chOJYssD2aYfVM0TSjr.IrxYXXAZhY2HJEl0S__QFDOh7i7VwoH197vix3H9_vSc3lLlg33nv0k6
- Kg9I4vHYlUwwBwefv4La6zf6dVFEXabR0Z08BXWhVK.ogAyzCO4leQKxHWh2h5MJGQtyUj0s20ag eMxLYH_d.3LQm67fcu6GKdTz16l93u8Zvtc3dCShV06e9FqeWPQjRqu3rMRtsnU6Wz7_YXkAHHuY
- DtGj3ADROzWgDlRF9Aw0gHsN5v.yObP5ZowSTvmusi_JNbu3t_ehPqtDvCzdDg5zyn_Bgb8GwMQ4 BOMeyBhOWg7xSWQbS93pSiQUSzAunKFbUCCoX9zokYjJvZ.B_vnbiTXmmbrEtX5bJkdNL5mP0pXq
- NabsDkxLQR29qGAgpU9f9svk0Jl7z3Uj0Lik1DLhvsCU3DFGrKft1tNVUyHo_ei2UD1EbBw--
-X-Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.gq1.yahoo.com with HTTP; Thu, 19 Nov 2020 03:59:52 +0000
-X-Received: by smtp421.mail.ne1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA ID 2c08141d4a6468c32c06bd5bb186bf8f;
-          Thu, 19 Nov 2020 03:59:46 +0000 (UTC)
+x-endofinjectedxheaders: 27004
+X-Received: by 127.0.0.2 with SMTP id 0AedYY3619394xSHSMpbjtsn; Wed, 18 Nov 2020 23:19:20 -0800
+X-Received: from sonic316-8.consmr.mail.gq1.yahoo.com (sonic316-8.consmr.mail.gq1.yahoo.com
+ [98.137.69.32]) by mx.groups.io with SMTP id smtpd.web08.4838.1605760358608666137
+ for <yocto@lists.yoctoproject.org>; Wed, 18 Nov 2020 20:32:38 -0800
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1605760357; bh=ElWH27I9yRXi+X3j2/Q7ck8pQv1oEbII1mIDdPVQFLj=;
+ h=Subject:To:From:Date:From:Subject; b=g42v6nPWi//qHqrEn/ZTb0qK9NyX5sqOchLZ4QzgfxnKqwkimP7joHE6sP8luu1ervYwecXJXNin1TuqrULXiEYoVbmSfljhcC8muBVwgUXqa39n6xz9MRVAjwUq2KvK9SPy8qWC8KOaQWYuEbEJNuKoNiWt/gecRxSu/e6F2+baMDrBlwv03/1936K5zHuIYnZyWVyegalMpz/kdDOctD2jly52GzhZZZeuUAxyemb7lNXzM13+yhQUS0ReE0WB1tYNo96D7oMcRmwz0Nvb6vatiT2677cAvCwP1BkzSg8NdIFJjFmBQgalxoffIhhW4dpmEcWz4o7Hou3nUguDcg==
+X-YMail-OSG: 6HsFt6YVM1leF0g0OgRk8CrBtikIno_42RMu6ACPfVgR9uWVzs.RQGYzhnbrJeA sFgr9p6Sv02H6Ov3oLzngUZfbyMWdtBkBZHIJ3EQyxw77gcf3mBDuNBOuUFua9cudrX29UZ56dqp
+ ci2vlKBQiYtg_CzEmX3uTK3D87OM1Vn5EAeoeNo56z1dVf3vsQEb5mixMwHMovopxM1GjM4HVsWg LS42Bu9Lmk1Lf_EKWh6S6axXTzvCBX_Tl9CLaunzEhPiV0sPpWYZpjJ_9aBF8w7tRcZ4UkaHz_SI
+ zwYIb87MsWF4zi1EMNhydO9uBiMCuimOruE2l8LIQSeAy29azwbq6HJHI0rYk7aaN_CEpLZdqrJd cW.ilcA5a_TTSDk8s9sFlwP3H7NmCzoI0kGrbSy_gERTRG03bLe0QrlmbGFn5_rN.fh6Muik5WT3
+ jKLPEzuaCUDQQqYpFB0SB4g4kM4M_tI5Eo8eELhRB6WlJWV_A6vAFKw623L4P2G0ZEZK8buBMdb7 rX4NiSf3K.f24gHo7J7U_spdq.Or6pWlHu_WjOLzvUN0Uq46cZ85lC0IEm4xYBprwrJXC1HY6tD6
+ 25GIsl2mamFBfExhaZ6HWdh0VpwKOdNkip_HYwYXfikDbbUBkqid4Wgm3l5aCr4rzt8mEy6lhTKb IxAww3gt_c25INhIhZZs9uEhTD4p1j2fqmgQttaWt3KRyKXZqS8TfsDmD0_t2i9IL4Kn2JmX4Dso
+ 2oIjT7pLDPONUb95Lgb8BGu.9lr_uxYWM2zLd93PB5WLH8u7Xh.fbyBxO3FBDu.D9AAu8f1wR6ae 84HPaj.TH3ZRUEWCLYD6S8CusIdAhBcGSp1h70WQsfCyVOMZ9iVHzEoytnsBSh0pjmy_xaqSnhML
+ IW.GcJ.UtiRMv9efn2Ie.JS1bo3brBpnuUnwqf3glviNIiddHp.f3qovjNF_1k8m16f35_QFvXbC I2MkpVuTkmRS5t7aoItdAOeFoE6MiL6cVcEoHvXqdFJKvpSKrlxx84J3sWZFcrUZMn0CSrSR5fKo
+ ywIPiGqheq6nL45t9nEVYCNZEiUKWhdupfqlEK4TFHiRzP7wC5tPMoQ478R1jdq7Te6drBwckBQX iq3HlKWnAZE.puf4lsx_kwLagx4gLCSQUXvJ46_UbHM_2xveK9BThe3bwh92c6mbvMCazsmqytne
+ dodxICUhL8V86rD7jKWw1Q8aBoqkGrJJ84h_qWtPdI2G7KaZRAfOTO1wqT7gTQdFrA_oVTQYMXio m2YCjZEodqUWgCwpW4teRsppBCvZ21wmc3DlTA9e5Jwop4GvJyUi6dea7mgt75pfkAzwfdPwneZV
+ MGLMgPYQXLI_DanT.r3iie4vdE2ZrfsANI0cnq1PntDTJvS9CYgeNkh39xh_a3KZUtV5ff8AWZoQ a6MyFM89B1rUctNAOQQ15w.AJBXW2b6rg9M61haarDQGjvoQa28u6KTDq0Gsg3105b01ZaujuSk2
+ 8MYvccB856pSd6nELIIYROh4ZIUP9Bv9EHVbPPrhlTyA4m60PtzXd5VrJk5tZUoGESFBJKSaTiha zHNmW9FGD0HLxdS_n.WDPCoUnuxKr5H08j88hTvM.aAvTCHDAlbVrE_MLv.IvZFAOhucOIl7adrw
+ WGsIcRy.P03v4vZAxtxzCCdXB95AHqZlPDYSoa16hKPfC1aU50bNNbpDmi6JpLxEHV740.dTx63a 5m0AVoNZNu9IVARsMOHix7RXOtkFLflbQA.AD69GN5O3_riSFsAD3KY0qKUqLixPeBm.vEEDvofo
+ Zfn_tOiYr.VJOC89QSJ834vRSnoRc9xbB3th6l9iNcZLfCnmIw3Ko78CFpHUSikt1QQhXbXA0Xlg X15rjF86ZXVNpHXgVDqqbi1zaGBKLi5yOGzvrL8yf8xHWLTHsFKfmFbpBq6nm9qVcquU5vU4vqmH
+ 2HbjT61pGnt2ZS5AAC21pRWlX8xjzjQg6wMswpLvQyItWDmSVIFdU1twOqtEruhwUTFoeGeSLkmo TnMBEXuHa.imjkezTjGNL1nfr_IuBJHnfT0xjiXreMjmgb_SOieZ1Sw_XP2phffMu4ctpmEhGHAn
+ uMGIRMls3R20Fo4VaeFe4CONyNXRNcQO556ykct24si5xdNKgQRrgPQKN9RGGNWrmsn7NGp.mbe9 J.v_BcChko2D4IYdHH.YoVLZQvy1rEstl8hsuCiOjGXi.6_mH8OBsqBxddhDHQz2jNion0nUaODf
+ d16TRnOFa5jvo1OljrARUP19PZWuDY7JBzajVOY_NfTWesEhDkDOdoyaYzRgetj3OtzVHA2634rK klNA9AKbnjnAIrOIXKan1lpMinieZnCEWZRJAuP8Kzib0zyBWZm_9sqzhvQXfM7_vGmz9PCJNZR3
+ lzMOxUiYMF.s.WZuM82bn_TkCtdVawwaZVyL67oL38e4HfvKvMMg9ZYk3fHt5u_kyx.FPZAZLViH Emsxl_8oidVWGwgKfwY_9O0FvzgFwVlS1lE2chYVGRLncWJxjIQagoJRbElXL61sohxpNZSHy1bj
+ 3w5p1QG7pU8R2p6Sv3Psl8if_36l.xAHuedbJC1rDgjgqQfG2G2SG8uZP1_uzmDi6MFkiTjpxzwN RLQDnHii1oxtNG_OT.w--
+X-Received: from sonic.gate.mail.ne1.yahoo.com by sonic316.consmr.mail.gq1.yahoo.com with HTTP; Thu, 19 Nov 2020 04:32:37 +0000
+X-Received: by smtp407.mail.ne1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA ID c5bf173687cf4238f952a648f82fd533;
+          Thu, 19 Nov 2020 04:32:32 +0000 (UTC)
 Subject: Re: [yocto] Raspberry PI enabling MMC1
 To: yocto@lists.yoctoproject.org
 References: <61df164e-fa3a-7517-33e8-db8ef0c8af92.ref@yahoo.com> <61df164e-fa3a-7517-33e8-db8ef0c8af92@yahoo.com>
  <CAMKF1sq=my8uXJwO93BwhEMiEZRyYGOCvv9BMuMCG8=DuGV-Ww@mail.gmail.com> <16488BC657DA2093.23836@lists.yoctoproject.org>
+ <1648CCC040C7B594.8629@lists.yoctoproject.org>
 From: "chuck kamas" <chuckkamas@yahoo.com>
-X-OldMsgId: <97ca6687-fa2f-869b-b433-cbdfad852fa8@yahoo.com>
-Date: Wed, 18 Nov 2020 19:59:44 -0800
+X-OldMsgId: <4d878e2d-ff0c-3fed-75e2-46670c3bbfde@yahoo.com>
+Date: Wed, 18 Nov 2020 20:32:30 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <16488BC657DA2093.23836@lists.yoctoproject.org>
+In-Reply-To: <1648CCC040C7B594.8629@lists.yoctoproject.org>
 Precedence: Bulk
 List-Unsubscribe: <https://lists.yoctoproject.org/g/yocto/unsub>
 Sender: <yocto@lists.yoctoproject.org>
@@ -55,134 +55,148 @@ List-Id: <yocto.lists.yoctoproject.org>
 Mailing-List: list yocto@lists.yoctoproject.org; contact yocto+owner@lists.yoctoproject.org
 Reply-To: chuckkamas@yahoo.com
 List-Post: <mailto:yocto@lists.yoctoproject.org>
-X-Gm-Message-State: By4fwjqk1bScmJjcHgSDCqwOx3618059AA=
+X-Gm-Message-State: tU9Cixz07QWgUF4r64lUXEhrx3618059AA=
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lists.yoctoproject.org; q=dns/txt; s=20140610;
- t=1605759994; bh=1BHnsAIrikoIzccUDkkWIpvnqnfaYJExvWTpLItqRzU=; h=Content-Type:Date:From:Reply-To:Subject:To;
- b=qIrjOUhoG5jOBs+2Hxz51KzE/l1iLTsMm5H+az066t7+GwbI6RbfnlfQ9IUlHKDiN6x DD4wguDGJ8bbTifxKXdw2aTUxZEviB8UVe3gTC0OjQdv0ero0m8VjBNPuP+Y8LmlOTIbe lPHj5ru6IAxLj6OZgGY5GVzL26vn/cTqyaQ=
-Return-Path: bounce+53643+51425+3618059+6691491@lists.yoctoproject.org
+ t=1605770360; bh=vmL9Arn11joPlgqn4LwTQBsnmH6lElio6oxtWsu9UcU=; h=Content-Type:Date:From:Reply-To:Subject:To;
+ b=OlJg4MvHfAEgoomLvetADpynnWtebxwSMcDwgfUKZQW7+z4ev54lmdT21BcU/El+sJC XAwz7wDXu7BK+gn66HvsesZsQ6gPhp937TKu4DMMME2kMTt6BXnkAc7Sml3kLwgSp6sVM RgbrRLoC3DaKytQZ83chvk1Nj1mdozJxMsw=
+Return-Path: bounce+53643+51426+3618059+6691491@lists.yoctoproject.org
 X-GFI-SMTP-Submission: 1
 X-GFI-SMTP-HelloDomain: web01.groups.io
 X-GFI-SMTP-RemoteIP: 66.175.222.12
 Received-SPF: Pass (Exchange.sewerin.de: domain of yocto@lists.yoctoproject.org designates 66.175.222.12
  as permitted sender) receiver=Exchange.sewerin.de; client-ip=66.175.222.12; helo=web01.groups.io;
-Message-ID: <d98722f1e00b4536a597917341b73419@Exchange.sewerin.de>
-Content-Type: multipart/mixed; boundary="5ok6v36OFgA3J7FmFBfm"
-
---5ok6v36OFgA3J7FmFBfm
-Content-Type: multipart/alternative; boundary="------------53CAA7F55E1117554566AD12"
+Message-ID: <6cbee24058e04c0d9f21fb9077fe94e9@Exchange.sewerin.de>
+X-Groupsio-MsgNum: 51460
+Content-Type: multipart/mixed; boundary="------------2AE9C8630FE2B66A3C2345A5"
 Content-Language: en-US
-Content-Length: 9929
 
---------------53CAA7F55E1117554566AD12
+--------------2AE9C8630FE2B66A3C2345A5
+Content-Type: multipart/alternative; boundary="------------BA1C0816FDE07CED2619FE7C"
+
+--------------BA1C0816FDE07CED2619FE7C
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EC0D2A8E-5CB7-4969-9C36-46D859D137BE-PartID: {CD965C54-EBA1-4CB0-8755-919872A3C964}
+X-EC0D2A8E-5CB7-4969-9C36-46D859D137BE-PartID: {356D3B7B-F001-4FFA-8FAC-D3DC1FE8F9CD}
 
-Raj,
-
-
-I found out how to debug the boot process of the PI from:
-
-https://github.com/raspberrypi/documentation/blob/master/hardware/raspberrypi/bootmodes/README.md
-
-by turning on the boot code debug.
-
-sed -i -e "s/BOOT_UART=0/BOOT_UART=1/" bootcode.bin
+Making some progress here!
 
 
-I found out that the sdio overlay does not exist!
-
-> MESS:00:00:07.868162:0: dtdebug: Failed to open overlay file 
-> 'overlays/sdio.dtbo'
-> MESS:00:00:07.874093:0: Failed to load overlay 'sdio'
-> MESS:00:00:07.878881:0: brfs: File read: /mfs/sd/overlays/sdio.dtbo
-> MESS:00:00:07.891322:0: brfs: File read: /mfs/sd/cmdline.txt
->
-
-So what am I missing on how to turn on the sdio on GPIO22-27? Is it not 
-an overlay and instead a driver/other code/linux config that needs to be 
-set?
+I added a compiled version of the attached device tree and now the mmc1 
+shows up in my yocto image! Yes! Now I need to find out the secret magic 
+in that tree that I need to add...
 
 
 Chuck
 
 
-On 11/17/20 4:29 PM, chuck kamas via lists.yoctoproject.org wrote:
+On 11/18/20 7:59 PM, chuck kamas via lists.yoctoproject.org wrote:
+>
 > Raj,
 >
 >
-> Thanks for taking the time to respond. I thought of that too. My 
-> custom Yocto build has the line to turn on the sdio in it:
+> I found out how to debug the boot process of the PI from:
 >
->> dtoverlay=sdio,poll_once=off
+> https://github.com/raspberrypi/documentation/blob/master/hardware/raspberrypi/bootmodes/README.md
 >
-> I have attached the entire file: config.txt.yocto
+> by turning on the boot code debug.
 >
-> However, the Rasbian image does not have any mention of the dtoverlay 
-> for the sdio.  Curious. See config.txt attached.
+> sed -i -e "s/BOOT_UART=0/BOOT_UART=1/" bootcode.bin
 >
 >
-> Thanks for the help!
+> I found out that the sdio overlay does not exist!
+>
+>> MESS:00:00:07.868162:0: dtdebug: Failed to open overlay file 
+>> 'overlays/sdio.dtbo'
+>> MESS:00:00:07.874093:0: Failed to load overlay 'sdio'
+>> MESS:00:00:07.878881:0: brfs: File read: /mfs/sd/overlays/sdio.dtbo
+>> MESS:00:00:07.891322:0: brfs: File read: /mfs/sd/cmdline.txt
+>>
+>
+> So what am I missing on how to turn on the sdio on GPIO22-27? Is it 
+> not an overlay and instead a driver/other code/linux config that needs 
+> to be set?
+>
 >
 > Chuck
 >
 >
-> On 11/17/20 12:08 AM, Khem Raj wrote:
->> On Mon, Nov 16, 2020 at 11:43 PM chuck kamas via
->> lists.yoctoproject.org <chuckkamas=yahoo.com@lists.yoctoproject.org>
->> wrote:
->>> Hi all,
->>>
->>>
->>> I have been spinning my wheels for two days trying to discover how to
->>> enable MMC1 on a CM3. This is the one on GPIO22-27. I can boot Rasbian
->>> on the CM3 and it inits the MMC1 and its pins just fine. I can
->>> read/write to my SD card from it etc. However, when I build yocto it
->>> leaves the GPIOS22-27 in gpio mode and does not set them to MMC1 mode.
->>> I have tried changing the device tree as described here:
->>>
->>> https://stackoverflow.com/questions/44702426/how-to-setup-an-own-device-tree-for-a-raspberrypi-in-yocto 
->>>
->>>
->>> That compiles and add the .dtbo to my build, but still the GPIOS are 
->>> not
->>> set to MMC1 mode.
->>>
->>>> cat /sys/kernel/debug/pinctrl/*gpio*/pinmux-pins
->>>> Pinmux settings per pin
->>>> Format: pin (name): mux_owner gpio_owner hog?
->>>> ....
->>>>
->>>> pin 22 (gpio22): (MUX UNCLAIMED) (GPIO UNCLAIMED)
->>>> pin 23 (gpio23): (MUX UNCLAIMED) (GPIO UNCLAIMED)
->>>> pin 24 (gpio24): (MUX UNCLAIMED) (GPIO UNCLAIMED)
->>>> pin 25 (gpio25): (MUX UNCLAIMED) (GPIO UNCLAIMED)
->>>> pin 26 (gpio26): (MUX UNCLAIMED) (GPIO UNCLAIMED)
->>>> pin 27 (gpio27): (MUX UNCLAIMED) (GPIO UNCLAIMED)
->>>>
->>>> .....
->>>>
->>> I have looked at:
->>>
->>> https://ralimtek.com/raspberry%20pi/electronics/software/raspberry_pi_secondary_sd_card/ 
->>>
->>>
->>>
->>> Any ideas of where to look next to turn on the sdio would be 
->>> appreciated!
->>>
->>>
->> what does /boot/config.txt look like on raspbian and yocto built images
+> On 11/17/20 4:29 PM, chuck kamas via lists.yoctoproject.org wrote:
+>> Raj,
 >>
->>> Chuck
+>>
+>> Thanks for taking the time to respond. I thought of that too. My 
+>> custom Yocto build has the line to turn on the sdio in it:
+>>
+>>> dtoverlay=sdio,poll_once=off
+>>
+>> I have attached the entire file: config.txt.yocto
+>>
+>> However, the Rasbian image does not have any mention of the dtoverlay 
+>> for the sdio.  Curious. See config.txt attached.
+>>
+>>
+>> Thanks for the help!
+>>
+>> Chuck
+>>
+>>
+>> On 11/17/20 12:08 AM, Khem Raj wrote:
+>>> On Mon, Nov 16, 2020 at 11:43 PM chuck kamas via
+>>> lists.yoctoproject.org <chuckkamas=yahoo.com@lists.yoctoproject.org>
+>>> wrote:
+>>>> Hi all,
+>>>>
+>>>>
+>>>> I have been spinning my wheels for two days trying to discover how to
+>>>> enable MMC1 on a CM3. This is the one on GPIO22-27. I can boot Rasbian
+>>>> on the CM3 and it inits the MMC1 and its pins just fine. I can
+>>>> read/write to my SD card from it etc. However, when I build yocto it
+>>>> leaves the GPIOS22-27 in gpio mode and does not set them to MMC1 mode.
+>>>> I have tried changing the device tree as described here:
+>>>>
+>>>> https://stackoverflow.com/questions/44702426/how-to-setup-an-own-device-tree-for-a-raspberrypi-in-yocto 
+>>>>
+>>>>
+>>>> That compiles and add the .dtbo to my build, but still the GPIOS 
+>>>> are not
+>>>> set to MMC1 mode.
+>>>>
+>>>>> cat /sys/kernel/debug/pinctrl/*gpio*/pinmux-pins
+>>>>> Pinmux settings per pin
+>>>>> Format: pin (name): mux_owner gpio_owner hog?
+>>>>> ....
+>>>>>
+>>>>> pin 22 (gpio22): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+>>>>> pin 23 (gpio23): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+>>>>> pin 24 (gpio24): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+>>>>> pin 25 (gpio25): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+>>>>> pin 26 (gpio26): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+>>>>> pin 27 (gpio27): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+>>>>>
+>>>>> .....
+>>>>>
+>>>> I have looked at:
+>>>>
+>>>> https://ralimtek.com/raspberry%20pi/electronics/software/raspberry_pi_secondary_sd_card/ 
+>>>>
+>>>>
+>>>>
+>>>> Any ideas of where to look next to turn on the sdio would be 
+>>>> appreciated!
+>>>>
+>>>>
+>>> what does /boot/config.txt look like on raspbian and yocto built images
 >>>
->>>
->>>
->>>
->>>
->
->
->
+>>>> Chuck
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>
+>>
+>>
+>>
 >
 > 
 >
@@ -190,172 +204,160 @@ On 11/17/20 4:29 PM, chuck kamas via lists.yoctoproject.org wrote:
 
 
 
---------------53CAA7F55E1117554566AD12
+--------------BA1C0816FDE07CED2619FE7C
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
-X-EC0D2A8E-5CB7-4969-9C36-46D859D137BE-PartID: {B3087B87-5FFB-4628-9631-51F4C4392F00}
+X-EC0D2A8E-5CB7-4969-9C36-46D859D137BE-PartID: {1FAE96EA-79BB-480E-BEC7-B78957A3F8DF}
 
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body>
-    <p>Raj,</p>
+    <p>Making some progress here! <br>
+    </p>
     <p><br>
     </p>
-    <p>I found out how to debug the boot process of the PI from:</p>
-    <p><a class="moz-txt-link-freetext" href="https://github.com/raspberrypi/documentation/blob/master/hardware/raspberrypi/bootmodes/README.md">https://github.com/raspberrypi/documentation/blob/master/hardware/raspberrypi/bootmodes/README.md</a></p>
-    <p>by turning on the boot code debug.</p>
-    <p>sed -i -e "s/BOOT_UART=0/BOOT_UART=1/" bootcode.bin</p>
-    <p><br>
-    </p>
-    <p>I found out that the sdio overlay does not exist!</p>
-    <blockquote>
-      <p>MESS:00:00:07.868162:0: dtdebug: Failed to open overlay file
-        'overlays/sdio.dtbo'<br>
-        MESS:00:00:07.874093:0: Failed to load overlay 'sdio'<br>
-        MESS:00:00:07.878881:0: brfs: File read:
-        /mfs/sd/overlays/sdio.dtbo<br>
-        MESS:00:00:07.891322:0: brfs: File read: /mfs/sd/cmdline.txt<br>
-      </p>
-    </blockquote>
-    <p><br>
-    </p>
-    <p>So what am I missing on how to turn on the sdio on GPIO22-27? Is
-      it not an overlay and instead a driver/other code/linux config
-      that needs to be set?<br>
-    </p>
+    <p>I added a compiled version of the attached device tree and now
+      the mmc1 shows up in my yocto image! Yes! Now I need to find out
+      the secret magic in that tree that I need to add...</p>
     <p><br>
     </p>
     <p>Chuck</p>
     <p><br>
     </p>
-    <div class="moz-cite-prefix">On 11/17/20 4:29 PM, chuck kamas via
+    <div class="moz-cite-prefix">On 11/18/20 7:59 PM, chuck kamas via
       lists.yoctoproject.org wrote:<br>
     </div>
-    <blockquote>Raj,
-      <br>
-      <br>
-      <br>
-      Thanks for taking the time to respond. I thought of that too. My
-      custom Yocto build has the line to turn on the sdio in it:
-      <br>
-      <br>
-      <blockquote>dtoverlay=sdio,poll_once=off
-        <br>
+    <blockquote>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <p>Raj,</p>
+      <p><br>
+      </p>
+      <p>I found out how to debug the boot process of the PI from:</p>
+      <p><a class="moz-txt-link-freetext" href="https://github.com/raspberrypi/documentation/blob/master/hardware/raspberrypi/bootmodes/README.md">https://github.com/raspberrypi/documentation/blob/master/hardware/raspberrypi/bootmodes/README.md</a></p>
+      <p>by turning on the boot code debug.</p>
+      <p>sed -i -e "s/BOOT_UART=0/BOOT_UART=1/" bootcode.bin</p>
+      <p><br>
+      </p>
+      <p>I found out that the sdio overlay does not exist!</p>
+      <blockquote>
+        <p>MESS:00:00:07.868162:0: dtdebug: Failed to open overlay file
+          'overlays/sdio.dtbo'<br>
+          MESS:00:00:07.874093:0: Failed to load overlay 'sdio'<br>
+          MESS:00:00:07.878881:0: brfs: File read:
+          /mfs/sd/overlays/sdio.dtbo<br>
+          MESS:00:00:07.891322:0: brfs: File read: /mfs/sd/cmdline.txt<br>
+        </p>
       </blockquote>
-      <br>
-      I have attached the entire file: config.txt.yocto
-      <br>
-      <br>
-      However, the Rasbian image does not have any mention of the
-      dtoverlay for the sdio.  Curious. See config.txt attached.
-      <br>
-      <br>
-      <br>
-      Thanks for the help!
-      <br>
-      <br>
-      Chuck
-      <br>
-      <br>
-      <br>
-      On 11/17/20 12:08 AM, Khem Raj wrote:
-      <br>
-      <blockquote>On Mon, Nov 16, 2020 at 11:43 PM chuck
-        kamas via
+      <p><br>
+      </p>
+      <p>So what am I missing on how to turn on the sdio on GPIO22-27?
+        Is it not an overlay and instead a driver/other code/linux
+        config that needs to be set?<br>
+      </p>
+      <p><br>
+      </p>
+      <p>Chuck</p>
+      <p><br>
+      </p>
+      <div class="moz-cite-prefix">On 11/17/20 4:29 PM, chuck kamas via
+        lists.yoctoproject.org wrote:<br>
+      </div>
+      <blockquote>Raj, <br>
         <br>
-        lists.yoctoproject.org
-        <a class="moz-txt-link-rfc2396E" href="mailto:chuckkamas=yahoo.com@lists.yoctoproject.org">&lt;chuckkamas=yahoo.com@lists.yoctoproject.org&gt;</a>
         <br>
-        wrote:
+        Thanks for taking the time to respond. I thought of that too. My
+        custom Yocto build has the line to turn on the sdio in it: <br>
         <br>
-        <blockquote>Hi all,
+        <blockquote>dtoverlay=sdio,poll_once=off <br>
+        </blockquote>
+        <br>
+        I have attached the entire file: config.txt.yocto <br>
+        <br>
+        However, the Rasbian image does not have any mention of the
+        dtoverlay for the sdio.  Curious. See config.txt attached. <br>
+        <br>
+        <br>
+        Thanks for the help! <br>
+        <br>
+        Chuck <br>
+        <br>
+        <br>
+        On 11/17/20 12:08 AM, Khem Raj wrote: <br>
+        <blockquote>On Mon, Nov 16, 2020 at 11:43 PM chuck
+          kamas via <br>
+          lists.yoctoproject.org <a class="moz-txt-link-rfc2396E" href="mailto:chuckkamas=yahoo.com@lists.yoctoproject.org">&lt;chuckkamas=yahoo.com@lists.yoctoproject.org&gt;</a>
           <br>
-          <br>
-          <br>
-          I have been spinning my wheels for two days trying to discover
-          how to
-          <br>
-          enable MMC1 on a CM3. This is the one on GPIO22-27. I can boot
-          Rasbian
-          <br>
-          on the CM3 and it inits the MMC1 and its pins just fine. I can
-          <br>
-          read/write to my SD card from it etc. However, when I build
-          yocto it
-          <br>
-          leaves the GPIOS22-27 in gpio mode and does not set them to
-          MMC1 mode.
-          <br>
-          I have tried changing the device tree as described here:
-          <br>
-          <br>
-<a class="moz-txt-link-freetext" href="https://stackoverflow.com/questions/44702426/how-to-setup-an-own-device-tree-for-a-raspberrypi-in-yocto">https://stackoverflow.com/questions/44702426/how-to-setup-an-own-device-tree-for-a-raspberrypi-in-yocto</a>
-          <br>
-          <br>
-          That compiles and add the .dtbo to my build, but still the
-          GPIOS are not
-          <br>
-          set to MMC1 mode.
-          <br>
-          <br>
-          <blockquote>cat
-            /sys/kernel/debug/pinctrl/*gpio*/pinmux-pins
-            <br>
-            Pinmux settings per pin
-            <br>
-            Format: pin (name): mux_owner gpio_owner hog?
-            <br>
-            ....
+          wrote: <br>
+          <blockquote>Hi all, <br>
             <br>
             <br>
-            pin 22 (gpio22): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+            I have been spinning my wheels for two days trying to
+            discover how to <br>
+            enable MMC1 on a CM3. This is the one on GPIO22-27. I can
+            boot Rasbian <br>
+            on the CM3 and it inits the MMC1 and its pins just fine. I
+            can <br>
+            read/write to my SD card from it etc. However, when I build
+            yocto it <br>
+            leaves the GPIOS22-27 in gpio mode and does not set them to
+            MMC1 mode. <br>
+            I have tried changing the device tree as described here: <br>
             <br>
-            pin 23 (gpio23): (MUX UNCLAIMED) (GPIO UNCLAIMED)
-            <br>
-            pin 24 (gpio24): (MUX UNCLAIMED) (GPIO UNCLAIMED)
-            <br>
-            pin 25 (gpio25): (MUX UNCLAIMED) (GPIO UNCLAIMED)
-            <br>
-            pin 26 (gpio26): (MUX UNCLAIMED) (GPIO UNCLAIMED)
-            <br>
-            pin 27 (gpio27): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+            <a class="moz-txt-link-freetext" href="https://stackoverflow.com/questions/44702426/how-to-setup-an-own-device-tree-for-a-raspberrypi-in-yocto">https://stackoverflow.com/questions/44702426/how-to-setup-an-own-device-tree-for-a-raspberrypi-in-yocto</a>
             <br>
             <br>
-            .....
+            That compiles and add the .dtbo to my build, but still the
+            GPIOS are not <br>
+            set to MMC1 mode. <br>
+            <br>
+            <blockquote>cat
+              /sys/kernel/debug/pinctrl/*gpio*/pinmux-pins <br>
+              Pinmux settings per pin <br>
+              Format: pin (name): mux_owner gpio_owner hog? <br>
+              .... <br>
+              <br>
+              pin 22 (gpio22): (MUX UNCLAIMED) (GPIO UNCLAIMED) <br>
+              pin 23 (gpio23): (MUX UNCLAIMED) (GPIO UNCLAIMED) <br>
+              pin 24 (gpio24): (MUX UNCLAIMED) (GPIO UNCLAIMED) <br>
+              pin 25 (gpio25): (MUX UNCLAIMED) (GPIO UNCLAIMED) <br>
+              pin 26 (gpio26): (MUX UNCLAIMED) (GPIO UNCLAIMED) <br>
+              pin 27 (gpio27): (MUX UNCLAIMED) (GPIO UNCLAIMED) <br>
+              <br>
+              ..... <br>
+              <br>
+            </blockquote>
+            I have looked at: <br>
+            <br>
+            <a class="moz-txt-link-freetext" href="https://ralimtek.com/raspberry%20pi/electronics/software/raspberry_pi_secondary_sd_card/">https://ralimtek.com/raspberry%20pi/electronics/software/raspberry_pi_secondary_sd_card/</a>
+            <br>
+            <br>
+            <br>
+            Any ideas of where to look next to turn on the sdio would be
+            appreciated! <br>
             <br>
             <br>
           </blockquote>
-          I have looked at:
+          what does /boot/config.txt look like on raspbian and yocto
+          built images <br>
           <br>
-          <br>
-<a class="moz-txt-link-freetext" href="https://ralimtek.com/raspberry%20pi/electronics/software/raspberry_pi_secondary_sd_card/">https://ralimtek.com/raspberry%20pi/electronics/software/raspberry_pi_secondary_sd_card/</a>
-          <br>
-          <br>
-          <br>
-          Any ideas of where to look next to turn on the sdio would be
-          appreciated!
-          <br>
-          <br>
-          <br>
+          <blockquote>Chuck <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+          </blockquote>
         </blockquote>
-        what does /boot/config.txt look like on raspbian and yocto built
-        images
         <br>
         <br>
-        <blockquote>Chuck
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-        </blockquote>
+        <br>
+        <br>
+        <fieldset class="mimeAttachmentHeader"></fieldset>
+        <pre class="moz-quote-pre" wrap>
+</pre>
       </blockquote>
-      <br>
-      <br>
-      <br>
       <br>
       <fieldset class="mimeAttachmentHeader"></fieldset>
       <pre class="moz-quote-pre" wrap>
@@ -366,6 +368,122 @@ X-EC0D2A8E-5CB7-4969-9C36-46D859D137BE-PartID: {B3087B87-5FFB-4628-9631-51F4C439
   </body>
 </html>
 
---------------53CAA7F55E1117554566AD12--
+--------------BA1C0816FDE07CED2619FE7C--
 
---5ok6v36OFgA3J7FmFBfm--
+--------------2AE9C8630FE2B66A3C2345A5
+Content-Type: audio/vnd.dts; name="devicetree-rpi_cm-overlay.dts"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="devicetree-rpi_cm-overlay.dts"
+X-EC0D2A8E-5CB7-4969-9C36-46D859D137BE-PartID: {2D816593-6D64-4B17-9517-C697A4DB1FA4}
+
+LyoKKiBDb3B5cmlnaHQgKEMpIDIwMjAgR3Vtc3RpeCwgSW5jLiAtIGh0dHBzOi8vd3d3Lmd1bXN0
+aXguY29tLwoqCiogVGhpcyBwcm9ncmFtIGlzIGZyZWUgc29mdHdhcmU7IHlvdSBjYW4gcmVkaXN0
+cmlidXRlIGl0IGFuZC9vciBtb2RpZnkKKiBpdCB1bmRlciB0aGUgdGVybXMgb2YgdGhlIEdOVSBH
+ZW5lcmFsIFB1YmxpYyBMaWNlbnNlIHZlcnNpb24gMiBvcgoqIChhdCB5b3VyIG9wdGlvbikgYW55
+IGxhdGVyIHZlcnNpb24gYXMgcHVibGlzaGVkIGJ5IHRoZSBGcmVlIFNvZnR3YXJlCiogRm91bmRh
+dGlvbi4KKgoqIFRoaXMgcHJvZ3JhbSBpcyBkaXN0cmlidXRlZCBpbiB0aGUgaG9wZSB0aGF0IGl0
+IHdpbGwgYmUgdXNlZnVsLAoqIGJ1dCBXSVRIT1VUIEFOWSBXQVJSQU5UWTsgd2l0aG91dCBldmVu
+IHRoZSBpbXBsaWVkIHdhcnJhbnR5IG9mCiogTUVSQ0hBTlRBQklMSVRZIG9yIEZJVE5FU1MgRk9S
+IEEgUEFSVElDVUxBUiBQVVJQT1NFLiAgU2VlIHRoZQoqIEdOVSBHZW5lcmFsIFB1YmxpYyBMaWNl
+bnNlIGZvciBtb3JlIGRldGFpbHMuCioKKi8KCi9kdHMtdjEvOwovcGx1Z2luLzsKI2RlZmluZSBH
+UElPX0FDVElWRV9MT1cgMQojZGVmaW5lIEdQSU9fQUNUSVZFX0hJR0ggMAojZGVmaW5lIElSUV9U
+WVBFX0xFVkVMX0xPVyA4CiNkZWZpbmUgSVJRX1RZUEVfTEVWRUxfSElHSCA0CgovIHsKICAgIGNv
+bXBhdGlibGUgPSAiYnJjbSxiY20yNzA4IjsKCiAgICBmcmFnbWVudEAwIHsKICAgICAgICB0YXJn
+ZXQtcGF0aCA9ICIvIjsKICAgICAgICBfX292ZXJsYXlfXyB7CiAgICAgICAgICAgIG1vZGVsID0g
+IlJhc3BiZXJyeSBQaSB3aXRoIEd1bXN0aXggR2VwcGV0dG8gRXhwYW5zaW9uIC0gR3ggTGludXgg
+QWdncmVnYXRvciAwMy0yNyAxIjsKICAgICAgICAgICAgYXV0b2JzcF9vdmVybGF5IHsKICAgICAg
+ICAgICAgICAgIG1vZGVsID0gIkd1bXN0aXggR2VwcGV0dG8gR3ggTGludXggQWdncmVnYXRvciAw
+My0yNyAxIjsKICAgICAgICAgICAgICAgIHN0YXR1cyA9ICJva2F5IjsKICAgICAgICAgICAgfTsK
+CiAgICAgICAgICAgIAogICAgICAgICAgICBjYW0wOiBjYW0wX2R1bW15X25vZGUgewogICAgICAg
+ICAgICAgICAgc3RhdHVzID0gImRpc2FibGVkIjsKICAgICAgICAgICAgfTsKICAgICAgICAgICAg
+Y2FtMTogY2FtMV9kdW1teV9ub2RlIHsKICAgICAgICAgICAgICAgIHN0YXR1cyA9ICJkaXNhYmxl
+ZCI7CiAgICAgICAgICAgIH07CiAgICAgICAgfTsKICAgIH07CgoKCgogICAgZnJhZ21lbnRAMSB7
+CiAgICAgICAgdGFyZ2V0LXBhdGggPSAiL3NvYyI7CiAgICAgICAgX19vdmVybGF5X18gewogICAg
+ICAgICAgICByZWdfM3YzOnJlZ3VsYXRvckAwIHsKICAgICAgICAgICAgICAgIGNvbXBhdGlibGUg
+PSAicmVndWxhdG9yLWZpeGVkIjsKICAgICAgICAgICAgICAgIHJlZ3VsYXRvci1uYW1lID0gIlJF
+R18zVjMiOwogICAgICAgICAgICAgICAgcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8MzMwMDAw
+MD47CiAgICAgICAgICAgICAgICByZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwzMzAwMDAwPjsK
+ICAgICAgICAgICAgICAgIHJlZ3VsYXRvci1hbHdheXMtb247CiAgICAgICAgICAgIH07CgogICAg
+ICAgICAgICByZWdfMXY4OnJlZ3VsYXRvckAxIHsKICAgICAgICAgICAgICAgIGNvbXBhdGlibGUg
+PSAicmVndWxhdG9yLWZpeGVkIjsKICAgICAgICAgICAgICAgIHJlZ3VsYXRvci1uYW1lID0gIlJF
+R18xVjgiOwogICAgICAgICAgICAgICAgcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8MTgwMDAw
+MD47CiAgICAgICAgICAgICAgICByZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxODAwMDAwPjsK
+ICAgICAgICAgICAgICAgIHJlZ3VsYXRvci1hbHdheXMtb247CiAgICAgICAgICAgIH07CiAgICAg
+ICAgfTsKICAgIH07CiAgICBmcmFnbWVudEAyIHsKICAgICAgICB0YXJnZXQgPSA8JnNwaWRldjA+
+OwogICAgICAgIF9fb3ZlcmxheV9fIHsKICAgICAgICAgICAgc3RhdHVzID0gImRpc2FibGVkIjsK
+ICAgICAgICB9OwogICAgfTsKCiAgICBmcmFnbWVudEAzIHsKICAgICAgICB0YXJnZXQgPSA8JnNw
+aWRldjE+OwogICAgICAgIF9fb3ZlcmxheV9fIHsKICAgICAgICAgICAgc3RhdHVzID0gImRpc2Fi
+bGVkIjsKICAgICAgICB9OwogICAgfTsKCi8vIHNwaV9idXNlcyBkZXZpY2VzCiAgICBmcmFnbWVu
+dEA0IHsKICAgICAgICB0YXJnZXQgPSA8JnNwaTA+OwogICAgICAgIF9fb3ZlcmxheV9fIHsKICAg
+ICAgICAgICAgc3RhdHVzID0gIm9rYXkiOwoKICAgICAgICAgICAgcGluY3RybC1uYW1lcyA9ICJk
+ZWZhdWx0IjsKICAgICAgICAgICAgcGluY3RybC0wID0gPCZzcGkwX2RlZmF1bHQ+OwoKICAgICAg
+ICAgICAgICAgIAogICAgICAgIHNwaTBfc3BpMF8wMDogc3BpMF9zcGkwXzBAMCB7CiAgICAgICAg
+c3RhdHVzID0gIm9rYXkiOwogICAgICAgIHR5cGUgPSAic3BpIjsKICAgICAgICBzcGktbWF4LWZy
+ZXF1ZW5jeSA9IDwxNTAwMDAwMD47CiAgICAgICAgY29tcGF0aWJsZSA9ICJsaW51eCxzcGlkZXYi
+OwogICAgICAgIHJlZyA9IDwwPjsKCiAgICAgICAgaW50ZXJydXB0LXBhcmVudCA9IDwmZ3Bpbz47
+CiAgICAgICAgaW50ZXJydXB0cyA9PDQzIDA+OwoKCiAgICB9OwogICAgICAgIH07CiAgICB9OwoK
+Ly8gc2RpbzEgZGV2aWNlcwogICAgZnJhZ21lbnRANSB7CiAgICAgICAgdGFyZ2V0ID0gPCZtbWM+
+OwogICAgICAgIF9fb3ZlcmxheV9fIHsKICAgICAgICAgICAgc3RhdHVzID0gIm9rYXkiOwoKICAg
+ICAgICAgICAgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKICAgICAgICAgICAgcGluY3RybC0w
+ID0gPCZzZGlvMV9kZWZhdWx0PjsKCiAgICAgICAgICAgIHR5cGUgPSAic2RtbWMiOwogICAgICAg
+ICAgICBidXMtd2lkdGggPSA8ND47CiAgICAgICAgICAgIGJyb2tlbi1jZDsKICAgICAgICB9Owog
+ICAgfTsKCi8vIGkyY19idXNlcyBkZXZpY2VzCiAgICBmcmFnbWVudEA2IHsKICAgICAgICB0YXJn
+ZXQgPSA8JmkyYzA+OwogICAgICAgIF9fb3ZlcmxheV9fIHsKICAgICAgICAgICAgc3RhdHVzID0g
+Im9rYXkiOwoKICAgICAgICAgICAgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKICAgICAgICAg
+ICAgcGluY3RybC0wID0gPCZpMmMwX2RlZmF1bHQ+OwoKICAgICAgICAgICAgI2FkZHJlc3MtY2Vs
+bHMgPSA8MT47CiAgICAgICAgICAgICNzaXplLWNlbGxzID0gPDA+OwogICAgICAgICAgICBjbG9j
+ay1mcmVxdWVuY3kgPSA8NDAwMDAwPjsKICAgICAgICB9OwogICAgfTsKCiAgICBmcmFnbWVudEA3
+IHsKICAgICAgICB0YXJnZXQgPSA8JmkyYzE+OwogICAgICAgIF9fb3ZlcmxheV9fIHsKICAgICAg
+ICAgICAgc3RhdHVzID0gIm9rYXkiOwoKICAgICAgICAgICAgcGluY3RybC1uYW1lcyA9ICJkZWZh
+dWx0IjsKICAgICAgICAgICAgcGluY3RybC0wID0gPCZpMmMxX2RlZmF1bHQ+OwoKICAgICAgICAg
+ICAgY2xvY2stZnJlcXVlbmN5ID0gPDQwMDAwMD47CiAgICAgICAgICAgICNhZGRyZXNzLWNlbGxz
+ID0gPDE+OwogICAgICAgICAgICAjc2l6ZS1jZWxscyA9IDwwPjsKICAgICAgICB9OwogICAgfTsK
+Ci8vIHVhcnQxIGRldmljZXMKICAgIGZyYWdtZW50QDggewogICAgICAgIHRhcmdldCA9IDwmdWFy
+dDE+OwogICAgICAgIF9fb3ZlcmxheV9fIHsKICAgICAgICAgICAgc3RhdHVzID0gIm9rYXkiOwoK
+ICAgICAgICAgICAgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKICAgICAgICAgICAgcGluY3Ry
+bC0wID0gPCZ1YXJ0MV9kZWZhdWx0PjsKCiAgICAgICAgICAgIHR5cGUgPSAidWFydCI7CiAgICAg
+ICAgfTsKICAgIH07CgovLyB1YXJ0MCBkZXZpY2VzCiAgICBmcmFnbWVudEA5IHsKICAgICAgICB0
+YXJnZXQgPSA8JnVhcnQwPjsKICAgICAgICBfX292ZXJsYXlfXyB7CiAgICAgICAgICAgIHN0YXR1
+cyA9ICJva2F5IjsKCiAgICAgICAgICAgIHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7CiAgICAg
+ICAgICAgIHBpbmN0cmwtMCA9IDwmdWFydDBfZGVmYXVsdD47CgogICAgICAgICAgICB0eXBlID0g
+InVhcnQiOwogICAgICAgIH07CiAgICB9OwoKCiAgICBmcmFnbWVudEAxMCB7CiAgICAgICAgdGFy
+Z2V0LXBhdGggPSAiL2Nob3NlbiI7CiAgICAgICAgX19vdmVybGF5X18gewogICAgICAgICAgICBi
+b290YXJncyA9ICI4MjUwLm5yX3VhcnRzPTEiOwogICAgICAgIH07CiAgICB9OwoKICAgIGZyYWdt
+ZW50QDExIHsKICAgICAgICB0YXJnZXQgPSA8JmdwaW8+OwogICAgICAgIF9fb3ZlcmxheV9fIHsK
+ICAgICAgICAgICAgc3BpMF9kZWZhdWx0OiBwaW5tdXhfc3BpMF9kZWZhdWx0IHsKICAgICAgICAg
+ICAgICAgIGJyY20scGlucyA9IDwKICAgICAgICAgICAgICAgICAgICA3IC8qIGdwaW83LmdwaW83
+ICovCiAgICAgICAgICAgICAgICAgICAgOCAvKiBncGlvOC5ncGlvOCAqLwogICAgICAgICAgICAg
+ICAgICAgIDExIC8qIGdwaW8xMS5zcGkwX3NjbGsgKi8KICAgICAgICAgICAgICAgICAgICA5IC8q
+IGdwaW85LnNwaTBfbWlzbyAqLwogICAgICAgICAgICAgICAgICAgIDEwIC8qIGdwaW8xMC5zcGkw
+X21vc2kgKi8KICAgICAgICAgICAgICAgICAgICA0MyAvKiBncGlvNDMuZ3BpbzQzICovCiAgICAg
+ICAgICAgICAgICA+OwogICAgICAgICAgICBicmNtLGZ1bmN0aW9uID0gPCAgMSAgIDEgICA0ICAg
+NCAgIDQgICAwICA+OwogICAgICAgICAgICB9OwoKICAgICAgICAgICAgaTJjMV9kZWZhdWx0OiBw
+aW5tdXhfaTJjMV9kZWZhdWx0IHsKICAgICAgICAgICAgICAgIGJyY20scGlucyA9IDwKICAgICAg
+ICAgICAgICAgICAgICAyIC8qIGdwaW8yLnNkYTEgKi8KICAgICAgICAgICAgICAgICAgICAzIC8q
+IGdwaW8zLnNjbDEgKi8KICAgICAgICAgICAgICAgID47CiAgICAgICAgICAgIGJyY20sZnVuY3Rp
+b24gPSA8ICA0ICAgNCAgPjsKICAgICAgICAgICAgfTsKCiAgICAgICAgICAgIHVhcnQxX2RlZmF1
+bHQ6IHBpbm11eF91YXJ0MV9kZWZhdWx0IHsKICAgICAgICAgICAgICAgIGJyY20scGlucyA9IDwK
+ICAgICAgICAgICAgICAgICAgICAzMyAvKiBncGlvMzMucnhkMSAqLwogICAgICAgICAgICAgICAg
+ICAgIDMyIC8qIGdwaW8zMi50eGQxICovCiAgICAgICAgICAgICAgICA+OwogICAgICAgICAgICBi
+cmNtLGZ1bmN0aW9uID0gPCAgMiAgIDIgID47CiAgICAgICAgICAgIGJyY20scHVsbCA9IDwgMiAw
+ID47CgogICAgICAgICAgICB9OwoKICAgICAgICAgICAgc2RpbzFfZGVmYXVsdDogcGlubXV4X3Nk
+aW8xX2RlZmF1bHQgewogICAgICAgICAgICAgICAgYnJjbSxwaW5zID0gPAogICAgICAgICAgICAg
+ICAgICAgIDI1IC8qIGdwaW8yNS5zZDFfZGF0MSAqLwogICAgICAgICAgICAgICAgICAgIDI2IC8q
+IGdwaW8yNi5zZDFfZGF0MiAqLwogICAgICAgICAgICAgICAgICAgIDI0IC8qIGdwaW8yNC5zZDFf
+ZGF0MCAqLwogICAgICAgICAgICAgICAgICAgIDI3IC8qIGdwaW8yNy5zZDFfZGF0MyAqLwogICAg
+ICAgICAgICAgICAgICAgIDIzIC8qIGdwaW8yMy5zZDFfY21kICovCiAgICAgICAgICAgICAgICAg
+ICAgMjIgLyogZ3BpbzIyLnNkMV9jbGsgKi8KICAgICAgICAgICAgICAgID47CiAgICAgICAgICAg
+IGJyY20sZnVuY3Rpb24gPSA8ICA3ICAgNyAgIDcgICA3ICAgNyAgIDcgID47CiAgICAgICAgICAg
+IGJyY20scHVsbCA9IDwgMiAyIDIgMiAyIDAgPjsKCiAgICAgICAgICAgIH07CgogICAgICAgICAg
+ICB1YXJ0MF9kZWZhdWx0OiBwaW5tdXhfdWFydDBfZGVmYXVsdCB7CiAgICAgICAgICAgICAgICBi
+cmNtLHBpbnMgPSA8CiAgICAgICAgICAgICAgICAgICAgMTQgLyogZ3BpbzE0LnR4ZDAgKi8KICAg
+ICAgICAgICAgICAgICAgICAxNSAvKiBncGlvMTUucnhkMCAqLwogICAgICAgICAgICAgICAgPjsK
+ICAgICAgICAgICAgYnJjbSxmdW5jdGlvbiA9IDwgIDQgICA0ICA+OwogICAgICAgICAgICBicmNt
+LHB1bGwgPSA8IDAgMiA+OwoKICAgICAgICAgICAgfTsKCiAgICAgICAgICAgIGkyYzBfZGVmYXVs
+dDogcGlubXV4X2kyYzBfZGVmYXVsdCB7CiAgICAgICAgICAgICAgICBicmNtLHBpbnMgPSA8CiAg
+ICAgICAgICAgICAgICAgICAgMSAvKiBncGlvMS5zY2wwICovCiAgICAgICAgICAgICAgICAgICAg
+MCAvKiBncGlvMC5zZGEwICovCiAgICAgICAgICAgICAgICA+OwogICAgICAgICAgICBicmNtLGZ1
+bmN0aW9uID0gPCAgNCAgIDQgID47CiAgICAgICAgICAgIH07CgogICAgICAgIH07CiAgICB9OwoK
+fTs=
+
+--------------2AE9C8630FE2B66A3C2345A5--
