@@ -1,310 +1,237 @@
-Subject: ESDK script failue
-To: yocto@lists.yoctoproject.org
-From: jadhavvaibhav377@gmail.com
-X-Originating-Location: Hyderabad, Telangana, IN (14.98.179.254)
-X-Originating-Platform: Linux Firefox 82
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+ by mx.groups.io with SMTP id smtpd.web10.23512.1605869250696664500
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 20 Nov 2020 02:47:31 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=CRiS4jmL;
+ spf=pass (domain: gmail.com, ip: 209.85.208.51, mailfrom: icegood1980@gmail.com)
+Received: by mail-ed1-f51.google.com with SMTP id r22so375755edw.6
+        for <yocto@lists.yoctoproject.org>; Fri, 20 Nov 2020 02:47:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ezYUbgY8UhsdSeQYdaj0wjJK2kxpt8v0wNxYzNzZ6Eg=;
+        b=CRiS4jmLpaClEhW1K7E1sOY0PV6utMpBXPuNNm3GId/uEc5jTg6Pqj4NmAhgfy+RNa
+         kVB3tKe9BPqsaBJhjsyHZV0MnIew3p4w6cSkElis9JuJ/7BA5AtsFj6374S061OA97bR
+         33liNsoJF6fyIutqKowxljMI8AMx/PLuerTFGtWyh3huP7+GhBGgJfd31+Kixf6VWIPd
+         B0Du8ImStOBO0rJpxk+5DQH9b1d5a8r2MN0F6bH+D50JeCjhNvKPETrWNHWEEGLOM5Au
+         g4mlyAPqV8mCGdgE52ro+DHpLtRFCRJJ+dJqdgNgGILpJIMCgtt17agpy6e6tkRM4RFe
+         KWAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ezYUbgY8UhsdSeQYdaj0wjJK2kxpt8v0wNxYzNzZ6Eg=;
+        b=b/4iagySjV8xP73H9JVreQq/ocxIFtdQ0UudE5vZSWOY0be6VC1pvjveLCb33d1juD
+         wgy7iXJ0/xH1NYcL2sbilCFyAaoHLxaQRzs29GTCNDAU4XyEb4SBNYnkvxmmvU9DIofI
+         DCDcpZp22nqfS8pI6hZDFicbjFpX7ARzjJKlhQBIAcjTIhcHl4uJ3DF3AIwKwA4b4Och
+         RucitzvUYRNmOWCSaLy/zwtlPEiajPl1ckx46mATZuaXghqFgfUbNNTFMKnKr6m1Ngye
+         THisbMXF53GelI7cI8CWDYeEtBE4hIjbPV6X2TleF8uYHCoHl9DF2AEXUqwv4RJfct42
+         VnCQ==
+X-Gm-Message-State: AOAM530tyqEcU5wIi7cwMOTph+OaLoyHIWZHXAU/MNu1cAk5JyU6KYLH
+	4TemFDHKJ2q9xCDD+lqD1ftIINRSPs/eNLTWgZ8=
+X-Google-Smtp-Source: ABdhPJw+YxnFojJRXsMFStPn82k48ItEp11mGDHtx+CIejKLpJbtp81JrpFmaT5vSyiv3RemfHeKuyfqhStry3AKxtQ=
+X-Received: by 2002:a05:6402:142f:: with SMTP id c15mr35338185edx.33.1605869249128;
+ Fri, 20 Nov 2020 02:47:29 -0800 (PST)
 MIME-Version: 1.0
-Date: Thu, 19 Nov 2020 20:50:45 -0800
-Message-ID: <8vtM.1605847845307592283.rQqc@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="jRr8yQXbhhtZmVl8YGgS"
+References: <CAJCbrz7=qAmswe-sumk=4E0x_KyFPdRG9UouvgfxwJzyMte=sw@mail.gmail.com>
+ <CAMKF1so796jC3kifn8KzA_gXi61fL4MpCbTDHuHr=yrJGk=ghQ@mail.gmail.com> <CAEt6Nwr7j9vwthOXZ6rUUEjyMUh71ySRO5vwb=t3qoSrffTc8Q@mail.gmail.com>
+In-Reply-To: <CAEt6Nwr7j9vwthOXZ6rUUEjyMUh71ySRO5vwb=t3qoSrffTc8Q@mail.gmail.com>
+From: "Sergey Ivanov" <icegood1980@gmail.com>
+Date: Fri, 20 Nov 2020 12:47:17 +0200
+Message-ID: <CAJCbrz4cqwm55i8nbdRzGZ=c9Ds3FPdq8tjcE8CstxNBtb6sQw@mail.gmail.com>
+Subject: Re: [yocto] yocto recipt from host ide
+To: Josef Holzmayr <jester@theyoctojester.info>
+Cc: Khem Raj <raj.khem@gmail.com>, Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000266dab05b48792ea"
 
---jRr8yQXbhhtZmVl8YGgS
-Content-Type: text/plain; charset="utf-8"
+--000000000000266dab05b48792ea
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-HI all,
-I am trying to build ESDK for a custom layer. while building I am getting =
-following ESDK preparing_build_system.log
-NOTE: Running noexec task 1 of 6485 (/home/user/openembedded/openembedded-=
-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-d=
-evtools/gnu-config/gnu-config_git.bb:do_rm_work_all)
-NOTE: Running noexec task 2 of 6485 (virtual:native:/home/user/openembedde=
-d/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core=
-/meta/recipes-devtools/unifdef/unifdef_2.11.bb:do_rm_work_all)
-NOTE: Running noexec task 3 of 6485 (virtual:native:/home/user/openembedde=
-d/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core=
-/meta/recipes-extended/unzip/unzip_6.0.bb:do_rm_work_all)
-NOTE: Running noexec task 4 of 6485 (virtual:native:/home/user/openembedde=
-d/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core=
-/meta/recipes-extended/cwautomacros/cwautomacros_20110201.bb:do_rm_work_all=
-)
-NOTE: Running noexec task 5 of 6485 (/home/user/openembedded-core/build/tm=
-p-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-core/systemd/s=
-ystemd-systemctl-native.bb:do_rm_work_all)
-NOTE: Running noexec task 6 of 6485 (/home/user/openembedded/openembedded-=
-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-e=
-xtended/texinfo-dummy-native/texinfo-dummy-native.bb:do_rm_work_all)
-NOTE: Running noexec task 7 of 6485 (virtual:native:/home/user/openembedde=
-d/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core=
-/meta/recipes-core/zlib/zlib_1.2.11.bb:do_rm_work_all)
-NOTE: Running noexec task 8 of 6485 (/home/user/openembedded/openembedded-=
-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-c=
-ore/gettext/gettext-minimal-native_0.19.8.1.bb:do_rm_work_all)
-NOTE: Running noexec task 9 of 6485 (virtual:native:/home/user/openembedde=
-d/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core=
-/meta/recipes-devtools/gnu-config/gnu-config_git.bb:do_rm_work_all)
-NOTE: Running noexec task 10 of 6485 (/home/user/openembedded/openembedded=
--core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-=
-kernel/kern-tools/kern-tools-native_git.bb:do_rm_work_all)
-NOTE: Running noexec task 11 of 6485 (virtual:native:/home/user/openembedd=
-ed/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-cor=
-e/meta/recipes-core/update-rc.d/update-rc.d_0.8.bb:do_rm_work_all)
-NOTE: Running noexec task 12 of 6485 (virtual:native:/home/user/openembedd=
-ed/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-cor=
-e/meta/recipes-devtools/opkg-utils/opkg-utils_0.4.1.bb:do_rm_work_all)
-NOTE: Running noexec task 13 of 6485 (/home/user/openembedded/openembedded=
--core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-=
-core/glibc/ldconfig-native_2.12.1.bb:do_rm_work_all)
-NOTE: Running noexec task 14 of 6485 (virtual:native:/home/user/openembedd=
-ed/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-cor=
-e/meta/recipes-devtools/makedevs/makedevs_1.0.1.bb:do_rm_work_all)
-NOTE: Running noexec task 15 of 6485 (/home/user/openembedded/openembedded=
--core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-=
-devtools/quilt/quilt-native_0.66.bb:do_rm_work_all)
-NOTE: Running task 16 of 6485 (/home/user/openembedded/openembedded-core/b=
-uild/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-devtool=
-s/gcc/gcc-source_8.3.bb:do_rm_work)
-ERROR: Task glibc-locale.do_populate_lic attempted to execute unexpectedly=
- and should have been setscened
-Task /home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/=
-new/layers/openembedded-core/meta/recipes-multimedia/libsndfile/libsndfile1=
-_1.0.28.bb:do_package_write_deb, unihash e0a368ff2b6e1e9c8b81756d93ee2ccacf=
-62a26ef112afdf93a750212abbee43, taskhash e0a368ff2b6e1e9c8b81756d93ee2ccacf=
-62a26ef112afdf93a750212abbee43
-Task /home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/=
-new/layers/openembedded-core/meta/recipes-support/libevdev/libevdev_1.8.0.b=
-b:do_package, unihash b8e9bb8121df216d8e04c89b613b55b8fb138c0c87372a6101199=
-d3812712643, taskhash b8e9bb8121df216d8e04c89b613b55b8fb138c0c87372a6101199=
-d3812712643
-Task /home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/=
-new/layers/openembedded-core/meta/recipes-devtools/btrfs-tools/btrfs-tools_=
-5.3.1.bb:do_package, unihash 605c26cc78f9f60b6642191fff1baa54443f18466b41a7=
-8f8c4cb067fbb8e96c, taskhash 605c26cc78f9f60b6642191fff1baa54443f18466b41a7=
-8f8c4cb067fbb8e96c
-.
-.
-Task /home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/=
-new/layers/openembedded-core/meta/recipes-graphics/mini-x-session/mini-x-se=
-ssion_0.1.bb:do_package_write_deb, unihash f30c12605b93d3e4b7d9519b021d7eae=
-37259148d21462ff0a28b2731f63c2c8, taskhash f30c12605b93d3e4b7d9519b021d7eae=
-37259148d21462ff0a28b2731f63c2c8
-Task /home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/=
-new/layers/openembedded-core/meta/recipes-extended/iptables/iptables_1.8.3.=
-bb:do_populate_sysroot, unihash 31db09ce9dbf5d4ca6700d43ea2aef440a9001e88a4=
-7e1866b9587bb813083c2, taskhash 31db09ce9dbf5d4ca6700d43ea2aef440a9001e88a4=
-7e1866b9587bb813083c2
-Task virtual:native:/home/user/openembedded/openembedded-core/build/tmp-gl=
-ibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-devtools/autoconf-=
-archive/autoconf-archive_2019.01.06.bb:do_populate_lic, unihash 5cce2806bd8=
-0bc0cdc6ab1552171b48f1815dc7892b9b5b39ee7f91d9a242302, taskhash 5cce2806bd8=
-0bc0cdc6ab1552171b48f1815dc7892b9b5b39ee7f91d9a242302
-Task /home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/=
-new/layers/openembedded-core/meta/recipes-support/gnutls/gnutls_3.6.8.bb:do=
-_package_qa, unihash eb4c9c968f488b26dfdb77deda7271059320738acd43bef11d8a8b=
-4c43e5d0d3, taskhash eb4c9c968f488b26dfdb77deda7271059320738acd43bef11d8a8b=
-4c43e5d0d3
-This is usually due to missing setscene tasks. Those missing in this build=
- were: {
-'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/=
-layers/openembedded-core/meta/recipes-bsp/alsa-state/alsa-state.bb:do_popul=
-ate_sysroot',
-'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/=
-layers/openembedded-core/meta/recipes-bsp/formfactor/formfactor_0.0.bb:do_p=
-ackage',
-'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/=
-layers/openembedded-core/meta/recipes-bsp/formfactor/formfactor_0.0.bb:do_p=
-ackage_qa',
-'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/=
-layers/openembedded-core/meta/recipes-bsp/formfactor/formfactor_0.0.bb:do_p=
-ackage_write_deb',
-'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/=
-layers/openembedded-core/meta/recipes-bsp/formfactor/formfactor_0.0.bb:do_p=
-ackagedata',
-'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/=
-layers/openembedded-core/meta/recipes-bsp/formfactor/formfactor_0.0.bb:do_p=
-opulate_lic',
-'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/=
-layers/openembedded-core/meta/recipes-bsp/formfactor/formfactor_0.0.bb:do_p=
-opulate_sysroot',
-.
-.
-'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/=
-layers/openembedded-core/meta/recipes-core/util-linux/util-linux_2.34.bb:do=
-_package',
-'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/=
-layers/openembedded-core/meta/recipes-core/util-linux/util-linux_2.34.bb:do=
-_package_qa',
-'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/=
-layers/openembedded-core/meta/recipes-core/util-linux/util-linux_2.34.bb:do=
-_package_write_deb',
-'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/=
-layers/openembedded-core/meta/recipes-core/util-linux/util-linux_2.34.bb:do=
-_packagedata',
-'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/=
-layers/openembedded-core/meta/recipes-core/util-linux/util-linux_2.34.bb:do=
-_populate_lic',
-'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/=
-layers/openembedded-core/meta/recipes-core/util-linux/util-linux_2.34.bb:do=
-_populate_sysroot'
-.
-.
-'virtual:native:/home/user/openembedded/openembedded-core/build/tmp-glibc/=
-deploy/sdk/new/layers/openembedded-core/meta/recipes-support/re2c/re2c_1.0.=
-1.bb:do_populate_lic',
-'virtual:native:/home/user/openembedded/openembedded-core/build/tmp-glibc/=
-deploy/sdk/new/layers/openembedded-core/meta/recipes-support/re2c/re2c_1.0.=
-1.bb:do_populate_sysroot',
-.
-.
-'virtual:native:/home/user/openembedded/openembedded-core/build/tmp-glibc/=
-deploy/sdk/new/layers/openembedded-core/meta/recipes-support/sqlite/sqlite3=
-_3.30.1.bb:do_populate_lic',
-'virtual:native:/home/user/openembedded/openembedded-core/build/tmp-glibc/=
-deploy/sdk/new/layers/openembedded-core/meta/recipes-support/sqlite/sqlite3=
-_3.30.1.bb:do_populate_sysroot'
-}
-ERROR: Task (/home/user/openembedded/openembedded-core/build/tmp-glibc/dep=
-loy/sdk/new/layers/openembedded-core/meta/recipes-core/glibc/glibc-locale_2=
-.30.bb:do_populate_lic) failed with exit code 'setscene whitelist'
-NOTE: Tasks Summary: Attempted 19 tasks of which 0 didn't need to be rerun=
- and 1 failed.
-Can anyone please tell how can i resolve this issue.
+Thanks for efforts but none of the instructions does job well till the end
+(as many others that i've tried before). Main reasons :
 
-Regards,
-Vaibhav Jadhav
+1) For both: as i said, the project is with dependencies and cmake-based.
+It means, that in my cmake i have find_package things, that should be
+correctly resolved against stage sysroot (not against host!). It is
+especially crucial for qt, since without proper configuration you will not
+even be able to open project.
 
---jRr8yQXbhhtZmVl8YGgS
-Content-Type: text/html; charset="utf-8"
+2) For qt:
+
+2.1) there is no cmake override in setting, of course will not work. I've
+already tried to add override from
+<my_recipe>1.0.0-r0/recipe-sysroot-native but given cmake doesn't work for
+me.
+2.2) i've almost taken as granted that i should deal with device first,
+but, as i said, i'm not even interest in the building of project, just 100=
+%
+correct symbols resolution. While i will need a device (maybe) for other
+things like debugging in near future.
+For resolution pitfalls you may found smth. like this:
+https://bugreports.qt.io/browse/QTCREATORBUG-24269
+and i just tired to explain how everything is wrong there in this regard,
+so bug is closed
+
+3) For vscode:
+they don't seem to be even correctly deal with custom sysroot and given
+instruction has nothing common with it. And seems there everything is wron=
+g
+as well:
+https://github.com/microsoft/vscode-cpptools/issues/1575
+
+So, i'm interested in answers from devs that have 100% working  environmen=
+t
+(preferably own one) that cover 100% symbol resolution issue. And it could
+be just another IDE.
+
+
+=D0=BF=D1=82, 20 =D0=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 09:33, Jose=
+f Holzmayr <jester@theyoctojester.info>:
+
+> Am Fr., 20. Nov. 2020 um 02:47 Uhr schrieb Khem Raj <raj.khem@gmail.com>=
+:
+> >
+> > On Thu, Nov 19, 2020 at 1:48 PM Sergey Ivanov <icegood1980@gmail.com>
+> wrote:
+> > >
+> > > Hi there.
+> > > Could anyone share a good approach/documentation/etc on how to
+> > > properly configure and use sysroot and sdk for a specific cmake -
+> based c++ receipt
+> > > to be able to build it from IDE (vscode, qtcreator) on linux host i.=
+e.
+> > >
+> > > 1) ide's --sysroot will be taken from
+> > >
+> yocto-root/build/tmp/work/aarch64-poky-linux/<my_recipe>1.0.0-r0/recipe-=
+sysroot
+> > > 2) compilers and cmake (i believe) will be taken from
+> > >
+> yocto-root/build/tmp/work/aarch64-poky-linux/<my_recipe>1.0.0-r0/recipe-=
+sysroot-native
+> > > 3) no mix of includes from host will be taken into account during th=
+e
+> compilation
+> > >
+> > > If none of ide above could do this stuff, then please recommend your
+> one
+> > >
+> > > For this moment i don't want run/debug the application right from id=
+e,
+> i just want to have all symbols be correctly resolved from there.
+> > >
+> >
+> > does this help ?
+> > https://www.ics.com/blog/configuring-qt-creator-yocto-development
+>
+> also, https://github.com/Wind-River/vscode-wrlinux/
+>
+> >
+> > > --
+> > > Kind regards,
+> > > Sergey Ivanov
+> > >
+> > >
+> > >
+> >
+> >=20
+> >
+>
+
+
+--=20
+Kind regards,
+Sergey Ivanov
+
+--000000000000266dab05b48792ea
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-HI all,<br />I am trying to build ESDK for a custom layer. while building I=
- am getting following ESDK preparing_build_system.log<br />NOTE: Running no=
-exec task 1 of 6485 (/home/user/openembedded/openembedded-core/build/tmp-gl=
-ibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-devtools/gnu-confi=
-g/gnu-config_git.bb:do_rm_work_all)<br />NOTE: Running noexec task 2 of 648=
-5 (virtual:native:/home/user/openembedded/openembedded-core/build/tmp-glibc=
-/deploy/sdk/new/layers/openembedded-core/meta/recipes-devtools/unifdef/unif=
-def_2.11.bb:do_rm_work_all)<br />NOTE: Running noexec task 3 of 6485 (virtu=
-al:native:/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/=
-sdk/new/layers/openembedded-core/meta/recipes-extended/unzip/unzip_6.0.bb:d=
-o_rm_work_all)<br />NOTE: Running noexec task 4 of 6485 (virtual:native:/ho=
-me/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/layer=
-s/openembedded-core/meta/recipes-extended/cwautomacros/cwautomacros_2011020=
-1.bb:do_rm_work_all)<br />NOTE: Running noexec task 5 of 6485 (/home/user/o=
-penembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/me=
-ta/recipes-core/systemd/systemd-systemctl-native.bb:do_rm_work_all)<br />NO=
-TE: Running noexec task 6 of 6485 (/home/user/openembedded/openembedded-cor=
-e/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-exte=
-nded/texinfo-dummy-native/texinfo-dummy-native.bb:do_rm_work_all)<br />NOTE=
-: Running noexec task 7 of 6485 (virtual:native:/home/user/openembedded/ope=
-nembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta=
-/recipes-core/zlib/zlib_1.2.11.bb:do_rm_work_all)<br />NOTE: Running noexec=
- task 8 of 6485 (/home/user/openembedded/openembedded-core/build/tmp-glibc/=
-deploy/sdk/new/layers/openembedded-core/meta/recipes-core/gettext/gettext-m=
-inimal-native_0.19.8.1.bb:do_rm_work_all)<br />NOTE: Running noexec task 9 =
-of 6485 (virtual:native:/home/user/openembedded/openembedded-core/build/tmp=
--glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-devtools/gnu-co=
-nfig/gnu-config_git.bb:do_rm_work_all)<br />NOTE: Running noexec task 10 of=
- 6485 (/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk=
-/new/layers/openembedded-core/meta/recipes-kernel/kern-tools/kern-tools-nat=
-ive_git.bb:do_rm_work_all)<br />NOTE: Running noexec task 11 of 6485 (virtu=
-al:native:/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/=
-sdk/new/layers/openembedded-core/meta/recipes-core/update-rc.d/update-rc.d_=
-0.8.bb:do_rm_work_all)<br />NOTE: Running noexec task 12 of 6485 (virtual:n=
-ative:/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/=
-new/layers/openembedded-core/meta/recipes-devtools/opkg-utils/opkg-utils_0.=
-4.1.bb:do_rm_work_all)<br />NOTE: Running noexec task 13 of 6485 (/home/use=
-r/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/open=
-embedded-core/meta/recipes-core/glibc/ldconfig-native_2.12.1.bb:do_rm_work_=
-all)<br />NOTE: Running noexec task 14 of 6485 (virtual:native:/home/user/o=
-penembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openemb=
-edded-core/meta/recipes-devtools/makedevs/makedevs_1.0.1.bb:do_rm_work_all)=
-<br />NOTE: Running noexec task 15 of 6485 (/home/user/openembedded/openemb=
-edded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/rec=
-ipes-devtools/quilt/quilt-native_0.66.bb:do_rm_work_all)<br />NOTE: Running=
- task 16 of 6485 (/home/user/openembedded/openembedded-core/build/tmp-glibc=
-/deploy/sdk/new/layers/openembedded-core/meta/recipes-devtools/gcc/gcc-sour=
-ce_8.3.bb:do_rm_work)<br />ERROR: Task glibc-locale.do_populate_lic attempt=
-ed to execute unexpectedly and should have been setscened<br />Task /home/u=
-ser/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/op=
-enembedded-core/meta/recipes-multimedia/libsndfile/libsndfile1_1.0.28.bb:do=
-_package_write_deb, unihash e0a368ff2b6e1e9c8b81756d93ee2ccacf62a26ef112afd=
-f93a750212abbee43, taskhash e0a368ff2b6e1e9c8b81756d93ee2ccacf62a26ef112afd=
-f93a750212abbee43<br />Task /home/user/openembedded/openembedded-core/build=
-/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-support/lib=
-evdev/libevdev_1.8.0.bb:do_package, unihash b8e9bb8121df216d8e04c89b613b55b=
-8fb138c0c87372a6101199d3812712643, taskhash b8e9bb8121df216d8e04c89b613b55b=
-8fb138c0c87372a6101199d3812712643<br />Task /home/user/openembedded/openemb=
-edded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/rec=
-ipes-devtools/btrfs-tools/btrfs-tools_5.3.1.bb:do_package, unihash 605c26cc=
-78f9f60b6642191fff1baa54443f18466b41a78f8c4cb067fbb8e96c, taskhash 605c26cc=
-78f9f60b6642191fff1baa54443f18466b41a78f8c4cb067fbb8e96c<br />.<br />.<br /=
->Task /home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/=
-new/layers/openembedded-core/meta/recipes-graphics/mini-x-session/mini-x-se=
-ssion_0.1.bb:do_package_write_deb, unihash f30c12605b93d3e4b7d9519b021d7eae=
-37259148d21462ff0a28b2731f63c2c8, taskhash f30c12605b93d3e4b7d9519b021d7eae=
-37259148d21462ff0a28b2731f63c2c8<br />Task /home/user/openembedded/openembe=
-dded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/reci=
-pes-extended/iptables/iptables_1.8.3.bb:do_populate_sysroot, unihash 31db09=
-ce9dbf5d4ca6700d43ea2aef440a9001e88a47e1866b9587bb813083c2, taskhash 31db09=
-ce9dbf5d4ca6700d43ea2aef440a9001e88a47e1866b9587bb813083c2<br />Task virtua=
-l:native:/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/s=
-dk/new/layers/openembedded-core/meta/recipes-devtools/autoconf-archive/auto=
-conf-archive_2019.01.06.bb:do_populate_lic, unihash 5cce2806bd80bc0cdc6ab15=
-52171b48f1815dc7892b9b5b39ee7f91d9a242302, taskhash 5cce2806bd80bc0cdc6ab15=
-52171b48f1815dc7892b9b5b39ee7f91d9a242302<br />Task /home/user/openembedded=
-/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/=
-meta/recipes-support/gnutls/gnutls_3.6.8.bb:do_package_qa, unihash eb4c9c96=
-8f488b26dfdb77deda7271059320738acd43bef11d8a8b4c43e5d0d3, taskhash eb4c9c96=
-8f488b26dfdb77deda7271059320738acd43bef11d8a8b4c43e5d0d3<br />This is usual=
-ly due to missing setscene tasks. Those missing in this build were: {<br />=
-&nbsp;'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk=
-/new/layers/openembedded-core/meta/recipes-bsp/alsa-state/alsa-state.bb:do_=
-populate_sysroot',<br />&nbsp;'/home/user/openembedded/openembedded-core/bu=
-ild/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-bsp/form=
-factor/formfactor_0.0.bb:do_package',<br />&nbsp;'/home/user/openembedded/o=
-penembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/me=
-ta/recipes-bsp/formfactor/formfactor_0.0.bb:do_package_qa',<br />&nbsp;'/ho=
-me/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/layer=
-s/openembedded-core/meta/recipes-bsp/formfactor/formfactor_0.0.bb:do_packag=
-e_write_deb',<br />&nbsp;'/home/user/openembedded/openembedded-core/build/t=
-mp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-bsp/formfacto=
-r/formfactor_0.0.bb:do_packagedata',<br />&nbsp;'/home/user/openembedded/op=
-enembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/met=
-a/recipes-bsp/formfactor/formfactor_0.0.bb:do_populate_lic',<br />&nbsp;'/h=
-ome/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/laye=
-rs/openembedded-core/meta/recipes-bsp/formfactor/formfactor_0.0.bb:do_popul=
-ate_sysroot',<br />.<br />.<br />&nbsp;'/home/user/openembedded/openembedde=
-d-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes=
--core/util-linux/util-linux_2.34.bb:do_package',<br />&nbsp;'/home/user/ope=
-nembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembed=
-ded-core/meta/recipes-core/util-linux/util-linux_2.34.bb:do_package_qa',<br=
- />&nbsp;'/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/=
-sdk/new/layers/openembedded-core/meta/recipes-core/util-linux/util-linux_2.=
-34.bb:do_package_write_deb',<br />&nbsp;'/home/user/openembedded/openembedd=
-ed-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipe=
-s-core/util-linux/util-linux_2.34.bb:do_packagedata',<br />&nbsp;'/home/use=
-r/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/layers/open=
-embedded-core/meta/recipes-core/util-linux/util-linux_2.34.bb:do_populate_l=
-ic',<br />&nbsp;'/home/user/openembedded/openembedded-core/build/tmp-glibc/=
-deploy/sdk/new/layers/openembedded-core/meta/recipes-core/util-linux/util-l=
-inux_2.34.bb:do_populate_sysroot'<br />.<br />.<br />&nbsp;'virtual:native:=
-/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/sdk/new/la=
-yers/openembedded-core/meta/recipes-support/re2c/re2c_1.0.1.bb:do_populate_=
-lic',<br />&nbsp;'virtual:native:/home/user/openembedded/openembedded-core/=
-build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta/recipes-suppor=
-t/re2c/re2c_1.0.1.bb:do_populate_sysroot',<br />.<br />.<br />&nbsp;'virtua=
-l:native:/home/user/openembedded/openembedded-core/build/tmp-glibc/deploy/s=
-dk/new/layers/openembedded-core/meta/recipes-support/sqlite/sqlite3_3.30.1.=
-bb:do_populate_lic',<br />&nbsp;'virtual:native:/home/user/openembedded/ope=
-nembedded-core/build/tmp-glibc/deploy/sdk/new/layers/openembedded-core/meta=
-/recipes-support/sqlite/sqlite3_3.30.1.bb:do_populate_sysroot'<br />}<br />=
-ERROR: Task (/home/user/openembedded/openembedded-core/build/tmp-glibc/depl=
-oy/sdk/new/layers/openembedded-core/meta/recipes-core/glibc/glibc-locale_2.=
-30.bb:do_populate_lic) failed with exit code 'setscene whitelist'<br />NOTE=
-: Tasks Summary: Attempted 19 tasks of which 0 didn't need to be rerun and =
-1 failed.<br />Can anyone please tell how can i resolve this issue.<br /><b=
-r />Regards,<br />Vaibhav Jadhav
+<div dir=3D"ltr"><div>Thanks for efforts but none of the instructions does =
+job well till the end (as many others that i&#39;ve tried before). Main rea=
+sons :<br><br></div><div>1) For both: as i said, the project is with depend=
+encies and cmake-based. It means, that in my cmake i have find_package thin=
+gs, that should be correctly resolved against stage sysroot (not against ho=
+st!). It is especially crucial for qt, since without proper configuration y=
+ou will not even be able to open project.<br><br></div><div>2) For qt: <br>=
+<br>2.1) there is no cmake override in setting, of course will not work. I&=
+#39;ve already tried to add override from=C2=A0 &lt;my_recipe&gt;1.0.0-r0/r=
+ecipe-sysroot-native but given cmake doesn&#39;t work for me.<br></div><div=
+>2.2) i&#39;ve almost taken as granted that i should deal with device first=
+, but, as i said, i&#39;m not even interest in the building of project, jus=
+t 100% correct symbols resolution. While i will need a device (maybe) for o=
+ther things like debugging in near future.=C2=A0 <br></div><div>For resolut=
+ion pitfalls you may found smth. like this:<br><a href=3D"https://bugreport=
+s.qt.io/browse/QTCREATORBUG-24269">https://bugreports.qt.io/browse/QTCREATO=
+RBUG-24269</a><br></div><div>and i just tired to explain how everything is =
+wrong there in this regard, so bug is closed<br><br></div><div>3) For vscod=
+e:<br></div><div>they don&#39;t seem to be even correctly deal with custom =
+sysroot and given instruction has nothing common with it. And seems there e=
+verything is wrong as well:<br><a href=3D"https://github.com/microsoft/vsco=
+de-cpptools/issues/1575">https://github.com/microsoft/vscode-cpptools/issue=
+s/1575</a><br><br></div><div>So, i&#39;m interested in answers from devs th=
+at have 100% working=C2=A0 environment (preferably own one) that cover 100%=
+ symbol resolution issue. And it could be just another IDE.<br></div><br></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+=D0=BF=D1=82, 20 =D0=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 09:33, Jose=
+f Holzmayr &lt;<a href=3D"mailto:jester@theyoctojester.info">jester@theyoct=
+ojester.info</a>&gt;:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
+:1ex">Am Fr., 20. Nov. 2020 um 02:47 Uhr schrieb Khem Raj &lt;<a href=3D"ma=
+ilto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;:<br>
+&gt;<br>
+&gt; On Thu, Nov 19, 2020 at 1:48 PM Sergey Ivanov &lt;<a href=3D"mailto:i=
+cegood1980@gmail.com" target=3D"_blank">icegood1980@gmail.com</a>&gt; wrote=
+:<br>
+&gt; &gt;<br>
+&gt; &gt; Hi there.<br>
+&gt; &gt; Could anyone share a good approach/documentation/etc on how to<b=
+r>
+&gt; &gt; properly configure and use sysroot and sdk for a specific cmake =
+- based c++ receipt<br>
+&gt; &gt; to be able to build it from IDE (vscode, qtcreator) on linux hos=
+t i.e.<br>
+&gt; &gt;<br>
+&gt; &gt; 1) ide&#39;s --sysroot will be taken from<br>
+&gt; &gt; yocto-root/build/tmp/work/aarch64-poky-linux/&lt;my_recipe&gt;1.=
+0.0-r0/recipe-sysroot<br>
+&gt; &gt; 2) compilers and cmake (i believe) will be taken from<br>
+&gt; &gt; yocto-root/build/tmp/work/aarch64-poky-linux/&lt;my_recipe&gt;1.=
+0.0-r0/recipe-sysroot-native<br>
+&gt; &gt; 3) no mix of includes from host will be taken into account durin=
+g the compilation<br>
+&gt; &gt;<br>
+&gt; &gt; If none of ide above could do this stuff, then please recommend =
+your one<br>
+&gt; &gt;<br>
+&gt; &gt; For this moment i don&#39;t want run/debug the application right=
+ from ide, i just want to have all symbols be correctly resolved from there=
+.<br>
+&gt; &gt;<br>
+&gt;<br>
+&gt; does this help ?<br>
+&gt; <a href=3D"https://www.ics.com/blog/configuring-qt-creator-yocto-deve=
+lopment" rel=3D"noreferrer" target=3D"_blank">https://www.ics.com/blog/conf=
+iguring-qt-creator-yocto-development</a><br>
+<br>
+also, <a href=3D"https://github.com/Wind-River/vscode-wrlinux/" rel=3D"nor=
+eferrer" target=3D"_blank">https://github.com/Wind-River/vscode-wrlinux/</a=
+><br>
+<br>
+&gt;<br>
+&gt; &gt; --<br>
+&gt; &gt; Kind regards,<br>
+&gt; &gt; Sergey Ivanov<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt;<br>
+&gt; <br>
+&gt;<br>
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"=
+gmail_signature">Kind regards,<br>Sergey Ivanov</div>
 
---jRr8yQXbhhtZmVl8YGgS--
+--000000000000266dab05b48792ea--
