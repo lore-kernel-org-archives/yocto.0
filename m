@@ -1,243 +1,135 @@
-Received: from exchange.sewerin.com (exchange.sewerin.com [92.39.20.236])
- by mx.groups.io with SMTP id smtpd.web08.5409.1605961469012344547
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.5207.1605961504548032453
  for <yocto@lists.yoctoproject.org>;
- Sat, 21 Nov 2020 04:24:29 -0800
+ Sat, 21 Nov 2020 04:25:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@lists.yoctoproject.org header.s=20140610 header.b=VhcN9hmq;
- spf=softfail (domain: lists.yoctoproject.org, ip: 92.39.20.236, mailfrom: yocto@lists.yoctoproject.org)
+ dkim=pass header.i=@lists.yoctoproject.org header.s=20140610 header.b=wGx1D0Ds;
+ spf=softfail (domain: lists.yoctoproject.org, ip: 198.145.29.25, mailfrom: yocto@lists.yoctoproject.org)
+Received: from exchange.sewerin.com (exchange.sewerin.com [92.39.20.236])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id C04E238C0870
+	for <yocto@yoctoproject.org>; Sat, 21 Nov 2020 12:25:03 +0000 (UTC)
 Received: from Pickup by Exchange.sewerin.de with Microsoft SMTP Server id
- 15.0.1395.4; Fri, 20 Nov 2020 11:48:42 +0000
-X-Sender: bounce+53643+51496+3618059+6691491@lists.yoctoproject.org
+ 15.0.1395.4; Fri, 20 Nov 2020 07:17:32 +0000
+X-Sender: bounce+53643+51492+3618059+6691491@lists.yoctoproject.org
 X-Receiver: Bastian.Ruppert@sewerin.com
-x-endofinjectedxheaders: 12599
-X-Received: by 127.0.0.2 with SMTP id N84mYY3619394xsasFAmPmOz; Fri, 20 Nov 2020 03:47:32 -0800
-X-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51]) by mx.groups.io
- with SMTP id smtpd.web10.23512.1605869250696664500 for <yocto@lists.yoctoproject.org>; Fri, 20 Nov 2020 02:47:31 -0800
-X-Received: by mail-ed1-f51.google.com with SMTP id r22so375755edw.6        for <yocto@lists.yoctoproject.org>; Fri, 20 Nov 2020 02:47:30 -0800 (PST)
-X-Gm-Message-State: wx05KrWwv3oEvO0loN3lTWKSx3618059AA=
-X-Google-Smtp-Source: ABdhPJw+YxnFojJRXsMFStPn82k48ItEp11mGDHtx+CIejKLpJbtp81JrpFmaT5vSyiv3RemfHeKuyfqhStry3AKxtQ=
-X-Received: by 2002:a05:6402:142f:: with SMTP id c15mr35338185edx.33.1605869249128; Fri, 20 Nov 2020 02:47:29 -0800 (PST)
+x-endofinjectedxheaders: 9549
+X-Received: by 127.0.0.2 with SMTP id 7DGhYY3619394xeFgHQE3e4c; Thu, 19 Nov 2020 23:16:32 -0800
+X-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.22091.1605854990699436082
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 19 Nov 2020 22:49:51 -0800
+X-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2068.outbound.protection.outlook.com [40.107.243.68])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id A2F3238C08E3
+	for <yocto@yoctoproject.org>; Fri, 20 Nov 2020 06:49:49 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JGUOftFxsrZx5mE7T2T5oK+PA1zSezdPuGE6x6VMB+9AEFPN7YYi+7IeoKcPNB94J+qRuIP9Me0M4Wl6agibRUq1nHumdYaG3Wuf8Ch1R9p1JDJSIgF9ZgYukgXLSRA96SUzstPzY6wtXDMReDhzM+kiyOJobkckXhFuBmfX1lhvO3VMhhxJJiLFDma1yYVJnWP7D1ABAdH9E0b0Fnh60Q+q/FINSvi1+8AzsapTHfSnp16oUdT57AM8qJvv3fpe3I9aPt9MyMf9MDTZpPvQ2zcVNS3ifEOvlqhIb+pzq8+yUDvQjFOxooNTZNMmjGw4oGU4yjfE90JIXXgJSzRmcQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LZja+rSdJ2XczurxxiNTbgKH1h5kd8BVTB9YGsBphDk=;
+ b=J+z1pV4lnMfJSYTcCK2dFXlU2wJHllj58sIjoZavOROcQOQutK3uiFVhTJuW8Q9prI1m0BBW0Ongfctbcbg+kUFh2slqWz+DRSuEvpZSnj+rGle7PCZ5fwlk5DR0DVwL3lO5uUw1fu1XsBLB/5ASRxT0YdZeNLq7h/cs3OEWMaXrTtYJct3LfoYyFqY0oX7WKeGM8SzuuNkLUxVhgANV9+oQyGYwEBGjcEkMXaCEv19CWvwfDvIl3tvEtZUnFXjk1Mzh70T3lWywRC2r78N7yFxgwZ/rI/yAqf2RGMwn9FV9FqSmXTjAgL/W1HZ2gf665+rr2oSTapXC2WKC/+b28A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+X-Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
+ by CO1PR11MB4817.namprd11.prod.outlook.com (2603:10b6:303:98::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20; Fri, 20 Nov
+ 2020 06:49:48 +0000
+X-Received: from CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::d844:ac89:6b05:ed98]) by CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::d844:ac89:6b05:ed98%6]) with mapi id 15.20.3589.020; Fri, 20 Nov 2020
+ 06:49:48 +0000
+From: "Yi Zhao" <yi.zhao@windriver.com>
+To: Joe_MacDonald@mentor.com,
+	yocto@yoctoproject.org
+Subject: [yocto] [meta-selinux][PATCH] libselinux-python: inherit python3targetconfig
+Date: Fri, 20 Nov 2020 14:49:37 +0800
+X-OldMsgId: <20201120064937.238916-1-yi.zhao@windriver.com>
+X-Originating-IP: [60.247.85.82]
+X-ClientProxiedBy: DM6PR12CA0036.namprd12.prod.outlook.com
+ (2603:10b6:5:1c0::49) To CO1PR11MB4867.namprd11.prod.outlook.com
+ (2603:10b6:303:9a::13)
 MIME-Version: 1.0
-References: <CAJCbrz7=qAmswe-sumk=4E0x_KyFPdRG9UouvgfxwJzyMte=sw@mail.gmail.com> <CAMKF1so796jC3kifn8KzA_gXi61fL4MpCbTDHuHr=yrJGk=ghQ@mail.gmail.com>
- <CAEt6Nwr7j9vwthOXZ6rUUEjyMUh71ySRO5vwb=t3qoSrffTc8Q@mail.gmail.com>
-In-Reply-To: <CAEt6Nwr7j9vwthOXZ6rUUEjyMUh71ySRO5vwb=t3qoSrffTc8Q@mail.gmail.com>
-From: "Sergey Ivanov" <icegood1980@gmail.com>
-Date: Fri, 20 Nov 2020 12:47:17 +0200
-X-OldMsgId: <CAJCbrz4cqwm55i8nbdRzGZ=c9Ds3FPdq8tjcE8CstxNBtb6sQw@mail.gmail.com>
-Subject: Re: [yocto] yocto recipt from host ide
-To: Josef Holzmayr <jester@theyoctojester.info>
-Cc: Khem Raj <raj.khem@gmail.com>, Yocto-mailing-list <yocto@lists.yoctoproject.org>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by DM6PR12CA0036.namprd12.prod.outlook.com (2603:10b6:5:1c0::49) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 06:49:46 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4774725b-39fa-47cd-972c-08d88d2078de
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4817:
+X-Microsoft-Antispam-PRVS: <CO1PR11MB48176A936B6AADD59F2FB34BF9FF0@CO1PR11MB4817.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:469;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: Y46hNk+8jVoX7FkgcpwTIf12oqDvQ6nSI4W8GCSllFQeQbMBk8FtaobKueejx37O01rALL39a15IjhYx0BL6L8e7zpE0uOCNULO9H58C9AzC4aDa7oVXPUcKTi/KwVKv+SvsfPh6VhBOMx3pfKnH8/9fIkobY6idNK5NDMKOs9uqIdqG5GqRwcPwg0fSxI5lhODQYDuHZFbaAQYiN2mknBGGUfS4dNYX9V9XWdoNfxCfxnTEf1ZCvOnYVwPISwgIzdtx9qKMp5WBmpkJO8NbuEDZ7F2coNEHqtB5yAG5rSpfy5ECJKxqhx50if8+AHAk
+X-MS-Exchange-AntiSpam-MessageData: bnhW8JhGYb0BYiARmb3vWMd81/gBU7YvWMHGsf8q/ejrLmaB8+bNLPDTFVHGJeHA46xFWd79O8SUoCkqrdLr/nxnVn9J6EXxnjPwiJQjqWyFHV38I5VPWsAxghpXEWAObT+Z/gNG5tTMAuATCWku9eWVaf1/UBfYjR2hxJFUtSBIDG4gaP8IDB3SgNVQEYrG+MIX+A9+3etH3U8g6KfT6npqjkkdcHVRPLFE1P3w58QRvXx4JzNJdQktc4K4hcT2DpsOrpUqz0m+CevxNY/X/MlSmU3802tpJi1mGN8d6O9t4Rk73SmUJaFmSvks2QZFzQtVtHZ06V0C0lPGArD2tD2Vpf9y4cytn4kibZAw19uDd+IiBlp9APL2roqdp4/g93PAJcYKnNPxoEWkc8AFvEMEJJ506UXmpQqZoPvZ1k2g7oPBiY9l88J4VZhBy9uFdNgAAKgXJda5odrXQw4WieNVe5dsAT9xkC2FF73h65+8QXqfDrU0MsiWuVnChJWpM4vU42+a/E7fZ1+1PkMyvHzAr5JMpVRdgiauxXj9myrTivY9yZYmlPxVPIv6VFqo/FRYOHqTYHg1XhICW60oDW8ZR82btIkbTo2ir7+UUad1hAPhJO2oH10xNpujuvVfSmOyN5ZuXSxmzx1GhuRb0Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4774725b-39fa-47cd-972c-08d88d2078de
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 06:49:48.1916
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8DVHEWmw4kX5lJRoK3ridDzV5DzEQ+df4rwPhx7pHDjGfc6b0LUTcOmv2XtU1RVzqId2DTPYklg33U9Yc5szcQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4817
 Precedence: Bulk
 List-Unsubscribe: <https://lists.yoctoproject.org/g/yocto/unsub>
 Sender: <yocto@lists.yoctoproject.org>
 List-Id: <yocto.lists.yoctoproject.org>
 Mailing-List: list yocto@lists.yoctoproject.org; contact yocto+owner@lists.yoctoproject.org
 List-Post: <mailto:yocto@lists.yoctoproject.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lists.yoctoproject.org; q=dns/txt; s=20140610;
- t=1605872852; bh=vhlP+lkGPdxAbf0VsqDJBaVEti4ik6AMThpsiwSWbGM=; h=Cc:Content-Type:Date:From:Subject:To;
- b=VhcN9hmqul9O759Kqs/daqQnPSjiXy0VkNaXvj4y/qXmfWUDXk18BFOsL7J1qOUJcs8 o+GjJhRmm+C3AvwQsPm1He5WFE/fa3qgNk7F3RB+8TJTOgTKn28KSPYPVnlbXnJ4OAvcB mtfMlSB2ABTXK066dAp5HTTJsAeuGe881xo=
-Return-Path: bounce+53643+51496+3618059+6691491@lists.yoctoproject.org
+X-Gm-Message-State: P2eHtxTih9nsCz4ZVMIA88x6x3618059AA=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=lists.yoctoproject.org; q=dns/txt; s=20140610; t=1605856592;
+ bh=mCsfXCI5TDxmf2NNtClLjJxDAPEamKxxshqY6ncE8aQ=;
+ h=Content-Type:Date:From:Subject:To;
+ b=wGx1D0DsiM60G7b2zdTNz3xutBcFyL2zLgAzFps0R/wCtML3IdGvBgGUFfzt28r6XpQ
+ tJrO/URAsd73H16POkwhkPLSR3rZze8srGt8tv3NRH/q1BDmic5STdYvbYQM7805PLxOQ
+ TKo2pYcxhgJgpOMofU+wkqBcoRaRV41HeMI=
 X-GFI-SMTP-Submission: 1
 X-GFI-SMTP-HelloDomain: web01.groups.io
 X-GFI-SMTP-RemoteIP: 66.175.222.12
-Received-SPF: Pass (Exchange.sewerin.de: domain of yocto@lists.yoctoproject.org designates 66.175.222.12
- as permitted sender) receiver=Exchange.sewerin.de; client-ip=66.175.222.12; helo=web01.groups.io;
-Message-ID: <580832b303aa413d9010ce5feae916bc@Exchange.sewerin.de>
-Content-Type: multipart/mixed; boundary="c2pGBStoRu0v0H1WmmDh"
+Received-SPF: Pass (Exchange.sewerin.de: domain of
+ yocto@lists.yoctoproject.org designates 66.175.222.12 as permitted sender)
+ receiver=Exchange.sewerin.de; client-ip=66.175.222.12; helo=web01.groups.io;
+Message-ID: <05e9d78d9ae54200b46ad421213f5b89@Exchange.sewerin.de>
+Content-Type: multipart/mixed; boundary="b06hMiD3IIIkOLLc67U8"
 
---c2pGBStoRu0v0H1WmmDh
-Content-Type: multipart/alternative; boundary="000000000000266dab05b48792ea"
-
---000000000000266dab05b48792ea
-Content-Type: text/plain; charset="UTF-8"
+--b06hMiD3IIIkOLLc67U8
+Content-Type: text/plain
 Content-Transfer-Encoding: quoted-printable
-X-EC0D2A8E-5CB7-4969-9C36-46D859D137BE-PartID: {B255A1FE-E975-4D23-999A-A7A19E3F60E0}
 
-Thanks for efforts but none of the instructions does job well till the end
-(as many others that i've tried before). Main reasons :
+The python3 target configuration has been split into own class in
+oe-core commit 5a118d4e7985fa88f04c3611f8db813f0dafce75.
+Inherit it to fix the build error.
 
-1) For both: as i said, the project is with dependencies and cmake-based.
-It means, that in my cmake i have find_package things, that should be
-correctly resolved against stage sysroot (not against host!). It is
-especially crucial for qt, since without proper configuration you will not
-even be able to open project.
+Fixes:
+selinuxswig_python_wrap.o: file not recognized: File format not recognized
+collect2: error: ld returned 1 exit status
 
-2) For qt:
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ recipes-security/selinux/libselinux-python.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-2.1) there is no cmake override in setting, of course will not work. I've
-already tried to add override from
-<my_recipe>1.0.0-r0/recipe-sysroot-native but given cmake doesn't work for
-me.
-2.2) i've almost taken as granted that i should deal with device first,
-but, as i said, i'm not even interest in the building of project, just 100=
-%
-correct symbols resolution. While i will need a device (maybe) for other
-things like debugging in near future.
-For resolution pitfalls you may found smth. like this:
-https://bugreports.qt.io/browse/QTCREATORBUG-24269
-and i just tired to explain how everything is wrong there in this regard,
-so bug is closed
-
-3) For vscode:
-they don't seem to be even correctly deal with custom sysroot and given
-instruction has nothing common with it. And seems there everything is wron=
-g
-as well:
-https://github.com/microsoft/vscode-cpptools/issues/1575
-
-So, i'm interested in answers from devs that have 100% working  environmen=
-t
-(preferably own one) that cover 100% symbol resolution issue. And it could
-be just another IDE.
-
-
-=D0=BF=D1=82, 20 =D0=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 09:33, Jose=
-f Holzmayr <jester@theyoctojester.info>:
-
-> Am Fr., 20. Nov. 2020 um 02:47 Uhr schrieb Khem Raj <raj.khem@gmail.com>=
-:
-> >
-> > On Thu, Nov 19, 2020 at 1:48 PM Sergey Ivanov <icegood1980@gmail.com>
-> wrote:
-> > >
-> > > Hi there.
-> > > Could anyone share a good approach/documentation/etc on how to
-> > > properly configure and use sysroot and sdk for a specific cmake -
-> based c++ receipt
-> > > to be able to build it from IDE (vscode, qtcreator) on linux host i.=
-e.
-> > >
-> > > 1) ide's --sysroot will be taken from
-> > >
-> yocto-root/build/tmp/work/aarch64-poky-linux/<my_recipe>1.0.0-r0/recipe-=
-sysroot
-> > > 2) compilers and cmake (i believe) will be taken from
-> > >
-> yocto-root/build/tmp/work/aarch64-poky-linux/<my_recipe>1.0.0-r0/recipe-=
-sysroot-native
-> > > 3) no mix of includes from host will be taken into account during th=
-e
-> compilation
-> > >
-> > > If none of ide above could do this stuff, then please recommend your
-> one
-> > >
-> > > For this moment i don't want run/debug the application right from id=
-e,
-> i just want to have all symbols be correctly resolved from there.
-> > >
-> >
-> > does this help ?
-> > https://www.ics.com/blog/configuring-qt-creator-yocto-development
->
-> also, https://github.com/Wind-River/vscode-wrlinux/
->
-> >
-> > > --
-> > > Kind regards,
-> > > Sergey Ivanov
-> > >
-> > >
-> > >
-> >
-> >
-> >
->
-
-
---
-Kind regards,
-Sergey Ivanov
+diff --git a/recipes-security/selinux/libselinux-python.inc b/recipes-secu=
+rity/selinux/libselinux-python.inc
+index 3760fd8..7149d94 100644
+--- a/recipes-security/selinux/libselinux-python.inc
++++ b/recipes-security/selinux/libselinux-python.inc
+@@ -7,7 +7,7 @@ LICENSE =3D "PD"
+=20
+ FILESEXTRAPATHS_prepend :=3D "${THISDIR}/libselinux:"
+=20
+-inherit python3native
++inherit python3native python3targetconfig
+=20
+ DEPENDS +=3D "python3 swig-native libpcre libsepol"
+ RDEPENDS_${PN} +=3D "libselinux python3-core python3-shell"
+--=20
+2.25.1
 
 
 
 
---000000000000266dab05b48792ea
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-EC0D2A8E-5CB7-4969-9C36-46D859D137BE-PartID: {9D1CD413-3C7C-4CA5-8CAE-1A052C12EFB8}
 
-<div><div>Thanks for efforts but none of the instructions does job well till=
- the end (as many others that i&#39;ve tried before). Main reasons :<br><br>=
-</div><div>1) For both: as i said, the project is with dependencies and cmak=
-e-based. It means, that in my cmake i have find_package things, that should =
-be correctly resolved against stage sysroot (not against host!). It is espec=
-ially crucial for qt, since without proper configuration you will not even b=
-e able to open project.<br><br></div><div>2) For qt: <br><br>2.1) there is n=
-o cmake override in setting, of course will not work. I&#39;ve already tried=
- to add override from=C2=A0 &lt;my_recipe&gt;1.0.0-r0/recipe-sysroot-native =
-but given cmake doesn&#39;t work for me.<br></div><div>2.2) i&#39;ve almost =
-taken as granted that i should deal with device first, but, as i said, i&#39=
-;m not even interest in the building of project, just 100% correct symbols r=
-esolution. While i will need a device (maybe) for other things like debuggin=
-g in near future.=C2=A0 <br></div><div>For resolution pitfalls you may found=
- smth. like this:<br><a href=3D"https://bugreports.qt.io/browse/QTCREATORBUG=
--24269">https://bugreports.qt.io/browse/QTCREATORBUG-24269</a><br></div><div=
->and i just tired to explain how everything is wrong there in this regard, s=
-o bug is closed<br><br></div><div>3) For vscode:<br></div><div>they don&#39;=
-t seem to be even correctly deal with custom sysroot and given instruction h=
-as nothing common with it. And seems there everything is wrong as well:<br><=
-a href=3D"https://github.com/microsoft/vscode-cpptools/issues/1575">https://=
-github.com/microsoft/vscode-cpptools/issues/1575</a><br><br></div><div>So, i=
-&#39;m interested in answers from devs that have 100% working=C2=A0 environm=
-ent (preferably own one) that cover 100% symbol resolution issue. And it cou=
-ld be just another IDE.<br></div><br></div><br><div class=3D"gmail_quote"><d=
-iv class=3D"gmail_attr">=D0=BF=D1=82, 20 =D0=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3=
-. =D0=B2 09:33, Josef Holzmayr &lt;<a href=3D"mailto:jester@theyoctojester.i=
-nfo">jester@theyoctojester.info</a>&gt;:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex">Am Fr., 20. Nov. 2020 um 02:47 Uhr schrieb Khem Raj &=
-lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt;:<br>
-&gt;<br>
-&gt; On Thu, Nov 19, 2020 at 1:48 PM Sergey Ivanov &lt;<a href=3D"mailto:ice=
-good1980@gmail.com">icegood1980@gmail.com</a>&gt; wrote:<br>
-&gt; &gt;<br>
-&gt; &gt; Hi there.<br>
-&gt; &gt; Could anyone share a good approach/documentation/etc on how to<br>=
-
-&gt; &gt; properly configure and use sysroot and sdk for a specific cmake - =
-based c++ receipt<br>
-&gt; &gt; to be able to build it from IDE (vscode, qtcreator) on linux host =
-i.e.<br>
-&gt; &gt;<br>
-&gt; &gt; 1) ide&#39;s --sysroot will be taken from<br>
-&gt; &gt; yocto-root/build/tmp/work/aarch64-poky-linux/&lt;my_recipe&gt;1.0.=
-0-r0/recipe-sysroot<br>
-&gt; &gt; 2) compilers and cmake (i believe) will be taken from<br>
-&gt; &gt; yocto-root/build/tmp/work/aarch64-poky-linux/&lt;my_recipe&gt;1.0.=
-0-r0/recipe-sysroot-native<br>
-&gt; &gt; 3) no mix of includes from host will be taken into account during =
-the compilation<br>
-&gt; &gt;<br>
-&gt; &gt; If none of ide above could do this stuff, then please recommend yo=
-ur one<br>
-&gt; &gt;<br>
-&gt; &gt; For this moment i don&#39;t want run/debug the application right f=
-rom ide, i just want to have all symbols be correctly resolved from there.<b=
-r>
-&gt; &gt;<br>
-&gt;<br>
-&gt; does this help ?<br>
-&gt; <a href=3D"https://www.ics.com/blog/configuring-qt-creator-yocto-develo=
-pment">https://www.ics.com/blog/configuring-qt-creator-yocto-development</a>=
-<br>
-<br>
-also, <a href=3D"https://github.com/Wind-River/vscode-wrlinux/">https://gith=
-ub.com/Wind-River/vscode-wrlinux/</a><br>
-<br>
-&gt;<br>
-&gt; &gt; --<br>
-&gt; &gt; Kind regards,<br>
-&gt; &gt; Sergey Ivanov<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
-</blockquote></div><br><br>-- <br><div class=3D"gmail_signature">Kind regard=
-s,<br>Sergey Ivanov</div>
-
---000000000000266dab05b48792ea--
-
---c2pGBStoRu0v0H1WmmDh--
+--b06hMiD3IIIkOLLc67U8--
