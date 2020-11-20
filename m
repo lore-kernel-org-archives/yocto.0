@@ -1,237 +1,181 @@
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
- by mx.groups.io with SMTP id smtpd.web10.23512.1605869250696664500
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+ by mx.groups.io with SMTP id smtpd.web09.24379.1605874967487972064
  for <yocto@lists.yoctoproject.org>;
- Fri, 20 Nov 2020 02:47:31 -0800
+ Fri, 20 Nov 2020 04:22:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=CRiS4jmL;
- spf=pass (domain: gmail.com, ip: 209.85.208.51, mailfrom: icegood1980@gmail.com)
-Received: by mail-ed1-f51.google.com with SMTP id r22so375755edw.6
-        for <yocto@lists.yoctoproject.org>; Fri, 20 Nov 2020 02:47:30 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=UIfV56q7;
+ spf=pass (domain: gmail.com, ip: 209.85.208.178, mailfrom: erik.boto@gmail.com)
+Received: by mail-lj1-f178.google.com with SMTP id h23so9798239ljg.13
+        for <yocto@lists.yoctoproject.org>; Fri, 20 Nov 2020 04:22:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ezYUbgY8UhsdSeQYdaj0wjJK2kxpt8v0wNxYzNzZ6Eg=;
-        b=CRiS4jmLpaClEhW1K7E1sOY0PV6utMpBXPuNNm3GId/uEc5jTg6Pqj4NmAhgfy+RNa
-         kVB3tKe9BPqsaBJhjsyHZV0MnIew3p4w6cSkElis9JuJ/7BA5AtsFj6374S061OA97bR
-         33liNsoJF6fyIutqKowxljMI8AMx/PLuerTFGtWyh3huP7+GhBGgJfd31+Kixf6VWIPd
-         B0Du8ImStOBO0rJpxk+5DQH9b1d5a8r2MN0F6bH+D50JeCjhNvKPETrWNHWEEGLOM5Au
-         g4mlyAPqV8mCGdgE52ro+DHpLtRFCRJJ+dJqdgNgGILpJIMCgtt17agpy6e6tkRM4RFe
-         KWAg==
+        bh=slPW12T7XGKPmEZgfuvKuPjnCKthBGUg9908MTYHJto=;
+        b=UIfV56q7ZQ0d6sms8hFVlVyIuvMR39jSYwWf/N2Kw4FBxjmmnGl5gWSLV14sE26rpz
+         2XrWg0j5V4MoYono19l1zGaazu6HkzZLx0CCYoaIgdLRrazDec27/M4HXGDNZc4/KLJI
+         Zyok3lF256mU5pZ4x0SUFqn9apoW27hzaFfNdnhdnrYhdOdfs9QxiR8QKozF6ci5dfen
+         8NK3YcTX/48LZLkcpAgQ0bE9MVHrhp11SCiaJ6ccAh5vmwlAuZYOVxyErJooSNX3dF9i
+         Q2nRx80itVAMqmpvoV1CVeygDyXgqBaTDO4vAJFiHBNtBKD5NmhIylaqYKAJlDhf2hav
+         uMWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ezYUbgY8UhsdSeQYdaj0wjJK2kxpt8v0wNxYzNzZ6Eg=;
-        b=b/4iagySjV8xP73H9JVreQq/ocxIFtdQ0UudE5vZSWOY0be6VC1pvjveLCb33d1juD
-         wgy7iXJ0/xH1NYcL2sbilCFyAaoHLxaQRzs29GTCNDAU4XyEb4SBNYnkvxmmvU9DIofI
-         DCDcpZp22nqfS8pI6hZDFicbjFpX7ARzjJKlhQBIAcjTIhcHl4uJ3DF3AIwKwA4b4Och
-         RucitzvUYRNmOWCSaLy/zwtlPEiajPl1ckx46mATZuaXghqFgfUbNNTFMKnKr6m1Ngye
-         THisbMXF53GelI7cI8CWDYeEtBE4hIjbPV6X2TleF8uYHCoHl9DF2AEXUqwv4RJfct42
-         VnCQ==
-X-Gm-Message-State: AOAM530tyqEcU5wIi7cwMOTph+OaLoyHIWZHXAU/MNu1cAk5JyU6KYLH
-	4TemFDHKJ2q9xCDD+lqD1ftIINRSPs/eNLTWgZ8=
-X-Google-Smtp-Source: ABdhPJw+YxnFojJRXsMFStPn82k48ItEp11mGDHtx+CIejKLpJbtp81JrpFmaT5vSyiv3RemfHeKuyfqhStry3AKxtQ=
-X-Received: by 2002:a05:6402:142f:: with SMTP id c15mr35338185edx.33.1605869249128;
- Fri, 20 Nov 2020 02:47:29 -0800 (PST)
+        bh=slPW12T7XGKPmEZgfuvKuPjnCKthBGUg9908MTYHJto=;
+        b=VOKzl3K/NjnsI5m9cwLbW00YmLcLRyxQ3LW8htS2k/pqV/T9fo7niC+D84FmuTdOlh
+         TCGNJrbgk+mkXpVJrzIQeJ0Rgk0kA98H3EBi1pI2Paka+362LXZEXF1t+FMJ2lwjdnar
+         450VbavSDcdNFSUxRqPB1MvMJqAs5Kx3ft2QurhR3IYzWStp+nl87oEmIRpc8Oivk/2Y
+         XQuehAy/VFMQycoMkCvW4x647sfEcDeicUnSA+zz19F1DFZVnXPXgL7ZukJXAOjYM00H
+         Hq24JJxS6JIhYHs7n4cyvOyBvPNylC415egMbEfVbBE7FhgBgH9Uz6Tc9GNupc9e13oY
+         ynLw==
+X-Gm-Message-State: AOAM5327mim6FeXX/N5iwAZTlHv4YhIWv5IKJ+m2xzKg/HsCofk3jVHS
+	FfxpSHcc4Gzs9mbJgwyqTkOSXoKIcnzCM1L75cU=
+X-Google-Smtp-Source: ABdhPJwlbEsvj/DQYcfZWN6gvZG3vVIQtTjIanzd8EPox+mOYouHQcyKPM6pRjQAUKuuycfXlfM8gTrYRJa0EnF38bo=
+X-Received: by 2002:a2e:8711:: with SMTP id m17mr8750688lji.308.1605874965228;
+ Fri, 20 Nov 2020 04:22:45 -0800 (PST)
 MIME-Version: 1.0
-References: <CAJCbrz7=qAmswe-sumk=4E0x_KyFPdRG9UouvgfxwJzyMte=sw@mail.gmail.com>
- <CAMKF1so796jC3kifn8KzA_gXi61fL4MpCbTDHuHr=yrJGk=ghQ@mail.gmail.com> <CAEt6Nwr7j9vwthOXZ6rUUEjyMUh71ySRO5vwb=t3qoSrffTc8Q@mail.gmail.com>
-In-Reply-To: <CAEt6Nwr7j9vwthOXZ6rUUEjyMUh71ySRO5vwb=t3qoSrffTc8Q@mail.gmail.com>
-From: "Sergey Ivanov" <icegood1980@gmail.com>
-Date: Fri, 20 Nov 2020 12:47:17 +0200
-Message-ID: <CAJCbrz4cqwm55i8nbdRzGZ=c9Ds3FPdq8tjcE8CstxNBtb6sQw@mail.gmail.com>
-Subject: Re: [yocto] yocto recipt from host ide
-To: Josef Holzmayr <jester@theyoctojester.info>
-Cc: Khem Raj <raj.khem@gmail.com>, Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000266dab05b48792ea"
-
---000000000000266dab05b48792ea
+References: <61df164e-fa3a-7517-33e8-db8ef0c8af92.ref@yahoo.com>
+ <61df164e-fa3a-7517-33e8-db8ef0c8af92@yahoo.com> <CAMKF1sq=my8uXJwO93BwhEMiEZRyYGOCvv9BMuMCG8=DuGV-Ww@mail.gmail.com>
+ <16488BC657DA2093.23836@lists.yoctoproject.org> <1648CCC040C7B594.8629@lists.yoctoproject.org>
+ <6cbee24058e04c0d9f21fb9077fe94e9@Exchange.sewerin.de>
+In-Reply-To: <6cbee24058e04c0d9f21fb9077fe94e9@Exchange.sewerin.de>
+From: "Erik Boto" <erik.boto@gmail.com>
+Date: Fri, 20 Nov 2020 13:22:34 +0100
+Message-ID: <CALNvYWNt6zK97wYbogV=RfT+_5w5Ho=-4H+nG9qOCjNiOiGEEA@mail.gmail.com>
+Subject: Re: [yocto] Raspberry PI enabling MMC1
+To: chuckkamas@yahoo.com
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Thanks for efforts but none of the instructions does job well till the end
-(as many others that i've tried before). Main reasons :
+On Thu, Nov 19, 2020 at 7:21 PM chuck kamas via lists.yoctoproject.org
+<chuckkamas=yahoo.com@lists.yoctoproject.org> wrote:
+>
+> Making some progress here!
+>
+>
+> I added a compiled version of the attached device tree and now the mmc1 shows up in my yocto image! Yes! Now I need to find out the secret magic in that tree that I need to add...
 
-1) For both: as i said, the project is with dependencies and cmake-based.
-It means, that in my cmake i have find_package things, that should be
-correctly resolved against stage sysroot (not against host!). It is
-especially crucial for qt, since without proper configuration you will not
-even be able to open project.
+If I'm not mistaken that should be done by appending
+RPI_KERNEL_DEVICETREE_OVERLAYS. If you don't have your own custom
+machine configuration where this could be added, try adding the
+following to local.conf:
 
-2) For qt:
+RPI_KERNEL_DEVICETREE_OVERLAYS_append = " overlays/sdio.dtbo "
 
-2.1) there is no cmake override in setting, of course will not work. I've
-already tried to add override from
-<my_recipe>1.0.0-r0/recipe-sysroot-native but given cmake doesn't work for
-me.
-2.2) i've almost taken as granted that i should deal with device first,
-but, as i said, i'm not even interest in the building of project, just 100=
-%
-correct symbols resolution. While i will need a device (maybe) for other
-things like debugging in near future.
-For resolution pitfalls you may found smth. like this:
-https://bugreports.qt.io/browse/QTCREATORBUG-24269
-and i just tired to explain how everything is wrong there in this regard,
-so bug is closed
-
-3) For vscode:
-they don't seem to be even correctly deal with custom sysroot and given
-instruction has nothing common with it. And seems there everything is wron=
-g
-as well:
-https://github.com/microsoft/vscode-cpptools/issues/1575
-
-So, i'm interested in answers from devs that have 100% working  environmen=
-t
-(preferably own one) that cover 100% symbol resolution issue. And it could
-be just another IDE.
-
-
-=D0=BF=D1=82, 20 =D0=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 09:33, Jose=
-f Holzmayr <jester@theyoctojester.info>:
-
-> Am Fr., 20. Nov. 2020 um 02:47 Uhr schrieb Khem Raj <raj.khem@gmail.com>=
-:
-> >
-> > On Thu, Nov 19, 2020 at 1:48 PM Sergey Ivanov <icegood1980@gmail.com>
+Cheers,
+Erik
+>
+>
+> Chuck
+>
+>
+> On 11/18/20 7:59 PM, chuck kamas via lists.yoctoproject.org wrote:
+>
+> Raj,
+>
+>
+> I found out how to debug the boot process of the PI from:
+>
+> https://github.com/raspberrypi/documentation/blob/master/hardware/raspberrypi/bootmodes/README.md
+>
+> by turning on the boot code debug.
+>
+> sed -i -e "s/BOOT_UART=0/BOOT_UART=1/" bootcode.bin
+>
+>
+> I found out that the sdio overlay does not exist!
+>
+> MESS:00:00:07.868162:0: dtdebug: Failed to open overlay file 'overlays/sdio.dtbo'
+> MESS:00:00:07.874093:0: Failed to load overlay 'sdio'
+> MESS:00:00:07.878881:0: brfs: File read: /mfs/sd/overlays/sdio.dtbo
+> MESS:00:00:07.891322:0: brfs: File read: /mfs/sd/cmdline.txt
+>
+>
+> So what am I missing on how to turn on the sdio on GPIO22-27? Is it not an overlay and instead a driver/other code/linux config that needs to be set?
+>
+>
+> Chuck
+>
+>
+> On 11/17/20 4:29 PM, chuck kamas via lists.yoctoproject.org wrote:
+>
+> Raj,
+>
+>
+> Thanks for taking the time to respond. I thought of that too. My custom Yocto build has the line to turn on the sdio in it:
+>
+> dtoverlay=sdio,poll_once=off
+>
+>
+> I have attached the entire file: config.txt.yocto
+>
+> However, the Rasbian image does not have any mention of the dtoverlay for the sdio.  Curious. See config.txt attached.
+>
+>
+> Thanks for the help!
+>
+> Chuck
+>
+>
+> On 11/17/20 12:08 AM, Khem Raj wrote:
+>
+> On Mon, Nov 16, 2020 at 11:43 PM chuck kamas via
+> lists.yoctoproject.org <chuckkamas=yahoo.com@lists.yoctoproject.org>
 > wrote:
-> > >
-> > > Hi there.
-> > > Could anyone share a good approach/documentation/etc on how to
-> > > properly configure and use sysroot and sdk for a specific cmake -
-> based c++ receipt
-> > > to be able to build it from IDE (vscode, qtcreator) on linux host i.=
-e.
-> > >
-> > > 1) ide's --sysroot will be taken from
-> > >
-> yocto-root/build/tmp/work/aarch64-poky-linux/<my_recipe>1.0.0-r0/recipe-=
-sysroot
-> > > 2) compilers and cmake (i believe) will be taken from
-> > >
-> yocto-root/build/tmp/work/aarch64-poky-linux/<my_recipe>1.0.0-r0/recipe-=
-sysroot-native
-> > > 3) no mix of includes from host will be taken into account during th=
-e
-> compilation
-> > >
-> > > If none of ide above could do this stuff, then please recommend your
-> one
-> > >
-> > > For this moment i don't want run/debug the application right from id=
-e,
-> i just want to have all symbols be correctly resolved from there.
-> > >
-> >
-> > does this help ?
-> > https://www.ics.com/blog/configuring-qt-creator-yocto-development
 >
-> also, https://github.com/Wind-River/vscode-wrlinux/
+> Hi all,
 >
-> >
-> > > --
-> > > Kind regards,
-> > > Sergey Ivanov
-> > >
-> > >
-> > >
-> >
-> >=20
-> >
 >
-
-
---=20
-Kind regards,
-Sergey Ivanov
-
---000000000000266dab05b48792ea
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Thanks for efforts but none of the instructions does =
-job well till the end (as many others that i&#39;ve tried before). Main rea=
-sons :<br><br></div><div>1) For both: as i said, the project is with depend=
-encies and cmake-based. It means, that in my cmake i have find_package thin=
-gs, that should be correctly resolved against stage sysroot (not against ho=
-st!). It is especially crucial for qt, since without proper configuration y=
-ou will not even be able to open project.<br><br></div><div>2) For qt: <br>=
-<br>2.1) there is no cmake override in setting, of course will not work. I&=
-#39;ve already tried to add override from=C2=A0 &lt;my_recipe&gt;1.0.0-r0/r=
-ecipe-sysroot-native but given cmake doesn&#39;t work for me.<br></div><div=
->2.2) i&#39;ve almost taken as granted that i should deal with device first=
-, but, as i said, i&#39;m not even interest in the building of project, jus=
-t 100% correct symbols resolution. While i will need a device (maybe) for o=
-ther things like debugging in near future.=C2=A0 <br></div><div>For resolut=
-ion pitfalls you may found smth. like this:<br><a href=3D"https://bugreport=
-s.qt.io/browse/QTCREATORBUG-24269">https://bugreports.qt.io/browse/QTCREATO=
-RBUG-24269</a><br></div><div>and i just tired to explain how everything is =
-wrong there in this regard, so bug is closed<br><br></div><div>3) For vscod=
-e:<br></div><div>they don&#39;t seem to be even correctly deal with custom =
-sysroot and given instruction has nothing common with it. And seems there e=
-verything is wrong as well:<br><a href=3D"https://github.com/microsoft/vsco=
-de-cpptools/issues/1575">https://github.com/microsoft/vscode-cpptools/issue=
-s/1575</a><br><br></div><div>So, i&#39;m interested in answers from devs th=
-at have 100% working=C2=A0 environment (preferably own one) that cover 100%=
- symbol resolution issue. And it could be just another IDE.<br></div><br></=
-div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-=D0=BF=D1=82, 20 =D0=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 09:33, Jose=
-f Holzmayr &lt;<a href=3D"mailto:jester@theyoctojester.info">jester@theyoct=
-ojester.info</a>&gt;:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex">Am Fr., 20. Nov. 2020 um 02:47 Uhr schrieb Khem Raj &lt;<a href=3D"ma=
-ilto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;:<br>
-&gt;<br>
-&gt; On Thu, Nov 19, 2020 at 1:48 PM Sergey Ivanov &lt;<a href=3D"mailto:i=
-cegood1980@gmail.com" target=3D"_blank">icegood1980@gmail.com</a>&gt; wrote=
-:<br>
-&gt; &gt;<br>
-&gt; &gt; Hi there.<br>
-&gt; &gt; Could anyone share a good approach/documentation/etc on how to<b=
-r>
-&gt; &gt; properly configure and use sysroot and sdk for a specific cmake =
-- based c++ receipt<br>
-&gt; &gt; to be able to build it from IDE (vscode, qtcreator) on linux hos=
-t i.e.<br>
-&gt; &gt;<br>
-&gt; &gt; 1) ide&#39;s --sysroot will be taken from<br>
-&gt; &gt; yocto-root/build/tmp/work/aarch64-poky-linux/&lt;my_recipe&gt;1.=
-0.0-r0/recipe-sysroot<br>
-&gt; &gt; 2) compilers and cmake (i believe) will be taken from<br>
-&gt; &gt; yocto-root/build/tmp/work/aarch64-poky-linux/&lt;my_recipe&gt;1.=
-0.0-r0/recipe-sysroot-native<br>
-&gt; &gt; 3) no mix of includes from host will be taken into account durin=
-g the compilation<br>
-&gt; &gt;<br>
-&gt; &gt; If none of ide above could do this stuff, then please recommend =
-your one<br>
-&gt; &gt;<br>
-&gt; &gt; For this moment i don&#39;t want run/debug the application right=
- from ide, i just want to have all symbols be correctly resolved from there=
-.<br>
-&gt; &gt;<br>
-&gt;<br>
-&gt; does this help ?<br>
-&gt; <a href=3D"https://www.ics.com/blog/configuring-qt-creator-yocto-deve=
-lopment" rel=3D"noreferrer" target=3D"_blank">https://www.ics.com/blog/conf=
-iguring-qt-creator-yocto-development</a><br>
-<br>
-also, <a href=3D"https://github.com/Wind-River/vscode-wrlinux/" rel=3D"nor=
-eferrer" target=3D"_blank">https://github.com/Wind-River/vscode-wrlinux/</a=
-><br>
-<br>
-&gt;<br>
-&gt; &gt; --<br>
-&gt; &gt; Kind regards,<br>
-&gt; &gt; Sergey Ivanov<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"=
-gmail_signature">Kind regards,<br>Sergey Ivanov</div>
-
---000000000000266dab05b48792ea--
+> I have been spinning my wheels for two days trying to discover how to
+> enable MMC1 on a CM3. This is the one on GPIO22-27. I can boot Rasbian
+> on the CM3 and it inits the MMC1 and its pins just fine. I can
+> read/write to my SD card from it etc. However, when I build yocto it
+> leaves the GPIOS22-27 in gpio mode and does not set them to MMC1 mode.
+> I have tried changing the device tree as described here:
+>
+> https://stackoverflow.com/questions/44702426/how-to-setup-an-own-device-tree-for-a-raspberrypi-in-yocto
+>
+> That compiles and add the .dtbo to my build, but still the GPIOS are not
+> set to MMC1 mode.
+>
+> cat /sys/kernel/debug/pinctrl/*gpio*/pinmux-pins
+> Pinmux settings per pin
+> Format: pin (name): mux_owner gpio_owner hog?
+> ....
+>
+> pin 22 (gpio22): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+> pin 23 (gpio23): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+> pin 24 (gpio24): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+> pin 25 (gpio25): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+> pin 26 (gpio26): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+> pin 27 (gpio27): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+>
+> .....
+>
+> I have looked at:
+>
+> https://ralimtek.com/raspberry%20pi/electronics/software/raspberry_pi_secondary_sd_card/
+>
+>
+> Any ideas of where to look next to turn on the sdio would be appreciated!
+>
+>
+> what does /boot/config.txt look like on raspbian and yocto built images
+>
+> Chuck
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> 
+>
