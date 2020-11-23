@@ -1,101 +1,79 @@
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
- by mx.groups.io with SMTP id smtpd.web12.31457.1606115165502849361
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web09.31778.1606115756444220639
  for <yocto@lists.yoctoproject.org>;
- Sun, 22 Nov 2020 23:06:05 -0800
+ Sun, 22 Nov 2020 23:15:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=DV0WDC/Q;
- spf=pass (domain: gmail.com, ip: 209.85.222.175, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f175.google.com with SMTP id h11so4572022qkl.4
-        for <yocto@lists.yoctoproject.org>; Sun, 22 Nov 2020 23:06:05 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=hkFhK3TO;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: raj.khem@gmail.com)
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 9125C38C0532
+	for <yocto@yoctoproject.org>; Mon, 23 Nov 2020 07:15:55 +0000 (UTC)
+Received: by mail-qt1-f169.google.com with SMTP id l7so6428234qtp.8
+        for <yocto@yoctoproject.org>; Sun, 22 Nov 2020 23:15:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=9AQ1kObxQS1+AxJqNXYDTbHZUlRr/0orl16kQDq3lBA=;
-        b=DV0WDC/Q+9WiGnu+XDuqlFt3DHBMa0linuqb5acMDnfreOFyF3BlR8QQHLq4QQbt1Y
-         InT3P+3L21wMR5/bPB1Ll8SgGjNmMkGsaBsBOpIqu3VwYZhxr04hGiZYqg5yF+NrD3qU
-         2fiUCnP6WEttdlBKQnEZ+XbbLyP+d9frGd4h6eDmHGl3SQ41L9AsXkAmb8XWFLUe3tXX
-         Xhd/1Y6ntl7ZS6hc8s6i6vYmsC6Tg2R4B4K3rJ3YUefyBKpGcz+olBLV9Ooo+iDxuKRG
-         zqDUmSc4enffele1Og9QECbIwcVqWhiyF2MwRNznU7LN+Zla65HmPQaocGVGVmsXiwlI
-         2ZOw==
+        bh=64nb7TyDf3lxScMXeXOyXd6kVy8QOPsRfpE3iFEQSnQ=;
+        b=hkFhK3TONSR7x0OxlnJHE5YwKVs4Q3OefhfeXNC3lnUA6yfmGq0VqbFSYA72bUamPP
+         ShD3w2ca+bNAFSKlm4J390HLkpllrC8JKtYUQygJ50usJREf7uDttSN+D1giyB51KRYr
+         8/A3vfKrcEfClzlRKAmmkQBmT0vpAyLuIMsOSsOYAxpaBs9VLjvxti+TjU7Xao82312j
+         DxvV8uATvXcYvgmMdlgFcywAI1lUGw5KNsXKCktT8pXoJlE98u0DMTkIP2H5JiK9l8i/
+         JMgXXfpgpayCcE9jurkcFrgEyhTjvaqBhfskUKPh/jRojntMyQG4cdUEMTpFIc6s4d8e
+         qPlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=9AQ1kObxQS1+AxJqNXYDTbHZUlRr/0orl16kQDq3lBA=;
-        b=kbxgx0YpwykqTlylMiX1TG4rxeKYGBiTM2ZMvfcGBFLZm9mLSFT/8IAUMoJpHI8tXW
-         JD0NeP/Oqoh2ZqBJpbjD5R5ZvN15alhxdV4Q4HoArV+Pti+2MyfTKgmoA54GEKWrDCt+
-         co0puMGVAaioHuZAW0JtG5mc+xh0ezpJ792AHD8rDHUDfRAU0nGbc1OhubryObbLM+yM
-         LtDCnt4oEyWeuIcRF1C9tljBAWynwbrjN7Ldk16h8SHYk3vMO9+c34N86IJNus9M04c8
-         jy0OdqUlFPnkjDZavk5vWGQyRoG6Ety78QB/b42GjQ5jHerhRoD3KKRtE73MoJds9uwX
-         8XzQ==
-X-Gm-Message-State: AOAM532ra+7ck6Nzhf8dym04jnuBC1wScOKb5jm77j0WKWNLBIAftiu1
-	cUaUiYKWW1D6ALgw1PsLOMHoA6+CMyWRqJyCv4cp0k5nxmoZGg==
-X-Google-Smtp-Source: ABdhPJwQlVX6VNHawemMOrB5j5TEKD1cGwqRu1oPHwMwT4bwmuTx4D5hmL6dqMU/w6t5b59XyERGoSk3Bj6excoYkhI=
-X-Received: by 2002:a37:a70e:: with SMTP id q14mr28223819qke.337.1606115164490;
- Sun, 22 Nov 2020 23:06:04 -0800 (PST)
+        bh=64nb7TyDf3lxScMXeXOyXd6kVy8QOPsRfpE3iFEQSnQ=;
+        b=c4SpDu9FmprLovvEEJxVL+FSKrlfkwYRJlH0kWzobFZ5eqzopUWW7HU+0agsJnpewR
+         WcmtJsGfFw2I8it89+6d9pEQwogep9Aui/pjK+GOsDiRTptzYxOm0BKBdvJwm0AOo/aT
+         1b7ggTTck0p0pQhzNfidueY31JJbpJVKTnzRa9sDpe7yC4GuXABFrdlSIjqpWT5tteaH
+         bHtetk0HPBWRhMDiWJ1pq1Y1a1XdW+saHEth5exJpcQyXSq9F0ML3ZBlsKRiyrbghn2J
+         /JKGhqOl/SDMFymGhyI4zXx9Kbr6Au0JhYxw+jIyepQcBP4MtRou6i8VxkbK+eD+EkIg
+         DCtA==
+X-Gm-Message-State: AOAM532ReLmFbydTiXzV+6kPKQJMsesAVOCOoBd02JHB+jFCbCQcVpsC
+	wYZJ91CUz2nHCkSOjvL+VU2UMUbE5pRcxzGDHdfrZ96TC9M=
+X-Google-Smtp-Source: ABdhPJxLZ2CFdhkmmAhYXlf/9Nyl2MvhEkOincsAgJoZTXHyh8wPhgcgXOwu0/wAgmW1UwJo4hYKpSL8v5WUMNNu+jE=
+X-Received: by 2002:ac8:3417:: with SMTP id u23mr26357550qtb.80.1606115754524;
+ Sun, 22 Nov 2020 23:15:54 -0800 (PST)
 MIME-Version: 1.0
-References: <080574f8-ae94-3283-0653-631dc7563b49@dajac.com> <5a531881d6504e5880577ce692b1d35b@Exchange.sewerin.de>
-In-Reply-To: <5a531881d6504e5880577ce692b1d35b@Exchange.sewerin.de>
+References: <0fefb48d-4531-5424-796f-ffd02c40dd0d@ibeeto.com>
+In-Reply-To: <0fefb48d-4531-5424-796f-ffd02c40dd0d@ibeeto.com>
 From: "Khem Raj" <raj.khem@gmail.com>
-Date: Sun, 22 Nov 2020 23:05:37 -0800
-Message-ID: <CAMKF1srJDjkhA=DqP_mv34E=tG7=JbTSQ6DgAodxhagujXxGxA@mail.gmail.com>
-Subject: Re: [yocto] U-Boot sama5d3 xplained issue
-To: David Novak <david.novak@dajac.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Date: Sun, 22 Nov 2020 23:15:27 -0800
+Message-ID: <CAMKF1sp+xvERYiPsYcPfppovhuWMMdugXtWxY+GjA5nYx2ed3g@mail.gmail.com>
+Subject: Re: [yocto] Hardware video decode on RPi3
+To: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-perhaps asking it on https://github.com/linux4sam/u-boot-at91 via
-github issues might be helpful too.
+On Thu, Nov 19, 2020 at 7:38 PM Rudolf J Streif
+<rudolf.streif@ibeeto.com> wrote:
+>
+> I am trying to play back mp4 video (venerable Big Buck Bunny at this
+> time) on RPi3.
+>
+> I added gstreamer1.0, gstreamer1.0-omx and the plugins to the image.
+>
+> libgstomx.so is installed in usr/lib/gstreamer-1.0 on target.
+>
+> However, gst-inspect-1.0 | grep omx does not return any results.
+>
+> Consequently,
+>
+> gst-launch-1.0  filesrc
+> location="/home/root/kiosk/kiosk/videos/bunny.mp4" ! qtdemux ! h264parse
+> ! omxh264dec ! kmssink
+> WARNING: erroneous pipeline: no element "omxh264dec"
+>
+> I guess I am missing something somewhere but I don't know what.
+>
 
-On Sat, Nov 21, 2020 at 4:26 AM David Novak <david.novak@dajac.com> wrote:
->
-> I'm working on this project with Pratham. Let me provide a few more details.
->
-> We've defined
->
-> UBOOT_MACHINE ?= "sama5d3_xplained_nandflash_config"
->
-> Inside
->
-> u-boot-at91/sama5d3_xplained_nandflash_config
->
-> we change CONFIG_BOOTDELAY, but it has no effect on the newly built image. The boot delay remains the same as it was before we changed it.
->
-> Based on the UBOOT_MACHINE, can we be certain we are changing the correct file?
->
-> How do we get the build process to include our changes?
->
+are you using userland for graphics or vc4 ?
+
 > Thanks,
-> David
->
->
->
-> On 11/19/2020 5:37 PM, Prathamesh Ovalekar wrote:
->
-> Hello everyone,
->
-> System: sama5d3_xplained board
->
-> I have a question regarding the configuration and build of u-boot.
-> We have a build that was implemented earlier. I am trying to make some changes to it.
->
-> Change 1: Change the auto boot delay to 1 second.
-> Change 2: Add an auto boot command to set a gpio.
->
-> I am aware of the environment variables:  CONFIG_BOOTDELAY and CONFIG_BOOTCOMMAND (needed for the changes above.)
-> I tried modifying the  " configs/sama5d3_xplained_nandflash_defconfig "
->
-> Question 1: Do I need to create an *.config file using the make menuconfig?
->
-> Question 2: How do I create the u-boot.bin . Does this  depend on the Linux build?
->                     I know that there is an environment variable: CONFIG_BOOTARGS that needs to be populated.
->
-> --
-> Pratham Ovalekar
->
->
->
+> Rudi
 >
 >
 > 
