@@ -1,76 +1,78 @@
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
- by mx.groups.io with SMTP id smtpd.web11.44858.1606175383306392274
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+ by mx.groups.io with SMTP id smtpd.web08.44574.1606175765795204235
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Nov 2020 15:49:43 -0800
+ Mon, 23 Nov 2020 15:56:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Ht/7qWiZ;
- spf=pass (domain: gmail.com, ip: 209.85.167.54, mailfrom: coder.callahan@gmail.com)
-Received: by mail-lf1-f54.google.com with SMTP id d17so26252602lfq.10
-        for <yocto@lists.yoctoproject.org>; Mon, 23 Nov 2020 15:49:43 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=goiWad6v;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.52, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f52.google.com with SMTP id z7so4710128wrn.3
+        for <yocto@lists.yoctoproject.org>; Mon, 23 Nov 2020 15:56:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0Vb8VaDTXfbK3d16fh/0l8/Uv4iCZtXnI0uKIzWQlPQ=;
-        b=Ht/7qWiZWWuN+sE3XEYpY+38dEP778O1LxmmCo2UKRyoxBujAXG3wBM4uPt7quYtkh
-         8WysaL8dW3Wj6llVn8H4dlTvQIV8Ps88JwTbp4WdrgiiHMJldlxaUh6XVfEqG+VwhBc2
-         ed7SGZDpV7EIeL1o+qrdhLiaTwP/V94ibzMWtjDfAswjAe6jn76Ctsd6WaXjkTV40Q7s
-         IiR0ycm4q1HsXkshRLSReIs3qQvEUtuuPWuzpB/C2KRTTDUHR+GngoyhkBB7z+mrDL8p
-         jv19CAlDpTJOYJvSG6S+woeS1pMDHGtYQUgYJAOxBVGj728HlqIw3CbzUCd2mbjYoYb5
-         K8/w==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=m4Rwfb5cgDVev39VkgOTxkqfhVRDknpZl7vGLSa10e0=;
+        b=goiWad6vgPW0eYQznj9j2rQmHedaPFczpLEB8nSKrbYBqKSjlcj+pkzgp10y6hVzvP
+         uYHsFarltdwmQRyQuFuQHLlaGjwq2QgTpm+scWzxymQ50GzsyGy7DonNDovwbBjedz2D
+         KejFdwfsSx6/ChptvH1nPYKt4Z8PKEhiZFH+4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0Vb8VaDTXfbK3d16fh/0l8/Uv4iCZtXnI0uKIzWQlPQ=;
-        b=sUZFo7jk66gWNAdH1umMNd6a5bxLKgb622UnM2tRJWC6UzW0iboO7aIjTFNhu4Dhcl
-         uMDSZsZ52BhEM0CGcML+jb2oHdm9YX+9Vx7JyIPj0qO4yUQrY9KHAuzMMsiTel9J441l
-         qLVaN1s7xjN3DwvyK/PxKqgIahEFyMMblIzFyNyi1TQrbz4harJycprlRhDWUmQ87lbV
-         eZUa3upHYPYMj6GpN84krIYEB8r2aSiePxXzZKCTE2qqs+0UOPvu2ECjAqYkKD1Z754+
-         VaTBIV42sVKbvBTSBs7pu1zHEDKc6P0hbvzu/JyoX78WmWnRd1zDrF9AiB1lZ0MVPmwJ
-         0hoQ==
-X-Gm-Message-State: AOAM5314nk6H0PZC6kBhx7hoXbcyVALiepYz/0CFvFyABrbfodJUrq1d
-	2mc227ya4y9bN3fUaEO2N6/uKSSJVekS2XqmoPY=
-X-Google-Smtp-Source: ABdhPJxBXkWp/FOJzBZffcBkwmGDE4bDy9fRxw7603gv30njm22+reAoY6wwYgR1ALGI62NwtSKUG9jYX7wkaH5/oDI=
-X-Received: by 2002:a19:4193:: with SMTP id o141mr572511lfa.119.1606175381436;
- Mon, 23 Nov 2020 15:49:41 -0800 (PST)
-MIME-Version: 1.0
-References: <CADm5WxOUQO5za65bAvfN-2F1DnuOLg6unLUmD0k46W6Dj37c_A@mail.gmail.com>
- <CAMKF1sp_-3CR-Nc1x1DELdp22NKDkGV7t-tfqKYtoQEj7arHqA@mail.gmail.com>
-In-Reply-To: <CAMKF1sp_-3CR-Nc1x1DELdp22NKDkGV7t-tfqKYtoQEj7arHqA@mail.gmail.com>
-From: "Michael Callahan" <coder.callahan@gmail.com>
-Date: Mon, 23 Nov 2020 16:49:30 -0700
-Message-ID: <CADm5WxP=uGt5oLVe-QpL7guq2nhn2AEsLvPSv0y8A+BLQEyTnQ@mail.gmail.com>
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=m4Rwfb5cgDVev39VkgOTxkqfhVRDknpZl7vGLSa10e0=;
+        b=C5C3vzuSOY3VHr3/MFlZtsPZp6KyYksj8Yf5WUA6uivEm0E3Kz4+VOvVhoFoqm3+hb
+         SsIJeOmaBTO6L5EfZTtfzGbnO5dMddISi92OhQtRg1ke8BWzeJEPISR626JowwDrg7zq
+         Dd5zpxkvVqqQrkXBTlV7SMaP+UaydPNAHRyt1HpJYInVboZe/0i8SAArzimEyDgbqZ4l
+         NuYxPbrb5i0MH8nSRabfcbg5yPBA/DVJ/xIqiMYcLazYFRe7DdSC24+GNI55ebhnohl/
+         4ETeM3y6XnbLFPatn+85SWRAwONfY8RPyU+l/Obu72SJXwLAZm5Twl6H/kOUqsJw80Oh
+         Gizw==
+X-Gm-Message-State: AOAM533gJ73TXHDIP9gLnc3bZY2BGGUyjkQkSe4iQxX/QmUJxFg37oRU
+	clYTSL0zMpuchkgeBo12aVhVHw==
+X-Google-Smtp-Source: ABdhPJxitKkpvO4hsBXSZQ73qagtKgn2qgaR373bxjqqq1+zc/EgTNB3FcB6/MTYk7yGYcfxcRb+0Q==
+X-Received: by 2002:adf:b64f:: with SMTP id i15mr2086627wre.125.1606175764165;
+        Mon, 23 Nov 2020 15:56:04 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from 4.3.1.2.4.d.e.0.6.7.2.2.d.6.0.9.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa (4.3.1.2.4.d.e.0.6.7.2.2.d.6.0.9.c.3.f.5.a.b.a.0.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:aba:5f3c:906d:2276:ed4:2134])
+        by smtp.gmail.com with ESMTPSA id w1sm1593242wmi.24.2020.11.23.15.56.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2020 15:56:03 -0800 (PST)
+Message-ID: <95ce1fc7a4fa57a2016d3d9be869157f81faf40d.camel@linuxfoundation.org>
 Subject: Re: [yocto] Python function caching question
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Michael Callahan <coder.callahan@gmail.com>, yocto@lists.yoctoproject.org
+Date: Mon, 23 Nov 2020 23:56:03 +0000
+In-Reply-To: <CADm5WxOUQO5za65bAvfN-2F1DnuOLg6unLUmD0k46W6Dj37c_A@mail.gmail.com>
+References: 
+	<CADm5WxOUQO5za65bAvfN-2F1DnuOLg6unLUmD0k46W6Dj37c_A@mail.gmail.com>
+User-Agent: Evolution 3.36.4-0ubuntu1 
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-I do not want do_compile to run again, it rebuilds the whole image.
-What is the best way to always run find_version?
+On Sun, 2020-11-22 at 19:16 -0700, Michael Callahan wrote:
+> I am having trouble with sstate caching of my os-release.bbappend and
+> am stuck.  The simple example file looks like something below, where
+> I
+> am setting a variable from a computed python function.  What's the
+> magic
+> to make the find_version(d) always run but do_compile to only run if
+> VERSION changes?  I basically want something like
+> `find_version[nostamp]="1"` but that seems to only work for tasks.
+> 
+> def find_version(d):
+>     import subprocess
+>     cmd = "git describe --long"
+>     return subprocess.check_output(cmd).rstrip().decode('utf-8')
+> 
+> VERSION = "${@find_version(d)}"
+> # do_compile uses $VERSION
 
-On Sun, Nov 22, 2020 at 7:53 PM Khem Raj <raj.khem@gmail.com> wrote:
->
-> On Sun, Nov 22, 2020 at 6:17 PM Michael Callahan
-> <coder.callahan@gmail.com> wrote:
-> >
-> > I am having trouble with sstate caching of my os-release.bbappend and
-> > am stuck.  The simple example file looks like something below, where I
-> > am setting a variable from a computed python function.  What's the magic
-> > to make the find_version(d) always run but do_compile to only run if
-> > VERSION changes?  I basically want something like
-> > `find_version[nostamp]="1"` but that seems to only work for tasks.
-> >
-> > def find_version(d):
-> >     import subprocess
-> >     cmd = "git describe --long"
-> >     return subprocess.check_output(cmd).rstrip().decode('utf-8')
-> >
-> > VERSION = "${@find_version(d)}"
-> > # do_compile uses $VERSION
-> >
->
-> perhaps mark the task which is using this variable as nostamp.
->
-> > 
-> >
+If you set BB_DONT_CACHE = "1" in the recipe, it will force the recipe
+to reparse each time. That should cause it to rerun find_version and
+then change hash when the value changes. Its how SRCREV = "${AUTOREV}"
+works behind the scenes.
+
+Cheers,
+
+Richard
+
