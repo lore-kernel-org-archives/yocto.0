@@ -1,150 +1,169 @@
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
- by mx.groups.io with SMTP id smtpd.web09.41806.1606162876607419304
+Received: from EUR02-AM5-obe.outbound.protection.outlook.com (EUR02-AM5-obe.outbound.protection.outlook.com [40.92.67.46])
+ by mx.groups.io with SMTP id smtpd.web09.42150.1606164153809811890
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Nov 2020 12:21:17 -0800
+ Mon, 23 Nov 2020 12:42:34 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@assonance-org.20150623.gappssmtp.com header.s=20150623 header.b=XhSCD7Ld;
- spf=pass (domain: assonance.org, ip: 209.85.210.50, mailfrom: aaron@assonance.org)
-Received: by mail-ot1-f50.google.com with SMTP id n11so17167032ota.2
-        for <yocto@lists.yoctoproject.org>; Mon, 23 Nov 2020 12:21:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=assonance-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Y3CRy5c5x4I1B6HDFkPOjC4d805qdEJjiRr3sACBY5U=;
-        b=XhSCD7LdFe+AiWWRVKJUZCt9n1XcXHDdJeOoqoM+kWloZ7G4ZZfR5te+IkJgiWxFLC
-         7/xfMqu9/S0jHoi2KNcqYeWI1LP4dRASFFP32z15hPBCWdw6hGYckqhfeOVBaS5yn0/h
-         6GxcbZ4/98a+tHKTkek6/IVQxSfaO+6Aqcvde2liTYKEyKM17nw2wGXW/O3a1KXDB+XR
-         1pa1lWJOkbLY7sbg8+/XdTQIxe4pSyIV0zabFWYrMbOPXI2FfNFx4n5OWcORqIkWHMdy
-         8OKbMQ5lVjz3hvgj+28ocmy6zan6IH/2F5E8hr+PLLAL/XqCkB1hDPg8lPkDWFDQqjQf
-         SQ/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Y3CRy5c5x4I1B6HDFkPOjC4d805qdEJjiRr3sACBY5U=;
-        b=Ozz7Bk+o9xANYmGjQUu7ZXDpt0rMarxS1GZgJEQAOJXLnN+cqS/lVsn/9KbsVFROFA
-         UdYuxchDLi9/UJN9b+e8WesqLxuzVgbZOY7P7HFHUeVL6J8Oq+8wsvhp3O94DDABMBuL
-         XCmwmoDzBIMKiyOQE0fyxbQW+uCJQyLZDrRtTyxqa51iUl/jMQfvymf133oqIhcbr2LR
-         QKWvzoyWjvOWfVAWptruCVCgHCYSokDCLqv6bQyAFBzGl8XKrOQEVIre9+NBdkjSNQ7s
-         1nzaKKjqBRv/NWHWzeNi3K2hdMyyf/E+gNmx1r0sO6KbWrM3M730L3vk8RNRCosLSdLW
-         zuuw==
-X-Gm-Message-State: AOAM532nRhjiaqbjeek5Lz+WHUE4ysgD275XUxBNV+ZN4EfUYNKwJj1t
-	dJ6Hvv007Fjs3X4MMF73jACDwGrtrF/ZbBDfNQ5jZQ==
-X-Google-Smtp-Source: ABdhPJxqDwDiDCk5InPY1C/hYrYq9q0BjFt3b+PFhhcIuXnXzrwsBg5VjXCqbI+PScZAauQ3SX4uX8fi5Cybgk2AMcA=
-X-Received: by 2002:a05:6830:13ce:: with SMTP id e14mr882661otq.35.1606162875692;
- Mon, 23 Nov 2020 12:21:15 -0800 (PST)
-MIME-Version: 1.0
-References: <CA+FhBv_OObLJ9BhtJSw0_nzSUimc0AcSybQ7_FEm+SEzASJSRg@mail.gmail.com>
-In-Reply-To: <CA+FhBv_OObLJ9BhtJSw0_nzSUimc0AcSybQ7_FEm+SEzASJSRg@mail.gmail.com>
-From: "Joel A Cohen" <aaron@assonance.org>
-Date: Mon, 23 Nov 2020 12:21:04 -0800
-Message-ID: <CAFSZm+j2kN9x4G+oR08fUWwfX7a6UWidPZpbnstp9V0_=acRKw@mail.gmail.com>
+ dkim=fail reason="body hash did not verify" header.i=@outlook.com header.s=selector1 header.b=ADs9i4RK;
+ spf=pass (domain: outlook.com, ip: 40.92.67.46, mailfrom: kweihmann@outlook.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PbeSRwiMWIuUv5KFoa+NqyWa2dHbuBnsJiEzcRCAY22wuzf+bFfHot88StPqh2MyuSVmI5jfaGQJs9XQyC7y3Hpe/PVniqs2U8BHxSD8v/DnotkJGLdi4aNocYDMaXPR29VJMdTikVRQgD4vAYq0mNSKe0Wi4u2xBi9iCX3kQejicgdLlc+k0qkOgFBAUuReY4+aN/+WZnPuFZoa/L7v5vv+HKaMQGHmcvIDWX8cQ9S299grRzk+Thy//qgtaSTjt2HoyNmvf7P8Y5kkLoWWlym8MCsC/HlyJHQInQXFQlAF2UWGKlK0HlL6S+tRnTe8Bbh88C2CuhXjzz1PqH58pQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cLnwruy5qUkDD1ih9abofKEt9HStr7zyv9CtcMRz6GI=;
+ b=gbqggytEPRrMTEhaa8y0g+Y9Ib4M5xzhobusV7AasR27OStgxM1LHuf44N2vd0Az0GuT7UDqsKXxu47mA7upyhve878v8TK2XLsG6kBxonOLMyNkIF5eYOVDr27ko4ckK9nO/ePUw6S14JS2wxzlsuEsJ5bsx1q6WdVLGgabyaZKP+uetW4aDoBg9tOTVvylNxwBABxLift0F9mQiWIo8QS2YrgrPcl4Yg6KX62MFNKfaEShVxl0WgLpH76/eCnlIda1FaYuljKbm52scTsizyL/qHO+/hpPmY3GFpRjFOg/4gW6dHIDVTSEr1XgMnAljQ6Cgpu+NCYUa96lM74x2w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cLnwruy5qUkDD1ih9abofKEt9HStr7zyv9CtcMRz6GI=;
+ b=ADs9i4RKzzUwCOc9WM2BQc5eiw+sP8PHQTiTV59LUPFEumkw8hlDbbepB4aJkAaZ2Z4OVU+5FVLv3BwUg0alxTF/a0D017NR2c/pc3eMCfHRtKH3Je81Mg/raEOaPRPTTKlxr8mEKJNCNvwmcmXTpowBbAZH43hoA0DntCMjE+nq1RCqtI8Dm2WqCKviSHIZ0uEzYp3UWJNXOpN+65n3rfFE7aYsQd6VLDQdyZ1WglyuOSBuicZrpV9cSDSj3UkyfJnYahpXmekHIDQJtp+mTmQ2+diwC7R6rd1PBaWHDySRVkvmuF/vrcwfkab3Uaw8ux791w/lkLUkel68EaQYLw==
+Received: from VE1EUR02FT008.eop-EUR02.prod.protection.outlook.com
+ (2a01:111:e400:7e1e::4d) by
+ VE1EUR02HT091.eop-EUR02.prod.protection.outlook.com (2a01:111:e400:7e1e::357)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20; Mon, 23 Nov
+ 2020 20:42:31 +0000
+Received: from VI1PR01MB6462.eurprd01.prod.exchangelabs.com
+ (2a01:111:e400:7e1e::4f) by VE1EUR02FT008.mail.protection.outlook.com
+ (2a01:111:e400:7e1e::72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20 via Frontend
+ Transport; Mon, 23 Nov 2020 20:42:31 +0000
+X-IncomingTopHeaderMarker: OriginalChecksum:E274FF85E8557312E59D83B588938DC6DF47831102DD3EBD8B576867AF019F6E;UpperCasedChecksum:78DDF3ED3AC6A35A7B634CC18ADE7CD30154AB1EFD72F5524AD30DBBC0CFD1C2;SizeAsReceived:8779;Count:47
+Received: from VI1PR01MB6462.eurprd01.prod.exchangelabs.com
+ ([fe80::10f9:f756:6d75:96c3]) by VI1PR01MB6462.eurprd01.prod.exchangelabs.com
+ ([fe80::10f9:f756:6d75:96c3%6]) with mapi id 15.20.3589.029; Mon, 23 Nov 2020
+ 20:42:31 +0000
 Subject: Re: [yocto] Disable systemd-timesyncd.service in image
-To: Damien LEFEVRE <lefevre.da@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000a851c905b4cbef17"
-
---000000000000a851c905b4cbef17
-Content-Type: text/plain; charset="UTF-8"
+To: yocto@lists.yoctoproject.org, lefevre.da@gmail.com
+References: <CA+FhBv_OObLJ9BhtJSw0_nzSUimc0AcSybQ7_FEm+SEzASJSRg@mail.gmail.com>
+ <CAFSZm+j2kN9x4G+oR08fUWwfX7a6UWidPZpbnstp9V0_=acRKw@mail.gmail.com>
+From: "Konrad Weihmann" <kweihmann@outlook.com>
+Message-ID: <VI1PR01MB64624A8D9CCCF01C7AC8F7B6A8FC0@VI1PR01MB6462.eurprd01.prod.exchangelabs.com>
+Date: Mon, 23 Nov 2020 21:42:30 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <CAFSZm+j2kN9x4G+oR08fUWwfX7a6UWidPZpbnstp9V0_=acRKw@mail.gmail.com>
+X-TMN: [WeIn1AiZICsj819NtRJbdevoAp94+sPI]
+X-ClientProxiedBy: AM6P194CA0014.EURP194.PROD.OUTLOOK.COM
+ (2603:10a6:209:90::27) To VI1PR01MB6462.eurprd01.prod.exchangelabs.com
+ (2603:10a6:800:154::12)
+Return-Path: kweihmann@outlook.com
+X-Microsoft-Original-Message-ID: <1a8ff6a9-92d0-12e5-ff43-b543b948a0cc@outlook.com>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.188.23] (87.141.92.247) by AM6P194CA0014.EURP194.PROD.OUTLOOK.COM (2603:10a6:209:90::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20 via Frontend Transport; Mon, 23 Nov 2020 20:42:30 +0000
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 47
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-Correlation-Id: 6d1d281f-b223-4db3-8bec-08d88ff04c7c
+X-MS-TrafficTypeDiagnostic: VE1EUR02HT091:
+X-MS-Exchange-MinimumUrlDomainAge: yoctoproject.org#3728
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	NAYcEWlm69OpbulEus4e9cm2QmBMPVW5NWHG2s/OIr09/VDvA7H55iqUlYUu/0JHP8e8QRKq/5+h3WRwTTCRYlz/nKcAmtCBk37zMILCqBihjWofLerJAOff0AaQvgUFVPUa22JVO6uNNCws4NZ73mkGmJQA5Yu7efwnwWPYRyYsw18fTiv3WN+N++ArTPyuD/D1OmbNJ2jg67vb2CEuMwk2ilJ6M5pQgKLIiG/Y4OUnxg2nF6VLe6DEpj7bOiMU
+X-MS-Exchange-AntiSpam-MessageData: 
+	4UNXYVJU8wUitvONMe9bT6IFXDmt9V74qdUqz1lVepOvqEIdJ/fYvz+XmNNCCER0vV8pqABEE3/5PoBCu5tCtJkMH5W/wGWXT+ZDnjI7VAYwFd3Bv9t+w0pNInwsbap8/PUoeQ4StP1qmnK0m+PhJA==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d1d281f-b223-4db3-8bec-08d88ff04c7c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2020 20:42:31.4314
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-AuthSource: 
+	VE1EUR02FT008.eop-EUR02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1EUR02HT091
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
-I think you need to set SYSTEMD_AUTO_ENABLE =3D =E2=80=9Cdisable=E2=80=9D (=
-actually any value
-other than =E2=80=9Cenable=E2=80=9D) in your bbappend.
+The service is deployed with standard systemd package, which doesn't=20
+have that set as far as I see it (no SYSTEMD_AUTO_ENABLE_${PN} in the=20
+latest recipe revision)
 
-(It looks like SYSTEMD_AUTO_ENABLE_${PN} is intended to work too, but I
-can=E2=80=99t verify it at the moment and reading over systemd.bbclass I=
-=E2=80=99m not sure
-if it works or not)
+I think, after browsing through the code of systemd - this "autostart"=20
+behavior comes from [1].
+So I would say you can disable it with a drop-in file at
+/etc/systemd/system/systemd-timesyncd.service.d/disable.conf
+[Install]
+WantedBy=3D
 
-=E2=80=94Aaron
+which also would be charming in a way that it isn't that invasive in the=
+=20
+build system
 
-On Mon, Nov 23, 2020 at 11:51 AM Damien LEFEVRE <lefevre.da@gmail.com>
-wrote:
+[1]=20
+https://github.com/systemd/systemd/blob/5b639090d0b4a49d77ba58bebe180b2a6f=
+8da322/units/systemd-timesyncd.service.in#L55
 
-> Hi,
->
-> I would like to have systemd-timesyncd.service as part of an image but
-> have it disabled by default.
->
-> Right now it is enabled by default which causes some issues.
->
-> I've tried systemd_%.bbappend
->
-> do_install_append() {
->     rm "$D/etc/systemd/system/dbus-org.freedesktop.timesync1.service"
->     rm
-> "$D/etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service"
-> }
->
-> but those symlinks are not part of the package.
->
-> I've tried this to remove the link during the package deployment during
-> do_rootfs
-> pkg_postinst_${PN}_append() {
->     #!/bin/sh -e
->     rm "$D/etc/systemd/system/dbus-org.freedesktop.timesync1.service"
->     rm
-> "$D/etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service"
-> }
->
-> But at this stage the links still don't exist.
->
-> Which package is actually responsible for enabling the default services =
-/
-> creating the symlinks? How can we turn some of them off while keeping th=
-em
-> in the image?
->
-> Thanks,
-> -Damien
->
+haven't tested it though, but you might wanna give that a shot, if=20
+Aaron's approach doesn't work.
+
+On 23.11.20 21:21, Joel A Cohen wrote:
+> I think you need to set SYSTEMD_AUTO_ENABLE =3D =E2=80=9Cdisable=E2=80=
+=9D (actually any=20
+> value other than =E2=80=9Cenable=E2=80=9D) in your bbappend.
 >=20
->
->
-
---000000000000a851c905b4cbef17
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">I think you need to set SYSTEMD_AUTO_ENABLE =3D =E2=80=9C=
-disable=E2=80=9D (actually any value other than =E2=80=9Cenable=E2=80=9D) i=
-n your bbappend.</div><div dir=3D"auto"><br></div><div dir=3D"auto">(It loo=
-ks like=C2=A0<span style=3D"color:rgb(0,0,0)">SYSTEMD_AUTO_ENABLE_${PN} is =
-intended to work too, but I can=E2=80=99t verify it at the moment and readi=
-ng over systemd.bbclass I=E2=80=99m not sure if it works or not)</span></di=
-v><div dir=3D"auto"><span style=3D"color:rgb(0,0,0)"><br></span></div><div =
-style=3D"background-color:rgba(0,0,0,0)!important;border-color:rgb(255,255,=
-255)!important;color:rgb(255,255,255)!important" dir=3D"auto"><font style=
-=3D"color:rgb(0,0,0)">=E2=80=94Aaron</font></div><div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Nov 23, 2020 at 11=
-:51 AM Damien LEFEVRE &lt;<a href=3D"mailto:lefevre.da@gmail.com">lefevre.d=
-a@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+> (It looks like SYSTEMD_AUTO_ENABLE_${PN} is intended to work too, but I=
+=20
+> can=E2=80=99t verify it at the moment and reading over systemd.bbclass I=
 =
-=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid=
-;padding-left:1ex;border-left-color:rgb(204,204,204)"><div dir=3D"ltr">Hi,<=
-div><br></div><div>I would like to have=C2=A0systemd-timesyncd.service as p=
-art of an image but have it disabled by default.</div><div><br></div><div>R=
-ight now it is enabled by default which causes=C2=A0some issues.</div><div>=
-<br></div><div>I&#39;ve tried systemd_%.bbappend</div><div><br></div><div>d=
-o_install_append() {=C2=A0</div><div>=C2=A0 =C2=A0 rm &quot;$D/etc/systemd/=
-system/dbus-org.freedesktop.timesync1.service&quot;<br></div><div>=C2=A0 =
-=C2=A0 rm &quot;$D/etc/systemd/system/sysinit.target.wants/systemd-timesyn=
-cd.service&quot;</div><div>}</div><div><br></div><div>but those symlinks ar=
-e not part of the package.</div><div><br></div><div>I&#39;ve tried this to =
-remove the link during the package deployment during do_rootfs</div><div>pk=
-g_postinst_${PN}_append() {<br>=C2=A0 =C2=A0 #!/bin/sh -e<br>=C2=A0=C2=A0 =
-=C2=A0rm &quot;$D/etc/systemd/system/dbus-org.freedesktop.timesync1.servic=
-e&quot;<br>=C2=A0 =C2=A0 rm &quot;$D/etc/systemd/system/sysinit.target.want=
-s/systemd-timesyncd.service&quot;<br>}<br></div><div><br></div><div>But at =
-this stage the links still don&#39;t exist.</div><div><br></div><div>Which =
-package is actually responsible for enabling the default services / creatin=
-g the symlinks? How can we turn some of them off while keeping them in the =
-image?</div><div><br></div><div>Thanks,</div><div>-Damien</div></div>
-<br>
-<br>
-<br>
-</blockquote></div></div>
-
---000000000000a851c905b4cbef17--
+=E2=80=99m not=20
+> sure if it works or not)
+>=20
+> =E2=80=94Aaron
+>=20
+> On Mon, Nov 23, 2020 at 11:51 AM Damien LEFEVRE <lefevre.da@gmail.com=20
+> <mailto:lefevre.da@gmail.com>> wrote:
+>=20
+>     Hi,
+>=20
+>     I would like to have=C2=A0systemd-timesyncd.service as part of an im=
+age
+>     but have it disabled by default.
+>=20
+>     Right now it is enabled by default which causes=C2=A0some issues.
+>=20
+>     I've tried systemd_%.bbappend
+>=20
+>     do_install_append() {
+>      =C2=A0 =C2=A0 rm "$D/etc/systemd/system/dbus-org.freedesktop.timesy=
+nc1.service"
+>      =C2=A0 =C2=A0 rm
+>     "$D/etc/systemd/system/sysinit.target.wants/systemd-timesyncd.servic=
+e"
+>     }
+>=20
+>     but those symlinks are not part of the package.
+>=20
+>     I've tried this to remove the link during the package deployment
+>     during do_rootfs
+>     pkg_postinst_${PN}_append() {
+>      =C2=A0 =C2=A0 #!/bin/sh -e
+>      =C2=A0=C2=A0 =C2=A0rm "$D/etc/systemd/system/dbus-org.freedesktop.t=
+imesync1.service"
+>      =C2=A0 =C2=A0 rm
+>     "$D/etc/systemd/system/sysinit.target.wants/systemd-timesyncd.servic=
+e"
+>     }
+>=20
+>     But at this stage the links still don't exist.
+>=20
+>     Which package is actually responsible for enabling the default
+>     services / creating the symlinks? How can we turn some of them off
+>     while keeping them in the image?
+>=20
+>     Thanks,
+>     -Damien
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
