@@ -1,46 +1,105 @@
-Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
- by mx.groups.io with SMTP id smtpd.web08.40704.1606159580356551122
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+ by mx.groups.io with SMTP id smtpd.web10.40811.1606161044779445965
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Nov 2020 11:26:20 -0800
+ Mon, 23 Nov 2020 11:50:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: crashcourse.ca, ip: 199.212.143.3, mailfrom: rpjday@crashcourse.ca)
-Received: from [::1] (port=47856 helo=cpanel8.indieserve.net)
-	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.93)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1khHTa-0004ZG-Kt
-	for yocto@lists.yoctoproject.org; Mon, 23 Nov 2020 14:26:19 -0500
-Received: from [66.129.242.12] ([66.129.242.12]) by crashcourse.ca (Horde
- Framework) with HTTPS; Mon, 23 Nov 2020 14:26:14 -0500
-Date: Mon, 23 Nov 2020 14:26:14 -0500
-Message-ID: <20201123142614.Horde.F-OU8zufirbdV2VWd9blWRK@crashcourse.ca>
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: yocto@lists.yoctoproject.org
-Subject: OE/YP equivalent to 'mtree'?
-User-Agent: Horde Application Framework 5
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=d4rHH7Cq;
+ spf=pass (domain: gmail.com, ip: 209.85.221.47, mailfrom: lefevre.da@gmail.com)
+Received: by mail-wr1-f47.google.com with SMTP id e7so2334877wrv.6
+        for <yocto@lists.yoctoproject.org>; Mon, 23 Nov 2020 11:50:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Umv7os8Pb23zm7dmKZFnMA2HkbgTQNfnWx1usRdrcbA=;
+        b=d4rHH7CquCi2p33am4dJeQZ4rmiULW7g8p/z5fo3LjTlyDyY9oiRgXJJNqQUKBCErH
+         +jwLWoswS/fS9AHUPbbLRh7Q7TxwzFmj0QMwKtomhsAiAhr3sfsILZllVwu5WEobxn6p
+         Czjq8lb6uRQe2MnExn/X7XHNDTxJRyIW1BZAkBg2l6UcmhD7hgkjmkQlYFaEXqk8rf9j
+         nJDwtplNp8V/Zmp8OO/J8qbOMevEJawnRY6cYzINd4Kh5fW3tiSCpwqVrFDT64MMp+m0
+         GB2/j51nVz0Sxh+J4vhdIOldV6mqU0WQAtiCoBrlGIkmCQd/inK7o4Ugwc86Pv3ruZjU
+         khUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Umv7os8Pb23zm7dmKZFnMA2HkbgTQNfnWx1usRdrcbA=;
+        b=iP01ddN+WsUu3kRa3bFOsf67gbX8mebzScevtNPgTMW1yyIGNptRCEwom6oq/a2TxL
+         DvVmmNvGURvVDN6GUtMIOk0Z+Mt8RV4OBGtC9CYpdYJUJhPB2xetAjAkdLcKlUzwPfdH
+         AMB9Gg/OakgxAPhhvK/XDOFrRfvKfAycfYA83eBaMPVc8fQ/CnDX3bMHkfrIclo/qCCT
+         HgrTULOdguv4ZcZDEtFFy1Q1S9KLm8FlaxBnfXaFtJz9bUoHa7RpIbQ+1ZBP3ePQg8H4
+         aK6WHvsTVV5hpYKc0pYoGpCrcKkYBBGv57VZr6amWaCZDoL2GTtQId+F1yrXhsmOGTYT
+         r0Lw==
+X-Gm-Message-State: AOAM5312Zumnkrdd6eoGfnwTbpp3bHWklcxYsOgtt89VpPmL5vbv72Se
+	13YfavJz5NcY9OgA8C0Nxa/aCvyht68IzCoVTpGgLOsqo+vM
+X-Google-Smtp-Source: ABdhPJyJNak1NL57Xlr8zr21ESVz44GvwWnGAmbrs0dkGsIIfXw28txmf0UCzuzlqzq7S9TGGeRvh/VB5Qxkkl9Psa0=
+X-Received: by 2002:a05:6000:1292:: with SMTP id f18mr1374287wrx.196.1606161042998;
+ Mon, 23 Nov 2020 11:50:42 -0800 (PST)
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id: rpjday@crashcourse.ca
-X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
-Content-Disposition: inline
+From: "Damien LEFEVRE" <lefevre.da@gmail.com>
+Date: Mon, 23 Nov 2020 21:50:32 +0200
+Message-ID: <CA+FhBv_OObLJ9BhtJSw0_nzSUimc0AcSybQ7_FEm+SEzASJSRg@mail.gmail.com>
+Subject: Disable systemd-timesyncd.service in image
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000006b883605b4cb82a1"
 
-   colleague wants to know if there is something available
-in an OE/YP layer equivalent to mtree:
+--0000000000006b883605b4cb82a1
+Content-Type: text/plain; charset="UTF-8"
 
-   https://linux.die.net/man/8/mtree
+Hi,
 
-i'm looking at a few possibilities right now but nothing
-seems really equivalent. thoughts?
+I would like to have systemd-timesyncd.service as part of an image but have
+it disabled by default.
 
-rday
+Right now it is enabled by default which causes some issues.
 
+I've tried systemd_%.bbappend
 
+do_install_append() {
+    rm "$D/etc/systemd/system/dbus-org.freedesktop.timesync1.service"
+    rm
+"$D/etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service"
+}
+
+but those symlinks are not part of the package.
+
+I've tried this to remove the link during the package deployment during
+do_rootfs
+pkg_postinst_${PN}_append() {
+    #!/bin/sh -e
+    rm "$D/etc/systemd/system/dbus-org.freedesktop.timesync1.service"
+    rm
+"$D/etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service"
+}
+
+But at this stage the links still don't exist.
+
+Which package is actually responsible for enabling the default services /
+creating the symlinks? How can we turn some of them off while keeping them
+in the image?
+
+Thanks,
+-Damien
+
+--0000000000006b883605b4cb82a1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I would like to have=C2=A0systemd-t=
+imesyncd.service as part of an image but have it disabled by default.</div>=
+<div><br></div><div>Right now it is enabled by default which causes=C2=A0so=
+me issues.</div><div><br></div><div>I&#39;ve tried systemd_%.bbappend</div>=
+<div><br></div><div>do_install_append() {=C2=A0</div><div>=C2=A0 =C2=A0 rm =
+&quot;$D/etc/systemd/system/dbus-org.freedesktop.timesync1.service&quot;<br=
+></div><div>=C2=A0 =C2=A0 rm &quot;$D/etc/systemd/system/sysinit.target.wan=
+ts/systemd-timesyncd.service&quot;</div><div>}</div><div><br></div><div>but=
+ those symlinks are not part of the package.</div><div><br></div><div>I&#39=
+;ve tried this to remove the link during the package deployment during do_r=
+ootfs</div><div>pkg_postinst_${PN}_append() {<br>=C2=A0 =C2=A0 #!/bin/sh -e=
+<br>=C2=A0=C2=A0 =C2=A0rm &quot;$D/etc/systemd/system/dbus-org.freedesktop.=
+timesync1.service&quot;<br>=C2=A0 =C2=A0 rm &quot;$D/etc/systemd/system/sys=
+init.target.wants/systemd-timesyncd.service&quot;<br>}<br></div><div><br></=
+div><div>But at this stage the links still don&#39;t exist.</div><div><br><=
+/div><div>Which package is actually responsible for enabling the default se=
+rvices / creating the symlinks? How can we turn some of them off while keep=
+ing them in the image?</div><div><br></div><div>Thanks,</div><div>-Damien</=
+div></div>
+
+--0000000000006b883605b4cb82a1--
