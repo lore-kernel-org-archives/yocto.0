@@ -1,500 +1,177 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.4511.1606256875955654057
- for <yocto@lists.yoctoproject.org>;
- Tue, 24 Nov 2020 14:27:56 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=DM4yL+F8;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id C5CF138C1314
-	for <yocto@yoctoproject.org>; Tue, 24 Nov 2020 22:27:55 +0000 (UTC)
-Received: by mail-pg1-f177.google.com with SMTP id 34so474230pgp.10
-        for <yocto@yoctoproject.org>; Tue, 24 Nov 2020 14:27:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version:content-language
-         :thread-index;
-        bh=O/5xBQxxmkP4BDzUJ2e2gGiIu9LONJ7s0Ny/07Hnizo=;
-        b=DM4yL+F8Zbd0NeULh1RDlWlUsQ+Ewdpo34ncvNFM+HKX3wyPK4olOpqnbANPowTwuF
-         4iPEijxv1OzQJVzj04KW7wjNQ1n0zstxGFZUi66zUlxyHHgMzS8/JjOLZLnVEEWG7Hnv
-         iF6mzS5ryZjDCHeFWx+Rtb4rJu6zaaqRPeQ8Yo0yHCWpHJZbeYTJJalcbfHbzPdLIdj7
-         s8YeycGM/1pxSmFW9nJqTAeKqmJqT9BMkKDkjWfOZ7yHDYWqlAZcoXMrtOegvoiDBsmQ
-         fI/wCeOZJEK66TZ2fQe5czU4V4RJeCFCCerirHrX9g5X2jZ3SHwGCveAk3bo4fpEudQ3
-         wXrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-language:thread-index;
-        bh=O/5xBQxxmkP4BDzUJ2e2gGiIu9LONJ7s0Ny/07Hnizo=;
-        b=Jqn7chmHX9dyVeRj+Zc0dOJu9NlQ/W+DuKoWAKFDxaBOVJcpdjVTLa4DRw1YR5NLIL
-         rGosZXcRBjvEbNuumz6AKO4f3uYNCHd3e868cd12UlLbx0BcoTk4dGqTP8l/rVF9TPRh
-         mUbXG+Voq+9MfFFFqNzYnSLO0QPBQlYatTG9EoZVUYhnPq6+zBvDGjeWX5iWbqq7HVw2
-         O3kRl1DH4Tq7XsQAo3PYgH/0lUd4uOAi3e1DX0+OtP0BJnhKkyCYi0eCm2Gn1IFef5hH
-         PcngSt9RC9Bfn/Xnqe7ktTPUwWVHzHP4dbg2LSLG6xfHA5icQAv0ZwIPPBaTh8wDzd4N
-         D0EA==
-X-Gm-Message-State: AOAM533Z6GxPbBDr+W+SbNZ2cAO4zpDRlUnQMriQRkouTv6C5lk3F4sC
-	3E6vlJ7WXZ6l7P/k4lV1ttDgYWY3UoY=
-X-Google-Smtp-Source: ABdhPJy327a0DZ0kq+N3BYMGRPso+UZScgeZjbNuxwHUXtCBHTQFlxO7CNY2JPj1SUYBO8XiMvtx6Q==
-X-Received: by 2002:a63:b1c:: with SMTP id 28mr487035pgl.206.1606256875258;
-        Tue, 24 Nov 2020 14:27:55 -0800 (PST)
-Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-        by smtp.gmail.com with ESMTPSA id gx24sm221876pjb.38.2020.11.24.14.27.54
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 24 Nov 2020 14:27:54 -0800 (PST)
-From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>
-Subject: M+ & H bugs with Milestone Movements WW47
-Date: Tue, 24 Nov 2020 14:27:54 -0800
-Message-ID: <12c601d6c2b1$0dc39610$294ac230$@gmail.com>
+Subject: Re: Problem with recipe that depends on a binary that is generated during its build
+To: yocto@lists.yoctoproject.org
+From: "Matteo Iervasi" <matteo.iervasi@edalab.it>
+X-Originating-Location: Lana, Trentino-Alto Adige, IT (93.38.115.180)
+X-Originating-Platform: Linux Firefox 83
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdbCsQm3ql6SxvpfSKWl5I6lX/Hv4w==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_12C7_01D6C26D.FFA203C0"
-Content-Language: en-us
+Date: Wed, 25 Nov 2020 00:37:39 -0800
+References: <fc5a5e16-61ad-d9c0-92c8-87714d040f95@edalab.it>
+In-Reply-To: <fc5a5e16-61ad-d9c0-92c8-87714d040f95@edalab.it>
+Message-ID: <29421.1606293459720479059@lists.yoctoproject.org>
+X-Groupsio-MsgNum: 51550
+Content-Type: multipart/mixed; boundary="EWBzpVGRwmxX3HTl2ngo"
 
-------=_NextPart_000_12C7_01D6C26D.FFA203C0
-Content-Type: text/plain;
-	charset="utf-8"
+--EWBzpVGRwmxX3HTl2ngo
+Content-Type: multipart/alternative; boundary="08PpGv7A3IexRNn4f658"
+
+--08PpGv7A3IexRNn4f658
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-All,
+Ok I've found a solution by myself. Basically I just used the trick showed =
+in the Technical FAQ and put a bunch of install commands in the do_install =
+task.
+Now the only problem I have is that the do_install task for target complai=
+ns that needs administrative privileges (maybe I'm just doing it wrong, I'm=
+ still not that experienced with Yocto).
 
-YP M+ or high bugs which moved to a new milestone in WW47 are listed =
-below:=20
+| [100%] Built target boosttest-test-livestatus
+| make[1]: Leaving directory '/home/matteo/boxio/toradex/colibri-imx6ull/b=
+uild-boxio-colibri-imx6ull/tmp-glibc/work/cortexa7t2hf-neon-angstrom-linux-=
+gnueabi/icinga-core/2.12.0-r0/build'
+| /home/matteo/boxio/toradex/colibri-imx6ull/build-boxio-colibri-imx6ull/t=
+mp-glibc/work/cortexa7t2hf-neon-angstrom-linux-gnueabi/icinga-core/2.12.0-r=
+0/recipe-sysroot-native/usr/bin/cmake -E cmake_progress_start /home/matteo/=
+boxio/toradex/colibri-imx6ull/build-boxio-colibri-imx6ull/tmp-glibc/work/co=
+rtexa7t2hf-neon-angstrom-linux-gnueabi/icinga-core/2.12.0-r0/build/CMakeFil=
+es 0
+| make -f CMakeFiles/Makefile2 preinstall
+| make[1]: Entering directory '/home/matteo/boxio/toradex/colibri-imx6ull/=
+build-boxio-colibri-imx6ull/tmp-glibc/work/cortexa7t2hf-neon-angstrom-linux=
+-gnueabi/icinga-core/2.12.0-r0/build'
+| make[1]: Nothing to be done for 'preinstall'.
+| make[1]: Leaving directory '/home/matteo/boxio/toradex/colibri-imx6ull/b=
+uild-boxio-colibri-imx6ull/tmp-glibc/work/cortexa7t2hf-neon-angstrom-linux-=
+gnueabi/icinga-core/2.12.0-r0/build'
+| Install the project...
+| /home/matteo/boxio/toradex/colibri-imx6ull/build-boxio-colibri-imx6ull/t=
+mp-glibc/work/cortexa7t2hf-neon-angstrom-linux-gnueabi/icinga-core/2.12.0-r=
+0/recipe-sysroot-native/usr/bin/cmake -P cmake_install.cmake
+| -- Install configuration: "Release"
+| CMake Error at cmake_install.cmake:36 (file):
+|=C2=A0=C2=A0 file cannot create directory: /usr/share/doc/icinga2.=C2=A0 =
+Maybe need
+|=C2=A0=C2=A0 administrative privileges.
+|
+|
+| Makefile:74: recipe for target 'install' failed
+| make: *** [install] Error 1
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_install (log file is located at /home/matteo/=
+boxio/toradex/colibri-imx6ull/build-boxio-colibri-imx6ull/tmp-glibc/work/co=
+rtexa7t2hf-neon-angstrom-linux-gnueabi/icinga-core/2.12.0-r0/temp/log.do_in=
+stall.25788)
+ERROR: Task (/home/matteo/boxio/toradex/colibri-imx6ull/build-boxio-colibr=
+i-imx6ull/../layers/meta-boxio-colibri-imx6ull/recipes-extended/icinga-core=
+/icinga-core_2.12.0.bb:do_install) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 3457 tasks of which 3447 didn't need to be =
+rerun and 1 failed.
+NOTE: Writing buildhistory
 
+The recipe that now compiles ok is attached here.
 
-Priority
+Thanks
+Matteo Iervasi
 
-Bug ID
-
-Short Description
-
-Changer
-
-Owner
-
-Was
-
-Became
-
-
-Medium+
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13338> 13338
-
-SDK  build fails if image contains bash
-
-randy.macleod@windriver.com
-
-akuster@mvista.com
-
-2.6.3
-
-3.3 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13566> 13566
-
-Write tests for multiconfig files in layers and document
-
-randy.macleod@windriver.com
-
-mostthingsweb@gmail.com
-
-3.2 M4
-
-3.3 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13722> 13722
-
-Debugging With the GNU Project Debugger enhancements
-
-randy.macleod@windriver.com
-
-newcomer@yoctoproject.org
-
-3.2 M4
-
-3.3 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13822> 13822
-
-Easy to have misleading warnings if env script is executed instead of =
-sourced
-
-randy.macleod@windriver.com
-
-newcomer@yoctoproject.org
-
-3.2 M4
-
-3.3 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14040> 14040
-
-recipetool: creating binary recipe from upstream git repo without =
-explicit PV causes circular reference in SRC_URI
-
-randy.macleod@windriver.com
-
-mostthingsweb@gmail.com
-
-3.2 M4
-
-3.3 M1
-
-Thanks,=20
-
-=20
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com =
-<mailto:sjolley.yp.pm@gmail.com>=20
-
-=20
-
-
-------=_NextPart_000_12C7_01D6C26D.FFA203C0
-Content-Type: text/html;
-	boundary="----=_NextPart_000_0E85_01D6B6B4.CEDD81C0";
-	charset="utf-8"
+--08PpGv7A3IexRNn4f658
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'color:black'>All,<br><br>YP M+ or high bugs which moved to a =
-new milestone in WW47 are listed below: =
-<b><o:p></o:p></b></span></p><table class=3DMsoNormalTable border=3D0 =
-cellspacing=3D0 cellpadding=3D0 width=3D1397 =
-style=3D'width:1047.95pt;margin-left:-.15pt;border-collapse:collapse'><tr=
- style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Priority<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom style=3D'width:38.8pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Bug ID<o:p></o:p></span></b></p></td><td =
-width=3D676 nowrap valign=3Dbottom style=3D'width:507.2pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Short =
-Description<o:p></o:p></span></b></p></td><td width=3D236 nowrap =
-valign=3Dbottom style=3D'width:177.0pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Changer<o:p></o:p></span></b></p></td><td =
-width=3D243 nowrap valign=3Dbottom style=3D'width:182.0pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Owner<o:p></o:p></span></b></p></td><td width=3D64 =
-nowrap valign=3Dbottom style=3D'width:47.85pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Was<o:p></o:p></span></b></p></td><td width=3D54 =
-nowrap valign=3Dbottom style=3D'width:40.2pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Became<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Medium+<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13338" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13338</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D676 nowrap valign=3Dbottom =
-style=3D'width:507.2pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>SDK=C2=A0 build fails if image contains =
-bash<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>akuster@mvista.com<o:p></o:p></span></p></td><td =
-width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>2.6.3<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.3 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13566" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13566</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D676 nowrap valign=3Dbottom =
-style=3D'width:507.2pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Write tests for multiconfig files in layers and =
-document<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>mostthingsweb@gmail.com<o:p></o:p></span></p></td><=
-td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.3 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13722" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13722</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D676 nowrap valign=3Dbottom =
-style=3D'width:507.2pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Debugging With the GNU Project Debugger =
-enhancements<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>newcomer@yoctoproject.org<o:p></o:p></span></p></td=
-><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.3 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13822" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13822</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D676 nowrap valign=3Dbottom =
-style=3D'width:507.2pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Easy to have misleading warnings if env script is =
-executed instead of sourced<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>newcomer@yoctoproject.org<o:p></o:p></span></p></td=
-><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.3 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14040" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14040</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D676 nowrap valign=3Dbottom =
-style=3D'width:507.2pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>recipetool: creating binary recipe from upstream =
-git repo without explicit PV causes circular reference in =
-SRC_URI<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>mostthingsweb@gmail.com<o:p></o:p></span></p></td><=
-td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.2 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.3 M1<o:p></o:p></span></p></td></tr></table><p =
-class=3DMsoNormal><span style=3D'color:black'>Thanks,</span><span =
-style=3D'color:white'> <o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:white'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+Ok I've found a solution by myself. Basically I just used the trick showed =
+in the Technical FAQ and put a bunch of install commands in the do_install =
+task.<br />Now the only problem I have is that the do_install task for targ=
+et complains that needs administrative privileges (maybe I'm just doing it =
+wrong, I'm still not that experienced with Yocto).<span style=3D"font-famil=
+y: courier_newregular, courier;"></span><br /><br /><span style=3D"font-fam=
+ily: courier_newregular, courier;">| [100%] Built target boosttest-test-liv=
+estatus</span><br /><span style=3D"font-family: courier_newregular, courier=
+;">| make[1]: Leaving directory '/home/matteo/boxio/toradex/colibri-imx6ull=
+/build-boxio-colibri-imx6ull/tmp-glibc/work/cortexa7t2hf-neon-angstrom-linu=
+x-gnueabi/icinga-core/2.12.0-r0/build'</span><br /><span style=3D"font-fami=
+ly: courier_newregular, courier;">| /home/matteo/boxio/toradex/colibri-imx6=
+ull/build-boxio-colibri-imx6ull/tmp-glibc/work/cortexa7t2hf-neon-angstrom-l=
+inux-gnueabi/icinga-core/2.12.0-r0/recipe-sysroot-native/usr/bin/cmake -E c=
+make_progress_start /home/matteo/boxio/toradex/colibri-imx6ull/build-boxio-=
+colibri-imx6ull/tmp-glibc/work/cortexa7t2hf-neon-angstrom-linux-gnueabi/ici=
+nga-core/2.12.0-r0/build/CMakeFiles 0</span><br /><span style=3D"font-famil=
+y: courier_newregular, courier;">| make -f CMakeFiles/Makefile2 preinstall<=
+/span><br /><span style=3D"font-family: courier_newregular, courier;">| mak=
+e[1]: Entering directory '/home/matteo/boxio/toradex/colibri-imx6ull/build-=
+boxio-colibri-imx6ull/tmp-glibc/work/cortexa7t2hf-neon-angstrom-linux-gnuea=
+bi/icinga-core/2.12.0-r0/build'</span><br /><span style=3D"font-family: cou=
+rier_newregular, courier;">| make[1]: Nothing to be done for 'preinstall'.<=
+/span><br /><span style=3D"font-family: courier_newregular, courier;">| mak=
+e[1]: Leaving directory '/home/matteo/boxio/toradex/colibri-imx6ull/build-b=
+oxio-colibri-imx6ull/tmp-glibc/work/cortexa7t2hf-neon-angstrom-linux-gnueab=
+i/icinga-core/2.12.0-r0/build'</span><br /><span style=3D"font-family: cour=
+ier_newregular, courier;">| Install the project...</span><br /><span style=
+=3D"font-family: courier_newregular, courier;">| /home/matteo/boxio/torade=
+x/colibri-imx6ull/build-boxio-colibri-imx6ull/tmp-glibc/work/cortexa7t2hf-n=
+eon-angstrom-linux-gnueabi/icinga-core/2.12.0-r0/recipe-sysroot-native/usr/=
+bin/cmake -P cmake_install.cmake</span><br /><span style=3D"font-family: co=
+urier_newregular, courier;">| -- Install configuration: "Release"</span><br=
+ /><span style=3D"font-family: courier_newregular, courier;">| CMake Error =
+at cmake_install.cmake:36 (file):</span><br /><span style=3D"font-family: c=
+ourier_newregular, courier;">|&nbsp;&nbsp; file cannot create directory: /u=
+sr/share/doc/icinga2.&nbsp; Maybe need</span><br /><span style=3D"font-fami=
+ly: courier_newregular, courier;">|&nbsp;&nbsp; administrative privileges.<=
+/span><br /><span style=3D"font-family: courier_newregular, courier;">| </s=
+pan><br /><span style=3D"font-family: courier_newregular, courier;">| </spa=
+n><br /><span style=3D"font-family: courier_newregular, courier;">| Makefil=
+e:74: recipe for target 'install' failed</span><br /><span style=3D"font-fa=
+mily: courier_newregular, courier;">| make: *** [install] Error 1</span><br=
+ /><span style=3D"font-family: courier_newregular, courier;">| ERROR: oe_ru=
+nmake failed</span><br /><span style=3D"font-family: courier_newregular, co=
+urier;">| WARNING: exit code 1 from a shell command.</span><br /><span styl=
+e=3D"font-family: courier_newregular, courier;">| ERROR: Function failed: d=
+o_install (log file is located at /home/matteo/boxio/toradex/colibri-imx6ul=
+l/build-boxio-colibri-imx6ull/tmp-glibc/work/cortexa7t2hf-neon-angstrom-lin=
+ux-gnueabi/icinga-core/2.12.0-r0/temp/log.do_install.25788)</span><br /><sp=
+an style=3D"font-family: courier_newregular, courier;">ERROR: Task (/home/m=
+atteo/boxio/toradex/colibri-imx6ull/build-boxio-colibri-imx6ull/../layers/m=
+eta-boxio-colibri-imx6ull/recipes-extended/icinga-core/icinga-core_2.12.0.b=
+b:do_install) failed with exit code '1'</span><br /><span style=3D"font-fam=
+ily: courier_newregular, courier;">NOTE: Tasks Summary: Attempted 3457 task=
+s of which 3447 didn't need to be rerun and 1 failed.</span><br /><span sty=
+le=3D"font-family: courier_newregular, courier;">NOTE: Writing buildhistory=
+</span><br /><br />The recipe that now compiles ok is attached here.<br /><=
+br />Thanks<br />Matteo Iervasi
 
-------=_NextPart_000_12C7_01D6C26D.FFA203C0--
+--08PpGv7A3IexRNn4f658--
+
+--EWBzpVGRwmxX3HTl2ngo
+Content-Type: application/octet-stream; name="icinga-core_2.12.0.bb"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="icinga-core_2.12.0.bb"
+
+REVTQ1JJUFRJT04gPSAiQSBob3N0L3NlcnZpY2UvbmV0d29yayBtb25pdG9yaW5nIGFuZCBtYW5h
+Z2VtZW50IHN5c3RlbSBjb3JlIGZpbGVzIgpIT01FUEFHRSA9ICJodHRwczovL2ljaW5nYS5jb20i
+ClNFQ1RJT04gPSAiY29uc29sZS9uZXR3b3JrIgpQUklPUklUWSA9ICJvcHRpb25hbCIKTElDRU5T
+RSA9ICJHUEx2MyIKTElDX0ZJTEVTX0NIS1NVTSA9ICJmaWxlOi8vQ09QWUlORzttZDU9YjIzNGVl
+NGQ2OWY1ZmNlNDQ4NmE4MGZkYWY0YTQyNjMgXAogICAgICAgICAgICAgICAgICAgIGZpbGU6Ly90
+aGlyZC1wYXJ0eS9ubG9obWFubl9qc29uL0xJQ0VOU0U7bWQ1PTlhOGFlMWMyZDYwNmM0MzJhMmFh
+MmUyZGUxNWJlMjJhIFwKICAgICAgICAgICAgICAgICAgICBmaWxlOi8vdGhpcmQtcGFydHkvdXRm
+OGNwcC9MSUNFTlNFO21kNT1lNDIyNGNjYWVjYjE0ZDk0MmM3MWQzMWJlZjIwZDc4YyIKClNSQ19V
+UkkgPSAiZ2l0Oi8vZ2l0aHViLmNvbS9JY2luZ2EvaWNpbmdhMjtwcm90b2NvbD1odHRwcyIKU1JD
+X1VSSSArPSAiZmlsZTovLzAwMDEtRml4LWZvci1Zb2N0by5wYXRjaCBcCiAgICAgICAgICAgICIK
+CiNQViA9ICIxLjArZ2l0JHtTUkNQVn0iClNSQ1JFViA9ICIyZDE5ODBjMTBkMTdkYTEwNTA1YTli
+NjBjNDc4MDk4MWQzYjhkMWU3IgoKUyA9ICIke1dPUktESVJ9L2dpdCIKCkRFUEVORFMgPSAiYm9v
+c3QgZmxleC1uYXRpdmUgYmlzb24tbmF0aXZlIG9wZW5zc2wiCgpCQkNMQVNTRVhURU5EICs9ICJu
+YXRpdmUgbmF0aXZlc2RrIgpERVBFTkRTX2FwcGVuZF9jbGFzcy10YXJnZXQgPSAiIGljaW5nYS1j
+b3JlLW5hdGl2ZSIKUkRFUEVORFNfJHtQTn1fY2xhc3MtbmF0aXZlID0gIiIKCmluaGVyaXQgY21h
+a2UKCkVYVFJBX09FQ01BS0UgPSAiLURJQ0lOR0EyX1dJVEhfTVlTUUw9T0ZGIC1ESUNJTkdBMl9X
+SVRIX1BHU1FMPU9GRiIKCkZJTEVTXyR7UE59ICs9ICIke2xpYmRpcn0vKiBcCiAgICAgICAgICAg
+ICAgICAke2RhdGFkaXJ9IFwKICAgICAgICAgICAgICAgICR7SUNJTkdBX1BMVUdJTl9ESVJ9IFwK
+ICAgICAgICAgICAgICAgICR7SUNJTkdBX0NHSUJJTl9ESVJ9IFwiCkZJTEVTXyR7UE59LWRldiA9
+ICIke2xpYmRpcn0vKiAke2luY2x1ZGVkaXJ9IgpGSUxFU18ke1BOfS1kYmcgKz0gIiR7SUNJTkdB
+X0NHSUJJTl9ESVJ9Ly5kZWJ1ZyIKCmRvX2luc3RhbGwoKSB7CiAgICBpbnN0YWxsIC1kICR7RH0v
+JHtiaW5kaXJ9CiAgICBpbnN0YWxsIC1tIDc1NSAke1dPUktESVJ9L2J1aWxkL0Jpbi9SZWxlYXNl
+L21rY2xhc3MgJHtEfSR7YmluZGlyfQogICAgaW5zdGFsbCAtbSA3NTUgJHtXT1JLRElSfS9idWls
+ZC9CaW4vUmVsZWFzZS9ta3VuaXR5ICR7RH0ke2JpbmRpcn0KICAgIGluc3RhbGwgLW0gNzU1ICR7
+V09SS0RJUn0vYnVpbGQvQmluL1JlbGVhc2UvbWtlbWJlZGNvbmZpZyAke0R9JHtiaW5kaXJ9Cn0K
+CmRvX2luc3RhbGxfYXBwZW5kX2NvbGlicmktaW14NnVsbCgpIHsKICAgIG9lX3J1bm1ha2UgaW5z
+dGFsbAp9
+
+--EWBzpVGRwmxX3HTl2ngo--
