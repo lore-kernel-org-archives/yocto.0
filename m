@@ -1,58 +1,63 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.1584.1606334555770193767
- for <yocto@lists.yoctoproject.org>;
- Wed, 25 Nov 2020 12:02:36 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 198.145.29.25, mailfrom: denis@denix.org)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id C0F5D38C1115
-	for <yocto@yoctoproject.org>; Wed, 25 Nov 2020 20:02:34 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 06FCA40BD9;
-	Wed, 25 Nov 2020 20:02:34 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id EJVM0oA827pw; Wed, 25 Nov 2020 20:02:33 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A274D40B78;
-	Wed, 25 Nov 2020 20:02:29 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 57F0517432F; Wed, 25 Nov 2020 15:02:29 -0500 (EST)
-Date: Wed, 25 Nov 2020 15:02:29 -0500
-From: "Denys Dmytriyenko" <denis@denix.org>
-To: "openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	openembedded-architecture <openembedded-architecture@lists.openembedded.org>,
-	Yocto Project <yocto@yoctoproject.org>,
-	openembedded-members@lists.openembedded.org
-Subject: Re: [OE-core] OpenEmbedded Happy Hour November 25 9pm/2100 UTC
-Message-ID: <20201125200229.GO19155@denix.org>
-References: <1648FB4A3455E856.13688@lists.openembedded.org>
+Subject: Use of USERADD_PACKAGES with out recipe package files
+To: yocto@lists.yoctoproject.org
+From: andrew.loader@nz.abb.com
+X-Originating-Location: Glen Iris, Victoria, AU (103.111.183.63)
+X-Originating-Platform: Windows Chrome 87
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <1648FB4A3455E856.13688@lists.openembedded.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Date: Wed, 25 Nov 2020 19:21:21 -0800
+Message-ID: <iKnI.1606360881941674696.AYmG@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="ey3Una5SMxRvhqCvlPlp"
 
-Just a reminder, Happy Hour is in 1 hour.
+--ey3Una5SMxRvhqCvlPlp
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-9pm UTC, 4pm EST (not EDT) or use time conversion link below for your 
-location. See you there!
+I have for an image append which I would like to add some users to but I do=
+ not want to add any files as part of the package
+so I=C2=A0 have a layer which contains a recipe called user-config-0.1.bb =
+which has a useradd package USERADD_PACKAGES =3D " ${PN}-user-sys "=C2=A0 .=
+ then I have a USERADD_PARAM_${PN}-user-sys =3D " .."
+which adds some users not shown and I also have an add group param as well=
+ not shown
+I declare the package as=C2=A0 PACKAGES +=3D "${PN}-user-sys" but do not s=
+et the package files because i do not want any
+and in my image bbappend file I install the package=C2=A0 IMAGE_INSTALL_ap=
+pend +=3D "user-config-user-sys"
+The recipe builds but does not create a package and the do-rootfs cannot f=
+ind the package=C2=A0 and fails with
 
--- 
-Denys
+No match for argument: user-config-user-sys
+Error: Unable to find a match
 
+well that seems to be the meaningful part I guess
 
-On Thu, Nov 19, 2020 at 01:12:35PM -0500, Denys Dmytriyenko wrote:
-> Hi,
-> 
-> Just a reminder about our upcoming OpenEmbedded Happy Hour on November 25 for
-> Oceania/Asia timezones @ 2100/9pm UTC (4pm EDT):
-> 
-> https://www.openembedded.org/wiki/Calendar
-> https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+November+25&iso=20201125T21
-> 
-> -- 
-> Denys
+How do i get yocto to generate a package which only contains user group cr=
+eation part which can then be installed in my image
+I have added uses and groups before with files with out a problem, also th=
+is is greatly simplified but still shows the core problem
+
+--ey3Una5SMxRvhqCvlPlp
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I have for an image append which I would like to add some users to but I do=
+ not want to add any files as part of the package<br />so I&nbsp; have a la=
+yer which contains a recipe called user-config-0.1.bb which has a useradd p=
+ackage USERADD_PACKAGES =3D " ${PN}-user-sys "&nbsp; . then I have a USERAD=
+D_PARAM_${PN}-user-sys =3D " .."<br />which adds some users not shown and I=
+ also have an add group param as well not shown<br />I declare the package =
+as&nbsp; PACKAGES +=3D "${PN}-user-sys" but do not set the package files be=
+cause i do not want any&nbsp;<br />and in my image bbappend file I install =
+the package&nbsp; IMAGE_INSTALL_append +=3D "user-config-user-sys"&nbsp;<br=
+ />The recipe builds but does not create a package and the do-rootfs cannot=
+ find the package&nbsp; and fails with<br /><br />
+<div>No match for argument: user-config-user-sys</div>
+<div>Error: Unable to find a match<br /><br />well that seems to be the me=
+aningful part I guess<br /><br />How do i get yocto to generate a package w=
+hich only contains user group creation part which can then be installed in =
+my image<br />I have added uses and groups before with files with out a pro=
+blem, also this is greatly simplified but still shows the core problem&nbsp=
+;<br /><br /></div>
+
+--ey3Una5SMxRvhqCvlPlp--
