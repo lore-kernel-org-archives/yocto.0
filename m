@@ -1,129 +1,166 @@
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
- by mx.groups.io with SMTP id smtpd.web08.22893.1606502556521100680
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+ by mx.groups.io with SMTP id smtpd.web09.25762.1606516014714222117
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Nov 2020 10:42:36 -0800
+ Fri, 27 Nov 2020 14:26:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=pElqYnXX;
- spf=pass (domain: gmail.com, ip: 209.85.217.41, mailfrom: nikhilvp29@gmail.com)
-Received: by mail-vs1-f41.google.com with SMTP id v8so3013503vso.2;
-        Fri, 27 Nov 2020 10:42:36 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=lwfxVCOQ;
+ spf=pass (domain: gmail.com, ip: 209.85.222.170, mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f170.google.com with SMTP id h20so5657662qkk.4
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Nov 2020 14:26:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=PsNRbBMBLdW6PEsYzrTxg6BbuTg/CB2m0BQYtg+sxaU=;
-        b=pElqYnXXaCSkC3XQz6mNc9oz593I/r6QMfnMf8OdaCtaJG9A1vByjYzpcE6rg0+NmP
-         wm80I0TLF0ZwCaw+27nyoNWByIYUyuwaXyVDVBWvJ+2KoA3UWlhES8OobfpotTd7AaeK
-         hn9CJZVYYE2kAcFoiGjKwNtP6P6RvLegV24X/elLHGE2pZfPxKJ/lDIZ2+Th2DDkVcTl
-         8UFGoleh7yyFjxJ1+VtuidtD4zwk1cUWrbTTjbATPOIRTLJhvVJKU/WM4Inrm10GWboB
-         8hLJ8mL0BfDPAgUjjE8cwXmcOaFi52rntl3l58vLyM/TAfeEwbhQWHotgDfMknxoPG57
-         4pKA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lV+PLo5MwOxMlKbgDLZN3fzVaJBlN97ZYa4QBaKUyMo=;
+        b=lwfxVCOQyvebBb+pam3GXS8rmCvubRXYJ6tPh7DyVZWCFv+2s1p9qhVj/RzrQtUo5r
+         BHoQSTXz6Da4TjynYFzssJ2gDUGz8MDHtqNrk6M6Lisv1JOunHIR4L6N+7DHKfsM+xEy
+         HdF7g/1GPI5zSu4kyXiWFNTNvTiz/5CflXofz3WQXa127J4aKKHVdhQLGm1heam0BT0+
+         50Bd13TUcWZoWRZEwnKQB/AONrU+Z4cTPyAICKDWWXd9FM30XDDZod2iI4V2mn9//HIX
+         MAaNungkz5M2394PVZMxdGZgzJI0IcKTcBbjIWJxwrscLRZWV8u/t0tE86qaqP/g4ZvS
+         VTVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=PsNRbBMBLdW6PEsYzrTxg6BbuTg/CB2m0BQYtg+sxaU=;
-        b=AXQ+USwspZB73LpTqvclyuvCSGjI8h49IXZWOX25t2N+YzRYkDFfBXcYo0RI2I3UmL
-         MX/jd0q0N2c5iMYUlCClN8ajZl/QfUIXEUaHv9znz+mhnhGNh432wu3BboUInmDSA2Mr
-         OAN9tTIrk2YiUjdb0K1q1ZIp9Vm7eXpKtuyHKiTD2bE+k075jy9+iHplNj5Dq+KqveyR
-         GMietVfNc3ughqE7QRcbxjSiVLn6jiVd+6xBbEqH4db0YAi6s6uYdV2l3Frrm611yMqy
-         BXWw7w5YwC9OiOI9DVR92IFgzybhc3OMhOlwMhmURu/vVfrOmRrXGY8bRsZV2jurgjM3
-         4m0A==
-X-Gm-Message-State: AOAM532DrRxu+UOC8zmLTqrNRIjlLQn9U3MhQt1AsJ6cBeKKFFxyOeSt
-	SGFBlMj4yiavGdVotKM3GLPApLRyITvp+LTkoqIaBNsO0Cb0yA==
-X-Google-Smtp-Source: ABdhPJxPU4ICyjdppscd8VTMZl+H26PzkNlczlC/UPfeTMOLR/3AtNuVPm0QLcdTHTxhSQYIW1jVv7+tSDHa4ODsmyo=
-X-Received: by 2002:a05:6102:309a:: with SMTP id l26mr7488569vsb.4.1606502555320;
- Fri, 27 Nov 2020 10:42:35 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lV+PLo5MwOxMlKbgDLZN3fzVaJBlN97ZYa4QBaKUyMo=;
+        b=KZvkl3DcMw+tPr0cO+NLLpamuN1coa5M4P86pkfK2OF7C5BgEWG+BbQI4ba9OTH28h
+         X38CQK+K51rVXyfIUjcF5I0zlYLTp1IJdp+YdaNF5PAUpPkQNWIIKs9ZEAE6CNVKccKU
+         MSu/jHfBLmgp8+uk9rIR6QGlOiOLaSNbukgLf89DPTPggNktOEvygq5Dym3QaCkZY35w
+         5gQC/pvyxJuDDmBDteitzCFmSkLKAsGjnvA4/mG/vATd4KgANV2XiBmf/Y8HH+dxaPIk
+         I4igiRj97DrH6pIrWHDaVZjIgBU5kma/F5gbVNW8N1ObjkvGT4luu/6TMHUAKXfX6yo+
+         vMDA==
+X-Gm-Message-State: AOAM533AoCVxhUQcwXF+Cf2o5vOzs7+5yT2IgEwBe8n4Zvz4yR2/ssJN
+	aYpuFlkCTpCUgGNg9HwyISrEPGdpyKVuvuVXS80=
+X-Google-Smtp-Source: ABdhPJzTCfhawtbZWiBqBfeHPNmahLjhexx5BThikrq58yx1UEhKMTeqGAuuC8itz5Akkd6GezCdThz/mWDG/LRB9eM=
+X-Received: by 2002:a37:6195:: with SMTP id v143mr10635053qkb.71.1606516013735;
+ Fri, 27 Nov 2020 14:26:53 -0800 (PST)
 MIME-Version: 1.0
-From: "NIKHIL PATIL" <nikhilvp29@gmail.com>
-Date: Sat, 28 Nov 2020 00:12:24 +0530
-Message-ID: <CAJw=dJ9O3o8VYMfJ4uOcLOw0etaCwquyrVqubiKzCKaDw9iTHA@mail.gmail.com>
-Subject: patch apply for .bb file
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>, yocto+help@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000002403dc05b51b0684"
-
---0000000000002403dc05b51b0684
+References: <20201127101637.25274-1-twoerner@gmail.com>
+In-Reply-To: <20201127101637.25274-1-twoerner@gmail.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Fri, 27 Nov 2020 14:26:27 -0800
+Message-ID: <CAMKF1soJFRGh8eEfYLkgA1vC_fC+bJoAtd+R83iCBtQXgsRY=g@mail.gmail.com>
+Subject: Re: [yocto] [meta-raspberrypi][PATCH] userland: add knob for ALL_APPS
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-Hi team ,
-       We are tring to apply to patch to default .bb file. means in
-gpsd_3.17.bb file we did some changes but after taking patch we are not
-able to apply it .
+Hi Trevor
 
-    *  steps followd :-*
-        1) git status
-        2) git
-diff yocto_build/meta-openembedded/meta-oe/recipes-navigation/gpsd/
-gpsd_3.17.bb >  0001_add_line_in_gpsd.patch
-        3) git
-checkout yocto_build/meta-openembedded/meta-oe/recipes-navigation/gpsd/
-gpsd_3.17.bb
+On Fri, Nov 27, 2020 at 2:17 AM Trevor Woerner <twoerner@gmail.com> wrote:
+>
+> The userland sources include a bunch of sample applications. Add an "allapps"
+> PACKAGECONFIG to allow the user to build the additional optional applications.
+>
 
-           after these i applied gpsd patch
-in /yocto_build/meta-intel-leafhill/recipes-kernel/linux/linux-intel/leafhill.scc
-  file  but after appling getting following errors .
+change is okay, Can you create a GH pull request for this please
 
-      * ERRORS :-*
-      [INFO]: Context reduced git-am of
-.kernel-meta//patches//patches/0001_add_line_in_gpsd.patch with "git am"
-did not work, trying "apply".
-| error: yocto_build/meta-openembedded/meta-oe/recipes-navigation/gpsd/
-gpsd_3.17.bb: does not exist in index
-| [ERROR]: Application of
-.kernel-meta//patches//patches/0001_add_line_in_gpsd.patch failed.
-|          Patch needs to be refreshed. Sample resolution script:
-|              .git/rebase-apply/resolve_rejects
-| ERROR: Could not apply patches for intel-corei7-64.
-| ERROR: Patch failures can be resolved in the linux source directory
-/data/nikhil/inti_dmsv/yocto_build/build/tmp/work-shared/intel-corei7-64/kernel-source)
-
-     * douts :-*
-        1) Can we apply a patch to default code means (files in meta  or
-files( .bb ) in meta-intel  folder, etc) ? because we are able to apply a
-patch for kernel code (driver file ) , but for .bb file patch appling we
-are facing issue .
-
-        2) how to apply a patch to  default .bb file in meta layers ?  can
-u please tell procedure .
-
-     thanks in advance .
-
---0000000000002403dc05b51b0684
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi team ,<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0We are tring to a=
-pply to patch to default .bb file. means in <a href=3D"http://gpsd_3.17.bb"=
->gpsd_3.17.bb</a> file we did some changes but after taking patch we are no=
-t able to apply it .</div><div>=C2=A0</div><div>=C2=A0 =C2=A0 <b>=C2=A0 ste=
-ps followd=C2=A0:-</b></div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 1) git status<=
-/div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 2) git diff=C2=A0yocto_build/meta-ope=
-nembedded/meta-oe/recipes-navigation/gpsd/<a href=3D"http://gpsd_3.17.bb">g=
-psd_3.17.bb</a> &gt;=C2=A0=C2=A00001_add_line_in_gpsd.patch</div><div>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 3) git checkout=C2=A0yocto_build/meta-openembedded=
-/meta-oe/recipes-navigation/gpsd/<a href=3D"http://gpsd_3.17.bb">gpsd_3.17.=
-bb</a></div><div>=C2=A0 =C2=A0 =C2=A0</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0after these i applied gpsd patch in=C2=A0/yocto_build/meta-in=
-tel-leafhill/recipes-kernel/linux/linux-intel/leafhill.scc=C2=A0 =C2=A0 fil=
-e=C2=A0 but after appling=C2=A0getting following errors .</div><div><br></d=
-iv><div>=C2=A0 =C2=A0 =C2=A0 <b>=C2=A0ERRORS :-</b></div><div>=C2=A0 =C2=A0=
- =C2=A0 [INFO]: Context reduced git-am of .kernel-meta//patches//patches/00=
-01_add_line_in_gpsd.patch with &quot;git am&quot; did not work, trying &quo=
-t;apply&quot;.</div>| error: yocto_build/meta-openembedded/meta-oe/recipes-=
-navigation/gpsd/<a href=3D"http://gpsd_3.17.bb">gpsd_3.17.bb</a>: does not =
-exist in index<br>| [ERROR]: Application of .kernel-meta//patches//patches/=
-0001_add_line_in_gpsd.patch failed.<br>| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-Patch needs to be refreshed. Sample resolution script:<br>| =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.git/rebase-apply/resolve_rejects<br>| ER=
-ROR: Could not apply patches for intel-corei7-64.<br>| ERROR: Patch failure=
-s can be resolved in the linux source directory /data/nikhil/inti_dmsv/yoct=
-o_build/build/tmp/work-shared/intel-corei7-64/kernel-source)<br><div><br></=
-div><div>=C2=A0 =C2=A0 =C2=A0<b> douts :-</b></div><div>=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 1) Can we apply a patch to default code means (files in meta=C2=
-=A0 or=C2=A0 files( .bb ) in meta-intel=C2=A0 folder, etc) ? because we are=
- able to apply a patch for kernel code (driver file ) , but for .bb file pa=
-tch appling we are facing issue .</div><div><br></div><div>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 2) how to apply a patch to=C2=A0 default .bb file in meta lay=
-ers ?=C2=A0 can u please tell procedure .</div><div><br></div><div>=C2=A0 =
-=C2=A0 =C2=A0thanks in advance .</div><div><b>=C2=A0 =C2=A0 =C2=A0=C2=A0</b=
-></div></div>
-
---0000000000002403dc05b51b0684--
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> ---
+>  ...cations-remove-non-existent-projects.patch | 30 +++++++++++++++++++
+>  ...ptionally-build-wayland-specific-app.patch | 28 +++++++++++++++++
+>  recipes-graphics/userland/userland_git.bb     |  4 +++
+>  3 files changed, 62 insertions(+)
+>  create mode 100644 recipes-graphics/userland/files/0022-all-host_applications-remove-non-existent-projects.patch
+>  create mode 100644 recipes-graphics/userland/files/0023-hello_pi-optionally-build-wayland-specific-app.patch
+>
+> diff --git a/recipes-graphics/userland/files/0022-all-host_applications-remove-non-existent-projects.patch b/recipes-graphics/userland/files/0022-all-host_applications-remove-non-existent-projects.patch
+> new file mode 100644
+> index 0000000..595eefb
+> --- /dev/null
+> +++ b/recipes-graphics/userland/files/0022-all-host_applications-remove-non-existent-projects.patch
+> @@ -0,0 +1,30 @@
+> +From 451e8458e45926e4e1c0433864ac4cf8b05d792b Mon Sep 17 00:00:00 2001
+> +From: Trevor Woerner <twoerner@gmail.com>
+> +Date: Fri, 27 Nov 2020 03:12:26 -0500
+> +Subject: [PATCH] all host_applications: remove non-existent projects
+> +
+> +The ALL_APPS symbol will optionally build an additional set of projects,
+> +however, several of them don't exist anymore. Remove them from the list of
+> +ALL_APPS.
+> +
+> +Upstream-status: submitted [https://github.com/raspberrypi/userland/pull/661]
+> +Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> +---
+> + host_applications/linux/CMakeLists.txt | 4 ----
+> + 1 file changed, 4 deletions(-)
+> +
+> +diff --git a/host_applications/linux/CMakeLists.txt b/host_applications/linux/CMakeLists.txt
+> +index 928b637..554ae46 100644
+> +--- a/host_applications/linux/CMakeLists.txt
+> ++++ b/host_applications/linux/CMakeLists.txt
+> +@@ -14,10 +14,6 @@ add_subdirectory(apps/dtoverlay)
+> + add_subdirectory(apps/dtmerge)
+> +
+> + if(ALL_APPS)
+> +- add_subdirectory(apps/vcdbg)
+> +- add_subdirectory(libs/elftoolchain)
+> +- # add_subdirectory(apps/smct)
+> +- add_subdirectory(apps/edid_parser)
+> +  add_subdirectory(apps/hello_pi)
+> + endif()
+> +
+> diff --git a/recipes-graphics/userland/files/0023-hello_pi-optionally-build-wayland-specific-app.patch b/recipes-graphics/userland/files/0023-hello_pi-optionally-build-wayland-specific-app.patch
+> new file mode 100644
+> index 0000000..642ee86
+> --- /dev/null
+> +++ b/recipes-graphics/userland/files/0023-hello_pi-optionally-build-wayland-specific-app.patch
+> @@ -0,0 +1,28 @@
+> +From 5f4324a0008c2e8e1f511432f98bf85c9fffd35c Mon Sep 17 00:00:00 2001
+> +From: Trevor Woerner <twoerner@gmail.com>
+> +Date: Fri, 27 Nov 2020 03:18:50 -0500
+> +Subject: [PATCH] hello_pi: optionally build wayland-specific app
+> +
+> +Only build the wayland-specific hello_pi app when building for wayland.
+> +
+> +Upstream-status: inappropriate [the wayland example is not part of upstream]
+> +Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> +---
+> + host_applications/linux/apps/hello_pi/CMakeLists.txt | 4 +++-
+> + 1 file changed, 3 insertions(+), 1 deletion(-)
+> +
+> +diff --git a/host_applications/linux/apps/hello_pi/CMakeLists.txt b/host_applications/linux/apps/hello_pi/CMakeLists.txt
+> +index 2849fad..7de3265 100644
+> +--- a/host_applications/linux/apps/hello_pi/CMakeLists.txt
+> ++++ b/host_applications/linux/apps/hello_pi/CMakeLists.txt
+> +@@ -25,7 +25,9 @@ add_subdirectory(hello_encode)
+> + add_subdirectory(hello_jpeg)
+> + add_subdirectory(hello_videocube)
+> + add_subdirectory(hello_teapot)
+> +-add_subdirectory(hello_wayland)
+> ++if (BUILD_WAYLAND)
+> ++    add_subdirectory(hello_wayland)
+> ++endif()
+> +
+> + if(BUILD_FONT)
+> + set(VGFONT_SRCS libs/vgfont/font.c libs/vgfont/vgft.c libs/vgfont/graphics.c)
+> diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
+> index 1d9dc1e..32aa4a5 100644
+> --- a/recipes-graphics/userland/userland_git.bb
+> +++ b/recipes-graphics/userland/userland_git.bb
+> @@ -42,6 +42,8 @@ SRC_URI = "\
+>      file://0019-libfdt-Undefine-__wordsize-if-already-defined.patch \
+>      file://0020-openmaxil-add-pkg-config-file.patch \
+>      file://0021-cmake-Disable-format-overflow-warning-as-error.patch \
+> +    file://0022-all-host_applications-remove-non-existent-projects.patch \
+> +    file://0023-hello_pi-optionally-build-wayland-specific-app.patch \
+>  "
+>
+>  SRC_URI_remove_toolchain-clang = "file://0021-cmake-Disable-format-overflow-warning-as-error.patch"
+> @@ -52,8 +54,10 @@ inherit cmake pkgconfig
+>
+>  ASNEEDED = ""
+>
+> +ALLAPPS = "${@bb.utils.contains('PACKAGECONFIG', 'allapps', '-DALL_APPS=true', '', d)}"
+>  EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS='-Wl,--no-as-needed' \
+>                   -DVMCS_INSTALL_PREFIX=${exec_prefix} \
+> +                 ${ALLAPPS} \
+>  "
+>
+>  EXTRA_OECMAKE_append_aarch64 = " -DARM64=ON "
+> --
+> 2.28.0.497.g54e85e7af1
+>
+>
+> 
+>
