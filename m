@@ -1,335 +1,197 @@
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
- by mx.groups.io with SMTP id smtpd.web11.14707.1606451823189986257
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by mx.groups.io with SMTP id smtpd.web12.14833.1606451982498193960
  for <yocto@lists.yoctoproject.org>;
- Thu, 26 Nov 2020 20:37:03 -0800
+ Thu, 26 Nov 2020 20:39:42 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: gmail.com, ip: 209.85.221.54, mailfrom: fede.evol@gmail.com)
-Received: by mail-wr1-f54.google.com with SMTP id e7so4221874wrv.6
-        for <yocto@lists.yoctoproject.org>; Thu, 26 Nov 2020 20:37:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gw2MkXQ7GWGG7HNAAJXZM85O4u4Tb+C2IvW96Y3f99E=;
-        b=tKVlF8dKvsyAzWPxDpFBNQ04gvU7DUJMB1g46gw3XtoBZTMkUrpjtCw4y+yKBra7zF
-         VN3irSi11nPKuQaOnk8CnWn5YaSeQGfNhcEe8vWGSgwGnQxLDyAUZyEg0LIzOeycXsJQ
-         UyA9qIZP32x+QnMlVIQ1r7HLgUq7LAAY2IDGdSj1DEsc4TbCsGuWx30bXEcX+MCH6F/1
-         yIFdXNGrtKupSng9AaUVjflgl/R44L5XAqNUqpbLkocNhvIyInAXh/ji19FjQOuCSss+
-         pGJrrh5c5xr9gc+Hv7qCvwB4AlCpJ+U7oM0aRZ4ALyZebHOyZ490dl56SUgqq/gqYQRJ
-         014A==
-X-Gm-Message-State: AOAM531zL0o37sk2BFI2t2+BMqABsTjENqPGkXvVqfCaUAKQUNdXLdDL
-	3m7ULT3V67uhgr3NW+a2WghJKCdtq4KTtrlaWTY=
-X-Google-Smtp-Source: ABdhPJzFZZTzcBhZZRHIqO8HZWvSuZ4FZW0vcbguVutOn0t3U0Tm0zCPo69H+Cx0hyhdPaMxZVogdQbw0ycAYXldL6M=
-X-Received: by 2002:adf:f547:: with SMTP id j7mr7898093wrp.296.1606451821652;
- Thu, 26 Nov 2020 20:37:01 -0800 (PST)
+ dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=X7MPzo/W;
+ spf=pass (domain: intel.com, ip: 134.134.136.126, mailfrom: sangeeta.jain@intel.com)
+IronPort-SDR: PKs4wLb04f+yr4E4CmCNQFZEkwZtxrOEUzt1TydvWM7y9uG4Kq3YMchLcUwlxQWtrYosAzlzAW
+ Nyva83mX/qsw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="160122879"
+X-IronPort-AV: E=Sophos;i="5.78,373,1599548400"; 
+   d="scan'208";a="160122879"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2020 20:39:41 -0800
+IronPort-SDR: lT8VuonhSn8hqXmVSgfW/8vxPZwldsjmnFteoIIIkrzauOnsrk1WhOyyKraQzNk6O+I3cNtAiZ
+ +nsnBot8TCRg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,373,1599548400"; 
+   d="scan'208";a="333556614"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+  by orsmga006.jf.intel.com with ESMTP; 26 Nov 2020 20:39:41 -0800
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 26 Nov 2020 20:39:39 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 26 Nov 2020 20:39:38 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Thu, 26 Nov 2020 20:39:38 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Thu, 26 Nov 2020 20:39:36 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Sch4ObjT5/cKom33lrqe+IkriqDCyU7XemmDL4enylYz+gRZzCva2h6mTHhyY9L7CrsD0Fy46VIIOnzQ3RU374mpzVAxv+9F6WFjYUqg7H4ybaQ/mW+pmJYce900VSXX86gQq2EQGJrXO6ueENV4TvPNwwnBQfPBeKdBUNrPQS3pG/+Z81zcSy1W6alKBLthKDBOwl4sYsUDeEuRKzPXbg2OfAEPdkqcwHPJNAJZfFkevlC/0mGMM72H/BM22yKRBT+D5bkXwTyhwlIvzr132jzbsqSQacbap//n8k+7yAgo3uy9mAX3nm4TBfy/OgaxdOoIchNqVVXFpoU0+gjhOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SHI5B1TTlePIWZZj+2bq2aldRlxXJkXq8jokNG1Mrkk=;
+ b=gMst4M0yKohTpJHYJ+vtm3/GOYAKJZrmu36rkHw4HdJWR1J7LotqrKUlx85HiqYNWzNp6jQ4Gie9vCbG6Y8oKwROcbPxLPDIyYRy6TMP858KtiCYaq1X1+b8+VvYuCUNJtoikbCFAyXtm5EyD9KAAVT9SWfJm0PdLguGY67hCZL5ZFnJCji8CURLSQtNy8dXiCwLMDm4HmBE6RT+7wnbD6RFRzmWsC0U55kCDA1kkpKZ6llrzKV3F+MvesklvqVnEwZxWx62BEywBpPAPzBwYs9xERqxbQ/lZoj3mv2bP0EomVGDD28VF2QSnVnyMXS8tvLx1SClAQgP7EFQjeE77Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SHI5B1TTlePIWZZj+2bq2aldRlxXJkXq8jokNG1Mrkk=;
+ b=X7MPzo/W7xqJ1vje8IjWIKHA5PyJjCNemNW3aMbzUPkuYUD8tsuvK8GkZfuJO9qYSnIqaoQMwI6xvjRHRmQrGmOimyUtVvjKrdAhxv7JBSXwbjGP77+aZwOlQWIJoHFcaLfQPGXGbGKX1wknInEH6/ko0oP9HLTGsBX4gcnanIs=
+Received: from BYAPR11MB3624.namprd11.prod.outlook.com (2603:10b6:a03:b1::33)
+ by SJ0PR11MB5136.namprd11.prod.outlook.com (2603:10b6:a03:2d1::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.20; Fri, 27 Nov
+ 2020 04:39:34 +0000
+Received: from BYAPR11MB3624.namprd11.prod.outlook.com
+ ([fe80::c0d3:471b:c804:8059]) by BYAPR11MB3624.namprd11.prod.outlook.com
+ ([fe80::c0d3:471b:c804:8059%6]) with mapi id 15.20.3589.030; Fri, 27 Nov 2020
+ 04:39:34 +0000
+From: "Sangeeta Jain" <sangeeta.jain@intel.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+CC: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
+	"yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
+	<apoorv.sangal@intel.com>, "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "Chan,
+ Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
+	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
+	"akuster808@gmail.com" <akuster808@gmail.com>, "sjolley.yp.pm@gmail.com"
+	<sjolley.yp.pm@gmail.com>, "steve@sakoman.com" <steve@sakoman.com>
+Subject: Re: QA notification for completed autobuilder build (yocto-3.1.4.rc1)
+Thread-Topic: QA notification for completed autobuilder build
+ (yocto-3.1.4.rc1)
+Thread-Index: AQHWw6qnEFCDcmXBKECEKcZGa+5dhKnbZZtw
+Date: Fri, 27 Nov 2020 04:39:34 +0000
+Message-ID: <BYAPR11MB3624FFF97B58CA217ED5D7F0E3F80@BYAPR11MB3624.namprd11.prod.outlook.com>
+References: <20201126041423.5FD5F86048A@debian10-ty-2.yocto.io>
+In-Reply-To: <20201126041423.5FD5F86048A@debian10-ty-2.yocto.io>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=intel.com;
+x-originating-ip: [42.189.150.218]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5da00625-9a98-4198-d053-08d8928e70b0
+x-ms-traffictypediagnostic: SJ0PR11MB5136:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <SJ0PR11MB5136414E669CAAECC8170D0EE3F80@SJ0PR11MB5136.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: bBNzHQoLNBlrruVrpXHE1G2YjQwrDQdnixL4cFBS8a9zj67UMHXgUY2aQAscjt91a0VELfjmdGa8vGBAYO0dM9p4VEgIz2ZU1DEcyZFbKFudQ0/bNn/lb/o4bo5bI+62k5K4bgUYA86qM1n+Z0dG91CAszoLcWOtxFrDzHOTFFcsQM1kpBOUmRse6qZ2+lcw0KraCj8fhl2lCR3iAAIF9t46iV5gydcPrgT6GDQXtMILbnF0a3rB5h3eHHJs7nx+FHi+PC99BE+lDwMq2Zk0dCUPASrTpxz2XQF98XQMtRLcQFJ9aUYuHbQQ4ClWHMpMX8IJHQNAhyRXUMWs2twdOEhooU4O/RarLMlKzFLwezAnIRQxkL8fTDTS4O4GIfbxVADaGbuNITYorMPTD9m82Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3624.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(366004)(136003)(376002)(396003)(15650500001)(110136005)(316002)(2906002)(54906003)(966005)(33656002)(8936002)(4326008)(26005)(66446008)(66476007)(66556008)(52536014)(66946007)(55016002)(8676002)(6506007)(76116006)(7696005)(53546011)(186003)(478600001)(71200400001)(83380400001)(5660300002)(64756008)(9686003)(86362001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?LruJ4C55xDNea4pP2H5J6wM0lo5KZW5hBj2V4fV6ONPlemG1QNzNggAMedR8?=
+ =?us-ascii?Q?W/6dGql4feJTxF700jVigCH2ekUkzqev/qK56GvJV/2x2k+MDfElBTyupZnM?=
+ =?us-ascii?Q?AG5EX+IrYcMn3CPqs7GEuHSpe9uzHGdi5xCWZf20W2qqMlxPRHjNTnRg36fP?=
+ =?us-ascii?Q?LI8gQSoeT08FvU78wrM4+BY28d6sK7jyQ/tvg/Gl4VWejyqyl/L9+kKaXQ77?=
+ =?us-ascii?Q?+wo8O6x42u930JPRZiCZkh5cI+cTdYO6ugg3Vbuc7QNizpjVH8lOmuEk1TfU?=
+ =?us-ascii?Q?eHt/GqHN4f8bP1jQZBBJEKYC4LNxlUmTQsiHtwSNnHSglCqHjxjDqiFAjpS6?=
+ =?us-ascii?Q?KqoyarBpxhDUlTgDB88eq1sHF5orpkqpViHIjN+LE3eDJZSQ/jYE4rhoKvmf?=
+ =?us-ascii?Q?a1hLZW2K5mOHEEi8tq2bXJ+7DXp7R7ta95KLtHypkre//kjEVYkQ49ApekHs?=
+ =?us-ascii?Q?ZLRfOdmdBIueJKRaudQrFshupi9jIL0eFYTxJ5V9b0WUvYpLGmaTKDnoWL1n?=
+ =?us-ascii?Q?G1mdIZPq+evpSozsgWbSolheXg0txwEle43BMjg+06nL8JqjYm2Kcrsz2mgn?=
+ =?us-ascii?Q?NtRUyUF414V2GWQ6CRd6v7kUKe28xjgQPx3yW1ei3J7eLI/XQb7RUFo5Aqge?=
+ =?us-ascii?Q?8ZoishCYqed5S+3NyQDA8dKWu5AP8S8gAk1D1tmvRONeorWttOoH7Cf7QseT?=
+ =?us-ascii?Q?MDR8rAoqLbLUZS3V1bMfO8cieldOaDTTTTZ0jl6ZuvzuOHQu3sPy9vq9DYoc?=
+ =?us-ascii?Q?+eXOa0oqqTcD5wijWkcaRJ++nLdkn0MijK/tfzDgx5UxSIrHOAR7OmFqDAgK?=
+ =?us-ascii?Q?TBVcmsZGtp/p2njT55Jmp8JYMi044iXDzpTd7n2POi76V1V9Vlpwtxnn1AI7?=
+ =?us-ascii?Q?SZz9G4/iNvgVZuooFIjxBWj7h9ywRwGd0PdvpWo0wUszYSi0wy3VgNvSkEKH?=
+ =?us-ascii?Q?UtYCaezu2maBbwHR3dpquOi9CBFTw//iEkhg9sCEehA=3D?=
 MIME-Version: 1.0
-References: <080574f8-ae94-3283-0653-631dc7563b49@dajac.com>
- <5a531881d6504e5880577ce692b1d35b@Exchange.sewerin.de> <CAMKF1srJDjkhA=DqP_mv34E=tG7=JbTSQ6DgAodxhagujXxGxA@mail.gmail.com>
- <CAM6O0ZhMt1dYSmzZh-GO0ZgpCSf0aMuDzHJE7EtVTd9xGzZKdw@mail.gmail.com> <d20848e0-1945-fc6c-d55b-d38c024a9757@dajac.com>
-In-Reply-To: <d20848e0-1945-fc6c-d55b-d38c024a9757@dajac.com>
-From: "Federico Pellegrin" <fede@evolware.org>
-Date: Fri, 27 Nov 2020 05:36:50 +0100
-Message-ID: <CAM6O0Zg4XsB0MJQEVR4qF9t+2szfdqG3kJqJi8BFmvLGC5Uu0g@mail.gmail.com>
-Subject: Re: [yocto] U-Boot sama5d3 xplained issue
-To: David Novak <david.novak@dajac.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000002dadc805b50f368f"
-
---0000000000002dadc805b50f368f
-Content-Type: text/plain; charset="UTF-8"
-
-Hi David,
-If you change it directly, changes may not be taken into account for the
-rebuild. And if the package build gets retriggered, then the whole
-repository is deleted (including your local changes), redownloaded,
-repatched and so on. So while it may by chance work by modifying locally in
-certain conditions, it will most likely not.
-
-I would see two ways:
-1) Create a patch that does your changes and add it to the recipe (most
-likely now in a custom layer) as a patch
-2) Fork the repository, add all your customizations there, and point the
-recipe (again most likely now in a custom layer) to that one.
-
-Cheers,
-F.
-
-
-
-Il giorno ven 27 nov 2020 alle ore 01:35 David Novak <david.novak@dajac.com>
-ha scritto:
-
-> We changed the file directly.
->
-> Since it's a custom file, I don't think it is being downloaded. What is
-> the easiest way to determine if it's being downloaded?
->
-> Thanks,
-> David
->
->
->
-> On 11/23/2020 2:16 AM, Federico Pellegrin wrote:
->
->
-> Hi,
-> I think it would be interesting information to know "how" you change the
-> value inside "u-boot-at91/sama5d3_xplained_nandflash_config".
->
-> As every time you rebuild it may be redownloaded, you should do this via a
-> patch to append to the recipe.
->
-> Are you doing this? Or just changing it locally?
->
-> If you give some more info probably we can better help!
->
-> Cheers,
-> Federico
->
-> Il giorno lun 23 nov 2020 alle ore 08:06 Khem Raj <raj.khem@gmail.com> ha
-> scritto:
->
->> perhaps asking it on https://github.com/linux4sam/u-boot-at91 via
->> github issues might be helpful too.
->>
->> On Sat, Nov 21, 2020 at 4:26 AM David Novak <david.novak@dajac.com>
->> wrote:
->> >
->> > I'm working on this project with Pratham. Let me provide a few more
->> details.
->> >
->> > We've defined
->> >
->> > UBOOT_MACHINE ?= "sama5d3_xplained_nandflash_config"
->> >
->> > Inside
->> >
->> > u-boot-at91/sama5d3_xplained_nandflash_config
->> >
->> > we change CONFIG_BOOTDELAY, but it has no effect on the newly built
->> image. The boot delay remains the same as it was before we changed it.
->> >
->> > Based on the UBOOT_MACHINE, can we be certain we are changing the
->> correct file?
->> >
->> > How do we get the build process to include our changes?
->> >
->> > Thanks,
->> > David
->> >
->> >
->> >
->> > On 11/19/2020 5:37 PM, Prathamesh Ovalekar wrote:
->> >
->> > Hello everyone,
->> >
->> > System: sama5d3_xplained board
->> >
->> > I have a question regarding the configuration and build of u-boot.
->> > We have a build that was implemented earlier. I am trying to make some
->> changes to it.
->> >
->> > Change 1: Change the auto boot delay to 1 second.
->> > Change 2: Add an auto boot command to set a gpio.
->> >
->> > I am aware of the environment variables:  CONFIG_BOOTDELAY and
->> CONFIG_BOOTCOMMAND (needed for the changes above.)
->> > I tried modifying the  " configs/sama5d3_xplained_nandflash_defconfig "
->> >
->> > Question 1: Do I need to create an *.config file using the make
->> menuconfig?
->> >
->> > Question 2: How do I create the u-boot.bin . Does this  depend on the
->> Linux build?
->> >                     I know that there is an environment variable:
->> CONFIG_BOOTARGS that needs to be populated.
->> >
->> > --
->> > Pratham Ovalekar
->> >
->> >
->> >
->> >
->> >
->> >
->> >
->>
->>
->>
->>
->
-> 
->
->
-
---0000000000002dadc805b50f368f
-Content-Type: text/html; charset="UTF-8"
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3624.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5da00625-9a98-4198-d053-08d8928e70b0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Nov 2020 04:39:34.5642
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: gSG0ROG60ykWX8Q3ecY2uWM3UfKTUYubXStL82tPRAfVoNxGnCJK7qOyO7yWcTGVnKssRMFx6dS1C6wUoTEOjA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5136
+Return-Path: sangeeta.jain@intel.com
+X-OriginatorOrg: intel.com
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><br></div><div>Hi David,</div><div>If you change it d=
-irectly, changes may not be taken into account for the rebuild. And if the =
-package build gets retriggered, then the whole repository is deleted (inclu=
-ding your local changes), redownloaded, repatched and so on. So while it ma=
-y by chance work by modifying locally in certain conditions, it will most l=
-ikely not.</div><div><br></div><div>I would see two ways:</div><div>1) Crea=
-te a patch that does your changes and add it to the recipe (most likely now=
- in a custom layer) as a patch</div><div>2) Fork the repository, add all yo=
-ur customizations there, and point the recipe (again most likely now in a c=
-ustom layer) to that one.</div><div><br></div><div>Cheers,</div><div>F.</di=
-v><div><br></div><div><br></div></div><br><div class=3D"gmail_quote"><div d=
-ir=3D"ltr" class=3D"gmail_attr">Il giorno ven 27 nov 2020 alle ore 01:35 Da=
-vid Novak &lt;<a href=3D"mailto:david.novak@dajac.com">david.novak@dajac.co=
-m</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex">
-  
-    
-  
-  <div>
-    <p><span style=3D"font-style:italic;font-size:6pt"></span>We
-      changed the file directly.</p>
-    <p>Since it&#39;s a custom file, I don&#39;t think it is being downloa=
-ded.
-      What is the easiest way to determine if it&#39;s being downloaded?</=
-p>
-    <p>Thanks,<br>
-      David<br>
-    </p>
-    <div><br>
-      <br>
-      <br>
-    </div>
-    <div>On 11/23/2020 2:16 AM, Federico
-      Pellegrin wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      
-      <div dir=3D"ltr">
-        <div><br>
-        </div>
-        <div>Hi,</div>
-        <div>I think it would be interesting information to know &quot;how=
-&quot;
-          you change the value inside
-          &quot;u-boot-at91/sama5d3_xplained_nandflash_config&quot;.</div>
-        <div><br>
-        </div>
-        <div>As every time you rebuild it may be redownloaded, you
-          should do this via a patch to append to the recipe. <br>
-        </div>
-        <div><br>
-        </div>
-        <div>Are you doing this? Or just changing it locally?</div>
-        <div><br>
-        </div>
-        <div>If you give some more info probably we can better help!<br>
-        </div>
-        <div><br>
-        </div>
-        <div>Cheers,</div>
-        <div>Federico<br>
-        </div>
-      </div>
-      <br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">Il giorno lun 23 nov 2020 al=
-le
-          ore 08:06 Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" tar=
-get=3D"_blank">raj.khem@gmail.com</a>&gt; ha
-          scritto:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex">perhaps
-          asking it on <a href=3D"https://github.com/linux4sam/u-boot-at91=
-" rel=3D"noreferrer" target=3D"_blank">https://github.com/linux4sam/u-boot-=
-at91</a>
-          via<br>
-          github issues might be helpful too.<br>
-          <br>
-          On Sat, Nov 21, 2020 at 4:26 AM David Novak &lt;<a href=3D"mailt=
-o:david.novak@dajac.com" target=3D"_blank">david.novak@dajac.com</a>&gt; wr=
-ote:<br>
-          &gt;<br>
-          &gt; I&#39;m working on this project with Pratham. Let me provid=
-e
-          a few more details.<br>
-          &gt;<br>
-          &gt; We&#39;ve defined<br>
-          &gt;<br>
-          &gt; UBOOT_MACHINE ?=3D &quot;sama5d3_xplained_nandflash_config&=
-quot;<br>
-          &gt;<br>
-          &gt; Inside<br>
-          &gt;<br>
-          &gt; u-boot-at91/sama5d3_xplained_nandflash_config<br>
-          &gt;<br>
-          &gt; we change CONFIG_BOOTDELAY, but it has no effect on the
-          newly built image. The boot delay remains the same as it was
-          before we changed it.<br>
-          &gt;<br>
-          &gt; Based on the UBOOT_MACHINE, can we be certain we are
-          changing the correct file?<br>
-          &gt;<br>
-          &gt; How do we get the build process to include our changes?<br>
-          &gt;<br>
-          &gt; Thanks,<br>
-          &gt; David<br>
-          &gt;<br>
-          &gt;<br>
-          &gt;<br>
-          &gt; On 11/19/2020 5:37 PM, Prathamesh Ovalekar wrote:<br>
-          &gt;<br>
-          &gt; Hello everyone,<br>
-          &gt;<br>
-          &gt; System: sama5d3_xplained board<br>
-          &gt;<br>
-          &gt; I have a question regarding the configuration and build
-          of u-boot.<br>
-          &gt; We have a build that was implemented earlier. I am trying
-          to make some changes to it.<br>
-          &gt;<br>
-          &gt; Change 1: Change the auto boot delay to 1 second.<br>
-          &gt; Change 2: Add an auto boot command to set a gpio.<br>
-          &gt;<br>
-          &gt; I am aware of the environment variables:=C2=A0
-          CONFIG_BOOTDELAY and CONFIG_BOOTCOMMAND (needed for the
-          changes above.)<br>
-          &gt; I tried modifying the=C2=A0 &quot;
-          configs/sama5d3_xplained_nandflash_defconfig &quot;<br>
-          &gt;<br>
-          &gt; Question 1: Do I need to create an *.config file using
-          the make menuconfig?<br>
-          &gt;<br>
-          &gt; Question 2: How do I create the u-boot.bin . Does this=C2=
-=A0
-          depend on the Linux build?<br>
-          &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0I know that there is an environment
-          variable: CONFIG_BOOTARGS that needs to be populated.<br>
-          &gt;<br>
-          &gt; --<br>
-          &gt; Pratham Ovalekar<br>
-          &gt;<br>
-          &gt;<br>
-          &gt;<br>
-          &gt;<br>
-          &gt;<br>
-          &gt; <br>
-          &gt;<br>
-          <br>
-          <br>
-          <br>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset></fieldset>
-      <pre></pre>
-    </blockquote>
-  </div>
+Hi all,
 
-<br>
-<br>
-<br>
-</blockquote></div>
+Intel and WR YP QA is planning for QA execution for YP build yocto-3.1.4.rc=
+1 We are planning to execute following tests for this cycle:
 
---0000000000002dadc805b50f368f--
+OEQA-manual tests for following module:
+1. OE-Core
+2. BSP-hw
+
+Runtime auto test for following platforms:
+1. MinnowTurbot 32-bit
+2. Coffee Lake
+3. NUC 7
+4. NUC 6
+5. Edgerouter
+6. Beaglebone
+
+ETA for completion is next Tuesday, December 01.
+
+Thanks,
+Sangeeta
+
+> -----Original Message-----
+> From: Pokybuild User <pokybuild@debian10-ty-2.yocto.io>
+> Sent: Thursday, 26 November, 2020 12:14 PM
+> To: yocto@lists.yoctoproject.org
+> Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv
+> <apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>;
+> Chan, Aaron Chun Yew <aaron.chun.yew.chan@intel.com>;
+> richard.purdie@linuxfoundation.org; akuster808@gmail.com;
+> sjolley.yp.pm@gmail.com; Jain, Sangeeta <sangeeta.jain@intel.com>;
+> steve@sakoman.com
+> Subject: QA notification for completed autobuilder build (yocto-3.1.4.rc1=
+)
+>=20
+>=20
+> A build flagged for QA (yocto-3.1.4.rc1) was completed on the autobuilder
+> and is available at:
+>=20
+>=20
+>     https://autobuilder.yocto.io/pub/releases/yocto-3.1.4.rc1
+>=20
+>=20
+> Build hash information:
+>=20
+> bitbake: 89fc9450abefd682266efcbfa031d1ef115ff1a7
+> meta-arm: e18ee052f75da60655fb434ff24a463a8fb36781
+> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
+> meta-intel: 541c7256c1b6acba35d1116a1483b6594d189e3a
+> meta-kernel: f9d30c65d08c9cef20d6487a7aff0fff40acc823
+> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
+> oecore: b885888df67eb5cdb3b82f4f0a07369a449e223b
+> poky: 424296bf9bb4bae27febf91bce0118df09ce5fa1
+>=20
+>=20
+>=20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>=20
+>=20
+>=20
