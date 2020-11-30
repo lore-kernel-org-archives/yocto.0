@@ -1,87 +1,87 @@
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
- by mx.groups.io with SMTP id smtpd.web08.50451.1606682256099820307
+Received: from mail-yb1-f196.google.com (mail-yb1-f196.google.com [209.85.219.196])
+ by mx.groups.io with SMTP id smtpd.web12.62161.1606753113729731217
  for <yocto@lists.yoctoproject.org>;
- Sun, 29 Nov 2020 12:37:36 -0800
+ Mon, 30 Nov 2020 08:18:34 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=tr/nglzZ;
- spf=pass (domain: gmail.com, ip: 209.85.219.180, mailfrom: alessioigorbogani@gmail.com)
-Received: by mail-yb1-f180.google.com with SMTP id e81so9574329ybc.1
-        for <yocto@lists.yoctoproject.org>; Sun, 29 Nov 2020 12:37:35 -0800 (PST)
+ dkim=pass header.i=@gherzan.ro header.s=google header.b=YOhojvX/;
+ spf=none, err=SPF record not found (domain: gherzan.ro, ip: 209.85.219.196, mailfrom: andrei@gherzan.ro)
+Received: by mail-yb1-f196.google.com with SMTP id x2so7923240ybt.11
+        for <yocto@lists.yoctoproject.org>; Mon, 30 Nov 2020 08:18:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=CCA+zsC3YnKe3AGZZ5gIvrljabJUDBi59C3d+i57Ifs=;
-        b=tr/nglzZF6WRYBwgq+NTDe4V+cwy13fNpthiiblMRyxDJ6XxQHZLTaCkYNoiyZMmDP
-         rucjng9KRAzWB70uc1nAvtzbKgBJ8AJzurNgpIBa43hVw/2lBCVW6WjfzUMs6B7W0JCX
-         DRCyIViddpApJmvyPNYC7rbSUrByu5KqmP6yKBzuLe7wa6y03ULsWP+4oWWUCLP6bU+8
-         0GOKoMM36mlUyaxl0xLuCjk7wO7pv9J6mvrdc79g8H4PqGhK4/2/fHWLanyoO5D3tr7I
-         mO3vD2vVmFprl9SdH0Xm1Dbf8921GoGECiL+Ilqch1jF8RvYWTk9Lk/qo3IW0FDxSpMe
-         K4Uw==
+        d=gherzan.ro; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/dTkU3sqwUl8deyTCNLPMw86OKDaXIYinDtySd/uFa8=;
+        b=YOhojvX/jinh7NmqNlSDEIWGS6S4fbfwa12IcWdNk6ExcXYQFuO7N0oZCa5dn8Yxsp
+         LypONEcAA7p3NfiGzpaXpa57cTGBMojE9IFsziMm1fTihx3B54TnXOSUt1amkveOEIj+
+         WH3tIFEs3agGMZoFE47As+KB/sYMlWPfcPad4Kh+hPcJ/slqhLaxfx9Tof5ALrHHFED5
+         571DSiNUdkRp4c7xlTngHjxngDjwVchDzzRHuNoBoN8L1DqoJOlB22PytPftX/dJJDCk
+         ENwr4IQU5AVcmMo99r2Z0wdFAwzQ6T1cDpY7bYEI9t4nrB/OjvT4pUiqN+nU8Pxb4Ajo
+         bxgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=CCA+zsC3YnKe3AGZZ5gIvrljabJUDBi59C3d+i57Ifs=;
-        b=U2v+dYgNvGOy/spY6vXZsu+IpMd/alA1b4IhCNUxgluMFpLEkG7OcylZjqBPtNsGxM
-         1ItUiCVMvhP9Z0WBLE3ZUApi3ILw5batLGT4iLtR9BeZijUX7AL6j0TMcWZ9lkmNtMdO
-         PK1P1gAciawSkAG1qujJ6jrMcIH9QgfM61jc5cOuN7KRT9Yif6S/U6QRbnkVmCXgNCQ1
-         YMJpOdOabmafnmv2e4WBDS5mTMZX44E4zIDmH45lFQ7SO+2+s1LaeirzWwxyBNuYExoo
-         nuhbYG4eTjcWiB32dUVLPyxD0vPKtySw6yCFWwvdU4YpPQPqaL7ME9C+q2Bxt9DLznfV
-         O5bA==
-X-Gm-Message-State: AOAM532mxwyvjjCyfZgpTEzrc1tNRga+Om9CwGeRXmS72fv1NiD6/Pr+
-	YYJmT8/N7CdPJAPhwsXGUy0cVjMWbU2UgJjAbbt8CKJJfbM=
-X-Google-Smtp-Source: ABdhPJzbGuBahGZHHWToCfixq7EI15s3Us71cHzWo6Pq2wi8vD54cawFpT1Y901yZ5gppvWuvJk6yNd6tAoeXffNe1Q=
-X-Received: by 2002:a25:bc02:: with SMTP id i2mr25123471ybh.478.1606682255029;
- Sun, 29 Nov 2020 12:37:35 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/dTkU3sqwUl8deyTCNLPMw86OKDaXIYinDtySd/uFa8=;
+        b=BrmOoZcO528bOUsgSv0e2BH9jc2Gt7Gs9tdMoqGc2dp+oiI3l+iBAgTfzIzvDXl9Yd
+         aD7LS9pde92OcJZjEgFfnDEnSZ1TIVjZloQbsfaB2ESZA/HDUnLP6sH0zRG0S0XlEkw4
+         3wEeTn3KDlY7VEKzkAg9EZsoKYJ3BR6poH8HPh9/oIKChfsIaUMuxnR5/8Z6QkDPvszS
+         BxuBgkkwoKJJa6CA4vhIfE+jlDJRK2b5xz6B2/y3dY2ZocYhG354t2w6IXsWWP1RMsjV
+         egTYO7ynhcpz8SyMELr0b7U9YQrH3FKzUWqi0MM6vDyouejjOtTZtB3822RlPQFVpbLo
+         IbGQ==
+X-Gm-Message-State: AOAM5317faYdm17r4poK8kUzHlBT85Muz9XwGDEehqncr5uv+FB+JIjo
+	YuPAt85KDroLlJ7S9/Ql2CiRNqcBJqNfQzTeUMUApw==
+X-Google-Smtp-Source: ABdhPJw/piOzKUxuvMu57lETBhBZWw4ODWnqI1phmtSQspI5PfgAlUMjHDlFuzvHVDLjGoCBF+aYOpjSrth2/Yt5ttA=
+X-Received: by 2002:a5b:74f:: with SMTP id s15mr30160093ybq.11.1606753112417;
+ Mon, 30 Nov 2020 08:18:32 -0800 (PST)
 MIME-Version: 1.0
-From: "Alessio Igor Bogani" <alessioigorbogani@gmail.com>
-Date: Sun, 29 Nov 2020 21:36:59 +0100
-Message-ID: <CAPk1OjHmB_d8byt6yPp2YEKGERyjBk449KYXYKX=6M-ArndEqQ@mail.gmail.com>
-Subject: Include a clpru compiler in the SDK
-To: yocto@lists.yoctoproject.org
+References: <20201127101637.25274-1-twoerner@gmail.com>
+In-Reply-To: <20201127101637.25274-1-twoerner@gmail.com>
+From: "Andrei Gherzan" <andrei@gherzan.ro>
+Date: Mon, 30 Nov 2020 16:17:56 +0000
+Message-ID: <CAK18fxFbG=y13eBAhVKkboqXAWot4iCMbQgV-nrODH=86V28MQ@mail.gmail.com>
+Subject: Re: [yocto] [meta-raspberrypi][PATCH] userland: add knob for ALL_APPS
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000081fd9905b5555c08"
+
+--00000000000081fd9905b5555c08
 Content-Type: text/plain; charset="UTF-8"
 
-Hi all,
+Hi,
 
-I would like produce an SDK for the my image which includes the clpru
-compiler  (a closed-source compiler made available by meta-ti) for the
-PRUSS (an MCU embedded in the TI Sitara CPUs) so I have added in my
-image's recipe:
-TOOLCHAIN_HOST_TASK_append += "nativesdk-ti-cgt-pru"
-Unfortunately it doesn't work:
-[...]
-Error:
-Problem: conflicting requests
-- nothing provides libpthread.so.0 needed by
-nativesdk-ti-cgt-pru-2.3.2-r0.x86_64_nativesdk
-- nothing provides libdl.so.2 needed by
-nativesdk-ti-cgt-pru-2.3.2-r0.x86_64_nativesdk
-- nothing provides libm.so.6 needed by
-nativesdk-ti-cgt-pru-2.3.2-r0.x86_64_nativesdk
-- nothing provides libc.so.6(GLIBC_2.3) needed by
-nativesdk-ti-cgt-pru-2.3.2-r0.x86_64_nativesdk
-- nothing provides libdl.so.2(GLIBC_2.0) needed by
-nativesdk-ti-cgt-pru-2.3.2-r0.x86_64_nativesdk
-- nothing provides libdl.so.2(GLIBC_2.1) needed by
-nativesdk-ti-cgt-pru-2.3.2-r0.x86_64_nativesdk
-- nothing provides libm.so.6(GLIBC_2.0) needed by
-nativesdk-ti-cgt-pru-2.3.2-r0.x86_64_nativesdk
-- nothing provides libpthread.so.0(GLIBC_2.0) needed by
-nativesdk-ti-cgt-pru-2.3.2-r0.x86_64_nativesdk
-- nothing provides libpthread.so.0(GLIBC_2.1) needed by
-nativesdk-ti-cgt-pru-2.3.2-r0.x86_64_nativesdk
-- nothing provides libpthread.so.0(GLIBC_2.2) needed by
-nativesdk-ti-cgt-pru-2.3.2-r0.x86_64_nativesdk
-- nothing provides libpthread.so.0(GLIBC_2.2.3) needed by
-nativesdk-ti-cgt-pru-2.3.2-r0.x86_64_nativesdk
-- nothing provides libpthread.so.0(GLIBC_2.3.2) needed by
-nativesdk-ti-cgt-pru-2.3.2-r0.x86_64_nativesdk
-(try to add '--skip-broken' to skip uninstallable packages or
-'--nobest' to use not only best candidate packages)
+On Fri, Nov 27, 2020 at 10:16 AM Trevor Woerner <twoerner@gmail.com> wrote:
 
-Please consider that the ti-cgt-pru-native works without any flaws.
-What have I made wrong? What can I do to make it works?
+> The userland sources include a bunch of sample applications. Add an
+> "allapps"
+> PACKAGECONFIG to allow the user to build the additional optional
+> applications.
+>
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+>
 
-Thank you!
+Merged to master. Thanks, Trevor.
 
-Ciao,
-Alessio
+---
+Andrei
+
+--00000000000081fd9905b5555c08
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,<br></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Fri, Nov 27, 2020 at 10:16 AM Trevor Woern=
+er &lt;<a href=3D"mailto:twoerner@gmail.com">twoerner@gmail.com</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">The userland=
+ sources include a bunch of sample applications. Add an &quot;allapps&quot;=
+<br>
+PACKAGECONFIG to allow the user to build the additional optional applicatio=
+ns.<br>
+<br>
+Signed-off-by: Trevor Woerner &lt;<a href=3D"mailto:twoerner@gmail.com" tar=
+get=3D"_blank">twoerner@gmail.com</a>&gt;<br></blockquote><div><br></div><d=
+iv>Merged to master. Thanks, Trevor.</div><div><br></div><div>---</div><div=
+>Andrei<br></div></div></div>
+
+--00000000000081fd9905b5555c08--
