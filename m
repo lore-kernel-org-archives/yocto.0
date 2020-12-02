@@ -1,102 +1,154 @@
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
- by mx.groups.io with SMTP id smtpd.web11.2930.1606904553824616522
- for <yocto@lists.yoctoproject.org>;
- Wed, 02 Dec 2020 02:22:34 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=bDgK5rba;
- spf=pass (domain: gmail.com, ip: 209.85.208.50, mailfrom: martin.jansa@gmail.com)
-Received: by mail-ed1-f50.google.com with SMTP id cm17so3111927edb.4
-        for <yocto@lists.yoctoproject.org>; Wed, 02 Dec 2020 02:22:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5HcYkWqpJfDfxrUPtBD59xTWhyjOv4cpxN7siaoI1j0=;
-        b=bDgK5rbaLkyEbsLRyUDjhyf/MkVeFSp3ntsPfI7vRW9Pc8RJByOEqrxJM4G6WHVHKL
-         uSXT35EscDAW61OjcJQTOQ4/9YP2ll5x4O7CowFbechy5T4wceRkNk5+hDjWzSl015ur
-         p9p6yii4L/vjtaT2oEi/WnInWojL+mdeSgNzgL7uItgmaZ1ABKRS39NOnqo7P7I6rgeV
-         UKSeY5/g7cEJPMgkH/bSnRuiuzfGguuyUTjdVc+IFMGDrGANTBGkObaK7VFHm6E/r6zb
-         UmQWFr+OxVcMv1r72ReBUaJ2SQE0upC9dEUKYX3DQkT9qGG1SMqy6pm9SbVaIasD/0F0
-         XscA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5HcYkWqpJfDfxrUPtBD59xTWhyjOv4cpxN7siaoI1j0=;
-        b=E974J3I09rFqH42pEJUI7OYa28JcG3o5IOGEUcY/OSXeUYBl4H8qgJZN625dCi0za4
-         AyayxkQVEcDdshCRUoP18VM3FL8D/wWX7awEuT4MaFX0o+ZzOBIMOPiBo4Q6kEEMsvr+
-         4whnw/gNF+vqFZdjcUal7Enx3JgNJAe6HNp/vHJt1fGov2a0kfGR8uA5qWkY/PKcpLHO
-         y4xXSjyVxKp/CF1IDTfhNh5eQe8sAI6JnISqprQXQZaF+3dmnI6/2AstssHP7+ZEfmPF
-         UjEQZZlsU94Zwr6Hk11rSggoG0jJRkfNIIgaExtL9EZoxEXqCeFHAdNigzOt49pJU1K8
-         nbyw==
-X-Gm-Message-State: AOAM532CfBrBwzA5jeoFKbvrkEFzm0pDmw+LiC9mMKKqtklR+10YxDW1
-	GyL5W9xgYIjqkLMqPFkkvLV8TIUHpY856C6OXR4=
-X-Google-Smtp-Source: ABdhPJyntlttz1OszjDFurzebEtkvgDJ34zFyRqyIHNUyTJUKxFJ42mqiAwyaZ/K461z71ChedfndfVs7ibb26O9ynw=
-X-Received: by 2002:a50:e882:: with SMTP id f2mr1839401edn.76.1606904552251;
- Wed, 02 Dec 2020 02:22:32 -0800 (PST)
+Subject: Re: How to write custom recipe to install AWS C SDK from github #dunfell #linux #yocto
+To: yocto@lists.yoctoproject.org
+From: vijayrakeshmunganda@gmail.com
+X-Originating-Location: Bengaluru, Karnataka, IN (106.206.71.210)
+X-Originating-Platform: iPhone Safari 14
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <Y4vX.1606881802943243582.z729@lists.yoctoproject.org>
-In-Reply-To: <Y4vX.1606881802943243582.z729@lists.yoctoproject.org>
-From: "Martin Jansa" <Martin.Jansa@gmail.com>
-Date: Wed, 2 Dec 2020 11:22:21 +0100
-Message-ID: <CA+chaQdK+Uj9x+pmfCFNA4UaEzgCLYXsM6kt0F7hy3481vmnrw@mail.gmail.com>
-Subject: Re: [yocto] qt5 directory not creating using qt5.15.0 master branch
-To: sateesh m <sateesh0457@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000006681a05b5789f39"
+Date: Wed, 02 Dec 2020 03:27:51 -0800
+References: <20201202101932.bzer6ox4irlzwx4v@qschulz>
+In-Reply-To: <20201202101932.bzer6ox4irlzwx4v@qschulz>
+Message-ID: <22091.1606908471186397827@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="CYvNbb6t2wvFFDuUUIXt"
 
---00000000000006681a05b5789f39
-Content-Type: text/plain; charset="UTF-8"
-
-See QT_DIR_NAME variable in meta-qt5
-and b716195f609de6547cfdfadfd4fd25292a6bbf09 commit which changed the
-default value.
-
-On Wed, Dec 2, 2020 at 5:03 AM sateesh m <sateesh0457@gmail.com> wrote:
-
-> Hi Guys,
->
->               I am trying to build qt support image to  my yocto .I am
-> using meta-qt5 master sources,after build its not creating qt5 directory
-> path in the /usr/lib path as well as /usr/share/path but . but when i build
-> x86 its created
-> x86 i got :
->     $ /usr/share/qt5$ ls
->     $usr/lib/qt5/bin$ ls
->
->
-> can you please help me if anyone knows this issue.
->
-> thanks in advance.
->
-> Regards,
-> Sateesh
->
-> 
->
->
-
---00000000000006681a05b5789f39
-Content-Type: text/html; charset="UTF-8"
+--CYvNbb6t2wvFFDuUUIXt
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">See=C2=A0QT_DIR_NAME variable in meta-qt5 and=C2=A0b716195=
-f609de6547cfdfadfd4fd25292a6bbf09 commit which changed the default value.</=
-div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Wed, Dec 2, 2020 at 5:03 AM sateesh m &lt;<a href=3D"mailto:sateesh0457@gm=
-ail.com">sateesh0457@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D=
-"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
-04,204,204);padding-left:1ex">Hi Guys,<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 I am trying to build qt support image to=C2=A0 my yoc=
-to .I am using meta-qt5 master sources,after build its not creating qt5 dir=
-ectory path in the /usr/lib path as well as /usr/share/path but . but when =
-i build x86 its created=C2=A0<br>x86 i got :<br>=C2=A0 =C2=A0 $=C2=A0/usr/s=
-hare/qt5$ ls<br>=C2=A0 =C2=A0 $usr/lib/qt5/bin$ ls
-<div><br><br>can you please help me if anyone knows this issue.<br><br>tha=
-nks in advance.<br><br>Regards,<br>Sateesh</div>
-<br>
-<br>
-<br>
-</blockquote></div>
+Hi Quentin Schulz,
 
---00000000000006681a05b5789f39--
+Thanks for the reply. I had downloaded the SDK into "files" folder of my r=
+ecipe and given CMakeLists.txt as SRCURI. Is it correct to do like this?
+
+Here is the Error: (It's a long error)
+
+ERROR: aws-1.0-r0 do_configure: Execution of '/home/bl-docker/rity/bsp/tmp=
+/work/aarch64-poky-linux/aws/1.0-r0/temp/run.do_configure.28296' failed wit=
+h exit code 1:
+-- The C compiler identification is GNU 9.3.0
+-- Check for working C compiler: /home/bl-docker/rity/bsp/tmp/work/aarch64=
+-poky-linux/aws/1.0-r0/recipe-sysroot-native/usr/bin/aarch64-poky-linux/aar=
+ch64-poky-linux-gcc
+-- Check for working C compiler: /home/bl-docker/rity/bsp/tmp/work/aarch64=
+-poky-linux/aws/1.0-r0/recipe-sysroot-native/usr/bin/aarch64-poky-linux/aar=
+ch64-poky-linux-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Found OpenSSL: /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws=
+/1.0-r0/recipe-sysroot-native/usr/lib/libcrypto.so (found version "1.1.1g")
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE
+Downloading the Amazon Root CA certificate...
+% Total=C2=A0 =C2=A0 % Received % Xferd=C2=A0 Average Speed=C2=A0 =C2=A0Ti=
+me=C2=A0 =C2=A0 Time=C2=A0 =C2=A0 =C2=A0Time=C2=A0 Current
+Download =C2=A0Upload=C2=A0 =C2=A0Total=C2=A0 =C2=A0Spent=C2=A0 =C2=A0 Lef=
+t=C2=A0 Speed
+0=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 0=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 0=
+=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A0 0=C2=A0 =C2=A0 =C2=A0 0 --:--:--=
+ --:--:-- --:--:--=C2=A0 =C2=A0 =C2=A00
+curl: (77) error setting certificate verify locations:
+CAfile: /home/bl-docker/rity/bsp/tmp/work/x86_64-linux/curl-native/7.69.1-=
+r0/recipe-sysroot-native/etc/ssl/certs/ca-certificates.crt
+CApath: none
+Downloading the Baltimore Cybertrust Root CA certificate...
+% Total=C2=A0 =C2=A0 % Received % Xferd=C2=A0 Average Speed=C2=A0 =C2=A0Ti=
+me=C2=A0 =C2=A0 Time=C2=A0 =C2=A0 =C2=A0Time=C2=A0 Current
+Dload=C2=A0 Upload=C2=A0 =C2=A0Total=C2=A0 =C2=A0Spent=C2=A0 =C2=A0 Left=
+=C2=A0 Speed
+0=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 0=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 0=
+=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A0 0=C2=A0 =C2=A0 =C2=A0 0 --:--:--=
+ --:--:-- --:--:--=C2=A0 =C2=A0 =C2=A00
+curl: (77) error setting certificate verify locations:
+CAfile: /home/bl-docker/rity/bsp/tmp/work/x86_64-linux/curl-native/7.69.1-=
+r0/recipe-sysroot-native/etc/ssl/certs/ca-certificates.crt
+CApath: none
+CMake Error at demos/defender/defender_demo_json/CMakeLists.txt:6 (include=
+):
+include could not find load file:
+/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1.0-r0/libraries/=
+standard/coreMQTT/mqttFilePaths.cmake
+CMake Error at demos/defender/defender_demo_json/CMakeLists.txt:9 (include=
+):
+include could not find load file:
+/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1.0-r0/libraries/=
+standard/backoffAlgorithm/backoffAlgorithmFilePaths.cmake
+CMake Error at demos/defender/defender_demo_json/CMakeLists.txt:12 (includ=
+e):
+include could not find load file:
+/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1.0-r0/libraries/=
+standard/coreJSON/jsonFilePaths.cmake (Similar errors continued for few fil=
+es)
+
+Thanks & Regards,
+VR
+
+--CYvNbb6t2wvFFDuUUIXt
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hi Quentin Schulz,<br /><br /><span style=3D"color: #333333; font-family=
+: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px;">Thanks =
+for the reply. I had downloaded the SDK into "files" folder of my recipe an=
+d given CMakeLists.txt as SRCURI. Is it correct to do like this?<br /></spa=
+n><span style=3D"color: #333333; font-family: 'Helvetica Neue', Helvetica, =
+Arial, sans-serif; font-size: 14px;"><br /></span></p>
+Here is the Error: (It's a long error)<br /><br />ERROR: aws-1.0-r0 do_con=
+figure: Execution of '/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/=
+aws/1.0-r0/temp/run.do_configure.28296' failed with exit code 1:<br />-- Th=
+e C compiler identification is GNU 9.3.0<br />-- Check for working C compil=
+er: /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1.0-r0/recipe-=
+sysroot-native/usr/bin/aarch64-poky-linux/aarch64-poky-linux-gcc<br />-- Ch=
+eck for working C compiler: /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-=
+linux/aws/1.0-r0/recipe-sysroot-native/usr/bin/aarch64-poky-linux/aarch64-p=
+oky-linux-gcc -- works<br />-- Detecting C compiler ABI info<br />-- Detect=
+ing C compiler ABI info - done<br />-- Detecting C compile features<br />--=
+ Detecting C compile features - done<br />-- Found OpenSSL: /home/bl-docker=
+/rity/bsp/tmp/work/aarch64-poky-linux/aws/1.0-r0/recipe-sysroot-native/usr/=
+lib/libcrypto.so (found version "1.1.1g")<br />-- Looking for pthread.h<br =
+/>-- Looking for pthread.h - found<br />-- Performing Test CMAKE_HAVE_LIBC_=
+PTHREAD<br />-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed<br />-- Lo=
+oking for pthread_create in pthreads<br />-- Looking for pthread_create in =
+pthreads - not found<br />-- Looking for pthread_create in pthread<br />-- =
+Looking for pthread_create in pthread - found<br />-- Found Threads: TRUE<b=
+r />Downloading the Amazon Root CA certificate...<br />% Total&nbsp; &nbsp;=
+ % Received % Xferd&nbsp; Average Speed&nbsp; &nbsp;Time&nbsp; &nbsp; Time&=
+nbsp; &nbsp; &nbsp;Time&nbsp; Current<br />Download &nbsp;Upload&nbsp; &nbs=
+p;Total&nbsp; &nbsp;Spent&nbsp; &nbsp; Left&nbsp; Speed<br />0&nbsp; &nbsp;=
+ &nbsp;0&nbsp; &nbsp; 0&nbsp; &nbsp; &nbsp;0&nbsp; &nbsp; 0&nbsp; &nbsp; &n=
+bsp;0&nbsp; &nbsp; &nbsp; 0&nbsp; &nbsp; &nbsp; 0 --:--:-- --:--:-- --:--:-=
+-&nbsp; &nbsp; &nbsp;0<br />curl: (77) error setting certificate verify loc=
+ations:<br />CAfile: /home/bl-docker/rity/bsp/tmp/work/x86_64-linux/curl-na=
+tive/7.69.1-r0/recipe-sysroot-native/etc/ssl/certs/ca-certificates.crt<br /=
+>CApath: none<br />Downloading the Baltimore Cybertrust Root CA certificate=
+...<br />% Total&nbsp; &nbsp; % Received % Xferd&nbsp; Average Speed&nbsp; =
+&nbsp;Time&nbsp; &nbsp; Time&nbsp; &nbsp; &nbsp;Time&nbsp; Current<br />Dlo=
+ad&nbsp; Upload&nbsp; &nbsp;Total&nbsp; &nbsp;Spent&nbsp; &nbsp; Left&nbsp;=
+ Speed<br />0&nbsp; &nbsp; &nbsp;0&nbsp; &nbsp; 0&nbsp; &nbsp; &nbsp;0&nbsp=
+; &nbsp; 0&nbsp; &nbsp; &nbsp;0&nbsp; &nbsp; &nbsp; 0&nbsp; &nbsp; &nbsp; 0=
+ --:--:-- --:--:-- --:--:--&nbsp; &nbsp; &nbsp;0<br />curl: (77) error sett=
+ing certificate verify locations:<br />CAfile: /home/bl-docker/rity/bsp/tmp=
+/work/x86_64-linux/curl-native/7.69.1-r0/recipe-sysroot-native/etc/ssl/cert=
+s/ca-certificates.crt<br />CApath: none<br />CMake Error at demos/defender/=
+defender_demo_json/CMakeLists.txt:6 (include):<br />include could not find =
+load file:<br />/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1.=
+0-r0/libraries/standard/coreMQTT/mqttFilePaths.cmake<br />CMake Error at de=
+mos/defender/defender_demo_json/CMakeLists.txt:9 (include):<br />include co=
+uld not find load file:<br />/home/bl-docker/rity/bsp/tmp/work/aarch64-poky=
+-linux/aws/1.0-r0/libraries/standard/backoffAlgorithm/backoffAlgorithmFileP=
+aths.cmake<br />CMake Error at demos/defender/defender_demo_json/CMakeLists=
+.txt:12 (include):<br />include could not find load file:<br />/home/bl-doc=
+ker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1.0-r0/libraries/standard/core=
+JSON/jsonFilePaths.cmake (Similar errors continued for few files)<br /><br =
+/><span style=3D"color: #333333; font-family: 'Helvetica Neue', Helvetica, =
+Arial, sans-serif; font-size: 14px;">Thanks &amp; Regards,<br /></span>VR
+
+--CYvNbb6t2wvFFDuUUIXt--
