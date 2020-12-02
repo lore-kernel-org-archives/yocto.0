@@ -1,78 +1,73 @@
-Received: from wp323.webpack.hosteurope.de (wp323.webpack.hosteurope.de [80.237.133.92])
- by mx.groups.io with SMTP id smtpd.web08.2416.1606900903342832899
- for <yocto@lists.yoctoproject.org>;
- Wed, 02 Dec 2020 01:21:44 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: delisys.ch, ip: 80.237.133.92, mailfrom: n.jeker@delisys.ch)
-Received: from 22.71.14.46.static.wline.lns.sme.cust.swisscom.ch ([46.14.71.22] helo=[192.168.120.138]); authenticated
-	by wp323.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	id 1kkOKS-0007Cr-CJ; Wed, 02 Dec 2020 10:21:40 +0100
-Message-ID: <c718cad1f8be40c0e8fe2d533fdc685ba260b2c8.camel@delisys.ch>
-Subject: Re: [yocto] #yocto
-From: "Nicolas Jeker" <n.jeker@delisys.ch>
+Subject: How to write custom recipe to install AWS C SDK from github #dunfell #linux #yocto
 To: yocto@lists.yoctoproject.org
-Date: Wed, 02 Dec 2020 10:21:39 +0100
-In-Reply-To: <MADEUP.164CB074CF07EE24.20854@lists.yoctoproject.org>
-References: <MADEUP.164CB074CF07EE24.20854@lists.yoctoproject.org>
-User-Agent: Evolution 3.38.2 
+From: vijayrakeshmunganda@gmail.com
+X-Originating-Location: IN (164.164.95.9)
+X-Originating-Platform: Windows Chrome 86
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-bounce-key: webpack.hosteurope.de;n.jeker@delisys.ch;1606900903;13a324d8;
-X-HE-SMSGID: 1kkOKS-0007Cr-CJ
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Date: Wed, 02 Dec 2020 02:02:39 -0800
+Message-ID: <ed8Q.1606903359819273417.jd39@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="W4YUWnirQuccGgPE8byz"
 
-Hi Steve
+--W4YUWnirQuccGgPE8byz
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2020-12-01 at 20:06 +0000, Monsees, Steven C (US) via
-lists.yoctoproject.org wrote:
->  
-> I still haven’t been able to track this down, can someone tell me in
-> what package is the banner output generated ? 
+Hi,
 
-I'm not sure to what lines you refer by "banner", so I just wrote my
-thoughts to both below.
+I'm trying to write a recipe to install AWS SDK into the build(https://git=
+hub.com/aws/aws-iot-device-sdk-embedded-C), but I complete don't know how t=
+o do it. Based on online example https://github.com/joaocfernandes/Learn-Yo=
+cto/blob/master/develop/Recipe-CMake.md I have written my recipe file and d=
+ownload the sdk into files folder of my recipe. When I run build do_configu=
+re got failed.
 
-Both are probably produced by getty, either util-linux-agetty or
-systemd-getty.
+SUMMARY =3D "AWS IoT SDK EMBEDDED C"
+SECTION =3D "examples"
+LICENSE =3D "MIT"
+LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade698e0b=
+cf8506ecda2f7b4f302"
 
-> Thanks,
-> Steve
-> From: yocto@lists.yoctoproject.org [mailto: 
-> yocto@lists.yoctoproject.org]On Behalf Of Monsees, Steven C (US) via
-> lists.yoctoproject.org
-> Sent: Wednesday, November 18, 2020 8:08 AM
-> To: yocto@lists.yoctoproject.org
-> Subject: [yocto] #yocto
->  
->                              ***WARNING***
-> EXTERNAL EMAIL -- This message originates from outside our
-> organization.
->  
->   
-> I was going through the kernel boot output and saw the following
-> output, can someone tell me why this might be popping up and how I
-> might modify configuration to resolve? :
-> . 
-> . 
-> LIMWS (BAE LIMWS base distro) 3.0.4 sbcb-default ttyS0   
+SRC_URI =3D "file://CMakeLists.txt"
 
-This "banner" output is the content of /etc/issue (which gets installed
-by the base-file package).
+S =3D "${WORKDIR}"
 
-> -sh: cannot set terminal process group (1137): Inappropriate ioctl
-> for device
-> -sh: no job control in this shell 
-> . 
+inherit cmake
 
-The error you see about the shell is probably getty failing to open a
-shell.
+EXTRA_OECMAKE =3D ""
 
-Maybe this could be relevant:
-https://unix.stackexchange.com/questions/338214/error-trying-to-run-agetty-in-a-runit-based-linux-installation
+I know it is wrong, but kindly please someone help to write it correctly, =
+thank you.
 
-> . 
->   
-> Thanks, 
-> Steve 
+Thanks & Regards,
+VR
 
+--W4YUWnirQuccGgPE8byz
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi,<br /><br />I'm trying to write a recipe to install AWS SDK into the bui=
+ld(https://github.com/aws/aws-iot-device-sdk-embedded-C), but I complete do=
+n't know how to do it. Based on online example&nbsp;<a href=3D"https://gith=
+ub.com/joaocfernandes/Learn-Yocto/blob/master/develop/Recipe-CMake.md" targ=
+et=3D"_blank" rel=3D"noopener">https://github.com/joaocfernandes/Learn-Yoct=
+o/blob/master/develop/Recipe-CMake.md</a>&nbsp;I have written my recipe fil=
+e and download the sdk into files folder of my recipe. When I run build do_=
+configure got failed.<br />
+<div><br />SUMMARY =3D "AWS IoT SDK EMBEDDED C"</div>
+<div>SECTION =3D "examples"</div>
+<div>LICENSE =3D "MIT"</div>
+<div>LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade6=
+98e0bcf8506ecda2f7b4f302"</div>
+<div>&nbsp;</div>
+<div>SRC_URI =3D "file://CMakeLists.txt"</div>
+<div>&nbsp;</div>
+<div>S =3D "${WORKDIR}"</div>
+<div>&nbsp;</div>
+<div>inherit cmake</div>
+<div>&nbsp;</div>
+<div>EXTRA_OECMAKE =3D ""</div>
+<br />I know it is wrong, but kindly please someone help to write it corre=
+ctly, thank you.<br /><br />Thanks &amp; Regards,<br />VR
+
+--W4YUWnirQuccGgPE8byz--
