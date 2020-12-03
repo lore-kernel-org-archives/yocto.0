@@ -1,90 +1,230 @@
-Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
- by mx.groups.io with SMTP id smtpd.web09.8720.1606995875652760558
- for <yocto@lists.yoctoproject.org>;
- Thu, 03 Dec 2020 03:44:36 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: crashcourse.ca, ip: 199.212.143.3, mailfrom: rpjday@crashcourse.ca)
-Received: from cpeac202e043973-cmac202e043970.sdns.net.rogers.com ([174.114.100.179]:53908 helo=localhost.localdomain)
-	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.93)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1kkn2H-0000uv-9q; Thu, 03 Dec 2020 06:44:33 -0500
-Date: Thu, 3 Dec 2020 06:44:31 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: Quentin Schulz <quentin.schulz@streamunlimited.com>
-cc: Andrew Loader <andrew.loader@nz.abb.com>, 
-    "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Using OVERRIDES to set variables from outside the recipe file
-In-Reply-To: <20201203090554.vjv4qh66mrywpvx3@qschulz>
-Message-ID: <2238e5e2-428-1623-c722-e691106b179a@crashcourse.ca>
-References: <VI1PR0602MB34879BEDC0B4831D84C6C3EADAF20@VI1PR0602MB3487.eurprd06.prod.outlook.com> <20201203090554.vjv4qh66mrywpvx3@qschulz>
+Subject: ninja: error: unknown target 'install' #yocto #toolchain #linux
+To: yocto@lists.yoctoproject.org
+From: vijayrakeshmunganda@gmail.com
+X-Originating-Location: IN (164.164.95.9)
+X-Originating-Platform: Windows Chrome 86
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+Date: Thu, 03 Dec 2020 04:04:25 -0800
+Message-ID: <azPN.1606997065987956361.x09I@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="2vy83DtpNjIHjWOBJKqx"
 
-On Thu, 3 Dec 2020, Quentin Schulz wrote:
+--2vy83DtpNjIHjWOBJKqx
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-> Hi Andrew,
+Hi All,
+
+I had written a bitbake file to download and install AWS SDK C from GitHub=
+ https://github.com/aws/aws-iot-device-sdk-embedded-C based on existing rec=
+ipes https://github.com/aws/meta-aws, ( https://github.com/aws/meta-aws ) b=
+ut I'm getting an error as "ninja: error: unknown target 'install'". Kindly=
+ please help me to solve the issue.
+
+Log data follows:
+| DEBUG: Executing python function extend_recipe_sysroot
+| NOTE: Direct dependencies are ['virtual:native:/home/bl-docker/rity/src/=
+poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot', 'virt=
+ual:native:/home/bl-docker/rity/src/poky/meta/recipes-devtools/ninja/ninja_=
+1.10.0.bb:do_populate_sysroot', 'virtual:native:/home/bl-docker/rity/src/po=
+ky/meta/recipes-devtools/patch/patch_2.7.6.bb:do_populate_sysroot', '/home/=
+bl-docker/rity/src/poky/meta/recipes-devtools/gcc/gcc-cross_9.3.bb:do_popul=
+ate_sysroot', '/home/bl-docker/rity/src/poky/meta/recipes-devtools/cmake/cm=
+ake-native_3.16.5.bb:do_populate_sysroot', '/home/bl-docker/rity/src/poky/m=
+eta/recipes-connectivity/openssl/openssl_1.1.1g.bb:do_populate_sysroot', '/=
+home/bl-docker/rity/src/poky/../meta-mediatek-bsp/recipes-connectivity/mosq=
+uitto/mosquitto_1.6.12.bb:do_populate_sysroot', '/home/bl-docker/rity/src/p=
+oky/meta/recipes-core/glibc/glibc_2.31.bb:do_populate_sysroot', '/home/bl-d=
+ocker/rity/src/poky/meta/recipes-devtools/quilt/quilt-native_0.66.bb:do_pop=
+ulate_sysroot', '/home/bl-docker/rity/src/poky/meta/recipes-devtools/gcc/gc=
+c-runtime_9.3.bb:do_populate_sysroot']
+| NOTE: Installed into sysroot: []
+| DEBUG: Python function extend_recipe_sysroot finished
+| DEBUG: Executing shell function do_install
+| NOTE: DESTDIR=3D/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws=
+/1.0-r0/image VERBOSE=3D1 cmake --build /home/bl-docker/rity/bsp/tmp/work/a=
+arch64-poky-linux/aws/1.0-r0/build --target install --
+| [0/2] /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1.0-r0/re=
+cipe-sysroot-native/usr/bin/cmake -P /home/bl-docker/rity/bsp/tmp/work/aarc=
+h64-poky-linux/aws/1.0-r0/build/CMakeFiles/VerifyGlobs.cmake
+| ninja: error: unknown target 'install'
+| WARNING: /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1.0-r0=
+/temp/run.do_install.17379:1 exit 1 from 'eval ${DESTDIR:+DESTDIR=3D${DESTD=
+IR} }VERBOSE=3D1 cmake --build '/home/bl-docker/rity/bsp/tmp/work/aarch64-p=
+oky-linux/aws/1.0-r0/build' "$@" -- ${EXTRA_OECMAKE_BUILD}'
+| ERROR: Execution of '/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linu=
+x/aws/1.0-r0/temp/run.do_install.17379' failed with exit code 1:
+| [0/2] /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1.0-r0/re=
+cipe-sysroot-native/usr/bin/cmake -P /home/bl-docker/rity/bsp/tmp/work/aarc=
+h64-poky-linux/aws/1.0-r0/build/CMakeFiles/VerifyGlobs.cmake
+| ninja: error: unknown target 'install'
+| WARNING: /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1.0-r0=
+/temp/run.do_install.17379:1 exit 1 from 'eval ${DESTDIR:+DESTDIR=3D${DESTD=
+IR} }VERBOSE=3D1 cmake --build '/home/bl-docker/rity/bsp/tmp/work/aarch64-p=
+oky-linux/aws/1.0-r0/build' "$@" -- ${EXTRA_OECMAKE_BUILD}'
+|
+ERROR: Task (/home/bl-docker/rity/src/meta-application/recipes-aws/aws/aws=
+_1.0.bb:do_install) failed with exit code '1'
+
+Recipe File:
+SUMMARY =3D "AWS IoT Device SDK for Embedded C"
+DESCRIPTION =3D "The AWS IoT Device SDK for C provides MQTT APIs for Embed=
+ded C applications"
+HOMEPAGE =3D "https://github.com/aws/aws-iot-device-sdk-embedded-C"
+LICENSE =3D "Apache-2.0"
+
+inherit cmake
+
+LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dc8c19afab7f99fb196c9287cbd60a25=
+8"
+
+BRANCH ?=3D "main"
+
+SRC_URI =3D "git://github.com/aws/aws-iot-device-sdk-embedded-C;branch=3D$=
+{BRANCH};name=3Daws-iot-device-sdk-embedded-C"
+SRCREV =3D "${AUTOREV}"
+
+S=3D "${WORKDIR}/git"
+
+do_configure_prepend() {
+cd ${S}
+git submodule update --init --recursive
+}
+
+DEPENDS =3D "openssl mosquitto"
+CFLAGS_append =3D " -Wl,-Bsymbolic"
+
+EXTRA_OECMAKE +=3D "-DBUILD_DEPS=3DON"
+EXTRA_OECMAKE +=3D "-DBUILD_SHARED_LIBS=3D1"
+EXTRA_OECMAKE +=3D "-DCMAKE_BUILD_TYPE=3DRelease"
+EXTRA_OECMAKE +=3D "-DCMAKE_INSTALL_PREFIX=3D$D/usr"
+OECMAKE_BUILDPATH +=3D "${WORKDIR}/build"
+OECMAKE_SOURCEPATH +=3D "${S}"
+
+FILES_${PN} +=3D "${libdir}/*1.0.0"
+FILES_${PN} +=3D "${libdir}/libbackoff_algorithm.so"
+FILES_${PN} +=3D "${libdir}/libcore_http_client.so"
+FILES_${PN} +=3D "${libdir}/libcore_json.so"
+FILES_${PN} +=3D "${libdir}/libcore_mqtt.so"
+FILES_${PN} +=3D "${libdir}/libcore_mqtt_serializer.so"
+FILES_${PN} +=3D "${libdir}/libcore_mqtt_state.so"
+FILES_${PN} +=3D "${libdir}/libcore_pkcs11.so"
+FILES_${PN} +=3D "${libdir}/libcore_pki_utils.so"
+FILES_${PN} +=3D "${libdir}/libcore_pkcs11_pal.so"
+
+PACKAGES =3D "${PN}"
+INSANE_SKIP_${PN} +=3D "installed-vs-shipped"
+BBCLASSEXTEND =3D "native nativesdk"
+
+Thanks & Regards,
+Vijay Rakesh
+
+--2vy83DtpNjIHjWOBJKqx
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi All,<br /><br />I had written a bitbake file to download and install AWS=
+ SDK C from GitHub <a href=3D"https://github.com/aws/aws-iot-device-sdk-emb=
+edded-C" target=3D"_blank" rel=3D"noopener">https://github.com/aws/aws-iot-=
+device-sdk-embedded-C</a>&nbsp;based on existing recipes <a href=3D"https:/=
+/github.com/aws/meta-aws" target=3D"_blank" rel=3D"noopener">https://github=
+.com/aws/meta-aws,</a>&nbsp;but I'm getting an error as "ninja: error: unkn=
+own target 'install'". Kindly please help me to solve the issue.<br /><br /=
 >
-> On Thu, Dec 03, 2020 at 03:45:41AM +0000, Andrew Loader wrote:
-> > In the bitbake user manual it has an example of how to set the variable value using the OVERRIDE variable
-> >
-> > OVERRIDES = "architecture:os:machine"
-> > TEST = "default"
-> > TEST_os = "osspecific"
-> > TEST_nooverride = "othercondvalue"
-> >
-> > Lets say this is in the recipe called "test_0.1.bb" and we remove the OVERRIDES line from it
-> >
-> > If we want to the OVERRIDES value to configure the recipe externally say in local.conf as I do not want to change the recipe how would I do that?
->
-> OVERRIDES is set in configuration files usually (always?). It can be
-> either in a distro if you use DISTROOVERRIDES, in a machine if you
-> use MACHINEOVERRIDES, and you might be able to add manually to it
-> from local.conf or other ways but I think you should go with
-> DISTROOVERRIDES or MACHINEOVERRIDES.
->
-> Then, the OVERRIDES (which contains MACHINEOVERRIDES:DISTROOVERRIDES
-> among other things) will be used in all recipes you can find and it
-> should just work.
->
-> You can use bitbake -e my-recipe | grep -e "^OVERRIDES=" to check
-> the content of the OVERRIDES variable. Note that righmost "OVERRIDE"
-> is the one which takes precedence over all others.
+<div>Log data follows:</div>
+<div>| DEBUG: Executing python function extend_recipe_sysroot</div>
+<div>| NOTE: Direct dependencies are ['virtual:native:/home/bl-docker/rity=
+/src/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot', =
+'virtual:native:/home/bl-docker/rity/src/poky/meta/recipes-devtools/ninja/n=
+inja_1.10.0.bb:do_populate_sysroot', 'virtual:native:/home/bl-docker/rity/s=
+rc/poky/meta/recipes-devtools/patch/patch_2.7.6.bb:do_populate_sysroot', '/=
+home/bl-docker/rity/src/poky/meta/recipes-devtools/gcc/gcc-cross_9.3.bb:do_=
+populate_sysroot', '/home/bl-docker/rity/src/poky/meta/recipes-devtools/cma=
+ke/cmake-native_3.16.5.bb:do_populate_sysroot', '/home/bl-docker/rity/src/p=
+oky/meta/recipes-connectivity/openssl/openssl_1.1.1g.bb:do_populate_sysroot=
+', '/home/bl-docker/rity/src/poky/../meta-mediatek-bsp/recipes-connectivity=
+/mosquitto/mosquitto_1.6.12.bb:do_populate_sysroot', '/home/bl-docker/rity/=
+src/poky/meta/recipes-core/glibc/glibc_2.31.bb:do_populate_sysroot', '/home=
+/bl-docker/rity/src/poky/meta/recipes-devtools/quilt/quilt-native_0.66.bb:d=
+o_populate_sysroot', '/home/bl-docker/rity/src/poky/meta/recipes-devtools/g=
+cc/gcc-runtime_9.3.bb:do_populate_sysroot']</div>
+<div>| NOTE: Installed into sysroot: []</div>
+<div>| DEBUG: Python function extend_recipe_sysroot finished</div>
+<div>| DEBUG: Executing shell function do_install</div>
+<div>| NOTE: DESTDIR=3D/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linu=
+x/aws/1.0-r0/image VERBOSE=3D1 cmake --build /home/bl-docker/rity/bsp/tmp/w=
+ork/aarch64-poky-linux/aws/1.0-r0/build --target install --</div>
+<div>| [0/2] /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1.0-=
+r0/recipe-sysroot-native/usr/bin/cmake -P /home/bl-docker/rity/bsp/tmp/work=
+/aarch64-poky-linux/aws/1.0-r0/build/CMakeFiles/VerifyGlobs.cmake</div>
+<div>| ninja: error: unknown target 'install'</div>
+<div>| WARNING: /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1=
+.0-r0/temp/run.do_install.17379:1 exit 1 from 'eval ${DESTDIR:+DESTDIR=3D${=
+DESTDIR} }VERBOSE=3D1 cmake --build '/home/bl-docker/rity/bsp/tmp/work/aarc=
+h64-poky-linux/aws/1.0-r0/build' "$@" -- ${EXTRA_OECMAKE_BUILD}'</div>
+<div>| ERROR: Execution of '/home/bl-docker/rity/bsp/tmp/work/aarch64-poky=
+-linux/aws/1.0-r0/temp/run.do_install.17379' failed with exit code 1:</div>
+<div>| [0/2] /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1.0-=
+r0/recipe-sysroot-native/usr/bin/cmake -P /home/bl-docker/rity/bsp/tmp/work=
+/aarch64-poky-linux/aws/1.0-r0/build/CMakeFiles/VerifyGlobs.cmake</div>
+<div>| ninja: error: unknown target 'install'</div>
+<div>| WARNING: /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/aws/1=
+.0-r0/temp/run.do_install.17379:1 exit 1 from 'eval ${DESTDIR:+DESTDIR=3D${=
+DESTDIR} }VERBOSE=3D1 cmake --build '/home/bl-docker/rity/bsp/tmp/work/aarc=
+h64-poky-linux/aws/1.0-r0/build' "$@" -- ${EXTRA_OECMAKE_BUILD}'</div>
+<div>|</div>
+<div>ERROR: Task (/home/bl-docker/rity/src/meta-application/recipes-aws/aw=
+s/aws_1.0.bb:do_install) failed with exit code '1'<br /><br />Recipe File:<=
+br />
+<div>SUMMARY =3D "AWS IoT Device SDK for Embedded C"</div>
+<div>DESCRIPTION =3D "The AWS IoT Device SDK for C provides MQTT APIs for =
+Embedded C applications"</div>
+<div>HOMEPAGE =3D "https://github.com/aws/aws-iot-device-sdk-embedded-C"</=
+div>
+<div>LICENSE =3D "Apache-2.0"</div>
+<div>&nbsp;</div>
+<div>inherit cmake</div>
+<div>&nbsp;</div>
+<div>LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dc8c19afab7f99fb196c9287cbd=
+60a258"</div>
+<div>&nbsp;</div>
+<div>BRANCH ?=3D "main"</div>
+<div>&nbsp;</div>
+<div>SRC_URI =3D "git://github.com/aws/aws-iot-device-sdk-embedded-C;branc=
+h=3D${BRANCH};name=3Daws-iot-device-sdk-embedded-C"</div>
+<div>SRCREV =3D "${AUTOREV}"</div>
+<div>&nbsp;</div>
+<div>S=3D "${WORKDIR}/git"</div>
+<div>&nbsp;</div>
+<div>do_configure_prepend() {</div>
+<div>&nbsp; cd ${S}</div>
+<div>&nbsp; git submodule update --init --recursive</div>
+<div>}</div>
+<div>&nbsp;</div>
+<div>DEPENDS =3D "openssl mosquitto"</div>
+<div>CFLAGS_append =3D " -Wl,-Bsymbolic"</div>
+<div>&nbsp;</div>
+<div>EXTRA_OECMAKE +=3D "-DBUILD_DEPS=3DON"</div>
+<div>EXTRA_OECMAKE +=3D "-DBUILD_SHARED_LIBS=3D1"</div>
+<div>EXTRA_OECMAKE +=3D "-DCMAKE_BUILD_TYPE=3DRelease"</div>
+<div>EXTRA_OECMAKE +=3D "-DCMAKE_INSTALL_PREFIX=3D$D/usr"</div>
+<div>OECMAKE_BUILDPATH +=3D "${WORKDIR}/build"</div>
+<div>OECMAKE_SOURCEPATH +=3D "${S}"</div>
+<div>&nbsp;</div>
+<div>FILES_${PN} +=3D "${libdir}/*1.0.0"</div>
+<div>FILES_${PN} +=3D "${libdir}/libbackoff_algorithm.so"</div>
+<div>FILES_${PN} +=3D "${libdir}/libcore_http_client.so"</div>
+<div>FILES_${PN} +=3D "${libdir}/libcore_json.so"</div>
+<div>FILES_${PN} +=3D "${libdir}/libcore_mqtt.so"</div>
+<div>FILES_${PN} +=3D "${libdir}/libcore_mqtt_serializer.so"</div>
+<div>FILES_${PN} +=3D "${libdir}/libcore_mqtt_state.so"</div>
+<div>FILES_${PN} +=3D "${libdir}/libcore_pkcs11.so"</div>
+<div>FILES_${PN} +=3D "${libdir}/libcore_pki_utils.so"</div>
+<div>FILES_${PN} +=3D "${libdir}/libcore_pkcs11_pal.so"</div>
+<div>&nbsp;</div>
+<div>PACKAGES =3D "${PN}"</div>
+<div>INSANE_SKIP_${PN} +=3D "installed-vs-shipped"</div>
+<div>BBCLASSEXTEND =3D "native nativesdk"</div>
+<br />Thanks &amp; Regards,<br />Vijay Rakesh</div>
 
-  i'm going to weigh in on this, as it *seems* that andrew has the
-same misunderstanding i had when, lo those many years ago, i read that
-section in the BB manual, and read this:
-
-     OVERRIDES = "architecture:os:machine"
-     TEST = "default"
-     TEST_os = "osspecific"
-     TEST_nooverride = "othercondvalue"
-
-my initial problem with that section was that it wasn't clear that
-entities like "architecture" and "os" and so on were *replaceable*, in
-that one was supposed to put *examples* of those values in those
-places. (laugh if you like, but if one is totally new to overrides,
-that section can be misinterpreted in a truly tragic way on first
-reading.)
-
-  i recall extending that section to attempt to make it more
-understandable, but i think, over the holidays, i'm going to rewrite
-it again with a simpler introduction and more examples straight from
-the code base. (i believe i was the one who added the example
-involving overriding the value of KBRANCH based on the target arch.)
-
-  in any event, i can easily see a much longer and involved
-introduction to overrides.
-
-rday
+--2vy83DtpNjIHjWOBJKqx--
