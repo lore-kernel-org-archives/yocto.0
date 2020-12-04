@@ -1,135 +1,68 @@
-Received: from 6.mo173.mail-out.ovh.net (6.mo173.mail-out.ovh.net [46.105.43.93])
- by mx.groups.io with SMTP id smtpd.web09.12977.1607081793397358899
+Received: from 1.mo69.mail-out.ovh.net (1.mo69.mail-out.ovh.net [178.33.251.173])
+ by mx.groups.io with SMTP id smtpd.web10.12844.1607081889438342008
  for <yocto@lists.yoctoproject.org>;
- Fri, 04 Dec 2020 03:36:34 -0800
+ Fri, 04 Dec 2020 03:38:09 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 46.105.43.93, mailfrom: maciej.pijanowski@3mdeb.com)
-Received: from player739.ha.ovh.net (unknown [10.108.57.38])
-	by mo173.mail-out.ovh.net (Postfix) with ESMTP id B46C0152802
-	for <yocto@lists.yoctoproject.org>; Fri,  4 Dec 2020 12:36:30 +0100 (CET)
+ dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 178.33.251.173, mailfrom: maciej.pijanowski@3mdeb.com)
+Received: from player794.ha.ovh.net (unknown [10.108.42.73])
+	by mo69.mail-out.ovh.net (Postfix) with ESMTP id 0DFEBA5A34
+	for <yocto@lists.yoctoproject.org>; Fri,  4 Dec 2020 12:38:06 +0100 (CET)
 Received: from 3mdeb.com (89-66-159-90.dynamic.chello.pl [89.66.159.90])
 	(Authenticated sender: maciej.pijanowski@3mdeb.com)
-	by player739.ha.ovh.net (Postfix) with ESMTPSA id DC1FA14CE1BB1;
-	Fri,  4 Dec 2020 11:36:28 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-98R0023890710b-b4c6-49eb-82ae-01f0387371bb,
+	by player794.ha.ovh.net (Postfix) with ESMTPSA id 1761115C1AC90;
+	Fri,  4 Dec 2020 11:38:04 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-99G003c78267bd-c186-4b7d-ae3c-f0ee6b876534,
                     88C5E7F1D96BBF54EED448F85B92423F1F6EA38A) smtp.auth=maciej.pijanowski@3mdeb.com
 X-OVh-ClientIp: 89.66.159.90
-Subject: Re: [yocto] Writing a simple python recipe to add pydevd support to a personnal layer #yocto #zeus #make python recipe
-To: anthony.marchand@navocap.com, yocto@lists.yoctoproject.org
-References: <zdSV.1607078257639478763.nltE@lists.yoctoproject.org>
+Subject: Re: [yocto] Yocto Application Development #yocto
+To: vijayrakeshmunganda@gmail.com, yocto@lists.yoctoproject.org
+References: <j85k.1607080673051844914.nRr1@lists.yoctoproject.org>
 From: "Maciej Pijanowski" <maciej.pijanowski@3mdeb.com>
-Message-ID: <21706013-6e38-5286-ee6d-d64d7fda92b5@3mdeb.com>
-Date: Fri, 4 Dec 2020 12:36:27 +0100
+Message-ID: <d25a4036-a206-6b7b-b10c-aedab9282b93@3mdeb.com>
+Date: Fri, 4 Dec 2020 12:38:04 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <zdSV.1607078257639478763.nltE@lists.yoctoproject.org>
-X-Ovh-Tracer-Id: 2251236866905681414
+In-Reply-To: <j85k.1607080673051844914.nRr1@lists.yoctoproject.org>
+X-Ovh-Tracer-Id: 2278258464678489606
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrudeikedgfedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefuvfhfhffkffgfgggjtgesrgdtreertdefjeenucfhrhhomhepofgrtghivghjucfrihhjrghnohifshhkihcuoehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmqeenucggtffrrghtthgvrhhnpeejteelheeliedugeevheeftdelkeduhfelgfelieejtdefueekgfdvveeghefhieenucffohhmrghinhepohhpvghnvghmsggvugguvggurdhorhhgpdhphihthhhonhdrohhrghdpphihphhirdhorhhgpdhphihthhhonhhhohhsthgvugdrohhrghdphihotghtohhprhhojhgvtghtrdhorhhgpdefmhguvggsrdgtohhmnecukfhppedtrddtrddtrddtpdekledrieeirdduheelrdeltdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejfeelrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepmhgrtghivghjrdhpihhjrghnohifshhkihesfehmuggvsgdrtghomhdprhgtphhtthhopeihohgtthhosehlihhsthhsrdihohgtthhophhrohhjvggtthdrohhrgh
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrudeikedgfedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefuvfhfhffkffgfgggjtgesrgdtreertdefjeenucfhrhhomhepofgrtghivghjucfrihhjrghnohifshhkihcuoehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmqeenucggtffrrghtthgvrhhnpeeivdehfeeiheegffejheeijedvtdfflefhkefhhfdufedvjeevjeduhfetvefgvdenucffohhmrghinhepmhgvughiuhhmrdgtohhmpdihohgtthhophhrohhjvggtthdrohhrghdpfehmuggvsgdrtghomhenucfkpheptddrtddrtddrtddpkeelrdeiiedrudehledrledtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeelgedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhg
 Content-Type: multipart/alternative;
- boundary="------------04EEC0C8A99476F1EEA87458"
+ boundary="------------806DE6E8BD35216AA0003C45"
 Content-Language: en-US
 
---------------04EEC0C8A99476F1EEA87458
+--------------806DE6E8BD35216AA0003C45
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
 
-On 04.12.2020 11:37, anthony.marchand@navocap.com wrote:
-> Hello everyone,
+On 04.12.2020 12:17, vijayrakeshmunganda@gmail.com wrote:
+> Hi All,
 >
-> I have to add a python module named "pydevd" in my personnal image
-> machine.
-> Pydevd is a python module that can be used for remote debbuging with
-> the Ecipse IDE.
+> I'm new to Yocto, till now I was thinking I have to develop an
+> application by writing a recipe as mentioned in the
+> link=C2=A0https://medium.com/@lokeshsharma596/yocto-lab-02-creating-cust=
+om-layer-and-writing-recipe-for-hello-world-f4438311bbfc,
+> now I found some sources developing an application using Eclipse IDE.
+> Here I'm confused about which is the better way/correct way of
+> developing my application. Kindly please suggest to me.
 >
-> So normally, I used to go to the site:
-> http://layers.openembedded.org/layerindex/branch/zeus/recipes to see
-> what are the recipes available for the yocto version I use (zeus
-> version), and then, I add the name of the recipe to my image in:
->
-> IMAGE_INSTALL +=3D " \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 recipe_1\
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 recipe_2\
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ...
-> "
->
-> As the recipe for the python 3 module: "pydevd" does not exists in
-> zeus branch, I decided to create one by observing their structures and
-> how python recipes are made.
-> So there is my recipe for the latest version of pydevd I got from
-> python.org:
->
-> ------------------------------------ pydevd_2.1.0.bb
-> -------------------------------------------------------
-> SUMMARY =3D "Pydevd, a python module for eclipse remote debugging"
-> HOMEPAGE =3D "https://pypi.org/project/pydevd"
-> LICENSE =3D "MIT"
-> LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D30b3836521b3d65bef598bbc358a3=
-afa"
->
-> SRC_URI =3D
-> "https://files.pythonhosted.org/packages/51/8c/4ebdb28a4b2f8cedc17a2fc68=
-c38c545b12c2a861ac2bbd3cd5fdb5971a7/pydevd-2.1.0.tar.gz"
-> SRC_URI[md5sum] =3D "74f4336ce09c5fab228a8ff4285e519a"
-> SRC_URI[sha256sum] =3D
-> "9f76aa4f82e43faba7c243d4c9678eb93e96848ba1e5dba61054bec2794e994b"
->
-> RDEPENDS_${PN}_class-target +=3D "\
-> =C2=A0=C2=A0=C2=A0 ${PYTHON_PN}-threading \
-> "
->
-> inherit pypi setuptools3 ptest
-> BBCLASSEXTEND =3D "native nativesdk"
->
-> RDEPENDS_${PN}-ptest +=3D " \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${PYTHON_PN}-pytest \
-> "
->
-> fakeroot do_install_test() {
->
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 install -d ${D}${PTEST_PATH}/=
-pydevd/tests
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cp -rf ${S}/pydevd/* ${D}/pyd=
-evd/
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cp -f ${S}/README.rst ${D}${P=
-TEST_PATH}/
-> }
-> ------------------------------------------------------------------------=
--------------------
->
-> So I'm sure about md5 checksum, Licence and SRC_URI, but from the
-> line: "RDEPENDS_${PN}_class-target" to the end, I'm not sure about
-> what I'm doing :-)
-> After a test of compilation with the command "bitbake pydevd", bitbake
-> seems to parse and extract the tar.gz package well, but I have an
-> error at the end when it tried to do install.
-I suggest to start with recipetool rather than starting from scratch:
+Eclipse IDE is no longer maintained as far as i know.
+
+The best to start would be to follow the Yocto documentation on creating
+recipes:
 https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#new-=
-recipe-creating-the-base-recipe-using-recipetool
+recipe-writing-a-new-recipe
 
-For most python modules it should **just work**.
-
-Compare the output of recipetool with what you have done manually and
-start from there.
+I usually start with using of the recipetool.
+> I'm trying to generate core-image-sdk by adding=C2=A0EXTRA_IMAGE_FEATURE=
+S
+> ?=3D "debug-tweaks tools-debug", but could find any .tar.bz2 file at
+> tmp/deploy/images
 >
-> My goal is simply to extract the content of the pydevd.tar.gz and
-> installed it on my target path: "/usr/lib/python3.7/site-packages"
->
-> When I do that manually on my target machine (by extracting the tar.gz
-> in "/usr/lib/python3.7/site-packages" ), it works fine and python can
-> import the module pydevd. I would like to do the same thing with a
-> yocto recipe, but i've never made any recipes, I just know the basic
-> theory about it.
->
->
-> Does someone know or have ideas about how can I do that? Maybe it's
-> not as simple as that, but as I'm pretty new, I don't realize the
-> level of difficulty it represents.
->
-> Thanks for all and best reguards.
+> Best Regards,
+> Vijay
 >
 >=20
 >
@@ -140,7 +73,7 @@ GPG: 9963C36AAC3B2B46
 https://3mdeb.com | @3mdeb_com
 
 
---------------04EEC0C8A99476F1EEA87458
+--------------806DE6E8BD35216AA0003C45
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -152,125 +85,48 @@ Content-Transfer-Encoding: quoted-printable
   <body>
     <p><br>
     </p>
-    <div class=3D"moz-cite-prefix">On 04.12.2020 11:37,
-      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:anthony.marchan=
-d@navocap.com">anthony.marchand@navocap.com</a> wrote:<br>
+    <div class=3D"moz-cite-prefix">On 04.12.2020 12:17,
+      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:vijayrakeshmung=
+anda@gmail.com">vijayrakeshmunganda@gmail.com</a> wrote:<br>
     </div>
     <blockquote type=3D"cite"
-      cite=3D"mid:zdSV.1607078257639478763.nltE@lists.yoctoproject.org">
+      cite=3D"mid:j85k.1607080673051844914.nRr1@lists.yoctoproject.org">
       <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUT=
 F-8">
-      Hello everyone,<br>
+      Hi All,<br>
       <br>
-      I have to add a python module named "pydevd" in my personnal image
-      machine. <br>
-      Pydevd is a python module that can be used for remote debbuging
-      with the Ecipse IDE.<br>
+      I'm new to Yocto, till now I was thinking I have to develop an
+      application by writing a recipe as mentioned in the link=C2=A0<a
+href=3D"https://medium.com/@lokeshsharma596/yocto-lab-02-creating-custom-l=
+ayer-and-writing-recipe-for-hello-world-f4438311bbfc"
+        target=3D"_blank" rel=3D"noopener" moz-do-not-send=3D"true">https:=
+//medium.com/@lokeshsharma596/yocto-lab-02-creating-custom-layer-and-writin=
+g-recipe-for-hello-world-f4438311bbfc</a>,
+      now I found some sources developing an application using Eclipse
+      IDE. Here I'm confused about which is the better way/correct way
+      of developing my application. Kindly please suggest to me.<br>
       <br>
-      So normally, I used to go to the site: <a
-        href=3D"http://layers.openembedded.org/layerindex/branch/zeus/reci=
-pes"
-        target=3D"_blank" rel=3D"noopener" moz-do-not-send=3D"true">http:/=
-/layers.openembedded.org/layerindex/branch/zeus/recipes</a>
-      to see what are the recipes available for the yocto version I use
-      (zeus version), and then, I add the name of the recipe to my image
-      in:<br>
-      <br>
-      IMAGE_INSTALL +=3D " \<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 recipe_1\<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 recipe_2\<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ...<br>
-      "<br>
-      <br>
-      As the recipe for the python 3 module: "pydevd" does not exists in
-      zeus branch, I decided to create one by observing their structures
-      and how python recipes are made.<br>
-      So there is my recipe for the latest version of pydevd I got from
-      python.org:<br>
-      <br>
-      ------------------------------------ pydevd_2.1.0.bb
-      -------------------------------------------------------<br>
-      SUMMARY =3D "Pydevd, a python module for eclipse remote debugging"<b=
-r>
-      HOMEPAGE =3D <a class=3D"moz-txt-link-rfc2396E" href=3D"https://pypi=
-.org/project/pydevd">"https://pypi.org/project/pydevd"</a><br>
-      LICENSE =3D "MIT"<br>
-      LIC_FILES_CHKSUM =3D
-      <a class=3D"moz-txt-link-rfc2396E" href=3D"file://LICENSE;md5=3D30b3=
-836521b3d65bef598bbc358a3afa">"file://LICENSE;md5=3D30b3836521b3d65bef598bb=
-c358a3afa"</a><br>
-      <br>
-      SRC_URI =3D
-<a class=3D"moz-txt-link-rfc2396E" href=3D"https://files.pythonhosted.org/=
-packages/51/8c/4ebdb28a4b2f8cedc17a2fc68c38c545b12c2a861ac2bbd3cd5fdb5971a7=
-/pydevd-2.1.0.tar.gz">"https://files.pythonhosted.org/packages/51/8c/4ebdb2=
-8a4b2f8cedc17a2fc68c38c545b12c2a861ac2bbd3cd5fdb5971a7/pydevd-2.1.0.tar.gz"=
-</a><br>
-      SRC_URI[md5sum] =3D "74f4336ce09c5fab228a8ff4285e519a"<br>
-      SRC_URI[sha256sum] =3D
-      "9f76aa4f82e43faba7c243d4c9678eb93e96848ba1e5dba61054bec2794e994b"<b=
-r>
-      <br>
-      RDEPENDS_${PN}_class-target +=3D "\<br>
-      =C2=A0=C2=A0=C2=A0 ${PYTHON_PN}-threading \<br>
-      "<br>
-      <br>
-      inherit pypi setuptools3 ptest<br>
-      BBCLASSEXTEND =3D "native nativesdk"<br>
-      <br>
-      RDEPENDS_${PN}-ptest +=3D " \<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${PYTHON_PN}-pytest \<br>
-      "<br>
-      <br>
-      fakeroot do_install_test() {<br>
-      <br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 install -d ${D}${PTEST_PA=
-TH}/pydevd/tests<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cp -rf ${S}/pydevd/* ${D}=
-/pydevd/<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cp -f ${S}/README.rst ${D=
-}${PTEST_PATH}/<br>
-      }<br>
---------------------------------------------------------------------------=
------------------<br>
-      <br>
-      So I'm sure about md5 checksum, Licence and SRC_URI, but from the
-      line: "RDEPENDS_${PN}_class-target" to the end, I'm not sure about
-      what I'm doing :-) <br>
-      After a test of compilation with the command "bitbake pydevd",
-      bitbake seems to parse and extract the tar.gz package well, but I
-      have an error at the end when it tried to do install.<br>
     </blockquote>
-    I suggest to start with recipetool rather than starting from
-    scratch:<br>
+    Eclipse IDE is no longer maintained as far as i know.<br>
+    <br>
+    The best to start would be to follow the Yocto documentation on
+    creating recipes:<br>
 <a class=3D"moz-txt-link-freetext" href=3D"https://www.yoctoproject.org/do=
-cs/latest/mega-manual/mega-manual.html#new-recipe-creating-the-base-recipe-=
-using-recipetool">https://www.yoctoproject.org/docs/latest/mega-manual/mega=
--manual.html#new-recipe-creating-the-base-recipe-using-recipetool</a><br>
+cs/latest/mega-manual/mega-manual.html#new-recipe-writing-a-new-recipe">htt=
+ps://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#new-reci=
+pe-writing-a-new-recipe</a><br>
     <br>
-    For most python modules it should **just work**.<br>
-    <br>
-    Compare the output of recipetool with what you have done manually
-    and start from there.<br>
+    I usually start with using of the recipetool.<br>
     <blockquote type=3D"cite"
-      cite=3D"mid:zdSV.1607078257639478763.nltE@lists.yoctoproject.org"><b=
-r>
-      My goal is simply to extract the content of the pydevd.tar.gz and
-      installed it on my target path: "/usr/lib/python3.7/site-packages"<b=
-r>
+      cite=3D"mid:j85k.1607080673051844914.nRr1@lists.yoctoproject.org">I'=
+m
+      trying to generate core-image-sdk by adding=C2=A0EXTRA_IMAGE_FEATURE=
+S
+      ?=3D "debug-tweaks tools-debug", but could find any .tar.bz2 file at
+      tmp/deploy/images<br>
       <br>
-      When I do that manually on my target machine (by extracting the
-      tar.gz in "/usr/lib/python3.7/site-packages" ), it works fine and
-      python can import the module pydevd. I would like to do the same
-      thing with a yocto recipe, but i've never made any recipes, I just
-      know the basic theory about it.<br>
-      <br>
-      <br>
-      Does someone know or have ideas about how can I do that? Maybe
-      it's not as simple as that, but as I'm pretty new, I don't realize
-      the level of difficulty it represents.<br>
-      <br>
-      Thanks for all and best reguards.
+      Best Regards,<br>
+      Vijay
       <br>
       <fieldset class=3D"mimeAttachmentHeader"></fieldset>
       <pre class=3D"moz-quote-pre" wrap=3D"">
@@ -287,4 +143,4 @@ b.com</a> | @3mdeb_com</pre>
   </body>
 </html>
 
---------------04EEC0C8A99476F1EEA87458--
+--------------806DE6E8BD35216AA0003C45--
