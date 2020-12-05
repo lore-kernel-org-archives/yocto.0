@@ -1,184 +1,345 @@
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (NAM12-BN8-obe.outbound.protection.outlook.com [40.107.237.59])
- by mx.groups.io with SMTP id smtpd.web11.8167.1607194469876855217
+Received: from server224-3.web-hosting.com (server224-3.web-hosting.com [198.54.115.174])
+ by mx.groups.io with SMTP id smtpd.web10.8519.1607196481934426896
  for <yocto@lists.yoctoproject.org>;
- Sat, 05 Dec 2020 10:54:30 -0800
+ Sat, 05 Dec 2020 11:28:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=p7NdH4H6;
- spf=pass (domain: windriver.com, ip: 40.107.237.59, mailfrom: randy.macleod@windriver.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PF+lVMLgdwwU0Pi34LDkViyrqtuLVgfah07R2zYBMPaHubf0jkdOty5nDrAZzHOehi0Z27Xon/BBTVAHXs/7cHnSj0GO9mI7k2jMkQPaIk5Hx6ZMrfeOjn0m7D4tahHn8TRcpz6zkD8Lwip5vdH0BDYczz7PEEJl1D7gXYGdGhiO8oRYkpEU39L6E8sheCyaEhxjQx1PzQ9M6S6DwVkOfnysYP45hBXOSIljX7JEDk+nedC4ZHA8/57E2YYjdHmBpElLaALKU1kJ7VWW8Igt1v5Fi0kJAf2+8n0TzddUBZM7IQkzRmUyp5RC3KZT1IPdChzWvw4RBo1LnhdSJrropA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZH62DU+N6zW5C3LuGTgKZ3PWDt5c36SAa3lxDd6E7zg=;
- b=EjvClpFBZ2i1gpzbaGzwiP2wGpjY+FodhfLIXgtA5pFdomXadC/a+UjMT50K4nTWCVUBMrM9jMjP+yIwHUW/dTSRPViO0ueA8JNE3DtLV1uWkRkMUsAMYuTpTxZJZcPZ7hY29yct5TBiTEJSNCfplMnNrvDbaiklD7v1AbNSUTui3FlgcB3dOHILY0SZK/Xfc3lXa1TJ+9XJncTS2kac90dlvccaFbloxuv9Jbpbp3hhCxtAGJzvaKKhAZq7PgjEJgAfuXcK/jl2wy0SaGrMMA5nAVZeO1OWnD9TTGbnkSY3SFypNqod3tZQoQx1dan78szphfrBYX6yb86+2xSuKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=windriversystems.onmicrosoft.com;
- s=selector2-windriversystems-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZH62DU+N6zW5C3LuGTgKZ3PWDt5c36SAa3lxDd6E7zg=;
- b=p7NdH4H6VL7VpawY19FdBoY3E8WkTJipEf3onu7bAdTD71sw84hBUi3jleaItQ5LPlGPHNF1NLS3fYkeLEoWqtFWpSUyaD2UqY8VBRl95vTSNXK3rDDm5ptNUMyX+jasz2wimKcKBgL1abUn3ZZwFWsHzgSLQGvr8cy+rIXefZc=
-Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=windriver.com;
-Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
- by DM6PR11MB4073.namprd11.prod.outlook.com (2603:10b6:5:19f::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17; Sat, 5 Dec
- 2020 18:54:27 +0000
-Received: from DM6PR11MB3994.namprd11.prod.outlook.com
- ([fe80::7dda:eef1:5113:c588]) by DM6PR11MB3994.namprd11.prod.outlook.com
- ([fe80::7dda:eef1:5113:c588%6]) with mapi id 15.20.3632.017; Sat, 5 Dec 2020
- 18:54:27 +0000
-Subject: Re: [yocto] #uboot Problem compiling u-boot with bitbake
-To: ajellisuk@yahoo.co.uk, yocto@lists.yoctoproject.org
-References: <9sNV.1607126926460437364.UjE6@lists.yoctoproject.org>
-From: "Randy MacLeod" <randy.macleod@windriver.com>
-Message-ID: <c8629755-2fb3-2567-4daa-bac16faa074e@windriver.com>
-Date: Sat, 5 Dec 2020 13:54:19 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <9sNV.1607126926460437364.UjE6@lists.yoctoproject.org>
-X-Originating-IP: [198.48.226.187]
-X-ClientProxiedBy: BYAPR05CA0077.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::18) To DM6PR11MB3994.namprd11.prod.outlook.com
- (2603:10b6:5:193::19)
-Return-Path: randy.macleod@windriver.com
+ dkim=pass header.i=@warpedelectronics.com header.s=default header.b=V6rEYqal;
+ spf=none, err=SPF record not found (domain: warpedelectronics.com, ip: 198.54.115.174, mailfrom: mailings@warpedelectronics.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=warpedelectronics.com; s=default; h=Content-Type:Message-ID:Subject:To:From
+	:Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=i8RBNWZKyNKejaXC2v1+NEy8Oohie+khLbM6MVkNZz4=; b=V6rEYqalH6QtC1D3sgm7O3NWnu
+	cPEVuivt0M6/qZ55A5/O3lK+npkvMh36mi5g63PE48vD066+MPyBru5xQIdhcgGxGHw9TzNFNR0YK
+	yNdGUu/sjhNzUvz4+46n6tclwKLyiOYcKf65ILfV5LDaMrxmpcSNA+W43SjC3Rfnd3QxCwc87EI5x
+	+koQxO2szoz93YdUHpcr3KBNvcvEkzDI782nZuNDTFehxpuVLx1EfxeYA+PZEIvwkmC/+xyjmUALw
+	J6oK0fDp7kMCnMsEgNiFueBkJF3ovOHsuOtqFz0iNrfripDXg8Wgr2RJGilIJIEvDKcsI7NMd24VO
+	Pw6Sfl9g==;
+Received: from [::1] (port=45782 helo=server224.web-hosting.com)
+	by server224.web-hosting.com with esmtpa (Exim 4.93)
+	(envelope-from <mailings@warpedelectronics.com>)
+	id 1kldDo-001H5J-Rp
+	for yocto@lists.yoctoproject.org; Sat, 05 Dec 2020 14:28:01 -0500
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.25.44.2] (198.48.226.187) by BYAPR05CA0077.namprd05.prod.outlook.com (2603:10b6:a03:e0::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.5 via Frontend Transport; Sat, 5 Dec 2020 18:54:26 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 23abc7bd-7297-4981-2158-08d8994f3111
-X-MS-TrafficTypeDiagnostic: DM6PR11MB4073:
-X-Microsoft-Antispam-PRVS: 
-	<DM6PR11MB40734044A5D49A649C770184F8F00@DM6PR11MB4073.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	wf/jGYYGqrKA8fPS8IcvW1EFlbNpfJ3K0DWPhT9xQg1fAIhNP6CNeN+VrX2I7OYmEHuG9mEYic3yvytk23davAvLZistiMmNIAmsX5gi75B8gtumkuwlfOfb0Dk10XmzNdnJHjC79vodc4lKUkiVH4smthiuVoYiQATk/jqahwKxvrsD3TFrOJlPjCnjvN4Rwr/WhJ0hlxpIrttfb2XtFFnXIEn0Ho7DJOhKQectvONZWfLjrGj7ED+H8VCFZQVta6z6cga53ZlOXrKtCp3f5ZuqwVMhHmSoCYPFYR8/SbBG1mBScTyj6Nj/FCY3GT1YdRT8Qsu4jYbYHNaHutR/z1o92RcdXhPQqNU5t8OC3RWv71MkbCNLm3rSbf1a7z2NLMtNjOVyfDTYwvE+l2Xxma+nF118LhNGZICKMDWwMdUOmfeMO+OXOcqRcnjYUlecqcHgtftrc7cJVoGFze8lePD5qAHjpRcv7cUfRZyxwfus1Mf8GEElkqTZuP2be12u
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39840400004)(376002)(136003)(346002)(396003)(366004)(478600001)(316002)(31686004)(26005)(8676002)(966005)(8936002)(5660300002)(16526019)(16576012)(6486002)(186003)(2616005)(86362001)(36756003)(83380400001)(956004)(66946007)(66476007)(66556008)(6666004)(53546011)(31696002)(52116002)(2906002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: 
-	=?us-ascii?Q?9x9IqRIFOHdNtMk8SXyadfmjqzkRI2ABLZqxFTe5yxG0i8wyKVuRdGAfzd29?=
- =?us-ascii?Q?U4nDLC1EREfe1li1wvkN3iwTJFT3rNIoP5taNlC42jIV530SYM2Y7UzYeurl?=
- =?us-ascii?Q?KvyoB7zFpCvYOmhReq0MqILELY/yzwWByIs3e4OM0yy5ZpUCOqU7T/yBVuLs?=
- =?us-ascii?Q?6DGgREGcu2nf5mNJAP09j7ExmpuA0oPS3T182VZZo9dBzJeiqm0vo+/ZDbhm?=
- =?us-ascii?Q?ejQKxBJYIDy5YpB1viPlRhcD3wj0jQCR9G2Wog7Kyb1P4UIW/QZ43auNJ9fT?=
- =?us-ascii?Q?O0lO+FW+FcA1Y9pkWcS1cViEyq/YZ1rirG2SVEs1pdanLnj1mUtiyVkv0zGN?=
- =?us-ascii?Q?QEB+Yk9fSvInqfhUjsdJDTSCqDsXSyQLR8zczJJPnfiejS9z8CktFbdLZLfX?=
- =?us-ascii?Q?QbxJo/+E3RBO5yrTYl5DHOe+3dCBlQcouxFoFqw93oSlC2l3cCsLuznM6xRy?=
- =?us-ascii?Q?f8lUApmzsfI4zGgxs/ZNWp/zbFvWDTfcIkWjgTnFTexwcwVGmYLC/tMjtgOg?=
- =?us-ascii?Q?AFsEvnO9kyVHTMmIihkoEQC0cG3LeXvAqRhP0+gB+zPaPUsanqy2c9fr7yQI?=
- =?us-ascii?Q?CO7lrB2Qhn3xD5hv9DsUjxD9xjw2CfYy77YR9IouBHllbFS4cYZhp6292bju?=
- =?us-ascii?Q?kjwgtD19g+HEAFhOJUTCr4Hh8EWGYiOUKmL+ryYZZJaqKza/x9Qa4Y+tlMgU?=
- =?us-ascii?Q?ZqHiXMOfGduYXH3IbsonqQ4frsOKQ4MjBgA0EaBiEaUDyIAAXxxe1Gv5KV0U?=
- =?us-ascii?Q?NvdlnFupMkXQNrMrAJHXnkZMV1f3jEbPaso5Ycy0NeFBPdp23swm2myJVbGV?=
- =?us-ascii?Q?5TbmVvY0OZhSlFL7VytFvQklNSDefkYaSao3GPEqbECL7vySFE5rtxlrSkWQ?=
- =?us-ascii?Q?l6LSCaltxG82qwW0QjDzfNVSrf74ULqg2CvSiep+KzyKVK/QBdth2lRbKpcv?=
- =?us-ascii?Q?RntmM8HoxJVfXmxf8j6y9rAdXaqS++5ErXn2Qywl5uvBXXcxCRlkhBHI46+o?=
- =?us-ascii?Q?Q2aM?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2020 18:54:27.6268
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-Network-Message-Id: 23abc7bd-7297-4981-2158-08d8994f3111
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aPE7ZKeb81aZmiAPpQBeMziz1CNr64m1VnhIC1o1cDrUBzJXChGNa09BAdFhqmupUoI/33TNFswX2MwfkOk8fzby6DEsdZwbAhUqZORveXQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4073
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-CA
+Date: Sat, 05 Dec 2020 13:27:56 -0600
+From: mailings@warpedelectronics.com
+To: Yocto <yocto@lists.yoctoproject.org>
+Subject: Dunfell :: Recipe fixes to install Webmin 1.962 and fix Perl CGI
+Message-ID: <b6a407422370c11122bdbe22183b2599@warpedelectronics.com>
+X-Sender: mailings@warpedelectronics.com
+User-Agent: Roundcube Webmail/1.3.15
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server224.web-hosting.com
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - warpedelectronics.com
+X-Get-Message-Sender-Via: server224.web-hosting.com: authenticated_id: mailings@warpedelectronics.com
+X-Authenticated-Sender: server224.web-hosting.com: mailings@warpedelectronics.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-From-Rewrite: unmodified, already matched
+X-Groupsio-MsgNum: 51651
+Content-Type: multipart/mixed;
+ boundary="=_ea29a91d8fad0d0b878614a75896a102"
+
+--=_ea29a91d8fad0d0b878614a75896a102
+Content-Type: multipart/alternative;
+ boundary="=_eb7fb60eb8fb984154ff2c2712916a30"
+
+--=_eb7fb60eb8fb984154ff2c2712916a30
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII
+
+Hello all: 
+
+Just a quick email to submit to the group.  I needed to build a distro
+to include Webmin.  The version that comes with OpenEmbedded (webmin
+1.850) in meta-webserver/recipes-webadmin/webmin is kind of an old
+release, and there were issues with the build. 
+
+Below is a new recipe:  webmin_1.962.bb   (Attached MD5:
+301394DDA264C712C1BF9496D409D3CF) 
+
+Just add "webmin" to your local.conf to add it to your distro.  You can
+also override the default username and password in local.conf if
+desired.  One issue...the "do_package" for Webmin takes around 25
+minutes on my machine.  Almost as long as the kernel.  :)  I'm not sure
+why.  It's one of the things I need to look into. 
+
+Once built, you can go into the configuration and add any additional
+modules you wish.  The utility will list them for you and download them
+from the Webmin site. 
+
+This recipe builds on the previous work, adds basic modules and themes
+to the build, and updates some of the build dependencies. 
+
+Also...in order to build this package, another recipe needs
+modification.  I have not created a patch file for this yet.  I'm not
+sure it would be appropriate as this library is kind of in limbo...but I
+did update the recipe to download the latest version of the file: 
+libcgi-perl_4.51.bb (OpenEmbedded > meta-perl-recipes-perl/libcgi) 
+(Attached MD5: 0126F5119E9AA358C461ABC5BF777450) 
+
+Basically this recipe downloads the latest version of the library as
+Webmin depends on it. 
+
+Hope these help.  I will get patches made up and submitted soon. 
+
+-Joe 
+ Warped Electronics
+
+--=_eb7fb60eb8fb984154ff2c2712916a30
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
-On 2020-12-04 7:08 p.m., ajellisuk via lists.yoctoproject.org wrote:
-> Hi
->=20
-> I'm trying to compile u-boot for an iMX6 board (iMX6-Q7_Plus from MSC=20
-> technologies), but the compile process fails with the following output:
->=20
->     ERROR: Unable to start bitbake server
->     ERROR: Last 10 lines of server log for this session
->     (/home/user/msc-yocto-140/msc-ldk/build/1006/bitbake-cookerdaemon.lo=
-g):
->      =C2=A0=C2=A0=C2=A0 self.cooker =3D bb.cooker.BBCooker(self.configur=
-ation,
->     self.featureset)
->      =C2=A0 File
->     "/home/user/msc-yocto-140/msc-ldk/sources/yocto.git/bitbake/lib/bb/c=
-ooker.py",
->     line 197, in __init__
->      =C2=A0=C2=A0=C2=A0 self.initConfigurationData()
->      =C2=A0 File
->     "/home/user/msc-yocto-140/msc-ldk/sources/yocto.git/bitbake/lib/bb/c=
-ooker.py",
->     line 356, in initConfigurationData
->      =C2=A0=C2=A0=C2=A0 self.databuilder.parseBaseConfiguration()
->      =C2=A0 File
->     "/home/user/msc-yocto-140/msc-ldk/sources/yocto.git/bitbake/lib/bb/c=
-ookerdata.py",
->     line 317, in parseBaseConfiguration
->      =C2=A0=C2=A0=C2=A0 raise bb.BBHandledException
->     bb.BBHandledException
->     ERROR: The following required tools (as specified by HOSTTOOLS)
->     appear to be unavailable in PATH, please install them in order to
->     proceed:
->      =C2=A0 test
->=20
->     ERROR: bitbake u-boot-imx -c compile =E2=80=93f
->=20
-> I have had errors like this before, and have been to resolve by=20
-> installing the missing tools indicated. The problem that I've got here=
-=20
-> is that I'm not sure what "test" is referring to. using, "sudo apt-get=
-=20
-> install test", doesn't work.
->=20
-> Can someone please give me a hint as to what the problem is here.
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Verdana,Gen=
+eva,sans-serif'>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+Hello all:</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+&nbsp;</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+Just a quick email to submit to the group.&nbsp; I needed to build a distro=
+ to include Webmin.&nbsp; The version that comes with OpenEmbedded (webmin =
+1.850) in meta-webserver/recipes-webadmin/webmin is kind of an old release,=
+ and there were issues with the build.</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+&nbsp;</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+Below is a new recipe:&nbsp; webmin_1.962.bb&nbsp;&nbsp; (Attached MD5: 301=
+394DDA264C712C1BF9496D409D3CF)</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+&nbsp;</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+&nbsp;</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+Just add "webmin" to your local.conf to add it to your distro.&nbsp; You ca=
+n also override the default username and password in local.conf if desired=
+=2E&nbsp; One issue...the "do_package" for Webmin takes around 25 minutes o=
+n my machine.&nbsp; Almost as long as the kernel.&nbsp; :)&nbsp; I'm not su=
+re why.&nbsp; It's one of the things I need to look into.</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+&nbsp;</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+Once built, you can go into the configuration and add any additional module=
+s you wish.&nbsp; The utility will list them for you and download them from=
+ the Webmin site.</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+&nbsp;</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+This recipe builds on the previous work, adds basic modules and themes to t=
+he build, and updates some of the build dependencies.</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+&nbsp;</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+Also...in order to build this package, another recipe needs modification.&n=
+bsp; I have not created a patch file for this yet.&nbsp; I'm not sure it wo=
+uld be appropriate as this library is kind of in limbo...but I did update t=
+he recipe to download the latest version of the file:&nbsp; libcgi-perl_4=
+=2E51.bb (OpenEmbedded &gt; meta-perl-recipes-perl/libcgi)</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+(Attached MD5: 0126F5119E9AA358C461ABC5BF777450)</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+&nbsp;</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+&nbsp;</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+Basically this recipe downloads the latest version of the library as Webmin=
+ depends on it.</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+&nbsp;</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+Hope these help.&nbsp; I will get patches made up and submitted soon.</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+&nbsp;</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+-Joe</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+&nbsp;Warped Electronics</div>
+</body></html>
 
-Hi Andrew,
+--=_eb7fb60eb8fb984154ff2c2712916a30--
 
-It seems odd that you don't have coreutils/test already...
-Test is part of coreutils on Ubuntu-20.04:
+--=_ea29a91d8fad0d0b878614a75896a102
+Content-Transfer-Encoding: base64
+Content-Type: text/plain;
+ name=libcgi-perl_4.51.bb
+Content-Disposition: attachment;
+ filename=libcgi-perl_4.51.bb;
+ size=1440
 
-$ which test
-/usr/bin/test
-$ dpkg -S /usr/bin/test
-coreutils: /usr/bin/test
+REVTQ1JJUFRJT04gPSAiQ0dJLnBtIGlzIGEgc3RhYmxlLCBjb21wbGV0ZSBhbmQgbWF0dXJlIHNv
+bHV0aW9uIGZvciBwcm9jZXNzaW5nIGFuZCBwcmVwYXJpbmcgXApIVFRQIHJlcXVlc3RzIGFuZCBy
+ZXNwb25zZXMuIE1ham9yIGZlYXR1cmVzIGluY2x1ZGluZyBwcm9jZXNzaW5nIGZvcm0gXApzdWJt
+aXNzaW9ucywgZmlsZSB1cGxvYWRzLCByZWFkaW5nIGFuZCB3cml0aW5nIGNvb2tpZXMsIHF1ZXJ5
+IHN0cmluZyBnZW5lcmF0aW9uIFwKYW5kIG1hbmlwdWxhdGlvbiwgYW5kIHByb2Nlc3NpbmcgYW5k
+IHByZXBhcmluZyBIVFRQIGhlYWRlcnMuIgpIT01FUEFHRSA9ICJodHRwczovL21ldGFjcGFuLm9y
+Zy9wb2QvQ0dJIgpTRUNUSU9OID0gImxpYnMiCkxJQ0VOU0UgPSAiQXJ0aXN0aWMtMi4wIHwgR1BM
+LTIuMCIKCkxJQ19GSUxFU19DSEtTVU0gPSAiZmlsZTovL0xJQ0VOU0U7bWQ1PTQxNWZjNDlhYmVk
+MjcyOGY5NDgwY2QzMmM4ZDY3YmViIgoKU1JDX1VSSSA9ICJodHRwczovL2NwYW4ubWV0YWNwYW4u
+b3JnL2F1dGhvcnMvaWQvTC9MRS9MRUVKTy9DR0ktJHtQVn0udGFyLmd6IgoKU1JDX1VSSVttZDVz
+dW1dID0gIjg3YjZjZjViYzY4NzM5YzkzMTBjYTUwMWFkYWQ5OThlIgpTUkNfVVJJW3NoYTI1NnN1
+bV0gPSAiMGJkMjE1ZTcwMTJmOWY1MmU2YTdkM2ZlNjk1ZWUzMGVmOTU5ZDc5NmU4ZTUzNDcyZmEw
+ZWQ4YzUzZmJhNjAwYSIKClMgPSAiJHtXT1JLRElSfS9DR0ktJHtQVn0iCgppbmhlcml0IGNwYW4g
+cHRlc3QtcGVybAoKUkRFUEVORFNfJHtQTn0gKz0gIlwKICAgIGxpYmh0bWwtcGFyc2VyLXBlcmwg
+XAogICAgcGVybC1tb2R1bGUtYmFzZSBcCiAgICBwZXJsLW1vZHVsZS1kZXByZWNhdGUgXAogICAg
+cGVybC1tb2R1bGUtaWYgXAoiCgpkb19pbnN0YWxsX3ByZXBlbmQoKSB7CiAgICAjIHJlcXVpcmVz
+ICItVCIgKHRhaW50KSBjb21tYW5kIGxpbmUgb3B0aW9uCiAgICBybSAtcmYgJHtCfS90L3B1c2gu
+dAogICAgcm0gLXJmICR7Qn0vdC91dGY4LnQKICAgICMgdGVzdHMgYnVpbGRpbmcgb2YgZG9jcwog
+ICAgcm0gLXJmICR7Qn0vdC9jb21waWxlc19wb2QudAp9CgpSREVQRU5EU18ke1BOfS1wdGVzdCAr
+PSAiIFwKICAgIGxpYnRlc3QtZGVlcC1wZXJsIFwKICAgIGxpYnRlc3Qtd2Fybi1wZXJsIFwKICAg
+IHBlcmwtbW9kdWxlLWJ5dGVzIFwKICAgIHBlcmwtbW9kdWxlLWZpbGUtZmluZCBcCiAgICBwZXJs
+LW1vZHVsZS1maWxlaGFuZGxlIFwKICAgIHBlcmwtbW9kdWxlLWZpbmRiaW4gXAogICAgcGVybC1t
+b2R1bGUtbGliIFwKICAgIHBlcmwtbW9kdWxlLXBlcmxpbyBcCiAgICBwZXJsLW1vZHVsZS1wZXJs
+aW8tc2NhbGFyIFwKICAgIHBlcmwtbW9kdWxlLXRlc3QtbW9yZSBcCiAgICBwZXJsLW1vZHVsZS11
+dGY4IFwKIgoKUlBST1ZJREVTXyR7UE59ICs9ICJwZXJsLW1vZHVsZS1jZ2kiCgpCQkNMQVNTRVhU
+RU5EID0gIm5hdGl2ZSIK
 
-What distro are you using for your build machine and
-have you installed the suggested packages?
-See the quick start guide and links therein:
+--=_ea29a91d8fad0d0b878614a75896a102
+Content-Transfer-Encoding: base64
+Content-Type: text/plain;
+ name=webmin_1.962.bb
+Content-Disposition: attachment;
+ filename=webmin_1.962.bb;
+ size=7580
 
-https://docs.yoctoproject.org/brief-yoctoprojectqs/brief-yoctoprojectqs.ht=
-ml
+U1VNTUFSWSA9ICJXZWItYmFzZWQgYWRtaW5pc3RyYXRpb24gaW50ZXJmYWNlIgpIT01FUEFHRSA9
+ICJodHRwOi8vd3d3LndlYm1pbi5jb20iCkxJQ0VOU0UgPSAiQlNELTMtQ2xhdXNlIgpMSUNfRklM
+RVNfQ0hLU1VNID0gImZpbGU6Ly9MSUNFTkNFO21kNT0wYTY0NDYxMDhjOTZkMDgxOWQyMWU0MGI0
+ODEwOTUwNyIKClNSQ19VUkkgPSAiJHtTT1VSQ0VGT1JHRV9NSVJST1J9L3dlYmFkbWluL3dlYm1p
+bi0ke1BWfS50YXIuZ3ogXAogICAgICAgICAgIGZpbGU6Ly9zZXR1cC5zaCBcCiAgICAgICAgICAg
+ZmlsZTovL2luaXQtZXhjbHVkZS5wYXRjaCBcCiAgICAgICAgICAgZmlsZTovL3JlbW92ZS1zdGFy
+dHVwLW9wdGlvbi5wYXRjaCBcCiAgICAgICAgICAgZmlsZTovL25mcy1leHBvcnQucGF0Y2ggXAog
+ICAgICAgICAgIGZpbGU6Ly9leHBvcnRzLWxpYi5wbC5wYXRjaCBcCiAgICAgICAgICAgZmlsZTov
+L21vdW50LWV4Y2x1ZGVmcy5wYXRjaCBcCiAgICAgICAgICAgZmlsZTovL3NhbWJhLWNvbmZpZy1m
+aXgucGF0Y2ggXAogICAgICAgICAgIGZpbGU6Ly9wcm9mdHBkLWNvbmZpZy1maXgucGF0Y2ggXAog
+ICAgICAgICAgIGZpbGU6Ly9tZWRpYS10b21iLnBhdGNoIFwKICAgICAgICAgICBmaWxlOi8vcmVt
+b3ZlLXB5dGhvbjIuMy5wYXRjaCBcCiAgICAgICAgICAgZmlsZTovL215c3FsLWNvbmZpZy1maXgu
+cGF0Y2ggXAogICAgICAgICAgIGZpbGU6Ly93ZWJtaW4uc2VydmljZSBcCiAgICAgICAgICAiCgpT
+UkNfVVJJW21kNXN1bV0gPSAiZDc0ZDE0ZWU1NDY3ZmM5NWQyODNiMTU3OGIwZWY2MjIiClNSQ19V
+Uklbc2hhMjU2c3VtXSA9ICIzNTc2NDJhZjlkNzUzNDM1ZTk5OWFkZmU0MDc3MmI5OThiZmNiMjE4
+NTI5OTMwODEyMzk5NDhlOTIxNmJjNmZkIgoKVVBTVFJFQU1fQ0hFQ0tfVVJJID0gImh0dHA6Ly93
+d3cud2VibWluLmNvbS9kb3dubG9hZC5odG1sIgpVUFNUUkVBTV9DSEVDS19SRUdFWCA9ICJ3ZWJt
+aW4tKD9QPHB2ZXI+XGQrKFwuXGQrKSspLnRhci5neiIKCmluaGVyaXQgcGVybG5hdGl2ZSB1cGRh
+dGUtcmMuZCBzeXN0ZW1kCgpkb19jb25maWd1cmUoKSB7CiAgICAjIFJlbW92ZSBiaW5hcmllcyBh
+bmQgcGx1Z2lucyBmb3Igb3RoZXIgcGxhdGZvcm1zCiAgICBybSAtcmYgYWNsL0F1dGhlbi1Tb2xh
+cmlzUkJBQy0wLjEqCiAgICBybSAtcmYgZm9ybWF0IGJzZGV4cG9ydHMgaHB1eGV4cG9ydHMgc2dp
+ZXhwb3J0cwogICAgcm0gLXJmIHpvbmVzIHJiYWMgc21mIGlwZncgaXBmaWx0ZXIgZGZzYWRtaW4K
+ICAgIHJtIC1mIG1vdW50L2ZyZWVic2QtbW91bnRzKiBtb3VudC9uZXRic2QtbW91bnRzKgogICAg
+cm0gLWYgbW91bnQvb3BlbmJzZC1tb3VudHMqIG1vdW50L21hY29zLW1vdW50cyoKCiAgICAjIFJl
+bW92ZSBzb21lIHBsdWdpbnMgZm9yIHRoZSBtb21lbnQKICAgIHJtIC1yZiBsaWxvIGZyb3ggd3Vm
+dHBkIHRlbG5ldCBwc2VydmVyIGNwYW4gc2hvcmV3YWxsIHdlYmFsaXplciBjZmVuZ2luZSBmc2R1
+bXAgcGFwCiAgICBybSAtcmYgbWFqb3Jkb21vIGZldGNobWFpbCBzZW5kbWFpbCBtYWlsYm94ZXMg
+cHJvY21haWwgZmlsdGVyIG1haWxjYXAgZG92ZWNvdCBleGltIHNwYW0gcW1haWxhZG1pbiBwb3N0
+Zml4CiAgICBybSAtcmYgc3R1bm5lbCBzcXVpZCBzYXJnIHBwdHAtY2xpZW50IHBwdHAtc2VydmVy
+IGphYmJlciBvcGVuc2xwIHNlbnRyeSBjbHVzdGVyLSogdmdldHR5IGJ1cm5lciBoZWFydGJlYXQK
+CiAgICAjIEFkanVzdCBjb25maWdzCiAgICBbIC1mIGluaXQvY29uZmlnLWRlYmlhbi1saW51eCBd
+ICYmIG12IGluaXQvY29uZmlnLWRlYmlhbi1saW51eCBpbml0L2NvbmZpZy1nZW5lcmljLWxpbnV4
+CiAgICBzZWQgLWkgInMvc2h1dGRvd25fY29tbWFuZD0uKi9zaHV0ZG93bl9jb21tYW5kPXBvd2Vy
+b2ZmLyIgaW5pdC9jb25maWctZ2VuZXJpYy1saW51eAogICAgZWNobyAiZXhjbHVkZT1ib290bWlz
+Yy5zaCxzaW5nbGUsaGFsdCxyZWJvb3QsaG9zdG5hbWUuc2gsbW9kdXRpbHMuc2gsbW91bnRhbGwu
+c2gsbW91bnRuZnMuc2gsbmV0d29ya2luZyxwb3B1bGF0ZS12b2xhdGlsZS5zaCxybW5vbG9naW4u
+c2gsc2F2ZS1ydGMuc2gsdW1vdW50ZnMsdW1vdW50bmZzLnNoLGh3Y2xvY2suc2gsY2hlY2tyb290
+LnNoLGJhbm5lci5zaCx1ZGV2LHVkZXYtY2FjaGUsZGV2cHRzLnNoLHBzcGxhc2guc2gsc2VuZHNp
+Z3MsZmJzZXR1cCxib290bG9nZCxzdG9wLWJvb3Rsb2dkLHN5c2ZzLnNoLHN5c2xvZyxzeXNsb2cu
+YnVzeWJveCx1cmFuZG9tLHdlYm1pbixmdW5jdGlvbnMuaW5pdHNjcmlwdHMscmVhZC1vbmx5LXJv
+b3Rmcy1ob29rLnNoIiA+PiBpbml0L2NvbmZpZy1nZW5lcmljLWxpbnV4CiAgICBlY2hvICJleGNs
+dWRlZnM9ZGV2cHRzLGRldnRtcGZzLHVzYmRldmZzLHByb2MsdG1wZnMsc3lzZnMsZGVidWdmcyIg
+Pj4gbW91bnQvY29uZmlnLWdlbmVyaWMtbGludXgKCiAgICBbIC1mIGV4cG9ydHMvY29uZmlnLWRl
+Ymlhbi1saW51eCBdICYmIG12IGV4cG9ydHMvY29uZmlnLWRlYmlhbi1saW51eCBleHBvcnRzL2Nv
+bmZpZy1nZW5lcmljLWxpbnV4CiAgICBzZWQgLWkgInMva2lsbGFsbCAtSFVQIHJwYy5uZnNkICYm
+IC8vIiBleHBvcnRzL2NvbmZpZy1nZW5lcmljLWxpbnV4CiAgICBzZWQgLWkgInMvbmV0c3RkX25m
+cy9uZnNzZXJ2ZXIvZyIgZXhwb3J0cy9jb25maWctZ2VuZXJpYy1saW51eAoKICAgICMgRml4IGlu
+c2FuZSBuYW1pbmcgdGhhdCBjYXVzZXMgcHJvYmxlbXMgYXQgcGFja2FnaW5nIHRpbWUgKG11c3Qg
+YmUgZG9uZSBiZWZvcmUgZGVsZXRpbmcgYmVsb3cpCiAgICBmaW5kIC4gLW5hbWUgIipcKioiIHwg
+d2hpbGUgcmVhZCBmcm9tCiAgICBkbwogICAgICAgIHRvPWBlY2hvICIkZnJvbSIgfCBzZWQgInMv
+Ki9BTEwvImAKICAgICAgICBtdiAiJGZyb20iICIkdG8iCiAgICBkb25lCgogICAgIyBSZW1vdmUg
+c29tZSBvdGhlciBmaWxlcyB3ZSBkb24ndCBuZWVkCiAgICBmaW5kIC4gLW5hbWUgImNvbmZpZy0q
+IiAtYSBcISAtbmFtZSAiY29uZmlnLWdlbmVyaWMtbGludXgiIC1hIFwhIC1uYW1lICJjb25maWct
+QUxMLWxpbnV4IiAtYSBcISAtbmFtZSAiKi5wbCIgLWRlbGV0ZQogICAgZmluZCAuIC1yZWdleHR5
+cGUgcG9zaXgtZXh0ZW5kZWQgLXJlZ2V4ICIuKi8ob3BlbnNlcnZlcnxhaXh8b3NmMXxvc2Z8b3Bl
+bmJzZHxuZXRic2R8ZnJlZWJzZHx1bml4d2FyZXxzb2xhcmlzfG1hY29zfGlyaXh8aHB1eHxjeWd3
+aW58d2luZG93cyktbGliXC5wbCIgLWRlbGV0ZQogICAgcm0gLWYgd2VibWluLWdlbnRvby1pbml0
+IHdlYm1pbi1jYWxkZXJhLWluaXQgd2VibWluLWRlYmlhbi1wYW0gd2VibWluLXBhbQoKICAgICMg
+RG9uJ3QgbmVlZCB0aGVzZSBhdCBydW50aW1lIChhbmQgd2UgaGF2ZSBvdXIgb3duIHNldHVwIHNj
+cmlwdCkKICAgIHJtIC1mIHNldHVwLnNoCiAgICBybSAtZiBzZXR1cC5wbAoKICAgICMgVXNlIHBp
+ZG9mIGZvciBmaW5kaW5nIFBJRHMKICAgIHNlZCAtaSAicy9maW5kX3BpZF9jb21tYW5kPS4qL2Zp
+bmRfcGlkX2NvbW1hbmQ9cGlkb2YgTkFNRS8iIGNvbmZpZy1nZW5lcmljLWxpbnV4Cn0KCldFQk1J
+Tl9MT0dJTiA/PSAiYWRtaW4iCldFQk1JTl9QQVNTV09SRCA/PSAicGFzc3dvcmQiCgpkb19pbnN0
+YWxsKCkgewogICAgaW5zdGFsbCAtZCAke0R9JHtzeXNjb25mZGlyfQogICAgaW5zdGFsbCAtZCAk
+e0R9JHtzeXNjb25mZGlyfS93ZWJtaW4KICAgIGluc3RhbGwgLWQgJHtEfSR7c3lzY29uZmRpcn0v
+aW5pdC5kCiAgICBpbnN0YWxsIC1tIDA3NTUgd2VibWluLWluaXQgJHtEfSR7c3lzY29uZmRpcn0v
+aW5pdC5kL3dlYm1pbgoKICAgIGluc3RhbGwgLWQgJHtEfSR7c3lzdGVtZF91bml0ZGlyfS9zeXN0
+ZW0KICAgIGluc3RhbGwgLW0gMDY0NCAke1dPUktESVJ9L3dlYm1pbi5zZXJ2aWNlICR7RH0ke3N5
+c3RlbWRfdW5pdGRpcn0vc3lzdGVtCiAgICBzZWQgLWkgLWUgJ3MsQFNZU0NPTkZESVJALCR7c3lz
+Y29uZmRpcn0sZycgXAogICAgICAgICAgICR7RH0ke3N5c3RlbWRfdW5pdGRpcn0vc3lzdGVtL3dl
+Ym1pbi5zZXJ2aWNlCgogICAgaW5zdGFsbCAtZCAke0R9JHtsb2NhbHN0YXRlZGlyfQogICAgaW5z
+dGFsbCAtZCAke0R9JHtsb2NhbHN0YXRlZGlyfS93ZWJtaW4KCiAgICBpbnN0YWxsIC1kICR7RH0k
+e2xpYmV4ZWNkaXJ9L3dlYm1pbgogICAgY2QgJHtTfSB8fCBleGl0IDEKICAgIHRhciAtLW5vLXNh
+bWUtb3duZXIgLS1leGNsdWRlPScuL3BhdGNoZXMnIC0tZXhjbHVkZT0nLi8ucGMnIC1jcGYgLSAu
+IFwKICAgICAgICB8IHRhciAtLW5vLXNhbWUtb3duZXIgLXhwZiAtIC1DICR7RH0ke2xpYmV4ZWNk
+aXJ9L3dlYm1pbgoKICAgIHJtIC1mICR7RH0ke2xpYmV4ZWNkaXJ9L3dlYm1pbi93ZWJtaW4taW5p
+dAogICAgcm0gLWYgJHtEfSR7bGliZXhlY2Rpcn0vd2VibWluL2FqYXh0ZXJtL2FqYXh0ZXJtL2Nv
+bmZpZ3VyZS5pbml0ZC5nZW50b28KICAgIHJtIC1yZiAke0R9JHtsaWJleGVjZGlyfS93ZWJtaW4v
+cGF0Y2hlcwoKICAgICMgUnVuIHNldHVwIHNjcmlwdAogICAgZXhwb3J0IHBlcmw9cGVybAogICAg
+ZXhwb3J0IHBlcmxfcnVudGltZT0ke2JpbmRpcn0vcGVybAogICAgZXhwb3J0IHByZWZpeD0ke0R9
+CiAgICBleHBvcnQgdGVtcGRpcj0ke1N9L2luc3RhbGxfdG1wCiAgICBleHBvcnQgd2FkaXI9JHts
+aWJleGVjZGlyfS93ZWJtaW4KICAgIGV4cG9ydCBjb25maWdfZGlyPSR7c3lzY29uZmRpcn0vd2Vi
+bWluCiAgICBleHBvcnQgdmFyX2Rpcj0ke2xvY2Fsc3RhdGVkaXJ9L3dlYm1pbgogICAgZXhwb3J0
+IG9zX3R5cGU9Z2VuZXJpYy1saW51eAogICAgZXhwb3J0IG9zX3ZlcnNpb249MAogICAgZXhwb3J0
+IHJlYWxfb3NfdHlwZT0iJHtESVNUUk9fTkFNRX0iCiAgICBleHBvcnQgcmVhbF9vc192ZXJzaW9u
+PSIke0RJU1RST19WRVJTSU9OfSIKICAgIGV4cG9ydCBwb3J0PTEwMDAwCiAgICBleHBvcnQgbG9n
+aW49JHtXRUJNSU5fTE9HSU59CiAgICBleHBvcnQgcGFzc3dvcmQ9JHtXRUJNSU5fUEFTU1dPUkR9
+CiAgICBleHBvcnQgc3NsPTAKICAgIGV4cG9ydCBhdGJvb3Q9MQogICAgZXhwb3J0IG5vX3BhbT0x
+CiAgICBta2RpciAtcCAkdGVtcGRpcgogICAgJHtTfS8uLi9zZXR1cC5zaAoKICAgICMgRW5zdXJl
+IGNvcnJlY3QgUEVSTExJQiBwYXRoCiAgICBzZWQgLWkgLWUgJ3MjJHtEfSMjZycgJHtEfSR7c3lz
+Y29uZmRpcn0vd2VibWluL3N0YXJ0Cn0KCklOSVRTQ1JJUFRfTkFNRSA9ICJ3ZWJtaW4iCklOSVRT
+Q1JJUFRfUEFSQU1TID0gInN0YXJ0IDk5IDUgMyAyIC4gc3RvcCAxMCAwIDEgNiAuIgoKU1lTVEVN
+RF9TRVJWSUNFXyR7UE59ID0gIndlYm1pbi5zZXJ2aWNlIgpTWVNURU1EX0FVVE9fRU5BQkxFXyR7
+UE59ID0gImVuYWJsZSIKCiMtIE1vZHVsZXMgd2Ugd2FudCB0byBpbnN0YWxsIGluaXRpYWxseQpQ
+QUNLQUdFUyArPSAiJHtQTn0tbW9kdWxlLWFjbCAke1BOfS1tb2R1bGUtYmFja3VwLWNvbmZpZyAk
+e1BOfS1tb2R1bGUtY2VydG1nciAke1BOfS1tb2R1bGUtY2hhbmdlLXVzZXIgJHtQTn0tbW9kdWxl
+LWNwYW4gJHtQTn0tbW9kdWxlLWNyb24gIgpQQUNLQUdFUyArPSAiJHtQTn0tbW9kdWxlLW5ldCAk
+e1BOfS1tb2R1bGUtcGFzc3dkICR7UE59LW1vZHVsZS1wcm9jICR7UE59LW1vZHVsZS1zaGVsbCAk
+e1BOfS1tb2R1bGUtc3RhdHVzICR7UE59LW1vZHVsZS1zeXN0ZW0tc3RhdHVzICIKUEFDS0FHRVMg
+Kz0gIiR7UE59LW1vZHVsZS11c2VyYWRtaW4gJHtQTn0tbW9kdWxlLXdlYm1pbiAke1BOfS10aGVt
+ZS1hdXRoZW50aWMtdGhlbWUgJHtQTn0tdGhlbWUtYmx1ZS10aGVtZSAke1BOfS10aGVtZS1ncmF5
+LXRoZW1lIgoKIy0gS25vd24gUGVybCBtb2R1bGVzIHJlcXVyZWQgZm9yIFdlYm1pbiBhbmQgaW5z
+dGFsbGVkIG1vZHVsZXMKUkRFUEVORFNfJHtQTn0gKz0gInBlcmwgcGVybC1tb2R1bGUtc29ja2V0
+IHBlcmwtbW9kdWxlLWV4cG9ydGVyIHBlcmwtbW9kdWxlLWV4cG9ydGVyLWhlYXZ5IHBlcmwtbW9k
+dWxlLWNhcnAgcGVybC1tb2R1bGUtc3RyaWN0IHBlcmwtbW9kdWxlLXdhcm5pbmdzIgpSREVQRU5E
+U18ke1BOfSArPSAicGVybC1tb2R1bGUteHNsb2FkZXIgcGVybC1tb2R1bGUtcG9zaXggcGVybC1t
+b2R1bGUtYXV0b2xvYWRlciBwZXJsLW1vZHVsZS1mY250bCBwZXJsLW1vZHVsZS10aWUtaGFzaCBw
+ZXJsLW1vZHVsZS12YXJzIHBlcmwtbW9kdWxlLWNnaSIKUkRFUEVORFNfJHtQTn0gKz0gInBlcmwt
+bW9kdWxlLXRpbWUtbG9jYWwgcGVybC1tb2R1bGUtY29uZmlnIHBlcmwtbW9kdWxlLWNvbnN0YW50
+IHBlcmwtbW9kdWxlLWZpbGUtZ2xvYiBwZXJsLW1vZHVsZS1maWxlLWNvcHkgcGVybC1tb2R1bGUt
+c2RibS1maWxlIgpSREVQRU5EU18ke1BOfSArPSAicGVybC1tb2R1bGUtZmVhdHVyZSBwZXJsLW1v
+ZHVsZS1maWxlLWJhc2VuYW1lIHBlcmwtbW9kdWxlLWZpbGUtcGF0aCBwZXJsLW1vZHVsZS1jd2Qg
+cGVybC1tb2R1bGUtZmlsZS1zcGVjIHBlcmwtbW9kdWxlLWZpbGUtc3BlYy11bml4IiAKCiMtIEtu
+b3duIExpbnV4IHJlcXVpcmVtZW50c2Ygb3IgV2VibWluIE1vZHVsZXMKUkRFUEVORFNfJHtQTn0t
+bW9kdWxlLXByb2MgPSAicHJvY3BzIgoKIy0gQWRkaXRpb25hbCByZXF1aXJlbWVudHMKREVQRU5E
+UyArPSAibGlibmV0LXNzbGVheS1wZXJsIGxpYmNnaS1wZXJsIG9wZW5zc2wiClBBQ0tBR0VTX0RZ
+TkFNSUMgKz0gIndlYm1pbi1tb2R1bGUtKiB3ZWJtaW4tdGhlbWUtKiIKUlJFQ09NTUVORFNfJHtQ
+Tn0gKz0gIndlYm1pbi1tb2R1bGUtc3lzdGVtLXN0YXR1cyIKCnB5dGhvbiBwb3B1bGF0ZV9wYWNr
+YWdlc19wcmVwZW5kKCkgewogICAgaW1wb3J0IG9zLCBvcy5wYXRoCgogICAgd2FkaXIgPSBiYi5k
+YXRhLmV4cGFuZCgnJHtsaWJleGVjZGlyfS93ZWJtaW4nLCBkKQogICAgd2FkaXJfaW1hZ2UgPSBi
+Yi5kYXRhLmV4cGFuZCgnJHtEfScsIGQpICsgd2FkaXIKICAgIG1vZHVsZXMgPSBbXQogICAgdGhl
+bWVzID0gW10KICAgIGZvciBtb2QgaW4gb3MubGlzdGRpcih3YWRpcl9pbWFnZSk6CiAgICAgICAg
+bW9kaW5mbyA9IG9zLnBhdGguam9pbih3YWRpcl9pbWFnZSwgbW9kLCAibW9kdWxlLmluZm8iKQog
+ICAgICAgIHRoZW1laW5mbyA9IG9zLnBhdGguam9pbih3YWRpcl9pbWFnZSwgbW9kLCAidGhlbWUu
+aW5mbyIpCiAgICAgICAgaWYgb3MucGF0aC5leGlzdHMobW9kaW5mbyk6CiAgICAgICAgICAgIG1v
+ZHVsZXMuYXBwZW5kKG1vZCkKICAgICAgICBlbGlmIG9zLnBhdGguZXhpc3RzKHRoZW1laW5mbyk6
+CiAgICAgICAgICAgIHRoZW1lcy5hcHBlbmQobW9kKQoKICAgIGRvX3NwbGl0X3BhY2thZ2VzKGQs
+IHdhZGlyLCAnXiglcykkJyAlICJ8Ii5qb2luKG1vZHVsZXMpLCAnd2VibWluLW1vZHVsZS0lcycs
+ICdXZWJtaW4gbW9kdWxlIGZvciAlcycsIGV4dHJhX2RlcGVuZHM9J3BlcmwnLCBhbGxvd19kaXJz
+PVRydWUsIHByZXBlbmQ9VHJ1ZSkKICAgIGRvX3NwbGl0X3BhY2thZ2VzKGQsIHdhZGlyLCAnXigl
+cykkJyAlICJ8Ii5qb2luKHRoZW1lcyksICd3ZWJtaW4tdGhlbWUtJXMnLCAnV2VibWluIHRoZW1l
+IGZvciAlcycsIGV4dHJhX2RlcGVuZHM9J3BlcmwnLCBhbGxvd19kaXJzPVRydWUsIHByZXBlbmQ9
+VHJ1ZSkKfQoKIyBUaW1lLXNhdmVycwpwYWNrYWdlX2RvX3BrZ2NvbmZpZygpIHsKICAgIDoKfQo=
 
-https://docs.yoctoproject.org/ref-manual/ref-system-requirements.html#supp=
-orted-linux-distributions
-
-Also, if you could mention the layers and version of YP code
-that you are using that could be helpful in general although
-for this issue it shouldn't matter.
-
-
-../Randy
-
-
->=20
-> Thanks in advance
->=20
-> Andrew
->=20
->=20
->=20
->=20
-
-
---=20
-# Randy MacLeod
-# Wind River Linux
+--=_ea29a91d8fad0d0b878614a75896a102--
