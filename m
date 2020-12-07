@@ -1,106 +1,44 @@
-Subject: Re: Which package provides full featured passwd, adduser, etc?
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.517.1607383505364299796
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 07 Dec 2020 15:25:05 -0800
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=none, err=permanent DNS error (domain: ubuntu1804-ty-2.yocto.io, ip: 198.145.29.25, mailfrom: pokybuild@ubuntu1804-ty-2.yocto.io)
+Received: from ubuntu1804-ty-2.yocto.io (unknown [172.29.10.113])
+	by mail.yoctoproject.org (Postfix) with ESMTP id 63B1D38C1471;
+	Mon,  7 Dec 2020 23:25:04 +0000 (UTC)
+Received: by ubuntu1804-ty-2.yocto.io (Postfix, from userid 6000)
+	id 27A422A066A; Mon,  7 Dec 2020 23:25:03 +0000 (UTC)
 To: yocto@lists.yoctoproject.org
-From: "Lukasz Domowy" <lukasz.odw39@gmail.com>
-X-Originating-Location: Neuss, North Rhine-Westphalia, DE (93.241.63.155)
-X-Originating-Platform: Windows Chrome 86
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Mon, 07 Dec 2020 15:12:11 -0800
-References: <54PP.1607375500080817654.JwyJ@lists.yoctoproject.org>
-In-Reply-To: <54PP.1607375500080817654.JwyJ@lists.yoctoproject.org>
-Message-ID: <6649.1607382731741731476@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="MenAmEbVwRs4t3noyFdS"
+Cc: otavio@ossystems.com.br, yi.zhao@windriver.com, apoorv.sangal@intel.com, ee.peng.yeoh@intel.com, aaron.chun.yew.chan@intel.com, richard.purdie@linuxfoundation.org, akuster808@gmail.com, sjolley.yp.pm@gmail.com, sangeeta.jain@intel.com
+Subject: QA notification for completed autobuilder build (yocto-3.2.1.rc2)
+Message-Id: <20201207232504.27A422A066A@ubuntu1804-ty-2.yocto.io>
+Date: Mon,  7 Dec 2020 23:25:03 +0000 (UTC)
+From: pokybuild@ubuntu1804-ty-2.yocto.io
 
---MenAmEbVwRs4t3noyFdS
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
 
-I looks like it is provided by just 'shadow' recipe:
+A build flagged for QA (yocto-3.2.1.rc2) was completed on the autobuilder and is available at:
 
-oe-pkgdata-util list-pkg-files shadow
-shadow:
-/etc/default/useradd
-/etc/limits
-/etc/login.access
-/sbin/nologin.shadow
-/sbin/vigr.shadow
-/sbin/vipw.shadow
-/usr/bin/chage
-/usr/bin/chfn.shadow
-/usr/bin/chsh.shadow
-/usr/bin/expiry
-/usr/bin/faillog
-/usr/bin/gpasswd
-/usr/bin/lastlog
-/usr/bin/newgidmap
-/usr/bin/newuidmap
-/usr/bin/passwd.shadow
-/usr/sbin/chgpasswd
-/usr/sbin/chpasswd.shadow
-/usr/sbin/groupadd
-/usr/sbin/groupdel
-/usr/sbin/groupmems
-/usr/sbin/groupmod
-/usr/sbin/grpck
-/usr/sbin/grpconv
-/usr/sbin/grpunconv
-/usr/sbin/logoutd
-/usr/sbin/newusers
-/usr/sbin/pwck
-/usr/sbin/pwconv
-/usr/sbin/pwunconv
-/usr/sbin/useradd
-/usr/sbin/userdel
-/usr/sbin/usermod
 
-However, after adding 'shadow' package to image, nothing changed. Files en=
-umerated above have not been added. Any ideas why?
+    https://autobuilder.yocto.io/pub/releases/yocto-3.2.1.rc2
 
-Best regards,
-Lukasz
 
---MenAmEbVwRs4t3noyFdS
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Build hash information: 
 
-I looks like it is provided by just 'shadow' recipe:<br /><br />
-<div>oe-pkgdata-util list-pkg-files shadow</div>
-<div>shadow:</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /etc/default/useradd</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /etc/limits</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /etc/login.access</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /sbin/nologin.shadow</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /sbin/vigr.shadow</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /sbin/vipw.shadow</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/bin/chage</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/bin/chfn.shadow</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/bin/chsh.shadow</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/bin/expiry</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/bin/faillog</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/bin/gpasswd</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/bin/lastlog</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/bin/newgidmap</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/bin/newuidmap</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/bin/passwd.shadow</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/chgpasswd</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/chpasswd.shadow</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/groupadd</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/groupdel</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/groupmems</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/groupmod</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/grpck</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/grpconv</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/grpunconv</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/logoutd</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/newusers</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/pwck</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/pwconv</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/pwunconv</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/useradd</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/userdel</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; /usr/sbin/usermod<br /><br />However, aft=
-er adding 'shadow' package to image, nothing changed. Files enumerated abov=
-e have not been added. Any ideas why?<br /><br />Best regards,<br />Lukasz<=
-/div>
+bitbake: fec2b85689bba1d26ad6f376bc11cc29bb27cbe5
+meta-arm: afa281b7a997bf265bfe221d1693a8a5bd4a243d
+meta-gplv2: 6e8e969590a22a729db1ff342de57f2fd5d02d43
+meta-intel: 5492270c796daf8b7a7cc9cd93880c2bb25523c0
+meta-kernel: f9d30c65d08c9cef20d6487a7aff0fff40acc823
+meta-mingw: 352d8b0aa3c7bbd5060a4cc2ebe7c0e964de4879
+oecore: d11ab9cb77bf91f939035417b757773a5d80242c
+poky: 943ef2fad8428f002850e3655a3312e13d0dcb2c
 
---MenAmEbVwRs4t3noyFdS--
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+ 
