@@ -1,60 +1,137 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.3719.1607331649294536634
+ by mx.groups.io with SMTP id smtpd.web12.3741.1607331809900957426
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Dec 2020 01:00:49 -0800
+ Mon, 07 Dec 2020 01:03:30 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ek364FTl;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 7858138C085B
-	for <yocto@yoctoproject.org>; Mon,  7 Dec 2020 09:00:48 +0000 (UTC)
-Received: by mail-ed1-f49.google.com with SMTP id q16so12833606edv.10
-        for <yocto@yoctoproject.org>; Mon, 07 Dec 2020 01:00:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=m+7TdJ+PCAHAobhDZr2ggq0sl69s5aHEhQ1B6a7OZ1c=;
-        b=ek364FTlydmiKBePN8BjHeS9HAvpokD8HvY7pqoRzn5XSOnR/s8ThnSzfzP+3IHvBg
-         ePcsR3NANHhBWRtblXQ7jgffZW55WNh1cW3oXAYpCVnLAdvNK3s+1Ll5a3O6Dn0LJKSI
-         jXasvEHCsMZclytVvDDrMCBmpZXcxXxyd51C+EUkPBUwvEvttcB+LljK6pCEL+7YsfeJ
-         7cjI2yeGMrhWEJvMcXbMGVsKc9uQW46V+IYruLUgPBad2bCaYIlsZ8i+7I9B8iCLfG6h
-         f/ujKEY9YO8erlaAKNzSd1gbug4Sbpk0xEbvm2eu8PYYWrReTdi8XTbWseW64AkaR5rP
-         +NCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=m+7TdJ+PCAHAobhDZr2ggq0sl69s5aHEhQ1B6a7OZ1c=;
-        b=P8zPBxWYxJKY+iONAqTa6FCzOUO5bCYCa3ou4Y7prgkKaP40nQEuN2hQ6GF1YgQOOc
-         f4TgQgPgi4kKYKYpGjcGH0FLUXf9L9ytg5bOG0WeD837LbhTmjy1tNKdR+MsyMnSgBbX
-         db7AvAHCpQdCpFEyzsxcuKu7SOcgWKJ+1ClailtjWRAnri2+SESdqKqE7wokZqxX3LwH
-         5e96Iyz7FX0IUjAu3AaH4WNgxKdFk2XtJEcnU+KLosqMmzyc8u8RdD9hjRt/N3n5siZT
-         bFPqU/mu03Zv3Q+AfnbDE4xckxOnmnEGj++fdvpUxI+3mmTUUvuNFyI2sDlwDtub0OZO
-         ReUQ==
-X-Gm-Message-State: AOAM533WhpfbfaDWvF49efLBvRT5kB9O19+nmHHbj+NADj6iPOIpuUkw
-	C4smWUdT6LRGeXkGHN2TfpX8rZw+1pyyZEnH+fJ9J+bGIfbF7Q==
-X-Google-Smtp-Source: ABdhPJzI4HVSUGMnGAknDXF94J2t3Ncyo+qLEunYoEfB5a6T4L6F1zX8/an/AJNIC2ecBXYn1dmKcDhwLXd9Avtdt+k=
-X-Received: by 2002:a50:9f4a:: with SMTP id b68mr18756600edf.296.1607331646692;
- Mon, 07 Dec 2020 01:00:46 -0800 (PST)
-MIME-Version: 1.0
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Mon, 7 Dec 2020 10:00:35 +0100
-Message-ID: <CAAfyv3548QmcBobrxxpq8eUx8Nq270b9sT2yaMB31VT0h1mjbw@mail.gmail.com>
-Subject: npm node-gyp python3 compatibility issue
+ dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=YFY+PMld;
+ spf=none, err=SPF record not found (domain: optimcloud.com, ip: 198.145.29.25, mailfrom: dingo@optimcloud.com)
+Received: from mx02.optimcloud.com (mx02.optimcloud.com [46.23.93.22])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 3E6D238C085B
+	for <yocto@yoctoproject.org>; Mon,  7 Dec 2020 09:03:29 +0000 (UTC)
+Received: from mx02.optimcloud.com (localhost [127.0.0.1])
+	by mx02.optimcloud.com (OpenSMTPD) with ESMTP id aa8e5eaf
+	for <yocto@yoctoproject.org>;
+	Mon, 7 Dec 2020 10:03:26 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=to
+	:from:subject:message-id:date:mime-version:content-type
+	:content-transfer-encoding; s=obsd; bh=IFAvft6Ge19aaMlqDjSup7Lz7
+	ic+fiG6gdzYptA+zEY=; b=YFY+PMldQo4hg4h8ZMPsnPEZLOcNxaTCpEWzvQubV
+	7ZE/tTzfbESgscBBhoIB/0L1Gkas+pYA6vdYaWpTTb4qA3JRpXwNBiSvjCL7s+cP
+	1ieHJ1OAVa/Xy/Qih/sx/4GjrAvGwamqXshETL1fDfQm9zXXv+XHW1EuQMnu3b4/
+	TYkHz+MFRIgunKZd18Q7BQqMzcj4+41/lBfeEWLBeGKHxZfm5z/STL6Ys73GaNDf
+	+tqjpO8HOmmRxYPI/4/A0S9kSUBgX+UBNf0l3ZiYBCJz5WDMiaaXrrbEq7Yezix+
+	/fNySv9fMPH5mbnrkALzjAbPU33t3adhtzpWQeIApMORg==
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=to:from
+	:subject:message-id:date:mime-version:content-type
+	:content-transfer-encoding; q=dns; s=obsd; b=LfM7vK8UB+bjxoBOeJl
+	EuGt2TgAjmKzrwB9kRqdQzJxRhG0KE/D6l4+UmfWsKsPOoQpq7mKV/Bra+xUKhDB
+	faLiQspbwIbnZcamv15Z/h1lARfVvY06SHz1djrcL3yU5N6jcTJwqEtpQ6sXqPWY
+	Y82NDLmJIHmtmFNEyMsslqJG/CQKzElq4/0QnOnK97d5yuhZWj4EZsXr770TI+ft
+	WlDP1sw9ih94LPlKZhGe8qBMBgCqaa3LAsDTrIXvxjWUDP1+8tmOWMe7eKwfbtZb
+	dez6k7i6QSm0DFl/MpFGoZitVwcycJvRAwyUw2T8zUVFCpUXC9DAgttTPSAQvD05
+	LIg==
+Received: 
+	by mx02.optimcloud.com (OpenSMTPD) with ESMTPSA id c7f8278c (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO) auth=yes user=support@optimcloud.com
+	for <yocto@yoctoproject.org>;
+	Mon, 7 Dec 2020 10:03:26 +0100 (CET)
 To: yocto <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+From: "Dingo" <dingo@optimcloud.com>
+Subject: qemu-5.1.0-r0 do_package_write_deb
+Message-ID: <200f8dfa-4e96-007e-67dd-ed426e49694d@optimcloud.com>
+Date: Mon, 7 Dec 2020 16:03:19 +0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Build Configuration:
+BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=
+ "1.49.0"
+BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ =3D "x86_64-linux"
+NATIVELSBSTRING=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "fedora-33"
+TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=
+ "x86_64-overc-linux"
+MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 =3D "intel-corei7-64"
+DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 =3D "overc"
+DISTRO_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "1.0"
+TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "m64 corei7"
+TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=
+ ""
+meta
+meta-poky
+meta-yocto-bsp=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "HEAD:64a18762f05d=
+caf525a2c945908b2747897a79df"
+meta-oe
+meta-python
+meta-networking
+meta-filesystems
+meta-initramfs
+meta-multimedia
+meta-perl=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ =3D "HEAD:a6d9a4adb86bac52ef02731fd9c8c941a6fbf955"
+meta-overc
+meta-cube=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ =3D "HEAD:470c1d77d5d65b10ea6713404042d6a97df022bc"
+meta-virtualization=C2=A0 =3D "HEAD:6049f9abf8cebe6d827b51b63f3b6bcfd462a=
+b99"
+meta-security=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "HEAD:d2ceb5e=
+438b3b9c91696c83bf32f2df415a761ab"
+meta-selinux=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "HEAD:5a=
+58e87aa998c53527f92b32c3e6bc516a03d9a3"
+meta-gnome
+meta-xfce=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ =3D "HEAD:a6d9a4adb86bac52ef02731fd9c8c941a6fbf955"
+meta-intel=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=
+ "HEAD:7d79beb5093da8adf0f9b106a33d8e0904a50a48"
+meta-cloud-services=C2=A0 =3D "HEAD:ad57527aff18c3977a4187e001bf89b008d65=
+c92"
+meta-awnix=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=
+ "<unknown>:<unknown>"
+meta-browser=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "master:=
+1aef1b7857bc065c0e350c5732c3f0d69572e9ec"
+meta-clang=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=
+ "master:1dfc3a905ad0fed7a3b300aa51153365f9950fe7"
+meta-rust=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ =3D "master:f56fd4ec6835d68c4e9f8a9630963acd34d172e5"
+meta-python2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "<unknow=
+n>:<unknown>"
 
-I'm adding custom npm app using devtool  (using poky dunfel) and
-hittin build issue like:
-TypeError: write() argument must be str, not bytes while trying to
-load binding.gyp
+ERROR: qemu-5.1.0-r0 do_package_write_deb: Fatal errors occurred in=20
+subprocesses:
+Command=20
+'PATH=3D"/var/home/dingo/overc/poky/scripts:/var/home/dingo/overc/build/t=
+mp/work/corei7-64-overc-linux/qemu/5.1.0-r0/recipe-sysroot-native/usr/bin=
+/x86_64-overc-linux:/var/home/dingo/overc/build/tmp/work/corei7-64-overc-=
+linux/qemu/5.1.0-r0/recipe-sysroot/usr/bin/crossscripts:/var/home/dingo/o=
+verc/build/tmp/work/corei7-64-overc-linux/qemu/5.1.0-r0/recipe-sysroot-na=
+tive/usr/sbin:/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/=
+qemu/5.1.0-r0/recipe-sysroot-native/usr/bin:/var/home/dingo/overc/build/t=
+mp/work/corei7-64-overc-linux/qemu/5.1.0-r0/recipe-sysroot-native/sbin:/v=
+ar/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/qemu/5.1.0-r0/re=
+cipe-sysroot-native/bin:/var/home/dingo/overc/poky/bitbake/bin:/var/home/=
+dingo/overc/build/tmp/hosttools"=20
+dpkg-deb -b=20
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/qemu/5.1.0-r0/=
+packages-split/qemu-x86_64=20
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/qemu/5.1.0-r0/=
+deploy-debs/corei7-64'=20
+returned non-zero exit status 2.
+Subprocess output:dpkg-deb: error: package name has characters that=20
+aren't lowercase alphanums or '-+.'
 
-To me it seems it's this exact problem described
-here:https://github.com/nodejs/node-gyp/issues/2051 as release of
-nodejs fits. Do we have fix for that or it's only possible to get it
-by bumping node package? Thanks.
+ERROR: Logfile of failure stored in:=20
+/var/home/dingo/overc/build/tmp/work/corei7-64-overc-linux/qemu/5.1.0-r0/=
+temp/log.do_package_write_deb.3730245
+ERROR: Task=20
+(/var/home/dingo/overc/poky/meta/recipes-devtools/qemu/qemu_5.1.0.bb:do_p=
+ackage_write_deb)=20
+failed with exit code '1'
 
-BR,
 
-marek
+
+
