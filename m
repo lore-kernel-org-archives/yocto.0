@@ -1,174 +1,93 @@
-Received: from mail-lf1-f68.google.com (mail-lf1-f68.google.com [209.85.167.68])
- by mx.groups.io with SMTP id smtpd.web12.2301.1607285742147644341
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+ by mx.groups.io with SMTP id smtpd.web09.152.1607303897267555357
  for <yocto@lists.yoctoproject.org>;
- Sun, 06 Dec 2020 12:15:42 -0800
+ Sun, 06 Dec 2020 17:18:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Jatys0vm;
- spf=pass (domain: gmail.com, ip: 209.85.167.68, mailfrom: zmuda.w@gmail.com)
-Received: by mail-lf1-f68.google.com with SMTP id z21so15014203lfe.12
-        for <yocto@lists.yoctoproject.org>; Sun, 06 Dec 2020 12:15:41 -0800 (PST)
+ dkim=pass header.i=@nathanrossi.com header.s=google header.b=fkQvQIWI;
+ spf=pass (domain: nathanrossi.com, ip: 209.85.167.181, mailfrom: nathan@nathanrossi.com)
+Received: by mail-oi1-f181.google.com with SMTP id o25so13698221oie.5
+        for <yocto@lists.yoctoproject.org>; Sun, 06 Dec 2020 17:18:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VvnoazjpJmuSIbNBDXuCOcnvXciR7imnMgNKK2ZwK4U=;
-        b=Jatys0vmARFzvDm/reAZ3uJPD/YiohgpfVE4md5KwKZNs04EIUpUQ1ZdIXdvrmF/iQ
-         UPpNgFq8t01ZL1mV8yvpWAIphnCg+uh2Dld1EjM7TyhzDRkvB6ErpxD2dftgIIx7EQoP
-         UZA3kEbd5WysP2IDlBNioKpyalb9h6g7Eb2H6Zu1WyeCV9IrgIhtHScuKiezYKyC8YS5
-         QMkkUX5OwZyIQRSMzLI+sRebXqtNjJYixtFTnc2mYBu3NmCKUIfQScXg+QWrtr05oG3V
-         hwAOLdxzfx5frBsAfvzwzchAGrcyKKrQsbcdRSj97N7czo5LqMT3FKHZK+WYWwj/8ryK
-         YmbQ==
+        d=nathanrossi.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=icYJPfwBMhjnb6wJuWjTkc6V3HiVUhb0JEJUJPcP5pM=;
+        b=fkQvQIWIlLUMj5YHQKROlDx04dRshfV7iHmetJKu2u65dZnp1LhzpjxzKIigNkR8RO
+         C39eFm83S+wPoljakx/XMUbUaFibw6Pil5N7p/QMRga9bxLgIKUSoYWWBkXrNTbTDyWi
+         18IzunhjqjC0r67GM1g4z45g31BI54iv7VNRckzzM9SsuXo5A9OsosBuHlLd3qxYFOmC
+         T1d8l/t97oNCwIJClELtu4hqi4/BzhTOzzYh84kxgnalrJbNGpAGfaJU+8HkveayOVxv
+         2G1eiGgM9ITq5VX+fcKyEE/3/IT5wJw/R/RjtBIysgtRASPNpJcnAhsUJHiSIICV0a+v
+         7hSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VvnoazjpJmuSIbNBDXuCOcnvXciR7imnMgNKK2ZwK4U=;
-        b=ED5V5wAdgKatsUODkjlEBMcKz/wZLHCgVQ4tRb2VY58PngGKzXE7m592gTvEmJh6cK
-         JphXseWRPpQkXg3RSaP92EYZQedDZweSTnlRndBxfuMcwXC1rbavO3ey4XPWGwqO1S9+
-         gB5o+XtYHzg4BAihqKuxyqgfVlVflq1guSrWdzRbChLCl5ukH2ZcvD26/862wyp7eB8x
-         lA1f8vaAwZOP6PEfpIpCkaPBN41l1WzkzNI6cw5OlTzS67fodXBvmKVtCWhtSs9qTS4A
-         IZmgGJ6XMkil7AMgS9I/6Jcyij2NRawwqeVMouWPDGNxupEidHfryyDuHMg5ZTlm1ccA
-         TQ0Q==
-X-Gm-Message-State: AOAM530Tmg5vqZaam2eOlkF+1LcAIycXgs54YccgVfVtD3C2aSJiZw6H
-	3va2BbUucnwV4y/vMgc66kRIQqBqFSCi4w==
-X-Google-Smtp-Source: ABdhPJzNX83YekMpZgEuM27AvCMu37XGo04WWGuxZ54THzIrgvoVNY/7oUNBz/yNeRrLB45QFBJKkg==
-X-Received: by 2002:ac2:5192:: with SMTP id u18mr715232lfi.225.1607285740289;
-        Sun, 06 Dec 2020 12:15:40 -0800 (PST)
-Return-Path: <zmuda.w@gmail.com>
-Received: from localhost.localdomain (89-64-68-83.dynamic.chello.pl. [89.64.68.83])
-        by smtp.gmail.com with ESMTPSA id 16sm530682ljr.11.2020.12.06.12.15.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Dec 2020 12:15:40 -0800 (PST)
-From: "Wojciech Zmuda" <zmuda.w@gmail.com>
-X-Google-Original-From: Wojciech Zmuda <wojciech.zmuda@huawei.com>
-To: yocto@lists.yoctoproject.org
-Cc: davide.ricci@huawei.com,
-	zbigniew.bodek@huawei.com,
-	jaroslaw.marek@huawei.com,
-	robert.drab@huawei.com,
-	Wojciech Zmuda <wojciech.zmuda@huawei.com>
-Subject: [meta-zephyr][PATCH 5/5] zephyr-flash-pyocd.bbclass: support for flashing via pyocd
-Date: Sun,  6 Dec 2020 20:15:21 +0000
-Message-Id: <20201206201521.3377-6-wojciech.zmuda@huawei.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201206201521.3377-1-wojciech.zmuda@huawei.com>
-References: <20201206201521.3377-1-wojciech.zmuda@huawei.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=icYJPfwBMhjnb6wJuWjTkc6V3HiVUhb0JEJUJPcP5pM=;
+        b=GGju3LinvhVw0QoQH7j2aYraqmLYVgl6N2lQmRyvwJRDNVHtngCTC3vOGDimIZ+X4N
+         Kw+lUlz9Gc7qwE3p91zmJX2x//c1lMs6YrgV7J4Z+NjPEfUGigzr5LDWX+TWAdQx6MTm
+         IkzJzDPH1rhEDA5XbArS8ViDmBE2pkr9ytDFejA6Db5leM55fjr4+Xa6sDJ2QZ2+Zlh1
+         R3RseTLslcup30nIcX9/4jJigHZjKs6IfIR0DwvXSi+sJ/3aaI8lEbxq00p7X7lXfbf3
+         YYnSisCx/EjDfCmtPuAxDqEpwhxPVuBjoxl+Dy2WCmQybBUpsQx6FMF3z/Vuhm2fUgxh
+         rBDA==
+X-Gm-Message-State: AOAM533AOcN+nT6F63fEaZ0M75b+0E72d0O1+asCWJdUQA8WnZHdk6CA
+	jadNT/S7FF2d79h7m/3cfuxNULTYrxN26U1qObsn9w==
+X-Google-Smtp-Source: ABdhPJwyhULqLOQsOGUGNjszX1DT13h5UEcfRDI3pKRTRx8ZNM2krcw2pK9LIHTPSTRJN5Cz/vooOJpzTb82dgFSOJg=
+X-Received: by 2002:a54:4817:: with SMTP id j23mr2312194oij.158.1607303896568;
+ Sun, 06 Dec 2020 17:18:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <PpJd.1607087318943513250.7TTi@lists.yoctoproject.org>
+In-Reply-To: <PpJd.1607087318943513250.7TTi@lists.yoctoproject.org>
+From: "Nathan Rossi" <nathan@nathanrossi.com>
+Date: Mon, 7 Dec 2020 11:18:05 +1000
+Message-ID: <CA+aJhH1tZ_RFf71XXg0Ht27NHLAQOksFkU3MweZxbLw5qNX1iQ@mail.gmail.com>
+Subject: Re: [yocto] perl5 do_install() fails (libperl.so: No such file or directory) #dunfell
+To: frank.wolff@smile.fr
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-Flash boards supported via pyocd:
+On Fri, 4 Dec 2020 at 23:08, <frank.wolff@smile.fr> wrote:
+>
+> Hi,
+>
+> I've got a weird problem when trying to build perl5 (from perl_5.30.1.bb, "dunfell" branch): the do_install() fails :
+>
+> rm: cannot remove '/home/frwol/Sources/yocto/build/tmp/work/core2-64-poky-linux/perl/5.30.1-r0/image//usr/lib/perl5/5.30.1/*/CORE/libperl.so': No such file or directory'
+>
+> The thing is, there IS a 'libperl.so', which is a symlink, in a "x86_64-linux" subfolder :
+>
+> $ ls -la /home/frwol/Sources/yocto/build/tmp/work/core2-64-poky-linux/perl/5.30.1-r0/image//usr/lib/perl5/5.30.1/*/CORE/libperl.so
+>
+> lrwxrwxrwx 1 frank frank 26 2020-12-04 12:23 /home/frwol/Sources/yocto/build/tmp/work/core2-64-poky-linux/perl/5.30.1-r0/image//usr/lib/perl5/5.30.1/x86_64-linux/CORE/libperl.so -> /usr/lib/libperl.so.5.30.0
+>
+> And if I try to manually delete it using the same command it works :
+>
+> & rm /home/frwol/Sources/yocto/build/tmp/work/core2-64-poky-linux/perl/5.30.1-r0/image//usr/lib/perl5/5.30.1/*/CORE/libperl.so
+> & ls -la /home/frwol/Sources/yocto/build/tmp/work/core2-64-poky-linux/perl/5.30.1-r0/image//usr/lib/perl5/5.30.1/*/CORE/libperl.so
+>
+> zsh: no matches found: /home/frwol/Sources/yocto/build/tmp/work/core2-64-poky-linux/perl/5.30.1-r0/image//usr/lib/perl5/5.30.1/*/CORE/libperl.so
+>
+> So... I'm kind of confused to tell the truth. My guess is it's related to my setup (or PEBCAK) or else everybody would have encountered this.
+>
+> $ uname -a
+> Linux laptop-frwol 5.9.0-3-amd64 #1 SMP Debian 5.9.9-1 (2020-11-19) x86_64 GNU/Linux
+>
+> I've made absolutely no modification whatsoever. I've just cloned the "dunfell" branch from poky and launched a "bitbake perl".
+> Thanks in advance for your help.
 
-    MACHINE=xxx bitbake yyy -c flash_usb
+I hit this recently too, on master though. Same distro Debian, likely
+similar package versions (testing/unstable).
 
-The only supported board for now is 96Boards Nitrogen. Modify its
-config accordingly.
+Just with some preliminary testing this looks like an issue caused by
+pseudo, maybe something to do with path length? as I only see the
+failure when building nativesdk-perl but not target/native.
 
-Modify helloworld and philosopers samples with adidtional .hex
-output file deployment, as this format is required by pyocd.
+Regards,
+Nathan
 
-Describe the feature in README.
-
-Signed-off-by: Wojciech Zmuda <wojciech.zmuda@huawei.com>
----
- README.txt                                    | 23 +++++++++++++++++++
- classes/zephyr-flash-pyocd.bbclass            | 17 ++++++++++++++
- conf/machine/96b-nitrogen.conf                |  1 +
- .../zephyr-kernel/zephyr-helloworld.bb        |  1 +
- .../zephyr-kernel/zephyr-philosophers.bb      |  1 +
- 5 files changed, 43 insertions(+)
- create mode 100644 classes/zephyr-flash-pyocd.bbclass
-
-diff --git a/README.txt b/README.txt
-index 6463339..4366764 100644
---- a/README.txt
-+++ b/README.txt
-@@ -43,6 +43,29 @@ The same sample, for Nios2 image:
-     $ MACHINE=qemu-nios2 bitbake zephyr-philosophers
-     $ runqemu qemu-nios2
- 
-+Flashing
-+=================================
-+
-+You can flash Zephyr samples to boards. Currently, the following MACHINEs
-+are supported:
-+ * DFU:
-+  - arduino_101_sss
-+  - arduino_101
-+  - arduino_101_ble
-+ * pyocd:
-+  - 96b_nitrogen
-+
-+To flash the example you built with command e.g.
-+
-+    $ MACHINE=96b_nitrogen bitbake zephyr-philosophers
-+
-+call similar command with explicit flash_usb command:
-+
-+    $ MACHINE=96b_nitrogen bitbake zephyr-philosophers -c flash_usb
-+
-+dfu-util and/or pyocd need to be installed in your system. If you observe
-+permission errors or the flashing process seem to hang, follow those instructions:
-+https://github.com/pyocd/pyOCD/tree/master/udev
- 
- Building and Running Zephyr Tests
- =================================
-diff --git a/classes/zephyr-flash-pyocd.bbclass b/classes/zephyr-flash-pyocd.bbclass
-new file mode 100644
-index 0000000..aafe9e7
---- /dev/null
-+++ b/classes/zephyr-flash-pyocd.bbclass
-@@ -0,0 +1,17 @@
-+
-+python do_flash_usb() {
-+    from pyocd.core.helpers import ConnectHelper
-+    from pyocd.flash.file_programmer import FileProgrammer
-+
-+    image = f"{d.getVar('DEPLOY_DIR_IMAGE')}/{d.getVar('PN')}.hex"
-+    bb.plain(f"Attempting to flash {image} to board {d.getVar('BOARD')}")
-+
-+    with ConnectHelper.session_with_chosen_probe() as session:
-+        FileProgrammer(session).program(image)
-+        session.board.target.reset()
-+}
-+
-+addtask do_flash_usb
-+
-+do_flash_usb[nostamp] = "1"
-+do_flash_usb[vardepsexclude] = "BB_ORIGENV"
-diff --git a/conf/machine/96b-nitrogen.conf b/conf/machine/96b-nitrogen.conf
-index d1905f2..998db4c 100644
---- a/conf/machine/96b-nitrogen.conf
-+++ b/conf/machine/96b-nitrogen.conf
-@@ -4,4 +4,5 @@
- #@DESCRIPTION: Machine configuration for 96Boards Nitrogen Board.
- 
- require conf/machine/include/nrf52832.inc
-+ZEPHYR_INHERIT_CLASSES += "zephyr-flash-pyocd"
- ARCH_96b-nitrogen = "arm"
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb b/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb
-index 1400e72..9b77975 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb
-+++ b/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb
-@@ -8,6 +8,7 @@ OECMAKE_SOURCEPATH = "${ZEPHYR_SRC_DIR}"
- 
- do_deploy () {
-     install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT}.elf ${DEPLOYDIR}/${PN}.elf
-+    install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT}.hex ${DEPLOYDIR}/${PN}.hex
- }
- 
- addtask deploy after do_compile
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb b/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb
-index 5f7fbcb..f720999 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb
-+++ b/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb
-@@ -8,6 +8,7 @@ OECMAKE_SOURCEPATH = "${ZEPHYR_SRC_DIR}"
- 
- do_deploy () {
-     install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT}.elf ${DEPLOYDIR}/${PN}.elf
-+    install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT}.hex ${DEPLOYDIR}/${PN}.hex
- }
- 
- addtask deploy after do_compile
--- 
-2.25.1
-
+>
+> Regards,
+>
+> Frank.
+>
+> 
+>
