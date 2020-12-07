@@ -1,77 +1,210 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.4466.1607338202139281138
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by mx.groups.io with SMTP id smtpd.web10.5210.1607342769424637156
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Dec 2020 02:50:02 -0800
+ Mon, 07 Dec 2020 04:06:09 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 198.145.29.25, mailfrom: rpjday@crashcourse.ca)
-Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 8FA9A38C140D
-	for <yocto@yoctoproject.org>; Mon,  7 Dec 2020 10:50:01 +0000 (UTC)
-Received: from cpeac202e043973-cmac202e043970.sdns.net.rogers.com ([174.114.100.179]:56424 helo=localhost.localdomain)
-	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.93)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1kmE5f-00063Y-Oh
-	for yocto@yoctoproject.org; Mon, 07 Dec 2020 05:50:00 -0500
-Date: Mon, 7 Dec 2020 05:49:57 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: "cleanest" way to resolve python2/python3 recipe file install conflicts?
-Message-ID: <392a1f8a-d8e1-d29e-c9f-3087e97f3e96@crashcourse.ca>
+ dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.20, mailfrom: naveen.kumar.saini@intel.com)
+IronPort-SDR: RqKVm09leGpeYc1bW6FYSbnAms4HC8X+MGtqxx0OoW1c8pWulY+tukZglFSiJkViYcyg/uLxku
+ DY4Q8MHvE5XA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9827"; a="160732435"
+X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; 
+   d="scan'208";a="160732435"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2020 04:06:07 -0800
+IronPort-SDR: UsdPLpgWfUZi11uziRVvMQ/uQUz8NwYhckMIo6AD8SRdq3YmElqeVUpZZrw2ZcQT3zOFWyn1BP
+ ujN6NDUV8bjQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; 
+   d="scan'208";a="317756127"
+Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137])
+  by fmsmga007.fm.intel.com with ESMTP; 07 Dec 2020 04:06:06 -0800
+Received: from kmsmsx603.gar.corp.intel.com (172.21.219.143) by
+ pgsmsx602.gar.corp.intel.com (10.108.199.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 7 Dec 2020 20:06:05 +0800
+Received: from kmsmsx603.gar.corp.intel.com ([172.21.219.143]) by
+ kmsmsx603.gar.corp.intel.com ([172.21.219.143]) with mapi id 15.01.1713.004;
+ Mon, 7 Dec 2020 20:06:05 +0800
+From: "Naveen Saini" <naveen.kumar.saini@intel.com>
+To: Wojciech Zmuda <zmuda.w@gmail.com>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+CC: "davide.ricci@huawei.com" <davide.ricci@huawei.com>,
+	"zbigniew.bodek@huawei.com" <zbigniew.bodek@huawei.com>,
+	"jaroslaw.marek@huawei.com" <jaroslaw.marek@huawei.com>,
+	"robert.drab@huawei.com" <robert.drab@huawei.com>, Wojciech Zmuda
+	<wojciech.zmuda@huawei.com>
+Subject: Re: [yocto] [meta-zephyr][PATCH 5/5] zephyr-flash-pyocd.bbclass: support for flashing via pyocd
+Thread-Topic: [yocto] [meta-zephyr][PATCH 5/5] zephyr-flash-pyocd.bbclass:
+ support for flashing via pyocd
+Thread-Index: AQHWzAyZ3kja/PJ5N0y8abfUYccqJKnrh+iw
+Date: Mon, 7 Dec 2020 12:06:04 +0000
+Message-ID: <cffe226c642a412b90cd881122e5cfbd@intel.com>
+References: <20201206201521.3377-1-wojciech.zmuda@huawei.com>
+ <20201206201521.3377-6-wojciech.zmuda@huawei.com>
+In-Reply-To: <20201206201521.3377-6-wojciech.zmuda@huawei.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+x-originating-ip: [10.108.32.68]
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: multipart/mixed; boundary="8323328-1323146725-1607338199=:7157"
-
---8323328-1323146725-1607338199=:7157
-Content-Type: text/plain; charset=ISO-8859-15
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+Thanks for the patches.  Please find my comments below.
 
-  was recently presented with the following issue involving a
-zeus-based (actually, wind river LTS19-based -- effectively much the
-same) issue.
+-----Original Message-----
+From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Behalf=
+ Of Wojciech Zmuda
+Sent: Monday, December 7, 2020 4:15 AM
+To: yocto@lists.yoctoproject.org
+Cc: davide.ricci@huawei.com; zbigniew.bodek@huawei.com; jaroslaw.marek@huaw=
+ei.com; robert.drab@huawei.com; Wojciech Zmuda <wojciech.zmuda@huawei.com>
+Subject: [yocto] [meta-zephyr][PATCH 5/5] zephyr-flash-pyocd.bbclass: suppo=
+rt for flashing via pyocd
 
-  group wants to move many python2 recipes to python3, but there is
-apparently a need to keep python2, including quite a number of the
-same recipes that will also be installed as python3 versions, which is
-causing the following problem.
+Flash boards supported via pyocd:
 
-  as a single example, in trying to install both versions of
-"python{2,3}-chardet", it's entirely unsurprising for there to be a
-file install conflict as both recipes want to install the same file
-"/usr/bin/chardetect":
+    MACHINE=3Dxxx bitbake yyy -c flash_usb
 
-   Error: Transaction check error:
+The only supported board for now is 96Boards Nitrogen. Modify its config ac=
+cordingly.
 
-=A0   file /usr/bin/chardetect conflicts between attempted installs of
-      python-chardet-3.0.4-r0.core2_64and python3-chardet-3.0.4-r0.core2_=
-64
+Modify helloworld and philosopers samples with adidtional .hex output file =
+deployment, as this format is required by pyocd.
 
-  until now, there were very few examples of that, and it was
-"resolved" by do_install_append()ing one of the recipes to simply
-delete its copy of that executable, leaving the other one. yuck.
+Describe the feature in README.
 
-  given the many more examples of that now showing up, i don't want to
-have to start doing that for every recipe conflict. my initial
-reaction was to grumble, "are you really, really sure you need both
-versions of the same recipe? really? seriously?"
+Signed-off-by: Wojciech Zmuda <wojciech.zmuda@huawei.com>
+---
+ README.txt                                    | 23 +++++++++++++++++++
+ classes/zephyr-flash-pyocd.bbclass            | 17 ++++++++++++++
+ conf/machine/96b-nitrogen.conf                |  1 +
+ .../zephyr-kernel/zephyr-helloworld.bb        |  1 +
+ .../zephyr-kernel/zephyr-philosophers.bb      |  1 +
+ 5 files changed, 43 insertions(+)
+ create mode 100644 classes/zephyr-flash-pyocd.bbclass
 
-  am i overlooking something here? it seems that there are going to be
-many dozen examples of that shortly, and i don't want to have to
-bbappend every one of them in such a hacky way.
+diff --git a/README.txt b/README.txt
+index 6463339..4366764 100644
+--- a/README.txt
++++ b/README.txt
+@@ -43,6 +43,29 @@ The same sample, for Nios2 image:
+     $ MACHINE=3Dqemu-nios2 bitbake zephyr-philosophers
+     $ runqemu qemu-nios2
+=20
++Flashing
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
++
++You can flash Zephyr samples to boards. Currently, the following=20
++MACHINEs are supported:
++ * DFU:
++  - arduino_101_sss
++  - arduino_101
++  - arduino_101_ble
++ * pyocd:
++  - 96b_nitrogen
++
++To flash the example you built with command e.g.
++
++    $ MACHINE=3D96b_nitrogen bitbake zephyr-philosophers
+[Naveen Saini] Typo here, MACHINE=3D96b-nitrogen
++
++call similar command with explicit flash_usb command:
++
++    $ MACHINE=3D96b_nitrogen bitbake zephyr-philosophers -c flash_usb
+[Naveen Saini]  Same as above
 
-  thoughts?
++
++dfu-util and/or pyocd need to be installed in your system. If you=20
++observe permission errors or the flashing process seem to hang, follow tho=
+se instructions:
++https://github.com/pyocd/pyOCD/tree/master/udev
+=20
+ Building and Running Zephyr Tests
+ =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+diff --git a/classes/zephyr-flash-pyocd.bbclass b/classes/zephyr-flash-pyoc=
+d.bbclass
+new file mode 100644
+index 0000000..aafe9e7
+--- /dev/null
++++ b/classes/zephyr-flash-pyocd.bbclass
+@@ -0,0 +1,17 @@
++
++python do_flash_usb() {
++    from pyocd.core.helpers import ConnectHelper
++    from pyocd.flash.file_programmer import FileProgrammer
++
++    image =3D f"{d.getVar('DEPLOY_DIR_IMAGE')}/{d.getVar('PN')}.hex"
++    bb.plain(f"Attempting to flash {image} to board=20
++ {d.getVar('BOARD')}")
++
++    with ConnectHelper.session_with_chosen_probe() as session:
++        FileProgrammer(session).program(image)
++        session.board.target.reset()
++}
++
++addtask do_flash_usb
++
++do_flash_usb[nostamp] =3D "1"
++do_flash_usb[vardepsexclude] =3D "BB_ORIGENV"
+diff --git a/conf/machine/96b-nitrogen.conf b/conf/machine/96b-nitrogen.con=
+f index d1905f2..998db4c 100644
+--- a/conf/machine/96b-nitrogen.conf
++++ b/conf/machine/96b-nitrogen.conf
+@@ -4,4 +4,5 @@
+ #@DESCRIPTION: Machine configuration for 96Boards Nitrogen Board.
+=20
+ require conf/machine/include/nrf52832.inc
++ZEPHYR_INHERIT_CLASSES +=3D "zephyr-flash-pyocd"
+ ARCH_96b-nitrogen =3D "arm"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb b/recipes-ke=
+rnel/zephyr-kernel/zephyr-helloworld.bb
+index 1400e72..9b77975 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb
+@@ -8,6 +8,7 @@ OECMAKE_SOURCEPATH =3D "${ZEPHYR_SRC_DIR}"
+=20
+ do_deploy () {
+     install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT}.elf ${DEPLOYDIR}/${PN}.el=
+f
++    install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT}.hex=20
++ ${DEPLOYDIR}/${PN}.hex
+ }
+[Naveen Saini]  No *.hex file while building for MACHINE=3Dqemu-x86
+ Error log:  ...build/zephyr/zephyr.hex': No such file or directory
 
-rday
 
---8323328-1323146725-1607338199=:7157--
+ addtask deploy after do_compile
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb b/recipes-=
+kernel/zephyr-kernel/zephyr-philosophers.bb
+index 5f7fbcb..f720999 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb
+@@ -8,6 +8,7 @@ OECMAKE_SOURCEPATH =3D "${ZEPHYR_SRC_DIR}"
+=20
+ do_deploy () {
+     install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT}.elf ${DEPLOYDIR}/${PN}.el=
+f
++    install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT}.hex=20
++ ${DEPLOYDIR}/${PN}.hex
+ }
+=20
+[Naveen Saini]  No *.hex file while building for MACHINE=3Dqemu-x86
+ Error log:  ...build/zephyr/zephyr.hex': No such file or directory
+
+Could you also try to build testcases !!
+$ MACHINE=3D96b-nitrogen bitbake zephyr-kernel-test-all
+
+Build breaks with error: ......build/zephyr/zephyr.elf.elf': No such file o=
+r directory
+
+ addtask deploy after do_compile
+--
+2.25.1
+
