@@ -1,44 +1,63 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.8566.1607357704478209160
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+ by mx.groups.io with SMTP id smtpd.web12.9709.1607360696962638061
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Dec 2020 08:15:04 -0800
+ Mon, 07 Dec 2020 09:04:57 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: centos7-ty-4.yocto.io, ip: 198.145.29.25, mailfrom: pokybuild@centos7-ty-4.yocto.io)
-Received: from centos7-ty-4.yocto.io (unknown [172.29.10.2])
-	by mail.yoctoproject.org (Postfix) with ESMTP id D2ECD38C088D;
-	Mon,  7 Dec 2020 16:15:03 +0000 (UTC)
-Received: by centos7-ty-4.yocto.io (Postfix, from userid 6000)
-	id 7F6DD248FC; Mon,  7 Dec 2020 16:15:02 +0000 (GMT)
-To: yocto@lists.yoctoproject.org
-Cc: otavio@ossystems.com.br, yi.zhao@windriver.com, apoorv.sangal@intel.com, ee.peng.yeoh@intel.com, aaron.chun.yew.chan@intel.com, richard.purdie@linuxfoundation.org, akuster808@gmail.com, sjolley.yp.pm@gmail.com, sangeeta.jain@intel.com
-Subject: QA notification for completed autobuilder build (yocto-3.2.1.rc1)
-Message-Id: <20201207161503.7F6DD248FC@centos7-ty-4.yocto.io>
-Date: Mon,  7 Dec 2020 16:15:02 +0000 (GMT)
-From: "Pokybuild User" <pokybuild@centos7-ty-4.yocto.io>
+ dkim=pass header.i=@konsulko.com header.s=google header.b=XHNzi3eQ;
+ spf=pass (domain: konsulko.com, ip: 209.85.210.47, mailfrom: paul.barker@konsulko.com)
+Received: by mail-ot1-f47.google.com with SMTP id b18so13146625ots.0
+        for <yocto@lists.yoctoproject.org>; Mon, 07 Dec 2020 09:04:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=89OAWLjQ3nXt3GNsKfOxETjFdK0sCggBZiwxyzB8zX0=;
+        b=XHNzi3eQ9Fh91WPSOozFsYwatzlmauZKygK5BdpPeJKNVdkr7NtFE7QcbvTurSFM91
+         24EAomb6QFTxu85MPCZ9YAWgLtQkFqrj4kz8rK+iLOXgimiAvRsGAFfVZf5OVOnjfDp9
+         KIDvsYf9SXpJKjM84kX+R/KWi37G4wMqwFgJg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=89OAWLjQ3nXt3GNsKfOxETjFdK0sCggBZiwxyzB8zX0=;
+        b=Hh2/B03TEKbyhFYyKP20zQhWQkBAemRuau7/ujvpItfuvpbb/8Z+ulWTP+CWqcbJi8
+         7LPISMxURi7rN9+YJgYextuZaN8IqekJZkUwjNbcN3scvZDIPvCGjg3KAJhluksfBTc1
+         PmU9Irwvn1ZmF+TLM+yDzxVn/KPa/gBSFqs2/4UMkGOAMgb9Zhq6c6HV2JkFP80O45r4
+         vB2A59W1hgMihZOnq/e3L/AaMWyJPBOB3oJGXBnMhvMkseBRStXEm78Qhg+oS+uY8SFy
+         gYjnMEwmg3/pmIk4AguJI0ecXiR86HoAvqybmC3mJPVy9VwFPQvZteDGkYe/Dz/r5JIh
+         QU+Q==
+X-Gm-Message-State: AOAM53394UiF/Lhpev+er5DbSd8egNLruP3sCsQcSZuBEpqznJjC840v
+	uGKfns2z546vw6LrOmyiiFSvqsxEh2tysAX1P72RishSs+/Q8w==
+X-Google-Smtp-Source: ABdhPJzuH7v0olXy1BlzgTooUlfl25mb7lINhOmr6/XIamfE/AfBi/ktb3PbvunUSVglmPbeEwctI9wo9OsvyJxW5YA=
+X-Received: by 2002:a9d:7a4b:: with SMTP id z11mr10000886otm.305.1607360695969;
+ Mon, 07 Dec 2020 09:04:55 -0800 (PST)
+MIME-Version: 1.0
+From: "Paul Barker" <pbarker@konsulko.com>
+Date: Mon, 7 Dec 2020 17:04:45 +0000
+Message-ID: <CAM9ZRVvx7=t-iOvm-=phpMkVy82dBPE5hG-1VHdc0cUKf3p8hw@mail.gmail.com>
+Subject: meta-kernel -> meta-linux-mainline
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
+Hi all,
 
-A build flagged for QA (yocto-3.2.1.rc1) was completed on the autobuilder and is available at:
+Just a quick announcement. The meta-kernel layer has been renamed to
+meta-linux-mainline to avoid any confusion. The new URL for the layer
+is https://gitlab.com/openembedded/community/meta-linux-mainline. The
+old URL (https://gitlab.com/openembedded/community/meta-kernel) will
+still work as a redirect.
 
+For the dunfell and gatesgarth branches I will not be changing the
+contents of layer.conf so the layer will continue to be known as
+"meta-kernel" internally on those branches. This, coupled with the URL
+redirect, should ensure that builds continue to work for the released
+branches.
 
-    https://autobuilder.yocto.io/pub/releases/yocto-3.2.1.rc1
+For the master branch, layer.conf has been updated and the layer is
+now known as "meta-linux-mainline" internally. If you have
+"meta-kernel" in LAYERDEPENDS, you'll need to update it to
+"meta-linux-mainline".
 
+Thanks,
 
-Build hash information: 
-
-bitbake: fec2b85689bba1d26ad6f376bc11cc29bb27cbe5
-meta-arm: 03f2d78e456160f8f6f1ffe693a7bd1ad123e5d5
-meta-gplv2: 6e8e969590a22a729db1ff342de57f2fd5d02d43
-meta-intel: 5492270c796daf8b7a7cc9cd93880c2bb25523c0
-meta-kernel: f9d30c65d08c9cef20d6487a7aff0fff40acc823
-meta-mingw: 352d8b0aa3c7bbd5060a4cc2ebe7c0e964de4879
-oecore: e525592e83062ed9a9b2d3cb37c8dbbcfe8759a9
-poky: 333f24caec0bb498804dd77cbe762f2f4d9b2225
-
-
-
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
-
- 
+-- 
+Paul Barker
+Konsulko Group
