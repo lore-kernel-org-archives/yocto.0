@@ -1,225 +1,276 @@
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by mx.groups.io with SMTP id smtpd.web08.2377.1607392027121814370
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.3289.1607397137290682856
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Dec 2020 17:47:07 -0800
+ Mon, 07 Dec 2020 19:12:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.93, mailfrom: naveen.kumar.saini@intel.com)
-IronPort-SDR: jP5kY4d64xDA6qXuSzdYtzhfxnGWELmmDo/2uQCPJC7vKTuootF+S/KruhlotA+bS0enD8kljD
- +OJMQflruCOg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9828"; a="170302972"
-X-IronPort-AV: E=Sophos;i="5.78,401,1599548400"; 
-   d="scan'208";a="170302972"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2020 17:47:06 -0800
-IronPort-SDR: t2xwCsOOd0vrzaXi1loOO0D8TRC7tY9IDz4xCqxcrWTn/QVfIMWr2CDVwpcr3VnRKXEgO2GY5O
- FCWAQvwATtHQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,401,1599548400"; 
-   d="scan'208";a="437185702"
-Received: from kmsmsx603.gar.corp.intel.com ([172.21.219.143])
-  by fmsmga001.fm.intel.com with ESMTP; 07 Dec 2020 17:47:04 -0800
-Received: from kmsmsx603.gar.corp.intel.com (172.21.219.143) by
- kmsmsx603.gar.corp.intel.com (172.21.219.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 8 Dec 2020 09:47:04 +0800
-Received: from kmsmsx603.gar.corp.intel.com ([172.21.219.143]) by
- kmsmsx603.gar.corp.intel.com ([172.21.219.143]) with mapi id 15.01.1713.004;
- Tue, 8 Dec 2020 09:47:04 +0800
-From: "Naveen Saini" <naveen.kumar.saini@intel.com>
-To: Wojciech Zmuda <zmuda.w@gmail.com>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-CC: "davide.ricci@huawei.com" <davide.ricci@huawei.com>,
-	"zbigniew.bodek@huawei.com" <zbigniew.bodek@huawei.com>,
-	"jaroslaw.marek@huawei.com" <jaroslaw.marek@huawei.com>,
-	"robert.drab@huawei.com" <robert.drab@huawei.com>, Wojciech Zmuda
-	<wojciech.zmuda@huawei.com>
-Subject: Re: [yocto] [meta-zephyr][PATCH 5/5] zephyr-flash-pyocd.bbclass: support for flashing via pyocd
-Thread-Topic: [yocto] [meta-zephyr][PATCH 5/5] zephyr-flash-pyocd.bbclass:
- support for flashing via pyocd
-Thread-Index: AQHWzAyZ3kja/PJ5N0y8abfUYccqJKnrh+iwgADnoJA=
-Date: Tue, 8 Dec 2020 01:47:03 +0000
-Message-ID: <7c9d12e428954c44964906065281af1e@intel.com>
-References: <20201206201521.3377-1-wojciech.zmuda@huawei.com>
- <20201206201521.3377-6-wojciech.zmuda@huawei.com>
- <cffe226c642a412b90cd881122e5cfbd@intel.com>
-In-Reply-To: <cffe226c642a412b90cd881122e5cfbd@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-x-originating-ip: [10.108.32.68]
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=bD5v702H;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 1380E38C081E
+	for <yocto@yoctoproject.org>; Tue,  8 Dec 2020 03:12:17 +0000 (UTC)
+Received: by mail-pf1-f172.google.com with SMTP id t7so12488791pfh.7
+        for <yocto@yoctoproject.org>; Mon, 07 Dec 2020 19:12:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=BpTy8IZIGuMI6POs3oMUMs+OvlMj0L7S30KjOkSuI2I=;
+        b=bD5v702H8/sE8fUW67/DMfpDXEgCcoSEkCGcri0NpHzfYYL0+awIpKp2W23DMlxUTl
+         nG7rdFF29oG+Emeolllgr7px02BxRnq3EuGHejn0sj0uMVjruM24OSAxR+SKPkz5QXBh
+         U3u+d2P5VbeB1lRbF9yHzb2rUxZ9//maztx74X4PunsLP14T1QZvvvChCag42bgZwsF6
+         5u86J3jRMERwzNJ7CDuMZCbzXAharXLsgq5kRdT/zOCRmIzcw6MOuWoxgY56KvoCzTyc
+         FlinuJBRPd5hF29USackoB0bNU03gI8es6jbCxxmdMuJnx0KRxozae+ApD3Cb3C+Lykb
+         Na6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=BpTy8IZIGuMI6POs3oMUMs+OvlMj0L7S30KjOkSuI2I=;
+        b=oGYjEEwqgYGhBxo0L20fPBOZBsihtBckGW5Zlu+1WMJjLPsdF9ajdwh55SRvpZ1aYj
+         q9b8rg+C7LZIrxqmg5gzALdQ6Ak50iiWyWhtMMxN36a/7l18x8DiWi7JsNDHLDL59vhQ
+         UeSUoUYcZRc2rhJLkOWq7Pk6niVO8QrZziWyrGj6WRkekiICFzz5QjZDmp/qfu7kqyi+
+         DR+Frm1PGWWljkAPtvj424/D3Nwn9xpzoXJM2Qb3kH2GMYZdiWbiceZN6+616tOrh6cH
+         2TIL2T9JYED4MPOangJd0HlOPNR6N7AiRVmjqMi9N7742mdZxSlfKF1wrcXgbH32cRDS
+         II/w==
+X-Gm-Message-State: AOAM531rrYQ3dU29jDp9qiZWCt61Sczy3AqROJkm+ktpf45SK4dqlEWM
+	WtaW/fww295cTMHIyKzzbxU=
+X-Google-Smtp-Source: ABdhPJxXiYjlyjwNFRUpllukcgFkvADAK+DBJyUQJ55TPKv1mvcrIme6rSKB9TVCVi4BCbFrwIJ77w==
+X-Received: by 2002:a65:63da:: with SMTP id n26mr20884823pgv.306.1607397136448;
+        Mon, 07 Dec 2020 19:12:16 -0800 (PST)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id u4sm13481441pgg.48.2020.12.07.19.12.15
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 07 Dec 2020 19:12:15 -0800 (PST)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 7 Dec 2020 19:12:15 -0800
+Message-ID: <0bae01d6cd0f$ee8a1a80$cb9e4f80$@gmail.com>
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIk55lNxUmUWppT0efwKaJGsEAURw==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0BAF_01D6CCCC.E066DA80"
+Content-Language: en-us
+
+------=_NextPart_000_0BAF_01D6CCCC.E066DA80
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 334
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.2", "3.3, "3.99" and "Future", the more pressing/urgent issues
+being in "3.2" and then "3.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0BAF_01D6CCCC.E066DA80
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0B8A_01D6C73F.FF257400";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-You have missed few of my comments in v2 !
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 334 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.2&#8221;, &#8220;3.3, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.2&quot; and then &#8220;3.3&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif",serif'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-Regards,
-Naveen
-
------Original Message-----
-From: Saini, Naveen Kumar=20
-Sent: Monday, December 7, 2020 8:06 PM
-To: 'Wojciech Zmuda' <zmuda.w@gmail.com>; yocto@lists.yoctoproject.org
-Cc: davide.ricci@huawei.com; zbigniew.bodek@huawei.com; jaroslaw.marek@huaw=
-ei.com; robert.drab@huawei.com; Wojciech Zmuda <wojciech.zmuda@huawei.com>
-Subject: RE: [yocto] [meta-zephyr][PATCH 5/5] zephyr-flash-pyocd.bbclass: s=
-upport for flashing via pyocd
-
-Thanks for the patches.  Please find my comments below.
-
------Original Message-----
-From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Behalf=
- Of Wojciech Zmuda
-Sent: Monday, December 7, 2020 4:15 AM
-To: yocto@lists.yoctoproject.org
-Cc: davide.ricci@huawei.com; zbigniew.bodek@huawei.com; jaroslaw.marek@huaw=
-ei.com; robert.drab@huawei.com; Wojciech Zmuda <wojciech.zmuda@huawei.com>
-Subject: [yocto] [meta-zephyr][PATCH 5/5] zephyr-flash-pyocd.bbclass: suppo=
-rt for flashing via pyocd
-
-Flash boards supported via pyocd:
-
-    MACHINE=3Dxxx bitbake yyy -c flash_usb
-
-The only supported board for now is 96Boards Nitrogen. Modify its config ac=
-cordingly.
-
-Modify helloworld and philosopers samples with adidtional .hex output file =
-deployment, as this format is required by pyocd.
-
-Describe the feature in README.
-
-Signed-off-by: Wojciech Zmuda <wojciech.zmuda@huawei.com>
----
- README.txt                                    | 23 +++++++++++++++++++
- classes/zephyr-flash-pyocd.bbclass            | 17 ++++++++++++++
- conf/machine/96b-nitrogen.conf                |  1 +
- .../zephyr-kernel/zephyr-helloworld.bb        |  1 +
- .../zephyr-kernel/zephyr-philosophers.bb      |  1 +
- 5 files changed, 43 insertions(+)
- create mode 100644 classes/zephyr-flash-pyocd.bbclass
-
-diff --git a/README.txt b/README.txt
-index 6463339..4366764 100644
---- a/README.txt
-+++ b/README.txt
-@@ -43,6 +43,29 @@ The same sample, for Nios2 image:
-     $ MACHINE=3Dqemu-nios2 bitbake zephyr-philosophers
-     $ runqemu qemu-nios2
-=20
-+Flashing
-+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-+
-+You can flash Zephyr samples to boards. Currently, the following=20
-+MACHINEs are supported:
-+ * DFU:
-+  - arduino_101_sss
-+  - arduino_101
-+  - arduino_101_ble
-+ * pyocd:
-+  - 96b_nitrogen
-+
-+To flash the example you built with command e.g.
-+
-+    $ MACHINE=3D96b_nitrogen bitbake zephyr-philosophers
-[Naveen Saini] Typo here, MACHINE=3D96b-nitrogen
-+
-+call similar command with explicit flash_usb command:
-+
-+    $ MACHINE=3D96b_nitrogen bitbake zephyr-philosophers -c flash_usb
-[Naveen Saini]  Same as above
-
-+
-+dfu-util and/or pyocd need to be installed in your system. If you=20
-+observe permission errors or the flashing process seem to hang, follow tho=
-se instructions:
-+https://github.com/pyocd/pyOCD/tree/master/udev
-=20
- Building and Running Zephyr Tests
- =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-diff --git a/classes/zephyr-flash-pyocd.bbclass b/classes/zephyr-flash-pyoc=
-d.bbclass
-new file mode 100644
-index 0000000..aafe9e7
---- /dev/null
-+++ b/classes/zephyr-flash-pyocd.bbclass
-@@ -0,0 +1,17 @@
-+
-+python do_flash_usb() {
-+    from pyocd.core.helpers import ConnectHelper
-+    from pyocd.flash.file_programmer import FileProgrammer
-+
-+    image =3D f"{d.getVar('DEPLOY_DIR_IMAGE')}/{d.getVar('PN')}.hex"
-+    bb.plain(f"Attempting to flash {image} to board
-+ {d.getVar('BOARD')}")
-+
-+    with ConnectHelper.session_with_chosen_probe() as session:
-+        FileProgrammer(session).program(image)
-+        session.board.target.reset()
-+}
-+
-+addtask do_flash_usb
-+
-+do_flash_usb[nostamp] =3D "1"
-+do_flash_usb[vardepsexclude] =3D "BB_ORIGENV"
-diff --git a/conf/machine/96b-nitrogen.conf b/conf/machine/96b-nitrogen.con=
-f index d1905f2..998db4c 100644
---- a/conf/machine/96b-nitrogen.conf
-+++ b/conf/machine/96b-nitrogen.conf
-@@ -4,4 +4,5 @@
- #@DESCRIPTION: Machine configuration for 96Boards Nitrogen Board.
-=20
- require conf/machine/include/nrf52832.inc
-+ZEPHYR_INHERIT_CLASSES +=3D "zephyr-flash-pyocd"
- ARCH_96b-nitrogen =3D "arm"
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb b/recipes-ke=
-rnel/zephyr-kernel/zephyr-helloworld.bb
-index 1400e72..9b77975 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb
-+++ b/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb
-@@ -8,6 +8,7 @@ OECMAKE_SOURCEPATH =3D "${ZEPHYR_SRC_DIR}"
-=20
- do_deploy () {
-     install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT}.elf ${DEPLOYDIR}/${PN}.el=
-f
-+    install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT}.hex
-+ ${DEPLOYDIR}/${PN}.hex
- }
-[Naveen Saini]  No *.hex file while building for MACHINE=3Dqemu-x86  Error =
-log:  ...build/zephyr/zephyr.hex': No such file or directory
-
-
- addtask deploy after do_compile
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb b/recipes-=
-kernel/zephyr-kernel/zephyr-philosophers.bb
-index 5f7fbcb..f720999 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb
-+++ b/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb
-@@ -8,6 +8,7 @@ OECMAKE_SOURCEPATH =3D "${ZEPHYR_SRC_DIR}"
-=20
- do_deploy () {
-     install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT}.elf ${DEPLOYDIR}/${PN}.el=
-f
-+    install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT}.hex
-+ ${DEPLOYDIR}/${PN}.hex
- }
-=20
-[Naveen Saini]  No *.hex file while building for MACHINE=3Dqemu-x86  Error =
-log:  ...build/zephyr/zephyr.hex': No such file or directory
-
-Could you also try to build testcases !!
-$ MACHINE=3D96b-nitrogen bitbake zephyr-kernel-test-all
-
-Build breaks with error: ......build/zephyr/zephyr.elf.elf': No such file o=
-r directory
-
- addtask deploy after do_compile
---
-2.25.1
-
+------=_NextPart_000_0BAF_01D6CCCC.E066DA80--
