@@ -1,79 +1,88 @@
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
- by mx.groups.io with SMTP id smtpd.web12.39.1607538199486488629
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+ by mx.groups.io with SMTP id smtpd.web11.695.1607540387235365004
  for <yocto@lists.yoctoproject.org>;
- Wed, 09 Dec 2020 10:23:19 -0800
+ Wed, 09 Dec 2020 10:59:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=nrMfphp9;
- spf=pass (domain: gmail.com, ip: 209.85.210.173, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f173.google.com with SMTP id i3so1556073pfd.6
-        for <yocto@lists.yoctoproject.org>; Wed, 09 Dec 2020 10:23:19 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Fg0/AY4Y;
+ spf=pass (domain: gmail.com, ip: 209.85.214.178, mailfrom: raj.khem@gmail.com)
+Received: by mail-pl1-f178.google.com with SMTP id r4so1425811pls.11
+        for <yocto@lists.yoctoproject.org>; Wed, 09 Dec 2020 10:59:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:message-id:date:user-agent:mime-version
          :in-reply-to:content-language:content-transfer-encoding;
-        bh=CmVqCKQP8N24WdVtpA1kH/qhZYS17QWPNj733jplLcs=;
-        b=nrMfphp9eTy7KY0oY2l2mgnYNYP1jQS9saUA+M9YDeqgXTW4s2ERD3K0WWIk+pgtOF
-         9InY9VWKA9+uukjraoSO7hSq26dR89ucKU33kbPvlcbVcYSYzJDvyTLvdYohZeBYQbAP
-         BTGXZd3FG4QTNvUSc5nZJgYtiPyLCxD5uA35BQyChIFT0CSFTI8tj/HsAl+A1VsDpHcN
-         nlhcdnTg94D2AaXCRRCjmmoaHTA7nWi8ZFMmmb0gG8e6Es29D4uqwdheIlzwzS/XpagF
-         0v3g6AWiyKCOFe93WuyqJaSseDlS/7N9FcS2d2+1WDgsRCORHvRG0UGsUlFe69Kr/e7Q
-         h2VA==
+        bh=uSy1e/qd5oGnncovknvbbEqJvzYJIANM2OZsCfkYA4E=;
+        b=Fg0/AY4YvAt98hg6z4qm6rgMMO/xqqsfaImxRCluMzMAeoa5gLcV0Y9aaFL1bpkUMW
+         dYYWQHuuPu23ri5Vt5H0C0mQKGDadp97e0hj/1J/pX9LpnbA2KZyxyfP5ELFqE+1UrwG
+         wOVIGNWzWBnEZ0NFkPatPiD6iLLr5Z3O1WAPAIuszLQHvKpKvx/NSrisNpiwLEVEhKCM
+         itXksauBBs91exL5IVI8ZqLX2qta5aYvUfhGqKPeuAPb1CzRYvJSpVVHTbOsTA/LjQsx
+         zKOrqyPLqHv/KlNjJ4O+tFey2XYK/SK/LK2iBKNhs61K1g+O9tIptAAxPz232Od5y5g9
+         CaJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=CmVqCKQP8N24WdVtpA1kH/qhZYS17QWPNj733jplLcs=;
-        b=LYjyl4rL46lYMHntjGcwHfmdWdeA5Fg2gtdWa8Z6BcAhb6EbONiaNzXCEGRrhpdrTG
-         jh3MJIUTRvqjQYDiaGlxszjxBcJYdr6QxYLHLl8YEELQdUWL+Y1izUaioMMXqP/IlxBe
-         6tqN0YyevjvFT6PYCWjAhfTiJ4Xo3CUpZVwEgut64DoegoOYzi34Yb4AdYODOycDrVQZ
-         3TlOJhhzZ4jhx3wWDx1PW71CEP/WfZWjPX20RKAyHMS5MHT2AXjVWmYzkWEK6XTVcGLm
-         lafkvBIK31hOHIdcK2HvmG7h7kf5FgEsn0KBMnneg7TOOoSRF+6kykoevNEKmuqsvxah
-         80dQ==
-X-Gm-Message-State: AOAM532T4v+pZI+KFeANRB4ivgU4LseMxtOCOUkJ8NOYqdyj7i5Gw1l2
-	8LJP0ODzbDgnQdTkxFQKagOmt4M6KH6bog==
-X-Google-Smtp-Source: ABdhPJzjyIvSrEHDBsz0OTkLf3XkY7SOkiASKTJj374HwsnH/eU9Qh3ILs9ujpIgvsi7I5dLyAoh5g==
-X-Received: by 2002:a63:2885:: with SMTP id o127mr3095031pgo.391.1607538198285;
-        Wed, 09 Dec 2020 10:23:18 -0800 (PST)
+        bh=uSy1e/qd5oGnncovknvbbEqJvzYJIANM2OZsCfkYA4E=;
+        b=lAl6oF82OuXH9x/CLMRY4Y1RkjwM8vShOpMHIUe+lbiSdB7elabaAKxqyxOGzkZ7JE
+         l7K4H+ajc/211Yop0uR8YblOIBKAjiD1mARo9/fGHtBwMFCU+NgNbBYpuA2UlFsxL9+j
+         SW5vGmgbZeev9bX93btT9VWqmjIsKC/nR8cmxXB9To3fkaZiX1/ep6Drouv5pZUji3bd
+         UfF5y35zWWk1nzYHMm0Oi1PV8kHfZhZGXvF1QlrSYA+yyMVQl7suiq8W2xJZ0+lznOTb
+         mJW+ZeDrLwerHy9y8sjOvEzm69kGDV8H9TLcrDxs9hISYan7tnuZtp7UeMaKLp0aAdDF
+         n4Nw==
+X-Gm-Message-State: AOAM533cgLEUbVXba278T6X1num9eU0pb4thi3X3DWil6TWOypWBcJYR
+	UQHCb8Z+AyUTT43lcp/tzMQ18y0SwAuTXQ==
+X-Google-Smtp-Source: ABdhPJyQVTOmcSeZ/3CNWq4LIIY2idt1dL8t81kdduhkMhxyj6Dd8oTFn83/3ZLfGwcDjyp5RbeWOw==
+X-Received: by 2002:a17:90b:3687:: with SMTP id mj7mr3437081pjb.76.1607540385732;
+        Wed, 09 Dec 2020 10:59:45 -0800 (PST)
 Return-Path: <raj.khem@gmail.com>
 Received: from ?IPv6:2601:646:9200:4e0::5bf5? ([2601:646:9200:4e0::5bf5])
-        by smtp.gmail.com with ESMTPSA id s17sm3246084pge.37.2020.12.09.10.23.17
+        by smtp.gmail.com with ESMTPSA id x22sm3505390pfc.19.2020.12.09.10.59.44
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Dec 2020 10:23:17 -0800 (PST)
-Subject: Re: [yocto] Cross compiler which runs on the target architecture
+        Wed, 09 Dec 2020 10:59:45 -0800 (PST)
+Subject: Re: [yocto] #yocto #zeus -broken atomic modsset
 To: yocto@lists.yoctoproject.org
-References: <1419325725.1777.7.camel@linuxfoundation.org>
- <026b39f3-9c86-6488-8504-10c6485c0216@herbrechtsmeier.net>
+References: <MADEUP.164F1EF6FC714447.19788@lists.yoctoproject.org>
 From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <fbe32ce1-e555-0418-c219-722af7586b95@gmail.com>
-Date: Wed, 9 Dec 2020 10:23:16 -0800
+Message-ID: <53d63337-3220-8f3e-0249-e6daf0b3a046@gmail.com>
+Date: Wed, 9 Dec 2020 10:59:44 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.4.3
 MIME-Version: 1.0
-In-Reply-To: <026b39f3-9c86-6488-8504-10c6485c0216@herbrechtsmeier.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <MADEUP.164F1EF6FC714447.19788@lists.yoctoproject.org>
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 
 
 
-On 12/9/20 4:38 AM, Stefan Herbrechtsmeier wrote:
-> Hi Peter and Richard,
+On 12/9/20 10:12 AM, Monsees, Steven C (US) via lists.yoctoproject.org 
+wrote:
+> I’m building/running zeus 3.0.4 on intel platform…
 > 
-> does a follow up of this old topic (thread) regarding a cross compiler 
-> which runs on the target architecture exists?
-> https://www.yoctoproject.org/pipermail/yocto/2014-December/022782.html
+> Can someone tell me why I might be seeing the following error and how to 
+> resolve it ?
+
+https://patchwork.kernel.org/project/dri-devel/patch/20190905181834.6234-1-daniel.vetter@ffwll.ch/
+
+might give some context
+
 > 
-
-I dont think there were further discussions. However, I think the 
-cross-canadian approach is perhaps step in right direction. We would 
-need to enhance it to be able to build multiple cross-canadian tuples 
-instead of only one that we build today which is based on SDK_MACHINE 
-and TARGET_ARCH,
-
-> Kind regards
->  Â  Stefan
+> X.Org X Server 1.20.5
+> 
+> X Protocol Version 11, Revision 0
+> 
+> Build Operating System: Linux 3.10.0-1127.13.1.el7.x86_64 x86_64
+> 
+> Current Operating System: Linux sbcb-default 4.19.135-intel-pk-standard 
+> #1 SMP *PREE broken atomic modeset userspace detected, disabling atomic*
+> 
+> MPT Mon Nov 2 15:55:20 UTC 2020 x86_64
+> 
+> Thanks,
+> 
+> Steve
 > 
 > 
 > 
