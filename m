@@ -1,44 +1,44 @@
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
- by mx.groups.io with SMTP id smtpd.web11.15932.1607616168649876283
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com [209.85.208.195])
+ by mx.groups.io with SMTP id smtpd.web08.15883.1607616170137540561
  for <yocto@lists.yoctoproject.org>;
- Thu, 10 Dec 2020 08:02:49 -0800
+ Thu, 10 Dec 2020 08:02:50 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=MbwusiJH;
- spf=pass (domain: gmail.com, ip: 209.85.167.44, mailfrom: zmuda.w@gmail.com)
-Received: by mail-lf1-f44.google.com with SMTP id a8so8964793lfb.3
-        for <yocto@lists.yoctoproject.org>; Thu, 10 Dec 2020 08:02:48 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=u7gwXAXl;
+ spf=pass (domain: gmail.com, ip: 209.85.208.195, mailfrom: zmuda.w@gmail.com)
+Received: by mail-lj1-f195.google.com with SMTP id e7so7226497ljg.10
+        for <yocto@lists.yoctoproject.org>; Thu, 10 Dec 2020 08:02:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=YoQSOtqzHqXPsvSo8j+kP7KFSJC4IvZmDo8TrxKs0pI=;
-        b=MbwusiJHpUmXBtGQ9Rpqoa/3q2iQTo/z5C6b6Bq/SVjLkKCZM+4/YUw3tDbZLb50lj
-         QuGqvO/9We9guFQy+2DORii5b6kj9HJQ6iAAzWYOKpuCiHSivixNWhzsdt4vOQSStEdm
-         4OJb5icipqcocjdm98oZgUUi69pBqjj4N/BixDZFs2y5bKf44g3kbniktY0DZ1KHBgg2
-         KFC1ccRMCsPuilEKX6wfiIO4ux7Vzdmi5QcS5+iv36VqcYNvq2GuSI5oM5eMGW/ns8tL
-         Goh2iJkWC7/LtD8r1fEcWzwlSPKtCyzktt0vSjGoWgEws8RyAK2rT3K32V83rV1BlaU0
-         Rmxg==
+        bh=IY/8ltyg2ixlpGphkvTM9r5Zg31pai4opttAB8dnTcQ=;
+        b=u7gwXAXlbX8IEl+FBgp8/kHU+1fPpQY1BbLBahbLjkMQHtDtCOoPm3ywS73Pk8m0GC
+         Pl0hqxiEbz9QswqzubLY0mjFdyfT+BndAViueJ/h3937g4cJa07p1Qka+/70vhj5Gxbx
+         BZTWDLpuGTMwB53WCbJ/gluuCbcXTAG4utinsRjcuFKHG2tSJzX2hdDNPvAB7HmXbjG7
+         IOmmPBQKl+fZ/kqDCbQCdo6ARvgOEtgaYp14o/HOh2eMqbGWmrT7+FwPhz/n79Zv53nJ
+         cea3OCuvpawWfP7Kk/4mPwnMR5ZU/sy+a5sAu/05/HZzWPTAaF/vAWVHfU3Xfjwb5u6d
+         9l+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=YoQSOtqzHqXPsvSo8j+kP7KFSJC4IvZmDo8TrxKs0pI=;
-        b=VeTGa7uslC+RXCqkSETnYPSH0YmHMjePQUA+xN2hGkp2x++5DBnxjL1ZnLVlLWlFqp
-         bxOxC074iqXjaGZuMEJGLvZLNV/GElFKKnqbw4t7NZKoNmvDVYm5g5uz4t+lMa3Yexi1
-         85moPw0AwoV9nxNiiNOzAmQx9kY1zZkqtsL/kEK6gOCgE6b8vYAXL2T2lJ4hgyqgZhHE
-         uTWF15I/UMLkpYshcx19HZzOf+sMu3r5C5ZKbNxz2qWELdoYPjxTl5qQqlNi1n64nU3e
-         eGzuBPen8URFQWUAOL2KVHxwExGrvMt903TvKijPTQBzduh5goKB50573sDdKhC2ISGD
-         R07g==
-X-Gm-Message-State: AOAM5312V4CSBboYPcwtVH5h4NGusUAPYlSydnhSQtTK7wZ5bqZcxl+C
-	/vAdM5o3OmbHgM0hAQaZR//f+OUw0r6NoA==
-X-Google-Smtp-Source: ABdhPJyZn87HsEHKz9SgxG133I3pbYm3qIwCZngBdaW9+fR95LiEAnuzSdbJLkRIg1+AIjk1Bcuf6A==
-X-Received: by 2002:a19:e17:: with SMTP id 23mr3310166lfo.608.1607616166646;
-        Thu, 10 Dec 2020 08:02:46 -0800 (PST)
+        bh=IY/8ltyg2ixlpGphkvTM9r5Zg31pai4opttAB8dnTcQ=;
+        b=QxHBGcOtkqI2d+Q24CnGUsE/48q3cwny08f6ZyQMQ2WgkXJFqeeBKplKGPbJtcYvR9
+         uapsjeQNnos7E60DNU+cEzfPC00fQzjapQNenz+fo4bPKftvQxl7TreN2aME2xxHCLYn
+         W5noT20Mo4Pl92Srg9ACjsx0F7+jy5wxJ+cG/e90EBvhwbucAyReEuIMGMVvtRQGa5Yo
+         wElZIJza4WhmN2qpcigrAx7YZEHqkjoJs2S/DiTzSp0mK8M2GAHRfaQzMcM3g6uqS/aO
+         zRQ3vPKLvZ8Kbxl9oRsI1LkAfDvHvZtgl79KL3s/S+Kh10HF2z+/bzw9K59J0GA/efM9
+         +FNw==
+X-Gm-Message-State: AOAM532jx1S8qc5DVnQtIj1mSI/1xkhxqkM4X387cVzkEIDbzLVlDPfv
+	o0G0VpIAAUVMuk2VzZrxL+B75Hsix0i+RQ==
+X-Google-Smtp-Source: ABdhPJx293vp+MERp+gT0Lvy5Tb7bcvXV+aUh/u4SIWXeUcu1ePBKbpYvfPcYisUnm3EdkW1nupDnA==
+X-Received: by 2002:a2e:780d:: with SMTP id t13mr3207335ljc.144.1607616167677;
+        Thu, 10 Dec 2020 08:02:47 -0800 (PST)
 Return-Path: <zmuda.w@gmail.com>
 Received: from localhost.localdomain (89-64-68-83.dynamic.chello.pl. [89.64.68.83])
-        by smtp.gmail.com with ESMTPSA id n10sm646744ljg.139.2020.12.10.08.02.45
+        by smtp.gmail.com with ESMTPSA id n10sm646744ljg.139.2020.12.10.08.02.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 08:02:46 -0800 (PST)
+        Thu, 10 Dec 2020 08:02:47 -0800 (PST)
 From: "Wojciech Zmuda" <zmuda.w@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: naveen.kumar.saini@intel.com,
@@ -48,9 +48,9 @@ Cc: naveen.kumar.saini@intel.com,
 	robert.drab@huawei.com,
 	amit.kucheria.ext@huawei.com,
 	Wojciech Zmuda <wojciech.zmuda@huawei.com>
-Subject: [meta-zephyr][PATCH v3 1/5] zephyr-kernel: clone Nordic HAL
-Date: Thu, 10 Dec 2020 16:02:07 +0000
-Message-Id: <20201210160211.71850-2-zmuda.w@gmail.com>
+Subject: [meta-zephyr][PATCH v3 2/5] conf: machine: add support for Nordic nRF52832 Cortex-M4 chip
+Date: Thu, 10 Dec 2020 16:02:08 +0000
+Message-Id: <20201210160211.71850-3-zmuda.w@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201210160211.71850-1-zmuda.w@gmail.com>
 References: <20201210160211.71850-1-zmuda.w@gmail.com>
@@ -59,49 +59,59 @@ Content-Transfer-Encoding: 8bit
 
 From: Wojciech Zmuda <wojciech.zmuda@huawei.com>
 
-HAL for Nordic chipsets is one of Zephyr subprojects. It is downloaded
-by default by west. Clone the HAL repository so it can be used for
-building images for boards with Nordic chips.
+Add include for Cortex-M4 tunes and nRF52832. The nRF config
+appends 'nordic' to MACHINEOVERRIDES, so the kernel recipe
+can include Nordic HAL when this override is detected.
 
 Signed-off-by: Wojciech Zmuda <wojciech.zmuda@huawei.com>
 ---
- classes/zephyr-kernel-src.bbclass                     | 7 ++++---
- recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc | 1 +
- 2 files changed, 5 insertions(+), 3 deletions(-)
+ conf/machine/include/nrf52832.inc      | 10 ++++++++++
+ conf/machine/include/tune-cortexm4.inc | 19 +++++++++++++++++++
+ 2 files changed, 29 insertions(+)
+ create mode 100644 conf/machine/include/nrf52832.inc
+ create mode 100644 conf/machine/include/tune-cortexm4.inc
 
-diff --git a/classes/zephyr-kernel-src.bbclass b/classes/zephyr-kernel-src.bbclass
-index d245223..ea9b30b 100644
---- a/classes/zephyr-kernel-src.bbclass
-+++ b/classes/zephyr-kernel-src.bbclass
-@@ -5,12 +5,13 @@ PREFERRED_VERSION_zephyr-kernel ??= "2.4.0"
- SRCREV_FORMAT = "default_cmsis"
- SRCREV_default = "7a3b253ced7333f5c0269387a7f3ed1dee69739d"
- SRCREV_cmsis = "542b2296e6d515b265e25c6b7208e8fea3014f90"
--
-+SRCREV_nordic = "d8a6ea9695ddf792bb18bb6035c13b1daac5d79c"
- 
- SRC_URI = "git://github.com/zephyrproject-rtos/zephyr.git;protocol=https;branch=v2.4-branch;name=default \
-            git://github.com/zephyrproject-rtos/cmsis.git;protocol=https;destsuffix=git/modules/cmsis;name=cmsis \
--          file://0001-cmake-add-yocto-toolchain.patch \
--        "
-+           git://github.com/zephyrproject-rtos/hal_nordic.git;protocol=https;destsuffix=git/modules/hal/nordic;name=nordic \
-+           file://0001-cmake-add-yocto-toolchain.patch \
-+          "
- 
- PV = "2.4.0+git${SRCPV}"
- 
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
-index 3f82c20..a1f640d 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
-+++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
-@@ -16,6 +16,7 @@ ZEPHYR_MAKE_OUTPUT = "zephyr.elf"
- 
- EXTRA_OECMAKE = " -DZEPHYR_BASE=${S} -DZEPHYR_GCC_VARIANT=yocto -DBOARD=${BOARD} -DARCH=${ARCH} -DCROSS_COMPILE=${CROSS_COMPILE} -DZEPHYR_SYSROOT=${ZEPHYR_SYSROOT} -DZEPHYR_TOOLCHAIN_VARIANT=yocto"
- EXTRA_OECMAKE_append_arm = " -DZEPHYR_MODULES=${S}/modules/cmsis"
-+EXTRA_OECMAKE_append_nordic = "\;${S}/modules/hal/nordic"
- export ZEPHYR_BASE="${S}"
- 
- 
+diff --git a/conf/machine/include/nrf52832.inc b/conf/machine/include/nrf52832.inc
+new file mode 100644
+index 0000000..73e628a
+--- /dev/null
++++ b/conf/machine/include/nrf52832.inc
+@@ -0,0 +1,10 @@
++#@TYPE: Machine
++#@NAME: nrf52832
++
++#@DESCRIPTION: Machine configuration for Nordic Semiconductor nRF52832 (Cortex-M4) SoC.
++
++require conf/machine/include/tune-cortexm4.inc
++
++MACHINEOVERRIDES =. "nordic:"
++
++TUNE_FEATURES = "armv7m cortexm4"
+diff --git a/conf/machine/include/tune-cortexm4.inc b/conf/machine/include/tune-cortexm4.inc
+new file mode 100644
+index 0000000..a823b6b
+--- /dev/null
++++ b/conf/machine/include/tune-cortexm4.inc
+@@ -0,0 +1,19 @@
++DEFAULTTUNE ?= "cortexm4"
++
++require conf/machine/include/arm/arch-armv7a.inc
++
++TUNEVALID[cortexm4] = "Enable Cortex-M4 specific processor optimizations"
++TUNE_CCARGS .= "${@bb.utils.contains('TUNE_FEATURES', 'cortexm4', ' -mcpu=cortex-m4', '', d)}"
++AVAILTUNES += "cortexm4"
++
++TUNEVALID[armv7m] = "Enable Cortex-M4 specific processor optimizations"
++TUNE_CCARGS .= "${@bb.utils.contains('TUNE_FEATURES', 'armv7m', ' -march=armv7e-m', '', d)}"
++MACHINEOVERRIDES =. "${@bb.utils.contains('TUNE_FEATURES', 'armv7m', 'armv7m:', '' ,d)}"
++
++TUNE_PKGARCH_tune-cortexm4 = "cortexm4"
++
++ARMPKGARCH_tune-cortexm4 = "armv7m"
++PACKAGE_EXTRA_ARCHS_tune-cortexm4 ="cortexm4"
++
++TUNE_FEATURES_tune-cortexm4 = "armv7m vfp cortexm4"
++PACKAGE_EXTRA_ARCHS_tune-cortexm4 = "${PACKAGE_EXTRA_ARCHS_tune-armv7at} armv7m-vfp armv7m"
 -- 
 2.25.1
 
