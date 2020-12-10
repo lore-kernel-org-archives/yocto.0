@@ -1,44 +1,44 @@
-Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com [209.85.208.195])
- by mx.groups.io with SMTP id smtpd.web08.15883.1607616170137540561
+Received: from mail-lj1-f194.google.com (mail-lj1-f194.google.com [209.85.208.194])
+ by mx.groups.io with SMTP id smtpd.web09.15967.1607616170474637694
  for <yocto@lists.yoctoproject.org>;
  Thu, 10 Dec 2020 08:02:50 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=u7gwXAXl;
- spf=pass (domain: gmail.com, ip: 209.85.208.195, mailfrom: zmuda.w@gmail.com)
-Received: by mail-lj1-f195.google.com with SMTP id e7so7226497ljg.10
-        for <yocto@lists.yoctoproject.org>; Thu, 10 Dec 2020 08:02:49 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=IiiPnzAT;
+ spf=pass (domain: gmail.com, ip: 209.85.208.194, mailfrom: zmuda.w@gmail.com)
+Received: by mail-lj1-f194.google.com with SMTP id t22so7282756ljk.0
+        for <yocto@lists.yoctoproject.org>; Thu, 10 Dec 2020 08:02:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=IY/8ltyg2ixlpGphkvTM9r5Zg31pai4opttAB8dnTcQ=;
-        b=u7gwXAXlbX8IEl+FBgp8/kHU+1fPpQY1BbLBahbLjkMQHtDtCOoPm3ywS73Pk8m0GC
-         Pl0hqxiEbz9QswqzubLY0mjFdyfT+BndAViueJ/h3937g4cJa07p1Qka+/70vhj5Gxbx
-         BZTWDLpuGTMwB53WCbJ/gluuCbcXTAG4utinsRjcuFKHG2tSJzX2hdDNPvAB7HmXbjG7
-         IOmmPBQKl+fZ/kqDCbQCdo6ARvgOEtgaYp14o/HOh2eMqbGWmrT7+FwPhz/n79Zv53nJ
-         cea3OCuvpawWfP7Kk/4mPwnMR5ZU/sy+a5sAu/05/HZzWPTAaF/vAWVHfU3Xfjwb5u6d
-         9l+g==
+        bh=0eHFfKevj3ZINEp8nehWi1USsgMOCFD8IGpX52gldsI=;
+        b=IiiPnzATKV6Qvh3Cf2fnbb5vwkrpeCa6QaCNJnPfninWbFo9qZ6MAK6b5Ad4Ixpxzc
+         INVHu5S6EO9WV24bgXp9NqfsBsmdgXTkjAPRC3JkSm71wqEnkXtYW0GBeZFajnuT8554
+         7A3t2kZ04rGaCJdSqs6J0eEzqz3k4y179SfqxLavPKe2H3cawV/vIOg+ZqA47RMJC00b
+         2qPougBFwqqFLOwrJwneberHJPXJIAvSs50GJaJ0ldcLcpcyVMMhM7SNseCzEN8ZTbv/
+         +ShqkKGP9Z0Bh4ZxGKaE/Ypt3KQMVhJDhXIWt1ZOejNL8Jdxll0v+YyFoz5Ui5hOvwlk
+         GEUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=IY/8ltyg2ixlpGphkvTM9r5Zg31pai4opttAB8dnTcQ=;
-        b=QxHBGcOtkqI2d+Q24CnGUsE/48q3cwny08f6ZyQMQ2WgkXJFqeeBKplKGPbJtcYvR9
-         uapsjeQNnos7E60DNU+cEzfPC00fQzjapQNenz+fo4bPKftvQxl7TreN2aME2xxHCLYn
-         W5noT20Mo4Pl92Srg9ACjsx0F7+jy5wxJ+cG/e90EBvhwbucAyReEuIMGMVvtRQGa5Yo
-         wElZIJza4WhmN2qpcigrAx7YZEHqkjoJs2S/DiTzSp0mK8M2GAHRfaQzMcM3g6uqS/aO
-         zRQ3vPKLvZ8Kbxl9oRsI1LkAfDvHvZtgl79KL3s/S+Kh10HF2z+/bzw9K59J0GA/efM9
-         +FNw==
-X-Gm-Message-State: AOAM532jx1S8qc5DVnQtIj1mSI/1xkhxqkM4X387cVzkEIDbzLVlDPfv
-	o0G0VpIAAUVMuk2VzZrxL+B75Hsix0i+RQ==
-X-Google-Smtp-Source: ABdhPJx293vp+MERp+gT0Lvy5Tb7bcvXV+aUh/u4SIWXeUcu1ePBKbpYvfPcYisUnm3EdkW1nupDnA==
-X-Received: by 2002:a2e:780d:: with SMTP id t13mr3207335ljc.144.1607616167677;
-        Thu, 10 Dec 2020 08:02:47 -0800 (PST)
+        bh=0eHFfKevj3ZINEp8nehWi1USsgMOCFD8IGpX52gldsI=;
+        b=NuqZYO7jMFiUWhgSlyTOb6WE7WjX4UVi+G0pgUBngy9pgK/w1+PdeFCbMn9gUcP525
+         MZeA/16+5TCJMC3IzhNjlo2MKf5EX9SZPPUDDNlkKKE3XUr/cKzzm+yddrMyT/G9bZlk
+         1MA5vFZNDQAfbQNI6sRA8hbAN1DPXU5BAcOk/1nUqXzRMQCkEvkvK2Tem7JUa6l6DcIM
+         S1emeGY4/IIq26KKE9GgID5ksiq+3ZM+C2gEAeSQBX+c3NCbmI6Z+RpbWt/143NGoJCt
+         1CWGWeDQtYc/myKn2QSo/HfZldBS8A1I17RLYQ01lhKWkJpLwH6Z/0Rv9QCdyLP9i82k
+         dfTA==
+X-Gm-Message-State: AOAM530epQ0g24CmcTXaJ50gGdHYqWSTZlRPFSyHSiQjxSBl4hMsmpcH
+	Frfn9mIEu73vaqXsGBL90BfLIpuAboDnXg==
+X-Google-Smtp-Source: ABdhPJxteUZUq5r2Ooxz1Af0UA6DVkVohM38DsfY4E1j/wtzbJSwlq3kEAn2M1ukbHcDwlQlHlRKZQ==
+X-Received: by 2002:a2e:2244:: with SMTP id i65mr817319lji.111.1607616168540;
+        Thu, 10 Dec 2020 08:02:48 -0800 (PST)
 Return-Path: <zmuda.w@gmail.com>
 Received: from localhost.localdomain (89-64-68-83.dynamic.chello.pl. [89.64.68.83])
-        by smtp.gmail.com with ESMTPSA id n10sm646744ljg.139.2020.12.10.08.02.46
+        by smtp.gmail.com with ESMTPSA id n10sm646744ljg.139.2020.12.10.08.02.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Dec 2020 08:02:47 -0800 (PST)
+        Thu, 10 Dec 2020 08:02:48 -0800 (PST)
 From: "Wojciech Zmuda" <zmuda.w@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: naveen.kumar.saini@intel.com,
@@ -48,9 +48,9 @@ Cc: naveen.kumar.saini@intel.com,
 	robert.drab@huawei.com,
 	amit.kucheria.ext@huawei.com,
 	Wojciech Zmuda <wojciech.zmuda@huawei.com>
-Subject: [meta-zephyr][PATCH v3 2/5] conf: machine: add support for Nordic nRF52832 Cortex-M4 chip
-Date: Thu, 10 Dec 2020 16:02:08 +0000
-Message-Id: <20201210160211.71850-3-zmuda.w@gmail.com>
+Subject: [meta-zephyr][PATCH v3 3/5] conf: machine: add 96boards Nitrogen support
+Date: Thu, 10 Dec 2020 16:02:09 +0000
+Message-Id: <20201210160211.71850-4-zmuda.w@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201210160211.71850-1-zmuda.w@gmail.com>
 References: <20201210160211.71850-1-zmuda.w@gmail.com>
@@ -59,59 +59,29 @@ Content-Transfer-Encoding: 8bit
 
 From: Wojciech Zmuda <wojciech.zmuda@huawei.com>
 
-Add include for Cortex-M4 tunes and nRF52832. The nRF config
-appends 'nordic' to MACHINEOVERRIDES, so the kernel recipe
-can include Nordic HAL when this override is detected.
+The board is based on Nordic nRF52832 Cortex-M4 chip.
+The support depends on Nordic HAL. It has been verified
+with zephyr-philosophers and zephyr-shell sample applications.
 
 Signed-off-by: Wojciech Zmuda <wojciech.zmuda@huawei.com>
 ---
- conf/machine/include/nrf52832.inc      | 10 ++++++++++
- conf/machine/include/tune-cortexm4.inc | 19 +++++++++++++++++++
- 2 files changed, 29 insertions(+)
- create mode 100644 conf/machine/include/nrf52832.inc
- create mode 100644 conf/machine/include/tune-cortexm4.inc
+ conf/machine/96b-nitrogen.conf | 7 +++++++
+ 1 file changed, 7 insertions(+)
+ create mode 100644 conf/machine/96b-nitrogen.conf
 
-diff --git a/conf/machine/include/nrf52832.inc b/conf/machine/include/nrf52832.inc
+diff --git a/conf/machine/96b-nitrogen.conf b/conf/machine/96b-nitrogen.conf
 new file mode 100644
-index 0000000..73e628a
+index 0000000..d1905f2
 --- /dev/null
-+++ b/conf/machine/include/nrf52832.inc
-@@ -0,0 +1,10 @@
++++ b/conf/machine/96b-nitrogen.conf
+@@ -0,0 +1,7 @@
 +#@TYPE: Machine
-+#@NAME: nrf52832
++#@NAME: 96b_nitrogen
 +
-+#@DESCRIPTION: Machine configuration for Nordic Semiconductor nRF52832 (Cortex-M4) SoC.
++#@DESCRIPTION: Machine configuration for 96Boards Nitrogen Board.
 +
-+require conf/machine/include/tune-cortexm4.inc
-+
-+MACHINEOVERRIDES =. "nordic:"
-+
-+TUNE_FEATURES = "armv7m cortexm4"
-diff --git a/conf/machine/include/tune-cortexm4.inc b/conf/machine/include/tune-cortexm4.inc
-new file mode 100644
-index 0000000..a823b6b
---- /dev/null
-+++ b/conf/machine/include/tune-cortexm4.inc
-@@ -0,0 +1,19 @@
-+DEFAULTTUNE ?= "cortexm4"
-+
-+require conf/machine/include/arm/arch-armv7a.inc
-+
-+TUNEVALID[cortexm4] = "Enable Cortex-M4 specific processor optimizations"
-+TUNE_CCARGS .= "${@bb.utils.contains('TUNE_FEATURES', 'cortexm4', ' -mcpu=cortex-m4', '', d)}"
-+AVAILTUNES += "cortexm4"
-+
-+TUNEVALID[armv7m] = "Enable Cortex-M4 specific processor optimizations"
-+TUNE_CCARGS .= "${@bb.utils.contains('TUNE_FEATURES', 'armv7m', ' -march=armv7e-m', '', d)}"
-+MACHINEOVERRIDES =. "${@bb.utils.contains('TUNE_FEATURES', 'armv7m', 'armv7m:', '' ,d)}"
-+
-+TUNE_PKGARCH_tune-cortexm4 = "cortexm4"
-+
-+ARMPKGARCH_tune-cortexm4 = "armv7m"
-+PACKAGE_EXTRA_ARCHS_tune-cortexm4 ="cortexm4"
-+
-+TUNE_FEATURES_tune-cortexm4 = "armv7m vfp cortexm4"
-+PACKAGE_EXTRA_ARCHS_tune-cortexm4 = "${PACKAGE_EXTRA_ARCHS_tune-armv7at} armv7m-vfp armv7m"
++require conf/machine/include/nrf52832.inc
++ARCH_96b-nitrogen = "arm"
 -- 
 2.25.1
 
