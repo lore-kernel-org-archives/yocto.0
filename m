@@ -1,95 +1,95 @@
-Received: from mx02.optimcloud.com (mx02.optimcloud.com [46.23.93.22])
- by mx.groups.io with SMTP id smtpd.web09.11388.1607710907655295886
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+ by mx.groups.io with SMTP id smtpd.web10.11729.1607711861747784903
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Dec 2020 10:21:48 -0800
+ Fri, 11 Dec 2020 10:37:41 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=QM19FzP7;
- spf=none, err=SPF record not found (domain: optimcloud.com, ip: 46.23.93.22, mailfrom: dingo@optimcloud.com)
-Received: from mx02.optimcloud.com (localhost [127.0.0.1])
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTP id cd5d1de4
-	for <yocto@lists.yoctoproject.org>;
-	Fri, 11 Dec 2020 19:21:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=to
-	:from:subject:message-id:date:mime-version:content-type
-	:content-transfer-encoding; s=obsd; bh=2TGQXgFTH9OdIUJHWUsr2K5Rs
-	nGY0/5DnsaJT65hwXA=; b=QM19FzP7WUSjMAXdm8ibYAm0xGekHJpZmDq8LE7Rz
-	tPUbV/wIebMPkwrRtHIwLf65hiueaINgM7b18nvwu7zz+bp4TC0SoyAXx110MCHx
-	a3Q6L17tIKke0yI5DqlB/UHQEuAjjhV+/jvQv14XokWLfPCZvnkxlYMi/aVCxVs3
-	8Xbp1Hn0twQHxozGykNM6Qltf1jxK3gAJkIFOE97RyQHSZtqXrEXu8CDXVO4aoMT
-	3lGs7d2fFUqqOwd3tWfE7ba6AAkEWA/Ck7SDiLp/0w1v1vOgcrb7/ykIBDBNauOZ
-	z8SfEKCCOQ329fwNzStjdPxkcIeHREn6yAnLlvkJkLhZg==
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=to:from
-	:subject:message-id:date:mime-version:content-type
-	:content-transfer-encoding; q=dns; s=obsd; b=J5RRbVtWyeBECmE1S1i
-	PlBktaHMUBEPMf5DS7GqSosZab7rcnwwBNskdvPCZ31IVfDuOuqq0V+wUtdFjJ3R
-	9OWyP1cSd32r5CVybU/iO+c0vVPWcF7Gn6NnZ4faPn4AKoWy5mPaxc40Ix9bMncf
-	ufdm+OZDydjEvgAk4+gNyNePVTm9Wpk0x0osQ5lOESmSOL6FXXR+4gJUJxLZfoL1
-	SHi7NsYABRQ8XSCGU8XNjynalKnELxi/MoqWNibQ2eCo9fP5WcIfja//D1OQxre6
-	S/hum1kjksXy+5Ywr/F6Qymq5Pg/mYqkxZdReaOTSA9FAdGFD99xlozTB7ujXrb6
-	D3A==
-Received: 
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTPSA id 51ca2f2d (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO) auth=yes user=support@optimcloud.com
-	for <yocto@lists.yoctoproject.org>;
-	Fri, 11 Dec 2020 19:21:44 +0100 (CET)
-To: yocto@lists.yoctoproject.org
-From: "Dingo" <dingo@optimcloud.com>
-Subject: file /etc/ethertypes conflicts between netbase-1:6.2-r0.corei7_64 and ebtables-2.0.10+4-r4.corei7_64
-Message-ID: <f02242ba-a5ac-a4bc-ce1d-16604306acd5@optimcloud.com>
-Date: Sat, 12 Dec 2020 01:21:38 +0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=N06kkH3P;
+ spf=pass (domain: gmail.com, ip: 209.85.219.48, mailfrom: raj.khem@gmail.com)
+Received: by mail-qv1-f48.google.com with SMTP id p12so4634994qvj.13
+        for <yocto@lists.yoctoproject.org>; Fri, 11 Dec 2020 10:37:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Ue1odXCNGtmOxCqrHkeN/l4O3ttyqezlRkpdJ4Tbi98=;
+        b=N06kkH3Po2QJY3ErCMxqN12JeFCpEG8LseZW2IcypqyU06dLlyXSyaXJQ/HSQtBCDd
+         1tUAL5oC9HCmhaOQ+KcGj+sYFZWRtK1n+3JgD38+B/57IIUlqLvGIGqEqirvUPsN/rsK
+         LR/7Q0/mkmQP6INlN/W2VeAmm8e8BITDcxFFWJuJV1jiaz4L3Tf3c54EGNVOhNrRCHTb
+         m9hsJ3dceveIedoYQ5ZaM7Yf1Mj+i12bfk5nVInsk/HGjy8HrcQEh4/K9WA19Pn9kIfh
+         Ud/B8nX96XUvry46x7HQY9EAAbxcf2s80VzlwhXy21ukWu1JrgM1dr0xJyd4ijPB3VFF
+         voMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Ue1odXCNGtmOxCqrHkeN/l4O3ttyqezlRkpdJ4Tbi98=;
+        b=dZPO56AXZ9h4TlAHwgdMfU7slrmI6UhAlQByywAbxHe1Ypj6chRRecWdxINJu5FGwF
+         qX5UEKJm4GGehHRJYkqF62QoBHM/DJEe3d0PbD9mfTXww7nvx7uQmOWJcDHSi7c/K5H7
+         eEkHsBkLG2rZ1uX2r+S+bxZw6thn727EABuloduAxTbmBCaDzCdfbKoh0qiJIWZ7HnWr
+         /KGzqsBkzDQPAKyvfLJkdNdMkcNYRnZ+lHJsIpum+F4xbxzLG76pdzHrn+fQscaCfov4
+         6GM/2hOwJNwgzQgD/hHu8Cc8fYICK6TItiB8T+fEpGtZdNTcB7SZckkI8rrZWEAn+aaq
+         51rw==
+X-Gm-Message-State: AOAM530ID6ImBX4e0PNbxjkcnUGeUbyyxFO/4dDYMS7JnrBgKsg4qBKU
+	EJ0zy23LmBihaLKjD+5DKFKlNLSPCgMzhp1DLR0=
+X-Google-Smtp-Source: ABdhPJzGpE4Lz82IM3WMPPLVxY1dG6Snnken3H0V1ackjLLu/v3NF1RM8j/gBk0mDYW4xKlHplD5nVOV/5InGPtjOtM=
+X-Received: by 2002:ad4:4052:: with SMTP id r18mr16969008qvp.38.1607711860696;
+ Fri, 11 Dec 2020 10:37:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+References: <5efa9771-376a-3e4b-2cad-bf7c6741679e@gmail.com> <7957.1607709086976048136@lists.yoctoproject.org>
+In-Reply-To: <7957.1607709086976048136@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Fri, 11 Dec 2020 10:37:14 -0800
+Message-ID: <CAMKF1sr37mwr_rADp8f4WTPWxgqsSmS+q22Kn7fB=KK_BNP==w@mail.gmail.com>
+Subject: Re: [yocto] curl_easy_perform() failed: Couldn't connect to server #linux #yocto
+To: vijayrakeshmunganda@gmail.com
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-file /etc/ethertypes conflicts between attempted installs of 
-netbase-1:6.2-r0.corei7_64 and ebtables-2.0.10+4-r4.corei7_64
-commit ba069a5a3dae374744f68a57ab9e7869167beb2b
-Author: Alexander Kanavin <alex.kanavin@gmail.com>
-Date:   Fri Dec 4 21:07:14 2020 +0100
-     netbase: upgrade 6.1 -> 6.2
-     Not sure why this didn't inherit allarch, but now it does - only
-     static data is installed.
+On Fri, Dec 11, 2020 at 9:51 AM <vijayrakeshmunganda@gmail.com> wrote:
+>
+> On Fri, Dec 11, 2020 at 09:04 AM, Khem Raj wrote:
+>
+> On 12/11/20 2:26 AM, vijayrakeshmunganda@gmail.com wrote:
+>
+> Hi,
+>
+> I'm trying to do HTTPS POST using curl with CA certificate, but I got an
+> error as "curl_easy_perform() failed: Couldn't connect to server". The
+> same code works on a Linux machine but not on my target board, I can't
+> understand what I'm missing. I have an active internet connection
+> without any firewall. Kindly please give any suggestions.
+>
+> check what all packageconfig is being used are you using gnutls, then
+> you might want to try nss or openssl and see if that helps.
+>
 
-     (From OE-Core rev: ae1880436b293449318655f5b0207d2a741052ba)
+hard to say, unless more details are available, usually runtime deps
+and build time deps are handled fine but there might
+be some outliers.
 
-     Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
-     Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-diff --git a/meta/recipes-core/netbase/netbase_6.1.bb 
-b/meta/recipes-core/netbase/netbase_6.2.bb
-similarity index 65%
-rename from meta/recipes-core/netbase/netbase_6.1.bb
-rename to meta/recipes-core/netbase/netbase_6.2.bb
-index 33eca459d5..a54d2e7764 100644
---- a/meta/recipes-core/netbase/netbase_6.1.bb
-+++ b/meta/recipes-core/netbase/netbase_6.2.bb
-@@ -6,17 +6,18 @@ LICENSE = "GPLv2"
-  LIC_FILES_CHKSUM = 
-"file://debian/copyright;md5=3dd6192d306f582dee7687da3d8748ab"
-  PE = "1"
-
--SRC_URI = "${DEBIAN_MIRROR}/main/n/${BPN}/${BPN}_${PV}~bpo10+1.tar.xz"
--S = "${WORKDIR}/${BPN}-${PV}~bpo10+1"
-+SRC_URI = "${DEBIAN_MIRROR}/main/n/${BPN}/${BPN}_${PV}.tar.xz"
-
--SRC_URI[md5sum] = "4fa7517285b4045ac0dc8dbf6730dd7a"
--SRC_URI[sha256sum] = 
-"4e9c3082dff8896cb6b6bea9bb2200d82fb0d7c8d8c8fc9b18704fe553316237"
-+inherit allarch
-+
-+SRC_URI[sha256sum] = 
-"309a24146a06347d654b261e9e07a82fab844b173674a42e223803dd8258541e"
-
-  UPSTREAM_CHECK_URI = "${DEBIAN_MIRROR}/main/n/netbase/"
--do_install () {
-
--       install -d ${D}/${mandir}/man8 ${D}${sysconfdir}
-+do_install () {
-+       install -d ${D}${sysconfdir}
-         install -m 0644 ${S}/etc/rpc ${D}${sysconfdir}/rpc
-         install -m 0644 ${S}/etc/protocols ${D}${sysconfdir}/protocols
-         install -m 0644 ${S}/etc/services ${D}${sysconfdir}/services
-+       install -m 0644 ${S}/etc/ethertypes ${D}${sysconfdir}/ethertypes
-  }
-
+> Thanks & Regards,
+> Vijay
+>
+>
+>
+>
+>  Hi Khem Raj,
+>
+> Thanks for the reply. I had installed openssl and curl, but not gnutls b=
+ecause compilation was successful. I=E2=80=99ll definitely try ur suggestio=
+n. Thank you!
+>
+> Please correct me if I=E2=80=99m wrong, even if dependent packages are n=
+ot installed on target system will compilation done successfully? I=E2=80=
+=99m
+> also facing similar issue with zbar, compilation was successful and perf=
+ectly executing on Linux PC, but not my target board even after installing =
+zbar package.
+>
+> Thanks & Regards,
+> Vijay Rakesh.
+>
+>
+>=20
+>
