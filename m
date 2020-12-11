@@ -1,153 +1,113 @@
-Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
- by mx.groups.io with SMTP id smtpd.web12.8368.1607699782331030496
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+ by mx.groups.io with SMTP id smtpd.web12.8407.1607699988612248913
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Dec 2020 07:16:22 -0800
+ Fri, 11 Dec 2020 07:19:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=MQk+Cy4N;
- spf=pass (domain: gmail.com, ip: 209.85.218.65, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-ej1-f65.google.com with SMTP id g20so12857038ejb.1
-        for <yocto@lists.yoctoproject.org>; Fri, 11 Dec 2020 07:16:22 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=F4Iy8Wyx;
+ spf=pass (domain: gmail.com, ip: 209.85.218.51, mailfrom: martin.jansa@gmail.com)
+Received: by mail-ej1-f51.google.com with SMTP id b9so12878784ejy.0
+        for <yocto@lists.yoctoproject.org>; Fri, 11 Dec 2020 07:19:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=jt1IeHKPKz25WO9qua6NCHB30jxLWFbqGbrZmkxRBo4=;
-        b=MQk+Cy4NB8tlZ/fvn0T1YWBmN7HO5WlVdC5Hq4uJMXGFvXzclcVVM8MUl7lXnIjzFl
-         UYPd3mfNB/6nTOnUeDif2Qr1VHqcNfHwvWua97aWPZ1V/RosHe/7l2kL98E4cr4jPFG+
-         nWBfkx94e1MRSC/AW+Pieo635B66aCP6ZQ/lRyv+CV2VAiDOXsluW2fIEU3tocz2bwBX
-         JES3+bREnHFIc/RGGFug3728yQSTutD+Av7dVW2l5l3C9EVXUWkrBY6jzagHvWFPsoFg
-         Q78SV4nfRid4Gsa4Cgj4EvKR4mxyl3VosvaV2CsEG56q/0ChbawQwNw8UeZrukYDA0Om
-         fuUg==
+        bh=qUzpZ7vx/bIAmf6kpRXoqRuTAu+jij5Eu0bButVxZis=;
+        b=F4Iy8Wyx6AbDEYUN8pMdxAU1Z9DLA8v0wQ9GfTK2dEiL1oNKBgO8LOSQagVBI3h3/u
+         PZ6sWsHu3H4e7lCXnMi5aacTWxz/bcRBd2r9aOk+swgiFnjuXVhjlWcACilhVxfaX9rs
+         hyN3/jMK5OUGAdHbWAWlLDIa9xe/1wYN5MQhMihekyxtLkrTJIuNef2Wifuu/rvm5ZzP
+         kiR1uM69OqeK03Ojd/A8jr84Gg+PztxiYYdu4krdJWnwqEZHzOiS+QBOT68Hlw79U6sm
+         uQe2alnlUblWbZpLkH3cctu7YwkIKb/Ykm5VaOedpsDbyGoa98ZYia2/cP/65M0tXMe6
+         kaQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=jt1IeHKPKz25WO9qua6NCHB30jxLWFbqGbrZmkxRBo4=;
-        b=Z1FETN2dAKFzo4Z2kgF7/n8ru8RbA7HEwlVjeSRJeRchDOsvtAmO53wJmj5s7c9pMM
-         fZfZ925osXPQS2sMJtPwRB8bBojqfevxDDVWOkS1G97dqzrk4A0i2owzejXs0lHR74BK
-         m8wvqt1LL7oVFCsbJ7JGZQYQJjNF9/q8nn/d4KI8EoMXAjsLQO9AnsMoGDYlp3Ytyeyg
-         6VDzWkuVYS8owu4BL9wronUwxqsXUJeb+/HdX/G0PvnV7+4ghHPRwaXBBKZn/5UpqLys
-         VFY1gh7De9azbQ9+FLd5HnsuD85dzw/bk5NHtIroIBEErw2gioqw00Cf/+JImfFNUcfr
-         WSnQ==
-X-Gm-Message-State: AOAM5307yLKi7Y9biLs4j61g+YHPiP+psrl+0wtLeRH8Yp1DGFqrcbCz
-	1EXl+ZgY4WtzoLUmq2JBAELi5OaXbcs9mNbAhfM=
-X-Google-Smtp-Source: ABdhPJyRbHfWeyE5ijl1O6yMoCKiuUU6xbsrMVr242rriTl0pUClZkdmuNSM1H8xiW9Wa0C5sop3RdQjpZ+Whz4wrJA=
-X-Received: by 2002:a17:907:d01:: with SMTP id gn1mr11721159ejc.357.1607699780707;
- Fri, 11 Dec 2020 07:16:20 -0800 (PST)
+        bh=qUzpZ7vx/bIAmf6kpRXoqRuTAu+jij5Eu0bButVxZis=;
+        b=e2WCPXeYHbdoM0NLdb4Ss4jz27D4i/M2bhO10ITPG0njesY+LC76xD49OlsHsvyNmL
+         /isawB+0QjwJBci9TGWx+aGs2eVqkpyjdZJmOeN2tkN9uzlZPGq2Gq2Abtm2ppmNx6Mt
+         skjowlqSljIhrmFFsFFbkdzoIP39zFGFDkXBVffm/X1V8CNJS8rZf+7lE2a/sK7Rycj8
+         VbJl/yMMp3zpxPf3k+e4uLjM5Fbg5CMW3dk45jUO/zSYHd1fGhBrd0vDu/rIS2aJ2/57
+         01t8ZLiq3uSdfBgTd9EdmWKjhrEqiqpcXBF2S+vHPfd5j8TlYjw46FeQrkunYvdCtHR7
+         3cHg==
+X-Gm-Message-State: AOAM530rSnLU8FYu1bbAckY2QYT2rAXcSoXchlkPcA/3KnX0ybn1YQul
+	bzxziNF2STW8rRbH5kSE3JQkAf3UL798+6uwlIWcKvyMjBw=
+X-Google-Smtp-Source: ABdhPJylwaUCVpsOhk6piS/x839QqUWk61q+wvvszMcmwEym303bBz5BPHULjxumHe9CnuMXluHkjrhrEuxDMnjYOAc=
+X-Received: by 2002:a17:906:5386:: with SMTP id g6mr6797037ejo.137.1607699987162;
+ Fri, 11 Dec 2020 07:19:47 -0800 (PST)
 MIME-Version: 1.0
-References: <20201211144752.13869-1-JPEWhacker@gmail.com>
-In-Reply-To: <20201211144752.13869-1-JPEWhacker@gmail.com>
-From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
-Date: Fri, 11 Dec 2020 10:16:09 -0500
-Message-ID: <CADkTA4NtO3M+aX0aFNBFqu9-7sGZxRCo9GrJKojmve0Dry3Gpg@mail.gmail.com>
-Subject: Re: [yocto] [meta-rockchip][PATCH] Fix Rock Pi 4 serial port
-To: Joshua Watt <JPEWhacker@gmail.com>
-Cc: yocto <yocto@lists.yoctoproject.org>, Trevor Woerner <twoerner@gmail.com>
+References: <y4Bt.1607699657163733559.sEYQ@lists.yoctoproject.org>
+In-Reply-To: <y4Bt.1607699657163733559.sEYQ@lists.yoctoproject.org>
+From: "Martin Jansa" <Martin.Jansa@gmail.com>
+Date: Fri, 11 Dec 2020 16:19:36 +0100
+Message-ID: <CA+chaQczCaE8izs2hqGML7NOcmy0VePjN0iND+hjzP5fs-W4=g@mail.gmail.com>
+Subject: Re: [yocto] cpu_count() got an unexpected keyword argument 'at_least'
+To: sateesh m <sateesh0457@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000a3ecac05b631d20d"
+
+--000000000000a3ecac05b631d20d
 Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Dec 11, 2020 at 9:48 AM Joshua Watt <JPEWhacker@gmail.com> wrote:
+You're probably mixing incompatible branches of different layers - always
+use the same branch in all layers.
+
+at_least was added in oe-core/dunfell with:
+https://git.openembedded.org/openembedded-core/commit/?id=c6dda204e15c5b27559f7617b18a7b3ce604e2f8
+
+
+On Fri, Dec 11, 2020 at 4:14 PM sateesh m <sateesh0457@gmail.com> wrote:
+
+> Hi Guys,
 >
-> Fixes the serial port output stopping mid way through the boot process
-> by reverting the kernel commit that caused it.
-
-If you want, I can also pick this up and merge it directly into
-linux-yocto and do a SRCREV bump.
-
-Have you tested against 5.10 ? I'm working through issues with it now,
-and it would be nice to fix this before it pops up again on the next
-reference kernel bump.
-
-Cheers,
-
-Bruce
-
 >
-> Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
-> ---
->  ...-resolve-supply-after-creating-regul.patch | 53 +++++++++++++++++++
->  recipes-kernel/linux/linux-yocto_5.8.bbappend |  4 ++
->  2 files changed, 57 insertions(+)
->  create mode 100644 recipes-kernel/linux/linux-yocto/0001-Revert-regulator-resolve-supply-after-creating-regul.patch
->  create mode 100644 recipes-kernel/linux/linux-yocto_5.8.bbappend
+>               I got expansion error during parsing. I want to fix this
+> bug. can anybody know this issue please Update me.
 >
-> diff --git a/recipes-kernel/linux/linux-yocto/0001-Revert-regulator-resolve-supply-after-creating-regul.patch b/recipes-kernel/linux/linux-yocto/0001-Revert-regulator-resolve-supply-after-creating-regul.patch
-> new file mode 100644
-> index 0000000..3dd336b
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-yocto/0001-Revert-regulator-resolve-supply-after-creating-regul.patch
-> @@ -0,0 +1,53 @@
-> +From a414d39b848002e15531f2538d2b6427ce51d07d Mon Sep 17 00:00:00 2001
-> +From: Joshua Watt <JPEWhacker@gmail.com>
-> +Date: Thu, 10 Dec 2020 15:59:47 -0600
-> +Subject: [PATCH] Revert "regulator: resolve supply after creating regulator"
-> +
-> +This commit prevents the serial console from working on the Rock Pi 4
-> +for some reason. It *appears* to possibly be fixed by some other commit
-> +upstream, but after a lot of head scratching and bisecting, I was unable
-> +to find which one, so just revert it for now and we can deal with it
-> +later.
-> +
-> +This reverts commit 96c6b5d5775637b3095ef934f871044811fd4db7.
-> +
-> +---
-> + drivers/regulator/core.c | 21 ++++++++-------------
-> + 1 file changed, 8 insertions(+), 13 deletions(-)
-> +
-> +diff --git a/drivers/regulator/core.c b/drivers/regulator/core.c
-> +index 25e601bf9383..be8c709a7488 100644
-> +--- a/drivers/regulator/core.c
-> ++++ b/drivers/regulator/core.c
-> +@@ -5187,20 +5187,15 @@ regulator_register(const struct regulator_desc *regulator_desc,
-> +       else if (regulator_desc->supply_name)
-> +               rdev->supply_name = regulator_desc->supply_name;
-> +
-> ++      /*
-> ++       * Attempt to resolve the regulator supply, if specified,
-> ++       * but don't return an error if we fail because we will try
-> ++       * to resolve it again later as more regulators are added.
-> ++       */
-> ++      if (regulator_resolve_supply(rdev))
-> ++              rdev_dbg(rdev, "unable to resolve supply\n");
-> ++
-> +       ret = set_machine_constraints(rdev, constraints);
-> +-      if (ret == -EPROBE_DEFER) {
-> +-              /* Regulator might be in bypass mode and so needs its supply
-> +-               * to set the constraints */
-> +-              /* FIXME: this currently triggers a chicken-and-egg problem
-> +-               * when creating -SUPPLY symlink in sysfs to a regulator
-> +-               * that is just being created */
-> +-              ret = regulator_resolve_supply(rdev);
-> +-              if (!ret)
-> +-                      ret = set_machine_constraints(rdev, constraints);
-> +-              else
-> +-                      rdev_dbg(rdev, "unable to resolve supply early: %pe\n",
-> +-                               ERR_PTR(ret));
-> +-      }
-> +       if (ret < 0)
-> +               goto wash;
-> +
-> +--
-> +2.29.2
-> +
-> diff --git a/recipes-kernel/linux/linux-yocto_5.8.bbappend b/recipes-kernel/linux/linux-yocto_5.8.bbappend
-> new file mode 100644
-> index 0000000..5a31842
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-yocto_5.8.bbappend
-> @@ -0,0 +1,4 @@
-> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> +
-> +SRC_URI_append_rock-pi-4 = " file://0001-Revert-regulator-resolve-supply-after-creating-regul.patch"
-> +
-> --
-> 2.29.2
+> Traceback (most recent call last):
+>   File "Var <PIGZ>", line 1, in <module>
+> bb.data_smart.ExpansionError: Failure expanding variable PIGZ, expression
+> was -p ${@oe.utils.cpu_count(at_least=2)} which triggered exception
+> TypeError: cpu_count() got an unexpected keyword argument 'at_least'
 >
+>
+> thanking you in advance.
+>
+> Regards,
+> Sateesh
 >
 > 
 >
+>
 
+--000000000000a3ecac05b631d20d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
+<div dir=3D"ltr">You&#39;re probably mixing incompatible branches of differ=
+ent layers - always use the same branch in all layers.<div><br></div><div>a=
+t_least was added in oe-core/dunfell with:</div><div><a href=3D"https://git=
+.openembedded.org/openembedded-core/commit/?id=3Dc6dda204e15c5b27559f7617b1=
+8a7b3ce604e2f8">https://git.openembedded.org/openembedded-core/commit/?id=
+=3Dc6dda204e15c5b27559f7617b18a7b3ce604e2f8</a><br></div><div><br></div></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Fri, Dec 11, 2020 at 4:14 PM sateesh m &lt;<a href=3D"mailto:sateesh0457@g=
+mail.com">sateesh0457@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">Hi Guys,<br><br><br>=C2=A0 =C2=A0 =C2=A0 =
+=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 I got expansion error during parsing. I want t=
+o fix this bug. can anybody know this issue please Update me.<br><br>
+<div>Traceback (most recent call last):</div>
+<div>=C2=A0 File &quot;Var &lt;PIGZ&gt;&quot;, line 1, in &lt;module&gt;</=
+div>
+<div>bb.data_smart.ExpansionError: Failure expanding variable PIGZ, expres=
+sion was -p ${@oe.utils.cpu_count(at_least=3D2)} which triggered exception =
+TypeError: cpu_count() got an unexpected keyword argument &#39;at_least&#39=
+;</div>
+<div><br><br>thanking you in advance.<br><br>Regards,<br>Sateesh</div>
+<br>
+<br>
+<br>
+</blockquote></div>
+
+--000000000000a3ecac05b631d20d--
