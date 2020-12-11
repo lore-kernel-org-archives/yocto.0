@@ -1,17 +1,17 @@
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (NAM02-SN1-obe.outbound.protection.outlook.com [40.107.77.80])
- by mx.groups.io with SMTP id smtpd.web08.13424.1607719297757198934
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (NAM10-MW2-obe.outbound.protection.outlook.com [40.107.94.40])
+ by mx.groups.io with SMTP id smtpd.web12.13941.1607720277193537943
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Dec 2020 12:41:38 -0800
+ Fri, 11 Dec 2020 12:57:57 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=c81YoShb;
- spf=pass (domain: windriver.com, ip: 40.107.77.80, mailfrom: randy.macleod@windriver.com)
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=p3CVSUcq;
+ spf=pass (domain: windriver.com, ip: 40.107.94.40, mailfrom: randy.macleod@windriver.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Xit0yduZozx1aPEqmKo61d6rukQ3rgfNENw1S8Ew/j4iD/ns1EkdK5GKoNCOEcVmIV68gx24zQAT8ldchGIIw1jmJnQtHiIA7jHpclRozxM/8L6rsCN5vxq2DL5L1iG/4jmFCYLCo97kPY8fNA/VRTYMHrFcQwbuUYAO9NBqYDVly27j2Y63Fnogw4gUN08io2sgV8+sOo3NNweJ6++oLFoysNg+xsE8xknasHL40BccK5Qtq+EbTRMpEhF0E3rOhqS0cpRJ3TmqMhxMSMLeDWEJwZzv29/n7uoRIv+wqH31GyNNj7h6SqRenv3tR6ArzyXd84myHhhgIWj7RzMX9Q==
+ b=BTYaBURzkOpWZlAmQZAVP23UScIdDmPGcQNrGDDZ3sYJmSBhKKLP05AJfvAeOma/8NfvSolbW0VBEvyLmVqMrtjU2omyo8HwrwzRPggpa1vPlwGCihOyjgEZ3Fr2W3sLOA6N/GrdcdsWG0HXXZ9n9mfOn8cNSa2QSiEE9z/AbByEdy6V0JDcBPZ2QM35BxAM9tphDrL/yZ2UP9+6fcY567UUiRa9YZQ8zAwFDkGXtj/K5jr8AZ/qgMHilYeXOvLqH8eOZYlxvodLpwVTIrtrABkzrNjw6npsgZNkUrZWL3/3cWGABIRQzBxLIHRgEpJOb7b78h+QkUYQ/Zu+65GO6A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XK+zkX4FnKLJtKrFPyQNVb1rvf9++RkirCTJV3ned5g=;
- b=VK5BzjaUVpFGutNKuHJBBX9Iq2JtELL6R6lb0pU+DVxBBcOuiXzl56uNdZW2mcjlta7jAWnCWQg1uFxVZcxlEYS7AAEaY4BiJrFY9gGn25gQp5g6T8HVbYhLebiKNzKxnwfcqSgFTLjIsZu5zEccP2/vzJrAflVAM8RBAZEiY9Ttq7bkaFPDeIM404DC5RN5XSsgFwaOSsXtVb6iVjvokeE16NEUjFrl9zDBE7WgOGcQ0tqC8a0sEYyBVgDriiBqgdqp3ejAHNAzGm8MCx1JZrCSqRQ85maGUBjLlGmMaIvAuF7TxNCjN/UGj2e7W8ziTQzMMnoUSF8WFypmhjBBIw==
+ bh=lFupVQosuPBHuS6HNBdwFPMTOq3m23mhD6HHWWtJdJM=;
+ b=Iny9Ai5saQQ0TofRXtZvJnxcZFOr6LEQObPcUKLPq4rZwikKkbBhtg8BcSTcm+f+lIMR0NiZcwz/dQK5wW9XYiGsGCQP0hmb7cpkdCkmkUJkTfiQhDvhr4Qu70z754QTmphiugYL6IJqd7xgQwS7SCHZtoeEeVUgJBRVIWUfdc12POFFbSELblGDBLGCEp7mpJlqKikOJgUhqxqGpLlHSDlfNKgULDPLlnG0EfTjUst5XH7VRrWEAeikRIbH+JqRjFRVwmwrBtaig6v9lNo++rOH94imWOUf58O9jdljWTn1kp0VuSL35nmwUd4I+oSXG/6HLp2uRqfFb04cuP/B6A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
@@ -19,165 +19,210 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=windriversystems.onmicrosoft.com;
  s=selector2-windriversystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XK+zkX4FnKLJtKrFPyQNVb1rvf9++RkirCTJV3ned5g=;
- b=c81YoShba9bQM6AMQ4K0WcDkf+kOxyvsUpnKsRX8vqA9EFtBtLrOHES631jtdV0cjFkvI7xM1eg1Uwc9GzJCzkXxhnkqUBNzURC8IwsSv4oF4gNvOxrR0GClcIBbAt5F2nW+z4kXMhT+Ca02F42E6WI03gAQbZSSkWKdanTyqLE=
+ bh=lFupVQosuPBHuS6HNBdwFPMTOq3m23mhD6HHWWtJdJM=;
+ b=p3CVSUcqzPYZ+aduiRLO/sEimNusYik/8ZFh6a+HWLJ2ZMO0vdIB74hD/TMMlUaq/0+0zYJ6D+mTx8YCqBTzgUupuT1h1J3VweP5ZDakE8QXmq0FsHC+rocr9ATZ+pepi0ASJ/ZTYvwGNpNFiU4ec7/4XuuJ2+1rxdFnrD6xw50=
 Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
  header.d=none;lists.yoctoproject.org; dmarc=none action=none
  header.from=windriver.com;
 Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
- by DM6PR11MB4739.namprd11.prod.outlook.com (2603:10b6:5:2a0::22) with
+ by DM5PR1101MB2106.namprd11.prod.outlook.com (2603:10b6:4:54::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12; Fri, 11 Dec
- 2020 20:41:36 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.14; Fri, 11 Dec
+ 2020 20:57:55 +0000
 Received: from DM6PR11MB3994.namprd11.prod.outlook.com
  ([fe80::7dda:eef1:5113:c588]) by DM6PR11MB3994.namprd11.prod.outlook.com
  ([fe80::7dda:eef1:5113:c588%6]) with mapi id 15.20.3654.017; Fri, 11 Dec 2020
- 20:41:36 +0000
-Subject: Re: [yocto] file /etc/ethertypes conflicts between netbase-1:6.2-r0.corei7_64 and ebtables-2.0.10+4-r4.corei7_64
-To: Dingo <dingo@optimcloud.com>, yocto@lists.yoctoproject.org
-References: <f02242ba-a5ac-a4bc-ce1d-16604306acd5@optimcloud.com>
+ 20:57:55 +0000
+Subject: Re: [yocto] #vmdk with #dunfell
+To: chruetli@gmx.net, yocto@lists.yoctoproject.org
+References: <v0SD.1607606297266017770.G9ej@lists.yoctoproject.org>
 From: "Randy MacLeod" <randy.macleod@windriver.com>
-Message-ID: <d40483ac-7d13-dc87-fd0e-2ba00e464682@windriver.com>
-Date: Fri, 11 Dec 2020 15:41:28 -0500
+Message-ID: <b88fa201-55b7-e078-232b-0bae0c8d0617@windriver.com>
+Date: Fri, 11 Dec 2020 15:57:47 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
-In-Reply-To: <f02242ba-a5ac-a4bc-ce1d-16604306acd5@optimcloud.com>
+In-Reply-To: <v0SD.1607606297266017770.G9ej@lists.yoctoproject.org>
 X-Originating-IP: [198.48.226.187]
-X-ClientProxiedBy: SJ0PR03CA0026.namprd03.prod.outlook.com
- (2603:10b6:a03:33a::31) To DM6PR11MB3994.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR05CA0031.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::6) To DM6PR11MB3994.namprd11.prod.outlook.com
  (2603:10b6:5:193::19)
 Return-Path: randy.macleod@windriver.com
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.25.44.2] (198.48.226.187) by SJ0PR03CA0026.namprd03.prod.outlook.com (2603:10b6:a03:33a::31) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12 via Frontend Transport; Fri, 11 Dec 2020 20:41:35 +0000
+Received: from [172.25.44.2] (198.48.226.187) by SJ0PR05CA0031.namprd05.prod.outlook.com (2603:10b6:a03:33f::6) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.7 via Frontend Transport; Fri, 11 Dec 2020 20:57:54 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 55268b85-15bf-43b7-24df-08d89e15276e
-X-MS-TrafficTypeDiagnostic: DM6PR11MB4739:
+X-MS-Office365-Filtering-Correlation-Id: e388c789-adc7-4924-5988-08d89e176eb0
+X-MS-TrafficTypeDiagnostic: DM5PR1101MB2106:
 X-Microsoft-Antispam-PRVS: 
-	<DM6PR11MB47397F616788188C93E49C26F8CA0@DM6PR11MB4739.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2399;
+	<DM5PR1101MB2106C3837E305B55822999DDF8CA0@DM5PR1101MB2106.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	9TpODxQvAlaOsYezba4ynCZzL4+7bCLBXpckPvgY4bhxy4cFqFE8eEx4Wqlf84if1xlvSHQRXun3HuCdBYZOk//inl9Qqnw5ngO/9x2XPFmwL4+lpYfkUgOMRjR5a6dxj7EPAhMaMphS54cKhGgwETjyQWl3AsOXdtQ/hR2+XgyBUdBEtuD9Yzdd1zeD9MshSHjMOimIEbnkIPqxnlTCZHHIy65UBGvmrMLLrxF66hOR1bWG4JpTMq36KC6RW3/D6iWKc8z4nZtqpsIMSzfDNkvkU7QoK7EAD2MKxrf4MFa8T4I3ucz1f8BBkXUk27OGv90FtK8Mbk499SoyWShBbudxj7pEzJf7T6WBctJGA/Pf/Ss7KapYUy9FGcStWOaea38SUM10kzeCFE5joYn9iGruJG6HHPJaxg+LuRaCqTFlU3vii9cY32Wm+2cyQ/AtcyEAZxMbJpz2r9EZeAxlDblPMRatxO6pay+fPuv5l2w=
+	j4M9TH2XB4aSDU0urTSYdO3wnFZNVLaCsFeEKCzOpAVAgNUMdlP8mZMLe+OpKKZxFZljWAStKFPCi6wzi/T4xv6wUgzkAKSyLRESA9eI0sttYB+aAvjD6BgCr/45PHaZOJhyduVAuxjCl5xt5m2VZAD3wmQDo779N0IDb6URhNEhUKrHF2+8GmNns3s+lP+/tYdLrNXzaUz2A7eYgQp4H+Y/ETSZ4mtZv80CzvZYre5TA0b+njDgTYzeaxbR5MNZNJ0XMejBpwVNbfuIe8eKPKl3Yw5i0s+XWJOjYyaAWMwySRjJf6jE3M3yRfaTR299rtykTdggxhjkHNc7GgHZygFGeJawjL32jOf6MkGFT5DyMIUqRJMJTRsZlTkLh5C2mFkUXnQVRDKWCNpnPUbw0Rel10jPjZVEzQwXBBC7bfF270apCO0tLYnEWbrB8lMYWFIsk8+SezzzdSAUMGGh1wZdYNNm5KfepD6EgYvjWSA=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(346002)(136003)(376002)(366004)(39850400004)(53546011)(956004)(52116002)(8936002)(6666004)(86362001)(66476007)(8676002)(26005)(31696002)(2616005)(186003)(966005)(66556008)(83380400001)(36756003)(2906002)(6486002)(16526019)(316002)(5660300002)(4001150100001)(31686004)(66946007)(478600001)(16576012)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39850400004)(366004)(136003)(346002)(376002)(66476007)(6666004)(83380400001)(53546011)(33964004)(31686004)(186003)(956004)(2906002)(52116002)(86362001)(5660300002)(6486002)(66556008)(2616005)(36756003)(66946007)(8676002)(26005)(31696002)(478600001)(166002)(316002)(4001150100001)(8936002)(16526019)(16576012)(966005)(45980500001)(43740500002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData: 
-	=?us-ascii?Q?7wmiNp65WdV6M2KXJF1OXPaZ7cRy5I2pybKzNEWW3WPC9eyrHrW3m/bg/EQw?=
- =?us-ascii?Q?7X3IZv/f5FNIk8o/zKwq4chUhPfOqLF7Dw4ECxdfX8d1N4eOir40IYxONMFN?=
- =?us-ascii?Q?ca9bZfBUL8Ek3Io9urUI5IKDwwpCeF5nimj4JUzyr3WK8gLGwb1HKhURCy6f?=
- =?us-ascii?Q?ow8DMZurHC247cPsXLO2N58n9K3uOI3YDDfOwJKsK4RsDo3MlR26EKbu+rW8?=
- =?us-ascii?Q?oVXsyh9ZKIYwWrbOsrxnnoB346oz39bkEHB29/v1tgDHkbhCPxS/FeRmyEwg?=
- =?us-ascii?Q?M/XmkWMG9UEo55QcoL0u4x+gLSHU1lOWjsgOS8BsDC9uB8N/sEIIDkyAnfUG?=
- =?us-ascii?Q?5frQKigs4fgAhtVAlhNBXncaJcYap8K09CRJJvz2BWlnqTyS/jButMJzTKM7?=
- =?us-ascii?Q?YAMrrbe0KTABaTO7hV4ty8ad8W0/nhq4/e53GZQajSCuboaQ8zC4pOFTRmcl?=
- =?us-ascii?Q?V566YX/BndoDh3jnzJhiIC98SBArFDXazJu7nhJnvnJfWpWHkT5Cwr1HYCtN?=
- =?us-ascii?Q?1FfZi2HP3N6N5lthsvxjURdHx+07RIYr/scSh0+h9UleppiZmsGxrh2FQuLx?=
- =?us-ascii?Q?0sq2OpbPOePUOzLWoa91DUEs0CtPFPQ304vrIv0TeXXamqv+zaGG9pNadiJg?=
- =?us-ascii?Q?buDwj6JOQM+MaRMkL1PgtUwu3umw5cPBdImtBXtkkk0/4Or9xILi9ntVbGJv?=
- =?us-ascii?Q?mNxjQBdm0TW5VeR8rRpgwhp2sX8An0JWDFRM1VorVOU76JPcRRBsrT87sd0V?=
- =?us-ascii?Q?qaUw+5sYSDvI8YNBbgV250v1fwif0ltA3F5GQQ3NsEukCHjZDGSszP3weHHi?=
- =?us-ascii?Q?QaBxAY60wuPZKudvMg66LyUraySJ920Z0cnES8g/7NRsfyrb2VkLKUz3TO2N?=
- =?us-ascii?Q?WUOvG7Csa8eBCmiw1KjeeXdcqBEwaqgDy7rAf7Bildjnl1mb/zFQo3cEN7JM?=
- =?us-ascii?Q?jgYlRuKggYircUy/HeUUJ+nOU3P4NeNn9dpy+S5yHqNAcxBuOhR5m/EbPWkZ?=
- =?us-ascii?Q?7TuB?=
+	=?utf-8?B?ZU5BSVZqQ1FiVytWQW5jWlE5M2xmang5UDdETHpMSkEzTHNPN21KSUtrbi9u?=
+ =?utf-8?B?NmV1alk5MkQzR3p4VjlOd3U2Z2NuRWttUS9nUG9aQXZDSWsvTWlyR2ZtTjVV?=
+ =?utf-8?B?a3o1VFVaSXhwUVlRN2JGQjJOaW1KN1dIRWcxQXdlRU9FL2JZcUdYZVlyUk5v?=
+ =?utf-8?B?R2JJZFk4aWFNbzlEcEM4ekliQkd5YmVBS25POENRNnhjaWw5ZDIvMTI0akU2?=
+ =?utf-8?B?RWZZOSs0QjVNMTliT0szcjlIaGJYeXJ5MmZqNlc1UzZwMWZZSXNySUV6QkRu?=
+ =?utf-8?B?L0krRDdOUFQ5VW8rWnA3bmc1eW5pazkzOTZ0bXJJSDNuVjU0ZXJVNlUzMVlG?=
+ =?utf-8?B?TE1IZkVORE9rcUR4cHkwYUhITEwzNDN1aTU3alNuNW15VFlUWkk3UEE3SmlD?=
+ =?utf-8?B?VURlRDZHSzZIRlIwMnFzOXBGVldqcS9wYUpSckw5Q2Z5UHIrc0t1Z21SQ0dq?=
+ =?utf-8?B?Qm1HZFgycTJCQTUvVGRoaW4zUUloYmU0SU1vaitaU00za05WZ3o3NmlhWWE5?=
+ =?utf-8?B?b1o5ak9QTEJVRFdLOEZjYXpVRXZscTR0L0V2RExNNGttRk5NWGY5QUo0aHlM?=
+ =?utf-8?B?QVE3KzhNV1ZoR1pKOGQ3ODI3K2V3UytSd05Ldy9iWmZEbEYvSkFDUkxQbCtj?=
+ =?utf-8?B?L2dRZC9IUUQvaHBhTkY5OHNPQUIvYTJBaUFORnc5TGNXa0Ezc2M3QWtJWUw2?=
+ =?utf-8?B?blc1TUNHeW5JcTY3OEVPS0RIb0t3ZFZjemV1Zk5UV1N1UlZZUkdzSVVja3hP?=
+ =?utf-8?B?Vkp6cVpJNEdXaFhJWjk3SnFITzJUQlNDbjBZaXpZZjZENzRFZnZsd1Y0M2o0?=
+ =?utf-8?B?bmdHamtSVEE3Q3JpdDJWUVUyd1N1bnQ2QUhHTTdqS1pWdW1MME9QWkRGVitv?=
+ =?utf-8?B?a09FOVpJd1E4Um1KOXFIQ2IzSmVta2VlSVMvb0Z1TGhjY1NsRWtIZ3djTVNy?=
+ =?utf-8?B?SkVjVUNlemlGVkY2aS9Qelpod1M1clR2aWM4ZU1zQ3ZSK0Y5WHNiMWxkNzRI?=
+ =?utf-8?B?bnRrVWIxbitHWE8wdS9CcTd3aURxbXZKSnF2TDFhTTRmeXBFRi9xdllQRlQx?=
+ =?utf-8?B?VWhuY0VSUjR2WUFqcDdxRitwdzF0ZWtxWjgyTUNIUno3ZnNBV2RKTHlIcmU2?=
+ =?utf-8?B?TVRTU1lyaWU1MWpKamtYcU9VTGpCb2ZveDNJdjRNemFQd2FvS3VvN3dmTFhP?=
+ =?utf-8?B?djdsRVg3MDBHUUYvaHhXVkZ4Y0hsdmV6ZHcxYVYzclhJclY3ZzFWbk9lMUVh?=
+ =?utf-8?B?ZFBkVUlUL3dGckNpbU5mQVhKdk1IOWptSEt4TTVWYU5WTzR5MXZoWWFSSEMw?=
+ =?utf-8?Q?cq8CQmGF7HcBlF8LImAW974yq/aJ2joeVV?=
 X-OriginatorOrg: windriver.com
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2020 20:41:36.5257
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2020 20:57:55.1062
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-Network-Message-Id: 55268b85-15bf-43b7-24df-08d89e15276e
+X-MS-Exchange-CrossTenant-Network-Message-Id: e388c789-adc7-4924-5988-08d89e176eb0
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nDiHEqdk68zWdnyx2CF0/m81FcsgpYho1hbszYvT8/bu6eIerywRDeKt2xuyn4uBAT+EL+ahXGBzxmA3n7ZJqfWQU8oGD7Y182yHIttsY1o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4739
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-MS-Exchange-CrossTenant-UserPrincipalName: rW/GDa1QsY7t8LEsuL7p+GbLayBDL8G6P4mOeDmWREVcinSedPbPmXx70IZNm5XX/+HW7N7Fh8UV3pxIGeQQGP6EIOQ/WXvZ0JqPPOjsTDQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1101MB2106
+Content-Type: multipart/alternative;
+ boundary="------------DBB4C3A5EF0310D73479BF77"
 Content-Language: en-CA
-Content-Transfer-Encoding: quoted-printable
 
-On 2020-12-11 1:21 p.m., Dingo wrote:
-> file /etc/ethertypes conflicts between attempted installs of=20
-> netbase-1:6.2-r0.corei7_64 and ebtables-2.0.10+4-r4.corei7_64
+--------------DBB4C3A5EF0310D73479BF77
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Thanks for the report. Unless someone replies here,
-can you submit a fix to the oe-core and/or meta-oe lists?
+On 2020-12-10 8:18 a.m., chruetli@gmx.net wrote:
+> Hi,
+>
+> I switched from warrior to dunfell and want to build an image for 
+> Oracles VirtualBox VM.
+> On warrior there was 'automatically' a hddimg generated on dunfell 
+> this is no longer the case. The IMAGE_FSTYPES has to by specified, I use:
+> WKS_FILE = "virtualbox.wks"
+> IMAGE_FSTYPES += "wic.vmdk"
+>
+> This requires me to write an wks file for which I use:
+> part /boot --source bootimg-pcbios --ondisk sda --label boot --active 
+> --align 1024
+> part / --source rootfs --ondisk sda --fstype=ext4 --label platform 
+> --align 1024
+> bootloader --ptable gpt  --timeout=5  --append="rootfstype=ext4 
+> video=vesafb vga=current console=tty0"
+>
+> With these settings I get an vmdk image but it fails to boot. I get a 
+> "VFS Unable to mount root fs on unknown block(0,0)" dump.
+>
+> Any ideas?
 
-If not, can you open a bug in the YP Bugzilla?
 
-Create an account here:
-https://bugzilla.yoctoproject.org/createaccount.cgi
-then file a bug:
+Not off-hand.
+
+Since no one is available right now to help,
+
+can you report the bug in:
+
 https://bugzilla.yoctoproject.org/
 
+after creating an account:
+
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+Please give lots of detail about your build host,
+and the repos and versions you are using.
+
 Thanks,
+
 ../Randy
 
 
-> commit ba069a5a3dae374744f68a57ab9e7869167beb2b
-> Author: Alexander Kanavin <alex.kanavin@gmail.com>
-> Date:=C2=A0=C2=A0 Fri Dec 4 21:07:14 2020 +0100
->  =C2=A0=C2=A0=C2=A0 netbase: upgrade 6.1 -> 6.2
->  =C2=A0=C2=A0=C2=A0 Not sure why this didn't inherit allarch, but now it=
- does - only
->  =C2=A0=C2=A0=C2=A0 static data is installed.
->=20
->  =C2=A0=C2=A0=C2=A0 (From OE-Core rev: ae1880436b293449318655f5b0207d2a7=
-41052ba)
->=20
->  =C2=A0=C2=A0=C2=A0 Signed-off-by: Alexander Kanavin <alex.kanavin@gmail=
-.com>
->  =C2=A0=C2=A0=C2=A0 Signed-off-by: Richard Purdie <richard.purdie@linuxf=
-oundation.org>
-> diff --git a/meta/recipes-core/netbase/netbase_6.1.bb=20
-> b/meta/recipes-core/netbase/netbase_6.2.bb
-> similarity index 65%
-> rename from meta/recipes-core/netbase/netbase_6.1.bb
-> rename to meta/recipes-core/netbase/netbase_6.2.bb
-> index 33eca459d5..a54d2e7764 100644
-> --- a/meta/recipes-core/netbase/netbase_6.1.bb
-> +++ b/meta/recipes-core/netbase/netbase_6.2.bb
-> @@ -6,17 +6,18 @@ LICENSE =3D "GPLv2"
->  =C2=A0LIC_FILES_CHKSUM =3D=20
-> "file://debian/copyright;md5=3D3dd6192d306f582dee7687da3d8748ab"
->  =C2=A0PE =3D "1"
->=20
-> -SRC_URI =3D "${DEBIAN_MIRROR}/main/n/${BPN}/${BPN}_${PV}~bpo10+1.tar.xz=
-"
-> -S =3D "${WORKDIR}/${BPN}-${PV}~bpo10+1"
-> +SRC_URI =3D "${DEBIAN_MIRROR}/main/n/${BPN}/${BPN}_${PV}.tar.xz"
->=20
-> -SRC_URI[md5sum] =3D "4fa7517285b4045ac0dc8dbf6730dd7a"
-> -SRC_URI[sha256sum] =3D=20
-> "4e9c3082dff8896cb6b6bea9bb2200d82fb0d7c8d8c8fc9b18704fe553316237"
-> +inherit allarch
-> +
-> +SRC_URI[sha256sum] =3D=20
-> "309a24146a06347d654b261e9e07a82fab844b173674a42e223803dd8258541e"
->=20
->  =C2=A0UPSTREAM_CHECK_URI =3D "${DEBIAN_MIRROR}/main/n/netbase/"
-> -do_install () {
->=20
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 install -d ${D}/${mandir}/man8 ${D=
-}${sysconfdir}
-> +do_install () {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 install -d ${D}${sysconfdir}
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 install -m 0644 ${S}/etc/rpc=
- ${D}${sysconfdir}/rpc
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 install -m 0644 ${S}/etc/pro=
-tocols ${D}${sysconfdir}/protocols
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 install -m 0644 ${S}/etc/ser=
-vices ${D}${sysconfdir}/services
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 install -m 0644 ${S}/etc/ethertype=
-s ${D}${sysconfdir}/ethertypes
->  =C2=A0}
->=20
->=20
->=20
->=20
->=20
+> 
+>
 
-
---=20
+-- 
 # Randy MacLeod
 # Wind River Linux
+
+
+--------------DBB4C3A5EF0310D73479BF77
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <div class="moz-cite-prefix">On 2020-12-10 8:18 a.m.,
+      <a class="moz-txt-link-abbreviated" href="mailto:chruetli@gmx.net">chruetli@gmx.net</a> wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:v0SD.1607606297266017770.G9ej@lists.yoctoproject.org">
+      
+      Hi,<br>
+      <br>
+      I switched from warrior to dunfell and want to build an image for
+      Oracles VirtualBox VM.<br>
+      On warrior there was 'automatically' a hddimg generated on dunfell
+      this is no longer the case. The IMAGE_FSTYPES has to by specified,
+      I use:<br>
+      WKS_FILE = &quot;virtualbox.wks&quot;<br>
+      IMAGE_FSTYPES += &quot;wic.vmdk&quot;<br>
+      <br>
+      This requires me to write an wks file for which I use:<br>
+      part /boot --source bootimg-pcbios --ondisk sda --label boot
+      --active --align 1024<br>
+      part / --source rootfs --ondisk sda --fstype=ext4 --label platform
+      --align 1024<br>
+      bootloader --ptable gpt&nbsp; --timeout=5&nbsp; --append=&quot;rootfstype=ext4
+      video=vesafb vga=current console=tty0&quot;<br>
+      <br>
+      With these settings I get an vmdk image but it fails to boot. I
+      get a &quot;VFS Unable to mount root fs on unknown block(0,0)&quot; dump.<br>
+      <br>
+      Any ideas?
+      <br>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>Not off-hand.</p>
+    <p>Since no one is available right now to help,</p>
+    <p>can you report the bug in:</p>
+    <p><a class="moz-txt-link-freetext" href="https://bugzilla.yoctoproject.org/">https://bugzilla.yoctoproject.org/</a></p>
+    <p>after creating an account:</p>
+    <p><a class="moz-txt-link-freetext" href="https://bugzilla.yoctoproject.org/createaccount.cgi">https://bugzilla.yoctoproject.org/createaccount.cgi</a></p>
+    <p>Please give lots of detail about your build host,<br>
+      and the repos and versions you are using.<br>
+    </p>
+    <p>Thanks,</p>
+    <p>../Randy<br>
+    </p>
+    <p><br>
+    </p>
+    <blockquote type="cite" cite="mid:v0SD.1607606297266017770.G9ej@lists.yoctoproject.org">
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+
+
+</pre>
+    </blockquote>
+    <p><br>
+    </p>
+    <pre class="moz-signature" cols="72">-- 
+# Randy MacLeod
+# Wind River Linux</pre>
+  </body>
+</html>
+
+--------------DBB4C3A5EF0310D73479BF77--
