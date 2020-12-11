@@ -1,76 +1,77 @@
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
- by mx.groups.io with SMTP id smtpd.web11.10218.1607705969812162076
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+ by mx.groups.io with SMTP id smtpd.web08.9912.1607706240255788518
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Dec 2020 08:59:29 -0800
+ Fri, 11 Dec 2020 09:04:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=PfyzL222;
- spf=pass (domain: gmail.com, ip: 209.85.214.176, mailfrom: raj.khem@gmail.com)
-Received: by mail-pl1-f176.google.com with SMTP id s2so4873130plr.9
-        for <yocto@lists.yoctoproject.org>; Fri, 11 Dec 2020 08:59:29 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=kYS/J3BD;
+ spf=pass (domain: gmail.com, ip: 209.85.216.50, mailfrom: raj.khem@gmail.com)
+Received: by mail-pj1-f50.google.com with SMTP id j13so2659047pjz.3
+        for <yocto@lists.yoctoproject.org>; Fri, 11 Dec 2020 09:04:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:message-id:date:user-agent:mime-version
          :in-reply-to:content-language:content-transfer-encoding;
-        bh=46GpaQCN34IKSI7pmMo5MkD234PXquhqecth8cTjicE=;
-        b=PfyzL222y8ci7KgKnk7u4VNQ1A69tNMU2HxMP3RBDymSSUvioqnDoaZ8fhGqUGWq14
-         7NSyJ2+hV/ftU4DGBlLQDi28E4nFBeS4KRkzoeOs1msJpCHOdT8omcUx1532DDhlGqi1
-         9NwYvrODEqPGBshDD+nb4hWH8GY/ls69qZy4b4ua2WGj7pDSydGAUicd+jRBuske/U2x
-         B+2/WFNZfCwnqw5qut3gUbJL4VDeWUktQMNs+zFwVLdcERv9tNSJAJuRx8xR9cVTTKNE
-         YcC8malzBzEY2BpmAPuVL0e37a85hK7QSh2CdTtSd1jy/6dgDGy4uQYvTNcJBmRH9UI1
-         gmGQ==
+        bh=dAnUxdWes2nKMOsXbObnLLpLiORk8zFJjZF3EXPsYWE=;
+        b=kYS/J3BDDl+h46hXE3Qi884GUQMMXjLwZ3W8oliLCmiMoEUJZH+KAaNmmu9B5DMvZW
+         wDQvKF3NT8bqwjYOKuL+R62C1xBIuf9K3q+2eogU3iaOgXVcC0py6JQcasKXRj0GvKFD
+         QcMGmZuk0gFm/Muhwj0oAI0w6CFYhGmmO4a3Jyyco5//rcY10ruefCRPXTTU+G0we8bn
+         N5t2CoFO+PbDDfxL1o3kWJaxELgoy8XFIZmgva1Ob2cMeWUHiYjk3rr84Re8gYDVUBjH
+         YPo1KyLep92/Jo/qqUN6TedtF04HZ3EEK2JCQWgkQ1WfPmzpDsPUoBkybopFWxjE6vgT
+         +c9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=46GpaQCN34IKSI7pmMo5MkD234PXquhqecth8cTjicE=;
-        b=D4Yap27SL9j1MFgqu0q8nIJquNKJBqHDmbv1dSFb608Xbiu57YQdmhh/tn3XVGAUBg
-         LzbTj9QASp6iSEUwKrJplD8pRiLOiY2p5qoQbJbvVuB1ErpICzue0sy6OmDpWzW5JnSj
-         WDxMZeKgJN2cTHc4tKmVuKQ2vLrAVlUfvZLeVX53KTXOGmfx8S7sYirtXq5Ju+9ftlkU
-         Bc0O71bf7VwYlEimGZV3ExnklPe0Vow6lhLrhj0UKa2YHaesDmqSdWXklOpDKjURdR6Q
-         Kv/tWHBvyI/cy7P5/cL9WWboxrmOpI2HhUdCT90p6xBslQquGGPwE5WskvcIBIqn65IX
-         qVzg==
-X-Gm-Message-State: AOAM531WO0ho4j27KIciNDbrTCskajYO0AW3W8L+Z9KNBI/9XQQsdCAM
-	ToXq3A3xERJHqb3BN1DMQWJge52B6d6a7w==
-X-Google-Smtp-Source: ABdhPJw8XiGrq81AUIcRHi1Nl69itoYNCn9yBnzOLxA7l3zO2rAjPWZdHkRl8yzDxv2+IXJ4eFB1Eg==
-X-Received: by 2002:a17:90a:fa0c:: with SMTP id cm12mr13982354pjb.87.1607705968767;
-        Fri, 11 Dec 2020 08:59:28 -0800 (PST)
+        bh=dAnUxdWes2nKMOsXbObnLLpLiORk8zFJjZF3EXPsYWE=;
+        b=TAZz23tLLJeqvAgX/2xpar9HY5uUspvTNe3FbCq7oN7UkzkeTLH1qegi7f5gI37kYl
+         dHNBFAvtdRQ2xzr1pcMAz7ihwZeNACd6ZBzsfxDeRLTx5wsd0Fp4R7DdF5ZVWncEQWj8
+         aGUzc91b/4WyLzbp/yEeg/iMdnPLNTzr/Azr0i9rJAviOrovaEV0l2ER5VDLDKnccDQE
+         8yMcHBtgb1od7luwCCw530TQ0rehcmkeHlykc+N9szg+GtJb9EVUygdVxTGXyYqEGsVP
+         jzr+clg3ajvgjwSrMGzgISlYzllqP/zBst63lRz48vjLAdo5QqI6+dlhUBewQppyjvwc
+         QQ7A==
+X-Gm-Message-State: AOAM532EpG/AHhlqIrcFxYwOPZPAQCJJGiLBIT/oJoxJjEsK0kaI75DL
+	wjCgM6vEKOOwHkG6SIjKSsZf1akJNoEWoA==
+X-Google-Smtp-Source: ABdhPJwk+MW8bi378JCKkSimBoiZhDuzzBA3VAqI/w2ZXCdO/xAEo5HmW1TLK2QIL3crpwlwyqpLXg==
+X-Received: by 2002:a17:90a:fa8e:: with SMTP id cu14mr14044114pjb.140.1607706238974;
+        Fri, 11 Dec 2020 09:03:58 -0800 (PST)
 Return-Path: <raj.khem@gmail.com>
 Received: from ?IPv6:2601:646:9200:4e0::5bf5? ([2601:646:9200:4e0::5bf5])
-        by smtp.gmail.com with ESMTPSA id d6sm10387127pfo.199.2020.12.11.08.59.27
-        for <yocto@lists.yoctoproject.org>
+        by smtp.gmail.com with ESMTPSA id a17sm10898069pga.56.2020.12.11.09.03.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Dec 2020 08:59:28 -0800 (PST)
-Subject: Re: [yocto] [meta-raspberrypi] error with sc16is752-spi0 overlay
-To: yocto@lists.yoctoproject.org
-References: <VI1PR03MB626929E955F2C659ABCB212382CA0@VI1PR03MB6269.eurprd03.prod.outlook.com>
- <14983.1607697679901770123@lists.yoctoproject.org>
+        Fri, 11 Dec 2020 09:03:58 -0800 (PST)
+Subject: Re: [yocto] curl_easy_perform() failed: Couldn't connect to server #linux #yocto
+To: vijayrakeshmunganda@gmail.com, yocto@lists.yoctoproject.org
+References: <LX0D.1607682387068707611.wmeq@lists.yoctoproject.org>
 From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <3c63fcec-a751-bdc8-cbc9-457980fdfb1b@gmail.com>
-Date: Fri, 11 Dec 2020 08:59:27 -0800
+Message-ID: <5efa9771-376a-3e4b-2cad-bf7c6741679e@gmail.com>
+Date: Fri, 11 Dec 2020 09:03:57 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.4.3
 MIME-Version: 1.0
-In-Reply-To: <14983.1607697679901770123@lists.yoctoproject.org>
+In-Reply-To: <LX0D.1607682387068707611.wmeq@lists.yoctoproject.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
 
 
-On 12/11/20 6:41 AM, Romain Crausaz wrote:
-> I kept looking and I get the same error with the sdio overlay when I 
-> remove the sc16is752.
+On 12/11/20 2:26 AM, vijayrakeshmunganda@gmail.com wrote:
+> Hi,
+> 
+> I'm trying to do HTTPS POST using curl with CA certificate, but I got an 
+> error as "curl_easy_perform() failed: Couldn't connect to server". The 
+> same code works on a Linux machine but not on my target board, I can't 
+> understand what I'm missing. I have an active internet connection 
+> without any firewall. Kindly please give any suggestions.
 > 
 
-I think the content of IMAGE_BOOT_FILES would be right place to start 
-looking into the issue.
+check what all packageconfig is being used are you using gnutls, then 
+you might want to try nss or openssl and see if that helps.
 
-bitbake -e <yourimage> | grep -e "^IMAGE_BOOT_FILES="
-
-might give more insights into this variable's contents and see if the 
-syntax is ok or not.
-
+> Thanks & Regards,
+> Vijay
+> 
 > 
 > 
 > 
