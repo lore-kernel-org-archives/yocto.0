@@ -1,228 +1,426 @@
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (NAM10-MW2-obe.outbound.protection.outlook.com [40.107.94.40])
- by mx.groups.io with SMTP id smtpd.web12.13941.1607720277193537943
- for <yocto@lists.yoctoproject.org>;
- Fri, 11 Dec 2020 12:57:57 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=p3CVSUcq;
- spf=pass (domain: windriver.com, ip: 40.107.94.40, mailfrom: randy.macleod@windriver.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BTYaBURzkOpWZlAmQZAVP23UScIdDmPGcQNrGDDZ3sYJmSBhKKLP05AJfvAeOma/8NfvSolbW0VBEvyLmVqMrtjU2omyo8HwrwzRPggpa1vPlwGCihOyjgEZ3Fr2W3sLOA6N/GrdcdsWG0HXXZ9n9mfOn8cNSa2QSiEE9z/AbByEdy6V0JDcBPZ2QM35BxAM9tphDrL/yZ2UP9+6fcY567UUiRa9YZQ8zAwFDkGXtj/K5jr8AZ/qgMHilYeXOvLqH8eOZYlxvodLpwVTIrtrABkzrNjw6npsgZNkUrZWL3/3cWGABIRQzBxLIHRgEpJOb7b78h+QkUYQ/Zu+65GO6A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lFupVQosuPBHuS6HNBdwFPMTOq3m23mhD6HHWWtJdJM=;
- b=Iny9Ai5saQQ0TofRXtZvJnxcZFOr6LEQObPcUKLPq4rZwikKkbBhtg8BcSTcm+f+lIMR0NiZcwz/dQK5wW9XYiGsGCQP0hmb7cpkdCkmkUJkTfiQhDvhr4Qu70z754QTmphiugYL6IJqd7xgQwS7SCHZtoeEeVUgJBRVIWUfdc12POFFbSELblGDBLGCEp7mpJlqKikOJgUhqxqGpLlHSDlfNKgULDPLlnG0EfTjUst5XH7VRrWEAeikRIbH+JqRjFRVwmwrBtaig6v9lNo++rOH94imWOUf58O9jdljWTn1kp0VuSL35nmwUd4I+oSXG/6HLp2uRqfFb04cuP/B6A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=windriversystems.onmicrosoft.com;
- s=selector2-windriversystems-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lFupVQosuPBHuS6HNBdwFPMTOq3m23mhD6HHWWtJdJM=;
- b=p3CVSUcqzPYZ+aduiRLO/sEimNusYik/8ZFh6a+HWLJ2ZMO0vdIB74hD/TMMlUaq/0+0zYJ6D+mTx8YCqBTzgUupuT1h1J3VweP5ZDakE8QXmq0FsHC+rocr9ATZ+pepi0ASJ/ZTYvwGNpNFiU4ec7/4XuuJ2+1rxdFnrD6xw50=
-Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=windriver.com;
-Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
- by DM5PR1101MB2106.namprd11.prod.outlook.com (2603:10b6:4:54::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.14; Fri, 11 Dec
- 2020 20:57:55 +0000
-Received: from DM6PR11MB3994.namprd11.prod.outlook.com
- ([fe80::7dda:eef1:5113:c588]) by DM6PR11MB3994.namprd11.prod.outlook.com
- ([fe80::7dda:eef1:5113:c588%6]) with mapi id 15.20.3654.017; Fri, 11 Dec 2020
- 20:57:55 +0000
-Subject: Re: [yocto] #vmdk with #dunfell
-To: chruetli@gmx.net, yocto@lists.yoctoproject.org
-References: <v0SD.1607606297266017770.G9ej@lists.yoctoproject.org>
-From: "Randy MacLeod" <randy.macleod@windriver.com>
-Message-ID: <b88fa201-55b7-e078-232b-0bae0c8d0617@windriver.com>
-Date: Fri, 11 Dec 2020 15:57:47 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <v0SD.1607606297266017770.G9ej@lists.yoctoproject.org>
-X-Originating-IP: [198.48.226.187]
-X-ClientProxiedBy: SJ0PR05CA0031.namprd05.prod.outlook.com
- (2603:10b6:a03:33f::6) To DM6PR11MB3994.namprd11.prod.outlook.com
- (2603:10b6:5:193::19)
-Return-Path: randy.macleod@windriver.com
+Subject: git-lfs #dunfell
+To: yocto@lists.yoctoproject.org
+From: joel.winarske@linux.com
+X-Originating-Location: Seattle, Washington, US (71.212.127.60)
+X-Originating-Platform: Linux Firefox 83
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.25.44.2] (198.48.226.187) by SJ0PR05CA0031.namprd05.prod.outlook.com (2603:10b6:a03:33f::6) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.7 via Frontend Transport; Fri, 11 Dec 2020 20:57:54 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e388c789-adc7-4924-5988-08d89e176eb0
-X-MS-TrafficTypeDiagnostic: DM5PR1101MB2106:
-X-Microsoft-Antispam-PRVS: 
-	<DM5PR1101MB2106C3837E305B55822999DDF8CA0@DM5PR1101MB2106.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	j4M9TH2XB4aSDU0urTSYdO3wnFZNVLaCsFeEKCzOpAVAgNUMdlP8mZMLe+OpKKZxFZljWAStKFPCi6wzi/T4xv6wUgzkAKSyLRESA9eI0sttYB+aAvjD6BgCr/45PHaZOJhyduVAuxjCl5xt5m2VZAD3wmQDo779N0IDb6URhNEhUKrHF2+8GmNns3s+lP+/tYdLrNXzaUz2A7eYgQp4H+Y/ETSZ4mtZv80CzvZYre5TA0b+njDgTYzeaxbR5MNZNJ0XMejBpwVNbfuIe8eKPKl3Yw5i0s+XWJOjYyaAWMwySRjJf6jE3M3yRfaTR299rtykTdggxhjkHNc7GgHZygFGeJawjL32jOf6MkGFT5DyMIUqRJMJTRsZlTkLh5C2mFkUXnQVRDKWCNpnPUbw0Rel10jPjZVEzQwXBBC7bfF270apCO0tLYnEWbrB8lMYWFIsk8+SezzzdSAUMGGh1wZdYNNm5KfepD6EgYvjWSA=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39850400004)(366004)(136003)(346002)(376002)(66476007)(6666004)(83380400001)(53546011)(33964004)(31686004)(186003)(956004)(2906002)(52116002)(86362001)(5660300002)(6486002)(66556008)(2616005)(36756003)(66946007)(8676002)(26005)(31696002)(478600001)(166002)(316002)(4001150100001)(8936002)(16526019)(16576012)(966005)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: 
-	=?utf-8?B?ZU5BSVZqQ1FiVytWQW5jWlE5M2xmang5UDdETHpMSkEzTHNPN21KSUtrbi9u?=
- =?utf-8?B?NmV1alk5MkQzR3p4VjlOd3U2Z2NuRWttUS9nUG9aQXZDSWsvTWlyR2ZtTjVV?=
- =?utf-8?B?a3o1VFVaSXhwUVlRN2JGQjJOaW1KN1dIRWcxQXdlRU9FL2JZcUdYZVlyUk5v?=
- =?utf-8?B?R2JJZFk4aWFNbzlEcEM4ekliQkd5YmVBS25POENRNnhjaWw5ZDIvMTI0akU2?=
- =?utf-8?B?RWZZOSs0QjVNMTliT0szcjlIaGJYeXJ5MmZqNlc1UzZwMWZZSXNySUV6QkRu?=
- =?utf-8?B?L0krRDdOUFQ5VW8rWnA3bmc1eW5pazkzOTZ0bXJJSDNuVjU0ZXJVNlUzMVlG?=
- =?utf-8?B?TE1IZkVORE9rcUR4cHkwYUhITEwzNDN1aTU3alNuNW15VFlUWkk3UEE3SmlD?=
- =?utf-8?B?VURlRDZHSzZIRlIwMnFzOXBGVldqcS9wYUpSckw5Q2Z5UHIrc0t1Z21SQ0dq?=
- =?utf-8?B?Qm1HZFgycTJCQTUvVGRoaW4zUUloYmU0SU1vaitaU00za05WZ3o3NmlhWWE5?=
- =?utf-8?B?b1o5ak9QTEJVRFdLOEZjYXpVRXZscTR0L0V2RExNNGttRk5NWGY5QUo0aHlM?=
- =?utf-8?B?QVE3KzhNV1ZoR1pKOGQ3ODI3K2V3UytSd05Ldy9iWmZEbEYvSkFDUkxQbCtj?=
- =?utf-8?B?L2dRZC9IUUQvaHBhTkY5OHNPQUIvYTJBaUFORnc5TGNXa0Ezc2M3QWtJWUw2?=
- =?utf-8?B?blc1TUNHeW5JcTY3OEVPS0RIb0t3ZFZjemV1Zk5UV1N1UlZZUkdzSVVja3hP?=
- =?utf-8?B?Vkp6cVpJNEdXaFhJWjk3SnFITzJUQlNDbjBZaXpZZjZENzRFZnZsd1Y0M2o0?=
- =?utf-8?B?bmdHamtSVEE3Q3JpdDJWUVUyd1N1bnQ2QUhHTTdqS1pWdW1MME9QWkRGVitv?=
- =?utf-8?B?a09FOVpJd1E4Um1KOXFIQ2IzSmVta2VlSVMvb0Z1TGhjY1NsRWtIZ3djTVNy?=
- =?utf-8?B?SkVjVUNlemlGVkY2aS9Qelpod1M1clR2aWM4ZU1zQ3ZSK0Y5WHNiMWxkNzRI?=
- =?utf-8?B?bnRrVWIxbitHWE8wdS9CcTd3aURxbXZKSnF2TDFhTTRmeXBFRi9xdllQRlQx?=
- =?utf-8?B?VWhuY0VSUjR2WUFqcDdxRitwdzF0ZWtxWjgyTUNIUno3ZnNBV2RKTHlIcmU2?=
- =?utf-8?B?TVRTU1lyaWU1MWpKamtYcU9VTGpCb2ZveDNJdjRNemFQd2FvS3VvN3dmTFhP?=
- =?utf-8?B?djdsRVg3MDBHUUYvaHhXVkZ4Y0hsdmV6ZHcxYVYzclhJclY3ZzFWbk9lMUVh?=
- =?utf-8?B?ZFBkVUlUL3dGckNpbU5mQVhKdk1IOWptSEt4TTVWYU5WTzR5MXZoWWFSSEMw?=
- =?utf-8?Q?cq8CQmGF7HcBlF8LImAW974yq/aJ2joeVV?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2020 20:57:55.1062
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-Network-Message-Id: e388c789-adc7-4924-5988-08d89e176eb0
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rW/GDa1QsY7t8LEsuL7p+GbLayBDL8G6P4mOeDmWREVcinSedPbPmXx70IZNm5XX/+HW7N7Fh8UV3pxIGeQQGP6EIOQ/WXvZ0JqPPOjsTDQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1101MB2106
-Content-Type: multipart/alternative;
- boundary="------------DBB4C3A5EF0310D73479BF77"
-Content-Language: en-CA
+Date: Sat, 12 Dec 2020 08:37:34 -0800
+Message-ID: <ivrx.1607791054895422894.WY4N@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="gBzG7p8TIYogwxfx5Kur"
 
---------------DBB4C3A5EF0310D73479BF77
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--gBzG7p8TIYogwxfx5Kur
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2020-12-10 8:18 a.m., chruetli@gmx.net wrote:
-> Hi,
->
-> I switched from warrior to dunfell and want to build an image for 
-> Oracles VirtualBox VM.
-> On warrior there was 'automatically' a hddimg generated on dunfell 
-> this is no longer the case. The IMAGE_FSTYPES has to by specified, I use:
-> WKS_FILE = "virtualbox.wks"
-> IMAGE_FSTYPES += "wic.vmdk"
->
-> This requires me to write an wks file for which I use:
-> part /boot --source bootimg-pcbios --ondisk sda --label boot --active 
-> --align 1024
-> part / --source rootfs --ondisk sda --fstype=ext4 --label platform 
-> --align 1024
-> bootloader --ptable gpt  --timeout=5  --append="rootfstype=ext4 
-> video=vesafb vga=current console=tty0"
->
-> With these settings I get an vmdk image but it fails to boot. I get a 
-> "VFS Unable to mount root fs on unknown block(0,0)" dump.
->
-> Any ideas?
+I am seeing problems in git fetcher using a github repo using lfs + ssh in =
+dunfell.
 
+I find if I set "lfs=3D0" it still attempts to download the lfs objects an=
+d fails.=C2=A0 Same behavior if "lfs=3D1".
 
-Not off-hand.
+SRC_URI =3D "git://git@github.com:/account/cool-thing.git;protocol=3Dssh;l=
+fs=3D1;branch=3Dcool_branch"
 
-Since no one is available right now to help,
+A suggested workaround by technoweenie here: https://github.com/git-lfs/gi=
+t-lfs/issues/1044
 
-can you report the bug in:
+Only git clone via ssh works (pulls lfs objects) fine outside of the yocto=
+ tree.
 
-https://bugzilla.yoctoproject.org/
-
-after creating an account:
-
-https://bugzilla.yoctoproject.org/createaccount.cgi
-
-Please give lots of detail about your build host,
-and the repos and versions you are using.
+Any ideas?
 
 Thanks,
+Joel
 
-../Randy
+git-lfs/ 2. 9. 2 (GitHub; linux amd64; go 1. 13. 5 )
+git version 2. 25. 1
 
+$ git-lfs filter-process
+Error downloading object: cool-thing/app/lib/agl/aarch64/libfmt.a ( 328664=
+b ): Smudge error: Error downloading cool-thing/app/lib/agl/aarch64/libfmt.=
+a ( 328664b0bd0cad33f28722b9a6ccd5ac9adea4485885bacd35082775e41601d8 ): bat=
+ch request: missing protocol: "<unknown>"
 
-> 
->
+missing protocol: "<unknown>"
+batch request
+github.com/git-lfs/git-lfs/errors.newWrappedError
+github.com/git-lfs/git-lfs/errors/types.go: 198
+github.com/git-lfs/git-lfs/errors.Wrap
+github.com/git-lfs/git-lfs/errors/errors.go: 74
+github.com/git-lfs/git-lfs/tq.(*tqClient).Batch
+github.com/git-lfs/git-lfs/tq/api.go: 68
+github.com/git-lfs/git-lfs/tq.Batch
+github.com/git-lfs/git-lfs/tq/api.go: 40
+github.com/git-lfs/git-lfs/tq.(*TransferQueue).enqueueAndCollectRetriesFor
+github.com/git-lfs/git-lfs/tq/transfer_queue.go: 520
+github.com/git-lfs/git-lfs/tq.(*TransferQueue). collectBatches.func1
+github.com/git-lfs/git-lfs/tq/transfer_queue.go: 432
+runtime.goexit
+/usr/lib/go- 1. 13 /src/runtime/asm_amd64.s: 1357
+Error downloading cool-thing/app/lib/agl/aarch64/libfmt.a ( 328664b0bd0cad=
+33f28722b9a6ccd5ac9adea4485885bacd35082775e41601d8 )
+github.com/git-lfs/git-lfs/errors.newWrappedError
+github.com/git-lfs/git-lfs/errors/types.go: 198
+github.com/git-lfs/git-lfs/errors.Wrapf
+github.com/git-lfs/git-lfs/errors/errors.go: 85
+github.com/git-lfs/git-lfs/lfs.(*GitFilter).downloadFile
+github.com/git-lfs/git-lfs/lfs/gitfilter_smudge.go: 115
+github.com/git-lfs/git-lfs/lfs.(*GitFilter).Smudge
+github.com/git-lfs/git-lfs/lfs/gitfilter_smudge.go: 76
+github.com/git-lfs/git-lfs/commands.smudge
+github.com/git-lfs/git-lfs/commands/command_smudge.go: 127
+github.com/git-lfs/git-lfs/commands.filterCommand
+github.com/git-lfs/git-lfs/commands/command_filter_process.go: 118
+github.com/spf13/cobra.(*Command).execute
+github.com/spf13/cobra/command.go: 766
+github.com/spf13/cobra.(*Command).ExecuteC
+github.com/spf13/cobra/command.go: 850
+github.com/spf13/cobra.(*Command).Execute
+github.com/spf13/cobra/command.go: 800
+github.com/git-lfs/git-lfs/commands.Run
+github.com/git-lfs/git-lfs/commands/run.go: 97
+main.main
+github.com/git-lfs/git-lfs/git- lfs.go : 33
+runtime.main
+/usr/lib/go- 1. 13 /src/runtime/proc.go: 203
+runtime.goexit
+/usr/lib/go- 1. 13 /src/runtime/asm_amd64.s: 1357
+Smudge error
+github.com/git-lfs/git-lfs/errors.newWrappedError
+github.com/git-lfs/git-lfs/errors/types.go: 198
+github.com/git-lfs/git-lfs/errors.NewSmudgeError
+github.com/git-lfs/git-lfs/errors/types.go: 284
+github.com/git-lfs/git-lfs/lfs.(*GitFilter).Smudge
+github.com/git-lfs/git-lfs/lfs/gitfilter_smudge.go: 85
+github.com/git-lfs/git-lfs/commands.smudge
+github.com/git-lfs/git-lfs/commands/command_smudge.go: 127
+github.com/git-lfs/git-lfs/commands.filterCommand
+github.com/git-lfs/git-lfs/commands/command_filter_process.go: 118
+github.com/spf13/cobra.(*Command).execute
+github.com/spf13/cobra/command.go: 766
+github.com/spf13/cobra.(*Command).ExecuteC
+github.com/spf13/cobra/command.go: 850
+github.com/spf13/cobra.(*Command).Execute
+github.com/spf13/cobra/command.go: 800
+github.com/git-lfs/git-lfs/commands.Run
+github.com/git-lfs/git-lfs/commands/run.go: 97
+main.main
+github.com/git-lfs/git-lfs/git- lfs.go : 33
+runtime.main
+/usr/lib/go- 1. 13 /src/runtime/proc.go: 203
+runtime.goexit
+/usr/lib/go- 1. 13 /src/runtime/asm_amd64.s: 1357
 
--- 
-# Randy MacLeod
-# Wind River Linux
+Current time in UTC:
+2020-12-12 15:41:16
 
+ENV:
+LocalWorkingDir=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc/work/aa=
+rch64-oe-linux/cool-thing/git+AUTOINC+ 3158acc56b -r0/git
+LocalGitDir=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc/work/aarch6=
+4-oe-linux/cool-thing/git+AUTOINC+ 3158acc56b -r0/git/.git
+LocalGitStorageDir=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc/work=
+/aarch64-oe-linux/cool-thing/git+AUTOINC+ 3158acc56b -r0/git/.git
+LocalMediaDir=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc/work/aarc=
+h64-oe-linux/cool-thing/git+AUTOINC+ 3158acc56b -r0/git/.git/lfs/objects
+LocalReferenceDirs=3D
+TempDir=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc/work/aarch64-oe=
+-linux/cool-thing/git+AUTOINC+ 3158acc56b -r0/git/.git/lfs/tmp
+ConcurrentTransfers=3D 3
+TusTransfers=3D false
+BasicTransfersOnly=3D false
+SkipDownloadErrors=3D false
+FetchRecentAlways=3D false
+FetchRecentRefsDays=3D 7
+FetchRecentCommitsDays=3D 0
+FetchRecentRefsIncludeRemotes=3D true
+PruneOffsetDays=3D 3
+PruneVerifyRemoteAlways=3D false
+PruneRemoteName=3Dorigin
+LfsStorageDir=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc/work/aarc=
+h64-oe-linux/cool-thing/git+AUTOINC+ 3158acc56b -r0/git/.git/lfs
+AccessDownload=3Dnone
+AccessUpload=3Dnone
+DownloadTransfers=3Dbasic,lfs-standalon e-f ile
+UploadTransfers=3Dbasic,lfs-standalon e-f ile
+GIT_CONFIG_PARAMETERS=3D 'core.fsyncobjectfiles=3D0'
+GIT_EXEC_PATH=3D/usr/lib/git-core
+GIT_PREFIX=3D
+GIT_CEILING_DIRECTORIES=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc=
+/work/aarch64-oe-linux/cool-thing/git+AUTOINC+ 3158acc56b -r0
 
---------------DBB4C3A5EF0310D73479BF77
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+--gBzG7p8TIYogwxfx5Kur
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 2020-12-10 8:18 a.m.,
-      <a class="moz-txt-link-abbreviated" href="mailto:chruetli@gmx.net">chruetli@gmx.net</a> wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:v0SD.1607606297266017770.G9ej@lists.yoctoproject.org">
-      
-      Hi,<br>
-      <br>
-      I switched from warrior to dunfell and want to build an image for
-      Oracles VirtualBox VM.<br>
-      On warrior there was 'automatically' a hddimg generated on dunfell
-      this is no longer the case. The IMAGE_FSTYPES has to by specified,
-      I use:<br>
-      WKS_FILE = &quot;virtualbox.wks&quot;<br>
-      IMAGE_FSTYPES += &quot;wic.vmdk&quot;<br>
-      <br>
-      This requires me to write an wks file for which I use:<br>
-      part /boot --source bootimg-pcbios --ondisk sda --label boot
-      --active --align 1024<br>
-      part / --source rootfs --ondisk sda --fstype=ext4 --label platform
-      --align 1024<br>
-      bootloader --ptable gpt&nbsp; --timeout=5&nbsp; --append=&quot;rootfstype=ext4
-      video=vesafb vga=current console=tty0&quot;<br>
-      <br>
-      With these settings I get an vmdk image but it fails to boot. I
-      get a &quot;VFS Unable to mount root fs on unknown block(0,0)&quot; dump.<br>
-      <br>
-      Any ideas?
-      <br>
-    </blockquote>
-    <p><br>
-    </p>
-    <p>Not off-hand.</p>
-    <p>Since no one is available right now to help,</p>
-    <p>can you report the bug in:</p>
-    <p><a class="moz-txt-link-freetext" href="https://bugzilla.yoctoproject.org/">https://bugzilla.yoctoproject.org/</a></p>
-    <p>after creating an account:</p>
-    <p><a class="moz-txt-link-freetext" href="https://bugzilla.yoctoproject.org/createaccount.cgi">https://bugzilla.yoctoproject.org/createaccount.cgi</a></p>
-    <p>Please give lots of detail about your build host,<br>
-      and the repos and versions you are using.<br>
-    </p>
-    <p>Thanks,</p>
-    <p>../Randy<br>
-    </p>
-    <p><br>
-    </p>
-    <blockquote type="cite" cite="mid:v0SD.1607606297266017770.G9ej@lists.yoctoproject.org">
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
+I am seeing problems in git fetcher using a github repo using lfs + ssh in =
+dunfell.<br /><br />I find if I set "lfs=3D0" it still attempts to download=
+ the lfs objects and fails.&nbsp; Same behavior if "lfs=3D1".<br /><br />SR=
+C_URI =3D "git://git@github.com:/account/cool-thing.git;protocol=3Dssh;lfs=
+=3D1;branch=3Dcool_branch"<br /><br /><br />A suggested workaround by tech=
+noweenie here: <a href=3D"https://github.com/git-lfs/git-lfs/issues/1044" t=
+arget=3D"_blank" rel=3D"noopener">https://github.com/git-lfs/git-lfs/issues=
+/1044</a><br /><br />Only git clone via ssh works (pulls lfs objects) fine =
+outside of the yocto tree. <br /><br /><br />Any ideas?<br /><br />Thanks,<=
+br />Joel<br /><br />
+<div style=3D"color: #d4d4d4; background-color: #1e1e1e; font-family: 'Dro=
+id Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'; font-weight: =
+normal; font-size: 14px; line-height: 19px; white-space: pre;">
+<div><span style=3D"color: #d4d4d4;">git-lfs/</span><span style=3D"color: =
+#569cd6;">2</span><span style=3D"color: #d4d4d4;">.</span><span style=3D"co=
+lor: #569cd6;">9</span><span style=3D"color: #d4d4d4;">.</span><span style=
+=3D"color: #569cd6;">2</span><span style=3D"color: #d4d4d4;"> (GitHub; lin=
+ux amd64; go </span><span style=3D"color: #569cd6;">1</span><span style=3D"=
+color: #d4d4d4;">.</span><span style=3D"color: #569cd6;">13</span><span sty=
+le=3D"color: #d4d4d4;">.</span><span style=3D"color: #569cd6;">5</span><spa=
+n style=3D"color: #d4d4d4;">)</span></div>
+<div><span style=3D"color: #d4d4d4;">git version </span><span style=3D"col=
+or: #569cd6;">2</span><span style=3D"color: #d4d4d4;">.</span><span style=
+=3D"color: #569cd6;">25</span><span style=3D"color: #d4d4d4;">.</span><spa=
+n style=3D"color: #569cd6;">1</span></div>
+<br />
+<div><span style=3D"color: #d4d4d4;">$ git-lfs filter-process</span></div>
+<div><span style=3D"color: #ce9178; font-weight: bold;">Error</span><span =
+style=3D"color: #d4d4d4;"> downloading object: cool-thing/app/lib/agl/aarch=
+64/libfmt.a (</span><span style=3D"color: #569cd6;">328664b</span><span sty=
+le=3D"color: #d4d4d4;">): Smudge </span><span style=3D"color: #ce9178; font=
+-weight: bold;">error:</span><span style=3D"color: #d4d4d4;"> </span><span =
+style=3D"color: #ce9178; font-weight: bold;">Error</span><span style=3D"col=
+or: #d4d4d4;"> downloading cool-thing/app/lib/agl/aarch64/libfmt.a (</span>=
+<span style=3D"color: #569cd6;">328664b0bd0cad33f28722b9a6ccd5ac9adea448588=
+5bacd35082775e41601d8</span><span style=3D"color: #d4d4d4;">): batch reques=
+t: missing protocol: </span><span style=3D"color: #ce9178;">"&lt;unknown&gt=
+;"</span></div>
+<br />
+<div><span style=3D"color: #d4d4d4;">missing protocol: </span><span style=
+=3D"color: #ce9178;">"&lt;unknown&gt;"</span></div>
+<div><span style=3D"color: #d4d4d4;">batch request</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/errors.new=
+WrappedError</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/errors/ty=
+pes.go:</span><span style=3D"color: #569cd6;">198</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/errors.Wra=
+p</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/errors/er=
+rors.go:</span><span style=3D"color: #569cd6;">74</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/tq.(*tqCli=
+ent).Batch</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/tq/api.go=
+:</span><span style=3D"color: #569cd6;">68</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/tq.Batch</=
+span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/tq/api.go=
+:</span><span style=3D"color: #569cd6;">40</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/tq.(*Trans=
+ferQueue).enqueueAndCollectRetriesFor</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/tq/transf=
+er_queue.go:</span><span style=3D"color: #569cd6;">520</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/tq.(*Trans=
+ferQueue).</span><span style=3D"color: #569cd6;">collectBatches.func1</span=
+></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/tq/transf=
+er_queue.go:</span><span style=3D"color: #569cd6;">432</span></div>
+<div><span style=3D"color: #569cd6;">runtime.goexit</span></div>
+<div><span style=3D"color: #d4d4d4;"> /usr/lib/go-</span><span style=3D"co=
+lor: #569cd6;">1</span><span style=3D"color: #d4d4d4;">.</span><span style=
+=3D"color: #569cd6;">13</span><span style=3D"color: #d4d4d4;">/src/runtime=
+/asm_amd64.s:</span><span style=3D"color: #569cd6;">1357</span></div>
+<div><span style=3D"color: #ce9178; font-weight: bold;">Error</span><span =
+style=3D"color: #d4d4d4;"> downloading cool-thing/app/lib/agl/aarch64/libfm=
+t.a (</span><span style=3D"color: #569cd6;">328664b0bd0cad33f28722b9a6ccd5a=
+c9adea4485885bacd35082775e41601d8</span><span style=3D"color: #d4d4d4;">)</=
+span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/errors.new=
+WrappedError</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/errors/ty=
+pes.go:</span><span style=3D"color: #569cd6;">198</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/errors.Wra=
+pf</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/errors/er=
+rors.go:</span><span style=3D"color: #569cd6;">85</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/lfs.(*GitF=
+ilter).downloadFile</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/lfs/gitfi=
+lter_smudge.go:</span><span style=3D"color: #569cd6;">115</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/lfs.(*GitF=
+ilter).Smudge</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/lfs/gitfi=
+lter_smudge.go:</span><span style=3D"color: #569cd6;">76</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/commands.s=
+mudge</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/commands/=
+command_smudge.go:</span><span style=3D"color: #569cd6;">127</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/commands.f=
+ilterCommand</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/commands/=
+command_filter_process.go:</span><span style=3D"color: #569cd6;">118</span>=
+</div>
+<div><span style=3D"color: #d4d4d4;">github.com/spf13/cobra.(*Command).exe=
+cute</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/spf13/cobra/command.go:</=
+span><span style=3D"color: #569cd6;">766</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/spf13/cobra.(*Command).Exe=
+cuteC</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/spf13/cobra/command.go:</=
+span><span style=3D"color: #569cd6;">850</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/spf13/cobra.(*Command).Exe=
+cute</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/spf13/cobra/command.go:</=
+span><span style=3D"color: #569cd6;">800</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/commands.R=
+un</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/commands/=
+run.go:</span><span style=3D"color: #569cd6;">97</span></div>
+<div><span style=3D"color: #569cd6;">main.main</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/git-</spa=
+n><span style=3D"color: #569cd6;">lfs.go</span><span style=3D"color: #d4d4d=
+4;">:</span><span style=3D"color: #569cd6;">33</span></div>
+<div><span style=3D"color: #569cd6;">runtime.main</span></div>
+<div><span style=3D"color: #d4d4d4;"> /usr/lib/go-</span><span style=3D"co=
+lor: #569cd6;">1</span><span style=3D"color: #d4d4d4;">.</span><span style=
+=3D"color: #569cd6;">13</span><span style=3D"color: #d4d4d4;">/src/runtime=
+/proc.go:</span><span style=3D"color: #569cd6;">203</span></div>
+<div><span style=3D"color: #569cd6;">runtime.goexit</span></div>
+<div><span style=3D"color: #d4d4d4;"> /usr/lib/go-</span><span style=3D"co=
+lor: #569cd6;">1</span><span style=3D"color: #d4d4d4;">.</span><span style=
+=3D"color: #569cd6;">13</span><span style=3D"color: #d4d4d4;">/src/runtime=
+/asm_amd64.s:</span><span style=3D"color: #569cd6;">1357</span></div>
+<div><span style=3D"color: #d4d4d4;">Smudge error</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/errors.new=
+WrappedError</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/errors/ty=
+pes.go:</span><span style=3D"color: #569cd6;">198</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/errors.New=
+SmudgeError</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/errors/ty=
+pes.go:</span><span style=3D"color: #569cd6;">284</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/lfs.(*GitF=
+ilter).Smudge</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/lfs/gitfi=
+lter_smudge.go:</span><span style=3D"color: #569cd6;">85</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/commands.s=
+mudge</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/commands/=
+command_smudge.go:</span><span style=3D"color: #569cd6;">127</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/commands.f=
+ilterCommand</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/commands/=
+command_filter_process.go:</span><span style=3D"color: #569cd6;">118</span>=
+</div>
+<div><span style=3D"color: #d4d4d4;">github.com/spf13/cobra.(*Command).exe=
+cute</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/spf13/cobra/command.go:</=
+span><span style=3D"color: #569cd6;">766</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/spf13/cobra.(*Command).Exe=
+cuteC</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/spf13/cobra/command.go:</=
+span><span style=3D"color: #569cd6;">850</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/spf13/cobra.(*Command).Exe=
+cute</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/spf13/cobra/command.go:</=
+span><span style=3D"color: #569cd6;">800</span></div>
+<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/commands.R=
+un</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/commands/=
+run.go:</span><span style=3D"color: #569cd6;">97</span></div>
+<div><span style=3D"color: #569cd6;">main.main</span></div>
+<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/git-</spa=
+n><span style=3D"color: #569cd6;">lfs.go</span><span style=3D"color: #d4d4d=
+4;">:</span><span style=3D"color: #569cd6;">33</span></div>
+<div><span style=3D"color: #569cd6;">runtime.main</span></div>
+<div><span style=3D"color: #d4d4d4;"> /usr/lib/go-</span><span style=3D"co=
+lor: #569cd6;">1</span><span style=3D"color: #d4d4d4;">.</span><span style=
+=3D"color: #569cd6;">13</span><span style=3D"color: #d4d4d4;">/src/runtime=
+/proc.go:</span><span style=3D"color: #569cd6;">203</span></div>
+<div><span style=3D"color: #569cd6;">runtime.goexit</span></div>
+<div><span style=3D"color: #d4d4d4;"> /usr/lib/go-</span><span style=3D"co=
+lor: #569cd6;">1</span><span style=3D"color: #d4d4d4;">.</span><span style=
+=3D"color: #569cd6;">13</span><span style=3D"color: #d4d4d4;">/src/runtime=
+/asm_amd64.s:</span><span style=3D"color: #569cd6;">1357</span></div>
+<br />
+<div><span style=3D"color: #d4d4d4;">Current time in UTC: </span></div>
+<div><span style=3D"color: #6a9955;">2020-12-12</span><span style=3D"color=
+: #d4d4d4;"> </span><span style=3D"color: #6a9955;">15:41:16</span></div>
+<br />
+<div><span style=3D"color: #d4d4d4;">ENV:</span></div>
+<div><span style=3D"color: #d4d4d4;">LocalWorkingDir=3D/b/lv-</span><span =
+style=3D"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.</span><=
+span style=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d4;">/app=
+s/apps_proc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/git+AUTOI=
+NC+</span><span style=3D"color: #569cd6;">3158acc56b</span><span style=3D"c=
+olor: #d4d4d4;">-r0/git</span></div>
+<div><span style=3D"color: #d4d4d4;">LocalGitDir=3D/b/lv-</span><span styl=
+e=3D"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.</span><span=
+ style=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d4;">/apps/ap=
+ps_proc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/git+AUTOINC+<=
+/span><span style=3D"color: #569cd6;">3158acc56b</span><span style=3D"color=
+: #d4d4d4;">-r0/git/.git</span></div>
+<div><span style=3D"color: #d4d4d4;">LocalGitStorageDir=3D/b/lv-</span><sp=
+an style=3D"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.</spa=
+n><span style=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d4;">/=
+apps/apps_proc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/git+AU=
+TOINC+</span><span style=3D"color: #569cd6;">3158acc56b</span><span style=
+=3D"color: #d4d4d4;">-r0/git/.git</span></div>
+<div><span style=3D"color: #d4d4d4;">LocalMediaDir=3D/b/lv-</span><span st=
+yle=3D"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.</span><sp=
+an style=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d4;">/apps/=
+apps_proc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/git+AUTOINC=
++</span><span style=3D"color: #569cd6;">3158acc56b</span><span style=3D"col=
+or: #d4d4d4;">-r0/git/.git/lfs/objects</span></div>
+<div><span style=3D"color: #d4d4d4;">LocalReferenceDirs=3D</span></div>
+<div><span style=3D"color: #d4d4d4;">TempDir=3D/b/lv-</span><span style=3D=
+"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.</span><span sty=
+le=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d4;">/apps/apps_p=
+roc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/git+AUTOINC+</spa=
+n><span style=3D"color: #569cd6;">3158acc56b</span><span style=3D"color: #d=
+4d4d4;">-r0/git/.git/lfs/tmp</span></div>
+<div><span style=3D"color: #d4d4d4;">ConcurrentTransfers=3D</span><span st=
+yle=3D"color: #569cd6;">3</span></div>
+<div><span style=3D"color: #d4d4d4;">TusTransfers=3D</span><span style=3D"=
+color: #569cd6;">false</span></div>
+<div><span style=3D"color: #d4d4d4;">BasicTransfersOnly=3D</span><span sty=
+le=3D"color: #569cd6;">false</span></div>
+<div><span style=3D"color: #d4d4d4;">SkipDownloadErrors=3D</span><span sty=
+le=3D"color: #569cd6;">false</span></div>
+<div><span style=3D"color: #d4d4d4;">FetchRecentAlways=3D</span><span styl=
+e=3D"color: #569cd6;">false</span></div>
+<div><span style=3D"color: #d4d4d4;">FetchRecentRefsDays=3D</span><span st=
+yle=3D"color: #569cd6;">7</span></div>
+<div><span style=3D"color: #d4d4d4;">FetchRecentCommitsDays=3D</span><span=
+ style=3D"color: #569cd6;">0</span></div>
+<div><span style=3D"color: #d4d4d4;">FetchRecentRefsIncludeRemotes=3D</spa=
+n><span style=3D"color: #569cd6;">true</span></div>
+<div><span style=3D"color: #d4d4d4;">PruneOffsetDays=3D</span><span style=
+=3D"color: #569cd6;">3</span></div>
+<div><span style=3D"color: #d4d4d4;">PruneVerifyRemoteAlways=3D</span><spa=
+n style=3D"color: #569cd6;">false</span></div>
+<div><span style=3D"color: #d4d4d4;">PruneRemoteName=3Dorigin</span></div>
+<div><span style=3D"color: #d4d4d4;">LfsStorageDir=3D/b/lv-</span><span st=
+yle=3D"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.</span><sp=
+an style=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d4;">/apps/=
+apps_proc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/git+AUTOINC=
++</span><span style=3D"color: #569cd6;">3158acc56b</span><span style=3D"col=
+or: #d4d4d4;">-r0/git/.git/lfs</span></div>
+<div><span style=3D"color: #d4d4d4;">AccessDownload=3Dnone</span></div>
+<div><span style=3D"color: #d4d4d4;">AccessUpload=3Dnone</span></div>
+<div><span style=3D"color: #d4d4d4;">DownloadTransfers=3Dbasic,lfs-standal=
+on</span><span style=3D"color: #569cd6;">e-f</span><span style=3D"color: #d=
+4d4d4;">ile</span></div>
+<div><span style=3D"color: #d4d4d4;">UploadTransfers=3Dbasic,lfs-standalon=
+</span><span style=3D"color: #569cd6;">e-f</span><span style=3D"color: #d4d=
+4d4;">ile</span></div>
+<div><span style=3D"color: #d4d4d4;">GIT_CONFIG_PARAMETERS=3D</span><span =
+style=3D"color: #ce9178;">'core.fsyncobjectfiles=3D0'</span></div>
+<div><span style=3D"color: #d4d4d4;">GIT_EXEC_PATH=3D/usr/lib/git-core</sp=
+an></div>
+<div><span style=3D"color: #d4d4d4;">GIT_PREFIX=3D</span></div>
+<div><span style=3D"color: #d4d4d4;">GIT_CEILING_DIRECTORIES=3D/b/lv-</spa=
+n><span style=3D"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.=
+</span><span style=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d=
+4;">/apps/apps_proc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/g=
+it+AUTOINC+</span><span style=3D"color: #569cd6;">3158acc56b</span><span st=
+yle=3D"color: #d4d4d4;">-r0</span></div>
+<br /><br /></div>
 
-
-</pre>
-    </blockquote>
-    <p><br>
-    </p>
-    <pre class="moz-signature" cols="72">-- 
-# Randy MacLeod
-# Wind River Linux</pre>
-  </body>
-</html>
-
---------------DBB4C3A5EF0310D73479BF77--
+--gBzG7p8TIYogwxfx5Kur--
