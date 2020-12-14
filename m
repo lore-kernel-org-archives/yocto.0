@@ -1,426 +1,578 @@
-Subject: git-lfs #dunfell
-To: yocto@lists.yoctoproject.org
-From: joel.winarske@linux.com
-X-Originating-Location: Seattle, Washington, US (71.212.127.60)
-X-Originating-Platform: Linux Firefox 83
-User-Agent: GROUPS.IO Web Poster
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by mx.groups.io with SMTP id smtpd.web10.27106.1607904731178907829
+ for <yocto@lists.yoctoproject.org>;
+ Sun, 13 Dec 2020 16:12:11 -0800
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.93, mailfrom: naveen.kumar.saini@intel.com)
+IronPort-SDR: QO7pLbWt6hZzCYUpf7pGA8UIbAW2aqYpgUid8kUkeKijZGd/w72n55oFXYPXArhfjrdsnPTnjQ
+ 1MRHnw+s3EjQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9834"; a="171128427"
+X-IronPort-AV: E=Sophos;i="5.78,417,1599548400"; 
+   d="scan'208,217";a="171128427"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2020 16:12:10 -0800
+IronPort-SDR: hIT1GVA9pFi9AU+V/2DLvvVVsfGRGD2iXdXZJ1S/XW0o8LLBqK4JpjgOM83NAo7YxelSQlZSjP
+ h/KXCKgc/FUg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,417,1599548400"; 
+   d="scan'208,217";a="377748988"
+Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137])
+  by orsmga007.jf.intel.com with ESMTP; 13 Dec 2020 16:12:09 -0800
+Received: from kmsmsx603.gar.corp.intel.com (172.21.219.143) by
+ pgsmsx602.gar.corp.intel.com (10.108.199.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 14 Dec 2020 08:12:08 +0800
+Received: from kmsmsx603.gar.corp.intel.com ([172.21.219.143]) by
+ kmsmsx603.gar.corp.intel.com ([172.21.219.143]) with mapi id 15.01.1713.004;
+ Mon, 14 Dec 2020 08:12:08 +0800
+From: "Naveen Saini" <naveen.kumar.saini@intel.com>
+To: =?utf-8?B?V29qY2llY2ggxbttdWRh?= <zmuda.w@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] [meta-zephyr][PATCH 5/5] zephyr-flash-pyocd.bbclass: support for flashing via pyocd
+Thread-Topic: [yocto] [meta-zephyr][PATCH 5/5] zephyr-flash-pyocd.bbclass:
+ support for flashing via pyocd
+Thread-Index: AQHWzAyZ3kja/PJ5N0y8abfUYccqJKnrh+iwgADnoJCAAew/AIABj0gwgAAUUICABcOqsA==
+Date: Mon, 14 Dec 2020 00:12:07 +0000
+Message-ID: <257a24e0ba1a4d05b2b76791a0d0b312@intel.com>
+References: <20201206201521.3377-1-wojciech.zmuda@huawei.com>
+ <20201206201521.3377-6-wojciech.zmuda@huawei.com>
+ <cffe226c642a412b90cd881122e5cfbd@intel.com>
+ <7c9d12e428954c44964906065281af1e@intel.com>
+ <CAL0FYXYP3+jXEVnYS1KaMVOQ5OPGWJh4Jo=zJgXUG-CNQEfnAA@mail.gmail.com>
+ <0637042547e547ffb5f8f351afe5aeba@intel.com>
+ <CAL0FYXYNV0vsOmsYyq8dG_959ujg146CPqHY_DSm2ftmA-Bn0A@mail.gmail.com>
+In-Reply-To: <CAL0FYXYNV0vsOmsYyq8dG_959ujg146CPqHY_DSm2ftmA-Bn0A@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+x-originating-ip: [10.108.32.68]
 MIME-Version: 1.0
-Date: Sat, 12 Dec 2020 08:37:34 -0800
-Message-ID: <ivrx.1607791054895422894.WY4N@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="gBzG7p8TIYogwxfx5Kur"
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_257a24e0ba1a4d05b2b76791a0d0b312intelcom_"
 
---gBzG7p8TIYogwxfx5Kur
+--_000_257a24e0ba1a4d05b2b76791a0d0b312intelcom_
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-I am seeing problems in git fetcher using a github repo using lfs + ssh in =
-dunfell.
+TWVyZ2VkLiBUaGFuayB5b3UgZm9yIHBhdGNoZXMuDQoNClJlZ2FyZHMsDQpOYXZlZW4NCg0KRnJv
+bTogV29qY2llY2ggxbttdWRhIDx6bXVkYS53QGdtYWlsLmNvbT4NClNlbnQ6IEZyaWRheSwgRGVj
+ZW1iZXIgMTEsIDIwMjAgMTI6MDkgQU0NClRvOiBTYWluaSwgTmF2ZWVuIEt1bWFyIDxuYXZlZW4u
+a3VtYXIuc2FpbmlAaW50ZWwuY29tPg0KQ2M6IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcN
+ClN1YmplY3Q6IFJlOiBbeW9jdG9dIFttZXRhLXplcGh5cl1bUEFUQ0ggNS81XSB6ZXBoeXItZmxh
+c2gtcHlvY2QuYmJjbGFzczogc3VwcG9ydCBmb3IgZmxhc2hpbmcgdmlhIHB5b2NkDQoNCkhpIE5h
+dmVlbiwNCg0KSSBpbnZlc3RpZ2F0ZWQgdGhlIGFyZHVpbm8tMTAxLWJsZSBwcm9ibGVtIGFuZCBm
+b3IgbWUgaXQncyBub24gdHJpdmlhbCB0byBmaXguIEl0J3Mgbm90IHJlbGF0ZWQgdG8gdGhlIHNh
+bWUgbWlzc2luZyB2YXJpYWJsZSB0aGF0IEkgc3BvdHRlZCBpbiB0aGUgTml0cm9nZW4gY2FzZSwg
+YnV0IHJhdGhlciB0aGVyZSBhcmUgc29tZSBpbmNvbnNpc3RlbmNpZXMgd2l0aCBhcmNoaXRlY3R1
+cmUtcmVsYXRlZCB2YXJpYWJsZXMgaS5lLiBQQUNLQUdFX0FSQ0hTIGFuZCBUVU5FX3h4eC4gSSBk
+aWQgbm90IGZpbmQgYW55IHdheSB0byBmaXggaXQuDQoNCkZvciBub3cgSSBwdXNoZWQgdjMgd2l0
+aCBOaXRyb2dlbiBzdXBwb3J0LiBJZiBJIGZpbmQgYSB3YXkgdG8gc3RyYWlnaHRlbiBvdXQgdGhl
+IEFyZHVpbm8gY2FzZSwgSSdsbCBwdXNoIGEgc2VwYXJhdGUgcGF0Y2ggc2V0IGZvciB0aGF0Lg0K
+DQpCVFcsIEkgYWxzbyBoYXZlIDk2Ym9hcmRzIEF2ZW5nZXI5NiBzdXBwb3J0IHBhdGNoIHNldCBy
+ZWFkeS4gSXQgZGVwZW5kcyBvbiBvbmUgY29tbWl0IGZyb20gdGhlIE5pdHJvZ2VuIHBhdGNoIHNl
+dCAoQ29ydGV4LU00IHR1bmUpLCBzbyBJJ2xsIHNlbmQgaXQgb3V0IHJpZ2h0IGFmdGVyIE5pdHJv
+Z2VuIHN1cHBvcnQgaXMgbWVyZ2VkLg0KDQpSZWdhcmRzLA0KV29qY2llY2gNCg0KT24gVGh1LCAx
+MCBEZWMgMjAyMCBhdCAwODoyMCwgU2FpbmksIE5hdmVlbiBLdW1hciA8bmF2ZWVuLmt1bWFyLnNh
+aW5pQGludGVsLmNvbTxtYWlsdG86bmF2ZWVuLmt1bWFyLnNhaW5pQGludGVsLmNvbT4+IHdyb3Rl
+Og0KSGkgV29qY2llY2gsDQoNClllcywgdGVzdGNhc2VzIGFyZSBjdXJyZW50bHkgYmVpbmcgdmVy
+aWZpZWQgb25seSBvbiBxZW11LCBzbyBpZiB3ZSBjYW4ganVzdCBidWlsZCB0ZXN0Y2FzZXMgZm9y
+IG5vdyB0aGF0IHNob3VsZCBiZSBzdWZmaWNpZW50LiBJZiB5b3UgYXJlIGFibGUgdG8gZmxhc2gg
+YW5kIGV4ZWN1dGUgdGVzdHMgbWFudWFsbHkgb24gSFcsIHRoYXQgd291bGQgd29yay4gUGxlYXNl
+IHNlbmQgdjMuDQoNCkNhbiB5b3UgZml4IGZvciBhcmR1aW5vLTEwMS1ibGUgIGFzIHdlbGwgPw0K
+DQpOYXZlZW4NCg0KRnJvbTogV29qY2llY2ggxbttdWRhIDx6bXVkYS53QGdtYWlsLmNvbTxtYWls
+dG86em11ZGEud0BnbWFpbC5jb20+Pg0KU2VudDogV2VkbmVzZGF5LCBEZWNlbWJlciA5LCAyMDIw
+IDExOjA3IFBNDQpUbzogU2FpbmksIE5hdmVlbiBLdW1hciA8bmF2ZWVuLmt1bWFyLnNhaW5pQGlu
+dGVsLmNvbTxtYWlsdG86bmF2ZWVuLmt1bWFyLnNhaW5pQGludGVsLmNvbT4+DQpDYzogeW9jdG9A
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9y
+Zz4NClN1YmplY3Q6IFJlOiBbeW9jdG9dIFttZXRhLXplcGh5cl1bUEFUQ0ggNS81XSB6ZXBoeXIt
+Zmxhc2gtcHlvY2QuYmJjbGFzczogc3VwcG9ydCBmb3IgZmxhc2hpbmcgdmlhIHB5b2NkDQoNCkhp
+IE5hdmVlbiwNCg0KSSBmaXhlZCB0aGUgbWlzc2luZyAuaGV4IGlzc3VlIGFuZCBJJ20gcmVhZHkg
+dG8gc2VuZCB2My4NCg0KSSBhbHNvIGV4cGVyaW1lbnRlZCB3aXRoIHlvdXIgbGFzdCBzdWdnZXN0
+aW9uLCBpLmUuIGJ1aWxkaW5nIHRlc3QgY2FzZXMgd2l0aCBNQUNISU5FPTk2Yi1uaXRyb2dlbiBh
+bmQgSSBvYnNlcnZlZCB0aGUgZm9sbG93aW5nOg0KDQpJdCBpcyBwb3NzaWJsZSB0byBidWlsZCB3
+aGVuIEkgcHJvdmlkZSBJTUdERVBMT1lESVIgdmFyaWFibGUgc29tZXdoZXJlLCBlLmcuIGluIDk2
+Yi1uaXRyb2dlbi5jb25mLiBIb3dldmVyLCBmb3Igb3RoZXIgcGxhdGZvcm1zLCB0aGlzIHZhcmlh
+YmxlIGlzIHByb3ZpZGVkIG9ubHkgaW4gY2xhc3Nlcy96ZXBoeXItcWVtdWJvb3QuYmJjbGFzcy4g
+SSd2ZSBhbHNvIHRyaWVkIHRvIGJ1aWxkIHRlc3QgY2FzZXMgZm9yIGFyZHVpbm8tMTAxLWJsZSBh
+bmQgaXQgZmFpbGVkIHdpdGggdGhlIGZvbGxvd2luZyByZWFzb246DQoNCiAgICBFcnJvciwgdGhl
+IFBBQ0tBR0VfQVJDSFMgdmFyaWFibGUgKGFsbCBhbnkgbm9hcmNoICR7UEFDS0FHRV9FWFRSQV9B
+UkNIU190dW5lLWFybXY2bX0gY29ydGV4bTAtdmZwIGFyZHVpbm9fMTAxX2JsZSkgZm9yIERFRkFV
+TFRUVU5FIChjb3J0ZXhtMCkgZG9lcyBub3QgY29udGFpbiBUVU5FX1BLR0FSQ0ggKGNvcnRleG0w
+dDItdmZwKS4NCg0KQWRkaXRpb25hbGx5LCB3aGVuIEkgcHJvdmlkZWQgSU1HREVQTE9ZRElSIGlu
+IDk2Yi1uaXRyb2dlbi5jb25mLCBJIHRyaWVkIHRvIGV4ZWN1dGUgdGVzdCBjYXNlcyB3aXRoIC1j
+IHRlc3RpbWFnZS4gSXQgZmFpbGVkIG9uIHJ1bm5pbmcgcWVtdS4NCg0KQWNjb3JkaW5nIHRvIG15
+IG9ic2VydmF0aW9ucywgbXkgdW5kZXJzdGFuZGluZyBpcyB0aGF0IHRoZSB0ZXN0IGNhc2VzIGFy
+ZSBjdXJyZW50bHkgZGVzaWduZWQgZm9yIGJlaW5nIHZlcmlmaWVkIG9uIHFlbXUuIERvIHlvdSBl
+eHBlY3QgdGhlIDk2Yi1uaXRyb2dlbiBzdXBwb3J0IHRvIGNvbnRhaW4gYXV0b21hdGljIHRlc3Qg
+Y2FzZXMgZXhlY3V0aW9uIG9uIHRoZSBoYXJkd2FyZSwgb3IganVzdCB0aGUgcG9zc2liaWxpdHkg
+b2YgYnVpbGRpbmc/IElmIGl0IGp1c3QgdGhlIG1hdHRlciBvZiBidWlsZGluZyB0aGUgLmVsZiBm
+aWxlcyAoeW91IGNhbiBmbGFzaCB0aGVtIG1hbnVhbGx5KSwgdGhlbiBJIGNhbiBwdXNoIHYzIHRv
+ZGF5Lg0KDQpCZXN0IHJlZ2FyZHMsDQpXb2pjaWVjaA0KDQoNCk9uIFR1ZSwgOCBEZWMgMjAyMCBh
+dCAwMjo0NywgU2FpbmksIE5hdmVlbiBLdW1hciA8bmF2ZWVuLmt1bWFyLnNhaW5pQGludGVsLmNv
+bTxtYWlsdG86bmF2ZWVuLmt1bWFyLnNhaW5pQGludGVsLmNvbT4+IHdyb3RlOg0KWW91IGhhdmUg
+bWlzc2VkIGZldyBvZiBteSBjb21tZW50cyBpbiB2MiAhDQoNClJlZ2FyZHMsDQpOYXZlZW4NCg0K
+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IFNhaW5pLCBOYXZlZW4gS3VtYXINClNl
+bnQ6IE1vbmRheSwgRGVjZW1iZXIgNywgMjAyMCA4OjA2IFBNDQpUbzogJ1dvamNpZWNoIFptdWRh
+JyA8em11ZGEud0BnbWFpbC5jb208bWFpbHRvOnptdWRhLndAZ21haWwuY29tPj47IHlvY3RvQGxp
+c3RzLnlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+
+DQpDYzogZGF2aWRlLnJpY2NpQGh1YXdlaS5jb208bWFpbHRvOmRhdmlkZS5yaWNjaUBodWF3ZWku
+Y29tPjsgemJpZ25pZXcuYm9kZWtAaHVhd2VpLmNvbTxtYWlsdG86emJpZ25pZXcuYm9kZWtAaHVh
+d2VpLmNvbT47IGphcm9zbGF3Lm1hcmVrQGh1YXdlaS5jb208bWFpbHRvOmphcm9zbGF3Lm1hcmVr
+QGh1YXdlaS5jb20+OyByb2JlcnQuZHJhYkBodWF3ZWkuY29tPG1haWx0bzpyb2JlcnQuZHJhYkBo
+dWF3ZWkuY29tPjsgV29qY2llY2ggWm11ZGEgPHdvamNpZWNoLnptdWRhQGh1YXdlaS5jb208bWFp
+bHRvOndvamNpZWNoLnptdWRhQGh1YXdlaS5jb20+Pg0KU3ViamVjdDogUkU6IFt5b2N0b10gW21l
+dGEtemVwaHlyXVtQQVRDSCA1LzVdIHplcGh5ci1mbGFzaC1weW9jZC5iYmNsYXNzOiBzdXBwb3J0
+IGZvciBmbGFzaGluZyB2aWEgcHlvY2QNCg0KVGhhbmtzIGZvciB0aGUgcGF0Y2hlcy4gIFBsZWFz
+ZSBmaW5kIG15IGNvbW1lbnRzIGJlbG93Lg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
+RnJvbTogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AbGlzdHMueW9j
+dG9wcm9qZWN0Lm9yZz4gPHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3Rv
+QGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+PiBPbiBCZWhhbGYgT2YgV29qY2llY2ggWm11ZGENClNl
+bnQ6IE1vbmRheSwgRGVjZW1iZXIgNywgMjAyMCA0OjE1IEFNDQpUbzogeW9jdG9AbGlzdHMueW9j
+dG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4NCkNjOiBk
+YXZpZGUucmljY2lAaHVhd2VpLmNvbTxtYWlsdG86ZGF2aWRlLnJpY2NpQGh1YXdlaS5jb20+OyB6
+Ymlnbmlldy5ib2Rla0BodWF3ZWkuY29tPG1haWx0bzp6Ymlnbmlldy5ib2Rla0BodWF3ZWkuY29t
+PjsgamFyb3NsYXcubWFyZWtAaHVhd2VpLmNvbTxtYWlsdG86amFyb3NsYXcubWFyZWtAaHVhd2Vp
+LmNvbT47IHJvYmVydC5kcmFiQGh1YXdlaS5jb208bWFpbHRvOnJvYmVydC5kcmFiQGh1YXdlaS5j
+b20+OyBXb2pjaWVjaCBabXVkYSA8d29qY2llY2guem11ZGFAaHVhd2VpLmNvbTxtYWlsdG86d29q
+Y2llY2guem11ZGFAaHVhd2VpLmNvbT4+DQpTdWJqZWN0OiBbeW9jdG9dIFttZXRhLXplcGh5cl1b
+UEFUQ0ggNS81XSB6ZXBoeXItZmxhc2gtcHlvY2QuYmJjbGFzczogc3VwcG9ydCBmb3IgZmxhc2hp
+bmcgdmlhIHB5b2NkDQoNCkZsYXNoIGJvYXJkcyBzdXBwb3J0ZWQgdmlhIHB5b2NkOg0KDQogICAg
+TUFDSElORT14eHggYml0YmFrZSB5eXkgLWMgZmxhc2hfdXNiDQoNClRoZSBvbmx5IHN1cHBvcnRl
+ZCBib2FyZCBmb3Igbm93IGlzIDk2Qm9hcmRzIE5pdHJvZ2VuLiBNb2RpZnkgaXRzIGNvbmZpZyBh
+Y2NvcmRpbmdseS4NCg0KTW9kaWZ5IGhlbGxvd29ybGQgYW5kIHBoaWxvc29wZXJzIHNhbXBsZXMg
+d2l0aCBhZGlkdGlvbmFsIC5oZXggb3V0cHV0IGZpbGUgZGVwbG95bWVudCwgYXMgdGhpcyBmb3Jt
+YXQgaXMgcmVxdWlyZWQgYnkgcHlvY2QuDQoNCkRlc2NyaWJlIHRoZSBmZWF0dXJlIGluIFJFQURN
+RS4NCg0KU2lnbmVkLW9mZi1ieTogV29qY2llY2ggWm11ZGEgPHdvamNpZWNoLnptdWRhQGh1YXdl
+aS5jb208bWFpbHRvOndvamNpZWNoLnptdWRhQGh1YXdlaS5jb20+Pg0KLS0tDQogUkVBRE1FLnR4
+dCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgMjMgKysrKysrKysrKysrKysr
+KysrKw0KIGNsYXNzZXMvemVwaHlyLWZsYXNoLXB5b2NkLmJiY2xhc3MgICAgICAgICAgICB8IDE3
+ICsrKysrKysrKysrKysrDQogY29uZi9tYWNoaW5lLzk2Yi1uaXRyb2dlbi5jb25mICAgICAgICAg
+ICAgICAgIHwgIDEgKw0KIC4uLi96ZXBoeXIta2VybmVsL3plcGh5ci1oZWxsb3dvcmxkLmJiPGh0
+dHA6Ly96ZXBoeXItaGVsbG93b3JsZC5iYj4gICAgICAgIHwgIDEgKw0KIC4uLi96ZXBoeXIta2Vy
+bmVsL3plcGh5ci1waGlsb3NvcGhlcnMuYmI8aHR0cDovL3plcGh5ci1waGlsb3NvcGhlcnMuYmI+
+ICAgICAgfCAgMSArDQogNSBmaWxlcyBjaGFuZ2VkLCA0MyBpbnNlcnRpb25zKCspDQogY3JlYXRl
+IG1vZGUgMTAwNjQ0IGNsYXNzZXMvemVwaHlyLWZsYXNoLXB5b2NkLmJiY2xhc3MNCg0KZGlmZiAt
+LWdpdCBhL1JFQURNRS50eHQgYi9SRUFETUUudHh0DQppbmRleCA2NDYzMzM5Li40MzY2NzY0IDEw
+MDY0NA0KLS0tIGEvUkVBRE1FLnR4dA0KKysrIGIvUkVBRE1FLnR4dA0KQEAgLTQzLDYgKzQzLDI5
+IEBAIFRoZSBzYW1lIHNhbXBsZSwgZm9yIE5pb3MyIGltYWdlOg0KICAgICAkIE1BQ0hJTkU9cWVt
+dS1uaW9zMiBiaXRiYWtlIHplcGh5ci1waGlsb3NvcGhlcnMNCiAgICAgJCBydW5xZW11IHFlbXUt
+bmlvczINCg0KK0ZsYXNoaW5nDQorPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQor
+DQorWW91IGNhbiBmbGFzaCBaZXBoeXIgc2FtcGxlcyB0byBib2FyZHMuIEN1cnJlbnRseSwgdGhl
+IGZvbGxvd2luZw0KK01BQ0hJTkVzIGFyZSBzdXBwb3J0ZWQ6DQorICogREZVOg0KKyAgLSBhcmR1
+aW5vXzEwMV9zc3MNCisgIC0gYXJkdWlub18xMDENCisgIC0gYXJkdWlub18xMDFfYmxlDQorICog
+cHlvY2Q6DQorICAtIDk2Yl9uaXRyb2dlbg0KKw0KK1RvIGZsYXNoIHRoZSBleGFtcGxlIHlvdSBi
+dWlsdCB3aXRoIGNvbW1hbmQgZS5nLg0KKw0KKyAgICAkIE1BQ0hJTkU9OTZiX25pdHJvZ2VuIGJp
+dGJha2UgemVwaHlyLXBoaWxvc29waGVycw0KW05hdmVlbiBTYWluaV0gVHlwbyBoZXJlLCBNQUNI
+SU5FPTk2Yi1uaXRyb2dlbg0KKw0KK2NhbGwgc2ltaWxhciBjb21tYW5kIHdpdGggZXhwbGljaXQg
+Zmxhc2hfdXNiIGNvbW1hbmQ6DQorDQorICAgICQgTUFDSElORT05NmJfbml0cm9nZW4gYml0YmFr
+ZSB6ZXBoeXItcGhpbG9zb3BoZXJzIC1jIGZsYXNoX3VzYg0KW05hdmVlbiBTYWluaV0gIFNhbWUg
+YXMgYWJvdmUNCg0KKw0KK2RmdS11dGlsIGFuZC9vciBweW9jZCBuZWVkIHRvIGJlIGluc3RhbGxl
+ZCBpbiB5b3VyIHN5c3RlbS4gSWYgeW91DQorb2JzZXJ2ZSBwZXJtaXNzaW9uIGVycm9ycyBvciB0
+aGUgZmxhc2hpbmcgcHJvY2VzcyBzZWVtIHRvIGhhbmcsIGZvbGxvdyB0aG9zZSBpbnN0cnVjdGlv
+bnM6DQoraHR0cHM6Ly9naXRodWIuY29tL3B5b2NkL3B5T0NEL3RyZWUvbWFzdGVyL3VkZXYNCg0K
+IEJ1aWxkaW5nIGFuZCBSdW5uaW5nIFplcGh5ciBUZXN0cw0KID09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PQ0KZGlmZiAtLWdpdCBhL2NsYXNzZXMvemVwaHlyLWZsYXNoLXB5b2NkLmJi
+Y2xhc3MgYi9jbGFzc2VzL3plcGh5ci1mbGFzaC1weW9jZC5iYmNsYXNzDQpuZXcgZmlsZSBtb2Rl
+IDEwMDY0NA0KaW5kZXggMDAwMDAwMC4uYWFmZTllNw0KLS0tIC9kZXYvbnVsbA0KKysrIGIvY2xh
+c3Nlcy96ZXBoeXItZmxhc2gtcHlvY2QuYmJjbGFzcw0KQEAgLTAsMCArMSwxNyBAQA0KKw0KK3B5
+dGhvbiBkb19mbGFzaF91c2IoKSB7DQorICAgIGZyb20gcHlvY2QuY29yZS5oZWxwZXJzIGltcG9y
+dCBDb25uZWN0SGVscGVyDQorICAgIGZyb20gcHlvY2QuZmxhc2guZmlsZV9wcm9ncmFtbWVyIGlt
+cG9ydCBGaWxlUHJvZ3JhbW1lcg0KKw0KKyAgICBpbWFnZSA9IGYie2QuZ2V0VmFyKCdERVBMT1lf
+RElSX0lNQUdFJyl9L3tkLmdldFZhcignUE4nKX0uaGV4Ig0KKyAgICBiYi5wbGFpbihmIkF0dGVt
+cHRpbmcgdG8gZmxhc2gge2ltYWdlfSB0byBib2FyZA0KKyB7ZC5nZXRWYXIoJ0JPQVJEJyl9IikN
+CisNCisgICAgd2l0aCBDb25uZWN0SGVscGVyLnNlc3Npb25fd2l0aF9jaG9zZW5fcHJvYmUoKSBh
+cyBzZXNzaW9uOg0KKyAgICAgICAgRmlsZVByb2dyYW1tZXIoc2Vzc2lvbikucHJvZ3JhbShpbWFn
+ZSkNCisgICAgICAgIHNlc3Npb24uYm9hcmQudGFyZ2V0LnJlc2V0KCkNCit9DQorDQorYWRkdGFz
+ayBkb19mbGFzaF91c2INCisNCitkb19mbGFzaF91c2Jbbm9zdGFtcF0gPSAiMSINCitkb19mbGFz
+aF91c2JbdmFyZGVwc2V4Y2x1ZGVdID0gIkJCX09SSUdFTlYiDQpkaWZmIC0tZ2l0IGEvY29uZi9t
+YWNoaW5lLzk2Yi1uaXRyb2dlbi5jb25mIGIvY29uZi9tYWNoaW5lLzk2Yi1uaXRyb2dlbi5jb25m
+IGluZGV4IGQxOTA1ZjIuLjk5OGRiNGMgMTAwNjQ0DQotLS0gYS9jb25mL21hY2hpbmUvOTZiLW5p
+dHJvZ2VuLmNvbmYNCisrKyBiL2NvbmYvbWFjaGluZS85NmItbml0cm9nZW4uY29uZg0KQEAgLTQs
+NCArNCw1IEBADQogI0BERVNDUklQVElPTjogTWFjaGluZSBjb25maWd1cmF0aW9uIGZvciA5NkJv
+YXJkcyBOaXRyb2dlbiBCb2FyZC4NCg0KIHJlcXVpcmUgY29uZi9tYWNoaW5lL2luY2x1ZGUvbnJm
+NTI4MzIuaW5jDQorWkVQSFlSX0lOSEVSSVRfQ0xBU1NFUyArPSAiemVwaHlyLWZsYXNoLXB5b2Nk
+Ig0KIEFSQ0hfOTZiLW5pdHJvZ2VuID0gImFybSINCmRpZmYgLS1naXQgYS9yZWNpcGVzLWtlcm5l
+bC96ZXBoeXIta2VybmVsL3plcGh5ci1oZWxsb3dvcmxkLmJiPGh0dHA6Ly96ZXBoeXItaGVsbG93
+b3JsZC5iYj4gYi9yZWNpcGVzLWtlcm5lbC96ZXBoeXIta2VybmVsL3plcGh5ci1oZWxsb3dvcmxk
+LmJiPGh0dHA6Ly96ZXBoeXItaGVsbG93b3JsZC5iYj4NCmluZGV4IDE0MDBlNzIuLjliNzc5NzUg
+MTAwNjQ0DQotLS0gYS9yZWNpcGVzLWtlcm5lbC96ZXBoeXIta2VybmVsL3plcGh5ci1oZWxsb3dv
+cmxkLmJiPGh0dHA6Ly96ZXBoeXItaGVsbG93b3JsZC5iYj4NCisrKyBiL3JlY2lwZXMta2VybmVs
+L3plcGh5ci1rZXJuZWwvemVwaHlyLWhlbGxvd29ybGQuYmI8aHR0cDovL3plcGh5ci1oZWxsb3dv
+cmxkLmJiPg0KQEAgLTgsNiArOCw3IEBAIE9FQ01BS0VfU09VUkNFUEFUSCA9ICIke1pFUEhZUl9T
+UkNfRElSfSINCg0KIGRvX2RlcGxveSAoKSB7DQogICAgIGluc3RhbGwgLUQgJHtCfS96ZXBoeXIv
+JHtaRVBIWVJfTUFLRV9PVVRQVVR9LmVsZiAke0RFUExPWURJUn0vJHtQTn0uZWxmDQorICAgIGlu
+c3RhbGwgLUQgJHtCfS96ZXBoeXIvJHtaRVBIWVJfTUFLRV9PVVRQVVR9LmhleA0KKyAke0RFUExP
+WURJUn0vJHtQTn0uaGV4DQogfQ0KW05hdmVlbiBTYWluaV0gIE5vICouaGV4IGZpbGUgd2hpbGUg
+YnVpbGRpbmcgZm9yIE1BQ0hJTkU9cWVtdS14ODYgIEVycm9yIGxvZzogIC4uLmJ1aWxkL3plcGh5
+ci96ZXBoeXIuaGV4JzogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQ0KDQoNCiBhZGR0YXNrIGRl
+cGxveSBhZnRlciBkb19jb21waWxlDQpkaWZmIC0tZ2l0IGEvcmVjaXBlcy1rZXJuZWwvemVwaHly
+LWtlcm5lbC96ZXBoeXItcGhpbG9zb3BoZXJzLmJiPGh0dHA6Ly96ZXBoeXItcGhpbG9zb3BoZXJz
+LmJiPiBiL3JlY2lwZXMta2VybmVsL3plcGh5ci1rZXJuZWwvemVwaHlyLXBoaWxvc29waGVycy5i
+YjxodHRwOi8vemVwaHlyLXBoaWxvc29waGVycy5iYj4NCmluZGV4IDVmN2ZiY2IuLmY3MjA5OTkg
+MTAwNjQ0DQotLS0gYS9yZWNpcGVzLWtlcm5lbC96ZXBoeXIta2VybmVsL3plcGh5ci1waGlsb3Nv
+cGhlcnMuYmI8aHR0cDovL3plcGh5ci1waGlsb3NvcGhlcnMuYmI+DQorKysgYi9yZWNpcGVzLWtl
+cm5lbC96ZXBoeXIta2VybmVsL3plcGh5ci1waGlsb3NvcGhlcnMuYmI8aHR0cDovL3plcGh5ci1w
+aGlsb3NvcGhlcnMuYmI+DQpAQCAtOCw2ICs4LDcgQEAgT0VDTUFLRV9TT1VSQ0VQQVRIID0gIiR7
+WkVQSFlSX1NSQ19ESVJ9Ig0KDQogZG9fZGVwbG95ICgpIHsNCiAgICAgaW5zdGFsbCAtRCAke0J9
+L3plcGh5ci8ke1pFUEhZUl9NQUtFX09VVFBVVH0uZWxmICR7REVQTE9ZRElSfS8ke1BOfS5lbGYN
+CisgICAgaW5zdGFsbCAtRCAke0J9L3plcGh5ci8ke1pFUEhZUl9NQUtFX09VVFBVVH0uaGV4DQor
+ICR7REVQTE9ZRElSfS8ke1BOfS5oZXgNCiB9DQoNCltOYXZlZW4gU2FpbmldICBObyAqLmhleCBm
+aWxlIHdoaWxlIGJ1aWxkaW5nIGZvciBNQUNISU5FPXFlbXUteDg2ICBFcnJvciBsb2c6ICAuLi5i
+dWlsZC96ZXBoeXIvemVwaHlyLmhleCc6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCg0KQ291
+bGQgeW91IGFsc28gdHJ5IHRvIGJ1aWxkIHRlc3RjYXNlcyAhIQ0KJCBNQUNISU5FPTk2Yi1uaXRy
+b2dlbiBiaXRiYWtlIHplcGh5ci1rZXJuZWwtdGVzdC1hbGwNCg0KQnVpbGQgYnJlYWtzIHdpdGgg
+ZXJyb3I6IC4uLi4uLmJ1aWxkL3plcGh5ci96ZXBoeXIuZWxmLmVsZic6IE5vIHN1Y2ggZmlsZSBv
+ciBkaXJlY3RvcnkNCg0KIGFkZHRhc2sgZGVwbG95IGFmdGVyIGRvX2NvbXBpbGUNCi0tDQoyLjI1
+LjENCg==
 
-I find if I set "lfs=3D0" it still attempts to download the lfs objects an=
-d fails.=C2=A0 Same behavior if "lfs=3D1".
-
-SRC_URI =3D "git://git@github.com:/account/cool-thing.git;protocol=3Dssh;l=
-fs=3D1;branch=3Dcool_branch"
-
-A suggested workaround by technoweenie here: https://github.com/git-lfs/gi=
-t-lfs/issues/1044
-
-Only git clone via ssh works (pulls lfs objects) fine outside of the yocto=
- tree.
-
-Any ideas?
-
-Thanks,
-Joel
-
-git-lfs/ 2. 9. 2 (GitHub; linux amd64; go 1. 13. 5 )
-git version 2. 25. 1
-
-$ git-lfs filter-process
-Error downloading object: cool-thing/app/lib/agl/aarch64/libfmt.a ( 328664=
-b ): Smudge error: Error downloading cool-thing/app/lib/agl/aarch64/libfmt.=
-a ( 328664b0bd0cad33f28722b9a6ccd5ac9adea4485885bacd35082775e41601d8 ): bat=
-ch request: missing protocol: "<unknown>"
-
-missing protocol: "<unknown>"
-batch request
-github.com/git-lfs/git-lfs/errors.newWrappedError
-github.com/git-lfs/git-lfs/errors/types.go: 198
-github.com/git-lfs/git-lfs/errors.Wrap
-github.com/git-lfs/git-lfs/errors/errors.go: 74
-github.com/git-lfs/git-lfs/tq.(*tqClient).Batch
-github.com/git-lfs/git-lfs/tq/api.go: 68
-github.com/git-lfs/git-lfs/tq.Batch
-github.com/git-lfs/git-lfs/tq/api.go: 40
-github.com/git-lfs/git-lfs/tq.(*TransferQueue).enqueueAndCollectRetriesFor
-github.com/git-lfs/git-lfs/tq/transfer_queue.go: 520
-github.com/git-lfs/git-lfs/tq.(*TransferQueue). collectBatches.func1
-github.com/git-lfs/git-lfs/tq/transfer_queue.go: 432
-runtime.goexit
-/usr/lib/go- 1. 13 /src/runtime/asm_amd64.s: 1357
-Error downloading cool-thing/app/lib/agl/aarch64/libfmt.a ( 328664b0bd0cad=
-33f28722b9a6ccd5ac9adea4485885bacd35082775e41601d8 )
-github.com/git-lfs/git-lfs/errors.newWrappedError
-github.com/git-lfs/git-lfs/errors/types.go: 198
-github.com/git-lfs/git-lfs/errors.Wrapf
-github.com/git-lfs/git-lfs/errors/errors.go: 85
-github.com/git-lfs/git-lfs/lfs.(*GitFilter).downloadFile
-github.com/git-lfs/git-lfs/lfs/gitfilter_smudge.go: 115
-github.com/git-lfs/git-lfs/lfs.(*GitFilter).Smudge
-github.com/git-lfs/git-lfs/lfs/gitfilter_smudge.go: 76
-github.com/git-lfs/git-lfs/commands.smudge
-github.com/git-lfs/git-lfs/commands/command_smudge.go: 127
-github.com/git-lfs/git-lfs/commands.filterCommand
-github.com/git-lfs/git-lfs/commands/command_filter_process.go: 118
-github.com/spf13/cobra.(*Command).execute
-github.com/spf13/cobra/command.go: 766
-github.com/spf13/cobra.(*Command).ExecuteC
-github.com/spf13/cobra/command.go: 850
-github.com/spf13/cobra.(*Command).Execute
-github.com/spf13/cobra/command.go: 800
-github.com/git-lfs/git-lfs/commands.Run
-github.com/git-lfs/git-lfs/commands/run.go: 97
-main.main
-github.com/git-lfs/git-lfs/git- lfs.go : 33
-runtime.main
-/usr/lib/go- 1. 13 /src/runtime/proc.go: 203
-runtime.goexit
-/usr/lib/go- 1. 13 /src/runtime/asm_amd64.s: 1357
-Smudge error
-github.com/git-lfs/git-lfs/errors.newWrappedError
-github.com/git-lfs/git-lfs/errors/types.go: 198
-github.com/git-lfs/git-lfs/errors.NewSmudgeError
-github.com/git-lfs/git-lfs/errors/types.go: 284
-github.com/git-lfs/git-lfs/lfs.(*GitFilter).Smudge
-github.com/git-lfs/git-lfs/lfs/gitfilter_smudge.go: 85
-github.com/git-lfs/git-lfs/commands.smudge
-github.com/git-lfs/git-lfs/commands/command_smudge.go: 127
-github.com/git-lfs/git-lfs/commands.filterCommand
-github.com/git-lfs/git-lfs/commands/command_filter_process.go: 118
-github.com/spf13/cobra.(*Command).execute
-github.com/spf13/cobra/command.go: 766
-github.com/spf13/cobra.(*Command).ExecuteC
-github.com/spf13/cobra/command.go: 850
-github.com/spf13/cobra.(*Command).Execute
-github.com/spf13/cobra/command.go: 800
-github.com/git-lfs/git-lfs/commands.Run
-github.com/git-lfs/git-lfs/commands/run.go: 97
-main.main
-github.com/git-lfs/git-lfs/git- lfs.go : 33
-runtime.main
-/usr/lib/go- 1. 13 /src/runtime/proc.go: 203
-runtime.goexit
-/usr/lib/go- 1. 13 /src/runtime/asm_amd64.s: 1357
-
-Current time in UTC:
-2020-12-12 15:41:16
-
-ENV:
-LocalWorkingDir=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc/work/aa=
-rch64-oe-linux/cool-thing/git+AUTOINC+ 3158acc56b -r0/git
-LocalGitDir=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc/work/aarch6=
-4-oe-linux/cool-thing/git+AUTOINC+ 3158acc56b -r0/git/.git
-LocalGitStorageDir=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc/work=
-/aarch64-oe-linux/cool-thing/git+AUTOINC+ 3158acc56b -r0/git/.git
-LocalMediaDir=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc/work/aarc=
-h64-oe-linux/cool-thing/git+AUTOINC+ 3158acc56b -r0/git/.git/lfs/objects
-LocalReferenceDirs=3D
-TempDir=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc/work/aarch64-oe=
--linux/cool-thing/git+AUTOINC+ 3158acc56b -r0/git/.git/lfs/tmp
-ConcurrentTransfers=3D 3
-TusTransfers=3D false
-BasicTransfersOnly=3D false
-SkipDownloadErrors=3D false
-FetchRecentAlways=3D false
-FetchRecentRefsDays=3D 7
-FetchRecentCommitsDays=3D 0
-FetchRecentRefsIncludeRemotes=3D true
-PruneOffsetDays=3D 3
-PruneVerifyRemoteAlways=3D false
-PruneRemoteName=3Dorigin
-LfsStorageDir=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc/work/aarc=
-h64-oe-linux/cool-thing/git+AUTOINC+ 3158acc56b -r0/git/.git/lfs
-AccessDownload=3Dnone
-AccessUpload=3Dnone
-DownloadTransfers=3Dbasic,lfs-standalon e-f ile
-UploadTransfers=3Dbasic,lfs-standalon e-f ile
-GIT_CONFIG_PARAMETERS=3D 'core.fsyncobjectfiles=3D0'
-GIT_EXEC_PATH=3D/usr/lib/git-core
-GIT_PREFIX=3D
-GIT_CEILING_DIRECTORIES=3D/b/lv- 0. 1 /apps/apps_proc/poky/build/tmp-glibc=
-/work/aarch64-oe-linux/cool-thing/git+AUTOINC+ 3158acc56b -r0
-
---gBzG7p8TIYogwxfx5Kur
+--_000_257a24e0ba1a4d05b2b76791a0d0b312intelcom_
 Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-I am seeing problems in git fetcher using a github repo using lfs + ssh in =
-dunfell.<br /><br />I find if I set "lfs=3D0" it still attempts to download=
- the lfs objects and fails.&nbsp; Same behavior if "lfs=3D1".<br /><br />SR=
-C_URI =3D "git://git@github.com:/account/cool-thing.git;protocol=3Dssh;lfs=
-=3D1;branch=3Dcool_branch"<br /><br /><br />A suggested workaround by tech=
-noweenie here: <a href=3D"https://github.com/git-lfs/git-lfs/issues/1044" t=
-arget=3D"_blank" rel=3D"noopener">https://github.com/git-lfs/git-lfs/issues=
-/1044</a><br /><br />Only git clone via ssh works (pulls lfs objects) fine =
-outside of the yocto tree. <br /><br /><br />Any ideas?<br /><br />Thanks,<=
-br />Joel<br /><br />
-<div style=3D"color: #d4d4d4; background-color: #1e1e1e; font-family: 'Dro=
-id Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'; font-weight: =
-normal; font-size: 14px; line-height: 19px; white-space: pre;">
-<div><span style=3D"color: #d4d4d4;">git-lfs/</span><span style=3D"color: =
-#569cd6;">2</span><span style=3D"color: #d4d4d4;">.</span><span style=3D"co=
-lor: #569cd6;">9</span><span style=3D"color: #d4d4d4;">.</span><span style=
-=3D"color: #569cd6;">2</span><span style=3D"color: #d4d4d4;"> (GitHub; lin=
-ux amd64; go </span><span style=3D"color: #569cd6;">1</span><span style=3D"=
-color: #d4d4d4;">.</span><span style=3D"color: #569cd6;">13</span><span sty=
-le=3D"color: #d4d4d4;">.</span><span style=3D"color: #569cd6;">5</span><spa=
-n style=3D"color: #d4d4d4;">)</span></div>
-<div><span style=3D"color: #d4d4d4;">git version </span><span style=3D"col=
-or: #569cd6;">2</span><span style=3D"color: #d4d4d4;">.</span><span style=
-=3D"color: #569cd6;">25</span><span style=3D"color: #d4d4d4;">.</span><spa=
-n style=3D"color: #569cd6;">1</span></div>
-<br />
-<div><span style=3D"color: #d4d4d4;">$ git-lfs filter-process</span></div>
-<div><span style=3D"color: #ce9178; font-weight: bold;">Error</span><span =
-style=3D"color: #d4d4d4;"> downloading object: cool-thing/app/lib/agl/aarch=
-64/libfmt.a (</span><span style=3D"color: #569cd6;">328664b</span><span sty=
-le=3D"color: #d4d4d4;">): Smudge </span><span style=3D"color: #ce9178; font=
--weight: bold;">error:</span><span style=3D"color: #d4d4d4;"> </span><span =
-style=3D"color: #ce9178; font-weight: bold;">Error</span><span style=3D"col=
-or: #d4d4d4;"> downloading cool-thing/app/lib/agl/aarch64/libfmt.a (</span>=
-<span style=3D"color: #569cd6;">328664b0bd0cad33f28722b9a6ccd5ac9adea448588=
-5bacd35082775e41601d8</span><span style=3D"color: #d4d4d4;">): batch reques=
-t: missing protocol: </span><span style=3D"color: #ce9178;">"&lt;unknown&gt=
-;"</span></div>
-<br />
-<div><span style=3D"color: #d4d4d4;">missing protocol: </span><span style=
-=3D"color: #ce9178;">"&lt;unknown&gt;"</span></div>
-<div><span style=3D"color: #d4d4d4;">batch request</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/errors.new=
-WrappedError</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/errors/ty=
-pes.go:</span><span style=3D"color: #569cd6;">198</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/errors.Wra=
-p</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/errors/er=
-rors.go:</span><span style=3D"color: #569cd6;">74</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/tq.(*tqCli=
-ent).Batch</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/tq/api.go=
-:</span><span style=3D"color: #569cd6;">68</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/tq.Batch</=
-span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/tq/api.go=
-:</span><span style=3D"color: #569cd6;">40</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/tq.(*Trans=
-ferQueue).enqueueAndCollectRetriesFor</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/tq/transf=
-er_queue.go:</span><span style=3D"color: #569cd6;">520</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/tq.(*Trans=
-ferQueue).</span><span style=3D"color: #569cd6;">collectBatches.func1</span=
-></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/tq/transf=
-er_queue.go:</span><span style=3D"color: #569cd6;">432</span></div>
-<div><span style=3D"color: #569cd6;">runtime.goexit</span></div>
-<div><span style=3D"color: #d4d4d4;"> /usr/lib/go-</span><span style=3D"co=
-lor: #569cd6;">1</span><span style=3D"color: #d4d4d4;">.</span><span style=
-=3D"color: #569cd6;">13</span><span style=3D"color: #d4d4d4;">/src/runtime=
-/asm_amd64.s:</span><span style=3D"color: #569cd6;">1357</span></div>
-<div><span style=3D"color: #ce9178; font-weight: bold;">Error</span><span =
-style=3D"color: #d4d4d4;"> downloading cool-thing/app/lib/agl/aarch64/libfm=
-t.a (</span><span style=3D"color: #569cd6;">328664b0bd0cad33f28722b9a6ccd5a=
-c9adea4485885bacd35082775e41601d8</span><span style=3D"color: #d4d4d4;">)</=
-span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/errors.new=
-WrappedError</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/errors/ty=
-pes.go:</span><span style=3D"color: #569cd6;">198</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/errors.Wra=
-pf</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/errors/er=
-rors.go:</span><span style=3D"color: #569cd6;">85</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/lfs.(*GitF=
-ilter).downloadFile</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/lfs/gitfi=
-lter_smudge.go:</span><span style=3D"color: #569cd6;">115</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/lfs.(*GitF=
-ilter).Smudge</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/lfs/gitfi=
-lter_smudge.go:</span><span style=3D"color: #569cd6;">76</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/commands.s=
-mudge</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/commands/=
-command_smudge.go:</span><span style=3D"color: #569cd6;">127</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/commands.f=
-ilterCommand</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/commands/=
-command_filter_process.go:</span><span style=3D"color: #569cd6;">118</span>=
-</div>
-<div><span style=3D"color: #d4d4d4;">github.com/spf13/cobra.(*Command).exe=
-cute</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/spf13/cobra/command.go:</=
-span><span style=3D"color: #569cd6;">766</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/spf13/cobra.(*Command).Exe=
-cuteC</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/spf13/cobra/command.go:</=
-span><span style=3D"color: #569cd6;">850</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/spf13/cobra.(*Command).Exe=
-cute</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/spf13/cobra/command.go:</=
-span><span style=3D"color: #569cd6;">800</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/commands.R=
-un</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/commands/=
-run.go:</span><span style=3D"color: #569cd6;">97</span></div>
-<div><span style=3D"color: #569cd6;">main.main</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/git-</spa=
-n><span style=3D"color: #569cd6;">lfs.go</span><span style=3D"color: #d4d4d=
-4;">:</span><span style=3D"color: #569cd6;">33</span></div>
-<div><span style=3D"color: #569cd6;">runtime.main</span></div>
-<div><span style=3D"color: #d4d4d4;"> /usr/lib/go-</span><span style=3D"co=
-lor: #569cd6;">1</span><span style=3D"color: #d4d4d4;">.</span><span style=
-=3D"color: #569cd6;">13</span><span style=3D"color: #d4d4d4;">/src/runtime=
-/proc.go:</span><span style=3D"color: #569cd6;">203</span></div>
-<div><span style=3D"color: #569cd6;">runtime.goexit</span></div>
-<div><span style=3D"color: #d4d4d4;"> /usr/lib/go-</span><span style=3D"co=
-lor: #569cd6;">1</span><span style=3D"color: #d4d4d4;">.</span><span style=
-=3D"color: #569cd6;">13</span><span style=3D"color: #d4d4d4;">/src/runtime=
-/asm_amd64.s:</span><span style=3D"color: #569cd6;">1357</span></div>
-<div><span style=3D"color: #d4d4d4;">Smudge error</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/errors.new=
-WrappedError</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/errors/ty=
-pes.go:</span><span style=3D"color: #569cd6;">198</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/errors.New=
-SmudgeError</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/errors/ty=
-pes.go:</span><span style=3D"color: #569cd6;">284</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/lfs.(*GitF=
-ilter).Smudge</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/lfs/gitfi=
-lter_smudge.go:</span><span style=3D"color: #569cd6;">85</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/commands.s=
-mudge</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/commands/=
-command_smudge.go:</span><span style=3D"color: #569cd6;">127</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/commands.f=
-ilterCommand</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/commands/=
-command_filter_process.go:</span><span style=3D"color: #569cd6;">118</span>=
-</div>
-<div><span style=3D"color: #d4d4d4;">github.com/spf13/cobra.(*Command).exe=
-cute</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/spf13/cobra/command.go:</=
-span><span style=3D"color: #569cd6;">766</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/spf13/cobra.(*Command).Exe=
-cuteC</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/spf13/cobra/command.go:</=
-span><span style=3D"color: #569cd6;">850</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/spf13/cobra.(*Command).Exe=
-cute</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/spf13/cobra/command.go:</=
-span><span style=3D"color: #569cd6;">800</span></div>
-<div><span style=3D"color: #d4d4d4;">github.com/git-lfs/git-lfs/commands.R=
-un</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/commands/=
-run.go:</span><span style=3D"color: #569cd6;">97</span></div>
-<div><span style=3D"color: #569cd6;">main.main</span></div>
-<div><span style=3D"color: #d4d4d4;"> github.com/git-lfs/git-lfs/git-</spa=
-n><span style=3D"color: #569cd6;">lfs.go</span><span style=3D"color: #d4d4d=
-4;">:</span><span style=3D"color: #569cd6;">33</span></div>
-<div><span style=3D"color: #569cd6;">runtime.main</span></div>
-<div><span style=3D"color: #d4d4d4;"> /usr/lib/go-</span><span style=3D"co=
-lor: #569cd6;">1</span><span style=3D"color: #d4d4d4;">.</span><span style=
-=3D"color: #569cd6;">13</span><span style=3D"color: #d4d4d4;">/src/runtime=
-/proc.go:</span><span style=3D"color: #569cd6;">203</span></div>
-<div><span style=3D"color: #569cd6;">runtime.goexit</span></div>
-<div><span style=3D"color: #d4d4d4;"> /usr/lib/go-</span><span style=3D"co=
-lor: #569cd6;">1</span><span style=3D"color: #d4d4d4;">.</span><span style=
-=3D"color: #569cd6;">13</span><span style=3D"color: #d4d4d4;">/src/runtime=
-/asm_amd64.s:</span><span style=3D"color: #569cd6;">1357</span></div>
-<br />
-<div><span style=3D"color: #d4d4d4;">Current time in UTC: </span></div>
-<div><span style=3D"color: #6a9955;">2020-12-12</span><span style=3D"color=
-: #d4d4d4;"> </span><span style=3D"color: #6a9955;">15:41:16</span></div>
-<br />
-<div><span style=3D"color: #d4d4d4;">ENV:</span></div>
-<div><span style=3D"color: #d4d4d4;">LocalWorkingDir=3D/b/lv-</span><span =
-style=3D"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.</span><=
-span style=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d4;">/app=
-s/apps_proc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/git+AUTOI=
-NC+</span><span style=3D"color: #569cd6;">3158acc56b</span><span style=3D"c=
-olor: #d4d4d4;">-r0/git</span></div>
-<div><span style=3D"color: #d4d4d4;">LocalGitDir=3D/b/lv-</span><span styl=
-e=3D"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.</span><span=
- style=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d4;">/apps/ap=
-ps_proc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/git+AUTOINC+<=
-/span><span style=3D"color: #569cd6;">3158acc56b</span><span style=3D"color=
-: #d4d4d4;">-r0/git/.git</span></div>
-<div><span style=3D"color: #d4d4d4;">LocalGitStorageDir=3D/b/lv-</span><sp=
-an style=3D"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.</spa=
-n><span style=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d4;">/=
-apps/apps_proc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/git+AU=
-TOINC+</span><span style=3D"color: #569cd6;">3158acc56b</span><span style=
-=3D"color: #d4d4d4;">-r0/git/.git</span></div>
-<div><span style=3D"color: #d4d4d4;">LocalMediaDir=3D/b/lv-</span><span st=
-yle=3D"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.</span><sp=
-an style=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d4;">/apps/=
-apps_proc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/git+AUTOINC=
-+</span><span style=3D"color: #569cd6;">3158acc56b</span><span style=3D"col=
-or: #d4d4d4;">-r0/git/.git/lfs/objects</span></div>
-<div><span style=3D"color: #d4d4d4;">LocalReferenceDirs=3D</span></div>
-<div><span style=3D"color: #d4d4d4;">TempDir=3D/b/lv-</span><span style=3D=
-"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.</span><span sty=
-le=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d4;">/apps/apps_p=
-roc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/git+AUTOINC+</spa=
-n><span style=3D"color: #569cd6;">3158acc56b</span><span style=3D"color: #d=
-4d4d4;">-r0/git/.git/lfs/tmp</span></div>
-<div><span style=3D"color: #d4d4d4;">ConcurrentTransfers=3D</span><span st=
-yle=3D"color: #569cd6;">3</span></div>
-<div><span style=3D"color: #d4d4d4;">TusTransfers=3D</span><span style=3D"=
-color: #569cd6;">false</span></div>
-<div><span style=3D"color: #d4d4d4;">BasicTransfersOnly=3D</span><span sty=
-le=3D"color: #569cd6;">false</span></div>
-<div><span style=3D"color: #d4d4d4;">SkipDownloadErrors=3D</span><span sty=
-le=3D"color: #569cd6;">false</span></div>
-<div><span style=3D"color: #d4d4d4;">FetchRecentAlways=3D</span><span styl=
-e=3D"color: #569cd6;">false</span></div>
-<div><span style=3D"color: #d4d4d4;">FetchRecentRefsDays=3D</span><span st=
-yle=3D"color: #569cd6;">7</span></div>
-<div><span style=3D"color: #d4d4d4;">FetchRecentCommitsDays=3D</span><span=
- style=3D"color: #569cd6;">0</span></div>
-<div><span style=3D"color: #d4d4d4;">FetchRecentRefsIncludeRemotes=3D</spa=
-n><span style=3D"color: #569cd6;">true</span></div>
-<div><span style=3D"color: #d4d4d4;">PruneOffsetDays=3D</span><span style=
-=3D"color: #569cd6;">3</span></div>
-<div><span style=3D"color: #d4d4d4;">PruneVerifyRemoteAlways=3D</span><spa=
-n style=3D"color: #569cd6;">false</span></div>
-<div><span style=3D"color: #d4d4d4;">PruneRemoteName=3Dorigin</span></div>
-<div><span style=3D"color: #d4d4d4;">LfsStorageDir=3D/b/lv-</span><span st=
-yle=3D"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.</span><sp=
-an style=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d4;">/apps/=
-apps_proc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/git+AUTOINC=
-+</span><span style=3D"color: #569cd6;">3158acc56b</span><span style=3D"col=
-or: #d4d4d4;">-r0/git/.git/lfs</span></div>
-<div><span style=3D"color: #d4d4d4;">AccessDownload=3Dnone</span></div>
-<div><span style=3D"color: #d4d4d4;">AccessUpload=3Dnone</span></div>
-<div><span style=3D"color: #d4d4d4;">DownloadTransfers=3Dbasic,lfs-standal=
-on</span><span style=3D"color: #569cd6;">e-f</span><span style=3D"color: #d=
-4d4d4;">ile</span></div>
-<div><span style=3D"color: #d4d4d4;">UploadTransfers=3Dbasic,lfs-standalon=
-</span><span style=3D"color: #569cd6;">e-f</span><span style=3D"color: #d4d=
-4d4;">ile</span></div>
-<div><span style=3D"color: #d4d4d4;">GIT_CONFIG_PARAMETERS=3D</span><span =
-style=3D"color: #ce9178;">'core.fsyncobjectfiles=3D0'</span></div>
-<div><span style=3D"color: #d4d4d4;">GIT_EXEC_PATH=3D/usr/lib/git-core</sp=
-an></div>
-<div><span style=3D"color: #d4d4d4;">GIT_PREFIX=3D</span></div>
-<div><span style=3D"color: #d4d4d4;">GIT_CEILING_DIRECTORIES=3D/b/lv-</spa=
-n><span style=3D"color: #569cd6;">0</span><span style=3D"color: #d4d4d4;">.=
-</span><span style=3D"color: #569cd6;">1</span><span style=3D"color: #d4d4d=
-4;">/apps/apps_proc/poky/build/tmp-glibc/work/aarch64-oe-linux/cool-thing/g=
-it+AUTOINC+</span><span style=3D"color: #569cd6;">3158acc56b</span><span st=
-yle=3D"color: #d4d4d4;">-r0</span></div>
-<br /><br /></div>
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
+OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTgN
+Cgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmki
+LHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28t
+c3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJp
+ZjsNCgltc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7
+c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA3Mi4wcHQgNzIuMHB0IDcyLjBw
+dDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+
+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBz
+cGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4
+bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIg
+ZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4N
+Cjxib2R5IGxhbmc9IkVOLU1ZIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xh
+c3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNv
+LWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPk1lcmdlZC4gVGhhbmsgeW91IGZvciBwYXRjaGVzLjxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJt
+c28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVO
+LVVTIj5SZWdhcmRzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+TmF2ZWVuPG86cD48L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJl
+YXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0
+eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6MGNt
+IDBjbSAwY20gNC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10
+b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIj5Gcm9tOjwvc3Bhbj48L2I+PHNw
+YW4gbGFuZz0iRU4tVVMiPiBXb2pjaWVjaCDFu211ZGEgJmx0O3ptdWRhLndAZ21haWwuY29tJmd0
+Ow0KPGJyPg0KPGI+U2VudDo8L2I+IEZyaWRheSwgRGVjZW1iZXIgMTEsIDIwMjAgMTI6MDkgQU08
+YnI+DQo8Yj5Ubzo8L2I+IFNhaW5pLCBOYXZlZW4gS3VtYXIgJmx0O25hdmVlbi5rdW1hci5zYWlu
+aUBpbnRlbC5jb20mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qu
+b3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIFttZXRhLXplcGh5cl1bUEFUQ0gg
+NS81XSB6ZXBoeXItZmxhc2gtcHlvY2QuYmJjbGFzczogc3VwcG9ydCBmb3IgZmxhc2hpbmcgdmlh
+IHB5b2NkPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj5IaSBOYXZlZW4sPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPkkgaW52ZXN0aWdhdGVkIHRoZSBhcmR1aW5vLTEwMS1ibGUgcHJv
+YmxlbSBhbmQgZm9yIG1lIGl0J3Mgbm9uIHRyaXZpYWwgdG8gZml4LiBJdCdzIG5vdCByZWxhdGVk
+IHRvIHRoZSBzYW1lIG1pc3NpbmcgdmFyaWFibGUgdGhhdCBJIHNwb3R0ZWQgaW4gdGhlIE5pdHJv
+Z2VuIGNhc2UsIGJ1dCByYXRoZXIgdGhlcmUgYXJlIHNvbWUgaW5jb25zaXN0ZW5jaWVzIHdpdGgg
+YXJjaGl0ZWN0dXJlLXJlbGF0ZWQgdmFyaWFibGVzDQogaS5lLiBQQUNLQUdFX0FSQ0hTIGFuZCBU
+VU5FX3h4eC4gSSBkaWQgbm90IGZpbmQgYW55IHdheSB0byBmaXggaXQuPG86cD48L286cD48L3A+
+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkZvciBub3cgSSBwdXNoZWQg
+djMgd2l0aCBOaXRyb2dlbiBzdXBwb3J0LiBJZiBJIGZpbmQgYSB3YXkgdG8gc3RyYWlnaHRlbiBv
+dXQgdGhlIEFyZHVpbm8gY2FzZSwgSSdsbCBwdXNoIGEgc2VwYXJhdGUgcGF0Y2ggc2V0IGZvciB0
+aGF0LjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5CVFcsIEkgYWxzbyBoYXZlIDk2Ym9hcmRzIEF2ZW5nZXI5NiBzdXBwb3J0IHBhdGNoIHNldCBy
+ZWFkeS4gSXQgZGVwZW5kcyBvbiBvbmUgY29tbWl0IGZyb20gdGhlIE5pdHJvZ2VuIHBhdGNoIHNl
+dCAoQ29ydGV4LU00IHR1bmUpLCBzbyBJJ2xsIHNlbmQgaXQgb3V0IHJpZ2h0IGFmdGVyIE5pdHJv
+Z2VuIHN1cHBvcnQgaXMgbWVyZ2VkLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj5SZWdhcmRzLDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+V29qY2llY2g8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+
+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gVGh1LCAxMCBEZWMgMjAyMCBhdCAwODoy
+MCwgU2FpbmksIE5hdmVlbiBLdW1hciAmbHQ7PGEgaHJlZj0ibWFpbHRvOm5hdmVlbi5rdW1hci5z
+YWluaUBpbnRlbC5jb20iPm5hdmVlbi5rdW1hci5zYWluaUBpbnRlbC5jb208L2E+Jmd0OyB3cm90
+ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25l
+O2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowY20gMGNtIDBjbSA2LjBw
+dDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGNtIj4NCjxkaXY+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJn
+aW4tYm90dG9tLWFsdDphdXRvIj5IaSBXb2pjaWVjaCw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
+dHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
+dG8iPlllcywgdGVzdGNhc2VzIGFyZSBjdXJyZW50bHkgYmVpbmcgdmVyaWZpZWQgb25seSBvbiBx
+ZW11LCBzbyBpZiB3ZSBjYW4ganVzdCBidWlsZCB0ZXN0Y2FzZXMgZm9yIG5vdyB0aGF0IHNob3Vs
+ZCBiZSBzdWZmaWNpZW50LiBJZiB5b3UgYXJlIGFibGUgdG8gZmxhc2ggYW5kIGV4ZWN1dGUgdGVz
+dHMgbWFudWFsbHkNCiBvbiBIVywgdGhhdCB3b3VsZCB3b3JrLiBQbGVhc2Ugc2VuZCB2My48bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1h
+bHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNv
+LW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkNhbiB5b3UgZml4IGZvciBhcmR1aW5vLTEwMS1ibGUm
+bmJzcDsgYXMgd2VsbCA/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHls
+ZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZu
+YnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJn
+aW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5OYXZlZW48bzpwPjwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6
+YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8
+ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCB3aW5kb3d0ZXh0IDEuNXB0
+O3BhZGRpbmc6MGNtIDBjbSAwY20gNC4wcHQ7Ym9yZGVyLWNvbG9yOmN1cnJlbnRjb2xvciBjdXJy
+ZW50Y29sb3IgY3VycmVudGNvbG9yIGJsdWUiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpu
+b25lO2JvcmRlci10b3A6c29saWQgd2luZG93dGV4dCAxLjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAw
+Y20gMGNtO2JvcmRlci1jb2xvcjpjdXJyZW50Y29sb3IgY3VycmVudGNvbG9yIj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
+dHRvbS1hbHQ6YXV0byI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiPkZyb206PC9zcGFuPjwvYj48c3Bh
+biBsYW5nPSJFTi1VUyI+IFdvamNpZWNoIMW7bXVkYSAmbHQ7PGEgaHJlZj0ibWFpbHRvOnptdWRh
+LndAZ21haWwuY29tIiB0YXJnZXQ9Il9ibGFuayI+em11ZGEud0BnbWFpbC5jb208L2E+Jmd0Ow0K
+PGJyPg0KPGI+U2VudDo8L2I+IFdlZG5lc2RheSwgRGVjZW1iZXIgOSwgMjAyMCAxMTowNyBQTTxi
+cj4NCjxiPlRvOjwvYj4gU2FpbmksIE5hdmVlbiBLdW1hciAmbHQ7PGEgaHJlZj0ibWFpbHRvOm5h
+dmVlbi5rdW1hci5zYWluaUBpbnRlbC5jb20iIHRhcmdldD0iX2JsYW5rIj5uYXZlZW4ua3VtYXIu
+c2FpbmlAaW50ZWwuY29tPC9hPiZndDs8YnI+DQo8Yj5DYzo8L2I+IDxhIGhyZWY9Im1haWx0bzp5
+b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIiB0YXJnZXQ9Il9ibGFuayI+eW9jdG9AbGlzdHMu
+eW9jdG9wcm9qZWN0Lm9yZzwvYT48YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0b10gW21l
+dGEtemVwaHlyXVtQQVRDSCA1LzVdIHplcGh5ci1mbGFzaC1weW9jZC5iYmNsYXNzOiBzdXBwb3J0
+IGZvciBmbGFzaGluZyB2aWEgcHlvY2Q8L3NwYW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwv
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRv
+O21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxkaXY+
+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDph
+dXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5IaSBOYXZlZW4sPG86cD48L286cD48L3A+
+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
+b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJn
+aW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5JIGZpeGVkIHRoZSBt
+aXNzaW5nIC5oZXggaXNzdWUgYW5kIEknbSByZWFkeSB0byBzZW5kIHYzLjxvOnA+PC9vOnA+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4t
+dG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFy
+Z2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+SSBhbHNvIGV4cGVy
+aW1lbnRlZCB3aXRoIHlvdXIgbGFzdCBzdWdnZXN0aW9uLCBpLmUuIGJ1aWxkaW5nIHRlc3QgY2Fz
+ZXMgd2l0aCBNQUNISU5FPTk2Yi1uaXRyb2dlbiBhbmQgSSBvYnNlcnZlZCB0aGUgZm9sbG93aW5n
+OjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
+bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4m
+bmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+IHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0
+byI+SXQgaXMgcG9zc2libGUgdG8gYnVpbGQgd2hlbiBJIHByb3ZpZGUgSU1HREVQTE9ZRElSIHZh
+cmlhYmxlIHNvbWV3aGVyZSwgZS5nLiBpbiA5NmItbml0cm9nZW4uY29uZi4gSG93ZXZlciwgZm9y
+IG90aGVyIHBsYXRmb3JtcywgdGhpcyB2YXJpYWJsZSBpcyBwcm92aWRlZCBvbmx5IGluIGNsYXNz
+ZXMvemVwaHlyLXFlbXVib290LmJiY2xhc3MuDQogSSd2ZSBhbHNvIHRyaWVkIHRvIGJ1aWxkIHRl
+c3QgY2FzZXMgZm9yIGFyZHVpbm8tMTAxLWJsZSBhbmQgaXQgZmFpbGVkIHdpdGggdGhlIGZvbGxv
+d2luZyByZWFzb246PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20t
+YWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90
+dG9tLWFsdDphdXRvIj4mbmJzcDsgJm5ic3A7IEVycm9yLCB0aGUgUEFDS0FHRV9BUkNIUyB2YXJp
+YWJsZSAoYWxsIGFueSBub2FyY2ggJHtQQUNLQUdFX0VYVFJBX0FSQ0hTX3R1bmUtYXJtdjZtfSBj
+b3J0ZXhtMC12ZnAgYXJkdWlub18xMDFfYmxlKSBmb3IgREVGQVVMVFRVTkUgKGNvcnRleG0wKSBk
+b2VzIG5vdCBjb250YWluIFRVTkVfUEtHQVJDSCAoY29ydGV4bTB0Mi12ZnApLjxvOnA+PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJn
+aW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28t
+bWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+QWRkaXRpb25h
+bGx5LCB3aGVuIEkgcHJvdmlkZWQgSU1HREVQTE9ZRElSIGluIDk2Yi1uaXRyb2dlbi5jb25mLCBJ
+IHRyaWVkIHRvIGV4ZWN1dGUgdGVzdCBjYXNlcyB3aXRoIC1jIHRlc3RpbWFnZS4gSXQgZmFpbGVk
+IG9uIHJ1bm5pbmcgcWVtdS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
+dHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdp
+bi1ib3R0b20tYWx0OmF1dG8iPkFjY29yZGluZyB0byBteSBvYnNlcnZhdGlvbnMsIG15IHVuZGVy
+c3RhbmRpbmcgaXMgdGhhdCB0aGUgdGVzdCBjYXNlcyBhcmUgY3VycmVudGx5IGRlc2lnbmVkIGZv
+ciBiZWluZyB2ZXJpZmllZCBvbiBxZW11LiBEbyB5b3UgZXhwZWN0IHRoZSA5NmItbml0cm9nZW4g
+c3VwcG9ydCB0byBjb250YWluIGF1dG9tYXRpYw0KIHRlc3QgY2FzZXMgZXhlY3V0aW9uIG9uIHRo
+ZSBoYXJkd2FyZSwgb3IganVzdCB0aGUgcG9zc2liaWxpdHkgb2YgYnVpbGRpbmc/IElmIGl0IGp1
+c3QgdGhlIG1hdHRlciBvZiBidWlsZGluZyB0aGUgLmVsZiBmaWxlcyAoeW91IGNhbiBmbGFzaCB0
+aGVtIG1hbnVhbGx5KSwgdGhlbiBJIGNhbiBwdXNoIHYzIHRvZGF5LjxvOnA+PC9vOnA+PC9wPg0K
+PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9w
+LWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+QmVzdCByZWdhcmRzLDxv
+OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
+Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5Xb2pj
+aWVjaDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
+c3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRv
+Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
+OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20t
+YWx0OmF1dG8iPk9uIFR1ZSwgOCBEZWMgMjAyMCBhdCAwMjo0NywgU2FpbmksIE5hdmVlbiBLdW1h
+ciAmbHQ7PGEgaHJlZj0ibWFpbHRvOm5hdmVlbi5rdW1hci5zYWluaUBpbnRlbC5jb20iIHRhcmdl
+dD0iX2JsYW5rIj5uYXZlZW4ua3VtYXIuc2FpbmlAaW50ZWwuY29tPC9hPiZndDsgd3JvdGU6PG86
+cD48L286cD48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3Jk
+ZXItbGVmdDpzb2xpZCB3aW5kb3d0ZXh0IDEuMHB0O3BhZGRpbmc6MGNtIDBjbSAwY20gNi4wcHQ7
+bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tcmlnaHQ6MGNtO21hcmdp
+bi1ib3R0b206NS4wcHQ7Ym9yZGVyLWNvbG9yOmN1cnJlbnRjb2xvciBjdXJyZW50Y29sb3IgY3Vy
+cmVudGNvbG9yIHJnYigyMDQsMjA0LDIwNCkiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
+Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21hcmdpbi1ib3R0b206MTIuMHB0Ij5Zb3UgaGF2ZSBt
+aXNzZWQgZmV3IG9mIG15IGNvbW1lbnRzIGluIHYyICE8YnI+DQo8YnI+DQpSZWdhcmRzLDxicj4N
+Ck5hdmVlbjxicj4NCjxicj4NCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tPGJyPg0KRnJvbTog
+U2FpbmksIE5hdmVlbiBLdW1hciA8YnI+DQpTZW50OiBNb25kYXksIERlY2VtYmVyIDcsIDIwMjAg
+ODowNiBQTTxicj4NClRvOiAnV29qY2llY2ggWm11ZGEnICZsdDs8YSBocmVmPSJtYWlsdG86em11
+ZGEud0BnbWFpbC5jb20iIHRhcmdldD0iX2JsYW5rIj56bXVkYS53QGdtYWlsLmNvbTwvYT4mZ3Q7
+Ow0KPGEgaHJlZj0ibWFpbHRvOnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmciIHRhcmdldD0i
+X2JsYW5rIj55b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPC9hPjxicj4NCkNjOiA8YSBocmVm
+PSJtYWlsdG86ZGF2aWRlLnJpY2NpQGh1YXdlaS5jb20iIHRhcmdldD0iX2JsYW5rIj5kYXZpZGUu
+cmljY2lAaHVhd2VpLmNvbTwvYT47DQo8YSBocmVmPSJtYWlsdG86emJpZ25pZXcuYm9kZWtAaHVh
+d2VpLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnpiaWduaWV3LmJvZGVrQGh1YXdlaS5jb208L2E+Ow0K
+PGEgaHJlZj0ibWFpbHRvOmphcm9zbGF3Lm1hcmVrQGh1YXdlaS5jb20iIHRhcmdldD0iX2JsYW5r
+Ij5qYXJvc2xhdy5tYXJla0BodWF3ZWkuY29tPC9hPjsNCjxhIGhyZWY9Im1haWx0bzpyb2JlcnQu
+ZHJhYkBodWF3ZWkuY29tIiB0YXJnZXQ9Il9ibGFuayI+cm9iZXJ0LmRyYWJAaHVhd2VpLmNvbTwv
+YT47IFdvamNpZWNoIFptdWRhICZsdDs8YSBocmVmPSJtYWlsdG86d29qY2llY2guem11ZGFAaHVh
+d2VpLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPndvamNpZWNoLnptdWRhQGh1YXdlaS5jb208L2E+Jmd0
+Ozxicj4NClN1YmplY3Q6IFJFOiBbeW9jdG9dIFttZXRhLXplcGh5cl1bUEFUQ0ggNS81XSB6ZXBo
+eXItZmxhc2gtcHlvY2QuYmJjbGFzczogc3VwcG9ydCBmb3IgZmxhc2hpbmcgdmlhIHB5b2NkPGJy
+Pg0KPGJyPg0KVGhhbmtzIGZvciB0aGUgcGF0Y2hlcy4mbmJzcDsgUGxlYXNlIGZpbmQgbXkgY29t
+bWVudHMgYmVsb3cuPGJyPg0KPGJyPg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS08YnI+DQpG
+cm9tOiA8YSBocmVmPSJtYWlsdG86eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyIgdGFyZ2V0
+PSJfYmxhbmsiPnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8L2E+ICZsdDs8YSBocmVmPSJt
+YWlsdG86eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyIgdGFyZ2V0PSJfYmxhbmsiPnlvY3Rv
+QGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8L2E+Jmd0OyBPbiBCZWhhbGYgT2YgV29qY2llY2ggWm11
+ZGE8YnI+DQpTZW50OiBNb25kYXksIERlY2VtYmVyIDcsIDIwMjAgNDoxNSBBTTxicj4NClRvOiA8
+YSBocmVmPSJtYWlsdG86eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyIgdGFyZ2V0PSJfYmxh
+bmsiPnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8L2E+PGJyPg0KQ2M6IDxhIGhyZWY9Im1h
+aWx0bzpkYXZpZGUucmljY2lAaHVhd2VpLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmRhdmlkZS5yaWNj
+aUBodWF3ZWkuY29tPC9hPjsNCjxhIGhyZWY9Im1haWx0bzp6Ymlnbmlldy5ib2Rla0BodWF3ZWku
+Y29tIiB0YXJnZXQ9Il9ibGFuayI+emJpZ25pZXcuYm9kZWtAaHVhd2VpLmNvbTwvYT47DQo8YSBo
+cmVmPSJtYWlsdG86amFyb3NsYXcubWFyZWtAaHVhd2VpLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmph
+cm9zbGF3Lm1hcmVrQGh1YXdlaS5jb208L2E+Ow0KPGEgaHJlZj0ibWFpbHRvOnJvYmVydC5kcmFi
+QGh1YXdlaS5jb20iIHRhcmdldD0iX2JsYW5rIj5yb2JlcnQuZHJhYkBodWF3ZWkuY29tPC9hPjsg
+V29qY2llY2ggWm11ZGEgJmx0OzxhIGhyZWY9Im1haWx0bzp3b2pjaWVjaC56bXVkYUBodWF3ZWku
+Y29tIiB0YXJnZXQ9Il9ibGFuayI+d29qY2llY2guem11ZGFAaHVhd2VpLmNvbTwvYT4mZ3Q7PGJy
+Pg0KU3ViamVjdDogW3lvY3RvXSBbbWV0YS16ZXBoeXJdW1BBVENIIDUvNV0gemVwaHlyLWZsYXNo
+LXB5b2NkLmJiY2xhc3M6IHN1cHBvcnQgZm9yIGZsYXNoaW5nIHZpYSBweW9jZDxicj4NCjxicj4N
+CkZsYXNoIGJvYXJkcyBzdXBwb3J0ZWQgdmlhIHB5b2NkOjxicj4NCjxicj4NCiZuYnNwOyAmbmJz
+cDsgTUFDSElORT14eHggYml0YmFrZSB5eXkgLWMgZmxhc2hfdXNiPGJyPg0KPGJyPg0KVGhlIG9u
+bHkgc3VwcG9ydGVkIGJvYXJkIGZvciBub3cgaXMgOTZCb2FyZHMgTml0cm9nZW4uIE1vZGlmeSBp
+dHMgY29uZmlnIGFjY29yZGluZ2x5Ljxicj4NCjxicj4NCk1vZGlmeSBoZWxsb3dvcmxkIGFuZCBw
+aGlsb3NvcGVycyBzYW1wbGVzIHdpdGggYWRpZHRpb25hbCAuaGV4IG91dHB1dCBmaWxlIGRlcGxv
+eW1lbnQsIGFzIHRoaXMgZm9ybWF0IGlzIHJlcXVpcmVkIGJ5IHB5b2NkLjxicj4NCjxicj4NCkRl
+c2NyaWJlIHRoZSBmZWF0dXJlIGluIFJFQURNRS48YnI+DQo8YnI+DQpTaWduZWQtb2ZmLWJ5OiBX
+b2pjaWVjaCBabXVkYSAmbHQ7PGEgaHJlZj0ibWFpbHRvOndvamNpZWNoLnptdWRhQGh1YXdlaS5j
+b20iIHRhcmdldD0iX2JsYW5rIj53b2pjaWVjaC56bXVkYUBodWF3ZWkuY29tPC9hPiZndDs8YnI+
+DQotLS08YnI+DQombmJzcDtSRUFETUUudHh0Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZu
+YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
+c3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgfCAyMyAmIzQzOyYjNDM7JiM0
+MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7
+JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOzxicj4NCiZuYnNwO2NsYXNzZXMvemVwaHlyLWZsYXNo
+LXB5b2NkLmJiY2xhc3MmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyB8
+IDE3ICYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0
+MzsmIzQzOyYjNDM7JiM0Mzs8YnI+DQombmJzcDtjb25mL21hY2hpbmUvOTZiLW5pdHJvZ2VuLmNv
+bmYmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
+IHwmbmJzcDsgMSAmIzQzOzxicj4NCiZuYnNwOy4uLi96ZXBoeXIta2VybmVsLzxhIGhyZWY9Imh0
+dHA6Ly96ZXBoeXItaGVsbG93b3JsZC5iYiIgdGFyZ2V0PSJfYmxhbmsiPnplcGh5ci1oZWxsb3dv
+cmxkLmJiPC9hPiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyB8Jm5ic3A7IDEgJiM0Mzs8YnI+
+DQombmJzcDsuLi4vemVwaHlyLWtlcm5lbC88YSBocmVmPSJodHRwOi8vemVwaHlyLXBoaWxvc29w
+aGVycy5iYiIgdGFyZ2V0PSJfYmxhbmsiPnplcGh5ci1waGlsb3NvcGhlcnMuYmI8L2E+Jm5ic3A7
+ICZuYnNwOyAmbmJzcDsgfCZuYnNwOyAxICYjNDM7PGJyPg0KJm5ic3A7NSBmaWxlcyBjaGFuZ2Vk
+LCA0MyBpbnNlcnRpb25zKCYjNDM7KTxicj4NCiZuYnNwO2NyZWF0ZSBtb2RlIDEwMDY0NCBjbGFz
+c2VzL3plcGh5ci1mbGFzaC1weW9jZC5iYmNsYXNzPGJyPg0KPGJyPg0KZGlmZiAtLWdpdCBhL1JF
+QURNRS50eHQgYi9SRUFETUUudHh0PGJyPg0KaW5kZXggNjQ2MzMzOS4uNDM2Njc2NCAxMDA2NDQ8
+YnI+DQotLS0gYS9SRUFETUUudHh0PGJyPg0KJiM0MzsmIzQzOyYjNDM7IGIvUkVBRE1FLnR4dDxi
+cj4NCkBAIC00Myw2ICYjNDM7NDMsMjkgQEAgVGhlIHNhbWUgc2FtcGxlLCBmb3IgTmlvczIgaW1h
+Z2U6PGJyPg0KJm5ic3A7ICZuYnNwOyAmbmJzcDskIE1BQ0hJTkU9cWVtdS1uaW9zMiBiaXRiYWtl
+IHplcGh5ci1waGlsb3NvcGhlcnM8YnI+DQombmJzcDsgJm5ic3A7ICZuYnNwOyQgcnVucWVtdSBx
+ZW11LW5pb3MyPGJyPg0KPGJyPg0KJiM0MztGbGFzaGluZzxicj4NCiYjNDM7PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PGJyPg0KJiM0Mzs8YnI+DQomIzQzO1lvdSBjYW4gZmxhc2gg
+WmVwaHlyIHNhbXBsZXMgdG8gYm9hcmRzLiBDdXJyZW50bHksIHRoZSBmb2xsb3dpbmcgPGJyPg0K
+JiM0MztNQUNISU5FcyBhcmUgc3VwcG9ydGVkOjxicj4NCiYjNDM7ICogREZVOjxicj4NCiYjNDM7
+Jm5ic3A7IC0gYXJkdWlub18xMDFfc3NzPGJyPg0KJiM0MzsmbmJzcDsgLSBhcmR1aW5vXzEwMTxi
+cj4NCiYjNDM7Jm5ic3A7IC0gYXJkdWlub18xMDFfYmxlPGJyPg0KJiM0MzsgKiBweW9jZDo8YnI+
+DQomIzQzOyZuYnNwOyAtIDk2Yl9uaXRyb2dlbjxicj4NCiYjNDM7PGJyPg0KJiM0MztUbyBmbGFz
+aCB0aGUgZXhhbXBsZSB5b3UgYnVpbHQgd2l0aCBjb21tYW5kIGUuZy48YnI+DQomIzQzOzxicj4N
+CiYjNDM7Jm5ic3A7ICZuYnNwOyAkIE1BQ0hJTkU9OTZiX25pdHJvZ2VuIGJpdGJha2UgemVwaHly
+LXBoaWxvc29waGVyczxicj4NCltOYXZlZW4gU2FpbmldIFR5cG8gaGVyZSwgTUFDSElORT05NmIt
+bml0cm9nZW48YnI+DQomIzQzOzxicj4NCiYjNDM7Y2FsbCBzaW1pbGFyIGNvbW1hbmQgd2l0aCBl
+eHBsaWNpdCBmbGFzaF91c2IgY29tbWFuZDo8YnI+DQomIzQzOzxicj4NCiYjNDM7Jm5ic3A7ICZu
+YnNwOyAkIE1BQ0hJTkU9OTZiX25pdHJvZ2VuIGJpdGJha2UgemVwaHlyLXBoaWxvc29waGVycyAt
+YyBmbGFzaF91c2I8YnI+DQpbTmF2ZWVuIFNhaW5pXSZuYnNwOyBTYW1lIGFzIGFib3ZlPGJyPg0K
+PGJyPg0KJiM0Mzs8YnI+DQomIzQzO2RmdS11dGlsIGFuZC9vciBweW9jZCBuZWVkIHRvIGJlIGlu
+c3RhbGxlZCBpbiB5b3VyIHN5c3RlbS4gSWYgeW91IDxicj4NCiYjNDM7b2JzZXJ2ZSBwZXJtaXNz
+aW9uIGVycm9ycyBvciB0aGUgZmxhc2hpbmcgcHJvY2VzcyBzZWVtIHRvIGhhbmcsIGZvbGxvdyB0
+aG9zZSBpbnN0cnVjdGlvbnM6PGJyPg0KJiM0Mzs8YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20v
+cHlvY2QvcHlPQ0QvdHJlZS9tYXN0ZXIvdWRldiIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBzOi8vZ2l0
+aHViLmNvbS9weW9jZC9weU9DRC90cmVlL21hc3Rlci91ZGV2PC9hPjxicj4NCjxicj4NCiZuYnNw
+O0J1aWxkaW5nIGFuZCBSdW5uaW5nIFplcGh5ciBUZXN0czxicj4NCiZuYnNwOz09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PTxicj4NCmRpZmYgLS1naXQgYS9jbGFzc2VzL3plcGh5ci1m
+bGFzaC1weW9jZC5iYmNsYXNzIGIvY2xhc3Nlcy96ZXBoeXItZmxhc2gtcHlvY2QuYmJjbGFzczxi
+cj4NCm5ldyBmaWxlIG1vZGUgMTAwNjQ0PGJyPg0KaW5kZXggMDAwMDAwMC4uYWFmZTllNzxicj4N
+Ci0tLSAvZGV2L251bGw8YnI+DQomIzQzOyYjNDM7JiM0MzsgYi9jbGFzc2VzL3plcGh5ci1mbGFz
+aC1weW9jZC5iYmNsYXNzPGJyPg0KQEAgLTAsMCAmIzQzOzEsMTcgQEA8YnI+DQomIzQzOzxicj4N
+CiYjNDM7cHl0aG9uIGRvX2ZsYXNoX3VzYigpIHs8YnI+DQomIzQzOyZuYnNwOyAmbmJzcDsgZnJv
+bSBweW9jZC5jb3JlLmhlbHBlcnMgaW1wb3J0IENvbm5lY3RIZWxwZXI8YnI+DQomIzQzOyZuYnNw
+OyAmbmJzcDsgZnJvbSBweW9jZC5mbGFzaC5maWxlX3Byb2dyYW1tZXIgaW1wb3J0IEZpbGVQcm9n
+cmFtbWVyPGJyPg0KJiM0Mzs8YnI+DQomIzQzOyZuYnNwOyAmbmJzcDsgaW1hZ2UgPSBmJnF1b3Q7
+e2QuZ2V0VmFyKCdERVBMT1lfRElSX0lNQUdFJyl9L3tkLmdldFZhcignUE4nKX0uaGV4JnF1b3Q7
+PGJyPg0KJiM0MzsmbmJzcDsgJm5ic3A7IGJiLnBsYWluKGYmcXVvdDtBdHRlbXB0aW5nIHRvIGZs
+YXNoIHtpbWFnZX0gdG8gYm9hcmQ8YnI+DQomIzQzOyB7ZC5nZXRWYXIoJ0JPQVJEJyl9JnF1b3Q7
+KTxicj4NCiYjNDM7PGJyPg0KJiM0MzsmbmJzcDsgJm5ic3A7IHdpdGggQ29ubmVjdEhlbHBlci5z
+ZXNzaW9uX3dpdGhfY2hvc2VuX3Byb2JlKCkgYXMgc2Vzc2lvbjo8YnI+DQomIzQzOyZuYnNwOyAm
+bmJzcDsgJm5ic3A7ICZuYnNwOyBGaWxlUHJvZ3JhbW1lcihzZXNzaW9uKS5wcm9ncmFtKGltYWdl
+KTxicj4NCiYjNDM7Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7IHNlc3Npb24uYm9hcmQudGFy
+Z2V0LnJlc2V0KCk8YnI+DQomIzQzO308YnI+DQomIzQzOzxicj4NCiYjNDM7YWRkdGFzayBkb19m
+bGFzaF91c2I8YnI+DQomIzQzOzxicj4NCiYjNDM7ZG9fZmxhc2hfdXNiW25vc3RhbXBdID0gJnF1
+b3Q7MSZxdW90Ozxicj4NCiYjNDM7ZG9fZmxhc2hfdXNiW3ZhcmRlcHNleGNsdWRlXSA9ICZxdW90
+O0JCX09SSUdFTlYmcXVvdDs8YnI+DQpkaWZmIC0tZ2l0IGEvY29uZi9tYWNoaW5lLzk2Yi1uaXRy
+b2dlbi5jb25mIGIvY29uZi9tYWNoaW5lLzk2Yi1uaXRyb2dlbi5jb25mIGluZGV4IGQxOTA1ZjIu
+Ljk5OGRiNGMgMTAwNjQ0PGJyPg0KLS0tIGEvY29uZi9tYWNoaW5lLzk2Yi1uaXRyb2dlbi5jb25m
+PGJyPg0KJiM0MzsmIzQzOyYjNDM7IGIvY29uZi9tYWNoaW5lLzk2Yi1uaXRyb2dlbi5jb25mPGJy
+Pg0KQEAgLTQsNCAmIzQzOzQsNSBAQDxicj4NCiZuYnNwOyNAREVTQ1JJUFRJT046IE1hY2hpbmUg
+Y29uZmlndXJhdGlvbiBmb3IgOTZCb2FyZHMgTml0cm9nZW4gQm9hcmQuPGJyPg0KPGJyPg0KJm5i
+c3A7cmVxdWlyZSBjb25mL21hY2hpbmUvaW5jbHVkZS9ucmY1MjgzMi5pbmM8YnI+DQomIzQzO1pF
+UEhZUl9JTkhFUklUX0NMQVNTRVMgJiM0Mzs9ICZxdW90O3plcGh5ci1mbGFzaC1weW9jZCZxdW90
+Ozxicj4NCiZuYnNwO0FSQ0hfOTZiLW5pdHJvZ2VuID0gJnF1b3Q7YXJtJnF1b3Q7PGJyPg0KZGlm
+ZiAtLWdpdCBhL3JlY2lwZXMta2VybmVsL3plcGh5ci1rZXJuZWwvPGEgaHJlZj0iaHR0cDovL3pl
+cGh5ci1oZWxsb3dvcmxkLmJiIiB0YXJnZXQ9Il9ibGFuayI+emVwaHlyLWhlbGxvd29ybGQuYmI8
+L2E+IGIvcmVjaXBlcy1rZXJuZWwvemVwaHlyLWtlcm5lbC88YSBocmVmPSJodHRwOi8vemVwaHly
+LWhlbGxvd29ybGQuYmIiIHRhcmdldD0iX2JsYW5rIj56ZXBoeXItaGVsbG93b3JsZC5iYjwvYT48
+YnI+DQppbmRleCAxNDAwZTcyLi45Yjc3OTc1IDEwMDY0NDxicj4NCi0tLSBhL3JlY2lwZXMta2Vy
+bmVsL3plcGh5ci1rZXJuZWwvPGEgaHJlZj0iaHR0cDovL3plcGh5ci1oZWxsb3dvcmxkLmJiIiB0
+YXJnZXQ9Il9ibGFuayI+emVwaHlyLWhlbGxvd29ybGQuYmI8L2E+PGJyPg0KJiM0MzsmIzQzOyYj
+NDM7IGIvcmVjaXBlcy1rZXJuZWwvemVwaHlyLWtlcm5lbC88YSBocmVmPSJodHRwOi8vemVwaHly
+LWhlbGxvd29ybGQuYmIiIHRhcmdldD0iX2JsYW5rIj56ZXBoeXItaGVsbG93b3JsZC5iYjwvYT48
+YnI+DQpAQCAtOCw2ICYjNDM7OCw3IEBAIE9FQ01BS0VfU09VUkNFUEFUSCA9ICZxdW90OyR7WkVQ
+SFlSX1NSQ19ESVJ9JnF1b3Q7PGJyPg0KPGJyPg0KJm5ic3A7ZG9fZGVwbG95ICgpIHs8YnI+DQom
+bmJzcDsgJm5ic3A7ICZuYnNwO2luc3RhbGwgLUQgJHtCfS96ZXBoeXIvJHtaRVBIWVJfTUFLRV9P
+VVRQVVR9LmVsZiAke0RFUExPWURJUn0vJHtQTn0uZWxmPGJyPg0KJiM0MzsmbmJzcDsgJm5ic3A7
+IGluc3RhbGwgLUQgJHtCfS96ZXBoeXIvJHtaRVBIWVJfTUFLRV9PVVRQVVR9LmhleDxicj4NCiYj
+NDM7ICR7REVQTE9ZRElSfS8ke1BOfS5oZXg8YnI+DQombmJzcDt9PGJyPg0KW05hdmVlbiBTYWlu
+aV0mbmJzcDsgTm8gKi5oZXggZmlsZSB3aGlsZSBidWlsZGluZyBmb3IgTUFDSElORT1xZW11LXg4
+NiZuYnNwOyBFcnJvciBsb2c6Jm5ic3A7IC4uLmJ1aWxkL3plcGh5ci96ZXBoeXIuaGV4JzogTm8g
+c3VjaCBmaWxlIG9yIGRpcmVjdG9yeTxicj4NCjxicj4NCjxicj4NCiZuYnNwO2FkZHRhc2sgZGVw
+bG95IGFmdGVyIGRvX2NvbXBpbGU8YnI+DQpkaWZmIC0tZ2l0IGEvcmVjaXBlcy1rZXJuZWwvemVw
+aHlyLWtlcm5lbC88YSBocmVmPSJodHRwOi8vemVwaHlyLXBoaWxvc29waGVycy5iYiIgdGFyZ2V0
+PSJfYmxhbmsiPnplcGh5ci1waGlsb3NvcGhlcnMuYmI8L2E+IGIvcmVjaXBlcy1rZXJuZWwvemVw
+aHlyLWtlcm5lbC88YSBocmVmPSJodHRwOi8vemVwaHlyLXBoaWxvc29waGVycy5iYiIgdGFyZ2V0
+PSJfYmxhbmsiPnplcGh5ci1waGlsb3NvcGhlcnMuYmI8L2E+PGJyPg0KaW5kZXggNWY3ZmJjYi4u
+ZjcyMDk5OSAxMDA2NDQ8YnI+DQotLS0gYS9yZWNpcGVzLWtlcm5lbC96ZXBoeXIta2VybmVsLzxh
+IGhyZWY9Imh0dHA6Ly96ZXBoeXItcGhpbG9zb3BoZXJzLmJiIiB0YXJnZXQ9Il9ibGFuayI+emVw
+aHlyLXBoaWxvc29waGVycy5iYjwvYT48YnI+DQomIzQzOyYjNDM7JiM0MzsgYi9yZWNpcGVzLWtl
+cm5lbC96ZXBoeXIta2VybmVsLzxhIGhyZWY9Imh0dHA6Ly96ZXBoeXItcGhpbG9zb3BoZXJzLmJi
+IiB0YXJnZXQ9Il9ibGFuayI+emVwaHlyLXBoaWxvc29waGVycy5iYjwvYT48YnI+DQpAQCAtOCw2
+ICYjNDM7OCw3IEBAIE9FQ01BS0VfU09VUkNFUEFUSCA9ICZxdW90OyR7WkVQSFlSX1NSQ19ESVJ9
+JnF1b3Q7PGJyPg0KPGJyPg0KJm5ic3A7ZG9fZGVwbG95ICgpIHs8YnI+DQombmJzcDsgJm5ic3A7
+ICZuYnNwO2luc3RhbGwgLUQgJHtCfS96ZXBoeXIvJHtaRVBIWVJfTUFLRV9PVVRQVVR9LmVsZiAk
+e0RFUExPWURJUn0vJHtQTn0uZWxmPGJyPg0KJiM0MzsmbmJzcDsgJm5ic3A7IGluc3RhbGwgLUQg
+JHtCfS96ZXBoeXIvJHtaRVBIWVJfTUFLRV9PVVRQVVR9LmhleDxicj4NCiYjNDM7ICR7REVQTE9Z
+RElSfS8ke1BOfS5oZXg8YnI+DQombmJzcDt9PGJyPg0KPGJyPg0KW05hdmVlbiBTYWluaV0mbmJz
+cDsgTm8gKi5oZXggZmlsZSB3aGlsZSBidWlsZGluZyBmb3IgTUFDSElORT1xZW11LXg4NiZuYnNw
+OyBFcnJvciBsb2c6Jm5ic3A7IC4uLmJ1aWxkL3plcGh5ci96ZXBoeXIuaGV4JzogTm8gc3VjaCBm
+aWxlIG9yIGRpcmVjdG9yeTxicj4NCjxicj4NCkNvdWxkIHlvdSBhbHNvIHRyeSB0byBidWlsZCB0
+ZXN0Y2FzZXMgISE8YnI+DQokIE1BQ0hJTkU9OTZiLW5pdHJvZ2VuIGJpdGJha2UgemVwaHlyLWtl
+cm5lbC10ZXN0LWFsbDxicj4NCjxicj4NCkJ1aWxkIGJyZWFrcyB3aXRoIGVycm9yOiAuLi4uLi5i
+dWlsZC96ZXBoeXIvemVwaHlyLmVsZi5lbGYnOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5PGJy
+Pg0KPGJyPg0KJm5ic3A7YWRkdGFzayBkZXBsb3kgYWZ0ZXIgZG9fY29tcGlsZTxicj4NCi0tPGJy
+Pg0KMi4yNS4xPG86cD48L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PC9kaXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwv
+Ym9keT4NCjwvaHRtbD4NCg==
 
---gBzG7p8TIYogwxfx5Kur--
+--_000_257a24e0ba1a4d05b2b76791a0d0b312intelcom_--
