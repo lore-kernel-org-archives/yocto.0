@@ -1,44 +1,44 @@
-Received: from mail-lf1-f68.google.com (mail-lf1-f68.google.com [209.85.167.68])
- by mx.groups.io with SMTP id smtpd.web11.36368.1607958896494558420
+Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com [209.85.167.67])
+ by mx.groups.io with SMTP id smtpd.web10.35754.1607958900525965844
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Dec 2020 07:14:56 -0800
+ Mon, 14 Dec 2020 07:15:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=iPJa/0zM;
- spf=pass (domain: gmail.com, ip: 209.85.167.68, mailfrom: zmuda.w@gmail.com)
-Received: by mail-lf1-f68.google.com with SMTP id a12so30968103lfl.6
-        for <yocto@lists.yoctoproject.org>; Mon, 14 Dec 2020 07:14:56 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ey7Ckprd;
+ spf=pass (domain: gmail.com, ip: 209.85.167.67, mailfrom: zmuda.w@gmail.com)
+Received: by mail-lf1-f67.google.com with SMTP id m25so30918607lfc.11
+        for <yocto@lists.yoctoproject.org>; Mon, 14 Dec 2020 07:15:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PVzYPTb7j7vjVXLwLJZvxwVVqvsmyC2p1+l43mFTfsU=;
-        b=iPJa/0zMxLFUrwNrp/A9qXirUBRdeMjb17UqgBrtKv2+Te92d3JMOKm74VFhDWnrxt
-         /mdGSRFSuWlRsV8szPnS8xIxa28cigyMY6rqwaPcUJJXwJxLOXj4rQKQCnP2F0WY+SYi
-         Twk4O9EGkB3F2ayf4cEXQ4FKUI5B5nfsias9cirFSfpxL8yuk2OEYSL7PNADYJVlCjwa
-         Gxkdy2REMrfcyu1IIci80lQ/yDa5cU9Bkvit12xg1sKuYMAgjl2PI+6EMYJs3qLmzAHx
-         BlOLMqDnrsDuWg+s3QR3gU1g/wEsFjm5BAFj2TgnjGJ6zazB0kZ9KFwsrDick+vGZ+ZA
-         Dc5A==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=FD4BEedGGRsQPQkHV47BanPbzexChbMgcm785MDwyhA=;
+        b=ey7CkprdHK2xUXATvdcHDmYVt8dUKGD2ifxdj1HyC48PW4KtTpucF0YMKNMnSg0nIX
+         AHnge1TN8uuPj12aGn2DYlHBlYZd/Xqd2HSQJ8xi/KzTPFX6oBWrQhuQn6iA4Muw3Del
+         o5kI3qLQeqEajz26jSjCjvhnzZF+oJEIfuD7T3Em28i/OvwL7jOkRaDGf2+5bsVfd+cg
+         apDLHWMzHVvuJLB6O0ExEbk3RSV7qDiNjGJ7R+6SxvoWs/yyQCpXM6O5UhN+PpfapD7z
+         NNIVTAC8Nzp/9xRQsf3eOG2ypQVwxgdNJBMIhvNESSbFuowddqKOqPVaVtlqvN6lWtHv
+         5JEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PVzYPTb7j7vjVXLwLJZvxwVVqvsmyC2p1+l43mFTfsU=;
-        b=j5lofjshicGO1nD5Yf1vlM5AGSPgxvzonXdr32bf6V8vLkVMlr+Y9dTg5sQddR9SCi
-         SQt9Fft4u/nT38lYN1131821SkuXc6aEln/NuMBZencFwtvc5rMwnbkljQJUJOwyJWYM
-         QhiM3H8P8YnYlXiswh76dQRtxe1XN40Nj8Vm9bsRVI4jt1w20H1jwky5cm6OTtxkvDLY
-         /2REFHQ4k4cBqJ6+1oOTfqvEIFhB9DHXWu5Yo/OE6+PLoJPUph4hnzbl590Fy5uQYynE
-         DdGhYCoJ6mN+IdHjqkccAKULxBWV4m2K7qFSDXUt6koSZZBJvgNFH8T9XVEzGRvk9O1/
-         LiSg==
-X-Gm-Message-State: AOAM533d0jUtWwRUoVsvhBXkywBzc6Nub/MbrNWry9ja6LkMsnjF1hDu
-	Ticw/MHZh6tlsAhyXLFcmGNxy9juOgczjQ==
-X-Google-Smtp-Source: ABdhPJxISkRCqR+FbnUAw24LCu28xo+s3DByoQPumPnIU25YIoIBdKJfuV18C87MTsKcFp6CTzakQQ==
-X-Received: by 2002:ac2:5a50:: with SMTP id r16mr10377984lfn.195.1607958894425;
-        Mon, 14 Dec 2020 07:14:54 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=FD4BEedGGRsQPQkHV47BanPbzexChbMgcm785MDwyhA=;
+        b=O9+f8atJGifz+TqNWM6EUNl1Ry4GOLItOdXBDKMfNCMu1IRNSes52yE/yickY1h269
+         jKB4GCu+Lsj3gwgSg4sZrkW4zjaa5bnngGwivFiQCrFGLydFMSh5WsDGOPqqUFbWbci1
+         GSfg7Ar3xfStFskN4jjJxpOwrUKWG9o4BcF3PNZcS4LLwR1CpHQIB/yX3MiuFiBSOsKa
+         hd4++r1ILuXVlvCJWZKft5b46weMJTaaZQm7TLbaCjvfIRX2CV5Vy0L78RGWoLUDp86N
+         nL2bVV3evaUkEsFYv09i4MUW1or3/5n+p2NJXtWPt4H5a3VTpSyznCQI57hbdfWm4zBQ
+         X6jw==
+X-Gm-Message-State: AOAM533tAa3KVi6IT49vAAwGCfsgsujpg8weOuU+JU2F/iO72fidOR9a
+	ACI5OeTfxY5Gt33y1Tgd+A8NuJ1OEm6Hdg==
+X-Google-Smtp-Source: ABdhPJwFWcC2zwnzibN3Fb7ke/kCrCl7DpH2ShX2Z9vuX5jBMieihIwZdesmzX4h15T2/ZVMObssWA==
+X-Received: by 2002:a05:6512:687:: with SMTP id t7mr9405311lfe.432.1607958898714;
+        Mon, 14 Dec 2020 07:14:58 -0800 (PST)
 Return-Path: <zmuda.w@gmail.com>
 Received: from localhost.localdomain (89-64-68-83.dynamic.chello.pl. [89.64.68.83])
-        by smtp.gmail.com with ESMTPSA id d23sm1885286ljj.24.2020.12.14.07.14.52
+        by smtp.gmail.com with ESMTPSA id d23sm1885286ljj.24.2020.12.14.07.14.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Dec 2020 07:14:53 -0800 (PST)
+        Mon, 14 Dec 2020 07:14:58 -0800 (PST)
 From: "Wojciech Zmuda" <zmuda.w@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: naveen.kumar.saini@intel.com,
@@ -48,90 +48,56 @@ Cc: naveen.kumar.saini@intel.com,
 	robert.drab@huawei.com,
 	amit.kucheria.ext@huawei.com,
 	Wojciech Zmuda <wojciech.zmuda@huawei.com>
-Subject: [meta-zephyr][PATCH 0/3] Add 96Boards Avenger96 support
-Date: Mon, 14 Dec 2020 15:14:39 +0000
-Message-Id: <20201214151442.4592-1-zmuda.w@gmail.com>
+Subject: [meta-zephyr][PATCH 1/3] zephyr-kernel: clone STM32 HAL
+Date: Mon, 14 Dec 2020 15:14:40 +0000
+Message-Id: <20201214151442.4592-2-zmuda.w@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201214151442.4592-1-zmuda.w@gmail.com>
+References: <20201214151442.4592-1-zmuda.w@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
 From: Wojciech Zmuda <wojciech.zmuda@huawei.com>
 
-This patch set adds support of Avenger96 boards based on
-STMicro STM32MP157AAC 2xCortex-A7+2xCortex-M4 SoC.
-The support consists of:
- - cloning dependencies i.e. STM32 HAL and OpenAMP framework,
- - adding STM32MP1 and Avenger96 $MACHINE config files.
+HAL for STM32 chipsets is one of Zephyr subprojects. It is downloaded
+by default by west. Clone the HAL repository so it can be used for
+building images for boards with STM32 chips.
 
-Verification:
+Signed-off-by: Wojciech Zmuda <wojciech.zmuda@huawei.com>
+---
+ classes/zephyr-kernel-src.bbclass                     | 2 ++
+ recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc | 1 +
+ 2 files changed, 3 insertions(+)
 
-1. Build an example app for Avenger96:
-
-   $ DISTRO=zephyr MACHINE=96b-avenger96 bitbake zephyr-philosophers
-
-2. Please be aware that Avenger96's Cortex-M4 core can be
-   programmed and got out of reset only by software running
-   on the Cortex-A7 core, e.g. by U-Boot or Linux. Therefore,
-   despite the SoC can enter DFU mode, it cannot be used
-   for programming the M4 firmware. This example uses Linux.
-
-3. Linux has to be built with remoteproc support. This can
-   be verified with simple dmesg inspection:
-
-   root@stm32mp1-av96:~# dmesg | grep remoteproc
-   [    2.336231] remoteproc remoteproc0: m4 is available
-
-4. Transfer the example app to the board, e.g. using scp.
-   The elf is located as usual in build/tmp-newlib/deploy/images/96b-avenger96/.
-
-5. On the board, check the expected location of the fimrware image.
-   Empty path defaults to /lib/firmware. You can leave them as
-   they are and copy the Zephyr ELF file to the location pointed
-   by them or you can echo the new path and image name.
-
-   root@stm32mp1-av96:~# cat /sys/module/firmware_class/parameters/path
-   <empty>
-
-   root@stm32mp1-av96:~# cat /sys/class/remoteproc/remoteproc0/firmware
-   rproc-m4-fw
-
-6. After the image path and name are configured, start the M4 core:
-
-   root@stm32mp1-av96:~# echo start > /sys/class/remoteproc/remoteproc0/state
-   remoteproc remoteproc0: powering up m4
-   remoteprocroc remoteproc0: Booting fw image rproc-m4-fw, size 591544
-   rproc-srm-core m4@0:m4_system_resources: bound m4@0:m4_system_resources:m4_led (ops 0xc0be1210)
-   remoteproc remoteproc0: remote processor m4 is now
-
-7. Firmware output can be inspected with:
-
-   root@stm32mp1-av96:~# cat /sys/kernel/debug/remoteproc/remoteproc0/trace0
-   Philosopher 5 [C:-2]        STARVING
-   Philosopher 3 [P: 0]    DROPPED ONE FORK
-   Philosopher 3 [P: 0]  THINKING [  25 ms ]
-   Philosopher 2 [P: 1]   EATING  [  425 ms ]
-   Philosopher 3 [P: 0]        STARVING
-   Philosopher 4 [C:-1]        STARVING
-   Philosopher 4 [C:-1]    HOLDING ONE FORK
-   Philosopher 4 [C:-1]   EATING  [  800 ms ]
-   Philosopher 3 [P: 0]    HOLDING ONE FORK
-   Philosopher 2 [P: 1]    DROPPED ONE FORK
-   Philosopher 2 [P: 1]  THINKING [  725 ms ]
-   Philosopher 1 [P: 2]   EATING  [  225 ms ]
-
-Wojciech Zmuda (3):
-  zephyr-kernel: clone STM32 HAL
-  zephyr-kernel: clone OpenAMP
-  conf: machine: add 96boards Avenger96 support
-
- classes/zephyr-kernel-src.bbclass                     |  6 ++++++
- conf/machine/96b-avenger96.conf                       |  8 ++++++++
- conf/machine/include/stm32mp1-cortex-m4.inc           | 11 +++++++++++
- recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc |  2 ++
- 4 files changed, 27 insertions(+)
- create mode 100644 conf/machine/96b-avenger96.conf
- create mode 100644 conf/machine/include/stm32mp1-cortex-m4.inc
-
+diff --git a/classes/zephyr-kernel-src.bbclass b/classes/zephyr-kernel-src.bbclass
+index ea9b30b..4e05182 100644
+--- a/classes/zephyr-kernel-src.bbclass
++++ b/classes/zephyr-kernel-src.bbclass
+@@ -6,10 +6,12 @@ SRCREV_FORMAT = "default_cmsis"
+ SRCREV_default = "7a3b253ced7333f5c0269387a7f3ed1dee69739d"
+ SRCREV_cmsis = "542b2296e6d515b265e25c6b7208e8fea3014f90"
+ SRCREV_nordic = "d8a6ea9695ddf792bb18bb6035c13b1daac5d79c"
++SRCREV_stm32 = "f0e11398128ac9abdff713da5d3035e6c96e9b86"
+ 
+ SRC_URI = "git://github.com/zephyrproject-rtos/zephyr.git;protocol=https;branch=v2.4-branch;name=default \
+            git://github.com/zephyrproject-rtos/cmsis.git;protocol=https;destsuffix=git/modules/cmsis;name=cmsis \
+            git://github.com/zephyrproject-rtos/hal_nordic.git;protocol=https;destsuffix=git/modules/hal/nordic;name=nordic \
++           git://github.com/zephyrproject-rtos/hal_stm32.git;protocol=https;destsuffix=git/modules/hal/stm32;name=stm32 \
+            file://0001-cmake-add-yocto-toolchain.patch \
+           "
+ 
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+index a1f640d..c7c894e 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+@@ -17,6 +17,7 @@ ZEPHYR_MAKE_OUTPUT = "zephyr.elf"
+ EXTRA_OECMAKE = " -DZEPHYR_BASE=${S} -DZEPHYR_GCC_VARIANT=yocto -DBOARD=${BOARD} -DARCH=${ARCH} -DCROSS_COMPILE=${CROSS_COMPILE} -DZEPHYR_SYSROOT=${ZEPHYR_SYSROOT} -DZEPHYR_TOOLCHAIN_VARIANT=yocto"
+ EXTRA_OECMAKE_append_arm = " -DZEPHYR_MODULES=${S}/modules/cmsis"
+ EXTRA_OECMAKE_append_nordic = "\;${S}/modules/hal/nordic"
++EXTRA_OECMAKE_append_stm32 = "\;${S}/modules/hal/stm32"
+ export ZEPHYR_BASE="${S}"
+ 
+ 
 -- 
 2.25.1
 
