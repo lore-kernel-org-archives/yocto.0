@@ -1,67 +1,137 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.34037.1607950594452856020
+Received: from mail-lf1-f68.google.com (mail-lf1-f68.google.com [209.85.167.68])
+ by mx.groups.io with SMTP id smtpd.web11.36368.1607958896494558420
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Dec 2020 04:56:34 -0800
+ Mon, 14 Dec 2020 07:14:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=NinkNgYD;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id BB62638C088A
-	for <yocto@yoctoproject.org>; Mon, 14 Dec 2020 12:56:33 +0000 (UTC)
-Received: by mail-ej1-f47.google.com with SMTP id g20so22345012ejb.1
-        for <yocto@yoctoproject.org>; Mon, 14 Dec 2020 04:56:33 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=iPJa/0zM;
+ spf=pass (domain: gmail.com, ip: 209.85.167.68, mailfrom: zmuda.w@gmail.com)
+Received: by mail-lf1-f68.google.com with SMTP id a12so30968103lfl.6
+        for <yocto@lists.yoctoproject.org>; Mon, 14 Dec 2020 07:14:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=rd/9/oyfIrNxE2Isu4SyR7CmEdw+vEmJQPLuT8Llv3M=;
-        b=NinkNgYDnuBTalN07UN78kBJ0vvlExu8HB2TJLJHkKqCh7lAyKIsFBy62xxmh8xXta
-         bo8OM0cbbSfZVEswQJFG3dDRVD2JTQBiRvGaqEH5FF6OBRffbZWTuYZiJ+ZfgkDGZwo3
-         GA7okY0sulUSNi/ikYFN5DEolK0JNBqW8FUiC8c2wTUX1iw4TMOMKqQeLgxhNaDkZ/EH
-         In17di9sk6p8IEIuNyGA/C2xDte95JjDDSQ/DF3+kFiKt5PVAde7MsRTXz1hSkWyDT1d
-         mpy0VBfi0npW/ARjVwvLPIA4O+t7/jVDnyqGf5MMQlas07JFgk2rWEKnns9Fk9Bx0y2W
-         BSJg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PVzYPTb7j7vjVXLwLJZvxwVVqvsmyC2p1+l43mFTfsU=;
+        b=iPJa/0zMxLFUrwNrp/A9qXirUBRdeMjb17UqgBrtKv2+Te92d3JMOKm74VFhDWnrxt
+         /mdGSRFSuWlRsV8szPnS8xIxa28cigyMY6rqwaPcUJJXwJxLOXj4rQKQCnP2F0WY+SYi
+         Twk4O9EGkB3F2ayf4cEXQ4FKUI5B5nfsias9cirFSfpxL8yuk2OEYSL7PNADYJVlCjwa
+         Gxkdy2REMrfcyu1IIci80lQ/yDa5cU9Bkvit12xg1sKuYMAgjl2PI+6EMYJs3qLmzAHx
+         BlOLMqDnrsDuWg+s3QR3gU1g/wEsFjm5BAFj2TgnjGJ6zazB0kZ9KFwsrDick+vGZ+ZA
+         Dc5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=rd/9/oyfIrNxE2Isu4SyR7CmEdw+vEmJQPLuT8Llv3M=;
-        b=mtRXQYzF9o6COTnGLjF8/S1V8VsnpWjGoRMuGN01tGXFBHDIInyoiLoJz/aoAwvMac
-         QNJF7dUAJ5/7x6aIgqczoXftUihtr2O+xKTuczkSNjzzwevCTkB4S4RiC7UxOLsylE9f
-         Zo/a8x3sZHc66b5iB14LDyPTMTwVHx9t92A3SzrJuUO5IaBHgfgQ7s1b+8S2by4eZ+mG
-         ve/v2zPmzLmSp04z4hVHcw6fUaOmgdig3nLSHPUmD/3ZtggBRWgJmCp/8y2taTnNx/Uw
-         SfLEeM0ZLKc5Hw+0zjIOiQlEn3Myq6aSBrrGVE1lAzTfENc/rQywCqNTZkJfJyZOtu18
-         LMPw==
-X-Gm-Message-State: AOAM532zEFYopG5F14q6T2QbkBw5dcAVTvCMWrlhAGVDuozlijQOjNZz
-	IsbsEeSVXJz2KCxcrjQ1McAMF8OD7KXWe6bnIXNNLfwT22c=
-X-Google-Smtp-Source: ABdhPJzESvNnTr02YkmxWgj4X3IS2YtW2EN7vKzE+LeQnDLOKcBH0F5WGBSqt4LWDSUFqK+YY9g8TtMS3WHtInd2KLE=
-X-Received: by 2002:a17:906:a244:: with SMTP id bi4mr22541600ejb.59.1607950591536;
- Mon, 14 Dec 2020 04:56:31 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PVzYPTb7j7vjVXLwLJZvxwVVqvsmyC2p1+l43mFTfsU=;
+        b=j5lofjshicGO1nD5Yf1vlM5AGSPgxvzonXdr32bf6V8vLkVMlr+Y9dTg5sQddR9SCi
+         SQt9Fft4u/nT38lYN1131821SkuXc6aEln/NuMBZencFwtvc5rMwnbkljQJUJOwyJWYM
+         QhiM3H8P8YnYlXiswh76dQRtxe1XN40Nj8Vm9bsRVI4jt1w20H1jwky5cm6OTtxkvDLY
+         /2REFHQ4k4cBqJ6+1oOTfqvEIFhB9DHXWu5Yo/OE6+PLoJPUph4hnzbl590Fy5uQYynE
+         DdGhYCoJ6mN+IdHjqkccAKULxBWV4m2K7qFSDXUt6koSZZBJvgNFH8T9XVEzGRvk9O1/
+         LiSg==
+X-Gm-Message-State: AOAM533d0jUtWwRUoVsvhBXkywBzc6Nub/MbrNWry9ja6LkMsnjF1hDu
+	Ticw/MHZh6tlsAhyXLFcmGNxy9juOgczjQ==
+X-Google-Smtp-Source: ABdhPJxISkRCqR+FbnUAw24LCu28xo+s3DByoQPumPnIU25YIoIBdKJfuV18C87MTsKcFp6CTzakQQ==
+X-Received: by 2002:ac2:5a50:: with SMTP id r16mr10377984lfn.195.1607958894425;
+        Mon, 14 Dec 2020 07:14:54 -0800 (PST)
+Return-Path: <zmuda.w@gmail.com>
+Received: from localhost.localdomain (89-64-68-83.dynamic.chello.pl. [89.64.68.83])
+        by smtp.gmail.com with ESMTPSA id d23sm1885286ljj.24.2020.12.14.07.14.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Dec 2020 07:14:53 -0800 (PST)
+From: "Wojciech Zmuda" <zmuda.w@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: naveen.kumar.saini@intel.com,
+	davide.ricci@huawei.com,
+	jaroslaw.marek@huawei.com,
+	zbigniew.bodek@huawei.com,
+	robert.drab@huawei.com,
+	amit.kucheria.ext@huawei.com,
+	Wojciech Zmuda <wojciech.zmuda@huawei.com>
+Subject: [meta-zephyr][PATCH 0/3] Add 96Boards Avenger96 support
+Date: Mon, 14 Dec 2020 15:14:39 +0000
+Message-Id: <20201214151442.4592-1-zmuda.w@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Mon, 14 Dec 2020 13:56:20 +0100
-Message-ID: <CAAfyv34BX_E69-9bPbT2NRikT+uXHSsNVvxg29Tsoi490ameig@mail.gmail.com>
-Subject: [meta-tensorflow] maintained?
-To: yocto <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi,
+From: Wojciech Zmuda <wojciech.zmuda@huawei.com>
 
-I'm l;booking for a tensorflow recipe and forum that meta-tensorflow
-have support for it (also saw that gatesgarth branch is there) but I
-cannot build tensorflow + tensorflow seems to be a bit outdated.
-Anybody know if this layer is maintained? Thanks.
+This patch set adds support of Avenger96 boards based on
+STMicro STM32MP157AAC 2xCortex-A7+2xCortex-M4 SoC.
+The support consists of:
+ - cloning dependencies i.e. STM32 HAL and OpenAMP framework,
+ - adding STM32MP1 and Avenger96 $MACHINE config files.
 
-BR,
+Verification:
 
-marek
+1. Build an example app for Avenger96:
+
+   $ DISTRO=zephyr MACHINE=96b-avenger96 bitbake zephyr-philosophers
+
+2. Please be aware that Avenger96's Cortex-M4 core can be
+   programmed and got out of reset only by software running
+   on the Cortex-A7 core, e.g. by U-Boot or Linux. Therefore,
+   despite the SoC can enter DFU mode, it cannot be used
+   for programming the M4 firmware. This example uses Linux.
+
+3. Linux has to be built with remoteproc support. This can
+   be verified with simple dmesg inspection:
+
+   root@stm32mp1-av96:~# dmesg | grep remoteproc
+   [    2.336231] remoteproc remoteproc0: m4 is available
+
+4. Transfer the example app to the board, e.g. using scp.
+   The elf is located as usual in build/tmp-newlib/deploy/images/96b-avenger96/.
+
+5. On the board, check the expected location of the fimrware image.
+   Empty path defaults to /lib/firmware. You can leave them as
+   they are and copy the Zephyr ELF file to the location pointed
+   by them or you can echo the new path and image name.
+
+   root@stm32mp1-av96:~# cat /sys/module/firmware_class/parameters/path
+   <empty>
+
+   root@stm32mp1-av96:~# cat /sys/class/remoteproc/remoteproc0/firmware
+   rproc-m4-fw
+
+6. After the image path and name are configured, start the M4 core:
+
+   root@stm32mp1-av96:~# echo start > /sys/class/remoteproc/remoteproc0/state
+   remoteproc remoteproc0: powering up m4
+   remoteprocroc remoteproc0: Booting fw image rproc-m4-fw, size 591544
+   rproc-srm-core m4@0:m4_system_resources: bound m4@0:m4_system_resources:m4_led (ops 0xc0be1210)
+   remoteproc remoteproc0: remote processor m4 is now
+
+7. Firmware output can be inspected with:
+
+   root@stm32mp1-av96:~# cat /sys/kernel/debug/remoteproc/remoteproc0/trace0
+   Philosopher 5 [C:-2]        STARVING
+   Philosopher 3 [P: 0]    DROPPED ONE FORK
+   Philosopher 3 [P: 0]  THINKING [  25 ms ]
+   Philosopher 2 [P: 1]   EATING  [  425 ms ]
+   Philosopher 3 [P: 0]        STARVING
+   Philosopher 4 [C:-1]        STARVING
+   Philosopher 4 [C:-1]    HOLDING ONE FORK
+   Philosopher 4 [C:-1]   EATING  [  800 ms ]
+   Philosopher 3 [P: 0]    HOLDING ONE FORK
+   Philosopher 2 [P: 1]    DROPPED ONE FORK
+   Philosopher 2 [P: 1]  THINKING [  725 ms ]
+   Philosopher 1 [P: 2]   EATING  [  225 ms ]
+
+Wojciech Zmuda (3):
+  zephyr-kernel: clone STM32 HAL
+  zephyr-kernel: clone OpenAMP
+  conf: machine: add 96boards Avenger96 support
+
+ classes/zephyr-kernel-src.bbclass                     |  6 ++++++
+ conf/machine/96b-avenger96.conf                       |  8 ++++++++
+ conf/machine/include/stm32mp1-cortex-m4.inc           | 11 +++++++++++
+ recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc |  2 ++
+ 4 files changed, 27 insertions(+)
+ create mode 100644 conf/machine/96b-avenger96.conf
+ create mode 100644 conf/machine/include/stm32mp1-cortex-m4.inc
 
 -- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+2.25.1
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
