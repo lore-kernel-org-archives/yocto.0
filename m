@@ -1,112 +1,108 @@
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
- by mx.groups.io with SMTP id smtpd.web12.31372.1607930085184704843
- for <yocto@lists.yoctoproject.org>;
- Sun, 13 Dec 2020 23:14:45 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=h8xqiyI2;
- spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: vijayrakeshmunganda@gmail.com)
-Received: by mail-pg1-f172.google.com with SMTP id n10so3851142pgl.10
-        for <yocto@lists.yoctoproject.org>; Sun, 13 Dec 2020 23:14:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=HSPCjUG9Qm+JiDURzZFmklXKlb1cnVB219pc7biEUEw=;
-        b=h8xqiyI2ZOEuvY8AerRPOExvCQDbtwT2qfNPKAY5nXiba+y9yhN0gfD+6f/3xlth3C
-         ET5niMJe6UioOqMrMDBqx519FeIJTgrPdUPvl7TXs3g5yDkZbWi8njgGdtVhEGmkWrn2
-         T8LZnXL5Ra6ap0ktazR/MrOuVsECdO5wTQpku9XFNh/8aEcPI/T80/goUhs34XQIMBJn
-         INAtet2TUWeqVKhNyJRLrvfxgdht7PygSPWjZaVfjVH3LnumdRsQexGDgheME1kG1M0j
-         ia3nnuOwcMCP/XNqZX+XMNAJZZ0YWhKqWIoLyOjTjbA5OFDH/xX8XnAozT+44js7b7Mo
-         DiUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=HSPCjUG9Qm+JiDURzZFmklXKlb1cnVB219pc7biEUEw=;
-        b=KUoZIT+HNfpiQOZjHgmr6ljP+qABa/fLyWG068q1e9xT3J0f/Y2h1Gn81QN5xHITTk
-         EW++hPmIPVS+kmsVoIOUR4P40R3RtfXWCMSi5NzXr6F3UJoMfU7YknLLffQ0VO52o1nL
-         DPJKHYKOo/DzVVL9DuGVz3mNkIUcLQIFze+YRyT4MHwPgOHnQqAxUNNaCFC8dMilzVEl
-         40v2qKsBxkDMRy9FFMfrd/SlHr5Y1vlmsS4suSgUg+biWTfIv79DPTjR55rfEnarMfL8
-         cPXmtbBh6M6Po8E+OmX5XnEfAL/Q47p2Bo8nv05tjEsFPFRpwXEGmaAnh8KKFBbvZDaN
-         bAqQ==
-X-Gm-Message-State: AOAM5310FCQOx80CuVwZl2bil8FeX4Qrk2G72HZIl7ElixmBaUccWCmG
-	dZNBI/gf0zePseqL+0iihXTasKk57uo=
-X-Google-Smtp-Source: ABdhPJy+POgPZyU5HXW9n9kdJuqWTX2S1kWO9mOuwu5hRLbW+JQdJm5t1TLtp3y2CeXg5j2eJHwGyQ==
-X-Received: by 2002:aa7:860b:0:b029:19e:2827:93b7 with SMTP id p11-20020aa7860b0000b029019e282793b7mr22658212pfn.22.1607930084422;
-        Sun, 13 Dec 2020 23:14:44 -0800 (PST)
-Return-Path: <vijayrakeshmunganda@gmail.com>
-Received: from ?IPv6:2401:4900:33b2:c745:8c9a:2f5:1f03:6183? ([2401:4900:33b2:c745:8c9a:2f5:1f03:6183])
-        by smtp.gmail.com with ESMTPSA id f90sm17800560pjd.32.2020.12.13.23.14.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 13 Dec 2020 23:14:43 -0800 (PST)
-From: vijayrakeshmunganda@gmail.com
-Mime-Version: 1.0 (1.0)
-Subject: Re: [yocto] curl_easy_perform() failed: Couldn't connect to server #linux #yocto
-Date: Mon, 14 Dec 2020 12:44:41 +0530
-Message-Id: <C41178ED-B6CC-47B3-9404-EAD527422F82@gmail.com>
-References: <CAMKF1sr37mwr_rADp8f4WTPWxgqsSmS+q22Kn7fB=KK_BNP==w@mail.gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-In-Reply-To: <CAMKF1sr37mwr_rADp8f4WTPWxgqsSmS+q22Kn7fB=KK_BNP==w@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-X-Mailer: iPhone Mail (18B92)
-Content-Type: text/plain; charset=utf-8
+Subject: Re: curl_easy_perform() failed: Couldn't connect to server #linux #yocto
+To: yocto@lists.yoctoproject.org
+From: "Vijay Rakesh Munganda" <vijayrakeshmunganda@gmail.com>
+X-Originating-Location: IN (164.164.95.9)
+X-Originating-Platform: Windows Chrome 87
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Mon, 14 Dec 2020 00:02:46 -0800
+References: <C41178ED-B6CC-47B3-9404-EAD527422F82@gmail.com>
+In-Reply-To: <C41178ED-B6CC-47B3-9404-EAD527422F82@gmail.com>
+Message-ID: <1317.1607932966528060973@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="u5MO1ygob1hmIgqgkvjr"
+
+--u5MO1ygob1hmIgqgkvjr
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Khem Raj,
+Hi Khem raj,
 
-It worked. Included gnutls and tested with other network.=20
+Regarding zbar, I found the video option was disabled in the .bb file, so =
+I had changed it to=C2=A0--enable-video and ran the build, but the build fa=
+iled at do_install. Do I Need to make change anything else?
+
+Log:
+|=C2=A0 /home/bl-docker/rity/bsp/tmp/hosttools/mkdir -p '/home/bl-docker/r=
+ity/bsp/tmp/work/aarch64-poky-linux/zbar/0.10+gitAUTOINC+67003d2a98-r0/imag=
+e/usr/bin'
+|=C2=A0 =C2=A0./aarch64-poky-linux-libtool=C2=A0 =C2=A0--mode=3Dinstall /h=
+ome/bl-docker/rity/bsp/tmp/hosttools/install -c zbarcam/zbarcam '/home/bl-d=
+ocker/rity/bsp/tmp/work/aarch64-poky-linux/zbar/0.10+gitAUTOINC+67003d2a98-=
+r0/image/usr/bin'
+|=C2=A0 /home/bl-docker/rity/bsp/tmp/hosttools/install -c -m 644 ../git/do=
+c/man/zbarcam.1 '/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/zbar/=
+0.10+gitAUTOINC+67003d2a98-r0/image/usr/share/man/man1'
+| /home/bl-docker/rity/bsp/tmp/hosttools/install: cannot stat '../git/doc/=
+man/zbarcam.1': No such file or directory
+| Makefile:2386: recipe for target 'install-man1' failed
+| make[3]: *** [install-man1] Error 1
+| make[3]: *** Waiting for unfinished jobs....
+| aarch64-poky-linux-libtool: warning: 'zbar/libzbar.la' has not been inst=
+alled in '/usr/lib'
+| aarch64-poky-linux-libtool: install: /home/bl-docker/rity/bsp/tmp/hostto=
+ols/install -c zbarcam/.libs/zbarcam /home/bl-docker/rity/bsp/tmp/work/aarc=
+h64-poky-linux/zbar/0.10+gitAUTOINC+67003d2a98-r0/image/usr/bin/zbarcam
+| make[3]: Leaving directory '/home/bl-docker/rity/bsp/tmp/work/aarch64-po=
+ky-linux/zbar/0.10+gitAUTOINC+67003d2a98-r0/build'
+| Makefile:2850: recipe for target 'install-am' failed
+| make[2]: *** [install-am] Error 2
+| make[2]: Leaving directory '/home/bl-docker/rity/bsp/tmp/work/aarch64-po=
+ky-linux/zbar/0.10+gitAUTOINC+67003d2a98-r0/build'
+| Makefile:2541: recipe for target 'install-recursive' failed
+| make[1]: *** [install-recursive] Error 1
+| make[1]: Leaving directory '/home/bl-docker/rity/bsp/tmp/work/aarch64-po=
+ky-linux/zbar/0.10+gitAUTOINC+67003d2a98-r0/build'
+| Makefile:2844: recipe for target 'install' failed
+| make: *** [install] Error 2
+| WARNING: /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/zbar/0.10+=
+gitAUTOINC+67003d2a98-r0/temp/run.do_install.15449:1 exit 1 from 'exit 1'
 
 Thanks & Regards,
-Vijay Rakesh
+Vijay Rakesh.
 
-> On 12-Dec-2020, at 00:07, Khem Raj <raj.khem@gmail.com> wrote:
->=20
-> =EF=BB=BFOn Fri, Dec 11, 2020 at 9:51 AM <vijayrakeshmunganda@gmail.com>=
- wrote:
->>=20
->> On Fri, Dec 11, 2020 at 09:04 AM, Khem Raj wrote:
->>=20
->> On 12/11/20 2:26 AM, vijayrakeshmunganda@gmail.com wrote:
->>=20
->> Hi,
->>=20
->> I'm trying to do HTTPS POST using curl with CA certificate, but I got a=
-n
->> error as "curl_easy_perform() failed: Couldn't connect to server". The
->> same code works on a Linux machine but not on my target board, I can't
->> understand what I'm missing. I have an active internet connection
->> without any firewall. Kindly please give any suggestions.
->>=20
->> check what all packageconfig is being used are you using gnutls, then
->> you might want to try nss or openssl and see if that helps.
->>=20
->=20
-> hard to say, unless more details are available, usually runtime deps
-> and build time deps are handled fine but there might
-> be some outliers.
->=20
->> Thanks & Regards,
->> Vijay
->>=20
->>=20
->>=20
->>=20
->> Hi Khem Raj,
->>=20
->> Thanks for the reply. I had installed openssl and curl, but not gnutls =
-because compilation was successful. I=E2=80=99ll definitely try ur suggesti=
-on. Thank you!
->>=20
->> Please correct me if I=E2=80=99m wrong, even if dependent packages are =
-not installed on target system will compilation done successfully? I=E2=80=
-=99m
->> also facing similar issue with zbar, compilation was successful and per=
-fectly executing on Linux PC, but not my target board even after installing=
- zbar package.
->>=20
->> Thanks & Regards,
->> Vijay Rakesh.
->>=20
->>=20
->>=20
->>=20
+--u5MO1ygob1hmIgqgkvjr
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Khem raj,<br /><br />Regarding zbar, I found the video option was disabl=
+ed in the .bb file, so I had changed it to&nbsp;--enable-video and ran the =
+build, but the build failed at do_install. Do I Need to make change anythin=
+g else?&nbsp;<br /><br />Log:<br />
+<div>|&nbsp; /home/bl-docker/rity/bsp/tmp/hosttools/mkdir -p '/home/bl-doc=
+ker/rity/bsp/tmp/work/aarch64-poky-linux/zbar/0.10+gitAUTOINC+67003d2a98-r0=
+/image/usr/bin'</div>
+<div>|&nbsp; &nbsp;./aarch64-poky-linux-libtool&nbsp; &nbsp;--mode=3Dinsta=
+ll /home/bl-docker/rity/bsp/tmp/hosttools/install -c zbarcam/zbarcam '/home=
+/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/zbar/0.10+gitAUTOINC+67003d=
+2a98-r0/image/usr/bin'</div>
+<div>|&nbsp; /home/bl-docker/rity/bsp/tmp/hosttools/install -c -m 644 ../g=
+it/doc/man/zbarcam.1 '/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/=
+zbar/0.10+gitAUTOINC+67003d2a98-r0/image/usr/share/man/man1'</div>
+<div>| /home/bl-docker/rity/bsp/tmp/hosttools/install: cannot stat '../git=
+/doc/man/zbarcam.1': No such file or directory</div>
+<div>| Makefile:2386: recipe for target 'install-man1' failed</div>
+<div>| make[3]: *** [install-man1] Error 1</div>
+<div>| make[3]: *** Waiting for unfinished jobs....</div>
+<div>| aarch64-poky-linux-libtool: warning: 'zbar/libzbar.la' has not been=
+ installed in '/usr/lib'</div>
+<div>| aarch64-poky-linux-libtool: install: /home/bl-docker/rity/bsp/tmp/h=
+osttools/install -c zbarcam/.libs/zbarcam /home/bl-docker/rity/bsp/tmp/work=
+/aarch64-poky-linux/zbar/0.10+gitAUTOINC+67003d2a98-r0/image/usr/bin/zbarca=
+m</div>
+<div>| make[3]: Leaving directory '/home/bl-docker/rity/bsp/tmp/work/aarch=
+64-poky-linux/zbar/0.10+gitAUTOINC+67003d2a98-r0/build'</div>
+<div>| Makefile:2850: recipe for target 'install-am' failed</div>
+<div>| make[2]: *** [install-am] Error 2</div>
+<div>| make[2]: Leaving directory '/home/bl-docker/rity/bsp/tmp/work/aarch=
+64-poky-linux/zbar/0.10+gitAUTOINC+67003d2a98-r0/build'</div>
+<div>| Makefile:2541: recipe for target 'install-recursive' failed</div>
+<div>| make[1]: *** [install-recursive] Error 1</div>
+<div>| make[1]: Leaving directory '/home/bl-docker/rity/bsp/tmp/work/aarch=
+64-poky-linux/zbar/0.10+gitAUTOINC+67003d2a98-r0/build'</div>
+<div>| Makefile:2844: recipe for target 'install' failed</div>
+<div>| make: *** [install] Error 2</div>
+<div>| WARNING: /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/zbar/=
+0.10+gitAUTOINC+67003d2a98-r0/temp/run.do_install.15449:1 exit 1 from 'exit=
+ 1'<br /><br />Thanks &amp; Regards,<br />Vijay Rakesh.</div>
+
+--u5MO1ygob1hmIgqgkvjr--
