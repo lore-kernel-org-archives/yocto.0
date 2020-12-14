@@ -1,54 +1,418 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.2331.1607976209346003962
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
+ by mx.groups.io with SMTP id smtpd.web10.2354.1607976432902185740
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Dec 2020 12:03:29 -0800
+ Mon, 14 Dec 2020 12:07:13 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=fail (domain: balister.org, ip: 198.145.29.25, mailfrom: philip@balister.org)
-Received: from smtp7.emailarray.com (smtp7.emailarray.com [65.39.216.66])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 8358F38C0895
-	for <yocto@yoctoproject.org>; Mon, 14 Dec 2020 20:03:28 +0000 (UTC)
-Received: (qmail 30837 invoked by uid 89); 14 Dec 2020 20:03:25 -0000
-Received: from unknown (HELO ?192.168.11.139?) (cGhpbGlwQG9wZW5zZHIuY29tQDczLjI1MS4xMC4xNDM=) (POLARISLOCAL)  
-  by smtp7.emailarray.com with SMTP; 14 Dec 2020 20:03:25 -0000
-Subject: Re: [yocto] [meta-tensorflow] maintained?
-To: Marek Belisko <marek.belisko@gmail.com>, yocto <yocto@yoctoproject.org>
-References: <CAAfyv34BX_E69-9bPbT2NRikT+uXHSsNVvxg29Tsoi490ameig@mail.gmail.com>
-From: "Philip Balister" <philip@balister.org>
-Message-ID: <ff6f0dc7-7f91-6135-3abe-c7ecb7a0f118@balister.org>
-Date: Mon, 14 Dec 2020 15:03:24 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+ dkim=pass header.i=@helmpcb-com.20150623.gappssmtp.com header.s=20150623 header.b=B/f7rEcT;
+ spf=none, err=SPF record not found (domain: helmpcb.com, ip: 209.85.221.175, mailfrom: amr@helmpcb.com)
+Received: by mail-vk1-f175.google.com with SMTP id f71so4218617vka.12
+        for <yocto@lists.yoctoproject.org>; Mon, 14 Dec 2020 12:07:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=helmpcb-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=yaRQjp7cJNCn4Amw6/SQfACcqQh65Lfpra8KBFe7OPw=;
+        b=B/f7rEcTbiCd8Wd6LfzJsj6ZADdalgccklrP2oI+ym5uNv1BVv4Db8jPx4rDzX3bjF
+         ygApGFxQVHe8hgYD2JF4HABzGVC3sUyb5YpdTotiG9B5chn1gI6noicp5+YrQCeatZlu
+         P0Q1E4gYYrzgyujKQjT9GrGxEAjKmKeyR3w9vDSzqnc5NQzSMq2UkcisWa/5Bj/QzO34
+         q6tfzxZmCS+HkfS0jLhKEGJdesBrVm1U1qjimatwIMQF79zec/BygF4HEABqj3rWP+ne
+         NKy+9M2CJH3R88Txi0eMvU+iLE8zhj0c0S9NQLup6aYnI/E5HOpoTsYE451oLrN7cc+j
+         +L5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=yaRQjp7cJNCn4Amw6/SQfACcqQh65Lfpra8KBFe7OPw=;
+        b=YFukgLbhoTG2SiJRGD8saJgH7cQatzHo6YSZUlmLap7Y6DN6vItzhQe9/Fz8xUqbfx
+         DjoiN+7rENDY5MlWgXhNJS9gGlHGdGJ7/sCbpBy/V4wL6X+Ac1ffdbn+PPU06wwyOYto
+         yGSxensvZc2/+16S5iEZA2LnB6rmfuCP+nNAhlgPRlgEa7rgc36VKEXKH6rDmVni4IOu
+         EUu6I3brjCEm1uuO9jk0oDG/hW5OdV1EcJv+1354VZW0Yl5AVTn+vmUWL8WtKQ+MvQl3
+         FdBz6nL103IDckEcBBlpJwIjNT5X4wVU7C9NBf/ndw7jDsUCb2HWTafXI1Higo6AkQn2
+         3ptA==
+X-Gm-Message-State: AOAM531hu7pRcxKZFQzrGr/LLvVsUeUFH0lVqiH6kDEAz/k/y8bz4zpS
+	SK3wYc2JNuzQiau4Ztu4ibsZDGRDqqc07vfQDCCpDTcgxBroHOBV
+X-Google-Smtp-Source: ABdhPJwJD5Rw488llmYEMWZCqovUJQVFV3D5Batt3YTaVXuL7zRD42xRimtxzNtYXZpi2QzfVIH1bo/qrXeio5uCceI=
+X-Received: by 2002:ac5:c943:: with SMTP id s3mr10205186vkm.21.1607976431272;
+ Mon, 14 Dec 2020 12:07:11 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAAfyv34BX_E69-9bPbT2NRikT+uXHSsNVvxg29Tsoi490ameig@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+From: amr@helmpcb.com
+Date: Mon, 14 Dec 2020 23:07:00 +0300
+Message-ID: <CAHmAUHLxh6r5FdRTKAzG_fYKTmT7uijLYjQa4Payfzb=g0w7RQ@mail.gmail.com>
+Subject: Depends loop with UBOOT_SIGN_ENABLE and initramfs
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 12/14/20 7:56 AM, Marek Belisko wrote:
-> Hi,
-> 
-> I'm l;booking for a tensorflow recipe and forum that meta-tensorflow
-> have support for it (also saw that gatesgarth branch is there) but I
-> cannot build tensorflow + tensorflow seems to be a bit outdated.
-> Anybody know if this layer is maintained? Thanks.
+Hello,
 
-Searching the layer index for tensorflow shows:
+I'm using Yocto Dunfell and working on building an image for the
+Toradex Colibri iMX6 ULL. The main image integrates an initramfs image
+into the kernel (my initramfs image recipe is a copy of
+core-image-minimal-initramfs but without initramfs-module-install and
+initramfs-module-install-efi). As soon as I enable UBOOT_SIGN_ENABLE,
+and attempt to build the main image, I get a dependency loop error,
+one of which is shown below.
 
-http://layers.openembedded.org/layerindex/branch/master/recipes/?q=tensorflow
+How can I go about debugging and getting to the source of the error?
 
-So the recipe exists in several layers. Looks like it is time to try and
-get everyone to work on together on one layer. I ahve a recipe that
-mostly works to build the c library part of torch that needs a home.
+Thanks.
 
-Philip
-
-
-> 
-> BR,
-> 
-> marek
-> 
-> 
-> 
-> 
-> 
+Dependency loop #1 found:
+  Task /workdir/build/../layers/meta-precept/recipes-images/images/idh-os-initramfs-image.bb:do_image
+(dependent Tasks ['idh-os-initramfs-image.bb:do_rootfs',
+'idh-os-initramfs-image.bb:do_image_qa'])
+  Task /workdir/build/../layers/meta-precept/recipes-images/images/idh-os-initramfs-image.bb:do_image_complete
+(dependent Tasks ['idh-os-initramfs-image.bb:do_image',
+'idh-os-initramfs-image.bb:do_image_cpio'])
+  Task /workdir/build/../layers/meta-toradex-nxp/recipes-kernel/linux/linux-toradex_5.4-2.1.x.bb:do_bundle_initramfs
+(dependent Tasks ['idh-os-initramfs-image.bb:do_image_complete',
+'linux-toradex_5.4-2.1.x.bb:do_install'])
+  Task /workdir/build/../layers/meta-toradex-nxp/recipes-kernel/linux/linux-toradex_5.4-2.1.x.bb:do_deploy
+(dependent Tasks ['depmodwrapper-cross_1.0.bb:do_populate_sysroot',
+'linux-toradex_5.4-2.1.x.bb:do_packagedata',
+'linux-toradex_5.4-2.1.x.bb:do_bundle_initramfs',
+'linux-toradex_5.4-2.1.x.bb:do_assemble_fitimage_initramfs',
+'linux-toradex_5.4-2.1.x.bb:do_populate_sysroot'])
+  Task /workdir/build/../layers/meta-toradex-nxp/recipes-bsp/u-boot/u-boot-toradex_2020.07.bb:do_deploy
+(dependent Tasks ['u-boot-toradex_2020.07.bb:do_compile',
+'u-boot-toradex_2020.07.bb:do_create_extlinux_config',
+'linux-toradex_5.4-2.1.x.bb:do_deploy'])
+  Task /workdir/build/../layers/meta-toradex-nxp/recipes-bsp/u-boot/u-boot-toradex_2020.07.bb:do_package
+(dependent Tasks ['u-boot-toradex_2020.07.bb:do_deploy',
+'glibc_2.31.bb:do_packagedata', 'pseudo_git.bb:do_populate_sysroot',
+'dwarfsrcfiles.bb:do_populate_sysroot',
+'rpm_4.14.2.1.bb:do_populate_sysroot',
+'u-boot-toradex_2020.07.bb:do_install',
+'gcc-runtime_9.3.bb:do_packagedata'])
+  Task /workdir/build/../layers/meta-toradex-nxp/recipes-bsp/u-boot/u-boot-toradex_2020.07.bb:do_package_qa
+(dependent Tasks ['pseudo_git.bb:do_populate_sysroot',
+'binutils-cross_2.34.bb:do_populate_sysroot',
+'u-boot-toradex_2020.07.bb:do_package',
+'u-boot-toradex_2020.07.bb:do_packagedata'])
+  Task /workdir/build/../layers/meta-precept/recipes-images/images/idh-os-initramfs-image.bb:do_rootfs
+(dependent Tasks ['util-linux_2.35.1.bb:do_populate_lic',
+'kmod_git.bb:do_package_qa',
+'util-linux_2.35.1.bb:do_package_write_ipk',
+'u-boot-toradex_2020.07.bb:do_packagedata',
+'m4_1.4.18.bb:do_populate_lic', 'gperf_3.1.bb:do_populate_lic',
+'systemd-systemctl-native.bb:do_populate_lic',
+'bzip2_1.0.8.bb:do_package_write_ipk',
+'libsm_1.2.3.bb:do_packagedata', 'dbus_1.12.16.bb:do_populate_lic',
+'gcc-runtime_9.3.bb:do_packagedata',
+'unifdef_2.12.bb:do_populate_lic', 'bzip2_1.0.8.bb:do_packagedata',
+'wayland-protocols_1.18.imx.bb:do_package_write_ipk',
+'python3-setuptools_45.2.0.bb:do_populate_lic',
+'libxcrypt_4.4.15.bb:do_populate_lic',
+'base-files_3.0.14.bb:do_populate_lic',
+'os-release.bb:do_package_write_ipk',
+'openssl_1.1.1g.bb:do_packagedata',
+'bash-completion_2.10.bb:do_package_write_ipk',
+'gettext_0.20.1.bb:do_populate_lic',
+'sqlite3_3.31.1.bb:do_populate_lic',
+'wayland-protocols_1.18.imx.bb:do_packagedata',
+'wayland_1.18.0.bb:do_populate_lic',
+'cracklib_2.9.5.bb:do_package_qa',
+'acl_2.2.53.bb:do_package_write_ipk', 'acl_2.2.53.bb:do_populate_lic',
+'libxkbcommon_0.10.0.bb:do_populate_lic',
+'libtirpc_1.2.6.bb:do_package_write_ipk',
+'ncurses_6.2.bb:do_package_qa', 'make_4.3.bb:do_populate_lic',
+'update-rc.d_0.8.bb:do_populate_lic',
+'initramfs-framework_1.0.bb:do_populate_lic',
+'run-postinsts_1.0.bb:do_populate_lic',
+'libx11_1.6.9.bb:do_package_write_ipk', 'pigz_2.4.bb:do_populate_lic',
+'volatile-binds.bb:do_packagedata',
+'u-boot-toradex_2020.07.bb:do_populate_lic',
+'xtrans_1.4.0.bb:do_populate_lic', 'ncurses_6.2.bb:do_packagedata',
+'python3_3.8.2.bb:do_package_qa',
+'libgcc-initial_9.3.bb:do_populate_lic',
+'wayland_1.18.0.bb:do_packagedata',
+'udev-extraconf_1.1.bb:do_packagedata',
+'libcap_2.32.bb:do_package_write_ipk',
+'expat_2.2.9.bb:do_package_write_ipk',
+'python3_3.8.2.bb:do_populate_lic',
+'update-rc.d_0.8.bb:do_populate_lic', 'm4_1.4.18.bb:do_package_qa',
+'xkeyboard-config_2.28.bb:do_package_write_ipk',
+'libpcre2_10.34.bb:do_populate_lic',
+'systemd_244.3.bb:do_packagedata',
+'systemd-conf_244.3.bb:do_populate_lic',
+'idh-os-initramfs-image.bb:do_prepare_recipe_sysroot',
+'xorgproto_2019.2.bb:do_packagedata',
+'util-linux_2.35.1.bb:do_package_qa',
+'libsm_1.2.3.bb:do_populate_lic',
+'dbus_1.12.16.bb:do_package_write_ipk',
+'cpio_2.13.bb:do_populate_lic', 'dbus_1.12.16.bb:do_package_qa',
+'libxdmcp_1.1.3.bb:do_package_write_ipk',
+'e2fsprogs_1.45.4.bb:do_package_qa', 'rsync_3.1.3.bb:do_populate_lic',
+'bash_5.0.bb:do_populate_lic',
+'shadow-securetty_4.6.bb:do_package_qa',
+'prelink_git.bb:do_populate_sysroot',
+'systemd-serialgetty.bb:do_package_write_ipk',
+'xz_5.2.4.bb:do_package_qa', 'gtk-doc_1.32.bb:do_populate_lic',
+'readline_8.0.bb:do_package_qa', 'findutils_4.7.0.bb:do_packagedata',
+'initramfs-module-setup-live_1.0.bb:do_package_write_ipk',
+'wayland_1.18.0.bb:do_package_write_ipk',
+'intltool_0.51.0.bb:do_populate_lic', 'dtc_1.6.0.bb:do_populate_lic',
+'ca-certificates_20190110.bb:do_packagedata',
+'os-release.bb:do_populate_lic', 'update-rc.d_0.8.bb:do_packagedata',
+'kmod_git.bb:do_package_write_ipk',
+'base-passwd_3.5.29.bb:do_packagedata',
+'openssl_1.1.1g.bb:do_package_qa',
+'ca-certificates_20190110.bb:do_populate_lic',
+'libcap-ng_0.7.10.bb:do_package_write_ipk',
+'cmake-native_3.16.5.bb:do_populate_lic',
+'bash_5.0.bb:do_package_write_ipk', 'libffi_3.3.bb:do_populate_lic',
+'dwarfsrcfiles.bb:do_populate_lic',
+'binutils_2.34.bb:do_populate_lic',
+'libcap-ng_0.7.10.bb:do_packagedata',
+'libpthread-stubs_0.4.bb:do_package_write_ipk',
+'ldconfig-native_2.12.1.bb:do_populate_lic',
+'libice_1.0.10.bb:do_package_write_ipk',
+'coreutils_8.31.bb:do_packagedata',
+'findutils_4.7.0.bb:do_package_write_ipk',
+'autoconf-archive_2019.01.06.bb:do_package_write_ipk',
+'libnsl2_git.bb:do_populate_lic',
+'libxkbcommon_0.10.0.bb:do_packagedata',
+'shadow-securetty_4.6.bb:do_populate_lic',
+'u-boot-toradex_2020.07.bb:do_package_write_ipk',
+'update-rc.d_0.8.bb:do_package_qa', 'sqlite3_3.31.1.bb:do_package_qa',
+'opkg_0.4.2.bb:do_populate_sysroot', 'shadow_4.8.1.bb:do_package_qa',
+'run-postinsts_1.0.bb:do_package_qa',
+'util-macros_1.19.2.bb:do_package_write_ipk',
+'initramfs-module-setup-live_1.0.bb:do_package_qa',
+'libcap_2.32.bb:do_package_qa', 'glibc_2.31.bb:do_package_write_ipk',
+'gmp_6.2.0.bb:do_package_qa',
+'libxml2_2.9.10.bb:do_package_write_ipk',
+'m4-native_1.4.18.bb:do_populate_lic',
+'systemd-serialgetty.bb:do_packagedata',
+'zlib_1.2.11.bb:do_package_write_ipk',
+'pseudo_git.bb:do_populate_sysroot',
+'automake_1.16.1.bb:do_populate_lic',
+'volatile-binds.bb:do_populate_lic',
+'linux-toradex_5.4-2.1.x.bb:do_packagedata',
+'volatile-binds.bb:do_package_write_ipk',
+'xorgproto_2019.2.bb:do_populate_lic',
+'re2c_1.0.1.bb:do_populate_lic',
+'systemd-compat-units.bb:do_package_qa',
+'initramfs-framework_1.0.bb:do_package_write_ipk',
+'systemd_244.3.bb:do_package_write_ipk',
+'libnsl2_git.bb:do_package_qa',
+'bash-completion_2.10.bb:do_populate_lic',
+'swig_3.0.12.bb:do_populate_lic', 'gmp_6.2.0.bb:do_populate_lic',
+'busybox_1.31.1.bb:do_package_qa',
+'initramfs-module-setup-live_1.0.bb:do_populate_lic',
+'libcap_2.32.bb:do_populate_lic',
+'util-macros_1.19.2.bb:do_packagedata',
+'libx11_1.6.9.bb:do_populate_lic',
+'systemd-serialgetty.bb:do_populate_lic',
+'libxdmcp_1.1.3.bb:do_packagedata',
+'coreutils_8.31.bb:do_populate_lic', 'glibc_2.31.bb:do_package_qa',
+'ninja_1.10.0.bb:do_populate_lic',
+'libtool-native_2.4.6.bb:do_populate_lic',
+'libtirpc_1.2.6.bb:do_populate_lic',
+'libxcb_1.13.1.bb:do_package_write_ipk',
+'libxcb_1.13.1.bb:do_package_qa', 'rpm_4.14.2.1.bb:do_populate_lic',
+'python3_3.8.2.bb:do_packagedata', 'libxau_1.0.9.bb:do_package_qa',
+'autoconf-archive_2019.01.06.bb:do_populate_lic',
+'kmod_git.bb:do_packagedata', 'xtrans_1.4.0.bb:do_packagedata',
+'makedevs_1.0.1.bb:do_populate_sysroot',
+'gmp_6.2.0.bb:do_package_write_ipk', 'xz_5.2.4.bb:do_packagedata',
+'libpam_1.3.1.bb:do_package_qa',
+'python3_3.8.2.bb:do_package_write_ipk',
+'linux-toradex_5.4-2.1.x.bb:do_package_qa',
+'libxkbcommon_0.10.0.bb:do_package_qa',
+'libtirpc_1.2.6.bb:do_packagedata', 'expat_2.2.9.bb:do_populate_lic',
+'xcb-proto_1.13.bb:do_populate_lic',
+'wayland_1.18.0.bb:do_package_qa', 'libpam_1.3.1.bb:do_packagedata',
+'busybox_1.31.1.bb:do_packagedata', 'expat_2.2.9.bb:do_packagedata',
+'cracklib_2.9.5.bb:do_packagedata',
+'libcap-ng_0.7.10.bb:do_populate_lic',
+'prelink_git.bb:do_populate_lic', 'libxau_1.0.9.bb:do_populate_lic',
+'pigz_2.4.bb:do_populate_sysroot',
+'mklibs-native_0.1.44.bb:do_populate_lic',
+'bash-completion_2.10.bb:do_packagedata',
+'os-release.bb:do_package_qa', 'kmod-native_git.bb:do_populate_lic',
+'m4_1.4.18.bb:do_packagedata', 'opkg-utils_0.4.2.bb:do_packagedata',
+'xz_5.2.4.bb:do_populate_lic',
+'autoconf-archive_2019.01.06.bb:do_packagedata',
+'gcc-runtime_9.3.bb:do_populate_lic', 'kbd_2.2.0.bb:do_package_qa',
+'xtrans_1.4.0.bb:do_package_qa', 'flex_2.6.4.bb:do_package_qa',
+'acl_2.2.53.bb:do_package_qa',
+'opkg-utils_0.4.2.bb:do_populate_sysroot',
+'libsm_1.2.3.bb:do_package_write_ipk',
+'e2fsprogs_1.45.4.bb:do_populate_lic',
+'udev-extraconf_1.1.bb:do_package_qa',
+'flex_2.6.4.bb:do_populate_lic', 'volatile-binds.bb:do_package_qa',
+'bc_1.07.1.bb:do_populate_lic', 'libgcc_9.3.bb:do_package_write_ipk',
+'e2fsprogs_1.45.4.bb:do_populate_lic',
+'autoconf-archive_2019.01.06.bb:do_package_qa',
+'glibc_2.31.bb:do_populate_lic',
+'wayland-protocols_1.18.imx.bb:do_package_qa',
+'os-release.bb:do_packagedata', 'gawk_5.0.1.bb:do_package_write_ipk',
+'xcb-proto_1.13.bb:do_package_qa',
+'libpam_1.3.1.bb:do_package_write_ipk',
+'opkg-utils_0.4.2.bb:do_package_write_ipk',
+'readline_8.0.bb:do_package_write_ipk',
+'xorgproto_2019.2.bb:do_package_write_ipk',
+'glibc_2.31.bb:do_packagedata', 'libgcc_9.3.bb:do_populate_lic',
+'libxslt_1.1.34.bb:do_populate_lic', 'libice_1.0.10.bb:do_package_qa',
+'linux-libc-headers_5.4.bb:do_populate_lic',
+'coreutils_8.31.bb:do_package_qa',
+'base-files_3.0.14.bb:do_package_qa',
+'libarchive_3.4.2.bb:do_populate_lic',
+'libsolv_0.7.10.bb:do_populate_lic',
+'initramfs-framework_1.0.bb:do_packagedata',
+'attr_2.4.48.bb:do_package_qa', 'sqlite3_3.31.1.bb:do_populate_lic',
+'cracklib_2.9.5.bb:do_populate_lic',
+'libxdmcp_1.1.3.bb:do_populate_lic',
+'systemd-compat-units.bb:do_packagedata',
+'opkg-utils_0.4.2.bb:do_populate_lic',
+'zlib_1.2.11.bb:do_populate_lic',
+'glib-2.0_2.62.6.bb:do_populate_lic',
+'base-passwd_3.5.29.bb:do_package_write_ipk',
+'ncurses_6.2.bb:do_populate_lic',
+'base-files_3.0.14.bb:do_packagedata',
+'libpam_1.3.1.bb:do_populate_lic', 'gawk_5.0.1.bb:do_packagedata',
+'autoconf-archive_2019.01.06.bb:do_populate_lic',
+'bzip2_1.0.8.bb:do_populate_lic', 'meson_0.53.2.bb:do_populate_lic',
+'busybox_1.31.1.bb:do_package_write_ipk',
+'bison_3.5.4.bb:do_populate_lic', 'file_5.38.bb:do_populate_lic',
+'update-rc.d_0.8.bb:do_populate_sysroot',
+'base-passwd_3.5.29.bb:do_package_qa',
+'libxdmcp_1.1.3.bb:do_package_qa',
+'linux-libc-headers_5.4.bb:do_package_qa',
+'libpcre_8.44.bb:do_populate_lic',
+'opkg-utils_0.4.2.bb:do_package_qa', 'gmp_6.2.0.bb:do_populate_lic',
+'bzip2_1.0.8.bb:do_package_qa', 'opkg-utils_0.4.2.bb:do_populate_lic',
+'cracklib_2.9.5.bb:do_populate_lic',
+'libice_1.0.10.bb:do_populate_lic', 'kbd_2.2.0.bb:do_populate_lic',
+'libusb1_1.0.22.bb:do_populate_lic',
+'qemu-native_4.2.0.bb:do_populate_lic',
+'libxml2_2.9.10.bb:do_package_qa', 'findutils_4.7.0.bb:do_package_qa',
+'coreutils_8.31.bb:do_package_write_ipk',
+'linux-libc-headers_5.4.bb:do_packagedata',
+'xtrans_1.4.0.bb:do_package_write_ipk',
+'libffi_3.3.bb:do_packagedata', 'busybox_1.31.1.bb:do_populate_lic',
+'mpfr_4.0.2.bb:do_populate_lic',
+'shadow-securetty_4.6.bb:do_package_write_ipk',
+'run-postinsts_1.0.bb:do_package_write_ipk',
+'run-postinsts_1.0.bb:do_packagedata',
+'libnsl2_git.bb:do_packagedata',
+'base-passwd_3.5.29.bb:do_populate_lic',
+'libnsl2_git.bb:do_package_write_ipk', 'popt_1.16.bb:do_populate_lic',
+'depmodwrapper-cross_1.0.bb:do_populate_lic',
+'bash_5.0.bb:do_package_qa', 'findutils_4.7.0.bb:do_populate_lic',
+'u-boot-tools_2020.01.bb:do_populate_lic',
+'libtirpc_1.2.6.bb:do_package_qa',
+'base-files_3.0.14.bb:do_package_write_ipk',
+'ldconfig-native_2.12.1.bb:do_populate_sysroot',
+'readline_8.0.bb:do_populate_lic',
+'e2fsprogs_1.45.4.bb:do_package_write_ipk',
+'flex_2.6.4.bb:do_package_write_ipk',
+'libxcb_1.13.1.bb:do_packagedata',
+'libpthread-stubs_0.4.bb:do_populate_lic',
+'mklibs-native_0.1.44.bb:do_populate_sysroot',
+'xcb-proto_1.13.bb:do_packagedata',
+'libtool-cross_2.4.6.bb:do_populate_lic',
+'curl_7.69.1.bb:do_populate_lic',
+'shadow-sysroot_4.6.bb:do_populate_lic',
+'gettext-minimal-native_0.20.1.bb:do_populate_lic',
+'lzop_1.04.bb:do_populate_lic', 'unzip_6.0.bb:do_populate_lic',
+'libgcc_9.3.bb:do_packagedata', 'perl_5.30.1.bb:do_populate_lic',
+'udev-extraconf_1.1.bb:do_populate_lic',
+'expat_2.2.9.bb:do_package_qa',
+'binutils-cross_2.34.bb:do_populate_lic',
+'opkg_0.4.2.bb:do_populate_lic', 'libsm_1.2.3.bb:do_package_qa',
+'gcc-runtime_9.3.bb:do_package_qa',
+'libxml2_2.9.10.bb:do_packagedata',
+'python3_3.8.2.bb:do_populate_lic', 'libx11_1.6.9.bb:do_package_qa',
+'dbus_1.12.16.bb:do_packagedata', 'ncurses_6.2.bb:do_populate_lic',
+'readline_8.0.bb:do_packagedata',
+'libffi_3.3.bb:do_package_write_ipk', 'pseudo_git.bb:do_populate_lic',
+'gdbm_1.18.1.bb:do_package_write_ipk',
+'libxau_1.0.9.bb:do_package_write_ipk',
+'coreutils_8.31.bb:do_populate_lic',
+'gnu-config_git.bb:do_populate_lic', 'shadow_4.8.1.bb:do_packagedata',
+'shadow_4.8.1.bb:do_populate_lic', 'zlib_1.2.11.bb:do_packagedata',
+'util-linux_2.35.1.bb:do_populate_lic',
+'gcc-runtime_9.3.bb:do_package_write_ipk',
+'debianutils_4.9.1.bb:do_populate_lic',
+'m4_1.4.18.bb:do_package_write_ipk',
+'libxcrypt_4.4.15.bb:do_package_write_ipk',
+'bash-completion_2.10.bb:do_package_qa',
+'flex_2.6.4.bb:do_packagedata', 'e2fsprogs_1.45.4.bb:do_packagedata',
+'xcb-proto_1.13.bb:do_package_write_ipk',
+'util-linux_2.35.1.bb:do_packagedata',
+'pkgconfig_git.bb:do_populate_lic',
+'kern-tools-native_git.bb:do_populate_lic',
+'systemd-compat-units.bb:do_populate_lic',
+'ca-certificates_20190110.bb:do_package_qa',
+'openssl_1.1.1g.bb:do_populate_lic',
+'update-rc.d_0.8.bb:do_package_write_ipk',
+'dbus_1.12.16.bb:do_populate_lic', 'attr_2.4.48.bb:do_populate_lic',
+'texinfo-dummy-native.bb:do_populate_lic',
+'systemd-compat-units.bb:do_package_write_ipk',
+'shadow-securetty_4.6.bb:do_packagedata',
+'ca-certificates_20190110.bb:do_package_write_ipk',
+'acl_2.2.53.bb:do_populate_lic', 'kmod_git.bb:do_populate_lic',
+'libxcrypt_4.4.15.bb:do_packagedata',
+'initramfs-framework_1.0.bb:do_package_qa',
+'libtirpc_1.2.6.bb:do_populate_lic',
+'xz_5.2.4.bb:do_package_write_ipk', 'bzip2_1.0.8.bb:do_populate_lic',
+'util-macros_1.19.2.bb:do_populate_lic',
+'libffi_3.3.bb:do_populate_lic', 'libxml2_2.9.10.bb:do_populate_lic',
+'idh-os-initramfs-image.bb:do_packagedata',
+'zlib_1.2.11.bb:do_populate_lic', 'gdbm_1.18.1.bb:do_packagedata',
+'xkeyboard-config_2.28.bb:do_package_qa',
+'flex_2.6.4.bb:do_populate_lic',
+'linux-toradex_5.4-2.1.x.bb:do_package_write_ipk',
+'util-macros_1.19.2.bb:do_package_qa', 'acl_2.2.53.bb:do_packagedata',
+'xkeyboard-config_2.28.bb:do_packagedata',
+'attr_2.4.48.bb:do_packagedata', 'kbd_2.2.0.bb:do_packagedata',
+'bash_5.0.bb:do_packagedata', 'systemd_244.3.bb:do_package_qa',
+'libxml2_2.9.10.bb:do_populate_lic',
+'kbd_2.2.0.bb:do_package_write_ipk',
+'libcap-ng_0.7.10.bb:do_populate_lic',
+'makedevs_1.0.1.bb:do_populate_lic',
+'sqlite3_3.31.1.bb:do_packagedata',
+'initramfs-module-setup-live_1.0.bb:do_packagedata',
+'u-boot-toradex_2020.07.bb:do_package_qa',
+'readline_8.0.bb:do_populate_lic', 'expat_2.2.9.bb:do_populate_lic',
+'systemd-serialgetty.bb:do_package_qa',
+'libpthread-stubs_0.4.bb:do_packagedata',
+'attr_2.4.48.bb:do_package_write_ipk', 'libffi_3.3.bb:do_package_qa',
+'udev-extraconf_1.1.bb:do_package_write_ipk',
+'libice_1.0.10.bb:do_packagedata', 'db_5.3.28.bb:do_populate_lic',
+'libmpc_1.1.0.bb:do_populate_lic',
+'quilt-native_0.66.bb:do_populate_lic',
+'wayland-protocols_1.18.imx.bb:do_populate_lic',
+'systemd-conf_244.3.bb:do_packagedata', 'lzo_2.10.bb:do_populate_lic',
+'libnsl2_git.bb:do_populate_lic',
+'systemd-conf_244.3.bb:do_package_write_ipk',
+'gdbm_1.18.1.bb:do_populate_lic',
+'shadow_4.8.1.bb:do_package_write_ipk',
+'libpthread-stubs_0.4.bb:do_package_qa',
+'wayland_1.18.0.bb:do_populate_lic',
+'xorgproto_2019.2.bb:do_package_qa',
+'libcap-ng_0.7.10.bb:do_package_qa',
+'libxkbcommon_0.10.0.bb:do_package_write_ipk',
+'gmp_6.2.0.bb:do_packagedata',
+'libxml-parser-perl_2.46.bb:do_populate_lic',
+'libgcc_9.3.bb:do_package_qa', 'gdbm_1.18.1.bb:do_populate_lic',
+'gcc-cross_9.3.bb:do_populate_lic',
+'cracklib_2.9.5.bb:do_package_write_ipk',
+'openssl_1.1.1g.bb:do_populate_lic', 'xz_5.2.4.bb:do_populate_lic',
+'xorgproto_2019.2.bb:do_populate_lic',
+'systemd_244.3.bb:do_populate_lic',
+'libxcb_1.13.1.bb:do_populate_lic',
+'systemd-conf_244.3.bb:do_package_qa',
+'gawk_5.0.1.bb:do_populate_lic', 'libcap_2.32.bb:do_packagedata',
+'sqlite3_3.31.1.bb:do_package_write_ipk',
+'xkeyboard-config_2.28.bb:do_populate_lic',
+'elfutils_0.178.bb:do_populate_lic',
+'linux-toradex_5.4-2.1.x.bb:do_populate_lic',
+'shadow_4.8.1.bb:do_populate_lic',
+'libxcrypt_4.4.15.bb:do_package_qa', 'patch_2.7.6.bb:do_populate_lic',
+'attr_2.4.48.bb:do_populate_lic', 'gdbm_1.18.1.bb:do_package_qa',
+'zlib_1.2.11.bb:do_package_qa',
+'openssl_1.1.1g.bb:do_package_write_ipk',
+'libx11_1.6.9.bb:do_packagedata', 'autoconf_2.69.bb:do_populate_lic',
+'libxau_1.0.9.bb:do_packagedata', 'gawk_5.0.1.bb:do_package_qa',
+'linux-libc-headers_5.4.bb:do_package_write_ipk',
+'ncurses_6.2.bb:do_package_write_ipk'])
