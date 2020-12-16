@@ -1,137 +1,224 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.3992.1608103026000123170
+ by mx.groups.io with SMTP id smtpd.web09.7093.1608124121822555633
  for <yocto@lists.yoctoproject.org>;
- Tue, 15 Dec 2020 23:17:06 -0800
+ Wed, 16 Dec 2020 05:08:42 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=SpbSfTo9;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id C7C6338C0630
-	for <yocto@yoctoproject.org>; Wed, 16 Dec 2020 07:17:05 +0000 (UTC)
-Received: by mail-ed1-f52.google.com with SMTP id v22so23683482edt.9
-        for <yocto@yoctoproject.org>; Tue, 15 Dec 2020 23:17:05 -0800 (PST)
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=m/2ACJs0;
+ spf=softfail (domain: windriver.com, ip: 198.145.29.25, mailfrom: hongxu.jia@windriver.com)
+Received: from NAM04-CO1-obe.outbound.protection.outlook.com (mail-eopbgr690070.outbound.protection.outlook.com [40.107.69.70])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 6310238C063A
+	for <yocto@yoctoproject.org>; Wed, 16 Dec 2020 13:08:40 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HmyNA4sKj5NqyZPz7Zxl6G2rvhmMNWGgpJLQbgwVISzhQ6d6PYxhQtisMEDRrh36R0jXkGVfL8awm0+onV4ncIIDeU/G178nvKaPRqWMwZE7cDI8IPS3KgDKrxeiW9QHRsklCfCouvG4/oUV/lCWN376XZOpkTAqE/rG2KfIfdI+mCCETErbBatkpftJx86a7sd+O2kiacR9y8TQ6xZrKxJBmM9Ye02aZwbbDfhaOCmwHVhcx6nP9MUzikHAnvQb/6gAiSWvE+/LhArajFWCJaoShSibnxfaTYtrhsI+/5ESvOZjQJN0RV6fedDzgdvS1GC2/+TreWVpaijPmW0C9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zBE+coOc28SCc9gX7S7uDUH0q5FjJPZdb3PBlEglMx8=;
+ b=FkB8uC6968ElaQptqLuCl3X8W+h1CrNxNb6pov2QE7dB/bAZa7rnLxa2wBGrT9HhvBTa08ycqN/lkhj4jC15+8R0CJYJqVn7KXlLLg0SAI7laN7ve3jfMu/2UgpJaCDRT85CRRHjyxQeUOPf2DGBypkPoivf/ITmNC6t7+FjmJzKng6dTQMYoZzdVLTnyTRFAxMPyi1bA57SW3f23/nhVgioN3vCFaIxU4U63vlCICRaEXZShcfuZrMU3rk9WQ9ShrTB5niy9niCjRwnFfTVHHO+ORuFwwZMG+a5ezZXHGHqMnQiY1NqE/VhPMS9YUNgL+zK0SweYNa/TVBeyD9G/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Bfh+nS6uc+qgf0mYKEtJsGm2z+lHsYwV4Ni/0vtfLII=;
-        b=SpbSfTo91FGO6koYmsEMv21y12rYjiZoATRDZuI0hcs+Ht3xivwqOrMfY0dLpe71HB
-         SCd7srGvt5laGz1g5AQcyx6MqO2lhu5nqJsxhBeN+qjSgTGl2TOT663b9F4Zx9ZNQEa1
-         LC7Q+TT8PeXMKj9/gCxBCFoMFFRjsA5zTThuWAsYXAZgKp+7buskLXBgGYnkWqXRoV3v
-         D7YZWWj0vwb700VNtSQCH/xzRO+PxQX11wpI6D0IZavHDnrJqyrXDZ6H7rPAWtmNh4dy
-         Qq1g6GYsRfD3WBb2zgE44RTAFBZWe6luSUXsChnZhVMIgvQrCj0xgZu5RHfwRe9KdELs
-         ACXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Bfh+nS6uc+qgf0mYKEtJsGm2z+lHsYwV4Ni/0vtfLII=;
-        b=pBeMNQc8AHNG4HF2xgOxWGAuSV/a/wQX9ed/+V6Yvoq+TOlMM5Ma45ZMcIChM7zDO6
-         cc0o5sl0QVjfyXOs8jnL/BTlxtoJf8EiMqtuUrjGWZHY+GFvRYOy18+svx1YM7k5rBf5
-         gkFbeEIeSpgF+ao7pfxMUtDUlHVYf3KQ//ha1iTO5B3tKi0S1pntBTs3ylrrZsGx4p+6
-         Mzj0Sm6KzXFM4IpSRAAs7kj2xJ6EvG/FGegAyseti8qrSv8leRlIju2nD6H4g5AdQGKS
-         sj6yjq0qXDEevXlOhXUNWT3RXkh30YC3VczI7HcbARnWNU6gRlQbt8QVxC6nyl7Tx8sX
-         WBTw==
-X-Gm-Message-State: AOAM533lIXa7h5Z2jHV+EY1kHdLgEyLx0ztSTtI5qziTJwOkl/bRlGA8
-	4zuJjXviq2lhJh/CreEP//28EKcPE6D2kVzJXM4=
-X-Google-Smtp-Source: ABdhPJzU4msljEIFnkxqEDI43BVJ176D4451s8bVhWQYK53Gv3UX5J8BPgUQfsOVLcNKHo29uQagoEVLw7stRpjNudo=
-X-Received: by 2002:a50:bacb:: with SMTP id x69mr17162599ede.39.1608103023919;
- Tue, 15 Dec 2020 23:17:03 -0800 (PST)
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zBE+coOc28SCc9gX7S7uDUH0q5FjJPZdb3PBlEglMx8=;
+ b=m/2ACJs0dxvBoLJs6Q1zgTEIZX3YaTW506X+kKyLNmBaJkK9kGETEuIzJLlAX4v/a7Wg7WOzWbowZ5+e+oZtcSWHRYeXUI7J4eI0xSA5W5pDgXFwsYlDmdP1OZkGAxyY25E7fztCu9zSUKAC1S7bnuY17mwqu+6s1uLGOe1kOzI=
+Authentication-Results: windriver.com; dkim=none (message not signed)
+ header.d=none;windriver.com; dmarc=none action=none
+ header.from=windriver.com;
+Received: from DM6PR11MB4380.namprd11.prod.outlook.com (2603:10b6:5:14e::20)
+ by DM6PR11MB4577.namprd11.prod.outlook.com (2603:10b6:5:2a1::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.20; Wed, 16 Dec
+ 2020 13:08:38 +0000
+Received: from DM6PR11MB4380.namprd11.prod.outlook.com
+ ([fe80::15ab:1cac:c06:c1f8]) by DM6PR11MB4380.namprd11.prod.outlook.com
+ ([fe80::15ab:1cac:c06:c1f8%7]) with mapi id 15.20.3654.017; Wed, 16 Dec 2020
+ 13:08:38 +0000
+From: "hongxu" <hongxu.jia@windriver.com>
+To: randy.macleod@windriver.com,
+	philip@balister.org,
+	akuster808@gmail.com,
+	marek.belisko@gmail.com,
+	yocto@yoctoproject.org
+Subject: Review request 0/25:[meta-tensorflow] upgrade tensorflow 1.13.1 -> 2.4.0.rc4
+Date: Wed, 16 Dec 2020 21:07:57 +0800
+Message-Id: <20201216130822.28476-1-hongxu.jia@windriver.com>
+X-Mailer: git-send-email 2.18.2
+X-Originating-IP: [60.247.85.82]
+X-ClientProxiedBy: HK2PR04CA0085.apcprd04.prod.outlook.com
+ (2603:1096:202:15::29) To DM6PR11MB4380.namprd11.prod.outlook.com
+ (2603:10b6:5:14e::20)
 MIME-Version: 1.0
-References: <CAAfyv34BX_E69-9bPbT2NRikT+uXHSsNVvxg29Tsoi490ameig@mail.gmail.com>
- <48736258-f839-ab1f-dacb-aa667dd2297e@windriver.com>
-In-Reply-To: <48736258-f839-ab1f-dacb-aa667dd2297e@windriver.com>
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Wed, 16 Dec 2020 08:16:52 +0100
-Message-ID: <CAAfyv36Gt_CYfw6KY3WZeodcUjhvXO_LVkrT1cqSuHKiBss6HQ@mail.gmail.com>
-Subject: Re: [yocto] [meta-tensorflow] maintained?
-To: Randy MacLeod <randy.macleod@windriver.com>
-Cc: yocto <yocto@yoctoproject.org>, "Jia, Hongxu" <Hongxu.Jia@windriver.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from pek-lpggp1.wrs.com (60.247.85.82) by HK2PR04CA0085.apcprd04.prod.outlook.com (2603:1096:202:15::29) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12 via Frontend Transport; Wed, 16 Dec 2020 13:08:35 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: bd7c6068-ee9d-4283-729a-08d8a1c3b422
+X-MS-TrafficTypeDiagnostic: DM6PR11MB4577:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: 
+	<DM6PR11MB4577A2EF500A0258AE05580094C50@DM6PR11MB4577.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	tgyz8vz1lvOn4tEp8RKwSBLOBaT4q4e5mZjxJZPjVu47TIaACY8Oh24kPqz8Sb9x0CLsUtbgNZWSck7t0HGHcfdHv6dz7a+TkqlB4L9HIVoMs1/PX9s+WyAhVigvuH8veXBiseUnrd0FswpiymmQiO5mQTAmWMQR0hGic/3I7UmYEogrBXnIxeTrmfN+N70GcvupGW+stYOIb75c/TJMMDZBhQTuZPVl8hLhsNy58bJovzrW9hBY1mUFtDbK5K9xhRs9ciRo0rAowqfTtWb3KfFq5hVaDbEzJ7TuAyw4QKgfm5xuxJ/HODEq7zItr4H9w4EFRGYGUhHADzF8XVpqBoj2lcCIveal5cseaqRhGBysYL5pBa9ZfojgvoqrpHLN+ab6d0Xk6j9TvuWP/mW1Zg==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4380.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39850400004)(396003)(366004)(346002)(376002)(36756003)(478600001)(2616005)(83380400001)(5660300002)(6512007)(44832011)(6486002)(52116002)(6666004)(26005)(186003)(956004)(4001150100001)(316002)(66556008)(8936002)(8676002)(966005)(2906002)(6506007)(1076003)(16526019)(86362001)(66476007)(66946007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	=?us-ascii?Q?G4fNd69dnL5orM7S80JNpUodqB+/cLnHo8ad/lNCDjqX3RyERYumhc7yaMm9?=
+ =?us-ascii?Q?E683TnD9Tbd+jxmnWJjf4LRMI4T7ESj9WWB5U0+Py6vmLhcHxDR7r7rR3/3I?=
+ =?us-ascii?Q?RMfU4rJVr6bFQv3vmRS8COrXYolBBkS6ui2XWILJkcxWELCFufD5RQ5IKvrp?=
+ =?us-ascii?Q?zWQ8CNXE4PWN1tEywlXU4gCh0CfaLvFZ8QXs/5mHZ+OXmr1RHvbRxZ8fNUeN?=
+ =?us-ascii?Q?7wQsBwlra/fkj5iKQMYkVdGAjOTJYDf6AUkzv2XVBiGmxAuDQyoqEEUQcwng?=
+ =?us-ascii?Q?q+cQVctGfELHVNkaU8YpCaaykiIJuugZEei643wWzpwLn4SlYmGkE9FV5qME?=
+ =?us-ascii?Q?gkIqCAJRJczLjTP5ZGhQ8D1krj5FPZcEv6Uclg+m1UeXkss8DQH5yWMnG1iT?=
+ =?us-ascii?Q?H6WhXLmGvyfqFmLyBMRyCHPOO0qImuuC8gq7/ilmHyHJCMg4ghazaBYB+mNX?=
+ =?us-ascii?Q?Lz/yUuLLNn7y6sTe1okE76zJhpE1wWSwmCakwYx1rgTqnxvDW0jgu1cT7rbi?=
+ =?us-ascii?Q?pNIhxdHIJr6ulKmSV+J3d0SIQfV//8Kzv0d1C9uDb8tNZtzlsZUppjkRiOnG?=
+ =?us-ascii?Q?OHfv19b+4lvT4+I3BOMva5WrcFmE04pqeO1yLuMyGqelst0vBcCqU5VuFW63?=
+ =?us-ascii?Q?YtODPlZD8BH3EQbd3ZqX4ummLv470y8cpjFJJ50kqnPoXDpBV74xCTFk9C8u?=
+ =?us-ascii?Q?D7GxnccUIwKYbVROZy23eNy2WkboqBp68qi8W0o1+fvRVBQTL4gcShua+A1A?=
+ =?us-ascii?Q?D0VhF/XUKQTLeaDvvmvTRN2amctIjzS/PssQHihE9eTqCP+X1ICbJZ5ieIhi?=
+ =?us-ascii?Q?eTdGe+CareGl+UihWHrXnhXLpqKC88YNrht5QkFgnOQO+/Yb7LjTv8Ic2YMV?=
+ =?us-ascii?Q?SZcjU/azjNMgjLSfh8EjDzmUFsV0uRTfA7ZOfsrbA/UHl4u2lQuGSwyKTkYM?=
+ =?us-ascii?Q?9DdzCmL0IBs3NVZa7qCHTHU49R41EfhUsaltrNptNASrnSlIq5oU+oDJRST9?=
+ =?us-ascii?Q?/5+K?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4380.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2020 13:08:38.5296
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd7c6068-ee9d-4283-729a-08d8a1c3b422
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8dagRwiQUtdI9k4KB8mBkdQLtEDDHbR984bfYwwooG5IW5/gopfJHCAzlZblsYb2xvFjEC4C7TpY8OZn6zk0N3hmfCNotLpZJZ+T1B6Hy8w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4577
+Content-Type: text/plain
 
-On Wed, Dec 16, 2020 at 1:07 AM Randy MacLeod
-<randy.macleod@windriver.com> wrote:
->
-> On 2020-12-14 7:56 a.m., Marek Belisko wrote:
->
-> Hi,
->
-> I'm l;booking for a tensorflow recipe and forum that meta-tensorflow
-> have support for it (also saw that gatesgarth branch is there) but I
-> cannot build tensorflow + tensorflow seems to be a bit outdated.
-> Anybody know if this layer is maintained? Thanks.
->
-> I succeeded in building tensorflow last night on master with
->
-> the layers in WR Linux:
->
->    https://github.com/WindRiver-Labs/wrlinux-x
->
-> Can you explain what host distro and collection
-> of branches and versions you used and what error you saw?
-I'm using poky, meta-openembedded and meta-tegra all dunfell releases.
-I added dunfell to compatible layers in meta-tensorflow and then getting this:
-WARNING: --batch mode is deprecated. Please instead explicitly shut
-down your Bazel server using the command "bazel shutdown".
-INFO: Invocation ID: cd0ca5b3-b48c-458a-9ca1-11fb5292749b
-Loading:
-Loading: 0 packages loaded
-Loading: 4 packages loaded
-    currently loading: tensorflow
-Analyzing: 8 targets (5 packages loaded, 0 targets configured)
-Analyzing: 8 targets (179 packages loaded, 2877 targets configured)
-Analyzing: 8 targets (282 packages loaded, 8970 targets configured)
-Analyzing: 8 targets (308 packages loaded, 11447 targets configured)
-Analyzing: 8 targets (315 packages loaded, 12715 targets configured)
-Analyzing: 8 targets (341 packages loaded, 16192 targets configured)
-Analyzing: 8 targets (345 packages loaded, 18281 targets configured)
-Analyzing: 8 targets (346 packages loaded, 19684 targets configured)
-Analyzing: 8 targets (346 packages loaded, 19684 targets configured)
-Analyzing: 8 targets (346 packages loaded, 19684 targets configured)
-Analyzing: 8 targets (346 packages loaded, 19684 targets configured)
-Analyzing: 8 targets (346 packages loaded, 19684 targets configured)
-Analyzing: 8 targets (346 packages loaded, 19684 targets configured)
-ERROR: /home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tensorflow/1.13.0-r0/git/tensorflow/tools/pip_package/BUILD:149:1:
-no such package '@icu//': java.io.IOException: Error downloading
-[https://mirror.bazel.build/github.com/unicode-org/icu/archive/release-62-1.tar.gz,
-https://github.com/unicode-org/icu/archive/release-62-1.tar.gz] to
-/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tensorflow/1.13.0-r0/bazel/output_base/external/icu/release-62-1.tar.gz:
-Checksum was 86b85fbf1b251d7a658de86ce5a0c8f34151027cc60b01e1b76f167379acf181
-but wanted e15ffd84606323cbad5515bf9ecdf8061cc3bf80fb883b9e6aa162e485aa9761
-and referenced by '//tensorflow/tools/pip_package:licenses'
-ERROR: Analysis of target
-'//tensorflow/tools/pip_package:build_pip_package' failed; build
-aborted: no such package '@icu//': java.io.IOException: Error
-downloading [https://mirror.bazel.build/github.com/unicode-org/icu/archive/release-62-1.tar.gz,
-https://github.com/unicode-org/icu/archive/release-62-1.tar.gz] to
-/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tensorflow/1.13.0-r0/bazel/output_base/external/icu/release-62-1.tar.gz:
-Checksum was 86b85fbf1b251d7a658de86ce5a0c8f34151027cc60b01e1b76f167379acf181
-but wanted e15ffd84606323cbad5515bf9ecdf8061cc3bf80fb883b9e6aa162e485aa9761
-INFO: Elapsed time: 21.350s
-INFO: 0 processes.
-FAILED: Build did NOT complete successfully (346 packages loaded,
-19684 targets configured)
-FAILED: Build did NOT complete successfully (346 packages loaded,
-19684 targets configured)
-WARNING: exit code 1 from a shell command.
+# Build and Run
+## 1. Clone away
+```
+$ mkdir <ts-project>
+$ cd <ts-project>
+$ git clone git://git.yoctoproject.org/meta-tensorflow
+$ git clone git://git.openembedded.org/meta-openembedded
+$ git clone git://git.openembedded.org/openembedded-core oe-core
+$ cd oe-core
+$ git clone git://git.openembedded.org/bitbake
+```
 
-ERROR: Logfile of failure stored in:
-/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tensorflow/1.13.0-r0/temp/log.do_compile.6577
->
-> ../Randy
->
->
-BR,
+## 2. Prepare build
+```
+$ . <ts-project>/oe-core/oe-init-build-env <build>
 
-marek
---
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+# Build qemux86-64 which runqemu supports kvm.
+$ echo 'MACHINE = "qemux86-64"' >> conf/local.conf
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+$ echo 'IMAGE_INSTALL_append = " tensorflow"' >> conf/local.conf
+
+Edit conf/bblayers.conf to include other layers
+BBLAYERS ?= " \ 
+    <ts-project>/oe-core/meta \
+    <ts-project>/meta-openembedded/meta-python \
+    <ts-project>/meta-openembedded/meta-oe \
+    <ts-project>/meta-tensorflow \
+"
+```
+## 3. Build image                                                                                                                      
+```                                                                                                                                    
+cd <build>                                                                                                                             
+$ bitbake core-image-minimal                                                                                                           
+```
+
+## 4. Start qemu with slrip + kvm + 5GB memory:
+```
+$ runqemu qemux86-64 core-image-minimal slirp kvm qemuparams="-m 5120"
+```
+
+## 5. Verify the install
+```
+root@qemux86-64:~# python3 -c "import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
+tf.Tensor(-3304.6208, shape=(), dtype=float32)
+
+## 6. Run tutorial case
+### Refer: https://www.tensorflow.org/tutorials
+```
+root@qemux86-64:~# cat >code-v2.py <<ENDOF
+import tensorflow as tf
+mnist = tf.keras.datasets.mnist
+
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+x_train, x_test = x_train / 255.0, x_test / 255.0
+
+model = tf.keras.models.Sequential([
+  tf.keras.layers.Flatten(input_shape=(28, 28)),
+  tf.keras.layers.Dense(128, activation='relu'),
+  tf.keras.layers.Dropout(0.2),
+  tf.keras.layers.Dense(10)
+])
+
+predictions = model(x_train[:1]).numpy()
+tf.nn.softmax(predictions).numpy()
+loss_fn = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
+loss_fn(y_train[:1], predictions).numpy()
+
+model.compile(optimizer='adam',
+              loss=loss_fn,
+              metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=5)
+model.evaluate(x_test,  y_test, verbose=2)
+
+probability_model = tf.keras.Sequential([
+  model,
+  tf.keras.layers.Softmax()
+])
+probability_model(x_test[:5])
+
+ENDOF
+
+root@qemux86-64:~# python3 ./code-v2.py
+2020-12-15 08:16:44.171593: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:116] None of the MLIR optimization passes are enabled (registered 2)
+2020-12-15 08:16:44.184464: I tensorflow/core/platform/profile_utils/cpu_utils.cc:112] CPU Frequency: 3099995000 Hz
+Epoch 1/5
+1875/1875 [==============================] - 14s 7ms/step - loss: 0.4833 - accuracy: 0.8595
+Epoch 2/5
+1875/1875 [==============================] - 13s 7ms/step - loss: 0.1549 - accuracy: 0.9558
+Epoch 3/5
+1875/1875 [==============================] - 13s 7ms/step - loss: 0.1135 - accuracy: 0.9651
+Epoch 4/5
+1875/1875 [==============================] - 13s 7ms/step - loss: 0.0889 - accuracy: 0.9729
+Epoch 5/5
+1875/1875 [==============================] - 13s 7ms/step - loss: 0.0741 - accuracy: 0.9777
+313/313 - 1s - loss: 0.0757 - accuracy: 0.9757
+```
+## 7. TensorFlow/TensorFlow Lite C++ Image Recognition Demo                                                                            
+```                                                                                                                                    
+root@qemux86-64:~# time label_image                                                                                                    
+2020-12-15 08:18:34.853885: I tensorflow/core/platform/profile_utils/cpu_utils.cc:112] CPU Frequency: 3099995000 Hz                    
+2020-12-15 08:18:41.565167: I tensorflow/examples/label_image/main.cc:252] military uniform (653): 0.834306                            
+2020-12-15 08:18:41.567874: I tensorflow/examples/label_image/main.cc:252] mortarboard (668): 0.0218696                                
+2020-12-15 08:18:41.568936: I tensorflow/examples/label_image/main.cc:252] academic gown (401): 0.0103581                              
+2020-12-15 08:18:41.569985: I tensorflow/examples/label_image/main.cc:252] pickelhaube (716): 0.00800819                               
+2020-12-15 08:18:41.571025: I tensorflow/examples/label_image/main.cc:252] bulletproof vest (466): 0.00535086                          
+                                                                                                                                       
+real    0m7.178s                                                                                                                       
+user    0m6.101s                                                                                                                       
+sys 0m0.893s                                                                                                                           
+                                                                                                                                       
+root@qemux86-64:~# time label_image.lite                                                                                               
+INFO: Loaded model /usr/share/label_image/mobilenet_v1_1.0_224_quant.tflite                                                            
+INFO: resolved reporter
+INFO: invoked
+INFO: average time: 213.584 ms
+INFO: 0.780392: 653 military uniform
+INFO: 0.105882: 907 Windsor tie
+INFO: 0.0156863: 458 bow tie
+INFO: 0.0117647: 466 bulletproof vest
+INFO: 0.00784314: 835 suit
+
+real    0m0.233s
+user    0m0.216s
+sys 0m0.012s
