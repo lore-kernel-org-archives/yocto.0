@@ -1,20 +1,20 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.7110.1608124142930497399
+ by mx.groups.io with SMTP id smtpd.web12.7111.1608124144840590902
  for <yocto@lists.yoctoproject.org>;
- Wed, 16 Dec 2020 05:09:03 -0800
+ Wed, 16 Dec 2020 05:09:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=AKcnmJw9;
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=bvraqW2H;
  spf=softfail (domain: windriver.com, ip: 198.145.29.25, mailfrom: hongxu.jia@windriver.com)
 Received: from NAM04-CO1-obe.outbound.protection.outlook.com (mail-eopbgr690085.outbound.protection.outlook.com [40.107.69.85])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id AA29738C06F7
-	for <yocto@yoctoproject.org>; Wed, 16 Dec 2020 13:09:02 +0000 (UTC)
+	by mail.yoctoproject.org (Postfix) with ESMTPS id ACDAF38C070D
+	for <yocto@yoctoproject.org>; Wed, 16 Dec 2020 13:09:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gGNkHgVVWcmC+6ViSg0jym8mmXdgHGV8leYFCVG6CwWErGlGjm77bdyGFaYm7ZcmS+GSkHexzhikMMfVe42uNTbqS/VX0nMtTWDwY/+RFL/VIAugwP1PNffNvG4t5r9x9qt155kh3Z9dpwf4sMrsfawndeC83eO0lhrwJjduiVIK7vXExrBJWwT9NWKXzEHMlWiwl9vI2bflGLEZpqpEX5922j13VMm8UULgIfg+FxR3y+furtkclZlgdDlX7zme8Tp+asNTAd0iEmKv1Thtu8bMdhZRMCpzADxFxxXqkeUmSFmbhC35AV2fGFkKhDNno3vpeqj4scbVHcRqIAFG1w==
+ b=a6nO5Y/ePxeWfpJnh9/IPoI7VWuQql5BmxwVDE3J7A6CYJFN92F0TA6JplrN4BO4CeynB5PgzNA5mNDDSWverjBwDGGPVUUuz/srSQM2ich2jfJWMhI037VeT5ekxM2g9Ug0/7jzyoxi9Nlt5n8FnFtlJgge1xQg0b+HoX+BgAbMJqhK1bnX8ckmuB3cjzxIxmdC+bD+GLNzPEX9FsSCTaQjOtdQEt/GeSW+sh0qe4z6YS7+/RGIm0jc23M8wQpUbapIURrkWTYc0a6qwavXrhDL7o35nHJbzEMdqmIJRy8LaFPyU6ToW1r1M77/jBO+GQFDK7UXnsP/z4hnDzLk+w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Pik7gnQ2FYYMNMBmT6gAQAwogDko/as+zwrAAh+BTrk=;
- b=OJ/qYDoYgZSx5RMbi6HLAXAnz8Tg7kFzIAHIWj2WfjLAFn/HApct1/ecRPtjMBtZKr3uCSBl0U6E0MjMgxe2NCbwWCQEYa+h7MOhoc5t85Kk9nDc8t4nZi/6DcN86ihqeQ4RnfSDVcf4zEiFMRtsrKWQDIzIag99b7OqkrCjXcwM/ZPyLxU96ye2y5+uCLeRQeSJ2zOGK0ndyqHVCs0Mnm6wFn7GUGouuhdI8vTSUr31BYBzQmHX3hMa43o9YuZm84Tv+WzBbvL4cLkvYec34Deh6qUnKjxv0V02hq7Eg3GEFKNnnHBNJ7Q5y7V2J5U8lCzAXkfyJaJvoGzOf9E/1w==
+ bh=okQRyTPMnkjJoAFOvRZR0ejS8yb3nQajGmvq1JKqeb8=;
+ b=BAnXoGU//1p+lcZ1kAimDJBhQBw7Dl5k8yXAXSbmNy2Y5OFUDlWl4NukKBXEQx/txN4jmMXBeOaMwp49FVgxnH97QvWp61HFNcN7heOST6WPbHs9xGr2nCjVLyeBV8znidI1E48lLswBKMjPRS5tth9P9/yosbW75+GLPuZqmRLO/reQ+MbB5eQLR62Qeh0+F3R2J/GhGwrRQD9IdZKsTgNm9CQMfJB3LvMKlmCEvDfA5f7GrwdHPUamkj0Dh7hJGon9+EkV28ivGq2oFa+8ZgQuxgb58Khz1zl650m4qzOX0uRwpQWaeJkOrNxXSl4JOEf8krgZaCULfgrFZrhHeQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
@@ -22,8 +22,8 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=windriversystems.onmicrosoft.com;
  s=selector2-windriversystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Pik7gnQ2FYYMNMBmT6gAQAwogDko/as+zwrAAh+BTrk=;
- b=AKcnmJw9+LN2jUqw8yDomo3HWRQcxLy1fr5REo1xrIvSYq0e/Tpu9zT/Gbm2qSD+13wAo/3lf6yGs11+AEiIbUd1d5FOTlwHeTDIlDUDpokk4+IN/Wzc4ogoKLyqOiz4Cg1obWWMD1I1icNUHAXJ/XwQs5PCMOjLtXU/ENd3zlA=
+ bh=okQRyTPMnkjJoAFOvRZR0ejS8yb3nQajGmvq1JKqeb8=;
+ b=bvraqW2H1EeFepZmD7x51ovbU/vTf9c43sYtpswRygtk4jTI6TEUxQfwAYMzMcjIpTsqk3IKOPcvJpXGpDNJ5GMF2kQo0B/kPSt5LkuNdEFCpdjnN9hNgD6v6raMKtapQbfbbXjft1v2thrHMsegA45sbn1zEoMq/XuAkqu7UNY=
 Authentication-Results: windriver.com; dkim=none (message not signed)
  header.d=none;windriver.com; dmarc=none action=none
  header.from=windriver.com;
@@ -31,20 +31,20 @@ Received: from DM6PR11MB4380.namprd11.prod.outlook.com (2603:10b6:5:14e::20)
  by DM6PR11MB4577.namprd11.prod.outlook.com (2603:10b6:5:2a1::23) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.20; Wed, 16 Dec
- 2020 13:09:01 +0000
+ 2020 13:09:04 +0000
 Received: from DM6PR11MB4380.namprd11.prod.outlook.com
  ([fe80::15ab:1cac:c06:c1f8]) by DM6PR11MB4380.namprd11.prod.outlook.com
  ([fe80::15ab:1cac:c06:c1f8%7]) with mapi id 15.20.3654.017; Wed, 16 Dec 2020
- 13:09:01 +0000
+ 13:09:04 +0000
 From: "hongxu" <hongxu.jia@windriver.com>
 To: randy.macleod@windriver.com,
 	philip@balister.org,
 	akuster808@gmail.com,
 	marek.belisko@gmail.com,
 	yocto@yoctoproject.org
-Subject: [meta-tensorflow][PATCH 8/25] tensorflow-estimator: 1.13 -> 2.4
-Date: Wed, 16 Dec 2020 21:08:05 +0800
-Message-Id: <20201216130822.28476-9-hongxu.jia@windriver.com>
+Subject: [meta-tensorflow][PATCH 9/25] bazel-native/bazel.bbclass: use default Bazel toolchain to build Yocto native tools
+Date: Wed, 16 Dec 2020 21:08:06 +0800
+Message-Id: <20201216130822.28476-10-hongxu.jia@windriver.com>
 X-Mailer: git-send-email 2.18.2
 In-Reply-To: <20201216130822.28476-1-hongxu.jia@windriver.com>
 References: <20201216130822.28476-1-hongxu.jia@windriver.com>
@@ -54,137 +54,139 @@ X-ClientProxiedBy: HK2PR04CA0085.apcprd04.prod.outlook.com
  (2603:10b6:5:14e::20)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pek-lpggp1.wrs.com (60.247.85.82) by HK2PR04CA0085.apcprd04.prod.outlook.com (2603:1096:202:15::29) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12 via Frontend Transport; Wed, 16 Dec 2020 13:08:59 +0000
+Received: from pek-lpggp1.wrs.com (60.247.85.82) by HK2PR04CA0085.apcprd04.prod.outlook.com (2603:1096:202:15::29) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12 via Frontend Transport; Wed, 16 Dec 2020 13:09:02 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ec6c2197-5c27-4be6-d803-08d8a1c3c1f8
+X-MS-Office365-Filtering-Correlation-Id: df5b2f8f-636a-4b86-0d1d-08d8a1c3c34f
 X-MS-TrafficTypeDiagnostic: DM6PR11MB4577:
 X-MS-Exchange-Transport-Forked: True
 X-Microsoft-Antispam-PRVS: 
-	<DM6PR11MB4577AC7505C49B477BDD9A9C94C50@DM6PR11MB4577.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:765;
+	<DM6PR11MB457750E36B662D354FED7E6594C50@DM6PR11MB4577.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	0qygdFlSth+mwZxNsaIcc9DGEOk5zBQY3PTIvUZXLlnNb0XsgCHd9w+ef5f6KeRJt/F/lDMUOEZYcbEGu4f9Q6BrR2HwLqiJ4fUZMyQFDDHWdkpA4qHHUDBgJ7btWch3DGqdKXVrbuajtKq+C7KP3b7+MTLS8o+wRdHAEsg0TI38onoG66XLX3/CLG4SHFzHzEBgd9u5AULBRh9yyrcSoQbVLDznCe4BZl60yi00D6RNDRsrkRw6klH4pdXQKrocW06t8T42T9/bbRK7A88+g7AmROe+pL0C+JVUz9HBrvuwKcm7z19V4+MGBv/Sj8rtFPz1YbCBGFNDaSovB3tH4w==
+	kNTcTdYAvf3PEORuwSPpx4Ac1vg7t3dlv1+ceDS2R0zOA2wuyXdfY7X7pVfeqVLFfm8TPATg1xUsBuojtHFK+wEuGjKxcwnJMK1RpMjeYsK7nt7s3W6xGL11lZ7ghdCNCfffiREf2/ycZFquUUDqfEDnE3tel4RVtaimRqYk25HyxgM+qsGUVdVgw4a1vAt39eqLjyt7te5dwGP2Xp1hBA0tykcU7iQ9C6rdXWaI3peu6h47WvPC1JBq8zmoEhpu10JA4COCBZeCV+3JdWZ7qiu3tXehkXw/T2U6L9a7VoAD1Xwtteh045CN5Rs5V6JcVn5r74ZjX0sTCLaZ99N1ccEjF7Ws69kpAiifAeTI9oXV4RViW9l4TksJjIwLWCP7ngJMuXZJusEznA/Ut2DM6Q==
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4380.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39850400004)(396003)(366004)(346002)(376002)(36756003)(478600001)(2616005)(83380400001)(5660300002)(6512007)(44832011)(6486002)(52116002)(6666004)(26005)(186003)(956004)(316002)(66556008)(8936002)(8676002)(2906002)(6506007)(1076003)(16526019)(86362001)(66476007)(66946007);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4380.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39850400004)(396003)(366004)(346002)(376002)(36756003)(478600001)(2616005)(83380400001)(5660300002)(6512007)(44832011)(6486002)(52116002)(26005)(186003)(956004)(316002)(66556008)(8936002)(8676002)(2906002)(6506007)(1076003)(16526019)(86362001)(66476007)(66946007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData: 
-	=?us-ascii?Q?HQ8WChZVwICFlzQP8ydLFxv2MwU6JIQBYzvUmqrwqoVWRZoDdLkEN2KxdjuT?=
- =?us-ascii?Q?4qNm/m0YGFMf6i5qS0GHGsFIk0hTuEMZ+uUFKpBAQg1+bi5Ja67G5OaXzlxM?=
- =?us-ascii?Q?+2eRZpd0gK3entz2SD3gZ3mJ3nlFw0ydQUiwxVfcwIVlmgpqbIIEa8RAAAZY?=
- =?us-ascii?Q?G40o4QNcINGp8IggwbrNiAZH1NlS66e2CiKE+do6K3uxHrC91eGXpejCGmf5?=
- =?us-ascii?Q?XfX0n5GLf4ml4sHQSyz9CwllN+SKVUkbThUM+6PkQh60tqDNTkXKArnoiPcY?=
- =?us-ascii?Q?7eEntr0SvoQIX4aDG5l9K0tk0m26vG1R/gUFb2tVL3ivYhOR45MyQf2H12V3?=
- =?us-ascii?Q?k4tz7i/3vmg+3ICMZHFvixOcsGGfuTWo1yEcH+9fO2c6KC5u3K3AQnqCpjCw?=
- =?us-ascii?Q?U8Pb9OXRAevvHf8ir9FdFC/ctiAFdfum/cNk1gCcO8PwSCkuH7mpJcjAfd4h?=
- =?us-ascii?Q?hh3u0mSESLBI4ZTlZvVr2gkGyhYeKPaBmYG/OthgxbSqMkjOHTkw/aF5Am++?=
- =?us-ascii?Q?7ZUc020fqVNhISGP4TFLppAjV3o6ok5wXSPlPyvCEiJdfkNVzeDm/ALfF4K2?=
- =?us-ascii?Q?Oy+tWzIDXN9zkHLiTto8EbyHaEHoYoaqVRXCOPzLkuVvSRuGTYnp+TdwQTDU?=
- =?us-ascii?Q?ZV9hATqB4TymiDL2KZyvG43LhmRgm2ITMm27rV3idHSVXJh0LN8hVO4VkIvF?=
- =?us-ascii?Q?zgutAos+onCjcwMkRnzf7fb0qdSre/s/9hXx1735lyvjhhhuTI2nlumG1/1T?=
- =?us-ascii?Q?qvUMAI48S8nPgcoRBF4eJQTgzCj9XqEqIw0Pqd5/wU6UH+zMFD0xjbepe4kZ?=
- =?us-ascii?Q?7gfV4luiGdUfV0jx+PCh4a6BMCPkdGeN3C6GLJQYNWyrfCN/RijdDvU4btzI?=
- =?us-ascii?Q?URGCUVTHm+iD5653hEvvRi1DM592B66QvSUy6l4L5283FN73k9SeqlUT1Zd3?=
- =?us-ascii?Q?ZgqZHKhNKcuzR5uiM4qmK7wSw+RLfZXQlKRHiHH0g4HXzN06+3S07UbahkXI?=
- =?us-ascii?Q?WTL8?=
+	=?us-ascii?Q?RX2Lu99YApZ+pXo/B3ZLxqp8ghmHbxLNjz6Fb7f/Q/7Q/ESb3Z5j5RxhhHKm?=
+ =?us-ascii?Q?tp3R1+9U8Xinx3BbOLyDn8iqhN/YuywU9jvyDyooqODex++cdwa9Pz1IPTZc?=
+ =?us-ascii?Q?BwYeYE/To6mLBmhurAOzpNuMK4kTSAAJIVvr56Ac11+kBoMLaAFvJISrdeHO?=
+ =?us-ascii?Q?CBevAfP453svk2lBi31TxNz6us2k9oM5lkYjQjKQ6sfg9D/c2Fz/WV1JlyG7?=
+ =?us-ascii?Q?9n1dlVXoIB/GftJmvSmvz5EstpPump6Qm1kdnHaSbA51prl92hy9v6pHRZIG?=
+ =?us-ascii?Q?g9rRRsMdWCkqmXELWr4Cvn9tO6tnj6AzBIFl4b7//Clo30XL62bdqNE5gmF9?=
+ =?us-ascii?Q?fy7tHYhCkPlj7MAg68a6TFqc8Wv5nvivOuwORK1w4It70/VW0VOcEY2uWlFU?=
+ =?us-ascii?Q?R+RdhF8VrALTWC+TTdyYF8hxp2+7nuOl4lPe87LlYWCZNk4YKyzSe5M7SDYg?=
+ =?us-ascii?Q?aoXot3EYnFRrhSkNxGXj4LTe3u77QBmJANJxv2vHfBCdtjSFqUWIDdQvnm+o?=
+ =?us-ascii?Q?z0KF929deuD9RaHbwEQg0/Ie10bmMgwCpTGZDpz7G+XBpkHO2ZIlDOstvqpe?=
+ =?us-ascii?Q?zkS1pemKAUlg/HehfPGdIYQN4Xr4gyt6YGt5+8Sweyp8JwBp6IfTYWi8jJ/H?=
+ =?us-ascii?Q?RYvjhe1HMvd786TJcUoYBofTvFG8PCFsj3LbXmak5PaF8iS7AHVT+W/VMa4y?=
+ =?us-ascii?Q?f29BgUsHNOKExMYJXzzOM5w0pTkJ2+B/8II5u+NjZoOsKzKuk5FPuEzzd4sv?=
+ =?us-ascii?Q?PV9FpwDwxadEtO9qj7VJ2BHrsITULZ4PhsgDkNzM5t8UoOZ+xfuWGwSEmcA3?=
+ =?us-ascii?Q?RqrVCKcN5w3IakD2vz7Lez4yoDPArK0Bo6Y6kvc4xmtMPsWipmAbM5b8vZFg?=
+ =?us-ascii?Q?paSBk2gBNDRlEINHNT/o/cZb+EtkDovCAd7q/GyFT2v0Gd4CxFJSSwHVacA8?=
+ =?us-ascii?Q?2EBSh0FnOj8N8ZTdJfQfHVHZTCGeA2+BFvvb5rRgFQa4PLo/QkqvJ3zF18xt?=
+ =?us-ascii?Q?sN7F?=
 X-OriginatorOrg: windriver.com
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4380.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2020 13:09:01.7371
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2020 13:09:03.9738
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec6c2197-5c27-4be6-d803-08d8a1c3c1f8
+X-MS-Exchange-CrossTenant-Network-Message-Id: df5b2f8f-636a-4b86-0d1d-08d8a1c3c34f
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yOim1L5C0rgtdGu76KDOZVn/5XuBnXYV+F2n4gfVA6MdRA6j9VgW7cMoZerooVyMxw4ZptO5bbwd7vrmVRwP80X2JcerqscxkOKkBgphcek=
+X-MS-Exchange-CrossTenant-UserPrincipalName: Cs3e88UCNHzG3R83oGTmAFz4as8ckeL860ICq6YCv0SDaQEFL5laAGkHP4uBVfIx8XhyMUFT5+RV8/nRVWSwnIfYXoQ9sIuw7kNQnjhCUI0=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4577
 Content-Type: text/plain
 
+While using the default Bazel C++ toolchain to build Yocto native tools
+(bazel build --host_crosstool_top=@bazel_tools//tools/cpp:toolchain),
+it failed with `bazel references a path outside of the execution root',
+
+Add Yocto native sysroot dir (YOCTO_NATIVE_SYSROOT) to
+builtin_include_directories could fix the issue
+
+If not set YOCTO_NATIVE_SYSROOT, use NOT_SET_YOCTO_NATIVE_SYSROOT
+to replace as a warning
+
+Set YOCTO_NATIVE_SYSROOT in bazel.bbclass
+
 Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
 ---
- .../0001-customize-for-yocto.patch            | 28 +++++++++++++++++++
- .../tensorflow/tensorflow-estimator_1.13.bb   | 12 ++++++--
- 2 files changed, 37 insertions(+), 3 deletions(-)
- create mode 100644 recipes-framework/tensorflow/tensorflow-estimator/0001-customize-for-yocto.patch
+ classes/bazel.bbclass                         |  2 +
+ recipes-devtools/bazel/bazel-native_3.1.0.bb  |  1 +
+ ...-sysroot-dir-to-the-default-Bazel-to.patch | 39 +++++++++++++++++++
+ 3 files changed, 42 insertions(+)
+ create mode 100644 recipes-devtools/bazel/files/0001-add-Yocto-native-sysroot-dir-to-the-default-Bazel-to.patch
 
-diff --git a/recipes-framework/tensorflow/tensorflow-estimator/0001-customize-for-yocto.patch b/recipes-framework/tensorflow/tensorflow-estimator/0001-customize-for-yocto.patch
+diff --git a/classes/bazel.bbclass b/classes/bazel.bbclass
+index 65d2932..b4c2a7f 100644
+--- a/classes/bazel.bbclass
++++ b/classes/bazel.bbclass
+@@ -109,3 +109,5 @@ EXPORT_FUNCTIONS do_configure
+ CCACHE_DISABLE = "1"
+ 
+ inherit unsupportarch
++
++export YOCTO_NATIVE_SYSROOT="${BAZEL_OUTPUTBASE_DIR}/external/yocto_compiler/recipe-sysroot-native"
+diff --git a/recipes-devtools/bazel/bazel-native_3.1.0.bb b/recipes-devtools/bazel/bazel-native_3.1.0.bb
+index f3efde1..0555f2f 100644
+--- a/recipes-devtools/bazel/bazel-native_3.1.0.bb
++++ b/recipes-devtools/bazel/bazel-native_3.1.0.bb
+@@ -9,6 +9,7 @@ SRC_URI = "https://github.com/bazelbuild/bazel/releases/download/${PV}/bazel-${P
+            file://0001-HttpDownloader-save-download-tarball-to-distdir.patch \
+            file://0001-fix-unzip-command-not-found.patch \
+            file://0001-python3.patch \
++           file://0001-add-Yocto-native-sysroot-dir-to-the-default-Bazel-to.patch \
+ "
+ 
+ inherit native python3native
+diff --git a/recipes-devtools/bazel/files/0001-add-Yocto-native-sysroot-dir-to-the-default-Bazel-to.patch b/recipes-devtools/bazel/files/0001-add-Yocto-native-sysroot-dir-to-the-default-Bazel-to.patch
 new file mode 100644
-index 0000000..e9b66d5
+index 0000000..b08c65a
 --- /dev/null
-+++ b/recipes-framework/tensorflow/tensorflow-estimator/0001-customize-for-yocto.patch
-@@ -0,0 +1,28 @@
-+From a1bcf09a43fc44ad5e04c441ee45cc23d16cf7d2 Mon Sep 17 00:00:00 2001
++++ b/recipes-devtools/bazel/files/0001-add-Yocto-native-sysroot-dir-to-the-default-Bazel-to.patch
+@@ -0,0 +1,39 @@
++From 707ba08068432262b3d02b29804c00afe7133ff6 Mon Sep 17 00:00:00 2001
 +From: Hongxu Jia <hongxu.jia@windriver.com>
-+Date: Wed, 9 Dec 2020 17:59:01 +0800
-+Subject: [PATCH] customize for yocto
++Date: Thu, 10 Dec 2020 16:12:51 +0800
++Subject: [PATCH] add Yocto native sysroot dir to the default Bazel toolchain
++
++While using the default Bazel C++ toolchain to build Yocto native tools
++(bazel build --host_crosstool_top=@bazel_tools//tools/cpp:toolchain),
++it failed `bazel references a path outside of the execution root',
++
++Add Yocto native sysroot dir (YOCTO_NATIVE_SYSROOT) to
++builtin_include_directories could fix the issue
++
++If not set YOCTO_NATIVE_SYSROOT, use NOT_SET_YOCTO_NATIVE_SYSROOT
++to replace as a warning
 +
 +Upstream-Status: Inappropriate [oe specific]
 +
 +Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
 +---
-+ tensorflow_estimator/tools/pip_package/build_pip_package.sh | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
++ tools/cpp/unix_cc_configure.bzl | 3 +++
++ 1 file changed, 3 insertions(+)
 +
-+diff --git a/tensorflow_estimator/tools/pip_package/build_pip_package.sh b/tensorflow_estimator/tools/pip_package/build_pip_package.sh
-+index d4953a6..e08cd8a 100755
-+--- a/tensorflow_estimator/tools/pip_package/build_pip_package.sh
-++++ b/tensorflow_estimator/tools/pip_package/build_pip_package.sh
-+@@ -38,7 +38,7 @@ function prepare_src() {
++diff --git a/tools/cpp/unix_cc_configure.bzl b/tools/cpp/unix_cc_configure.bzl
++index 84f5479..e17aa9d 100755
++--- a/tools/cpp/unix_cc_configure.bzl
+++++ b/tools/cpp/unix_cc_configure.bzl
++@@ -424,6 +424,9 @@ def configure_unix_toolchain(repository_ctx, cpu_value, overriden_tools):
++         ),
++     )
 + 
-+   # Verifies all expected files are in pip.
-+   # Creates init files in all directory in pip.
-+-  python tensorflow_estimator/tools/pip_package/create_pip_helper.py --pip-root "${TMPDIR}/tensorflow_estimator/" --bazel-root "./tensorflow_estimator"
-++  nativepython3 tensorflow_estimator/tools/pip_package/create_pip_helper.py --pip-root "${TMPDIR}/tensorflow_estimator/" --bazel-root "./tensorflow_estimator"
-+ }
-+ 
-+ function build_wheel() {
+++    # Customize for Yocto
+++    builtin_include_directories.append(get_env_var(repository_ctx,"YOCTO_NATIVE_SYSROOT", "NOT_SET_YOCTO_NATIVE_SYSROOT"))
+++
++     write_builtin_include_directory_paths(repository_ctx, cc, builtin_include_directories)
++     repository_ctx.template(
++         "BUILD",
 +-- 
 +2.18.2
 +
-diff --git a/recipes-framework/tensorflow/tensorflow-estimator_1.13.bb b/recipes-framework/tensorflow/tensorflow-estimator_1.13.bb
-index f3a5098..5b2fe5d 100644
---- a/recipes-framework/tensorflow/tensorflow-estimator_1.13.bb
-+++ b/recipes-framework/tensorflow/tensorflow-estimator_1.13.bb
-@@ -3,9 +3,10 @@ learning programming."
- LICENSE = "Apache-2.0"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=01e86893010a1b87e69a213faa753ebd"
- 
--SRC_URI = "git://github.com/tensorflow/estimator.git;branch=r1.13 \
-+SRC_URI = "git://github.com/tensorflow/estimator.git;branch=r2.4 \
-+           file://0001-customize-for-yocto.patch \
-           "
--SRCREV = "340703eed78ba4854862f749ed94f91598826e79"
-+SRCREV = "c3e7f2b5bbcc35185ef71797955a28cadce28f60"
- S = "${WORKDIR}/git"
- 
- inherit python3native bazel
-@@ -19,12 +20,18 @@ DEPENDS += " \
-     python3-astor-native \
-     python3-gast-native \
-     python3-termcolor-native \
-+    python3-wrapt-native \
-+    python3-opt-einsum-native \
-+    python3-astunparse-native \
-+    flatbuffers-native \
-     tensorflow-native \
- "
- 
- do_compile () {
-     unset CC
-     export TMPDIR="${WORKDIR}"
-+    export PYTHON_BIN_PATH="${PYTHON}"
-+
-     ${BAZEL} build \
-         --subcommands --explain=${T}/explain.log \
-         --verbose_explanations --verbose_failures \
-@@ -32,7 +39,6 @@ do_compile () {
-         --python_path="${PYTHON}" \
-         //tensorflow_estimator/tools/pip_package:build_pip_package
- 
--    PYTHON_BIN_PATH="${PYTHON}" \
-     ${S}/bazel-bin/tensorflow_estimator/tools/pip_package/build_pip_package \
-         ${WORKDIR}/estimator_pip
- }
 -- 
 2.21.0
 
