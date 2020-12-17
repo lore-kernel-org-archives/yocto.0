@@ -1,49 +1,101 @@
-Received: from dd41138.kasserver.com (dd41138.kasserver.com [85.13.157.12])
- by mx.groups.io with SMTP id smtpd.web08.90.1608139053145579990
+Received: from kernel.crashing.org (kernel.crashing.org [76.164.61.194])
+ by mx.groups.io with SMTP id smtpd.web08.1052.1608166246575182435
  for <yocto@lists.yoctoproject.org>;
- Wed, 16 Dec 2020 09:17:33 -0800
+ Wed, 16 Dec 2020 16:50:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: herbrechtsmeier.net, ip: 85.13.157.12, mailfrom: stefan@herbrechtsmeier.net)
-Received: from [192.168.178.45] (unknown [94.134.94.186])
-	by dd41138.kasserver.com (Postfix) with ESMTPSA id 0887811A037A;
-	Wed, 16 Dec 2020 18:17:30 +0100 (CET)
-Subject: Re: [yocto] Cross compiler which runs on the target architecture
-To: Khem Raj <raj.khem@gmail.com>, yocto@lists.yoctoproject.org
-References: <1419325725.1777.7.camel@linuxfoundation.org>
- <026b39f3-9c86-6488-8504-10c6485c0216@herbrechtsmeier.net>
- <fbe32ce1-e555-0418-c219-722af7586b95@gmail.com>
-From: "Stefan Herbrechtsmeier" <stefan@herbrechtsmeier.net>
-Message-ID: <129586ad-8b40-3b2b-c81f-b53ef3a54950@herbrechtsmeier.net>
-Date: Wed, 16 Dec 2020 18:17:29 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ dkim=missing; spf=permerror, err=syntax error for token:  (domain: kernel.crashing.org, ip: 76.164.61.194, mailfrom: mark.hatle@kernel.crashing.org)
+Received: from Marks-MacBook-Pro-16.local ([76.164.61.198])
+	(authenticated bits=0)
+	by kernel.crashing.org (8.14.7/8.14.7) with ESMTP id 0BH0obcq024401
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
+	Wed, 16 Dec 2020 18:50:39 -0600
+Subject: Re: [yocto] [[meta-mingw][PATCH] libgcrypt: disable amd64 optimization
+To: Joshua Watt <JPEWhacker@gmail.com>, Adrian Bunk <bunk@stusta.de>
+Cc: yocto@lists.yoctoproject.org
+References: <20200225180214.114643-1-mark.hatle@kernel.crashing.org>
+ <20200225183616.GA9058@localhost>
+ <61ddf01d-b0ed-ce85-4518-79fcc48d1061@kernel.crashing.org>
+ <8c11ff9b-4e2b-178b-b713-76f44301f7c9@gmail.com>
+From: "Mark Hatle" <mark.hatle@kernel.crashing.org>
+Message-ID: <2f77450d-290a-88bb-36cf-6b26245946d7@kernel.crashing.org>
+Date: Wed, 16 Dec 2020 18:50:36 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:78.0)
+ Gecko/20100101 Thunderbird/78.5.1
 MIME-Version: 1.0
-In-Reply-To: <fbe32ce1-e555-0418-c219-722af7586b95@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <8c11ff9b-4e2b-178b-b713-76f44301f7c9@gmail.com>
+X-MIME-Autoconverted: from 8bit to base64 by kernel.crashing.org id 0BH0obcq024401
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
 
-Hi Khem,
-
-Am 09.12.20 um 19:23 schrieb Khem Raj:
-> On 12/9/20 4:38 AM, Stefan Herbrechtsmeier wrote:
->> Hi Peter and Richard,
->>
->> does a follow up of this old topic (thread) regarding a cross compiler 
->> which runs on the target architecture exists?
->> https://www.yoctoproject.org/pipermail/yocto/2014-December/022782.html
->>
-> 
-> I dont think there were further discussions. However, I think the 
-> cross-canadian approach is perhaps step in right direction. We would 
-> need to enhance it to be able to build multiple cross-canadian tuples 
-> instead of only one that we build today which is based on SDK_MACHINE 
-> and TARGET_ARCH
-
-The cross-canadian changes the HOST variables and not the TARGET_ 
-variables. I need to change the TARGET variables but keep the HOST 
-variables. It looks like this isn't really intended because the 
-HOST_PREFIX use the TARGET_PREFIX for example.
-
-Regards
-   Stefan
+Tm90ZSwgdGhpcyBpcyBzdGlsbCBoYXBwZW5pbmcuICBVc2luZyBtZXRhLW1pbmd3IHcvIGdhdGVz
+Z2FydGggdG8gYnVpbGQsIGFuZA0KaW5jbHVkaW5nIGxpYmdjcnlwdCBJIGdldCB0aGUgc2FtZSBm
+YWlsdXJlLiAgVGhlIGZhaWx1cmUgcmVzb2x2ZXMgd2l0aA0KIi0tZGlzYWJsZS1hbWQ2NC1hcy1m
+ZWF0dXJlLWRldGVjdGlvbiIuDQoNCkxvb2tpbmcgYXQgdGhlIGNvZGUsIEkgZG9uJ3QgcmVhbGx5
+IHVuZGVyc3RhbmQgaXQsIGJ1dCB0aGVyZSBhcmUgc29tZSBsaW5lcw0KYWZ0ZXIgdGhhdCB3aGlj
+aCBtYXkgYmUgbW9yZSBpbmRpY2F0aXZlIG9mIHRoZSBhY3R1YWwgZXJyb3I6DQoNCi4uLy4uL2xp
+YmdjcnlwdC0xLjguNi9jaXBoZXIvcmlqbmRhZWwuYzogSW4gZnVuY3Rpb24gJ2RvX2VuY3J5cHQn
+Og0KLi4vLi4vbGliZ2NyeXB0LTEuOC42L2NpcGhlci9yaWpuZGFlbC10YWJsZXMuaDoxMDM6MjQ6
+IGVycm9yOiBleHBlY3RlZCAnXScNCmJlZm9yZSAnLicgdG9rZW4NCsKgwqAxMDMgfCAjZGVmaW5l
+IGVuY1QgZW5jX3RhYmxlcy5UDQrCoMKgwqDCoMKgwqB8wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgXg0KLi4vLi4vbGliZ2NyeXB0LTEuOC42L2NpcGhlci9y
+aWpuZGFlbC5jOjc3NToyMDogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvICdlbmNUJw0KwqDC
+oDc3NSB8wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBbZW5jVF0gInIiIChl
+bmNUKQ0KwqDCoMKgwqDCoMKgfMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqBefn5+DQouLi8uLi9saWJnY3J5cHQtMS44LjYvY2lwaGVyL3Jpam5kYWVsLmM6Nzc2OjE3OiBl
+cnJvcjogdW5kZWZpbmVkIG5hbWVkIG9wZXJhbmQNCidlbmNUJw0KwqDCoDc3NiB8wqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDogImNjIiwgIm1lbW9yeSIsICJyOCIsICJyOSIsICJy
+MTAiLCAicjExIik7DQrCoMKgwqDCoMKgwqB8wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoF4NCg0KSSBjYW4ndCBmaW5kIGFueSBkaWZmZXJlbmNlIGluIGdlbmVyYXRlZCBjb250ZW50
+IGFueXdoZXJlLCBvbmx5IHRoYXQgdGhlDQpmdW5jdGlvbiAoLmMpIHRoYXQgaXMgZmFpbGluZyBz
+ZWVtcyB0byBoYXZlIGEgY29tbWVudHMgaXQncyBsb2FkaW5nIHNvbWV0aGluZw0KZm9yIHVzZSB3
+LyBhIFN5c1Ygc3R5bGUgZnVuY3Rpb246DQoNCiMgZWxzZQ0KwqDCoC8qIENhbGwgU3lzdGVtViBB
+QkkgZnVuY3Rpb24gd2l0aG91dCBzdG9yaW5nIG5vbi12b2xhdGlsZSBYTU0gcmVnaXN0ZXJzLA0K
+wqDCoMKgKiBhcyB0YXJnZXQgZnVuY3Rpb24gZG9lcyBub3QgdXNlIHZlY3RvciBpbnN0cnVjdGlv
+biBzZXRzLiAqLw0KwqDCoGNvbnN0IHZvaWQgKmtleSA9IGN0eC0+a2V5c2NoZW5jOw0KwqDCoHVp
+bnRwdHJfdCByb3VuZHMgPSBjdHgtPnJvdW5kczvCoMKgDQrCoMKgdWludHB0cl90IHJldDsNCsKg
+wqBhc20gdm9sYXRpbGUgKCJtb3ZxICVbZW5jVF0sICUlcjhcblx0Ig0KwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAiY2FsbHEgKiVbcmV0XVxuXHQiDQrCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoDogW3JldF0gIj1hIiAocmV0KSwNCsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCIrRCIgKGtleSksDQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAiK1MiIChieCksDQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAiK2Qi
+IChheCksDQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAiK2MiIChyb3VuZHMp
+DQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDogIjAiIChfZ2NyeV9hZXNfYW1kNjRf
+ZW5jcnlwdF9ibG9jayksDQoNCkFzIGZhciBhcyBteSBjb25maWd1cmF0aW9uIChhbGwgZ2F0ZXNn
+YXJ0aCk6DQoNCmNvbmYvYmJsYXllcnMuY29uZjoNCkJCTEFZRVJTID89ICIgXA0KwqDCoMKgwqAv
+c2NyYXRjaDIvbWhhdGxlLzIwMjEvc291cmNlcy9wb2t5L21ldGEgXA0KwqDCoMKgwqAvc2NyYXRj
+aDIvbWhhdGxlLzIwMjEvc291cmNlcy9wb2t5L21ldGEtcG9reSBcDQrCoMKgwqDCoC9zY3JhdGNo
+Mi9taGF0bGUvMjAyMS9zb3VyY2VzL21ldGEtbWluZ3cgXA0KwqDCoMKgwqAvc2NyYXRjaDIvbWhh
+dGxlLzIwMjEvc291cmNlcy9wb2t5Ly4uL21ldGEteGlsaW54L21ldGEteGlsaW54LWJzcCBcDQrC
+oMKgwqDCoC9zY3JhdGNoMi9taGF0bGUvMjAyMS9zb3VyY2VzL3Bva3kvLi4vbWV0YS14aWxpbngt
+dG9vbHMgXA0KwqDCoMKgwqAvc2NyYXRjaDIvbWhhdGxlLzIwMjEvc291cmNlcy9wb2t5Ly4uL21l
+dGEtb3BlbmVtYmVkZGVkL21ldGEtcHl0aG9uIFwNCsKgwqDCoMKgL3NjcmF0Y2gyL21oYXRsZS8y
+MDIxL3NvdXJjZXMvcG9reS8uLi9tZXRhLW9wZW5lbWJlZGRlZC9tZXRhLW9lIFwNCiINCg0KRElT
+VFJPPW5vZGlzdHJvIE1BQ0hJTkU9enlucW1wLWdlbmVyaWMgU0RLTUFDSElORT14ODZfNjQtbWlu
+Z3czMiBiaXRiYWtlDQpuYXRpdmVzZGstbGliZ2NyeXB0DQoNCk9uIDMvMy8yMCA5OjE5IEFNLCBK
+b3NodWEgV2F0dCB3cm90ZToNCj4gDQo+IE9uIDIvMjUvMjAgMTozMiBQTSwgTWFyayBIYXRsZSB3
+cm90ZToNCj4+DQo+PiBPbiAyLzI1LzIwIDEyOjM2IFBNLCBBZHJpYW4gQnVuayB3cm90ZToNCj4+
+PiBPbiBUdWUsIEZlYiAyNSwgMjAyMCBhdCAxMjowMjoxNFBNIC0wNjAwLCBNYXJrIEhhdGxlIHdy
+b3RlOg0KPj4+PiBhbWQ2NCBvcHRpbWl6YXRpb24gd2hlbiB1c2luZyB3aXRoIG1pbmd3MzIgc29t
+ZXRpbWVzIHJlc3VsdHMgaW46DQo+Pj4+DQo+Pj4+IHwgLi4vLi4vbGliZ2NyeXB0LTEuOC40L2Np
+cGhlci9yaWpuZGFlbC10YWJsZXMuaDoxMDM6MjQ6IGVycm9yOiBleHBlY3RlZA0KPj4+PiAnXScg
+YmVmb3JlICcuJyB0b2tlbg0KPj4+PiB8ICAxMDMgfCAjZGVmaW5lIGVuY1QgZW5jX3RhYmxlcy5U
+DQo+Pj4+IC4uLg0KPj4+IFBsZWFzZSBzZW5kIGEgY29tcGxldGUgYnVpbGQgbG9nLCB0aGlzIGxv
+b2tzIGxpa2UgYSBwYXJhbGxlbCBidWlsZA0KPj4+IGZhaWx1cmUgd2hlcmUgc29tZSAuYyBpcyBj
+b21waWxlZCBiZWZvcmUgc29tZSBoZWFkZXIgaXQgdXNlcyBpcw0KPj4+IGZ1bGx5IGdlbmVyYXRl
+ZCAob3Igc29tZXRoaW5nIHNpbWlsYXIpLg0KPj4gSSdsbCByZXBseSB3aXRoIGEgcHJpdmF0ZSBl
+bWFpbCB0byB3aGVyZSB5b3UgY2FuIGdldCBhIGNvcHkgb2YgdGhlIGJ1aWxkIGRpcmVjdG9yeS4N
+Cj4+DQo+Pj4+IC0tLSBhL3JlY2lwZXMtc3VwcG9ydC9saWJnY3J5cHQvbGliZ2NyeXB0XyUuYmJh
+cHBlbmQNCj4+Pj4gKysrIGIvcmVjaXBlcy1zdXBwb3J0L2xpYmdjcnlwdC9saWJnY3J5cHRfJS5i
+YmFwcGVuZA0KPj4+PiBAQCAtMSwzICsxLDQgQEANCj4+Pj4gK0VYVFJBX09FQ09ORl9hcHBlbmRf
+bWluZ3czMiA9ICIgLS1kaXNhYmxlLWFtZDY0LWFzLWZlYXR1cmUtZGV0ZWN0aW9uIg0KPj4+PiAu
+Li4NCj4+PiBJIGFzc3VtZSBQQVJBTExFTF9NQUtFID0gIiIgd291bGQgYWxzbyB3b3JrIGluc3Rl
+YWQ/DQo+PiBJIHRyaWVkIHRoaXMgYW5kIGl0IGRpZG4ndCBhcHBlYXIgdG8gbWFrZSBhIGRpZmZl
+cmVuY2UuICBJIG9ubHkgc2VlIHRoZSBwcm9ibGVtDQo+PiB3aGVuIGJ1aWxkaW5nIGZvciBtaW5n
+dzMyLg0KPiANCj4gRGlkIHdlIGV2ZXIgZmlndXJlIG91dCB3aGF0IHdhcyBjYXVzaW5nIHRoaXM/
+IEl0IGRvZXMgYXBwZWFyIHRvIGJlIHNvbWUgDQo+IHNvcnQgb2YgcmFjZSBjb25kaXRpb24gYXQg
+dGhlIG1vbWVudCwgYW5kIEknbSBzdXJwcmlzZWQgd2UgaGF2ZW4ndCBzZWVuIA0KPiBpdCBvbiB0
+aGUgYXV0b2J1aWxkZXIgKHdlIGhhdmUgcHJldHR5IGdvb2QgdGVzdCBjb3ZlcmFnZSBmb3IgbWV0
+YS1taW5ndyANCj4gdGhlcmUpLg0KPiANCj4+DQo+PiBJJ3ZlIG5ldmVyIHNlZW4gYW55IGlzc3Vl
+cyBmb3IgYW55IG90aGVyIFNESyB0YXJnZXQuDQo+Pg0KPj4gLS1NYXJrDQo+Pg0KPj4+IGN1DQo+
+Pj4gQWRyaWFuDQo+Pj4NCj4+Pg0KPj4+IA0K
