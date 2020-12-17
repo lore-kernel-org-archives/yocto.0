@@ -1,101 +1,160 @@
-Received: from kernel.crashing.org (kernel.crashing.org [76.164.61.194])
- by mx.groups.io with SMTP id smtpd.web08.1052.1608166246575182435
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+ by mx.groups.io with SMTP id smtpd.web10.10931.1608221850746427063
  for <yocto@lists.yoctoproject.org>;
- Wed, 16 Dec 2020 16:50:46 -0800
+ Thu, 17 Dec 2020 08:17:30 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=syntax error for token:  (domain: kernel.crashing.org, ip: 76.164.61.194, mailfrom: mark.hatle@kernel.crashing.org)
-Received: from Marks-MacBook-Pro-16.local ([76.164.61.198])
-	(authenticated bits=0)
-	by kernel.crashing.org (8.14.7/8.14.7) with ESMTP id 0BH0obcq024401
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
-	Wed, 16 Dec 2020 18:50:39 -0600
-Subject: Re: [yocto] [[meta-mingw][PATCH] libgcrypt: disable amd64 optimization
-To: Joshua Watt <JPEWhacker@gmail.com>, Adrian Bunk <bunk@stusta.de>
-Cc: yocto@lists.yoctoproject.org
-References: <20200225180214.114643-1-mark.hatle@kernel.crashing.org>
- <20200225183616.GA9058@localhost>
- <61ddf01d-b0ed-ce85-4518-79fcc48d1061@kernel.crashing.org>
- <8c11ff9b-4e2b-178b-b713-76f44301f7c9@gmail.com>
-From: "Mark Hatle" <mark.hatle@kernel.crashing.org>
-Message-ID: <2f77450d-290a-88bb-36cf-6b26245946d7@kernel.crashing.org>
-Date: Wed, 16 Dec 2020 18:50:36 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:78.0)
- Gecko/20100101 Thunderbird/78.5.1
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=RYQveF33;
+ spf=pass (domain: gmail.com, ip: 209.85.160.180, mailfrom: raj.khem@gmail.com)
+Received: by mail-qt1-f180.google.com with SMTP id h19so20429297qtq.13
+        for <yocto@lists.yoctoproject.org>; Thu, 17 Dec 2020 08:17:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=k4d/oKXm5SCSxsMG5pBW15SttFKjEyAytKF3mNg3IJ4=;
+        b=RYQveF33PYNrFrCixvqli8S7Nku1JQbZnubPZCbBNDYDb1NSMQnYA4g7qUA52V94Tl
+         NkEdkB9fF2zT+MFyr59UASWgAHBEglo/1Gb480Dkv348tpBHG9RR0X06Va9FTeveVKFk
+         rJKoIRxVZZ/2AwTnDWtSCIwOJcFhGE7CZ3tZFykp0DHSu9YoPywdCz25kaOEVAioJu97
+         6T0kA8GDyXmDpXrbqULoovmeuT0PdWvPxlyO7926/C1pPoWoJVP4lCYrKEHs6G8Ev/3B
+         Jt7SGgUH6JfQT19BNgNZgCViPDBBmfqzIxl4xx+Fu3SOjxySJGHZfLTw1lgQRK3irNta
+         5G2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=k4d/oKXm5SCSxsMG5pBW15SttFKjEyAytKF3mNg3IJ4=;
+        b=iqqnVCZmoxeIoy7CeWD/f9+9IGZghU5fMxGuirT1b5hRtHydQKaLEa5joAZ9LsbRuS
+         eyEPrgiNxlkaW2n4nNUwd15n4XlgzpvKfViZapTHx1cyoJqUqe4bvaJk12Hms+u5x3ba
+         McCXcWb5Y2NHnHIFcPPPF6lz1+3ee/kHnc/FMCIfjq1h5ba8ck/uiqfYf6FSFpK2VwBb
+         NKqGqv8XRjD3EjZol/aNveSx4tbDxYtaDd0sBXK7X21Tdtfi8i6QB3QA5qz91H9tTJCf
+         BcD/Flg4RZFR5cyMo0y2CcSOTJAfuakf0zwv2YTGFnpmNl0idc253dbu1x4HowHMTqRm
+         9wzg==
+X-Gm-Message-State: AOAM530fWBLGXI11U2zredDBGJ5mDwtumz6uTMbWzTaW3N2iDlbA+KE8
+	0abWY+jlomgI0XtQ2OAfR2hEpxLcxXQRXLx6Bec=
+X-Google-Smtp-Source: ABdhPJw0u0yQnuQnNmNGm+CwBvNqxvUFhv/PsKAIcGzFygl1B5pWaj++6YC+GzReKL6SZeBbqafvVZ7aWgWkoGS57Y8=
+X-Received: by 2002:ac8:3417:: with SMTP id u23mr47879140qtb.80.1608221849631;
+ Thu, 17 Dec 2020 08:17:29 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <8c11ff9b-4e2b-178b-b713-76f44301f7c9@gmail.com>
-X-MIME-Autoconverted: from 8bit to base64 by kernel.crashing.org id 0BH0obcq024401
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: base64
+References: <20200225180214.114643-1-mark.hatle@kernel.crashing.org>
+ <20200225183616.GA9058@localhost> <61ddf01d-b0ed-ce85-4518-79fcc48d1061@kernel.crashing.org>
+ <8c11ff9b-4e2b-178b-b713-76f44301f7c9@gmail.com> <2f77450d-290a-88bb-36cf-6b26245946d7@kernel.crashing.org>
+In-Reply-To: <2f77450d-290a-88bb-36cf-6b26245946d7@kernel.crashing.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Thu, 17 Dec 2020 08:17:03 -0800
+Message-ID: <CAMKF1sqqhT_V7eW6M1mYy+ehMADmpcYQtXf1-MSkEKwaP9GnAA@mail.gmail.com>
+Subject: Re: [yocto] [[meta-mingw][PATCH] libgcrypt: disable amd64 optimization
+To: Mark Hatle <mark.hatle@kernel.crashing.org>
+Cc: Joshua Watt <JPEWhacker@gmail.com>, Adrian Bunk <bunk@stusta.de>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Tm90ZSwgdGhpcyBpcyBzdGlsbCBoYXBwZW5pbmcuICBVc2luZyBtZXRhLW1pbmd3IHcvIGdhdGVz
-Z2FydGggdG8gYnVpbGQsIGFuZA0KaW5jbHVkaW5nIGxpYmdjcnlwdCBJIGdldCB0aGUgc2FtZSBm
-YWlsdXJlLiAgVGhlIGZhaWx1cmUgcmVzb2x2ZXMgd2l0aA0KIi0tZGlzYWJsZS1hbWQ2NC1hcy1m
-ZWF0dXJlLWRldGVjdGlvbiIuDQoNCkxvb2tpbmcgYXQgdGhlIGNvZGUsIEkgZG9uJ3QgcmVhbGx5
-IHVuZGVyc3RhbmQgaXQsIGJ1dCB0aGVyZSBhcmUgc29tZSBsaW5lcw0KYWZ0ZXIgdGhhdCB3aGlj
-aCBtYXkgYmUgbW9yZSBpbmRpY2F0aXZlIG9mIHRoZSBhY3R1YWwgZXJyb3I6DQoNCi4uLy4uL2xp
-YmdjcnlwdC0xLjguNi9jaXBoZXIvcmlqbmRhZWwuYzogSW4gZnVuY3Rpb24gJ2RvX2VuY3J5cHQn
-Og0KLi4vLi4vbGliZ2NyeXB0LTEuOC42L2NpcGhlci9yaWpuZGFlbC10YWJsZXMuaDoxMDM6MjQ6
-IGVycm9yOiBleHBlY3RlZCAnXScNCmJlZm9yZSAnLicgdG9rZW4NCsKgwqAxMDMgfCAjZGVmaW5l
-IGVuY1QgZW5jX3RhYmxlcy5UDQrCoMKgwqDCoMKgwqB8wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgXg0KLi4vLi4vbGliZ2NyeXB0LTEuOC42L2NpcGhlci9y
-aWpuZGFlbC5jOjc3NToyMDogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvICdlbmNUJw0KwqDC
-oDc3NSB8wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBbZW5jVF0gInIiIChl
-bmNUKQ0KwqDCoMKgwqDCoMKgfMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqBefn5+DQouLi8uLi9saWJnY3J5cHQtMS44LjYvY2lwaGVyL3Jpam5kYWVsLmM6Nzc2OjE3OiBl
-cnJvcjogdW5kZWZpbmVkIG5hbWVkIG9wZXJhbmQNCidlbmNUJw0KwqDCoDc3NiB8wqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDogImNjIiwgIm1lbW9yeSIsICJyOCIsICJyOSIsICJy
-MTAiLCAicjExIik7DQrCoMKgwqDCoMKgwqB8wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoF4NCg0KSSBjYW4ndCBmaW5kIGFueSBkaWZmZXJlbmNlIGluIGdlbmVyYXRlZCBjb250ZW50
-IGFueXdoZXJlLCBvbmx5IHRoYXQgdGhlDQpmdW5jdGlvbiAoLmMpIHRoYXQgaXMgZmFpbGluZyBz
-ZWVtcyB0byBoYXZlIGEgY29tbWVudHMgaXQncyBsb2FkaW5nIHNvbWV0aGluZw0KZm9yIHVzZSB3
-LyBhIFN5c1Ygc3R5bGUgZnVuY3Rpb246DQoNCiMgZWxzZQ0KwqDCoC8qIENhbGwgU3lzdGVtViBB
-QkkgZnVuY3Rpb24gd2l0aG91dCBzdG9yaW5nIG5vbi12b2xhdGlsZSBYTU0gcmVnaXN0ZXJzLA0K
-wqDCoMKgKiBhcyB0YXJnZXQgZnVuY3Rpb24gZG9lcyBub3QgdXNlIHZlY3RvciBpbnN0cnVjdGlv
-biBzZXRzLiAqLw0KwqDCoGNvbnN0IHZvaWQgKmtleSA9IGN0eC0+a2V5c2NoZW5jOw0KwqDCoHVp
-bnRwdHJfdCByb3VuZHMgPSBjdHgtPnJvdW5kczvCoMKgDQrCoMKgdWludHB0cl90IHJldDsNCsKg
-wqBhc20gdm9sYXRpbGUgKCJtb3ZxICVbZW5jVF0sICUlcjhcblx0Ig0KwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAiY2FsbHEgKiVbcmV0XVxuXHQiDQrCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoDogW3JldF0gIj1hIiAocmV0KSwNCsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCIrRCIgKGtleSksDQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAiK1MiIChieCksDQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAiK2Qi
-IChheCksDQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAiK2MiIChyb3VuZHMp
-DQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDogIjAiIChfZ2NyeV9hZXNfYW1kNjRf
-ZW5jcnlwdF9ibG9jayksDQoNCkFzIGZhciBhcyBteSBjb25maWd1cmF0aW9uIChhbGwgZ2F0ZXNn
-YXJ0aCk6DQoNCmNvbmYvYmJsYXllcnMuY29uZjoNCkJCTEFZRVJTID89ICIgXA0KwqDCoMKgwqAv
-c2NyYXRjaDIvbWhhdGxlLzIwMjEvc291cmNlcy9wb2t5L21ldGEgXA0KwqDCoMKgwqAvc2NyYXRj
-aDIvbWhhdGxlLzIwMjEvc291cmNlcy9wb2t5L21ldGEtcG9reSBcDQrCoMKgwqDCoC9zY3JhdGNo
-Mi9taGF0bGUvMjAyMS9zb3VyY2VzL21ldGEtbWluZ3cgXA0KwqDCoMKgwqAvc2NyYXRjaDIvbWhh
-dGxlLzIwMjEvc291cmNlcy9wb2t5Ly4uL21ldGEteGlsaW54L21ldGEteGlsaW54LWJzcCBcDQrC
-oMKgwqDCoC9zY3JhdGNoMi9taGF0bGUvMjAyMS9zb3VyY2VzL3Bva3kvLi4vbWV0YS14aWxpbngt
-dG9vbHMgXA0KwqDCoMKgwqAvc2NyYXRjaDIvbWhhdGxlLzIwMjEvc291cmNlcy9wb2t5Ly4uL21l
-dGEtb3BlbmVtYmVkZGVkL21ldGEtcHl0aG9uIFwNCsKgwqDCoMKgL3NjcmF0Y2gyL21oYXRsZS8y
-MDIxL3NvdXJjZXMvcG9reS8uLi9tZXRhLW9wZW5lbWJlZGRlZC9tZXRhLW9lIFwNCiINCg0KRElT
-VFJPPW5vZGlzdHJvIE1BQ0hJTkU9enlucW1wLWdlbmVyaWMgU0RLTUFDSElORT14ODZfNjQtbWlu
-Z3czMiBiaXRiYWtlDQpuYXRpdmVzZGstbGliZ2NyeXB0DQoNCk9uIDMvMy8yMCA5OjE5IEFNLCBK
-b3NodWEgV2F0dCB3cm90ZToNCj4gDQo+IE9uIDIvMjUvMjAgMTozMiBQTSwgTWFyayBIYXRsZSB3
-cm90ZToNCj4+DQo+PiBPbiAyLzI1LzIwIDEyOjM2IFBNLCBBZHJpYW4gQnVuayB3cm90ZToNCj4+
-PiBPbiBUdWUsIEZlYiAyNSwgMjAyMCBhdCAxMjowMjoxNFBNIC0wNjAwLCBNYXJrIEhhdGxlIHdy
-b3RlOg0KPj4+PiBhbWQ2NCBvcHRpbWl6YXRpb24gd2hlbiB1c2luZyB3aXRoIG1pbmd3MzIgc29t
-ZXRpbWVzIHJlc3VsdHMgaW46DQo+Pj4+DQo+Pj4+IHwgLi4vLi4vbGliZ2NyeXB0LTEuOC40L2Np
-cGhlci9yaWpuZGFlbC10YWJsZXMuaDoxMDM6MjQ6IGVycm9yOiBleHBlY3RlZA0KPj4+PiAnXScg
-YmVmb3JlICcuJyB0b2tlbg0KPj4+PiB8ICAxMDMgfCAjZGVmaW5lIGVuY1QgZW5jX3RhYmxlcy5U
-DQo+Pj4+IC4uLg0KPj4+IFBsZWFzZSBzZW5kIGEgY29tcGxldGUgYnVpbGQgbG9nLCB0aGlzIGxv
-b2tzIGxpa2UgYSBwYXJhbGxlbCBidWlsZA0KPj4+IGZhaWx1cmUgd2hlcmUgc29tZSAuYyBpcyBj
-b21waWxlZCBiZWZvcmUgc29tZSBoZWFkZXIgaXQgdXNlcyBpcw0KPj4+IGZ1bGx5IGdlbmVyYXRl
-ZCAob3Igc29tZXRoaW5nIHNpbWlsYXIpLg0KPj4gSSdsbCByZXBseSB3aXRoIGEgcHJpdmF0ZSBl
-bWFpbCB0byB3aGVyZSB5b3UgY2FuIGdldCBhIGNvcHkgb2YgdGhlIGJ1aWxkIGRpcmVjdG9yeS4N
-Cj4+DQo+Pj4+IC0tLSBhL3JlY2lwZXMtc3VwcG9ydC9saWJnY3J5cHQvbGliZ2NyeXB0XyUuYmJh
-cHBlbmQNCj4+Pj4gKysrIGIvcmVjaXBlcy1zdXBwb3J0L2xpYmdjcnlwdC9saWJnY3J5cHRfJS5i
-YmFwcGVuZA0KPj4+PiBAQCAtMSwzICsxLDQgQEANCj4+Pj4gK0VYVFJBX09FQ09ORl9hcHBlbmRf
-bWluZ3czMiA9ICIgLS1kaXNhYmxlLWFtZDY0LWFzLWZlYXR1cmUtZGV0ZWN0aW9uIg0KPj4+PiAu
-Li4NCj4+PiBJIGFzc3VtZSBQQVJBTExFTF9NQUtFID0gIiIgd291bGQgYWxzbyB3b3JrIGluc3Rl
-YWQ/DQo+PiBJIHRyaWVkIHRoaXMgYW5kIGl0IGRpZG4ndCBhcHBlYXIgdG8gbWFrZSBhIGRpZmZl
-cmVuY2UuICBJIG9ubHkgc2VlIHRoZSBwcm9ibGVtDQo+PiB3aGVuIGJ1aWxkaW5nIGZvciBtaW5n
-dzMyLg0KPiANCj4gRGlkIHdlIGV2ZXIgZmlndXJlIG91dCB3aGF0IHdhcyBjYXVzaW5nIHRoaXM/
-IEl0IGRvZXMgYXBwZWFyIHRvIGJlIHNvbWUgDQo+IHNvcnQgb2YgcmFjZSBjb25kaXRpb24gYXQg
-dGhlIG1vbWVudCwgYW5kIEknbSBzdXJwcmlzZWQgd2UgaGF2ZW4ndCBzZWVuIA0KPiBpdCBvbiB0
-aGUgYXV0b2J1aWxkZXIgKHdlIGhhdmUgcHJldHR5IGdvb2QgdGVzdCBjb3ZlcmFnZSBmb3IgbWV0
-YS1taW5ndyANCj4gdGhlcmUpLg0KPiANCj4+DQo+PiBJJ3ZlIG5ldmVyIHNlZW4gYW55IGlzc3Vl
-cyBmb3IgYW55IG90aGVyIFNESyB0YXJnZXQuDQo+Pg0KPj4gLS1NYXJrDQo+Pg0KPj4+IGN1DQo+
-Pj4gQWRyaWFuDQo+Pj4NCj4+Pg0KPj4+IA0K
+On Wed, Dec 16, 2020 at 4:50 PM Mark Hatle
+<mark.hatle@kernel.crashing.org> wrote:
+>
+> Note, this is still happening.  Using meta-mingw w/ gatesgarth to build, and
+> including libgcrypt I get the same failure.  The failure resolves with
+> "--disable-amd64-as-feature-detection".
+>
+> Looking at the code, I don't really understand it, but there are some lines
+> after that which may be more indicative of the actual error:
+>
+> ../../libgcrypt-1.8.6/cipher/rijndael.c: In function 'do_encrypt':
+> ../../libgcrypt-1.8.6/cipher/rijndael-tables.h:103:24: error: expected ']'
+> before '.' token
+>   103 | #define encT enc_tables.T
+>       |                        ^
+> ../../libgcrypt-1.8.6/cipher/rijndael.c:775:20: note: in expansion of macro 'encT'
+>   775 |                   [encT] "r" (encT)
+>       |                    ^~~~
+> ../../libgcrypt-1.8.6/cipher/rijndael.c:776:17: error: undefined named operand
+> 'encT'
+>   776 |                 : "cc", "memory", "r8", "r9", "r10", "r11");
+>       |                 ^
+>
+
+does it have --enable-optimization switch on ? if so then its probing
+the build platform
+for features and detects XMM registers and enables them but perhaps
+does not account
+for it not being a sysv ABI based platform for right ABI calling convention
+may be asm code have made some assumptions here
+
+> I can't find any difference in generated content anywhere, only that the
+> function (.c) that is failing seems to have a comments it's loading something
+> for use w/ a SysV style function:
+>
+> # else
+>   /* Call SystemV ABI function without storing non-volatile XMM registers,
+>    * as target function does not use vector instruction sets. */
+>   const void *key = ctx->keyschenc;
+>   uintptr_t rounds = ctx->rounds;
+>   uintptr_t ret;
+>   asm volatile ("movq %[encT], %%r8\n\t"
+>                 "callq *%[ret]\n\t"
+>                 : [ret] "=a" (ret),
+>                   "+D" (key),
+>                   "+S" (bx),
+>                   "+d" (ax),
+>                   "+c" (rounds)
+>                 : "0" (_gcry_aes_amd64_encrypt_block),
+>
+> As far as my configuration (all gatesgarth):
+>
+> conf/bblayers.conf:
+> BBLAYERS ?= " \
+>     /scratch2/mhatle/2021/sources/poky/meta \
+>     /scratch2/mhatle/2021/sources/poky/meta-poky \
+>     /scratch2/mhatle/2021/sources/meta-mingw \
+>     /scratch2/mhatle/2021/sources/poky/../meta-xilinx/meta-xilinx-bsp \
+>     /scratch2/mhatle/2021/sources/poky/../meta-xilinx-tools \
+>     /scratch2/mhatle/2021/sources/poky/../meta-openembedded/meta-python \
+>     /scratch2/mhatle/2021/sources/poky/../meta-openembedded/meta-oe \
+> "
+>
+> DISTRO=nodistro MACHINE=zynqmp-generic SDKMACHINE=x86_64-mingw32 bitbake
+> nativesdk-libgcrypt
+>
+> On 3/3/20 9:19 AM, Joshua Watt wrote:
+> >
+> > On 2/25/20 1:32 PM, Mark Hatle wrote:
+> >>
+> >> On 2/25/20 12:36 PM, Adrian Bunk wrote:
+> >>> On Tue, Feb 25, 2020 at 12:02:14PM -0600, Mark Hatle wrote:
+> >>>> amd64 optimization when using with mingw32 sometimes results in:
+> >>>>
+> >>>> | ../../libgcrypt-1.8.4/cipher/rijndael-tables.h:103:24: error: expected
+> >>>> ']' before '.' token
+> >>>> |  103 | #define encT enc_tables.T
+> >>>> ...
+> >>> Please send a complete build log, this looks like a parallel build
+> >>> failure where some .c is compiled before some header it uses is
+> >>> fully generated (or something similar).
+> >> I'll reply with a private email to where you can get a copy of the build directory.
+> >>
+> >>>> --- a/recipes-support/libgcrypt/libgcrypt_%.bbappend
+> >>>> +++ b/recipes-support/libgcrypt/libgcrypt_%.bbappend
+> >>>> @@ -1,3 +1,4 @@
+> >>>> +EXTRA_OECONF_append_mingw32 = " --disable-amd64-as-feature-detection"
+> >>>> ...
+> >>> I assume PARALLEL_MAKE = "" would also work instead?
+> >> I tried this and it didn't appear to make a difference.  I only see the problem
+> >> when building for mingw32.
+> >
+> > Did we ever figure out what was causing this? It does appear to be some
+> > sort of race condition at the moment, and I'm surprised we haven't seen
+> > it on the autobuilder (we have pretty good test coverage for meta-mingw
+> > there).
+> >
+> >>
+> >> I've never seen any issues for any other SDK target.
+> >>
+> >> --Mark
+> >>
+> >>> cu
+> >>> Adrian
+> >>>
+> >>>
+> >>>
+>
+> 
+>
