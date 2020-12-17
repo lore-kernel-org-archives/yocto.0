@@ -1,169 +1,94 @@
-Received: from kernel.crashing.org (kernel.crashing.org [76.164.61.194])
- by mx.groups.io with SMTP id smtpd.web09.11417.1608223556677567446
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+ by mx.groups.io with SMTP id smtpd.web10.11726.1608224236644718452
  for <yocto@lists.yoctoproject.org>;
- Thu, 17 Dec 2020 08:45:57 -0800
+ Thu, 17 Dec 2020 08:57:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=syntax error for token:  (domain: kernel.crashing.org, ip: 76.164.61.194, mailfrom: mark.hatle@kernel.crashing.org)
-Received: from Marks-MacBook-Pro-16.local ([76.164.61.198])
-	(authenticated bits=0)
-	by kernel.crashing.org (8.14.7/8.14.7) with ESMTP id 0BHGjdZr001949
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
-	Thu, 17 Dec 2020 10:45:46 -0600
-Subject: Re: [yocto] [[meta-mingw][PATCH] libgcrypt: disable amd64 optimization
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Joshua Watt <JPEWhacker@gmail.com>, Adrian Bunk <bunk@stusta.de>,
-        Yocto-mailing-list <yocto@lists.yoctoproject.org>
-References: <20200225180214.114643-1-mark.hatle@kernel.crashing.org>
- <20200225183616.GA9058@localhost>
- <61ddf01d-b0ed-ce85-4518-79fcc48d1061@kernel.crashing.org>
- <8c11ff9b-4e2b-178b-b713-76f44301f7c9@gmail.com>
- <2f77450d-290a-88bb-36cf-6b26245946d7@kernel.crashing.org>
- <CAMKF1sqqhT_V7eW6M1mYy+ehMADmpcYQtXf1-MSkEKwaP9GnAA@mail.gmail.com>
-From: "Mark Hatle" <mark.hatle@kernel.crashing.org>
-Message-ID: <3212f708-bfe5-4da7-04bd-a45a0e8fb3ee@kernel.crashing.org>
-Date: Thu, 17 Dec 2020 10:45:38 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:78.0)
- Gecko/20100101 Thunderbird/78.5.1
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=qsTCvU1G;
+ spf=pass (domain: gmail.com, ip: 209.85.166.179, mailfrom: twoerner@gmail.com)
+Received: by mail-il1-f179.google.com with SMTP id u12so26378694ilv.3
+        for <yocto@lists.yoctoproject.org>; Thu, 17 Dec 2020 08:57:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=YMADjUcD+rSVAu5ykMzV9IuVJDsi7mw6kKUD7/mIt80=;
+        b=qsTCvU1GpvHehdAIbXqhE6DE+/WtWcMsekB9gpoAODEfDmnaGFBRRqA8me1qkS47+z
+         u4EskilCW+l4ssk7HorskiepoWAZFyvnb+qQVn6PY5l6r0I95BrFU+U2l7Ua93xDVeHs
+         PLHHkaQ6pUOZ5C8iQ6/oOe6tqeu8D7+Ajy43f7g/YBa6M4Jl4Xsjohy1eIsLn+lFaWPK
+         o8W0gLxvBPkMTOuWtsK4sRFRLwSFQyFiHDFSc+6P6e6QaIYcdsdSoXag/UWj1wHI3U4f
+         NxSPXzKawV6dq43TvafnjJpXbTpo4grRuOidJ80B6BXIUBDTjJavWg71rT8VFWuS8iiK
+         6ySw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=YMADjUcD+rSVAu5ykMzV9IuVJDsi7mw6kKUD7/mIt80=;
+        b=pM6UOuLzaMu3m2ouAE+AMZV5olLKgs905KQuCNRedhK6yTB4IK/NKhjBC9a5O9xAwb
+         CyyaheMm2plxl2ghs22SMRbIhp7mynhGzc/mTKoC9jQacIHRl6A55t35K5M6itvayyZQ
+         IlXjbfhOkXdnpNXAPUpBZ0vRFEQUTGz7azVtZx91tk0X1hzJkdwwIj+sO6axm3wRHcgD
+         cA7kKQv0BnQNQpauRFTJ0WF/bpsPET+6DYu9MpAPb8a7h9mSXA1G9gZa029glJx+iRbb
+         uOg6GXQ411sk9+tjJBwP4okDKhx1SdKl4PJOZ+k2vz0fQOh1x9ajn1lcywiF0mGMkc7l
+         tC1A==
+X-Gm-Message-State: AOAM532NhCQ0BGC8k795Lx2gIXKMufw/79pAfJyw3coef0P9V1H+dDdw
+	6PfZmtiOFdMqgd4b5uT5QWA=
+X-Google-Smtp-Source: ABdhPJymSTU3OR8L87OS/TqMF3Q/fVRw5dMySLkHI5twLIZm99yl5iWq/4N3N3y4Uvb4XlA3A2ALgg==
+X-Received: by 2002:a92:d1c9:: with SMTP id u9mr49944132ilg.211.1608224236056;
+        Thu, 17 Dec 2020 08:57:16 -0800 (PST)
+Return-Path: <twoerner@gmail.com>
+Received: from localhost ([206.248.190.95])
+        by smtp.gmail.com with ESMTPSA id v3sm3516896ilj.28.2020.12.17.08.57.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Dec 2020 08:57:15 -0800 (PST)
+Date: Thu, 17 Dec 2020 11:57:10 -0500
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: Joshua Watt <jpewhacker@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [meta-rockchip][PATCH] Fix Rock Pi 4 serial port
+Message-ID: <20201217165710.GA8217@localhost>
+References: <20201211144752.13869-1-JPEWhacker@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1sqqhT_V7eW6M1mYy+ehMADmpcYQtXf1-MSkEKwaP9GnAA@mail.gmail.com>
+In-Reply-To: <20201211144752.13869-1-JPEWhacker@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Looking at the config.log, I only see the standard Yocto Project (nativesdk)
-paths, as well as: --disable-asm --without-capabilities
+On Fri 2020-12-11 @ 08:47:52 AM, Joshua Watt wrote:
+> Fixes the serial port output stopping mid way through the boot process
+> by reverting the kernel commit that caused it.
 
-I'm building on 18.04.4 LTS, I think it's a fairly standard config, no
-containers or anything like that.
+Interesting.
 
-Hardware is Intel Xeon Gold 6130 CPU.
+As you know (but for reference for other people) the baud rate of the rock pi
+4's serial console is 1,500,000bps and not the usual 115,200bps that
+everything else uses.
 
-Using my other build machine, an 18.04.03 LTS machine, hardware is Intel Xeon
-E5-2697v2.
+I have *always* seen instability on the console. The best way to reproduce
+this instability is with the following test:
 
-So two different, but similar environments I get exactly the same problem.  I'm
-pretty sure the original patch I sent is still needed, and simply won't cause
-any issues for environments where this is not reproducible.  Worst case it
-disables optimizations, and libgcrypt may be slightly slower (if the
-optimizations even worked.)
+	root@rock-pi-4:~# cd /
+	root@rock-pi-4:/# ls -lR
 
-(if anyone wants to look, I can give you access to the second build machine
-where it's easily reproducible.)
+This never lasts more than a second or two before freezing up.
 
---Mark
+The ironic thing is, before applying this patch I thought I'd give the latest
+of everything a test (I don't test every change every day on my board).
 
-On 12/17/20 10:17 AM, Khem Raj wrote:
-> On Wed, Dec 16, 2020 at 4:50 PM Mark Hatle
-> <mark.hatle@kernel.crashing.org> wrote:
->>
->> Note, this is still happening.  Using meta-mingw w/ gatesgarth to build, and
->> including libgcrypt I get the same failure.  The failure resolves with
->> "--disable-amd64-as-feature-detection".
->>
->> Looking at the code, I don't really understand it, but there are some lines
->> after that which may be more indicative of the actual error:
->>
->> ../../libgcrypt-1.8.6/cipher/rijndael.c: In function 'do_encrypt':
->> ../../libgcrypt-1.8.6/cipher/rijndael-tables.h:103:24: error: expected ']'
->> before '.' token
->>   103 | #define encT enc_tables.T
->>       |                        ^
->> ../../libgcrypt-1.8.6/cipher/rijndael.c:775:20: note: in expansion of macro 'encT'
->>   775 |                   [encT] "r" (encT)
->>       |                    ^~~~
->> ../../libgcrypt-1.8.6/cipher/rijndael.c:776:17: error: undefined named operand
->> 'encT'
->>   776 |                 : "cc", "memory", "r8", "r9", "r10", "r11");
->>       |                 ^
->>
-> 
-> does it have --enable-optimization switch on ? if so then its probing
-> the build platform
-> for features and detects XMM registers and enables them but perhaps
-> does not account
-> for it not being a sysv ABI based platform for right ABI calling convention
-> may be asm code have made some assumptions here
-> 
->> I can't find any difference in generated content anywhere, only that the
->> function (.c) that is failing seems to have a comments it's loading something
->> for use w/ a SysV style function:
->>
->> # else
->>   /* Call SystemV ABI function without storing non-volatile XMM registers,
->>    * as target function does not use vector instruction sets. */
->>   const void *key = ctx->keyschenc;
->>   uintptr_t rounds = ctx->rounds;
->>   uintptr_t ret;
->>   asm volatile ("movq %[encT], %%r8\n\t"
->>                 "callq *%[ret]\n\t"
->>                 : [ret] "=a" (ret),
->>                   "+D" (key),
->>                   "+S" (bx),
->>                   "+d" (ax),
->>                   "+c" (rounds)
->>                 : "0" (_gcry_aes_amd64_encrypt_block),
->>
->> As far as my configuration (all gatesgarth):
->>
->> conf/bblayers.conf:
->> BBLAYERS ?= " \
->>     /scratch2/mhatle/2021/sources/poky/meta \
->>     /scratch2/mhatle/2021/sources/poky/meta-poky \
->>     /scratch2/mhatle/2021/sources/meta-mingw \
->>     /scratch2/mhatle/2021/sources/poky/../meta-xilinx/meta-xilinx-bsp \
->>     /scratch2/mhatle/2021/sources/poky/../meta-xilinx-tools \
->>     /scratch2/mhatle/2021/sources/poky/../meta-openembedded/meta-python \
->>     /scratch2/mhatle/2021/sources/poky/../meta-openembedded/meta-oe \
->> "
->>
->> DISTRO=nodistro MACHINE=zynqmp-generic SDKMACHINE=x86_64-mingw32 bitbake
->> nativesdk-libgcrypt
->>
->> On 3/3/20 9:19 AM, Joshua Watt wrote:
->>>
->>> On 2/25/20 1:32 PM, Mark Hatle wrote:
->>>>
->>>> On 2/25/20 12:36 PM, Adrian Bunk wrote:
->>>>> On Tue, Feb 25, 2020 at 12:02:14PM -0600, Mark Hatle wrote:
->>>>>> amd64 optimization when using with mingw32 sometimes results in:
->>>>>>
->>>>>> | ../../libgcrypt-1.8.4/cipher/rijndael-tables.h:103:24: error: expected
->>>>>> ']' before '.' token
->>>>>> |  103 | #define encT enc_tables.T
->>>>>> ...
->>>>> Please send a complete build log, this looks like a parallel build
->>>>> failure where some .c is compiled before some header it uses is
->>>>> fully generated (or something similar).
->>>> I'll reply with a private email to where you can get a copy of the build directory.
->>>>
->>>>>> --- a/recipes-support/libgcrypt/libgcrypt_%.bbappend
->>>>>> +++ b/recipes-support/libgcrypt/libgcrypt_%.bbappend
->>>>>> @@ -1,3 +1,4 @@
->>>>>> +EXTRA_OECONF_append_mingw32 = " --disable-amd64-as-feature-detection"
->>>>>> ...
->>>>> I assume PARALLEL_MAKE = "" would also work instead?
->>>> I tried this and it didn't appear to make a difference.  I only see the problem
->>>> when building for mingw32.
->>>
->>> Did we ever figure out what was causing this? It does appear to be some
->>> sort of race condition at the moment, and I'm surprised we haven't seen
->>> it on the autobuilder (we have pretty good test coverage for meta-mingw
->>> there).
->>>
->>>>
->>>> I've never seen any issues for any other SDK target.
->>>>
->>>> --Mark
->>>>
->>>>> cu
->>>>> Adrian
->>>>>
->>>>>
->>>>>
->>
->>
->>
->>
->>
->> 
->>
+With all the latest software but before applying your patch, I just went
+through 5 cycles of:
+	- reboot
+	- ls -lR
+
+I didn't see a single freeze-up on the console! I've never seen the console
+survive the ls -lR thing, nevermind 5 in a row.
+
+Weird.
+
+I did, however, recently change the device I'm using to supply my USB-C power.
+I had noticed my last power supply was flaky, my local computer shop had some
+new fandangled ones on sale, so I upgraded.
+
+In any case I'm happy to apply the patch, if it solves a problem for you then
+others are likely to bump into it as well. But interesting nonetheless.
+
+Best regards,
+	Trevor
