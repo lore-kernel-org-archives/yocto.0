@@ -1,56 +1,55 @@
-Received: from resqmta-ch2-06v.sys.comcast.net (resqmta-ch2-06v.sys.comcast.net [69.252.207.38])
- by mx.groups.io with SMTP id smtpd.web10.30936.1608503357959276151
+Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
+ by mx.groups.io with SMTP id smtpd.web11.30832.1608503573539590143
  for <yocto@lists.yoctoproject.org>;
- Sun, 20 Dec 2020 14:29:18 -0800
+ Sun, 20 Dec 2020 14:32:53 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@comcast.net header.s=20190202a header.b=Ph3WQh9M;
- spf=pass (domain: comcast.net, ip: 69.252.207.38, mailfrom: rprowel@comcast.net)
-Received: from resomta-ch2-17v.sys.comcast.net ([69.252.207.113])
-	by resqmta-ch2-06v.sys.comcast.net with ESMTP
-	id r6MzkSZnWbBITr7CXkTi3U; Sun, 20 Dec 2020 22:29:17 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
-	s=20190202a; t=1608503357;
-	bh=ky+5t5Ujv8hGllNgCCSWrjhUD9KoVNSOZUyhPGaP3r8=;
-	h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
-	 Content-Type;
-	b=Ph3WQh9M0lGj9Ehb3LjealbJ2n34pikhfCyv5Is9HOWMHo4aTzzpn3zz/964nxVM3
-	 G6DR2KjuRAsmJj2SyLOapDX3cLpNw2bJsjFfeRk5YyWyU8VUhd3GbGudVFk47e/wge
-	 /6R/0jBfR2ENAbrDY73TTwF3jIt+t2Jyp03HJtn8K4ZtAeTyAMjqU70dLegSxcciRf
-	 cacaTwxhahrQhlMXTROYt21oih9eCLuBA4L1PlT/dkSXdx/+WVdewEDSSQKMlv67x2
-	 GR+1rtXndMdxv3Fkb8S4JwivfyeZAnTANR72X07DbfaBHM4yXn6wP3uuyRxOrT1Sj5
-	 h2ibwQaob3QgQ==
-Received: from [10.1.11.102] ([73.174.24.42])
-	by resomta-ch2-17v.sys.comcast.net with ESMTPSA
-	id r7C2kR17xhgVpr7CWk2vNu; Sun, 20 Dec 2020 22:29:16 +0000
-X-Xfinity-VAAS: gggruggvucftvghtrhhoucdtuddrgedujedrvddttddgudeilecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucevohhmtggrshhtqdftvghsihdpqfgfvfdppffquffrtefokffrnecuuegrihhlohhuthemuceftddunecunecujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefheenucfhrhhomheptfhosgcurfhrohifvghluceorhhprhhofigvlhestghomhgtrghsthdrnhgvtheqnecuggftrfgrthhtvghrnhepgedvhfekgeetudeuiedtudektefhffeukeevgfettdeggfettedvgedvvdetleeunecukfhppeejfedrudejgedrvdegrdegvdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhephhgvlhhopegluddtrddurdduuddruddtvdgnpdhinhgvthepjeefrddujeegrddvgedrgedvpdhmrghilhhfrhhomheprhhprhhofigvlhestghomhgtrghsthdrnhgvthdprhgtphhtthhopeihohgtthhosehlihhsthhsrdihohgtthhophhrohhjvggtthdrohhrghdprhgtphhtthhopehrphhjuggrhiestghrrghshhgtohhurhhsvgdrtggr
-X-Xfinity-VMeta: sc=0.00;st=legit
+ dkim=missing; spf=pass (domain: crashcourse.ca, ip: 199.212.143.3, mailfrom: rpjday@crashcourse.ca)
+Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:50470 helo=localhost.localdomain)
+	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1kr7Fz-00026m-UH; Sun, 20 Dec 2020 17:32:52 -0500
+Date: Sun, 20 Dec 2020 17:32:49 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+To: Rob Prowel <rprowel@comcast.net>
+cc: yocto@lists.yoctoproject.org
 Subject: Re: [yocto] Can a single recipe .bb file be used to generate both Python2 and Python3 packages?
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, yocto@lists.yoctoproject.org
-References: <20201220084627.Horde.bD0u6njbQfLERYjsoqBMhWn@crashcourse.ca>
-From: "Rob Prowel" <rprowel@comcast.net>
-Message-ID: <5f347009-f38b-34d2-59c3-bae74032fe87@comcast.net>
-Date: Sun, 20 Dec 2020 17:28:46 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+In-Reply-To: <5f347009-f38b-34d2-59c3-bae74032fe87@comcast.net>
+Message-ID: <b6bf3a6-8da3-6426-4bb-33b01c91f165@crashcourse.ca>
+References: <20201220084627.Horde.bD0u6njbQfLERYjsoqBMhWn@crashcourse.ca> <5f347009-f38b-34d2-59c3-bae74032fe87@comcast.net>
 MIME-Version: 1.0
-In-Reply-To: <20201220084627.Horde.bD0u6njbQfLERYjsoqBMhWn@crashcourse.ca>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Content-Type: text/plain; charset=US-ASCII
 
-On 12/20/20 8:46 AM, Robert P. J. Day wrote:
+On Sun, 20 Dec 2020, Rob Prowel wrote:
 
-> I asked if that is what she was thinking of, but she was adamant
-> that she remembers a single recipe .bb file that could do this.
-> Is there such a thing? I suspect one could hack something up,
-> but is such an approach considered standard? Or even doable?
+> On 12/20/20 8:46 AM, Robert P. J. Day wrote:
+>
+> > I asked if that is what she was thinking of, but she was adamant
+> > that she remembers a single recipe .bb file that could do this.
+> > Is there such a thing? I suspect one could hack something up,
+> > but is such an approach considered standard? Or even doable?
+>
+> Doable?  Yes...Smart to do? IMHO, absolutely not.
+>
+> With the recipe class methods that accomplish each stage of the
+> build you can customize them any way you want, but at the expense of
+> maintaining clear intent and keeping it maintainable.
+>
+> Your initial approach of using common includes and a heirarchical
+> inheritance for separate recipes makes more sense.
 
-Doable?  Yes...Smart to do? IMHO, absolutely not.
+  i suspected as much, i just wanted to confirm there was no
+super-clever way to do this.
 
-With the recipe class methods that accomplish each stage of the build 
-you can customize them any way you want, but at the expense of 
-maintaining clear intent and keeping it maintainable.
-
-Your initial approach of using common includes and a heirarchical 
-inheritance for separate recipes makes more sense.
-
+rday
