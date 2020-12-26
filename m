@@ -1,23 +1,23 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.20047.1608984619461011595
+ by mx.groups.io with SMTP id smtpd.web10.25900.1609018403892798884
  for <yocto@lists.yoctoproject.org>;
- Sat, 26 Dec 2020 04:10:19 -0800
+ Sat, 26 Dec 2020 13:33:24 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 198.145.29.25, mailfrom: rpjday@crashcourse.ca)
 Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 91ADC38C063E
-	for <yocto@yoctoproject.org>; Sat, 26 Dec 2020 12:10:18 +0000 (UTC)
-Received: from cpeac202e043973-cmac202e043970.sdns.net.rogers.com ([174.114.100.179]:33520 helo=localhost.localdomain)
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 56EE638C065D
+	for <yocto@yoctoproject.org>; Sat, 26 Dec 2020 21:33:23 +0000 (UTC)
+Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:53470 helo=localhost.localdomain)
 	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.93)
 	(envelope-from <rpjday@crashcourse.ca>)
-	id 1kt8Om-0001ag-QY
-	for yocto@yoctoproject.org; Sat, 26 Dec 2020 07:10:17 -0500
-Date: Sat, 26 Dec 2020 07:10:15 -0500 (EST)
+	id 1ktHBh-0006U9-GI
+	for yocto@yoctoproject.org; Sat, 26 Dec 2020 16:33:22 -0500
+Date: Sat, 26 Dec 2020 16:33:19 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: is there a focused place to ask about ruby/gems WRT yocto building?
-Message-ID: <5939677-4322-2645-4a-46423be74f64@crashcourse.ca>
+Subject: obvious(?) ruby error: adding erroneous second ".gemspec" suffix
+Message-ID: <53dbee1b-258-1191-6bfe-7b847cb7de9f@crashcourse.ca>
 MIME-Version: 1.0
 X-OutGoing-Spam-Status: No, score=-1.0
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -33,28 +33,23 @@ X-Source-Dir:
 Content-Type: text/plain; charset=US-ASCII
 
 
-  to prepare for trying to build a number of ruby gems for WR LTS19
-(effectively zeus, as always), i thought i'd start simple and begin
-with building for qemux86-64 with gatesgarth so i could plausibly
-claim that i have a working basis for comparison, whereupon if that
-worked for what i was after, i could work backwards.
+  i'm not fluent enough in ruby to want to submit a patch for this, so
+i'll let someone higher up the food chain handle it.
 
-  i just now started a build for qemux86-64/gatesgarth with "bitbake
-ruby", and i'll take it from there. knowing little about ruby, is
-there a smaller community that would help with issues i run into, or
-should i keep the discussion here?
+  trying to build a number of "native" ruby recipes from
+meta-openstack, and getting precisely the same error for various
+recipes:
 
-  i want to start by trying to build absolutely stock puppet and chef,
-and if that turns out to need fixing, i will of course submit patches.
-if anyone has already gone through this exercise, that would be just
-ducky.
+| ERROR:  Gemspec file not found: XXXXX-native.gemspec.gemspec
 
-  i should have the result of the first build in an hour or two --
-given that i'm not trying to do anything out of the ordinary, i would
-*hope* that a totally generic build would work out of the box, but
-we'll see.
+the clear bug here is that something is adding a ".gemspec" suffix to
+a string that *already* has that suffix. that error is acknowledged
+here ("Append '.gemspec' extension only when it is not present"):
+
+https://github.com/voxik/rubygems/commit/6c3f0dc798966a6474f6d694da05a15d620760d6
+
+so someone who is more comfortable with ruby is invited to deal with
+that.
 
 rday
 
-p.s. the above recipes involve the layers meta-cloud-services and
-sub-layer meta-openstack.
