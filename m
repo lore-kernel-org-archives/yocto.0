@@ -1,80 +1,57 @@
-Received: from smtp8.emailarray.com (smtp8.emailarray.com [65.39.216.67])
- by mx.groups.io with SMTP id smtpd.web12.45794.1609163907895288053
- for <yocto@lists.yoctoproject.org>;
- Mon, 28 Dec 2020 05:58:28 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: balister.org, ip: 65.39.216.67, mailfrom: philip@balister.org)
-Received: (qmail 82859 invoked by uid 89); 28 Dec 2020 13:58:23 -0000
-Received: from unknown (HELO ?192.168.11.139?) (cGhpbGlwQG9wZW5zZHIuY29tQDczLjI1MS4xMC4xNDM=) (POLARISLOCAL)  
-  by smtp8.emailarray.com with SMTP; 28 Dec 2020 13:58:23 -0000
-Subject: Re: [yocto] chpasswd not working in yocto-2019
-To: Raghu Icecraft Software Trainings <raghu.icecraft@gmail.com>,
- Paul Barker <pbarker@konsulko.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-References: <CAKRDAG9vG0AsckYe2hJL9DW_FF6G_+71wLA5+hWG38xh7UjQUg@mail.gmail.com>
- <CAM9ZRVuM_zdytq2xYga15c4YpFNTZ3rNLPASZR-Akfb0Ao3x_A@mail.gmail.com>
- <CAKRDAG-CwUypnEGq05GocbGh-r_bt5HewOKqfWncWtyDoeXnpQ@mail.gmail.com>
-From: "Philip Balister" <philip@balister.org>
-Message-ID: <cc7a7a8d-49fd-987a-6b8e-cc00f6fa802e@balister.org>
-Date: Mon, 28 Dec 2020 08:58:22 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+Subject: Re: How to develop kernel modules on the target?
+To: yocto@lists.yoctoproject.org
+From: p32@tuta.io
+X-Originating-Location: Graben-Neudorf, Baden-Württemberg, DE (129.13.134.208)
+X-Originating-Platform: Linux Firefox 84
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <CAKRDAG-CwUypnEGq05GocbGh-r_bt5HewOKqfWncWtyDoeXnpQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Date: Mon, 28 Dec 2020 11:06:11 -0800
+References: <73579e95-a544-3e43-ca92-d70e665609a0@windriver.com>
+In-Reply-To: <73579e95-a544-3e43-ca92-d70e665609a0@windriver.com>
+Message-ID: <7844.1609182371890093229@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="1fm7sDTuRbcW23x27oXE"
 
-On 12/28/20 7:33 AM, Raghu Icecraft Software Trainings wrote:
-> Paul,
-> Thanks for the reply.
-> I am using Xilinx-SDK based : Linux version 4.19.0-rt1-xilinx-v2019.1
-> 
-> Can you please let me know how to verify the yocto version running on
-> target.
+--1fm7sDTuRbcW23x27oXE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-You might have better luck on the meta-xilinx mailing list. They should
-know the details for their BSP.
+Hello,
 
-More info on Xilnx layers and a pointer to subscribe info to the mailing
-list is here:
+The execution of "make scripts prepare" did actually solve the issue, than=
+k you very much for your help!
 
-https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841883/Yocto
+However, the need to manually execute this command on the target platform =
+made me look into the kernel-devsrc recipe ( https://git.yoctoproject.org/c=
+git/cgit.cgi/poky/tree/meta/recipes-kernel/linux/kernel-devsrc.bb?h=3Dzeus =
+) to see if it is possible to let the build host execute this step. Some co=
+mments imply that this is the case. Consider, for instance, the one in line=
+ 257:
 
-Philip
+>=20
+> Ensure we don't race against "make scripts" during cpio
 
-> 
-> Thanks,
-> Raghu
-> 
-> On Mon, Dec 28, 2020 at 5:31 PM Paul Barker <pbarker@konsulko.com> wrote:
-> 
->> On Mon, 28 Dec 2020 at 09:44, Raghu Icecraft Software Trainings
->> <raghu.icecraft@gmail.com> wrote:
->>>
->>> Hello,
->>> I have upgraded my kernel poky to 2019.1 version, here i am unable to
->> find chpasswd utility because of which i am unable to set password to my
->> root-user.
->>> Can you please let me know if the chpasswd utility has been changed or
->> modified please.
->>
->> Yocto Project doesn't have a version "2019.1", see
->> https://wiki.yoctoproject.org/wiki/Releases.
->>
->> I guess you're using a vendor supplied BSP or SDK with that version
->> number. Could you provide the Yocto Project version number and the
->> layers in use, or at least give some more info on where your "2019.1"
->> release is from.
->>
->> Thanks,
->>
->> --
->> Paul Barker
->> Konsulko Group
->>
-> 
-> 
-> 
-> 
-> 
+Unfortunately, I was unable to figure out how to do this. Is there a way t=
+o let the recipe trigger this step automatically?
+
+Thanks!
+
+--1fm7sDTuRbcW23x27oXE
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,<br /><br />The execution of "make scripts prepare" did actually solv=
+e the issue, thank you very much for your help!<br /><br />However, the nee=
+d to manually execute this command on the target platform made me look into=
+ the kernel-devsrc recipe (<a href=3D"https://git.yoctoproject.org/cgit/cgi=
+t.cgi/poky/tree/meta/recipes-kernel/linux/kernel-devsrc.bb?h=3Dzeus" target=
+=
+=3D"_blank" rel=3D"noopener">https://git.yoctoproject.org/cgit/cgit.cgi/po=
+ky/tree/meta/recipes-kernel/linux/kernel-devsrc.bb?h=3Dzeus</a>) to see if =
+it is possible to let the build host execute this step. Some comments imply=
+ that this is the case. Consider, for instance, the one in line 257:<br />
+<blockquote>Ensure we don't race against "make scripts" during cpio</block=
+quote>
+Unfortunately, I was unable to figure out how to do this. Is there a way t=
+o let the recipe trigger this step automatically?<br /><br />Thanks!
+
+--1fm7sDTuRbcW23x27oXE--
