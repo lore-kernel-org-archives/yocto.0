@@ -1,69 +1,147 @@
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
- by mx.groups.io with SMTP id smtpd.web09.6567.1609336772184114719
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+ by mx.groups.io with SMTP id smtpd.web11.6668.1609336924050558596
  for <yocto@lists.yoctoproject.org>;
- Wed, 30 Dec 2020 05:59:32 -0800
+ Wed, 30 Dec 2020 06:02:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=lxpN4vW/;
- spf=pass (domain: gmail.com, ip: 209.85.210.51, mailfrom: chandumail05@gmail.com)
-Received: by mail-ot1-f51.google.com with SMTP id j12so15397931ota.7
-        for <yocto@lists.yoctoproject.org>; Wed, 30 Dec 2020 05:59:32 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=SkjThXBe;
+ spf=pass (domain: gmail.com, ip: 209.85.167.181, mailfrom: chandumail05@gmail.com)
+Received: by mail-oi1-f181.google.com with SMTP id 9so18749766oiq.3
+        for <yocto@lists.yoctoproject.org>; Wed, 30 Dec 2020 06:02:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=eEg5sWeBmd1q/71k+CKSzQbEoY9Y6CokPvXoS9sP4PM=;
-        b=lxpN4vW/BkFuMpn56C/tFJqxuMMThpOBmRNAm0X8chO3PpdhNJC5VLzeAV2r7MSG5w
-         cx/GOtVXfrvG7AQA1swA29s4Wc/prkRowlpVOMcSfEu22EVJ+ZutDUUZi8itiXZZZVU9
-         lFQfKCZdREHJN4rRpYLBB/Sgjg76lqECyb9UuUnXjLPIezCUmJqFHiUcfQk1RHnTEQ6E
-         P2ff11RabHr0tbQeoD5ztmE8+9EPsnacwS4o34SlXoyNaps4eL3PjQTie4tG+w0sZ1fj
-         KWAaq4NguEOc9urs8iqE/zp0znZ0iHb1PAsp2iJYGZw/FMVRtwBQPogEYrfepvvFEFTR
-         34tA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AxGx3y5dwSSu9kM9nj93e7DKJhbFGcy1k4QdzfGLlNs=;
+        b=SkjThXBe66QV8L4vdjIVuXAR663x+MWo+IzeGhmyMXHL+iEWGc9DjEgyN5fwJFwvam
+         pM7W6tGTKm5wIxEQQbIcwXNegac8bJfUpoQSUGXBg8JTSf01cDfbOFl7Lj2bZ8D/Gp47
+         72m3NuDnNOoHzzuidrma13/sBZvGTjunFavBHFXPaudYbgt+rCkNoPeuhfi6ZQ4QOdp/
+         aUomyMD92kcK9LoECt0G3wwwfuOf+bYUR3aqnvidmcGQylCnmMqxwiyc06BfglQNrXq1
+         GZpsu/IN6eMFpbzc/cmHHl7euwlmHH0keqOLf/l9TATBURQxxoOKnU4yryqLXg8InrFQ
+         4uBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=eEg5sWeBmd1q/71k+CKSzQbEoY9Y6CokPvXoS9sP4PM=;
-        b=Zae2nrF93GBeuEjPRbmuGB9e0Pur7vujuyF5SLtaIs11rRFojSVKZjVryuPmL/XM7d
-         HZUd/urTNrguNcovg690ywX7M9aBrG0joZOCE12fwO3T9p4o16ACurLP9SF+hfTRgO06
-         nRQyFxE0BcjnPJwCTPxxzTC5XDj/DInGjwmbtzkEe5+wa83tOzvGLFSVra6vlUG/qH6n
-         flV1UPMaVQ4UjHz6jBp79H+RyslgbicW1sKFC1n1L2qYw+ytbi1Li0f3UNdbqMTWzNSL
-         kBUvTJvFwTLURbQUdms53o5Q6C+o5Uu38coL51kXXgYS1nL27OsL9Ilp3cPORtf8+bAp
-         DDuw==
-X-Gm-Message-State: AOAM531bQDonlyxY6D7OETs7KZo5wLVbUwbY76WLHIj0blSYPZtrXz5a
-	51E6bV3QB11YoQ0a3umsi0tYI/HF23CQSJ4OiDc=
-X-Google-Smtp-Source: ABdhPJyPu55CffuSBoE5fbEhEmO/NAJfIlvRgzWg282IBWNhCqBMbm3B/qZ3Qe9C7uO0U6/+bl31xcBalcljZ0zOT5U=
-X-Received: by 2002:a9d:6f07:: with SMTP id n7mr3804918otq.22.1609336771411;
- Wed, 30 Dec 2020 05:59:31 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AxGx3y5dwSSu9kM9nj93e7DKJhbFGcy1k4QdzfGLlNs=;
+        b=smCwW+nMonl/8gFm1Sqllh52M8+PwR72fRpcqY9xguynenNliNW4DEuOlcelqdgco7
+         9GKzMgxON3ZCHEYvVQf/OIoQucapmpM59nrCkXL933O/0zbBbqoi303KhZtBwAEduOZv
+         EjU613aDnMbG75vKCRWvSG82ICGZCALCzu7xcp3iYAH7SERhahnNQSl0DCT7mLwOtfOG
+         /cEuk4oTCzdIHEWqK6IoCWb2wNdbCmGcP5Pa4yuzXMM43GFae8frMPuSh+dQFki9CRUc
+         z9tZJViqWVNCHhVoTpD8LIVPy9YTvQ1DOdEL9yl7j9y2eHoB25O/TSYsh6uqcypcPQ8E
+         XZ6g==
+X-Gm-Message-State: AOAM532Hh0ZNuiVSdySdWQuwzDUp1L1O+Mmrl4QQpi+z+GRmJZ4yvMSD
+	GpT95CvLqeth7iWoYDHGcDjMjERzfeE8AB61Oek=
+X-Google-Smtp-Source: ABdhPJyReiJkj8122Amfxk5mQF8Ulmg4LtbEShe/Z3blehelN/poFFAZhiHP9Tn0oI6x0QsTwu/co65aFuPl43bEcEk=
+X-Received: by 2002:aca:578d:: with SMTP id l135mr5247977oib.105.1609336923341;
+ Wed, 30 Dec 2020 06:02:03 -0800 (PST)
 MIME-Version: 1.0
+References: <CACXHg=38c=RS-KAe-EqHbWZzLH_xDcqUBM2-gzM5+hx97qwsHg@mail.gmail.com>
+ <AM9PR09MB473928C838830926A06D220BA8D80@AM9PR09MB4739.eurprd09.prod.outlook.com>
+In-Reply-To: <AM9PR09MB473928C838830926A06D220BA8D80@AM9PR09MB4739.eurprd09.prod.outlook.com>
 From: "chandra naik" <chandumail05@gmail.com>
-Date: Wed, 30 Dec 2020 19:29:20 +0530
-Message-ID: <CACXHg=0c=DaKhAKztkA+qvs4jGVyRuFAjOFodidGPSsn9OjA6A@mail.gmail.com>
-Subject: Issue regarding with .wic image
-To: yocto@yoctoproject.org, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000009581c405b7aeea5a"
+Date: Wed, 30 Dec 2020 19:31:50 +0530
+Message-ID: <CACXHg=3PvKGYhxJGBXpbhA=Asr9ccc4qE1qEq6s+mC8ckd-_Pw@mail.gmail.com>
+Subject: Re: [yocto] Help regarding yocto receipe (bluez5)
+To: Konrad Weihmann <kweihmann@outlook.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000a3c6c405b7aef3bc"
 
---0000000000009581c405b7aeea5a
+--000000000000a3c6c405b7aef3bc
 Content-Type: text/plain; charset="UTF-8"
 
-Hi ,
-we are a .wic (production image) image for ostree , in these
-core-image-sato.wic image everything is read only , Here when i am trying
-to edit something it will show file is readonly. so how we can edit a file
-or service in .wic image ?
+Hi
 
---0000000000009581c405b7aeea5a
+can we get obexpush open source package for yocto build ? we are not able
+to find . kernel version - 4.14 DISTRO_VERSION = "2.5.1"
+
+On Tue, Dec 29, 2020 at 3:40 PM Konrad Weihmann <kweihmann@outlook.com>
+wrote:
+
+> I would recommend that you go for a systemd drop-in file [1].
+> That would be something like a small snippet placed to
+> /etc/systemd/system/dbus-org.bluez.service/override.conf
+>
+> In that file place something like
+> [Service]
+> ExecStart=
+> ExecStart=<new command line with your custom options>
+>
+> this way you don't need to alter the upstream recipe with weird sed
+> hacks or similar.
+>
+> This drop-in file could be packaged by any recipe or bbappend.
+>
+> [1] https://coreos.com/os/docs/latest/using-systemd-drop-in-units.html
+>
+> On 29.12.20 07:48, chandra naik wrote:
+> > Hi
+> >
+> > After board boot up , we are editing vi
+> > /etc/systemd/system/dbus-org.bluez.service these file as
+> > ExecStart=/usr/lib/bluetooth/bluetoothd -C (here we are adding -C means
+> > bluetooth running in compact mode).
+> >
+> > but these is not good practice , so how we can change these service at
+> > compiling time itself , any idea ? main agenda is Run bluetoothd daemon
+> > in compatibility mode while building yocto image.
+> >
+> >
+> > 
+> >
+>
+
+--000000000000a3c6c405b7aef3bc
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><span style=3D"color:rgb(32,33,36);white-space:pre-wrap;ba=
-ckground-color:rgb(248,249,250)"><font face=3D"times new roman, serif" styl=
-e=3D"">Hi ,</font></span><div><span style=3D"white-space:pre-wrap"><font fa=
-ce=3D"times new roman, serif" style=3D""><font color=3D"#202124" style=3D"b=
-ackground-color:rgb(248,249,250)">
- </font><font color=3D"#000000" style=3D""><span style=3D"background-color:=
-rgb(248,249,250)">  </span><span style=3D"background-color:rgb(255,255,255)=
-">we are a .wic (production image) image for ostree , in these core-image-s=
-ato.wic image everything is read only ,=20
-   Here when i am trying to edit something it will show file is readonly. s=
-o how we can edit a file or service in .wic image ?</span></font></font></s=
-pan><br></div></div>
+<div dir=3D"ltr">Hi<div><br></div><div><span style=3D"color:rgb(32,33,36);f=
+ont-family:Roboto,sans-serif;font-size:14px;white-space:pre-wrap;background=
+-color:rgb(248,249,250)">can we get obexpush open source package for yocto =
+build ? we are not able to find .
+kernel version - 4.14
+DISTRO_VERSION =3D &quot;2.5.1&quot;</span><br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Dec 29, 202=
+0 at 3:40 PM Konrad Weihmann &lt;<a href=3D"mailto:kweihmann@outlook.com">k=
+weihmann@outlook.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex">I would recommend that you go for a systemd drop-in fil=
+e [1].<br>
+That would be something like a small snippet placed to <br>
+/etc/systemd/system/dbus-org.bluez.service/override.conf<br>
+<br>
+In that file place something like<br>
+[Service]<br>
+ExecStart=3D<br>
+ExecStart=3D&lt;new command line with your custom options&gt;<br>
+<br>
+this way you don&#39;t need to alter the upstream recipe with weird sed <b=
+r>
+hacks or similar.<br>
+<br>
+This drop-in file could be packaged by any recipe or bbappend.<br>
+<br>
+[1] <a href=3D"https://coreos.com/os/docs/latest/using-systemd-drop-in-uni=
+ts.html" rel=3D"noreferrer" target=3D"_blank">https://coreos.com/os/docs/la=
+test/using-systemd-drop-in-units.html</a><br>
+<br>
+On 29.12.20 07:48, chandra naik wrote:<br>
+&gt; Hi<br>
+&gt; <br>
+&gt; After board boot up , we are editing vi <br>
+&gt; /etc/systemd/system/dbus-org.bluez.service these file as <br>
+&gt; ExecStart=3D/usr/lib/bluetooth/bluetoothd -C (here we are adding -C m=
+eans <br>
+&gt; bluetooth running in compact mode).<br>
+&gt; <br>
+&gt; but these is not good practice , so how we can change these service a=
+t <br>
+&gt; compiling time itself , any idea ? main agenda is Run bluetoothd daem=
+on <br>
+&gt; in compatibility mode while building yocto image.<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+</blockquote></div>
 
---0000000000009581c405b7aeea5a--
+--000000000000a3c6c405b7aef3bc--
