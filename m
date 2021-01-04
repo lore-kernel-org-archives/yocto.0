@@ -1,103 +1,117 @@
-Received: from EUR06-DB8-obe.outbound.protection.outlook.com (EUR06-DB8-obe.outbound.protection.outlook.com [40.92.51.80])
- by mx.groups.io with SMTP id smtpd.web08.11919.1609757447411085797
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+ by mx.groups.io with SMTP id smtpd.web09.11933.1609758312729770134
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Jan 2021 02:50:47 -0800
+ Mon, 04 Jan 2021 03:05:13 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@outlook.com header.s=selector1 header.b=d2VAQs1d;
- spf=pass (domain: outlook.com, ip: 40.92.51.80, mailfrom: kweihmann@outlook.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=D9dtspwy3ntpz+x9h9PA87S6Acy7shXTyQ5xJhcVzH1TISKf/wp4DH7DlNm5h6iQApeznmecVYZ0okIJo7jTSGoCDRspqroYjqKhnSYIzNZBvJUjH0lNHAoUeY6/2oCqxEYfFiF7gNmgN4QVLzejfNy5uwLwa6A0hInZnmKcQVa2MhcvVFGwnmw7sUdHKEAoiq3C2wmjd/b87Pw/1WpLsyr8eTaQSKzP87jMoK92lrNwyULQBsWg++Uzk1rIex4Swfrkv4+EYvwEc8ZF7JtzK/1qv7rtgcUfMpaTX39C5KCngszniKfcbSVlu6zKOngnjCRYpXCB7QDwqFOIGx5yTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lKxrWYfHbqfiNBv47iyDm0Y0gKJ9VLjdFrLZUDesrg0=;
- b=iSmx28jvp63e6+R+43JffZw8FN5WKsqPyGj9i4NRrZDQzDLCbqzqrFuGZ1zZ8GsJAhBYAPai+GPVXnYkNfKgLtT8xeMnTgXbkV0QtLqdJyFU3oJbyBQtBwKLqMLplksuuN4f/+Wv0Hjt8+zO/Uhw6PNM+VWMiBjxPdMFfW5h+y1fPlq4SikBiosmaBWVeDLTpvjGVD6eAzHF8gMo0nbypk+fAtMb0kS4t/FOuH5muf1yypd0xrqkjFIO49R2taizoLe0l5Af0c03XwbXSl+qTBSNZkeexsurEf8hgqiDwEmhSRw0ciwKgazK9ypAlSIqaR/d/HJukgx5YCZzLA/U2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lKxrWYfHbqfiNBv47iyDm0Y0gKJ9VLjdFrLZUDesrg0=;
- b=d2VAQs1dSjqeCNyNrbJZj6tG9jfMpw+r1+z2g5RoOU724A0G9dTfxCDWoZCzau6hz7roHFqUwRQzXk5Sdkv4ZJJtSr559di9k24umnjSP28e/ZPQlvOnsLQs/syaLEkiWS33rfM54yfw3OcgGWPZUV5ZdOsN0WRQvyLHJ53t0k842udAcvohqQnqagssh2ceIUsKvZE7mrUI9ac5UC+V5ZCwWh/KhB3Bg0tmHFL311kP3lVoQfe8mKGFbpW4l+y0WFxM1nH9qSh3NDkun65zRZV156NPP5p3SkEqtTzPq1N8O44ZnHr7j1bwW1AuUPlzwzSerm0GW9x0w5l3qq7oiw==
-Received: from VI1EUR06FT004.eop-eur06.prod.protection.outlook.com
- (2a01:111:e400:fc37::41) by
- VI1EUR06HT226.eop-eur06.prod.protection.outlook.com (2a01:111:e400:fc37::208)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.20; Mon, 4 Jan
- 2021 10:50:45 +0000
-Received: from AM9PR09MB4739.eurprd09.prod.outlook.com
- (2a01:111:e400:fc37::4b) by VI1EUR06FT004.mail.protection.outlook.com
- (2a01:111:e400:fc37::111) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.20 via Frontend
- Transport; Mon, 4 Jan 2021 10:50:45 +0000
-X-IncomingTopHeaderMarker: 
- OriginalChecksum:1790D7D88C38D40D6DA8985440AE0D8CEEE16EA5AF8F46531BCA2D4C8B0B906E;UpperCasedChecksum:190B2EC908EB75D771A67EE17D86D1C860913A9AB5EDBB36F9A7E1A5E43347D8;SizeAsReceived:8509;Count:45
-Received: from AM9PR09MB4739.eurprd09.prod.outlook.com
- ([fe80::404f:17dc:be86:de0b]) by AM9PR09MB4739.eurprd09.prod.outlook.com
- ([fe80::404f:17dc:be86:de0b%6]) with mapi id 15.20.3721.024; Mon, 4 Jan 2021
- 10:50:45 +0000
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-From: "Konrad Weihmann" <kweihmann@outlook.com>
-Subject: oeqa: test cases at the end of the test suite
-Message-ID: 
- <AM9PR09MB47399E93D60FF11A88E243ADA8D20@AM9PR09MB4739.eurprd09.prod.outlook.com>
-Date: Mon, 4 Jan 2021 11:50:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-X-TMN: [7q5Emg3hNuXuXxr7CUxdaCDUP+HLI0EG]
-X-ClientProxiedBy: BE0P281CA0031.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:14::18) To AM9PR09MB4739.eurprd09.prod.outlook.com
- (2603:10a6:20b:282::12)
-Return-Path: kweihmann@outlook.com
-X-Microsoft-Original-Message-ID: 
- <6c0a577d-aee2-126b-e571-707a6c339b45@outlook.com>
+ dkim=pass header.i=@holoplot-com.20150623.gappssmtp.com header.s=20150623 header.b=z/xEh0ap;
+ spf=pass (domain: holoplot.com, ip: 209.85.218.43, mailfrom: morgan.hill@holoplot.com)
+Received: by mail-ej1-f43.google.com with SMTP id b9so36315672ejy.0
+        for <yocto@lists.yoctoproject.org>; Mon, 04 Jan 2021 03:05:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=holoplot-com.20150623.gappssmtp.com; s=20150623;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=zWw3nEQbGavk0LZlJjuY4Gl3fqsHdmW6uEhbqjXGqAo=;
+        b=z/xEh0apoMrNrqREBtF+APNlXYcZS6LsheurU3fuVW6Stvdrvy1dxWtI0uClPTt238
+         RTN+1yc1KA4pk9tMaf8MrRITkCUUh60bqmNlE5raSntNhPTbufcV0XFLnqcaTI5oqfBR
+         +Rnw9pSQIqpRj4cTgkq7ppTmjluqKGTmW1PmxK8liFvSuPoJ4w3PWtOB/hiWlB0+4loB
+         CIWb47HbSCvnNJPhT8UkWyOFZwtmE5AozGYZ/dfErABW3So0WrofoZJpQamFm7GwPWZK
+         xBhuAOLEF51IWznsGnUUFyGzA7E5zb7I0T59qYgF+PG1VVPYq7A/Hah8fBGi+QHfKD2k
+         RPUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=zWw3nEQbGavk0LZlJjuY4Gl3fqsHdmW6uEhbqjXGqAo=;
+        b=JinCT7/IqXoS5kJUsTcD1JBDIEsJpd7wjuVSOHfV0Osdq3xFU6vhqgdUcoKOGTbWbc
+         /vq+I5f/iBfbcF9liMfjKBFXFtpaEsROYEElWL8yyZhnhFAKEO6+Ft7UpmaJ7Raw25md
+         Gg6Od9JrvfeGdijrmgP67K1jID5w1wKgiOFV+rTX8J1qeFRP5DSFg0uihLbKDlnxx4aV
+         4dthC2ksDdegbCEi+Obkb1u5VN5zs6IQ2Fgs3ttXqvMADiEEH8Sp843eRph1qsEf/jnw
+         OjOYKyRN2PDaexM3pjvS0AxuRMInVgYnAtizdr84V6b+ERjasqOVGrEmRuKjSynfj5ps
+         wBww==
+X-Gm-Message-State: AOAM533baaOQKaqbi+6SSCJ9aOhyYmRv2yc9c1gjhsXNfS1O9bfFD2GN
+	YEj4SPmyrUx/QZ20KVvuRfpkKcupOedYxSkCHBVy+weDat3/OvWm9/dZokdEjdt+UhtAXOroXXs
+	MI1+9G0aCXitPfmMO6BiDgwUqn6RE
+X-Google-Smtp-Source: ABdhPJyGHYZhQYO8OQgw412aHRd/FrXuVykPnJLkERL8T0sz9anlb/Vg7y3c4NIjAj3RSLXOGidaYg==
+X-Received: by 2002:a17:906:aacd:: with SMTP id kt13mr65288699ejb.527.1609758311051;
+        Mon, 04 Jan 2021 03:05:11 -0800 (PST)
+Return-Path: <morgan.hill@holoplot.com>
+Received: from HQ-00111.holoplot.net ([176.126.217.202])
+        by smtp.gmail.com with ESMTPSA id k21sm44909293edq.26.2021.01.04.03.05.10
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Jan 2021 03:05:10 -0800 (PST)
+Message-ID: <12bca9db5959947dcf2dc2ccbb5815c274ea8b8f.camel@holoplot.com>
+Subject: Re: [yocto] How do I build an x32 Intel system?
+From: morgan.hill@holoplot.com
+To: yocto@lists.yoctoproject.org
+Date: Mon, 04 Jan 2021 12:05:09 +0100
+In-Reply-To: <113956D0E12D407782FFFB70D620DEAC@PAULD>
+References: <113956D0E12D407782FFFB70D620DEAC@PAULD>
+User-Agent: Evolution 3.38.2 (3.38.2-1.fc33) 
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.188.23] (87.141.91.222) by BE0P281CA0031.DEUP281.PROD.OUTLOOK.COM (2603:10a6:b10:14::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.2 via Frontend Transport; Mon, 4 Jan 2021 10:50:45 +0000
-X-MS-PublicTrafficType: Email
-X-IncomingHeaderCount: 45
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-Correlation-Id: 70dd11cc-a4f1-409c-7c09-08d8b09e96cb
-X-MS-TrafficTypeDiagnostic: VI1EUR06HT226:
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	b3giIZIDpz23iYKr9vsc0Y3g105aaPAmzTiaYcvsnOhKIRafjPuIV2sP3cXcQF/S7FvL/Dtjo9uby5gorXT5KkifGt25jQxMmGJjErQvYz6uweMrJXRidWsHvPRKy/9R6wjken6IzVLaHMWgoIMVvBGy0YYx2rx2f6bgWb3WEhmrKveDcekoDIXL+uKXNJahT/5bHhtOzkVb+SdSf4Vc5ruIowZsfrjOPW/RjmfMKIlSJIxu6kZWUi0LDqht1xDU
-X-MS-Exchange-AntiSpam-MessageData: 
-	Yu2oQx/vRqYRcjkQhdjhw/yTQA0YvhL7gCDwgsLWLdpzq1wZDM7c2lcbU60nrmcX+3b9/ubsM4sOi9Za0gELimlnkuXF+K25h9jr32SapB9NvgNOMZ0IVah5RMg9zly18DpDQ/VSdHQU56Mxc1e9Gw==
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2021 10:50:45.3587
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-Network-Message-Id: 70dd11cc-a4f1-409c-7c09-08d8b09e96cb
-X-MS-Exchange-CrossTenant-AuthSource: 
-	VI1EUR06FT004.eop-eur06.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1EUR06HT226
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi all,
 
-I have a few oeqa test cases, which always should run last in a test 
-suite (log and file collectors for instance).
-Due to the ordering of the test case discovery I had to name all those 
-tests like "zzz_<name>" to move them to the end of the computed list.
+> Other than the first one, I don't know whether these are correct, or
+> where I
+> originally got them, or if there's a stock .cfg file that does all
+> this.
 
-Unfortunately this is very error prone, as the OETestDepends tag does 
-have major influence on the ordering (just a single misplaced tag in any 
-test case can make it past those "zzz" cases).
-Also it makes things hard to read IMO.
+I'm not familiar with x32 myself but Debian has an x32port which should
+give you a working kernel config to start from.
+https://wiki.debian.org/X32Port
 
-That brings me to my question, is there any way to ensure that test 
-cases are run at the end of the complete list of test suites?
 
-If not does anyone have an idea how to create such a feature (maybe a 
-new decorator or something like that)?
+--=20
+=20
+<http://holoplot.com/?utm_source=3Demail&utm_medium=3Dsg&utm_campaign=3DHol=
+oplot_Signature+>
 
-Regards
-Konrad
+ <https://holoplot.com/>*HOLOPLOT GmbH - Headquarters*
+
+
+Ringbahnstr. 12=20
+(10-14) / A2
+
+12099 Berlin, Germany
+
++49 (0) 30 40745812
+
+
+
+
+*HOLOPLOT GmbH=20
+- Manufacturing*
+
+
+Alboinstr. 17-23 / Hall 12
+
+12103 Berlin, Germany
+
++49=20
+(0) 30 959988740
+
+
+www.holoplot.com <https://holoplot.com/>
+
+
+
+Follow us on=20
+<https://www.facebook.com/OriginalHOLOPLOT/?utm_source=3Demail&utm_medium=
+=3Dsg&utm_campaign=3DHoloplot_Signature+>=20
+LinkedIn=20
+<https://www.linkedin.com/company/holoplot-gmbh?utm_source=3Demail&utm_medi=
+um=3Dsg&utm_campaign=3DHoloplot_Signature+>.=20
+
+
+
+
+Roman Sick =E2=80=93 CEO | HRB183974B, Register Court Charlottenburg, Germa=
+ny |=20
+EU Tax-Registration No. DE277000701 This e-mail contains confidential=20
+and/or privileged information. If you are not the intended recipient (or=20
+have received this e-mail in error) please notify the sender immediately=20
+and destroy this e-mail. Any unauthorized copying, disclosure or=20
+distribution of the information in this e-mail is strictly forbidden.
