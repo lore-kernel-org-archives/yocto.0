@@ -1,294 +1,111 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.11656.1609756264355711126
+Received: from EUR06-AM7-obe.outbound.protection.outlook.com (EUR06-AM7-obe.outbound.protection.outlook.com [40.92.16.46])
+ by mx.groups.io with SMTP id smtpd.web10.11950.1609757072036929903
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Jan 2021 02:31:04 -0800
+ Mon, 04 Jan 2021 02:44:32 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=oNZoqgeO;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 0CEBF38C058A
-	for <yocto@yoctoproject.org>; Mon,  4 Jan 2021 10:31:03 +0000 (UTC)
-Received: by mail-ej1-f43.google.com with SMTP id lt17so36143972ejb.3
-        for <yocto@yoctoproject.org>; Mon, 04 Jan 2021 02:31:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=DAClWVowjbc6JESZw6PETvWx2LmphrJYUAaRa/rbad8=;
-        b=oNZoqgeOSYcOh/fZXtnu/ejhGiiSfDAPu7PMTOZFRP8hItnhabyV3pQPRMVVoBT8eJ
-         4MBdTQ6Nin7ZwJLTG1Rc/JmgEs3UHuMQ20exAmfjaAUsiOSKzxQ7Pu/UcJpuPz6BR8zv
-         O6mIF8d16LeSkCkStiR5yihOIcqBtMVAJA8m6FDu/WNlZ7z/FIJF2aAvp3FBOAco97Om
-         jKuZw3prGKhqOLllGOkKHPVKM6EJVzFTLeTD0FThLDVyR6KKwxcJFsei4MgULfNwH4rS
-         lo/c9HVUcCbp1z4F1ncAhHx3qVjyvog4WHP5u4jjsqaVO1MYP1e/43Y+doujdrePQYEk
-         ZVtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=DAClWVowjbc6JESZw6PETvWx2LmphrJYUAaRa/rbad8=;
-        b=YsK8XOo4zkaiVoG6A2G6N8ZrLkh9UI/e6GAHovN+IfYVbyClJxHNB4Z7m5TuxkbVEK
-         QYhIeTG9Uz5eEXfPqawXHpEuYQf55TAQuqzEhp73iyLEdM5KLoKT7fxk7XVHECS3H5TB
-         cH+EdfDqwUNSK7XtcO4mBot5YrtT+G5JBZ6wJiUUjVNMBVv9VyASQGqBWdJGDF0G5Daz
-         OeI+Oa4QIjuOojezpwu2zG8Vf4c4FyvQaKcvm4Sy65gZo34MDaJ0MP5ESXRooP6C6n3X
-         aq1liNVOEZjhFLIninQRGEJRv/MVrdcPUbFR8k8rBMPvpA+/zQbSt2+dEc1mfW9YUD1H
-         U0vA==
-X-Gm-Message-State: AOAM531q53IRJv2hzIffMbS8G1YcqTbmqywDRZx3z3TzwUNBAtnLYQYX
-	KWzj74wKjEfoastqkcBpqh1aECNtagzRgfV7db8=
-X-Google-Smtp-Source: ABdhPJztoc01uncQYl/VPOIU4ZKlm23lWsy4Flb0cetsDNunQjiE0A3ms0GWjAtlQwYP/0XU0q6WAtMglU5p2zrXmpw=
-X-Received: by 2002:a17:906:a015:: with SMTP id p21mr58556510ejy.49.1609756261533;
- Mon, 04 Jan 2021 02:31:01 -0800 (PST)
+ dkim=pass header.i=@outlook.com header.s=selector1 header.b=BFJPqFGH;
+ spf=pass (domain: outlook.com, ip: 40.92.16.46, mailfrom: kweihmann@outlook.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JST2K1+35jD6AN68E5fKzoxPqIjDiO37ExgXa7+uv0ae/iZKig18g74K/vXumQe2p0RVyKfXWu+efJo2JMHwAZFz/11bFxA5vKErEE/efvCR0IuNlFnUOXYTmvounF6A15GTH3DUeJXVPIK4Bqj/7JsbkaWL2nDat1vvtay3nOCflL8JeWqCsEjI0SrlCINaQHiWPSU2We5VMz2uo00R0TMRLkGNzxJexUsg3RxZAuv1vtH5vxgvLXxp39P1Pj8rQtLmWVEKApeLI7GMTWp3+5RJXDD/5eDMybL2uLcItgw9tAE3+aDDHmMjqptESBD/WatdDXFDkrj0moqEBleVqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PfBk5DAhtRMitkHiEgqx9sLJ2V7i2bMbcxPNdLZgeJI=;
+ b=WzGqB85/kwLn+nbEAWfDSRxtsZKw0h8e0tnJDQw8ydyn9Fpj1s0O8R/6KHBW3KPrOnJrQo42PXPipSdA+n6KR4a6sPQYnh38d/1cmG/Zo69az0lWVr6n+zpeoEzn6oGmloFS5Byf6XJliLiynDEcZkXJlUwrcCDvp4Ji0QcXByfSZX3HD9/Onvm7QX/oeXwzSZcYl+///07BfykyzDOaxhI4/LdDdsb2teNcD2pCVY4XxpTsaeaeLCWYwPRkg6C/vNL1QeZiipDKsWYIjWDtMmAWeVuD8Ok4vO3UTjnlrFOjGeFkYiKywxhlcuk4tqeXdqFM2Jq4Btkn3Pi3YXx4fA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PfBk5DAhtRMitkHiEgqx9sLJ2V7i2bMbcxPNdLZgeJI=;
+ b=BFJPqFGH1b0XYpsT/1UDI/gCasJoDvziH/0IjEJReKjIn+7gzkjvqFrH3tQj2pFsfEWwaASCbfq8x7WVfwUeutNUHYLeUTpwqk38v2puUsj7PmxtC4YdCZJ7vMpvD437mRwyHP+cV0jOWUQuAN2wn8SDmRhzR9qzfbrjj3Ci2TIQf6L16RPFyvahAMkb0s6eqOBjjJjgizvXmxbiwXrM4OhGvJVh5ldzdkdr3i1veKs83oIO2NoJnLw9Pn9PdomKhHvKx3q/z8xW//Uzvu3x9qYP83Sh5bUV7bnbBvbyYxTYMrZ9EIG79LqnDHTAxwoBC9EbrFLlCbUbnT4pVVP/5g==
+Received: from VI1EUR06FT004.eop-eur06.prod.protection.outlook.com
+ (2a01:111:e400:fc37::41) by
+ VI1EUR06HT256.eop-eur06.prod.protection.outlook.com (2a01:111:e400:fc37::396)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.20; Mon, 4 Jan
+ 2021 10:44:30 +0000
+Received: from AM9PR09MB4739.eurprd09.prod.outlook.com
+ (2a01:111:e400:fc37::4b) by VI1EUR06FT004.mail.protection.outlook.com
+ (2a01:111:e400:fc37::111) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.20 via Frontend
+ Transport; Mon, 4 Jan 2021 10:44:30 +0000
+X-IncomingTopHeaderMarker: 
+ OriginalChecksum:15E564B0062BDF4E10745E20C79C2956F8D1E961E0B25460B325C77FDD327A39;UpperCasedChecksum:6DFD28C7D1792500580AD3B03E71257F0EDA96BBED9A17E2F2B0218B033783DF;SizeAsReceived:8480;Count:45
+Received: from AM9PR09MB4739.eurprd09.prod.outlook.com
+ ([fe80::404f:17dc:be86:de0b]) by AM9PR09MB4739.eurprd09.prod.outlook.com
+ ([fe80::404f:17dc:be86:de0b%6]) with mapi id 15.20.3721.024; Mon, 4 Jan 2021
+ 10:44:30 +0000
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+From: "Konrad Weihmann" <kweihmann@outlook.com>
+Subject: oeqa: testcase caching
+Message-ID: 
+ <AM9PR09MB4739A4D38A58259775479952A8D20@AM9PR09MB4739.eurprd09.prod.outlook.com>
+Date: Mon, 4 Jan 2021 11:44:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+X-TMN: [24sYqwbxE5dtgJZnD92kU78x5Igh6CaL]
+X-ClientProxiedBy: AM6PR02CA0011.eurprd02.prod.outlook.com
+ (2603:10a6:20b:6e::24) To AM9PR09MB4739.eurprd09.prod.outlook.com
+ (2603:10a6:20b:282::12)
+Return-Path: kweihmann@outlook.com
+X-Microsoft-Original-Message-ID: 
+ <363c5535-2ec9-b294-0861-b833eb69de26@outlook.com>
 MIME-Version: 1.0
-References: <20201216130822.28476-1-hongxu.jia@windriver.com> <20201216130822.28476-9-hongxu.jia@windriver.com>
-In-Reply-To: <20201216130822.28476-9-hongxu.jia@windriver.com>
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Mon, 4 Jan 2021 11:30:50 +0100
-Message-ID: <CAAfyv37zRgtJ_n2RZmWoHPOado1=LYw9cHVEVUZT1n497XB8yw@mail.gmail.com>
-Subject: Re: [meta-tensorflow][PATCH 8/25] tensorflow-estimator: 1.13 -> 2.4
-To: Hongxu Jia <hongxu.jia@windriver.com>
-Cc: Randy MacLeod <randy.macleod@windriver.com>, philip@balister.org, 
-	akuster808 <akuster808@gmail.com>, yocto <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.188.23] (87.141.91.222) by AM6PR02CA0011.eurprd02.prod.outlook.com (2603:10a6:20b:6e::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.19 via Frontend Transport; Mon, 4 Jan 2021 10:44:29 +0000
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 45
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-Correlation-Id: 78576c25-41c1-4d82-5212-08d8b09db71e
+X-MS-TrafficTypeDiagnostic: VI1EUR06HT256:
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	HL2EYMaw1v7A9zBP/8JxS8+ixHYQPo+ZPRgt/U6XZAdH3DrubLVHhWFpZsCh1BqesKiROr8ae1kYr0kKmHLLNfctkEv+QCYhZ3IBsIC7vl0x5FegF65S1Xq1+RvtFt0mj1ul4RMxLdLGZ5kw1hoUT37qPorqm1cN26M2te8DTtn7j0OIKiD3N1g4HI4ULSLZCkqgxHIb1yWOvM+inPf9H1HM+kUa6e0aVsIJCQQ5ois0TwGzQFgqamsjOj2+Fsm1
+X-MS-Exchange-AntiSpam-MessageData: 
+	6Wprl9FkgGGQAr1SbH9zvdm2DhpaUOJsLhF5jJ5AYp6Q6zQnsUHvM+g4Iy4/z/KWLYBfxJrFgwnnODGAN4V3Sys6Ai82AOZzNqf1CHhtV28wJFf9+A7hyg93EevkB/eFjxF/Dlqb0Tqaw2duAwo4Lg==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2021 10:44:30.1178
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-Network-Message-Id: 78576c25-41c1-4d82-5212-08d8b09db71e
+X-MS-Exchange-CrossTenant-AuthSource: 
+	VI1EUR06FT004.eop-eur06.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1EUR06HT256
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Hi Hongxu,
+Hi all,
 
-On Wed, Dec 16, 2020 at 2:09 PM Hongxu Jia <hongxu.jia@windriver.com> wrote=
-:
->
-> Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
-> ---
->  .../0001-customize-for-yocto.patch            | 28 +++++++++++++++++++
->  .../tensorflow/tensorflow-estimator_1.13.bb   | 12 ++++++--
->  2 files changed, 37 insertions(+), 3 deletions(-)
->  create mode 100644 recipes-framework/tensorflow/tensorflow-estimator/000=
-1-customize-for-yocto.patch
->
-> diff --git a/recipes-framework/tensorflow/tensorflow-estimator/0001-custo=
-mize-for-yocto.patch b/recipes-framework/tensorflow/tensorflow-estimator/00=
-01-customize-for-yocto.patch
-> new file mode 100644
-> index 0000000..e9b66d5
-> --- /dev/null
-> +++ b/recipes-framework/tensorflow/tensorflow-estimator/0001-customize-fo=
-r-yocto.patch
-> @@ -0,0 +1,28 @@
-> +From a1bcf09a43fc44ad5e04c441ee45cc23d16cf7d2 Mon Sep 17 00:00:00 2001
-> +From: Hongxu Jia <hongxu.jia@windriver.com>
-> +Date: Wed, 9 Dec 2020 17:59:01 +0800
-> +Subject: [PATCH] customize for yocto
-> +
-> +Upstream-Status: Inappropriate [oe specific]
-> +
-> +Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
-> +---
-> + tensorflow_estimator/tools/pip_package/build_pip_package.sh | 2 +-
-> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> +
-> +diff --git a/tensorflow_estimator/tools/pip_package/build_pip_package.sh=
- b/tensorflow_estimator/tools/pip_package/build_pip_package.sh
-> +index d4953a6..e08cd8a 100755
-> +--- a/tensorflow_estimator/tools/pip_package/build_pip_package.sh
-> ++++ b/tensorflow_estimator/tools/pip_package/build_pip_package.sh
-> +@@ -38,7 +38,7 @@ function prepare_src() {
-> +
-> +   # Verifies all expected files are in pip.
-> +   # Creates init files in all directory in pip.
-> +-  python tensorflow_estimator/tools/pip_package/create_pip_helper.py --=
-pip-root "${TMPDIR}/tensorflow_estimator/" --bazel-root "./tensorflow_estim=
-ator"
-> ++  nativepython3 tensorflow_estimator/tools/pip_package/create_pip_helpe=
-r.py --pip-root "${TMPDIR}/tensorflow_estimator/" --bazel-root "./tensorflo=
-w_estimator"
-> + }
-> +
-> + function build_wheel() {
-> +--
-> +2.18.2
-> +
-> diff --git a/recipes-framework/tensorflow/tensorflow-estimator_1.13.bb b/=
-recipes-framework/tensorflow/tensorflow-estimator_1.13.bb
-> index f3a5098..5b2fe5d 100644
-> --- a/recipes-framework/tensorflow/tensorflow-estimator_1.13.bb
-> +++ b/recipes-framework/tensorflow/tensorflow-estimator_1.13.bb
-> @@ -3,9 +3,10 @@ learning programming."
->  LICENSE =3D "Apache-2.0"
->  LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D01e86893010a1b87e69a213faa753=
-ebd"
->
-> -SRC_URI =3D "git://github.com/tensorflow/estimator.git;branch=3Dr1.13 \
-> +SRC_URI =3D "git://github.com/tensorflow/estimator.git;branch=3Dr2.4 \
-> +           file://0001-customize-for-yocto.patch \
->            "
-> -SRCREV =3D "340703eed78ba4854862f749ed94f91598826e79"
-> +SRCREV =3D "c3e7f2b5bbcc35185ef71797955a28cadce28f60"
->  S =3D "${WORKDIR}/git"
->
->  inherit python3native bazel
-> @@ -19,12 +20,18 @@ DEPENDS +=3D " \
->      python3-astor-native \
->      python3-gast-native \
->      python3-termcolor-native \
-> +    python3-wrapt-native \
-> +    python3-opt-einsum-native \
-> +    python3-astunparse-native \
-> +    flatbuffers-native \
-I'm getting issue when building tensorflow-estimator (I add small
-changes to be able to build this patches on top of dunfell) and I'm
-getting:
-|   /bin/bash -c 'source
-external/bazel_tools/tools/genrule/genrule-setup.sh;
-bazel-out/k8-opt-exec-2B5CBBC6/bin/tensorflow_estimator/python/estimator/ap=
-i/create_tensorflow_estimator.python.estimator_api_1_estimator_python_api_g=
-en_compat_v1
- --apidir=3Dbazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimato=
-r/api_v1/
---apiname=3Destimator --apiversion=3D1
---package=3Dtensorflow_estimator.python.estimator
---output_package=3Dtensorflow_estimator.python.estimator.api._v1
-bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_v1/v1=
-.py
-bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_v1/es=
-timator/__init__.py
-bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_v1/es=
-timator/experimental/__init__.py
-bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_v1/es=
-timator/export/__init__.py
-bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_v1/es=
-timator/inputs/__init__.py
-bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_v1/es=
-timator/tpu/__init__.py
-bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_v1/es=
-timator/tpu/experimental/__init__.py')
-| Execution platform: @local_config_platform//:host
-| /home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tensorflow-e=
-stimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-packages/h5py/=
-__init__.py:72:
-UserWarning: h5py is running against HDF5 1.8.21 when it was built
-against 1.8.19, this may cause problems
-|   _warn(("h5py is running against HDF5 {0} when it was built against {1},=
- "
-| Traceback (most recent call last):
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/bazel/output_base/execroot/org_tensorflow_estimator=
-/bazel-out/k8-opt-exec-2B5CBBC6/bin/tensorflow_estimator/python/estimator/a=
-pi/create_tensorflow_estimator.python.estimator_api_1_estimator_python_api_=
-gen_compat_v1.runfiles/org_tensorflow_estimator/tensorflow_estimator/python=
-/estimator/api/create_python_api_wrapper.py",
-line 26, in <module>
-|     from tensorflow_estimator.python.estimator import estimator_lib
-# pylint: disable=3Dunused-import
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/bazel/output_base/execroot/org_tensorflow_estimator=
-/bazel-out/k8-opt-exec-2B5CBBC6/bin/tensorflow_estimator/python/estimator/a=
-pi/create_tensorflow_estimator.python.estimator_api_1_estimator_python_api_=
-gen_compat_v1.runfiles/org_tensorflow_estimator/tensorflow_estimator/python=
-/estimator/estimator_lib.py",
-line 22, in <module>
-|     from tensorflow_estimator.python.estimator.canned.baseline
-import BaselineClassifier
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/bazel/output_base/execroot/org_tensorflow_estimator=
-/bazel-out/k8-opt-exec-2B5CBBC6/bin/tensorflow_estimator/python/estimator/a=
-pi/create_tensorflow_estimator.python.estimator_api_1_estimator_python_api_=
-gen_compat_v1.runfiles/org_tensorflow_estimator/tensorflow_estimator/python=
-/estimator/canned/baseline.py",
-line 53, in <module>
-|     import tensorflow as tf
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-packag=
-es/tensorflow/__init__.py",
-line 55, in <module>
-|     from ._api.v2 import compat
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-packag=
-es/tensorflow/_api/v2/compat/__init__.py",
-line 39, in <module>
-|     from . import v1
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-packag=
-es/tensorflow/_api/v2/compat/v1/__init__.py",
-line 34, in <module>
-|     from . import compat
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-packag=
-es/tensorflow/_api/v2/compat/v1/compat/__init__.py",
-line 39, in <module>
-|     from . import v1
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-packag=
-es/tensorflow/_api/v2/compat/v1/compat/v1/__init__.py",
-line 51, in <module>
-|     from tensorflow._api.v2.compat.v1 import lite
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-packag=
-es/tensorflow/_api/v2/compat/v1/lite/__init__.py",
-line 11, in <module>
-|     from . import experimental
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-packag=
-es/tensorflow/_api/v2/compat/v1/lite/experimental/__init__.py",
-line 10, in <module>
-|     from . import nn
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-packag=
-es/tensorflow/_api/v2/compat/v1/lite/experimental/nn/__init__.py",
-line 10, in <module>
-|     from tensorflow.lite.python.lite import TFLiteLSTMCell
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-packag=
-es/tensorflow/lite/python/lite.py",
-line 40, in <module>
-|     from tensorflow.lite.python.convert import
-build_toco_convert_protos  # pylint: disable=3Dunused-import
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-packag=
-es/tensorflow/lite/python/convert.py",
-line 33, in <module>
-|     from tensorflow.lite.python import util
-|   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tens=
-orflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-packag=
-es/tensorflow/lite/python/util.py",
-line 30, in <module>
-|     import flatbuffers
-| ModuleNotFoundError: No module named 'flatbuffers'
+I have a bunch of custom testcases (oeqa/runtime/cases) which are 
+interacting with "d" from the build host - basically fetching some info 
+while executing the test, e.g.
 
-FLatbuffers from openembedded are available version 1.12. Do you have
-an idea what is can cause?
->      tensorflow-native \
->  "
->
->  do_compile () {
->      unset CC
->      export TMPDIR=3D"${WORKDIR}"
-> +    export PYTHON_BIN_PATH=3D"${PYTHON}"
-> +
->      ${BAZEL} build \
->          --subcommands --explain=3D${T}/explain.log \
->          --verbose_explanations --verbose_failures \
-> @@ -32,7 +39,6 @@ do_compile () {
->          --python_path=3D"${PYTHON}" \
->          //tensorflow_estimator/tools/pip_package:build_pip_package
->
-> -    PYTHON_BIN_PATH=3D"${PYTHON}" \
->      ${S}/bazel-bin/tensorflow_estimator/tools/pip_package/build_pip_pack=
-age \
->          ${WORKDIR}/estimator_pip
->  }
-> --
-> 2.21.0
->
+foo = self.tc.td['MY_CUSTOM_VAR']
 
-Thanks and BR,
+What I've seen is that these files create python __pycache__ files 
+during parsing of the testimage run.
 
-marek
---=20
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+On the initial run everything is working like expected, but if I now 
+change the variable "MY_CUSTOM_VAR", without modifying the 
+target-filesystem the value inside the test case doesn't get updated.
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+Did anyone else encountered this?
+
+To me it seems like the value of the var does make it into the pycache 
+files, ignoring the updated value on a second run.
+
+On that note: wouldn't it make sense to disable the cache creation for 
+oeqa test cases? just to mitigate chances of such scenarios?
+
+Or maybe I'm doing something wrong here, so any pointers are highly 
+appreciated.
+
+Regards
+Konrad
