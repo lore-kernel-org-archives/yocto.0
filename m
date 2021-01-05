@@ -1,109 +1,89 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.1487.1609872864468122666
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+ by mx.groups.io with SMTP id smtpd.web09.162.1609888256815295647
  for <yocto@lists.yoctoproject.org>;
- Tue, 05 Jan 2021 10:54:24 -0800
+ Tue, 05 Jan 2021 15:10:57 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=eMWcRNQc;
- spf=softfail (domain: linuxfoundation.org, ip: 198.145.29.25, mailfrom: richard.purdie@linuxfoundation.org)
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id E861C38C08A1
-	for <yocto@yoctoproject.org>; Tue,  5 Jan 2021 18:54:23 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id c133so481315wme.4
-        for <yocto@yoctoproject.org>; Tue, 05 Jan 2021 10:54:23 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=GDQCNBP0;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.50, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f50.google.com with SMTP id 91so766252wrj.7
+        for <yocto@lists.yoctoproject.org>; Tue, 05 Jan 2021 15:10:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
         h=message-id:subject:from:to:date:in-reply-to:references:user-agent
          :mime-version:content-transfer-encoding;
-        bh=s2YTkrAa6kamXVq7YiSGcoR3z0tZaFTFQTd3hz+qVq8=;
-        b=eMWcRNQcKJJggFN26YtgwhnFmodCQueC71qGRyUJV6xyH+EeySbGwFNtY9/oxliw3j
-         Ij0BNFz46v6HIQdLGfLvMIQV7piP2v4koz4n5zQRTFUGiRLRepPjZKYFDM2zKQ1mf5vv
-         YtIFl6UPk5ssFlHle7uw8DrflHzgd0gRzf+3Y=
+        bh=j9mAS5cjepvdOIkcCZvPSmyt3C4hS+8L2vCL/qWdSR4=;
+        b=GDQCNBP0SARv7B+QwQKxM4jcdOW/PD5rvikY5WtFsDlsBHFK2FLIwk87AHMyYusOPG
+         5P4dU8PWNxW62br93fyzJm9RORUFPs4edBaf4316sS+38cAy6gapY8g/lkTHnhhLMSG7
+         F1SiARc2kgseVGbQBIL/vT52vvWLfYk4TOAgY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
          :references:user-agent:mime-version:content-transfer-encoding;
-        bh=s2YTkrAa6kamXVq7YiSGcoR3z0tZaFTFQTd3hz+qVq8=;
-        b=JytLKnh2GLnT5Pb43dcn7xeVMZl1Hx4gcj4XfrzE6VFbsJq5qXoSadlgRuhUNwVUKh
-         9kLp9oFfGKlZmEBemClx4ioC58PDkLZsBsMOEf+0E/Nl+4aYRWaGOgOpVft2S2r+4lkU
-         Hca9fimW13T6dACw+i9IBe+WnmdZgisHtbXtWbLvv4wkUemegQh2zd1W1bOr6ZB2FDrF
-         ylNd+1I6pWReRbJfOY4j38vf6tQMapdUPpiU0IVFEY+6Ei4V72hxSFA/QhOXa4ryMIHx
-         2k78iXmDnQfE99FTBB7besGcfs8BhXUczDyakB43nViWz4EGxzx6nm6ZxWTDrnaI7ji3
-         iDnQ==
-X-Gm-Message-State: AOAM531RGu6FdUQzHUZXJG2ineckqPiv+Ft+lKWvCSlpuMO2DZF3BxoG
-	MBWc3rsTtp56lG1FvoBM+SI8NA==
-X-Google-Smtp-Source: ABdhPJyi0rzfMxNRtyiCv62Nu6uNhxNmfyzL3XIUhLMlrSZm9yy5Z25tnyrM6+sTktlY+2LmREWNSw==
-X-Received: by 2002:a05:600c:22d9:: with SMTP id 25mr465757wmg.158.1609872862402;
-        Tue, 05 Jan 2021 10:54:22 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:fe9c:e0b5:40a1:adaf? ([2001:8b0:aba:5f3c:fe9c:e0b5:40a1:adaf])
-        by smtp.gmail.com with ESMTPSA id f14sm5173wre.69.2021.01.05.10.54.21
+        bh=j9mAS5cjepvdOIkcCZvPSmyt3C4hS+8L2vCL/qWdSR4=;
+        b=QcKEHLmyBFQ+P/VCPYWtSn6mHl4VN7Iq1ZD0QiopzIkbR7FJlU19D1YNI5JaatsO0j
+         8ne/lIzLA7vVg52b3K919vYYn/1NwIE0l1erSXGQ/8MLl26kZUVaW6CnMSechdoM0zSD
+         h5cl3ut0Y5atvgkQiam+AiCPf5Y5xoTf0o+ZqrXK4fhmG0AGoLajN69yapw0IuEf4c1k
+         KFsOjcdkoh8tVaCvL1fm92WJfqjSiPvCi6WPmmBfq5tK9bWsPdPzIM2lW2PgMDkDsUVu
+         g1p2CXhfb19ADRoF6S+a0gPiX4Cx07pu2lfhXWxuuCnXc09SNNIQHpLs4v57B+0hU27n
+         B9yw==
+X-Gm-Message-State: AOAM532Fw843eT3gC5berBUqO560ixcMaffQI7dDsbkaiO6G/suYnauN
+	se7x3bMV7s4jagGAQnDDMlqgRQ==
+X-Google-Smtp-Source: ABdhPJwg8g8ylkQ9HpQ1TzU+yUkUFR2wQDdBKMu2Bch0so34gdwBnc5lMb0HrW0yDrwxm8bj5Yy2nA==
+X-Received: by 2002:a5d:6a05:: with SMTP id m5mr1607166wru.96.1609888255052;
+        Tue, 05 Jan 2021 15:10:55 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:f056:12a7:edca:60f8? ([2001:8b0:aba:5f3c:f056:12a7:edca:60f8])
+        by smtp.gmail.com with ESMTPSA id q143sm743316wme.28.2021.01.05.15.10.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jan 2021 10:54:21 -0800 (PST)
-Message-ID: <5f8f8616efa85303354426f3f9ccab67339dfd48.camel@linuxfoundation.org>
-Subject: Re: [yocto] How do I build an x32 Intel system?
+        Tue, 05 Jan 2021 15:10:54 -0800 (PST)
+Message-ID: <ce71ec0979a6cf5421b0fcaf3164b12e2fa88d9c.camel@linuxfoundation.org>
+Subject: Re: [yocto] oeqa: testcase caching
 From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>, yocto@yoctoproject.org
-Date: Tue, 05 Jan 2021 18:54:19 +0000
-In-Reply-To: <113956D0E12D407782FFFB70D620DEAC@PAULD>
-References: <113956D0E12D407782FFFB70D620DEAC@PAULD>
+To: Konrad Weihmann <kweihmann@outlook.com>, "yocto@lists.yoctoproject.org"
+	 <yocto@lists.yoctoproject.org>
+Date: Tue, 05 Jan 2021 23:10:51 +0000
+In-Reply-To: <AM9PR09MB4739A4D38A58259775479952A8D20@AM9PR09MB4739.eurprd09.prod.outlook.com>
+References: 
+	<AM9PR09MB4739A4D38A58259775479952A8D20@AM9PR09MB4739.eurprd09.prod.outlook.com>
 User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Sun, 2021-01-03 at 10:44 -0800, Paul D. DeRocco wrote:
-I've been resurrecting an old Pyro project under Gatesgarth. It's an
-Intel
-32-bit system that needs maximum speed, so I decided to try to build
-the
-system and application as 64-bit, for more registers. It pretty much
-worked
-on the first try, and is about 8% faster. Now I'm trying to do it as
-x32, to
-see if that speeds it up even more.
+On Mon, 2021-01-04 at 11:44 +0100, Konrad Weihmann wrote:
+> I have a bunch of custom testcases (oeqa/runtime/cases) which are 
+> interacting with "d" from the build host - basically fetching some
+> info 
+> while executing the test, e.g.
+> 
+> foo = self.tc.td['MY_CUSTOM_VAR']
+> 
+> What I've seen is that these files create python __pycache__ files 
+> during parsing of the testimage run.
+> 
+> On the initial run everything is working like expected, but if I now 
+> change the variable "MY_CUSTOM_VAR", without modifying the 
+> target-filesystem the value inside the test case doesn't get updated.
+> 
+> Did anyone else encountered this?
+> 
+> To me it seems like the value of the var does make it into the
+> pycache 
+> files, ignoring the updated value on a second run.
+> 
+> On that note: wouldn't it make sense to disable the cache creation
+> for 
+> oeqa test cases? just to mitigate chances of such scenarios?
+> 
+> Or maybe I'm doing something wrong here, so any pointers are highly 
+> appreciated.
 
-Unable to find any specific instructions, I set the DEFAULTTUNE to
-"core2-64-x32" in my BSP conf file. Also, in the old project I had
-tinkered
-around with this a bit, and had found some kernel config settings
-somewhere,
-so I tried using them again:
-
-CONFIG_X86_X32=y
-CONFIG_COMPAT=y
-CONFIG_COMPAT_FOR_U64_ALIGNMENT=y
-CONFIG_SYSVIPC_COMPAT=y
-CONFIG_KEYS_COMPAT=y
-CONFIG_HAVE_ARCH_MMAP_RND_COMPAT_BITS=y
-CONFIG_ARCH_MMAP_RND_COMPAT_BITS=8
-CONFIG_BLOCK_COMPAT=y
-
-Other than the first one, I don't know whether these are correct, or
-where I
-originally got them, or if there's a stock .cfg file that does all
-this.
-
-The system built fine, the SDK built fine, and my application built
-fine,
-but when I boot, I get a kernel panic, preceded by some message about
-"kmod
-busy with 50 threads for more than 5 seconds now".
-
-Is there some instruction on how to do a proper x32 build? I couldn't
-find
-one Googling. Barring that, do any of those kernel configs look bogus?
-
-You can see the autobuilder x32 test configuration here:
-
-https://autobuilder.yoctoproject.org/typhoon/#/builders/57/builds/2866/steps/10/logs/stdio
-
-the key parts of which are probably:
-
-MACHINE = "qemux86-64"
-DEFAULTTUNE = 'x86-64-x32'
-baselib = "${@d.getVar('BASE_LIB_tune-' + (d.getVar('DEFAULTTUNE', True) or 'INVALID'), True) or 'lib'}"
+FWIW this doesn't sound right to me. pyc files (in __pycache__) would
+cache the code, not data so I don't see how these values would be
+preserved there. I don't doubt you're seeing some kind of issue but I
+suspect its more likely bitbake's cache or something...
 
 Cheers,
 
 Richard
-
 
