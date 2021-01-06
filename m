@@ -1,57 +1,67 @@
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by mx.groups.io with SMTP id smtpd.web09.4808.1609916979603252915
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+ by mx.groups.io with SMTP id smtpd.web12.5199.1609920980583666646
  for <yocto@lists.yoctoproject.org>;
- Tue, 05 Jan 2021 23:09:39 -0800
+ Wed, 06 Jan 2021 00:16:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.93, mailfrom: anuj.mittal@intel.com)
-IronPort-SDR: uya9FJ0LguGqHMpoxyuiIcGa22LIhj4Y+Ru6IMEmcnhNlR7iQB7Zt1rCVq1fWSXNbWtlttvowp
- kNJWyb5WXwrQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9855"; a="173731634"
-X-IronPort-AV: E=Sophos;i="5.78,479,1599548400"; 
-   d="scan'208";a="173731634"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jan 2021 23:09:38 -0800
-IronPort-SDR: J9Lm1PTGqa1jfMNeeV9zdPmfLKstG+zAUBqfSUqb3TVGi7hHnBpPDWPHaT/xg/PzMi0m+lFT+g
- ksmgpEWa/b3A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,479,1599548400"; 
-   d="scan'208";a="398121614"
-Received: from pgsmsx601.gar.corp.intel.com ([10.108.199.136])
-  by fmsmga002.fm.intel.com with ESMTP; 05 Jan 2021 23:09:37 -0800
-Received: from pgsmsx601.gar.corp.intel.com (10.108.199.136) by
- pgsmsx601.gar.corp.intel.com (10.108.199.136) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 6 Jan 2021 15:09:37 +0800
-Received: from pgsmsx601.gar.corp.intel.com ([10.108.199.136]) by
- pgsmsx601.gar.corp.intel.com ([10.108.199.136]) with mapi id 15.01.1713.004;
- Wed, 6 Jan 2021 15:09:37 +0800
-From: "Anuj Mittal" <anuj.mittal@intel.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"jupiter.hce@gmail.com" <jupiter.hce@gmail.com>
-Subject: Re: [yocto] How to select Linux kernel version?
-Thread-Topic: [yocto] How to select Linux kernel version?
-Thread-Index: AQHW4/Gk0D2ehddMQUa2nl57juTf4aoZp8gA
-Date: Wed, 6 Jan 2021 07:09:37 +0000
-Message-ID: <95248f335ea59edbb8fa0579e0f78d7fd24b71b1.camel@intel.com>
-References: <CAA=hcWTML9Dg=yxt5TVw6Z7w35tJA3i6LouFMrVjAy5bo551KA@mail.gmail.com>
-In-Reply-To: <CAA=hcWTML9Dg=yxt5TVw6Z7w35tJA3i6LouFMrVjAy5bo551KA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.108.32.68]
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=UfBxKI8u;
+ spf=pass (domain: gmail.com, ip: 209.85.219.170, mailfrom: jupiter.hce@gmail.com)
+Received: by mail-yb1-f170.google.com with SMTP id k4so2079097ybp.6
+        for <yocto@lists.yoctoproject.org>; Wed, 06 Jan 2021 00:16:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+         :cc;
+        bh=sQneaesj4y9GPAHliRTVjwxdcj09mSxAY00ff56GNak=;
+        b=UfBxKI8uypXqaHCd1To5yyeFdYH23+lrEeV3EUQlt4xOFquf98L1kmXiGbmDGWL6sR
+         YTirZfduH39XNGy8GEGxljr0kfPpKem34KnfDQkOt5kl/0AXXLBrO9GCIOAhfKs1CxHl
+         HMsqtkLJqM5lIX0mS+HXFEJgNjV4fKClo4kDmf/eeRzw+IQFdz7VhiVOiCajhGUmoYKL
+         vUIN34U/1TRYPrq1SRuYC5jMMHGBOPJvQfcC8HSK9qaOZlzyWc8w0Kg3kSyaqZ43ydFe
+         dJgNhdsDJOO5ISG0rYDIEvr3JR3a+bVNes0CaiI1YgSJ6CE7HON0pjQ/Fq4hltWRmqkv
+         SMRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to:cc;
+        bh=sQneaesj4y9GPAHliRTVjwxdcj09mSxAY00ff56GNak=;
+        b=NJa5dXhWtWMDOX0qnbAj1kbTqWQGJ2zuHvV4p35AG+5k+BWI2sT1RQz68Y8v5H9KGP
+         aDOyArUyLZJWIDdVrB3VqxdZ7+wm0eOqvycNl04/0+rJtftJr8sR8y+3XRiiHSndBN5f
+         L/3Umg5XpV09lZ7vxbX6BuRsd+PVfeNPHohgLqDlsB2FfRp89BEHzuzJmjxzP+Lx0+M5
+         hZHqUkQkL6MLbITIlucR0Xv6vmJvDD5rdZFZXOYPOsaHKhfsz1wbHw0uXt/0OeYrqYxE
+         VUlOCWc5f3hQrnnXiyUKs/zGvDqDvn5vb3O0ZSRV3cf6604rrmwbseOU3E025Uu2b/wb
+         IDEw==
+X-Gm-Message-State: AOAM530lzIP6GvPbQZ8/wyo+UDs0lC8mjSNmr2aytLHpuL+TJMN2SVEZ
+	45mct5puL16hYB+3bKo8yFqVv3Hd4/y8ZXdxUHs=
+X-Google-Smtp-Source: ABdhPJyUKa3sXNd/ahz3jyCgLww6lpykXPTI81spE/ppKxK1f3KPBWaiQ+T5iJvLgi4wz/NWBNWqs6lVS5sp2gHG/cA=
+X-Received: by 2002:a25:d483:: with SMTP id m125mr5035802ybf.330.1609920979814;
+ Wed, 06 Jan 2021 00:16:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <0E60B12BFAC6764CA4C5FF09D9B0B178@intel.com>
-Content-Transfer-Encoding: base64
+Received: by 2002:a25:e705:0:0:0:0:0 with HTTP; Wed, 6 Jan 2021 00:16:19 -0800 (PST)
+In-Reply-To: <95248f335ea59edbb8fa0579e0f78d7fd24b71b1.camel@intel.com>
+References: <CAA=hcWTML9Dg=yxt5TVw6Z7w35tJA3i6LouFMrVjAy5bo551KA@mail.gmail.com>
+ <95248f335ea59edbb8fa0579e0f78d7fd24b71b1.camel@intel.com>
+From: "JH" <jupiter.hce@gmail.com>
+Date: Wed, 6 Jan 2021 19:16:19 +1100
+Message-ID: <CAA=hcWT_1VcVaNHQChDvuDURL3j5hu_g6muF8_tssG4PDhrdkg@mail.gmail.com>
+Subject: Re: [yocto] How to select Linux kernel version?
+To: "Mittal, Anuj" <anuj.mittal@intel.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-T24gV2VkLCAyMDIxLTAxLTA2IGF0IDE3OjAyICsxMTAwLCBKSCB3cm90ZToNCj4gSGksDQo+IA0K
-PiBJIHJlcGxhY2VkIExpbnV4IGtlcm5lbCB2ZXJzaW9uIGZyb20gNC4xOSBieSA1LjEwIGJiIGZp
-bGUsIGJ1dCBpdA0KPiBzdGlsbCBidWlsdCA0LjE5IHpJbWFnZSwgSSBhZGQgUFJFRkVSUkVEX1ZF
-UlNJT05fbGludXgteW9jdG8gPQ0KPiAiNS4xMCUiDQo+IGluIGxvY2FsLmNvbmYsIGl0IHN0aWxs
-IGJ1aWx0IDQuMTkgekltYWdlLiBXaGVyZSB0aGUgbGludXgga2VybmVsDQo+IHZlcnNpb24gaXMg
-ZGVmaW5lZCBpbiBjb25maWd1cmUgZmlsZXM/DQo+IA0KDQpJcyB0aGUgUFJFRkVSUkVEX1BST1ZJ
-REVSX3ZpcnR1YWwva2VybmVsIHNldCB0byBsaW51eC15b2N0bz8gWW91IG5lZWQNCnRvIHNldCB0
-aGUgUFJFRkVSUkVEX1ZFUlNJT04gZm9yIGtlcm5lbCB0aGF0IHlvdSBhcmUgdXNpbmcgLi4uIA0K
-DQpiaXRiYWtlIC1lIHZpcnR1YWwva2VybmVsIG91dHB1dCBzaG91bGQgaGVscCBzZWUgaG93IGl0
-J3MgYmVpbmcgc2V0IGFuZA0Kd2hlcmUuDQoNClRoYW5rcywNCg0KQW51ag0K
+Thanks for the response.
+
+> Is the PREFERRED_PROVIDER_virtual/kernel set to linux-yocto? You need
+> to set the PREFERRED_VERSION for kernel that you are using ...
+
+Yes, I tried to set both in local.conif or distro, none of works.
+
+> bitbake -e virtual/kernel output should help see how it's being set and
+> where.
+
+There was no PREFERRED_PROVIDER_virtual/kernel, nor
+PREFERRED_VERSION_linux-yocto setup.
+
+Thank you.
+
+Kind regards,
+
+- j
