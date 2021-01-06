@@ -1,89 +1,54 @@
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
- by mx.groups.io with SMTP id smtpd.web09.162.1609888256815295647
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+ by mx.groups.io with SMTP id smtpd.web09.4383.1609912990504033666
  for <yocto@lists.yoctoproject.org>;
- Tue, 05 Jan 2021 15:10:57 -0800
+ Tue, 05 Jan 2021 22:03:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=GDQCNBP0;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.50, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f50.google.com with SMTP id 91so766252wrj.7
-        for <yocto@lists.yoctoproject.org>; Tue, 05 Jan 2021 15:10:56 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=jhOjOSjs;
+ spf=pass (domain: gmail.com, ip: 209.85.219.181, mailfrom: jupiter.hce@gmail.com)
+Received: by mail-yb1-f181.google.com with SMTP id k78so1788570ybf.12
+        for <yocto@lists.yoctoproject.org>; Tue, 05 Jan 2021 22:03:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=j9mAS5cjepvdOIkcCZvPSmyt3C4hS+8L2vCL/qWdSR4=;
-        b=GDQCNBP0SARv7B+QwQKxM4jcdOW/PD5rvikY5WtFsDlsBHFK2FLIwk87AHMyYusOPG
-         5P4dU8PWNxW62br93fyzJm9RORUFPs4edBaf4316sS+38cAy6gapY8g/lkTHnhhLMSG7
-         F1SiARc2kgseVGbQBIL/vT52vvWLfYk4TOAgY=
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=wa/cV99kkOHldhXdSSInMXV/aG7whrPkfXXbbqLECVU=;
+        b=jhOjOSjslyig1I1IoHizTGQavHYqAOJKWE+rtylixhXjxIVy1B0G8jAA/hXbbfm9oW
+         s50zRa2Z8xGbgPJYVvmuyUvhtcY+j35KmMjgNB/vclNhUZTNbfWj+FKezVbzvLlMH/w+
+         qE5XyMjVhoJ9gMfhIMIJY5TZe4cHT+RN87mDCVL0zbM92WwGhzo4ThK9oxgrgGVKP39O
+         d/IVPSukCFXCrqc8ZT5P7gNw6CH8/NzCVP/ybgqJpzFNQw7VURpyWoUL1KUBmACfxp2q
+         5M9zxiMyUZsEbcZ5XrirGpfJTopT2D035hTPE3fpj+Fe4we51VMypU5o21b+7exFYeSp
+         GpCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=j9mAS5cjepvdOIkcCZvPSmyt3C4hS+8L2vCL/qWdSR4=;
-        b=QcKEHLmyBFQ+P/VCPYWtSn6mHl4VN7Iq1ZD0QiopzIkbR7FJlU19D1YNI5JaatsO0j
-         8ne/lIzLA7vVg52b3K919vYYn/1NwIE0l1erSXGQ/8MLl26kZUVaW6CnMSechdoM0zSD
-         h5cl3ut0Y5atvgkQiam+AiCPf5Y5xoTf0o+ZqrXK4fhmG0AGoLajN69yapw0IuEf4c1k
-         KFsOjcdkoh8tVaCvL1fm92WJfqjSiPvCi6WPmmBfq5tK9bWsPdPzIM2lW2PgMDkDsUVu
-         g1p2CXhfb19ADRoF6S+a0gPiX4Cx07pu2lfhXWxuuCnXc09SNNIQHpLs4v57B+0hU27n
-         B9yw==
-X-Gm-Message-State: AOAM532Fw843eT3gC5berBUqO560ixcMaffQI7dDsbkaiO6G/suYnauN
-	se7x3bMV7s4jagGAQnDDMlqgRQ==
-X-Google-Smtp-Source: ABdhPJwg8g8ylkQ9HpQ1TzU+yUkUFR2wQDdBKMu2Bch0so34gdwBnc5lMb0HrW0yDrwxm8bj5Yy2nA==
-X-Received: by 2002:a5d:6a05:: with SMTP id m5mr1607166wru.96.1609888255052;
-        Tue, 05 Jan 2021 15:10:55 -0800 (PST)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from ?IPv6:2001:8b0:aba:5f3c:f056:12a7:edca:60f8? ([2001:8b0:aba:5f3c:f056:12a7:edca:60f8])
-        by smtp.gmail.com with ESMTPSA id q143sm743316wme.28.2021.01.05.15.10.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jan 2021 15:10:54 -0800 (PST)
-Message-ID: <ce71ec0979a6cf5421b0fcaf3164b12e2fa88d9c.camel@linuxfoundation.org>
-Subject: Re: [yocto] oeqa: testcase caching
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Konrad Weihmann <kweihmann@outlook.com>, "yocto@lists.yoctoproject.org"
-	 <yocto@lists.yoctoproject.org>
-Date: Tue, 05 Jan 2021 23:10:51 +0000
-In-Reply-To: <AM9PR09MB4739A4D38A58259775479952A8D20@AM9PR09MB4739.eurprd09.prod.outlook.com>
-References: 
-	<AM9PR09MB4739A4D38A58259775479952A8D20@AM9PR09MB4739.eurprd09.prod.outlook.com>
-User-Agent: Evolution 3.38.1-1 
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=wa/cV99kkOHldhXdSSInMXV/aG7whrPkfXXbbqLECVU=;
+        b=KDxMNWNV1t5ZEJmOF93SGObRHGEDBNVAqwZrWiV6n2Ahgkx06RWyFmGF1kEIkmEUZ4
+         n2ydD6GqNj/G0G2e/+2w4AahP9oe3fEbhOslglUV+M20CTP4Xp3mu4ul8gK5N3/QGqBu
+         A9+R3/aY1wplu5h7C+r61cJ3CSjs4iSgdUIZXwjxtN31IyBFIjqYuLmTtZIxeaaQQSjh
+         uXN2cdiF349luIaIx1uCx3ic8/XN2uG7Hg6RI/NjIxXz98f7dK/iF6JirxORWO8CzITl
+         ulZL+FI+KCyRuBiiwb+dLRqslD9f8BA91fYR3kK427FuZcAQeI1ZI24ZeJyO4cO1Esmy
+         +CNw==
+X-Gm-Message-State: AOAM531tqG8achoyNwqGG1EiWHGVmVcyPHtHrFM0YUheVexi8wn5xrYk
+	IVjvIsKtaRjYtfhthCzpoxOhO/det8bPW31Ba20ZMyhS
+X-Google-Smtp-Source: ABdhPJywT3cnNv2ORJLQVD1N13uRom4CEgWnpp7dvRpFob4RsFg8kejpa0Tn8OhtikQbklP3F3NVcwo1l5OypQ83KQA=
+X-Received: by 2002:a25:e646:: with SMTP id d67mr4017287ybh.405.1609912989402;
+ Tue, 05 Jan 2021 22:03:09 -0800 (PST)
 MIME-Version: 1.0
+From: "JH" <jupiter.hce@gmail.com>
+Date: Wed, 6 Jan 2021 17:02:33 +1100
+Message-ID: <CAA=hcWTML9Dg=yxt5TVw6Z7w35tJA3i6LouFMrVjAy5bo551KA@mail.gmail.com>
+Subject: How to select Linux kernel version?
+To: yocto <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
 
-On Mon, 2021-01-04 at 11:44 +0100, Konrad Weihmann wrote:
-> I have a bunch of custom testcases (oeqa/runtime/cases) which are 
-> interacting with "d" from the build host - basically fetching some
-> info 
-> while executing the test, e.g.
-> 
-> foo = self.tc.td['MY_CUSTOM_VAR']
-> 
-> What I've seen is that these files create python __pycache__ files 
-> during parsing of the testimage run.
-> 
-> On the initial run everything is working like expected, but if I now 
-> change the variable "MY_CUSTOM_VAR", without modifying the 
-> target-filesystem the value inside the test case doesn't get updated.
-> 
-> Did anyone else encountered this?
-> 
-> To me it seems like the value of the var does make it into the
-> pycache 
-> files, ignoring the updated value on a second run.
-> 
-> On that note: wouldn't it make sense to disable the cache creation
-> for 
-> oeqa test cases? just to mitigate chances of such scenarios?
-> 
-> Or maybe I'm doing something wrong here, so any pointers are highly 
-> appreciated.
+Hi,
 
-FWIW this doesn't sound right to me. pyc files (in __pycache__) would
-cache the code, not data so I don't see how these values would be
-preserved there. I don't doubt you're seeing some kind of issue but I
-suspect its more likely bitbake's cache or something...
+I replaced Linux kernel version from 4.19 by 5.10 bb file, but it
+still built 4.19 zImage, I add PREFERRED_VERSION_linux-yocto = "5.10%"
+in local.conf, it still built 4.19 zImage. Where the linux kernel
+version is defined in configure files?
 
-Cheers,
+Thank you.
 
-Richard
+Kind regards,
 
+- j
