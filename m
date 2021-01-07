@@ -1,78 +1,97 @@
-Subject: Unable to extract tar file #dunfell #yocto
+Subject: Re: How to select Linux kernel version?
 To: yocto@lists.yoctoproject.org
-From: "Vijay Rakesh Munganda" <vijayrakeshmunganda@gmail.com>
-X-Originating-Location: IN (164.164.95.9)
-X-Originating-Platform: Windows Chrome 87
+From: kapllaj.elvis@gmail.com
+X-Originating-Location: IT (5.90.205.9)
+X-Originating-Platform: Linux Chrome 80
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Wed, 06 Jan 2021 23:12:59 -0800
-Message-ID: <f9PC.1610003579307616752.mC3p@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="hXUy4w6iCbW1T6FDdJV1"
+Date: Thu, 07 Jan 2021 00:41:45 -0800
+References: <CAA=hcWRgT3j9cwhHu4r-+x3_G8E_Yv3qPVKaFOn67-GOSRJh8Q@mail.gmail.com>
+In-Reply-To: <CAA=hcWRgT3j9cwhHu4r-+x3_G8E_Yv3qPVKaFOn67-GOSRJh8Q@mail.gmail.com>
+Message-ID: <32166.1610008905321916245@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="v0OSJ64TvHCr3NxW8xV0"
 
---hXUy4w6iCbW1T6FDdJV1
+--v0OSJ64TvHCr3NxW8xV0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi All,
+Hi, it actually shouldn't be that hard to set the kernel.
 
-I'm trying to install the Tokbox library into the build, but the tar file =
-is not getting extracted into the folder. Here is my recipe code, kindly pl=
-ease help me where I went wrong.
-*Recipe:*
+IMX_DEFAULT_KERNEL is a variable that sets the kernel name (the recipe) an=
+d not the version. I don't know on which yocto version you are working, and=
+ also on which CPU.
 
->=20
->=20
-> DESCRIPTION =3D "libopentok for arm64"
-> HOMEPAGE =3D "https://tokbox.com"
->=20
->=20
-> SRC_URI =3D
-> "https://s3.amazonaws.com/artifact.tokbox.com/rel/opentok-linux-sdk/libo=
-pentok_linux_llvm_arm64-2.18.1.tgz"
->=20
-> SRC_URI[sha256sum] =3D
-> "7ae2b85940a4e16299a4ec5f4341b6b92c71abdb5ef6949508873bd8a2f53abc"
->=20
-> S=3D "${WORKDIR}/tokbox"
->=20
-> inherit cmake
->=20
+On meta-freescale, you find this on meta-freescale-distro/conf/distro/incl=
+ude/fsl-base.inc:
 
-*Error:*
->=20
-> CMake Error: The source directory
-> "/home/test/target/bsp/tmp/work/aarch64-poky-linux/tokbox/1.0-r0/tokbox"
-> does not appear to contain CMakeLists.txt.
+# Handle default kernel
+IMX_DEFAULT_KERNEL =3D "linux-imx"
+IMX_DEFAULT_KERNEL_mxs =3D "linux-fslc"
+IMX_DEFAULT_KERNEL_mx5 =3D "linux-fslc"
+IMX_DEFAULT_KERNEL_mx6 =3D "linux-fslc-imx"
+IMX_DEFAULT_KERNEL_mx7 =3D "linux-fslc-imx"
+IMX_DEFAULT_KERNEL_mx8 =3D "linux-imx"
+IMX_DEFAULT_KERNEL_mx7ulp =3D "linux-imx"
+IMX_DEFAULT_KERNEL_mx6sll =3D "linux-imx"
+IMX_DEFAULT_KERNEL_mx6ul =3D "linux-fslc-imx"
+IMX_DEFAULT_KERNEL_mx6ull =3D "linux-fslc-imx"
+IMX_DEFAULT_KERNEL_use-mainline-bsp =3D "linux-fslc"
 
-Thanks & Regards,
-Vijay Rakesh
+PREFERRED_PROVIDER_virtual/kernel ??=3D "${IMX_DEFAULT_KERNEL}"
 
---hXUy4w6iCbW1T6FDdJV1
+That variable is only used if "PREFERRED_PROVIDER_virtual/kernel" variable=
+ was never set (note the ??=3D assignment). And what this does is: if there=
+ was not specified a kernel for this machine, set it to linux-imx (and note=
+ that it is also overridden for different cpus!). For example, it selects l=
+inux-fslc-imx for imx6 cpu.
+
+Now, go to meta-freescale/recipes-kernel/linux folder, and take a look to =
+see what kernels are available for your machine. Note that the linux-imx ke=
+rnel provides currently on master branch the 5.4 version!
+For you to select the 5.10 (assuming you are on master branch) you should =
+set:
+
+PREFERRED_PROVIDER_virtual/kernel =3D "linux-fslc"
+
+Yocto will automatically select the highest available version, but if you =
+would also like to fix the version, provide also that information:
+PREFERRED_VERSION_linux-fslc =3D "5.%"
+
+--v0OSJ64TvHCr3NxW8xV0
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi All,<br /><br />I'm trying to install the Tokbox library into the build,=
- but the tar file is not getting extracted into the folder. Here is my reci=
-pe code, kindly please help me where I went wrong.<br /><strong>Recipe:</st=
-rong><br />
-<blockquote>
-<div><br />DESCRIPTION =3D "libopentok for arm64"</div>
-<div>HOMEPAGE =3D "https://tokbox.com"</div>
+Hi, it actually shouldn't be that hard to set the kernel.<br /><br />IMX_DE=
+FAULT_KERNEL is a variable that sets the kernel name (the recipe) and not t=
+he version. I don't know on which yocto version you are working, and also o=
+n which CPU.<br /><br />On meta-freescale, you find this on meta-freescale-=
+distro/conf/distro/include/fsl-base.inc:<br /><br />
+<div># Handle default kernel</div>
+<div>IMX_DEFAULT_KERNEL =3D "linux-imx"</div>
+<div>IMX_DEFAULT_KERNEL_mxs =3D "linux-fslc"</div>
+<div>IMX_DEFAULT_KERNEL_mx5 =3D "linux-fslc"</div>
+<div>IMX_DEFAULT_KERNEL_mx6 =3D "linux-fslc-imx"</div>
+<div>IMX_DEFAULT_KERNEL_mx7 =3D "linux-fslc-imx"</div>
+<div>IMX_DEFAULT_KERNEL_mx8 =3D "linux-imx"</div>
+<div>IMX_DEFAULT_KERNEL_mx7ulp =3D "linux-imx"</div>
+<div>IMX_DEFAULT_KERNEL_mx6sll =3D "linux-imx"</div>
+<div>IMX_DEFAULT_KERNEL_mx6ul =3D "linux-fslc-imx"</div>
+<div>IMX_DEFAULT_KERNEL_mx6ull =3D "linux-fslc-imx"</div>
+<div>IMX_DEFAULT_KERNEL_use-mainline-bsp =3D "linux-fslc"</div>
 <div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>SRC_URI =3D "https://s3.amazonaws.com/artifact.tokbox.com/rel/opentok=
--linux-sdk/libopentok_linux_llvm_arm64-2.18.1.tgz"</div>
-<div>SRC_URI[sha256sum] =3D "7ae2b85940a4e16299a4ec5f4341b6b92c71abdb5ef69=
-49508873bd8a2f53abc"</div>
-<div>&nbsp;</div>
-<div>S=3D "${WORKDIR}/tokbox"</div>
-<div>&nbsp;</div>
-<div>inherit cmake</div>
-</blockquote>
-<strong>Error:&nbsp;</strong>
-<blockquote>CMake Error: The source directory "/home/test/target/bsp/tmp/w=
-ork/aarch64-poky-linux/tokbox/1.0-r0/tokbox" does not appear to contain CMa=
-keLists.txt.</blockquote>
-<br />Thanks &amp; Regards,<br />Vijay Rakesh
+<div>PREFERRED_PROVIDER_virtual/kernel ??=3D "${IMX_DEFAULT_KERNEL}"<br />=
+<br />That variable is only used if "PREFERRED_PROVIDER_virtual/kernel" var=
+iable was never set (note the ??=3D assignment). And what this does is: if =
+there was not specified a kernel for this machine, set it to linux-imx (and=
+ note that it is also overridden for different cpus!). For example, it sele=
+cts linux-fslc-imx for imx6 cpu.<br /><br />Now, go to meta-freescale/recip=
+es-kernel/linux folder, and take a look to see what kernels are available f=
+or your machine. Note that the linux-imx kernel provides currently on maste=
+r branch the 5.4 version!</div>
+<div>For you to select the 5.10 (assuming you are on master branch) you sh=
+ould set:<br /><br />PREFERRED_PROVIDER_virtual/kernel =3D "linux-fslc"<br =
+/><br />Yocto will automatically select the highest available version, but =
+if you would also like to fix the version, provide also that information:<b=
+r />PREFERRED_VERSION_linux-fslc =3D "5.%"</div>
 
---hXUy4w6iCbW1T6FDdJV1--
+--v0OSJ64TvHCr3NxW8xV0--
