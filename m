@@ -1,20 +1,20 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.3746.1609991049725562112
+ by mx.groups.io with SMTP id smtpd.web10.3736.1609991051131544942
  for <yocto@lists.yoctoproject.org>;
- Wed, 06 Jan 2021 19:44:09 -0800
+ Wed, 06 Jan 2021 19:44:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=jLy4HQUZ;
+ dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=jylxVKEV;
  spf=softfail (domain: windriver.com, ip: 198.145.29.25, mailfrom: yi.zhao@windriver.com)
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2043.outbound.protection.outlook.com [40.107.94.43])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 9E72938C0895
-	for <yocto@yoctoproject.org>; Thu,  7 Jan 2021 03:44:09 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2061.outbound.protection.outlook.com [40.107.94.61])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 06D0B38C0895
+	for <yocto@yoctoproject.org>; Thu,  7 Jan 2021 03:44:11 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PiGltCzjZTZItw+ichJReP6uN6nApfV6Gpm/sEV1jGlbnV4nR7OT5NHPjsbDSPP+SxDgDwFxwcp8rcLsjCgJkrM0E+no1wKAWodu5liJuXKdVyylrI53ZjbuRmUHeLlR4Or2pPU2HSQRb+KXnLi2kPSgYkn8NKgyWO4xfOxBerv9am2kSoOapuxdhEhpezXV4chwZRFc7mmqY144Xn9+iQL7kCpllj6WZ0B+rlLJO30wfAnB4qnDKxtPosxKOOcjyjNYiv6eFaZ760ktzM08RkBAPrjG11HgHJ548rD3RE5OrhTm6uxaDe/Au3i4Z3mc1YHOyb9GPTikXBDGF16MMw==
+ b=bdLSAArqobz/gHESxbIBproGtKLQ/2CSjq3KGBp6fE2FobkieUexTJ2AKDO0qaQhgtxCPmqs3MWmKqvRNVd4QSFKJLmk5n99VFqvIQP1JxIyiO2cM7wzTZTYeU3HJJ7S2hTLOOkl8WUDwLnhmkUTSg37NWnIU6jE4uTNNdTcZbLK4oMf0Lyc0H19gPOt/MfD1sBblU6tZGTH2sCEJE+rvHnJc1ZsHKufTelLrFnLZCA31k9RzvFLiXwyc5x/IrHLQiLBhqks/kSbktzbC/3r5m8Y1rI0lKMK1CMgCmQCfUr/sz9j5Q6LbTgcUCqQlUrQxmzkqpNTKZSHduegXBLrKQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IVMhATBgltWVqN71jeFgqhA0LVXD4cGEowJ/usWmn3c=;
- b=dXO3KDYouk03fyF1HYJwIuCEjEmpI6349B2Q42NX1EK5MwQsmYZHVO5tW3qGgOn3hiu2Um9RxB6lzS/MZfEdnBIVW/OGHdWrhOslBAB1XTByTJkCPhDSTOrAzv5fjyKgTfwnxJk7T3egf96IaND6q6aRDWEAqUkMGImoLsdg/azsbweJ74jhtMIdi0sO8FOQAT5XlUkK1iv7CytewevMfrQy1HDO96KTViM+W25bTzKJT5tA0qJaovyrkcP31g9k0VUPgEp5OXRebPuJFDVYPv2eHt4iHSwUMuXUzXyHPzMsVeczY0iCEdv0Ru2CZDs3cW4V+U6WtiM2XB2DLbIXEw==
+ bh=w+Lh6nRcW0KG/0EwRS2TOLxVzy/pF5I6kNCxVTxtzsI=;
+ b=I49Abd0s4ac4UVvb7CvisQdAHUQogX7/hzCChOpEfaCtDHpaOIzX7L5qB0jU+qZQ1xa8nLQhduC+zuHoGJaVcMpv7EAdkgKgvGJN3iNB0ZF85ygCyxetc+bxgkvbX7SUU0W30lHxKAUqsxF5cYPoKO/QAjrijlWIM1SeE+a0QSVpWic9NealGBTV9oy2zzE0IWXVGKsJIIHRhDq92QDVbofOjz/kB/KSUxAjKKo2aI6fvvHimaiWB/4Cbfqj4qv5T4cwzqV1T8++8Htid//FyELrSmw1JvitLy7ROkxwMIfEMrl+CriIn2XmcErDztkujunYmnOpvMPZGsB6rLRCVQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
@@ -22,8 +22,8 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=windriversystems.onmicrosoft.com;
  s=selector2-windriversystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IVMhATBgltWVqN71jeFgqhA0LVXD4cGEowJ/usWmn3c=;
- b=jLy4HQUZP13IFVGEsclHtklJ8V83kBFtOrutF9cowsguaowgszJ/cTPLx9YDT5Bi2movMjwMweQoYdMaHeQM27pIGJLVaHop7zL2zaR6j3mczGXjbPFlUPp6Usmc7SwFSKgm94/xREFAix1+C8qEmvWWRXpoocu7PYAgRHUeK3A=
+ bh=w+Lh6nRcW0KG/0EwRS2TOLxVzy/pF5I6kNCxVTxtzsI=;
+ b=jylxVKEV0Ue/y6eJIIysCCdWBpT8kvML6+R0tx2XsaGI1kII8Ta89drn2dtj3neevFqbSMm7RPjZO8A5/7+/JfiBgt8QpXJIZLfwagIxaPiOcEO0Q4DjJCH6p3ENeEN1JHIq+S5RyYMYfeCWB6/RUEOqJ9JIeEJUytpezD5jMh4=
 Authentication-Results: yoctoproject.org; dkim=none (message not signed)
  header.d=none;yoctoproject.org; dmarc=none action=none
  header.from=windriver.com;
@@ -31,18 +31,18 @@ Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
  by MWHPR11MB1584.namprd11.prod.outlook.com (2603:10b6:301:e::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6; Thu, 7 Jan
- 2021 03:44:08 +0000
+ 2021 03:44:10 +0000
 Received: from CO1PR11MB4867.namprd11.prod.outlook.com
  ([fe80::21b9:29b6:fd3:bca5]) by CO1PR11MB4867.namprd11.prod.outlook.com
  ([fe80::21b9:29b6:fd3:bca5%7]) with mapi id 15.20.3721.024; Thu, 7 Jan 2021
- 03:44:08 +0000
+ 03:44:10 +0000
 From: "Yi Zhao" <yi.zhao@windriver.com>
 To: yocto@yoctoproject.org,
 	joe_macdonald@mentor.com,
 	joe@deserted.net
-Subject: [meta-selinux][PATCH 06/17] libselinux-python: upgrade to 3.1 (20200710)
-Date: Thu,  7 Jan 2021 11:43:34 +0800
-Message-Id: <20210107034345.37200-7-yi.zhao@windriver.com>
+Subject: [meta-selinux][PATCH 07/17] libsemanage: upgrade to 3.1 (20200710)
+Date: Thu,  7 Jan 2021 11:43:35 +0800
+Message-Id: <20210107034345.37200-8-yi.zhao@windriver.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210107034345.37200-1-yi.zhao@windriver.com>
 References: <20210107034345.37200-1-yi.zhao@windriver.com>
@@ -52,215 +52,192 @@ X-ClientProxiedBy: HK2PR02CA0130.apcprd02.prod.outlook.com
  (2603:10b6:303:9a::13)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by HK2PR02CA0130.apcprd02.prod.outlook.com (2603:1096:202:16::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6 via Frontend Transport; Thu, 7 Jan 2021 03:44:07 +0000
+Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by HK2PR02CA0130.apcprd02.prod.outlook.com (2603:1096:202:16::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6 via Frontend Transport; Thu, 7 Jan 2021 03:44:08 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9a231d28-2283-4869-6f62-08d8b2be7d34
+X-MS-Office365-Filtering-Correlation-Id: 91a4be67-a9dc-42fd-4394-08d8b2be7e1c
 X-MS-TrafficTypeDiagnostic: MWHPR11MB1584:
 X-Microsoft-Antispam-PRVS: 
-	<MWHPR11MB15844CA7B8A2A48B40111E16F9AF0@MWHPR11MB1584.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1775;
+	<MWHPR11MB1584550491E85632B1D43EDCF9AF0@MWHPR11MB1584.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:318;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	Neik98Iyhd+T3LxXTQApewrT7s3d6ztPc9J+NjKn1zIleNmdXV+hHR6TvyPqqea+MaWhfXEnLxIOOcrUbXOBooGldzj+ssUF/B2thVjvAwRNP1wz7RUMu8RTdYbyCJKlTBddq7HHNUdj5hdMpYIwshu6+hg+TRe6G8mJX1Ro8ekEJIm+xoAZgtx5Jie+g+q2C/36KuHV568uCWsQ4MQHZtw+twKdhzW3XnA7d26K86vPcN1kSQ/7q2kVNShygrbKLEnr0Al5XQ+FfXBo4QBIbMWxtvgetFkuHZvLGSk4yU2tIxgjYbbb5B+KPXNttTsRjdW40nKy9WkX4cyZvhq9/X5a5NfgoG8O4lLv5DM8qI5mQ31GlleFd1Kdjp0V6d9PigewKkdbP/yd0/aupGgLT8jM7uq6TLPWB+NJz00Y7x8m0xfS0V4lKg1BtBr0VMTrPo5qMvQ0XZJKZ50rUNA8Gg==
+	3GASvda17zP7xVZb1smR1mbGsWKSQF81da4Ayo6INMOaymd5DDCQTFowwkRCT114oK+A81M7uyhzq5t+rZ/+s7zHmFVoKKtSUMVijvzcUyGIZKRuXVYtIyaOIA0GjRN6m6cd8iQiUrai9Q5JU+zEYxIc65fvcx8weixSOcRrZOKIRkRgjC8DzTFQ2bO3BRhCuv1dVUTD7BLixKwjFw4+wg4ANQKP7DGcQgMZwX5v/oZrosxtXzUF+lTVf4odLdviVzLvrUEGP4arfoz3ulwueDOflVnoYrz0D5Jpo1VrMQ6phuk77RgXzQ8AW8Bok3famXknjlo0SM2QN5vMG4nfNcW4/HGs25P2Pf7G6r/orK8Th7zkD+n5NJ5vH9YwZ+FjutpD0WBr/VuLORxJ8FqBhw==
 X-Forefront-Antispam-Report: 
 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(396003)(136003)(346002)(376002)(366004)(53546011)(316002)(66946007)(8676002)(478600001)(5660300002)(6486002)(66556008)(66476007)(83380400001)(8936002)(1076003)(2906002)(6666004)(186003)(36756003)(16526019)(44832011)(6512007)(86362001)(52116002)(2616005)(956004)(6506007)(26005);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData: 
-	=?us-ascii?Q?PPiit8x9e2CQfac5/yDMaJ5HuBhT47BZ7Ht+1Cj/cOPL0D50Qfnl2xN6YkD8?=
- =?us-ascii?Q?G0O5EC06Gmf3LtPGT12Q/xvKuMYhBroq4QnSSfdNVNRr9P6Ps9jq6SIi50+z?=
- =?us-ascii?Q?UjguARs8Ler+7YhNx5/H9+94VfYq2j2VVBmRp7KLY/FsSGOvX2fAa6pg+0kg?=
- =?us-ascii?Q?H8X1PFeDSPrqsgSG2zqibKFTT2lsfl3ddQggsVVzJVdJ/KhhDhLMMcB34Vu7?=
- =?us-ascii?Q?nMwnnAU6scsYccg6/lcOD5k7rGSZxL570N69N3I8s0Ll7OOwqQ4ixPC0IxkC?=
- =?us-ascii?Q?pTcx+5A1jlBEEp7n5e3uR/DmMMK89fyOdSpTwsp0eZxuudfM19xLisQPNfRJ?=
- =?us-ascii?Q?HOvZQNX/7Gae1Ao0REnENxeigIB1zIU6tA3T1i2g4t49Tm0Qf1NYFEcf02ln?=
- =?us-ascii?Q?lcOKgCpn3Qigd6wiY0lI4sujM/9EggSWQV/bGz3om1t+zdn213zbJge7MFbh?=
- =?us-ascii?Q?+K1MobmVRjzLxOFd4UHokUnHrXwSazChW7xfcoVjuWeLDnNCeR2ZzhPOSElp?=
- =?us-ascii?Q?w2y9MXoPwymc4u4N//DAKuHLsvaN0A5Yx70Ebf61330yQbOVkHkcTy2UIxn4?=
- =?us-ascii?Q?xtL4VISb/WcWLSqjOrqbqAcYKxITEPThSWXHgpnZR4oVnh0LQaEpXwZU8Jlo?=
- =?us-ascii?Q?RduDmtJhFN560sMK+6pFkuVbcf7Y3OHpy+ANuU6GWMWFo2FdT9oi3HOM2ZLF?=
- =?us-ascii?Q?sRGp5O714OFyj7csuZL3RKCuhQC1ZOnvXoSEg7XtCILr+SJ0t4DgFvl9+t2g?=
- =?us-ascii?Q?ifXvGRu3j7nc0dkgko5Nz3HdQPtNzEmi1Xrnc3PEZmL/h1Bl8DuJN0+Uua5E?=
- =?us-ascii?Q?rATcTvRHVSxEG9Ke6daD1ewfjMo3xAXIGmssdpZuUaxpFG6sDZ796Vmc3xWU?=
- =?us-ascii?Q?4qJgidhiYmrh86DyPSC8hkBNbJd+wo8xwcSUhT2/P8j7efDITrr1sPRR9M2x?=
- =?us-ascii?Q?kao7lx7tquclcb/9bmuRgazcZ7evVOt6+bfGhoBXOYdQpZvN8L4f+hD1Palt?=
- =?us-ascii?Q?tu+x?=
+	=?us-ascii?Q?PNUX+Vkbak+HDYOAfxTk4S70GnIfnIMOaf4E7eSjtUAQYaI9uYjl2inUnnJe?=
+ =?us-ascii?Q?JB+Kb29+NSSAUHzZMDgcGbEQxryDOUfTsGnjh9theysK5rO+o6Wv3wp0diq1?=
+ =?us-ascii?Q?N1ozcibFT2Pv6g6RuaFoX3FJfOOrhPq3kjGysdktp4JlZ9adVzz8kLljFmxQ?=
+ =?us-ascii?Q?uXl9Bw14jOVMIbrNXWTKMakZj4CNbHwKsCdzWhJQRIGqQSvBQ/UPvGJJdYZd?=
+ =?us-ascii?Q?SB3BwkUQxlGOAuhnWB2Xr8p1bCHJSanvjuLTrMDgEUZFJ+GArGlnFbfyNr9e?=
+ =?us-ascii?Q?t1kZLwVA72VugLEAh5AQ/6Myh3SIHv28Du36exhHpDRT1UHwEa//0WhGwsui?=
+ =?us-ascii?Q?pqRUcpha+WWdBAlUpamfmrz7+7KdVMik6fm9hmFKjxlWpiuLuR+2AWAAtNNu?=
+ =?us-ascii?Q?OLzLw77RblTf2aESwM+67GmB9m/tXEn1o055aPck+pwTdtF7JJSf0gyNp5pQ?=
+ =?us-ascii?Q?KudkHeQlLx8EmV8fbxPtKLSxqVDvAaabf7NoUgl1ctCexdn2X2U5n/2v34jm?=
+ =?us-ascii?Q?0t/eLmfLafQjw9DxAXrUVwyCZ0nuMMsh1tgSfNBIOvIJRvuDnDzFPILrRUo+?=
+ =?us-ascii?Q?QxmRHTMyGeZtmp3fwlQYbtqPGa8N3310ABJg26Y6aVx1e9/5wELAO46kxMC1?=
+ =?us-ascii?Q?hXdT6DxWwTf9xKIrOyhLCXkFqzrkjxt8jVKvDQBnTomq7PnDgPHqFR0DNq8H?=
+ =?us-ascii?Q?TPvZjBx7Cl8zxKP7e903INTDMsHQLVcXaQDqbCbcX/sDnGsZKyCRBZ74rXa7?=
+ =?us-ascii?Q?/sWR1IuH+vE0sXHSy0PiTMXlpstI9v0uMwyfj6ptcLOoCtodES4NMd6Szaqz?=
+ =?us-ascii?Q?mPD3uDaG//QKIkFTx+DlyYKpeqCxNzFpqgIFu/yIihj7hAaCfyVl3Eb/LyaC?=
+ =?us-ascii?Q?FdyoXKjkrcPp7HqLLSaFyZzwePRp2rqqXERsaCuJ2jJQFjTa57sROC9tPYJz?=
+ =?us-ascii?Q?i2JgiQytP2CIAMGd3mQJXDHuz3UF1qgaz8HvZ+t+j5qV3k2Xg8rVCGD2TQi4?=
+ =?us-ascii?Q?xllR?=
 X-OriginatorOrg: windriver.com
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2021 03:44:08.6765
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2021 03:44:10.1430
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a231d28-2283-4869-6f62-08d8b2be7d34
+X-MS-Exchange-CrossTenant-Network-Message-Id: 91a4be67-a9dc-42fd-4394-08d8b2be7e1c
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: e7eJqMhuxaTMydo/5iCbe9e7VcZjlhyrknQp4D3Ctc/gg+zlCzzuDvdOMRw3udk4e9fN8jJlVuNscl9fnqsY/Q==
+X-MS-Exchange-CrossTenant-UserPrincipalName: o6ivM/IuPwHNyUq4sZbmr0hRjFPXI5FirbzDdzWe/+Ale9Ji7Smpjw7gOkd7HNsve1vtJMaeHALIAH+0YOP1mQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1584
 Content-Type: text/plain
 Content-Transfer-Encoding: quoted-printable
 
-Refresh patches:
-  0001-Do-not-use-PYCEXT-and-rely-on-the-installed-file-nam.patch
-  0001-Makefile-fix-python-modules-install-path-for-multili.patch
+* Drop obsolete patch:
+  libsemanage-drop-Wno-unused-but-set-variable.patch
+
+* Refresh patch:
+  libsemanage-allow-to-disable-audit-support.patch
 
 Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
- ...linux-python_3.0.bb =3D> libselinux-python_3.1.bb} | 13 ++++++++-----
- ...-PYCEXT-and-rely-on-the-installed-file-nam.patch | 12 ++++++------
- ...ix-python-modules-install-path-for-multili.patch | 12 ++++++------
- 3 files changed, 20 insertions(+), 17 deletions(-)
- rename recipes-security/selinux/{libselinux-python_3.0.bb =3D> libselinu=
-x-python_3.1.bb} (66%)
+ ...anage-allow-to-disable-audit-support.patch | 12 ++++----
+ ...age-drop-Wno-unused-but-set-variable.patch | 28 -------------------
+ ...{libsemanage_3.0.bb =3D> libsemanage_3.1.bb} |  7 ++---
+ 3 files changed, 9 insertions(+), 38 deletions(-)
+ delete mode 100644 recipes-security/selinux/libsemanage/libsemanage-drop=
+-Wno-unused-but-set-variable.patch
+ rename recipes-security/selinux/{libsemanage_3.0.bb =3D> libsemanage_3.1=
+.bb} (60%)
 
-diff --git a/recipes-security/selinux/libselinux-python_3.0.bb b/recipes-=
-security/selinux/libselinux-python_3.1.bb
-similarity index 66%
-rename from recipes-security/selinux/libselinux-python_3.0.bb
-rename to recipes-security/selinux/libselinux-python_3.1.bb
-index 2b5438d..9493083 100644
---- a/recipes-security/selinux/libselinux-python_3.0.bb
-+++ b/recipes-security/selinux/libselinux-python_3.1.bb
+diff --git a/recipes-security/selinux/libsemanage/libsemanage-allow-to-di=
+sable-audit-support.patch b/recipes-security/selinux/libsemanage/libseman=
+age-allow-to-disable-audit-support.patch
+index c588b61..ff5cb00 100644
+--- a/recipes-security/selinux/libsemanage/libsemanage-allow-to-disable-a=
+udit-support.patch
++++ b/recipes-security/selinux/libsemanage/libsemanage-allow-to-disable-a=
+udit-support.patch
 @@ -1,4 +1,4 @@
--SELINUX_RELEASE =3D "20191204"
-+SELINUX_RELEASE =3D "20200710"
-=20
- SRC_URI =3D "https://github.com/SELinuxProject/selinux/releases/download=
-/${SELINUX_RELEASE}/libselinux-${PV}.tar.gz"
-=20
-@@ -6,16 +6,19 @@ require ${BPN}.inc
-=20
- LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D84b4d2c6ef954a2d4081e775a270d=
-0d0"
-=20
--SRC_URI[md5sum] =3D "b387a66f087b6d97713570e85ec89d89"
--SRC_URI[sha256sum] =3D "2ea2b30f671dae9d6b1391cbe8fb2ce5d36a3ee4fb1cd3c3=
-2f0d933c31b82433"
-+SRC_URI[md5sum] =3D "693680c021feb69a4b258b0370021461"
-+SRC_URI[sha256sum] =3D "ea5dcbb4d859e3f999c26a13c630da2f16dff9462e3cc8cb=
-7b458ac157d112e7"
-=20
- SRC_URI +=3D "\
--        file://libselinux-drop-Wno-unused-but-set-variable.patch \
-         file://libselinux-make-O_CLOEXEC-optional.patch \
-         file://libselinux-make-SOCK_CLOEXEC-optional.patch \
-         file://libselinux-define-FD_CLOEXEC-as-necessary.patch \
--        file://0001-Fix-building-against-musl-and-uClibc-libc-libraries.=
-patch \
-         file://0001-Makefile-fix-python-modules-install-path-for-multili=
-.patch \
-         file://0001-Do-not-use-PYCEXT-and-rely-on-the-installed-file-nam=
-.patch \
-         "
-+
-+SRC_URI_append_libc-musl =3D " \
-+        file://0001-libselinux-do-not-define-gettid-for-musl.patch \
-+        "
-+
- S =3D "${WORKDIR}/libselinux-${PV}"
-diff --git a/recipes-security/selinux/libselinux/0001-Do-not-use-PYCEXT-a=
-nd-rely-on-the-installed-file-nam.patch b/recipes-security/selinux/libsel=
-inux/0001-Do-not-use-PYCEXT-and-rely-on-the-installed-file-nam.patch
-index b7cd59d..0fafcef 100644
---- a/recipes-security/selinux/libselinux/0001-Do-not-use-PYCEXT-and-rely=
--on-the-installed-file-nam.patch
-+++ b/recipes-security/selinux/libselinux/0001-Do-not-use-PYCEXT-and-rely=
--on-the-installed-file-nam.patch
-@@ -1,4 +1,4 @@
--From 0d4da8093bc2ef92b7c6f7fd1f4804f6ebc6cb56 Mon Sep 17 00:00:00 2001
-+From 1542c79660484a2f2e24ee0593586dba35c3ad13 Mon Sep 17 00:00:00 2001
- From: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
- Date: Fri, 25 Oct 2019 13:37:14 +0200
- Subject: [PATCH] Do not use PYCEXT, and rely on the installed file name
-@@ -27,20 +27,20 @@ Signed-off-by: Changqing Li <changqing.li@windriver.c=
-om>
-  1 file changed, 1 insertion(+), 2 deletions(-)
+-From 1633f72579e3b79d055759256b71e4169627889b Mon Sep 17 00:00:00 2001
++From e76867515be3bc296174aeb26c7996a0939a2a8c Mon Sep 17 00:00:00 2001
+ From: Wenzong Fan <wenzong.fan@windriver.com>
+ Date: Mon, 20 Jan 2014 03:53:48 -0500
+ Subject: [PATCH] libsemanage: allow to disable audit support
+@@ -13,11 +13,11 @@ Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com=
+>
+  3 files changed, 31 insertions(+), 2 deletions(-)
 =20
  diff --git a/src/Makefile b/src/Makefile
--index a384a10..82adf82 100644
-+index dcdeb10..da6f719 100644
+-index 3bd1e20..483e818 100644
++index a0eb374..afc4437 100644
  --- a/src/Makefile
  +++ b/src/Makefile
- @@ -15,7 +15,6 @@ INCLUDEDIR ?=3D $(PREFIX)/include
-  PYINC ?=3D $(shell $(PKG_CONFIG) --cflags $(PYPREFIX))
-  PYLIBS ?=3D $(shell $(PKG_CONFIG) --libs $(PYPREFIX))
-  PYTHONLIBDIR ?=3D $(shell $(PYTHON) -c "from distutils.sysconfig import=
- *; print(get_python_lib(plat_specific=3D1, prefix=3D'$(PREFIX)'))")
---PYCEXT ?=3D $(shell $(PYTHON) -c 'import imp;print([s for s,m,t in imp.=
-get_suffixes() if t =3D=3D imp.C_EXTENSION][0])')
-+-PYCEXT ?=3D $(shell $(PYTHON) -c 'import importlib.machinery;print(impo=
-rtlib.machinery.EXTENSION_SUFFIXES[0])')
-  RUBYINC ?=3D $(shell $(RUBY) -e 'puts "-I" + RbConfig::CONFIG["rubyarch=
-hdrdir"] + " -I" + RbConfig::CONFIG["rubyhdrdir"]')
-  RUBYLIBS ?=3D $(shell $(RUBY) -e 'puts "-L" + RbConfig::CONFIG["libdir"=
-] + " -L" + RbConfig::CONFIG["archlibdir"] + " " + RbConfig::CONFIG["LIBR=
-UBYARG_SHARED"]')
-  RUBYINSTALL ?=3D $(shell $(RUBY) -e 'puts RbConfig::CONFIG["vendorarchd=
-ir"]')
--@@ -175,7 +174,7 @@ install: all
-+@@ -176,7 +175,7 @@ install: all
-  install-pywrap: pywrap
-- 	$(PYTHON) setup.py install --prefix=3D$(PREFIX) --root=3D$(DESTDIR) --=
-install-lib=3D$(PYTHONLIBDIR)
-+ 	$(PYTHON) setup.py install --prefix=3D$(PREFIX) --root=3D$(DESTDIR) --=
-install-lib=3D$(PYTHONLIBDIR) $(PYTHON_SETUP_ARGS)
-  	install -m 644 $(SWIGPYOUT) $(DESTDIR)$(PYTHONLIBDIR)/selinux/__init__=
-.py
- -	ln -sf --relative $(DESTDIR)$(PYTHONLIBDIR)/selinux/_selinux$(PYCEXT) =
-$(DESTDIR)$(PYTHONLIBDIR)/_selinux$(PYCEXT)
- +	ln -sf --relative $(DESTDIR)$(PYTHONLIBDIR)/selinux/_selinux*.so $(DES=
-TDIR)$(PYTHONLIBDIR)/
-@@ -48,5 +48,5 @@ index a384a10..82adf82 100644
-  install-rubywrap: rubywrap
-  	test -d $(DESTDIR)$(RUBYINSTALL) || install -m 755 -d $(DESTDIR)$(RUBY=
-INSTALL)=20
- --=20
--2.24.1
-+2.17.1
-=20
-diff --git a/recipes-security/selinux/libselinux/0001-Makefile-fix-python=
--modules-install-path-for-multili.patch b/recipes-security/selinux/libsel=
-inux/0001-Makefile-fix-python-modules-install-path-for-multili.patch
-index f0fee23..9dfd8d4 100644
---- a/recipes-security/selinux/libselinux/0001-Makefile-fix-python-module=
-s-install-path-for-multili.patch
-+++ b/recipes-security/selinux/libselinux/0001-Makefile-fix-python-module=
-s-install-path-for-multili.patch
-@@ -1,4 +1,4 @@
--From 930514c1b93335ccf6d70adf46ca7e3f8183603d Mon Sep 17 00:00:00 2001
-+From 41540f5c4e3552a2806097613f016d1a2fd4754a Mon Sep 17 00:00:00 2001
- From: Yi Zhao <yi.zhao@windriver.com>
- Date: Mon, 13 Apr 2020 12:44:23 +0800
- Subject: [PATCH] Makefile: fix python modules install path for multilib
-@@ -11,18 +11,18 @@ Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-  1 file changed, 1 insertion(+), 1 deletion(-)
-=20
- diff --git a/src/Makefile b/src/Makefile
--index b0ce2c8..a384a10 100644
-+index 190016e..dcdeb10 100644
- --- a/src/Makefile
- +++ b/src/Makefile
--@@ -173,7 +173,7 @@ install: all
-+@@ -174,7 +174,7 @@ install: all
-  	ln -sf --relative $(DESTDIR)$(SHLIBDIR)/$(LIBSO) $(DESTDIR)$(LIBDIR)/$=
-(TARGET)
+ @@ -26,6 +26,14 @@ ifeq ($(DEBUG),1)
+- 	export LDFLAGS =3D -g
++ 	export LDFLAGS ?=3D -g
+  endif
  =20
-  install-pywrap: pywrap
---	$(PYTHON) setup.py install --prefix=3D$(PREFIX) `test -n "$(DESTDIR)" =
-&& echo --root $(DESTDIR)`
--+	$(PYTHON) setup.py install --prefix=3D$(PREFIX) --root=3D$(DESTDIR) --=
-install-lib=3D$(PYTHONLIBDIR)
-+-	$(PYTHON) setup.py install --prefix=3D$(PREFIX) `test -n "$(DESTDIR)" =
-&& echo --root $(DESTDIR)` $(PYTHON_SETUP_ARGS)
-++	$(PYTHON) setup.py install --prefix=3D$(PREFIX) --root=3D$(DESTDIR) --=
-install-lib=3D$(PYTHONLIBDIR) $(PYTHON_SETUP_ARGS)
-  	install -m 644 $(SWIGPYOUT) $(DESTDIR)$(PYTHONLIBDIR)/selinux/__init__=
-.py
-  	ln -sf --relative $(DESTDIR)$(PYTHONLIBDIR)/selinux/_selinux$(PYCEXT) =
-$(DESTDIR)$(PYTHONLIBDIR)/_selinux$(PYCEXT)
+ +DISABLE_AUDIT ?=3D n
+@@ -31,7 +31,7 @@ index 3bd1e20..483e818 100644
+  LEX =3D flex
+  LFLAGS =3D -s
+  YACC =3D bison
+-@@ -88,7 +96,7 @@ $(LIBA): $(OBJS)
++@@ -89,7 +97,7 @@ $(LIBA): $(OBJS)
+  	$(RANLIB) $@
  =20
+  $(LIBSO): $(LOBJS)
+@@ -41,7 +41,7 @@ index 3bd1e20..483e818 100644
+ =20
+  $(LIBPC): $(LIBPC).in ../VERSION
+ diff --git a/src/seusers_local.c b/src/seusers_local.c
+-index 3e2761c..8bc6b83 100644
++index 6508ec0..1b26956 100644
+ --- a/src/seusers_local.c
+ +++ b/src/seusers_local.c
+ @@ -8,7 +8,11 @@ typedef struct semanage_seuser record_t;
+@@ -122,5 +122,5 @@ index 69f49a3..f914492 100644
+  OBJECTS =3D $(SOURCES:.c=3D.o)
+  POLICIES =3D $(CILS:.cil=3D.policy)
  --=20
 -2.7.4
 +2.17.1
 =20
+diff --git a/recipes-security/selinux/libsemanage/libsemanage-drop-Wno-un=
+used-but-set-variable.patch b/recipes-security/selinux/libsemanage/libsem=
+anage-drop-Wno-unused-but-set-variable.patch
+deleted file mode 100644
+index c9b052c..0000000
+--- a/recipes-security/selinux/libsemanage/libsemanage-drop-Wno-unused-bu=
+t-set-variable.patch
++++ /dev/null
+@@ -1,28 +0,0 @@
+-From 90a2459d1683e53f4a896b977e6b396db562c903 Mon Sep 17 00:00:00 2001
+-From: Randy MacLeod <Randy.MacLeod@windriver.com>
+-Date: Tue, 30 Apr 2013 23:15:57 -0400
+-Subject: [PATCH] libselinux: drop flag: -Wno-unused-but-set-variable
+-
+-Upstream-Status: Inappropriate [older compilers only]
+-
+-Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
+----
+- src/Makefile | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/src/Makefile b/src/Makefile
+-index e029f09..8240c3a 100644
+---- a/src/Makefile
+-+++ b/src/Makefile
+-@@ -55,7 +55,7 @@ OBJS=3D $(patsubst %.c,%.o,$(SRCS)) conf-scan.o conf-p=
+arse.o
+- LOBJS=3D $(patsubst %.c,%.lo,$(SRCS)) conf-scan.lo conf-parse.lo
+- CFLAGS ?=3D -Werror -Wall -W -Wundef -Wshadow -Wmissing-noreturn -Wmiss=
+ing-format-attribute
+-=20
+--SWIG_CFLAGS +=3D -Wno-error -Wno-unused-but-set-variable -Wno-unused-va=
+riable -Wno-shadow \
+-+SWIG_CFLAGS +=3D -Wno-error -Wno-unused-variable -Wno-shadow \
+- 		-Wno-unused-parameter
+-=20
+- override CFLAGS +=3D -I../include -D_GNU_SOURCE
+---=20
+-2.7.4
+-
+diff --git a/recipes-security/selinux/libsemanage_3.0.bb b/recipes-securi=
+ty/selinux/libsemanage_3.1.bb
+similarity index 60%
+rename from recipes-security/selinux/libsemanage_3.0.bb
+rename to recipes-security/selinux/libsemanage_3.1.bb
+index 450675b..8e6781f 100644
+--- a/recipes-security/selinux/libsemanage_3.0.bb
++++ b/recipes-security/selinux/libsemanage_3.1.bb
+@@ -1,14 +1,13 @@
+-require selinux_20191204.inc
++require selinux_20200710.inc
+ require ${BPN}.inc
+=20
+ LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Da6f89e2100d9b6cdffcea4f398e37=
+343"
+=20
+-SRC_URI[md5sum] =3D "17a2fc780af0a36f2cf27ab7c4e85946"
+-SRC_URI[sha256sum] =3D "a497b0720d54eac427f1f3f618eed417e50ed8f4e47ed0f7=
+a1d391bd416e84cf"
++SRC_URI[md5sum] =3D "d16eee8c1dc8cf43f59957d575d6bd29"
++SRC_URI[sha256sum] =3D "22d6c75526e40d1781c30bcf29abf97171bdfe6780923f11=
+c8e1c76a75a21ff8"
+=20
+ SRC_URI +=3D "\
+ 	file://libsemanage-Fix-execve-segfaults-on-Ubuntu.patch \
+-	file://libsemanage-drop-Wno-unused-but-set-variable.patch \
+ 	file://libsemanage-define-FD_CLOEXEC-as-necessary.patch \
+ 	file://libsemanage-allow-to-disable-audit-support.patch \
+ 	file://libsemanage-disable-expand-check-on-policy-load.patch \
 --=20
 2.25.1
 
