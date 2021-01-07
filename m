@@ -1,171 +1,229 @@
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
- by mx.groups.io with SMTP id smtpd.web11.9903.1610033241974364193
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (NAM11-CO1-obe.outbound.protection.outlook.com [40.107.220.117])
+ by mx.groups.io with SMTP id smtpd.web11.10332.1610034996354930253
  for <yocto@lists.yoctoproject.org>;
- Thu, 07 Jan 2021 07:27:22 -0800
+ Thu, 07 Jan 2021 07:56:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=oyi/lhn2;
- spf=pass (domain: gmail.com, ip: 209.85.166.175, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-il1-f175.google.com with SMTP id q5so7045552ilc.10
-        for <yocto@lists.yoctoproject.org>; Thu, 07 Jan 2021 07:27:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vaYJz7+q08af5z+H8Idb2a8OJoyrAEMZ9xc9D449TXE=;
-        b=oyi/lhn2uCzWTZFiOadeAMHkRSWyIhv7YOxWKX/AWO/tk8O1f6ZgROAHl8/KWn3eg6
-         SrE0h0ajCzacUUAUsLo14Wa0AJ8/0bIlS1tfqF4tT29t80pbx7dVRTbW3kQWYz0MZu27
-         BYNbyT4Qqphh6kGGWxoyOHj6vbbM5RRaPgeEHrJY4q1KOm46dc1wqJDYJ++rIL/3Y085
-         8msiJWTS4i+psHsOPYDljnozJclQvialuuQIcjfyjOXul4+qhbZ9R8bPxUdCE9cJfphM
-         H+zLWQbLfg6k8li4fuBr/V7DezunC0BKAmquhttQW/wNiNPClf1pYS17gBx9a1AOXsiS
-         kOfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vaYJz7+q08af5z+H8Idb2a8OJoyrAEMZ9xc9D449TXE=;
-        b=KzT3/4jQK1CGIh0yVmxXolj1r2k5vyk/Vkf2dc7h+gGoze1NsKLoQ6RS+dPmQCdh1T
-         6WzmzKM+fsDVLsal42yF1zLqzsZkwK+YWQKYuQKZKIdAD+faqx7ZeZKtzKTbDxuu7RMv
-         E9lQBdEYYoogHBla11zxYz1+hiS4n2lniL3R0VFc9HfyeXU1bccyqqXHzFW9mXI6ck9x
-         zUAf3ftFGQ68Lrc9ERRDGEnV7MhvcnfgvyIaoVAo39G++IxjsNyWf8h6aCZvFMaqw9b+
-         k3m93MOOMJY31hhZKXj1V0EbO3w5JjNinlYdguTCgYgzgC8ggwpymtP0/QTf9CsGnd9X
-         fvmw==
-X-Gm-Message-State: AOAM532xPnVboJTfamvgk1JY5Q3zYg6tFQBDHdLpYH6u7BDDgBiTw8i4
-	vP2vG+Efa5ucjO8atVBlyz38hfl03Z5Y90Ycz74=
-X-Google-Smtp-Source: ABdhPJyt78aKXaw+ULMQjR++L4FkYQH0RXPV6A4qzbY2C3g+rNgqnOXrobDiYNNhJwovVT9HRhQRqPDys+yxMqdgJzY=
-X-Received: by 2002:a05:6e02:1605:: with SMTP id t5mr9437439ilu.232.1610033241187;
- Thu, 07 Jan 2021 07:27:21 -0800 (PST)
+ dkim=pass header.i=@cognex.com header.s=selector1 header.b=TUKqgdR1;
+ spf=pass (domain: cognex.com, ip: 40.107.220.117, mailfrom: anthony.zimmermann@cognex.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cognex.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Gz2PqoTJ5gaeCzRW0X0/zrEz25nGOD39eqahzccMXIE=;
+ b=TUKqgdR1ExGfHSRzQjKcQW5DY4rHu2dj3KnWmWKQhuLGpGB2vkISk/TODm0VGsY0wDa+HlMFvF36/FZeZ6fUqRW9eZdrZUEpLjh2c2V9LRq668jdIIUrNbrPUImdkNhY8uHZPMlUj4nJmrlkgnV+o6qhibsqqR097t4M65+eD0g=
+Received: from BN7PR06MB5188.namprd06.prod.outlook.com (2603:10b6:408:a::22)
+ by BN8PR06MB5475.namprd06.prod.outlook.com (2603:10b6:408:65::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.23; Thu, 7 Jan
+ 2021 15:56:33 +0000
+Received: from BN7PR06MB5188.namprd06.prod.outlook.com
+ ([fe80::f0d9:ffe7:986d:cbbd]) by BN7PR06MB5188.namprd06.prod.outlook.com
+ ([fe80::f0d9:ffe7:986d:cbbd%6]) with mapi id 15.20.3742.006; Thu, 7 Jan 2021
+ 15:56:33 +0000
+From: anthony.zimmermann@cognex.com
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Yocto zeus, npm fetcher, bug
+Thread-Topic: Yocto zeus, npm fetcher, bug
+Thread-Index: AdblDDCjxY0qUD/7Qs+YBon//fbxZw==
+Date: Thu, 7 Jan 2021 15:56:33 +0000
+Message-ID: 
+ <BN7PR06MB518813A4A4B14190883734D3E0AF0@BN7PR06MB5188.namprd06.prod.outlook.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=cognex.com;
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN7PR06MB5188.namprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(39850400004)(366004)(396003)(136003)(478600001)(166002)(52536014)(83380400001)(9686003)(966005)(8676002)(8936002)(9326002)(2906002)(186003)(66446008)(86362001)(7696005)(66556008)(26005)(66476007)(71200400001)(66946007)(6916009)(33656002)(6506007)(55016002)(76116006)(64756008)(5660300002)(316002);DIR:OUT;SFP:1102;
+x-ms-office365-filtering-correlation-id: b2382350-d930-4d30-c781-08d8b324ce7a
+x-ms-traffictypediagnostic: BN7PR06MB6433:|BN8PR06MB5475:
+x-originating-ip: [84.44.230.96]
+x-microsoft-antispam: BCL:0;
+x-ms-exchange-crosstenant-originalarrivaltime: 07 Jan 2021 15:46:57.3443 (UTC)
+x-ms-exchange-crosstenant-fromentityheader: Hosted
+x-ms-exchange-crosstenant-id: c12007a4-882b-4381-b05a-b783431570c7
+x-ms-exchange-crosstenant-network-message-id: 
+ 3df9c8b1-e93e-41d2-0b9b-08d8b3237729
+x-ms-exchange-transport-crosstenantheadersstamped: BN7PR06MB6433
+x-ms-oob-tlc-oobclassifiers: OLM:10000;OLM:10000;
+x-ms-exchange-antispam-messagedata: 
+ =?utf-8?B?RHB6S0lvTXFpNTlkbzNRSW1OUEI0VmlVcjNjcVNLNzcvM2tyTlJOd2lhajRM?=
+ =?utf-8?B?eDhuME0wNXo2dVY3WUFTRXlKSXlGQldmY0lrVHk3dUcxaXhkZEY1blJWL1B3?=
+ =?utf-8?B?RGxEbkFSU0RiSi80Zm96NHlTaDdkaWdIM0tMRlhlWVBVMUNiUGV0OHlUNGRt?=
+ =?utf-8?B?UjRia1YxdjRJMUdkS3JUVCtVaGY4eUFkREtGZGxmdG44L0dTcDJyMVd2MUQ3?=
+ =?utf-8?B?RGFrY0ZSMXdvWFBlQmxRV0xjTm9Qb1J3alVXTkprSGFPS2pJajdLMmVzQ1p0?=
+ =?utf-8?B?N21DOHIySWFzQ2xiVHRvcUV4c0JKOHJIZGZRcCtGMG4vOHFoMlBPc2dlcjZW?=
+ =?utf-8?B?TmdrSjZHUlF5VGhqdWFwK1I2dURDUDVQSTVtbHRUYmpKb092OGxEWkNKeVFS?=
+ =?utf-8?B?TnNzNldwNmZwaUpHR2l3K2k3VmRTRURBTUJER21FN1dacDlhbFYvM1VQemVi?=
+ =?utf-8?B?MWZTSnpBenNkdTJ0a0luNFVpcytITXNEL0VOY0xURGVqdm5nWlhqU1B6Q1k5?=
+ =?utf-8?B?djFscUFuSmdVeFFlRWpLSzNQL1hmaXVQRnNIc0J2eXh6SWxZUXNPS0hHWElS?=
+ =?utf-8?B?MFM1TUhrNGFFWVpVOENjZEgrTE43cU9hMElNYmsyK2prRWZKaDgxaURzY1c2?=
+ =?utf-8?B?SEU3UVRIRkJFM05GVEFZV3lKSjYrOFR5L3h0d0drYmZhZGZDMjMyVStSSEcr?=
+ =?utf-8?B?bWVSOWxzeE1ManRidFhnRlEwOFBEZTcrMWZ2ckZXOHdUdG1NNytmdnZaREZK?=
+ =?utf-8?B?OC9IY0JYK0gyUFZ6UDlBRkdmb2QydVM4RHF3RE1VZ1BOeERpRWp3MlFVMFFK?=
+ =?utf-8?B?QjIwZDFIODNTRUR3WEx0OFVyaHB2MVl0cXpHOTRxWDJZekpHbkp0VlFiUGJG?=
+ =?utf-8?B?aGZTTjVkNWhoRDdEcDRlRkErM0JXaHZjRFI1WEZjd0V3K2FSOFMyUitiWHhS?=
+ =?utf-8?B?OWZFeHZXaTRrVktHSHdObHBjdDlhN3lEeW9JQUxNYzVmUWt6cGYxaWpnd2FJ?=
+ =?utf-8?B?TmNkSXpLTXVhQnVqbWJ5Rm1CZElzbmF2aFBXa3F0NjRpOEJHY0RrUDFGMzVv?=
+ =?utf-8?B?cFE2T0NHLzQrWklrbkx0R0JGVFR0Slk2TmE5eXNMcC9mcXRJMWJqUE56N3hl?=
+ =?utf-8?B?dmp0WHU1emlRa0lOajdNRDlYY3J5U3BJY2Q4STNlTm1QTXEyb05BeUNjTWJX?=
+ =?utf-8?B?RGpUY0dyWE9rODdOU0xSVDdVMnhzVk5uUnFZSU1ZZzIxRHd2WFNHcXU4Uy9h?=
+ =?utf-8?B?bEljenljNnl1K1dRY0s4OUgwcm9rVktaTjloOVY3YUE3OU9kM0YvNXRNMlJT?=
+ =?utf-8?Q?4a0cCLgXa1COQ=3D?=
+x-ms-exchange-crosstenant-mailboxtype: HOSTED
+x-ms-exchange-crosstenant-userprincipalname: 
+ cU6tgVFean23qiVGQAoB2mZiAjFoGZYg12TpwLesWMGzL0lllvLk+SGQcNIHq9D3Y1azsY9U4bSJ76wCF0SQcppc0qwTPWzOGIjLPaMY0bE=
+x-ms-exchange-transport-forked: True
+dkim-signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cognex.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=F73XDVA5JxmH7ZO1ZAecaOfpMfLClujFKzE4GkaNGFQ=;
+ b=Jcy9ASptjF4lC7VqU2vznl5tpeo/g4zFk9VOdAwtoYOJRv/HBt39XIrEBSF7ukpiaQD0N0BeKKdmX6R5ie9Oy9OsTe24JDqCDY6TZYyl7bmUs0rENDJnmT8uq3uw9/eN7cPcS2H9B/vgwKsyCovy7pchtvgsMGdU11OrwglJkBY=
+arc-seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RVtP8s0T6ifiGOcYe8fkD2J14Yx7zJsSXGNVIWq/1BK8h68VMSBc2xuUNoAxywfz5fJDQWWOsrFD/YaeGu5iR9NROxmFlGy03zqKmKVBB1/U260UHA/xKS0KUGma/+mNM4UGfJwUDHwumj6brysnZxBMxjfm+A+a8f4wEoqOzp8cOy7clmZ5ItNGSTn/ZWn0vpJLJWsEwiAW1+9F/JljizRRnGGx7a6XQcTLaprhGwGc8p703cVjsRxzxBqZFSXZKCpb48dHIpuu9+BNKbuGItq/JXgWdkGQ/IlBpciTEjQ7FYsFtOu//gY2/q9Weu/1MGYkFsPXsrmuAD+Jgstjvw==
+arc-message-signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=F73XDVA5JxmH7ZO1ZAecaOfpMfLClujFKzE4GkaNGFQ=;
+ b=fnRCv539q5BDdWUfVmF5BU7yQT1heOWViKOmzCz1m8BW1Lsg9yY0LW1BfCQgJE/e805zPHvK6Om0pEeFmlEJGxR4nyWTlh5AN4tZzd1bYGRaQw5KR3wwzqsWKVSbC1ioMoVw0WdE2fl/FZuUb/Tg03SDlhrHnZUj2FZwJNEuQ8/n8jdshLM8OdFzdGoxhX/Wn+Oxe31JWKuhrTxW6yvAwgRquvKxzHWipuHBbV8Wil8/k1tdUuvPKSEx+s/bdaBcV98Cg3FCrRTcy0h432N72ScfIEnQHrdqRI1eT10N1MArGCaA+DDfWhhP1iCgiTAlD6O121Co286yGBht5IBzIw==
+arc-authentication-results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cognex.com; dmarc=pass action=none header.from=cognex.com;
+ dkim=pass header.d=cognex.com; arc=none
+x-microsoft-antispam-prvs: 
+ <BN8PR06MB5475CB1682A8CD1A6FF77C33E0AF0@BN8PR06MB5475.namprd06.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-crosstenant-authas: Internal
+x-ms-exchange-crosstenant-authsource: BN7PR06MB5188.namprd06.prod.outlook.com
+x-microsoft-antispam-message-info: 
+ WoAnMd1KHf7IxIu3IGX1dDiXIbIPJrlKNBhqg5TtU9YYXCtNf3B/TBoQYJYSByG1PJDvI07ZAh5DZ+EaTTSyiNyQUxtzpdP4x/oyPmort/gdL751YLc3AXokLq4Pl0vfyTO3AGO+G25W0FfMEHXMhl52HekgggwWxg0HxACl4pYCCpTego0Y5GDZdYI7gXSAnQC/oWQOIISubARjCybuNlKHZuD7LldCplX1QIM+Y3HpzWg0F6vhmuD/YhcoZY3A0TU/3QXqvDrBpLCutvmCeiOOcqSTXjUPPvMnb2xVoBhPODRQN2vYlX9dyV6CYR2SavWJWTpB05cn1ZqcisV4YFXuJHGCLnN8GYa7SDkPtbKXsiT7iwn5msW2byJrZfZvsrKan5pwMjhLnh46q1l/W0/92TGuN2pORifXRuvp3z9d6Gu9QrpZehAcRQBEc8NkvYj1Xw31oH79RSrAExbo3Q==
+x-ms-office365-filtering-correlation-id-prvs: 
+ 3df9c8b1-e93e-41d2-0b9b-08d8b3237729
 MIME-Version: 1.0
-References: <CAHwRhWa6SsR=mTOX95uBTKVru4JZszHBEhc5LhYpe=jr6hYT6A@mail.gmail.com>
- <CAGAf8Lz+_aWxJSrEEVWKtzitD1kCy+BO0BrapWGhtpRVJJYHCA@mail.gmail.com> <CAHwRhWanj0AnPWRQcXCku6ZxnBeDWRueCO=U4BDxH8ZxFQyYrg@mail.gmail.com>
-In-Reply-To: <CAHwRhWanj0AnPWRQcXCku6ZxnBeDWRueCO=U4BDxH8ZxFQyYrg@mail.gmail.com>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Thu, 7 Jan 2021 16:27:10 +0100
-Message-ID: <CAGAf8Lxkz+9tMH67EEupvPjBCkhYP9Yyc4Oux0VxgjH2SQjFXw@mail.gmail.com>
-Subject: Re: [yocto] insmod - huawei E3372h kernel module
-To: Zoltan Kerenyi Nagy <kerenyi.nagy.zoltan@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: cognex.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN7PR06MB5188.namprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b2382350-d930-4d30-c781-08d8b324ce7a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jan 2021 15:56:33.6203
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c12007a4-882b-4381-b05a-b783431570c7
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mbZuHPQosRzDqBmdcKXDbas+N8t9Wmvc83Zo7WZYHR+4K2n/XXllt5zfjyRKGfzyiTBBHDDz2tY1Ds5DC1dF6liIMyp1Md6Knpo3GYCbpnM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR06MB5475
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN7PR06MB518813A4A4B14190883734D3E0AF0BN7PR06MB5188namp_"
 
-No, no... I did not mean in the makefile to change m to y.
+--_000_BN7PR06MB518813A4A4B14190883734D3E0AF0BN7PR06MB5188namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Please, maybe you can try to set your makefile to lookalike as these ones:
-https://github.com/ZoranStojsavljevic/mikrobus/blob/mikrobusv2/Makefile
-https://github.com/ZoranStojsavljevic/mikrobus/blob/mikrobusv2-debug/Makefile
+SGVsbG8sDQoNCkkgdXNlIHlvY3RvIHZlcnNpb24gMy4wLjMgKHpldXMpIGFuZCB0cmllZCB0byBp
+bnN0YWxsIHNvbWUgbm9kZSBwYWNrYWdlcyBhcyBkZXNjcmliZWQgaW4gdGhlIHlvY3RvIG1hbnVh
+bCBbMV0uDQpJIGV4cGVyaWVuY2VkIHRoYXQgbWFuaXB1bGF0aW5nIGEgc2hhNTEyIGNoZWNrc3Vt
+IGluIGEgcGFja2FnZS1sb2NrLmpzb24gZmlsZSBkb2VzIG5vdCBhZmZlY3QgdGhlIGluc3RhbGxh
+dGlvbiBldmVuIHRob3VnaCB0aGUgcHVycG9zZSAob3IgYXQgbGVhc3Qgb25lIG9mIHRoZSBwdXJw
+b3Nlcykgb2YgdGhlIGxvY2tkb3duIGZpbGUgaXMgdG8gZW5hYmxlIHRoZSB2YWxpZGF0aW9uIG9m
+IHRoZSBjaGVja3N1bXMgaWYgSSB1bmRlcnN0YW5kIGNvcnJlY3RseS4NCg0KDQpUaGlzIGNhbiBi
+ZSByZXByb2R1Y2VkIGJ5IGluc3RhbGxpbmcgbm9kZS1yZWQgMS4wLjIgdXNpbmcgdGhlIHJlY2lw
+ZSwgc2hyaW5rd3JhcC5qc29uIGFuZCBwYWNrYWdlLWxvY2suanNvbiBmaWxlcyBwcm92aWRlZCBp
+biB0aGUgemV1cyBicmFuY2ggb2YgbWV0YS1pb3QtY2xvdWQgWzJdLCB3aGljaCBpcyBsaXN0ZWQg
+b24gb3BlbmVtYmVkZGVkLm9yZyBbM10uIEp1c3QgcmVwbGFjZSBzb21lIGNoYXJhY3RlcnMgaW4g
+YW55IG9mIHRoZSBzaGEyNTYgc3VtcyBpbnNpZGUgdGhlIHBhY2thZ2UtbG9jay5qc29uIGFuZCBz
+ZWUgdGhhdCBpdCBkb2VzIG5vdCBhZmZlY3QgdGhlIGJpdGJha2UgcHJvY2Vzcy4NCg0KSSB0aGlu
+ayB0aGUgZXJyb3IgaXMgc29tZXdoZXJlIGluIHRoZSBzY3JpcHQgcG9reS9iaXRiYWtlL2xpYi9i
+Yi9mZXRjaDIvbnBtLnB5Lg0KVGhlIGZ1bmN0aW9uIOKAmGRvd25sb2Fk4oCZIGxvYWRzIHRoZSBs
+b2NrZG93biBmaWxlIHVzaW5nIGpzb24ubG9hZC4gVGhlIHJlc3VsdGluZyBkaWN0aW9uYXJ5IGlz
+IHBhc3NlZCBpbnRvIHRoZSBmdW5jdGlvbiDigJhfZ2V0c2hyaW5rZWRkZXBlbmRlbmNpZXPigJkg
+YW5kIHRoYXQgZnVuY3Rpb24gaXMgc3VwcG9zZWQgdG8gY2hlY2sgdGhlIGNoZWNrc3VtLiBUaGUg
+Zmlyc3QgdGhpbmcgdGhhdCBJIGFyaXNlcyBteSBhdHRlbnRpb24gaXMgdGhhdCB0aGUgc291cmNl
+IGNvZGUgaW4g4oCYX2dldHNocmlua2VkZGVwZW5kZW5jaWVz4oCZIHNlZW1zIHRvIG9ubHkgYmUg
+YWJsZSB0byBjYWxjdWxhdGUgc2hhMSBzdW1zLCBidXQgSSBmaW5kIGFsc28gc2hhNTEyIGluIGUu
+Zy4gdGhlIHBhY2thZ2UtbG9jay5qc29uIG1lbnRpb25lZCBhYm92ZS4gVGhlIHNlY29uZCB0aGlu
+ZyB0aGF0IEkgdGhpbmsgaXMgdmVyeSBpbnRlcmVzdGluZywgaXMgdGhhdCB0aGUgY29uZGl0aW9u
+IOKAmHBrZyBpbiBsb2NrZG93buKAmSBhbHdheXMgcmV0dXJucyBGYWxzZSwgbm8gbWF0dGVyIGlm
+IHRoZSBwYWNrYWdlIHNlZW1zIHRvIGJlIHByZXNlbnQgaW4gdGhlIGxvY2tkb3duIGZpbGUgb3Ig
+bm90Lg0KDQpbMV0geW9jdG8gbWFudWFsOiBodHRwczovd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9j
+cy8zLjAuMy9tZWdhLW1hbnVhbC9tZWdhLW1hbnVhbC5odG1sI2NyZWF0aW5nLW5vZGUtcGFja2Fn
+ZS1tYW5hZ2VyLW5wbS1wYWNrYWdlcw0KWzJdIG5vZGUgcmVkIHJlY2lwZTogaHR0cHM6Ly9naXRo
+dWIuY29tL2ludGVsLWlvdC1kZXZraXQvbWV0YS1pb3QtY2xvdWQvdHJlZS96ZXVzL3JlY2lwZXMt
+bm9kZS1yZWQvbm9kZS1yZWQNClszXSBvcGVuZW1iYmVkLm9yZyAobm9lLXJlZCByZWNpcGUpOiBo
+dHRwczovL2xheWVycy5vcGVuZW1iZWRkZWQub3JnL2xheWVyaW5kZXgvcmVjaXBlLzY3OTgwLw0K
+DQpJIHRoaW5rIHRoaXMgaXMgYSBidWcuIElmIGl0IGlzIG5vdCwgSSB3b3VsZCByZWFsbHkgYXBw
+cmVjaWF0ZSBpZiBzb21lb25lIGNvdWxkIGhlbHAgbWUgdW5kZXJzdGFuZCB0aGUgbnBtIGZldGNo
+ZXIuDQoNClJlZ2FyZHMsDQpBbnRob255IFppbW1lcm1hbm4NCg==
 
-Zoran
-_______
+--_000_BN7PR06MB518813A4A4B14190883734D3E0AF0BN7PR06MB5188namp_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <6C6E88AA2595804698DC854DA2D3B655@namprd06.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-On Thu, Jan 7, 2021 at 4:17 PM Zoltan Kerenyi Nagy
-<kerenyi.nagy.zoltan@gmail.com> wrote:
->
-> Hi Zoran,
->
-> Thanks, I modified the Makefile:
->
-> obj-m := huawei_cdc_ncm.o
-> Kconfig (obj-y := huawei_cdc_ncm.o)
-> SRC := $(shell pwd)
-> all:
-> $(MAKE) -C $(KERNEL_SRC) M=$(SRC)
-> modules_install:
-> $(MAKE) -C $(KERNEL_SRC) M=$(SRC) modules_install
-> clean:
-> rm -f *.o *~ core .depend .*.cmd *.ko *.mod.c
-> rm -f Module.markers Module.symvers modules.order
-> rm -rf .tmp_versions Modules.symvers
->
-> but this is the error:
->
-> ERROR: huawei-1.1-r0 do_configure: oe_runmake failed
-> ERROR: huawei-1.1-r0 do_configure: Function failed: do_configure (log file is located at /home/kerenyiz/oe-core/build/tmp-glibc/work/barix_ipam400-oe-linux-gnueabi/huawei/1.1-r0/temp/log.do_configure.4488)
-> ERROR: Logfile of failure stored in: /home/kerenyiz/oe-core/build/tmp-glibc/work/barix_ipam400-oe-linux-gnueabi/huawei/1.1-r0/temp/log.do_configure.4488
-> Log data follows:
-> | DEBUG: Executing shell function do_configure
-> | NOTE: make KERNEL_SRC=/home/kerenyiz/oe-core/build/tmp-glibc/work-shared/barix-ipam400/kernel-source clean
-> | ERROR: oe_runmake failed
-> | Makefile:2: *** empty variable name.  Stop.
-> | ERROR: Function failed: do_configure (log file is located at /home/kerenyiz/oe-core/build/tmp-glibc/work/barix_ipam400-oe-linux-gnueabi/huawei/1.1-r0/temp/log.do_configure.4488)
-> ERROR: Task (/home/kerenyiz/oe-core/build/../stuff/meta-barix-sdk/recipes-z/kernel-modules/huawei/huawei_1.1.bb:do_configure) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 3880 tasks of which 3873 didn't need to be rerun and 1 failed.
->
-> On Thu, 7 Jan 2021 at 16:03, Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com> wrote:
->>
->> Hello Zoltan,
->>
->> > root@barix-ipam400:~# insmod /lib/modules/4.10.0/extra/huawei_cdc_ncm.ko
->> > insmod: can't insert '/lib/modules/4.10.0/extra/huawei_cdc_ncm.ko': unknown symbol in module, or unknown parameter
->>
->> Please, try to set Kconfig (obj-y := huawei_cdc_ncm.o) to y, I guess
->> 99.9% that the kernel compilation (actually, driver compilation) will
->> pass.
->>
->> I think YOCTO (recipe) behaves perfectly correctly.
->>
->> Other approach: try to compile the same module with Makefile above on
->> the target.
->>
->> (my two cent thoughts)
->>
->> Zoran
->> _______
->>
->> On Thu, Jan 7, 2021 at 2:46 PM Zoltan Kerenyi Nagy
->> <kerenyi.nagy.zoltan@gmail.com> wrote:
->> >
->> > Hi Folks,
->> >
->> > I bitbaked a Huawei E3372h driver into the distro with this recipe file:
->> >
->> > SUMMARY = "Huawei Stick kernel module"
->> > LICENSE = "CLOSED"
->> >
->> > inherit module
->> >
->> > SRC_URI = "file://Makefile \
->> >            file://huawei_cdc_ncm.c \
->> >           "
->> >
->> > S = "${WORKDIR}"
->> >
->> > The makefile looks like this:
->> >
->> > obj-m := huawei_cdc_ncm.o
->> >
->> > SRC := $(shell pwd)
->> >
->> > all:
->> > $(MAKE) -C $(KERNEL_SRC) M=$(SRC)
->> >
->> > modules_install:
->> > $(MAKE) -C $(KERNEL_SRC) M=$(SRC) modules_install
->> >
->> > clean:
->> > rm -f *.o *~ core .depend .*.cmd *.ko *.mod.c
->> > rm -f Module.markers Module.symvers modules.order
->> > rm -rf .tmp_versions Modules.symvers
->> >
->> > The source file is the one that matches the kernel:
->> >
->> > https://elixir.bootlin.com/linux/v4.0/source/drivers/net/usb/huawei_cdc_ncm.c
->> >
->> > I included this into the conf file:
->> > KERNEL_MODULE_AUTOLOAD += "lte"KERNEL_MODULE_PROBECONF += "lte"huawei_cdc_ncm = "options lte iProduct=E3372h iManufacturer=Huawei"
->> >
->> > Bitbake runs without error, however when I insert the SD card into the hardware ( barix ipam 400)
->> > and boot the hardware this is the error message:
->> >
->> > root@barix-ipam400:~# insmod /lib/modules/4.10.0/extra/huawei_cdc_ncm.ko
->> > insmod: can't insert '/lib/modules/4.10.0/extra/huawei_cdc_ncm.ko': unknown symbol in module, or unknown parameter
->> >
->> > To me it looks like that there was an error during the bitbake, or the header files included in the driver doesn't match the kernel.
->> >
->> > Do you have any idea how to procede?
->> >
->> > Thanks,
->> >
->> >
->> >
->> > --
->> > Zolee
->> > 
->> >
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
+Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0
+aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJz
+b25hbC1jb21wb3NlOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9y
+OndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9u
+bHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVp
+biAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2Vj
+dGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28g
+OV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+
+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5
+b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9v
+OnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4t
+VVMiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIiBzdHlsZT0id29yZC13cmFwOmJyZWFr
+LXdvcmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PkhlbGxvLDxicj4NCjxicj4NCkkgdXNlIHlvY3RvIHZlcnNpb24gMy4wLjMgKHpldXMpIGFuZCB0
+cmllZCB0byBpbnN0YWxsIHNvbWUgbm9kZSBwYWNrYWdlcyBhcyBkZXNjcmliZWQgaW4gdGhlIHlv
+Y3RvIG1hbnVhbCBbMV0uPGJyPg0KSSBleHBlcmllbmNlZCB0aGF0IG1hbmlwdWxhdGluZyBhIHNo
+YTUxMiBjaGVja3N1bSBpbiBhIHBhY2thZ2UtbG9jay5qc29uIGZpbGUgZG9lcyBub3QgYWZmZWN0
+IHRoZSBpbnN0YWxsYXRpb24gZXZlbiB0aG91Z2ggdGhlIHB1cnBvc2UgKG9yIGF0IGxlYXN0IG9u
+ZSBvZiB0aGUgcHVycG9zZXMpIG9mIHRoZSBsb2NrZG93biBmaWxlIGlzIHRvIGVuYWJsZSB0aGUg
+dmFsaWRhdGlvbiBvZiB0aGUgY2hlY2tzdW1zIGlmIEkgdW5kZXJzdGFuZCBjb3JyZWN0bHkuPGJy
+Pg0KPGJyPg0KPGJyPg0KVGhpcyBjYW4gYmUgcmVwcm9kdWNlZCBieSBpbnN0YWxsaW5nIG5vZGUt
+cmVkIDEuMC4yIHVzaW5nIHRoZSByZWNpcGUsIHNocmlua3dyYXAuanNvbiBhbmQgcGFja2FnZS1s
+b2NrLmpzb24gZmlsZXMgcHJvdmlkZWQgaW4gdGhlIHpldXMgYnJhbmNoIG9mIG1ldGEtaW90LWNs
+b3VkIFsyXSwgd2hpY2ggaXMgbGlzdGVkIG9uIG9wZW5lbWJlZGRlZC5vcmcgWzNdLiBKdXN0IHJl
+cGxhY2Ugc29tZSBjaGFyYWN0ZXJzIGluIGFueSBvZiB0aGUgc2hhMjU2IHN1bXMNCiBpbnNpZGUg
+dGhlIHBhY2thZ2UtbG9jay5qc29uIGFuZCBzZWUgdGhhdCBpdCBkb2VzIG5vdCBhZmZlY3QgdGhl
+IGJpdGJha2UgcHJvY2Vzcy48YnI+DQo8YnI+DQpJIHRoaW5rIHRoZSBlcnJvciBpcyBzb21ld2hl
+cmUgaW4gdGhlIHNjcmlwdCBwb2t5L2JpdGJha2UvbGliL2JiL2ZldGNoMi9ucG0ucHkuPGJyPg0K
+VGhlIGZ1bmN0aW9uIOKAmGRvd25sb2Fk4oCZIGxvYWRzIHRoZSBsb2NrZG93biBmaWxlIHVzaW5n
+IGpzb24ubG9hZC4gVGhlIHJlc3VsdGluZyBkaWN0aW9uYXJ5IGlzIHBhc3NlZCBpbnRvIHRoZSBm
+dW5jdGlvbiDigJhfZ2V0c2hyaW5rZWRkZXBlbmRlbmNpZXPigJkgYW5kIHRoYXQgZnVuY3Rpb24g
+aXMgc3VwcG9zZWQgdG8gY2hlY2sgdGhlIGNoZWNrc3VtLiBUaGUgZmlyc3QgdGhpbmcgdGhhdCBJ
+IGFyaXNlcyBteSBhdHRlbnRpb24gaXMgdGhhdCB0aGUgc291cmNlDQogY29kZSBpbiDigJhfZ2V0
+c2hyaW5rZWRkZXBlbmRlbmNpZXPigJkgc2VlbXMgdG8gb25seSBiZSBhYmxlIHRvIGNhbGN1bGF0
+ZSBzaGExIHN1bXMsIGJ1dCBJIGZpbmQgYWxzbyBzaGE1MTIgaW4gZS5nLiB0aGUgcGFja2FnZS1s
+b2NrLmpzb24gbWVudGlvbmVkIGFib3ZlLiBUaGUgc2Vjb25kIHRoaW5nIHRoYXQgSSB0aGluayBp
+cyB2ZXJ5IGludGVyZXN0aW5nLCBpcyB0aGF0IHRoZSBjb25kaXRpb24g4oCYcGtnIGluIGxvY2tk
+b3du4oCZIGFsd2F5cyByZXR1cm5zDQogRmFsc2UsIG5vIG1hdHRlciBpZiB0aGUgcGFja2FnZSBz
+ZWVtcyB0byBiZSBwcmVzZW50IGluIHRoZSBsb2NrZG93biBmaWxlIG9yIG5vdC48YnI+DQo8YnI+
+DQpbMV0geW9jdG8gbWFudWFsOiBodHRwczovd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy8zLjAu
+My9tZWdhLW1hbnVhbC9tZWdhLW1hbnVhbC5odG1sI2NyZWF0aW5nLW5vZGUtcGFja2FnZS1tYW5h
+Z2VyLW5wbS1wYWNrYWdlczxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+WzJd
+IG5vZGUgcmVkIHJlY2lwZTogPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL2ludGVsLWlvdC1k
+ZXZraXQvbWV0YS1pb3QtY2xvdWQvdHJlZS96ZXVzL3JlY2lwZXMtbm9kZS1yZWQvbm9kZS1yZWQi
+Pg0KaHR0cHM6Ly9naXRodWIuY29tL2ludGVsLWlvdC1kZXZraXQvbWV0YS1pb3QtY2xvdWQvdHJl
+ZS96ZXVzL3JlY2lwZXMtbm9kZS1yZWQvbm9kZS1yZWQ8L2E+DQo8bzpwPjwvbzpwPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPlszXSBvcGVuZW1iYmVkLm9yZyAobm9lLXJlZCByZWNpcGUpOiA8
+YSBocmVmPSJodHRwczovL2xheWVycy5vcGVuZW1iZWRkZWQub3JnL2xheWVyaW5kZXgvcmVjaXBl
+LzY3OTgwLyI+DQpodHRwczovL2xheWVycy5vcGVuZW1iZWRkZWQub3JnL2xheWVyaW5kZXgvcmVj
+aXBlLzY3OTgwLzwvYT48YnI+DQo8YnI+DQpJIHRoaW5rIHRoaXMgaXMgYSBidWcuIElmIGl0IGlz
+IG5vdCwgSSB3b3VsZCByZWFsbHkgYXBwcmVjaWF0ZSBpZiBzb21lb25lIGNvdWxkIGhlbHAgbWUg
+dW5kZXJzdGFuZCB0aGUgbnBtIGZldGNoZXIuPGJyPg0KPGJyPg0KUmVnYXJkcyw8YnI+DQpBbnRo
+b255IFppbW1lcm1hbm48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+
+--_000_BN7PR06MB518813A4A4B14190883734D3E0AF0BN7PR06MB5188namp_--
