@@ -1,20 +1,20 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.3740.1609991063394948216
+ by mx.groups.io with SMTP id smtpd.web12.3753.1609991065011491239
  for <yocto@lists.yoctoproject.org>;
- Wed, 06 Jan 2021 19:44:23 -0800
+ Wed, 06 Jan 2021 19:44:25 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=b3KlINqS;
+ dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=k2DyK4iA;
  spf=softfail (domain: windriver.com, ip: 198.145.29.25, mailfrom: yi.zhao@windriver.com)
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2061.outbound.protection.outlook.com [40.107.94.61])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 4B12F38C08EA
-	for <yocto@yoctoproject.org>; Thu,  7 Jan 2021 03:44:23 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2081.outbound.protection.outlook.com [40.107.94.81])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id DF52E38C08EA
+	for <yocto@yoctoproject.org>; Thu,  7 Jan 2021 03:44:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fQ9lEeISDgWVm3KzQtm8ztua0JqKil8QjcE7+Dnj43jiuT/NtYkDWzDvcPnFEmNecgeykNPEyyX0BAcGX1316KIR1iAnHzMU5CejLEec8WDQYKPPk81STedJaQLDGopRvKd9BfYmEF0CvjUYaENsKVEBsHybIJw3zoqwZtQDSJbEZLSUxDfp2GuIG/jXUSFuaslhdZq4dzhzhSLzRXpqrQsP5NmdRBQjAtQiAHbkR2ni6l5bRjMIn1Ku6KmeK0WN2TtoJEuQtbaow4yJP6o6bowri5jsalOrj5WdII2GfAFSKW0TTzK0+uzy1/+IOZ6+t/7CIUQPzoVDe0oX9fPMtg==
+ b=Dot1YZ88d0V1MFDo7JaOP6Yz3w5fTi2+YGQEJp+C6UhQXs32wsrgXkMVFFb6gwQxjrSfv87jQlMdHodxRt3Br1PpfY66w2n/bBNH1CS0Z610Q2kNxkFghyLVulwgQOKBtQvCiX6cGTyszV2ot6Wmy0vqfM45hl+sZ0ZFtnqkr6S4l6Uez7XiG/rKIkBuO3ih24Mwg0J5vxxAYm+7KBS1CzRSYnAXTNI4Pgd3JpqvkLTKJgso+AYDlknd0zowDwjmsH22TfSTR4A2Kc5smHn2RvkRwv61qnQYZuGOEZn/2RNCLamBwrdx33faJDcB+8uqWFcwerV0CRF5kh9z/C419w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=buq9RJz1rofWOOwmuy9uG+7EHJKi/MSlL3wYZcDf6CU=;
- b=NXAecilebdEVCShF9flR+K5xqgwDp7pAdQ4G3xTdHg2zMd/QARY3mltBA7fXMxlA0QmjvBUDfFhfsZu0y9YcV4iKkN9P3PpmTb1L9Cuu6L8pcAtAZPmCaANvbKusP0uyMdW/GxT6A8URkG2FExU2FCx5BTwfNrkeTbm4/Rl4TO43M1qLDKJDIMxpxbyO5kmEICOfWjEYkX8366KBy93EILqEqBlfY7Cme0SuOX3RKuZf3xOABsnMLU1YPEHTLRlAwnnc7V6OpMt8s3B0d1o3QbphP+/4lYvEBV3Bf67gvzqtID2tVXAEbTof28Yc+xvbsjFxkqlIjSvYjnurfhMNPw==
+ bh=4ZqJZqShxzkX5chuw/MPdoKoqHr0bUVhiSwvx9KAShk=;
+ b=FB0q1MhTZ/YODwF6VHHqwpQRBi2CGrtX+rrpkQi6NrmG3ApP5kQ71w3cZhbhnJtZS57GON7BKe9pbMQ47jrTQT9bawiOmqkaYJEFm9/c3hFpsFw4Szv75QKY5gVa8DCk9MMbx0Qm68+uIMGMwnkZ9AjoCv+ZyJX4WNl931ufcl84iQ2kF1tp5SiYDfQ0KwCbR4URYGJRsU/bTilNN1JceJPibP0TyvitL99P7E6Gf8QCDQ8yKBcv2TEaGtDsUBBK9lZp1zsTUj23bPsWNhxU9RvQtkF254yBiUV98o38NK78+AUc6IP69yzXcnXB79oiP8vZs4bQmwUDcNIYgvMU8Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
@@ -22,8 +22,8 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=windriversystems.onmicrosoft.com;
  s=selector2-windriversystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=buq9RJz1rofWOOwmuy9uG+7EHJKi/MSlL3wYZcDf6CU=;
- b=b3KlINqSM0X1cWN7y7DOLDGuyKdGdHNxZpJiDpuW/MI5i+agYSL/FoNCWhJ5eXVUB1giQ3AjNUUnzBGPGCkrybTuKB9QtzV1eV8r6gGKiDpPBT6L+17p1NcXN6i0eUc5ocQhTrqK7uAaoVoQs8scWw2VihrKGwZwboLHSiFg6F4=
+ bh=4ZqJZqShxzkX5chuw/MPdoKoqHr0bUVhiSwvx9KAShk=;
+ b=k2DyK4iArwJgb1LMpsdazqHL/6dOWJQpsKQuvNNAKQeCBnkOsgXMqRMUy+hektsv1mU7cFlBvQogf/zFRw/hB/ZsmWmURnrEXEfOKMWh9BEvfoOy8bF7HN3fyGDynlybuu31aoP2QCp0WHaIZBh48zDdf2zCWeEk7lWxHjKLgmQ=
 Authentication-Results: yoctoproject.org; dkim=none (message not signed)
  header.d=none;yoctoproject.org; dmarc=none action=none
  header.from=windriver.com;
@@ -31,18 +31,18 @@ Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
  by CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.21; Thu, 7 Jan
- 2021 03:44:22 +0000
+ 2021 03:44:24 +0000
 Received: from CO1PR11MB4867.namprd11.prod.outlook.com
  ([fe80::21b9:29b6:fd3:bca5]) by CO1PR11MB4867.namprd11.prod.outlook.com
  ([fe80::21b9:29b6:fd3:bca5%7]) with mapi id 15.20.3721.024; Thu, 7 Jan 2021
- 03:44:22 +0000
+ 03:44:24 +0000
 From: "Yi Zhao" <yi.zhao@windriver.com>
 To: yocto@yoctoproject.org,
 	joe_macdonald@mentor.com,
 	joe@deserted.net
-Subject: [meta-selinux][PATCH 15/17] selinux-sandbox: upgrade to 3.1 (20200710)
-Date: Thu,  7 Jan 2021 11:43:43 +0800
-Message-Id: <20210107034345.37200-16-yi.zhao@windriver.com>
+Subject: [meta-selinux][PATCH 16/17] selinux-gui: upgrade to 3.1 (20200710)
+Date: Thu,  7 Jan 2021 11:43:44 +0800
+Message-Id: <20210107034345.37200-17-yi.zhao@windriver.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210107034345.37200-1-yi.zhao@windriver.com>
 References: <20210107034345.37200-1-yi.zhao@windriver.com>
@@ -52,65 +52,65 @@ X-ClientProxiedBy: HK2PR02CA0130.apcprd02.prod.outlook.com
  (2603:10b6:303:9a::13)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by HK2PR02CA0130.apcprd02.prod.outlook.com (2603:1096:202:16::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6 via Frontend Transport; Thu, 7 Jan 2021 03:44:21 +0000
+Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by HK2PR02CA0130.apcprd02.prod.outlook.com (2603:1096:202:16::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6 via Frontend Transport; Thu, 7 Jan 2021 03:44:22 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2c39a937-d7d2-4d21-7bd4-08d8b2be858d
+X-MS-Office365-Filtering-Correlation-Id: d01e0f3f-e341-4c37-7ab0-08d8b2be8686
 X-MS-TrafficTypeDiagnostic: CO1PR11MB5073:
 X-Microsoft-Antispam-PRVS: 
-	<CO1PR11MB50736020790B94B30FF6D79BF9AF0@CO1PR11MB5073.namprd11.prod.outlook.com>
+	<CO1PR11MB5073D83279C2D27017D13264F9AF0@CO1PR11MB5073.namprd11.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:296;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	gAPjhfGG2cN9eBMgEsAsqJdZYc/Oit2LBHiy8S58ajteQ6W7Zb5SEnvXl4O0Pp5fLCCfsbGKPzT3jv+uZsL3U6NjF/0UTX1WNL0awc1f9mIZE7QClPTOlFnSS2LPlST/P2cGfbn8jsK8nNQc6INPuSXqaigEObkbd1pKN6YewG3elNFgjDOE92FpOWlajvhcDn7dL59P86uaHlxZJN8ObjGn1I8jqNOir6Y18ZpNcstjI3yJWEVI8J2yJvyMyjtl9weKoGtQu4u4QWAXCMpKTa8VVtpU+86n4LKo6lkytG0oC0cc8fswUQLoEan7k2LjwxFk7dLKPhyfmEp48oV3UmwWKbws8xVd/3l5QGX/t64G8jFB8kVNcKhtmuOkJ6Ml1e3ITY6bkNRoMDRMOctWxw==
+	BcmXIMsGpni23ySL2NkffBw64ysQ8oVssA4ib87slwk5F/U5hB1JJJv2DKSxIKVQ36M7N3uovDc6IaGnzMD0L5iJ4rOOWyP4c+sAjhdXgUDeO+Mlxr2qx0UBSonBABRbP5dQI0ksxHa+gIUjks35MWw/37s2Gi+pYjkUyY+frYR01O59ydz3yh+gDK40FLgxNY6X77twbfIhps09EFaEAf0Xi+WDNRah17pfihqiiU9PktJNxnsPeZbnjVkp5Af3ZVayn1+p7xpxCX0bgDlQ+y6/FnGYrVDDx0Fq/kVgD0nFERfIYmiGPIUdoqnCIKrnqZqqZu1r1TkYY5lxN+qPtUbBkEdHJFPsn0RUtzHkBjb7Njuo/1CmAmhV4QycR3sbrmm3RlV9BqeG0GvCs3sHFw==
 X-Forefront-Antispam-Report: 
 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(39850400004)(366004)(136003)(346002)(396003)(26005)(316002)(66556008)(956004)(16526019)(66946007)(2906002)(186003)(66476007)(2616005)(6666004)(8676002)(83380400001)(6486002)(44832011)(6506007)(36756003)(52116002)(6512007)(8936002)(478600001)(1076003)(5660300002)(86362001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData: 
-	=?us-ascii?Q?VrQQ+tJwn8ahjnTIZ+ZMhb0T7sM4EfPFUQhm+kkmyDcBIh1VJ4DA2uWcayrF?=
- =?us-ascii?Q?5GAVwYwFWPr+S2fkIYyOYcLYnu1c3kqgR8+pPT8L744zG2V/S/Pxrm6hEygD?=
- =?us-ascii?Q?ybAWIyGAf7pNEIv6Nct0cUk62Zvm4f3AxJs/URj6Wruy9yOaky0jm+qGFIPY?=
- =?us-ascii?Q?tu7FrEFlgUqgPFLaviNQ2eU7rK45uGT9/Qhaee5eDB+288CcRFioI0ttkqi+?=
- =?us-ascii?Q?HqlKB8ymb7CIjfMloa9+hguDD2GSBq2CYqGFYFrcl2S3qBo7K2wjcFLZUZqf?=
- =?us-ascii?Q?gibtWT7oyxKp/eDsjo0tdnn+tKkzTWl+JZezk8oclHLhnk+JqDlSw87zUi/9?=
- =?us-ascii?Q?uzOowhELwSDFkmIj+rJDAhKpzoIpAM/VLdGNeHKvBjVUKTWubUmx1+w/A+DQ?=
- =?us-ascii?Q?KxP6FnEzmI+Bz5RPAvrOg5tnoBIzbF5M++2+08AxS1LeMhP9nQnIGlgrrUZf?=
- =?us-ascii?Q?L9PT+/mrYEe5W/fiq+U1oFW4vAJSzSX+ASdhHCSY14wQLIwh/cGHOe9DvwvT?=
- =?us-ascii?Q?2tswnGsfstqdTWMQc8YZkfhqOIt8WjprhqvGQqieedNCYWSz4FGgZOne9p11?=
- =?us-ascii?Q?KRru2f89KuTginkJsC2U9cAUXCvjztWTqk1EOAVXh9FvZWHNmfGUJH5b+Drn?=
- =?us-ascii?Q?u4CgzG7qQWLdSxCJCs5/TyDhZswLWCF0xAqYcIIkK0wr79V8SCU7Xf2H1pSz?=
- =?us-ascii?Q?d3wyQcREfqdMgpBF8XNXQ2KL//u1xQBdN4GYGpCszPkzoonLIJB9ezmOQcNN?=
- =?us-ascii?Q?qy8wnCnzq/5sY6tAPtRLdDbmVsom6rVN8RQ4oZC3aruuR+dfuRLV4jcuzIvD?=
- =?us-ascii?Q?PyueU2HZ3SeYieglk2sWmU5orhT28LqokTx5LCtYwtsI4D+T31DdsnDzlk+Y?=
- =?us-ascii?Q?QKKOU6Di347e1IcUxNNkfiwa+F4xkqbJs3zTh8liovbTXLyKqbKrB6BR2ovs?=
- =?us-ascii?Q?F2aaA8wo2WnKSAzQkFwVdKMl/HyZTgJelxK/cojfeQAxiVnmkwYUYAsBqVFq?=
- =?us-ascii?Q?DS/a?=
+	=?us-ascii?Q?b4weOR3bum3+y250eJSOltqqyKNk9eXZ2Oz5nmOiHUmyKhZBKv3HpqXceMze?=
+ =?us-ascii?Q?5XD8ZdD1cRUQgqa1LQPJwMprcVRbPst/sBqafZkrABxGuD+FdCm2ATtNs3LW?=
+ =?us-ascii?Q?i6uaRhPz6kUYZhhCxfLe5HNhrRrgpS98SPFyloB2YS4tztERUopUj2KFptyi?=
+ =?us-ascii?Q?pPwLKcjFfwEyDKcbM17+Rq/P3sZM97/wu2GtfFODo5fBbly3a0DZOYmEZDf1?=
+ =?us-ascii?Q?/69aRSvCArSmS0bdQmQQ/ud/48Jk5oc0Tq41Obs/7YL2NFpRhFdAfAMVHQ5O?=
+ =?us-ascii?Q?aDqjk8dTd3yNTvmIao8jC2PQ0jV8FX18YyIg8R7cMMaYKQfr8AtJewbgAmEq?=
+ =?us-ascii?Q?k3+2WYDAR7m5neDRc/wLVdYG95LG1BgnX27pPde9ORVvk+kC7FNHx7VR2wQf?=
+ =?us-ascii?Q?0bbrQYUwkAFWt560qrQiA2HSHjvcLy1o5Sn52B/0uAE/MeOs15fDRfRYnLHr?=
+ =?us-ascii?Q?liZkleTCqUKmib51QDIkioU+1xTbASKmLt2cSlvphFAqn6XdPoOUy2MWnmUM?=
+ =?us-ascii?Q?gnxlkesggYDNNpE6nHjdVekLNfAJutaKkE+epfWbkVu9N+LK+pKVKZFBfxjQ?=
+ =?us-ascii?Q?8z+rLG9tpDOQwlLGQV5kpSl7PaZL/cFM63LBJvMYfqtt07nePXW/MoGRfpPG?=
+ =?us-ascii?Q?kMBicxOxiKFBORPH22HvBTVz9qygzlOCbRslEuxap5nqhzskEsClflRbN29/?=
+ =?us-ascii?Q?UZe5oLAjEI60pGRlya+dtAyv8fQWCbAXHsPf/SNfW6DtjEIS0zWAUA6CYUkA?=
+ =?us-ascii?Q?dRyLcO5eAVEGNCrGztG22ZhKw+FCbbrtnD2gaRQ3PekPFrFyxNWW22+bOZXZ?=
+ =?us-ascii?Q?rtzuPC6g+s3ETqV80QBRbeBIUcRAGkk7tRCoFQ4p+8FZ5G7whKqGGhPJWOv8?=
+ =?us-ascii?Q?CEZV5rDjtUIWK+85kr+VX9hxThoQg6DOaglk2wJiFk4aP5lbQx2t/0zMnXzM?=
+ =?us-ascii?Q?dOeCPz90vftclEnDbjDsJzQZL8RKmw/NlPWBFKd1xrCGisHs9yNL2F/W+PjS?=
+ =?us-ascii?Q?j2b2?=
 X-OriginatorOrg: windriver.com
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2021 03:44:22.6599
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2021 03:44:24.2708
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c39a937-d7d2-4d21-7bd4-08d8b2be858d
+X-MS-Exchange-CrossTenant-Network-Message-Id: d01e0f3f-e341-4c37-7ab0-08d8b2be8686
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5iINayVxUxvKmtE43/5ox+9L6zjQKmNXHG7B0MIV5sBSoGYkfEO0oFv8QSq048+xXxFy4nnr25WOXtf+nxb+FA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: +pxXvY4KSNAQVuHL+wCpZdUZHWvzEP5YHOQzPiGw7nAq4gWfxfcJK5YBcSq6pst71V5yAbDilTY+19kAE8+/AQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5073
 Content-Type: text/plain
 Content-Transfer-Encoding: quoted-printable
 
 Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
- recipes-security/selinux/selinux-sandbox_3.0.bb | 7 -------
- recipes-security/selinux/selinux-sandbox_3.1.bb | 7 +++++++
+ recipes-security/selinux/selinux-gui_3.0.bb | 7 -------
+ recipes-security/selinux/selinux-gui_3.1.bb | 7 +++++++
  2 files changed, 7 insertions(+), 7 deletions(-)
- delete mode 100644 recipes-security/selinux/selinux-sandbox_3.0.bb
- create mode 100644 recipes-security/selinux/selinux-sandbox_3.1.bb
+ delete mode 100644 recipes-security/selinux/selinux-gui_3.0.bb
+ create mode 100644 recipes-security/selinux/selinux-gui_3.1.bb
 
-diff --git a/recipes-security/selinux/selinux-sandbox_3.0.bb b/recipes-se=
-curity/selinux/selinux-sandbox_3.0.bb
+diff --git a/recipes-security/selinux/selinux-gui_3.0.bb b/recipes-securi=
+ty/selinux/selinux-gui_3.0.bb
 deleted file mode 100644
-index a60f52c..0000000
---- a/recipes-security/selinux/selinux-sandbox_3.0.bb
+index e937836..0000000
+--- a/recipes-security/selinux/selinux-gui_3.0.bb
 +++ /dev/null
 @@ -1,7 +0,0 @@
 -require selinux_20191204.inc
@@ -119,15 +119,15 @@ index a60f52c..0000000
 -LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D393a5ca445f6965873eca0259a17f=
 833"
 -
--SRC_URI[md5sum] =3D "81447c46bf4cae9a5fa38c5fb8dc923e"
--SRC_URI[sha256sum] =3D "66fb4ea3a9e3d1e6004f13666b8390be751dd226a8496b99=
-5ed0332788758d0a"
-diff --git a/recipes-security/selinux/selinux-sandbox_3.1.bb b/recipes-se=
-curity/selinux/selinux-sandbox_3.1.bb
+-SRC_URI[md5sum] =3D "988a564eccc01feb8cc6fa49630efc6d"
+-SRC_URI[sha256sum] =3D "e9e9b599950a30857b0954bf10853ea50efb7de68a5ae756=
+a27b8d03ccc44348"
+diff --git a/recipes-security/selinux/selinux-gui_3.1.bb b/recipes-securi=
+ty/selinux/selinux-gui_3.1.bb
 new file mode 100644
-index 0000000..8a95044
+index 0000000..3038ebc
 --- /dev/null
-+++ b/recipes-security/selinux/selinux-sandbox_3.1.bb
++++ b/recipes-security/selinux/selinux-gui_3.1.bb
 @@ -0,0 +1,7 @@
 +require selinux_20200710.inc
 +require ${BPN}.inc
@@ -135,9 +135,9 @@ index 0000000..8a95044
 +LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D393a5ca445f6965873eca0259a17f=
 833"
 +
-+SRC_URI[md5sum] =3D "d38fda12b028c06f751be9c25e309c6b"
-+SRC_URI[sha256sum] =3D "c79b958e2f64570a59e60638fd13c15fd77c7c2bbac31c7a=
-d4afb03718432b84"
++SRC_URI[md5sum] =3D "1e0ea65dfb2b5408969bbe55f6f9d04e"
++SRC_URI[sha256sum] =3D "40775eaef965259ca2f8ad49c23b03ff2c8f70808a9e0587=
+b1075970b2509c3d"
 --=20
 2.25.1
 
