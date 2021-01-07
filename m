@@ -1,332 +1,143 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.1038.1610045241483535540
+ by mx.groups.io with SMTP id smtpd.web11.289.1610052453131315726
  for <yocto@lists.yoctoproject.org>;
- Thu, 07 Jan 2021 10:47:21 -0800
+ Thu, 07 Jan 2021 12:47:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=J+8eqyTW;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id AFE5938C07CE
-	for <yocto@yoctoproject.org>; Thu,  7 Jan 2021 18:47:20 +0000 (UTC)
-Received: by mail-ed1-f45.google.com with SMTP id c7so8744701edv.6
-        for <yocto@yoctoproject.org>; Thu, 07 Jan 2021 10:47:20 -0800 (PST)
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=dDAgTaM5;
+ spf=softfail (domain: windriver.com, ip: 198.145.29.25, mailfrom: randy.macleod@windriver.com)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2073.outbound.protection.outlook.com [40.107.243.73])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 3D2CD38C06E6
+	for <yocto@yoctoproject.org>; Thu,  7 Jan 2021 20:47:31 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dGk2+UM0sx0pQmhnTfrY4Z1W/v96aGvX9iBugjY3RpNtdqRpI9aw2CrkZI4qzBj6LzxwjSqY3d+fdTZ9+Orh220VQf4Fw8y5Dl9718DLGPLG4HMjhsy82Gi+AVSlirKajGbl+kWnWv+xAxya30Gs4iaXkE3Pq7kjN9qV0YjopWLGSU+PmaE6IOmiKu+LoL7oliYz+qUe3UD4ZAKk53h8sp4lXmu3M9RrlUFvDRCelzSCOiht36oCbP9lH8OZb8SSiNp32Pa/5c4HW2+0NkuuXbA1aCmMu7xNodCMT+a7zJ4ObRSrW4CrSdg6oKEdIM2Wl7KA7vQl2ExBoRzc/VLxbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=m1WQCd3zSXrxMkfPivyPpA5pO8W6R0pQbkIwLoWG/Xc=;
+ b=m+p4jDp6RJbMgh8mVWU67dMjjx3lDEu0MFp1JwYsITz6Q04YduSq3vi+zSZxqFFdE+IrpITARf+ZFIXOo0KitNu2Sjw75yx5CKRA7htAzh0W7v4O9vB4AXYAFhM0/XL73+FqFMLk2iUopLuubCkb+1DE5MWx+GHSOrRRZyfihG8UT1Gu6VwWUV5uKH4rEjdBrSgwVrEWYnbzAlXkpLTT9022i/KWvN2kUHj/k9DNIB5yBzdUfxwtEd2/j2LDFRq9UXxRlBYf5taEG25ZuGdggTYzj19YXm7GLBlJX5XP126zIk8p06dHUrgU1MVSmH1S5S2WMEAe5KZmmYT5gpGwfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=aKQoVkRAGejkoPdbaSXc1ZJ6VJAehS6Svqevrk5gZEc=;
-        b=J+8eqyTWQVDxJOhsqi9V1inQmxfAH9PZwa5tucZd0rrcbFfMmy3kiiTdvjy3+n+dVM
-         DR2IyrDrNHRkGlqSQdFzeV7vauzCH90GTbdH5LLmzJGiXuGES5G3tDhPnHpNWvht50ng
-         rUxML7GryM5rU7eZBsFNMJ4Aps51iOZ9o/1SCQh/6/5pJrH2kYmKJaTgfEHz7k91EFa+
-         cFxMXS9/Hd5akztEAv06lFSCimXJslvzQVh0Lx+8UJXzuMWlpQohsa113byqMwk87Jcd
-         lOJOrEPX27/yxHacshHZ0PKUze+/KX13IqlKR4ydPtyrwdkdjJrpCFJpSacn4iX8xWgM
-         Gzew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=aKQoVkRAGejkoPdbaSXc1ZJ6VJAehS6Svqevrk5gZEc=;
-        b=BQ2exVSsmlZrGVWbM+iPQeB69iIX6HobRA523RBN1ZYRBfJS4/VZRL0zGuiCio+gia
-         5RjGArH14/1hpH4r9pWjFgCeD9FXDKzQ0EzoTw5+i8EpQ19l3FTCBDTouxt1MTisCnJ9
-         0MZ4uMgES3M2FmftoOCgFwNDjthMq+wMl5JX73pQVAQuy4M//SPgpqhctPmCRmMdBUxF
-         fmOOO+zKCCA/pqnwQNxSxxMhEvuKn33KuFkiFNUnVJ4fEk8YE/jsS0Tc6pQkcZ0xaKOe
-         cJ/L8F1IXCb1LZ2OMEEZ8EYz54rDZWxN/CMdf0mPCd992yZ8boj7FBdXbs6i4QsayYQO
-         iBQQ==
-X-Gm-Message-State: AOAM532EYoMJAzSAoZLI9CIc2YjnGMu17EQbQ5qi3YhVxOtTvrVT5KHE
-	K0UC+F9jnLN6l9i6zgKCpCAL7ARkC4z0/RVF+RI=
-X-Google-Smtp-Source: ABdhPJyHOCH72mOpbivUzCQn6jgYATy/7aAMV3UdkcWWu++GXOmpV7+NZSTJuhFJwXaNsp4U/yoDYR9kVm7Y0sEVvYk=
-X-Received: by 2002:a50:bacb:: with SMTP id x69mr2642359ede.39.1610045239000;
- Thu, 07 Jan 2021 10:47:19 -0800 (PST)
-MIME-Version: 1.0
-References: <20201216130822.28476-1-hongxu.jia@windriver.com>
- <20201216130822.28476-9-hongxu.jia@windriver.com> <CAAfyv37zRgtJ_n2RZmWoHPOado1=LYw9cHVEVUZT1n497XB8yw@mail.gmail.com>
- <777b9a81-2d2e-7d86-bc0b-24370369135d@windriver.com>
-In-Reply-To: <777b9a81-2d2e-7d86-bc0b-24370369135d@windriver.com>
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Thu, 7 Jan 2021 19:47:07 +0100
-Message-ID: <CAAfyv37VGjVtn=SUan+X==VP5kbkMhWz96YP18X=x6-WkpP8GA@mail.gmail.com>
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=m1WQCd3zSXrxMkfPivyPpA5pO8W6R0pQbkIwLoWG/Xc=;
+ b=dDAgTaM5FZjNvoDoaAyod47yK5Pni/yjOw/4ze7z6kvacpY85Yo5W+fo+49W2WEXEafiA/3KqWE/bINR8mg62AqpT/fgXRYOX5SVfXvd7ABHTjjJefEN0hNAHdGg+t3/je9FSNliEQUIH+gzSlGzjwEHK4jYDzJiAmY/XzPbNSY=
+Authentication-Results: yoctoproject.org; dkim=none (message not signed)
+ header.d=none;yoctoproject.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
+ by DM6PR11MB4427.namprd11.prod.outlook.com (2603:10b6:5:1db::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.20; Thu, 7 Jan
+ 2021 20:47:26 +0000
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::8e2:471a:7b63:1a0e]) by DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::8e2:471a:7b63:1a0e%7]) with mapi id 15.20.3742.006; Thu, 7 Jan 2021
+ 20:47:26 +0000
 Subject: Re: [yocto] [meta-tensorflow][PATCH 8/25] tensorflow-estimator: 1.13 -> 2.4
-To: Randy MacLeod <randy.macleod@windriver.com>
-Cc: Hongxu Jia <hongxu.jia@windriver.com>, philip@balister.org, 
-	akuster808 <akuster808@gmail.com>, yocto <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+To: Belisko Marek <marek.belisko@gmail.com>
+Cc: Hongxu Jia <hongxu.jia@windriver.com>, philip@balister.org,
+ akuster808 <akuster808@gmail.com>, yocto <yocto@yoctoproject.org>
+References: <20201216130822.28476-1-hongxu.jia@windriver.com>
+ <20201216130822.28476-9-hongxu.jia@windriver.com>
+ <CAAfyv37zRgtJ_n2RZmWoHPOado1=LYw9cHVEVUZT1n497XB8yw@mail.gmail.com>
+ <777b9a81-2d2e-7d86-bc0b-24370369135d@windriver.com>
+ <CAAfyv37VGjVtn=SUan+X==VP5kbkMhWz96YP18X=x6-WkpP8GA@mail.gmail.com>
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+Message-ID: <3fe1b12f-b2f2-20be-2486-874bb3fa23ce@windriver.com>
+Date: Thu, 7 Jan 2021 15:47:17 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
+In-Reply-To: <CAAfyv37VGjVtn=SUan+X==VP5kbkMhWz96YP18X=x6-WkpP8GA@mail.gmail.com>
+X-Originating-IP: [198.48.226.187]
+X-ClientProxiedBy: SJ0PR05CA0183.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::8) To DM6PR11MB3994.namprd11.prod.outlook.com
+ (2603:10b6:5:193::19)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.25.44.2] (198.48.226.187) by SJ0PR05CA0183.namprd05.prod.outlook.com (2603:10b6:a03:330::8) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.4 via Frontend Transport; Thu, 7 Jan 2021 20:47:25 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7020b3bb-11e7-448f-507a-08d8b34d7151
+X-MS-TrafficTypeDiagnostic: DM6PR11MB4427:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: 
+	<DM6PR11MB4427D74C21FB40222A08DCAEF8AF0@DM6PR11MB4427.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	vJVDUR6wR1ipnJN+MmSY3dMf+uLBZlNcUx8S5N1F1dsQwwueGoXz8XnixR3XOYa4n+ViwsmZxv77fRu0mgOoL2CthfByYLXbzsfvakNGRfG/l3wwd9humvRqszsrEpBjOVty3xrRrYlVZ7DWFtpO+CVqsrEjuphtFttDSlfMYuoXVCrFyyulpR6pP7Xd7RVlNU+0mkRNDN2l95ZsjahNe5MJSX8GL2bFKc2hNZwsMhcVsBfzCZnMvsaCk44JoVYGmB/6/FkaB1ZWaBJfe12Al4427ue3nlwQZtQR8GX4XksTiV16q+bfNwhVIgzDAnjKfDRoiaktxaQDSW9ur8j7XkhNZDljvGkVna/kcI/HL8t7uIk7JnNz9NB2BkclFNA24FdcRJICklUaG6a+jQaN+Tvz3QcFqzqE+AVsB3tPvXk4y5zWikWshWLnSNESwaH7K6upkpN+uQ4tegteOF4a+GkIYgFoMu3jurkTM3qm/hk=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(39850400004)(366004)(136003)(376002)(6916009)(54906003)(16526019)(956004)(16576012)(478600001)(316002)(2616005)(36756003)(52116002)(86362001)(4326008)(6486002)(4744005)(31686004)(5660300002)(8676002)(2906002)(66946007)(66556008)(66476007)(31696002)(8936002)(26005)(53546011)(186003)(6666004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	=?utf-8?B?Umt5RlFtR010WW5hdVVmaHl3T2dNRG5HcVBudGo0bjV6b1hRYVFiVFpCRWRT?=
+ =?utf-8?B?eE1aczBOSVJ3eVd3NXRJRkdCUGhxWHF0N3VyUTJBNExzL2kzblVvRVFiM0NS?=
+ =?utf-8?B?ZTk5SFZ0d3J2ZFRqZ1F6RU1ocWJMZFZJb3YwVThCT21GWE1jaWFSMkoxcHBk?=
+ =?utf-8?B?VmN2SHZ1Y0xZclN4bU83ak1kYkEvNUh0bnRrMjZ4NkcxWjRWWjR0OFdML3FO?=
+ =?utf-8?B?QXpsWGVFTmRUNXl3Zld4ZCtQVVRlczFHR3NNbHFOZy9zMERDMlZtb2pLQjdK?=
+ =?utf-8?B?ejUvdmNxdmVubkl6VGE1RmpuUjd5OHhKejBVWnhVcURVaWJRT2Z4cSs1MVpy?=
+ =?utf-8?B?WHVRMjNCYXpVUjNrdDNnSFJJZHhsTXF0K29iQmVwVjl4YlFGbXkydWpwRFZN?=
+ =?utf-8?B?RHpMR2NRbjMxY29HYjdwQmFtZ05VLzY1V1RvekxEYTRmZEJrdVRlN1RJU0V1?=
+ =?utf-8?B?Z2k0QzNaY2tzVVpjNlFuRWo4UU0yZ0ovRGthbUt1QWV2WTJjWVc4b0YrTFZD?=
+ =?utf-8?B?eGpaMWVncEN1T2kxR3lRQmpSM1J0VXBlSFVrRG01cEFwRGZOQ2l5bHFqelBH?=
+ =?utf-8?B?RkRJeXl6Q2J6SnBqbmVPN3U4d1c4cTVMeE5xekRUUG5BOW1lM21ndml1SUNI?=
+ =?utf-8?B?MGsySE4vdytvVXdDVW04THlRcUNGckRjeXVJRVRNYXVtTHhSaEgwYmlrclFF?=
+ =?utf-8?B?NjJ3Y3BEVEs0blNQN2JHTWpzZ3FhOGFtV1JQMXdLVnIzOENzNEZZK2dsaFJB?=
+ =?utf-8?B?SFFjZUF5QWMxbHpwblczMktJMlNGUmE2ODNnbnNrQStlYS9ieEpacVdNNEhL?=
+ =?utf-8?B?Qkd2djR4UmpBVVp1cDhCUEQvVXZFRGhPUFJwRHFOaGw2TERSMGpNOTZRdFc4?=
+ =?utf-8?B?NzZxKzJ3LzNBMnpvbEppcVVENzlPUkYrUFpkSWZYRU1MZEVzaG02YnpwUVM2?=
+ =?utf-8?B?Vk9zU3pML09TU0FvZEViaFhGdElvVnU5WHpxWElMeWxyK0RmSnZNbHJFK1Ra?=
+ =?utf-8?B?R3VIcW92cjJCVWdOL0JRWVVpWGJIZnZPbyswK0JkbjBOSm9BM2luLzltTzF6?=
+ =?utf-8?B?a1lVS0ZtSm5CdThZWXVWZHZHYUp6RHlrbWVqL1Q4SXVYQnBKdkJGUjBJOUNh?=
+ =?utf-8?B?UUphKzg2M0Y4MUhra2lxQmcrZ3piNTFPNngyNFB2U1E1LzhlRHBQay9JeWU4?=
+ =?utf-8?B?U3dzcndFb2kyR2JqVmkwT2VZdnBzMUYzSUtDNkt4S2FwS2NBQi9UcElmb1lH?=
+ =?utf-8?B?WWdBSy9hUDM5ei9IRjVTUEZ5REg1U3UzTk00NFVwVGsyRUZJTVhmWFdjbE5H?=
+ =?utf-8?Q?2F/LWdWre+wv00FRzATAgN7m7PQtL870/9?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2021 20:47:26.6843
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7020b3bb-11e7-448f-507a-08d8b34d7151
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KvIip/2WflyS15evjNfQccywIX/gynChdELPDxSNqYnkN5ILLQq3lXR604KNO83JZM+92S9XSUGw0jJE+ITn5lo7wQaXn4mEfSreVQA9Yyw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4427
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-CA
+Content-Transfer-Encoding: 7bit
 
-HI Randy,
+On 2021-01-07 1:47 p.m., Belisko Marek wrote:
+>> Marek,
+>> Does this happen if you use the master branch?
+> Yes this comes from master branch.
 
-On Thu, Jan 7, 2021 at 6:51 PM Randy MacLeod
-<randy.macleod@windriver.com> wrote:
->
-> On 2021-01-04 5:30 a.m., Marek Belisko wrote:
-> > Hi Hongxu,
-> >
-> > On Wed, Dec 16, 2020 at 2:09 PM Hongxu Jia <hongxu.jia@windriver.com> =
-wrote:
-> >>
-> >> Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
-> >> ---
-> >>   .../0001-customize-for-yocto.patch            | 28 ++++++++++++++++=
-+++
-> >>   .../tensorflow/tensorflow-estimator_1.13.bb   | 12 ++++++--
-> >>   2 files changed, 37 insertions(+), 3 deletions(-)
-> >>   create mode 100644 recipes-framework/tensorflow/tensorflow-estimato=
-r/0001-customize-for-yocto.patch
-> >>
-> >> diff --git a/recipes-framework/tensorflow/tensorflow-estimator/0001-c=
-ustomize-for-yocto.patch b/recipes-framework/tensorflow/tensorflow-estimato=
-r/0001-customize-for-yocto.patch
-> >> new file mode 100644
-> >> index 0000000..e9b66d5
-> >> --- /dev/null
-> >> +++ b/recipes-framework/tensorflow/tensorflow-estimator/0001-customiz=
-e-for-yocto.patch
-> >> @@ -0,0 +1,28 @@
-> >> +From a1bcf09a43fc44ad5e04c441ee45cc23d16cf7d2 Mon Sep 17 00:00:00 20=
-01
-> >> +From: Hongxu Jia <hongxu.jia@windriver.com>
-> >> +Date: Wed, 9 Dec 2020 17:59:01 +0800
-> >> +Subject: [PATCH] customize for yocto
-> >> +
-> >> +Upstream-Status: Inappropriate [oe specific]
-> >> +
-> >> +Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
-> >> +---
-> >> + tensorflow_estimator/tools/pip_package/build_pip_package.sh | 2 +-
-> >> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> >> +
-> >> +diff --git a/tensorflow_estimator/tools/pip_package/build_pip_packag=
-e.sh b/tensorflow_estimator/tools/pip_package/build_pip_package.sh
-> >> +index d4953a6..e08cd8a 100755
-> >> +--- a/tensorflow_estimator/tools/pip_package/build_pip_package.sh
-> >> ++++ b/tensorflow_estimator/tools/pip_package/build_pip_package.sh
-> >> +@@ -38,7 +38,7 @@ function prepare_src() {
-> >> +
-> >> +   # Verifies all expected files are in pip.
-> >> +   # Creates init files in all directory in pip.
-> >> +-  python tensorflow_estimator/tools/pip_package/create_pip_helper.p=
-y --pip-root "${TMPDIR}/tensorflow_estimator/" --bazel-root "./tensorflow_e=
-stimator"
-> >> ++  nativepython3 tensorflow_estimator/tools/pip_package/create_pip_h=
-elper.py --pip-root "${TMPDIR}/tensorflow_estimator/" --bazel-root "./tenso=
-rflow_estimator"
-> >> + }
-> >> +
-> >> + function build_wheel() {
-> >> +--
-> >> +2.18.2
-> >> +
-> >> diff --git a/recipes-framework/tensorflow/tensorflow-estimator_1.13.b=
-b b/recipes-framework/tensorflow/tensorflow-estimator_1.13.bb
-> >> index f3a5098..5b2fe5d 100644
-> >> --- a/recipes-framework/tensorflow/tensorflow-estimator_1.13.bb
-> >> +++ b/recipes-framework/tensorflow/tensorflow-estimator_1.13.bb
-> >> @@ -3,9 +3,10 @@ learning programming."
-> >>   LICENSE =3D "Apache-2.0"
-> >>   LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D01e86893010a1b87e69a213f=
-aa753ebd"
-> >>
-> >> -SRC_URI =3D "git://github.com/tensorflow/estimator.git;branch=3Dr1.1=
-3 \
-> >> +SRC_URI =3D "git://github.com/tensorflow/estimator.git;branch=3Dr2.4=
- \
-> >> +           file://0001-customize-for-yocto.patch \
-> >>             "
-> >> -SRCREV =3D "340703eed78ba4854862f749ed94f91598826e79"
-> >> +SRCREV =3D "c3e7f2b5bbcc35185ef71797955a28cadce28f60"
-> >>   S =3D "${WORKDIR}/git"
-> >>
-> >>   inherit python3native bazel
-> >> @@ -19,12 +20,18 @@ DEPENDS +=3D " \
-> >>       python3-astor-native \
-> >>       python3-gast-native \
-> >>       python3-termcolor-native \
-> >> +    python3-wrapt-native \
-> >> +    python3-opt-einsum-native \
-> >> +    python3-astunparse-native \
-> >> +    flatbuffers-native \
-> > I'm getting issue when building tensorflow-estimator (I add small
-> > changes to be able to build this patches on top of dunfell) and I'm
-> > getting:
-> > |   /bin/bash -c 'source
-> > external/bazel_tools/tools/genrule/genrule-setup.sh;
-> > bazel-out/k8-opt-exec-2B5CBBC6/bin/tensorflow_estimator/python/estimat=
-or/api/create_tensorflow_estimator.python.estimator_api_1_estimator_python_=
-api_gen_compat_v1
-> >   --apidir=3Dbazel-out/k8-fastbuild/bin/tensorflow_estimator/python/es=
-timator/api_v1/
-> > --apiname=3Destimator --apiversion=3D1
-> > --package=3Dtensorflow_estimator.python.estimator
-> > --output_package=3Dtensorflow_estimator.python.estimator.api._v1
-> > bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_=
-v1/v1.py
-> > bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_=
-v1/estimator/__init__.py
-> > bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_=
-v1/estimator/experimental/__init__.py
-> > bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_=
-v1/estimator/export/__init__.py
-> > bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_=
-v1/estimator/inputs/__init__.py
-> > bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_=
-v1/estimator/tpu/__init__.py
-> > bazel-out/k8-fastbuild/bin/tensorflow_estimator/python/estimator/api/_=
-v1/estimator/tpu/experimental/__init__.py')
-> > | Execution platform: @local_config_platform//:host
-> > | /home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux/tensorf=
-low-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-packages/=
-h5py/__init__.py:72:
-> > UserWarning: h5py is running against HDF5 1.8.21 when it was built
-> > against 1.8.19, this may cause problems
-> > |   _warn(("h5py is running against HDF5 {0} when it was built against=
- {1}, "
-> > | Traceback (most recent call last):
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/bazel/output_base/execroot/org_tensorflow_esti=
-mator/bazel-out/k8-opt-exec-2B5CBBC6/bin/tensorflow_estimator/python/estima=
-tor/api/create_tensorflow_estimator.python.estimator_api_1_estimator_python=
-_api_gen_compat_v1.runfiles/org_tensorflow_estimator/tensorflow_estimator/p=
-ython/estimator/api/create_python_api_wrapper.py",
-> > line 26, in <module>
-> > |     from tensorflow_estimator.python.estimator import estimator_lib
-> > # pylint: disable=3Dunused-import
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/bazel/output_base/execroot/org_tensorflow_esti=
-mator/bazel-out/k8-opt-exec-2B5CBBC6/bin/tensorflow_estimator/python/estima=
-tor/api/create_tensorflow_estimator.python.estimator_api_1_estimator_python=
-_api_gen_compat_v1.runfiles/org_tensorflow_estimator/tensorflow_estimator/p=
-ython/estimator/estimator_lib.py",
-> > line 22, in <module>
-> > |     from tensorflow_estimator.python.estimator.canned.baseline
-> > import BaselineClassifier
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/bazel/output_base/execroot/org_tensorflow_esti=
-mator/bazel-out/k8-opt-exec-2B5CBBC6/bin/tensorflow_estimator/python/estima=
-tor/api/create_tensorflow_estimator.python.estimator_api_1_estimator_python=
-_api_gen_compat_v1.runfiles/org_tensorflow_estimator/tensorflow_estimator/p=
-ython/estimator/canned/baseline.py",
-> > line 53, in <module>
-> > |     import tensorflow as tf
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-p=
-ackages/tensorflow/__init__.py",
-> > line 55, in <module>
-> > |     from ._api.v2 import compat
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-p=
-ackages/tensorflow/_api/v2/compat/__init__.py",
-> > line 39, in <module>
-> > |     from . import v1
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-p=
-ackages/tensorflow/_api/v2/compat/v1/__init__.py",
-> > line 34, in <module>
-> > |     from . import compat
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-p=
-ackages/tensorflow/_api/v2/compat/v1/compat/__init__.py",
-> > line 39, in <module>
-> > |     from . import v1
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-p=
-ackages/tensorflow/_api/v2/compat/v1/compat/v1/__init__.py",
-> > line 51, in <module>
-> > |     from tensorflow._api.v2.compat.v1 import lite
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-p=
-ackages/tensorflow/_api/v2/compat/v1/lite/__init__.py",
-> > line 11, in <module>
-> > |     from . import experimental
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-p=
-ackages/tensorflow/_api/v2/compat/v1/lite/experimental/__init__.py",
-> > line 10, in <module>
-> > |     from . import nn
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-p=
-ackages/tensorflow/_api/v2/compat/v1/lite/experimental/nn/__init__.py",
-> > line 10, in <module>
-> > |     from tensorflow.lite.python.lite import TFLiteLSTMCell
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-p=
-ackages/tensorflow/lite/python/lite.py",
-> > line 40, in <module>
-> > |     from tensorflow.lite.python.convert import
-> > build_toco_convert_protos  # pylint: disable=3Dunused-import
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-p=
-ackages/tensorflow/lite/python/convert.py",
-> > line 33, in <module>
-> > |     from tensorflow.lite.python import util
-> > |   File "/home/ubuntu/projects/test/build/tmp/work/aarch64-poky-linux=
-/tensorflow-estimator/2.4-r0/recipe-sysroot-native/usr/lib/python3.8/site-p=
-ackages/tensorflow/lite/python/util.py",
-> > line 30, in <module>
-> > |     import flatbuffers
-> > | ModuleNotFoundError: No module named 'flatbuffers'
-> >
-> > FLatbuffers from openembedded are available version 1.12. Do you have
-> > an idea what is can cause?
-> >>       tensorflow-native \
-> >>   "
-> >>
-> >>   do_compile () {
-> >>       unset CC
-> >>       export TMPDIR=3D"${WORKDIR}"
-> >> +    export PYTHON_BIN_PATH=3D"${PYTHON}"
-> >> +
-> >>       ${BAZEL} build \
-> >>           --subcommands --explain=3D${T}/explain.log \
-> >>           --verbose_explanations --verbose_failures \
-> >> @@ -32,7 +39,6 @@ do_compile () {
-> >>           --python_path=3D"${PYTHON}" \
-> >>           //tensorflow_estimator/tools/pip_package:build_pip_package
-> >>
-> >> -    PYTHON_BIN_PATH=3D"${PYTHON}" \
-> >>       ${S}/bazel-bin/tensorflow_estimator/tools/pip_package/build_pip=
-_package \
-> >>           ${WORKDIR}/estimator_pip
-> >>   }
-> >> --
-> >> 2.21.0
-> >>
-> >
-> > Thanks and BR,
-> >
-> > marek
->
-> Marek,
-> Does this happen if you use the master branch?
-Yes this comes from master branch.
->
-> Hongxu, Any tips for Marek?
->
-> ../Randy
+Hi Marek,
 
-BR,
+Is it:
+A) Comes from master and is a problem on dunfell or
+B) it is reproducible on the master branch?
 
-marek
->
-> >
-> >
-> >
-> >=20
-> >
->
->
-> --
-> # Randy MacLeod
-> # Wind River Linux
+Given that you said:
+ > I'm getting issue when building tensorflow-estimator (I add small
+ > changes to be able to build this patches on top of dunfell) ...
 
+I suspect it's A only. Right?
 
+What are your small changes.
 
---=20
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+Hongxu may take a quick look but we generally can't afford to
+investigate all combinations of recipe/branchs as I'm sure you
+can appreciate.
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+If you can reproduce the error on master without or even with your
+changes then that's a different story.
+
+Good luck and Happy New Year!
+
+-- 
+# Randy MacLeod
+# Wind River Linux
