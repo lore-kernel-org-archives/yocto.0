@@ -5,65 +5,80 @@ X-Originating-Location: IN (164.164.95.9)
 X-Originating-Platform: Windows Chrome 87
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Fri, 08 Jan 2021 02:52:12 -0800
-References: <CAM9ZRVtYh3hF91C8Beh9LBLkPavrAVtFOYf8yhfTopeyXPtGTg@mail.gmail.com>
-In-Reply-To: <CAM9ZRVtYh3hF91C8Beh9LBLkPavrAVtFOYf8yhfTopeyXPtGTg@mail.gmail.com>
-Message-ID: <26578.1610103132057372685@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="T3nvCG0QOUsW7g4btCPa"
+Date: Fri, 08 Jan 2021 03:07:43 -0800
+References: <20210108092613.4plbcntlv72ax3a2@qschulz>
+In-Reply-To: <20210108092613.4plbcntlv72ax3a2@qschulz>
+Message-ID: <11979.1610104063355267335@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="IViDF58hSQoC1JmRDjWX"
 
---T3nvCG0QOUsW7g4btCPa
+--IViDF58hSQoC1JmRDjWX
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 8, 2021 at 01:28 AM, Paul Barker wrote:
+On Fri, Jan 8, 2021 at 01:26 AM, Quentin Schulz wrote:
 
 >=20
+> Hi,
+>=20
+> On Fri, Jan 08, 2021 at 01:19:51AM -0800, Vijay Rakesh Munganda wrote:
 >=20
 >> Hi Paul Barker,
 >>=20
 >> No, ${WORKDIR}/tokbox directory is empty, it is not getting placed. I c=
 an
 >> only see it in the downloads directory.
->>=20
->> I'm Yocto Project Dunfell version.
 >=20
-> What I mean is, do you see the file
-> "libopentok_linux_llvm_arm64-2.18.1.tgz" itself under ${WORKDIR}? i.e.
-> has it been copied instead of extracted?
+> S =3D "${WORKDIR}/libopentok_linux_llvm_arm64"
 >=20
-> Also, please quote the email you're replying to for the benefit of
-> others on the mailing list. Replying inline like this is preferred.
+> This is the root directory of your archive and should be used for `S`
 >=20
-> Thanks,
->=20
-> --
-> Paul Barker
-> Konsulko Group
+> Cheers,
+> Quentin
 
-I figured out URL is hyperlinked with another URL. When I use a hyperlinke=
-d URL it is getting copied and extracted into the working directory. Thanks=
-.
+By changing to S =3D "${WORKDIR}/libopentok_linux_llvm_arm64" error got el=
+iminated, thank you.
+
+Now, how can I install the file under opentok_linux_llvm_arm64/lib/libopen=
+tok.so into the rootfs?
+
+I tried the below code but got an error as *install: cannot stat 'lib/libo=
+pentok.so': No such file or directory*.
+
+>=20
+> do_install() {
+> install -d ${D}${libdir}
+> install -m 0755 lib/libopentok.so ${D}${libdir}
+> }
+>=20
 
 Thanks,
 Vijay Rakesh.
 
---T3nvCG0QOUsW7g4btCPa
+--IViDF58hSQoC1JmRDjWX
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 8, 2021 at 01:28 AM, Paul Barker wrote:<br />
-<blockquote>
+On Fri, Jan 8, 2021 at 01:26 AM, Quentin Schulz wrote:<br />
+<blockquote>Hi,<br /><br />On Fri, Jan 08, 2021 at 01:19:51AM -0800, Vijay=
+ Rakesh Munganda wrote:<br />
 <blockquote>Hi Paul Barker,<br /><br />No, ${WORKDIR}/tokbox directory is =
 empty, it is not getting placed. I can only see it in the downloads directo=
-ry.<br /><br />I'm Yocto Project Dunfell version.</blockquote>
-What I mean is, do you see the file<br />"libopentok_linux_llvm_arm64-2.18=
-.1.tgz" itself under ${WORKDIR}? i.e.<br />has it been copied instead of ex=
-tracted?<br /><br />Also, please quote the email you're replying to for the=
- benefit of<br />others on the mailing list. Replying inline like this is p=
-referred.<br /><br />Thanks,<br /><br />-- <br />Paul Barker<br />Konsulko =
-Group</blockquote>
-I figured out URL is hyperlinked with another URL. When I use a hyperlinke=
-d URL it is getting copied and extracted into the working directory. Thanks=
-.<br /><br />Thanks,<br />Vijay Rakesh.
+ry.</blockquote>
+S =3D "${WORKDIR}/libopentok_linux_llvm_arm64"<br /><br />This is the root=
+ directory of your archive and should be used for `S`<br /><br />Cheers,<br=
+ />Quentin</blockquote>
+By changing to S =3D "${WORKDIR}/libopentok_linux_llvm_arm64" error got el=
+iminated, thank you. <br /><br />Now, how can I install the file under open=
+tok_linux_llvm_arm64/lib/libopentok.so into the rootfs?<br /><br />I tried =
+the below code but got an error as <strong>install: cannot stat 'lib/libope=
+ntok.so': No such file or directory</strong>.<br /><br />
+<blockquote>
+<div>do_install() {</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;install -d ${D}${libdir}</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;install -m 0755 lib/libopentok.so $=
+{D}${libdir}</div>
+<div>}</div>
+</blockquote>
+Thanks,<br />Vijay Rakesh.
 
---T3nvCG0QOUsW7g4btCPa--
+--IViDF58hSQoC1JmRDjWX--
