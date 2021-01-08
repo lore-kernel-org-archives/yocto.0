@@ -1,54 +1,130 @@
-Received: from bsmtp3.bon.at (bsmtp3.bon.at [213.33.87.17])
- by mx.groups.io with SMTP id smtpd.web09.2303.1610104548204876101
- for <yocto@lists.yoctoproject.org>;
- Fri, 08 Jan 2021 03:15:48 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.17, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp3.bon.at (Postfix) with ESMTPSA id 4DC0rx4KjNz5tlG;
-	Fri,  8 Jan 2021 12:15:45 +0100 (CET)
-Date: Fri, 8 Jan 2021 12:15:44 +0100
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: Vijay Rakesh Munganda <vijayrakeshmunganda@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Unable to extract tar file #dunfell #yocto
-Message-ID: <20210108111544.3g5m5ivajln6mdpw@qschulz>
-References: <20210108092613.4plbcntlv72ax3a2@qschulz>
- <11979.1610104063355267335@lists.yoctoproject.org>
+Subject: rebuild issues using sstate mirror
+To: yocto@lists.yoctoproject.org
+From: "Markus Volk" <f_l_k@t-online.de>
+X-Originating-Location: Heidenheim, Bavaria, DE (84.163.47.225)
+X-Originating-Platform: Linux Firefox 84
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <11979.1610104063355267335@lists.yoctoproject.org>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Date: Fri, 08 Jan 2021 03:16:41 -0800
+Message-ID: <dIdz.1610104601246301759.o5My@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="NKWSrKK4CBSNytKadysK"
 
-On Fri, Jan 08, 2021 at 03:07:43AM -0800, Vijay Rakesh Munganda wrote:
-> On Fri, Jan 8, 2021 at 01:26 AM, Quentin Schulz wrote:
-> 
-> > 
-> > Hi,
-> > 
-> > On Fri, Jan 08, 2021 at 01:19:51AM -0800, Vijay Rakesh Munganda wrote:
-> > 
-> >> Hi Paul Barker,
-> >> 
-> >> No, ${WORKDIR}/tokbox directory is empty, it is not getting placed. I can
-> >> only see it in the downloads directory.
-> > 
-> > S = "${WORKDIR}/libopentok_linux_llvm_arm64"
-> > 
-> > This is the root directory of your archive and should be used for `S`
-> > 
-> > Cheers,
-> > Quentin
-> 
-> By changing to S = "${WORKDIR}/libopentok_linux_llvm_arm64" error got eliminated, thank you.
-> 
-> Now, how can I install the file under opentok_linux_llvm_arm64/lib/libopentok.so into the rootfs?
-> 
-> I tried the below code but got an error as *install: cannot stat 'lib/libopentok.so': No such file or directory*.
-> 
+--NKWSrKK4CBSNytKadysK
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-If you go into ${WORKDIR} of your recipe (tmp/work/<arch>/<recipe name>),
-what is the path to libopentok.*.so?
+Hi Folks,
+i did some research on building a custom yocto image using gatesgarth bran=
+ch. The testcase was building an image on one machine and rebuild it on ano=
+ther using sstate mirror.
+I encountered two issues witch i was able to fix in a way that may also be=
+ interesting upstream.
 
-Quentin
+The first error:
+| /home/flk/yocto/build/poky-3.2/hd51/tmp/work/cortexa15hf-neon-vfpv4-oe-l=
+inux-gnueabi/gobject-introspection/1.64.1-r0/recipe-sysroot-native/usr/bin/=
+bison: error while loading shared libraries: libreadline.so.7: cannot open =
+shared object file: No such file or directory
+
+the solution for me was to add 'readline'=C2=A0 to DEPENDS in bison_3.7.2.=
+bb .
+
+configure log for bison-native changed from:
+checking for readline... no
+checking readline/readline.h usability... no
+checking readline/readline.h presence... no
+checking for readline/readline.h... no
+checking readline/history.h usability... no
+checking readline/history.h presence... no
+checking for readline/history.h... no
+
+to:
+checking for readline... yes
+checking how to link with libreadline... /home/flk/yocto/build/poky-3.2/hd=
+51/tmp/work/x86_64-linux/bison-native/3.7.2-r0/recipe-sysroot-native/usr/li=
+b/libreadline.so -Wl,-rpath -Wl,/home/flk/yocto/build/poky-3.2/hd51/tmp/wor=
+k/x86_64-linux/bison-native/3.7.2-r0/recipe-sysroot-native/usr/lib
+checking readline/readline.h usability... yes
+checking readline/readline.h presence... yes
+checking for readline/readline.h... yes
+checking readline/history.h usability... yes
+checking readline/history.h presence... yes
+checking for readline/history.h... yes
+
+and the error disappeared
+
+The second error:
+
+ERROR: neutrino-image-1.0-r0 do_rootfs: Unable to update the package index=
+ files. Command '/home/flk/yocto/build/poky-3.2/hd60/tmp/work/hd60-oe-linux=
+-gnueabi/neutrino-image/1.0-r0/recipe-sysroot-native/usr/bin/opkg --volatil=
+e-cache -f /home/flk/yocto/build/poky-3.2/hd60/tmp/work/hd60-oe-linux-gnuea=
+bi/neutrino-image/1.0-r0/opkg.conf -t /home/flk/yocto/build/poky-3.2/hd60/t=
+mp/work/hd60-oe-linux-gnueabi/neutrino-image/1.0-r0/temp/ipktemp/ -o /home/=
+flk/yocto/build/poky-3.2/hd60/tmp/work/hd60-oe-linux-gnueabi/neutrino-image=
+/1.0-r0/rootfs=C2=A0 --force_postinstall --prefer-arch-to-version=C2=A0=C2=
+=A0 update' returned 127:
+/home/flk/yocto/build/poky-3.2/hd60/tmp/work/hd60-oe-linux-gnueabi/neutrin=
+o-image/1.0-r0/recipe-sysroot-native/usr/bin/opkg: error while loading shar=
+ed libraries: libcharset.so.1: cannot open shared object file: No such file=
+ or directory
+
+after some research why libiconv libs are=C2=A0 being used (which i didn't=
+ have installed on the rebuild machine) i found this in libarchive:
+configure.ac ( https://github.com/libarchive/libarchive/blob/858fa8eaa9435=
+340d2bda988715e0d9023089bec/configure.ac#L380%20 )
+
+and was able to avoid the error by including 'gettext' to the inherit line=
+ in libarchive_3.4.3.bb
+
+Kind regards
+
+--NKWSrKK4CBSNytKadysK
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Folks, <br />i did some research on building a custom yocto image using =
+gatesgarth branch. The testcase was building an image on one machine and re=
+build it on another using sstate mirror. <br />I encountered two issues wit=
+ch i was able to fix in a way that may also be interesting upstream. <br />=
+&nbsp;<br />The first error: <br />| /home/flk/yocto/build/poky-3.2/hd51/tm=
+p/work/cortexa15hf-neon-vfpv4-oe-linux-gnueabi/gobject-introspection/1.64.1=
+-r0/recipe-sysroot-native/usr/bin/bison: error while loading shared librari=
+es: libreadline.so.7: cannot open shared object file: No such file or direc=
+tory <br />&nbsp;<br />the solution for me was to add 'readline'&nbsp; to D=
+EPENDS in bison_3.7.2.bb . <br />&nbsp;<br />configure log for bison-native=
+ changed from: <br />&nbsp;checking for readline... no <br />checking readl=
+ine/readline.h usability... no <br />checking readline/readline.h presence.=
+.. no <br />checking for readline/readline.h... no <br />checking readline/=
+history.h usability... no <br />checking readline/history.h presence... no =
+<br />checking for readline/history.h... no <br />&nbsp;<br />to: <br />che=
+cking for readline... yes <br />checking how to link with libreadline... /h=
+ome/flk/yocto/build/poky-3.2/hd51/tmp/work/x86_64-linux/bison-native/3.7.2-=
+r0/recipe-sysroot-native/usr/lib/libreadline.so -Wl,-rpath -Wl,/home/flk/yo=
+cto/build/poky-3.2/hd51/tmp/work/x86_64-linux/bison-native/3.7.2-r0/recipe-=
+sysroot-native/usr/lib <br />checking readline/readline.h usability... yes =
+<br />checking readline/readline.h presence... yes <br />checking for readl=
+ine/readline.h... yes <br />checking readline/history.h usability... yes <b=
+r />checking readline/history.h presence... yes <br />checking for readline=
+/history.h... yes <br />&nbsp;<br />and the error disappeared <br />&nbsp;<=
+br />The second error: <br />&nbsp;<br />ERROR: neutrino-image-1.0-r0 do_ro=
+otfs: Unable to update the package index files. Command '/home/flk/yocto/bu=
+ild/poky-3.2/hd60/tmp/work/hd60-oe-linux-gnueabi/neutrino-image/1.0-r0/reci=
+pe-sysroot-native/usr/bin/opkg --volatile-cache -f /home/flk/yocto/build/po=
+ky-3.2/hd60/tmp/work/hd60-oe-linux-gnueabi/neutrino-image/1.0-r0/opkg.conf =
+-t /home/flk/yocto/build/poky-3.2/hd60/tmp/work/hd60-oe-linux-gnueabi/neutr=
+ino-image/1.0-r0/temp/ipktemp/ -o /home/flk/yocto/build/poky-3.2/hd60/tmp/w=
+ork/hd60-oe-linux-gnueabi/neutrino-image/1.0-r0/rootfs&nbsp; --force_postin=
+stall --prefer-arch-to-version&nbsp;&nbsp; update' returned 127: <br />/hom=
+e/flk/yocto/build/poky-3.2/hd60/tmp/work/hd60-oe-linux-gnueabi/neutrino-ima=
+ge/1.0-r0/recipe-sysroot-native/usr/bin/opkg: error while loading shared li=
+braries: libcharset.so.1: cannot open shared object file: No such file or d=
+irectory <br />&nbsp;<br />after some research why libiconv libs are&nbsp; =
+being used (which i didn't have installed on the rebuild machine) i found t=
+his in libarchive: <br /><a href=3D"https://github.com/libarchive/libarchiv=
+e/blob/858fa8eaa9435340d2bda988715e0d9023089bec/configure.ac#L380%20" targe=
+t=3D"_blank" rel=3D"noopener">configure.ac</a><br />&nbsp;<br />and was abl=
+e to avoid the error by including 'gettext' to the inherit line in libarchi=
+ve_3.4.3.bb<br /><br />Kind regards
+
+--NKWSrKK4CBSNytKadysK--
