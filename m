@@ -5,32 +5,33 @@ X-Originating-Location: Kiskunhalas, Bács-Kiskun, HU (84.1.252.39)
 X-Originating-Platform: Linux Firefox 73
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Fri, 08 Jan 2021 04:28:52 -0800
+Date: Fri, 08 Jan 2021 04:35:46 -0800
 References: <CAGAf8LyEXerytTB_YGmpMcZOu3MOaSdA_vYv8nvk6qMOoPUc5Q@mail.gmail.com>
 In-Reply-To: <CAGAf8LyEXerytTB_YGmpMcZOu3MOaSdA_vYv8nvk6qMOoPUc5Q@mail.gmail.com>
-Message-ID: <11979.1610108932511655982@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="Y5OGS7SYnc64AciJ805E"
+Message-ID: <11979.1610109346269928993@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="POwu7fVxqFOlGtprG0zP"
 
---Y5OGS7SYnc64AciJ805E
+--POwu7fVxqFOlGtprG0zP
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Does it mean that it will never ever work?
+I experimented with the latest and greatest source, this is my log during b=
+itbake:
 
-Could you please try this one? This might match your kernel version:
+http://paste.ubuntu.com/p/R5PjtrtVYn/
 
-https://elixir.bootlin.com/linux/v5.8.18/source/drivers/net/usb/huawei_cdc=
-_ncm.c
+Thank you for your efforts!
 --
 Zolee
 
---Y5OGS7SYnc64AciJ805E
+--POwu7fVxqFOlGtprG0zP
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Does it mean that it will never ever work?<br /><br />Could you please try =
-this one? This might match your kernel version:<br /><br />https://elixir.b=
-ootlin.com/linux/v5.8.18/source/drivers/net/usb/huawei_cdc_ncm.c<br />-- <b=
-r />Zolee
+I experimented with the latest and greatest source, this is my log during b=
+itbake:<br /><br /><a href=3D"http://paste.ubuntu.com/p/R5PjtrtVYn/" target=
+=
+=3D"_blank" rel=3D"noopener">http://paste.ubuntu.com/p/R5PjtrtVYn/</a><br =
+/><br />Thank you for your efforts!<br />-- <br />Zolee
 
---Y5OGS7SYnc64AciJ805E--
+--POwu7fVxqFOlGtprG0zP--
