@@ -1,138 +1,201 @@
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
- by mx.groups.io with SMTP id smtpd.web12.2994.1610074756806671672
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+ by mx.groups.io with SMTP id smtpd.web10.2976.1610075065092959117
  for <yocto@lists.yoctoproject.org>;
- Thu, 07 Jan 2021 18:59:17 -0800
+ Thu, 07 Jan 2021 19:04:25 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Elz8k623;
- spf=pass (domain: gmail.com, ip: 209.85.218.54, mailfrom: idadelm@gmail.com)
-Received: by mail-ej1-f54.google.com with SMTP id q22so12688250eja.2
-        for <yocto@lists.yoctoproject.org>; Thu, 07 Jan 2021 18:59:16 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ROwyDTPR;
+ spf=pass (domain: gmail.com, ip: 209.85.219.171, mailfrom: jupiter.hce@gmail.com)
+Received: by mail-yb1-f171.google.com with SMTP id b64so8113812ybg.7
+        for <yocto@lists.yoctoproject.org>; Thu, 07 Jan 2021 19:04:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=zWWDczFcwwkMc2w7w53eH820HCF7ZyaI5tsTlMNUqP4=;
-        b=Elz8k623RF0311aZC4vVh6rgYq0Om+BoLWybg1jrQWfhYsIYB34DhCRZZbdFx0AKPa
-         SEPbHf8DNNrpAinWW3WuWQOz559VC9Ao3guG1FWCy1/3V3sFZXLAEaeU4A/CFQM1x9Cp
-         cxCjAMWAni/cnNmgE4TJzxlcybZj8M7q0rWJH6YlAzOEo6gvFvPM7MizGCKuhMkQGv1a
-         o0D9Iom9TVWr1dWe3qStXWp3uYmqnuwsPbps7/C7YHaQNrJ5BtOCRvhCUlFxujI5UJGc
-         B3H0a8o9BjJ/DTdzQ6+C/jIBWu5rEY0ZGxEFW9ukTs3t7/xhnl5o/WRJtoi5wUT+INsd
-         lNug==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ho2SKugRiwurCtmBi+caH89YDzaR/6hIcBti2LFAClQ=;
+        b=ROwyDTPRChe7byvM46cWBYmfStqU1MC7zMaeXb1mi4B+5F+gjo/1PRf6wLb6V3XWUK
+         GHvllsa+5SMSih5bBeCRuQsyfDL9RE+d4tJYmsIwsgmqv32Hdae4HikpZBI7zdE/1k4S
+         WxWnoNRB8xG+xWBHU48/PTdo9RTUF9zjn7GR31XDpqNEveUtRny9CkStQQNXPBaRxcNF
+         J5OUIOSgOlRh6e4bih22LoL2GD4mijr5izcxFFflBqc25ySVjlKfY9XIpJUgQWZXZq9A
+         GFUXA7/4pnq+nqpFNeKCWWXg0XQ2G0OljVNCvsHvuAw8HgVfyDGIloHp92jejLAWhsGG
+         9lBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=zWWDczFcwwkMc2w7w53eH820HCF7ZyaI5tsTlMNUqP4=;
-        b=GKf/F15CNHb7G90OCPmBkPnhKiDfF9bs4QuRA7ghSAgaTgp5/FeX7dVX8vhIvFI6Ow
-         3Gm8NnbFx9zhP97cRUBJwHepZ2WIlBh10fX+cVsi0cgiiBAjyb3NgLpbTiDqU6y8p/f5
-         FflZffwroR6/5unBk31EEWKv3wSyYUmcPQn4Cammgf5DkpoUWv3mREeDWA6mcb1oKTtS
-         txSXp6VEORtLGOX1sDNJAOJymgFdLCJ4OLWuQ5H2ARpZeaN5a2kNjlhGJ9C/m9C7A2Vv
-         le4lasLdXF8Dnyh00ieo3QKw2QW50aNY9RdxNjNfppCOxLwu2HPlvo84PtS+PaqN9mmt
-         IOYA==
-X-Gm-Message-State: AOAM532KN+cC+VuQO5e6OdT7oqHy4WKNcdlFbv2u5xpdkLqlfndfavO5
-	MFAduaDHjU7Ey/8w/cRATmOKQ/0inTqBjubOqk+OhYjGLLA=
-X-Google-Smtp-Source: ABdhPJwoQ8ZpdSTMfDb49bqE0OwBAJwcpEH6li4rBAIvipkoQlVFbIvwbhQ3wWi0jjlm37tWZ7oUX0chKfL8zBdMGqw=
-X-Received: by 2002:a17:906:339a:: with SMTP id v26mr1223339eja.107.1610074754761;
- Thu, 07 Jan 2021 18:59:14 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ho2SKugRiwurCtmBi+caH89YDzaR/6hIcBti2LFAClQ=;
+        b=VTXJN2XfpR/t51pBpeEJYPkiz4Ail4+LHHLIfDVxurHpxFfaIdbMvYMR004qPlS0uN
+         k1fnxbEg5RFq60tp7CRK/SjSl+RhNaK/g3Yx1RTPLGykps0TXNROg9JOrjXtZvIhrak2
+         6pauT7OOqfcR/cEyY5j42LaTZxVNrWF0yZxHzjcWRG9TbRE5x1F2PxOaRLE09eABRnRk
+         a89HWqTiAAqmhUjccjg9Us2KbKPSHpgBveyQGaYGEZYbc3CVuU9X+HYCoAw0CxRvNo+J
+         geJWTds43kjLKi4WdH0cO3iy0u7uuFejdMKFGWaUQ6bR/8WtP/qLIagxsnN5Om1OzslS
+         vX3w==
+X-Gm-Message-State: AOAM532aiaytkAAU6PyL1WcSQhjStKgbCt5RLkWzzHGknI0lPvGKLd0d
+	m0OdfpLt1QYOxlwA0dDliBb9D06rx/cIqtkRsd4=
+X-Google-Smtp-Source: ABdhPJxAdMCv9UhtArDgx30jgV9pPF01QT656I5kBqrQLudmsP2x4yDNIEdiBDsMnkvySSztkCa9VNyleKW5WkB4exc=
+X-Received: by 2002:a25:d483:: with SMTP id m125mr3005555ybf.330.1610075064348;
+ Thu, 07 Jan 2021 19:04:24 -0800 (PST)
 MIME-Version: 1.0
-From: "Meh Mbeh Ida Delphine" <idadelm@gmail.com>
-Date: Fri, 8 Jan 2021 03:59:02 +0100
-Message-ID: <CAN7sTguaF1pH-xaTdS4KOK2TNJOoCWCBADC+rM8n8ggwBb2p7A@mail.gmail.com>
-Subject: Suggestions on improvements
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000d1c85005b85abd72"
-
---000000000000d1c85005b85abd72
+References: <CAA=hcWRgT3j9cwhHu4r-+x3_G8E_Yv3qPVKaFOn67-GOSRJh8Q@mail.gmail.com>
+ <32166.1610008905321916245@lists.yoctoproject.org> <CAA=hcWT=s8VBLkbEkd9mVdCRrScxhNta_Yf+SvqBiMm1ZjGfyw@mail.gmail.com>
+ <20210107102520.t34e5sf4q7hewvat@qschulz>
+In-Reply-To: <20210107102520.t34e5sf4q7hewvat@qschulz>
+From: "JH" <jupiter.hce@gmail.com>
+Date: Fri, 8 Jan 2021 14:03:47 +1100
+Message-ID: <CAA=hcWR57QV0Yzviv8Ks2ZK0ru1PGQc-fjq4ROfA4i8OHP7wEQ@mail.gmail.com>
+Subject: Re: [yocto] How to select Linux kernel version?
+To: Quentin Schulz <quentin.schulz@streamunlimited.com>
+Cc: kapllaj.elvis@gmail.com, yocto <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-Hello everyone,
+Thanks Quentin, here are results:
 
-I'm trying to improve the Yocto Project's license tracing based on a
-proof-of concept implementation of linking sources with SPDX headers to
-output files by Richard at
-http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=rpurdie/license-experiments-osls
-.
+> So we can stop half guessing and help you can you give us the output of:
 
-The code in package.bbclass creates a list of SPDX headers found for the
-sources that make up a given set of binaries that make up an individual
-package using debug symbols to map sources to the binaries. This is then
-compared with the license field of the given package containing those
-binaries.
+> bitbake -e virtual/kernel | grep -e "^PREFERRED_PROVIDER_"
 
-Due to some mismatches, warnings pop up during the build. Below are some
-few sample warnings and I'm aware of false positives;
+$ bitbake -e virtual/kernel | grep -e "^PREFERRED_PROVIDER_"
+PREFERRED_PROVIDER_console-tools="kbd"
+PREFERRED_PROVIDER_dbus-glib="dbus-glib"
+PREFERRED_PROVIDER_dbus-glib-native="dbus-glib-native"
+PREFERRED_PROVIDER_gdb="gdb"
+PREFERRED_PROVIDER_gdk-pixbuf="gdk-pixbuf"
+PREFERRED_PROVIDER_getopt="util-linux-getopt"
+PREFERRED_PROVIDER_gzip-native="pigz-native"
+PREFERRED_PROVIDER_libgcc="libgcc"
+PREFERRED_PROVIDER_linux-libc-headers="linux-libc-headers"
+PREFERRED_PROVIDER_ltp="ltp"
+PREFERRED_PROVIDER_matchbox-panel="matchbox-panel-2"
+PREFERRED_PROVIDER_nativesdk-libgcc="nativesdk-libgcc"
+PREFERRED_PROVIDER_nativesdk-linux-libc-headers="nativesdk-linux-libc-headers"
+PREFERRED_PROVIDER_nativesdk-mesa="nativesdk-mesa"
+PREFERRED_PROVIDER_nativesdk-openssl="nativesdk-openssl"
+PREFERRED_PROVIDER_nativesdk-opkg="nativesdk-opkg"
+PREFERRED_PROVIDER_nativesdk-pkgconfig="nativesdk-pkgconfig"
+PREFERRED_PROVIDER_openssl="openssl"
+PREFERRED_PROVIDER_openssl-native="openssl-native"
+PREFERRED_PROVIDER_opkg="opkg"
+PREFERRED_PROVIDER_opkg-native="opkg-native"
+PREFERRED_PROVIDER_pkgconfig="pkgconfig"
+PREFERRED_PROVIDER_pkgconfig-native="pkgconfig-native"
+PREFERRED_PROVIDER_udev="systemd"
+PREFERRED_PROVIDER_virtual/base-utils="busybox"
+PREFERRED_PROVIDER_virtual/egl="mesa"
+PREFERRED_PROVIDER_virtual/fakeroot-native="pseudo-native"
+PREFERRED_PROVIDER_virtual/gettext="gettext"
+PREFERRED_PROVIDER_virtual/i686-oe-linux-binutils="binutils-cross-i686"
+PREFERRED_PROVIDER_virtual/i686-oe-linux-compilerlibs="gcc-runtime"
+PREFERRED_PROVIDER_virtual/i686-oe-linux-g++="gcc-cross-i686"
+PREFERRED_PROVIDER_virtual/i686-oe-linux-gcc="gcc-cross-i686"
+PREFERRED_PROVIDER_virtual/kernel="linux-yocto"
+PREFERRED_PROVIDER_virtual/libc="glibc"
+PREFERRED_PROVIDER_virtual/libc-locale="glibc-locale"
+PREFERRED_PROVIDER_virtual/libgl="mesa"
+PREFERRED_PROVIDER_virtual/libgl-native="mesa-native"
+PREFERRED_PROVIDER_virtual/libgles1="mesa"
+PREFERRED_PROVIDER_virtual/libgles2="mesa"
+PREFERRED_PROVIDER_virtual/libiconv="glibc"
+PREFERRED_PROVIDER_virtual/libintl="glibc"
+PREFERRED_PROVIDER_virtual/libx11="libx11"
+PREFERRED_PROVIDER_virtual/make="make"
+PREFERRED_PROVIDER_virtual/make-native="make-native"
+PREFERRED_PROVIDER_virtual/mesa="mesa"
+PREFERRED_PROVIDER_virtual/nativesdk-libc="nativesdk-glibc"
+PREFERRED_PROVIDER_virtual/nativesdk-libgl="nativesdk-mesa"
+PREFERRED_PROVIDER_virtual/nativesdk-libiconv="nativesdk-glibc"
+PREFERRED_PROVIDER_virtual/nativesdk-libintl="nativesdk-glibc"
+PREFERRED_PROVIDER_virtual/update-alternatives="opkg-utils"
+PREFERRED_PROVIDER_virtual/update-alternatives-native="opkg-utils-native"
+PREFERRED_PROVIDER_virtual/x86_64-oesdk-linux-binutils-crosssdk="binutils-crosssdk-x86_64-oesdk-linux"
+PREFERRED_PROVIDER_virtual/x86_64-oesdk-linux-compilerlibs="nativesdk-gcc-runtime"
+PREFERRED_PROVIDER_virtual/x86_64-oesdk-linux-g++="gcc-crosssdk-x86_64-oesdk-linux"
+PREFERRED_PROVIDER_virtual/x86_64-oesdk-linux-gcc="gcc-crosssdk-x86_64-oesdk-linux"
+PREFERRED_PROVIDER_virtual/xserver="xserver-xorg"
+PREFERRED_PROVIDER_virtual/xserver-xf86="xserver-xorg"
+PREFERRED_PROVIDER_xf86-video-intel="xf86-video-intel"
 
-WARNING: glibc-2.32-r0 do_package: License for package nscd is {'GPL-2.0
-WITH Linux-syscall-note'} vs GPLv2 & LGPLv2.1
-WARNING: glibc-2.32-r0 do_package: License for package sln is {'GPL-2.0
-WITH Linux-syscall-note'} vs GPLv2 & LGPLv2.1
-WARNING: glibc-2.32-r0 do_package: License for package ldconfig is
-{'GPL-2.0 WITH Linux-syscall-note'} vs GPLv2 & LGPLv2.1
-WARNING: glibc-2.32-r0 do_package: License for package glibc is {'GPL-2.0
-WITH Linux-syscall-note'} vs GPLv2 & LGPLv2.1
-WARNING: glibc-2.32-r0 do_package: License for package glibc-staticdev is
-{'GPL-2.0 WITH Linux-syscall-note'} vs GPLv2 & LGPLv2.1
-WARNING: libcap-ng-0.8-r0 do_package: License for package libcap-ng is
-{'GPL-2.0 WITH Linux-syscall-note'} vs GPLv2+ & LGPLv2.1+
-WARNING: libtirpc-1.2.6-r0 do_package: License for package libtirpc is
-{'GPL-2.0 WITH Linux-syscall-note'} vs BSD-3-Clause
-WARNING: ptest-runner-2.4.0+gitAUTOINC+834670317b-r0 do_package: License
-for package ptest-runner is {'GPL-2.0-or-later'} vs GPLv2+
-WARNING: libcap-2.44-r0 do_package: License for package libcap is {'GPL-2.0
-WITH Linux-syscall-note'} vs BSD | GPLv2
-WARNING: libcap-2.44-r0 do_package: License for package libcap-staticdev is
-{'GPL-2.0 WITH Linux-syscall-note'} vs BSD | GPLv2
-WARNING: openssl-1.1.1h-r0 do_package: License for package openssl-engines
-is {'GPL-2.0 WITH Linux-syscall-note', 'GPL-2.0+ WITH Linux-syscall-note'}
-vs openssl
+> bitbake -e virtual/kernel | grep -e "^PREFERRED_VERSION_"
 
-Any suggestions on improvements I can make to this functionality?
+$  bitbake -e virtual/kernel | grep -e "^PREFERRED_VERSION_"
+PREFERRED_VERSION_binutils="2.32%"
+PREFERRED_VERSION_binutils-cross-canadian-i686="2.32%"
+PREFERRED_VERSION_binutils-cross-i686="2.32%"
+PREFERRED_VERSION_binutils-crosssdk-x86_64-oesdk-linux="2.32%"
+PREFERRED_VERSION_binutils-native="2.32%"
+PREFERRED_VERSION_cross-localedef-native="2.30%"
+PREFERRED_VERSION_gcc="9.%"
+PREFERRED_VERSION_gcc-cross-canadian-i686="9.%"
+PREFERRED_VERSION_gcc-cross-i686="9.%"
+PREFERRED_VERSION_gcc-cross-initial-i686="9.%"
+PREFERRED_VERSION_gcc-crosssdk-initial-x86_64-oesdk-linux="9.%"
+PREFERRED_VERSION_gcc-crosssdk-x86_64-oesdk-linux="9.%"
+PREFERRED_VERSION_gcc-runtime="9.%"
+PREFERRED_VERSION_gcc-sanitizers="9.%"
+PREFERRED_VERSION_gdb="8.3%"
+PREFERRED_VERSION_gdb-cross-canadian-i686="8.3%"
+PREFERRED_VERSION_gdb-cross-i686="8.3%"
+PREFERRED_VERSION_glibc="2.30%"
+PREFERRED_VERSION_glibc-locale="2.30%"
+PREFERRED_VERSION_glibc-mtrace="2.30%"
+PREFERRED_VERSION_glibc-scripts="2.30%"
+PREFERRED_VERSION_go="1.12%"
+PREFERRED_VERSION_go-cross-canadian-i686="1.12%"
+PREFERRED_VERSION_go-cross-core2-32="1.12%"
+PREFERRED_VERSION_go-crosssdk-x86_64="1.12%"
+PREFERRED_VERSION_go-native="1.12%"
+PREFERRED_VERSION_go-runtime="1.12%"
+PREFERRED_VERSION_libgcc="9.%"
+PREFERRED_VERSION_libgcc-initial="9.%"
+PREFERRED_VERSION_libgfortran="9.%"
+PREFERRED_VERSION_linux-libc-headers="5.2%"
+PREFERRED_VERSION_linux-yocto="5.10.%"
+PREFERRED_VERSION_llvm="8.0.1"
+PREFERRED_VERSION_llvm-native="8.0.1"
+PREFERRED_VERSION_nativesdk-gcc="9.%"
+PREFERRED_VERSION_nativesdk-gcc-runtime="9.%"
+PREFERRED_VERSION_nativesdk-gcc-sanitizers="9.%"
+PREFERRED_VERSION_nativesdk-glibc="2.30%"
+PREFERRED_VERSION_nativesdk-go="1.12%"
+PREFERRED_VERSION_nativesdk-go-runtime="1.12%"
+PREFERRED_VERSION_nativesdk-libgcc="9.%"
+PREFERRED_VERSION_nativesdk-libgcc-initial="9.%"
+PREFERRED_VERSION_nativesdk-linux-libc-headers="5.2%"
+PREFERRED_VERSION_nativesdk-llvm="8.0.1"
+PREFERRED_VERSION_nativesdk-qemu="4.1%"
+PREFERRED_VERSION_qemu="4.1%"
+PREFERRED_VERSION_qemu-native="4.1%"
+PREFERRED_VERSION_virtual/i686-oe-linux-go="1.12%"
+PREFERRED_VERSION_wpa_supplicant="2.6"
 
-Cheers,
-Ida.
 
---000000000000d1c85005b85abd72
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> bitbake -e virtual/kernel | grep -e "^OVERRIDES="
 
-<div dir=3D"auto"><div dir=3D"auto">Hello everyone,=C2=A0</div><div dir=3D"=
-auto"><br></div><div dir=3D"auto">I&#39;m trying to improve the Yocto Proje=
-ct&#39;s license tracing based on a proof-of concept implementation of link=
-ing sources with SPDX headers to output files by Richard at <a href=3D"http=
-://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Drpurdie/license=
--experiments-osls">http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/l=
-og/?h=3Drpurdie/license-experiments-osls</a>.</div><div dir=3D"auto"><br></=
-div><div dir=3D"auto">The code in package.bbclass creates a list of SPDX he=
-aders found for the sources that make up a given set of binaries that make =
-up an individual package using debug symbols to map sources to the binaries=
-. This is then compared with the license field of the given package contain=
-ing those binaries.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Due =
-to some mismatches, warnings pop up during the build. Below are some few sa=
-mple warnings and I&#39;m aware of false positives;</div><div dir=3D"auto">=
-<br></div><div dir=3D"auto">WARNING: glibc-2.32-r0 do_package: License for =
-package nscd is {&#39;GPL-2.0 WITH Linux-syscall-note&#39;} vs GPLv2 &amp; =
-LGPLv2.1</div><div dir=3D"auto">WARNING: glibc-2.32-r0 do_package: License =
-for package sln is {&#39;GPL-2.0 WITH Linux-syscall-note&#39;} vs GPLv2 &am=
-p; LGPLv2.1</div><div dir=3D"auto">WARNING: glibc-2.32-r0 do_package: Licen=
-se for package ldconfig is {&#39;GPL-2.0 WITH Linux-syscall-note&#39;} vs G=
-PLv2 &amp; LGPLv2.1</div><div dir=3D"auto">WARNING: glibc-2.32-r0 do_packag=
-e: License for package glibc is {&#39;GPL-2.0 WITH Linux-syscall-note&#39;}=
- vs GPLv2 &amp; LGPLv2.1</div><div dir=3D"auto">WARNING: glibc-2.32-r0 do_p=
-ackage: License for package glibc-staticdev is {&#39;GPL-2.0 WITH Linux-sys=
-call-note&#39;} vs GPLv2 &amp; LGPLv2.1</div><div dir=3D"auto">WARNING: lib=
-cap-ng-0.8-r0 do_package: License for package libcap-ng is {&#39;GPL-2.0 WI=
-TH Linux-syscall-note&#39;} vs GPLv2+ &amp; LGPLv2.1+</div><div dir=3D"auto=
-">WARNING: libtirpc-1.2.6-r0 do_package: License for package libtirpc is {&=
-#39;GPL-2.0 WITH Linux-syscall-note&#39;} vs BSD-3-Clause</div><div dir=3D"=
-auto">WARNING: ptest-runner-2.4.0+gitAUTOINC+834670317b-r0 do_package: Lice=
-nse for package ptest-runner is {&#39;GPL-2.0-or-later&#39;} vs GPLv2+</div=
-><div dir=3D"auto">WARNING: libcap-2.44-r0 do_package: License for package =
-libcap is {&#39;GPL-2.0 WITH Linux-syscall-note&#39;} vs BSD | GPLv2</div><=
-div dir=3D"auto">WARNING: libcap-2.44-r0 do_package: License for package li=
-bcap-staticdev is {&#39;GPL-2.0 WITH Linux-syscall-note&#39;} vs BSD | GPLv=
-2</div><div dir=3D"auto">WARNING: openssl-1.1.1h-r0 do_package: License for=
- package openssl-engines is {&#39;GPL-2.0 WITH Linux-syscall-note&#39;, &#3=
-9;GPL-2.0+ WITH Linux-syscall-note&#39;} vs openssl</div><div dir=3D"auto">=
-<br></div><div dir=3D"auto">Any suggestions on improvements I can make to t=
-his functionality?</div><div dir=3D"auto"><br></div><div dir=3D"auto">Cheer=
-s,</div><div dir=3D"auto">Ida.</div></div>
+$  bitbake -e virtual/kernel | grep -e "^OVERRIDES="
+OVERRIDES="linux:i686:pn-linux-yocto:x86:qemuall:qemux86:solar-distro:class-target:libc-glibc:forcevariable"
 
---000000000000d1c85005b85abd72--
+> bitbake-layers show-recipes linux-yocto linux-fslc
+
+$ bitbake-layers show-recipes linux-yocto linux-fslc
+NOTE: Starting bitbake server...
+Loading cache: 100% |############################################| Time: 0:00:00
+Loaded 1473 entries from dependency cache.
+Parsing recipes: 100% |##########################################| Time: 0:00:02
+Parsing of 922 .bb files complete (920 cached, 2 parsed). 1475
+targets, 295 skipped, 0 masked, 0 errors.
+=== Matching recipes: ===
+linux-fslc:
+  meta-freescale       5.1 (skipped)
+linux-yocto:
+  meta                 5.2.28+gitAUTOINC+dd6019025c_992280855e
+  meta                 4.19.87+gitAUTOINC+4f5d761316_b44ad1b1e7
+
+$ cat local.conf
+............
+PREFERRED_PROVIDER_virtual/kernel="linux-yocto"
+PREFERRED_VERSION_linux-yocto = "5.10.%"
+.............
+
+Thank you very much.
+
+Kind regards,
+
+- jupiter
