@@ -1,206 +1,235 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.19978.1610295673038772501
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+ by mx.groups.io with SMTP id smtpd.web08.31066.1610355511112098389
  for <yocto@lists.yoctoproject.org>;
- Sun, 10 Jan 2021 08:21:13 -0800
+ Mon, 11 Jan 2021 00:58:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=tqX6M1l+;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: jatedev@gmail.com)
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 2B80938C04B3
-	for <yocto@yoctoproject.org>; Sun, 10 Jan 2021 16:21:12 +0000 (UTC)
-Received: by mail-qt1-f172.google.com with SMTP id c14so9841364qtn.0
-        for <yocto@yoctoproject.org>; Sun, 10 Jan 2021 08:21:12 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=PaPjR2MZ;
+ spf=pass (domain: gmail.com, ip: 209.85.161.53, mailfrom: daniela.marinela.bistrean@gmail.com)
+Received: by mail-oo1-f53.google.com with SMTP id j8so3943272oon.3;
+        Mon, 11 Jan 2021 00:58:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ge2eveBG1mXwPBRC30jAjemDpLkSzrCEXLhnOIqDoNs=;
-        b=tqX6M1l+TZWPttK/xnvSBUqGfm1ytkTqgAMA7m85YG5byYvfVUDgaWJsmICkv81FSk
-         doLGiV1gwHG15k6B9DDQGcpXqEkLEJe8Gfb/Wfijwk2OuuIMjGfhScMWiY+5Zdr3bZNs
-         c7abLRvrECngcHQ/wTtLsPy33XLTIjKdmlzMYmPhJOEZzUUF8x4Ux8yQiRe1uLQa+RHS
-         QSeHCzgFRZN4+Pxnk0jZhTShKBIbTWQYszFP7AAPU9jN93xeOODw2JQI5s16DUeAy+uX
-         cEC0ElKpCW/Xg5s8B32kCnLo+53zAAtq8F7kdviRr7UhsLxnLhUCTEha2dxnaF8XllGp
-         M8Wg==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=16rtUS93sRA7HPbhrfeC0JkFzVs6qlJuHGmUDyAiY1I=;
+        b=PaPjR2MZ72fVuRtVWMPEOtZkbk2sqwF7jRISYF2BPpV3KP7YBlN4Su/pFLdVtSWM30
+         iwsZ+33S4WfTQI2pb8lN6wh3y7A0o6g3VT0/vMKHmLiUbJxh+t5b3HFjCxCNDIsG17V9
+         NEbmSckIfQbfgocO2Ma7FrxzPe4+zDX9LUcbUlRcCSLqQ0ngEMISnfHNavyBcF4B2fX9
+         wIq3hkjWnh0XXAn4eI0NUCDk9zMp7XEsTeXJlzXUAz9+rR75HFopKkb25D4qal54FBuG
+         WKjlzNbXV6RTRo1tOrrAZDS+WSjiyihdrWpV/lrHxCpMVkkSdoleDniAgdxOKaoa3WL8
+         Yxlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ge2eveBG1mXwPBRC30jAjemDpLkSzrCEXLhnOIqDoNs=;
-        b=GHAUnLteueAoMFc3RAdz6Q3fAzqzEiVZQiZIP2vB8XD64YxvEmusEXlkwgm2CH9uty
-         Fd0hSO4WwBb7onZ070MHtMheH7QRrsCbUS2C9jSg2kGli9kEo8rf4dlHXc2iUxxOWLbP
-         RJFpaplPoYSyCkwSrpJJgJeZ10JnVZSBxLZzlh6PoZC5riU4ByiBCQA6j33O4LWykYzh
-         zC7+XWhNWnwLcONTr/U37pFSvV9tzuJLAjo2sjfqwMUFpcGKkVMK9Eiq5QpcKWSPv0ib
-         qI9dMozAJWATwSON036ZqIT7dFLYX2N5eNNBaafU54L18cgDCta6/eTI9XZMVKTc/li/
-         Bfyg==
-X-Gm-Message-State: AOAM533pLgg5bHRfGUhwjeF/fEou/AAwWRVyYF/LOf5pMZzGYNhB3jqa
-	wLMc+Y6dTQRvUDa8z814rZ1dls30y0w=
-X-Google-Smtp-Source: ABdhPJw7lUpe+6jQEOJ6wa9n62593EIWvhJbmOK42wGsG7kJl4DxLXUhivQXt6q1iADUBv4UsSuTvg==
-X-Received: by 2002:a05:622a:20c:: with SMTP id b12mr2734570qtx.208.1610295670953;
-        Sun, 10 Jan 2021 08:21:10 -0800 (PST)
-Received: from localhost.localdomain (c-69-254-209-160.hsd1.fl.comcast.net. [69.254.209.160])
-        by smtp.gmail.com with ESMTPSA id 136sm7418070qkn.79.2021.01.10.08.21.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Jan 2021 08:21:10 -0800 (PST)
-From: "Jate Sujjavanich" <jatedev@gmail.com>
-To: yocto@yoctoproject.org
-Cc: Jate Sujjavanich <jatedev@gmail.com>
-Subject: [meta-security-compliance][PATCH] scap-security-guide: Fix openembedded platform tests and build
-Date: Sun, 10 Jan 2021 16:21:04 +0000
-Message-Id: <20210110162104.85436-1-jatedev@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=16rtUS93sRA7HPbhrfeC0JkFzVs6qlJuHGmUDyAiY1I=;
+        b=A0d87/rh1WlZ/tgCL7lwBRxhctc3S8A0Ty0GDo4AKfJC/Js0Hbz25u/kii97mmHixn
+         LTKNjssHFNpsQXbNsalyryDjAAjJ9hwvja6NevkWUINPUGPF/cqGWMisbUY+JNw3e/FK
+         WOwtcNZUnz3DctkHOAJRuKxsQU7EBk8j6pfFnBt9xS+1vZI+H6q7RE+7whAD3GIDbmBL
+         mHx/VAjtxFQCAvNcCFvtVq2nQ4j+zWeRT+t/WzbgO+9fuwLkqfDL/gTUfYnAOJ2KtwGr
+         STDfJb63FjqcHXzjHp1e/ToIiFkBjNwrU3hqsmJy+IoTg52vAYGATezbAgvTglptDx3a
+         DeeQ==
+X-Gm-Message-State: AOAM5318SiRstSXfsscMpKBz+LDviXsdtgy8xw9sXdtQBxBbVvExM/KH
+	qDBU+vcC4TrxBzff+xZ+XbKdv2S0pwOtqX4x+REyl4NTml3UiHMy
+X-Google-Smtp-Source: ABdhPJxlQ//77BdsGZVn1Oavj8DtRfJkD+3WmLBR0KmSEKDs84SHsuhOU0vZAri9zXujqWbn746f5bUohFy2uE4zohc=
+X-Received: by 2002:a4a:db78:: with SMTP id o24mr11345602ood.69.1610355510322;
+ Mon, 11 Jan 2021 00:58:30 -0800 (PST)
 MIME-Version: 1.0
+From: daniela.marinela.bistrean@gmail.com
+Date: Mon, 11 Jan 2021 10:58:20 +0200
+Message-ID: <CAA7auRTsQqBhdOfD_aYNg2Xb6ZfMxHRiWTNxR7SwEQiZ-oVbxA@mail.gmail.com>
+Subject: Python3-native illegal instruction on poky dunfell
+To: yocto@lists.yoctoproject.org, poky@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000027a75505b89c1c63"
+
+--00000000000027a75505b89c1c63
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Add patches to fix openembedded nodistro tests and openembedded build wit=
-hin
-ssg metadata.
+Hello community,
 
-Signed-Off-By: Jate Sujjavanich <jatedev@gmail.com>
----
- ...c-file-check-tests-in-installed-OS-d.patch | 46 +++++++++++++++++++
- ...g-openembedded-from-ssg-constants.py.patch | 34 ++++++++++++++
- .../scap-security-guide_git.bb                |  2 +
- 3 files changed, 82 insertions(+)
- create mode 100644 meta-security-compliance/recipes-openscap/scap-securi=
-ty-guide/files/0001-Fix-platform-spec-file-check-tests-in-installed-OS-d.=
-patch
- create mode 100644 meta-security-compliance/recipes-openscap/scap-securi=
-ty-guide/files/0002-Fix-missing-openembedded-from-ssg-constants.py.patch
+I am trying to build core-image-minimal using poky only, on the dunfell
+branch. On certain machines the build fails unexpectedly with the following
+error:
+Build Configuration:
+BB_VERSION           =3D "1.46.0"
+BUILD_SYS            =3D "x86_64-linux"
+NATIVELSBSTRING      =3D "universal"
+TARGET_SYS           =3D "x86_64-poky-linux"
+MACHINE              =3D "qemux86-64"
+DISTRO               =3D "poky"
+DISTRO_VERSION       =3D "3.1.4"
+TUNE_FEATURES        =3D "m64 core2"
+TARGET_FPU           =3D ""
+meta
+meta-poky
+meta-yocto-bsp       =3D "dunfell:cd3abf42dae2310ecaa8a97b2c08378a9f6e1282"
 
-diff --git a/meta-security-compliance/recipes-openscap/scap-security-guid=
-e/files/0001-Fix-platform-spec-file-check-tests-in-installed-OS-d.patch b=
-/meta-security-compliance/recipes-openscap/scap-security-guide/files/0001=
--Fix-platform-spec-file-check-tests-in-installed-OS-d.patch
-new file mode 100644
-index 0000000..60664a3
---- /dev/null
-+++ b/meta-security-compliance/recipes-openscap/scap-security-guide/files=
-/0001-Fix-platform-spec-file-check-tests-in-installed-OS-d.patch
-@@ -0,0 +1,46 @@
-+From 2beb4bc83a157b21edb1a3fef295cd4cced467df Mon Sep 17 00:00:00 2001
-+From: Jate Sujjavanich <jatedev@gmail.com>
-+Date: Thu, 7 Jan 2021 18:10:01 -0500
-+Subject: [PATCH 1/3] Fix platform spec, file check, tests in installed O=
-S
-+ detect for openembedded
-+
-+Change platform to multi in openembedded installed check matching others
-+and allowing compile of xml into oval
-+---
-+ shared/checks/oval/installed_OS_is_openembedded.xml | 11 ++++++-----
-+ 1 file changed, 6 insertions(+), 5 deletions(-)
-+
-+diff --git a/shared/checks/oval/installed_OS_is_openembedded.xml b/share=
-d/checks/oval/installed_OS_is_openembedded.xml
-+index 763d17bcb..01df16b43 100644
-+--- a/shared/checks/oval/installed_OS_is_openembedded.xml
-++++ b/shared/checks/oval/installed_OS_is_openembedded.xml
-+@@ -1,11 +1,9 @@
-+-</def-group>
-+-
-+ <def-group>
-+   <definition class=3D"inventory" id=3D"installed_OS_is_openembedded" v=
-ersion=3D"2">
-+     <metadata>
-+       <title>OpenEmbedded</title>
-+       <affected family=3D"unix">
-+-        <platform>OPENEMBEDDED</platform>
-++        <platform>multi_platform_all</platform>
-+       </affected>
-+       <reference ref_id=3D"cpe:/o:openembedded:openembedded:0"
-+       source=3D"CPE" />
-+@@ -20,8 +18,11 @@
-+     </criteria>
-+   </definition>
-+=20
-+-  <ind:textfilecontent54_object id=3D"test_openembedded" version=3D"1" =
-comment=3D"Check OPenEmbedded version">
-+-    <ind:filepath>/etc/os-release/ind:filepath>
-++  <ind:textfilecontent54_test check=3D"all" check_existence=3D"at_least=
-_one_exists" comment=3D"Check OpenEmbedded version" id=3D"test_openembedd=
-ed" version=3D"1">
-++    <ind:object object_ref=3D"obj_openembedded" />
-++  </ind:textfilecontent54_test>
-++  <ind:textfilecontent54_object id=3D"obj_openembedded" version=3D"1" c=
-omment=3D"Check OpenEmbedded version">
-++    <ind:filepath>/etc/os-release</ind:filepath>
-+     <ind:pattern operation=3D"pattern match">^VERSION_ID=3D\"nodistro\.=
-[0-9].$</ind:pattern>
-+     <ind:instance datatype=3D"int">1</ind:instance>
-+   </ind:textfilecontent54_object>
-+--=20
-+2.24.3 (Apple Git-128)
-+
-diff --git a/meta-security-compliance/recipes-openscap/scap-security-guid=
-e/files/0002-Fix-missing-openembedded-from-ssg-constants.py.patch b/meta-=
-security-compliance/recipes-openscap/scap-security-guide/files/0002-Fix-m=
-issing-openembedded-from-ssg-constants.py.patch
-new file mode 100644
-index 0000000..1e712f6
---- /dev/null
-+++ b/meta-security-compliance/recipes-openscap/scap-security-guide/files=
-/0002-Fix-missing-openembedded-from-ssg-constants.py.patch
-@@ -0,0 +1,34 @@
-+From 037a12301968a56f0c7e492ea4a05d2eecbd4cc6 Mon Sep 17 00:00:00 2001
-+From: Jate Sujjavanich <jatedev@gmail.com>
-+Date: Fri, 8 Jan 2021 20:18:00 -0500
-+Subject: [PATCH 2/3] Fix missing openembedded from ssg/constants.py
-+
-+---
-+ ssg/constants.py | 4 +++-
-+ 1 file changed, 3 insertions(+), 1 deletion(-)
-+
-+diff --git a/ssg/constants.py b/ssg/constants.py
-+index fab7cda5d..2ca289f84 100644
-+--- a/ssg/constants.py
-++++ b/ssg/constants.py
-+@@ -234,7 +234,8 @@ PRODUCT_TO_CPE_MAPPING =3D {
-+ }
-+=20
-+ MULTI_PLATFORM_LIST =3D ["rhel", "fedora", "rhosp", "rhv", "debian", "u=
-buntu",
-+-                       "wrlinux", "opensuse", "sle", "ol", "ocp", "exam=
-ple"]
-++                       "wrlinux", "opensuse", "sle", "ol", "ocp", "exam=
-ple",
-++                       "openembedded"]
-+=20
-+ MULTI_PLATFORM_MAPPING =3D {
-+     "multi_platform_debian": ["debian8"],
-+@@ -249,6 +250,7 @@ MULTI_PLATFORM_MAPPING =3D {
-+     "multi_platform_sle": ["sle11", "sle12"],
-+     "multi_platform_ubuntu": ["ubuntu1404", "ubuntu1604", "ubuntu1804"]=
-,
-+     "multi_platform_wrlinux": ["wrlinux"],
-++    "multi_platform_openembedded": ["openembedded"],
-+ }
-+=20
-+ RHEL_CENTOS_CPE_MAPPING =3D {
-+--=20
-+2.24.3 (Apple Git-128)
-+
-diff --git a/meta-security-compliance/recipes-openscap/scap-security-guid=
-e/scap-security-guide_git.bb b/meta-security-compliance/recipes-openscap/=
-scap-security-guide/scap-security-guide_git.bb
-index 6e7180f..0617c56 100644
---- a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-=
-security-guide_git.bb
-+++ b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-=
-security-guide_git.bb
-@@ -7,6 +7,8 @@ SRC_URI =3D "git://github.com/akuster/scap-security-guide=
-.git;branch=3Doe-0.1.44; \
-            file://0001-fix-deprecated-instance-of-element.getchildren.pa=
-tch \
-            file://0002-fix-deprecated-getiterator-function.patch \
-            file://0003-fix-remaining-getchildren-and-getiterator-functio=
-ns.patch \
-+           file://0001-Fix-platform-spec-file-check-tests-in-installed-O=
-S-d.patch \
-+           file://0002-Fix-missing-openembedded-from-ssg-constants.py.pa=
-tch \
-           "
- PV =3D "0.1.44+git${SRCPV}"
-=20
---=20
-2.25.1
+Initialising tasks: 100%
+|##########################################################################=
+###########################################################################=
+###############|
+Time: 0:00:11
+Sstate summary: Wanted 1025 Found 0 Missed 1025 Current 126 (0% match, 10%
+complete)
+NOTE: Executing Tasks
+ERROR: python3-setuptools-native-45.2.0-r0 do_compile: 'python3 setup.py
+build ' execution failed.
+ERROR: python3-setuptools-native-45.2.0-r0 do_compile: Execution of
+'/home/builder/src/build_yocto-test/tmp/work/x86_64-linux/python3-setuptool=
+s-native/45.2.0-r0/temp/run.do_compile.141'
+failed with exit code 1:
+Illegal instruction (core dumped)
+WARNING: exit code 1 from a shell command.
 
+ERROR: Logfile of failure stored in:
+/home/builder/src/build_yocto-test/tmp/work/x86_64-linux/python3-setuptools=
+-native/45.2.0-r0/temp/log.do_compile.141
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| Illegal instruction (core dumped)
+| ERROR: 'python3 setup.py build ' execution failed.
+| WARNING: exit code 1 from a shell command.
+| ERROR: Execution of
+'/home/builder/src/build_yocto-test/tmp/work/x86_64-linux/python3-setuptool=
+s-native/45.2.0-r0/temp/run.do_compile.141'
+failed with exit code 1:
+| Illegal instruction (core dumped)
+| WARNING: exit code 1 from a shell command.
+|
+ERROR: Task
+(virtual:native:/home/builder/src/poky/meta/recipes-devtools/python/python3=
+-setuptools_45.2.0.bb:do_compile)
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 576 tasks of which 572 didn't need to be
+rerun and 1 failed.
+
+The do_compile task executes the following:
+do_compile() {
+    distutils3_do_compile
+}
+
+distutils3_do_compile() {
+        cd
+/home/builder/src/build_sw.sys.icp21/tmp/work/x86_64-linux/python3-setuptoo=
+ls-native/45.2.0-r0/setuptools-45.2.0
+        NO_FETCH_BUILD=3D1 \
+
+STAGING_INCDIR=3D/home/builder/src/build_sw.sys.icp21/tmp/work/x86_64-linux=
+/python3-setuptools-native/45.2.0-r0/recipe-sysroot-native/usr/include
+\
+
+STAGING_LIBDIR=3D/home/builder/src/build_sw.sys.icp21/tmp/work/x86_64-linux=
+/python3-setuptools-native/45.2.0-r0/recipe-sysroot-native/usr/lib
+\
+
+/home/builder/src/build_sw.sys.icp21/tmp/work/x86_64-linux/python3-setuptoo=
+ls-native/45.2.0-r0/recipe-sysroot-native/usr/bin/python3-native/python3
+/home/builder/src/build_sw.sys.icp21/tmp/work/x86_64-linux/python3-setuptoo=
+ls-native/45.2.0-r0/setuptools-45.2.0/setup.py
+\
+        build
+--build-base=3D/home/builder/src/build_sw.sys.icp21/tmp/work/x86_64-linux/p=
+ython3-setuptools-native/45.2.0-r0/build
+ || \
+        bbfatal_log "'python3 setup.py build ' execution failed."
+}
+
+On this particular machine the build fails even when it is tried out from
+within a container. The configuration of this machine is:
+Distributor ID: Ubuntu
+Description: Ubuntu 18.04.5 LTS
+Release: 18.04
+Codename: bionic
+
+Linux vm 5.4.0-54-generic #60~18.04.1-Ubuntu SMP Fri Nov 6 17:25:16 UTC
+2020 x86_64 x86_64 x86_64 GNU/Linux
+
+4 x Intel(R) Core(TM) i5-8350U CPU @ 1.70GHz
+
+The python3-native binary generated by Yocto works and I can run it on the
+host. I have identified that setup.py file of python3-setuptools-native
+recipe, part of do_compile fails with illegal instruction when trying to
+import setuptools. On other machines the build has no issues. The machine
+with issues is under a VPN and a proxy (company's machine).
+
+Do you have any hint as why this might happen?
+
+Thank you and looking forward to your feedback,
+Daniela-M=C4=83rinela Bistrean
+
+--00000000000027a75505b89c1c63
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello community,<div><br></div><div>I am trying to build c=
+ore-image-minimal using poky only, on the dunfell branch. On certain machin=
+es the build fails unexpectedly with the following error:</div><div>Build C=
+onfiguration:<br>BB_VERSION =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;1.=
+46.0&quot;<br>BUILD_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;=
+x86_64-linux&quot;<br>NATIVELSBSTRING =C2=A0 =C2=A0 =C2=A0=3D &quot;univers=
+al&quot;<br>TARGET_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;x86_64-=
+poky-linux&quot;<br>MACHINE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0=3D &quot;qemux86-64&quot;<br>DISTRO =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION =C2=A0 =C2=A0 =C2=A0 =
+=3D &quot;3.1.4&quot;<br>TUNE_FEATURES =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot=
+;m64 core2&quot;<br>TARGET_FPU =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot=
+;&quot;<br>meta =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>=
+meta-poky =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>meta-yocto-bsp =C2=
+=A0 =C2=A0 =C2=A0 =3D &quot;dunfell:cd3abf42dae2310ecaa8a97b2c08378a9f6e128=
+2&quot;<br><br>Initialising tasks: 100% |##################################=
+###########################################################################=
+#######################################################| Time: 0:00:11<br>S=
+state summary: Wanted 1025 Found 0 Missed 1025 Current 126 (0% match, 10% c=
+omplete)<br>NOTE: Executing Tasks<br>ERROR: python3-setuptools-native-45.2.=
+0-r0 do_compile: &#39;python3 setup.py build &#39; execution failed.<br>ERR=
+OR: python3-setuptools-native-45.2.0-r0 do_compile: Execution of &#39;/home=
+/builder/src/build_yocto-test/tmp/work/x86_64-linux/python3-setuptools-nati=
+ve/45.2.0-r0/temp/run.do_compile.141&#39; failed with exit code 1:<br>Illeg=
+al instruction (core dumped)<br>WARNING: exit code 1 from a shell command.<=
+br><br>ERROR: Logfile of failure stored in: /home/builder/src/build_yocto-t=
+est/tmp/work/x86_64-linux/python3-setuptools-native/45.2.0-r0/temp/log.do_c=
+ompile.141<br>Log data follows:<br>| DEBUG: Executing shell function do_com=
+pile<br>| Illegal instruction (core dumped)<br>| ERROR: &#39;python3 setup.=
+py build &#39; execution failed.<br>| WARNING: exit code 1 from a shell com=
+mand.<br>| ERROR: Execution of &#39;/home/builder/src/build_yocto-test/tmp/=
+work/x86_64-linux/python3-setuptools-native/45.2.0-r0/temp/run.do_compile.1=
+41&#39; failed with exit code 1:<br>| Illegal instruction (core dumped)<br>=
+| WARNING: exit code 1 from a shell command.<br>|<br>ERROR: Task (virtual:n=
+ative:/home/builder/src/poky/meta/recipes-devtools/python/python3-setuptool=
+s_45.2.0.bb:do_compile) failed with exit code &#39;1&#39;<br>NOTE: Tasks Su=
+mmary: Attempted 576 tasks of which 572 didn&#39;t need to be rerun and 1 f=
+ailed.<br><br>The do_compile task executes the following:</div><div>do_comp=
+ile() {<br>=C2=A0 =C2=A0 distutils3_do_compile<br>}<br><br>distutils3_do_co=
+mpile() {<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 cd /home/builder/src/build_sw.sys.=
+icp21/tmp/work/x86_64-linux/python3-setuptools-native/45.2.0-r0/setuptools-=
+45.2.0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 NO_FETCH_BUILD=3D1 \<br>=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 STAGING_INCDIR=3D/home/builder/src/build_sw.sys.icp21/tmp/wo=
+rk/x86_64-linux/python3-setuptools-native/45.2.0-r0/recipe-sysroot-native/u=
+sr/include \<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 STAGING_LIBDIR=3D/home/builder/=
+src/build_sw.sys.icp21/tmp/work/x86_64-linux/python3-setuptools-native/45.2=
+.0-r0/recipe-sysroot-native/usr/lib \<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 /home/=
+builder/src/build_sw.sys.icp21/tmp/work/x86_64-linux/python3-setuptools-nat=
+ive/45.2.0-r0/recipe-sysroot-native/usr/bin/python3-native/python3 /home/bu=
+ilder/src/build_sw.sys.icp21/tmp/work/x86_64-linux/python3-setuptools-nativ=
+e/45.2.0-r0/setuptools-45.2.0/setup.py \<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 bui=
+ld --build-base=3D/home/builder/src/build_sw.sys.icp21/tmp/work/x86_64-linu=
+x/python3-setuptools-native/45.2.0-r0/build =C2=A0|| \<br>=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 bbfatal_log &quot;&#39;python3 setup.py build &#39; execution fa=
+iled.&quot;<br>}<br><br><div>On this particular machine the build fails eve=
+n when it is tried out from within a container. The configuration of this m=
+achine is:</div><div>Distributor ID: Ubuntu<br>Description: Ubuntu 18.04.5 =
+LTS<br>Release: 18.04<br>Codename: bionic<br></div><div><br></div><div>Linu=
+x vm 5.4.0-54-generic #60~18.04.1-Ubuntu SMP Fri Nov 6 17:25:16 UTC 2020 x8=
+6_64 x86_64 x86_64 GNU/Linux<br></div><div><br></div><div>4 x Intel(R) Core=
+(TM) i5-8350U CPU @ 1.70GHz</div><div><br></div><div>The python3-native bin=
+ary generated by Yocto works and I can run it on the host. I have identifie=
+d that setup.py file of python3-setuptools-native recipe, part of do_compil=
+e fails with illegal instruction when trying to import setuptools. On other=
+ machines the build has no issues. The machine with issues is under a VPN a=
+nd a proxy (company&#39;s machine).<br></div><div><br></div><div>Do you hav=
+e any hint as why this might happen?</div><div><br></div><div>Thank you and=
+ looking forward to your feedback,</div><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"font-size:12.8px"><span styl=
+e=3D"font-size:12.8px">Daniela-M=C4=83rinela Bistrean</span></div></div></d=
+iv></div></div></div></div>
+
+--00000000000027a75505b89c1c63--
