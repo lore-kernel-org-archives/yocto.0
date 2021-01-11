@@ -1,113 +1,157 @@
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
- by mx.groups.io with SMTP id smtpd.web08.31057.1610355398751416554
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+ by mx.groups.io with SMTP id smtpd.web08.33131.1610368997590863268
  for <yocto@lists.yoctoproject.org>;
- Mon, 11 Jan 2021 00:56:39 -0800
+ Mon, 11 Jan 2021 04:43:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=nNIpt5kj;
- spf=pass (domain: gmail.com, ip: 209.85.208.41, mailfrom: vvavrychuk@gmail.com)
-Received: by mail-ed1-f41.google.com with SMTP id c7so17938077edv.6
-        for <yocto@lists.yoctoproject.org>; Mon, 11 Jan 2021 00:56:38 -0800 (PST)
+ dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=FLwtxBiE;
+ spf=pass (domain: burtonini.com, ip: 209.85.208.174, mailfrom: ross@burtonini.com)
+Received: by mail-lj1-f174.google.com with SMTP id u11so3378319ljo.13
+        for <yocto@lists.yoctoproject.org>; Mon, 11 Jan 2021 04:43:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pMy/aeq/pU2NgiHJ62qguvHjZ2oZpbzwW+0akPd8eyE=;
-        b=nNIpt5kjr/72YhM8sa1EPdIAzAAL9BvzSYV1N7+IG9P0wzSr51yGNxfaPj0VJsENf3
-         714gsm7NmVaLMaJCxYNbf3vyKqE7M3RbgN8zJjdPOgmRZHe0Mob9hKv8vL+Jp89fJoXU
-         uOtpCZ4usje1R9oR6k4IU/AtAFsH63treOgT7NffuX9wuXjnE+z3K8w7+rr2d+3TBBlq
-         mltVtvhShmLiTfKfnUNYDXinAckBckYKsFtmvYsxEzLS4E2lJqVZHzbs9cGqKVHIruMj
-         t/LN6ThOh4qRnCVJC2FAK4i0OTB+F2r95/7W+4hPVAoPLWvFjoasXRcPPp6uPwRit+wI
-         ycnw==
+         :cc:content-transfer-encoding;
+        bh=niFy3wqkpieOuvjHE/f+SSQ0mht9K4pbJ2imUY/8WdI=;
+        b=FLwtxBiEEbpQE2+oR2Twi0dAosBgOt85hthWF+u+imhpCJJu7/MrGIjPQ1DxkWXN80
+         fawCi5USNnU/mgG6dQQsryKh7W5xZtw3IZ8gZFhkCJkAq6aRWf3SZluJki++GiGjzYFf
+         +LjalRPHzIFSZ1tsnonUqjthM++VSglIwqYOnqGvfxA0Dk90znsG6VPxGjx8OZJHntC8
+         zCv19/ng1bd+F6otrnq8HZgY0daX7DSb6nUW5M4KWY6Hjz9/QCbbvv1YX0XqFK9xqX9V
+         G9jOQnl7DBCkLQKD/Jqtafd7cKjIJJKrJAk3JylKa+R+gVfRnpb48fyUJjtkLBSwKFHq
+         /cBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pMy/aeq/pU2NgiHJ62qguvHjZ2oZpbzwW+0akPd8eyE=;
-        b=pt7yjqvjR8J0uTPtaIvCViNrkpB5tB4dStbiVah4mOmN723ikT0HdTYxDApNT024/A
-         VoWhP9OmJLAszpjS3LgCd59BjLaariGqpo32qyezlJJ1fZ05+F5rV1+Pn44IXXK9Sydp
-         tDunB48FOsRZKEWknRkx5hQC+YvBSlgotqkMR8zV42y8g1OD4w9nfv0RV0xXi9pNEWSs
-         oYOB9kdRk99F0+N3Wlj6HIa8wMeLYTUAgy8juVvKMD83iIEvkWC7n7X7ze7UEwhKHY5K
-         zO48KPtLTGmB8lcYAKrp3MqjhxkqUfNrmhqeqDdrr3E43YueEl/aZg1s72NcwFI7r9FU
-         cvbA==
-X-Gm-Message-State: AOAM532ZcMlavDWGDIm49R1Bk7q6W85SGkAZ4M/1QUwtVA2TvH4ETiYZ
-	gUUyROGAi40EfgqhN1ChwfyMizdnQ+HFu/zU9a8=
-X-Google-Smtp-Source: ABdhPJyIY7u89yAmiB31mXUubHACsxMEc3zpQ2Gl9QQMJy12IgLFgr/3d18SMGW/2RNPZxv0z53KKMxPP0HJmV5NnT4=
-X-Received: by 2002:aa7:df91:: with SMTP id b17mr13869182edy.272.1610355397079;
- Mon, 11 Jan 2021 00:56:37 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=niFy3wqkpieOuvjHE/f+SSQ0mht9K4pbJ2imUY/8WdI=;
+        b=uGHfIOa5JyRpoEtAv1ySOkidN6jo68a5a2KY5zbX+xZRlEzkTLnPx2W1fpMx+yCpBD
+         XTNoBf9GzlYr6rhZcxxVFOzzPEmHx+ycCaW7X1DSOsJAlGOoAyPh1uAZ5hsHkcr7j66b
+         zsoEN4ZMzzGXpleKiJTepu/gx0dUoZXuh0JfiSWW+bywydTsWv7SPD6qlLxtc9giNFIb
+         2JvwZ5ESfwkt5nTfKbGJ7dhpHHGTflYu0keoisT54qcbjEdurpx/gKl87vN+8UUOyEfL
+         1emlfQnnpbpHYHlu28kA3RpdFF12aplt4HAa3rocfJwz0b2RLIuAB9ah9/LgeslI5OXU
+         jRRg==
+X-Gm-Message-State: AOAM531aR6oIQOlhlLAr3dGI8nlL4fS57O5WS25A+X5I8nhB0bfG1v0F
+	NVNT9j6ZlMPnpDoApnJdcCTnCP7VFXzuF35SLKc5ig==
+X-Google-Smtp-Source: ABdhPJyNZui8I3hin/DrmLq77euqxm5Pe0qouwNL0zynmlmyOCawJOhOxSEBVAZUno6bp9P6Ipw1xLS5B8ItuZVswwM=
+X-Received: by 2002:a2e:8844:: with SMTP id z4mr7010446ljj.412.1610368995323;
+ Mon, 11 Jan 2021 04:43:15 -0800 (PST)
 MIME-Version: 1.0
-References: <CAGj4m+4QE_Ujcoaq+pFgpku+sgkd8AARU5O7+W7X4MQCHHb6vw@mail.gmail.com>
- <CAP71Wjwpt9QtWVEieJ-U0jimk2ZOTvrmdt9bSHLri8KwDcmBjA@mail.gmail.com>
- <CAGj4m+75ODJhe9rdKZDT4fc2g-Z5mea7VLmQZM5oiMEsHGaz6Q@mail.gmail.com> <CAP71WjwYYYaNF3UgArcTwRsxqGKnqbuZwmwZCmGuji+-etaxjg@mail.gmail.com>
-In-Reply-To: <CAP71WjwYYYaNF3UgArcTwRsxqGKnqbuZwmwZCmGuji+-etaxjg@mail.gmail.com>
-From: "Vasyl Vavrychuk" <vvavrychuk@gmail.com>
-Date: Mon, 11 Jan 2021 10:56:24 +0200
-Message-ID: <CAGj4m+7r5maFzEVr4mwy66KuGpmDeAV6Pt_9kz-12GAWDfNBZQ@mail.gmail.com>
-Subject: Re: Single page view of a particular manual
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Cc: yocto@lists.yoctoproject.org
+References: <CAA7auRTsQqBhdOfD_aYNg2Xb6ZfMxHRiWTNxR7SwEQiZ-oVbxA@mail.gmail.com>
+In-Reply-To: <CAA7auRTsQqBhdOfD_aYNg2Xb6ZfMxHRiWTNxR7SwEQiZ-oVbxA@mail.gmail.com>
+From: "Ross Burton" <ross@burtonini.com>
+Date: Mon, 11 Jan 2021 12:43:04 +0000
+Message-ID: <CAAnfSTv87TAn538sATnFDajmLi=SmUoxZvczCTMfZetBB1JFOw@mail.gmail.com>
+Subject: Re: [yocto] Python3-native illegal instruction on poky dunfell
+To: Daniela-Marinela Bistrean <daniela.marinela.bistrean@gmail.com>
+Cc: yocto@lists.yoctoproject.org, poky@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi, Nicolas,
+Are you sharing sstate between multiple builders?
 
-Now, it looks like something changed.
+Ross
 
-Opening https://docs.yoctoproject.org/bitbake/, then choosing
-"All-in-one 'Mega' Manual" leads to what I need: single page BitBake
-User Manual - https://docs.yoctoproject.org/bitbake/singleindex.html
-
-But there are few more issues.
-
-1. Open https://docs.yoctoproject.org/bitbake/index.html. Select on
-the top has entries "Individual Webpages" and "All-in-one 'Mega'
-Manual". The problem is that entry "All-in-one 'Mega' Manual" now does
-not reflects to the current behavior. Suggest to replace "All-in-one
-'Mega' Manual" with "Single Webpage".
-
-2. Open https://docs.yoctoproject.org/bitbake/. Version select at the
-top with options "3.2.1", "3.1.4", etc. are not working.
-
-Thanks,
-Vasyl
-
-On Mon, Nov 16, 2020 at 6:27 PM Nicolas Dechesne
-<nicolas.dechesne@linaro.org> wrote:
+On Mon, 11 Jan 2021 at 08:58, Daniela-Marinela Bistrean
+<daniela.marinela.bistrean@gmail.com> wrote:
 >
-> hi Vasyl,
+> Hello community,
 >
-> On Mon, Nov 16, 2020 at 12:55 PM Vasyl Vavrychuk <vvavrychuk@gmail.com> wrote:
-> >
-> > Hi, Nicolas,
-> >
-> > Thank you for your reply.
-> >
-> > On Sun, Nov 15, 2020 at 8:06 PM Nicolas Dechesne
-> > <nicolas.dechesne@linaro.org> wrote:
-> > >
-> > > Can you please describe what you are doing in the webpage? It should
-> > > You need to select "All in one Mega manual" in the
-> > > dropdown menu on the top left corner of the page. When you do that, it
-> > > should bring you to this URL:
-> > > https://docs.yoctoproject.org/singleindex.html
-> > >
-> > > Which contains the whole YP docs in a 'single' html page.
-> >
-> > But as far as I remember, previously I could have a single page view
-> > of a particular manual, for example "Development Tasks Manual", etc.
-> > It is much more useful than complete single page view of all documents
-> > at the same time (but this one is useful too in some cases).
+> I am trying to build core-image-minimal using poky only, on the dunfell =
+branch. On certain machines the build fails unexpectedly with the following=
+ error:
+> Build Configuration:
+> BB_VERSION           =3D "1.46.0"
+> BUILD_SYS            =3D "x86_64-linux"
+> NATIVELSBSTRING      =3D "universal"
+> TARGET_SYS           =3D "x86_64-poky-linux"
+> MACHINE              =3D "qemux86-64"
+> DISTRO               =3D "poky"
+> DISTRO_VERSION       =3D "3.1.4"
+> TUNE_FEATURES        =3D "m64 core2"
+> TARGET_FPU           =3D ""
+> meta
+> meta-poky
+> meta-yocto-bsp       =3D "dunfell:cd3abf42dae2310ecaa8a97b2c08378a9f6e12=
+82"
 >
-> Ah, you're right. It was possible with the previous docs, but not
-> anymore. With the Sphinx based docs the whole Yocto Project docs is
-> just "one set", not a collection of 'manuals'. So currently the single
-> html page includes the entire documentation set.
+> Initialising tasks: 100% |##############################################=
+###########################################################################=
+###########################################| Time: 0:00:11
+> Sstate summary: Wanted 1025 Found 0 Missed 1025 Current 126 (0% match, 1=
+0% complete)
+> NOTE: Executing Tasks
+> ERROR: python3-setuptools-native-45.2.0-r0 do_compile: 'python3 setup.py=
+ build ' execution failed.
+> ERROR: python3-setuptools-native-45.2.0-r0 do_compile: Execution of '/ho=
+me/builder/src/build_yocto-test/tmp/work/x86_64-linux/python3-setuptools-na=
+tive/45.2.0-r0/temp/run.do_compile.141' failed with exit code 1:
+> Illegal instruction (core dumped)
+> WARNING: exit code 1 from a shell command.
 >
-> There is no 'easy' way to change that though. I am definitely
-> interested to gather more feedback about that. We made a conscious
-> choice to get this way, It's different, and if it's causing more pain,
-> we should know and discuss..
+> ERROR: Logfile of failure stored in: /home/builder/src/build_yocto-test/=
+tmp/work/x86_64-linux/python3-setuptools-native/45.2.0-r0/temp/log.do_compi=
+le.141
+> Log data follows:
+> | DEBUG: Executing shell function do_compile
+> | Illegal instruction (core dumped)
+> | ERROR: 'python3 setup.py build ' execution failed.
+> | WARNING: exit code 1 from a shell command.
+> | ERROR: Execution of '/home/builder/src/build_yocto-test/tmp/work/x86_6=
+4-linux/python3-setuptools-native/45.2.0-r0/temp/run.do_compile.141' failed=
+ with exit code 1:
+> | Illegal instruction (core dumped)
+> | WARNING: exit code 1 from a shell command.
+> |
+> ERROR: Task (virtual:native:/home/builder/src/poky/meta/recipes-devtools=
+/python/python3-setuptools_45.2.0.bb:do_compile) failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 576 tasks of which 572 didn't need to be =
+rerun and 1 failed.
 >
-> I heard complaints before that we had too 'many' manuals, and it was
-> hard to know which one to open, which is the opposite of what you are
-> asking ;)
+> The do_compile task executes the following:
+> do_compile() {
+>     distutils3_do_compile
+> }
 >
-> let's see if we can gather more feedback.
+> distutils3_do_compile() {
+>         cd /home/builder/src/build_sw.sys.icp21/tmp/work/x86_64-linux/py=
+thon3-setuptools-native/45.2.0-r0/setuptools-45.2.0
+>         NO_FETCH_BUILD=3D1 \
+>         STAGING_INCDIR=3D/home/builder/src/build_sw.sys.icp21/tmp/work/x=
+86_64-linux/python3-setuptools-native/45.2.0-r0/recipe-sysroot-native/usr/i=
+nclude \
+>         STAGING_LIBDIR=3D/home/builder/src/build_sw.sys.icp21/tmp/work/x=
+86_64-linux/python3-setuptools-native/45.2.0-r0/recipe-sysroot-native/usr/l=
+ib \
+>         /home/builder/src/build_sw.sys.icp21/tmp/work/x86_64-linux/pytho=
+n3-setuptools-native/45.2.0-r0/recipe-sysroot-native/usr/bin/python3-native=
+/python3 /home/builder/src/build_sw.sys.icp21/tmp/work/x86_64-linux/python3=
+-setuptools-native/45.2.0-r0/setuptools-45.2.0/setup.py \
+>         build --build-base=3D/home/builder/src/build_sw.sys.icp21/tmp/wo=
+rk/x86_64-linux/python3-setuptools-native/45.2.0-r0/build  || \
+>         bbfatal_log "'python3 setup.py build ' execution failed."
+> }
+>
+> On this particular machine the build fails even when it is tried out fro=
+m within a container. The configuration of this machine is:
+> Distributor ID: Ubuntu
+> Description: Ubuntu 18.04.5 LTS
+> Release: 18.04
+> Codename: bionic
+>
+> Linux vm 5.4.0-54-generic #60~18.04.1-Ubuntu SMP Fri Nov 6 17:25:16 UTC =
+2020 x86_64 x86_64 x86_64 GNU/Linux
+>
+> 4 x Intel(R) Core(TM) i5-8350U CPU @ 1.70GHz
+>
+> The python3-native binary generated by Yocto works and I can run it on t=
+he host. I have identified that setup.py file of python3-setuptools-native =
+recipe, part of do_compile fails with illegal instruction when trying to im=
+port setuptools. On other machines the build has no issues. The machine wit=
+h issues is under a VPN and a proxy (company's machine).
+>
+> Do you have any hint as why this might happen?
+>
+> Thank you and looking forward to your feedback,
+> Daniela-M=C4=83rinela Bistrean
+>
+>=20
+>
