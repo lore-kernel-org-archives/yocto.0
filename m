@@ -1,59 +1,50 @@
-Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
- by mx.groups.io with SMTP id smtpd.web08.31204.1610356784901859911
- for <yocto@lists.yoctoproject.org>;
- Mon, 11 Jan 2021 01:19:45 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.16, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp2.bon.at (Postfix) with ESMTPSA id 4DDp7f3hZ2z5tl9;
-	Mon, 11 Jan 2021 10:19:42 +0100 (CET)
-Date: Mon, 11 Jan 2021 10:19:40 +0100
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: Jupiter <jupiter.hce@gmail.com>
-Cc: kapllaj.elvis@gmail.com, yocto <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] How to select Linux kernel version?
-Message-ID: <20210111091940.2izokmeo5icbv3qu@qschulz>
-References: <CAA=hcWRgT3j9cwhHu4r-+x3_G8E_Yv3qPVKaFOn67-GOSRJh8Q@mail.gmail.com>
- <32166.1610008905321916245@lists.yoctoproject.org>
- <CAA=hcWT=s8VBLkbEkd9mVdCRrScxhNta_Yf+SvqBiMm1ZjGfyw@mail.gmail.com>
- <20210107102520.t34e5sf4q7hewvat@qschulz>
- <CAA=hcWR57QV0Yzviv8Ks2ZK0ru1PGQc-fjq4ROfA4i8OHP7wEQ@mail.gmail.com>
- <20210108085735.qdujpbo67whhjsch@qschulz>
- <CAA=hcWT9VcyP=1BRKccBpOhfjzmuqL-GV73g7Nr5qx3FBbw5Hg@mail.gmail.com>
+Subject: Re: insmod - huawei E3372h kernel module
+To: yocto@lists.yoctoproject.org
+From: "Zoltan Kerenyi Nagy" <kerenyi.nagy.zoltan@gmail.com>
+X-Originating-Location: Kiskunhalas, Bács-Kiskun, HU (84.1.252.39)
+X-Originating-Platform: Linux Firefox 73
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <CAA=hcWT9VcyP=1BRKccBpOhfjzmuqL-GV73g7Nr5qx3FBbw5Hg@mail.gmail.com>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Date: Mon, 11 Jan 2021 02:23:40 -0800
+References: <CAGAf8LwLiKkWRawBqLMLAaBQq5Ly0rzJwvfY5yS0fLEce=sgEg@mail.gmail.com>
+In-Reply-To: <CAGAf8LwLiKkWRawBqLMLAaBQq5Ly0rzJwvfY5yS0fLEce=sgEg@mail.gmail.com>
+Message-ID: <7853.1610360620942037379@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="3HB1bHQzetzvPoMWkTqU"
 
-Hi Jupiter,
+--3HB1bHQzetzvPoMWkTqU
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jan 09, 2021 at 09:56:13AM +1100, Jupiter wrote:
-> Hi Quentin,
-> 
-> Thanks for your helps, I finally figured out an old Yocto version thud
-> is able to pick up the latest the kernel version to run 5.10 where the
-> Zeus could not, there are a couple of bugs in Zeus which I could not
-> run Zeus in Ubuntu 20.4, it is time for me to upgrade to the latest
-> Yocto version which hopefully fixes the kernel version issue.
-> 
+Hi, Im doing this:
 
-This should have nothing to do with a Yocto version, if your recipe is
-not found, it's just not found and it is usually a tell that you either
-put your recipe in the wrong tree layout or that you forgot to add the
-layers to your bblayers.conf.
+KERNEL_MODULE_AUTOLOAD +=3D "ncm_driver"KERNEL_MODULE_PROBECONF +=3D "ncm_=
+driver"cdc_ncm =3D "options ncm_driver iProduct=3DUSB_Host_Driver_for_Netwo=
+rk_Control_Model iManufacturer=3DNCM" KERNEL_MODULE_AUTOLOAD +=3D "wmc_devi=
+ce_managment"KERNEL_MODULE_PROBECONF +=3D "wmc_device"cdc_wdm =3D "options =
+wmc_device iProduct=3DUSB_CDC_WCM_Device_Management iManufacturer=3DWMC" KE=
+RNEL_MODULE_AUTOLOAD +=3D "lte"KERNEL_MODULE_PROBECONF +=3D "lte"huawei_cdc=
+_ncm =3D "options lte iProduct=3DE3372h iManufacturer=3DHuawei"
 
-If both were done correctly and you still have the issue, it is an
-important bug to report and investigate, so please share with us the
-output of bblayers.conf and the path to your linux-yocto_5.10 recipe.
+Im very curious. I think the *cdc_ncm* and *cdc_wdm should* be inserted be=
+fore *huawei_cdc_ncm* --
+Zolee
 
-You could also add:
-python __anonymous() {
-	bb.warning("The recipe is being parsed as expected")
-}
+--3HB1bHQzetzvPoMWkTqU
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-If when you run bitbake virtual/kernel you don't see a warning, your
-recipe is for sure not parsed and obviously cannot be used by Yocto.
+<h6>Hi, Im doing this:<br /><br />KERNEL_MODULE_AUTOLOAD +=3D "ncm_driver"K=
+ERNEL_MODULE_PROBECONF +=3D "ncm_driver"cdc_ncm =3D "options ncm_driver iPr=
+oduct=3DUSB_Host_Driver_for_Network_Control_Model iManufacturer=3DNCM"</h6>
+<h6>KERNEL_MODULE_AUTOLOAD +=3D "wmc_device_managment"KERNEL_MODULE_PROBEC=
+ONF +=3D "wmc_device"cdc_wdm =3D "options wmc_device iProduct=3DUSB_CDC_WCM=
+_Device_Management iManufacturer=3DWMC"</h6>
+<h6>KERNEL_MODULE_AUTOLOAD +=3D "lte"KERNEL_MODULE_PROBECONF +=3D "lte"hua=
+wei_cdc_ncm =3D "options lte iProduct=3DE3372h iManufacturer=3DHuawei"<br /=
+><br />Im very curious. I think the <strong>cdc_ncm</strong> and <strong>cd=
+c_wdm should </strong>be inserted before <strong>huawei_cdc_ncm</strong></h=
+6>
+<h6>&nbsp;</h6>
+-- <br />Zolee
 
-Cheers,
-Quentin
+--3HB1bHQzetzvPoMWkTqU--
