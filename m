@@ -1,232 +1,165 @@
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
- by mx.groups.io with SMTP id smtpd.web09.10963.1610466524916885881
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web10.15185.1610482178566836336
  for <yocto@lists.yoctoproject.org>;
- Tue, 12 Jan 2021 07:48:45 -0800
+ Tue, 12 Jan 2021 12:09:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=jevKPaFf;
- spf=pass (domain: gmail.com, ip: 209.85.208.52, mailfrom: icegood1980@gmail.com)
-Received: by mail-ed1-f52.google.com with SMTP id b2so2840232edm.3
-        for <yocto@lists.yoctoproject.org>; Tue, 12 Jan 2021 07:48:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=SNAKHZvKgjrVQJmdTbLjAChCLI85TgVcNfVFmgmMSMQ=;
-        b=jevKPaFfQsCtrphaXwPM43n7iqAEq9LCHsz2Np2JmGEpdeAs40rUy9YV2aNX4l2VQS
-         BWWIHVSaekHuU2F6wuRappzTML05isWqB1FnRgV3QeuLcyCzvcKOXCqyzhb99TuaF5Yg
-         Px7K8XC6Y5Oy0yZFIsQNWYhVjhcAhr7R/fA1ufZbvnQLMpcGflVbXb8BQ72jpLVt7Dj9
-         tOoXAptI6s1yoEoaWegjQM9MC3t2DWnakSbQRwYw0x0iiJzAil/pRP00J152D5v215rA
-         kU/0knsvipKzdMwYwa60KewaxWF98GLc4AJ4nK6n2jCfBikjAZLm80ChOjbWIl61k6S4
-         Gp3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=SNAKHZvKgjrVQJmdTbLjAChCLI85TgVcNfVFmgmMSMQ=;
-        b=l6rFc/IYeEvPdzsjJMhfGFMzHw+XH1n7cpjWVQSPiYhnchZ0leldrxfmkKud8IWyZc
-         a6yd3r1yuGxG8LmIChAQt4WLQphRUERYcXRdaplxZQR6edFSVAPcCYP936pDNJIV/I92
-         42xT5xITEJvoXgth9sQ2erMIWjhnmdie/AfH1DJr/WX6m/r4I9iuuun/FTMUs2/Jhf4s
-         zyELpyfA+3NnwNCO+KGgy0OBXTGDED/YFFDFaeQNduF2qjEAP/W6E7E9wAuoimSx2LoP
-         EvrTojLeuGXZToiAQbCSZnF68nKVCCKZQCB64zlA8Vk3k8RYSBmGgMkM3nHRrfEDhsoF
-         s+8g==
-X-Gm-Message-State: AOAM530Hbso3D6iAaj+T5xacbk7Rw4e8MdnmdpL5hnk3soz6r2X/TiNz
-	/z2Yp8CVr0vGOTEGq4zRZXEAczcPG57M2tBvK3CBUYyinXE=
-X-Google-Smtp-Source: ABdhPJxshpFBdfL6vVqztaBGskPsCRP7Gy6wJw1UyVk1I2Sr2XyPe7zxXwLl/q4ZvM/+++30I3hP28/Hp9F0V7KRp6I=
-X-Received: by 2002:aa7:c384:: with SMTP id k4mr1893788edq.23.1610466522954;
- Tue, 12 Jan 2021 07:48:42 -0800 (PST)
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=PU7hmpCd;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1610482178; x=1768162178;
+  h=from:to:subject:date:mime-version;
+  bh=VhSvd4tOO8kQVDuo4obwTWTkJb5We4/CbyEuoD9M9/U=;
+  b=PU7hmpCdC+VKP7bA3/Tt6Sk92Rh3wPoMX8HFnIL4uza2FHRSijZ8+c+K
+   MRqSpTTeId6KIJxS0a/av9lCsbyuER+dJgqNvC00UMI83rHr2+OtOaZDz
+   7QE7FrtY0g52BdIbLbYTGEKu6mEFc21CH5jUpS5nCiuJ0uBnTtgBEH9bB
+   8=;
+IronPort-PHdr: =?us-ascii?q?9a23=3AVxw+5xGUkGXelHsuXlG2IJ1GYnF86YWxBRYc798d?=
+ =?us-ascii?q?s5kLTJ76p829bnLW6fgltlLVR4KTs6sC17OG9fi4EjFYqdbZ6TZeKcMKD0dEwe?=
+ =?us-ascii?q?wt3CUYSPafDkP6KPO4JwcbJ+9lEGFfwnegLEJOE9z/bVCB6le77DoVBwmtfVEt?=
+ =?us-ascii?q?fre9FYHdldm42P6v8JPPfQpImCC9YbRvJxmqsAndrMYbjZZhJ6or1hfFvnREdu?=
+ =?us-ascii?q?RKyWh1IV6fgwvw6t2/8ZJ+8Slcoe4t+9JFXa7nY6k2ULtUASg8PWso/sPrrx7D?=
+ =?us-ascii?q?TQWO5nsYTGoblwdDDhbG4h/nQJr/qzP2ueVh1iaUO832Vq00Vi+576h3Uh/oiT?=
+ =?us-ascii?q?wIOCA//WrKl8F/lqNboBampxxi347ZZZyeOfRicq/Be94RWGxMVdtTWSNcGIOx?=
+ =?us-ascii?q?d4sBAfQcM+ZEoYfzpFoOogexCgS3Huzj1j1Ii2Xq0aEmzegsFxzN0gw6H9IJtX?=
+ =?us-ascii?q?TZtNv5OqAVUeCz16nH0yvMb+hO1Tzg9YbIbg4uoe+SUrJ2bMHc11QkGwfLgVuN?=
+ =?us-ascii?q?rIDpMS6e2+MWs2iH8eVgS/ygi2g9pwF0pTivwNwshZfXiYIO0V3L7j92z5guJd?=
+ =?us-ascii?q?y4U057fcCrEJ5Lty2AK4R2RcYiTnhutS0nxbIIpYS1czIWyJQ72RHfcfqHfpCG?=
+ =?us-ascii?q?7B/tSOucIDV1iXN7dL6imRu/8kitx+nzW8S7zVpEoCpInNbRun0J1RHe6seKR/?=
+ =?us-ascii?q?pg8kq/3TuC1APe5/xZLU47k6fQNp0vwqYom5YOrUjPBCH7lUfsgKOIaEkp+vKk?=
+ =?us-ascii?q?5uXmb7n+u5OQK5V4hw7xP6g0lcGzG/k0PwgIUmOG4+qzzqfj8lf8QLhSi/02lb?=
+ =?us-ascii?q?TWv47CKMQAo665HxdV0oE+6xajFzum0MoXnX0ALF9dZB2IlZPpNE3LIPDjCfqy?=
+ =?us-ascii?q?h1ehnCt1y/zcOL3uGI/BIWPZn7j/ZrZ861VcyBYtwtBa/JJYEK0OIPX2WkPptd?=
+ =?us-ascii?q?zYCAE2MxCszur6FNlxzI0TVGCVDqOHLq/fsUWE6+MuLuWUYY8aojf9K/wr5/70?=
+ =?us-ascii?q?in85nEcQfbK13ZQJdnC3APJmL1+cYXrrhNcBCnkFsRQlTOHxk1KNSyBcZ22yXq?=
+ =?us-ascii?q?In+jE0FoemDZzZSo+xh7yB2T+3HodKaWBeFlCMDXDoep2EWvcLdC2SPshhnycA?=
+ =?us-ascii?q?VbigUI8hyQquuBX6yrpgMuXU5ioYtYr51Nhy5e3ciw099SBuA8SayWGNQDI8om?=
+ =?us-ascii?q?RdDS4x17x4iUh80UuYl7l/iOBfDcZU5f5CTkE9L5GWh7hrDNvuXSrFf8yVUxC3?=
+ =?us-ascii?q?Rd66BikrSdA8yMNIZFxyTYaMlBfGimCPBLkOmrGQQNQP7q/C0n65DI499k2Hnu?=
+ =?us-ascii?q?F1lEUrXMZJc2ihgLVy+hP7DYfEiFSCi6uvbuIX2yubpzTL9naHoEwNCF04aq7C?=
+ =?us-ascii?q?R31KPkY=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2D7BABqAf5f/0LhJQpigQmCcoF+gUKyN?=
+ =?us-ascii?q?QsBAQEBAQEBAQEIAS8EAQGGPiY4EwIQAQEGAQEBAQEGBAGGUguCOCKDTV4BDHQ?=
+ =?us-ascii?q?mAQQbgx+BfrBqgTSFWIUJgTiPND6PHgSDPJJ4iladcAcDgnebViuiYJQSoUACB?=
+ =?us-ascii?q?AIEBQIWgW2BenCDOk8XAg2caoErAgYKAQEDCYxKgREBAQ?=
+X-IPAS-Result: =?us-ascii?q?A2D7BABqAf5f/0LhJQpigQmCcoF+gUKyNQsBAQEBAQEBAQE?=
+ =?us-ascii?q?IAS8EAQGGPiY4EwIQAQEGAQEBAQEGBAGGUguCOCKDTV4BDHQmAQQbgx+BfrBqg?=
+ =?us-ascii?q?TSFWIUJgTiPND6PHgSDPJJ4iladcAcDgnebViuiYJQSoUACBAIEBQIWgW2BenC?=
+ =?us-ascii?q?DOk8XAg2caoErAgYKAQEDCYxKgREBAQ?=
+X-IronPort-AV: E=Sophos;i="5.79,342,1602547200"; 
+   d="scan'208,217";a="338588890"
+X-IronPort-AV: E=Sophos;i="5.79,342,1602547200"; 
+   d="scan'208,217";a="176277122"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: #yocto #kernel
+Thread-Topic: #yocto #kernel
+Thread-Index: AdbpHa4uv+X65smLT56sbWhYtNALIw==
+Date: Tue, 12 Jan 2021 20:09:32 +0000
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.4.15]
 MIME-Version: 1.0
-References: <CAJCbrz4YKYNenmMDPb7jMTq_=mv3h0sVjMCFq4+-Anirbv5yug@mail.gmail.com>
- <20210112151905.az5iriu77woea4x2@qschulz> <CAJCbrz67e=6vSpX5cAvuV9R7mH3-kvAFspm1SVBFQJrey76gdQ@mail.gmail.com>
- <20210112154357.tk4b433cwu4usuqi@qschulz>
-In-Reply-To: <20210112154357.tk4b433cwu4usuqi@qschulz>
-From: "Sergey Ivanov" <icegood1980@gmail.com>
-Date: Tue, 12 Jan 2021 17:48:31 +0200
-Message-ID: <CAJCbrz4x0MukxjmmZ0_kVrAQFHCX2ZtVtAagnPFhTG5HDn9ZWw@mail.gmail.com>
-Subject: [yocto] remove particular device from QB_OPT_APPEND: per-word manner
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000005fe6005b8b5f53f"
+Message-ID: <MADEUP.16599502C2A622A0.16249@lists.yoctoproject.org>
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7366eb1996bd452987cb1207329becb3baesystemscom_"
 
---00000000000005fe6005b8b5f53f
-Content-Type: text/plain; charset="UTF-8"
+--_000_7366eb1996bd452987cb1207329becb3baesystemscom_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-For all info
 
----------- Forwarded message ---------
-=D0=9E=D1=82: Quentin Schulz <quentin.schulz@streamunlimited.com>
-Date: =D0=B2=D1=82, 12 =D1=8F=D0=BD=D0=B2. 2021 =D0=B3. =D0=B2 17:43
-Subject: Re: [yocto] remove particular device from QB_OPT_APPEND: per-word
-manner
-To: Sergey Ivanov <icegood1980@gmail.com>
+Working on zeus 3.0.4, for aarch64
 
+I  have a startup script making use of "service" How do I properly configur=
+e in support for the "service" command ?
+I do not have an error when working under rocko.
 
-Rah, please answer to all always (keep the mailing list in Cc). I'll
-bounce the mail on the mailing list for you now.
+The error seen is :    /etc/rc5.d/S15mountnfs.sh: line 70: service: command=
+ not found
 
-On Tue, Jan 12, 2021 at 05:27:58PM +0200, Sergey Ivanov wrote:
-> Thanks, it should work, provided...
-> Am i understand correctly that all append-remove stuff works BEFORE
-> anonymous python script?
->
-> =D0=B2=D1=82, 12 =D1=8F=D0=BD=D0=B2. 2021 =D0=B3. =D0=B2 17:19, Quentin S=
-chulz <
-> quentin.schulz@streamunlimited.com>:
->
-> > Hi Sergey,
-> >
-> > On Tue, Jan 12, 2021 at 05:09:25PM +0200, Sergey Ivanov wrote:
-> > > Hi there.
-> > >
-> > > I'm working with arm64 target and i want to take control on usb buses
-on
-> > it.
-> > > What i'm trying to do is tro remove both bus and hid devices on it vi=
-a
-> > > QB_OPT_APPEND_remove =3D " -show-cursor -device qemu-xhci -device
-> > usb-tablet
-> > > -device usb-kbd "
-> > >
-> > > Of course, it doesn't work properly since it removes ALL occurrences
-of
-> > > each word above. In particular, i had "-device VGA,edid=3Don" that i
-wanted
-> > > to stay.
-> > > Instead, i obtained "VGA,edid=3Don" that lead to boot error. OK, it i=
-s
-> > clear.
-> > > I also tried smth. like
-> > >
-> > > QB_OPT_APPEND_remove =3D " -show-cursor '-device qemu-xhci' '-device
-> > > usb-tablet' '-device usb-kbd -device' "
-> > >
-> > > however nothing was removed here. Can i workaround given issue under
-> > *Zeus?*
-> >
-> > A "hack" I'm thinking about right now would be to remove those variable=
-s
-> > by hand in a python anonymous function. You want to expand the variable
-> > first, then do some python regex or however you like, to remove what yo=
-u
-> > want. Python anonymous functions are run at parsing time.
-> >
-> > Otherwise, if you know pretty much exactly what the content of the
-> > variable should be for you, you can always use the following:
-> > QB_OPT_APPEND_<my-machine> =3D "<content>"
-> >
-> > Hope this can give you some ideas,
-> > Cheers,
-> > Quentin
-> >
->
->
-> --
-> Kind regards,
-> Sergey Ivanov
+Usage: @ line 70:  "service rpcbind status >/dev/null"
 
---=20
-StreamUnlimited Engineering GmbH
-High Tech Campus Vienna, Gutheil-Schoder-Gasse 10, 1100 Vienna, Austria
-Fax: +43 1 667 20 02 4401
-quentin.schulz@streamunlimited.com, www.streamunlimited.com
+Thanks,
+Steve
 
-
---=20
-Kind regards,
-Sergey Ivanov
-
---00000000000005fe6005b8b5f53f
-Content-Type: text/html; charset="UTF-8"
+--_000_7366eb1996bd452987cb1207329becb3baesystemscom_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">For all info<br><div><br><div class=3D"gmail_quote"><div d=
-ir=3D"ltr" class=3D"gmail_attr">---------- Forwarded message ---------<br>=
-=D0=9E=D1=82: <b class=3D"gmail_sendername" dir=3D"auto">Quentin Schulz</b>=
- <span dir=3D"auto">&lt;<a href=3D"mailto:quentin.schulz@streamunlimited.co=
-m">quentin.schulz@streamunlimited.com</a>&gt;</span><br>Date: =D0=B2=D1=82,=
- 12 =D1=8F=D0=BD=D0=B2. 2021 =D0=B3. =D0=B2 17:43<br>Subject: Re: [yocto] r=
-emove particular device from QB_OPT_APPEND: per-word manner<br>To: Sergey I=
-vanov &lt;<a href=3D"mailto:icegood1980@gmail.com">icegood1980@gmail.com</a=
->&gt;<br></div><br><br>Rah, please answer to all always (keep the mailing l=
-ist in Cc). I&#39;ll<br>
-bounce the mail on the mailing list for you now.<br>
-<br>
-On Tue, Jan 12, 2021 at 05:27:58PM +0200, Sergey Ivanov wrote:<br>
-&gt; Thanks, it should work, provided...<br>
-&gt; Am i understand correctly that all append-remove stuff works BEFORE<br=
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-&gt; anonymous python script?<br>
-&gt; <br>
-&gt; =D0=B2=D1=82, 12 =D1=8F=D0=BD=D0=B2. 2021 =D0=B3. =D0=B2 17:19, Quenti=
-n Schulz &lt;<br>
-&gt; <a href=3D"mailto:quentin.schulz@streamunlimited.com" target=3D"_blank=
-">quentin.schulz@streamunlimited.com</a>&gt;:<br>
-&gt; <br>
-&gt; &gt; Hi Sergey,<br>
-&gt; &gt;<br>
-&gt; &gt; On Tue, Jan 12, 2021 at 05:09:25PM +0200, Sergey Ivanov wrote:<br=
->
-&gt; &gt; &gt; Hi there.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; I&#39;m working with arm64 target and i want to take control=
- on usb buses on<br>
-&gt; &gt; it.<br>
-&gt; &gt; &gt; What i&#39;m trying to do is tro remove both bus and hid dev=
-ices on it via<br>
-&gt; &gt; &gt; QB_OPT_APPEND_remove =3D &quot; -show-cursor -device qemu-xh=
-ci -device<br>
-&gt; &gt; usb-tablet<br>
-&gt; &gt; &gt; -device usb-kbd &quot;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Of course, it doesn&#39;t work properly since it removes ALL=
- occurrences of<br>
-&gt; &gt; &gt; each word above. In particular, i had &quot;-device VGA,edid=
-=3Don&quot; that i wanted<br>
-&gt; &gt; &gt; to stay.<br>
-&gt; &gt; &gt; Instead, i obtained &quot;VGA,edid=3Don&quot; that lead to b=
-oot error. OK, it is<br>
-&gt; &gt; clear.<br>
-&gt; &gt; &gt; I also tried smth. like<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; QB_OPT_APPEND_remove =3D &quot; -show-cursor &#39;-device qe=
-mu-xhci&#39; &#39;-device<br>
-&gt; &gt; &gt; usb-tablet&#39; &#39;-device usb-kbd -device&#39; &quot;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; however nothing was removed here. Can i workaround given iss=
-ue under<br>
-&gt; &gt; *Zeus?*<br>
-&gt; &gt;<br>
-&gt; &gt; A &quot;hack&quot; I&#39;m thinking about right now would be to r=
-emove those variables<br>
-&gt; &gt; by hand in a python anonymous function. You want to expand the va=
-riable<br>
-&gt; &gt; first, then do some python regex or however you like, to remove w=
-hat you<br>
-&gt; &gt; want. Python anonymous functions are run at parsing time.<br>
-&gt; &gt;<br>
-&gt; &gt; Otherwise, if you know pretty much exactly what the content of th=
-e<br>
-&gt; &gt; variable should be for you, you can always use the following:<br>
-&gt; &gt; QB_OPT_APPEND_&lt;my-machine&gt; =3D &quot;&lt;content&gt;&quot;<=
-br>
-&gt; &gt;<br>
-&gt; &gt; Hope this can give you some ideas,<br>
-&gt; &gt; Cheers,<br>
-&gt; &gt; Quentin<br>
-&gt; &gt;<br>
-&gt; <br>
-&gt; <br>
-&gt; -- <br>
-&gt; Kind regards,<br>
-&gt; Sergey Ivanov<br>
-<br>
--- <br>
-StreamUnlimited Engineering GmbH<br>
-High Tech Campus Vienna, Gutheil-Schoder-Gasse 10, 1100 Vienna, Austria<br>
-Fax: +43 1 667 20 02 4401<br>
-<a href=3D"mailto:quentin.schulz@streamunlimited.com" target=3D"_blank">que=
-ntin.schulz@streamunlimited.com</a>, <a href=3D"http://www.streamunlimited.=
-com" rel=3D"noreferrer" target=3D"_blank">www.streamunlimited.com</a><br>
-</div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"gmail_signatur=
-e" data-smartmail=3D"gmail_signature">Kind regards,<br>Sergey Ivanov</div><=
-/div></div>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Working on zeus 3.0.4, for aarch64<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&nbsp; have a startup script making use of &#8220;s=
+ervice&#8221; How do I properly configure in support for the &#8220;service=
+&#8221; command ?<o:p></o:p></p>
+<p class=3D"MsoNormal">I do not have an error when working under rocko.<o:p=
+></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The error seen is :&nbsp;&nbsp; &nbsp;/etc/rc5.d/S15=
+mountnfs.sh: line 70: service: command not found<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Usage: @ line 70: &nbsp;&#8220;service rpcbind statu=
+s &gt;/dev/null&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Steve<o:p></o:p></p>
+</div>
+</body>
+</html>
 
---00000000000005fe6005b8b5f53f--
+--_000_7366eb1996bd452987cb1207329becb3baesystemscom_--
