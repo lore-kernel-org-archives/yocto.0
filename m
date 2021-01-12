@@ -1,65 +1,86 @@
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
- by mx.groups.io with SMTP id smtpd.web12.6648.1610442495816474491
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+ by mx.groups.io with SMTP id smtpd.web10.9562.1610461671508345328
  for <yocto@lists.yoctoproject.org>;
- Tue, 12 Jan 2021 01:08:16 -0800
+ Tue, 12 Jan 2021 06:27:51 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=vYhvxO3V;
- spf=pass (domain: gmail.com, ip: 209.85.222.182, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f182.google.com with SMTP id w79so1264612qkb.5
-        for <yocto@lists.yoctoproject.org>; Tue, 12 Jan 2021 01:08:15 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=EzV6kReg;
+ spf=pass (domain: gmail.com, ip: 209.85.214.173, mailfrom: vijayrakeshmunganda@gmail.com)
+Received: by mail-pl1-f173.google.com with SMTP id q4so1475198plr.7
+        for <yocto@lists.yoctoproject.org>; Tue, 12 Jan 2021 06:27:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+r3mMz5zxLZ3eU8wY9y4o/nyVYzrMyp1vywzcdZFptw=;
-        b=vYhvxO3V/m0tEa/0hULBdEWkpRFyVrpXh21KfvFCIc4qgtEAc78FlPvH/7H2atyItD
-         eIXBh9Uc/Fkw7nWWiI8CBSYwFNie/By4SIJ904EjUKH0piToHW8q/lsAyAYb/uqEQiqE
-         D3ydWKW92nN9lmVqz4xTaSSHgmlSQxFd5nvgNoER/JAtYEcemmqrCpIqoRAdY3xGn7Vd
-         pbW8yTeOwjATa1geksSQ3yrJ78BQkQ73j/ki92jatI6rQtQDgh/IbIJYUFg0zFXIEOPj
-         BDBPp9xpW4POxGN4frhOSKvJX5biC+nlfkzOLfrrejHyMQghdgORy5ldM6FlagYY51E0
-         zf4w==
+        h=content-transfer-encoding:mime-version:subject:from:in-reply-to:cc
+         :date:message-id:references:to;
+        bh=GZXCaKZUl6e1Ge887gTNAN2GNt8um+5xrVRq/TXhefM=;
+        b=EzV6kRegeVjlPNPI8OiyN9qSTSpOfuU/LTgH5423pdAhF9bPUHDdYiNQ4sJsQLJQT9
+         odn9U4YtRIG9HioFoUm3apT83P5agdIe7yaDN+z/BTpzqy9NgAZH+Ra6uIlz6ieJyaCG
+         09YDzBgwF9yDup90dxHsontt0zZ55eQK+1IQYcW9XVhRJIh3VmPrrbsOtgbD7WVsk9E5
+         GWw4mVK99U18lSjmpUCyTi6rxCsnGsgNYIjzU2XGVcTDp8asUVDg1U6S9f7WbTgaPFMh
+         O6ruzR53u7skpksgZHrnWhipVVlpuE+uHvRkqomIw86IaZsvfTslWnGMjHgXQMFDWOVu
+         ZBfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+r3mMz5zxLZ3eU8wY9y4o/nyVYzrMyp1vywzcdZFptw=;
-        b=mcKioPriBiEA/B5i21tKmXURFBqgIVRehST1of7ainy77RshEb+aLZcW4Df8rArdvK
-         7sQ71IzwB4dGKJGfnOoPTFPK3hQFwHqea0JORQBafoDV2IyUo4tijuaEaPwhAuTpIP3U
-         rOH/+J6yAW17lnHAgd23dYkOd6x5us8Ume6ftNt8CnZWWYqwpoMAM9jlSjrb1FnGqU+s
-         PqFpJs1dSR5R6BjQsSVtvBFMjRB70EwnHOcMut8q+vWHzzQDuDU7iJvgeCsTqCnruGun
-         gXeMB3De8p6NcPvda+Xfo7Jco6jwvL1urnQAO8W4xUzP6I2fbrAqHCICslwqWpul29wZ
-         r19w==
-X-Gm-Message-State: AOAM532chZ6QPmLGf+vvCL0M8PCaSa/OIUvO+X0cukWIVAjWbFUCarZh
-	WThdl05+IxRCugXOW7U+7PIS0l1CPXC86ofZu7E=
-X-Google-Smtp-Source: ABdhPJw6LhTQOlOmQURxyPPigtSwqjMr6n0VEgio144a5HHFKqhpA4oRv4itE+NP4CZZ0L3rBGrmObqVTaWm2Bwb86s=
-X-Received: by 2002:a37:744:: with SMTP id 65mr3306672qkh.71.1610442494863;
- Tue, 12 Jan 2021 01:08:14 -0800 (PST)
-MIME-Version: 1.0
-References: <H9Ol.1610437607545381604.zv9V@lists.yoctoproject.org>
-In-Reply-To: <H9Ol.1610437607545381604.zv9V@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Tue, 12 Jan 2021 01:07:48 -0800
-Message-ID: <CAMKF1srUErgMnrjKfAPJr8--8jPde-W=EH23JpKsZQJuvPcdAA@mail.gmail.com>
+        h=x-gm-message-state:content-transfer-encoding:mime-version:subject
+         :from:in-reply-to:cc:date:message-id:references:to;
+        bh=GZXCaKZUl6e1Ge887gTNAN2GNt8um+5xrVRq/TXhefM=;
+        b=YDXJvRiJc4VPeiTXf3W7O9jztlDMLqsBS+etVrxjP0zWL/tc+lREBi3SKmy1bigmph
+         Qz0In7V+lSM8JTXq1dQXxmBVsWLhOFc3Nrglz0VAcKt1J9eP1s49KAlbeEIX/FOwu3G0
+         NXceaASaot7t0UMiSyYUs6VNg+85jUdxPkKEWGQyB7iAb7drdzP5duNg53ekKXNj2SVx
+         vyA+5LIYjh1SbmMRkmL4uxC2ChUaU7sfZGxL1HDYp1/N/SAS39EmffVHG31ATo0EhFp+
+         qjiyovO4vDLPypSd4KTKX5HE+chZDoL+rfSEcskBAuQ9wCJ0LoGY1YIp8QRQnvkflkG4
+         hdvA==
+X-Gm-Message-State: AOAM5309DlCrkr14kLZtTK3auk9/jIr2F94GagaN/+UMA02AaJesHDnJ
+	yqIOB+xXs6fowmfTodTejGnpEDbNjeOxCFdX
+X-Google-Smtp-Source: ABdhPJwTOYcxAea19lQKw/ek6gu6lmkBIdsyWdG0LbskToKxiwjqF+Ha0UTk/2IXEaVqKqFnBSF0aQ==
+X-Received: by 2002:a17:90a:a88:: with SMTP id 8mr4957791pjw.120.1610461670809;
+        Tue, 12 Jan 2021 06:27:50 -0800 (PST)
+Return-Path: <vijayrakeshmunganda@gmail.com>
+Received: from ?IPv6:2405:201:c015:f064:8d11:62a2:a0ba:fd41? ([2405:201:c015:f064:8d11:62a2:a0ba:fd41])
+        by smtp.gmail.com with ESMTPSA id p17sm3389961pfn.52.2021.01.12.06.27.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jan 2021 06:27:50 -0800 (PST)
+Mime-Version: 1.0 (1.0)
 Subject: Re: [yocto] Unable to add pre compiled library #yocto
-To: Vijay Rakesh Munganda <vijayrakeshmunganda@gmail.com>
+From: "Vijay Rakesh Munganda" <vijayrakeshmunganda@gmail.com>
+In-Reply-To: <CAMKF1srUErgMnrjKfAPJr8--8jPde-W=EH23JpKsZQJuvPcdAA@mail.gmail.com>
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Date: Tue, 12 Jan 2021 19:57:46 +0530
+Message-Id: <A05C12BC-6AC6-468A-960C-2597E4CFB355@gmail.com>
+References: <CAMKF1srUErgMnrjKfAPJr8--8jPde-W=EH23JpKsZQJuvPcdAA@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+X-Mailer: iPhone Mail (18C66)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 11, 2021 at 11:46 PM Vijay Rakesh Munganda
-<vijayrakeshmunganda@gmail.com> wrote:
->
-> Hi,
->
-> I'm trying to install a pre-compiled library, but I got an error as follows. I had tried to add libcxx from meta-clang, but it doesn't compatible with Yocto dunfell version. Is there another way to avoid error?
->
+Hi Raj,
 
-it seems to need llvm C++ runtime and using meta-clang/libcxx is the
-right way to go about it. What errors do you run into ?
+I had downloaded complete meta-clang and ran bitbake then I got an error m=
+essage as layer is not compatible with dunfell version. Then I had download=
+ed libcxx recipe and added into the build, but do_compile doesn=E2=80=99t s=
+how any progress, even after two hours at shows 16%. At this point RAM usag=
+e is 72% and CPU is 43%. I=E2=80=99m not sure whether this is related to me=
+mory resource or any other.=20
 
-> ERROR: tokbox-2.18.1-r0 do_package_qa: QA Issue: /usr/lib/libopentok.so contained in package tokbox requires libc++.so.1()(64bit), but no providers found in RDEPENDS_tokbox? [file-rdeps]
-> ERROR: tokbox-2.18.1-r0 do_package_qa: QA run found fatal errors. Please consider fixing them.
->
-> Thanks,
-> VR.
-> 
->
+Thanks & Regards,
+VR
+
+> On 12-Jan-2021, at 14:38, Khem Raj <raj.khem@gmail.com> wrote:
+>=20
+> =EF=BB=BFOn Mon, Jan 11, 2021 at 11:46 PM Vijay Rakesh Munganda
+> <vijayrakeshmunganda@gmail.com> wrote:
+>> Hi,
+>> I'm trying to install a pre-compiled library, but I got an error as fol=
+lows. I had tried to add libcxx from meta-clang, but it doesn't compatible =
+with Yocto dunfell version. Is there another way to avoid error?
+>=20
+> it seems to need llvm C++ runtime and using meta-clang/libcxx is the
+> right way to go about it. What errors do you run into ?
+>=20
+>> ERROR: tokbox-2.18.1-r0 do_package_qa: QA Issue: /usr/lib/libopentok.so=
+ contained in package tokbox requires libc++.so.1()(64bit), but no provider=
+s found in RDEPENDS_tokbox? [file-rdeps]
+>> ERROR: tokbox-2.18.1-r0 do_package_qa: QA run found fatal errors. Pleas=
+e consider fixing them.
+>> Thanks,
+>> VR.
+>>=20
