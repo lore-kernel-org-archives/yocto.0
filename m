@@ -1,338 +1,205 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.2145.1610410615977073456
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+ by mx.groups.io with SMTP id smtpd.web11.5500.1610431362379332793
  for <yocto@lists.yoctoproject.org>;
- Mon, 11 Jan 2021 16:16:56 -0800
+ Mon, 11 Jan 2021 22:02:42 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Blu1iFgH;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id D1A9C38C051C
-	for <yocto@yoctoproject.org>; Tue, 12 Jan 2021 00:16:55 +0000 (UTC)
-Received: by mail-pj1-f54.google.com with SMTP id n3so673860pjm.1
-        for <yocto@yoctoproject.org>; Mon, 11 Jan 2021 16:16:55 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=kjE6jN8n;
+ spf=pass (domain: gmail.com, ip: 209.85.166.45, mailfrom: uppadaravi2511@gmail.com)
+Received: by mail-io1-f45.google.com with SMTP id y19so1739013iov.2
+        for <yocto@lists.yoctoproject.org>; Mon, 11 Jan 2021 22:02:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version:content-language
-         :thread-index;
-        bh=itGVcKE20hOfQgmFz/21i/3DQHy1gww+1jhBNIKo/IQ=;
-        b=Blu1iFgHL7wMkUvR0TQE760C1KaklyP0PZywluNnFd/YKPFdZ8ooZhCEgrXcENtIc5
-         6VdmbyjxWdrVKuXf7Sa2s/qtJ/dcSJLZvsG9PLhkjQ6APCzcKBHGR4d+/dFhP2oXF37J
-         dBT4+elxTCXkGD9zWKgYFZg8n1+p3PPug24GJN5Vb9/l75TT66aJIg3qzaYfwvpXX+B6
-         OcOoHaucpG0kMYHZXz0XDZ72P9llBdoHF8cRx6jwoVwwJ78GXWz0aoj9dl6rWlkzLOeP
-         SXXPf5sArn/O2rgGpmn1fHY9vnZRvIlXTz67GVcJahnVJEockl5LkSEjqUYt70ndrzpy
-         flvg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Q2LHx1+tp9iSI/JCP8fyzrWmi1AoQdR42SPRFl9Unk0=;
+        b=kjE6jN8nkRVLRvUiW00g5NHH0FwpS8avS8oDxCmY6tKJwIaQnXTetW3JlFKCBWwdy6
+         pqksKGykVWMG6sVN2iqZOcrpV9ybkTWHYFrhbDk/W9NxApC0pY26oajHiwnNUBuqQzva
+         ENW6oA/f1ngniptt+eKGQvmu0YsIyIxfORYAefi7NwYIINpbc2IXBiQ4CPV9uFthXF2D
+         AvDCLBbDQvZnSo8J0+/k3/JDIY1ACm/NBpdlJkmmtcAffo/hduUl5GKl+8HsgtXiPgjj
+         CiZkU6pYerG8J2iOsZod7Y0kvt+D3x0vTtkP5oBs+XZs8pefzkIgjXoIp72PgBO29Nog
+         inbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-language:thread-index;
-        bh=itGVcKE20hOfQgmFz/21i/3DQHy1gww+1jhBNIKo/IQ=;
-        b=msm49b+LXkq7omMrVGYxCkdvTQZAR8PBYZkUYvaCJV4hdP6RRxoS2tAP5qu0dcyQTw
-         CMQF/dDoGPPAsIO8OdGHoAJEQ7a6wRjBh4kLN1LC1RE4mbbxXzT0MpWvPOGbImsBDcNV
-         Sion3zGdvHGDPhK76UUJavJfSjq2iHr8oLstr+2F2c8SbhBe390OmpLL6fC3xUfCTWzg
-         M3eB3Ji8yTY7uEXp0Lq7+QhUzWf7ZZ0l8TnTEpQLfhiSdlMryO/QIdGxqedmqmolcTub
-         uL6hCKXsVs1EFSGNFVLZgx0P3BVvMUG7yoqnIK4isdzG+2MSfGCaCUwSZLj+wxKOr8pN
-         E+nA==
-X-Gm-Message-State: AOAM530b45Qnd9GFxjfrnLMhI82Q98Im9vmezSoHFLJdAGhRuX7YV18p
-	XqU5U6p0uymIgqsn9yH89HE=
-X-Google-Smtp-Source: ABdhPJzW4MNSk+dMVy+831pu1dz3IPiERYcj23t18ZxDq34q5yrW3y0ai8S7uZXX1kQ72ocEwwepAg==
-X-Received: by 2002:a17:90b:e0d:: with SMTP id ge13mr1419425pjb.111.1610410615555;
-        Mon, 11 Jan 2021 16:16:55 -0800 (PST)
-Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-        by smtp.gmail.com with ESMTPSA id e65sm789404pfh.175.2021.01.11.16.16.54
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 11 Jan 2021 16:16:55 -0800 (PST)
-From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>
-Subject: M+ & H bugs with Milestone Movements WW02
-Date: Mon, 11 Jan 2021 16:16:55 -0800
-Message-ID: <06d501d6e878$3c1c8570$b4559050$@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Q2LHx1+tp9iSI/JCP8fyzrWmi1AoQdR42SPRFl9Unk0=;
+        b=c8bMELlXBNqKF0mzmYL/90YAXr3gIVkrZdUXXFiJ2DGk/jMl4suD/QPJcR+vN4stvM
+         HbOGBzJNdOmJqVZ07WL7JBcuNT/XdNttcbu36QVnJ/1uR8tT10XSsDhUZ99AO7Mvigcw
+         LvagfZw6IIwtBgZBWMKeCdRYg8fKPreyUOKW33a1FpFJLmKXJRmuEmnwy05/apO0GMB4
+         o66YTuSrvWGSoRi9+ABJJ1OOF8cTsl5yX+BZ600XitOIr4DR+4pFtLD1iXIgXW9LNEFj
+         U0fs/1htjomtMrqkSAKgLmBtg9jbADtwQtASKcSk3YKlJdMszyykbCY9VZ3z/wqaxM8T
+         uRbg==
+X-Gm-Message-State: AOAM532VO6k6mSIBJhayOMQEdBMno2WRN5Glx9nx+ChAp0zFm6ZV7dK5
+	UJNy7N0I4H9kcxjgrUrJa0RWqMqm0APQKyNv3x0=
+X-Google-Smtp-Source: ABdhPJxM84XTlqbBvvgo6gXrmt8CvYOADuRCWfFHzB7ETVVSkvf8AaEQTCXfX1rqYziN3/7u87oEM31WFG4CZk/eKcM=
+X-Received: by 2002:a92:cf44:: with SMTP id c4mr2452778ilr.207.1610431361604;
+ Mon, 11 Jan 2021 22:02:41 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdboeCh3fPpZpHbuQ8mrI2CHn8bWqQ==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_06D6_01D6E835.2DFB8F60"
-Content-Language: en-us
+References: <CACX=-dXasA=Q4vjDXza9N36K=yZ68REiSTXEtTitbta3E71aUQ@mail.gmail.com>
+ <DM6PR17MB2474AD2BC28614101A2F9F90F8AB0@DM6PR17MB2474.namprd17.prod.outlook.com>
+In-Reply-To: <DM6PR17MB2474AD2BC28614101A2F9F90F8AB0@DM6PR17MB2474.namprd17.prod.outlook.com>
+From: "U RAVI KUMAR" <uppadaravi2511@gmail.com>
+Date: Tue, 12 Jan 2021 11:32:29 +0530
+Message-ID: <CACX=-dWkaYcynokF4AuHBApqwzodOBc2V-t9OCRY05tb_CSqWw@mail.gmail.com>
+Subject: Re: [yocto] BITBAKE HANGS
+To: "Davis, Michael" <michael.davis@essvote.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000003e619505b8adc5b0"
 
-------=_NextPart_000_06D6_01D6E835.2DFB8F60
-Content-Type: text/plain;
-	charset="utf-8"
+--0000000000003e619505b8adc5b0
+Content-Type: text/plain; charset="UTF-8"
+
+Hello Davis,
+
+              I will try using 16 GB ram. Thank you very much for your
+response.
+Thanks,
+ravi uppada.
+
+On Mon, Jan 11, 2021 at 11:18 PM Davis, Michael <michael.davis@essvote.com>
+wrote:
+
+> QTWebengine needs a considerable amount of RAM to compile and link
+> relative to the rest of Yocto.
+>
+> Normally around 12-16GB.  Less than that and the system tends to hang.
+>
+>
+>
+>
+>
+>
+>
+> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> *On
+> Behalf Of *U RAVI KUMAR via lists.yoctoproject.org
+> *Sent:* Monday, January 11, 2021 11:25 AM
+> *To:* yocto@lists.yoctoproject.org
+> *Subject:* [yocto] BITBAKE HANGS
+>
+>
+>
+> hi guys,
+>
+>
+>
+>  I have encountered with a problem.I have built a custom linux for
+> raspberrypi and included
+> meta-openembedded,meta-raspberrypi,meta-qt5,meta-python2 layers and
+> compiled on the bitbake. it is working fine.
+>
+> I have added recipe "qtwebengine" , here i have encountered an issue i.e
+> the system hangs. only while compiling qtwebengine system hangs.Can anyone
+> suggest me the solution.So that i canovercome and proceed fiurther..
+>
+>
+>
+> Thanks and regards,
+>
+> ravikumar
+>
+>
+> * CONFIDENTIALITY NOTICE:*
+>
+> This e-mail transmission and any documents, files or previous e-mail
+> messages attached to it may contain information that is confidential,
+> protected by the attorney/client or other privileges, and may constitute
+> non-public information. It is intended to be conveyed only to the
+> designated recipient(s) named above.
+>
+> Any unauthorized use, reproduction, forwarding, distribution or other
+> dissemination of this transmission is strictly prohibited and may be
+> *unlawful.* If you are not an intended recipient of this email
+> transmission, please notify the sender by return e-mail and permanently
+> delete any record of this transmission. Your cooperation is appreciated. To
+> find out more Click Here <http://www.essvote.com/legal/>.
+>
+
+--0000000000003e619505b8adc5b0
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-All,
-
-YP M+ or high bugs which moved to a new milestone in WW02 are listed =
-below:=20
-
-
-Priority
-
-Bug ID
-
-Short Description
-
-Changer
-
-Owner
-
-Was
-
-Became
+<div dir=3D"ltr">Hello Davis,<div><br></div><div>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 I will try using 16 GB ram. Thank you very=C2=A0mu=
+ch for your response.</div><div>Thanks,</div><div>ravi uppada.</div></div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon,=
+ Jan 11, 2021 at 11:18 PM Davis, Michael &lt;<a href=3D"mailto:michael.davi=
+s@essvote.com">michael.davis@essvote.com</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex">
 
 
-Medium+
 
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13919> 13919
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_6136045234912499451WordSection1">
+<p class=3D"MsoNormal">QTWebengine needs a considerable amount of RAM to co=
+mpile and link relative to the rest of Yocto.<u></u><u></u></p>
+<p class=3D"MsoNormal">Normally around 12-16GB.=C2=A0 Less than that and th=
+e system tends to hang.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><b>From:</b> <a href=3D"mailto:yocto@lists.yoctoproj=
+ect.org" target=3D"_blank">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"=
+mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yocto@lists.yoctopro=
+ject.org</a>&gt;
+<b>On Behalf Of </b>U RAVI KUMAR via <a href=3D"http://lists.yoctoproject.o=
+rg" target=3D"_blank">lists.yoctoproject.org</a><br>
+<b>Sent:</b> Monday, January 11, 2021 11:25 AM<br>
+<b>To:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank=
+">yocto@lists.yoctoproject.org</a><br>
+<b>Subject:</b> [yocto] BITBAKE HANGS<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">hi guys,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0I have encountered with a problem.I have built=
+ a custom linux for raspberrypi and included meta-openembedded,meta-raspber=
+rypi,meta-qt5,meta-python2 layers and compiled on the bitbake. it is workin=
+g fine.
+<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I have added recipe &quot;qtwebengine&quot; , here i=
+ have encountered an issue i.e the system hangs. only while compiling qtweb=
+engine system hangs.Can anyone suggest me the
+<a href=3D"http://solution.So" target=3D"_blank">
+solution.So</a> that i canovercome and proceed fiurther..<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Thanks and regards,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">ravikumar<u></u><u></u></p>
+</div>
+</div>
+</div>
 
-Multi License GPLv3 -lic cannot be installed into the image because it =
-has incompatible license
 
-randy.macleod@windriver.com
-
-idadelm@gmail.com
-
-3.3 M1
-
-3.3 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14077> 14077
-
-devtool doesn't handle server failing to startup gracefully
-
-randy.macleod@windriver.com
-
-stacygaikovaia@gmail.com
-
-3.3 M1
-
-3.3 M2
-
-Thanks,=20
-
-=20
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com =
-<mailto:sjolley.yp.pm@gmail.com>=20
-
-=20
+<br><br><p style=3D"font-family:Verdana;font-size:10pt;color:rgb(102,102,10=
+2)"><b>
+CONFIDENTIALITY NOTICE:</b></p><p style=3D"font-family:Verdana;font-size:8p=
+t;color:rgb(102,102,102)">This e-mail transmission and any documents, files=
+ or previous e-mail messages attached to it may contain information that is=
+ confidential, protected by the attorney/client or other privileges, and ma=
+y constitute non-public information. It is intended to be conveyed only to =
+the designated recipient(s) named above.<br><br>Any unauthorized use, repro=
+duction, forwarding, distribution or other dissemination of this transmissi=
+on is strictly prohibited and may be <b>unlawful.</b> If you are not an int=
+ended recipient of this email transmission, please notify the sender by ret=
+urn e-mail and permanently delete any record of this transmission. Your coo=
+peration is appreciated.
 
 
-------=_NextPart_000_06D6_01D6E835.2DFB8F60
-Content-Type: text/html;
-	boundary="----=_NextPart_000_0578_01D6E285.FF3A31E0";
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+To find out more <a href=3D"http://www.essvote.com/legal/" target=3D"_blank=
+">Click Here</a>.</p></div>
+</blockquote></div>
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'color:black'>All,<br><br>YP M+ or high bugs which moved to a =
-new milestone in WW02 are listed below: <o:p></o:p></span></p><table =
-class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 =
-width=3D1282 =
-style=3D'width:961.3pt;margin-left:-.15pt;border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Priority<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom style=3D'width:38.8pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Bug ID<o:p></o:p></span></b></p></td><td =
-width=3D561 nowrap valign=3Dbottom style=3D'width:420.55pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Short =
-Description<o:p></o:p></span></b></p></td><td width=3D236 nowrap =
-valign=3Dbottom style=3D'width:177.0pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Changer<o:p></o:p></span></b></p></td><td =
-width=3D243 nowrap valign=3Dbottom style=3D'width:182.0pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Owner<o:p></o:p></span></b></p></td><td width=3D59 =
-nowrap valign=3Dbottom style=3D'width:44.5pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Was<o:p></o:p></span></b></p></td><td width=3D58 =
-nowrap valign=3Dbottom style=3D'width:43.55pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Became<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Medium+<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13919" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13919</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D561 nowrap valign=3Dbottom =
-style=3D'width:420.55pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Multi License GPLv3 -lic cannot be installed into =
-the image because it has incompatible =
-license<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>idadelm@gmail.com<o:p></o:p></span></p></td><td =
-width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.5pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.3 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.55pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.3 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14077" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14077</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D561 nowrap valign=3Dbottom =
-style=3D'width:420.55pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>devtool doesn't handle server failing to startup =
-gracefully<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>stacygaikovaia@gmail.com<o:p></o:p></span></p></td>=
-<td width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.5pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.3 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.55pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.3 M2<o:p></o:p></span></p></td></tr></table><p =
-class=3DMsoNormal><span style=3D'color:black'>Thanks,</span><span =
-style=3D'color:white'> <o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:white'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-
-------=_NextPart_000_06D6_01D6E835.2DFB8F60--
+--0000000000003e619505b8adc5b0--
