@@ -1,113 +1,97 @@
-Received: from dmzms99802.na.baesystems.com (dmzms99802.na.baesystems.com [149.32.232.66])
- by mx.groups.io with SMTP id smtpd.web09.1501.1610565921274245545
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+ by mx.groups.io with SMTP id smtpd.web11.3450.1610573627993159073
  for <yocto@lists.yoctoproject.org>;
- Wed, 13 Jan 2021 11:25:23 -0800
+ Wed, 13 Jan 2021 13:33:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=bdU+6r8V;
- spf=pass (domain: baesystems.com, ip: 149.32.232.66, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1610565921; x=1768245921;
-  h=from:to:cc:subject:date:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=KzYEpDtiGmjD8DYv8rSWyhnkJjtqxGBigsxpaBamZB4=;
-  b=bdU+6r8VTX1gF5JhBzWySHgo3cwjsjZK4+F3fLpuIKemLxFh11NoZNzH
-   kfo8BhE130Ag57NrvXVsgrZDKrmJVGKRAZFFTqel7+qYEry3rjm/4IMjH
-   9n/e5TWWw/Y1ye3A5PWCpoGt+eOT6jn0GKhNaTkcLzfWuBR6h7TLElmDU
-   Y=;
-IronPort-PHdr: =?us-ascii?q?9a23=3ADw65nBxHXmRnTsLXCy+O+j09IxM/srCxBDY+r6Qd?=
- =?us-ascii?q?0uoeL/ad9pjvdHbS+e9qxAeQG9mCu7Qc0KGP6vuoGTRZp8rY7zZaKN0EfiRGoP?=
- =?us-ascii?q?1epxYnDs+BBB+zB9/RRAt+Iv5/UkR49WqwK0lfFZW2TVTTpnqv8WxaQU2nZkJ6?=
- =?us-ascii?q?KevvB4Hdkdm82fys9J3PeQVIgye2ba9vIBmsogjdq8objZF+Jqs/xRfFv2ZEdu?=
- =?us-ascii?q?pLzm9sOV6fggzw68it8JNh6Shcp+4t+8tdWqjmYqo0SqBVAi47OG4v/s3rshfD?=
- =?us-ascii?q?TQqL5nQCV2gdjwRFDQvY4hzkR5n9qiT1uPZz1ymcJs32UKs7WS++4KdxSR/nkz?=
- =?us-ascii?q?kIOjgk+2zKkMNwjaZboBW8pxxjxoPffY+YOOZicq7bYNgXXnRKUNpPWCNdA4O8?=
- =?us-ascii?q?d4oPAPQHPeZEtIn2ul8CoQKjCQWwGO/jzzlFjWL006InyeQsCQHI0hI9EdISvn?=
- =?us-ascii?q?rar9v1O6UTUe+pw6fHwi7Ob+9N1jf/9ITEbgwtrPOKULltccTR004vFwbdg1me?=
- =?us-ascii?q?roLlODWV1v8TvGeF9OpsTf+khXM7qw5vvDig2MEsgZTXi4kIzlzL+zh3zIM7Kd?=
- =?us-ascii?q?alT0N7esKkH4VOty6EMYt6WMYiQ2ZuuCYh1LIJp4W7cTMRx5s92RHfcPyGc5OU?=
- =?us-ascii?q?4h39UeaROi10i25ieLK6nhu/91WrxeLgWMeuyllKsjZFncfWtnALzxHf98aJRu?=
- =?us-ascii?q?Z580u/xzqC0xze5+VaLU03lqfVJZAvzqAsm5cOrUnNES/4lUH0gaGYaEkp5uil?=
- =?us-ascii?q?5/rob7j7qZGRM415hwfjOaogncy/BP43MgkIX2WD+eW806Hs/VH+QLVSlP02la?=
- =?us-ascii?q?vZv47GKsQHvKK5BBVV0okl5h2iDDmmyMwVkWQbIF5fdh+KjZLlN0/QLP34F/uy?=
- =?us-ascii?q?glShnC92y/zaJLHsDZrAImLMnbv7YLpw60hRwxcpw99F/ZJbELQBLer2Wk/2qd?=
- =?us-ascii?q?PXEAc0Mxexw+b7ENV90Z4eWX6XDq+ZLqzStViI6/ozI+iDfoAVvjP9K+Mh6vLy?=
- =?us-ascii?q?kXM1hUIRcbOv3ZQNcny3Be5pLFuCYXvsmdcBDXkFvg8lTODwlFKCVjtTa26zX6?=
- =?us-ascii?q?I6+D47FJqrAZrfSoy3jrGM3j23EoNIam1GEFyBEHfle52BW/gWaSKSJsFhkiYD?=
- =?us-ascii?q?VbikU4Ihzg2uuxHky7V5KOrY4CgYtZXl1Nhu+eLciwoy+CdvAMuHzW6NVGF1nn?=
- =?us-ascii?q?gURzAo2aB/ulZxxUuE0ah9m/BYD8Bc5+tVUgcmMp7R1+x7C9fuVQLdedeEU1Km?=
- =?us-ascii?q?QtS9ATEtVdI92d8PY0FhFNW+iRDDxzCqA7gXl7OVGJM07rjQ33/rJ8ZymD760/?=
- =?us-ascii?q?wCj1QjCvFGNyXynKd9sQvTCovhnECQlqLsfqMZin3j7mCGmCCru0dDXQNrFe3+?=
- =?us-ascii?q?QX0Ba02ehpy523iDBff6EqgqLAZHj8uFLLBHZ8bBh1xLX+b4JNnbeCS6nGLmVk?=
- =?us-ascii?q?XA/a+FcIe/IzZV5y7aEkVR1llLpXs=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2BgAAClSP9f/0HhJQpiHQEBAQEJARIBB?=
- =?us-ascii?q?QUBQIE9BgELAYMggTgKhDWRQgOKHJAkFIFoCwEBAQEBAQEBAQgBGAcQBAEBhEo?=
- =?us-ascii?q?CF4FWJjYHDgIQAQEGAQEBAQEGBAGGUQyCOCkBgxEBAQEDAQEiEUUMBAIBCBEEA?=
- =?us-ascii?q?QEBAgImAgICHwcKFQgIAQEEDgUIgx+CVQMOrjN2gTKFWIJmDYIkgQ4qAYZzgQq?=
- =?us-ascii?q?FNIIDPoQqPoIbQgQBgScBEgGDOYJgBIM8XwJ1bpA2gyWkTFgHA4J3iSuLQoFXh?=
- =?us-ascii?q?RQrhFqTSoo+oiePFIQgAgQCBAUCFoFdCIEScHCDOQlHFwINlyaFRHQCATQCBgE?=
- =?us-ascii?q?JAQEDCY1lgREBAQ?=
-X-IPAS-Result: =?us-ascii?q?A2BgAAClSP9f/0HhJQpiHQEBAQEJARIBBQUBQIE9BgELAYM?=
- =?us-ascii?q?ggTgKhDWRQgOKHJAkFIFoCwEBAQEBAQEBAQgBGAcQBAEBhEoCF4FWJjYHDgIQA?=
- =?us-ascii?q?QEGAQEBAQEGBAGGUQyCOCkBgxEBAQEDAQEiEUUMBAIBCBEEAQEBAgImAgICHwc?=
- =?us-ascii?q?KFQgIAQEEDgUIgx+CVQMOrjN2gTKFWIJmDYIkgQ4qAYZzgQqFNIIDPoQqPoIbQ?=
- =?us-ascii?q?gQBgScBEgGDOYJgBIM8XwJ1bpA2gyWkTFgHA4J3iSuLQoFXhRQrhFqTSoo+oie?=
- =?us-ascii?q?PFIQgAgQCBAUCFoFdCIEScHCDOQlHFwINlyaFRHQCATQCBgEJAQEDCY1lgREBA?=
- =?us-ascii?q?Q?=
-X-IronPort-AV: E=Sophos;i="5.79,345,1602547200"; 
-   d="scan'208";a="477302968"
-X-IronPort-AV: E=Sophos;i="5.79,345,1602547200"; 
-   d="scan'208";a="95824515"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: Khem Raj <raj.khem@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] #yocto #kernel
-Thread-Topic: [yocto] #yocto #kernel
-Thread-Index: AdbpHa4uv+X65smLT56sbWhYtNALIwARKvQAABDJg2AAAi/tkAAMtERA
-Date: Wed, 13 Jan 2021 19:24:54 +0000
-In-Reply-To: <MADEUP.1659CD13328A69B6.15401@lists.yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.15]
+ dkim=pass header.i=@konsulko.com header.s=google header.b=pE6kNtLh;
+ spf=pass (domain: konsulko.com, ip: 209.85.161.47, mailfrom: paul.barker@konsulko.com)
+Received: by mail-oo1-f47.google.com with SMTP id x203so888053ooa.9
+        for <yocto@lists.yoctoproject.org>; Wed, 13 Jan 2021 13:33:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Zj0/qWam75SV4xy8sueU1j1Ks+lemFhNRNFEYmUigRE=;
+        b=pE6kNtLhvys7jJujTMBK69FVJyLV90fCKV/IaI1TQ76FTpaDCZX1A9S1d7HHc63eSg
+         mhZXK3Qbv7t7RnbSvQr4Toy/KcOsyAqceKOaKYXjqNKphXxLDxQZljWwLTFO1m31nNPe
+         GVYP0xLzL/f92pAM98WKG2DzMTzY1tQi+fxRY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Zj0/qWam75SV4xy8sueU1j1Ks+lemFhNRNFEYmUigRE=;
+        b=Ly3jEYWytsFsPjfl6gaTKxFGtZgECb/XxPTJN4f25grkvd9H+JmfJdHvJB0PqYPohX
+         BJBu6SKM0xegJ6AKzxYC+2JbH1F+Bk72vL3kw03KeuX4J6YDxjyiDnbyVi7LhIdyceBc
+         LRHqIPKin0ssWlZtxGCSLLQSGSy9oRH7p3Z+rdnmfZStcPXOi+YWodOgul3K21Cxnqbl
+         0QijVxfT3vZozMiHNelrl+HILDULelrzV88x5lWlt6oLbNQdgSMKcnl1QYEFIi9vcsKo
+         urYbdqsZrTu1WrB+QpniwebHogPxqUGA4TMfy3CYwRX1UNxayZEWuwOZlQTQXqh4mgRV
+         y5kQ==
+X-Gm-Message-State: AOAM531byBuJcIe4ZDLHKD1677p/J4RYX8g6ChnY8CWsLvlAmHtWwOni
+	mg5QshZbOi/nL3NezcH54isCSRF30f7uGOyTa5PRLC9fGKvVcw==
+X-Google-Smtp-Source: ABdhPJzgvPLpnxBaNfkZsDkgrqbahW8Xazc+gOnRavqSrI3q0DSvmXY2P1X8T4N1KF5XbJIo41Kn8ZrBm6rGfojHDQo=
+X-Received: by 2002:a4a:3001:: with SMTP id q1mr2631354oof.88.1610573627267;
+ Wed, 13 Jan 2021 13:33:47 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <MADEUP.1659E12CA6DF916F.12087@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: "Paul Barker" <pbarker@konsulko.com>
+Date: Wed, 13 Jan 2021 21:33:37 +0000
+Message-ID: <CAM9ZRVuEaZLvg4trA-LhNyz8=yMs=cYhRzSR-emzmEGo8BdMhw@mail.gmail.com>
+Subject: OpenEmbedded Virtual Stand at FOSDEM 2021
+To: openembedded-core <openembedded-core@lists.openembedded.org>, 
+	openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-DQpLaGVtOg0KDQpJIGFtIGhhdmluZyBpc3N1ZXMgYXR0ZW1wdGluZyB0byByZXNvbHZlIHRoaXMg
-aXNzdWUuLi4gDQpJIGFtIHNlZWluZyBpdCBpbiBteSBib290bG9hZGVyLi4uDQoNCkNhbiB5b3Ug
-cG9zc2libHkgcG9pbnQgbWUgaW4gdGhlIHJpZ2h0IGRpcmVjdGlvbiA/DQoNClRoYW5rcy4NClN0
-ZXZlDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiB5b2N0b0BsaXN0cy55b2N0
-b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPiBPbiBCZWhhbGYgT2Yg
-TW9uc2VlcywgU3RldmVuIEMgKFVTKSB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU2VudDog
-V2VkbmVzZGF5LCBKYW51YXJ5IDEzLCAyMDIxIDg6MTcgQU0NClRvOiBLaGVtIFJhaiA8cmFqLmto
-ZW1AZ21haWwuY29tPg0KQ2M6IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6
-IFJlOiBbeW9jdG9dICN5b2N0byAja2VybmVsDQoNCioqKiBXQVJOSU5HICoqKg0KRVhURVJOQUwg
-RU1BSUwgLS0gVGhpcyBtZXNzYWdlIG9yaWdpbmF0ZXMgZnJvbSBvdXRzaWRlIG91ciBvcmdhbml6
-YXRpb24uDQoNCg0KSSBhbSB1c2luZyBzeXN2aW5pdC4uLg0KDQotLS0tLU9yaWdpbmFsIE1lc3Nh
-Z2UtLS0tLQ0KRnJvbTogTW9uc2VlcywgU3RldmVuIEMgKFVTKSANClNlbnQ6IFdlZG5lc2RheSwg
-SmFudWFyeSAxMywgMjAyMSA3OjE1IEFNDQpUbzogJ0toZW0gUmFqJyA8cmFqLmtoZW1AZ21haWwu
-Y29tPg0KQ2M6IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJFOiBbeW9j
-dG9dICN5b2N0byAja2VybmVsDQoNCg0KV2hlbiBJIGRvIHRoaXMgSSBhbSBzZWVpbmcgIk5vdGhp
-bmcgUFJPVklERVMgJ2luaXQtc3lzdGVtLWhlbHBlcnMnLCwsDQoNCi0tLS0tT3JpZ2luYWwgTWVz
-c2FnZS0tLS0tDQpGcm9tOiBLaGVtIFJhaiA8cmFqLmtoZW1AZ21haWwuY29tPiANClNlbnQ6IFR1
-ZXNkYXksIEphbnVhcnkgMTIsIDIwMjEgNjoxMyBQTQ0KVG86IE1vbnNlZXMsIFN0ZXZlbiBDIChV
-UykgPHN0ZXZlbi5tb25zZWVzQGJhZXN5c3RlbXMuY29tPg0KQ2M6IHlvY3RvQGxpc3RzLnlvY3Rv
-cHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dICN5b2N0byAja2VybmVsDQoNCioqKiBX
-QVJOSU5HICoqKg0KRVhURVJOQUwgRU1BSUwgLS0gVGhpcyBtZXNzYWdlIG9yaWdpbmF0ZXMgZnJv
-bSBvdXRzaWRlIG91ciBvcmdhbml6YXRpb24uDQoNCg0KT24gVHVlLCBKYW4gMTIsIDIwMjEgYXQg
-MTI6MDkgUE0gTW9uc2VlcywgU3RldmVuIEMgKFVTKSB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9y
-ZyA8c3RldmVuLm1vbnNlZXM9YmFlc3lzdGVtcy5jb21AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4g
-d3JvdGU6DQo+DQo+DQo+DQo+IFdvcmtpbmcgb24gemV1cyAzLjAuNCwgZm9yIGFhcmNoNjQNCj4N
-Cj4NCj4NCj4gSSAgaGF2ZSBhIHN0YXJ0dXAgc2NyaXB0IG1ha2luZyB1c2Ugb2Yg4oCcc2Vydmlj
-ZeKAnSBIb3cgZG8gSSBwcm9wZXJseSBjb25maWd1cmUgaW4gc3VwcG9ydCBmb3IgdGhlIOKAnHNl
-cnZpY2XigJ0gY29tbWFuZCA/DQo+DQo+IEkgZG8gbm90IGhhdmUgYW4gZXJyb3Igd2hlbiB3b3Jr
-aW5nIHVuZGVyIHJvY2tvLg0KPg0KPg0KPg0KPiBUaGUgZXJyb3Igc2VlbiBpcyA6ICAgIC9ldGMv
-cmM1LmQvUzE1bW91bnRuZnMuc2g6IGxpbmUgNzA6IHNlcnZpY2U6IGNvbW1hbmQgbm90IGZvdW5k
-DQo+DQo+DQo+DQo+IFVzYWdlOiBAIGxpbmUgNzA6ICDigJxzZXJ2aWNlIHJwY2JpbmQgc3RhdHVz
-ID4vZGV2L251bGzigJ0NCj4NCj4NCg0KcGVyaGFwcyBqdXN0IGFkZCBpbml0LXN5c3RlbS1oZWxw
-ZXJzIHRvIElNQUdFX0lOU1RBTEwNCg0KPg0KPiBUaGFua3MsDQo+DQo+IFN0ZXZlDQo+DQo+DQo+
-IA0KPg0K
+Hi folks,
+
+OpenEmbedded has been accepted to hold a "virtual stand" at FOSDEM
+2021 which is taking place online this year on Sat 6th Feb & Sun 7th
+Feb, based around the CET timezone.
+
+Most of you will be familiar with FOSDEM by now, but if not let me
+give a quick bit of background on the event. This is the Free and Open
+Source Developers' European Meeting and usually takes place in
+Brussels in early February each year. The event won't be happening
+in-person in Brussels this year due to the current pandemic but I
+think it's still important to take advantage of this opportunity of
+connecting with other contributors to OpenEmbedded & Yocto Project as
+well as other members and projects within the wider open source
+community. For more information see the FOSDEM 2021 website at
+https://fosdem.org/2021/.
+
+This virtual stand will consist of a Matrix chat room (likely with
+Jitsi video chat) along with hosting space for static web pages &
+video within the FOSDEM 2021 website. The details on all of this are
+still being figured out but right now we've got enough information to
+start planning our involvement. What we're looking for is:
+
+* Any participants in the project who want to help host the Matrix
+chat room between 09:00 and 18:00 each day of the event. This will
+likely involve introducing the project to folks dropping in the chat
+who aren't familiar with OpenEmbedded, answering basic questions and
+chatting about example uses of the project. You don't need to be a
+long-standing expert in the project to help out here! If you can do a
+couple of hours or a half day please let us know.
+
+* Any folks who would like to help build the static web pages for the
+stands section of the FOSDEM 2021 website. FOSDEM is using the Hugo
+static website generator so the content will be written as Markdown
+files which are converted to html by hugo. Further information is
+available in the README file at
+https://github.com/FOSDEM/stands-website/blob/master/README.md. I'm
+hoping that someone is willing to take the lead on this as I'm already
+very busy in the runup to FOSDEM. I'm available to help set up git
+repositories, test things out and review content.
+
+* Any contributions of video content to go along with the static web
+pages. I'm planning to record some short introductory video content
+but other contributions would also be welcome. Details on how to
+upload videos is expected in the near future but for now it would be
+good to just collect folks who are interested so we can discuss this
+further.
+
+If you're interested in any of the above please reply to me and/or the
+list. I look forward to virtually seeing many of you at FOSDEM 2021!
+
+Thanks,
+
+-- 
+Paul Barker
+Konsulko Group
