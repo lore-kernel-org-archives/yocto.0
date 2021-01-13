@@ -1,88 +1,77 @@
-Subject: Re: Unable to add pre compiled library #yocto
+Subject: Re: #vmdk #hddimg #iso with #dunfell
 To: yocto@lists.yoctoproject.org
-From: "Vijay Rakesh Munganda" <vijayrakeshmunganda@gmail.com>
-X-Originating-Location: IN (164.164.95.9)
-X-Originating-Platform: Windows Chrome 87
+From: chruetli@gmx.net
+X-Originating-Location: Niederhasli, Zurich, CH (81.6.59.197)
+X-Originating-Platform: Windows Firefox 84
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Tue, 12 Jan 2021 22:39:08 -0800
-References: <20210112142952.sqkpqbg24py4em22@qschulz>
-In-Reply-To: <20210112142952.sqkpqbg24py4em22@qschulz>
-Message-ID: <10369.1610519948495180203@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="QGUkhBr6kfYBvawCzv7B"
+Date: Wed, 13 Jan 2021 00:26:26 -0800
+References: <12734.1610514618956248879@lists.yoctoproject.org>
+In-Reply-To: <12734.1610514618956248879@lists.yoctoproject.org>
+Message-ID: <6947.1610526386066301523@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="f0qBGl6wQNbWakl1DvER"
 
---QGUkhBr6kfYBvawCzv7B
+--f0qBGl6wQNbWakl1DvER
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 12, 2021 at 06:29 AM, Quentin Schulz wrote:
+I messed it up, this relates to:
+
+https://lists.yoctoproject.org/g/yocto/message/51705
 
 >=20
-> I told you on StackOverflow to checkout the dunfell branch of
-> meta-clang. Do that, and recompile again instead of cherry-picking
-> recipes, classes, patches and whatnot.
-> Once you've something that works, you can experiment with cherry-picking
-> if you want.
-
-I had tried your suggestion and bitbake started to reinstall all packages =
-but facing the same issue. Bitbake doesn't show any progress.
-
-meta-clang=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "dunfell:e63d6f9abb=
-a5348e2183089d6ef5ea384d7ae8d8"
-
-Initialising tasks: 100% |################################################=
-###############################| Time: 0:00:18
-Sstate summary: Wanted 1189 Found 0 Missed 1189 Current 1157 (0% match, 49=
-% complete)
-NOTE: Executing Tasks
-Currently=C2=A0 4 running tasks (2744 of 5866)=C2=A0 46% |################=
-#################=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 |
-0: linux-mtk-5.4.51+gitAUTOINC+50ca5f1c95-r0 do_compile_kernelmodules - 2h=
-33m23s (pid 117)
-1: clang-native-10.0.1-r0 do_compile (pid 4105)=C2=A0 =C2=A07% |####=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+>=20
+>=20
+> I switched from warrior to dunfell and want to build an image for Oracle=
+s
+> VirtualBox VM.
+> On warrior there was 'automatically' a hddimg generated on dunfell this =
+is
+> no longer the case. The IMAGE_FSTYPES has to by specified, I use:
+> WKS_FILE =3D "virtualbox.wks"
+> IMAGE_FSTYPES +=3D "wic.vmdk"
+>=20
+> This requires me to write an wks file for which I use:
+> part /boot --source bootimg-pcbios --ondisk sda --label boot --active
+> --align 1024
+> part / --source rootfs --ondisk sda --fstype=3Dext4 --label platform --a=
+lign
+> 1024
+> bootloader --ptable gpt=C2=A0 --timeout=3D5=C2=A0 --append=3D"rootfstype=
 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|
-2: gnutls-3.6.13-r0 do_package - 1h3m55s (pid 4706)
-3: libgcrypt-1.8.5-r0 do_configure - 1h0m23s (pid 7528)
+=3Dext4
+> video=3Dvesafb vga=3Dcurrent console=3Dtty0"
+>=20
+> With these settings I get an vmdk image but it fails to boot. I get a "V=
+FS
+> Unable to mount root fs on unknown block(0,0)" dump.
+>=20
+> Any ideas?
+>=20
+>
 
-Thanks & Regards,
-VR
-
---QGUkhBr6kfYBvawCzv7B
+--f0qBGl6wQNbWakl1DvER
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 12, 2021 at 06:29 AM, Quentin Schulz wrote:<br />
-<blockquote>I told you on StackOverflow to checkout the dunfell branch of<=
-br />meta-clang. Do that, and recompile again instead of cherry-picking<br =
-/>recipes, classes, patches and whatnot.<br />Once you've something that wo=
-rks, you can experiment with cherry-picking<br />if you want.</blockquote>
-I had tried your suggestion and bitbake started to reinstall all packages =
-but facing the same issue. Bitbake doesn't show any progress.<br /><br />
-<div>meta-clang&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D "dunfell:e63d6=
-f9abba5348e2183089d6ef5ea384d7ae8d8"</div>
-<div>&nbsp;</div>
-<div>Initialising tasks: 100% |###########################################=
-####################################| Time: 0:00:18</div>
-<div>Sstate summary: Wanted 1189 Found 0 Missed 1189 Current 1157 (0% matc=
-h, 49% complete)</div>
-<div>NOTE: Executing Tasks</div>
-<div>Currently&nbsp; 4 running tasks (2744 of 5866)&nbsp; 46% |###########=
-######################&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; |</div>
-<div>0: linux-mtk-5.4.51+gitAUTOINC+50ca5f1c95-r0 do_compile_kernelmodules=
- - 2h33m23s (pid 117)</div>
-<div>1: clang-native-10.0.1-r0 do_compile (pid 4105)&nbsp; &nbsp;7% |####&=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|</div>
-<div>2: gnutls-3.6.13-r0 do_package - 1h3m55s (pid 4706)</div>
-<div>3: libgcrypt-1.8.5-r0 do_configure - 1h0m23s (pid 7528)</div>
-<div><br />Thanks &amp; Regards,<br />VR</div>
+<p>I messed it up, this relates to:</p>
+<p><a href=3D"https://lists.yoctoproject.org/g/yocto/message/51705" target=
+=
+=3D"_blank" rel=3D"noopener">https://lists.yoctoproject.org/g/yocto/messag=
+e/51705</a></p>
+<blockquote>
+<p><span id=3D"main">I switched from warrior to dunfell and want to build =
+an image for Oracles VirtualBox VM.<br />On warrior there was 'automaticall=
+y' a hddimg generated on dunfell this is no longer the case. The IMAGE_FSTY=
+PES has to by specified, I use:<br />WKS_FILE =3D "virtualbox.wks"<br />IMA=
+GE_FSTYPES +=3D "wic.vmdk"<br /><br />This requires me to write an wks file=
+ for which I use:<br />part /boot --source bootimg-pcbios --ondisk sda --la=
+bel boot --active --align 1024<br />part / --source rootfs --ondisk sda --f=
+stype=3Dext4 --label platform --align 1024<br />bootloader --ptable gpt&nbs=
+p; --timeout=3D5&nbsp; --append=3D"rootfstype=3Dext4 video=3Dvesafb vga=3Dc=
+urrent console=3Dtty0"<br /><br />With these settings I get an vmdk image b=
+ut it fails to boot. I get a "VFS Unable to mount root fs on unknown block(=
+0,0)" dump.<br /><br />Any ideas?</span></p>
+</blockquote>
 
---QGUkhBr6kfYBvawCzv7B--
+--f0qBGl6wQNbWakl1DvER--
