@@ -1,177 +1,73 @@
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web11.4802.1610644291463680953
+Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
+ by mx.groups.io with SMTP id smtpd.web09.4783.1610644694215477088
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 Jan 2021 09:11:34 -0800
+ Thu, 14 Jan 2021 09:18:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@baesystems.com header.s=trusted01 header.b=GmlppTvs;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1610644291; x=1768324291;
-  h=from:to:cc:subject:date:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=TmNtDT/PC0AgQlhAjBdHlIADMf9yNWsNIVImxdJUam0=;
-  b=GmlppTvscpXB7bBnJnrkyitDM4r38ZCPdjboDGCUp4pnOD4Ggr3vywGg
-   R1UUIUgFp0eI3Qe0S1ZnP1Dn3kPSSf2OXyzgUZ1XPcNrptVtWfCMA+VUZ
-   8bqws2rPJexd2LqdnoJysq5mJ/qhgkWTFXeJiFFMqALUwB9Jc8iUMzRpg
-   Q=;
-IronPort-PHdr: =?us-ascii?q?9a23=3Agjf6gRUH6xBD95amrJVK36t9jMrV8LGtZVwlr6E/?=
- =?us-ascii?q?grcLSJyIuqrYZRWDvadThVPEFb/W9+hDw7KP9fy5CCpYud3e6ThCKMUKC0Zaz5?=
- =?us-ascii?q?1O3kQJO42sMQXDNvnkbig3ToxpdWRO2DWFC3VTA9v0fFbIo3e/vnY4ExT7Mhdp?=
- =?us-ascii?q?dKyuQtaBx8u42Pqv9JLNfg5GmCSyYa9oLBWxsA7dqtQajZFtJ6oszhbFuGdEd/?=
- =?us-ascii?q?hZyW5qOF6YghLw6tut8JJ5/ClcpvAs+9RcXanmeqgzUKBVAikhP20p/sPgqAPN?=
- =?us-ascii?q?TRGI5nsSU2UWlgRHDg3Y5xzkXZn/rzX3uPNl1CaVIcP5Q7Y0WS+/76hwUx/nlD?=
- =?us-ascii?q?0HNz8i/27JjMF7kb9Wrwigpxx7xI7UfZ2VOf9jda7TYd8WWWxMVdtKWidfHo2z?=
- =?us-ascii?q?cZcAD+sZPeZZsYb9oUcOrQCjDgWoHe/j1yNEimPz0aA8zu8vExzJ3BY4EtwOrn?=
- =?us-ascii?q?rascn1OqkRX+C7zqbIzCnMYfxZ1jrm9IjHaRIhre2QUb5sc8fcz1QkGQPfjlWX?=
- =?us-ascii?q?rIzoJz2Z2OMKs2id9OpvS/ygi3U/pwpsvzav2tkjipfXiYIT11vJ6zhyzII7Kt?=
- =?us-ascii?q?OlTUJ3b8OvHZxLtyGGKYR2XN0tQ2dytCY/zb0Gv4W7czYUx5Q83BPQcOaIfJaT?=
- =?us-ascii?q?4hPjT+aRPSl3hHd+eL6lmxmy9k2gx/T6W8Kp31lEsjBLncPQtnARyRPT8M6HR+?=
- =?us-ascii?q?Ng8kmvxDqC0x7f5v9ALE0okafXNZ0sz70+mJQdr0jOAjL7lVn5gqGWckgp+Oam?=
- =?us-ascii?q?5/r7b7jmuJOROJJ5hA76P6ksnMG0HOo2Mg8LX2eB+OS80qXu/E3+QLpWkv02lb?=
- =?us-ascii?q?HZsIrdJcQZuKG2HxNV3pwk6xalADer1skTk3ofLF9dZR6Lk5LlNl/MLfziEPuy?=
- =?us-ascii?q?h1qhnC1qyv3GJrHtH4nBImLMnbruZ7pw5FRQxBczwN1Z+plaEKsOIOjpVU/0rN?=
- =?us-ascii?q?HYCxg5PBGqzOv/E9V9058eWXqIAq+ELKPeqV+I6fwrI+mLfIIVpizyK/gj5/7r?=
- =?us-ascii?q?ln80nVsQcK210ZcKcny4GO5pL1+CbnX2nNgBCmcLvhEiTOP0jV2CSiRfaGq1X6?=
- =?us-ascii?q?I5/j07CYSmApnfRo21nbCNwD23E5NUa2xcF1yBFXnle5+FVvoMcC6SJ9Vukj0A?=
- =?us-ascii?q?VbivUY8h0hSuuRfhy7p7MOXU5DMXtZT52Nhw4O3Tkwoy+iJqAMSGyGyCVHt7kX?=
- =?us-ascii?q?0TRz42x6B/vVJyylKY0aRin/NYEtlT6+tTUggmLZ7c0/B6C9fqVwPBedeGVEqm?=
- =?us-ascii?q?QtK9DDE1T9Ix2MMOY11nF9SiiRDMwzaqA7gNl7yRA5w08LzT0GTtJ8pnzHbGzq?=
- =?us-ascii?q?Yh3BEaRZ4FEGqgnaNy7EybPJLEjUif343iNZknnWSFoHyfwHSDugddVwhrXKje?=
- =?us-ascii?q?dXoWa1DHtsj041iERLirX/BvEQtMzIa4I6kCPsfgjxNFRPrmENvbamO13Wy3AE?=
- =?us-ascii?q?Db6KmLad+gXmIbxyjQEwxMqBwe43uAfSN2Rhqa4iiWWCdyGEziZQXp9u9lpX6g?=
- =?us-ascii?q?ZkU9whqbdFFs0qHz8RkQ06/PA8gP164J7X9y4w5/G0ywipePU4KN?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2DoAwAhegBg/0HBJQpiHgEBCxIMQINFg?=
- =?us-ascii?q?SuBIhcKhDWRTwOKHJA4gWgLAQEBAQEBAQEBCAEYBxAEAQGESgIXgVcmOBMCEAE?=
- =?us-ascii?q?BBgEBAQEBBgQBhlEMgjgpAYMRAQEBAwEBIhFFDAQCAQgRBAEBAQICJgICAh8HC?=
- =?us-ascii?q?hUICAIEAQ0FCIMfglUDDq8vdoEyhVmCYA2CJYEOKoZ1gQqBQoNyggM+hCo+ght?=
- =?us-ascii?q?CBAGBJwESAQkvgwGCYASCRRRjFDAbAnUzO2uPTYMloyGBL1gHA4J3iS6LQ4FYh?=
- =?us-ascii?q?RUrhFqTS4pBlBiOFI8UhCECBAIEBQIWgW2BCnBwgzkJRxcCDZcmhUR0AgE0AgY?=
- =?us-ascii?q?BCQEBAwmNFzJfAQE?=
-X-IPAS-Result: =?us-ascii?q?A2DoAwAhegBg/0HBJQpiHgEBCxIMQINFgSuBIhcKhDWRTwO?=
- =?us-ascii?q?KHJA4gWgLAQEBAQEBAQEBCAEYBxAEAQGESgIXgVcmOBMCEAEBBgEBAQEBBgQBh?=
- =?us-ascii?q?lEMgjgpAYMRAQEBAwEBIhFFDAQCAQgRBAEBAQICJgICAh8HChUICAIEAQ0FCIM?=
- =?us-ascii?q?fglUDDq8vdoEyhVmCYA2CJYEOKoZ1gQqBQoNyggM+hCo+ghtCBAGBJwESAQkvg?=
- =?us-ascii?q?wGCYASCRRRjFDAbAnUzO2uPTYMloyGBL1gHA4J3iS6LQ4FYhRUrhFqTS4pBlBi?=
- =?us-ascii?q?OFI8UhCECBAIEBQIWgW2BCnBwgzkJRxcCDZcmhUR0AgE0AgYBCQEBAwmNFzJfA?=
- =?us-ascii?q?QE?=
-X-IronPort-AV: E=Sophos;i="5.79,347,1602547200"; 
-   d="scan'208";a="339269494"
-X-IronPort-AV: E=Sophos;i="5.79,347,1602547200"; 
-   d="scan'208";a="455401207"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>, Khem Raj
-	<raj.khem@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp.bon.at (Postfix) with ESMTPSA id 4DGrcM4d1cz5tlF;
+	Thu, 14 Jan 2021 18:18:10 +0100 (CET)
+Date: Thu, 14 Jan 2021 18:18:09 +0100
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: steven.monsees@baesystems.com
+Cc: Khem Raj <raj.khem@gmail.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] #yocto #kernel
-Thread-Topic: [yocto] #yocto #kernel
-Thread-Index: AdbpHa4uv+X65smLT56sbWhYtNALIwARKvQAABDJg2AAAi/tkAAMtERAACukENAAAaWMUAAAX51g
-Date: Thu, 14 Jan 2021 17:11:29 +0000
-In-Reply-To: <MADEUP.165A27CAEC471216.8149@lists.yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.15]
+Message-ID: <20210114171809.joferqzcexsonuik@qschulz>
+References: <MADEUP.165A27CAEC471216.8149@lists.yoctoproject.org>
+ <MADEUP.165A2873BA1B1546.31957@lists.yoctoproject.org>
 MIME-Version: 1.0
-Message-ID: <MADEUP.165A2873BA1B1546.31957@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+In-Reply-To: <MADEUP.165A2873BA1B1546.31957@lists.yoctoproject.org>
+User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-DQpLaGVtOg0KDQpTaG91bGQgaGF2ZSB3YWl0ZWQgZm9yIGJ1aWxkIHRvIGNvbXBsZXRlLi4uIHRo
-aXMganVzdCBkZWxheXMgd2hlcmUgdGhlIGVycm9yIG9jY3Vycy4NCg0KTm93IHJhdGhlciB0aGFu
-IHVwZnJvbnQsIGl0IGZhaWxzIG9uIHBhY2thZ2luZyB3aXRoIHRoZSBmb2xsb3dpbmcgZXJyb3I6
-DQoNCkVSUk9SOiBhaW94LWRlZmF1bHRmcy0xLjAtcjAgZG9fcm9vdGZzOiBVbmFibGUgdG8gaW5z
-dGFsbCBwYWNrYWdlcy4gQ29tbWFuZCAnL2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8vd29y
-a3NwYWNlXzMvbWV0YS1iYWUvbWV0YS1saW13cy9idWlsZHMvYWlveC1kZWZhdWx0L3RtcC93b3Jr
-L2Fpb3hfZGVmYXVsdC1wb2t5LWxpbnV4L2Fpb3gtZGVmYXVsdGZzLzEuMC1yMC9yZWNpcGUtc3lz
-cm9vdC1uYXRpdmUvdXNyL2Jpbi9vcGtnIC0tdm9sYXRpbGUtY2FjaGUgLWYgL2Rpc2swL3NjcmF0
-Y2gvc21vbnNlZXMveW9jdG8vd29ya3NwYWNlXzMvbWV0YS1iYWUvbWV0YS1saW13cy9idWlsZHMv
-YWlveC1kZWZhdWx0L3RtcC93b3JrL2Fpb3hfZGVmYXVsdC1wb2t5LWxpbnV4L2Fpb3gtZGVmYXVs
-dGZzLzEuMC1yMC9vcGtnLmNvbmYgLXQgL2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8vd29y
-a3NwYWNlXzMvbWV0YS1iYWUvbWV0YS1saW13cy9idWlsZHMvYWlveC1kZWZhdWx0L3RtcC93b3Jr
-L2Fpb3hfZGVmYXVsdC1wb2t5LWxpbnV4L2Fpb3gtZGVmYXVsdGZzLzEuMC1yMC90ZW1wL2lwa3Rl
-bXAvIC1vIC9kaXNrMC9zY3JhdGNoL3Ntb25zZWVzL3lvY3RvL3dvcmtzcGFjZV8zL21ldGEtYmFl
-L21ldGEtbGltd3MvYnVpbGRzL2Fpb3gtZGVmYXVsdC90bXAvd29yay9haW94X2RlZmF1bHQtcG9r
-eS1saW51eC9haW94LWRlZmF1bHRmcy8xLjAtcjAvcm9vdGZzICAtLWZvcmNlX3Bvc3RpbnN0YWxs
-IC0tcHJlZmVyLWFyY2gtdG8tdmVyc2lvbiAgIGluc3RhbGwgYmFzZS1maWxlcyBiYXNoIGJjIGJp
-bnV0aWxzIGJyaWRnZS11dGlscyBjb3JldXRpbHMgY3J1c2ggY3MtaGRsYyBkaGNwLXNlcnZlciBk
-aGNwLXNlcnZlci1jb25maWcgZTJmc3Byb2dzIGV0aHRvb2wgaGF2ZWdlZCBoZHBhcm0gaTJjLXRv
-b2xzIGluZXR1dGlscyBpbmV0dXRpbHMtcnNoIGlwZXJmMyBpcHJvdXRlMiBpcHRhYmxlcyBpcHV0
-aWxzIGlwdXRpbHMtcGluZyBrZXJuZWwtbW9kdWxlcyBrZXktaGVscGVyIGttb2QgbGlicGNpMyBt
-b2R1bGUtaW5pdC10b29scyBtdGQtdXRpbHMgbXRkLXV0aWxzLXViaWZzIG5hbm8gbmN1cnNlcyBu
-Y3Vyc2VzLWRldiBuZXQtdG9vbHMgbmV0Y2F0IG5mcy11dGlscyBuZnMtdXRpbHMtc3RhdHMgbnRm
-cy0zZyBudGZzcHJvZ3Mgb3BlbnNzaCBvcGVuc3NoLXNmdHAtc2VydmVyIHBhY2thZ2Vncm91cC1i
-YXNlLXZmYXQgcGFja2FnZWdyb3VwLWNvcmUtYm9vdCBwY2l1dGlscyBwY2l1dGlscy1pZHMgcGVl
-a3Bva2UgcGVybCBwbHg4MDAwIHBseDgwMDBudCBwbHhzdmMgcHViLWtleSBweXRob24gcHl0aG9u
-LXN0cmluZ29sZCBweXRob24tc3VicHJvY2VzcyByc3luYyBydW4tcG9zdGluc3RzIHNnMy11dGls
-cyBzd2lnIHRhciB0Y3BkdW1wIHRmdHAtaHBhIHRmdHAtaHBhLXNlcnZlciB0cmFjZXJvdXRlIHVz
-YnV0aWxzIHV0aWwtbGludXggd29sZnNzbCB4aW5ldGQnIHJldHVybmVkIDI1NToNCkNvbGxlY3Rl
-ZCBlcnJvcnM6DQogKiBvcGtnX3ByZXBhcmVfdXJsX2Zvcl9pbnN0YWxsOiBDb3VsZG4ndCBmaW5k
-IGFueXRoaW5nIHRvIHNhdGlzZnkgJ2luZXR1dGlscy1yc2gnLg0KDQpXaGF0IGhhcyBjaGFuZ2Vk
-IGluIHRoZSBidWlsZCBwcm9jZXNzID8sIHVuZGVyIHJvY2tvIEkgZG8gbm90IHNlZSBhbiBpc3N1
-ZSBhZGRpbmcgaW5ldHV0aWxzLXJzaC4uLg0KDQpTdGV2ZQ0KDQotLS0tLU9yaWdpbmFsIE1lc3Nh
-Z2UtLS0tLQ0KRnJvbTogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8eW9jdG9AbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZz4gT24gQmVoYWxmIE9mIE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgdmlh
-IGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClNlbnQ6IFRodXJzZGF5LCBKYW51YXJ5IDE0LCAyMDIx
-IDExOjU5IEFNDQpUbzogS2hlbSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT4NCkNjOiB5b2N0b0Bs
-aXN0cy55b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSAjeW9jdG8gI2tlcm5l
-bA0KDQoqKiogV0FSTklORyAqKioNCkVYVEVSTkFMIEVNQUlMIC0tIFRoaXMgbWVzc2FnZSBvcmln
-aW5hdGVzIGZyb20gb3V0c2lkZSBvdXIgb3JnYW5pemF0aW9uLg0KDQoNCktoZW06DQoNCkkgbWF5
-IGhhdmUgc3R1bWJsZWQgdXBvbiBpdCwgaXQgYXBwZWFycyBJIGhhZCB0byBhZGQgYSBERVBFTkRT
-ICs9ICJpbmV0dXRpbHMiIHRvIGZpeCB0aGUgaXNzdWUgb24gaW5jbHVkaW5nIGluZXR1dGlscy1y
-c2guLi4NCg0KV2hhdCBkb2VzICJpbml0LXN5c3RlbS1oZWxwZXJzIiBkZXBlbmQgb24gPw0KDQpU
-aGFua3MsDQpTdGV2ZQ0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogeW9jdG9A
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gT24g
-QmVoYWxmIE9mIE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5v
-cmcNClNlbnQ6IFRodXJzZGF5LCBKYW51YXJ5IDE0LCAyMDIxIDExOjI0IEFNDQpUbzogS2hlbSBS
-YWogPHJhai5raGVtQGdtYWlsLmNvbT4NCkNjOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3Jn
-DQpTdWJqZWN0OiBSZTogW3lvY3RvXSAjeW9jdG8gI2tlcm5lbA0KDQoqKiogV0FSTklORyAqKioN
-CkVYVEVSTkFMIEVNQUlMIC0tIFRoaXMgbWVzc2FnZSBvcmlnaW5hdGVzIGZyb20gb3V0c2lkZSBv
-dXIgb3JnYW5pemF0aW9uLg0KDQoNCg0KS2hlbToNCg0KSSBhcHBlYXIgdG8gaGF2ZSBhIHNpbWls
-YXIgaXNzdWUgYnVpbGRpbmcgaW4gaW5ldHV0aWxzLXJzaCBhbmQgaW5ldHV0aWxzLXJzaGQuLi4N
-Cg0KV2hlbiBhZGRlZCB0byBJTUFHRV9JTlNUQUxMLCAoSU1BR0VfSU5TVEFMTCArPSAiIGluZXR1
-dGlscy1yc2ggaW5ldHV0aWxzLXJzaGQiKQ0KDQpJIGFsc28gZ2V0IGFuICJFcnJvcjogTm90aGlu
-ZyBQUk9WSURFUyAuLi4iDQoNCkhvdyBkbyB5b3UgcHVsbCBpbiB2YXJpb3VzIG5ldCB1dGlsaXR5
-IGNvbW1hbmRzIChleC4gcmxvZ2luZCkgd2l0aG91dCBpbmV0dXRpbHMtcnNoIGFuZCBpbmV0dXRp
-bHMtcnNoZCA/DQoNCkkgZG8gbm90IHNlZSBhbnl0aGluZyBpbiB0aGUgbWlncmF0aW9uIGd1aWRl
-cyBvbiB0aGlzLi4uDQoNCkFueSBpZGVhcyA/DQoNCkkgYW0gdXNpbmcgemV1cyAzLjAuNCBhbmQg
-YnVpbGRpbmcgYWFyY2g2NCBYaWxpbnggYmFzZWQgaW1hZ2UuLi4NCg0KU3RldmUNCg0KLS0tLS1P
-cmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgDQpTZW50
-OiBXZWRuZXNkYXksIEphbnVhcnkgMTMsIDIwMjEgMjoyNSBQTQ0KVG86IEtoZW0gUmFqIDxyYWou
-a2hlbUBnbWFpbC5jb20+DQpDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVj
-dDogUkU6IFt5b2N0b10gI3lvY3RvICNrZXJuZWwNCg0KDQpLaGVtOg0KDQpJIGFtIGhhdmluZyBp
-c3N1ZXMgYXR0ZW1wdGluZyB0byByZXNvbHZlIHRoaXMgaXNzdWUuLi4gDQpJIGFtIHNlZWluZyBp
-dCBpbiBteSBib290bG9hZGVyLi4uDQoNCkNhbiB5b3UgcG9zc2libHkgcG9pbnQgbWUgaW4gdGhl
-IHJpZ2h0IGRpcmVjdGlvbiA/DQoNClRoYW5rcy4NClN0ZXZlDQoNCi0tLS0tT3JpZ2luYWwgTWVz
-c2FnZS0tLS0tDQpGcm9tOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0
-cy55b2N0b3Byb2plY3Qub3JnPiBPbiBCZWhhbGYgT2YgTW9uc2VlcywgU3RldmVuIEMgKFVTKSB2
-aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU2VudDogV2VkbmVzZGF5LCBKYW51YXJ5IDEzLCAy
-MDIxIDg6MTcgQU0NClRvOiBLaGVtIFJhaiA8cmFqLmtoZW1AZ21haWwuY29tPg0KQ2M6IHlvY3Rv
-QGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dICN5b2N0byAja2Vy
-bmVsDQoNCioqKiBXQVJOSU5HICoqKg0KRVhURVJOQUwgRU1BSUwgLS0gVGhpcyBtZXNzYWdlIG9y
-aWdpbmF0ZXMgZnJvbSBvdXRzaWRlIG91ciBvcmdhbml6YXRpb24uDQoNCg0KSSBhbSB1c2luZyBz
-eXN2aW5pdC4uLg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogTW9uc2Vlcywg
-U3RldmVuIEMgKFVTKSANClNlbnQ6IFdlZG5lc2RheSwgSmFudWFyeSAxMywgMjAyMSA3OjE1IEFN
-DQpUbzogJ0toZW0gUmFqJyA8cmFqLmtoZW1AZ21haWwuY29tPg0KQ2M6IHlvY3RvQGxpc3RzLnlv
-Y3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJFOiBbeW9jdG9dICN5b2N0byAja2VybmVsDQoNCg0K
-V2hlbiBJIGRvIHRoaXMgSSBhbSBzZWVpbmcgIk5vdGhpbmcgUFJPVklERVMgJ2luaXQtc3lzdGVt
-LWhlbHBlcnMnLCwsDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBLaGVtIFJh
-aiA8cmFqLmtoZW1AZ21haWwuY29tPiANClNlbnQ6IFR1ZXNkYXksIEphbnVhcnkgMTIsIDIwMjEg
-NjoxMyBQTQ0KVG86IE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgPHN0ZXZlbi5tb25zZWVzQGJhZXN5
-c3RlbXMuY29tPg0KQ2M6IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJl
-OiBbeW9jdG9dICN5b2N0byAja2VybmVsDQoNCioqKiBXQVJOSU5HICoqKg0KRVhURVJOQUwgRU1B
-SUwgLS0gVGhpcyBtZXNzYWdlIG9yaWdpbmF0ZXMgZnJvbSBvdXRzaWRlIG91ciBvcmdhbml6YXRp
-b24uDQoNCg0KT24gVHVlLCBKYW4gMTIsIDIwMjEgYXQgMTI6MDkgUE0gTW9uc2VlcywgU3RldmVu
-IEMgKFVTKSB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8c3RldmVuLm1vbnNlZXM9YmFlc3lz
-dGVtcy5jb21AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gd3JvdGU6DQo+DQo+DQo+DQo+IFdvcmtp
-bmcgb24gemV1cyAzLjAuNCwgZm9yIGFhcmNoNjQNCj4NCj4NCj4NCj4gSSAgaGF2ZSBhIHN0YXJ0
-dXAgc2NyaXB0IG1ha2luZyB1c2Ugb2Yg4oCcc2VydmljZeKAnSBIb3cgZG8gSSBwcm9wZXJseSBj
-b25maWd1cmUgaW4gc3VwcG9ydCBmb3IgdGhlIOKAnHNlcnZpY2XigJ0gY29tbWFuZCA/DQo+DQo+
-IEkgZG8gbm90IGhhdmUgYW4gZXJyb3Igd2hlbiB3b3JraW5nIHVuZGVyIHJvY2tvLg0KPg0KPg0K
-Pg0KPiBUaGUgZXJyb3Igc2VlbiBpcyA6ICAgIC9ldGMvcmM1LmQvUzE1bW91bnRuZnMuc2g6IGxp
-bmUgNzA6IHNlcnZpY2U6IGNvbW1hbmQgbm90IGZvdW5kDQo+DQo+DQo+DQo+IFVzYWdlOiBAIGxp
-bmUgNzA6ICDigJxzZXJ2aWNlIHJwY2JpbmQgc3RhdHVzID4vZGV2L251bGzigJ0NCj4NCj4NCg0K
-cGVyaGFwcyBqdXN0IGFkZCBpbml0LXN5c3RlbS1oZWxwZXJzIHRvIElNQUdFX0lOU1RBTEwNCg0K
-Pg0KPiBUaGFua3MsDQo+DQo+IFN0ZXZlDQo+DQo+DQo+IA0KPg0K
+Hi Steve,
+
+On Thu, Jan 14, 2021 at 05:11:29PM +0000, Monsees, Steven C (US) via lists.=
+yoctoproject.org wrote:
+>=20
+> Khem:
+>=20
+> Should have waited for build to complete... this just delays where the er=
+ror occurs.
+>=20
+> Now rather than upfront, it fails on packaging with the following error:
+>=20
+> ERROR: aiox-defaultfs-1.0-r0 do_rootfs: Unable to install packages. Comma=
+nd '/disk0/scratch/smonsees/yocto/workspace_3/meta-bae/meta-limws/builds/ai=
+ox-default/tmp/work/aiox_default-poky-linux/aiox-defaultfs/1.0-r0/recipe-sy=
+sroot-native/usr/bin/opkg --volatile-cache -f /disk0/scratch/smonsees/yocto=
+/workspace_3/meta-bae/meta-limws/builds/aiox-default/tmp/work/aiox_default-=
+poky-linux/aiox-defaultfs/1.0-r0/opkg.conf -t /disk0/scratch/smonsees/yocto=
+/workspace_3/meta-bae/meta-limws/builds/aiox-default/tmp/work/aiox_default-=
+poky-linux/aiox-defaultfs/1.0-r0/temp/ipktemp/ -o /disk0/scratch/smonsees/y=
+octo/workspace_3/meta-bae/meta-limws/builds/aiox-default/tmp/work/aiox_defa=
+ult-poky-linux/aiox-defaultfs/1.0-r0/rootfs  --force_postinstall --prefer-a=
+rch-to-version   install base-files bash bc binutils bridge-utils coreutils=
+ crush cs-hdlc dhcp-server dhcp-server-config e2fsprogs ethtool haveged hdp=
+arm i2c-tools inetutils inetutils-rsh iperf3 iproute2 iptables iputils iput=
+ils-ping kernel-modules key-helper kmod libpci3 module-init-tools mtd-utils=
+ mtd-utils-ubifs nano ncurses ncurses-dev net-tools netcat nfs-utils nfs-ut=
+ils-stats ntfs-3g ntfsprogs openssh openssh-sftp-server packagegroup-base-v=
+fat packagegroup-core-boot pciutils pciutils-ids peekpoke perl plx8000 plx8=
+000nt plxsvc pub-key python python-stringold python-subprocess rsync run-po=
+stinsts sg3-utils swig tar tcpdump tftp-hpa tftp-hpa-server traceroute usbu=
+tils util-linux wolfssl xinetd' returned 255:
+> Collected errors:
+>  * opkg_prepare_url_for_install: Couldn't find anything to satisfy 'inetu=
+tils-rsh'.
+>=20
+> What has changed in the build process ?, under rocko I do not see an issu=
+e adding inetutils-rsh...
+>=20
+
+http://cgit.openembedded.org/openembedded-core/commit/meta/recipes-connecti=
+vity/inetutils?h=3Dzeus&id=3D9e13dad6ea76dd036098ef62427804e4138bf83b
+
+It's disabled by default now.
+
+You can probably re-enable it by appending --enable-rsh again I guess?
+
+Quentin
