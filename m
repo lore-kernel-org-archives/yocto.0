@@ -1,153 +1,108 @@
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
- by mx.groups.io with SMTP id smtpd.web10.101.1610746829847319317
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+ by mx.groups.io with SMTP id smtpd.web12.620.1610748319232700183
  for <yocto@lists.yoctoproject.org>;
- Fri, 15 Jan 2021 13:40:30 -0800
+ Fri, 15 Jan 2021 14:05:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=TD+VE9Jo;
- spf=pass (domain: gmail.com, ip: 209.85.160.175, mailfrom: theaethereal@gmail.com)
-Received: by mail-qt1-f175.google.com with SMTP id h19so7098535qtq.13
-        for <yocto@lists.yoctoproject.org>; Fri, 15 Jan 2021 13:40:29 -0800 (PST)
+ dkim=pass header.i=@sidebranch-com.20150623.gappssmtp.com header.s=20150623 header.b=ZX27K47P;
+ spf=softfail (domain: sidebranch.com, ip: 209.85.222.179, mailfrom: leon@sidebranch.com)
+Received: by mail-qk1-f179.google.com with SMTP id 186so13239884qkj.3
+        for <yocto@lists.yoctoproject.org>; Fri, 15 Jan 2021 14:05:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=l0tw0+UqoGnMWNzocIffvsu0gw7u69n98KWy2BwuvdA=;
-        b=TD+VE9JoyZIVDaewqW1BUEu7vs3Nw54e92d2uE4FtahppecdYhTxKyRZkYRD1zGqMS
-         0uHv31iz9pGDjr+bZnIHTMRaDP6T1zXzjzldziFzAdZTpGfqHB/AkRBk19LCeWQZzXfH
-         qnDChmK8u7kBle2CIhea+jlkEfm8OL8sHqLCBCal2M+Uy8QV5KptE+DUR9KlUHKHMvmS
-         f86+TQy5dEXcwQTDNXpbJE+MjvKCn7B9n1QA3JyFy3tzc8fH3vXUbB45WDGJOsp5iS7A
-         W37kYT+mt5/6XLzB+k23CrHLsxPs47awpRF1L4Bd3f9y4JVXvWr1nc0kWa5bfDznIsYF
-         BcWg==
+        d=sidebranch-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZbPyxUoc59/UhEjs5SFitimJuUKUaLeuQKhZpJpmqAc=;
+        b=ZX27K47Pid/0gcP0sZC8WqoMAAjHcwdFJh+usGiaPM4EEOlHgYs8RpJI58xzpia0Yp
+         b1u+JLe2+tPIElqTe2O3dW5b7kR1nh6XJBUn/R1C4voZYhuDfQ9UNdimpH9mNZQIUbhc
+         HDZpI+mWwdPplD4gvDXry8kcE5A7BPo/CwI84KxlzSJDNlIVasu4Z5y3+twwdmKgIrWo
+         b5fKpY5aTPFIW90NDmR+u3mVoG1gVL3Z8MNMPtEE6bl/1EC8rdvs4lnBACDVkyrG3i8X
+         uUupp791lNxOFUNM7OenvyBqXOlRcaQZKIjNqBoI+3iDUdi4+Ll6TFpNViMaZZ1pKiOf
+         8VhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=l0tw0+UqoGnMWNzocIffvsu0gw7u69n98KWy2BwuvdA=;
-        b=ADEDIAhjulactRP/6ALmWzBDehZDVlMaM2/oARSEXr0SnYDUnGGmPw1oGmNJPzT8a1
-         UHE+EmtEPTPakfUgtnfMOfK+sjAh8Xab8K/jQM5nHve5vsfxqwgd9Bz0ER5l/n5KhJQ5
-         HxXmISHK0v2joRr4ScNRRcG7QEeq5Qa65ti7AWtulTZHPduW10CFUj4+YdoDs45gwVpK
-         luZWD1sbvmyEtc+6bh8c1iuCwSBerqP+6x9bHTexvlh9mkZYA8cF8W0aXPEA1C2eL3uO
-         E8t0xDuLmKP0cKmI+Hg0T+ZPsMKf7vqk+mZmgt9lp44mVt42nW17S8ZbdXPgsroZXcmP
-         P6dg==
-X-Gm-Message-State: AOAM530PFs1kywnARuqKzavpAIA1XHmoxKeIrnpsNhVv+sffE38suHw8
-	3kTVzhj1Hlb3updTLil0g39eD5SneyuMKJMixG/AHJ0LZg==
-X-Google-Smtp-Source: ABdhPJw1Df7DJgwER8vSWhWpTL8wuRV7yKsdTZywht5giKtvc0F5Dch9wT86F6CiR+4r36Iqb8tRIYA5h3+s/hZa4vg=
-X-Received: by 2002:ac8:70c1:: with SMTP id g1mr13769908qtp.108.1610746828649;
- Fri, 15 Jan 2021 13:40:28 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZbPyxUoc59/UhEjs5SFitimJuUKUaLeuQKhZpJpmqAc=;
+        b=rpzRM/nbQpZvTl7quF+nm6vWdyy4ejhgkz+pG2boDzAt5MsMDjDiMo5HHb6DSI9a2a
+         Imd5DIDVpvyhmpuNuI/bMDKP8mmHNjsMTGV0UF3eus+gLf9IpYPgtEYu+Px337qRPOkg
+         zbHY+JtfKYS80MuzLL56VPblU3E/3lafkyapkywnVM3/BONNmyPPasPTxdWx5xr0CBM0
+         b/EJjNXdHQ4HKp0xDJoCnHwEX+5p+VjvJdQbIawwBzGzPH3m/XVh/jHkgm6lG0qy4Rp6
+         o0xf8ASE9tcqsFwgzsi+mTLHAzHEVx7UzP26ylgXscR3qXPrEmxL8yjQ6ec+NYUwYb4G
+         7ZlQ==
+X-Gm-Message-State: AOAM533XhjX5KxqQNYT7aCkNJ9kRL3/WlUV1HcD85eow5xv0n/s1958g
+	/XuzU+GxLZOmOWAZ2Ux8ek7A9pMmHuM9dhyvOHar6w==
+X-Google-Smtp-Source: ABdhPJwYz/FxpbLgRMfUaH6dCqBQW1wzQOuVQbV9tJPKfbZHSM7Vd5GEDbimTJX2i/305FCQrVyt6l6YozL8fpvIDqU=
+X-Received: by 2002:a37:9b95:: with SMTP id d143mr14264847qke.215.1610748318234;
+ Fri, 15 Jan 2021 14:05:18 -0800 (PST)
 MIME-Version: 1.0
-From: "Dave Tucker" <theaethereal@gmail.com>
-Date: Fri, 15 Jan 2021 16:40:17 -0500
-Message-ID: <CAOqi=Cu3t04-UnFFUoCCeKcPS+c02Y=+pwo5o-SKGoWbGo9VZg@mail.gmail.com>
-Subject: Can't Build Read-Only RootFS
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000008b795805b8f738a6"
+References: <CAOqi=Cu3t04-UnFFUoCCeKcPS+c02Y=+pwo5o-SKGoWbGo9VZg@mail.gmail.com>
+In-Reply-To: <CAOqi=Cu3t04-UnFFUoCCeKcPS+c02Y=+pwo5o-SKGoWbGo9VZg@mail.gmail.com>
+From: "Leon Woestenberg" <leon@sidebranch.com>
+Date: Fri, 15 Jan 2021 23:05:07 +0100
+Message-ID: <CAMjhiJiEZiYC_X3rhxC4XyTKei1Ymy4m8czNBsquM_F1jVKvQw@mail.gmail.com>
+Subject: Re: [yocto] Can't Build Read-Only RootFS
+To: Dave Tucker <theaethereal@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000054d28205b8f79188"
 
---0000000000008b795805b8f738a6
+--00000000000054d28205b8f79188
 Content-Type: text/plain; charset="UTF-8"
 
- I'm trying to build yocto for a Beaglebone Black.  I was setting the file
-system to be read-only in /etc/fstab, and that was causing the boot process
-to lock up as of my latest build when I switched to dunfell.  So I added
-IMAGE_FEATURES += "read-only-rootfs" to my local.conf, which I believe is
-the correct way to handle this.  But now the system won't build.  I get the
-following output:
+Hello Dave,
 
-NOTE: recipe core-image-minimal-1.0-r0: task do_rootfs: Started
-ERROR: core-image-minimal-1.0-r0 do_rootfs: The following packages could
-not be configured offline and rootfs is read-only: ['sysvinit-inittab']
-ERROR: Logfile of failure stored in:
-/data/dunfell-bbb/build/bbb/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.10987
+On Fri, Jan 15, 2021 at 10:40 PM Dave Tucker <theaethereal@gmail.com> wrote:
 
-NOTE: recipe core-image-minimal-1.0-r0: task do_rootfs: Failed
-I've not been able to find any information on this issue and am not sure
-how to proceed.  Could someone please point me in the right direction?
+> ERROR: core-image-minimal-1.0-r0 do_rootfs: The following packages could
+> not be configured offline and rootfs is read-only: ['sysvinit-inittab']
+> I've not been able to find any information on this issue and am not sure
+> how to proceed.  Could someone please point me in the right direction?
+>
+> I copied that error report into Google. Maybe you are hitting a similar
+case to this?
 
-Here are my local.conf <https://pastebin.com/raw/cjbJXD8K> and bblayers.conf
-<https://pastebin.com/raw/giXATtkG>.
+https://www.yoctoproject.org/pipermail/meta-xilinx/2018-January/003638.html
 
-Thanks,
+Regards,
 
-Dave
+Leon,
 
---0000000000008b795805b8f738a6
+--00000000000054d28205b8f79188
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">
-<div>I&#39;m trying to build yocto for a Beaglebone Black.=C2=A0 I was sett=
-ing=20
-the file system to be read-only in /etc/fstab, and that was causing the=20
-boot process to lock up as of my latest build when I switched to=20
-dunfell.=C2=A0 So I added IMAGE_FEATURES +=3D &quot;read-only-rootfs&quot; =
-to my=20
-local.conf, which I believe is the correct way to handle this.=C2=A0 But no=
-w=20
-the system won&#39;t build.=C2=A0 I get the following output:</div><div><br=
-></div><div>
-
-<div style=3D"box-sizing:inherit;overflow:hidden;width:1992px;height:20px">=
-<div style=3D"box-sizing:inherit;display:flex;padding:0px 12px;white-space:=
-pre-wrap"><span style=3D"box-sizing:inherit;display:flex"><span style=3D"bo=
-x-sizing:inherit;word-break:break-all;margin-left:20px;margin-right:12px"><=
-span style=3D"box-sizing:inherit"><span style=3D"box-sizing:inherit"><span =
-style=3D"box-sizing:inherit">NOTE: recipe core-image-minimal-1.0-r0: task d=
-o_rootfs: Started
+<div dir=3D"ltr"><div dir=3D"ltr"></div><div>Hello Dave,</div><div><br></di=
+v><div><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Fri, Jan 15, 2021 at 10:40 PM Dave Tucker &lt;<a href=3D"mailto:theaetherea=
+l@gmail.com">theaethereal@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><span style=3D"box-sizi=
+ng:inherit;display:flex"><span style=3D"box-sizing:inherit;word-break:break=
+-all;margin-left:20px;margin-right:12px"><span style=3D"box-sizing:inherit"=
+><span style=3D"box-sizing:inherit"><span style=3D"box-sizing:inherit"></sp=
+an></span></span></span></span><div><div style=3D"box-sizing:inherit;overfl=
+ow:hidden;width:1992px;height:20px"><div style=3D"box-sizing:inherit;displa=
+y:flex;padding:0px 12px;white-space:pre-wrap"><span style=3D"box-sizing:inh=
+erit;display:flex"><span style=3D"box-sizing:inherit;word-break:break-all;m=
+argin-left:20px;margin-right:12px"><span style=3D"box-sizing:inherit"><span=
+ style=3D"box-sizing:inherit"><span style=3D"box-sizing:inherit">ERROR: cor=
+e-image-minimal-1.0-r0 do_rootfs: The following packages could not be confi=
+gured offline and rootfs is read-only: [&#39;sysvinit-inittab&#39;]
 </span></span></span></span><span style=3D"box-sizing:inherit;height:20px;m=
 argin-right:25px"><span style=3D"box-sizing:inherit;font-size:0.875rem;disp=
 lay:inline-flex;font-family:AzureDevOpsMDL2Assets"></span></span></span></d=
-iv></div><div style=3D"box-sizing:inherit;overflow:hidden;width:1992px;heig=
-ht:20px"><div style=3D"box-sizing:inherit;display:flex;padding:0px 12px;whi=
-te-space:pre-wrap"><span style=3D"box-sizing:inherit;display:flex"><span st=
-yle=3D"box-sizing:inherit;text-align:right;padding-left:20px;min-width:33px=
-"></span><span style=3D"box-sizing:inherit;word-break:break-all;margin-left=
-:20px;margin-right:12px"><span style=3D"box-sizing:inherit"><span style=3D"=
-box-sizing:inherit"><span style=3D"box-sizing:inherit">ERROR: core-image-mi=
-nimal-1.0-r0 do_rootfs: The following packages could not be configured offl=
-ine and rootfs is read-only: [&#39;sysvinit-inittab&#39;]
-</span></span></span></span><span style=3D"box-sizing:inherit;height:20px;m=
-argin-right:25px"><span style=3D"box-sizing:inherit;font-size:0.875rem;disp=
-lay:inline-flex;font-family:AzureDevOpsMDL2Assets"></span></span></span></d=
-iv></div><div style=3D"box-sizing:inherit;overflow:hidden;width:1992px;heig=
-ht:20px"><div style=3D"box-sizing:inherit;display:flex;padding:0px 12px;whi=
-te-space:pre-wrap"><span style=3D"box-sizing:inherit;display:flex"><span st=
-yle=3D"box-sizing:inherit;text-align:right;padding-left:20px;min-width:33px=
-"></span><span style=3D"box-sizing:inherit;word-break:break-all;margin-left=
-:20px;margin-right:12px"><span style=3D"box-sizing:inherit"><span style=3D"=
-box-sizing:inherit"><span style=3D"box-sizing:inherit">ERROR: Logfile of fa=
-ilure stored in: /data/dunfell-bbb/build/bbb/tmp/work/beaglebone_yocto-poky=
--linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.10987
-</span></span></span></span><span style=3D"box-sizing:inherit;height:20px;m=
-argin-right:25px"><span style=3D"box-sizing:inherit;font-size:0.875rem;disp=
-lay:inline-flex;font-family:AzureDevOpsMDL2Assets"></span></span></span></d=
-iv></div><div style=3D"box-sizing:inherit;overflow:hidden;width:1992px;heig=
-ht:20px"><div style=3D"box-sizing:inherit;display:flex;padding:0px 12px;whi=
-te-space:pre-wrap"><span style=3D"box-sizing:inherit;display:flex"><span st=
-yle=3D"box-sizing:inherit;text-align:right;padding-left:20px;min-width:33px=
-"></span><span style=3D"box-sizing:inherit;word-break:break-all;margin-left=
-:20px;margin-right:12px"><span style=3D"box-sizing:inherit"><span style=3D"=
-box-sizing:inherit"><span style=3D"box-sizing:inherit">NOTE: recipe core-im=
-age-minimal-1.0-r0: task do_rootfs: Failed
-</span></span></span></span><span style=3D"box-sizing:inherit;height:20px;m=
-argin-right:25px"><span style=3D"box-sizing:inherit;font-size:0.875rem;disp=
-lay:inline-flex;font-family:AzureDevOpsMDL2Assets"></span></span></span></d=
-iv></div><div style=3D"box-sizing:inherit;overflow:hidden;width:1992px;heig=
-ht:20px"><div style=3D"box-sizing:inherit;display:flex;padding:0px 12px;whi=
-te-space:pre-wrap"><span style=3D"box-sizing:inherit;display:flex"><span st=
-yle=3D"box-sizing:inherit;text-align:right;padding-left:20px;min-width:33px=
-;font-family:Menlo,Consolas,&quot;Courier New&quot;,monospace;font-size:12p=
-x;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;=
-font-weight:400;letter-spacing:normal;text-indent:0px;text-transform:none;w=
-hite-space:pre-wrap;word-spacing:0px;background-color:rgb(32,31,30);text-de=
-coration-style:initial;text-decoration-color:initial"></span>
-
-</span></div></div></div><div>I&#39;ve not been able to find any informatio=
-n
+iv></div></div><div>I&#39;ve not been able to find any information
  on this issue and am not sure how to proceed.=C2=A0 Could someone please=
 =20
-point me in the right direction?</div><div><br></div><div>Here are my <a hr=
-ef=3D"https://pastebin.com/raw/cjbJXD8K" target=3D"_blank">local.conf</a> a=
-nd <a href=3D"https://pastebin.com/raw/giXATtkG" target=3D"_blank">bblayers=
-.conf</a>.</div><div><br></div><div>Thanks,</div><div><br></div><div>Dave</=
-div>
+point me in the right direction?</div><div><br></div></div></blockquote><di=
+v>I copied that error report into Google. Maybe you are hitting a similar c=
+ase to this?<br></div><div><br></div><div><a href=3D"https://www.yoctoproje=
+ct.org/pipermail/meta-xilinx/2018-January/003638.html">https://www.yoctopro=
+ject.org/pipermail/meta-xilinx/2018-January/003638.html</a><div><div dir=3D=
+"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div=
+ style=3D"color:rgb(0,0,0)"><span style=3D"font-family:-webkit-standard;fon=
+t-size:medium"></span></div></div></div></div></div></div></div></div><div =
+class=3D"gmail_quote"><br></div><div class=3D"gmail_quote">Regards,</div><d=
+iv class=3D"gmail_quote"><br></div><div class=3D"gmail_quote">Leon,<br></di=
+v></div></div>
 
-</div>
-
---0000000000008b795805b8f738a6--
+--00000000000054d28205b8f79188--
