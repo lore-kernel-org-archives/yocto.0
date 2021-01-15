@@ -1,133 +1,153 @@
-Received: from dmzms99802.na.baesystems.com (dmzms99802.na.baesystems.com [149.32.232.66])
- by mx.groups.io with SMTP id smtpd.web09.325.1610736154802699323
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+ by mx.groups.io with SMTP id smtpd.web10.101.1610746829847319317
  for <yocto@lists.yoctoproject.org>;
- Fri, 15 Jan 2021 10:42:37 -0800
+ Fri, 15 Jan 2021 13:40:30 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@baesystems.com header.s=trusted01 header.b=Z4Fqpl41;
- spf=pass (domain: baesystems.com, ip: 149.32.232.66, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1610736154; x=1768416154;
-  h=from:to:cc:subject:date:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=rjayayvUgkBGXNU5ao9VECed2xh1poTn12ctuCx0hbA=;
-  b=Z4Fqpl41w8xap+IFHhH3lEKm0eMjCJB53EB2DmklS4fnyq3ZQyP7MYYO
-   Y78E7dAIKWDMutOdX6O+qyN411+iXXt1fkXRpmJv92ddDL/zZmOVgbkYz
-   rqxrWMoxjAK/4n2eq9jXWNhOk4Wy/JwtiyKAvYm4DGOz6t5r7+KXPvpw0
-   E=;
-IronPort-PHdr: =?us-ascii?q?9a23=3ArNo20h16skJx/OEXsmDT+DRfVm0co7zxezQtwd8Z?=
- =?us-ascii?q?sesXIvTxwZ3uMQTl6Ol3ixeRBMOHsqMC07Cd4/ioGTRZp8rY7zZaKN0EfiRGoP?=
- =?us-ascii?q?1epxYnDs+BBB+zB9/RRAt+Iv5/UkR49WqwK0lfFZW2TVTTpnqv8WxaQU2nZkJ6?=
- =?us-ascii?q?KevvB4Hdkdm82fys9J3PeQVIgye2ba9vIBmsogjdq80bjZF+JqovxRfEoWdEcP?=
- =?us-ascii?q?lSyW90OF6fhRnx6tqy8ZJ57yhcp/ct/NNcXKvneKg1UaZWByk8PWAv483ruxjD?=
- =?us-ascii?q?TQ+R6XYZT24bjBlGDRXb4R/jRpv+vTf0ueR72CmBIM35Vqs0Vii476dqUxDnli?=
- =?us-ascii?q?EKPCMk/W7Ni8xwiKVboA+9pxF63oXZbp2ZOOZ4c6jAZt4RW3ZPUdhNWCxAGoO8?=
- =?us-ascii?q?bpUAD+wdPeZDsoLxo0ICoQaiCQWwAe/izCJDiH3r0q0gy+kvER/I0hE8H9wAs3?=
- =?us-ascii?q?rUotf6NKYOXu66w6bF1inDYOhU2Tvh9ITEbhIsrPeRVrxwa8rRzkwvGhvLgluX?=
- =?us-ascii?q?rozlOSiV2foTvGiA9+ZrSP+hi3I5pAFvvDevwNonh5fUjY4RxF/K6CB1zIgoLt?=
- =?us-ascii?q?C/U057fcCrEIVOuCGcLYd2R8QiQ2dzuCkk1LIGooW2czMQx5s53B7ea+eHc5SW?=
- =?us-ascii?q?7RLmT+adOyt3hHVgeL+mgRu57EevxPHmWMauzFZKsjRKksPKtn0VyhDd5NWLR/?=
- =?us-ascii?q?9j8ku/3TuCywTe5v9HLE03m6TVJYAtz6Itm5cPvkrNHiv7lUf4gqOIakgp+vak?=
- =?us-ascii?q?5uv6b7vpopKRNYl5gRzwPKQpn8ywG+U4Mg4WUmmb/uSzyKHj/UrhQLVQif02kL?=
- =?us-ascii?q?fWv4zGJcgBoa65GQBV34A+4Bi8FzeryMkUkWUdIF9Leh+LlZblN0/OLfziDPqy?=
- =?us-ascii?q?gkygnCp3y/zcMbDsDY/BI3fZnLv8fbtw7VNXxhApwtBF/Z1UD6kMIPf0WkDsqt?=
- =?us-ascii?q?PVFgQ5Mwmow+b/D9V9y58eVXqPAqCHNKPStkeF6f41LOmXeIAVvS39Jvwh6vPt?=
- =?us-ascii?q?kXM1h0URfa+z0pcNc3+3BOppI16ZYHr3ntcOD2IKvhEkQOP2j12CVCZfZ3e0X6?=
- =?us-ascii?q?0i+jE2EJ+qAZvZSo2jgrGNxjm3EoNWa2xcC12BEG/kd4CeVPcNbCKSLNVhkjsB?=
- =?us-ascii?q?VbW5UI8hyQ+htBHkxLphNObU/yoYtZT41Ndr+eLTjgo/+iduAMuDyGGMT3p0nn?=
- =?us-ascii?q?8WSD8zx6Bzu1ByylCG0aRgmfxXCcRT5+9VUgc9LZPdz+t6BMzuWgLGZdqJTFem?=
- =?us-ascii?q?Qs66ATEqVN4ww9gObFphG9WllhDDxS2qA70LmLOXGJw46KXc32L+J5U19nDdya?=
- =?us-ascii?q?N0j0U6WtAdciqih7Vj7E7CAIXVlF2DkKSnfrha2zTCs2jE3G2FoEYfTQhrTK+W?=
- =?us-ascii?q?YHYEe0HqoMTls0PeU6e1W/NgNgpa1dXEO6xBdtrxl1JESfz/ftPEbCW+3Ha3Dg?=
- =?us-ascii?q?qPga6Kd5fgKFkaiQbdBU1MqQkRtSKcPAp4BSespkrRCTVvERTkZEa6osdkr3bu?=
- =?us-ascii?q?BGozyRqHYlYln4Gp9wAYg7S3A7Mu5fNO8HM6tzhqEVD72tXQENeNvCJrdahHcM?=
- =?us-ascii?q?gh7VJck2nesloubdSbM6l+iwtGIExMtET02kAyU90YnA=3D=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2DrAwDU4QFg/0LhJQpigQmDS4ElgTkKh?=
- =?us-ascii?q?DWRTQOKHJA5gWgLAQEBAQEBAQEBCAEYCwwEAQGESgIXgVcmOBMCEAEBBgEBAQE?=
- =?us-ascii?q?BBgQBhlEMgjgFAgMfAQaDCwEBAQQBIhEaKwwEAgEIEQQBAQECAiYCAgIfBwkBF?=
- =?us-ascii?q?QgIAgQOBQgTAgSDBoJVAz2uZ3aBMoRAAYEYgkANgiWBDiqGaA6BCoU0ggM+hCo?=
- =?us-ascii?q?+ghtCBAGBJwESATiDAYJgBIIRgSsbJCBvCAECSxoGXI9dK4J6pFBYBwOCd4kui?=
- =?us-ascii?q?0OBWIUVK4Rak0uKQ58zgnqPFYQhAgQCBAUCFoFtgQpwcIM5CQk+FwINji0XgQI?=
- =?us-ascii?q?BDYdSgT2EB3QCATQCBgEJAQEDCYsvXIERAQE?=
-X-IPAS-Result: =?us-ascii?q?A2DrAwDU4QFg/0LhJQpigQmDS4ElgTkKhDWRTQOKHJA5gWg?=
- =?us-ascii?q?LAQEBAQEBAQEBCAEYCwwEAQGESgIXgVcmOBMCEAEBBgEBAQEBBgQBhlEMgjgFA?=
- =?us-ascii?q?gMfAQaDCwEBAQQBIhEaKwwEAgEIEQQBAQECAiYCAgIfBwkBFQgIAgQOBQgTAgS?=
- =?us-ascii?q?DBoJVAz2uZ3aBMoRAAYEYgkANgiWBDiqGaA6BCoU0ggM+hCo+ghtCBAGBJwESA?=
- =?us-ascii?q?TiDAYJgBIIRgSsbJCBvCAECSxoGXI9dK4J6pFBYBwOCd4kui0OBWIUVK4Rak0u?=
- =?us-ascii?q?KQ58zgnqPFYQhAgQCBAUCFoFtgQpwcIM5CQk+FwINji0XgQIBDYdSgT2EB3QCA?=
- =?us-ascii?q?TQCBgEJAQEDCYsvXIERAQE?=
-X-IronPort-AV: E=Sophos;i="5.79,350,1602547200"; 
-   d="scan'208";a="477951592"
-X-IronPort-AV: E=Sophos;i="5.79,350,1602547200"; 
-   d="scan'208";a="176553893"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: Khem Raj <raj.khem@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] #yocto #kernel
-Thread-Topic: [yocto] #yocto #kernel
-Thread-Index: AdbpHa4uv+X65smLT56sbWhYtNALIwARKvQAABDJg2AAAi/tkABH9NwAAAou7uD//8J9AP/+1TmQ
-Date: Fri, 15 Jan 2021 18:42:15 +0000
-In-Reply-To: <52181919-28a0-a134-687e-b24c8bd8b470@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.15]
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=TD+VE9Jo;
+ spf=pass (domain: gmail.com, ip: 209.85.160.175, mailfrom: theaethereal@gmail.com)
+Received: by mail-qt1-f175.google.com with SMTP id h19so7098535qtq.13
+        for <yocto@lists.yoctoproject.org>; Fri, 15 Jan 2021 13:40:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=l0tw0+UqoGnMWNzocIffvsu0gw7u69n98KWy2BwuvdA=;
+        b=TD+VE9JoyZIVDaewqW1BUEu7vs3Nw54e92d2uE4FtahppecdYhTxKyRZkYRD1zGqMS
+         0uHv31iz9pGDjr+bZnIHTMRaDP6T1zXzjzldziFzAdZTpGfqHB/AkRBk19LCeWQZzXfH
+         qnDChmK8u7kBle2CIhea+jlkEfm8OL8sHqLCBCal2M+Uy8QV5KptE+DUR9KlUHKHMvmS
+         f86+TQy5dEXcwQTDNXpbJE+MjvKCn7B9n1QA3JyFy3tzc8fH3vXUbB45WDGJOsp5iS7A
+         W37kYT+mt5/6XLzB+k23CrHLsxPs47awpRF1L4Bd3f9y4JVXvWr1nc0kWa5bfDznIsYF
+         BcWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=l0tw0+UqoGnMWNzocIffvsu0gw7u69n98KWy2BwuvdA=;
+        b=ADEDIAhjulactRP/6ALmWzBDehZDVlMaM2/oARSEXr0SnYDUnGGmPw1oGmNJPzT8a1
+         UHE+EmtEPTPakfUgtnfMOfK+sjAh8Xab8K/jQM5nHve5vsfxqwgd9Bz0ER5l/n5KhJQ5
+         HxXmISHK0v2joRr4ScNRRcG7QEeq5Qa65ti7AWtulTZHPduW10CFUj4+YdoDs45gwVpK
+         luZWD1sbvmyEtc+6bh8c1iuCwSBerqP+6x9bHTexvlh9mkZYA8cF8W0aXPEA1C2eL3uO
+         E8t0xDuLmKP0cKmI+Hg0T+ZPsMKf7vqk+mZmgt9lp44mVt42nW17S8ZbdXPgsroZXcmP
+         P6dg==
+X-Gm-Message-State: AOAM530PFs1kywnARuqKzavpAIA1XHmoxKeIrnpsNhVv+sffE38suHw8
+	3kTVzhj1Hlb3updTLil0g39eD5SneyuMKJMixG/AHJ0LZg==
+X-Google-Smtp-Source: ABdhPJw1Df7DJgwER8vSWhWpTL8wuRV7yKsdTZywht5giKtvc0F5Dch9wT86F6CiR+4r36Iqb8tRIYA5h3+s/hZa4vg=
+X-Received: by 2002:ac8:70c1:: with SMTP id g1mr13769908qtp.108.1610746828649;
+ Fri, 15 Jan 2021 13:40:28 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <MADEUP.165A7C00361C26FF.25487@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: "Dave Tucker" <theaethereal@gmail.com>
+Date: Fri, 15 Jan 2021 16:40:17 -0500
+Message-ID: <CAOqi=Cu3t04-UnFFUoCCeKcPS+c02Y=+pwo5o-SKGoWbGo9VZg@mail.gmail.com>
+Subject: Can't Build Read-Only RootFS
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000008b795805b8f738a6"
 
-DQoNCkkgYW0gc3RpbGwgc2VlaW5nIHRoZSBOb3RoaW5nIFBST1ZJREVTICdpbml0LXN5c3RlbS1o
-ZWxwZXJzLXNlcnZpY2UnLi4uDQoNCkkgYW0gY3VycmVudGx5IHdvcmtpbmcgYXJvdW5kIHRoaXMg
-YmUgb3Zlci13cml0aW5nIHRoZSAibW91bnRuZnMuc2giIHNjcmlwdCwgYnV0IEkgd2FudCByZXNv
-bHZlIHRoaXMgaXNzdWUgc28gd2UgYXJlIDEwMCUgWW9jdG8gY29tcGxpYW50Li4uDQoNCg0KDQot
-LS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogS2hlbSBSYWogPHJhai5raGVtQGdtYWls
-LmNvbT4gDQpTZW50OiBUaHVyc2RheSwgSmFudWFyeSAxNCwgMjAyMSAyOjQ4IFBNDQpUbzogTW9u
-c2VlcywgU3RldmVuIEMgKFVTKSA8c3RldmVuLm1vbnNlZXNAYmFlc3lzdGVtcy5jb20+DQpTdWJq
-ZWN0OiBSZTogW3lvY3RvXSAjeW9jdG8gI2tlcm5lbA0KDQoqKiogV0FSTklORyAqKioNCkVYVEVS
-TkFMIEVNQUlMIC0tIFRoaXMgbWVzc2FnZSBvcmlnaW5hdGVzIGZyb20gb3V0c2lkZSBvdXIgb3Jn
-YW5pemF0aW9uLg0KDQoNCnllYWggbm8gd29ycmllcyBJIGludGVuZHRlZCB0byBnaXZlIGhpbnRz
-IHRvIGxvb2sgaW50byB0aGF0IHJlY2lwZSBhbmQgZmluZCBvdXQgcGFja2FnZSBhcyBuZWVkZWQs
-IG5vdCBnaXZpbmcgYSBmdWxseSBjb29rZWQgc29sdXRpb24NCg0KT24gMS8xNC8yMSAxMDo0NiBB
-TSwgTW9uc2VlcywgU3RldmVuIEMgKFVTKSB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0Kd3Jv
-dGU6DQo+IA0KPiBJIGJlbGlldmUgeW91IHNhaWQ6IGluaXQtc3lzdGVtLWhlbHBlcnMuLi4NCj4g
-SSB3aWxsIHRyeSB0aGUgb3RoZXIgKGluaXQtc3lzdGVtLWhlbHBlcnMtc2VydmljZSkgbGF0ZXIg
-dG9kYXkNCj4gDQo+IFRoYW5rcywNCj4gU3RldmUNCj4gDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2Fn
-ZS0tLS0tDQo+IEZyb206IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+DQo+IFNlbnQ6IFRo
-dXJzZGF5LCBKYW51YXJ5IDE0LCAyMDIxIDE6MzYgUE0NCj4gVG86IE1vbnNlZXMsIFN0ZXZlbiBD
-IChVUykgPHN0ZXZlbi5tb25zZWVzQGJhZXN5c3RlbXMuY29tPg0KPiBDYzogeW9jdG9AbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSAjeW9jdG8gI2tlcm5lbA0K
-PiANCj4gKioqIFdBUk5JTkcgKioqDQo+IEVYVEVSTkFMIEVNQUlMIC0tIFRoaXMgbWVzc2FnZSBv
-cmlnaW5hdGVzIGZyb20gb3V0c2lkZSBvdXIgb3JnYW5pemF0aW9uLg0KPiANCj4gDQo+IEkgbXVz
-dCBoYXZlIHNhaWQgYWRkIGluaXQtc3lzdGVtLWhlbHBlcnMtc2VydmljZQ0KPiANCj4gT24gV2Vk
-LCBKYW4gMTMsIDIwMjEgYXQgNToxNyBBTSBNb25zZWVzLCBTdGV2ZW4gQyAoVVMpIHZpYSBsaXN0
-cy55b2N0b3Byb2plY3Qub3JnIDxzdGV2ZW4ubW9uc2Vlcz1iYWVzeXN0ZW1zLmNvbUBsaXN0cy55
-b2N0b3Byb2plY3Qub3JnPiB3cm90ZToNCj4+DQo+PiBJIGFtIHVzaW5nIHN5c3Zpbml0Li4uDQo+
-Pg0KPj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4+IEZyb206IE1vbnNlZXMsIFN0ZXZl
-biBDIChVUykNCj4+IFNlbnQ6IFdlZG5lc2RheSwgSmFudWFyeSAxMywgMjAyMSA3OjE1IEFNDQo+
-PiBUbzogJ0toZW0gUmFqJyA8cmFqLmtoZW1AZ21haWwuY29tPg0KPj4gQ2M6IHlvY3RvQGxpc3Rz
-LnlvY3RvcHJvamVjdC5vcmcNCj4+IFN1YmplY3Q6IFJFOiBbeW9jdG9dICN5b2N0byAja2VybmVs
-DQo+Pg0KPj4NCj4+IFdoZW4gSSBkbyB0aGlzIEkgYW0gc2VlaW5nICJOb3RoaW5nIFBST1ZJREVT
-ICdpbml0LXN5c3RlbS1oZWxwZXJzJywsLA0KPj4NCj4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
-LS0tDQo+PiBGcm9tOiBLaGVtIFJhaiA8cmFqLmtoZW1AZ21haWwuY29tPg0KPj4gU2VudDogVHVl
-c2RheSwgSmFudWFyeSAxMiwgMjAyMSA2OjEzIFBNDQo+PiBUbzogTW9uc2VlcywgU3RldmVuIEMg
-KFVTKSA8c3RldmVuLm1vbnNlZXNAYmFlc3lzdGVtcy5jb20+DQo+PiBDYzogeW9jdG9AbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZw0KPj4gU3ViamVjdDogUmU6IFt5b2N0b10gI3lvY3RvICNrZXJuZWwN
-Cj4+DQo+PiAqKiogV0FSTklORyAqKioNCj4+IEVYVEVSTkFMIEVNQUlMIC0tIFRoaXMgbWVzc2Fn
-ZSBvcmlnaW5hdGVzIGZyb20gb3V0c2lkZSBvdXIgb3JnYW5pemF0aW9uLg0KPj4NCj4+DQo+PiBP
-biBUdWUsIEphbiAxMiwgMjAyMSBhdCAxMjowOSBQTSBNb25zZWVzLCBTdGV2ZW4gQyAoVVMpIHZp
-YSBsaXN0cy55b2N0b3Byb2plY3Qub3JnIDxzdGV2ZW4ubW9uc2Vlcz1iYWVzeXN0ZW1zLmNvbUBs
-aXN0cy55b2N0b3Byb2plY3Qub3JnPiB3cm90ZToNCj4+Pg0KPj4+DQo+Pj4NCj4+PiBXb3JraW5n
-IG9uIHpldXMgMy4wLjQsIGZvciBhYXJjaDY0DQo+Pj4NCj4+Pg0KPj4+DQo+Pj4gSSAgaGF2ZSBh
-IHN0YXJ0dXAgc2NyaXB0IG1ha2luZyB1c2Ugb2Yg4oCcc2VydmljZeKAnSBIb3cgZG8gSSBwcm9w
-ZXJseSBjb25maWd1cmUgaW4gc3VwcG9ydCBmb3IgdGhlIOKAnHNlcnZpY2XigJ0gY29tbWFuZCA/
-DQo+Pj4NCj4+PiBJIGRvIG5vdCBoYXZlIGFuIGVycm9yIHdoZW4gd29ya2luZyB1bmRlciByb2Nr
-by4NCj4+Pg0KPj4+DQo+Pj4NCj4+PiBUaGUgZXJyb3Igc2VlbiBpcyA6ICAgIC9ldGMvcmM1LmQv
-UzE1bW91bnRuZnMuc2g6IGxpbmUgNzA6IHNlcnZpY2U6IGNvbW1hbmQgbm90IGZvdW5kDQo+Pj4N
-Cj4+Pg0KPj4+DQo+Pj4gVXNhZ2U6IEAgbGluZSA3MDogIOKAnHNlcnZpY2UgcnBjYmluZCBzdGF0
-dXMgPi9kZXYvbnVsbOKAnQ0KPj4+DQo+Pj4NCj4+DQo+PiBwZXJoYXBzIGp1c3QgYWRkIGluaXQt
-c3lzdGVtLWhlbHBlcnMgdG8gSU1BR0VfSU5TVEFMTA0KPj4NCj4+Pg0KPj4+IFRoYW5rcywNCj4+
-Pg0KPj4+IFN0ZXZlDQo+Pj4NCj4+Pg0KPj4+DQo+Pj4NCj4+DQo+Pg0KPj4NCj4+DQo+Pg0KPj4g
-DQo+Pg0K
+--0000000000008b795805b8f738a6
+Content-Type: text/plain; charset="UTF-8"
+
+ I'm trying to build yocto for a Beaglebone Black.  I was setting the file
+system to be read-only in /etc/fstab, and that was causing the boot process
+to lock up as of my latest build when I switched to dunfell.  So I added
+IMAGE_FEATURES += "read-only-rootfs" to my local.conf, which I believe is
+the correct way to handle this.  But now the system won't build.  I get the
+following output:
+
+NOTE: recipe core-image-minimal-1.0-r0: task do_rootfs: Started
+ERROR: core-image-minimal-1.0-r0 do_rootfs: The following packages could
+not be configured offline and rootfs is read-only: ['sysvinit-inittab']
+ERROR: Logfile of failure stored in:
+/data/dunfell-bbb/build/bbb/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.10987
+
+NOTE: recipe core-image-minimal-1.0-r0: task do_rootfs: Failed
+I've not been able to find any information on this issue and am not sure
+how to proceed.  Could someone please point me in the right direction?
+
+Here are my local.conf <https://pastebin.com/raw/cjbJXD8K> and bblayers.conf
+<https://pastebin.com/raw/giXATtkG>.
+
+Thanks,
+
+Dave
+
+--0000000000008b795805b8f738a6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+<div>I&#39;m trying to build yocto for a Beaglebone Black.=C2=A0 I was sett=
+ing=20
+the file system to be read-only in /etc/fstab, and that was causing the=20
+boot process to lock up as of my latest build when I switched to=20
+dunfell.=C2=A0 So I added IMAGE_FEATURES +=3D &quot;read-only-rootfs&quot; =
+to my=20
+local.conf, which I believe is the correct way to handle this.=C2=A0 But no=
+w=20
+the system won&#39;t build.=C2=A0 I get the following output:</div><div><br=
+></div><div>
+
+<div style=3D"box-sizing:inherit;overflow:hidden;width:1992px;height:20px">=
+<div style=3D"box-sizing:inherit;display:flex;padding:0px 12px;white-space:=
+pre-wrap"><span style=3D"box-sizing:inherit;display:flex"><span style=3D"bo=
+x-sizing:inherit;word-break:break-all;margin-left:20px;margin-right:12px"><=
+span style=3D"box-sizing:inherit"><span style=3D"box-sizing:inherit"><span =
+style=3D"box-sizing:inherit">NOTE: recipe core-image-minimal-1.0-r0: task d=
+o_rootfs: Started
+</span></span></span></span><span style=3D"box-sizing:inherit;height:20px;m=
+argin-right:25px"><span style=3D"box-sizing:inherit;font-size:0.875rem;disp=
+lay:inline-flex;font-family:AzureDevOpsMDL2Assets"></span></span></span></d=
+iv></div><div style=3D"box-sizing:inherit;overflow:hidden;width:1992px;heig=
+ht:20px"><div style=3D"box-sizing:inherit;display:flex;padding:0px 12px;whi=
+te-space:pre-wrap"><span style=3D"box-sizing:inherit;display:flex"><span st=
+yle=3D"box-sizing:inherit;text-align:right;padding-left:20px;min-width:33px=
+"></span><span style=3D"box-sizing:inherit;word-break:break-all;margin-left=
+:20px;margin-right:12px"><span style=3D"box-sizing:inherit"><span style=3D"=
+box-sizing:inherit"><span style=3D"box-sizing:inherit">ERROR: core-image-mi=
+nimal-1.0-r0 do_rootfs: The following packages could not be configured offl=
+ine and rootfs is read-only: [&#39;sysvinit-inittab&#39;]
+</span></span></span></span><span style=3D"box-sizing:inherit;height:20px;m=
+argin-right:25px"><span style=3D"box-sizing:inherit;font-size:0.875rem;disp=
+lay:inline-flex;font-family:AzureDevOpsMDL2Assets"></span></span></span></d=
+iv></div><div style=3D"box-sizing:inherit;overflow:hidden;width:1992px;heig=
+ht:20px"><div style=3D"box-sizing:inherit;display:flex;padding:0px 12px;whi=
+te-space:pre-wrap"><span style=3D"box-sizing:inherit;display:flex"><span st=
+yle=3D"box-sizing:inherit;text-align:right;padding-left:20px;min-width:33px=
+"></span><span style=3D"box-sizing:inherit;word-break:break-all;margin-left=
+:20px;margin-right:12px"><span style=3D"box-sizing:inherit"><span style=3D"=
+box-sizing:inherit"><span style=3D"box-sizing:inherit">ERROR: Logfile of fa=
+ilure stored in: /data/dunfell-bbb/build/bbb/tmp/work/beaglebone_yocto-poky=
+-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.10987
+</span></span></span></span><span style=3D"box-sizing:inherit;height:20px;m=
+argin-right:25px"><span style=3D"box-sizing:inherit;font-size:0.875rem;disp=
+lay:inline-flex;font-family:AzureDevOpsMDL2Assets"></span></span></span></d=
+iv></div><div style=3D"box-sizing:inherit;overflow:hidden;width:1992px;heig=
+ht:20px"><div style=3D"box-sizing:inherit;display:flex;padding:0px 12px;whi=
+te-space:pre-wrap"><span style=3D"box-sizing:inherit;display:flex"><span st=
+yle=3D"box-sizing:inherit;text-align:right;padding-left:20px;min-width:33px=
+"></span><span style=3D"box-sizing:inherit;word-break:break-all;margin-left=
+:20px;margin-right:12px"><span style=3D"box-sizing:inherit"><span style=3D"=
+box-sizing:inherit"><span style=3D"box-sizing:inherit">NOTE: recipe core-im=
+age-minimal-1.0-r0: task do_rootfs: Failed
+</span></span></span></span><span style=3D"box-sizing:inherit;height:20px;m=
+argin-right:25px"><span style=3D"box-sizing:inherit;font-size:0.875rem;disp=
+lay:inline-flex;font-family:AzureDevOpsMDL2Assets"></span></span></span></d=
+iv></div><div style=3D"box-sizing:inherit;overflow:hidden;width:1992px;heig=
+ht:20px"><div style=3D"box-sizing:inherit;display:flex;padding:0px 12px;whi=
+te-space:pre-wrap"><span style=3D"box-sizing:inherit;display:flex"><span st=
+yle=3D"box-sizing:inherit;text-align:right;padding-left:20px;min-width:33px=
+;font-family:Menlo,Consolas,&quot;Courier New&quot;,monospace;font-size:12p=
+x;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;=
+font-weight:400;letter-spacing:normal;text-indent:0px;text-transform:none;w=
+hite-space:pre-wrap;word-spacing:0px;background-color:rgb(32,31,30);text-de=
+coration-style:initial;text-decoration-color:initial"></span>
+
+</span></div></div></div><div>I&#39;ve not been able to find any informatio=
+n
+ on this issue and am not sure how to proceed.=C2=A0 Could someone please=
+=20
+point me in the right direction?</div><div><br></div><div>Here are my <a hr=
+ef=3D"https://pastebin.com/raw/cjbJXD8K" target=3D"_blank">local.conf</a> a=
+nd <a href=3D"https://pastebin.com/raw/giXATtkG" target=3D"_blank">bblayers=
+.conf</a>.</div><div><br></div><div>Thanks,</div><div><br></div><div>Dave</=
+div>
+
+</div>
+
+--0000000000008b795805b8f738a6--
