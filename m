@@ -1,80 +1,60 @@
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
- by mx.groups.io with SMTP id smtpd.web08.11403.1610837120569725834
- for <yocto@lists.yoctoproject.org>;
- Sat, 16 Jan 2021 14:45:20 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=bCedmh3N;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.49, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f49.google.com with SMTP id m4so12875506wrx.9
-        for <yocto@lists.yoctoproject.org>; Sat, 16 Jan 2021 14:45:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=EXfgcLfFEMCKgN8gUyrROFnjzcmelFXSgUbDz8DKPno=;
-        b=bCedmh3NG7s6VSsq/AX0q1VHY/jnhrgYXARS0Xdm7IPhs6LuOf6ytIcpt9qJ6tX+Ba
-         LOkVnqN2irYaHn6K73m9Du1umGik7RHaDvXHtEJIPt9hX3FhGO4isefz5GP4vLItKQSQ
-         hntkt7UUaxKT0FOlMRaTlIPVYC7iCJ6MrErLM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=EXfgcLfFEMCKgN8gUyrROFnjzcmelFXSgUbDz8DKPno=;
-        b=FIX1X8QiJXJIaOg3DHPkRhKV+F6GQg4dp0fNeSYyfYYfug2TCyJCA7l2wEYyEaAn03
-         sxVutUNbsCYYkt0ooSlLE7m9IDvWF/VsGV7SzCEBRa80JzTrgMTYKFqAofO6wJDHNMiZ
-         SkRqOWYRE0IJH0e05Q2uJUEkp0OhVWlnnb1DCoja+EOn2Y00+fys5vPO5VE2bRl4T/4r
-         pMT4K4ge6MMyCnVAIM6I14N5zJA8Deg5pFGJ1fDTVS1BFCls27rfp7kLTXQdy/EPkHnc
-         J1e0oaccmBVtSIi0ef1bIEjqt0q5gSpVkBrcf7J0gsW1ds2Nbpn6UPZKMtLopoKXV7bE
-         NGLQ==
-X-Gm-Message-State: AOAM530TUQY43BgSuilrB4/xIbtow6vz5c75OO47yPy/eALsP1Hqf3xu
-	ZxeVAs6kGIrjlEW+aISF1IUxMw==
-X-Google-Smtp-Source: ABdhPJwGWJhIjZY6ZzXsy0jVCyHbzQSM7fCz+2SucySxj/NebOs89qjjqBj6CJ0h8zsyWcfzPh2qJQ==
-X-Received: by 2002:adf:ae01:: with SMTP id x1mr19222405wrc.381.1610837119148;
-        Sat, 16 Jan 2021 14:45:19 -0800 (PST)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from ?IPv6:2001:8b0:aba:5f3c:bfb4:a7c0:34bb:ed0e? ([2001:8b0:aba:5f3c:bfb4:a7c0:34bb:ed0e])
-        by smtp.gmail.com with ESMTPSA id y14sm15463366wru.96.2021.01.16.14.45.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Jan 2021 14:45:18 -0800 (PST)
-Message-ID: <67bed30de305d6b690976a88434ee9ef69f3af87.camel@linuxfoundation.org>
-Subject: Re: [poky] [yocto] Python3-native illegal instruction on poky dunfell
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Daniela-Marinela Bistrean <daniela.marinela.bistrean@gmail.com>
-Cc: Ross Burton <ross@burtonini.com>, yocto@lists.yoctoproject.org, 
-	poky@lists.yoctoproject.org
-Date: Sat, 16 Jan 2021 22:45:17 +0000
-In-Reply-To: <CAA7auRRUxpgZ2XdGfDbJh4oqrDqMq42Ume6F-qShr27uQA44Eg@mail.gmail.com>
-References: 
-	<CAA7auRTsQqBhdOfD_aYNg2Xb6ZfMxHRiWTNxR7SwEQiZ-oVbxA@mail.gmail.com>
-	 <CAAnfSTv87TAn538sATnFDajmLi=SmUoxZvczCTMfZetBB1JFOw@mail.gmail.com>
-	 <1659300A74F5C5D5.4243@lists.yoctoproject.org>
-	 <CAA7auRRUxpgZ2XdGfDbJh4oqrDqMq42Ume6F-qShr27uQA44Eg@mail.gmail.com>
-User-Agent: Evolution 3.38.1-1 
+Subject: Re: insmod - huawei E3372h kernel module
+To: yocto@lists.yoctoproject.org
+From: "Zoltan Kerenyi Nagy" <kerenyi.nagy.zoltan@gmail.com>
+X-Originating-Location: Budapest, HU (89.135.91.162)
+X-Originating-Platform: Linux Firefox 84
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Date: Sun, 17 Jan 2021 04:34:43 -0800
+References: <CAGAf8LwLiKkWRawBqLMLAaBQq5Ly0rzJwvfY5yS0fLEce=sgEg@mail.gmail.com>
+In-Reply-To: <CAGAf8LwLiKkWRawBqLMLAaBQq5Ly0rzJwvfY5yS0fLEce=sgEg@mail.gmail.com>
+Message-ID: <10291.1610886883719843020@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="eMnOtV5KpsoCdGdmqW0e"
 
-On Sat, 2021-01-16 at 16:48 +0200, Daniela-Marinela Bistrean wrote:
-> Hello again,
-> I solved the mystery and I am describing it here in case anyone has
-> the same problem.
-> 
-> Basically, what I omitted last time and seems to be critical to the
-> problem is that I was running a virtual machine. The one bit causing
-> the issue was that avx2 was disabled in my VM and python requires it.
-> Enabling avx2 fixed the issue.
-> 
-> I managed to reproduce the issue with qemu using the following
-> command line:
-> $ qemu-system-x86_64 -enable-kvm  -boot d -m 8G -cpu host,-avx2 -smp
-> 4 -hda disk.bin
-> 
-> Hope it helps,Daniela-Marinela Bistrean
+--eMnOtV5KpsoCdGdmqW0e
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for reporting back and letting us know. Its now in the archives
-in case someone else runs into it. Glad you got sorted out too!
+Hi,
 
-Cheers,
+I contacted the kernel module (cdc_ncm) developper, and he suggested to ch=
+ange/experiment the kernel module load order.
 
-Richard
+I thought if I specify this way: KERNEL_MODULE_AUTOLOAD +=3D "ncm_driver"K=
+ERNEL_MODULE_PROBECONF +=3D "ncm_driver"cdc_ncm =3D "options ncm_driver iPr=
+oduct=3DUSB_Host_Driver_for_Network_Control_Model iManufacturer=3DNCM" KERN=
+EL_MODULE_AUTOLOAD +=3D "wmc_device_managment"KERNEL_MODULE_PROBECONF +=3D =
+"wmc_device"cdc_wdm =3D "options wmc_device iProduct=3DUSB_CDC_WCM_Device_M=
+anagement iManufacturer=3DWMC" KERNEL_MODULE_AUTOLOAD +=3D "lte"KERNEL_MODU=
+LE_PROBECONF +=3D "lte"huawei_cdc_ncm =3D "options lte iProduct=3DE3372h iM=
+anufacturer=3DHuawei"
+Than this means the order of loading too. Is there any additional feature =
+in Yocto that can interfere and set the exact kernel module loading order?
 
+Thanks,
+
+--
+Zolee
+
+--eMnOtV5KpsoCdGdmqW0e
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<br /><br />I contacted the kernel module (cdc_ncm) developper, and he s=
+uggested to change/experiment the kernel module load order.<br /><br />I th=
+ought if I specify this way:
+<h6>KERNEL_MODULE_AUTOLOAD +=3D "ncm_driver"KERNEL_MODULE_PROBECONF +=3D "=
+ncm_driver"cdc_ncm =3D "options ncm_driver iProduct=3DUSB_Host_Driver_for_N=
+etwork_Control_Model iManufacturer=3DNCM"</h6>
+<h6>KERNEL_MODULE_AUTOLOAD +=3D "wmc_device_managment"KERNEL_MODULE_PROBEC=
+ONF +=3D "wmc_device"cdc_wdm =3D "options wmc_device iProduct=3DUSB_CDC_WCM=
+_Device_Management iManufacturer=3DWMC"</h6>
+<span id=3D"main"></span>
+<h6>KERNEL_MODULE_AUTOLOAD +=3D "lte"KERNEL_MODULE_PROBECONF +=3D "lte"hua=
+wei_cdc_ncm =3D "options lte iProduct=3DE3372h iManufacturer=3DHuawei"</h6>
+<br />Than this means the order of loading too. Is there any additional fe=
+ature in Yocto that can interfere and set the exact kernel module loading o=
+rder?<br /><br />Thanks,<br /><br /><span id=3D"main"></span> <br />-- <br =
+/>Zolee
+
+--eMnOtV5KpsoCdGdmqW0e--
