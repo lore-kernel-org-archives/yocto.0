@@ -1,50 +1,63 @@
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
- by mx.groups.io with SMTP id smtpd.web08.11034.1611062593278594810
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+ by mx.groups.io with SMTP id smtpd.web11.10996.1611062869103901438
  for <yocto@lists.yoctoproject.org>;
- Tue, 19 Jan 2021 05:23:13 -0800
+ Tue, 19 Jan 2021 05:27:49 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=j4vZb+WG;
- spf=pass (domain: gmail.com, ip: 209.85.166.53, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-io1-f53.google.com with SMTP id x21so21246658iog.10
-        for <yocto@lists.yoctoproject.org>; Tue, 19 Jan 2021 05:23:13 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=qHQo80Dd;
+ spf=pass (domain: gmail.com, ip: 209.85.166.49, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-io1-f49.google.com with SMTP id e22so39455725iom.5
+        for <yocto@lists.yoctoproject.org>; Tue, 19 Jan 2021 05:27:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=v1ZeRhXQMiIQYAV+XUz2WSB/cIOB4n+iPC67aDlrX5s=;
-        b=j4vZb+WGQf5tbJPRYSOR3EJk19RekbexxsTq0SonPnONITgirpD1Pd5UyiO6PSO6u0
-         GNDp778DlK9wmTc/EzGYqd54xrSCvGyrO0nmxcbGEsWs1m4qos9ZOlkUPCIV+khMhn2h
-         W+jTOuC5Whst41P7tnfSb9cKaN5GDGF/ifRLdRhYZOFzmgdtxgTL6pcV/qIhmak0ygIG
-         0N/gQ+3VZ63O2Rfv5RzfnoQ5mSx2ett9Q5BFPz/PLK1qsbpyQCsal+OhHjosDaykS63q
-         ip64mjgZLR+C/28lwv6iEqGe8SBWk1Pcmq1Y70mW8rXiIdcLXBy9XWUFCcynDIu//OmB
-         Wdkg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=3Wk9vFAlRk8WRbbhtjbjio6/3/3kcyzfc2IihI/KeCE=;
+        b=qHQo80DdNlZsRUnQN7xaNoY2hGu+ljdW01eLiSJufSWX10UTtVaw3It3uMNOL6FJy0
+         XXgLHiBYrS2Php7KigToUFKgc8Knouhd+rTg1RbN2ryzbmYLo8fqGRFVT7WZSk8+1gvX
+         ge0R4OyDoaUR31heh2ijBxhQPlyVPJq5lYXwEaOhJwLp7qDBTW0Q91ti0YTcOEGV54s1
+         GnLJks/GeC8u4xf8IN+B2m5JZVJ6SBolbSYLElHVhifpskTzICy2f9C1rtB5MrsDUst4
+         Z3olwZ7+NCOFV3kmpO9MSnUdsi7ilmD85xHys0BLxRAfXEOfJVwh4UlXEvpLZ7lGiX9a
+         1Rcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=v1ZeRhXQMiIQYAV+XUz2WSB/cIOB4n+iPC67aDlrX5s=;
-        b=hpwclf/vPeu2RGFNYQnDnCJuzjsUn3LvqTocqW9UkUJjxCTGm4caV+DKpmM9i6CL9F
-         yGGb2L3qVClMY8ey5G3dUH6/ObdxuH9TRcGqa3xVyrksCwHlCV2FqRmch4UucT0G7OJ2
-         wzlwgXiBYioLT3vZNFq4P4XtRrrGT2Pbw19cxQifSHei4V/6ff2nIg7KMoFkiN9Bs/4c
-         jkqU2K5RKhtscB3Daee79uFRbD4IiLs5ln8XKwGis5QC93DSohHLYL2iXqb6hi7Uc16f
-         TzpZyjdCeTnZpEqS4tWRbcVd6Dkk50Ttxg6zPJAH5ppw20sYMezohxqOU9iWYLlquW++
-         sHxQ==
-X-Gm-Message-State: AOAM531e5DIGf9fyojhoukpXB8a+6CGmhK/BFtvnK8nsmytWnvRG+1Tx
-	vg12MN5JYXsKlTH8U3XNpKN6VA1LwnA5KO0tiJE=
-X-Google-Smtp-Source: ABdhPJxhmFobhjc5YFu/HMTegKAF+druKZgfceiy1NLfoQ4G+dBREQoUs60E2EXo6D34q7ImZoeiDEk8lnpo+R7mg5o=
-X-Received: by 2002:a05:6e02:5d1:: with SMTP id l17mr3274939ils.154.1611062592407;
- Tue, 19 Jan 2021 05:23:12 -0800 (PST)
+         :message-id:subject:to;
+        bh=3Wk9vFAlRk8WRbbhtjbjio6/3/3kcyzfc2IihI/KeCE=;
+        b=l4AtIyP/jnP5IC0FAg8+ob/6NfFg81rEc3RnRdrXn+mjXhtdOyq8sxGXfr0VtgZQ/n
+         KaytXrKswmrTuAMUpPICbcVDbySMPRqpULGyZzUMYUTLJ8+s+AgjC3zw1LafbHh4XV7D
+         afu0pM+tuKBfTIV2WWFw9zPnFe6sG5x5yRBDKSy1kHaptOzjwv6wguwfRWSQTRbxEDZ4
+         YWklrrCLqr4PQoLTEFOtRGedGj06QDmPzhyGhyHdpVwd56Kjo9N1YaK/WMszK1dpwrya
+         LhjghQNka5VrDcS3ywOxfZ4UiPp3Eo+/jCIvwxaaSDve+z7QPrPvnQ2t287CO1RoXW7O
+         pSRg==
+X-Gm-Message-State: AOAM531I/hl4rAKZDI57KpJTHNKO2fcuF3Y78BeeRDxVK7E1aif/pnFX
+	4fjbLOdZPIy3gAdZ0nn8pbZJR4qncA3++ZJORJ4=
+X-Google-Smtp-Source: ABdhPJxFVukir93ATEfyX44eHRtAZcNYW/j5FbjfDnVwQBOmcWbOY+KVV5kBGMYMFxmUV4BxGFOhfb3lrkSGYRgSVDg=
+X-Received: by 2002:a02:b78e:: with SMTP id f14mr3325103jam.97.1611062868519;
+ Tue, 19 Jan 2021 05:27:48 -0800 (PST)
 MIME-Version: 1.0
 References: <CAGAf8LxnsGGjBvvVzBG90VFMoKwFt_bbSa50TGfeMhw5OPMZXw@mail.gmail.com>
- <2283.1611061237885442892@lists.yoctoproject.org>
-In-Reply-To: <2283.1611061237885442892@lists.yoctoproject.org>
+ <2283.1611061237885442892@lists.yoctoproject.org> <165BA4E49F808CA9.28472@lists.yoctoproject.org>
+In-Reply-To: <165BA4E49F808CA9.28472@lists.yoctoproject.org>
 From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Tue, 19 Jan 2021 14:23:01 +0100
-Message-ID: <CAGAf8LzcJds3MaX9Mcsao0bYO=LfGrJhtgHTtvPqPbzd0pHOOw@mail.gmail.com>
-Subject: Re: [yocto] insmod - huawei E3372h kernel module
-To: Zoltan Kerenyi Nagy <kerenyi.nagy.zoltan@gmail.com>, "Burton, Ross" <ross.burton@intel.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Date: Tue, 19 Jan 2021 14:27:36 +0100
+Message-ID: <CAGAf8Ly7fty2KHjZWz-p0N_7OjcaWVXhhQuc1Dcrog96KYC36Q@mail.gmail.com>
+Subject: [yocto] insmod - huawei E3372h kernel module
+To: Ross Burton <ross@burtonini.com>, Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	Zoltan Kerenyi Nagy <kerenyi.nagy.zoltan@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+
+Forwarded to ross@burtonini.com .
+
+Thank you,
+Zoran/Zee
+
+---------- Forwarded message ---------
+From: Zoran via lists.yoctoproject.org
+<zoran.stojsavljevic=gmail.com@lists.yoctoproject.org>
+Date: Tue, Jan 19, 2021 at 2:23 PM
+Subject: Re: [yocto] insmod - huawei E3372h kernel module
+To: Zoltan Kerenyi Nagy <kerenyi.nagy.zoltan@gmail.com>, Burton, Ross
+<ross.burton@intel.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 
 > As far as I understand the KERNEL_MODULE_AUTOLOAD directive will
 > populate the /etc/modules file, however, after bitbaking, on the device there
@@ -87,5 +100,7 @@ On Tue, Jan 19, 2021 at 2:00 PM Zoltan Kerenyi Nagy
 >
 > --
 > Zolee
-> 
 >
+>
+
+
