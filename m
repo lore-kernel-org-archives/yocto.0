@@ -1,311 +1,194 @@
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
- by mx.groups.io with SMTP id smtpd.web12.20861.1611495016584648943
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web09.26069.1611518241810551255
  for <yocto@lists.yoctoproject.org>;
- Sun, 24 Jan 2021 05:30:16 -0800
+ Sun, 24 Jan 2021 11:57:24 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=HIMVRYDS;
- spf=pass (domain: gmail.com, ip: 209.85.160.181, mailfrom: jonas.vautherin@gmail.com)
-Received: by mail-qt1-f181.google.com with SMTP id d15so7719958qtw.12
-        for <yocto@lists.yoctoproject.org>; Sun, 24 Jan 2021 05:30:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QcmD6nqC9IJ5m4pn5cwdjmdZDTwDQ/B1RSZHjC+yVrs=;
-        b=HIMVRYDStJUeJqJ/I6J/Dk2AMvedc5/JIWrJGR5RPhnjbidNcGhfTzaCqWXYiYFm/7
-         vnXcZKotAZUHtqnVzs6Tmjsxbid+0nS1LacKC8e0HckmjL/NKNetjBsx9ObVKFH0wV3C
-         1dZwcfUfR7buQMTaF5wSABWFvtwucpnXr6MrEcdfF+1vxwaD54HvQX7MM8IBkpt0wt+m
-         XjYRZJdRnf4I7zZ0+yOdY1gOAuHqvjqe/2JBwCfwmJuXAoV4doFCZp8piRC/Vby3cgVM
-         WCTlTdkRhd41EtvqJquKB6vmhpyV7Kh7Gsdv6NgDKbF5VfIUPxOy42QKE2eduUe6t/+Z
-         e1+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QcmD6nqC9IJ5m4pn5cwdjmdZDTwDQ/B1RSZHjC+yVrs=;
-        b=IpzznG8hGd2m35czoWwCVPSc9LncN5gYvebUL9j4dp4q2oCwWqo31zKznYynsLKrww
-         kuapn2WuxgVjBre5q+gV+B2fxGB1ECVDC7Jl8Hr4KdJ0tfzGwW3HwHKw+gb1pQ3vv6Mg
-         JE5cH6CNy/4wX5NJlPHSH1vUd66QebN+tPt2NSl+H/HMuLgdY33MMb4rvUkL7NajGb0p
-         yCT5xUH2JitR7ve/0tV9ynvcrb0i9LIEh9RHanZSUEWOYgjE7C9ZhNiSj1U1pULRXOaH
-         qCHggqXk04ip0J7DuJ8q1l8E0N/6HI6RoRewQJHG+pVi4scSfJVICl5vMvshUufEThRy
-         NZxA==
-X-Gm-Message-State: AOAM531shF08PavBMx1gYPNYImrk/M31F9s/rif5/IvcWqm9uSvabsH8
-	ks5oPzEo+1FRAgPYuziawcUQGwmcMkumbO4xPac=
-X-Google-Smtp-Source: ABdhPJz3Bk9MFGqzS6OZWRxw36aXzMswXufOEwml8c0dK/OwtAYev8mWBfq9DTJwODe1pjImnNWdB0wuH8pUUw7m5Uw=
-X-Received: by 2002:ac8:725a:: with SMTP id l26mr1947618qtp.56.1611495015732;
- Sun, 24 Jan 2021 05:30:15 -0800 (PST)
+ dkim=fail reason="signature has expired" header.i=@baesystems.com header.s=trusted01 header.b=bej5EuZN;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1611518240; x=1769198240;
+  h=from:to:subject:date:mime-version;
+  bh=maGQWN4ofOR56bxp7Qf8vO0J/zxftcYLHqM592kW9H4=;
+  b=bej5EuZNAERvPOTxEwUt3zvT9oJhiBkkpu4oLtAA7Q3qWLqHwpIjyajh
+   JuHH2TvJbrlcztlHtbeqnifhAbE75YQnZpjgrCe1U+ryfVO9GR8igB489
+   OVYhodq/gSlV5zioqE6IUugPDLnwzvui0PawpHJ7vpb6U8mBUz0Vl9DpC
+   4=;
+IronPort-PHdr: =?us-ascii?q?9a23=3A6BYj5B+HFboUZv9uRHKM819IXTAuvvDOBiVQ1KB+?=
+ =?us-ascii?q?0+gXIJqq85mqBkHD//Il1AaPAdyKragdwLuN++C4ACpcuMnH6ChDOLV3FDY9wf?=
+ =?us-ascii?q?0MmAIhBMPXQWbaF9XNKxIAIcJZSVV+9Gu6O0UGUOz3ZlnVv2HgpWVKQka3OgV6?=
+ =?us-ascii?q?PPn6FZDPhMqrye+y54fTYwJVjzahfL9+Nhq7oRjVu8UMn4duN6k9xx/Hr3BVf+?=
+ =?us-ascii?q?ha2X5kKUickhrh5Mq85oJv/zhVt/k868NOTKL2crgiQ7dFFjomKWc15MPqtRnH?=
+ =?us-ascii?q?UwSC42YXX3sVnBRVHQXL9Qn2UZjtvCT0sOp9wzSaMtbtTb8oQzSi7rxkRwHuhS?=
+ =?us-ascii?q?waKjM26mDXish3jKJGvBKsogF0zoDIbI2JMvd1Y6XQds4YS2VcRMZcTyxPDJ2h?=
+ =?us-ascii?q?YYsTAeQPPudYoJXyqFYVtxSyGQusCfnzxjNUmHP727Ax3eQ7EQHB2QwtB9wCvn?=
+ =?us-ascii?q?PTrNXzL6cdT/66zLLQwT7ecv1WxSny6JbWfRAnvPqBQ697fc7fxkcyEg/JgEib?=
+ =?us-ascii?q?pIv+PzOJyOsNrXaU7+x6WeKqjG4nrRpxrSaxycc3kYTGnZgaxU7f9SR524Y1Oc?=
+ =?us-ascii?q?O3SEtgYdK+DJRQsCSaOpJwT8g/TG5mpDw0xacauZ6nYicK0pInygbRZfGJb4WF?=
+ =?us-ascii?q?4xDuWeePLTtlmn9oe7KyihK9/EWv1+HyWMm53llXoidBkNTBtn8A2h3O5sWZTv?=
+ =?us-ascii?q?Zw/USs1CuS2w7c7OxPPEM6lbLDJpI83rI8jJQevEbZEiPohkn7jLWae0Ql9+Sw?=
+ =?us-ascii?q?9ujrfq/qq5+cOoNulw3zPboilta9DOk3NAUFQnKV9v6m1LL5+E30WLBKjvorna?=
+ =?us-ascii?q?bHqJ3aPsEbprKhAw9Sz4Yj9w6zDze439QcmnkKNE5Kdwicj4f1PlHOO/T1APO8?=
+ =?us-ascii?q?jliwjjtn3fbGMaf7DprWNHfMjqzhfLZm605A1gUzyMtf64hIBbEGJfL/Qk7xtN?=
+ =?us-ascii?q?rGAR8lKwG43vrrBM9z244cQ26DHLGVPaPIvVKJ5+8jO+yMa5UUuDb5Jfgl/fnu?=
+ =?us-ascii?q?jXohlF8GYammw4UXZ26+Hvh8JkWZZnzsgswfHmgUpQozV/flh0ecXj5IZ3eyRL?=
+ =?us-ascii?q?486S8+CIK9F4vMWoetgLmZ0CehApJWfnxGCkyLEXrwd4SEXOsDaD6VIsJ6ljwE?=
+ =?us-ascii?q?VKOhS5M61R20tA76zKZoLvbT+i0Ar5Lj09p16PPPmhEu7zB0CN6d027eB11zyy?=
+ =?us-ascii?q?kZQDQq24h7oFdh0RGS1qNkhORCEt5e7O8PVR01f9aI3utxF9faXgPaYszPWVGt?=
+ =?us-ascii?q?XtK+GzYzQ9kthdgUbBAuNc+li0WJ+i2sGLIYjPjDP4A57K/al1O5Z/tGijyOgL?=
+ =?us-ascii?q?I9gkcrRI1KMmu9i6Nk3wLaCpXYiFmUkr3sfqMZin2evFyfxHaD6RkLGDV7Vr/I?=
+ =?us-ascii?q?CCgS?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2ArAwCy0A1g/0LhJQpigQmBT4EjgX6BQ?=
+ =?us-ascii?q?7BXgXwLAQEBAQEBAQEBCAEvBAEBhkUmNAkOAhABAQYBAQEBAQYEAYZSC4I4IoN?=
+ =?us-ascii?q?NXgGBACYBBBuDH4F+tB2BNIVZhQcJAYEuj0E+hy6HcQSDU4IuC5sTnXsHA4J3m?=
+ =?us-ascii?q?2YroniUHqFWAgQCBAUCFoFWghFwgzpPFwINnGqBKwIGCgEBAwmLBIERAQE?=
+X-IPAS-Result: =?us-ascii?q?A2ArAwCy0A1g/0LhJQpigQmBT4EjgX6BQ7BXgXwLAQEBAQE?=
+ =?us-ascii?q?BAQEBCAEvBAEBhkUmNAkOAhABAQYBAQEBAQYEAYZSC4I4IoNNXgGBACYBBBuDH?=
+ =?us-ascii?q?4F+tB2BNIVZhQcJAYEuj0E+hy6HcQSDU4IuC5sTnXsHA4J3m2YroniUHqFWAgQ?=
+ =?us-ascii?q?CBAUCFoFWghFwgzpPFwINnGqBKwIGCgEBAwmLBIERAQE?=
+X-IronPort-AV: E=Sophos;i="5.79,371,1602547200"; 
+   d="scan'208,217";a="342426315"
+X-IronPort-AV: E=Sophos;i="5.79,371,1602547200"; 
+   d="scan'208,217";a="177269693"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: #yocto #kernel setting up PREMIRRORS under zeus
+Thread-Topic: #yocto #kernel setting up PREMIRRORS under zeus
+Thread-Index: AdbyibSHWW/3/1K+RmOmMBmkYnLMKw==
+Date: Sun, 24 Jan 2021 19:57:18 +0000
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.55.142.74]
 MIME-Version: 1.0
-References: <CAEyb4nFHLZ-cycQXBgerWeyyKUf3KRP+xSEa2kP0K1zYd7=HNA@mail.gmail.com>
- <CAM9ZRVshoYvDho-Dmu2+UNorjLSyrN3t=ZYE5Uj0zit0_4mAew@mail.gmail.com> <165CDE54CF259D2E.7022@lists.yoctoproject.org>
-In-Reply-To: <165CDE54CF259D2E.7022@lists.yoctoproject.org>
-From: "Jonas Vautherin" <jonas.vautherin@gmail.com>
-Date: Sun, 24 Jan 2021 14:30:04 +0100
-Message-ID: <CAEyb4nH1jqEEhRyw-wmKPg+nqAhQMDdDv6GPjKGzc_igbYqyqQ@mail.gmail.com>
-Subject: Re: [yocto] Writing a BSP from downstream kernel sources
-To: Jonas Vautherin <jonas.vautherin@gmail.com>
-Cc: Paul Barker <pbarker@konsulko.com>, Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000f858a705b9a56bd1"
+Return-Path: steven.monsees@baesystems.com
+Message-ID: <MADEUP.165D434E10AAA4F1.7203@lists.yoctoproject.org>
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_f23be354a219467fbe705383211b06c7baesystemscom_"
 
---000000000000f858a705b9a56bd1
-Content-Type: text/plain; charset="UTF-8"
-
-Just to close this: it seems like the gcc-cross-arm used by yocto
-gatesgarth is too new for that specific downstream kernel (3.18.31).
-
-The goal was to get a proper BSP package for this device for a modern
-yocto, so I don't think I will try with an older version of Yocto. If I
-compile an old gcc as part of a custom Yocto layer (on gatesgarth), I am
-guessing that I will have issues creating a distro that runs both on RPi
-and on that older device (because RPi will have a newer kernel and gcc, and
-the skycontroller will use older ones). I also guess that the downstream
-dts won't work with a modern kernel, and I would not know how to write one
-myself for that apq8009 chip.
-
-Hence, I'm giving up. Thanks a lot for the help :-).
-
-On Sat, Jan 23, 2021 at 2:07 PM Jonas Vautherin via lists.yoctoproject.org
-<jonas.vautherin=gmail.com@lists.yoctoproject.org> wrote:
-
-> Thanks a lot for the answer!
->
-> It seems like using `KCONFIG_MODE = "--alldefconfig"` with
-> `KBUILD_DEFCONFIG = "msm8909_defconfig"` now ends up with the same kind of
-> errors as when I use the defconfig from the downstream kernel [1], i.e.:
->
-> ```
-> | /tmp/ccz8jKgm.s: Assembler messages:
-> | /tmp/ccz8jKgm.s:985: Error: .err encountered
-> ```
->
-> Could it be related to the tuning, e.g. I'm somehow defining a wrong
-> toolchain in my machine configuration [2] and it fails to build? I was
-> thinking about the tune-cortexa7.inc include, though it seems to me that
-> the apq8009 is a cortexa7 [3]:
->
-> > The Qualcomm Snapdragon 212 APQ8009 is an entry level SoC for Android
-> based tablets and smartphones. It contains four ARM Cortex-A7 CPU cores
-> (quad core)
->
-> [1]:
-> https://github.com/parrot-opensource/skycontroller3-opensource/blob/master/sources/linux-3.18.31/linux.config
-> [2]:
-> https://github.com/JonasVautherin/meta-skycontroller3/blob/main/conf/machine/skycontroller3.conf#L32
-> [3]:
-> https://www.notebookcheck.net/Qualcomm-Snapdragon-212-APQ8009-SoC-Benchmarks-and-Specs.169859.0.html
->
-> Best,
->
-> On Sat, Jan 23, 2021 at 11:06 AM Paul Barker <pbarker@konsulko.com> wrote:
->
->> On Sat, 23 Jan 2021 at 02:29, Jonas Vautherin <jonas.vautherin@gmail.com>
->> wrote:
->> >
->> > As a learning experience, I am trying to create a BSP for a device I
->> own and whose downstream kernel is published. The device in question is the
->> Parrot Skycontroller3, and the sources are available here.
->> >
->> > Let me start by sharing my issue. When I build the kernel with `bitbake
->> virtual/kernel`, it fails with errors like:
->> >
->> > ```
->> > |   AS      arch/arm/lib/backtrace.o
->> > |   AS      arch/arm/lib/bswapsdi2.o
->> > |   AS      arch/arm/lib/call_with_stack.o
->> > | /tmp/ccz8jKgm.s: Assembler messages:
->> > | /tmp/ccz8jKgm.s:985: Error: .err encountered
->> > | /tmp/ccz8jKgm.s:1033: Error: .err encountered
->> > | /tmp/ccz8jKgm.s:6812: Error: .err encountered
->> > ```
->> >
->> > My layer is available here.
->> >
->> > I created it getting inspiration from meta-raspberrypi and
->> meta-qti-bsp, which seems to have the same CPU: apq8009. According to the
->> Parrot sources, my device runs a Qualcomm apq8009/msm89090 cpu. In my repo,
->> I use as a defconfig file the linux.config that is available in the Parrot
->> sources (I copied it in my kernel recipe under `files/defconfig` and added
->> it to SRC_URI).
->> >
->> > The Parrot sources also refer to `LINUX_DEFAULT_CONFIG_TARGET :=
->> msm8909_defconfig`, so I tried to set `KBUILD_DEFCONFIG =
->> "msm8909_defconfig"`, but that is failing with different errors, such as:
->> >
->> > ```
->> > error: 'VM_ARM_DMA_CONSISTENT' undeclared (first use in this function);
->> did you mean 'DMA_ATTR_NON_CONSISTENT'?
->> > ```
->> >
->> > or
->> >
->> > ```
->> > error: 'L_PTE_YOUNG' undeclared
->> > ```
->> >
->> > As a side note, their `drivers/Kconfig` seemed invalid, so I patched it.
->> >
->> > I am a bit lost now, not completely sure where my issues come from. I
->> realize that changing the defconfig has quite some impact (I get different
->> errors), and also that my machine configuration may be completely wrong (I
->> am essentially guessing from the fact that it is an apq8009/msm8909, but
->> for instance the tuning I just copied from meta-qti-bsp, which may be
->> invalid).
->> >
->> > I would be glad if I could get hints about debugging this. Again, it is
->> really a learning project: I would like to learn how to create a BSP from a
->> downstream kernel.
->>
->> I think setting `KBUILD_DEFCONFIG = "msm8909_defconfig"` is likely the
->> correct approach here. What you may be missing though is the correct
->> value for KCONFIG_MODE. By default, the supplied defconfig file is
->> copied to .config but dependencies between config options aren't
->> resolved. You need to set `KCONFIG_MODE = "--alldefconfig"` to get the
->> equivalent of `make msm8909_defconfig` to occur. See
->>
->> https://github.com/agherzan/meta-raspberrypi/blob/master/recipes-kernel/linux/linux-raspberrypi.inc#L19
->> for an idea of how this is done for Raspberry Pi.
->>
->> Thanks,
->>
->> --
->> Paul Barker
->> Konsulko Group
->>
->
-> 
->
->
-
---000000000000f858a705b9a56bd1
-Content-Type: text/html; charset="UTF-8"
+--_000_f23be354a219467fbe705383211b06c7baesystemscom_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Just to close this: it seems like the gcc-cross-arm used b=
-y yocto gatesgarth is too new for that specific downstream kernel (3.18.31)=
-.<div><br></div><div>The goal was to get a proper BSP package for this devi=
-ce for a modern yocto, so I don&#39;t think I will try with an older versio=
-n of Yocto. If I compile an old gcc as part of a custom Yocto layer (on gat=
-esgarth), I am guessing that I will have issues creating a distro that runs=
- both on RPi and on that older device (because RPi will have a newer kernel=
- and gcc, and the skycontroller will use older ones). I also guess that the=
- downstream dts won&#39;t work with a modern kernel, and I would not know h=
-ow to write one myself for that apq8009 chip.</div><div><br></div><div>Henc=
-e, I&#39;m giving up. Thanks a lot for the help :-).</div></div><br><div cl=
-ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Jan 23, 2=
-021 at 2:07 PM Jonas Vautherin via <a href=3D"http://lists.yoctoproject.org=
-">lists.yoctoproject.org</a> &lt;jonas.vautherin=3D<a href=3D"mailto:gmail.=
-com@lists.yoctoproject.org">gmail.com@lists.yoctoproject.org</a>&gt; wrote:=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
-">Thanks a lot for the answer!<div><br></div><div>It seems like using `KCON=
-FIG_MODE =3D &quot;--alldefconfig&quot;` with `KBUILD_DEFCONFIG =3D &quot;m=
-sm8909_defconfig&quot;` now ends up with the same kind of errors as when I =
-use the defconfig from the downstream kernel [1], i.e.:</div><div><br></div=
-><div>```</div><div>| /tmp/ccz8jKgm.s: Assembler messages:<br>| /tmp/ccz8jK=
-gm.s:985: Error: .err encountered<br></div><div>```</div><div><br></div><di=
-v>Could it be related to the tuning, e.g. I&#39;m somehow defining a wrong =
-toolchain in my machine configuration [2] and it fails to build? I was thin=
-king about the tune-cortexa7.inc include, though it seems to me that the ap=
-q8009 is a cortexa7 [3]:</div><div><br></div><div>&gt;=C2=A0The Qualcomm Sn=
-apdragon 212 APQ8009 is an entry level SoC for Android based tablets and sm=
-artphones. It contains four ARM Cortex-A7 CPU cores (quad core)</div><div><=
-br></div><div>[1]:=C2=A0<a href=3D"https://github.com/parrot-opensource/sky=
-controller3-opensource/blob/master/sources/linux-3.18.31/linux.config" targ=
-et=3D"_blank">https://github.com/parrot-opensource/skycontroller3-opensourc=
-e/blob/master/sources/linux-3.18.31/linux.config</a></div><div>[2]:=C2=A0<a=
- href=3D"https://github.com/JonasVautherin/meta-skycontroller3/blob/main/co=
-nf/machine/skycontroller3.conf#L32" target=3D"_blank">https://github.com/Jo=
-nasVautherin/meta-skycontroller3/blob/main/conf/machine/skycontroller3.conf=
-#L32</a></div><div>[3]:=C2=A0<a href=3D"https://www.notebookcheck.net/Qualc=
-omm-Snapdragon-212-APQ8009-SoC-Benchmarks-and-Specs.169859.0.html" target=
-=3D"_blank">https://www.notebookcheck.net/Qualcomm-Snapdragon-212-APQ8009-=
-SoC-Benchmarks-and-Specs.169859.0.html</a></div><div><br></div><div>Best,</=
-div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
-tr">On Sat, Jan 23, 2021 at 11:06 AM Paul Barker &lt;<a href=3D"mailto:pbar=
-ker@konsulko.com" target=3D"_blank">pbarker@konsulko.com</a>&gt; wrote:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex">On Sat, 23 Jan 2021=
- at 02:29, Jonas Vautherin &lt;<a href=3D"mailto:jonas.vautherin@gmail.com"=
- target=3D"_blank">jonas.vautherin@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; As a learning experience, I am trying to create a BSP for a device I =
-own and whose downstream kernel is published. The device in question is the=
- Parrot Skycontroller3, and the sources are available here.<br>
-&gt;<br>
-&gt; Let me start by sharing my issue. When I build the kernel with `bitba=
-ke virtual/kernel`, it fails with errors like:<br>
-&gt;<br>
-&gt; ```<br>
-&gt; |=C2=A0 =C2=A0AS=C2=A0 =C2=A0 =C2=A0 arch/arm/lib/backtrace.o<br>
-&gt; |=C2=A0 =C2=A0AS=C2=A0 =C2=A0 =C2=A0 arch/arm/lib/bswapsdi2.o<br>
-&gt; |=C2=A0 =C2=A0AS=C2=A0 =C2=A0 =C2=A0 arch/arm/lib/call_with_stack.o<b=
-r>
-&gt; | /tmp/ccz8jKgm.s: Assembler messages:<br>
-&gt; | /tmp/ccz8jKgm.s:985: Error: .err encountered<br>
-&gt; | /tmp/ccz8jKgm.s:1033: Error: .err encountered<br>
-&gt; | /tmp/ccz8jKgm.s:6812: Error: .err encountered<br>
-&gt; ```<br>
-&gt;<br>
-&gt; My layer is available here.<br>
-&gt;<br>
-&gt; I created it getting inspiration from meta-raspberrypi and meta-qti-b=
-sp, which seems to have the same CPU: apq8009. According to the Parrot sour=
-ces, my device runs a Qualcomm apq8009/msm89090 cpu. In my repo, I use as a=
- defconfig file the linux.config that is available in the Parrot sources (I=
- copied it in my kernel recipe under `files/defconfig` and added it to SRC_=
-URI).<br>
-&gt;<br>
-&gt; The Parrot sources also refer to `LINUX_DEFAULT_CONFIG_TARGET :=3D ms=
-m8909_defconfig`, so I tried to set `KBUILD_DEFCONFIG =3D &quot;msm8909_def=
-config&quot;`, but that is failing with different errors, such as:<br>
-&gt;<br>
-&gt; ```<br>
-&gt; error: &#39;VM_ARM_DMA_CONSISTENT&#39; undeclared (first use in this =
-function); did you mean &#39;DMA_ATTR_NON_CONSISTENT&#39;?<br>
-&gt; ```<br>
-&gt;<br>
-&gt; or<br>
-&gt;<br>
-&gt; ```<br>
-&gt; error: &#39;L_PTE_YOUNG&#39; undeclared<br>
-&gt; ```<br>
-&gt;<br>
-&gt; As a side note, their `drivers/Kconfig` seemed invalid, so I patched =
-it.<br>
-&gt;<br>
-&gt; I am a bit lost now, not completely sure where my issues come from. I=
- realize that changing the defconfig has quite some impact (I get different=
- errors), and also that my machine configuration may be completely wrong (I=
- am essentially guessing from the fact that it is an apq8009/msm8909, but f=
-or instance the tuning I just copied from meta-qti-bsp, which may be invali=
-d).<br>
-&gt;<br>
-&gt; I would be glad if I could get hints about debugging this. Again, it =
-is really a learning project: I would like to learn how to create a BSP fro=
-m a downstream kernel.<br>
-<br>
-I think setting `KBUILD_DEFCONFIG =3D &quot;msm8909_defconfig&quot;` is li=
-kely the<br>
-correct approach here. What you may be missing though is the correct<br>
-value for KCONFIG_MODE. By default, the supplied defconfig file is<br>
-copied to .config but dependencies between config options aren&#39;t<br>
-resolved. You need to set `KCONFIG_MODE =3D &quot;--alldefconfig&quot;` to=
- get the<br>
-equivalent of `make msm8909_defconfig` to occur. See<br>
-<a href=3D"https://github.com/agherzan/meta-raspberrypi/blob/master/recipe=
-s-kernel/linux/linux-raspberrypi.inc#L19" rel=3D"noreferrer" target=3D"_bla=
-nk">https://github.com/agherzan/meta-raspberrypi/blob/master/recipes-kernel=
-/linux/linux-raspberrypi.inc#L19</a><br>
-for an idea of how this is done for Raspberry Pi.<br>
-<br>
-Thanks,<br>
-<br>
--- <br>
-Paul Barker<br>
-Konsulko Group<br>
-</blockquote></div>
-<br>
-<br>
-<br>
-</blockquote></div>
 
---000000000000f858a705b9a56bd1--
+I am trying to setup PREMIRRORS to setup and point to the directory contain=
+ing all the tar-balls for my build...
+I was under the impression that the "SOURCE_MIRROR_URL" is a quick way to a=
+dd a series of PREMIRROR entries for all supported protocols.
+
+I added the following to my local.conf:
+
+INHERIT +=3D "own-mirrors"
+SOURCE_MIRROR_URL =3D "file:///ede/tms/yocto/zeus/downloads/PATH"
+
+But this does not appear to retrieve the tar-balls from from my local repos=
+itory...
+
+What is the proper syntax required to setup PREMIRRORS to point to and use =
+my local repo ?
+
+Thanks,
+Steve
+
+--_000_f23be354a219467fbe705383211b06c7baesystemscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+code
+	{mso-style-priority:99;
+	font-family:"Courier New";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am trying to setup PREMIRRORS to setup and point t=
+o the directory containing all the tar-balls for my build&#8230;<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;color:#242729;background:white">I was under the impres=
+sion that the&nbsp;&#8220;</span><code><span style=3D"font-size:10.0pt;font=
+-family:Consolas;color:black;border:none windowtext 1.0pt;padding:0in;backg=
+round:white">SOURCE_MIRROR_URL&#8221;</span></code><span style=3D"font-size=
+:11.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#242729;background:w=
+hite">&nbsp;is
+ a quick way to add a series of&nbsp;</span><code><span style=3D"font-size:=
+10.0pt;font-family:Consolas;color:#242729;border:none windowtext 1.0pt;padd=
+ing:0in">PREMIRROR</span></code><span style=3D"font-size:11.5pt;font-family=
+:&quot;Arial&quot;,sans-serif;color:#242729;background:white">&nbsp;entries
+ for all supported protocols.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I added the following to my local.conf:<o:p></o:p></=
+p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">INHERIT &#43;=3D &quot;own-mirrors&quot;<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">SOURCE_MIRROR_URL =3D &#8220;<a href=3D"file:///ede/=
+tms/yocto/zeus/downloads/PATH">file:///ede/tms/yocto/zeus/downloads/PATH</a=
+>&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">But this does not appear to retrieve the tar-balls f=
+rom from my local repository&#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">What is the proper syntax required to setup PREMIRRO=
+RS to point to and use my local repo ?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Steve<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_f23be354a219467fbe705383211b06c7baesystemscom_--
