@@ -1,57 +1,49 @@
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
- by mx.groups.io with SMTP id smtpd.web08.4287.1611616502501689228
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.5606.1611622324105029851
  for <yocto@lists.yoctoproject.org>;
- Mon, 25 Jan 2021 15:15:02 -0800
+ Mon, 25 Jan 2021 16:52:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=dd2B+mE8;
- spf=pass (domain: gmail.com, ip: 209.85.166.48, mailfrom: twoerner@gmail.com)
-Received: by mail-io1-f48.google.com with SMTP id u8so16991907ior.13
-        for <yocto@lists.yoctoproject.org>; Mon, 25 Jan 2021 15:15:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=KezOldHU7Ht+WPVPyZ7bR71ZCdWgZmzjPO5Fra9bOiU=;
-        b=dd2B+mE8hx/Ht/PV9ohxEDNTiCVeYjkxRCJL0sQaC9q3K0d2pdndRkjHOIrVdliu6U
-         kIZ3G1wbVx21p2A3dpKiL603eRDeMxgWe9rRX+P3xdwV4NQMDXzDrtIg13amOp8r0epc
-         INScdQNGeoxdeuodBoGh3NHjLU7rgUDebExrJM470BRLggx/CyGtpRpzWvDxCZlDC2dd
-         RVOwIsfTLcj4U462Q+4w5Zo2sZHn9KNEO40cDNb0jRwxajLexx0SA9BWRpKf52SHLNBL
-         y+OypTm2PfoPL2wNwaQ3+n0scajYF+ojXwA5E8/3Xg6KDa7Gg5DSU0LyTF5zUeVro+T+
-         M7yA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=KezOldHU7Ht+WPVPyZ7bR71ZCdWgZmzjPO5Fra9bOiU=;
-        b=lF9B9EpG4BUEPSUT/0W0VTIPc9qq2RkVRnXchEAP4184nBO+2K5oGZ8vWuh35e2Cdi
-         wGWu6OqQnxa9Ity1egDNO+MUtx6o+nG0XteThy2A15vAcPYMeUSpk3FYVSHPUquzKGPU
-         tZqOwtGwlselbebZq5yCCk/tdCNQ9edv38/8y9fU1BD2M8T23Qkuig2lxRfL8Lgf1z4G
-         XVvOV4xNl0YmAwPLC7IYPtQ7ephdgrUvnfpeaLlW/IgFevs4yOKj5mGCFQ0TO6/GkFdh
-         sWK480iXPKur3umEno9OECBjovquB4ljNvRT3udgaL9fuFuLiz6Nm4Lm/NO/gATo9Mn/
-         roHA==
-X-Gm-Message-State: AOAM532tBeXxJF4TtXtuREg0h0CfeFo5GU7E+iUxk+DO0c1s+zLrn3de
-	CPOOf1SAf16WzJU7cW1J/Fo=
-X-Google-Smtp-Source: ABdhPJzzboI/D+O2rtaZ8HyDzOz9qIaTOnwfdCYb8vt2w8ce5bkyoZNbVAc4KTGMG9uHgymkz72W3g==
-X-Received: by 2002:a6b:fe19:: with SMTP id x25mr2204849ioh.78.1611616502037;
-        Mon, 25 Jan 2021 15:15:02 -0800 (PST)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost ([206.248.190.95])
-        by smtp.gmail.com with ESMTPSA id o20sm11608503iob.41.2021.01.25.15.15.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 15:15:01 -0800 (PST)
-Date: Mon, 25 Jan 2021 18:14:59 -0500
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: Joshua Watt <jpewhacker@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [meta-rockchip][PATCH] rock-pi-4: Split our variant machinesy
-Message-ID: <20210125231459.GB23113@localhost>
-References: <20210123210512.20111-1-JPEWhacker@gmail.com>
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 198.145.29.25, mailfrom: denis@denix.org)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 352C938C04F5
+	for <yocto@yoctoproject.org>; Tue, 26 Jan 2021 00:52:03 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6AC5440C2C;
+	Tue, 26 Jan 2021 00:52:02 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id lU_k7flXNDo9; Tue, 26 Jan 2021 00:52:02 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 29A3F40BCF;
+	Tue, 26 Jan 2021 00:51:58 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 85AEC1743CE; Mon, 25 Jan 2021 19:51:57 -0500 (EST)
+Date: Mon, 25 Jan 2021 19:51:57 -0500
+From: "Denys Dmytriyenko" <denis@denix.org>
+To: "openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>,
+	openembedded-architecture <openembedded-architecture@lists.openembedded.org>,
+	Yocto Project <yocto@yoctoproject.org>,
+	openembedded-members@lists.openembedded.org
+Subject: OpenEmbedded Happy Hour January 27 5pm/1700 UTC
+Message-ID: <20210126005157.GN4892@denix.org>
 MIME-Version: 1.0
-In-Reply-To: <20210123210512.20111-1-JPEWhacker@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-Is there any way to make this work with both new (4.10, -dev, -tiny, -rt) and
-old (5.4) kernels? What if we left the old rock-pi-4 MACHINE for the 5.4
-kernel and required one of the new ones for 5.10?
+Hi,
+
+Just a reminder about our upcoming OpenEmbedded Happy Hour on January 27 for
+Europe/US timezones @ 1700/5pm UTC (12pm ET):
+
+https://www.openembedded.org/wiki/Calendar
+https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+January+27&iso=20210127T17
+
+-- 
+Regards,
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
