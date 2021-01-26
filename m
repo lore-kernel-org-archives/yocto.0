@@ -1,49 +1,54 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.5606.1611622324105029851
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+ by mx.groups.io with SMTP id smtpd.web08.5924.1611624272826120661
  for <yocto@lists.yoctoproject.org>;
- Mon, 25 Jan 2021 16:52:04 -0800
+ Mon, 25 Jan 2021 17:24:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 198.145.29.25, mailfrom: denis@denix.org)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 352C938C04F5
-	for <yocto@yoctoproject.org>; Tue, 26 Jan 2021 00:52:03 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 6AC5440C2C;
-	Tue, 26 Jan 2021 00:52:02 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id lU_k7flXNDo9; Tue, 26 Jan 2021 00:52:02 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 29A3F40BCF;
-	Tue, 26 Jan 2021 00:51:58 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 85AEC1743CE; Mon, 25 Jan 2021 19:51:57 -0500 (EST)
-Date: Mon, 25 Jan 2021 19:51:57 -0500
-From: "Denys Dmytriyenko" <denis@denix.org>
-To: "openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	openembedded-architecture <openembedded-architecture@lists.openembedded.org>,
-	Yocto Project <yocto@yoctoproject.org>,
-	openembedded-members@lists.openembedded.org
-Subject: OpenEmbedded Happy Hour January 27 5pm/1700 UTC
-Message-ID: <20210126005157.GN4892@denix.org>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=cDywucic;
+ spf=pass (domain: gmail.com, ip: 209.85.128.50, mailfrom: jpewhacker@gmail.com)
+Received: by mail-wm1-f50.google.com with SMTP id 190so1113123wmz.0
+        for <yocto@lists.yoctoproject.org>; Mon, 25 Jan 2021 17:24:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=o4Q65YL5GAi3vRvXWx0PnMHNQV18nF88ZkJ4aM+EcOk=;
+        b=cDywucicJSaQ/1a44Tg5r0Tm6zdx3N17AMn+U1Qkc/tQrELAJ3R83Arfxl9ooKSF0s
+         6rEXsItTcN3Vf6rTNKgOzwxMoR1lhnVxKj4DkpSxTNVux/06iD9O5SuwkA9bOU/PQbAZ
+         4LoaAvwcY2tn9eu1b0RlwsAhKkaeR1f/sNrkK6PQIdt0FzgWqcZAX5trLG7VQkKq4pkI
+         XoSc7l0OA9nf61roJcLu3+9TBoj0pnOO4PI8OhEF9N3EMCy8YKqywueervifla/YFqz0
+         IchAmH8A6GXD8QyxmfIMc59sDWAck6FbTXMnUORTl9zQPpstnlka0OZadMqqHfWxftin
+         IHMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=o4Q65YL5GAi3vRvXWx0PnMHNQV18nF88ZkJ4aM+EcOk=;
+        b=n+MyPwDUKEuHJoQSDMzWtNTmysQTLYNG+KTQHsFmQUDklOi30QR+AoXeP2wuI35wWL
+         q4xsULES8FCCBQXV9LXyZbTUxUOkqwShF7TjaKqOlKdYUFY/IOxW5+Unij8AsBxUYEUO
+         ucRRHyaoDYAHTr+UqcjD+0hPX6ChPIlwvnBGriLRH9voq+ku8JDqV3FO/mTXc5sXzwhu
+         C5y8Hwq5xi9H+8hLw6rDUOfQHZ28kcAdlyWnHpFskk4lO70iLB6/fUVHua6v6dPmLPZ8
+         U2scIcAViSyK++Tf69iHazBCVJBX4gKDKahnagYA/h3FvyF+0LCbGAAdlqodrcl+9aOB
+         bddg==
+X-Gm-Message-State: AOAM532oFX1cktJDnAZxB5F/FTN3PbSD4EFol7rzGXZWqIgrYQ8rgiGW
+	8J/CH2bWs4/XCbfJUjmlDQRYWhcarj6ajUEllPM=
+X-Google-Smtp-Source: ABdhPJwVWSjgdDvHzVOKDhG6dUkhnjZg2MRNofaJ+qjSweR8C5B2dW2BywfIj+KDEzCSUo34vjqL8fo7yL8etK7NvFE=
+X-Received: by 2002:a1c:e4c5:: with SMTP id b188mr2452311wmh.78.1611624271310;
+ Mon, 25 Jan 2021 17:24:31 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20210123210512.20111-1-JPEWhacker@gmail.com> <20210125231459.GB23113@localhost>
+In-Reply-To: <20210125231459.GB23113@localhost>
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+Date: Mon, 25 Jan 2021 19:24:20 -0600
+Message-ID: <CAJdd5GZgYiLKM-Bjhqf3syFeM9PMyp1fnehDd6=50ih4m5LMKw@mail.gmail.com>
+Subject: Re: [meta-rockchip][PATCH] rock-pi-4: Split our variant machinesy
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: yocto <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Mon, Jan 25, 2021 at 5:15 PM Trevor Woerner <twoerner@gmail.com> wrote:
+>
+> Is there any way to make this work with both new (4.10, -dev, -tiny, -rt) and
+> old (5.4) kernels? What if we left the old rock-pi-4 MACHINE for the 5.4
+> kernel and required one of the new ones for 5.10?
 
-Just a reminder about our upcoming OpenEmbedded Happy Hour on January 27 for
-Europe/US timezones @ 1700/5pm UTC (12pm ET):
-
-https://www.openembedded.org/wiki/Calendar
-https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+January+27&iso=20210127T17
-
--- 
-Regards,
-Denys Dmytriyenko <denis@denix.org>
-PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
-Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
+Ya, we can keep the old machine around for the old kernels
