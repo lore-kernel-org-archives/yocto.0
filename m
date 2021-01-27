@@ -1,69 +1,57 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.12902.1611774924547220686
+ by mx.groups.io with SMTP id smtpd.web11.12781.1611775003100720627
  for <yocto@lists.yoctoproject.org>;
- Wed, 27 Jan 2021 11:15:24 -0800
+ Wed, 27 Jan 2021 11:16:43 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=eaHzSfc6;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: chuckwolber@gmail.com)
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id E6D5838C04B4
-	for <yocto@yoctoproject.org>; Wed, 27 Jan 2021 19:15:23 +0000 (UTC)
-Received: by mail-pg1-f171.google.com with SMTP id r38so2223407pgk.13
-        for <yocto@yoctoproject.org>; Wed, 27 Jan 2021 11:15:23 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=CndU4hBq;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: raj.khem@gmail.com)
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id ED16B38C04B4
+	for <yocto@yoctoproject.org>; Wed, 27 Jan 2021 19:16:42 +0000 (UTC)
+Received: by mail-qt1-f181.google.com with SMTP id e15so2251369qte.9
+        for <yocto@yoctoproject.org>; Wed, 27 Jan 2021 11:16:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=3/2+SvNqOT72arMdVzEDiLOqleEsG3g2iq+PKTD9tD4=;
-        b=eaHzSfc6CQ3LBTyUiamn3qUYJHq/C5FCQNNaLTyQuXJoT6jzYfFZ54I8C+IzVVOB4S
-         KXWSLCtwpxLYUhsfno+tSoOMhnInCwzfluLkCbdpNCW4YrUaFXSxKaM1uBjGyt+0eNIQ
-         CtwSDSm/haP8VOkGWxYQaw5k8my/bz2fHSuatlmer/nbzMfCwSLlPPuhFxghy2O4pj9e
-         Wfi44md44JC47n9z8t0bOWb2YRzz3j3cbKWNCLrNALZvfpjptUHjyK8ybcdUVnOyTsCk
-         VsQ1ERvzQRbwauCfh+HM5/isGvO9tU/Di+//PcYrdpCU8cCkEUSsYfNwkbg5xKF1B2Wo
-         eOqg==
+        bh=5qDBYpX1VV/DtrJ4gpAUhkKbfhqS3hptw4FinaT0AtE=;
+        b=CndU4hBqXWaUReudbgsdQfEHAHq6OAJquZbySodzo1Aana4pfd4tvn0rTQZMz6ha+N
+         5Lm82xvLFIHChACE516JoY8LejrzfdISmvZ16k3RmFwqEXonqvKTQnV+HqBf8I4jbfgx
+         GnfORcTktjauRjv2u0DIgCJygtqCQWqVaZp55LjnqgvTqwCUeSXm0BeOHtDSJyuQB6k7
+         EljpLoEkOQzS0kZ/q/3XSb5nYyHK1R3/TXcvGkhvpR3nsROn3fnsioTE4uodJ2Y9H9qZ
+         /1kyjQ8ViifbPu2+flWLgyXPT4Q4nOHoBLEGqSdEfO09hYxcmcBN8vubEH1K9uYYoQed
+         mK9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=3/2+SvNqOT72arMdVzEDiLOqleEsG3g2iq+PKTD9tD4=;
-        b=cAaigFV7hPcebxemT0j8FwP1nFUANXbSN3SlbhKniXpkG69MoWgDmNYJQakbuwVF9o
-         jpKBuQdvjLyne1Z3JvgZosbZHNmfazT49uMhjMJAny8h+k6jsmlsI5uXQqa3at3NRhDY
-         IdYRycxzjyPQiqkBVE5JjZ2tX3cT0kj3jcXqvqGm0X/zAXrNUyBdcqtCIvwMMLG4bbH6
-         ihIiZCQBz5UaBd3T091TaEeEoolBziioHsBbI3/FiTYKGNAmoRbzUL8+vVUHznXHoOm+
-         bdDwpa4fHYxOYzDYLHW2JpaiaousN6Rk7ubQI9/XOOy4xqKGePpuB81dm43kWi8luG87
-         +sYQ==
-X-Gm-Message-State: AOAM533EqbIvqTP5U8g26e5GSp3uHc/o29QvMFa9PiYkJSctNrDwxrmc
-	Ns5GSQKTxwRgv+UY3KcARlDCGdfSCDtTaDxSjjU=
-X-Google-Smtp-Source: ABdhPJxXNnrrxF58P6bL3fbrPSD1o8yQn+dceVkbWxCN8Bfyz/byIVhi4DJmnVbywBZLkpxq5kzm/SP0UhYd1pRE1ik=
-X-Received: by 2002:a62:ea17:0:b029:1ad:4788:7815 with SMTP id
- t23-20020a62ea170000b02901ad47887815mr12301897pfh.1.1611774923230; Wed, 27
- Jan 2021 11:15:23 -0800 (PST)
+        bh=5qDBYpX1VV/DtrJ4gpAUhkKbfhqS3hptw4FinaT0AtE=;
+        b=pn7AJQj66PtKpFYfmiW36aTkRcCcFh6Mbk1tMtGXl4/x0XiZnn3jAoJ2fAjd5BW8ny
+         g6130cjH9xPX5OagcJCujm1O+ODfFI++TpMciklCN1tzExFp3xGBdic1nyJvywLa+TV1
+         CBZ/j0x44apvoOywXDoBr+ohit/bJQP+0ooEVsXIVHrNSYXSUfZ4EseOA8d2Mnf0pg3j
+         MOv+shJ3MmHIs3jnp7b0wmMV49UFAM6l3vGaMEcL4uqBaMyIhqxqAwxHJq9pKXo+t6zq
+         FZXr2bGeLvehXELVFCkKwuFtq9Qol7tjSTsvMxwnUIi49zVkN+EkSxf7RpQJrLqIGq1Q
+         mAew==
+X-Gm-Message-State: AOAM530oMkjbGPvIGIy1c+WIdmJF0rjIDnjJlvrjNatNSVXE5u7aYtlE
+	vLzZ4MuiK7rDghuCHydtKrsOclEE2u/fs3BVPCY=
+X-Google-Smtp-Source: ABdhPJzSw5FYxkgH6nmU1k08AxVZpIGLc68MLvOFa6diyLpY9GZSgh+4c4rNIAhi/GDwmASZ5rR+ricj02HNqrLbLmo=
+X-Received: by 2002:ac8:6f06:: with SMTP id g6mr11103645qtv.80.1611775001943;
+ Wed, 27 Jan 2021 11:16:41 -0800 (PST)
 MIME-Version: 1.0
 References: <10e8c340-6435-6158-5d9f-0d00fb4afb4c.ref@yahoo.com> <10e8c340-6435-6158-5d9f-0d00fb4afb4c@yahoo.com>
 In-Reply-To: <10e8c340-6435-6158-5d9f-0d00fb4afb4c@yahoo.com>
-From: "Chuck Wolber" <chuckwolber@gmail.com>
-Date: Wed, 27 Jan 2021 11:15:12 -0800
-Message-ID: <CAB=6tBTxM12S2LDPEOKZKUhqLNEarsRamAduMrHSOAWTGugJOA@mail.gmail.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Wed, 27 Jan 2021 11:16:15 -0800
+Message-ID: <CAMKF1srDLVSprz9cx0h_1eeb4dSF=cxHFw3XwmLw=p1SVuq5WA@mail.gmail.com>
 Subject: Re: [yocto] Including binary application as part of the image output
-To: chuckkamas@yahoo.com
+To: Chuck Kamas <chuckkamas@yahoo.com>
 Cc: yocto <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000c1d37705b9e6973f"
-
---000000000000c1d37705b9e6973f
 Content-Type: text/plain; charset="UTF-8"
 
-Your company's application should be built within its _own_ bitbake recipe
-and then pulled into your image with an RDEPENDS entry in your image build
-recipe.
-
-If you do it that way, you can find the packaged version of your
-application in the tmp/deploy directory automatically.
-
-..Ch:W..
-
-On Wed, Jan 27, 2021 at 10:32 AM chuck kamas via lists.yoctoproject.org
-<chuckkamas=yahoo.com@lists.yoctoproject.org> wrote:
-
+On Wed, Jan 27, 2021 at 10:32 AM chuck kamas via
+lists.yoctoproject.org <chuckkamas=yahoo.com@lists.yoctoproject.org>
+wrote:
+>
 > Hi all,
 >
 >
@@ -74,6 +62,14 @@ On Wed, Jan 27, 2021 at 10:32 AM chuck kamas via lists.yoctoproject.org
 > the image's wic file? Is there a line I can add to a recipe to have it
 > copy that image file to the tmp/deploy directory or other appropriate
 > directory so that it is available?
+
+you can perhaps make a recipe that packages your binary and then add
+it to IMAGE_INSTALL
+also look into binconfig.bbclass
+
+if you need more post processing, then perhaps look at using
+ROOTFS_POSTPROCESS_COMMAND
+
 >
 >
 > Thanks!
@@ -84,53 +80,3 @@ On Wed, Jan 27, 2021 at 10:32 AM chuck kamas via lists.yoctoproject.org
 >
 > 
 >
->
-
--- 
-*"Perfection must be reached by degrees; she requires the slow hand of
-time." - Voltaire*
-
---000000000000c1d37705b9e6973f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Your company&#39;s application should be built within=
- its _own_ bitbake recipe and then pulled into your image with an RDEPENDS =
-entry in your image build recipe.</div><div><br></div><div>If you do it tha=
-t way, you can find the packaged version of your application in the tmp/dep=
-loy directory automatically.<br></div><div><br></div><div>..Ch:W..<br></div=
-></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
->On Wed, Jan 27, 2021 at 10:32 AM chuck kamas via <a href=3D"http://lists.y=
-octoproject.org">lists.yoctoproject.org</a> &lt;chuckkamas=3D<a href=3D"mai=
-lto:yahoo.com@lists.yoctoproject.org">yahoo.com@lists.yoctoproject.org</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi al=
-l,<br>
-<br>
-<br>
-As part of our image we build our company&#39;s application. This <br>
-application becomes part of the image and is executed when the image boots=
-.<br>
-<br>
-My question is how to have the binary image also be available along with <=
-br>
-the image&#39;s wic file? Is there a line I can add to a recipe to have it=
- <br>
-copy that image file to the tmp/deploy directory or other appropriate <br>
-directory so that it is available?<br>
-<br>
-<br>
-Thanks!<br>
-<br>
-Chuck<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"=
-gmail_signature"><div dir=3D"ltr"><div><b><span style=3D"font-family:monosp=
-ace">&quot;Perfection must be reached by degrees; she requires the slow han=
-d of time.&quot; - Voltaire</span></b></div></div></div>
-
---000000000000c1d37705b9e6973f--
