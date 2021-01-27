@@ -1,289 +1,80 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.11974.1611771693259281301
+ by mx.groups.io with SMTP id smtpd.web12.12113.1611772349967022643
  for <yocto@lists.yoctoproject.org>;
- Wed, 27 Jan 2021 10:21:33 -0800
+ Wed, 27 Jan 2021 10:32:30 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=fvgyBPpz;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: mtownsend1973@gmail.com)
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 9D6DC38C04AD
-	for <yocto@yoctoproject.org>; Wed, 27 Jan 2021 18:21:32 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id f16so2323539wmq.5
-        for <yocto@yoctoproject.org>; Wed, 27 Jan 2021 10:21:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=0CPbXV6fRo9CFVOVDjsGtFIQYWev1kp4vQeD3z8y0BI=;
-        b=fvgyBPpztk8SVceVK+zTwemJ8FP9MtDrrsVKJQJPwDFP7Co3bQWF/jEk0Jp666T81g
-         yRSR/C/K+DPy3VRI05kKyheuXcD4EAXPmOdQCF63BqERcctL5P+MBrsj+9XBEIhgvXCN
-         T/VGfMXm2+s7S6cN1Uj735Qb4C3qSAAel3NYhzJZfOz/f9gEofwuFhDWGnj+/AAQhEBf
-         fZ57HkLAnTrR8T7c+4iHlSGT/BUlS8vBF8Ka2s91lI7jcfr4UmE1fkK9qsphPMTB+OeA
-         WanioFbm42pe/USk2SJLz1ewOg4/9fxeobApB3ZOFZ/5meSzaQv9WCPe0Zc6Ziv+dQAh
-         uF5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=0CPbXV6fRo9CFVOVDjsGtFIQYWev1kp4vQeD3z8y0BI=;
-        b=kiPcWWJwsrQQWbS3wFobfHZBW+tIpp/tadUkIn0QrVmw2YfGBQBEsh8GFdh97YuIbM
-         QBh8/MjTeuZ58RhAKmT3iVupL5HAxISBDGSg1dzuDMs/KwWzWmFyOs9FnLOPHvRlyfk7
-         bQuBUFy1hYheF66bYSQ7dW6iEbTqRHeF7g4ebkJVGS1GCq8/urGgRW7ZYXEvPDET9CJX
-         /CwyQt8v2wBM/cafqdTgS0/v/2rf8ChUY906EEp4OkRF0qseuI36huOlbHF+V3RbDAqf
-         fDHtaX8vknMr4HtXQes5NjaCnjUjkrM27dSk/rrsrd37PQKAYouV55tKF2uCxqM7KsbK
-         TbJQ==
-X-Gm-Message-State: AOAM533z9rQcA+slleUUOlqB8PdRBSgULkCVHvxptVqqiDvxE583GCaT
-	36lDnPp5bAuYVulQjSyArTHeuXU9kal8ys7gRBI6KF6z9DU=
-X-Google-Smtp-Source: ABdhPJxPw7HzjFRpCnZ+tNvnMCdqaoQxU0Wo9TpyNSV+6Jj6kzCHtFxWA419nE6cZl0jaBWCYf5kL4GC8fPd/k7rEp4=
-X-Received: by 2002:a1c:7f94:: with SMTP id a142mr5232666wmd.145.1611771690648;
- Wed, 27 Jan 2021 10:21:30 -0800 (PST)
+ dkim=pass header.i=@yahoo.com header.s=s2048 header.b=eTU5SSMa;
+ spf=neutral (domain: yahoo.com, ip: 198.145.29.25, mailfrom: chuckkamas@yahoo.com)
+Received: from sonic303-25.consmr.mail.gq1.yahoo.com (sonic303-25.consmr.mail.gq1.yahoo.com [98.137.64.206])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 3045B38C0409
+	for <yocto@yoctoproject.org>; Wed, 27 Jan 2021 18:32:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1611772348; bh=aKecdIWK60IMK2cnIKTG0jHEq/3iA4Jij2PRmpWQg5E=; h=To:From:Subject:Date:References:From:Subject:Reply-To; b=eTU5SSMasgQk6/1JMXqgBYdskH3y3DlgRf84+/GzQl8gYrMyX0KxkWXzDsrE8zyDykD6HCA7/8+/C4eo4CGYbF82B9R605aLZge78UfHUY9WLB0HikFAaazU6TLO0t3ktR2KJxXNksnHU7CzqCGVkmzlU95a265iBqd2sfgXGYrqyDjyg048/j6n5BqDoVX0bqa7hEgh1ocw9ycSUfYVzgxBfN6hZpqZEgStHhM8ng2iJxuOO/SeFv/yVrTxRFCZCK/S1oMn4Xw09vgS0GuCT470Xymc0b4ae0mw3rRx2I6rpgXoCFqAVurTDdXVhZ+xmcaU9yJegNNqsOiXxAQxTA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1611772348; bh=8zooxK2WjRCFZ0nhsm/Q/Kq/6EfNB1lEbwwhzy5/c0F=; h=To:From:Subject:Date:From:Subject:Reply-To; b=T/dc4n5V18iEnj7MhIYarainBEd+BRHhDH9HBebSFNE6SElR4lXIsCRagvM1WLeyBkv78rmR5qwVaydm7q+4/e6qYRt938CR3DQmyzR9ARh0FPAM06IdXmUyayz4MRzIhtQIOJsDTQZqi8p7zDy4iNJlo/ojIuDU8Dss0MwdAFFBB7WTp+wsgw/Sh66JWQpVia+4oHYwzOMWXKS/RWA0U3q5KNp+wJJoKHIN3W/y8LEEEu8GElzrJSMJGmmFGEVQUoDy/Dpg85UsjG60IHFuCTXjQWqM6Lbwzp8GerSVhgQPiysvAKTni1d0ODp/jASiM/VEfxSMTJaPPpz+MzBMCw==
+X-YMail-OSG: CftrTF4VM1mjyGL0idREKiBV1T3wQTOSpALZ7uBLNCX2tioX4H.YKGrQRjK0iQ6
+ qcodLJcX5NClGZE6qWCChhS8_sBe3oCd5kVvsbbx9LuY0EcQmpVIehYzNumY6PrpA0acWBL6lO84
+ zAC6TYPQ3NXHEFTnfgY4RE39rbWhwLi4VxJ9mnJCmuuva_NghWD6mNdkU9wFHkklvTElJtW9omwF
+ a1J7ejGSRU3qdfVHmh7PLl9yi7pzV8I1j0JvJt_cI77Htv2lAb3dA35p_komynVZKUWLqsE_TOPk
+ FsG0gTvrx2zBUgLX5PtO7bqyFDR2hhMfKYBVdREGxfGeGjpno_N1qZ74hNbdkWuZ6HrE36lm6JQC
+ 1k01opvxZovGyrhmRlT9uJfYkyEZcFW6v3omohScbw4MG9w1Y_hC38DLO8_gmjKYmVJi5_7MJbKv
+ S.Nc6gXndtXIPfml0vHxsYnPDFahOtzjyBfIf0RF_6coFjVkF0WhLfTgzOaa1EqvTw9zVsCr7Rcl
+ cPLV5oLGlc83uMlN9ZeFmukfnyWsMV3oe9ekm4kuezzZpvskCQ7uNSgR9nZ0pfzbWyPBcntJqzYc
+ _TarSyikcXPGwnUGu8wgpQ13jx2n0F.1qgEWAsdlzQCjocvjHvMXdwlYAvjdv4MNgD9CWiiTUTAI
+ Lhe5.lIjpCHjAPOm2YTGWeZ7NubENAJnqQTdTLRvDHxFynWgb_v.V37I1ETKtK0lMlWNtwIMoP9c
+ DEGxKr_opEHDi_zZScgAHVQnGhflKtoavOrmZzEn8ubdJVGDrkKxi8evFP8lSkBq0kHZjThP8IkE
+ l5j_qI91cK938wMwnsVOFKKORu3rg6vAY0loaa7WH7cyETdbq42.EB3_divhmp_8LtHNPi5_o_Qd
+ F6Z5yNDAXqouWptpX4UyF5z1QZwuXyImUWQvIgorcEtJyW8LRyUOO152yEHDlHTxmRjt9skCsSWv
+ 7bUfplbkkVFkUrrK1Phv.9jLGLShsu9qQgGUdxvDzS0JBV7AE7.5pWUbhqvgJA61soHhtD9ZvCPB
+ SRK2lzTpUnXlD9CV1SBVbddXl5Hum8P5IO6kJ3WtRI0ZmWy84v34Rx3FbN5HpgdEWG7Oe39xtUSX
+ SyLKoKf8wOu1lMH0mQAzueSTHoxQB8NgywLe_unkg98fTUSsdk0iD1JC8gczMQ8.FJ6IZ6CKthsv
+ hmyeazhg4_6QVFaIXTKl0RrZpRlyXLHArf.LajxZtQ2enJWq1T5We0GNcTf4ouG7rL6PEy4SJmui
+ 6h3vApL8AnnHUsixRLQHbw5GuxwYEiTufth9zNJnX1N8L4VkWynxwa.u7dRUTaVNbuH8TP1WC1w2
+ m70zZ.p_ye829nwdSx1hnbazhkq86itLP9j74r_CiY__dMMD1tXzMLXSO62trc0bS3TDfQBDRDvV
+ 9v6nRgx6OJBjEB0TjaFHplXAFQb4GGdVTc2e9WARRKuftMMT2KyCQoPT_I_XDGvndPGtjnZCP0rF
+ n1N4.B_r.bZ67rknGLbZ6TUhiEz7G1KGSER4iof0K7baxBcTnL.doyQ7HsjK8aKXPx2i77oN8Dug
+ HYV7arpyTD757Hbm9sHRPiLw6FitpTivGxXz1qVCuc4NG2XaYH30cuq7kr42efYrlLN3Z7wPo0_1
+ 3JiNeQgQBvA6rerux9p8_2rbV2aPClYIBKW1smpDf.zB_gBrKCIcNnIYwMtHvvNLSDQn4hSa7pi7
+ _wvrBhpAw.poz5G5xuMRJUIZusJr542SJPxZ4aMkJ2_OPoiPY.siXC8UCKNYha2kSfv_JpI3k248
+ 7E7iJhNjMcJvxqYZnWBaMHDcvcZtBrFke3b38Dgj7543RUuw0I2Fcy2dkWlyB4SX..GNbxFdmVW9
+ 6ordOyqcoyY_SNZ2fAGHpfs.jt3wugW96nHX9eZ4MNQhxNWd5T2Vgl8lptyhVpGO9GBktcGQAAIa
+ 2jQ_HiKm0RK8PvX4NbQS4LirRZJI9tWOf9untXNOIfTWheLya.g9XG21vA6g1NdClrTlMz3RYwul
+ UIQvOTVkjg6mP_.z2QfDwzF2SiFzjcfQRVHgPL4aGS8nzxsCgcxrPTrxzSDsA7iHZrXKFZGO3jd4
+ kYPYhhIMHXMtfOk_4uBkvmpclkuLiLBcOUS284Fqxiy_yKLwzuP5LMQ8mUOptC3L7g9EI7Ti.52e
+ UnICUES.zXLKFACOMnjV4tdArIpqmqf94SSwBb7WKRHjdB3lgzvaW_Z6n6f8FLgoeVG3sjSgxUAp
+ ZWv1An7g1eHesmYiA4Gwo58ToeWOLFm0eUUdGgSgrTUowba7R2Cs3vZna5u_mhjuNbaGtHckG8vC
+ JwMEZU1DWbiiHEfOqTPuNeNyDARVcY_8Nls1YidodnC_rlv7EgOJjZ6RA9pEkVhygj4ILy3sZKt.
+ t3vTFOuUJyW4U4YLEMTovACqHUpnBigj15MOHizdxW2M_PsfrnoMoo8IPbL4f7coAu4FpiLcQEYK
+ DHsXR
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic303.consmr.mail.gq1.yahoo.com with HTTP; Wed, 27 Jan 2021 18:32:28 +0000
+Received: by smtp418.mail.ne1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA ID 1702aad29cb39897d8dea88bf071b9f5;
+          Wed, 27 Jan 2021 18:32:25 +0000 (UTC)
+To: yocto <yocto@yoctoproject.org>
+From: "chuck kamas" <chuckkamas@yahoo.com>
+Subject: Including binary application as part of the image output
+Message-ID: <10e8c340-6435-6158-5d9f-0d00fb4afb4c@yahoo.com>
+Date: Wed, 27 Jan 2021 10:32:24 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-From: "Martin Townsend" <mtownsend1973@gmail.com>
-Date: Wed, 27 Jan 2021 18:21:19 +0000
-Message-ID: <CABatt_wByJduMMQbg18n4PvP3Vws8Kt1oZANbcVJzs8Zrih7Zg@mail.gmail.com>
-Subject: Kernel Initramfs Problems
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+References: <10e8c340-6435-6158-5d9f-0d00fb4afb4c.ref@yahoo.com>
+X-Mailer: WebService/1.1.17642 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo Apache-HttpAsyncClient/4.1.4 (Java/11.0.8)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Hi,
-
-I'm trying to get an initramfs working so I can load firmware early
-enough in the boot. So I've created an initramfs with the firmware
-files and a script to switch to the main root.  I've set the following
-
-# Use the FIT image format
-KERNEL_IMAGETYPES += "fitImage"
-KERNEL_CLASSES += "kernel-fitimage"
-KERNEL_IMAGETYPE = "fitImage"
-KERNEL_IMAGETYPE_aarch64 = "fitImage"
-
-# Add the initramfs for loading the firmware files
-INITRAMFS_IMAGE_BUNDLE = "1"
-INITRAMFS_IMAGE = "octave-cad-image-initramfs"
-INITRAMFS_FSTYPES = "cpio.gz"
-
-in a configuration file.  According to the docs for INITRAMFS_IMAGE_BUNDLE:
- "The unpacked initramfs image is then passed to the kernel's Makefile
-using the CONFIG_INITRAMFS_SOURCE variable, allowing the initramfs
-image to be built into the kernel normally. "
-
-Perfect, this is exactly what I want.  Now I'm expecting the kernel
-image to contain the initramfs using CONFIG_INITRAMFS_SOURCE and not
-include the initramfs in the FIT image as an image configuration that
-U-Boot extracts and passes to the kernel.
-
-But I'm not seeing this.  I get two FIT images deployed, one with an
-initramfs included as a configuration and a FIT image without.  This
-doesn't seem right as the initramfs should already be in the kernel so
-including it in the FIT image means it would be there twice.  Ignoring
-this the FIT image without an initramfs in the filename should still
-have the initramfs in the kernel via CONFIG_INITRAMFS_SOURCE but it's
-not there.  When booting this image I don't see the firmware loading
-
-[    0.629648][   T12] imx-sdma 302b0000.dma-controller: Direct
-firmware load for imx/sdma/sdma-imx7d.bin failed with error -2
-[    0.638320][   T12] imx-sdma 302b0000.dma-controller: Falling back
-to sysfs fallback for: imx/sdma/sdma-imx7d.bin
-
-Now if I boot the FIT image with the initramfs in the filename I get
-
-[    0.713335][   T12] imx-sdma 302b0000.dma-controller: loaded firmware 4.5
-
-early in the boot so I know the initramfs works.
-
-So you could say use the FIT image with the initramfs in its filename
-but this isn't the FIT image that gets installed by
-packagegroup-core-boot and I can't find out how to use the other FIT
-image.  I would prefer to bundle the initramfs into the kernel and not
-rely on the FIT image mechanism.
-
-I've tried building the kernel with all the INITRAMFS_* variables
-commented out and the file sizes are nearly the same, not quite but
-nearly.  The initramfs is around 4MiB in size due to firmware files,
-busybox and the libraries that this requires to perform the
-switch_root.  This also suggests that CONFIG_INITRAMFS_SOURCE isn't
-working.
-
-I've built the kernel with verbose on and see
-+ use_alternate_initrd=CONFIG_INITRAMFS_SOURCE=/ws/rufilla/octopus/octave-dunfell/build-release/tmp/work/octave_imx8mnevk-poky-linux/linux-imx/5.4.24+gitAUTOINC+babac008e5-r0/build/usr/octave-cad-image-initramfs-octave-imx8mnevk.cpio
+Hi all,
 
 
-and also
-+ oe_runmake [snip]
-CONFIG_INITRAMFS_SOURCE=/ws/rufilla/octopus/octave-dunfell/build-release/tmp/work/octave_imx8mnevk-poky-linux/linux-imx/5.4.24+gitAUTOINC+babac008e5-r0/build/usr/octave-cad-image-initramfs-octave-imx8mnevk.cpio
+As part of our image we build our company's application. This 
+application becomes part of the image and is executed when the image boots.
 
-So it looks like this doesn't work for some reason. I am using NXP's
-vendor specific kernel but I don't think they've touched the kernel's
-build system.  The kernel version is 5.4.  The log does contain what
-looks like the Makefile actually performing the steps required
-
-  GEN     Makefile
-
-scripts/kconfig/conf  --syncconfig Kconfig
-
-  GEN     Makefile
-
-  CALL    /ws/rufilla/octopus/octave-dunfell/build-release/tmp/work-shared/octave-imx8mnevk/kernel-source/scripts/checksyscalls.sh
-
-  CALL    /ws/rufilla/octopus/octave-dunfell/build-release/tmp/work-shared/octave-imx8mnevk/kernel-source/scripts/atomic/check-atomics.sh
-
-  CHK     include/generated/compile.h
-
-  GEN     usr/initramfs_data.cpio
-
-  AS      usr/initramfs_data.o
-
-  AR      usr/built-in.a
-
-  GEN     .version
-
-  CHK     include/generated/compile.h
-
-  LD      vmlinux.o
-
-  MODPOST vmlinux.o
-
-  MODINFO modules.builtin.modinfo
-
-  LD      .tmp_vmlinux1
-
-  KSYM    .tmp_kallsyms1.o
-
-  LD      .tmp_vmlinux2
-
-  KSYM    .tmp_kallsyms2.o
-
-  LD      vmlinux
-
-  SORTEX  vmlinux
-
-  SYSMAP  System.map
-
-  OBJCOPY arch/arm64/boot/Image
-
-${B}/usr seems ok
-
-drwxr-xr-x  2 martin martin    4096 Jan 27 17:19 .
-drwxr-xr-x 20 martin martin    4096 Jan 27 17:19 ..
--rw-rw-r--  1 martin martin     146 Jan 27 17:19 built-in.a
--rw-r--r--  1 martin martin     109 Jan 27 17:19 .built-in.a.cmd
--rwxr-xr-x  1 martin martin   31320 Jan 27 17:14 gen_init_cpio
--rw-r--r--  1 martin martin    6642 Jan 27 17:14 .gen_init_cpio.cmd
--rw-r--r--  1 martin martin     512 Jan 27 17:14 initramfs_data.cpio
--rw-r--r--  1 martin martin     188 Jan 27 17:14 .initramfs_data.cpio.cmd
--rw-r--r--  1 martin martin     142 Jan 27 17:15 .initramfs_data.cpio.d
--rw-rw-r--  1 martin martin 1504249 Jan 27 17:19 initramfs_data.cpio.gz
--rw-rw-r--  1 martin martin     389 Jan 27 17:19 .initramfs_data.cpio.gz.cmd
--rw-rw-r--  1 martin martin     329 Jan 27 17:19 .initramfs_data.cpio.gz.d
--rw-rw-r--  1 martin martin 1505240 Jan 27 17:19 initramfs_data.o
--rw-r--r--  1 martin martin    4631 Jan 27 17:19 .initramfs_data.o.cmd
--rw-r--r--  1 martin martin 2939392 Jan 27 17:15
-octave-cad-image-initramfs-octave-imx8mnevk.cpio
-
-I'm wondering if there is maybe a race condition somewhere in the
-build.  I say this because after the initial build I see the following
-
-ls -la arch/arm64/boot/
-total 50684
-drwxr-xr-x 3 martin martin     4096 Jan 27 18:01 .
-drwxr-xr-x 9 martin martin     4096 Jan 27 18:00 ..
-drwxr-xr-x 3 martin martin     4096 Jan 27 18:00 dts
--rwx------ 1 martin martin  7218640 Jan 27 18:00 fitImage
--rwx------ 1 martin martin 10239756 Jan 27 18:01
-fitImage-octave-cad-image-initramfs
--rw-r--r-- 1 martin martin 15876608 Jan 27 18:00 Image
--rw-r--r-- 1 martin martin      143 Jan 27 18:01 .Image.cmd
--rw-rw-r-- 1 martin martin 18825728 Jan 27 18:01 Image.initramfs
-lrwxrwxrwx 1 martin martin       16 Jan 27 18:00 vmlinux -> ../../../vmlinux
+My question is how to have the binary image also be available along with 
+the image's wic file? Is there a line I can add to a recipe to have it 
+copy that image file to the tmp/deploy directory or other appropriate 
+directory so that it is available?
 
 
-Now if I manually from do_assemble_fitimage again I get
-./temp/run.do_assemble_fitimage
-gzip
-fit-image.its:8.26-20.19: Warning (unit_address_vs_reg):
-/images/kernel@1: node has a unit name, but no reg property
-fit-image.its:17.32-19.27: Warning (unit_address_vs_reg):
-/images/kernel@1/hash@1: node has a unit name, but no reg property
-fit-image.its:21.60-31.19: Warning (unit_address_vs_reg):
-/images/fdt@freescale_octopus,octave-imx8mnevk.dtb: node has a unit
-name, but no reg property
-fit-image.its:28.32-30.27: Warning (unit_address_vs_reg):
-/images/fdt@freescale_octopus,octave-imx8mnevk.dtb/hash@1: node has a
-unit name, but no reg property
-fit-image.its:36.61-45.19: Warning (unit_address_vs_reg):
-/configurations/conf@freescale_octopus,octave-imx8mnevk.dtb: node has
-a unit name, but no reg property
-fit-image.its:42.32-44.27: Warning (unit_address_vs_reg):
-/configurations/conf@freescale_octopus,octave-imx8mnevk.dtb/hash@1:
-node has a unit name, but no reg property
-FIT description: U-Boot fitImage for Octopus Energy Octave Linux
-OS/5.4.24+gitAUTOINC+babac008e5/octave-imx8mnevk
-Created:         Sat May 30 07:25:46 2020
- Image 0 (kernel@1)
-  Description:  Linux kernel
-  Created:      Sat May 30 07:25:46 2020
-  Type:         Kernel Image
-  Compression:  gzip compressed
-  Data Size:    8692100 Bytes = 8488.38 KiB = 8.29 MiB
-  Architecture: AArch64
-  OS:           Linux
-  Load Address: 0x40480000
-  Entry Point:  0x40480000
-  Hash algo:    sha256
-  Hash value:   3c2213b560910ff59f04307e6531ad6bd55c21e17d559c3a5d4f1927e23d4c1a
- Image 1 (fdt@freescale_octopus,octave-imx8mnevk.dtb)
-  Description:  Flattened Device Tree blob
-  Created:      Sat May 30 07:25:46 2020
-  Type:         Flat Device Tree
-  Compression:  uncompressed
-  Data Size:    35902 Bytes = 35.06 KiB = 0.03 MiB
-  Architecture: AArch64
-  Hash algo:    sha256
-  Hash value:   63b81215384c3b243a538f8f738e3d9ea0c8496373cf47c2a138838f88bbe90c
- Default Configuration: 'conf@freescale_octopus,octave-imx8mnevk.dtb'
- Configuration 0 (conf@freescale_octopus,octave-imx8mnevk.dtb)
-  Description:  1 Linux kernel, FDT blob
-  Kernel:       kernel@1
-  FDT:          fdt@freescale_octopus,octave-imx8mnevk.dtb
-  Hash algo:    sha256
-  Hash value:   unavailable
-martin@martin-X570-AORUS-ELITE:/ws/rufilla/octopus/octave-dunfell/build-release/tmp/work/octave_imx8mnevk-poky-linux/linux-imx/5.4.24+gitAUTOINC+babac008e5-r0$
-ls -la build/arch/arm64/boot/total 52160
-drwxr-xr-x 3 martin martin     4096 Jan 27 18:06 .
-drwxr-xr-x 9 martin martin     4096 Jan 27 18:00 ..
-drwxr-xr-x 3 martin martin     4096 Jan 27 18:00 dts
--rwx------ 1 martin martin  8730032 Jan 27 18:06 fitImage
--rwx------ 1 martin martin 10239756 Jan 27 18:01
-fitImage-octave-cad-image-initramfs
--rw-r--r-- 1 martin martin 15876608 Jan 27 18:00 Image
--rw-r--r-- 1 martin martin      143 Jan 27 18:01 .Image.cmd
--rw-rw-r-- 1 martin martin 18825728 Jan 27 18:01 Image.initramfs
-lrwxrwxrwx 1 martin martin       16 Jan 27 18:00 vmlinux -> ../../../vmlinux
+Thanks!
 
-Now the FIT image looks like it contains the initramfs.  I tried
-booting it and the firmware files were loaded.  Looking at the
-original log for do_assemble_fitimage I see
+Chuck
 
-FIT description: U-Boot fitImage for Octopus Energy Octave Linux
-OS/5.4.24+gitAUTOINC+babac008e5/octave-imx8mnevk
-Created:         Sat May 30 07:25:46 2020
- Image 0 (kernel@1)
-  Description:  Linux kernel
-  Created:      Sat May 30 07:25:46 2020
-  Type:         Kernel Image
-  Compression:  gzip compressed
-  Data Size:    7180707 Bytes = 7012.41 KiB = 6.85 MiB
-  Architecture: AArch64
-  OS:           Linux
-  Load Address: 0x40480000
-  Entry Point:  0x40480000
-  Hash algo:    sha256
 
-Note that the kernel image size is 7180707 originally whereas the
-second time I run do_assemble_fitimage it's 8692100.  It looks like
-linux.bin the first time doesn't include the initramfs but on the
-second time it does.  Note my PC is a fairly rapid AMD Ryzen 9 5950X
-16-Core (32 thread) Processor.
-
-I'll keep digging but I would be grateful for any suggestions.
-
-Many Thanks,
-Martin.
