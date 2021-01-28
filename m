@@ -1,59 +1,88 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.9653.1611847108318357178
+ by mx.groups.io with SMTP id smtpd.web10.713.1611856446041654816
  for <yocto@lists.yoctoproject.org>;
- Thu, 28 Jan 2021 07:18:28 -0800
+ Thu, 28 Jan 2021 09:54:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=FuLdO/+P;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 496CA38C05C4
-	for <yocto@yoctoproject.org>; Thu, 28 Jan 2021 15:18:27 +0000 (UTC)
-Received: by mail-ej1-f43.google.com with SMTP id ke15so8264665ejc.12
-        for <yocto@yoctoproject.org>; Thu, 28 Jan 2021 07:18:27 -0800 (PST)
+ dkim=pass header.i=@googlemail.com header.s=20161025 header.b=ETmyDQvs;
+ spf=softfail (domain: googlemail.com, ip: 198.145.29.25, mailfrom: ayoub.zaki@googlemail.com)
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 6B64F38C0409
+	for <yocto@yoctoproject.org>; Thu, 28 Jan 2021 17:54:05 +0000 (UTC)
+Received: by mail-qk1-f175.google.com with SMTP id x81so6121170qkb.0
+        for <yocto@yoctoproject.org>; Thu, 28 Jan 2021 09:54:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=googlemail.com; s=20161025;
         h=mime-version:from:date:message-id:subject:to;
-        bh=F6Sszcb75jvvhzN/2x7eewaUkcCaWKLtgg7B/hXziko=;
-        b=FuLdO/+PE4Krqc7ndLKwST5IUEj/tARwJfjaGjjFwUMvHr5z4lJiuCnRxgAOZWo5EB
-         lJUfWeo2HA5FG5DwU8A4cWomuTGR237bMvnypYviO4uDCB5jQn9iixxkeS/19DaQ0F/X
-         jTPQPr7cW65skO/vl8xTyABUfK64eQrK5948bpQ0mLNHib63kPKUx8RTam2bub78RGaU
-         4Mq8VtR8CfLqEO+8YvUAkIgoHRkOjGpwa4tvEevHW5DnUPH/HdfAsxU7lxYBn5+JhbuV
-         ml7sgQ9t9hEIQsNPGURYx98XHEhf+xZ/B3/mXQeSy2XwEs+MrqJQSYfZhXFmAihLg0ob
-         pqSQ==
+        bh=a0HVjbIeZATHctEJOkbuwLyP23VXy6+b6DO6W8s0JAM=;
+        b=ETmyDQvsQBlPL/tVD/9eLsFRAxOtOXhpHRDau0iFrIV/4a2eDvEG6/1xdvKAMohAkX
+         3lvBKgLNsrgQSDI2iuStYUfchrNsbJtToYYg3JOD0FksHBKzkllm/CiiMaRwr56ioJPx
+         9SMOP4Da7PFpm90dvMyL31dOxCoAvFoeLnALFy0Cafh9YakxDTJcOJm2GrF0dhvxivUe
+         ort0Vz3rIQyR05z1WijWDeXaxRm1NnjxNa4AmzdSKscxYjpG5J7kkRpj6OtBBoKiYQuV
+         hEOpBG+dx1l3ysshN6w9/RuXXBaDF3kW5IYImOoHJtZ/hXXd2zo6Ywrt+oM9QYNYqnmH
+         HaJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=F6Sszcb75jvvhzN/2x7eewaUkcCaWKLtgg7B/hXziko=;
-        b=CnSmV0Wt5TG9s4VH49ZK/M8mAEnW+7WAAxqpZ8+UklUJttSZBDXhotM0eOx9ASzzzk
-         g6fNExSBcuePtdVUGO+/O+UQdTt0lQ7YKED1lUWp182MGTmEukaQvqHNV5LVHXglhqdz
-         Ua6PVTfrWbWqCr1fUxswoUSJTWJ5PRfQ+pfavZFGWRjkiPCkbschMQ/oZUEB7obvTOWk
-         hwbqt+TPpLUXvdUiMBFUE6E+cfhKn3BbSa3+7nriIl2Ny5EQvW/b11LA2E39T91JmpBh
-         twOR2YqTeYHi2LzgUgnZss7dV5j01fd15wLS64CH3dxQ7EIz7cjq7KxdAwfPgqHcx6cm
-         3IYQ==
-X-Gm-Message-State: AOAM533sYu1EX4RRx/WyIw1ddrUaPdwqtB2bsQbfUUZjrq3GsePbFpdc
-	dLv4EP6my3NLubkjg3tCSxqvs/5XLmlnNA8k8dwN1Rknj2DN2g==
-X-Google-Smtp-Source: ABdhPJz2DfPGQR9vbeW7tSwAM/uCpQF+Mnt5sEocZSEuVPArc9Ak5IsYoZVll+NyJ8zM54HFs3TafMeDIdfJ6M9BC7s=
-X-Received: by 2002:a17:906:b2d6:: with SMTP id cf22mr11545431ejb.181.1611847105553;
- Thu, 28 Jan 2021 07:18:25 -0800 (PST)
+        bh=a0HVjbIeZATHctEJOkbuwLyP23VXy6+b6DO6W8s0JAM=;
+        b=OFEcIvf8MZFQNIdIXscquLDufbIP/NU8bXE2HhwIyInyHiph5JbFi04LW91paR3Jck
+         DRorzgeApjT9LoYT8VtelcoUOngkyEHw+HJWcMoayaTdvIUHIbfO9LKwccluOmWxskpX
+         fyzkJMXSlRPfx+PKaVqtqfHr1pVMXLCQ0bO+4vHu3oG1cerSwysBnpHtXDwqEPX090K7
+         SaTZlrw3Scle2qcwAMqgl5gXVlbAH2HVWu5uJJj6ri8RMi6en5OygsUxZDNgdc7rxx2R
+         OF9tM/2JCBcs8m/YVoh9UqJpkl/jIXJBRuehxE+kucKJF9kib08ZwCoyyFQMYMFWxj8G
+         jsag==
+X-Gm-Message-State: AOAM531NAOkUhltfDI2k1hUdnM3X7Ej500a6MJA9LMbc1lNuAy3TKb1m
+	nVOxiWOb92D85cevwRNKIZ7hClcvX4YZP5sWEJScshVbQK758A==
+X-Google-Smtp-Source: ABdhPJyHn90DInAJAF5CgHZeuWpGKSHdbwJrY7kdILqqNltWNzCBht7mWcAslfQNYAQdmo7Thg+ffTukLSTMyFY8ai8=
+X-Received: by 2002:a37:ad4:: with SMTP id 203mr331139qkk.125.1611856444265;
+ Thu, 28 Jan 2021 09:54:04 -0800 (PST)
 MIME-Version: 1.0
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Thu, 28 Jan 2021 16:18:14 +0100
-Message-ID: <CAAfyv34uaBiBizgAv8L+5NHs5+a3U0ofj=nytjouPKrmbjA+MA@mail.gmail.com>
-Subject: git lfs not working in dunfell
-To: yocto <yocto@yoctoproject.org>
+From: "Ayoub Zaki" <ayoub.zaki@googlemail.com>
+Date: Thu, 28 Jan 2021 18:53:53 +0100
+Message-ID: <CA+-BmJYV8Oh3+pDh3RW=sYrcjX7q4peNV6aH9y6fyZY-ba2nVQ@mail.gmail.com>
+Subject: Task only for target recipe
+To: Yocto Project <yocto@yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000ca16e805b9f99246"
+
+--000000000000ca16e805b9f99246
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+Hello I created a new task that I want to run for every recipe of my image
+but only for target recipes and skip all native, sdk,...
 
-I have repo where I'm using lfs. I've added to my SRC_URI =
-"git://...... ;lfs=1" and the project is fetched but the issue is that
-lfs files are shown as references only (content is not fetched).
-I briefly checked git fetcher in bitbake and seems it checks that repo
-have lfs content but I cannot see anywhere git lfs pull to actually
-pull lfs content. Am I missing something? When checked poky master it
-looks like proper fetching is in place. Is there any way how to get it
-to dunfell LTS release? Thanks.
+mytask.bbclass:
 
-BR,
+addtask do_mytask after do_install
 
-marek
+do_mytask() {
+    :
+}
+
+do_mytask_class-target() {
+
+    bbwarn "mytask"
+    :
+}
+
+I added to local.conf :
+
+INHERIT += "mytask"
+
+I don't see it running! what is the proper way to achieve this?
+
+cheers
+
+--000000000000ca16e805b9f99246
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello I created a new task that I want to run for every re=
+cipe of my image but only for target recipes and skip all native, sdk,...<d=
+iv><br></div><div>mytask.bbclass:</div><div><br></div><div>addtask do_mytas=
+k after do_install<br><br>do_mytask() {<br>=C2=A0 =C2=A0 :<br>}<br><br>do_m=
+ytask_class-target() {</div><div><br>=C2=A0 =C2=A0 bbwarn &quot;mytask&quot=
+;<br>=C2=A0 =C2=A0 :<br>}<br></div><div><br></div><div>I added to local.con=
+f :</div><div><br></div><div>INHERIT=C2=A0+=3D &quot;mytask&quot;</div><div=
+><br></div><div>I don&#39;t see it running! what is the proper way to achie=
+ve this?</div><div><br></div><div>cheers</div></div>
+
+--000000000000ca16e805b9f99246--
