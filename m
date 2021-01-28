@@ -1,129 +1,65 @@
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
- by mx.groups.io with SMTP id smtpd.web11.20580.1611812935364003510
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.5003.1611818295145781332
  for <yocto@lists.yoctoproject.org>;
- Wed, 27 Jan 2021 21:48:55 -0800
+ Wed, 27 Jan 2021 23:18:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=tvCPSwkv;
- spf=pass (domain: gmail.com, ip: 209.85.166.45, mailfrom: ticotimo@gmail.com)
-Received: by mail-io1-f45.google.com with SMTP id u7so4394709iol.8
-        for <yocto@lists.yoctoproject.org>; Wed, 27 Jan 2021 21:48:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=makUG2g/uzYIPv8m6q6n9gUlVeESOodWg/aCeg7ZvqE=;
-        b=tvCPSwkvZM+MYSO6Srls1YX0KNsDZP/8zoBU02L6ux/Rfgen3h9FgMvi/9fzbhAWQR
-         PalwtCDL5Wd6sBZFFhhpuOgtS522e7x79hf5eRAxNV8bIBP69q/pUv8g/5OnLpmxXbZ8
-         p2gUdIn8C8OwDL46KilDeFg1KayG5RLJ4HK6fklckazp1Mv4Oh/13e28wvDkWh4a6516
-         KHDr+T013jAOq9f/DzFdlE9W6rT7UhP2ZunlaVvix030jSkpydTS5lF2HnO30fQfh8AQ
-         yFQ2byaKB3olug1tVmV8w0bAVebDWqft0bKMqrhL3iHlldIoU1bmmXD2++m6znXZ61JB
-         FNAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=makUG2g/uzYIPv8m6q6n9gUlVeESOodWg/aCeg7ZvqE=;
-        b=UZ7SfigeL55i/fpUzLiS3ueOzUwSUr6CgrZOsKFJWSL/tpc2JYHEzyBaUnhZdczDrd
-         L3AYYRjyT8u3OhCNIqNYOrQx1YOmcLubPMVOmQgwerhB+GbkEGh13jq2a6BhFRdzkKji
-         3oPzUNWZ8KpiSFqsBH7DJ7A67I7ZvPo2SoxNsC9tCCcXVpFipheESvwlGf9JdZ7ggMQ6
-         rpnFROP2i6DD1njP+7m7c1sABKUrr0bv5Hd6irsg2cW972Lp0OCw9g7BvoarGn8lJ0Mn
-         MKxdIN92KZfEfoE1xqSGCjMfPlek63gyQYKWwHoAR4mnORBgXzE3fF0sOEIj7aFMOxyz
-         CO7A==
-X-Gm-Message-State: AOAM531CbpJpoZqT8CEyMk4fHOCH8AF9HUj73CSWrSXxPDcWMCIT+WQz
-	cQLXLxMX2y4dRhVCLlIlIi69P5b4jne/ThwxtPY=
-X-Google-Smtp-Source: ABdhPJzpL0+hvxkTJuvTzsEBWBn6/QApEkKRsg9ApznnOvDQU65/IkeG+nL2P8PSdnuU1OCjwGES4KAMuAMdJ2us6N4=
-X-Received: by 2002:a02:cc54:: with SMTP id i20mr11522734jaq.138.1611812934622;
- Wed, 27 Jan 2021 21:48:54 -0800 (PST)
+ dkim=missing; spf=permerror, err=parse error for token &{10 18 spf.crsend.com}: limit exceeded (domain: vivavis.com, ip: 198.145.29.25, mailfrom: prvs=0655d22253=embedded@vivavis.com)
+Received: from mx-relay90-hz1.antispameurope.com (mx-relay90-hz1.antispameurope.com [94.100.133.90])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id F02B138C04B4
+	for <yocto@yoctoproject.org>; Thu, 28 Jan 2021 07:18:13 +0000 (UTC)
+Received: from unknown ([185.80.187.2]) by mx-relay90-hz1.antispameurope.com;
+ Thu, 28 Jan 2021 08:18:11 +0100
+Received: from grp-ex01.Vivavis.int (192.168.17.53) by grp-ex01.Vivavis.int
+ (192.168.17.53) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3; Thu, 28 Jan 2021
+ 08:18:04 +0100
+Received: from grp-ex01.Vivavis.int ([fe80::b524:e95:f072:33b7]) by
+ grp-ex01.Vivavis.int ([fe80::b524:e95:f072:33b7%5]) with mapi id
+ 15.02.0792.003; Thu, 28 Jan 2021 08:18:04 +0100
+From: "Carsten Stelling" <embedded@vivavis.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+CC: Konrad Weihmann <kweihmann@outlook.com>
+Subject: Re: [yocto] any interest in an official "meta-rubygems" layer?
+Thread-Topic: [yocto] any interest in an official "meta-rubygems" layer?
+Thread-Index: AQHW9HZkizIyyMzJJEas97JSLKKXW6o8n8oA
+Date: Thu, 28 Jan 2021 07:18:04 +0000
+Message-ID: <22334e99756c40889c2913862dd9ef77@vivavis.com>
+References: <633c9c84-1d35-48f1-82b7-4f2dabc2585@crashcourse.ca>
+In-Reply-To: <633c9c84-1d35-48f1-82b7-4f2dabc2585@crashcourse.ca>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.117.1]
+x-g-data-mailsecurity-for-exchange-state: 0
+x-g-data-mailsecurity-for-exchange-error: 0
+x-g-data-mailsecurity-for-exchange-sender: 23
+x-g-data-mailsecurity-for-exchange-server: 61419075-592b-4c8d-b7a0-bf1d145a8b8e
+x-c2processedorg: 2f045ba3-9b34-4118-a5bd-6c10d5957477
 MIME-Version: 1.0
-References: <CAOx=Z6HG7nG4eC0mU=iDvkz=jtOp_OCeDmacAvF69=X_FqMZfg@mail.gmail.com>
-In-Reply-To: <CAOx=Z6HG7nG4eC0mU=iDvkz=jtOp_OCeDmacAvF69=X_FqMZfg@mail.gmail.com>
-From: "Tim Orling" <ticotimo@gmail.com>
-Date: Wed, 27 Jan 2021 21:48:43 -0800
-Message-ID: <CANx9H-DvpKkPpQnMMnFBSnVEvFXiWMHOmxT1iaCUeigp51yTmA@mail.gmail.com>
-Subject: Re: [yocto] [meta-zephyr] bitbake zephyr-helloworld configure failure
-To: Peter Smith <salerio@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000699f0505b9ef71ed"
-
---000000000000699f0505b9ef71ed
-Content-Type: text/plain; charset="UTF-8"
+X-cloud-security-sender: embedded@vivavis.com
+X-cloud-security-recipient: yocto@yoctoproject.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Virusscan: CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay90-hz1.antispameurope.com with 50CE21A401D7
+X-cloud-security-connect: unknown[185.80.187.2], TLS=1, IP=185.80.187.2
+X-cloud-security-Digest: 0f660a7e873dee0c6e95ceb7daf44a9c
+X-cloud-security: scantime:1.580
+Content-Language: de-DE
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 27, 2021 at 12:51 AM Peter Smith <salerio@gmail.com> wrote:
+>   since it appears that i will be diving head-first into messing with rub=
+y in some
+> current YP builds, is there any interest in creating a meta-rubygems laye=
+r to start
+> collecting recipes based on what konrad weihmann has done in his meta-sca
+> layer here?
 
-> Using master branch
->
-> MACHINE=3D96b_nitrogen bitbake zephyr-helloworld creates a configure err=
-or
-> due to a failure for native python to import ruamel.
->
-> I fixed this temporarily by creating a python3-ruamel-yaml_%.bbappend th=
-at
-> includes the required BBEXTEND and adding python3-ruamel-yaml-native
-> to zephyr-kernel-common.inc.
->
-> I don't know (not enough experience) if this is actually a problem in th=
-e
-> meta-openembedded recipe or meta-zephyr?
->
-
-
-BBEXTEND =3D =E2=80=9Cnative=E2=80=9D is a perfectly fine patch to submit =
-to meta-python. We
-tend to only make those changes when needed (as in your use case) rather
-than universally. Please submit a patch :)
-
->
-> Best Regards
-> Peter
->
->=20
->
->
-
---000000000000699f0505b9ef71ed
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div><br></div><div dir=3D"auto"><br><div class=3D"gmail_quote" dir=3D"auto=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jan 27, 2021 at 12:51 AM Pe=
-ter Smith &lt;<a href=3D"mailto:salerio@gmail.com">salerio@gmail.com</a>&gt=
-; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;b=
-order-left-color:rgb(204,204,204)"><div dir=3D"ltr"><div class=3D"gmail_def=
-ault" style=3D"font-family:verdana,sans-serif;font-size:small">Using master=
- branch</div><div class=3D"gmail_default" style=3D"font-family:verdana,sans=
--serif;font-size:small"><br></div><div class=3D"gmail_default" style=3D"fon=
-t-family:verdana,sans-serif;font-size:small">MACHINE=3D96b_nitrogen bitbake=
-=
-=C2=A0zephyr-helloworld creates a configure error due to a failure for nat=
-ive python to import ruamel.</div><div class=3D"gmail_default" style=3D"fon=
-t-family:verdana,sans-serif;font-size:small"><br></div><div class=3D"gmail_=
-default" style=3D"font-family:verdana,sans-serif;font-size:small">I fixed t=
-his temporarily by creating a=C2=A0python3-ruamel-yaml_%.bbappend=C2=A0that=
- includes the required BBEXTEND and adding=C2=A0python3-ruamel-yaml-native =
-to=C2=A0zephyr-kernel-common.inc.</div><div class=3D"gmail_default" style=
-=3D"font-family:verdana,sans-serif;font-size:small"><br></div><div class=
-=3D"gmail_default" style=3D"font-family:verdana,sans-serif;font-size:small=
-">I don&#39;t know (not enough experience) if this is actually a problem in=
- the meta-openembedded recipe or meta-zephyr?</div></div></blockquote><div =
-dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"><span =
-style=3D"border-color:rgb(0,0,0);color:rgb(0,0,0)">BBEXTEND =3D =E2=80=9Cna=
-tive=E2=80=9D is a perfectly fine patch to submit to meta-python. We tend t=
-o only make those changes when needed (as in your use case) rather than uni=
-versally. Please submit a patch :)</span><br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-le=
-ft-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)"><div di=
-r=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
-rif;font-size:small" dir=3D"auto"></div><div class=3D"gmail_default" style=
-=3D"font-family:verdana,sans-serif;font-size:small"><br></div><div class=
-=3D"gmail_default" style=3D"font-family:verdana,sans-serif;font-size:small=
-"><span style=3D"font-family:Arial,Helvetica,sans-serif">Best Regards</span=
-></div><div><div dir=3D"ltr" data-smartmail=3D"gmail_signature"><div dir=3D=
-"ltr"><div>Peter</div></div></div></div></div>
-<br>
-<br>
-<br>
-</blockquote></div></div>
-
---000000000000699f0505b9ef71ed--
+We would also find an official layer for gems interesting.=20
+We are currently using the old ruby.bbclass from the meta-ruby layer=20
+from openemebedded to build the gems.
+We are also particularly interested in gems that need cross compiling, e.g.=
+ ruby-pcap.
+=20
+srp
