@@ -1,74 +1,102 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.9435.1611926394542128828
+ by mx.groups.io with SMTP id smtpd.web11.10077.1611930852617382346
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Jan 2021 05:19:54 -0800
+ Fri, 29 Jan 2021 06:34:12 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=F7JrYPSr;
- spf=softfail (domain: linuxfoundation.org, ip: 198.145.29.25, mailfrom: richard.purdie@linuxfoundation.org)
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id D3FB438C056A
-	for <yocto@yoctoproject.org>; Fri, 29 Jan 2021 13:19:53 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id i9so7170663wmq.1
-        for <yocto@yoctoproject.org>; Fri, 29 Jan 2021 05:19:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=4wlNbExQhbAjHe4CxSnXWlRKETRA36oFD8z7Q9vak3Q=;
-        b=F7JrYPSrdBIU0vmWZ+m9KtP3N2W5MLxsKjvNTNCVLpQRyDidx10T+P4J0b4vVhPrJd
-         Vl9RdqDaWO9YTOzT1Qtidl2+FZF6ITgBtw8Dy5FgMXPG3mYd6tJDMpuUGL42R+lGEUE1
-         yl1r649dOLhMGd4dRN7kiIhCa3CE9pXwrYs4w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=4wlNbExQhbAjHe4CxSnXWlRKETRA36oFD8z7Q9vak3Q=;
-        b=FYr3WVhFtk8d9RcxuAQUQPYtd2JisYNh8qAcPVCnzYweOuVzlFW3sfFir0JrsCq/vs
-         YIBeKEBka10/TISMuRpH8pFERrqnsSCIH5BwVL8zcTAVT8yTGy48o3FC/CtHc+tHBJH8
-         doRMw7IZhEGcDI0utgS/BbWtUdPZAlU3qD7oQKslkMzVXAhg3+Jwi46BXClNZXkufnC9
-         VU59dkR9E9Bhv4+RaTty7oG0R7M9jYs5IaFgPQ8PGNkcjHro+L/jevT4G5F2sDuOQPqZ
-         8STIs/LXZxMX/RTO5sG9gi8IkZeH1HjacI4St2+KqVb89uxu0Kyaj0gNLOdyFm5AeQEC
-         nH8Q==
-X-Gm-Message-State: AOAM531dMpksDibKcCzh6PF3qteRD3kkjl1/52X3aHtT3IRzTH0ADLrH
-	tW1aKfhTOop09U7eROSGtO2n4w==
-X-Google-Smtp-Source: ABdhPJzrlzqY6SLXGzjgTvygVxbcOnEdDXu0w5GEl4c/Kbmn1+/YuTePrCjxlYelmgDfdnJJhuhhmw==
-X-Received: by 2002:a1c:8002:: with SMTP id b2mr3914235wmd.94.1611926392400;
-        Fri, 29 Jan 2021 05:19:52 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:93ef:509c:4f16:14ff? ([2001:8b0:aba:5f3c:93ef:509c:4f16:14ff])
-        by smtp.gmail.com with ESMTPSA id m2sm9566799wml.34.2021.01.29.05.19.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Jan 2021 05:19:51 -0800 (PST)
-Message-ID: <8f202e9d2617de34b914a81a54bdd0902a706930.camel@linuxfoundation.org>
-Subject: Re: [yocto] git lfs not working in dunfell
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Marek Belisko <marek.belisko@gmail.com>, yocto <yocto@yoctoproject.org>
-Date: Fri, 29 Jan 2021 13:19:50 +0000
-In-Reply-To: <CAAfyv34uaBiBizgAv8L+5NHs5+a3U0ofj=nytjouPKrmbjA+MA@mail.gmail.com>
-References: 
-	<CAAfyv34uaBiBizgAv8L+5NHs5+a3U0ofj=nytjouPKrmbjA+MA@mail.gmail.com>
-User-Agent: Evolution 3.38.1-1 
+ dkim=missing; spf=none, err=permanent DNS error (domain: lakka.kapsi.fi, ip: 198.145.29.25, mailfrom: mcfrisk@lakka.kapsi.fi)
+Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id B935738C0409
+	for <yocto@yoctoproject.org>; Fri, 29 Jan 2021 14:34:11 +0000 (UTC)
+Received: from kapsi.fi ([2001:67c:1be8::11] helo=lakka.kapsi.fi)
+	by mail.kapsi.fi with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.89)
+	(envelope-from <mcfrisk@lakka.kapsi.fi>)
+	id 1l5Uqd-0007Qw-2S; Fri, 29 Jan 2021 16:34:08 +0200
+Received: from mcfrisk by lakka.kapsi.fi with local (Exim 4.92)
+	(envelope-from <mcfrisk@lakka.kapsi.fi>)
+	id 1l5Uqc-000CN5-W9; Fri, 29 Jan 2021 16:34:06 +0200
+From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
+To: openembedded-core@lists.openembedded.org
+Cc: yocto@yoctoproject.org,
+	Marek Belisko <marek.belisko@gmail.com>,
+	Richard Purdie <richard.purdie@linuxfoundation.org>,
+	Mikko Rapeli <mikko.rapeli@bmw.de>,
+	Mauro Queiros <maurofrqueiros@gmail.com>
+Subject: [dunfell][PATCH 1/2] bitbake: git.py: Use the correct branch to check if the repository has LFS objects.
+Date: Fri, 29 Jan 2021 16:33:43 +0200
+Message-Id: <20210129143344.45304-1-mikko.rapeli@bmw.de>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <8f202e9d2617de34b914a81a54bdd0902a706930.camel@linuxfoundation.org>
+References: <8f202e9d2617de34b914a81a54bdd0902a706930.camel@linuxfoundation.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-Rspam-Score: -0.2 (/)
+X-Rspam-Report: Action: no action
+ Symbol: TO_DN_SOME(0.00)
+ Symbol: RCPT_COUNT_FIVE(0.00)
+ Symbol: FORGED_SENDER(0.30)
+ Symbol: R_DKIM_NA(0.00)
+ Symbol: MIME_TRACE(0.00)
+ Symbol: ASN(0.00)
+ Symbol: FROM_NEQ_ENVFROM(0.00)
+ Symbol: BAYES_HAM(-3.00)
+ Symbol: RCVD_TLS_LAST(0.00)
+ Symbol: ARC_NA(0.00)
+ Symbol: FROM_HAS_DN(0.00)
+ Symbol: FREEMAIL_ENVRCPT(0.00)
+ Symbol: TO_MATCH_ENVRCPT_ALL(0.00)
+ Symbol: TAGGED_RCPT(0.00)
+ Symbol: MIME_GOOD(-0.10)
+ Symbol: MID_CONTAINS_FROM(1.00)
+ Symbol: R_SPF_NA(0.00)
+ Symbol: FREEMAIL_CC(0.00)
+ Symbol: RCVD_COUNT_TWO(0.00)
+ Symbol: SUSPICIOUS_RECIPS(1.50)
+ Symbol: DMARC_POLICY_SOFTFAIL(0.10)
+ Message-ID: 20210129143344.45304-1-mikko.rapeli@bmw.de
+X-SA-Exim-Connect-IP: 2001:67c:1be8::11
+X-SA-Exim-Mail-From: mcfrisk@lakka.kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2021-01-28 at 16:18 +0100, Marek Belisko wrote:
-> Hi,
-> 
-> I have repo where I'm using lfs. I've added to my SRC_URI =
-> "git://...... ;lfs=1" and the project is fetched but the issue is that
-> lfs files are shown as references only (content is not fetched).
-> I briefly checked git fetcher in bitbake and seems it checks that repo
-> have lfs content but I cannot see anywhere git lfs pull to actually
-> pull lfs content. Am I missing something? When checked poky master it
-> looks like proper fetching is in place. Is there any way how to get it
-> to dunfell LTS release? Thanks.
+From: Mauro Queir=C3=B3s <maurofrqueiros@gmail.com>
 
-There is a patch in bitbake master related to this which you may want
-to test and maybe request for adding to dunfell if it helps.
+Function "contains_lfs" was only looking at the master branch when search=
+ing for LFS
+content. LFS may be configured in specific branches only, so we need to u=
+se the
+correct branch.
 
-https://git.openembedded.org/bitbake/commit/?id=0efac66043662e7a2027192f50e92e982db2ba1c
+(Bitbake rev: 4fa67c2af830035a1ddedc14592ee25a15ebff22)
 
-Cheers,
+Signed-off-by: Mauro Queiros <maurofrqueiros@gmail.com>
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ bitbake/lib/bb/fetch2/git.py | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-Richard
+diff --git a/bitbake/lib/bb/fetch2/git.py b/bitbake/lib/bb/fetch2/git.py
+index dcecff5d38..fc14192e24 100644
+--- a/bitbake/lib/bb/fetch2/git.py
++++ b/bitbake/lib/bb/fetch2/git.py
+@@ -563,8 +563,15 @@ class Git(FetchMethod):
+         """
+         Check if the repository has 'lfs' (large file) content
+         """
+-        cmd =3D "%s grep lfs HEAD:.gitattributes | wc -l" % (
+-                ud.basecmd)
++
++        if not ud.nobranch:
++            branchname =3D ud.branches[ud.names[0]]
++        else:
++            branchname =3D "master"
++
++        cmd =3D "%s grep lfs origin/%s:.gitattributes | wc -l" % (
++            ud.basecmd, ud.branches[ud.names[0]])
++
+         try:
+             output =3D runfetchcmd(cmd, d, quiet=3DTrue, workdir=3Dwd)
+             if int(output) > 0:
+--=20
+2.20.1
 
