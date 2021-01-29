@@ -1,20 +1,20 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.10652.1611931840308020971
+ by mx.groups.io with SMTP id smtpd.web09.10467.1611931844035192417
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Jan 2021 06:50:40 -0800
+ Fri, 29 Jan 2021 06:50:44 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=none, err=permanent DNS error (domain: lakka.kapsi.fi, ip: 198.145.29.25, mailfrom: mcfrisk@lakka.kapsi.fi)
 Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 0736938C0409
-	for <yocto@yoctoproject.org>; Fri, 29 Jan 2021 14:50:40 +0000 (UTC)
+	by mail.yoctoproject.org (Postfix) with ESMTPS id BFC1338C04C2
+	for <yocto@yoctoproject.org>; Fri, 29 Jan 2021 14:50:43 +0000 (UTC)
 Received: from kapsi.fi ([2001:67c:1be8::11] helo=lakka.kapsi.fi)
 	by mail.kapsi.fi with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.89)
 	(envelope-from <mcfrisk@lakka.kapsi.fi>)
-	id 1l5V6a-0002zG-O7; Fri, 29 Jan 2021 16:50:37 +0200
+	id 1l5V6g-00030k-7i; Fri, 29 Jan 2021 16:50:42 +0200
 Received: from mcfrisk by lakka.kapsi.fi with local (Exim 4.92)
 	(envelope-from <mcfrisk@lakka.kapsi.fi>)
-	id 1l5V6a-00065k-MK; Fri, 29 Jan 2021 16:50:36 +0200
+	id 1l5V6g-00069j-6L; Fri, 29 Jan 2021 16:50:42 +0200
 From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
 To: openembedded-core@lists.openembedded.org
 Cc: yocto@yoctoproject.org,
@@ -22,12 +22,13 @@ Cc: yocto@yoctoproject.org,
 	Richard Purdie <richard.purdie@linuxfoundation.org>,
 	Mikko Rapeli <mikko.rapeli@bmw.de>,
 	Mauro Queiros <maurofrqueiros@gmail.com>
-Subject: [dunfell][PATCH v2 1/3] bitbake: git.py: skip smudging if lfs=0 is set
-Date: Fri, 29 Jan 2021 16:50:27 +0200
-Message-Id: <20210129145029.22924-1-mikko.rapeli@bmw.de>
+Subject: [dunfell][PATCH v2 2/3] bitbake: git.py: Use the correct branch to check if the repository has LFS objects.
+Date: Fri, 29 Jan 2021 16:50:28 +0200
+Message-Id: <20210129145029.22924-2-mikko.rapeli@bmw.de>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <165EBB517110DB0B.25485@lists.openembedded.org>
+In-Reply-To: <20210129145029.22924-1-mikko.rapeli@bmw.de>
 References: <165EBB517110DB0B.25485@lists.openembedded.org>
+ <20210129145029.22924-1-mikko.rapeli@bmw.de>
 MIME-Version: 1.0
 X-Rspam-Score: -0.2 (/)
 X-Rspam-Report: Action: no action
@@ -52,7 +53,7 @@ X-Rspam-Report: Action: no action
  Symbol: FROM_NEQ_ENVFROM(0.00)
  Symbol: SUSPICIOUS_RECIPS(1.50)
  Symbol: FREEMAIL_CC(0.00)
- Message-ID: 20210129145029.22924-1-mikko.rapeli@bmw.de
+ Message-ID: 20210129145029.22924-2-mikko.rapeli@bmw.de
 X-SA-Exim-Connect-IP: 2001:67c:1be8::11
 X-SA-Exim-Mail-From: mcfrisk@lakka.kapsi.fi
 X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
@@ -61,33 +62,42 @@ Content-Transfer-Encoding: quoted-printable
 
 From: Mauro Queir=C3=B3s <maurofrqueiros@gmail.com>
 
-Git-LFS objects were being fetched even when lfs=3D0 was not set.
-This patch disables LFS smudging when lfs=3D0. That way, only the LFS poi=
-nters
-are downloaded during checkout.
+Function "contains_lfs" was only looking at the master branch when search=
+ing for LFS
+content. LFS may be configured in specific branches only, so we need to u=
+se the
+correct branch.
 
-(Bitbake rev: 646d86df7de774255246a3d7051c308e43eb257d)
+(Bitbake rev: 4fa67c2af830035a1ddedc14592ee25a15ebff22)
 
 Signed-off-by: Mauro Queiros <maurofrqueiros@gmail.com>
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 ---
- bitbake/lib/bb/fetch2/git.py | 3 +++
- 1 file changed, 3 insertions(+)
+ bitbake/lib/bb/fetch2/git.py | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/bitbake/lib/bb/fetch2/git.py b/bitbake/lib/bb/fetch2/git.py
-index dcecff5d38..59afc32de1 100644
+index 59afc32de1..d255afeb36 100644
 --- a/bitbake/lib/bb/fetch2/git.py
 +++ b/bitbake/lib/bb/fetch2/git.py
-@@ -475,6 +475,9 @@ class Git(FetchMethod):
-=20
-         need_lfs =3D ud.parm.get("lfs", "1") =3D=3D "1"
-=20
-+        if not need_lfs:
-+            ud.basecmd =3D "GIT_LFS_SKIP_SMUDGE=3D1 " + ud.basecmd
+@@ -566,8 +566,15 @@ class Git(FetchMethod):
+         """
+         Check if the repository has 'lfs' (large file) content
+         """
+-        cmd =3D "%s grep lfs HEAD:.gitattributes | wc -l" % (
+-                ud.basecmd)
 +
-         source_found =3D False
-         source_error =3D []
-=20
++        if not ud.nobranch:
++            branchname =3D ud.branches[ud.names[0]]
++        else:
++            branchname =3D "master"
++
++        cmd =3D "%s grep lfs origin/%s:.gitattributes | wc -l" % (
++            ud.basecmd, ud.branches[ud.names[0]])
++
+         try:
+             output =3D runfetchcmd(cmd, d, quiet=3DTrue, workdir=3Dwd)
+             if int(output) > 0:
 --=20
 2.20.1
 
