@@ -1,17 +1,17 @@
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (NAM11-CO1-obe.outbound.protection.outlook.com [40.107.220.41])
- by mx.groups.io with SMTP id smtpd.web09.1544.1611951116471968553
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (NAM12-MW2-obe.outbound.protection.outlook.com [40.107.244.40])
+ by mx.groups.io with SMTP id smtpd.web10.1643.1611951208578622949
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Jan 2021 12:11:57 -0800
+ Fri, 29 Jan 2021 12:13:28 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=W8bwq5St;
- spf=pass (domain: windriver.com, ip: 40.107.220.41, mailfrom: randy.macleod@windriver.com)
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=Dbq2OjIo;
+ spf=pass (domain: windriver.com, ip: 40.107.244.40, mailfrom: randy.macleod@windriver.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WXycWs7QgWilI3E0GbxiQzOXweSes2CAWmHR6VXhbzYkhiN5Cp0T2BR0y48Bt0c+++gyqPhWEbrNSkvGQi9H36Q2G+00s/3hageAiNk5QggvEc6mTcLln/Lma44t/vLk4Dv/Fg6dO4YmGQ2seIrZ57JfgT0uoKIhS8tocLRd/IaOImLklyKRzSjP03faj7RSa29kHY28xNbxfb/mBoa7h3Ticv5p+1Plj0wJoMM4H2Yu57ZeqGoaO7aGSAl8ib3fLdMdaIicMGsik7BhgP1lCdF0ToKY5ovRq1PaQAHJ2yGBd4rV5MqFjOTYjCPD1FAEDZW3li16ALQfTUsRUrxjsQ==
+ b=KLyfK6MmjFOTS7LIPXMn1nTDByJ1wf+gS55YGSmqw8eCDs8wcZbxGANEYUKUJ+/Th5zOmFYhJNiBpto1taaOgp7nCX0wnU1qzifsD8rZPheGrQJPPv6a5Qw4KDwiFxc1d2DjegjPd5Raie2KGWwzfbPmL/PgrFEgDuw44+GLDPBaf6OOxYFMMxOLXSJIZQ9/vNndBKnKokWOsy57ib662BntJ8zk2WIbE5LDQ+C0bMenJtE2k/FIFoCmdmijPVhepxvnA89AJj9KuxDKJ8dVsxd5NEX1JnGDPiA+RrJlbGVJGgyqlOyGqurvTL/qUCjp2SyKJnuwWMQOaGwt57tHDQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OkkxTh90+UBJk2Wt1jVgO1G3nJvlt6ItxZrhd7KHsHg=;
- b=nreBwKXzv1lBTQ1sNf0d0LlYRAFy655LyvU2Q0lpGSIDdqfP3g/8SM/VxGKFNrUKuK6ccSMbN2EbSq27i5SCZWHlOGBAaokWOd8VFsNJUMzz9RYl3LwfSr9CdMKfsNfiiCM+1d6QCBQlGIqL/WVS+xu9sK8lb+KnsdfwAcYTrRWxyuSfWczYO9T6oE6+UQIvjl2P+XTFGfQdDqNBbg9Q2FEd0PFomu/4RNXswFTLlvSU50JlzkZrmhi9ck4J/UfQar57chgWyFVsuE8Q7DcfyB3M6cOcOy/9RbxW8wvKpiz/itvsQbE1MJCT6PHJU2HRjqiPCUSzYJ31sK0IfLv/yw==
+ bh=2tv9BhfOKfPrSGuX3Giligdu8KtPsOxXms9OnY+gMVc=;
+ b=bP8OcC5be9cTLvV6T5hUEurHHPGPQCMU2Oa+fYGLpK+4y5gBhKBUyvRH2AbYRGzYnKcoRsLZqiiywF4NmMd+AxZC3SUcuKVBWWxCnGzcDp07CQiKcgw2OeDYX02EQ58kztcG5IKpBOY1xUMemHhgO3JGd2xG6OxO2yn3YoE2/x5UNzF1fXpc9NWmFEMR/FyqmCYlNufY2IR5IP30UF84k18MpnnzPtel/gS5Tx2k3DUDhwBuPsWAgbn8+MBHp9XLPQSdRkdtLlq/cUBs+kdHQd+B80eAdUj0u7dE3csrbm0qmoITc02kOU3K2QDiYrK92q7eDF1tXewIg/AAYbbzJw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
@@ -19,8 +19,8 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=windriversystems.onmicrosoft.com;
  s=selector2-windriversystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OkkxTh90+UBJk2Wt1jVgO1G3nJvlt6ItxZrhd7KHsHg=;
- b=W8bwq5SttAtvNy2x1tXbSlSL4HTqbidEf54aqAWRZ4q/knXU5XtpJOCe6rjOHcrqQPSP+vehDJROKHvBtiJ1IQI9TOZ2sCNMC1NScj5Hu2qiifKxp8NiW5qQLVh5OIqKLjy+PZe58mPWGa6ew3g5iWZXGmkJHkQseWgvZT1bW50=
+ bh=2tv9BhfOKfPrSGuX3Giligdu8KtPsOxXms9OnY+gMVc=;
+ b=Dbq2OjIoo/daxsINkSawDYSr5FnuTL150PEEEa01ODDQbpkHIx0IZUXDZrTLPosYs4p/QQgeDe6Kdby7bwfIZQc5ZKDwA3ygQFi0c/96+DSX0/K400R/pI6pnlm7D59mDI/ouBOqqSuaYzJLLVAQIk8/S1IoldoS4lpxBWA/rxA=
 Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
  header.d=none;lists.yoctoproject.org; dmarc=none action=none
  header.from=windriver.com;
@@ -28,133 +28,87 @@ Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
  by DM6PR11MB2537.namprd11.prod.outlook.com (2603:10b6:5:cd::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.19; Fri, 29 Jan
- 2021 20:11:55 +0000
+ 2021 20:13:27 +0000
 Received: from DM6PR11MB3994.namprd11.prod.outlook.com
  ([fe80::8e2:471a:7b63:1a0e]) by DM6PR11MB3994.namprd11.prod.outlook.com
  ([fe80::8e2:471a:7b63:1a0e%7]) with mapi id 15.20.3784.017; Fri, 29 Jan 2021
- 20:11:55 +0000
+ 20:13:27 +0000
 Subject: Re: [yocto] #yocto #gstreamer #gstreamer1.0-plugins-bad #aom #av1
+From: "Randy MacLeod" <randy.macleod@windriver.com>
 To: safouane maaloul <maaloulsafouane@gmail.com>, yocto@lists.yoctoproject.org
 References: <zDWc.1609749813849720573.0eLH@lists.yoctoproject.org>
-From: "Randy MacLeod" <randy.macleod@windriver.com>
-Message-ID: <5bcf62f6-7d4b-c043-fae4-60c02bb9acd6@windriver.com>
-Date: Fri, 29 Jan 2021 15:11:51 -0500
+ <5bcf62f6-7d4b-c043-fae4-60c02bb9acd6@windriver.com>
+Message-ID: <6a0b8ba8-ecb4-abad-dc30-bef99fd55f41@windriver.com>
+Date: Fri, 29 Jan 2021 15:13:24 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.6.1
-In-Reply-To: <zDWc.1609749813849720573.0eLH@lists.yoctoproject.org>
+In-Reply-To: <5bcf62f6-7d4b-c043-fae4-60c02bb9acd6@windriver.com>
 X-Originating-IP: [198.48.226.187]
-X-ClientProxiedBy: SJ0PR05CA0125.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::10) To DM6PR11MB3994.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR05CA0150.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d::35) To DM6PR11MB3994.namprd11.prod.outlook.com
  (2603:10b6:5:193::19)
 Return-Path: randy.macleod@windriver.com
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.25.44.2] (198.48.226.187) by SJ0PR05CA0125.namprd05.prod.outlook.com (2603:10b6:a03:33d::10) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.8 via Frontend Transport; Fri, 29 Jan 2021 20:11:54 +0000
+Received: from [172.25.44.2] (198.48.226.187) by SJ0PR05CA0150.namprd05.prod.outlook.com (2603:10b6:a03:33d::35) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.8 via Frontend Transport; Fri, 29 Jan 2021 20:13:26 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 917763f2-646e-4dc9-8dc0-08d8c4921fb6
+X-MS-Office365-Filtering-Correlation-Id: d44a4542-973d-4441-ea32-08d8c49256c2
 X-MS-TrafficTypeDiagnostic: DM6PR11MB2537:
 X-Microsoft-Antispam-PRVS: 
-	<DM6PR11MB25375A84716050BA3E7EA675F8B99@DM6PR11MB2537.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+	<DM6PR11MB25376A83672B1E8C6851A79FF8B99@DM6PR11MB2537.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	nwZtFQf4aeEBaQA9AK3/Uln4TjAXxj1A7FNdZN5mwyYeNHUbC5p2dKhbgHLX6qui8aggUa1bH0Na5EDVreN/R/t+Mf5LUX4wPZJr6/4q060+HKJeWuH1clsw/cxoOQ2AilH4NO6QlYn3ij9qM3Ai1VyA9sIKn1NMqF6CZSSWB/KhRj1lOP/HJaRcfK55FE6SOX2pVbvvrpUASciHTgATv7Tff0TLQYb33Cqa68saESoDT2aaMvWyemD0muqwX9A7di9K36Ht/wJgGqw6HONyTL5o/u5VheIuaNbTc9e2+5xNrf3GlUk7hePq4m1i9/SnS4bKXA6hBzD7uXy9VeYcctOCenOdYFzAjqeXEP63TAY6SMh8jhSJPwZ72KrGRYHgkT423J+LwZCkLAG5tGqFkZUI4zUBIs+Xc7XHEhieR0xLvGVcV8eVSnDUuVfR9+ywKcCraG9C1bHxvTDLchnrgGrSvtwZR8hidaDrZXrTUpVe1hBiOVkp8jXEOyJbJHO0b01RO40aG6DHNGlKnz8uDP7gg+GaQKw8MBc0y6++AqoXvoJ/MBeOnA3gTwtYitkrMU4/JZIlF0Ep/lr4BYApcj8ve3ta6+EnCDJ9mKUVjfeBFW3m7CNzVQzaFnPD9ZJHydHBrwX6CAuMJ0GNV4gk5m6ltCwYlw4ooxU1abh7nGYYgwq0QGoVfInrPG4UNvSR
+	zDdqU37NLrqdriEQauyRpYnd3fQ3f5ORjPGa9qYFk3t9sC7To+szw6H1/V7fL8a0r2Q2taEQkuP1Jy64tu7aJAStNz11qmqLDEbTBEAh3wV9ZFl/Y2N6jRftvfLuzVn2TzvG14rrMDFJMuc3VIDisve9LJertlPTgoG0NtcdoxCtjM43QKwNbuB72noFGET3KPj8MWnGVakZbUKY+iiI5WZ+csJQZoamgW4SnizaaC+N9Noaiq/QpVh8/Hk6GnrCqO97RM4Gt5RaLOH/yrWj08JEbfO4UdIoYe/Rba8cCwvLRdeog2LK9PFc+/lqCM2YCW/hlbZelGDplhH/eqcTsjoqqisLTa0PT6YDA+9z0yGq9u/3Fu027FjcvNSdgrAjJmm0GAZwgI4zqg3IRG0/RDiW/q6f0gwM5P1nenZBNV8Oi+s1Iwd2fBFrdAeSqOu1WIIHJ3vLEnqsm5yjoeCCjQDXP3ZqIUcLcWxRQBtFm4a2V8OcCryc+o+x0v8Qgztoawi39Tw/AJ/DVpXaC2vCTKWeoCOeJogP/KzS7t5ncUOBkX2vQDfHbO4iYcQk4Fd08kQ1/+uWdeGQHW53UTKB574hEOuljdMIf8aVxaCHeW8=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(39850400004)(366004)(396003)(346002)(136003)(66556008)(2906002)(478600001)(5660300002)(66476007)(31686004)(36756003)(6666004)(31696002)(66946007)(86362001)(83380400001)(53546011)(16526019)(84040400003)(8936002)(966005)(956004)(52116002)(316002)(26005)(2616005)(6486002)(186003)(8676002)(16576012)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(39850400004)(366004)(396003)(346002)(136003)(66556008)(2906002)(478600001)(558084003)(5660300002)(66476007)(31686004)(36756003)(31696002)(66946007)(86362001)(53546011)(16526019)(8936002)(956004)(52116002)(316002)(26005)(2616005)(6486002)(186003)(8676002)(16576012)(45980500001)(43740500002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData: 
-	=?us-ascii?Q?n2d2M5BKMrAU8/TqGaQ1jfb8O3pozGTfBhJF//Mt77QHezp/CKmHZ2XTiAnz?=
- =?us-ascii?Q?RxO7zBnbAsLmhC2X8ruhoMLFUsyqqzRixpRhI3PCBcK3+rZwYsfkvdr222RY?=
- =?us-ascii?Q?AL/CzWmZ73UkZ2kAZE71ldIo+pJZzbJ4DOnwwus+SY2D7HaVzhjBa7W1CFo8?=
- =?us-ascii?Q?LPETqqosjyoersxnj+kD6lgAGTGUceLEXpVoxRf0fIuwRD7D0w6PzlHa9B15?=
- =?us-ascii?Q?kBsr9O4CQ02DZTWgILxv62ewtLGqUMRvwectN77JNpDAnO9Dkpu4dFiZX2Xh?=
- =?us-ascii?Q?EC0TgHZduWoY5tpzfp3PINWk80j4kSC6SpNPTH/EX/VR2JU1+WpyPrSAGTUu?=
- =?us-ascii?Q?8XDe5RaPuFrwo6yWXGDgYqm2b33772QIi8Xn2MfOrRUuSXKVb49n46aNw4fH?=
- =?us-ascii?Q?xjFHKgQEHHDK7ceZuZriusF4GJWD+KIs/YD2HbDn0MfiFOsPnwe++nhmi5K5?=
- =?us-ascii?Q?QY5//b+z5+hoCNTtMiitk+iVZjt43PSwmhHwlVmE7Kg29Afshc9A11DWWG1R?=
- =?us-ascii?Q?RwDC3a+0EI6gLsN0CUWlXGRJw53nwXDVfcVOGQ873XBr+X3iaEQEbz1NMD8H?=
- =?us-ascii?Q?w/LlXffCAKo8OnExcGTAVmaS5PgmMGkmrQvRoXrGzCNhtDju1AQ60pegUEig?=
- =?us-ascii?Q?OKZUCeVsd+0EfnVkhfhq3Tx+SJWij3KUeWih9GynyAsybRFUhnA2jSi/c1pY?=
- =?us-ascii?Q?rIK/AzSqcUlmxaw+8eNMCW5h3mAfWwDv+V0kOpgPn4O0n23ntJuXhM0iO++C?=
- =?us-ascii?Q?ZTiQELg0HXdYAhnV10Hq5fAnuAwHY2RjeGorvRIQZl7sh7rCRE9vLEbBmw2c?=
- =?us-ascii?Q?gHVI4qJ9BCiHGXvGucYZ+Br7/KM7se2vvL2JnoZ4K8MefqIlEC0eH+IJJKwg?=
- =?us-ascii?Q?F6wVTvfpYLNZHBC1X/KRcN+ILHobG4uT/qFy/M0aDILvsRCK4MDNmTmzRzg1?=
- =?us-ascii?Q?ZN3d0WsaDQ2iB7GTAnX3roGyxq4yNsBbuGMO+YIFiWXL9g9QA2wXStB6gqG2?=
- =?us-ascii?Q?8OnuwmhrGaXBP3QqGck/J0xgGDKsTl5NU283u/of8/spO20AE51oXGtZ5YGm?=
- =?us-ascii?Q?/GsPzhWk?=
+	=?utf-8?B?Sms2cC9qckZBQUVFYXpCKzdXQXhWS1RQTjMrRkNMaDBxeTV4andwZEdNeHg5?=
+ =?utf-8?B?TnhYdUhDY2pqeERBK1dJdVJFUE05MjA4V0hNS3JqendoREdSS1pDTi9ybEVi?=
+ =?utf-8?B?cUd1UkJjUUJHMFprWk9OZGFlTVJuWWZCdUg2WTFDb3phZkJFUjkrZmFRLzRW?=
+ =?utf-8?B?KzgycXZXb3RuODE3VFU3Z1VaVFc4NDlsVmNiVG9TbXpnL1hLaEFoMlZYVHly?=
+ =?utf-8?B?dFV2bjMvcDRkR1FxNVVtYTFZVWo4dmJVTFprMTJYZXdqTW5lN0ZoRjJMbzV4?=
+ =?utf-8?B?V0JTeVZjZGdocXQydUd4WDNqSWV6d2hCcFQ3OVgrd1pnbTlPQ3kwK1cwcHNI?=
+ =?utf-8?B?bTI0WlBjNXJ3NWZjSWpUeXRWNi8zK251RG92ZUZvZVZBUFhYclpIanhsL3Zr?=
+ =?utf-8?B?dkpDTFlSZ2MzNlk3eGY3UTZqZ0dzZE9lVnl5aExCWG1zMjhmOXRoakFlTUpC?=
+ =?utf-8?B?ZCt2Z3lBY0ZsemUveG5WRUxNMnhuNnM5cFRUckh4MzkvQlFxMFR2aEZlMEFC?=
+ =?utf-8?B?VG5NNkF5N0hqbHNWcGJGSy8zRUlOcjEvcTM1TUNpVFpNRjlKUkpCZ1AzWU1Y?=
+ =?utf-8?B?VURQdjR1YWJyTUcyQjMvQjU2amtPcUJxR1JnbFBJQjJQYjIzdXVMQzNGdHlE?=
+ =?utf-8?B?TkpTVVlNdE1wZitYNFl2TGlOVHd1M1hKNHdJV0IrWVBUaWRvaXlxQlNaUkEv?=
+ =?utf-8?B?V1MrV0tSeUVEeExVVDg1Y0dmbXFyOUlIYXNPQnJDWE1OT09OUmpVVzJUWXlX?=
+ =?utf-8?B?TlIwODdVbVV1YVZPQlNpaEVpL2hZRWRMNE8rTmFtK3BMTWxLcDByeFdGYUMz?=
+ =?utf-8?B?cUxxMjMvc0NaYUZFQmsvZUtwbEY2Q1JWNjU3QVpnUVRvV2xKS1hLQzhhVXZP?=
+ =?utf-8?B?ZzRnUGpZemZNSVBscGNMK2hSUWVDQy9JS1NCZ04rQW9nQkxBNFhNWDV2ZFBU?=
+ =?utf-8?B?TmROTlc0elRRY2ZyRTVHWnUrU3prQTVSTDVDL3lQNWxvZVZhK2RJM1RXSS8y?=
+ =?utf-8?B?dVpVaEdXLzdKZU0rN2pjRjQyQkVBbGpkbmxBcFFUZWs1Y0p5R3BRaWJ0UmRT?=
+ =?utf-8?B?UDdwcG85TUpzcFltV0JvcUtMZm15VGxKdzNQeVVsWEhsMTRTQnZWcjdrZkI2?=
+ =?utf-8?B?RTZuSjRSUlNMaWZETVFlNzVQWmhMUVp0aTN0ZGhVWVdMalVaNHoxbVlvNDhr?=
+ =?utf-8?B?OFlEVzl2M2hOSTFxMnFiYXhtL0V0NmZsYVhabFhkU0pMeGdTZWdickFoYlov?=
+ =?utf-8?B?LzR5bGp1am84a3FicEpSZUVLbSt2ZEFQMjFYb0M0WlllUlhYRnZFa1hHT3Av?=
+ =?utf-8?B?RVlENWZ3VW8weHdjZmtMUGQ1aFE5VDBSRXEwVEJVa3V3TERUaXE5OEZ0Rk5w?=
+ =?utf-8?B?NlEyVTNhdzYwMjFQUUdtaDBnM0puR1UrUTcvK0kwTGFrSUxtMEFuRTJJSUJO?=
+ =?utf-8?Q?i/+rzhI5?=
 X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 917763f2-646e-4dc9-8dc0-08d8c4921fb6
+X-MS-Exchange-CrossTenant-Network-Message-Id: d44a4542-973d-4441-ea32-08d8c49256c2
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2021 20:11:55.1290
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2021 20:13:27.5177
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: x/0fdwBKS3v87Nhd9d/Oj10FlqSVcIeOSKy3f9M1jCiTtmTW9WaPTQXP978hyZDdGakwr8ozS6jsFQ8LVJj9dDe2jVvHW/Jd/x7WprDNp7E=
+X-MS-Exchange-CrossTenant-UserPrincipalName: +mhT0rl8/6psB/mG3uvjaMiZLAvcdA7fIsPYjkBTMutD0DTV1G7ie3XoMG8SPWvlgigLX1Hqkj4Wdd2UcikdEsC4JkXXKw24N5VErqu9/N8=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2537
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-CA
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On 2021-01-04 3:43 a.m., safouane maaloul wrote:
-> Bonjour, j'essaye d'ajouter le aom plugin au niveau de la=20
-> gstreamer1.0-plugins-bad. J'ai bascul=C3=A9 sur gatesgarth=C2=A0version.=
- Je=20
-> commence =C3=A0 faire lebuild.=C2=A0J'avais un probl=C3=A8me de lisence.=
-=
-=C2=A0Je l'ai=20
-> r=C3=A9solu. Et maintenant j'ai un probl=C3=A8me "no such file or direct=
-ory=20
-> automake-native yocto" et j'arrive pas =C3=A0 la r=C3=A9soudre ? Est-ce =
-que vous=20
-> pouvez m'aider ? y a t il quelqu'un qui a essay=C3=A9 d'ajouter av1 code=
-c=20
-> (aom plugins/gstreamer1.0-plugins-bad).
->=20
-> Cordialement,
->=20
-> Safouane.Maaloul
+On 2021-01-29 3:11 p.m., Randy MacLeod wrote:
+> Did you figure this out?
 
-Bonjour Safouane.Maaloul,
+Oops, I see that Khem has replied to a later email.
 
-Did you figure this out?
-
-The Yocto email list is >99.99% English so please consider translating
-before posting:
-
-Google translate says:
-
- > Hello, I'm trying to add the aom plugin to the level of the
- > gstreamer1.0-plugins-bad. I switched to gatesgarth version. I start to
- > do a build. I had a license problem. I solved it. And now I have a "no
- > such file or directory automake-native yocto" problem and I can't
- > solve it? Can you help me ? has anyone tried adding av1 codec (aom
- > plugins / gstreamer1.0-plugins-bad).
-
-I don't use gstreamer but if you answer the following questions,
-you may get an answer:
-
-What version of oe-core/poky are you using?
-What's the top level commit id?
-What image are you using and what changes have you made
-to your local.conf file?
-
-If you are only using oe-core or poky and have a reproducible
-problem and no one helps, you can open a defect as decribed here:
-=20
-http://docs.yoctoproject.org/dev-manual/common-tasks.html#submitting-a-def=
-ect-against-the-yocto-project
-
-../Randy
-
->=20
->=20
->=20
->=20
->=20
-
-
---=20
+-- 
 # Randy MacLeod
 # Wind River Linux
