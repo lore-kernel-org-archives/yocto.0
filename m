@@ -1,128 +1,114 @@
-Received: from EUR06-AM7-obe.outbound.protection.outlook.com (EUR06-AM7-obe.outbound.protection.outlook.com [40.92.16.29])
- by mx.groups.io with SMTP id smtpd.web09.2089.1611953431067870014
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+ by mx.groups.io with SMTP id smtpd.web12.231.1611954892120481350
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Jan 2021 12:50:31 -0800
+ Fri, 29 Jan 2021 13:14:52 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@outlook.com header.s=selector1 header.b=dVNrQ3XW;
- spf=pass (domain: outlook.com, ip: 40.92.16.29, mailfrom: kweihmann@outlook.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ibVc7GTOgh1p59QCEOchAABpPEWg6J7x/pbPBm2kTiaR8ZKR0Oz24auEcgbTp2KJ/MhiSRVniuMiFqGe9d/C1fcI7uGZlvUkXGYwN5OCjGu3WftvOvRs2/Hq1D0yU4vyVaFQonQHhVT1QzHkgI6IQc/4vDcTeNESMA8+4JGYHd6NjloHkDJKsi91b5RWI6lKtStbHlA3pRkx0w/ArEH8y/TYyAspr3V7H+1Ughqq/f6nVlz5QiLu85QKl3HUx7ABr1fIWdXnCT7mmzzP5ySEC4r4J++TrXgwD4A81tFta8vDJ9wqytIWr/oLo8CZKTKM7GknhrN6RLIq3IlvYf6R9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mvxYMGGFH4Teo1brgqfT/aKaWnM3T//0WxXpY6mXT3w=;
- b=UWWvYAbE2VgjLpOZ6HE6A19O/FuWKGGSNcgXMnmZHKXnFyDfYxzs7oypHHQq9Jx2fOFcxoXUU/KSEPCgfb6jyAFRS1SL64yfVU78vFWMOz56EzlfuOhtJiOpMY0FiBIL0NWZ8uWQC3o+r5Qv4bwoeIMnc3oojgBEvHRIAyKE9Wmpe/G43cGz3bvKELH0YmIflP/EXu0nBWegvT+NJhmR19TfKDB06jHyAC//YiQVdvWc49ZBHw4MEJLAbcFLhDHAArbQe/1au7ShKHK6dZNWorbsj4YBL76cjzVC9xe3gUIA5jjK6oUiKZnUxkEGEyYycCJpd7Wz0qfQ/AOfmSvzGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mvxYMGGFH4Teo1brgqfT/aKaWnM3T//0WxXpY6mXT3w=;
- b=dVNrQ3XWyI6EWqap7CxyS9KDGe7q7FZxf7+KyMXkAcy8FbGxFW8Xz0/v9nLiGBTJRZsIyAqxPLZV7TKvEgjuf+j+VJ7hwS+Qmw6hDrzy4Jgg0Bz/j0XOo/oScLR7XtxEgJNqzWfbwB9BhVCJWqBuC+8CV1EohV+Hw25itRogLK2lFynsWQDWTn+4mpoWEtV7GZOHg3+q0X1dpAeZnKVvCAfNmNpaN7mq2ENshWU6ggN1CdJ+9xnpRrBrFeej06sgtUOPtyPSniHzPJ6UPGzWQqkSPBnrVucTzmJGAxU7v6FzqkYrPWx6FU+c01F8X5Dcmd0A4Qrudyy+QiPzibzHNQ==
-Received: from DB8EUR06FT033.eop-eur06.prod.protection.outlook.com
- (2a01:111:e400:fc35::52) by
- DB8EUR06HT071.eop-eur06.prod.protection.outlook.com (2a01:111:e400:fc35::339)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11; Fri, 29 Jan
- 2021 20:50:28 +0000
-Received: from AM9PR09MB4642.eurprd09.prod.outlook.com
- (2a01:111:e400:fc35::48) by DB8EUR06FT033.mail.protection.outlook.com
- (2a01:111:e400:fc35::324) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11 via Frontend
- Transport; Fri, 29 Jan 2021 20:50:28 +0000
-X-IncomingTopHeaderMarker: OriginalChecksum:3CE6693E102C466D86D791A6F7453220802B2DE171B73E39207086CC617414FA;UpperCasedChecksum:C5B4B80F1A603CE7FB402EF1F086F4929CB9CFB3DA03BE87CEFD892E821BD49F;SizeAsReceived:8705;Count:47
-Received: from AM9PR09MB4642.eurprd09.prod.outlook.com
- ([fe80::5d88:562c:471c:9560]) by AM9PR09MB4642.eurprd09.prod.outlook.com
- ([fe80::5d88:562c:471c:9560%6]) with mapi id 15.20.3805.019; Fri, 29 Jan 2021
- 20:50:28 +0000
-Subject: Re: [yocto] pypi setuptools based recipe fails ModuleNotFoundError: No module named 'pkg_resources' #python
-To: yocto@lists.yoctoproject.org, ddbabich@bootseeds.com
-References: <2ct9.1611952860604820411.DUaL@lists.yoctoproject.org>
-From: "Konrad Weihmann" <kweihmann@outlook.com>
-Message-ID: <AM9PR09MB46428ADAC1E8CFF125D7FADAA8B99@AM9PR09MB4642.eurprd09.prod.outlook.com>
-Date: Fri, 29 Jan 2021 21:50:27 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <2ct9.1611952860604820411.DUaL@lists.yoctoproject.org>
-X-TMN: [D+IbkH/R9cPKKK7JTSgR3sDswIy9sQNd]
-X-ClientProxiedBy: AM6P194CA0083.EURP194.PROD.OUTLOOK.COM
- (2603:10a6:209:8f::24) To AM9PR09MB4642.eurprd09.prod.outlook.com
- (2603:10a6:20b:284::24)
-Return-Path: kweihmann@outlook.com
-X-Microsoft-Original-Message-ID: <e54dcd26-322e-f47a-7fc3-0de09baa2e46@outlook.com>
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=FHRXTqdq;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.41, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f41.google.com with SMTP id s7so7207944wru.5
+        for <yocto@lists.yoctoproject.org>; Fri, 29 Jan 2021 13:14:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=Sj5E6TwYSQ8pfNNA+QxrUIMEbgLBXxsRQCQm9xw9PBE=;
+        b=FHRXTqdqoTIlT93b/CxLOX8HgUEnPyjJI4Qo9xW6RZpWUziLojvq6JSRCWAuW2387P
+         0CcE+WYsXGXfXNnVFsOgMS5Ok/ovioOsibssgRPVLpIwS+lMErB/lF+MbjwtMvYCIcey
+         PalEYeblwc/7jT1r9VEfMToEqoGeJ12Gv6vfQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=Sj5E6TwYSQ8pfNNA+QxrUIMEbgLBXxsRQCQm9xw9PBE=;
+        b=P2JpsWhJ+IMm7AdMujoCWOuo5ToevO/Rm0KhpNgdPMYnMj1bzygthr4ImpQ5wDQ5LT
+         84luG2ZF6vtcCAnJbd3/VOn3T4HmJuwfDlBsx3mPolQxqYsfdSlq/5OPPJeb10VW+7ys
+         d5krzr77Owz45We3U0RhNbPRfUobs22sIiQyLhHJTdkVOmGBkp48cHRjH56OrFBye84I
+         9fQT544myMJxEuyIYJL+LLY4t16DN8V7mkDsbRMOQGh/NtaZYnWoPbxWEqr1EBmrjG7Z
+         H5NYVmZNE0ICvGpw9SyK5O4E3qCEAYE6tJ3qqrC0S/cnRTLCmAuQlL7LvFvQdheCNPLX
+         U60w==
+X-Gm-Message-State: AOAM531zvd6RYE63/DYn7mh0barcwPAgNzQsxGV7MWF/b2waL0UaeHOJ
+	YSNHS22dxZKaNvElp/t1CaG1jA==
+X-Google-Smtp-Source: ABdhPJwk9kDxfKJazjQNnPY/62kKsK/cv/raw++CdB9nP80SxfhVARUArv85HWtx+NXJCCRBq5upbA==
+X-Received: by 2002:adf:9cc4:: with SMTP id h4mr6408686wre.403.1611954890507;
+        Fri, 29 Jan 2021 13:14:50 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:1e22:34f6:7a80:adbb? ([2001:8b0:aba:5f3c:1e22:34f6:7a80:adbb])
+        by smtp.gmail.com with ESMTPSA id e12sm13603812wrs.67.2021.01.29.13.14.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Jan 2021 13:14:49 -0800 (PST)
+Message-ID: <d19cb71cfb386dd11d1daa45f70c42faaba926fa.camel@linuxfoundation.org>
+Subject: Re: [yocto] SDKMACHINE and ppc64le issue with latest head?
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Andrew Geissler <geissonator@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Date: Fri, 29 Jan 2021 21:14:47 +0000
+In-Reply-To: <0332E332-9E9F-43A8-8022-59586B240F01@gmail.com>
+References: 
+	<a5d20604428c2581ee69977d9c0221e2e5b2d01f.camel@linuxfoundation.org>
+	 <25512.1611938435690182276@lists.yoctoproject.org>
+	 <5d089dd1170dd222ce863914cb8ac95b4b4461e2.camel@linuxfoundation.org>
+	 <0332E332-9E9F-43A8-8022-59586B240F01@gmail.com>
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.188.23] (87.141.84.110) by AM6P194CA0083.EURP194.PROD.OUTLOOK.COM (2603:10a6:209:8f::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.16 via Frontend Transport; Fri, 29 Jan 2021 20:50:28 +0000
-X-MS-PublicTrafficType: Email
-X-IncomingHeaderCount: 47
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-Correlation-Id: 009c7b0c-baf7-4bfb-18e5-08d8c4978288
-X-MS-TrafficTypeDiagnostic: DB8EUR06HT071:
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	RXB430FYlylb2/8OS8x3y6UYtZ5Knl69vXPxBS1/nFrL8zeCBjV3mNPNtUhg8QulqlpG3ITjAq+Tayc3blsgFfnmJfFN7hs2pc+uwB2k5yHN1rwOKq90cqZfY9SPYDMOaoeEdVC9DzaCcJWTaBhOmxSCeWhB3gQlYJ75Qif+fZyv1sNK1igpZgLGA3bHW5KqejEwjGkmCIBJXCsTHz+pzeVx3ERke0rmRmQ7uvNnf0HFscqvuJpflQ6p0byT5+cNRpGae/x9/JMUJ8sR/nxd7E1ubN6POXize8xOL9tGmLToElLAVYOmv9gqk7Ex/Ugub7RnQYc9OJjKjlMb/lu3m04xZJYIQVjexUyhTrmW99v3ELl2EXQ5jHdQk0BCzOunSg5TIq9jHVrXMKjOlB3bv1DiV+kjXVRv/Kzp6oWuKNygkE2L6TrXAD8/ZncAREbO
-X-MS-Exchange-AntiSpam-MessageData: 
-	u56a4W44FdEDtltZcJBv23+A61YsTCNyUjcTkWXOzmzf/L/D+0CVWE+ogMcZsBR3p43RG9ipsVRqDz4uDDuPJvOxDLFuKRZ7PlpQzLBaG6RX9P6SDy2RB1Fob12ihvUbKn4/JgoCu7YM493kY9JT6Q==
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 009c7b0c-baf7-4bfb-18e5-08d8c4978288
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2021 20:50:28.4845
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-AuthSource: 
-	DB8EUR06FT033.eop-eur06.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8EUR06HT071
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-The issue here is that you are overwriting the DEPENDS after the inherit.
-Two ways to solve this problem
+On Fri, 2021-01-29 at 13:48 -0600, Andrew Geissler wrote:
+> 
+> > On Jan 29, 2021, at 10:54 AM, Richard Purdie <richard.purdie@linuxfoundation.org> wrote:
+> > 
+> > On Fri, 2021-01-29 at 08:40 -0800, Andrew Geissler wrote:
+> > > > What was SDKMACHINE set to before?
+> > > 
+> > > Hey Richard, thanks for the quick response. 
+> > > 
+> > > We did not have it set. It looks like this recent commit is what
+> > > changed things on us:
+> > > 
+> > > commit c74ec1dd7393b9dc7bec1a3ca2ed0a56fb18d8fb
+> > > Author: Ross Burton <ross@burtonini.com>
+> > > Date:   Tue Dec 22 17:23:14 2020 +0000
+> > > 
+> > >     bitbake.conf: default SDKMACHINE to the build host architecture
+> > > 
+> > > 
+> > > Looks like I need to submit a patch to y'all to add a ppc64le.conf to
+> > > conf/machine-sdk/?
+> > 
+> > That would likely avoid the failures you're seeing, yes.
+> > 
+> > I really wish we had better support for ppc64le both for hosts and
+> > targets and had people actively involved/maintaining the ppc support,
+> > its in need of massive modernisation particularly on the target side.
+> 
+> Darn, I tried just adding this:
+> 
+> cat meta/conf/machine-sdk/ppc64le.conf
+> 
+> SDK_ARCH = "ppc64le"
+> ABIEXTENSION_class-nativesdk = ""
+> 
+> I get further but then hit a bunch of fails like this:
+> 
+> ERROR: /home/andrewg/Code/openbmc/meta/recipes-devtools/meson/nativesdk-meson_0.56.0.bb: Unable to determine endianness for architecture '${SDK_ARCH}'
+> ERROR: /home/andrewg/Code/openbmc/meta/recipes-devtools/meson/nativesdk-meson_0.56.0.bb: Please add your architecture to siteinfo.bbclass
+> ERROR: Failed to parse recipe: /home/andrewg/Code/openbmc/meta/recipes-devtools/meson/nativesdk-meson_0.56.0.bb
+> ERROR: /home/andrewg/Code/openbmc/meta/recipes-graphics/xorg-lib/libxext_1.3.4.bb: Unable to determine endianness for architecture '${SDK_ARCH}'
+> ERROR: /home/andrewg/Code/openbmc/meta/recipes-graphics/xorg-lib/libxext_1.3.4.bb: Please add your architecture to siteinfo.bbclass
+> …
+> 
+> I’m did some grepping around but don’t see anything obvious. Why is it not
+> finding the SDK_ARCH I’ve set in the new conf file?
+> 
+> Wondering if I should just go with my first workaround and set SDKMACHINE=x86_64. 
+> Apparently using that default in the past hasn’t affected our use cases.
 
-Either use
+SDKMACHINE is the machine to run any SDK that is built on. If you're
+not building an SDK or eSDK, it won't matter to your use case.
+BUILD_ARCH is the machine you're building upon which is already being
+set correctly and unchanged.
 
-DEPENDS =3D "python3-astropy-helpers"
-PYPI_PACKAGE =3D "astropy"
-inherit pypi
+Cheers,
 
+Richard
 
-or
-
-PYPI_PACKAGE =3D "astropy"
-inherit pypi
-
-DEPENDS +=3D "python3-astropy-helpers"
-
-python3-setuptools doesn't need to be added at all manually as this is=20
-done implicitly by setuptools3 class
-
-
-On 29.01.21 21:41, ddbabich@bootseeds.com wrote:
-> I'm attempting to make a simple bitbake recipe for python3-astropy that=
-=20
-> inherits from pypi and setuptools3.=C2=A0 The very simple recipe is atta=
-ched.
-> When I build I'm getting this error:
->=20
->     |=C2=A0 =C2=A0 =C2=A0import pkg_resources
->=20
->     | ModuleNotFoundError: No module named 'pkg_resources'
->=20
->     | WARNING: exit code 1 from a shell command.
->=20
-> I don't understand this error because I'm using setuptools3 which I=20
-> believe contains pkg_resources.=C2=A0 In desperation I added a "DEPENDS =
-=
-=3D=20
-> "python3-setuptools" but that did not help either.=C2=A0 I'd appreciate =
-any=20
-> advice on this.
-> Thanks
->=20
->=20
->=20
->=20
