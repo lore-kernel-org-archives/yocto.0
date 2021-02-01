@@ -1,1059 +1,516 @@
-Received: from outbound1.mail.transip.nl (outbound1.mail.transip.nl [149.210.149.72])
- by mx.groups.io with SMTP id smtpd.web11.31002.1612167692015465181
+Received: from dmzms99802.na.baesystems.com (dmzms99802.na.baesystems.com [149.32.232.66])
+ by mx.groups.io with SMTP id smtpd.web09.32422.1612180010636009697
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Feb 2021 00:21:34 -0800
+ Mon, 01 Feb 2021 03:46:53 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@herrie.org header.s=transip-a header.b=KLGZmWb4;
- spf=pass (domain: herrie.org, ip: 149.210.149.72, mailfrom: me@herrie.org)
-Received: from submission6.mail.transip.nl (unknown [10.103.8.157])
-	by outbound1.mail.transip.nl (Postfix) with ESMTP id 4DTgrn0w19zRjHP;
-	Mon,  1 Feb 2021 09:21:29 +0100 (CET)
-Received: from transip.email (unknown [10.100.4.34])
-	by submission6.mail.transip.nl (Postfix) with ESMTPA id 4DTgrj5Y3pz12LWy;
-	Mon,  1 Feb 2021 09:21:24 +0100 (CET)
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=Ec52/pqX;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.66, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1612180010; x=1769860010;
+  h=from:to:subject:date:in-reply-to:mime-version;
+  bh=uR3NLuDU9ImpsMrTR1a7ogmCmFhvWk3qG6G+ruQf01k=;
+  b=Ec52/pqX47QlMSB7gCpYDcO8esmidQeq30wMxzvw2LCoQtwlJtRL5XK9
+   MZk1bZZjtLRVm6M3XqGyXKKzIz+4BQiJg3wcJkqalEcKGReJ4lwFzdadw
+   JLnV12gdhZeH43tUIG7qgiqH1eI8XyHTV96cOYCCynwz2rL3YULKZ9odN
+   Y=;
+IronPort-PHdr: =?us-ascii?q?9a23=3Ae7vrUhZf6p2MCnoA5m/8EFP/LSx+4OfEezUN459i?=
+ =?us-ascii?q?sYplN5qZps2/ZR7h7PlgxGXEQZ/co6odzbaP4ua7CSdavd7B6ClELMUTEUddyI?=
+ =?us-ascii?q?0/pE8JOIa9E0r1LfrnPWQRPf9pcxtbxUy9KlVfA83kZlff8TWY5D8WHQjjZ0Iu?=
+ =?us-ascii?q?frymUoHdgN6q2O+s5pbdfxtHhCanYbN1MR66sRjdutMZjId/Lqs90BXEr3hHd+?=
+ =?us-ascii?q?hIym5jOFafkwrh6suq85Nv7iZdt+g9+8JcVKnxYrg1Q6FfADk6KW4++dfltQPE?=
+ =?us-ascii?q?TQuB53scVnsZnx9VCAXb7x/0Q4n8vDLiuuVyxCeVM8v2TaspWTu59KdkVAXoiC?=
+ =?us-ascii?q?YcODEn9mzcl9F9g7haoBKloBx/3pLUbYSIP/dwYq/RYdUXTndHU81MVSJOH5m8?=
+ =?us-ascii?q?YpMPAeQfIOhYs4fzqVgArRS8BAmjGOzgxyRSiXPq3603yfgtHR3Y0AEmAtkAsG?=
+ =?us-ascii?q?7UrNLwNKoKX+y7y67IzTPYb/xIxzj985DEeQ08r/GQQ71wb9TeyU8yHA7bk16c?=
+ =?us-ascii?q?rYLqMS6Q2ugDrmOW6PFgVf6xhG45tQ5xpCKjxsIrionPnYIa1E7L9T5izYkuP9?=
+ =?us-ascii?q?K3VlV7YN6/EJtMqS6aMpB2Ttk+TGFvvSY307sLsoO0cyYW0poo3QLfa+CZfIiS?=
+ =?us-ascii?q?5BLuTOecLDl5iX9leL+ymRi8/0a8x+D8VcS50UhGoypFn9TSsn0ByQHe5MiHRP?=
+ =?us-ascii?q?Z54kus2DaC2QDX5+9LPUw5i6nWJpEnz7UtmJQTtkHDETX3mEXwlKKXdkIk9fS0?=
+ =?us-ascii?q?6+TgerXmvJicN41qhQ7iLqQigMu/Af43MgQWUGib+Pi81L3+/ULiWrlFkvo2kq?=
+ =?us-ascii?q?zfvZvHJsobvra0DxJJ3oo55RuyDS2q3MkckHQJNl5IeROKg5D0N13SOvz1Aviy?=
+ =?us-ascii?q?j06jnTtx2vzLPrvsCYjXIHfZirfuZ7N95lZZyAo00N9Q+YpZCqoEIPLvQk/xs8?=
+ =?us-ascii?q?HYDgMhPwy03ennDNJ925sYWWKPBK+WKqbSsUSL6+8vP+WAeJIZtCz7K/c//fLh?=
+ =?us-ascii?q?lmU2lkEGfaipxpsXdG63HvF9I0mDfXXshdIBHX8Lvgo4UuPqlEWPXSNPa3qoUa?=
+ =?us-ascii?q?8x5Cs3BJ+iAIrNXIyggb2M0D++HpJMZ2BGDl6MEW3vd4WBQ/oMcz6SLdF/kjMa?=
+ =?us-ascii?q?U7itUYoh1RaotA/h1bVoMPHU9zYDup35ytd1/O3SlQou9TNqCsSdyHuBQH1znm?=
+ =?us-ascii?q?MNXzM2xrxwoVRhylef1qh1m/xZFdtP6PNVVQc3Lprcz+1hC9DuQQLNZNeISFG6?=
+ =?us-ascii?q?TdW6BjExVsgxw9gMY0ljB9qikgrP3y2wA78axPS3A8l+16XaxHX8PII18GrLyq?=
+ =?us-ascii?q?Qnx3JuAvZ0dCfu0rVj+hbeAcjMlEOCmquxXa4V0TXc73uOyHHIt0ZdBko4G7TC?=
+ =?us-ascii?q?VmwYTk/XtsjioFLFRKOpEa4gMAZK1YiFMKQAIon4il5aQ9/nOc/CeCSgnGysAg?=
+ =?us-ascii?q?6SwbGBZ5asfH8SinbzEk8Bxko2+nCdOAUlQm+av2/AATomPhqvXnitu6Eqs2+2?=
+ =?us-ascii?q?UEIyiQSNaVZs2qGd8BcYnu2HV/4WxfQPvyJ3+GY8J0q0w9+DU4nInAFmZqgJOd?=
+ =?us-ascii?q?4=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2DpBADu6Bdg/0LBJQpiHgEBCxIMQIJyg?=
+ =?us-ascii?q?X6BJBkKlgwDjxOGAYVHgWgLAQEBAQEBAQEBCAEYAQYQBAEBhEoCgXkmOBMCEAE?=
+ =?us-ascii?q?BBgEBAQEBBgQBhlENgjgigxkBAQEEASYGXAIBCBEEAQEvKAodCAEBBAESCIMfg?=
+ =?us-ascii?q?X6wR3SBATOKWAkBgS6JS4NzggM+gRGDGT6CXQIDgScBEgGGGgSCXSc+CQoxG1O?=
+ =?us-ascii?q?BFG2PSIpxgzqaSgcDgnaJNItIhngrhGKeMS2TfYk2k2wihCMCBAIEBQIWgW2BC?=
+ =?us-ascii?q?nBwUIJpCUcXAg2SEoUUhUR0NwIGCgEBAwmLBIERAQE?=
+X-IPAS-Result: =?us-ascii?q?A2DpBADu6Bdg/0LBJQpiHgEBCxIMQIJygX6BJBkKlgwDjxO?=
+ =?us-ascii?q?GAYVHgWgLAQEBAQEBAQEBCAEYAQYQBAEBhEoCgXkmOBMCEAEBBgEBAQEBBgQBh?=
+ =?us-ascii?q?lENgjgigxkBAQEEASYGXAIBCBEEAQEvKAodCAEBBAESCIMfgX6wR3SBATOKWAk?=
+ =?us-ascii?q?BgS6JS4NzggM+gRGDGT6CXQIDgScBEgGGGgSCXSc+CQoxG1OBFG2PSIpxgzqaS?=
+ =?us-ascii?q?gcDgnaJNItIhngrhGKeMS2TfYk2k2wihCMCBAIEBQIWgW2BCnBwUIJpCUcXAg2?=
+ =?us-ascii?q?SEoUUhUR0NwIGCgEBAwmLBIERAQE?=
+X-IronPort-AV: E=Sophos;i="5.79,392,1602547200"; 
+   d="scan'208,217";a="482400923"
+X-IronPort-AV: E=Sophos;i="5.79,392,1602547200"; 
+   d="scan'208,217";a="243715813"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: #yocto #zeus #sdk populate_sdk_ext build failing
+Thread-Topic: #yocto #zeus #sdk populate_sdk_ext build failing
+Thread-Index: Adb2ki62K7RJTJj+Q66jlY0juAIcFQB/aWvA
+Date: Mon, 1 Feb 2021 11:46:31 +0000
+In-Reply-To: <MADEUP.165ED668EC590D36.30795@lists.yoctoproject.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.4.15]
 MIME-Version: 1.0
-Date: Mon, 01 Feb 2021 09:21:24 +0100
-From: "Herman van Hazendonk (Herrie)" <yoctoproject.org@herrie.org>
-To: diego.santacruz@spinetix.com
-Cc: Jonas Vautherin <jonas.vautherin@gmail.com>, Aaron Cohen
- <aaron@assonance.org>, Paul Barker <pbarker@konsulko.com>,
- Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Writing a BSP from downstream kernel sources
-Reply-To: yoctoproject.org@herrie.org
-Mail-Reply-To: yoctoproject.org@herrie.org
-In-Reply-To: <DB6PR0102MB2630EDA352DCFAFE77D4661088B69@DB6PR0102MB2630.eurprd01.prod.exchangelabs.com>
-References: <CAEyb4nFHLZ-cycQXBgerWeyyKUf3KRP+xSEa2kP0K1zYd7=HNA@mail.gmail.com>
- <CAM9ZRVshoYvDho-Dmu2+UNorjLSyrN3t=ZYE5Uj0zit0_4mAew@mail.gmail.com>
- <165CDE54CF259D2E.7022@lists.yoctoproject.org>
- <CAEyb4nH1jqEEhRyw-wmKPg+nqAhQMDdDv6GPjKGzc_igbYqyqQ@mail.gmail.com>
- <DB6PR0102MB2630BFE5D26042D67AA4AEDB88BD0@DB6PR0102MB2630.eurprd01.prod.exchangelabs.com>
- <CAEyb4nGC5Fmdxsz9Q1Pot=E0gJVPvvkR7+E381QRyg2F-KqtaA@mail.gmail.com>
- <165EF1C95601254E.16314@lists.yoctoproject.org>
- <CAFSZm+g_8B=8-Y3H8VC4kCj311hWDDLWupAWqvnZ4Pew5WhCUw@mail.gmail.com>
- <CAEyb4nFOfjSmCB47RgFg1uRkqRCO8+0NKNW4QOzgjJOZ+c34ww@mail.gmail.com>
- <DB6PR0102MB2630EDA352DCFAFE77D4661088B69@DB6PR0102MB2630.eurprd01.prod.exchangelabs.com>
-Message-ID: <38d778fcbc1e31c2efa82b5efef922e2@herrie.org>
-X-Sender: me@herrie.org
-User-Agent: Webmail
-X-Scanned-By: ClueGetter at submission6.mail.transip.nl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=transip-a; d=herrie.org; t=1612167686; h=from:reply-to:subject:to:
- cc:references:in-reply-to:date:mime-version:content-type;
- bh=cEjFT6io4Y3Erz3520s6qkcCW1D90XWlo5zBmS9cbsc=;
- b=KLGZmWb4J74Ph9aprW+BDf8drwwG7LDlPPTXPn8yyuIG55C55Mr4tVo7ku9avnVmJE+QU5
- xAt9Id1CUXns/YJhEJUN6Qpz/dFerfPmYEVWY1987r4XxkKNpi6L3oJKNrE+OqJG5aCZ7C
- jxml4b4RKtcaANqLbm5diim0CYlAzk702D5CK7BjKKPyGEOhyM6mribH9N5vyBE03Vk0s6
- E/57o9vWUf10JHfMLF9wi38fY/TkCI6VqFjSWvhQlEmd7W9XRN8TIPYwphM9ZoqFM5PBcH
- NCLBrAPmdQ+8K3EgMQ4iUB+VO5n31TbL6iYui9HGh54SdUB5cdYHhub1eGc4Wg==
-X-Report-Abuse-To: abuse@transip.nl
+Return-Path: steven.monsees@baesystems.com
+Message-ID: <MADEUP.165F9D2E2C1A8F67.28411@lists.yoctoproject.org>
+Content-Language: en-US
 Content-Type: multipart/alternative;
- boundary="=_192323ad42c62a2b7dc4f0ba7dd3e414"
+	boundary="_000_eb62259844ca4775bd44525f6cc5a705baesystemscom_"
 
---=_192323ad42c62a2b7dc4f0ba7dd3e414
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=US-ASCII
-
-Hi, 
-
-We've been using 3.18 (Android) kernels on our LuneOS project with
-Yocto, so we carry the various patches to get it to build with newer
-GCC's. 
-
-See:
-https://github.com/shr-distribution/linux/commits/tissot/3.18/halium-7.1
-for some inspiration :) 
-
-For older 3.4 kernels you would need more patches obviously: 
-
-https://github.com/shr-distribution/linux/commits/hammerhead/3.4/halium-5.1
-
-
-Best regards,
-Herman 
-
-On 2021-02-01 08:04, Diego Santa Cruz via lists.yoctoproject.org wrote:
-
-> FROM: Jonas Vautherin <jonas.vautherin@gmail.com> 
-> SENT: 31 January 2021 22:23
-> TO: Aaron Cohen <aaron@assonance.org>
-> CC: Diego Santa Cruz <Diego.SantaCruz@spinetix.com>; Paul Barker <pbarker@konsulko.com>; Yocto-mailing-list <yocto@lists.yoctoproject.org>
-> SUBJECT: Re: [yocto] Writing a BSP from downstream kernel sources 
-> 
-> Thanks Aaron!
-> 
-> That seems to remove the log2 warnings, but it seems like they were not related to those "Assembler" errors, e.g.: 
-> 
-> ``` 
-> 
-> | /tmp/ccbtfgo7.s: Assembler messages:
-> | /tmp/ccbtfgo7.s:2011: Error: .err encountered 
-> 
-> ``` 
-> 
-> I think I need to fix them like Diego was suggesting, but I have trouble relating the error to a source file... 
-> 
-> _[DIEGO SANTA CRUZ] IT MAY BE EASIER TO BUILD THE SDK WITH A DUMMY KERNEL (I.E. NO KERNEL, SETTING PREFERRED_PROVIDER_VIRTUAL/KERNEL ?= "LINUX-DUMMY" IN CONF/LOCAL.CONF) AND USE THAT SDK TO GET THE KERNEL BUILDING OUTSIDE OF YOCTO. IF YOU RUN THE MAKE WITH V=1 YOU WILL SEE THE FULL COMPILER COMMAND AND YOU CAN RE-RUN IT MANUALLY. THE USE THE -S (AND EVENTUALLY -E) LINE AND YOU CAN INSPECT THE FAULTY ASSEMBLY FILE OR SOURCE AND TRACK THE ORIGINAL LOCATION. AT LEAST THAT IS THE ROUTE I TOOK AND WORKED WELL FOR ME._ 
-> 
-> _I THINK YOU ARE USING KERNEL 3.18.31, IN THAT VERSION IT IS THE __PUT_USER_CHECK MACRO YOU NEED TO FIX, HTTPS://ELIXIR.BOOTLIN.COM/LINUX/V3.18.31/SOURCE/ARCH/ARM/INCLUDE/ASM/UACCESS.H#L219 [1]_ 
-> 
-> _ _ 
-> 
-> _A HAND WRITTEN PATCH (NOT TESTED AT ALL!) THAT SHOULD SOLVE YOUR PROBLEM IS_ 
-> 
-> --- arch/arm/include/asm/uaccess.h 
-> 
-> +++ arch/arm/include/asm/uaccess.h 
-> 
-> #define __put_user_check(x,p)                                                                                                            \ 
-> 
-> ({                                                                                                                             \ 
-> 
-> unsigned long __limit = current_thread_info()->addr_limit - 1; \ 
-> 
-> const typeof(*(p)) __user *__tmp_p = (p);                            \ 
-> 
-> -                          register const typeof(*(p)) __r2 asm("r2") = (x); \ 
-> 
-> +                         register typeof(*(p)) __r2 asm("r2") = (x);             \ 
-> 
-> register const typeof(*(p)) __user *__p asm("r0") = __tmp_p; \ 
-> 
-> register unsigned long __l asm("r1") = __limit;                    \ 
-> 
-> register int __e asm("r0");                                                           \ 
-> 
-> switch (sizeof(*(__p))) {                                                \ 
-> 
-> On Sat, Jan 30, 2021 at 8:29 AM Aaron Cohen <aaron@assonance.org> wrote: 
-> 
-> Actually, I found the upstream patch I backported, which you're probably better off using (same diff though). 
-> 
-> https://lore.kernel.org/patchwork/patch/773330/ 
-> 
-> On Sat, Jan 30, 2021 at 2:26 AM Joel A Cohen via lists.yoctoproject.org [2] <aaron=assonance.org@lists.yoctoproject.org> wrote: 
-> 
-> I'm not sure if this is your issue, but I had a similar issue ilog2 and the disassembler and fixed it by backporting this patch. 
-> 
-> No guarantees, but perhaps it will help. 
-> 
-> --Aaron 
-> 
-> On Fri, Jan 29, 2021 at 9:51 PM Jonas Vautherin <jonas.vautherin@gmail.com> wrote: 
-> 
-> Thanks a lot for the advice! However, I can't seem to find a `const` that I can simply remove. To give more context, here is the log output around such an error (it seems like it is often surrounded by this log2.h warning, by the way):
-> 
-> | In file included from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/kernel.h:11,
-> |                  from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/kallsyms.h:9,
-> |                  from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/ftrace.h:10,
-> |                  from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/kernel/extable.c:18:
-> | /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/log2.h:22:1: warning: ignoring attribute 'noreturn' because it conflicts with attribute 'const' [-Wattributes]
-> |    22 | int ____ilog2_NaN(void);
-> |       | ^~~
-> |   CC      fs/fat/dir.o
-> | In file included from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/kernel.h:11,
-> |                  from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/list.h:8,
-> |                  from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/module.h:9,
-> |                  from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/fs/fat/dir.c:16:
-> | /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/log2.h:22:1: warning: ignoring attribute 'noreturn' because it conflicts with attribute 'const' [-Wattributes]
-> |    22 | int ____ilog2_NaN(void);
-> |       | ^~~
-> |   CC      block/deadline-iosched.o
-> | In file included from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/kernel.h:11,
-> |                  from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/block/deadline-iosched.c:6:
-> | /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/log2.h:22:1: warning: ignoring attribute 'noreturn' because it conflicts with attribute 'const' [-Wattributes]
-> |    22 | int ____ilog2_NaN(void);
-> |       | ^~~
-> | /tmp/cc52vFrQ.s: Assembler messages:
-> | /tmp/cc52vFrQ.s:2683: Error: .err encountered
-> | /tmp/cc52vFrQ.s:2927: Error: .err encountered
-> |   LD      sound/sparc/built-in.o
-> |   LD      sound/spi/built-in.o
-> | make[3]: *** [/home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/scripts/Makefile.build:257: block/scsi_ioctl.o] Error 1 
-> 
-> I pasted the full output here, if that can help: https://paste.ubuntu.com/p/KqN8nVWmvv/. The lines that seem to get the log2 warning are: 
-> 
-> ``` 
-> 
-> extern __attribute__((const, noreturn)) 
-> 
-> int ____ilog2_NaN(void);
-> 
-> ``` 
-> 
-> So there is a const there, but well... not sure what to do with it :-). 
-> 
-> Best, 
-> 
-> On Mon, Jan 25, 2021 at 9:00 AM Diego Santa Cruz <Diego.SantaCruz@spinetix.com> wrote: 
-> 
-> FROM: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> ON BEHALF OF Jonas Vautherin via lists.yoctoproject.org [2]
-> SENT: 24 January 2021 14:30
-> TO: Jonas Vautherin <jonas.vautherin@gmail.com>
-> CC: Paul Barker <pbarker@konsulko.com>; Yocto-mailing-list <yocto@lists.yoctoproject.org>
-> SUBJECT: Re: [yocto] Writing a BSP from downstream kernel sources 
-> 
-> Just to close this: it seems like the gcc-cross-arm used by yocto gatesgarth is too new for that specific downstream kernel (3.18.31).
-> 
-> The goal was to get a proper BSP package for this device for a modern yocto, so I don't think I will try with an older version of Yocto. If I compile an old gcc as part of a custom Yocto layer (on gatesgarth), I am guessing that I will have issues creating a distro that runs both on RPi and on that older device (because RPi will have a newer kernel and gcc, and the skycontroller will use older ones). I also guess that the downstream dts won't work with a modern kernel, and I would not know how to write one myself for that apq8009 chip. 
-> 
-> Hence, I'm giving up. Thanks a lot for the help :-). 
-> 
-> _[DIEGO SANTA CRUZ] WAIT! YOU MAY BE ABLE TO GET IT WORKING, SEE BELOW._ 
-> 
-> On Sat, Jan 23, 2021 at 2:07 PM Jonas Vautherin via lists.yoctoproject.org [2] <jonas.vautherin=gmail.com@lists.yoctoproject.org> wrote: 
-> 
-> Thanks a lot for the answer!
-> 
-> It seems like using `KCONFIG_MODE = "--alldefconfig"` with `KBUILD_DEFCONFIG = "msm8909_defconfig"` now ends up with the same kind of errors as when I use the defconfig from the downstream kernel [1], i.e.: 
-> 
-> _[DIEGO SANTA CRUZ] I HAPPEN TO BE DOING A SIMILAR KIND OF WORK, GETTING AN EVEN OLDER (2.6.37+) DOWNSTREAM KERNEL FOR AN ARM MACHINE TO COMPILE WITH RECENT GCC IN YOCTO, IN MY CASE GCC 9.3 FROM DUNFELL. THERE ARE A FEW FIXES AND BACKPORTS NECESSARY TO MAKE IT HAPPEN AND BOOT. I'M NOT DONE WITH THE WORK YET, SO I DO NOT KNOW HOW STABLE IT IS, BUT I HAVE IT BOOTING._ 
-> 
-> ``` 
-> 
-> | /tmp/ccz8jKgm.s: Assembler messages:
-> | /tmp/ccz8jKgm.s:985: Error: .err encountered 
-> 
-> ``` 
-> 
-> _[DIEGO SANTA CRUZ] THE FIX HERE IS RATHER SIMPLE ONCE YOU UNDERSTAND WHAT'S GOING ON, THE PROBLEM IS ABUSIVE USE OF CONST FOR REGISTER VARIABLES, SEE HTTPS://GCC.GNU.ORG/ONLINEDOCS/GCC-9.3.0/GCC/LOCAL-REGISTER-VARIABLES.HTML [3] SO WHEN PUT_USER() IS USED FOR A LITERAL CONSTANT VALUE IT GETS ASSIGNED THE WRONG REGISTER, SO JUST REMOVE THE CONST QUALIFIER FROM THE PUT_USER() REGISTER VARIABLE ASSIGNMENT FOR THE VALUE ARGUMENT. FOR MY OLDER KERNEL THE PATCH IS LIKE THIS._ 
-> 
-> --- arch/arm/include/asm/uaccess.h 
-> 
-> +++ arch/arm/include/asm/uaccess.h 
-> 
-> @@ -145,7 +145,7 @@ 
-> 
-> #define put_user(x,p)                                                                                                    \ 
-> 
-> ({                                                                                                                             \ 
-> 
-> -                               register const typeof(*(p)) __r2 asm("r2") = (x); \ 
-> 
-> +                              register typeof(*(p)) __r2 asm("r2") = (x);                             \ 
-> 
-> register const typeof(*(p)) __user *__p asm("r0") = (p);\ 
-> 
-> register int __e asm("r0");                                                           \ 
-> 
-> switch (sizeof(*(__p))) {                                                \ 
-> 
-> Could it be related to the tuning, e.g. I'm somehow defining a wrong toolchain in my machine configuration [2] and it fails to build? I was thinking about the tune-cortexa7.inc include, though it seems to me that the apq8009 is a cortexa7 [3]: 
-> 
-> _[DIEGO SANTA CRUZ] OTHER COMMITS FROM POST 3.18 THAT YOU MAY NEED TO BACKPORT ARE THE FOLLOWING (START FROM BOTTOM OF LIST) _ 
-> 
-> 474c90156c8dcc2fa815e6716cc9394d7930cb9c give up on gcc ilog2() constant optimizations 
-> 
-> cb984d101b30eb7478d32df56a0023e4603cba7f compiler-gcc: integrate the various compiler-gcc[345].h files 
-> 
-> f6d133f877c8bb0a0934dc8c521c758ee771e901 compiler-gcc.h: neatening 
-> 
-> 7829fb09a2b4268b30dd9bc782fa5ebee278b137 lib: make memzero_explicit more robust against dead store elimination 
-> 
-> cb4188ac8e5779f66b9f55888ac2c75b391cde44 compiler: introduce __alias(symbol) shortcut 
-> 
-> 0b053c9518292705736329a8fe20ef4686ffc8e9 lib: memzero_explicit: use barrier instead of OPTIMIZER_HIDE_VAR 
-> 
-> ee91ef6173e81819f5ff610c2485802081635657 bufferhead: force inlining of buffer head flag operations 
-> 
-> cc7fce80229067890365c1ee196be5d304d36dea mtd: blkdevs: fix switch-bool compilation warning 
-> 
->> The Qualcomm Snapdragon 212 APQ8009 is an entry level SoC for Android based tablets and smartphones. It contains four ARM Cortex-A7 CPU cores (quad core) 
-> 
-> [1]: https://github.com/parrot-opensource/skycontroller3-opensource/blob/master/sources/linux-3.18.31/linux.config 
-> 
-> [2]: https://github.com/JonasVautherin/meta-skycontroller3/blob/main/conf/machine/skycontroller3.conf#L32 
-> 
-> [3]: https://www.notebookcheck.net/Qualcomm-Snapdragon-212-APQ8009-SoC-Benchmarks-and-Specs.169859.0.html 
-> 
-> Best, 
-> 
-> On Sat, Jan 23, 2021 at 11:06 AM Paul Barker <pbarker@konsulko.com> wrote: 
-> 
-> On Sat, 23 Jan 2021 at 02:29, Jonas Vautherin <jonas.vautherin@gmail.com> wrote:
->> 
->> As a learning experience, I am trying to create a BSP for a device I own and whose downstream kernel is published. The device in question is the Parrot Skycontroller3, and the sources are available here.
->> 
->> Let me start by sharing my issue. When I build the kernel with `bitbake virtual/kernel`, it fails with errors like:
->> 
->> ```
->> |   AS      arch/arm/lib/backtrace.o
->> |   AS      arch/arm/lib/bswapsdi2.o
->> |   AS      arch/arm/lib/call_with_stack.o
->> | /tmp/ccz8jKgm.s: Assembler messages:
->> | /tmp/ccz8jKgm.s:985: Error: .err encountered
->> | /tmp/ccz8jKgm.s:1033: Error: .err encountered
->> | /tmp/ccz8jKgm.s:6812: Error: .err encountered
->> ```
->> 
->> My layer is available here.
->> 
->> I created it getting inspiration from meta-raspberrypi and meta-qti-bsp, which seems to have the same CPU: apq8009. According to the Parrot sources, my device runs a Qualcomm apq8009/msm89090 cpu. In my repo, I use as a defconfig file the linux.config that is available in the Parrot sources (I copied it in my kernel recipe under `files/defconfig` and added it to SRC_URI).
->> 
->> The Parrot sources also refer to `LINUX_DEFAULT_CONFIG_TARGET := msm8909_defconfig`, so I tried to set `KBUILD_DEFCONFIG = "msm8909_defconfig"`, but that is failing with different errors, such as:
->> 
->> ```
->> error: 'VM_ARM_DMA_CONSISTENT' undeclared (first use in this function); did you mean 'DMA_ATTR_NON_CONSISTENT'?
->> ```
->> 
->> or
->> 
->> ```
->> error: 'L_PTE_YOUNG' undeclared
->> ```
->> 
->> As a side note, their `drivers/Kconfig` seemed invalid, so I patched it.
->> 
->> I am a bit lost now, not completely sure where my issues come from. I realize that changing the defconfig has quite some impact (I get different errors), and also that my machine configuration may be completely wrong (I am essentially guessing from the fact that it is an apq8009/msm8909, but for instance the tuning I just copied from meta-qti-bsp, which may be invalid).
->> 
->> I would be glad if I could get hints about debugging this. Again, it is really a learning project: I would like to learn how to create a BSP from a downstream kernel.
-> 
-> I think setting `KBUILD_DEFCONFIG = "msm8909_defconfig"` is likely the
-> correct approach here. What you may be missing though is the correct
-> value for KCONFIG_MODE. By default, the supplied defconfig file is
-> copied to .config but dependencies between config options aren't
-> resolved. You need to set `KCONFIG_MODE = "--alldefconfig"` to get the
-> equivalent of `make msm8909_defconfig` to occur. See
-> https://github.com/agherzan/meta-raspberrypi/blob/master/recipes-kernel/linux/linux-raspberrypi.inc#L19
-> for an idea of how this is done for Raspberry Pi.
-> 
-> Thanks,
-> 
-> -- 
-> Paul Barker
-> Konsulko Group
-
--- 
-Diego Santa Cruz, PhD
-Technology Architect
-spinetix.com [4] 
-
--- 
-Diego Santa Cruz, PhD
-Technology Architect
-spinetix.com 
-
->> 
-
-
-
- 
-
-Links:
-------
-[1]
-https://elixir.bootlin.com/linux/v3.18.31/source/arch/arm/include/asm/uaccess.h#L219
-[2] http://lists.yoctoproject.org
-[3]
-https://gcc.gnu.org/onlinedocs/gcc-9.3.0/gcc/Local-Register-Variables.html
-[4] http://spinetix.com
-
---=_192323ad42c62a2b7dc4f0ba7dd3e414
+--_000_eb62259844ca4775bd44525f6cc5a705baesystemscom_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
-=
-=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Verdana,Ge=
-neva,sans-serif'>
-<p>Hi,</p>
-<p>We've been using 3.18 (Android) kernels on our LuneOS project with Yoct=
-o, so we carry the various patches to get it to build with newer GCC's.</p>
-<p>See: https://github.com/shr-distribution/linux/commits/tissot/3.18/hali=
-um-7.1 for some inspiration :)</p>
-<p>For older 3.4 kernels you would need more patches obviously:</p>
-<p><a href=3D"https://github.com/shr-distribution/linux/commits/hammerhead=
-/3.4/halium-5.1">https://github.com/shr-distribution/linux/commits/hammerhe=
-ad/3.4/halium-5.1</a></p>
-<p><br />Best regards,<br />Herman</p>
-<p>On 2021-02-01 08:04, Diego Santa Cruz via lists.yoctoproject.org wrote:=
-</p>
-<blockquote type=3D"cite" style=3D"padding: 0 0.4em; border-left: #1010ff =
-2px solid; margin: 0"><!-- html ignored --> <!-- head ignored --><!-- meta =
-ignored --> <!-- meta ignored -->
-<div class=3D"WordSection1">
-<div>
-<div style=3D"border: none; border-top: solid #E1E1E1 1.0pt; padding: 3.0p=
-t 0cm 0cm 0cm;">
-<p class=3D"MsoNormal"><strong>From:</strong> Jonas Vautherin &lt;jonas.va=
-utherin@gmail.com&gt; <br /> <strong>Sent:</strong> 31 January 2021 22:23<b=
-r /> <strong>To:</strong> Aaron Cohen &lt;aaron@assonance.org&gt;<br /> <st=
-rong>Cc:</strong> Diego Santa Cruz &lt;Diego.SantaCruz@spinetix.com&gt;; Pa=
-ul Barker &lt;pbarker@konsulko.com&gt;; Yocto-mailing-list &lt;yocto@lists.=
-yoctoproject.org&gt;<br /> <strong>Subject:</strong> Re: [yocto] Writing a =
-BSP from downstream kernel sources<!-- o ignored --></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-<div>
-<p class=3D"MsoNormal">Thanks Aaron!<!-- o ignored --></p>
-<div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-</div>
-<div>
-<p class=3D"MsoNormal">That seems to remove the log2 warnings, but it seem=
-s like they were not related to those "Assembler" errors, e.g.:<!-- o ignor=
-ed --></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-</div>
-<div>
-<p class=3D"MsoNormal">```<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal">| /tmp/ccbtfgo7.s: Assembler messages:<br /> | /tmp=
-/ccbtfgo7.s:2011: Error: .err encountered<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal">```<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-</div>
-<div>
-<p class=3D"MsoNormal">I think I need to fix them like Diego was suggestin=
-g, but I have trouble relating the error to a source file...<!-- o ignored =
---></p>
-<p class=3D"MsoNormal"><strong><em>[Diego Santa Cruz] It may be easier to =
-build the SDK with a dummy kernel (i.e. no kernel, setting PREFERRED_PROVID=
-ER_virtual/kernel ?=3D "linux-dummy" in conf/local.conf) and use that SDK t=
-o get the kernel building outside of Yocto. If you run the make with V=3D1 =
-you will see the full compiler command and you can re-run it manually. The =
-use the -S (and eventually -E) line and you can inspect the faulty assembly=
- file or source and track the original location. At least that is the route=
- I took and worked well for me.<!-- o ignored --></em></strong></p>
-<p class=3D"MsoNormal"><strong><em>I think you are using kernel 3.18.31, i=
-n that version it is the __put_user_check macro you need to fix, <a href=3D=
-"https://elixir.bootlin.com/linux/v3.18.31/source/arch/arm/include/asm/uacc=
-ess.h#L219" target=3D"_blank" rel=3D"noopener noreferrer"> https://elixir.b=
-ootlin.com/linux/v3.18.31/source/arch/arm/include/asm/uaccess.h#L219</a><!-=
-- o ignored --></em></strong></p>
-<p class=3D"MsoNormal"><strong><em><!-- o ignored -->&nbsp;</em></strong><=
-/p>
-<p class=3D"MsoNormal"><strong><em>A hand written patch (not tested at all=
-!) that should solve your problem is<!-- o ignored --></em></strong></p>
-<p class=3D"MsoNormal" style=3D"margin-left: 5.25pt;">--- arch/arm/include=
-/asm/uaccess.h<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"margin-left: 5.25pt;">+++ arch/arm/include=
-/asm/uaccess.h<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"margin-left: 5.25pt;">#define __put_user_c=
-heck(x,p)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"margin-left: 5.25pt;">&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ({&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"margin-left: 5.25pt;">&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned long __lim=
-it =3D current_thread_info()-&gt;addr_limit - 1; \<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"margin-left: 5.25pt;">&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const typeof(*(p)) =
-__user *__tmp_p =3D (p);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"margin-left: 5.25pt;">-&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; register const typ=
-eof(*(p)) __r2 asm("r2") =3D (x); \<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"margin-left: 5.25pt;">+&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; register typeof(*(p)) __=
-r2 asm("r2") =3D (x);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; \<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"margin-left: 5.25pt;">&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; register const type=
-of(*(p)) __user *__p asm("r0") =3D __tmp_p; \<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"margin-left: 5.25pt;">&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; register unsigned l=
-ong __l asm("r1") =3D __limit;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<!--=
- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"margin-left: 5.25pt;">&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; register int __e as=
-m("r0");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<!-- o ignored --=
-></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (sizeof(*(__p))) {&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<!-- o ignored --></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-<div>
-<p class=3D"MsoNormal">On Sat, Jan 30, 2021 at 8:29 AM Aaron Cohen &lt;<a =
-href=3D"mailto:aaron@assonance.org">aaron@assonance.org</a>&gt; wrote:<!-- =
-o ignored --></p>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal">Actually, I found the upstream patch I backported, =
-which you're probably better off using (same diff though).<!-- o ignored --=
-></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-</div>
-<div>
-<p class=3D"MsoNormal"><a href=3D"https://lore.kernel.org/patchwork/patch/=
-773330/" target=3D"_blank" rel=3D"noopener noreferrer">https://lore.kernel.=
-org/patchwork/patch/773330/</a><!-- o ignored --></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-<div>
-<p class=3D"MsoNormal">On Sat, Jan 30, 2021 at 2:26 AM Joel A Cohen via <a=
- href=3D"http://lists.yoctoproject.org" target=3D"_blank" rel=3D"noopener n=
-oreferrer"> lists.yoctoproject.org</a> &lt;aaron=3D<a href=3D"mailto:assona=
-nce.org@lists.yoctoproject.org">assonance.org@lists.yoctoproject.org</a>&gt=
-; wrote:<!-- o ignored --></p>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal">I'm not sure if this is your issue, but I had a sim=
-ilar issue ilog2 and the disassembler and fixed it by backporting this patc=
-h.<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-</div>
-<div>
-<p class=3D"MsoNormal">No guarantees, but perhaps it will help.<!-- o igno=
-red --></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-</div>
-<div>
-<p class=3D"MsoNormal">--Aaron<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-</div>
-</div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-<div>
-<div>
-<p class=3D"MsoNormal">On Fri, Jan 29, 2021 at 9:51 PM Jonas Vautherin &lt=
-;<a href=3D"mailto:jonas.vautherin@gmail.com">jonas.vautherin@gmail.com</a>=
-&gt; wrote:<!-- o ignored --></p>
-</div>
-<blockquote style=3D"border: none; border-left: solid #CCCCCC 1.0pt; paddi=
-ng: 0cm 0cm 0cm 6.0pt; margin-left: 4.8pt; margin-right: 0cm;">
-<div>
-<p class=3D"MsoNormal">Thanks a lot for the advice! However, I can't seem =
-to find a `const` that I can simply remove. To give more context, here is t=
-he log output around such an error (it seems like it is often surrounded by=
- this log2.h warning, by the way):<!-- o ignored --></p>
-<div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-</div>
-<blockquote style=3D"border: none; border-left: solid #CCCCCC 1.0pt; paddi=
-ng: 0cm 0cm 0cm 6.0pt; margin-left: 4.8pt; margin-right: 0cm;">
-<p class=3D"MsoNormal">| In file included from /home/jones/Documents/yocto=
-/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/kern=
-el.h:11,<br /> | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp;from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroll=
-er3/kernel-source/include/linux/kallsyms.h:9,<br /> | &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/jones/Documents/yocto/p=
-oky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/ftrace=
-.h:10,<br /> | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p;from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller=
-3/kernel-source/kernel/extable.c:18:<br /> | /home/jones/Documents/yocto/po=
-ky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/log2.h:=
-22:1: warning: ignoring attribute 'noreturn' because it conflicts with attr=
-ibute 'const' [-Wattributes]<br /> | &nbsp; &nbsp;22 | int ____ilog2_NaN(vo=
-id);<br /> | &nbsp; &nbsp; &nbsp; | ^~~<br /> | &nbsp; CC &nbsp; &nbsp; &nb=
-sp;fs/fat/dir.o<br /> | In file included from /home/jones/Documents/yocto/p=
-oky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/kernel=
-.h:11,<br /> | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p;from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller=
-3/kernel-source/include/linux/list.h:8,<br /> | &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/jones/Documents/yocto/poky/bu=
-ild/tmp/work-shared/skycontroller3/kernel-source/include/linux/module.h:9,<=
-br /> | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from =
-/home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kerne=
-l-source/fs/fat/dir.c:16:<br /> | /home/jones/Documents/yocto/poky/build/tm=
-p/work-shared/skycontroller3/kernel-source/include/linux/log2.h:22:1: warni=
-ng: ignoring attribute 'noreturn' because it conflicts with attribute 'cons=
-t' [-Wattributes]<br /> | &nbsp; &nbsp;22 | int ____ilog2_NaN(void);<br /> =
-| &nbsp; &nbsp; &nbsp; | ^~~<br /> | &nbsp; CC &nbsp; &nbsp; &nbsp;block/de=
-adline-iosched.o<br /> | In file included from /home/jones/Documents/yocto/=
-poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/kerne=
-l.h:11,<br /> | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp;from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontrolle=
-r3/kernel-source/block/deadline-iosched.c:6:<br /> | /home/jones/Documents/=
-yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux=
-/log2.h:22:1: warning: ignoring attribute 'noreturn' because it conflicts w=
-ith attribute 'const' [-Wattributes]<br /> | &nbsp; &nbsp;22 | int ____ilog=
-2_NaN(void);<br /> | &nbsp; &nbsp; &nbsp; | ^~~<br /> | /tmp/cc52vFrQ.s: As=
-sembler messages:<br /> | /tmp/cc52vFrQ.s:2683: Error: .err encountered<br =
-/> | /tmp/cc52vFrQ.s:2927: Error: .err encountered<br /> | &nbsp; LD &nbsp;=
- &nbsp; &nbsp;sound/sparc/built-in.o<br /> | &nbsp; LD &nbsp; &nbsp; &nbsp;=
-sound/spi/built-in.o<br /> | make[3]: *** [/home/jones/Documents/yocto/poky=
-/build/tmp/work-shared/skycontroller3/kernel-source/scripts/Makefile.build:=
-257: block/scsi_ioctl.o] Error 1<!-- o ignored --></p>
-</blockquote>
-<div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-</div>
-<div>
-<p class=3D"MsoNormal">I pasted the full output here, if that can help:&nb=
-sp;<a href=3D"https://paste.ubuntu.com/p/KqN8nVWmvv/" target=3D"_blank" rel=
-=
-=3D"noopener noreferrer">https://paste.ubuntu.com/p/KqN8nVWmvv/</a>. The l=
-ines that seem to get the log2 warning are:<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-</div>
-<div>
-<p class=3D"MsoNormal">```<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal">extern __attribute__((const, noreturn))<!-- o ignor=
-ed --></p>
-</div>
-<p class=3D"MsoNormal">int ____ilog2_NaN(void);<!-- o ignored --></p>
-<div>
-<p class=3D"MsoNormal">&nbsp;```<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-</div>
-<div>
-<p class=3D"MsoNormal">So there is a const there, but well... not sure wha=
-t to do with it :-).<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-</div>
-<div>
-<p class=3D"MsoNormal">Best,<!-- o ignored --></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-<div>
-<div>
-<p class=3D"MsoNormal">On Mon, Jan 25, 2021 at 9:00 AM Diego Santa Cruz &l=
-t;<a href=3D"mailto:Diego.SantaCruz@spinetix.com">Diego.SantaCruz@spinetix.=
-com</a>&gt; wrote:<!-- o ignored --></p>
-</div>
-<blockquote style=3D"border: none; border-left: solid #CCCCCC 1.0pt; paddi=
-ng: 0cm 0cm 0cm 6.0pt; margin-left: 4.8pt; margin-right: 0cm;">
-<div>
-<div>
-<div style=3D"border: none; border-left: solid windowtext 1.5pt; padding: =
-0cm 0cm 0cm 4.0pt; border-color: currentcolor currentcolor currentcolor blu=
-e;">
-<div>
-<div style=3D"border: none; border-top: solid windowtext 1.0pt; padding: 3=
-.0pt 0cm 0cm 0cm; border-color: currentcolor currentcolor;">
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;"><strong>From:</strong> <a href=3D"mailto:yocto@lists.yoctopro=
-ject.org">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@list=
-s.yoctoproject.org">yocto@lists.yoctoproject.org</a>&gt; <strong>On Behalf =
-Of </strong>Jonas Vautherin via <a href=3D"http://lists.yoctoproject.org" t=
-arget=3D"_blank" rel=3D"noopener noreferrer"> lists.yoctoproject.org</a><br=
- /> <strong>Sent:</strong> 24 January 2021 14:30<br /> <strong>To:</strong>=
- Jonas Vautherin &lt;<a href=3D"mailto:jonas.vautherin@gmail.com">jonas.vau=
-therin@gmail.com</a>&gt;<br /> <strong>Cc:</strong> Paul Barker &lt;<a href=
-=
-=3D"mailto:pbarker@konsulko.com">pbarker@konsulko.com</a>&gt;; Yocto-maili=
-ng-list &lt;<a href=3D"mailto:yocto@lists.yoctoproject.org">yocto@lists.yoc=
-toproject.org</a>&gt;<br /> <strong>Subject:</strong> Re: [yocto] Writing a=
- BSP from downstream kernel sources<!-- o ignored --></p>
-</div>
-</div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;<!-- o ignored --></p>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">Just to close this: it seems like the gcc-cross-arm used by y=
-octo gatesgarth is too new for that specific downstream kernel (3.18.31).<!=
--- o ignored --></p>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">The goal was to get a proper BSP package for this device for =
-a modern yocto, so I don't think I will try with an older version of Yocto.=
- If I compile an old gcc as part of a custom Yocto layer (on gatesgarth), I=
- am guessing that I will have issues creating a distro that runs both on RP=
-i and on that older device (because RPi will have a newer kernel and gcc, a=
-nd the skycontroller will use older ones). I also guess that the downstream=
- dts won't work with a modern kernel, and I would not know how to write one=
- myself for that apq8009 chip.<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">Hence, I'm giving up. Thanks a lot for the help :-).<!-- o ig=
-nored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;"><strong><em><span>[Diego Santa Cruz] Wait! </span>You may be =
-able to get it working, see below.</em></strong><!-- o ignored --></p>
-</div>
-</div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;<!-- o ignored --></p>
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">On Sat, Jan 23, 2021 at 2:07 PM Jonas Vautherin via <a href=
-=3D"http://lists.yoctoproject.org" target=3D"_blank" rel=3D"noopener noref=
-errer">lists.yoctoproject.org</a> &lt;jonas.vautherin=3D<a href=3D"mailto:g=
-mail.com@lists.yoctoproject.org">gmail.com@lists.yoctoproject.org</a>&gt; w=
-rote:<!-- o ignored --></p>
-</div>
-<blockquote style=3D"border: none; border-left: solid windowtext 1.0pt; pa=
-dding: 0cm 0cm 0cm 6.0pt; border-color: currentcolor currentcolor currentco=
-lor #cccccc; margin: 5.0pt 0cm 5.0pt 4.8pt;">
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">Thanks a lot for the answer!<!-- o ignored --></p>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">It seems like using `KCONFIG_MODE =3D "--alldefconfig"` with =
-`KBUILD_DEFCONFIG =3D "msm8909_defconfig"` now ends up with the same kind o=
-f errors as when I use the defconfig from the downstream kernel [1], i.e.:<=
-!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;"><strong><em>[Diego Santa Cruz] I happen to be doing a similar=
- kind of work, getting an even older (2.6.37+) downstream kernel for an ARM=
- machine to compile with recent GCC in Yocto, in my case GCC 9.3 from dunfe=
-ll. There are a few fixes and backports necessary to make it happen and boo=
-t. I'm not done with the work yet, so I do not know how stable it is, but I=
- have it booting.</em></strong><!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">```<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">| /tmp/ccz8jKgm.s: Assembler messages:<br /> | /tmp/ccz8jKgm.=
-s:985: Error: .err encountered<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">```<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;"><strong><em>[Diego Santa Cruz] The fix here is rather simple =
-once you understand what's going on, the problem is abusive use of const fo=
-r register variables, see <a href=3D"https://gcc.gnu.org/onlinedocs/gcc-9.3=
-.0/gcc/Local-Register-Variables.html" target=3D"_blank" rel=3D"noopener nor=
-eferrer"> https://gcc.gnu.org/onlinedocs/gcc-9.3.0/gcc/Local-Register-Varia=
-bles.html</a> so when put_user() is used for a literal constant value it ge=
-ts assigned the wrong register, so just remove the const qualifier from the=
- put_user() register variable assignment for the value argument. For my old=
-er kernel the patch is like this.</em></strong><!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto; margin-left: 16.8pt;">--- arch/arm/include/asm/uaccess.h<!-- o=
- ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto; margin-left: 16.8pt;">+++ arch/arm/include/asm/uaccess.h <!-- =
-o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto; margin-left: 16.8pt;">@@ -145,7 +145,7 @@<!-- o ignored --></p=
+
+Any ideas on how to resolve this extended SDK build issue ?
+
+From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Behalf=
+ Of Monsees, Steven C (US) via lists.yoctoproject.org
+Sent: Friday, January 29, 2021 6:04 PM
+To: yocto@lists.yoctoproject.org
+Subject: [yocto] #yocto #zeus #sdk populate_sdk_ext build failing
+
+*** WARNING ***
+EXTERNAL EMAIL -- This message originates from outside our organization.
+
+
+I need some help in understanding why the SDK EXT is failing to build under=
+ zeus...
+
+Can someone explain why the extended sdk build fails and how I might resolv=
+e ?
+
+sbcb-defaultfs kernel builds and boots correctly...
+
+SDK builds under zeus for sbcb-defaultfs :
+
+bitbake sbcb-defaultfs-full -c populate_sdk    -WORKING CORRECTLY
+
+bitbake sbcb-defaultfs-full -c populate_sdk_ext  -Fails build with the foll=
+owing Errors:
+
+17:13 smonsees@yix490016 /disk0/scratch/smonsees/yocto/workspace_3/meta-bae=
+/meta-limws/builds/sbcb-default> bitbake sbcb-defaultfs-full -c populate_sd=
+k_ext
+Loading cache: 100% |######################################################=
+#####| Time: 0:00:00
+Loaded 3645 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           =3D "1.44.0"
+BUILD_SYS            =3D "x86_64-linux"
+NATIVELSBSTRING      =3D "rhel-7.9"
+TARGET_SYS           =3D "x86_64-poky-linux"
+MACHINE              =3D "sbcb-default"
+DISTRO               =3D "limws"
+DISTRO_VERSION       =3D "3.0.4"
+TUNE_FEATURES        =3D "m64 corei7"
+TARGET_FPU           =3D ""
+meta
+meta-poky            =3D "my_yocto_3.0.4:f2eb22a8783f1eecf99bd4042695bab920=
+eed00e"
+meta-perl
+meta-python
+meta-filesystems
+meta-networking
+meta-initramfs
+meta-oe              =3D "zeus:2b5dd1eb81cd08bc065bc76125f2856e9383e98b"
+meta                 =3D "master:a32ddd2b2a51b26c011fa50e441df39304651503"
+meta-intel           =3D "zeus:d9942d4c3a710406b051852de7232db03c297f4e"
+meta-intel
+workspace            =3D "v2019.02:f635a364c55f1fb12519aff54924a0a5b947091e=
+"
+
+Initialising tasks: 100% |#################################################=
+#####| Time: 0:00:04
+Checking sstate mirror object availability: 100% |#########################=
+#####| Time: 0:00:00
+Sstate summary: Wanted 503 Found 298 Missed 205 Current 1936 (59% match, 91=
+% complete)
+NOTE: Executing Tasks
+NOTE: Setscene tasks completed
+WARNING: rpcsvc-proto-native-1.4+gitAUTOINC+9bc3b5b785-r0 do_fetch: Failed =
+to fetch URL git://github.com/thkukuk/rpcsvc-proto, attempting MIRRORS if a=
+vailable
+WARNING: nativesdk-libnss-nis-3.1+gitAUTOINC+062f31999b-r0 do_fetch: Failed=
+ to fetch URL git://github.com/thkukuk/libnss_nis, attempting MIRRORS if av=
+ailable
+NOTE: Excluding local workspace layer /disk0/scratch/smonsees/yocto/workspa=
+ce_3/meta-bae/meta-limws/builds/sbcb-default/workspace from extensible SDK
+ERROR: sbcb-defaultfs-full-1.0-r0 do_populate_sdk_ext: Failed to generate f=
+iltered task list for extensible SDK:
+/bin/bash: line 0: .: .: is a directory
+ERROR: bitbake failed:
+/bin/sh: bitbake: command not found
+ERROR: sbcb-defaultfs-full-1.0-r0 do_populate_sdk_ext: Error executing a py=
+thon function in exec_python_func() autogenerated:
+
+The stack trace of python calls that resulted in this exception/failure was=
+:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+     0001:
+*** 0002:copy_buildsystem(d)
+     0003:
+File: '/disk0/scratch/smonsees/yocto/workspace_3/poky/meta/classes/populate=
+_sdk_ext.bbclass', lineno: 444, function: copy_buildsystem
+     0440:    sdk_ext_type =3D d.getVar('SDK_EXT_TYPE')
+     0441:    if (sdk_ext_type !=3D 'minimal' or sdk_include_toolchain or d=
+erivative) and not sdk_include_nativesdk:
+     0442:        # Create the filtered task list used to generate the ssta=
+te cache shipped with the SDK
+     0443:        tasklistfn =3D d.getVar('WORKDIR') + '/tasklist.txt'
+*** 0444:        create_filtered_tasklist(d, baseoutpath, tasklistfn, conf_=
+initpath)
+     0445:    else:
+     0446:        tasklistfn =3D None
+     0447:
+     0448:    if os.path.exists(builddir + '/cache/bb_unihashes.dat'):
+File: '/disk0/scratch/smonsees/yocto/workspace_3/poky/meta/classes/populate=
+_sdk_ext.bbclass', lineno: 180, function: create_filtered_tasklist
+     0176:        # Clean out residue of running bitbake, which check_sstat=
+e_task_list()
+     0177:        # will effectively do
+     0178:        clean_esdk_builddir(d, sdkbasepath)
+     0179:    finally:
+*** 0180:        os.replace(sdkbasepath + '/conf/local.conf.bak', sdkbasepa=
+th + '/conf/local.conf')
+     0181:
+     0182:python copy_buildsystem () {
+     0183:    import re
+     0184:    import shutil
+Exception: FileNotFoundError: [Errno 2] No such file or directory: '/disk0/=
+scratch/smonsees/yocto/workspace_3/meta-bae/meta-limws/builds/sbcb-default/=
+tmp/work/sbcb_default-poky-linux/sbcb-defaultfs-full/1.0-r0/sdk-ext/image//=
+opt/limws/3.0.4/conf/local.conf.bak' -> '/disk0/scratch/smonsees/yocto/work=
+space_3/meta-bae/meta-limws/builds/sbcb-default/tmp/work/sbcb_default-poky-=
+linux/sbcb-defaultfs-full/1.0-r0/sdk-ext/image//opt/limws/3.0.4/conf/local.=
+conf'
+
+ERROR: Logfile of failure stored in: /disk0/scratch/smonsees/yocto/workspac=
+e_3/meta-bae/meta-limws/builds/sbcb-default/tmp/work/sbcb_default-poky-linu=
+x/sbcb-defaultfs-full/1.0-r0/temp/log.do_populate_sdk_ext.14130
+ERROR: Task (/disk0/scratch/smonsees/yocto/workspace_3/poky/../meta-bae/met=
+a-limws/meta-intel/recipes-core/images/sbcb-defaultfs-full.bb:do_populate_s=
+dk_ext) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 6770 tasks of which 6274 didn't need to be r=
+erun and 1 failed.
+
+Summary: 1 task failed:
+  /disk0/scratch/smonsees/yocto/workspace_3/poky/../meta-bae/meta-limws/met=
+a-intel/recipes-core/images/sbcb-defaultfs-full.bb:do_populate_sdk_ext
+Summary: There were 2 WARNING messages shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+17:49 smonsees@yix490016 /disk0/scratch/smonsees/yocto/workspace_3/meta-bae=
+/meta-limws/builds/sbcb-default>
+
+--_000_eb62259844ca4775bd44525f6cc5a705baesystemscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto; margin-left: 16.8pt;">&nbsp;#define put_user(x,p)&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<!-- o ignored --=
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Any ideas on how to re=
+solve this extended SDK build issue ?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> yocto@lists.yoctoproject.org &lt;yocto@=
+lists.yoctoproject.org&gt;
+<b>On Behalf Of </b>Monsees, Steven C (US) via lists.yoctoproject.org<br>
+<b>Sent:</b> Friday, January 29, 2021 6:04 PM<br>
+<b>To:</b> yocto@lists.yoctoproject.org<br>
+<b>Subject:</b> [yocto] #yocto #zeus #sdk populate_sdk_ext build failing<o:=
+p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div style=3D"border:solid windowtext 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt=
+">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif">*<strong=
+><span style=3D"font-family:&quot;Arial&quot;,sans-serif">**
+</span></strong></span><strong><span style=3D"font-size:10.0pt;font-family:=
+&quot;Arial&quot;,sans-serif">WARNING
+</span></strong><strong><span style=3D"font-size:12.0pt;font-family:&quot;A=
+rial&quot;,sans-serif">***</span></strong><span style=3D"font-size:8.5pt;fo=
+nt-family:&quot;Arial&quot;,sans-serif"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-s=
+erif">EXTERNAL EMAIL -- This message originates from outside our organizati=
+on</span><span style=3D"font-size:8.5pt;font-family:&quot;Arial&quot;,sans-=
+serif">.</span><o:p></o:p></p>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I need some help in understanding why the SDK EXT is=
+ failing to build under zeus&#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:#2E75B6">Can someone explain=
+ why the extended sdk build fails and how I might resolve ?</span><o:p></o:=
+p></b></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b>sbcb-defaultfs kernel builds and boots correctly&=
+#8230;<o:p></o:p></b></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">SDK builds under zeus for sbcb-defaultfs :<o:p></o:p=
 ></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto; margin-left: 16.8pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ({&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto; margin-left: 16.8pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; register=
- const typeof(*(p)) __r2 asm("r2") =3D (x); \<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto; margin-left: 16.8pt;">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; register typeo=
-f(*(p)) __r2 asm("r2") =3D (x);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto; margin-left: 16.8pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reg=
-ister const typeof(*(p)) __user *__p asm("r0") =3D (p);\<!-- o ignored --><=
-/p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto; margin-left: 16.8pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reg=
-ister int __e asm("r0");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<=
-!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; switch (sizeof(*(__p))) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; \<!-- o ignored --></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b>bitbake sbcb-defaultfs-full -c populate_sdk&nbsp;=
+&nbsp;&nbsp; -WORKING CORRECTLY<o:p></o:p></b></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:red">bitbake sbcb-defaultfs-=
+full -c populate_sdk_ext &nbsp;-Fails build with the following Errors:<o:p>=
+</o:p></span></b></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">17:13 smonsees@yix490016 /disk0/scratch/smonsees/yoc=
+to/workspace_3/meta-bae/meta-limws/builds/sbcb-default&gt; bitbake sbcb-def=
+aultfs-full -c populate_sdk_ext<o:p></o:p></p>
+<p class=3D"MsoNormal">Loading cache: 100% |###############################=
+############################| Time: 0:00:00<o:p></o:p></p>
+<p class=3D"MsoNormal">Loaded 3645 entries from dependency cache.<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">NOTE: Resolving any missing task queue dependencies<=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Build Configuration:<o:p></o:p></p>
+<p class=3D"MsoNormal">BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; =3D &quot;1.44.0&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;x86_64-linux&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">NATIVELSBSTRING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &q=
+uot;rhel-7.9&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; =3D &quot;x86_64-poky-linux&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;sbcb-default&quot;<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;limws&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">DISTRO_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+=3D &quot;3.0.4&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; =3D &quot;m64 corei7&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; =3D &quot;&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-poky&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;my_yocto_3.0.4:f2eb22a8783f1eecf99bd40426=
+95bab920eed00e&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-perl<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-python<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-filesystems<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-networking<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-initramfs<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-oe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;zeus:2b5dd1eb81cd08bc065bc76125=
+f2856e9383e98b&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;master:a32ddd2b2=
+a51b26c011fa50e441df39304651503&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-intel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; =3D &quot;zeus:d9942d4c3a710406b051852de7232db03c297f4e&=
+quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-intel<o:p></o:p></p>
+<p class=3D"MsoNormal">workspace&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;v2019.02:f635a364c55f1fb12519aff54924a0a5=
+b947091e&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Initialising tasks: 100% |##########################=
+############################| Time: 0:00:04<o:p></o:p></p>
+<p class=3D"MsoNormal">Checking sstate mirror object availability: 100% |##=
+############################| Time: 0:00:00<o:p></o:p></p>
+<p class=3D"MsoNormal">Sstate summary: Wanted 503 Found 298 Missed 205 Curr=
+ent 1936 (59% match, 91% complete)<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: Executing Tasks<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: Setscene tasks completed<o:p></o:p></p>
+<p class=3D"MsoNormal">WARNING: rpcsvc-proto-native-1.4&#43;gitAUTOINC&#43;=
+9bc3b5b785-r0 do_fetch: Failed to fetch URL git://github.com/thkukuk/rpcsvc=
+-proto, attempting MIRRORS if available<o:p></o:p></p>
+<p class=3D"MsoNormal">WARNING: nativesdk-libnss-nis-3.1&#43;gitAUTOINC&#43=
+;062f31999b-r0 do_fetch: Failed to fetch URL git://github.com/thkukuk/libns=
+s_nis, attempting MIRRORS if available<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: Excluding local workspace layer /disk0/scratch=
+/smonsees/yocto/workspace_3/meta-bae/meta-limws/builds/sbcb-default/workspa=
+ce from extensible SDK<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: sbcb-defaultfs-full-1.0-r0 do_populate_sdk_ex=
+t: Failed to generate filtered task list for extensible SDK:<o:p></o:p></p>
+<p class=3D"MsoNormal">/bin/bash: line 0: .: .: is a directory<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">ERROR: bitbake failed:<o:p></o:p></p>
+<p class=3D"MsoNormal">/bin/sh: bitbake: command not found<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: sbcb-defaultfs-full-1.0-r0 do_populate_sdk_ex=
+t: Error executing a python function in exec_python_func() autogenerated:<o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The stack trace of python calls that resulted in thi=
+s exception/failure was:<o:p></o:p></p>
+<p class=3D"MsoNormal">File: 'exec_python_func() autogenerated', lineno: 2,=
+ function: &lt;module&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0001:<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0002:copy_buildsystem(d)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0003:<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/disk0/scratch/smonsees/yocto/workspace_3/pok=
+y/meta/classes/populate_sdk_ext.bbclass', lineno: 444, function: copy_build=
+system<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0440:&nbsp;&nbsp;&nbsp; sdk=
+_ext_type =3D d.getVar('SDK_EXT_TYPE')<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0441:&nbsp;&nbsp;&nbsp; if =
+(sdk_ext_type !=3D 'minimal' or sdk_include_toolchain or derivative) and no=
+t sdk_include_nativesdk:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0442:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; # Create the filtered task list used to generate the s=
+state cache shipped with the SDK<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0443:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; tasklistfn =3D d.getVar('WORKDIR') &#43; '/tasklist.tx=
+t'<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0444:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+create_filtered_tasklist(d, baseoutpath, tasklistfn, conf_initpath)<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0445:&nbsp;&nbsp;&nbsp; els=
+e:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0446:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; tasklistfn =3D None<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0447:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0448:&nbsp;&nbsp;&nbsp; if =
+os.path.exists(builddir &#43; '/cache/bb_unihashes.dat'):<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/disk0/scratch/smonsees/yocto/workspace_3/pok=
+y/meta/classes/populate_sdk_ext.bbclass', lineno: 180, function: create_fil=
+tered_tasklist<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0176:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; # Clean out residue of running bitbake, which check_ss=
+tate_task_list()<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0177:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; # will effectively do<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0178:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; clean_esdk_builddir(d, sdkbasepath)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0179:&nbsp;&nbsp;&nbsp; fin=
+ally:<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0180:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+os.replace(sdkbasepath &#43; '/conf/local.conf.bak', sdkbasepath &#43; '/co=
+nf/local.conf')<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0181:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0182:python copy_buildsyste=
+m () {<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0183:&nbsp;&nbsp;&nbsp; imp=
+ort re<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0184:&nbsp;&nbsp;&nbsp; imp=
+ort shutil<o:p></o:p></p>
+<p class=3D"MsoNormal">Exception: FileNotFoundError: [Errno 2] No such file=
+ or directory: '/disk0/scratch/smonsees/yocto/workspace_3/meta-bae/meta-lim=
+ws/builds/sbcb-default/tmp/work/sbcb_default-poky-linux/sbcb-defaultfs-full=
+/1.0-r0/sdk-ext/image//opt/limws/3.0.4/conf/local.conf.bak'
+ -&gt; '/disk0/scratch/smonsees/yocto/workspace_3/meta-bae/meta-limws/build=
+s/sbcb-default/tmp/work/sbcb_default-poky-linux/sbcb-defaultfs-full/1.0-r0/=
+sdk-ext/image//opt/limws/3.0.4/conf/local.conf'<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">ERROR: Logfile of failure stored in: /disk0/scratch/=
+smonsees/yocto/workspace_3/meta-bae/meta-limws/builds/sbcb-default/tmp/work=
+/sbcb_default-poky-linux/sbcb-defaultfs-full/1.0-r0/temp/log.do_populate_sd=
+k_ext.14130<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task (/disk0/scratch/smonsees/yocto/workspace=
+_3/poky/../meta-bae/meta-limws/meta-intel/recipes-core/images/sbcb-defaultf=
+s-full.bb:do_populate_sdk_ext) failed with exit code '1'<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: Tasks Summary: Attempted 6770 tasks of which 6=
+274 didn't need to be rerun and 1 failed.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Summary: 1 task failed:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; /disk0/scratch/smonsees/yocto/workspace_3/pok=
+y/../meta-bae/meta-limws/meta-intel/recipes-core/images/sbcb-defaultfs-full=
+.bb:do_populate_sdk_ext<o:p></o:p></p>
+<p class=3D"MsoNormal">Summary: There were 2 WARNING messages shown.<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">Summary: There were 2 ERROR messages shown, returnin=
+g a non-zero exit code.<o:p></o:p></p>
+<p class=3D"MsoNormal">17:49 smonsees@yix490016 /disk0/scratch/smonsees/yoc=
+to/workspace_3/meta-bae/meta-limws/builds/sbcb-default&gt;<o:p></o:p></p>
 </div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">Could it be related to the tuning, e.g. I'm somehow defining =
-a wrong toolchain in my machine configuration [2] and it fails to build? I =
-was thinking about the tune-cortexa7.inc include, though it seems to me tha=
-t the apq8009 is a cortexa7 [3]:<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;"><strong><em>[Diego Santa Cruz] Other commits from post 3.18 t=
-hat you may need to backport are the following (start from bottom of list) =
-</em></strong><!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">474c90156c8dcc2fa815e6716cc9394d7930cb9c give up on gcc ilog2=
-() constant optimizations<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">cb984d101b30eb7478d32df56a0023e4603cba7f compiler-gcc: integr=
-ate the various compiler-gcc[345].h files<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">f6d133f877c8bb0a0934dc8c521c758ee771e901 compiler-gcc.h: neat=
-ening<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">7829fb09a2b4268b30dd9bc782fa5ebee278b137 lib: make memzero_ex=
-plicit more robust against dead store elimination<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">cb4188ac8e5779f66b9f55888ac2c75b391cde44 compiler: introduce =
-__alias(symbol) shortcut<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">0b053c9518292705736329a8fe20ef4686ffc8e9 lib: memzero_explici=
-t: use barrier instead of OPTIMIZER_HIDE_VAR<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">ee91ef6173e81819f5ff610c2485802081635657 bufferhead: force in=
-lining of buffer head flag operations<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">cc7fce80229067890365c1ee196be5d304d36dea mtd: blkdevs: fix sw=
-itch-bool compilation warning<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;<!-- o ignored --></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&gt;&nbsp;The Qualcomm Snapdragon 212 APQ8009 is an entry lev=
-el SoC for Android based tablets and smartphones. It contains four ARM Cort=
-ex-A7 CPU cores (quad core)<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">[1]:&nbsp;<a href=3D"https://github.com/parrot-opensource/sky=
-controller3-opensource/blob/master/sources/linux-3.18.31/linux.config" targ=
-et=3D"_blank" rel=3D"noopener noreferrer">https://github.com/parrot-opensou=
-rce/skycontroller3-opensource/blob/master/sources/linux-3.18.31/linux.confi=
-g</a><!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">[2]:&nbsp;<a href=3D"https://github.com/JonasVautherin/meta-s=
-kycontroller3/blob/main/conf/machine/skycontroller3.conf#L32" target=3D"_bl=
-ank" rel=3D"noopener noreferrer">https://github.com/JonasVautherin/meta-sky=
-controller3/blob/main/conf/machine/skycontroller3.conf#L32</a><!-- o ignore=
-d --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">[3]:&nbsp;<a href=3D"https://www.notebookcheck.net/Qualcomm-S=
-napdragon-212-APQ8009-SoC-Benchmarks-and-Specs.169859.0.html" target=3D"_bl=
-ank" rel=3D"noopener noreferrer">https://www.notebookcheck.net/Qualcomm-Sna=
-pdragon-212-APQ8009-SoC-Benchmarks-and-Specs.169859.0.html</a><!-- o ignore=
-d --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;<!-- o ignored --></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">Best,<!-- o ignored --></p>
-</div>
-</div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">&nbsp;<!-- o ignored --></p>
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">On Sat, Jan 23, 2021 at 11:06 AM Paul Barker &lt;<a href=3D"m=
-ailto:pbarker@konsulko.com">pbarker@konsulko.com</a>&gt; wrote:<!-- o ignor=
-ed --></p>
-</div>
-<blockquote style=3D"border: none; border-left: solid windowtext 1.0pt; pa=
-dding: 0cm 0cm 0cm 6.0pt; border-color: currentcolor currentcolor currentco=
-lor #cccccc; margin: 5.0pt 0cm 5.0pt 4.8pt;">
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;">On Sat, 23 Jan 2021 at 02:29, Jonas Vautherin &lt;<a href=3D"=
-mailto:jonas.vautherin@gmail.com">jonas.vautherin@gmail.com</a>&gt; wrote:<=
-br /> &gt;<br /> &gt; As a learning experience, I am trying to create a BSP=
- for a device I own and whose downstream kernel is published. The device in=
- question is the Parrot Skycontroller3, and the sources are available here.=
-<br /> &gt;<br /> &gt; Let me start by sharing my issue. When I build the k=
-ernel with `bitbake virtual/kernel`, it fails with errors like:<br /> &gt;<=
-br /> &gt; ```<br /> &gt; |&nbsp; &nbsp;AS&nbsp; &nbsp; &nbsp; arch/arm/lib=
-/backtrace.o<br /> &gt; |&nbsp; &nbsp;AS&nbsp; &nbsp; &nbsp; arch/arm/lib/b=
-swapsdi2.o<br /> &gt; |&nbsp; &nbsp;AS&nbsp; &nbsp; &nbsp; arch/arm/lib/cal=
-l_with_stack.o<br /> &gt; | /tmp/ccz8jKgm.s: Assembler messages:<br /> &gt;=
- | /tmp/ccz8jKgm.s:985: Error: .err encountered<br /> &gt; | /tmp/ccz8jKgm.=
-s:1033: Error: .err encountered<br /> &gt; | /tmp/ccz8jKgm.s:6812: Error: .=
-err encountered<br /> &gt; ```<br /> &gt;<br /> &gt; My layer is available =
-here.<br /> &gt;<br /> &gt; I created it getting inspiration from meta-rasp=
-berrypi and meta-qti-bsp, which seems to have the same CPU: apq8009. Accord=
-ing to the Parrot sources, my device runs a Qualcomm apq8009/msm89090 cpu. =
-In my repo, I use as a defconfig file the linux.config that is available in=
- the Parrot sources (I copied it in my kernel recipe under `files/defconfig=
-` and added it to SRC_URI).<br /> &gt;<br /> &gt; The Parrot sources also r=
-efer to `LINUX_DEFAULT_CONFIG_TARGET :=3D msm8909_defconfig`, so I tried to=
- set `KBUILD_DEFCONFIG =3D "msm8909_defconfig"`, but that is failing with d=
-ifferent errors, such as:<br /> &gt;<br /> &gt; ```<br /> &gt; error: 'VM_A=
-RM_DMA_CONSISTENT' undeclared (first use in this function); did you mean 'D=
-MA_ATTR_NON_CONSISTENT'?<br /> &gt; ```<br /> &gt;<br /> &gt; or<br /> &gt;=
-<br /> &gt; ```<br /> &gt; error: 'L_PTE_YOUNG' undeclared<br /> &gt; ```<b=
-r /> &gt;<br /> &gt; As a side note, their `drivers/Kconfig` seemed invalid=
-, so I patched it.<br /> &gt;<br /> &gt; I am a bit lost now, not completel=
-y sure where my issues come from. I realize that changing the defconfig has=
- quite some impact (I get different errors), and also that my machine confi=
-guration may be completely wrong (I am essentially guessing from the fact t=
-hat it is an apq8009/msm8909, but for instance the tuning I just copied fro=
-m meta-qti-bsp, which may be invalid).<br /> &gt;<br /> &gt; I would be gla=
-d if I could get hints about debugging this. Again, it is really a learning=
- project: I would like to learn how to create a BSP from a downstream kerne=
-l.<br /> <br /> I think setting `KBUILD_DEFCONFIG =3D "msm8909_defconfig"` =
-is likely the<br /> correct approach here. What you may be missing though i=
-s the correct<br /> value for KCONFIG_MODE. By default, the supplied defcon=
-fig file is<br /> copied to .config but dependencies between config options=
- aren't<br /> resolved. You need to set `KCONFIG_MODE =3D "--alldefconfig"`=
- to get the<br /> equivalent of `make msm8909_defconfig` to occur. See<br /=
-> <a href=3D"https://github.com/agherzan/meta-raspberrypi/blob/master/recip=
-es-kernel/linux/linux-raspberrypi.inc#L19" target=3D"_blank" rel=3D"noopene=
-r noreferrer">https://github.com/agherzan/meta-raspberrypi/blob/master/reci=
-pes-kernel/linux/linux-raspberrypi.inc#L19</a><br /> for an idea of how thi=
-s is done for Raspberry Pi.<br /> <br /> Thanks,<br /> <br /> -- <br /> Pau=
-l Barker<br /> Konsulko Group<!-- o ignored --></p>
-</blockquote>
-</div>
-</blockquote>
-</div>
-</div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-botto=
-m-alt: auto;"><br /> <span style=3D"font-size: 9.0pt; font-family: 'Arial',=
-sans-serif;">-- <br /> <strong>Diego Santa Cruz, PhD<br /> </strong><span s=
-tyle=3D"color: gray;">Technology Architect<br /> <a href=3D"http://spinetix=
-.com" target=3D"_blank" rel=3D"noopener noreferrer">spinetix.com</a></span>=
-</span><!-- o ignored --></p>
-</div>
-</div>
-</blockquote>
-</div>
-<p class=3D"MsoNormal" style=3D"margin-bottom: 12.0pt;"><br /> <br /> <!--=
- o ignored --></p>
-</blockquote>
-</div>
-<p class=3D"MsoNormal"><br /> <span style=3D"font-size: 9.0pt; font-family=
-: 'Arial',sans-serif;">-- <br /> <strong>Diego Santa Cruz, PhD<br /> </stro=
-ng><span style=3D"color: gray;">Technology Architect<br /> spinetix.com</sp=
-an></span><span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',=
-serif; color: gray;"><!-- o ignored --></span></p>
-<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
-<div style=3D"border: none; border-left: solid blue 1.5pt; padding: 0cm 0c=
-m 0cm 4.0pt;">
-<div>
-<blockquote style=3D"border: none; border-left: solid #CCCCCC 1.0pt; paddi=
-ng: 0cm 0cm 0cm 6.0pt; margin-left: 4.8pt; margin-right: 0cm;">
-<div>
-<blockquote style=3D"border: none; border-left: solid #CCCCCC 1.0pt; paddi=
-ng: 0cm 0cm 0cm 6.0pt; margin-left: 4.8pt; margin-right: 0cm;">
-<p class=3D"MsoNormal" style=3D"margin-bottom: 12.0pt;"><!-- o ignored -->=
-&nbsp;</p>
-</blockquote>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
-<!-- html ignored --><br />
-<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace"=
-><br /> <br /> </div>
-</blockquote>
-<p><br /></p>
+</body>
+</html>
 
-</body></html>
-
---=_192323ad42c62a2b7dc4f0ba7dd3e414--
+--_000_eb62259844ca4775bd44525f6cc5a705baesystemscom_--
