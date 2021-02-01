@@ -1,122 +1,145 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.33741.1612185301912922154
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+ by mx.groups.io with SMTP id smtpd.web10.34755.1612190422964171860
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Feb 2021 05:15:02 -0800
+ Mon, 01 Feb 2021 06:40:23 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=HiqAtTQ1;
- spf=softfail (domain: burtonini.com, ip: 198.145.29.25, mailfrom: ross@burtonini.com)
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id B2D1638C065F
-	for <yocto@yoctoproject.org>; Mon,  1 Feb 2021 13:15:01 +0000 (UTC)
-Received: by mail-lj1-f174.google.com with SMTP id e18so19490836lja.12
-        for <yocto@yoctoproject.org>; Mon, 01 Feb 2021 05:15:01 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=glbU2lK4;
+ spf=pass (domain: gmail.com, ip: 209.85.208.53, mailfrom: martin.jansa@gmail.com)
+Received: by mail-ed1-f53.google.com with SMTP id f1so19095700edr.12
+        for <yocto@lists.yoctoproject.org>; Mon, 01 Feb 2021 06:40:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=8MzXjF1iKbhO2JLi6COluPtb3KXXjdrJa3o/36SCh5I=;
-        b=HiqAtTQ17/0P/9rdT6K4QogpgbcYHQYUilFb8jMJ6e/2lTMxQMgbzW+NAUu+f2f/8a
-         IZ4fFNHs5d9Bgp76omQdQ1WT3gyp5PbwhWVzOTV/EBwHvXMuiD9ukRuXuBjRIcpkrTUu
-         jOK0FR1NcEHSqUUbPwvVgj3C3IXa65aXECwE8TKjsBgUv7IDn5cLMDvFnP9skjo8Wie7
-         EY/PoQkY4R8uxSAB2cHDlxndpd/qF1CbRAv4FtJQJLxXnMj2/biRfmWW400+JWhVVCn/
-         NRqzZJepWTah8HI4K3f2LchS7GLhII9qfUvMfMuBrU45XwsiXUi0zbKDL7FdFF7MN7ZV
-         VVpQ==
+         :cc;
+        bh=9uKamehu42UmUf8YmBKE180IJABkNJbyH8L3QNnn2qw=;
+        b=glbU2lK4fLKQMUGTsHQsgZQMnatOZH9JplQNhvyMmmHWXSb5GHIyZnmBjx4FE/2Zl/
+         VgzGbq6TLBrrJPrFL1hr/I5ykUgkxTR3zDP94BFHNqKlQ9HGEsJj69xUtd59Piz1JMw4
+         1RM4A3R4rNoNAL1YYzfU6DW9sCBfbFXWWuaDp7dJG62jcp3ZtiRa0ow6VMAACsuo3dgU
+         eMfdpyaxLT+U3xtNoeXCdXajB3lkrfFcIobbVMSjaZFCmF9sy4OIR31lvgd5vS01SqrT
+         yH4KyO4nLYVwDtus2LQbWXt3UnpEicv30HNQk/nAk6rVF1peirvEwOkwTfGQwjgmHT8t
+         vBCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=8MzXjF1iKbhO2JLi6COluPtb3KXXjdrJa3o/36SCh5I=;
-        b=ggWeBH3LX3W/aBfnqKyeAmAsIwnU5h51ImZDv+WTHibxNwyDLJLcpeCci6NR9emozy
-         /B/ubVNlcK3bwTw9iqm+irP+HHosA358VFICpTsbyISBF/7Tr23wuS+PMln0/eWe+tu4
-         BvGAX5MNzpqvhgUOWdmnhvxDf1EEyHB5zd0w1PXVOAyi0E4ae4v+adBkGXV3by1IAS4f
-         YVvow/yQmjOzuW+R5Z4IZlkfz3BbBrPr+mduiVOvURHBI+iLAfbr9CU59WcVDit0whku
-         /eb/+SIh1L9Ilhz1jvogYF8f7EzTGlNDeR5bzkALbQ0w4m3ZEcWWOJsvp+FOClMFOx7l
-         hSag==
-X-Gm-Message-State: AOAM530MiLHytSWzNoKF7JZX8J+vHXjvomwV6RpNOt5Mha/Eb5WlIN64
-	vgas7RnfhL7Jaj+ubH222tFkQSRhXfJvgZhz1K8JpX9ptSIwLbmz
-X-Google-Smtp-Source: ABdhPJzBpMYs8fOkxtfE0APIBpxPVZWtqZmP89sT+ebjndYdN7smgQAglBqtzl7t07+eqzcoPeCkyaE4C+za0nZgiSE=
-X-Received: by 2002:a2e:974f:: with SMTP id f15mr10215356ljj.412.1612185298229;
- Mon, 01 Feb 2021 05:14:58 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=9uKamehu42UmUf8YmBKE180IJABkNJbyH8L3QNnn2qw=;
+        b=QPWd072KAOQeob0RrKzlrfIlLjQUomgLczi7dZhgyVFXdbYuFiHa58ehcStY61jnJm
+         3wDs0ryVutyDQwHWGBFcim5jvkcL7Kq4Vwn7dSDGYNKo1GoF/T6VE9IIJMbNjCsfCpL9
+         XqBoMf3YT8MUdA7nuFNgOEtWg0q9e3aLRZn6n6LxJ4hiL4ckDHAHMh0rpXYfTUGplLY8
+         39B2adUUcCbZx2s5w2FBMGhoO8lrm3/3mJbUizY2r+gIqJWrAhC6ur4HLDsuA38hlSr8
+         V0IUDlpx3l12Civ6OfJ70pZJeKUBxXq5NJHThCwdkR7Wlu2Gwj10YB2AtCYArMDvNV58
+         4P6w==
+X-Gm-Message-State: AOAM531lvgyLBAF5n8cppCvErbK+HF1ckovFVFoU+dyChes8n4F7DQ78
+	hgN61bE7MbNv+YCC/K9Vu0NPYB/UwD21TP3kNT8=
+X-Google-Smtp-Source: ABdhPJwhfpvTRtNqdzkbPcHlbDV/m2XW+YOBXgy2XJVj5F/RfL2cL9wKea8f4O2RkXPWoeqHecbGRdpo8Xnt9MbUYsw=
+X-Received: by 2002:a05:6402:5207:: with SMTP id s7mr10206471edd.311.1612190421387;
+ Mon, 01 Feb 2021 06:40:21 -0800 (PST)
 MIME-Version: 1.0
-References: <63c3b144-991-f277-91b2-15ff94dca5a6@crashcourse.ca>
-In-Reply-To: <63c3b144-991-f277-91b2-15ff94dca5a6@crashcourse.ca>
-From: "Ross Burton" <ross@burtonini.com>
-Date: Mon, 1 Feb 2021 13:14:47 +0000
-Message-ID: <CAAnfSTuEqwzKEgPr59QrnhqJ312zBEazvGWjxe+7JFCAeJHNoQ@mail.gmail.com>
-Subject: Re: [yocto] oddity: file_5.37 printing unexpected "octet-stream" mime type for ISO
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
+References: <CANx9H-DFtcdnZwDqHEPg4t5ySyJe++KS8hO9QDFX5r31KLz3Ww@mail.gmail.com>
+ <16406E32EA0586FD.712@lists.yoctoproject.org>
+In-Reply-To: <16406E32EA0586FD.712@lists.yoctoproject.org>
+From: "Martin Jansa" <Martin.Jansa@gmail.com>
+Date: Mon, 1 Feb 2021 15:40:10 +0100
+Message-ID: <CA+chaQeJnDzgusQvqEWkkNwkoDxR1fMhrb0kM3932D71yWTMRw@mail.gmail.com>
+Subject: Re: [yocto] [OE-core] Let me tell you how I really feel. Zero filter. If you need meta-python2, you need to become a maintainer. Immediately. Period.
+To: Martin Jansa <Martin.Jansa@gmail.com>
+Cc: Tim Orling <ticotimo@gmail.com>, Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	openembedded-core <openembedded-core@lists.openembedded.org>, 
+	"openembedded-devel@lists.openembedded.org" <Openembedded-devel@lists.openembedded.org>, 
+	Anibal Limon <anibal.limon@linaro.org>
+Content-Type: multipart/alternative; boundary="000000000000608e3a05ba475501"
+
+--000000000000608e3a05ba475501
 Content-Type: text/plain; charset="UTF-8"
+
+On Thu, Oct 22, 2020 at 11:37 PM Martin Jansa via lists.yoctoproject.org
+<Martin.Jansa=gmail.com@lists.yoctoproject.org> wrote:
+
+> There were only a few changes needed between dunfell and gatesgarth to
+> keep it building and I feel guilty for sending half of them - and pinging
+> you on FB :).
+>
+> I don't have interest in python2, but it's still used by quite a few
+> components included in other layers are care about (e.g. qtwebengine in
+> meta-qt5, chromium in meta-browser -
+> https://bugs.chromium.org/p/chromium/issues/detail?id=942720 is still
+> quite far from finished) and at LGE we maintain meta-ros
+> https://github.com/ros/meta-ros which contains support for ROS 1 Melodic
+> which is usually used with python2 and support ends May 2023 (together with
+> Ubuntu Bionic it's usually used with: http://wiki.ros.org/Distributions -
+> just today I've separated meta-ros-python2 layer with python2 recipes which
+> disappeared from oe-core in warrior and were never re-introduced in
+> meta-python2 (like nose and numpy).
+>
+> If you're looking for someone just keeping it buildable, then you can sign
+> me up. If it gets more annoying to maintain in future we can also split it
+> for pythonnative.bbclass and python recipe itself - to keep just the bare
+> minimum of recipes which are actively being used without all the other junk.
+>
+> Cheers,
+>
+
+Hi,
+
+can I get the write access to meta-python2 as mentioned above?
+
+I have 2 fixes to make it parse able with latest oe-core:
+https://lists.openembedded.org/g/openembedded-devel/message/89201
+https://lists.openembedded.org/g/openembedded-devel/message/89200
+
+to fix issues discussed in:
+https://github.com/openembedded/openembedded-core/commit/fd6a007efa7cb45101a66f294af81d9d33bb3fab#commitcomment-46565284
+https://lists.openembedded.org/g/openembedded-core/message/147477
+https://lists.openembedded.org/g/openembedded-core/message/147514
+
+Cheers,
+
+--000000000000608e3a05ba475501
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-You might have better luck talking to the file maintainers.
+<div dir=3D"ltr"><div dir=3D"ltr">On Thu, Oct 22, 2020 at 11:37 PM Martin J=
+ansa via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</=
+a> &lt;Martin.Jansa=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org">g=
+mail.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><div class=3D"gmail=
+_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
+There were only a few changes needed between dunfell and gatesgarth to keep=
+ it building and I feel guilty for sending half of them - and pinging you o=
+n FB :).<div><br></div><div>I don&#39;t have interest in python2, but it&#3=
+9;s still used by quite a few components included in other layers are care =
+about (e.g. qtwebengine in meta-qt5, chromium in meta-browser -=C2=A0<a hre=
+f=3D"https://bugs.chromium.org/p/chromium/issues/detail?id=3D942720" target=
+=3D"_blank">https://bugs.chromium.org/p/chromium/issues/detail?id=3D942720<=
+/a> is still quite far from finished) and at LGE we maintain meta-ros=C2=A0=
+<a href=3D"https://github.com/ros/meta-ros" target=3D"_blank">https://githu=
+b.com/ros/meta-ros</a> which contains support for ROS 1 Melodic which is us=
+ually used with python2 and support ends May 2023 (together with Ubuntu Bio=
+nic it&#39;s usually used with: <a href=3D"http://wiki.ros.org/Distribution=
+s" target=3D"_blank">http://wiki.ros.org/Distributions</a> - just today I&#=
+39;ve separated meta-ros-python2 layer with python2 recipes which disappear=
+ed from oe-core in warrior and were never re-introduced in meta-python2 (li=
+ke nose and numpy).</div><div><br></div><div>If you&#39;re looking for some=
+one just keeping it buildable, then you can sign me up. If it gets more ann=
+oying to maintain in future we can also split it for pythonnative.bbclass a=
+nd python recipe itself - to keep just the bare minimum of recipes which ar=
+e actively being used without all the other junk.</div><div><br></div><div>=
+Cheers,</div></div></blockquote><div><br></div><div>Hi,</div><div><br></div=
+><div>can I get the write access to meta-python2 as mentioned above?</div><=
+div><br></div><div>I have 2 fixes to make it parse able with latest oe-core=
+:</div><div><a href=3D"https://lists.openembedded.org/g/openembedded-devel/=
+message/89201">https://lists.openembedded.org/g/openembedded-devel/message/=
+89201</a><br></div><div><a href=3D"https://lists.openembedded.org/g/openemb=
+edded-devel/message/89200">https://lists.openembedded.org/g/openembedded-de=
+vel/message/89200</a><br></div><div><br></div><div>to fix issues discussed =
+in:</div><div><a href=3D"https://github.com/openembedded/openembedded-core/=
+commit/fd6a007efa7cb45101a66f294af81d9d33bb3fab#commitcomment-46565284">htt=
+ps://github.com/openembedded/openembedded-core/commit/fd6a007efa7cb45101a66=
+f294af81d9d33bb3fab#commitcomment-46565284</a><br></div><div><a href=3D"htt=
+ps://lists.openembedded.org/g/openembedded-core/message/147477">https://lis=
+ts.openembedded.org/g/openembedded-core/message/147477</a><br></div><div><a=
+ href=3D"https://lists.openembedded.org/g/openembedded-core/message/147514"=
+>https://lists.openembedded.org/g/openembedded-core/message/147514</a><br><=
+/div><div><br></div><div>Cheers,</div></div></div>
 
-Ross
-
-On Sat, 30 Jan 2021 at 11:27, Robert P. J. Day <rpjday@crashcourse.ca> wro=
-te:
->
->
->   (i asked about this on the OE list a couple days ago, but i have
-> more info and wanted to get a bit wider coverage as i really, really
-> want to de-mystify this issue.)
->
->   on current project, upgrading from wind river WRL9 to LTS19
-> (effectively morty to zeus) involves going from file_5.28 to file_5.37
-> recipe, which is used by various install and upgrade scripts to
-> validate something is an actual ISO image by checking its mime type
-> (not the way i would have done it, but it's done).
->
->   in WRL9, the mime type of an ISO image as printed by "file -i"
-> included the string "application/x-iso9660-image", and that's what
-> these scripts use to "verify" ISOness. so far, so good.
->
->   suddenly, in LTS19, the very same "file -i" invocation instead
-> prints "application/octet-stream" -- this very same weirdness was
-> noticed elsewhere, like here in ubuntu launchpad:
->
->   https://bugs.launchpad.net/ubuntu/+source/file/+bug/1763570
->
-> that bug report describes *precisely* the behaviour we're seeing.
->
->   it's hard to believe the "file" command could have been that broken
-> so i looked around for another explanation, and noticed that any
-> single file could match multiple mime types, and that the file command
-> had a "--keep-going" option, so my colleague tried that and, sure
-> enough:
->
-> #   file -i --keep-going /var/tmp/ptx.iso
->   /var/tmp/ptx.iso:
->   application/x-iso9660-imageapplication/x-dosexec\012-
->   application/octet-stream; charset=3Dbinary
->
-> so now we see both mime types being displayed, but it's not feasible
-> to change all the scripts to add the "--keep-going" option so i'm
-> baffled as to why the newer file command suddenly decides to print
-> "octet-stream" as the mime type rather than the more precise
-> "x-iso9669-image".
->
->   more puzzlingly, the man page for the command states:
->
->      -k, --keep-going
->              Don't stop at the first match, keep going.  Subsequent
->              matches will be have the string =E2=80=98\012- =E2=80=99 pr=
-epended.  (If
->              you want a newline, see the -r option.)  The magic pat=E2=
-=80=90
->              tern with the highest strength (see the -l option) comes
->              first.
->
-> hang on ... if the pattern with the highest strength is allegedly
-> printed first, in the above, that is "x-iso9660-iamge", so why would
-> that not be the single mime type displayed by a normal invocation?
->
->   has anyone else seen this? can it be reproduced? i'll try the latest
-> version of file later this weekend, but i'm open to assistance since
-> this weirdness is currently breaking all sorts of install and upgrade
-> procedures.
->
-> rday
->
->=20
->
+--000000000000608e3a05ba475501--
