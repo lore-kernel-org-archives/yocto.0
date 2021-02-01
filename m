@@ -1,145 +1,156 @@
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
- by mx.groups.io with SMTP id smtpd.web10.34755.1612190422964171860
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by mx.groups.io with SMTP id smtpd.web11.39150.1612204364396486118
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Feb 2021 06:40:23 -0800
+ Mon, 01 Feb 2021 10:32:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=glbU2lK4;
- spf=pass (domain: gmail.com, ip: 209.85.208.53, mailfrom: martin.jansa@gmail.com)
-Received: by mail-ed1-f53.google.com with SMTP id f1so19095700edr.12
-        for <yocto@lists.yoctoproject.org>; Mon, 01 Feb 2021 06:40:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9uKamehu42UmUf8YmBKE180IJABkNJbyH8L3QNnn2qw=;
-        b=glbU2lK4fLKQMUGTsHQsgZQMnatOZH9JplQNhvyMmmHWXSb5GHIyZnmBjx4FE/2Zl/
-         VgzGbq6TLBrrJPrFL1hr/I5ykUgkxTR3zDP94BFHNqKlQ9HGEsJj69xUtd59Piz1JMw4
-         1RM4A3R4rNoNAL1YYzfU6DW9sCBfbFXWWuaDp7dJG62jcp3ZtiRa0ow6VMAACsuo3dgU
-         eMfdpyaxLT+U3xtNoeXCdXajB3lkrfFcIobbVMSjaZFCmF9sy4OIR31lvgd5vS01SqrT
-         yH4KyO4nLYVwDtus2LQbWXt3UnpEicv30HNQk/nAk6rVF1peirvEwOkwTfGQwjgmHT8t
-         vBCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9uKamehu42UmUf8YmBKE180IJABkNJbyH8L3QNnn2qw=;
-        b=QPWd072KAOQeob0RrKzlrfIlLjQUomgLczi7dZhgyVFXdbYuFiHa58ehcStY61jnJm
-         3wDs0ryVutyDQwHWGBFcim5jvkcL7Kq4Vwn7dSDGYNKo1GoF/T6VE9IIJMbNjCsfCpL9
-         XqBoMf3YT8MUdA7nuFNgOEtWg0q9e3aLRZn6n6LxJ4hiL4ckDHAHMh0rpXYfTUGplLY8
-         39B2adUUcCbZx2s5w2FBMGhoO8lrm3/3mJbUizY2r+gIqJWrAhC6ur4HLDsuA38hlSr8
-         V0IUDlpx3l12Civ6OfJ70pZJeKUBxXq5NJHThCwdkR7Wlu2Gwj10YB2AtCYArMDvNV58
-         4P6w==
-X-Gm-Message-State: AOAM531lvgyLBAF5n8cppCvErbK+HF1ckovFVFoU+dyChes8n4F7DQ78
-	hgN61bE7MbNv+YCC/K9Vu0NPYB/UwD21TP3kNT8=
-X-Google-Smtp-Source: ABdhPJwhfpvTRtNqdzkbPcHlbDV/m2XW+YOBXgy2XJVj5F/RfL2cL9wKea8f4O2RkXPWoeqHecbGRdpo8Xnt9MbUYsw=
-X-Received: by 2002:a05:6402:5207:: with SMTP id s7mr10206471edd.311.1612190421387;
- Mon, 01 Feb 2021 06:40:21 -0800 (PST)
+ dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=NES9/Gkq;
+ spf=pass (domain: intel.com, ip: 134.134.136.20, mailfrom: vineela.tummalapalli@intel.com)
+IronPort-SDR: cnq8QgqCtvJBy5wnQV5e1ns4y/NF7/7hFRe+tnR4UuD8ckG7qts3o7Xnz6dzI4/YXGYf2eRdkM
+ bEKG5pXcWXyw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="167836889"
+X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; 
+   d="scan'208";a="167836889"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2021 10:32:41 -0800
+IronPort-SDR: Y6mMztZ7iVnZ4peyTo+SJoQ8hePCNWHLQ/XtMZ0UQmNkgmnB6S4LOeUCGgINxobBWEbujpPlLE
+ Q2dsZwdYvWsg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; 
+   d="scan'208";a="412865433"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+  by FMSMGA003.fm.intel.com with ESMTP; 01 Feb 2021 10:32:40 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Mon, 1 Feb 2021 10:32:39 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Mon, 1 Feb 2021 10:32:39 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2
+ via Frontend Transport; Mon, 1 Feb 2021 10:32:39 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.176)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Mon, 1 Feb 2021 10:32:39 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GWnZekzH9gd3BebIcRbXej8iMhnm6dChBoF8X6cSpF6DjOttiFwxQhQCo6IvnzCz0HevdImVqsfao27QhFxroIcVXlSmzqYDW4QR+jRuoxjz4HsT2K7DEBDIt3N+3JH6pjJAfthDfn7BO6opwALOZ3a0SJtckJW25m3/3SWmciiN7eZz4pKqRQ8AFBUwDFvtsr+ktYzmz5sg+6VkYRgq4NhhNeISU/CBkbDNIAw7JP2Hrq25OokuNWcVipjPhSSZyfIwdIniEqy+UsCZgXAvB9ihZ6W1iaEEGsXkAUJKZNbmrzV7J0xZoqbQJ107uBME4QetkaQpfeZLBDQ3RP3Dww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=17l8xkatbgR16CadaGAJIukv1GNUtoFSdFR6WdxeozQ=;
+ b=ZANc+jFr1m9cUn2/tlvlAa8vPl3znDB8ZUOhylj6frzRH+mBY+mT2iz3+YvHQg6xqDSLjgo8QZU9XfTiILdafZgx36EEy1bxCgDW0vlaoj0TVLQ4TZwCH4vTz20UCBFCnGp56gsQfwTuqWByN2P+9mhJ9YUsBjoXAHEkEE48GPoNj/PP8qJrM2XZmm6ZoF7Yeipwt/jQzVE+lOBsJzCTmOOIS5JmtAmIeHQSacbvvR2Ar+LbSJPdYsW8d+J57R8Bj+Rt4Fa04ae32bImRovNLr7lMHTPhOIp03yQWDk/zwIhXcuSbn23Nue3SUsqWnGlmvvsvWYyIWr5Mgr+zXDPAg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=17l8xkatbgR16CadaGAJIukv1GNUtoFSdFR6WdxeozQ=;
+ b=NES9/Gkq1iMv8oplsMYo8L/wyvGQ1F8u5Kfg8yFDyEyQ0yx2tmUXyHvhnBQ9EQBZEipwwYrsn3EGgO1ygw8ojYljac2fWbxVbPjBkse50S5//l4D96ZWvR/0sMr/mLlciakgJWiv9itAqYTEKpF+mlItHSWRjAdLGbOE4OsFfto=
+Received: from BYAPR11MB3301.namprd11.prod.outlook.com (2603:10b6:a03:7f::26)
+ by BYAPR11MB3606.namprd11.prod.outlook.com (2603:10b6:a03:b5::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.19; Mon, 1 Feb
+ 2021 18:32:38 +0000
+Received: from BYAPR11MB3301.namprd11.prod.outlook.com
+ ([fe80::1152:1426:8a4f:c755]) by BYAPR11MB3301.namprd11.prod.outlook.com
+ ([fe80::1152:1426:8a4f:c755%4]) with mapi id 15.20.3805.024; Mon, 1 Feb 2021
+ 18:32:38 +0000
+From: "Vineela" <vineela.tummalapalli@intel.com>
+To: "'yocto-announce@lists.yoctoproject.org'"
+	<'yocto-announce@lists.yoctoproject.org'>, "'yocto@lists.yoctoproject.org'"
+	<'yocto@lists.yoctoproject.org'>, "'yocto-request@eclists.intel.com'"
+	<'yocto-request@eclists.intel.com'>
+Subject: [ANNOUNCEMENT]Milestone 2 for Yocto Project 3.3 (yocto-3.3_M2) now available
+Thread-Topic: [ANNOUNCEMENT]Milestone 2 for Yocto Project 3.3 (yocto-3.3_M2)
+ now available
+Thread-Index: Adb4xrYovyBl3jekRVGHn5OA0asaMA==
+Date: Mon, 1 Feb 2021 18:32:37 +0000
+Message-ID: <BYAPR11MB33014A56E3BBECFB08BDA2EF88B69@BYAPR11MB3301.namprd11.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
+dlp-product: dlpe-windows
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=intel.com;
+x-originating-ip: [184.103.154.86]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7d8f9f1e-9417-417d-0b06-08d8c6dfc06b
+x-ms-traffictypediagnostic: BYAPR11MB3606:
+x-microsoft-antispam-prvs: <BYAPR11MB3606C407F423E7CBF3768E8488B69@BYAPR11MB3606.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: K6MbTQRHnLBjWKlGAn+ARgt6DzczkQgBmKpbXwkwKs/tFmqBzhhRScjQg+CjRpuGwxe0tOojsvSgkZuOluNvhH+AQ9Id4GlhImlnTPgO6RRHsSJdktWTAtKWoYwlNPjODBqrXhSGLmKUE8AkhHTmEjxAxeporOcCGlxL28veIHVD3Q0V9KLruFucP1zy2J6y/zyJPRBSC6/ySGGdnXca5AM4B5IjOENXuY/Iq02kIXhg7E/nnk2ZZe+14wLyGQo0cLFearzKDTDS6IoPW+vU6u7YRdbh9X2Df8+9MrLBdzDFrwYJm/NWFrarFaEHQBnag6glbuKn3I1vZE+bf2zvyLmH3dcgWrKGyYqmDQxViMnt18vgF244OiWin5uOGRtzw3NBXef4j1jqzo4C0E9OVqajTAqGzMsUuZwtMug9yt7tZAte1HSNUI6w3PXfJ8Z4JZogZTwhJtyaAnJUd0ZVRNF7n8/X7JGXsfkT80vdealIcjDfcljPXEcmJkiM/hA8D2LlCusEvyWuwlB6jHreLuJ7VrNaNxELaD35KiWRq5SHlcyq/HLgS0SFa/LvJqSuQjRTEOHM3sDr5evXNkjP5Gzkup98QBuHx/x0MLNRDnk=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3301.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(39860400002)(396003)(376002)(136003)(346002)(26005)(316002)(66476007)(33656002)(186003)(6506007)(5660300002)(52536014)(9686003)(71200400001)(55016002)(4744005)(64756008)(66946007)(478600001)(66556008)(66446008)(966005)(76116006)(8936002)(7696005)(2906002)(109986005)(83380400001)(86362001)(8676002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?ehXtiXIj2wowY/ugiykUGZXMcJ7UO+DcJBacygFZzPEFpMZqKampXbMgCVAO?=
+ =?us-ascii?Q?o4/4vlvcoi150Mw6r29uHm9jqV1leKZ0vJPhPg+w/RBMntTCsDChrRScvNa9?=
+ =?us-ascii?Q?zdIQzbcGD4moFiNRK0BQ/g5dBg13PgVa1llovH0sVjMO4xoOPZ4ATDVIjeZB?=
+ =?us-ascii?Q?fw0cX/V5YU0OOrmNYEh/b/insiYXMfzNMWwh6ivjjmZbt1Z9Rtaq/+LSDeLw?=
+ =?us-ascii?Q?tRwVAd79I0v++Lzh26NXYjIlUSRLGE1q9oSBtB/7iLxH22iORfxbPKmrsMfK?=
+ =?us-ascii?Q?ayRn4yfrM3/ZQQgrP4ghbhsn434ATkMeHe/Yu1afeubw5+NXhM4oXJSIc2jb?=
+ =?us-ascii?Q?kLyNaeBk0C0WEzTNhmZW3xL/IHLOziv0W6OjvtuMjBKwHKW+kMFIs1TbrlLm?=
+ =?us-ascii?Q?wLEcgxoRg/KXUWKSd7iqpZp3lshXlVKXt0KxQveXZZEO3xMiyvXxd5T+Qeyu?=
+ =?us-ascii?Q?GnW0+n5S9QMS/ks44KBKb99dYNNX/bhgrC5SAZvu6+ln+XC9tbqXv09EjLj3?=
+ =?us-ascii?Q?yFtc3y9dXLE+hhSAUtDR/hze39iOxY0yrS/eV2QCdiyQElmLemyWRMfLIVl5?=
+ =?us-ascii?Q?bgYMxJx88NjQ+lLenSyFNPtHQvyJyCd+XWqH1x32c7FpNx1s0nC8b5zER7M4?=
+ =?us-ascii?Q?V8T0cE4UDzT7mmCe22l7PSjlHqXzajTL1Str6qnVKefrDDFsxEQ7NqWtlnSb?=
+ =?us-ascii?Q?kccf3vdlQZy6OMmO+B2smhl7OPfFZkBrDCjEJ5qk+a9u5KJfZsJfMMT1ZECe?=
+ =?us-ascii?Q?gZYw4fEcYEYsXRL2Ugd+HSqtT8UO6Vkm5aXKycFmo3WWPWOonrwdQvLGgm6x?=
+ =?us-ascii?Q?/zggMNRBYl76lN5btDX82epdp+iNFNF3DLNyhBMJqONwoWko5Fj1iZpyQA4K?=
+ =?us-ascii?Q?8ByoTxz3wwasRNTslb6u8s1e/plNxCaLoscCmDbB5WrKX5ZYDVbbI2LID6FK?=
+ =?us-ascii?Q?5Az+Sx9A5xR3/VdbDq85apq4rVtUXRZyinCGY0KxX2Ppxl/SccZP8DbRCX2B?=
+ =?us-ascii?Q?HOf53fQi7xfnIB5F4ks2OwuJUdpxcKwRZ9ZfyeIIVFQcYbzTqwcGcSgW0Qb7?=
+ =?us-ascii?Q?YTXvR1XW?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CANx9H-DFtcdnZwDqHEPg4t5ySyJe++KS8hO9QDFX5r31KLz3Ww@mail.gmail.com>
- <16406E32EA0586FD.712@lists.yoctoproject.org>
-In-Reply-To: <16406E32EA0586FD.712@lists.yoctoproject.org>
-From: "Martin Jansa" <Martin.Jansa@gmail.com>
-Date: Mon, 1 Feb 2021 15:40:10 +0100
-Message-ID: <CA+chaQeJnDzgusQvqEWkkNwkoDxR1fMhrb0kM3932D71yWTMRw@mail.gmail.com>
-Subject: Re: [yocto] [OE-core] Let me tell you how I really feel. Zero filter. If you need meta-python2, you need to become a maintainer. Immediately. Period.
-To: Martin Jansa <Martin.Jansa@gmail.com>
-Cc: Tim Orling <ticotimo@gmail.com>, Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	"openembedded-devel@lists.openembedded.org" <Openembedded-devel@lists.openembedded.org>, 
-	Anibal Limon <anibal.limon@linaro.org>
-Content-Type: multipart/alternative; boundary="000000000000608e3a05ba475501"
-
---000000000000608e3a05ba475501
-Content-Type: text/plain; charset="UTF-8"
-
-On Thu, Oct 22, 2020 at 11:37 PM Martin Jansa via lists.yoctoproject.org
-<Martin.Jansa=gmail.com@lists.yoctoproject.org> wrote:
-
-> There were only a few changes needed between dunfell and gatesgarth to
-> keep it building and I feel guilty for sending half of them - and pinging
-> you on FB :).
->
-> I don't have interest in python2, but it's still used by quite a few
-> components included in other layers are care about (e.g. qtwebengine in
-> meta-qt5, chromium in meta-browser -
-> https://bugs.chromium.org/p/chromium/issues/detail?id=942720 is still
-> quite far from finished) and at LGE we maintain meta-ros
-> https://github.com/ros/meta-ros which contains support for ROS 1 Melodic
-> which is usually used with python2 and support ends May 2023 (together with
-> Ubuntu Bionic it's usually used with: http://wiki.ros.org/Distributions -
-> just today I've separated meta-ros-python2 layer with python2 recipes which
-> disappeared from oe-core in warrior and were never re-introduced in
-> meta-python2 (like nose and numpy).
->
-> If you're looking for someone just keeping it buildable, then you can sign
-> me up. If it gets more annoying to maintain in future we can also split it
-> for pythonnative.bbclass and python recipe itself - to keep just the bare
-> minimum of recipes which are actively being used without all the other junk.
->
-> Cheers,
->
-
-Hi,
-
-can I get the write access to meta-python2 as mentioned above?
-
-I have 2 fixes to make it parse able with latest oe-core:
-https://lists.openembedded.org/g/openembedded-devel/message/89201
-https://lists.openembedded.org/g/openembedded-devel/message/89200
-
-to fix issues discussed in:
-https://github.com/openembedded/openembedded-core/commit/fd6a007efa7cb45101a66f294af81d9d33bb3fab#commitcomment-46565284
-https://lists.openembedded.org/g/openembedded-core/message/147477
-https://lists.openembedded.org/g/openembedded-core/message/147514
-
-Cheers,
-
---000000000000608e3a05ba475501
-Content-Type: text/html; charset="UTF-8"
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3301.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d8f9f1e-9417-417d-0b06-08d8c6dfc06b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Feb 2021 18:32:38.0742
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: A3RY8/OHTo3tgykJeX6fehsDsNbMdkqENl2SLHLNOmQBnmpHh1nKuR4Dhel+URyIqUMuphgqP6tG/gDphG0ftTQmYDq7LRA+q6OaBcKuDSY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3606
+Return-Path: vineela.tummalapalli@intel.com
+X-OriginatorOrg: intel.com
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Thu, Oct 22, 2020 at 11:37 PM Martin J=
-ansa via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</=
-a> &lt;Martin.Jansa=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org">g=
-mail.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><div class=3D"gmail=
-_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
-There were only a few changes needed between dunfell and gatesgarth to keep=
- it building and I feel guilty for sending half of them - and pinging you o=
-n FB :).<div><br></div><div>I don&#39;t have interest in python2, but it&#3=
-9;s still used by quite a few components included in other layers are care =
-about (e.g. qtwebengine in meta-qt5, chromium in meta-browser -=C2=A0<a hre=
-f=3D"https://bugs.chromium.org/p/chromium/issues/detail?id=3D942720" target=
-=3D"_blank">https://bugs.chromium.org/p/chromium/issues/detail?id=3D942720<=
-/a> is still quite far from finished) and at LGE we maintain meta-ros=C2=A0=
-<a href=3D"https://github.com/ros/meta-ros" target=3D"_blank">https://githu=
-b.com/ros/meta-ros</a> which contains support for ROS 1 Melodic which is us=
-ually used with python2 and support ends May 2023 (together with Ubuntu Bio=
-nic it&#39;s usually used with: <a href=3D"http://wiki.ros.org/Distribution=
-s" target=3D"_blank">http://wiki.ros.org/Distributions</a> - just today I&#=
-39;ve separated meta-ros-python2 layer with python2 recipes which disappear=
-ed from oe-core in warrior and were never re-introduced in meta-python2 (li=
-ke nose and numpy).</div><div><br></div><div>If you&#39;re looking for some=
-one just keeping it buildable, then you can sign me up. If it gets more ann=
-oying to maintain in future we can also split it for pythonnative.bbclass a=
-nd python recipe itself - to keep just the bare minimum of recipes which ar=
-e actively being used without all the other junk.</div><div><br></div><div>=
-Cheers,</div></div></blockquote><div><br></div><div>Hi,</div><div><br></div=
-><div>can I get the write access to meta-python2 as mentioned above?</div><=
-div><br></div><div>I have 2 fixes to make it parse able with latest oe-core=
-:</div><div><a href=3D"https://lists.openembedded.org/g/openembedded-devel/=
-message/89201">https://lists.openembedded.org/g/openembedded-devel/message/=
-89201</a><br></div><div><a href=3D"https://lists.openembedded.org/g/openemb=
-edded-devel/message/89200">https://lists.openembedded.org/g/openembedded-de=
-vel/message/89200</a><br></div><div><br></div><div>to fix issues discussed =
-in:</div><div><a href=3D"https://github.com/openembedded/openembedded-core/=
-commit/fd6a007efa7cb45101a66f294af81d9d33bb3fab#commitcomment-46565284">htt=
-ps://github.com/openembedded/openembedded-core/commit/fd6a007efa7cb45101a66=
-f294af81d9d33bb3fab#commitcomment-46565284</a><br></div><div><a href=3D"htt=
-ps://lists.openembedded.org/g/openembedded-core/message/147477">https://lis=
-ts.openembedded.org/g/openembedded-core/message/147477</a><br></div><div><a=
- href=3D"https://lists.openembedded.org/g/openembedded-core/message/147514"=
->https://lists.openembedded.org/g/openembedded-core/message/147514</a><br><=
-/div><div><br></div><div>Cheers,</div></div></div>
+Hello,
 
---000000000000608e3a05ba475501--
+We are pleased to announce the second milestone release for Yocto Project 3=
+.3 (yocto-3.3_M2) is now available for download.
+
+Download:
+
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.3_M2
+
+bitbake: 01e901c44ab0f496606b1d45c8953dc54970204c
+meta-arm: a8f32f990a0d9dc1db310892c70d5a994c698b32
+meta-gplv2: 6e8e969590a22a729db1ff342de57f2fd5d02d43
+meta-intel: b4e5d33affeaa223459c0935a853485137b4591d
+meta-kernel: 8349870943ba44bbd688656897372e881f32c741
+meta-mingw: 352d8b0aa3c7bbd5060a4cc2ebe7c0e964de4879
+oecore: 79821d5a185e25384f5b6b5158b238bbee17c79e
+poky: b5e634644b69a968a93aad0dd0502cf479d3973a
+
+Full Test Report:
+
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.3_M2/te=
+streport.txt
+
+Thank you.
+
+Vineela Tummalapalli,
+Yocto Project Build and Release
+vineela.tummalapalli@intel.com
