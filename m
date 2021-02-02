@@ -1,49 +1,78 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.49181.1612255119393259166
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+ by mx.groups.io with SMTP id smtpd.web11.50048.1612258386498254159
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Feb 2021 00:38:39 -0800
+ Tue, 02 Feb 2021 01:33:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 198.145.29.25, mailfrom: rpjday@crashcourse.ca)
-Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id E331438C0409
-	for <yocto@yoctoproject.org>; Tue,  2 Feb 2021 08:38:37 +0000 (UTC)
-Received: from cpeac202e043973-cmac202e043970.sdns.net.rogers.com ([174.114.100.179]:50402 helo=fedora)
-	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.93)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1l6rCm-0005cI-7c
-	for yocto@yoctoproject.org; Tue, 02 Feb 2021 03:38:36 -0500
-Date: Tue, 2 Feb 2021 03:38:34 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: using SYSTEMD_SERVICE to disable a systemd service?
-Message-ID: <60ccec70-495e-7de3-6ee3-7a8319a87ec8@crashcourse.ca>
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=BR7uifS9;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.53, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f53.google.com with SMTP id z6so19600963wrq.10
+        for <yocto@lists.yoctoproject.org>; Tue, 02 Feb 2021 01:33:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=Rp3zBMJjNI9nvxAytFrNCT/f2+lzNqltOScxtYmUbq4=;
+        b=BR7uifS9bGTczpxde5mfbE8cSWH9kAQLs/b2bbNoo3tBVjsCWK0tozZG0R2rDr4ruq
+         2eFKt60GNFSDOMKrRtulAO5sFc1WQ0YMU1Xab2QGXtYFanjqhb3UuuraQkyXC9yBLqVs
+         XS8leSxpcKZrpcjcWIhV+cJ7iOR4k7Y6HjprI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=Rp3zBMJjNI9nvxAytFrNCT/f2+lzNqltOScxtYmUbq4=;
+        b=LUOdIYHmAKodrK5tF75LTQA3A5Gn102IAr3rpTgUexh0ijinUV7wiAnimtqWS+6mkH
+         eJaVAoGiTRtpeaRFBMxNWshz19Lgeo6wQSDyzgUgSHPaKoW1eM2SgInoMZOcKfmFDoP3
+         TAu48mcyoQVexrvY4MyOrFS6ZJwIKL5wg4ZcVCQBdHyly4NASArCJSdYnIp1La0p/G+D
+         /odWKyRTQ0LLA2RDyTnk2LIZ6jlAM1tYI+jrYrC+5JfIrIWn9g2rk0uSMib5mjW9UOw2
+         0R8HSFIC7p32BYaFzyN75qyCJafPuzK8vhZ68ShLCkgsobmgax1lQixLHtA2Lv3o5DBd
+         o0uA==
+X-Gm-Message-State: AOAM531BDLCI+bq/qg74r9t94Narb9MA7bCj2wE3O9hPxuuotPxPUx+i
+	FCCs7Ajgh6AciEVcl+pCESzUJw==
+X-Google-Smtp-Source: ABdhPJzPTqRJ5weztck8DgeoVGZg4GV7od5zxyytxRjFYdQwHk11JmZY0xQ1Q3tnHlPQvmb64eSKaQ==
+X-Received: by 2002:a05:6000:188b:: with SMTP id a11mr22299053wri.151.1612258384941;
+        Tue, 02 Feb 2021 01:33:04 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:1d48:268:5d93:58e4? ([2001:8b0:aba:5f3c:1d48:268:5d93:58e4])
+        by smtp.gmail.com with ESMTPSA id p12sm2010327wmq.1.2021.02.02.01.33.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Feb 2021 01:33:04 -0800 (PST)
+Message-ID: <456f2eb44ad30da1e4422d06267c07e7c57595aa.camel@linuxfoundation.org>
+Subject: Re: [yocto] [OE-core] Let me tell you how I really feel. Zero filter. If you need meta-python2, you need to become a maintainer. Immediately. Period.
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Martin Jansa <Martin.Jansa@gmail.com>
+Cc: Tim Orling <ticotimo@gmail.com>, Yocto-mailing-list
+	 <yocto@lists.yoctoproject.org>, openembedded-core
+	 <openembedded-core@lists.openembedded.org>, 
+	"openembedded-devel@lists.openembedded.org"
+	 <Openembedded-devel@lists.openembedded.org>, Anibal Limon
+	 <anibal.limon@linaro.org>
+Date: Tue, 02 Feb 2021 09:33:03 +0000
+In-Reply-To: <CA+chaQeJnDzgusQvqEWkkNwkoDxR1fMhrb0kM3932D71yWTMRw@mail.gmail.com>
+References: 
+	<CANx9H-DFtcdnZwDqHEPg4t5ySyJe++KS8hO9QDFX5r31KLz3Ww@mail.gmail.com>
+	 <16406E32EA0586FD.712@lists.yoctoproject.org>
+	 <CA+chaQeJnDzgusQvqEWkkNwkoDxR1fMhrb0kM3932D71yWTMRw@mail.gmail.com>
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
+On Mon, 2021-02-01 at 15:40 +0100, Martin Jansa wrote:
+> can I get the write access to meta-python2 as mentioned above?
+> 
+> I have 2 fixes to make it parse able with latest oe-core:
+> https://lists.openembedded.org/g/openembedded-devel/message/89201
+> https://lists.openembedded.org/g/openembedded-devel/message/89200
+> 
+> to fix issues discussed in:
+> https://github.com/openembedded/openembedded-core/commit/fd6a007efa7cb45101a66f294af81d9d33bb3fab#commitcomment-46565284
+> https://lists.openembedded.org/g/openembedded-core/message/147477
+> https://lists.openembedded.org/g/openembedded-core/message/147514
 
-  while the "standard" way to disable a systemd service from
-auto-booting is SYSTEMD_AUTO_ENABLE, i just ran across a number of
-examples in an existing project that do this:
+This sounds like a good idea to me and I have admin right so I've given
+you access :)
 
-  SYSTEMD_SERVICE_${PN} = ""
+Cheers,
 
-ouch. that's a new one on me and, while i'm prepared to believe it
-works, it seems like grotesque overkill and mis-application of that
-variable.
+Richard
 
-  am i within my rights to suggest that that's not really the way to
-do it? or is that considered an acceptable (albeit weird) alternative?
-
-rday
