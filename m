@@ -1,86 +1,87 @@
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
- by mx.groups.io with SMTP id smtpd.web12.50028.1612260697905766600
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+ by mx.groups.io with SMTP id smtpd.web12.50203.1612261801371952538
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Feb 2021 02:11:38 -0800
+ Tue, 02 Feb 2021 02:30:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=mtqC9cu1;
- spf=pass (domain: gmail.com, ip: 209.85.166.182, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-il1-f182.google.com with SMTP id y15so61932ilj.11
-        for <yocto@lists.yoctoproject.org>; Tue, 02 Feb 2021 02:11:37 -0800 (PST)
+ dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=RlkAxcGX;
+ spf=pass (domain: burtonini.com, ip: 209.85.167.42, mailfrom: ross@burtonini.com)
+Received: by mail-lf1-f42.google.com with SMTP id q12so27163671lfo.12
+        for <yocto@lists.yoctoproject.org>; Tue, 02 Feb 2021 02:30:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jXRbWTlGoVDrVE8mLo4gpKkv5KadAIpzc9BVxDxACUs=;
-        b=mtqC9cu1sockttmu/mphNCd2YOrkVEs84j7CiKpoeP/zHV5M3TxkDolfk/baZrWuqy
-         i25yRhKSPSMYb2PgP3/YDx5Wway/rtfkGWUZ/dCFn90cHsOzjniWG5jCqahu3LakneM1
-         2bS3dkClk6zaYvfU9TKHeIRTPKwCzUMbPZkUBUdwsMAf2aic0EIOwSwSkfmiyk0nKztV
-         UTJqv1zJ2uUIEt/D9JLde95W2ITDWuDrNIxyV8gXbvnIQ/X+nRP3dIGWNJQ3c6iceh5q
-         sWKQK1COLa9W4obYCdYaKix6IsJDatOKw6eh0w2QFyjkDiw1y5s7BPhLxwObAIl2jbkj
-         gycA==
+         :cc:content-transfer-encoding;
+        bh=PhFJRCPEo58S3H/BuaLfs58XAU4Hlls2zeN4WzArqS8=;
+        b=RlkAxcGX+7WDp1xzmg2BSvjvlNHMU1w8QH9x3mD3Dl7BTfs88mtB2R5DliYbUW+9vi
+         HPm/lzShsk1xcB63nK8cp+49LhwSz62JGgnu5ipiCRZ96pErwB7j9gN2mGvXehSiaAF1
+         U99rzHcdhVfrjcoycCcrBodqrX3CXIbSVQrtcjHTLUtTQZOrYOGx3PIrNNOguJAt8lQf
+         maS8ZG5UPx+rHTFPLNEpmJAdxb+7daQ5Y2XRjzvrjliqLsN4xl4rKE2GuSs4EqK0aOY6
+         uYWQPCH13OmHMnyy5lSpn0z01NU/SHpMY4d251mvfzl8iw0KtVXrL85Wm6w6ajg+7/9P
+         0JnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jXRbWTlGoVDrVE8mLo4gpKkv5KadAIpzc9BVxDxACUs=;
-        b=twCuHSljS7uOAPbINhq2OBV/SSqkwUEB4zDx6fErxOTKTSqYzLD66IqHl5PlnKNYDj
-         NwKSna9q64AZSXRI90hxQHLcTKI2KItweDnhKp7/KWcRTxf1syQmiec2VPt4iYQO8Tvt
-         zi5jwtvhIcxzoq7wgMnj0UDlO/452sFSMFFj6K9le/IVUxPj0holkF0DfuGHeBZdfZ8X
-         7zj2uUZmDYGJ6sD+ArIBoCZaKlDK585SE6kT9mPRVKIOK6hoziGEkv6uKicG5qUCyqAm
-         Nl0kle+evLOJ/R5i/l2pZoBW1LyXGapxO5hG1NEbeJjdf00z7OCdRiXeVcsE041b2eaF
-         OCzQ==
-X-Gm-Message-State: AOAM532L6HAl/jEjIwEP9bl3RC7GYjzLG3psowepzcAKfVM86nAqBcqe
-	gaHCoSNFNAaYXYnS0RmWnUflYHxRQwkO0TaQ8P0=
-X-Google-Smtp-Source: ABdhPJwQTNRpi0kA8TD2Ux0CMeSHg/1aYJgMszWA+NqGkDuwIBkBYqKP73O3N/grE2oBEQ1fJGbgvnRGH2wm582T2ro=
-X-Received: by 2002:a92:6511:: with SMTP id z17mr14492030ilb.232.1612260697220;
- Tue, 02 Feb 2021 02:11:37 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=PhFJRCPEo58S3H/BuaLfs58XAU4Hlls2zeN4WzArqS8=;
+        b=gcGgs024la95wuh3XpHhRE0px/OHjA7EeHOUEyE1ALshsP1BK6DSUzee5FDTWyIHeq
+         ZCXIFFCcp+FMtxuPHD5LTVK9p0CoAJemIHCZn2EJjXrnQosQleovS6pHeWZddjNLy7/S
+         KALPiav73Ns8NE5HqWF9Cq3gNllVjz7wptY8twP0duy2y4ZPmcJXMF5knn08fhEUtDt9
+         YLtRcxmVsXzOQ3oNZcXk8TD4Hn/xACgcCeiPLDv22lJ94uwE4Dn/QUllgtPImSpBQmlU
+         C6ImauP4zkxEeKFi4UT6BniZVWrqrIsFZSEV+5J/p1tfa5Orem1EuVenjSMfV6iDBvsW
+         RjNQ==
+X-Gm-Message-State: AOAM531zWCtWMSvmafFzM+S8I764WBgEhUx7fVl0gAZlSuHRaXULWBWw
+	KGiT2DHTD2SBvUbM1975rs6CtWRaKRMuyvQ3kvE7vQ==
+X-Google-Smtp-Source: ABdhPJz3zkKwPYwWlFDfS+o/vwdTlz+GxUenyomPmVm0EBnhJODDSCJAT3KyWUy63LTCAUJCeAMspYVHp7TbHwfF2Tg=
+X-Received: by 2002:ac2:4114:: with SMTP id b20mr10827161lfi.180.1612261799382;
+ Tue, 02 Feb 2021 02:29:59 -0800 (PST)
 MIME-Version: 1.0
-References: <CANx9H-DFtcdnZwDqHEPg4t5ySyJe++KS8hO9QDFX5r31KLz3Ww@mail.gmail.com>
- <16406E32EA0586FD.712@lists.yoctoproject.org> <CA+chaQeJnDzgusQvqEWkkNwkoDxR1fMhrb0kM3932D71yWTMRw@mail.gmail.com>
- <456f2eb44ad30da1e4422d06267c07e7c57595aa.camel@linuxfoundation.org>
-In-Reply-To: <456f2eb44ad30da1e4422d06267c07e7c57595aa.camel@linuxfoundation.org>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Tue, 2 Feb 2021 11:11:25 +0100
-Message-ID: <CAGAf8LwN7QfaE70-yuQYLA3ffJVuwoKeyfoBgPUB26X5B3dMfA@mail.gmail.com>
-Subject: Re: [yocto] [OE-core] Let me tell you how I really feel. Zero filter. If you need meta-python2, you need to become a maintainer. Immediately. Period.
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Martin Jansa <Martin.Jansa@gmail.com>, Tim Orling <ticotimo@gmail.com>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	"openembedded-devel@lists.openembedded.org" <Openembedded-devel@lists.openembedded.org>, 
-	Anibal Limon <anibal.limon@linaro.org>
+References: <CAOx=Z6HG7nG4eC0mU=iDvkz=jtOp_OCeDmacAvF69=X_FqMZfg@mail.gmail.com>
+ <CANx9H-DvpKkPpQnMMnFBSnVEvFXiWMHOmxT1iaCUeigp51yTmA@mail.gmail.com>
+In-Reply-To: <CANx9H-DvpKkPpQnMMnFBSnVEvFXiWMHOmxT1iaCUeigp51yTmA@mail.gmail.com>
+From: "Ross Burton" <ross@burtonini.com>
+Date: Tue, 2 Feb 2021 10:29:48 +0000
+Message-ID: <CAAnfSTuyR1bE0jaPdNSp6g0u7dRfKtRHr2gnd0ZgLNyQjdu8zQ@mail.gmail.com>
+Subject: Re: [yocto] [meta-zephyr] bitbake zephyr-helloworld configure failure
+To: Tim Orling <ticotimo@gmail.com>
+Cc: Peter Smith <salerio@gmail.com>, yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> This sounds like a good idea to me and I have admin
-> right so I've given you access :)
+I sent a patch to meta-oe yesterday: there was a missing dependency in
+python3-kwalify and missing class extend in the ruamel recipe.
 
-+1
+Ross
 
-Zee
-_______
-
-On Tue, Feb 2, 2021 at 10:33 AM Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
->
-> On Mon, 2021-02-01 at 15:40 +0100, Martin Jansa wrote:
-> > can I get the write access to meta-python2 as mentioned above?
-> >
-> > I have 2 fixes to make it parse able with latest oe-core:
-> > https://lists.openembedded.org/g/openembedded-devel/message/89201
-> > https://lists.openembedded.org/g/openembedded-devel/message/89200
-> >
-> > to fix issues discussed in:
-> > https://github.com/openembedded/openembedded-core/commit/fd6a007efa7cb45101a66f294af81d9d33bb3fab#commitcomment-46565284
-> > https://lists.openembedded.org/g/openembedded-core/message/147477
-> > https://lists.openembedded.org/g/openembedded-core/message/147514
->
-> This sounds like a good idea to me and I have admin right so I've given
-> you access :)
->
-> Cheers,
->
-> Richard
+On Thu, 28 Jan 2021 at 05:49, Tim Orling <ticotimo@gmail.com> wrote:
 >
 >
-> 
+>
+> On Wed, Jan 27, 2021 at 12:51 AM Peter Smith <salerio@gmail.com> wrote:
+>>
+>> Using master branch
+>>
+>> MACHINE=3D96b_nitrogen bitbake zephyr-helloworld creates a configure er=
+ror due to a failure for native python to import ruamel.
+>>
+>> I fixed this temporarily by creating a python3-ruamel-yaml_%.bbappend t=
+hat includes the required BBEXTEND and adding python3-ruamel-yaml-native to=
+ zephyr-kernel-common.inc.
+>>
+>> I don't know (not enough experience) if this is actually a problem in t=
+he meta-openembedded recipe or meta-zephyr?
+>
+>
+>
+> BBEXTEND =3D =E2=80=9Cnative=E2=80=9D is a perfectly fine patch to submi=
+t to meta-python. We tend to only make those changes when needed (as in you=
+r use case) rather than universally. Please submit a patch :)
+>>
+>>
+>> Best Regards
+>> Peter
+>>
+>>
+>>
+>
+>=20
 >
