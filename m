@@ -1,171 +1,282 @@
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
- by mx.groups.io with SMTP id smtpd.web08.44018.1612221568631332581
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.46075.1612230374994310817
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Feb 2021 15:19:28 -0800
+ Mon, 01 Feb 2021 17:46:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=RnXSNGHA;
- spf=pass (domain: gmail.com, ip: 209.85.222.172, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f172.google.com with SMTP id t63so18158971qkc.1
-        for <yocto@lists.yoctoproject.org>; Mon, 01 Feb 2021 15:19:28 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=H+LQsj7v;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id E59E038C04B3
+	for <yocto@yoctoproject.org>; Tue,  2 Feb 2021 01:46:13 +0000 (UTC)
+Received: by mail-pl1-f182.google.com with SMTP id x9so5636098plb.5
+        for <yocto@yoctoproject.org>; Mon, 01 Feb 2021 17:46:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CjZfdsybiGLfZMSJWrCsYyk9MMgMIRMB/1NfD6txO1Q=;
-        b=RnXSNGHANn0CmsmAecx6x1dmM8ilSMRnABEZ9MyEv2mZ9AAVnvLQkxVclQMC+Z2F40
-         Xy/0XdmO9DfO3L4YvoyY3fP8fRMaIAaDlD+9LsCHvst9HttgJc3hX8PgEA9jiqYLREv4
-         lkI6aBaZP3B+mXUVkZFZn70xZBpkzOIKzohSJKalhjmvA2ZTh33AFfJe1pnFFwqL1i4W
-         TlPHrNd0bPjW7+0wc1OjaQZGk4QM9QKX5VtRRV/w+UexxmQtkbQz4nQEmPqc9lyMfcr0
-         VH2iOfTu0paP5Y/85w0jmj0t7LpcJHjevnhwfUIi7nwYkQbvYEvbdmhmU/EvmResE6zI
-         7moQ==
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index:importance;
+        bh=48qFDtOz2J/lEtEVsEUfJzp8KjewBsryBrzX3Z09fEA=;
+        b=H+LQsj7vUXF0V3qimNvLjZNMhy+OYBFsY8qe3+cqPrDg/YbPstatK78uKix8xovlJi
+         LD1ldlB21TYJzEo2JSuDeujR6GxIokiNt1Cn9dBKTkBoXZSCtht1ytErnetj0zskyVV2
+         PncK3HPlErb6WbrkkoubU4xWQokes0H0XrPyXwcsaBcBROfz+F2Mp+COkmiteS1hIS/G
+         y2BfMcU5geYVtb9D9RBufyMj0gI3J7CibqII3QkSr652sNrMup6CfGySaXfdGhqqKSiJ
+         pLIdh17zz/FJc72S3Mb+PhAnBN/UD3Tp6aBcriNgpgAV0k3gGNaNd73paBYGGv5BX4G9
+         TwCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CjZfdsybiGLfZMSJWrCsYyk9MMgMIRMB/1NfD6txO1Q=;
-        b=e65Ls3akaB6f6rFkNwPcJzdSqlZTg31FSXu5qw3OCRLSqgTph0AQgNgoAwd/fL43HX
-         z8YIH8INQXsqR5cstNSft5Huppu0T6wh7YY1gmloCHvLNMHrXCmWfiZ1uQNpU9D1hJRu
-         LjP3HRFLeaHcJ8TxDrGXzf1OkMgJDTAQXUatTGS5ULwIWs+hCGtKY0qyaGLjMPoT9ok4
-         YBBsiBcqp/7MubE61CtEjeDkVjPjWNbUlOlK+e/rnFzidviyHcgNjirFXKHzxNqEXcc4
-         yehuo/CFko1RzRSPE+ZVo3Z8P//PCLBubtTqasKTbSCzYADfZ66Hb++oJoc7tnwb1S/W
-         zJfA==
-X-Gm-Message-State: AOAM53206l9HvE60Ap9rIjAUTGFNh7na6be5lb1KRr4Y77yHyk9ytn8e
-	SQfs2zmf2yjeMrBd5tHUshDnzDAYiypWI1ydie4=
-X-Google-Smtp-Source: ABdhPJz2W9qq9itZYEQMP9bQoSVZAN3lunlHftc54pX16rbDSSxgeRnYcLc5JfOkUTQHd4UB4SJ1Zirofs1c+zlBCuc=
-X-Received: by 2002:a37:9b8b:: with SMTP id d133mr17268655qke.71.1612221567791;
- Mon, 01 Feb 2021 15:19:27 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-language:thread-index:importance;
+        bh=48qFDtOz2J/lEtEVsEUfJzp8KjewBsryBrzX3Z09fEA=;
+        b=e1YT05M/tp86T9Fq/9OlW2msEIGFh49QlDUAqN7/kS0M9kRRGnfS4VVAAOAcQYydQn
+         xUgCzWBNBItEre05pa0xZxFWredwIkgVi+NavKM4pODGjM1QSJjknrxzNk2RHCGT4bJi
+         ePHUnes/xiHjo098hzG5jMijS3r9hE++m2NzW1yh7lRtV4iDsoaEV7LzwVkH4gnVsJVK
+         EhYCxj9fZriF9BNj0J+/6u5Q9Nko4nmypBmMLQE8GGhVIR0k2uGWETlepu9mLE56pIvQ
+         TmMFDkvdVY/Mw59md42ZBqjnMh7nsM/xcnzz8jgI0fB9UdonjQmiuTTKA/k5vFeLekjI
+         n4GA==
+X-Gm-Message-State: AOAM5338nLtd51aPnsUNcGLKJPvGrmBwfzPIRbOZxmtoUHhmx0hzrPXz
+	Dimc+djPSTWXomlyrsVkjXI=
+X-Google-Smtp-Source: ABdhPJye/UHgCZFutX9EF4LgnZM4GeWEXsb7ehbbTii550s4o2frD0zW55e/CiKTaOz24yIN6aGD1g==
+X-Received: by 2002:a17:902:7c88:b029:e1:c7d:c271 with SMTP id y8-20020a1709027c88b02900e10c7dc271mr20371407pll.74.1612230373311;
+        Mon, 01 Feb 2021 17:46:13 -0800 (PST)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id w3sm752570pjb.2.2021.02.01.17.46.12
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 01 Feb 2021 17:46:12 -0800 (PST)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Reminder: Yocto Project Technical Team Meeting @ Monthly from 8am on the first Tuesday (PDT)
+Date: Mon, 1 Feb 2021 17:46:12 -0800
+Message-ID: <106d01d6f905$30675780$91360680$@gmail.com>
 MIME-Version: 1.0
-References: <CANx9H-DFtcdnZwDqHEPg4t5ySyJe++KS8hO9QDFX5r31KLz3Ww@mail.gmail.com>
- <16406E32EA0586FD.712@lists.yoctoproject.org> <CA+chaQeJnDzgusQvqEWkkNwkoDxR1fMhrb0kM3932D71yWTMRw@mail.gmail.com>
-In-Reply-To: <CA+chaQeJnDzgusQvqEWkkNwkoDxR1fMhrb0kM3932D71yWTMRw@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Mon, 1 Feb 2021 15:19:16 -0800
-Message-ID: <CAMKF1srgg5CsZtDZXRJwwmQM80=vD1+=CFA5ABdt8T+omMLXuA@mail.gmail.com>
-Subject: Re: [yocto] [OE-core] Let me tell you how I really feel. Zero filter. If you need meta-python2, you need to become a maintainer. Immediately. Period.
-To: Martin Jansa <Martin.Jansa@gmail.com>
-Cc: Anibal Limon <anibal.limon@linaro.org>, Tim Orling <ticotimo@gmail.com>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	"openembedded-devel@lists.openembedded.org" <Openembedded-devel@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="000000000000d8f65805ba4e9541"
+X-Priority: 1 (Highest)
+X-MSMail-Priority: High
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQMMM7RA3w3lmIMnx1505W+qDWZXuw==
+Importance: High
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_106E_01D6F8C2.22466170"
+Content-Language: en-us
 
---000000000000d8f65805ba4e9541
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_106E_01D6F8C2.22466170
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Mon, Feb 1, 2021 at 6:40 AM Martin Jansa <Martin.Jansa@gmail.com> wrote:
+All,
 
-> On Thu, Oct 22, 2020 at 11:37 PM Martin Jansa via lists.yoctoproject.org
-> <Martin.Jansa=gmail.com@lists.yoctoproject.org> wrote:
->
->> There were only a few changes needed between dunfell and gatesgarth to
->> keep it building and I feel guilty for sending half of them - and pinging
->> you on FB :).
->>
->> I don't have interest in python2, but it's still used by quite a few
->> components included in other layers are care about (e.g. qtwebengine in
->> meta-qt5, chromium in meta-browser -
->> https://bugs.chromium.org/p/chromium/issues/detail?id=942720 is still
->> quite far from finished) and at LGE we maintain meta-ros
->> https://github.com/ros/meta-ros which contains support for ROS 1 Melodic
->> which is usually used with python2 and support ends May 2023 (together with
->> Ubuntu Bionic it's usually used with: http://wiki.ros.org/Distributions
->> - just today I've separated meta-ros-python2 layer with python2 recipes
->> which disappeared from oe-core in warrior and were never re-introduced in
->> meta-python2 (like nose and numpy).
->>
->> If you're looking for someone just keeping it buildable, then you can
->> sign me up. If it gets more annoying to maintain in future we can also
->> split it for pythonnative.bbclass and python recipe itself - to keep just
->> the bare minimum of recipes which are actively being used without all the
->> other junk.
->>
->> Cheers,
->>
->
-> Hi,
->
-> can I get the write access to meta-python2 as mentioned above?
->
+ 
 
-+1
+Just a reminder we will hold the monthly Yocto Project Technical Meeting at
+8am PST tomorrow. (2/2)  
+
+ 
+
+Yocto Project Technical Team Meeting: We encourage people attending the
+meeting to logon and announce themselves on the Yocto Project IRC chancel
+during the meeting (optional):
+
+Yocto IRC: http://webchat.freenode.net/?channels=#yocto
+
+ 
+
+Wiki: https://www.yoctoproject.org/public-virtual-meetings/
+
+ 
+
+When            Monthly from 8am to 9am on the first Tuesday Pacific Time
+
+Where           Zoom Meeting:
+https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09
+
+ 
+
+We are tracking the minutes at:
+https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9d
+DH4/edit?pli=1 Please request access if you want to assist in editing them.
+The world should have view access. 
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
 
 
-> I have 2 fixes to make it parse able with latest oe-core:
-> https://lists.openembedded.org/g/openembedded-devel/message/89201
-> https://lists.openembedded.org/g/openembedded-devel/message/89200
->
-> to fix issues discussed in:
->
-> https://github.com/openembedded/openembedded-core/commit/fd6a007efa7cb45101a66f294af81d9d33bb3fab#commitcomment-46565284
-> https://lists.openembedded.org/g/openembedded-core/message/147477
-> https://lists.openembedded.org/g/openembedded-core/message/147514
->
-> Cheers,
->
-> 
->
->
-
---000000000000d8f65805ba4e9541
-Content-Type: text/html; charset="UTF-8"
+------=_NextPart_000_106E_01D6F8C2.22466170
+Content-Type: text/html;
+	boundary="----=_NextPart_000_055F_01D6E284.38A890E0";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Mon, Feb 1, 2021 at 6:40 AM Martin Jansa &lt;<a href=3D=
-"mailto:Martin.Jansa@gmail.com">Martin.Jansa@gmail.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
-t:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">On Thu=
-, Oct 22, 2020 at 11:37 PM Martin Jansa via <a href=3D"http://lists.yoctopr=
-oject.org" target=3D"_blank">lists.yoctoproject.org</a> &lt;Martin.Jansa=3D=
-<a href=3D"mailto:gmail.com@lists.yoctoproject.org" target=3D"_blank">gmail=
-.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><div class=3D"gmail_quo=
-te"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Ther=
-e were only a few changes needed between dunfell and gatesgarth to keep it =
-building and I feel guilty for sending half of them - and pinging you on FB=
- :).<div><br></div><div>I don&#39;t have interest in python2, but it&#39;s =
-still used by quite a few components included in other layers are care abou=
-t (e.g. qtwebengine in meta-qt5, chromium in meta-browser -=C2=A0<a href=3D=
-"https://bugs.chromium.org/p/chromium/issues/detail?id=3D942720" target=3D"=
-_blank">https://bugs.chromium.org/p/chromium/issues/detail?id=3D942720</a> =
-is still quite far from finished) and at LGE we maintain meta-ros=C2=A0<a h=
-ref=3D"https://github.com/ros/meta-ros" target=3D"_blank">https://github.co=
-m/ros/meta-ros</a> which contains support for ROS 1 Melodic which is usuall=
-y used with python2 and support ends May 2023 (together with Ubuntu Bionic =
-it&#39;s usually used with: <a href=3D"http://wiki.ros.org/Distributions" t=
-arget=3D"_blank">http://wiki.ros.org/Distributions</a> - just today I&#39;v=
-e separated meta-ros-python2 layer with python2 recipes which disappeared f=
-rom oe-core in warrior and were never re-introduced in meta-python2 (like n=
-ose and numpy).</div><div><br></div><div>If you&#39;re looking for someone =
-just keeping it buildable, then you can sign me up. If it gets more annoyin=
-g to maintain in future we can also split it for pythonnative.bbclass and p=
-ython recipe itself - to keep just the bare minimum of recipes which are ac=
-tively being used without all the other junk.</div><div><br></div><div>Chee=
-rs,</div></div></blockquote><div><br></div><div>Hi,</div><div><br></div><di=
-v>can I get the write access to meta-python2 as mentioned above?</div></div=
-></div></blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">+1=C2=A0<=
-/div><div dir=3D"auto"><br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D=
-"ltr"><div class=3D"gmail_quote"><div dir=3D"auto"></div><div><br></div><di=
-v>I have 2 fixes to make it parse able with latest oe-core:</div><div><a hr=
-ef=3D"https://lists.openembedded.org/g/openembedded-devel/message/89201" ta=
-rget=3D"_blank">https://lists.openembedded.org/g/openembedded-devel/message=
-/89201</a><br></div><div><a href=3D"https://lists.openembedded.org/g/openem=
-bedded-devel/message/89200" target=3D"_blank">https://lists.openembedded.or=
-g/g/openembedded-devel/message/89200</a><br></div><div><br></div><div>to fi=
-x issues discussed in:</div><div><a href=3D"https://github.com/openembedded=
-/openembedded-core/commit/fd6a007efa7cb45101a66f294af81d9d33bb3fab#commitco=
-mment-46565284" target=3D"_blank">https://github.com/openembedded/openembed=
-ded-core/commit/fd6a007efa7cb45101a66f294af81d9d33bb3fab#commitcomment-4656=
-5284</a><br></div><div><a href=3D"https://lists.openembedded.org/g/openembe=
-dded-core/message/147477" target=3D"_blank">https://lists.openembedded.org/=
-g/openembedded-core/message/147477</a><br></div><div><a href=3D"https://lis=
-ts.openembedded.org/g/openembedded-core/message/147514" target=3D"_blank">h=
-ttps://lists.openembedded.org/g/openembedded-core/message/147514</a><br></d=
-iv><div><br></div><div>Cheers,</div></div></div>
-<br>
-<br>
-<br>
-</blockquote></div></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>All,</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Just a =
+reminder we will hold the monthly Yocto Project Technical Meeting at 8am =
+PST tomorrow. (2/2)&nbsp; <o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Yocto =
+Project Technical Team Meeting: We encourage people attending the =
+meeting to logon and announce themselves on the Yocto Project IRC =
+chancel during the meeting (optional):</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Yocto IRC: =
+</span><a =
+href=3D"http://webchat.freenode.net/?channels=3D#yocto">http://webchat.fr=
+eenode.net/?channels=3D#yocto</a><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Wiki: =
+</span><a =
+href=3D"https://www.yoctoproject.org/public-virtual-meetings/">https://ww=
+w.yoctoproject.org/public-virtual-meetings/</a><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>When&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; Monthly from 8am to 9am on the first Tuesday =
+Pacific Time</span><span style=3D'font-size:12.0pt;font-family:"Times =
+New Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>Where&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; Zoom Meeting: <a =
+href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT0=
+9">https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09</a>=
+<o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>We are =
+tracking the minutes at: </span><a =
+href=3D"https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7Q=
+wKC5wWVDg9dDH4/edit?pli=3D1">https://docs.google.com/document/d/1ly8nyhO1=
+4kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit?pli=3D1</a><span =
+style=3D'color:#1F497D'> Please request access if you want to assist in =
+editing them.&nbsp; The world should have view access. </span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>Thanks,</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
---000000000000d8f65805ba4e9541--
+------=_NextPart_000_106E_01D6F8C2.22466170--
