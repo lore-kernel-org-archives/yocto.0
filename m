@@ -1,73 +1,82 @@
-Subject: Building eSDK fails #sdk
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+ by mx.groups.io with SMTP id smtpd.web09.2988.1612474357922893742
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 04 Feb 2021 13:32:38 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=W0ia16Xa;
+ spf=pass (domain: gmail.com, ip: 209.85.167.48, mailfrom: idadelm@gmail.com)
+Received: by mail-lf1-f48.google.com with SMTP id p21so6747135lfu.11
+        for <yocto@lists.yoctoproject.org>; Thu, 04 Feb 2021 13:32:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=DmDx/YuKOacXsTotd2mb6ltLr+oO1A3VIUGj99x/9QI=;
+        b=W0ia16XaEyM2FodYCyUlQeprz8fQf60NCy9ux8EGrNeTJ8UDbAbmMbz2GQAieN62e1
+         2wwhcQ5j8Kl4jYAb4hT8H5Ojr9bTaoTDDytfICF0534gte3z8hdR8V663eqsUr37y+xR
+         o089O/i8bIvHvmfC11B1JelRQMHypjsCnWogJFQWxv5peIxOkQ9mdVjl+9VScKqMfMiH
+         YsNVigsXnZS8mwUKKes12v9F6c9UKwWGlI4BS1FYFQ82XyzjdhxkEzNUaF2HINgBRpDo
+         o6zTAVtNjzKRcyKpRzti+HO4iuxLAIOwWiEnvLEfnys27OkGEjd5J3jPtrCr+yhAWcu3
+         Ja7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=DmDx/YuKOacXsTotd2mb6ltLr+oO1A3VIUGj99x/9QI=;
+        b=SVuyvfx9NsGJLO7YoRcQxuFUKUVapOCimjoWtCnU8219GtRIGhZSwxiCtcgzJtb/iB
+         NyD59it1PrCmdlw6EmCteZEAkS3t0a/lsp9C+GqDZmd0q484WBkd6UmH2Cpid/Txtk6y
+         mML1gfCse2yDZdKAJz9+MxkSf/SGthQKmWEat/Qz7PUlhoGxRUFHKD1Owhq7ErJnImGW
+         uBh0+QcsVPY3i1Q9c94b3FF93y7RJ/yFABpT30VAXmpHJ8snhDuwdzS7LxLZvI2UJLiX
+         nbQ0Aw65vjvDaN75qvAle8OsDaAqpBI5Q652jZP+eErGvKwAJ+wuqi7CXrExjgV/K/qt
+         IghA==
+X-Gm-Message-State: AOAM530jkcDtQPBXhFMsPSLnfXq0WbRuhYxizBGMrEekvdyNfOjg72hC
+	FkO1w75UtkPLdxwEirJemq5SMfBcDz4/i5lH
+X-Google-Smtp-Source: ABdhPJwSA62EGxALZq1Xkic7sPNrt4BR2FkVj895ieMHjF6RMkEGhsuip3vWzGaW/J5c07uZzGNRRA==
+X-Received: by 2002:a19:6a13:: with SMTP id u19mr676536lfu.405.1612474355817;
+        Thu, 04 Feb 2021 13:32:35 -0800 (PST)
+Return-Path: <idadelm@gmail.com>
+Received: from ida-pc.lan ([129.0.101.30])
+        by smtp.gmail.com with ESMTPSA id f9sm743813lft.114.2021.02.04.13.32.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Feb 2021 13:32:35 -0800 (PST)
+From: "Meh Mbeh Ida Delphine" <idadelm@gmail.com>
 To: yocto@lists.yoctoproject.org
-From: alexander.troff@deveritec.com
-X-Originating-Location: Dresden, Saxony, DE (178.249.26.90)
-X-Originating-Platform: Linux Firefox 85
-User-Agent: GROUPS.IO Web Poster
+Cc: mark.hatle@kernel.crashing.org
+Subject: [prelink-cross][PATCH 2/3] Updated email addresses
+Date: Thu,  4 Feb 2021 22:32:17 +0100
+Message-Id: <20210204213218.12781-2-idadelm@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210204213218.12781-1-idadelm@gmail.com>
+References: <20210204213218.12781-1-idadelm@gmail.com>
 MIME-Version: 1.0
-Date: Thu, 04 Feb 2021 09:43:42 -0800
-Message-ID: <hvee.1612460622520345943.gVz7@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="DZw12n4TMZOGGsTxyZlS"
+Content-Transfer-Encoding: 8bit
 
---DZw12n4TMZOGGsTxyZlS
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Ida Delphine <idadelm@gmail.com>
+---
+ README | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Hello,
-I build the SDK with bitbake core-image-base -c populate_sdk and it works =
-just fine. But trying to build the eSDK with bitbake core-image-base -c pop=
-ulate_sdk_ext results in this error:
+diff --git a/README b/README
+index 2d8893b..7c4918a 100644
+--- a/README
++++ b/README
+@@ -1,4 +1,4 @@
+-Please contact <mark.hatle@windriver.com> if you have a question about this
++Please contact <mark.hatle@kernel.crashing.org> if you have a question about this
+ version.  The original author is not responsible for the modified version!
+ 
+ Compilation
+@@ -13,8 +13,8 @@ Patch submission
+ When submitting patches to the cross-prelink project, please do the
+ following:
+ 
+-To: mark.hatle@windriver.com
+-Cc: yocto@yoctoproject.org
++To: mark.hatle@kernel.crashing.org
++Cc: yocto@lists.yoctoproject.org
+ 
+ Subject: [prelink-cross] ....
+ 
+-- 
+2.25.1
 
-ERROR: buildtools-tarball-1.0-r0 do_populate_sdk: Unable to install packag=
-es. Command '/opt/build/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-=
-tarball/1.0-r0/recipe-sysroot-native/usr/bin/opkg --volatile-cache -f /opt/=
-build/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/opk=
-g.conf -t /opt/build/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-tar=
-ball/1.0-r0/temp/ipktemp/ -o /opt/build/tmp/work/x86_64-nativesdk-pokysdk-l=
-inux/buildtools-tarball/1.0-r0/sdk/image/opt/my-os/0.1/sysroots/none=C2=A0 =
---force_postinstall --prefer-arch-to-version=C2=A0=C2=A0 install cppzmq-dev=
- googletest-dev libappcommunicator-dev liblogger-dev libmodbus-dev libmyos-=
-common-dev protobuf-c zeromq-staticdev' returned 255:
-Collected errors:
-* opkg_prepare_url_for_install: Couldn't find anything to satisfy 'cppzmq-=
-dev'.
-
-ERROR: Logfile of failure stored in: /opt/build/tmp/work/x86_64-nativesdk-=
-pokysdk-linux/buildtools-tarball/1.0-r0/temp/log.do_populate_sdk.155
-ERROR: Task (/opt/yocto/poky/meta/recipes-core/meta/buildtools-tarball.bb:=
-do_populate_sdk) failed with exit code '1'
-
-The listed Packeges are set in the TOOLCHAIN_TARGET_TASK variable. I tryed=
- using IMAGE_INSTALL_append but this didn't help.
-Does someone have an idea?
-
-greetings
-Alex
-
---DZw12n4TMZOGGsTxyZlS
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello,<br />I build the SDK with bitbake core-image-base -c populate_sdk an=
-d it works just fine. But trying to build the eSDK with bitbake core-image-=
-base -c populate_sdk_ext results in this error:<br /><br />ERROR: buildtool=
-s-tarball-1.0-r0 do_populate_sdk: Unable to install packages. Command '/opt=
-/build/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/re=
-cipe-sysroot-native/usr/bin/opkg --volatile-cache -f /opt/build/tmp/work/x8=
-6_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/opkg.conf -t /opt/bu=
-ild/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/temp/=
-ipktemp/ -o /opt/build/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-t=
-arball/1.0-r0/sdk/image/opt/my-os/0.1/sysroots/none&nbsp; --force_postinsta=
-ll --prefer-arch-to-version&nbsp;&nbsp; install cppzmq-dev googletest-dev l=
-ibappcommunicator-dev liblogger-dev libmodbus-dev libmyos-common-dev protob=
-uf-c zeromq-staticdev' returned 255:<br />Collected errors:<br />&nbsp;* op=
-kg_prepare_url_for_install: Couldn't find anything to satisfy 'cppzmq-dev'.=
-<br /><br />ERROR: Logfile of failure stored in: /opt/build/tmp/work/x86_64=
--nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/temp/log.do_populate_sdk=
-.155<br />ERROR: Task (/opt/yocto/poky/meta/recipes-core/meta/buildtools-ta=
-rball.bb:do_populate_sdk) failed with exit code '1'<br /><br /><br />The li=
-sted Packeges are set in the TOOLCHAIN_TARGET_TASK variable. I tryed using =
-IMAGE_INSTALL_append but this didn't help.<br />Does someone have an idea?<=
-br /><br />greetings<br />Alex
-
---DZw12n4TMZOGGsTxyZlS--
