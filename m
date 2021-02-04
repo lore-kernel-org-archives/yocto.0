@@ -1,82 +1,1538 @@
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
- by mx.groups.io with SMTP id smtpd.web09.2988.1612474357922893742
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+ by mx.groups.io with SMTP id smtpd.web09.2989.1612474358331373192
  for <yocto@lists.yoctoproject.org>;
- Thu, 04 Feb 2021 13:32:38 -0800
+ Thu, 04 Feb 2021 13:32:39 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=W0ia16Xa;
- spf=pass (domain: gmail.com, ip: 209.85.167.48, mailfrom: idadelm@gmail.com)
-Received: by mail-lf1-f48.google.com with SMTP id p21so6747135lfu.11
-        for <yocto@lists.yoctoproject.org>; Thu, 04 Feb 2021 13:32:37 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=XwURj7OI;
+ spf=pass (domain: gmail.com, ip: 209.85.167.49, mailfrom: idadelm@gmail.com)
+Received: by mail-lf1-f49.google.com with SMTP id p21so6747167lfu.11
+        for <yocto@lists.yoctoproject.org>; Thu, 04 Feb 2021 13:32:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=DmDx/YuKOacXsTotd2mb6ltLr+oO1A3VIUGj99x/9QI=;
-        b=W0ia16XaEyM2FodYCyUlQeprz8fQf60NCy9ux8EGrNeTJ8UDbAbmMbz2GQAieN62e1
-         2wwhcQ5j8Kl4jYAb4hT8H5Ojr9bTaoTDDytfICF0534gte3z8hdR8V663eqsUr37y+xR
-         o089O/i8bIvHvmfC11B1JelRQMHypjsCnWogJFQWxv5peIxOkQ9mdVjl+9VScKqMfMiH
-         YsNVigsXnZS8mwUKKes12v9F6c9UKwWGlI4BS1FYFQ82XyzjdhxkEzNUaF2HINgBRpDo
-         o6zTAVtNjzKRcyKpRzti+HO4iuxLAIOwWiEnvLEfnys27OkGEjd5J3jPtrCr+yhAWcu3
-         Ja7w==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UQMwoi8nhNAoWfY8Z9RbuHH4SVcoh2KlWpXQhcEbJ2A=;
+        b=XwURj7OIqrFb6vNMmhZCdvH5KlDxhfeZ/VPUSRAljHgqWRAlNmbovFeCBLgNjcMxVO
+         6jXU2WYYhxfbZVh6jPl/DxzU/kinv2N0vVstY5SDrKkXKGsrh4Hnztx4fctECODOJ5L6
+         bkaiSgBJQ2yKuiAoVj+DQ4rqWPD2EZaodnwVHzEDdO40eNm8sqvs0q9QGOT6f1VbPIVH
+         Z72clbFnjo7QhUxL5WwVvqlACHF5zLvOqyZJQ8bOwOOuHl9/q07GY745auF3qj6xAJQM
+         TYXZTGUQi2P8LWwy2I/6KbQQcFjDvQkMpDoyLQeImDb0sxquGNquYI3SIctV2LKKWefh
+         hd+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=DmDx/YuKOacXsTotd2mb6ltLr+oO1A3VIUGj99x/9QI=;
-        b=SVuyvfx9NsGJLO7YoRcQxuFUKUVapOCimjoWtCnU8219GtRIGhZSwxiCtcgzJtb/iB
-         NyD59it1PrCmdlw6EmCteZEAkS3t0a/lsp9C+GqDZmd0q484WBkd6UmH2Cpid/Txtk6y
-         mML1gfCse2yDZdKAJz9+MxkSf/SGthQKmWEat/Qz7PUlhoGxRUFHKD1Owhq7ErJnImGW
-         uBh0+QcsVPY3i1Q9c94b3FF93y7RJ/yFABpT30VAXmpHJ8snhDuwdzS7LxLZvI2UJLiX
-         nbQ0Aw65vjvDaN75qvAle8OsDaAqpBI5Q652jZP+eErGvKwAJ+wuqi7CXrExjgV/K/qt
-         IghA==
-X-Gm-Message-State: AOAM530jkcDtQPBXhFMsPSLnfXq0WbRuhYxizBGMrEekvdyNfOjg72hC
-	FkO1w75UtkPLdxwEirJemq5SMfBcDz4/i5lH
-X-Google-Smtp-Source: ABdhPJwSA62EGxALZq1Xkic7sPNrt4BR2FkVj895ieMHjF6RMkEGhsuip3vWzGaW/J5c07uZzGNRRA==
-X-Received: by 2002:a19:6a13:: with SMTP id u19mr676536lfu.405.1612474355817;
-        Thu, 04 Feb 2021 13:32:35 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UQMwoi8nhNAoWfY8Z9RbuHH4SVcoh2KlWpXQhcEbJ2A=;
+        b=HKp4m0uH6RhSEYUipQ0E3tQXPFyO/czc4p5eNO6mlJEZLPboICY5J34bCxGt1OlYvN
+         uBlzlawTrnGF4htWu0r2QBpPZReIrovMiOp1HQn7TxgZfJ/KKCQVcf15RWhvVpZYuuvh
+         242m0goCu+deFpspaOT/AHXh//ErBALO2sYoJZPHkSWvRpXiSy1yy9TPlh2MjDWyIk8b
+         6tFRizfXdl30Hc0lZEov/iVF1xAwj2/s18sVOopmAOtRg1GIJkm/kPN7E7/Arg5SmyBo
+         8H+YAAwi01wD8y3lT8Nbpnulb4QAyXtirp3TFN5a5/9GJWW1956a3voAjCHNzp0HSphq
+         pw1g==
+X-Gm-Message-State: AOAM531cYJDU+QZ+TA8So2RLo2Z8xdOS2tL+8dT9cursyAQAlQoA2IgN
+	jp2kvlLUed9baKAGCI51yyXOG1ptD1qhA41W
+X-Google-Smtp-Source: ABdhPJxR5Fit21iGQXu72dCT0peaotLFcjGoyLDrK0IAIbRgPC6bliezxqaMGw3BcFDum0vOlyDW7g==
+X-Received: by 2002:ac2:5591:: with SMTP id v17mr704028lfg.418.1612474353738;
+        Thu, 04 Feb 2021 13:32:33 -0800 (PST)
 Return-Path: <idadelm@gmail.com>
 Received: from ida-pc.lan ([129.0.101.30])
-        by smtp.gmail.com with ESMTPSA id f9sm743813lft.114.2021.02.04.13.32.33
+        by smtp.gmail.com with ESMTPSA id f9sm743813lft.114.2021.02.04.13.32.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Feb 2021 13:32:35 -0800 (PST)
+        Thu, 04 Feb 2021 13:32:32 -0800 (PST)
 From: "Meh Mbeh Ida Delphine" <idadelm@gmail.com>
 To: yocto@lists.yoctoproject.org
-Cc: mark.hatle@kernel.crashing.org
-Subject: [prelink-cross][PATCH 2/3] Updated email addresses
-Date: Thu,  4 Feb 2021 22:32:17 +0100
-Message-Id: <20210204213218.12781-2-idadelm@gmail.com>
+Cc: mark.hatle@kernel.crashing.org,
+	Meh Mbeh Ida Delphine <idadelm@gmail.com>
+Subject: [prelink-cross][PATCH 1/3] Add SPDX license headers to all source files
+Date: Thu,  4 Feb 2021 22:32:16 +0100
+Message-Id: <20210204213218.12781-1-idadelm@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210204213218.12781-1-idadelm@gmail.com>
-References: <20210204213218.12781-1-idadelm@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Ida Delphine <idadelm@gmail.com>
----
- README | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+From: Meh Mbeh Ida Delphine <idadelm@gmail.com>
 
-diff --git a/README b/README
-index 2d8893b..7c4918a 100644
---- a/README
-+++ b/README
-@@ -1,4 +1,4 @@
--Please contact <mark.hatle@windriver.com> if you have a question about this
-+Please contact <mark.hatle@kernel.crashing.org> if you have a question about this
- version.  The original author is not responsible for the modified version!
+Fixed bug #13529
+Added SPDX headers in all source files except src/makecrc.c since it is not copyrighted.
+Skipped Makefile.am as well.
+Also cleared redundant license text.
+
+Signed-off-by: Meh Mbeh Ida Delphine <idadelm@gmail.com>
+---
+ src/arch-alpha.c   | 15 ++-------------
+ src/arch-arm.c     | 15 ++-------------
+ src/arch-cris.c    | 15 ++-------------
+ src/arch-i386.c    | 15 ++-------------
+ src/arch-ia64.c    | 15 ++-------------
+ src/arch-mips.c    | 16 ++--------------
+ src/arch-ppc.c     | 15 ++-------------
+ src/arch-ppc64.c   | 15 ++-------------
+ src/arch-s390.c    | 15 ++-------------
+ src/arch-s390x.c   | 15 ++-------------
+ src/arch-sh.c      | 15 ++-------------
+ src/arch-sparc.c   | 16 +++-------------
+ src/arch-sparc64.c | 15 ++-------------
+ src/arch-x86_64.c  | 15 ++-------------
+ src/cache.c        | 15 ++-------------
+ src/canonicalize.c | 16 ++--------------
+ src/checksum.c     | 15 ++-------------
+ src/conflict.c     | 15 ++-------------
+ src/crc32.c        | 15 ++-------------
+ src/cxx.c          | 15 ++-------------
+ src/data.c         | 15 ++-------------
+ src/doit.c         | 15 ++-------------
+ src/dso.c          | 15 ++-------------
+ src/dwarf2.c       | 15 ++-------------
+ src/dwarf2.h       | 15 ++-------------
+ src/exec.c         | 15 ++-------------
+ src/execle_open.c  | 15 ++-------------
+ src/execstack.c    | 15 ++-------------
+ src/fptr.c         | 15 ++-------------
+ src/fptr.h         | 15 ++-------------
+ src/gather.c       | 15 ++-------------
+ src/get.c          | 15 ++-------------
+ src/hashtab.c      | 17 ++---------------
+ src/hashtab.h      | 16 +++-------------
+ src/layout.c       | 15 ++-------------
+ src/layout.h       | 15 ++-------------
+ src/main.c         | 15 ++-------------
+ src/md5.c          | 16 ++--------------
+ src/md5.h          | 15 ++-------------
+ src/mdebug.c       | 15 ++-------------
+ src/prelink.c      | 15 ++-------------
+ src/prelink.h      | 15 ++-------------
+ src/prelinktab.h   | 15 ++-------------
+ src/reloc-info.c   | 15 ++-------------
+ src/reloc-info.h   | 15 ++-------------
+ src/reloc.c        | 15 ++-------------
+ src/reloc.h        | 15 ++-------------
+ src/sha.c          |  4 ++++
+ src/sha.h          |  4 ++++
+ src/space.c        | 15 ++-------------
+ src/space.h        | 15 ++-------------
+ src/stabs.c        | 15 ++-------------
+ src/undo.c         | 15 ++-------------
+ src/undoall.c      | 15 ++-------------
+ src/verify.c       | 15 ++-------------
+ 55 files changed, 116 insertions(+), 694 deletions(-)
+
+diff --git a/src/arch-alpha.c b/src/arch-alpha.c
+index 7802a3e..bc5c192 100644
+--- a/src/arch-alpha.c
++++ b/src/arch-alpha.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2009 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
  
- Compilation
-@@ -13,8 +13,8 @@ Patch submission
- When submitting patches to the cross-prelink project, please do the
- following:
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
  
--To: mark.hatle@windriver.com
--Cc: yocto@yoctoproject.org
-+To: mark.hatle@kernel.crashing.org
-+Cc: yocto@lists.yoctoproject.org
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/arch-arm.c b/src/arch-arm.c
+index eec7c57..b5ea886 100644
+--- a/src/arch-arm.c
++++ b/src/arch-arm.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2004, 2009, 2011, 2013 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
  
- Subject: [prelink-cross] ....
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
  
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/arch-cris.c b/src/arch-cris.c
+index 3272779..634bf9f 100644
+--- a/src/arch-cris.c
++++ b/src/arch-cris.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2004, 2009 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/arch-i386.c b/src/arch-i386.c
+index a1e0fcc..5a0b2ca 100644
+--- a/src/arch-i386.c
++++ b/src/arch-i386.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2009, 2011 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/arch-ia64.c b/src/arch-ia64.c
+index 6039115..56196de 100644
+--- a/src/arch-ia64.c
++++ b/src/arch-ia64.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2009 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/arch-mips.c b/src/arch-mips.c
+index 02c608f..2875ec3 100644
+--- a/src/arch-mips.c
++++ b/src/arch-mips.c
+@@ -2,20 +2,8 @@
+    Written by Richard Sandiford <richard@codesourcery.com>, 2006
+    Updated by Maciej W. Rozycki <macro@codesourcery.com>, 2008.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
+-
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ /* GENERAL NOTES
+ 
+    The psABI defines R_MIPS_REL32 as A - EA + S, where the value of EA
+diff --git a/src/arch-ppc.c b/src/arch-ppc.c
+index e22e5d5..e296d79 100644
+--- a/src/arch-ppc.c
++++ b/src/arch-ppc.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2009, 2011 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/arch-ppc64.c b/src/arch-ppc64.c
+index a764b99..3f2c375 100644
+--- a/src/arch-ppc64.c
++++ b/src/arch-ppc64.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2002, 2003, 2004, 2009 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2002.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/arch-s390.c b/src/arch-s390.c
+index e5fe130..1a65f5c 100644
+--- a/src/arch-s390.c
++++ b/src/arch-s390.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2009, 2010, 2013 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/arch-s390x.c b/src/arch-s390x.c
+index e4d82f7..926cfa2 100644
+--- a/src/arch-s390x.c
++++ b/src/arch-s390x.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2009, 2013 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/arch-sh.c b/src/arch-sh.c
+index 1b11312..a852266 100644
+--- a/src/arch-sh.c
++++ b/src/arch-sh.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2009 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/arch-sparc.c b/src/arch-sparc.c
+index e016a79..41b297d 100644
+--- a/src/arch-sparc.c
++++ b/src/arch-sparc.c
+@@ -1,19 +1,9 @@
+ /* Copyright (C) 2001, 2002, 2004, 2009 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++/*
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/arch-sparc64.c b/src/arch-sparc64.c
+index aee4601..c6a1027 100644
+--- a/src/arch-sparc64.c
++++ b/src/arch-sparc64.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2004, 2009 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/arch-x86_64.c b/src/arch-x86_64.c
+index 2f6c551..249661a 100644
+--- a/src/arch-x86_64.c
++++ b/src/arch-x86_64.c
+@@ -3,19 +3,8 @@
+    Copyright (C) 2011 Wind River Systems, Inc.
+    x32 support by Mark Hatle <mark.hatle@windriver.com>
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/cache.c b/src/cache.c
+index 1cc3217..b476581 100644
+--- a/src/cache.c
++++ b/src/cache.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2006, 2013 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/canonicalize.c b/src/canonicalize.c
+index 79df44e..e94ec06 100644
+--- a/src/canonicalize.c
++++ b/src/canonicalize.c
+@@ -2,20 +2,8 @@
+    Copyright (C) 1996-2002, 2004, 2005, 2006 Free Software Foundation, Inc.
+    This file is part of the GNU C Library.
+ 
+-   The GNU C Library is free software; you can redistribute it and/or
+-   modify it under the terms of the GNU Lesser General Public
+-   License as published by the Free Software Foundation; either
+-   version 2.1 of the License, or (at your option) any later version.
+-
+-   The GNU C Library is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-   Lesser General Public License for more details.
+-
+-   You should have received a copy of the GNU Lesser General Public
+-   License along with the GNU C Library; if not, write to the Free
+-   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+-   02111-1307 USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <assert.h>
+ #include <stdlib.h>
+diff --git a/src/checksum.c b/src/checksum.c
+index 20a23a0..5c80fc5 100644
+--- a/src/checksum.c
++++ b/src/checksum.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/conflict.c b/src/conflict.c
+index 5613ace..83713c5 100644
+--- a/src/conflict.c
++++ b/src/conflict.c
+@@ -3,19 +3,8 @@
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+    Updated by Maciej W. Rozycki <macro@codesourcery.com>, 2008.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/crc32.c b/src/crc32.c
+index f36abb5..81e990b 100644
+--- a/src/crc32.c
++++ b/src/crc32.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <stdint.h>
+diff --git a/src/cxx.c b/src/cxx.c
+index 4391ebe..4b911a9 100644
+--- a/src/cxx.c
++++ b/src/cxx.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2007, 2009 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <alloca.h>
+diff --git a/src/data.c b/src/data.c
+index 751f96f..d648744 100644
+--- a/src/data.c
++++ b/src/data.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include "prelink.h"
+diff --git a/src/doit.c b/src/doit.c
+index 3784866..42e6819 100644
+--- a/src/doit.c
++++ b/src/doit.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2003, 2004, 2005, 2007 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <alloca.h>
+diff --git a/src/dso.c b/src/dso.c
+index 949abf9..9cce846 100644
+--- a/src/dso.c
++++ b/src/dso.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2006, 2010 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/dwarf2.c b/src/dwarf2.c
+index b9588b1..d230bb7 100644
+--- a/src/dwarf2.c
++++ b/src/dwarf2.c
+@@ -2,19 +2,8 @@
+    Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/dwarf2.h b/src/dwarf2.h
+index b0c80b6..888f2c7 100644
+--- a/src/dwarf2.h
++++ b/src/dwarf2.h
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2009, 2010, 2011, 2012 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #define DW_TAG_padding			0x00
+ #define DW_TAG_array_type		0x01
+diff --git a/src/exec.c b/src/exec.c
+index ca7fd14..431690e 100644
+--- a/src/exec.c
++++ b/src/exec.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2006 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/execle_open.c b/src/execle_open.c
+index 2ee5cbc..0d4bef5 100644
+--- a/src/execle_open.c
++++ b/src/execle_open.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <errno.h>
+diff --git a/src/execstack.c b/src/execstack.c
+index 97fb453..fe044c5 100644
+--- a/src/execstack.c
++++ b/src/execstack.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2003, 2005, 2010 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2003.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <errno.h>
+diff --git a/src/fptr.c b/src/fptr.c
+index cfe3aed..65a2804 100644
+--- a/src/fptr.c
++++ b/src/fptr.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2007 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/fptr.h b/src/fptr.h
+index 36ef7c6..c4ce3f7 100644
+--- a/src/fptr.h
++++ b/src/fptr.h
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #ifndef FPTR_H
+ #define FPTR_H
+diff --git a/src/gather.c b/src/gather.c
+index 277f1b5..0d1e7c4 100644
+--- a/src/gather.c
++++ b/src/gather.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2006, 2007 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/get.c b/src/get.c
+index 0659962..bb58b1e 100644
+--- a/src/get.c
++++ b/src/get.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2007, 2009 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/hashtab.c b/src/hashtab.c
+index fa27446..7dc389d 100644
+--- a/src/hashtab.c
++++ b/src/hashtab.c
+@@ -2,21 +2,8 @@
+    Copyright (C) 1999, 2000, 2001 Free Software Foundation, Inc.
+    Contributed by Vladimir Makarov (vmakarov@cygnus.com).
+ 
+-This file is part of the libiberty library.
+-Libiberty is free software; you can redistribute it and/or
+-modify it under the terms of the GNU Library General Public
+-License as published by the Free Software Foundation; either
+-version 2 of the License, or (at your option) any later version.
+-
+-Libiberty is distributed in the hope that it will be useful,
+-but WITHOUT ANY WARRANTY; without even the implied warranty of
+-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-Library General Public License for more details.
+-
+-You should have received a copy of the GNU Library General Public
+-License along with libiberty; see the file COPYING.LIB.  If
+-not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+-Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ /* This package implements basic hash table functionality.  It is possible
+    to search for an entry, create an entry and destroy an entry.
+diff --git a/src/hashtab.h b/src/hashtab.h
+index 31e63e0..d3f297f 100644
+--- a/src/hashtab.h
++++ b/src/hashtab.h
+@@ -2,19 +2,8 @@
+    Copyright (C) 1999, 2000 Free Software Foundation, Inc.
+    Contributed by Vladimir Makarov (vmakarov@cygnus.com).
+ 
+-This program is free software; you can redistribute it and/or modify
+-it under the terms of the GNU General Public License as published by
+-the Free Software Foundation; either version 2 of the License, or
+-(at your option) any later version.
+-
+-This program is distributed in the hope that it will be useful,
+-but WITHOUT ANY WARRANTY; without even the implied warranty of
+-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-GNU General Public License for more details.
+-
+-You should have received a copy of the GNU General Public License
+-along with this program; if not, write to the Free Software
+-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ /* This package implements basic hash table functionality.  It is possible
+    to search for an entry, create an entry and destroy an entry.
+@@ -29,6 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
+    expanded by creation of new hash table and transferring elements from
+    the old table to the new table.  */
+ 
++
+ #ifndef __HASHTAB_H__
+ #define __HASHTAB_H__
+ 
+diff --git a/src/layout.c b/src/layout.c
+index 859ab66..29be7a3 100644
+--- a/src/layout.c
++++ b/src/layout.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2006, 2011 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <alloca.h>
+diff --git a/src/layout.h b/src/layout.h
+index f481d22..1b10bc0 100644
+--- a/src/layout.h
++++ b/src/layout.h
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2004, 2006 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #ifndef LAYOUT_H
+ #define LAYOUT_H
+diff --git a/src/main.c b/src/main.c
+index 6ba89d5..39e44ad 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2007, 2010, 2011 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <errno.h>
+diff --git a/src/md5.c b/src/md5.c
+index 0d2fdef..19a8e0b 100644
+--- a/src/md5.c
++++ b/src/md5.c
+@@ -4,21 +4,9 @@
+    NOTE: The canonical source of this file is maintained with the GNU C
+    Library.  Bugs can be reported to bug-glibc@prep.ai.mit.edu.
+ 
+-   This program is free software; you can redistribute it and/or modify it
+-   under the terms of the GNU General Public License as published by the
+-   Free Software Foundation; either version 2, or (at your option) any
+-   later version.
+ 
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
+-
+-/* Written by Ulrich Drepper <drepper@gnu.ai.mit.edu>, 1995.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <sys/types.h>
+ #include <stdlib.h>
+diff --git a/src/md5.h b/src/md5.h
+index 55f6195..eb0b85e 100644
+--- a/src/md5.h
++++ b/src/md5.h
+@@ -4,19 +4,8 @@
+    NOTE: The canonical source of this file is maintained with the GNU C
+    Library.  Bugs can be reported to bug-glibc@prep.ai.mit.edu.
+ 
+-   This program is free software; you can redistribute it and/or modify it
+-   under the terms of the GNU General Public License as published by the
+-   Free Software Foundation; either version 2, or (at your option) any
+-   later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #ifndef _MD5_H
+ #define _MD5_H 1
+diff --git a/src/mdebug.c b/src/mdebug.c
+index 4c22d2f..eb6d1b5 100644
+--- a/src/mdebug.c
++++ b/src/mdebug.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/prelink.c b/src/prelink.c
+index 64c4fea..bf774c9 100644
+--- a/src/prelink.c
++++ b/src/prelink.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2005, 2006, 2007 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/prelink.h b/src/prelink.h
+index 39c4390..4c4c243 100644
+--- a/src/prelink.h
++++ b/src/prelink.h
+@@ -4,19 +4,8 @@
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+    Updated by Maciej W. Rozycki <macro@codesourcery.com>, 2008.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #ifndef PRELINK_H
+ #define PRELINK_H
+diff --git a/src/prelinktab.h b/src/prelinktab.h
+index f41c79c..a404292 100644
+--- a/src/prelinktab.h
++++ b/src/prelinktab.h
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #ifndef PRELINKTAB_H
+ #define PRELINKTAB_H
+diff --git a/src/reloc-info.c b/src/reloc-info.c
+index 4ce333c..d51cfc1 100644
+--- a/src/reloc-info.c
++++ b/src/reloc-info.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2008 CodeSourcery
+    Written by Maciej W. Rozycki <macro@codesourcery.com>, 2008.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ 
+diff --git a/src/reloc-info.h b/src/reloc-info.h
+index a8f8b7c..592a92c 100644
+--- a/src/reloc-info.h
++++ b/src/reloc-info.h
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2008 CodeSourcery
+    Written by Maciej W. Rozycki <macro@codesourcery.com>, 2008.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #ifndef RELOC_INFO_H
+ #define RELOC_INFO_H
+diff --git a/src/reloc.c b/src/reloc.c
+index deb0abe..9883dc7 100644
+--- a/src/reloc.c
++++ b/src/reloc.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2005 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/reloc.h b/src/reloc.h
+index a2ceff9..ee91f7e 100644
+--- a/src/reloc.h
++++ b/src/reloc.h
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #ifndef RELOC_H
+ #define RELOC_H
+diff --git a/src/sha.c b/src/sha.c
+index cfbc956..f979bc4 100644
+--- a/src/sha.c
++++ b/src/sha.c
+@@ -1,3 +1,7 @@
++/*
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
++
+ /* sha.c - Functions to compute the SHA1 hash (message-digest) of files
+    or blocks of memory.  Complies to the NIST specification FIPS-180-1.
+ 
+diff --git a/src/sha.h b/src/sha.h
+index 13583e3..810072b 100644
+--- a/src/sha.h
++++ b/src/sha.h
+@@ -1,3 +1,7 @@
++/*
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
++
+ /* sha.h - Declaration of functions and datatypes for SHA1 sum computing
+    library functions.
+ 
+diff --git a/src/space.c b/src/space.c
+index 4bd4760..8223daf 100644
+--- a/src/space.c
++++ b/src/space.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2004, 2006, 2007 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/space.h b/src/space.h
+index 5c9f725..59d087c 100644
+--- a/src/space.h
++++ b/src/space.h
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2004 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #ifndef SPACE_H
+ #define SPACE_H
+diff --git a/src/stabs.c b/src/stabs.c
+index c0a5a6a..fd0ca28 100644
+--- a/src/stabs.c
++++ b/src/stabs.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2005, 2006 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/undo.c b/src/undo.c
+index 4c38dab..e6cfae3 100644
+--- a/src/undo.c
++++ b/src/undo.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2001, 2002, 2003, 2005, 2010 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2001.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
+diff --git a/src/undoall.c b/src/undoall.c
+index 55d2a0b..44a0b4e 100644
+--- a/src/undoall.c
++++ b/src/undoall.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2002, 2005 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2002.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <alloca.h>
+diff --git a/src/verify.c b/src/verify.c
+index 7f530c0..991794a 100644
+--- a/src/verify.c
++++ b/src/verify.c
+@@ -1,19 +1,8 @@
+ /* Copyright (C) 2002, 2003, 2006, 2007, 2010 Red Hat, Inc.
+    Written by Jakub Jelinek <jakub@redhat.com>, 2002.
+ 
+-   This program is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2, or (at your option)
+-   any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program; if not, write to the Free Software Foundation,
+-   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++* SPDX-License-Identifier: GPL-2.0-or-later
++*/
+ 
+ #include <config.h>
+ #include <assert.h>
 -- 
 2.25.1
 
