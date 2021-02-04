@@ -1,387 +1,1240 @@
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (NAM11-BN8-obe.outbound.protection.outlook.com [40.107.236.86])
- by mx.groups.io with SMTP id smtpd.web11.1368.1612403161557271878
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+ by mx.groups.io with SMTP id smtpd.web11.1827.1612405207568309903
  for <yocto@lists.yoctoproject.org>;
- Wed, 03 Feb 2021 17:46:02 -0800
+ Wed, 03 Feb 2021 18:20:07 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=aE7eqQZJ;
- spf=pass (domain: windriver.com, ip: 40.107.236.86, mailfrom: randy.macleod@windriver.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GLcknE6Zu0fH+PXRo9vPu0QawoXgej7xl8Cg56wwpjDXNwlwuEotiK6VI+lCW0c0o0eQ21MMaFsZ67RY7MGh9O1vA5Iv7yCFT/nE5QaSUrJfePrjVAuAz0r2r+MnY6uhDYBBBDl3DB6hBlra16oalj1biQbupbmjbcvYf/u5xzUrqtb3UlChdDpc60tvm29+RsA6qxI8tzy6UKY0cxGyEx+5OTL6JEe69K8uj330PAXkdm3S0RG77yRn81KdY+xbc18TdiHOXxokHp1FA3gOHfxhXzyUjtWqcELGcnVlbbtBVY53teRW4ZbI67M9gfx9oldnVxJnZilb7KvdUepx0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fshZs6jF9Eeunu8x5s8CJgmfIK8lOHiSeBQyXErrl9E=;
- b=YrmpNWyfSVc5mcaYAp2Cd1SjdfR6NF7vgF9H4pKgwkDB3nhxh4q0ZLmQFidPknkWjGHIKxspIYQqvhwJLk8+1yelLG0j1HuzmZfC17PDxdRGtved08WNn7M+NVyiPSsYlBGt0w7xnyGpKTWjr4ty6OONBnskBHdOVrSR5CuungXTmb+RYhut3aO075LXfVlc7QgPa9RAGIftyr8uOEF6y8mnR4Y1H7teQ8cwzCOMCivyWvmElgpHdw8NJ8epPFgLxk0FzVnttOHLdStQxvVd+jbY9CfAvophtSQJ60L7pzIQvgXlGH7tanNnRsqxBli5E1nLJLQP+sgxTxVOQ2pEtg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=l2/sNVqV;
+ spf=pass (domain: gmail.com, ip: 209.85.222.182, mailfrom: jonas.vautherin@gmail.com)
+Received: by mail-qk1-f182.google.com with SMTP id x81so2023327qkb.0
+        for <yocto@lists.yoctoproject.org>; Wed, 03 Feb 2021 18:20:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=windriversystems.onmicrosoft.com;
- s=selector2-windriversystems-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fshZs6jF9Eeunu8x5s8CJgmfIK8lOHiSeBQyXErrl9E=;
- b=aE7eqQZJ4fwXaZazdKT6xzjINqfz4k7qod6lBp9KD8Z25OSiGqy9Ng/cEiNEEuG5TScLRZd52oVa1y5NF+4kQgj8APqYkyKiG4VQIeNFGv2d53zV8pjNbMk2WdH+uNQ3t84Rz0JHM9Fpy+OYX1cGPsFDET2KvtgYCCmCYrxrVBw=
-Authentication-Results: linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=none action=none header.from=windriver.com;
-Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
- by DM6PR11MB2604.namprd11.prod.outlook.com (2603:10b6:5:c8::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.23; Thu, 4 Feb
- 2021 01:45:59 +0000
-Received: from DM6PR11MB3994.namprd11.prod.outlook.com
- ([fe80::8e2:471a:7b63:1a0e]) by DM6PR11MB3994.namprd11.prod.outlook.com
- ([fe80::8e2:471a:7b63:1a0e%7]) with mapi id 15.20.3805.024; Thu, 4 Feb 2021
- 01:45:59 +0000
-Subject: Re: [yocto][ptest-runner][PATCH] util.c: remove the usage of pipe for parent/child communication
-To: Yi Fan Yu <yifan.yu@windriver.com>, yocto@lists.yoctoproject.org,
- =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linaro.org>
-References: <16606184C72AAA28.24338@lists.yoctoproject.org>
- <0b25cf3d-7e79-cd2a-c192-59f085390974@windriver.com>
-From: "Randy MacLeod" <randy.macleod@windriver.com>
-Message-ID: <69306452-5542-69e3-94a7-2bfe5d5259de@windriver.com>
-Date: Wed, 3 Feb 2021 20:45:56 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
-In-Reply-To: <0b25cf3d-7e79-cd2a-c192-59f085390974@windriver.com>
-X-Originating-IP: [198.48.226.187]
-X-ClientProxiedBy: SJ0PR03CA0101.namprd03.prod.outlook.com
- (2603:10b6:a03:333::16) To DM6PR11MB3994.namprd11.prod.outlook.com
- (2603:10b6:5:193::19)
-Return-Path: randy.macleod@windriver.com
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hZzv9LwDDjAAwvGDvYAlK9TGq0GkMGcWlG1ZVTcQ2Kc=;
+        b=l2/sNVqV+OXwbFLDvsRnV80+hHvwmsaMCNlcKwG48jopXE1JxSonWPNMlg2AlvV/mX
+         0pVrp3zUyOg+HGTTmxMlBWoUxizZ/rCi74MTvcRvfATJIu2lneJFJwS4SS9yx9M1LcAH
+         +/+QkpJwFGtttu1nOmL8nRKhqhPkndFcY7uiutk2DJoCTm9SXgFO6IZ6iZCUla6Q76Kc
+         dr8euy3UYBzeYpln5AX62gBl9wNB04ALOGs1z82ZZWJmGDel5wTXjf9UuwWb23WVSKpK
+         wMdXozJiBSt/jNQP8ytZ+PoOS77goR+fr+IY9ByhMj4kYzPTNe85JsvbgUkneWuXXl4g
+         vrSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hZzv9LwDDjAAwvGDvYAlK9TGq0GkMGcWlG1ZVTcQ2Kc=;
+        b=DG8fY2SssoMdJzaHHwIktnVvIbikFLLmG6IshxXb2HS/0OP5UNKfkBFmBub3HkHYnm
+         NZlk0dToV1apHFpEKveIQF6a+N1OWY0cn636MSqfx00rj9NNZGDCvdnRhV4Oeu1ZZ1M6
+         D5aizXfeJ9K97ZM5blF6UitzTLEYuVfMWqVAtivmPFqgWtVfdYuG+ZFZ2Rg+TgXKfGcZ
+         6cboJc/uQSQLDlS3K7NohDVoXLcmRZCJ1HmZy0adBzLsePZ3t9eFaj8UNDozlxOSUnCT
+         6GmWV6VsoKlEkLzLsRFrtNxEPDZzTU1f+iTORwMTbd2tYmXOxfGqqvgBmpO8moqhyJ9e
+         qogg==
+X-Gm-Message-State: AOAM531IdhW5OQQeRcDI+EccoPTSD+dRgiQTl2WLyAp3k035u/wMSuJz
+	o9wljllfbqDkdebxozXVbmSGylGStFtj5aZ5Meg=
+X-Google-Smtp-Source: ABdhPJxH76kE99CjqaOmfHe7FNGOk1frdq6UZKDrlR5BKlqpVd9fZ9pinRneBrzLlqirtkHply/1MrvBp+m0QfF2xDk=
+X-Received: by 2002:a37:6848:: with SMTP id d69mr5516212qkc.257.1612405206631;
+ Wed, 03 Feb 2021 18:20:06 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.25.44.2] (198.48.226.187) by SJ0PR03CA0101.namprd03.prod.outlook.com (2603:10b6:a03:333::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.19 via Frontend Transport; Thu, 4 Feb 2021 01:45:58 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 78cd20be-a508-412a-af90-08d8c8ae9f57
-X-MS-TrafficTypeDiagnostic: DM6PR11MB2604:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: 
-	<DM6PR11MB2604249EE9F827E7A062D1FFF8B39@DM6PR11MB2604.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1169;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	x4sgNaXCY8RCLdbyw6Yjkx1LkqaG8WHOSbwSDfo6KTwFG5h/ZZ4mn6wU01iwCyLyjwoTkBSBoELksSfi9pqIIJ3NjaO+yz2ADAfimdqOvi37UCFOFOC+4QxNs8/lFQF1jwBvv/2+mJfm73S4awPKAndLXpp/twoc6xP2NgDJ9uBoo/OA9N6NCv1JEH4UmwbhijQomLcE9A6tlVJ7EEGUVArR+5eKheAunqz/dDvxwKHBwI61Qrn3UZFRhWUr37FRjFwYA0TPB1Ml92kaNboAOhuknL5pHsCw+US4U6usZrXDcDi1FoKUpUp5XzzzZ+Abh5FOa1x0WH6spmckk+9OIcbDNUuWaILgR99rRSWdobbYKfUByzif9s/ZBXY9CJ92aBH/0FhkoOJILByqKY+oBHIEhzSC/9kCjU4+V4pSuYgQ0fhFsFFU0s/HPBCIj3l/i0o2auW6/EsK7NUAVBUzc5ifslpefDNzFNdsS1e8O4siHWsL0x8hx+Jmlf9vhYUp+CJGzDnEXRXH+mzEgfRxlzei6Ri2zaoOJOa74MCwgihGOvUdjzYI9br46kxV6k+vqmTUkDFhsCHQqYxn/mxLjI/4uaeSYPI1b5r8+3dp2Mydw0+8Fwnrur/yoM5BT+EGQ7mde3Di0dNkmr4DTMIqM6RaJOb+wkvvBoT02aSUZeJUw2n8XFp6cHdSXnpawhi6PleaPc8J0kZ57RsT7/yNFg==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(136003)(346002)(396003)(376002)(366004)(16526019)(186003)(966005)(86362001)(66946007)(66476007)(66556008)(6486002)(36756003)(31696002)(53546011)(31686004)(956004)(26005)(2616005)(52116002)(2906002)(83380400001)(478600001)(316002)(16576012)(110136005)(5660300002)(8676002)(8936002)(21314003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: 
-	=?us-ascii?Q?preLadDPw/5QCX9mvd0Qh3aVgfLaiY5S75Tk5zcNHb6SB3c9z6/4aYzwW6Uv?=
- =?us-ascii?Q?BnouQs0i6VqfHkGL1nt6ifbANutsmFdrrs9MIkCIY92kPfVS0eehh8y48yXe?=
- =?us-ascii?Q?GUCp8QDOpO3j4Rh3JEHiKGIa3N7oEPBtwUql+kFxmBjAzhVKU7cogjuBp/gP?=
- =?us-ascii?Q?r1d1kMyd5g4zDkzFZfoDLpHtFpmt5pgaKR/im/We4Ya2CFAB6cTnUT4zOIG1?=
- =?us-ascii?Q?1e4gYD9FGY17j2/exuYp29h4UThEyN8FdVTdG9i/Bkhtd/m9abEInSsLFWhy?=
- =?us-ascii?Q?oqXOTyXA80Cm2iPCFkbr8/AnkwC3tlvjQcCNo85qERWED8C1atJWkAMkfg+n?=
- =?us-ascii?Q?0k9laryJDifdUKPgSN/4ojSF14zDXWVdE25+/8D3XqOlArg7CEaJLantdxLF?=
- =?us-ascii?Q?SKeTHV/IMaphg+12PsoqmNA920em+z+JCHiDZsxxgQB/DCHhcN0dFfYn3IsA?=
- =?us-ascii?Q?ecIgA924A3bYuHFngZD66wqJzB2HSbwbtcaVUa/78QPaqvxN7fynSmYKT4T4?=
- =?us-ascii?Q?rGPUg7yYh1WmiWGLVsCBmTJ0bFp5yyZYOFPDrFM54wcDrbU7SF8U3Kn5eJ/w?=
- =?us-ascii?Q?sd84tVZV4IbX0nOZyySW4ceCxv2xECjWs7rugVvItmRY08czVO8b5wNqq0w4?=
- =?us-ascii?Q?pn5zI+7j72IsO3KNmk25CgLOQQpt3npV56HmjoAcCvOOsxgCyKjSXwaX1nrg?=
- =?us-ascii?Q?o+ErzkS7m/hWwscTr5Mi7yGQrd6mfX2oSTXUpJzIkLNqpe/u8qk6igTujJPE?=
- =?us-ascii?Q?GIp62Q1qfHYdO68k+vaUmJwypBrK7RPaI3q3Og412wpfLEU1IVUxELsJLX5i?=
- =?us-ascii?Q?bbRNGBsfZAJjxVbySdGOFR4VYUqaNnKaJLZg8OtBPDdfwJNifSs0IFuNeZbL?=
- =?us-ascii?Q?ke5f9GQHuuD3KdouSivFI3TPpSTWszz19kCWP/12E8g36H5AlR/KUpvSrpsC?=
- =?us-ascii?Q?Ldwi0xV20XSNPm57cbMZQ5IcMwqUhu768ui88rm4RVeOmWIDwbV/+A4b2LXt?=
- =?us-ascii?Q?Bsz9PIX/Q0akUJqYlIslOTReB0hQGOdSSMjS1+36PSrzPTQLADyILxakjEvo?=
- =?us-ascii?Q?BP9+rS3F?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78cd20be-a508-412a-af90-08d8c8ae9f57
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2021 01:45:59.7522
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: n34+fdnZ7S7fzbae2jJXpWzwsjtyb0W6Jr57BAGtO80PBDAGnwT4xZPQ1NjnXy3rrw5IuJCK3bVzeRXnjwtgWFiSXlEED/VOMQC3MAgo2q8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2604
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-CA
+References: <CAEyb4nFHLZ-cycQXBgerWeyyKUf3KRP+xSEa2kP0K1zYd7=HNA@mail.gmail.com>
+ <CAM9ZRVshoYvDho-Dmu2+UNorjLSyrN3t=ZYE5Uj0zit0_4mAew@mail.gmail.com>
+ <165CDE54CF259D2E.7022@lists.yoctoproject.org> <CAEyb4nH1jqEEhRyw-wmKPg+nqAhQMDdDv6GPjKGzc_igbYqyqQ@mail.gmail.com>
+ <DB6PR0102MB2630BFE5D26042D67AA4AEDB88BD0@DB6PR0102MB2630.eurprd01.prod.exchangelabs.com>
+ <CAEyb4nGC5Fmdxsz9Q1Pot=E0gJVPvvkR7+E381QRyg2F-KqtaA@mail.gmail.com>
+ <165EF1C95601254E.16314@lists.yoctoproject.org> <CAFSZm+g_8B=8-Y3H8VC4kCj311hWDDLWupAWqvnZ4Pew5WhCUw@mail.gmail.com>
+ <CAEyb4nFOfjSmCB47RgFg1uRkqRCO8+0NKNW4QOzgjJOZ+c34ww@mail.gmail.com>
+ <DB6PR0102MB2630EDA352DCFAFE77D4661088B69@DB6PR0102MB2630.eurprd01.prod.exchangelabs.com>
+ <38d778fcbc1e31c2efa82b5efef922e2@herrie.org>
+In-Reply-To: <38d778fcbc1e31c2efa82b5efef922e2@herrie.org>
+From: "Jonas Vautherin" <jonas.vautherin@gmail.com>
+Date: Thu, 4 Feb 2021 03:19:55 +0100
+Message-ID: <CAEyb4nHaJn=eL8w_GajtHq=bVBjr-1cVDEh-H33xWmnwpPX8UA@mail.gmail.com>
+Subject: Re: [yocto] Writing a BSP from downstream kernel sources
+To: yoctoproject.org@herrie.org
+Cc: Diego Santa Cruz <diego.santacruz@spinetix.com>, Aaron Cohen <aaron@assonance.org>, 
+	Paul Barker <pbarker@konsulko.com>, Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000093480405ba79575f"
+
+--00000000000093480405ba79575f
+Content-Type: text/plain; charset="UTF-8"
+
+Thanks a lot everybody, I managed to go further with Diego's idea! I
+removed the `const` in two other places, though I'm not sure if it was
+necessary (I'll check that later). But the `.err encountered` errors
+disappeared!
+
+@Herman: checking your sources, too :-)
+
+Best Regards,
+
+On Mon, Feb 1, 2021 at 9:21 AM Herman van Hazendonk <me@herrie.org> wrote:
+
+> Hi,
+>
+> We've been using 3.18 (Android) kernels on our LuneOS project with Yocto,
+> so we carry the various patches to get it to build with newer GCC's.
+>
+> See:
+> https://github.com/shr-distribution/linux/commits/tissot/3.18/halium-7.1
+> for some inspiration :)
+>
+> For older 3.4 kernels you would need more patches obviously:
+>
+> https://github.com/shr-distribution/linux/commits/hammerhead/3.4/halium-5.1
+>
+>
+> Best regards,
+> Herman
+>
+> On 2021-02-01 08:04, Diego Santa Cruz via lists.yoctoproject.org wrote:
+>
+> *From:* Jonas Vautherin <jonas.vautherin@gmail.com>
+> *Sent:* 31 January 2021 22:23
+> *To:* Aaron Cohen <aaron@assonance.org>
+> *Cc:* Diego Santa Cruz <Diego.SantaCruz@spinetix.com>; Paul Barker <
+> pbarker@konsulko.com>; Yocto-mailing-list <yocto@lists.yoctoproject.org>
+> *Subject:* Re: [yocto] Writing a BSP from downstream kernel sources
+>
+>
+>
+> Thanks Aaron!
+>
+>
+>
+> That seems to remove the log2 warnings, but it seems like they were not
+> related to those "Assembler" errors, e.g.:
+>
+>
+>
+> ```
+>
+> | /tmp/ccbtfgo7.s: Assembler messages:
+> | /tmp/ccbtfgo7.s:2011: Error: .err encountered
+>
+> ```
+>
+>
+>
+> I think I need to fix them like Diego was suggesting, but I have trouble
+> relating the error to a source file...
+>
+> *[Diego Santa Cruz] It may be easier to build the SDK with a dummy kernel
+> (i.e. no kernel, setting PREFERRED_PROVIDER_virtual/kernel ?= "linux-dummy"
+> in conf/local.conf) and use that SDK to get the kernel building outside of
+> Yocto. If you run the make with V=1 you will see the full compiler command
+> and you can re-run it manually. The use the -S (and eventually -E) line and
+> you can inspect the faulty assembly file or source and track the original
+> location. At least that is the route I took and worked well for me.*
+>
+> *I think you are using kernel 3.18.31, in that version it is the
+> __put_user_check macro you need to fix,
+> https://elixir.bootlin.com/linux/v3.18.31/source/arch/arm/include/asm/uaccess.h#L219
+> <https://elixir.bootlin.com/linux/v3.18.31/source/arch/arm/include/asm/uaccess.h#L219>*
+>
+>
+>
+> *A hand written patch (not tested at all!) that should solve your problem
+> is*
+>
+> --- arch/arm/include/asm/uaccess.h
+>
+> +++ arch/arm/include/asm/uaccess.h
+>
+> #define
+> __put_user_check(x,p)
+> \
+>
+>
+> ({
+> \
+>
+>                           unsigned long __limit =
+> current_thread_info()->addr_limit - 1; \
+>
+>                           const typeof(*(p)) __user *__tmp_p =
+> (p);                            \
+>
+> -                          register const typeof(*(p)) __r2 asm("r2") =
+> (x); \
+>
+> +                         register typeof(*(p)) __r2 asm("r2") =
+> (x);             \
+>
+>                           register const typeof(*(p)) __user *__p
+> asm("r0") = __tmp_p; \
+>
+>                           register unsigned long __l asm("r1") =
+> __limit;                    \
+>
+>                           register int __e
+> asm("r0");                                                           \
+>
+>                              switch (sizeof(*(__p)))
+> {                                                \
+>
+>
+>
+> On Sat, Jan 30, 2021 at 8:29 AM Aaron Cohen <aaron@assonance.org> wrote:
+>
+> Actually, I found the upstream patch I backported, which you're probably
+> better off using (same diff though).
+>
+>
+>
+> https://lore.kernel.org/patchwork/patch/773330/
+>
+>
+>
+> On Sat, Jan 30, 2021 at 2:26 AM Joel A Cohen via lists.yoctoproject.org
+> <aaron=assonance.org@lists.yoctoproject.org> wrote:
+>
+> I'm not sure if this is your issue, but I had a similar issue ilog2 and
+> the disassembler and fixed it by backporting this patch.
+>
+>
+>
+> No guarantees, but perhaps it will help.
+>
+>
+>
+> --Aaron
+>
+>
+>
+>
+>
+> On Fri, Jan 29, 2021 at 9:51 PM Jonas Vautherin <jonas.vautherin@gmail.com>
+> wrote:
+>
+> Thanks a lot for the advice! However, I can't seem to find a `const` that
+> I can simply remove. To give more context, here is the log output around
+> such an error (it seems like it is often surrounded by this log2.h warning,
+> by the way):
+>
+>
+>
+> | In file included from
+> /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/kernel.h:11,
+> |                  from
+> /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/kallsyms.h:9,
+> |                  from
+> /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/ftrace.h:10,
+> |                  from
+> /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/kernel/extable.c:18:
+> |
+> /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/log2.h:22:1:
+> warning: ignoring attribute 'noreturn' because it conflicts with attribute
+> 'const' [-Wattributes]
+> |    22 | int ____ilog2_NaN(void);
+> |       | ^~~
+> |   CC      fs/fat/dir.o
+> | In file included from
+> /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/kernel.h:11,
+> |                  from
+> /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/list.h:8,
+> |                  from
+> /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/module.h:9,
+> |                  from
+> /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/fs/fat/dir.c:16:
+> |
+> /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/log2.h:22:1:
+> warning: ignoring attribute 'noreturn' because it conflicts with attribute
+> 'const' [-Wattributes]
+> |    22 | int ____ilog2_NaN(void);
+> |       | ^~~
+> |   CC      block/deadline-iosched.o
+> | In file included from
+> /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/kernel.h:11,
+> |                  from
+> /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/block/deadline-iosched.c:6:
+> |
+> /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/log2.h:22:1:
+> warning: ignoring attribute 'noreturn' because it conflicts with attribute
+> 'const' [-Wattributes]
+> |    22 | int ____ilog2_NaN(void);
+> |       | ^~~
+> | /tmp/cc52vFrQ.s: Assembler messages:
+> | /tmp/cc52vFrQ.s:2683: Error: .err encountered
+> | /tmp/cc52vFrQ.s:2927: Error: .err encountered
+> |   LD      sound/sparc/built-in.o
+> |   LD      sound/spi/built-in.o
+> | make[3]: ***
+> [/home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/scripts/Makefile.build:257:
+> block/scsi_ioctl.o] Error 1
+>
+>
+>
+> I pasted the full output here, if that can help:
+> https://paste.ubuntu.com/p/KqN8nVWmvv/. The lines that seem to get the
+> log2 warning are:
+>
+>
+>
+> ```
+>
+> extern __attribute__((const, noreturn))
+>
+> int ____ilog2_NaN(void);
+>
+>  ```
+>
+>
+>
+> So there is a const there, but well... not sure what to do with it :-).
+>
+>
+>
+> Best,
+>
+>
+>
+> On Mon, Jan 25, 2021 at 9:00 AM Diego Santa Cruz <
+> Diego.SantaCruz@spinetix.com> wrote:
+>
+> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> *On
+> Behalf Of *Jonas Vautherin via lists.yoctoproject.org
+> *Sent:* 24 January 2021 14:30
+> *To:* Jonas Vautherin <jonas.vautherin@gmail.com>
+> *Cc:* Paul Barker <pbarker@konsulko.com>; Yocto-mailing-list <
+> yocto@lists.yoctoproject.org>
+> *Subject:* Re: [yocto] Writing a BSP from downstream kernel sources
+>
+>
+>
+> Just to close this: it seems like the gcc-cross-arm used by yocto
+> gatesgarth is too new for that specific downstream kernel (3.18.31).
+>
+>
+>
+> The goal was to get a proper BSP package for this device for a modern
+> yocto, so I don't think I will try with an older version of Yocto. If I
+> compile an old gcc as part of a custom Yocto layer (on gatesgarth), I am
+> guessing that I will have issues creating a distro that runs both on RPi
+> and on that older device (because RPi will have a newer kernel and gcc, and
+> the skycontroller will use older ones). I also guess that the downstream
+> dts won't work with a modern kernel, and I would not know how to write one
+> myself for that apq8009 chip.
+>
+>
+>
+> Hence, I'm giving up. Thanks a lot for the help :-).
+>
+> *[Diego Santa Cruz] Wait! You may be able to get it working, see below.*
+>
+>
+>
+> On Sat, Jan 23, 2021 at 2:07 PM Jonas Vautherin via lists.yoctoproject.org
+> <jonas.vautherin=gmail.com@lists.yoctoproject.org> wrote:
+>
+> Thanks a lot for the answer!
+>
+>
+>
+> It seems like using `KCONFIG_MODE = "--alldefconfig"` with
+> `KBUILD_DEFCONFIG = "msm8909_defconfig"` now ends up with the same kind of
+> errors as when I use the defconfig from the downstream kernel [1], i.e.:
+>
+>
+>
+> *[Diego Santa Cruz] I happen to be doing a similar kind of work, getting
+> an even older (2.6.37+) downstream kernel for an ARM machine to compile
+> with recent GCC in Yocto, in my case GCC 9.3 from dunfell. There are a few
+> fixes and backports necessary to make it happen and boot. I'm not done with
+> the work yet, so I do not know how stable it is, but I have it booting.*
+>
+> ```
+>
+> | /tmp/ccz8jKgm.s: Assembler messages:
+> | /tmp/ccz8jKgm.s:985: Error: .err encountered
+>
+> ```
+>
+> *[Diego Santa Cruz] The fix here is rather simple once you understand
+> what's going on, the problem is abusive use of const for register
+> variables, see
+> https://gcc.gnu.org/onlinedocs/gcc-9.3.0/gcc/Local-Register-Variables.html
+> <https://gcc.gnu.org/onlinedocs/gcc-9.3.0/gcc/Local-Register-Variables.html>
+> so when put_user() is used for a literal constant value it gets assigned
+> the wrong register, so just remove the const qualifier from the put_user()
+> register variable assignment for the value argument. For my older kernel
+> the patch is like this.*
+>
+> --- arch/arm/include/asm/uaccess.h
+>
+> +++ arch/arm/include/asm/uaccess.h
+>
+> @@ -145,7 +145,7 @@
+>
+>  #define
+> put_user(x,p)
+> \
+>
+>
+> ({
+> \
+>
+> -                               register const typeof(*(p)) __r2 asm("r2")
+> = (x); \
+>
+> +                              register typeof(*(p)) __r2 asm("r2") =
+> (x);                             \
+>
+>                                 register const typeof(*(p)) __user *__p
+> asm("r0") = (p);\
+>
+>                                 register int __e
+> asm("r0");                                                           \
+>
+>                         switch (sizeof(*(__p)))
+> {                                                \
+>
+>
+>
+> Could it be related to the tuning, e.g. I'm somehow defining a wrong
+> toolchain in my machine configuration [2] and it fails to build? I was
+> thinking about the tune-cortexa7.inc include, though it seems to me that
+> the apq8009 is a cortexa7 [3]:
+>
+>
+>
+> *[Diego Santa Cruz] Other commits from post 3.18 that you may need to
+> backport are the following (start from bottom of list) *
+>
+> 474c90156c8dcc2fa815e6716cc9394d7930cb9c give up on gcc ilog2() constant
+> optimizations
+>
+> cb984d101b30eb7478d32df56a0023e4603cba7f compiler-gcc: integrate the
+> various compiler-gcc[345].h files
+>
+> f6d133f877c8bb0a0934dc8c521c758ee771e901 compiler-gcc.h: neatening
+>
+> 7829fb09a2b4268b30dd9bc782fa5ebee278b137 lib: make memzero_explicit more
+> robust against dead store elimination
+>
+> cb4188ac8e5779f66b9f55888ac2c75b391cde44 compiler: introduce
+> __alias(symbol) shortcut
+>
+> 0b053c9518292705736329a8fe20ef4686ffc8e9 lib: memzero_explicit: use
+> barrier instead of OPTIMIZER_HIDE_VAR
+>
+> ee91ef6173e81819f5ff610c2485802081635657 bufferhead: force inlining of
+> buffer head flag operations
+>
+> cc7fce80229067890365c1ee196be5d304d36dea mtd: blkdevs: fix switch-bool
+> compilation warning
+>
+>
+>
+>
+>
+> > The Qualcomm Snapdragon 212 APQ8009 is an entry level SoC for Android
+> based tablets and smartphones. It contains four ARM Cortex-A7 CPU cores
+> (quad core)
+>
+>
+>
+> [1]:
+> https://github.com/parrot-opensource/skycontroller3-opensource/blob/master/sources/linux-3.18.31/linux.config
+>
+> [2]:
+> https://github.com/JonasVautherin/meta-skycontroller3/blob/main/conf/machine/skycontroller3.conf#L32
+>
+> [3]:
+> https://www.notebookcheck.net/Qualcomm-Snapdragon-212-APQ8009-SoC-Benchmarks-and-Specs.169859.0.html
+>
+>
+>
+> Best,
+>
+>
+>
+> On Sat, Jan 23, 2021 at 11:06 AM Paul Barker <pbarker@konsulko.com> wrote:
+>
+> On Sat, 23 Jan 2021 at 02:29, Jonas Vautherin <jonas.vautherin@gmail.com>
+> wrote:
+> >
+> > As a learning experience, I am trying to create a BSP for a device I own
+> and whose downstream kernel is published. The device in question is the
+> Parrot Skycontroller3, and the sources are available here.
+> >
+> > Let me start by sharing my issue. When I build the kernel with `bitbake
+> virtual/kernel`, it fails with errors like:
+> >
+> > ```
+> > |   AS      arch/arm/lib/backtrace.o
+> > |   AS      arch/arm/lib/bswapsdi2.o
+> > |   AS      arch/arm/lib/call_with_stack.o
+> > | /tmp/ccz8jKgm.s: Assembler messages:
+> > | /tmp/ccz8jKgm.s:985: Error: .err encountered
+> > | /tmp/ccz8jKgm.s:1033: Error: .err encountered
+> > | /tmp/ccz8jKgm.s:6812: Error: .err encountered
+> > ```
+> >
+> > My layer is available here.
+> >
+> > I created it getting inspiration from meta-raspberrypi and meta-qti-bsp,
+> which seems to have the same CPU: apq8009. According to the Parrot sources,
+> my device runs a Qualcomm apq8009/msm89090 cpu. In my repo, I use as a
+> defconfig file the linux.config that is available in the Parrot sources (I
+> copied it in my kernel recipe under `files/defconfig` and added it to
+> SRC_URI).
+> >
+> > The Parrot sources also refer to `LINUX_DEFAULT_CONFIG_TARGET :=
+> msm8909_defconfig`, so I tried to set `KBUILD_DEFCONFIG =
+> "msm8909_defconfig"`, but that is failing with different errors, such as:
+> >
+> > ```
+> > error: 'VM_ARM_DMA_CONSISTENT' undeclared (first use in this function);
+> did you mean 'DMA_ATTR_NON_CONSISTENT'?
+> > ```
+> >
+> > or
+> >
+> > ```
+> > error: 'L_PTE_YOUNG' undeclared
+> > ```
+> >
+> > As a side note, their `drivers/Kconfig` seemed invalid, so I patched it.
+> >
+> > I am a bit lost now, not completely sure where my issues come from. I
+> realize that changing the defconfig has quite some impact (I get different
+> errors), and also that my machine configuration may be completely wrong (I
+> am essentially guessing from the fact that it is an apq8009/msm8909, but
+> for instance the tuning I just copied from meta-qti-bsp, which may be
+> invalid).
+> >
+> > I would be glad if I could get hints about debugging this. Again, it is
+> really a learning project: I would like to learn how to create a BSP from a
+> downstream kernel.
+>
+> I think setting `KBUILD_DEFCONFIG = "msm8909_defconfig"` is likely the
+> correct approach here. What you may be missing though is the correct
+> value for KCONFIG_MODE. By default, the supplied defconfig file is
+> copied to .config but dependencies between config options aren't
+> resolved. You need to set `KCONFIG_MODE = "--alldefconfig"` to get the
+> equivalent of `make msm8909_defconfig` to occur. See
+>
+> https://github.com/agherzan/meta-raspberrypi/blob/master/recipes-kernel/linux/linux-raspberrypi.inc#L19
+> for an idea of how this is done for Raspberry Pi.
+>
+> Thanks,
+>
+> --
+> Paul Barker
+> Konsulko Group
+>
+>
+> --
+>
+> *Diego Santa Cruz, PhD *Technology Architect
+> spinetix.com
+>
+>
+>
+>
+> --
+>
+> *Diego Santa Cruz, PhD *Technology Architect
+> spinetix.com
+>
+>
+>
+>
+>
+>
+>
+> 
+>
+>
+>
+
+--00000000000093480405ba79575f
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2021-02-03 6:47 p.m., Yi Fan Yu wrote:
-> i didn't spend too much time getting the patch to look nice.
-> It is just a proposal because this seems to be the root cause of a=20
-> seemingly ...
-> unrelated bug.
->=20
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14170
->=20
->=20
-> On 2/3/21 6:44 PM, Yi Fan Yu wrote:
->> If the output of the testing script is very large,
->> the fwrite called by the parent in
->> wait_child would start blocking. That would slow down
->> the parent speed in clearing the pipe buffer.
->>
->> This is an issue because the pipe is Non-Blocking.
->> so the child(ex: a bash script)
->> who was designed to output to what he thinks is a
->> is stdout, might error out due to EAGAIN (pipe full).
->>
->> The proposed fix is to remove pipes and just let the child
->> write directly to stdout (same his parent)
->>
->> This would mean that the parent no longer control the output
->> of the child.
-
-Thanks Yi Fan.
-
-I'll have to look at this more closely later this week but
-sharing file descriptors between parent and child seems like
-a poor design. I have two main ideas and a work-around to mention.
-
-First the work-around that we discussed for the failing
-test in glib-2.0 codegen, is to limit the output until we fix
-ptest-runner. I think you said that's a one line change and
-it would give us more time to fix ptest-runner should we need it.
-
-To fix ptest-runner I believe that it should be able to
-handle arbitrary input or at least a few MB of input from
-the child. I'll need to read the code more carefully but can't we:
-  1. add some internal buffering so that we can drain the
-     pipe before checking for timeouts, etc.
-  2. We could run ptest-runner as a higher priority task
-     than the code under test so that the parent has more
-     time to drain the pipe.
-Neither of these will fix the problem completely but together
-these changes may prevent all but the most verbose tests from
-failing due to a full pipe.
-
-Since we don't often see this problem, we could hide the issue
-in the ptest-runner script for glib using some command line
-buffer executable that already exists (*) as a linux utility.
-
-I've CCed Anibal since he designed and wrote ptest-runner.
-
-All for now,
-../Randy
-
-*
-A quick search turned up:
-
-https://unix.stackexchange.com/questions/188175/completely-buffer-command-=
-output-before-piping-to-another-command
-
-$ sudo apt install moreutils
-$ file `which sponge`
-/usr/bin/sponge: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV),=
-=20
-dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2,=20
-BuildID[sha1]=3Df72063a4a10044e902905de1a8c1640f611394f9, for GNU/Linux=20
-3.2.0, stripped
-
-but maybe there's a better alternative since we don't want to buffer
-the full input of the pipe.
-
-There's also mbuffer but I'll leave it to you to investigate.
-
-
->>
->> Signed-off-by: Yi Fan Yu <yifan.yu@windriver.com>
->> ---
->> =C2=A0 utils.c | 53 ++++++++-------------------------------------------=
---
->> =C2=A0 1 file changed, 8 insertions(+), 45 deletions(-)
->>
->> diff --git a/utils.c b/utils.c
->> index a4e190e..5d62ced 100644
->> --- a/utils.c
->> +++ b/utils.c
->> @@ -274,12 +274,14 @@ run_child(char *run_ptest, int fd_stdout, int=20
->> fd_stderr)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 argv[0] =3D run_ptest;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 argv[1] =3D NULL;
->> +=C2=A0=C2=A0=C2=A0 /* since it isn't use by the child, close(fd_stderr=
-) ? */
->> +=C2=A0=C2=A0=C2=A0 close(fd_stderr);
->> +
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dup2(fd_stdout, STDOUT_FILENO);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 // XXX: Redirect stderr to stdout to avo=
-id buffer ordering=20
->> problems.
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dup2(fd_stdout, STDERR_FILENO);
->> -=C2=A0=C2=A0=C2=A0 /* since it isn't use by the child, close(fd_stderr=
-) ? */
->> -=C2=A0=C2=A0=C2=A0 close(fd_stderr); /* try using to see if this fixes=
- bash=20
->> run-read. rwm todo */
->> +
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 close_fds();
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 execv(run_ptest, argv);
->> @@ -290,20 +292,13 @@ run_child(char *run_ptest, int fd_stdout, int=20
->> fd_stderr)
->> =C2=A0 static inline int
->> =C2=A0 wait_child(pid_t pid, int timeout, int *fds, FILE **fps, int=20
->> *timeouted)
->> =C2=A0 {
->> -=C2=A0=C2=A0=C2=A0 struct pollfd pfds[2];
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct timespec sentinel;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clockid_t clock =3D CLOCK_MONOTONIC;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int looping =3D 1;
->> -=C2=A0=C2=A0=C2=A0 int r;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int status =3D -1;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int waitflags;
->> -=C2=A0=C2=A0=C2=A0 pfds[0].fd =3D fds[0];
->> -=C2=A0=C2=A0=C2=A0 pfds[0].events =3D POLLIN;
->> -=C2=A0=C2=A0=C2=A0 pfds[1].fd =3D fds[1];
->> -=C2=A0=C2=A0=C2=A0 pfds[1].events =3D POLLIN;
->> -
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (clock_gettime(clock, &sentinel) =3D=
-=3D -1) {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock =3D CLOCK_=
-REALTIME;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock_gettime(cl=
-ock, &sentinel);
->> @@ -328,29 +323,10 @@ wait_child(pid_t pid, int timeout, int *fds,=20
->> FILE **fps, int *timeouted)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (waitpid(pid,=
- &status, waitflags) =3D=3D pid)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 looping =3D 0;
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 r =3D poll(pfds, 2, WAIT_CH=
-ILD_POLL_TIMEOUT_MS);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (r > 0) {
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cha=
-r buf[WAIT_CHILD_BUF_MAX_SIZE];
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ssi=
-ze_t n;
->> -
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if =
-(pfds[0].revents !=3D 0) {
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 while ((n =3D read(fds[0], buf,=20
->> WAIT_CHILD_BUF_MAX_SIZE)) > 0)
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fwrite(buf, (size_t)n, 1, fp=
-s[0]);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> -
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if =
-(pfds[1].revents !=3D 0) {
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 while ((n =3D read(fds[1], buf,=20
->> WAIT_CHILD_BUF_MAX_SIZE)) > 0) {
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fflush(fps[0]);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fwrite(buf, (size_t)n, 1, fp=
-s[1]);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fflush(fps[1]);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 }
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> -
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clo=
-ck_gettime(clock, &sentinel);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> -=C2=A0=C2=A0=C2=A0 }
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fflush(fps[0]);
->> +
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return status;
->> =C2=A0 }
->> @@ -412,8 +388,6 @@ run_ptests(struct ptest_list *head, const struct=20
->> ptest_options opts,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 char stime[GET_STIME_BUF_SIZE];
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pid_t child;
->> -=C2=A0=C2=A0=C2=A0 int pipefd_stdout[2];
->> -=C2=A0=C2=A0=C2=A0 int pipefd_stderr[2];
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int timeouted;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 time_t sttime, entime;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 time_t duration;
->> @@ -428,14 +402,6 @@ run_ptests(struct ptest_list *head, const struct=
-=20
->> ptest_options opts,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 do
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if ((rc =3D pipe2(pipefd_st=
-dout, O_NONBLOCK)) =3D=3D -1)
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bre=
-ak;
->> -
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if ((rc =3D pipe2(pipefd_st=
-derr, O_NONBLOCK)) =3D=3D -1) {
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clo=
-se(pipefd_stdout[0]);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clo=
-se(pipefd_stdout[1]);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bre=
-ak;
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fprintf(fp, "STA=
-RT: %s\n", progname);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (isatty(0) &&=
- ioctl(0, TIOCNOTTY) =3D=3D -1) {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 fprintf(fp, "ERROR: Unable to detach from controlling=20
->> tty, %s\n", strerror(errno));
->> @@ -474,11 +440,10 @@ run_ptests(struct ptest_list *head, const struct=
-=20
->> ptest_options opts,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fprintf(fp, "ERR=
-OR: Unable to attach to=20
->> controlling tty, %s\n", strerror(errno));
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 run_child(p->run_ptest, pipefd_stdout[1],=20
->> pipefd_stderr[1]);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 run_child(p->run_ptest, STDOUT_FILENO, STDERR_FILENO=
-);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 } else {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int status;
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 int fds[2]; fds[0] =3D pipefd_stdout[0]; fds[1] =3D=
-=20
->> pipefd_stderr[0];
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 FILE *fps[2]; fps[0] =3D fp; fps[1] =3D =
-fp_stderr;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (setpgid(child, pgid) =3D=3D -1) {
->> @@ -489,7 +454,7 @@ run_ptests(struct ptest_list *head, const struct=20
->> ptest_options opts,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fprintf(fp, "%s\n", get_stime(stime,=20
->> GET_STIME_BUF_SIZE, sttime));
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fprintf(fp, "BEGIN: %s\n", ptest_dir);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 status =3D wait_child(child, opts.timeout, fds, fps,=
+<div dir=3D"ltr">Thanks a lot everybody, I managed to go further with Diego=
+&#39;s idea! I removed the `const` in two other places, though I&#39;m not =
+sure if it was necessary (I&#39;ll check that later). But the `.err encount=
+ered` errors disappeared!<div><br></div><div>@Herman: checking your sources=
+, too :-)<br></div><div><br></div><div>Best Regards,</div></div><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 1, 20=
+21 at 9:21 AM Herman van Hazendonk &lt;<a href=3D"mailto:me@herrie.org">me@=
+herrie.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex"><div style=3D"font-size:10pt;font-family:Verdana,Geneva,sans-se=
+rif">
+<p>Hi,</p>
+<p>We&#39;ve been using 3.18 (Android) kernels on our LuneOS project with =
+Yocto, so we carry the various patches to get it to build with newer GCC&#3=
+9;s.</p>
+<p>See: <a href=3D"https://github.com/shr-distribution/linux/commits/tisso=
+t/3.18/halium-7.1" target=3D"_blank">https://github.com/shr-distribution/li=
+nux/commits/tissot/3.18/halium-7.1</a> for some inspiration :)</p>
+<p>For older 3.4 kernels you would need more patches obviously:</p>
+<p><a href=3D"https://github.com/shr-distribution/linux/commits/hammerhead=
+/3.4/halium-5.1" target=3D"_blank">https://github.com/shr-distribution/linu=
+x/commits/hammerhead/3.4/halium-5.1</a></p>
+<p><br>Best regards,<br>Herman</p>
+<p>On 2021-02-01 08:04, Diego Santa Cruz via <a href=3D"http://lists.yocto=
+project.org" target=3D"_blank">lists.yoctoproject.org</a> wrote:</p>
+<blockquote type=3D"cite" style=3D"padding:0px 0.4em;border-left:2px solid=
+ rgb(16,16,255);margin:0px">  
+<div>
+<div>
+<div style=3D"border-right:none;border-bottom:none;border-left:none;border=
+-top:1pt solid rgb(225,225,225);padding:3pt 0cm 0cm">
+<p class=3D"MsoNormal"><strong>From:</strong> Jonas Vautherin &lt;<a href=
+=3D"mailto:jonas.vautherin@gmail.com" target=3D"_blank">jonas.vautherin@gm=
+ail.com</a>&gt; <br> <strong>Sent:</strong> 31 January 2021 22:23<br> <stro=
+ng>To:</strong> Aaron Cohen &lt;<a href=3D"mailto:aaron@assonance.org" targ=
+et=3D"_blank">aaron@assonance.org</a>&gt;<br> <strong>Cc:</strong> Diego Sa=
+nta Cruz &lt;<a href=3D"mailto:Diego.SantaCruz@spinetix.com" target=3D"_bla=
+nk">Diego.SantaCruz@spinetix.com</a>&gt;; Paul Barker &lt;<a href=3D"mailto=
+:pbarker@konsulko.com" target=3D"_blank">pbarker@konsulko.com</a>&gt;; Yoct=
+o-mailing-list &lt;<a href=3D"mailto:yocto@lists.yoctoproject.org" target=
+=3D"_blank">yocto@lists.yoctoproject.org</a>&gt;<br> <strong>Subject:</str=
+ong> Re: [yocto] Writing a BSP from downstream kernel sources</p>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0</p>
+<div>
+<p class=3D"MsoNormal">Thanks Aaron!</p>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">That seems to remove the log2 warnings, but it seem=
+s like they were not related to those &quot;Assembler&quot; errors, e.g.:</=
+p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">```</p>
+</div>
+<div>
+<p class=3D"MsoNormal">| /tmp/ccbtfgo7.s: Assembler messages:<br> | /tmp/c=
+cbtfgo7.s:2011: Error: .err encountered</p>
+</div>
+<div>
+<p class=3D"MsoNormal">```</p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">I think I need to fix them like Diego was suggestin=
+g, but I have trouble relating the error to a source file...</p>
+<p class=3D"MsoNormal"><strong><em>[Diego Santa Cruz] It may be easier to =
+build the SDK with a dummy kernel (i.e. no kernel, setting PREFERRED_PROVID=
+ER_virtual/kernel ?=3D &quot;linux-dummy&quot; in conf/local.conf) and use =
+that SDK to get the kernel building outside of Yocto. If you run the make w=
+ith V=3D1 you will see the full compiler command and you can re-run it manu=
+ally. The use the -S (and eventually -E) line and you can inspect the fault=
+y assembly file or source and track the original location. At least that is=
+ the route I took and worked well for me.</em></strong></p>
+<p class=3D"MsoNormal"><strong><em>I think you are using kernel 3.18.31, i=
+n that version it is the __put_user_check macro you need to fix, <a href=3D=
+"https://elixir.bootlin.com/linux/v3.18.31/source/arch/arm/include/asm/uacc=
+ess.h#L219" rel=3D"noopener noreferrer" target=3D"_blank"> https://elixir.b=
+ootlin.com/linux/v3.18.31/source/arch/arm/include/asm/uaccess.h#L219</a></e=
+m></strong></p>
+<p class=3D"MsoNormal"><strong><em>=C2=A0</em></strong></p>
+<p class=3D"MsoNormal"><strong><em>A hand written patch (not tested at all=
+!) that should solve your problem is</em></strong></p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.25pt">--- arch/arm/include/a=
+sm/uaccess.h</p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.25pt">+++ arch/arm/include/a=
+sm/uaccess.h</p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.25pt">#define __put_user_che=
+ck(x,p)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \=
+</p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.25pt">=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ({=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \</p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.25pt">=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long __=
+limit =3D current_thread_info()-&gt;addr_limit - 1; \</p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.25pt">=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const typeof(*(p=
+)) __user *__tmp_p =3D (p);=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
 =
-=20
->> &timeouted);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 status =3D wait_child(child, opts.timeout, NULL, fps=
-,=20
->> &timeouted);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 entime =3D time(NULL);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 duration =3D entime - sttime;
->> @@ -510,8 +475,6 @@ run_ptests(struct ptest_list *head, const struct=20
->> ptest_options opts,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 PTEST_LIST_ITERA=
-TE_END
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fprintf(fp, "STO=
-P: %s\n", progname);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 close(pipefd_stdout[0]); cl=
-ose(pipefd_stdout[1]);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 close(pipefd_stderr[0]); cl=
-ose(pipefd_stderr[1]);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 } while (0);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (rc =3D=3D -1)
->>
->>=20
->>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \</p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.25pt">-=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 register const t=
+ypeof(*(p)) __r2 asm(&quot;r2&quot;) =3D (x); \</p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.25pt">+=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 register typeof(*(p)) =
+__r2 asm(&quot;r2&quot;) =3D (x);=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \</p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.25pt">=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 register const t=
+ypeof(*(p)) __user *__p asm(&quot;r0&quot;) =3D __tmp_p; \</p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.25pt">=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 register unsigne=
+d long __l asm(&quot;r1&quot;) =3D __limit;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 \</p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.25pt">=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 register int __e=
+ asm(&quot;r0&quot;);=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 \</p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 switch (sizeof(*(__p))) {=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \</p>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0</p>
+<div>
+<p class=3D"MsoNormal">On Sat, Jan 30, 2021 at 8:29 AM Aaron Cohen &lt;<a =
+href=3D"mailto:aaron@assonance.org" target=3D"_blank">aaron@assonance.org</=
+a>&gt; wrote:</p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">Actually, I found the upstream patch I backported, =
+which you&#39;re probably better off using (same diff though).</p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal"><a href=3D"https://lore.kernel.org/patchwork/patch/=
+773330/" rel=3D"noopener noreferrer" target=3D"_blank">https://lore.kernel.=
+org/patchwork/patch/773330/</a></p>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0</p>
+<div>
+<p class=3D"MsoNormal">On Sat, Jan 30, 2021 at 2:26 AM Joel A Cohen via <a=
+ href=3D"http://lists.yoctoproject.org" rel=3D"noopener noreferrer" target=
+=3D"_blank"> lists.yoctoproject.org</a> &lt;aaron=3D<a href=3D"mailto:asso=
+nance.org@lists.yoctoproject.org" target=3D"_blank">assonance.org@lists.yoc=
+toproject.org</a>&gt; wrote:</p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">I&#39;m not sure if this is your issue, but I had a=
+ similar issue ilog2 and the disassembler and fixed it by backporting this =
+patch.</p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">No guarantees, but perhaps it will help.</p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">--Aaron</p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0</p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Fri, Jan 29, 2021 at 9:51 PM Jonas Vautherin &lt=
+;<a href=3D"mailto:jonas.vautherin@gmail.com" target=3D"_blank">jonas.vauth=
+erin@gmail.com</a>&gt; wrote:</p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;=
+border-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin-left:=
+4.8pt;margin-right:0cm">
+<div>
+<p class=3D"MsoNormal">Thanks a lot for the advice! However, I can&#39;t s=
+eem to find a `const` that I can simply remove. To give more context, here =
+is the log output around such an error (it seems like it is often surrounde=
+d by this log2.h warning, by the way):</p>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;=
+border-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin-left:=
+4.8pt;margin-right:0cm">
+<p class=3D"MsoNormal">| In file included from /home/jones/Documents/yocto=
+/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/kern=
+el.h:11,<br> | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroll=
+er3/kernel-source/include/linux/kallsyms.h:9,<br> | =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from /home/jones/Documents/yocto/=
+poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/ftrac=
+e.h:10,<br> | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroll=
+er3/kernel-source/kernel/extable.c:18:<br> | /home/jones/Documents/yocto/po=
+ky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/log2.h:=
+22:1: warning: ignoring attribute &#39;noreturn&#39; because it conflicts w=
+ith attribute &#39;const&#39; [-Wattributes]<br> | =C2=A0 =C2=A022 | int __=
+__ilog2_NaN(void);<br> | =C2=A0 =C2=A0 =C2=A0 | ^~~<br> | =C2=A0 CC =C2=A0 =
+=
+=C2=A0 =C2=A0fs/fat/dir.o<br> | In file included from /home/jones/Document=
+s/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/include/lin=
+ux/kernel.h:11,<br> | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skyc=
+ontroller3/kernel-source/include/linux/list.h:8,<br> | =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from /home/jones/Documents/yocto/=
+poky/build/tmp/work-shared/skycontroller3/kernel-source/include/linux/modul=
+e.h:9,<br> | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+from /home/jones/Documents/yocto/poky/build/tmp/work-shared/skycontroller3/=
+kernel-source/fs/fat/dir.c:16:<br> | /home/jones/Documents/yocto/poky/build=
+/tmp/work-shared/skycontroller3/kernel-source/include/linux/log2.h:22:1: wa=
+rning: ignoring attribute &#39;noreturn&#39; because it conflicts with attr=
+ibute &#39;const&#39; [-Wattributes]<br> | =C2=A0 =C2=A022 | int ____ilog2_=
+NaN(void);<br> | =C2=A0 =C2=A0 =C2=A0 | ^~~<br> | =C2=A0 CC =C2=A0 =C2=A0 =
+=C2=A0block/deadline-iosched.o<br> | In file included from /home/jones/Doc=
+uments/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/includ=
+e/linux/kernel.h:11,<br> | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0from /home/jones/Documents/yocto/poky/build/tmp/work-shared/s=
+kycontroller3/kernel-source/block/deadline-iosched.c:6:<br> | /home/jones/D=
+ocuments/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/incl=
+ude/linux/log2.h:22:1: warning: ignoring attribute &#39;noreturn&#39; becau=
+se it conflicts with attribute &#39;const&#39; [-Wattributes]<br> | =C2=A0 =
+=
+=C2=A022 | int ____ilog2_NaN(void);<br> | =C2=A0 =C2=A0 =C2=A0 | ^~~<br> |=
+ /tmp/cc52vFrQ.s: Assembler messages:<br> | /tmp/cc52vFrQ.s:2683: Error: .e=
+rr encountered<br> | /tmp/cc52vFrQ.s:2927: Error: .err encountered<br> | =
+=C2=A0 LD =C2=A0 =C2=A0 =C2=A0sound/sparc/built-in.o<br> | =C2=A0 LD =C2=
+=A0 =C2=A0 =C2=A0sound/spi/built-in.o<br> | make[3]: *** [/home/jones/Docu=
+ments/yocto/poky/build/tmp/work-shared/skycontroller3/kernel-source/scripts=
+/Makefile.build:257: block/scsi_ioctl.o] Error 1</p>
+</blockquote>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">I pasted the full output here, if that can help:=C2=
+=
+=A0<a href=3D"https://paste.ubuntu.com/p/KqN8nVWmvv/" rel=3D"noopener nore=
+ferrer" target=3D"_blank">https://paste.ubuntu.com/p/KqN8nVWmvv/</a>. The l=
+ines that seem to get the log2 warning are:</p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">```</p>
+</div>
+<div>
+<p class=3D"MsoNormal">extern __attribute__((const, noreturn))</p>
+</div>
+<p class=3D"MsoNormal">int ____ilog2_NaN(void);</p>
+<div>
+<p class=3D"MsoNormal">=C2=A0```</p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">So there is a const there, but well... not sure wha=
+t to do with it :-).</p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">Best,</p>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0</p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Mon, Jan 25, 2021 at 9:00 AM Diego Santa Cruz &l=
+t;<a href=3D"mailto:Diego.SantaCruz@spinetix.com" target=3D"_blank">Diego.S=
+antaCruz@spinetix.com</a>&gt; wrote:</p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;=
+border-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin-left:=
+4.8pt;margin-right:0cm">
+<div>
+<div>
+<div style=3D"border-top:none currentcolor;border-right:none currentcolor;=
+border-bottom:none currentcolor;border-left:1.5pt solid blue;padding:0cm 0c=
+m 0cm 4pt">
+<div>
+<div style=3D"border-right:none currentcolor;border-bottom:none currentcol=
+or;border-left:none currentcolor;border-top:1pt solid currentcolor;padding:=
+3pt 0cm 0cm">
+<p class=3D"MsoNormal"><strong>From:</strong> <a href=3D"mailto:yocto@list=
+s.yoctoproject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a> &lt;=
+<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yocto@lis=
+ts.yoctoproject.org</a>&gt; <strong>On Behalf Of </strong>Jonas Vautherin v=
+ia <a href=3D"http://lists.yoctoproject.org" rel=3D"noopener noreferrer" ta=
+rget=3D"_blank"> lists.yoctoproject.org</a><br> <strong>Sent:</strong> 24 J=
+anuary 2021 14:30<br> <strong>To:</strong> Jonas Vautherin &lt;<a href=3D"m=
+ailto:jonas.vautherin@gmail.com" target=3D"_blank">jonas.vautherin@gmail.co=
+m</a>&gt;<br> <strong>Cc:</strong> Paul Barker &lt;<a href=3D"mailto:pbarke=
+r@konsulko.com" target=3D"_blank">pbarker@konsulko.com</a>&gt;; Yocto-maili=
+ng-list &lt;<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blan=
+k">yocto@lists.yoctoproject.org</a>&gt;<br> <strong>Subject:</strong> Re: [=
+yocto] Writing a BSP from downstream kernel sources</p>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0</p>
+<div>
+<p class=3D"MsoNormal">Just to close this: it seems like the gcc-cross-arm=
+ used by yocto gatesgarth is too new for that specific downstream kernel (3=
+.18.31).</p>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">The goal was to get a proper BSP package for this d=
+evice for a modern yocto, so I don&#39;t think I will try with an older ver=
+sion of Yocto. If I compile an old gcc as part of a custom Yocto layer (on =
+gatesgarth), I am guessing that I will have issues creating a distro that r=
+uns both on RPi and on that older device (because RPi will have a newer ker=
+nel and gcc, and the skycontroller will use older ones). I also guess that =
+the downstream dts won&#39;t work with a modern kernel, and I would not kno=
+w how to write one myself for that apq8009 chip.</p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">Hence, I&#39;m giving up. Thanks a lot for the help=
+ :-).</p>
+<p class=3D"MsoNormal"><strong><em><span>[Diego Santa Cruz] Wait! </span>Y=
+ou may be able to get it working, see below.</em></strong></p>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0</p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Sat, Jan 23, 2021 at 2:07 PM Jonas Vautherin via=
+ <a href=3D"http://lists.yoctoproject.org" rel=3D"noopener noreferrer" targ=
+et=3D"_blank">lists.yoctoproject.org</a> &lt;jonas.vautherin=3D<a href=3D"m=
+ailto:gmail.com@lists.yoctoproject.org" target=3D"_blank">gmail.com@lists.y=
+octoproject.org</a>&gt; wrote:</p>
+</div>
+<blockquote style=3D"border-top:none currentcolor;border-right:none curren=
+tcolor;border-bottom:none currentcolor;border-left:1pt solid rgb(204,204,20=
+4);padding:0cm 0cm 0cm 6pt;margin:5pt 0cm 5pt 4.8pt">
+<div>
+<p class=3D"MsoNormal">Thanks a lot for the answer!</p>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">It seems like using `KCONFIG_MODE =3D &quot;--allde=
+fconfig&quot;` with `KBUILD_DEFCONFIG =3D &quot;msm8909_defconfig&quot;` no=
+w ends up with the same kind of errors as when I use the defconfig from the=
+ downstream kernel [1], i.e.:</p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+<p class=3D"MsoNormal"><strong><em>[Diego Santa Cruz] I happen to be doing=
+ a similar kind of work, getting an even older (2.6.37+) downstream kernel =
+for an ARM machine to compile with recent GCC in Yocto, in my case GCC 9.3 =
+from dunfell. There are a few fixes and backports necessary to make it happ=
+en and boot. I&#39;m not done with the work yet, so I do not know how stabl=
+e it is, but I have it booting.</em></strong></p>
+</div>
+<div>
+<p class=3D"MsoNormal">```</p>
+</div>
+<div>
+<p class=3D"MsoNormal">| /tmp/ccz8jKgm.s: Assembler messages:<br> | /tmp/c=
+cz8jKgm.s:985: Error: .err encountered</p>
+</div>
+<div>
+<p class=3D"MsoNormal">```</p>
+<p class=3D"MsoNormal"><strong><em>[Diego Santa Cruz] The fix here is rath=
+er simple once you understand what&#39;s going on, the problem is abusive u=
+se of const for register variables, see <a href=3D"https://gcc.gnu.org/onli=
+nedocs/gcc-9.3.0/gcc/Local-Register-Variables.html" rel=3D"noopener norefer=
+rer" target=3D"_blank"> https://gcc.gnu.org/onlinedocs/gcc-9.3.0/gcc/Local-=
+Register-Variables.html</a> so when put_user() is used for a literal consta=
+nt value it gets assigned the wrong register, so just remove the const qual=
+ifier from the put_user() register variable assignment for the value argume=
+nt. For my older kernel the patch is like this.</em></strong></p>
+<p class=3D"MsoNormal" style=3D"margin-left:16.8pt">--- arch/arm/include/a=
+sm/uaccess.h</p>
+<p class=3D"MsoNormal" style=3D"margin-left:16.8pt">+++ arch/arm/include/a=
+sm/uaccess.h </p>
+<p class=3D"MsoNormal" style=3D"margin-left:16.8pt">@@ -145,7 +145,7 @@</p=
+>
+<p class=3D"MsoNormal" style=3D"margin-left:16.8pt">=C2=A0#define put_user=
+(x,p)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 \</p>
+<p class=3D"MsoNormal" style=3D"margin-left:16.8pt">=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ({=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 \</p>
+<p class=3D"MsoNormal" style=3D"margin-left:16.8pt">-=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 register const typeof(*(p)) __r2 asm(&quot;r2&quot;) =3D (=
+x); \</p>
+<p class=3D"MsoNormal" style=3D"margin-left:16.8pt">+=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 register typeof(*(p)) __r2 asm(&quot;r2&quot;) =3D (x);=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 \</p>
+<p class=3D"MsoNormal" style=3D"margin-left:16.8pt">=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 register const typeof(*(p)) __user *__p asm(&quot;r0=
+&quot;) =3D (p);\</p>
+<p class=3D"MsoNormal" style=3D"margin-left:16.8pt">=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 register int __e asm(&quot;r0&quot;);=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \</p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 switch (sizeof(*(__p))) {=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \</p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">Could it be related to the tuning, e.g. I&#39;m som=
+ehow defining a wrong toolchain in my machine configuration [2] and it fail=
+s to build? I was thinking about the tune-cortexa7.inc include, though it s=
+eems to me that the apq8009 is a cortexa7 [3]:</p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+<p class=3D"MsoNormal"><strong><em>[Diego Santa Cruz] Other commits from p=
+ost 3.18 that you may need to backport are the following (start from bottom=
+ of list) </em></strong></p>
+<p class=3D"MsoNormal">474c90156c8dcc2fa815e6716cc9394d7930cb9c give up on=
+ gcc ilog2() constant optimizations</p>
+<p class=3D"MsoNormal">cb984d101b30eb7478d32df56a0023e4603cba7f compiler-g=
+cc: integrate the various compiler-gcc[345].h files</p>
+<p class=3D"MsoNormal">f6d133f877c8bb0a0934dc8c521c758ee771e901 compiler-g=
+cc.h: neatening</p>
+<p class=3D"MsoNormal">7829fb09a2b4268b30dd9bc782fa5ebee278b137 lib: make =
+memzero_explicit more robust against dead store elimination</p>
+<p class=3D"MsoNormal">cb4188ac8e5779f66b9f55888ac2c75b391cde44 compiler: =
+introduce __alias(symbol) shortcut</p>
+<p class=3D"MsoNormal">0b053c9518292705736329a8fe20ef4686ffc8e9 lib: memze=
+ro_explicit: use barrier instead of OPTIMIZER_HIDE_VAR</p>
+<p class=3D"MsoNormal">ee91ef6173e81819f5ff610c2485802081635657 bufferhead=
+: force inlining of buffer head flag operations</p>
+<p class=3D"MsoNormal">cc7fce80229067890365c1ee196be5d304d36dea mtd: blkde=
+vs: fix switch-bool compilation warning</p>
+<p class=3D"MsoNormal">=C2=A0</p>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">&gt;=C2=A0The Qualcomm Snapdragon 212 APQ8009 is an=
+ entry level SoC for Android based tablets and smartphones. It contains fou=
+r ARM Cortex-A7 CPU cores (quad core)</p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">[1]:=C2=A0<a href=3D"https://github.com/parrot-open=
+source/skycontroller3-opensource/blob/master/sources/linux-3.18.31/linux.co=
+nfig" rel=3D"noopener noreferrer" target=3D"_blank">https://github.com/parr=
+ot-opensource/skycontroller3-opensource/blob/master/sources/linux-3.18.31/l=
+inux.config</a></p>
+</div>
+<div>
+<p class=3D"MsoNormal">[2]:=C2=A0<a href=3D"https://github.com/JonasVauthe=
+rin/meta-skycontroller3/blob/main/conf/machine/skycontroller3.conf#L32" rel=
+=
+=3D"noopener noreferrer" target=3D"_blank">https://github.com/JonasVauther=
+in/meta-skycontroller3/blob/main/conf/machine/skycontroller3.conf#L32</a></=
+p>
+</div>
+<div>
+<p class=3D"MsoNormal">[3]:=C2=A0<a href=3D"https://www.notebookcheck.net/=
+Qualcomm-Snapdragon-212-APQ8009-SoC-Benchmarks-and-Specs.169859.0.html" rel=
+=
+=3D"noopener noreferrer" target=3D"_blank">https://www.notebookcheck.net/Q=
+ualcomm-Snapdragon-212-APQ8009-SoC-Benchmarks-and-Specs.169859.0.html</a></=
+p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0</p>
+</div>
+<div>
+<p class=3D"MsoNormal">Best,</p>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0</p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Sat, Jan 23, 2021 at 11:06 AM Paul Barker &lt;<a=
+ href=3D"mailto:pbarker@konsulko.com" target=3D"_blank">pbarker@konsulko.co=
+m</a>&gt; wrote:</p>
+</div>
+<blockquote style=3D"border-top:none currentcolor;border-right:none curren=
+tcolor;border-bottom:none currentcolor;border-left:1pt solid rgb(204,204,20=
+4);padding:0cm 0cm 0cm 6pt;margin:5pt 0cm 5pt 4.8pt">
+<p class=3D"MsoNormal">On Sat, 23 Jan 2021 at 02:29, Jonas Vautherin &lt;<=
+a href=3D"mailto:jonas.vautherin@gmail.com" target=3D"_blank">jonas.vauther=
+in@gmail.com</a>&gt; wrote:<br> &gt;<br> &gt; As a learning experience, I a=
+m trying to create a BSP for a device I own and whose downstream kernel is =
+published. The device in question is the Parrot Skycontroller3, and the sou=
+rces are available here.<br> &gt;<br> &gt; Let me start by sharing my issue=
+. When I build the kernel with `bitbake virtual/kernel`, it fails with erro=
+rs like:<br> &gt;<br> &gt; ```<br> &gt; |=C2=A0 =C2=A0AS=C2=A0 =C2=A0 =C2=
+=A0 arch/arm/lib/backtrace.o<br> &gt; |=C2=A0 =C2=A0AS=C2=A0 =C2=A0 =C2=A0=
+ arch/arm/lib/bswapsdi2.o<br> &gt; |=C2=A0 =C2=A0AS=C2=A0 =C2=A0 =C2=A0 arc=
+h/arm/lib/call_with_stack.o<br> &gt; | /tmp/ccz8jKgm.s: Assembler messages:=
+<br> &gt; | /tmp/ccz8jKgm.s:985: Error: .err encountered<br> &gt; | /tmp/cc=
+z8jKgm.s:1033: Error: .err encountered<br> &gt; | /tmp/ccz8jKgm.s:6812: Err=
+or: .err encountered<br> &gt; ```<br> &gt;<br> &gt; My layer is available h=
+ere.<br> &gt;<br> &gt; I created it getting inspiration from meta-raspberry=
+pi and meta-qti-bsp, which seems to have the same CPU: apq8009. According t=
+o the Parrot sources, my device runs a Qualcomm apq8009/msm89090 cpu. In my=
+ repo, I use as a defconfig file the linux.config that is available in the =
+Parrot sources (I copied it in my kernel recipe under `files/defconfig` and=
+ added it to SRC_URI).<br> &gt;<br> &gt; The Parrot sources also refer to `=
+LINUX_DEFAULT_CONFIG_TARGET :=3D msm8909_defconfig`, so I tried to set `KBU=
+ILD_DEFCONFIG =3D &quot;msm8909_defconfig&quot;`, but that is failing with =
+different errors, such as:<br> &gt;<br> &gt; ```<br> &gt; error: &#39;VM_AR=
+M_DMA_CONSISTENT&#39; undeclared (first use in this function); did you mean=
+ &#39;DMA_ATTR_NON_CONSISTENT&#39;?<br> &gt; ```<br> &gt;<br> &gt; or<br> &=
+gt;<br> &gt; ```<br> &gt; error: &#39;L_PTE_YOUNG&#39; undeclared<br> &gt; =
+```<br> &gt;<br> &gt; As a side note, their `drivers/Kconfig` seemed invali=
+d, so I patched it.<br> &gt;<br> &gt; I am a bit lost now, not completely s=
+ure where my issues come from. I realize that changing the defconfig has qu=
+ite some impact (I get different errors), and also that my machine configur=
+ation may be completely wrong (I am essentially guessing from the fact that=
+ it is an apq8009/msm8909, but for instance the tuning I just copied from m=
+eta-qti-bsp, which may be invalid).<br> &gt;<br> &gt; I would be glad if I =
+could get hints about debugging this. Again, it is really a learning projec=
+t: I would like to learn how to create a BSP from a downstream kernel.<br> =
+<br> I think setting `KBUILD_DEFCONFIG =3D &quot;msm8909_defconfig&quot;` i=
+s likely the<br> correct approach here. What you may be missing though is t=
+he correct<br> value for KCONFIG_MODE. By default, the supplied defconfig f=
+ile is<br> copied to .config but dependencies between config options aren&#=
+39;t<br> resolved. You need to set `KCONFIG_MODE =3D &quot;--alldefconfig&q=
+uot;` to get the<br> equivalent of `make msm8909_defconfig` to occur. See<b=
+r> <a href=3D"https://github.com/agherzan/meta-raspberrypi/blob/master/reci=
+pes-kernel/linux/linux-raspberrypi.inc#L19" rel=3D"noopener noreferrer" tar=
+get=3D"_blank">https://github.com/agherzan/meta-raspberrypi/blob/master/rec=
+ipes-kernel/linux/linux-raspberrypi.inc#L19</a><br> for an idea of how this=
+ is done for Raspberry Pi.<br> <br> Thanks,<br> <br> -- <br> Paul Barker<br=
+> Konsulko Group</p>
+</blockquote>
+</div>
+</blockquote>
+</div>
+</div>
+<p class=3D"MsoNormal"><br> <span style=3D"font-size:9pt;font-family:Arial=
+,sans-serif">-- <br> <strong>Diego Santa Cruz, PhD<br> </strong><span style=
+=
+=3D"color:gray">Technology Architect<br> <a href=3D"http://spinetix.com" r=
+el=3D"noopener noreferrer" target=3D"_blank">spinetix.com</a></span></span>=
+</p>
+</div>
+</div>
+</blockquote>
+</div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><br> <br> </p>
+</blockquote>
+</div>
+<p class=3D"MsoNormal"><br> <span style=3D"font-size:9pt;font-family:Arial=
+,sans-serif">-- <br> <strong>Diego Santa Cruz, PhD<br> </strong><span style=
+=
+=3D"color:gray">Technology Architect<br> <a href=3D"http://spinetix.com" t=
+arget=3D"_blank">spinetix.com</a></span></span><span style=3D"font-size:12p=
+t;font-family:&quot;Times New Roman&quot;,serif;color:gray"></span></p>
+<p class=3D"MsoNormal">=C2=A0</p>
+<div style=3D"border-top:none;border-right:none;border-bottom:none;border-=
+left:1.5pt solid blue;padding:0cm 0cm 0cm 4pt">
+<div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;=
+border-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin-left:=
+4.8pt;margin-right:0cm">
+<div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;=
+border-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin-left:=
+4.8pt;margin-right:0cm">
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt">=C2=A0</p>
+</blockquote>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+<br>
+<div style=3D"margin:0px;padding:0px;font-family:monospace"><br> <br> </di=
+v>
+</blockquote>
+<p><br></p>
 
+</div>
+</blockquote></div>
 
---=20
-# Randy MacLeod
-# Wind River Linux
+--00000000000093480405ba79575f--
