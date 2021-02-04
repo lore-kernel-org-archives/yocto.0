@@ -1,80 +1,92 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.9222.1612451043035373597
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+ by mx.groups.io with SMTP id smtpd.web08.345.1612459072468908135
  for <yocto@lists.yoctoproject.org>;
- Thu, 04 Feb 2021 07:04:03 -0800
+ Thu, 04 Feb 2021 09:17:52 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=G3HKqDe6;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 2E1CE38C06B5
-	for <yocto@yoctoproject.org>; Thu,  4 Feb 2021 15:04:02 +0000 (UTC)
-Received: by mail-yb1-f172.google.com with SMTP id i71so3473948ybg.7
-        for <yocto@yoctoproject.org>; Thu, 04 Feb 2021 07:04:02 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=eoxWCdRG;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f54.google.com with SMTP id i9so3677955wmq.1
+        for <yocto@lists.yoctoproject.org>; Thu, 04 Feb 2021 09:17:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=0bNZ0FD69Zjw9Ej9xoiLCoXRuyNhdeP64OVfC9F4Jgk=;
-        b=G3HKqDe6M79P0fu31DkAKH8Z4QqGo9WULaRO7yTcSXqM+FE+iUMOwMJ8v2KziDxPIY
-         JdXoGCiVpBFUx54bha9mDk6MeqDTl2u8ZvQ3uUJUt7vjue45cs1CuA0CGXvljwg+U4Eq
-         hyiCTxHJHvgYr06psvWlaKTBHNgxL6N4bApUV+3D+skVQiboUZ6Kuxu4G6v2Q3IYHeGs
-         59W5x43u36mZS0J6uYlyhSVIQvHRafxXk40tDN+61Ly6Q5sc7255H2AokzJSywTYRGSG
-         42VpPJ6bBGi9ZNRuD6YXaDjZVBvh275fXgrlgMNxjEGSEotxib4dtswaQKGeEEObzYUA
-         odFA==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=LwAIO5gQgmm6GvPTSfaCKlyZAslIMloU2QkOJcVkX6Y=;
+        b=eoxWCdRGYli/wNHDcGahctDg0QfLCIj3Vo633teF1vhGU9kMV7SMIbZimFhPBlzqRW
+         KDT1w4DVWQEcp4ryFMqtbkvEDCwUxCDv3p0W19+p9pXqnQ1eUKenM03azu6qN0QYs1Gs
+         YBo0UikZIr0WJhkxXLOHmOLcztp3PF6EjTu9Y=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=0bNZ0FD69Zjw9Ej9xoiLCoXRuyNhdeP64OVfC9F4Jgk=;
-        b=pE8IPXq4ZNliYf+STlxAREOATPHGYP4TU/YajyC4BlnBlmMw3VxjlqMgcEYnsky03/
-         OyWTA6/Z5sX0HbBUWbg8pSNyjPZUYYNKVKLJ9vxWyaUIQeFiNmVRhNpiFk2MNDrMtjWH
-         6m0Wmk2jt9B1jziM/T1BHPbRo6clZqtLubigYelZM/C/ou8jirg7vO0ML8Fb32wXF7or
-         0AkP1/A+F8UuTrWtKS3PF+c3ZsfSQf6DYqS3LQJoAjz1Z8f8KTjQ8sr+hwLj0LoK5Xqs
-         w9E8aLa67ARo02FVja/XrNk2F+w1at1IjacYkXzINa9zlyOz0M3N0ZuWllLUcQPV3IK0
-         SfGA==
-X-Gm-Message-State: AOAM532hlnpiVmN1pzYuiImkyRc1RkVWsj4in3U0iLw3nQ71vJojsvT9
-	KzhuHsWpqEC8GWfmmRkZd9f1UdSAcG6OkMIPc611bR/21JdpzuDU
-X-Google-Smtp-Source: ABdhPJz6yUdXYb7Qmc1o8YOFp6e8fw/2Ia/k/bFcujGULt235ljMxYJF8bnNQswz7rfdOggqmq4yZ8yRRqsXsIECPDU=
-X-Received: by 2002:a25:d6c2:: with SMTP id n185mr12708036ybg.71.1612451040904;
- Thu, 04 Feb 2021 07:04:00 -0800 (PST)
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=LwAIO5gQgmm6GvPTSfaCKlyZAslIMloU2QkOJcVkX6Y=;
+        b=LRUTCTkqxUhCI2sK/spywr69iy1aBbwH9h7DnSZrZ1DchFtRU0s1wbMPEQIxtwrgZf
+         qJicxwAebO7nhHREV0qJFJSMns4OoQtpa11doPEBFCAHeuFhByedomydwulCQ7Yl+mGd
+         71ZFyXE6z1YuGUILXJOdbIon/uXKJnKDBc1Oqj0QaxuN+BnWvg8vAokKWXPXYQJf1X3E
+         hgZf5rrNNy1YH1wzJanYhnQxoSDu4bJ6EtvViw4XIUjGjJqaibPanFtIE4tl04v7IF9F
+         ixMemPLNv0nb8KTxxv60w/fsG0hppr3v9AeZZvsFUHWsH/+AMW31b5h5okytjViQfzjG
+         NtJQ==
+X-Gm-Message-State: AOAM531hFVF7IOtYsiQLy3JcY/aoM6B1vEKaV0Bk0t/NvSdDwkmi+/Nm
+	En53Liyyo30yKHQWdqnxKPvvNQ==
+X-Google-Smtp-Source: ABdhPJzPr7LuYz6J696sxSYa+daw0P/IYv4ycXnr/EoY0Z1Dx895izhX21jZ2ov+pDnDQNybEqszmQ==
+X-Received: by 2002:a1c:9d4c:: with SMTP id g73mr166876wme.105.1612459070990;
+        Thu, 04 Feb 2021 09:17:50 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:62ae:a739:5537:66d9? ([2001:8b0:aba:5f3c:62ae:a739:5537:66d9])
+        by smtp.gmail.com with ESMTPSA id k4sm9673548wrm.53.2021.02.04.09.17.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Feb 2021 09:17:50 -0800 (PST)
+Message-ID: <482207e7ba33b79b30e1357c64fd85353519f00b.camel@linuxfoundation.org>
+Subject: Re: [yocto] [prelink-cross][PATCH] Add SPDX license headers to all source files
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Meh Mbeh Ida Delphine <idadelm@gmail.com>, yocto@lists.yoctoproject.org
+Cc: mark.hatle@kernel.crashing.org
+Date: Thu, 04 Feb 2021 17:17:46 +0000
+In-Reply-To: <20210202105438.21650-1-idadelm@gmail.com>
+References: <20210202105438.21650-1-idadelm@gmail.com>
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Thu, 4 Feb 2021 16:03:49 +0100
-Message-ID: <CAAfyv35in+eJF2k_vf+6=ZwDby8DPx-bindvqWA-VqKE7kVWBg@mail.gmail.com>
-Subject: [meta-virtualization]: dunfell docker run issues
-To: yocto <yocto@yoctoproject.org>
-Cc: Bruce Ashfield <bruce.ashfield@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On Tue, 2021-02-02 at 11:54 +0100, Meh Mbeh Ida Delphine wrote:
+> From: Meh Mbeh Ida Delphine <idadelm@gmail.com>
+> 
+> Added SPDX headers in all source files except src/makecrc.c since it is not copyrighted.
+> Skipped Makefile.am as well.
+> Also cleared redundant license text.
+> Updated README file with correct email addresses.
+> 
+> Fixes: [YOCTO #13529]
 
-I'm trying to run docker containers on orangepi and use
-meta-virtualization layer to add docker. I've installed the docker-ce
-package and everything seems to be fine.
+Thanks for this. There are a couple of tweaks I noticed as I was about
+to merge it. Firstly, can you make the email address update a separate
+commit please. Commits should do one logical thing.
+> 
+> -   The GNU C Library is free software; you can redistribute it and/or
+> -   modify it under the terms of the GNU Lesser General Public
+> -   License as published by the Free Software Foundation; either
+> -   version 2.1 of the License, or (at your option) any later version.
+> -
+> -   The GNU C Library is distributed in the hope that it will be useful,
+> -   but WITHOUT ANY WARRANTY; without even the implied warranty of
+> -   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+> -   Lesser General Public License for more details.
+> -
+> -   You should have received a copy of the GNU Lesser General Public
+> -   License along with the GNU C Library; if not, write to the Free
+> -   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+> -   02111-1307 USA.  */
+> +* SPDX-License-Identifier: GPL-2.0-or-later
+> +*/
+> 
 
-But docker service seems fails to start with:
-Feb 04 15:00:01 orange-pi-zero dockerd[495]: failed to start daemon:
-Devices cgroup isn't mounted
+This file mentions "GNU Lesser General Public License" and version 2.1
+which is not GPL-2.0!
 
-I was trying to add various options to kernel command line like
-described here: https://github.com/docker/cli/issues/2104
+It is critical to get this bit right.
 
-but it doesn't work. My command-line looks like:
-...systemd.unified_cgroup_hierarchy=0 cgroup_enable=memory
-cgroup_memory=1 swapaccount=1 cgroup_no_v1=all
+Cheers,
 
-Any other ideas what to check? Thanks a lot.
+Richard
 
-BR,
-
-marek
-
--- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
-
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
