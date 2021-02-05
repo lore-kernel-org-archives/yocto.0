@@ -1,96 +1,75 @@
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
- by mx.groups.io with SMTP id smtpd.web12.5280.1612511329059198310
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by mx.groups.io with SMTP id smtpd.web11.5437.1612512465686856177
  for <yocto@lists.yoctoproject.org>;
- Thu, 04 Feb 2021 23:48:49 -0800
+ Fri, 05 Feb 2021 00:07:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ZoLKT90n;
- spf=pass (domain: gmail.com, ip: 209.85.128.52, mailfrom: robert.berger.yocto.user@gmail.com)
-Received: by mail-wm1-f52.google.com with SMTP id j21so2409839wmj.0
-        for <yocto@lists.yoctoproject.org>; Thu, 04 Feb 2021 23:48:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=rQgvnGW9mIQScPHJAp/hqZZgdPffPx49QtZJox81qlc=;
-        b=ZoLKT90n286qjTkXfqeoQRpIe6E3XO+aGerCgIVUZklBFaezQh3994gMdSi8xQmPYY
-         Z4lhZrNz/SZUfvQGVuPp+urVjWJG+cSgPfg0+nYmJT+GxDVSI0ZxAQGKp+7NsYszKTOH
-         tw08zU7L18vnpmBsU/MRn4N2H5SMRbTrOWuvA8jHmmaM774dUFdqhFsEmyUNUhZ7ovva
-         0kfn95rS9SH3f+q3M/iH9M1Bjb9yfey8a6YX0lb7ODtLXnTusvIcALDS35Sz2OE/9ju9
-         vfTSImZLRjnrI8zXQPX1FgAREBSF2v7nXbLOc7F8MKbRip58vFYRs0m7X65tKdoFWgY9
-         O0ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=rQgvnGW9mIQScPHJAp/hqZZgdPffPx49QtZJox81qlc=;
-        b=Ebys7kMcRAG6vj2RULQQ5eOsUeva+qGI6xqsEv5O6lx38KG9IVGRK0DRUPJS0z7V7n
-         IkGCI6npG6YNIfsocq2rLxZfk+86mnzDV08LJiwddC11tmntIl86sdoBavSuOTnady6L
-         lvazfQOteYG1DyRO+EBKDuclEqWmNQuBCJBO6HrdZ7DE73x3F+/Q0m4YAZc1dESrwdxS
-         vWottX6cF4EvwdMvj3wJNkMHqvS3yKFPevE5e96eKsfuqOCRaViZa6LL6Ad9AZPWua2f
-         BytuZcNnVLHzpd8KFlTeoGVUgbtFrshbAWTJUNSBtN4dwG4yCDP6gzXaC4GO+uaaBh8J
-         DfzA==
-X-Gm-Message-State: AOAM531xlyx0DhDijH8cUm8CVhuGUi5e0u0Esc7N/axdqnUSH75t7Yua
-	0fgIExUSeZbtodgeAoSiFfA=
-X-Google-Smtp-Source: ABdhPJwjvMa85kJ92nPcIA6r7RAsE1YkHFuRZ+r5evsTHjoVLg11/7roXUsUH6zy8KPUEmUlcDQk8Q==
-X-Received: by 2002:a7b:c853:: with SMTP id c19mr2425599wml.118.1612511327543;
-        Thu, 04 Feb 2021 23:48:47 -0800 (PST)
-Return-Path: <robert.berger.yocto.user@gmail.com>
-Received: from [192.168.42.52] (ppp-2-86-140-5.home.otenet.gr. [2.86.140.5])
-        by smtp.gmail.com with ESMTPSA id b18sm11499547wrm.57.2021.02.04.23.48.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Feb 2021 23:48:47 -0800 (PST)
-Subject: Re: [yocto] [prelink-cross][PATCH] Add SPDX license headers to all source files
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
- Meh Mbeh Ida Delphine <idadelm@gmail.com>, yocto@lists.yoctoproject.org
-Cc: mark.hatle@kernel.crashing.org
-References: <20210202105438.21650-1-idadelm@gmail.com>
- <482207e7ba33b79b30e1357c64fd85353519f00b.camel@linuxfoundation.org>
-From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
-Message-ID: <8ff03c82-18a6-b246-252d-d5e33fa2fc0c@gmail.com>
-Date: Fri, 5 Feb 2021 09:48:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <482207e7ba33b79b30e1357c64fd85353519f00b.camel@linuxfoundation.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+ dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.93, mailfrom: naveen.kumar.saini@intel.com)
+IronPort-SDR: r5BCyXr6hicF4bSSG8mNkYS3WD1PTL2/Y+eOonD/6yopYkMwvMgVGuMQc5Y5CpwL+LooLd4KKX
+ U2xHHmZ7tDGA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="177893385"
+X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; 
+   d="scan'208";a="177893385"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2021 00:07:43 -0800
+IronPort-SDR: 2U3BE0rNUSIrv5YSYizlabI/VZ05Q/ZdGKp78FowD479qzC46xLI8oi5dd/cbR59I3kVzhnRxL
+ dSrm1Emt7wKA==
+X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; 
+   d="scan'208";a="580875475"
+Received: from saininav-desk1.png.intel.com ([172.30.199.23])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2021 00:07:42 -0800
+From: "Naveen Saini" <naveen.kumar.saini@intel.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-zephyr][PATCH] zephyr-kernel-common.inc: use ZEPHYR_MODULES var
+Date: Fri,  5 Feb 2021 16:18:19 +0800
+Message-Id: <20210205081819.29612-1-naveen.kumar.saini@intel.com>
+X-Mailer: git-send-email 2.17.1
 
-On 04/02/2021 19:17, Richard Purdie wrote:
->>
->> -   GNU Lesser General Public
->> -   License as published by the Free Software Foundation; either
->> -   version 2.1 of the License, or (at your option) any later version.
->> -
->> +* SPDX-License-Identifier: GPL-2.0-or-later
->> +*/
+Use ZEPHYR_MODULES variable to pass list of absolute source paths of
+additional external modules.
 
-I guess the correct SPDX id is then:
+Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+---
+ .../zephyr-kernel/zephyr-kernel-common.inc          | 13 +++++++++----
+ .../zephyr-kernel/zephyr-peripheral-esp.bb          |  2 +-
+ 2 files changed, 10 insertions(+), 5 deletions(-)
 
-LGPL-2.1-or-later
-
-In order to get this right I would highly recommend to use fossology to 
-look at those files.
-
->>
-> 
-> This file mentions "GNU Lesser General Public License" and version 2.1
-> which is not GPL-2.0!
-> 
-> It is critical to get this bit right.
-> 
-> Cheers,
-> 
-> Richard
-
-Regards,
-
-Robert
-
-> 
-> 
-> 
-> 
-> 
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+index 1357c8f..5313030 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+@@ -15,10 +15,15 @@ ZEPHYR_MAKE_OUTPUT = "zephyr.elf"
+ 
+ 
+ EXTRA_OECMAKE = " -DZEPHYR_BASE=${S} -DZEPHYR_GCC_VARIANT=yocto -DBOARD=${BOARD} -DARCH=${ARCH} -DCROSS_COMPILE=${CROSS_COMPILE} -DZEPHYR_SYSROOT=${ZEPHYR_SYSROOT} -DZEPHYR_TOOLCHAIN_VARIANT=yocto"
+-EXTRA_OECMAKE_append_arm = " -DZEPHYR_MODULES=${S}/modules/cmsis"
+-EXTRA_OECMAKE_append_nordic = "\;${S}/modules/hal/nordic"
+-EXTRA_OECMAKE_append_stm32 = "\;${S}/modules/hal/stm32"
+-EXTRA_OECMAKE_append_openamp = "\;${S}/modules/lib/open-amp\;${S}/modules/hal/libmetal"
++
++ZEPHYR_MODULES = ""
++ZEPHYR_MODULES_append_arm = "\;${S}/modules/cmsis"
++ZEPHYR_MODULES_append_nordic = "\;${S}/modules/hal/nordic"
++ZEPHYR_MODULES_append_stm32 = "\;${S}/modules/hal/stm32"
++ZEPHYR_MODULES_append_openamp = "\;${S}/modules/lib/open-amp\;${S}/modules/hal/libmetal"
++
++EXTRA_OECMAKE_append = " -DZEPHYR_MODULES=${ZEPHYR_MODULES}"
++
+ export ZEPHYR_BASE="${S}"
+ 
+ 
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-peripheral-esp.bb b/recipes-kernel/zephyr-kernel/zephyr-peripheral-esp.bb
+index 192c76d..24f030a 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-peripheral-esp.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-peripheral-esp.bb
+@@ -6,7 +6,7 @@ ZEPHYR_SAMPLE_NAME="samples/bluetooth/peripheral_esp"
+ ZEPHYR_SRC_DIR = "${S}/${ZEPHYR_SAMPLE_NAME}"
+ ZEPHYR_BASE = "${S}"
+ OECMAKE_SOURCEPATH = "${ZEPHYR_SRC_DIR}"
+-EXTRA_OECMAKE_append = "\;${S}/modules/crypto/tinycrypt"
++ZEPHYR_MODULES_append = "\;${S}/modules/crypto/tinycrypt"
+ 
+ do_deploy () {
+     install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT} ${DEPLOYDIR}/${PN}.elf
+-- 
+2.17.1
 
