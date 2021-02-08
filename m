@@ -1,62 +1,87 @@
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
- by mx.groups.io with SMTP id smtpd.web10.32435.1612771866876439591
+Received: from smtpcmd15176.aruba.it (smtpcmd15176.aruba.it [62.149.158.101])
+ by mx.groups.io with SMTP id smtpd.web12.33445.1612781569017797235
  for <yocto@lists.yoctoproject.org>;
- Mon, 08 Feb 2021 00:11:07 -0800
+ Mon, 08 Feb 2021 02:52:49 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theyoctojester-info.20150623.gappssmtp.com header.s=20150623 header.b=oE1Azf7e;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.167.50, mailfrom: jester@theyoctojester.info)
-Received: by mail-lf1-f50.google.com with SMTP id m22so20904830lfg.5
-        for <yocto@lists.yoctoproject.org>; Mon, 08 Feb 2021 00:11:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DsPBkqeGDU86b+MYCD4fG6KKgYjJPY5h9reKddgpTzI=;
-        b=oE1Azf7eFC0up8oX33XP1pLsjK7qWIaqL3TClIAIznLJiFUZrYK0WjwJWsOR7/mduh
-         iRoYE3Fqn+UwZlelCPVMgRfgJVAqLiIBHuu8iAP4aDJLmZBfGieA8qJOI1b71WUELDxO
-         fwA4joTmsmNMvcXaEx/92Q+aXYzjw+m8KXWSV+polYW45F4jGN3KXOj1cxiZUPP+EhD1
-         L8mulQlP5WtMdWj05K9+nGyZVHhoJy7KBpaLgY/WB89u7uEmmbw9SIP8SJbP68WpcM8j
-         jNbVDWz5m1hUAn8xkyVgPi0OtjRm5guwF50tLI9InqbzjBWAIZemTpxmibclvOC03ln4
-         LN4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DsPBkqeGDU86b+MYCD4fG6KKgYjJPY5h9reKddgpTzI=;
-        b=HTceCo0/o1hiQxeOoBwZsxZ7sq/xpmiArlak51kY+zVfbH2EOad2Vh1rGBj4tudTem
-         8oAMob3oVw8zLoi/T+2ta2cavepCjTEOdMZ/k8+DgW0HUeRSatLYHz6/oQX2E9hcOAaI
-         7QyeUY9utoNbLNLYPSAUXsYUhsrAjNtoy/9rdkp6lIJz6eR6H4Ago9qfztgOR5fVgjQq
-         MCvkJsnXYwOue2MkFNI/fD5FBTGs1HkCEKqbBT71kuNmoE7+PA1Ncn7aIU/jJf/oZugU
-         sW5q73YoJxKFQZOq+8KI9h2NC4+TavF4hnSt5NszMKexsxkRgolpwqaCcNFJhOhf/Um/
-         iReQ==
-X-Gm-Message-State: AOAM531UpIfjrKSLDBA5LiTs94GgjzPsIRDvYG7KbgK1gbU1fQVWiriv
-	14NWvLwA8U1SIi8QfOpnj+VexwudqZviWrXKMDpvFg==
-X-Google-Smtp-Source: ABdhPJwV0N0PlqcM+Su0nI8REWSaYR6dMLwymUnGN6Nu4pB+tWZhPdmKmvGwTCrH++5IviHuKeh/wpYFuPq6csRDaQw=
-X-Received: by 2002:a19:c194:: with SMTP id r142mr10036516lff.102.1612771865022;
- Mon, 08 Feb 2021 00:11:05 -0800 (PST)
+ dkim=pass header.i=@aruba.it header.s=a1 header.b=XTuuhqXj;
+ spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 62.149.158.101, mailfrom: mauro@faresoftware.it)
+Received: from [192.168.24.172] ([93.38.119.136])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id 949plJ6ihBD2n949rl0XD9; Mon, 08 Feb 2021 11:52:45 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1612781566; bh=z64mbGqzfzQeeduCio9ZD4fgw9h34CjI1pPEi2AFv6M=;
+	h=To:From:Subject:Date:MIME-Version:Content-Type;
+	b=XTuuhqXjRn57fG2jlbrGeA0NaxDipTek6jRXC9dY9CMoMrzBJAE+wXnoffwYQ02Re
+	 svlZ5/lKNCbLjaN9MpS5Kxr0pYIpvpUCYEHRy989Ez7ws8vPapWldLZDThSjlEZGb+
+	 sMpLeGx2eykf6kPKc0vMkrZ+nmsHxmfQfkAnpvXrx+D/jpB1AWRelffg7mFfZkOE9B
+	 z/j2sIbGPpbng1wPhN9vpk5PIyQqgx4V1nB8/JeFjFQecFEW5aHBEXi3GoqEK5tRCI
+	 ITSdgJBglad5nAJ/XCPMZiwvUZKAxfACZL9MwpJHEquP6Mh3XmoU4I0ZKFF5PwcKnF
+	 iERZ3Y2om3Mzw==
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+From: "Mauro Ziliani" <mauro@faresoftware.it>
+Subject: PREFERRED_VERSION_pn-: which version is selected?
+Message-ID: <dce0933f-55a7-cdab-aec7-3662f130240b@faresoftware.it>
+Date: Mon, 8 Feb 2021 11:52:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-References: <31249.1612659478103525956@lists.yoctoproject.org> <31241.1612742495128137731@lists.yoctoproject.org>
-In-Reply-To: <31241.1612742495128137731@lists.yoctoproject.org>
-From: "Josef Holzmayr" <jester@theyoctojester.info>
-Date: Mon, 8 Feb 2021 09:10:38 +0100
-Message-ID: <CAEt6Nwp3Q40c+cfBDPXKfCGTn=r8AFtVa+1aJoPhEFw9HALGUg@mail.gmail.com>
-Subject: Re: [yocto] devtool question/issue
-To: David Gartner <gartnerd@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+X-CMAE-Envelope: MS4wfCZ7alRTbMNRld7/33v85EPwyCFmw3HlyDJ5Sq5lfuZ6L60ggGcvUFioYQvh9mH8no0jFM+exI0u2DUeMQo4ujtPzy8BP1hKVxWgR3yO9/AZy8SfWbQg
+ JvnzmDQixhCvSWPRzF7LFIJkohjpvyL2aHXju4o0Fv+FOioExb1lAmqlOIZz4PnDA8v0zY+pQxQJQg==
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: it
 
-Hi David!
+Hi all.
 
-Am Mo., 8. Feb. 2021 um 01:01 Uhr schrieb David Gartner <gartnerd@gmail.com>:
-> I found the issue that was causing my problem. Just an FYI if anyone else happens to run into this.
->
-> There was a file named ".devtoolbase" in /mnt/YB. I think this was a remenant of some previous work I was doing with yocto. I'm not sure what the purpose of this file is but once I removed it devtool no longer errorred out.
+I'm working with Krogoth on imx6
 
-Oh great, thanks for the heads up. I am actually the one who did the
-video, and just returned into office mondayishly and would have tried
-probably this afternoon. But that I would have never found, as I
-usually start out in clean slate containers, and I use devtool a lot
-in there with builds even scattered out over multiple mount points.So
-glad you figurede out and took the time to share!
 
-Greetz
+I have the same recipe with different versions
+
+recipe1_0.9.bb
+
+recipe1_1.0.bb
+
+
+In the image recipe I put
+
+
+image-recipe.bb
+
+IMAGE_INSTALL_append := " \
+
+     recipe1 \
+
+"
+
+PREFERRED_VERSION_pn-recipe1 := "0.9"
+
+
+If I do
+
+  bitbake -s
+
+I get
+
+recipe1    :1.0-r0
+
+
+If I do
+
+bitbake image-recipe
+
+
+in image-recipe.manifest I look
+
+recipe1  1.0-r0
+
+
+Why is not selected the preferred version?
+
+How can I choose the recipe's version I'd like?
+
+
+Best regards,
+
+    MZ
+
