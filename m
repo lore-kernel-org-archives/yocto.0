@@ -1,61 +1,55 @@
-Received: from smtpcmd03117.aruba.it (smtpcmd03117.aruba.it [62.149.158.117])
- by mx.groups.io with SMTP id smtpd.web09.4667.1612959069874350308
+Received: from bsmtp3.bon.at (bsmtp3.bon.at [213.33.87.17])
+ by mx.groups.io with SMTP id smtpd.web11.4499.1612959332395416835
  for <yocto@lists.yoctoproject.org>;
- Wed, 10 Feb 2021 04:11:11 -0800
+ Wed, 10 Feb 2021 04:15:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@aruba.it header.s=a1 header.b=eaHSo9HH;
- spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 62.149.158.117, mailfrom: mauro@faresoftware.it)
-Received: from [10.0.3.93] ([213.213.6.58])
-	by Aruba Outgoing Smtp  with ESMTPSA
-	id 9oKpls75opm9e9oKqlAAkZ; Wed, 10 Feb 2021 13:11:09 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-	t=1612959069; bh=OGaCFjKmx8FWTGlVPFP4/owoEyYnsLmE0g/Ui+HSaw8=;
-	h=To:From:Subject:Date:MIME-Version:Content-Type;
-	b=eaHSo9HHpD4pY2oi6GWNiHDJOh1DeLK48UOthr4GTMc96Sgf0fcoo+oTMJeb2bfUE
-	 Bsw7XJeqY489wf5E5VLwQaVrLYjhyOqGoY4+TFSlceDKZCwGZNgRCn0x4ZerfZPY69
-	 J/g5Hl6c4XDn7y4ETvpJfad7gB4f5XbzMreUPlEhJ+Mplk18pL0bl5zUT+RnOsuaC7
-	 GTZcIwoDDKUJQRekITY/8hqUc4OM03bT6NSWJA9G4+WJr76BWF5qlcAhKFaJ+zqhjo
-	 1LWdT+eN085Osj6yPp0mjaOCM5pNsTTLmRdXlvp77TVdqhUqu18OVQVw6XdoRNxBN1
-	 p1lUdMVcrzDKA==
-To: yocto@lists.yoctoproject.org
-From: "Mauro Ziliani" <mauro@faresoftware.it>
-Subject: curl certificate error
-Message-ID: <e952c755-6193-5276-42dd-79e88753f2d3@faresoftware.it>
-Date: Wed, 10 Feb 2021 13:11:07 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.17, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp3.bon.at (Postfix) with ESMTPSA id 4DbJcd2kHDz5tlL;
+	Wed, 10 Feb 2021 13:15:29 +0100 (CET)
+Date: Wed, 10 Feb 2021 13:15:27 +0100
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: Mauro Ziliani <mauro@faresoftware.it>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] curl certificate error
+Message-ID: <20210210121527.jo3vucy2pgsp6q6p@qschulz>
+References: <e952c755-6193-5276-42dd-79e88753f2d3@faresoftware.it>
 MIME-Version: 1.0
-X-CMAE-Envelope: MS4wfGbRO2WHoaT4OKgQfr9pMXuLBrbwoBgcLI3OL++DsT+4o5Vm63jkwLB38Nces2UT717qjXGkEqdD5+41GFdNESaxQTlTGZP7+V3P3v8Kt1HGMitus9sg
- QELut1XdEoGqhwWX5bUkTb2lBswY4raqo+d1CubrSkDLjbp6oDBXd7tKyCFZsPG4iML3FfebU40Ecw==
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+In-Reply-To: <e952c755-6193-5276-42dd-79e88753f2d3@faresoftware.it>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi all
-I try to download the file
+Hi Mauro,
 
-https://github.com/google/googletest/archive/release-1.8.0.tar.gz
+On Wed, Feb 10, 2021 at 01:11:07PM +0100, Mauro Ziliani wrote:
+> Hi all
+> I try to download the file
+>=20
+> https://github.com/google/googletest/archive/release-1.8.0.tar.gz
+>=20
+> with curl -L inside a devshell of a recipe
+>=20
+>=20
+> I get this error
+>=20
+>=20
+> curl: (77) error setting certificate verify locations:
+> =A0 CAfile: /Sources/softfx/krogoth/softfx-build/tmp/sysroots/x86_64-li=
+nux/etc/ssl/certs/ca-certificates.crt
+> =A0 CApath: none
+>=20
 
-with curl -L inside a devshell of a recipe
+Missing ca-certificates-native somewhere in the dependency chain. I
+honestly thought curl-native would bring it, but does not seem so. I
+personally added ca-certificates-native to the DEPENDS of the recipe
+needing curl-native for a quick fix since I'm in the middle of an
+upgrade and will not use krogoth anymore.
 
-
-I get this error
-
-
-curl: (77) error setting certificate verify locations:
-   CAfile: 
-/Sources/softfx/krogoth/softfx-build/tmp/sysroots/x86_64-linux/etc/ssl/certs/ca-certificates.crt
-   CApath: none
-
-
-I miss some dependency?
-
-
-I'm working on an old Krogoth
-
-
-Thanks all
-
-   MZ
-
-
+Cheers,
+Quentin
+--=20
+StreamUnlimited Engineering GmbH
+High Tech Campus Vienna, Gutheil-Schoder-Gasse 10, 1100 Vienna, Austria
+Fax: +43 1 667 20 02 4401
+quentin.schulz@streamunlimited.com, www.streamunlimited.com
