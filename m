@@ -1,93 +1,61 @@
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
- by mx.groups.io with SMTP id smtpd.web08.3241.1612949534341414073
+Received: from smtpcmd03117.aruba.it (smtpcmd03117.aruba.it [62.149.158.117])
+ by mx.groups.io with SMTP id smtpd.web09.4667.1612959069874350308
  for <yocto@lists.yoctoproject.org>;
- Wed, 10 Feb 2021 01:32:14 -0800
+ Wed, 10 Feb 2021 04:11:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=CPe871kY;
- spf=pass (domain: gmail.com, ip: 209.85.219.177, mailfrom: amayajindal786@gmail.com)
-Received: by mail-yb1-f177.google.com with SMTP id r2so1319329ybk.11
-        for <yocto@lists.yoctoproject.org>; Wed, 10 Feb 2021 01:32:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wCXaJEZhaqKhZhOJWlyDPiwE0nFYGcuermXMSFi3Eh8=;
-        b=CPe871kYxHoJgUr8PW//cZ28aKS4pqP3WSv/6K2nU2UuycvWMGCiMt1EZ/nNH2kwGL
-         TrpKO4z1wfiLi1AXmF9XtsEHwCrBElyC96lf9k0rAXQNAlesVPwQAhoiMp5DI3cSCmnj
-         gCquDaPWBoRJ5rAdHlNVpS72jeAnH2AW4kyJHQtCdS0gvgvUONyfJr1aZEbkDygYOCvF
-         c3TnNqufV4b2jyMvgjyIcIyI7lCZiOPZuJjUrKhyS//Yu4hYqyy3w+oeP/nUl2XujUZF
-         IvZ+YuVO2ph91eIiKbFnQzFoSSflVkEWEWtWkYPTuUImPTVecNL/WCnpvIugj55GSoxw
-         pXbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wCXaJEZhaqKhZhOJWlyDPiwE0nFYGcuermXMSFi3Eh8=;
-        b=t20pN4pQuwa3SFvguypymSOoZ/X7mlpQpiFIkszlr6bcF11/YuXdwTJ6GXfh+/9miV
-         hnzWunDwYlOhxgbBqFw9+Gg0Xz2o26dU7OtPYEGHa6lNbsNKGw7L9Z13NvaaKTQMk9xN
-         C/hLdjn2/vgM5sYVjdjTY/5w+iuaLIeMDcLtKTpeYpFKNkaD1RGPI3GxMhnm3k0NZSlZ
-         dFqKoMKAIP8AYVeV7qp7+LB9gtOmINh3sm8wcf8rhK2k49jy2304OaC39KiCbiFgQPgd
-         YDGzcniu5iRYzaKbFMYs0QuKIC+nQ7N45JRdBF4kKpGZvaQmA3jyWCzREqbjx7A589Vf
-         dvtQ==
-X-Gm-Message-State: AOAM530KIn4dxW6ZqHCLVtlHRFdHKZM70P2c7KheQsuBdwOiDZHG1Z5b
-	4Q4/Ps68iq0gUGva9yJUT16q5k90ylnbNwML/2c=
-X-Google-Smtp-Source: ABdhPJzap7ZRjoc1oj6BJv+4gFzsyM4V7/KafFb9zW3ckhVl2jCrEW27tApfiRUVkmGlxqX05j1yDmI53cbupvBdQlk=
-X-Received: by 2002:a25:ea52:: with SMTP id o18mr3175507ybe.385.1612949532939;
- Wed, 10 Feb 2021 01:32:12 -0800 (PST)
+ dkim=pass header.i=@aruba.it header.s=a1 header.b=eaHSo9HH;
+ spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 62.149.158.117, mailfrom: mauro@faresoftware.it)
+Received: from [10.0.3.93] ([213.213.6.58])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id 9oKpls75opm9e9oKqlAAkZ; Wed, 10 Feb 2021 13:11:09 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1612959069; bh=OGaCFjKmx8FWTGlVPFP4/owoEyYnsLmE0g/Ui+HSaw8=;
+	h=To:From:Subject:Date:MIME-Version:Content-Type;
+	b=eaHSo9HHpD4pY2oi6GWNiHDJOh1DeLK48UOthr4GTMc96Sgf0fcoo+oTMJeb2bfUE
+	 Bsw7XJeqY489wf5E5VLwQaVrLYjhyOqGoY4+TFSlceDKZCwGZNgRCn0x4ZerfZPY69
+	 J/g5Hl6c4XDn7y4ETvpJfad7gB4f5XbzMreUPlEhJ+Mplk18pL0bl5zUT+RnOsuaC7
+	 GTZcIwoDDKUJQRekITY/8hqUc4OM03bT6NSWJA9G4+WJr76BWF5qlcAhKFaJ+zqhjo
+	 1LWdT+eN085Osj6yPp0mjaOCM5pNsTTLmRdXlvp77TVdqhUqu18OVQVw6XdoRNxBN1
+	 p1lUdMVcrzDKA==
+To: yocto@lists.yoctoproject.org
+From: "Mauro Ziliani" <mauro@faresoftware.it>
+Subject: curl certificate error
+Message-ID: <e952c755-6193-5276-42dd-79e88753f2d3@faresoftware.it>
+Date: Wed, 10 Feb 2021 13:11:07 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-References: <1662044F5A000658.19464@lists.yoctoproject.org>
-In-Reply-To: <1662044F5A000658.19464@lists.yoctoproject.org>
-From: "amaya jindal" <amayajindal786@gmail.com>
-Date: Wed, 10 Feb 2021 15:01:59 +0530
-Message-ID: <CAHXFBWuQi8CiRyTzpGnFzsRt=GVRGdWRXXVr_+psWT+OKf4P_w@mail.gmail.com>
-Subject: Re: [yocto] Port toolchain source 4.9.3 to Rocko yocto
-To: amaya jindal <amayajindal786@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000f3987005baf8131e"
+X-CMAE-Envelope: MS4wfGbRO2WHoaT4OKgQfr9pMXuLBrbwoBgcLI3OL++DsT+4o5Vm63jkwLB38Nces2UT717qjXGkEqdD5+41GFdNESaxQTlTGZP7+V3P3v8Kt1HGMitus9sg
+ QELut1XdEoGqhwWX5bUkTb2lBswY4raqo+d1CubrSkDLjbp6oDBXd7tKyCFZsPG4iML3FfebU40Ecw==
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
---000000000000f3987005baf8131e
-Content-Type: text/plain; charset="UTF-8"
+Hi all
+I try to download the file
 
-Please guide
+https://github.com/google/googletest/archive/release-1.8.0.tar.gz
 
-On Tue, 9 Feb 2021, 1:09 pm amaya jindal via lists.yoctoproject.org,
-<amayajindal786=gmail.com@lists.yoctoproject.org> wrote:
+with curl -L inside a devshell of a recipe
 
-> Hi,
->
-> I want to port old version of toolchain ie gcc 4.9.3 to Rocko version of
-> yocto. I am getting errors in libgcc-initial. Please suggest any one has
-> performed the same. Rocko has currently 5.4 gcc version that we don't want
-> to use  currently. Please suggest.
->
-> Regards,
-> Rohit
->
-> 
->
->
 
---000000000000f3987005baf8131e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I get this error
 
-<div dir=3D"auto"><div>Please guide=C2=A0<br><br><div class=3D"gmail_quote"=
-><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 9 Feb 2021, 1:09 pm amaya ji=
-ndal via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</=
-a>, &lt;amayajindal786=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org=
-">gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
-ding-left:1ex"><div dir=3D"auto">Hi,=C2=A0<div dir=3D"auto"><br></div><div =
-dir=3D"auto">I want to port old version of toolchain ie gcc 4.9.3 to Rocko =
-version of yocto. I am getting errors in libgcc-initial. Please suggest any=
- one has performed the same. Rocko has currently 5.4 gcc version that we do=
-n&#39;t want to use=C2=A0 currently. Please suggest.</div><div dir=3D"auto"=
-><br></div><div dir=3D"auto">Regards,=C2=A0</div><div dir=3D"auto">Rohit=C2=
-=
-=A0</div></div>
-<br>
-<br>
-<br>
-</blockquote></div></div></div>
 
---000000000000f3987005baf8131e--
+curl: (77) error setting certificate verify locations:
+   CAfile: 
+/Sources/softfx/krogoth/softfx-build/tmp/sysroots/x86_64-linux/etc/ssl/certs/ca-certificates.crt
+   CApath: none
+
+
+I miss some dependency?
+
+
+I'm working on an old Krogoth
+
+
+Thanks all
+
+   MZ
+
+
