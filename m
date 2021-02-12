@@ -1,252 +1,148 @@
-Received: from hmr112.pwrz.at (hmr112.pwrz.at [194.30.191.129])
- by mx.groups.io with SMTP id smtpd.web10.1766.1613124176474680858
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+ by mx.groups.io with SMTP id smtpd.web12.1908.1613124767692743925
  for <yocto@lists.yoctoproject.org>;
- Fri, 12 Feb 2021 02:02:57 -0800
+ Fri, 12 Feb 2021 02:12:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@voxel.at header.s=default header.b=CvNZxfiz;
- spf=pass (domain: voxel.at, ip: 194.30.191.129, mailfrom: simon@voxel.at)
-Received: from srv345.pwrz.at (unknown [10.10.30.15])
-	by hmr112.pwrz.at (Postfix) with ESMTP id 8AC7540226
-	for <yocto@lists.yoctoproject.org>; Fri, 12 Feb 2021 11:02:54 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by srv345.pwrz.at (Postfix) with ESMTP id 32DA0D137D;
-	Fri, 12 Feb 2021 11:02:54 +0100 (CET)
-X-Virus-Scanned: amavisd-new at pwrz.at
-Received: from srv345.pwrz.at ([127.0.0.1])
-	by localhost (srv345.pwrz.at [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id FKeVwmYr0Byf; Fri, 12 Feb 2021 11:02:48 +0100 (CET)
-Received: from srv371.pwrz.at (srv371.pwrz.at [80.122.189.136])
-	by srv345.pwrz.at (Postfix) with ESMTP id 5FF05CC118
-	for <yocto@lists.yoctoproject.org>; Fri, 12 Feb 2021 11:02:48 +0100 (CET)
-Received: from grau.fritz.box (unknown [80.243.174.92])
-	by srv371.pwrz.at (Postfix) with ESMTPSA id 965032C1075
-	for <yocto@lists.yoctoproject.org>; Fri, 12 Feb 2021 11:03:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=voxel.at; s=default;
-	t=1613124204; bh=7rVQgj0huZTbhlaQpJKFGfs3JGc9wNKZEo8QPFBMmhc=;
-	l=7338;
-	h=To:From:Subject:Organization:Message-ID:Date:User-Agent:
-	 MIME-Version:Content-Type:Content-Language:X-PPP-Message-ID:
-	 X-PPP-Vhost;
-	b=CvNZxfizBaMG6ywhn4LMdU4/mx/5jkctFtNHeLSLZEN7wPiZHMc9HawCKZAeiDAwf
-	 HC1EDghAsyFYaDFY4OFgHeFzpj/WDZGxCkV357yFsUfJsNAQAFhRnEAUB8FYLpOydq
-	 CTS5x1XlTeiQHTAgxk6zfriTlCItRgTeqiCasaSg=
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-From: "Simon Vogl" <simon@voxel.at>
-Subject: Dunfell, nodejs and typescript - short experience report
-Organization: VoXel Interaction Design
-Message-ID: <c8592b7e-a498-e413-1527-f5f6fe4dad0c@voxel.at>
-Date: Fri, 12 Feb 2021 11:02:48 +0100
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:78.0)
- Gecko/20100101 Thunderbird/78.7.1
+ dkim=pass header.i=@theyoctojester-info.20150623.gappssmtp.com header.s=20150623 header.b=gSCdcuXe;
+ spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.175, mailfrom: jester@theyoctojester.info)
+Received: by mail-lj1-f175.google.com with SMTP id u4so10886238ljh.6
+        for <yocto@lists.yoctoproject.org>; Fri, 12 Feb 2021 02:12:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=theyoctojester-info.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=8H22EeiUpi58jjEEenSQjOKtsQUnjnW1TRJ9LJpEGDo=;
+        b=gSCdcuXexezCkU1oTgyr8aGkzJHOTEgB1j4Y544gVJuVyd/F4jQgUDOMT0IyS9TglF
+         dz7+LR3/S28+VHE5qpHqj+5tmpateUPUja5D4EhvGWGze47m79t96ysRUS/ByceKSaEs
+         +gxOirRVIunqDPsrjY+QcYuFT6Fd4EQ/UpEYorFLvw+CUnEEFRKxSBf8AzzbXqcVA0ku
+         21JvOdWgl1X2wYk1NQNoAEuO90HRa/jpUDjj7R+9YyHvgYS9SM7B6tTankZDgBdIf1pl
+         64FgfKRT5iBEDU/kkX9nDmvFH7bEHgrQ4l2nQzEQYs2g+bY08TuIGVcwx6fgg+E0gIB/
+         wpOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=8H22EeiUpi58jjEEenSQjOKtsQUnjnW1TRJ9LJpEGDo=;
+        b=NcXJ1FQMYKwQbkFqj/4uRNkwBFgzV/vYXyuWTa72stc8mBC/zIhjJcKwvpHxdrMdEq
+         qWEOV2NIgmNbHRnAyRwPgPSAMu9WC5rtrruWQX+YomKXx6UJt3ulTrERzPelxeb2Ugyk
+         XqK/GLfvGSS6kftNa1Ub6w/O+2K0I47n9pyXKQuiAK2Y9bCPIxnBlmbnVYJNPwK8zPsO
+         TZwE+Xl4reg8I6oGUgqnmEMfzZlnOgOQ1E7gTZx1nA4a0seZvdX3/+kfiuyQsQbKVvD3
+         4XQ1HjghkGZ9/mdeb1AopGLD8xTXOeN9I6ejbJYsByj2wc5RmoEhCX1g56Yd1G4Rs6X9
+         hdag==
+X-Gm-Message-State: AOAM531w9BqOJfG+7qEG/gkpTzIjDgYtxqheUf24d45Uo56uaC0w3Psy
+	Zy8y+kpH7fdDmfVraUMcixHUwcQovgeF4ofg0UTCSg==
+X-Google-Smtp-Source: ABdhPJwneRufId0nVJRHCc8IYA7NhNVLTTgX7Raajkts7EZAiZPYNKhc3kEkUp1AlGFd2+Tz1K4M6w93yQf/cVsNZSg=
+X-Received: by 2002:a2e:320c:: with SMTP id y12mr1243623ljy.165.1613124765795;
+ Fri, 12 Feb 2021 02:12:45 -0800 (PST)
 MIME-Version: 1.0
-X-PPP-Message-ID: <20210212100324.1169.30773@srv371.pwrz.at>
-X-PPP-Vhost: voxel.at
-Content-Type: multipart/alternative;
- boundary="------------84A59285A2D4C7DB6E060286"
-Content-Language: it
-
---------------84A59285A2D4C7DB6E060286
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-I have some remarks and questions about the npm/nodejs support in 
-dunfell that I wanted to share. We are creating nodejs-based IoT edge 
-solutions and upgrading our build environments to Dunfell one by one. In 
-the course of this, we are switching to the new npm-implementation and 
-found a few small issues.
-
-Firstly, the do_configure() task takes quite some time to complete. 
-After a quick analysis, I saw that most of the time is being spent in 
-creating the npmrc files while packing the dependent packages. I wrote a 
-small workaround to directly create the file instead of calling 'npm 
-config', which results in a 3x-4x speedup:
-
-Signed-off-by: Simon Vogl<simon@voxel.at>
----
-  lib/bb/fetch2/npm.py | 9 +++++++--
-  1 file changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/lib/bb/fetch2/npm.py b/lib/bb/fetch2/npm.py
-index 4789850..2720d87 100644
---- a/lib/bb/fetch2/npm.py
-+++ b/lib/bb/fetch2/npm.py
-@@ -97,13 +97,18 @@ class NpmEnvironment(object):
-                  cmd = "NPM_CONFIG_GLOBALCONFIG=%s " % cfgfile + cmd
-                  return runfetchcmd(cmd, d, workdir=workdir)
-  
-+            cfg = open(cfgfile, "a")
-              if self.configs:
-                  for key, value in self.configs:
--                    _run("npm config set %s %s" % (key, shlex.quote(value)))
-+                    cfg.write("%s=%s\n" % (key, shlex.quote(value)))
-+                    #_run("npm config set %s %s" % (key, shlex.quote(value)))
-  
-              if configs:
-                  for key, value in configs:
--                    _run("npm config set %s %s" % (key, shlex.quote(value)))
-+                    cfg.write("%s=%s\n" % (key, shlex.quote(value)))
-+                    # _run("npm config set %s %s" % (key, shlex.quote(value)))
-+
-+            cfg.close()
-  
-              if args:
-                  for key, value in args:
--- 2.7.4
-
-Are there any side effects that I did not stumble over yet? And I'd LOVE 
-to have these calls running in a thread-pool for better performance...
-
-
-Secondly, our projects are based on typescript, so a native compile step 
-is necessary to create a compiled version for packing. We experimented 
-with a separate release branch to check in compiled versions, but this 
-is not easy to handle. I played around with npm.bbclass and found a way 
-to extend configure (!) with a call to our build script before packaging:
-
-diff --git a/meta/classes/npm.bbclass b/meta/classes/npm.bbclass
-index 068032a1e5..31535098cf 100644
---- a/meta/classes/npm.bbclass
-+++ b/meta/classes/npm.bbclass
-@@ -170,6 +170,11 @@ python npm_do_configure() {
-  
-      # Configure the main package
-      with tempfile.TemporaryDirectory() as tmpdir:
-+        # install all (native) build dependencies, overrides npm cache:
-+        ret = os.system("npm i")
-+        # run build step:
-+        env.run("npm run build", args=[], workdir=d.getVar("S"))
-+
-          tarball = npm_pack(env, d.getVar("S"), tmpdir)
-          npm_unpack(tarball, d.getVar("NPM_PACKAGE"), d)
-
-As we have plain JS packages as well, I put the modified configure() in 
-a subclass and this works for us, but it does not look like a clean 
-solution to me. How do you other IoT'ers address this situation?
-
-Simon
-
-
--- 
-VoXel Interaction Design  |  www.voxel.at
-DI Dr.techn. Simon Vogl   |  simon@voxel.at
-Tomaschekweg 46           |  +43 650 2323 555
-A-4040 Linz - Austria     |
-Office address: Industriezeile 35, 4020 Linz (2nd floor)
-
-
---------------84A59285A2D4C7DB6E060286
-Content-Type: text/html; charset=utf-8
+References: <c8592b7e-a498-e413-1527-f5f6fe4dad0c@voxel.at>
+In-Reply-To: <c8592b7e-a498-e413-1527-f5f6fe4dad0c@voxel.at>
+From: "Josef Holzmayr" <jester@theyoctojester.info>
+Date: Fri, 12 Feb 2021 11:12:18 +0100
+Message-ID: <CAEt6NwrMx0j7ppYCmACfsrZ+qJWoS3WONdsOcb9g+H_4SHyg=Q@mail.gmail.com>
+Subject: Re: [yocto] Dunfell, nodejs and typescript - short experience report
+To: Simon Vogl <simon@voxel.at>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
+Howdy!
 
-    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <p>I have some remarks and questions about the npm/nodejs support in
-      dunfell that I wanted to share. We are creating nodejs-based IoT
-      edge solutions and upgrading our build environments to Dunfell one
-      by one. In the course of this, we are switching to the new
-      npm-implementation and found a few small issues.</p>
-    <p>Firstly, the do_configure() task takes quite some time to
-      complete. After a quick analysis, I saw that most of the time is
-      being spent in creating the npmrc files while packing the
-      dependent packages. I wrote a small workaround to directly create
-      the file instead of calling 'npm config', which results in a 3x-4x
-      speedup:</p>
-    <div class=3D"moz-text-plain" wrap=3D"true" style=3D"font-family:
-      -moz-fixed; font-size: 12px;" lang=3D"x-western">
-      <pre class=3D"moz-quote-pre" wrap=3D"">Signed-off-by: Simon Vogl <a=
- class=3D"moz-txt-link-rfc2396E" href=3D"mailto:simon@voxel.at">&lt;simon=
-@voxel.at&gt;</a>
----
- lib/bb/fetch2/npm.py | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+Thanks for sharing, a few comments inline.
 
-diff --git a/lib/bb/fetch2/npm.py b/lib/bb/fetch2/npm.py
-index 4789850..2720d87 100644
---- a/lib/bb/fetch2/npm.py
-+++ b/lib/bb/fetch2/npm.py
-@@ -97,13 +97,18 @@ class NpmEnvironment(object):
-                 cmd =3D "NPM_CONFIG_GLOBALCONFIG=3D%s " % cfgfile + cmd
-                 return runfetchcmd(cmd, d, workdir=3Dworkdir)
-=20
-+            cfg =3D open(cfgfile, "a")
-             if self.configs:
-                 for key, value in self.configs:
--                    _run("npm config set %s %s" % (key, shlex.quote(valu=
+Am Fr., 12. Feb. 2021 um 11:03 Uhr schrieb Simon Vogl <simon@voxel.at>:
+>
+> I have some remarks and questions about the npm/nodejs support in dunfell=
+ that I wanted to share. We are creating nodejs-based IoT edge solutions an=
+d upgrading our build environments to Dunfell one by one. In the course of =
+this, we are switching to the new npm-implementation and found a few small =
+issues.
+>
+> Firstly, the do_configure() task takes quite some time to complete. After=
+ a quick analysis, I saw that most of the time is being spent in creating t=
+he npmrc files while packing the dependent packages. I wrote a small workar=
+ound to directly create the file instead of calling 'npm config', which res=
+ults in a 3x-4x speedup:
+>
+> Signed-off-by: Simon Vogl <simon@voxel.at>
+> ---
+>  lib/bb/fetch2/npm.py | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+>
+> diff --git a/lib/bb/fetch2/npm.py b/lib/bb/fetch2/npm.py
+> index 4789850..2720d87 100644
+> --- a/lib/bb/fetch2/npm.py
+> +++ b/lib/bb/fetch2/npm.py
+> @@ -97,13 +97,18 @@ class NpmEnvironment(object):
+>                  cmd =3D "NPM_CONFIG_GLOBALCONFIG=3D%s " % cfgfile + cmd
+>                  return runfetchcmd(cmd, d, workdir=3Dworkdir)
+>
+> +            cfg =3D open(cfgfile, "a")
+>              if self.configs:
+>                  for key, value in self.configs:
+> -                    _run("npm config set %s %s" % (key, shlex.quote(valu=
 e)))
-+                    cfg.write("%s=3D%s\n" % (key, shlex.quote(value)))
-+                    #_run("npm config set %s %s" % (key, shlex.quote(val=
+> +                    cfg.write("%s=3D%s\n" % (key, shlex.quote(value)))
+> +                    #_run("npm config set %s %s" % (key, shlex.quote(val=
 ue)))
-=20
-             if configs:
-                 for key, value in configs:
--                    _run("npm config set %s %s" % (key, shlex.quote(valu=
+>
+>              if configs:
+>                  for key, value in configs:
+> -                    _run("npm config set %s %s" % (key, shlex.quote(valu=
 e)))
-+                    cfg.write("%s=3D%s\n" % (key, shlex.quote(value)))
-+                    # _run("npm config set %s %s" % (key, shlex.quote(va=
+> +                    cfg.write("%s=3D%s\n" % (key, shlex.quote(value)))
+> +                    # _run("npm config set %s %s" % (key, shlex.quote(va=
 lue)))
-+
-+            cfg.close()
-=20
-             if args:
-                 for key, value in args:
-<div class=3D"moz-txt-sig">--=20
-2.7.4
+> +
+> +            cfg.close()
+>
+>              if args:
+>                  for key, value in args:
+> --
+> 2.7.4
+>
+> Are there any side effects that I did not stumble over yet? And I'd LOVE =
+to have these calls running in a thread-pool for better performance...
 
-</div></pre>
-    </div>
-    <p>Are there any side effects that I did not stumble over yet? And
-      I'd LOVE to have these calls running in a thread-pool for better
-      performance...<br>
-    </p>
-    <p><br>
-    </p>
-    <p>Secondly, our projects are based on typescript, so a native
-      compile step is necessary to create a compiled version for
-      packing. We experimented with a separate release branch to check
-      in compiled versions, but this is not easy to handle. I played
-      around with npm.bbclass and found a way to extend configure (!)
-      with a call to our build script before packaging:=C2=A0 <br>
-    </p>
-    <pre>diff --git a/meta/classes/npm.bbclass b/meta/classes/npm.bbclass
-index 068032a1e5..31535098cf 100644
---- a/meta/classes/npm.bbclass
-+++ b/meta/classes/npm.bbclass
-@@ -170,6 +170,11 @@ python npm_do_configure() {
-=20
-     # Configure the main package
-     with tempfile.TemporaryDirectory() as tmpdir:
-+        # install all (native) build dependencies, overrides npm cache:
-+        ret =3D os.system("npm i")
-+        # run build step:
-+        env.run("npm run build", args=3D[], workdir=3Dd.getVar("S"))
-+
-         tarball =3D npm_pack(env, d.getVar("S"), tmpdir)
-         npm_unpack(tarball, d.getVar("NPM_PACKAGE"), d)
+The main side effect is that you're effectively patching poky, which
+is bad for maintenance.
 
-</pre>
-    <p>As we have plain JS packages as well, I put the modified
-      configure() in a subclass and this works for us, but it does not
-      look like a clean solution to me. How do you other IoT'ers address
-      this situation? <br>
-    </p>
-    <p>Simon<br>
-    </p>
-    <p><br>
-    </p>
-    <pre class=3D"moz-signature" cols=3D"72">--=20
-VoXel Interaction Design  |  <a class=3D"moz-txt-link-abbreviated" href=3D=
-"http://www.voxel.at">www.voxel.at</a>
-DI Dr.techn. Simon Vogl   |  <a class=3D"moz-txt-link-abbreviated" href=3D=
-"mailto:simon@voxel.at">simon@voxel.at</a>
-Tomaschekweg 46           |  +43 650 2323 555
-A-4040 Linz - Austria     | =20
-Office address: Industriezeile 35, 4020 Linz (2nd floor)</pre>
-  </body>
-</html>
+> Secondly, our projects are based on typescript, so a native compile step =
+is necessary to create a compiled version for packing. We experimented with=
+ a separate release branch to check in compiled versions, but this is not e=
+asy to handle. I played around with npm.bbclass and found a way to extend c=
+onfigure (!) with a call to our build script before packaging:
+>
+> diff --git a/meta/classes/npm.bbclass b/meta/classes/npm.bbclass
+> index 068032a1e5..31535098cf 100644
+> --- a/meta/classes/npm.bbclass
+> +++ b/meta/classes/npm.bbclass
+> @@ -170,6 +170,11 @@ python npm_do_configure() {
+>
+>      # Configure the main package
+>      with tempfile.TemporaryDirectory() as tmpdir:
+> +        # install all (native) build dependencies, overrides npm cache:
+> +        ret =3D os.system("npm i")
+> +        # run build step:
+> +        env.run("npm run build", args=3D[], workdir=3Dd.getVar("S"))
+> +
+>          tarball =3D npm_pack(env, d.getVar("S"), tmpdir)
+>          npm_unpack(tarball, d.getVar("NPM_PACKAGE"), d)
+>
+> As we have plain JS packages as well, I put the modified configure() in a=
+ subclass and this works for us, but it does not look like a clean solution=
+ to me. How do you other IoT'ers address this situation?
 
---------------84A59285A2D4C7DB6E060286--
+Again, patching poky is a bad idea. Creating custom bbclasses is much
+neater: you could create a base include, and pull that together with
+npm.bbclass into two final bbclasses of yours, like npm-js-voxel and
+npm-ts-voxel. The former would not have the compilation step. And,
+putting the typescript/webpack invocation into configure is also not
+exactly how things are meant to work. I know that the dependency
+tracking of npm is not easily compatible with bitbake, but the aim
+should be to
+1) have a recipe that provides typescript-native
+2) DEPEND on typescript-native in the recipe which you need to compile
+3) add a do_compile stage that does the work.
+
+Greetz
