@@ -1,200 +1,134 @@
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
- by mx.groups.io with SMTP id smtpd.web09.2735.1613078047512613763
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.826.1613089279969663505
  for <yocto@lists.yoctoproject.org>;
- Thu, 11 Feb 2021 13:14:07 -0800
+ Thu, 11 Feb 2021 16:21:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=HWKfQoUt;
- spf=pass (domain: gmail.com, ip: 209.85.222.179, mailfrom: twoerner@gmail.com)
-Received: by mail-qk1-f179.google.com with SMTP id x14so6780260qkm.2
-        for <yocto@lists.yoctoproject.org>; Thu, 11 Feb 2021 13:14:07 -0800 (PST)
+ dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=R94Mt6tx;
+ spf=softfail (domain: windriver.com, ip: 198.145.29.25, mailfrom: yifan.yu@windriver.com)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2074.outbound.protection.outlook.com [40.107.244.74])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 4FDCE38C06BE
+	for <yocto@yoctoproject.org>; Fri, 12 Feb 2021 00:21:19 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jxcf39tnxbX1urhBBwaYjG9gFcNRWFN7XVGgmeyblHJPgpjaWoI7r5+gJXR84iYgvbKjVxaUG6cQvzos+qMgxEd/BHYYbu0vumy+WBtn5IPUJXVQ6G08V3rZncomGJUpjUYDfOkBIeQgPjeCHV3T6f0aK/bQIlOkK9xqCnE2ild8DyYrOLLCr1AzA49ZcdLKLSNK3afC2nty4laqRgeLxiXk6W15WkbqZT74Caj4GfCVCApg8NT/J0KMbgH2xhEkcdZFqpjCic2zfbr67t+0vlruuyUUDyGrjWE9fC1c28beJifUCxb4fehspPByyV9zumj8NOR4zrSFqQaMCMJmmA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KIO8EFMZtPzmEQAdl9J+KCDAFY+nqNCh4hMAb8JjUgk=;
+ b=Y6ap59rYYvn8u3MzFEWGsSvBKrEDHS6rwv5hHvJBDFkEBldcU8MHTNMXqqCctrXQeT3vUc3y9xpaCG5r47+uNAJt5p4wy6vSTsB0XDu8SOEFKTotduoW9XnsH7ZuHisi3Na9aBr57v9+u84zsvUrkeuqu/jilqZUl+B/zb6FIzm4nMIALaHEmAfnJTMZJle0qHhrsBGG3/CO/vT9XyH+ZMbkxhH9/NmTm5TEye6lg8U7JfhJINS+bObg9y2m0AATX/IejvZREeqU/Wtz5dXAPbgXwhDLWcJZZ4iVgBc360VsbYoAf5qg1DWmsae3rT/2OEDg232DSVWy30Yf2udJqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:subject:message-id:mime-version:content-disposition
-         :content-transfer-encoding:user-agent;
-        bh=mkfcOLHjPJloEqsEniuWUnMjI6OggG8mFPtAvRbSOIo=;
-        b=HWKfQoUtW2ChT+/cz1b3Sdp5TMQIRKJaK4oGNSDjKBby87RbllIfKzp2GCaXB26jv5
-         6MhVJRLxzlVn7KhzRcz/UnzvS/akY0V4YFpGO0HdhoDGsd1ammRl8Qa6zY+CmVbSOAd+
-         ypJf8CmRzZwW5Iqlv/4HTou6zWjN8jXm6LWOCc7Bja/EFnbTljQ9Yv8GJM7Cjet4r/gw
-         O0oq/1jIAsZCt80Ss/4k5WdvzdE2BUg3oH892L42qM3DR2B7GQPx2A8RZk8CnZ4efPye
-         o0lreZlagKakLYmzlROL4Vvb+tnQqqeZ0g5ZXJ72khHTrZF2PqcC7TeKuUOYPuMqC9Dk
-         ibbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
-         :content-disposition:content-transfer-encoding:user-agent;
-        bh=mkfcOLHjPJloEqsEniuWUnMjI6OggG8mFPtAvRbSOIo=;
-        b=U8TXy5QgcyIeaGGpTfhH1a1F6CHuBmz3qOUDb/m9wMHx7q0/RP1CvtwbuutcOgDCQ/
-         T8aSxbVsOdKb88FZcmRx3iTRemiHLvtyd9umln3VPcSd4HwgdLHwjHD3pjHMPcwUbfUZ
-         ouvpw6YwtpRcjrpuTAitC2kPJ/WPtxgxqqIqi/FhglPBwyemHe0Vh1d0OjJij/KX8gTs
-         RElg4XBdD5Bg9EdYAtARjKFY/c/+svEa+0oeQeGepndVk4tj4W197x67M9X9pg/T51q1
-         8Np5HNv6i+L3k5IpxGdVQ04UresbOvPU785Z76CBYMGSTAAiEH9ki6vGcIkg8NwdUyZz
-         Vprw==
-X-Gm-Message-State: AOAM530pHjxuDTF5jwrWBYyZtyMB5PmnsuTd5cPqEnNbk4hNw2+VnDpC
-	JJw/fbJ5dfN2Z8IcvOkGZq1RiHdv+SQ6Dw==
-X-Google-Smtp-Source: ABdhPJz2ehcRFg2oCfdQgtU+bLmQKJAnwfKyFutBcc05vimrMcPwG57cB5BlX02q51sHjqZE1swDmw==
-X-Received: by 2002:a37:9a50:: with SMTP id c77mr5745424qke.59.1613078046142;
-        Thu, 11 Feb 2021 13:14:06 -0800 (PST)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id m64sm4848338qkb.90.2021.02.11.13.14.04
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Feb 2021 13:14:04 -0800 (PST)
-Date: Thu, 11 Feb 2021 16:14:02 -0500
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: Yocto Technical Team Minutes, Engineering Sync, for Feb 9 2021
-Message-ID: <20210211211402.GA1058@localhost>
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KIO8EFMZtPzmEQAdl9J+KCDAFY+nqNCh4hMAb8JjUgk=;
+ b=R94Mt6tx4k1QXowl5P+wMZn5SasT+ZWCsiN+Xeq51DoDW3vgwubZ4DVn7SAQjJjDVuxZ0zj142jYbb9dDmxmfhPAfGq8Ga+ozmWtcwV5HvloieoPO9pwnQ7WhJYFDfpE+ASOLAUfwej2RZgsdNEsaMgnpyzG49zanMfQt8cinb0=
+Authentication-Results: yoctoproject.org; dkim=none (message not signed)
+ header.d=none;yoctoproject.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from SA0PR11MB4719.namprd11.prod.outlook.com (2603:10b6:806:95::17)
+ by SN6PR11MB3165.namprd11.prod.outlook.com (2603:10b6:805:c0::33) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.25; Fri, 12 Feb
+ 2021 00:21:17 +0000
+Received: from SA0PR11MB4719.namprd11.prod.outlook.com
+ ([fe80::1c2f:159e:f6f6:36f3]) by SA0PR11MB4719.namprd11.prod.outlook.com
+ ([fe80::1c2f:159e:f6f6:36f3%8]) with mapi id 15.20.3825.030; Fri, 12 Feb 2021
+ 00:21:17 +0000
+From: "Yi Fan Yu" <yifan.yu@windriver.com>
+To: yocto@yoctoproject.org
+Subject: [yocto][error-report-web][PATCH] parser: make contains_tag ignore non-str fields
+Date: Thu, 11 Feb 2021 19:21:04 -0500
+Message-Id: <20210212002104.16548-1-yifan.yu@windriver.com>
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [135.0.247.71]
+X-ClientProxiedBy: YT1PR01CA0100.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2c::9) To SA0PR11MB4719.namprd11.prod.outlook.com
+ (2603:10b6:806:95::17)
 MIME-Version: 1.0
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from yyu1-Latitude-5410.corp.ad.wrs.com (135.0.247.71) by YT1PR01CA0100.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2c::9) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.19 via Frontend Transport; Fri, 12 Feb 2021 00:21:16 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7ae0ab34-36e1-45ef-7117-08d8ceec1cce
+X-MS-TrafficTypeDiagnostic: SN6PR11MB3165:
+X-Microsoft-Antispam-PRVS: 
+	<SN6PR11MB31656A1B9C4A94925425D4F4808B9@SN6PR11MB3165.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	A2Qh8d5Fmk9YthE0U38ICeYwe6CryCQbYFIw50nw7qSiou3jJqIq8BPMps7dlStNTqXYCC5oZvHYTbsnXVnXs85ULTmS3a2WHHIHVlTBqD40T7BDO37cNdhQ60mRNGABnMSB+qp/QFlK7RytJtlh2Qcw5+qb8Akz9SgykVZpID7TO8ytUdoy6mPvHQV71NAQq9mKsC/Wu5Y4PLOzLLLMdjCeMiMwmwyNJwE9Ct5a/qVXjhSmhErrHiLx9bW1eVULX2/1v3QJdcGfV4RI5RweymG7Wl0fCTAVcpUemZN4M/KI6/8D5evxk0g/ltVHbMQsWkRm6JjL0x2nnczj95l/hLe1GRJhOJv7YrEsfsinexcgPBdLKHBvEz0e+w7SeAfriQXGTs71SjQkPpuKcgLs0eADc9B70+ANinp9srFJOhWlPeFF39Uo0pspzrSLUur9YEt80sX8Iaido32l6C2MeKD/MUh1C5HJ1Lvh4OGHZF7tM7jidFLTHD7xrbIZs6fjSQPfAmdyhmdLpIbJgyFgNw==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA0PR11MB4719.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(39850400004)(396003)(346002)(376002)(478600001)(66946007)(186003)(36756003)(26005)(6506007)(52116002)(6666004)(6916009)(8936002)(83380400001)(8676002)(2906002)(66476007)(66556008)(86362001)(16526019)(1076003)(4744005)(6512007)(316002)(6486002)(956004)(2616005)(5660300002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	=?us-ascii?Q?fgb/x5Pb/JyVJG01UrYIvFYN02UsH7i3oteeP9dOxCXItt3tT9kbc2qe2QmH?=
+ =?us-ascii?Q?AwC6fwBmuQXTJJFVktkAoLCE1BvOumjZZ65mCqvsgsvTVc4V8KjpIROeYDUO?=
+ =?us-ascii?Q?Wsyo1xZJAIsfUOeNYfa524YZN8yoId0Y16aq+kg6KgGg2VJQ/Am4xcI5+Dsx?=
+ =?us-ascii?Q?DG+kxA7EHHwJum59qR4foDEQut9gJko9F9zTGDdBSw9oMTqgXy7y8cJOPe/C?=
+ =?us-ascii?Q?QbUS+aY3l0ajYRN9M22Wzr7wsBsJJk16YgvMnTlR5vavjyUl1z3OKL7LM25x?=
+ =?us-ascii?Q?lvjJif2ZCVmK0P95YBeSyioyEycNpB/rl/p2CGp133WNOL7AeCDQ7DszJdz+?=
+ =?us-ascii?Q?1ptmXqagU6HexP5bkDY6eJZPWO70BlQFtNJjoae/ntG7Nz7tnL4nlYjBv3Nu?=
+ =?us-ascii?Q?MQKJ3oXH9ns52ReS98lM3jKqW6IrHjFa/u8IZfGqsPVLzweG025qQQ34YAIu?=
+ =?us-ascii?Q?JsxtO9dD+6dQOcxbiaqpGlQ67VqeGzJwjmviWDkULg6ZydZ5VNnLHbPHzBNZ?=
+ =?us-ascii?Q?CoR5XJ1+y25kURwGG7FsjJkA6sLkoDuzfiFpaU7eRKGpCyd9H2TGEANc2Y8s?=
+ =?us-ascii?Q?/RWW86UECn1LgtwrVgTfHd1vfXMcfqbxd9LjEryWcI+KTsO4UtnYfoCF2Qed?=
+ =?us-ascii?Q?XmsJFSrLM79oe8SiR7RY9pNVnM9fy3kBtVwOI45SlVGQNIVsCDQUU03qnvP2?=
+ =?us-ascii?Q?19MQqga+SMxhNLlFBWd8h3Nw28wPbbsVTV4vA3JziSq6ZFmC6BwS09l+ttB3?=
+ =?us-ascii?Q?uJlG4xf+BxrXuq5ZvuA5WpGrPOPD5mPt1sVf107ttjD5iUnw5yBbzlBtFm8N?=
+ =?us-ascii?Q?THJVZJjEAMJgUm49Kd8vA3rguegc0zqPiCu6cOKrZtIYl7kWtpPzE2eVMzue?=
+ =?us-ascii?Q?Jfc+uqJeutXpYBOl03+MOH+qf6QoJdOJwuQkMaFBPbqkNMdQKszA9qyY6dok?=
+ =?us-ascii?Q?5ReBJBSoPZ6J8M/r7b50/FT/IcqBUetNghnEfyZeE1V1nQZb41j0Nl3RUoKN?=
+ =?us-ascii?Q?ptI3b7ls2Xn9qoRgzkeFMOnQDslLJ7dM4nVNDEQebhd9P1b9jnM4G+4CcB9g?=
+ =?us-ascii?Q?cknYCE1uvVYCRTLOFZlsrwaGW35f/ZmYWiVHGlPEELbdqEsFKGIwpa2MOSXU?=
+ =?us-ascii?Q?+sPeCrOICe7boqzcl5rWOYY28BPVk+GhNE4c0Zahm8fpkjW4uxpl/bosugxu?=
+ =?us-ascii?Q?9mt7f1wRaovcTIuHMjVAtASaL8ybd3YL1zKDbBm1CGD7TdGXBibeMZwn+phb?=
+ =?us-ascii?Q?qfrnce9EgwHe0Tr7L+tAcQqu4F2Ndo1jkMfxWl3kJ3qLxxCANCCXaPz2d7ss?=
+ =?us-ascii?Q?EWaYeo5uOSLSyQnEZIkh58qH?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ae0ab34-36e1-45ef-7117-08d8ceec1cce
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR11MB4719.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2021 00:21:16.9017
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eTWWQuULS9oGh1q45cvrU7M8bkiEO8zpui+FfjoQAJMrCRovliFgOyQCPvT8QYYFCr0OVx01QRVm9cEntBDaAg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB3165
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-Yocto Technical Team Minutes, Engineering Sync, for June 9 2020
-archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit
+if `MACHINE` is set to False (in a selftest build),
+contains_tags should skip that field instead of
+searching for the character '<'.
 
-== disclaimer ==
-Best efforts are made to ensure the below is accurate and valid. However,
-errors sometimes happen. If any errors or omissions are found, please feel
-free to reply to this email with any corrections.
+[YOCTO #14208]
 
-== attendees ==
-Trevor Woerner, Stephen Jolly, Ross Burton, Saul Wold, Joshua Watt, Richard
-Purdie, Alejandro H, Will, Jan-Simon Möller, John Kaldas, Jon Mason, Bruce
-Ashfield, Michael Halstead, Scott Murray, Steve Sakoman, Tim Orling, Trevor
-Gamblin, Peter Kjellerstedt, Randy MacLeod
+Signed-off-by: Yi Fan Yu <yifan.yu@windriver.com>
+---
+ Post/parser.py | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-== notes ==
-- uninative 2.3.2 with upstream fixes (might be issues with 2.3.3, please
-  have a look)
-- swatbot has found some interesting things
+diff --git a/Post/parser.py b/Post/parser.py
+index ed65d4f..f54482a 100644
+--- a/Post/parser.py
++++ b/Post/parser.py
+@@ -21,10 +21,14 @@ class Parser:
+=20
+     # returns true if the values contain '<' char
+     # Ignore the failures field (which is an array anyway)
++    # Ignore any non-str fields too [YOCTO #14208]
+     def contains_tags (self, data):
+         for key,val in data.items():
+             if key =3D=3D 'failures':
+                 continue
++           =20
++            if not isinstance(val, str):
++                continue
+=20
+             if '<' in val:
+                 return True
+--=20
+2.25.1
 
-== general ==
-Randy: rebasing meta-rust into oe-core. it’s working, sdk needs work and
-    libsvg needs work
-RP: have you seen the patches on the mailing list? (Jan-Simon, PaulB)
-Randy: yes, haven’t looked at them yet
-RP: do you know how they relate?
-Randy: not yet, i’ll reply to the thread. is it needed for the next release?
-RP: i’m not going to hold up the release for it, but it’d be nice
-
-
-RP: there’s been a lot of churn in the versions (glibc, kernel, etc). if
-    anyone sees anything please raise a flag
-Ross: yes, I’ve seen some issues, not always 100% reproducible
-RP: x86 host?
-Ross: not always
-TimO: ubuntu host?
-Ross: 20.04
-RP: glibc-2.33 does have some interesting things, so i’m not surprised there
-    are issues
-Randy: what are you seeing?
-Ross: issues building the kernel (“dangerous relocations”)
-RP: for dunfell we did a glibc-2.32 update but we’ll hold off on glibc-2.33
-    (thanks Michael!)
-Ross: turning off uninative makes it go away
-TimO: is that a Xen kernel?
-Ross: no, just defconfig
-
-
-TimO: (for Bruce) interested in kubernetes or k3s
-Bruce: i upgraded pretty much everything in meta-virt over the weekend, k3s is
-    broken but everything else is good
-
-
-TimO: how was FOSDEM?
-Bruce: best platform so far, better than ELC/E
-TimO: their own, or same as Plumbers?
-ScottM: their own, something with matrix and jitsi
-Bruce: not a lot of OE stuff, specifically, but mentioned in a bunch
-    (embedded, license, distros, virtualization)
-
-JPEW: was going to give a talk at ELC, (virtual, labgrid, etc)
-TrevorG + TimO: we should talk
-TrevorG: we’ve got interesting things working, so we were going to give a
-    talk (kube-virt tekton stuff)
-ScottM: for AGL there’s a project to do drm stuff on the host (wayland) from
-    within a virt machine (virgl)
-
-
-Randy: is x11 really dead?
-Ross: yes, no upstream maintainer
-JPEW: i’ve been looking for a good Weston compositor that would be a good
-    replacement for Sato. even if it just listed out the .desktop files that
-    could be clicked
-Ross: there are some
-JPEW: but they’re not great on a 5” screen. there is the IVI shell, but
-    any apps have to use the IVI shell extensions
-ScottM: AGL just migrated away from it. i’ll have to look it up, but there
-    is a compositor that uses libweston
-Ross: i looked at matchbox to see if the sato bits could be converted to
-    weston. it should be possible, the hooks are there, but i haven’t gone
-    any further
-TimO: the problems with the compositors that i looked at needed QT
-JPEW: sway is a good tiling compositor, but we need something that would be
-    good for an embedded demo
-ScottM: maynard is the one from colabora, it was dead, but i think it’s
-    going to be picked up again. another one would be to use wlroots or
-    libweston to piece something together
-TimO: libweston would be a good one
-ScottM: the AGL one targets libweston, libweston had updates to support this
-    use-case
-TimO: also need to consider testability, worked with dogtail but it was
-    “hacky”
-Ross: gtk4 has a re-written accessibility module
-
-
-RP: there is a layer that RedHat has been working on called meta-rpm,
-    they’ve been making noises about automotive stuff. it’s completely
-    beta software so far, native only, they’re repackaging their binaries to
-    look like yocto packages
-TimO: it looks like something similar to what Siemens is doing (isar)
-RP: they’re looking at re-writing pseudo
-ScottM: is that public?
-J-S: it’s on a gitlab: https://gitlab.com/fedora-iot/meta-rpm
-JPEW: the idea is “you can run Fedora and put stuff from your own layers on
-    top”
-J-S: it works for a test build they’re doing, it’s actually CentOS8
-ScottM: it would be interesting for commercial folks if it was RHEL
-JPEW: the idea is “i have this recipe from OE that i want to run on CentOS”
-RP: my fear is RedHat is pretty large
-Alejandro: my fear is that all distros might take up this path
-RP: from a public perception point of view we need to make sure people realize
-    this isn’t how Yocto is supposed to be done
-Randy: the repo started in Nov 2020, the 90% developer on the project seems
-    like someone we’re linked to (LinkedIn)
-RP: both Ross and I have reached out the project
-Alejandro: our DNF is quite old, is that good or bad?
-RP: don’t think it matters, they’re using DNF in native mode to run
-    the post-installs which runs into problems with pseudo (we don’t use
-    chroot). it has a lot of constraints (like isar)
-Randy: we’re on the DNF from Dec 2020, and the latest was just released 12
-    days ago, so we’re not that far behind
-TimO: AlexK did quite a lot of work on updates recently, and DNF was not one
-    of the easy ones
-
-
-JPEW: (for Michael) any updates on the reproducibility page?
-MH: i haven’t had a look at it yet
-JPEW: I was hoping it would be hosted on the YP page, is that what you were
-    thinking?
-MH: i thought we were pulling from your site (the JSON) and we’d pull from
-    there
-JPEW: i was putting it up so you could see the HTML, but i wanted it to be
-    hosted on the YP page, it doesn’t work on mine due to x-site-scripting
-    checks in browser, so it needs to all be hosted on the same site. if
-    x-site-scripting is turned off in browser it works, but we can’t expect
-    that
-
-
-TimO: i was trying to share the 3.3 release schedule with an intern but we
-    don’t have one
-SJ: probably my fault
-RP: as part of the automation there were questions about what we needed and
-    what was not being used
-
-
-TrevorW: ELC has been cancelled, should we do something? especially the
-    training (devday)
-RP: need to bring it up with the people who would normally organize it
