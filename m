@@ -1,60 +1,59 @@
 Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
- by mx.groups.io with SMTP id smtpd.web12.29415.1613388067316748183
+ by mx.groups.io with SMTP id smtpd.web11.29900.1613388067830762351
  for <yocto@lists.yoctoproject.org>;
  Mon, 15 Feb 2021 03:21:07 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gherzan.com header.s=fm1 header.b=k49ATMd9;
+ dkim=pass header.i=@gherzan.com header.s=fm1 header.b=jSET1MRb;
  spf=pass (domain: gherzan.com, ip: 64.147.123.21, mailfrom: andrei@gherzan.com)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailout.west.internal (Postfix) with ESMTP id B60F5230;
-	Mon, 15 Feb 2021 06:21:06 -0500 (EST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+	by mailout.west.internal (Postfix) with ESMTP id 428192C7;
+	Mon, 15 Feb 2021 06:21:07 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Mon, 15 Feb 2021 06:21:06 -0500
+  by compute2.internal (MEProxy); Mon, 15 Feb 2021 06:21:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
 	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding; s=fm1; bh=EvELrJVzOSv5y
-	VIHk1f7sr9sTySV8PjmAe7D4Hfk06o=; b=k49ATMd9+jzS3IPYkiwtncqKsZvzT
-	A9rHHbLJMYPQizFr0rzHGyYRjnh70X+31EL/1mJsSwPxO+q34lecavGZzxOnFX0K
-	PnWWYLP7hs6AncjN6fCeaT9+ZtAiZehBnu5yG7WlK3xxw8qNr7LeBzITM6AvZkHv
-	WCZ5Q91lLZF15/+BpNw1v5Kikf9d1TOQrbcWNau1c6mxGsoQszP/UQUmHpy3gRyW
-	nP/OkQ3R/plqNWF2JKrEsPS8N05Q9KOBhaaNotU+hdyzoJ5lcRtzClUBkwfLbyuD
-	4wjZoTRHo0qaRK7UY5Br/FpaBCICHPDBixSw6nRRTVysL1E7B6RSjoFaw==
+	:mime-version:content-transfer-encoding; s=fm1; bh=Bt0pvEs2SLwuJ
+	xbq9ORg+/+ac1M2/howmNBAw3HqP/E=; b=jSET1MRbUdCwtjP50xfpLl9076FeB
+	DIrpbqv7ytkyQfS5GLax8NsbjdNIi+j/eZLo9ED+Ru9LmhtGgtZ6EtSGaiC9zmhO
+	HbRufYzkUOqJoTuc3izBlPaVnrl0BhoCD5gYUl8I2i7IuIKFQW+racuEjre/+/58
+	GSbi34Dwn9qc2CHCzLvB6r/xKqOdVnB4eblxf2sbn55PKgFFcmzVaYD1tyPaP1jE
+	Uz9Xcxiql0hna4RqMLG7K1CPZSbtoh23PXDfHaYAiJQxYSPmriM4x9swAwC79zT9
+	78PWtfZr7nuCfYLBQJ7NGn5S2uCQADGS4QvW4VU4gRxUgDBhqM92Ilf7w==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:content-transfer-encoding:date:from
 	:in-reply-to:message-id:mime-version:references:subject:to
 	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; bh=EvELrJVzOSv5yVIHk1f7sr9sTySV8PjmAe7D4Hfk06o=; b=hXrpL2dq
-	FEHo6yOu0x0juOa2TxSV0iJ4q7U8SoUaJRbdEoPlHGrC13s4AuWs0sb31STbGLgZ
-	tFrlvzc563aOb2mbtU9/sUxDqNFXAfONb8+LoieQPTcX7f+e8aRoLfBCR6RqrI2j
-	k7QsCfnvCcRSe2mPbfAEaP1e2yuRtVPZplSUnEenmiSvECzwDMtKOPYv/VIr2DNP
-	2b3Ng/wSeehE8vRZK8YQwkiBMJpMyRTJPov6T8hpIvR0cRIYrcM2rOkkLDfY4uxb
-	nWTZ/YYH7UbmT9V9ayZ5e04hbkJYPEjK9YlkodScLe9iY1d8ELF538KBOoHr2oWi
-	ASpFIwk+0tE7Gw==
-X-ME-Sender: <xms:IlkqYO85Y0esxf-Hs3qI984D_4Du3tNx1PLrg4wVFUTnY9pL_pNo0A>
-    <xme:IlkqYIUXNREkzVSzNBWWIu9efstRRQZRAiwAOcgNIk3uZ2b_cKuPM7T88rpVgAasK
-    GOnJVN9HCW-TR7euwg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrieekgddvfecutefuodetggdotefrodftvf
+	fm2; bh=Bt0pvEs2SLwuJxbq9ORg+/+ac1M2/howmNBAw3HqP/E=; b=L91TOymq
+	fY2mzw2sAe7sjbDTQZ1EdMEZfQdFHCGfyQReaxX2vbgj98HEzC+Ag7rDAYV8pzdQ
+	szOPnyr0LyrZ5fCvUGpe88GmS76BWy00GED5JOip5rmIctu+3opigjkcB36eGSWL
+	zqfPPON6QpMgFjXbjenbpSytuJ/zoDu7gwkUAweU55GHfhteaCHP8tRWHbOiNKQD
+	CSl6v2Vw8LOkPe4jkjM5sV31ImQJSxHHBd1xPsK1WvMWoYzl9aKRJf542ifpS1I5
+	1Zt2spYJ+Rns3wKPdV0fl0lblh9XEl7tR4fT2srIkisz44MBtkArIpXEoNtiqzhy
+	GsnNnWnBlGRrBg==
+X-ME-Sender: <xms:IlkqYIL2zmpdJrBtJkmM5VCh_tWMaWcB8Bb9FIYykAZ9F4dUICEWDA>
+    <xme:IlkqYI6Q5c2vKNUf22l9E2sezzPFWbIqNGG0ekdmeJiEqD2JVkuSpDgDY2zaDI_cP
+    PgYJ-tyrAqAnJlOV1A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrieekgddvgecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
     ertddtnecuhfhrohhmpeetnhgurhgvihcuifhhvghriigrnhcuoegrnhgurhgvihesghhh
-    vghriigrnhdrtghomheqnecuggftrfgrthhtvghrnhepteegieethfekgeevledtveeftd
-    ejvdfhieetvdeiteettdfhhfeltdehjeehvdevnecuffhomhgrihhnpegsohgrrhgurdht
-    rghrghgvthenucfkphepkeeirddufedtrddugeeirddutddvnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghnughrvghisehghhgvrhiirghn
-    rdgtohhm
-X-ME-Proxy: <xmx:IlkqYEB5Kr3D78zUBmqRosma8QvE1mRLoaKwr4ZdxVBbCzBzx75JQg>
-    <xmx:IlkqYJwogy_DjlPWE3AFgaA_KsIVTtNVEZrqmnEhVcot2AVnu7P0hw>
-    <xmx:IlkqYBD27rEWTz3OeFRdQinkEjdAnlh2i1_Pb45VnV9q-I0wSdqp5A>
-    <xmx:IlkqYMf-vk7iz2SxITEq3j0t1fs4tXQoCEvPaa8_QY-RqLd90GVohA>
+    vghriigrnhdrtghomheqnecuggftrfgrthhtvghrnheptedtvdfffeekteevkeetieevge
+    egveeiiedujeefieetvdekledvkeehjeelffefnecukfhppeekiedrudeftddrudegiedr
+    uddtvdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grnhgurhgvihesghhhvghriigrnhdrtghomh
+X-ME-Proxy: <xmx:IlkqYE0_tuByjeb4eEqJpqgtCAhm3P2AXLhoXzgGQenLfIa5xEAcUQ>
+    <xmx:IlkqYGeYfJnqxSAQN6g0rPK_UAyfbm7qhSfM6iavZjQmQ32nRGQZeg>
+    <xmx:IlkqYCdyuxqIZWvFnuCki1p7jtY6pHg1ckOZqC_4nbkFPT_9RD5m0A>
+    <xmx:IlkqYA8ubF4cYXpQhoMf9SQEI6e87Hd7UPKnZ7_fr99NoiJbv6wuoQ>
 Received: from qwirkle.internal (host86-130-146-102.range86-130.btcentralplus.com [86.130.146.102])
-	by mail.messagingengine.com (Postfix) with ESMTPA id A09EE108005B;
-	Mon, 15 Feb 2021 06:21:05 -0500 (EST)
+	by mail.messagingengine.com (Postfix) with ESMTPA id 38CDB108006A;
+	Mon, 15 Feb 2021 06:21:06 -0500 (EST)
 From: "Andrei Gherzan" <andrei@gherzan.com>
 To: yocto@lists.yoctoproject.org
 Cc: Andrei Gherzan <andrei.gherzan@huawei.com>
-Subject: [meta-zephy][PATCH 02/14] zephyr-flash-pyocd.bbclass: Add missing do_flash_usb dependency on do_deploy
-Date: Mon, 15 Feb 2021 11:19:51 +0000
-Message-Id: <20210215112003.2025053-2-andrei@gherzan.com>
+Subject: [meta-zephy][PATCH 03/14] Cleanup superflous new lines
+Date: Mon, 15 Feb 2021 11:19:52 +0000
+Message-Id: <20210215112003.2025053-3-andrei@gherzan.com>
 X-Mailer: git-send-email 2.30.1
 In-Reply-To: <20210215112003.2025053-1-andrei@gherzan.com>
 References: <20210215112003.2025053-1-andrei@gherzan.com>
@@ -65,22 +64,59 @@ From: Andrei Gherzan <andrei.gherzan@huawei.com>
 
 Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
 ---
- classes/zephyr-flash-pyocd.bbclass | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ classes/zephyrtest.bbclass          | 2 --
+ conf/distro/zephyr.conf             | 1 -
+ conf/machine/include/tune-arc.inc   | 1 -
+ conf/machine/include/tune-iamcu.inc | 1 -
+ conf/machine/include/tune-nios2.inc | 1 -
+ 5 files changed, 6 deletions(-)
 
-diff --git a/classes/zephyr-flash-pyocd.bbclass b/classes/zephyr-flash-pyocd.bbclass
-index 04500af..eca30c9 100644
---- a/classes/zephyr-flash-pyocd.bbclass
-+++ b/classes/zephyr-flash-pyocd.bbclass
-@@ -10,7 +10,7 @@ python do_flash_usb() {
-         session.board.target.reset()
+diff --git a/classes/zephyrtest.bbclass b/classes/zephyrtest.bbclass
+index 3acc4c3..248fd15 100644
+--- a/classes/zephyrtest.bbclass
++++ b/classes/zephyrtest.bbclass
+@@ -51,5 +51,3 @@ python testdata_clean() {
  }
  
--addtask do_flash_usb
-+addtask do_flash_usb after do_deploy
+ addtask do_testdata_write before do_build after do_deploy
+-
+-
+diff --git a/conf/distro/zephyr.conf b/conf/distro/zephyr.conf
+index a98da32..6ecd421 100644
+--- a/conf/distro/zephyr.conf
++++ b/conf/distro/zephyr.conf
+@@ -1,4 +1,3 @@
+-
+ DISTRO = "zephyr"
+ DISTRO_NAME = "Zephyr"
+ DISTRO_VERSION = "1.0"
+diff --git a/conf/machine/include/tune-arc.inc b/conf/machine/include/tune-arc.inc
+index 4bb6f4f..ff841e7 100644
+--- a/conf/machine/include/tune-arc.inc
++++ b/conf/machine/include/tune-arc.inc
+@@ -18,4 +18,3 @@ AVAILTUNES += "no-sdata"
+ TUNEVALID[nodata] = "ARC no-delete-null-pointer-checks"
+ TUNE_CCARGS .= "${@bb.utils.contains('TUNE_FEATURES', 'no-delete-null-pointer-checks', ' -fno-delete-null-pointer-checks', '', d)}"
+ AVAILTUNES += "no-delete-null-pointer-checks"
+-
+diff --git a/conf/machine/include/tune-iamcu.inc b/conf/machine/include/tune-iamcu.inc
+index 6935375..20a93a6 100644
+--- a/conf/machine/include/tune-iamcu.inc
++++ b/conf/machine/include/tune-iamcu.inc
+@@ -9,4 +9,3 @@ TUNE_ARCH = "i586"
+ TUNEVALID[iamcu] = "Intel MCU"
  
- do_flash_usb[nostamp] = "1"
- do_flash_usb[vardepsexclude] = "BB_ORIGENV"
+ PACKAGE_EXTRA_ARCHS_tune-iamcu = "iamcu"
+-
+diff --git a/conf/machine/include/tune-nios2.inc b/conf/machine/include/tune-nios2.inc
+index c74326d..e8662eb 100644
+--- a/conf/machine/include/tune-nios2.inc
++++ b/conf/machine/include/tune-nios2.inc
+@@ -1,4 +1,3 @@
+-
+ # Nios2 Architecture Definition
+ 
+ DEFAULTTUNE ?= "nios2"
 -- 
 2.30.1
 
