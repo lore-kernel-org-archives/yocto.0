@@ -1,59 +1,59 @@
 Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
- by mx.groups.io with SMTP id smtpd.web12.9534.1613489653535654916
+ by mx.groups.io with SMTP id smtpd.web08.9340.1613489657208022975
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Feb 2021 07:34:13 -0800
+ Tue, 16 Feb 2021 07:34:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gherzan.com header.s=fm1 header.b=m47VhBiZ;
+ dkim=pass header.i=@gherzan.com header.s=fm1 header.b=jYiwGQR1;
  spf=pass (domain: gherzan.com, ip: 64.147.123.20, mailfrom: andrei@gherzan.com)
-Received: from compute7.internal (compute7.nyi.internal [10.202.2.47])
-	by mailout.west.internal (Postfix) with ESMTP id 088B3BDC;
-	Tue, 16 Feb 2021 10:34:12 -0500 (EST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.west.internal (Postfix) with ESMTP id A464EB43;
+	Tue, 16 Feb 2021 10:34:16 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute7.internal (MEProxy); Tue, 16 Feb 2021 10:34:13 -0500
+  by compute3.internal (MEProxy); Tue, 16 Feb 2021 10:34:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
 	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding; s=fm1; bh=7RHs4SN1FCyEu
-	zaEDSAxaixEaYNV/nP2OtRVHXKH1ZE=; b=m47VhBiZgU4XVVMaXZd3gQ8aIENVY
-	HFVvKmNE44mGx74J3Ci10ACOiNjwSTliTokMBX97sacaN7+45GNbzFUdMoIyZ8RC
-	T0sa9Lv4FwGdCWOWNb5TguLRaZjrYWAnLl1gyPAv7EKmTJL2gkpfWnDN3Llt9//h
-	hqd5sOMPAj5EB94xIOWERklWV8fIAEbdp2gB5IL/HMmAK+rtfRWOqCnWyw6QkJ9w
-	+6DfkXI+WIqZOWkno2/3obOCZkIpdrBHujVTgTj0Qw/goABG1p2l77brSW0fzK/1
-	C0d3b6K2L3jLiRii8xZ7TjQSPf795BaKEam6v2xDI+sH3Xrd7wM2ICJ8Q==
+	:mime-version:content-transfer-encoding; s=fm1; bh=D4A7v3G/qVtlo
+	JGfu6s5duHLOioY9wGAx7mbk/oY8pA=; b=jYiwGQR1N/fx7GTeLc8pAEHdNKQI7
+	mfeGPH3EuisjBnqrTB90k5BqtLJPu9Ym7DUbANgvRWPT+KPOjCoWzC7CUwrcLOiB
+	Lgkhydbz0Yb6La7Ii3NZ799YKeKDwGxeqruxUDhEmU7MfE+k922iIgae7yf3vXoA
+	k7qkJwq8dlI/Gki6lWs9QKSam5SEqzNW+YEPlwYB/jkCeHibgh97D0RBsJ1xUaZG
+	GbHL6yZFqJli6qEKLqCQ/AEXNRAcLQGw2vuZzlFSfeSq8JEfXM/hsSI3WkVWHFhA
+	vHPHzFt0UWwEnXTDmT+ij65pctCn3rwOTYFcw75kiQHxecF9Ybk4/k+zg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:content-transfer-encoding:date:from
 	:in-reply-to:message-id:mime-version:references:subject:to
 	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; bh=7RHs4SN1FCyEuzaEDSAxaixEaYNV/nP2OtRVHXKH1ZE=; b=wm6l57tU
-	mjxUmS6tTfi5EMMP58JhBAMyI+LrAeyV6CoPqc7DLrgaFOZyGC5WMjs8i2p6hVZX
-	BHIrsNNXZIpLiyXlhWyqQG6b7X6Qt2q9sUZRjg4WxRKdZ1NslzYV4OR7t+B0gAhW
-	KfiymN/7LltstibyhjFZgiH6U7a7oTSA2b031nb6szL7Ja+mxdw+B+p1prjNU7lT
-	SLI+/38K5yXcvJWXwT7Zy7ALxRE4VAIYK9qwEnLk8kRu9PdstJM6P/D0CFjngmYQ
-	BvQiX3Xs++YI4oF9jYjFFUgS+mrkJGBRNI1fc8qqsorJAVSYbCM7TYV/hX39sKKX
-	gn7Pc610FfpgQw==
-X-ME-Sender: <xms:9OUrYGZ3Y9yKvs33thrCtnQw1dEvDDtzKXLwhQOKF10JFdYYNG3z9w>
-    <xme:9OUrYEGAVJjw99Z5TXD-8vuqjF1E62ensV8WPwUD_KhEKQyXqIJ_UkmnxBYqoRzDO
-    p-ymVkKd0mK8A8bI30>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrjedtgdejkecutefuodetggdotefrodftvf
+	fm2; bh=D4A7v3G/qVtloJGfu6s5duHLOioY9wGAx7mbk/oY8pA=; b=jsQdqOEd
+	nBq1YmJO1A1byqxpbgB7mL6OjR+t4a5/AjCJyCV26ocHnuZUJfR1Vus8F97qhwK6
+	wvsfnvGHaeRRRQVBcD7F8GEPcuz+tSv+yGG/aWcIAYJhGBAbj0qc+3LV9gS/oNgC
+	f7b58uhBhf5vZZg5yoR5jbLQ4zQVVhMBrABnS4qYhYvjtILnCqM4b+ikYS6q1zBn
+	ao307JynsrVaOshM4y276rWYTWoPtxDX/7dMLJqwmkOEXfVvUXt4ddnZ84twOvp9
+	AEi8jU8PFyLBQAzFs7FZXKNX1uBAFqeRsjDDMbB3LCf/LHuh09eMSUF6fZ7LEqsr
+	bXgfttQmkdxwKA==
+X-ME-Sender: <xms:-OUrYEV9jRCwNgHLYmFidBDVHMcUQNwF6tDNuFSrI55k5spwAwn44g>
+    <xme:-OUrYIlwXMQtsrJhIocMX97JWLaUO6Iw5lSaq6MszOGvHH43uzq5UoPfx8bc7kIXI
+    9LxiFgh1fyJG88y94g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrjedtgdejlecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
     ertddtnecuhfhrohhmpeetnhgurhgvihcuifhhvghriigrnhcuoegrnhgurhgvihesghhh
     vghriigrnhdrtghomheqnecuggftrfgrthhtvghrnheptedtvdfffeekteevkeetieevge
     egveeiiedujeefieetvdekledvkeehjeelffefnecukfhppeekiedrudeftddrudegiedr
-    uddtvdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    uddtvdenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpe
     grnhgurhgvihesghhhvghriigrnhdrtghomh
-X-ME-Proxy: <xmx:9OUrYJrLog5hS57JpdZTRSS1DuQf5_0CSM8EXlPh_FEWpwe3mSG6-w>
-    <xmx:9OUrYPyuKnY_yIB-n-qRAcVzh2P7Qn0d8XCXjMykG7YsjFfZMufpqA>
-    <xmx:9OUrYDOo98rTR-cC0nmd7yNdJOfH9mA-w9eWCrXaLQefJsC3kX9sTw>
-    <xmx:9OUrYGa-Fm0FehrWuyV1XEK4AgLcRIT2p1ejRR1beZ-JRfMPGYXj8A>
+X-ME-Proxy: <xmx:-OUrYIZYIyxZy-Jh0fVbePI8OQMgFbfpxX3LFZCdWxkixMcT_9t_pA>
+    <xmx:-OUrYDWBAKExDDLvk93Q0XlDkQpatIIBd-eiKcGgixKTHy6s-4cHuA>
+    <xmx:-OUrYOllbFDDPvvAGJNpn7wZ_cL2p5K1AIIIsTtPPTeQXYd4CUPIdA>
+    <xmx:-OUrYITLYIR_qatmRGjGpV3mmUK_aryOTpi_Qr-5h1uAYRq_Il4AkQ>
 Received: from qwirkle.internal (host86-130-146-102.range86-130.btcentralplus.com [86.130.146.102])
-	by mail.messagingengine.com (Postfix) with ESMTPA id 64D1A108005F;
-	Tue, 16 Feb 2021 10:34:11 -0500 (EST)
+	by mail.messagingengine.com (Postfix) with ESMTPA id AC84E108005F;
+	Tue, 16 Feb 2021 10:34:12 -0500 (EST)
 From: "Andrei Gherzan" <andrei@gherzan.com>
 To: yocto@lists.yoctoproject.org
 Cc: Andrei Gherzan <andrei.gherzan@huawei.com>
-Subject: [meta-zephyr][PATCH V2 08/15] zephyr-kernel.inc: Remove include file
-Date: Tue, 16 Feb 2021 15:33:03 +0000
-Message-Id: <20210216153310.79138-8-andrei@gherzan.com>
+Subject: [meta-zephyr][PATCH V2 09/15] Use an include file for the common parts of the sample recipes
+Date: Tue, 16 Feb 2021 15:33:04 +0000
+Message-Id: <20210216153310.79138-9-andrei@gherzan.com>
 X-Mailer: git-send-email 2.30.1
 In-Reply-To: <20210216153310.79138-1-andrei@gherzan.com>
 References: <20210216153310.79138-1-andrei@gherzan.com>
@@ -62,36 +62,153 @@ Content-Transfer-Encoding: 8bit
 
 From: Andrei Gherzan <andrei.gherzan@huawei.com>
 
-This file has little advantage and can be easily replaced by just
-directly including the src include file.
-
 Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
 ---
- recipes-kernel/zephyr-kernel/zephyr-image.inc  | 2 +-
- recipes-kernel/zephyr-kernel/zephyr-kernel.inc | 4 ----
- 2 files changed, 1 insertion(+), 5 deletions(-)
- delete mode 100644 recipes-kernel/zephyr-kernel/zephyr-kernel.inc
+ recipes-kernel/zephyr-kernel/zephyr-hci-uart.bb | 16 ++--------------
+ .../zephyr-kernel/zephyr-helloworld.bb          | 13 +------------
+ .../zephyr-kernel/zephyr-kernel-test.bb         |  4 ----
+ .../zephyr-kernel/zephyr-kernel-test.inc        |  2 --
+ .../zephyr-kernel/zephyr-peripheral-esp.bb      | 17 +++--------------
+ .../zephyr-kernel/zephyr-philosophers.bb        | 13 +------------
+ recipes-kernel/zephyr-kernel/zephyr-sample.inc  | 13 +++++++++++++
+ 7 files changed, 20 insertions(+), 58 deletions(-)
+ create mode 100644 recipes-kernel/zephyr-kernel/zephyr-sample.inc
 
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-image.inc b/recipes-kernel/zephyr-kernel/zephyr-image.inc
-index e8b8871..c77692d 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-image.inc
-+++ b/recipes-kernel/zephyr-kernel/zephyr-image.inc
-@@ -1,4 +1,4 @@
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-hci-uart.bb b/recipes-kernel/zephyr-kernel/zephyr-hci-uart.bb
+index ec6b13e..c66c7ec 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-hci-uart.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-hci-uart.bb
+@@ -1,17 +1,5 @@
 -require zephyr-kernel.inc
-+require zephyr-kernel-src.inc
- require zephyr-kernel-common.inc
+-require zephyr-kernel-common.inc
+-inherit deploy
+-
+-COMPATIBLE_MACHINE = "(96b-nitrogen)"
++include zephyr-sample.inc
  
- inherit testimage
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel.inc
-deleted file mode 100644
-index 903973d..0000000
---- a/recipes-kernel/zephyr-kernel/zephyr-kernel.inc
-+++ /dev/null
-@@ -1,4 +0,0 @@
+ ZEPHYR_SRC_DIR = "${S}/samples/bluetooth/hci_uart"
+-ZEPHYR_BASE = "${S}"
 -
--inherit zephyr-kernel-src
+-OECMAKE_SOURCEPATH = "${ZEPHYR_SRC_DIR}"
+ 
+-do_deploy () {
+-    install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT} ${DEPLOYDIR}/${PN}.elf
+-}
 -
--S = "${WORKDIR}/git"
+-addtask deploy after do_compile
+-do_install[noexec] = "1"
++COMPATIBLE_MACHINE = "(96b-nitrogen)"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb b/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb
+index 84db068..ac5ce62 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb
+@@ -1,14 +1,3 @@
+-require zephyr-kernel.inc
+-require zephyr-kernel-common.inc
+-inherit deploy
++include zephyr-sample.inc
+ 
+ ZEPHYR_SRC_DIR = "${S}/samples/hello_world"
+-ZEPHYR_BASE = "${S}"
+-OECMAKE_SOURCEPATH = "${ZEPHYR_SRC_DIR}"
+-
+-do_deploy () {
+-    install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT} ${DEPLOYDIR}/${PN}.elf
+-}
+-
+-addtask deploy after do_compile
+-do_install[noexec] = "1"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.bb b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.bb
+index 46d93f0..2918d2d 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.bb
+@@ -2,7 +2,3 @@ require zephyr-image.inc
+ require zephyr-kernel-test.inc
+ 
+ BBCLASSEXTEND = '${@" ".join(["zephyrtest:" + x for x in d.getVar("ZEPHYRTESTS", True).split()])}'
+-
+-
+-
+-
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
+index a1e62af..b6b4766 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
+@@ -2,11 +2,9 @@ ZEPHYRTESTS_remove = "fifo fpu_sharing lifo mbox mem_heap mem_pool \
+     mem_protect mem_slab msgq mutex pipe profiling sched semaphore \
+     stack threads tickless timer workq"
+ 
+-
+ # Exclude tests which does not build for various reasons
+ ZEPHYRTESTS_remove = "gen_isr_table spinlock smp mp"
+ 
+-
+ # test_context will fail because QEMU for ARM does not emulate CortexM3 BASEPRI register
+ #ZEPHYRTESTS_remove_arm += ""
+ 
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-peripheral-esp.bb b/recipes-kernel/zephyr-kernel/zephyr-peripheral-esp.bb
+index 24f030a..8be90d1 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-peripheral-esp.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-peripheral-esp.bb
+@@ -1,16 +1,5 @@
+-require zephyr-kernel.inc
+-require zephyr-kernel-common.inc
+-inherit deploy
++include zephyr-sample.inc
+ 
+-ZEPHYR_SAMPLE_NAME="samples/bluetooth/peripheral_esp"
+-ZEPHYR_SRC_DIR = "${S}/${ZEPHYR_SAMPLE_NAME}"
+-ZEPHYR_BASE = "${S}"
+-OECMAKE_SOURCEPATH = "${ZEPHYR_SRC_DIR}"
+-ZEPHYR_MODULES_append = "\;${S}/modules/crypto/tinycrypt"
+-
+-do_deploy () {
+-    install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT} ${DEPLOYDIR}/${PN}.elf
+-}
++ZEPHYR_SRC_DIR = "${S}/samples/bluetooth/peripheral_esp"
+ 
+-addtask deploy after do_compile
+-do_install[noexec] = "1"
++ZEPHYR_MODULES_append = "\;${S}/modules/crypto/tinycrypt"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb b/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb
+index b8262ca..a2afb57 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb
+@@ -1,14 +1,3 @@
+-require zephyr-kernel.inc
+-require zephyr-kernel-common.inc
+-inherit deploy
++include zephyr-sample.inc
+ 
+ ZEPHYR_SRC_DIR = "${S}/samples/philosophers"
+-ZEPHYR_BASE = "${S}"
+-OECMAKE_SOURCEPATH = "${ZEPHYR_SRC_DIR}"
+-
+-do_deploy () {
+-    install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT} ${DEPLOYDIR}/${PN}.elf
+-}
+-
+-addtask deploy after do_compile
+-do_install[noexec] = "1"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-sample.inc b/recipes-kernel/zephyr-kernel/zephyr-sample.inc
+new file mode 100644
+index 0000000..f7621d1
+--- /dev/null
++++ b/recipes-kernel/zephyr-kernel/zephyr-sample.inc
+@@ -0,0 +1,13 @@
++require zephyr-kernel-src.inc
++require zephyr-kernel-common.inc
++inherit deploy
++
++ZEPHYR_BASE = "${S}"
++OECMAKE_SOURCEPATH = "${ZEPHYR_SRC_DIR}"
++
++do_install[noexec] = "1"
++
++do_deploy () {
++    install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT} ${DEPLOYDIR}/${PN}.elf
++}
++addtask deploy after do_compile
 -- 
 2.30.1
 
