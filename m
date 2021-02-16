@@ -1,120 +1,82 @@
-Subject: do compile error while installing openjdk-8 (meta-java) #dunfell #yocto
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+ by mx.groups.io with SMTP id smtpd.web12.9529.1613489641046847246
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 16 Feb 2021 07:34:01 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gherzan.com header.s=fm1 header.b=UfvnxoOW;
+ spf=pass (domain: gherzan.com, ip: 64.147.123.20, mailfrom: andrei@gherzan.com)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.west.internal (Postfix) with ESMTP id 48B91B47;
+	Tue, 16 Feb 2021 10:34:00 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Tue, 16 Feb 2021 10:34:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding; s=fm1; bh=pXtcTKiY0YHH2+mdoWQTjkI8dr
+	r5YfMporokPt5bMdc=; b=UfvnxoOWtYYmMCRkocp/NlleX8+BuPVAjOxg9CU/5j
+	SNTSBapUpJkAvJpjHGOMs07cFdDazepInRIB8FtgN+uSRHW7CW8z0wQ/VZjQJ3Kx
+	HzUqziyYrnv470xEJi15JiEkIFWADY8bsz9Yzbln65P3k4Vab420V43wtZZMV1OD
+	JjI+kE4FXGBWj3kG1nR4Usb43JUeX3C6Ta0DC+Cr79Aemw9xQXyEx0Kht2wp5ipR
+	pRTvBgi02OO0Lbh7py+AZ94iRt7hAM8ffUVxyHapl/xk6FGfBl74rfRSgNCYUv9c
+	ytHcbJXLMPKXr/C4BVuNsWlkOBOWDPfklHv7rWYkJaEA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-transfer-encoding:date:from
+	:message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=pXtcTKiY0YHH2+mdo
+	WQTjkI8drr5YfMporokPt5bMdc=; b=rSqFbDQBwBFm/Jy+qe+EtM+pBX/rTpwhO
+	KZuo/cqBw/rHrcwOxiFj3847SmQDyKrOplS256RieFdx/TdLv5QAjmIBri4UtJJZ
+	j1bZWTFQADDrtO/T+FWjs2ciadcrY9iUxRLuP8jHF6giA8dAVIzqstfQMEZt0kps
+	GpV76jOksoyVe3O93dMQGKwzlhcaBeNFykeRFjLOuNDHG8mk5cLPzEA/YhV1wVkz
+	G9F3aOateksbv5cSsLCIj1T9gc4qU7bDPKvmJ/u4myM4o3hyT98h18vNEjzjLmKb
+	EhU2shkh3zvJCTqVuuvrK+YumXQFSw4x/pMTvkH/xJacAAFq89xWA==
+X-ME-Sender: <xms:5-UrYK-v1nCOMIxmNATTnmymPGrPE60NGpQscRDQJKDXqbIcqKDgZw>
+    <xme:5-UrYKIr-7-DglUj_-ulF_OCbjbHA0nxuL-KHfJW2UR79wTXLvZ2BRS206I_4pJvw
+    fObUalVIxYl10yGdzM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrjedtgdejkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetnhgurhgvihcuifhhvghriigrnhcuoegrnhgurhgvihesghhhvghr
+    iigrnhdrtghomheqnecuggftrfgrthhtvghrnhepvdetuedtuedthfevgffgieefheevte
+    fhueffkeegieeigfekhfehheejieejjedunecukfhppeekiedrudeftddrudegiedruddt
+    vdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnh
+    gurhgvihesghhhvghriigrnhdrtghomh
+X-ME-Proxy: <xmx:5-UrYBElqLAd0yS8ASV_ZKNGaFjxyIvo38-7rWLHvP43rV0dgpv8sA>
+    <xmx:5-UrYGyBO2Z1NExL4YIvXOFNq-Ytn1JU_DvzdV45mo2DN8xu1vCswA>
+    <xmx:5-UrYC6TEFY9t5DQRTDSXkvU2Q7dVSxcSJl4ZoE1grKduS_ApDPkFg>
+    <xmx:5-UrYH_IKmizREXiixc5kx_q_CWgqsh1dNpIUbt-LlEJ7eUPCQCekg>
+Received: from qwirkle.internal (host86-130-146-102.range86-130.btcentralplus.com [86.130.146.102])
+	by mail.messagingengine.com (Postfix) with ESMTPA id EE1471080069;
+	Tue, 16 Feb 2021 10:33:57 -0500 (EST)
+From: "Andrei Gherzan" <andrei@gherzan.com>
 To: yocto@lists.yoctoproject.org
-From: "Vijay Rakesh Munganda" <vijayrakeshmunganda@gmail.com>
-X-Originating-Location: IN (164.164.95.9)
-X-Originating-Platform: Windows Chrome 88
-User-Agent: GROUPS.IO Web Poster
+Cc: Andrei Gherzan <andrei.gherzan@huawei.com>
+Subject: [meta-zephyr][PATCH V2 01/15] zephyr-flash-dfu.bbclass: Add missing do_flash_usb dependency on do_deploy
+Date: Tue, 16 Feb 2021 15:32:56 +0000
+Message-Id: <20210216153310.79138-1-andrei@gherzan.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-Date: Tue, 16 Feb 2021 03:14:39 -0800
-Message-ID: <Yn9N.1613474079123346031.FOdn@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="h9961Z11N0rSRLil05Dx"
+Content-Transfer-Encoding: 8bit
 
---h9961Z11N0rSRLil05Dx
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+From: Andrei Gherzan <andrei.gherzan@huawei.com>
 
-Hi,
+Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
+---
+ classes/zephyr-flash-dfu.bbclass | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I'm trying to install openjdk-8 from meta-java layer, but I got below erro=
-r while installing it. Please anyone help me with this error.
+diff --git a/classes/zephyr-flash-dfu.bbclass b/classes/zephyr-flash-dfu.bbclass
+index 32f589a..b4f3d49 100644
+--- a/classes/zephyr-flash-dfu.bbclass
++++ b/classes/zephyr-flash-dfu.bbclass
+@@ -59,7 +59,7 @@ python do_flash_usb() {
+     bb.utils.unlockfile(lock)
+ }
+ 
+-addtask do_flash_usb
++addtask do_flash_usb after do_deploy
+ 
+ do_flash_usb[nostamp] = "1"
+ do_flash_usb[vardepsexclude] = "BB_ORIGENV"
+-- 
+2.30.1
 
-| g++: error: unrecognized command line option =E2=80=98-fmacro-prefix-map=
-=
-=3D/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0=
-=3D/usr/src/debug/openjdk-8/272-r0=E2=80=99
-| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0/jd=
-k8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/makefiles=
-/adlc.make:228: recipe for target '../generated/adfiles/dict2.o' failed
-| make[6]: *** [../generated/adfiles/dict2.o] Error 1
-| g++: error: unrecognized command line option =E2=80=98-fmacro-prefix-map=
-=
-=3D/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0=
-=3D/usr/src/debug/openjdk-8/272-r0=E2=80=99
-| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0/jd=
-k8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/makefiles=
-/adlc.make:228: recipe for target '../generated/adfiles/formsopt.o' failed
-| make[6]: *** [../generated/adfiles/formsopt.o] Error 1
-| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0/jd=
-k8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/makefiles=
-/top.make:91: recipe for target 'ad_stuff' failed
-| make[5]: *** [ad_stuff] Error 2
-| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0/jd=
-k8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/Makefile:=
-284: recipe for target 'product' failed
-| make[4]: *** [product] Error 2
-| Makefile:230: recipe for target 'generic_build2' failed
-| make[3]: *** [generic_build2] Error 2
-| Makefile:177: recipe for target 'product' failed
-| make[2]: *** [product] Error 2
-| HotspotWrapper.gmk:44: recipe for target '/home/bl-docker/rity/bsp/tmp/w=
-ork/aarch64-poky-linux/openjdk-8/272-r0/build/hotspot/_hotspot.timestamp' f=
-ailed
-| make[1]: *** [/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openj=
-dk-8/272-r0/build/hotspot/_hotspot.timestamp] Error 2
-| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0/jd=
-k8u-shenandoah-aarch64-shenandoah-jdk8u272-b10//make/Main.gmk:109: recipe f=
-or target 'hotspot-only' failed
-| make: *** [hotspot-only] Error 2
-| WARNING: /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/=
-272-r0/temp/run.do_compile.27188:1 exit 1 from 'exit 1'
-|
-ERROR: Task (/home/bl-docker/rity/src/meta-java/recipes-core/openjdk/openj=
-dk-8_272.bb:do_compile) failed with exit code '1'
-
-Thanks & Regards,
-Vijay Rakesh.
-
---h9961Z11N0rSRLil05Dx
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,<br /><br />I'm trying to install openjdk-8 from meta-java layer, but I =
-got below error while installing it. Please anyone help me with this error.=
-<br /><br />
-<div>| g++: error: unrecognized command line option &lsquo;-fmacro-prefix-=
-map=3D/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0=
-=
-=3D/usr/src/debug/openjdk-8/272-r0&rsquo;</div>
-<div>| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-=
-r0/jdk8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/make=
-files/adlc.make:228: recipe for target '../generated/adfiles/dict2.o' faile=
-d</div>
-<div>| make[6]: *** [../generated/adfiles/dict2.o] Error 1</div>
-<div>| g++: error: unrecognized command line option &lsquo;-fmacro-prefix-=
-map=3D/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0=
-=
-=3D/usr/src/debug/openjdk-8/272-r0&rsquo;</div>
-<div>| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-=
-r0/jdk8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/make=
-files/adlc.make:228: recipe for target '../generated/adfiles/formsopt.o' fa=
-iled</div>
-<div>| make[6]: *** [../generated/adfiles/formsopt.o] Error 1</div>
-<div>| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-=
-r0/jdk8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/make=
-files/top.make:91: recipe for target 'ad_stuff' failed</div>
-<div>| make[5]: *** [ad_stuff] Error 2</div>
-<div>| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-=
-r0/jdk8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/Make=
-file:284: recipe for target 'product' failed</div>
-<div>| make[4]: *** [product] Error 2</div>
-<div>| Makefile:230: recipe for target 'generic_build2' failed</div>
-<div>| make[3]: *** [generic_build2] Error 2</div>
-<div>| Makefile:177: recipe for target 'product' failed</div>
-<div>| make[2]: *** [product] Error 2</div>
-<div>| HotspotWrapper.gmk:44: recipe for target '/home/bl-docker/rity/bsp/=
-tmp/work/aarch64-poky-linux/openjdk-8/272-r0/build/hotspot/_hotspot.timesta=
-mp' failed</div>
-<div>| make[1]: *** [/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/=
-openjdk-8/272-r0/build/hotspot/_hotspot.timestamp] Error 2</div>
-<div>| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-=
-r0/jdk8u-shenandoah-aarch64-shenandoah-jdk8u272-b10//make/Main.gmk:109: rec=
-ipe for target 'hotspot-only' failed</div>
-<div>| make: *** [hotspot-only] Error 2</div>
-<div>| WARNING: /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openj=
-dk-8/272-r0/temp/run.do_compile.27188:1 exit 1 from 'exit 1'</div>
-<div>|</div>
-<div>ERROR: Task (/home/bl-docker/rity/src/meta-java/recipes-core/openjdk/=
-openjdk-8_272.bb:do_compile) failed with exit code '1'<br /><br />Thanks &a=
-mp; Regards,<br />Vijay Rakesh.</div>
-
---h9961Z11N0rSRLil05Dx--
