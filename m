@@ -1,60 +1,59 @@
 Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
- by mx.groups.io with SMTP id smtpd.web12.9538.1613489672188338169
+ by mx.groups.io with SMTP id smtpd.web08.9347.1613489673871076205
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Feb 2021 07:34:32 -0800
+ Tue, 16 Feb 2021 07:34:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gherzan.com header.s=fm1 header.b=oVhOBDJA;
+ dkim=pass header.i=@gherzan.com header.s=fm1 header.b=mHJjWnOZ;
  spf=pass (domain: gherzan.com, ip: 64.147.123.20, mailfrom: andrei@gherzan.com)
 Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.west.internal (Postfix) with ESMTP id AA280B59;
-	Tue, 16 Feb 2021 10:34:31 -0500 (EST)
+	by mailout.west.internal (Postfix) with ESMTP id 4F5B7B21;
+	Tue, 16 Feb 2021 10:34:33 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Tue, 16 Feb 2021 10:34:31 -0500
+  by compute3.internal (MEProxy); Tue, 16 Feb 2021 10:34:33 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
 	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding; s=fm1; bh=WQSzmAQeluZu1
-	oc6LHr1NdZk6Nv3tl+Nrr7dDfn6wp8=; b=oVhOBDJAuFEEDdQ/GlxQjhoLgWfG7
-	OfQfP9Hfa6f1XFKKzyV7MUCqRFScZL2ULSw05N+69RHqJ5hvc0XVBBqBZcAONS5l
-	1rOfF21j46LaKexvP41aBLSBSGyLlv12URzdk/YfDD4voet1CdwKWVp/f4mJfbTy
-	BAzhKRsKsW6ARu7k1F06AB3fWtMBX87PBazoVRZuc93VPcaO+XQvQ5/lLAfutBG0
-	nYl6M4BpU3tI+R3Cc1G21ynnrNom6yWVnkS/T0tkng0RkBaEwkFi8we47dRORTCd
-	oSMUbYHgPabLJ/wqcXOGOmW0KEhrhPKqjGu7O3mkZBurbP+PQ+2pOJRBg==
+	:mime-version:content-transfer-encoding; s=fm1; bh=SBktZeyBkTYV5
+	faZRRBdVCf4FvwYAJI/oyXAYFJ2zrY=; b=mHJjWnOZzpw7yGmNXRCHIt4Vq5iDC
+	rcxyj2jlRKL4+dcnBj4t2Cl0fprhJBJbkXbtN5Qr9tMlP5VSj1GHs44i8DgwHRZG
+	+3CZHP1ewiUNZXbhL6YY3Rn5U5GHd6C6fv6W3M5JIWW6JpS+LswIG64C9BiP4krS
+	04DE6unC6Su6mGCfTpI1TLrjQ/Y1lKX3oAivECapcE+zCNXbeobH3d6YmLrbLp6n
+	HS7Tlj631Vg+W6545mKByJgImebT9O0xtGtMYcesspKQ6QIPd7vlxZWB5JK/8OHL
+	kT1vKvPR+RcdR1w+V8qdArhHnJOltdasaVG78T37Rv2t/nt6uNjW+S90w==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:content-transfer-encoding:date:from
 	:in-reply-to:message-id:mime-version:references:subject:to
 	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; bh=WQSzmAQeluZu1oc6LHr1NdZk6Nv3tl+Nrr7dDfn6wp8=; b=mohJM/vd
-	D07cOOv3VRzOXOwCNKhdHQJ8HT223fScgvUYjwxqEs9TR46edRCSuPCtCIsvCxTa
-	bhBEpUQ8scDs2p4/TesnO/SLoBiQK+ZtA+eej8iDq9WTjaXQkTf91qv+4hPnPh03
-	WYyhxm7VjJOncIFsPV2eJCe/e7bwkqG37J4cpR3f2ZAd2YpRe16CEsimVrz73WZ0
-	VNieq679aCt2UaaZhojAWniVtbhFI1PN2CvGQhOQa438UN/xZbOMe0JX/gh3CAqJ
-	tK7mil82zZSXis0l25AFoKGiPY7ZYTd5JfpS8QwGezKcB8wJ5oPCmtASTho1gkPk
-	uuvHcI8nptVvxQ==
-X-ME-Sender: <xms:B-YrYBORosfXpq26vWR7Ym3N70DtxgKoOQc7Jzikn3eTJdTgj8Da1w>
-    <xme:B-YrYD_zCI74ENJMePQXHjOnd2kOBSJKNaZMsunIJo0TlJODtNFhsQdzgvY0C5x4V
-    z3t-coXQW3VGNyjRpw>
+	fm2; bh=SBktZeyBkTYV5faZRRBdVCf4FvwYAJI/oyXAYFJ2zrY=; b=CWjZxpvD
+	h2y+3v4Tf0g/cq50Zr05gLSTuwdhfZ+YJrFToY5t+Lqiqxuf8Exz82cMVbancRx8
+	Ve5AIa9jd/INZh/ka5b4ot9R3/BMFpQ/xEgI4yYAFpoJe+GGvx8Fpl373Z0tvcPC
+	b9PNZHY1Pj8bTRtOJz2b1Sy5DZ0DOz7reYlihuI8IWa5gVVq0xx62BEUA3KUj924
+	zfEqQiiA47vgY/VckhMuOQmv09RhWvAvC176HNCpl5XWkJZ/s6M/Aovdr/1QXeyM
+	0l2P1tL5ouluHaRTT/wUnn43lvTgrvXB7F5NTUtIyj1KsNAnVmeeMr+o7OhF2Ze/
+	tkg13s2IY+J6Xg==
+X-ME-Sender: <xms:COYrYGBMqtPSumFdiwODgLW3M8YDlzJO_O1I6ZTqx7eq-5U1o234iA>
+    <xme:COYrYAjhlhDo7EKYyvRbTY8A0LZYDI3vWwclV536RfZA68uKUl1FXF0qFXmVsB3_H
+    g4MRwZo7XQHZ6cT2-o>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrjedtgdejlecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
     ertddtnecuhfhrohhmpeetnhgurhgvihcuifhhvghriigrnhcuoegrnhgurhgvihesghhh
-    vghriigrnhdrtghomheqnecuggftrfgrthhtvghrnhepleffjedutdfhiedthedtudevle
-    duueekueejudelgefggfffkeeitefguedulefgnecuffhomhgrihhnpedtqdhrtgefrdhi
-    nhgtpddtqdhrtgegrdhinhgtnecukfhppeekiedrudeftddrudegiedruddtvdenucevlh
-    hushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvihes
-    ghhhvghriigrnhdrtghomh
-X-ME-Proxy: <xmx:B-YrYASEzlsztUad4Pr7FZPTdvpGqhhxORDQgWiPVdV6nNKDdiZ39g>
-    <xmx:B-YrYNs5HRIqqZSjbvs3HMjilZ5G52q3vbXcTv-3yHc8QlZg_w9rBw>
-    <xmx:B-YrYJcolHQCZtNzjzj5XetR6AMz3Ettt-e70_wxjA7ik_gKOLp56A>
-    <xmx:B-YrYPquGpdikzSsitM3lRlt217PwGZkvuesAknMpxp2MxpBcxQOog>
+    vghriigrnhdrtghomheqnecuggftrfgrthhtvghrnheptedtvdfffeekteevkeetieevge
+    egveeiiedujeefieetvdekledvkeehjeelffefnecukfhppeekiedrudeftddrudegiedr
+    uddtvdenucevlhhushhtvghrufhiiigvpeegnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grnhgurhgvihesghhhvghriigrnhdrtghomh
+X-ME-Proxy: <xmx:COYrYJlYK_n2Xe5I0UkYnjk7Jj1N3hMCT5u8YYkptb500CXFyjVjXA>
+    <xmx:COYrYEyb_ag6qlKMH1Su-_arMhFrB2Zi9d56fuEjBkvDDJSmsaLk3Q>
+    <xmx:COYrYLQr1RvR332mBZ9qBlpddpPrvMU1_EXTz1HXaLJWrgI4wBf8Xw>
+    <xmx:COYrYOMsI8d4yaGeKvRG1Mf5ayIHqvfj0qOdEF8G9xh3jBjoPL3uXw>
 Received: from qwirkle.internal (host86-130-146-102.range86-130.btcentralplus.com [86.130.146.102])
-	by mail.messagingengine.com (Postfix) with ESMTPA id 1E875108005F;
-	Tue, 16 Feb 2021 10:34:29 -0500 (EST)
+	by mail.messagingengine.com (Postfix) with ESMTPA id 9EC321080063;
+	Tue, 16 Feb 2021 10:34:31 -0500 (EST)
 From: "Andrei Gherzan" <andrei@gherzan.com>
 To: yocto@lists.yoctoproject.org
 Cc: Andrei Gherzan <andrei.gherzan@huawei.com>
-Subject: [meta-zephyr][PATCH V2 14/15] zephyr-kernel-src: Upgrade 2.5.0-rc3 to rc4
-Date: Tue, 16 Feb 2021 15:33:09 +0000
-Message-Id: <20210216153310.79138-14-andrei@gherzan.com>
+Subject: [meta-zephyr][PATCH V2 15/15] README.txt: Fix small typo in email subject prefix
+Date: Tue, 16 Feb 2021 15:33:10 +0000
+Message-Id: <20210216153310.79138-15-andrei@gherzan.com>
 X-Mailer: git-send-email 2.30.1
 In-Reply-To: <20210216153310.79138-1-andrei@gherzan.com>
 References: <20210216153310.79138-1-andrei@gherzan.com>
@@ -65,30 +64,19 @@ From: Andrei Gherzan <andrei.gherzan@huawei.com>
 
 Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
 ---
- ...rnel-src-2.5.0-rc3.inc => zephyr-kernel-src-2.5.0-rc4.inc} | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
- rename recipes-kernel/zephyr-kernel/{zephyr-kernel-src-2.5.0-rc3.inc => zephyr-kernel-src-2.5.0-rc4.inc} (86%)
+ README.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0-rc3.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0-rc4.inc
-similarity index 86%
-rename from recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0-rc3.inc
-rename to recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0-rc4.inc
-index 4ee9883..b8aa4dc 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0-rc3.inc
-+++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0-rc4.inc
-@@ -1,5 +1,5 @@
- SRCREV_FORMAT = "default_cmsis"
--SRCREV_default = "v2.5.0-rc3"
-+SRCREV_default = "v2.5.0-rc4"
- SRCREV_cmsis = "c3bd2094f92d574377f7af2aec147ae181aa5f8e"
- SRCREV_nordic = "f3434da6446380fcdd426dbe2866af21d0d549b6"
- SRCREV_stm32 = "cc8731dba4fd9c57d7fe8ea6149828b89c2bd635"
-@@ -7,4 +7,4 @@ SRCREV_open-amp = "de1b85a13032a2de1d8b6695ae5f800b613e739d"
- SRCREV_libmetal = "9d4ee2c3cfd5f49861939447990f3b7d7bf9bf94"
- SRCREV_tinycrypt = "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+diff --git a/README.txt b/README.txt
+index ce5338b..5a0ccc7 100644
+--- a/README.txt
++++ b/README.txt
+@@ -116,4 +116,4 @@ the patches are identifable.
+ Git can be configured to send mails appropriately when using git send-email:
  
--PV = "2.5.0-rc3+git${SRCPV}"
-+PV = "2.5.0-rc4+git${SRCPV}"
+ $ git config --local sendemail.to yocto@lists.yoctoproject.org
+-$ git config --local format.subjectPrefix meta-zephy][PATCH
++$ git config --local format.subjectPrefix meta-zephyr][PATCH
 -- 
 2.30.1
 
