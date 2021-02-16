@@ -1,67 +1,91 @@
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
- by mx.groups.io with SMTP id smtpd.web11.93.1613517769881098543
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+ by mx.groups.io with SMTP id smtpd.web10.219.1613518331466222736
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Feb 2021 15:22:50 -0800
+ Tue, 16 Feb 2021 15:32:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=owhMmOUg;
- spf=pass (domain: gmail.com, ip: 209.85.160.178, mailfrom: twoerner@gmail.com)
-Received: by mail-qt1-f178.google.com with SMTP id g24so5816419qts.2
-        for <yocto@lists.yoctoproject.org>; Tue, 16 Feb 2021 15:22:49 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=udpNNMuK;
+ spf=pass (domain: gmail.com, ip: 209.85.222.172, mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f172.google.com with SMTP id b14so11244032qkk.0
+        for <yocto@lists.yoctoproject.org>; Tue, 16 Feb 2021 15:32:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=5wPz80R2QyRfaNB9z0dQ2jT1QjoVaVfaL/34HVGZ4sQ=;
-        b=owhMmOUgkYodMD1CWnVp2Gd5/5FBKwBw+PAOmeTMDldV2aJluABTAUtoUuuxd/hosC
-         AxPio35Mo7tXv0jCMmp3RhJCiuUbfEDcGL4EshLZ5qfhUAxIzCQbTDSL8v4oNRHZmJL8
-         spM/sW48CcXsS/SR7vqAD1WndIjLTIL0lZxwxG26KYHBQlZknXESAv2QxmHgi8dGuGHD
-         YPxMLjQD9NaR04PUjoOIw/9dmpkC6fDYo5u+LNXMCp3pbR2aoJmCa53bdy095svhk0qA
-         ZSHXk1pQVkZYtIujDYZD4kbIFEiZjNIzFSUeqyzr4zC+65lvnOcB5DjAEbEddST5Awmn
-         tJyQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=uJYE+vmkTn5PyqW++OJPFSJ7TboKUqPpRD15Pgg4TJ4=;
+        b=udpNNMuKqxXgto9VnsSZKtGtAUeroVKdxjsASstnRZpXti9SguPrzlaryDr3rEfanE
+         b3Eaya7WtE4dLJMhHPkBwmVScFcSRiJV/wtxsejS2RpgvIM2lGkcJf1qrqC1p6jVJzVZ
+         Y6kSDsjID5888d7MDcxrBrGTkaacBg6RqtwrG3wbUkTq1CeasiNk8Ex46CgwxoiI4iu9
+         3hdwobE+eMacnB8W4EhOt6kUBNnURFi63G/euweBqeBJoOLy5G3Nyfig5U7MtUXOkFF1
+         TyYHU6daldsaDF7awWH3Pop44QPZfh8Dyc6a5vyAiqUECJ6cJfLDZmerixkPev/3RAn1
+         Nbbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=5wPz80R2QyRfaNB9z0dQ2jT1QjoVaVfaL/34HVGZ4sQ=;
-        b=eQuMmmcHz9QCM/EUk5QyJ05zjE7y3nLm+1b825BDDBuSXX0v/29R0sH6dUZkFCEhsa
-         c3EHL8tTHpHvnOzKzLqOEbBmKCvG/ephD2wW1LD23/zF6KbQyAcb1b52It6QCXjud3Ap
-         MxSnDNhB7s2re2hgYTel4RyK/eIVhFG8FufPnerh8ukt/4gjKwkCxdblxIb1NQXGk1Zq
-         eJ7dM749kkl6D95OFqklgUSzg6RyvEEdmJQDkxh0K8orFYOXKieYL6omH5284E83Dfyo
-         HfD4PAqExGx0BqgRzeF+fulHxjBzSLfGio3zyWhihD8J3uMv+idhhz4cQCyqrxsDe+Ov
-         DyAA==
-X-Gm-Message-State: AOAM533pQxkNp3RCuR3dkHlCU7Xn85Y6AjlO7spGPfTl/TpVvC478oFf
-	jQbIL3hvywamKK8K6RPFOmU=
-X-Google-Smtp-Source: ABdhPJy6iiS+MKETQA17SjhqOv/3BNvPbwoJOqef0ObUFvP0NPx/CNRMgVlUVSj2G7bpTWg4TzOBcg==
-X-Received: by 2002:ac8:5a48:: with SMTP id o8mr21703116qta.269.1613517768995;
-        Tue, 16 Feb 2021 15:22:48 -0800 (PST)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id b7sm348696qkj.115.2021.02.16.15.22.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Feb 2021 15:22:48 -0800 (PST)
-Date: Tue, 16 Feb 2021 18:22:46 -0500
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: akuster808 <akuster808@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Yocto Technical Team Minutes, Engineering Sync, for Feb 16 2021
-Message-ID: <20210216232246.GA25268@localhost>
-References: <20210216191013.GA36798@localhost>
- <3e18b390-127b-1f50-077b-f5a8483089ff@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=uJYE+vmkTn5PyqW++OJPFSJ7TboKUqPpRD15Pgg4TJ4=;
+        b=Q21SvZbBLcWnxs62MLj5jNg+KCS58oMj9OChdA1lfKjiLQISg8L5jHRPsq3TEeHU3P
+         Cw/tsUt0Jt1Y8H2ap3EAE9P7UJdGbFZ9Tnk2LzuJdyUYfWFESs0cNghrJcz7mJzdUEa7
+         YqZse54S+LPO12NWKnAm8Wz5kFjNh+OtqeHbHJVGj6bPXRdWziHyR8FHuC52b1Qpe0+N
+         0+bhMuwb8BB4P4x9SMqgozlBmi4qJ4kHTbESPSBRw/BPxWdytVYhum3B795RG66CivM6
+         dMgh6nr0PzK/4LqRRsFVBkP2TJ4z3plKmQZfTjw8I9NCkCBQ5V3zFJmsVKSIDfPRfJHc
+         MVTA==
+X-Gm-Message-State: AOAM532pEZRy4A/ztZwppjPBgjjNeYQ56IzCmYztxd4p2CXWcwSb0HFr
+	BwxMhTLf/wFWR3CkJrC1gw0gnA7XQiD2HwuZdYY=
+X-Google-Smtp-Source: ABdhPJysqWL0EeSWKcargWhc22jZc+kwUBCedpCOMa5sMPpLIXat8e7Fz65T5KSMd76N9fAuIIdTL8vHz8L7qHrGEwI=
+X-Received: by 2002:a37:e13:: with SMTP id 19mr22193041qko.119.1613518330584;
+ Tue, 16 Feb 2021 15:32:10 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <3e18b390-127b-1f50-077b-f5a8483089ff@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <CAEyb4nGKD+YCsmxH4-B43JjDAToWe0CysMh78Z9m6R5Wq_p4Dg@mail.gmail.com>
+In-Reply-To: <CAEyb4nGKD+YCsmxH4-B43JjDAToWe0CysMh78Z9m6R5Wq_p4Dg@mail.gmail.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Tue, 16 Feb 2021 15:31:44 -0800
+Message-ID: <CAMKF1spDGqiU=L7s7o9NGtq-9b=1Ad_v4_+V3B7qSkdJFQo32A@mail.gmail.com>
+Subject: Re: [yocto] Keep .bbappend for older Yocto version
+To: Jonas Vautherin <jonas.vautherin@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue 2021-02-16 @ 12:41:37 PM, akuster808 wrote:
-> On 2/16/21 11:10 AM, Trevor Woerner wrote:
-> > Yocto Technical Team Minutes, Engineering Sync, for Feb 16 2021
-> > archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit
-> Thanks for taking and sending the minutes.
+perhaps you should create a new branch for this layer which will be
+compatible with gatesgarth, you can seed it with dunfell branch
+and then make needed changes
 
-You're welcome :-)
-
-I take notes every week, but had stopped sending emails to the list at the end
-of each meeting. A couple people mentioned privately that they appreciate the
-notes being formatted for email and sent that way, so I picked it back up
-again.
+On Tue, Feb 16, 2021 at 3:02 PM Jonas Vautherin
+<jonas.vautherin@gmail.com> wrote:
+>
+> Good evening,
+>
+> I am using Yocto Gatesgarth, and I was just updating a layer that was wr=
+itten for Dunfell. In the `conf/layer.conf`, I can simply add "gatesgarth" =
+to `LAYERSERIES_COMPAT_pocketbeagle`, like so:
+>
+> ```
+> LAYERSERIES_COMPAT_pocketbeagle =3D "dunfell gatesgarth"
+> ```
+>
+> However, this does not seem to work for a `.bbappend`. Let me use this p=
+articular layer as an example: it is a BSP that defines `linux-yocto_4.19.b=
+bappend` for Dunfell. In my case, I want to define `linux-yocto_5.4.bbappen=
+d` for Gatesgarth. When building with Dunfell, I would like it to use the f=
+ormer, and when building with Gatesgarth, I would like it to use the latter=
+.
+>
+> However, if I keep both `linux-yocto_4.19.bbappend` and `linux-yocto_5.4=
+.bbappend` and try to build with Gatesgarth, it fails with:
+>
+> ```
+> ERROR: No recipes in default available for:
+>   /path/to/recipes-kernel/linux/linux-yocto_4.19.bbappend
+> ```
+>
+> Which makes sense: Gatesgarth does not provide `linux-yocto_4.19`.
+>
+> Is there a way to keep both `*.bbappend` and have Yocto ignore the ones =
+that do not correspond to its version? Or would that be bad practice anyway=
+?
+>
+> Best Regards,
+> Jonas
+>
+>=20
+>
