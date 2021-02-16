@@ -1,222 +1,120 @@
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by mx.groups.io with SMTP id smtpd.web11.5907.1613470485442267400
- for <yocto@lists.yoctoproject.org>;
- Tue, 16 Feb 2021 02:14:45 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.24, mailfrom: naveen.kumar.saini@intel.com)
-IronPort-SDR: ECQrKW29B5naIvtnNbWqjzf8vhX6J/VSmlgAa3H09jtHoY7FdAOAnSTxjNIs5bLf2FoPM9SaaQ
- Q2iPzG8WYxcw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9896"; a="182985444"
-X-IronPort-AV: E=Sophos;i="5.81,183,1610438400"; 
-   d="scan'208";a="182985444"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2021 02:14:43 -0800
-IronPort-SDR: HrQ3hpCRPv7guM/gY1xsp/Ot6pkpauZXOh3Wc/ZuARpF73jqG0tXcX4B9EIUlyFBs8PDRiSlqd
- j89Z0IcD+EXA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,183,1610438400"; 
-   d="scan'208";a="377510568"
-Received: from kmsmsx601.gar.corp.intel.com ([172.21.219.141])
-  by orsmga002.jf.intel.com with ESMTP; 16 Feb 2021 02:14:42 -0800
-Received: from kmsmsx603.gar.corp.intel.com (172.21.219.143) by
- kmsmsx601.gar.corp.intel.com (172.21.219.141) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Tue, 16 Feb 2021 18:14:41 +0800
-Received: from kmsmsx603.gar.corp.intel.com ([172.21.219.143]) by
- kmsmsx603.gar.corp.intel.com ([172.21.219.143]) with mapi id 15.01.2106.002;
- Tue, 16 Feb 2021 18:14:41 +0800
-From: "Naveen Saini" <naveen.kumar.saini@intel.com>
-To: Andrei Gherzan <andrei@gherzan.com>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-CC: Andrei Gherzan <andrei.gherzan@huawei.com>
-Subject: Re: [yocto] [meta-zephy][PATCH 13/14] zephyr-flash-pyocd.bbclass: Implement configurable probe IDs to program
-Thread-Topic: [yocto] [meta-zephy][PATCH 13/14] zephyr-flash-pyocd.bbclass:
- Implement configurable probe IDs to program
-Thread-Index: AQHXA40bWT+kT96wjkSOKnvUA2tMj6pajy7w
-Date: Tue, 16 Feb 2021 10:14:41 +0000
-Message-ID: <821237702e094666bca3ed61b1f6d455@intel.com>
-References: <20210215112003.2025053-1-andrei@gherzan.com>
- <20210215112003.2025053-13-andrei@gherzan.com>
-In-Reply-To: <20210215112003.2025053-13-andrei@gherzan.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-x-originating-ip: [10.108.32.68]
+Subject: do compile error while installing openjdk-8 (meta-java) #dunfell #yocto
+To: yocto@lists.yoctoproject.org
+From: "Vijay Rakesh Munganda" <vijayrakeshmunganda@gmail.com>
+X-Originating-Location: IN (164.164.95.9)
+X-Originating-Platform: Windows Chrome 88
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Date: Tue, 16 Feb 2021 03:14:39 -0800
+Message-ID: <Yn9N.1613474079123346031.FOdn@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="h9961Z11N0rSRLil05Dx"
+
+--h9961Z11N0rSRLil05Dx
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks Andrei for adding support for v2.5-rc4 and re-structuring.
+Hi,
 
-Could you fix a whitespace in this patch ? Other patches looks good to me.
+I'm trying to install openjdk-8 from meta-java layer, but I got below erro=
+r while installing it. Please anyone help me with this error.
 
-Later I will fix subject-prefix meta-zephyr typo in README.=20
+| g++: error: unrecognized command line option =E2=80=98-fmacro-prefix-map=
+=
+=3D/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0=
+=3D/usr/src/debug/openjdk-8/272-r0=E2=80=99
+| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0/jd=
+k8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/makefiles=
+/adlc.make:228: recipe for target '../generated/adfiles/dict2.o' failed
+| make[6]: *** [../generated/adfiles/dict2.o] Error 1
+| g++: error: unrecognized command line option =E2=80=98-fmacro-prefix-map=
+=
+=3D/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0=
+=3D/usr/src/debug/openjdk-8/272-r0=E2=80=99
+| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0/jd=
+k8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/makefiles=
+/adlc.make:228: recipe for target '../generated/adfiles/formsopt.o' failed
+| make[6]: *** [../generated/adfiles/formsopt.o] Error 1
+| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0/jd=
+k8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/makefiles=
+/top.make:91: recipe for target 'ad_stuff' failed
+| make[5]: *** [ad_stuff] Error 2
+| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0/jd=
+k8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/Makefile:=
+284: recipe for target 'product' failed
+| make[4]: *** [product] Error 2
+| Makefile:230: recipe for target 'generic_build2' failed
+| make[3]: *** [generic_build2] Error 2
+| Makefile:177: recipe for target 'product' failed
+| make[2]: *** [product] Error 2
+| HotspotWrapper.gmk:44: recipe for target '/home/bl-docker/rity/bsp/tmp/w=
+ork/aarch64-poky-linux/openjdk-8/272-r0/build/hotspot/_hotspot.timestamp' f=
+ailed
+| make[1]: *** [/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openj=
+dk-8/272-r0/build/hotspot/_hotspot.timestamp] Error 2
+| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0/jd=
+k8u-shenandoah-aarch64-shenandoah-jdk8u272-b10//make/Main.gmk:109: recipe f=
+or target 'hotspot-only' failed
+| make: *** [hotspot-only] Error 2
+| WARNING: /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/=
+272-r0/temp/run.do_compile.27188:1 exit 1 from 'exit 1'
+|
+ERROR: Task (/home/bl-docker/rity/src/meta-java/recipes-core/openjdk/openj=
+dk-8_272.bb:do_compile) failed with exit code '1'
 
-Regards,
-Naveen
+Thanks & Regards,
+Vijay Rakesh.
 
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
-> Behalf Of Andrei Gherzan
-> Sent: Monday, February 15, 2021 7:20 PM
-> To: yocto@lists.yoctoproject.org
-> Cc: Andrei Gherzan <andrei.gherzan@huawei.com>
-> Subject: [yocto] [meta-zephy][PATCH 13/14] zephyr-flash-pyocd.bbclass:
-> Implement configurable probe IDs to program
->=20
-> From: Andrei Gherzan <andrei.gherzan@huawei.com>
->=20
-> Implement logic to configure what probes to program based on the
-> PYOCD_FLASH_IDS variable:
-> 1. by default program all attached probes 2. change default behaviour by
-> listing the probe IDs to flash
->=20
-> CONNECT_TIMEOUT_SECONDS was also renamed to maintain consistency
-> with the PYOCD_FLASH_IDS variable.
->=20
-> One can query the IDs using `pyocd list`.
->=20
-> The value of PYOCD_FLASH_IDS can also be injected into the datastore usin=
-g
-> BB_ENV_EXTRAWHITE.
->=20
-> Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
-> ---
->  README.txt                         |  9 +++++
->  classes/zephyr-flash-pyocd.bbclass | 57 ++++++++++++++++++++----------
->  2 files changed, 48 insertions(+), 18 deletions(-)
->=20
-> diff --git a/README.txt b/README.txt
-> index bda872b..ce5338b 100644
-> --- a/README.txt
-> +++ b/README.txt
-> @@ -67,6 +67,15 @@ dfu-util and/or pyocd need to be installed in your
-> system. If you observe  permission errors or the flashing process seem to
-> hang, follow those instructions:
->  https://github.com/pyocd/pyOCD/tree/master/udev
->=20
-> +By default, pyocd tries to flash all the attached probes. This
-> +behaviour can be customised by defining the PYOCD_FLASH_IDS variable as
-> +a space-separated list of IDs. Once that is set, the tool will only try
-> +to program these IDs. You can query for the IDs by running `pyocd list`
-> +on your host while having the probes attached. Besides setting this
-> +variable through the build's configuration or metadata, you can also inj=
-ect
-> its value from command line with something like:
-> +
-> +    $ PYOCD_FLASH_IDS=3D'<ID1> <ID2> <ID3>'
-> + BB_ENV_EXTRAWHITE=3D"$BB_ENV_EXTRAWHITE PYOCD_FLASH_IDS"
-> bitbake
-> + <TARGET> -c flash_usb
-> +
->  Building and Running Zephyr Tests
->  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
->  Presently only toolchains for ARM, x86, IAMCU and Nios2 are supported.
-> diff --git a/classes/zephyr-flash-pyocd.bbclass b/classes/zephyr-flash-
-> pyocd.bbclass
-> index 4d24e6a..7e1cec5 100644
-> --- a/classes/zephyr-flash-pyocd.bbclass
-> +++ b/classes/zephyr-flash-pyocd.bbclass
-> @@ -1,4 +1,5 @@
-> -CONNECT_TIMEOUT_SECONDS ?=3D "30"
-> +PYOCD_CONNECT_TIMEOUT_SECONDS ?=3D "30"
-> +PYOCD_FLASH_IDS ?=3D "all"
->=20
->  python do_flash_usb() {
->      try:
-> @@ -7,26 +8,46 @@ python do_flash_usb() {
->      except ImportError:
->          bb.fatal("Flashing with pyocd needs the relevant python package.=
- Make
-> sure your host provides it or consult your distribution packages for how =
-to
-> install this prerequisite.")
->=20
-> -    timeout =3D int(d.getVar('CONNECT_TIMEOUT_SECONDS'))
-> +    try:
-> +        timeout =3D int(d.getVar('PYOCD_CONNECT_TIMEOUT_SECONDS'))
-> +    except ValueError:
-> +        bb.fatal(f"PYOCD_CONNECT_TIMEOUT_SECONDS was set to an invalid
-> + value: {d.getVar('PYOCD_CONNECT_TIMEOUT_SECONDS')}.")
->      image =3D f"{d.getVar('DEPLOY_DIR_IMAGE')}/{d.getVar('PN')}.elf"
-> -    bb.plain(f"Attempting to flash {image} to board {d.getVar('BOARD')}"=
-)
-> +    ids =3D d.getVar('PYOCD_FLASH_IDS')
-> +
-> +    # Compute the list of IDs to program
-> +    if ids =3D=3D 'all':
-> +        ids =3D []
-> +        for probe in
-> ConnectHelper.get_all_connected_probes(blocking=3DFalse):
-> +            ids.append(probe.unique_id)
-> +        if not ids:
-> +            bb.fatal("No probe detected. Make sure your target is connec=
-ted.")
-> +    else:
-> +        ids =3D ids.split()
-> +        if not ids:
-> +            bb.fatal("No probe requested for programming. Make sure
-> + PYOCD_FLASH_IDS is set.")
->=20
-> -    # Try to connect to a probe with a timeout
-> -    now =3D 0
-> -    step =3D 3
-> -    while True:
-> -        session =3D ConnectHelper.session_with_chosen_probe(blocking=3DF=
-alse,
-> return_first=3DTrue)
-> -        if session:
-> -            break
-> -        if now >=3D timeout:
-> -            bb.fatal("Timeout while trying to connect to a probe. Make s=
-ure the
-> target device is connected and the udev is configured accordingly. See
-> <https://github.com/mbedmicro/pyOCD/tree/master/udev> for help.")
-> -        bb.warn("Can't connect to the probe. Retrying in %d seconds..." =
-% step)
-> -        time.sleep(step)
-> -        now +=3D step
-> +    # Program each ID
-> +    for id in ids:
-> +        bb.plain(f"Attempting to flash {os.path.basename(image)} to
-> + board {d.getVar('BOARD')} [{id}]")
->=20
-> -    with session:
-> -        FileProgrammer(session).program(image)
-> -        session.board.target.reset()
-> +        # Try to connect to a probe with a timeout
-> +        now =3D 0
-> +        step =3D 3
-> +        while True:
-> +            session =3D
-> ConnectHelper.session_with_chosen_probe(blocking=3DFalse,
-> return_first=3DTrue, unique_id=3Did)
-> +            if session:
-> +                break
-> +            if now >=3D timeout:
-> +                bb.fatal(f"Timeout while trying to connect to probe ID: =
-{id}. Make
-> sure the target device is connected and the udev is configured accordingl=
-y.
-> See <https://github.com/mbedmicro/pyOCD/tree/master/udev> for help.")
-> +            bb.warn(f"Can't connect to the probe ID: {id}. Retrying in {=
-step}
-> seconds...")
-> +            time.sleep(step)
-> +            now +=3D step
-> +
-> +        # Program the sepected probe
-> +        with session:
-> +            FileProgrammer(session).program(image)
-> +            session.board.target.reset()
->  }
->=20
->  addtask do_flash_usb after do_deploy
-> --
-> 2.30.1
+--h9961Z11N0rSRLil05Dx
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi,<br /><br />I'm trying to install openjdk-8 from meta-java layer, but I =
+got below error while installing it. Please anyone help me with this error.=
+<br /><br />
+<div>| g++: error: unrecognized command line option &lsquo;-fmacro-prefix-=
+map=3D/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0=
+=
+=3D/usr/src/debug/openjdk-8/272-r0&rsquo;</div>
+<div>| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-=
+r0/jdk8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/make=
+files/adlc.make:228: recipe for target '../generated/adfiles/dict2.o' faile=
+d</div>
+<div>| make[6]: *** [../generated/adfiles/dict2.o] Error 1</div>
+<div>| g++: error: unrecognized command line option &lsquo;-fmacro-prefix-=
+map=3D/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-r0=
+=
+=3D/usr/src/debug/openjdk-8/272-r0&rsquo;</div>
+<div>| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-=
+r0/jdk8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/make=
+files/adlc.make:228: recipe for target '../generated/adfiles/formsopt.o' fa=
+iled</div>
+<div>| make[6]: *** [../generated/adfiles/formsopt.o] Error 1</div>
+<div>| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-=
+r0/jdk8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/make=
+files/top.make:91: recipe for target 'ad_stuff' failed</div>
+<div>| make[5]: *** [ad_stuff] Error 2</div>
+<div>| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-=
+r0/jdk8u-shenandoah-aarch64-shenandoah-jdk8u272-b10/hotspot/make/linux/Make=
+file:284: recipe for target 'product' failed</div>
+<div>| make[4]: *** [product] Error 2</div>
+<div>| Makefile:230: recipe for target 'generic_build2' failed</div>
+<div>| make[3]: *** [generic_build2] Error 2</div>
+<div>| Makefile:177: recipe for target 'product' failed</div>
+<div>| make[2]: *** [product] Error 2</div>
+<div>| HotspotWrapper.gmk:44: recipe for target '/home/bl-docker/rity/bsp/=
+tmp/work/aarch64-poky-linux/openjdk-8/272-r0/build/hotspot/_hotspot.timesta=
+mp' failed</div>
+<div>| make[1]: *** [/home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/=
+openjdk-8/272-r0/build/hotspot/_hotspot.timestamp] Error 2</div>
+<div>| /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openjdk-8/272-=
+r0/jdk8u-shenandoah-aarch64-shenandoah-jdk8u272-b10//make/Main.gmk:109: rec=
+ipe for target 'hotspot-only' failed</div>
+<div>| make: *** [hotspot-only] Error 2</div>
+<div>| WARNING: /home/bl-docker/rity/bsp/tmp/work/aarch64-poky-linux/openj=
+dk-8/272-r0/temp/run.do_compile.27188:1 exit 1 from 'exit 1'</div>
+<div>|</div>
+<div>ERROR: Task (/home/bl-docker/rity/src/meta-java/recipes-core/openjdk/=
+openjdk-8_272.bb:do_compile) failed with exit code '1'<br /><br />Thanks &a=
+mp; Regards,<br />Vijay Rakesh.</div>
+
+--h9961Z11N0rSRLil05Dx--
