@@ -1,159 +1,68 @@
-Received: from mx02.optimcloud.com (mx02.optimcloud.com [46.23.93.22])
- by mx.groups.io with SMTP id smtpd.web11.4484.1613455877359939883
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+ by mx.groups.io with SMTP id smtpd.web11.5483.1613466442356238307
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 Feb 2021 22:11:18 -0800
+ Tue, 16 Feb 2021 01:07:22 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=gtrJehI3;
- spf=none, err=permanent DNS error (domain: optimcloud.com, ip: 46.23.93.22, mailfrom: yocto@optimcloud.com)
-Received: from mx02.optimcloud.com (localhost [127.0.0.1])
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTP id af8cde42
-	for <yocto@lists.yoctoproject.org>;
-	Tue, 16 Feb 2021 07:11:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=
-	subject:to:references:from:message-id:date:mime-version
-	:in-reply-to:content-type; s=obsd; bh=sOBLQddTsWGGDf3yphFCO8P8hE
-	GGnfnvRqrliGBSD3k=; b=gtrJehI33CQB3O5WHlS1fiKS39u88T837EjV6Gxjg+
-	g9kBTHpRjo2uPjemu8YbXtAlLTiP6fAln5LkfUoB3Zj6UbKQOtC/I1PGn46kxisC
-	EotKIQmlOgOunEeun1nTlYFCgsCszLGgWwuYWS029pdScklXrDBamyVjNCjxg6Yk
-	fez8SHcoljK+wpIN8SDEvYVvkjB5Sr7MTVwn3UAY+P9YOMwQxxn3F6hcH3dPzM44
-	0pc/lxau4esL9ir11frbNQfAmgbNcxOc/oIFaKCHk1IEGRQuxKDDLtTA8WuLARqd
-	ijIlu2JCyS1obTUUiVGajRgu6RZINHezEeZQSSyv5qJQ==
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=subject:to
-	:references:from:message-id:date:mime-version:in-reply-to
-	:content-type; q=dns; s=obsd; b=nq9Lo3Nbtctwz+5UqdFPvypOzsM8Qrtl
-	l/4QzHhonieadHtdIXZxjz1n4medlSpnMb9i6K5t0yhL+mkOM2lVZlOSw4c5YD3U
-	WE9LQEK0Z9962377UN9qQBB75h5P3y0F/Cr2o+Fuob/SklqJ3kPqKPiB043+qZ1y
-	vKu4vF3lDS+KBWk0LDrC0lHGMdF6vyVgBsoSZvJvLn4/8fDWiS0ga25d/RhT/MF+
-	9IlQiOReJo+lhz5fF50yCDZY946n/iixDb/uLyBrX/A0u90CDstqlE45wcrhEK0o
-	KMi81U9SOUf986DAE0tlGSWdKxlOTnwXJYGxFOZqfQYlq2EpeNe8DQ==
-Received: 
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTPSA id c2cc393b (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO) auth=yes user=yocto@optimcloud.com
-	for <yocto@lists.yoctoproject.org>;
-	Tue, 16 Feb 2021 07:11:13 +0100 (CET)
-Subject: Re: [yocto] Timing a recipe
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=a3O10iTH;
+ spf=pass (domain: gmail.com, ip: 209.85.208.174, mailfrom: samuli.piippo@gmail.com)
+Received: by mail-lj1-f174.google.com with SMTP id u4so10853269ljh.6
+        for <yocto@lists.yoctoproject.org>; Tue, 16 Feb 2021 01:07:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=CkcpFssOrqZpD0oEPmpg/T7CnyXOu89ENX7IyWQSsC0=;
+        b=a3O10iTHZaVHggagIBOt5c0vUXfxkSk48me4uoVkmfDNY4kMjAaN6V08lYiKX1zx0m
+         okgHePT89YM5Qtb4gzpG3Dq8rfCuh4Mf1Q4ZIwoUIlHzTcEAlKwKXU7adY48Xw/dxRjG
+         NLKOa6WPtC853hI9eZtGK+E6x+7aCXn9eurtAHYf7mNvCKrKx39m19jZ96mkuJ3IeZaP
+         3UG5Y/s9aSmlOZJUvMAfKZiXSnvcZ0V6ztoQtl5CpXzdb7tTnTuo63wmFSjJzGAQdZU+
+         /OAr0v4usFssGaSey8fLNuoJ9H0dU4NnpDVnRUW2CnijFCdf0fPaK3hyLgfY5xiHe+bS
+         clGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=CkcpFssOrqZpD0oEPmpg/T7CnyXOu89ENX7IyWQSsC0=;
+        b=W7YBnKIcJrKuCE3BbS96+7Y0HK2VTFyZM66C0wuo7leFhSsO/GBPcE5QGBxpLw9gq9
+         H5WJpv1C531+oPCUHTP1Ob/hqUjWBFenxuZOC62KWv8u8nmTynJHKHu8Rym6rekDNVge
+         Aou2SrlOYDZrVfNbiiq5xQ6bj1MKBvQOZVQBS01UwzZDvFxQYN/GleKDzujUbJ3kUTPZ
+         DNIpYU8E6AsFbcSIyclQhDmK/kyR5sKCy+RqehXssN7doWX5E8lH5enTq5OTW9+3yezf
+         YAgXNBRbSyjSF0ex/cjRBLhXUE2elOEPAsZyfpTNKf9Evjl7+sOKBEPlEBnFAANsD9Cq
+         2Kpg==
+X-Gm-Message-State: AOAM532kt5u/oZ3tQ2pgGEdB5eR7wBVavHDuYzS8dmGvfJx43YLXuKPZ
+	aV8PJEo0rBy/JN1BOSz8y+72hfTO/zmFYQ==
+X-Google-Smtp-Source: ABdhPJzkGOtktVFRAuedOhFkMXZ2Hx8kGX+al9vlM+Xb0VtxH5W5S/6wVQ0uGH1Oe1uhq/5UIZ2lQw==
+X-Received: by 2002:a2e:85c2:: with SMTP id h2mr11773332ljj.78.1613466440236;
+        Tue, 16 Feb 2021 01:07:20 -0800 (PST)
+Return-Path: <samuli.piippo@gmail.com>
+Received: from munkone.intra.qt.io (62-183-187-94.co.dnainternet.fi. [62.183.187.94])
+        by smtp.gmail.com with ESMTPSA id d8sm2603202lfg.96.2021.02.16.01.07.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Feb 2021 01:07:19 -0800 (PST)
+From: "Samuli Piippo" <samuli.piippo@gmail.com>
+X-Google-Original-From: Samuli Piippo <samuli.piippo@qt.io>
 To: yocto@lists.yoctoproject.org
-References: <fQ55.1613419717498551221.Ltf0@lists.yoctoproject.org>
- <AM9PR09MB4642A3B12B44A1F158613D13A8889@AM9PR09MB4642.eurprd09.prod.outlook.com>
-From: "Yocto" <yocto@optimcloud.com>
-Message-ID: <d16e306d-528c-b748-6fb6-a7494b0ab6f8@optimcloud.com>
-Date: Tue, 16 Feb 2021 13:11:08 +0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
-MIME-Version: 1.0
-In-Reply-To: <AM9PR09MB4642A3B12B44A1F158613D13A8889@AM9PR09MB4642.eurprd09.prod.outlook.com>
-Content-Type: multipart/alternative;
- boundary="------------6F2F1E240F200361015AD63E"
-Content-Language: en-US
+Cc: jpewhacker@gmail.com
+Subject: [meta-mingw] [PATCH] binutils: Package static libdep linker plugins
+Date: Tue, 16 Feb 2021 11:07:04 +0200
+Message-Id: <20210216090704.2650-1-samuli.piippo@qt.io>
+X-Mailer: git-send-email 2.17.1
 
---------------6F2F1E240F200361015AD63E
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+this is new plugin added in binutils 2.36
 
+Signed-off-by: Samuli Piippo <samuli.piippo@qt.io>
+---
+ recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend | 2 ++
+ 1 file changed, 2 insertions(+)
 
-On 2/16/21 3:12 AM, Konrad Weihmann wrote:
-> buildstats [1] maybe? That can be inherited globally and does give 
-> some neat results and insights
->
-> [1] 
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/buildstats.bbclass
->
-how about "time bitbake recipe"  :)
+diff --git a/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend b/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend
+index 5845fe0..0d376bb 100644
+--- a/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend
++++ b/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend
+@@ -3,3 +3,5 @@ LDFLAGS_append_sdkmingw32 = " -Wl,-static"
+ 
+ DEPENDS_remove_sdkmingw32 = "nativesdk-gettext"
+ DEPENDS_remove_sdkmingw32 = "nativesdk-flex"
++
++FILES_${PN}-staticdev_append_sdkmingw32 = " ${libdir}/bfd-plugins/lib*.a"
+-- 
+2.17.1
 
-
-> On 15.02.21 21:08, rustyhowell@gmail.com wrote:
->> Is there a way to automatically record build time of a recipe without 
->> modifying the recipe itself?  I have a recipe that is a monster, it 
->> has many git URIs and produces many packages that are coupled. It 
->> should be broken up but company deadlines have kept us from taking 
->> the time to do this. I was talking to my boss about this. He said we 
->> really needs some concrete data about how much this monster recipe is 
->> costing us before green-lighting the massive effort to split up the 
->> recipe.  I agree with him, so I would like to know how much time is 
->> spent repeatedly building this recipe.  I figure I could do this by 
->> adding do_fetch_prepend() and writing the time to a file, and then 
->> do_install_append() and writing the time to the file. So after a week 
->> or so, I would have many start/end data points to discuss.
->>
->> However, I did not want to modify the recipe itself. I was hoping to 
->> augment the recipe via local.conf. Another bbappend in a new layer 
->> would work I guess, but I was hoping there was something simpler. 
->> Thanks in advance.
->>
->>
->>
->>
->>
->
-> 
->
-
---------------6F2F1E240F200361015AD63E
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 2/16/21 3:12 AM, Konrad Weihmann
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:AM9PR09MB4642A3B12B44A1F158613D13A8889@AM9PR09MB4642.eurprd09.prod.outlook.com">buildstats
-      [1] maybe? That can be inherited globally and does give some neat
-      results and insights
-      <br>
-      <br>
-      [1]
-<a class="moz-txt-link-freetext" href="http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/buildstats.bbclass">http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/buildstats.bbclass</a><br>
-      <br>
-    </blockquote>
-    <p>how about "time bitbake recipe"  :)<br>
-    </p>
-    <p><br>
-    </p>
-    <blockquote type="cite"
-cite="mid:AM9PR09MB4642A3B12B44A1F158613D13A8889@AM9PR09MB4642.eurprd09.prod.outlook.com">On
-      15.02.21 21:08, <a class="moz-txt-link-abbreviated" href="mailto:rustyhowell@gmail.com">rustyhowell@gmail.com</a> wrote:
-      <br>
-      <blockquote type="cite">Is there a way to automatically record
-        build time of a recipe without modifying the recipe itself?  I
-        have a recipe that is a monster, it has many git URIs and
-        produces many packages that are coupled. It should be broken up
-        but company deadlines have kept us from taking the time to do
-        this. I was talking to my boss about this. He said we really
-        needs some concrete data about how much this monster recipe is
-        costing us before green-lighting the massive effort to split up
-        the recipe.  I agree with him, so I would like to know how much
-        time is spent repeatedly building this recipe.  I figure I could
-        do this by adding do_fetch_prepend() and writing the time to a
-        file, and then do_install_append() and writing the time to the
-        file. So after a week or so, I would have many start/end data
-        points to discuss.
-        <br>
-        <br>
-        However, I did not want to modify the recipe itself. I was
-        hoping to augment the recipe via local.conf. Another bbappend in
-        a new layer would work I guess, but I was hoping there was
-        something simpler. Thanks in advance.
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-      </blockquote>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
-
-
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------6F2F1E240F200361015AD63E--
