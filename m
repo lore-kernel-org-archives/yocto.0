@@ -1,68 +1,222 @@
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
- by mx.groups.io with SMTP id smtpd.web11.5483.1613466442356238307
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by mx.groups.io with SMTP id smtpd.web11.5907.1613470485442267400
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Feb 2021 01:07:22 -0800
+ Tue, 16 Feb 2021 02:14:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=a3O10iTH;
- spf=pass (domain: gmail.com, ip: 209.85.208.174, mailfrom: samuli.piippo@gmail.com)
-Received: by mail-lj1-f174.google.com with SMTP id u4so10853269ljh.6
-        for <yocto@lists.yoctoproject.org>; Tue, 16 Feb 2021 01:07:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=CkcpFssOrqZpD0oEPmpg/T7CnyXOu89ENX7IyWQSsC0=;
-        b=a3O10iTHZaVHggagIBOt5c0vUXfxkSk48me4uoVkmfDNY4kMjAaN6V08lYiKX1zx0m
-         okgHePT89YM5Qtb4gzpG3Dq8rfCuh4Mf1Q4ZIwoUIlHzTcEAlKwKXU7adY48Xw/dxRjG
-         NLKOa6WPtC853hI9eZtGK+E6x+7aCXn9eurtAHYf7mNvCKrKx39m19jZ96mkuJ3IeZaP
-         3UG5Y/s9aSmlOZJUvMAfKZiXSnvcZ0V6ztoQtl5CpXzdb7tTnTuo63wmFSjJzGAQdZU+
-         /OAr0v4usFssGaSey8fLNuoJ9H0dU4NnpDVnRUW2CnijFCdf0fPaK3hyLgfY5xiHe+bS
-         clGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=CkcpFssOrqZpD0oEPmpg/T7CnyXOu89ENX7IyWQSsC0=;
-        b=W7YBnKIcJrKuCE3BbS96+7Y0HK2VTFyZM66C0wuo7leFhSsO/GBPcE5QGBxpLw9gq9
-         H5WJpv1C531+oPCUHTP1Ob/hqUjWBFenxuZOC62KWv8u8nmTynJHKHu8Rym6rekDNVge
-         Aou2SrlOYDZrVfNbiiq5xQ6bj1MKBvQOZVQBS01UwzZDvFxQYN/GleKDzujUbJ3kUTPZ
-         DNIpYU8E6AsFbcSIyclQhDmK/kyR5sKCy+RqehXssN7doWX5E8lH5enTq5OTW9+3yezf
-         YAgXNBRbSyjSF0ex/cjRBLhXUE2elOEPAsZyfpTNKf9Evjl7+sOKBEPlEBnFAANsD9Cq
-         2Kpg==
-X-Gm-Message-State: AOAM532kt5u/oZ3tQ2pgGEdB5eR7wBVavHDuYzS8dmGvfJx43YLXuKPZ
-	aV8PJEo0rBy/JN1BOSz8y+72hfTO/zmFYQ==
-X-Google-Smtp-Source: ABdhPJzkGOtktVFRAuedOhFkMXZ2Hx8kGX+al9vlM+Xb0VtxH5W5S/6wVQ0uGH1Oe1uhq/5UIZ2lQw==
-X-Received: by 2002:a2e:85c2:: with SMTP id h2mr11773332ljj.78.1613466440236;
-        Tue, 16 Feb 2021 01:07:20 -0800 (PST)
-Return-Path: <samuli.piippo@gmail.com>
-Received: from munkone.intra.qt.io (62-183-187-94.co.dnainternet.fi. [62.183.187.94])
-        by smtp.gmail.com with ESMTPSA id d8sm2603202lfg.96.2021.02.16.01.07.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Feb 2021 01:07:19 -0800 (PST)
-From: "Samuli Piippo" <samuli.piippo@gmail.com>
-X-Google-Original-From: Samuli Piippo <samuli.piippo@qt.io>
-To: yocto@lists.yoctoproject.org
-Cc: jpewhacker@gmail.com
-Subject: [meta-mingw] [PATCH] binutils: Package static libdep linker plugins
-Date: Tue, 16 Feb 2021 11:07:04 +0200
-Message-Id: <20210216090704.2650-1-samuli.piippo@qt.io>
-X-Mailer: git-send-email 2.17.1
+ dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.24, mailfrom: naveen.kumar.saini@intel.com)
+IronPort-SDR: ECQrKW29B5naIvtnNbWqjzf8vhX6J/VSmlgAa3H09jtHoY7FdAOAnSTxjNIs5bLf2FoPM9SaaQ
+ Q2iPzG8WYxcw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9896"; a="182985444"
+X-IronPort-AV: E=Sophos;i="5.81,183,1610438400"; 
+   d="scan'208";a="182985444"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2021 02:14:43 -0800
+IronPort-SDR: HrQ3hpCRPv7guM/gY1xsp/Ot6pkpauZXOh3Wc/ZuARpF73jqG0tXcX4B9EIUlyFBs8PDRiSlqd
+ j89Z0IcD+EXA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,183,1610438400"; 
+   d="scan'208";a="377510568"
+Received: from kmsmsx601.gar.corp.intel.com ([172.21.219.141])
+  by orsmga002.jf.intel.com with ESMTP; 16 Feb 2021 02:14:42 -0800
+Received: from kmsmsx603.gar.corp.intel.com (172.21.219.143) by
+ kmsmsx601.gar.corp.intel.com (172.21.219.141) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Tue, 16 Feb 2021 18:14:41 +0800
+Received: from kmsmsx603.gar.corp.intel.com ([172.21.219.143]) by
+ kmsmsx603.gar.corp.intel.com ([172.21.219.143]) with mapi id 15.01.2106.002;
+ Tue, 16 Feb 2021 18:14:41 +0800
+From: "Naveen Saini" <naveen.kumar.saini@intel.com>
+To: Andrei Gherzan <andrei@gherzan.com>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+CC: Andrei Gherzan <andrei.gherzan@huawei.com>
+Subject: Re: [yocto] [meta-zephy][PATCH 13/14] zephyr-flash-pyocd.bbclass: Implement configurable probe IDs to program
+Thread-Topic: [yocto] [meta-zephy][PATCH 13/14] zephyr-flash-pyocd.bbclass:
+ Implement configurable probe IDs to program
+Thread-Index: AQHXA40bWT+kT96wjkSOKnvUA2tMj6pajy7w
+Date: Tue, 16 Feb 2021 10:14:41 +0000
+Message-ID: <821237702e094666bca3ed61b1f6d455@intel.com>
+References: <20210215112003.2025053-1-andrei@gherzan.com>
+ <20210215112003.2025053-13-andrei@gherzan.com>
+In-Reply-To: <20210215112003.2025053-13-andrei@gherzan.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+x-originating-ip: [10.108.32.68]
+MIME-Version: 1.0
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-this is new plugin added in binutils 2.36
+Thanks Andrei for adding support for v2.5-rc4 and re-structuring.
 
-Signed-off-by: Samuli Piippo <samuli.piippo@qt.io>
----
- recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend | 2 ++
- 1 file changed, 2 insertions(+)
+Could you fix a whitespace in this patch ? Other patches looks good to me.
 
-diff --git a/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend b/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend
-index 5845fe0..0d376bb 100644
---- a/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend
-+++ b/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend
-@@ -3,3 +3,5 @@ LDFLAGS_append_sdkmingw32 = " -Wl,-static"
- 
- DEPENDS_remove_sdkmingw32 = "nativesdk-gettext"
- DEPENDS_remove_sdkmingw32 = "nativesdk-flex"
-+
-+FILES_${PN}-staticdev_append_sdkmingw32 = " ${libdir}/bfd-plugins/lib*.a"
--- 
-2.17.1
+Later I will fix subject-prefix meta-zephyr typo in README.=20
+
+Regards,
+Naveen
+
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
+> Behalf Of Andrei Gherzan
+> Sent: Monday, February 15, 2021 7:20 PM
+> To: yocto@lists.yoctoproject.org
+> Cc: Andrei Gherzan <andrei.gherzan@huawei.com>
+> Subject: [yocto] [meta-zephy][PATCH 13/14] zephyr-flash-pyocd.bbclass:
+> Implement configurable probe IDs to program
+>=20
+> From: Andrei Gherzan <andrei.gherzan@huawei.com>
+>=20
+> Implement logic to configure what probes to program based on the
+> PYOCD_FLASH_IDS variable:
+> 1. by default program all attached probes 2. change default behaviour by
+> listing the probe IDs to flash
+>=20
+> CONNECT_TIMEOUT_SECONDS was also renamed to maintain consistency
+> with the PYOCD_FLASH_IDS variable.
+>=20
+> One can query the IDs using `pyocd list`.
+>=20
+> The value of PYOCD_FLASH_IDS can also be injected into the datastore usin=
+g
+> BB_ENV_EXTRAWHITE.
+>=20
+> Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
+> ---
+>  README.txt                         |  9 +++++
+>  classes/zephyr-flash-pyocd.bbclass | 57 ++++++++++++++++++++----------
+>  2 files changed, 48 insertions(+), 18 deletions(-)
+>=20
+> diff --git a/README.txt b/README.txt
+> index bda872b..ce5338b 100644
+> --- a/README.txt
+> +++ b/README.txt
+> @@ -67,6 +67,15 @@ dfu-util and/or pyocd need to be installed in your
+> system. If you observe  permission errors or the flashing process seem to
+> hang, follow those instructions:
+>  https://github.com/pyocd/pyOCD/tree/master/udev
+>=20
+> +By default, pyocd tries to flash all the attached probes. This
+> +behaviour can be customised by defining the PYOCD_FLASH_IDS variable as
+> +a space-separated list of IDs. Once that is set, the tool will only try
+> +to program these IDs. You can query for the IDs by running `pyocd list`
+> +on your host while having the probes attached. Besides setting this
+> +variable through the build's configuration or metadata, you can also inj=
+ect
+> its value from command line with something like:
+> +
+> +    $ PYOCD_FLASH_IDS=3D'<ID1> <ID2> <ID3>'
+> + BB_ENV_EXTRAWHITE=3D"$BB_ENV_EXTRAWHITE PYOCD_FLASH_IDS"
+> bitbake
+> + <TARGET> -c flash_usb
+> +
+>  Building and Running Zephyr Tests
+>  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>  Presently only toolchains for ARM, x86, IAMCU and Nios2 are supported.
+> diff --git a/classes/zephyr-flash-pyocd.bbclass b/classes/zephyr-flash-
+> pyocd.bbclass
+> index 4d24e6a..7e1cec5 100644
+> --- a/classes/zephyr-flash-pyocd.bbclass
+> +++ b/classes/zephyr-flash-pyocd.bbclass
+> @@ -1,4 +1,5 @@
+> -CONNECT_TIMEOUT_SECONDS ?=3D "30"
+> +PYOCD_CONNECT_TIMEOUT_SECONDS ?=3D "30"
+> +PYOCD_FLASH_IDS ?=3D "all"
+>=20
+>  python do_flash_usb() {
+>      try:
+> @@ -7,26 +8,46 @@ python do_flash_usb() {
+>      except ImportError:
+>          bb.fatal("Flashing with pyocd needs the relevant python package.=
+ Make
+> sure your host provides it or consult your distribution packages for how =
+to
+> install this prerequisite.")
+>=20
+> -    timeout =3D int(d.getVar('CONNECT_TIMEOUT_SECONDS'))
+> +    try:
+> +        timeout =3D int(d.getVar('PYOCD_CONNECT_TIMEOUT_SECONDS'))
+> +    except ValueError:
+> +        bb.fatal(f"PYOCD_CONNECT_TIMEOUT_SECONDS was set to an invalid
+> + value: {d.getVar('PYOCD_CONNECT_TIMEOUT_SECONDS')}.")
+>      image =3D f"{d.getVar('DEPLOY_DIR_IMAGE')}/{d.getVar('PN')}.elf"
+> -    bb.plain(f"Attempting to flash {image} to board {d.getVar('BOARD')}"=
+)
+> +    ids =3D d.getVar('PYOCD_FLASH_IDS')
+> +
+> +    # Compute the list of IDs to program
+> +    if ids =3D=3D 'all':
+> +        ids =3D []
+> +        for probe in
+> ConnectHelper.get_all_connected_probes(blocking=3DFalse):
+> +            ids.append(probe.unique_id)
+> +        if not ids:
+> +            bb.fatal("No probe detected. Make sure your target is connec=
+ted.")
+> +    else:
+> +        ids =3D ids.split()
+> +        if not ids:
+> +            bb.fatal("No probe requested for programming. Make sure
+> + PYOCD_FLASH_IDS is set.")
+>=20
+> -    # Try to connect to a probe with a timeout
+> -    now =3D 0
+> -    step =3D 3
+> -    while True:
+> -        session =3D ConnectHelper.session_with_chosen_probe(blocking=3DF=
+alse,
+> return_first=3DTrue)
+> -        if session:
+> -            break
+> -        if now >=3D timeout:
+> -            bb.fatal("Timeout while trying to connect to a probe. Make s=
+ure the
+> target device is connected and the udev is configured accordingly. See
+> <https://github.com/mbedmicro/pyOCD/tree/master/udev> for help.")
+> -        bb.warn("Can't connect to the probe. Retrying in %d seconds..." =
+% step)
+> -        time.sleep(step)
+> -        now +=3D step
+> +    # Program each ID
+> +    for id in ids:
+> +        bb.plain(f"Attempting to flash {os.path.basename(image)} to
+> + board {d.getVar('BOARD')} [{id}]")
+>=20
+> -    with session:
+> -        FileProgrammer(session).program(image)
+> -        session.board.target.reset()
+> +        # Try to connect to a probe with a timeout
+> +        now =3D 0
+> +        step =3D 3
+> +        while True:
+> +            session =3D
+> ConnectHelper.session_with_chosen_probe(blocking=3DFalse,
+> return_first=3DTrue, unique_id=3Did)
+> +            if session:
+> +                break
+> +            if now >=3D timeout:
+> +                bb.fatal(f"Timeout while trying to connect to probe ID: =
+{id}. Make
+> sure the target device is connected and the udev is configured accordingl=
+y.
+> See <https://github.com/mbedmicro/pyOCD/tree/master/udev> for help.")
+> +            bb.warn(f"Can't connect to the probe ID: {id}. Retrying in {=
+step}
+> seconds...")
+> +            time.sleep(step)
+> +            now +=3D step
+> +
+> +        # Program the sepected probe
+> +        with session:
+> +            FileProgrammer(session).program(image)
+> +            session.board.target.reset()
+>  }
+>=20
+>  addtask do_flash_usb after do_deploy
+> --
+> 2.30.1
 
