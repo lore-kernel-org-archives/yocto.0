@@ -1,60 +1,59 @@
 Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
- by mx.groups.io with SMTP id smtpd.web12.9533.1613489648503496748
+ by mx.groups.io with SMTP id smtpd.web09.9523.1613489650349578185
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Feb 2021 07:34:08 -0800
+ Tue, 16 Feb 2021 07:34:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gherzan.com header.s=fm1 header.b=Ouztl0im;
+ dkim=pass header.i=@gherzan.com header.s=fm1 header.b=QZOZqSeY;
  spf=pass (domain: gherzan.com, ip: 64.147.123.20, mailfrom: andrei@gherzan.com)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.west.internal (Postfix) with ESMTP id 02A36B0C;
-	Tue, 16 Feb 2021 10:34:07 -0500 (EST)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailout.west.internal (Postfix) with ESMTP id D1F1DB4A;
+	Tue, 16 Feb 2021 10:34:09 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Tue, 16 Feb 2021 10:34:08 -0500
+  by compute1.internal (MEProxy); Tue, 16 Feb 2021 10:34:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
 	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding; s=fm1; bh=nQINRAdPMQWEJ
-	CYKD1TmI3XhD6+5JV7E8DcT8dwybF0=; b=Ouztl0im9QDJA6lZrYe0efzQWQpoJ
-	kRGcYsk9jtAlnWz59UBNztU8AbXntveSD3NV4EIQr+XnJFuswzHrkBQF1A5XFM/l
-	kjhROEEttY5hfDWxZ2MxaZ50ppFyhiF1l7wqZC8L4ebGeNoUHXSKbSzV4S/Ta/AD
-	swHb4SjumKnUx2TwwkVJDh6UuMbXotJWCiF00mqKt+XYNuRstfkq9Yvm7rJejm0g
-	83hJe4XR5+yb+N6S/KJNc9aQzAWh54Cv53cO4iWVX1ZUkditNTc5JkRHHd4/gfgV
-	JfpnYcxGYCV2rEmywbr/gavkYbGtXRtodwzgqOTEcoIYgTxFknASG+UYQ==
+	:mime-version:content-transfer-encoding; s=fm1; bh=WYMz3amIf12LM
+	lGOx5XqR92+8MYq0V0KBOyACGG+NS4=; b=QZOZqSeYz0VQxtc9i5eCSbsrobmu8
+	6jJ1AdOvVMQBHIJp4LMAPQBdQzhIWCBzKSNOrp+o3/WwxIRrRnek34SGspT2QsPz
+	NuaTgGPuLscqZwaGpfJngXaswwK6OIslraEqbFwwET6DIf39Aci3xSIKrYFeE48k
+	7oNYCossW6UtTSYTvuhb0gYwVwxhek+EOyO8qF/bzCnx+P6cKULHkBw/Ke8rt6c9
+	xTIfQ4iOJ0F7FHNYeyzs+jKiEm4kdFqNgb3B32hgyuEe+l9YZWQfR0vTc8rO+1nu
+	NFKFyEwnDsA8jEpXvSmTVE/I7gpnltXezzc7KYFEYQ3qURlRdVNQiYk/g==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:content-transfer-encoding:date:from
 	:in-reply-to:message-id:mime-version:references:subject:to
 	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; bh=nQINRAdPMQWEJCYKD1TmI3XhD6+5JV7E8DcT8dwybF0=; b=kj0tOci1
-	XqFSyrjC8TcmIJNqQhMzqZtoxQ92hlmNagUoYJNYvg+PaNun0DinXqxwucEqSvfF
-	m62xNsRlUXghEqlnJiNUhsNjjmNV2F92oND6tHlT96v29k+xtX68Mez0kCFh3115
-	1QLLnF3O2dwX1E4WB+Svb/vawEh5Z73OT83Ow3MUs0Hy06FuIqBmC1btaSN4wOpn
-	+DrR3PI5XHXYNftxmqPY33hf1voiCX/b2wWHX9zjHcZRh4JhthdlSBVTlteHz2Ui
-	NJtmcgP06ypvGwr3nfpKVMdqqiCcHGbxBnQ6d/GpBRxlfz9HJYhhHxg5fipwL7/Y
-	NVs6ql6YEanCBw==
-X-ME-Sender: <xms:7-UrYIrgxz2vd4dcQxrWsFkMR02vR8roUG7M6rWIK6YH_VzFDKhcZQ>
-    <xme:7-UrYOqyBNVmqk7MOMHNj7O5MDEfB87gbtxJ7Ss7lG1UBLmHdJRURLKjtV40k4DZw
-    dBcX3wY-jCyzFSI5uE>
+	fm2; bh=WYMz3amIf12LMlGOx5XqR92+8MYq0V0KBOyACGG+NS4=; b=to2exC29
+	6AoGjXpRiyqlcQ/WsL6knHEbtmiR0PbOkwNBlKo263Ki1vraqf8FTIqBNYqYlool
+	z+/TPo83KmjIxiCQhJJLcWimau8U/uETcjjYFnjAUcyfoeeBy83XZ8BtXu7M3OFl
+	iS/ae40/78s2O6Irh6lUd3qBgSIuaUBbJx8GgSDpRKsLCcj9EstRdom5PyhU6jv8
+	ats62j2KLv0aKkqfA214jm5ucSUT/5FfLHDki0aAaFFnjgRjvRvnG4+RqFVoOvyk
+	M607rCShZU3+wUUZDLwmIfQEg5baT4ApHwrpJY9ThVbKIsbSKtQrL/NAC+AlMR0I
+	rFFSdJPWQIKimA==
+X-ME-Sender: <xms:8eUrYLGc2TOctuzai8TABfodhvLZ5Ru6ZNJx3eNiYFOTyFbRzjzI7w>
+    <xme:8eUrYKUovQOZoxSfvceGG0kJmJjLuod_2ew2WEv6wNiXf5yegRMJEu1a4BffxvkBV
+    jTouSnjUBEzJtmHMRk>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrjedtgdejkecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
     ertddtnecuhfhrohhmpeetnhgurhgvihcuifhhvghriigrnhcuoegrnhgurhgvihesghhh
-    vghriigrnhdrtghomheqnecuggftrfgrthhtvghrnhepfeevteefieegtddutdefhfeghe
-    duledthfehveelteehudfhheetudefvedujefgnecuffhomhgrihhnpedtqdhrtgefrdhi
-    nhgtnecukfhppeekiedrudeftddrudegiedruddtvdenucevlhhushhtvghrufhiiigvpe
-    dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvihesghhhvghriigrnhdrtgho
-    mh
-X-ME-Proxy: <xmx:7-UrYNPB1r6NRwdfsmDD5CqTbImr2gac2yKXH45U1ufnWSyiVitPtA>
-    <xmx:7-UrYP6E-yA5Rq3lZmqyKL7DrhydO0f6lIWvVpqxEfmeqJD56Gny4w>
-    <xmx:7-UrYH6Y_x7TBAdLqjLQgyAd_sQg5729mO4eoKaIzc793w2HVzXUvw>
-    <xmx:7-UrYAWZUAKOM3c9ftZxlR0730tD2P4492ZxlzZYz-HOAwTQ21mhug>
+    vghriigrnhdrtghomheqnecuggftrfgrthhtvghrnheptedtvdfffeekteevkeetieevge
+    egveeiiedujeefieetvdekledvkeehjeelffefnecukfhppeekiedrudeftddrudegiedr
+    uddtvdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grnhgurhgvihesghhhvghriigrnhdrtghomh
+X-ME-Proxy: <xmx:8eUrYGgNoICBJ5dtzJx3c9ZHPBSmmNUyddTJLjLf1gvf2SDiKLeuBw>
+    <xmx:8eUrYLQaNr13Vd2EKoLN_YgHtEqz6-J3_GWBO_OCAJTc_HuxkVifAA>
+    <xmx:8eUrYJEDoqPs2kauya3Pc3zjl3xtYuzLlS3AY0o8MXnQ67VIxrTcGg>
+    <xmx:8eUrYEavW6K3rhWHn3WDNvWqmaQ4JucwGDcSVn1hMr6laGzmC27pFA>
 Received: from qwirkle.internal (host86-130-146-102.range86-130.btcentralplus.com [86.130.146.102])
-	by mail.messagingengine.com (Postfix) with ESMTPA id 4E71E108005F;
-	Tue, 16 Feb 2021 10:34:05 -0500 (EST)
+	by mail.messagingengine.com (Postfix) with ESMTPA id EFAA01080066;
+	Tue, 16 Feb 2021 10:34:07 -0500 (EST)
 From: "Andrei Gherzan" <andrei@gherzan.com>
 To: yocto@lists.yoctoproject.org
 Cc: Andrei Gherzan <andrei.gherzan@huawei.com>
-Subject: [meta-zephyr][PATCH V2 05/15] zephyr-kernel-src-2.5.0-rc3.inc: Add support for zephyr kernel version 2.5.0-rc3
-Date: Tue, 16 Feb 2021 15:33:00 +0000
-Message-Id: <20210216153310.79138-5-andrei@gherzan.com>
+Subject: [meta-zephyr][PATCH V2 06/15] zephyr-kernel-common.inc: Fix configuration CPPFLAGS warning
+Date: Tue, 16 Feb 2021 15:33:01 +0000
+Message-Id: <20210216153310.79138-6-andrei@gherzan.com>
 X-Mailer: git-send-email 2.30.1
 In-Reply-To: <20210216153310.79138-1-andrei@gherzan.com>
 References: <20210216153310.79138-1-andrei@gherzan.com>
@@ -63,31 +62,46 @@ Content-Transfer-Encoding: 8bit
 
 From: Andrei Gherzan <andrei.gherzan@huawei.com>
 
-This version can be selected defining
-PREFERRED_VERSION_zephyr-kernel ??= "2.5.0-rc3"
+Configure warns when CPPFLAGS is provided as environment variable and
+expects its value to be passed to cmake. This patch does that to
+surpress the warning.
 
 Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
 ---
- .../zephyr-kernel/zephyr-kernel-src-2.5.0-rc3.inc      | 10 ++++++++++
- 1 file changed, 10 insertions(+)
- create mode 100644 recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0-rc3.inc
+ recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0-rc3.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0-rc3.inc
-new file mode 100644
-index 0000000..4ee9883
---- /dev/null
-+++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0-rc3.inc
-@@ -0,0 +1,10 @@
-+SRCREV_FORMAT = "default_cmsis"
-+SRCREV_default = "v2.5.0-rc3"
-+SRCREV_cmsis = "c3bd2094f92d574377f7af2aec147ae181aa5f8e"
-+SRCREV_nordic = "f3434da6446380fcdd426dbe2866af21d0d549b6"
-+SRCREV_stm32 = "cc8731dba4fd9c57d7fe8ea6149828b89c2bd635"
-+SRCREV_open-amp = "de1b85a13032a2de1d8b6695ae5f800b613e739d"
-+SRCREV_libmetal = "9d4ee2c3cfd5f49861939447990f3b7d7bf9bf94"
-+SRCREV_tinycrypt = "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+index 5313030..abc55ba 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+@@ -13,8 +13,7 @@ ZEPHYR_SYSROOT="${STAGING_DIR_TARGET}"
+ 
+ ZEPHYR_MAKE_OUTPUT = "zephyr.elf"
+ 
+-
+-EXTRA_OECMAKE = " -DZEPHYR_BASE=${S} -DZEPHYR_GCC_VARIANT=yocto -DBOARD=${BOARD} -DARCH=${ARCH} -DCROSS_COMPILE=${CROSS_COMPILE} -DZEPHYR_SYSROOT=${ZEPHYR_SYSROOT} -DZEPHYR_TOOLCHAIN_VARIANT=yocto"
++EXTRA_OECMAKE = " -DZEPHYR_BASE=${S} -DZEPHYR_GCC_VARIANT=yocto -DBOARD=${BOARD} -DARCH=${ARCH} -DCROSS_COMPILE=${CROSS_COMPILE} -DZEPHYR_SYSROOT=${ZEPHYR_SYSROOT} -DZEPHYR_TOOLCHAIN_VARIANT=yocto -DEXTRA_CPPFLAGS=${CPPFLAGS}"
+ 
+ ZEPHYR_MODULES = ""
+ ZEPHYR_MODULES_append_arm = "\;${S}/modules/cmsis"
+@@ -26,7 +25,6 @@ EXTRA_OECMAKE_append = " -DZEPHYR_MODULES=${ZEPHYR_MODULES}"
+ 
+ export ZEPHYR_BASE="${S}"
+ 
+-
+ DEPENDS += "gperf-native python3-pyelftools-native python3-pyyaml-native python3-pykwalify-native"
+ CROSS_COMPILE = "${STAGING_BINDIR_TOOLCHAIN}/${TARGET_PREFIX}"
+ 
+@@ -51,3 +49,8 @@ OE_TERMINAL_EXPORTS += "ZEPHYR_SYSROOT"
+ OE_TERMINAL_EXPORTS += "ZEPHYR_GCC_VARIANT"
+ 
+ IMAGE_FSTYPES = "elf bin"
 +
-+PV = "2.5.0-rc3+git${SRCPV}"
++do_configure_prepend() {
++    # Zephyr expects CPPFLAGS as cmake argument as and ignores env variables.
++    unset CPPFLAGS
++}
 -- 
 2.30.1
 
