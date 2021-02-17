@@ -1,53 +1,53 @@
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
- by mx.groups.io with SMTP id smtpd.web10.7840.1613570978659090079
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+ by mx.groups.io with SMTP id smtpd.web10.7842.1613570981377323420
  for <yocto@lists.yoctoproject.org>;
- Wed, 17 Feb 2021 06:09:39 -0800
+ Wed, 17 Feb 2021 06:09:41 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=mqv3y9hJ;
- spf=pass (domain: gmail.com, ip: 209.85.208.182, mailfrom: liu.ming50@gmail.com)
-Received: by mail-lj1-f182.google.com with SMTP id t4so2438759ljh.11
-        for <yocto@lists.yoctoproject.org>; Wed, 17 Feb 2021 06:09:38 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Li49BbDA;
+ spf=pass (domain: gmail.com, ip: 209.85.167.44, mailfrom: liu.ming50@gmail.com)
+Received: by mail-lf1-f44.google.com with SMTP id v30so21622197lfq.6
+        for <yocto@lists.yoctoproject.org>; Wed, 17 Feb 2021 06:09:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=4zSfV1d2ZEkRVrkrlVeLBkt53XDdfmYlwhYxsY6N1Sc=;
-        b=mqv3y9hJYse0Dr3P+C/dR37qhMu+G73uOiIzy01ZbgjyQ1L7TAfNHUfn+21SRpFo73
-         aDIfKT6gbKdUQeHYcsDar4hT6fhfkn8J1A24otWAQMmUn1Oui39gCB55KYntJKOO/VAK
-         1J42k54qfq7qU51G6C27ilEuKBFQN9/NmMQuGxBPQvpVETVbometY7GSYDtCljnhytxQ
-         rQZjNJUDXJBLwJ1hwtErvTG6rnmqYXDqYpRwQ/SIl7O89d3ZETgzWbHN0XVnrbqed9RX
-         4YIBOv9FrxY2ffievPpglw3Tddnwo3ATJwc2xRYwiJS18L0AAp8uTjdjiOWBwIjDYs2V
-         qmiQ==
+        bh=KEkevCCu9+WsrsbHq0Nyoi8BXUpfM4EbvjUOt8kkyzM=;
+        b=Li49BbDA2sLARqUY/RHiEWstNe3NEdr8zIVNEiPjcTVtRqXRmGRug2GHfg1CNZBdmW
+         EYZtWclnFpeVsqmEawOG5gDGHIQ0lB4H2/FCHviaLrOZLPSES6P4ieHFOUCPMRtGy6lE
+         ZjtUF4M6WlpF9GOMFC47Hr/mCbKw4r8kX1gasm2QQAjHQBzbKor6/So7zONOYy+Zus+3
+         k1sQCj/sJngOl1LWOGW9ey8vjkozN9XKbSA/ywcAvcWdgy7PzOejmGtlhxUwPaWQUOHx
+         mVzDKWR1ep6wIT6jMnmfcl41MiP8o3GvS3oxVJbe0FlmQGUy6s4iSX9l01kyaiBV7q/D
+         4aNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=4zSfV1d2ZEkRVrkrlVeLBkt53XDdfmYlwhYxsY6N1Sc=;
-        b=q7JVsY3I12S/kUXEWIx2b+GIi5g2EffBzG6rsjQrDCfdYcOF/8kpgLvDiBt3hGa6iw
-         05zNOn7YARJJnAKjtgQg4/hda50x7PNGvYVLQ+WhWalZGL+gJS20/T5xRdjryl7098hd
-         9mVBIQ7M3wQNQIypgqYjbAi/XEIKKkfervaQjCvImAIsQyUI/7hMZRCSgVCBWLtdXQMK
-         bWSW5hf2CAmzvULpurCsJyAdvjXntGMSGUZ195h9Shp6dU/HiJrn09uTU3TTFRnaTPnL
-         DV7VLnYBkFPbJv/0sJgLWGtfuvhaWgdGy40GT24vGS5Mn9n4m4tSUbgMXZkuJU+GrBJc
-         F3xw==
-X-Gm-Message-State: AOAM531+EdfxvhZoQuVHTEzxDLYZNutPV81CbIRxOSRdxQD7IgXPWY1C
-	WTTYdxFSZJAyKwkLrsQIkJM6wC1ZVOs6vg==
-X-Google-Smtp-Source: ABdhPJz6a+o7Nkz9+IkEw8G7juLqg2bW9OM/6PLkctz5Y6ls0GHphPEC8146XrhXAsUMJPuno8Q/ag==
-X-Received: by 2002:a2e:9c41:: with SMTP id t1mr6211465ljj.345.1613570976764;
-        Wed, 17 Feb 2021 06:09:36 -0800 (PST)
+        bh=KEkevCCu9+WsrsbHq0Nyoi8BXUpfM4EbvjUOt8kkyzM=;
+        b=Vzr2MFLDpE03tU8KMty1FHVQ8/UwqlQsRLCptL08htFMAGBRsogU3U4BnT1ncUug49
+         r2dVYBIC0/TrDcS5nlxE2KpwzJuiT7KJvaekr5tnIYNhpHc0RUSwPKLejjOR1fsPPi0a
+         TYz7/3uOUq5youWPaR2V1thmBFkixTf3J4vCLYhFIUFzz7WZnVRDsIamBaNbhqM0Yt6J
+         AeVvZIZz0n5hNvhaPvRLnCLI3+PTAyGVLNlfYo7FRgg+ceCkO9TJl0ixyttC+O7YV0Sk
+         mikg5qxJnSIjwh372zA2AbrNXCalId8k7u8jQITFvtQAjberfCM4m/SXEmrsJJwVYU0a
+         vV/w==
+X-Gm-Message-State: AOAM531nKzmy4urmiMvcuNVzTI+LkAEoghqlspyzLYzmGYd3JiNiP7Rd
+	HNCLTFZBOyrnsk56qcI5pkbmhbaeWJihfg==
+X-Google-Smtp-Source: ABdhPJxRSzwyVdAJ3/M9Q3CJEDuHlJyps3AAgrXlpaDPyDrAvfVUs0T13udZ4IV+ikDgOhGJ7vJW0w==
+X-Received: by 2002:a19:5218:: with SMTP id m24mr4963493lfb.145.1613570979316;
+        Wed, 17 Feb 2021 06:09:39 -0800 (PST)
 Return-Path: <liu.ming50@gmail.com>
 Received: from localhost.localdomain ([90.129.215.157])
-        by smtp.gmail.com with ESMTPSA id q26sm253363lfc.254.2021.02.17.06.09.35
+        by smtp.gmail.com with ESMTPSA id q26sm253363lfc.254.2021.02.17.06.09.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Feb 2021 06:09:36 -0800 (PST)
+        Wed, 17 Feb 2021 06:09:39 -0800 (PST)
 From: "Ming Liu" <liu.ming50@gmail.com>
 To: yocto@lists.yoctoproject.org,
 	openembedded-devel@lists.openembedded.org
 Cc: akuster808@gmail.com,
 	sergio.prado@toradex.com,
 	Ming Liu <liu.ming50@gmail.com>
-Subject: [meta-security] [PATCH 1/5] ima-evm-utils: set native REQUIRED_DISTRO_FEATURES to empty
-Date: Wed, 17 Feb 2021 15:09:25 +0100
-Message-Id: <20210217140929.987752-2-liu.ming50@gmail.com>
+Subject: [meta-security] [PATCH 2/5] initramfs-framework-ima: fix a wrong path
+Date: Wed, 17 Feb 2021 15:09:26 +0100
+Message-Id: <20210217140929.987752-3-liu.ming50@gmail.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20210217140929.987752-1-liu.ming50@gmail.com>
 References: <20210217140929.987752-1-liu.ming50@gmail.com>
@@ -56,26 +56,26 @@ Content-Transfer-Encoding: 8bit
 
 From: Ming Liu <liu.ming50@gmail.com>
 
-'ima' does not have to be in native DISTRO_FEATURES, unset it to avoid
-sanity check, this fixes a following error:
+/etc/ima-policy > /etc/ima/ima-policy.
 
 Signed-off-by: Ming Liu <liu.ming50@gmail.com>
 ---
- .../recipes-security/ima-evm-utils/ima-evm-utils_git.bb          | 1 +
- 1 file changed, 1 insertion(+)
+ .../recipes-core/initrdscripts/initramfs-framework-ima/ima      | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_git.bb b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_git.bb
-index 7f649c2..bd85583 100644
---- a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_git.bb
-+++ b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_git.bb
-@@ -26,6 +26,7 @@ S = "${WORKDIR}/git"
- inherit pkgconfig autotools features_check
- 
- REQUIRED_DISTRO_FEATURES = "ima"
-+REQUIRED_DISTRO_FEATURES_class-native = ""
- 
- EXTRA_OECONF_append_class-target = " --with-kernel-headers=${STAGING_KERNEL_BUILDDIR}"
- 
+diff --git a/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/ima b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/ima
+index 8616f99..16ed53f 100644
+--- a/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/ima
++++ b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/ima
+@@ -46,7 +46,7 @@ ima_run() {
+     # ("[Linux-ima-user] IMA policy loading via cat") and we get better error reporting when
+     # checking the write of each line. To minimize the risk of policy loading going wrong we
+     # also remove comments and blank lines ourselves.
+-    if ! (set -e; while read i; do if echo "$i" | grep -q -e '^#' -e '^ *$'; then debug "Skipping IMA policy: $i"; else debug "Writing IMA policy: $i"; if echo $i; then sleep ${bootparam_ima_delay:-0}; else fatal "Invalid line in IMA policy: $i"; exit 1; fi; fi; done) </etc/ima-policy >/sys/kernel/security/ima/policy; then
++    if ! (set -e; while read i; do if echo "$i" | grep -q -e '^#' -e '^ *$'; then debug "Skipping IMA policy: $i"; else debug "Writing IMA policy: $i"; if echo $i; then sleep ${bootparam_ima_delay:-0}; else fatal "Invalid line in IMA policy: $i"; exit 1; fi; fi; done) </etc/ima/ima-policy >/sys/kernel/security/ima/policy; then
+         fatal "Could not load IMA policy."
+     fi
+ }
 -- 
 2.29.0
 
