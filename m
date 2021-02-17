@@ -1,70 +1,75 @@
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
- by mx.groups.io with SMTP id smtpd.web10.6939.1613566533984262202
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+ by mx.groups.io with SMTP id smtpd.web08.7949.1613570975529666461
  for <yocto@lists.yoctoproject.org>;
- Wed, 17 Feb 2021 04:55:34 -0800
+ Wed, 17 Feb 2021 06:09:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=BhQELChJ;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.46, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f46.google.com with SMTP id l12so17336117wry.2
-        for <yocto@lists.yoctoproject.org>; Wed, 17 Feb 2021 04:55:33 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=vKOTwJFg;
+ spf=pass (domain: gmail.com, ip: 209.85.208.172, mailfrom: liu.ming50@gmail.com)
+Received: by mail-lj1-f172.google.com with SMTP id a17so16272782ljq.2
+        for <yocto@lists.yoctoproject.org>; Wed, 17 Feb 2021 06:09:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=JrAkYxP7MMAFXmsmk2NV7RzJPjad6iWQldC/jBX7DBw=;
-        b=BhQELChJlbTVttlFZ9onbd0W6aVlfazme+0RtuBGEN15gBuv3BlwSt50ztBNooxnJ7
-         fYlB4RVv+J1mM3NR1nMShKdSyWMNThZx0RtWxH/OZ3mcxmfC3uMFsLYKN/d1rrdQ6tAG
-         bXZYek07qOVvfbXGotMxAACjkQO1FxpcdaX+8=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6X+jQnKIatZqQX5nZXfAooUCpEvbG5EGKxqC9euhuxM=;
+        b=vKOTwJFgAcRCX1gntV5sYBo11tMC2BDyO3DMRqRJhpNDqaGBKgJpLS21O3lAtdTwij
+         is0TYJeJfjHxOJunJsbQjHaL3WmKUoqJE3f6sdyAL6E/Tj7wQsKAcEA5ZRqq7KmTEbfi
+         8fery7WHnpbcrK7KgI5xJdS8qCvOq7A+CRQBL0LCxw3jpjzwlgV/nUZBD3eWR0EQ7zoI
+         p33IMSSLt6/6Yv+y0Y2coi1A9FXGuEBxPo7KflEHbzSr2TmoS0xMb6PJlZIpJjlkgMoD
+         1SFmSS0fOD7d56Tsz2JZtM/OneflRGrd9E7Pgr6GCEqaWDsT7idopotqYTt8pD0BUbxM
+         GXUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=JrAkYxP7MMAFXmsmk2NV7RzJPjad6iWQldC/jBX7DBw=;
-        b=dH2tQEVjMBe5/yIzq+4b9SuAJ8LVSKBl0OqTvGvhp9K2YpAWuLfpQ5oINE2Nts2ouw
-         zctcHz4dP61MwkNcuoTocQWAbw40GjVVyzbkvM7mjHGA5S9tnaXefO6RD31djO4hVZ1B
-         LBXuJnA/kJTsF/rmPeZhFMf+oYR5NCYmvGuwtm8QTene9rM8dc2+AAzSFrw6EaOv3T7r
-         GChEtnnNTVmqpWLiUdcxRc7P331L6ie/ud/fz+R3GpnwZcUUVMDOWu4mN0NyhwzWDSY9
-         tSgo1jMl8l/JaRgeu/RT9TsAqS4dMQECL0pvBpxxU06ctTejTknhYpRGfZkvJuvH3uo9
-         qu3w==
-X-Gm-Message-State: AOAM530+Cjpsv2dD96NMMEtCTCXRwkMoIVZVcjDX2MnMqSCYIEMY67q2
-	pQWijFaO7bMFxKdPz7pepTvgXg==
-X-Google-Smtp-Source: ABdhPJzxEN1JRWfoIPjtpsF2ijyagtBhNVyC/agstelZlwPfx8vqRzFJtNbSF1IQP6hfv7wyOHT2Dw==
-X-Received: by 2002:a5d:4250:: with SMTP id s16mr29035015wrr.297.1613566528699;
-        Wed, 17 Feb 2021 04:55:28 -0800 (PST)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from ?IPv6:2001:8b0:aba:5f3c:19d:cb66:14ba:c267? ([2001:8b0:aba:5f3c:19d:cb66:14ba:c267])
-        by smtp.gmail.com with ESMTPSA id f7sm3755050wrm.92.2021.02.17.04.55.27
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6X+jQnKIatZqQX5nZXfAooUCpEvbG5EGKxqC9euhuxM=;
+        b=MXtmp1RbMGtNDXyeYUGQoV5qq4owOyDvgPDepWYQa17i0e61YG2mGQoe16TH4nkLdP
+         HYtWLg/j269emZJ8/IJeolSOpFghVcNjf7tuk+Dljug+OyMlYdy++nLr0NJ1illBsFRV
+         JB7YLqwdU5dZC5bZAtiz3/AZk4I1VI02W9/dqGiR/TRyn0U2lxYuulS/Oh9eEMPLjwCy
+         pKw4316h23XXnnOTtH/D2kl+s6Dd6iG8w5qpe/Z7zTC/bVjSUWjfzSbG+br1OMFHTolT
+         47pLTpW8kJKGplw31/FVkvLaTk/2zQcnvEJA2MRBFmlV5byu96he7ENAuS5I7phGQ807
+         AcZQ==
+X-Gm-Message-State: AOAM530kSO9lDM+fMj9KDRPy+j9NUQeVorLqRXMRU1/doO9ttSIvPikF
+	AevJ4VYP002PvRyluRgBJOb0eZowq8xL5A==
+X-Google-Smtp-Source: ABdhPJw1uNi2Tj0G3fip1KT2wtIMRDPNNLWnzOns8mZ9zDgUXqnV53z1WbZNBHpr5hueLhWxjpX7vQ==
+X-Received: by 2002:a2e:8803:: with SMTP id x3mr14481816ljh.173.1613570973299;
+        Wed, 17 Feb 2021 06:09:33 -0800 (PST)
+Return-Path: <liu.ming50@gmail.com>
+Received: from localhost.localdomain ([90.129.215.157])
+        by smtp.gmail.com with ESMTPSA id q26sm253363lfc.254.2021.02.17.06.09.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Feb 2021 04:55:28 -0800 (PST)
-Message-ID: <1228b15696d4afb425cee71a46f6657b55470f25.camel@linuxfoundation.org>
-Subject: Re: [yocto] Timing a recipe
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: rustyhowell@gmail.com, yocto@lists.yoctoproject.org
-Date: Wed, 17 Feb 2021 12:55:25 +0000
-In-Reply-To: <633.1613504614588092041@lists.yoctoproject.org>
-References: <d16e306d-528c-b748-6fb6-a7494b0ab6f8@optimcloud.com>
-	 <633.1613504614588092041@lists.yoctoproject.org>
-User-Agent: Evolution 3.38.1-1 
+        Wed, 17 Feb 2021 06:09:32 -0800 (PST)
+From: "Ming Liu" <liu.ming50@gmail.com>
+To: yocto@lists.yoctoproject.org,
+	openembedded-devel@lists.openembedded.org
+Cc: akuster808@gmail.com,
+	sergio.prado@toradex.com,
+	Ming Liu <liu.ming50@gmail.com>
+Subject: [meta-security] [PATCH 0/5] Some fixes for IMA/EVM
+Date: Wed, 17 Feb 2021 15:09:24 +0100
+Message-Id: <20210217140929.987752-1-liu.ming50@gmail.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
-On Tue, 2021-02-16 at 11:43 -0800, rustyhowell@gmail.com wrote:
-> "time bitbake recipe" is perfect for manual things. But I wanted to
-> also measure the recipe times when building the entire image.  I
-> ended up creating  a bbappend with new pre/post tasks for the main
-> tasks (fetch, unpack, configure, compile, install, package).   The
-> pre task drops a timestamp file and the post task reads the file,
-> calculates the elapsed time and logs it to a file.  It's a bit clunky
-> but it gives the information I want.  Thanks for the help.
+From: Ming Liu <liu.ming50@gmail.com>
 
-As others have said, please look at the buildstats class and the data
-it saves into TMPDIR/buildstats. It should do what you want and we have
-tools like pybootchart which can show it visually.
+Ming Liu (5):
+  ima-evm-utils: set native REQUIRED_DISTRO_FEATURES to empty
+  initramfs-framework-ima: fix a wrong path
+  meta: refactor IMA/EVM sign rootfs
+  initramfs-framework-ima: let ima_enabled return 0
+  ima-evm-rootfs.bbclass: avoid generating /etc/fstab for wic
 
-Cheers,
+ meta-integrity/README.md                      |  4 ++-
+ meta-integrity/classes/ima-evm-rootfs.bbclass | 33 +++++++++----------
+ .../initrdscripts/initramfs-framework-ima.bb  |  2 +-
+ .../initrdscripts/initramfs-framework-ima/ima |  3 +-
+ .../ima-evm-keys/ima-evm-keys_1.0.bb          | 16 +++++++++
+ .../ima-evm-utils/ima-evm-utils_git.bb        |  1 +
+ 6 files changed, 38 insertions(+), 21 deletions(-)
+ create mode 100644 meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
 
-Richard
-
-
+-- 
+2.29.0
 
