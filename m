@@ -1,167 +1,249 @@
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
- by mx.groups.io with SMTP id smtpd.web10.5653.1613648870967860222
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+ by mx.groups.io with SMTP id smtpd.web12.5772.1613649635434279038
  for <yocto@lists.yoctoproject.org>;
- Thu, 18 Feb 2021 03:47:51 -0800
+ Thu, 18 Feb 2021 04:00:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=goGPE3zA;
- spf=pass (domain: gmail.com, ip: 209.85.166.48, mailfrom: maaloulsafouane@gmail.com)
-Received: by mail-io1-f48.google.com with SMTP id s24so1659368iob.6
-        for <yocto@lists.yoctoproject.org>; Thu, 18 Feb 2021 03:47:50 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=rPqFUEiP;
+ spf=pass (domain: gmail.com, ip: 209.85.219.53, mailfrom: jonas.vautherin@gmail.com)
+Received: by mail-qv1-f53.google.com with SMTP id s10so125157qvl.9
+        for <yocto@lists.yoctoproject.org>; Thu, 18 Feb 2021 04:00:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=+C+ZAK9h/1tOSHuj9IBKT6k9haco/7lIDl+wO16gMHg=;
-        b=goGPE3zAIRBJ7hnLIfT1CTMnbbbtOH0Xz/CrdLpA0p6IBIjkI/zAQ42nCil2P7tbJT
-         b2KB1qSjLNLc/vTQmP3kiokykTPKiqe6+WNvOF+/J4koxq/6OU8zZZwnHCghkFpdr28B
-         +Rvvsc9YM0X5CqpN1SNKuUYIuGL6A5s+z9ebSiL/pMnKh1w4MLUxWWasTSCChVU1DbOe
-         M9BrnkMIbYneWiE9A/Vn29daB15lsrj3lsjyeXmw7RN1Kmr8tnYeGdNlmKmL7IZ763p0
-         3kNSVZkGJpHNsihmZiCK8Rj9USFTvoNFoL4smzqqzRP36iHMtl/Yz5V17vYGggbOxIk1
-         P8cQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bj5Q4HG6sHbsqmaHFLKYCisVZME0wF0qbSP6KsNxnUM=;
+        b=rPqFUEiPTpERmRK4666BqAye7tz4SOWb6gvZ4IfCt+YfkRjRoj5cSsutDDj6B49SUf
+         PTJHSJPJrRGuLZK0/f5+/IAOX8q3r3aZa6LTeXphRnsz1OxCU0cdJ8EjRCeejvvwy2lS
+         LE8ughWfDe3xB3IkfEjwJjjh4HspImrYzHD4tADj6RKbH/AcckRpiDbch5GOBfqOQHiW
+         bJZ6hXCRVqZZE0Y2M655xbEdJD5Y8IqApuYiH54BgbWOl7dak2+mEo/MeaMtn2e14vtC
+         2PAAKOlI90Mnyvd98Cm91qOpQlwj7B++/bSyH11MIRWRsQpDpYFRXoz0tSWl21rZGKli
+         FkBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=+C+ZAK9h/1tOSHuj9IBKT6k9haco/7lIDl+wO16gMHg=;
-        b=Sze13nqcrwFPeWqONAlqPsQDUzPEKhUiXiYrHaVzHheVArLXQduY6V95/mjg9iyN1o
-         vTLFMMnwFlWTFXH1egFGrUImOFgS1nwVizByj4M3IhwwsyVMxMtvTyJQSsx19JEo/IZU
-         UIkzdlP3MIxwNC00xrwJCWxYK3hwHQ2+e/rvml41AKpzCzfbB7PTUD5JRQJsTXJjJMYI
-         9jHbEo2tU7+X796bnWH1pIB2Te1TZEX4QJ0r5JCsg8BWZsVq2nxF8t8lW3COtf/utilN
-         ZEV0sEaHdmimlk+6CCW8kNSt619lPSJ/cdEnqeQ/fUby9B576inkagGGUIjvwwpP+NJF
-         3QNw==
-X-Gm-Message-State: AOAM531Fxz+NOI1MoH+wROMAaoJmOvtLrpcuBrXHkyumiwVGRzHUU4MS
-	fux9to7ZajeQv7nCYeoJbp+EhUReQ3+sn6IWdZU=
-X-Google-Smtp-Source: ABdhPJxeipPh0TJRk0ntlx9VH1OARcEwKU5O0aIUx+peBIXXZbrBW1+Z2GHg9wnqrWZniQ7eT+JajI3j3tZ1lRTId14=
-X-Received: by 2002:a02:74a:: with SMTP id f71mr4006540jaf.30.1613648870204;
- Thu, 18 Feb 2021 03:47:50 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=bj5Q4HG6sHbsqmaHFLKYCisVZME0wF0qbSP6KsNxnUM=;
+        b=Fvb8ydl7KC+zdToFt8dLLaDwBvVRp9RF8m19X+sDjeJeRaGuYo8/dCNHCHfzIFU68/
+         FO8bGMqJvNnAH/P0c54selE0S32I/BkVFwLYThQowMn4hvFdGAWa3Oq+DRoam3BUkfwS
+         9aX8UkPvHBCgSdUmjOctxtjmaajvClY3tSplWoRK+9NtfKgj4JiZi3aEa5jasjffyAff
+         9dcvcFa/nlDf5+H/7LTVrsTwTTamiU7rGFPa1zJd85k0Y/YIQuWQ88AmKWQbvKiOOAew
+         LkBxmzFeazR+749zeyWi+89RbZJpqYpPwxYFN0gPtScP//Ifx1eTqwkpfw30Amgege8Q
+         L2yQ==
+X-Gm-Message-State: AOAM530mdS5B4s+B11d10mO9q/Gu1N+gqU1ezQThwoeFNIi8rHyAVAfR
+	pnmQXor7BsLKbGdxDAZZ+UMRigHVAdzsn3JpK2KBJvIpzbI=
+X-Google-Smtp-Source: ABdhPJwwdiP0zj0DZmTs5tbcYipahtIRGiZjpV64AX7lSWG3xQywIDT/we0S7D0yzMLO3K216FYxt6c6Oj3NrQjHGQ4=
+X-Received: by 2002:a0c:99d2:: with SMTP id y18mr3715762qve.8.1613649634599;
+ Thu, 18 Feb 2021 04:00:34 -0800 (PST)
 MIME-Version: 1.0
-References: <OHWd.1613555997180740145.8Ytp@lists.yoctoproject.org>
- <CAGAf8LxoGwaocSUq04jqar4hQH2NiZ2DdumN5dpnQm4dr2wkew@mail.gmail.com>
- <CAEj=YVJ6z6etLaMrFUXREfeyFhaS-UvnnDh19zUor37eAPGnvQ@mail.gmail.com>
- <CAGAf8LyRvfu_iw+BQkiVYUuF6po0d0Pe0xqsVRjG8_bG-u75fA@mail.gmail.com> <CAEj=YVLoCXsYPF_ptXLZTDuQi3JLwRZAJNmbrUziUj-Mf8DHfw@mail.gmail.com>
-In-Reply-To: <CAEj=YVLoCXsYPF_ptXLZTDuQi3JLwRZAJNmbrUziUj-Mf8DHfw@mail.gmail.com>
-From: "safouane maaloul" <maaloulsafouane@gmail.com>
-Date: Thu, 18 Feb 2021 12:47:40 +0100
-Message-ID: <CAEj=YVLto27P33dv9Mov9CgszRaf5JzfBoW2z6UyEpf-4aU4dQ@mail.gmail.com>
-Subject: Re: [yocto] #av1 #armv6 #raspberrypi #neon
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000b36a1905bb9ae753"
+References: <CAEyb4nGKD+YCsmxH4-B43JjDAToWe0CysMh78Z9m6R5Wq_p4Dg@mail.gmail.com>
+ <YC5Ofa+DHBTIDBJ4@korppu>
+In-Reply-To: <YC5Ofa+DHBTIDBJ4@korppu>
+From: "Jonas Vautherin" <jonas.vautherin@gmail.com>
+Date: Thu, 18 Feb 2021 13:00:24 +0100
+Message-ID: <CAEyb4nHiaXUNkRv2zGUiRCouKH8F2fVT=egZwcpcUBP19Lm=oA@mail.gmail.com>
+Subject: Re: [yocto] Keep .bbappend for older Yocto version
+To: Mikko.Rapeli@bmw.de
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000043257905bb9b15f9"
 
---000000000000b36a1905bb9ae753
+--00000000000043257905bb9b15f9
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 12:44, safouane maaloul <maaloulsafouane@=
-gmail.com>
-a =C3=A9crit :
+It does help, yes!
+Thanks a lot!
 
-> This is my build configuration :
-> Build Configuration:
-> BB_VERSION           =3D "1.46.0"
-> BUILD_SYS            =3D "x86_64-linux"
-> NATIVELSBSTRING      =3D "universal"
-> TARGET_SYS           =3D "arm-poky-linux-gnueabi"
-> MACHINE              =3D "raspberrypi0-wifi"
-> DISTRO               =3D "poky"
-> DISTRO_VERSION       =3D "3.1.5"
-> TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs callconvention-hard"
-> TARGET_FPU           =3D "hard"
-> meta
-> meta-poky
-> meta-yocto-bsp       =3D "dunfell:7ea41de13774675828239b7738d3f5d70be8b1a=
-f"
-> meta-oe
-> meta-multimedia
-> meta-networking
-> meta-python          =3D "dunfell:5bba79488b7d393d2258d6e917f7bf7b0d7c407=
-3"
-> meta-raspberrypi     =3D "dunfell:987993209716302eb8f314f69a2a3340555f94d=
-8"
-> meta-gstreamer1.0    =3D "dunfell:b489b1ba084544d9c4c08f7c3b3d1c37ffa53c5=
-1"
->
-> Best regards,
->
-> Safouane
->
-> Le mer. 17 f=C3=A9vr. 2021 =C3=A0 13:24, Zoran Stojsavljevic <
-> zoran.stojsavljevic@gmail.com> a =C3=A9crit :
->
->> So, what is your MACHINE variable set to?
->>
->> Maybe knowing that, somebody can help.
->>
->> Zee
->>
->
->
-> --
-> *SAFOUANE MAALOUL*
->
-> *maaloulsafouane@gmail.com <maaloulsafouane@gmail.com>*
->
->
+On Thu, 18 Feb 2021, 12:24 , <Mikko.Rapeli@bmw.de> wrote:
 
---=20
-*SAFOUANE MAALOUL*
+> Hi,
+>
+> On Wed, Feb 17, 2021 at 12:02:26AM +0100, Jonas Vautherin wrote:
+> > Good evening,
+> >
+> > I am using Yocto Gatesgarth, and I was just updating a layer that was
+> > written for Dunfell. In the `conf/layer.conf`, I can simply add
+> > "gatesgarth" to `LAYERSERIES_COMPAT_pocketbeagle`, like so:
+> >
+> > ```
+> > LAYERSERIES_COMPAT_pocketbeagle = "dunfell gatesgarth"
+> > ```
+> >
+> > However, this does not seem to work for a `.bbappend`. Let me use this
+> > particular layer as an example: it is a BSP that defines
+> > `linux-yocto_4.19.bbappend` for Dunfell. In my case, I want to define
+> > `linux-yocto_5.4.bbappend` for Gatesgarth. When building with Dunfell, I
+> > would like it to use the former, and when building with Gatesgarth, I
+> would
+> > like it to use the latter.
+> >
+> > However, if I keep both `linux-yocto_4.19.bbappend`
+> > and `linux-yocto_5.4.bbappend` and try to build with Gatesgarth, it fails
+> > with:
+> >
+> > ```
+> > ERROR: No recipes in default available for:
+> >   /path/to/recipes-kernel/linux/linux-yocto_4.19.bbappend
+> > ```
+> >
+> > Which makes sense: Gatesgarth does not provide `linux-yocto_4.19`.
+> >
+> > Is there a way to keep both `*.bbappend` and have Yocto ignore the ones
+> > that do not correspond to its version? Or would that be bad practice
+> anyway?
+>
+> What I do in cases like this:
+>
+>  * check and decide if BSP layer can be update to be fully compatible with
+> new yocto
+>    version, by asking from maintainers of the BSP layer and HW vendors
+>    (usual answer is 'not this year, maybe next' or 'if you pay?', if you
+> are lucky
+>     they will say 'just use the correct branch')
+>
+>  * check if simple patches can update BSP layer to be compatible with new
+> yocto
+>    version, if this involves Linux kernel, libdrm etc major version
+> changes it
+>    might not work
+>
+> Quite often, I keep using the BSP SW stack from old yocto release with
+> only minimal
+> changes. For this to work, I make the minimal modifications needed to
+> support building
+> with new yocto version like modify LAYERSERIES_COMPAT and adapt bbclasses,
+> then copy
+> the needed old recipes from previous yocto version over the the BSP layer
+> to be
+> maintained there by the BSP SW maintainers. What helps a lot, is that you
+> have
+> reviewed what SW components you need to use from BSP SW meta layer and you
+> have
+> BBMASK'ed away all recipes and bbappends which your product and its distro
+> configuration does not need.
+>
+> Often BSP layers are full of examples, prototypes, or just plain weird
+> changes
+> to high level SW components like gstreamer, systemd, openssl or openssh
+> which your
+> product might not need (e.g. is prefectly fine with the poky version of
+> the recipe).
+> These BSP side changes make yocto updates much more difficult and
+> versioned dependencies
+> from BSP to poky are too complex and difficult to resolve easily. Thus look
+> for minimizing the impact of the BSP SW stack, keep it unchanged apart
+> from minimal
+> bitbake and bbclass fixes, and update the rest.
+>
+> For security and other updates, the BSP SW stack needs to be handled
+> separately.
+>
+> Hope this helps,
+>
+> -Mikko
 
-*maaloulsafouane@gmail.com <maaloulsafouane@gmail.com>*
-
---000000000000b36a1905bb9ae753
+--00000000000043257905bb9b15f9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
-class=3D"gmail_attr">Le=C2=A0jeu. 18 f=C3=A9vr. 2021 =C3=A0=C2=A012:44, saf=
-ouane maaloul &lt;<a href=3D"mailto:maaloulsafouane@gmail.com">maaloulsafou=
-ane@gmail.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div>This is my=
- build configuration :</div><div>Build Configuration:</div><div>BB_VERSION=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;1.46.0&quot;</div><div>B=
-UILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;x86_64-linux&qu=
-ot;</div><div>NATIVELSBSTRING=C2=A0 =C2=A0 =C2=A0 =3D &quot;universal&quot;=
-</div><div>TARGET_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;arm=
--poky-linux-gnueabi&quot;</div><div>MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =3D &quot;raspberrypi0-wifi&quot;</div><div>DISTRO=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;poky&quot;</div><=
-div>DISTRO_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;3.1.5&quot;</div><di=
-v>TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;arm armv6 vfp arm1176j=
-zfs callconvention-hard&quot;</div><div>TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0=3D &quot;hard&quot;</div><div>meta</div><div>meta-poky</d=
-iv><div>meta-yocto-bsp=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;dunfell:7ea41de1=
-3774675828239b7738d3f5d70be8b1af&quot;</div><div>meta-oe</div><div>meta-mul=
-timedia</div><div>meta-networking</div><div>meta-python=C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =3D &quot;dunfell:5bba79488b7d393d2258d6e917f7bf7b0d7c4073&q=
-uot;</div><div>meta-raspberrypi=C2=A0 =C2=A0 =C2=A0=3D &quot;dunfell:987993=
-209716302eb8f314f69a2a3340555f94d8&quot;</div><div>meta-gstreamer1.0=C2=A0 =
-=C2=A0 =3D &quot;dunfell:b489b1ba084544d9c4c08f7c3b3d1c37ffa53c51&quot;</di=
-v><div><br></div><div>Best regards,</div><div><br></div><div>Safouane</div>=
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">Le=C2=A0mer. 17 f=C3=A9vr. 2021 =C3=A0=C2=A013:24, Zoran Stojsavljevi=
-c &lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zo=
-ran.stojsavljevic@gmail.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex">So, what is your MACHINE variable s=
-et to?<br>
+<div dir=3D"auto">It does help, yes!<div dir=3D"auto">Thanks a lot!</div></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Thu, 18 Feb 2021, 12:24 , &lt;<a href=3D"mailto:Mikko.Rapeli@bmw.de">Mikko=
+.Rapeli@bmw.de</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<b=
+r>
 <br>
-Maybe knowing that, somebody can help.<br>
+On Wed, Feb 17, 2021 at 12:02:26AM +0100, Jonas Vautherin wrote:<br>
+&gt; Good evening,<br>
+&gt; <br>
+&gt; I am using Yocto Gatesgarth, and I was just updating a layer that was<=
+br>
+&gt; written for Dunfell. In the `conf/layer.conf`, I can simply add<br>
+&gt; &quot;gatesgarth&quot; to `LAYERSERIES_COMPAT_pocketbeagle`, like so:<=
+br>
+&gt; <br>
+&gt; ```<br>
+&gt; LAYERSERIES_COMPAT_pocketbeagle =3D &quot;dunfell gatesgarth&quot;<br>
+&gt; ```<br>
+&gt; <br>
+&gt; However, this does not seem to work for a `.bbappend`. Let me use this=
 <br>
-Zee<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
-><div dir=3D"ltr"><font color=3D"#000000"><span><b>SAFOUANE MAALOUL</b></sp=
-an></font><div><span><b><u style=3D"background-color:rgb(255,255,255)"><fon=
-t color=3D"#0b5394"><a href=3D"mailto:maaloulsafouane@gmail.com" target=3D"=
-_blank">maaloulsafouane@gmail.com</a></font></u><span style=3D"color:rgb(0,=
-0,0);background-color:rgb(255,255,255)"><br></span></b></span><div><span st=
-yle=3D"background-color:rgb(255,255,255)"><font color=3D"#000000"><b><br></=
-b></font></span></div></div></div></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><font color=3D"#000000"><span><=
-b>SAFOUANE MAALOUL</b></span></font><div><span><b><u style=3D"background-co=
-lor:rgb(255,255,255)"><font color=3D"#0b5394"><a href=3D"mailto:maaloulsafo=
-uane@gmail.com" target=3D"_blank">maaloulsafouane@gmail.com</a></font></u><=
-span style=3D"color:rgb(0,0,0);background-color:rgb(255,255,255)"><br></spa=
-n></b></span><div><span style=3D"background-color:rgb(255,255,255)"><font c=
-olor=3D"#000000"><b><br></b></font></span></div></div></div></div>
+&gt; particular layer as an example: it is a BSP that defines<br>
+&gt; `linux-yocto_4.19.bbappend` for Dunfell. In my case, I want to define<=
+br>
+&gt; `linux-yocto_5.4.bbappend` for Gatesgarth. When building with Dunfell,=
+ I<br>
+&gt; would like it to use the former, and when building with Gatesgarth, I =
+would<br>
+&gt; like it to use the latter.<br>
+&gt; <br>
+&gt; However, if I keep both `linux-yocto_4.19.bbappend`<br>
+&gt; and `linux-yocto_5.4.bbappend` and try to build with Gatesgarth, it fa=
+ils<br>
+&gt; with:<br>
+&gt; <br>
+&gt; ```<br>
+&gt; ERROR: No recipes in default available for:<br>
+&gt;=C2=A0 =C2=A0/path/to/recipes-kernel/linux/linux-yocto_4.19.bbappend<br=
+>
+&gt; ```<br>
+&gt; <br>
+&gt; Which makes sense: Gatesgarth does not provide `linux-yocto_4.19`.<br>
+&gt; <br>
+&gt; Is there a way to keep both `*.bbappend` and have Yocto ignore the one=
+s<br>
+&gt; that do not correspond to its version? Or would that be bad practice a=
+nyway?<br>
+<br>
+What I do in cases like this:<br>
+<br>
+=C2=A0* check and decide if BSP layer can be update to be fully compatible =
+with new yocto<br>
+=C2=A0 =C2=A0version, by asking from maintainers of the BSP layer and HW ve=
+ndors<br>
+=C2=A0 =C2=A0(usual answer is &#39;not this year, maybe next&#39; or &#39;i=
+f you pay?&#39;, if you are lucky<br>
+=C2=A0 =C2=A0 they will say &#39;just use the correct branch&#39;)<br>
+<br>
+=C2=A0* check if simple patches can update BSP layer to be compatible with =
+new yocto<br>
+=C2=A0 =C2=A0version, if this involves Linux kernel, libdrm etc major versi=
+on changes it<br>
+=C2=A0 =C2=A0might not work<br>
+<br>
+Quite often, I keep using the BSP SW stack from old yocto release with only=
+ minimal<br>
+changes. For this to work, I make the minimal modifications needed to suppo=
+rt building<br>
+with new yocto version like modify LAYERSERIES_COMPAT and adapt bbclasses, =
+then copy<br>
+the needed old recipes from previous yocto version over the the BSP layer t=
+o be<br>
+maintained there by the BSP SW maintainers. What helps a lot, is that you h=
+ave<br>
+reviewed what SW components you need to use from BSP SW meta layer and you =
+have<br>
+BBMASK&#39;ed away all recipes and bbappends which your product and its dis=
+tro<br>
+configuration does not need.<br>
+<br>
+Often BSP layers are full of examples, prototypes, or just plain weird chan=
+ges<br>
+to high level SW components like gstreamer, systemd, openssl or openssh whi=
+ch your<br>
+product might not need (e.g. is prefectly fine with the poky version of the=
+ recipe).<br>
+These BSP side changes make yocto updates much more difficult and versioned=
+ dependencies<br>
+from BSP to poky are too complex and difficult to resolve easily. Thus look=
+<br>
+for minimizing the impact of the BSP SW stack, keep it unchanged apart from=
+ minimal<br>
+bitbake and bbclass fixes, and update the rest.<br>
+<br>
+For security and other updates, the BSP SW stack needs to be handled separa=
+tely.<br>
+<br>
+Hope this helps,<br>
+<br>
+-Mikko</blockquote></div>
 
---000000000000b36a1905bb9ae753--
+--00000000000043257905bb9b15f9--
