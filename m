@@ -1,114 +1,94 @@
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
- by mx.groups.io with SMTP id smtpd.web09.6876.1613656356566294968
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
+ by mx.groups.io with SMTP id smtpd.web10.7093.1613656744242527910
  for <yocto@lists.yoctoproject.org>;
- Thu, 18 Feb 2021 05:52:36 -0800
+ Thu, 18 Feb 2021 05:59:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=B+Cz+xs3;
- spf=pass (domain: gmail.com, ip: 209.85.166.181, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-il1-f181.google.com with SMTP id d20so1511029ilo.4
-        for <yocto@lists.yoctoproject.org>; Thu, 18 Feb 2021 05:52:36 -0800 (PST)
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=nKpIa2cF;
+ spf=pass (domain: blade-group.com, ip: 209.85.222.41, mailfrom: yann.dirson@blade-group.com)
+Received: by mail-ua1-f41.google.com with SMTP id c44so680848uad.12
+        for <yocto@lists.yoctoproject.org>; Thu, 18 Feb 2021 05:59:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=blade-group.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=/jZzXs8vxBWoi6sREpl8z+s3TPnoJywwNlY9hX6+WEs=;
-        b=B+Cz+xs3KGg7AJEq0JNzdR2UkieOO6KuH/bMHyxs02OQz5IVLIOJEC4HqfvZsVzQXA
-         +7k7ccd2wEZ6xOoqbNCr544ULCJNJazrCRG2viqpjtgfN2uyJFwa8TECNx/Wz6IcQ8ym
-         zsDTIJozn0/+HDgOEakjNGqdxbxVVs81rbpNRq7prxWpy/cITWRT1bBO7q7HxbkRAi/m
-         3U6fdAiyJ7Z9vO+jxKiCGCklompmfb+7WydqS76xVVIkTS9gKhVmTOI59o2EJTZSnsos
-         Rj9ZCCMqOn3xJfK4HPfrIFCk6ITuz+ibvh3MCCpC3bwoua5wqmTr1dZWrc75BgXnj8SU
-         YkPg==
+         :cc;
+        bh=f7o5YlTVtuzUSHMNwJqIGHu7wYCKA6svUoLD7sWcYL0=;
+        b=nKpIa2cFhWOAlnpJZfyC3gvOL4QCXTXrQj3zgEF5Z9yfYfCphwXc2YC9kDix2IOAvd
+         rGDUEAk9AdwmPGvtExl5nPFEwbgmnyZTGyS1E1lCYAL+28NvKOlAdqNwmyT1ku0JF2dC
+         qDTRhF/Fy7FBniUBExCF3p50URMaa1MginiGb4rCAp2QSlsAZkqu1SQdbgHnWjyWjt5U
+         KnUnvEADuA6vi0vEoB6zGx5TAv52YTq1nZHPQXtjGlF/VPQ5muSDnw8lUaS9qcEbNWRu
+         L37Io28szfsm4xIIlX2kIeJb41f+i+yUTO3FWYF9/uu1gGunT1eU7ZljahvJMKaQnyit
+         gOog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=/jZzXs8vxBWoi6sREpl8z+s3TPnoJywwNlY9hX6+WEs=;
-        b=DrKXeknAW4XIkBKFn9RA1qnGciaE1Fjtyu529fRzrBZGFwswLQDw7/T1F+fqMa3vaE
-         DRZFkauYXsnTsYKrAHI+Azzy4vphZ6dSRuJGUGOmakKw2plC7t5Z0DYecPsve7YsH3s+
-         6GG9PAsvqa+XJebEfPaPTmRd/LHzgKZNguc0bUgIBav55EuJy6JVi3aZUwwOyU1Zie8C
-         lZNMhua3i5akiEGcFkxkul3dbA3B6+Fi8nRyf6IuNgWFcoU1k3tr99wxAUC4odwYisaW
-         Y5OVfNB/0LbBYwa02LCGWc2NbZ0qtyMTGQLL+v0Zr7hE3WMnCcmumMBxcy94/quw611V
-         oBiA==
-X-Gm-Message-State: AOAM532C/QsvZlNgnKHc/0zJ4AaqGRXvXx0VZXMajV5TJvnmuMX6A4uT
-	ocqfqA8pXdg6JitDvaP6okkRVVCFJwIgp4z/RPc=
-X-Google-Smtp-Source: ABdhPJyfDNp5/n7lH+j+qEOkBd13zklfsn8gOAi0O3PiAA4dMZcl8Jmdj7gEr7ETQkZx2GK30RvX2VMb+ZWIfHyaBSs=
-X-Received: by 2002:a05:6e02:194a:: with SMTP id x10mr3768759ilu.165.1613656355733;
- Thu, 18 Feb 2021 05:52:35 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=f7o5YlTVtuzUSHMNwJqIGHu7wYCKA6svUoLD7sWcYL0=;
+        b=kbGDGajBYWU9kmEUPFLSag1HRAnI8G9ZYF5Aqyn4xRzqhn9Gwa/OTKbv7ti9dg5FMF
+         PL5pfi30BCyQ0DsNueUn9HdtpruDSTSoyY9e6wqD6iPBkL800srbI/Llafrw8xpTV554
+         PaB7jrP2b++bkvf/oCZdUfxbNGjqnWZOxy8gzdo/9HZXj94kjtVe1zUJfWK2rvnuTuK8
+         /F/rC/FFt4kKXai1Kizxv0PpaZ/G5tqHqfNmSvTvdl5hl0DvFX5FHnohg52F10jprm/B
+         C86uymCKLy15lQsGlOWouLCONCjDMmyO90T9U7qExLDosnGHo3VgGjuybKkcFXQl4PCz
+         B51w==
+X-Gm-Message-State: AOAM533vQhRgbbIiJeMRa9GTNJCA9NLJglubrwAtIlxp7ROWaIPac2w4
+	ikhfIop3w8sCwd9vdz/GD0RXfH7zjUP0/OzVR/R5iA==
+X-Google-Smtp-Source: ABdhPJxGR/CSgZMjv+KxtAkSwrOeg74Pehhw6kK+8+/eW/MKeHMFc0jTwtybiyabl7TyqTgZ1ljRL5EwFqnegKJ4oS8=
+X-Received: by 2002:ab0:6f0d:: with SMTP id r13mr3341753uah.8.1613656743301;
+ Thu, 18 Feb 2021 05:59:03 -0800 (PST)
 MIME-Version: 1.0
-References: <OHWd.1613555997180740145.8Ytp@lists.yoctoproject.org>
- <CAGAf8LxoGwaocSUq04jqar4hQH2NiZ2DdumN5dpnQm4dr2wkew@mail.gmail.com>
- <CAEj=YVJ6z6etLaMrFUXREfeyFhaS-UvnnDh19zUor37eAPGnvQ@mail.gmail.com>
- <CAGAf8LyRvfu_iw+BQkiVYUuF6po0d0Pe0xqsVRjG8_bG-u75fA@mail.gmail.com> <CAEj=YVLoCXsYPF_ptXLZTDuQi3JLwRZAJNmbrUziUj-Mf8DHfw@mail.gmail.com>
-In-Reply-To: <CAEj=YVLoCXsYPF_ptXLZTDuQi3JLwRZAJNmbrUziUj-Mf8DHfw@mail.gmail.com>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Thu, 18 Feb 2021 14:52:23 +0100
-Message-ID: <CAGAf8Lzfz7qyNLiPWDwvyj5gGs64pUHMK3uo9daHKC6-jB7toA@mail.gmail.com>
-Subject: Re: [yocto] #av1 #armv6 #raspberrypi #neon
-To: safouane maaloul <maaloulsafouane@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+References: <20210216174346.29A0D2A0FA6@centos8-ty-1.yocto.io>
+In-Reply-To: <20210216174346.29A0D2A0FA6@centos8-ty-1.yocto.io>
+From: "Yann Dirson" <yann.dirson@blade-group.com>
+Date: Thu, 18 Feb 2021 14:58:52 +0100
+Message-ID: <CA+4=imb+CNt9fZgUOMY8f+4Kcat+=rUAqGt5pbHDRZxQ-7M5CQ@mail.gmail.com>
+Subject: Re: [yocto] QA notification for completed autobuilder build (yocto-3.2.2.rc1)
+To: Pokybuild User <pokybuild@centos8-ty-1.yocto.io>
+Cc: yocto@lists.yoctoproject.org, qa-build-notification@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000f96e9605bb9cbcb0"
+
+--000000000000f96e9605bb9cbcb0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-> TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs callconvention-hard"
+Le mar. 16 f=C3=A9vr. 2021 =C3=A0 18:43, Pokybuild User <
+pokybuild@centos8-ty-1.yocto.io> a =C3=A9crit :
 
-Here is an interesting reading for you, for me also:
-https://www.yoctoproject.org/pipermail/meta-xilinx/2015-July/001060.html
+>
+> Build hash information:
+>
+> bitbake: 0a3bf681530bd63fc0036ca81ef868ab53fde56c
+> meta-arm: aa63e31b6edb5197764c21434219050ab51f0fbd
+> meta-gplv2: 6e8e969590a22a729db1ff342de57f2fd5d02d43
+> meta-intel: 1d866c58534eb1d317b7a674c6e6c57ab9594fb0
+> meta-kernel: f793168bd19af3d8c5a260dd35f387ed9a31794b
+> meta-mingw: 352d8b0aa3c7bbd5060a4cc2ebe7c0e964de4879
+> oecore: ebaaee50cb3ac75112827f935c48affaf622ce7f
+> poky: d5d6286a66f46f4523e35e0e3f20cd7396195fdc
+>
 
-What I am getting from this reading is that you need to try with the
-following line:
-TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs"
+Is it expected that the noted meta-arm sha1 is on branch "master" and not
+"gatesgarth" ?
 
-I guess, YOCTO people have not too much experience with armv6, nor me,
-but this should be (I hope) generic.
+--000000000000f96e9605bb9cbcb0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hope this helps.
-Zoran
-_______
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0mar. 16 f=C3=A9vr. 2021 =C3=
+=A0=C2=A018:43, Pokybuild User &lt;<a href=3D"mailto:pokybuild@centos8-ty-1=
+.yocto.io">pokybuild@centos8-ty-1.yocto.io</a>&gt; a =C3=A9crit=C2=A0:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
+Build hash information: <br>
+<br>
+bitbake: 0a3bf681530bd63fc0036ca81ef868ab53fde56c<br>
+meta-arm: aa63e31b6edb5197764c21434219050ab51f0fbd<br>
+meta-gplv2: 6e8e969590a22a729db1ff342de57f2fd5d02d43<br>
+meta-intel: 1d866c58534eb1d317b7a674c6e6c57ab9594fb0<br>
+meta-kernel: f793168bd19af3d8c5a260dd35f387ed9a31794b<br>
+meta-mingw: 352d8b0aa3c7bbd5060a4cc2ebe7c0e964de4879<br>
+oecore: ebaaee50cb3ac75112827f935c48affaf622ce7f<br>
+poky: d5d6286a66f46f4523e35e0e3f20cd7396195fdc<br></blockquote><div><br></d=
+iv><div>Is it expected that the noted meta-arm sha1 is on branch &quot;mast=
+er&quot; and not &quot;gatesgarth&quot; ?</div><br></div></div>
 
-On Thu, Feb 18, 2021 at 12:44 PM safouane maaloul
-<maaloulsafouane@gmail.com> wrote:
->
-> This is my build configuration :
-> Build Configuration:
-> BB_VERSION           =3D "1.46.0"
-> BUILD_SYS            =3D "x86_64-linux"
-> NATIVELSBSTRING      =3D "universal"
-> TARGET_SYS           =3D "arm-poky-linux-gnueabi"
-> MACHINE              =3D "raspberrypi0-wifi"
-> DISTRO               =3D "poky"
-> DISTRO_VERSION       =3D "3.1.5"
-> TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs callconvention-hard"
-> TARGET_FPU           =3D "hard"
-> meta
-> meta-poky
-> meta-yocto-bsp       =3D "dunfell:7ea41de13774675828239b7738d3f5d70be8b1a=
-f"
-> meta-oe
-> meta-multimedia
-> meta-networking
-> meta-python          =3D "dunfell:5bba79488b7d393d2258d6e917f7bf7b0d7c407=
-3"
-> meta-raspberrypi     =3D "dunfell:987993209716302eb8f314f69a2a3340555f94d=
-8"
-> meta-gstreamer1.0    =3D "dunfell:b489b1ba084544d9c4c08f7c3b3d1c37ffa53c5=
-1"
->
-> Best regards,
->
-> Safouane
->
-> Le mer. 17 f=C3=A9vr. 2021 =C3=A0 13:24, Zoran Stojsavljevic <zoran.stojs=
-avljevic@gmail.com> a =C3=A9crit :
->>
->> So, what is your MACHINE variable set to?
->>
->> Maybe knowing that, somebody can help.
->>
->> Zee
->
->
->
-> --
-> SAFOUANE MAALOUL
-> maaloulsafouane@gmail.com
->
+--000000000000f96e9605bb9cbcb0--
