@@ -1,39 +1,39 @@
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
- by mx.groups.io with SMTP id smtpd.web11.401.1613679722766754530
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+ by mx.groups.io with SMTP id smtpd.web08.912.1613689204425898715
  for <yocto@lists.yoctoproject.org>;
- Thu, 18 Feb 2021 12:22:02 -0800
+ Thu, 18 Feb 2021 15:00:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=fJWes70R;
- spf=pass (domain: gmail.com, ip: 209.85.166.44, mailfrom: maaloulsafouane@gmail.com)
-Received: by mail-io1-f44.google.com with SMTP id n14so3386229iog.3
-        for <yocto@lists.yoctoproject.org>; Thu, 18 Feb 2021 12:22:02 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=rhTGwCeD;
+ spf=pass (domain: gmail.com, ip: 209.85.222.179, mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f179.google.com with SMTP id b14so3937463qkk.0
+        for <yocto@lists.yoctoproject.org>; Thu, 18 Feb 2021 15:00:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3P5oyMeT7BhuY+5Gz7ahJXPI7PRFVvPM1qOjkpsT/Sk=;
-        b=fJWes70RdylCkXsMuQKI05Hir8dCXR8VAlBIw7Mx2gEglKW/vvmv3RdpMe2zpIkDJH
-         bOwv6r8nyi+5b1Jnx9G1n2da/gLaV4kLd55xctwTE6zTSdUxmaHDZEJXIxDS8yPp21PE
-         HSEOz3dh2Vs1QA97Yqxzepv/9n9AFqI56AoXBGlQoh/TpMZr5s1d7aqucPVkLcBcuQyW
-         weTaMQYnAzYWpgx/Okas95TzSTxGph29K8jKZ3vYIzph4Ch6/fH138HLZurSe2OHLxyO
-         nzaQ+6pK10CwiD6DQ7zbKqYyCBccdriFeonyWxQk25m2d1ItxUGzhgA4gjJFuVthEyOm
-         o8tA==
+         :cc:content-transfer-encoding;
+        bh=6dORG3CiGeJm4a/5nTkpRJ+3RYwrmxXrIvtDWzy2ddw=;
+        b=rhTGwCeDDmrLOFCF6D+z6XeWmN01ySQl6k2VXwyR16II/vK2jEtYlRsvzqohcz5Hn5
+         4uDEV9KyOHqGcIjPEZeuBGrT3WBQMkJ/VNXrKKjY0q/u7VIvblCBmxHUEXDjeKilvtTi
+         ATkjvfjxKx6OK5K0dokCgC/hZkzzVX4I+DxGMj4q8Ya1oLkZ7mEtjLF96+Qs2Blrm2/P
+         v/BuZeSotGVvMUxZy+ffp9hKB9bJJzHQB3ZOYMqezpxSxtw3/IbZQz0nFpDCkR5DTiP0
+         UIA8nGN5B8cLyYjUZY5Eikn3TvsRZc3A09c6f0mwshnmtyXNk1uBp78F6O+L9VwcdKQS
+         pJCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3P5oyMeT7BhuY+5Gz7ahJXPI7PRFVvPM1qOjkpsT/Sk=;
-        b=qqssUT4vLgqAlY16wmncVGKzjHwZScydD+wem7Q7CWL7gZWfzIKlFvi2394IhpZUm5
-         gUZr/0eeg/uZGIES1XqECqGDqg5qj/FaLlz+sKMKUmivx9et1z1/1PA5iTlhEeV22Pju
-         MgcpjeFhD+jeVccyUIYK+iWB58t3lc8eFPh7dtgPQpy12oZFHWv9HCl3MjPVnan8ECMv
-         WTYac9Nqzoj8F1cvxm8BqTkCQd5l7WHxtX7O4SHWYDxPEdexTMqcroiktvWADcf7DV8S
-         pTXaGvyXUnC3mG/gnFu3ajhvV4BWNt6FmlZIXSfd9UBsbu16nKtMCGrChHPq2/sOtQVA
-         9s5g==
-X-Gm-Message-State: AOAM530CqadBqBXt8X87lMDSXWK1Tho4y0Qhbv1XzTjxyFdz44hRzbK1
-	tpIQlWmIIe8Ezhj8IdKoG9fPNOPIgtTDnfBVFew=
-X-Google-Smtp-Source: ABdhPJwneOi8ksEF3MDr56mQ0dJoZ4hKKhkjg/f4nt08K/m6+zIPHYLSzY1nV3sQ2pt5oa3081TXW9bGA0c8/cTnhBU=
-X-Received: by 2002:a5e:8d0a:: with SMTP id m10mr787145ioj.210.1613679722038;
- Thu, 18 Feb 2021 12:22:02 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=6dORG3CiGeJm4a/5nTkpRJ+3RYwrmxXrIvtDWzy2ddw=;
+        b=EmKZg4mnciF6GmyS//xmF4qx7ayGIDjk2I/djElywQZOHfuEkmkY4sdP60waXMk75l
+         SWtEe/o32SB0lLuga7r0KWqYNYszhtd4wG2MbobwNxErH0WcDprLZzLVTOsWaPcpFOsr
+         cFdEtnNYbrV7ufb62Bt9gtuWNd+A452MBRxTua57JkLFLMsb0T35nAaIZ/j7YmEoclIv
+         aQrKjdEfaakrfv+6BMGf6ljyPqZT8rCb34TAEwDlksdlVWNzfpu61e6c9IwQ3D4fxx6i
+         24TphShQbjfLqFABHmGpau0rx75yrTK9Ot80T8BxXE2WGum9K3Nu1iI8butR1A0RUgbh
+         5XAg==
+X-Gm-Message-State: AOAM532iFh8yi+pIjxNNQ+c4ngX7ho+e3xCx3jWOqOHXsGnXKA10qTwP
+	xupO9kb8get+OWN3heM8ujd1q+CyJG6tLCKHr+E=
+X-Google-Smtp-Source: ABdhPJwcgosPo7I0yKdLPwVQo8nqLqGHT2xtPq/6yUaK+wrfku7k60nN5E2h0MpRTuhcCopwg5NJRCjXOwSPkEpnuaA=
+X-Received: by 2002:a05:620a:b95:: with SMTP id k21mr6703453qkh.125.1613689203394;
+ Thu, 18 Feb 2021 15:00:03 -0800 (PST)
 MIME-Version: 1.0
 References: <OHWd.1613555997180740145.8Ytp@lists.yoctoproject.org>
  <CAGAf8LxoGwaocSUq04jqar4hQH2NiZ2DdumN5dpnQm4dr2wkew@mail.gmail.com>
@@ -45,559 +45,264 @@ References: <OHWd.1613555997180740145.8Ytp@lists.yoctoproject.org>
  <CAGAf8LwoLjf8cn4+wz5o4HeXKZJFz4Pi0vE2U7-wXs3aZmQc-w@mail.gmail.com>
  <CAEj=YV+8uSPa2J07-eFPwB=fwGEuY728a+81iudXt2fPqLFFMA@mail.gmail.com>
  <CAMKF1srYCHnDcfCyZR_psvM=_-p9ccgtHOqdba9Ykv4iuv4LbA@mail.gmail.com>
- <CAEj=YVKUCa+P1tpNja3EAp5aVE=TA4kC+uAzQo4ScyzGQbVNJQ@mail.gmail.com> <CAMKF1sqjo4nbLzGZcfMMy6vSrNNOBW3eWG9JeyrNbNGYc==K8A@mail.gmail.com>
-In-Reply-To: <CAMKF1sqjo4nbLzGZcfMMy6vSrNNOBW3eWG9JeyrNbNGYc==K8A@mail.gmail.com>
-From: "safouane maaloul" <maaloulsafouane@gmail.com>
-Date: Thu, 18 Feb 2021 21:21:51 +0100
-Message-ID: <CAEj=YV+dXhT=iiD3eSHLsm9FqJK_BUQ3M6RwsOBZwfj09N1Uig@mail.gmail.com>
+ <CAEj=YVKUCa+P1tpNja3EAp5aVE=TA4kC+uAzQo4ScyzGQbVNJQ@mail.gmail.com>
+ <CAMKF1sqjo4nbLzGZcfMMy6vSrNNOBW3eWG9JeyrNbNGYc==K8A@mail.gmail.com> <CAEj=YV+dXhT=iiD3eSHLsm9FqJK_BUQ3M6RwsOBZwfj09N1Uig@mail.gmail.com>
+In-Reply-To: <CAEj=YV+dXhT=iiD3eSHLsm9FqJK_BUQ3M6RwsOBZwfj09N1Uig@mail.gmail.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Thu, 18 Feb 2021 14:59:37 -0800
+Message-ID: <CAMKF1so+8tNx_--8LBwmMtv-2J_pUFsQnQFb0UOfKstk_F4H6g@mail.gmail.com>
 Subject: Re: [yocto] #av1 #armv6 #raspberrypi #neon
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000009d0a1d05bba21686"
-
---0000000000009d0a1d05bba21686
+To: safouane maaloul <maaloulsafouane@gmail.com>
+Cc: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Sorry to annoying you with my question but how do i find where HAVE_NEON is
-set ?
+Please try applying below patch to aom recipe in meta-openembedded repo
 
-Best regards,
+https://lists.openembedded.org/g/openembedded-devel/topic/meta_multimedia_=
+patch_aom/80743335?p=3D,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,0,807433=
+35
 
-Safouane
+let me know how it goes.
 
-Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 21:16, Khem Raj <raj.khem@gmail.com> a =
-=C3=A9crit :
-
-> Well we do not enable neon for this tune but aom still seems to want it =
-so
-> I would suggest to look at the build and see if it=E2=80=99s disabling n=
-eon and
-> have HAVE_NEON is not set properly
+On Thu, Feb 18, 2021 at 12:22 PM safouane maaloul
+<maaloulsafouane@gmail.com> wrote:
 >
-> On Thu, Feb 18, 2021 at 12:12 PM safouane maaloul <
-> maaloulsafouane@gmail.com> wrote:
+> Sorry to annoying you with my question but how do i find where HAVE_NEON=
+ is set ?
 >
->> I have an erreur:
->> |
->> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-=
-vfp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/common/arm/mem_neon.h:525:24:
->> note: called from here
->> |   525 |   const int32x4_t v0 =3D vld1q_s32(buf);
->> |       |                        ^~~~~~~~~~~~~~
->> | ninja: build stopped: subcommand failed.
->> | WARNING:
->> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-=
-vfp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037:155
->> exit 1 from 'eval ${DESTDIR:+DESTDIR=3D${DESTDIR} }VERBOSE=3D1 cmake --=
-build
->> '/workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf=
--vfp-poky-linux-gnueabi/aom/2.0.0-r0/build'
->> "$@" -- ${EXTRA_OECMAKE_BUILD}'
->> | WARNING: Backtrace (BB generated script):
->> |       #1: cmake_runcmake_build,
->> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-=
-vfp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037,
->> line 155
->> |       #2: cmake_do_compile,
->> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-=
-vfp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037,
->> line 149
->> |       #3: do_compile,
->> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-=
-vfp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037,
->> line 144
->> |       #4: main,
->> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-=
-vfp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037,
->> line 168
->> |
->> | Backtrace (metadata-relative locations):
->> |       #1: cmake_runcmake_build,
->> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/../../poky/meta/classes=
-/cmake.bbclass,
->> line 205
->> |       #2: cmake_do_compile,
->> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/../../poky/meta/classes=
-/cmake.bbclass,
->> line 209
->> |       #3: do_compile, autogenerated, line 2
->> ERROR: Task
->> (/workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/../../meta-openembedde=
-d/meta-multimedia/recipes-multimedia/aom/aom_2.0.0.bb:do_compile)
->> failed with exit code '1'
->> NOTE: Tasks Summary: Attempted 3538 tasks of which 3326 didn't need to =
-be
->> rerun and 1 failed.
+> Best regards,
+>
+> Safouane
+>
+> Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 21:16, Khem Raj <raj.khem@gmail.com> a=
+ =C3=A9crit :
 >>
->> Summary: 1 task failed:
+>> Well we do not enable neon for this tune but aom still seems to want it=
+ so I would suggest to look at the build and see if it=E2=80=99s disabling =
+neon and have HAVE_NEON is not set properly
 >>
->> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/../../meta-openembedded=
-/meta-multimedia/recipes-multimedia/aom/aom_2.0.0.bb:
->> do_compile
->> Summary: There was 1 WARNING message shown.
->> Summary: There was 1 ERROR message shown, returning a non-zero exit cod=
-e.
->>
->> Do you have any idea why it didn't work ?
->>
->> Best regards,
->>
->> Safouane
->>
->> Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 20:54, Khem Raj <raj.khem@gmail.com> =
-a =C3=A9crit :
->>
->>> can you try adding
+>> On Thu, Feb 18, 2021 at 12:12 PM safouane maaloul <maaloulsafouane@gmai=
+l.com> wrote:
 >>>
->>> EXTRA_OECMAKE +=3D "-DHAVE_NEON=3D0"
->>>
->>> and see if that helps ? for whatever reason set_aom_detect_var is
->>> enabling it where as default should be 0
->>>
->>> On Thu, Feb 18, 2021 at 10:42 AM safouane maaloul
->>> <maaloulsafouane@gmail.com> wrote:
->>> >
->>> > I succed in removing callconvention-hard from TUNE_FEATURES ? But i
->>> have the same problem. I am pretty sure that i get get it working if i=
- add
->>> neon to the TUNE_FEATURES. Something like this     TUNE_FEATURES=3D "a=
-rm
->>> armv6 vfp arm1176jzfs callconvention-hard neon". But I can't do it wit=
-h
->>> armv6. I have to use raspberrypi zero w so i have to make it work with
->>> armv6. I know that i can make it work with armv7 and armv8. I have err=
-or
->>> like this : | In file included from
->>> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf=
--vfp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/encoder/arm/neon/quantize_neon=
-.c:20:
->>> > |
->>> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf=
--vfp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/common/arm/mem_neon.h:528:24:
->>> note: called from here
->>> > |   528 |   const int16x4_t s1 =3D vmovn_s32(v1);
->>> > |       |                        ^~~~~~~~~~~~~
->>> > | In file included from
->>> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf=
--vfp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/encoder/arm/neon/quantize_neon=
-.c:12:
->>> > |
->>> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf=
--vfp-poky-linux-gnueabi/aom/2.0.0-r0/recipe-sysroot-native/usr/lib/arm-poky=
--linux-gnueabi/gcc/arm-poky-linux-gnueabi/10.2.0/include/arm_neon.h:7556:1:
->>> error: inlining failed in call to 'always_inline' 'vmovn_s32': target
->>> specific option mismatch
->>> > |  7556 | vmovn_s32 (int32x4_t __a)
->>> > |       | ^~~~~~~~~
->>> >
->>> > So i am sure i have to add the neon feature so i appreciate it if
->>> someone can help me. I didn't find a workaround this problem on the
->>> internet.
->>> >
->>> > Best regards,
->>> >
->>> > Safouane
->>> >
->>> > Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 18:00, Zoran Stojsavljevic <
->>> zoran.stojsavljevic@gmail.com> a =C3=A9crit :
->>> >>
->>> >> https://yocto.yoctoproject.narkive.com/Wle40I09/gcc-on-arm
->>> >>
->>> >>
->>> https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html=
-#var-TUNE_FEATURES
->>> >>
->>> https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html=
-#var-AVAILTUNES
->>> >>
->>> >> Zee
->>> >> _______
->>> >>
->>> >> On Thu, Feb 18, 2021 at 3:28 PM safouane maaloul
->>> >> <maaloulsafouane@gmail.com> wrote:
->>> >> >
->>> >> > Yes I will check it. Do you know how to remove callconvention-har=
-d
->>> from TUNE_FEATURES ?
->>> >> >
->>> >> > Best regards,
->>> >> >
->>> >> > Safouane
->>> >> >
->>> >> > Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 14:52, Zoran Stojsavljevic <
->>> zoran.stojsavljevic@gmail.com> a =C3=A9crit :
->>> >> >>
->>> >> >> > TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs
->>> callconvention-hard"
->>> >> >>
->>> >> >> Here is an interesting reading for you, for me also:
->>> >> >>
->>> https://www.yoctoproject.org/pipermail/meta-xilinx/2015-July/001060.ht=
-ml
->>> >> >>
->>> >> >> What I am getting from this reading is that you need to try with
->>> the
->>> >> >> following line:
->>> >> >> TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs"
->>> >> >>
->>> >> >> I guess, YOCTO people have not too much experience with armv6, n=
-or
->>> me,
->>> >> >> but this should be (I hope) generic.
->>> >> >>
->>> >> >> Hope this helps.
->>> >> >> Zoran
->>> >> >> _______
->>> >> >>
->>> >> >> On Thu, Feb 18, 2021 at 12:44 PM safouane maaloul
->>> >> >> <maaloulsafouane@gmail.com> wrote:
->>> >> >> >
->>> >> >> > This is my build configuration :
->>> >> >> > Build Configuration:
->>> >> >> > BB_VERSION           =3D "1.46.0"
->>> >> >> > BUILD_SYS            =3D "x86_64-linux"
->>> >> >> > NATIVELSBSTRING      =3D "universal"
->>> >> >> > TARGET_SYS           =3D "arm-poky-linux-gnueabi"
->>> >> >> > MACHINE              =3D "raspberrypi0-wifi"
->>> >> >> > DISTRO               =3D "poky"
->>> >> >> > DISTRO_VERSION       =3D "3.1.5"
->>> >> >> > TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs
->>> callconvention-hard"
->>> >> >> > TARGET_FPU           =3D "hard"
->>> >> >> > meta
->>> >> >> > meta-poky
->>> >> >> > meta-yocto-bsp       =3D
->>> "dunfell:7ea41de13774675828239b7738d3f5d70be8b1af"
->>> >> >> > meta-oe
->>> >> >> > meta-multimedia
->>> >> >> > meta-networking
->>> >> >> > meta-python          =3D
->>> "dunfell:5bba79488b7d393d2258d6e917f7bf7b0d7c4073"
->>> >> >> > meta-raspberrypi     =3D
->>> "dunfell:987993209716302eb8f314f69a2a3340555f94d8"
->>> >> >> > meta-gstreamer1.0    =3D
->>> "dunfell:b489b1ba084544d9c4c08f7c3b3d1c37ffa53c51"
->>> >> >> >
->>> >> >> > Best regards,
->>> >> >> >
->>> >> >> > Safouane
->>> >> >> >
->>> >> >> > Le mer. 17 f=C3=A9vr. 2021 =C3=A0 13:24, Zoran Stojsavljevic <
->>> zoran.stojsavljevic@gmail.com> a =C3=A9crit :
->>> >> >> >>
->>> >> >> >> So, what is your MACHINE variable set to?
->>> >> >> >>
->>> >> >> >> Maybe knowing that, somebody can help.
->>> >> >> >>
->>> >> >> >> Zee
->>> >> >> >
->>> >> >> >
->>> >> >> >
->>> >> >> > --
->>> >> >> > SAFOUANE MAALOUL
->>> >> >> > maaloulsafouane@gmail.com
->>> >> >> >
->>> >> >
->>> >> >
->>> >> >
->>> >> > --
->>> >> > SAFOUANE MAALOUL
->>> >> > maaloulsafouane@gmail.com
->>> >> >
->>> >
->>> >
->>> >
->>> > --
->>> > SAFOUANE MAALOUL
->>> > maaloulsafouane@gmail.com
->>> >
->>> >
->>> >=20
->>> >
->>>
->>
->>
->> --
->> *SAFOUANE MAALOUL*
->>
->> *maaloulsafouane@gmail.com <maaloulsafouane@gmail.com>*
->>
->> --
-*SAFOUANE MAALOUL*
-
-*maaloulsafouane@gmail.com <maaloulsafouane@gmail.com>*
-
---0000000000009d0a1d05bba21686
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">Sorry to annoying you with my question but how do i find =
-where HAVE_NEON is set ?=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D=
-"auto">Best regards,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Saf=
-ouane=C2=A0</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=
-=3D"gmail_attr">Le=C2=A0jeu. 18 f=C3=A9vr. 2021 =C3=A0 21:16, Khem Raj &lt=
-;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; a =C3=A9c=
-rit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"auto">Well w=
-e do not enable neon for this tune but aom still seems to want it so I woul=
-d suggest to look at the build and see if it=E2=80=99s disabling neon and h=
-ave HAVE_NEON is not set properly=C2=A0</div><div><br><div class=3D"gmail_q=
-uote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 18, 2021 at 12:12 P=
-M safouane maaloul &lt;<a href=3D"mailto:maaloulsafouane@gmail.com" target=
-=3D"_blank">maaloulsafouane@gmail.com</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
-;padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">I have an erreur:<div>=
-<div>| /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfs=
+>>> I have an erreur:
+>>> | /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfs=
 hf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/common/arm/mem_neon.h:525:24=
-: note: called from here</div><div>|=C2=A0 =C2=A0525 |=C2=A0 =C2=A0const in=
-t32x4_t v0 =3D vld1q_s32(buf);</div><div>|=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=
-=C2=A0 ^~~~~~~~~~~~~~</div><div>| ninja: build stopped: subcommand failed.=
-</div><div>| WARNING: /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/w=
-ork/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.2=
-4037:155 exit 1 from &#39;eval ${DESTDIR:+DESTDIR=3D${DESTDIR} }VERBOSE=3D1=
- cmake --build &#39;/workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/wor=
-k/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/build&#39; &quot;$@&quo=
-t; -- ${EXTRA_OECMAKE_BUILD}&#39;</div><div>| WARNING: Backtrace (BB genera=
-ted script):</div><div>|=C2=A0 =C2=A0 =C2=A0 =C2=A0#1: cmake_runcmake_build=
-, /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-vf=
-p-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037, line 155</div>=
-<div>|=C2=A0 =C2=A0 =C2=A0 =C2=A0#2: cmake_do_compile, /workdir/tep-cam-rpi=
--yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/a=
-om/2.0.0-r0/temp/run.do_compile.24037, line 149</div><div>|=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0#3: do_compile, /workdir/tep-cam-rpi-yocto/rpi-build-gatesgar=
-th/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_c=
-ompile.24037, line 144</div><div>|=C2=A0 =C2=A0 =C2=A0 =C2=A0#4: main, /wor=
-kdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-vfp-poky=
--linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037, line 168</div><div>|=
-</div><div>| Backtrace (metadata-relative locations):</div><div>|=C2=A0 =C2=
-=
-=A0 =C2=A0 =C2=A0#1: cmake_runcmake_build, /workdir/tep-cam-rpi-yocto/rpi-=
-build-gatesgarth/../../poky/meta/classes/cmake.bbclass, line 205</div><div>=
-|=C2=A0 =C2=A0 =C2=A0 =C2=A0#2: cmake_do_compile, /workdir/tep-cam-rpi-yoct=
-o/rpi-build-gatesgarth/../../poky/meta/classes/cmake.bbclass, line 209</div=
-><div>|=C2=A0 =C2=A0 =C2=A0 =C2=A0#3: do_compile, autogenerated, line 2</di=
-v><div>ERROR: Task (/workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/../../m=
-eta-openembedded/meta-multimedia/recipes-multimedia/aom/aom_2.0.0.bb:do_com=
-pile) failed with exit code &#39;1&#39;</div><div>NOTE: Tasks Summary: Atte=
-mpted 3538 tasks of which 3326 didn&#39;t need to be rerun and 1 failed.</d=
-iv><div><br></div><div>Summary: 1 task failed:</div><div>=C2=A0 /workdir/te=
-p-cam-rpi-yocto/rpi-build-gatesgarth/../../meta-openembedded/meta-multimedi=
-a/recipes-multimedia/aom/aom_2.0.0.bb:do_compile</div><div>Summary: There w=
-as 1 WARNING message shown.</div><div>Summary: There was 1 ERROR message sh=
-own, returning a non-zero exit code.</div></div><div><br></div><div>Do you =
-have any idea why it didn&#39;t work ?</div><div><br></div><div>Best regard=
-s,</div><div><br></div><div>Safouane</div></div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0jeu. 18 f=C3=A9vr. =
-2021 =C3=A0=C2=A020:54, Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" =
-target=3D"_blank">raj.khem@gmail.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex">can you try adding<br>
-<br>
-EXTRA_OECMAKE +=3D &quot;-DHAVE_NEON=3D0&quot;<br>
-<br>
-and see if that helps ? for whatever reason set_aom_detect_var is<br>
-enabling it where as default should be 0<br>
-<br>
-On Thu, Feb 18, 2021 at 10:42 AM safouane maaloul<br>
-&lt;<a href=3D"mailto:maaloulsafouane@gmail.com" target=3D"_blank">maaloul=
-safouane@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; I succed in removing callconvention-hard from TUNE_FEATURES ? But i h=
-ave the same problem. I am pretty sure that i get get it working if i add n=
-eon to the TUNE_FEATURES. Something like this=C2=A0 =C2=A0 =C2=A0TUNE_FEATU=
-RES=3D &quot;arm armv6 vfp arm1176jzfs callconvention-hard neon&quot;. But =
-I can&#39;t do it with armv6. I have to use raspberrypi zero w so i have to=
- make it work with armv6. I know that i can make it work with armv7 and arm=
-v8. I have error like this : | In file included from /workdir/tep-cam-rpi-y=
-octo/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom=
-/2.0.0-r0/git/av1/encoder/arm/neon/quantize_neon.c:20:<br>
-&gt; | /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzf=
-shf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/common/arm/mem_neon.h:528:2=
-4: note: called from here<br>
-&gt; |=C2=A0 =C2=A0528 |=C2=A0 =C2=A0const int16x4_t s1 =3D vmovn_s32(v1);=
-<br>
-&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~~~~~~~~~~<br>
-&gt; | In file included from /workdir/tep-cam-rpi-yocto/rpi-build-gatesgar=
-th/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/encod=
-er/arm/neon/quantize_neon.c:12:<br>
-&gt; | /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzf=
-shf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/recipe-sysroot-native/usr/lib/arm-p=
-oky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/10.2.0/include/arm_neon.h:7556=
-:1: error: inlining failed in call to &#39;always_inline&#39; &#39;vmovn_s3=
-2&#39;: target specific option mismatch<br>
-&gt; |=C2=A0 7556 | vmovn_s32 (int32x4_t __a)<br>
-&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0| ^~~~~~~~~<br>
-&gt;<br>
-&gt; So i am sure i have to add the neon feature so i appreciate it if som=
-eone can help me. I didn&#39;t find a workaround this problem on the intern=
-et.<br>
-&gt;<br>
-&gt; Best regards,<br>
-&gt;<br>
-&gt; Safouane<br>
-&gt;<br>
-&gt; Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 18:00, Zoran Stojsavljevic &lt;<a h=
-ref=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zoran.stojsa=
-vljevic@gmail.com</a>&gt; a =C3=A9crit :<br>
-&gt;&gt;<br>
-&gt;&gt; <a href=3D"https://yocto.yoctoproject.narkive.com/Wle40I09/gcc-on=
--arm" rel=3D"noreferrer" target=3D"_blank">https://yocto.yoctoproject.narki=
-ve.com/Wle40I09/gcc-on-arm</a><br>
-&gt;&gt;<br>
-&gt;&gt; <a href=3D"https://www.yoctoproject.org/docs/current/mega-manual/=
-mega-manual.html#var-TUNE_FEATURES" rel=3D"noreferrer" target=3D"_blank">ht=
-tps://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-TU=
-NE_FEATURES</a><br>
-&gt;&gt; <a href=3D"https://www.yoctoproject.org/docs/current/mega-manual/=
-mega-manual.html#var-AVAILTUNES" rel=3D"noreferrer" target=3D"_blank">https=
-://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-AVAIL=
-TUNES</a><br>
-&gt;&gt;<br>
-&gt;&gt; Zee<br>
-&gt;&gt; _______<br>
-&gt;&gt;<br>
-&gt;&gt; On Thu, Feb 18, 2021 at 3:28 PM safouane maaloul<br>
-&gt;&gt; &lt;<a href=3D"mailto:maaloulsafouane@gmail.com" target=3D"_blank=
-">maaloulsafouane@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Yes I will check it. Do you know how to remove callconventio=
-n-hard from TUNE_FEATURES ?<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Best regards,<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Safouane<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 14:52, Zoran Stojsavljevic=
- &lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zor=
-an.stojsavljevic@gmail.com</a>&gt; a =C3=A9crit :<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; &gt; TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;=
-arm armv6 vfp arm1176jzfs callconvention-hard&quot;<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Here is an interesting reading for you, for me also:<br>
-&gt;&gt; &gt;&gt; <a href=3D"https://www.yoctoproject.org/pipermail/meta-x=
-ilinx/2015-July/001060.html" rel=3D"noreferrer" target=3D"_blank">https://w=
-ww.yoctoproject.org/pipermail/meta-xilinx/2015-July/001060.html</a><br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; What I am getting from this reading is that you need to =
-try with the<br>
-&gt;&gt; &gt;&gt; following line:<br>
-&gt;&gt; &gt;&gt; TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;arm a=
-rmv6 vfp arm1176jzfs&quot;<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; I guess, YOCTO people have not too much experience with =
-armv6, nor me,<br>
-&gt;&gt; &gt;&gt; but this should be (I hope) generic.<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Hope this helps.<br>
-&gt;&gt; &gt;&gt; Zoran<br>
-&gt;&gt; &gt;&gt; _______<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; On Thu, Feb 18, 2021 at 12:44 PM safouane maaloul<br>
-&gt;&gt; &gt;&gt; &lt;<a href=3D"mailto:maaloulsafouane@gmail.com" target=
-=3D"_blank">maaloulsafouane@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; This is my build configuration :<br>
-&gt;&gt; &gt;&gt; &gt; Build Configuration:<br>
-&gt;&gt; &gt;&gt; &gt; BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-=
-=3D &quot;1.46.0&quot;<br>
-&gt;&gt; &gt;&gt; &gt; BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=
-=3D &quot;x86_64-linux&quot;<br>
-&gt;&gt; &gt;&gt; &gt; NATIVELSBSTRING=C2=A0 =C2=A0 =C2=A0 =3D &quot;unive=
-rsal&quot;<br>
-&gt;&gt; &gt;&gt; &gt; TARGET_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-=
-=3D &quot;arm-poky-linux-gnueabi&quot;<br>
-&gt;&gt; &gt;&gt; &gt; MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =3D &quot;raspberrypi0-wifi&quot;<br>
-&gt;&gt; &gt;&gt; &gt; DISTRO=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=
-=A0 =C2=A0=3D &quot;poky&quot;<br>
-&gt;&gt; &gt;&gt; &gt; DISTRO_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;=
-3.1.5&quot;<br>
-&gt;&gt; &gt;&gt; &gt; TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;=
-arm armv6 vfp arm1176jzfs callconvention-hard&quot;<br>
-&gt;&gt; &gt;&gt; &gt; TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-=
-=3D &quot;hard&quot;<br>
-&gt;&gt; &gt;&gt; &gt; meta<br>
-&gt;&gt; &gt;&gt; &gt; meta-poky<br>
-&gt;&gt; &gt;&gt; &gt; meta-yocto-bsp=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;=
-dunfell:7ea41de13774675828239b7738d3f5d70be8b1af&quot;<br>
-&gt;&gt; &gt;&gt; &gt; meta-oe<br>
-&gt;&gt; &gt;&gt; &gt; meta-multimedia<br>
-&gt;&gt; &gt;&gt; &gt; meta-networking<br>
-&gt;&gt; &gt;&gt; &gt; meta-python=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &=
-quot;dunfell:5bba79488b7d393d2258d6e917f7bf7b0d7c4073&quot;<br>
-&gt;&gt; &gt;&gt; &gt; meta-raspberrypi=C2=A0 =C2=A0 =C2=A0=3D &quot;dunfe=
-ll:987993209716302eb8f314f69a2a3340555f94d8&quot;<br>
-&gt;&gt; &gt;&gt; &gt; meta-gstreamer1.0=C2=A0 =C2=A0 =3D &quot;dunfell:b4=
-89b1ba084544d9c4c08f7c3b3d1c37ffa53c51&quot;<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Best regards,<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Safouane<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Le mer. 17 f=C3=A9vr. 2021 =C3=A0 13:24, Zoran Stoj=
-savljevic &lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_b=
-lank">zoran.stojsavljevic@gmail.com</a>&gt; a =C3=A9crit :<br>
-&gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; &gt;&gt; So, what is your MACHINE variable set to?<br>
-&gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; &gt;&gt; Maybe knowing that, somebody can help.<br>
-&gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; &gt;&gt; Zee<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; --<br>
-&gt;&gt; &gt;&gt; &gt; SAFOUANE MAALOUL<br>
-&gt;&gt; &gt;&gt; &gt; <a href=3D"mailto:maaloulsafouane@gmail.com" target=
-=
-=3D"_blank">maaloulsafouane@gmail.com</a><br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; --<br>
-&gt;&gt; &gt; SAFOUANE MAALOUL<br>
-&gt;&gt; &gt; <a href=3D"mailto:maaloulsafouane@gmail.com" target=3D"_blan=
-k">maaloulsafouane@gmail.com</a><br>
-&gt;&gt; &gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; SAFOUANE MAALOUL<br>
-&gt; <a href=3D"mailto:maaloulsafouane@gmail.com" target=3D"_blank">maalou=
-lsafouane@gmail.com</a><br>
-&gt;<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
-"><div dir=3D"ltr"><font color=3D"#000000"><span><b>SAFOUANE MAALOUL</b></s=
-pan></font><div><span><b><u style=3D"background-color:rgb(255,255,255)"><fo=
-nt color=3D"#0b5394"><a href=3D"mailto:maaloulsafouane@gmail.com" target=3D=
-"_blank">maaloulsafouane@gmail.com</a></font></u><span style=3D"color:rgb(0=
-,0,0);background-color:rgb(255,255,255)"><br></span></b></span><div><span s=
-tyle=3D"background-color:rgb(255,255,255)"><font color=3D"#000000"><b><br><=
-/b></font></span></div></div></div></div>
-</blockquote></div></div>
-</blockquote></div></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature"=
- data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><font color=3D"#000000=
-"><span><b>SAFOUANE MAALOUL</b></span></font><div><span><b><u style=3D"back=
-ground-color:rgb(255,255,255)"><font color=3D"#0b5394"><a href=3D"mailto:ma=
-aloulsafouane@gmail.com" target=3D"_blank">maaloulsafouane@gmail.com</a></f=
-ont></u><span style=3D"color:rgb(0,0,0);background-color:rgb(255,255,255)">=
-<br></span></b></span><div><span style=3D"background-color:rgb(255,255,255)=
-"><font color=3D"#000000"><b><br></b></font></span></div></div></div></div>
-
---0000000000009d0a1d05bba21686--
+: note: called from here
+>>> |   525 |   const int32x4_t v0 =3D vld1q_s32(buf);
+>>> |       |                        ^~~~~~~~~~~~~~
+>>> | ninja: build stopped: subcommand failed.
+>>> | WARNING: /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/ar=
+m1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037:1=
+55 exit 1 from 'eval ${DESTDIR:+DESTDIR=3D${DESTDIR} }VERBOSE=3D1 cmake --b=
+uild '/workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfsh=
+f-vfp-poky-linux-gnueabi/aom/2.0.0-r0/build' "$@" -- ${EXTRA_OECMAKE_BUILD}=
+'
+>>> | WARNING: Backtrace (BB generated script):
+>>> |       #1: cmake_runcmake_build, /workdir/tep-cam-rpi-yocto/rpi-build=
+-gatesgarth/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/temp=
+/run.do_compile.24037, line 155
+>>> |       #2: cmake_do_compile, /workdir/tep-cam-rpi-yocto/rpi-build-gat=
+esgarth/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run=
+.do_compile.24037, line 149
+>>> |       #3: do_compile, /workdir/tep-cam-rpi-yocto/rpi-build-gatesgart=
+h/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_co=
+mpile.24037, line 144
+>>> |       #4: main, /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/=
+work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.=
+24037, line 168
+>>> |
+>>> | Backtrace (metadata-relative locations):
+>>> |       #1: cmake_runcmake_build, /workdir/tep-cam-rpi-yocto/rpi-build=
+-gatesgarth/../../poky/meta/classes/cmake.bbclass, line 205
+>>> |       #2: cmake_do_compile, /workdir/tep-cam-rpi-yocto/rpi-build-gat=
+esgarth/../../poky/meta/classes/cmake.bbclass, line 209
+>>> |       #3: do_compile, autogenerated, line 2
+>>> ERROR: Task (/workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/../../met=
+a-openembedded/meta-multimedia/recipes-multimedia/aom/aom_2.0.0.bb:do_compi=
+le) failed with exit code '1'
+>>> NOTE: Tasks Summary: Attempted 3538 tasks of which 3326 didn't need to=
+ be rerun and 1 failed.
+>>>
+>>> Summary: 1 task failed:
+>>>   /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/../../meta-openembed=
+ded/meta-multimedia/recipes-multimedia/aom/aom_2.0.0.bb:do_compile
+>>> Summary: There was 1 WARNING message shown.
+>>> Summary: There was 1 ERROR message shown, returning a non-zero exit co=
+de.
+>>>
+>>> Do you have any idea why it didn't work ?
+>>>
+>>> Best regards,
+>>>
+>>> Safouane
+>>>
+>>> Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 20:54, Khem Raj <raj.khem@gmail.com>=
+ a =C3=A9crit :
+>>>>
+>>>> can you try adding
+>>>>
+>>>> EXTRA_OECMAKE +=3D "-DHAVE_NEON=3D0"
+>>>>
+>>>> and see if that helps ? for whatever reason set_aom_detect_var is
+>>>> enabling it where as default should be 0
+>>>>
+>>>> On Thu, Feb 18, 2021 at 10:42 AM safouane maaloul
+>>>> <maaloulsafouane@gmail.com> wrote:
+>>>> >
+>>>> > I succed in removing callconvention-hard from TUNE_FEATURES ? But i=
+ have the same problem. I am pretty sure that i get get it working if i add=
+ neon to the TUNE_FEATURES. Something like this     TUNE_FEATURES=3D "arm a=
+rmv6 vfp arm1176jzfs callconvention-hard neon". But I can't do it with armv=
+6. I have to use raspberrypi zero w so i have to make it work with armv6. I=
+ know that i can make it work with armv7 and armv8. I have error like this =
+: | In file included from /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/t=
+mp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/encoder/a=
+rm/neon/quantize_neon.c:20:
+>>>> > | /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176j=
+zfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/common/arm/mem_neon.h:528=
+:24: note: called from here
+>>>> > |   528 |   const int16x4_t s1 =3D vmovn_s32(v1);
+>>>> > |       |                        ^~~~~~~~~~~~~
+>>>> > | In file included from /workdir/tep-cam-rpi-yocto/rpi-build-gatesg=
+arth/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/enc=
+oder/arm/neon/quantize_neon.c:12:
+>>>> > | /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176j=
+zfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/recipe-sysroot-native/usr/lib/arm=
+-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/10.2.0/include/arm_neon.h:75=
+56:1: error: inlining failed in call to 'always_inline' 'vmovn_s32': target=
+ specific option mismatch
+>>>> > |  7556 | vmovn_s32 (int32x4_t __a)
+>>>> > |       | ^~~~~~~~~
+>>>> >
+>>>> > So i am sure i have to add the neon feature so i appreciate it if s=
+omeone can help me. I didn't find a workaround this problem on the internet=
+.
+>>>> >
+>>>> > Best regards,
+>>>> >
+>>>> > Safouane
+>>>> >
+>>>> > Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 18:00, Zoran Stojsavljevic <zoran=
+.stojsavljevic@gmail.com> a =C3=A9crit :
+>>>> >>
+>>>> >> https://yocto.yoctoproject.narkive.com/Wle40I09/gcc-on-arm
+>>>> >>
+>>>> >> https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.=
+html#var-TUNE_FEATURES
+>>>> >> https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.=
+html#var-AVAILTUNES
+>>>> >>
+>>>> >> Zee
+>>>> >> _______
+>>>> >>
+>>>> >> On Thu, Feb 18, 2021 at 3:28 PM safouane maaloul
+>>>> >> <maaloulsafouane@gmail.com> wrote:
+>>>> >> >
+>>>> >> > Yes I will check it. Do you know how to remove callconvention-ha=
+rd from TUNE_FEATURES ?
+>>>> >> >
+>>>> >> > Best regards,
+>>>> >> >
+>>>> >> > Safouane
+>>>> >> >
+>>>> >> > Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 14:52, Zoran Stojsavljevic <zo=
+ran.stojsavljevic@gmail.com> a =C3=A9crit :
+>>>> >> >>
+>>>> >> >> > TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs callconve=
+ntion-hard"
+>>>> >> >>
+>>>> >> >> Here is an interesting reading for you, for me also:
+>>>> >> >> https://www.yoctoproject.org/pipermail/meta-xilinx/2015-July/00=
+1060.html
+>>>> >> >>
+>>>> >> >> What I am getting from this reading is that you need to try wit=
+h the
+>>>> >> >> following line:
+>>>> >> >> TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs"
+>>>> >> >>
+>>>> >> >> I guess, YOCTO people have not too much experience with armv6, =
+nor me,
+>>>> >> >> but this should be (I hope) generic.
+>>>> >> >>
+>>>> >> >> Hope this helps.
+>>>> >> >> Zoran
+>>>> >> >> _______
+>>>> >> >>
+>>>> >> >> On Thu, Feb 18, 2021 at 12:44 PM safouane maaloul
+>>>> >> >> <maaloulsafouane@gmail.com> wrote:
+>>>> >> >> >
+>>>> >> >> > This is my build configuration :
+>>>> >> >> > Build Configuration:
+>>>> >> >> > BB_VERSION           =3D "1.46.0"
+>>>> >> >> > BUILD_SYS            =3D "x86_64-linux"
+>>>> >> >> > NATIVELSBSTRING      =3D "universal"
+>>>> >> >> > TARGET_SYS           =3D "arm-poky-linux-gnueabi"
+>>>> >> >> > MACHINE              =3D "raspberrypi0-wifi"
+>>>> >> >> > DISTRO               =3D "poky"
+>>>> >> >> > DISTRO_VERSION       =3D "3.1.5"
+>>>> >> >> > TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs callconve=
+ntion-hard"
+>>>> >> >> > TARGET_FPU           =3D "hard"
+>>>> >> >> > meta
+>>>> >> >> > meta-poky
+>>>> >> >> > meta-yocto-bsp       =3D "dunfell:7ea41de13774675828239b7738d=
+3f5d70be8b1af"
+>>>> >> >> > meta-oe
+>>>> >> >> > meta-multimedia
+>>>> >> >> > meta-networking
+>>>> >> >> > meta-python          =3D "dunfell:5bba79488b7d393d2258d6e917f=
+7bf7b0d7c4073"
+>>>> >> >> > meta-raspberrypi     =3D "dunfell:987993209716302eb8f314f69a2=
+a3340555f94d8"
+>>>> >> >> > meta-gstreamer1.0    =3D "dunfell:b489b1ba084544d9c4c08f7c3b3=
+d1c37ffa53c51"
+>>>> >> >> >
+>>>> >> >> > Best regards,
+>>>> >> >> >
+>>>> >> >> > Safouane
+>>>> >> >> >
+>>>> >> >> > Le mer. 17 f=C3=A9vr. 2021 =C3=A0 13:24, Zoran Stojsavljevic =
+<zoran.stojsavljevic@gmail.com> a =C3=A9crit :
+>>>> >> >> >>
+>>>> >> >> >> So, what is your MACHINE variable set to?
+>>>> >> >> >>
+>>>> >> >> >> Maybe knowing that, somebody can help.
+>>>> >> >> >>
+>>>> >> >> >> Zee
+>>>> >> >> >
+>>>> >> >> >
+>>>> >> >> >
+>>>> >> >> > --
+>>>> >> >> > SAFOUANE MAALOUL
+>>>> >> >> > maaloulsafouane@gmail.com
+>>>> >> >> >
+>>>> >> >
+>>>> >> >
+>>>> >> >
+>>>> >> > --
+>>>> >> > SAFOUANE MAALOUL
+>>>> >> > maaloulsafouane@gmail.com
+>>>> >> >
+>>>> >
+>>>> >
+>>>> >
+>>>> > --
+>>>> > SAFOUANE MAALOUL
+>>>> > maaloulsafouane@gmail.com
+>>>> >
+>>>> >
+>>>> >=20
+>>>> >
+>>>
+>>>
+>>>
+>>> --
+>>> SAFOUANE MAALOUL
+>>> maaloulsafouane@gmail.com
+>>>
+> --
+> SAFOUANE MAALOUL
+> maaloulsafouane@gmail.com
+>
