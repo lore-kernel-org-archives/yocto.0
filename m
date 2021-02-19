@@ -1,707 +1,330 @@
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
- by mx.groups.io with SMTP id smtpd.web11.2257.1613695342604297131
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.5260.1613716514519159194
  for <yocto@lists.yoctoproject.org>;
- Thu, 18 Feb 2021 16:42:22 -0800
+ Thu, 18 Feb 2021 22:35:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=u99F+3Sh;
- spf=pass (domain: gmail.com, ip: 209.85.166.178, mailfrom: maaloulsafouane@gmail.com)
-Received: by mail-il1-f178.google.com with SMTP id o15so3155403ilt.6
-        for <yocto@lists.yoctoproject.org>; Thu, 18 Feb 2021 16:42:22 -0800 (PST)
+ dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=CRKFVeG3;
+ spf=softfail (domain: windriver.com, ip: 198.145.29.25, mailfrom: qi.chen@windriver.com)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2086.outbound.protection.outlook.com [40.107.243.86])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 9403638C06E6
+	for <yocto@yoctoproject.org>; Fri, 19 Feb 2021 06:35:13 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ml6o0rtR66jAUtNyvwyNjfUlPCR3hnRQfgdK2ajwe3B8t+RZi1MIFLxjuwW8Ddlp4InDKCWB+Cp0pJ/Vx7+gQW4101xg0Nch76D9Vig9sjndgJ0MPGYs+MvFzdI4I6QRBvQwFetSLiF96FE9K3xQjD9HQZwibBSXKs8oU/XmKS3GgHurwhV776f82kzxfT8NUyJPoITj/A57lSahc8jamvSaprQUY2EsZ4kfTu5pbyH0JKONl8SzEdku+1dirardwv4ML4UboXMtzKEyOLlz8gl3jXuEl8oRIc07st/Fwj6lx4QaSj6K0mCZdla3vhxCwf5W0fFoLcpfNW1Mtl+omQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QcKaDctQIxG/LNjDRNt7OaSR2VTzuIizry5ezPj6Ni0=;
+ b=WB4qBP6aIcCOHJOeNjcXKQIeP261FVmyGrTIYaw2nKkOVEjINMFpHINzMUanDbs8srW2AYDBFcztg98JM/vO7T0GGH4fRDnX0B/o4oOHdoBpeoqL+QJq0rEgd16yuZoOF4bQYXsu0ZTkdhBvnnPDER9jS6hPu8pF+/GeCEc/WAmcEWMFVUUavK54Jd0ICRhl7HC5u/Dukf14QcT9L8C/BvoRRuMMAoHRpJW9guHKI8ifbyvgHNjLf0bX42YOzltH0nqqVyYaaaaKt+1bsrZM7n5ZaSlrwNWxtM1k2qkw5SYJhNUPXwJ+mZ6ZSSKvPu4pa68UvkNxz5UUE80LNGdsgg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bdGiYo4k6bjf5H8MRS5x3Yl4TwQjFe0pNgrSx22mRZU=;
-        b=u99F+3ShY7C/prXYKtVw7gzhQiTr+2lPXRIzYVDgqm3x0CeHf4Fs3ixDgnAhgtZXeR
-         phecZ0TdyhKZumpuJLib2g3nZjmZh+UPhfwyWfVKofgrzDIJQ5kfzY6bvUq4EFD0YWcx
-         qhehihYlr0pdb/SkURpAFP71IN4JQ+bUQGljWU/avNaxTqW2nDEFBbEibSV0HIYcr9xc
-         +efh49iG98beKC+8qDqzq89HxGLR2+6JMQw5HWnfkrPP2CJq5Smu9o8hQyQeOQ12fsiI
-         puXjZInnL6xmivloUGQjjbdcpIIF3cpxi1gpfUAIp4QzTGT89reO8b2fhnWtEHrA6VZe
-         3Ahg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bdGiYo4k6bjf5H8MRS5x3Yl4TwQjFe0pNgrSx22mRZU=;
-        b=D6YfN+ivFX744M2iKd0h+kjrlDcDtjXPRJq72mDd/OwrHl6yd7d2t+w4CTEwq88hMr
-         7exZmCQaUQ9x7xO3ou7vtLLeXA23yKUShVMo30Nq65Zyr6qasPispxPPVr6OmRqzNCmB
-         YK0xpuvV+4uX4rz+CSLjtHleBYPq8B4JXmIYljmlZovoFaCMMR2Ee5dfGXBFDmG582F5
-         X3vXeQET0aY0EkN80KY8IsZAjU2soTJUCbepkiKuSRNjt1QiDe7Q+5eCy95UbCxOcwDp
-         PtUbALK7NR7LW9SzSDBbsbM3Mk0chZGtBzfyJd3GHhl7i5daxkgBCY5neG8YSFlRQ4+c
-         RTxw==
-X-Gm-Message-State: AOAM533KoV+idJdqQpYSmhPdLwViIocqChDlCJULb9mpynMvk0cOXwYH
-	QdVpkOwXJ8v1C+xYnHrA5Ks4cJpMELzvWkrrQs0=
-X-Google-Smtp-Source: ABdhPJyjI5JtyJr1535nrysPNPGslQTEd1mKb73oegxYxaVvoZvHaE+9IbCO8o6bO/8N3UI3X4pwSXSQz045DGPWqLc=
-X-Received: by 2002:a92:c849:: with SMTP id b9mr1545288ilq.271.1613695341951;
- Thu, 18 Feb 2021 16:42:21 -0800 (PST)
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QcKaDctQIxG/LNjDRNt7OaSR2VTzuIizry5ezPj6Ni0=;
+ b=CRKFVeG3hjGL05cZdOPghf8LSZcHYYANPeWjJwuAL2H1nlnd/E5JL3aofMWw0Eyz+l2q1uqEaLFroGKIW2jMHCb4dmsLBCxXwZlaPQmh1dDFdewklUBTG9Ro/uN+QiS6u8tq1TqOw2TCqtPhycxrrV8/Hc7ObpqNF6CBA/bY4Ps=
+Authentication-Results: yoctoproject.org; dkim=none (message not signed)
+ header.d=none;yoctoproject.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from BYAPR11MB3480.namprd11.prod.outlook.com (2603:10b6:a03:79::27)
+ by BYAPR11MB3109.namprd11.prod.outlook.com (2603:10b6:a03:8c::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.39; Fri, 19 Feb
+ 2021 06:35:12 +0000
+Received: from BYAPR11MB3480.namprd11.prod.outlook.com
+ ([fe80::d9b:3f7c:136d:e60]) by BYAPR11MB3480.namprd11.prod.outlook.com
+ ([fe80::d9b:3f7c:136d:e60%7]) with mapi id 15.20.3846.042; Fri, 19 Feb 2021
+ 06:35:12 +0000
+Subject: Re: [yocto] [ptest-runner][PATCH v2] Fix inappropriate ioctl when detaching tty
+To: Anibal Limon <anibal.limon@linaro.org>,
+ Tero Kinnunen <tero.kinnunen@vaisala.com>
+References: <20200710054432.557157-1-tero.kinnunen@vaisala.com>
+ <CA+_Aqit4UM=EH5ztSHbuVx84eHzoQN0NPU+ADEY7Sfi7=WpNDA@mail.gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+From: "Chen Qi" <Qi.Chen@windriver.com>
+Message-ID: <ca58386c-51e1-770a-253d-4eb1c13441c5@windriver.com>
+Date: Fri, 19 Feb 2021 14:44:47 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
+In-Reply-To: <CA+_Aqit4UM=EH5ztSHbuVx84eHzoQN0NPU+ADEY7Sfi7=WpNDA@mail.gmail.com>
+X-Originating-IP: [60.247.85.82]
+X-ClientProxiedBy: HK2PR04CA0051.apcprd04.prod.outlook.com
+ (2603:1096:202:14::19) To BYAPR11MB3480.namprd11.prod.outlook.com
+ (2603:10b6:a03:79::27)
 MIME-Version: 1.0
-References: <OHWd.1613555997180740145.8Ytp@lists.yoctoproject.org>
- <CAGAf8LxoGwaocSUq04jqar4hQH2NiZ2DdumN5dpnQm4dr2wkew@mail.gmail.com>
- <CAEj=YVJ6z6etLaMrFUXREfeyFhaS-UvnnDh19zUor37eAPGnvQ@mail.gmail.com>
- <CAGAf8LyRvfu_iw+BQkiVYUuF6po0d0Pe0xqsVRjG8_bG-u75fA@mail.gmail.com>
- <CAEj=YVLoCXsYPF_ptXLZTDuQi3JLwRZAJNmbrUziUj-Mf8DHfw@mail.gmail.com>
- <CAGAf8Lzfz7qyNLiPWDwvyj5gGs64pUHMK3uo9daHKC6-jB7toA@mail.gmail.com>
- <CAEj=YVJroNCPYDdfw9BfhMzySWkVaLSnkmqNv6JTMhBv7NCMoQ@mail.gmail.com>
- <CAGAf8LwoLjf8cn4+wz5o4HeXKZJFz4Pi0vE2U7-wXs3aZmQc-w@mail.gmail.com>
- <CAEj=YV+8uSPa2J07-eFPwB=fwGEuY728a+81iudXt2fPqLFFMA@mail.gmail.com>
- <CAMKF1srYCHnDcfCyZR_psvM=_-p9ccgtHOqdba9Ykv4iuv4LbA@mail.gmail.com>
- <CAEj=YVKUCa+P1tpNja3EAp5aVE=TA4kC+uAzQo4ScyzGQbVNJQ@mail.gmail.com>
- <CAMKF1sqjo4nbLzGZcfMMy6vSrNNOBW3eWG9JeyrNbNGYc==K8A@mail.gmail.com>
- <CAEj=YV+dXhT=iiD3eSHLsm9FqJK_BUQ3M6RwsOBZwfj09N1Uig@mail.gmail.com> <CAMKF1so+8tNx_--8LBwmMtv-2J_pUFsQnQFb0UOfKstk_F4H6g@mail.gmail.com>
-In-Reply-To: <CAMKF1so+8tNx_--8LBwmMtv-2J_pUFsQnQFb0UOfKstk_F4H6g@mail.gmail.com>
-From: "safouane maaloul" <maaloulsafouane@gmail.com>
-Date: Fri, 19 Feb 2021 01:42:10 +0100
-Message-ID: <CAEj=YVLrX-x5M-Zfd5axo2d_OE=6NJVb9RZsLzTgefiu7tS-KQ@mail.gmail.com>
-Subject: Re: [yocto] #av1 #armv6 #raspberrypi #neon
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000a1fdb305bba5b904"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [128.224.162.161] (60.247.85.82) by HK2PR04CA0051.apcprd04.prod.outlook.com (2603:1096:202:14::19) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.20.3868.27 via Frontend Transport; Fri, 19 Feb 2021 06:35:10 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3333b1cd-cc74-43ca-7748-08d8d4a08233
+X-MS-TrafficTypeDiagnostic: BYAPR11MB3109:
+X-Microsoft-Antispam-PRVS: 
+	<BYAPR11MB31091F44B7229E2D76A9E279ED849@BYAPR11MB3109.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:83;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	Na14OKMsADoSAVfIPSLalgEt70hKqBLJUEdSFDyun3MNAfdOewrkHGaao460MLaCIV+t6/bme762u+taUsP+pr8kW42a21/0qqq4ezJ31l9vfQGba1foR8x6pBBHePd84LOfY1kypAamL3LIc3+XjEHSNAkmwgh8+tFpmqguUWh6pmkM7cquhBSYnXQd099QHd+Q6IOdwdHG8lypX5CPTSJZ3Fq1vljpG4qbo2KIF9HS/1+RmUnvv3Ptj1Pzbuh9JYU+EawY0iNYo008Pv3YAG9pPSHSSl4/vbL69Mc3XLNii/WlSMjdRoU6axlglcHfD/v6BCNDYwUHGnvAVP9A5ciUx4vR76AYtlSDEDI2v8oYcK9h8KWDcwCBEAg2mE2D9AJiQVAISzgZ44GQBmYcIjSH8nuuIkgDdb6B2e6zzeUWkUtCT92SNamXvA0afbG+KeiG9nfFYdy+VuBiXazM7c5ZqMfWsB9i4gWWrdqejmuSVCeNdrPzRr+VLQdYM37+XuaKaRebSJ0y49I+T4RtTl8y+g4DEVwPXZaFh6dOGo6P75hjMap7RUQCfbT06LetAUh87/3NL8WFYhKjgxsKWEwRY9HcJUklizaarUk813OcFwCAlgzyWOjFcjfxvD2JJLjm79UBwcKCk/nXjcxXF6O+ULGiMtMlxfPgkhsKdgYTL3GckH0TNhUaegaY1qPBBS3FAHjysDTI64TyPRmNGw==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3480.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(346002)(396003)(376002)(39850400004)(186003)(16526019)(83380400001)(86362001)(478600001)(16576012)(2906002)(6706004)(8936002)(6486002)(33964004)(8676002)(31686004)(316002)(966005)(4326008)(166002)(66946007)(26005)(66476007)(66556008)(6666004)(53546011)(956004)(5660300002)(31696002)(52116002)(36756003)(110136005)(2616005)(78286007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	=?utf-8?B?dlNTVjJXaEVmZUFYTFBsOWphOW9UajEwSFA2bEtHVjVVak05Q1BCV3k5c1I1?=
+ =?utf-8?B?dERxeVpYMjdFT2RubGo3R0lxTmFVVC9xYVFTanFWWXJwU1Ftb0lLaldJeThW?=
+ =?utf-8?B?T0dXaTloOFZxLzZEZ3BldmVRQWlnU1VUYkIzcHhHZzcrbmVpb3k2d3RYLzhL?=
+ =?utf-8?B?VzFLdUlteE9mRXRlWTlqdlgrSkRwYnp3Sy9RYnVJeGdSSDNWcnZUUXZlS1Bq?=
+ =?utf-8?B?VGVqNnljZExJSjNvcExBQWVsTFA4Z1RGaTJhelhqaUxoKzAvNU9ianlrVmhi?=
+ =?utf-8?B?WE1OYVFTUmJrY05qOEdSRXdyWjZXQmZlT3pISlBPZFhNQ3d2ajRteTlhTUxP?=
+ =?utf-8?B?cDBVbkdZMU41dzZjbnFKRXMxZEw2V1I2YTV5WmdtZE9BTnJ1Wk5pYW43ODlq?=
+ =?utf-8?B?MTNuME9GYzdSOWREcWdXVWpLa0hqUldtNE9xaGo5UVBWNHhkd0pPamc2S2h1?=
+ =?utf-8?B?R1pzclhPMTM3aFA2VDdlbUJyMi94blUxaHZVTDdZejgwY2lITWtRWWdtSk5V?=
+ =?utf-8?B?VUxCVVBSalppTmZPRFhjbkRKMWEvTkVRNEl1L1U5OTNPUkdFS2ZSeHBSdXZM?=
+ =?utf-8?B?N3pQNGxoUC8zb2FNSlFCbjRmZnhNNEl4U1ZuSmFWNCtsbGpRdGNtZVJHYTVp?=
+ =?utf-8?B?U1dSc1RVbU93STNYY09WbGwrQ2piYm9HYUYzeDN1RUk5enVWdFc4ZkpMWTl4?=
+ =?utf-8?B?TnJERjhkVDM2bjZVckNSbklYNHVtUGoyVTA3VU9nYitHdFJvVnkwKzEvVktu?=
+ =?utf-8?B?cDcydS93ZFIwWURaZUFSSGlaOHJvUVJ5WnRsYS9CU0FsT2M5eEIyZVVxUjFn?=
+ =?utf-8?B?YTk1RkVaSHl1ZmZxYUdFKzliSldYVTJGejMwaTA4WGtrQ3VjVWRDY2FrdGdv?=
+ =?utf-8?B?NTVwZWwzTVVTOUFSUDh4Y0YyZGNXVzJ3K1k1VEx0RmJ2S0dzWGU4WndiSkx6?=
+ =?utf-8?B?cnl5V3BMd1JrNkFaVDhGcmVzazBvSmZtRURyUU1aT0tYYmZxcVRtTzRLUThs?=
+ =?utf-8?B?a2MwSkRtN0tTTFNwMTlLQjA2RkI5UjdTMXJsaDVhTFpyWXNNUWJIV3RFNys1?=
+ =?utf-8?B?U1NRa25PZTJ4clRMKzVQZElZbXJ2bmFCdVBWcDB6bkV2bmRoNnROaEc0bkhq?=
+ =?utf-8?B?N1RJcVFBRUduVUtUbmV5eEdNVHFwMTRRa2FIQno2V3BxaU9DZkZ3VGdvVWhn?=
+ =?utf-8?B?UWc3N25HM0p6WWdybEtIUE5ORkQveE5JRk5LdlZRT1NZL3dGVFQwRkRwWE1M?=
+ =?utf-8?B?T2pnTFArRCtEUXp0ZXd2R3JiYTJpMnh5S3YxS1VQSmJyVzJXbVFoamlFdnlO?=
+ =?utf-8?B?WnRXV01kcEZDZUhYYnJ1WFU2a2E1c29oSzAwVUJyYkF1Y0g0N3V6bjdxNG5z?=
+ =?utf-8?B?b2tkSUlOemlmc2FYd282NExxb1hicUJoRVBTbjZsK0VXZmhGaURPSGk0bXFI?=
+ =?utf-8?B?emdlWXJVTk1ySk1PYnZ0TjIrc3kyNG9PNC84V0JBV2RYV3RycWZHZFlXakVP?=
+ =?utf-8?B?TU9kdkY3UGZ3bzNPWFBSMVJrNzZQcnU4WDBXSU9Fdm9oNENrN1VncldKTHFJ?=
+ =?utf-8?B?UlM3d21YTmhvdHUvdDRBY0NDWDRmMEVOOHp1Z29wSW5YZ1BRd1JpWlpRRGEv?=
+ =?utf-8?B?K3ZaZ1AyUHJyZDUvYVZQWEMwQzlxWndBREVFcDNyK1drZVhGQ0Z4K1hvS3Ji?=
+ =?utf-8?B?S0xBeS94SVVqTmJwV1o0YmlZOHVRYnhrQzg1aWR0VjVxRzFLWUw2KzZwMDdz?=
+ =?utf-8?Q?+i2yD+sWuWxOMMy0gZJsXpp+pkXgaqbXkO59XSu?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3333b1cd-cc74-43ca-7748-08d8d4a08233
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3480.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2021 06:35:12.0470
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sgoI0ff26esocIY55IxHncqwELKckWImJnDzUKTMrsyTuhiUyO5PWK+G4Ekys3eCjR5QHD6wpTSIJeI3QcOAMw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3109
+Content-Type: multipart/alternative;
+ boundary="------------EEEC71DFF637EA8932AECAAA"
 
---000000000000a1fdb305bba5b904
-Content-Type: text/plain; charset="UTF-8"
+--------------EEEC71DFF637EA8932AECAAA
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hi Anibal,
+
+The ptest-runner repo seems to be messed up.
+This patch is no longer there, yet the SRCREV in ptest-runner recipe 
+refers to this commit.
+
+$ git show 834670317bd3f6e427e1ac461c07ada6b8936dfd
+fatal: bad object 834670317bd3f6e427e1ac461c07ada6b8936dfd
+
+Regards,
+Chen Qi
+
+On 07/14/2020 03:29 AM, Anibal Limon wrote:
+> Applied, Thanks!.
+>
+> Anibal
+>
+> On Fri, 10 Jul 2020 at 00:44, Tero Kinnunen <tero.kinnunen@vaisala.com 
+> <mailto:tero.kinnunen@vaisala.com>> wrote:
+>
+>     Fixes error
+>
+>         ERROR: Unable to detach from controlling tty, Inappropriate
+>     ioctl for device
+>
+>     when running multiple ptests
+>
+>         ptest-runner a b
+>
+>     or when invoked over ssh single command, like
+>
+>         $ ssh localhost ptest-runner
+>
+>     For ssh case, fd 0 is not a tty. (isatty(0) is false).
+>     When running multiple ptests, deattach for parent needs to be
+>     done only once.
+>
+>     Signed-off-by: Tero Kinnunen <tero.kinnunen@vaisala.com
+>     <mailto:tero.kinnunen@vaisala.com>>
+>     ---
+>      utils.c | 6 +++---
+>      1 file changed, 3 insertions(+), 3 deletions(-)
+>
+>     diff --git a/utils.c b/utils.c
+>     index a8ba190..a4e190e 100644
+>     --- a/utils.c
+>     +++ b/utils.c
+>     @@ -437,6 +437,9 @@ run_ptests(struct ptest_list *head, const
+>     struct ptest_options opts,
+>                             break;
+>                     }
+>                     fprintf(fp, "START: %s\n", progname);
+>     +               if (isatty(0) && ioctl(0, TIOCNOTTY) == -1) {
+>     +                       fprintf(fp, "ERROR: Unable to detach from
+>     controlling tty, %s\n", strerror(errno));
+>     +               }
+>                     PTEST_LIST_ITERATE_START(head, p)
+>                             char *ptest_dir = strdup(p->run_ptest);
+>                             if (ptest_dir == NULL) {
+>     @@ -444,9 +447,6 @@ run_ptests(struct ptest_list *head, const
+>     struct ptest_options opts,
+>                                     break;
+>                             }
+>                             dirname(ptest_dir);
+>     -                       if (ioctl(0, TIOCNOTTY) == -1) {
+>     -                               fprintf(fp, "ERROR: Unable to
+>     detach from controlling tty, %s\n", strerror(errno));
+>     -                       }
+>
+>                             if ((pgid = getpgid(0)) == -1) {
+>                                     fprintf(fp, "ERROR: getpgid()
+>     failed, %s\n", strerror(errno));
+>     -- 
+>     2.25.1
+>
+>
+>
+> 
+
+
+
+--------------EEEC71DFF637EA8932AECAAA
+Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Yeah it works. I have yet to test the image on my raspberry pi Monday in
-the office. But I finished the build.  I will tested Monday and i
-will tell you. I have a warning :
-image-1.0-r0 do_rootfs: The license listed AOM-Patent-1.0 was not in the
-licenses collected for recipe aom
-
-I think because the name of the license in
-meta-openembedded/meta-multimedia/licenses/ is AOM-Patent-License-1.0 and
-not AOM-Patent-1.0 like mentioned in the recipe. I think it must be
-changed. Thanks I will tell you Monday what happened when I try the image
-on my raspberry Pi zero W.
-
-Best regards,
-
-Safouane
-
-Le ven. 19 f=C3=A9vr. 2021 =C3=A0 00:00, Khem Raj <raj.khem@gmail.com> a =
-=C3=A9crit :
-
-> Please try applying below patch to aom recipe in meta-openembedded repo
->
->
-> https://lists.openembedded.org/g/openembedded-devel/topic/meta_multimedi=
-a_patch_aom/80743335?p=3D,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,0,8074=
-3335
->
-> let me know how it goes.
->
-> On Thu, Feb 18, 2021 at 12:22 PM safouane maaloul
-> <maaloulsafouane@gmail.com> wrote:
-> >
-> > Sorry to annoying you with my question but how do i find where HAVE_NE=
-ON
-> is set ?
-> >
-> > Best regards,
-> >
-> > Safouane
-> >
-> > Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 21:16, Khem Raj <raj.khem@gmail.com>=
- a =C3=A9crit :
-> >>
-> >> Well we do not enable neon for this tune but aom still seems to want =
-it
-> so I would suggest to look at the build and see if it=E2=80=99s disablin=
-g neon and
-> have HAVE_NEON is not set properly
-> >>
-> >> On Thu, Feb 18, 2021 at 12:12 PM safouane maaloul <
-> maaloulsafouane@gmail.com> wrote:
-> >>>
-> >>> I have an erreur:
-> >>> |
-> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-v=
-fp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/common/arm/mem_neon.h:525:24:
-> note: called from here
-> >>> |   525 |   const int32x4_t v0 =3D vld1q_s32(buf);
-> >>> |       |                        ^~~~~~~~~~~~~~
-> >>> | ninja: build stopped: subcommand failed.
-> >>> | WARNING:
-> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-v=
-fp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037:155
-> exit 1 from 'eval ${DESTDIR:+DESTDIR=3D${DESTDIR} }VERBOSE=3D1 cmake --b=
-uild
-> '/workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-=
-vfp-poky-linux-gnueabi/aom/2.0.0-r0/build'
-> "$@" -- ${EXTRA_OECMAKE_BUILD}'
-> >>> | WARNING: Backtrace (BB generated script):
-> >>> |       #1: cmake_runcmake_build,
-> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-v=
-fp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037,
-> line 155
-> >>> |       #2: cmake_do_compile,
-> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-v=
-fp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037,
-> line 149
-> >>> |       #3: do_compile,
-> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-v=
-fp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037,
-> line 144
-> >>> |       #4: main,
-> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-v=
-fp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037,
-> line 168
-> >>> |
-> >>> | Backtrace (metadata-relative locations):
-> >>> |       #1: cmake_runcmake_build,
-> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/../../poky/meta/classes/=
-cmake.bbclass,
-> line 205
-> >>> |       #2: cmake_do_compile,
-> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/../../poky/meta/classes/=
-cmake.bbclass,
-> line 209
-> >>> |       #3: do_compile, autogenerated, line 2
-> >>> ERROR: Task
-> (/workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/../../meta-openembedded=
-/meta-multimedia/recipes-multimedia/aom/aom_2.0.0.bb:do_compile)
-> failed with exit code '1'
-> >>> NOTE: Tasks Summary: Attempted 3538 tasks of which 3326 didn't need =
-to
-> be rerun and 1 failed.
-> >>>
-> >>> Summary: 1 task failed:
-> >>>
->  /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/../../meta-openembedded=
-/meta-multimedia/recipes-multimedia/aom/aom_2.0.0.bb:
-> do_compile
-> >>> Summary: There was 1 WARNING message shown.
-> >>> Summary: There was 1 ERROR message shown, returning a non-zero exit
-> code.
-> >>>
-> >>> Do you have any idea why it didn't work ?
-> >>>
-> >>> Best regards,
-> >>>
-> >>> Safouane
-> >>>
-> >>> Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 20:54, Khem Raj <raj.khem@gmail.co=
-m> a =C3=A9crit :
-> >>>>
-> >>>> can you try adding
-> >>>>
-> >>>> EXTRA_OECMAKE +=3D "-DHAVE_NEON=3D0"
-> >>>>
-> >>>> and see if that helps ? for whatever reason set_aom_detect_var is
-> >>>> enabling it where as default should be 0
-> >>>>
-> >>>> On Thu, Feb 18, 2021 at 10:42 AM safouane maaloul
-> >>>> <maaloulsafouane@gmail.com> wrote:
-> >>>> >
-> >>>> > I succed in removing callconvention-hard from TUNE_FEATURES ? But=
- i
-> have the same problem. I am pretty sure that i get get it working if i a=
-dd
-> neon to the TUNE_FEATURES. Something like this     TUNE_FEATURES=3D "arm
-> armv6 vfp arm1176jzfs callconvention-hard neon". But I can't do it with
-> armv6. I have to use raspberrypi zero w so i have to make it work with
-> armv6. I know that i can make it work with armv7 and armv8. I have error
-> like this : | In file included from
-> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-v=
-fp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/encoder/arm/neon/quantize_neon.c=
-:20:
-> >>>> > |
-> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-v=
-fp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/common/arm/mem_neon.h:528:24:
-> note: called from here
-> >>>> > |   528 |   const int16x4_t s1 =3D vmovn_s32(v1);
-> >>>> > |       |                        ^~~~~~~~~~~~~
-> >>>> > | In file included from
-> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-v=
-fp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/encoder/arm/neon/quantize_neon.c=
-:12:
-> >>>> > |
-> /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-v=
-fp-poky-linux-gnueabi/aom/2.0.0-r0/recipe-sysroot-native/usr/lib/arm-poky-l=
-inux-gnueabi/gcc/arm-poky-linux-gnueabi/10.2.0/include/arm_neon.h:7556:1:
-> error: inlining failed in call to 'always_inline' 'vmovn_s32': target
-> specific option mismatch
-> >>>> > |  7556 | vmovn_s32 (int32x4_t __a)
-> >>>> > |       | ^~~~~~~~~
-> >>>> >
-> >>>> > So i am sure i have to add the neon feature so i appreciate it if
-> someone can help me. I didn't find a workaround this problem on the
-> internet.
-> >>>> >
-> >>>> > Best regards,
-> >>>> >
-> >>>> > Safouane
-> >>>> >
-> >>>> > Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 18:00, Zoran Stojsavljevic <
-> zoran.stojsavljevic@gmail.com> a =C3=A9crit :
-> >>>> >>
-> >>>> >> https://yocto.yoctoproject.narkive.com/Wle40I09/gcc-on-arm
-> >>>> >>
-> >>>> >>
-> https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#v=
-ar-TUNE_FEATURES
-> >>>> >>
-> https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#v=
-ar-AVAILTUNES
-> >>>> >>
-> >>>> >> Zee
-> >>>> >> _______
-> >>>> >>
-> >>>> >> On Thu, Feb 18, 2021 at 3:28 PM safouane maaloul
-> >>>> >> <maaloulsafouane@gmail.com> wrote:
-> >>>> >> >
-> >>>> >> > Yes I will check it. Do you know how to remove
-> callconvention-hard from TUNE_FEATURES ?
-> >>>> >> >
-> >>>> >> > Best regards,
-> >>>> >> >
-> >>>> >> > Safouane
-> >>>> >> >
-> >>>> >> > Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 14:52, Zoran Stojsavljevic <
-> zoran.stojsavljevic@gmail.com> a =C3=A9crit :
-> >>>> >> >>
-> >>>> >> >> > TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs
-> callconvention-hard"
-> >>>> >> >>
-> >>>> >> >> Here is an interesting reading for you, for me also:
-> >>>> >> >>
-> https://www.yoctoproject.org/pipermail/meta-xilinx/2015-July/001060.html
-> >>>> >> >>
-> >>>> >> >> What I am getting from this reading is that you need to try
-> with the
-> >>>> >> >> following line:
-> >>>> >> >> TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs"
-> >>>> >> >>
-> >>>> >> >> I guess, YOCTO people have not too much experience with armv6=
+<html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+  </head>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div class=3D"moz-cite-prefix">Hi Anibal,<br>
+      <br>
+      The ptest-runner repo seems to be messed up.<br>
+      This patch is no longer there, yet the SRCREV in ptest-runner
+      recipe refers to this commit.<br>
+      <br>
+      $ git show 834670317bd3f6e427e1ac461c07ada6b8936dfd<br>
+      fatal: bad object 834670317bd3f6e427e1ac461c07ada6b8936dfd<br>
+      <br>
+      Regards,<br>
+      Chen Qi<br>
+      <br>
+      On 07/14/2020 03:29 AM, Anibal Limon wrote:<br>
+    </div>
+    <blockquote cite=3D"mid:CA+_Aqit4UM=3DEH5ztSHbuVx84eHzoQN0NPU+ADEY7Sfi=
+7=3DWpNDA@mail.gmail.com" type=3D"cite">
+      
+      <div dir=3D"ltr">Applied, Thanks!.
+        <div><br>
+        </div>
+        <div>Anibal</div>
+      </div>
+      <br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Fri, 10 Jul 2020 at 00:44=
 ,
-> nor me,
-> >>>> >> >> but this should be (I hope) generic.
-> >>>> >> >>
-> >>>> >> >> Hope this helps.
-> >>>> >> >> Zoran
-> >>>> >> >> _______
-> >>>> >> >>
-> >>>> >> >> On Thu, Feb 18, 2021 at 12:44 PM safouane maaloul
-> >>>> >> >> <maaloulsafouane@gmail.com> wrote:
-> >>>> >> >> >
-> >>>> >> >> > This is my build configuration :
-> >>>> >> >> > Build Configuration:
-> >>>> >> >> > BB_VERSION           =3D "1.46.0"
-> >>>> >> >> > BUILD_SYS            =3D "x86_64-linux"
-> >>>> >> >> > NATIVELSBSTRING      =3D "universal"
-> >>>> >> >> > TARGET_SYS           =3D "arm-poky-linux-gnueabi"
-> >>>> >> >> > MACHINE              =3D "raspberrypi0-wifi"
-> >>>> >> >> > DISTRO               =3D "poky"
-> >>>> >> >> > DISTRO_VERSION       =3D "3.1.5"
-> >>>> >> >> > TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs
-> callconvention-hard"
-> >>>> >> >> > TARGET_FPU           =3D "hard"
-> >>>> >> >> > meta
-> >>>> >> >> > meta-poky
-> >>>> >> >> > meta-yocto-bsp       =3D
-> "dunfell:7ea41de13774675828239b7738d3f5d70be8b1af"
-> >>>> >> >> > meta-oe
-> >>>> >> >> > meta-multimedia
-> >>>> >> >> > meta-networking
-> >>>> >> >> > meta-python          =3D
-> "dunfell:5bba79488b7d393d2258d6e917f7bf7b0d7c4073"
-> >>>> >> >> > meta-raspberrypi     =3D
-> "dunfell:987993209716302eb8f314f69a2a3340555f94d8"
-> >>>> >> >> > meta-gstreamer1.0    =3D
-> "dunfell:b489b1ba084544d9c4c08f7c3b3d1c37ffa53c51"
-> >>>> >> >> >
-> >>>> >> >> > Best regards,
-> >>>> >> >> >
-> >>>> >> >> > Safouane
-> >>>> >> >> >
-> >>>> >> >> > Le mer. 17 f=C3=A9vr. 2021 =C3=A0 13:24, Zoran Stojsavljevi=
-c <
-> zoran.stojsavljevic@gmail.com> a =C3=A9crit :
-> >>>> >> >> >>
-> >>>> >> >> >> So, what is your MACHINE variable set to?
-> >>>> >> >> >>
-> >>>> >> >> >> Maybe knowing that, somebody can help.
-> >>>> >> >> >>
-> >>>> >> >> >> Zee
-> >>>> >> >> >
-> >>>> >> >> >
-> >>>> >> >> >
-> >>>> >> >> > --
-> >>>> >> >> > SAFOUANE MAALOUL
-> >>>> >> >> > maaloulsafouane@gmail.com
-> >>>> >> >> >
-> >>>> >> >
-> >>>> >> >
-> >>>> >> >
-> >>>> >> > --
-> >>>> >> > SAFOUANE MAALOUL
-> >>>> >> > maaloulsafouane@gmail.com
-> >>>> >> >
-> >>>> >
-> >>>> >
-> >>>> >
-> >>>> > --
-> >>>> > SAFOUANE MAALOUL
-> >>>> > maaloulsafouane@gmail.com
-> >>>> >
-> >>>> >
-> >>>> >=20
-> >>>> >
-> >>>
-> >>>
-> >>>
-> >>> --
-> >>> SAFOUANE MAALOUL
-> >>> maaloulsafouane@gmail.com
-> >>>
-> > --
-> > SAFOUANE MAALOUL
-> > maaloulsafouane@gmail.com
-> >
+          Tero Kinnunen &lt;<a moz-do-not-send=3D"true" href=3D"mailto:ter=
+o.kinnunen@vaisala.com">tero.kinnunen@vaisala.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">F=
+ixes
+          error<br>
+          <br>
+          &nbsp; &nbsp; ERROR: Unable to detach from controlling tty,
+          Inappropriate ioctl for device<br>
+          <br>
+          when running multiple ptests<br>
+          <br>
+          &nbsp; &nbsp; ptest-runner a b<br>
+          <br>
+          or when invoked over ssh single command, like<br>
+          <br>
+          &nbsp; &nbsp; $ ssh localhost ptest-runner<br>
+          <br>
+          For ssh case, fd 0 is not a tty. (isatty(0) is false).<br>
+          When running multiple ptests, deattach for parent needs to be<br=
 >
+          done only once.<br>
+          <br>
+          Signed-off-by: Tero Kinnunen &lt;<a moz-do-not-send=3D"true" hre=
+f=3D"mailto:tero.kinnunen@vaisala.com" target=3D"_blank">tero.kinnunen@vais=
+ala.com</a>&gt;<br>
+          ---<br>
+          &nbsp;utils.c | 6 +++---<br>
+          &nbsp;1 file changed, 3 insertions(+), 3 deletions(-)<br>
+          <br>
+          diff --git a/utils.c b/utils.c<br>
+          index a8ba190..a4e190e 100644<br>
+          --- a/utils.c<br>
+          +++ b/utils.c<br>
+          @@ -437,6 +437,9 @@ run_ptests(struct ptest_list *head, const
+          struct ptest_options opts,<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; break;<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fprintf(=
+fp, &quot;START: %s\n&quot;, progname);<br>
+          +&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (isat=
+ty(0) &amp;&amp; ioctl(0, TIOCNOTTY)
+          =3D=3D -1) {<br>
+          +&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp;fprintf(fp, &quot;ERROR: Unable to detach
+          from controlling tty, %s\n&quot;, strerror(errno));<br>
+          +&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PTEST_LI=
+ST_ITERATE_START(head, p)<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; char *ptest_dir =3D
+          strdup(p-&gt;run_ptest);<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; if (ptest_dir =3D=3D NULL) {<br>
+          @@ -444,9 +447,6 @@ run_ptests(struct ptest_list *head, const
+          struct ptest_options opts,<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break;<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; }<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; dirname(ptest_dir);<br>
+          -&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp;if (ioctl(0, TIOCNOTTY) =3D=3D -1) {<br>
+          -&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;fprintf(fp, &quot;ERROR: Un=
+able to
+          detach from controlling tty, %s\n&quot;, strerror(errno));<br>
+          -&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp;}<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; if ((pgid =3D getpgid(0)) =3D=3D -1) {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fprintf(fp, &quot;ERROR: ge=
+tpgid()
+          failed, %s\n&quot;, strerror(errno));<br>
+          -- <br>
+          2.25.1<br>
+          <br>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap=3D"">
+</pre>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
 
-
---=20
-*SAFOUANE MAALOUL*
-
-*maaloulsafouane@gmail.com <maaloulsafouane@gmail.com>*
-
---000000000000a1fdb305bba5b904
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Yeah it works. I have yet to test the ima=
-ge on my raspberry pi Monday in the office. But I finished the build.=C2=A0=
- I will tested Monday and i will=C2=A0tell=C2=A0you. I have a warning=C2=A0=
-:=C2=A0</div><div dir=3D"ltr">image-1.0-r0 do_rootfs: The license listed AO=
-M-Patent-1.0 was not in the licenses collected for recipe aom=C2=A0</div><d=
-iv dir=3D"ltr"><br></div><div>I think because the name of the license in me=
-ta-openembedded/meta-multimedia/licenses/ is AOM-Patent-License-1.0 and not=
- AOM-Patent-1.0 like mentioned in the recipe. I think it must be changed. T=
-hanks I will tell you Monday what happened=C2=A0when I try the image on my =
-raspberry Pi zero W.</div><div><br></div><div>Best regards,</div><div><br><=
-/div><div>Safouane</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">Le=C2=A0ven. 19 f=C3=A9vr. 2021 =C3=A0=C2=A000:00, =
-Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&g=
-t; a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex">Please try applying below patch to aom recipe in meta-openembedded r=
-epo<br>
-<br>
-<a href=3D"https://lists.openembedded.org/g/openembedded-devel/topic/meta_=
-multimedia_patch_aom/80743335?p=3D,,,20,0,0,0::recentpostdate%2Fsticky,,,20=
-,2,0,80743335" rel=3D"noreferrer" target=3D"_blank">https://lists.openembed=
-ded.org/g/openembedded-devel/topic/meta_multimedia_patch_aom/80743335?p=3D,=
-,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,0,80743335</a><br>
-<br>
-let me know how it goes.<br>
-<br>
-On Thu, Feb 18, 2021 at 12:22 PM safouane maaloul<br>
-&lt;<a href=3D"mailto:maaloulsafouane@gmail.com" target=3D"_blank">maaloul=
-safouane@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Sorry to annoying you with my question but how do i find where HAVE_N=
-EON is set ?<br>
-&gt;<br>
-&gt; Best regards,<br>
-&gt;<br>
-&gt; Safouane<br>
-&gt;<br>
-&gt; Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 21:16, Khem Raj &lt;<a href=3D"mail=
-to:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; a =C3=
-=A9crit :<br>
-&gt;&gt;<br>
-&gt;&gt; Well we do not enable neon for this tune but aom still seems to w=
-ant it so I would suggest to look at the build and see if it=E2=80=99s disa=
-bling neon and have HAVE_NEON is not set properly<br>
-&gt;&gt;<br>
-&gt;&gt; On Thu, Feb 18, 2021 at 12:12 PM safouane maaloul &lt;<a href=3D"=
-mailto:maaloulsafouane@gmail.com" target=3D"_blank">maaloulsafouane@gmail.c=
-om</a>&gt; wrote:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; I have an erreur:<br>
-&gt;&gt;&gt; | /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/ar=
-m1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/common/arm/mem_neon=
-.h:525:24: note: called from here<br>
-&gt;&gt;&gt; |=C2=A0 =C2=A0525 |=C2=A0 =C2=A0const int32x4_t v0 =3D vld1q_=
-s32(buf);<br>
-&gt;&gt;&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~~~~~~~~~~~<br>
-&gt;&gt;&gt; | ninja: build stopped: subcommand failed.<br>
-&gt;&gt;&gt; | WARNING: /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tm=
-p/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/temp/run.do_compil=
-e.24037:155 exit 1 from &#39;eval ${DESTDIR:+DESTDIR=3D${DESTDIR} }VERBOSE=
-=3D1 cmake --build &#39;/workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tm=
-p/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/build&#39; &quot;$=
-@&quot; -- ${EXTRA_OECMAKE_BUILD}&#39;<br>
-&gt;&gt;&gt; | WARNING: Backtrace (BB generated script):<br>
-&gt;&gt;&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0#1: cmake_runcmake_build, /workdi=
-r/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-vfp-poky-li=
-nux-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037, line 155<br>
-&gt;&gt;&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0#2: cmake_do_compile, /workdir/te=
-p-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-vfp-poky-linux-=
-gnueabi/aom/2.0.0-r0/temp/run.do_compile.24037, line 149<br>
-&gt;&gt;&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0#3: do_compile, /workdir/tep-cam-=
-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueab=
-i/aom/2.0.0-r0/temp/run.do_compile.24037, line 144<br>
-&gt;&gt;&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0#4: main, /workdir/tep-cam-rpi-yo=
-cto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/=
-2.0.0-r0/temp/run.do_compile.24037, line 168<br>
-&gt;&gt;&gt; |<br>
-&gt;&gt;&gt; | Backtrace (metadata-relative locations):<br>
-&gt;&gt;&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0#1: cmake_runcmake_build, /workdi=
-r/tep-cam-rpi-yocto/rpi-build-gatesgarth/../../poky/meta/classes/cmake.bbcl=
-ass, line 205<br>
-&gt;&gt;&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0#2: cmake_do_compile, /workdir/te=
-p-cam-rpi-yocto/rpi-build-gatesgarth/../../poky/meta/classes/cmake.bbclass,=
- line 209<br>
-&gt;&gt;&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0#3: do_compile, autogenerated, li=
-ne 2<br>
-&gt;&gt;&gt; ERROR: Task (/workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/=
-../../meta-openembedded/meta-multimedia/recipes-multimedia/aom/aom_2.0.0.bb=
-:do_compile) failed with exit code &#39;1&#39;<br>
-&gt;&gt;&gt; NOTE: Tasks Summary: Attempted 3538 tasks of which 3326 didn&=
-#39;t need to be rerun and 1 failed.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Summary: 1 task failed:<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0/workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/.=
-./../meta-openembedded/meta-multimedia/recipes-multimedia/aom/aom_2.0.0.bb:=
-do_compile<br>
-&gt;&gt;&gt; Summary: There was 1 WARNING message shown.<br>
-&gt;&gt;&gt; Summary: There was 1 ERROR message shown, returning a non-zer=
-o exit code.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Do you have any idea why it didn&#39;t work ?<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Best regards,<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Safouane<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 20:54, Khem Raj &lt;<a href=
-=
-=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt=
-; a =C3=A9crit :<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; can you try adding<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; EXTRA_OECMAKE +=3D &quot;-DHAVE_NEON=3D0&quot;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; and see if that helps ? for whatever reason set_aom_detec=
-t_var is<br>
-&gt;&gt;&gt;&gt; enabling it where as default should be 0<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; On Thu, Feb 18, 2021 at 10:42 AM safouane maaloul<br>
-&gt;&gt;&gt;&gt; &lt;<a href=3D"mailto:maaloulsafouane@gmail.com" target=
-=3D"_blank">maaloulsafouane@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt; I succed in removing callconvention-hard from TUNE_F=
-EATURES ? But i have the same problem. I am pretty sure that i get get it w=
-orking if i add neon to the TUNE_FEATURES. Something like this=C2=A0 =C2=A0=
- =C2=A0TUNE_FEATURES=3D &quot;arm armv6 vfp arm1176jzfs callconvention-hard=
- neon&quot;. But I can&#39;t do it with armv6. I have to use raspberrypi ze=
-ro w so i have to make it work with armv6. I know that i can make it work w=
-ith armv7 and armv8. I have error like this : | In file included from /work=
-dir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tmp/work/arm1176jzfshf-vfp-poky-=
-linux-gnueabi/aom/2.0.0-r0/git/av1/encoder/arm/neon/quantize_neon.c:20:<br>
-&gt;&gt;&gt;&gt; &gt; | /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tm=
-p/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/git/av1/common/arm=
-/mem_neon.h:528:24: note: called from here<br>
-&gt;&gt;&gt;&gt; &gt; |=C2=A0 =C2=A0528 |=C2=A0 =C2=A0const int16x4_t s1 =
-=3D vmovn_s32(v1);<br>
-&gt;&gt;&gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~~~~~~~~=
-~~<br>
-&gt;&gt;&gt;&gt; &gt; | In file included from /workdir/tep-cam-rpi-yocto/r=
-pi-build-gatesgarth/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0=
--r0/git/av1/encoder/arm/neon/quantize_neon.c:12:<br>
-&gt;&gt;&gt;&gt; &gt; | /workdir/tep-cam-rpi-yocto/rpi-build-gatesgarth/tm=
-p/work/arm1176jzfshf-vfp-poky-linux-gnueabi/aom/2.0.0-r0/recipe-sysroot-nat=
-ive/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/10.2.0/includ=
-e/arm_neon.h:7556:1: error: inlining failed in call to &#39;always_inline&#=
-39; &#39;vmovn_s32&#39;: target specific option mismatch<br>
-&gt;&gt;&gt;&gt; &gt; |=C2=A0 7556 | vmovn_s32 (int32x4_t __a)<br>
-&gt;&gt;&gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0| ^~~~~~~~~<br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt; So i am sure i have to add the neon feature so i app=
-reciate it if someone can help me. I didn&#39;t find a workaround this prob=
-lem on the internet.<br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt; Best regards,<br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt; Safouane<br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt; Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 18:00, Zoran Stojs=
-avljevic &lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_bl=
-ank">zoran.stojsavljevic@gmail.com</a>&gt; a =C3=A9crit :<br>
-&gt;&gt;&gt;&gt; &gt;&gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; <a href=3D"https://yocto.yoctoproject.narkive.co=
-m/Wle40I09/gcc-on-arm" rel=3D"noreferrer" target=3D"_blank">https://yocto.y=
-octoproject.narkive.com/Wle40I09/gcc-on-arm</a><br>
-&gt;&gt;&gt;&gt; &gt;&gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; <a href=3D"https://www.yoctoproject.org/docs/cur=
-rent/mega-manual/mega-manual.html#var-TUNE_FEATURES" rel=3D"noreferrer" tar=
-get=3D"_blank">https://www.yoctoproject.org/docs/current/mega-manual/mega-m=
-anual.html#var-TUNE_FEATURES</a><br>
-&gt;&gt;&gt;&gt; &gt;&gt; <a href=3D"https://www.yoctoproject.org/docs/cur=
-rent/mega-manual/mega-manual.html#var-AVAILTUNES" rel=3D"noreferrer" target=
-=
-=3D"_blank">https://www.yoctoproject.org/docs/current/mega-manual/mega-man=
-ual.html#var-AVAILTUNES</a><br>
-&gt;&gt;&gt;&gt; &gt;&gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; Zee<br>
-&gt;&gt;&gt;&gt; &gt;&gt; _______<br>
-&gt;&gt;&gt;&gt; &gt;&gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; On Thu, Feb 18, 2021 at 3:28 PM safouane maaloul=
-<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &lt;<a href=3D"mailto:maaloulsafouane@gmail.com"=
- target=3D"_blank">maaloulsafouane@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt; Yes I will check it. Do you know how to rem=
-ove callconvention-hard from TUNE_FEATURES ?<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt; Best regards,<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt; Safouane<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt; Le jeu. 18 f=C3=A9vr. 2021 =C3=A0 14:52, Zo=
-ran Stojsavljevic &lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" targ=
-et=3D"_blank">zoran.stojsavljevic@gmail.com</a>&gt; a =C3=A9crit :<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0 =
-=
-=C2=A0 =3D &quot;arm armv6 vfp arm1176jzfs callconvention-hard&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; Here is an interesting reading for you,=
- for me also:<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; <a href=3D"https://www.yoctoproject.org=
-/pipermail/meta-xilinx/2015-July/001060.html" rel=3D"noreferrer" target=3D"=
-_blank">https://www.yoctoproject.org/pipermail/meta-xilinx/2015-July/001060=
-.html</a><br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; What I am getting from this reading is =
-that you need to try with the<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; following line:<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =3D &quot;arm armv6 vfp arm1176jzfs&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; I guess, YOCTO people have not too much=
- experience with armv6, nor me,<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; but this should be (I hope) generic.<br=
->
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; Hope this helps.<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; Zoran<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; _______<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; On Thu, Feb 18, 2021 at 12:44 PM safoua=
-ne maaloul<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &lt;<a href=3D"mailto:maaloulsafouane@g=
-mail.com" target=3D"_blank">maaloulsafouane@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; This is my build configuration :<b=
-r>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; Build Configuration:<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=
-=
-=A0 =C2=A0 =C2=A0=3D &quot;1.46.0&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =3D &quot;x86_64-linux&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; NATIVELSBSTRING=C2=A0 =C2=A0 =C2=
-=A0 =3D &quot;universal&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; TARGET_SYS=C2=A0 =C2=A0 =C2=A0 =C2=
-=
-=A0 =C2=A0 =C2=A0=3D &quot;arm-poky-linux-gnueabi&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =3D &quot;raspberrypi0-wifi&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; DISTRO=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;poky&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; DISTRO_VERSION=C2=A0 =C2=A0 =C2=A0=
- =C2=A0=3D &quot;3.1.5&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0 =
-=
-=C2=A0 =3D &quot;arm armv6 vfp arm1176jzfs callconvention-hard&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=
-=
-=A0 =C2=A0 =C2=A0=3D &quot;hard&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; meta<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; meta-poky<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; meta-yocto-bsp=C2=A0 =C2=A0 =C2=A0=
- =C2=A0=3D &quot;dunfell:7ea41de13774675828239b7738d3f5d70be8b1af&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; meta-oe<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; meta-multimedia<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; meta-networking<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; meta-python=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =3D &quot;dunfell:5bba79488b7d393d2258d6e917f7bf7b0d7c4073&q=
-uot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; meta-raspberrypi=C2=A0 =C2=A0 =C2=
-=A0=3D &quot;dunfell:987993209716302eb8f314f69a2a3340555f94d8&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; meta-gstreamer1.0=C2=A0 =C2=A0 =3D=
- &quot;dunfell:b489b1ba084544d9c4c08f7c3b3d1c37ffa53c51&quot;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; Best regards,<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; Safouane<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; Le mer. 17 f=C3=A9vr. 2021 =C3=A0 =
-13:24, Zoran Stojsavljevic &lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.=
-com" target=3D"_blank">zoran.stojsavljevic@gmail.com</a>&gt; a =C3=A9crit :=
-<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;&gt; So, what is your MACHINE varia=
-ble set to?<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;&gt; Maybe knowing that, somebody c=
-an help.<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;&gt; Zee<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; --<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; SAFOUANE MAALOUL<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt; <a href=3D"mailto:maaloulsafouane@=
-gmail.com" target=3D"_blank">maaloulsafouane@gmail.com</a><br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt; --<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt; SAFOUANE MAALOUL<br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt; <a href=3D"mailto:maaloulsafouane@gmail.com=
-" target=3D"_blank">maaloulsafouane@gmail.com</a><br>
-&gt;&gt;&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt; --<br>
-&gt;&gt;&gt;&gt; &gt; SAFOUANE MAALOUL<br>
-&gt;&gt;&gt;&gt; &gt; <a href=3D"mailto:maaloulsafouane@gmail.com" target=
-=3D"_blank">maaloulsafouane@gmail.com</a><br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt; <br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; --<br>
-&gt;&gt;&gt; SAFOUANE MAALOUL<br>
-&gt;&gt;&gt; <a href=3D"mailto:maaloulsafouane@gmail.com" target=3D"_blank=
-">maaloulsafouane@gmail.com</a><br>
-&gt;&gt;&gt;<br>
-&gt; --<br>
-&gt; SAFOUANE MAALOUL<br>
-&gt; <a href=3D"mailto:maaloulsafouane@gmail.com" target=3D"_blank">maalou=
-lsafouane@gmail.com</a><br>
-&gt;<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
-" class=3D"gmail_signature"><div dir=3D"ltr"><font color=3D"#000000"><span>=
-<b>SAFOUANE MAALOUL</b></span></font><div><span><b><u style=3D"background-c=
-olor:rgb(255,255,255)"><font color=3D"#0b5394"><a href=3D"mailto:maaloulsaf=
-ouane@gmail.com" target=3D"_blank">maaloulsafouane@gmail.com</a></font></u>=
-<span style=3D"color:rgb(0,0,0);background-color:rgb(255,255,255)"><br></sp=
-an></b></span><div><span style=3D"background-color:rgb(255,255,255)"><font =
-color=3D"#000000"><b><br></b></font></span></div></div></div></div>
-
---000000000000a1fdb305bba5b904--
+--------------EEEC71DFF637EA8932AECAAA--
