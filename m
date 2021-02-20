@@ -1,86 +1,92 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.5848.1613823533915919984
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web10.10565.1613847030499586622
  for <yocto@lists.yoctoproject.org>;
- Sat, 20 Feb 2021 04:18:54 -0800
+ Sat, 20 Feb 2021 10:50:30 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=nAuVc3jS;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: liu.ming50@gmail.com)
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id CD39338C11E3
-	for <yocto@yoctoproject.org>; Sat, 20 Feb 2021 12:18:53 +0000 (UTC)
-Received: by mail-lj1-f180.google.com with SMTP id q14so40198788ljp.4
-        for <yocto@yoctoproject.org>; Sat, 20 Feb 2021 04:18:53 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=CHERBu5/;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f172.google.com with SMTP id n10so7502106pgl.10
+        for <yocto@lists.yoctoproject.org>; Sat, 20 Feb 2021 10:50:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=8R7WHZLxumRt9uPNXnZSTikFeG5Mpu6GFV/J+jJ4zXI=;
-        b=nAuVc3jS/7/bJErbgAb6qEGBGgOnuaGsRC2DeuH0X8VV02Ti6Wa4PdjY4MKbzh4B/9
-         VD1Tt3osp/vYuqaRZRze2W4AKl/+KMOSA24jwz239QAJTSgzarv2uVl83Ku1j8U6vXIs
-         cbWGMXyBjjAW8xSaY45auo0Qosy//M076q36KuzIg0VJHlpVAyWDM8Se1t6sF9+sJGxH
-         joGDhWrSA7AouR0uPZuE7s2klHclesKfR/eSMzahehi87c0GyDZsY45NP6QD86Kf+r9N
-         nSPoHAd8HKw8Fuj2BauywnmIF67VLkcjM/Aiamuc7DQx/8vcs3rvAh/R5tA3H7VYNc1N
-         AOBA==
+        h=from:to:subject:date:message-id;
+        bh=CW24mzLKve8JfIOJIYRJ0Om0UBxmW5VIfH8328eR0Pc=;
+        b=CHERBu5/MaurrnskTtjjYZR2gKfylXWd69xhB7zM/sU4bhE2aicPleD71lf6sElCUB
+         LYtltdSjKhPbFZAaugn/k9U6Qa29GfvuByiHEC7Ti9dzCoEA59HXyflNsMRFbTn5aFbV
+         xFlpCHag68gYK8tsW483TFPuWBb405I4G7cuJACl18DvUSlnAZf+O3/stH48FvcJkisg
+         Tq1Ky1c6kGR2XngWcSrNzOIhgnYEcIdJNY8Ace2Y6RmFjYnrOait04ASFYz0uHSZ0wl4
+         yrk+NA/3ExKoESQ6aK/h2NujGsqJY/h/mfKIReVIxeJ+Ue/xgqcSnG6USK8UzVCjdEZL
+         UW+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=8R7WHZLxumRt9uPNXnZSTikFeG5Mpu6GFV/J+jJ4zXI=;
-        b=Tb6YiZNHkB1K2a1h9di9psDcUiYVAjh6EsHzOYuQF4qhWvKv8n7ya5Tl3oBvUAQ4O1
-         j0AfT8UDZTjCj+bgEmf+FQF2PHmqQwzNSMQzNlheBDqaRYm4K2vGtzD/rTAIgjaQwMDT
-         VPQ5hgZDQwaHi7oERVr7fB7/z/AOnzc2DzcNTyYXj+4KseO5JsSxVqHVxozsvzxw6bJi
-         a1Qjkh+9seTEOr7nwtujkrrPJHC/t0ka4b8QpMb8CadRzQ9Za07RFCZpl0VPYTNPIGcS
-         c9B/lWFKu9hpH9jRBbiOzyHMtrXHnVumlqmhLEx5D1trChg/gBizgXHCEppBLicHnx6Q
-         V4Dw==
-X-Gm-Message-State: AOAM532j7/T5UNW47UVMh6JGiSi2OMwr2WGOX4LSbszwJYxDR7FpIpE1
-	QPduO7/dJSYQySnPUp6cbSnuwh65ZWKKuQ==
-X-Google-Smtp-Source: ABdhPJxMnCNOek+RIbZgARJJ60C4PpKgxKWszUNjiFCVkgtP0I55kx55gocV2AOxrHyZARY0PelfvQ==
-X-Received: by 2002:a05:6512:33a8:: with SMTP id i8mr8314871lfg.366.1613823532226;
-        Sat, 20 Feb 2021 04:18:52 -0800 (PST)
-Received: from peterliu-Precision-7530.lan (c-3ffb72d5.022-417-73746f13.bbcust.telenor.se. [213.114.251.63])
-        by smtp.gmail.com with ESMTPSA id b1sm1234163lfq.187.2021.02.20.04.18.51
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=CW24mzLKve8JfIOJIYRJ0Om0UBxmW5VIfH8328eR0Pc=;
+        b=PCJ0djHwXBXKjm7OVQAqIWWXNEBRv5DT70qCEBHeF+IhtnBrbBsNg7wyet2CO33RUc
+         KR+EINoJ+tTm1B9i8IkM1/hzLl1z7jIW5ZxedWE8RY73n+TleRDgECRnFQnxkQL1iXzc
+         BPX7yd49B9i3Z3Raq81TOYOquilV7kdTPrijnmjvzQdLjJJZK1t8F/6z13EHmo8awtNL
+         gI+/NtjDGl90cOBcWEZ8SIo5S9MNVaQuS2kGdtSJZjfS/wCpqlygBIIwol4DgU5EPDbI
+         gCv6ioOSakI6yRiFez3za9AVQgA2qvP+6xWZT7zazPKaBMwrwQQckiQWfe3frLo67xC5
+         dhwQ==
+X-Gm-Message-State: AOAM533j+A3LarwRhFMi24xrIRggpqJzNNVH+CZayoJ4/GmcI+LfOsma
+	lNojDZTvw3dHDPN1eYFsw3s8Cqdtx+Oapw==
+X-Google-Smtp-Source: ABdhPJw9xZjCQsW+UMztFjt7KuL8/7Ora6bDRiiPjDRhfRRWanm5IrR+LkVCYl3QT1LRHz5Kp5lzIA==
+X-Received: by 2002:a63:5c9:: with SMTP id 192mr13420684pgf.316.1613847029665;
+        Sat, 20 Feb 2021 10:50:29 -0800 (PST)
+Return-Path: <akuster808@gmail.com>
+Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:70a2:885b:8c45:14d6])
+        by smtp.gmail.com with ESMTPSA id s62sm5771162pfb.148.2021.02.20.10.50.28
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Feb 2021 04:18:52 -0800 (PST)
-From: "Ming Liu" <liu.ming50@gmail.com>
-To: yocto@yoctoproject.org
-Cc: sergio.prado@toradex.com,
-	akuster808@gmail.com,
-	dbaryshkov@gmail.com,
-	Ming Liu <liu.ming50@gmail.com>
-Subject: [meta-security] [PATCH V2 8/8] ima-evm-rootfs.bbclass: avoid generating /etc/fstab for wic
-Date: Sat, 20 Feb 2021 13:18:22 +0100
-Message-Id: <20210220121822.1873572-9-liu.ming50@gmail.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20210220121822.1873572-1-liu.ming50@gmail.com>
-References: <20210220121822.1873572-1-liu.ming50@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        Sat, 20 Feb 2021 10:50:29 -0800 (PST)
+From: "akuster" <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] softhsm: drop pkg as meta-oe has it
+Date: Sat, 20 Feb 2021 10:50:28 -0800
+Message-Id: <20210220185028.18795-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
-From: Ming Liu <liu.ming50@gmail.com>
-
-Or else wic will fail without "--no-fstab-update" option.
-
-Signed-off-by: Ming Liu <liu.ming50@gmail.com>
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- meta-integrity/classes/ima-evm-rootfs.bbclass | 3 +++
- 1 file changed, 3 insertions(+)
+ recipes-security/softHSM/softhsm_2.6.1.bb | 30 -----------------------
+ 1 file changed, 30 deletions(-)
+ delete mode 100644 recipes-security/softHSM/softhsm_2.6.1.bb
 
-diff --git a/meta-integrity/classes/ima-evm-rootfs.bbclass b/meta-integri=
-ty/classes/ima-evm-rootfs.bbclass
-index 4359af0..0acd6e7 100644
---- a/meta-integrity/classes/ima-evm-rootfs.bbclass
-+++ b/meta-integrity/classes/ima-evm-rootfs.bbclass
-@@ -28,6 +28,9 @@ IMA_EVM_ROOTFS_HASHED ?=3D ". -depth 0 -false"
- # the iversion flags (needed by IMA when allowing writing).
- IMA_EVM_ROOTFS_IVERSION ?=3D ""
-=20
-+# Avoid re-generating fstab when ima is enabled.
-+WIC_CREATE_EXTRA_ARGS_append =3D "${@bb.utils.contains('DISTRO_FEATURES'=
-, 'ima', ' --no-fstab-update', '', d)}"
-+
- ima_evm_sign_rootfs () {
-     cd ${IMAGE_ROOTFS}
-=20
---=20
-2.29.0
+diff --git a/recipes-security/softHSM/softhsm_2.6.1.bb b/recipes-security/softHSM/softhsm_2.6.1.bb
+deleted file mode 100644
+index 74e837a..0000000
+--- a/recipes-security/softHSM/softhsm_2.6.1.bb
++++ /dev/null
+@@ -1,30 +0,0 @@
+-SUMMARY = "SoftHSM is an implementation of a cryptographic store accessible through a PKCS #11 interface."
+-HOMEPAGE = "www.opendnssec.org"
+-
+-LICENSE = "BSD"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=ef3f77a3507c3d91e75b9f2bdaee4210"
+-
+-DEPENDS = "sqlite3"
+-
+-SRC_URI = "https://dist.opendnssec.org/source/softhsm-2.6.1.tar.gz"
+-SRC_URI[sha256sum] = "61249473054bcd1811519ef9a989a880a7bdcc36d317c9c25457fc614df475f2"
+-
+-inherit autotools pkgconfig siteinfo
+-
+-EXTRA_OECONF += " --with-sqlite3=${STAGING_DIR_HOST}/usr"
+-EXTRA_OECONF += "${@oe.utils.conditional('SITEINFO_BITS', '64', ' --enable-64bit', '', d)}"
+-
+-PACKAGECONFIG ?= "pk11 openssl"
+-
+-PACKAGECONFIG[npm] = ",--disable-non-paged-memory"
+-PACKAGECONFIG[ecc] = "--enable-ecc,--disable-ecc"
+-PACKAGECONFIG[gost] = "--enable-gost,--disable-gost"
+-PACKAGECONFIG[eddsa] = "--enable-eddsa, --disable-eddsa"
+-PACKAGECONFIG[fips] = "--enable-fips, --disable-fips"
+-PACKAGECONFIG[notvisable] = "--disable-visibility"
+-PACKAGECONFIG[openssl] = "--with-openssl=${STAGING_DIR_HOST}/usr --with-crypto-backend=openssl, --without-openssl, openssl, openssl"
+-PACKAGECONFIG[botan] = "--with-botan=${STAGING_DIR_HOST}/usr --with-crypto-backend=botan, --without-botan, botan"
+-PACKAGECONFIG[migrate] = "--with-migrate"
+-PACKAGECONFIG[pk11] = "--enable-p11-kit --with-p11-kit==${STAGING_DIR_HOST}/usr, --without-p11-kit, p11-kit, p11-kit"
+-
+-RDEPENDS_${PN} = "sqlite3"
+-- 
+2.17.1
 
