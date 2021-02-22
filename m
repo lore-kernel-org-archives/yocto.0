@@ -1,99 +1,68 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.34163.1613999390085984631
+ by mx.groups.io with SMTP id smtpd.web10.34481.1614000600476339850
  for <yocto@lists.yoctoproject.org>;
- Mon, 22 Feb 2021 05:09:50 -0800
+ Mon, 22 Feb 2021 05:30:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=T3tg2eys;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: ryanbarnett3@gmail.com)
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 96F4C38C04B3
-	for <yocto@yoctoproject.org>; Mon, 22 Feb 2021 13:09:48 +0000 (UTC)
-Received: by mail-io1-f43.google.com with SMTP id u20so13090615iot.9
-        for <yocto@yoctoproject.org>; Mon, 22 Feb 2021 05:09:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=MleHtcrTVOrb1J3V9SyY4NZ3FYdvuQsjNrg05CHV7SE=;
-        b=T3tg2eysp0wxJIx34ahAv7DIESti8m8EFtkJKOXeMf/la8W9kfIbr+iDIwIYzEFP1/
-         N/7ezuW9sY5dVO9dYyceuUFB5yaojNt6Nyn5NmMoxg5ifeuDjcFkQU0I8JJ2QD5YlleK
-         R3AfgSYNqszhe9yLQqFqpdpN0DXNhMfDG3LsIltPFIQDpIHz2pDwizwLQO3jGRoB7Gpd
-         UPYtr6Yg9sDzAEsATuTv8B3Fdr+WWPmEQQpcwkSq9fcAXMEfTI37/1kZ1pz4kl8kajOj
-         sWHcSEKsYpb2mKocAX6Gdw6NefQSoZcmj/Hlmx8Sv22DDXSVrqQMtts3OLUYE9sXbGLn
-         YpiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=MleHtcrTVOrb1J3V9SyY4NZ3FYdvuQsjNrg05CHV7SE=;
-        b=t+K/PBh5lLqJmfB3v32ZYwtXRtORjj9SdqtP50WNCl/F6HuYAnm1bkdoAn3Q+GabND
-         VupaFRCfZxlluFDfsfle6ROXmEd++53kTNqxY+pxuIRyeSSddDx3FiSOfhxvg1Lbd4Rc
-         jnIhKz88gSUzECrkmDGIxKvqMbLrK9tuqI5Yas1ERFdfHBamp49pJNxOF7vwQo4QeBR5
-         Zq2u4fD6B7exQ2yyudjmgcmqCv6H/ATlHudz+qc7/LAf1Xgz/iL2UlD2jYx4wZZdaNvg
-         ZF8w6F2oBfSToiCsVsgOpZ2u/8XXQ3kN4nJjddcJEGgd443YKQrZLGmIAkmyksnA+yzV
-         J7OA==
-X-Gm-Message-State: AOAM530GwqKRPYwcWrFbs2Bkfbn/2Nm3nhyu4c9AKU4tUzcEuB8DAYBi
-	O+5klXCl7L9SbQ7znNwzbxA=
-X-Google-Smtp-Source: ABdhPJzVn9ve+i2d3zyd2c0ICv/84mAvZGo1WoxyMuLIjhbqvtJHxEkWt7r0aZZfLUadfNcuzUlGpQ==
-X-Received: by 2002:a05:6602:26c6:: with SMTP id g6mr15192749ioo.150.1613999387729;
-        Mon, 22 Feb 2021 05:09:47 -0800 (PST)
-Received: from ryan-pc.birdiebarn.net (50-82-176-206.client.mchsi.com. [50.82.176.206])
-        by smtp.gmail.com with ESMTPSA id o17sm9236615ilo.73.2021.02.22.05.09.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Feb 2021 05:09:47 -0800 (PST)
-From: "Ryan Barnett" <ryanbarnett3@gmail.com>
-To: opkg-devel@googlegroups.com,
-	yocto@yoctoproject.org
-Cc: Ryan Barnett <ryanbarnett3@gmail.com>,
-	Christian Hermann <mail@hermannch.dev>
-Subject: [opkg-utils PATCH v2] Makefile: separate manpages and utils install
-Date: Mon, 22 Feb 2021 07:09:34 -0600
-Message-Id: <20210222130934.9213-1-ryanbarnett3@gmail.com>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@aruba.it header.s=a1 header.b=TrkBGMWJ;
+ spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 198.145.29.25, mailfrom: mauro@faresoftware.it)
+Received: from smtpcmd0642.aruba.it (smtpcmd0642.aruba.it [62.149.156.42])
+	by mail.yoctoproject.org (Postfix) with ESMTP id 8EE4838C04B3
+	for <yocto@yoctoproject.org>; Mon, 22 Feb 2021 13:29:57 +0000 (UTC)
+Received: from [10.0.3.95] ([213.213.6.58])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id EBHfl4AS4l6tsEBHflgze4; Mon, 22 Feb 2021 14:29:56 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1614000596; bh=XcG+cQy8VPbHLLOO91kdHzX2aH272rPHWANeMnzGrDs=;
+	h=To:From:Subject:Date:MIME-Version:Content-Type;
+	b=TrkBGMWJfVyPXjSFUQzPVCDlenYWRmrv8/S1x7DSOCcS7EmUdE7+uMEnmB7xEeXXU
+	 sGZCBwfHjwfRVRPlAU6+WFTArls7ygMvUYUCEVZGgA6oXnfIlLFXQPhm4uO2q29FI9
+	 z2cV83vyWMs3Gupc14Z3ZDA5v++Cep2AasuzjnUIgbMxRqASHfEMgRXgjRZVnm8BUl
+	 286PcBYR8YWi5CdY77FMKEV7wwc3W7zUjpPdTswEHNVVNrUOyqMICuTHSUI8MpJlfc
+	 ZkGHcUtJM3J0PNPJgFqDZ3KtwVfWCAOtDJYcwRd3Eut6xpCSjohm1NpJn2JocyqWwr
+	 nQbUNVf1KnUmg==
+To: yocto@yoctoproject.org
+From: "Mauro Ziliani" <mauro@faresoftware.it>
+Subject: Include "my.conf" in conf/local.conf
+Message-ID: <b97c87dd-8818-2827-18d7-425b7c03f849@faresoftware.it>
+Date: Mon, 22 Feb 2021 14:29:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+X-CMAE-Envelope: MS4wfLtuYVHbXlhJgqRlyzPm+7htbi4ACbVMma/wTsnCrPTHFN7UGJiSCKxAI50W42jvalYEbMT2FZzQkz7GWsQIlv4fr/7+MclvcbBLm4OUXz4GXV9RFd3R
+ N7IJfmz/A9lJWTD1W+deZxwdtqBizJKhDSGomC3Bg8QTm60SMLtYAzsp
+Content-Type: multipart/alternative;
+ boundary="------------F90F60BBB785393E0300B226"
+Content-Language: en-US
 
-The installation of opkg-build man page introduces a host dependency
-on perl for the pod2man package to generate the man page.
+--------------F90F60BBB785393E0300B226
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Transfer-Encoding: 7bit
 
-To allow the opkg-utils scripts to be installed separately from the
-manpages, break apart the install step into two install steps:
-install-utils and install-docs
+Hi all
 
-CC: Christian Hermann <mail@hermannch.dev>
-Signed-off-by: Ryan Barnett <ryanbarnett3@gmail.com>
----
-v1 -> v2:
-  - Leave all target behavior unchanged (suggested by Christian)
----
- Makefile | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Is it possible to include a fine in local.conf?
 
-diff --git a/Makefile b/Makefile
-index 4049654..fe96d5a 100644
---- a/Makefile
-+++ b/Makefile
-@@ -27,9 +27,11 @@ mandir ?=3D $(PREFIX)/man
-=20
- all: $(UTILS) $(MANPAGES)
-=20
--install: all
-+install-utils: $(UTILS)
- 	install -d $(DESTDIR)$(bindir)
- 	install -m 755 $(UTILS) $(DESTDIR)$(bindir)
-+
-+install-docs: $(MANPAGES)
- 	install -d $(DESTDIR)$(mandir)
- 	for m in $(MANPAGES); \
- 	do \
-@@ -37,4 +39,6 @@ install: all
- 		install -m 644 "$$m" $(DESTDIR)$(mandir)/man$${m##*.}; \
- 	done
-=20
--.PHONY: install all
-+install: install-utils install-docs
-+
-+.PHONY: install install-utils install-docs all
---=20
-2.25.1
 
+MZ
+
+
+--------------F90F60BBB785393E0300B226
+Content-Type: text/html; charset=iso-8859-15
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-15">
+  </head>
+  <body>
+    <p><font size="-1">Hi all</font></p>
+    <p><font size="-1">Is it possible to include a fine in local.conf?</font></p>
+    <p><font size="-1"><br>
+      </font></p>
+    <p><font size="-1">MZ</font><br>
+    </p>
+  </body>
+</html>
+
+--------------F90F60BBB785393E0300B226--
