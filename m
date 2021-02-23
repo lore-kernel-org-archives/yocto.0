@@ -1,87 +1,97 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.10825.1614092175782522294
+ by mx.groups.io with SMTP id smtpd.web12.11043.1614092827283896294
  for <yocto@lists.yoctoproject.org>;
- Tue, 23 Feb 2021 06:56:15 -0800
+ Tue, 23 Feb 2021 07:07:07 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=r1h1csTG;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: karthik.poduval@gmail.com)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 23F4D38C062A
-	for <yocto@yoctoproject.org>; Tue, 23 Feb 2021 14:56:15 +0000 (UTC)
-Received: by mail-vs1-f49.google.com with SMTP id o186so8528554vso.1
-        for <yocto@yoctoproject.org>; Tue, 23 Feb 2021 06:56:15 -0800 (PST)
+ dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1 header.b=bGYdnLTu;
+ spf=softfail (domain: bmw.de, ip: 198.145.29.25, mailfrom: prvs=681a2f65d=mikko.rapeli@bmw.de)
+Received: from esa12.hc324-48.eu.iphmx.com (esa12.hc324-48.eu.iphmx.com [207.54.72.34])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 7B6CB38C062A
+	for <yocto@yoctoproject.org>; Tue, 23 Feb 2021 15:07:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Sft/TKV8LwKn4pNxUiluDfmPELe7CbcLL2Hqnv4q5CY=;
-        b=r1h1csTGP1ygvVsL3luOuK9PDFOVhLAhJXFAT5/OmfLd2fZOT6jdeZITeG5e7iyAGk
-         VBjLsgG8FN/lqiJZg/7Q5tNiF+ykuuayvdzB1Ax/9gdfqmq8ev1zGDm+7XS6xqvMWkHR
-         A+YBdOweHWRSLw3YXsrFBQaqeP3NkFYHtfDSr2+PutNxNh52DEYAd/CfalkRlalziuUu
-         U99lC8+AgkP4082zPELqxfcUJIzUAhkoO6HVyMwMSqItqH6HUqavYSGTM/7xgeetA46d
-         JZENumMKbnMZRpml11QVYOqBmlT8lKZJ1CwMVLKrMuPtcHecEfdW0Mh6wtlRtNaXiDYW
-         TEyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Sft/TKV8LwKn4pNxUiluDfmPELe7CbcLL2Hqnv4q5CY=;
-        b=t/D35wOOMNGVFZ0WBZtc3K3Phkrr6FOrruNJNuK8ZxbAi5aGaIm/0V5l5ImcpPLy1y
-         GSyw+8PIXouFfTuE54sBTE/DF7DEIf0okQdB4HZFwH4J5gS09gRVHIKEdKCYYxljKhZl
-         cIjQstX2rhxURbcLX4ANjT471L2lDK7EWV0uB6GGP2WLJVTGTat70tNEuD1zUdqVInlA
-         iKGTFj5HHNWXl2X3lHPnhM8thadksYQweuZffREWCY5lDWDzQ9MaH7TQdXvQBiXOjDYU
-         ipXK2JC4tbLTbqbUqii+svfxDK8inXR0mzlXFeBYq4vbcNF4JBbUzT5Sy61DMCZCHqYw
-         u74g==
-X-Gm-Message-State: AOAM533jYp/c0HrO5vJ9IH7kYay+/lHpQ8jAyX7c3Pu3pVb3VoIEwLIj
-	KMTF0AjjKNQLw59UVaGJ9PRGMAa1jy39URown0c=
-X-Google-Smtp-Source: ABdhPJyKvsPz4SKiIzrskDLpVPZIoedawMxZ5IRNpUM3+U6UGYvldW9L3vA5VckTJX0QIRJm69U0pv9ndF35tiklWto=
-X-Received: by 2002:a67:ecd8:: with SMTP id i24mr16773617vsp.28.1614092174021;
- Tue, 23 Feb 2021 06:56:14 -0800 (PST)
-MIME-Version: 1.0
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1614092825; x=1645628825;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=KoVSBwSwCfm4h7jMLli85xnyjVdzdXuYtckdgGAnUi0=;
+  b=bGYdnLTu7GXjIOG9FiUTnzm8BiDQE6bmCzfDa/m+6ordSZ1Tt02cFe8Z
+   E6vqJD7W5fMroiPrKcTJQ/KlTsI31ITi6/kWzCrLoPDQ9gfLYh03/zO+s
+   B2Qt3uUluSivr5A8Ch+dxiYrC+XZX5uxvI9YzhC9LaFfFOomGNcZQFqkX
+   Q=;
+Received: from esagw5.bmwgroup.com (HELO esagw5.muc) ([160.46.252.46]) by
+ esa12.hc324-48.eu.iphmx.com with ESMTP/TLS; 23 Feb 2021 16:07:02 +0100
+Received: from esabb4.muc ([160.50.100.33])  by esagw5.muc with ESMTP/TLS;
+ 23 Feb 2021 16:07:02 +0100
+Received: from smucm33l.bmwgroup.net (HELO smucm33l.europe.bmw.corp) ([160.46.167.68])
+ by esabb4.muc with ESMTP/TLS; 23 Feb 2021 16:07:01 +0100
+Received: from smucm33l.europe.bmw.corp (160.46.167.68) by smucm33l.europe.bmw.corp
+ (160.46.167.68) with Microsoft SMTP Server (TLS;
+ Tue, 23 Feb 2021 16:07:00 +0100
+Received: from smucm33l.europe.bmw.corp ([160.46.167.68]) by
+ smucm33l.europe.bmw.corp ([160.46.167.68]) with mapi id 15.00.1497.010; Tue,
+ 23 Feb 2021 16:07:00 +0100
+From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
+To: <karthik.poduval@gmail.com>
+CC: <bruce.ashfield@gmail.com>, <yocto@yoctoproject.org>
+Subject: Re: [yocto] Kernel Header UAPI Issue
+Thread-Topic: [yocto] Kernel Header UAPI Issue
+Thread-Index: AQHXCX40yg7Z+O4FR0iwSrm1ttlT+apk3sOAgAAGxYCAAMNhAIAAG1gAgAADD4A=
+Date: Tue, 23 Feb 2021 15:07:00 +0000
+Message-ID: <YDUaE37jsnG+nsU1@korppu>
 References: <CAFP0Ok-UOjo3n1CYtg+k1C8QHz6L+4RMDcOLPnnWGJ6Oxd+azQ@mail.gmail.com>
  <CADkTA4NKtcZYHtWJGs5gOMZxUjf9dn9+KB5-ts4633tdyu8x1Q@mail.gmail.com>
- <CAFP0Ok9+UN=t=22gZQ6MJV5DDfPPn_tSWY1w8AjNh+ojBQ94dg@mail.gmail.com> <YDUAklwGAsPCeyVe@korppu>
-In-Reply-To: <YDUAklwGAsPCeyVe@korppu>
-From: "Karthik Poduval" <karthik.poduval@gmail.com>
-Date: Tue, 23 Feb 2021 06:56:02 -0800
-Message-ID: <CAFP0Ok-863pEPRRRsOsZDG1VJ8GZw06qR+mu+_M2yJouJDuB+Q@mail.gmail.com>
-Subject: Re: [yocto] Kernel Header UAPI Issue
-To: Mikko.Rapeli@bmw.de
-Cc: bruce.ashfield@gmail.com, Yocto list discussion <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+ <CAFP0Ok9+UN=t=22gZQ6MJV5DDfPPn_tSWY1w8AjNh+ojBQ94dg@mail.gmail.com>
+ <YDUAklwGAsPCeyVe@korppu>
+ <CAFP0Ok-863pEPRRRsOsZDG1VJ8GZw06qR+mu+_M2yJouJDuB+Q@mail.gmail.com>
+In-Reply-To: <CAFP0Ok-863pEPRRRsOsZDG1VJ8GZw06qR+mu+_M2yJouJDuB+Q@mail.gmail.com>
+Accept-Language: en-US, de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+MIME-Version: 1.0
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <197FBFA3EA4DE14C83B612362F0F851F@bmwmail.corp>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Mikko,
+Hi,
 
-Do you have an example on how you do that ? Do you bbapend the
-linux-libc-headers recipe file ?
-I have an application that uses dmabuf heap that potentially extends
-across multiple BSP's as its BSP agnostic. I don't want to be patching
-individual BSP recipes and generating headers. The issue I am facing
-is due to backporting the patch from 5.6 to 5.4 so the required header
-isn't a part of the linux-libc-headers.bb recipe. Best would have been
-a virtual/kernel-keaders target that applications that require BSP
-headers would add to their recipe DEPENDS. Why is this not a solved
-issue by yocto project ? Why do individual BSP's need to deal with
-this differently  when the header install mechanism (make
-headers_install) is the same irrespective of the type of BSP ?
+On Tue, Feb 23, 2021 at 06:56:02AM -0800, Karthik Poduval wrote:
+> Hi Mikko,
+>=20
+> Do you have an example on how you do that ? Do you bbapend the
+> linux-libc-headers recipe file ?
 
-On Tue, Feb 23, 2021 at 5:18 AM <Mikko.Rapeli@bmw.de> wrote:
->
-> Hi,
->
-> I know it's not the best or recommended approach, but I find it
-> hard to avoid merging linux-libc-headers recipe with the actual
-> kernel recipe that a distro is using. At least a static copy
-> of some version of uapi headers from that kernel can be used
-> instead of the poky side linux-libc-headers. This helps to get
-> the actual BSP SW delivery headers into userspace, SDK etc.
->
-> Cheers,
->
-> -Mikko
+A kernel recipe will provide linux-libc-headers after a
+"make headers_install" call...
 
+So the SRC_URI of linux-libc-headers can be the same as from the
+linux kernel recipe, or linux kernel recipe can provide (with some
+tricks, possibly) the linux-libc-headers binary packages.
 
+> I have an application that uses dmabuf heap that potentially extends
+> across multiple BSP's as its BSP agnostic. I don't want to be patching
+> individual BSP recipes and generating headers. The issue I am facing
+> is due to backporting the patch from 5.6 to 5.4 so the required header
+> isn't a part of the linux-libc-headers.bb recipe. Best would have been
+> a virtual/kernel-keaders target that applications that require BSP
+> headers would add to their recipe DEPENDS. Why is this not a solved
+> issue by yocto project ? Why do individual BSP's need to deal with
+> this differently  when the header install mechanism (make
+> headers_install) is the same irrespective of the type of BSP ?
 
--- 
-Regards,
-Karthik Poduval
+I guess the reason is to split userspace to BSP/board specific and common
+parts. It's not good if whole userspace bootstrap depends on kernel
+recipe and any kernel changes requires full bootstrap and recompilation
+of all userspace.
+
+But there are BSP/board specific recipes which do need the real effective
+kernel headers to interface with kernel drivers, and there are SoC
+architecture specific ones which just need enough to build gcc and glibc.
+
+Both have their pross and cons, and to me there is no clear winner.
+
+Cheers,
+
+-Mikko=
