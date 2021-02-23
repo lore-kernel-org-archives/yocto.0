@@ -1,67 +1,106 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.9554.1614086322493924551
+Received: from mail.cybernetics.com (mail.cybernetics.com [173.71.130.66])
+ by mx.groups.io with SMTP id smtpd.web10.10318.1614090289134849591
  for <yocto@lists.yoctoproject.org>;
- Tue, 23 Feb 2021 05:18:42 -0800
+ Tue, 23 Feb 2021 06:24:49 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1 header.b=dRZwByHk;
- spf=softfail (domain: bmw.de, ip: 198.145.29.25, mailfrom: prvs=681a2f65d=mikko.rapeli@bmw.de)
-Received: from esa3.hc324-48.eu.iphmx.com (esa3.hc324-48.eu.iphmx.com [207.54.68.121])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 3E2AB38C096A
-	for <yocto@yoctoproject.org>; Tue, 23 Feb 2021 13:18:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1614086321; x=1645622321;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=P0q2QJ1Gb0gBTXs8mSBv28RGwMDFxvHYgwgY7UZJFJc=;
-  b=dRZwByHkVl79u87aALfIfPwVV4cRC71087sSyV5g45sC7vNDK3P94Zwa
-   Oz4/ntYMQFdICA1rUXs1/Iyle7u9xwKy2lsY6WjFEBBqk27UZIeoBw52C
-   sd1BVdx+YBDhJ8Q6OAw1/cJiuz1c8Z9jqw/gw9KSv7b4i0buscZy4dwY+
-   A=;
-Received: from esagw1.bmwgroup.com (HELO esagw1.muc) ([160.46.252.34]) by
- esa3.hc324-48.eu.iphmx.com with ESMTP/TLS; 23 Feb 2021 14:18:38 +0100
-Received: from esabb4.muc ([160.50.100.33])  by esagw1.muc with ESMTP/TLS;
- 23 Feb 2021 14:18:15 +0100
-Received: from smucm33l.bmwgroup.net (HELO smucm33l.europe.bmw.corp) ([160.46.167.68])
- by esabb4.muc with ESMTP/TLS; 23 Feb 2021 14:18:12 +0100
-Received: from smucm33l.europe.bmw.corp (160.46.167.68) by smucm33l.europe.bmw.corp
- (160.46.167.68) with Microsoft SMTP Server (TLS;
- Tue, 23 Feb 2021 14:18:11 +0100
-Received: from smucm33l.europe.bmw.corp ([160.46.167.68]) by
- smucm33l.europe.bmw.corp ([160.46.167.68]) with mapi id 15.00.1497.010; Tue,
- 23 Feb 2021 14:18:11 +0100
-From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
-To: <karthik.poduval@gmail.com>
-CC: <bruce.ashfield@gmail.com>, <yocto@yoctoproject.org>
-Subject: Re: [yocto] Kernel Header UAPI Issue
-Thread-Topic: [yocto] Kernel Header UAPI Issue
-Thread-Index: AQHXCX40yg7Z+O4FR0iwSrm1ttlT+apk3sOAgAAGxYCAAMNhAA==
-Date: Tue, 23 Feb 2021 13:18:11 +0000
-Message-ID: <YDUAklwGAsPCeyVe@korppu>
-References: <CAFP0Ok-UOjo3n1CYtg+k1C8QHz6L+4RMDcOLPnnWGJ6Oxd+azQ@mail.gmail.com>
- <CADkTA4NKtcZYHtWJGs5gOMZxUjf9dn9+KB5-ts4633tdyu8x1Q@mail.gmail.com>
- <CAFP0Ok9+UN=t=22gZQ6MJV5DDfPPn_tSWY1w8AjNh+ojBQ94dg@mail.gmail.com>
-In-Reply-To: <CAFP0Ok9+UN=t=22gZQ6MJV5DDfPPn_tSWY1w8AjNh+ojBQ94dg@mail.gmail.com>
-Accept-Language: en-US, de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
+ dkim=missing; spf=pass (domain: cybernetics.com, ip: 173.71.130.66, mailfrom: btv1==688d026400d==cbing@cybernetics.com)
+X-ASG-Debug-ID: 1614090287-0fb3b02a6f089a0001-O4Qx4w
+Received: from cybernetics.com ([10.10.4.126]) by mail.cybernetics.com with ESMTP id r05dBl84qvCU9pqy for <yocto@lists.yoctoproject.org>; Tue, 23 Feb 2021 09:24:47 -0500 (EST)
+X-Barracuda-Envelope-From: cbing@cybernetics.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.4.126
+X-ASG-Whitelist: Client
+Received: from [10.157.1.18] (HELO [192.168.184.100])
+  by cybernetics.com (CommuniGate Pro SMTP 6.2.14)
+  with ESMTP id 10590454 for yocto@lists.yoctoproject.org; Tue, 23 Feb 2021 09:24:47 -0500
+Subject: Re: [yocto] Updating Yocto
+X-Barracuda-RBL-Trusted-Forwarder: 10.157.1.18
+To: yocto@lists.yoctoproject.org
+X-ASG-Orig-Subj: Re: [yocto] Updating Yocto
+References: <60430e1e-0c5d-9cc4-5496-a6f4152ec976@cybernetics.com>
+ <YDT75mK/tmGXsl+z@korppu>
+From: "Claude Bing" <cbing@cybernetics.com>
+Message-ID: <17d2c7cd-3c2c-23d3-bb23-efa99a2d7765@cybernetics.com>
+Date: Tue, 23 Feb 2021 09:24:47 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <YDT75mK/tmGXsl+z@korppu>
+X-Barracuda-Connect: UNKNOWN[10.10.4.126]
+X-Barracuda-Start-Time: 1614090287
+X-Barracuda-URL: https://10.10.4.122:443/cgi-mod/mark.cgi
+X-Barracuda-BRTS-Status: 1
+X-Virus-Scanned: by bsmtpd at cybernetics.com
+X-Barracuda-Scan-Msg-Size: 3116
+Content-Type: text/plain; charset=windows-1252
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <0627E12E993CE84084D6DEF791518FE4@bmwmail.corp>
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 2/23/21 7:58 AM, Mikko Rapeli wrote:
+> Hi,
+> 
+> On Mon, Feb 22, 2021 at 12:12:21PM -0500, Claude Bing wrote:
+>> Hello all. My organization has been working with Yocto recently, and we
+>> have noticed that there are often weird errors encountered after
+>> updating revisions within a release branch (e.g., 3.1.3 -> 3.1.5). Is
+>> there an accepted process to merging in upstream changes?  Here is a
+>> distillation of our workflow:
+>>
+>> * Yocto releases 3.1.0 / dunfell
+>>
+>> * Create a local tracking branch for the Yocto release
+>>   "sample-yocto-dunfell" based on upstream 3.1.0 tag / dunfell branch.
+>>   This is necessary because some of our local tooling is located in the
+>>   top level directory and it is a pain to copy the files each time.
+>>
+>> * Create firmware with Yocto
+>>
+>> * Yocto releases 3.1.x
+>>
+>> * Merge upstream yocto-3.1.x tag into local tracking branch
+>>
+>> * Create firmware with Yocto
+>>
+>> Sometimes, after this last step, we encounter problems where patches
+>> cannot be applied, or files cannot be found when bitbake tries to build
+>> the recipes. We have tried deleting build/{tmp,sstate-cache} whenever we
+>> merge upstream changes, but random errors still persist.  For each of
+>> these packages, if we run "bitbake -c cleanall", the error goes away.
+> 
+> When both yocto update and your own changes are modifying the same recipes,
+> then conflicts can occur.>
+>> Most of the time, these recipes have not been extended in our project,
+>> so they are purely meta-oe / meta packages.
+> 
+> If builds are failing, then your environment is breaking something.
+> It might even be the BSP layers that you use>
+>> Are we doing something wrong, or is there a more acceptable way to
+>> handle updates?
+>>
+>> How tightly should meta-openembedded be tied to the core Yocto release?
+> 
+> I update all open source meta layers for every run of the update and also resolve
+> any issues by digging into details why the failure happened. I've done dunfell
+> updates with several BSP layers for multiple arm64 SoC's and have not seen
+> major issues.
+> 
+> What is useful and one of the best practices, is to clear the bitbake tmp
+> directory in between builds. Depending on details, there can be some cruft there
+> which fails when rebuilding.
 
-I know it's not the best or recommended approach, but I find it
-hard to avoid merging linux-libc-headers recipe with the actual
-kernel recipe that a distro is using. At least a static copy
-of some version of uapi headers from that kernel can be used
-instead of the poky side linux-libc-headers. This helps to get
-the actual BSP SW delivery headers into userspace, SDK etc.
+I mentioned that we remove that directory, and it does indeed solve a
+lot of problems.  Not sure that it was clear from the original message,
+but whenever we get a random error on the first build after the upgrade
+we run a "bitbake -c cleanall" on that package, and everything works
+great. The errors do not show up again.
 
-Cheers,
+Thanks for the reply.
 
--Mikko=
+> 
+> Cheers,
+> 
+> -Mikko
+> 
+> 
+> 
+> 
+> 
