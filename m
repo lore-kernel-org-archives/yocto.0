@@ -1,265 +1,343 @@
-Subject: Adding USB modem support to Yocto #raspberrypi
-To: yocto@lists.yoctoproject.org
-From: jose_amador95@hotmail.com
-X-Originating-Location: Veracruz, MX (201.138.29.119)
-X-Originating-Platform: Linux Firefox 85
-User-Agent: GROUPS.IO Web Poster
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web09.2539.1614112915491197069
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 23 Feb 2021 12:42:00 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=LodlB6mx;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1614112915; x=1771792915;
+  h=from:to:cc:subject:date:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=wGYX6h5mt9gmmYUVfAye78Fo3HyqsdIPh+BHhZqM+0s=;
+  b=LodlB6mx61C6d8Et3RPQhE2SEG9rqyIN2VqWZtEkYlGRihaw7pUjCsl5
+   /WWehDGFGp28mwYfEdE5M9wG4tRY2Cqjq47JoVD5WBF5Uhye/CSq2uJmY
+   FslX7KX3Y0qQjJppj+LYoZLZohIDtDjb3Vq+cIhProbgmAj+QVZzlTngy
+   4=;
+IronPort-PHdr: =?us-ascii?q?9a23=3AbJ0UsBd+1tnFJKArorja21wblGMj4u6mDksu8pMi?=
+ =?us-ascii?q?zoh2WeGdxc27YRGN2/xhgRfzUJnB7Loc0qyK6vGmCTBLuMzZ+Fk5M7V0Hycfjs?=
+ =?us-ascii?q?sXmwFySOWkMmbcaMDQUiohAc5ZX0Vk9XzoeWJcGcL5ekGA6ibqtW1aFRrwLxd6?=
+ =?us-ascii?q?KfroEYDOkcu3y/qy+5rOaAlUmTaxe7x/IAiyoAnLtcQbjoRuJrsvxhfVv3BFZ/?=
+ =?us-ascii?q?lYyWR0KFyJgh3y/N2w/Jlt8yRRv/Iu6ctNWrjkcqo7ULJVEi0oP3g668P3uxbD?=
+ =?us-ascii?q?SxCP5mYHXWUNjhVIGQnF4wrkUZr3ryD3q/By2CiePc3xULA0RTGv5LplRRP0lC?=
+ =?us-ascii?q?sKMSMy/XrJgcJskq1UvBOhpwR+w4HKZoGVKOF+db7Zcd8DWGZNQtpdWylHD4ih?=
+ =?us-ascii?q?bYUAEvABMP5YoYfjulUOsRWwCwqiBOztyz9HmnD40qIh3uQ9Cg7G3hAsE84SvH?=
+ =?us-ascii?q?nWqtj+KaccUfqyzKnN1TjPYfRY2TD76IjTbB8uv+qMUaptesTM1UkgCR3FgUuW?=
+ =?us-ascii?q?qYf4IT6ey+ABvGaG4eZlW+6klmkqqxptojex2McjlI/JipgQylDD8yV525g6Ks?=
+ =?us-ascii?q?OjSENgetGrCoVftzqaNottXsMtXWRouD0gxrIavp67eTEHxZI6zBHQd/KJaZKH?=
+ =?us-ascii?q?4g7/VOmPOzd4gmpodK+xiRqv9UWs1PPwW82o3VtOsCZIkdrBuH4D2RDN9sWKV+?=
+ =?us-ascii?q?dw8Eih1zuL1Q3d5P9ILFw0mKbFJJMs37E+m54RvEnFAyT4lkL2jKqMeUUl/Oil?=
+ =?us-ascii?q?8+TmYrL6qZ+AMI90khv+MqMsmsOhHes4LhICX2+B+eSz0rDo4E73QK1Sg/Erjq?=
+ =?us-ascii?q?XVqp7XKMYBqqKnHQNY0pwv5he/Aju+zdgUgWMLIV1KdR6dgIXlIUzCLfD+APyi?=
+ =?us-ascii?q?mVqjii1ryOrDPrD5B5XNKWXMn6n5cLZm7k5c1BIzzddC55JIEr0BIOz8Wkv2tN?=
+ =?us-ascii?q?HAEh84PBa7w+DiCNVm0o4SRX6DDrOEPK/It1+H/PgjLPKWa4ALozb8K+Ml5+Lw?=
+ =?us-ascii?q?gn88gl8RZ7Wm3ZwSaHygH/RmJVuWYWb0j9scDWsGpAQzQe7whFGcTzJeZ2y+Uq?=
+ =?us-ascii?q?M86z0jDYKpF4bDRoSjgLyb2ye7G4VbZntaCl+SD3fnaYOEV+0JaCKVJM9hiSIL?=
+ =?us-ascii?q?Wqa6S4I6zh6hrhH1y6FnL+rP5i0Xq5fj1MNv6+LPkhEy8CR4D96B3GGVU2F0gm?=
+ =?us-ascii?q?QISic23aB4vUN91lCD3LN8g/xZDtxT++hJXh06NJ7b0+N6F9fyWhrbfteOSlap?=
+ =?us-ascii?q?XMmpAS0rQtI22d8ObBU1JtO5kxqW3za2G6RH0PuPBYco6eTN2HPtIN5nzHTL37?=
+ =?us-ascii?q?VniEMpBcQIJGqtmqk46g7IGoSarkOCiqyWeLQAiS7R6H+Yny3JuEBDTBU2QKLO?=
+ =?us-ascii?q?QXcHfEzUoN/loETYQPihTqUgORdGjtOEMbZAOeHu2HZGSfKrAt3cKzarkmX2Bh?=
+ =?us-ascii?q?aFw5uDaYPrfyMW2yCLW2YelAVGt1OBMxMzCzzl61nCASJjExrEKwPRyqg04Ceg?=
+ =?us-ascii?q?UkIqwgfMakpnzLe44TYfjPGHWugP07cf/iwmrmMnTx6Gw9vKBo/Y9EJad6JGbI?=
+ =?us-ascii?q?Z4uQ8f2A=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2BFAwDQZzVg/0HhJQpaCB0BAQEBCQESA?=
+ =?us-ascii?q?QUFAUCBT4MhgUEKhDeRWQOBBYkehHeLSIFoCwEBAQEBAQEBAQgBHQ0KBAEBhE0?=
+ =?us-ascii?q?CF4FgJjgTAhABAQYBAQEBAQYEAYZRDYI4BQIDHwEGg1wBAQEDAQEiERcBAisFB?=
+ =?us-ascii?q?wQCAQgRBAEBAQICERUCAgIfBwkBFQgIAQEEDgUIFQSCRgWCVQMOL648PHaBMoQ?=
+ =?us-ascii?q?SASwBAwOBEoJJDYImCQGBBCqGbw+GRIIEQIERghxJNT6CGysXBAGBFQgKAQ0FA?=
+ =?us-ascii?q?TgVE4JXgl8EgW8UEEonOAYJEiQFGwIuIx0BBwEyHBoGXpBdgn6lA1sHA4J7iT6?=
+ =?us-ascii?q?LUoFdhSIrgzGBNIkZkEyEe59/gwKOVwwGKA4UhCQCBAIEBQIWgWswWnBwgzkJC?=
+ =?us-ascii?q?T4XAg2XIoVFcwIBNQIGAQkBAQMJiihcgQ8BAQ?=
+X-IPAS-Result: =?us-ascii?q?A2BFAwDQZzVg/0HhJQpaCB0BAQEBCQESAQUFAUCBT4MhgUE?=
+ =?us-ascii?q?KhDeRWQOBBYkehHeLSIFoCwEBAQEBAQEBAQgBHQ0KBAEBhE0CF4FgJjgTAhABA?=
+ =?us-ascii?q?QYBAQEBAQYEAYZRDYI4BQIDHwEGg1wBAQEDAQEiERcBAisFBwQCAQgRBAEBAQI?=
+ =?us-ascii?q?CERUCAgIfBwkBFQgIAQEEDgUIFQSCRgWCVQMOL648PHaBMoQSASwBAwOBEoJJD?=
+ =?us-ascii?q?YImCQGBBCqGbw+GRIIEQIERghxJNT6CGysXBAGBFQgKAQ0FATgVE4JXgl8EgW8?=
+ =?us-ascii?q?UEEonOAYJEiQFGwIuIx0BBwEyHBoGXpBdgn6lA1sHA4J7iT6LUoFdhSIrgzGBN?=
+ =?us-ascii?q?IkZkEyEe59/gwKOVwwGKA4UhCQCBAIEBQIWgWswWnBwgzkJCT4XAg2XIoVFcwI?=
+ =?us-ascii?q?BNQIGAQkBAQMJiihcgQ8BAQ?=
+X-IronPort-AV: E=Sophos;i="5.81,200,1610409600"; 
+   d="scan'208";a="349700532"
+X-IronPort-AV: E=Sophos;i="5.81,200,1610409600"; 
+   d="scan'208";a="99670446"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: Khem Raj <raj.khem@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] #yocto #sdk
+Thread-Topic: [yocto] #yocto #sdk
+Thread-Index: AdcKDS/7ogHC+51HQKytODgwbmJmnQANvhEAAAf5ujA=
+Date: Tue, 23 Feb 2021 20:41:52 +0000
+In-Reply-To: <CAMKF1srNT25=KZzJccuzKQAoc0vRFd30rbZA2V7NAy1a1_iqww@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.4.15]
 MIME-Version: 1.0
-Date: Tue, 23 Feb 2021 11:41:23 -0800
-Message-ID: <ujcs.1614109283763279804.MYvC@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="BBBMvg0DkfnojuIUqnZF"
-
---BBBMvg0DkfnojuIUqnZF
+Return-Path: steven.monsees@baesystems.com
+Message-ID: <MADEUP.16667B264A4EB333.13362@lists.yoctoproject.org>
+Content-Language: en-US
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-Hi!
-I'm a new Yocto user trying to develop a fork of Chirpstack's Gateway OS (=
- https://github.com/brocaar/chirpstack-gateway-os ) for Raspberry Pi based =
-LoRaWAN gateways. Although I have successfully modified and added new recip=
-es, I'm struggling with adding a USB cellular modem to my image.
-
-I have a Huawei E303C USB modem and followed the instructions from the Emb=
-exus website ( https://embexus.com/2017/06/04/add-a-mobile-broadband-connec=
-tivity-to-embedded-linux/ ) with no success. It basically proposes using oF=
-ono + connman to create a network interface, but after running the instruct=
-ed commands, I get this error:
-
-$ sudo /usr/lib/ofono/test/activate-context
-Error activating /huawei_0/context1: org.ofono.Error.NotImplemented: Imple=
-mentation not provided
-
-As an additional step, I enabled roaming using the set-roaming-allowed scr=
-ipt in the oFono tests directory. I made the kernel configuration in layers=
- ( https://github.com/brocaar/chirpstack-gateway-os/tree/master/layers ) / =
-targets ( https://github.com/brocaar/chirpstack-gateway-os/tree/master/laye=
-rs/targets ) / meta-raspberrypi ( https://github.com/brocaar/chirpstack-gat=
-eway-os/tree/master/layers/targets/meta-raspberrypi ) / recipes-kernel ( ht=
-tps://github.com/brocaar/chirpstack-gateway-os/tree/master/layers/targets/m=
-eta-raspberrypi/recipes-kernel ) / linux ( https://github.com/brocaar/chirp=
-stack-gateway-os/tree/master/layers/targets/meta-raspberrypi/recipes-kernel=
-/linux ) /linux-raspberrypi_%.bbappend and the connman package conf igurati=
-on in meta ( https://github.com/brocaar/chirpstack-gateway-os/tree/master/m=
-eta ) / conf ( https://github.com/brocaar/chirpstack-gateway-os/tree/master=
-/meta/conf ) / distro ( https://github.com/brocaar/chirpstack-gateway-os/tr=
-ee/master/meta/conf/distro ) /chirpstack-gateway-os.conf.
-
-I considered installing NetworkManager from the OpenEmbedded layer. Still,=
- it has a declared conflict with connman, which is used to set a WIFI AP, a=
-nd I don't want to remove that feature.
-
-This is the output from the list-modems script:
-[ /huawei_0 ]
-Online =3D 1
-Powered =3D 1
-Lockdown =3D 0
-Emergency =3D 0
-Manufacturer =3D huawei
-Model =3D E303C
-Revision =3D 21.157.01.01.18
-Serial =3D 867360018081349
-SystemPath =3D /sys/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.3
-Interfaces =3D org.ofono.CellBroadcast org.ofono.NetworkRegistration org.o=
-fono.SupplementaryServices org.ofono.CallBarring org.ofono.CallSettings org=
-.ofono.CallForwarding org.ofono.MessageWaiting org.ofono.ConnectionManager =
-org.ofono.SmartMessaging org.ofono.PushNotification org.ofono.MessageManage=
-r org.ofono.RadioSettings org.ofono.Phonebook org.ofono.AudioSettings org.o=
-fono.VoiceCallManager org.ofono.AllowedAccessPoints org.ofono.SimManager
-Features =3D cbs net ussd gprs sms rat sim
-Type =3D hardware
-[ org.ofono.CellBroadcast ]
-Powered =3D 0
-Topics =3D 2,4,36,50,118,135,255,555,569
-[ org.ofono.NetworkRegistration ]
-Status =3D roaming
-Mode =3D auto
-Technology =3D umts
-MobileCountryCode =3D 334
-MobileNetworkCode =3D 020
-Name =3D EMnify (Mx Telcel GSM)
-Strength =3D 41
-[ org.ofono.SupplementaryServices ]
-State =3D idle
-[ org.ofono.CallBarring ]
-VoiceOutgoing =3D disabled
-VoiceIncoming =3D disabled
-[ org.ofono.CallSettings ]
-CallingLinePresentation =3D enabled
-CallingNamePresentation =3D unknown
-ConnectedLinePresentation =3D disabled
-ConnectedLineRestriction =3D unknown
-CalledLinePresentation =3D disabled
-CallingLineRestriction =3D off
-HideCallerId =3D default
-VoiceCallWaiting =3D disabled
-[ org.ofono.CallForwarding ]
-VoiceUnconditional =3D
-VoiceBusy =3D
-VoiceNoReply =3D
-VoiceNoReplyTimeout =3D 20
-VoiceNotReachable =3D
-ForwardingFlagOnSim =3D 0
-[ org.ofono.MessageWaiting ]
-VoicemailWaiting =3D 0
-VoicemailMessageCount =3D 0
-VoicemailMailboxNumber =3D
-[ org.ofono.ConnectionManager ]
-Attached =3D 1
-Bearer =3D umts
-RoamingAllowed =3D 1
-Powered =3D 1
-Suspended =3D 0
-[ org.ofono.SmartMessaging ]
-[ org.ofono.PushNotification ]
-[ org.ofono.MessageManager ]
-ServiceCenterAddress =3D +42379010570
-UseDeliveryReports =3D 0
-Bearer =3D cs-preferred
-Alphabet =3D default
-[ org.ofono.RadioSettings ]
-[ org.ofono.Phonebook ]
-[ org.ofono.AudioSettings ]
-Active =3D 0
-[ org.ofono.VoiceCallManager ]
-EmergencyNumbers =3D 118 110 08 911 000 112 999 119
-[ org.ofono.AllowedAccessPoints ]
-[ org.ofono.SimManager ]
-Present =3D 1
-CardIdentifier =3D 89883030000055775206
-SubscriberIdentity =3D 295050901033049
-ServiceProviderName =3D EMnify
-FixedDialing =3D 0
-BarredDialing =3D 0
-MobileCountryCode =3D 295
-MobileNetworkCode =3D 05
-SubscriberNumbers =3D
-LockedPins =3D
-PreferredLanguages =3D de en
-PinRequired =3D none
-Retries =3D [pin =3D 3] [pin2 =3D 3] [puk =3D 10] [puk2 =3D 10]
-CardSlotCount =3D 1
-ActiveCardSlot =3D 1
-
---BBBMvg0DkfnojuIUqnZF
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi!<br />I'm a new Yocto user trying to develop a fork of <a href=3D"htt=
-ps://github.com/brocaar/chirpstack-gateway-os" target=3D"_blank" rel=3D"noo=
-pener">Chirpstack's Gateway OS</a> for Raspberry Pi based LoRaWAN gateways.=
- Although I have successfully modified and added new recipes, I'm strugglin=
-g with adding a USB cellular modem to my image.<br /><br />I have a Huawei =
-E303C USB modem and followed the instructions from the <a href=3D"https://e=
-mbexus.com/2017/06/04/add-a-mobile-broadband-connectivity-to-embedded-linux=
-/" target=3D"_blank" rel=3D"noopener">Embexus website</a> with no success. =
-It basically proposes using oFono + connman to create a network interface, =
-but after running the instructed commands, I get this error:<br /><br /><em=
->$ sudo /usr/lib/ofono/test/activate-context </em><br /><em>Error activatin=
-g /huawei_0/context1: org.ofono.Error.NotImplemented: Implementation not pr=
-ovided</em><br /><br />As an additional step, I enabled roaming using the s=
-et-roaming-allowed script in the oFono tests directory. I made the kernel c=
-onfiguration in <span style=3D"font-size: 11pt;"><a href=3D"https://github.=
-com/brocaar/chirpstack-gateway-os/tree/master/layers" data-pjax=3D"true">la=
-yers</a>/<a href=3D"https://github.com/brocaar/chirpstack-gateway-os/tree/m=
-aster/layers/targets" data-pjax=3D"true">targets</a>/<a href=3D"https://git=
-hub.com/brocaar/chirpstack-gateway-os/tree/master/layers/targets/meta-raspb=
-errypi" data-pjax=3D"true">meta-raspberrypi</a>/<a href=3D"https://github.c=
-om/brocaar/chirpstack-gateway-os/tree/master/layers/targets/meta-raspberryp=
-i/recipes-kernel" data-pjax=3D"true">recipes-kernel</a>/<a href=3D"https://=
-github.com/brocaar/chirpstack-gateway-os/tree/master/layers/targets/meta-ra=
-spberrypi/recipes-kernel/linux" data-pjax=3D"true">linux</a>/linux-raspberr=
-ypi_%.bbappend and the connman package conf</span>iguration in <span style=
-=3D"font-size: 11pt;"><a href=3D"https://github.com/brocaar/chirpstack-gat=
-eway-os/tree/master/meta" data-pjax=3D"true">meta</a>/<a href=3D"https://gi=
-thub.com/brocaar/chirpstack-gateway-os/tree/master/meta/conf" data-pjax=3D"=
-true">conf</a>/<a href=3D"https://github.com/brocaar/chirpstack-gateway-os/=
-tree/master/meta/conf/distro" data-pjax=3D"true">distro</a>/chirpstack-gate=
-way-os.conf.</span></p>
-<p>&nbsp;</p>
-<p><br />I considered installing NetworkManager from the OpenEmbedded laye=
-r. Still, it has a declared conflict with connman, which is used to set a W=
-IFI AP, and I don't want to remove that feature. <br /><br />This is the ou=
-tput from the <em>list-modems</em> script:<br />[ /huawei_0 ]<br />&nbsp;&n=
-bsp;&nbsp; Online =3D 1<br />&nbsp;&nbsp;&nbsp; Powered =3D 1<br />&nbsp;&n=
-bsp;&nbsp; Lockdown =3D 0<br />&nbsp;&nbsp;&nbsp; Emergency =3D 0<br />&nbs=
-p;&nbsp;&nbsp; Manufacturer =3D huawei<br />&nbsp;&nbsp;&nbsp; Model =3D E3=
-03C<br />&nbsp;&nbsp;&nbsp; Revision =3D 21.157.01.01.18<br />&nbsp;&nbsp;&=
-nbsp; Serial =3D 867360018081349<br />&nbsp;&nbsp;&nbsp; SystemPath =3D /sy=
-s/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.3<br />&nbsp;&nbsp;&nbsp; =
-Interfaces =3D org.ofono.CellBroadcast org.ofono.NetworkRegistration org.of=
-ono.SupplementaryServices org.ofono.CallBarring org.ofono.CallSettings org.=
-ofono.CallForwarding org.ofono.MessageWaiting org.ofono.ConnectionManager o=
-rg.ofono.SmartMessaging org.ofono.PushNotification org.ofono.MessageManager=
- org.ofono.RadioSettings org.ofono.Phonebook org.ofono.AudioSettings org.of=
-ono.VoiceCallManager org.ofono.AllowedAccessPoints org.ofono.SimManager <br=
- />&nbsp;&nbsp;&nbsp; Features =3D cbs net ussd gprs sms rat sim <br />&nbs=
-p;&nbsp;&nbsp; Type =3D hardware<br />&nbsp;&nbsp;&nbsp; [ org.ofono.CellBr=
-oadcast ]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Powered =3D 0<br =
-/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Topics =3D 2,4,36,50,118,135,2=
-55,555,569<br />&nbsp;&nbsp;&nbsp; [ org.ofono.NetworkRegistration ]<br />&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Status =3D roaming<br />&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mode =3D auto<br />&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; Technology =3D umts<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; MobileCountryCode =3D 334<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; MobileNetworkCode =3D 020<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; Name =3D EMnify (Mx Telcel GSM)<br />&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; Strength =3D 41<br />&nbsp;&nbsp;&nbsp; [ org.ofono.Supple=
-mentaryServices ]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; State =3D=
- idle<br />&nbsp;&nbsp;&nbsp; [ org.ofono.CallBarring ]<br />&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; VoiceOutgoing =3D disabled<br />&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; VoiceIncoming =3D disabled<br />&nbsp;&nbsp;&n=
-bsp; [ org.ofono.CallSettings ]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; CallingLinePresentation =3D enabled<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; CallingNamePresentation =3D unknown<br />&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp; ConnectedLinePresentation =3D disabled<br />&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ConnectedLineRestriction =3D unknown<br =
-/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CalledLinePresentation =3D dis=
-abled<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CallingLineRestrictio=
-n =3D off<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HideCallerId =3D =
-default<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VoiceCallWaiting =
-=3D disabled<br />&nbsp;&nbsp;&nbsp; [ org.ofono.CallForwarding ]<br />&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VoiceUnconditional =3D <br />&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VoiceBusy =3D <br />&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; VoiceNoReply =3D <br />&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; VoiceNoReplyTimeout =3D 20<br />&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; VoiceNotReachable =3D <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; ForwardingFlagOnSim =3D 0<br />&nbsp;&nbsp;&nbsp; [ org.ofono.M=
-essageWaiting ]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VoicemailWa=
-iting =3D 0<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VoicemailMessag=
-eCount =3D 0<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VoicemailMailb=
-oxNumber =3D <br />&nbsp;&nbsp;&nbsp; [ org.ofono.ConnectionManager ]<br />=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Attached =3D 1<br />&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bearer =3D umts<br />&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; RoamingAllowed =3D 1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; Powered =3D 1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- Suspended =3D 0<br />&nbsp;&nbsp;&nbsp; [ org.ofono.SmartMessaging ]<br />=
-&nbsp;&nbsp;&nbsp; [ org.ofono.PushNotification ]<br />&nbsp;&nbsp;&nbsp; [=
- org.ofono.MessageManager ]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- ServiceCenterAddress =3D +42379010570<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; UseDeliveryReports =3D 0<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; Bearer =3D cs-preferred<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; Alphabet =3D default<br />&nbsp;&nbsp;&nbsp; [ org.ofono.RadioSettin=
-gs ]<br />&nbsp;&nbsp;&nbsp; [ org.ofono.Phonebook ]<br />&nbsp;&nbsp;&nbsp=
-; [ org.ofono.AudioSettings ]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; Active =3D 0<br />&nbsp;&nbsp;&nbsp; [ org.ofono.VoiceCallManager ]<br /=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EmergencyNumbers =3D 118 110 08=
- 911 000 112 999 119 <br />&nbsp;&nbsp;&nbsp; [ org.ofono.AllowedAccessPoin=
-ts ]<br />&nbsp;&nbsp;&nbsp; [ org.ofono.SimManager ]<br />&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; Present =3D 1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; CardIdentifier =3D 89883030000055775206<br />&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; SubscriberIdentity =3D 295050901033049<br />&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ServiceProviderName =3D EMnify<br />=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FixedDialing =3D 0<br />&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BarredDialing =3D 0<br />&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; MobileCountryCode =3D 295<br />&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; MobileNetworkCode =3D 05<br />&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; SubscriberNumbers =3D <br />&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; LockedPins =3D <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; PreferredLanguages =3D de en <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; PinRequired =3D none<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; Retries =3D [pin =3D 3] [pin2 =3D 3] [puk =3D 10] [puk2 =3D 10] <br =
-/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CardSlotCount =3D 1<br />&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ActiveCardSlot =3D 1<br /><br /><br /=
-><br /></p>
-
---BBBMvg0DkfnojuIUqnZF--
+DQpUaGFua3MsIHdpbGwgZ28gdGhyb3VnaCBpdC4uLg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2Ut
+LS0tLQ0KRnJvbTogS2hlbSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT4gDQpTZW50OiBUdWVzZGF5
+LCBGZWJydWFyeSAyMywgMjAyMSAyOjMwIFBNDQpUbzogTW9uc2VlcywgU3RldmVuIEMgKFVTKSA8
+c3RldmVuLm1vbnNlZXNAYmFlc3lzdGVtcy5jb20+DQpDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9q
+ZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gI3lvY3RvICNzZGsNCg0KRXh0ZXJuYWwgRW1h
+aWwgQWxlcnQNCg0KVGhpcyBlbWFpbCBoYXMgYmVlbiBzZW50IGZyb20gYW4gYWNjb3VudCBvdXRz
+aWRlIG9mIHRoZSBCQUUgU3lzdGVtcyBuZXR3b3JrLg0KDQpQbGVhc2UgdHJlYXQgdGhlIGVtYWls
+IHdpdGggY2F1dGlvbiwgZXNwZWNpYWxseSBpZiB5b3UgYXJlIHJlcXVlc3RlZCB0byBjbGljayBv
+biBhIGxpbmssIGRlY3J5cHQvb3BlbiBhbiBhdHRhY2htZW50LCBvciBlbmFibGUgbWFjcm9zLiAg
+Rm9yIGZ1cnRoZXIgaW5mb3JtYXRpb24gb24gaG93IHRvIHNwb3QgcGhpc2hpbmcsIGFjY2VzcyDi
+gJxDeWJlcnNlY3VyaXR5IE9uZVNwYWNlIFBhZ2XigJ0gYW5kIHJlcG9ydCBwaGlzaGluZyBieSBj
+bGlja2luZyB0aGUgYnV0dG9uIOKAnFJlcG9ydCBQaGlzaGluZ+KAnSBvbiB0aGUgT3V0bG9vayB0
+b29sYmFyLg0KDQoNCmh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvVGlwc0FuZFRy
+aWNrcy9VbmRlcnN0YW5kaW5nX3doYXRfY2hhbmdlZF8oZGlmZnNpZ3NfZXRjKQ0KDQpPbiBUdWUs
+IEZlYiAyMywgMjAyMSBhdCAxMDowMyBBTSBNb25zZWVzLCBTdGV2ZW4gQyAoVVMpIHZpYSBsaXN0
+cy55b2N0b3Byb2plY3Qub3JnIDxzdGV2ZW4ubW9uc2Vlcz1iYWVzeXN0ZW1zLmNvbUBsaXN0cy55
+b2N0b3Byb2plY3Qub3JnPiB3cm90ZToNCj4NCj4NCj4NCj4gSSBhbSB0cnlpbmcgdG8gdW5kZXJz
+dGFuZCB0aGUgd2FybmluZ3MvZXJyb3IgYXMgc2VlbiBiZWxvd+KApg0KPg0KPg0KPg0KPiBCdWls
+ZGluZyBmb3IgemV1c+KApg0KPg0KPg0KPg0KPiBCdWlsdCBrZXJuZWwgaW1hZ2UgY2xlYW4gdXBk
+YXRlZCBteSBTU1RBVEVfTUlSUk9SUyBkaXJlY3Rvcnkgd2l0aCB0aGUgc3RhdGVfY2FjaGUgZ2Vu
+ZXJhdGVkLg0KPg0KPiBSZWJ1aWx0IG15IGltYWdlIGNsZWFuIGFnYWluIHVzaW5nIFNTVEFURV9N
+SVJST1JTDQo+DQo+IEltYWdlIGJ1aWxkcyBjbGVhbiBhbmQgYmVoYXZlcyBjb3JyZWN0bHkgd2hl
+biBib290ZWTigKYNCj4NCj4NCj4NCj4gSSB0aGVuIGJ1aWxkIHRoZSBTREssIG15IFNTVEFURV9N
+SVJST1JTIGlzIGRlZmluZWQgaW4gc2RrLWV4dHJhLmNvbmYsIA0KPiBhbmQgZG9lcyBwcm9wZXJs
+eSBzaG93IHVwIGluIGxvY2FsLmNvbmYgKGNoZWNrZWQgYWZ0ZXIgZmFpbHVyZSkNCj4NCj4gQnVp
+bGRpbmcgZXh0ZW5kZWQgU0RLIGhhcyBubyBpc3N1ZXMuDQo+DQo+DQo+DQo+IEJ1dCBvbiBpbnN0
+YWxsIEkgc2VlIHRoZSBmb2xsb3dpbmcgd2FybmluZ3MgYW5kIHRoZSBlcnJvciBhdCB0aGUgZW5k
+4oCmDQo+DQo+IEkgYW0gbm90IHN1cmUgd2hhdCBpcyBjYXVzaW5nIHRoZSBpc3N1ZSBoZXJl4oCm
+DQo+DQo+DQo+DQo+IFdoYXQgd291bGQgY2F1c2UgaXNzdWVzIGxpa2UgdGhpcyA/LCBhbmQgd2h5
+ID8NCj4NCj4NCj4NCj4gV0FSTklORzogVGhlIGluaXRzY3JpcHRzOmRvX2luc3RhbGwgc2lnIGlz
+IGNvbXB1dGVkIHRvIGJlIA0KPiAzNzVkM2MyNGI1NzRiODNmYjA0ZGMwNzlmYjUyZGQ1ZTNhMGFj
+MzFlZDI2NWFjZWNlMmJiNjg5ZjcyZjlhZGZhLCBidXQgDQo+IHRoZSBzaWcgaXMgbG9ja2VkIHRv
+IA0KPiA0MGY1ZDJhYzRhZmZhYjljNjA2OTE3MTQ1OTBjYTAwZjMwMTMwYWQyZjVkYzc5ZjUzYWFm
+Nzc0OTU3ZTFkOTI3IGluIA0KPiBTSUdHRU5fTE9DS0VEU0lHU190LWNvcmVpNy02NA0KPg0KPg0K
+Pg0KPiBUaGVyZSBpc27igJl0IG11Y2ggaW4gdGhlIGRvY3VtZW50YXRpb24gb24gdGhpcyBvciBT
+SUdHRU7igKYNCj4NCj4gV2hhdCB3b3VsZCBiZSB0aGUgYmVzdC9wcm9wZXIgYXBwcm9hY2ggdG8g
+cmVzb2x2ZSBpc3N1ZXMgbGlrZSB0aGlzID8NCj4NCj4NCj4NCj4gVGhhbmtzLA0KPg0KPiBTdGV2
+ZQ0KPg0KPg0KPg0KPiAxMDo0NCBzbW9uc2Vlc0B5aXg0OTAwMTYgDQo+IC9kaXNrMC9zY3JhdGNo
+L3Ntb25zZWVzL3lvY3RvL3dvcmtzcGFjZV8zL2J1aWxkcy9zYmNiLWRlZmF1bHQ+IGJpdGJha2Ug
+DQo+IHNiY2ItZGVmYXVsdGZzLWZ1bGwgLWMgcG9wdWxhdGVfc2RrX2V4dA0KPg0KPiBMb2FkaW5n
+IGNhY2hlOiAxMDAlIA0KPiB8IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjDQo+ICMjIyMjIyMjIyMjIyMjIyMjfCBUaW1l
+OiAwOjAwOjAwDQo+DQo+IExvYWRlZCAzNjQ1IGVudHJpZXMgZnJvbSBkZXBlbmRlbmN5IGNhY2hl
+Lg0KPg0KPiBOT1RFOiBSZXNvbHZpbmcgYW55IG1pc3NpbmcgdGFzayBxdWV1ZSBkZXBlbmRlbmNp
+ZXMNCj4NCj4NCj4NCj4gQnVpbGQgQ29uZmlndXJhdGlvbjoNCj4NCj4gQkJfVkVSU0lPTiAgICAg
+ICAgICAgPSAiMS40NC4wIg0KPg0KPiBCVUlMRF9TWVMgICAgICAgICAgICA9ICJ4ODZfNjQtbGlu
+dXgiDQo+DQo+IE5BVElWRUxTQlNUUklORyAgICAgID0gInJoZWwtNy45Ig0KPg0KPiBUQVJHRVRf
+U1lTICAgICAgICAgICA9ICJ4ODZfNjQtcG9reS1saW51eCINCj4NCj4gTUFDSElORSAgICAgICAg
+ICAgICAgPSAic2JjYi1kZWZhdWx0Ig0KPg0KPiBESVNUUk8gICAgICAgICAgICAgICA9ICJsaW13
+cyINCj4NCj4gRElTVFJPX1ZFUlNJT04gICAgICAgPSAiMy4wLjQiDQo+DQo+IFRVTkVfRkVBVFVS
+RVMgICAgICAgID0gIm02NCBjb3JlaTciDQo+DQo+IFRBUkdFVF9GUFUgICAgICAgICAgID0gIiIN
+Cj4NCj4gbWV0YQ0KPg0KPiBtZXRhLXBva3kgICAgICAgICAgICA9ICJteV95b2N0b18zLjAuNDpm
+MmViMjJhODc4M2YxZWVjZjk5YmQ0MDQyNjk1YmFiOTIwZWVkMDBlIg0KPg0KPiBtZXRhLXBlcmwN
+Cj4NCj4gbWV0YS1weXRob24NCj4NCj4gbWV0YS1maWxlc3lzdGVtcw0KPg0KPiBtZXRhLW5ldHdv
+cmtpbmcNCj4NCj4gbWV0YS1pbml0cmFtZnMNCj4NCj4gbWV0YS1vZSAgICAgICAgICAgICAgPSAi
+emV1czoyYjVkZDFlYjgxY2QwOGJjMDY1YmM3NjEyNWYyODU2ZTkzODNlOThiIg0KPg0KPiBtZXRh
+ICAgICAgICAgICAgICAgICA9ICJtYXN0ZXI6YTMyZGRkMmIyYTUxYjI2YzAxMWZhNTBlNDQxZGYz
+OTMwNDY1MTUwMyINCj4NCj4gbWV0YS1pbnRlbCAgICAgICAgICAgPSAiemV1czpkOTk0MmQ0YzNh
+NzEwNDA2YjA1MTg1MmRlNzIzMmRiMDNjMjk3ZjRlIg0KPg0KPiBtZXRhLWludGVsICAgICAgICAg
+ICA9ICJ2MjAxOS4wMjpmNjM1YTM2NGM1NWYxZmIxMjUxOWFmZjU0OTI0YTBhNWI5NDcwOTFlIg0K
+Pg0KPg0KPg0KPiBJbml0aWFsaXNpbmcgdGFza3M6IDEwMCUgDQo+IHwjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMNCj4g
+IyMjIyMjIyMjIyMjfCBUaW1lOiAwOjAwOjA0DQo+DQo+IENoZWNraW5nIHNzdGF0ZSBtaXJyb3Ig
+b2JqZWN0IGF2YWlsYWJpbGl0eTogMTAwJSANCj4gfCMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjI3wgVGltZTogDQo+IDA6MDA6MDANCj4NCj4g
+U3N0YXRlIHN1bW1hcnk6IFdhbnRlZCA1NjYgRm91bmQgMjk4IE1pc3NlZCAyNjggQ3VycmVudCAx
+Nzk0ICg1MiUgDQo+IG1hdGNoLCA4OCUgY29tcGxldGUpDQo+DQo+IE5PVEU6IEV4ZWN1dGluZyBU
+YXNrcw0KPg0KPiBOT1RFOiBTZXRzY2VuZSB0YXNrcyBjb21wbGV0ZWQNCj4NCj4gTk9URTogVGFz
+a3MgU3VtbWFyeTogQXR0ZW1wdGVkIDY2NjkgdGFza3Mgb2Ygd2hpY2ggNTg2MSBkaWRuJ3QgbmVl
+ZCB0byBiZSByZXJ1biBhbmQgYWxsIHN1Y2NlZWRlZC4NCj4NCj4gMTE6NTkgc21vbnNlZXNAeWl4
+NDkwMDE2IA0KPiAvZGlzazAvc2NyYXRjaC9zbW9uc2Vlcy95b2N0by93b3Jrc3BhY2VfMy9idWls
+ZHMvc2JjYi1kZWZhdWx0PiBjZCANCj4gL2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8vd29y
+a3NwYWNlXzMvYnVpbGRzL3NiY2ItZGVmYXVsdC90bXAvZGVwbA0KPiBveS9zZGsNCj4NCj4gMTE6
+NTkgc21vbnNlZXNAeWl4NDkwMDE2IA0KPiAvZGlzazAvc2NyYXRjaC9zbW9uc2Vlcy95b2N0by93
+b3Jrc3BhY2VfMy9idWlsZHMvc2JjYi1kZWZhdWx0L3RtcC9kZXBsDQo+IG95L3Nkaz5scw0KPg0K
+PiBsaW13cy1nbGliYy14ODZfNjQtYWlveF9vcmFuZ2UtY29yZWk3LTY0LXRvb2xjaGFpbi1leHQt
+My4wLjQuaG9zdC5tYW5pDQo+IGZlc3QNCj4NCj4gbGltd3MtZ2xpYmMteDg2XzY0LWFpb3hfb3Jh
+bmdlLWNvcmVpNy02NC10b29sY2hhaW4tZXh0LTMuMC40LnNoDQo+DQo+IGxpbXdzLWdsaWJjLXg4
+Nl82NC1haW94X29yYW5nZS1jb3JlaTctNjQtdG9vbGNoYWluLWV4dC0zLjAuNC50YXJnZXQubWEN
+Cj4gbmlmZXN0DQo+DQo+IGxpbXdzLWdsaWJjLXg4Nl82NC1haW94X29yYW5nZS1jb3JlaTctNjQt
+dG9vbGNoYWluLWV4dC0zLjAuNC50ZXN0ZGF0YS4NCj4ganNvbg0KPg0KPiB4ODZfNjQtYnVpbGR0
+b29scy1uYXRpdmVzZGstc3RhbmRhbG9uZS0zLjAuNC5ob3N0Lm1hbmlmZXN0DQo+DQo+IHg4Nl82
+NC1idWlsZHRvb2xzLW5hdGl2ZXNkay1zdGFuZGFsb25lLTMuMC40LnNoDQo+DQo+IHg4Nl82NC1i
+dWlsZHRvb2xzLW5hdGl2ZXNkay1zdGFuZGFsb25lLTMuMC40LnRhcmdldC5tYW5pZmVzdA0KPg0K
+PiB4ODZfNjQtYnVpbGR0b29scy1uYXRpdmVzZGstc3RhbmRhbG9uZS0zLjAuNC50ZXN0ZGF0YS5q
+c29uDQo+DQo+IDExOjU5IHNtb25zZWVzQHlpeDQ5MDAxNiANCj4gL2Rpc2swL3NjcmF0Y2gvc21v
+bnNlZXMveW9jdG8vd29ya3NwYWNlXzMvYnVpbGRzL3NiY2ItZGVmYXVsdC90bXAvZGVwbA0KPiBv
+eS9zZGs+Li9saW13cy1nbGliYy14ODZfNjQtYWlveF9vcmFuZ2UtY29yZWk3LTY0LXRvb2xjaGFp
+bi1leHQtMy4wLjQuDQo+IHNoDQo+DQo+IExJTVdTIChCQUUgTElNV1MgYmFzZSBkaXN0cm8pIEV4
+dGVuc2libGUgU0RLIGluc3RhbGxlciB2ZXJzaW9uIDMuMC40DQo+DQo+ID09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQo+
+DQo+IEVudGVyIHRhcmdldCBkaXJlY3RvcnkgZm9yIFNESyAoZGVmYXVsdDogfi9saW13c19zZGsp
+OiANCj4gL2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMvdGVzdFNESw0KPg0KPiBZb3UgYXJlIGFib3V0
+IHRvIGluc3RhbGwgdGhlIFNESyB0byAiL2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMvdGVzdFNESyIu
+IA0KPiBQcm9jZWVkIFtZL25dPyBZDQo+DQo+IEV4dHJhY3RpbmcgDQo+IFNESy4uLi4uLi4uLi4u
+Li4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4N
+Cj4gLi4uLi4uLi4uLi5kb25lDQo+DQo+IFNldHRpbmcgaXQgdXAuLi4NCj4NCj4gRXh0cmFjdGlu
+ZyBidWlsZHRvb2xzLi4uDQo+DQo+IFByZXBhcmluZyBidWlsZCBzeXN0ZW0uLi4NCj4NCj4gUGFy
+c2luZyByZWNpcGVzOiAxMDAlIA0KPiB8IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjDQo+ICMjIyMjIyMjIyMjIyMjI3wg
+VGltZTogMDowMTozMg0KPg0KPiBJbml0aWFsaXNpbmcgdGFza3M6IDEwMCUgDQo+IHwjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMNCj4gIyMjIyMjIyMjIyMjfCBUaW1lOiAwOjAwOjA0DQo+DQo+IENoZWNraW5nIHNzdGF0
+ZSBtaXJyb3Igb2JqZWN0IGF2YWlsYWJpbGl0eTogMTAwJSANCj4gfCMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjI3wgVGltZTogDQo+IDA6MDA6
+MDMNCj4NCj4gV0FSTklORzogVGhlIGluaXRzY3JpcHRzOmRvX2luc3RhbGwgc2lnIGlzIGNvbXB1
+dGVkIHRvIGJlIA0KPiAzNzVkM2MyNGI1NzRiODNmYjA0ZGMwNzlmYjUyZGQ1ZTNhMGFjMzFlZDI2
+NWFjZWNlMmJiNjg5ZjcyZjlhZGZhLCBidXQgDQo+IHRoZSBzaWcgaXMgbG9ja2VkIHRvIA0KPiA0
+MGY1ZDJhYzRhZmZhYjljNjA2OTE3MTQ1OTBjYTAwZjMwMTMwYWQyZjVkYzc5ZjUzYWFmNzc0OTU3
+ZTFkOTI3IGluIA0KPiBTSUdHRU5fTE9DS0VEU0lHU190LWNvcmVpNy02NA0KPg0KPiBUaGUgbGlu
+dXgtaW50ZWw6ZG9fY29tcGlsZSBzaWcgaXMgY29tcHV0ZWQgdG8gYmUgDQo+IDk4OTgxMzdmNzhi
+YTM3ZDJmY2Y3ZGY1YTdiN2E1ZGQwZTVkZGNiYzdjZTdhZGU4OTkwNWJmNTEzMmEwMDVhOTksIGJ1
+dCANCj4gdGhlIHNpZyBpcyBsb2NrZWQgdG8gDQo+IDA2YzA4Mzg3MDA5Zjk4MDgwNDRlMDMxNDRk
+MWZhMGI5ODRiZTlmNGFkNjQyNTFlNjg4NTAzYzJkYWJkZjViN2MgaW4gDQo+IFNJR0dFTl9MT0NL
+RURTSUdTX3QtY29yZWk3LTY0LWludGVsLWNvbW1vbg0KPg0KPiBUaGUgaW1hZ2VyZWN2OmRvX2Nv
+bXBpbGUgc2lnIGlzIGNvbXB1dGVkIHRvIGJlIA0KPiA2NDRiMDAyYjE4MWYyN2E0MDdjMzNjYzY5
+Y2ZjNzkwMjAxZjFiNDhjNGQ3NzgzYzA2MmQ1M2MyNDdkNTcwNGE1LCBidXQgDQo+IHRoZSBzaWcg
+aXMgbG9ja2VkIHRvIA0KPiBhNzRiMTBjZmM0YmFkMDUwY2E5ODU0OWIzZGY0MWZjZDBmYTk4NmUw
+OGMxNGUwNWRiNDRiMDIyN2QwYjkwYTBhIGluIA0KPiBTSUdHRU5fTE9DS0VEU0lHU190LXNiY2It
+ZGVmYXVsdA0KPg0KPiBUaGUgdHBtMi10c3M6ZG9fY29uZmlndXJlIHNpZyBpcyBjb21wdXRlZCB0
+byBiZSANCj4gMDRjZjRjOGUxNDI0YTQ2NDY3YTQzNjIwMjE0ZmMzYTUzMDQ4NjNmNWNiYjY2MmI1
+YjI2YTViODJkNzkyNTg2ZiwgYnV0IA0KPiB0aGUgc2lnIGlzIGxvY2tlZCB0byANCj4gZWM0YjAy
+ZTFlM2IxNzk2ODgzMDkzYmUyYWNhNjNlYzVlNTFkZjNkYzE0YjkxNzliZTZmODZmMjY3NWIzZmE1
+MyBpbiANCj4gU0lHR0VOX0xPQ0tFRFNJR1NfdC1jb3JlaTctNjQNCj4NCj4gVGhlIGVmaXRvb2xz
+OmRvX2NvbXBpbGUgc2lnIGlzIGNvbXB1dGVkIHRvIGJlIA0KPiBjMmU2ZGM2MGE3YjhiMjQxNGIz
+NzYxZmU0OTY2ZTAzMTkwMTE0NGUzZDMyZWVkNjBiZDU4MGNjNDZlOWI1MzU4LCBidXQgDQo+IHRo
+ZSBzaWcgaXMgbG9ja2VkIHRvIA0KPiAzMjdmYmFlMmFhNGE0MTk1NTRlZGU2ODQ3ZmNjN2MzNjdk
+YTAxOGU1ZTlkOTA3YTAwNTFlNjhkZjVhNWEyMDYzIGluIA0KPiBTSUdHRU5fTE9DS0VEU0lHU190
+LWNvcmVpNy02NA0KPg0KPiBUaGUgbW9ua2V5c3BoZXJlOmRvX2NvbmZpZ3VyZSBzaWcgaXMgY29t
+cHV0ZWQgdG8gYmUgDQo+IDhhNWNmYjM0OWZhODRjYTUyNGJmNjgwYTkyMmQwZTE3ODFmNWRjOWUw
+YjVlMGY2ZTBiMTM1ZWE4OGUzZjhmYTEsIGJ1dCANCj4gdGhlIHNpZyBpcyBsb2NrZWQgdG8gDQo+
+IDhkMmJmMmVkZDMxOTRlNDRkZTAxNDMwODhlNjg3MDNjMDJhODgwMzJiYjA4OWVmMGE0NjAwZjc1
+Mjg2OTUzNjIgaW4gDQo+IFNJR0dFTl9MT0NLRURTSUdTX3QtY29yZWk3LTY0DQo+DQo+IFRoZSBt
+b25rZXlzcGhlcmU6ZG9fY29tcGlsZSBzaWcgaXMgY29tcHV0ZWQgdG8gYmUgDQo+IDgxOWY3NzAw
+YTdmNjExMzM1YjhhNWU0ZjgyNDM2MjNjNGYwMWIxODdmMTk3YWExOWNkMDM0MzgzYWYxN2I0MWIs
+IGJ1dCANCj4gdGhlIHNpZyBpcyBsb2NrZWQgdG8gDQo+IDgyMmRiNjk2NDAwYjVhNzg4ZmJjYzBl
+ODBmMWZlMjQyYmQ1OGNhYjk5MmZmMTk2ZWZhYzE5MTQ0NGQ3YjNiOTkgaW4gDQo+IFNJR0dFTl9M
+T0NLRURTSUdTX3QtY29yZWk3LTY0DQo+DQo+IFRoZSBtb25rZXlzcGhlcmU6ZG9faW5zdGFsbCBz
+aWcgaXMgY29tcHV0ZWQgdG8gYmUgDQo+IGYyZjhjYjU4YjA3YTM1MGVlZmQ0MWFmMTNlMTE1NmFi
+ZDg1NjU5YjE4NjVkYzI3ODIzODI3N2Q5MjMwZTJlM2YsIGJ1dCANCj4gdGhlIHNpZyBpcyBsb2Nr
+ZWQgdG8gDQo+IDllMWNhNzk1ZGY3ZDczMzQ3ZjBlZmVlYWM1NGMyNGYxMDA0ZDU5MDExYjk3MjYy
+MjA3ZTEwNTVmNzcxZWU5NWMgaW4gDQo+IFNJR0dFTl9MT0NLRURTSUdTX3QtY29yZWk3LTY0DQo+
+DQo+IFRoZSBtb25rZXlzcGhlcmU6ZG9fcG9wdWxhdGVfc3lzcm9vdCBzaWcgaXMgY29tcHV0ZWQg
+dG8gYmUgDQo+IGNhOGZlMTQ0YmUwMDkyOWYzYzQyY2IzNmI4MDlhMDZiODVkNzBjNGY5ZmExYzBm
+NmZkNjdiMDdhZjg0ZDE3YTEsIGJ1dCANCj4gdGhlIHNpZyBpcyBsb2NrZWQgdG8gDQo+IDJhNDFh
+ZmQ4MzhjZGFjNjY5ZGQ5OWRlZWZkYzUzMGM1ZDUwMzMyOWZiMWZhZTJmYjM2NDFiNDkwYTJiYmVj
+OGEgaW4gDQo+IFNJR0dFTl9MT0NLRURTSUdTX3QtY29yZWk3LTY0DQo+DQo+IFRoZSBtb25rZXlz
+cGhlcmU6ZG9fcGFja2FnZSBzaWcgaXMgY29tcHV0ZWQgdG8gYmUgDQo+IDI5YTVkYWVhNTI0YTIx
+OWM1MjE2YjVkNzY0NDcxNjBkMDA2ZTdkYjYzM2UzOGM3ZDFhZGU2YjU5OWViNmMyYWIsIGJ1dCAN
+Cj4gdGhlIHNpZyBpcyBsb2NrZWQgdG8gDQo+IDJiMmNlZjM2N2M0NDM5OTIyMWIwN2YxNGZhY2Zm
+OWIxYWU1OThjY2MyNzJjNGI5OGRkZmM0YjA4MDA5ZmMwOTAgaW4gDQo+IFNJR0dFTl9MT0NLRURT
+SUdTX3QtY29yZWk3LTY0DQo+DQo+IFRoZSBzaWduYXR1cmU6ZG9fY29uZmlndXJlIHNpZyBpcyBj
+b21wdXRlZCB0byBiZSANCj4gNjEzODQ0MjQxY2UxNWIyNDVhYmUyZmI5MzA2NDE1NjE2YzcyNTUz
+ZTk0MzE4MzMwN2IzNDk2Zjg1NjM3MzQ1ZSwgYnV0IA0KPiB0aGUgc2lnIGlzIGxvY2tlZCB0byAN
+Cj4gNjhhODE4YWNkMzI4MWUyOGJkNTdlZmNkNDQ5YTBiYWMwZmZhYTI3MzNmY2IwMmY2YjI4YjJm
+ZTMxZDM2ZTgzNSBpbiANCj4gU0lHR0VOX0xPQ0tFRFNJR1NfdC1jb3JlaTctNjQNCj4NCj4gVGhl
+IHNpZ25hdHVyZTpkb19jb21waWxlIHNpZyBpcyBjb21wdXRlZCB0byBiZSANCj4gOGIzN2U0YTBl
+NmVjMDA2OGI3ZGRhMGVjY2QxZTMyNTc3ZGFlZGYyNDhmMWMzZTcxZjgyZjY0NTRkM2U0MzM4ZCwg
+YnV0IA0KPiB0aGUgc2lnIGlzIGxvY2tlZCB0byANCj4gNmYyOTFhMGY5YmE1OWYzNTVkOWE4OGQ2
+NDZmNzJiZjk5YTAwMWY4NjJiMzEwZTVlNDM1ZThiNDA2NjMyYjZiNCBpbiANCj4gU0lHR0VOX0xP
+Q0tFRFNJR1NfdC1jb3JlaTctNjQNCj4NCj4gVGhlIHNpZ25hdHVyZTpkb19pbnN0YWxsIHNpZyBp
+cyBjb21wdXRlZCB0byBiZSANCj4gM2EyMGY1NmNjMDQ1NTFmMTMzNzhlOWU1OTZkYWE1ZWViYzM4
+NWNhOTY1ZWJkZjE4YWRhY2ZhN2VmOTRjOTAxOCwgYnV0IA0KPiB0aGUgc2lnIGlzIGxvY2tlZCB0
+byANCj4gOGZjNzYxZjhiZjAyMTVlYTJmYjk2MDkwMzdhNWRmMGM3ZTJhZDZkZDkyNTM1NTVlYTVm
+NDkyYjcwNjhlN2JmZiBpbiANCj4gU0lHR0VOX0xPQ0tFRFNJR1NfdC1jb3JlaTctNjQNCj4NCj4g
+VGhlIHNpZ25hdHVyZTpkb19wb3B1bGF0ZV9zeXNyb290IHNpZyBpcyBjb21wdXRlZCB0byBiZSAN
+Cj4gOTdkMmYzNGVmNGI0MGZlOGUzMjRjMDQzNDZhZDBjZGYyMmNkZTZjYzc3NGYzMzY0MDA3OTdj
+YjZhNDgzZDA4YywgYnV0IA0KPiB0aGUgc2lnIGlzIGxvY2tlZCB0byANCj4gOTM3MDAwMzViYzFh
+NDJiNGY3ZTVmMDVlZjMwZDRiYzZmZGYyYWJjMGRkMWY3MDdiMmU3NDVjZWVkMjVkNTc3MCBpbiAN
+Cj4gU0lHR0VOX0xPQ0tFRFNJR1NfdC1jb3JlaTctNjQNCj4NCj4gVGhlIHNpZ25hdHVyZTpkb19w
+YWNrYWdlIHNpZyBpcyBjb21wdXRlZCB0byBiZSANCj4gZjU5ZjM1ODQwMjZkNGFjZjcxZDQzMDBh
+MThmZjRiZjA1YzBmM2UzYjQyYzJkNTI2NGFmOWJlNjM4MjBhMDM4NiwgYnV0IA0KPiB0aGUgc2ln
+IGlzIGxvY2tlZCB0byANCj4gYmRjNjAwM2JiZDdhNDJhODNlOWE2YTdlYmU2OTFlOTNhOTc0NGFl
+OTZjNjY0ZDg2NTY5MDdhMTVhZjg0YmUxYyBpbiANCj4gU0lHR0VOX0xPQ0tFRFNJR1NfdC1jb3Jl
+aTctNjQNCj4NCj4gVGhlIGdydWItZWZpLW5hdGl2ZTpkb19jbGVhbl9ncnViIHNpZyBpcyBjb21w
+dXRlZCB0byBiZSANCj4gMTdjNjJiM2RmNWE1N2VlNGNiZDBlN2FiZjEyODRhNWQ0OTliYTRjODE0
+YWFkZWQ1NjRhMjQwODViOWZkMzI2YywgYnV0IA0KPiB0aGUgc2lnIGlzIGxvY2tlZCB0byANCj4g
+Yzg4MzVmZmIyN2UwZDk3YjMzMmRkZGFkM2ZiODNiZGI4NDlhMjY3YThhMGZhNzE0MmU2NmE3NjY5
+NmM5MTBmZiBpbiANCj4gU0lHR0VOX0xPQ0tFRFNJR1NfdC14ODYtNjQNCj4NCj4gVGhlIGdydWIt
+ZWZpLW5hdGl2ZTpkb19jb25maWd1cmUgc2lnIGlzIGNvbXB1dGVkIHRvIGJlIA0KPiBhNmRmYjZj
+ZDYzMzQzMmIzNmI4MThiNjNmZDZlMDZlMDg2ZDE4OWI2MmNkN2ZjNjM3MGM0ZTY2ZTk2NjhmYTFk
+LCBidXQgDQo+IHRoZSBzaWcgaXMgbG9ja2VkIHRvIA0KPiAxOTQ2MDI5NTRiYjQ5OTNiODUzOTdh
+ZWIwNjU1N2QxMGZmMTRiMTVkNTJhMzIxMzg5Y2RiYjAxMzlkMmNlMzRjIGluIA0KPiBTSUdHRU5f
+TE9DS0VEU0lHU190LXg4Ni02NA0KPg0KPiBUaGUgZ3J1Yi1lZmktbmF0aXZlOmRvX2NvbXBpbGUg
+c2lnIGlzIGNvbXB1dGVkIHRvIGJlIA0KPiA1ODM4MDBhNThjYTJlNjAyZDUwYjRlMjM0ODU3NzRl
+OGI2ODFmNzliZjQ4YTFhODU0YjcxMjY0YTBkZGNiNzMzLCBidXQgDQo+IHRoZSBzaWcgaXMgbG9j
+a2VkIHRvIA0KPiBlNjQyYjZjOTMxYmRhMWQ1MWJjNTM5NDU5NmNkYWNjZTcwOTk4NzVkMWU4NzNi
+Mzk4NDk2MDdlMDM5NzJjNWI5IGluIA0KPiBTSUdHRU5fTE9DS0VEU0lHU190LXg4Ni02NA0KPg0K
+PiBUaGUgZ3J1Yi1lZmktbmF0aXZlOmRvX21raW1hZ2Ugc2lnIGlzIGNvbXB1dGVkIHRvIGJlIA0K
+PiA4N2E2NTI4Y2I4NjI0ODUxNzA4YjFmNGQzZmEyNmJlYjk2ZjcxZjFhM2NiMGM0ZDQ4ZmUwYWFm
+OTI1NWZiMjQ0LCBidXQgDQo+IHRoZSBzaWcgaXMgbG9ja2VkIHRvIA0KPiBiYzA0Zjc5Yzk5ODgx
+MjJiZTgyOTdjM2VhMmU3YWExM2ZiZTE4NDQ0YjExNTFhNTQ3MzMyMTEyNjE2ZTExNDgwIGluIA0K
+PiBTSUdHRU5fTE9DS0VEU0lHU190LXg4Ni02NA0KPg0KPiBUaGUgZ3J1Yi1lZmktbmF0aXZlOmRv
+X2luc3RhbGwgc2lnIGlzIGNvbXB1dGVkIHRvIGJlIA0KPiA2ZThhOTg4NTYyOTQ5YWU4NDViZWIw
+MTUwYWNmNzcwMmEzNjAwOTRkYjU2MDk2YjZlMmJiYjY1ODIwYmJiM2YwLCBidXQgDQo+IHRoZSBz
+aWcgaXMgbG9ja2VkIHRvIA0KPiAzODQyN2ZmMWMwYmZhNTY5YTI3YTZjNWFjZjUxYmIzNDgzZDg4
+MmIxOGExZmEwYmZiZmFhMzcxODIyZGY3ODM3IGluIA0KPiBTSUdHRU5fTE9DS0VEU0lHU190LXg4
+Ni02NA0KPg0KPiBUaGUgZ3J1Yi1lZmktbmF0aXZlOmRvX3BvcHVsYXRlX3N5c3Jvb3Qgc2lnIGlz
+IGNvbXB1dGVkIHRvIGJlIA0KPiAzYmEzNzQ0ODAwNzMyYjY5ZTcxZDMzZWEwZGI3OTdhNzhiYjIz
+NDA3MjdmYzU0ZjIxMWJkMGY3YzEzMjUzNzRjLCBidXQgDQo+IHRoZSBzaWcgaXMgbG9ja2VkIHRv
+IA0KPiBmY2Q5ZGFhMTI2ZGU5MWQ0ZDFkZTcwMWVkMWZmMWMyNzc0YzNlNDIyMDdlMWZmZjg1Yjg2
+MTA5ZWI1NGIyOTBjIGluIA0KPiBTSUdHRU5fTE9DS0VEU0lHU190LXg4Ni02NA0KPg0KPiBUaGUg
+Z3J1Yi1lZmk6ZG9fY2xlYW5fZ3J1YiBzaWcgaXMgY29tcHV0ZWQgdG8gYmUgDQo+IDkyOGZiZDlj
+MWQ1MzQzMzNmMThhNmY3NTFhZDcwNWMwM2YwODNmZjAwMzc0YTc4MWIwMmUxYWVlNDdiOTJiZWUs
+IGJ1dCANCj4gdGhlIHNpZyBpcyBsb2NrZWQgdG8gDQo+IDY3YTAzOTM2N2MwNTkzODAzZDhjNzAy
+MDdmMDc5ZmQ4YmUyOGRiYzZjNTQ4YjEzODM3ZmE3ZWIxNzdiMTU2ZTAgaW4gDQo+IFNJR0dFTl9M
+T0NLRURTSUdTX3QtY29yZWk3LTY0DQo+DQo+IFRoZSBncnViLWVmaS1uYXRpdmU6ZG9fZGVwbG95
+IHNpZyBpcyBjb21wdXRlZCB0byBiZSANCj4gNDg3NWY0YjUxYzM4ZjMxMTQwNzc1YTJhNDQ1Nzgz
+OWVhYmVmMjUyOTc5MWNjY2JiOWVkNjU2ZWVmNjM4OTJmYywgYnV0IA0KPiB0aGUgc2lnIGlzIGxv
+Y2tlZCB0byANCj4gNjU3NmM5NWFhNWMwYzdiNTA1Y2EyY2MwMmZkZGUzZjY3OGYyYjAzOWMyZjBi
+NTc4MTBiMTc2OTRiNjA3MGE0NiBpbiANCj4gU0lHR0VOX0xPQ0tFRFNJR1NfdC14ODYtNjQNCj4N
+Cj4gVGhlIGdydWItZWZpOmRvX2NvbmZpZ3VyZSBzaWcgaXMgY29tcHV0ZWQgdG8gYmUgDQo+IDg0
+YWIwNjkyNzNjNGIyNzAzY2E0ZmEyMDBkNWZiNjZhZGNhZmZhMzliOGYzNjEzODMzOWQ0ODM3Yjky
+ODFhOWQsIGJ1dCANCj4gdGhlIHNpZyBpcyBsb2NrZWQgdG8gDQo+IGU4OTAwMjQxMzQ3ZDQ2MTY0
+NjhlN2E0YTRjMzdiODQ5NmExMTY3YzJiM2Q1OGY3YmI1NTMzMmRhNjQ1YmQ3ZTAgaW4gDQo+IFNJ
+R0dFTl9MT0NLRURTSUdTX3QtY29yZWk3LTY0DQo+DQo+IFRoZSBncnViLWVmaTpkb19jb21waWxl
+IHNpZyBpcyBjb21wdXRlZCB0byBiZSANCj4gNjE5YmRjYTRmMWE2ZGY4YzhjMmM3YWQ0OWI3Mjg5
+YWYzNDc3ZTNjNzZjMDBiODQyMjk1ODQ3OTNmMjNmYjExNSwgYnV0IA0KPiB0aGUgc2lnIGlzIGxv
+Y2tlZCB0byANCj4gNTZjYTU2M2IzYmNiNjZiNzJmNTNmNTE1NjJmNDFkZDBjZjlhZjg3ODMzNTgz
+NmU4ZmQ2YjZhMDdlMzJmYThiYyBpbiANCj4gU0lHR0VOX0xPQ0tFRFNJR1NfdC1jb3JlaTctNjQN
+Cj4NCj4gVGhlIGdydWItZWZpOmRvX21raW1hZ2Ugc2lnIGlzIGNvbXB1dGVkIHRvIGJlIA0KPiBm
+MjEyYmQ3NGViOTVmNGQ0MTNjOTg2N2Y4NTMxNzE3NDdmZTRmZTg2OTEyMTM4YTBhYzc5MjM0ZmU0
+YmU3M2I3LCBidXQgDQo+IHRoZSBzaWcgaXMgbG9ja2VkIHRvIA0KPiA4MGU5MjU2ZjEyZTMwNzA3
+MzdjODFmNzYzMTBjYzQwODQ3M2I5MmI4NzdiMjM0OTRjZDFiNGMyYWJkZmZkNTZkIGluIA0KPiBT
+SUdHRU5fTE9DS0VEU0lHU190LWNvcmVpNy02NA0KPg0KPiBUaGUgZ3J1Yi1lZmk6ZG9faW5zdGFs
+bCBzaWcgaXMgY29tcHV0ZWQgdG8gYmUgDQo+IDQ1NzUzZjUwYTU1MzM5MWJkODBjZjY3OTAzOWNj
+Y2Y4NzllZjFlYWNhOTBlMWRjZmVmYjQzMjYyMWRmYzAwMDAsIGJ1dCANCj4gdGhlIHNpZyBpcyBs
+b2NrZWQgdG8gDQo+IDM5MTBkMjczMzAyMjkzMTRiNzkzYTk0YzcwODVjMjMxYTU2YzEwNzNkN2U3
+OWQ0Y2NlYWRlNWEzNzM2MDAyNTIgaW4gDQo+IFNJR0dFTl9MT0NLRURTSUdTX3QtY29yZWk3LTY0
+DQo+DQo+IFRoZSBncnViLWVmaTpkb19wb3B1bGF0ZV9zeXNyb290IHNpZyBpcyBjb21wdXRlZCB0
+byBiZSANCj4gMzQzNzgzM2U4Mzc3NDhhNTllMDAyZjk1NzczYThmNjFhNzE1YmI1NmMwZjIwNjcx
+ZmEzOWE3MTU1NmFkNmQ1ZCwgYnV0IA0KPiB0aGUgc2lnIGlzIGxvY2tlZCB0byANCj4gZDBkNjBi
+YzFkOWJmNDg4Yzc1NjhlNTkyYjNiMWFlZWIyZTI3OTZjOTk5NGY4M2ZlMWI3ODFlMGQwMDZlNDMy
+YiBpbiANCj4gU0lHR0VOX0xPQ0tFRFNJR1NfdC1jb3JlaTctNjQNCj4NCj4gVGhlIGdydWItZWZp
+OmRvX3BhY2thZ2Ugc2lnIGlzIGNvbXB1dGVkIHRvIGJlIA0KPiA4MWZhNmNmMjM5MjBjZWE0MTM5
+ZWQzY2VmZDZjOTRhMzg3ODU4MGY2YTQ1OTI1Mjc5YzdkNzVlM2M0ODdmMTYyLCBidXQgDQo+IHRo
+ZSBzaWcgaXMgbG9ja2VkIHRvIA0KPiBkN2VjODI0NDhmMzRlYzhjMDE2OWY2MTNmZGQxNDIzN2Nl
+YmIxOTUxZWZhM2QzNWQ1M2RjNzFkMjRmMjIwY2I4IGluIA0KPiBTSUdHRU5fTE9DS0VEU0lHU190
+LWNvcmVpNy02NA0KPg0KPiBUaGUgZ3J1Yi1lZmk6ZG9fZGVwbG95IHNpZyBpcyBjb21wdXRlZCB0
+byBiZSANCj4gZjc4MzFhMWE3ZTFkODY4M2UxYzBjODZmZDMyNDg2ZWM4ZDllNWU3MTNkNjNlMzk5
+ODRhYTM2ZjUwYmZmN2Y5MSwgYnV0IA0KPiB0aGUgc2lnIGlzIGxvY2tlZCB0byANCj4gMWM3ODE2
+NTlmYWQ3ZmIxNzQ3MTZkMDVhYTU3MjdmNjhlNzEwYWQ3YzY1OTNkYzE3OGY0MDg2NmQ2ZTg2OGYx
+OSBpbiANCj4gU0lHR0VOX0xPQ0tFRFNJR1NfdC1jb3JlaTctNjQNCj4NCj4gVGhlIHRwbTItdG9v
+bHM6ZG9fY29uZmlndXJlIHNpZyBpcyBjb21wdXRlZCB0byBiZSANCj4gMTBmYTZjZjBjNGZhMzA3
+YTQyNzk3ODM5MmVjZjYwZDdhODg1M2UxMWNhMTc0N2VhNWFkODc0M2ZkNDIyODBmMywgYnV0IA0K
+PiB0aGUgc2lnIGlzIGxvY2tlZCB0byANCj4gNWU2YTJjYWEyNzkwMWY5NTUxODQ2N2NhMzViNjgw
+NDNmZWU3ODAyZGZhOGJlMzlhZTUxZTYxYzllZWRmOWE4ZCBpbiANCj4gU0lHR0VOX0xPQ0tFRFNJ
+R1NfdC1jb3JlaTctNjQNCj4NCj4gVGhlIHdvbGZzc2w6ZG9fY29uZmlndXJlIHNpZyBpcyBjb21w
+dXRlZCB0byBiZSANCj4gNTU2OWRkZjliMTBlMmRmOWY1ZGU0NTZjYTM1YjliYWViMzRhMWY2NzYx
+NzM1N2Q1ZTFhOTI2NGJhZjNkMWUwZSwgYnV0IA0KPiB0aGUgc2lnIGlzIGxvY2tlZCB0byANCj4g
+ZWFmMWIzODAyMTA3MTgwNzFkODk2MmVlY2NiZDk3ZWZhZDE4MGZhYmM3NTBiMThmNGU5ODY2MWRl
+MDZhZTExZiBpbiANCj4gU0lHR0VOX0xPQ0tFRFNJR1NfdC1jb3JlaTctNjQNCj4NCj4gVGhlIGNy
+dXNoOmRvX2NvbmZpZ3VyZSBzaWcgaXMgY29tcHV0ZWQgdG8gYmUgDQo+IGYwMzQxMTZmZDk1OThh
+MDlhYTk3NWU5NGRkNDg5NjRlMGQ0OWRlZWNmNjNkOTZjNDM2YmQ0Y2NjYzdiNjgyOTgsIGJ1dCAN
+Cj4gdGhlIHNpZyBpcyBsb2NrZWQgdG8gDQo+IDY0ZGZjNWZmNGE5ZWUyOWU5YTIwZjExNjZlYzJl
+ZTZmZTIwZmZjZDkzZTc2MThlYWJkMDI0MzVjMjlmMjE5ZWQgaW4gDQo+IFNJR0dFTl9MT0NLRURT
+SUdTX3QtY29yZWk3LTY0DQo+DQo+IEVSUk9SOiBUYXNrIHF1aWx0LW5hdGl2ZS5kb19mZXRjaCBh
+dHRlbXB0ZWQgdG8gZXhlY3V0ZSB1bmV4cGVjdGVkbHkNCj4NCj4NCj4NCj4NCj4NCj4NCj4NCj4N
+Cj4NCj4NCj4NCj4NCj4gDQo+DQo=
