@@ -1,75 +1,140 @@
-Subject: Huawei e3372h & Quectel EG25-G LTE modems
-To: yocto@lists.yoctoproject.org
-From: "Zoltan Kerenyi Nagy" <kerenyi.nagy.zoltan@gmail.com>
-X-Originating-Location: Kiskunhalas, Bács-Kiskun, HU (84.1.252.39)
-X-Originating-Platform: Linux Firefox 85
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+ by mx.groups.io with SMTP id smtpd.web12.3872.1614148940046329647
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 23 Feb 2021 22:42:20 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=QtC8iqDB;
+ spf=pass (domain: gmail.com, ip: 209.85.219.49, mailfrom: raj.khem@gmail.com)
+Received: by mail-qv1-f49.google.com with SMTP id k5so575851qvu.2
+        for <yocto@lists.yoctoproject.org>; Tue, 23 Feb 2021 22:42:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nrrJzvrjXj6qyE2+0aj3QCimXNsddG1GWjVCeYvobLE=;
+        b=QtC8iqDBTJJXZj0zxVcPoU1asQN7Eluc5LWekQfvV7ep2MiSLA8Gj9+ESSjM5DACWt
+         MNhW1XgdF4ojkLDX5T9VW+0PVTllVRkEY5F8iMO6kpafxeUKZOFcXxK3aKbDNwt2IH+/
+         H865+WIfDSapLP+bKByxc0cW8qiIK9aM/qUSGsXbAs9oW/Bt0YjGjJrdnvZ1hTFcYlK4
+         rgl/VqKV5HmDrmw42eXFTs6cgz6DWNbICIfUr1238v2XBujib5k7OqgqisTxyGT5EnS0
+         KVLwy7PqQa/rnBOrmKsYvIiC0ANgSA64t9pMCcW26tX2FRBvkVzBGRmkvKJwxoaX0Q9c
+         TsEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nrrJzvrjXj6qyE2+0aj3QCimXNsddG1GWjVCeYvobLE=;
+        b=j/stcrlrhyFjYdMbBgtuSIypXyZkML8AA5bUVZL+54RYqmFONH+o6hfaTqc0fPNtif
+         OvWpjy5In1v4e+xy3hV0ehdWBq3PX5aYdixKbENo6R86OD+FpBK7GnXFM5W7SaincVfB
+         gnDH58ThnMwMNgwkcKYHQeqEtKDD2S8jzW4QvNzexOZvHWgjUTGbGSrpGONMIjor86/y
+         Af9SYJOeGoxf7DYbZ4HN3Js7wcCA3lJXD2EDFvbhRZ2VGSWloFO72VMtKtD6UsLSrAft
+         A80zqy+zcidvaO7PLwk1KAVcfupvM164KQKSqHyQ9s6ezcHTGEAicoJ/8DKbtW+ChTip
+         s2Pw==
+X-Gm-Message-State: AOAM533EX6n7l2H+XKo4x/20gLvrw7/o53D1RqA+gmMydFPLv2cP0dXN
+	MFoFZBJ/8HvmuhMp7ujU9ZRvYYqqHHJx+JCSKes=
+X-Google-Smtp-Source: ABdhPJxekwWPVBjLw0m1IJJORnyd5wKzlTNmoHM9qNKtQdKfGCxkNJ5AloZq1TC4fxRib3v2pycmkEaGwtbQ/OWHeG4=
+X-Received: by 2002:a0c:e5c9:: with SMTP id u9mr29323482qvm.55.1614148938389;
+ Tue, 23 Feb 2021 22:42:18 -0800 (PST)
 MIME-Version: 1.0
-Date: Tue, 23 Feb 2021 22:22:50 -0800
-Message-ID: <vKhN.1614147770856950784.SlCc@lists.yoctoproject.org>
-X-Groupsio-MsgNum: 52466
-Content-Type: multipart/related; boundary="ilC4KSTuSccGz1QQ48vP"
+References: <vKhN.1614147770856950784.SlCc@lists.yoctoproject.org>
+In-Reply-To: <vKhN.1614147770856950784.SlCc@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Tue, 23 Feb 2021 22:41:51 -0800
+Message-ID: <CAMKF1sqUsQo41TPbfrrtLcrMBr=PRVd6DfTA=DnZwMPm1SgNtA@mail.gmail.com>
+Subject: Re: [yocto] Huawei e3372h & Quectel EG25-G LTE modems
+To: Zoltan Kerenyi Nagy <kerenyi.nagy.zoltan@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+X-Groupsio-MsgNum: 52467
+Content-Type: multipart/related; boundary="00000000000016b6e705bc0f56c5"
 
---ilC4KSTuSccGz1QQ48vP
-Content-Type: multipart/alternative; boundary="HmKv59eLI99ZrhUB0zeQ"
+--00000000000016b6e705bc0f56c5
+Content-Type: multipart/alternative; boundary="00000000000016b6e605bc0f56c4"
 
---HmKv59eLI99ZrhUB0zeQ
-Content-Type: text/plain; charset="utf-8"
+--00000000000016b6e605bc0f56c4
+Content-Type: text/plain; charset="UTF-8"
+
+On Tue, Feb 23, 2021 at 10:22 PM Zoltan Kerenyi Nagy <
+kerenyi.nagy.zoltan@gmail.com> wrote:
+
+> Hi,
+>
+> I have a barix ipam400 module, the development is done with Yocto.
+> Recently I managed to modify and include the needed kernel modules into the
+> kernel with Yocto.
+> However it still doesnt work. Both module work seemleslly and out of the
+> box with a RaspberryPi, but not with this ipam400 modul. The kernel is 4.10.
+>
+> The latest issue is that when I try to pull up an internet connection the
+> error message is this:
+> *device lo not available because device is strictly unmanage*
+>
+> These are the kernel module which I have included with bitbake -c
+> menuconfig linux, they are all on the target device now:
+>
+
+what does NetworkManager.conf look like on the device ?
+especially mark managed=true and see if that helps
+
+
+
+>
+>
+>    -
+>
+>
+> Do you guys have any idea whats wrong with this setup. I've read the
+> out-of-tree kernel module yocto dokumentation, I did my best and had many
+> suggestions on the forum as well.
+>
+> --
+> Zolee
+> 
+>
+>
+
+--00000000000016b6e605bc0f56c4
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-I have a barix ipam400 module, the development is done with Yocto. Recentl=
-y I managed to modify and include the needed kernel modules into the kernel=
- with Yocto.
-However it still doesnt work. Both module work seemleslly and out of the b=
-ox with a RaspberryPi, but not with this ipam400 modul. The kernel is 4.10.
-
-The latest issue is that when I try to pull up an internet connection the =
-error message is this:
-device lo not available because device is strictly unmanage
-
-These are the kernel module which I have included with bitbake -c menuconf=
-ig linux, they are all on the target device now:
-
-*=20
-
-Do you guys have any idea whats wrong with this setup. I've read the out-o=
-f-tree kernel module yocto dokumentation, I did my best and had many sugges=
-tions on the forum as well.
-
---
-Zolee
-
---HmKv59eLI99ZrhUB0zeQ
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,<br /><br />I have a barix ipam400 module, the development is done with =
-Yocto. Recently I managed to modify and include the needed kernel modules i=
-nto the kernel with Yocto.<br />However it still doesnt work. Both module w=
-ork seemleslly and out of the box with a RaspberryPi, but not with this ipa=
-m400 modul. The kernel is 4.10.<br /><br />The latest issue is that when I =
-try to pull up an internet connection the error message is this:<br /><em>d=
-evice lo not available because device is strictly unmanage</em><br /><br />=
-These are the kernel module which I have included with bitbake -c menuconfi=
-g linux, they are all on the target device now:<br /><br />
+<div dir=3D"ltr"><div dir=3D"ltr"></div><br><div class=3D"gmail_quote"><div=
+ dir=3D"ltr" class=3D"gmail_attr">On Tue, Feb 23, 2021 at 10:22 PM Zoltan K=
+erenyi Nagy &lt;<a href=3D"mailto:kerenyi.nagy.zoltan@gmail.com">kerenyi.na=
+gy.zoltan@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
+;padding-left:1ex">Hi,<br><br>I have a barix ipam400 module, the developmen=
+t is done with Yocto. Recently I managed to modify and include the needed k=
+ernel modules into the kernel with Yocto.<br>However it still doesnt work. =
+Both module work seemleslly and out of the box with a RaspberryPi, but not =
+with this ipam400 modul. The kernel is 4.10.<br><br>The latest issue is tha=
+t when I try to pull up an internet connection the error message is this:<b=
+r><em>device lo not available because device is strictly unmanage</em><br><=
+br>These are the kernel module which I have included with bitbake -c menuco=
+nfig linux, they are all on the target device now:<br></blockquote><div><br=
+></div><div><div class=3D"gmail_default" style=3D"font-family:monospace,mon=
+ospace">what does NetworkManager.conf look like on the device ?</div><div c=
+lass=3D"gmail_default" style=3D"font-family:monospace,monospace">especially=
+ mark=C2=A0managed=3Dtrue and see if that helps</div><br></div><div>=C2=A0<=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
 <ul>
 <li><img src=3D"cid:attach_0_16669AD870F0DDC9_29692@lists.yoctoproject.org=
-" /></li>
+"></li>
 </ul>
-<br />Do you guys have any idea whats wrong with this setup. I've read the=
- out-of-tree kernel module yocto dokumentation, I did my best and had many =
-suggestions on the forum as well.<br /><br />-- <br />Zolee
+<br>Do you guys have any idea whats wrong with this setup. I&#39;ve read t=
+he out-of-tree kernel module yocto dokumentation, I did my best and had man=
+y suggestions on the forum as well.<br><br>-- <br>Zolee
+<br>
+<br>
+<br>
+</blockquote></div></div>
 
---HmKv59eLI99ZrhUB0zeQ--
+--00000000000016b6e605bc0f56c4--
 
---ilC4KSTuSccGz1QQ48vP
-Content-Id: <attach_0_16669AD870F0DDC9_29692@lists.yoctoproject.org>
-X-Attachment-Id: attach_0_16669AD870F0DDC9_29692@lists.yoctoproject.org
+--00000000000016b6e705bc0f56c5
 Content-Type: image/png; name="barix_quectel.png"
-Content-Transfer-Encoding: base64
 Content-Disposition: inline; filename="barix_quectel.png"
+Content-Transfer-Encoding: base64
+Content-ID: <attach_0_16669AD870F0DDC9_29692@lists.yoctoproject.org>
+X-Attachment-Id: attach_0_16669AD870F0DDC9_29692@lists.yoctoproject.org
 
 iVBORw0KGgoAAAANSUhEUgAABC0AAAJ9CAIAAACesB+RAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI
 WXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5QIYBhUr+rRvZwAAIABJREFUeNrsXXdcU8kTn5cChBJE
@@ -3191,4 +3256,4 @@ gAnXEZJNQAscy5TaYMoTPks4sgTLXLRj37EfjCtv4qOqsh/jxvMQBEI5k1gBd3/5lE+N1GTC76Fi
 eqzKM0hCJA4Sn+el6IZf9aMNSlie4j39EJYHHFQEGoU8U4Fa9CuB3QUroxhK0DrEol/J2obm1KUI
 Sd34/1DsDxkf/F/NAAAAAElFTkSuQmCC
 
---ilC4KSTuSccGz1QQ48vP--
+--00000000000016b6e705bc0f56c5--
