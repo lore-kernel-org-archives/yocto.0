@@ -1,220 +1,146 @@
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
- by mx.groups.io with SMTP id smtpd.web08.12256.1614265035651482616
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.12416.1614265757493186476
  for <yocto@lists.yoctoproject.org>;
- Thu, 25 Feb 2021 06:57:15 -0800
+ Thu, 25 Feb 2021 07:09:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=jvC7239k;
- spf=pass (domain: gmail.com, ip: 209.85.160.179, mailfrom: twoerner@gmail.com)
-Received: by mail-qt1-f179.google.com with SMTP id r24so4225885qtt.8
-        for <yocto@lists.yoctoproject.org>; Thu, 25 Feb 2021 06:57:15 -0800 (PST)
+ dkim=pass header.i=@ni.com header.s=pps11062020 header.b=b0RSxK5S;
+ spf=softfail (domain: ni.com, ip: 198.145.29.25, mailfrom: prvs=7690fe3a90=alex.stewart@ni.com)
+Received: from mx0b-00010702.pphosted.com (mx0b-00010702.pphosted.com [148.163.158.57])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id D3D9038C08BD
+	for <yocto@yoctoproject.org>; Thu, 25 Feb 2021 15:09:15 +0000 (UTC)
+Received: from pps.filterd (m0098779.ppops.net [127.0.0.1])
+	by mx0b-00010702.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 11PF93LV030548;
+	Thu, 25 Feb 2021 09:09:11 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ni.com; h=to : references : from :
+ message-id : date : in-reply-to : content-type : content-transfer-encoding
+ : mime-version : subject; s=PPS11062020;
+ bh=hAJQ9MLal5WobWQ3jBBn5T9dGDY5xGEXGfxKRneRMQw=;
+ b=b0RSxK5SDA9ORB9pcwR4i4O3djhYlYKru6M8czAgwT8c5QZBIlQDm90Upvs/+ffmrDv6
+ kL2ohx1FuZc/brTZGcSe/eQEuifpBrK6rr3tts/u7N8l1cB54o1TlWf4G5dhL1AMDPmF
+ GAR5TGpbpEdYP5c6NeltHfE+iyPRrpPbIY6TuLbD1gFp38cLgbJeZnreLhiX9Mf0yw4Q
+ ftDPg/QtRnSR80i89ugGGcFvCdRJMqHaQvPUmZUeqsyqEtxhk45oTSaowq2TNLqXRLwS
+ Upmk0XQJWLap5leWI2FydvqcBzzHIJUaU6FYrY5yHeTITB1Dpf7kiqX5IzwQzXvTgewW vg== 
+Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2173.outbound.protection.outlook.com [104.47.57.173])
+	by mx0b-00010702.pphosted.com with ESMTP id 36u14d0dem-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Feb 2021 09:09:11 -0600
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VHtXV46h0u+LrpGPEZTWDyXTHxriwc+c3mZQs6vxHRL6Thv7H74oYQuLKNWiAyh+CUQT2YmfiifatTL5s77v8/NVjDQsak29prKMgvF2nUKPiI25lWGkOiC2TA3xuHJOMRQWfaMvssIQbhAZuoC6K1ksnInzM1hfYK9w8VlMui4NMpPLIglvEKrscEebhr4sP0Fnfcyd/WriAZNndcN8/rVlGNr3I1pUxmmdQd8acZ2zwuM8YR6X91AYWoCVAsi44rnx6gz5e1Ov1W+481kjHB3kpph4nYTYN+87WjnmwNVj5WOXedI3Mr+Lm8IIfcdu/mk17at7R6urQCohjL1tBg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hAJQ9MLal5WobWQ3jBBn5T9dGDY5xGEXGfxKRneRMQw=;
+ b=JB0WoQDTd1UPexVP7hnFi1swHozhRaGn7OifHhv89kQdirgetLCP+cWHqw1pdt0MhmXFAohe2+Yky9rU+vV7WeJVFSv/jR2voU5vuD0OviW9ZR95WoqDYoG7Xd7HCPc5jzz+MXKHSjwoPWwNj3d28mhib96Nu7V5YrDRKQHAyCkU63SRJfNPWbiZ/ls0gy1/AROl4S/9FNt19Il3K5ktPxkCpUZTRSmerZu2vPXYYN6DrDjTW4Cb38MP1k9mlgiXoC5VEwfvRLUaqvE5OmK+VU+NC++PGIQa5aJGFe9T3yUwogVm/qrdnN2ySuQP06qrXTWzz1IrgLLQ8MUrJ97m7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
+ header.d=ni.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ryrtn9GufGLHROxcpcJZHHbcrmHAwN7hlqx5+bLlwkE=;
-        b=jvC7239kMUQVOP23YPl1TSmWTb0Crr33kIcqN2KM903bA8jdQrnR1P89oEy+zRafGJ
-         nBZq4RozCTRUIuLfbI7FTyJOplg0m4V/E2MzUtjWyfYX9T7Zn/lLinl6R+LUEZenAFT9
-         /2+PgS54bkvluqqE8XHebifGlEY3T08nKJ78DCacP3QHp16aONSf09SZNxx7izHXkzNg
-         /p7i7Vj9gm5Fyyi+wN89303q91WMftGMO0Lk4PJcss5ajf1xN10GnMQRpFoLaYYuEWZq
-         hy2pezimuQwembG6+dQBzmRQwL0AqmCp3enXv4Az5SM8wZjcK1swXRulhJuKuaNAg1um
-         xUeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ryrtn9GufGLHROxcpcJZHHbcrmHAwN7hlqx5+bLlwkE=;
-        b=OfJ/NIqW+y11QetRCC7unlzg0OGzjVzHEQ0fhSEL0StibcXr4sua8IBIovC+qonIt3
-         yu/UvS2Bb2jYyBTiDxnNsM4yz/keBXo7xGwyUtJEsj5DdMNHylO/TFlaOdSjvO210uY4
-         VeKDDdUn5615RsMhLiJndWWSOsTRD+Ti9QpIG/b9Obp41jjHXAEXEUsMAg5TV+B3ZnG2
-         LlC16gZoDe4I7HX/r+BLM79djp3crYd+SCOCPDm4ApLLxvHQC+vIH81liB44o3zOx7e0
-         jQvn+2h7YYBQF9uJf6txLzuxpFEe+SO8ezazV9Wmo/DFDdbvFdC3zZx6rVXozEeY/B4c
-         4CDw==
-X-Gm-Message-State: AOAM530DN/5mbjXj5+7l2CdhnYINSzMAQg2ma3x2eJ4Cbi8InFv1tBK6
-	ZFi3zn9Ue1ni59IhNWk7E2vtKOiy/p0=
-X-Google-Smtp-Source: ABdhPJyrGmOKPLKn3Wiz/nRYZs54aFVxhYizANOEXlQR7F4xq+pQsCm7G+lJUpg8QfeMHskVpxTajg==
-X-Received: by 2002:ac8:7686:: with SMTP id g6mr2698790qtr.54.1614265034215;
-        Thu, 25 Feb 2021 06:57:14 -0800 (PST)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id f12sm4152596qkl.2.2021.02.25.06.57.13
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Feb 2021 06:57:13 -0800 (PST)
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-rockchip][PATCH] rock-pi-e: add
-Date: Thu, 25 Feb 2021 09:57:03 -0500
-Message-Id: <20210225145703.29936-1-twoerner@gmail.com>
-X-Mailer: git-send-email 2.30.0.rc0
+ d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hAJQ9MLal5WobWQ3jBBn5T9dGDY5xGEXGfxKRneRMQw=;
+ b=Qy26gwTsOX+rLFI5ylJvii7Hlqk0WZ9jU/K1BztfKPoK5v8opQ67qLgib/WlYCRUsQcdS+iVuyeATfSmnrYTLtAscsqCux8lSrTWzMnYNtoAfAbRO4CeMb6bXokdhmC9oRlfoUTb0azweSilT/hlbbcxUq9lvQDTitEUZbKzJLs=
+Authentication-Results: yoctoproject.org; dkim=none (message not signed)
+ header.d=none;yoctoproject.org; dmarc=none action=none header.from=ni.com;
+Received: from DM6PR04MB5306.namprd04.prod.outlook.com (2603:10b6:5:10f::25)
+ by DM6PR04MB6346.namprd04.prod.outlook.com (2603:10b6:5:1e2::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.20; Thu, 25 Feb
+ 2021 15:09:10 +0000
+Received: from DM6PR04MB5306.namprd04.prod.outlook.com
+ ([fe80::85b8:7cc:802e:d31]) by DM6PR04MB5306.namprd04.prod.outlook.com
+ ([fe80::85b8:7cc:802e:d31%4]) with mapi id 15.20.3890.020; Thu, 25 Feb 2021
+ 15:09:10 +0000
+To: opkg-devel@googlegroups.com, Christian Hermann <mail@hermannch.dev>,
+        yocto@yoctoproject.org
+References: <20210225132756.32084-1-mail@hermannch.dev>
+From: "Alex Stewart" <alex.stewart@ni.com>
+Organization: National Instruments Corp.
+Message-ID: <53cfbe05-e97a-872b-ba1a-657ce6877376@ni.com>
+Date: Thu, 25 Feb 2021 09:09:08 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+In-Reply-To: <20210225132756.32084-1-mail@hermannch.dev>
+X-Originating-IP: [65.36.69.14]
+X-ClientProxiedBy: SN6PR16CA0068.namprd16.prod.outlook.com
+ (2603:10b6:805:ca::45) To DM6PR04MB5306.namprd04.prod.outlook.com
+ (2603:10b6:5:10f::25)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.3] (65.36.69.14) by SN6PR16CA0068.namprd16.prod.outlook.com (2603:10b6:805:ca::45) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19 via Frontend Transport; Thu, 25 Feb 2021 15:09:09 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3b6dc469-69a7-4d48-3594-08d8d99f4da6
+X-MS-TrafficTypeDiagnostic: DM6PR04MB6346:
+X-Microsoft-Antispam-PRVS: 
+	<DM6PR04MB63461D7C4CA9D77DF0F67FCCFE9E9@DM6PR04MB6346.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3173;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	koZf7iMiYVS9IitE1WUP+BrqNXDVDj0+Accou/olivqPdQz0tkYKEeo8bEQr9LFC5zZnLLwA0oekxQc15QO8XkAAumH+Z8Sm2d9U14sUJptRsm2VOWOVgDLduE9Yn8QcVU2VhvcMXpkk7uaZr7Qti8epmhyU3V1Qk3jBlXe7usUzlc9r2Yvdenr6x/lzRThKrUy9zbOk0jG0Kr7BhhQP4SwYZ6n1H9pI4Hz7fvoPtiCoSw0E75N0fBh5jSBm8ixHZ5L6dbfcKgZyibcgyppmkWuAx0RH5fI6Qj01Ja7looxVyOLynoS4OEvtXXU4mxFktUcCLPWI8aNd6FglCa4HHnVdN0nJWVwstUP+GnIHxgI6BUMH+YrYJKc+PDRS7ZW3oKVgJiHyGgcLBcMu6Bsi2vDyjdTqEki20qHslxIkYAjYJnrwt1otJ6X9FmFlGOQmF9brQ09IbCcdjtehbh0Tf++9VAvMPySrXDwp7R+2GGOpIF0vy2Fg+hRYx8TnQ4g3C7qFsD+po66HwAeRRn7+OluOrxhW1y1aEgBOvNRU2hbusb/g28ck5xfxnzlaZ55p3YWWZVtp/9Pw1zETGr2LPF4IqmcLVZOixBV+6BQZ/vAKTnN4zgLahugFr/OCpPuGFhIo8DBcOtxKLvHPHJQLwA==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR04MB5306.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(39860400002)(136003)(376002)(366004)(346002)(396003)(31686004)(16576012)(44832011)(316002)(8936002)(186003)(8676002)(956004)(36916002)(26005)(478600001)(558084003)(66946007)(66556008)(52116002)(86362001)(66476007)(16526019)(36756003)(2616005)(31696002)(6486002)(5660300002)(2906002)(43740500002)(45980500001)(15477505002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: 
+	=?utf-8?B?NUw5amxtR2RDOE1FOVp4RlVyVGFQaFl4YXA2V1pzQmc0dHZINUJZU0FvNStq?=
+ =?utf-8?B?aWlYYXpZTGhOUlNmNGhxTEllVStBSFRuMkx0VHNGdGtCYVVTWVViREtTcktU?=
+ =?utf-8?B?bEVSVFU0SWx2Y3E1U3BFRkExREtTS0lhVkhYVXNYY0JkZWVQNlhjKzBOUUl1?=
+ =?utf-8?B?clJtU2NYM0RXS2ZMaldBcWg2UlNValBVaGJ5cyt2N0FFN3Znc1FWeGo3dVNh?=
+ =?utf-8?B?M3Z2NWVSVnNZcXJUNTVZa1YyNHlqaDU5RzB2c0dtMXpIbnFuYzdPNHN1Q1Bs?=
+ =?utf-8?B?S1RIN0JYekMvU284OUxxYWswZFhLL2d1cFdlQ2xLWTBzQ2R3akVMMnd4ODFB?=
+ =?utf-8?B?cVNydDVsNzNEYVN3bTlaWGVtSmVGWVNYMG4yZDVZMUxZbnVtcDNsTWxtMmI3?=
+ =?utf-8?B?UVlmS0Y5ZlRWOWMxcFNMalRmRDZFSTBqVXRSWnNwSDEyL1d4RFo1QzdSaEJK?=
+ =?utf-8?B?WUYrdVoxK0xPcm1XWGV2YldFbWxzcEg0REwxRmp3ZUhtUk4vcm45cXFtU0RW?=
+ =?utf-8?B?ZGVLYzhHTjZObjhETCsxNk5xMjVIV3dSMFZvOCt5RS9wbmxpRDFwMmUzVHRK?=
+ =?utf-8?B?WERTNFdFMmVicTh0U0w5MUZkVE14K0YvdkNSaDNrdGRQRUZ0aE52eDRBcXZp?=
+ =?utf-8?B?TnJoUTRNRDF0M1QydmVOYWwyeC9QMEVJWGJxcUc2MVpoZkVUWWgxTVhydlJ3?=
+ =?utf-8?B?QWZGQS9JQU96WlFsVHUwdDg2QXZ6blhlTjE2eFVxMG5DTXFVQmpQWWhqYy9k?=
+ =?utf-8?B?Nm9uUjBNWWZkMHFpOWVvb09NajV0Tkd4dnYzUkljbzV5blVpWFA0OHptYXFJ?=
+ =?utf-8?B?Y3g1UThlZ2Rsb00vbU5EM0laWWJMSUZKblV0eFduOFRITnVnUUk1TlhlcFpt?=
+ =?utf-8?B?TFMwaFhyTkFDSGNtc3pxdmFYQ3RlM3g2MmFnNE93VkpCTFFmZ2pRZ0x0aXIw?=
+ =?utf-8?B?TDB2NW00UjdHR2pUdyt4TXpVVk1CTjZpWXg1SUtFN3k2dzM2eUlZaWIzbVdX?=
+ =?utf-8?B?dG1hcTVBTkExeS96V0tRY1JYeEVLQXVnYnUxQ1d6b2Y2YS9JckRNbFhRVFZ1?=
+ =?utf-8?B?ZFJUU0lPOE1tdEYySUJuTGxqaW5FTTIyL2Rjd0NlOGhXN0N1TXo5NGcvRUJh?=
+ =?utf-8?B?TG5aR3A2YmxpTXgzQWNFQStoRlo3L29GeS9QZlpMWFdUeERWRzNEdFIyKzNz?=
+ =?utf-8?B?ZjdhSUhtYWJycEszS1Zhc2F5ZmNRMXJla0lrV2ZFdUR2Ym0zSnEzM3I3MW8r?=
+ =?utf-8?B?bURHUVN5VWpWN1ZmUm5Qclc0eGIweHI2VXlTWEEwM1Y4dkJjQ2VzY240cW51?=
+ =?utf-8?B?VHVvL0pudndTN0FjeUo2MlhxTzlFZ3VZQ2JmVnBjUG9EQnE5TXhjK0VtZ0k5?=
+ =?utf-8?B?RndFdjNpOUF4MXpqaUcyS2dkNlY0V1BSNWgyeGpYc2sxeFgycDB3K0taRnMr?=
+ =?utf-8?B?Rml3V0w1dDBiVGxQVk51aDRBUzMzT1lWUHFKa3RxWTdoT3NFS3hwU1ZrUEo2?=
+ =?utf-8?B?VVVQQVhiVHdlTXo4S000THRScTF5ems1SGRyaVU3QlVEMzN5MGVBdzliamZB?=
+ =?utf-8?B?VVlZRGxzcVUzai96QnY3RFFFU2ZXbFQ4S0hibDRXZ2FxWnl2RExpOE1WSUFR?=
+ =?utf-8?B?L3ZzMUp5TGRhZEIwdmtnMzdlY2tRR3F1M1FjeG9UcStFL2xQb2Z6VFdnY0Jr?=
+ =?utf-8?B?c0VjOEVtWFo5dW5JUTQ2c2pySklDMVR5YlRMZngvVE55THpmcExvQ1ZMZlRP?=
+ =?utf-8?Q?O8UhUu/g+7q8IHjafiIhuoZjoirgVMTUqG2zWzy?=
+X-OriginatorOrg: ni.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b6dc469-69a7-4d48-3594-08d8d99f4da6
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR04MB5306.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2021 15:09:10.0270
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: u0MUNxKsyueZEtuXwL5oOaK85aCHWeXyIIGWsELa0s1H1cquY2AtvBACdwFZ3EaZo79HWm8pp/98d4rrq8q8dQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR04MB6346
+Subject: Re: [opkg-devel] [opkg-utils PATCH] opkg-build: make sure destination dir exists
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-02-25_09:2021-02-24,2021-02-25 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_policy_notspam policy=outbound_policy score=30 mlxscore=0
+ phishscore=0 impostorscore=0 priorityscore=1501 bulkscore=0 malwarescore=0
+ suspectscore=0 clxscore=1015 spamscore=0 adultscore=0 mlxlogscore=947
+ lowpriorityscore=0 classifier=spam adjust=30 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2102250124
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Add support for Radxa's ROCK Pi E device
-https://wiki.radxa.com/RockpiE
+Looks good to me. I'll pull tomorrow if there are no objections.
 
-It's a great surprise to find upstream U-Boot and the Linux kernel already
-provide support for this board! On the kernel side this support was
-added in 5.11. However, that support is so new that even linux-yocto-dev
-(which is based on 5.11) doesn't include the commits that add support
-for this board yet. As a result I've added a custom Linux kernel recipe
-(linux-stable-bleeding) which should, in time, become unnecessary.
+Thanks,
 
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
- conf/machine/rock-pi-e.conf                   | 42 +++++++++++++++++++
- .../trusted-firmware-a_%.bbappend             |  2 +-
- recipes-bsp/u-boot/u-boot%.bbappend           |  2 +
- .../linux/linux-stable-bleeding_5.11.bb       | 18 ++++++++
- recipes-kernel/linux/linux-yocto-dev.bbappend |  2 +-
- wic/rk3328-boot.wks                           | 23 ++++++++++
- wic/rock-pi-e.wks                             |  4 ++
- 7 files changed, 91 insertions(+), 2 deletions(-)
- create mode 100644 conf/machine/rock-pi-e.conf
- create mode 100644 recipes-kernel/linux/linux-stable-bleeding_5.11.bb
- create mode 100644 wic/rk3328-boot.wks
- create mode 100644 wic/rock-pi-e.wks
-
-diff --git a/conf/machine/rock-pi-e.conf b/conf/machine/rock-pi-e.conf
-new file mode 100644
-index 0000000..035a950
---- /dev/null
-+++ b/conf/machine/rock-pi-e.conf
-@@ -0,0 +1,42 @@
-+#@TYPE: Machine
-+#@NAME: ROCK Pi E rk3328
-+#@DESCRIPTION: ROCK Pi E is a Rockchip RK3328-based SBC by Radxa. E is for Ethernets.
-+#https://wiki.radxa.com/RockpiE
-+
-+MACHINEOVERRIDES =. "rock-pi-e:"
-+SOC_FAMILY = "rk3328"
-+DEFAULTTUNE = "cortexa53-crypto"
-+
-+require conf/machine/include/soc-family.inc
-+require conf/machine/include/tune-cortexa53.inc
-+require conf/machine/include/rockchip-defaults.inc
-+
-+PREFERRED_PROVIDER_virtual/kernel = "linux-stable-bleeding"
-+KERNEL_DEVICETREE = "rockchip/rk3328-rock-pi-e.dtb"
-+KBUILD_DEFCONFIG = "defconfig"
-+KERNEL_CLASSES = "kernel-fitimage"
-+KERNEL_IMAGETYPE = "fitImage"
-+MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
-+
-+TFA_PLATFORM = "rk3328"
-+TFA_BUILD_TARGET = "bl31"
-+
-+UBOOT_MACHINE = "rock-pi-e-rk3328_defconfig"
-+UBOOT_SUFFIX = "itb"
-+UBOOT_ENTRYPOINT = "0x06000000"
-+PREFERRED_PROVIDER_virtual/bootloader = "u-boot"
-+SPL_BINARY = "idbloader.img"
-+
-+WKS_FILE = "rock-pi-e.wks"
-+IMAGE_FSTYPES += "wic.xz wic.bmap"
-+WKS_FILE_DEPENDS = " \
-+    mtools-native \
-+    dosfstools-native \
-+    virtual/bootloader \
-+    virtual/kernel \
-+    "
-+IMAGE_BOOT_FILES ?= " \
-+    ${KERNEL_IMAGETYPE} \
-+    "
-+
-+SERIAL_CONSOLES = "1500000;ttyS2"
-diff --git a/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
-index 2374205..442dee8 100644
---- a/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
-+++ b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
-@@ -3,4 +3,4 @@
- DEPENDS_append_rk3399 = " virtual/arm-none-eabi-gcc-native"
- 
- COMPATIBLE_MACHINE_append_rk3399 = "|rk3399"
--
-+COMPATIBLE_MACHINE_append_rk3328 = "|rk3328"
-diff --git a/recipes-bsp/u-boot/u-boot%.bbappend b/recipes-bsp/u-boot/u-boot%.bbappend
-index 042507d..95c019d 100644
---- a/recipes-bsp/u-boot/u-boot%.bbappend
-+++ b/recipes-bsp/u-boot/u-boot%.bbappend
-@@ -9,6 +9,8 @@ ATF_DEPENDS ??= ""
- 
- EXTRA_OEMAKE_append_rk3399 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3399.elf"
- ATF_DEPENDS_rk3399 = " virtual/trusted-firmware-a:do_deploy"
-+EXTRA_OEMAKE_append_rk3328 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3328.elf"
-+ATF_DEPENDS_rk3328 = " virtual/trusted-firmware-a:do_deploy"
- 
- do_compile[depends] .= "${ATF_DEPENDS}"
- 
-diff --git a/recipes-kernel/linux/linux-stable-bleeding_5.11.bb b/recipes-kernel/linux/linux-stable-bleeding_5.11.bb
-new file mode 100644
-index 0000000..dce537d
---- /dev/null
-+++ b/recipes-kernel/linux/linux-stable-bleeding_5.11.bb
-@@ -0,0 +1,18 @@
-+# the rock-pi-e is very new
-+# it's exciting that support has already been added upstream
-+# but it's so new that even linux-yocto-dev doesn't have it yet
-+#
-+# in time we should see the need for this recipe going away
-+
-+inherit kernel
-+require recipes-kernel/linux/linux-yocto.inc
-+
-+LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
-+
-+SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git"
-+SRCREV = "c03c21ba6f4e95e406a1a7b4c34ef334b977c194"
-+LINUX_VERSION = "5.11"
-+LINUX_VERSION_EXTENSION = ""
-+PV = "${LINUX_VERSION}"
-+
-+COMPATIBLE_MACHINE = "(rock-pi-e)"
-diff --git a/recipes-kernel/linux/linux-yocto-dev.bbappend b/recipes-kernel/linux/linux-yocto-dev.bbappend
-index 2f498d9..a85b85e 100644
---- a/recipes-kernel/linux/linux-yocto-dev.bbappend
-+++ b/recipes-kernel/linux/linux-yocto-dev.bbappend
-@@ -1 +1 @@
--COMPATIBLE_MACHINE .= "|firefly-rk3288|marsboard-rk3066|radxarock|rock-pi-4|rock2-square|tinker-board-s|tinker-board|vyasa-rk3288"
-+COMPATIBLE_MACHINE .= "|firefly-rk3288|marsboard-rk3066|radxarock|rock-pi-4|rock2-square|tinker-board-s|tinker-board|vyasa-rk3288|rock-pi-e"
-diff --git a/wic/rk3328-boot.wks b/wic/rk3328-boot.wks
-new file mode 100644
-index 0000000..194145b
---- /dev/null
-+++ b/wic/rk3328-boot.wks
-@@ -0,0 +1,23 @@
-+# Copyright (C) 2021 Trevor Woerner
-+# Released under the MIT license (see COPYING.MIT for the terms)
-+#
-+# Disk layout
-+# Note that the reference documentation refers to 512 byte disk sectors, but
-+# wic uses 1KB blocks
-+#
-+#   Partition   Start Sector    Number of Sectors
-+#   loader1     64              8000
-+#   reserved1   8064            128
-+#   reserved2   8192            8192
-+#   loader2     16384           8192
-+#   atf         24576           8192
-+#   boot        32768           229376
-+#   root        262144          -           (suggested)
-+#
-+
-+part loader1    --offset 32     --fixed-size 4000K            --ondisk ${RK_BOOT_DEVICE} --source rawcopy --sourceparams="file=idbloader.img"
-+part reserved1  --offset 4032   --fixed-size 64K              --ondisk ${RK_BOOT_DEVICE}
-+part reserved2  --offset 4096   --fixed-size 4096K            --ondisk ${RK_BOOT_DEVICE}
-+part loader2    --offset 8192   --fixed-size 4096K            --ondisk ${RK_BOOT_DEVICE} --source rawcopy --sourceparams="file=u-boot.itb"
-+part atf        --offset 12288  --fixed-size 4096K            --ondisk ${RK_BOOT_DEVICE}
-+part /boot      --offset 16384  --size       114688K --active --ondisk ${RK_BOOT_DEVICE} --source bootimg-partition --fstype=vfat --label boot --sourceparams="loader=u-boot"
-diff --git a/wic/rock-pi-e.wks b/wic/rock-pi-e.wks
-new file mode 100644
-index 0000000..97f84d1
---- /dev/null
-+++ b/wic/rock-pi-e.wks
-@@ -0,0 +1,4 @@
-+include rk3328-boot.wks
-+part / --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
-+
-+bootloader --ptable gpt --append="console=tty1 console=ttyS2,1500000n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
 -- 
-2.30.0.rc0
+Alex Stewart
+Software Engineer - NI Real-Time OS
+NI (National Instruments)
+
+alex.stewart@ni.com
 
