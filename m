@@ -1,187 +1,205 @@
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by mx.groups.io with SMTP id smtpd.web09.8383.1614238560806522035
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web12.11355.1614260249289036785
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Feb 2021 23:36:01 -0800
+ Thu, 25 Feb 2021 05:37:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=xvDppfj3;
- spf=pass (domain: intel.com, ip: 134.134.136.31, mailfrom: sangeeta.jain@intel.com)
-IronPort-SDR: ZdGNTmb9QaCU/VnIKAe2qBgFYzJFjhRyD1ukshMQsTljKD/90KpUp2Ls7zbTLGY/A5NZsgRNjX
- ClYKbtDsM0Dw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9905"; a="246853254"
-X-IronPort-AV: E=Sophos;i="5.81,205,1610438400"; 
-   d="scan'208";a="246853254"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2021 23:35:59 -0800
-IronPort-SDR: bjAMn1/J1rHivGekQ1zPiz0A6ENgbftIPt7YfHmTn1JefREfGWj4DVr/dgO3IrMCzdH8FurPwd
- qWnjdHxwGrSA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,205,1610438400"; 
-   d="scan'208";a="584060699"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
-  by orsmga005.jf.intel.com with ESMTP; 24 Feb 2021 23:35:59 -0800
-Received: from orsmsx605.amr.corp.intel.com (10.22.229.18) by
- ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 24 Feb 2021 23:35:59 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2
- via Frontend Transport; Wed, 24 Feb 2021 23:35:59 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.171)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2106.2; Wed, 24 Feb 2021 23:35:59 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Wc2434WrHHxs1TQNt1pKiqKGmIji/2FuBu+EPXg1aN8c9b25yOB2pOp2/YggKW8VYOXsSTRtaPz0mI3TJfhCHRYDSa7lXzW3NbSz9btQzt+DPZF7MUmSim6jzMunyuusdqCq1k53KNXkN9xG969xDxRVVGUD/spNxyIN8+OX7zqHQ84uyiYIHD2Pzy5UhpGXkH4IMmGGsI35ZTedIpfRP0Hm/3VsXo4BajAdcZx9jZ//sOAQ05O1pEIovoR4pDYedD3dVTmWcBbLPEKbnksDhBdBcNZc9PY8HmMEmeyrjWx27KzRAQCeiYl/SdK2rF7NFYqMSPCz2l6m7QPfcRbFJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VW/vaN3jLNtCRwbUMcR9V9PW7TgOSVTafKlajco/wnM=;
- b=N1vnPu1FH3pCd5mKklq6h4zWAvMyztRlW0nPqegdSY+Ri5Suf+o8n9tDNDQE4AMSM2k8aJ1teGywNAHvZFCeeDWsQvaJNYVPgMJzMP6O9//Fl+3IKQ1Pnr+KO0cTeX9P9LVcxO99YHgzKANUxcT5zwI7TzuYO4BIoZjYjOa/8lsu6hZANvL8Cxl45sonrTpWPgEVjHA6V3t/JNNHjML9aT1J9OOQsYyl9S6Nf5PSKR4cXSiotcmcILDf9ZdMrx2e9b4gXINkPsxHHInC8kA7Qx0OxZCFjRVD10Y4uJpzrUEv57GCRfluaEpEVyjViqGXYuqFwSy132oHYDdJ/OpzrA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VW/vaN3jLNtCRwbUMcR9V9PW7TgOSVTafKlajco/wnM=;
- b=xvDppfj31NjB+VDfR3BpZWoCIT/+rcoyI1yuFUbIFpqDknFINCHmaEO9jl8lxTHWN5GBOlVKIRxhUkqsZKqH0R30Ih6BRxexUsWgROK6f3QDwoA+tA0CWHzP1mkBsJf7fg+MV4mo7uDSNMvPwndt+C3HumwVsr8b8yHRIX7sHcc=
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com (2603:10b6:a03:b1::33)
- by BYAPR11MB2838.namprd11.prod.outlook.com (2603:10b6:a02:cc::33) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19; Thu, 25 Feb
- 2021 07:35:57 +0000
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::92d:48c1:669e:364c]) by BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::92d:48c1:669e:364c%6]) with mapi id 15.20.3868.033; Thu, 25 Feb 2021
- 07:35:57 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-CC: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder build (yocto-3.1.6.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.1.6.rc1)
-Thread-Index: AQHXCWzi0XsNxpsuI0WZCv6k0vp3bKpofqyQ
-Date: Thu, 25 Feb 2021 07:35:57 +0000
-Message-ID: <BYAPR11MB36240D3D33192AF2180FB382E39E9@BYAPR11MB3624.namprd11.prod.outlook.com>
-References: <20210222224808.50B89817FA08@fedora32-ty-1.yocto.io>
-In-Reply-To: <20210222224808.50B89817FA08@fedora32-ty-1.yocto.io>
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=FZFCiRei;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1614260249; x=1771940249;
+  h=from:to:subject:date:mime-version;
+  bh=S/n0w3BYnnv3N8/7Fo0tA4XaQKTTpdlahZkzx4tvJZg=;
+  b=FZFCiReiUPVKmjdbJnucotnxplRJgL+yDigJtn2KdzfEWXKTzXSlgIfV
+   +MRP9Jo2tiuylNb06SMk6kCDAFWoH/J6phT74Rjz0u1fWsqYXNxzqlR2x
+   qQWflT/ud1i4VLPXi1KaX0e3LzyNSWHXsfUX1MsC70umSnxgLxDxTWTy+
+   k=;
+IronPort-PHdr: =?us-ascii?q?9a23=3AVddZ3xMnx1FfHlp7eXAl6mtUPXoX/o7sNwtQ0KIM?=
+ =?us-ascii?q?zox0I/T6rarrMEGX3/hxlliBBdydt6sVzbqG+P69EUU7or+5+EgYd5JNUxJXwe?=
+ =?us-ascii?q?43pCcHRPC/NEvgMfTxZDY7FskRHHVs/nW8LFQHUJ2mPw6arXK99yMdFQviPgRp?=
+ =?us-ascii?q?OOv1BpTSj8Oq3Oyu5pHfeQpFiCe5bL9oLxi7rgrdu8gWjIB/Nqs/1xzFr2dSde?=
+ =?us-ascii?q?9L321oP1WTnxj95se04pFu9jlbtuwi+cBdT6j0Zrw0QrNEAjsoNWA1/9DrugLY?=
+ =?us-ascii?q?TQST/HscU34ZnQRODgPY8Rz1RJbxsi/9tupgxCmXOND9QL4oVTi+6apgVRnlgz?=
+ =?us-ascii?q?oFOTEk6mHaksx+grxGrhK9qRJxwI/Ub52aO/dlZKzRYdEaSHBdUspNSSBMBJ63?=
+ =?us-ascii?q?YYsVD+oGOOZVt4fxqVwJrRu4HgmjGv3gyiRQinTrwKM6z/ouER/Y0wwmAtkDrm?=
+ =?us-ascii?q?nfoNH7O6kPVOy5wrTDwDLYb/NKxzj99pbHchY7rfGJWrJwd9HRxlcxGAPelVif?=
+ =?us-ascii?q?spbqMC2O1uUNqGib8/RvVee0i2I9tw5xpT2vy94qh4LUiY0b1krK+j9lwIYpO9?=
+ =?us-ascii?q?K4Ukh7bMaqHpZeqyyXNol7T8I8T211pis3yb0LtJq0cSUF1ZgpyR7SZfOaf4WM?=
+ =?us-ascii?q?4B/uVOmcLDZliH97fL+yhBW//FW9xuPzUMS/zVVErjJdn9XRqnwBzRLe58qdRv?=
+ =?us-ascii?q?dj4Eus2SyD2gHT5+1cPEw4ibDXJpEuz7IqmZcfq1nPEy/wlU7rlqGZbF8k9fKt?=
+ =?us-ascii?q?6+n/Z7XmoYKTOJFshwHlN6QuhtS/AeMlMggSR2Sb+fqz1Lnk/UDhXLVLgec5kq?=
+ =?us-ascii?q?/csJDBIckXurK1DxNI3oo57RawFS2q388CknYZN1JEeAmHj5T3NFHLO/D0F+uw?=
+ =?us-ascii?q?g1OpkDtzxvDGOKPuAonVI3TejLvtZ7hw5kxGxAYt09xS54hYB7ABLf7rX0/+rt?=
+ =?us-ascii?q?3YDhs3MwyuxObnDc1w1pgCWW2RHK+WLqXSvUWN5uIoJemMf5EatyjmK/U+/PHh?=
+ =?us-ascii?q?l2E2mUQdfKmywZsYdnW4Hu98L0qFZnrsh88NEX0WsQomUOzqlFqCXCZTZna1Q6?=
+ =?us-ascii?q?08+jY7BZmiDYfCXYCtnKeB0D27H51Rem9GFleMEW/yd4WDWfcDdj6dItN7njwD?=
+ =?us-ascii?q?T7ihRNxp6Rb7/h79wKZgBu7V4TED84Pk38Ry//fUlxw56XpzFcvXmzWcSGpomU?=
+ =?us-ascii?q?sMRiQqx+ZupkdhzU+Z1qp1iOAeEsZcsaBnSAA/YNT5yOphBt3pHkr6YtqXRVDu?=
+ =?us-ascii?q?aZ3mPApwBJpl2MMDfUt7XdCliAvO0jGCCbYYjK2QGJEx6eTX2H2ndJU18GrPyK?=
+ =?us-ascii?q?R01wpuecBIL2Dz3qM=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2AaBQBxpzdg/0HhJQpigQmCcmuBE4FLq?=
+ =?us-ascii?q?zmHLwsBAQEBAQEBAQEIATQEAQGGSCY4EwIQAQEGAQEBAQEGBAGGUgwCgjYig2Y?=
+ =?us-ascii?q?4XgGBACYBBBstgjxHgTexSYE0hViEfwkBgS6GfIhLQYERjgwEA4JEgQ6CcYZFl?=
+ =?us-ascii?q?QaeHQcDgnycFCujTS2UIaIaAgQCBAUCFoFrgXpwUIJqTxcCDZxngSsCBgoBAQM?=
+ =?us-ascii?q?JiwSBDwEB?=
+X-IPAS-Result: =?us-ascii?q?A2AaBQBxpzdg/0HhJQpigQmCcmuBE4FLqzmHLwsBAQEBAQE?=
+ =?us-ascii?q?BAQEIATQEAQGGSCY4EwIQAQEGAQEBAQEGBAGGUgwCgjYig2Y4XgGBACYBBBstg?=
+ =?us-ascii?q?jxHgTexSYE0hViEfwkBgS6GfIhLQYERjgwEA4JEgQ6CcYZFlQaeHQcDgnycFCu?=
+ =?us-ascii?q?jTS2UIaIaAgQCBAUCFoFrgXpwUIJqTxcCDZxngSsCBgoBAQMJiwSBDwEB?=
+X-IronPort-AV: E=Sophos;i="5.81,205,1610409600"; 
+   d="scan'208,217";a="350626554"
+X-IronPort-AV: E=Sophos;i="5.81,205,1610409600"; 
+   d="scan'208,217";a="99899848"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: BB_HASHBASE_WHITELIST
+Thread-Topic: BB_HASHBASE_WHITELIST
+Thread-Index: AdcLekhCACdq46jaS7SNqv9mcQES3A==
+Date: Thu, 25 Feb 2021 13:37:18 +0000
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.0.76
-dlp-product: dlpe-windows
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=intel.com;
-x-originating-ip: [60.53.116.239]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: cfeabf5c-91ab-44d8-9892-08d8d95ffdca
-x-ms-traffictypediagnostic: BYAPR11MB2838:
-x-microsoft-antispam-prvs: <BYAPR11MB2838E1DA0B3BF50B92FB1D40E39E9@BYAPR11MB2838.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sY7GPyEA3JJxBFfZ02TiXKkisXcXRO3knXU9JXXonOS7iUW76VDrD3KhP6d8QlrEcbueugcHXKPMWm0eKuelj2YUlYDc2MOAHtW3aQ8XiGPLhd/0OtqrbinnqeUVDjrkrseYKwPa5tYo6KqCDvXSvugd7/z+E2B6zxEBsPK3Bw/aJknPi/Zc89YVr3NvH8EYW9KXDlsnfYt2wjLWF0JaATq41cDGLXCwooZDSkehfJ2iP2jZImHMd3JknvXCDKq3n72JnBmXHDMKXgppJH2hwSnocMwDcUu3VAxaySAQmyBNPoDtaPxuBsLMjQ1phZDOjgXpg294erUAewVQ9R4ReLVKZ/OJ1ERp017p4T9XGFai2yqyuEBetGmX214Ph2YisnEKK56G9kuux51iOkbRLEMw2FEAc1lFalfQpNNa3FAaw/XMz7xvSXDVT3U03pOUOLl7sAM2zTUSI5+UY8/qg9HZHNz508u6DICXMpNLvjKHZl7x+xoUsy5Fe9fQWe0hktWGkZpru0J+ASlxxUB5RU0+egFm/X8oJGpGUsnHImuGnh+oyHKe/wqGMKaps/uSLbVKKdH7lwcYod9QTGzXm924aXaFJTDZwb4REKo7+ZA=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3624.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(366004)(346002)(39860400002)(396003)(136003)(9686003)(76116006)(53546011)(2906002)(66946007)(83380400001)(5660300002)(86362001)(6506007)(966005)(478600001)(4326008)(15650500001)(7696005)(55016002)(71200400001)(186003)(52536014)(316002)(110136005)(8676002)(64756008)(66556008)(66446008)(66476007)(26005)(33656002)(8936002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?VdCkyxYAJUbH7cYhDgZHTVjK1fBYH3QayeMmWP6tQvzgf2x0Be8fh6T3SFkQ?=
- =?us-ascii?Q?BaLfMaoFo28EpBs3WPghM2JRlau2lkWb6XRLz0xYFqbc4gpGYOFoKcnuU2um?=
- =?us-ascii?Q?HH1XRJrf8bM555aNi2GgrF7eJgu2X0xg5xCYiGHPxZBjQrLlhfbobHUwl2iT?=
- =?us-ascii?Q?nQHSi6phdeJCfkT6BUQf7e13usaeFSICwRzCyW6/yJ71QR7kb+dpjCezPTAS?=
- =?us-ascii?Q?PrLHGNDHT2UlSm5e/BiTVuG+PTARaOyOEgkBGyYdWJhzjbGL2oOTlX30cgYf?=
- =?us-ascii?Q?gYOc5Yhi3S5OKooPtiUqtb4epliv4wCJqRxd8wMDlawQz7Kjj0k62zmeNfE3?=
- =?us-ascii?Q?8rRK28Xdah13T4cesuIkD2h/dwNOcZzHqxj+HWY/ecoZpXIQvapvuVsgd1/+?=
- =?us-ascii?Q?OGg7C+MeA6DOKUGMbF7rGuLk2JiHeAFjWIt2emT00C6KSWqOLTscMgB9ph35?=
- =?us-ascii?Q?jo/wF2f9c5VjIjBuzVne/oHF4cxChJ/hIbKfokb05JCHqV40AX9kxvZ3Oouf?=
- =?us-ascii?Q?A5uMc7w/N7saqKserLteosXlLm+dRvXW8+nP3F2ztsZgeRUIvD8Z9XO+Z6xU?=
- =?us-ascii?Q?cQVTfino31g60CpIUL4yNgZLT2o4kt1Kf1dAiXzH11kzCTOh7H/jLQKNQo2m?=
- =?us-ascii?Q?b+hjkJrQWnBUcWlNx885E7D0Oi4QDi5SXeAv4fHlqPomTEp2DMj/og+lA5/2?=
- =?us-ascii?Q?eV9GRq9iAawK9mR2u+sxQEUV73LFd8tckk8slt5dCuItOxfD9VZ7UuYi8cfK?=
- =?us-ascii?Q?uOP6VoooLVWZeSvpirlAcdLEV7IfJTiwtqbNWAg5m0WXtCOY7tn/Pz74sAux?=
- =?us-ascii?Q?SvGJzZsn7N4Cx4f+gY44W+GJ6bAsOZZTjiI6AW5vpiLSgIJWYVjBmXeb2lja?=
- =?us-ascii?Q?JEuFBRTc7hiujPew75m3MLmTi+xq0lxR8kdR5jZyoYdZsUpxgrC7Y8E0qdGN?=
- =?us-ascii?Q?rlPpQkf7GBTEeT1HJWGwjiAzXA46a15I4kRBc2C3oyPliUxmDbtte63xnTeO?=
- =?us-ascii?Q?B5U/QLjWOXAylzPbVRbQaPJxEVB3s/05zLHJ1yl8UfgKMdoKCBW3RsFquij7?=
- =?us-ascii?Q?mTMEFLMrrR35+IUU9dhuBjuuu81+LDI1u+7FQyAPUumUiMBPWFj+8R8sA/ik?=
- =?us-ascii?Q?y5B5y2LppE1WdDvFVWPD39oM/vvCkghk4UO4Y+BetpGyuoiZHRxIyRLLde26?=
- =?us-ascii?Q?OvIc2qvIW2npIveBLjZ8TF4W3UYPpmEVnEynksl3i/Cj89W0QBUalpIPDvG/?=
- =?us-ascii?Q?VKB7I7/XdyIrrmgrbkn8rDciABPle49IDnNZ54G5UusdStRNu+8yF9jekcuB?=
- =?us-ascii?Q?cjA1bHtAnTMbbo65i7Btdu6T?=
-x-ms-exchange-transport-forked: True
+x-originating-ip: [10.44.4.15]
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3624.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cfeabf5c-91ab-44d8-9892-08d8d95ffdca
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Feb 2021 07:35:57.4899
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: eaOay9goxHicqCxGnYWGSaJPH4UKp9ge7IGZggrwoDYQv4W62rTwPdtBnxFTVrwGHCk8IsURkHpF4pwD2AB+2g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB2838
-Return-Path: sangeeta.jain@intel.com
-X-OriginatorOrg: intel.com
+Return-Path: steven.monsees@baesystems.com
+Message-ID: <MADEUP.16670125637EC67C.18846@lists.yoctoproject.org>
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_e320441dec044fc5bf644441b61cac94baesystemscom_"
+
+--_000_e320441dec044fc5bf644441b61cac94baesystemscom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
 
-This is the full report for yocto-3.1.6.rc1:  
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/=
-?h=3Dintel-yocto-testresults
+Where and when is it appropriate to add to/modify BB_HASHBASE_WHITELIST " ?
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.=20
+I tried to do : BB_HASHBASE_WHITELIST +=3D "BB_TRACE" in my local.conf but =
+it ended up replacing existing list with just "BB_TRACE"...
 
-no new issue found
+
+basewhitelist changed from '{'TERM', 'FILESPATH', 'CCACHE', 'COREBASE', 'BB=
+PATH', 'STAMPS_DIR', 'EXTERNAL_TOOLCHAIN', 'LOGNAME', 'FILESEXTRAPATHS', 'C=
+CACHE_NOHASHDIR', 'LICENSE_PATH', 'BB_WORKERCONTEXT', 'BB_HASHSERVE', 'BB_U=
+NIHASH', 'HOME', 'DL_DIR', 'SSTATE_HASHEQUIV_OWNER', 'PRSERV_DUMPDIR', 'SDK=
+PKGSUFFIX', 'WORKDIR', 'SSTATE_PKGARCH', 'SSTATE_HASHEQUIV_METHOD', 'PRSERV=
+_HOST', 'CCACHE_DIR', 'PRSERV_LOCKDOWN', 'STAGING_DIR_TARGET', 'STAGING_DIR=
+_HOST', 'PWD', 'USER', 'STAMPCLEAN', 'BUILD_ARCH', 'BBSERVER', 'BB_LIMITEDD=
+EPS', 'SSTATE_HASHEQUIV_REPORT_TASKDATA', 'TMPDIR', 'SHELL', 'THISDIR', 'DE=
+PLOY_DIR', 'PRSERV_DUMPFILE', 'ERROR_QA', 'WARN_QA', 'FILE_DIRNAME', 'exten=
+d_recipe_sysroot', 'CCACHE_TOP_DIR', 'PARALLEL_MAKE', 'FILE', 'BB_TASKHASH'=
+, 'PATH', 'SSTATE_DIR', 'PKGDATA_DIR'}' to '{'BB_TRACE'}'
+changed items: {'TERM', 'FILESPATH', 'CCACHE', 'COREBASE', 'BBPATH', 'STAMP=
+S_DIR', 'EXTERNAL_TOOLCHAIN', 'LOGNAME', 'FILESEXTRAPATHS', 'CCACHE_NOHASHD=
+IR', 'BB_WORKERCONTEXT', 'LICENSE_PATH', 'BB_UNIHASH', 'BB_HASHSERVE', 'HOM=
+E', 'DL_DIR', 'SSTATE_HASHEQUIV_OWNER', 'PRSERV_DUMPDIR', 'PATH', 'WORKDIR'=
+, 'SSTATE_PKGARCH', 'SSTATE_HASHEQUIV_METHOD', 'SSTATE_DIR', 'PRSERV_HOST',=
+ 'CCACHE_DIR', 'STAGING_DIR_TARGET', 'STAGING_DIR_HOST', 'PWD', 'USER', 'ST=
+AMPCLEAN', 'BUILD_ARCH', 'BBSERVER', 'BB_LIMITEDDEPS', 'SSTATE_HASHEQUIV_RE=
+PORT_TASKDATA', 'TMPDIR', 'SHELL', 'THISDIR', 'DEPLOY_DIR', 'BB_TRACE', 'PR=
+SERV_DUMPFILE', 'ERROR_QA', 'WARN_QA', 'FILE_DIRNAME', 'extend_recipe_sysro=
+ot', 'CCACHE_TOP_DIR', 'PARALLEL_MAKE', 'FILE', 'BB_TASKHASH', 'SDKPKGSUFFI=
+X', 'PRSERV_LOCKDOWN', 'PKGDATA_DIR'}
 
 Thanks,
-Sangeeta
+Steve
 
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Tuesday, 23 February, 2021 6:48 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuild=
-er build
-> (yocto-3.1.6.rc1)
->=20
->=20
-> A build flagged for QA (yocto-3.1.6.rc1) was completed on the autobuilde=
-r and is
-> available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.1.6.rc1
->=20
->=20
-> Build hash information:
->=20
-> bitbake: fa94374baea75a94e3a488126ca7d8e241a77acd
-> meta-arm: 02c660521619ddb7a9495d65403aaa2636747ce8
-> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-> meta-intel: 4bd62a7e154b8c9e8a114f452d3b062d8d058118
-> meta-kernel: f793168bd19af3d8c5a260dd35f387ed9a31794b
-> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
-> oecore: a8debddd6cbdd70db74e096d72f97fbee008ee63
-> poky: a13bda44fcda4e79e9aed39ca1495eabecb6a7b7
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
->=20
->=20
+--_000_e320441dec044fc5bf644441b61cac94baesystemscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Where and when is it appropriate to add to/modify BB=
+_HASHBASE_WHITELIST &#8220; ?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I tried to do : BB_HASHBASE_WHITELIST &#43;=3D &#822=
+0;BB_TRACE&#8221; in my local.conf but it ended up replacing existing list =
+with just &#8220;BB_TRACE&#8221;&#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">basewhitelist changed from '{'TERM', 'FILESPATH', 'C=
+CACHE', 'COREBASE', 'BBPATH', 'STAMPS_DIR', 'EXTERNAL_TOOLCHAIN', 'LOGNAME'=
+, 'FILESEXTRAPATHS', 'CCACHE_NOHASHDIR', 'LICENSE_PATH', 'BB_WORKERCONTEXT'=
+, 'BB_HASHSERVE', 'BB_UNIHASH', 'HOME',
+ 'DL_DIR', 'SSTATE_HASHEQUIV_OWNER', 'PRSERV_DUMPDIR', 'SDKPKGSUFFIX', 'WOR=
+KDIR', 'SSTATE_PKGARCH', 'SSTATE_HASHEQUIV_METHOD', 'PRSERV_HOST', 'CCACHE_=
+DIR', 'PRSERV_LOCKDOWN', 'STAGING_DIR_TARGET', 'STAGING_DIR_HOST', 'PWD', '=
+USER', 'STAMPCLEAN', 'BUILD_ARCH',
+ 'BBSERVER', 'BB_LIMITEDDEPS', 'SSTATE_HASHEQUIV_REPORT_TASKDATA', 'TMPDIR'=
+, 'SHELL', 'THISDIR', 'DEPLOY_DIR', 'PRSERV_DUMPFILE', 'ERROR_QA', 'WARN_QA=
+', 'FILE_DIRNAME', 'extend_recipe_sysroot', 'CCACHE_TOP_DIR', 'PARALLEL_MAK=
+E', 'FILE', 'BB_TASKHASH', 'PATH',
+ 'SSTATE_DIR', 'PKGDATA_DIR'}' to '{'BB_TRACE'}'<o:p></o:p></p>
+<p class=3D"MsoNormal">changed items: {'TERM', 'FILESPATH', 'CCACHE', 'CORE=
+BASE', 'BBPATH', 'STAMPS_DIR', 'EXTERNAL_TOOLCHAIN', 'LOGNAME', 'FILESEXTRA=
+PATHS', 'CCACHE_NOHASHDIR', 'BB_WORKERCONTEXT', 'LICENSE_PATH', 'BB_UNIHASH=
+', 'BB_HASHSERVE', 'HOME', 'DL_DIR',
+ 'SSTATE_HASHEQUIV_OWNER', 'PRSERV_DUMPDIR', 'PATH', 'WORKDIR', 'SSTATE_PKG=
+ARCH', 'SSTATE_HASHEQUIV_METHOD', 'SSTATE_DIR', 'PRSERV_HOST', 'CCACHE_DIR'=
+, 'STAGING_DIR_TARGET', 'STAGING_DIR_HOST', 'PWD', 'USER', 'STAMPCLEAN', 'B=
+UILD_ARCH', 'BBSERVER', 'BB_LIMITEDDEPS',
+ 'SSTATE_HASHEQUIV_REPORT_TASKDATA', 'TMPDIR', 'SHELL', 'THISDIR', 'DEPLOY_=
+DIR', 'BB_TRACE', 'PRSERV_DUMPFILE', 'ERROR_QA', 'WARN_QA', 'FILE_DIRNAME',=
+ 'extend_recipe_sysroot', 'CCACHE_TOP_DIR', 'PARALLEL_MAKE', 'FILE', 'BB_TA=
+SKHASH', 'SDKPKGSUFFIX', 'PRSERV_LOCKDOWN',
+ 'PKGDATA_DIR'}<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Steve<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_e320441dec044fc5bf644441b61cac94baesystemscom_--
