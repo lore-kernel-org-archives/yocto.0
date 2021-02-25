@@ -1,248 +1,214 @@
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
- by mx.groups.io with SMTP id smtpd.web12.12020.1614262987654916234
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (NAM12-DM6-obe.outbound.protection.outlook.com [40.107.243.54])
+ by mx.groups.io with SMTP id smtpd.web08.11963.1614263849500675847
  for <yocto@lists.yoctoproject.org>;
- Thu, 25 Feb 2021 06:23:07 -0800
+ Thu, 25 Feb 2021 06:37:29 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=o020DdYz;
- spf=pass (domain: gmail.com, ip: 209.85.222.176, mailfrom: twoerner@gmail.com)
-Received: by mail-qk1-f176.google.com with SMTP id n28so4211972qkk.4
-        for <yocto@lists.yoctoproject.org>; Thu, 25 Feb 2021 06:23:07 -0800 (PST)
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=lPdOx7e+;
+ spf=pass (domain: windriver.com, ip: 40.107.243.54, mailfrom: randy.macleod@windriver.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YD4yIDB1REKNw/uUwNLb1JYFm+qWHCbgkW3H8UQQ2hZbBtcB9cOPnnCMi4ignhbmqi190ni1PnnscpjT84xXyVfA1Gtc+lNZYijtVApPpAAh/htiZdiAQsnTzZo6HfCNVHnHHnJ4UEUDpEwuhhX1ZLfxVwWsRlr7tZ5VviAr6vdCC2TUY2aRALRPnVGxgzU3KSaelEfAWvxv6Z29x/fgKJXdO3QJrUHBOpwOSRYqbxNhOE8+lZ0Ei33CU6KgrFnWtjh/WM8DJkS/3q1TfooIIQS6xPpFN7MOxVRMX5a46v57xnAR7jeawwyYRuI/OHDTETbnhrYAEWAwxA2jgsshUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VkjfI9q5hhe10SI090WlA336+5x+T2Ivp/5lw5RdTl8=;
+ b=gaFSgKTcdliGoeWHTyfTCVfRhThk22xgxhDgHFrO67G/OMCadwA8ZPPxDBvJ8TnGhBxXLh0/UCnQwYuoaC/EqeWXin9MNXDDCJMIMBbTXyeuuwbDwzswciZBCBB4KALDYpwNM0CfYuZOhT/bg38nARqo5G03M+bGRvRZFuvatYwrV9mVVFFGllp6PUMlecUB7UuoVLt347uUWeyC2sN4uTqgQ5A8X1Ys4GXTGIBcvHUOH5objQMfYKu7J88UkhW902W0hPIHO4UsPsfR7Bgm70Y1m+NhKem+wa2dhOwfthhWyeMHG9l3p744Svm/GpGtzugSw1MuiWHIG5Hg/ln/6w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:subject:message-id:mime-version:content-disposition
-         :content-transfer-encoding:user-agent;
-        bh=3dn/zp0LZfrBBWgiEDfUXNWASctBzDuQ6vEdvfQDHrU=;
-        b=o020DdYzCvXWvpzikqIIpJj6H+ly+MS5+2frEBA54+cIaVotp/DnSBqKgl3zZMx0oO
-         Asx2rQjey/0XO/wpa0mWwSejkrI6dRTNaZoP6I0Dw3OLZ8hPZi0EaVQEnnw9Tth7trf4
-         YLpntWX7VkEBnq06mcW0iCCCH0qKI4sBGWchsmoLIhE8bATbqB6ZkV3jakbXFIArc+eu
-         jrk07JVOf5iqo7ahAXqu/fqc3hhz3DhFUGmjXLVWXyEyayzhB7MjweBatIT/+ToIFPiK
-         3tKq46dlSZdjDn3OBSRJygZB/zc9/M1otVCkLsWu1GUYAoZDiwF6Dx+KcdqHHL6ffxs0
-         htQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
-         :content-disposition:content-transfer-encoding:user-agent;
-        bh=3dn/zp0LZfrBBWgiEDfUXNWASctBzDuQ6vEdvfQDHrU=;
-        b=cZ9ML/z7wWG7vPxsnPRTv983QGFj1dbTHKR//z4dhMBzkWQjc37fz0mb3FrSNwm6JP
-         L7w0Nra0MZnSKGGe1+6RByknCDlSkpyDcQNcqWWkMp611WrnJ6HqiZileQax63RLfrh3
-         RxeP95VnJ9dFx/5zQCbMARnokxetg+Ww8+dF8r1H4mX39jsqfdUofQop1rYu5Uf7Ycnb
-         wPHcXcudmy0F39I1klsGgix9D8ZhuZRZ07ed1S/lO8fRaStNt8k1sHVgUUtN/dSag+WG
-         LX8o17RxfYWDri1oCVDIhYjVMo26L84HzW2cpgeBMQ+43plF33Byu8W1NMSpr+HOffbk
-         q2fA==
-X-Gm-Message-State: AOAM532FHqWtsizuur3oc+LQpK7iFKefde7RWQ/Ny5z2hi7rhnP+p9p9
-	rmsj37kOWNEOHPQl3xAj6fFvXSQX4jM=
-X-Google-Smtp-Source: ABdhPJx7pjwpb+uLXu9bXfWiulWEP7BKFkiLJzJ6PgnAt8M+JXI1esaJ1mp+Nk4XNLC0SHy2pogc7w==
-X-Received: by 2002:a05:620a:22f7:: with SMTP id p23mr2740446qki.435.1614262985848;
-        Thu, 25 Feb 2021 06:23:05 -0800 (PST)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id 16sm3450506qtp.38.2021.02.25.06.23.05
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Feb 2021 06:23:05 -0800 (PST)
-Date: Thu, 25 Feb 2021 09:23:03 -0500
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: Yocto Technical Team Minutes/Engineering Sync for Feb 23, 2021
-Message-ID: <20210225142303.GA26834@localhost>
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VkjfI9q5hhe10SI090WlA336+5x+T2Ivp/5lw5RdTl8=;
+ b=lPdOx7e+z8XEInbyu6OFLZu/JRGYnSqqBBhz6fbpu+w0TVS90ol2UU+aftjsnZifUVtzz0IZ/TXOBNdh3pGjcbmYFcHg3TSp2XYiJa3rtGRLUF1u4eqjJp+eeaC5gMWWuYE1jSkpgUE8q71m71Zww96ehGM0S3F4Vc/EgQVbjZI=
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
+ by DM6PR11MB2602.namprd11.prod.outlook.com (2603:10b6:5:c0::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19; Thu, 25 Feb
+ 2021 14:37:28 +0000
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::8e2:471a:7b63:1a0e]) by DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::8e2:471a:7b63:1a0e%7]) with mapi id 15.20.3868.034; Thu, 25 Feb 2021
+ 14:37:27 +0000
+Subject: Re: [External] Re: [yocto] Yocto- Apache2 build guide
+To: "D, Sharmila" <Sharmila.D@Honeywell.com>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <SN6PR07MB8032F6B8B8873A9FC93F0699999F9@SN6PR07MB8032.namprd07.prod.outlook.com>
+ <ebbadb92-bccf-830f-5310-2d4b5ae8d781@windriver.com>
+ <SN6PR07MB80320BC75EFA419659E7ED46999E9@SN6PR07MB8032.namprd07.prod.outlook.com>
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+Message-ID: <2002c56f-ebe7-bf01-0ea7-8d8f37adb584@windriver.com>
+Date: Thu, 25 Feb 2021 09:37:23 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+In-Reply-To: <SN6PR07MB80320BC75EFA419659E7ED46999E9@SN6PR07MB8032.namprd07.prod.outlook.com>
+X-Originating-IP: [198.48.226.187]
+X-ClientProxiedBy: SJ0PR03CA0235.namprd03.prod.outlook.com
+ (2603:10b6:a03:39f::30) To DM6PR11MB3994.namprd11.prod.outlook.com
+ (2603:10b6:5:193::19)
+Return-Path: randy.macleod@windriver.com
 MIME-Version: 1.0
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.25.44.2] (198.48.226.187) by SJ0PR03CA0235.namprd03.prod.outlook.com (2603:10b6:a03:39f::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19 via Frontend Transport; Thu, 25 Feb 2021 14:37:27 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f442d014-eb54-4c79-81ba-08d8d99adfc9
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2602:
+X-Microsoft-Antispam-PRVS: 
+	<DM6PR11MB26024F10E1825808C762C574F89E9@DM6PR11MB2602.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	r0VJYerMmENPUEJ8oF1SJ2A2THzdmS8UqFaX0r0/pQfShz1K0H9zHyDJxaYwaDZO1C93zb2/22LuXeDK6sJUWNi/3a7YWcKnXTcOcIwcdqLDAsG6o1HRs7RZiLXVAPZIUpgipw8Ia2PDPeAiiOf5wF1wH32KPZzn15Ny7xcVu7F/ncuu3BvOyK/y1YT2cU0jzD/m+cOqMideCUeAY+fqZFPlv+s3nI3REc0SIU54NvmbHKlhbkQOB+/4Zv03WaRY15KQNFf6+7oNZbgQ6j/DaAMjHTl1cfuVOEFZgEIkillkkJGk7LYEZQm2kqpaCAn/ZRn+8Dh1NOiGotv/N6/FjfS/LlWFbUexWeJLLjD3Mo8rwNt7T2lv9aQqQy8l+gbluft8B5rKNDN6mSzCC4wVOynxlwpxMftuQgaxwUqNdt14uRFH2r6SrDrY9i9wIfi+1Zd7xPKrFTbh+bVktDmn9gyAMoLkj/TlPRWzgCXrSpJxF0/AGjOXyfJNpwLGrW1ZPplDfSVFzfqjiPcGq7Txxskq1wOGB0W9+vNZIwx2ou+Q8nncnMSLsreD2wTGxgiYR06J888hUabAZw2VVRS05ddhrDHRStLZojMqY3MVaYsZQMrAA1GjZwDdN+15ylRapnRZ4xONvzY2VUx5V+iXdkUEnJxat//Dm2htIalPq94VkNpduXhgT6WPiN38UYgE
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(396003)(136003)(366004)(39850400004)(346002)(478600001)(36756003)(66476007)(26005)(16526019)(186003)(6666004)(8676002)(83380400001)(52116002)(31686004)(53546011)(86362001)(2906002)(66556008)(966005)(6486002)(31696002)(5660300002)(66946007)(956004)(8936002)(2616005)(316002)(110136005)(16576012)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	=?utf-8?B?TVk0UWJ6eklUalVDU3c0UHE1MEhVdXRuL2NpdlIwT0ZsZERPQmVycWdPQThV?=
+ =?utf-8?B?UkdQNVBLK25ndk5wUmNsNFZxbmI1U3d2bGdQY1h6OHozYlpqY0lFeHNKd2xs?=
+ =?utf-8?B?L25CY2htY3U0dzdJdUZENmFNT0pLa0F2QXlXOWpYMFhzYTB0V0pTa3V0Q0ds?=
+ =?utf-8?B?YnhvZy9CYUg5YUFBLzhEVnJqWUxaS2Vna1RDN0FuODN3R2dYSWZNWkNQdy9u?=
+ =?utf-8?B?b1JhNnBxc2RHMGJpK2lnbkRjQUJ1TVNhaDJDeDJhR0hmS3M2NnJ2VHJyUXRl?=
+ =?utf-8?B?QkNuQ3ZYM2M0RjdYTWFpR1VlVkZva1Y5SzRkakZiNk1HUlRwZ0tBMVhMV0ZL?=
+ =?utf-8?B?Y3g5U2h2SVRjWGRaRWY2MzdJK3E3RHV6bzhqcUtJblR6cGFwQzNieTdVZjJP?=
+ =?utf-8?B?UTROMWgyU0ZNWllBc2E5TXFWTTZMSk44L2ZOUmVXUHkrT25jWUJvRlJ0UXV5?=
+ =?utf-8?B?T2tVeTZIVHVDVnlxUGhWU3dacGw0QTZEOWtqYW5rR2ZTTHZKOVNCNm9uYm9M?=
+ =?utf-8?B?T0w0ZXFiMWsrbWNVOHhNSDZvYXQ3K2w5S0ZLRlB1cm5PbVcyampSWjdTRkZn?=
+ =?utf-8?B?R1ZGSk50L1VjbUYvUlNMZ2R3K1ZoR2lHaWJQVTdXTnhaMk9uQWlPZTdWWXBO?=
+ =?utf-8?B?ZlNzaU9kajEyVmltRFVkSThsWVVkQzVtcTRQeUxITjlua0oySmNSbE5uOUlD?=
+ =?utf-8?B?NnNzSHpiMnF1T1hhT0gxMFlLdzR2ZERBblVoRWRzZjl0cXRCRi9kZFlVdGdh?=
+ =?utf-8?B?YTN1UndwU3RHYllsZUNRT0kycGJnRTRIajY5K3hKVUtidzZVMU1hdVJqNk5j?=
+ =?utf-8?B?cnZORmRqcnA3b2dlQ25ZSFV3bzI3RUxjUW8zb1J5ZnVHbzJqL2hjbVc3K3hn?=
+ =?utf-8?B?VW1NVFpYeTFWdEd5UEJvUmppQU1STTROS2VzWC9KYmRXWkptL2VzM1pna0VX?=
+ =?utf-8?B?ZTBZckViaURwK013dmErOFErdGcxTDVzZmQyVmJkZFl6QTI1b0hucndoUlhB?=
+ =?utf-8?B?L2hsbVNreWwrMjRGYlVqK1JBRUpaR0podVFRS3VNMDRxb2lHbGRlbENsL01k?=
+ =?utf-8?B?bEJrSjIyYjgwZkx2UHZxQWlCTmFmL3NsSTQwZ1RvbFZpaXJxRnFEaXlSSHp5?=
+ =?utf-8?B?TE1rZmFLT2piQmN5QythMjllNWVaRzZiRkZZa29HeXRQVllPbzhRZG9pVEhJ?=
+ =?utf-8?B?cjJzYVhiRWdqOWRQK0daWHozVytjYjVhaFIwWkoxbzEwWFdzQ29ZUFJrLzVG?=
+ =?utf-8?B?MFQyRVBsUjc2azROazg0OUJDTXgyQzhwSjZHaTJkOG9teStvSXdSbUpSQmFj?=
+ =?utf-8?B?dmF3Y0RSNFR4LzBFaGJEbXVremJlelVSQzVVVGw0RVRwdHRoVUVZS1UxT3Bi?=
+ =?utf-8?B?dFhzMkNBQ1ZNN2FEeklvRzNIejZTZDZjNHlLa2xFQmpHOWxSSzZFbFk2MGJq?=
+ =?utf-8?B?MVh6L1BWSWxwSERobjUzNVY5dGRIa0k5aGdWMVpwZXBVb2ZKblU4N2xKZ1ll?=
+ =?utf-8?B?N1Z0bjVlR3VRMEJkZFcwMkVlMnVZYjl4aWdSTTVmT1IvVWd4dzdrNE9zd3hH?=
+ =?utf-8?B?RlVJKzlqNWxIKzVPQTZXeE9PRjQ5SVdsdjhGbTl1bU5nZFczNHQ1QnZraHdo?=
+ =?utf-8?B?b0NrMll1eVZOc296QmtQcFhscmNrRHFPVkVBRWpOYk82VUR3aVcyRjl0c3VF?=
+ =?utf-8?B?WCtnblpOL2tyZEc2V21pcGV6bHI3THN1cm5FT2xnZkJVcVlRalhZYWJqUDJW?=
+ =?utf-8?Q?a6wbCm61afgqLTBOipgOC8r/R5XadrBS6Bwt8TJ?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f442d014-eb54-4c79-81ba-08d8d99adfc9
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2021 14:37:27.7150
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 115SxVGGgFiw6NA+j5ysIjBTWFZwGSqHYfMAuJ05/y/7O1MaFP51Qu4/AICFZ+xnIH5Tg+e28O2/E2nQfLSOh370HAEQOHKCCNpSoz++x/g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2602
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-CA
+Content-Transfer-Encoding: 7bit
 
-Yocto Technical Team Minutes, Engineering Sync, for Feb 23, 2021
-archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit
+On 2021-02-24 10:37 p.m., D, Sharmila wrote:
+> Hi MacLeod,
+> 
+> 	Thanks for your e-mail.
+> 	Yes, without apach2 I am able to build the core-image-minimal successfully. The issue is only when I add 	apache2 in IMAGE_INSTALL.
+> 	I am using TI processor SDK and I have setup the arago based yocto environment based on TI user guide.
+> 	 version is THUD.
+> 	Do you need any further details about the setup?
+> 	Please provide me the steps to include apache2 package into my final image.
+> 
+> Looking forward to hearing from you at your earliest convenience.
 
-== disclaimer ==
-Best efforts are made to ensure the below is accurate and valid. However,
-errors sometimes happen. If any errors or omissions are found, please feel
-free to reply to this email with any corrections.
+Hello Sharmila,
 
-== attendees ==
-Trevor Woerner, Stephen Jolley, Scott Murray, Armin Kuster, Michael
-Halstead, Steve Sakoman, Richard Purdie, Randy MacLeod, Saul Wold, Jon
-Mason, Joshua Watt, Paul Barker, Tim Orling, Mark Morton, John Kaldas,
-Alejandro H, Ross Burton
+If you can reproduce the problem with only the oe-core/poly + 
+meta-openembedded layers then perhaps someone on this list can help you.
+Otherwise, you should contact the people who provided the
+TI processor SDK.
 
-== notes ==
-- 3.2.2 passed QA clean, awaiting final approval from TSC
-- 3.1.6 built and in QA
-- 1 week before -m3 should be built (feature freeze for 3.3)
-- adding RPM to reproducibility, still needs some work
-- recipe maintainers: please review the patches we’re carrying (push
-  upstream as many as possible)
-- glibc 2.33 issue should be resolved with latest pseudo
-- AUH patches are now merged or queued, few of the failures handled
-- AB issue list is at record high (not good)
+By the way, Thud is EOL in the YP community:
+    https://wiki.yoctoproject.org/wiki/Releases
+but commercial vendors do have longer support cycles
+so hopefully TI can help you out.
 
-== general ==
-RP: can’t get stable test results out of AB on master
+../Randy
+> 
+> With Best Regards,
+> Sharmila D
+> 
+> -----Original Message-----
+> From: Randy MacLeod <randy.macleod@windriver.com>
+> Sent: Thursday, February 25, 2021 12:08 AM
+> To: D, Sharmila <Sharmila.D@Honeywell.com>; yocto@lists.yoctoproject.org
+> Subject: [External] Re: [yocto] Yocto- Apache2 build guide
+> 
+> On 2021-02-24 5:04 a.m., D, Sharmila via lists.yoctoproject.org wrote:
+>> Hi,
+>>
+>> I am trying to enable httpd package into my yocto build, steps I
+>> followed is as below
+>>
+>> 1. Added below layer in bblayer.conf file
+>>
+>> sources/meta-openembedded/meta-webserver
+>>
+>> 2. Added below line in local.conf file
+>>
+>> IMAGE_INSTALL_append = "apache2"
+>>
+>> The yocto build using bitbake core-image-minimal gives below error
+>>
+>> WARNING: core-image-minimal-1.0-r0 do_rootfs: busybox.postinst
+>> returned 1, marking as unpacked only, configuration required on target.
+>> ERROR: core-image-minimal-1.0-r0 do_rootfs: Postinstall scriptlets of
+>> ['busybox'] have failed. If the intention is to defer them to first
+>> boot, then please place them into pkg_postinst_ontarget_${PN} ().
+>> Deferring to first boot via 'exit 1' is no longer supported.
+>> Details of the failure are in
+>> /home/h440246/Projects/rfid/BSP/tisdk/build/arago-tmp-glibc/work/omapl138_lcdk-oe-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.
+>> ERROR: core-image-minimal-1.0-r0 do_rootfs: Function failed: do_rootfs
+>> ERROR: Logfile of failure stored in:
+>> /home/h440246/Projects/rfid/BSP/tisdk/build/arago-tmp-glibc/work/omapl
+>> 138_lcdk-oe-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs
+>> .2937
+>> ERROR: Task
+>> (/home/h440246/Projects/rfid/BSP/tisdk/sources/oe-core/meta/recipes-co
+>> re/images/core-image-minimal.bb:do_rootfs)
+>> failed with exit code '1'
+>>
+>> Please provide the solution for the same
+> 
+> Hi Sharmila,
+> 
+> This doesn't appear to be related to adding apache.
+> Are you able to build core-image-minimal without adding apache2?
+> 
+> Can you provide detailed steps wrt what layers and HEAD commits for each layer you are using? Ideally, you'd reproduce on a supported release or on master. That's Dunfell/3.1 or later:
+>     https://wiki.yoctoproject.org/wiki/Releases
+> 
+> ../Randy
+> 
+>>
+>> With Best Regards,
+>>
+>> Sharmila D
+>>
+>>
+>>
+>> 
+>>
+> 
+> 
+> --
+> # Randy MacLeod
+> # Wind River Linux
+> 
 
 
-RP: would be nice to get RPM reproducibility issues ironed out, but there are
-    some epoch issues to work through which messes up diffoscope
-RP: was surprised to see how bad the interactive response is on the cmdline on
-    the builders. it seems like an I/O bottleneck
-Randy: mostly I/O to SSDs?
-RP: i believe so
-RP: it was immediately after a build had been started. so it could be related
-    to downloads or sstate fetching. how much sstate did you expect that build
-    to be reusing?
-SteveS: version bumps to conman, kernel… yea that could lead to a lot of
-    rebuilds
-Michael: we’ve been optimizing for throughput for a while. on some other
-    build systems we leave some overhead available for cmdline interactivity.
-    should we start to do that with the YP AB?
-RP: i think it would have to be backed off by a significant amount to get that
-    breathing space. so maybe yes, but we’d have to look at it to see what
-    to backoff and by how much. looking through the build i see that 77% was
-    pulled from sstate (therefore pulling data off the NAS, then extracting
-    it).
-Randy: and that’s not coordinated at all, if there are 100 items, then 100
-    threads?
-RP: but limited by BB_THREADS
-JPEW: run by buildbot? maybe we could use cgroups?
-RP: i don’t think it’s CPU bound, the CPU was 50% idle when the cmdline
-    was very slow
-MichaelH: sometimes we see that when the system isn’t healthy, i wonder if
-    it’s isolated to specific machines?
-RP: on the CentOS machine, a command took over 5 minutes to complete. then
-    tried debian, same thing. then logged into the fedora machine and was
-    able to do stuff. but it didn’t seem isolated to any machines, it
-    seemed localized in time (i.e. right after a build had been started),
-    then dropped off. so i feel that it might be related to the initial build
-    startup, probably related to sstate pulling/extraction
-Randy: could also limit I/O using cgroups
-RP: we do use IOnice for parts of the build (2.1 and 2.7)
-Michael: translation: class 2 priority 1; class 2 priority 7
-Alejandro: are these sharing any hardware
-RP: they’re all connected to the NAS
-Michael: and they’re 100% dedicated to this work
-RP: i don’t think this is a network bottleneck, i think this is sstate extraction
-JPEW: maybe a different compression algorithm? gzip is notoriously slow
-RP: wouldn’t that make it worse?
-JPEW: does each AB have their own mirror
-RP: it’s all done over NFS
-JPEW: network bandwidth should be lower than local unzipping/extraction bandwidth?
-Alejandro: could we try different I/O scheduling?
-RP: don’t know
-
-RP: had a look at patches. 1,300 patches in oe-core, ~600 in pending the rest
-    are submitted or not appropriate. some of these are 10 years or older,
-    do we still need them? i sent 2 upstream and was told it wasn’t needed
-    anymore (problem fixed in other ways). there’s also one in valgrind that
-    looks similar (different fix upstream) and not needed.
-Ross: if some people could try to do 1 a day that would be a huge help
-RP: lots of patches related to reproducibility
-JPEW: the big issue with perf is that it uses bison (which needs patches)
-
-PaulB: read-only mode for PR server. i’ve been working on it, but it’s 1
-    big patch. there’s code to handle daemonizing and forking which in hash
-    server is using the python mutli-processing. we also want to use the
-    same RPC mechanisms that python is using. are those good lines along which
-    to break the patches down?
-RP: that sounds perfect
-PaulB: it was easier to bash on it all together, then go back and break it up
-    into digestible chunks
-RP: it’s 10 year old code, so i’m not surprised
-PaulB: i’ve broken out a part that uses JSON RPC, then use that for the
-    server
-RP: sounds good to me
-JPEW: me too
-RP: scaling that code under python2 was a challenge. glad to see this moving
-    forward
-
-RP: Randy posted rust patch set. felt it couldn’t be merged in this form
-    (too many patches)
-Randy: do you want the history squashed?
-RP: that was my feeling
-Randy: i’ve been working on it bit by bit as stuff happens upstream which
-    leads to lots of little commits. but i can reorg by logical group and
-    squash the log
-RP: yes. in one case there were lots of commits to the rust version, then in
-    the end you end up with 2
-Randy: someone from MS worked on getting the sdk stuff working
-RP: given that next Monday is the feature freeze, let’s get the patched out
-    sooner, and worry about the sdk later
-Randy: ok. last remaining issue is the pre-fetcher but i don’t know much
-    about it. looked at PaulB’s patches
-PaulB: there are 3 methods floating around, i’ve focused on one of them that
-    i like
-1. doing the download ahead of time in do_fetch()
-2. let rust-bin do the downloads itself in do_compile() which i don’t like
-3. haven’t looked at the last one yet
-PaulB: i like 1 because it asks rust to output a cargo which the fetcher can
-    then act on
-Randy: doesn’t rely on crates?
-PaulB: i think it relies on crates for things that it can’t resolve. however
-    Andreas’ approach relies on getting bitbake to understand cargo-toml
-    file, not sure if that’s a good approach
-Randy: are there any lessons with Go that we can use?
-Scott: Bruce would be a good one to talk to
-PaulB: my understanding with Go is that the code tends to all be placed
-    together in the git repository, so the fetch side is a little simpler
-Randy: so given the approach we’re using is there anything that needs to be
-    added
-PaulB: it needs testing
-Randy: i have a team working on testing the rust compiler itself. they can
-    successfully execute 2/3 of the tests now (of which 99.9% pass). i have
-    a reproducibility test for rust hello world, but it takes a long time to
-    run. any tests you’re thinking of?
-PaulB: fetcher tests. if you have a “crate://” in a URL, just making sure
-    it gets translated correctly to make sure it doesn’t bitrot
-Randy: is that an -m3 or -m4 activity
-RP: if we’ll get it in -m4 for sure we can wait until then. in oe-core
-    we’d want some sort of hello world (make sure compiler works and we can
-    run the binaries)
-Randy: we have that already
-RP: both for cross-compiling and target. then reproducibility tests. i’m
-    happy to build them up, as long as there’s a roadmap. for -m3 i think we
-    should get the baseline rust set and the crate fetcher
-PaulB: crate fetcher overrides the wget fetcher and makes sure everything gets
-    put in the right place. so it just needs a couple test cases; a map of
-    inputs to outputs. i’ll resubmit the patch and include a list of tests
-    that we need to add
-RP: if someone could reply to Andreas and let him know what’s going on and
-    why we’re going in a slightly different direction than the work he’s
-    submitted
-PaulB: the fundamental unit is the recipe. devtool is the place for some of
-    the functionality not bitbake
-Randy: building rust hello world works for all glibc qemu targets but some
-    breakage with musl (risc-v and powerpc) i think Khem is working on the
-    risc-v one. will that hold things up?
-RP: no
-PaulB: i have some slightly larger rust packages (larger than hello world)
-    that i think will test things a little more thoroughly, e.g. ripgrep
-Randy: we’re testing that one already. should we add it to oe-core?
-RP: it would be good to have something in oe-core to do testing
-Randy: i think hello world would be good enough for oe-core and leave larger
-    tests for other layers
-PaulB: there are rust things in oe-core (librsvg, etc) so i think oe-core will
-    have good test things already in them without having to add recipes just
-    for testing’s sake
-Randy: things also seem to work well on ARM builders
-Ross: yes, things are on-target
-
-TrevorW: started work on 2021 YP conference. conversation moved to
-    conferences@lists.yoctoproject.org if you want to follow along or help
-
-RP: fetch, workdir, can’t clean up workdir, config changes but can’t
-    cleanup. maybe we should fetch to a special dir and then just symlink
-PaulB: would it be recipe-specific
-RP: yes, it would be under $WORKDIR
-PaulB: would make the archiver easier
-TimO: there are a number of Go modules that don’t cleanup properly so maybe
-    this would help
-ScottM: there are lots recipes that do post-processing on files in $WORKDIR
-    before moving them to the artifacts directory, so there could be breakage
-    there
-PaulB: can we do it first thing next release
-RP: we’ll give it a try and see
-TrevorW: i think a lot of BSP layers will be affected
-RP: i think there’s a lot of chance a lot of things (not just BSPs) will be
-    affected
-ScottM: there are some BSP things that will be affected, but in AGL we’re
-    doing a lot of $WORKDIR manipulations that aren’t necessarily BSP
-    related as well
-(several): overall it sounds like a good idea and a good cleanup to try
+-- 
+# Randy MacLeod
+# Wind River Linux
