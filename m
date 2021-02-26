@@ -1,197 +1,291 @@
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (NAM11-DM6-obe.outbound.protection.outlook.com [40.107.223.132])
- by mx.groups.io with SMTP id smtpd.web08.6648.1614224245767830723
+Received: from IND01-MA1-obe.outbound.protection.outlook.com (IND01-MA1-obe.outbound.protection.outlook.com [40.107.138.79])
+ by mx.groups.io with SMTP id smtpd.web09.6861.1614330015402441568
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Feb 2021 19:37:26 -0800
+ Fri, 26 Feb 2021 01:00:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@honeywell.com header.s=selector1 header.b=J9hKaVu8;
- spf=pass (domain: honeywell.com, ip: 40.107.223.132, mailfrom: sharmila.d@honeywell.com)
+ dkim=pass header.i=@kpit.com header.s=selector1 header.b=fm2dKM9l;
+ spf=pass (domain: kpit.com, ip: 40.107.138.79, mailfrom: purushottam.choudhary@kpit.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HeQmDJhzg8HgckePlCyzg25wZsJ/o1FjEYSqUVAf6PJQgpa4KqA5/AXN5uQKNy27HcP01K304F+UN++Xkwo4qaBqm4uYiosBZohLi3ujnNMoURyrXlVnookR6IqRL6dkuJSHiXbrzvamnqjrBgmEgGqBmml1rudpnpJ55jZl0peoHH9ekUqHYLYHtH26XF8oIXenlByk0m4zOyN/3DJ13tURCKmJY1iDynuBm7O2UyK3OPYQ5klML7YyMDOmotiw2Ex4djMitpgSETPnCrhdOTnIV/2RKCsr7Sdpz93GRRQ6YHcrfCh4dNZTq50mgeOF25bG8kUOnzIg6Ormq0A26g==
+ b=PyW+0eRK4nYeVxqms3mT5/DBSlDO6xu/BPsaemPwFRcxoCcW7xEZEPP9jw3DqqzG2ApWx0GCTazmlazsh7jyUWmMMPwCUwCnIMGwfxHruEK7z9f5ru1e3eTkXciNsIsxxLBxIlCj29hB+1G7387PPC5L4bMVrddVI1Lq1KUuM+F8pKeJXvM6+5UkRYs4wN1fcB/r65bWeCMwXSqCAPsw9E/r2IQVLeEUPWAoLDsjJev6A2o7dc4+9h0aPMGOcEhQ0PeNCjVjcvx/XzfnVFcGt8H7IOhHKVfLA+UjOXd1DyFXCQYT7T736kJIOa8dH0GIItGIzkBZOa2u5651dme8qw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wiK8FgRjYEfeoFrPfQ8JO/xJkPVhWp7gdReWmxqxyfc=;
- b=Vc2RjOvlsZGYAbeX3BW2VNGQAqjtKd1pmEwZyJ2Wizw8DImJrGHeIUKDlpbzSXsB+TSB9PRbPHNFlMaGnpXVvO3IMVUG7gbsgm5Ve/xGAB19jgqHHJmpd0mzjSADRXmeoWQdq0/86SuyfkjsiD1QLltgRS3Gr+8rtsytNmt/PId2NkVv4ozMIY0AJE3r74g0XJxUpLASpsUESDn0mZHdM85hj2v63HtftVpaVekOqvvx50/5WL74s09LfBK/R3kn4ktCKb0Z2/XxxEHG1b31BiWTly48WFdz8a4RlYGPha5VFUo2wqbgsxCHm4qZZcIVVz+9Da819wVVNi2UVL3Uzg==
+ bh=V/ZGhX7rxfWRbt5DLLxI8xQlADNgKlnLyiYeBTF9FDY=;
+ b=NhA0oZDP+MSXvdsouo6q+Bp2Sf7W8Q0RCSlapG0MWcXufdoQxkYgz72pUYsUWBbwi23rjhf9RGGz7+LM6nlKs6NyZZfB7iO6t6v6+QMJvc2WiGy0G6p3RRDR5+0oFUXGUAdnOv/EhjuNqdHR+Wkcr9vY6WgpE9xWKoUr4R2x933kFoPEK9Nu5yooemK+ewY1WXCuNVS2swpGz3z1Eh3QOKiOxEjCY3otemClDjRDPnuLCvPGSiBalIEs211oXMohcFm8B2T0lVAFbecPK/Cttb/X14ERf0OibRabdSkEP6K3m8kFYncuLINBKvZX4Hjg/5P2KukOSODW0K3XjdpYJw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=honeywell.com; dmarc=pass action=none
- header.from=honeywell.com; dkim=pass header.d=honeywell.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Honeywell.com;
- s=selector1;
+ smtp.mailfrom=kpit.com; dmarc=pass action=none header.from=kpit.com;
+ dkim=pass header.d=kpit.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kpit.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wiK8FgRjYEfeoFrPfQ8JO/xJkPVhWp7gdReWmxqxyfc=;
- b=J9hKaVu8WhIZVw9qOmHLT/xqd+I4IOkEOZOnKRQAT/66slb0vfziSMQ5FlAuZ4nf0Khxb+ZxweuTyS5QhPSsMbI8Ubfx3mHR4iC/RmSfq3fxfDGgBh91nuuhkZQ3s+h0su7uOOElN/LKbRv9xp+8iu0yrEqH5N+DdVk4tlwLd5Y=
-Received: from SN6PR07MB8032.namprd07.prod.outlook.com (2603:10b6:805:ec::11)
- by SN6PR07MB4687.namprd07.prod.outlook.com (2603:10b6:805:34::20) with
+ bh=V/ZGhX7rxfWRbt5DLLxI8xQlADNgKlnLyiYeBTF9FDY=;
+ b=fm2dKM9lYrlJjgoppiZKwepcta+kyNWNPwS4ptpxqfHJMjAJrD+SZJkCw2EicbahYlurjsJCxflfMcFvAdi250kukCHy4uCm5aRL/zcK905RVLTfnMMeHoedg6uZgYJi+NWRSjwP2jLFCA8N7Rn3x8Mi3sG+ePBQgpFvDiBOMAM=
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=kpit.com;
+Received: from PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:1c::9)
+ by PNZPR01MB4765.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:2e::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.27; Thu, 25 Feb
- 2021 03:37:21 +0000
-Received: from SN6PR07MB8032.namprd07.prod.outlook.com
- ([fe80::2561:7e06:4959:55c3]) by SN6PR07MB8032.namprd07.prod.outlook.com
- ([fe80::2561:7e06:4959:55c3%5]) with mapi id 15.20.3890.019; Thu, 25 Feb 2021
- 03:37:21 +0000
-From: "D, Sharmila" <sharmila.d@honeywell.com>
-To: Randy MacLeod <randy.macleod@windriver.com>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [External] Re: [yocto] Yocto- Apache2 build guide
-Thread-Topic: [External] Re: [yocto] Yocto- Apache2 build guide
-Thread-Index: AdcKlCzGQI8OQdP+Qlaagf86boimowASBCiAABKj+OA=
-Date: Thu, 25 Feb 2021 03:37:21 +0000
-Message-ID: 
- <SN6PR07MB80320BC75EFA419659E7ED46999E9@SN6PR07MB8032.namprd07.prod.outlook.com>
-References: 
- <SN6PR07MB8032F6B8B8873A9FC93F0699999F9@SN6PR07MB8032.namprd07.prod.outlook.com>
- <ebbadb92-bccf-830f-5310-2d4b5ae8d781@windriver.com>
-In-Reply-To: <ebbadb92-bccf-830f-5310-2d4b5ae8d781@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.5.0.60
-dlp-reaction: no-action
-authentication-results: windriver.com; dkim=none (message not signed)
- header.d=none;windriver.com; dmarc=none action=none
- header.from=Honeywell.com;
-x-originating-ip: [2401:4900:3367:9c5a:2978:2507:ce08:c5dc]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 8b13594b-47e1-4b62-544a-08d8d93ea894
-x-ms-traffictypediagnostic: SN6PR07MB4687:
-x-microsoft-antispam-prvs: 
- <SN6PR07MB4687ADF14668881EA819EC05999E9@SN6PR07MB4687.namprd07.prod.outlook.com>
-x-antispam: TRUE
-x-recptdomain: NotTLSDomain
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- njpssh0wsU9lLYKFCmSHWNP+jIYJrtBiNR9yN7dxpNCjJZmhz65RmMIExpC3Rc7wL4lJ3AFpBfmuyMEaLGI9Ji3XIHUFUwRzZNTx5CgmZs3HZDa3rnX6sAcpENIbwDmkdVn5/L50WUUSBj6HhKGZ/1FmHKnNTAxYWNDRCQyLpUHMTa8jLUi+ghfdcq/hpdQ7duW7qkfFOc9m9iPj3IwCfcuFSW+TqwJ0ZxbnPEq+ts/ekPLdOXx5pn/YYa55WX5vHQ/RTEcDOEiQYcbxPWMeRBy5q1T7rNSwmup7iHax244CK0zB5H4hIMTPNly6NoOzqdPpbwZNtjxtytNrB6Y069EXbUSuUmX8JsR++kdExPezJ6gAim4hW8Xny3D5QyvCDcg5Mskuh6JJcsD3UQddIVe5fxHoFUU+sW1nhYtkGxHJZADaZ6bFLqGxiIAM9kcaCkjMR4s3BpV3uwn+qoB9UFFvnShU6aKfNTEMp2n24NEz/xGgxo4Uqn5h0Hmab01A9TH0havso+7WL+pgnsiSa/xcRes3uvV/xmfmGXDKQ21+vG48G74DHXuC3ZnpVKyqH+ywiFnSnAPKEF1GMS2N8L+DhVUVc1rtK24aHP0Y1rE=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR07MB8032.namprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(39860400002)(376002)(136003)(346002)(66476007)(86362001)(55016002)(53546011)(66446008)(2906002)(966005)(5660300002)(66556008)(110136005)(478600001)(66946007)(186003)(83380400001)(76116006)(7696005)(6506007)(9686003)(8676002)(8936002)(316002)(64756008)(52536014)(71200400001)(33656002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: 
- =?us-ascii?Q?FsrCkLXlxmXGAgoc4S5Zsg2W+uTZog9lDcRQm6tmPXmJZVgA8ZF5MyZ4JDpn?=
- =?us-ascii?Q?oZX6Hw5w8HGMRaAO5o6piD3YB6wLggGDO9/Fpcsc3tABJMdTRusxy5XJdmgR?=
- =?us-ascii?Q?7R97wLXquCjXv06tv0EmFB0uwPbDA/PWlTcXehGWrjN6JtFl+TN1Ridr5UFr?=
- =?us-ascii?Q?iRn8FAVJ3Aq2kz73PMlqaaCiOOY8ijo+GDD4OIfdyd/BB3Ucv4Qx3uBpTUsx?=
- =?us-ascii?Q?ssuca38F//af7bVW5T9ZslaikEmHzPQsqwaP3vJYrbxtQu2yuS6TQGlhRvI7?=
- =?us-ascii?Q?6jlP95Mi2929P4VMvvVpTGlZMYGWdSVbPUVuAgxghv4dSMzyliOZjVk/5Xcc?=
- =?us-ascii?Q?VCwgAVOSuPZXFlqneGbpw2fqOqvQ6dmxYcbwluvDw+pitpV06cdiudxD6dCg?=
- =?us-ascii?Q?wk0W1PFysHQEW3Ix+WvI5yIOzB0bGvcldr+Cj94FS0EQ9dRMXhTDSB7Ug857?=
- =?us-ascii?Q?KdvvA+2CYUmFOtdLRHJ+5YC0Aao0huY4DhqQlgtjOG1/YvvjvHyIaG9iyPuE?=
- =?us-ascii?Q?i5xKPavZ5EGs5pm03pV7ef0fI8RJl5vBqc4mnKT6Yb+JUjaxU3MNHIvEpZki?=
- =?us-ascii?Q?/uSiLHn3UFNObz06LB/wZkcm6QaUVz77uLgdg9y8eS08vPkubnFzGw1HU3mw?=
- =?us-ascii?Q?WPJvRKsc8YPS8vKtQ2Or/40LGy5e2YRUiZlbNW1KJM0vgYHLb29+uEwh8Eko?=
- =?us-ascii?Q?uM/AfcnB6BU6yR4Z+I+mwl7zn6baVPVZqZ7v732/bQCiWEf22yjvxN/YYHel?=
- =?us-ascii?Q?mNBi8DFM8hL6V0VnBBk59Vreh6DX1h1t9HmVXQvRTz5h1E9PVpHL8/E1rOe8?=
- =?us-ascii?Q?egWd4ja14ygkgybluO2MouWAN8AYqxzDpRlvKPXuOSwtx67KJFrssm6rM/FB?=
- =?us-ascii?Q?7W12sGoMYVYE1kHyGAESzHQgFnF1FyDWYxB8JJ1RIL8uKfROTsnP0kC7Y65R?=
- =?us-ascii?Q?jjq7jxotaqkvKF2qnOxKrk2FR8ol9lrqFyyWoYyTJyBrY8EArcVdfr3yFlF2?=
- =?us-ascii?Q?YEa/TRWt5WK+bP6ETJQhHHPzOO6hBdZ+Wnz/Jlkb1pruI+5c3wb5YIwfDPnA?=
- =?us-ascii?Q?uibKy0BskNOK9n86nVYnDz/sDZ1xZKl9qjPDDOtA6jhu7V90dbrqTMMTPvte?=
- =?us-ascii?Q?venvExTas7pm6UDRxk2+6dzYQ2sZbLiE9nLSNY90QCrut3H2hOEJ91wAEg1D?=
- =?us-ascii?Q?t3Xz5EKqQXCiI2YJAYwB4iVo/y9MsYTzoY7n1QL8/j0r6ubLzUNNqg/7gHst?=
- =?us-ascii?Q?SyfLuHEQYBSqIHjJJO6Hmz1xFKaxQWSSMD2MhAhjT/3RFNh9XuYwiRhFDQPO?=
- =?us-ascii?Q?aH3B1h+SlpLjJjwfi3QoMFZSJmdsiTqNkLhBJoZ+0z8F0n4q7HyS3kNecrrS?=
- =?us-ascii?Q?7URzuNa5snEvJutM2Rr/Q2fwjsax?=
-x-ms-exchange-transport-forked: True
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.28; Fri, 26 Feb
+ 2021 08:59:59 +0000
+Received: from PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::f0db:6436:b4a0:7db7]) by PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::f0db:6436:b4a0:7db7%4]) with mapi id 15.20.3890.020; Fri, 26 Feb 2021
+ 08:59:59 +0000
+From: "Purushottam choudhary" <purushottam.choudhary@kpit.com>
+To: yocto@lists.yoctoproject.org
+Cc: nisha.parrakat@kpit.com
+Subject: [meta-selinux][PATCH] openssh: don't overwrite sshd_config unconditionally
+Date: Fri, 26 Feb 2021 14:29:51 +0530
+Message-Id: <1614329991-11002-1-git-send-email-purushottam.choudhary@kpit.com>
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [2405:201:a410:a809:1deb:a63b:63d3:cf4f]
+X-ClientProxiedBy: PN1PR0101CA0027.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c00:c::13) To PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:1c::9)
+Return-Path: purushottam.choudhary@kpit.com
 MIME-Version: 1.0
-X-OriginatorOrg: Honeywell.com
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (2405:201:a410:a809:1deb:a63b:63d3:cf4f) by PN1PR0101CA0027.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c00:c::13) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3890.19 via Frontend Transport; Fri, 26 Feb 2021 08:59:58 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 4b36d8d1-a665-4319-7c2e-08d8da34e4c3
+X-MS-TrafficTypeDiagnostic: PNZPR01MB4765:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: 
+	<PNZPR01MB4765289ED6EDC858E5BAB70C909D9@PNZPR01MB4765.INDPRD01.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	6UJSya5FWzx58NxnSOz7e4MfJ0QXFxOu5/Yq87IEKl0Qnl4BT9943zfejUsMuh+so2xSjGI5p06KpQIBQY7cU2b1hjar/jW7aEIWoQSn9WDrn0xVb3wMGbkSmQ9jHHAEwaSOFJg5xPD7fut4WHnNRm9iYfJn6xkA6WEluPddSKshiS+jmqk3NtCon53/edJ0cH+vSLCmFwRyMZQFAv6sirvn+xS/QEGU3jY1mj0PneyIaYOXMUtlVUfh+Ff5XAo02WIM1Z2d1vRkYO2sfLxz368zIsMrf0yNdbuysdZxKsmOcH4G6um1rOP58v1TCeYcHN6rp/fvj8EgFI+fvRtmaiUCqn0JmDaEOW+gS7b8ndq8LyV+vjHxh3RsqIcA9/TEJ0MkMwACKRtvgFiOfHYzczzg3O1N+6roqWogwshQaiSrZZ5ZvIGj03uAnEDH6M7/8D4ITlWjd1Ft6SlTcARnlnFdcC2Z5e4d+HRqlsdaNhNcUxuZtG2cjQAUNEp4ZZCPNf/LD2q9gBN4j++0vB4q9uuG15gwwSadxEP+otgBYzoN6dZLEFJ+9g/vIGewh7Ol6OQadonvYXsza/YjTPxo6g==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(136003)(366004)(396003)(39850400004)(86362001)(44832011)(16526019)(69590400012)(6506007)(8676002)(186003)(107886003)(4326008)(5660300002)(83380400001)(66574015)(36756003)(6916009)(66556008)(8936002)(6486002)(66946007)(2616005)(478600001)(52116002)(66476007)(6512007)(2906002)(6666004)(316002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	=?us-ascii?Q?mxvvPTJJiOUON3tfOy7eBcWoMdrwk4JPcieK4gnTZF0Iws6fxCPhpO46oaRT?=
+ =?us-ascii?Q?YQiO4kOym+LnR1bAJ3MTNOS3UiCIrihcwZBBoLe8EbEvtFDrscqn57OfFCfw?=
+ =?us-ascii?Q?HPBXX1EV73utary1xQs4rxy5KLAEqh9OQCkIABkORcpl21X/BxZcF3k3R9Iv?=
+ =?us-ascii?Q?qGUb75tUMWiu4tiOgBLzvmJzWaFF/MvK/9f8hf5KeJkpBtw5WQ58COiUYh2G?=
+ =?us-ascii?Q?wz8vQqZQK2uk0Xw94w1YuS/7IiqKsZsZPGA72E8j2oH8/t0+dZYK0SBJk2wf?=
+ =?us-ascii?Q?GOwFrNngoNITtNC9gyvRIE2UAARnUhEf1wo0xF0aOgo8Or1Zpt4YIvF3jQeZ?=
+ =?us-ascii?Q?dsVST2s1CCdSQ8K64jmzYMY1dxMLDUdG3kOW4eO8Ae7pAAhRfyfiUz10RPI+?=
+ =?us-ascii?Q?GFfgeGSja5oZpbTuqjx/0Vn/QZl726q16Tv3feGHGEp/agHDL7ydrlkzDNZb?=
+ =?us-ascii?Q?lOwI6amaGqBIYJmDhdcEZM1gXzQ7xrWy19DpQ/rSPG0fn3AI5GMJG9oCiVrR?=
+ =?us-ascii?Q?eeurBtm7LP6qc/ijwlXug2dMwdqY/u2QwR0Vr0OI7UD8ooic2Rm7/eGuule6?=
+ =?us-ascii?Q?NWLp+5ELmXom/HdijnunfIL9VZy7MAl0SUdloDv+6hCeUrIQfDDC3aGECpjh?=
+ =?us-ascii?Q?OSg1jADJU9idWroXjmKsZYbJCJstZyr0Ll8JdxeVBB3/xjqbqQdRedYI8Mdn?=
+ =?us-ascii?Q?xM712NH9SDMWVeVDddQ6udTDzUL3FmOMBZ69M98M12I2LRYMCyHr8mk9lb8T?=
+ =?us-ascii?Q?wG//1qEq8xwXfxbdcgYC0tfJdn4FG2n4OOktggAzSqmL65tCbBxjCmRQxYK8?=
+ =?us-ascii?Q?bGO+8sC51ecgHKFiPNjBfMgNuAyfs5JM7GbbF+KgUy/bZ0p8Lkt9MU1qGKsx?=
+ =?us-ascii?Q?8IQkAjl8A4ag0js0F4nnqR5iuVTGQVdMgVLrQVHdWDPXoq3OIc9UBX3R4cIZ?=
+ =?us-ascii?Q?71HdedPyaJJ4n4TKqv8wYrxc9OYzuYb3Yjlp2ygNDU8vxcs90u1O60tPcYyv?=
+ =?us-ascii?Q?KcOXkWoaO5zn9HQOhz1z/Fk5V2yKoG6CPedyN5QFo4XHE1d364ohDxmB6y7P?=
+ =?us-ascii?Q?01f/9YrU9ZwRL6TirNww4g85y8ibfbr0GFgSVnymFmbOIN63qgxTNt6mtNih?=
+ =?us-ascii?Q?hIMoIpZ9/THuYgry4vSTYrMjdwyVb1db6L8YnH3K/MryPJjI99eReOmiFmDn?=
+ =?us-ascii?Q?O9Lx8TGNvMeVuzAyhdbDErMplrk382X5uWUtcC/J/7OXYz1d0JlNQ2h28khH?=
+ =?us-ascii?Q?x9lWHQRn2vHCApXNJLvOYTN2JAyEDu/ssDl4+3HPs01Z3ZNiW+0VdxhJo+wo?=
+ =?us-ascii?Q?JPY52iITg+SUg7Uc7OCbTvnJHcyilZ5IksSbpi74/enqYCTUpxWK71/v/7G0?=
+ =?us-ascii?Q?RGeXM0RQjZXu/8sZYIU2/STveYPm?=
+X-OriginatorOrg: kpit.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4b36d8d1-a665-4319-7c2e-08d8da34e4c3
+X-MS-Exchange-CrossTenant-AuthSource: PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR07MB8032.namprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b13594b-47e1-4b62-544a-08d8d93ea894
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Feb 2021 03:37:21.0649
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2021 08:59:58.6027
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 96ece526-9c7d-48b0-8daf-8b93c90a5d18
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: K5r3dWE65hDx2TTP7aHWf+inL6cDkgC86tucgTz8/WOz1EFxcTlZlK/uZio3nZT6bzIBgZfkOiqrzbdSOsydy5xb/eSjdY5nxRRTSmnrqQU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR07MB4687
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3539451e-b46e-4a26-a242-ff61502855c7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jDFp05hIkaYjmxRmpF2vQRL26JjYClHPC7lzV3WXTPQ9NJEDjWZgPaLX/KjvPWPhbkHKnvco8YfQ/5t/MHx0/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PNZPR01MB4765
+Content-Type: text/plain
 Content-Transfer-Encoding: quoted-printable
 
-Hi MacLeod,
+The current implementation was overwriting the sshd_config and sshd
+assuming PAM is needed by default.
 
-	Thanks for your e-mail.=20
-	Yes, without apach2 I am able to build the core-image-minimal successfull=
-y. The issue is only when I add =09apache2 in IMAGE_INSTALL.
-	I am using TI processor SDK and I have setup the arago based yocto enviro=
-nment based on TI user guide.
-	 version is THUD.
-	Do you need any further details about the setup?
-	Please provide me the steps to include apache2 package into my final imag=
-e.
+openssh should use the default sshd_config packaged with the component
+if no distro specific needs are present and not overwrite the full
+sshd_config file.
 
-Looking forward to hearing from you at your earliest convenience.
+1. If PAM is enabled as a distro then enable the UsePAM option in sshd_conf=
+ig.
+2. Moved the file sshd to pam directory so that when pam is enabled,
+   then replace the default from poky by installing the same.
 
-With Best Regards,
-Sharmila D
+Signed-off-by: Purushottam Choudhary <purushottam.choudhary@kpit.com>
+---
+ recipes-connectivity/openssh/files/{ =3D> pam}/sshd |   0
+ recipes-connectivity/openssh/files/sshd_config    | 118 ------------------=
+----
+ recipes-connectivity/openssh/openssh_%.bbappend   |  14 +++
+ 3 files changed, 14 insertions(+), 118 deletions(-)
+ rename recipes-connectivity/openssh/files/{ =3D> pam}/sshd (100%)
+ delete mode 100644 recipes-connectivity/openssh/files/sshd_config
 
------Original Message-----
-From: Randy MacLeod <randy.macleod@windriver.com>=20
-Sent: Thursday, February 25, 2021 12:08 AM
-To: D, Sharmila <Sharmila.D@Honeywell.com>; yocto@lists.yoctoproject.org
-Subject: [External] Re: [yocto] Yocto- Apache2 build guide
-
-On 2021-02-24 5:04 a.m., D, Sharmila via lists.yoctoproject.org wrote:
-> Hi,
->=20
-> I am trying to enable httpd package into my yocto build, steps I=20
-> followed is as below
->=20
-> 1. Added below layer in bblayer.conf file
->=20
-> sources/meta-openembedded/meta-webserver
->=20
-> 2. Added below line in local.conf file
->=20
-> IMAGE_INSTALL_append =3D "apache2"
->=20
-> The yocto build using bitbake core-image-minimal gives below error
->=20
-> WARNING: core-image-minimal-1.0-r0 do_rootfs: busybox.postinst=20
-> returned 1, marking as unpacked only, configuration required on target.
-> ERROR: core-image-minimal-1.0-r0 do_rootfs: Postinstall scriptlets of=20
-> ['busybox'] have failed. If the intention is to defer them to first=20
-> boot, then please place them into pkg_postinst_ontarget_${PN} ().
-> Deferring to first boot via 'exit 1' is no longer supported.
-> Details of the failure are in
-> /home/h440246/Projects/rfid/BSP/tisdk/build/arago-tmp-glibc/work/omapl13=
-8_lcdk-oe-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.
-> ERROR: core-image-minimal-1.0-r0 do_rootfs: Function failed: do_rootfs
-> ERROR: Logfile of failure stored in:=20
-> /home/h440246/Projects/rfid/BSP/tisdk/build/arago-tmp-glibc/work/omapl
-> 138_lcdk-oe-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs
-> .2937
-> ERROR: Task
-> (/home/h440246/Projects/rfid/BSP/tisdk/sources/oe-core/meta/recipes-co
-> re/images/core-image-minimal.bb:do_rootfs)
-> failed with exit code '1'
->=20
-> Please provide the solution for the same
-
-Hi Sharmila,
-
-This doesn't appear to be related to adding apache.
-Are you able to build core-image-minimal without adding apache2?
-
-Can you provide detailed steps wrt what layers and HEAD commits for each l=
-ayer you are using? Ideally, you'd reproduce on a supported release or on m=
-aster. That's Dunfell/3.1 or later:
-   https://wiki.yoctoproject.org/wiki/Releases
-
-../Randy
-
->=20
-> With Best Regards,
->=20
-> Sharmila D
->=20
->=20
->=20
->=20
->=20
-
-
+diff --git a/recipes-connectivity/openssh/files/sshd b/recipes-connectivity=
+/openssh/files/pam/sshd
+similarity index 100%
+rename from recipes-connectivity/openssh/files/sshd
+rename to recipes-connectivity/openssh/files/pam/sshd
+diff --git a/recipes-connectivity/openssh/files/sshd_config b/recipes-conne=
+ctivity/openssh/files/sshd_config
+deleted file mode 100644
+index 1c33ad0..0000000
+--- a/recipes-connectivity/openssh/files/sshd_config
++++ /dev/null
+@@ -1,118 +0,0 @@
+-#      $OpenBSD: sshd_config,v 1.102 2018/02/16 02:32:40 djm Exp $
+-
+-# This is the sshd server system-wide configuration file.  See
+-# sshd_config(5) for more information.
+-
+-# This sshd was compiled with PATH=3D/usr/bin:/bin:/usr/sbin:/sbin
+-
+-# The strategy used for options in the default sshd_config shipped with
+-# OpenSSH is to specify options with their default value where
+-# possible, but leave them commented.  Uncommented options override the
+-# default value.
+-
+-#Port 22
+-#AddressFamily any
+-#ListenAddress 0.0.0.0
+-#ListenAddress ::
+-
+-#HostKey /etc/ssh/ssh_host_rsa_key
+-#HostKey /etc/ssh/ssh_host_ecdsa_key
+-#HostKey /etc/ssh/ssh_host_ed25519_key
+-
+-# Ciphers and keying
+-#RekeyLimit default none
+-
+-# Logging
+-#SyslogFacility AUTH
+-#LogLevel INFO
+-
+-# Authentication:
+-
+-#LoginGraceTime 2m
+-#PermitRootLogin prohibit-password
+-#StrictModes yes
+-#MaxAuthTries 6
+-#MaxSessions 10
+-
+-#PubkeyAuthentication yes
+-
+-# The default is to check both .ssh/authorized_keys and .ssh/authorized_ke=
+ys2
+-# but this is overridden so installations will only check .ssh/authorized_=
+keys
+-#AuthorizedKeysFile    .ssh/authorized_keys
+-
+-#AuthorizedPrincipalsFile none
+-
+-#AuthorizedKeysCommand none
+-#AuthorizedKeysCommandUser nobody
+-
+-# For this to work you will also need host keys in /etc/ssh/ssh_known_host=
+s
+-#HostbasedAuthentication no
+-# Change to yes if you don't trust ~/.ssh/known_hosts for
+-# HostbasedAuthentication
+-#IgnoreUserKnownHosts no
+-# Don't read the user's ~/.rhosts and ~/.shosts files
+-#IgnoreRhosts yes
+-
+-# To disable tunneled clear text passwords, change to no here!
+-#PasswordAuthentication yes
+-#PermitEmptyPasswords no
+-
+-# Change to yes to enable challenge-response passwords (beware issues with
+-# some PAM modules and threads)
+-ChallengeResponseAuthentication no
+-
+-# Kerberos options
+-#KerberosAuthentication no
+-#KerberosOrLocalPasswd yes
+-#KerberosTicketCleanup yes
+-#KerberosGetAFSToken no
+-
+-# GSSAPI options
+-#GSSAPIAuthentication no
+-#GSSAPICleanupCredentials yes
+-
+-# Set this to 'yes' to enable PAM authentication, account processing,
+-# and session processing. If this is enabled, PAM authentication will
+-# be allowed through the ChallengeResponseAuthentication and
+-# PasswordAuthentication.  Depending on your PAM configuration,
+-# PAM authentication via ChallengeResponseAuthentication may bypass
+-# the setting of "PermitRootLogin without-password".
+-# If you just want the PAM account and session checks to run without
+-# PAM authentication, then enable this but set PasswordAuthentication
+-# and ChallengeResponseAuthentication to 'no'.
+-UsePAM yes
+-
+-#AllowAgentForwarding yes
+-#AllowTcpForwarding yes
+-#GatewayPorts no
+-#X11Forwarding no
+-#X11DisplayOffset 10
+-#X11UseLocalhost yes
+-#PermitTTY yes
+-#PrintMotd yes
+-#PrintLastLog yes
+-#TCPKeepAlive yes
+-#UseLogin no
+-#PermitUserEnvironment no
+-Compression no
+-ClientAliveInterval 15
+-ClientAliveCountMax 4
+-#UseDNS no
+-#PidFile /var/run/sshd.pid
+-#MaxStartups 10:30:100
+-#PermitTunnel no
+-#ChrootDirectory none
+-#VersionAddendum none
+-
+-# no default banner path
+-#Banner none
+-
+-# override default of no subsystems
+-Subsystem      sftp    /usr/libexec/sftp-server
+-
+-# Example of overriding settings on a per-user basis
+-#Match User anoncvs
+-#      X11Forwarding no
+-#      AllowTcpForwarding no
+-#      PermitTTY no
+-#      ForceCommand cvs server
+diff --git a/recipes-connectivity/openssh/openssh_%.bbappend b/recipes-conn=
+ectivity/openssh/openssh_%.bbappend
+index 7719d3b..b541c3e 100644
+--- a/recipes-connectivity/openssh/openssh_%.bbappend
++++ b/recipes-connectivity/openssh/openssh_%.bbappend
+@@ -1 +1,15 @@
+ require ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', '${BPN}_selinux=
+.inc', '', d)}
++
++# if pam feature is enabled in the distro then take sshd from the pam dire=
+ctory.
++FILESEXTRAPATHS_prepend :=3D "${@bb.utils.contains('DISTRO_FEATURES', 'pam=
+', '${THISDIR}/files/pam:', ' ', d)}"
++
++do_install_append(){
++
++    if [ "${@bb.utils.filter('DISTRO_FEATURES', 'pam', d)}" ]; then
++        # Make sure UsePAM entry is in the sshd_config file.
++        # If entry not present then append it.
++        grep -q 'UsePAM' "${D}/etc/ssh/sshd_config" && \
++        sed -i 's/.*UsePAM.*/UsePAM yes/' "${D}/etc/ssh/sshd_config" || \
++        echo 'UsePAM yes' >> "${D}/etc/ssh/sshd_config"
++    fi
++}
 --
-# Randy MacLeod
-# Wind River Linux
+2.7.4
+
+This message contains information that may be privileged or confidential an=
+d is the property of the KPIT Technologies Ltd. It is intended only for the=
+ person to whom it is addressed. If you are not the intended recipient, you=
+ are not authorized to read, print, retain copy, disseminate, distribute, o=
+r use this message or any part thereof. If you receive this message in erro=
+r, please notify the sender immediately and delete all copies of this messa=
+ge. KPIT Technologies Ltd. does not accept any liability for virus infected=
+ mails.
