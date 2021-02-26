@@ -1,86 +1,78 @@
-Received: from zougloub.eu (zougloub.eu [69.70.16.42])
- by mx.groups.io with SMTP id smtpd.web09.10620.1614352157939514499
+Received: from esa9.hc324-48.eu.iphmx.com (esa9.hc324-48.eu.iphmx.com [207.54.69.27])
+ by mx.groups.io with SMTP id smtpd.web08.10689.1614352875256420750
  for <yocto@lists.yoctoproject.org>;
- Fri, 26 Feb 2021 07:09:18 -0800
+ Fri, 26 Feb 2021 07:21:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@zougloub.eu header.s=zougloub.eu header.b=wrfyWqja;
- spf=pass (domain: zougloub.eu, ip: 69.70.16.42, mailfrom: cj-yocto@zougloub.eu)
-Received: from pouet.cJ (exmakhina.com [69.70.16.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by zougloub.eu (Postfix) with ESMTPSA id A259414C86A8;
-	Fri, 26 Feb 2021 10:09:16 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=zougloub.eu;
-	s=zougloub.eu; t=1614352156;
-	bh=5IIZk2E2G0BamvwmyzTQx6/Vv1rKpiQlbWL2hKikEbw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=wrfyWqjaVK3kpMfDnwJ/OgCRnQciHLm3stFTDywX601MNr1NpCZUojp0kIVQoQI/P
-	 BFer29QL6NEU9V6g/uzhCqF95EluOIE+EVBSPpAv7foBYiuXkpg7ZPVRJuNRC8n1Ll
-	 CxPGx/ZAuNldekGOuBoXvH+V7DQIHG00yEYVwhnc=
-Date: Fri, 26 Feb 2021 10:08:47 -0500
-From: =?UTF-8?B?SsOpcsO0bWUgQ2FycmV0ZXJv?= <cJ-yocto@zougloub.eu>
-To: "Mikko Murto" <mikko.murto@hhpartners.fi>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
- licensing@lists.yoctoproject.org
-Subject: Re: [yocto] Package names in IMAGE_MANIFEST and PACKAGES
-Message-ID: <20210226100914.33f5684c@pouet.cJ>
-In-Reply-To: <6de2fa72e60448a9980a3ff820f225bf@hhpartners.fi>
+ dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1 header.b=N9BIrGau;
+ spf=pass (domain: bmw.de, ip: 207.54.69.27, mailfrom: prvs=6845c8010=mikko.rapeli@bmw.de)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1614352875; x=1645888875;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=6T2bjwRXZaTGAXP0D0IRSqbxS7V7Uqi4rMABcd10UrA=;
+  b=N9BIrGauqgv3sUMkKmAhM5leek6We9zNt2w03dKu6TFjd0tku+kAwCKS
+   T081FG2FgawpOpbE4oXXLjI93uFxEdHB20kC7UhRM3i/xv2jY3ntxQN0y
+   qjxGotL9U3KyifrpoY5Mw1Q8e8I5+Z8Swmr/EtAuIQE1G6/uyKXWtE4YD
+   0=;
+Received: from esagw6.bmwgroup.com (HELO esagw6.muc) ([160.46.252.49]) by
+ esa9.hc324-48.eu.iphmx.com with ESMTP/TLS; 26 Feb 2021 16:21:12 +0100
+Received: from esabb6.muc ([160.50.100.50])  by esagw6.muc with ESMTP/TLS;
+ 26 Feb 2021 16:21:11 +0100
+Received: from smucm33l.bmwgroup.net (HELO smucm33l.europe.bmw.corp) ([160.46.167.68])
+ by esabb6.muc with ESMTP/TLS; 26 Feb 2021 16:21:11 +0100
+Received: from smucm33l.europe.bmw.corp (160.46.167.68) by smucm33l.europe.bmw.corp
+ (160.46.167.68) with Microsoft SMTP Server (TLS;
+ Fri, 26 Feb 2021 16:21:11 +0100
+Received: from smucm33l.europe.bmw.corp ([160.46.167.68]) by
+ smucm33l.europe.bmw.corp ([160.46.167.68]) with mapi id 15.00.1497.010; Fri,
+ 26 Feb 2021 16:21:11 +0100
+From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
+To: <cJ-yocto@zougloub.eu>
+CC: <mikko.murto@hhpartners.fi>, <yocto@lists.yoctoproject.org>,
+	<licensing@lists.yoctoproject.org>
+Subject: Re: [licensing] [yocto] Package names in IMAGE_MANIFEST and PACKAGES
+Thread-Topic: [licensing] [yocto] Package names in IMAGE_MANIFEST and PACKAGES
+Thread-Index: AdcMSTQmr6+AtqswQG6gpiPYqqc34v///2SAgAADdIA=
+Date: Fri, 26 Feb 2021 15:21:10 +0000
+Message-ID: <YDkR5bUm7W9qCSyg@korppu>
 References: <6de2fa72e60448a9980a3ff820f225bf@hhpartners.fi>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ <20210226100914.33f5684c@pouet.cJ>
+In-Reply-To: <20210226100914.33f5684c@pouet.cJ>
+Accept-Language: en-US, de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
 MIME-Version: 1.0
-X-Groupsio-MsgNum: 52492
-Content-Type: multipart/signed; boundary="Sig_/SSptwnjQr3QEvEmiBfIK2if";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-
---Sig_/SSptwnjQr3QEvEmiBfIK2if
-Content-Type: text/plain; charset=UTF-8
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <0F230EFA7F98214A8358A30D9FEA6BD6@bmwmail.corp>
 Content-Transfer-Encoding: quoted-printable
 
-Hi Mikko,
+Hi,
 
+On Fri, Feb 26, 2021 at 10:08:47AM -0500, J=E9r=F4me Carretero wrote:
+> On Fri, 26 Feb 2021 14:18:59 +0000
+> "Mikko Murto" <mikko.murto@hhpartners.fi> wrote:
+>=20
+> > The crux of the matter is that I need to find packages created by recip=
+es and to link the packages listed in image's manifest files to these packa=
+ges.=20
+>=20
+> The way I've been doing it, which is probably not optimal and specific
+> to one package format, is to lookup .ipk packages from the image
+> manifest, then use the .ipk control info "OE" key to find the
+> originating recipe.
 
-On Fri, 26 Feb 2021 14:18:59 +0000
-"Mikko Murto" <mikko.murto@hhpartners.fi> wrote:
+FWIW, the mapping from binary package names recipes and recipe metadata lik=
+e
+LICENSE is available from buildhistory. Also binary package content of imag=
+es
+is available from buildhistory. With some scripting it is possible to list
+recipes which produce binaries to images, except for static linking and
+header-only recipes but I hope these cought via some other way.
 
-> The crux of the matter is that I need to find packages created by recipes=
- and to link the packages listed in image's manifest files to these package=
-s.=20
+Cheers,
 
-The way I've been doing it, which is probably not optimal and specific
-to one package format, is to lookup .ipk packages from the image
-manifest, then use the .ipk control info "OE" key to find the
-originating recipe.
-
-Here's a link of this method in use in order to try and identify
-license-related obligations from an image:
- https://gitlab.com/exmakhina/xm_oe/-/blob/47183b74/licenses.py#L24
-
-
-Hoping to help,
-
---=20
-J=C3=A9r=C3=B4me
-
---Sig_/SSptwnjQr3QEvEmiBfIK2if
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEk5TkdsnFh9XvC+SieNwb2r75s3MFAmA5DxoACgkQeNwb2r75
-s3N1mQ//SJReuL6Zr3IoCtM9dQkaK4PaysBrliJ+t3xkrXsWufaUkDUGCcM9nydL
-xiKQiDxSv5SCRhW5QnYDz0sF7YBe7WYDzBPBmYMMZgO9Mdjrqbhq9lpFamHxwj8E
-8QNe40C9aaIOlc/cZWl7VmuR2ZkNFxbF9dCHVXBqY5U1n8n0SRIiUWQEOkP6PlcZ
-7YoR+6jVyEuCxPxMU8Kei9+BZ8gXdaxsFlYvDkIpX3P8pwDLfFZ886SBk69c4bKe
-VSyHSF9n0woXVZg28xZVu11GX1tJDYVAZ/Fii0eayMUe1CYyMQj6TlQsV0CVzQgu
-M1ipeIR4lg/lDZu1X6chcLwGT+fy86Oz8Co0EXSmDYOX6wMRgRHO3yOH8IL1lknP
-x1KRkR1MyDb0rCDI6LRwf/cOe/OXP7Kpc6VNan7RYuYe3VamDuydvJONEMw4sRrp
-mJj1Z49bw9wwOmIWTBNzDrc/ILM4+d8tk1RFuVOLst7KkdOeD7xLygAe9usoK7rf
-YcypwqAadiDRU+xXFJp1k432IiXgVcUVBwpz+Jyj8rifZ+7bsLT/7HT8TPEQtCg3
-arQeEOeWu757yRs5ewxncJUwkWoRTCR9/0+OWV8iehxfW+iKRZClWkOoOjnh1g8P
-ptXD72w2SnwP4RWQGAylAMNAbvaoqvc5g+h8qAx3CKVAqUpRR3k=
-=sgB3
------END PGP SIGNATURE-----
-
---Sig_/SSptwnjQr3QEvEmiBfIK2if--
+-Mikko=
