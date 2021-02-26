@@ -1,78 +1,94 @@
-Received: from esa9.hc324-48.eu.iphmx.com (esa9.hc324-48.eu.iphmx.com [207.54.69.27])
- by mx.groups.io with SMTP id smtpd.web08.10689.1614352875256420750
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+ by mx.groups.io with SMTP id smtpd.web10.11148.1614354317957261873
  for <yocto@lists.yoctoproject.org>;
- Fri, 26 Feb 2021 07:21:16 -0800
+ Fri, 26 Feb 2021 07:45:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1 header.b=N9BIrGau;
- spf=pass (domain: bmw.de, ip: 207.54.69.27, mailfrom: prvs=6845c8010=mikko.rapeli@bmw.de)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=OPhfdmMy;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.49, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f49.google.com with SMTP id b3so9011341wrj.5
+        for <yocto@lists.yoctoproject.org>; Fri, 26 Feb 2021 07:45:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1614352875; x=1645888875;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=6T2bjwRXZaTGAXP0D0IRSqbxS7V7Uqi4rMABcd10UrA=;
-  b=N9BIrGauqgv3sUMkKmAhM5leek6We9zNt2w03dKu6TFjd0tku+kAwCKS
-   T081FG2FgawpOpbE4oXXLjI93uFxEdHB20kC7UhRM3i/xv2jY3ntxQN0y
-   qjxGotL9U3KyifrpoY5Mw1Q8e8I5+Z8Swmr/EtAuIQE1G6/uyKXWtE4YD
-   0=;
-Received: from esagw6.bmwgroup.com (HELO esagw6.muc) ([160.46.252.49]) by
- esa9.hc324-48.eu.iphmx.com with ESMTP/TLS; 26 Feb 2021 16:21:12 +0100
-Received: from esabb6.muc ([160.50.100.50])  by esagw6.muc with ESMTP/TLS;
- 26 Feb 2021 16:21:11 +0100
-Received: from smucm33l.bmwgroup.net (HELO smucm33l.europe.bmw.corp) ([160.46.167.68])
- by esabb6.muc with ESMTP/TLS; 26 Feb 2021 16:21:11 +0100
-Received: from smucm33l.europe.bmw.corp (160.46.167.68) by smucm33l.europe.bmw.corp
- (160.46.167.68) with Microsoft SMTP Server (TLS;
- Fri, 26 Feb 2021 16:21:11 +0100
-Received: from smucm33l.europe.bmw.corp ([160.46.167.68]) by
- smucm33l.europe.bmw.corp ([160.46.167.68]) with mapi id 15.00.1497.010; Fri,
- 26 Feb 2021 16:21:11 +0100
-From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
-To: <cJ-yocto@zougloub.eu>
-CC: <mikko.murto@hhpartners.fi>, <yocto@lists.yoctoproject.org>,
-	<licensing@lists.yoctoproject.org>
-Subject: Re: [licensing] [yocto] Package names in IMAGE_MANIFEST and PACKAGES
-Thread-Topic: [licensing] [yocto] Package names in IMAGE_MANIFEST and PACKAGES
-Thread-Index: AdcMSTQmr6+AtqswQG6gpiPYqqc34v///2SAgAADdIA=
-Date: Fri, 26 Feb 2021 15:21:10 +0000
-Message-ID: <YDkR5bUm7W9qCSyg@korppu>
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=T+GReMp0mbj19rBqeTfZG0tOlagA91b8vRy2gr+KS7I=;
+        b=OPhfdmMyMpLw5zSbfvdgC5Vg+PQAXujmPkLYf581HMhXk9RlC/+miBV7aA/8CAuWcA
+         xH9C57sKv7hjWHwgqs0xtwwuFfRmdbgM/sp6te6K4S0PV+NVbjODBmuYgHZripoy4d8n
+         vnAOW8V6XCTjsg85HBzSriA/Ym3pP+ZigZkLc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=T+GReMp0mbj19rBqeTfZG0tOlagA91b8vRy2gr+KS7I=;
+        b=rzRgP8jr6EJ/etx3oKOnXGSudSOD32mGqBNeWBFceY4V2baPULiKumXcaNAg+yQcmG
+         akKor7Mqfh7RQfCtbICEVd3rXvEHFX7O7N5rmPCtMKpNKCoTGXw3aNHi5bcYy5CgrG9L
+         tnmEls6TFlTYopp9c3uTzvZh5r4M/uz/1tyztTun/hte0y7zWX/8jNmMt/oaemgll93f
+         YBRUwnTRyivc1+pko7ugRoYTx/Ifq++KrGelZT3YvKAMxI1j9zMOyKOJGJMA4eSOsDoh
+         GA1WrhTcaQCy44nkKQUeb7jt+8+MfONeJ4f7tMIMM5TnKj3DJt+ozJvGXthtPTP4+j4O
+         Bnrw==
+X-Gm-Message-State: AOAM530JvpBIOCQWqEKcWm7MSmIBEk7fACLsfmE5L/JUab62NHgLV4Yt
+	JeKrTFDqbHrp71XvLoFeWhjbSw==
+X-Google-Smtp-Source: ABdhPJx/TOl/XV9LPnMlCfWisoecHIOZL85zsUh8w7kBZVyZda2akNmzLxgB/nZ1hCpwvsGLxBj0sA==
+X-Received: by 2002:adf:d0c5:: with SMTP id z5mr3790876wrh.289.1614354316310;
+        Fri, 26 Feb 2021 07:45:16 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:e9fa:5b01:958e:e80f? ([2001:8b0:aba:5f3c:e9fa:5b01:958e:e80f])
+        by smtp.gmail.com with ESMTPSA id f5sm5776030wrx.39.2021.02.26.07.45.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Feb 2021 07:45:16 -0800 (PST)
+Message-ID: <d229b45a3409aeceda27d7aabed2652a37c3e447.camel@linuxfoundation.org>
+Subject: Re: [yocto] Package names in IMAGE_MANIFEST and PACKAGES
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Mikko Murto <mikko.murto@hhpartners.fi>, "yocto@lists.yoctoproject.org"
+	 <yocto@lists.yoctoproject.org>
+Date: Fri, 26 Feb 2021 15:45:14 +0000
+In-Reply-To: <6de2fa72e60448a9980a3ff820f225bf@hhpartners.fi>
 References: <6de2fa72e60448a9980a3ff820f225bf@hhpartners.fi>
- <20210226100914.33f5684c@pouet.cJ>
-In-Reply-To: <20210226100914.33f5684c@pouet.cJ>
-Accept-Language: en-US, de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <0F230EFA7F98214A8358A30D9FEA6BD6@bmwmail.corp>
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi,
+On Fri, 2021-02-26 at 14:18 +0000, Mikko Murto wrote:
+> Hello,
+> 
+> I'm developing a meta layer to save details about an image created by Yocto to an 
+> SPDX document ( https://github.com/doubleopen-project/meta-doubleopen).
+> 
+> I've encountered two issues regarding package names in IMAGE_MANIFEST 
+> and PACKAGES variables,   
+> 
+> https://github.com/doubleopen-project/meta-doubleopen/issues/2 and     
+> https://github.com/doubleopen-project/meta-doubleopen/issues/3.
+> 
+> The crux of the matter is that I need to find packages created by recipes 
+> and to link the packages listed in image's manifest files to these packages. 
+> 
+> First, the PACKAGES variable of all recipes doesn't seem to include all 
+> packages created. For example util-linux's PACKAGES doesn't include 
+> util-linux-sulogin, but util-linux-sulogin may be included in an image's 
+> manifest and it has a directory in the packages-split directory of util-linux. 
+> What would be the correct way to get information about all packages?
+> 
+> Second, the package names in the image manifest may differ from those in 
+> the PACKAGES variable or in packages-split directory. As an example, a
+>  manifest file may include libkmod2, but recipe for kmod creates package 
+> named libkmod. How to make the link from libkmod2 to libkmod?
 
-On Fri, Feb 26, 2021 at 10:08:47AM -0500, J=E9r=F4me Carretero wrote:
-> On Fri, 26 Feb 2021 14:18:59 +0000
-> "Mikko Murto" <mikko.murto@hhpartners.fi> wrote:
->=20
-> > The crux of the matter is that I need to find packages created by recip=
-es and to link the packages listed in image's manifest files to these packa=
-ges.=20
->=20
-> The way I've been doing it, which is probably not optimal and specific
-> to one package format, is to lookup .ipk packages from the image
-> manifest, then use the .ipk control info "OE" key to find the
-> originating recipe.
+I'd suggesting looking at packagedata which is how do_package and friends 
+internally looks up things like which recipe provides which package and 
+what the final package name is.
 
-FWIW, the mapping from binary package names recipes and recipe metadata lik=
-e
-LICENSE is available from buildhistory. Also binary package content of imag=
-es
-is available from buildhistory. With some scripting it is possible to list
-recipes which produce binaries to images, except for static linking and
-header-only recipes but I hope these cought via some other way.
+An example of this in action is scripts/oe-pkgdata-util.
+
+There is also meta/lib/oe/packagedata.py. Sadly the API is horrible, it 
+was never really designed for "public" use but I would love to see a better
+API around that (maybe one oe-pkgdata-util could use too).
 
 Cheers,
 
--Mikko=
+Richard
+
+
+
+
