@@ -1,50 +1,50 @@
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
- by mx.groups.io with SMTP id smtpd.web10.4737.1614552969300207314
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+ by mx.groups.io with SMTP id smtpd.web11.4888.1614552970215531979
  for <yocto@lists.yoctoproject.org>;
- Sun, 28 Feb 2021 14:56:09 -0800
+ Sun, 28 Feb 2021 14:56:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=f7rNVNY6;
- spf=pass (domain: gmail.com, ip: 209.85.216.45, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f45.google.com with SMTP id jx13so6353507pjb.1
-        for <yocto@lists.yoctoproject.org>; Sun, 28 Feb 2021 14:56:09 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=GSbOJy1J;
+ spf=pass (domain: gmail.com, ip: 209.85.214.180, mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f180.google.com with SMTP id ba1so8758655plb.1
+        for <yocto@lists.yoctoproject.org>; Sun, 28 Feb 2021 14:56:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=hLK45ws5ZgoOZ/iwwfV1lS9g2Ahcr7RXHwfDKTk3p5c=;
-        b=f7rNVNY6oNOpIzARQYfUDhTa/HBIzSMXX0OniP9f4rI/iSLPSs0bKSUcBFGWY4xI/r
-         iPzmfugrwm/iuvnUcKMJNyXGOA6OXK0AnDq/ZtZ9hX8O7XzZxsIOxTJ/xyCyx0rABG8c
-         EtAnAeD3wGRUeGVgMQXhCbvvjERVw76/ACAsqCwIx0gHxs1XyxWmHLHGBzLI9WxdEZ/V
-         jOtSPoT4eCqvQsQzqR3NgV1OTdkBs2fFHVmAYHme90OlT0ueGjN9vQGGsVmPsbhh2Au4
-         ea8ya76rNyH4wZNcunVz38ajL424h5z4PEQ4bFMbMXSXpOM0iJqKQ/u7w7/aXlprIisv
-         hOJg==
+        bh=MkzMISFlXuZZ/W9Cctobajlaaf5CB9cQlN7fq5SoFsM=;
+        b=GSbOJy1JGlnqZX1xy+nvZonf+rUn+0YKCjx6Q/0TyxbG+abhZFdpu+LlcIDKnK5gGt
+         Ta66P1nPKuyxgORQyUV6WsqiTOZD8txuGj0CkXyX+Rl3pKiOm8q8P4Yi3RsrREj89PPJ
+         gijCXdS4yzj6jAHuRR/4YHJ/0YKeDfZVoZQ+J+nk3b5N5S1NZChFKhYm77Lv2MGbG/qe
+         ADGdhOatprAMDLng/ebTWDtJJYDKHLOpLvzCdiWRswOpIkCgRW9dQBUoggJ/ZbpEOkdr
+         H9FhBTbo+jv2Vg0psFBr5p6aXEi+lwpRTGqWWSffI4d0L7/YvrYffKT+74j+Le5GbRoO
+         5eYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=hLK45ws5ZgoOZ/iwwfV1lS9g2Ahcr7RXHwfDKTk3p5c=;
-        b=BT9O2tSS6lQShM7JvL2dHTKL36+MvYM1XyY7+TR5jQTRTvuhZULlDjEBtKzAs9s7yW
-         oxaTieM7MHGtWfCM1ogiFHuiyIilW93uctQlL5YTYuoUZVMz3l6LwllhYDCHTM1pfZ/Y
-         ir6ZeksBFjsqLB5ScxC1UKTmVnMSCIAYoKuiqODfNuT8Fr9zsbAlINCvjC2I0j2tptUO
-         C9WT3H7slQPZM41sz7toX5GiS7ydHj9Em9MtP019G2+ugPLJbl/P2k+++GPTnZ/lG49O
-         EnWVH+CgP1oSfHlrEl8Scuae54cAOUyPhqNn4mIKElbxDntAuH/SYtX6PaT1lwUKpGEw
-         KF3A==
-X-Gm-Message-State: AOAM533cXxhVEVEmrYF6cyglDkGktYdNLR/M5VsvJ9zEV9zJKgA9TnoP
-	fdKBHWKF4BQFlk3nkQ2ULzF9w09kzUw=
-X-Google-Smtp-Source: ABdhPJwPKY0UQfcWR4HpeaDKy/mQz8Lm5exeHGOc2Qyn6cf5PLmRIo4hP+iQXmsdjCr4wRJKi9dzMw==
-X-Received: by 2002:a17:902:e54a:b029:e3:4a72:d68c with SMTP id n10-20020a170902e54ab02900e34a72d68cmr12304223plf.23.1614552968704;
-        Sun, 28 Feb 2021 14:56:08 -0800 (PST)
+        bh=MkzMISFlXuZZ/W9Cctobajlaaf5CB9cQlN7fq5SoFsM=;
+        b=DppdFL4+RAhusLurGTKgV4z6PI5kyIb4kTH1DEOxGQ6EeGaLVu566ymdmAyKMTyCOD
+         vUDpKrxmcqZJkSnE1fR4QFRRFTbctvNfCoUOpnerjzuMODE5DPHELlsjWgZpDTOKOQml
+         07AT0U2sflDk6M9A8wCMAwGMTc6C9sCZgii+YkbLYC0vwSxBBMeFY+XDrQFOYB5TJA7J
+         7EdmET1ah1n0EP5lMXC3vVMP0Nj3XXjYTj5BqYNPGamqrsBAxW8G0BsrmAJr/VtCqHe/
+         GlyCkctahpbqiQT1C6xiWLKMRhq1uRJwS/H9wbviSsFvhqQsrmyeneh8Jg9I2mSJptbb
+         njow==
+X-Gm-Message-State: AOAM531WzIeIRc+gFIjkyzQLS7Ndu565VhZUXRS08BPny9DGEpUAX0Ku
+	jbe0h90jxSNkghBL2wyLlu+bl70iSGg=
+X-Google-Smtp-Source: ABdhPJz0w8hX9LfHPIEYpz4xz6+wQpKy9e26l73A7rIwqEwJ1i3h0qWD7GzvBcprpUUf6NAWJT62hQ==
+X-Received: by 2002:a17:902:bd85:b029:e3:11d0:367f with SMTP id q5-20020a170902bd85b02900e311d0367fmr12627182pls.12.1614552969405;
+        Sun, 28 Feb 2021 14:56:09 -0800 (PST)
 Return-Path: <akuster808@gmail.com>
 Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
         by smtp.gmail.com with ESMTPSA id w25sm15409431pfn.106.2021.02.28.14.56.08
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Feb 2021 14:56:08 -0800 (PST)
+        Sun, 28 Feb 2021 14:56:09 -0800 (PST)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 03/12] ding-libs: upgrade 0.5.0 -> 0.6.1
-Date: Sun, 28 Feb 2021 22:55:56 +0000
-Message-Id: <20210228225605.3442507-3-akuster808@gmail.com>
+Subject: [meta-security][PATCH 04/12] fscryptctl: upgrade 0.1.0 -> 1.0.0
+Date: Sun, 28 Feb 2021 22:55:57 +0000
+Message-Id: <20210228225605.3442507-4-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210228225605.3442507-1-akuster808@gmail.com>
 References: <20210228225605.3442507-1-akuster808@gmail.com>
@@ -52,24 +52,26 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
 ---
- .../libdhash/{ding-libs_0.5.0.bb => ding-libs_0.6.1.bb}        | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
- rename recipes-security/libdhash/{ding-libs_0.5.0.bb => ding-libs_0.6.1.bb} (71%)
+ .../fscryptctl/{fscryptctl_0.1.0.bb => fscryptctl_1.0.0.bb}     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename recipes-security/fscryptctl/{fscryptctl_0.1.0.bb => fscryptctl_1.0.0.bb} (94%)
 
-diff --git a/recipes-security/libdhash/ding-libs_0.5.0.bb b/recipes-security/libdhash/ding-libs_0.6.1.bb
-similarity index 71%
-rename from recipes-security/libdhash/ding-libs_0.5.0.bb
-rename to recipes-security/libdhash/ding-libs_0.6.1.bb
-index 9db66e8..6046fa0 100644
---- a/recipes-security/libdhash/ding-libs_0.5.0.bb
-+++ b/recipes-security/libdhash/ding-libs_0.6.1.bb
-@@ -9,5 +9,4 @@ SRC_URI = "https://fedorahosted.org/released/${BPN}/${BP}.tar.gz"
+diff --git a/recipes-security/fscryptctl/fscryptctl_0.1.0.bb b/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
+similarity index 94%
+rename from recipes-security/fscryptctl/fscryptctl_0.1.0.bb
+rename to recipes-security/fscryptctl/fscryptctl_1.0.0.bb
+index 8847a0f..440b4e3 100644
+--- a/recipes-security/fscryptctl/fscryptctl_0.1.0.bb
++++ b/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
+@@ -9,7 +9,7 @@ SECTION = "base"
+ LICENSE = "Apache-2.0"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
  
- inherit autotools pkgconfig
+-SRCREV = "142326810eb19d6794793db6d24d0775a15aa8e5"
++SRCREV = "56b898c896240328adef7407090215abbe9ee03d"
+ SRC_URI = "git://github.com/google/fscryptctl.git"
  
--SRC_URI[md5sum] = "786f2880d30136a61df02e5d740ddc6e"
--SRC_URI[sha256sum] = "dab937537a05d7a7cbe605fdb9b3809080d67b124ac97eb321255b35f5b172fd"
-+SRC_URI[sha256sum] = "a319a327deb81f2dfab9ce4a4926e80e1dac5dcfc89f4c7e548cec2645af27c1"
+ S = "${WORKDIR}/git"
 -- 
 2.25.1
 
