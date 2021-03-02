@@ -1,87 +1,83 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.1268.1614704333608273821
+ by mx.groups.io with SMTP id smtpd.web09.111.1614706736748614616
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Mar 2021 08:58:53 -0800
+ Tue, 02 Mar 2021 09:38:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=HmINmrJN;
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=mUHjHpH3;
  spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: liu.ming50@gmail.com)
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 8ED0838C0731
-	for <yocto@yoctoproject.org>; Tue,  2 Mar 2021 16:58:52 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id n4so3466011wmq.3
-        for <yocto@yoctoproject.org>; Tue, 02 Mar 2021 08:58:52 -0800 (PST)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 92B0738C0173
+	for <yocto@yoctoproject.org>; Tue,  2 Mar 2021 17:38:56 +0000 (UTC)
+Received: by mail-wm1-f48.google.com with SMTP id o16so3606595wmh.0
+        for <yocto@yoctoproject.org>; Tue, 02 Mar 2021 09:38:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KirIxS0UUOj4jxk7kBtXvZA1vSXRoCTvw8H0+ySUFh0=;
-        b=HmINmrJNqZEd8j5mr9szh3PVWrR4yhYKkjroiWQVX+W16N2vhpow5dmqiHUnTWVE27
-         LEONww2LRDLSOKEVPeewi2URrsEwe89uDYPTklU5ip/cefTkNVEEX9S+0TtpPyAYOI/7
-         V7IwGESiQpV/lP2e8uzS2oZ8OIUnmHTc6AX38rxOGN6O5KKY/DR8qjpPjaoCOzv+9BJf
-         sn+4pr4xQXSOJ5rGthWXnqjb+QOzA54Mm4FkbwlVCR5K+bukHcKZcwufgOVa29LjJrrt
-         ksFICBRpbzqlka/Aoqrb50EjYXPu4N+rQLZO9U7BC7zJr5IkdRiGMP0cJTM8dGoZcHbq
-         jTPA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=j1af6O95qfag02U/zbi3QHYWWhlkyrmGENJXpS36Ydg=;
+        b=mUHjHpH36CySzSp52zeeFMBJB+gQAJBO8KO0bzsNpH8l95OyGMApKQf6ESwtC5FguR
+         QwiMkgGrNFlB5HB0hSDRRAwKXxGToELty4gD7yDGERxuzeoLA433KKOweVoJGf4Tt8dI
+         p0mnNz/BRNrBTi6SEc3RGNOrVSNGXhVqoCJXuUSjjq8XaS0l4CVUqhHAb6Xsij3RvFCh
+         BnOjs7dV6Yc2VYIL/KaaduZMdLr4zcimFhdlNA6VDyq60jhqlDxc7a2f4t9i+Jic2MqP
+         c7mZrQ5+cOruAv0/EEAKO8mXUaswhlspgN6IT8guuoIGKhWdzNXwXbljb7PNC47SNLKW
+         FSog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KirIxS0UUOj4jxk7kBtXvZA1vSXRoCTvw8H0+ySUFh0=;
-        b=crdTUcu1SCSkxsvLxIOa1spUz3pqXTfWksXzOkZCEQyaigvbxlqyG1ACtxOQR/rwmN
-         TDJqiIuhsUyDoOi4r6aqLq1FVgeFuAjFTP7CaWzTUSQoEBf4eLL0w8U6cquwjZ9EZWZQ
-         u495qYhxiiTF4m/D0ILSrz6n6zQ86HF4v3keJKGOjwzsnbYM0SYSHaKQ6+pedwGTrfbB
-         bBq2Gc7zGqpR8l3oErJNmMnP/mP+thIM0W+rObyNFAH85gy85/AdYALQoeUqTHruBPyQ
-         Ar3CV0QAqces+FWtsBqIG0q0Bu5H/6aCY1Q3uIrBDDvUtXxnWVSLSDQl66Ts+a2VTdK+
-         yzDw==
-X-Gm-Message-State: AOAM532dqa2I8tu+jiXG9NopyUackBLcnKIB+kd9D5ZhD0HFBhmoQHu9
-	PB97/brvOUSddV9MqVM4Q0IblvTxhLo=
-X-Google-Smtp-Source: ABdhPJwZT/GK6Qaoj3kXe7Jvp4RZNXMAAZQrmodeyG1ItbD5WKd+O/aAOQWhbAMFY3R7/EFDBXZTQQ==
-X-Received: by 2002:a7b:c1c4:: with SMTP id a4mr4519059wmj.122.1614697068478;
-        Tue, 02 Mar 2021 06:57:48 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=j1af6O95qfag02U/zbi3QHYWWhlkyrmGENJXpS36Ydg=;
+        b=AgwKbOBcojpzii0sqfSMYwtlExhEm6MaNkh1EVZ22kb8/roKU6NVchI147v3E18jXm
+         6/LsDN0reEeueAYX/UdSNEKjucm9znzFaNBlQNKtvdW7EmZ2iZ3rOf3UwVHmD0O4rIVv
+         ZfxgKuGc9uKf7OZs1OnMgKVFE8M3lV5rPSjqDFmCZUTxO2kOlj9mn6VMQ0GoqK741C4t
+         VAcdqZjZryrPc2GvVzRdHAP7My5xsTIKKFuYuP3DlC4ooxt7dUpTQCIYGiVUh0cr6ccp
+         6vw4bU/K0xYzvxSlfA0Rujw5zQnnrTmi0YkRPlLJ4vhYau5sOtWJeNQfPzTY0swT4g4C
+         ktwg==
+X-Gm-Message-State: AOAM532z3zfqKDJmGdUF+8S/VorP6HHWDhoEQQvJZG+n1DhBQPgEp1NP
+	xhe/6jjJgkoEt1SjrHHg0Z1dm7jh7g0=
+X-Google-Smtp-Source: ABdhPJxgAvmQIIZ3a98hp+0X6hNLTIF7fbpeJ6OCVwF2sZVrM5VywD/HPZ3dLU4bMMiLq8BN8vQH3g==
+X-Received: by 2002:a1c:a504:: with SMTP id o4mr4390880wme.174.1614697075312;
+        Tue, 02 Mar 2021 06:57:55 -0800 (PST)
 Received: from peterliu-Precision-7530.toradex.int ([2a00:801:42b:8138:fd2e:3bb6:aed9:2cc1])
-        by smtp.gmail.com with ESMTPSA id g202sm2862577wme.20.2021.03.02.06.57.47
+        by smtp.gmail.com with ESMTPSA id g202sm2862577wme.20.2021.03.02.06.57.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Mar 2021 06:57:48 -0800 (PST)
+        Tue, 02 Mar 2021 06:57:54 -0800 (PST)
 From: "Ming Liu" <liu.ming50@gmail.com>
 To: yocto@yoctoproject.org
 Cc: sergio.prado@toradex.com,
 	akuster808@gmail.com,
-	Ming Liu <ming.liu@toradex.com>
-Subject: [meta-security][dunfell][PATCH 0/9] Some IMA/EVM fixes to dunfell branch
-Date: Tue,  2 Mar 2021 15:57:36 +0100
-Message-Id: <20210302145745.1891826-1-liu.ming50@gmail.com>
+	Ming Liu <liu.ming50@gmail.com>
+Subject: [meta-security][dunfell][PATCH 4/9] initramfs-framework-ima: RDEPENDS on ima-evm-keys
+Date: Tue,  2 Mar 2021 15:57:40 +0100
+Message-Id: <20210302145745.1891826-5-liu.ming50@gmail.com>
 X-Mailer: git-send-email 2.29.0
+In-Reply-To: <20210302145745.1891826-1-liu.ming50@gmail.com>
+References: <20210302145745.1891826-1-liu.ming50@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
-From: Ming Liu <ming.liu@toradex.com>
+From: Ming Liu <liu.ming50@gmail.com>
 
-Cherry pick some IMA/EVM fixes to LTS dunfell branch, with these=20
-patches applied, I could run a ima enabled image with sysvinit/systemd
-on qemuarm/qemuarm64 and some NXP machines.
+Signed-off-by: Ming Liu <liu.ming50@gmail.com>
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../recipes-core/initrdscripts/initramfs-framework-ima.bb       | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Ming Liu (9):
-  ima-evm-utils: set native REQUIRED_DISTRO_FEATURES to empty
-  initramfs-framework-ima: fix a wrong path
-  ima-evm-keys: add recipe
-  initramfs-framework-ima: RDEPENDS on ima-evm-keys
-  meta: refactor IMA/EVM sign rootfs
-  README.md: update according to the refactoring in
-    ima-evm-rootfs.bbclass
-  initramfs-framework-ima: let ima_enabled return 0
-  ima-evm-rootfs.bbclass: avoid generating /etc/fstab for wic
-  ima-policy-hashed: add CGROUP2_SUPER_MAGIC fsmagic
-
- meta-integrity/README.md                      |  4 ++-
- meta-integrity/classes/ima-evm-rootfs.bbclass | 33 +++++++++----------
- .../initrdscripts/initramfs-framework-ima.bb  |  2 +-
- .../initrdscripts/initramfs-framework-ima/ima |  3 +-
- .../ima-evm-keys/ima-evm-keys_1.0.bb          | 16 +++++++++
- .../ima-evm-utils/ima-evm-utils_git.bb        |  1 +
- .../ima_policy_hashed/files/ima_policy_hashed |  3 ++
- 7 files changed, 41 insertions(+), 21 deletions(-)
- create mode 100644 meta-integrity/recipes-security/ima-evm-keys/ima-evm-=
-keys_1.0.bb
-
+diff --git a/meta-integrity/recipes-core/initrdscripts/initramfs-framewor=
+k-ima.bb b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-=
+ima.bb
+index dacdc8b..77f6f7c 100644
+--- a/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima.b=
+b
++++ b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima.b=
+b
+@@ -27,5 +27,5 @@ do_install () {
+=20
+ FILES_${PN} =3D "/init.d ${sysconfdir}"
+=20
+-RDEPENDS_${PN} =3D "keyutils ${IMA_POLICY}"
++RDEPENDS_${PN} =3D "keyutils ima-evm-keys ${IMA_POLICY}"
+ RDEPENDS_${PN} +=3D "initramfs-framework-base"
 --=20
 2.29.0
 
