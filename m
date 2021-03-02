@@ -1,112 +1,101 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.3378.1614653234613468479
+ by mx.groups.io with SMTP id smtpd.web12.3445.1614653378364253838
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Mar 2021 18:47:14 -0800
+ Mon, 01 Mar 2021 18:49:38 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=YjZg6gkL;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=iRduM3yC;
  spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 5E32538C064F
-	for <yocto@yoctoproject.org>; Tue,  2 Mar 2021 02:47:14 +0000 (UTC)
-Received: by mail-pl1-f172.google.com with SMTP id u11so11131726plg.13
-        for <yocto@yoctoproject.org>; Mon, 01 Mar 2021 18:47:14 -0800 (PST)
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id C253C38C064F
+	for <yocto@yoctoproject.org>; Tue,  2 Mar 2021 02:49:37 +0000 (UTC)
+Received: by mail-pg1-f181.google.com with SMTP id a23so3093347pga.8
+        for <yocto@yoctoproject.org>; Mon, 01 Mar 2021 18:49:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:mime-version:thread-index
-         :content-language;
-        bh=7rFENOthHnJKtUMHRc0UXf6YYcO01Knf7nPWH0l294o=;
-        b=YjZg6gkLaosCbCW1V/jJDPLAiDhE8QrEzIXBmzYO8ogVT8dPwa0NmYfL+Q+zS7kUiq
-         SVIhpqwF9FibzKKkBJ1jZZZ6UkZ5jthg38k+2ff1ExLSKhkSUmkF5vmNfpY7KMG/ivPk
-         KOvYy+j26SXR4fzEPoi49mQRqqQk9kRym9ncpkqdZE2xavk+OFHxoqkpUagPh6vJteI9
-         oFQOv7r+Wmjd5tKE7TCS4/5dK2nbmI9QWd7S8lKn4l5fJBOp+FuSlHS9jPotXUcfZ0DQ
-         VKDTHXpx2PwQEkKkmt4OHvXoWOq2cj6e+sD+JPI6s0p4NdWekfuVZ96fgV0WCw2fOt4p
-         2YUQ==
+         :content-language:importance;
+        bh=zlQDdR2jmIkjrRtoVWfVqb7s8gozcVhMoEIxw+8deW4=;
+        b=iRduM3yCnJWDHERk9Ke8Qbhj29f18C4WF+gbKz4wJKfMJTAYB27/ttrNneBgpoBqpU
+         DmZ3NUUxz7oTiXcFTcq78d6vWVvYnUyPfGN1Li8GtEliu1hygUeBMZNMyox+C1pO3YEb
+         EOCVoRew6CaFiMQNmdLMpR+zx7gTZSQpbyCcpRDEhS/goUA1IUroM/eBskMJHkHYVd84
+         6uRNNEFEp0XUAFy00xnIAromnX3mL8uKjjC+vt5oCgytnAuW1Nrbg/vNw0ZCZ3QuxUuD
+         ufGX+1mY0QRucJn/WzlUOJXjBI0/eP/sbMjJ9g4aVy/jFqmCk9Nechb2ygZKRx6ZPMpy
+         yIoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :thread-index:content-language;
-        bh=7rFENOthHnJKtUMHRc0UXf6YYcO01Knf7nPWH0l294o=;
-        b=LPWwGHvd77S4Ch30Jday9TxA59wd7Qpkukog0CRzagjcHJ51vYZkRPCEjcTdW0XPp6
-         tVzuGvNdHGyeuBITJgixirwe1o/wQDB5HG6+gwQQP1sMSajT815iKzNMEBFOkJyl5Fur
-         3Vddj6W26pwXBz+jCMd/3TnBCPkAYNS2LvsirA4Ry1mF0Sl+KBoY5G/D6+H3wrvM+Pye
-         KDNNFxaJqVlN0lVdctKvKKvNx2o0/gLatFNtKDfnFJjz3S5wyoO2kXd6b1B6i/NIjGh3
-         sPHqNgwIEFhlOCXK8y5OvYun1sdo6Fa9eZZ4EdXG4VrTEoG2DTQTMbS8pInpKZwZ4Iro
-         MqLw==
-X-Gm-Message-State: AOAM5338OdLOWsEnkC5VJjtuYmbE0r3wnQg9EBL7d9+7gMTBMELDWift
-	e2n3Z91Q4atfwpGi6BHa/w4=
-X-Google-Smtp-Source: ABdhPJwqTKDLySF5DfB4Xd21R06xq4Tm2MSAHDgS5wT3lZIoFzKBG57TyJs2wxQU34xlmLySNpElTg==
-X-Received: by 2002:a17:902:904b:b029:e5:5cc5:877d with SMTP id w11-20020a170902904bb02900e55cc5877dmr3092429plz.50.1614653233851;
-        Mon, 01 Mar 2021 18:47:13 -0800 (PST)
+         :thread-index:content-language:importance;
+        bh=zlQDdR2jmIkjrRtoVWfVqb7s8gozcVhMoEIxw+8deW4=;
+        b=GmAzXdMNQjya9RACYbLtH9Pz3VBAQQGSfvKivys69BTiV7SVebwN1J9Pivi9JADWPV
+         xEm+SLUs73W3Kb99u1blj8uxKNh9DHBb2xqPidrq4oho3HgxgOeqIuWGKYU8pOxKy3Xh
+         semCh6r8pWxZ5ysjIVVD27bzR68r3W5ccikqXgSUnXorZHHr5OW07herDeiK0OFwIAgm
+         NW/0ITkAYTK1vGqtXsPEX/5QgW9zWWD1575ke9HsbeZS7Ms0Ms27gn1dunljoVLSr7MJ
+         XodxiQqpsNHTg6/gUmVVnUB4cJB0LG944El1mtsuCHZ6/ZyGh5mqqmz4svDnjCdkB+g9
+         rBzw==
+X-Gm-Message-State: AOAM533hdyG89BxzF7sM4S4ct02xLk5Dgktri0BlAkNOAE5CSEjJO9z6
+	kDjc/Awe2E4JAYo2fRMN/L8=
+X-Google-Smtp-Source: ABdhPJysRPjBgMqZQU32kMxxAOD8k2eBWy9g4jPIVwjK+L9E/flyPom2k1go2HzjSDnDJp2pvPTPfA==
+X-Received: by 2002:aa7:9d91:0:b029:1ed:e15b:631d with SMTP id f17-20020aa79d910000b02901ede15b631dmr1299998pfq.72.1614653377280;
+        Mon, 01 Mar 2021 18:49:37 -0800 (PST)
 Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-        by smtp.gmail.com with ESMTPSA id m23sm17347103pgv.14.2021.03.01.18.47.13
+        by smtp.gmail.com with ESMTPSA id 8sm19830114pfu.120.2021.03.01.18.49.36
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 01 Mar 2021 18:47:13 -0800 (PST)
+        Mon, 01 Mar 2021 18:49:36 -0800 (PST)
 From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>
-Subject: Enhancements/Bugs closed WW09!
-Date: Mon, 1 Mar 2021 18:47:13 -0800
-Message-ID: <12c201d70f0e$599b0790$0cd116b0$@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Reminder: Yocto Project Technical Team Meeting @ Monthly from 8am on the first Tuesday (PDT)
+Date: Mon, 1 Mar 2021 18:49:36 -0800
+Message-ID: <130401d70f0e$af0d4440$0d27ccc0$@gmail.com>
 MIME-Version: 1.0
+X-Priority: 1 (Highest)
+X-MSMail-Priority: High
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdcPDk8pRpqdvqJfSDi/XUb8xAx++Q==
+Thread-Index: AQG8gWFYbirUThYQTJHSF3RlKF9RnA==
+Importance: High
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_12C3_01D70ECB.4B788AE0"
+	boundary="----=_NextPart_000_1305_01D70ECB.A0EC7540"
 Content-Language: en-us
 
-------=_NextPart_000_12C3_01D70ECB.4B788AE0
+------=_NextPart_000_1305_01D70ECB.A0EC7540
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
 All,
 
-The below were the owners of enhancements or bugs closed during the last
-week!
+ 
 
+Just a reminder we will hold the monthly Yocto Project Technical Meeting at
+8am PST tomorrow. (3/2)  
 
-Who
+ 
 
-Count
+Yocto Project Technical Team Meeting: We encourage people attending the
+meeting to logon and announce themselves on the Yocto Project IRC chancel
+during the meeting (optional):
 
+Yocto IRC: http://webchat.freenode.net/?channels=#yocto
 
-randy.macleod@windriver.com
+ 
 
-4
+Wiki: https://www.yoctoproject.org/public-virtual-meetings/
 
+ 
 
-richard.purdie@linuxfoundation.org
+When            Monthly from 8am to 9am on the first Tuesday Pacific Time
 
-4
+Where           Zoom Meeting:
+https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09
 
+ 
 
-alexandre.belloni@bootlin.com
+We are tracking the minutes at:
+https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9d
+DH4/edit?pli=1 Please request access if you want to assist in editing them.
+The world should have view access. 
 
-3
-
-
-steve@sakoman.com
-
-1
-
-
-thomasnam@hotmail.com
-
-1
-
-
-denis@denix.org
-
-1
-
-
-alejandro@enedino.org
-
-1
-
-
-Grand Total
-
-15
+ 
 
 Thanks,
 
@@ -124,9 +113,9 @@ Yocto Project Program Manager
  
 
 
-------=_NextPart_000_12C3_01D70ECB.4B788AE0
+------=_NextPart_000_1305_01D70ECB.A0EC7540
 Content-Type: text/html;
-	boundary="----=_NextPart_000_0583_01D70924.9CD33900";
+	boundary="----=_NextPart_000_106E_01D6F8C2.22466170";
 	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -185,111 +174,79 @@ div.WordSection1
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
 link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'color:black'>All,<br><br>The below were the owners of =
-enhancements or bugs closed during the last =
-week!<b><o:p></o:p></b></span></p><table class=3DMsoNormalTable =
-border=3D0 cellspacing=3D0 cellpadding=3D0 width=3D293 =
-style=3D'width:220.0pt;margin-left:-.15pt;border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Who<o:p></o:p></span></b></p></td><td width=3D43 =
-nowrap valign=3Dbottom style=3D'width:32.0pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Count<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>4<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>4<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>alexandre.belloni@bootlin.com<o:p></o:p></span></p>=
-</td><td width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>steve@sakoman.com<o:p></o:p></span></p></td><td =
-width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>thomasnam@hotmail.com<o:p></o:p></span></p></td><td=
- width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>denis@denix.org<o:p></o:p></span></p></td><td =
-width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>alejandro@enedino.org<o:p></o:p></span></p></td><td=
- width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Grand Total<o:p></o:p></span></b></p></td><td =
-width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal align=3Dright style=3D'text-align:right'><b><span =
-style=3D'color:black'>15<o:p></o:p></span></b></p></td></tr></table><p =
-class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>All,</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Just a =
+reminder we will hold the monthly Yocto Project Technical Meeting at 8am =
+PST tomorrow. (3/2)&nbsp; <o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Yocto =
+Project Technical Team Meeting: We encourage people attending the =
+meeting to logon and announce themselves on the Yocto Project IRC =
+chancel during the meeting (optional):</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Yocto IRC: =
+</span><a =
+href=3D"http://webchat.freenode.net/?channels=3D#yocto">http://webchat.fr=
+eenode.net/?channels=3D#yocto</a><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Wiki: =
+</span><a =
+href=3D"https://www.yoctoproject.org/public-virtual-meetings/">https://ww=
+w.yoctoproject.org/public-virtual-meetings/</a><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>When&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; Monthly from 8am to 9am on the first Tuesday =
+Pacific Time</span><span style=3D'font-size:12.0pt;font-family:"Times =
+New Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>Where&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; Zoom Meeting: <a =
+href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT0=
+9">https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09</a>=
+<o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>We are =
+tracking the minutes at: </span><a =
+href=3D"https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7Q=
+wKC5wWVDg9dDH4/edit?pli=3D1">https://docs.google.com/document/d/1ly8nyhO1=
+4kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit?pli=3D1</a><span =
+style=3D'color:#1F497D'> Please request access if you want to assist in =
+editing them.&nbsp; The world should have view access. </span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>Thanks,</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
 style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
 style=3D'font-size:16.0pt;font-family:"Times New =
 Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
@@ -322,4 +279,4 @@ href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
 style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
 an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-------=_NextPart_000_12C3_01D70ECB.4B788AE0--
+------=_NextPart_000_1305_01D70ECB.A0EC7540--
