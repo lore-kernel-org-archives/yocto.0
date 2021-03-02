@@ -1,306 +1,276 @@
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
- by mx.groups.io with SMTP id smtpd.web08.297.1614634128022813321
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web09.3181.1614652985508780418
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Mar 2021 13:28:48 -0800
+ Mon, 01 Mar 2021 18:43:05 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ibeeto-com.20150623.gappssmtp.com header.s=20150623 header.b=QdT6Ahy+;
- spf=neutral (domain: ibeeto.com, ip: 209.85.216.51, mailfrom: rudolf.streif@ibeeto.com)
-Received: by mail-pj1-f51.google.com with SMTP id jx13so454927pjb.1
-        for <yocto@lists.yoctoproject.org>; Mon, 01 Mar 2021 13:28:47 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=TTCWSa9L;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 8EBCA38C064F
+	for <yocto@yoctoproject.org>; Tue,  2 Mar 2021 02:43:04 +0000 (UTC)
+Received: by mail-pg1-f175.google.com with SMTP id l2so12918357pgb.1
+        for <yocto@yoctoproject.org>; Mon, 01 Mar 2021 18:43:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
-        h=to:references:from:autocrypt:subject:message-id:date:user-agent
-         :mime-version:in-reply-to;
-        bh=4tZGoYiQiNNCpRs/p721d4uWcjIjCBOPJ/DRet7zWxY=;
-        b=QdT6Ahy+ouT7Lx0PbEY8Huupu5mDsLs6yU4y3iVFu4lO0VQnyrFamnqaOjJYDOwAcs
-         JNjTH+5C5peHk/4UWnWZG+0c3wtF0W3OOvQl8bpPJ4LSvIep3gaKKDQwnTfYawCJ4+TZ
-         uQdv3G+cIYp6FZp2jbcRTYloyDj924ElLoy754YMSTKDracUseT4dRHWILQ87VNYGGyZ
-         brJ32ycSYm1AQ1RZM3MDBRgJHTgZd8KttMtOimbM1EtZa+L/1C+aQYhFRdlpKUrIkoGq
-         ZdzE0R20Ll+ZIXpF+ZUsgLGirBfEfhV1Dqog6MsP/mTo1Anth12suKzDUgL2ffMXE5yu
-         3s8Q==
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=rk3wu6gEjn7FD9kXyg9sB/uLBdzvg9dfqQzUzR9AD/w=;
+        b=TTCWSa9L2CKcdFLcAWbtxUjht5Gk93beEkMyHqJOF8UIwrZZuc5k1UCc6+VfOKYpKQ
+         rWyal9G4L2Vh2nYHMIOva7XTM20ab/p24zO2mXp3IVqu3YzKtoUOFIOOJN8m0jcoxZvj
+         wrpri/6OeHSZVvrxir+pjM3O3aDoNVTo3ZfINi2kUyn/VsRkg3LRBo8zb7vRL12XmfEo
+         HDs5vu8OoUaFcwtgUYSVs+6y7kOusTPNM4D9DpwCU4KUMZRIGT2neKevZg527W72DOQi
+         SDMB3Ph+T42C/NwKwx7DtYTrqK8uQeythAzcpET4KlJVOzLNkXlvaYR00FnaPiWKWDmI
+         J7Kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:references:from:autocrypt:subject:message-id
-         :date:user-agent:mime-version:in-reply-to;
-        bh=4tZGoYiQiNNCpRs/p721d4uWcjIjCBOPJ/DRet7zWxY=;
-        b=qysDI8zwMllID0v+cxfkUMG9gO/EAHDowgB9+4jrPx+8cns+an6fcg3VkXMKn9DcIP
-         VGDl5rOBlnGHQgrxd4XqDXclWCpoUMYkqAWKGwV08zs+FjwSvhuufNzWSa6vNgw5aePn
-         0IGIyRMqNm4ZPI4XU9ADERuaYEy7lXk5w196+lWUFvOreSC3s1+SF1cvd71ia/wQR1zI
-         ges584PlxC7Ahq85lQpFuDPWy411sbnF5Xd+HzW8zPtbyYu/VkwukGvBwkSdebCHIVZp
-         KmpCZCQLU9BQWRy/SCYvurlLyIOWdYKhYuq4ihjxQZnZRNzLInLRxi1PqAOr44ReWXRN
-         MvaA==
-X-Gm-Message-State: AOAM533xDFg1qC/T2PE7Hi/PR92YMkdRkT6bvSXALzxd42ePC2P60a+m
-	9//rNg8G0V81SBw77HtjYbOYsqYonAl1sq1i
-X-Google-Smtp-Source: ABdhPJxWAsnslrZjDU8NYAsKO7IPN+NIa4UY53jOgu6mcDFJcnuMWxL0sBxyaUMpXwdotJ9w+3D0Ng==
-X-Received: by 2002:a17:90a:4609:: with SMTP id w9mr900588pjg.69.1614634127114;
-        Mon, 01 Mar 2021 13:28:47 -0800 (PST)
-Return-Path: <rudolf.streif@ibeeto.com>
-Received: from [192.168.4.197] (ip72-220-244-209.sd.sd.cox.net. [72.220.244.209])
-        by smtp.gmail.com with ESMTPSA id 134sm19040826pfc.113.2021.03.01.13.28.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Mar 2021 13:28:46 -0800 (PST)
-To: jchludzinski@vivaldi.net, yocto@lists.yoctoproject.org
-References: <c76aad67167ab26ff0d4bebe9848f0f0@vivaldi.net>
-From: "Rudolf J Streif" <rudolf.streif@ibeeto.com>
-Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
- xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
- Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
- /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
- cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
- 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
- AAHNKlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgA
- IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
- 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
- txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
- lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
- Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
- zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvzsBNBFhQFAQBCADXoLKCuF48
- 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
- RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
- w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
- svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
- tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAkFAlhQFAQC
- GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
- s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
- fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
- Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
- P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
- ROZj4g==
-Subject: Re: [yocto] Kernel panic - not syncing: VFS: Unable to mount root fs ...
-Message-ID: <98e54679-9f9f-82bc-b273-411da4f8d383@ibeeto.com>
-Date: Mon, 1 Mar 2021 13:28:44 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=rk3wu6gEjn7FD9kXyg9sB/uLBdzvg9dfqQzUzR9AD/w=;
+        b=Wh48Dtb22KK8iOC1Mt6WDyZzbneZAFshF3LS7cbufT8rM0T384A9yyn3Hi4A1H0cqH
+         ouHPhK6M/TupjnhVjQrBktxfbFFZxgi0YWDfYp0lWqu/zzePxtYULS64Q6posk1g8L11
+         xP4LYqVNCY2qOBETjsNlO0RILDoNW4mrYsKvWkp3CXLifusAfRD0csLpUMYY959FfgpP
+         5tTLZ1Tn7cvXY2/y1dhA70miilBc4MlPH2HiJBSio4G9zNqhu1NZQe5rk1tMCa1RB8pn
+         TOjX0UohBina7kcY4Y/36dVlzJkgOdfVtYP8YWJPO0KKjFWdMVPQrU3Jzo/qdhRFWP1W
+         rMmA==
+X-Gm-Message-State: AOAM531eLpzmD7j4qwVPc9D26l0S5g1yjzHoaBci/87lb52zx2r5P8Ck
+	BYyRuonmXPMV19CwnNx7WDQ=
+X-Google-Smtp-Source: ABdhPJwFSLTdqLdExEEb5QyZki9nVdjv5Nlxg87k/pTOBT4wVShYxMmtCVrhUAxSkNGYHyugvpa7IQ==
+X-Received: by 2002:a63:d118:: with SMTP id k24mr16185036pgg.420.1614652983933;
+        Mon, 01 Mar 2021 18:43:03 -0800 (PST)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id e22sm15696708pgk.56.2021.03.01.18.43.03
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 01 Mar 2021 18:43:03 -0800 (PST)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 1 Mar 2021 18:43:03 -0800
+Message-ID: <12b301d70f0d$c488f360$4d9ada20$@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <c76aad67167ab26ff0d4bebe9848f0f0@vivaldi.net>
-X-Groupsio-MsgNum: 52527
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="GxtR7Kr43TPelqin92z8DgPY9GigCmGax"
-
---GxtR7Kr43TPelqin92z8DgPY9GigCmGax
-Content-Type: multipart/mixed; boundary="nNIkZbvoMpO0uZ5EE1ZOnFTq67bDoeh1e";
- protected-headers="v1"
-From: Rudolf J Streif <rudolf.streif@ibeeto.com>
-To: jchludzinski@vivaldi.net, yocto@lists.yoctoproject.org
-Message-ID: <98e54679-9f9f-82bc-b273-411da4f8d383@ibeeto.com>
-Subject: Re: [yocto] Kernel panic - not syncing: VFS: Unable to mount root fs
- ...
-References: <c76aad67167ab26ff0d4bebe9848f0f0@vivaldi.net>
-In-Reply-To: <c76aad67167ab26ff0d4bebe9848f0f0@vivaldi.net>
-
---nNIkZbvoMpO0uZ5EE1ZOnFTq67bDoeh1e
-Content-Type: multipart/mixed;
- boundary="------------5248DDE44DA1BE483C444242"
-Content-Language: en-US
-
---------------5248DDE44DA1BE483C444242
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQLOu+eBtJt8FepajrJxUu6RoS5/+Q==
 Content-Type: multipart/alternative;
- boundary="------------54CDA7A0143BB0AB2A5C79FE"
+	boundary="----=_NextPart_000_12B4_01D70ECA.B6682460"
+Content-Language: en-us
 
---------------54CDA7A0143BB0AB2A5C79FE
-Content-Type: text/plain; charset=utf-8; format=flowed
+------=_NextPart_000_12B4_01D70ECA.B6682460
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 364
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.2", "3.3, "3.99" and "Future", the more pressing/urgent issues
+being in "3.2" and then "3.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_12B4_01D70ECA.B6682460
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0574_01D70924.022068B0";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 364 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.2&#8221;, &#8220;3.3, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.2&quot; and then &#8220;3.3&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-On 3/1/21 1:16 PM, jchludzinski via lists.yoctoproject.org wrote:
-> I rebuilt socfpga_arria10_socdk_sdmmc.dtb in ./sd_card/sdfs/ using=20
-> modified files:
->
-> =C2=A0 =C2=A0arch/arm/boot/dts/socfpga_arria10_socdk_sdmmc.dts
-> =C2=A0 =C2=A0arch/arm/boot/dts/socfpga_arria10_socdk.dtsi
->
-> When I try booting I now get:
-Are you saying it worked before and now it does not anymore? Did you=20
-make changes to the device tree?
->
-> *Kernel panic - not syncing: VFS: Unable to mount root fs on=20
-> unknown-block(179,2)*
->
-> What is this telling me?
-Pretty much exactly what the message is saying: the kernel cannot find=20
-the root file system to mount.
-> I searched online and read something about the boot command in=20
-> extlinux/extlinux.conf: 'root=3D/dev/mmcblk0p*2*'?
-> The '*2*' is the problem somehow?
-
-You found the correct item: the kernel command line parameter passed by=20
-the boot loader (presumably u-boot in your case) for the root file=20
-system partition. The partition number could be the problem if the root=20
-file system is not on partition 2. It could also be that the device is=20
-incorrect (that would be the number 0). It could also be that it is the=20
-correct device and partition but no root file system has been copied to it=
-.
-
-You would need to use the u-boot monitor commands to track it down.
-
-Please bear with me here. I don't have that particular board and you=20
-only provided very little information.
-
-:rjs
-
->
->=20
->
---=20
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3386 x700
-
-
---------------54CDA7A0143BB0AB2A5C79FE
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
-8">
-  </head>
-  <body>
-    <p>Hi,<br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 3/1/21 1:16 PM, jchludzinski via
-      lists.yoctoproject.org wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:c76aad67167ab26ff0d4bebe9848f0f0@vivaldi.net">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUT=
-F-8">
-      <div class=3D"v1pre">I rebuilt socfpga_arria10_socdk_sdmmc.dtb in
-        ./sd_card/sdfs/ using modified files:<br>
-        <br>
-        =C2=A0 =C2=A0arch/arm/boot/dts/socfpga_arria10_socdk_sdmmc.dts<br>
-        =C2=A0 =C2=A0arch/arm/boot/dts/socfpga_arria10_socdk.dtsi<br>
-        <br>
-        When I try booting I now get:<br>
-      </div>
-    </blockquote>
-    Are you saying it worked before and now it does not anymore? Did you
-    make changes to the device tree?<br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:c76aad67167ab26ff0d4bebe9848f0f0@vivaldi.net">
-      <div class=3D"v1pre"><br>
-        <strong>Kernel panic - not syncing: VFS: Unable to mount root fs
-          on unknown-block(179,2)</strong><br>
-        <br>
-        What is this telling me?</div>
-      <div class=3D"v1pre">=C2=A0</div>
-    </blockquote>
-    Pretty much exactly what the message is saying: the kernel cannot
-    find the root file system to mount.<br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:c76aad67167ab26ff0d4bebe9848f0f0@vivaldi.net">
-      <div class=3D"v1pre">I searched online and read something about the
-        boot command in extlinux/extlinux.conf: 'root=3D/dev/mmcblk0p<stro=
-ng>2</strong>'?</div>
-      <div class=3D"v1pre">The '<strong>2</strong>' is the problem
-        somehow?</div>
-    </blockquote>
-    <p>You found the correct item: the kernel command line parameter
-      passed by the boot loader (presumably u-boot in your case) for the
-      root file system partition. The partition number could be the
-      problem if the root file system is not on partition 2. It could
-      also be that the device is incorrect (that would be the number 0).
-      It could also be that it is the correct device and partition but
-      no root file system has been copied to it.</p>
-    <p>You would need to use the u-boot monitor commands to track it
-      down.</p>
-    <p>Please bear with me here. I don't have that particular board and
-      you only provided very little information.</p>
-    <p>:rjs<br>
-    </p>
-    <blockquote type=3D"cite"
-      cite=3D"mid:c76aad67167ab26ff0d4bebe9848f0f0@vivaldi.net">
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-
-
-</pre>
-    </blockquote>
-    <pre class=3D"moz-signature" cols=3D"72">--=20
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3386 x700</pre>
-  </body>
-</html>
-
---------------54CDA7A0143BB0AB2A5C79FE--
-
---------------5248DDE44DA1BE483C444242
-Content-Type: application/pgp-keys;
- name="OpenPGP_0x8D8CA82927339B75.asc"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: attachment;
- filename="OpenPGP_0x8D8CA82927339B75.asc"
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvDQpe=
-+
-Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ/Qymy+7=
-C
-bh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969cQD/S9LNndn=
-K
-5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM3sPiHrF+Y2HTdK7=
-j
-7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEBAAHNKlJ1ZG9sZiBKIFN=
-0
-cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgAIQUCWFAUBAIbAwULCQgHAgY=
-V
-CAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf03GsVMG6C5QOLaPx6rOgj5qexCH3=
-r
-fYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBktxioE384/51QTIfCmW8ZG5X0cMC5d38=
-L
-Fvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xllpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR8=
-4
-ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+wXl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x=
-5
-LZhUhGYoqbYwNy9imoBkUAZkbbViNOtXzaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjV=
-L
-mLHvzsBNBFhQFAQBCADXoLKCuF485eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTq=
-k
-3fb9+Ao6C6IliC9ZRXyAVLD/RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIF=
-p
-PBpxHRrZnDdEd5IKsy+zw6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJS=
-H
-WMBh0OMKDeBik5wlsvtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mC=
-B
-CZ+IKhBQR36vtUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAk=
-F
-AlhQFAQCGwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LY=
-U
-pLNjs4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9Mby=
-E
-fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8TzYf9=
-m
-2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/NlouvceP41tsC5=
-d
-axZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/ANROZj4g=3D=
-=3D
-=3DLHwf
------END PGP PUBLIC KEY BLOCK-----
-
---------------5248DDE44DA1BE483C444242--
-
---nNIkZbvoMpO0uZ5EE1ZOnFTq67bDoeh1e--
-
---GxtR7Kr43TPelqin92z8DgPY9GigCmGax
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsB5BAABCAAjFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAmA9XIwFAwAAAAAACgkQjYyoKSczm3UL
-2Af9FSI9XQWDmCqLrYqqLcUfg065hZByqoYmPg488VRtncKB+PgtUoUGRD/82AKrQ2Ptq7Ob4S60
-qzrXEHDGOKE52/Fs0GSVqQtqUqSlO6UuB8KaHk3TMtZv8oaHjUcTNvglkbSd9/8DaP5cMQ352BBW
-O5rpNaJqcv+gMm7TM0g/8SylOj1Uu1PFl2oua6PuBVAKCYGfNyPnlNtFk2VBXsnJBY7iTbPajHq1
-YV4ViKHdePt5NSHswJIOVoFLxawqM2ygpafQi5aFzsW0wiRZQTA9S7UtLevMkRrsXHEOHKYxcJLH
-JA3P+d9GpFvINvxTGYa9myPHxSCeRWwnCJLLCmElqw==
-=MSZa
------END PGP SIGNATURE-----
-
---GxtR7Kr43TPelqin92z8DgPY9GigCmGax--
+------=_NextPart_000_12B4_01D70ECA.B6682460--
