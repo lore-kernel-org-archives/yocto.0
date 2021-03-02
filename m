@@ -1,144 +1,109 @@
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
- by mx.groups.io with SMTP id smtpd.web09.450.1614718149279508125
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+ by mx.groups.io with SMTP id smtpd.web12.464.1614718196151602800
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Mar 2021 12:49:09 -0800
+ Tue, 02 Mar 2021 12:49:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=P0PrgsJP;
- spf=pass (domain: gmail.com, ip: 209.85.160.174, mailfrom: twoerner@gmail.com)
-Received: by mail-qt1-f174.google.com with SMTP id h9so5999571qtq.7
-        for <yocto@lists.yoctoproject.org>; Tue, 02 Mar 2021 12:49:09 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=KVU5tD7l;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.41, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f41.google.com with SMTP id k66so4095951wmf.1
+        for <yocto@lists.yoctoproject.org>; Tue, 02 Mar 2021 12:49:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=oAQliur0pXF3r7NJc0BPtgYrzpPxvGS4aBX93Ilu/ss=;
-        b=P0PrgsJPivyjcByaOl4h4XB9AeOtIFjKkebf2Gs9HtV6khw8rnRjYiDP96eg/P/HCX
-         ZGMr0IaM//QTNFhb1TrH8CzlzhxzNr10K/YpmwGPVLCpn3J1g41HjRm4tkQCXMIxMU4d
-         ilSO3OZSG2LeLzaII2PmgJ6rGK2J42hwNUPHJ/dShoQa/nu0h5aXfPfvXOJNWbuunBg4
-         ALxEMIhI0HLu5ZFd3K0NU5nKMu7jSDcnK+lQiUrP7/A5reFzmC2o7PlZaNpcpkM0vBwF
-         DvocEY0j5By+fuJ4cLdDwOJLCjbG1mguO9bePXJbYoNhvIRu2C/42bH9uyhzb1u4bnTS
-         ygMA==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=sEwLSo6jXcrtGJ65LVrx1lJnDcRDrHpO297ASql8lIU=;
+        b=KVU5tD7lV3lH0hpWZPO4rY6nBD7DaI0OH5kck5E1k+KeLFy3+piAtdxl3Sjx7pRxb6
+         biTNL9+v9OpD6ocSO+TWLwnlcElByVadJ2vpZwGrGQRUMiI+u5f9NvqtKq5njgX70L/F
+         ri1Gp7o3qOgh5eWp5AVsUnB1HBEG9/zBmHpvw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=oAQliur0pXF3r7NJc0BPtgYrzpPxvGS4aBX93Ilu/ss=;
-        b=MF/VODhp0SdXfrhuyIN3PIk/tK1MY1H0GTeqie+y49NF98ZRFbwh1FXOz40jkusT4d
-         leX7MB7MG7gqFNvWGiDBmXZ8MvMa/VdLu9BfDaGnw53CDRGl28UHeR6g0PLuoAF0z2ns
-         VZDNHIXlRRbQatem3+TIsaljemPjlQxYIlynx1ev13c8UX1extut2BMjZS8i4ACaR+HG
-         BBdgD2QZz50R2kzkNZ+Gu5ftW0yRK2LvW+/mO0/ZeUb0X6H1xG6Q6hWqIQoiV38FD+9w
-         0qQzwI8C83HGedhsNK4RDIJlFm74XZ8+qsdtTHcmFcuxIOlSSufwq9rrugdnbtkiApVr
-         7JxQ==
-X-Gm-Message-State: AOAM532RmAl20lpvMZxBUURm5D0MLJwhABTYpkA/K828HFzi9M4AA+e8
-	0DbY5U0sBRUOnE5DGBq4m5c6ep5unPM=
-X-Google-Smtp-Source: ABdhPJwM3GC11KdK3yVoT9QqKUorlhffxPeGRPABpPxBPhSMpAFZRNzxGcmqPgpMc1YfiIA33RFLOw==
-X-Received: by 2002:ac8:48d7:: with SMTP id l23mr13840619qtr.227.1614718148027;
-        Tue, 02 Mar 2021 12:49:08 -0800 (PST)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost.nautel.com (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id 19sm15747420qkv.95.2021.03.02.12.49.07
-        for <yocto@lists.yoctoproject.org>
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=sEwLSo6jXcrtGJ65LVrx1lJnDcRDrHpO297ASql8lIU=;
+        b=q0OS8ZLNOgVb+IzJgyhbBhI166yPde1sSOHRcMj4QPLAavxzV24hAoAJCQFHUIZRYo
+         GkyvhZcmfTQaqXnpZAI3XO3Jz5q9xEeZTwjbVqmUK3Nlht9E0uChOq57EDsXnoPgKAbO
+         nJSwyQ4F1MaHcxcYVuclDvksXjM+GzugOdIYdjOQqFhJviihuLnCshrayPj73q+SqfN1
+         Enm6eeiXO6voruQUyfs2tPUHiDmbEmsntnAKOxx2WgmSDyYKYT9GhE1gfx2Es0QNDneI
+         uwBtT6DYVAC8wYuxHLkS3s7NdKi8eOOOfFPniADDZCsWXY+clTAdqFTa8OJbOndeKSL9
+         yIeg==
+X-Gm-Message-State: AOAM532pnORoR3r6u0cqTo0mB1A1h2+RLcfq1Pj2sRVSq2XKITgitv05
+	MYq7RYhDf8ZqMHkCNprt61ocLw==
+X-Google-Smtp-Source: ABdhPJyTLtZqOCa8qdb/QYth3ypxkw80kYseqdEy/bhu3oKKkjmi4FsyzE66W3HeP9yrbUVkwYvb3w==
+X-Received: by 2002:a7b:c24e:: with SMTP id b14mr5780449wmj.73.1614718194563;
+        Tue, 02 Mar 2021 12:49:54 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:fd4c:95a0:62b1:7d53? ([2001:8b0:aba:5f3c:fd4c:95a0:62b1:7d53])
+        by smtp.gmail.com with ESMTPSA id a3sm30064762wrt.68.2021.03.02.12.49.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Mar 2021 12:49:07 -0800 (PST)
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-rockchip][PATCH] tinker board: refactor machine config
-Date: Tue,  2 Mar 2021 15:49:02 -0500
-Message-Id: <20210302204902.29030-1-twoerner@gmail.com>
-X-Mailer: git-send-email 2.30.0.rc0
+        Tue, 02 Mar 2021 12:49:54 -0800 (PST)
+Message-ID: <2a6603ec08c0aee64364961c0d9eca0ef7ea6aaa.camel@linuxfoundation.org>
+Subject: Re: [yocto] Reducing the perl footprint on my image
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: diego.santacruz@spinetix.com, "steve@sakoman.com" <steve@sakoman.com>
+Cc: "rustyhowell@gmail.com" <rustyhowell@gmail.com>, "Yocto
+	(yocto@lists.yoctoproject.org)"
+	 <yocto@lists.yoctoproject.org>
+Date: Tue, 02 Mar 2021 20:49:53 +0000
+In-Reply-To: <DB6PR0102MB263061D0B03C4DA90C7B89F188999@DB6PR0102MB2630.eurprd01.prod.exchangelabs.com>
+References: <zFb6.1614702126167583420.u32u@lists.yoctoproject.org>
+	 <16689EFE3DC0BB92.17298@lists.yoctoproject.org>
+	 <CAOSpxdYoviYhz4s9u2KY8ttwoFqo8v6VEzJ2vM79-j2LiQex1g@mail.gmail.com>
+	 <DB6PR0102MB263061D0B03C4DA90C7B89F188999@DB6PR0102MB2630.eurprd01.prod.exchangelabs.com>
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
-Create a common conf/machine/include/tinker.inc and re-spin
-    - conf/machine/tinker-board.conf
-    - conf/machine-tinker-board-s.conf
-to just contain the differences.
+On Tue, 2021-03-02 at 20:42 +0000, Diego Santa Cruz via lists.yoctoproject.org wrote:
+> > -----Original Message-----
+> > From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
+> > Behalf Of Steve Sakoman via lists.yoctoproject.org
+> > Sent: 02 March 2021 21:06
+> > To: Steve Sakoman <steve@sakoman.com>
+> > Cc: rustyhowell@gmail.com; Yocto (yocto@lists.yoctoproject.org)
+> > <yocto@lists.yoctoproject.org>
+> > Subject: Re: [yocto] Reducing the perl footprint on my image
+> > 
+> > On Tue, Mar 2, 2021 at 10:01 AM Steve Sakoman via
+> > lists.yoctoproject.org <steve=sakoman.com@lists.yoctoproject.org>
+> > wrote:
+> > > 
+> > > On Tue, Mar 2, 2021 at 6:26 AM <rustyhowell@gmail.com> wrote:
+> > > > 
+> > > > I have an image that is using debian package management
+> > (PACKAGE_CLASSES = "package_deb").  Because apt and dpkg require perl,
+> > perl is being installed in the image.   No problem.  Except that the entire perl
+> > stack is 669 packages.
+> > > 
+> > > I just took a look at the manifest for one of my images that includes
+> > > PACKAGE_CLASSES = "package_deb".  I see the perl package plus 43
+> > > perl-module packages.  Are you sure that something else in your images
+> > > isn't pulling in all of those other perl-module packages?
+> > 
+> > It just occurred to me to make sure you are looking in the image
+> > manifest to see which packages are actually installed in your image.
+> > The perl recipe does generate 676 packages (in dunfell) so perhaps you
+> > might be looking at the generated packages rather than the installed
+> > packages??
+> > 
+> 
+> I encountered a similar problem with package management enabled and rpm 
+> as package format, where I also just install rpm for package management 
+> and not all dnf stack. I get quite a lot of perl and python packages 
+> into the image which are pulled by the rpm package, but they are only
+> needed for things like rpm-build, rpm-sign, etc., not for the bare 
+> rpm command, which is the only one I need in the image.
+> 
+> So I locally extended the rpm recipe to split those tools into rpm-build, 
+> rpm-sign and rpm-archive and skip those packages in the image. I should 
+> probably send patches for that to oe-core. Is that something that could
+> be accepted?
 
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
- conf/machine/include/tinker.inc  | 15 +++++++++++++++
- conf/machine/tinker-board-s.conf | 16 +---------------
- conf/machine/tinker-board.conf   | 16 +---------------
- 3 files changed, 17 insertions(+), 30 deletions(-)
- create mode 100644 conf/machine/include/tinker.inc
+Not sure they need to go to separate packages but moving those 
+three to some kind of "build" package would make a lot of sense
+to me at least.
 
-diff --git a/conf/machine/include/tinker.inc b/conf/machine/include/tinker.inc
-new file mode 100644
-index 0000000..e851b59
---- /dev/null
-+++ b/conf/machine/include/tinker.inc
-@@ -0,0 +1,15 @@
-+require conf/machine/include/rk3288.inc
-+
-+WKS_FILE ?= "tinker-board.wks"
-+IMAGE_FSTYPES += "wic wic.bmap"
-+
-+WKS_FILE_DEPENDS ?= " \
-+    mtools-native \
-+    dosfstools-native \
-+    virtual/bootloader \
-+    virtual/kernel \
-+    "
-+IMAGE_BOOT_FILES ?= "\
-+    ${KERNEL_IMAGETYPE} \
-+    ${KERNEL_DEVICETREE} \
-+    "
-diff --git a/conf/machine/tinker-board-s.conf b/conf/machine/tinker-board-s.conf
-index f7b17e4..9f44f2f 100644
---- a/conf/machine/tinker-board-s.conf
-+++ b/conf/machine/tinker-board-s.conf
-@@ -5,23 +5,9 @@
- #@NAME: Tinker-S RK3288
- #@DESCRIPTION: ASUS Tinker Board is a Raspberry Pi 3 Alternative based on Rockchip RK3288 Processor.
- 
--require conf/machine/include/rk3288.inc
-+require conf/machine/include/tinker.inc
- 
- KERNEL_DEVICETREE = "rk3288-tinker-s.dtb"
- UBOOT_MACHINE = "tinker-s-rk3288_defconfig"
- 
- RK_BOOT_DEVICE ?= "mmcblk1"
--
--WKS_FILE ?= "tinker-board.wks"
--IMAGE_FSTYPES += "wic wic.bmap"
--
--WKS_FILE_DEPENDS ?= " \
--    mtools-native \
--    dosfstools-native \
--    virtual/bootloader \
--    virtual/kernel \
--    "
--IMAGE_BOOT_FILES ?= "\
--    ${KERNEL_IMAGETYPE} \
--    ${KERNEL_DEVICETREE} \
--    "
-diff --git a/conf/machine/tinker-board.conf b/conf/machine/tinker-board.conf
-index 1c3c08a..8fe5f63 100644
---- a/conf/machine/tinker-board.conf
-+++ b/conf/machine/tinker-board.conf
-@@ -5,21 +5,7 @@
- #@NAME: Tinker RK3288
- #@DESCRIPTION: ASUS Tinker Board is a Raspberry Pi 3 Alternative based on Rockchip RK3288 Processor.
- 
--require conf/machine/include/rk3288.inc
-+require conf/machine/include/tinker.inc
- 
- KERNEL_DEVICETREE = "rk3288-tinker.dtb"
- UBOOT_MACHINE = "tinker-rk3288_defconfig"
--
--WKS_FILE ?= "tinker-board.wks"
--IMAGE_FSTYPES += "wic wic.bmap"
--
--WKS_FILE_DEPENDS ?= " \
--    mtools-native \
--    dosfstools-native \
--    virtual/bootloader \
--    virtual/kernel \
--    "
--IMAGE_BOOT_FILES ?= "\
--    ${KERNEL_IMAGETYPE} \
--    ${KERNEL_DEVICETREE} \
--    "
--- 
-2.30.0.rc0
+Cheers,
+
+Richard
 
