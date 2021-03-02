@@ -1,83 +1,63 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.111.1614706736748614616
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+ by mx.groups.io with SMTP id smtpd.web08.1412.1614715280398167529
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Mar 2021 09:38:56 -0800
+ Tue, 02 Mar 2021 12:01:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=mUHjHpH3;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: liu.ming50@gmail.com)
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 92B0738C0173
-	for <yocto@yoctoproject.org>; Tue,  2 Mar 2021 17:38:56 +0000 (UTC)
-Received: by mail-wm1-f48.google.com with SMTP id o16so3606595wmh.0
-        for <yocto@yoctoproject.org>; Tue, 02 Mar 2021 09:38:56 -0800 (PST)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=QT9i1oTb;
+ spf=softfail (domain: sakoman.com, ip: 209.85.128.54, mailfrom: steve@sakoman.com)
+Received: by mail-wm1-f54.google.com with SMTP id w7so3251930wmb.5
+        for <yocto@lists.yoctoproject.org>; Tue, 02 Mar 2021 12:01:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=j1af6O95qfag02U/zbi3QHYWWhlkyrmGENJXpS36Ydg=;
-        b=mUHjHpH36CySzSp52zeeFMBJB+gQAJBO8KO0bzsNpH8l95OyGMApKQf6ESwtC5FguR
-         QwiMkgGrNFlB5HB0hSDRRAwKXxGToELty4gD7yDGERxuzeoLA433KKOweVoJGf4Tt8dI
-         p0mnNz/BRNrBTi6SEc3RGNOrVSNGXhVqoCJXuUSjjq8XaS0l4CVUqhHAb6Xsij3RvFCh
-         BnOjs7dV6Yc2VYIL/KaaduZMdLr4zcimFhdlNA6VDyq60jhqlDxc7a2f4t9i+Jic2MqP
-         c7mZrQ5+cOruAv0/EEAKO8mXUaswhlspgN6IT8guuoIGKhWdzNXwXbljb7PNC47SNLKW
-         FSog==
+        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WJUKvfmk0XXxhvNFQHsCA6fyzVWNdGbS82DRg1Kyz2w=;
+        b=QT9i1oTbXoZfIwDjcrcAo7xL5tjknNDkw01sR3VSMziqN8zp4rZpyG4ZXN05/xCrDX
+         8cgk+O+jh1Kh1TaNxRt/0kpiRDRx33wVn2x5Q1lJjohjtmyW8e0ekdh8PauvE+6vleDD
+         ZIErWJxHbsdagf0/lZtUpQbhxnLGHFLA5yxT++FKWMpyv2tU2xtfVjiT+bIwwFA0Zi6S
+         KQgTzADLwDNhTpAAYMe+70Tu2bmesLG7rPV7gYF8XJNlG7oIrC9YlVPqIHD7tPqJD2eY
+         lvoJ06pfCbW6Vwwb3fLgsZqEaFrV27vke00JV2VMljXWYVw+RkKWbEc96+NbXdTOfbLG
+         2IJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=j1af6O95qfag02U/zbi3QHYWWhlkyrmGENJXpS36Ydg=;
-        b=AgwKbOBcojpzii0sqfSMYwtlExhEm6MaNkh1EVZ22kb8/roKU6NVchI147v3E18jXm
-         6/LsDN0reEeueAYX/UdSNEKjucm9znzFaNBlQNKtvdW7EmZ2iZ3rOf3UwVHmD0O4rIVv
-         ZfxgKuGc9uKf7OZs1OnMgKVFE8M3lV5rPSjqDFmCZUTxO2kOlj9mn6VMQ0GoqK741C4t
-         VAcdqZjZryrPc2GvVzRdHAP7My5xsTIKKFuYuP3DlC4ooxt7dUpTQCIYGiVUh0cr6ccp
-         6vw4bU/K0xYzvxSlfA0Rujw5zQnnrTmi0YkRPlLJ4vhYau5sOtWJeNQfPzTY0swT4g4C
-         ktwg==
-X-Gm-Message-State: AOAM532z3zfqKDJmGdUF+8S/VorP6HHWDhoEQQvJZG+n1DhBQPgEp1NP
-	xhe/6jjJgkoEt1SjrHHg0Z1dm7jh7g0=
-X-Google-Smtp-Source: ABdhPJxgAvmQIIZ3a98hp+0X6hNLTIF7fbpeJ6OCVwF2sZVrM5VywD/HPZ3dLU4bMMiLq8BN8vQH3g==
-X-Received: by 2002:a1c:a504:: with SMTP id o4mr4390880wme.174.1614697075312;
-        Tue, 02 Mar 2021 06:57:55 -0800 (PST)
-Received: from peterliu-Precision-7530.toradex.int ([2a00:801:42b:8138:fd2e:3bb6:aed9:2cc1])
-        by smtp.gmail.com with ESMTPSA id g202sm2862577wme.20.2021.03.02.06.57.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Mar 2021 06:57:54 -0800 (PST)
-From: "Ming Liu" <liu.ming50@gmail.com>
-To: yocto@yoctoproject.org
-Cc: sergio.prado@toradex.com,
-	akuster808@gmail.com,
-	Ming Liu <liu.ming50@gmail.com>
-Subject: [meta-security][dunfell][PATCH 4/9] initramfs-framework-ima: RDEPENDS on ima-evm-keys
-Date: Tue,  2 Mar 2021 15:57:40 +0100
-Message-Id: <20210302145745.1891826-5-liu.ming50@gmail.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20210302145745.1891826-1-liu.ming50@gmail.com>
-References: <20210302145745.1891826-1-liu.ming50@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WJUKvfmk0XXxhvNFQHsCA6fyzVWNdGbS82DRg1Kyz2w=;
+        b=Lnyah8VFKFSZPelTNTyqlU3N+yyrmqAuQyH8CVlrS/SYVSad7du08hrBlvPEw4jg1G
+         i83OymNL0NYIiiCWUUSVR34zL8+fH7GAF+5TYAEBiVxyntgrMJlNFWH8nzoafRIIBrgV
+         1NY1Mwbng/gnnUnsSt5dSZV13jP3WumuZK3MPokfvR/34qs2mHnLbZzRLMoAHuVKM4hy
+         HPNOQ7iWKjrsrusNycfigAd7XRqiCA4b4jjdrTMOXz/gUl8IgZwSxkBEwxANnpHsI0vC
+         IJU+haqqHRx3SWLqxw5eUWYG8YbVw6+dtEY9NDEP1HrEXtGgzgehGmPkCSEfHaRqoc1O
+         gndw==
+X-Gm-Message-State: AOAM531LgFG4NiQnqJRWeL/7qFC384KcLjdj82IVqQhHhBSLKbDmVKx5
+	iX9l8G/tTfS9pyl2IYYT6fwYaK11IeK8p+ABJYpMrg==
+X-Google-Smtp-Source: ABdhPJzhUiSA+6PM3lULPBwUK2p3eIeLusNj8Nnq4U9umOrMN9f1B71t6OVAlag4VyvTDobF9XW2wYOMfFU4J6PuB8c=
+X-Received: by 2002:a1c:1f04:: with SMTP id f4mr5760232wmf.12.1614715278653;
+ Tue, 02 Mar 2021 12:01:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <zFb6.1614702126167583420.u32u@lists.yoctoproject.org>
+In-Reply-To: <zFb6.1614702126167583420.u32u@lists.yoctoproject.org>
+From: "Steve Sakoman" <steve@sakoman.com>
+Date: Tue, 2 Mar 2021 10:01:07 -1000
+Message-ID: <CAOSpxdbKN5KF9cX2OUoYcEzGig0V1xffjRR0DeM+qy388TvQVA@mail.gmail.com>
+Subject: Re: [yocto] Reducing the perl footprint on my image
+To: rustyhowell@gmail.com
+Cc: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-From: Ming Liu <liu.ming50@gmail.com>
+On Tue, Mar 2, 2021 at 6:26 AM <rustyhowell@gmail.com> wrote:
+>
+> I have an image that is using debian package management  (PACKAGE_CLASSES = "package_deb").  Because apt and dpkg require perl, perl is being installed in the image.   No problem.  Except that the entire perl stack is 669 packages.
 
-Signed-off-by: Ming Liu <liu.ming50@gmail.com>
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../recipes-core/initrdscripts/initramfs-framework-ima.bb       | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I just took a look at the manifest for one of my images that includes
+PACKAGE_CLASSES = "package_deb".  I see the perl package plus 43
+perl-module packages.  Are you sure that something else in your images
+isn't pulling in all of those other perl-module packages?
 
-diff --git a/meta-integrity/recipes-core/initrdscripts/initramfs-framewor=
-k-ima.bb b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-=
-ima.bb
-index dacdc8b..77f6f7c 100644
---- a/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima.b=
-b
-+++ b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima.b=
-b
-@@ -27,5 +27,5 @@ do_install () {
-=20
- FILES_${PN} =3D "/init.d ${sysconfdir}"
-=20
--RDEPENDS_${PN} =3D "keyutils ${IMA_POLICY}"
-+RDEPENDS_${PN} =3D "keyutils ima-evm-keys ${IMA_POLICY}"
- RDEPENDS_${PN} +=3D "initramfs-framework-base"
---=20
-2.29.0
+Steve
 
+> Most of the packages are super tiny and are probably not needed by apt or dpkg.  Is there a way to strip down the large number of perl packages in the image to just what is needed by apt/dpkg?
+> I haven't found anything in the MegaManual yet.
+> Thanks in advance.
+> 
+>
