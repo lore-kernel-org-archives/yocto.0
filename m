@@ -1,198 +1,263 @@
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
- by mx.groups.io with SMTP id smtpd.web11.5046.1614666302600912220
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.5496.1614671430575834992
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Mar 2021 22:25:03 -0800
+ Mon, 01 Mar 2021 23:50:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Na5Elos2;
- spf=pass (domain: gmail.com, ip: 209.85.160.178, mailfrom: d.extc.sachin@gmail.com)
-Received: by mail-qt1-f178.google.com with SMTP id w1so14052605qto.2;
-        Mon, 01 Mar 2021 22:25:02 -0800 (PST)
+ dkim=pass header.i=@airborneinstruments.dk header.s=selector2 header.b=Lm3v7OEb;
+ spf=fail (domain: airborneinstruments.dk, ip: 198.145.29.25, mailfrom: jve@airborneinstruments.dk)
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80077.outbound.protection.outlook.com [40.107.8.77])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 8C92138C0731
+	for <yocto@yoctoproject.org>; Tue,  2 Mar 2021 07:50:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BkzERpM8TcPwCcOPpUBS+PWOMOU7ZI7YTw9d85kOWfxU7kTXPZ4G0WHPX1AH3UBnvTQfQskQZi9zKTtifSmXbglvjVRk4TkRATBRdMsUHZ3Kvb92m0DymcYwIGtnAtA+tzsorLpoIn60VEcmDY+P1Q+mzFYObAIbd6caxM5Lgb4Sgbe/uP4BhZ1x5pkLbgNAyHffTmTBj6Fpgr+OSpOfbxkT4YaEV4a8GDc2/QBCmai2uwPwelF0FehOxgvHsd2pkSrh1/n9l4kgRWSF9ihD2olFzwFUDEayG1y2Vs5IO3DJ3aZaPHpzirSFnlNWVhFO+8ASpBXgnWYylUP+JgvjjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M6NV4TEl4Ka1n4M95UsRO+QpfBmUI7EbJG4Cm9K190A=;
+ b=MuBFQhaVXRhq8VvPtbdIwCOy+SN+L2BAB15rdlN0MdGX39dhZQs3hE1aXslGkH7xTeWU4tWm5fc01kWlEwXNeq30LzWf2Y0l1Fdt/uXYAAF+jrLlBN3czMxOonSu+PYcmjT9Ez1uLS5KGT7Fr6JywBXsqwQ7F0S5kDePlozEvLGaF0j1wz0zi0MI2sdN9OYukD32kOuUOhqg9EcwY0mrbIF0t+NfDbIpk4WSTnoHtUAQYA1iH/YU/AXl1a3ZA/PDj5ZfisDKfKr3CW5sRdZJFr4pGecnuhPg0VAfcgKPjOqG3OZVb4fBkuRuRgzC7sTLOnk0upVmK29CdpiEoApc7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=airborneinstruments.dk; dmarc=pass action=none
+ header.from=airborneinstruments.dk; dkim=pass
+ header.d=airborneinstruments.dk; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=VpI+UTmT/yQWS8Fy2U9epxiZiERZiJISDWucpl5+V74=;
-        b=Na5Elos224BU53+mLWxrntexwyCI3NV/J37pSjRvBj38ySD6lhFvsKoEoZXYeXL2gB
-         KiFtGH8V0HMW+rNwNtAIk38M2sWJGKOem2qVo2AOdx914JSO9wXvGymkQemmNrZghNcG
-         a2zje2t1LQiRmyvFeQyYaeMDmk8qll4o8PErLVLxkVWwLo5YRM8DUbxcQc/inSg8nonP
-         GhJyCbuQDoQ9ZilnD7FyJswf53RdTuGyljTNae7/i69+7egjWEP11Q3rG+cyq3upZu1e
-         ytHhE4bHe1MZWjRHRTLOXJEuQf6sJVy4WaQfQWFXEKGgwgvdo9ET23WY0xXT8SwAtpvs
-         q6BQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=VpI+UTmT/yQWS8Fy2U9epxiZiERZiJISDWucpl5+V74=;
-        b=uevhogEKfcHFmFD97cuDISjnpdxwadvK/gEb8fMKIzgGEooPEB6G4w9AK0RVQQ/VYp
-         YLMdpCkVRyKR+UnVOybobzxUfCyVAy67/FvE0PHWH61S47Fr9vCZjKDGAk1WwY4i7vNN
-         WGeRemRS5+0LmkcJbU5W8vZKJzJE3E3IbDwo4n9v8K2PQpnWvp+MgDRug0VnPSAlwPIK
-         xkD4K3RhifGUu43skRS6sZTwpz4zz8XWgC1VrEpX60MQUV/qzdvKGCYT/Hv0F/CHp32q
-         M8FZDR40LlpOf5bkuoqa/VZXopsO9WJD+/bN/LM1LHSVdCT93+jo6KqYRNg/0DdpMeAq
-         62Dw==
-X-Gm-Message-State: AOAM5301/WsV36e0x4A/tZlhyO9rqYLlH/+FIWZvhLPD4LzRi28ytG4V
-	m0YmmgYL6AV3+5N3CuRKybNaUxMsh9R9178mnLyWj1AxAWkNHg==
-X-Google-Smtp-Source: ABdhPJzK4woRtpPBNMROXoE9bftXw9QGDcHvyHc0EaKOpmimUH3hwHXCDiBrLo4TdzL3XVGYFPZjhbEv2GDNaLkjKbA=
-X-Received: by 2002:aed:3104:: with SMTP id 4mr10316595qtg.341.1614666301388;
- Mon, 01 Mar 2021 22:25:01 -0800 (PST)
+ d=airborneinstruments.dk; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M6NV4TEl4Ka1n4M95UsRO+QpfBmUI7EbJG4Cm9K190A=;
+ b=Lm3v7OEbeg9ZH26GBUSoOBIEym+rSMLSXsV3rRY5Y+3Hz06pLPTHeh87cktdFym1p6w0lVewWgQO/nLUnu0sleIPmJz1Pxk+qBs6ha1eyxH2i9iYbPIgrLWMqHYmJ9IxDN/f3uQSdyphWoCwpsPCQ9UxHK51H4ilTLfACR+Adus=
+Received: from AM0PR01MB4148.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:6b::29) by AM0PR01MB4481.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:ea::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19; Tue, 2 Mar
+ 2021 07:50:25 +0000
+Received: from AM0PR01MB4148.eurprd01.prod.exchangelabs.com
+ ([fe80::bd1f:36e6:dba3:4557]) by AM0PR01MB4148.eurprd01.prod.exchangelabs.com
+ ([fe80::bd1f:36e6:dba3:4557%7]) with mapi id 15.20.3890.023; Tue, 2 Mar 2021
+ 07:50:25 +0000
+From: jve@airborneinstruments.dk
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: VS: [meta-raspberrypi] Support for Raspberry pi CM4 (USB host support not working)
+Thread-Topic: [meta-raspberrypi] Support for Raspberry pi CM4 (USB host
+ support not working)
+Thread-Index: AdcPNoqI/XLWQ2uFTNiC1AImC/PHowAAhVqA
+Date: Tue, 2 Mar 2021 07:50:24 +0000
+Message-ID: 
+ <AM0PR01MB414829A11FAD5FFD3331BC63CA999@AM0PR01MB4148.eurprd01.prod.exchangelabs.com>
+References: 
+ <AM0PR01MB41483B2A56F8EE70DDC04FA6CA999@AM0PR01MB4148.eurprd01.prod.exchangelabs.com>
+In-Reply-To: 
+ <AM0PR01MB41483B2A56F8EE70DDC04FA6CA999@AM0PR01MB4148.eurprd01.prod.exchangelabs.com>
+Accept-Language: da-DK, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+ header.d=none;yoctoproject.org; dmarc=none action=none
+ header.from=airborneinstruments.dk;
+x-originating-ip: [212.10.114.103]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a4257801-a3f5-4115-3003-08d8dd4fd707
+x-ms-traffictypediagnostic: AM0PR01MB4481:
+x-ms-exchange-minimumurldomainage: meta-raspberrypi.readthedocs.io#0
+x-microsoft-antispam-prvs: 
+ <AM0PR01MB4481696975C0E075CF71EA62CA999@AM0PR01MB4481.eurprd01.prod.exchangelabs.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2803;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ j2UtwZtpBhnbYD/Mhv59PDd8RrSGnW7ffPT9a+hKbpyh0w4pYw7f7fCEy0M/NmKgUPMyOJMEBUCWDZ6eRyNft1x/lYWmaNg8vHfOwrzDYm2j7zagV5mzYw1RApp0tNVmA12pgA5Jnhj3pdohG8Y+cj7FbZTCQfrLNhnGe1pLxkqm8N2w7OeKsl2swN9x4HVgGQND1lrjdasDoeq3CCmve+5pBn1BzKwNHGt0OmWicELS73E0hPza2z+70QVIFzBdFxONM+1nmzyMCgHuG3XcqTxOfZd30aqP23TYtCGD0ShzGBvC3dPLjRkN327G1WV3rBzhWZVoBHUrFfiS6zyKqO/bwpK9jALJVfRh/hw/bZRKCO1ZGDvjx/6TLiUZw+45fZPpKn7ZJkzwz4bS6pIoBCygGJcEsXPqbx03EpIgRHg6GCnD8JbPFKIfx3emdPLwHajVX5HC0y6DDGYsdpt+/IXxiSdhYN+DuEFi/3Gg/B5UhfAx6q1adN1QpSbw8fFWeCwh5oN1lFYHqPGuYDu2t5Jk4Z+y2T7whly8tU+iu6B/WZvFpoNonUqOSB52zo4ktc/hHFwPYMYEBS/C4GI8YxjgFZWcpoiHQMS+uqsFO0A=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR01MB4148.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(136003)(366004)(396003)(39830400003)(966005)(55016002)(316002)(7696005)(478600001)(8676002)(186003)(8936002)(2906002)(2940100002)(52536014)(71200400001)(83380400001)(66946007)(66446008)(66476007)(66556008)(64756008)(26005)(6506007)(6916009)(33656002)(76116006)(166002)(86362001)(9686003)(5660300002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 
+ =?us-ascii?Q?8doV1wnVxxpduD6WChyV9nJdbgmszHvi9xJZ5HhWCC5ol7zn0i8KXFwRdUqn?=
+ =?us-ascii?Q?QAaEDx/SFp7gVpESUCgDeIm0D4xJbjIIsjPJOLZbEPSvoZhTPqZKq5/3VYrn?=
+ =?us-ascii?Q?4axsLDitFu1s5q8hxK2Og5wVcY+5TfclMJW/xxkUfSSObanCmWokImIdd+Za?=
+ =?us-ascii?Q?y0dlzZrk+mOCWHkhH1AtGp8kV+Na7P2UIFganb2R+8tTlZhbN4cUJFbvoZDD?=
+ =?us-ascii?Q?GzYn4spXJ5xJwngD1HJ79vvdNrWimvK8A1J3fQxogEdXFb8/tT1Gqa5DyYP0?=
+ =?us-ascii?Q?Gmyd+YtRaCFbOin4LoqaTlgjO/cdXCaaD7BBbBRq0GvL6XggdGWk+q/73i5l?=
+ =?us-ascii?Q?fFoelTMrUczDjIUnyVwcDXeGNhCPQjP9Run05VNWpHcjPT9twtVcUXT8L4Ar?=
+ =?us-ascii?Q?fYgVvEu/27ivz0khAFMmRh5OVqinvta3b2pmH7ZZryj5JkAk1+M0DjQaPSTz?=
+ =?us-ascii?Q?t47gnX89Pa4RAm5dO9FkCFrC5ak8RjUGoA+xTasUxC2G5DqJ/btbWZNA+tl4?=
+ =?us-ascii?Q?M+yAgxzuZPAr6CCb1mDwhFtZ/SWQaIh2GuRWkPyR7MwG1LIX9+HR2CH1pESU?=
+ =?us-ascii?Q?o12zZTlX+qq23vx4EfhFO4xAIDrCaj7b+1mkpSEzE458PY7/xEz/4Dc2jcH/?=
+ =?us-ascii?Q?epHvMaFr9dwmWnCSID5YDNxp0kTxi7Ej0rNdCviIgn9VkLsUVmGcgo3BHuhJ?=
+ =?us-ascii?Q?N492EUFnj2YMhXWDFYwd9ba9gvfUChBMLfIy5RWOCWec9PyfiGymAH+JOMmQ?=
+ =?us-ascii?Q?ktAdLci+jzWgzJhlAcF6jHBbUM9Xx2RoTO5ioonPN3/CRqfmdd+y+GgtvCvb?=
+ =?us-ascii?Q?yF78zZlwe4jOM3rMrfy0lJNyYrbf2vmbBcqeZh2QcVi/qKIWsjjs50nMkXfH?=
+ =?us-ascii?Q?fZxzvrgDoxdNbygG6ivEEi14RQrbXBX3ELZQmfASislh8w/CqnJuiAKQxVU+?=
+ =?us-ascii?Q?4yvsnqg1sRbsjxJ01Wv0k4KJ5ofivdoyUwvi72sXDcbboBTXTlLbqjX4vTm+?=
+ =?us-ascii?Q?4CSC+ZWYdw5cKZuhC2CVShNBKxkqKV3zUPGKLIqnQmKBpxuxfT2uDeAZzxBe?=
+ =?us-ascii?Q?wiNloZDPbRjEwaF8sCWSlcJ69XpwhWa06NPl0w/i3ivCc8o0JPjJOs+q9xLL?=
+ =?us-ascii?Q?SyoA4KF1nnXZ5AckiaVexs45f6gNyHaM/sIK6MhtlWgx6of0CQq/tFVSucre?=
+ =?us-ascii?Q?2+4bGLb7Oq0ni/vaer6g17X2n4ds2Ekhzi50Cm4Han0IV9CRgRcwlrHIi+nv?=
+ =?us-ascii?Q?l8Ku4e8kK3KEG4FXUkWN1B1CHaTUswdZVmKlCV7EpQ5ZcpaAUF72s2ekqMqc?=
+ =?us-ascii?Q?hVAwK39K+OytCJEqrePfnXSn?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-From: d.extc.sachin@gmail.com
-Date: Tue, 2 Mar 2021 11:54:48 +0530
-Message-ID: <CA+xLv6Tp6odDDfXdCh29khA4H04+uuC=8SJSAtshm8rmQ1zJ3A@mail.gmail.com>
-Subject: yocto meta intel dual boot with windows 8.1
-To: meta-intel@lists.yoctoproject.org, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000533a5605bc87cb80"
+X-OriginatorOrg: airborneinstruments.dk
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR01MB4148.eurprd01.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4257801-a3f5-4115-3003-08d8dd4fd707
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Mar 2021 07:50:25.1783
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 409031fd-5562-4b2b-bd49-1680a85128b5
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wKRqIAtV3sh+aft08pprq6Z4QlQwPgp6EV3Xa6zzPPeyCJymemKF5MD4LC4/QQuAuf/swZ/O695PT4wvVfBPzRogKJ414HhELDlVQBpBEZ8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR01MB4481
+Content-Language: da-DK
+Content-Type: multipart/alternative;
+	boundary="_000_AM0PR01MB414829A11FAD5FFD3331BC63CA999AM0PR01MB4148eurp_"
 
---000000000000533a5605bc87cb80
-Content-Type: text/plain; charset="UTF-8"
-
-Hi
-
-I am new to yoctoproject and have a system with intel architecture and
-embedded OS based on windows 8.1 installed. But now I want to make a dual
-boot system with yocto. I have around 100 GB free space when checked in
-disk management.
-
-So here's what I did downloaded poky repo and meta-intel sub repo. appended
-the following at the end of my local.conf file
-
-MACHINE = "intel-corei7-64"
-MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
-PREFERRED_VERSION_grub ?= "2.0"
-WKS_FILE = "image-installer.wks.in"
-IMAGE_FSTYPES_append = " ext4"
-IMAGE_TYPEDEP_wic = "ext4"
-INITRD_IMAGE_LIVE="core-image-minimal-initramfs"
-do_image_wic[depends] += "${INITRD_IMAGE_LIVE}:do_image_complete"
-do_rootfs[depends] += "virtual/kernel:do_deploy"
-IMAGE_BOOT_FILES_append = "\
-      ${KERNEL_IMAGETYPE} \
-  microcode.cpio \
-  ${IMGDEPLOYDIR}/${IMAGE_BASENAME}-${MACHINE}.ext4;rootfs.img \
-  ${@bb.utils.contains('EFI_PROVIDER', 'grub-efi',
-'grub-efi-bootx64.efi;EFI/BOOT/bootx64.efi', '', d)} \
-  ${@bb.utils.contains('EFI_PROVIDER', 'grub-efi',
-'${IMAGE_ROOTFS}/boot/EFI/BOOT/grub.cfg;EFI/BOOT/grub.cfg', '', d)} \
-  ${@bb.utils.contains('EFI_PROVIDER', 'systemd-boot',
-'systemd-bootx64.efi;EFI/BOOT/bootx64.efi', '', d)} \
-  ${@bb.utils.contains('EFI_PROVIDER', 'systemd-boot',
-'${IMAGE_ROOTFS}/boot/loader/loader.conf;loader/loader.conf ', '', d)}
-\
-  ${@bb.utils.contains('EFI_PROVIDER', 'systemd-boot',
-'${IMAGE_ROOTFS}/boot/loader/entries/boot.conf;loader/entries/boot.conf',
-'', d)} "
-
-So with the above config I build a sato image using bitbake command and got
-a .wic image file. But when I try to install the image on my system I could
-see 2 options
-
-install
-reboot to firmware settings.
-
-when I selected the first option to install it only asks to install on sda,
-that means it will erase my entire disk and install only yocto.
-
-So how can I achieve something like we do in standard linux distribution
-where we are able to install it on a specific partition/free space
-available. Is there any configuration I need to change/add?
-
-Thanks
-
---000000000000533a5605bc87cb80
-Content-Type: text/html; charset="UTF-8"
+--_000_AM0PR01MB414829A11FAD5FFD3331BC63CA999AM0PR01MB4148eurp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi<div><br></div><div><p style=3D"margin-top:0px;margin-ri=
-ght:0px;margin-left:0px;padding:0px;border:0px;font-variant-numeric:inherit=
-;font-variant-east-asian:inherit;font-stretch:inherit;line-height:inherit;f=
-ont-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;font-size:=
-15px;vertical-align:baseline;box-sizing:inherit;clear:both;color:rgb(36,39,=
-41)">I am new to yoctoproject and have a system with intel architecture and=
- embedded OS based on windows 8.1 installed. But now I want to make a dual =
-boot system with yocto. I have around 100 GB free space when checked in dis=
-k management.</p><p style=3D"margin-top:0px;margin-right:0px;margin-left:0p=
-x;padding:0px;border:0px;font-variant-numeric:inherit;font-variant-east-asi=
-an:inherit;font-stretch:inherit;line-height:inherit;font-family:Arial,&quot=
-;Helvetica Neue&quot;,Helvetica,sans-serif;font-size:15px;vertical-align:ba=
-seline;box-sizing:inherit;clear:both;color:rgb(36,39,41)">So here&#39;s wha=
-t I did downloaded poky repo and meta-intel sub repo. appended the followin=
-g at the end of my local.conf file</p><pre style=3D"margin-top:0px;padding:=
-12px;border:0px;font-variant-numeric:inherit;font-variant-east-asian:inheri=
-t;font-stretch:inherit;line-height:1.30769;font-family:Consolas,Menlo,Monac=
-o,&quot;Lucida Console&quot;,&quot;Liberation Mono&quot;,&quot;DejaVu Sans =
-Mono&quot;,&quot;Bitstream Vera Sans Mono&quot;,&quot;Courier New&quot;,mon=
-ospace,sans-serif;font-size:13px;vertical-align:baseline;box-sizing:inherit=
-;width:auto;max-height:600px;overflow:auto;border-radius:5px"><code style=
-=3D"margin:0px;padding:0px;border:0px;font-style:inherit;font-variant:inher=
-it;font-weight:inherit;font-stretch:inherit;line-height:inherit;font-family=
-:Consolas,Menlo,Monaco,&quot;Lucida Console&quot;,&quot;Liberation Mono&quo=
-t;,&quot;DejaVu Sans Mono&quot;,&quot;Bitstream Vera Sans Mono&quot;,&quot;=
-Courier New&quot;,monospace,sans-serif;vertical-align:baseline;box-sizing:i=
-nherit;background-color:transparent;white-space:inherit;border-radius:0px">=
-MACHINE =3D &quot;intel-corei7-64&quot;
-MACHINE_ESSENTIAL_EXTRA_RDEPENDS =3D &quot;grub&quot;
-PREFERRED_VERSION_grub ?=3D &quot;2.0&quot;
-WKS_FILE =3D &quot;<a href=3D"http://image-installer.wks.in">image-installe=
-r.wks.in</a>&quot;
-IMAGE_FSTYPES_append =3D &quot; ext4&quot;
-IMAGE_TYPEDEP_wic =3D &quot;ext4&quot;
-INITRD_IMAGE_LIVE=3D&quot;core-image-minimal-initramfs&quot;
-do_image_wic[depends] +=3D &quot;${INITRD_IMAGE_LIVE}:do_image_complete&quo=
-t;
-do_rootfs[depends] +=3D &quot;virtual/kernel:do_deploy&quot;
-IMAGE_BOOT_FILES_append =3D &quot;\
-      ${KERNEL_IMAGETYPE} \
-  microcode.cpio \
-  ${IMGDEPLOYDIR}/${IMAGE_BASENAME}-${MACHINE}.ext4;rootfs.img \
-  ${@bb.utils.contains(&#39;EFI_PROVIDER&#39;, &#39;grub-efi&#39;, &#39;gru=
-b-efi-bootx64.efi;EFI/BOOT/bootx64.efi&#39;, &#39;&#39;, d)} \
-  ${@bb.utils.contains(&#39;EFI_PROVIDER&#39;, &#39;grub-efi&#39;, &#39;${I=
-MAGE_ROOTFS}/boot/EFI/BOOT/grub.cfg;EFI/BOOT/grub.cfg&#39;, &#39;&#39;, d)}=
- \
-  ${@bb.utils.contains(&#39;EFI_PROVIDER&#39;, &#39;systemd-boot&#39;, &#39=
-;systemd-bootx64.efi;EFI/BOOT/bootx64.efi&#39;, &#39;&#39;, d)} \
-  ${@bb.utils.contains(&#39;EFI_PROVIDER&#39;, &#39;systemd-boot&#39;, &#39=
-;${IMAGE_ROOTFS}/boot/loader/loader.conf;loader/loader.conf &#39;, &#39;&#3=
-9;, d)} \
-  ${@bb.utils.contains(&#39;EFI_PROVIDER&#39;, &#39;systemd-boot&#39;, &#39=
-;${IMAGE_ROOTFS}/boot/loader/entries/boot.conf;loader/entries/boot.conf&#39=
-;, &#39;&#39;, d)} &quot;
-</code></pre><p style=3D"margin-top:0px;margin-right:0px;margin-left:0px;pa=
-dding:0px;border:0px;font-variant-numeric:inherit;font-variant-east-asian:i=
-nherit;font-stretch:inherit;line-height:inherit;font-family:Arial,&quot;Hel=
-vetica Neue&quot;,Helvetica,sans-serif;font-size:15px;vertical-align:baseli=
-ne;box-sizing:inherit;clear:both;color:rgb(36,39,41)">So with the above con=
-fig I build a sato image using bitbake command and got a .wic image file. B=
-ut when I try to install the image on my system I could see 2 options</p><p=
-re style=3D"margin-top:0px;padding:12px;border:0px;font-variant-numeric:inh=
-erit;font-variant-east-asian:inherit;font-stretch:inherit;line-height:1.307=
-69;font-family:Consolas,Menlo,Monaco,&quot;Lucida Console&quot;,&quot;Liber=
-ation Mono&quot;,&quot;DejaVu Sans Mono&quot;,&quot;Bitstream Vera Sans Mon=
-o&quot;,&quot;Courier New&quot;,monospace,sans-serif;font-size:13px;vertica=
-l-align:baseline;box-sizing:inherit;width:auto;max-height:600px;overflow:au=
-to;border-radius:5px"><code style=3D"margin:0px;padding:0px;border:0px;font=
--style:inherit;font-variant:inherit;font-weight:inherit;font-stretch:inheri=
-t;line-height:inherit;font-family:Consolas,Menlo,Monaco,&quot;Lucida Consol=
-e&quot;,&quot;Liberation Mono&quot;,&quot;DejaVu Sans Mono&quot;,&quot;Bits=
-tream Vera Sans Mono&quot;,&quot;Courier New&quot;,monospace,sans-serif;ver=
-tical-align:baseline;box-sizing:inherit;background-color:transparent;white-=
-space:inherit;border-radius:0px">install
-reboot to firmware settings.
-</code></pre><p style=3D"margin-top:0px;margin-right:0px;margin-left:0px;pa=
-dding:0px;border:0px;font-variant-numeric:inherit;font-variant-east-asian:i=
-nherit;font-stretch:inherit;line-height:inherit;font-family:Arial,&quot;Hel=
-vetica Neue&quot;,Helvetica,sans-serif;font-size:15px;vertical-align:baseli=
-ne;box-sizing:inherit;clear:both;color:rgb(36,39,41)">when I selected the f=
-irst option to install it only asks to install on sda, that means it will e=
-rase my entire disk and install only yocto.</p><p style=3D"margin-top:0px;m=
-argin-right:0px;margin-left:0px;padding:0px;border:0px;font-variant-numeric=
-:inherit;font-variant-east-asian:inherit;font-stretch:inherit;line-height:i=
-nherit;font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;fo=
-nt-size:15px;vertical-align:baseline;box-sizing:inherit;clear:both;color:rg=
-b(36,39,41)">So how can I achieve something like we do in standard linux di=
-stribution where we are able to install it on a specific partition/free spa=
-ce available. Is there any configuration I need to change/add?</p><p style=
-=3D"margin:0px;padding:0px;border:0px;font-variant-numeric:inherit;font-var=
-iant-east-asian:inherit;font-stretch:inherit;line-height:inherit;font-famil=
-y:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;font-size:15px;vert=
-ical-align:baseline;box-sizing:inherit;clear:both;color:rgb(36,39,41)">Than=
-ks</p></div></div>
+Hello,
 
---000000000000533a5605bc87cb80--
+I was wondering if the meta-raspberrypi layer has official support for the =
+cm4 module?
+
+I see a commit adding the .dtb files for the cm4 and 400 in the master bran=
+ch.
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/commit/conf/mach=
+ine/raspberrypi4-64.conf?id=3D0c85f0150629e1f5eaf86289f2542744e38b5413&cont=
+ext=3D3&ignorews=3D0&dt=3D0
+In the documentation, it is also mentioned that USB host support has to be =
+enabled for CM4 IO board.
+https://meta-raspberrypi.readthedocs.io/en/latest/extra-build-config.html#e=
+nable-usb-host-support
+
+Since it is not listed under supported machines I assume that it is not sup=
+ported.
+If that is true, how long before it is going to be supported?
+
+I haven't been able to get the USB host support to work.
+I have been building from the master branch and set ' ENABLE_DWC2_HOST =3D =
+"1" ' in my local.conf.
+I have also confirmed that ' dtoverlay=3Ddwc2,dr_mode=3Dhost ' has been add=
+ed to the config.txt, but so far I have had no luck getting it to work.
+Any tips on how to get it to work?
+
+I tried writing an image onto the CM4 with the RPI Imager and had success w=
+ith enabling the USB host support that way.
+
+--
+Jonas Vennevold
+
+
+
+--_000_AM0PR01MB414829A11FAD5FFD3331BC63CA999AM0PR01MB4148eurp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DA" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
+ak-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hello,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I was wondering if the meta-ras=
+pberrypi layer has official support for the cm4 module?<br>
+<br>
+I see a commit adding the .dtb files for the cm4 and 400 in the master bran=
+ch.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span lang=3D"EN-US">=
+<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/commi=
+t/conf/machine/raspberrypi4-64.conf?id=3D0c85f0150629e1f5eaf86289f2542744e3=
+8b5413&amp;context=3D3&amp;ignorews=3D0&amp;dt=3D0">http://git.yoctoproject=
+.org/cgit/cgit.cgi/meta-raspberrypi/commit/conf/machine/raspberrypi4-64.con=
+f?id=3D0c85f0150629e1f5eaf86289f2542744e38b5413&amp;context=3D3&amp;ignorew=
+s=3D0&amp;dt=3D0</a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">In the documentation, it is als=
+o mentioned that USB host support has to be enabled for CM4 IO board.<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><a href=3D"https://meta-raspber=
+rypi.readthedocs.io/en/latest/extra-build-config.html#enable-usb-host-suppo=
+rt">https://meta-raspberrypi.readthedocs.io/en/latest/extra-build-config.ht=
+ml#enable-usb-host-support</a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Since it is not listed under su=
+pported machines I assume that it is not supported.<br>
+If that is true, how long before it is going to be supported?<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I haven&#8217;t been able to ge=
+t the USB host support to work.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I have been building from the m=
+aster branch and set '
+<b>ENABLE_DWC2_HOST =3D &quot;1&quot;</b> &#8217; in my local.conf.<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I have also confirmed that &#82=
+16; <b>dtoverlay=3Ddwc2,dr_mode=3Dhost</b> &#8216; has been added to the co=
+nfig.txt, but so far I have had no luck getting it to work.<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Any tips on how to get it to wo=
+rk?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I tried writing an image onto t=
+he CM4 with the RPI Imager and had success with enabling the USB host suppo=
+rt that way.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:8.5pt;font-f=
+amily:&quot;Verdana&quot;,sans-serif;color:black;mso-fareast-language:DA">-=
+-
+<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:9.0pt;fon=
+t-family:&quot;Verdana&quot;,sans-serif;color:#002E5F;mso-fareast-language:=
+DA">Jonas Vennevold</span></b><span lang=3D"EN-US" style=3D"font-size:8.5pt=
+;font-family:&quot;Verdana&quot;,sans-serif;color:#848884;mso-fareast-langu=
+age:DA"><br>
+&nbsp;</span><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quo=
+t;Verdana&quot;,sans-serif;mso-fareast-language:DA"><o:p></o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_AM0PR01MB414829A11FAD5FFD3331BC63CA999AM0PR01MB4148eurp_--
