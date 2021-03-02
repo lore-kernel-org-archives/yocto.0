@@ -1,97 +1,87 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.1269.1614704333608412152
+ by mx.groups.io with SMTP id smtpd.web11.1268.1614704333608273821
  for <yocto@lists.yoctoproject.org>;
  Tue, 02 Mar 2021 08:58:53 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=f6tV7lQX;
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=HmINmrJN;
  spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: liu.ming50@gmail.com)
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id D948A38C1166
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 8ED0838C0731
 	for <yocto@yoctoproject.org>; Tue,  2 Mar 2021 16:58:52 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id o16so3482505wmh.0
+Received: by mail-wm1-f47.google.com with SMTP id n4so3466011wmq.3
         for <yocto@yoctoproject.org>; Tue, 02 Mar 2021 08:58:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=86VkQdfm7i1g2OPC4ZrXRTszeNets9S54jmGvJ6bWLc=;
-        b=f6tV7lQXZ1Qd4Re8CWYLdbv1EQCLu0dBS3P8p0F5BdlBUZB/7glkS7VE4q7xuS9bJO
-         6YVOy5+HYPHCrj7AH3TGuPVdpDy4pydWJbZoDOlWvcjqmBsMwrgh3utAijtS1fFFZUcb
-         46dO1gvM6oiyi9imnDf/dRLw3C8X+bbzX5R+zMSVj61RbxeF8F2cWZlBmPzWuDh8gpfv
-         dFhATyAsqMiqAfK3dhPVCgLuyOaAtrgDTbVZw1qPiqbgmqqT+lLzapYk5lCyk93mhPy0
-         52SqjLSDD3LbggOd8HmXb/f4/F5w7PBI70NVzYNAyTp+36oLwtFOWFoiLOH3Wy2l7W69
-         l0yA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KirIxS0UUOj4jxk7kBtXvZA1vSXRoCTvw8H0+ySUFh0=;
+        b=HmINmrJNqZEd8j5mr9szh3PVWrR4yhYKkjroiWQVX+W16N2vhpow5dmqiHUnTWVE27
+         LEONww2LRDLSOKEVPeewi2URrsEwe89uDYPTklU5ip/cefTkNVEEX9S+0TtpPyAYOI/7
+         V7IwGESiQpV/lP2e8uzS2oZ8OIUnmHTc6AX38rxOGN6O5KKY/DR8qjpPjaoCOzv+9BJf
+         sn+4pr4xQXSOJ5rGthWXnqjb+QOzA54Mm4FkbwlVCR5K+bukHcKZcwufgOVa29LjJrrt
+         ksFICBRpbzqlka/Aoqrb50EjYXPu4N+rQLZO9U7BC7zJr5IkdRiGMP0cJTM8dGoZcHbq
+         jTPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=86VkQdfm7i1g2OPC4ZrXRTszeNets9S54jmGvJ6bWLc=;
-        b=YOecRZ7qIoKJLvZeZqYd893JGw21vDT7mtMNQanHHP7Hf9n/or7if6x2FHExdiluSN
-         NUj89MRZFVlikVIhllfytTQsBAFzNc+IgYset0cWYzqvtyNyjWJIV1+utuhGXyiFpCLM
-         rsRsdbZNaqgftgdrfQgPHfR0gOJvk+G54qoDjxBQoxC9Aqx2WQsa0SWSr4eMhc4qXMCY
-         J1frWQs2wpXMEYM+bKrflSQsij8kTzL8ku9KJCAQsUkvOvpsxukTpu2vCcO8DlnpFx0L
-         EXR7jfrsqrRRTMsPF4R5oMgbROUeqdEkcVrHuM21Cb9hr/NV80lnKUXeBYDCSSnzDEGe
-         jbsA==
-X-Gm-Message-State: AOAM533T6Zy71O+OsahadkEGu76aDQ/nEvb04nq1nESaiRSjtFgmNXpP
-	k0w2yp3lIN2j9dzGdxRFjQ8/bhoS4sg=
-X-Google-Smtp-Source: ABdhPJzMQEGBpGGUX7oGmmOPQDh7AByw3r/Qta0jd09sdAUClKIWHubv5QLYijWXWgJdw2vtfyf4ow==
-X-Received: by 2002:a1c:f20f:: with SMTP id s15mr4297427wmc.35.1614697071783;
-        Tue, 02 Mar 2021 06:57:51 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KirIxS0UUOj4jxk7kBtXvZA1vSXRoCTvw8H0+ySUFh0=;
+        b=crdTUcu1SCSkxsvLxIOa1spUz3pqXTfWksXzOkZCEQyaigvbxlqyG1ACtxOQR/rwmN
+         TDJqiIuhsUyDoOi4r6aqLq1FVgeFuAjFTP7CaWzTUSQoEBf4eLL0w8U6cquwjZ9EZWZQ
+         u495qYhxiiTF4m/D0ILSrz6n6zQ86HF4v3keJKGOjwzsnbYM0SYSHaKQ6+pedwGTrfbB
+         bBq2Gc7zGqpR8l3oErJNmMnP/mP+thIM0W+rObyNFAH85gy85/AdYALQoeUqTHruBPyQ
+         Ar3CV0QAqces+FWtsBqIG0q0Bu5H/6aCY1Q3uIrBDDvUtXxnWVSLSDQl66Ts+a2VTdK+
+         yzDw==
+X-Gm-Message-State: AOAM532dqa2I8tu+jiXG9NopyUackBLcnKIB+kd9D5ZhD0HFBhmoQHu9
+	PB97/brvOUSddV9MqVM4Q0IblvTxhLo=
+X-Google-Smtp-Source: ABdhPJwZT/GK6Qaoj3kXe7Jvp4RZNXMAAZQrmodeyG1ItbD5WKd+O/aAOQWhbAMFY3R7/EFDBXZTQQ==
+X-Received: by 2002:a7b:c1c4:: with SMTP id a4mr4519059wmj.122.1614697068478;
+        Tue, 02 Mar 2021 06:57:48 -0800 (PST)
 Received: from peterliu-Precision-7530.toradex.int ([2a00:801:42b:8138:fd2e:3bb6:aed9:2cc1])
-        by smtp.gmail.com with ESMTPSA id g202sm2862577wme.20.2021.03.02.06.57.50
+        by smtp.gmail.com with ESMTPSA id g202sm2862577wme.20.2021.03.02.06.57.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Mar 2021 06:57:51 -0800 (PST)
+        Tue, 02 Mar 2021 06:57:48 -0800 (PST)
 From: "Ming Liu" <liu.ming50@gmail.com>
 To: yocto@yoctoproject.org
 Cc: sergio.prado@toradex.com,
 	akuster808@gmail.com,
-	Ming Liu <liu.ming50@gmail.com>
-Subject: [meta-security][dunfell][PATCH 2/9] initramfs-framework-ima: fix a wrong path
-Date: Tue,  2 Mar 2021 15:57:38 +0100
-Message-Id: <20210302145745.1891826-3-liu.ming50@gmail.com>
+	Ming Liu <ming.liu@toradex.com>
+Subject: [meta-security][dunfell][PATCH 0/9] Some IMA/EVM fixes to dunfell branch
+Date: Tue,  2 Mar 2021 15:57:36 +0100
+Message-Id: <20210302145745.1891826-1-liu.ming50@gmail.com>
 X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20210302145745.1891826-1-liu.ming50@gmail.com>
-References: <20210302145745.1891826-1-liu.ming50@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
-From: Ming Liu <liu.ming50@gmail.com>
+From: Ming Liu <ming.liu@toradex.com>
 
-/etc/ima-policy > /etc/ima/ima-policy.
+Cherry pick some IMA/EVM fixes to LTS dunfell branch, with these=20
+patches applied, I could run a ima enabled image with sysvinit/systemd
+on qemuarm/qemuarm64 and some NXP machines.
 
-Signed-off-by: Ming Liu <liu.ming50@gmail.com>
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../recipes-core/initrdscripts/initramfs-framework-ima/ima      | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Ming Liu (9):
+  ima-evm-utils: set native REQUIRED_DISTRO_FEATURES to empty
+  initramfs-framework-ima: fix a wrong path
+  ima-evm-keys: add recipe
+  initramfs-framework-ima: RDEPENDS on ima-evm-keys
+  meta: refactor IMA/EVM sign rootfs
+  README.md: update according to the refactoring in
+    ima-evm-rootfs.bbclass
+  initramfs-framework-ima: let ima_enabled return 0
+  ima-evm-rootfs.bbclass: avoid generating /etc/fstab for wic
+  ima-policy-hashed: add CGROUP2_SUPER_MAGIC fsmagic
 
-diff --git a/meta-integrity/recipes-core/initrdscripts/initramfs-framewor=
-k-ima/ima b/meta-integrity/recipes-core/initrdscripts/initramfs-framework=
--ima/ima
-index 8616f99..16ed53f 100644
---- a/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/i=
-ma
-+++ b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/i=
-ma
-@@ -46,7 +46,7 @@ ima_run() {
-     # ("[Linux-ima-user] IMA policy loading via cat") and we get better =
-error reporting when
-     # checking the write of each line. To minimize the risk of policy lo=
-ading going wrong we
-     # also remove comments and blank lines ourselves.
--    if ! (set -e; while read i; do if echo "$i" | grep -q -e '^#' -e '^ =
-*$'; then debug "Skipping IMA policy: $i"; else debug "Writing IMA policy=
-: $i"; if echo $i; then sleep ${bootparam_ima_delay:-0}; else fatal "Inva=
-lid line in IMA policy: $i"; exit 1; fi; fi; done) </etc/ima-policy >/sys=
-/kernel/security/ima/policy; then
-+    if ! (set -e; while read i; do if echo "$i" | grep -q -e '^#' -e '^ =
-*$'; then debug "Skipping IMA policy: $i"; else debug "Writing IMA policy=
-: $i"; if echo $i; then sleep ${bootparam_ima_delay:-0}; else fatal "Inva=
-lid line in IMA policy: $i"; exit 1; fi; fi; done) </etc/ima/ima-policy >=
-/sys/kernel/security/ima/policy; then
-         fatal "Could not load IMA policy."
-     fi
- }
+ meta-integrity/README.md                      |  4 ++-
+ meta-integrity/classes/ima-evm-rootfs.bbclass | 33 +++++++++----------
+ .../initrdscripts/initramfs-framework-ima.bb  |  2 +-
+ .../initrdscripts/initramfs-framework-ima/ima |  3 +-
+ .../ima-evm-keys/ima-evm-keys_1.0.bb          | 16 +++++++++
+ .../ima-evm-utils/ima-evm-utils_git.bb        |  1 +
+ .../ima_policy_hashed/files/ima_policy_hashed |  3 ++
+ 7 files changed, 41 insertions(+), 21 deletions(-)
+ create mode 100644 meta-integrity/recipes-security/ima-evm-keys/ima-evm-=
+keys_1.0.bb
+
 --=20
 2.29.0
 
