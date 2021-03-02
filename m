@@ -1,263 +1,431 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.5496.1614671430575834992
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (NAM12-MW2-obe.outbound.protection.outlook.com [40.107.244.72])
+ by mx.groups.io with SMTP id smtpd.web11.5958.1614675142201534390
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Mar 2021 23:50:31 -0800
+ Tue, 02 Mar 2021 00:52:22 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@airborneinstruments.dk header.s=selector2 header.b=Lm3v7OEb;
- spf=fail (domain: airborneinstruments.dk, ip: 198.145.29.25, mailfrom: jve@airborneinstruments.dk)
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80077.outbound.protection.outlook.com [40.107.8.77])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 8C92138C0731
-	for <yocto@yoctoproject.org>; Tue,  2 Mar 2021 07:50:29 +0000 (UTC)
+ dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=k3o5zARM;
+ spf=pass (domain: windriver.com, ip: 40.107.244.72, mailfrom: yi.zhao@windriver.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BkzERpM8TcPwCcOPpUBS+PWOMOU7ZI7YTw9d85kOWfxU7kTXPZ4G0WHPX1AH3UBnvTQfQskQZi9zKTtifSmXbglvjVRk4TkRATBRdMsUHZ3Kvb92m0DymcYwIGtnAtA+tzsorLpoIn60VEcmDY+P1Q+mzFYObAIbd6caxM5Lgb4Sgbe/uP4BhZ1x5pkLbgNAyHffTmTBj6Fpgr+OSpOfbxkT4YaEV4a8GDc2/QBCmai2uwPwelF0FehOxgvHsd2pkSrh1/n9l4kgRWSF9ihD2olFzwFUDEayG1y2Vs5IO3DJ3aZaPHpzirSFnlNWVhFO+8ASpBXgnWYylUP+JgvjjQ==
+ b=Y9pK8ZcZbq13B0NO36VpdX96cclIyEa5dhPYMDT8YTApDrFuNmSkmAteFLVbegctBm/JRQCo5zdi/9NvkqbU4b4HkYGIgHSBmuyNTKCzoU79YA7Qi5y4CFel+2G9gpz44NDlDnIILbSzaGtzWhUud1UDtxdRe6v3nLFbUJBgNQIHVg6Z1dB0mLSLGp1SIBNuChRZc6496Nyx/3CDGDVT1V9jqLeWVCHeFNYUGnPh+y0npxjog+FOQMD9Wu1jLL2UlNwduSZPkMZFmyEIQfXBSPlrK1C6lQyyn4a+aRm/wshpr/KGDJp3Gvsatu6Aho0CCy15U16q2WEAgPyGLT5m2g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M6NV4TEl4Ka1n4M95UsRO+QpfBmUI7EbJG4Cm9K190A=;
- b=MuBFQhaVXRhq8VvPtbdIwCOy+SN+L2BAB15rdlN0MdGX39dhZQs3hE1aXslGkH7xTeWU4tWm5fc01kWlEwXNeq30LzWf2Y0l1Fdt/uXYAAF+jrLlBN3czMxOonSu+PYcmjT9Ez1uLS5KGT7Fr6JywBXsqwQ7F0S5kDePlozEvLGaF0j1wz0zi0MI2sdN9OYukD32kOuUOhqg9EcwY0mrbIF0t+NfDbIpk4WSTnoHtUAQYA1iH/YU/AXl1a3ZA/PDj5ZfisDKfKr3CW5sRdZJFr4pGecnuhPg0VAfcgKPjOqG3OZVb4fBkuRuRgzC7sTLOnk0upVmK29CdpiEoApc7g==
+ bh=cnLHbjutx8K/0NFqxhvIJLlODJHj37HUbyWwZOOENJ4=;
+ b=gakYE0ml6pH8NM3DQMQfuusd0qlM60hO5jj5WK4Y4jyo4nJt6bMgiJds9i4babSPsQ2mM6B6vaBggTkGl4P0ajd6em8j0jEkxxuUcGNSnBI8X8iaJQgZnr9CYAvx1V/5CGIqcPp5E4kY3D6iacOvOTNlcqp25g5xw1TpN4Cx9x8vDfgns3pPsGgZWjSOh00+jWLtXIWV5zqxgkCHVFvXp1uyzqGi5RANb47bUrVJcgoQqkNjf/7KLmXg00tHd4stfU5tzGDOtf22fTxrUDVLo901+sn5Io3emz5F5+U7UaZL9a9ZWUmOk4IFAFE63vXGUT+Ko1L/Ul52DRTT1tW/eg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=airborneinstruments.dk; dmarc=pass action=none
- header.from=airborneinstruments.dk; dkim=pass
- header.d=airborneinstruments.dk; arc=none
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=airborneinstruments.dk; s=selector2;
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M6NV4TEl4Ka1n4M95UsRO+QpfBmUI7EbJG4Cm9K190A=;
- b=Lm3v7OEbeg9ZH26GBUSoOBIEym+rSMLSXsV3rRY5Y+3Hz06pLPTHeh87cktdFym1p6w0lVewWgQO/nLUnu0sleIPmJz1Pxk+qBs6ha1eyxH2i9iYbPIgrLWMqHYmJ9IxDN/f3uQSdyphWoCwpsPCQ9UxHK51H4ilTLfACR+Adus=
-Received: from AM0PR01MB4148.eurprd01.prod.exchangelabs.com
- (2603:10a6:208:6b::29) by AM0PR01MB4481.eurprd01.prod.exchangelabs.com
- (2603:10a6:208:ea::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19; Tue, 2 Mar
- 2021 07:50:25 +0000
-Received: from AM0PR01MB4148.eurprd01.prod.exchangelabs.com
- ([fe80::bd1f:36e6:dba3:4557]) by AM0PR01MB4148.eurprd01.prod.exchangelabs.com
- ([fe80::bd1f:36e6:dba3:4557%7]) with mapi id 15.20.3890.023; Tue, 2 Mar 2021
- 07:50:25 +0000
-From: jve@airborneinstruments.dk
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: VS: [meta-raspberrypi] Support for Raspberry pi CM4 (USB host support not working)
-Thread-Topic: [meta-raspberrypi] Support for Raspberry pi CM4 (USB host
- support not working)
-Thread-Index: AdcPNoqI/XLWQ2uFTNiC1AImC/PHowAAhVqA
-Date: Tue, 2 Mar 2021 07:50:24 +0000
-Message-ID: 
- <AM0PR01MB414829A11FAD5FFD3331BC63CA999@AM0PR01MB4148.eurprd01.prod.exchangelabs.com>
-References: 
- <AM0PR01MB41483B2A56F8EE70DDC04FA6CA999@AM0PR01MB4148.eurprd01.prod.exchangelabs.com>
-In-Reply-To: 
- <AM0PR01MB41483B2A56F8EE70DDC04FA6CA999@AM0PR01MB4148.eurprd01.prod.exchangelabs.com>
-Accept-Language: da-DK, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
- header.d=none;yoctoproject.org; dmarc=none action=none
- header.from=airborneinstruments.dk;
-x-originating-ip: [212.10.114.103]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a4257801-a3f5-4115-3003-08d8dd4fd707
-x-ms-traffictypediagnostic: AM0PR01MB4481:
-x-ms-exchange-minimumurldomainage: meta-raspberrypi.readthedocs.io#0
-x-microsoft-antispam-prvs: 
- <AM0PR01MB4481696975C0E075CF71EA62CA999@AM0PR01MB4481.eurprd01.prod.exchangelabs.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2803;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- j2UtwZtpBhnbYD/Mhv59PDd8RrSGnW7ffPT9a+hKbpyh0w4pYw7f7fCEy0M/NmKgUPMyOJMEBUCWDZ6eRyNft1x/lYWmaNg8vHfOwrzDYm2j7zagV5mzYw1RApp0tNVmA12pgA5Jnhj3pdohG8Y+cj7FbZTCQfrLNhnGe1pLxkqm8N2w7OeKsl2swN9x4HVgGQND1lrjdasDoeq3CCmve+5pBn1BzKwNHGt0OmWicELS73E0hPza2z+70QVIFzBdFxONM+1nmzyMCgHuG3XcqTxOfZd30aqP23TYtCGD0ShzGBvC3dPLjRkN327G1WV3rBzhWZVoBHUrFfiS6zyKqO/bwpK9jALJVfRh/hw/bZRKCO1ZGDvjx/6TLiUZw+45fZPpKn7ZJkzwz4bS6pIoBCygGJcEsXPqbx03EpIgRHg6GCnD8JbPFKIfx3emdPLwHajVX5HC0y6DDGYsdpt+/IXxiSdhYN+DuEFi/3Gg/B5UhfAx6q1adN1QpSbw8fFWeCwh5oN1lFYHqPGuYDu2t5Jk4Z+y2T7whly8tU+iu6B/WZvFpoNonUqOSB52zo4ktc/hHFwPYMYEBS/C4GI8YxjgFZWcpoiHQMS+uqsFO0A=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR01MB4148.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(136003)(366004)(396003)(39830400003)(966005)(55016002)(316002)(7696005)(478600001)(8676002)(186003)(8936002)(2906002)(2940100002)(52536014)(71200400001)(83380400001)(66946007)(66446008)(66476007)(66556008)(64756008)(26005)(6506007)(6916009)(33656002)(76116006)(166002)(86362001)(9686003)(5660300002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 
- =?us-ascii?Q?8doV1wnVxxpduD6WChyV9nJdbgmszHvi9xJZ5HhWCC5ol7zn0i8KXFwRdUqn?=
- =?us-ascii?Q?QAaEDx/SFp7gVpESUCgDeIm0D4xJbjIIsjPJOLZbEPSvoZhTPqZKq5/3VYrn?=
- =?us-ascii?Q?4axsLDitFu1s5q8hxK2Og5wVcY+5TfclMJW/xxkUfSSObanCmWokImIdd+Za?=
- =?us-ascii?Q?y0dlzZrk+mOCWHkhH1AtGp8kV+Na7P2UIFganb2R+8tTlZhbN4cUJFbvoZDD?=
- =?us-ascii?Q?GzYn4spXJ5xJwngD1HJ79vvdNrWimvK8A1J3fQxogEdXFb8/tT1Gqa5DyYP0?=
- =?us-ascii?Q?Gmyd+YtRaCFbOin4LoqaTlgjO/cdXCaaD7BBbBRq0GvL6XggdGWk+q/73i5l?=
- =?us-ascii?Q?fFoelTMrUczDjIUnyVwcDXeGNhCPQjP9Run05VNWpHcjPT9twtVcUXT8L4Ar?=
- =?us-ascii?Q?fYgVvEu/27ivz0khAFMmRh5OVqinvta3b2pmH7ZZryj5JkAk1+M0DjQaPSTz?=
- =?us-ascii?Q?t47gnX89Pa4RAm5dO9FkCFrC5ak8RjUGoA+xTasUxC2G5DqJ/btbWZNA+tl4?=
- =?us-ascii?Q?M+yAgxzuZPAr6CCb1mDwhFtZ/SWQaIh2GuRWkPyR7MwG1LIX9+HR2CH1pESU?=
- =?us-ascii?Q?o12zZTlX+qq23vx4EfhFO4xAIDrCaj7b+1mkpSEzE458PY7/xEz/4Dc2jcH/?=
- =?us-ascii?Q?epHvMaFr9dwmWnCSID5YDNxp0kTxi7Ej0rNdCviIgn9VkLsUVmGcgo3BHuhJ?=
- =?us-ascii?Q?N492EUFnj2YMhXWDFYwd9ba9gvfUChBMLfIy5RWOCWec9PyfiGymAH+JOMmQ?=
- =?us-ascii?Q?ktAdLci+jzWgzJhlAcF6jHBbUM9Xx2RoTO5ioonPN3/CRqfmdd+y+GgtvCvb?=
- =?us-ascii?Q?yF78zZlwe4jOM3rMrfy0lJNyYrbf2vmbBcqeZh2QcVi/qKIWsjjs50nMkXfH?=
- =?us-ascii?Q?fZxzvrgDoxdNbygG6ivEEi14RQrbXBX3ELZQmfASislh8w/CqnJuiAKQxVU+?=
- =?us-ascii?Q?4yvsnqg1sRbsjxJ01Wv0k4KJ5ofivdoyUwvi72sXDcbboBTXTlLbqjX4vTm+?=
- =?us-ascii?Q?4CSC+ZWYdw5cKZuhC2CVShNBKxkqKV3zUPGKLIqnQmKBpxuxfT2uDeAZzxBe?=
- =?us-ascii?Q?wiNloZDPbRjEwaF8sCWSlcJ69XpwhWa06NPl0w/i3ivCc8o0JPjJOs+q9xLL?=
- =?us-ascii?Q?SyoA4KF1nnXZ5AckiaVexs45f6gNyHaM/sIK6MhtlWgx6of0CQq/tFVSucre?=
- =?us-ascii?Q?2+4bGLb7Oq0ni/vaer6g17X2n4ds2Ekhzi50Cm4Han0IV9CRgRcwlrHIi+nv?=
- =?us-ascii?Q?l8Ku4e8kK3KEG4FXUkWN1B1CHaTUswdZVmKlCV7EpQ5ZcpaAUF72s2ekqMqc?=
- =?us-ascii?Q?hVAwK39K+OytCJEqrePfnXSn?=
-x-ms-exchange-transport-forked: True
+ bh=cnLHbjutx8K/0NFqxhvIJLlODJHj37HUbyWwZOOENJ4=;
+ b=k3o5zARMtInuFwAGbtqWCE9hISRQoRGigO6lwOV3uAzsbiD3CuU0zw07F5FeUPka7eDZ4H15M6s3KOuZD7IYmkqWMFexaCLtVG3CkOqMEFoMup2XkmrV4QslGm2LwUoyrMeHXEzOtyeex7XeLx2ApdkDE3ucNZTLzoGwvaSzU5w=
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
+ by MWHPR1101MB2352.namprd11.prod.outlook.com (2603:10b6:300:7e::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.26; Tue, 2 Mar
+ 2021 08:52:19 +0000
+Received: from CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::b954:4302:820c:ca28]) by CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::b954:4302:820c:ca28%4]) with mapi id 15.20.3890.023; Tue, 2 Mar 2021
+ 08:52:19 +0000
+From: "Yi Zhao" <yi.zhao@windriver.com>
+To: yocto@lists.yoctoproject.org,
+	joe_macdonald@mentor.com,
+	joe@deserted.net
+Subject: [meta-selinux][PATCH 0/7] selinux: upgrade refpolicy
+Date: Tue,  2 Mar 2021 16:51:59 +0800
+Message-ID: <20210302085206.56794-1-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [60.247.85.82]
+X-ClientProxiedBy: HK2P15301CA0009.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:202:1::19) To CO1PR11MB4867.namprd11.prod.outlook.com
+ (2603:10b6:303:9a::13)
+Return-Path: yi.zhao@windriver.com
 MIME-Version: 1.0
-X-OriginatorOrg: airborneinstruments.dk
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by HK2P15301CA0009.APCP153.PROD.OUTLOOK.COM (2603:1096:202:1::19) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.8 via Frontend Transport; Tue, 2 Mar 2021 08:52:17 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 33aadb46-9eb1-4a72-9d5b-08d8dd587c84
+X-MS-TrafficTypeDiagnostic: MWHPR1101MB2352:
+X-Microsoft-Antispam-PRVS: 
+	<MWHPR1101MB23522538AB605A2498BFF741F9999@MWHPR1101MB2352.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:935;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	FqBhGJlYqlaiBBAiW/AIZWF/XSEeKoiXA+CIMNl/IRUtGnF5kWGQS1PPCFjJjuFM3oTvIWKuOsB4rjQ6ZhrRb1bbQLKV7X5+S2YDPcbXoyikpu1WP5y/285GlgSpGlpy6DvcPZQV/yVaa9XDySARI3n2Yas7ILIqR5DMNW5+YpyaVa9VyDM8kkn/YQ07ra0k0VNuEXUFGyyZPsWLBApIxmnljBy8TCcSRWb9M4cAeTLr9EBstSiXCc2OsyMfms6i2uQDtx3LrZmCxDMMrJ5siqOZofp06Rih7/zDAcwGevSxKdtqIYu539cV2xY47AUpmwjuNCZS0pSLCsYK2U+/ZPcXoSN3l6+1tvIPuBCS/cKPCi+OLz7Ru9j2p6G9ju1wYHMVyPtMadrxJrDCQ96W//ZskMyKJ2qYJQ9BNSaEOAT/yscKDqN4wQWxXlTynjVbrk8/XQBUVzXZ314zW6erJcM2Xqk2oDr+YvyjZdSUNL/pfE+/vDDJF7B6J8n/cb7z2xSuPCT0Mj492Iw6MVNMsQ==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39850400004)(366004)(346002)(376002)(136003)(2616005)(36756003)(2906002)(8676002)(956004)(6666004)(316002)(44832011)(478600001)(6506007)(5660300002)(6512007)(30864003)(83380400001)(66476007)(52116002)(66556008)(66946007)(8936002)(186003)(16526019)(86362001)(1076003)(6486002)(26005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	=?us-ascii?Q?NjujtYMHuHu5vS/hbxl8E4Tkrx4YbmeKGrNMo8CWe2Yb50MCn0ldcOz3n9L2?=
+ =?us-ascii?Q?EML9RoBlAwV/FIfthOGj5lBd7E5NqMMtrKQR9lWUsjU2Lmii3jXxshWJRT8D?=
+ =?us-ascii?Q?v/WR/+BzQv8X0qcktIREbJMNTqwToE/mCdTVae3L7kYgj23LLx9p3lX5oGgX?=
+ =?us-ascii?Q?qrhullKebGff1Xln26PLP+BDdd3MpqmSJC9aBcTlRHj7ntWIXUDaO1jsS2r0?=
+ =?us-ascii?Q?Nhh3/Tf8JIDqw/9A2M2HiYZCk5g/a4Qo8VB6/KuqfnGIKye6Y/MEamTQ0Mj5?=
+ =?us-ascii?Q?iwAK5N1UfOgd50sowvHiaYgoL4+ASEfOfkmMOQjaWC0hG+0+PtM3ynR78OeZ?=
+ =?us-ascii?Q?glpPulTnCy0iDDvVtLkjdjkOCdIYFS74m/t5i2KoqLM4MhGw0je5mgLPLB+b?=
+ =?us-ascii?Q?PGeO16fXoiRKliak4KZcw3hm0eCaRwGwV75WgVdWTfTmVVfyWMelV+GQGpuq?=
+ =?us-ascii?Q?AFXzfIWCAh4tsQ5I2BslLv3guoJkphmOyAI9w1GJMAwXNCNFGOY31SBtIhnV?=
+ =?us-ascii?Q?HtObcJKliL1gPNLc3/xLvhdyGU6bmP8GvVQVVia6NdPLfqwGdn7qX226qkTl?=
+ =?us-ascii?Q?rlOC6WBr+ydcL1L7NeaXMnKukFEuEMG0ZMIqr/5SrcGpaYT25w7gqIj/EfJF?=
+ =?us-ascii?Q?OtYUwHBcOt34s8acLl6/l5mKazsGQ0vPAV6grht0NoGPuIkHo70I7L9ivx4t?=
+ =?us-ascii?Q?mbQPacYTlt90X8yAch/7I6ZjzSUZvqueQohuZsGh++klgTeVHyLezg3/XZMb?=
+ =?us-ascii?Q?8m4iGwU3MtXtBeT1s8qyCGgPogervwGbKIe6Bf2n5s+twvNtzgTb1UQ8Dyqq?=
+ =?us-ascii?Q?dKmgm1n3KpeDP8iy1Gos8E7Qpi5kjQ3TSeYkg3xYaLExFedUzu232k/FlX1o?=
+ =?us-ascii?Q?ioe44aAwOCwAkcL1Ium8unypHvLAvVlDGzqwKtmyUvMWz551sqo7bIBxW837?=
+ =?us-ascii?Q?MEKHWtY7Krp5cmx5zofl2RP2tjxIP9VSKAjiFPDPv64pCVqnBmBsTbHGR9no?=
+ =?us-ascii?Q?gcxcki0CUIOCjMEAxRQzoJbCDG4wGu0M+gs+1TGZb2Q16lu6DpUUb3/pVdhO?=
+ =?us-ascii?Q?Ws1hmvDOK1rvVtITXVU9KoQZmeak2LbGAsOe+GMhgpqJJJo1wgqsqV/HlcUF?=
+ =?us-ascii?Q?qz/dtXNYPaIHNKcaEecKZGJK0MSbXSYPnhC+fytVc19eBZvuCw2McoX+Nw3R?=
+ =?us-ascii?Q?QZU2/f9ILmdArA4HihLZqKBEg0RV9cLe9nwapm0ILfgVUysobRyp6zBTCexP?=
+ =?us-ascii?Q?0aVM/kWQw2Ik+Dmwc5WPt8swOvMU0z1ikjiYMXMxaSkcuvmbQN+c+pMm7qoi?=
+ =?us-ascii?Q?tS+/axI5HB8NrrJXgbP821L2?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33aadb46-9eb1-4a72-9d5b-08d8dd587c84
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR01MB4148.eurprd01.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4257801-a3f5-4115-3003-08d8dd4fd707
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Mar 2021 07:50:25.1783
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2021 08:52:19.4267
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 409031fd-5562-4b2b-bd49-1680a85128b5
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wKRqIAtV3sh+aft08pprq6Z4QlQwPgp6EV3Xa6zzPPeyCJymemKF5MD4LC4/QQuAuf/swZ/O695PT4wvVfBPzRogKJ414HhELDlVQBpBEZ8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR01MB4481
-Content-Language: da-DK
-Content-Type: multipart/alternative;
-	boundary="_000_AM0PR01MB414829A11FAD5FFD3331BC63CA999AM0PR01MB4148eurp_"
-
---_000_AM0PR01MB414829A11FAD5FFD3331BC63CA999AM0PR01MB4148eurp_
-Content-Type: text/plain; charset="us-ascii"
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7wVF6LtUs3KN3v03ioM3fh9VWQ3SAKXasZuxxBsaJGYz13zc6fMbc4r+aUlX+oUCk1+7HEKXvfnvbGB5nt739A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1101MB2352
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-Hello,
+Upgrade refpolicy from 20200229+git to 20210203+git
 
-I was wondering if the meta-raspberrypi layer has official support for the =
-cm4 module?
+Yi Zhao (7):
+  selinux-python: depend on libselinux
+  parted: remove bbappend
+  audit: move audisp-* to audispd-plugins package
+  audit: upgrade 3.0 -> 3.0.1
+  packagegroup-core-selinux: add auditd
+  initscripts: restore security contexts after running
+    populate-volatile.sh
+  refpolicy: upgrade 20200229+git -> 20210203+git
 
-I see a commit adding the .dtb files for the cm4 and 400 in the master bran=
-ch.
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/commit/conf/mach=
-ine/raspberrypi4-64.conf?id=3D0c85f0150629e1f5eaf86289f2542744e38b5413&cont=
-ext=3D3&ignorews=3D0&dt=3D0
-In the documentation, it is also mentioned that USB host support has to be =
-enabled for CM4 IO board.
-https://meta-raspberrypi.readthedocs.io/en/latest/extra-build-config.html#e=
-nable-usb-host-support
+ .../initscripts/initscripts-1.0_selinux.inc   |   2 +-
+ recipes-extended/parted/parted_%.bbappend     |   1 -
+ ...arm_table.h-update-arm-syscall-table.patch |  49 -----
+ .../audit/{audit_3.0.bb =3D> audit_3.0.1.bb}    |  17 +-
+ .../packagegroup-core-selinux.bb              |   1 +
+ .../refpolicy/refpolicy-minimum_git.bb        |   1 +
+ .../refpolicy/refpolicy-targeted_git.bb       |   2 -
+ ...tile-alias-common-var-volatile-paths.patch |   6 +-
+ ...inimum-make-sysadmin-module-optional.patch |  10 +-
+ ...ed-make-unconfined_u-the-default-sel.patch |  20 +-
+ ...box-set-aliases-for-bin-sbin-and-usr.patch |   6 +-
+ ...efpolicy-minimum-enable-nscd_use_shm.patch |  35 ++++
+ ...y-policy-to-common-yocto-hostname-al.patch |   2 +-
+ ...sr-bin-bash-context-to-bin-bash.bash.patch |   4 +-
+ ...abel-resolv.conf-in-var-run-properly.patch |   6 +-
+ ...-apply-login-context-to-login.shadow.patch |   2 +-
+ .../0007-fc-bind-fix-real-path-for-bind.patch |   4 +-
+ ...-fc-hwclock-add-hwclock-alternatives.patch |   2 +-
+ ...g-apply-policy-to-dmesg-alternatives.patch |   2 +-
+ ...ssh-apply-policy-to-ssh-alternatives.patch |   2 +-
+ ...work-apply-policy-to-ip-alternatives.patch |   6 +-
+ ...v-apply-policy-to-udevadm-in-libexec.patch |   6 +-
+ ...ply-rpm_exec-policy-to-cpio-binaries.patch |   4 +-
+ ...c-su-apply-policy-to-su-alternatives.patch |   2 +-
+ ...fc-fstools-fix-real-path-for-fstools.patch |   2 +-
+ ...fix-update-alternatives-for-sysvinit.patch |   6 +-
+ ...l-apply-policy-to-brctl-alternatives.patch |   2 +-
+ ...apply-policy-to-nologin-alternatives.patch |   6 +-
+ ...apply-policy-to-sulogin-alternatives.patch |   2 +-
+ ...tp-apply-policy-to-ntpd-alternatives.patch |   2 +-
+ ...pply-policy-to-kerberos-alternatives.patch |   2 +-
+ ...ap-apply-policy-to-ldap-alternatives.patch |   2 +-
+ ...ply-policy-to-postgresql-alternative.patch |   2 +-
+ ...-apply-policy-to-screen-alternatives.patch |   6 +-
+ ...ply-policy-to-usermanage-alternative.patch |   2 +-
+ ...etty-add-file-context-to-start_getty.patch |   2 +-
+ ...file-context-to-etc-network-if-files.patch |   6 +-
+ ...k-apply-policy-to-vlock-alternatives.patch |   2 +-
+ ...ron-apply-policy-to-etc-init.d-crond.patch |   2 +-
+ ...rk-update-file-context-for-ifconfig.patch} |   6 +-
+ ...s_dist-set-aliase-for-root-director.patch} |   6 +-
+ ...stem-logging-add-rules-for-the-syml.patch} |  43 +---
+ ...ystem-logging-add-domain-rules-for-t.patch |  37 ----
+ ...stem-logging-add-rules-for-syslogd-.patch} |   6 +-
+ ...ernel-files-add-rules-for-the-symlin.patch |  24 +--
+ ...ernel-terminal-add-rules-for-bsdpty_.patch | 124 ------------
+ ...ystem-logging-fix-auditd-startup-fai.patch |  64 ++++++
+ ...ernel-terminal-don-t-audit-tty_devic.patch |   4 +-
+ ...ystem-modutils-allow-mod_t-to-access.patch |  67 +++++++
+ ...rvices-avahi-allow-avahi_t-to-watch.patch} |   8 +-
+ ...ystem-getty-allow-getty_t-watch-gett.patch |  42 ----
+ ...ervices-bluetooth-allow-bluetooth_t-.patch |  65 ------
+ ...ystem-getty-allow-getty_t-to-search-.patch |  32 +++
+ ...ervices-bluetooth-fix-bluetoothd-sta.patch |  88 ++++++++
+ ...les-sysadm-allow-sysadm-to-run-rpci.patch} |   6 +-
+ ...rvices-rpc-add-capability-dac_read_.patch} |   6 +-
+ ...rvices-rpcbind-allow-rpcbind_t-to-c.patch} |  24 ++-
+ ...rvices-rngd-fix-security-context-fo.patch} |  29 +--
+ ...ystem-authlogin-allow-chkpwd_t-to-ma.patch |  34 ----
+ ...ervices-ssh-allow-ssh_keygen_t-to-re.patch |  34 ++++
+ ...ystem-udev-allow-udevadm_t-to-search.patch |  34 ----
+ ...rvices-ssh-make-respective-init-scr.patch} |   4 +-
+ ...dev-do-not-audit-udevadm_t-to-read-w.patch |  37 ----
+ ...rnel-terminal-allow-loging-to-reset.patch} |   4 +-
+ ...ervices-rdisc-allow-rdisc_t-to-searc.patch |  34 ----
+ ...ystem-logging-fix-auditd-startup-fai.patch |  52 -----
+ ...stem-selinuxutil-allow-semanage_t-t.patch} |   6 +-
+ ...stem-systemd-enable-support-for-sys.patch} |  10 +-
+ ...ystem-systemd-fix-systemd-resolved-s.patch |  69 +++++++
+ ...ystem-init-add-capability2-bpf-and-p.patch |  37 ++++
+ ...ystem-sysnetwork-allow-ifconfig_t-to.patch |  35 ----
+ ...ystem-systemd-allow-systemd_logind_t.patch |  37 ++++
+ ...ervices-ntp-allow-ntpd_t-to-watch-sy.patch |  55 -----
+ ...ystem-logging-set-label-devlog_t-to-.patch |  86 ++++++++
+ ...-system-systemd-support-systemd-user.patch | 189 ++++++++++++++++++
+ ...ystem-logging-fix-systemd-journald-s.patch |  74 -------
+ ...ystem-systemd-allow-systemd-generato.patch |  69 +++++++
+ ...ystem-systemd-allow-systemd_backligh.patch |  35 ++++
+ ...ystem-logging-fix-systemd-journald-s.patch |  47 +++++
+ ...ystem-systemd-add-capability-mknod-f.patch |  35 ----
+ ...ervices-cron-allow-crond_t-to-search.patch |  34 ++++
+ ...ystem-systemd-systemd-gpt-auto-gener.patch |  35 ----
+ ...ervices-crontab-allow-sysadm_r-to-ru.patch |  46 +++++
+ ...ystem-sysnetwork-support-priviledge-.patch | 120 +++++++++++
+ ...ervices-acpi-allow-acpid-to-watch-th.patch |  35 ++++
+ ...stem-setrans-allow-setrans-to-acces.patch} |  19 +-
+ ...ystem-modutils-allow-kmod_t-to-write.patch |  35 ++++
+ ...les-sysadm-allow-sysadm_t-to-watch-.patch} |  17 +-
+ ...ystem-selinux-allow-setfiles_t-to-re.patch |  44 ++++
+ ...stem-mount-make-mount_t-domain-MLS-.patch} |   6 +-
+ ...les-sysadm-MLS-sysadm-rw-to-clearan.patch} |   4 +-
+ ...rvices-rpc-make-nfsd_t-domain-MLS-t.patch} |  31 +--
+ ...min-dmesg-make-dmesg_t-MLS-trusted-.patch} |   4 +-
+ ...rnel-kernel-make-kernel_t-MLS-trust.patch} |   4 +-
+ ...stem-init-make-init_t-MLS-trusted-f.patch} |   6 +-
+ ...stem-systemd-make-systemd-tmpfiles_.patch} |   6 +-
+ ...stem-logging-add-the-syslogd_t-to-t.patch} |   8 +-
+ ...stem-init-make-init_t-MLS-trusted-f.patch} |   6 +-
+ ...stem-init-all-init_t-to-read-any-le.patch} |   6 +-
+ ...ystem-systemd-systemd-networkd-make-.patch |  36 ----
+ ...stem-logging-allow-auditd_t-to-writ.patch} |   6 +-
+ ...ystem-systemd-systemd-resolved-make-.patch |  40 ----
+ ...rnel-kernel-make-kernel_t-MLS-trust.patch} |   4 +-
+ ...ystem-systemd-make-systemd-modules_t.patch |  36 ----
+ ...stem-systemd-make-systemd-logind-do.patch} |   6 +-
+ ...ystem-systemd-systemd-gpt-auto-gener.patch |  70 -------
+ ...stem-systemd-systemd-user-sessions-.patch} |   6 +-
+ ...ystem-systemd-systemd-make-systemd_-.patch | 162 +++++++++++++++
+ ...rvices-ntp-make-nptd_t-MLS-trusted-.patch} |   6 +-
+ ...ystem-setrans-allow-setrans_t-use-fd.patch |  30 +++
+ ...ervices-acpi-make-acpid_t-domain-MLS.patch |  35 ++++
+ ...rvices-avahi-make-avahi_t-MLS-trust.patch} |   4 +-
+ ...ervices-bluetooth-make-bluetooth_t-d.patch |  36 ++++
+ ...ystem-sysnetwork-make-dhcpc_t-domain.patch |  38 ++++
+ ...ervices-inetd-make-inetd_t-domain-ML.patch |  36 ++++
+ ...ervices-bind-make-named_t-domain-MLS.patch |  38 ++++
+ ...rvices-rpc-make-rpcd_t-MLS-trusted-.patch} |   6 +-
+ ...ystem-systemd-make-_systemd_t-MLS-tr.patch |  42 ++++
+ .../refpolicy/refpolicy_common.inc            | 113 ++++++-----
+ recipes-security/refpolicy/refpolicy_git.inc  |   4 +-
+ recipes-security/selinux/selinux-python.inc   |   2 +-
+ 121 files changed, 1918 insertions(+), 1240 deletions(-)
+ delete mode 100644 recipes-extended/parted/parted_%.bbappend
+ delete mode 100644 recipes-security/audit/audit/0001-lib-arm_table.h-updat=
+e-arm-syscall-table.patch
+ rename recipes-security/audit/{audit_3.0.bb =3D> audit_3.0.1.bb} (87%)
+ create mode 100644 recipes-security/refpolicy/refpolicy/0002-refpolicy-min=
+imum-enable-nscd_use_shm.patch
+ rename recipes-security/refpolicy/refpolicy/{0081-fc-sysnetwork-update-fil=
+e-context-for-ifconfig.patch =3D> 0030-fc-sysnetwork-update-file-context-fo=
+r-ifconfig.patch} (89%)
+ rename recipes-security/refpolicy/refpolicy/{0030-file_contexts.subs_dist-=
+set-aliase-for-root-director.patch =3D> 0031-file_contexts.subs_dist-set-al=
+iase-for-root-director.patch} (87%)
+ rename recipes-security/refpolicy/refpolicy/{0031-policy-modules-system-lo=
+gging-add-rules-for-the-syml.patch =3D> 0032-policy-modules-system-logging-=
+add-rules-for-the-syml.patch} (60%)
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0033-policy-module=
+s-system-logging-add-domain-rules-for-t.patch
+ rename recipes-security/refpolicy/refpolicy/{0032-policy-modules-system-lo=
+gging-add-rules-for-syslogd-.patch =3D> 0033-policy-modules-system-logging-=
+add-rules-for-syslogd-.patch} (87%)
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0035-policy-module=
+s-kernel-terminal-add-rules-for-bsdpty_.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0035-policy-module=
+s-system-logging-fix-auditd-startup-fai.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0037-policy-module=
+s-system-modutils-allow-mod_t-to-access.patch
+ rename recipes-security/refpolicy/refpolicy/{0037-policy-modules-services-=
+avahi-allow-avahi_t-to-watch.patch =3D> 0038-policy-modules-services-avahi-=
+allow-avahi_t-to-watch.patch} (87%)
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0038-policy-module=
+s-system-getty-allow-getty_t-watch-gett.patch
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0039-policy-module=
+s-services-bluetooth-allow-bluetooth_t-.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0039-policy-module=
+s-system-getty-allow-getty_t-to-search-.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0040-policy-module=
+s-services-bluetooth-fix-bluetoothd-sta.patch
+ rename recipes-security/refpolicy/refpolicy/{0040-policy-modules-roles-sys=
+adm-allow-sysadm-to-run-rpci.patch =3D> 0041-policy-modules-roles-sysadm-al=
+low-sysadm-to-run-rpci.patch} (87%)
+ rename recipes-security/refpolicy/refpolicy/{0041-policy-modules-services-=
+rpc-add-capability-dac_read_.patch =3D> 0042-policy-modules-services-rpc-ad=
+d-capability-dac_read_.patch} (88%)
+ rename recipes-security/refpolicy/refpolicy/{0042-policy-modules-services-=
+rpcbind-allow-rpcbind_t-to-c.patch =3D> 0043-policy-modules-services-rpcbin=
+d-allow-rpcbind_t-to-c.patch} (61%)
+ rename recipes-security/refpolicy/refpolicy/{0043-policy-modules-services-=
+rngd-fix-security-context-fo.patch =3D> 0044-policy-modules-services-rngd-f=
+ix-security-context-fo.patch} (66%)
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0044-policy-module=
+s-system-authlogin-allow-chkpwd_t-to-ma.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0045-policy-module=
+s-services-ssh-allow-ssh_keygen_t-to-re.patch
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0045-policy-module=
+s-system-udev-allow-udevadm_t-to-search.patch
+ rename recipes-security/refpolicy/refpolicy/{0049-policy-modules-services-=
+ssh-make-respective-init-scr.patch =3D> 0046-policy-modules-services-ssh-ma=
+ke-respective-init-scr.patch} (89%)
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0046-policy-module=
+s-udev-do-not-audit-udevadm_t-to-read-w.patch
+ rename recipes-security/refpolicy/refpolicy/{0050-policy-modules-kernel-te=
+rminal-allow-loging-to-reset.patch =3D> 0047-policy-modules-kernel-terminal=
+-allow-loging-to-reset.patch} (90%)
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0047-policy-module=
+s-services-rdisc-allow-rdisc_t-to-searc.patch
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0048-policy-module=
+s-system-logging-fix-auditd-startup-fai.patch
+ rename recipes-security/refpolicy/refpolicy/{0051-policy-modules-system-se=
+linuxutil-allow-semanage_t-t.patch =3D> 0048-policy-modules-system-selinuxu=
+til-allow-semanage_t-t.patch} (84%)
+ rename recipes-security/refpolicy/refpolicy/{0054-policy-modules-system-sy=
+stemd-enable-support-for-sys.patch =3D> 0049-policy-modules-system-systemd-=
+enable-support-for-sys.patch} (89%)
+ create mode 100644 recipes-security/refpolicy/refpolicy/0050-policy-module=
+s-system-systemd-fix-systemd-resolved-s.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0051-policy-module=
+s-system-init-add-capability2-bpf-and-p.patch
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0052-policy-module=
+s-system-sysnetwork-allow-ifconfig_t-to.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0052-policy-module=
+s-system-systemd-allow-systemd_logind_t.patch
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0053-policy-module=
+s-services-ntp-allow-ntpd_t-to-watch-sy.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0053-policy-module=
+s-system-logging-set-label-devlog_t-to-.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0054-policy-module=
+s-system-systemd-support-systemd-user.patch
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0055-policy-module=
+s-system-logging-fix-systemd-journald-s.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0055-policy-module=
+s-system-systemd-allow-systemd-generato.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0056-policy-module=
+s-system-systemd-allow-systemd_backligh.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0057-policy-module=
+s-system-logging-fix-systemd-journald-s.patch
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0057-policy-module=
+s-system-systemd-add-capability-mknod-f.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0058-policy-module=
+s-services-cron-allow-crond_t-to-search.patch
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0058-policy-module=
+s-system-systemd-systemd-gpt-auto-gener.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0059-policy-module=
+s-services-crontab-allow-sysadm_r-to-ru.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0060-policy-module=
+s-system-sysnetwork-support-priviledge-.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0061-policy-module=
+s-services-acpi-allow-acpid-to-watch-th.patch
+ rename recipes-security/refpolicy/refpolicy/{0063-policy-modules-system-se=
+trans-allow-setrans-to-acces.patch =3D> 0062-policy-modules-system-setrans-=
+allow-setrans-to-acces.patch} (71%)
+ create mode 100644 recipes-security/refpolicy/refpolicy/0063-policy-module=
+s-system-modutils-allow-kmod_t-to-write.patch
+ rename recipes-security/refpolicy/refpolicy/{0056-policy-modules-roles-sys=
+adm-allow-sysadm_t-to-watch-.patch =3D> 0064-policy-modules-roles-sysadm-al=
+low-sysadm_t-to-watch-.patch} (60%)
+ create mode 100644 recipes-security/refpolicy/refpolicy/0065-policy-module=
+s-system-selinux-allow-setfiles_t-to-re.patch
+ rename recipes-security/refpolicy/refpolicy/{0062-policy-modules-system-mo=
+unt-make-mount_t-domain-MLS-.patch =3D> 0066-policy-modules-system-mount-ma=
+ke-mount_t-domain-MLS-.patch} (85%)
+ rename recipes-security/refpolicy/refpolicy/{0061-policy-modules-roles-sys=
+adm-MLS-sysadm-rw-to-clearan.patch =3D> 0067-policy-modules-roles-sysadm-ML=
+S-sysadm-rw-to-clearan.patch} (92%)
+ rename recipes-security/refpolicy/refpolicy/{0059-policy-modules-services-=
+rpc-fix-policy-for-nfsserver.patch =3D> 0068-policy-modules-services-rpc-ma=
+ke-nfsd_t-domain-MLS-t.patch} (61%)
+ rename recipes-security/refpolicy/refpolicy/{0064-policy-modules-admin-dme=
+sg-make-dmesg_t-MLS-trusted-.patch =3D> 0069-policy-modules-admin-dmesg-mak=
+e-dmesg_t-MLS-trusted-.patch} (91%)
+ rename recipes-security/refpolicy/refpolicy/{0065-policy-modules-kernel-ke=
+rnel-make-kernel_t-MLS-trust.patch =3D> 0070-policy-modules-kernel-kernel-m=
+ake-kernel_t-MLS-trust.patch} (96%)
+ rename recipes-security/refpolicy/refpolicy/{0066-policy-modules-system-in=
+it-make-init_t-MLS-trusted-f.patch =3D> 0071-policy-modules-system-init-mak=
+e-init_t-MLS-trusted-f.patch} (90%)
+ rename recipes-security/refpolicy/refpolicy/{0067-policy-modules-system-sy=
+stemd-make-systemd-tmpfiles_.patch =3D> 0072-policy-modules-system-systemd-=
+make-systemd-tmpfiles_.patch} (92%)
+ rename recipes-security/refpolicy/refpolicy/{0068-policy-modules-system-lo=
+gging-add-the-syslogd_t-to-t.patch =3D> 0073-policy-modules-system-logging-=
+add-the-syslogd_t-to-t.patch} (86%)
+ rename recipes-security/refpolicy/refpolicy/{0069-policy-modules-system-in=
+it-make-init_t-MLS-trusted-f.patch =3D> 0074-policy-modules-system-init-mak=
+e-init_t-MLS-trusted-f.patch} (86%)
+ rename recipes-security/refpolicy/refpolicy/{0070-policy-modules-system-in=
+it-all-init_t-to-read-any-le.patch =3D> 0075-policy-modules-system-init-all=
+-init_t-to-read-any-le.patch} (88%)
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0075-policy-module=
+s-system-systemd-systemd-networkd-make-.patch
+ rename recipes-security/refpolicy/refpolicy/{0071-policy-modules-system-lo=
+gging-allow-auditd_t-to-writ.patch =3D> 0076-policy-modules-system-logging-=
+allow-auditd_t-to-writ.patch} (88%)
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0076-policy-module=
+s-system-systemd-systemd-resolved-make-.patch
+ rename recipes-security/refpolicy/refpolicy/{0072-policy-modules-kernel-ke=
+rnel-make-kernel_t-MLS-trust.patch =3D> 0077-policy-modules-kernel-kernel-m=
+ake-kernel_t-MLS-trust.patch} (90%)
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0077-policy-module=
+s-system-systemd-make-systemd-modules_t.patch
+ rename recipes-security/refpolicy/refpolicy/{0073-policy-modules-system-sy=
+stemd-make-systemd-logind-do.patch =3D> 0078-policy-modules-system-systemd-=
+make-systemd-logind-do.patch} (90%)
+ delete mode 100644 recipes-security/refpolicy/refpolicy/0078-policy-module=
+s-system-systemd-systemd-gpt-auto-gener.patch
+ rename recipes-security/refpolicy/refpolicy/{0074-policy-modules-system-sy=
+stemd-systemd-user-sessions-.patch =3D> 0079-policy-modules-system-systemd-=
+systemd-user-sessions-.patch} (88%)
+ create mode 100644 recipes-security/refpolicy/refpolicy/0080-policy-module=
+s-system-systemd-systemd-make-systemd_-.patch
+ rename recipes-security/refpolicy/refpolicy/{0079-policy-modules-services-=
+ntp-make-nptd_t-MLS-trusted-.patch =3D> 0081-policy-modules-services-ntp-ma=
+ke-nptd_t-MLS-trusted-.patch} (89%)
+ create mode 100644 recipes-security/refpolicy/refpolicy/0082-policy-module=
+s-system-setrans-allow-setrans_t-use-fd.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0083-policy-module=
+s-services-acpi-make-acpid_t-domain-MLS.patch
+ rename recipes-security/refpolicy/refpolicy/{0080-policy-modules-services-=
+avahi-make-avahi_t-MLS-trust.patch =3D> 0084-policy-modules-services-avahi-=
+make-avahi_t-MLS-trust.patch} (89%)
+ create mode 100644 recipes-security/refpolicy/refpolicy/0085-policy-module=
+s-services-bluetooth-make-bluetooth_t-d.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0086-policy-module=
+s-system-sysnetwork-make-dhcpc_t-domain.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0087-policy-module=
+s-services-inetd-make-inetd_t-domain-ML.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0088-policy-module=
+s-services-bind-make-named_t-domain-MLS.patch
+ rename recipes-security/refpolicy/refpolicy/{0060-policy-modules-services-=
+rpc-make-rpcd_t-MLS-trusted-.patch =3D> 0089-policy-modules-services-rpc-ma=
+ke-rpcd_t-MLS-trusted-.patch} (85%)
+ create mode 100644 recipes-security/refpolicy/refpolicy/0090-policy-module=
+s-system-systemd-make-_systemd_t-MLS-tr.patch
 
-Since it is not listed under supported machines I assume that it is not sup=
-ported.
-If that is true, how long before it is going to be supported?
+--=20
+2.25.1
 
-I haven't been able to get the USB host support to work.
-I have been building from the master branch and set ' ENABLE_DWC2_HOST =3D =
-"1" ' in my local.conf.
-I have also confirmed that ' dtoverlay=3Ddwc2,dr_mode=3Dhost ' has been add=
-ed to the config.txt, but so far I have had no luck getting it to work.
-Any tips on how to get it to work?
-
-I tried writing an image onto the CM4 with the RPI Imager and had success w=
-ith enabling the USB host support that way.
-
---
-Jonas Vennevold
-
-
-
---_000_AM0PR01MB414829A11FAD5FFD3331BC63CA999AM0PR01MB4148eurp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DA" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
-ak-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hello,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I was wondering if the meta-ras=
-pberrypi layer has official support for the cm4 module?<br>
-<br>
-I see a commit adding the .dtb files for the cm4 and 400 in the master bran=
-ch.<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span lang=3D"EN-US">=
-<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/commi=
-t/conf/machine/raspberrypi4-64.conf?id=3D0c85f0150629e1f5eaf86289f2542744e3=
-8b5413&amp;context=3D3&amp;ignorews=3D0&amp;dt=3D0">http://git.yoctoproject=
-.org/cgit/cgit.cgi/meta-raspberrypi/commit/conf/machine/raspberrypi4-64.con=
-f?id=3D0c85f0150629e1f5eaf86289f2542744e38b5413&amp;context=3D3&amp;ignorew=
-s=3D0&amp;dt=3D0</a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">In the documentation, it is als=
-o mentioned that USB host support has to be enabled for CM4 IO board.<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><a href=3D"https://meta-raspber=
-rypi.readthedocs.io/en/latest/extra-build-config.html#enable-usb-host-suppo=
-rt">https://meta-raspberrypi.readthedocs.io/en/latest/extra-build-config.ht=
-ml#enable-usb-host-support</a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Since it is not listed under su=
-pported machines I assume that it is not supported.<br>
-If that is true, how long before it is going to be supported?<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I haven&#8217;t been able to ge=
-t the USB host support to work.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I have been building from the m=
-aster branch and set '
-<b>ENABLE_DWC2_HOST =3D &quot;1&quot;</b> &#8217; in my local.conf.<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I have also confirmed that &#82=
-16; <b>dtoverlay=3Ddwc2,dr_mode=3Dhost</b> &#8216; has been added to the co=
-nfig.txt, but so far I have had no luck getting it to work.<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Any tips on how to get it to wo=
-rk?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I tried writing an image onto t=
-he CM4 with the RPI Imager and had success with enabling the USB host suppo=
-rt that way.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:8.5pt;font-f=
-amily:&quot;Verdana&quot;,sans-serif;color:black;mso-fareast-language:DA">-=
--
-<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:9.0pt;fon=
-t-family:&quot;Verdana&quot;,sans-serif;color:#002E5F;mso-fareast-language:=
-DA">Jonas Vennevold</span></b><span lang=3D"EN-US" style=3D"font-size:8.5pt=
-;font-family:&quot;Verdana&quot;,sans-serif;color:#848884;mso-fareast-langu=
-age:DA"><br>
-&nbsp;</span><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quo=
-t;Verdana&quot;,sans-serif;mso-fareast-language:DA"><o:p></o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-</div>
-</body>
-</html>
-
---_000_AM0PR01MB414829A11FAD5FFD3331BC63CA999AM0PR01MB4148eurp_--
