@@ -1,282 +1,198 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.3445.1614653378364253838
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+ by mx.groups.io with SMTP id smtpd.web11.5046.1614666302600912220
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Mar 2021 18:49:38 -0800
+ Mon, 01 Mar 2021 22:25:03 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=iRduM3yC;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id C253C38C064F
-	for <yocto@yoctoproject.org>; Tue,  2 Mar 2021 02:49:37 +0000 (UTC)
-Received: by mail-pg1-f181.google.com with SMTP id a23so3093347pga.8
-        for <yocto@yoctoproject.org>; Mon, 01 Mar 2021 18:49:37 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Na5Elos2;
+ spf=pass (domain: gmail.com, ip: 209.85.160.178, mailfrom: d.extc.sachin@gmail.com)
+Received: by mail-qt1-f178.google.com with SMTP id w1so14052605qto.2;
+        Mon, 01 Mar 2021 22:25:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version:thread-index
-         :content-language:importance;
-        bh=zlQDdR2jmIkjrRtoVWfVqb7s8gozcVhMoEIxw+8deW4=;
-        b=iRduM3yCnJWDHERk9Ke8Qbhj29f18C4WF+gbKz4wJKfMJTAYB27/ttrNneBgpoBqpU
-         DmZ3NUUxz7oTiXcFTcq78d6vWVvYnUyPfGN1Li8GtEliu1hygUeBMZNMyox+C1pO3YEb
-         EOCVoRew6CaFiMQNmdLMpR+zx7gTZSQpbyCcpRDEhS/goUA1IUroM/eBskMJHkHYVd84
-         6uRNNEFEp0XUAFy00xnIAromnX3mL8uKjjC+vt5oCgytnAuW1Nrbg/vNw0ZCZ3QuxUuD
-         ufGX+1mY0QRucJn/WzlUOJXjBI0/eP/sbMjJ9g4aVy/jFqmCk9Nechb2ygZKRx6ZPMpy
-         yIoA==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=VpI+UTmT/yQWS8Fy2U9epxiZiERZiJISDWucpl5+V74=;
+        b=Na5Elos224BU53+mLWxrntexwyCI3NV/J37pSjRvBj38ySD6lhFvsKoEoZXYeXL2gB
+         KiFtGH8V0HMW+rNwNtAIk38M2sWJGKOem2qVo2AOdx914JSO9wXvGymkQemmNrZghNcG
+         a2zje2t1LQiRmyvFeQyYaeMDmk8qll4o8PErLVLxkVWwLo5YRM8DUbxcQc/inSg8nonP
+         GhJyCbuQDoQ9ZilnD7FyJswf53RdTuGyljTNae7/i69+7egjWEP11Q3rG+cyq3upZu1e
+         ytHhE4bHe1MZWjRHRTLOXJEuQf6sJVy4WaQfQWFXEKGgwgvdo9ET23WY0xXT8SwAtpvs
+         q6BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :thread-index:content-language:importance;
-        bh=zlQDdR2jmIkjrRtoVWfVqb7s8gozcVhMoEIxw+8deW4=;
-        b=GmAzXdMNQjya9RACYbLtH9Pz3VBAQQGSfvKivys69BTiV7SVebwN1J9Pivi9JADWPV
-         xEm+SLUs73W3Kb99u1blj8uxKNh9DHBb2xqPidrq4oho3HgxgOeqIuWGKYU8pOxKy3Xh
-         semCh6r8pWxZ5ysjIVVD27bzR68r3W5ccikqXgSUnXorZHHr5OW07herDeiK0OFwIAgm
-         NW/0ITkAYTK1vGqtXsPEX/5QgW9zWWD1575ke9HsbeZS7Ms0Ms27gn1dunljoVLSr7MJ
-         XodxiQqpsNHTg6/gUmVVnUB4cJB0LG944El1mtsuCHZ6/ZyGh5mqqmz4svDnjCdkB+g9
-         rBzw==
-X-Gm-Message-State: AOAM533hdyG89BxzF7sM4S4ct02xLk5Dgktri0BlAkNOAE5CSEjJO9z6
-	kDjc/Awe2E4JAYo2fRMN/L8=
-X-Google-Smtp-Source: ABdhPJysRPjBgMqZQU32kMxxAOD8k2eBWy9g4jPIVwjK+L9E/flyPom2k1go2HzjSDnDJp2pvPTPfA==
-X-Received: by 2002:aa7:9d91:0:b029:1ed:e15b:631d with SMTP id f17-20020aa79d910000b02901ede15b631dmr1299998pfq.72.1614653377280;
-        Mon, 01 Mar 2021 18:49:37 -0800 (PST)
-Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-        by smtp.gmail.com with ESMTPSA id 8sm19830114pfu.120.2021.03.01.18.49.36
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 01 Mar 2021 18:49:36 -0800 (PST)
-From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Subject: Reminder: Yocto Project Technical Team Meeting @ Monthly from 8am on the first Tuesday (PDT)
-Date: Mon, 1 Mar 2021 18:49:36 -0800
-Message-ID: <130401d70f0e$af0d4440$0d27ccc0$@gmail.com>
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=VpI+UTmT/yQWS8Fy2U9epxiZiERZiJISDWucpl5+V74=;
+        b=uevhogEKfcHFmFD97cuDISjnpdxwadvK/gEb8fMKIzgGEooPEB6G4w9AK0RVQQ/VYp
+         YLMdpCkVRyKR+UnVOybobzxUfCyVAy67/FvE0PHWH61S47Fr9vCZjKDGAk1WwY4i7vNN
+         WGeRemRS5+0LmkcJbU5W8vZKJzJE3E3IbDwo4n9v8K2PQpnWvp+MgDRug0VnPSAlwPIK
+         xkD4K3RhifGUu43skRS6sZTwpz4zz8XWgC1VrEpX60MQUV/qzdvKGCYT/Hv0F/CHp32q
+         M8FZDR40LlpOf5bkuoqa/VZXopsO9WJD+/bN/LM1LHSVdCT93+jo6KqYRNg/0DdpMeAq
+         62Dw==
+X-Gm-Message-State: AOAM5301/WsV36e0x4A/tZlhyO9rqYLlH/+FIWZvhLPD4LzRi28ytG4V
+	m0YmmgYL6AV3+5N3CuRKybNaUxMsh9R9178mnLyWj1AxAWkNHg==
+X-Google-Smtp-Source: ABdhPJzK4woRtpPBNMROXoE9bftXw9QGDcHvyHc0EaKOpmimUH3hwHXCDiBrLo4TdzL3XVGYFPZjhbEv2GDNaLkjKbA=
+X-Received: by 2002:aed:3104:: with SMTP id 4mr10316595qtg.341.1614666301388;
+ Mon, 01 Mar 2021 22:25:01 -0800 (PST)
 MIME-Version: 1.0
-X-Priority: 1 (Highest)
-X-MSMail-Priority: High
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQG8gWFYbirUThYQTJHSF3RlKF9RnA==
-Importance: High
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_1305_01D70ECB.A0EC7540"
-Content-Language: en-us
+From: d.extc.sachin@gmail.com
+Date: Tue, 2 Mar 2021 11:54:48 +0530
+Message-ID: <CA+xLv6Tp6odDDfXdCh29khA4H04+uuC=8SJSAtshm8rmQ1zJ3A@mail.gmail.com>
+Subject: yocto meta intel dual boot with windows 8.1
+To: meta-intel@lists.yoctoproject.org, yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000533a5605bc87cb80"
 
-------=_NextPart_000_1305_01D70ECB.A0EC7540
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+--000000000000533a5605bc87cb80
+Content-Type: text/plain; charset="UTF-8"
 
-All,
+Hi
 
- 
+I am new to yoctoproject and have a system with intel architecture and
+embedded OS based on windows 8.1 installed. But now I want to make a dual
+boot system with yocto. I have around 100 GB free space when checked in
+disk management.
 
-Just a reminder we will hold the monthly Yocto Project Technical Meeting at
-8am PST tomorrow. (3/2)  
+So here's what I did downloaded poky repo and meta-intel sub repo. appended
+the following at the end of my local.conf file
 
- 
+MACHINE = "intel-corei7-64"
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "grub"
+PREFERRED_VERSION_grub ?= "2.0"
+WKS_FILE = "image-installer.wks.in"
+IMAGE_FSTYPES_append = " ext4"
+IMAGE_TYPEDEP_wic = "ext4"
+INITRD_IMAGE_LIVE="core-image-minimal-initramfs"
+do_image_wic[depends] += "${INITRD_IMAGE_LIVE}:do_image_complete"
+do_rootfs[depends] += "virtual/kernel:do_deploy"
+IMAGE_BOOT_FILES_append = "\
+      ${KERNEL_IMAGETYPE} \
+  microcode.cpio \
+  ${IMGDEPLOYDIR}/${IMAGE_BASENAME}-${MACHINE}.ext4;rootfs.img \
+  ${@bb.utils.contains('EFI_PROVIDER', 'grub-efi',
+'grub-efi-bootx64.efi;EFI/BOOT/bootx64.efi', '', d)} \
+  ${@bb.utils.contains('EFI_PROVIDER', 'grub-efi',
+'${IMAGE_ROOTFS}/boot/EFI/BOOT/grub.cfg;EFI/BOOT/grub.cfg', '', d)} \
+  ${@bb.utils.contains('EFI_PROVIDER', 'systemd-boot',
+'systemd-bootx64.efi;EFI/BOOT/bootx64.efi', '', d)} \
+  ${@bb.utils.contains('EFI_PROVIDER', 'systemd-boot',
+'${IMAGE_ROOTFS}/boot/loader/loader.conf;loader/loader.conf ', '', d)}
+\
+  ${@bb.utils.contains('EFI_PROVIDER', 'systemd-boot',
+'${IMAGE_ROOTFS}/boot/loader/entries/boot.conf;loader/entries/boot.conf',
+'', d)} "
 
-Yocto Project Technical Team Meeting: We encourage people attending the
-meeting to logon and announce themselves on the Yocto Project IRC chancel
-during the meeting (optional):
+So with the above config I build a sato image using bitbake command and got
+a .wic image file. But when I try to install the image on my system I could
+see 2 options
 
-Yocto IRC: http://webchat.freenode.net/?channels=#yocto
+install
+reboot to firmware settings.
 
- 
+when I selected the first option to install it only asks to install on sda,
+that means it will erase my entire disk and install only yocto.
 
-Wiki: https://www.yoctoproject.org/public-virtual-meetings/
+So how can I achieve something like we do in standard linux distribution
+where we are able to install it on a specific partition/free space
+available. Is there any configuration I need to change/add?
 
- 
+Thanks
 
-When            Monthly from 8am to 9am on the first Tuesday Pacific Time
-
-Where           Zoom Meeting:
-https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09
-
- 
-
-We are tracking the minutes at:
-https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9d
-DH4/edit?pli=1 Please request access if you want to assist in editing them.
-The world should have view access. 
-
- 
-
-Thanks,
-
- 
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
-
- 
-
-
-------=_NextPart_000_1305_01D70ECB.A0EC7540
-Content-Type: text/html;
-	boundary="----=_NextPart_000_106E_01D6F8C2.22466170";
-	charset="us-ascii"
+--000000000000533a5605bc87cb80
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span =
-style=3D'color:#1F497D'>All,</span><span =
-style=3D'font-size:12.0pt;font-family:"Times New =
-Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span =
-style=3D'color:#1F497D'>&nbsp;</span><span =
-style=3D'font-size:12.0pt;font-family:"Times New =
-Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Just a =
-reminder we will hold the monthly Yocto Project Technical Meeting at 8am =
-PST tomorrow. (3/2)&nbsp; <o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span =
-style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Yocto =
-Project Technical Team Meeting: We encourage people attending the =
-meeting to logon and announce themselves on the Yocto Project IRC =
-chancel during the meeting (optional):</span><span =
-style=3D'font-size:12.0pt;font-family:"Times New =
-Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Yocto IRC: =
-</span><a =
-href=3D"http://webchat.freenode.net/?channels=3D#yocto">http://webchat.fr=
-eenode.net/?channels=3D#yocto</a><span =
-style=3D'font-size:12.0pt;font-family:"Times New =
-Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span =
-style=3D'color:#1F497D'>&nbsp;</span><span =
-style=3D'font-size:12.0pt;font-family:"Times New =
-Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Wiki: =
-</span><a =
-href=3D"https://www.yoctoproject.org/public-virtual-meetings/">https://ww=
-w.yoctoproject.org/public-virtual-meetings/</a><span =
-style=3D'font-size:12.0pt;font-family:"Times New =
-Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span =
-style=3D'color:#1F497D'>&nbsp;</span><span =
-style=3D'font-size:12.0pt;font-family:"Times New =
-Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span =
-style=3D'color:#1F497D'>When&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; Monthly from 8am to 9am on the first Tuesday =
-Pacific Time</span><span style=3D'font-size:12.0pt;font-family:"Times =
-New Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span =
-style=3D'color:#1F497D'>Where&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; Zoom Meeting: <a =
-href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT0=
-9">https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09</a>=
-<o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span =
-style=3D'color:#1F497D'>&nbsp;</span><span =
-style=3D'font-size:12.0pt;font-family:"Times New =
-Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span style=3D'color:#1F497D'>We are =
-tracking the minutes at: </span><a =
-href=3D"https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7Q=
-wKC5wWVDg9dDH4/edit?pli=3D1">https://docs.google.com/document/d/1ly8nyhO1=
-4kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit?pli=3D1</a><span =
-style=3D'color:#1F497D'> Please request access if you want to assist in =
-editing them.&nbsp; The world should have view access. </span><span =
-style=3D'font-size:12.0pt;font-family:"Times New =
-Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span =
-style=3D'color:#1F497D'>&nbsp;</span><span =
-style=3D'font-size:12.0pt;font-family:"Times New =
-Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><span =
-style=3D'color:#1F497D'>Thanks,</span><span =
-style=3D'font-size:12.0pt;font-family:"Times New =
-Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+<div dir=3D"ltr">Hi<div><br></div><div><p style=3D"margin-top:0px;margin-ri=
+ght:0px;margin-left:0px;padding:0px;border:0px;font-variant-numeric:inherit=
+;font-variant-east-asian:inherit;font-stretch:inherit;line-height:inherit;f=
+ont-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;font-size:=
+15px;vertical-align:baseline;box-sizing:inherit;clear:both;color:rgb(36,39,=
+41)">I am new to yoctoproject and have a system with intel architecture and=
+ embedded OS based on windows 8.1 installed. But now I want to make a dual =
+boot system with yocto. I have around 100 GB free space when checked in dis=
+k management.</p><p style=3D"margin-top:0px;margin-right:0px;margin-left:0p=
+x;padding:0px;border:0px;font-variant-numeric:inherit;font-variant-east-asi=
+an:inherit;font-stretch:inherit;line-height:inherit;font-family:Arial,&quot=
+;Helvetica Neue&quot;,Helvetica,sans-serif;font-size:15px;vertical-align:ba=
+seline;box-sizing:inherit;clear:both;color:rgb(36,39,41)">So here&#39;s wha=
+t I did downloaded poky repo and meta-intel sub repo. appended the followin=
+g at the end of my local.conf file</p><pre style=3D"margin-top:0px;padding:=
+12px;border:0px;font-variant-numeric:inherit;font-variant-east-asian:inheri=
+t;font-stretch:inherit;line-height:1.30769;font-family:Consolas,Menlo,Monac=
+o,&quot;Lucida Console&quot;,&quot;Liberation Mono&quot;,&quot;DejaVu Sans =
+Mono&quot;,&quot;Bitstream Vera Sans Mono&quot;,&quot;Courier New&quot;,mon=
+ospace,sans-serif;font-size:13px;vertical-align:baseline;box-sizing:inherit=
+;width:auto;max-height:600px;overflow:auto;border-radius:5px"><code style=
+=3D"margin:0px;padding:0px;border:0px;font-style:inherit;font-variant:inher=
+it;font-weight:inherit;font-stretch:inherit;line-height:inherit;font-family=
+:Consolas,Menlo,Monaco,&quot;Lucida Console&quot;,&quot;Liberation Mono&quo=
+t;,&quot;DejaVu Sans Mono&quot;,&quot;Bitstream Vera Sans Mono&quot;,&quot;=
+Courier New&quot;,monospace,sans-serif;vertical-align:baseline;box-sizing:i=
+nherit;background-color:transparent;white-space:inherit;border-radius:0px">=
+MACHINE =3D &quot;intel-corei7-64&quot;
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS =3D &quot;grub&quot;
+PREFERRED_VERSION_grub ?=3D &quot;2.0&quot;
+WKS_FILE =3D &quot;<a href=3D"http://image-installer.wks.in">image-installe=
+r.wks.in</a>&quot;
+IMAGE_FSTYPES_append =3D &quot; ext4&quot;
+IMAGE_TYPEDEP_wic =3D &quot;ext4&quot;
+INITRD_IMAGE_LIVE=3D&quot;core-image-minimal-initramfs&quot;
+do_image_wic[depends] +=3D &quot;${INITRD_IMAGE_LIVE}:do_image_complete&quo=
+t;
+do_rootfs[depends] +=3D &quot;virtual/kernel:do_deploy&quot;
+IMAGE_BOOT_FILES_append =3D &quot;\
+      ${KERNEL_IMAGETYPE} \
+  microcode.cpio \
+  ${IMGDEPLOYDIR}/${IMAGE_BASENAME}-${MACHINE}.ext4;rootfs.img \
+  ${@bb.utils.contains(&#39;EFI_PROVIDER&#39;, &#39;grub-efi&#39;, &#39;gru=
+b-efi-bootx64.efi;EFI/BOOT/bootx64.efi&#39;, &#39;&#39;, d)} \
+  ${@bb.utils.contains(&#39;EFI_PROVIDER&#39;, &#39;grub-efi&#39;, &#39;${I=
+MAGE_ROOTFS}/boot/EFI/BOOT/grub.cfg;EFI/BOOT/grub.cfg&#39;, &#39;&#39;, d)}=
+ \
+  ${@bb.utils.contains(&#39;EFI_PROVIDER&#39;, &#39;systemd-boot&#39;, &#39=
+;systemd-bootx64.efi;EFI/BOOT/bootx64.efi&#39;, &#39;&#39;, d)} \
+  ${@bb.utils.contains(&#39;EFI_PROVIDER&#39;, &#39;systemd-boot&#39;, &#39=
+;${IMAGE_ROOTFS}/boot/loader/loader.conf;loader/loader.conf &#39;, &#39;&#3=
+9;, d)} \
+  ${@bb.utils.contains(&#39;EFI_PROVIDER&#39;, &#39;systemd-boot&#39;, &#39=
+;${IMAGE_ROOTFS}/boot/loader/entries/boot.conf;loader/entries/boot.conf&#39=
+;, &#39;&#39;, d)} &quot;
+</code></pre><p style=3D"margin-top:0px;margin-right:0px;margin-left:0px;pa=
+dding:0px;border:0px;font-variant-numeric:inherit;font-variant-east-asian:i=
+nherit;font-stretch:inherit;line-height:inherit;font-family:Arial,&quot;Hel=
+vetica Neue&quot;,Helvetica,sans-serif;font-size:15px;vertical-align:baseli=
+ne;box-sizing:inherit;clear:both;color:rgb(36,39,41)">So with the above con=
+fig I build a sato image using bitbake command and got a .wic image file. B=
+ut when I try to install the image on my system I could see 2 options</p><p=
+re style=3D"margin-top:0px;padding:12px;border:0px;font-variant-numeric:inh=
+erit;font-variant-east-asian:inherit;font-stretch:inherit;line-height:1.307=
+69;font-family:Consolas,Menlo,Monaco,&quot;Lucida Console&quot;,&quot;Liber=
+ation Mono&quot;,&quot;DejaVu Sans Mono&quot;,&quot;Bitstream Vera Sans Mon=
+o&quot;,&quot;Courier New&quot;,monospace,sans-serif;font-size:13px;vertica=
+l-align:baseline;box-sizing:inherit;width:auto;max-height:600px;overflow:au=
+to;border-radius:5px"><code style=3D"margin:0px;padding:0px;border:0px;font=
+-style:inherit;font-variant:inherit;font-weight:inherit;font-stretch:inheri=
+t;line-height:inherit;font-family:Consolas,Menlo,Monaco,&quot;Lucida Consol=
+e&quot;,&quot;Liberation Mono&quot;,&quot;DejaVu Sans Mono&quot;,&quot;Bits=
+tream Vera Sans Mono&quot;,&quot;Courier New&quot;,monospace,sans-serif;ver=
+tical-align:baseline;box-sizing:inherit;background-color:transparent;white-=
+space:inherit;border-radius:0px">install
+reboot to firmware settings.
+</code></pre><p style=3D"margin-top:0px;margin-right:0px;margin-left:0px;pa=
+dding:0px;border:0px;font-variant-numeric:inherit;font-variant-east-asian:i=
+nherit;font-stretch:inherit;line-height:inherit;font-family:Arial,&quot;Hel=
+vetica Neue&quot;,Helvetica,sans-serif;font-size:15px;vertical-align:baseli=
+ne;box-sizing:inherit;clear:both;color:rgb(36,39,41)">when I selected the f=
+irst option to install it only asks to install on sda, that means it will e=
+rase my entire disk and install only yocto.</p><p style=3D"margin-top:0px;m=
+argin-right:0px;margin-left:0px;padding:0px;border:0px;font-variant-numeric=
+:inherit;font-variant-east-asian:inherit;font-stretch:inherit;line-height:i=
+nherit;font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;fo=
+nt-size:15px;vertical-align:baseline;box-sizing:inherit;clear:both;color:rg=
+b(36,39,41)">So how can I achieve something like we do in standard linux di=
+stribution where we are able to install it on a specific partition/free spa=
+ce available. Is there any configuration I need to change/add?</p><p style=
+=3D"margin:0px;padding:0px;border:0px;font-variant-numeric:inherit;font-var=
+iant-east-asian:inherit;font-stretch:inherit;line-height:inherit;font-famil=
+y:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;font-size:15px;vert=
+ical-align:baseline;box-sizing:inherit;clear:both;color:rgb(36,39,41)">Than=
+ks</p></div></div>
 
-------=_NextPart_000_1305_01D70ECB.A0EC7540--
+--000000000000533a5605bc87cb80--
