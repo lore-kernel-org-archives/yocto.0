@@ -1,88 +1,70 @@
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
- by mx.groups.io with SMTP id smtpd.web10.6336.1614777351501925868
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.6988.1614780603637794691
  for <yocto@lists.yoctoproject.org>;
- Wed, 03 Mar 2021 05:15:51 -0800
+ Wed, 03 Mar 2021 06:10:03 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=b6JesWkQ;
- spf=pass (domain: gmail.com, ip: 209.85.208.48, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ed1-f48.google.com with SMTP id b13so20692522edx.1
-        for <yocto@lists.yoctoproject.org>; Wed, 03 Mar 2021 05:15:51 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=D4a9ZBeh;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id DBD7438C0627
+	for <yocto@yoctoproject.org>; Wed,  3 Mar 2021 14:09:59 +0000 (UTC)
+Received: by mail-yb1-f176.google.com with SMTP id u75so24628912ybi.10
+        for <yocto@yoctoproject.org>; Wed, 03 Mar 2021 06:09:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=psdAcYA4yMsqtksgayTV3Gw9xYF3lsJ41cjdsbzpfh0=;
-        b=b6JesWkQObD7E5UTJBrXIMNyb72I86qhO9BR6UHmUVvaHsWWsCCdSVALWAxptPw0CN
-         TS5CnEiXJv7ftQdT5Yx7XO1alVBv+K7RLz9CdgCVilOrbiyxGMOZcioe72q7nxC5cNFK
-         TpuUJj/MLCBFvPVfL3aUK//rj774MKAdF+vXE3pM/HOh8H7CAw5+D5OeBBCmK3jhZcd2
-         wNEJvrIURwdKYmk4ltjoDd3zXl8NfRQP8ovcgouI9RuX9jWFHp9hqLabpgI30QhTx1/1
-         q/LhLPb/JkGJYkonvAnJGkmdHigUOjOJlix1z78uH9XhUDFYfhiQPBPDRArMD9SHaATo
-         F8hA==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=oEI3dgr3GnXUDAAL8Qtb8xEk2g4J5ekCbPU6kWKhco4=;
+        b=D4a9ZBehx6o/hDwnT5gSW+uJgXGIF0cemJG6Wsh1s070lD/cGPJzZdOEsLJdFZzYhW
+         5yJMbYt+UsB4s4Xpvi3i1TOTYFQYy1ZLTyHWA+BR9gBdpvMkS9FOx/zf/2eca+WJL60C
+         XXZxhDQwUX3ybEiLFGFjsKtMdmJ2GR5Kc7iVvd0LCZjjNlSIq7EBclZQkx9Yer+XRpfA
+         4cF+1k2LEFWS+FHBwKF9NiG1IWUaTX/iDIjY1NyFe1df8dQpct6wN8asvSv9xdO818z/
+         Czl6CaHoDiXYOfwK0aVlJcmhJIKzMc18Qvgt0GRU/uF/CGh2XzTdTyd4HEJ74k/jg2By
+         JruQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=psdAcYA4yMsqtksgayTV3Gw9xYF3lsJ41cjdsbzpfh0=;
-        b=qeZ6/MGeAy805v2R1ZejG39PI1qBXYWXZFmTcMy/AHmcPJvDA9bhUNJDWJpsoL70kh
-         3bOC7krlFvKzDkeBGo1X/ixxBfe21L0N9pNllO1HhkD1udmYw/cqP808FyF5XGtQe8D8
-         peuf/SNZ/p6Inm8vTiz1EU6Yur1LLKTyHLzz3wQk6Isw98Gzg9/3FPLj7ZnyIhqXmZm9
-         90/u5dlMIqVFRPG10u0DNAg2hJX4Q6xdmsWhp0s/kUjto9k+Ui1+6Z8V9TspvB+uc4Cn
-         MGOjyiHqWaRugHfuxGIhK35nVwf7rKdq4YFQzd6/6d1jxmTuSlzv2A8w3sKORm/prHM1
-         uxDw==
-X-Gm-Message-State: AOAM530FbhIt7lWLp25EvHU7WY88F3WAfJ4Rf+4fqmnUmF6tO5zWjQOr
-	+BySucbTQhBk2LjdYeVjuUhDpNtat5Cw2Q==
-X-Google-Smtp-Source: ABdhPJwagx6ZXiygIhOJaQDaI8XMLseVLlQH3KFi0b/zz2iVarDYHD846U2RlYlNgT2cHxzbMxbCHw==
-X-Received: by 2002:a05:6402:1691:: with SMTP id a17mr24684813edv.336.1614777350005;
-        Wed, 03 Mar 2021 05:15:50 -0800 (PST)
-Return-Path: <alex.kanavin@gmail.com>
-Received: from localhost.localdomain ([5.28.91.120])
-        by smtp.gmail.com with ESMTPSA id h10sm10007769edk.17.2021.03.03.05.15.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Mar 2021 05:15:49 -0800 (PST)
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-Subject: [PATCH yocto-autobuilder-helper] config.json: add a systemd no-x11 build
-Date: Wed,  3 Mar 2021 14:11:45 +0100
-Message-Id: <20210303131145.604924-1-alex.kanavin@gmail.com>
-X-Mailer: git-send-email 2.29.2
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=oEI3dgr3GnXUDAAL8Qtb8xEk2g4J5ekCbPU6kWKhco4=;
+        b=Diqw7hXNzrljApad19vjtfpfd3DnWVtVrn0QBBcU/Nzg2gJeW6ExRNJUj0Gvh8PHnf
+         NNaHEV75OlEuc1cYnxImwJf1ePntFfIgx/FaaspyDTmKmbDs56doMIC8Bk3zfAmINDoP
+         YbS0q3vAJ8/sglzMIuz9XTGUSoGuFp8dcv2xHyckWWFPCXN120+An5e1MmcyNhlBrE2t
+         ZArNvqTf1rqhmWBeM/dvQHtm4Icqa6yOGKq9QcdVH7mbPMGKtgQ6pc8RfrLEtqZOriYP
+         iW1YcAb85kQFC2S22cBRFdsjrnT8wRdyfRMT2IWoo8Snh28jw70Eud2mUvRnR/saJZcQ
+         h5GA==
+X-Gm-Message-State: AOAM533qsCv6AqFN+sAa+5YGFP+jGk7YMeyEzcSu0m7dtmhMyPNfuZxs
+	fXFDLdtqGIWC45r0BJHQn+4+ZyBWQLBfwUhJfnr3RqYspklVuuy5
+X-Google-Smtp-Source: ABdhPJwfndU0F1qSF2dRQsWqG2OimQ8R0ZeBEFuzWVCmIU+jHV2lkxWSCofFe4qPEZdJ8d/ugMoN0vNbSa0DoBC0dqM=
+X-Received: by 2002:a25:4e83:: with SMTP id c125mr34987482ybb.343.1614780598602;
+ Wed, 03 Mar 2021 06:09:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Marek Belisko" <marek.belisko@gmail.com>
+Date: Wed, 3 Mar 2021 15:09:47 +0100
+Message-ID: <CAAfyv37Ca1eWCMXCOXarByH0xtDFtvNE9nF8BXdF4u9OKZdShg@mail.gmail.com>
+Subject: cc1 binary in final rootfs even when no reference to it
+To: yocto <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Particularly the weston image has now regressed twice under systemd,
-so I think there should be a quality gate for it.
+Hello,
 
-Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
----
- config.json | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+on dunfell images I start seeing that cc1 binary (checked by buildhistory):
+files-in-image.txt:-rwxr-xr-x root       root         17674124
+./usr/libexec/gcc/arm-poky-linux-gnueabi/9.3.0/cc1
 
-diff --git a/config.json b/config.json
-index 8025166..d6e7df8 100644
---- a/config.json
-+++ b/config.json
-@@ -715,8 +715,19 @@
-             "SANITYTARGETS" : "core-image-full-cmdline:do_testimage core-image-weston:do_testimage",
-             "extravars" : [
-                 "DISTRO_FEATURES_remove = 'x11'"
--            ]
--
-+            ],
-+            "step1" : {
-+                "shortname" : "Sysvinit weston"
-+            },
-+            "step2" : {
-+                "shortname" : "Systemd weston",
-+                "extravars" : [
-+                     "TEST_SUITES_append = ' systemd'",
-+                     "DISTRO_FEATURES_append = ' pam systemd'",
-+                     "VIRTUAL-RUNTIME_init_manager = 'systemd'",
-+                     "DISTRO_FEATURES_BACKFILL_CONSIDERED = 'sysvinit'"
-+                ]
-+            }
-         },
-         "musl-qemux86" : {
-             "MACHINE" : "qemux86",
+is present in the final image. I check taskexp but cannot find any
+reference which pointes to it.
+Any ideas how to check or it's a common problem?
+
+Thanks and regards,
+
+marek
+
 -- 
-2.29.2
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
 
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
