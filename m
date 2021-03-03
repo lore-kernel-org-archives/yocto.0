@@ -1,228 +1,139 @@
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
- by mx.groups.io with SMTP id smtpd.web10.7898.1614783969482115185
+Received: from EUR03-AM5-obe.outbound.protection.outlook.com (EUR03-AM5-obe.outbound.protection.outlook.com [40.107.3.51])
+ by mx.groups.io with SMTP id smtpd.web09.8462.1614786088396340381
  for <yocto@lists.yoctoproject.org>;
- Wed, 03 Mar 2021 07:06:09 -0800
+ Wed, 03 Mar 2021 07:41:29 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Ve/QTCme;
- spf=pass (domain: gmail.com, ip: 209.85.214.179, mailfrom: rustyhowell@gmail.com)
-Received: by mail-pl1-f179.google.com with SMTP id g20so14196268plo.2
-        for <yocto@lists.yoctoproject.org>; Wed, 03 Mar 2021 07:06:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KACviGxukdJlsod07GXYDSkAoJ2lGVZKkkJwZQjyLn8=;
-        b=Ve/QTCmepFYZ5uc5BvcFDvV6sl4k1SUIIKxFhYXGXeiGreLu+S9lXKbYxO6l4ciJ1F
-         +g49n7cAK46tYnlOqHcLmmdPWfS1Z6t5qetmru9RZYOM6snvg84xYy+UQyQirB9JpgPc
-         KgSN8GIPrHPRdUtyo/YQhXIlDqNDhCrLmf9GJdvx4XHkRoraIYCHCFb/G4Vg1QGKcaoU
-         3A66S5xSg/Y3d5/laaaaRD+UqyR2ImANRc1nRAnbva4DvLMPqSDyXFjXbajWgS4XmwBa
-         3GL2IB9eEebU2+ijL6joOUfgbCHWxShRW0qhk4OXPtDuSAlxDAgmpZ90K+DTqpo7w/Ar
-         pHkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KACviGxukdJlsod07GXYDSkAoJ2lGVZKkkJwZQjyLn8=;
-        b=J33kUqbQlQaTJ2YfJPdxCm9kVGqMCkrHhyYDnk/BG68CrDraVUXBuBZMpK5xjnFxxm
-         iP8HaUXBGMHwGj1GAqtkYAzekhfOuWzJi8/ViOD6ffUyeG3xwM43yjswznCzasLdbikV
-         V7Om2XuDZNnaIHu/HhMU8hXyUT/VS4HQLKwQuKA5TCw3N/ctzDd0J+kha90Ti8t0VVh6
-         cWV5Bv6m5esfp6pzK4H3iSxfQEdkyciIN1Swe0nMOQJv9Hm4qDxT9Vrh99ofg+7oLvmQ
-         tD5Uhubjies1snMvbvIfZDQrj7l2Uh7c5w4nDuWC6DFamQF/0MC4MUtHu/mu+CQ+rD/t
-         O8Eg==
-X-Gm-Message-State: AOAM533udG81auq0Rbo8me5/JFJaO0KN25jLr2zC/7rJybgD1T8+t8O3
-	whepQYy4AwVN+ui1IlryVbnlKKH3pu2Pvx4ypH4=
-X-Google-Smtp-Source: ABdhPJxCpoAtiw1Y+us7i4v9MMo+iPtb2Yd9gUq2OONAfWmhAGjjWxNR4R1hH6al4bmSlqYRp0PxnF4ocYQOWKXV97U=
-X-Received: by 2002:a17:90a:17ea:: with SMTP id q97mr10177247pja.71.1614783968773;
- Wed, 03 Mar 2021 07:06:08 -0800 (PST)
-MIME-Version: 1.0
-References: <zFb6.1614702126167583420.u32u@lists.yoctoproject.org>
- <16689EFE3DC0BB92.17298@lists.yoctoproject.org> <CAOSpxdYoviYhz4s9u2KY8ttwoFqo8v6VEzJ2vM79-j2LiQex1g@mail.gmail.com>
- <DB6PR0102MB263061D0B03C4DA90C7B89F188999@DB6PR0102MB2630.eurprd01.prod.exchangelabs.com>
- <2a6603ec08c0aee64364961c0d9eca0ef7ea6aaa.camel@linuxfoundation.org>
-In-Reply-To: <2a6603ec08c0aee64364961c0d9eca0ef7ea6aaa.camel@linuxfoundation.org>
-From: rustyhowell@gmail.com
-Date: Wed, 3 Mar 2021 08:05:49 -0700
-Message-ID: <CAE+BM3m7SD30-JRG7S35KmwtKSuSqkRWQUyeSq3J3m0ACpu-Nw@mail.gmail.com>
+ dkim=pass header.i=@spinetix.com header.s=selector2 header.b=UqvjBqOH;
+ spf=pass (domain: spinetix.com, ip: 40.107.3.51, mailfrom: diego.santacruz@spinetix.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aPfww53x5tqOsF8xTHY8/nNkCaCKq7NzvRxFvTvqiEV4Kkg1z92ivawtNMLjEBwYPodblhAgZe/TvTz3+3PxySFifmDqEhBRYWVjbkK0UFXfOlfewksuoxSnuoB2U3BDa3sOCIjIUKcI3eV3kwBXQnPI8nRP8KOwUQ1XyBaoAjPIpcX3TCmlCljSMx+bwExd/sOpPP8zxwS4XGWa4eEglndjl/8bnIhmBQT2GCcV9Dwr7RGIivKIIcAr7zEn6z8OdcE3UtSnJ6wE4W7mp8UMgpf8Y7LPtQyJsZDX04cjpzYYB1gY2OutXWcoQHleUy00nZmMbp3CgGJeE31Qp94sTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=46ZN+utxoZA3y13Jpy3aUfLBXZn17zv6vbONjaDxvwA=;
+ b=BdWkMorT03RMxkQbqqFPLsx1yG4Zn8UpYoAzQg1MTcGKKxU24e9GrCA7yDR6Zffm16+CoItZbfmxpm94TrZASrpPNvUpOVe3G8SCvHl3KMpkO+xqtMbxq64rZoGia0PynL7hHFmaKdZcM04KIc+oM4sR31bg8a34BzDQYDTLS54I5nxCnZGgcOOtJsl5q3P89++UZf+NeMpuJqsZ/U0lhWwHj6pQGGj7bGOB+Xt/Mvax7L9rCl6IUGb529jfmrwKb9L38DFNfE13KbYeTJlB8QMX8Kc7lheZpKQ4xpFufltM1DZIPmepaOxuhWUlOHR3+OzQqh6Tfy3J+V+wvr1fmQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=spinetix.com; dmarc=pass action=none header.from=spinetix.com;
+ dkim=pass header.d=spinetix.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=spinetix.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=46ZN+utxoZA3y13Jpy3aUfLBXZn17zv6vbONjaDxvwA=;
+ b=UqvjBqOHUcVHav1yI71odvBZZGAuWm+SPTRMn409w7FvqTfYxU4RMI7hsINGHl3BZhNFzOAaiCvwT9iWa7PVsTk1+E5BNIfxef4lM/sjj5zv9+zkujW6XKVT4LgIee9yoALqc0URwoOtx8lBtF1LwlVsC639y166A3Br9WpWvvs=
+Received: from DB6PR0102MB2630.eurprd01.prod.exchangelabs.com
+ (2603:10a6:6:e::19) by DB8PR01MB6154.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:38::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.20; Wed, 3 Mar
+ 2021 15:41:25 +0000
+Received: from DB6PR0102MB2630.eurprd01.prod.exchangelabs.com
+ ([fe80::a979:e5e4:3b20:ba6b]) by
+ DB6PR0102MB2630.eurprd01.prod.exchangelabs.com
+ ([fe80::a979:e5e4:3b20:ba6b%7]) with mapi id 15.20.3890.028; Wed, 3 Mar 2021
+ 15:41:25 +0000
+From: "Diego Santa Cruz" <diego.santacruz@spinetix.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, "steve@sakoman.com"
+	<steve@sakoman.com>
+CC: "rustyhowell@gmail.com" <rustyhowell@gmail.com>, "Yocto
+	(yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] Reducing the perl footprint on my image
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: diego.santacruz@spinetix.com, "steve@sakoman.com" <steve@sakoman.com>, 
-	"Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000d909f005bca33012"
+Thread-Topic: [yocto] Reducing the perl footprint on my image
+Thread-Index: AQHXD4DYwW2rk20amUy6hmRihCyyMapxH+XOgAAH7BCAAARdgIABOnJA
+Date: Wed, 3 Mar 2021 15:41:25 +0000
+Message-ID: 
+ <DB6PR0102MB2630A6DFC638783F955A74F388989@DB6PR0102MB2630.eurprd01.prod.exchangelabs.com>
+References: <zFb6.1614702126167583420.u32u@lists.yoctoproject.org>
+	 <16689EFE3DC0BB92.17298@lists.yoctoproject.org>
+	 <CAOSpxdYoviYhz4s9u2KY8ttwoFqo8v6VEzJ2vM79-j2LiQex1g@mail.gmail.com>
+	 <DB6PR0102MB263061D0B03C4DA90C7B89F188999@DB6PR0102MB2630.eurprd01.prod.exchangelabs.com>
+ <2a6603ec08c0aee64364961c0d9eca0ef7ea6aaa.camel@linuxfoundation.org>
+In-Reply-To: 
+ <2a6603ec08c0aee64364961c0d9eca0ef7ea6aaa.camel@linuxfoundation.org>
+Accept-Language: en-GB, fr-CH, fr-FR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: linuxfoundation.org; dkim=none (message not signed)
+ header.d=none;linuxfoundation.org; dmarc=none action=none
+ header.from=spinetix.com;
+x-originating-ip: [178.198.240.12]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 967adf8d-25a9-4679-28d7-08d8de5acdd2
+x-ms-traffictypediagnostic: DB8PR01MB6154:
+x-microsoft-antispam-prvs: 
+ <DB8PR01MB615436111E89CC76FEB912A588989@DB8PR01MB6154.eurprd01.prod.exchangelabs.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ v+G4kuA0x87Swr5magiYU1kKIhizD/Rz7Tz2s+ttORVLLB8cZRiY/JrTlQdv8P/Q4bJ73ixwZdNSVxcmhQfZNzRRNMyIDez6+kkse+3ca6b+hvieydnEkVegxW/FnYoNbzmGkHzm/2W5tBY0eiRU8rsEfP8TfvgycIwFS1p+79nA5JoXPAz0JYEL5z6ksg7zbD9Z8FQZ0W9sXtLVEpu7Fpp7KgGh5HzW4TvbLhzLrl2GkXKyw/bmfA06YOiz2Jmg+NI3tlkueYX2WX+mOVF6MnqhYulSW79pRa09wqlmoabd7FW+Su1J11r2lZS6YGkYkKUo8xkVr9kdUbYRWWy3Jl47r92iK10sneVGS2hD7+8xaCZHO4IdXIb84FN9KBFH9rS31Byoi75UYan5hfw+tULRMof1JPbc7DON1L8BLSuHwrFB5aIJwt5IbjI8MRwhfE+UFGcoZPqly9HHEA1M3WTm3IkKNB5/yaLnL7GnuS1AwDZIcnxDDGRECvO3YBs4xr1zSW9/3dVGa6beUSN5Lg==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0102MB2630.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(376002)(396003)(39830400003)(346002)(110136005)(478600001)(71200400001)(66946007)(54906003)(8936002)(66556008)(76116006)(9686003)(26005)(8676002)(83380400001)(7696005)(6506007)(66476007)(52536014)(186003)(53546011)(64756008)(66446008)(316002)(86362001)(33656002)(5660300002)(55016002)(2906002)(4326008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 
+ =?utf-8?B?K0VDVm4zNmoyT051bE1sb213d0lpeE1NT0lyZ1N1NmtsazZIaUd0KzBVZ0Nh?=
+ =?utf-8?B?dFA5NlM0TXN5U20vbFBQaThuOWZDSkNiY1puUVJ5RmtiMWVHbFZENlRtU1Jv?=
+ =?utf-8?B?ZXJTVmlpUWozK24zbU9VamxXUVFoRFNEVzJUcWQycUkzWlhiaFRoK3h4QWVU?=
+ =?utf-8?B?bnNMUDIzeUR1THpiZnlMdXQyS0o5NWZGMWRwbnEwS2IzblQrUFBydTk4am5U?=
+ =?utf-8?B?SkdCOUxEQnJMaVl5K1VCMm4wcFhsM3A2TGdObzNnRXJWa2Q4MVhnRUN0Yzcw?=
+ =?utf-8?B?WnhkaUJqbzUvWEJ5TVRmbk5Vd2xIUktoN2h2ZlhBVmJHWlpLOGtoQTUzeWp5?=
+ =?utf-8?B?Qm05WG54czgwWjdtLzVseFdGK2JWNTk3NWQxK2VXOFRMMXQ5bldjZzYzRGpH?=
+ =?utf-8?B?WUhZbUpJWjZxbkNBSjB5QnRVckhBa3hxazBxQlNabWoxR1ZGWXZpcHE4NUFZ?=
+ =?utf-8?B?bkt6RldsSWcxUjdpd0xrU21jR3NudWtTM2k2K2VvMjN1d2hVclN3dzlaYU9B?=
+ =?utf-8?B?Z3ZCQUNBcHluYU05clBuOW5SQ3IwcFB6VmYrTFkzVExUUUFxeFhINWErQUt0?=
+ =?utf-8?B?Q2V0N0pidXVOVWxzdmZKdVl0ekc3S1liTVZCcXVYYzY3TlByM1BObFZaaElj?=
+ =?utf-8?B?MHNRVzVKNU1GOVRubldIWlZNeGpmZUJUUSszb09heS9jU3VMYWJ3YkpwMkdB?=
+ =?utf-8?B?bjN6RzJEZDZuTE9xWkhkSGowV0RudUJyK0VNVzJyWTFJaXVRL1lNUkhDekZi?=
+ =?utf-8?B?d1dMVDlBbURjWEdicExTOU5GcVFBMUgrcUVBWERGeXpJcWhmVmhBS0NxSCt3?=
+ =?utf-8?B?amlrMjArTHpySGx5NEFUdHMrMmFsUkFjR0hYUFQ0elVvbDBuSWhISnd0S3o5?=
+ =?utf-8?B?YnREYXpQMFBMYWxDK0FNbEhxb1VPZkozaE5uOEF2YnBkbWN2cW5YWkJiTmVk?=
+ =?utf-8?B?Yk90Qk9BMHlqR3VWK0FKZTRoa3BTRXFMMFdLUHh4UkdueFpUemtoVGZrOWlz?=
+ =?utf-8?B?SGtBSkFIWUV2MStrSmpialNCd2xCWFBYbDMxWG40Ynh3N2ljSkYrQmNvQklC?=
+ =?utf-8?B?akE4T2VRMVZHSFZucWYweVJsWE1oazlRSHBtdXhpMWlQN1IxUWtyeEQxUHZq?=
+ =?utf-8?B?NXF6QUNyOUEydnI2cjBpT3BOUVhrTlFQd2NLeW1iRU9URVFnNW1XVGVnQXZy?=
+ =?utf-8?B?STVpV1oxclAxZ3RuY2xCTHRTRHVpd3MySVFvaWQ4MmsrTEtnbjBOZVpPNVhH?=
+ =?utf-8?B?K0pCY0dQWkc3QVZ2NHNTQmpjSENoV2NoNGIzRmtuL210YUg4K04wNURZN1Zo?=
+ =?utf-8?B?Rk1jQm1HdTFQOW56b1U1WkJJU3hTaHNlQWFXdU41UzFVbUFxbXBRd3FSTHdt?=
+ =?utf-8?B?U0xWY01reUd5WVRiZGVlWmcyaldVWkpuL2lhTDhwWS9ZWmZMYndVZmRLZmtq?=
+ =?utf-8?B?SFhxL2tJYlNxOGd6emtKY2RzZTNhaUVHRHNnWGFrS0RFR0owTlNJc0R4Z29u?=
+ =?utf-8?B?dkcrRWc1b1QrZW1YN1dCbm9SWFpDQkRRa1ptelIzWUwycllCS0g5ZGs1Rlht?=
+ =?utf-8?B?RVRadHdCSFFsNk9RSmp3bUJPSVlDbi9LdnFPNzhkTXFlRnRHdlRVd3VPeDRP?=
+ =?utf-8?B?MElFbU93SnpvMjFkR1NDc2xvUjljdnRTRGZVa3ZqWC8wWmpJMGN5Qi9lc1lF?=
+ =?utf-8?B?MkJGUE1DMEJEVm5VNVdSZVBjZEE5amIxL3BzZk5vRzdVTjJibXRURkx0MXpQ?=
+ =?utf-8?Q?UvTcgGcXeMPXwAOkMXsxxbSb8ofOF8j+s9g5VDW?=
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: spinetix.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0102MB2630.eurprd01.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 967adf8d-25a9-4679-28d7-08d8de5acdd2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Mar 2021 15:41:25.2971
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 5f4034fa-ed2d-4840-a93f-acb1e9633b93
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: e2+f7e/DHfG4nRAKgyayQIeIaE2xB5nJMI2uHQkP7IC1MW+jalwOaDXTLcBRLVzH81k6uYmV2D5rw7+aV8kiH4yveWUAX4knISvepvAVN90=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR01MB6154
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---000000000000d909f005bca33012
-Content-Type: text/plain; charset="UTF-8"
-
-Steve, you're right.  My image.bb is adding various lmsensors packages to
-the IMAGE_INSTALL, some of which depend on perl-modules.   perl-modules
-seems to be the big monster, not perl.  We need lmsensors.  So I guess my
-question is really, how can I (or can I at all) reduce the footprint of
-perl-modules?  perl-modules doesn't have any Depends, rather it has a long
-list (~ 670) of Recommends.
-
-On Tue, Mar 2, 2021 at 1:49 PM Richard Purdie <
-richard.purdie@linuxfoundation.org> wrote:
-
-> On Tue, 2021-03-02 at 20:42 +0000, Diego Santa Cruz via
-> lists.yoctoproject.org wrote:
-> > > -----Original Message-----
-> > > From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
-> > > Behalf Of Steve Sakoman via lists.yoctoproject.org
-> > > Sent: 02 March 2021 21:06
-> > > To: Steve Sakoman <steve@sakoman.com>
-> > > Cc: rustyhowell@gmail.com; Yocto (yocto@lists.yoctoproject.org)
-> > > <yocto@lists.yoctoproject.org>
-> > > Subject: Re: [yocto] Reducing the perl footprint on my image
-> > >
-> > > On Tue, Mar 2, 2021 at 10:01 AM Steve Sakoman via
-> > > lists.yoctoproject.org <steve=sakoman.com@lists.yoctoproject.org>
-> > > wrote:
-> > > >
-> > > > On Tue, Mar 2, 2021 at 6:26 AM <rustyhowell@gmail.com> wrote:
-> > > > >
-> > > > > I have an image that is using debian package management
-> > > (PACKAGE_CLASSES = "package_deb").  Because apt and dpkg require perl,
-> > > perl is being installed in the image.   No problem.  Except that the
-> entire perl
-> > > stack is 669 packages.
-> > > >
-> > > > I just took a look at the manifest for one of my images that includes
-> > > > PACKAGE_CLASSES = "package_deb".  I see the perl package plus 43
-> > > > perl-module packages.  Are you sure that something else in your
-> images
-> > > > isn't pulling in all of those other perl-module packages?
-> > >
-> > > It just occurred to me to make sure you are looking in the image
-> > > manifest to see which packages are actually installed in your image.
-> > > The perl recipe does generate 676 packages (in dunfell) so perhaps you
-> > > might be looking at the generated packages rather than the installed
-> > > packages??
-> > >
-> >
-> > I encountered a similar problem with package management enabled and rpm
-> > as package format, where I also just install rpm for package management
-> > and not all dnf stack. I get quite a lot of perl and python packages
-> > into the image which are pulled by the rpm package, but they are only
-> > needed for things like rpm-build, rpm-sign, etc., not for the bare
-> > rpm command, which is the only one I need in the image.
-> >
-> > So I locally extended the rpm recipe to split those tools into
-> rpm-build,
-> > rpm-sign and rpm-archive and skip those packages in the image. I should
-> > probably send patches for that to oe-core. Is that something that could
-> > be accepted?
->
-> Not sure they need to go to separate packages but moving those
-> three to some kind of "build" package would make a lot of sense
-> to me at least.
->
-> Cheers,
->
-> Richard
->
->
-
---000000000000d909f005bca33012
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Steve, you&#39;re right.=C2=A0 My <a href=3D"http://i=
-mage.bb">image.bb</a> is adding various lmsensors packages to the IMAGE_INS=
-TALL, some of which depend on perl-modules.=C2=A0=C2=A0 perl-modules seems =
-to be the big monster, not perl.=C2=A0 We need lmsensors.=C2=A0 So I guess =
-my question is really, how can I (or can I at all) reduce the footprint of =
-perl-modules?=C2=A0 perl-modules doesn&#39;t have any Depends, rather it ha=
-s a long list (~ 670) of Recommends.=C2=A0 <br></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 2, 2021 =
-at 1:49 PM Richard Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundat=
-ion.org">richard.purdie@linuxfoundation.org</a>&gt; wrote:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex">On Tue, 2021-03-02 at 20:42 +000=
-0, Diego Santa Cruz via <a href=3D"http://lists.yoctoproject.org" rel=3D"no=
-referrer" target=3D"_blank">lists.yoctoproject.org</a> wrote:<br>
-&gt; &gt; -----Original Message-----<br>
-&gt; &gt; From: <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_=
-blank">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.y=
-octoproject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt; On<=
-br>
-&gt; &gt; Behalf Of Steve Sakoman via <a href=3D"http://lists.yoctoproject.=
-org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.org</a><br>
-&gt; &gt; Sent: 02 March 2021 21:06<br>
-&gt; &gt; To: Steve Sakoman &lt;<a href=3D"mailto:steve@sakoman.com" target=
-=3D"_blank">steve@sakoman.com</a>&gt;<br>
-&gt; &gt; Cc: <a href=3D"mailto:rustyhowell@gmail.com" target=3D"_blank">ru=
-styhowell@gmail.com</a>; Yocto (<a href=3D"mailto:yocto@lists.yoctoproject.=
-org" target=3D"_blank">yocto@lists.yoctoproject.org</a>)<br>
-&gt; &gt; &lt;<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_bl=
-ank">yocto@lists.yoctoproject.org</a>&gt;<br>
-&gt; &gt; Subject: Re: [yocto] Reducing the perl footprint on my image<br>
-&gt; &gt; <br>
-&gt; &gt; On Tue, Mar 2, 2021 at 10:01 AM Steve Sakoman via<br>
-&gt; &gt; <a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer" targ=
-et=3D"_blank">lists.yoctoproject.org</a> &lt;steve=3D<a href=3D"mailto:sako=
-man.com@lists.yoctoproject.org" target=3D"_blank">sakoman.com@lists.yoctopr=
-oject.org</a>&gt;<br>
-&gt; &gt; wrote:<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; On Tue, Mar 2, 2021 at 6:26 AM &lt;<a href=3D"mailto:rustyho=
-well@gmail.com" target=3D"_blank">rustyhowell@gmail.com</a>&gt; wrote:<br>
-&gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt; I have an image that is using debian package management=
-<br>
-&gt; &gt; (PACKAGE_CLASSES =3D &quot;package_deb&quot;).=C2=A0 Because apt =
-and dpkg require perl,<br>
-&gt; &gt; perl is being installed in the image.=C2=A0 =C2=A0No problem.=C2=
-=A0 Except that the entire perl<br>
-&gt; &gt; stack is 669 packages.<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; I just took a look at the manifest for one of my images that=
- includes<br>
-&gt; &gt; &gt; PACKAGE_CLASSES =3D &quot;package_deb&quot;.=C2=A0 I see the=
- perl package plus 43<br>
-&gt; &gt; &gt; perl-module packages.=C2=A0 Are you sure that something else=
- in your images<br>
-&gt; &gt; &gt; isn&#39;t pulling in all of those other perl-module packages=
-?<br>
-&gt; &gt; <br>
-&gt; &gt; It just occurred to me to make sure you are looking in the image<=
-br>
-&gt; &gt; manifest to see which packages are actually installed in your ima=
-ge.<br>
-&gt; &gt; The perl recipe does generate 676 packages (in dunfell) so perhap=
-s you<br>
-&gt; &gt; might be looking at the generated packages rather than the instal=
-led<br>
-&gt; &gt; packages??<br>
-&gt; &gt; <br>
-&gt; <br>
-&gt; I encountered a similar problem with package management enabled and rp=
-m=C2=A0<br>
-&gt; as package format, where I also just install rpm for package managemen=
-t=C2=A0<br>
-&gt; and not all dnf stack. I get quite a lot of perl and python packages=
-=C2=A0<br>
-&gt; into the image which are pulled by the rpm package, but they are only<=
-br>
-&gt; needed for things like rpm-build, rpm-sign, etc., not for the bare=C2=
-=A0<br>
-&gt; rpm command, which is the only one I need in the image.<br>
-&gt; <br>
-&gt; So I locally extended the rpm recipe to split those tools into rpm-bui=
-ld,=C2=A0<br>
-&gt; rpm-sign and rpm-archive and skip those packages in the image. I shoul=
-d=C2=A0<br>
-&gt; probably send patches for that to oe-core. Is that something that coul=
-d<br>
-&gt; be accepted?<br>
-<br>
-Not sure they need to go to separate packages but moving those=C2=A0<br>
-three to some kind of &quot;build&quot; package would make a lot of sense<b=
-r>
-to me at least.<br>
-<br>
-Cheers,<br>
-<br>
-Richard<br>
-<br>
-</blockquote></div>
-
---000000000000d909f005bca33012--
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSaWNoYXJkIFB1cmRpZSA8cmlj
+aGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZz4NCj4gU2VudDogMDIgTWFyY2ggMjAyMSAy
+MTo1MA0KPiBUbzogRGllZ28gU2FudGEgQ3J1eiA8RGllZ28uU2FudGFDcnV6QHNwaW5ldGl4LmNv
+bT47DQo+IHN0ZXZlQHNha29tYW4uY29tDQo+IENjOiBydXN0eWhvd2VsbEBnbWFpbC5jb207IFlv
+Y3RvICh5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnKQ0KPiA8eW9jdG9AbGlzdHMueW9jdG9w
+cm9qZWN0Lm9yZz4NCj4gU3ViamVjdDogUmU6IFt5b2N0b10gUmVkdWNpbmcgdGhlIHBlcmwgZm9v
+dHByaW50IG9uIG15IGltYWdlDQo+IA0KWy4uLl0NCj4gPiBTbyBJIGxvY2FsbHkgZXh0ZW5kZWQg
+dGhlIHJwbSByZWNpcGUgdG8gc3BsaXQgdGhvc2UgdG9vbHMgaW50byBycG0tYnVpbGQsDQo+ID4g
+cnBtLXNpZ24gYW5kIHJwbS1hcmNoaXZlIGFuZCBza2lwIHRob3NlIHBhY2thZ2VzIGluIHRoZSBp
+bWFnZS4gSSBzaG91bGQNCj4gPiBwcm9iYWJseSBzZW5kIHBhdGNoZXMgZm9yIHRoYXQgdG8gb2Ut
+Y29yZS4gSXMgdGhhdCBzb21ldGhpbmcgdGhhdCBjb3VsZA0KPiA+IGJlIGFjY2VwdGVkPw0KPiAN
+Cj4gTm90IHN1cmUgdGhleSBuZWVkIHRvIGdvIHRvIHNlcGFyYXRlIHBhY2thZ2VzIGJ1dCBtb3Zp
+bmcgdGhvc2UNCj4gdGhyZWUgdG8gc29tZSBraW5kIG9mICJidWlsZCIgcGFja2FnZSB3b3VsZCBt
+YWtlIGEgbG90IG9mIHNlbnNlDQo+IHRvIG1lIGF0IGxlYXN0Lg0KDQpJJ2xsIGJlIHNlbmRpbmcg
+YSBwYXRjaCB0byBzcGxpdCBpdCB0aGVuLiBIYXZpbmcgdGhlIHNpZ24gYW5kIGFyY2hpdmUgaW4g
+c2VwYXJhdGUgcGFja2FnZXMgYWxsb3dzIHRvIHNraXAgdGhlaXIgZGVwZW5kZW5jaWVzIGluIGlt
+YWdlcyB0b28sIGFuZCB0aGV5IGFyZSBub3QgcmVhbGx5IHJlbGF0ZWQgdG8gdGhlIHJwbSBidWls
+ZCBwYXJ0IGFuZCB0aGUgY29tcGxleGl0eSBkZWx0YSBpcyBtaW5pbWFsOyB1c3VhbGx5IHRoZXJl
+IGlzIG5vIG5lZWQgdG8gaGF2ZSBycG0tc2lnbiBpbiBhIHRhcmdldCBpbWFnZSBub3IgcnBtMmFy
+Y2hpdmUgaWYgdGhlIGFyY2hpdmUgUEFDS0FHRUNPTkZJRyBpcyBlbmFibGVkLiANCg0KQmVzdCwN
+CkRpZWdvDQoNCi0tIA0KRGllZ28gU2FudGEgQ3J1eiwgUGhEDQpUZWNobm9sb2d5IEFyY2hpdGVj
+dA0Kc3BpbmV0aXguY29tDQoNCiANCg==
