@@ -1,132 +1,182 @@
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
- by mx.groups.io with SMTP id smtpd.web10.7722.1614870275332548378
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web12.1966.1614878286709236760
  for <yocto@lists.yoctoproject.org>;
- Thu, 04 Mar 2021 07:04:35 -0800
+ Thu, 04 Mar 2021 09:18:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=XCWrZ+x4;
- spf=pass (domain: gmail.com, ip: 209.85.215.176, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f176.google.com with SMTP id n10so19056798pgl.10
-        for <yocto@lists.yoctoproject.org>; Thu, 04 Mar 2021 07:04:35 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=jCwtQ08j;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: raj.khem@gmail.com)
+Received: by mail-pg1-f172.google.com with SMTP id h4so19279660pgf.13
+        for <yocto@lists.yoctoproject.org>; Thu, 04 Mar 2021 09:18:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=IQrBhC63ELlGL1O4fGB50BshWRpme2dEGayZKZQA1Gw=;
-        b=XCWrZ+x4xJcUTcf0MCWDwZnZYPMn1dsTL0ELR4AmlTlyqo0Lwki1CDYDPsxQcNcmUK
-         gNA78SBIxRchntHAMVRUCoDunvfsMvkRAw6yLBDEohVLgIfNIInNOXY9wCMoF16sZvv0
-         KHzRJQ0qXnPtdsjCn5EYJySb/wncsVxeHZEA1h3LAwEkcOt9Ih2DR6ObfGWZ7q97fGW1
-         erAzhn6G7AlQWjB8h962lQ1xo0Sfbop+MuA8z68ewwZWXTxByH4eJP+aeOUUDWEyDUO0
-         6DgDgxxZSqWHjlcyM6FzkLAUarnm3h9JQyxGh03h8qGxHEI0kFp7hVFGV+uhBygjSH4h
-         emHQ==
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=L21L125Yd6mvkZpvSCQQ9gK0KmdOUbivGJDZZ02yJuE=;
+        b=jCwtQ08j63cJkG1ifkO0/A2HyBRXk9hwhgoySE1w7uUQNBQkSKEIxILJ5ntiiaPsRB
+         6wKx6vSNGARY06By9tZ9VxjxChX4XMXLKSco7R3ocXFy+Q1E2YjI+KWoejsB1BEI7lsK
+         XIzcXDla7sUn9lIV2DL1vroIiDTaw1Ld+s2OfEnwMzechDUstKF6YGAx0oJg+OYPgzsQ
+         TroCuabQjSw8vno0nM36TNJ65tFNnGrpFg8/WpTk5iHIqBrzYCZtOKoEVzIa9rMp3L1O
+         W+hs2Tw1LtxK1EImNDwm1aupETBN7VfqIvXyzVp06b1Ol3JhyJ3SznaEFC4xh9eFz1XL
+         SZrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=IQrBhC63ELlGL1O4fGB50BshWRpme2dEGayZKZQA1Gw=;
-        b=bAQGPOM3WYNmEYFiQNSvKURpTlInpBgHQutj7nb8lDFoqfXJRng5UP6qz9rcaYNUjW
-         ygn/PVJjmxYxvGcsTCSCxS8oIXD7Xd3WlrFDnP37TA4EwaJDivvIezeu4r/j+/xlKnyD
-         gjX30E2acOy8NQ/Gajk3Ko5U53Bxna/q4AWr7khP0Fri3raUL+5g6DvhBOYqIIxrJFZt
-         jys76oSnXL2uOAOsVNZGy1sEaIfAYxA/DN5T1th0YlFUutn++noItyz4rvlwbE48Q/lc
-         hE3JuYekdl28F7vjj6JqC3amM01KGcoxFsU0B2o2gcEWJosfF1M2wCwbgDuminVzGAb+
-         1W0Q==
-X-Gm-Message-State: AOAM531jseGnCnd1LbefPeTqMhEukZRBJgmLpUBEmWE0VQf9RcgCtNUL
-	KUoMBaHo/9yLBFkCbnfEt4Ue93OSwWM=
-X-Google-Smtp-Source: ABdhPJxExsTWD7jpM3oChUpXFC3b5wdXfKb5Y9LNwygr/PWIXp1+J4gyDvD/uUTkrFHu/vpEOTokfQ==
-X-Received: by 2002:a05:6a00:22d6:b029:1cb:35ac:d8e0 with SMTP id f22-20020a056a0022d6b02901cb35acd8e0mr4136926pfj.17.1614870274453;
-        Thu, 04 Mar 2021 07:04:34 -0800 (PST)
-Return-Path: <akuster808@gmail.com>
-Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:2d1c:ec:9aa2:204d])
-        by smtp.gmail.com with ESMTPSA id j20sm10518107pjn.27.2021.03.04.07.04.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Mar 2021 07:04:33 -0800 (PST)
-From: "akuster" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: alex.kanavin@gmail.com,
-	Armin Kuster <akuster808@gmai.com>
-Subject: [auh][PATCH] auh: Add port 465 and 587 client support
-Date: Thu,  4 Mar 2021 07:04:24 -0800
-Message-Id: <20210304150424.30802-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=L21L125Yd6mvkZpvSCQQ9gK0KmdOUbivGJDZZ02yJuE=;
+        b=n4uk4cM5AJA3o1rq4YYiniO1rT0LA+TpjjaxlB9huK5+2ZJJ0A1ECys6KLjj3xcsRP
+         HY5zOioBrOFvOYW1YHn86PoYj3UJjRmkj9/aEaihVky+eF2ZTASJ90C64yPczYX/FkU9
+         rMuXZCprMI5Xw/5gsRzX4GluujjaKVuD+fNlW7+Id14Jf5cy45XtZSXLAGl8saJn0L1W
+         HCvEXmcNzDTsK6THdQq07BLMb0ndy8h0S0PUkc9tvBpOEe5+L+oi1CwS4bXa6aRL4ru+
+         WS8QBi7P6OOIeajNw6SZT2L4UzpT3+3AhlSMcMCMf0h/64KkrYx6F42iPNvOrQn/UlGV
+         05Aw==
+X-Gm-Message-State: AOAM531OnWGbQKKjy/UIqYysQglZUJjVu+q9S3fJwbVRRH9xABk6Rlkx
+	ivKUFSGoBLLku+STsqm8G9j20ntBtJcwLw==
+X-Google-Smtp-Source: ABdhPJwI7XmsdNcBKBBKrV/MWSf0cSjLgRJFPoIJgL6ZQ3OIUm6aZECs9HyAOw4FnakGOOY7t2lQig==
+X-Received: by 2002:aa7:9af8:0:b029:1ef:20f4:56c0 with SMTP id y24-20020aa79af80000b02901ef20f456c0mr3509993pfp.6.1614878285576;
+        Thu, 04 Mar 2021 09:18:05 -0800 (PST)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:a0f0::b3bf? ([2601:646:9200:a0f0::b3bf])
+        by smtp.gmail.com with ESMTPSA id k63sm19155pfd.48.2021.03.04.09.18.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Mar 2021 09:18:05 -0800 (PST)
+Subject: Re: [yocto] #yocto #sdk
+To: steven.monsees@baesystems.com,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <MADEUP.166925E38A880F18.17096@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Message-ID: <019a0cec-9cc4-3e49-f514-93fc4695fee7@gmail.com>
+Date: Thu, 4 Mar 2021 09:18:04 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
+MIME-Version: 1.0
+In-Reply-To: <MADEUP.166925E38A880F18.17096@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Armin Kuster <akuster808@gmai.com>
----
- modules/utils/emailhandler.py | 23 +++++++++++++++++++++--
- upgrade-helper.conf           |  3 +++
- 2 files changed, 24 insertions(+), 2 deletions(-)
+if you have AUTOREVs e.g. can be problematic, and also using TIME/DATE 
+in recipes which can interfere
 
-diff --git a/modules/utils/emailhandler.py b/modules/utils/emailhandler.py
-index 8c8b85b..a70bf23 100644
---- a/modules/utils/emailhandler.py
-+++ b/modules/utils/emailhandler.py
-@@ -27,7 +27,7 @@ import os
- import logging as log
- from logging import error as E
- from logging import info as I
--from smtplib import SMTP
-+from smtplib import SMTP, SMTP_SSL
- import mimetypes
- from email.mime.text import MIMEText
- from email.mime.base import MIMEBase
-@@ -35,12 +35,14 @@ from email.mime.multipart import MIMEMultipart
- from email.generator import Generator
- import shutil
- from io import StringIO
-+import ssl 
- 
- class Email(object):
-     def __init__(self, settings):
-         self.smtp_host = None
-         self.smtp_port = None
-         self.from_addr = None
-+        self.from_addr_pswd = None
-         if "smtp" in settings:
-             smtp_entry = settings["smtp"].split(":")
-             if len(smtp_entry) == 1:
-@@ -57,6 +59,13 @@ class Email(object):
-         else:
-             E(" 'From' address not set! Sending emails disabled!")
- 
-+        if "email_client_pswd" in settings:
-+            self.from_addr_pswd = settings["email_client_pswd"]
-+
-+        if self.smtp_port != '25':
-+            if self.from_addr_pswd == None:
-+                E(" Port %s needs a password, None set!" % self.smtp_port)
-+
-         super(Email, self).__init__()
- 
-     def send_email(self, to_addr, subject, text, files=[], cc_addr=None):
-@@ -101,7 +110,17 @@ class Email(object):
-         msg_text = out.getvalue()
- 
-         try:
--            smtp = SMTP(self.smtp_host, self.smtp_port)
-+            if self.smtp_port == '465':
-+                smtp = SMTP_SSL(self.smtp_host, self.smtp_port)
-+                smtp.login(self.from_addr, self.from_addr_pswd)
-+            else:
-+                smtp = SMTP(self.smtp_host, self.smtp_port)
-+                if self.smtp_port == '587':
-+                    smtp.ehlo()
-+                    smtp.starttls(context=ssl.create_default_context())
-+                    smtp.ehlo()
-+                    smtp.login(self.from_addr, self.from_addr_pswd)
-+
-             smtp.sendmail(self.from_addr, to_addr, msg_text)
-             if cc_addr is not None:
-                 smtp.sendmail(self.from_addr, cc_addr, msg_text)
-diff --git a/upgrade-helper.conf b/upgrade-helper.conf
-index 5696564..3a5b3db 100644
---- a/upgrade-helper.conf
-+++ b/upgrade-helper.conf
-@@ -25,6 +25,9 @@
- # If no port is specified, port 25 is assumed.
- #smtp=smtp.my-server.com:25
- 
-+# Define a password needed to contect to email server
-+#email_client_pswd=
-+
- # from whom should the e-mails be sent (mandatory if --send-emails is passed).
- # Also sets the email address of the author of automated commits.
- #from=uh@not.set
--- 
-2.17.1
-
+On 3/4/21 5:13 AM, Monsees, Steven C (US) via lists.yoctoproject.org wrote:
+> Is there a list of certain classes that might interfere with the ability 
+> of the eSDK to lock down the configuratiuon ?
+> 
+> Thanks,
+> 
+> Steve
+> 
+> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> *On 
+> Behalf Of *Monsees, Steven C (US) via lists.yoctoproject.org
+> *Sent:* Tuesday, March 2, 2021 3:26 PM
+> *To:* yocto@lists.yoctoproject.org
+> *Subject:* [yocto] #yocto #sdk
+> 
+> *_External Email Alert_*
+> 
+> *This email has been sent from an account outside of the BAE Systems 
+> network.*
+> 
+> Please treat the email with caution, especially if you are requested to 
+> click on a link, decrypt/open an attachment, or enable macros.  For 
+> further information on how to spot phishing, access “Cybersecurity 
+> OneSpace Page” and report phishing by clicking the button “Report 
+> Phishing” on the Outlook toolbar.
+> 
+> I still appear to be having an issue with the SXT SDK install…
+> 
+> Building for zeus/x86_64 Intel based platform…
+> 
+> I build my kernel image clean, fully functional…
+> 
+> Standard SDK builds clean and appears functional…
+> 
+> Ext SDK builds clean, but on install I am still seeing Error below…
+> 
+> (1)What is it comparing  between unhash/task hash ?, more sig issues ?
+> 
+> (2)What is meant by “This is usually due to missing setscene tasks” ?
+> 
+> (3)In the local.conf under the SDK they set :
+> 
+> SSTATE_MIRRORS += " file://universal/(.*) <file://universal/(.*)> 
+> file://universal-4.9/\1 <file://universal-4.9/1> 
+> file://universal-4.9/(.*) <file://universal-4.9/(.*)> 
+> file://universal-4.8/\1 <file://universal-4.8/1>"
+> 
+> Under sdk-extra.conf I set :
+> 
+> SSTATE_MIRRORS += file://.* file:///ede/tms/yocto/zeus/sstate_cache/PATH 
+> <file://.*%20file:/ede/tms/yocto/zeus/sstate_cache/PATH>
+> 
+> My SSTATE_MIRRIOR is based off the clean builds I mentioned above, is 
+> this the correct procedure ?
+> 
+> I am trying to figure out how best to debug this issue, it is occurring 
+> on the post install, and everything pretty much appears in place.
+> 
+> Steve
+> 
+> 14:43 smonsees@yix490038 
+> /disk0/scratch/smonsees/yocto/workspace_3/builds2/sbcb-default/tmp/deploy/sdk>./limws-glibc-x86_64-aiox_orange-corei7-64-toolchain-ext-3.0.4.sh
+> 
+> LIMWS (BAE LIMWS base distro) Extensible SDK installer version 3.0.4
+> 
+> ====================================================================
+> 
+> Enter target directory for SDK (default: ~/limws_sdk): 
+> /disk0/scratch/smonsees/testSDK
+> 
+> You are about to install the SDK to "/disk0/scratch/smonsees/testSDK". 
+> Proceed [Y/n]? Y
+> 
+> Extracting 
+> SDK..............................................................................done
+> 
+> Setting it up...
+> 
+> Extracting buildtools...
+> 
+> Preparing build system...
+> 
+> Parsing recipes: 100% 
+> |###########################################################################################| 
+> Time: 0:01:32
+> 
+> Initialising tasks: 100% 
+> |########################################################################################| 
+> Time: 0:00:04
+> 
+> Checking sstate mirror object availability: 100% 
+> |################################################################| Time: 
+> 0:00:03
+> 
+> ERROR: Task quilt-native.do_fetch attempted to execute unexpectedly
+> 
+> Task 
+> /disk0/scratch/smonsees/testSDK/layers/poky/meta/recipes-support/liburcu/liburcu_0.11.1.bb:do_populate_sysroot, 
+> unihash 
+> cdb08644b85fa162bd9f88cb00113fe3193cc347e39e33e8f405f9c23f60c601, 
+> taskhash cdb08644b85fa162bd9f88cb00113fe3193cc347e39e33e8f405f9c23f60c601
+> 
+> Task 
+> /disk0/scratch/smonsees/testSDK/layers/poky/meta/recipes-devtools/python/python3_3.7.8.bb:do_packagedata, 
+> unihash 
+> 925a72cbe872aad09bd3fbbe74ed1c944e9c19a732e120feae5c4784e6330d4f, 
+> taskhash 925a72cbe872aad09bd3fbbe74ed1c944e9c19a732e120feae5c4784e6330d4f
+> 
+> .
+> 
+> .
+> 
+> .
+> 
+> This is usually due to missing setscene tasks. Those missing in this 
+> build were:
+> 
+> <<appears to list every recipe under ./testSDK/layers directory here>>
+> 
+> 
+> 
+> 
+> 
