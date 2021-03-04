@@ -1,161 +1,139 @@
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
- by mx.groups.io with SMTP id smtpd.web08.4370.1614899158690382225
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (NAM10-BN7-obe.outbound.protection.outlook.com [40.107.92.53])
+ by mx.groups.io with SMTP id smtpd.web11.4467.1614899858995184222
  for <yocto@lists.yoctoproject.org>;
- Thu, 04 Mar 2021 15:05:58 -0800
+ Thu, 04 Mar 2021 15:17:39 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@hpe.com header.s=pps0720 header.b=RUmiDs6k;
- spf=pass (domain: hpe.com, ip: 148.163.147.86, mailfrom: prvs=0697bde9bf=javier.tia@hpe.com)
-Received: from pps.filterd (m0134422.ppops.net [127.0.0.1])
-	by mx0b-002e3701.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 124MtDNF012756
-	for <yocto@lists.yoctoproject.org>; Thu, 4 Mar 2021 23:05:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
- date : message-id : references : in-reply-to : content-type : content-id :
- content-transfer-encoding : mime-version; s=pps0720;
- bh=xSWmBJy7RTiEbTPNIZVompIsuTdFQgc8WLNpegS/yCw=;
- b=RUmiDs6kKJocADEebrJOGI/TTfySFc5k44Ylgw3bb1TjRa+LeVX4RcXl//ry+RcwK0hG
- ywvHgcNilmyvQMLMj+64R0IJFMmSCnGb+WAi7/1pDSrcLUQ24b/Y69I4IVUZZRl22u7Q
- 4X9yL0F4vJ8W1TJZ86pV4GwtCAt7wN9xyVq9VgX7vHM/RbqzEl8CX1iimferd2PTuWtK
- V+1Whil5s2LoRlcvE/hCFc4oaufEtunncA3zrldnPJDgZE5lh6xCGtx+bKo5lvixoGtU
- yFRvOJPD3CxGKm/nBcVDV0EaFaFnIn+al+xq4FUM161BVqCYicbeywP5OR31hgyKgbhi Ug== 
-Received: from g2t2354.austin.hpe.com (g2t2354.austin.hpe.com [15.233.44.27])
-	by mx0b-002e3701.pphosted.com with ESMTP id 3730sbcc49-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Thu, 04 Mar 2021 23:05:58 +0000
-Received: from G2W6311.americas.hpqcorp.net (g2w6311.austin.hp.com [16.197.64.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by g2t2354.austin.hpe.com (Postfix) with ESMTPS id 4323AAC
-	for <yocto@lists.yoctoproject.org>; Thu,  4 Mar 2021 23:05:57 +0000 (UTC)
-Received: from G4W10205.americas.hpqcorp.net (16.207.82.15) by
- G2W6311.americas.hpqcorp.net (16.197.64.53) with Microsoft SMTP Server (TLS)
- id 15.0.1497.2; Thu, 4 Mar 2021 23:05:56 +0000
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (15.241.52.11) by
- G4W10205.americas.hpqcorp.net (16.207.82.15) with Microsoft SMTP Server (TLS)
- id 15.0.1497.2 via Frontend Transport; Thu, 4 Mar 2021 23:05:56 +0000
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=cYejcD5g;
+ spf=pass (domain: windriver.com, ip: 40.107.92.53, mailfrom: randy.macleod@windriver.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dPvBD0jM2Jito2Sr3orPZKXRlyTVQPSz9W/fP2TVqhDuXj4sdA2JtD0aV/ZINp2+CJV5nZ2OtYMbUiq7SGN6Ewsvb9qo9x8NtOUnSOgs/ga1IsgIxrm4y1rDM7xPpz84YZrRZmAhslSmAq59mqaIVBd+l/FAsQ3BXc5TX9bd29QTseYvi8P5WXbnE8JeE/M1lij4kanBAZTvlF2buhu1KtJIpQSq5IdPSDJ2E6BYIcNWXAMjtlDjjQItot2vMaPhPs4bICWsDROt4QSvMU+92pm+1mfpIoB/9YoI4sHgo25ONcciMc4F9kQm7DLgHZinOoVpnMCP8XNV8WVpRGabkw==
+ b=XeF6vKpVox05ob2E7jg6KyqlgIpkzRrVtq6lLIC2B5optiKQyGOX7TYWIrOjNq3xHh3iWgEZKk4onB/1utAVM6S7Y+6aw6QxqQofazf1jL36LUea/Y5fcNR5qd6vZ0KII3PjlzKZXV6D3KNw2EI91rbhqjEU7YqBGiUI12AYOHYkh0YqISxgnwtwo/l9NEXh5MTSgjMMunPTJjWQM5+inGpARsU4PFXBAzZu1XK9pNdeR7jmqApRgjOngy59eiOch7LiCKP4uJLr/4eab723fJ2GoesPxduqTyndfMRC+JE7qGFlC3aYHjf84AfynaYAdDSuC2Hnna1Q9scn48iLDQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Qb6mU1MZV9Y3upejabmGh1vm5nDLdECt5ew0RghGPlg=;
- b=PipgY38BBX/BEXFITF0cYDeRe7BdJtOeBKZdr0PHIkETbxVwbYsKD6hWt1zg+0OUZ/kPsty/xOzZHLt+UfzL65tVj+WX0tgghzo/ROXSpUuZLlrGn+obbGTcBUbHLvY5jVnXF3VZgNFmwmsSdfx0gFFkHW3UIJOWeFcaLuxSTgk0O0KzuAm+4rETbYItYpP5hclliiA5BPO3vB4rYBh3ut0R45JfZiE2fEwI9hRe43DCTVYINkcVgnSUl8dxKCMNAgON2nE0LrtHvtKzT481WsceZvPFsiVcdd5Royh3mDxdCiVcPMIwpTLJ+FcRihRdW9QUmrG5/yIGnWLoM0fV2w==
+ bh=GkAxf7a/F4FmwQidCIGIhAm01kNBC1QWZLPU2RBQXsg=;
+ b=Fl9Ct9CC2YZPHRZQ7OqPgeCHYZQakaGweirq1jzuyiViDlSzo1N8jr5Wsvgl1lrtKHyH3hfPLyudS1Sr8jKqY90vRwICGoEwjOf+phOVh5/F8URbrl2bTPom5TvXPX3+xdEeREi2ajSm49Kc1Z0bsAdEHYns6dCYm/7EAB5kal4hLWQ2ShvMiF0i/iauUkEgPvU19JlU4Z1nCwlEpAjCPMzqLl/7Wbearnq5+j89RmHttYvAF7L0W8Fl6+nBzLPinNStHiAghUz7uB30vLVKqIUq81EwZnAVIH+quwC2DJs+nIyhH5OPCqPLz8DYQL3/mr2VLOBh50/D5sCEL5R1rw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
- header.d=hpe.com; arc=none
-Received: from DF4PR8401MB0347.NAMPRD84.PROD.OUTLOOK.COM
- (2a01:111:e400:7606::14) by DF4PR8401MB0508.NAMPRD84.PROD.OUTLOOK.COM
- (2a01:111:e400:760b::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.19; Thu, 4 Mar
- 2021 23:05:55 +0000
-Received: from DF4PR8401MB0347.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::a113:1856:6da7:8a41]) by DF4PR8401MB0347.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::a113:1856:6da7:8a41%11]) with mapi id 15.20.3912.022; Thu, 4 Mar 2021
- 23:05:55 +0000
-From: "Javier Tia" <javier.tia@hpe.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] How to run the recipe Go tests on Yocto
-Thread-Topic: [yocto] How to run the recipe Go tests on Yocto
-Thread-Index: AQHXD7k8h+LO0/IJ4k6n3ilnraOdoqp0dmgA
-Date: Thu, 4 Mar 2021 23:05:55 +0000
-Message-ID: <53584384-2835-2472-b8cf-fdf94f27063b@hpe.com>
-References: <1668A951B76738ED.31223@lists.yoctoproject.org>
-In-Reply-To: <1668A951B76738ED.31223@lists.yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GkAxf7a/F4FmwQidCIGIhAm01kNBC1QWZLPU2RBQXsg=;
+ b=cYejcD5g7Ln6DbkSuObgE8uVfK1GcU9tW0UidOb7PmnQZIeNBQXxhD21E/3II0/SMOhxWFfhbebbqjhumVdZ2aNykrP4gVq6zDreaWOIu6X5E0zCMCPyDAz6fE+PKRzSOdwthx3ptPHcRwMtvlOSo35Nh1FVP1vhenCPYlxPpDk=
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
  header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=hpe.com;
-x-originating-ip: [190.171.113.156]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 370a2d4f-2d33-4894-4fd7-08d8df62110d
-x-ms-traffictypediagnostic: DF4PR8401MB0508:
-x-microsoft-antispam-prvs: <DF4PR8401MB0508C06C0A26D1CBC09C588199979@DF4PR8401MB0508.NAMPRD84.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:121;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: fKhtiYBcRUTK4UYmECfIsih23UoQeMk0P9sIQ20HkjDGhATsvuz5qK9GSoKeZLuFefaRcbJqeesBFkk2ZguAF5k+XgH5YsVZtdrawHz8pUE3GY2MO3sk0SNoV9JpoR3590AFxyMdhaM/QDSOJmKmbTuZ5tZmnz4LeMr5g/oMhiWrC13vpIXVk9dz/rJzpElI3Z1rFkoxO71OT19lyF7NPPE32Po5yb6blqCTPZ+xNJpcYQDh8N5ifvx3xR6r2clA36xaKT0bvvo/cHFwsyhHFHOmPktaYfXh2xNNEuQjZibroA058JnWOQ0iF6j66JRllmsC7jPgtpt1fr7hKc11bP866jcX1Tegs+hTPv01XRlan1vl1cD6MjT4jgdO0H5SLe80Nb8tBBVqwOOcb9u42D10qsPiLZErmFT0CCHDr1Zq/PdrtCxbZNab1D9EvI845v3oftNHg1qKF+Uyjg+nkAM1ujSqd/beMt4/FaJzhApIVHb2UEWk2VN7ij2wVVS6x51aGV/yAN+xmHAofkCpVHZTDnXYIYJJEVG8RhDg16TImowvogxMM+a3LIiYxO+HDQjbdCFurrCQ4JsMY8bL1m1Pt+LG5+Imytc+tscxSPNnDVUfRtfXQ9El8nLD35BGAllxwaqUeh/l7Bs87Tc3D1cmlvVin+mrEEpLV5qJTJqmw8xR29QO9V/4C1Jg4xxR
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DF4PR8401MB0347.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(136003)(39860400002)(346002)(396003)(376002)(366004)(2906002)(5660300002)(76116006)(66946007)(64756008)(8936002)(2616005)(66556008)(31686004)(66446008)(6512007)(6916009)(6506007)(8676002)(71200400001)(478600001)(966005)(316002)(186003)(66476007)(86362001)(6486002)(36756003)(26005)(31696002)(83380400001)(53546011)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?alRJTC95M2ZwZUN2QWppOUp4TnZ5dXczSkhlV0E2MXJUdWc4cG9FbWszY3A5?=
- =?utf-8?B?cEpXR1lqek1SOVUzdzBrL2xVOERyRVppd1EydHpITGxkcDZmb3Fjb0w3VVgy?=
- =?utf-8?B?RktrN0lKRnlFY1grZDUweFBNNU1RVm5udXZSY1FIR1pCV2dNZlY2YVF5S0FQ?=
- =?utf-8?B?ZzkyTGJjcnExbW9GQ1VhOHFUcVVxbHh6aDk5TXJkL1pjWjlvRnV6bmZVOWk1?=
- =?utf-8?B?RGkwcFoxZ0xwUXVqMjlFMWNIdVhwdXkwT3djVm4raTZkZTV1dGVzd3dpZnlV?=
- =?utf-8?B?eGprQzhMQ2lndnM4bm1kMkt4QUhzc3FIQWJUNHB4bWlVZ0pQc2lRZ1pHZXVD?=
- =?utf-8?B?a3FOSnJGN1JQOXRBMUZ6TzNUcUZ4MlREZStaTTZOazM1Unl2SkZjbEVPUnc0?=
- =?utf-8?B?SVZpRVJBeE1UNEFoQW96OXFETzZaSTdUK3ZZb013ZEdEdm1uOTMrZnFZNFFn?=
- =?utf-8?B?cUdtN25WdzI4Rnd3TmxkRThYRldMeG5hQ0d4UDgweE5XdDd0SlAxTzArQTlF?=
- =?utf-8?B?YlA5Q24xTDBKendSaEdtelhWaWRBWjZBM0RBUUg0R2VDZU43aTJiTjBOUTRk?=
- =?utf-8?B?azJtZWhEVTd3dFFsR0pCdEVtcHIwcVJhMG9VczIrWjQyM0ZzS0pqVVVKTHZ5?=
- =?utf-8?B?NXdKZjQzc1BnVHpUd2dNVEVFaDE0bmp3N0ZpRjErQ2oyMkFWeExZUCtnb1J0?=
- =?utf-8?B?ZWJYd2NpZmlJYmp6Q3BGT0RST3MrYTdzVm1vR0V1cnA4QjBOWjdzbDZYa3Bq?=
- =?utf-8?B?K1BHWVc4UEVZVFltV2dUWnFZc3hKQlZtSUdTaTdwL2gxQStCaXZhOTlqRDh1?=
- =?utf-8?B?NWQ1TmlYQkVOSkpkZlB3OXZnVFVHNEdZaVJranRkcHpNcDEzUDJJWk9BZU5r?=
- =?utf-8?B?K1JTV25FbTIzVDN1elVVVG5jcUN1aHVLckVsaXJkaGZpN3VxSnlnd205MFJp?=
- =?utf-8?B?eVBFSjIybTNwZXcvaEppTXk2TXR6MW1kUS9ZRk4vZXREQU5JaU9wQW1pQUl0?=
- =?utf-8?B?K0NlSEd2SjgvLzdNcTRHQWwwZUxDS0tyZG0yQVZOenlKRHZUcXFManRrOWVQ?=
- =?utf-8?B?clBDQlBmdkxuenVTWHVUWFZWd01NbUxSZUZvZTF6SG5RZjF2WHRyenFhKzhp?=
- =?utf-8?B?NEFzSXR5Zng2Nzc2Y21raERaeFdmMEVZUS81S1NkTE1KYWxVUEd1VUp4UUJu?=
- =?utf-8?B?UTlYUjRNNEdPaXBQOFQrZTVjV3AwejlSZHFHa1U3bm9QYzU5UTlwTzJYakdr?=
- =?utf-8?B?eHk3MjBpdG5YaFE2Z0xZQ0IyOTlER0FSVy9GN0dKb2pLUlRMQmo4WkJFb3RT?=
- =?utf-8?B?MnZZeUFid0JidzQzWTBaakFLMHFvamJhWTkxSDBVUXVzVmRRL0I3d051dWUv?=
- =?utf-8?B?cDhjSit1d211djEvSVFoVVBqZ2t5U1ZIOFMyejQvdWJOYitISkkwbnNhc0RO?=
- =?utf-8?B?TUw3YWE2QW9VUG1zM1RjZjVIYnVIZHlrS0VKTDdHSWVnVmRUeXMrS1BkSVk3?=
- =?utf-8?B?OW94cHlSYWFUemIyV005aU5lend3RVZtODV1L0RuMzd1c1RlWk5ZbWVXMy93?=
- =?utf-8?B?UFRnejJLUExRSFB3bDZLdzMwTVZvZDgvNVphZGJuWDZya015MkdGTjV3ZzZk?=
- =?utf-8?B?WFZBRjNVWGx4cWxDeUx4TE5oeEQzOHU3N2xhc2ltYkhWRURwUFYyeER6a1JC?=
- =?utf-8?B?ZHJmK2hkWlo5SG9uRmNET1crUEFDMzgyRmxSSXJHU2s4bnNwUHlSNlBrVG8v?=
- =?utf-8?Q?j5tL3kPVSiHjcCd08CthLDA28dYt/6t7mEuM+2T?=
-x-ms-exchange-transport-forked: True
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DF4PR8401MB0347.NAMPRD84.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 370a2d4f-2d33-4894-4fd7-08d8df62110d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Mar 2021 23:05:55.7949
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WqVFsUWs7blGjefw7/eYhB6DCs3whT6Xo+S3Z3SEuxj80+KSGU9yOP9NhKD816PquSleVKwyaVEe5MzBpUHc+g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DF4PR8401MB0508
-X-OriginatorOrg: hpe.com
-X-Proofpoint-UnRewURL: 3 URL's were un-rewritten
+ header.from=windriver.com;
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
+ by DM6PR11MB3290.namprd11.prod.outlook.com (2603:10b6:5:59::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.28; Thu, 4 Mar
+ 2021 23:17:37 +0000
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::f17d:2de1:291f:80a9]) by DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::f17d:2de1:291f:80a9%4]) with mapi id 15.20.3890.032; Thu, 4 Mar 2021
+ 23:17:36 +0000
+Subject: Re: [yocto] safe escape library for HTML
+To: sswarnas@gmail.com, yocto@lists.yoctoproject.org
+References: <WA98.1614891672845389623.mCcw@lists.yoctoproject.org>
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+Message-ID: <753de766-ed30-fe3c-9c6e-79833acff7c2@windriver.com>
+Date: Thu, 4 Mar 2021 18:17:32 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+In-Reply-To: <WA98.1614891672845389623.mCcw@lists.yoctoproject.org>
+X-Originating-IP: [198.48.226.187]
+X-ClientProxiedBy: BY5PR13CA0020.namprd13.prod.outlook.com
+ (2603:10b6:a03:180::33) To DM6PR11MB3994.namprd11.prod.outlook.com
+ (2603:10b6:5:193::19)
+Return-Path: randy.macleod@windriver.com
 MIME-Version: 1.0
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-04_09:2021-03-03,2021-03-04 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
- spamscore=0 lowpriorityscore=0 priorityscore=1501 impostorscore=0
- phishscore=0 clxscore=1015 suspectscore=0 malwarescore=0 bulkscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2103040113
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B09D51136DE49649B3926A9DE263F15B@NAMPRD84.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.25.44.2] (198.48.226.187) by BY5PR13CA0020.namprd13.prod.outlook.com (2603:10b6:a03:180::33) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.9 via Frontend Transport; Thu, 4 Mar 2021 23:17:36 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: fa3d75df-0706-4984-4cce-08d8df63b2be
+X-MS-TrafficTypeDiagnostic: DM6PR11MB3290:
+X-Microsoft-Antispam-PRVS: 
+	<DM6PR11MB3290FBA2CAB0977CF1F77C42F8979@DM6PR11MB3290.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	3M2jXP+V4MhLrvTfPGgoRYh/O/+hewdiQGQo5ByOg1xkbqOQIrEaw27s1cIh6bIhPrVAaoB8fAxa9KeyXxEI/phXOnLTzJV3IMjSluw0tHA3cLsqmNaSvf8tAHTaZ1GpUhX151/Jz7oirdwf+bFI0fVKTCTxJQFZfCAXfF+F3gISVDvU+Jcqb5AS7E0yLHVNF5yv2S7FK2AB6cTM0jE4e+qaKyyLPsXrnb0+TdNV+zlOsN7Dsoz1V2w4hlq+Yy7sRic5SIjOhJMQ4jsHPJgQwVW5mENTA2vz1JBytK2/5FHWtkKXRgDNjoGPGW7S40jXEkysEyslYveFMNryff15b3NJb/kDu79UEZO3AZulJdlR7QS1Bhis/FFTxnYXwkzu+nU70PLkX9dm/if8WahUi506aazZjCFYPSxTFrwr0dq3wz9Ma1sTWDYprDyDVle/tXQbxrrNtMkdiooLDCu7GIgmhf1zwEuimfQ4ftQIxSpbneAXvuS3k0SW82qWGgaftI1oGHyZwQ7osT1Kk66dHS61lkVoXOvKckmmtQ/SfNlEKXIpJpfUs3HF2b1SC2VGDYr8l4gUeiC9ZjENz72Z6Wj3l3JC78Z07flvqb9nPRJYvw9K2yUiRWLbqr68NYcBdnG0Dwm4cmsnlcPYmc94TSvbZtAd6Wh3z8t7zYuy+Kl4Srrdw9iNbszgJJekjIeT
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(396003)(136003)(366004)(346002)(39850400004)(186003)(316002)(83380400001)(16526019)(26005)(16576012)(31696002)(6666004)(36756003)(478600001)(2616005)(52116002)(956004)(66946007)(5660300002)(31686004)(53546011)(66476007)(8936002)(4744005)(8676002)(2906002)(86362001)(966005)(66556008)(6486002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	=?utf-8?B?eFJhQWRlZGlBQnRKN2NscEgzeHpTUnYrZVBIbG9pWFRsRmd0cG9tNDVuRFdL?=
+ =?utf-8?B?RkhqNlQ5b0hnNWRwTFRZUE01R0ozdFVHRWI3TitFdUFINVpxbmFXOFZFK1R1?=
+ =?utf-8?B?dU1UY2pkN29SV0JTZGVyRGdaSEhSdjgzYnlPTEQrNStaL0dLKzFWbHF1ZDhZ?=
+ =?utf-8?B?aTVwMWhmd0M0SlBCV1psTDZmMjF1UjRHTHROcjExNlpLRzZUYzVKWlNXSUJU?=
+ =?utf-8?B?UWJvNVd0UjF6ZTlxUlBVaEhDZHhsdkc5TWJXdTF4cXBCSXFSQ1N3eWdIUHh4?=
+ =?utf-8?B?WEVJWkJXVjlxdFZnbmlpcTU4QXVzdWx4VzZBZUZhZ3ZXWjdUSVVRcHJ3M0gv?=
+ =?utf-8?B?ZWVsekd2Y1FVMmRlbXk4VmlNVCsrbXBXNG9sSGpkR250UXVsZU5kSm9BbWE5?=
+ =?utf-8?B?bnI2aGRnblBXUlFOank1aXZIYmtZZTdwd1BadE1ONnBqSWoyaUZHd3VDbldY?=
+ =?utf-8?B?TitLN0FRbGQ2WjRpcUZrV2ZXKyswNU1iOEcwTC9tK3E4NW5PRy90bzM0Snlu?=
+ =?utf-8?B?MURpOTgwYnhJV25lcXNsOHVOZytnbTBUNnVSNXdBS2ZPczdCRkxNVUNiUlNw?=
+ =?utf-8?B?UW1rZWRVamwrWWJTbW45eVBLK1VHMkhXMjlSRlhHQnpIcGRlUTEwOVRHeWFC?=
+ =?utf-8?B?eUNwQlF6cURJalpVWmlJNkIzb3ZFWjNYcVpDMkl6ZlJaaUNVcUFmdGZXU2Yx?=
+ =?utf-8?B?d0ROZE5iNU8rSTdhMGJmT3Fka0FSaGRIR2VWK1pTZVY2Zmw3SDVLQkhRNE1Y?=
+ =?utf-8?B?QlBWSy9NcUpKWjhCY3pUMDJvbkh1OTlGeGdyVjVhenRMRjdzR3dPN3Rwd05k?=
+ =?utf-8?B?aFBiUHV5Vmo4Z0g2YzdDRVB6SGpqUjAzK2VuZFFibFNTVU03ZklHRWhUZm1Q?=
+ =?utf-8?B?R1AxeHJOTVRFRnlxUm4wZzZzK05vZkhnZ0Z4NU5UcUJVNW8yUGVWT1J6dXBP?=
+ =?utf-8?B?cE9TQU1UMjcrU0wrTjJiaGF6SmhuTUg5UThVQTMyb1cycUswaE5KNGdQNHF4?=
+ =?utf-8?B?NUpsOS9QS0dNeVdLSlAwVzFVTFRRTWhIUlFmaWNRMlM2OXNNYVp4U2dwcHFU?=
+ =?utf-8?B?ODU5NjYrNXl5VkVrWVJLc0RJWEhTUUVidTYxa0VYMzEzb0Q3dTlTVlFuSnhU?=
+ =?utf-8?B?dmxSU0ZrbUt6WmFYSDBhM2tNM0FSOHFTdFkraUh5WWdGZ1laci9EQ21XWWdD?=
+ =?utf-8?B?QW9MbnN2NzlKOUFFelIway9Pdmd2VTJrZDVOV2EwTXdMWit3TXJjVE9sSzln?=
+ =?utf-8?B?V2JmbGhvUzg1aWlqWXA5emlZOFoyaFcxd21vOHh1TUJEUDdpeE1zTGpoZFpC?=
+ =?utf-8?B?Vm9KanFXNXU0cG9HOUZZbDQzdFhqOEtRYTl1ZUYzR0xxQUFrVFVjZjFjVXdp?=
+ =?utf-8?B?Y3FCQXpyb1NnbTVoQ2VtV012bkpGNCtlMlZ4NjQ4MTJTdUsySjgxNUxMNE96?=
+ =?utf-8?B?L0l1aTI3bUE2Nk0xbVczWGo5c0ZPdlhTQjJLcXFLOXFHRnlvTHVqbGozUkdi?=
+ =?utf-8?B?dEhKbWk1bUloTVpuejNDNVBxb0lXT1dYaXZSc05rTDJDQWVqOW9IR3NPOElm?=
+ =?utf-8?B?MjVwRGkyY29TRWxtQWNjOGFPQW1TaHlrK3hVUzJkNE1ObnE5YW5kem1CVkVq?=
+ =?utf-8?B?bmE4NTl2UFpmcmQ2MmNWMTB3ek80WmxLUzhkNTZ5a3ZsNG5zRXdldVhDOHEv?=
+ =?utf-8?B?cmJNNDR1UjIrU3I5QkZETHJ2RlFhVy9ES2xYQy9sRVRoRDI0SDJ1N3VjMXMr?=
+ =?utf-8?Q?2u1epMXWo/rAkn/p1/GW94lAwl0v/FnehIWs37r?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa3d75df-0706-4984-4cce-08d8df63b2be
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2021 23:17:36.8126
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: b3jT3mg+Yy63kdlVqx/NSkr5KuuXWst+6RQ00OCz+YJoHyUwUzxDl1MLxMh1KJlGtDsDjK5yM4qMCjkDK/tlU5eIP+vufzI+bxnkVN8p+Nw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3290
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-CA
+Content-Transfer-Encoding: 7bit
 
-Rm91bmQgdGhlIHJvb3QgY2F1c2UuIFRoZSBHbyBVVCBiaW5hcmllcyBmaWxlcyBnZW5lcmF0ZWQg
-YnkgdGhlIHJlY2lwZXMgDQp3aXRoIHB0ZXN0IG9yIGdlbmVyYXRlZCBtYW51YWxseSBuZWVkIHRv
-IGJlIGV4ZWN1dGVkIHdpdGggdGhlIHNhbWUgbGQgDQpjb21tYW5kIGZyb20gdGhlIHRvb2xjaGFp
-biB1c2VkIHRvIGJ1aWxkIHRoZW0uIEluIHRoaXMgY2FzZSwgaXQgaXMgdGhlIA0KZGVmYXVsdCBH
-TlUgdG9vbGNoYWluIG5hdGl2ZSBwcm92aWRlZCBieSBwb2t5Lg0KDQpUaGFua3MsDQoNCuKWtyBK
-YXZpZXIncyDwn5aKDQoNCk9uIDMvMi8yMSA1OjEwIFBNLCBKYXZpZXIgVGlhIHdyb3RlOg0KPiBI
-aSwNCj4gDQo+IElzIHRoZXJlIGEgd2F5IHRvIHJ1biB0aGUgcmVjaXBlIEdvIHRlc3RzIGluIFlv
-Y3RvPw0KPiANCj4gSSBoYXZlIHRyaWVkIHNldmVyYWwgd2F5cyAoMS4gTWFudWFsbHkgYW5kIDIu
-IHB0ZXN0KSB3aXRoIHVuc3VjY2Vzcy4NCj4gDQo+IDEuIE1hbnVhbGx5IGV4cG9ydGluZyBhbGwg
-dGhlIHRvb2xjaGFpbiB2YXJpYWJsZXM6DQo+IA0KPiAgICAgR09BUkNIPSIke0JVSUxEX0dPQVJD
-SH0iDQo+ICAgICBDR09fRU5BQkxFRD0iMSINCj4gICAgIENGTEFHUz0iJHtCVUlMRF9DRkxBR1N9
-Ig0KPiAgICAgTERGTEFHUz0iJHtCVUlMRF9MREZMQUdTfSINCj4gICAgIENHT19DRkxBR1M9IiR7
-QlVJTERfQ0ZMQUdTfSINCj4gICAgIENHT19MREZMQUdTPSIke0JVSUxEX0xERkxBR1N9Ig0KPiAg
-ICAgQ0M9IiR7QlVJTERfQ0N9Ig0KPiAgICAgTEQ9IiR7QlVJTERfTER9Ig0KPiANCj4gYW5kIHJ1
-biBpdCB3aXRoIHRoZSBHbyB0ZXN0IG5hdGl2ZSB2ZXJzaW9uLg0KPiANCj4gDQo+IDIuIFVzaW5n
-IHB0ZXN0LCBhbmQgYWRkaW5nIHRvIHRoZSBHbyByZWNpcGU6DQo+IA0KPiAgICAgZG9fY29tcGls
-ZV9wdGVzdCgpIHsNCj4gICAgICAgJHtHT30gdGVzdCAtdmV0IG9mZiAkKGdvX2xpc3RfcGFja2Fn
-ZV90ZXN0cykNCj4gICAgIH0NCj4gDQo+IEluIGJvdGggY2FzZXMgdGhlIGVycm9yIG1lc3NhZ2Vz
-IGFyZSBsaWtlIHRoaXM6DQo+IA0KPiBmb3JrL2V4ZWMgLi4uL3JlY2lwZV9uYW1lLzEuMC1yMC9n
-by10bXAvZ28tYnVpbGQ3MTEzL2IzMzgvdXRpbC50ZXN0OiBubw0KPiBzdWNoIGZpbGUgb3IgZGly
-ZWN0b3J5DQo+IEZBSUwgICAgdXRpbCAgICAgIDAuMDAwcw0KPiANCj4gSXQncyBoYXBwZW5pbmcg
-d2l0aCBZb2N0byBaZXVzICh2My4wLjQpIGFuZCBHbyB2MS40LjE3DQo+IA0KPiANCj4gUmVnYXJk
-cywNCj4gDQo+IOKWtyBKYXZpZXIncyDwn5aKDQo+IA0KPiANCj4gDQo+IA0KPiANCg==
+On 2021-03-04 4:01 p.m., sswarnas@gmail.com wrote:
+> Hi,
+> 
+> Please let me know if we have recipes i can use for HTML sanitization. I 
+> want to do this sanitization in C code.
+
+This is a rather vague question so you may not get a specific 
+recommendation. Have you reviewed the list of html related recipes
+listed by the layer index:
+ 
+https://layers.openembedded.org/layerindex/branch/master/recipes/?q=html+
+
+Let us know if you find that useful and if you find a package that
+meets your needs.
+
+../Randy
+
+> 
+> Thanks,
+> S
+> 
+> 
+> 
+> 
+
+
+-- 
+# Randy MacLeod
+# Wind River Linux
