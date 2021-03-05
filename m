@@ -1,71 +1,207 @@
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
- by mx.groups.io with SMTP id smtpd.web11.13946.1614959500740354216
- for <yocto@lists.yoctoproject.org>;
- Fri, 05 Mar 2021 07:51:40 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=hLb0nXdg;
- spf=pass (domain: gmail.com, ip: 209.85.222.169, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f169.google.com with SMTP id a9so2348307qkn.13
-        for <yocto@lists.yoctoproject.org>; Fri, 05 Mar 2021 07:51:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=R+Bnc4vLZj3EpqlP2wO5Qh9CoZZeMLwqicJzBX8X1hw=;
-        b=hLb0nXdgcYOeL7GZncASxuS4GBWA4j32MLDNQvfZc6bqeClcciYgMlzN8hwi6VUX3x
-         F4k7FkKAU72OutXdjxG3VTaEL3ZfJjvlsLXq4N+2Uk9DdEbSy1rjEf7iJe1pCD8JkAnc
-         /lCmMY2titEk53ozleRnPI9NCpTJqUv+7kIm1j7pyXNYbSADo+LOOdjxwE2Cm57wFAsp
-         8gF7tmNQ6fEtzNc8vqIh/BReuKlQ90TfkSNc6stCoCwetQP4XP/G0zYno/BX/MWJkDGN
-         EC7qd1qUpd6/1zp0Xp9KLga2dQZB7iTLjcitYeTJ07NCSiwEFmtC1jTbsMqCFm+/exbQ
-         xARQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=R+Bnc4vLZj3EpqlP2wO5Qh9CoZZeMLwqicJzBX8X1hw=;
-        b=DEFz9hDjQ+3cvGLiIudGaQvH64s5lihRexxZl0oqsRjrtimMs9BmZXeyqxhWe4f2bU
-         5XelczGv04LzdBJV+n0F/VLwzeYCgNUcdpAd5+zocs0qgaqnmWe5X84kl2oT5aHx6tl+
-         sqnp9Ze0KgEeWEbWAN1+6+BgU/HsIt706NMnjfoLoDNpvUit9h0FdTC3w0o/Pw5sV7YY
-         q+E5WgSn8M83DhgUq5jQF1Ez9aTKClOzhppPimSW/yRCul13lT6+NEBO6Y6vaK7QRZGA
-         fFqT/BberpA0yJL/RkvTNyIvccRaomLEW/e3vxAsBtIuXZYyt8RC1k+AkgxeKgNqdYT0
-         uaVA==
-X-Gm-Message-State: AOAM530KEBoQN+Y6cxRwQm5TIRN4b08EvqK04+f0RtZk//ilW1A6Wvx0
-	Fu0Q8+MTTnEA/3TszYhPJ7Y/ziWOc2OSO24yM08=
-X-Google-Smtp-Source: ABdhPJz7x6h+NxvEbmXuE7q6qmvYQa4w9SKQlkGT0GWVdZEyTIqFZwAGu3UBrWGX85cBm5Un8RpLyH6QEixwP0CSLg8=
-X-Received: by 2002:a05:620a:a12:: with SMTP id i18mr9754647qka.119.1614959499710;
- Fri, 05 Mar 2021 07:51:39 -0800 (PST)
+Subject: avahi_0.8 issue with latest version
+To: yocto@lists.yoctoproject.org
+From: "sateesh m" <sateesh0457@gmail.com>
+X-Originating-Location: Bengaluru, Karnataka, IN (14.98.179.254)
+X-Originating-Platform: Linux Chrome 88
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <DX8u.1614945646527170477.i4ls@lists.yoctoproject.org>
-In-Reply-To: <DX8u.1614945646527170477.i4ls@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Fri, 5 Mar 2021 07:51:13 -0800
-Message-ID: <CAMKF1sqsMX1-TAX_m7HvPotwQs98yDE-HXfYe1upeCMNSMbT7g@mail.gmail.com>
-Subject: Re: [yocto] meta-toolchain, gdb-cross-canadian_9.2 fails due to "no usable python" #toolchain
-To: mmiguelhorta@gmail.com
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Date: Fri, 05 Mar 2021 08:15:07 -0800
+Message-ID: <tOJ4.1614960907629848256.tBPL@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="s7sncXRRQh8b7k2k53Tv"
 
-On Fri, Mar 5, 2021 at 4:01 AM <mmiguelhorta@gmail.com> wrote:
->
-> Hi,
-> I have been trying to build meta-toolchain however it fails to compile during gdb-cross-canadian. Follows the relevant output:
->
-> | checking for libmpfr... no
-> | configure: WARNING: MPFR is missing or unusable; some features may be unavailable.
-> | checking whether to use python... /home/.../workspace/gatesgarth/build/tmp/work/x86_64-nativesdk-pokysdk-linux/gdb-cross-canadian-arm/9.2-r0/python
-> | checking for python... no
-> | configure: error: no usable python found at /home/.../workspace/gatesgarth/build/tmp/work/x86_64-nativesdk-pokysdk-linux/gdb-cross-canadian-arm/9.2-r0/python
-> | make[1]: *** [Makefile:8866: configure-gdb] Error 1
->
+--s7sncXRRQh8b7k2k53Tv
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-there will be a file called config.log created in gdb build dir which
-will have further information as to why it thing python interpreter is
-not usable
+Hi Guys,
 
-> My host is Ubuntu 20.04, and I'm using yocto/poky gatesgarth as base. Target core-image-minimal builds without issue, only meta-toolchain fails.
-> Normally I can get a good idea why something is failing from the logs, but this time I'm really left clueless. Any help would be appreciated.
+I=C2=A0 have installed avahi_0.8 version using gatesgreath version.=C2=A0 =
+its compiled successfully .but=C2=A0 i am facing issue=C2=A0 with=C2=A0 pid=
+ is remove automatically when i restart my service.
+
+avahi configuration : hostname,domain name, allow ipv4, allow eth0,reflect=
+or =3Dyes i did all this avahi-daemon.conf
+dependencies: gtk+3,gtk,dbus,avahi-daemon,avahi-utils ,libnss-mdns.
+is i miss any configuration or any patchwork work for this packages=C2=A0 =
+please update me i will modify it.
+
+( avahi-daemon[625]: Process 592 died: No such process; trying to remove P=
+ID file. (/run/avahi-daemon//pid))
+
+0;1;32m*[[0m avahi-daemon.service - Avahi mDNS/DNS-SD Stack
+Loaded: loaded (/lib/systemd/system/avahi-daemon.service; enabled; vendor =
+preset: enabled)
+Active: [[0;1;32mactive (running)[[0m since Fri 2021-03-05 13:12:17 UTC; 7=
+min ago
+TriggeredBy: [[0;1;32m*[[0m avahi-daemon.socket
+Main PID: 625 (avahi-daemon)
+Status: "avahi-daemon 0.8 starting up."
+Tasks: 2 (limit: 9561)
+Memory: 620.0K
+CGroup: /system.slice/avahi-daemon.service
+|-625 avahi-daemon: running [foo.local]
+`-626 avahi-daemon: chroot helper
+
+Mar 05 13:12:17 mysystem systemd[1]: Starting Avahi mDNS/DNS-SD Stack...
+Mar 05 13:12:17 mysystem avahi-daemon[625]: Process 592 died: No such proc=
+ess; trying to remove PID file. (/run/avahi-daemon//pid)
+Mar 05 13:12:17 my system systemd[1]: Started Avahi mDNS/DNS-SD Stack.
+
+root@mysystem:~# pgrep -f -l avahi
+192 systemctl
+200 systemctl
+210 systemctl
+216 journalctl
+503 systemctl
+539 systemctl
+547 systemctl
+559 systemctl
+575 systemctl
+582 systemctl
+594 systemctl
+625 avahi-daemon: running [foo.local]
+626 avahi-daemon: chroot helper
+
+Thanks & Regards,
+Sateesh
+
+--s7sncXRRQh8b7k2k53Tv
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Guys,<br /><br />&nbsp;I&nbsp; have installed avahi_0.8 version using ga=
+tesgreath version.&nbsp; its compiled successfully .but&nbsp; i am facing i=
+ssue&nbsp; with&nbsp; pid is remove automatically when i restart my service=
+.<br /><br />&nbsp;avahi configuration : hostname,domain name, allow ipv4, =
+allow eth0,reflector =3Dyes i did all this avahi-daemon.conf<br />dependenc=
+ies: gtk+3,gtk,dbus,avahi-daemon,avahi-utils ,libnss-mdns.<br />is i miss a=
+ny configuration or any patchwork work for this packages&nbsp; please updat=
+e me i will modify it.<br /><br /><span style=3D"color: #000000; font-famil=
+y: Calibri, Arial, Helvetica, sans-serif, serif, EmojiFont; font-size: 16px=
+;">( avahi-daemon[625]: Process 592 died: No such process; trying to remove=
+ PID file. (/run/avahi-daemon//pid))</span><br />&nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp;<br /><br /><span style=3D"color: #000000; fon=
+t-family: Calibri, Arial, Helvetica, sans-serif, serif, EmojiFont; font-siz=
+e: 16px;">0;1;32m*[[0m avahi-daemon.service - Avahi mDNS/DNS-SD Stack</span=
 >
-> BR,
-> Miguel
-> 
->
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">&nbsp=
+; &nbsp; &nbsp;Loaded: loaded (/lib/systemd/system/avahi-daemon.service; en=
+abled; vendor preset: enabled)</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">&nbsp=
+; &nbsp; &nbsp;Active: [[0;1;32mactive (running)[[0m since Fri 2021-03-05 1=
+3:12:17 UTC; 7min ago</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">Trigg=
+eredBy: [[0;1;32m*[[0m avahi-daemon.socket</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">&nbsp=
+; &nbsp;Main PID: 625 (avahi-daemon)</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">&nbsp=
+; &nbsp; &nbsp;Status: "avahi-daemon 0.8 starting up."</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">&nbsp=
+; &nbsp; &nbsp; Tasks: 2 (limit: 9561)</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">&nbsp=
+; &nbsp; &nbsp;Memory: 620.0K</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">&nbsp=
+; &nbsp; &nbsp;CGroup: /system.slice/avahi-daemon.service</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">&nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|-625 avahi-daemon: running [foo=
+.local]</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">&nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;`-626 avahi-daemon: chroot helpe=
+r</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">&nbsp=
+;</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">Mar 0=
+5 13:12:17 mysystem systemd[1]: Starting Avahi mDNS/DNS-SD Stack...</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">Mar 0=
+5 13:12:17 mysystem avahi-daemon[625]: Process 592 died: No such process; t=
+rying to remove PID file. (/run/avahi-daemon//pid)</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-si=
+ze: 16px; line-height: inherit; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; vertical-align: baseline; color: #000000;">Mar 0=
+5 13:12:17 my system systemd[1]: Started Avahi mDNS/DNS-SD Stack.<br /><br =
+/><br /><br class=3D"Apple-interchange-newline" />root@mysystem:~# pgrep -f=
+ -l avahi
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-he=
+ight: inherit; vertical-align: baseline;">192 systemctl</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-he=
+ight: inherit; vertical-align: baseline;">200 systemctl</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-he=
+ight: inherit; vertical-align: baseline;">210 systemctl</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-he=
+ight: inherit; vertical-align: baseline;">216 journalctl</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-he=
+ight: inherit; vertical-align: baseline;">503 systemctl</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-he=
+ight: inherit; vertical-align: baseline;">539 systemctl</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-he=
+ight: inherit; vertical-align: baseline;">547 systemctl</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-he=
+ight: inherit; vertical-align: baseline;">559 systemctl</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-he=
+ight: inherit; vertical-align: baseline;">575 systemctl</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-he=
+ight: inherit; vertical-align: baseline;">582 systemctl</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-he=
+ight: inherit; vertical-align: baseline;">594 systemctl</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-he=
+ight: inherit; vertical-align: baseline;">625 avahi-daemon: running [foo.lo=
+cal]</div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric=
+: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-he=
+ight: inherit; vertical-align: baseline;">626 avahi-daemon: chroot helper<b=
+r /><br /><br />Thanks &amp; Regards,<br />Sateesh</div>
+<br /><br /></div>
+
+--s7sncXRRQh8b7k2k53Tv--
