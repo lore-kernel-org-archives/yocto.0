@@ -1,136 +1,165 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.7996.1614920053490848798
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+ by mx.groups.io with SMTP id smtpd.web11.8264.1614922387742589100
  for <yocto@lists.yoctoproject.org>;
- Thu, 04 Mar 2021 20:54:13 -0800
+ Thu, 04 Mar 2021 21:33:07 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=YfJlRjym;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: akuster808@gmail.com)
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 981D038C065C
-	for <yocto@yoctoproject.org>; Fri,  5 Mar 2021 04:54:12 +0000 (UTC)
-Received: by mail-ot1-f49.google.com with SMTP id d9so603050ote.12
-        for <yocto@yoctoproject.org>; Thu, 04 Mar 2021 20:54:12 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=lr6xKpyq;
+ spf=pass (domain: gmail.com, ip: 209.85.160.173, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f173.google.com with SMTP id s15so922802qtq.0
+        for <yocto@lists.yoctoproject.org>; Thu, 04 Mar 2021 21:33:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=dUO/EOxR4fGez233knoV95GnlzH7iaIB/kMfOVv+x2E=;
-        b=YfJlRjymutlL8ybkVxVBcJ/JgaO3fZM0Yff8jk7Zo/sPgxTitN3MciSxtxpB/WHf+q
-         JWKeO1bv8qgl/r8ktAUSYBYCGPC7Bdp8xU51AbpVDoz9SOFHeptfx5jVgnIbF9k9qgtk
-         bUxo04MIHhFy3EmJB8lAKk4+QwVm4KX+2n3tgRvHomV99ngyqfrJo7YkLpijXSbuz6zg
-         ymbqp0nJPqU9wywNQeLhlNP7VtwKV9YqxRos7Jb7+t8lXdEwv+hO2f7McF8x9k0ewsPP
-         OwsBxkGDY3xvVcsCdHEMoLdvtg86vxbiSAeqKHXUdXLTUnGUXhDlcBUHMFx6BW7mOWQ9
-         HRcg==
+        h=date:from:to:subject:message-id:mime-version:content-disposition
+         :content-transfer-encoding:user-agent;
+        bh=GHlOjgGfYYcoIBkEB8finVROW5Py1TfI2Ae1TNuZogc=;
+        b=lr6xKpyq2m8rhC3Iy+bIlUEolMaxq2q7HUOskkBMsmhCBKtl1AsEllqHa2tv0qGi4R
+         v61vMa/jmwhJXlkgZcQh4b4lKR9olUaABWg9K1mOWkc+hhjMK42C8g5YSnLtwZBUvTPT
+         emHbtyGt9d7ZgUxGihnB/NlSEa0k7pDtE1sBQ2TIznI7foI0REwtq1F2zWJu2Vglp29d
+         ZvDVMXOFwjK6Ou3AyKjDKyYGAcjHYkj1w9B1mqQ7ZRg3xN6N7PhA3H0bzR8QzaN0nv0h
+         RT4iFOQsPTjS7jBxeQfmEEBbUFaSpVPJyDjNbYv+NmdwRA0kwROh48NvxOpUxtzKsKer
+         PaEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-transfer-encoding:content-language;
-        bh=dUO/EOxR4fGez233knoV95GnlzH7iaIB/kMfOVv+x2E=;
-        b=HgXNW75JPYYE5/AoZ3gF/zKDRjo2ccW9pvM5gZZA9JUXP+ArMobE+nEDghalJ2PWfF
-         00jCH7I/UCTxQga0MgJh2RqZP5rV9decE7ctz8W3Ob5LUVS5B9JGBDxbKCqO85eAGntV
-         7YFqcZ8MSCkughqndaKSEGIb6ZKRg9qHcGHe549x4UL9LnCpcAYbTJFKy7fcpGRRbCPA
-         we1n5GFpi4E3jS5GgYYNogaOKr+dPQs8gXU/n4fRrHFZpQeWjj5lPBfxIwf7mv7JDJPd
-         dxgdV60xOy3RRpKuBNaYoEAY6fjJLXnHEUcNuzzP74R/JFiOXV2DoF5Ry/xjtFB6dpxp
-         GNpw==
-X-Gm-Message-State: AOAM5305PkzFit0ZflJEZy84C3cw8e70W8RZF1UnYb6jtbTO+9f0xhIL
-	bDaTKHATPaQzDMUkOWToCkE=
-X-Google-Smtp-Source: ABdhPJxhtj+gOQVJoUyPoNAshLcyqnW0E8sd6OK3tfKq3lOCoRkK3LIFk7wggJen3NyZOQKImQY8HQ==
-X-Received: by 2002:a9d:226a:: with SMTP id o97mr6476868ota.362.1614920051780;
-        Thu, 04 Mar 2021 20:54:11 -0800 (PST)
-Received: from ?IPv6:2601:202:4180:a5c0:819c:344d:6859:4a23? ([2601:202:4180:a5c0:819c:344d:6859:4a23])
-        by smtp.gmail.com with ESMTPSA id e17sm391400otl.75.2021.03.04.20.54.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Mar 2021 20:54:11 -0800 (PST)
-Subject: Re: [meta-security][dunfell][PATCH 0/9] Some IMA/EVM fixes to dunfell branch
-To: liu.ming50@gmail.com, yocto@yoctoproject.org
-Cc: sergio.prado@toradex.com, Ming Liu <ming.liu@toradex.com>
-References: <20210302145745.1891826-1-liu.ming50@gmail.com>
-From: "akuster" <akuster808@gmail.com>
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <18d24d31-6910-1da2-77f6-3b352302652c@gmail.com>
-Date: Thu, 4 Mar 2021 20:54:10 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition:content-transfer-encoding:user-agent;
+        bh=GHlOjgGfYYcoIBkEB8finVROW5Py1TfI2Ae1TNuZogc=;
+        b=rjQjaDl9R5Wryjj2x7k9YddSc6LLsuXJf9UrNIJ3thqM7XW0IuFyDdlM6OJK7tnRd9
+         EzGT3Jz9UOTTEaZCPnyK3DTdzfYlXzs7+g3o3VFMqO5JItMwvaJwYG97oNmXSxu/2MhB
+         0jKOPnhIciQ37NIKOu31j4hXs9TfvVOtZJVm1dqrRpPA7/s6UrcRs39himlOpX1TUfiN
+         wE5Hb2SThtyaB5bPB89foV9r16y/7JAWUZTl4oxiKX3dxHvn/N6u7/93YmQYBr1aqHe5
+         gy2reIVbjtUMGHLsy/AB8NRc5j7lHUDE4O+bhZzljaxU+zBuQu9cO9wrZ9Oxijk6Sz4Z
+         NKAQ==
+X-Gm-Message-State: AOAM533HsXlZPpc8H+XfaInZu5bijDLjS6xjcFjYwQNmHAZmxQRdXUmK
+	U9qw1l24pY1yPZs6w3yF6W3B1se8JzU=
+X-Google-Smtp-Source: ABdhPJy6FjWuYUPLd9VXLNwTm7JaG6Gt1f/6FxkRTQ6UsHPJuPA3P8xGVpxa9LjBrrjZ7AMWfbj3lQ==
+X-Received: by 2002:ac8:7089:: with SMTP id y9mr4872902qto.264.1614922386187;
+        Thu, 04 Mar 2021 21:33:06 -0800 (PST)
+Return-Path: <twoerner@gmail.com>
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id z188sm1114093qke.85.2021.03.04.21.33.05
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Mar 2021 21:33:05 -0800 (PST)
+Date: Fri, 5 Mar 2021 00:33:03 -0500
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: Yocto Technical Team Minutes/Engineering Sync for Mar 2, 2021
+Message-ID: <20210305053303.GA5505@localhost>
 MIME-Version: 1.0
-In-Reply-To: <20210302145745.1891826-1-liu.ming50@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-series in build testing
+Yocto Technical Team Minutes, Engineering Sync, for Mar 2, 2021
+archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit
 
--armin
+== disclaimer ==
+Best efforts are made to ensure the below is accurate and valid. However,
+errors sometimes happen. If any errors or omissions are found, please feel
+free to reply to this email with any corrections.
 
-On 3/2/21 6:57 AM, liu.ming50@gmail.com wrote:
-> From: Ming Liu <ming.liu@toradex.com>
->
-> Cherry pick some IMA/EVM fixes to LTS dunfell branch, with these 
-> patches applied, I could run a ima enabled image with sysvinit/systemd
-> on qemuarm/qemuarm64 and some NXP machines.
->
-> Ming Liu (9):
->   ima-evm-utils: set native REQUIRED_DISTRO_FEATURES to empty
->   initramfs-framework-ima: fix a wrong path
->   ima-evm-keys: add recipe
->   initramfs-framework-ima: RDEPENDS on ima-evm-keys
->   meta: refactor IMA/EVM sign rootfs
->   README.md: update according to the refactoring in
->     ima-evm-rootfs.bbclass
->   initramfs-framework-ima: let ima_enabled return 0
->   ima-evm-rootfs.bbclass: avoid generating /etc/fstab for wic
->   ima-policy-hashed: add CGROUP2_SUPER_MAGIC fsmagic
->
->  meta-integrity/README.md                      |  4 ++-
->  meta-integrity/classes/ima-evm-rootfs.bbclass | 33 +++++++++----------
->  .../initrdscripts/initramfs-framework-ima.bb  |  2 +-
->  .../initrdscripts/initramfs-framework-ima/ima |  3 +-
->  .../ima-evm-keys/ima-evm-keys_1.0.bb          | 16 +++++++++
->  .../ima-evm-utils/ima-evm-utils_git.bb        |  1 +
->  .../ima_policy_hashed/files/ima_policy_hashed |  3 ++
->  7 files changed, 41 insertions(+), 21 deletions(-)
->  create mode 100644 meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
->
+== attendees ==
+Trevor Woerner, Stephen Jolly, Joshua Watt, Peter Kjellerstedt (saur),
+Armin Kuster, Scott Murray, Richard Purdie, Michael Halstead, Steve
+Sakoman, Paul Eggleton, Jan-Simon Möller, Saul Wold, Steve Sakoman,
+Alejandro H, Bruce Ashfied, Tim Orling, Randy MacLeod, Jon Mason, Ross
+Burton, Alexandre Belloni
 
+== notes ==
+- 3.2.2 and 3.1.6 released last week
+- 3.3-m3 due to be built soon
+- now in 3.3 feature freeze
+- reproducibility improved, exclusion list significantly reduced
+- various infrastructure issues (e.g. diffoscope)
+- lots of old, stale patches
+
+== general ==
+RP: reproducibility: down to about 5 recipes (outside of Go) perf and ovmf
+    are holdouts (ovmf has a hard-coded path in it), ruby and meson have
+    intermittent issues (depending on build host). ruby is in ruby-docs. there
+    are bugzilla entries for these. about 20 of the remaining issues in the
+    exclusion list are related to Go. there are some sync issues
+Ross: meaning?
+RP: there are explicit “sync” calls in the test framework, but there are
+    too many, and this adds enormous I/O load which can affect issues when the
+    test itself does I/O work
+JPEW: running diffoscope on all the output was really slow, if we can
+    pre-check the directories and prune them out before, it can speed it up
+Ross: i tried diffoscope a while back and gave up after 5 hours
+JPEW: what version?
+Ross: really old
+JPEW: lots of improvements, lots and lots, so just pip install the latest and
+    it should help
+RP: found performance issues and upstream happily accepted them
+JPEW: if there are 1000’s of files that are different it will just give up
+    after a while
+RP: i was able to get diffocope to give some good results before it gave up
+    and that was helpful. sometimes it is able to complete, but then the
+    resulting HTML is huge. it takes a _long_ time for my browser to load :-/
+RP: the good news is the AB is producing output in a timely manner
+
+RP: we’re in feature freeze for 3.3, lots of stuff in master-next that i
+    don’t know what to do with
+RP: rust isn’t in yet
+Randy: still working on the bugs (a dnf issue)
+Scott: if it doesn’t get in, does it block us on python3-cryptography?
+Randy: yes
+RP: i don’t feel like it’s ready yet. things have been rushed in in the
+    past with not-so-great results, i think we’ll step back on this one and
+    wait for it to be more stable, more tested. it should definitely get in
+    for the next cycle but i’m leaning towards not doing it for this release
+(various): agreement on waiting
+Randy: there’s an issue with the SDK related to dynamic linking, and
+    automating the rust compiler test cases
+
+RP: are there any other things that need to go into 3.3? ross: debugd?
+Ross: i think the debugd stuff is in master-next
+RP: i think there’s some stuff related to docs that needs to be done but we
+    can hold off on that and fix it up later
+Scott: i think PaulB has some stuff he’s trying to get in (read-only hash
+    equiv, read-only pr)
+RP: i think i’ll wait for -m4 for that one. he started with really bad code,
+    so i expect it’ll take a lot of work/testing before it’s ready
+RP: i’m working on making do-install become an sstate task, but getting
+    weird issues
+RP: i did some testing on libuuid, but it blew up
+PaulE: okay, i’ll poke Luka today to see what’s the status
+RP: i think there’s a lurking sstate management issue, but haven’t proved
+    or disproved yet
+PaulE: we’re not absolutely desperate for it, we can wait a release, don’t
+    want to cause pain
+RP: sstate manifests not behaving, it’s supposed to get cleaned out, but
+    if there’s an overlap it seems to complain. at that point things get
+    cleaned up and the next build will succeed (which is probably worse)
+
+PeterK: recipe parsing times seems to have increased significantly compared to
+    gatesgarth and dunfell
+Randy: numbers?
+PeterK: with all our layers included in the build:
+    45s dunfell
+    48s gatesgarth
+    1:38 master
+RP: (looks at the AB at some metrics graphs (performance worker) to see if
+    he can see the issue) hmm.. there is definitely a noticeable jump in the
+    stats. hopefully easy to bisect (gives commit numbers between which the
+    issue jumped).
+Randy: how do we translate between the data on the X-axis?
+RP: that’s commits in the poky repository
+
+Randy: any plans for the next release?
+RP: just want to get through this one first
+RP: i think focusing on the I/O sync issue would be great. like to see that
+    one sorted out
+
+Bruce: just want to make sure that anyone doing Go stuff outside of the tree,
+    make sure to do world builds because some fundamental things changed that
+    you’ll need to fix. i think a lot of them are fetching things in the
+    background
+RP: Go is quite nasty in the sense that it wants to be built in a specific
+    path and once that path is chosen that’s the place it has to be built
+PeterK: i think there’s a way to set the build-id to 0 which is causing the
+    issue
+RP: side-effects?
+PeterK: we’ll have to see. bug number?
+RP: 14270
