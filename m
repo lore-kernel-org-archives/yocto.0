@@ -1,74 +1,268 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.5441.1615023443014339558
+ by mx.groups.io with SMTP id smtpd.web11.8882.1615044754981316878
  for <yocto@lists.yoctoproject.org>;
- Sat, 06 Mar 2021 01:37:23 -0800
+ Sat, 06 Mar 2021 07:32:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ix.netcom.com header.s=dk12062016 header.b=ZY3IjBf1;
- spf=fail (domain: ix.netcom.com, ip: 198.145.29.25, mailfrom: pderocco@ix.netcom.com)
-Received: from elasmtp-dupuy.atl.sa.earthlink.net (elasmtp-dupuy.atl.sa.earthlink.net [209.86.89.62])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 4353338C07CE
-	for <yocto@yoctoproject.org>; Sat,  6 Mar 2021 09:37:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ix.netcom.com;
-	s=dk12062016; t=1615023442; bh=v/uuLI1vZ6uw35UBml4tc4QCvwcrfNBm6o4t
-	+whWz9Y=; h=Received:From:To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:
-	 X-MimeOLE:X-ELNK-Trace:X-Originating-IP; b=ZY3IjBf10b1gNPpIfyVr9e0
-	/2W8zPf2c9w55WSQ+Y/RVtrBNuj13+/CpVLPewIKfcwxs3JnQKY1x9Ecr/Centlx3mW
-	y3xi2Dn1Z/ua8CfsUSVzNF12lm2DfVsJ5yuZzGGlwXChr/1pzBtFgXMFguMCWmvZ5iS
-	k5+FLo/lraHcEhGIWaFSlxmxzwwwULdrVuS6MF+bzE1E6GwTbie47sUzg37EO0WlD3U
-	qfHmvyLQXaPptwkIo9f0KZM+f5kEzq+/QMuYQUlUgkeIYBWuU9VZK2FHeYkuSgMza32
-	f2aUzsa1rgoV5sy43/1rgFdf1mmaiEs5rGr2mt3hJyJLVfUrp6Q==
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
-  s=dk12062016; d=ix.netcom.com;
-  b=drC8VCDt3ZZWqNT3/YRAgXF9h8GhA1xn2TDWqHxGhmh5B5vXUcp+qM4Ufwa+ynR6MCakFVuAf1NhDHO2cXV0Tj0tfbNI4as8BDZXUo/Egrfpt5XdanZWgg9xcOloFH4SD9MUiybXhKIeWSkj3tIN/D3XeZZwhcJzqYKY5zY36ZtqWi+YLvNte3RVItJfBmWtGlqgtdWeUBkpgEvUWhwezx0iC26lZORJyZWj9eRF4jxd/00pUmZcuKu/SF8i9DvtnfLqT88iVx5LYkSjU13VLWsK2UoymI7gkhinn4xW2jisjl6NmdwUZngHhM+o3Gia6MOV/5t4UQAp3BI9omODQA==;
-  h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [108.228.233.89] (helo=PAULD)
-	by elasmtp-dupuy.atl.sa.earthlink.net with esmtpa (Exim 4)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1lITNB-000APP-7u
-	for yocto@yoctoproject.org; Sat, 06 Mar 2021 04:37:21 -0500
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: <yocto@yoctoproject.org>
-Subject: Where is the kernel configuration file?
-Date: Sat, 6 Mar 2021 01:37:25 -0800
-Message-ID: <A5F4C33C9C88499FA80F8501DEFD4C3B@PAULD>
+ dkim=pass header.i=@sierrawireless.com header.s=selector1 header.b=fjYJRM6q;
+ spf=softfail (domain: sierrawireless.com, ip: 198.145.29.25, mailfrom: dwatkins@sierrawireless.com)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-eopbgr770054.outbound.protection.outlook.com [40.107.77.54])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 5EC2D38C05B5
+	for <yocto@yoctoproject.org>; Sat,  6 Mar 2021 15:32:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EqtZeagKXhbrmuu+4ba8VOlvWbcnmospq9rvmXKMeQVPmU9V807g4hDl9bP160//15DZ/iuydZJdokpzWj22QnIf4Tyhf0aWI72erUFGeA4mkeB7E0ZxiOFWOdJNIFOAZeOkWU2GdUGAcY4GPClu/JdqOJ+FOooXCVm1N9eMcQSWYBEEiaQpIsybOxRC1fT8wkjJxPBOLZ2r6y9ls4TKlqVNfNgYBfLmx74TEyo0nEHSaLt8mNkNZUphsGX8mox7O0DPMwIa94mBF0Ho1VdpBkk3TfJxk1FG2ZBE4qb6TaJYZlzG6gUqQ+ezCvmzPglAf4joyMVXlm4u4JQOwfTDFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qnJLlJGa0nV9yUmic2FVkcfUg4XtSEVC2NNqpnr3qfM=;
+ b=f1/utjfyk/OxNAsGMMH2PuQsfb+YDp90sItibukkQxl6Mbj3lLjPNmp8SflhvKkQO0vm+9XI18i4whUsqr07OiSJCI5mi8/yQD8xCmgWhxMl5MMxCqAqd5o+Tc81/LDFEcQFR4mOIZp0F7EUEaACJpHuFjlKV+FQEZLXjPoW7sFvsbFeGqT8sRafd9Sz1PkFavud+8K+ujjJZeFJWOuMnrK2R77UU4setDU+mmSk9PvgEctC3Z3OmU0aQv0nlYcQ6er++8STNbcqIGPqiz6+tbLvgGN6s/W+wqRW9Nbj2rEXMYz5YZ7pARWlINAIi2/o8K6HoB3IltuOcjzzUVQFeA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=sierrawireless.com; dmarc=pass action=none
+ header.from=sierrawireless.com; dkim=pass header.d=sierrawireless.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sierrawireless.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qnJLlJGa0nV9yUmic2FVkcfUg4XtSEVC2NNqpnr3qfM=;
+ b=fjYJRM6q5Aw7sY6F+i4HO/gXdpS0Sa8x8/zkGdZSdhV97QllfRhQr39j8OExY+7/d4oXZC9Ni2XSPqQf6SsAG6dclO4GBPsOM3IQuFNfE62X5/jNJbfC3a9/q9zY6YBdhphMPHuXn4pLADzf41wHO1KE9VZl53lDhp9Sr7MVAt0=
+Received: from MWHPR02MB2429.namprd02.prod.outlook.com (10.168.204.7) by
+ MW4PR02MB7475.namprd02.prod.outlook.com (20.182.8.139) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3912.17; Sat, 6 Mar 2021 15:32:29 +0000
+Received: from MWHPR02MB2429.namprd02.prod.outlook.com
+ ([fe80::c96e:5159:62eb:783a]) by MWHPR02MB2429.namprd02.prod.outlook.com
+ ([fe80::c96e:5159:62eb:783a%3]) with mapi id 15.20.3912.026; Sat, 6 Mar 2021
+ 15:32:22 +0000
+From: "Darcy Watkins" <dwatkins@sierrawireless.com>
+To: "pderocco@ix.netcom.com" <pderocco@ix.netcom.com>
+CC: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [yocto] Where is the kernel configuration file?
+Thread-Topic: [yocto] Where is the kernel configuration file?
+Thread-Index: AdcSbFCfPZQRFcqaQvWGbO+ZWmpGEAAMZW44
+Date: Sat, 6 Mar 2021 15:32:21 +0000
+Message-ID: <385C489E-97AC-456E-AF74-E84A1E7F40DB@sierrawireless.com>
+References: <A5F4C33C9C88499FA80F8501DEFD4C3B@PAULD>
+In-Reply-To: <A5F4C33C9C88499FA80F8501DEFD4C3B@PAULD>
+Accept-Language: en-CA, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: sierrawireless.com; dkim=none (message not signed)
+ header.d=none;sierrawireless.com; dmarc=none action=none
+ header.from=sierrawireless.com;
+x-originating-ip: [209.52.88.18]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: c82f146c-9488-459e-6235-08d8e0b5094b
+x-ms-traffictypediagnostic: MW4PR02MB7475:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: 
+ <MW4PR02MB7475213CAC504964716CB48CB2959@MW4PR02MB7475.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ iZw7k92v5N4sewhGKZRmKOMO8TJt71Cc8c36P83CihRDpevyeIWjg1PrwhFE5mxseog8lMcFF1cXY4EjT0jUfPhr0aJCjZib885rTIQly1cvcwaSjXz2B/nJlCGi0Y2IiVlPAzQ5lNlk3QnguUPU03QjSSgSupkTPoEPllVi4+bmaM9aGW6LPYL/fYquKKch+5BGrXlYHsaCQTXDMqvltZS1gcOCuFzrZfVff/miGlqyMtsvkFdwJ6GQPQVTWs7P41Y8zd4oKRhwugTQSTxonW44v3KlO8tOpzavvmmRZrdSP4vOQrcCNoQKSmwB4MlzfFocqQh8ZWSgFofHGWFdTPDwo2zO9nE98cVe2V1fLV3CKpttMbtbz/murHco/djW4gHDILLsbeyNrhiGk7nliiNdrgGD1tbeY/W0ixYWlCiXtFWYTTkPtthe24GdAThXLVGS2V+xzw6s+QfTPNx1OQE+4a9UdiZzER7LjBgBzu4Iq9ZO3hU7WBOYZGGcQKXPU9CjQn1Mro7eSuRmqEDyuM25Hej9DHrADxOlRuvRUqU1N/yTdu2rMx7z9KtYJ+RipvkGdefAIohWjYAiY/IHUMekotwRrAmVmLVuHlLW3+Zh/IPbCqI3Fnj4v0ORZaPwXwOHYo4ckchltog7/6wovw==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR02MB2429.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(396003)(346002)(376002)(39850400004)(316002)(6512007)(64756008)(66446008)(76116006)(83380400001)(6486002)(86362001)(66556008)(8936002)(6506007)(71200400001)(186003)(36756003)(53546011)(33656002)(166002)(66946007)(2616005)(2906002)(66476007)(5660300002)(478600001)(26005)(4326008)(966005)(6916009)(8676002)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 
+ =?utf-8?B?Q3QrNkNJVUZZQWZ6alFLUE1tdHZQM1dOZFNNSEwycHhhVVh0d1dBZFNrVTY1?=
+ =?utf-8?B?S2kxdFdpK1ZGVk03STQ4K3VjckpXdkxDeElhV1piNjJ5NktRWVpIWDV4MEpj?=
+ =?utf-8?B?d3FiUTBlbE1MdVhOMzlPbFI1RlBXWWRBL3JuVXlVczkvUS9wUlp6TTFxalJE?=
+ =?utf-8?B?YTV2YzJvMlF4ZFM3RGdweFplMnl0c2NGWVBacGVlT0Frd3d0V0Jhb2FoOUhZ?=
+ =?utf-8?B?bE1XcHloZkhQM0pReGR3ZzBtb0liN3NpMTI5TEliQ25DbVhza0FNYmtYSVJv?=
+ =?utf-8?B?OUtGR1R6UC92RjkwQnlBcEtBR2dhK0FUYzJnVUplNkFXdXllM3BseGlZMnBv?=
+ =?utf-8?B?emlsclZLeCtiV2FiRndZUDRyb2szVjdQanY2ME5GY2pOeUZtZ0dZNmxtMmJq?=
+ =?utf-8?B?M3BIMEorTjAvVUFDVEpOTjY3SmdxaDJvTFZtQjNHWWt1R0k4aWo5bmx5ZXQ0?=
+ =?utf-8?B?V2Jlc1BONXhkbGQ0Ynl5ZUhMejdvMTZrM0JrRlprUmRkRVFCYmpjVHd2d0tw?=
+ =?utf-8?B?a05RcExrR3VlRHVLV2JwVW9peTArNE52UGl3RlNnSzJLYlRFWW41MUhtM0Vl?=
+ =?utf-8?B?MkdQRi9lUnlNc01mTW85d1VuN2VnYm1NU2dDY3RhUHdKYk1IMGc2S0R2cVRH?=
+ =?utf-8?B?dVV2Y1VzWkFKM1RrR0ZmVlB1bGhVUnpCRDd0YjJORVQwbGlTaHZKNlY5VjZ2?=
+ =?utf-8?B?YldFUzhhbkx1bW9tTUQzZnI0bXRMSlJmTERZaHNPR3hpVHI5S2FrZUN3ZS9D?=
+ =?utf-8?B?blhYVldsTVR0WGtGaWZtS3hhWjA1cmhnWllOU2RpQ1ZFbUEyVmJ1OU12VG1Y?=
+ =?utf-8?B?d2F6R3hLZVdaUzZoYyttQk5ML2hqanh2eGhiK0FzSTRhQkRua1RjUHo4ZDQ0?=
+ =?utf-8?B?dXJRdjljb2RaM0xiL3M0MzJ0RVI5SG5zQWFzWEIybjVSV2w1bmZmTjVtTnlq?=
+ =?utf-8?B?OGdlTWRVdFdUUjZTQWZ0bXEvODZ3eEZ4MVBRZVRuRExaNDYzQWRaOGVJa1hV?=
+ =?utf-8?B?d0JNcUJQR0RPY2NXcE4zeDZWSjFJKy9RNWJxNzRlYjc1VWJIMmJOYTlkSk4x?=
+ =?utf-8?B?T1JUL0dtSVJoZjVaSGh1VitWSXN5WGpoN2dPRVNHWlg2b05hTzEvYlA0ejE0?=
+ =?utf-8?B?VXVvOEErcmp5UUNZdndYOWVXZW5jVGJ5ejVIaXNNbTZ5NVl6ZUs1VkhNR2Z1?=
+ =?utf-8?B?NmlhdEs3aVFqUThaR085NHpta3dKQitLWktOVlhrUHJVaEtYSmVtZ3h4aVRI?=
+ =?utf-8?B?VnpvVkQxMmYyb2t1bzAvRjhVSkVRNVNQYUR6N0JIeGlYeG9VUlVmM3plUkRB?=
+ =?utf-8?B?TEQ4SDNUUjc0VXhkNnQzVHREZ05TdnJNQ2p3R1Bxb0oyT2l4NEV6eXlDekcx?=
+ =?utf-8?B?bElsRC8vVGplZnAxZk5ERG03aC9LODJYZFJiQXc5bjRVN3p4am9lZUlOMkJS?=
+ =?utf-8?B?Sk9hWURKZkhUcE9mTmtXZEkyTUFTYmZqcVEraG5FN0l6clQzdW16T20zVWk2?=
+ =?utf-8?B?aWYzNkUwWnY1VWFMNEpNUFgrKzU1M1U4WjhIZVI4dVc2dlRRM0ZKckFEaUpZ?=
+ =?utf-8?B?eGUwbVVXb091SHdlOVhweUlEVFFoa1B4S3A1WkJTSTZtQzVpUnVEQUZCdDFU?=
+ =?utf-8?B?N0JzK3p4aXF5cXU4U05maXNmOEdCcEJNZ0NrcVhUNE9BbHZvU0Z3V0lsSXZS?=
+ =?utf-8?B?WThjRTlqaTJWMHVBT1lqTHRYODNQNVhHNnlNMG1xZGhINUQ5WGJ0aXdvQnlh?=
+ =?utf-8?Q?sTI1deuu+779LhdK0+1LMH5gaRxEEdRfmn70RB7?=
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: AdcSbFCfPZQRFcqaQvWGbO+ZWmpGEA==
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.24158
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606887767222813dced26b6303f5ea3fa2fc7350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 108.228.233.89
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: sierrawireless.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR02MB2429.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c82f146c-9488-459e-6235-08d8e0b5094b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2021 15:32:21.7115
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Y+dGhTXgEdClQ3smblg0QMIP8VilGZSnJl8eZbFZWXYcgtW5rSFkzqSlhcR2V2vTLU8Pq8RdFh3OsUgm4H6pX0L4GQwOMVY+vuE/V/jYkFA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR02MB7475
+Content-Language: en-CA
+Content-Type: multipart/alternative;
+	boundary="_000_385C489E97AC456EAF74E84A1E7F40DBsierrawirelesscom_"
 
-I've found various answers to this. The correct answer appears to be in
-tmp/work-shared/<machine>/kernel-source, but I didn't even have this
-directory, after doing a working build of core-image-minimal. After more
-searching, I discovered that this was because most of my build was from
-shared state. So I ran "bitbake linux-yocto-rt -c menuconfig", and it
-unpacked the kernel source into this location, but there was no .config
-file. I told menuconfig to save the current configuration under that name,
-but it said it hadn't changed, so didn't save it.
+--_000_385C489E97AC456EAF74E84A1E7F40DBsierrawirelesscom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I ran menuconfig again, and told it to save it as "fooconfig", because I
-just wanted to look at it. This time, it didn't complain, but it didn't
-create that file either. So I ran it again, and told it to save it as
-"/home/pauld/fooconfig". That finally worked.
+SGksIFRoZSAuY29uZmlnIHdpbGwgYmUgdW5kZXIgdG1wL3dvcmsvKHlvdXIgYXJjaCkvbGludXgt
+KHdoYXRldmVyIGZsYXZvdXIpL2J1aWxkLShzb21lIHN1ZmZpeCkgc2luY2UgaXQgaXMgYSBnZW5l
+cmF0ZWQgaW50ZXJtZWRpYXRlIGFuZCBub3QgY29uc2lkZXJlZCB0byBiZSBzb3VyY2UNCg0KDQot
+LS0NCg0KUmVnYXJkcywNCg0KRGFyY3kNCg0KRGFyY3kgV2F0a2lucyA6OiAgU2VuaW9yIFN0YWZm
+IEVuZ2luZWVyLCBGaXJtd2FyZQ0KDQpTSUVSUkEgV0lSRUxFU1MNCkRpcmVjdCAgKzEgNjA0IDIz
+MyA3OTg5PHRlbDorMSUyMDYwNCUyMDIzMyUyMDc5ODk+ICAgOjogIEZheCAgKzEgNjA0IDIzMSAx
+MTA5PHRlbDorMSUyMDYwNCUyMDIzMSUyMDExMDk+ICA6OiAgTWFpbiAgKzEgNjA0IDIzMSAxMTAw
+PHRlbDorMSUyMDYwNCUyMDIzMSUyMDExMDA+DQoxMzgxMSBXaXJlbGVzcyBXYXkgIDo6IFJpY2ht
+b25kLCBCQyBDYW5hZGEgVjZWIDNBNDx4LWFwcGxlLWRhdGEtZGV0ZWN0b3JzOi8vMy8xPg0KW001
+XQ0KZHdhdGtpbnNAc2llcnJhd2lyZWxlc3MuY29tPG1haWx0bzpkd2F0a2luc0BzaWVycmF3aXJl
+bGVzcy5jb20+IDo6IHd3dy5zaWVycmF3aXJlbGVzcy5jb208aHR0cDovL3d3dy5zaWVycmF3aXJl
+bGVzcy5jb20vPg0KDQoNCk9uIE1hciA2LCAyMDIxLCBhdCAxOjM3IEFNLCBQYXVsIEQuIERlUm9j
+Y28gdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgPHBkZXJvY2NvPWl4Lm5ldGNvbS5jb21AbGlz
+dHMueW9jdG9wcm9qZWN0Lm9yZz4gd3JvdGU6DQoNCu+7v0kndmUgZm91bmQgdmFyaW91cyBhbnN3
+ZXJzIHRvIHRoaXMuIFRoZSBjb3JyZWN0IGFuc3dlciBhcHBlYXJzIHRvIGJlIGluDQp0bXAvd29y
+ay1zaGFyZWQvPG1hY2hpbmU+L2tlcm5lbC1zb3VyY2UsIGJ1dCBJIGRpZG4ndCBldmVuIGhhdmUg
+dGhpcw0KZGlyZWN0b3J5LCBhZnRlciBkb2luZyBhIHdvcmtpbmcgYnVpbGQgb2YgY29yZS1pbWFn
+ZS1taW5pbWFsLiBBZnRlciBtb3JlDQpzZWFyY2hpbmcsIEkgZGlzY292ZXJlZCB0aGF0IHRoaXMg
+d2FzIGJlY2F1c2UgbW9zdCBvZiBteSBidWlsZCB3YXMgZnJvbQ0Kc2hhcmVkIHN0YXRlLiBTbyBJ
+IHJhbiAiYml0YmFrZSBsaW51eC15b2N0by1ydCAtYyBtZW51Y29uZmlnIiwgYW5kIGl0DQp1bnBh
+Y2tlZCB0aGUga2VybmVsIHNvdXJjZSBpbnRvIHRoaXMgbG9jYXRpb24sIGJ1dCB0aGVyZSB3YXMg
+bm8gLmNvbmZpZw0KZmlsZS4gSSB0b2xkIG1lbnVjb25maWcgdG8gc2F2ZSB0aGUgY3VycmVudCBj
+b25maWd1cmF0aW9uIHVuZGVyIHRoYXQgbmFtZSwNCmJ1dCBpdCBzYWlkIGl0IGhhZG4ndCBjaGFu
+Z2VkLCBzbyBkaWRuJ3Qgc2F2ZSBpdC4NCg0KSSByYW4gbWVudWNvbmZpZyBhZ2FpbiwgYW5kIHRv
+bGQgaXQgdG8gc2F2ZSBpdCBhcyAiZm9vY29uZmlnIiwgYmVjYXVzZSBJDQpqdXN0IHdhbnRlZCB0
+byBsb29rIGF0IGl0LiBUaGlzIHRpbWUsIGl0IGRpZG4ndCBjb21wbGFpbiwgYnV0IGl0IGRpZG4n
+dA0KY3JlYXRlIHRoYXQgZmlsZSBlaXRoZXIuIFNvIEkgcmFuIGl0IGFnYWluLCBhbmQgdG9sZCBp
+dCB0byBzYXZlIGl0IGFzDQoiL2hvbWUvcGF1bGQvZm9vY29uZmlnIi4gVGhhdCBmaW5hbGx5IHdv
+cmtlZC4NCg0KU28gdGhlIG1pbm9yIHF1ZXN0aW9uIGlzOiBXaGVuIEkgdG9sZCBpdCB0byBzYXZl
+IGl0IGFzICJmb29jb25maWciLCB3aHkNCmRpZG4ndCBpdCBjcmVhdGUgdGhhdCBmaWxlIGluIHRo
+ZSBrZXJuZWwtc291cmNlIGRpcmVjdG9yeT8gT3IgZGlkIHNvbWV0aGluZw0KaW4gdGhlIGRvX21l
+bnVjb25maWcgY29kZSBzdWJ2ZXJ0IHRoZSBtZW51Y29uZmlnIHByb2dyYW0gYW5kIGRlbGV0ZSBp
+dHMNCm91dHB1dD8NCg0KVGhlIGJpZ2dlciBxdWVzdGlvbiBpczogV2hlcmUgaXMgdGhlIGNvbmZp
+ZyBmaWxlIHRoYXQgaXMgYWN0dWFsbHkgdXNlZCB0bw0KYnVpbGQgdGhlIGtlcm5lbD8gSSdtIHRy
+eWluZyB2YXJpb3VzIGJ1aWxkcyBpbiBkaWZmZXJlbnQgdHJlZXMsIGFuZCB3b3VsZA0KbGlrZSB0
+byBjb21wYXJlIHRoZSBjb25maWd1cmF0aW9ucy4gVGhlcmUgbXVzdCBiZSBfc29tZV8gZmlsZSBp
+dCdzIHJlYWRpbmcsDQptdXN0bid0IHRoZXJlPw0KDQotLQ0KDQpDaWFvLCAgICAgICAgICAgICAg
+IFBhdWwgRC4gRGVSb2Njbw0KUGF1bCAgICAgICAgICAgICAgICBtYWlsdG86cGRlcm9jY29AaXgu
+bmV0Y29tLmNvbQ0KDQoNCg0KDQoNCg==
 
-So the minor question is: When I told it to save it as "fooconfig", why
-didn't it create that file in the kernel-source directory? Or did something
-in the do_menuconfig code subvert the menuconfig program and delete its
-output?
+--_000_385C489E97AC456EAF74E84A1E7F40DBsierrawirelesscom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-The bigger question is: Where is the config file that is actually used to
-build the kernel? I'm trying various builds in different trees, and would
-like to compare the configurations. There must be _some_ file it's reading,
-mustn't there?
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGRpcj0iYXV0byI+DQpI
+aSwgVGhlIC5jb25maWcgd2lsbCBiZSB1bmRlciB0bXAvd29yay8oeW91ciBhcmNoKS9saW51eC0o
+d2hhdGV2ZXIgZmxhdm91cikvYnVpbGQtKHNvbWUgc3VmZml4KSBzaW5jZSBpdCBpcyBhIGdlbmVy
+YXRlZCBpbnRlcm1lZGlhdGUgYW5kIG5vdCBjb25zaWRlcmVkIHRvIGJlIHNvdXJjZTxicj4NCjxi
+cj4NCjxkaXYgZGlyPSJsdHIiPjxicj4NCjxkaXY+LS0tPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46IDBjbSAwY20gMC4w
+MDAxcHQ7Ij48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJn
+YmEoMjU1LCAyNTUsIDI1NSwgMCk7Ij5SZWdhcmRzLDxvOnA+PC9vOnA+PC9zcGFuPjwvYj48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAwY20gMGNtIDAuMDAwMXB0OyI+
+PGI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI1NSwg
+MjU1LCAyNTUsIDApOyI+Jm5ic3A7PC9zcGFuPjwvYj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibWFyZ2luOiAwY20gMGNtIDAuMDAwMXB0OyI+PGI+PHNwYW4gbGFuZz0iRU4tVVMi
+IHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI1NSwgMjU1LCAyNTUsIDApOyI+RGFyY3k8
+bzpwPjwvbzpwPjwvc3Bhbj48L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1h
+cmdpbjogMGNtIDBjbSAwLjAwMDFwdDsiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iYmFj
+a2dyb3VuZC1jb2xvcjogcmdiYSgyNTUsIDI1NSwgMjU1LCAwKTsiPiZuYnNwOzwvc3Bhbj48L2I+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbjogMGNtIDBjbSAwLjAwMDFw
+dDsiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogcmdiYSgy
+NTUsIDI1NSwgMjU1LCAwKTsiPkRhcmN5IFdhdGtpbnMgOjombmJzcDsmbmJzcDtTZW5pb3IgU3Rh
+ZmYgRW5naW5lZXIsIEZpcm13YXJlPG86cD48L286cD48L3NwYW4+PC9iPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46IDBjbSAwY20gMC4wMDAxcHQ7Ij48Yj48c3BhbiBs
+YW5nPSJFTi1VUyIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1NSwg
+MCk7Ij4mbmJzcDs8L3NwYW4+PC9iPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJt
+YXJnaW46IDBjbSAwY20gMC4wMDAxcHQ7Ij48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImJh
+Y2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMCk7Ij5TSUVSUkEgV0lSRUxFU1M8
+bzpwPjwvbzpwPjwvc3Bhbj48L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1h
+cmdpbjogMGNtIDBjbSAwLjAwMDFwdDsiPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiBy
+Z2JhKDI1NSwgMjU1LCAyNTUsIDApOyI+PHNwYW4gbGFuZz0iRU4tVVMiPkRpcmVjdDwvc3Bhbj48
+c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7Jm5ic3A7PGEgaHJlZj0idGVsOisxJTIwNjA0JTIwMjMz
+JTIwNzk4OSIgZGlyPSJsdHIiIHgtYXBwbGUtZGF0YS1kZXRlY3RvcnM9InRydWUiIHgtYXBwbGUt
+ZGF0YS1kZXRlY3RvcnMtdHlwZT0idGVsZXBob25lIiB4LWFwcGxlLWRhdGEtZGV0ZWN0b3JzLXJl
+c3VsdD0iMSI+KzENCiA2MDQgMjMzIDc5ODk8L2E+Jm5ic3A7ICZuYnNwOzo6Jm5ic3A7Jm5ic3A7
+PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj5GYXgmbmJzcDsmbmJzcDs8L3NwYW4+PHNwYW4gbGFu
+Zz0iRU4tVVMiPjxhIGhyZWY9InRlbDorMSUyMDYwNCUyMDIzMSUyMDExMDkiIGRpcj0ibHRyIiB4
+LWFwcGxlLWRhdGEtZGV0ZWN0b3JzPSJ0cnVlIiB4LWFwcGxlLWRhdGEtZGV0ZWN0b3JzLXR5cGU9
+InRlbGVwaG9uZSIgeC1hcHBsZS1kYXRhLWRldGVjdG9ycy1yZXN1bHQ9IjIiPisxIDYwNCAyMzEg
+MTEwOTwvYT4mbmJzcDsgOjombmJzcDsmbmJzcDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPk1h
+aW48L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOyZuYnNwOzxhIGhyZWY9InRlbDorMSUy
+MDYwNCUyMDIzMSUyMDExMDAiIGRpcj0ibHRyIiB4LWFwcGxlLWRhdGEtZGV0ZWN0b3JzPSJ0cnVl
+IiB4LWFwcGxlLWRhdGEtZGV0ZWN0b3JzLXR5cGU9InRlbGVwaG9uZSIgeC1hcHBsZS1kYXRhLWRl
+dGVjdG9ycy1yZXN1bHQ9IjMvMCIgc3R5bGU9Ii13ZWJraXQtdGV4dC1kZWNvcmF0aW9uLWNvbG9y
+OiByZ2JhKDEwMSwgMTAxLCAxMDEsIDAuMjU4ODI0KTsiPisxDQogNjA0IDIzMSAxMTAwPC9hPjxv
+OnA+PC9vOnA+PC9zcGFuPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
+bWFyZ2luOiAwY20gMGNtIDAuMDAwMXB0OyI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJiYWNr
+Z3JvdW5kLWNvbG9yOiByZ2JhKDI1NSwgMjU1LCAyNTUsIDApOyI+MTM4MTEgV2lyZWxlc3MgV2F5
+Jm5ic3A7IDo6Jm5ic3A7PGEgaHJlZj0ieC1hcHBsZS1kYXRhLWRldGVjdG9yczovLzMvMSIgZGly
+PSJsdHIiIHgtYXBwbGUtZGF0YS1kZXRlY3RvcnM9InRydWUiIHgtYXBwbGUtZGF0YS1kZXRlY3Rv
+cnMtdHlwZT0iYWRkcmVzcyIgeC1hcHBsZS1kYXRhLWRldGVjdG9ycy1yZXN1bHQ9IjMvMSIgc3R5
+bGU9Ii13ZWJraXQtdGV4dC1kZWNvcmF0aW9uLWNvbG9yOiByZ2JhKDEwMSwgMTAxLCAxMDEsIDAu
+MjU4ODI0KTsiPlJpY2htb25kLA0KIEJDIENhbmFkYSBWNlYgM0E0PC9hPjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46IDBjbSAwY20gMC4w
+MDAxcHQ7Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYmEo
+MjU1LCAyNTUsIDI1NSwgMCk7Ij5bTTVdPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbjogMGNtIDBjbSAwLjAwMDFwdDsiPjxzcGFuIHN0eWxl
+PSJiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI1NSwgMjU1LCAyNTUsIDApOyI+PHU+PHNwYW4gbGFu
+Zz0iRU4tVVMiPjxhIGhyZWY9Im1haWx0bzpkd2F0a2luc0BzaWVycmF3aXJlbGVzcy5jb20iPmR3
+YXRraW5zQHNpZXJyYXdpcmVsZXNzLmNvbTwvYT48L3NwYW4+PC91PjxzcGFuIGxhbmc9IkVOLVVT
+Ij4mbmJzcDs6OiZuYnNwOzxhIGhyZWY9Imh0dHA6Ly93d3cuc2llcnJhd2lyZWxlc3MuY29tLyI+
+d3d3LnNpZXJyYXdpcmVsZXNzLmNvbTwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbjogMGNtIDBjbSAwLjAwMDFwdDsiPjxv
+OnAgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMCk7Ij4mbmJz
+cDs8L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBkaXI9Imx0ciI+PGJyPg0KPGJsb2Nr
+cXVvdGUgdHlwZT0iY2l0ZSI+T24gTWFyIDYsIDIwMjEsIGF0IDE6MzcgQU0sIFBhdWwgRC4gRGVS
+b2NjbyB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyAmbHQ7cGRlcm9jY289aXgubmV0Y29tLmNv
+bUBsaXN0cy55b2N0b3Byb2plY3Qub3JnJmd0OyB3cm90ZTo8YnI+DQo8YnI+DQo8L2Jsb2NrcXVv
+dGU+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdiBkaXI9Imx0ciI+77u/
+PHNwYW4+SSd2ZSBmb3VuZCB2YXJpb3VzIGFuc3dlcnMgdG8gdGhpcy4gVGhlIGNvcnJlY3QgYW5z
+d2VyIGFwcGVhcnMgdG8gYmUgaW48L3NwYW4+PGJyPg0KPHNwYW4+dG1wL3dvcmstc2hhcmVkLyZs
+dDttYWNoaW5lJmd0Oy9rZXJuZWwtc291cmNlLCBidXQgSSBkaWRuJ3QgZXZlbiBoYXZlIHRoaXM8
+L3NwYW4+PGJyPg0KPHNwYW4+ZGlyZWN0b3J5LCBhZnRlciBkb2luZyBhIHdvcmtpbmcgYnVpbGQg
+b2YgY29yZS1pbWFnZS1taW5pbWFsLiBBZnRlciBtb3JlPC9zcGFuPjxicj4NCjxzcGFuPnNlYXJj
+aGluZywgSSBkaXNjb3ZlcmVkIHRoYXQgdGhpcyB3YXMgYmVjYXVzZSBtb3N0IG9mIG15IGJ1aWxk
+IHdhcyBmcm9tPC9zcGFuPjxicj4NCjxzcGFuPnNoYXJlZCBzdGF0ZS4gU28gSSByYW4gJnF1b3Q7
+Yml0YmFrZSBsaW51eC15b2N0by1ydCAtYyBtZW51Y29uZmlnJnF1b3Q7LCBhbmQgaXQ8L3NwYW4+
+PGJyPg0KPHNwYW4+dW5wYWNrZWQgdGhlIGtlcm5lbCBzb3VyY2UgaW50byB0aGlzIGxvY2F0aW9u
+LCBidXQgdGhlcmUgd2FzIG5vIC5jb25maWc8L3NwYW4+PGJyPg0KPHNwYW4+ZmlsZS4gSSB0b2xk
+IG1lbnVjb25maWcgdG8gc2F2ZSB0aGUgY3VycmVudCBjb25maWd1cmF0aW9uIHVuZGVyIHRoYXQg
+bmFtZSw8L3NwYW4+PGJyPg0KPHNwYW4+YnV0IGl0IHNhaWQgaXQgaGFkbid0IGNoYW5nZWQsIHNv
+IGRpZG4ndCBzYXZlIGl0Ljwvc3Bhbj48YnI+DQo8c3Bhbj48L3NwYW4+PGJyPg0KPHNwYW4+SSBy
+YW4gbWVudWNvbmZpZyBhZ2FpbiwgYW5kIHRvbGQgaXQgdG8gc2F2ZSBpdCBhcyAmcXVvdDtmb29j
+b25maWcmcXVvdDssIGJlY2F1c2UgSTwvc3Bhbj48YnI+DQo8c3Bhbj5qdXN0IHdhbnRlZCB0byBs
+b29rIGF0IGl0LiBUaGlzIHRpbWUsIGl0IGRpZG4ndCBjb21wbGFpbiwgYnV0IGl0IGRpZG4ndDwv
+c3Bhbj48YnI+DQo8c3Bhbj5jcmVhdGUgdGhhdCBmaWxlIGVpdGhlci4gU28gSSByYW4gaXQgYWdh
+aW4sIGFuZCB0b2xkIGl0IHRvIHNhdmUgaXQgYXM8L3NwYW4+PGJyPg0KPHNwYW4+JnF1b3Q7L2hv
+bWUvcGF1bGQvZm9vY29uZmlnJnF1b3Q7LiBUaGF0IGZpbmFsbHkgd29ya2VkLjwvc3Bhbj48YnI+
+DQo8c3Bhbj48L3NwYW4+PGJyPg0KPHNwYW4+U28gdGhlIG1pbm9yIHF1ZXN0aW9uIGlzOiBXaGVu
+IEkgdG9sZCBpdCB0byBzYXZlIGl0IGFzICZxdW90O2Zvb2NvbmZpZyZxdW90Oywgd2h5PC9zcGFu
+Pjxicj4NCjxzcGFuPmRpZG4ndCBpdCBjcmVhdGUgdGhhdCBmaWxlIGluIHRoZSBrZXJuZWwtc291
+cmNlIGRpcmVjdG9yeT8gT3IgZGlkIHNvbWV0aGluZzwvc3Bhbj48YnI+DQo8c3Bhbj5pbiB0aGUg
+ZG9fbWVudWNvbmZpZyBjb2RlIHN1YnZlcnQgdGhlIG1lbnVjb25maWcgcHJvZ3JhbSBhbmQgZGVs
+ZXRlIGl0czwvc3Bhbj48YnI+DQo8c3Bhbj5vdXRwdXQ/PC9zcGFuPjxicj4NCjxzcGFuPjwvc3Bh
+bj48YnI+DQo8c3Bhbj5UaGUgYmlnZ2VyIHF1ZXN0aW9uIGlzOiBXaGVyZSBpcyB0aGUgY29uZmln
+IGZpbGUgdGhhdCBpcyBhY3R1YWxseSB1c2VkIHRvPC9zcGFuPjxicj4NCjxzcGFuPmJ1aWxkIHRo
+ZSBrZXJuZWw/IEknbSB0cnlpbmcgdmFyaW91cyBidWlsZHMgaW4gZGlmZmVyZW50IHRyZWVzLCBh
+bmQgd291bGQ8L3NwYW4+PGJyPg0KPHNwYW4+bGlrZSB0byBjb21wYXJlIHRoZSBjb25maWd1cmF0
+aW9ucy4gVGhlcmUgbXVzdCBiZSBfc29tZV8gZmlsZSBpdCdzIHJlYWRpbmcsPC9zcGFuPjxicj4N
+CjxzcGFuPm11c3RuJ3QgdGhlcmU/PC9zcGFuPjxicj4NCjxzcGFuPjwvc3Bhbj48YnI+DQo8c3Bh
+bj4tLSA8L3NwYW4+PGJyPg0KPHNwYW4+PC9zcGFuPjxicj4NCjxzcGFuPkNpYW8sICZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwO1BhdWwgRC4gRGVSb2Njbzwvc3Bhbj48YnI+DQo8c3Bhbj5QYXVs
+ICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO21haWx0bzpwZGVyb2Njb0BpeC5uZXRj
+b20uY29tPC9zcGFuPjxicj4NCjxzcGFuPjwvc3Bhbj48YnI+DQo8c3Bhbj48L3NwYW4+PGJyPg0K
+PHNwYW4+PC9zcGFuPjxicj4NCjxzcGFuPjwvc3Bhbj48YnI+DQo8c3Bhbj48L3NwYW4+PGJyPg0K
+PC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
--- 
-
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com
- 
-
+--_000_385C489E97AC456EAF74E84A1E7F40DBsierrawirelesscom_--
