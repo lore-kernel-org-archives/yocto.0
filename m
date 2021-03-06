@@ -1,64 +1,221 @@
-Subject: Re: meta-toolchain, gdb-cross-canadian_9.2 fails due to "no usable python" #toolchain
-To: yocto@lists.yoctoproject.org
-From: mmiguelhorta@gmail.com
-X-Originating-Location: Amora, District of Setúbal, PT (84.90.95.208)
-X-Originating-Platform: Linux Firefox 86
-User-Agent: GROUPS.IO Web Poster
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (NAM11-DM6-obe.outbound.protection.outlook.com [40.107.223.73])
+ by mx.groups.io with SMTP id smtpd.web12.1992.1614993237813339551
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 05 Mar 2021 17:13:58 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@sierrawireless.com header.s=selector1 header.b=CotDbj8g;
+ spf=pass (domain: sierrawireless.com, ip: 40.107.223.73, mailfrom: dwatkins@sierrawireless.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Hkxgc14UITHV7DVj95TE53IcIEVSUuZfIgRUc65BRUxUfcSPmXHUtdcKtoGPY6QRETa6ij8clk133A3uwbU4scwRh8jtsArDSTQGm4EkBsL9bzDMetRo423J31Wz3sbMP6VNN/qC5TBzQO4OdIN/KVC7KJy0iOCOns9f/8pKeBlpRg35njpcZJq2MEJNiKcV/WzQSSvwsa8nE3BHig39/SJyhq1U+GDmKPzlB2eQIPf34OsIIHJP2h3/jH3uKU6O5ZzvHbpn83/nR7KJhNEe3Dl4R5F/oyU4fbckHRjvoI7A+7DKWpbfITGHAy8YN7aQOZM7YvEjN7RdN8AfB1Sd/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=L3HOGcTl5qqqSB27ai4VvLAG3LBWtSBmkgfSiyDTYvQ=;
+ b=id1XCq+JND1OgVec72DMjrbd6VmyJAdt6WCaU44bUJvj22SQMhv1ORRUS/KzKEs15/RVMVY3GeNSfhsIpGZWnLu6C3bYLT3zx74nYrulVQWjdiTkD/DfmhMy9BDWJvqb0VCY/nXm1X2SVx1L4XhXESf9VX6r0+Ecoai5QL1Cwz0Hfcg1ysECyPv7NFh5sORGEEM3wylYa/TjHKQNtTHMytzvSfzKiCzZTrcl2YCNmZhGlA5haitXUW1d+ySZ0HnyfpyYvMjSORlxOTBfqdzuXWE+BSAiaXqF6emVvakiP78I/N2rvw/JK/7BDJ80GI61/mzVjNtNVJLvtoIC7FdaaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=sierrawireless.com; dmarc=pass action=none
+ header.from=sierrawireless.com; dkim=pass header.d=sierrawireless.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sierrawireless.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=L3HOGcTl5qqqSB27ai4VvLAG3LBWtSBmkgfSiyDTYvQ=;
+ b=CotDbj8g8i2qDSaKRQsR1GGQgwUDU0MSycG4fI2k9B5r6q/xfAbv+ewgeMuaec8rOhzJgK0zyq1VdG1q5WT7uD7dHq4pAPSVcVGqyR4egOVH8wtdB276nIUjjupqKsXDGIIbT6E8axiXozBFSRGZQgSXRnUsO2Q6VPNrQcfybeQ=
+Received: from MWHPR02MB2429.namprd02.prod.outlook.com (2603:10b6:300:40::7)
+ by MWHPR02MB2782.namprd02.prod.outlook.com (2603:10b6:300:106::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.19; Sat, 6 Mar
+ 2021 01:13:53 +0000
+Received: from MWHPR02MB2429.namprd02.prod.outlook.com
+ ([fe80::c96e:5159:62eb:783a]) by MWHPR02MB2429.namprd02.prod.outlook.com
+ ([fe80::c96e:5159:62eb:783a%3]) with mapi id 15.20.3912.025; Sat, 6 Mar 2021
+ 01:13:48 +0000
+From: "Darcy Watkins" <dwatkins@sierrawireless.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: No UDEV events emitted
+Thread-Topic: No UDEV events emitted
+Thread-Index: AQHXEiX1K2Acvhnw5EWvDne029qLVg==
+Date: Sat, 6 Mar 2021 01:13:47 +0000
+Message-ID: <0325EBA0-D448-4591-988B-F9316B3E9395@sierrawireless.com>
+Accept-Language: en-CA, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/16.46.21021202
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=sierrawireless.com;
+x-originating-ip: [142.179.59.203]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 72c8e116-9fb8-48c4-7a4f-08d8e03d1876
+x-ms-traffictypediagnostic: MWHPR02MB2782:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: 
+ <MWHPR02MB278219FE156C33F3285CB653B2959@MWHPR02MB2782.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ kQwJlQWncFEelzbnJ4JIDM124KkAMWuVSCDKPneFLNpAumc/3IC7uhZhtE9VedvZXJWAOkUFlcU9WVZmNWeO0kKgorOOEyfeBQ3wjdXp6ngIT8UTLNQuOdhSC1PLwWJBHiZ2B613KDzWf9yhCklll3savnpAzOHTGJHqdy3TH8oE8e9BhrD8FP4HAjhmwyXuyNHoB6zGM4sM48XpkJNe82ihKbRL4d1OOHrCWUDUygHa6MkJb2N/Jx2PvQ+XlkQCWuPTmkzn6CR/Y8iKs1q/evYWE6bn4FpDkrXLXSuPed7h15iQKHeIernYVc5VJpm/FqC7bJe//zwkN1GP9iX3HKaXghxE+aOJ6ljJD3OzE/dh9b8QcwNPMMjM9/m0WefW/ITl6nnPEOmIYpNTD8W8SNCj4t+t/cA7zoYQklXfyx0BshjIsXiqUCDJ4lh9NEVMKn/PUSciO5zZYEgirKlt8sBkj1QUluFmnTUQh6tzEoY4+wt6KIBTxfALC9EPKvkeRYKrW3DBIeDVuZjQxzPMsO+26wJ+FojYn6aVw+ICo7p3LpFq44nO13T2CoLK3qTouAlOn9yvzFzlZdRjkiladmqHamzI2LnI8MbD37DAZtYrtcrvPkM00g5JPv4yonzhZ4/+rnmiG0nWLUHKqBpwkspjhajFa+sYrrXM+L5OD9c=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR02MB2429.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(366004)(396003)(346002)(376002)(136003)(6486002)(66946007)(186003)(2616005)(33656002)(6506007)(6512007)(8676002)(2906002)(3480700007)(71200400001)(166002)(66446008)(66476007)(86362001)(66556008)(91956017)(26005)(316002)(64756008)(8936002)(6916009)(76116006)(478600001)(9326002)(5660300002)(36756003)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 
+ =?utf-8?B?NG1FY2pMTWJQYitWQkY4byswa0lKenlEajdwbWpFL1dxRy9pajFDTVhrcVVl?=
+ =?utf-8?B?cVM1SnlqV0hGcE44TDk0OFZxcnVuM0l4a1ExeFM0MWFRYlYwRk5pSCtkWGZD?=
+ =?utf-8?B?ZFc2amt6eWtOait4SS9BbFZHeTRpTmREZEJwb2NUSTJRcFpmL042clREL3R5?=
+ =?utf-8?B?bjFGd0YzdHFZd3JEQy9mRVArbTA1SWl3akJDaWJEZ1pnMjBrZzJSbVZFVjc2?=
+ =?utf-8?B?VGh1Rk41bFN1amNPVDd3MkF2MnRPOFp5NWZQQVpQUCtJeFJZdWRNN3dPL21s?=
+ =?utf-8?B?U3B0MFFNOHRpYi9xOTJmWHB2VGtVdDY3Mk5oNC90WTJxcXlpS2JtdHpjMkJi?=
+ =?utf-8?B?Z2NjUDgxUWx3NmVnNGtmam5VWldjWkRBU3ZETCtENWt0YnplMDNwUXJLUGdO?=
+ =?utf-8?B?TG1qbnlPT0JOYjNLMHpaU2hLdmdrY1dOU29uRWp3NU1waHpMU3VQbXlZVE9B?=
+ =?utf-8?B?aDd6T1g1d3RTU0pnNDMzMlhWZ21DK215cUJoMzhKKzhCUFdrRW5aNEZGTFJx?=
+ =?utf-8?B?aGhtNFFnRTdSanptQTg5MHRyKzYwcGhscDBzdTBneGR5U0E1Y2RibkRsUjVQ?=
+ =?utf-8?B?WkxPTmdYWE1PM21zb0k3MytmN29zL3Y2cHNxeWM1UHRWZlZvL1hHSWd0OGRM?=
+ =?utf-8?B?VnJLejdPWXExZ3pZaGJZN211clJIczg5RGpnMC8zdjRIUFJNUDFFcU1OZ05z?=
+ =?utf-8?B?TVA0ZHk0WU9XdU5wYUJzNW5BOWpBNXhmaFJzZ3FqRWFTYlFuOUQ3NEFheEpM?=
+ =?utf-8?B?cktYTVBkb09VSyszMm4ySGdVa3l4bURXMmFRa0EyYW5KNHlJaFZ4bEcxMDJG?=
+ =?utf-8?B?ZElDUkJEYkNKTzdvWG16RVR3WndMVXpwank0WWtnNUJWNFl2SWtpODdzOGVI?=
+ =?utf-8?B?d245S3RaRFl2Mm9qa0ZVWCtLb3hFR1RFamp6RHNxM1oxYmI2amNyaHYrU2Jz?=
+ =?utf-8?B?a1VOQ2Z5V1dRN2laSFJPTlM3bEtaNmdvS0w0d3B3K0ZtY1hWVXZvcmNXOFVv?=
+ =?utf-8?B?bVIyUUN1WDBKVGJQNU1zN2VIQmVmK2pWK1JXcTVhWXAwUzJNWk9yQUJrdW02?=
+ =?utf-8?B?NjU2RmZLMFJ6ZHptRUtEQnMzL080bTNkOHkzMk02dUtqMlduTVcvNnU1QzNn?=
+ =?utf-8?B?aWNNbHRGeEJTQ3kwY0FFdUxIb2hhUkhFWFJqN05UTWJKc3JRQjh3cnhzVFlO?=
+ =?utf-8?B?OEtkS0pXeWVjeEN2M25MYW1jMHZmN2J4SnRObUNzV0VrL2l1K1FuY2NWUFRJ?=
+ =?utf-8?B?ejNRUmNmRDFDU29EMml4V1dWQjN2aUpJVDV3T21naFdHVUZoTjhHU3R2U0Vz?=
+ =?utf-8?B?ZzlRTGVNdDZxN0tYeDZIZDVSb0dnMHZMWXAxZDJHd0Q3WXJaOXhrREtrMVE4?=
+ =?utf-8?B?QlNGT3Nnb29UVHFYemR6TVprRW9RbU8vaGdJZHpnajBsWml0TjFWeWUrVmtE?=
+ =?utf-8?B?UTl5c3B5RHZhajlUVkpqbGJ6S2NuSjh0eDNCUnBnbCtlc3FjTitvS05HSjQv?=
+ =?utf-8?B?enovZXZMdkFKb0ZvZDduVUdtKzhCZnBVa241dk14S0VyaFpnSDJTTFRZMmZL?=
+ =?utf-8?B?emdhRk0rNGlWL1hBQStDTTlXdk01V3paWDM5cUNzdHBhWktURTQ1OWNjcXRK?=
+ =?utf-8?B?Ulc2LzVMcFc1SE9hV2ZoWHpQL1J6Wm9Zb094R0FST0FVOERTbHRadFAwQ2wv?=
+ =?utf-8?B?ME5VUFRXME9PQXVmWUk1ZXgvV1RuWHlIUjVXZ0tWQVB2QkJYaDUyb0NKY0tr?=
+ =?utf-8?Q?ajv2eKZQQyfJpJ2/a7XtyrpuTJPAkmMPnGLZhks?=
 MIME-Version: 1.0
-Date: Fri, 05 Mar 2021 12:58:22 -0800
-References: <CAMKF1sqsMX1-TAX_m7HvPotwQs98yDE-HXfYe1upeCMNSMbT7g@mail.gmail.com>
-In-Reply-To: <CAMKF1sqsMX1-TAX_m7HvPotwQs98yDE-HXfYe1upeCMNSMbT7g@mail.gmail.com>
-Message-ID: <3015.1614977902706588765@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="Nfv7BLiqNR3duDUFltdo"
+X-OriginatorOrg: sierrawireless.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR02MB2429.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72c8e116-9fb8-48c4-7a4f-08d8e03d1876
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2021 01:13:47.9600
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DN2sOVoKSRcVonmzBElbjJ9y1QLTMwm+EzgNH5ollYQxmqHbaGWGKYs91bRR89EIREkpa/UOa/BBbBkIeZlcLDtsAvkADW5PR/eN1O4xIK8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB2782
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_0325EBA0D4484591988BF9316B3E9395sierrawirelesscom_"
 
---Nfv7BLiqNR3duDUFltdo
+--_000_0325EBA0D4484591988BF9316B3E9395sierrawirelesscom_
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-Thanks for the tip Raj, it got me into the right track. The error was that =
-"Python.h" missing, but the interesting bit was the path where it was looki=
-ng for it.
-It was searching for it within:
-(...)./recipe-sysroot/opt/my-image/my-distro-version/sysroots/(...)
-while in the filesystem it existed at
-(...)./recipe-sysroot/opt/my-image/3.2.1/sysroots/(...)
+SGksDQoNCkkgYW0gYnVpbGRpbmcgYSBkdW5mZWxsIGJhc2VkIHN5c3RlbSBmb3IgbGF5ZXJzY2Fw
+ZSB1c2luZyBzeXN2aW5pdCBhcyB0aGUgaW5pdCBzeXN0ZW0gYW5kIGZpbmQgdGhhdCB0aGUgZXVk
+ZXYgZGFlbW9uIGlzIG5vdCBlbWl0dGluZyBVREVWIGV2ZW50cy4NCg0KdWRldmFkbSBtb25pdG9y
+ICAtLXVkZXYgLS1rZXJuZWwgJg0KDQplY2hvIC1uIOKAnHJlbW92ZeKAnSA+IC9zeXMvZGV2aWNl
+cy9wbGF0Zm9ybS9zb2MvMzEwMDAwMC51c2IzL3hoY2ktaGNkLjAuYXV0by91c2IyLzItMS8yLTEu
+MS91ZXZlbnQNCg0KQW5kIHRoZW4gSSBzZWXigKYNCktFUk5FTFsxNzQyLjIxMTY5Ml0gcmVtb3Zl
+ICAgL2RldmljZXMvcGxhdGZvcm0vc29jLzMxMDAwMDAudXNiMy94aGNpLWhjZC4wLmF1dG8vdXNi
+Mi8yLTEvMi0xLjEgKHVzYikNCg0KSW4gbXkgb2xkZXIgZGFpc3kgYmFzZWQgc3lzdGVtLCBJIHNl
+ZSBib3Ro4oCmDQpLRVJORUxbMTEzNTAxLjM0Njk3MF0gcmVtb3ZlICAgL2RldmljZXMvcGxhdGZv
+cm0vc29jLzMxMDAwMDAudXNiMy94aGNpLWhjZC4wLmF1dG8vdXNiMi8yLTEvMi0xLjEgKHVzYikN
+ClVERVYgIFsxMTM1MDEuMzQ4MzczXSByZW1vdmUgICAvZGV2aWNlcy9wbGF0Zm9ybS9zb2MvMzEw
+MDAwMC51c2IzL3hoY2ktaGNkLjAuYXV0by91c2IyLzItMS8yLTEuMSAodXNiKQ0KDQpDYW4gYW55
+b25lIGV4cGxhaW4gd2h5IEkgYW0gbm90IHNlZWluZyB0aGUgVURFViBldmVudHMgZW1pdHRlZD8g
+ICAoSXMgdGhpcyByZWxhdGVkIHRvIHVzaW5nIGV1ZGV2IHJhdGhlciB0aGFuIHRoZSBvcmlnaW5h
+bCB1ZGV2IG9yIHdoYXQgaXMgcGFja2FnZWQgYXMgcGFydCBvZiBzeXN0ZW1kPykNCg0KVGhhbmtz
+IGluIGFkdmFuY2UuDQoNCg0KDQpSZWdhcmRzLA0KDQpEYXJjeQ0KDQpEYXJjeSBXYXRraW5zIDo6
+ICBTZW5pb3IgU3RhZmYgRW5naW5lZXIsIEZpcm13YXJlDQoNClNJRVJSQSBXSVJFTEVTUw0KRGly
+ZWN0ICArMSA2MDQgMjMzIDc5ODkgICA6OiAgRmF4ICArMSA2MDQgMjMxIDExMDkgIDo6ICBNYWlu
+ICArMSA2MDQgMjMxIDExMDANCjEzODExIFdpcmVsZXNzIFdheSAgOjogUmljaG1vbmQsIEJDIENh
+bmFkYSBWNlYgM0E0DQpbTTRdDQpkd2F0a2luc0BzaWVycmF3aXJlbGVzcy5jb208bWFpbHRvOmR3
+YXRraW5zQHNpZXJyYXdpcmVsZXNzLmNvbT4gOjogd3d3LnNpZXJyYXdpcmVsZXNzLmNvbTxodHRw
+Oi8vd3d3LnNpZXJyYXdpcmVsZXNzLmNvbS8+DQo=
 
-From that I deduced that somehow it was picking conflicting values for DIS=
-TRO_VERSION, executing the follow commands confirmed my suspicion
-bitbake -e gdb-cross-canadian-arm | grep "^DISTRO"; -> DISTRO_VERSION=3D"m=
-y-distro-version"
-bitbake -e nativesdk-python3| grep "^DISTRO"; -> DISTRO_VERSION=3D"3.2.1"
-
-After digging a bit more I figured why it was happening, "my-distro-versio=
-n" was defined through an override:
-MACHINEOVERRIDES=3D"machine"
-DISTRO_VERSION_machine=3D"my-distro-version"
-
-However for nativesdk recipes MACHINEOVERRIDES is empty so it picked up DI=
-STRO_VERSION as defined in poky.conf file, "3.2.1".
-
-Dropping the override and having both DISTRO_VERSION equal solved the issu=
-e. Thanks!
-
---Nfv7BLiqNR3duDUFltdo
+--_000_0325EBA0D4484591988BF9316B3E9395sierrawirelesscom_
 Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-ID: <4CEB847B2A65B54989DFA9E2A90B1497@namprd02.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-Thanks for the tip Raj, it got me into the right track. The error was that =
-"Python.h" missing, but the interesting bit was the path where it was looki=
-ng for it.<br />It was searching for it within:<br />(...)./recipe-sysroot/=
-opt/my-image/my-distro-version/sysroots/(...)<br />while in the filesystem =
-it existed at<br />(...)./recipe-sysroot/opt/my-image/3.2.1/sysroots/(...)<=
-br /><br />From that I deduced that somehow it was picking conflicting valu=
-es for DISTRO_VERSION, executing the follow commands confirmed my suspicion=
-<br />bitbake -e gdb-cross-canadian-arm | grep "^DISTRO"; -&gt; DISTRO_VERS=
-ION=3D"my-distro-version"<br />bitbake -e nativesdk-python3| grep "^DISTRO"=
-; -&gt; DISTRO_VERSION=3D"3.2.1"<br /><br />After digging a bit more I figu=
-red why it was happening, "my-distro-version" was defined through an overri=
-de:<br />MACHINEOVERRIDES=3D"machine"<br />DISTRO_VERSION_machine=3D"my-dis=
-tro-version"<br /><br />However for nativesdk recipes MACHINEOVERRIDES is e=
-mpty so it picked up DISTRO_VERSION as defined in poky.conf file, "3.2.1".<=
-br /><br />Dropping the override and having both DISTRO_VERSION equal solve=
-d the issue. Thanks!
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
+bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
+IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
+IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3Jt
+YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0KCWZvbnQtc2l6
+ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0Kc3Bhbi5FbWFp
+bFN0eWxlMTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtY29tcG9zZTsNCglmb250LWZhbWls
+eToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZh
+dWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
+IixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBw
+dDsNCgltYXJnaW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0O30NCmRpdi5Xb3JkU2VjdGlv
+bjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT4NCjwvaGVhZD4NCjxib2R5IGxh
+bmc9IkVOLUNBIiBsaW5rPSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiIgc3R5bGU9IndvcmQtd3Jh
+cDpicmVhay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj5IaSw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBhbSBidWlsZGluZyBhIGR1bmZl
+bGwgYmFzZWQgc3lzdGVtIGZvciBsYXllcnNjYXBlIHVzaW5nIHN5c3Zpbml0IGFzIHRoZSBpbml0
+IHN5c3RlbSBhbmQgZmluZCB0aGF0IHRoZSBldWRldiBkYWVtb24gaXMgbm90IGVtaXR0aW5nIFVE
+RVYgZXZlbnRzLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
+cDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj51ZGV2YWRtIG1vbml0b3IgJm5ic3A7
+LS11ZGV2IC0ta2VybmVsICZhbXA7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmVjaG8gLW4g4oCc
+cmVtb3Zl4oCdICZndDsgL3N5cy9kZXZpY2VzL3BsYXRmb3JtL3NvYy8zMTAwMDAwLnVzYjMveGhj
+aS1oY2QuMC5hdXRvL3VzYjIvMi0xLzItMS4xL3VldmVudDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5BbmQgdGhlbiBJIHNlZeKApjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+S0VSTkVMWzE3NDIuMjExNjkyXSByZW1vdmUmbmJzcDsmbmJzcDsgL2RldmljZXMvcGxhdGZvcm0v
+c29jLzMxMDAwMDAudXNiMy94aGNpLWhjZC4wLmF1dG8vdXNiMi8yLTEvMi0xLjEgKHVzYik8bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+SW4gbXkgb2xkZXIgZGFpc3kgYmFzZWQgc3lzdGVtLCBJIHNl
+ZSBib3Ro4oCmPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5LRVJORUxbMTEz
+NTAxLjM0Njk3MF0gcmVtb3ZlJm5ic3A7Jm5ic3A7IC9kZXZpY2VzL3BsYXRmb3JtL3NvYy8zMTAw
+MDAwLnVzYjMveGhjaS1oY2QuMC5hdXRvL3VzYjIvMi0xLzItMS4xICh1c2IpPG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5VREVWJm5ic3A7IFsxMTM1MDEuMzQ4MzczXSByZW1v
+dmUmbmJzcDsmbmJzcDsgL2RldmljZXMvcGxhdGZvcm0vc29jLzMxMDAwMDAudXNiMy94aGNpLWhj
+ZC4wLmF1dG8vdXNiMi8yLTEvMi0xLjEgKHVzYik8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Q2Fu
+IGFueW9uZSBleHBsYWluIHdoeSBJIGFtIG5vdCBzZWVpbmcgdGhlIFVERVYgZXZlbnRzIGVtaXR0
+ZWQ/Jm5ic3A7Jm5ic3A7IChJcyB0aGlzIHJlbGF0ZWQgdG8gdXNpbmcgZXVkZXYgcmF0aGVyIHRo
+YW4gdGhlIG9yaWdpbmFsIHVkZXYgb3Igd2hhdCBpcyBwYWNrYWdlZCBhcyBwYXJ0IG9mIHN5c3Rl
+bWQ/KTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
+cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGFua3MgaW4gYWR2YW5jZS48bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOzxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8
+L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+UmVnYXJkcyw8L3NwYW4+PC9i
+PjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7PC9zcGFuPjwvYj48c3BhbiBsYW5n
+PSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+
+PHNwYW4gbGFuZz0iRU4tVVMiPkRhcmN5PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyI+PG86
+cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0i
+RU4tVVMiPiZuYnNwOzwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIj5EYXJj
+eSBXYXRraW5zIDo6Jm5ic3A7Jm5ic3A7U2VuaW9yIFN0YWZmIEVuZ2luZWVyLCBGaXJtd2FyZTwv
+c3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8L3NwYW4+PC9iPjxz
+cGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOnJlZCI+U0lFUlJBIFdJUkVM
+RVNTPC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOnJlZCI+PG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
+PkRpcmVjdCZuYnNwOyArMSA2MDQgMjMzIDc5ODkmbmJzcDsgJm5ic3A7OjombmJzcDsmbmJzcDtG
+YXgmbmJzcDsmbmJzcDsrMSA2MDQgMjMxIDExMDkmbmJzcDsgOjombmJzcDsmbmJzcDtNYWluJm5i
+c3A7Jm5ic3A7KzEgNjA0IDIzMSAxMTAwPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjEzODExIFdpcmVsZXNzIFdheSZuYnNwOyA6
+OiZuYnNwO1JpY2htb25kLCBCQyBDYW5hZGEgVjZWIDNBNDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5bTTRdPG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxhIGhy
+ZWY9Im1haWx0bzpkd2F0a2luc0BzaWVycmF3aXJlbGVzcy5jb20iPjxzcGFuIHN0eWxlPSJjb2xv
+cjojMDU2M0MxIj5kd2F0a2luc0BzaWVycmF3aXJlbGVzcy5jb208L3NwYW4+PC9hPiZuYnNwOzo6
+Jm5ic3A7PGEgaHJlZj0iaHR0cDovL3d3dy5zaWVycmF3aXJlbGVzcy5jb20vIj48c3BhbiBzdHls
+ZT0iY29sb3I6IzA1NjNDMSI+d3d3LnNpZXJyYXdpcmVsZXNzLmNvbTwvc3Bhbj48L2E+DQo8L3Nw
+YW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
---Nfv7BLiqNR3duDUFltdo--
+--_000_0325EBA0D4484591988BF9316B3E9395sierrawirelesscom_--
