@@ -1,78 +1,107 @@
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
- by mx.groups.io with SMTP id smtpd.web12.24190.1615138189038441783
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.34964.1615204785398348405
  for <yocto@lists.yoctoproject.org>;
- Sun, 07 Mar 2021 09:29:49 -0800
+ Mon, 08 Mar 2021 03:59:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=TCCQVWvR;
- spf=pass (domain: gmail.com, ip: 209.85.215.170, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f170.google.com with SMTP id h4so4882068pgf.13
-        for <yocto@lists.yoctoproject.org>; Sun, 07 Mar 2021 09:29:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=MYEqAdD25FiLhwIEprufoQbbYWySUTgjq5udz1moftQ=;
-        b=TCCQVWvREehOL5n5ZcKWA45ZRAw0JGEALe/mO3o98oqhJ7uNFL4MyT29B/JNf+oBJP
-         4X66qRyhXyaMHyvHyF3QBV+UnG5txeKne5M6930oIvU3L8ykHnoOdxelK2tl83iADusp
-         yjQ+gLBVo75JyG/8S1MjqAXI0RLTrQNDRo7vbX1e8mcmQrvYtCm1ptSgDiWzsXlYhuKD
-         FNhe5ejCD+vN3j7wM4lZfq6TcPcf+g5PSJ9WgNA+61A5tSZo7VggIWgfM5rbL50F0tJw
-         ukMJWWN2jsaT/hDXcogvofHFPBuQcntRR6WaOaM/VQws5slpiXfJmde6ByPo5Yrid6T5
-         VrYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=MYEqAdD25FiLhwIEprufoQbbYWySUTgjq5udz1moftQ=;
-        b=pV81F2JuEjniYC7Gc4m6agy83MuoIPBL/W9WOuTOoTO66nL/tc9oYXIcsz00Zp4jVz
-         YMFPIuHW4p3thC8yw8AW6nCtuSdjuk2C+kLUS7gtblwKJiXLKm3bjUIrGcpkgTQsLBCy
-         pMezCtOaCCN8XhDB33ag7GGt3wnuE5Zj7jLrO0wElBbRPAkwAXk7GjNEvsSeyuuCugYw
-         V0Xnbvf0d2D7jU1mGFGuAU5fkQ76nWgsEdfqDGY2Vn4Ix48hiGieNtOhaZnAHj/YcgsT
-         9txcfSKpzGblS7Z5h0mEWozCIS8pljudz1wzaN3Df+/1RkTL71Z3TVfPtuG8fIN8tbcu
-         +9fw==
-X-Gm-Message-State: AOAM531K4uaXhnBPYnRlw/8W/qoaOVOQA22uXYwdNs7zaw8p7wDNIYzg
-	dX1/UjUTqQf0HgprNBSE14PeKDGTNcg=
-X-Google-Smtp-Source: ABdhPJwegaUlIwKxjt/5QEty1s86BXkdKSWzGdTnXzEMOkWg99ffh4RevQVIQPWqaKeEYw4RAU6EoQ==
-X-Received: by 2002:a05:6a00:1a4b:b029:1d2:8522:75e7 with SMTP id h11-20020a056a001a4bb02901d2852275e7mr18079471pfv.80.1615138188114;
-        Sun, 07 Mar 2021 09:29:48 -0800 (PST)
-Return-Path: <akuster808@gmail.com>
-Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:4de0:7e40:32a3:ab29])
-        by smtp.gmail.com with ESMTPSA id h8sm7685283pfv.154.2021.03.07.09.29.47
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Mar 2021 09:29:47 -0800 (PST)
-From: "akuster" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [v2][meta-security][PATCH] libtpm: update to 0.8.2
-Date: Sun,  7 Mar 2021 09:29:46 -0800
-Message-Id: <20210307172946.7787-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=pass header.i=@aruba.it header.s=a1 header.b=VU5XgSr5;
+ spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 198.145.29.25, mailfrom: mauro@faresoftware.it)
+Received: from smtpcmd15176.aruba.it (smtpcmd15176.aruba.it [62.149.156.176])
+	by mail.yoctoproject.org (Postfix) with ESMTP id DBFEC38C065C
+	for <yocto@yoctoproject.org>; Mon,  8 Mar 2021 11:59:43 +0000 (UTC)
+Received: from p50 ([213.213.6.58])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id JEY1lKfmrMqeYJEY2lPsrQ; Mon, 08 Mar 2021 12:59:42 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1615204782; bh=bTTi0+kxGaIW+WwnbZcX9ACZFhtEBHBtRPPKWubfeCc=;
+	h=Date:From:To:Subject:MIME-Version:Content-Type;
+	b=VU5XgSr5G8Z05flUJTXCCIav/y8+xUzSsMyYMp6cX+2NAnUF0nz34145N7h0YFY3Z
+	 tWJSQx/Gr4aE4xfs2EOVq30ifZjCakPeh0vd7RjGQJVhF+Ip8PzuARXvrPhDNhCPtm
+	 /qOpjY3yMo/9bz2YFaBEwXMC63kSAwDe8Wi0W9vOeAyhmGMYDOQIyj5rGupU/XW1Cs
+	 SinE/Pl0qMmVlzErw7quzcQXWsCQ5kO60PodDVzfo1FwS9A72tAlvabtZ9jDLQFUJv
+	 Ta8qGES/tDFfv3MSrpDs/4aHy1rEqc2dYkW34DR2RYjcR5MBJ0yH2/DmTXnkq7YlW9
+	 D7jc67UlpDogw==
+Date: Mon, 8 Mar 2021 12:59:41 +0100
+From: "Mauro Ziliani" <mauro@faresoftware.it>
+To: "=?utf-8?Q?yocto=40yoctoproject.org?=" <yocto@yoctoproject.org>
+Message-ID: <0635A4DC-DEF1-4901-AAD4-F9788168F9FF@getmailspring.com>
+Subject: Remove *-dev packages from final image
+X-Mailer: Mailspring
+MIME-Version: 1.0
+X-CMAE-Envelope: MS4wfNJtGpjzU6P9wFN/lE0/JPL3YzWXf9lZnaVInYPkBaP8kkRA/GZEwiXK+PHpCev7bPQEEKrIOWK0YY1hL2nce3Ub9ERUVhmNIaKuFcxq5/xXd28hrNGn
+ mlWlq/l6fOn7wqJSFkiKFUhJYRNl7CBF6waLP8m7Ev76z8bRcDdGPBjm
+Content-Type: multipart/alternative; boundary="604611ad_158c399e_cfa"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+--604611ad_158c399e_cfa
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
---
-V2]
-let include the updated changes
----
- .../recipes-tpm/libtpm/{libtpm_0.7.2.bb => libtpm_0.8.2.bb}   | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
- rename meta-tpm/recipes-tpm/libtpm/{libtpm_0.7.2.bb => libtpm_0.8.2.bb} (86%)
+Hi all.
+I'm in trouble to remove the *-dev packages from final image.
 
-diff --git a/meta-tpm/recipes-tpm/libtpm/libtpm_0.7.2.bb b/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.2.bb
-similarity index 86%
-rename from meta-tpm/recipes-tpm/libtpm/libtpm_0.7.2.bb
-rename to meta-tpm/recipes-tpm/libtpm/libtpm_0.8.2.bb
-index 0ade01d..9784aa1 100644
---- a/meta-tpm/recipes-tpm/libtpm/libtpm_0.7.2.bb
-+++ b/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.2.bb
-@@ -2,8 +2,8 @@ SUMMARY = "LIBPM - Software TPM Library"
- LICENSE = "BSD-3-Clause"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=e73f0786a936da3814896df06ad225a9"
- 
--SRCREV = "7325acb4777f70419fe10a1d9621c2666e977e73"
--SRC_URI = "git://github.com/stefanberger/libtpms.git;branch=stable-0.7.0"
-+SRCREV = "f66a719eda0b492ea3ec7852421a9d98db0a0621"
-+SRC_URI = "git://github.com/stefanberger/libtpms.git;branch=stable-0.8"
- 
- PE = "1"
- 
--- 
-2.17.1
+I remove dev-pkgs and dbg-pkgs from EXTRA_IMAGE_FEATURES and IMAGE_FEATURES with lines
+IMAGE_FEATURES_remove = " \
+dbg-pkgs \
+dev-pkgs \
+"
 
+EXTRA_IMAGE_FEATURES_remove = " \
+dbg-pkgs \
+dev-pkgs \
+"
+
+But *-dev persists.
+I suppose there is some package-group which installs *-dev
+In the image recipe I includes
+require recipes-sato/images/core-image-sato.bb
+require recipes-fsl/images/fsl-image-multimedia-full.bb
+
+and I force a remove with
+IMAGE_INSTALL_remove = " \
+packagegroup-fsl-tools-gpu \
+imx-gpu-sdk \
+packagegroup-core-x11-sato-games \
+attr-dev \
+alsa-lib-dev \
+base-file-dev \
+connman \
+"
+
+Even if I remove alsa-lib-dev I find it in the manifest.
+I'm working with a Krogoth
+Any idea?
+Thanks all
+MZ
+
+
+--604611ad_158c399e_cfa
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+<div>Hi all.</div><div>I'm in trouble to remove the *-dev packages from f=
+inal image.</div><br><div>I remove dev-pkgs and dbg-pkgs from EXTRA=5FIMA=
+GE=5F=46EATURES and IMAGE=5F=46EATURES with lines</div><br><div>IMAGE=5F=46=
+EATURES=5Fremove =3D =22 =5C</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p; dbg-pkgs =5C</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dev-pkgs =5C=
+</div><div>=22</div><br><div>EXTRA=5FIMAGE=5F=46EATURES=5Fremove =3D =22 =
+=5C</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dbg-pkgs =5C</div><div=
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dev-pkgs =5C</div><div>=22</div><br=
+><div>But *-dev persists.</div><br><div>I suppose there is some package-g=
+roup which installs *-dev</div><br><div>In the image recipe I includes</d=
+iv><br><div>require recipes-sato/images/core-image-sato.bb</div><div>requ=
+ire recipes-fsl/images/fsl-image-multimedia-full.bb</div><br><div>and I f=
+orce a remove with</div><br><div>IMAGE=5FINSTALL=5Fremove =3D =22 =5C</di=
+v><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; packagegroup-fsl-tools-=
+gpu =5C</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; imx-gpu-sdk =
+=5C</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; packagegroup-cor=
+e-x11-sato-games =5C</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ attr-dev =5C</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alsa-l=
+ib-dev =5C</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; base-file=
+-dev =5C</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; connman =5C=
+</div><div>=22</div><br><div>Even if I remove alsa-lib-dev&nbsp; I find i=
+t in the manifest.</div><br><div>I'm working with a Krogoth </div><br><di=
+v>Any idea=3F</div><br><div>Thanks all</div><div>&nbsp;&nbsp; MZ</div><br=
+><br>
+
+--604611ad_158c399e_cfa--
