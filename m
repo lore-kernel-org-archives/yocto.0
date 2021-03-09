@@ -1,97 +1,139 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.10349.1615302657697763765
+ by mx.groups.io with SMTP id smtpd.web09.10719.1615303938115919479
  for <yocto@lists.yoctoproject.org>;
- Tue, 09 Mar 2021 07:10:58 -0800
+ Tue, 09 Mar 2021 07:32:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=parse error for token &{10 18 a1.net}: parse error for token &{10 18 spf.a1.net}: parse error for token &{10 18 a1telekom.at}: parse error for token &{10 18 spf.qb-feedback.com}: parse error for token &{10 18 spf2.qb-feedback.com}: limit exceeded (domain: streamunlimited.com, ip: 198.145.29.25, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 5E04638C052B
-	for <yocto@yoctoproject.org>; Tue,  9 Mar 2021 15:10:56 +0000 (UTC)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp2.bon.at (Postfix) with ESMTPSA id 4DvzDZ4Jsjz5tlH;
-	Tue,  9 Mar 2021 16:10:54 +0100 (CET)
-Date: Tue, 9 Mar 2021 16:10:53 +0100
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: Leon Woestenberg <leon@sidebranch.com>
-Cc: "Robert P. J. Day" <rpjday@crashcourse.ca>,
-	Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [yocto] how often would one use "VAR_someoverride_append = ..."?
-Message-ID: <20210309151053.uwkncgivu3h27mxr@qschulz>
-References: <fd294e8a-cc9e-d9f-33d9-cc30f27ff0@crashcourse.ca>
- <CAMjhiJgF_c+Q1--wyTvLwnO36n=dNgU=ii7yN6G7c7Tksxyw0w@mail.gmail.com>
+ dkim=missing; spf=none, err=permanent DNS error (domain: deserted.net, ip: 198.145.29.25, mailfrom: joe@deserted.net)
+Received: from esa3.mentor.iphmx.com (esa3.mentor.iphmx.com [68.232.137.180])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id D507438C052B
+	for <yocto@yoctoproject.org>; Tue,  9 Mar 2021 15:32:16 +0000 (UTC)
+IronPort-SDR: nCcagGrqa/7IC0s+kn63FL4mpLkMvNtLvOCNkCeSRbQE1YK1S4S0kil2VpqjPrPrAXT79mihGE
+ zNIefC6qBqHInuhVoD9kN6WaFqam5j0VvRPCL/Fxc+62bu3p4UxmQ258rliocYrUN8/6aEER9R
+ Wfvq6zu2doD11ghQu1pYfet9P20+yxQ6r2gXDA3aDaYpzcBwjoTdBN1sUJu63dhzCCn9G7+VZH
+ u9+8bYe+OG8OgA8mGbB7Dftubedrmqhxc7r2E0LtPtk3GsIkdyvKHKanMGVP0jbpN9l4gf0KGU
+ ztY=
+X-IronPort-AV: E=Sophos;i="5.81,234,1610438400"; 
+   d="asc'?scan'208";a="58901788"
+Received: from orw-gwy-02-in.mentorg.com ([192.94.38.167])
+  by esa3.mentor.iphmx.com with ESMTP; 09 Mar 2021 07:32:13 -0800
+IronPort-SDR: 1ma8XYupR4tpvqWD0Z+8KoTs03XwxdXzPTWZLPTSkHNidjP6xMf+o1pJlTGT2m+lT7NWd6vg9C
+ lbdsgO8t1MmKODL0mLKT3Omb/ywGqxHXPH3ZLwcM1HoftUU+Cm4sl8yhZjJUpKyHhqQ6fDDEUf
+ cOjmF91WnWEUavmJ5YC+HzkGbLNJ+5QKt0kLBMb7mvQcdDRBe8F6Dqko88htvfEVqX3NnIwuEQ
+ eefCzvyh4CqW5GahohCfY+LvppyPAKVLZoWV0eOpCyWe++eJcjSY0lqTdAjH4ZPIMUbqgVUifl
+ O5o=
+Date: Tue, 9 Mar 2021 10:32:09 -0500
+From: "Joe MacDonald" <joe@deserted.net>
+To: Anatol Belski <anbelski@linux.microsoft.com>
+CC: <yocto@yoctoproject.org>, <yi.zhao@windriver.com>
+Subject: Re: [yocto] [meta-selinux][dunfell][gatesgarth][master][PATCH] libselinux-python: Fix build error due to missing target config
+Message-ID: <20210309153208.GB9162@deserted.net>
+References: <20210309115511.7522-1-anbelski@linux.microsoft.com>
+ <20210309130043.GA9162@deserted.net>
+ <02b457c2-5719-ab43-8f23-e414aadff4d1@linux.microsoft.com>
 MIME-Version: 1.0
-In-Reply-To: <CAMjhiJgF_c+Q1--wyTvLwnO36n=dNgU=ii7yN6G7c7Tksxyw0w@mail.gmail.com>
-Content-Type: text/plain; charset=us-ascii
+In-Reply-To: <02b457c2-5719-ab43-8f23-e414aadff4d1@linux.microsoft.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Groupsio-MsgNum: 52628
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="WYTEVAkct0FjGQmd"
 Content-Disposition: inline
 
-Hi Leon,
+--WYTEVAkct0FjGQmd
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 09, 2021 at 03:55:03PM +0100, Leon Woestenberg wrote:
-> Hello Robert, all,
-> 
-> On Tue, Mar 9, 2021 at 3:39 PM Robert P. J. Day <rpjday@crashcourse.ca> wrote:
-> > is there an actual practical usage of, say:
-> >
-> >   VAR_x86_append = "huh"
-> >
-> $grep -re '[A-Z_]\+_[a-z0-9]\+_append' poky/meta*
-> poky/meta/recipes-support/gmp/gmp_6.2.0.bb:EXTRA_OECONF_mipsarchr6_append
-> = " --disable-assembly"
-> poky/meta/recipes-core/images/build-appliance-image_15.0.0.bb:IMAGE_CMD_ext4_append
-> () {
-> poky/meta/recipes-devtools/python/python3_3.8.2.bb:RDEPENDS_libpython3_append_libc-glibc
-> = " libgcc"
-> poky/meta/recipes-devtools/gdb/gdb-common.inc:RRECOMMENDS_gdb_append_linux
-> = " glibc-thread-db "
-> poky/meta/recipes-devtools/gdb/gdb-common.inc:RRECOMMENDS_gdb_append_linux-gnueabi
-> = " glibc-thread-db "
-> poky/meta/recipes-devtools/gdb/gdb-common.inc:RRECOMMENDS_gdbserver_append_linux
-> = " glibc-thread-db "
-> poky/meta/recipes-devtools/gdb/gdb-common.inc:RRECOMMENDS_gdbserver_append_linux-gnueabi
-> = " glibc-thread-db "
-> 
-> which is appending an override variable conditionally with another
-> override condition. (If I put this correctly.) Is this a valid use
-> case where += would not work?
-> 
+[Re: [yocto] [meta-selinux][dunfell][gatesgarth][master][PATCH] libselinux-=
+python: Fix build error due to missing target config] On 21.03.09 (Tue 14:5=
+3) Anatol Belski wrote:
 
-Define what you mean by "where += would not work", I'm not sure to have
-enough context to answer this question.
+> Hi Joe,
+>=20
+> thanks for the quick check. The patch applies fine to dunfell and
+> gatesgarth, master has the changed recipe version in the bb name. I was
+> about to rebase to master but pulling shows already did it. I was too sl=
+ow
+> :) thanks for the quick fix.
 
-gdb/gdbserver above would be replaced with ${PN} in many/most recipes.
-I am not sure how ${PN} "overrides" are handled but that would be a
-valid use case for VAR_foo_append.
+No problem!  I assumed you were working on a just-slightly-out-of-date
+master branch and my work tree already had your patch half applied when
+the 'git am' failed, so I just finished that part up.
 
-I think Robert and I were talking about foo being part of OVERRIDES
-variable meaning we (I at least) oversaw this, thanks for the heads up.
+I'll get to the other branches in a bit.
 
-> Other appearances without an override condition:
-> $ grep -re '[A-Z_]\+_[a-z0-9]\+_append' meta-*
-> meta-openembedded/<..>/libnma_1.8.28.bb:EXTRA_OEMESON_mipsarchn32_append
-> = " -Dvapi=false"
-> meta-openembedded/<..>/libnma_1.8.28.bb:EXTRA_OEMESON_riscv32_append =
-> " -Dvapi=false"
-> 
-> Could these have been replaced with the following?
-> 
-> EXTRA_OEMESON_mipsarchn32 += "-Dvapi=false"
-> EXTRA_OEMESON_riscv32 += "-Dvapi=false"
-> 
+-Joe.
 
-Considering there are no EXTRA_OEMESON_mipsarchn32 in any of the classes
-included and that EXTRA_OEMESON expects a space-separated list of
-strings, it'd probably be ok.
+>=20
+> Regards
+>=20
+> Anatol
+>=20
+> On 3/9/2021 2:00 PM, Joe MacDonald wrote:
+> > Hi Anatol,
+> >=20
+> > I will confirm this against the other branches (dunfell and gatesgarth=
+)
+> > but your patch doesn't appear to be against the current master branch =
+(and
+> > it's unlikely one patch will apply to all branches).  Can you send out
+> > specific patches against the head of tree for each branch you care abo=
+ut,
+> > please?  Then I can get them merged for you.
+> >=20
+> > Thanks,
+> > -Joe.
+> >=20
+> > [[yocto] [meta-selinux][dunfell][gatesgarth][master][PATCH] libselinux=
+-python: Fix build error due to missing target config] On 21.03.09 (Tue 11:=
+55) Anatol Belski wrote:
+> >=20
+> > > This fixes the error below:
+> > >=20
+> > > gcc: error: unrecognized command line option
+> > > =E2=80=98-fmacro-prefix-map=3D/path/to/build/libselinux-python/3.0-r=
+0=3D/usr/src/debug/libselinux-python/3.0-r0=E2=80=99
+> > >=20
+> > > Without inheriting the config, supposedly a wrong compiler is used.
+> > >=20
+> > > Signed-off-by: Anatol Belski <anbelski@linux.microsoft.com>
+> > > ---
+> > >   recipes-security/selinux/libselinux-python_3.0.bb | 2 ++
+> > >   1 file changed, 2 insertions(+)
+> > >=20
+> > > diff --git a/recipes-security/selinux/libselinux-python_3.0.bb b/rec=
+ipes-security/selinux/libselinux-python_3.0.bb
+> > > index 2b5438d..3c03df1 100644
+> > > --- a/recipes-security/selinux/libselinux-python_3.0.bb
+> > > +++ b/recipes-security/selinux/libselinux-python_3.0.bb
+> > > @@ -4,6 +4,8 @@ SRC_URI =3D "https://github.com/SELinuxProject/selin=
+ux/releases/download/${SELINUX
+> > >   require ${BPN}.inc
+> > > +inherit python3targetconfig
+> > > +
+> > >   LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D84b4d2c6ef954a2d4081e77=
+5a270d0d0"
+> > >   SRC_URI[md5sum] =3D "b387a66f087b6d97713570e85ec89d89"
+> > > --=20
+> > > 2.17.1
+> > >=20
+> > >=20
+> > >=20
+> >=20
 
-However, this seems fishy... It is possible that this is a mistake and
-one should have written EXTRA_OEMESON_append_mipsarchn32...
+--=20
+-Joe MacDonald.
+:wq
 
-If EXTRA_OEMESON was intended to be overwritten completly for
-mipsarchn32 to disable gobject-introspection, having
-GI_DATA_ENABLED_mipsarchn32 = "False"  and
-EXTRA_OEMESON_append_mipsarchn32 = " -Dvapi=false"  would be more
-suitable.
+--WYTEVAkct0FjGQmd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If I were you, I would ask on the ML if it was intended and adding the
-committer in Cc :)
+-----BEGIN PGP SIGNATURE-----
 
-Quentin
+iF0EABECAB0WIQRjqRhJknEwCqrWVXzAW9yWWiDRfAUCYEeU+AAKCRDAW9yWWiDR
+fBfKAJ9IiBhbDkEf4aLkPHuAJzs/qyjWcQCeOybueYcVgZQWUIINq34hlbDkH4g=
+=QflE
+-----END PGP SIGNATURE-----
+
+--WYTEVAkct0FjGQmd--
