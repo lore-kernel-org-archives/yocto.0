@@ -1,86 +1,94 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.10003.1615301606697926764
+ by mx.groups.io with SMTP id smtpd.web12.10091.1615301716641361663
  for <yocto@lists.yoctoproject.org>;
- Tue, 09 Mar 2021 06:53:26 -0800
+ Tue, 09 Mar 2021 06:55:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 198.145.29.25, mailfrom: rpjday@crashcourse.ca)
-Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 4F07138C052B
-	for <yocto@yoctoproject.org>; Tue,  9 Mar 2021 14:53:26 +0000 (UTC)
-Received: from bras-base-otwaon0916w-grc-29-64-229-255-220.dsl.bell.ca ([64.229.255.220]:46636 helo=fedora)
-	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1lJdjg-0005M5-UQ; Tue, 09 Mar 2021 09:53:25 -0500
-Date: Tue, 9 Mar 2021 09:53:19 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: Quentin Schulz <quentin.schulz@streamunlimited.com>
-cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [yocto] how often would one use "VAR_someoverride_append = ..."?
-In-Reply-To: <20210309144900.h5esu2uleixud2va@qschulz>
-Message-ID: <aa4b4c0-b6fc-4d80-b4bd-4ce8479e83fa@crashcourse.ca>
-References: <fd294e8a-cc9e-d9f-33d9-cc30f27ff0@crashcourse.ca> <20210309144900.h5esu2uleixud2va@qschulz>
+ dkim=pass header.i=@sidebranch-com.20150623.gappssmtp.com header.s=20150623 header.b=dVHTYYEs;
+ spf=softfail (domain: sidebranch.com, ip: 198.145.29.25, mailfrom: leon@sidebranch.com)
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id D458238C052B
+	for <yocto@yoctoproject.org>; Tue,  9 Mar 2021 14:55:15 +0000 (UTC)
+Received: by mail-qt1-f179.google.com with SMTP id o1so10349244qta.13
+        for <yocto@yoctoproject.org>; Tue, 09 Mar 2021 06:55:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sidebranch-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=41EwGkfOlDYVzctMiS8KzKhVsBikH4YjRBDIv9syaOo=;
+        b=dVHTYYEsDPng7Ms6CURWNTn6MDw7wcPuBls39LIcps4xuk8S3hCg19rWCII1BOf5P5
+         yHPRGMmJQ7feHJQ0XPv32M2J39ex7iH6hsllmcQ2/HylDIWntceyljHfOo5OVxIPw5qa
+         T1ZmIZll7vRV5C4tSY3iTdheWCxAB2GFT1zozPZ6343+F/G5VfnEKZSpyIT6KbwMt1es
+         bw2ueA66uezGfyH1m4ZRg6SfFHoGp0KIxfks00bdCeYl7Ic3S8CKVyPiaSE5C+9lp8qE
+         KZTICQlAjaGG0HiYEstGF8ZqC4bVUord44LhrYbboktHkQgrI/6Gzmi2UODZKNCRWkix
+         qT6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=41EwGkfOlDYVzctMiS8KzKhVsBikH4YjRBDIv9syaOo=;
+        b=JguFE/hTXN4/3NwF9NkKG5Hd22hPXIif7YA7P+oAn34OsgAWbq1njpdOnqVYT9W/Xa
+         6LI8E69HuB8/YH8QSKpLFrpGM/ERHtQZeGIxOBa2JuwNcWQEgsyvODGRP4PuAT8pGbJ2
+         qokslMxmObAMvNRO9jfyuzyjVxeEvTQrFj3TulLo4MyUL0EiuKIyGVB4oTwKgwiVG+uv
+         3NaKcjEZHvnuNhovSp+MtsXvZP/GYP8KRcugApOsx6g5btraCV/vtxPhCFTb5wO5qsU+
+         zbEye0dbqZH3nbNHunt7i8eLN9B3L0eXcN3xTkJ1anCJWjWqS2m+E+btT5uGnMCh6AxX
+         R5XQ==
+X-Gm-Message-State: AOAM533+XnS+tIoM3dVtMDrHFQDMMWH8F4hQfmYJXrE4XW86KYTLa7MN
+	DEskch9RkbdKGnUxLjskrrrvwBd/2X7G9X5Zuj/eaXjLY5UGAjjF
+X-Google-Smtp-Source: ABdhPJxPJHdpHSno6n6aI2BPjAV049JbW4ypi5whXAcz1awrlXlytt7YWuTZ2CU4eQnkmrqJeVwD4VutxoxCIj9IM74=
+X-Received: by 2002:ac8:73c4:: with SMTP id v4mr3657135qtp.208.1615301714686;
+ Tue, 09 Mar 2021 06:55:14 -0800 (PST)
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+References: <fd294e8a-cc9e-d9f-33d9-cc30f27ff0@crashcourse.ca>
+In-Reply-To: <fd294e8a-cc9e-d9f-33d9-cc30f27ff0@crashcourse.ca>
+From: "Leon Woestenberg" <leon@sidebranch.com>
+Date: Tue, 9 Mar 2021 15:55:03 +0100
+Message-ID: <CAMjhiJgF_c+Q1--wyTvLwnO36n=dNgU=ii7yN6G7c7Tksxyw0w@mail.gmail.com>
+Subject: Re: [yocto] how often would one use "VAR_someoverride_append = ..."?
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 9 Mar 2021, Quentin Schulz wrote:
+Hello Robert, all,
 
-> Hi Robert,
+On Tue, Mar 9, 2021 at 3:39 PM Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+> is there an actual practical usage of, say:
 >
-> On Tue, Mar 09, 2021 at 09:39:14AM -0500, Robert P. J. Day wrote:
-> >
-> >   bitbake manual, chapter 3, examples of conditional syntax:
-> >
-> > https://docs.yoctoproject.org/bitbake/bitbake-user-manual/bitbake-user-manual-metadata.html#examples
-> >
-> > correctly distinguishes between A_foo_append and A_append_foo, but how
-> > often would one use that first form, anyway?
-> >
-> >   most uses of conditional appending are either just straight
-> > appending:
-> >
-> >   VAR_append = "fubar"
-> >
-> > or used with an override thusly:
-> >
-> >   VAR_append_x86 = "snafu"
-> >
-> > is there an actual practical usage of, say:
-> >
-> >   VAR_x86_append = "huh"
-> >
-> > i can't remember the last time i saw something of that form and,
-> > while it might be worth explaining, it seems that the reader might be
-> > warned that that form is almost certainly *not* what they want.
-> >
+>   VAR_x86_append = "huh"
 >
-> Yes, in 99% of the cases, you want VAR_append_foo and not
-> VAR_foo_append.
->
-> VAR_foo_append makes sense when you want to append to VAR_foo which
-> is a way to override completely VAR for builds matching the foo
-> override. This happens in kernel-yocto recipes where branches and
-> defconfigs are different per machine for example.
->
-> The sneaky thing about VAR_foo_append is that it creates VAR_foo
-> even if it didn't exist beforehand, meaning you though you
-> *appended* something to VAR while you actually replaced VAR entirely
-> with what VAR_foo_append is set too.
+$grep -re '[A-Z_]\+_[a-z0-9]\+_append' poky/meta*
+poky/meta/recipes-support/gmp/gmp_6.2.0.bb:EXTRA_OECONF_mipsarchr6_append
+= " --disable-assembly"
+poky/meta/recipes-core/images/build-appliance-image_15.0.0.bb:IMAGE_CMD_ext4_append
+() {
+poky/meta/recipes-devtools/python/python3_3.8.2.bb:RDEPENDS_libpython3_append_libc-glibc
+= " libgcc"
+poky/meta/recipes-devtools/gdb/gdb-common.inc:RRECOMMENDS_gdb_append_linux
+= " glibc-thread-db "
+poky/meta/recipes-devtools/gdb/gdb-common.inc:RRECOMMENDS_gdb_append_linux-gnueabi
+= " glibc-thread-db "
+poky/meta/recipes-devtools/gdb/gdb-common.inc:RRECOMMENDS_gdbserver_append_linux
+= " glibc-thread-db "
+poky/meta/recipes-devtools/gdb/gdb-common.inc:RRECOMMENDS_gdbserver_append_linux-gnueabi
+= " glibc-thread-db "
 
-  i remember testing this a few years back, and making sure i
-appreciated the subtleties. i might take a shot at rewriting that
-section, since i think it has potential for confusion. mostly, warning
-the reader that the first form is almost always what they want.
+which is appending an override variable conditionally with another
+override condition. (If I put this correctly.) Is this a valid use
+case where += would not work?
 
-rday
+Other appearances without an override condition:
+$ grep -re '[A-Z_]\+_[a-z0-9]\+_append' meta-*
+meta-openembedded/<..>/libnma_1.8.28.bb:EXTRA_OEMESON_mipsarchn32_append
+= " -Dvapi=false"
+meta-openembedded/<..>/libnma_1.8.28.bb:EXTRA_OEMESON_riscv32_append =
+" -Dvapi=false"
+
+Could these have been replaced with the following?
+
+EXTRA_OEMESON_mipsarchn32 += "-Dvapi=false"
+EXTRA_OEMESON_riscv32 += "-Dvapi=false"
+
+Seems like a good test case indeed.
+
+Regards,
+
+Leon.
