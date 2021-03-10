@@ -1,171 +1,200 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.10815.1615390890139391226
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+ by mx.groups.io with SMTP id smtpd.web08.11070.1615392138919797008
  for <yocto@lists.yoctoproject.org>;
- Wed, 10 Mar 2021 07:41:30 -0800
+ Wed, 10 Mar 2021 08:02:19 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=hTNulpW6;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: akuster808@gmail.com)
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 5D48E38C046F
-	for <yocto@yoctoproject.org>; Wed, 10 Mar 2021 15:41:29 +0000 (UTC)
-Received: by mail-pj1-f51.google.com with SMTP id q2-20020a17090a2e02b02900bee668844dso7432315pjd.3
-        for <yocto@yoctoproject.org>; Wed, 10 Mar 2021 07:41:29 -0800 (PST)
+ dkim=pass header.i=@ibeeto-com.20150623.gappssmtp.com header.s=20150623 header.b=AjKECsxN;
+ spf=neutral (domain: ibeeto.com, ip: 209.85.214.177, mailfrom: rudolf.streif@ibeeto.com)
+Received: by mail-pl1-f177.google.com with SMTP id w7so5201603pll.8
+        for <yocto@lists.yoctoproject.org>; Wed, 10 Mar 2021 08:02:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=cE5n1vqJGkagQGwpdU2GK46n05KkawMGnHsagnlqMsM=;
-        b=hTNulpW6nqz1XovOpiecxwz31KW/ylvQI23HabYrm2qnEOZQtugnmEeMltgPJ0eigf
-         67pEPvZmy41UkRzJMfzjEDf0JPfCvHuD4DVFqlRVrlrdzL0X749CsQ1S0Y9KoFjBpJ+C
-         86XtpVfpsEvYtCdFfaxuxmFigI8jTNOt6N5cB96p3m/yECPjeTmcRKlbe4pR/fzg7nMh
-         472VdtTYMPauAZHEd5lyCtBSLI2QgCRNecLquGMJbbca5KxXRNuZWieqi9qTUW1yXchn
-         sI5SDuIhGsZPMSl29dXofxG4KMyQ0YdS2N9sssHGZpH6/weWW83M5WWmR0NPQcIqm3Ha
-         /I6w==
+         :mime-version:in-reply-to;
+        bh=vlG2++ZQpWULR/+rWOU3DOKT+LQFgJgx3NMUbN49m7k=;
+        b=AjKECsxNJU43Y9q3atclKoQUZWE/uINzDYoMyhEDHdvpkM//m2MpJTCko/oLjy53/o
+         VC43x8qECRcJzuDtT/Ps7CSX4U+8Cfv07cKkFEaB6TaYocAt6q5NS2mxGlh0DgAIw50H
+         nL4q7AaVyfvBy2agphtewgJBzVyHUT7lk4bfxovC8PZadxAeIBa6t8QDLUjBk/2lgOqu
+         Y5gThu/MPEq9TJrOlg5GWnQ9hPe8KvjxBbKSPrLIwhQW1bT/cXHf9HOQ2Ev2uAvXWfro
+         DR9vz6R/P8xRUmPoGUnXSSHZ/qe2IuA+A88XVdnXYHEIRLKZaaEfJn7QyvjA+Crh8Wdg
+         aoOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-transfer-encoding:content-language;
-        bh=cE5n1vqJGkagQGwpdU2GK46n05KkawMGnHsagnlqMsM=;
-        b=eV4mQszy49EHAQ4AYy81CLZohOopcmJsPJPaNe9/ebyYpNQConk4vqDmCJhgVhCnMH
-         4IIk8Z28GR3ErEVg+hDdxW3eKfkbDfpBprzPOYkYai7PY8DWmizA/zrjlM0MMJIOngb8
-         IK+fQmkX2/QcW5Lu7GeNGdMqkv48zoUTeJOU1KT8U+lMMik5RZ3EuJAOw4iXFwDzFAP6
-         KbEV0L5qFioO/TFnthHradhC4azvjD0ANGDSc8Y4CDQKsHHNAiXUQpLdWAII0fjx8gck
-         QgEJlzGA5h5sgWoMjF7DtONm6QiFwO5WyItNGrzBloPB8+Rhx6Mzn6R1jvcSiyDt7yjt
-         Dzew==
-X-Gm-Message-State: AOAM530IoWofj9eLq/2UkuoC4TWCzz3wRE2Q0kKt93h8chYcWqQB/Y/x
-	SV9Q6akE0yHgxIqDsYlc79A=
-X-Google-Smtp-Source: ABdhPJzyuH5hukwqT7R39UCz710Sfv0rQJnTvSiBw0TViKqLyOcKFRCZ5lxnG4/cuqCRSqeNcWyCEg==
-X-Received: by 2002:a17:90a:7c48:: with SMTP id e8mr4304042pjl.89.1615390888882;
-        Wed, 10 Mar 2021 07:41:28 -0800 (PST)
-Received: from ?IPv6:2601:202:4180:a5c0:f56b:e4ef:635c:c0de? ([2601:202:4180:a5c0:f56b:e4ef:635c:c0de])
-        by smtp.gmail.com with ESMTPSA id k127sm8133451pfd.63.2021.03.10.07.41.27
+         :message-id:date:user-agent:mime-version:in-reply-to;
+        bh=vlG2++ZQpWULR/+rWOU3DOKT+LQFgJgx3NMUbN49m7k=;
+        b=mkVptiKiMVxhMYdPvjZxu42wEnYEMUR6OgN4JECaMY5+yU/ruTnS/vvtofwh5HT+kU
+         Y2DCWp22Gfzj3Pey/SrsDoPfrB7TJtL6wEcVR6Pm87JGEnnoUNKaBtAIpIcmOu7ptMoY
+         yjb27ryF5yfckeQKChBHzgi4gCR1Lxq7QOIyniPoPursGdaeWmHc7gvdu05kV+J5F2+f
+         Xfx2WpiycSkSRNwKcHHfLNunlwO+KiBRUP5s3Han7z4efM8vYfgEZbSpl2M3oiJXpSYV
+         qfyYI5cH4MmbutawPs2XqSw+H+TxEEhRMiLaN3RiX1xEoTUQDb+KWfQCm/deVNZOfuFp
+         Z9Bw==
+X-Gm-Message-State: AOAM533BUoIojRacQGy77ZWLPjEjvCbBXG2NfBUNc2Yo87LtwJi1Yny3
+	SCW/HkeDbB+V4p7rEfci2eaCV8MgogGfmeFo
+X-Google-Smtp-Source: ABdhPJx3O+lHpadxxkXAI4P1g2BtxbIsB1/xtFxH1d4AWdGgujzkizbpdjKyAf9CgprDAndDaYHMnQ==
+X-Received: by 2002:a17:90a:eb0b:: with SMTP id j11mr4172543pjz.62.1615392137895;
+        Wed, 10 Mar 2021 08:02:17 -0800 (PST)
+Return-Path: <rudolf.streif@ibeeto.com>
+Received: from [192.168.4.197] (ip72-220-244-209.sd.sd.cox.net. [72.220.244.209])
+        by smtp.gmail.com with ESMTPSA id n9sm3354815pjq.38.2021.03.10.08.02.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Mar 2021 07:41:28 -0800 (PST)
-Subject: Re: [meta-security][dunfell][PATCH 0/9] Some IMA/EVM fixes to dunfell branch
-To: Ming Liu <liu.ming50@gmail.com>
-Cc: yocto@yoctoproject.org, Sergio Prado <sergio.prado@toradex.com>,
- Ming Liu <ming.liu@toradex.com>
-References: <20210302145745.1891826-1-liu.ming50@gmail.com>
- <18d24d31-6910-1da2-77f6-3b352302652c@gmail.com>
- <CALatG=6wGCkUKr_0EeLo01SC_XSKyjUb8B7a+Dpf8bkNNEzwFg@mail.gmail.com>
-From: "akuster" <akuster808@gmail.com>
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
- Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
- mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
- aquZVHNXxPwjKPaSEEYqQjFeiNgFTavV+AhM2dmPmGUWCX9RZisrqA4slGwEB0srMdFf12Zg
- mD35Y9jZ80qpu5LPtJCFcsaAlebqR+dg36pIpiRR+olhN1wmC6LYP1vw6uMEYBjkTa2Rnb6+
- C4FDzCJD4UCrUvLMNeTW810DY0bjMMj3SfmSGSfQUssaaaTXCVlLGuGxyCr/kza1rHaXMKum
- Ek4EFj1fyn7AfkSLEHfJfY4sO1tpgigvs4eD/4ZSQEXSu/TjVvyKx4EvUbhlGMRyH2CPwD/H
- 7DFF8tcVtJvCwUUW+zKtjxjSSLrhniNMXAOQJZ6CdaqCe4OyJQT5aRdr+FWbBRjpaRCCf5nf
- dTc88NMU9PrBT3vu0QJ5WNPO6MJpnb+d8iMNLZAz8tv8JMm2l+sMcNKSJ6lhX8peoBsfMVqc
- FgiykEO0fUt7DCbUYR5tLjM/3E5tHvTjMooVJyOxoufVLYtTtQARAQABzSFha3VzdGVyODA4
- IDxha3VzdGVyODA4QGdtYWlsLmNvbT7CwX0EEwEIACcFAlnlUP4CGyMFCQlmAYAFCwkIBwIG
- FQgJCgsCBBYCAwECHgECF4AACgkQ7ou0mfRW5/kuhRAAlR2FTq5572jrX5nnPR7AqI2bvSVb
- vqGLlvv739WhghvagbC+tu05QguopAhWW1/DcHK2+QtfIoC9UZrSW4RaO0CCo5sPjqK7l1KT
- ngWX/rGjF6xTF2QN0U/btcpMyVN2CNtVLwsDF9e+GHKoUcnFkP+JP8vHGokN9k6E/c97hLaL
- IJPeKl8LZXc2Efk+MaW1NXkfDJdcp/p+voajbihSQO6OZ/o+x9d2I3ZybKfTZ71+ek5Hxzjz
- g6KkMOI7KJjlmBlrQFAtVbS+CFAKrwkYznE6ggkcmGv3N7DeUBTUR78hf+EZEAM+ajeLMtrG
- rXE00pIb+gLGYPZxba5pCdQ+qWUW38qi9UnIRPm6fq7Ypx1r6XwJvbgCOkhbxo3D4YUdyC0b
- FE9lgrg8htbc9in4j2+hVI6ALswNjLprzXdzdKrd+T3Egx36o3Z/qrYsW2o5/A5sVvvASVKi
- wRPuEKhEhfmiHUPLvuKqhMoymHaz3fg5D2Q8G0gSDkLgeEpAjiWqf4+AGLx+MSDai7DSOsmI
- t61kWxs7cFTB32UrB/TDoVNn3Fm88ZFQpA/bngikE9jgEm045mSY86fNlbFj2mcCd0Ha1i1n
- aYc97RpgfjNMWyHDVHOGrNg/hJjkGa5RsAXkfyBwltHRw0Hj4urUQ3rr8um8PLe43SezPwXA
- oRoyDxDOwU0EWeVQ/gEQALNHwj5VSPdnvXy1RXUuH+rclMx4x8zaqDyY0YqHfA7b/d8Y0VAt
- Y6YpzDeFTwD8A0Wfb7kZ2mlDIE6ODCB71uT/E3C6b+FiiN+lgzslznjUW+9l8ddDhRrC8HMG
- 37vrXF5h++PTXUKEKUlkDib1w093tu3mlJXUvIAzl8CEHkptF6Br0L9XxFwuWoNUfjT9IorQ
- 0SVIhvq5PhVAITXUD5fD7/N8B4TYegmHFRo1UaaKSnSHwlJJkzKpeWOH8QTYrP0RHxX86Obv
- IZuwbAo3F3oojcvLJt9NxWnbEmEALkleklLZnukgu7q5Wp1VDwhUbMFTLb6qmnBa/Xi30uOk
- 0l1TMHDbeQswvQDOZBAMukSRqyBetKxQ3iTfZ/3z1ubQRcVDbVlMDScSHQq0LK3F9yMOMM/6
- 0QPqJjl13xn/+Bn7WJiAIXXwzAV7uo6i0khFfjDtCDQ40aeffqOLxp1yMLkc3EKJGcQ5F6O2
- ycEf4QXCYUbMXjxB0EJB8y7z+xOi5Mmd/pPlVmZ2gQK84NAL90p7n7jRlyf3gOUY+JOl4c5e
- UFiIhOzmuqNrvPOiZ02GXh6SGUU5y7IgSoIKvXSFgHAn2OG/tcspBmkyv6IuNVpmbmEgYn4I
- Rnt40UXVQkxTh0dENFhk2cjunMYozV/OqYCgmZLFSeJd8kAo4yn+yOtNABEBAAHCwWUEGAEI
- AA8FAlnlUP4CGwwFCQlmAYAACgkQ7ou0mfRW5/nNcg//R63cbOS6zLtvdnPub3Ssp1Ft8Wmv
- mni+kccuNApuDV7d63QckYxjAfUv2zYMLpbh87gVbLyCq9ASn552EbfRhTvHdk44CgbHBVcI
- ZBEdZWgRR5ViJakQSYHpP2e5AGNFnx9gSIuRTaa5rvZM+4xeoZ2vJiq93TtaYPr7UFNfK+c4
- vv4C66lkt9l95/I10eSc3RqbOKZW47emlg4X3ygEoB9k2lPrpspyf6sUuSEi0WrlSxoLAr6p
- JG8rTUErYNeXe6JCdL31odDx1Dh5sdKIj2RicUYZNilxu9f1M7jZwf2ra1FGAlKj2ybqmgpZ
- EFteaiCinEYsvDyZyOiWHjAFI+RZIPQQL3AnVp4l7wYD3r9hnqYPww0slyMDcb9262RoFkHq
- dDwxPYarrNjWUpOzxB6bFxOgNRdCTgvQl8Ftk8a/yXB6vHeUSm1vPFCBxQPZytyfOLhEWm0J
- /mkVL0Z6iRK3p1LKnpLYCS4/esL2u7RrhPyCs2SsL58YcQF/g+PpeT9geZ+oyZ/4IQ+TWJoU
- PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
- ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
- 8CS2NxU=
-Message-ID: <3cc82f52-a54a-7632-e73f-4b44beba5f85@gmail.com>
-Date: Wed, 10 Mar 2021 07:41:27 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Wed, 10 Mar 2021 08:02:17 -0800 (PST)
+Subject: Re: [yocto] Assign IP address at boot time
+To: jchludzinski <jchludzinski@vivaldi.net>
+Cc: Yocto <yocto@lists.yoctoproject.org>
+References: <5f0f65cc3e08a66871af9e3012c4f642@vivaldi.net>
+ <5bce46d6-e995-ea21-9162-5d15b95afa29@ibeeto.com>
+ <8878b4515215b5d3ed686be6cb8a7122@vivaldi.net>
+From: "Rudolf J Streif" <rudolf.streif@ibeeto.com>
+Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
+ xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
+ Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
+ /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
+ cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
+ 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
+ AAHNKlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgA
+ IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
+ 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
+ txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
+ lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
+ Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
+ zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvzsBNBFhQFAQBCADXoLKCuF48
+ 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
+ RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
+ w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
+ svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
+ tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAkFAlhQFAQC
+ GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
+ s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
+ fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
+ Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
+ P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
+ ROZj4g==
+Message-ID: <3421258b-6b1e-3dd6-2d75-e66b0bb989c3@ibeeto.com>
+Date: Wed, 10 Mar 2021 08:02:15 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-In-Reply-To: <CALatG=6wGCkUKr_0EeLo01SC_XSKyjUb8B7a+Dpf8bkNNEzwFg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <8878b4515215b5d3ed686be6cb8a7122@vivaldi.net>
+X-Groupsio-MsgNum: 52649
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="9gLEhL3YWDXbtpiRBvb3v1rycG5NDyvp0"
+
+--9gLEhL3YWDXbtpiRBvb3v1rycG5NDyvp0
+Content-Type: multipart/mixed; boundary="8DMfVQQaaKQVLtqkfb94RUTTD0jZQIK0c";
+ protected-headers="v1"
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+To: jchludzinski <jchludzinski@vivaldi.net>
+Cc: Yocto <yocto@lists.yoctoproject.org>
+Message-ID: <3421258b-6b1e-3dd6-2d75-e66b0bb989c3@ibeeto.com>
+Subject: Re: [yocto] Assign IP address at boot time
+References: <5f0f65cc3e08a66871af9e3012c4f642@vivaldi.net>
+ <5bce46d6-e995-ea21-9162-5d15b95afa29@ibeeto.com>
+ <8878b4515215b5d3ed686be6cb8a7122@vivaldi.net>
+In-Reply-To: <8878b4515215b5d3ed686be6cb8a7122@vivaldi.net>
+
+--8DMfVQQaaKQVLtqkfb94RUTTD0jZQIK0c
+Content-Type: multipart/mixed;
+ boundary="------------9BB6F8AD3D5537957E36C30A"
 Content-Language: en-US
+
+--------------9BB6F8AD3D5537957E36C30A
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
 
+On 3/9/21 11:34 PM, jchludzinski wrote:
+>> To start, do you have the driver required for your network interface?
+>
+> Yes, the network/Ethernet device is recognized by Linux and the=20
+> appropriate driver is loaded. If I use:
+>
+> $ ip add add 192.168.9.101/24 dev eth0
+>
+> I=E2=80=99m up and running. But I want the IP assignment to happen duri=
+ng boot=20
+> time.
+What is your startup manager? systemd or SysVInit?
 
-On 3/10/21 2:31 AM, Ming Liu wrote:
-> Hi,=C2=A0akuster808:
->
-> I saw this patch set has been merged to gatesgarth, may I ask, any
-> plan for dunfell? I am asking because dunfell is a LTS branch and many
-> users are building their products based on it. Thanks!
-that are being built current. I can on build on branch at a time and it
-takes time to do each.=C2=A0 Things are looking good so I suspect they
-changes will land in the next day or so.
+--=20
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3386 x700
 
--armin
->
-> the best,
-> thank you
->
->     series in build testing
->
->     -armin
->
->     On 3/2/21 6:57 AM, liu.ming50@gmail.com
->     <mailto:liu.ming50@gmail.com> wrote:
->     > From: Ming Liu <ming.liu@toradex.com <mailto:ming.liu@toradex.com=
->>
->     >
->     > Cherry pick some IMA/EVM fixes to LTS dunfell branch, with these
->     > patches applied, I could run a ima enabled image with
->     sysvinit/systemd
->     > on qemuarm/qemuarm64 and some NXP machines.
->     >
->     > Ming Liu (9):
->     >=C2=A0 =C2=A0ima-evm-utils: set native REQUIRED_DISTRO_FEATURES to=
- empty
->     >=C2=A0 =C2=A0initramfs-framework-ima: fix a wrong path
->     >=C2=A0 =C2=A0ima-evm-keys: add recipe
->     >=C2=A0 =C2=A0initramfs-framework-ima: RDEPENDS on ima-evm-keys
->     >=C2=A0 =C2=A0meta: refactor IMA/EVM sign rootfs
->     >=C2=A0 =C2=A0README.md: update according to the refactoring in
->     >=C2=A0 =C2=A0 =C2=A0ima-evm-rootfs.bbclass
->     >=C2=A0 =C2=A0initramfs-framework-ima: let ima_enabled return 0
->     >=C2=A0 =C2=A0ima-evm-rootfs.bbclass: avoid generating /etc/fstab f=
-or wic
->     >=C2=A0 =C2=A0ima-policy-hashed: add CGROUP2_SUPER_MAGIC fsmagic
->     >
->     >=C2=A0 meta-integrity/README.md=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 4 ++-
->     >=C2=A0 meta-integrity/classes/ima-evm-rootfs.bbclass | 33
->     +++++++++----------
->     >=C2=A0 .../initrdscripts/initramfs-framework-ima.bb
->     <http://initramfs-framework-ima.bb>=C2=A0 |=C2=A0 2 +-
->     >=C2=A0 .../initrdscripts/initramfs-framework-ima/ima |=C2=A0 3 +-
->     >=C2=A0 .../ima-evm-keys/ima-evm-keys_1.0.bb
->     <http://ima-evm-keys_1.0.bb>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 16=
- +++++++++
->     >=C2=A0 .../ima-evm-utils/ima-evm-utils_git.bb
->     <http://ima-evm-utils_git.bb>=C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 1 =
+
+--------------9BB6F8AD3D5537957E36C30A
+Content-Type: application/pgp-keys;
+ name="OpenPGP_0x8D8CA82927339B75.asc"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+ filename="OpenPGP_0x8D8CA82927339B75.asc"
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvDQpe=
 +
->     >=C2=A0 .../ima_policy_hashed/files/ima_policy_hashed |=C2=A0 3 ++
->     >=C2=A0 7 files changed, 41 insertions(+), 21 deletions(-)
->     >=C2=A0 create mode 100644
->     meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
->     <http://ima-evm-keys_1.0.bb>
->     >
->
+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ/Qymy+7=
+C
+bh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969cQD/S9LNndn=
+K
+5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM3sPiHrF+Y2HTdK7=
+j
+7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEBAAHNKlJ1ZG9sZiBKIFN=
+0
+cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgAIQUCWFAUBAIbAwULCQgHAgY=
+V
+CAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf03GsVMG6C5QOLaPx6rOgj5qexCH3=
+r
+fYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBktxioE384/51QTIfCmW8ZG5X0cMC5d38=
+L
+Fvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xllpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR8=
+4
+ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+wXl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x=
+5
+LZhUhGYoqbYwNy9imoBkUAZkbbViNOtXzaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjV=
+L
+mLHvzsBNBFhQFAQBCADXoLKCuF485eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTq=
+k
+3fb9+Ao6C6IliC9ZRXyAVLD/RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIF=
+p
+PBpxHRrZnDdEd5IKsy+zw6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJS=
+H
+WMBh0OMKDeBik5wlsvtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mC=
+B
+CZ+IKhBQR36vtUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAk=
+F
+AlhQFAQCGwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LY=
+U
+pLNjs4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9Mby=
+E
+fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8TzYf9=
+m
+2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/NlouvceP41tsC5=
+d
+axZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/ANROZj4g=3D=
+=3D
+=3DLHwf
+-----END PGP PUBLIC KEY BLOCK-----
 
+--------------9BB6F8AD3D5537957E36C30A--
+
+--8DMfVQQaaKQVLtqkfb94RUTTD0jZQIK0c--
+
+--9gLEhL3YWDXbtpiRBvb3v1rycG5NDyvp0
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsB5BAABCAAjFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAmBI7YcFAwAAAAAACgkQjYyoKSczm3X8
+lgf7B7VkJhUYunEHNRsVwtKNPFSyLTYV5kKQ6rrWuvJy3rgeBTP/CbMx/V5AmqGuVAI7CwvpFCEd
+OciavOKOcj8wLer66ZohiIPo6vt0lrk0d2IFMwshvQS8UVvgDUh5RFeLDm4hd1UqfCdkq09+Qgsr
+jmhOZXVx/097w9nshtnKTlnC7uRME/f7hQt3mMy6qpDm+D7czyzMBBDt1sCpXlys+zbsKV37r8te
+Tyjubc+XmGRILcL71Bs2DyPwcTWVTQNqKZ/Dm4nA413dX31y6kVG1RAFrFFH9i/JMf5k/pKP7cEB
+p1BKFps6mmqnGLYQTlfVdAUl+4ku1tZqE7TJz2YcPw==
+=1JHS
+-----END PGP SIGNATURE-----
+
+--9gLEhL3YWDXbtpiRBvb3v1rycG5NDyvp0--
