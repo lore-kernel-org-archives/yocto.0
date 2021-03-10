@@ -1,109 +1,130 @@
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
- by mx.groups.io with SMTP id smtpd.web10.2938.1615406271714750700
+Received: from smtp.vivaldi.net (smtp.vivaldi.net [31.209.137.12])
+ by mx.groups.io with SMTP id smtpd.web08.1279.1615411975706884163
  for <yocto@lists.yoctoproject.org>;
- Wed, 10 Mar 2021 11:57:51 -0800
+ Wed, 10 Mar 2021 13:32:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Qi3BlapE;
- spf=pass (domain: gmail.com, ip: 209.85.210.42, mailfrom: pwicks86@gmail.com)
-Received: by mail-ot1-f42.google.com with SMTP id a17so17646473oto.5
-        for <yocto@lists.yoctoproject.org>; Wed, 10 Mar 2021 11:57:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=Pp15EnO0pFEBNa+kFAgND9cTxsUsiiANa4aM4WK/PT8=;
-        b=Qi3BlapEU7W0ICaVE8vpRFBSHSL7wbyATJF5kfItA6DB2ufGshXH2k73k/ljjEt21Q
-         SObQzqWsQP7heiRydSNFfcM+OM05fwtAWpt4y0H++f00ONVHWwOslxbx+hnRfo/ZjTSE
-         Oc+X8IaU6RLEbNIE06Z43WqfHVBaLj7l+3I5lMKr3n12ngQTyZaN2GjZADvaWojvheCY
-         jQwQCv3Y1uU6fCbuRVii2Q0b9v1WNK+Dx7PMrIA/2u0ikh4r/87oNtrjFwxrhiJ/xc9M
-         WtWNyPegEOHCzC2fHX9qE3JZXL7ipJpsTNJwhxlhUQPF57rE+feclh4V0g9Ae4+5qWqR
-         MOTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=Pp15EnO0pFEBNa+kFAgND9cTxsUsiiANa4aM4WK/PT8=;
-        b=qf7DbeU7bu35rRu2EAMOcKHUZTGzG2LKGPfaMGAns1mIPs3Pi51SqdazQfug5oi10t
-         3jYkvmpJEAX12flxxzWNA0yRyJBSR+ztEW+rLcRZFrQ7bmX5X4sVszxDs7Ovess/cOIB
-         P7wVeEJeJUzWPbaaBGTUMH9w4Fx4DqS4uc0TLakEYTm+Hnu3rwmT0ggHRdRR21RZgueg
-         rvzDYe89ILhhsV0MCwDyUvojY4P2keQ1Hj+vBH7M37TeGjkrPoQdDAJnJiEYHTXjUWpf
-         xPRlhIHa1je02sXIQy2DwESBXWyRpoWdv2VgRn6cTz2IwJPBZB6pI/ocLbStgC7XCl8R
-         sMDA==
-X-Gm-Message-State: AOAM531jGPdMz+A5flPlHxg9+Rau/2AGT5cjldyeNdxRp5/e9Md1HZPw
-	vS2214rCYzi1vpz9u9VhB+zqK6m0HB8yI1/FA/H8IvLYStY=
-X-Google-Smtp-Source: ABdhPJwALTlXYe8AKSIMwEd137u4xXpkW5sWk0sBJGoHcCSk8lJboHVJyGGLPS1vonLIMIBFykqqwoshHjwS66KfaTk=
-X-Received: by 2002:a05:6830:225b:: with SMTP id t27mr3786448otd.73.1615406270516;
- Wed, 10 Mar 2021 11:57:50 -0800 (PST)
-MIME-Version: 1.0
-From: "Paul Wicks" <pwicks86@gmail.com>
-Date: Wed, 10 Mar 2021 11:57:14 -0800
-Message-ID: <CAOC70ttivzRwZ6XziCcwm9k1ZAoF6FH1Zfbhbsk5nKj8ujEuWg@mail.gmail.com>
-Subject: Integrating npm into install?
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000ec134205bd34141f"
+ dkim=pass header.i=@vivaldi.net header.s=default header.b=LGPWPOJU;
+ spf=pass (domain: vivaldi.net, ip: 31.209.137.12, mailfrom: jchludzinski@vivaldi.net)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp.vivaldi.net (Postfix) with ESMTP id 586E7BD050;
+	Wed, 10 Mar 2021 21:32:53 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 586E7BD050
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
+	s=default; t=1615411973;
+	bh=uy+ysbpCvH3OCqJw34/9M/5wqHMQ51cfxPIOXwVfogk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=LGPWPOJUvRxwFjXZv9TQgzdHyliuT/7xZhNCWcFQ5JWGe/lgMjzIAiQIJf81AeayD
+	 YLnEeFmtHlKGpl/kHYcQEeDrg65KIrIp/qLLnamjkUDCrculy7vx6CMBRrORzU45w0
+	 sDk7/sGClbkx4Ca3Qcc9LIJaHHzYTthNDWfSw7wNVVpDJ6TZxDExjVB0R8o6q9C7Pt
+	 BG9Upqipe4PCp62NOgWJYC0QeDE7R7KxVt3NSzSPAzPEhm0aUstiEXkYGNxpVNitdI
+	 fBWSAWapJsGVCMpDS2FsquccVS1qBYbUu/gB5uOdzP2j8T5oukOzSKqQ25qvjdCfvP
+	 Knszn8dUqEFMA==
+X-Virus-Scanned: Debian amavisd-new at smtp.vivaldi.net
+Received: from smtp.vivaldi.net ([127.0.0.1])
+	by localhost (mxo.viv.dc01 [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 2Lp7iH3UVQSE; Wed, 10 Mar 2021 21:32:49 +0000 (UTC)
+Date: Wed, 10 Mar 2021 16:32:49 -0500
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 74E2FBD031
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
+	s=default; t=1615411969;
+	bh=uy+ysbpCvH3OCqJw34/9M/5wqHMQ51cfxPIOXwVfogk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=bpdT9ASNfZNxVCZob27D2wKUvBUwoYIhsmgoD1GEUq8uyU27ug0oairOu8zkfCieY
+	 Y3f5O+1W3t/112ic78BpoTgwOEXcIAuCnS5krHRCk/HMEePFTfRJC2PWefYhpVMbo+
+	 /gOof9URlawb/E0cDR7NNQBZW89FK27gBv5CY4k7FJpreFz9MKNVcI2Z182l/ITbE2
+	 DDo5OqJr69nevLbfjsv0cxrtZsZGlrw92Gjuda+2GSOcG9SEhDi/+/r9oZNRJg29bi
+	 s+wxzQ15Ld1ZiUq6awbCJQvDMBLBBYYbPGhYowSvmczJo7AMjHglzoDc+nyKZ1cKG+
+	 9pzq+yVQRkgmw==
+From: "jchludzinski" <jchludzinski@vivaldi.net>
+To: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Cc: Yocto <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Assign IP address at boot time
+In-Reply-To: <e7f9f7da-b919-1b65-90f1-e8d892acd2ce@ibeeto.com>
+References: <5f0f65cc3e08a66871af9e3012c4f642@vivaldi.net>
+ <5bce46d6-e995-ea21-9162-5d15b95afa29@ibeeto.com>
+ <8878b4515215b5d3ed686be6cb8a7122@vivaldi.net>
+ <3421258b-6b1e-3dd6-2d75-e66b0bb989c3@ibeeto.com>
+ <7d3df13429d227106286f966cdcbd501@vivaldi.net>
+ <e7f9f7da-b919-1b65-90f1-e8d892acd2ce@ibeeto.com>
+User-Agent: Roundcube Webmail/1.4.4
+Message-ID: <0549f39814132d3d025fa22634c88f0e@vivaldi.net>
+X-Sender: jchludzinski@vivaldi.net
+Content-Type: multipart/alternative;
+ boundary="=_cbf80b8f5b59a175cc25b15a39754952"
 
---000000000000ec134205bd34141f
-Content-Type: text/plain; charset="UTF-8"
+--=_cbf80b8f5b59a175cc25b15a39754952
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 
-I've got a python app that uses some javascript assets that are normally
-built via webpack. In a normal build, the process is as follows:
+> Create the file /etc/systemd/network/eth0.conf:
+> 
+> [Match]
+> Name=eth0
+> [Network]
+> Address=<ip>
+> Gateway=<ip>
+> DNS=<ip>
 
-* run "npm install" to get all the javascript dependencies
-* run "npm build", a custom task in my package.json file that invokes
-webpack to build the assets and place them where the python install can
-find them.
-* run "python setup.py install" to build and install the python part of the
-app
+That didn't work BUT editing /lib/systemd/network/80-wired.network
 
-What's the best/most correct way to integrate this into a yocto recipe? My
-current approach is to have the main recipe "inherit setuptools3" and then
-add the following:
+[Match]
+Name=en* eth*
+KernelCommandLine=!nfsroot
 
-"
-do_run_npm_install() {
-    bbplain "Running npm install, this may take a few minutes..."
-    npm install
-    npm run build
-}
+[Match]
+Name=eth0
+[Network]
+Address=192.168.0.101/24
+#Gateway=<ip>
+#DNS=<ip>
 
-addtask run_npm_install before do_compile
-"
+[Network]
+DHCP=no
 
-However, this fails with an "npm: not found" error.
+[DHCP]
+#RouteMetric=10
+#ClientIdentifier=mac
 
--Paul Wicks
+ ... did work, after: 
+root@arria10:~# _systemctl restart systemd-networkd_
 
---000000000000ec134205bd34141f
-Content-Type: text/html; charset="UTF-8"
+--=_cbf80b8f5b59a175cc25b15a39754952
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
-<div dir=3D"ltr"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=
-=3D"gmail_signature">I&#39;ve got a python app that uses some javascript as=
-sets that are normally built via webpack. In a normal build, the process is=
- as follows:</div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=
-=3D"gmail_signature"><br></div><div dir=3D"ltr" class=3D"gmail_signature" d=
-ata-smartmail=3D"gmail_signature">* run &quot;npm install&quot; to get all =
-the javascript dependencies</div><div dir=3D"ltr" class=3D"gmail_signature"=
- data-smartmail=3D"gmail_signature">* run &quot;npm build&quot;, a custom t=
-ask in my package.json file that invokes webpack to build the assets and pl=
-ace them where the python install can find them.</div><div dir=3D"ltr" clas=
-s=3D"gmail_signature" data-smartmail=3D"gmail_signature">* run &quot;python=
- setup.py install&quot; to build and install the python part of the app</di=
-v><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signat=
-ure"><br></div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D=
-"gmail_signature">What&#39;s the best/most correct way to integrate this in=
-to a yocto recipe? My current approach is to have the main recipe &quot;inh=
-erit setuptools3&quot; and then add the following:</div><div dir=3D"ltr" cl=
-ass=3D"gmail_signature" data-smartmail=3D"gmail_signature"><br></div><div d=
-ir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature">&qu=
-ot;</div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail=
-_signature">do_run_npm_install() {<br>=C2=A0 =C2=A0 bbplain &quot;Running n=
-pm install, this may take a few minutes...&quot;<br>=C2=A0 =C2=A0 npm insta=
-ll<br>=C2=A0 =C2=A0 npm run build <br>}<br><br>addtask run_npm_install befo=
-re do_compile<br></div><div dir=3D"ltr" class=3D"gmail_signature" data-smar=
-tmail=3D"gmail_signature">&quot;</div><div dir=3D"ltr" class=3D"gmail_signa=
-ture" data-smartmail=3D"gmail_signature"><br></div><div class=3D"gmail_sign=
-ature" data-smartmail=3D"gmail_signature">However, this fails with an &quot=
-;npm: not found&quot; error.</div><div class=3D"gmail_signature" data-smart=
-mail=3D"gmail_signature"><br></div><div dir=3D"ltr" class=3D"gmail_signatur=
-e" data-smartmail=3D"gmail_signature">-Paul Wicks</div></div>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Verdana,Gen=
+eva,sans-serif'>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">
+<blockquote type=3D"cite" style=3D"padding: 0 0.4em; border-left: #1010ff 2=
+px solid; margin: 0">Create the file /etc/systemd/network/eth0.conf:<br /><=
+br />[Match]<br />Name=3Deth0<br />[Network]<br />Address=3D&lt;ip&gt;<br /=
+>Gateway=3D&lt;ip&gt;<br />DNS=3D&lt;ip&gt;</blockquote>
+<br />That didn't work BUT editing /lib/systemd/network/80-wired.network<br=
+ />
+<pre style=3D"padding-left: 30px;">[Match]
+Name=3Den* eth*
+KernelCommandLine=3D!nfsroot
 
---000000000000ec134205bd34141f--
+[Match]
+Name=3Deth0
+[Network]
+Address=3D192.168.0.101/24
+#Gateway=3D&lt;ip&gt;
+#DNS=3D&lt;ip&gt;
+
+[Network]
+DHCP=3Dno
+
+[DHCP]
+#RouteMetric=3D10
+#ClientIdentifier=3Dmac
+</pre>
+=2E.. did work, after:</div>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
+<strong>root@arria10:~#</strong> <em>systemctl restart systemd-networkd</em=
+></div>
+</body></html>
+
+--=_cbf80b8f5b59a175cc25b15a39754952--
