@@ -1,44 +1,88 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.6459.1615368983235945639
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+ by mx.groups.io with SMTP id smtpd.web12.6487.1615369187944115132
  for <yocto@lists.yoctoproject.org>;
- Wed, 10 Mar 2021 01:36:23 -0800
+ Wed, 10 Mar 2021 01:39:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 198.145.29.25, mailfrom: rpjday@crashcourse.ca)
-Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 505BB38C0636
-	for <yocto@yoctoproject.org>; Wed, 10 Mar 2021 09:36:20 +0000 (UTC)
-Received: from bras-base-otwaon0916w-grc-29-64-229-255-220.dsl.bell.ca ([64.229.255.220]:56210 helo=fedora)
-	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1lJvGM-00062P-3G
-	for yocto@yoctoproject.org; Wed, 10 Mar 2021 04:36:18 -0500
-Date: Wed, 10 Mar 2021 04:36:15 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: what version of YP will next wind river (LTS20) be based on?
-Message-ID: <b1f89e52-a970-659-f5a8-b28d78dd458d@crashcourse.ca>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=SQwqwBDF;
+ spf=pass (domain: gmail.com, ip: 209.85.166.46, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-io1-f46.google.com with SMTP id p16so17233535ioj.4
+        for <yocto@lists.yoctoproject.org>; Wed, 10 Mar 2021 01:39:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NYUh1EVZJ2o7dC2znX3x8bE9UFHEdShOzjBwz5kIT8E=;
+        b=SQwqwBDFhVnb3zpZ2jHvojc8lJ49R9oWHtlZjQdQrDQN3h1LJ9OlbgS2mHpcSNft9Z
+         Ld/OOQQIJBTyEl71ufrJVEI5iqxAlAfI4cuC/fQdG8aScrW65jG/CLXSFmBYSlU9efuo
+         7FXAttNFnsRJp910HlzFpKi9/BVpnxLaeMRut4eHLI5R7hWMBKeLZ1USiJvo0ViCg5wk
+         j5MvsVEZBG6hhn38QNEqlxD4aKFHDXbGxfznuVounAzOkyi9Qd0MDVCfqStpBoPQRKwS
+         NJWIf7e0KPVa9D16vsQvyUUhZWToatiwdzWX+M3smdSRp+kHGxiUw3FaNDwQwZbNgH6V
+         fmDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NYUh1EVZJ2o7dC2znX3x8bE9UFHEdShOzjBwz5kIT8E=;
+        b=b5WI+oG+sm49QVJzuU4O5uf2vwBIHxwte1Gv4jyLA+GGY7JZwQELKL+CT/fJQ4Gjir
+         Bg6P6f0WUg8krEGcM7K09OCEWwEdkX/FYasHRU496ZAPZsxydDH7E+DJMdtEb/uO4AM3
+         eAv9K0poyQnjOS2nf2+wBBPX541v7P3YF85dFGM4A4TvTQNh4OLyeaSspK6rpShhcPry
+         0/8YkM2MPRNIthertTdMayuhO9A5V7xPkjw+Prb2t1QupHTcm3b4JlP/OGrBQoNvOds/
+         fKM2IrU/OGYM/U/lIGF+P/PZMT2HXu67k/LiqVMfjW+6BD3qJ70enXk0bHnJOnJMIc06
+         BbEA==
+X-Gm-Message-State: AOAM532DIRPFbJnVREdyxM/d8G47+kkYnLuil8yTQPoTpa+qLBgZ5ZH8
+	EpUlw0w9zXcKCaEvjPMir098bwSnXgJdBiPFO9U=
+X-Google-Smtp-Source: ABdhPJzNJj2LToC0w+gkkRk6JQ3OY9EJU/oMK/acGlgF26f7P/PcMKTaOdFmCk2iwMEWhpcUdoGFbNbIjJEobd9S6AI=
+X-Received: by 2002:a05:6638:d4e:: with SMTP id d14mr2165912jak.103.1615369187113;
+ Wed, 10 Mar 2021 01:39:47 -0800 (PST)
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+References: <5f0f65cc3e08a66871af9e3012c4f642@vivaldi.net>
+In-Reply-To: <5f0f65cc3e08a66871af9e3012c4f642@vivaldi.net>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Wed, 10 Mar 2021 10:39:35 +0100
+Message-ID: <CAGAf8LzieZttDQxNUyCKY_J=zrtZu4+nsK6u4XVfu9ujZzkOCQ@mail.gmail.com>
+Subject: Re: [yocto] Assign IP address at boot time
+To: jchludzinski@vivaldi.net
+Cc: Yocto <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+
+Hello,
+
+Maybe you can stop in the U-Boot monitor, and check your environment?
+=>
+=> print serverip
+=> print ipaddr
+=> print gatewayip
+=> print gw_ip
+
+And see what and how your bootcmd and similar env variables look like?
+
+And if you do not have defined above, to add them (according to ash
+script) and try booting again?
+
+Zee
+_______
 
 
-  i suspect i know the answer, just want to confirm ... friend tells
-me yesterday he's working with LTS20, i said, "uh, that's not even out
-yet," he assures he his company has an early release, but he couldn't
-tell me what version of YP it corresponded to.
-
-  based on regularity of releases on both sides, i would *guess* it's
-equivalent to gatesgarth, is that a good guess?
-
-rday
+On Tue, Mar 9, 2021 at 10:28 PM jchludzinski via
+lists.yoctoproject.org
+<jchludzinski=vivaldi.net@lists.yoctoproject.org> wrote:
+>
+> Where do I assign a static IP address to my sole network interface?
+>
+> I tried using the Linux boot parameters (in extlinux.conf):
+>
+> LABEL Arria10 SOCDK SDMMC
+>     KERNEL ../zImage
+>     FDT ../socfpga_arria10_phead.dtb
+>     APPEND root=/dev/mmcblk0p2 rw rootwait earlyprintk console=ttyS0,115200n8 ip=192.168.0.101:255.255.255.0:eth0
+>
+> Then I tried editing: /etc/network/interfaces
+>
+> iface eth0 inet static
+> address 192.168.0.101
+> netmask 255.255.255.0
+>
+> Both failed. Where do I go?
+>
+> 
+>
