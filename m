@@ -1,213 +1,109 @@
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
- by mx.groups.io with SMTP id smtpd.web10.2851.1615405914751920422
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+ by mx.groups.io with SMTP id smtpd.web10.2938.1615406271714750700
  for <yocto@lists.yoctoproject.org>;
- Wed, 10 Mar 2021 11:51:55 -0800
+ Wed, 10 Mar 2021 11:57:51 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ibeeto-com.20150623.gappssmtp.com header.s=20150623 header.b=o0FRbzmI;
- spf=neutral (domain: ibeeto.com, ip: 209.85.214.170, mailfrom: rudolf.streif@ibeeto.com)
-Received: by mail-pl1-f170.google.com with SMTP id u18so8991177plc.12
-        for <yocto@lists.yoctoproject.org>; Wed, 10 Mar 2021 11:51:54 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Qi3BlapE;
+ spf=pass (domain: gmail.com, ip: 209.85.210.42, mailfrom: pwicks86@gmail.com)
+Received: by mail-ot1-f42.google.com with SMTP id a17so17646473oto.5
+        for <yocto@lists.yoctoproject.org>; Wed, 10 Mar 2021 11:57:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to;
-        bh=B+QNvN3qnQyCNJfczOxPd+eM68PMEy2GR4IfskHeC8M=;
-        b=o0FRbzmIAdg9N+sFT2ACXHKdIInE5LEOdQPuSW7zCb0GcOiPg34sDDUJriEhx6q9pT
-         hv/B68Ew3NSu/jBFlYPfyfstWaC+rWIa/AjeCSFJ45GoWVnJsDqLhXYSyFVbV8F+ijdq
-         xYozbl6DCU6vpeQSbL2Rn4RbHG0CcYkAEUN/82cdBER0HTlS7Vr/MeRmrNChe07OPXBp
-         st1hWcM9zmeUEA3WdIGYd47LvJZDQXB0g1AQYUtjLyWXfmHGf2VoMaX1veZsVmMQmQAe
-         QKJs/86JggF4owl176A5wSAtuoZ4/Dro8c11EMZ36a4hNVlnWUEsaZIZN9wL9Z8LchUJ
-         mhnQ==
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Pp15EnO0pFEBNa+kFAgND9cTxsUsiiANa4aM4WK/PT8=;
+        b=Qi3BlapEU7W0ICaVE8vpRFBSHSL7wbyATJF5kfItA6DB2ufGshXH2k73k/ljjEt21Q
+         SObQzqWsQP7heiRydSNFfcM+OM05fwtAWpt4y0H++f00ONVHWwOslxbx+hnRfo/ZjTSE
+         Oc+X8IaU6RLEbNIE06Z43WqfHVBaLj7l+3I5lMKr3n12ngQTyZaN2GjZADvaWojvheCY
+         jQwQCv3Y1uU6fCbuRVii2Q0b9v1WNK+Dx7PMrIA/2u0ikh4r/87oNtrjFwxrhiJ/xc9M
+         WtWNyPegEOHCzC2fHX9qE3JZXL7ipJpsTNJwhxlhUQPF57rE+feclh4V0g9Ae4+5qWqR
+         MOTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to;
-        bh=B+QNvN3qnQyCNJfczOxPd+eM68PMEy2GR4IfskHeC8M=;
-        b=fL1NsNLEAv+AenL0W5+HPq2nCRctGHn6z1wCPDZ95UB9N4QpBJsOOuoH6nS3DDXqml
-         14ICTKGUm6T5wCR44sMBqQoIcX9NF76vF1Pjr1dL54GWjPDmP+Hz73Mmg1Ny+/RiRHRM
-         cEEr0+5b3XdRO3zgGK+8fJtEGtvk5ZhVGlX1P0wBYEd6q/GfiqX5mayjuqNQTaK6eh6d
-         py1ExIREbbr1kgoggliP5wvfXNdPkV55RNYdT+RcguhPXqTSVu3emzLXbluW0udMjxD4
-         peqAn2oxhqI4yo3W+VSCkVGyjjW38nuTkRqqOXmAClxYDrxQP9slMBsMnWRkzyGgV2Ca
-         tKwA==
-X-Gm-Message-State: AOAM533euhM441XqSJYf4p5C9f9OqCnb9oC9yyMRMxHLkVC1Log3NHMK
-	+caNPr0+9I0e11sGsuswJQCuJjjVZG3rh6zb
-X-Google-Smtp-Source: ABdhPJwriGQcfAAZoW8N6C5zDjfSLLbdW2Q7Q/WKN198VeFwi87Ae8J08MtVWvz5qutZjdYTk+Br9Q==
-X-Received: by 2002:a17:90b:3909:: with SMTP id ob9mr5261393pjb.181.1615405913543;
-        Wed, 10 Mar 2021 11:51:53 -0800 (PST)
-Return-Path: <rudolf.streif@ibeeto.com>
-Received: from [192.168.4.197] (ip72-220-244-209.sd.sd.cox.net. [72.220.244.209])
-        by smtp.gmail.com with ESMTPSA id s194sm302367pfs.57.2021.03.10.11.51.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Mar 2021 11:51:52 -0800 (PST)
-Subject: Re: [yocto] Assign IP address at boot time
-To: jchludzinski <jchludzinski@vivaldi.net>
-Cc: Yocto <yocto@lists.yoctoproject.org>
-References: <5f0f65cc3e08a66871af9e3012c4f642@vivaldi.net>
- <5bce46d6-e995-ea21-9162-5d15b95afa29@ibeeto.com>
- <8878b4515215b5d3ed686be6cb8a7122@vivaldi.net>
- <3421258b-6b1e-3dd6-2d75-e66b0bb989c3@ibeeto.com>
- <7d3df13429d227106286f966cdcbd501@vivaldi.net>
-From: "Rudolf J Streif" <rudolf.streif@ibeeto.com>
-Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
- xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
- Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
- /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
- cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
- 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
- AAHNKlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgA
- IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
- 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
- txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
- lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
- Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
- zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvzsBNBFhQFAQBCADXoLKCuF48
- 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
- RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
- w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
- svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
- tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAkFAlhQFAQC
- GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
- s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
- fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
- Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
- P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
- ROZj4g==
-Message-ID: <e7f9f7da-b919-1b65-90f1-e8d892acd2ce@ibeeto.com>
-Date: Wed, 10 Mar 2021 11:51:51 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Pp15EnO0pFEBNa+kFAgND9cTxsUsiiANa4aM4WK/PT8=;
+        b=qf7DbeU7bu35rRu2EAMOcKHUZTGzG2LKGPfaMGAns1mIPs3Pi51SqdazQfug5oi10t
+         3jYkvmpJEAX12flxxzWNA0yRyJBSR+ztEW+rLcRZFrQ7bmX5X4sVszxDs7Ovess/cOIB
+         P7wVeEJeJUzWPbaaBGTUMH9w4Fx4DqS4uc0TLakEYTm+Hnu3rwmT0ggHRdRR21RZgueg
+         rvzDYe89ILhhsV0MCwDyUvojY4P2keQ1Hj+vBH7M37TeGjkrPoQdDAJnJiEYHTXjUWpf
+         xPRlhIHa1je02sXIQy2DwESBXWyRpoWdv2VgRn6cTz2IwJPBZB6pI/ocLbStgC7XCl8R
+         sMDA==
+X-Gm-Message-State: AOAM531jGPdMz+A5flPlHxg9+Rau/2AGT5cjldyeNdxRp5/e9Md1HZPw
+	vS2214rCYzi1vpz9u9VhB+zqK6m0HB8yI1/FA/H8IvLYStY=
+X-Google-Smtp-Source: ABdhPJwALTlXYe8AKSIMwEd137u4xXpkW5sWk0sBJGoHcCSk8lJboHVJyGGLPS1vonLIMIBFykqqwoshHjwS66KfaTk=
+X-Received: by 2002:a05:6830:225b:: with SMTP id t27mr3786448otd.73.1615406270516;
+ Wed, 10 Mar 2021 11:57:50 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <7d3df13429d227106286f966cdcbd501@vivaldi.net>
-X-Groupsio-MsgNum: 52653
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="vbJ9UMpp7Vt17H1z1vKXLMuwjtK2AyR8b"
+From: "Paul Wicks" <pwicks86@gmail.com>
+Date: Wed, 10 Mar 2021 11:57:14 -0800
+Message-ID: <CAOC70ttivzRwZ6XziCcwm9k1ZAoF6FH1Zfbhbsk5nKj8ujEuWg@mail.gmail.com>
+Subject: Integrating npm into install?
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000ec134205bd34141f"
 
---vbJ9UMpp7Vt17H1z1vKXLMuwjtK2AyR8b
-Content-Type: multipart/mixed; boundary="CYv8ZyUPu5xYgEzWgOwVcJ801Pg2r8YcI";
- protected-headers="v1"
-From: Rudolf J Streif <rudolf.streif@ibeeto.com>
-To: jchludzinski <jchludzinski@vivaldi.net>
-Cc: Yocto <yocto@lists.yoctoproject.org>
-Message-ID: <e7f9f7da-b919-1b65-90f1-e8d892acd2ce@ibeeto.com>
-Subject: Re: [yocto] Assign IP address at boot time
-References: <5f0f65cc3e08a66871af9e3012c4f642@vivaldi.net>
- <5bce46d6-e995-ea21-9162-5d15b95afa29@ibeeto.com>
- <8878b4515215b5d3ed686be6cb8a7122@vivaldi.net>
- <3421258b-6b1e-3dd6-2d75-e66b0bb989c3@ibeeto.com>
- <7d3df13429d227106286f966cdcbd501@vivaldi.net>
-In-Reply-To: <7d3df13429d227106286f966cdcbd501@vivaldi.net>
+--000000000000ec134205bd34141f
+Content-Type: text/plain; charset="UTF-8"
 
---CYv8ZyUPu5xYgEzWgOwVcJ801Pg2r8YcI
-Content-Type: multipart/mixed;
- boundary="------------C1257811B163A572865A2922"
-Content-Language: en-US
+I've got a python app that uses some javascript assets that are normally
+built via webpack. In a normal build, the process is as follows:
 
---------------C1257811B163A572865A2922
-Content-Type: text/plain; charset=utf-8; format=flowed
+* run "npm install" to get all the javascript dependencies
+* run "npm build", a custom task in my package.json file that invokes
+webpack to build the assets and place them where the python install can
+find them.
+* run "python setup.py install" to build and install the python part of the
+app
+
+What's the best/most correct way to integrate this into a yocto recipe? My
+current approach is to have the main recipe "inherit setuptools3" and then
+add the following:
+
+"
+do_run_npm_install() {
+    bbplain "Running npm install, this may take a few minutes..."
+    npm install
+    npm run build
+}
+
+addtask run_npm_install before do_compile
+"
+
+However, this fails with an "npm: not found" error.
+
+-Paul Wicks
+
+--000000000000ec134205bd34141f
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Create the file /etc/systemd/network/eth0.conf:
+<div dir=3D"ltr"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=
+=3D"gmail_signature">I&#39;ve got a python app that uses some javascript as=
+sets that are normally built via webpack. In a normal build, the process is=
+ as follows:</div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=
+=3D"gmail_signature"><br></div><div dir=3D"ltr" class=3D"gmail_signature" d=
+ata-smartmail=3D"gmail_signature">* run &quot;npm install&quot; to get all =
+the javascript dependencies</div><div dir=3D"ltr" class=3D"gmail_signature"=
+ data-smartmail=3D"gmail_signature">* run &quot;npm build&quot;, a custom t=
+ask in my package.json file that invokes webpack to build the assets and pl=
+ace them where the python install can find them.</div><div dir=3D"ltr" clas=
+s=3D"gmail_signature" data-smartmail=3D"gmail_signature">* run &quot;python=
+ setup.py install&quot; to build and install the python part of the app</di=
+v><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signat=
+ure"><br></div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D=
+"gmail_signature">What&#39;s the best/most correct way to integrate this in=
+to a yocto recipe? My current approach is to have the main recipe &quot;inh=
+erit setuptools3&quot; and then add the following:</div><div dir=3D"ltr" cl=
+ass=3D"gmail_signature" data-smartmail=3D"gmail_signature"><br></div><div d=
+ir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature">&qu=
+ot;</div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail=
+_signature">do_run_npm_install() {<br>=C2=A0 =C2=A0 bbplain &quot;Running n=
+pm install, this may take a few minutes...&quot;<br>=C2=A0 =C2=A0 npm insta=
+ll<br>=C2=A0 =C2=A0 npm run build <br>}<br><br>addtask run_npm_install befo=
+re do_compile<br></div><div dir=3D"ltr" class=3D"gmail_signature" data-smar=
+tmail=3D"gmail_signature">&quot;</div><div dir=3D"ltr" class=3D"gmail_signa=
+ture" data-smartmail=3D"gmail_signature"><br></div><div class=3D"gmail_sign=
+ature" data-smartmail=3D"gmail_signature">However, this fails with an &quot=
+;npm: not found&quot; error.</div><div class=3D"gmail_signature" data-smart=
+mail=3D"gmail_signature"><br></div><div dir=3D"ltr" class=3D"gmail_signatur=
+e" data-smartmail=3D"gmail_signature">-Paul Wicks</div></div>
 
-[Match]
-Name=3Deth0
-[Network]
-Address=3D<ip>
-Gateway=3D<ip>
-DNS=3D<ip>
-
-Restart systemd-networkd
-
-# systemctl restart systemd-networkd
-
-or reboot.
-
-:rjs
-
-On 3/10/21 11:31 AM, jchludzinski wrote:
->
->> What is your startup manager? systemd or SysVInit?
->
-> systemd
-
---=20
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3386 x700
-
-
---------------C1257811B163A572865A2922
-Content-Type: application/pgp-keys;
- name="OpenPGP_0x8D8CA82927339B75.asc"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: attachment;
- filename="OpenPGP_0x8D8CA82927339B75.asc"
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvDQpe=
-+
-Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ/Qymy+7=
-C
-bh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969cQD/S9LNndn=
-K
-5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM3sPiHrF+Y2HTdK7=
-j
-7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEBAAHNKlJ1ZG9sZiBKIFN=
-0
-cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgAIQUCWFAUBAIbAwULCQgHAgY=
-V
-CAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf03GsVMG6C5QOLaPx6rOgj5qexCH3=
-r
-fYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBktxioE384/51QTIfCmW8ZG5X0cMC5d38=
-L
-Fvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xllpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR8=
-4
-ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+wXl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x=
-5
-LZhUhGYoqbYwNy9imoBkUAZkbbViNOtXzaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjV=
-L
-mLHvzsBNBFhQFAQBCADXoLKCuF485eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTq=
-k
-3fb9+Ao6C6IliC9ZRXyAVLD/RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIF=
-p
-PBpxHRrZnDdEd5IKsy+zw6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJS=
-H
-WMBh0OMKDeBik5wlsvtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mC=
-B
-CZ+IKhBQR36vtUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAk=
-F
-AlhQFAQCGwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LY=
-U
-pLNjs4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9Mby=
-E
-fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8TzYf9=
-m
-2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/NlouvceP41tsC5=
-d
-axZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/ANROZj4g=3D=
-=3D
-=3DLHwf
------END PGP PUBLIC KEY BLOCK-----
-
---------------C1257811B163A572865A2922--
-
---CYv8ZyUPu5xYgEzWgOwVcJ801Pg2r8YcI--
-
---vbJ9UMpp7Vt17H1z1vKXLMuwjtK2AyR8b
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsB5BAABCAAjFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAmBJI1cFAwAAAAAACgkQjYyoKSczm3Uz
-cQf/chjAhazmLIBkNiGOCzqYrvlc28uZqzLDWKgvERcOuhLRJIbIckXH/lDEDE8PfDBz4PZXsRqM
-6JRdnx6iun9Cm4HnzKIpwGH9FbfeW9XLx7cAOJGo/jeKkyTWWXfzFjd+1IwwByQceGiA/nqRH2Eq
-aiD5ylAyR76B/ycAarrM9Crro3z+LLEtcoJ60mlyADERzCHnuyEALqnD/Yy0+R/H7oWb5BXT0XnV
-NpE5L57hZfrr+zoh6XlpcL10q/+TxkZTy+PoDQ/bcej3nldtMUvFcte5v/U8OkLNKZpZ9RKU75Xm
-AJdYxaDmVIP+/bWP+fR0ugnAM2JFTF7+fYmpNbPivQ==
-=feYO
------END PGP SIGNATURE-----
-
---vbJ9UMpp7Vt17H1z1vKXLMuwjtK2AyR8b--
+--000000000000ec134205bd34141f--
