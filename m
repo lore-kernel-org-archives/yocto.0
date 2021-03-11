@@ -1,105 +1,96 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.3723.1615454875517593935
+ by mx.groups.io with SMTP id smtpd.web08.3729.1615455325493564696
  for <yocto@lists.yoctoproject.org>;
- Thu, 11 Mar 2021 01:27:55 -0800
+ Thu, 11 Mar 2021 01:35:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 198.145.29.25, mailfrom: rpjday@crashcourse.ca)
-Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 4EBA538C058A
-	for <yocto@yoctoproject.org>; Thu, 11 Mar 2021 09:27:54 +0000 (UTC)
-Received: from cpeac202e043973-cmac202e043970.sdns.net.rogers.com ([174.114.107.13]:48428 helo=fedora)
-	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1lKHbf-00054e-R4; Thu, 11 Mar 2021 04:27:52 -0500
-Date: Thu, 11 Mar 2021 04:27:46 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: Quentin Schulz <quentin.schulz@streamunlimited.com>
-cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [yocto] how often would one use "VAR_someoverride_append = ..."?
-In-Reply-To: <20210310151501.5buv7wppoda2xu6e@qschulz>
-Message-ID: <64489b7-639c-2860-4d7f-88e0d1a192c1@crashcourse.ca>
-References: <fd294e8a-cc9e-d9f-33d9-cc30f27ff0@crashcourse.ca> <20210309144900.h5esu2uleixud2va@qschulz> <af8b6e8e-70f3-76b7-31eb-ea2227478710@crashcourse.ca> <20210310151501.5buv7wppoda2xu6e@qschulz>
+ dkim=missing; spf=softfail (domain: windriver.com, ip: 198.145.29.25, mailfrom: kai.kang@windriver.com)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 511D938C058A
+	for <yocto@yoctoproject.org>; Thu, 11 Mar 2021 09:35:24 +0000 (UTC)
+Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com [147.11.82.252])
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 12B9Z2va027953
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 11 Mar 2021 01:35:12 -0800 (PST)
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Thu, 11 Mar 2021 01:35:02 -0800
+Received: from pek-lpg-core3.wrs.com (128.224.153.232) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
+ 15.1.2106.2 via Frontend Transport; Thu, 11 Mar 2021 01:35:01 -0800
+From: "kai" <kai.kang@windriver.com>
+To: <yocto@yoctoproject.org>
+Subject: [meta-security][PATCH v2] samhain: fix compile error on powerpc
+Date: Thu, 11 Mar 2021 17:34:58 +0800
+Message-ID: <20210311093458.12043-1-kai.kang@windriver.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain
 
-On Wed, 10 Mar 2021, Quentin Schulz wrote:
-... snip ...
+From: Kai Kang <kai.kang@windriver.com>
 
-> https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-kernel/linux/linux-yocto_5.10.bb#n12
-> for example.
->
-> This is an example of a "valid" use case (not that there are invalid
-> ones) for VAR_foo.
->
-> Would probably a better example:
-> https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-kernel/linux/linux-yocto_5.10.bb#n50
->
-> So, you might decide that a machine is so much different than others
-> that KERNEL_FEATURES should be overridden for said machine.
->
-> Then in a bbappend, one might want to add another feature for this
-> machine, they'll therefore need to use KERNEL_FEATURES_foo_append.
->
-> I do not have examples at hand of VAR_foo_append except the ones
-> Leon sent in another mail. Which should show how rare it is :)
+It fails to comile samhain for powerpc(qemuppc):
 
-  i will ramble for just a bit as i think i settled on a way to
-perhaps explain the difference here to some students.
+| x_sh_dbIO.c: In function 'swap_short':
+| x_sh_dbIO.c:229:36: error: initializer element is not constant
+|   229 |       static unsigned short ooop = *iptr;
+|       |                                    ^
 
-  in the overwhelmingly common case, we normally see overrides at the
-end of either assignments or appends:
+Assign after initialization of the static variable to avoid the failure.
 
-  VAR = "snafu"
-  VAR_qemux86 = "more snafu"
-  VAR_append_qemux86 = "qemux86_specific_fubar"
+Signed-off-by: Kai Kang <kai.kang@windriver.com>
+---
+ ...-initializer-element-is-not-constant.patch | 28 +++++++++++++++++++
+ recipes-ids/samhain/samhain.inc               |  1 +
+ 2 files changed, 29 insertions(+)
+ create mode 100644 recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch
 
-it seems that the proper way to interpret the above is that, in the
-end, all you would be after is the *final* value of the single
-variable VAR, and all the appending and overriding is leading you in
-that direction -- whatever "VAR" contains after it's all over is all
-you care about.
+diff --git a/recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch b/recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch
+new file mode 100644
+index 0000000..72cb880
+--- /dev/null
++++ b/recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch
+@@ -0,0 +1,28 @@
++Fix error when compile for powerpc:
++
++| x_sh_dbIO.c: In function 'swap_short':
++| x_sh_dbIO.c:229:36: error: initializer element is not constant
++|   229 |       static unsigned short ooop = *iptr;
++|       |                                    ^
++
++Upstream-Status: Pending
++
++Signed-off-by: Kai Kang <kai.kang@windriver.com>
++---
++ src/sh_dbIO.c | 3 ++-
++ 1 file changed, 2 insertions(+), 1 deletion(-)
++
++diff --git a/src/sh_dbIO.c b/src/sh_dbIO.c
++index b547ac5..23a9621 100644
++--- a/src/sh_dbIO.c
+++++ b/src/sh_dbIO.c
++@@ -226,7 +226,8 @@ static unsigned short *  swap_short (unsigned short * iptr)
++   else
++     {
++       /* alignment problem */
++-      static unsigned short ooop = *iptr;
+++      static unsigned short ooop;
+++      ooop = *iptr;
++       unsigned short hi   = (ooop & 0xff00);
++       unsigned short lo   = (ooop & 0xff);
++       ooop = (lo << 8) | (hi >> 8);
+diff --git a/recipes-ids/samhain/samhain.inc b/recipes-ids/samhain/samhain.inc
+index 6a2eb08..0148e46 100644
+--- a/recipes-ids/samhain/samhain.inc
++++ b/recipes-ids/samhain/samhain.inc
+@@ -18,6 +18,7 @@ SRC_URI = "https://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
+            file://samhain-avoid-searching-host-for-postgresql.patch \
+            file://samhain-add-LDFLAGS-variable-for-samhain_setpwd.patch \
+            file://fix-build-with-new-version-attr.patch \
++           file://samhain-fix-initializer-element-is-not-constant.patch \
+            "
+ 
+ SRC_URI[sha256sum] = "3e57574036d5055e9557ec5095818b419ea6c4365370fc2ccce1e9f87f9fad08"
+-- 
+2.17.1
 
-  on the other hand, with the example from the kernel recipe:
-
-  KBRANCH_qemuarm  ?= "v5.10/standard/arm-versatile-926ejs"
-  KBRANCH_qemuarm64 ?= "v5.10/standard/qemuarm64"
-  KBRANCH_qemumips ?= "v5.10/standard/mti-malta32"
-  KBRANCH_qemuppc  ?= "v5.10/standard/qemuppc"
-  KBRANCH_qemuriscv64  ?= "v5.10/standard/base"
-  KBRANCH_qemux86  ?= "v5.10/standard/base"
-  KBRANCH_qemux86-64 ?= "v5.10/standard/base"
-  KBRANCH_qemumips64 ?= "v5.10/standard/mti-malta64"
-
-it seems that the right way to interpret the above is that you are,
-simultaneously, creating *multiple* versions of the variable KBRANCH,
-so that if you subsequently see, for example:
-
-  KBRANCH_qemux86_append = " whatever"
-
-you're appending to the variable KBRANCH_qemux86 because the ultimate
-result you're after is the *set* of KBRANCH-related variables, perhaps
-because you will actually need them all at once.
-
-  and given that most situations don't require access to all of those
-variations of that variable, that's why the first approach is by far
-the most common.
-
-  that might be an over-simplification, but it seems to at least give
-an idea of why that second approach would be used in very particular
-situations.
-
-  thoughts?
-
-rday
