@@ -1,100 +1,114 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.1573.1615434464118042155
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+ by mx.groups.io with SMTP id smtpd.web11.2159.1615439028514256663
  for <yocto@lists.yoctoproject.org>;
- Wed, 10 Mar 2021 19:47:45 -0800
+ Wed, 10 Mar 2021 21:03:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 198.145.29.25, mailfrom: kai.kang@windriver.com)
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id E08DA38C051C
-	for <yocto@yoctoproject.org>; Thu, 11 Mar 2021 03:47:40 +0000 (UTC)
-Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com [147.11.82.252])
-	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 12B3lZgx026215
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 10 Mar 2021 19:47:40 -0800 (PST)
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 10 Mar 2021 19:47:34 -0800
-Received: from pek-lpg-core3.wrs.com (128.224.153.232) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2106.2 via Frontend Transport; Wed, 10 Mar 2021 19:47:34 -0800
-From: "kai" <kai.kang@windriver.com>
-To: <yocto@yoctoproject.org>
-Subject: [meta-security][PATCH] samhain: fix compile for powerpc
-Date: Thu, 11 Mar 2021 11:47:22 +0800
-Message-ID: <20210311034722.1199-1-kai.kang@windriver.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=QHZ7VYO1;
+ spf=pass (domain: gmail.com, ip: 209.85.166.173, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-il1-f173.google.com with SMTP id g9so17830547ilc.3
+        for <yocto@lists.yoctoproject.org>; Wed, 10 Mar 2021 21:03:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=E18tuqnJIYKX3Z9/J2ap8fepDaQeTVWMLWVrUzRPYdE=;
+        b=QHZ7VYO14v+arT2zA5z1dZxNuCTgGjmxQHMUwFrEQfL5NAJgepXmviZ7BFm9dhyBfs
+         hyYMU1dIOGtGgUgSzNZ6Js9/4H5nG/3kkelP7JM1tcNtsCoUk5igWp/DbuEnHOOlXjHt
+         13sUqwTP5LJgZ/4XazDBdfoOmwtq46+qN6MdJnXrngrCeey+JabqT9qxnpUPkEv7MiUb
+         nFHCKcQkhBDaRfJ1VmKxib0ifL8pVRm2Hg9m+PoZS1tKsrGHHqAonqkAcIUfTea/sexB
+         fmsdW5ACIkn0yJ6ZhvDXbRzno5gd+X4NvR1xVJzZonZ9q5fUTs55GTliYVlDJakqmHH/
+         iMSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=E18tuqnJIYKX3Z9/J2ap8fepDaQeTVWMLWVrUzRPYdE=;
+        b=k4kgMoFosH4FszHUEgqd/lyTEJknHovVoPf1z8eUJAvGG4fO6MLIDJAeUiUg/neq3h
+         OB+F9HIJQY0KNAgVfNvsH7TDuK6x8nMj9sJ8iM3DOwvEu/ofJbW9ji08w/ELR0kvyYBo
+         9RLubSymp/1j5FgIg9TNI+xvziym1wOlC0oN6MWf9uIiZQAm0x7J4Pdj46ckR1bTepLp
+         yl7QDs3ahehxmD5vzaBSbDhk7EMncqgFNPz3ZhfDnDO35UwcYyWGqkOh+YNxpsaLDXMH
+         UDCp+y0VZ9o9mRlbrbFz/ece6Up2fbIKJAUNUQCNtScLGdwZ0+mJ+S1UMhHkCWPUokA0
+         +nZQ==
+X-Gm-Message-State: AOAM531CBzCvPNpPLDh4Z/xedR4GmDNslPhG6151T0m6gzFJWLi3wBjt
+	gHRlJHCnRh2gi9f6ajWVTzco5VH6UNGDA7oE/vo=
+X-Google-Smtp-Source: ABdhPJxaCg1OrgSQ4EVzhODBXrABQyRhCSKW+Htq98iG/aQomdFIWxUrfWHNi8jI7nidR8ShziqIRe6+NKClPQLtR08=
+X-Received: by 2002:a92:444e:: with SMTP id a14mr5460149ilm.215.1615439027692;
+ Wed, 10 Mar 2021 21:03:47 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <2W3V.1615419137982625968.f4wK@lists.yoctoproject.org>
+In-Reply-To: <2W3V.1615419137982625968.f4wK@lists.yoctoproject.org>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Thu, 11 Mar 2021 06:03:36 +0100
+Message-ID: <CAGAf8Lxw9Rs2YAyemcdzsHQAEGP9aLyRGovJawAaiA_LP6dydA@mail.gmail.com>
+Subject: Re: [yocto] How can I create a truly minimal distribution that runs entirely from RAM?
+To: p32@tuta.io
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Kai Kang <kai.kang@windriver.com>
+BBB example:
+https://www.yoctoproject.org/pipermail/yocto/2018-July/041696.html
 
-It fails to comile samhain for powerpc(qemuppc):
+The line:
+DISTRO_FEATURES_append =3D " ram"
 
-| x_sh_dbIO.c: In function 'swap_short':
-| x_sh_dbIO.c:229:36: error: initializer element is not constant
-|   229 |       static unsigned short ooop = *iptr;
-|       |                                    ^
+Should be:
+DISTRO_FEATURES_append =3D " nfs"
 
-Fix it by not use local static variable.
+BSP Traces for BBB (YOCTO Warrior):
+https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-releases/b=
+bb-warrior/target-bbb-platform-traces.txt
 
-Signed-off-by: Kai Kang <kai.kang@windriver.com>
----
- ...-initializer-element-is-not-constant.patch | 32 +++++++++++++++++++
- recipes-ids/samhain/samhain.inc               |  1 +
- 2 files changed, 33 insertions(+)
- create mode 100644 recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch
+And the ash script in the U-Boot supporting above written:
+https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/custom/u-boot.=
+ash#L3
 
-diff --git a/recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch b/recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch
-new file mode 100644
-index 0000000..846e132
---- /dev/null
-+++ b/recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch
-@@ -0,0 +1,32 @@
-+Fix error when compile for powerpc:
-+
-+| x_sh_dbIO.c: In function 'swap_short':
-+| x_sh_dbIO.c:229:36: error: initializer element is not constant
-+|   229 |       static unsigned short ooop = *iptr;
-+|       |                                    ^
-+
-+Upstream-Status: Pending
-+
-+Signed-off-by: Kai Kang <kai.kang@windriver.com>
-+---
-+ src/sh_dbIO.c | 4 ++--
-+ 1 file changed, 2 insertions(+), 2 deletions(-)
-+
-+diff --git a/src/sh_dbIO.c b/src/sh_dbIO.c
-+index b547ac5..7516463 100644
-+--- a/src/sh_dbIO.c
-++++ b/src/sh_dbIO.c
-+@@ -226,11 +226,11 @@ static unsigned short *  swap_short (unsigned short * iptr)
-+   else
-+     {
-+       /* alignment problem */
-+-      static unsigned short ooop = *iptr;
-++      unsigned short ooop = *iptr;
-+       unsigned short hi   = (ooop & 0xff00);
-+       unsigned short lo   = (ooop & 0xff);
-+       ooop = (lo << 8) | (hi >> 8);
-+-      return &ooop;
-++      *iptr = ooop;
-+     }
-+   return iptr;
-+ #else
-diff --git a/recipes-ids/samhain/samhain.inc b/recipes-ids/samhain/samhain.inc
-index 6a2eb08..0148e46 100644
---- a/recipes-ids/samhain/samhain.inc
-+++ b/recipes-ids/samhain/samhain.inc
-@@ -18,6 +18,7 @@ SRC_URI = "https://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
-            file://samhain-avoid-searching-host-for-postgresql.patch \
-            file://samhain-add-LDFLAGS-variable-for-samhain_setpwd.patch \
-            file://fix-build-with-new-version-attr.patch \
-+           file://samhain-fix-initializer-element-is-not-constant.patch \
-            "
- 
- SRC_URI[sha256sum] = "3e57574036d5055e9557ec5095818b419ea6c4365370fc2ccce1e9f87f9fad08"
--- 
-2.17.1
+Line 3 to 10.
 
+Please, pay attention to line 1 as well!
+
+Zee
+_______
+
+On Thu, Mar 11, 2021 at 12:32 AM p32 via lists.yoctoproject.org
+<p32=3Dtuta.io@lists.yoctoproject.org> wrote:
+>
+> Hello everyone,
+>
+> I am currently using this Yocto-based build setup provided by NXP to cre=
+ate a custom Linux distribution for one of the i.MX boards. My custom image=
+ is based on the core-image-minimal recipe and works fine, i.e., runs on th=
+e platform as expected. However, I have to following two issues:
+>
+> Although core-image-minimal is documented as "A small image just capable=
+ of allowing a device to boot", I can tell from the running system that it =
+contains a huge number of components that I think are not be strictly neces=
+sary to boot the device. For instance, the boot log contains entries about =
+an FPGA manager framework, Bluetooth, Ethernet, KVM, USB, and a lot of i.MX=
+-specific modules such as for DMA or power management. For evaluation purpo=
+ses, I want to get rid of all of these and end up with a truly minimal Linu=
+x system that is able to boot, schedule its tasks, and to communicate via U=
+ART. How can I achieve this without losing the i.MX support, i.e., the gene=
+ration of a bootloader and suitable device tree files?
+>
+> Furthermore, I would like the minimal system to run entirely from RAM. M=
+ore specifically: After being started from the SD card, U-Boot should start=
+ the Linux distribution via initramfs. I am able to generate some kind of i=
+nitramfs binary using the following changes:
+> # local.conf
+> INITRAMFS_IMAGE =3D "recipe-name"
+> INITRAMFS_IMAGE_BUNDLE =3D "1"
+> # recipe-name.bb
+> IMAGE_FSTYPES =3D "${INITRAMFS_FSTYPES}"
+> PACKAGE_INSTALL =3D "${IMAGE_INSTALL}"
+>
+> However, this does not affect the generated U-Boot, which means that U-B=
+oot still tries to boot from an SD card partition. What is the "right way" =
+to make use of the Image-initramfs-board.bin or the image-board.cpio.gz fil=
+es that Yocto creates in this case?
+>
+> Any help yould be greatly appreciated.
+>
+> Kind regards!
+>=20
+>
