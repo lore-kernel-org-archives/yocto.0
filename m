@@ -1,165 +1,124 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.3950.1615456442211795639
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+ by mx.groups.io with SMTP id smtpd.web12.4148.1615458519858525456
  for <yocto@lists.yoctoproject.org>;
- Thu, 11 Mar 2021 01:54:04 -0800
+ Thu, 11 Mar 2021 02:28:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=parse error for token &{10 18 a1.net}: parse error for token &{10 18 spf.a1.net}: parse error for token &{10 18 a1telekom.at}: parse error for token &{10 18 spf.qb-feedback.com}: parse error for token &{10 18 spf2.qb-feedback.com}: limit exceeded (domain: streamunlimited.com, ip: 198.145.29.25, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id C1E1038C058A
-	for <yocto@yoctoproject.org>; Thu, 11 Mar 2021 09:54:00 +0000 (UTC)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp2.bon.at (Postfix) with ESMTPSA id 4Dx45y6JJ8z5tlD;
-	Thu, 11 Mar 2021 10:53:58 +0100 (CET)
-Date: Thu, 11 Mar 2021 10:53:57 +0100
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [yocto] how often would one use "VAR_someoverride_append = ..."?
-Message-ID: <20210311095357.nfybcfepxpovzgfs@qschulz>
-References: <fd294e8a-cc9e-d9f-33d9-cc30f27ff0@crashcourse.ca>
- <20210309144900.h5esu2uleixud2va@qschulz>
- <af8b6e8e-70f3-76b7-31eb-ea2227478710@crashcourse.ca>
- <20210310151501.5buv7wppoda2xu6e@qschulz>
- <64489b7-639c-2860-4d7f-88e0d1a192c1@crashcourse.ca>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ZdGTl1d7;
+ spf=pass (domain: gmail.com, ip: 209.85.222.182, mailfrom: jonas.vautherin@gmail.com)
+Received: by mail-qk1-f182.google.com with SMTP id n79so20039768qke.3
+        for <yocto@lists.yoctoproject.org>; Thu, 11 Mar 2021 02:28:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=i8tZFYn9q43nWDaj9PiRm9ZbHeKbCT8qf11OIarO8lM=;
+        b=ZdGTl1d7ZJYRFbhRCe3SXmhnZ05+IX1+wXg4yL/o0X6vQue6lWoEzEIyrLVv10aA+P
+         bQcPIDSLZle7exgcGtfC89deAOIttGLqQZc9XXxJxrWstT9PE3Qlmkm+JXEqiHeU1tac
+         KnVOWLXvxn9hzsDPB8yEpe/SsDsZU+t6fPDvZWKP8svvgryLjhG/1bP0QtBeYAkHPWPM
+         2N8LbE0ExI6DjuSmkV/SSrsgjbATalx51Y1fP/CqihKUZG4QJvy5Um7Zxv4qexqHUudr
+         h7ThsiW643f2or8IFs0zZQK2jViNC0sutkQbRJcgbMSmo0Yo0Nep8gjhQfpdRtCzJWpO
+         lWyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=i8tZFYn9q43nWDaj9PiRm9ZbHeKbCT8qf11OIarO8lM=;
+        b=V7lDQi6NaUbnm47/Ow0CUuGZphDhpJ/j+XinOy/xiSeKUHfZVcWmsFfBnnBEtFjcem
+         wyxknXtNaFgVfDQM7hqJEF7W784bdL2yqP5a5TTY0n2X7P3cqSm+I5CZeL55WZLz23X3
+         L+BQsN6fbwThTyO03mNRLAivDFhvn2bY2WBkzu8SitHCU4QUBjouyyoSjqd+TF+xGzJW
+         h3+EUpeaxY8qZ+TRRF43yt/FOlsDwYtvqbNtM+Kw2KDn8zitA2DLcEvebbkcwwvHzhDg
+         ONm84I0UyucZNQl56GUAc4QZbwip2GR6bpAwfkwTkQ4HnrtRx0RuftnqjRvd2PuH8woG
+         VmRw==
+X-Gm-Message-State: AOAM533lgFQSvjxUIJDnaDMXQctu25fjqsgd2iu2LAB2+DU0mWPgGqVz
+	2BszFIh+6MO5saMb4ONEE6kynsbbwkfH8kUW90rAwCAplM1Kdg==
+X-Google-Smtp-Source: ABdhPJxOMSeVS4dSz/W6p0SddSDGSVui5Nr2CVD855zEcXyyBaxQE2qOnQ57QeSRLPax+4M8NPR0jo9+bvUwQJrh0hg=
+X-Received: by 2002:a05:620a:1443:: with SMTP id i3mr6712772qkl.354.1615458518728;
+ Thu, 11 Mar 2021 02:28:38 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <64489b7-639c-2860-4d7f-88e0d1a192c1@crashcourse.ca>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+From: "Jonas Vautherin" <jonas.vautherin@gmail.com>
+Date: Thu, 11 Mar 2021 11:28:28 +0100
+Message-ID: <CAEyb4nHMjTW+UbpQyA0R=gNMJ2k-cmPw4eCwAsP_5qayUX5XpQ@mail.gmail.com>
+Subject: Failing to patch u-boot .dts
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000028830605bd403f3a"
 
-Hi Robert,
+--00000000000028830605bd403f3a
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Mar 11, 2021 at 04:27:46AM -0500, Robert P. J. Day wrote:
-> On Wed, 10 Mar 2021, Quentin Schulz wrote:
-> ... snip ...
-> 
-> > https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-kernel/linux/linux-yocto_5.10.bb#n12
-> > for example.
-> >
-> > This is an example of a "valid" use case (not that there are invalid
-> > ones) for VAR_foo.
-> >
-> > Would probably a better example:
-> > https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-kernel/linux/linux-yocto_5.10.bb#n50
-> >
-> > So, you might decide that a machine is so much different than others
-> > that KERNEL_FEATURES should be overridden for said machine.
-> >
-> > Then in a bbappend, one might want to add another feature for this
-> > machine, they'll therefore need to use KERNEL_FEATURES_foo_append.
-> >
-> > I do not have examples at hand of VAR_foo_append except the ones
-> > Leon sent in another mail. Which should show how rare it is :)
-> 
->   i will ramble for just a bit as i think i settled on a way to
-> perhaps explain the difference here to some students.
-> 
->   in the overwhelmingly common case, we normally see overrides at the
-> end of either assignments or appends:
-> 
->   VAR = "snafu"
->   VAR_qemux86 = "more snafu"
->   VAR_append_qemux86 = "qemux86_specific_fubar"
-> 
-> it seems that the proper way to interpret the above is that, in the
-> end, all you would be after is the *final* value of the single
-> variable VAR, and all the appending and overriding is leading you in
-> that direction -- whatever "VAR" contains after it's all over is all
-> you care about.
-> 
+Hello!
 
-For that particular example, I'm not entirely sure what the actual value
-for VAR would be.
+I am using u-boot on a pocketbeagle which, according to "Default Device
+Tree for DT control" in `bitbake -c menuconfig u-boot`, uses am335x-evm,
+which I understand is the file
+in ./build/tmp/work/pocketbeagle-poky-linux-gnueabi/u-boot/1_2020.07-r0/git/arch/arm/dts/am335x-evm.dts.
 
-Also not sure what:
-VAR = "snafu"
-VAR_append = " more"
-VAR_qemux86 = "qemu"
+My issue is that this file ends up setting usb1 as `dr_mode = "host"` and
+usb0 as `dr_mode = "otg"`. I would like to use fastboot on my pocketbeagle,
+and therefore set them to `dr_mode = "peripheral"`.
 
-would mean for VAR. I don't know exactly when _append is applied to
-VAR... after or before the override is applied?
+In order to do that, I wrote a .bbappend that does the following:
 
-Gut feeling would say before, in which case for non-qemux86 one would
-have VAR set to "snafu more" and for qemux86 it'd be "qemu".
+```
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
-I'd anyway use bitbake -e trick to check that, which IMO should really
-be given in that section of the docs, to explain how one can debug the
-assignment of the variable thanks to the history of the variable :)
+SRC_URI += "file://am335x-evm.dts.patch"
+SRC_URI += "file://logging.cfg"
+```
 
->   on the other hand, with the example from the kernel recipe:
-> 
->   KBRANCH_qemuarm  ?= "v5.10/standard/arm-versatile-926ejs"
->   KBRANCH_qemuarm64 ?= "v5.10/standard/qemuarm64"
->   KBRANCH_qemumips ?= "v5.10/standard/mti-malta32"
->   KBRANCH_qemuppc  ?= "v5.10/standard/qemuppc"
->   KBRANCH_qemuriscv64  ?= "v5.10/standard/base"
->   KBRANCH_qemux86  ?= "v5.10/standard/base"
->   KBRANCH_qemux86-64 ?= "v5.10/standard/base"
->   KBRANCH_qemumips64 ?= "v5.10/standard/mti-malta64"
-> 
-> it seems that the right way to interpret the above is that you are,
-> simultaneously, creating *multiple* versions of the variable KBRANCH,
-> so that if you subsequently see, for example:
-> 
->   KBRANCH_qemux86_append = " whatever"
-> 
-> you're appending to the variable KBRANCH_qemux86 because the ultimate
-> result you're after is the *set* of KBRANCH-related variables, perhaps
-> because you will actually need them all at once.
-> 
->   and given that most situations don't require access to all of those
-> variations of that variable, that's why the first approach is by far
-> the most common.
-> 
->   that might be an over-simplification, but it seems to at least give
-> an idea of why that second approach would be used in very particular
-> situations.
-> 
->   thoughts?
-> 
+The patch sets both usb0 and usb1 to `dr_mode = "peripheral"`, while the
+cfg enables logging in u-boot. Because logging is effectively enabled, I
+get that my .bbappend is used. And I can confirm
+that ./build/tmp/work/pocketbeagle-poky-linux-gnueabi/u-boot/1_2020.07-r0/git/arch/arm/dts/am335x-evm.dts
+is patched indeed.
 
-I like to think that:
+However, whatever I do, I can't seem to get that modification in my u-boot
+device tree at runtime, as usb0 always ends up as "otg" and usb1 as "host".
+I have even tried a full clean build where I removed build/tmp and
+cache_sstate.
 
-KBRANCH_qemux86
+I cannot really tell if my patched file is actually used or not. For
+instance, if I `bitbake -c cleansstate u-boot`, then `bitbake -c do_patch
+u-boot`, then `rm
+-rf ./build/tmp/work/pocketbeagle-poky-linux-gnueabi/u-boot/1_2020.07-r0/git/arch/arm/dts`
+and finally `bitbake u-boot`, it does not complain at all about a missing
+dts file.
 
-is for OVERRIDING, while
+What am I missing, and how could I make sure that my patched am335x-evm.dts
+is the device tree being used by my u-boot install?
 
-VAR_append_qemux86
+Best Regards,
+Jonas
 
-is for CONDITIONAL appending.
+--00000000000028830605bd403f3a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-In which case,
+<div dir=3D"ltr">Hello!<div><br></div><div>I am using u-boot on a pocketbea=
+gle which, according to &quot;Default Device Tree for DT control&quot; in `=
+bitbake -c menuconfig u-boot`, uses am335x-evm, which I understand is the f=
+ile in=C2=A0./build/tmp/work/pocketbeagle-poky-linux-gnueabi/u-boot/1_2020.=
+07-r0/git/arch/arm/dts/am335x-evm.dts.=C2=A0</div><div><br></div><div>My is=
+sue is that this file ends up setting usb1 as `dr_mode =3D &quot;host&quot;=
+` and usb0 as `dr_mode =3D &quot;otg&quot;`. I would like to use fastboot o=
+n my pocketbeagle, and therefore set them to `dr_mode =3D &quot;peripheral&=
+quot;`.</div><div><br></div><div>In order to do that, I wrote a .bbappend t=
+hat does the following:</div><div><br></div><div>```</div><div>FILESEXTRAPA=
+THS_prepend :=3D &quot;${THISDIR}/files:&quot;<br><br>SRC_URI +=3D &quot;fi=
+le://am335x-evm.dts.patch&quot;<br>SRC_URI +=3D &quot;file://logging.cfg&qu=
+ot;<br></div><div>```<br></div><div><br></div><div>The patch sets both usb0=
+ and usb1 to `dr_mode =3D &quot;peripheral&quot;`, while the cfg enables lo=
+gging in u-boot. Because logging is effectively enabled, I get that my .bba=
+ppend is used. And I can confirm that=C2=A0./build/tmp/work/pocketbeagle-po=
+ky-linux-gnueabi/u-boot/1_2020.07-r0/git/arch/arm/dts/am335x-evm.dts is pat=
+ched indeed.</div><div><br></div><div>However, whatever I do, I can&#39;t s=
+eem to get that modification in my u-boot device tree at runtime, as usb0 a=
+lways ends up as &quot;otg&quot; and usb1 as &quot;host&quot;. I have even =
+tried a full clean build where I removed build/tmp and cache_sstate.</div><=
+div><br></div><div>I cannot really tell if my patched file is actually used=
+ or not. For instance, if I `bitbake -c cleansstate u-boot`, then `bitbake =
+-c do_patch u-boot`, then `rm -rf=C2=A0./build/tmp/work/pocketbeagle-poky-l=
+inux-gnueabi/u-boot/1_2020.07-r0/git/arch/arm/dts` and finally `bitbake u-b=
+oot`, it does not complain at all about a missing dts file.</div><div><br><=
+/div><div>What am I missing, and how could I make sure that my patched am33=
+5x-evm.dts is the device tree being used by my u-boot install?</div><div><b=
+r></div><div>Best Regards,</div><div>Jonas</div></div>
 
-KBRANCH_qemux86_append
-
-is UNCONDITIONALLY APPENDING to OVERRIDDEN KBRANCH for qemux86 override.
-
-Only _append and _prepend would be a case of CONDITIONAL
-appending/prepending. All others are OVERRIDING.
-
-It's a topic I've long been interested in describing with simple words
-but couldn't come with anything yet.
-
-Because you kind of need to explain also the difference between:
-KBRANCH_qemux86_class-native
-and
-KBRANCH_class-native_qemux86
-
-which are completely different.
-
-You also have many, many, many different kinds of overrides, from
-pn-recipe, to class-target, virtclass-lib32, task-compile, ${PN},
-remove, poky, _X.Y.Z when BBVERSIONS is set, etc...
-
-If you omit _append and _prepend, it's simpler to explain that the
-overrides happen from right to left. But once you have _append and
-_prepend in the mix, it's a bit confusing and hard to explain.
-
-IMO it would warrant some kind of drawings/schemes to explain step by
-step what's happening, couldn't think of a proper one though. Thought of
-using multiple FIFOs but couldn't come up with something less confusing
-that what it already is :/
-
-I'd be very happy to find a way to explain those (IMO) difficult
-notions and make it part of the docs.
-
-Quentin
+--00000000000028830605bd403f3a--
