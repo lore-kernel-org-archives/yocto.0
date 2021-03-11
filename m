@@ -1,88 +1,68 @@
-Received: from smtp.vivaldi.net (smtp.vivaldi.net [31.209.137.12])
- by mx.groups.io with SMTP id smtpd.web10.1361.1615486383862178565
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.2695.1615499066018022595
  for <yocto@lists.yoctoproject.org>;
- Thu, 11 Mar 2021 10:13:04 -0800
+ Thu, 11 Mar 2021 13:44:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@vivaldi.net header.s=default header.b=lsKlF/53;
- spf=pass (domain: vivaldi.net, ip: 31.209.137.12, mailfrom: jchludzinski@vivaldi.net)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp.vivaldi.net (Postfix) with ESMTP id 49B2EBD031;
-	Thu, 11 Mar 2021 18:13:01 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 49B2EBD031
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1615486381;
-	bh=1U0EZM6Za/OVtSg1PLRYX+bH/wL6+GlXVSc3U/cPG9U=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=lsKlF/53LWQV6QAKct0ocgXvoV6NlcEiLBbfm80oeiLcd5qkoWBUd2xha3vCotOhk
-	 ui5J2MBkX/QBE/WpE2D1ysIXPzZIi2NJO6a/hZMSxYUAGINqFTdCuN16oNb7Uqr+xM
-	 F/Ik+5QFU5KxVFFgYFImMO2UABM+oe6n2IhY+fx6PXJzo5nwD9fK6+WebxKsOCutWh
-	 mwEFUz0xa8oj+2KL7MFa3bS48I0r4R3MfQdJWa4YdeuqGxjmCKi3LrYBi1xmwoqMFR
-	 /4EP9oBB2VSPIvySXQzitlF0dJpKaEhW83dQ+DRk1gy/fIuyVB9oocsjuf3AYFomDQ
-	 UgAjj2WxaynnQ==
-X-Virus-Scanned: Debian amavisd-new at smtp.vivaldi.net
-Received: from smtp.vivaldi.net ([127.0.0.1])
-	by localhost (mxo.viv.dc01 [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id iF2YrmooQyTh; Thu, 11 Mar 2021 18:12:57 +0000 (UTC)
-Date: Thu, 11 Mar 2021 13:12:57 -0500
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 3E873BD01D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1615486377;
-	bh=1U0EZM6Za/OVtSg1PLRYX+bH/wL6+GlXVSc3U/cPG9U=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=EWeNgU0J9MnNNs8EGht+NJaiW3fjLG6BQzxko4F3USb/rFbrb7cdPqz5Au55yHrMl
-	 yj3U3+NHKIRM5etOj2CqEb0TOMkNdfhOMR33ZIFR0QCJylmRRD1apeGz7BJCrfO6Wa
-	 qiYGGPGxkXRcMfxepsX5Er0s5/HjDRoqe45ibA28eni0fxwUhXYanWJHpe60+J6pZs
-	 5Dl6ucQ/MRaXhTUnZ3TiOxsJzxWKOguZ3QOaU2dFL2mQ7mp5T5gCiPK7LFW5X5aJf2
-	 tn+EWoGlHSWQpvHYH7uzqldPLTshIBgU4wrSEhwT+Cimz0ee5qDh9DLBGYTo+Y2znV
-	 qtOJI3SLgAyTg==
-From: "jchludzinski" <jchludzinski@vivaldi.net>
-To: Rudolf J Streif <rudolf.streif@ibeeto.com>
-Cc: Yocto <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Assign IP address at boot time
-In-Reply-To: <06146634-49f5-d665-6e2b-7169564748dc@ibeeto.com>
-References: <5f0f65cc3e08a66871af9e3012c4f642@vivaldi.net>
- <5bce46d6-e995-ea21-9162-5d15b95afa29@ibeeto.com>
- <8878b4515215b5d3ed686be6cb8a7122@vivaldi.net>
- <3421258b-6b1e-3dd6-2d75-e66b0bb989c3@ibeeto.com>
- <7d3df13429d227106286f966cdcbd501@vivaldi.net>
- <e7f9f7da-b919-1b65-90f1-e8d892acd2ce@ibeeto.com>
- <0549f39814132d3d025fa22634c88f0e@vivaldi.net>
- <06146634-49f5-d665-6e2b-7169564748dc@ibeeto.com>
-User-Agent: Roundcube Webmail/1.4.4
-Message-ID: <dde465b36ff3aa2d60c9844ca799bbe1@vivaldi.net>
-X-Sender: jchludzinski@vivaldi.net
-Content-Type: multipart/alternative;
- boundary="=_57bab8eefef684d964051747951a9ff5"
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=rhte7SWG;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 11F5138C0834
+	for <yocto@yoctoproject.org>; Thu, 11 Mar 2021 21:44:25 +0000 (UTC)
+Received: by mail-yb1-f176.google.com with SMTP id p186so23273045ybg.2
+        for <yocto@yoctoproject.org>; Thu, 11 Mar 2021 13:44:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=asPfPOdtnyZrWLiLeqpyTOqtWWzBvqdbXY58ipdNgFU=;
+        b=rhte7SWGfwfU6sM7dk/1Q1wJONLZ0gNT2qYsjCCF8JCHzutoqQKn7Vm/0715d5unuy
+         oOObmA4dAFaBti2k3MC9aX7j3BHv189fWJTuVH3GD2YCLlidEYpZsCTZ98ZtSOli5O2p
+         jJ6WUVg9JtD3DasrZ6Xlwq7vrx/4uOpnO0B8BWb649twjqtHCVG21x2nHkNkuYuVbrgP
+         tblMUbuQ1u+zqtMJ8PgBLCEznT5k8Ym15wjKnTTfwvGCs2J3FLcoaDlwJ0+0de+zJVK4
+         sDj39lwphilpF+q8G5wKZgciutl5iP0ziycyl7xe7uYu+lV58bLMiqwUdaFR6b5EkccG
+         z5wA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=asPfPOdtnyZrWLiLeqpyTOqtWWzBvqdbXY58ipdNgFU=;
+        b=UokQwgyaKLDrAs2AGRgRWqDYNNB/M24JLP2FSkFp9vKAEt7z5TuY0CdXlT6lXZgzv6
+         ENE9y4CS8cOMCY38CPWXuFf3JHE39WAivIEB2A9VFwdSISg2X5QVM0J5tyZrJOmXcq4H
+         6lHKc4GLn7Xdke+YZLHQsN/tDEIsYkKa8YlcOR8AHoIsrWWag001smeRQ2gj1XuFJIJu
+         TY8AsIM0oZjydeAkdRyISdgifk0x6xvVM9/ynA9UV6Mel7u/AacfMd3UIggI0ihHFMFg
+         0n6ruAcgPUCw2beLB85u7Pk7XYb+i3cXzAtDWs4969JkZGGA30wNgDj2nCf62f6G4qhj
+         GJ0Q==
+X-Gm-Message-State: AOAM530xFPJh/ENxPgNmoB1GEVE+u7xVhaC97w0bkOXHTGAGMm4MVAaG
+	RF5R6slzf79VUoEgD5n4CULOFVOiNSVG9IxaCF+HyOV7O2VneFT9
+X-Google-Smtp-Source: ABdhPJz/jRUir4FF8FTIlHlzLAw4bd4AQgwf4D10yBLBcfIpwXRG9QH1nWLhrXFnT5h7Gl1IbHT3HaO+uS95MDj1qYc=
+X-Received: by 2002:a25:c50a:: with SMTP id v10mr14597507ybe.186.1615499063936;
+ Thu, 11 Mar 2021 13:44:23 -0800 (PST)
+MIME-Version: 1.0
+From: "Marek Belisko" <marek.belisko@gmail.com>
+Date: Thu, 11 Mar 2021 22:44:13 +0100
+Message-ID: <CAAfyv348tD+NJ=GMhEM5HHi1_yfbStK+qkp3c+xQxZMhJJZy=w@mail.gmail.com>
+Subject: dunfell: regression linux-fimware installed in rootfs in actual dunfell master
+To: yocto <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
---=_57bab8eefef684d964051747951a9ff5
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Hi,
 
-Can this be done using boot parameters?
+I've bumped from poky dunfell: dunfell-23.0.6 to actual dunfell branch
+and I have an problem that all linux-firmware packages are installed
+in my rootfs (even I have in IMAGE_INSTALL only
+linux-firmware-bcm43430). Any ideas? In the commit log I saw that
+linux-firmware package was bumped.
 
-Something like(?):
+Thanks and BR,
 
-LABEL Arria10 SOCDK SDMMC
-    KERNEL ../zImage
-    FDT ../socfpga_arria10_phead.dtb
-    APPEND root=/dev/mmcblk0p2 rw rootwait earlyprintk
-console=ttyS0,115200n8 ip=192.168.0.101:255.255.255.0:eth0
+marek
 
---=_57bab8eefef684d964051747951a9ff5
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
+-- 
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
-=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Verdana,Gen=
-eva,sans-serif'>
-<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
-Can this be done using boot parameters?<br /><br />Something like(?):<br />=
-<br />LABEL Arria10 SOCDK SDMMC<br />&nbsp;&nbsp;&nbsp;&nbsp;KERNEL ../zIma=
-ge<br />&nbsp;&nbsp;&nbsp;&nbsp;FDT ../socfpga_arria10_phead.dtb<br />&nbsp=
-;&nbsp;&nbsp;&nbsp;APPEND root=3D/dev/mmcblk0p2 rw rootwait earlyprintk con=
-sole=3DttyS0,115200n8 <span style=3D"text-decoration: underline;"><strong>i=
-p=3D192.168.0.101:255.255.255.0:eth0</strong></span></div>
-</body></html>
-
---=_57bab8eefef684d964051747951a9ff5--
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
