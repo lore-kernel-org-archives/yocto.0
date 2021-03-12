@@ -1,80 +1,148 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.6150.1615542809924457200
- for <yocto@lists.yoctoproject.org>;
- Fri, 12 Mar 2021 01:53:30 -0800
-Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=UCG2jGV3;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: liu.ming50@gmail.com)
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id CC28F38C0654
-	for <yocto@yoctoproject.org>; Fri, 12 Mar 2021 09:53:29 +0000 (UTC)
-Received: by mail-lj1-f177.google.com with SMTP id z25so5954255lja.3
-        for <yocto@yoctoproject.org>; Fri, 12 Mar 2021 01:53:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=NZVOIfRNVDEfmHcMBoJ+vW97nnIw5LCL0Wtp+5SXq1g=;
-        b=UCG2jGV3ZhGUgKcgiGjMPPhGHR2Id8PDS8ZkFixbH5xTrCetgWh18sveDz4Y3lO9rT
-         vQxXs8qVHTc+XYK1U0DsuodMHlUP80N1QulJANb1T7Vwg4S+kp0V20kuwdGe9wfHUKzU
-         yYh9nCpfh4CXsOE6PufqcucGLNaYrGs8yEbFHj8EMCCn8RnJUSM6+UDaNp3wZYrQuK69
-         JO9TlJGfWEZQaWrHiJEWtpaozK/TEwHu6TCKjl0/tGtazWyZoHWmO/zXe0o5P8CsRGJc
-         UAeyqgkVnklaC2FJglLsji9byqyBxq0UvX1IkzZCj//zMcB+2vH216804uVA+J9Ctzpo
-         USrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=NZVOIfRNVDEfmHcMBoJ+vW97nnIw5LCL0Wtp+5SXq1g=;
-        b=jF0IUcFnrsTXHStjsAaqlmT043tujcU+YT3d9IeLO4V46jL+5YSn1NT035PC3obWvf
-         qlpl1qEFPFTLvKP+MK4JNWblUjKusgqyK2JufQEz/qvuJB3EOyp15lBsL3BdDM2Qbj28
-         cPetOJVIIfScwd53vjeo/dYXfHshTtkcXxojB8PjxAhCqtUFNc7jVxsk++LGUx3DK88G
-         YH27ZJ+QVKT05g026o1S5eFgqCUIvAEgGWi6Ui/J0Y3OClPNkUOvJGryTr/pSm5XuMo7
-         jjPpZHJcuBMgoAESzevlGJtuYPIDs17rnr/TB1IhGFd4WnYzVy75VFBjMz8A0BQAS1Ej
-         /i1g==
-X-Gm-Message-State: AOAM532z/nOlMAE6XdM9l0C83/tiGYEtjoQMRotF0Y5dkeYnnf8Px427
-	txpAJtj22ZHk4nSfS6bkUlPLOVTASMfJcw==
-X-Google-Smtp-Source: ABdhPJx8w3c7CRqZilJwMZysknaEd02AE2razwFXKxjWGqioIWfsh89ceGBuCSC+lf+GNAP4pUiNUw==
-X-Received: by 2002:a2e:b0e4:: with SMTP id h4mr1916060ljl.249.1615542808052;
-        Fri, 12 Mar 2021 01:53:28 -0800 (PST)
-Received: from localhost.localdomain ([2a00:801:3c2:e32a:6dd4:2389:9e6d:65b3])
-        by smtp.gmail.com with ESMTPSA id o4sm1625592lfg.253.2021.03.12.01.53.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Mar 2021 01:53:27 -0800 (PST)
-From: "Ming Liu" <liu.ming50@gmail.com>
-To: yocto@yoctoproject.org
-Cc: akuster808@gmail.com,
-	sergio.prado@toradex.com,
-	Ming Liu <liu.ming50@gmail.com>
-Subject: [meta-security][PATCH] ima-evm-keys: add file-checksums to IMA_EVM_X509
-Date: Fri, 12 Mar 2021 10:53:24 +0100
-Message-Id: <20210312095324.31413-1-liu.ming50@gmail.com>
-X-Mailer: git-send-email 2.29.0
+Subject: avahi_0.8 issue with latest version
+To: yocto@lists.yoctoproject.org
+From: "sateesh m" <sateesh0457@gmail.com>
+X-Originating-Location: Bengaluru, Karnataka, IN (14.98.179.254)
+X-Originating-Platform: Linux Chrome 89
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Fri, 12 Mar 2021 02:46:10 -0800
+Message-ID: <3kyW.1615545970502331265.0JV3@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="8ne46M4pujlX5LBErSL7"
+
+--8ne46M4pujlX5LBErSL7
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-From: Ming Liu <liu.ming50@gmail.com>
+Hi Guys,
 
-This ensures when a end user change the IMA_EVM_X509 key file,
-ima-evm-keys recipe will be rebuilt.
+I=C2=A0 have installed avahi_0.8 version using gatesgreath version.=C2=A0 =
+its compiled successfully .but=C2=A0 i am facing issue=C2=A0 with=C2=A0 pid=
+ is remove automatically when i restart my service.
 
-Signed-off-by: Ming Liu <liu.ming50@gmail.com>
----
- meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb | 1 +
- 1 file changed, 1 insertion(+)
+avahi configuration : hostname,domain name, allow ipv4, allow eth0,reflect=
+or =3Dyes i did all this avahi-daemon.conf
+dependencies: gtk+3,gtk,dbus,avahi-daemon,avahi-utils ,libnss-mdns.
+is i miss any configuration or any patchwork work for this packages=C2=A0 =
+please update me i will modify it.
 
-diff --git a/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.=
-0.bb b/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
-index 62685bb..7708aef 100644
---- a/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
-+++ b/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
-@@ -14,3 +14,4 @@ do_install () {
-         lnr ${D}${sysconfdir}/keys/x509_evm.der ${D}${sysconfdir}/keys/x=
-509_ima.der
-     fi
- }
-+do_install[file-checksums] +=3D "${@'${IMA_EVM_X509}:%s' % os.path.exist=
-s('${IMA_EVM_X509}')}"
---=20
-2.29.0
+( avahi-daemon[625]: Process 592 died: No such process; trying to remove P=
+ID file. (/run/avahi-daemon//pid))
 
+0;1;32m*[[0m avahi-daemon.service - Avahi mDNS/DNS-SD Stack
+Loaded: loaded (/lib/systemd/system/avahi-daemon.service; enabled; vendor =
+preset: enabled)
+Active: [[0;1;32mactive (running)[[0m since Fri 2021-03-05 13:12:17 UTC; 7=
+min ago
+TriggeredBy: [[0;1;32m*[[0m avahi-daemon.socket
+Main PID: 625 (avahi-daemon)
+Status: "avahi-daemon 0.8 starting up."
+Tasks: 2 (limit: 9561)
+Memory: 620.0K
+CGroup: /system.slice/avahi-daemon.service
+|-625 avahi-daemon: running [foo.local]
+`-626 avahi-daemon: chroot helper
+
+Mar 05 13:12:17 mysystem systemd[1]: Starting Avahi mDNS/DNS-SD Stack...
+Mar 05 13:12:17 mysystem avahi-daemon[625]: Process 592 died: No such proc=
+ess; trying to remove PID file. (/run/avahi-daemon//pid)
+Mar 05 13:12:17 my system systemd[1]: Started Avahi mDNS/DNS-SD Stack.
+
+root@mysystem:~# pgrep -f -l avahi
+192 systemctl
+200 systemctl
+210 systemctl
+216 journalctl
+503 systemctl
+539 systemctl
+547 systemctl
+559 systemctl
+575 systemctl
+582 systemctl
+594 systemctl
+625 avahi-daemon: running [foo.local]
+626 avahi-daemon: chroot helper
+
+Thanks & Regards,
+Sateesh
+
+--8ne46M4pujlX5LBErSL7
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Guys,<br /><br />&nbsp;I&nbsp; have installed avahi_0.8 version using ga=
+tesgreath version.&nbsp; its compiled successfully .but&nbsp; i am facing i=
+ssue&nbsp; with&nbsp; pid is remove automatically when i restart my service=
+.<br /><br />&nbsp;avahi configuration : hostname,domain name, allow ipv4, =
+allow eth0,reflector =3Dyes i did all this avahi-daemon.conf<br />dependenc=
+ies: gtk+3,gtk,dbus,avahi-daemon,avahi-utils ,libnss-mdns.<br />is i miss a=
+ny configuration or any patchwork work for this packages&nbsp; please updat=
+e me i will modify it.<br /><br /><span style=3D"color: #000000; font-famil=
+y: Calibri, Arial, Helvetica, sans-serif, serif, EmojiFont; font-size: 16px=
+;">( avahi-daemon[625]: Process 592 died: No such process; trying to remove=
+ PID file. (/run/avahi-daemon//pid))</span><br />&nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp;<br /><br /><span style=3D"color: #000000; fon=
+t-family: Calibri, Arial, Helvetica, sans-serif, serif, EmojiFont; font-siz=
+e: 16px;">0;1;32m*[[0m avahi-daemon.service - Avahi mDNS/DNS-SD Stack</span=
+>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">&nbsp; &nbsp; &nbsp;Loaded: loa=
+ded (/lib/systemd/system/avahi-daemon.service; enabled; vendor preset: enab=
+led)</div>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">&nbsp; &nbsp; &nbsp;Active: [[0=
+;1;32mactive (running)[[0m since Fri 2021-03-05 13:12:17 UTC; 7min ago</div=
+>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">TriggeredBy: [[0;1;32m*[[0m ava=
+hi-daemon.socket</div>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">&nbsp; &nbsp;Main PID: 625 (ava=
+hi-daemon)</div>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">&nbsp; &nbsp; &nbsp;Status: "av=
+ahi-daemon 0.8 starting up."</div>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">&nbsp; &nbsp; &nbsp; Tasks: 2 (=
+limit: 9561)</div>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">&nbsp; &nbsp; &nbsp;Memory: 620=
+.0K</div>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">&nbsp; &nbsp; &nbsp;CGroup: /sy=
+stem.slice/avahi-daemon.service</div>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp;|-625 avahi-daemon: running [foo.local]</div>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">&nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp;`-626 avahi-daemon: chroot helper</div>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">&nbsp;</div>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">Mar 05 13:12:17 mysystem system=
+d[1]: Starting Avahi mDNS/DNS-SD Stack...</div>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">Mar 05 13:12:17 mysystem avahi-=
+daemon[625]: Process 592 died: No such process; trying to remove PID file. =
+(/run/avahi-daemon//pid)</div>
+<div style=3D"font-size: 16px; font-family: Calibri, Arial, Helvetica, san=
+s-serif, serif, EmojiFont; color: #000000;">Mar 05 13:12:17 my system syste=
+md[1]: Started Avahi mDNS/DNS-SD Stack.<br /><br /><br /><br class=3D"Apple=
+-interchange-newline" />root@mysystem:~# pgrep -f -l avahi
+<div>192 systemctl</div>
+<div>200 systemctl</div>
+<div>210 systemctl</div>
+<div>216 journalctl</div>
+<div>503 systemctl</div>
+<div>539 systemctl</div>
+<div>547 systemctl</div>
+<div>559 systemctl</div>
+<div>575 systemctl</div>
+<div>582 systemctl</div>
+<div>594 systemctl</div>
+<div>625 avahi-daemon: running [foo.local]</div>
+<div>626 avahi-daemon: chroot helper<br /><br /><br />Thanks &amp; Regards=
+,<br />Sateesh</div>
+</div>
+
+--8ne46M4pujlX5LBErSL7--
