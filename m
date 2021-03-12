@@ -1,71 +1,88 @@
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
- by mx.groups.io with SMTP id smtpd.web08.5305.1615535669757273425
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+ by mx.groups.io with SMTP id smtpd.web09.5956.1615541582145486067
  for <yocto@lists.yoctoproject.org>;
- Thu, 11 Mar 2021 23:54:29 -0800
+ Fri, 12 Mar 2021 01:33:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=qT8IpOeC;
- spf=pass (domain: gmail.com, ip: 209.85.166.49, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-io1-f49.google.com with SMTP id y20so6446187iot.4
-        for <yocto@lists.yoctoproject.org>; Thu, 11 Mar 2021 23:54:29 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=hoWj6ro/;
+ spf=pass (domain: gmail.com, ip: 209.85.218.41, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-ej1-f41.google.com with SMTP id ox4so36454317ejb.11
+        for <yocto@lists.yoctoproject.org>; Fri, 12 Mar 2021 01:33:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VVdKOWE7IO7kS91frOkq8Hjl535GB2O6If69gUm6U1Y=;
-        b=qT8IpOeC9lvi98d/yvfd34S58q4n+q9o5AB/O8nGFZJ/HxoOFAMhd4B6uO3iBNhoLf
-         PHySSSzP97dv5rTOPsi5lr+fXsDBEiDyVvblp6qlB5n+EV/mZ9yZdo9BC9aMs+LiELpw
-         okhZmoCMe2RgMdERCrLEZ+KSmLjzDRpheKYMziJuAGpBN5UNZuzN0K8y5DQNiPOwqamK
-         h+jPCw1t/rWmj2khgkvoW7aVUmPlGb25UtK0Uzbu26KvoZ1olKt80xJVYdNKiB3TETEC
-         ENiE2WXJ6ML9a7Zz4iCXF7uIA7OGxK4ScZ6DYsHH9+fLg/jShMR8Hseam4WX+cvfWfoX
-         7Nvg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=psdAcYA4yMsqtksgayTV3Gw9xYF3lsJ41cjdsbzpfh0=;
+        b=hoWj6ro/lq+Q6QnZrMCpiBndpxlU9a5LQ0mLGHvvZRakpsfIxmZi9NLKuJZqNOqHJp
+         teORi0SV+ZJ8a4gjj+iRlhX9nVBDP9jfWx6Er2d/e8K7IqhTSAE/RdffmWMG/lgzgOXu
+         tdY2iMXGVX+/0TiNQw5mQoJaoPLcwhj5+/NtOzPqD710OZs9Ae37jQ19gZeIIqfK6cFw
+         tnKDMWZ+94/ligDA0jWa/xG500cjjFrV1DBz90ELWY2K+7GL1pIKGUzl/wQO/3NPGFno
+         7uWM8k1PD0BuUHWeanGUsIv0/2BOAETOjrjy2z89C9F6RrquZsACbJ1rH4/ogZ784EXL
+         qimw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VVdKOWE7IO7kS91frOkq8Hjl535GB2O6If69gUm6U1Y=;
-        b=B5uhJZR5VaAqbBR3j+qbunLCjfNfbaoGCtMENitOj9vYBHGXbwtXhE+aKH1tXfw0bd
-         mgs2Ci+D8VpqAehbBsu17pIjO4KxnFhmN0tOFCm7qZ4XhNN2gAWvF+nDgrpKsXFjCgkW
-         XPyqTgEWgKy+SqhdbCt1zq4dXKchBkU8IZsNK0yWFsD4DIfaLF1jvMMvyLENeEOZXsXI
-         sFIToejJczoQbACbGfL1Aa1zoiJb2dbaXSSrebgwI4OCbstdv/lAeDcL1NgwKPJ9Ty11
-         7DYo48+5Pi5fQqlrypvPf3sTutenws3Y00JXOFB3mu9i4EYIHJpm3bXtOevYgFxKRzEz
-         8/9g==
-X-Gm-Message-State: AOAM531RMzYc7Vhd+r+UkIm//IgDp4XEwyrVKo04HoTQxPnSHSzt8E95
-	frpYF6Ymx5D6YLzwbsebtJg41GEhFFDp7XdwEWk=
-X-Google-Smtp-Source: ABdhPJw+8+GdjL9WrxChg4zse9KU+AX/d9qHSi4UxBMppzqnHGVIR0dMEXaKrybZeyKdrkinj9gqO75kwDX0NR5pWko=
-X-Received: by 2002:a05:6638:d4e:: with SMTP id d14mr7370045jak.103.1615535668850;
- Thu, 11 Mar 2021 23:54:28 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=psdAcYA4yMsqtksgayTV3Gw9xYF3lsJ41cjdsbzpfh0=;
+        b=Qfrqt6GpSDL1yLtwpNaWSekhrjuq9UHYQvGbFWGJtELPiMAaxYFKahKPwOxjsBTfJ0
+         syIO4hj2QGU5C1Jo8kBSDW8YQEmNFoH5LOo1zoPURA3uTTXvf54Oh35LZOazzkxtq02J
+         BoVXHX7+bgC/Vru5O+WJl8dnorcGjuWb4MkejUOlKaUvAdrBHWcX30vtBua2zkxpX587
+         cTw+BUJzoeXTuBcbkdpCM3tnKPw5m3L66jItRH4c4M7i7hn7Te0zJX6+61I3sTTcBIls
+         0eej7yVTJm7XmKRDxl7FNkUiMrZV59ApHfQNA+CR5lqqs1CwqFNafv6lVisi0H2hcLNC
+         G8NA==
+X-Gm-Message-State: AOAM533OhnWW4hmP8EEvw+7Flu3PmbMKdGGvuS9Ivj+juU262uCxy9Hz
+	r7p0olmCGDdJZ0hEUHJXLiOFi1EgXVf7xg==
+X-Google-Smtp-Source: ABdhPJxF/Enb2xVEzo3524WWjVlf5UDeLrigqA+UjvXXOQjotKukB7mHliIOoFBwwMO/0Sq7wWcHXg==
+X-Received: by 2002:a17:906:3488:: with SMTP id g8mr7377841ejb.282.1615541580579;
+        Fri, 12 Mar 2021 01:33:00 -0800 (PST)
+Return-Path: <alex.kanavin@gmail.com>
+Received: from localhost.localdomain ([2a02:2454:2a0:cb00:eb83:2e01:3dda:5d46])
+        by smtp.gmail.com with ESMTPSA id h2sm2532708ejk.32.2021.03.12.01.32.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Mar 2021 01:33:00 -0800 (PST)
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>
+Subject: [RFC PATCH 1/6] config.json: add a systemd no-x11 build
+Date: Fri, 12 Mar 2021 10:32:35 +0100
+Message-Id: <20210312093240.319125-1-alex.kanavin@gmail.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <omIF.1615528643524234946.wLUf@lists.yoctoproject.org>
-In-Reply-To: <omIF.1615528643524234946.wLUf@lists.yoctoproject.org>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Fri, 12 Mar 2021 08:54:17 +0100
-Message-ID: <CAGAf8LzznXnOz4_coyAvCFx3cYX=L9cq0T9O1UfbctrV27f-YQ@mail.gmail.com>
-Subject: Re: [yocto] ttyS0 is not getting generated in my Raspberry-CM3 module.
-To: prashantsingh@dialtronics.com
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-> ...I'm not getting /dev/ttyS0 even after giving
-> enable_uart=1 in config.txt file...
+Particularly the weston image has now regressed twice under systemd,
+so I think there should be a quality gate for it.
 
-And what U R getting exactly? ls -al /dev | grep ttyS
-And, also, could you do it for: ls -al /dev | grep ttyUSB (with
-serial/USB cable plugged-in)?
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+---
+ config.json | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
-Zee
-_______
+diff --git a/config.json b/config.json
+index 8025166..d6e7df8 100644
+--- a/config.json
++++ b/config.json
+@@ -715,8 +715,19 @@
+             "SANITYTARGETS" : "core-image-full-cmdline:do_testimage core-image-weston:do_testimage",
+             "extravars" : [
+                 "DISTRO_FEATURES_remove = 'x11'"
+-            ]
+-
++            ],
++            "step1" : {
++                "shortname" : "Sysvinit weston"
++            },
++            "step2" : {
++                "shortname" : "Systemd weston",
++                "extravars" : [
++                     "TEST_SUITES_append = ' systemd'",
++                     "DISTRO_FEATURES_append = ' pam systemd'",
++                     "VIRTUAL-RUNTIME_init_manager = 'systemd'",
++                     "DISTRO_FEATURES_BACKFILL_CONSIDERED = 'sysvinit'"
++                ]
++            }
+         },
+         "musl-qemux86" : {
+             "MACHINE" : "qemux86",
+-- 
+2.29.2
 
-On Fri, Mar 12, 2021 at 6:57 AM <prashantsingh@dialtronics.com> wrote:
->
-> Dear Team,
->
-> I'm building linux-raspberry, in this I'm not getting getting /dev/ttyS0 even after giving enable_uart=1 in config.txt file.
-> I'm building two different kernels i.e. 4.14 and 5.4 using poky-dunell and poky-sumo for each different kernel. In both of them I'm not getting ttyS0 terminal in /dev directory.
->
-> I need to use this terminal for console purpose.
->
-> Please assist me with this issue.
->
-> Thanks and Regards.
-> 
->
