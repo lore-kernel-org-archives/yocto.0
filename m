@@ -1,88 +1,148 @@
 Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
- by mx.groups.io with SMTP id smtpd.web09.5956.1615541582145486067
+ by mx.groups.io with SMTP id smtpd.web12.6018.1615541582631137078
  for <yocto@lists.yoctoproject.org>;
  Fri, 12 Mar 2021 01:33:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=hoWj6ro/;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=QvvAXT0u;
  spf=pass (domain: gmail.com, ip: 209.85.218.41, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ej1-f41.google.com with SMTP id ox4so36454317ejb.11
-        for <yocto@lists.yoctoproject.org>; Fri, 12 Mar 2021 01:33:01 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id jt13so52134990ejb.0
+        for <yocto@lists.yoctoproject.org>; Fri, 12 Mar 2021 01:33:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=psdAcYA4yMsqtksgayTV3Gw9xYF3lsJ41cjdsbzpfh0=;
-        b=hoWj6ro/lq+Q6QnZrMCpiBndpxlU9a5LQ0mLGHvvZRakpsfIxmZi9NLKuJZqNOqHJp
-         teORi0SV+ZJ8a4gjj+iRlhX9nVBDP9jfWx6Er2d/e8K7IqhTSAE/RdffmWMG/lgzgOXu
-         tdY2iMXGVX+/0TiNQw5mQoJaoPLcwhj5+/NtOzPqD710OZs9Ae37jQ19gZeIIqfK6cFw
-         tnKDMWZ+94/ligDA0jWa/xG500cjjFrV1DBz90ELWY2K+7GL1pIKGUzl/wQO/3NPGFno
-         7uWM8k1PD0BuUHWeanGUsIv0/2BOAETOjrjy2z89C9F6RrquZsACbJ1rH4/ogZ784EXL
-         qimw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=xEbPCwXV7ZcMystzL7EH4U3O5z48mqjJS2MlnzfkFQk=;
+        b=QvvAXT0ut4apaqugisCKbVfl9rdEi2qkJt7DsqXao0gqETnSgqQgvIJoFVSvXG8DVv
+         BPGmJL/zUsFCOt3QPQyP2lcsUgH4AYuxJGKoBzelOjMvzGNj3oBbieW0cBOzSa7JpSmM
+         HORMxACvAjGPj1zpKFNl/wo/PiYdGZKuH/0vG6vbW9qLd/Cq6GkR735J8koGX6j737NV
+         Ev0UiGtUySdtFSnJTUuW13Bmf+vF7XZl9Ibhw03erxAkd/j+4Pwqmdgh5MKH6scNBBdt
+         XGr4E8lKF//qFwxQ2eQJouHahIqU/6GPAt3D8q9oQcf98FcblQbZDjFJnTczRd01c21E
+         MybA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=psdAcYA4yMsqtksgayTV3Gw9xYF3lsJ41cjdsbzpfh0=;
-        b=Qfrqt6GpSDL1yLtwpNaWSekhrjuq9UHYQvGbFWGJtELPiMAaxYFKahKPwOxjsBTfJ0
-         syIO4hj2QGU5C1Jo8kBSDW8YQEmNFoH5LOo1zoPURA3uTTXvf54Oh35LZOazzkxtq02J
-         BoVXHX7+bgC/Vru5O+WJl8dnorcGjuWb4MkejUOlKaUvAdrBHWcX30vtBua2zkxpX587
-         cTw+BUJzoeXTuBcbkdpCM3tnKPw5m3L66jItRH4c4M7i7hn7Te0zJX6+61I3sTTcBIls
-         0eej7yVTJm7XmKRDxl7FNkUiMrZV59ApHfQNA+CR5lqqs1CwqFNafv6lVisi0H2hcLNC
-         G8NA==
-X-Gm-Message-State: AOAM533OhnWW4hmP8EEvw+7Flu3PmbMKdGGvuS9Ivj+juU262uCxy9Hz
-	r7p0olmCGDdJZ0hEUHJXLiOFi1EgXVf7xg==
-X-Google-Smtp-Source: ABdhPJxF/Enb2xVEzo3524WWjVlf5UDeLrigqA+UjvXXOQjotKukB7mHliIOoFBwwMO/0Sq7wWcHXg==
-X-Received: by 2002:a17:906:3488:: with SMTP id g8mr7377841ejb.282.1615541580579;
-        Fri, 12 Mar 2021 01:33:00 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=xEbPCwXV7ZcMystzL7EH4U3O5z48mqjJS2MlnzfkFQk=;
+        b=V3+TN6Nj3Xpe7ZEu5tknEh3plRktS5ePWQDAzTcdbCPzdhmbirgsyaFpyRo3RsB5yk
+         2fipKnCmSsvsC0bU6ZH+5UAsAOjZzpp/6ZLbKp6AZsEAqy8+bHEdwE7K+f5p+kFIzx4p
+         1qIfQ3uXPdVitwj4rhsJ9r8CjNcxQ1ukV1UyMN8cj2jsujL97PQB1scGe0CveccjuxVH
+         LRnFsnDgUEYRQI9P7JYyFJQJaO5dgh8vx3cZfTTBhPbLrd6BEouzj78Kj+6+WW0MSDoK
+         Q5xcz+6cz8miPj9xgiFXarlv7/93XYlbajoBeJ+sXBlTZmn+yub/FlnMWDXkba67iqxw
+         AIDw==
+X-Gm-Message-State: AOAM530Z32qyv3k2mEJiciIemjjQz5nDMome6nlwTxu6YhKn6+Bxfb0x
+	RVo7uq4YC6QlVi+iDwjQfk0Z2mKcT/jgkA==
+X-Google-Smtp-Source: ABdhPJwyjOpKfDHwghuOsdgxiX1qTJfs9CX7YaRWznyI8cUpWCt+7x8unLAFkMufbxf6BTf1rdzhrw==
+X-Received: by 2002:a17:906:2e45:: with SMTP id r5mr7320748eji.380.1615541581303;
+        Fri, 12 Mar 2021 01:33:01 -0800 (PST)
 Return-Path: <alex.kanavin@gmail.com>
 Received: from localhost.localdomain ([2a02:2454:2a0:cb00:eb83:2e01:3dda:5d46])
-        by smtp.gmail.com with ESMTPSA id h2sm2532708ejk.32.2021.03.12.01.32.59
+        by smtp.gmail.com with ESMTPSA id h2sm2532708ejk.32.2021.03.12.01.33.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 12 Mar 2021 01:33:00 -0800 (PST)
 From: "Alexander Kanavin" <alex.kanavin@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-Subject: [RFC PATCH 1/6] config.json: add a systemd no-x11 build
-Date: Fri, 12 Mar 2021 10:32:35 +0100
-Message-Id: <20210312093240.319125-1-alex.kanavin@gmail.com>
+Subject: [RFC PATCH 2/6] config.json: drop core-image-sato-dev from builds
+Date: Fri, 12 Mar 2021 10:32:36 +0100
+Message-Id: <20210312093240.319125-2-alex.kanavin@gmail.com>
 X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210312093240.319125-1-alex.kanavin@gmail.com>
+References: <20210312093240.319125-1-alex.kanavin@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Particularly the weston image has now regressed twice under systemd,
-so I think there should be a quality gate for it.
+core-image-sato-sdk is a superset, and a much more useful one.
 
 Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
 ---
- config.json | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+ config.json | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
 diff --git a/config.json b/config.json
-index 8025166..d6e7df8 100644
+index d6e7df8..66b76ed 100644
 --- a/config.json
 +++ b/config.json
-@@ -715,8 +715,19 @@
-             "SANITYTARGETS" : "core-image-full-cmdline:do_testimage core-image-weston:do_testimage",
-             "extravars" : [
-                 "DISTRO_FEATURES_remove = 'x11'"
--            ]
--
-+            ],
-+            "step1" : {
-+                "shortname" : "Sysvinit weston"
-+            },
-+            "step2" : {
-+                "shortname" : "Systemd weston",
-+                "extravars" : [
-+                     "TEST_SUITES_append = ' systemd'",
-+                     "DISTRO_FEATURES_append = ' pam systemd'",
-+                     "VIRTUAL-RUNTIME_init_manager = 'systemd'",
-+                     "DISTRO_FEATURES_BACKFILL_CONSIDERED = 'sysvinit'"
-+                ]
-+            }
+@@ -62,7 +62,7 @@
+             "BUILDINFO" : true,
+             "BUILDHISTORY" : true,
+             "step1" : {
+-                "BBTARGETS" : "core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato:do_populate_sdk",
++                "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato:do_populate_sdk",
+                 "SANITYTARGETS" : "core-image-minimal:do_testimage core-image-sato:do_testimage core-image-sato-sdk:do_testimage core-image-sato:do_testsdk"
+             },
+             "step2" : {
+@@ -117,7 +117,7 @@
+         "arch-hw" : {
+             "BUILDINFO" : true,
+             "step1" : {
+-                "BBTARGETS" : "core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato-ptest core-image-sato:do_populate_sdk",
++                "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato-ptest core-image-sato:do_populate_sdk",
+                 "SANITYTARGETS" : "core-image-sato:do_testsdk"
+             }
          },
-         "musl-qemux86" : {
+@@ -246,7 +246,7 @@
+             "BUILDINFO" : true,
+             "step1" : {
+                 "SDKMACHINE" : "aarch64",
+-                "BBTARGETS" : "core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato:do_populate_sdk core-image-minimal:do_populate_sdk_ext core-image-sato:do_populate_sdk_ext",
++                "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato:do_populate_sdk core-image-minimal:do_populate_sdk_ext core-image-sato:do_populate_sdk_ext",
+                 "SANITYTARGETS" : "core-image-minimal:do_testimage core-image-sato:do_testimage core-image-sato-sdk:do_testimage core-image-sato:do_testsdk  core-image-minimal:do_testsdkext core-image-sato:do_testsdkext"
+             }
+         },
+@@ -275,7 +275,7 @@
+             "BUILDINFO" : true,
+             "step1" : {
+                 "SDKMACHINE" : "aarch64",
+-                "BBTARGETS" : "core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato:do_populate_sdk core-image-minimal:do_populate_sdk_ext core-image-sato:do_populate_sdk_ext",
++                "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato:do_populate_sdk core-image-minimal:do_populate_sdk_ext core-image-sato:do_populate_sdk_ext",
+                 "SANITYTARGETS" : "core-image-minimal:do_testimage core-image-sato:do_testimage core-image-sato-sdk:do_testimage core-image-sato:do_testsdk  core-image-minimal:do_testsdkext core-image-sato:do_testsdkext"
+             }
+         },
+@@ -314,12 +314,12 @@
+             "SSTATEDIR" : ["SSTATE_DIR ?= '${HELPERBUILDDIR}/sstate'"],
+             "MACHINE" : "qemuarm64",
+              "step1" : {
+-                 "BBTARGETS" : "core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato:do_populate_sdk",
++                 "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato:do_populate_sdk",
+                  "SANITYTARGETS" : "core-image-minimal:do_testimage core-image-sato:do_testimage core-image-sato-sdk:do_testimage core-image-sato:do_testsdk"
+              },
+             "step2" : {
+                 "MACHINE" : "qemux86-64",
+-                "BBTARGETS" : "core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato-sdk-ptest core-image-sato:do_populate_sdk",
++                "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato-sdk-ptest core-image-sato:do_populate_sdk",
+                 "SANITYTARGETS" : "core-image-sato:do_testsdk"
+ 
+             },
+@@ -584,25 +584,25 @@
+         "pkgman-rpm-non-rpm" : {
              "MACHINE" : "qemux86",
+             "PACKAGE_CLASSES" : "package_rpm",
+-            "BBTARGETS" : "core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev",
++            "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev",
+             "SANITYTARGETS" : "core-image-minimal:do_testimage core-image-sato:do_testimage core-image-sato-sdk:do_testimage"
+         },
+         "pkgman-deb-non-deb" : {
+             "MACHINE" : "qemux86",
+             "PACKAGE_CLASSES" : "package_deb",
+-            "BBTARGETS" : "core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato:do_populate_sdk",
++            "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato:do_populate_sdk",
+             "SANITYTARGETS" : "core-image-minimal:do_testimage core-image-sato:do_testimage core-image-sato-sdk:do_testimage core-image-sato:do_testsdk"
+         },
+         "pkgman-non-rpm" : {
+             "MACHINE" : "qemux86",
+             "step1" : {
+                 "PACKAGE_CLASSES" : "package_ipk",
+-                "BBTARGETS" : "core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev",
++                "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev",
+                 "SANITYTARGETS" : "core-image-minimal:do_testimage core-image-sato:do_testimage core-image-sato-sdk:do_testimage"
+             },
+             "step2" : {
+                 "PACKAGE_CLASSES" : "package_deb",
+-                "BBTARGETS" : "core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev",
++                "BBTARGETS" : "core-image-sato core-image-sato-sdk core-image-minimal core-image-minimal-dev",
+                 "SANITYTARGETS" : "core-image-minimal:do_testimage core-image-sato:do_testimage core-image-sato-sdk:do_testimage"
+             }
+         },
 -- 
 2.29.2
 
