@@ -1,168 +1,190 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.4362.1615524600803350093
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (NAM10-DM6-obe.outbound.protection.outlook.com [40.107.93.76])
+ by mx.groups.io with SMTP id smtpd.web08.4490.1615526844922442082
  for <yocto@lists.yoctoproject.org>;
- Thu, 11 Mar 2021 20:50:00 -0800
+ Thu, 11 Mar 2021 21:27:25 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=K4hcCfOR;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: akuster808@gmail.com)
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 0166F38C05B5
-	for <yocto@yoctoproject.org>; Fri, 12 Mar 2021 04:49:58 +0000 (UTC)
-Received: by mail-pj1-f42.google.com with SMTP id kr3-20020a17090b4903b02900c096fc01deso10467419pjb.4
-        for <yocto@yoctoproject.org>; Thu, 11 Mar 2021 20:49:58 -0800 (PST)
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=DOaDJ2kP;
+ spf=pass (domain: windriver.com, ip: 40.107.93.76, mailfrom: qi.chen@windriver.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ANJ2MHzWZ+9mpj3jo5y3LBUgItGtUAaaZ7kTcVj9NGEnT6zspsgXLKxSaz+x/xI5q+5BeBYp2oOH6IzbjyIydoUZG7KOPrVfDvvoSwmRfTiYQksJcRN4nhQg5Y1D2OXO1kHCMMsc8F0quRJ6bODL+75VJ+X/4IjCKbgiNIA6hgTDe5v+umymlD3SOdg0oA554AqiCFV0xflCJ/59pV5QX5eE4S6Urr7BHVBRuvmZdK9fyRCn729+Xba4QEnNEEhNwLOsLAM+UcmCcmwuiFNvYChWJ9TVBv3lflxnudjNjBuboLxt9pnSWurzEohPGa4k9cUyTHOV+vPaelBi5KHiYw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hMrdUHvzAcIBQSMUqnuZ/CdRWMYlVnbEbkskpbWcQDQ=;
+ b=Y8RAO/kI8zVYyFBw9WKiylkp1wX/axWAZtKbgqQ+WsBLRI0CPlrMsZyySFlVpeW6Li2e3bMgkppSRB3qcgnVHpGfWYVU9NVYeMFEx6LAAvhvjMU0LrFSq8sQb2uAKXwaBh7BTlpzRyfLUgk98/FZ4vMKkKn3GLW6wbSXhBWwZk36pAgnd7M7FB1DLYbSXHOqfk3E8KICB8DsCk6dg/ETfGPVx03/JYchVQwL0k3TkZZq7lSvzUIomNHYSG1YCuBDBNXsb5K9G13tlclol0sHf9F+xfZ2N7eM+BAM06OxQJ7o5X9ZMjs0fnx2uLlHrzMXwVCDMvGlXjreZvLAasYoFw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=UDJxLBmzHe3wuiTrabFETYnUlf9JuO40oao3W5F9zTw=;
-        b=K4hcCfORQ46VmI/YOTLasAjBzP8vnw1rXq++N9OLgbSSDNKcUzlUDvdgnP88n/jOdP
-         LIdMsdXTK3a1UoEjEBDEZx9fd6v4GItd5J9LhGMTrHVVegSTUj0qCuIpQBEFEMGZTC9Q
-         A4IbFFkJt4CqR6ZePYz5WU28RRRF9oGVmsPdKEXHnN8DKeRW1KiTEAIjeHpvOMFbDVBd
-         0SA/YwhmoZnrrJMSoR8Me5kyAG4l151chUWv5ISNl2gh2rFV6exNBHHElYhKVm5MK+Ca
-         L+98wkM/RjSvi/FbnTJptBjezbI39cz2iJQK7M9xeRTGpCTyYfTMDZU3gvQtcTrwIcea
-         NcCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-transfer-encoding:content-language;
-        bh=UDJxLBmzHe3wuiTrabFETYnUlf9JuO40oao3W5F9zTw=;
-        b=OLyqZeizvnblZK+6dNh66Ai8Rz6jI5wYfnL3VKYZqH20p3RPVRCG0Nk91BHracRQeD
-         wPXQ9iNNXhvjkKP4LN5n7tBTVEwsiRJSuxEstexCgE2HkUCVDXwjhRhYSzBbVTGVsF9H
-         UeqEsAdq+Er0elgZGlCn4LsyLwKdbbP4RT2XBekz3nfn5yS1YmFxoUPSBsvEOFJ+2EuJ
-         l/ltkipq56OuLmuHwn2RFwaMqfXcTT8/l3u9V58Rxzhftl+EjDQJKGO2Os0e1zQ+wf8J
-         Nb7jXLLgU1tx7dMG+8afmrBQT+euNzJuCv3HGW2iMlRhn1W1GI2eUjWn8ABdNnLY4Y9W
-         z10w==
-X-Gm-Message-State: AOAM531e06YzATGY17ThR0/b1InP9v5PrauQw4cq5k9zvpJtRMzdkqAr
-	0r6Rl9BXOQ+vtkGjSOePhOU=
-X-Google-Smtp-Source: ABdhPJzIRSFxX26dYWy0WHv/7nnlhPtTUAufWx+mWfcVWt53aHxG9oW3Pf5fKpYRTXk80czR33Ea8w==
-X-Received: by 2002:a17:90b:1090:: with SMTP id gj16mr12080285pjb.57.1615524596426;
-        Thu, 11 Mar 2021 20:49:56 -0800 (PST)
-Received: from ?IPv6:2601:202:4180:a5c0:f56b:e4ef:635c:c0de? ([2601:202:4180:a5c0:f56b:e4ef:635c:c0de])
-        by smtp.gmail.com with ESMTPSA id r23sm701426pje.38.2021.03.11.20.49.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Mar 2021 20:49:56 -0800 (PST)
-Subject: Re: [meta-security][dunfell][PATCH 0/9] Some IMA/EVM fixes to dunfell branch
-To: Ming Liu <liu.ming50@gmail.com>
-Cc: yocto@yoctoproject.org, Sergio Prado <sergio.prado@toradex.com>,
- Ming Liu <ming.liu@toradex.com>
-References: <20210302145745.1891826-1-liu.ming50@gmail.com>
- <18d24d31-6910-1da2-77f6-3b352302652c@gmail.com>
- <CALatG=6wGCkUKr_0EeLo01SC_XSKyjUb8B7a+Dpf8bkNNEzwFg@mail.gmail.com>
-From: "akuster" <akuster808@gmail.com>
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <5b471604-c9b0-ce28-2113-5c605f9f121b@gmail.com>
-Date: Thu, 11 Mar 2021 20:49:55 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hMrdUHvzAcIBQSMUqnuZ/CdRWMYlVnbEbkskpbWcQDQ=;
+ b=DOaDJ2kPRDiFLmwAX/5nSygS0M6W/SYldWngNsjMO8CVXF69La89pDJifVtQuWrWzRvht2AzwnsKKy9Iv62+dNeo31RpgpHv7hovBumr/fqqY60wHunxKO21OwEN22fOpJrk6dqylxF+EbttKHCOyzSv+keOitZtzZY6w9wOX0I=
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from BYAPR11MB3480.namprd11.prod.outlook.com (2603:10b6:a03:79::27)
+ by BYAPR11MB2534.namprd11.prod.outlook.com (2603:10b6:a02:c2::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.28; Fri, 12 Mar
+ 2021 05:27:21 +0000
+Received: from BYAPR11MB3480.namprd11.prod.outlook.com
+ ([fe80::d9b:3f7c:136d:e60]) by BYAPR11MB3480.namprd11.prod.outlook.com
+ ([fe80::d9b:3f7c:136d:e60%7]) with mapi id 15.20.3890.042; Fri, 12 Mar 2021
+ 05:27:21 +0000
+Subject: Re: [yocto] Assign IP address at boot time
+To: jchludzinski@vivaldi.net, Rudolf J Streif <rudolf.streif@ibeeto.com>
+References: <5f0f65cc3e08a66871af9e3012c4f642@vivaldi.net>
+ <5bce46d6-e995-ea21-9162-5d15b95afa29@ibeeto.com>
+ <8878b4515215b5d3ed686be6cb8a7122@vivaldi.net>
+ <3421258b-6b1e-3dd6-2d75-e66b0bb989c3@ibeeto.com>
+ <7d3df13429d227106286f966cdcbd501@vivaldi.net>
+ <e7f9f7da-b919-1b65-90f1-e8d892acd2ce@ibeeto.com>
+ <0549f39814132d3d025fa22634c88f0e@vivaldi.net>
+ <06146634-49f5-d665-6e2b-7169564748dc@ibeeto.com>
+ <dde465b36ff3aa2d60c9844ca799bbe1@vivaldi.net>
+Cc: Yocto <yocto@lists.yoctoproject.org>
+From: "Chen Qi" <Qi.Chen@windriver.com>
+Message-ID: <dfab4b89-ad14-6bf2-1c11-84d3320dc2d2@windriver.com>
+Date: Fri, 12 Mar 2021 13:37:29 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
+In-Reply-To: <dde465b36ff3aa2d60c9844ca799bbe1@vivaldi.net>
+X-Originating-IP: [60.247.85.82]
+X-ClientProxiedBy: HK0PR01CA0051.apcprd01.prod.exchangelabs.com
+ (2603:1096:203:a6::15) To BYAPR11MB3480.namprd11.prod.outlook.com
+ (2603:10b6:a03:79::27)
+Return-Path: Qi.Chen@windriver.com
 MIME-Version: 1.0
-In-Reply-To: <CALatG=6wGCkUKr_0EeLo01SC_XSKyjUb8B7a+Dpf8bkNNEzwFg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [128.224.162.161] (60.247.85.82) by HK0PR01CA0051.apcprd01.prod.exchangelabs.com (2603:1096:203:a6::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.20.3912.17 via Frontend Transport; Fri, 12 Mar 2021 05:27:19 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ed63aec9-dae0-449a-2e0a-08d8e51782a2
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2534:
+X-Microsoft-Antispam-PRVS: 
+	<BYAPR11MB25349D706A42FE8BE293AC57ED6F9@BYAPR11MB2534.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1824;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	g9HM2NAzXT977BVc+x80ZOnandyiSoKWU1oS01bm1xrOnFZLhhQAa3D6/B3HBRYHj870L27e0gAyHjRjx7j7zNUp3RVK1Vde06CQnOKvdCsK5Z7+a4rWHvSZGLRfljmK2zpn75FNara0n0R7ZAZVW4ABQuhn+CDqdfHvoo4DRDWxvO4AQNIwDcA/9qrLarM/LmI48OlrIxDBu/srMC2CU9tPzQngg3tPbhtUU9hNfM8y0u09EqvWHIhXjkbQieoSWLnqKck4vTzQJjDkTV+5RLYVGuS6ZYKTK0qzTBEqFk/ldVuZCQjVZEk1nhNOWXm0jloiI+svi/ZKm083oibu9Vo0EtVgK5HhU89nQCjHkg8ltFArN59D9oI0f2z/aBpBE4LJ4MDbHVFztNNXhwD4xM24XodiGER7ZcNPDSDbalRk69ClE0O5BDYUXsac69gr0zqp3jYrKgK1Baw8WPfGPbkiyAR22pIVOvm2OzThJi0LrU3WWnqnirzhRX7L6+vZXnbUXWeLeCXRP20rBR6/ZEkA/hCAVeO95hpzN/d6IzIMzFwKs4pxaTCcTIgd+GQfE/Jy913l3mZ5aw3itwgvLckAM92NHH+PjRbsK5n7zip0C9kkDrZ74eQ65H2Dl0BSgBTpgJr1Tc+DbaYjMFKdXbm87CJ5DVnkSxehM00decE=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3480.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(346002)(136003)(376002)(366004)(396003)(31686004)(6706004)(6916009)(26005)(316002)(66476007)(6486002)(2906002)(53546011)(478600001)(33964004)(86362001)(6666004)(166002)(8676002)(5660300002)(2616005)(956004)(83380400001)(4326008)(52116002)(16526019)(31696002)(8936002)(16576012)(36756003)(966005)(66946007)(66556008)(186003)(78286007)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	=?utf-8?B?a0VJSWNiSVNwb0NzMDVDdFVBZ2Z6LzA1OGQvRnpPdjZLQVZSaFhPbnB6Y0NH?=
+ =?utf-8?B?NVdwNGY4K2hCOFJNSEVvUllyV2QyL1ZiWkFlQnpIOFZsZTFJdFYyWDJNZEJ4?=
+ =?utf-8?B?NVJrcE5IM01QZ0lIQm9PZGUrOW95bzlqWVdWL3R1Z0JwSVVkb2hKNGtqS3Jq?=
+ =?utf-8?B?WVFYZ2VITVZrVUpiUVNWSDJuamZ6Ymk3VFVNdTY2WUNIVWJvcURNOEx1YW0w?=
+ =?utf-8?B?NHpkT2tCYzZzWW9VY1oxanhtaXRRejh0b1VyRTBVRHlvbGZLVlVReHdRSkxI?=
+ =?utf-8?B?M2VZR1lGT2RaM1Y0N0ZjWitrSlNtUTl5Zm5ZdjVWYml2WGhndGx2MEI2ejVW?=
+ =?utf-8?B?Sm0wd2hiRjJTUm9weGUvY05YYVRabUVXdmhMTW5rZGNGMDFLUXNzZ0RONEFX?=
+ =?utf-8?B?ME9aNnAyWkhyWXVrbXZ3ZHFNOFBIeXpnRmE5bjFUUWNhWnhJN3FMbURDQ0JK?=
+ =?utf-8?B?MG1RTVFOK0ZSSENqZThwZ1k0eG0reGFIZURXSTFzdytPOXJkdzZNa0ZneFdX?=
+ =?utf-8?B?MlZTcjRBa1FxRXRJQWdtTWNxL0hUWTJKZ0ZqelBhTlA3TjFJdEEvUnBGNXgz?=
+ =?utf-8?B?bUVILytNL2ZsZW9MUU56YTJiZW5QRVNyckRFR05NYmxHNGZrTEJrREpCNnhJ?=
+ =?utf-8?B?UExiNUhaQThTUDhIck8wS0hJZElTaEFhTDRCOG5LdzJLYjJzOGxIaysrdUsw?=
+ =?utf-8?B?Wnk0bnFwVWsxNWxDRkhadHNrRm9HNGtXT2pHeXFFL2VuVVU0dmVXTWwreXYz?=
+ =?utf-8?B?M2doSFkxUktCREppQ2xRR2t2WUxGanJMWFA1bm5oUUV3OUFrT1M4OFd0ZXVD?=
+ =?utf-8?B?Vk1tMjhBajE3WTdGZ1JPdEtVSndMMXNNZDE1dUt5OVVFU0UvZ2RRL0ZZQlk4?=
+ =?utf-8?B?OVRXRmZqM1RQNGliZndQVDdNcWxnQWI2R081bm1VemlHN0dwV2xHWExFdHMy?=
+ =?utf-8?B?RXYzVVprM0FGd0VxOWQyMHpIT2s1dkJOWVBBRUptWHIzYUtPOFV1dFRPQTdk?=
+ =?utf-8?B?RlZWQ1R0THBpYTZnbzZFMUx2YmFzV25zdTVDZmNZZGkwRDhZM1czczhPbzNP?=
+ =?utf-8?B?T3p0T2daWmZCVXZVQ083bHdRL2tmOGh1Zm9JYk5VQWxsWmNTT3V5cHdHWjgw?=
+ =?utf-8?B?blRHUUo3dkdSM0pzN1JQS21KZWhxRkwrblk1TGZQWlNLZE9DY0tRNmFudWhj?=
+ =?utf-8?B?VnUxY2d1L0tKQXB6RlZLVmJaeGxtdkVZZnRzaG5jS2g3RkZ4Sk8yQXNhUFlC?=
+ =?utf-8?B?WTFjNUJMUjdmSnJXL29OZ1FCWmRRWmtuUDk4R2pMdjVMRXVVbzlwZ2VPbFI3?=
+ =?utf-8?B?MGdqakNXSXV4UXpCdk94RHdVdnozQkJpazBCd1NMeFZLUXMxamFKY3BQbEtU?=
+ =?utf-8?B?b0drU2VhTlU2RktqU1BJbWtqWjlZZGVtMVM1TTRhYzVDNUU0ZUIzK2VaakdB?=
+ =?utf-8?B?SUZmRTMvV2JwWFJyZlc5S29rZ04wNEsydUtzYnBFaUFxbitsQW5wWFdUZVMr?=
+ =?utf-8?B?NEhqaDFVQkE0dDU4MnRGSTZRai9WYnJTTWQ3K0pCdEY5TU5XakVhR3c4bG96?=
+ =?utf-8?B?UkN5c0QyTzBWcG1uSCtQaWpNcG5XZkJCS0tpYURBSnpGQ1JtbGFXRENLUW11?=
+ =?utf-8?B?YXlkTERkeEhVZ1JteFRib2dhaG0vYmV4TkxNRGcrY1Y4L0V2c0tpOHR0RFFw?=
+ =?utf-8?B?S0ltS1JjbjFjYmNWMDlTNkNYZWNSbTU4bTJGR1ZtTkc0dTFCdlN5M0NsY1Bz?=
+ =?utf-8?Q?ccTUpvZ0TiElbAGuuLcbmwrN+wsywj0ROxnL3GU?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed63aec9-dae0-449a-2e0a-08d8e51782a2
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3480.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2021 05:27:21.6377
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hDj4KpP/sFWbs05kCj3aRPN0vkCk311XQhcIRaUp/i4E5CmxyvBvoVWPr0oedbQmGW3crjJSd8R3ryqyp84UVQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB2534
+Content-Type: multipart/alternative;
+ boundary="------------491646F8A683B937D67B4003"
 
-merged.
+--------------491646F8A683B937D67B4003
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-thanks.
+Try adding the following line to the match section of the 
+80-wired.network file.
+KernelCommandLine=!ip
 
-On 3/10/21 2:31 AM, Ming Liu wrote:
-> Hi,=C2=A0akuster808:
+Regards,
+Chen Qi
+
+On 03/12/2021 02:12 AM, jchludzinski via lists.yoctoproject.org wrote:
+> Can this be done using boot parameters?
 >
-> I saw this patch set has been merged to gatesgarth, may I ask, any
-> plan for dunfell? I am asking because dunfell is a LTS branch and many
-> users are building their products based on it. Thanks!
+> Something like(?):
 >
-> the best,
-> thank you
+> LABEL Arria10 SOCDK SDMMC
+>     KERNEL ../zImage
+>     FDT ../socfpga_arria10_phead.dtb
+>     APPEND root=/dev/mmcblk0p2 rw rootwait earlyprintk 
+> console=ttyS0,115200n8 *ip=192.168.0.101:255.255.255.0:eth0*
 >
->     series in build testing
 >
->     -armin
->
->     On 3/2/21 6:57 AM, liu.ming50@gmail.com
->     <mailto:liu.ming50@gmail.com> wrote:
->     > From: Ming Liu <ming.liu@toradex.com <mailto:ming.liu@toradex.com=
->>
->     >
->     > Cherry pick some IMA/EVM fixes to LTS dunfell branch, with these
->     > patches applied, I could run a ima enabled image with
->     sysvinit/systemd
->     > on qemuarm/qemuarm64 and some NXP machines.
->     >
->     > Ming Liu (9):
->     >=C2=A0 =C2=A0ima-evm-utils: set native REQUIRED_DISTRO_FEATURES to=
- empty
->     >=C2=A0 =C2=A0initramfs-framework-ima: fix a wrong path
->     >=C2=A0 =C2=A0ima-evm-keys: add recipe
->     >=C2=A0 =C2=A0initramfs-framework-ima: RDEPENDS on ima-evm-keys
->     >=C2=A0 =C2=A0meta: refactor IMA/EVM sign rootfs
->     >=C2=A0 =C2=A0README.md: update according to the refactoring in
->     >=C2=A0 =C2=A0 =C2=A0ima-evm-rootfs.bbclass
->     >=C2=A0 =C2=A0initramfs-framework-ima: let ima_enabled return 0
->     >=C2=A0 =C2=A0ima-evm-rootfs.bbclass: avoid generating /etc/fstab f=
-or wic
->     >=C2=A0 =C2=A0ima-policy-hashed: add CGROUP2_SUPER_MAGIC fsmagic
->     >
->     >=C2=A0 meta-integrity/README.md=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 4 ++-
->     >=C2=A0 meta-integrity/classes/ima-evm-rootfs.bbclass | 33
->     +++++++++----------
->     >=C2=A0 .../initrdscripts/initramfs-framework-ima.bb
->     <http://initramfs-framework-ima.bb>=C2=A0 |=C2=A0 2 +-
->     >=C2=A0 .../initrdscripts/initramfs-framework-ima/ima |=C2=A0 3 +-
->     >=C2=A0 .../ima-evm-keys/ima-evm-keys_1.0.bb
->     <http://ima-evm-keys_1.0.bb>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 16=
- +++++++++
->     >=C2=A0 .../ima-evm-utils/ima-evm-utils_git.bb
->     <http://ima-evm-utils_git.bb>=C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 1 =
-+
->     >=C2=A0 .../ima_policy_hashed/files/ima_policy_hashed |=C2=A0 3 ++
->     >=C2=A0 7 files changed, 41 insertions(+), 21 deletions(-)
->     >=C2=A0 create mode 100644
->     meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
->     <http://ima-evm-keys_1.0.bb>
->     >
+> 
 >
 
+
+--------------491646F8A683B937D67B4003
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">Try adding the following line to the
+      match section of the 80-wired.network file.<br>
+      KernelCommandLine=!ip<br>
+      <br>
+      Regards,<br>
+      Chen Qi<br>
+      <br>
+      On 03/12/2021 02:12 AM, jchludzinski via lists.yoctoproject.org
+      wrote:<br>
+    </div>
+    <blockquote cite="mid:dde465b36ff3aa2d60c9844ca799bbe1@vivaldi.net" type="cite">
+      
+      <div class="pre" style="margin: 0; padding: 0; font-family:
+        monospace">Can this be done using boot parameters?<br>
+        <br>
+        Something like(?):<br>
+        <br>
+        LABEL Arria10 SOCDK SDMMC<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;KERNEL ../zImage<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;FDT ../socfpga_arria10_phead.dtb<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;APPEND root=/dev/mmcblk0p2 rw rootwait earlyprintk
+        console=ttyS0,115200n8 <span style="text-decoration:
+          underline;"><strong>ip=192.168.0.101:255.255.255.0:eth0</strong></span></div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">
+
+
+</pre>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
+
+--------------491646F8A683B937D67B4003--
