@@ -1,77 +1,80 @@
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
- by mx.groups.io with SMTP id smtpd.web12.6020.1615541585439572701
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.6150.1615542809924457200
  for <yocto@lists.yoctoproject.org>;
- Fri, 12 Mar 2021 01:33:05 -0800
+ Fri, 12 Mar 2021 01:53:30 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=raYeCivY;
- spf=pass (domain: gmail.com, ip: 209.85.208.47, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ed1-f47.google.com with SMTP id u4so6976940edv.9
-        for <yocto@lists.yoctoproject.org>; Fri, 12 Mar 2021 01:33:05 -0800 (PST)
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=UCG2jGV3;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: liu.ming50@gmail.com)
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id CC28F38C0654
+	for <yocto@yoctoproject.org>; Fri, 12 Mar 2021 09:53:29 +0000 (UTC)
+Received: by mail-lj1-f177.google.com with SMTP id z25so5954255lja.3
+        for <yocto@yoctoproject.org>; Fri, 12 Mar 2021 01:53:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=SQCqhQQ/mqs/Klw/AQZKalVyI0HRoKSszRtzELAhPw8=;
-        b=raYeCivYfKd+r4dlsDS/AiZTv8jlOLNLlhRJvru1sDztCXtJsKtofdqQpArp1Oae0T
-         8CDtDZcUoBgnguI34CiosoIYfUekMwyi5twkO6OpLc1NNRecbpUoFE4YkmOEFslguJFz
-         jisj8EWcrKCnQxbx4OqRFf1BmfFOcWT/AokPsSCTMHog/3WqinXUKYgLUZmdLyQUEqG8
-         4ZuGD6pIszQdR6383NrDpBUqzwdlc86qmlzBE0fKBVQlarSBSuMoLElLoHwCGxm3bPES
-         oaLk0IA711O/B7xMdZMOz2/MSga4AtX8Hp4FR1IfyC7Vv2HZCF1GtraFy+b1Mp8Iieur
-         Yyag==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NZVOIfRNVDEfmHcMBoJ+vW97nnIw5LCL0Wtp+5SXq1g=;
+        b=UCG2jGV3ZhGUgKcgiGjMPPhGHR2Id8PDS8ZkFixbH5xTrCetgWh18sveDz4Y3lO9rT
+         vQxXs8qVHTc+XYK1U0DsuodMHlUP80N1QulJANb1T7Vwg4S+kp0V20kuwdGe9wfHUKzU
+         yYh9nCpfh4CXsOE6PufqcucGLNaYrGs8yEbFHj8EMCCn8RnJUSM6+UDaNp3wZYrQuK69
+         JO9TlJGfWEZQaWrHiJEWtpaozK/TEwHu6TCKjl0/tGtazWyZoHWmO/zXe0o5P8CsRGJc
+         UAeyqgkVnklaC2FJglLsji9byqyBxq0UvX1IkzZCj//zMcB+2vH216804uVA+J9Ctzpo
+         USrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=SQCqhQQ/mqs/Klw/AQZKalVyI0HRoKSszRtzELAhPw8=;
-        b=TzGPhYvj5dc7u9guIWf5GKr3PvQ5qQi98svEcIXQwL3iwu64g1eSmqtraBvvfAY89A
-         HsApIDetv5Lc9FYbbyCqHKz8MAsnTpVJBGwUUdCOPNs4ZD1SdoLikd377rPAJTOCW6Au
-         OJALv5fKm5zT82sHHOXOJBs4CEFUqBxbFzlKv/7VUl+q+LJj0sRRDoy9A2F26bbWG0aj
-         y3RvodOQUQgC00nfJAIyGM63VsEgy6BCzvWYWwtV0trjBCTlfTnVvj0quBzeoKaDzAwZ
-         mY0zWNUEYtJOVNu69OajnRqhfoNG2eopr3g12vyb0OhHE29C5TBnYD3GeZdZTDtUG/Vc
-         wCDQ==
-X-Gm-Message-State: AOAM533OPEMNK1M+YMgFuytceASBDELV7CSrwFw8gp87zFjQiDYssuL3
-	x26/iuwnPUguHnf6WhHi9ylhQiXlEpyPCw==
-X-Google-Smtp-Source: ABdhPJwseasqxFG1ukYqQxunQr3opQZFxmrd0+M1MG2kVT/ooWIh0OOw8qB7ieu3Z9khnPcFFY3rXA==
-X-Received: by 2002:a05:6402:3096:: with SMTP id de22mr13054320edb.141.1615541584128;
-        Fri, 12 Mar 2021 01:33:04 -0800 (PST)
-Return-Path: <alex.kanavin@gmail.com>
-Received: from localhost.localdomain ([2a02:2454:2a0:cb00:eb83:2e01:3dda:5d46])
-        by smtp.gmail.com with ESMTPSA id h2sm2532708ejk.32.2021.03.12.01.33.03
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NZVOIfRNVDEfmHcMBoJ+vW97nnIw5LCL0Wtp+5SXq1g=;
+        b=jF0IUcFnrsTXHStjsAaqlmT043tujcU+YT3d9IeLO4V46jL+5YSn1NT035PC3obWvf
+         qlpl1qEFPFTLvKP+MK4JNWblUjKusgqyK2JufQEz/qvuJB3EOyp15lBsL3BdDM2Qbj28
+         cPetOJVIIfScwd53vjeo/dYXfHshTtkcXxojB8PjxAhCqtUFNc7jVxsk++LGUx3DK88G
+         YH27ZJ+QVKT05g026o1S5eFgqCUIvAEgGWi6Ui/J0Y3OClPNkUOvJGryTr/pSm5XuMo7
+         jjPpZHJcuBMgoAESzevlGJtuYPIDs17rnr/TB1IhGFd4WnYzVy75VFBjMz8A0BQAS1Ej
+         /i1g==
+X-Gm-Message-State: AOAM532z/nOlMAE6XdM9l0C83/tiGYEtjoQMRotF0Y5dkeYnnf8Px427
+	txpAJtj22ZHk4nSfS6bkUlPLOVTASMfJcw==
+X-Google-Smtp-Source: ABdhPJx8w3c7CRqZilJwMZysknaEd02AE2razwFXKxjWGqioIWfsh89ceGBuCSC+lf+GNAP4pUiNUw==
+X-Received: by 2002:a2e:b0e4:: with SMTP id h4mr1916060ljl.249.1615542808052;
+        Fri, 12 Mar 2021 01:53:28 -0800 (PST)
+Received: from localhost.localdomain ([2a00:801:3c2:e32a:6dd4:2389:9e6d:65b3])
+        by smtp.gmail.com with ESMTPSA id o4sm1625592lfg.253.2021.03.12.01.53.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Mar 2021 01:33:03 -0800 (PST)
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-Subject: [RFC PATCH 6/6] config.json: add a target to test standalone X11 image
-Date: Fri, 12 Mar 2021 10:32:40 +0100
-Message-Id: <20210312093240.319125-6-alex.kanavin@gmail.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210312093240.319125-1-alex.kanavin@gmail.com>
-References: <20210312093240.319125-1-alex.kanavin@gmail.com>
+        Fri, 12 Mar 2021 01:53:27 -0800 (PST)
+From: "Ming Liu" <liu.ming50@gmail.com>
+To: yocto@yoctoproject.org
+Cc: akuster808@gmail.com,
+	sergio.prado@toradex.com,
+	Ming Liu <liu.ming50@gmail.com>
+Subject: [meta-security][PATCH] ima-evm-keys: add file-checksums to IMA_EVM_X509
+Date: Fri, 12 Mar 2021 10:53:24 +0100
+Message-Id: <20210312095324.31413-1-liu.ming50@gmail.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+From: Ming Liu <liu.ming50@gmail.com>
+
+This ensures when a end user change the IMA_EVM_X509 key file,
+ima-evm-keys recipe will be rebuilt.
+
+Signed-off-by: Ming Liu <liu.ming50@gmail.com>
 ---
- config.json | 5 +++++
- 1 file changed, 5 insertions(+)
+ meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/config.json b/config.json
-index 75bf4e2..b9c493a 100644
---- a/config.json
-+++ b/config.json
-@@ -729,6 +729,11 @@
-                 ]
-             }
-         },
-+        "only-x11" : {
-+            "MACHINE" : "qemux86-64",
-+            "BBTARGETS" : "core-image-sato core-image-sato:do_populate_sdk core-image-sato:do_populate_sdk_ext core-image-sato-sdk",
-+            "SANITYTARGETS" : "core-image-sato:do_testimage core-image-sato:do_testsdk core-image-sato:do_testsdkext core-image-sato-sdk:do_testimage"
-+        },
-         "musl-qemux86" : {
-             "MACHINE" : "qemux86",
-             "SDKMACHINE" : "x86_64",
--- 
-2.29.2
+diff --git a/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.=
+0.bb b/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
+index 62685bb..7708aef 100644
+--- a/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
++++ b/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
+@@ -14,3 +14,4 @@ do_install () {
+         lnr ${D}${sysconfdir}/keys/x509_evm.der ${D}${sysconfdir}/keys/x=
+509_ima.der
+     fi
+ }
++do_install[file-checksums] +=3D "${@'${IMA_EVM_X509}:%s' % os.path.exist=
+s('${IMA_EVM_X509}')}"
+--=20
+2.29.0
 
