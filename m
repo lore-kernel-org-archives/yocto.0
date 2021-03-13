@@ -1,164 +1,217 @@
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
- by mx.groups.io with SMTP id smtpd.web09.28.1615594716009063859
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (NAM02-SN1-obe.outbound.protection.outlook.com [40.107.77.80])
+ by mx.groups.io with SMTP id smtpd.web09.102.1615614657505367295
  for <yocto@lists.yoctoproject.org>;
- Fri, 12 Mar 2021 16:18:36 -0800
+ Fri, 12 Mar 2021 21:50:58 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=AnVnXm/1;
- spf=pass (domain: gmail.com, ip: 209.85.160.177, mailfrom: jonas.vautherin@gmail.com)
-Received: by mail-qt1-f177.google.com with SMTP id c6so5237836qtc.1
-        for <yocto@lists.yoctoproject.org>; Fri, 12 Mar 2021 16:18:35 -0800 (PST)
+ dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=E+kleMuq;
+ spf=pass (domain: windriver.com, ip: 40.107.77.80, mailfrom: yi.zhao@windriver.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MYwLCeAh3CmBsNFwufit4Peqww/jBCFcBtMlytk4CKkBTrTrXeu7k2yCLoyLqFvcYgjRLq0H1Qtl86KS+Sf+0X5QQ8094aFIKyXSmO2O+uD9XLj6A5Vwm43YTtUygE+PzBnxH9iTZ+Jv1AIXDxxSV4qKFuU5sIpRxzijbOyA1FOKIfsn49Vw8fBuga+r+QMSSMekt8WO8E+WRLjN8yj21jn7f8njGncbK7klSYbHibKBvkY3CUotWsWymHQQFv+Y0SwmNBYcXVDxOrInJs+s3U5H/5AJN66k73LOEejHhR2kBj/vlMhOg60G91PprJKEKF1+qwBE8vAT/bdd1E6hPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2LTXAK5mXvJTPseY1FqxCraIsOoR56Lw3BDVxCH7yks=;
+ b=ebYjy0I/YKrHwTXAeiSV1GoMH08zq2P23OKlvCL/MH4cEneoBY6sKIrj2oD66TB7mPzEtIzZHXHlwCkXImo5/oxe42/Dxzkqkpu/UoJwYW3sPC6gMXIwMevW5nRBmA7lWg2Gh4P2dXyQo3JEHTXKTxX7fovGQL///2nwuDJh0N0oKX8fWwSGNZ/bSTWP/rfeIiiQLV5UZewaHQsiMiUJffJ/vnIha8yuw30R5I0IubD47Pmg3LXOQUTR4oc0m3JKZpEHp8vHJeAneen8IlaZ6r7x20MendhvEz78RDW4YicDyJk9UK2n7sxoTuAD8x8KskgtutAH15LMGc9sreeZcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=6FbM7pObStoXhrLTXGUaGSXyKE8u6qjgtfIS3HWkgik=;
-        b=AnVnXm/1QL1mGlet8t4Rcq7sy3f0bNJfHfQnDPSf7Ggi/TFMt8UCqoLATJkC9WmLhg
-         Ecxnes4Hc2FyJ/e45srMZ2vv60hP1ezToMiv0WJM/Ibk3Jxawo9vU/QN9Axg88WnS4e1
-         f4Xrtj1xZ7CNy/RKjwSuHpw0w8WEbwWvk+k24vOIzOD8qJIH1LEaY74JHHIIqYdtaPuX
-         1XD5M42AHgMVzPwriwOZUivzAQD64bIxld3kcPmVaLUiIANCp/JRYBYBO69zczE/K/lM
-         sKCxpCcE8IbLNawkFt1e91eulk2yM8mqykehfToKr1rM4Nms4tUZcRcFH4cqLR1BTNNO
-         WW1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=6FbM7pObStoXhrLTXGUaGSXyKE8u6qjgtfIS3HWkgik=;
-        b=E1BVPRaX/7nzwiusXdFbtFLHpXh1OQrZ1sI6Iejjwy1GhCOgno5FZxs+YinF5jM0bp
-         UuK/oF1YwlsCj+STNnKq5XQ/VZl9dOwxhSxhPbF54n+M4irf3fAI1eQjk6Xj50jKCvfA
-         AiyfmLxjwwrIW3YhL/cOvJYwqvBVi/H7T5Ymftv66UROzEzI1MEWscsgPIAeRAfZgbHp
-         3y8Zeyrw4bm2iYwmQL4QcjX+mLzU7u+fm8zocUUNsxSADnyJXGMoNqNlCI3ZUZo2Unpf
-         nRDzgtfV2BUixxMNt/d60thcBgT0l0RbQjQ2rY8sV6RoDLC2XBe03TcpiKARkLPIRk5k
-         FwTw==
-X-Gm-Message-State: AOAM530YEVEiMtW4QRK1pkrAncQG+G6GW6OfGlDNGvDd5XFOnzUaJyIO
-	gAAp1owSOfEyBrAkZ/iQiJY6npaidlD/1bxLeo+bh61/x7ykFw==
-X-Google-Smtp-Source: ABdhPJwBS7QVYXdPyb07BE1DtXl7QNLsPKO1vD5rpafNakg4KJyYJSRpu3kOo3Z6npQiT5CcBjvS1pJ4rxcU4QsRb9E=
-X-Received: by 2002:ac8:66d6:: with SMTP id m22mr14229543qtp.56.1615594714997;
- Fri, 12 Mar 2021 16:18:34 -0800 (PST)
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2LTXAK5mXvJTPseY1FqxCraIsOoR56Lw3BDVxCH7yks=;
+ b=E+kleMuqOTG0bUso8sa3JBrS7UqziwSdPgJWWaIAFFJCKEVQUjOwIaI57j8WFQNFZ1/0EsGjvGSuYWUZf36YsAMOwRgsYB0vywACxoviRr62zmfrmoQTpk5R7tZ2mcZSgUZI7Kmbdidb8Br2da4w1mpyZrl1VhftGSbVGNzwivs=
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
+ by MW3PR11MB4556.namprd11.prod.outlook.com (2603:10b6:303:5b::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.29; Sat, 13 Mar
+ 2021 05:50:56 +0000
+Received: from CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::b954:4302:820c:ca28]) by CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::b954:4302:820c:ca28%4]) with mapi id 15.20.3933.032; Sat, 13 Mar 2021
+ 05:50:55 +0000
+From: "Yi Zhao" <yi.zhao@windriver.com>
+To: yocto@lists.yoctoproject.org,
+	joe_macdonald@mentor.com,
+	joe@deserted.net
+Subject: [meta-selinux][PATCH 00/16] selinux: update 3.1 -> 3.2
+Date: Sat, 13 Mar 2021 13:50:28 +0800
+Message-ID: <20210313055044.239776-1-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [60.247.85.82]
+X-ClientProxiedBy: BYAPR11CA0084.namprd11.prod.outlook.com
+ (2603:10b6:a03:f4::25) To CO1PR11MB4867.namprd11.prod.outlook.com
+ (2603:10b6:303:9a::13)
+Return-Path: yi.zhao@windriver.com
 MIME-Version: 1.0
-References: <CAEyb4nHMjTW+UbpQyA0R=gNMJ2k-cmPw4eCwAsP_5qayUX5XpQ@mail.gmail.com>
-In-Reply-To: <CAEyb4nHMjTW+UbpQyA0R=gNMJ2k-cmPw4eCwAsP_5qayUX5XpQ@mail.gmail.com>
-From: "Jonas Vautherin" <jonas.vautherin@gmail.com>
-Date: Sat, 13 Mar 2021 01:18:24 +0100
-Message-ID: <CAEyb4nHu9CnJ7jRuNiJkhLS5WiwssvYHZA6ACjDCwx2gJA45VA@mail.gmail.com>
-Subject: Re: Failing to patch u-boot .dts
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000016a46d05bd5ff55f"
-
---00000000000016a46d05bd5ff55f
-Content-Type: text/plain; charset="UTF-8"
-
-Finally understood how to do it properly, and hence explaining here for the
-record.
-
-In my machine configuration, I have this line (that I overlooked):
-
-```
-IMAGE_BOOT_FILES ?= "u-boot.${UBOOT_SUFFIX} MLO zImage
-am335x-pocketbeagle.dtb"
-```
-
-Which says that it should use the `am335x-pocketbeagle` device tree. I
-assume that it infers that it should compile `am335x-pocketbeagle.dts` into
-`am335x-pocketbeagle.dtb`. Because `am335x-evm` is listed as the default in
-the defconfig, I thought it was the one being used. But I was wrong.
-
-I patched `am335x-pocketbeagle.dts` this time and it just worked.
-
-On Thu, Mar 11, 2021 at 11:28 AM Jonas Vautherin <jonas.vautherin@gmail.com>
-wrote:
-
-> Hello!
->
-> I am using u-boot on a pocketbeagle which, according to "Default Device
-> Tree for DT control" in `bitbake -c menuconfig u-boot`, uses am335x-evm,
-> which I understand is the file
-> in ./build/tmp/work/pocketbeagle-poky-linux-gnueabi/u-boot/1_2020.07-r0/git/arch/arm/dts/am335x-evm.dts.
->
-> My issue is that this file ends up setting usb1 as `dr_mode = "host"` and
-> usb0 as `dr_mode = "otg"`. I would like to use fastboot on my pocketbeagle,
-> and therefore set them to `dr_mode = "peripheral"`.
->
-> In order to do that, I wrote a .bbappend that does the following:
->
-> ```
-> FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
->
-> SRC_URI += "file://am335x-evm.dts.patch"
-> SRC_URI += "file://logging.cfg"
-> ```
->
-> The patch sets both usb0 and usb1 to `dr_mode = "peripheral"`, while the
-> cfg enables logging in u-boot. Because logging is effectively enabled, I
-> get that my .bbappend is used. And I can confirm
-> that ./build/tmp/work/pocketbeagle-poky-linux-gnueabi/u-boot/1_2020.07-r0/git/arch/arm/dts/am335x-evm.dts
-> is patched indeed.
->
-> However, whatever I do, I can't seem to get that modification in my u-boot
-> device tree at runtime, as usb0 always ends up as "otg" and usb1 as "host".
-> I have even tried a full clean build where I removed build/tmp and
-> cache_sstate.
->
-> I cannot really tell if my patched file is actually used or not. For
-> instance, if I `bitbake -c cleansstate u-boot`, then `bitbake -c do_patch
-> u-boot`, then `rm
-> -rf ./build/tmp/work/pocketbeagle-poky-linux-gnueabi/u-boot/1_2020.07-r0/git/arch/arm/dts`
-> and finally `bitbake u-boot`, it does not complain at all about a missing
-> dts file.
->
-> What am I missing, and how could I make sure that my patched
-> am335x-evm.dts is the device tree being used by my u-boot install?
->
-> Best Regards,
-> Jonas
->
-
---00000000000016a46d05bd5ff55f
-Content-Type: text/html; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by BYAPR11CA0084.namprd11.prod.outlook.com (2603:10b6:a03:f4::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.31 via Frontend Transport; Sat, 13 Mar 2021 05:50:53 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3e4ce837-8f01-4340-d5a3-08d8e5e3f790
+X-MS-TrafficTypeDiagnostic: MW3PR11MB4556:
+X-Microsoft-Antispam-PRVS: 
+	<MW3PR11MB4556460189DA0E7618925025F96E9@MW3PR11MB4556.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	TuySGHXC5aCc1LHnhcVw3c/Qz7r5cHi3NIjCpzFHZsVD2d8JFknxAMixUoicngk2pvTUQ1m8gnVKssXvloUGKsltNu43NGt6h+R/sfTipEKPA7BPHNEvpCU6DcioDJcupDWLu8MML3fNHAYWmgxcn8vSX8mKPcIseyVrgWOyC/drfacdoSGIhcDz/+U65oyPUin6bqCB+90Ukhba5wz7gbc/x/HQWKTkbolxAucA2GdoIbSj++woPkeowj6PePPIIiIm91oe0H3aQI656eGrdenPgVDie9YOiFp0TKdvw5uD1zQrDByL/ktyMN74RQbDHv76kWpPO5l8D0IB9Ll5VOUdWhNZmBEHyNlRhCN9H0/2fCAH1Tsjc2hq4Rwlavb2JCueYNgpZhIU7ztnpSzQKfhBu6H2R30srASRjNr1rRwnR7NIBaAg18Qn8U5Xv6SBceihFRV86LFqxt9Zybd0dBhJ8k+XMRE2Ze9/emtp5vnbBpAos6D365PAAsP9mevjsic92GlWntQkHUHg+0RAtQ==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(136003)(39850400004)(376002)(346002)(66476007)(6506007)(6512007)(15650500001)(36756003)(1076003)(8676002)(66556008)(66946007)(83380400001)(16526019)(86362001)(44832011)(316002)(6666004)(186003)(26005)(956004)(6486002)(5660300002)(2906002)(478600001)(52116002)(2616005)(8936002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	=?us-ascii?Q?Ebfck3sHG2GvSvHveL5TwIs61pXIKQir7QwsoxpiXWN8fP1Tg+U0JLY/se2W?=
+ =?us-ascii?Q?g0be20fdc20KCXwTuNbzwlGazq1ooJEQFTvftjAd2uH4A20CW6Tut/5szDVn?=
+ =?us-ascii?Q?7Hlk7x7So0HfMQAb+uuTrfvZ0PQtZ0zG/URL9wY0Ey0ChRGB+SzY/vy6esf4?=
+ =?us-ascii?Q?VcmMilRy7fbx98J807B9D/0VBE7TpIxWtzCLssS7PEHlQ5AEVs0SDaWEMyfz?=
+ =?us-ascii?Q?34G9iFWILd8M7fYt0crpwu7jgqY2veGBPtcoVZitx1YsRCxhu41gp0jKkG+Q?=
+ =?us-ascii?Q?X/TvF4q5zT7pCuCu3DoYdiYTcqW1uNnubZiGd86iqrcVWi54e4SwEy6wFP3a?=
+ =?us-ascii?Q?keTLvZMUFdiFJ41rgEtNn6SZesKFUBv/hSdEiDx5afWA68ZOGcOOFDmMIoR5?=
+ =?us-ascii?Q?L77CREheRXb0lxRMHhJVbsxwxv/cRrG4r3VjksoH6WrT3oLwYsyPLoqmox+T?=
+ =?us-ascii?Q?0F0gO4UmsijiZXZ/eSTnCa0/4Ygu3j+W3C9YKtVPJaPmlcYrtn/fzsNR5+sB?=
+ =?us-ascii?Q?zRlgmjxW7ilKyMruFNKhVi6rVDdpbSf7pkapygyeiRFxNlTL7DwEV0yL8IcK?=
+ =?us-ascii?Q?5eOMuj835T7GJxuo5rAFkDZsnrgTJphjWX8Ei0v783/XWErkqBoNMY3a5XhQ?=
+ =?us-ascii?Q?WtNhCXPMOcJEktQNWPaqtQ5KKJmGGzjtMWQ7oQp6OM+FT2biN8PhjPnA2mY2?=
+ =?us-ascii?Q?Ta+2ssB5I64Vs60M+z886jNdnggI4B6kp7LZ5wmHz7XA3HTZsFheWQvDjHGJ?=
+ =?us-ascii?Q?p94h7eLnkKv6ohgnAPnmXDE046lVH+wlweg+bUomblb1VtgYzvtIUahfiOQz?=
+ =?us-ascii?Q?isy7LqLJmFsN+sxwSoDci3q9uSc5k+rTU6MaxD6VkET9jXIMxLs6u+tKKNy3?=
+ =?us-ascii?Q?jtHF8KvCdChoFCqXkyL3TvTFmYwDSpf2RETRYZxU2KPDYcwUzCpr5kVTZaRV?=
+ =?us-ascii?Q?DefCKKjmzkFL4vXXQmeY2eaPAPZhShtiswZ5bpXh7i3r4IpStR/y+mS6vrVe?=
+ =?us-ascii?Q?v7w8sR7wTJBO/+pk3bkI7iL9+4k6acY/Png7s+4DTw9ByWSsxqdc4YZzG1Jt?=
+ =?us-ascii?Q?sfIyS+2tpwyaTPjn07hD8sidIp9p5YMu2nnbXrEdru0QMB2DmNyfMsiC7Scw?=
+ =?us-ascii?Q?uczJfRqg0fbDQBIdlIhZrSsT387qnY/OK9n3ivViRRpjeX1KcDCEhsxn6Az7?=
+ =?us-ascii?Q?WvkRqbtbt0rHXA9OesmMOnJOluoov/wC/9JaUWN14ziuO8LkCnuKEAXkkIB+?=
+ =?us-ascii?Q?Xq6h2jmgUKHbXwwGrug4b9U9ahER5nBJEgBw4t3t4jrjLI6NIVFL6SCfuVw8?=
+ =?us-ascii?Q?eHMwfP/5Tc7bAaQKQOAivUam?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e4ce837-8f01-4340-d5a3-08d8e5e3f790
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2021 05:50:55.9121
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WweKQ4121rJr5yK4nWRpY9KTmZS8GOkLTW9HmgyRM+BiOcmEY1mPyy+dpD7yMSO/CZ5yBb6XVOAjwvQgh1er1A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4556
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-<div dir=3D"ltr">Finally understood how to do it properly, and hence explai=
-ning here for the record.<div><br></div><div>In my machine configuration, I=
- have this line (that I overlooked):</div><div><br></div><div>```</div><div=
->IMAGE_BOOT_FILES ?=3D &quot;u-boot.${UBOOT_SUFFIX} MLO zImage am335x-pocke=
-tbeagle.dtb&quot;<br></div><div>```</div><div><br></div><div>Which says tha=
-t it should use the `am335x-pocketbeagle` device tree. I assume that it inf=
-ers that it should compile `am335x-pocketbeagle.dts` into `am335x-pocketbea=
-gle.dtb`. Because `am335x-evm` is listed as the default in the defconfig, I=
- thought it was the one being used. But I was wrong.</div><div><br></div><d=
-iv>I patched `am335x-pocketbeagle.dts` this time and it just worked.</div><=
-/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
-n Thu, Mar 11, 2021 at 11:28 AM Jonas Vautherin &lt;<a href=3D"mailto:jonas=
-.vautherin@gmail.com">jonas.vautherin@gmail.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hello!<div>=
-<br></div><div>I am using u-boot on a pocketbeagle which, according to &quo=
-t;Default Device Tree for DT control&quot; in `bitbake -c menuconfig u-boot=
-`, uses am335x-evm, which I understand is the file in=C2=A0./build/tmp/work=
-/pocketbeagle-poky-linux-gnueabi/u-boot/1_2020.07-r0/git/arch/arm/dts/am335=
-x-evm.dts.=C2=A0</div><div><br></div><div>My issue is that this file ends u=
-p setting usb1 as `dr_mode =3D &quot;host&quot;` and usb0 as `dr_mode =3D &=
-quot;otg&quot;`. I would like to use fastboot on my pocketbeagle, and there=
-fore set them to `dr_mode =3D &quot;peripheral&quot;`.</div><div><br></div>=
-<div>In order to do that, I wrote a .bbappend that does the following:</div=
-><div><br></div><div>```</div><div>FILESEXTRAPATHS_prepend :=3D &quot;${THI=
-SDIR}/files:&quot;<br><br>SRC_URI +=3D &quot;file://am335x-evm.dts.patch&qu=
-ot;<br>SRC_URI +=3D &quot;file://logging.cfg&quot;<br></div><div>```<br></d=
-iv><div><br></div><div>The patch sets both usb0 and usb1 to `dr_mode =3D &q=
-uot;peripheral&quot;`, while the cfg enables logging in u-boot. Because log=
-ging is effectively enabled, I get that my .bbappend is used. And I can con=
-firm that=C2=A0./build/tmp/work/pocketbeagle-poky-linux-gnueabi/u-boot/1_20=
-20.07-r0/git/arch/arm/dts/am335x-evm.dts is patched indeed.</div><div><br><=
-/div><div>However, whatever I do, I can&#39;t seem to get that modification=
- in my u-boot device tree at runtime, as usb0 always ends up as &quot;otg&q=
-uot; and usb1 as &quot;host&quot;. I have even tried a full clean build whe=
-re I removed build/tmp and cache_sstate.</div><div><br></div><div>I cannot =
-really tell if my patched file is actually used or not. For instance, if I =
-`bitbake -c cleansstate u-boot`, then `bitbake -c do_patch u-boot`, then `r=
-m -rf=C2=A0./build/tmp/work/pocketbeagle-poky-linux-gnueabi/u-boot/1_2020.0=
-7-r0/git/arch/arm/dts` and finally `bitbake u-boot`, it does not complain a=
-t all about a missing dts file.</div><div><br></div><div>What am I missing,=
- and how could I make sure that my patched am335x-evm.dts is the device tre=
-e being used by my u-boot install?</div><div><br></div><div>Best Regards,</=
-div><div>Jonas</div></div>
-</blockquote></div>
 
---00000000000016a46d05bd5ff55f--
+
+Yi Zhao (16):
+  selinux: update inc file to 3.2
+  libsepol: update to 3.2
+  libselinux: update to 3.2
+  libselinux-python: update to 3.2
+  libsemanage: update to 3.2
+  checkpolicy: update to 3.2
+  secilc: update to 3.2
+  policycoreutils: update to 3.2
+  mcstrans: update to 3.2
+  restorecond: update to 3.2
+  selinux-python: update to 3.2
+  selinux-dbus: update to 3.2
+  selinux-gui: update to 3.2
+  selinux-sandbox: update to 3.2
+  semodule-utils: update to 3.2
+  setools: upgrade 4.3.0 -> 4.4.0
+
+ recipes-security/selinux/checkpolicy_3.1.bb   |   7 -
+ .../{checkpolicy.inc =3D> checkpolicy_3.2.bb}   |  10 +-
+ .../selinux/libselinux-python_3.1.bb          |  26 ----
+ ...ux-python.inc =3D> libselinux-python_3.2.bb} |  25 ++-
+ ...elinux-do-not-define-gettid-for-musl.patch |  47 ------
+ ...linux-define-FD_CLOEXEC-as-necessary.patch |  33 ----
+ .../libselinux-make-O_CLOEXEC-optional.patch  |  99 ------------
+ ...ibselinux-make-SOCK_CLOEXEC-optional.patch |  38 -----
+ recipes-security/selinux/libselinux_3.1.bb    |  17 --
+ .../{libselinux.inc =3D> libselinux_3.2.bb}     |   7 +-
+ ...anage-define-FD_CLOEXEC-as-necessary.patch |  35 -----
+ recipes-security/selinux/libsemanage_3.1.bb   |  14 --
+ .../{libsemanage.inc =3D> libsemanage_3.2.bb}   |  27 ++--
+ recipes-security/selinux/libsepol_3.1.bb      |   8 -
+ .../selinux/{libsepol.inc =3D> libsepol_3.2.bb} |   5 +
+ recipes-security/selinux/mcstrans_3.1.bb      |   7 -
+ .../selinux/{mcstrans.inc =3D> mcstrans_3.2.bb} |  13 +-
+ .../selinux/policycoreutils_3.1.bb            |   7 -
+ ...cycoreutils.inc =3D> policycoreutils_3.2.bb} | 145 +++++++++---------
+ ...icycoreutils-make-O_CLOEXEC-optional.patch |  48 ------
+ recipes-security/selinux/restorecond_3.1.bb   |   7 -
+ .../{restorecond.inc =3D> restorecond_3.2.bb}   |   7 +-
+ recipes-security/selinux/secilc_3.1.bb        |   7 -
+ .../selinux/{secilc.inc =3D> secilc_3.2.bb}     |   6 +-
+ recipes-security/selinux/selinux-dbus_3.1.bb  |   7 -
+ .../{selinux-dbus.inc =3D> selinux-dbus_3.2.bb} |   6 +-
+ recipes-security/selinux/selinux-gui_3.1.bb   |   7 -
+ .../{selinux-gui.inc =3D> selinux-gui_3.2.bb}   |   6 +-
+ .../selinux/selinux-python_3.1.bb             |   7 -
+ ...linux-python.inc =3D> selinux-python_3.2.bb} |  20 ++-
+ .../selinux/selinux-sandbox_3.1.bb            |   7 -
+ ...nux-sandbox.inc =3D> selinux-sandbox_3.2.bb} |   9 +-
+ recipes-security/selinux/selinux_20200710.inc |   8 -
+ recipes-security/selinux/selinux_common.inc   |  15 +-
+ .../selinux/semodule-utils_3.1.bb             |   7 -
+ ...module-utils.inc =3D> semodule-utils_3.2.bb} |   7 +-
+ .../{setools_4.3.0.bb =3D> setools_4.4.0.bb}    |   6 +-
+ 37 files changed, 192 insertions(+), 565 deletions(-)
+ delete mode 100644 recipes-security/selinux/checkpolicy_3.1.bb
+ rename recipes-security/selinux/{checkpolicy.inc =3D> checkpolicy_3.2.bb} =
+(71%)
+ delete mode 100644 recipes-security/selinux/libselinux-python_3.1.bb
+ rename recipes-security/selinux/{libselinux-python.inc =3D> libselinux-pyt=
+hon_3.2.bb} (61%)
+ delete mode 100644 recipes-security/selinux/libselinux/0001-libselinux-do-=
+not-define-gettid-for-musl.patch
+ delete mode 100644 recipes-security/selinux/libselinux/libselinux-define-F=
+D_CLOEXEC-as-necessary.patch
+ delete mode 100644 recipes-security/selinux/libselinux/libselinux-make-O_C=
+LOEXEC-optional.patch
+ delete mode 100644 recipes-security/selinux/libselinux/libselinux-make-SOC=
+K_CLOEXEC-optional.patch
+ delete mode 100644 recipes-security/selinux/libselinux_3.1.bb
+ rename recipes-security/selinux/{libselinux.inc =3D> libselinux_3.2.bb} (8=
+4%)
+ delete mode 100644 recipes-security/selinux/libsemanage/libsemanage-define=
+-FD_CLOEXEC-as-necessary.patch
+ delete mode 100644 recipes-security/selinux/libsemanage_3.1.bb
+ rename recipes-security/selinux/{libsemanage.inc =3D> libsemanage_3.2.bb} =
+(59%)
+ delete mode 100644 recipes-security/selinux/libsepol_3.1.bb
+ rename recipes-security/selinux/{libsepol.inc =3D> libsepol_3.2.bb} (81%)
+ delete mode 100644 recipes-security/selinux/mcstrans_3.1.bb
+ rename recipes-security/selinux/{mcstrans.inc =3D> mcstrans_3.2.bb} (92%)
+ delete mode 100644 recipes-security/selinux/policycoreutils_3.1.bb
+ rename recipes-security/selinux/{policycoreutils.inc =3D> policycoreutils_=
+3.2.bb} (52%)
+ delete mode 100644 recipes-security/selinux/restorecond/policycoreutils-ma=
+ke-O_CLOEXEC-optional.patch
+ delete mode 100644 recipes-security/selinux/restorecond_3.1.bb
+ rename recipes-security/selinux/{restorecond.inc =3D> restorecond_3.2.bb} =
+(88%)
+ delete mode 100644 recipes-security/selinux/secilc_3.1.bb
+ rename recipes-security/selinux/{secilc.inc =3D> secilc_3.2.bb} (66%)
+ delete mode 100644 recipes-security/selinux/selinux-dbus_3.1.bb
+ rename recipes-security/selinux/{selinux-dbus.inc =3D> selinux-dbus_3.2.bb=
+} (75%)
+ delete mode 100644 recipes-security/selinux/selinux-gui_3.1.bb
+ rename recipes-security/selinux/{selinux-gui.inc =3D> selinux-gui_3.2.bb} =
+(75%)
+ delete mode 100644 recipes-security/selinux/selinux-python_3.1.bb
+ rename recipes-security/selinux/{selinux-python.inc =3D> selinux-python_3.=
+2.bb} (89%)
+ delete mode 100644 recipes-security/selinux/selinux-sandbox_3.1.bb
+ rename recipes-security/selinux/{selinux-sandbox.inc =3D> selinux-sandbox_=
+3.2.bb} (77%)
+ delete mode 100644 recipes-security/selinux/selinux_20200710.inc
+ delete mode 100644 recipes-security/selinux/semodule-utils_3.1.bb
+ rename recipes-security/selinux/{semodule-utils.inc =3D> semodule-utils_3.=
+2.bb} (83%)
+ rename recipes-security/setools/{setools_4.3.0.bb =3D> setools_4.4.0.bb} (=
+89%)
+
+--=20
+2.25.1
+
