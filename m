@@ -1,108 +1,67 @@
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
- by mx.groups.io with SMTP id smtpd.web12.627.1615620541341783444
- for <yocto@lists.yoctoproject.org>;
- Fri, 12 Mar 2021 23:29:01 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=V0XB9kmh;
- spf=pass (domain: gmail.com, ip: 209.85.166.180, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-il1-f180.google.com with SMTP id d5so4727256iln.6
-        for <yocto@lists.yoctoproject.org>; Fri, 12 Mar 2021 23:29:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4KGui1/L8QgLZ4Z37pDxxbGiER2+PJPcBCTEb53dHg4=;
-        b=V0XB9kmh2GSWRY9B55whzH0FXbpcd0Rc/2gfrbnUYv9WaYM/Sio7jey77j8ee3/7QG
-         MiaPYVq9hljAnpXSb4fP4xVt/Pj8Ivqdv7JauXS7BfKt/FBYmnxVOouwxWtUHKQSKMC8
-         5j417hzEBTEqsyKYx/wvdVIQZ6Gyh7b9Rgd3gf7EzJyAAlw6m3rhfAOUR73uwI7JY0Ix
-         DjBVvkYPol3lq39cQYlmxwOEb5BXkxwiQWavflNh068WpeZrnDXp3W1ETc+2ItVDNaCq
-         +DMmCvzKPLoCIAKln9OGBsF69pQl4TYJh1vF9mnIXKKkdcl7Ny+3UGpDR2fk32QxJ6i9
-         6r1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4KGui1/L8QgLZ4Z37pDxxbGiER2+PJPcBCTEb53dHg4=;
-        b=r8xI/0OP7VTVDb4T9tDzTT5c3TWbmTcm+CFvf8/V6riFEEDyMzr+MeQe0iFjM4Xwyu
-         A72+uXgQ4WMJL/7AtHibmLgTpp4uzpiKaiRFqr10fZtjtd3Om1CwFnwZMNMnDymgxWYd
-         9vFQs/uNBRWqaoxwe3f4CiuRZfn+i4lCMSTORnNl2IWXi+TEEH+dLptthER5NoqMnwWy
-         gtrW7cIgVfe4UNkaTR87wFNVkxDAGwMaRris5V9a0w2GR2a+rHXfZcs4bZfB1KJBL3vO
-         +9sl5tPWkz3atvo6GXvPKj4kLlSo6OKh7CU36ls+2KEPKqxe2HggqqoiSHeyk9vYejpp
-         4GSg==
-X-Gm-Message-State: AOAM5329+8kvvXah1aZGEbOEJeGUkXAd7KEn3ehsFZiAuF3rQIYGc9E+
-	zKmvE9RerI1AXpml5dVf7YhgejJA75ONcBbDsqE=
-X-Google-Smtp-Source: ABdhPJwzEBCV991lt7N0KF1wVMFnMqUXupQcLti+QQfGmw8FFeQlZB8VlYFrbvQyOYcrFulxOKGCVy10xOOisX78ODA=
-X-Received: by 2002:a05:6e02:1094:: with SMTP id r20mr5522767ilj.154.1615620540552;
- Fri, 12 Mar 2021 23:29:00 -0800 (PST)
+Subject: Re: How can I create a truly minimal distribution that runs entirely from RAM?
+To: yocto@lists.yoctoproject.org
+From: p32@tuta.io
+X-Originating-Location: Karlsruhe, Baden-Württemberg, DE (46.223.162.21)
+X-Originating-Platform: Linux Firefox 86
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CAGAf8Lxw9Rs2YAyemcdzsHQAEGP9aLyRGovJawAaiA_LP6dydA@mail.gmail.com>
- <29498.1615585760727204439@lists.yoctoproject.org>
-In-Reply-To: <29498.1615585760727204439@lists.yoctoproject.org>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Sat, 13 Mar 2021 08:28:49 +0100
-Message-ID: <CAGAf8LyKF9dAcPc9VVBTNcurVzNp3wgmgfVgDhMdK35fHtn_hw@mail.gmail.com>
-Subject: Re: [yocto] How can I create a truly minimal distribution that runs entirely from RAM?
-To: p32@tuta.io
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Date: Sun, 14 Mar 2021 16:16:51 -0700
+References: <CAGAf8LyKF9dAcPc9VVBTNcurVzNp3wgmgfVgDhMdK35fHtn_hw@mail.gmail.com>
+In-Reply-To: <CAGAf8LyKF9dAcPc9VVBTNcurVzNp3wgmgfVgDhMdK35fHtn_hw@mail.gmail.com>
+Message-ID: <29235.1615763811371292564@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="42d4OkbSmJ5aBH1QiDDz"
 
-> 1. have Yocto generate an initramfs.cpio.xz.uboot file
-> instead of just an initramfs.cpio.xz file and to
+--42d4OkbSmJ5aBH1QiDDz
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-I assume this is not too hard to achieve. Somewhere in some bitbake
-config file this should be added, but either me do not know that.
+Thank you very much. I figured out that you can have Yocto create a suitabl=
+e U-Boot wrapper as follows (from the image recipe):
+IMAGE_FSTYPES =3D "cpio.xz.u-boot"
 
-So, we'll both wait for this info, maybe some new variable should be
-defined for such cases as initramfs, for YOCTO build system to
-generate.
+Now there is only one last issue that I wasn't able to solve yet: I would =
+like Yocto to not only generate this U-Boot file but also add it to the boo=
+t partition of a wic.gz image. I tried to extend the image recipe as follow=
+s:
+IMAGE_FSTYPES =3D "cpio.xz.u-boot wic.gz"
+IMAGE_BOOT_FILES_append +=3D "${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.cpio.xz.u-=
+boot"
 
-For example, adding INITRAMFS_CONF = "1" into local.conf (initially
-this variable should be set to INITRAMFS_CONF ??= "0") in some YOCTO
-defconfig file?!
+Unfortunately, there is a dependency issue here. BitBake schedules the do_=
+image_wic task before the do_image_cpio task, which creates the u-boot file=
+. I tried to fix it as follows (from the image recipe):
+do_image_wic[depends] =3D "my-image-recipe:do_image_cpio"
 
-> 2. modify the default environment that Yocto will
-> compile into the U-Boot binary?
+While the dependency graph acknowledges this dependency, BitBake does not =
+seem to care about it. Whatever I try, do_image_wic is always executed firs=
+t and, obviously, does not succeed. I think the problem is comparable to th=
+e unsolved one outlined here:
+https://stackoverflow.com/questions/58954170/yocto-creating-a-dependency-f=
+or-wic-to-cpio-gz-image
 
-This, I believe, is achievable by the following steps:
+How can I instruct Yocto to execute do_image_cpio first?
 
-      1. Taking/cloning last U-Boot from denx git;
-      2. Modifying the ./include/configs/<board.h> file, introducing
-the following:
+--42d4OkbSmJ5aBH1QiDDz
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-          #ifdef CONFIG_SUPPORT_INITRAMFS_BOOT
-          #define INITRAMFS_ENV \
-                  <place here modified by you initramfs ash script>
-          #else
-          #define INITRAMFS_ENV ""
-          #endif
+Thank you very much. I figured out that you can have Yocto create a suitabl=
+e U-Boot wrapper as follows (from the image recipe):<br />IMAGE_FSTYPES =3D=
+ "cpio.xz.u-boot"<br /><br />Now there is only one last issue that I wasn't=
+ able to solve yet: I would like Yocto to not only generate this U-Boot fil=
+e but also add it to the boot partition of a wic.gz image. I tried to exten=
+d the image recipe as follows:<br />IMAGE_FSTYPES =3D "cpio.xz.u-boot wic.g=
+z"<br />IMAGE_BOOT_FILES_append +=3D "${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.cpi=
+o.xz.u-boot"<br /><br />Unfortunately, there is a dependency issue here. Bi=
+tBake schedules the do_image_wic task before the do_image_cpio task, which =
+creates the u-boot file. I tried to fix it as follows (from the image recip=
+e):<br />do_image_wic[depends] =3D "my-image-recipe:do_image_cpio"<br /><br=
+ />While the dependency graph acknowledges this dependency, BitBake does no=
+t seem to care about it. Whatever I try, do_image_wic is always executed fi=
+rst and, obviously, does not succeed. I think the problem is comparable to =
+the unsolved one outlined here:<br />https://stackoverflow.com/questions/58=
+954170/yocto-creating-a-dependency-for-wic-to-cpio-gz-image<br /><br />How =
+can I instruct Yocto to execute do_image_cpio first?<br /><span class=3D"pe=
+rmalink"></span>
 
-        3. Compile U-boot, place it on SDcard and test, to see if you
-are able to make it work after rebooting the system;
-        4. tar again U-Boot source code with these changes, and upload
-it on your server;
-        5. Change the U-boot recipe to be downloaded from your server!
-
-Another approach I do not know (maybe YOCTO people do know a better
-approach from inside the YOCTO build system).
-
-Hope this helps.
-
-Zoran
-_______
-
-
-On Fri, Mar 12, 2021 at 10:49 PM p32 via lists.yoctoproject.org
-<p32=tuta.io@lists.yoctoproject.org> wrote:
->
-> Thank you very much for your help on the second issue! I was unaware of the fact that another mkimage call is necessary. After taking a look at the the references you provided, I was able to boot the system from an initramfs.
->
-> However, my current approach requires two manual steps after running Yocto: I need to call mkimage on the cpio.xz file and to extend/configure the U-Boot environment in the running system. Is there a way to automate this?
->
-> More specifically, is it possible to...
->
-> have Yocto generate an initramfs.cpio.xz.uboot file instead of just an initramfs.cpio.xz file and to
-> modify the default environment that Yocto will compile into the U-Boot binary?
->
->
-> 
->
+--42d4OkbSmJ5aBH1QiDDz--
