@@ -1,131 +1,119 @@
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
- by mx.groups.io with SMTP id smtpd.web12.1592.1615852376371325303
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+ by mx.groups.io with SMTP id smtpd.web10.1595.1615852453908295307
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 Mar 2021 16:52:56 -0700
+ Mon, 15 Mar 2021 16:54:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=cXfm0cLy;
- spf=pass (domain: gmail.com, ip: 209.85.160.173, mailfrom: jonas.vautherin@gmail.com)
-Received: by mail-qt1-f173.google.com with SMTP id c6so10466505qtc.1
-        for <yocto@lists.yoctoproject.org>; Mon, 15 Mar 2021 16:52:56 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=eOmfg8cO;
+ spf=pass (domain: gmail.com, ip: 209.85.210.48, mailfrom: akuster808@gmail.com)
+Received: by mail-ot1-f48.google.com with SMTP id r24so7774695otp.12
+        for <yocto@lists.yoctoproject.org>; Mon, 15 Mar 2021 16:54:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=0f64MU/37Q41GOHbCZX11XY8XKGUubKvxEkRihPM7wQ=;
-        b=cXfm0cLybeJhfcd2K6WQBeZCv6evVWexa5r48Xyhui/DfqbwskP8c11xLJKgVtqGrC
-         DuF0f+hmiIgyH3kjbsiRPJSW6nQfEQd+yok+nuL5RdaV5GG0wgLIACHuHmyXonIAoRfb
-         NmMwS0vEoF8NjEUoSxO5vZynm00XneZBWZkSutPpNqsIz+ljVMG1k73bv4dgHMEtwnpk
-         8WkvN10n9HXHC/7ZDDaYNxDVbtK+0+hNZ0uq+yWtdbCzw+YeQFGMsK9vKd+8nqyRAB7X
-         488lc4xQ4W0nGsuoBRKrw/EO5alUXYkGpJGctVMxAz8IcvpnMrXQi1ahp0tTtjiV2P3s
-         uKnA==
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=zMdU2+lAgaISul6Mb+B6n2N/CqFn2SiaLJSkAqNqrRg=;
+        b=eOmfg8cOsJ2KFrbJ1cOgvd8+llU769BTb23zIY8C10A2S3+7tZf1MW3zCDnaXcIru5
+         J+gLWVfDsrHmEQXuW2hlk2A76/kq200kg02fq5xxSeTblbu6254HduXekRHmAOyYS10+
+         8kD4TeY9IwF4nrhiuQ4Wkvk/Zjjv1Qdq4ZaZwSLwmfSYQfOdMdofijm7jpFRRlYA4BXp
+         HVC4TisU4AUlKxLwxtLhosbQijKiYNT/HSLbKQMhjXyJ+OqA6lph4yH68rP8+jkwkgyx
+         E4RbSVpaG6Ue0eXYIFvCLnYunhnv7r301vvNOfR0uAX7QlMXZgwiUpEPemlw4qPPrvRl
+         nOuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=0f64MU/37Q41GOHbCZX11XY8XKGUubKvxEkRihPM7wQ=;
-        b=LI0EayupW1zQHawTk9TDiaUUehNgVjkRm+YPEBW5bl8uUp6Ddy5k0+6HrKQtn2aErw
-         0mq5aExOhgUjKB/cNIW4Aydy+2IJbNbtv/zsX/wIO8vK1PRTp88yeQrAqMbnsb330sYM
-         3fcX/RYGD6QxQleOlriFhreWYx42VstplWjP9bmQQ1sfmQeJvlUI/SpE0uftNbbvjPza
-         gFORzQ4dOku9P3NqAeLBq2V7EWUeM3J3yOF1oxOLJpGV+HAHRLQngHR+boLZ/CA4iwb6
-         l6e6YrkFVKOfjIG6V3QfqTI/uuQdW0E4pKvHr/PPTq/uHtmFXEqfZJ6FGVc8x3EFziYb
-         udoA==
-X-Gm-Message-State: AOAM533MFKU6JaPHvB9xF5OL22GdtZ3TCLx9l7pCntpFV1YymWHDDaXa
-	PyhimyKPwiqKNyy4DS91so2fBIRDGm8GovR025g5sV0DenMbHQ==
-X-Google-Smtp-Source: ABdhPJyWcuhdPsEMffx3Ddt5VOeG5N30pOHeBozUoQFNQCTYwloVI+fx+VQOnEgjJHfazG896y0/0g7mo/CjLo5MT6g=
-X-Received: by 2002:ac8:6044:: with SMTP id k4mr25095478qtm.4.1615852375159;
- Mon, 15 Mar 2021 16:52:55 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=zMdU2+lAgaISul6Mb+B6n2N/CqFn2SiaLJSkAqNqrRg=;
+        b=td7ZFrCPwHRe9dfArXv2jVYu3E2PgXwrk29tjmiLV5jiGAdNzJ5nLs9fpfSl2/Ri7S
+         YbcFNC/SolAZ91o8V8zIwhhyN77uv0UM6QTgkF2Mwms16agpu2J2jk52hzqQXJ5aOHiW
+         SMZSTeJt3GwWbtLVX7Z8OSZUTIMuGDnoe/KSgpu4yXXqmUhY85CwnKpcUwbA4s2N/Y3D
+         XhjjKfQcbf3IejCQw2AXoUnzpNFrcIi7KdoI56juzgZTk1RtTuxk5kmYYfOB0KSyoF06
+         rslC+UV9cxyB49R/cZMDkF8X3B/qvUA1uQGPQsr8mQzRYiQMkA+i2JEFsEK3zLuB3723
+         cghg==
+X-Gm-Message-State: AOAM531c8vvRPSU6ZIDoD8PEPJYH9vmh9dcDLENwYn7JaIMEsobn5snc
+	D8sALE1APr6sncppncgsJ+MqoY264JE=
+X-Google-Smtp-Source: ABdhPJyYDhOHACz+rLJRe6uCEX7wP1nIBaeYKFKy8kHkktcibE6UCVcuZOFgT3dWVMxYO9O8h5Wsnw==
+X-Received: by 2002:a9d:19a3:: with SMTP id k32mr1230829otk.189.1615852453047;
+        Mon, 15 Mar 2021 16:54:13 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from ?IPv6:2601:202:4180:a5c0:941:286b:5c37:6c83? ([2601:202:4180:a5c0:941:286b:5c37:6c83])
+        by smtp.gmail.com with ESMTPSA id c205sm6944815oib.40.2021.03.15.16.54.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Mar 2021 16:54:12 -0700 (PDT)
+Subject: Re: [yocto] Building test code?
+To: jchludzinski@vivaldi.net, Yocto <yocto@lists.yoctoproject.org>
+References: <bdb239f7ebf89f1567d5fbd2530fa12c@vivaldi.net>
+From: "akuster" <akuster808@gmail.com>
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <503454c9-ea3c-6ecb-bfdf-eb5fce6feeee@gmail.com>
+Date: Mon, 15 Mar 2021 16:54:11 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-From: "Jonas Vautherin" <jonas.vautherin@gmail.com>
-Date: Tue, 16 Mar 2021 00:52:44 +0100
-Message-ID: <CAEyb4nFbodTcim5A-cGTLJsa+t8od3W-JrJw6YHr+SDTQPTt3w@mail.gmail.com>
-Subject: GPT instead of MBR in my WKS file
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000d4b74005bd9bf248"
+In-Reply-To: <bdb239f7ebf89f1567d5fbd2530fa12c@vivaldi.net>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
---000000000000d4b74005bd9bf248
-Content-Type: text/plain; charset="UTF-8"
 
-Hello :-),
 
-Learning Yocto with my Pocketbeagle, I have been looking at the WKS file
-recently. Starting with the default beaglebone-yocto.wks, it is working
-fine for an MBR partition table:
+On 3/15/21 4:11 PM, jchludzinski via lists.yoctoproject.org wrote:
+> I got a piece of code from github:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/spi/spidev_test.c
+>
+> I'd like to add it somewhere under /*tools/testing*/ and build it there.
+>
+> Not sure if this is appropriate? If so, how do I go about this?
+>
+> If not, what's the best way to build this?
 
-```
-part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat
---label boot --active --align 4 --size 16 --sourceparams="loader=u-boot"
---use-uuid
-part / --source rootfs --ondisk mmcblk --fstype=ext4 --label root --align 4
---use-uuid
-bootloader --append="console=ttyS0,115200"
-```
+Is this what you are looking for?
+ https://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-kernel/spidev-test/spidev-test.bb
 
-Looking at the documentation and some examples online, I wanted to try
-moving that to a GPT partition table. But whatever I do, I always end up
-with an image that just does not boot at all (and my FTDI connection does
-not give me any serial output at all, not even an error). For instance I
-tried something like this:
+-armin
+>
+> 
+>
 
-```
-part /boot --source bootimg-efi --ondisk mmcblk0 --fstype=vfat --label boot
---part-name boot --active --align 1024 --sourceparams="loader=grub-efi"
---use-uuid
-part / --source rootfs --ondisk mmcblk --fstype=ext4 --label root
---part-name system --align 1024 --use-uuid
-bootloader --ptable gpt --append="console=ttyS0,115200"
-```
-
-So I obviously started with `--ptable gpt`, and then gradually tried to
-change other things (like `bootimg-efi` instead of `bootimg-partition`,
-changing the `--align` value, etc. Honestly I don't really know what I am
-doing, but I have not found references that helped me online (probably
-because I'm a beginner and I do not know what to search for).
-
-I would love to get some insights about this. Like how could I verify if my
-pocketbeagle can run from GPT at all (I have read that some ROMs do not
-support it because it is too big)? And does GPT require EFI and/or grub at
-all, or is that independent?
-
-After all, I would just like to have a GPT partition table that looks very
-similar to my MBR table, except that with GPT I could benefit from the
-`--part-name` for fastboot. I don't think I want grub at all, for instance.
-
-Best Regards,
-Jonas
-
---000000000000d4b74005bd9bf248
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello :-),<div><br></div><div>Learning Yocto with my Pocke=
-tbeagle, I have been looking at the WKS file recently. Starting with the de=
-fault beaglebone-yocto.wks, it is working fine for an MBR partition table:<=
-/div><div><br></div><div>```</div><div>part /boot --source bootimg-partitio=
-n --ondisk mmcblk0 --fstype=3Dvfat --label boot --active --align 4 --size 1=
-6 --sourceparams=3D&quot;loader=3Du-boot&quot; --use-uuid<br>part / --sourc=
-e rootfs --ondisk mmcblk --fstype=3Dext4 --label root --align 4 --use-uuid<=
-br>bootloader --append=3D&quot;console=3DttyS0,115200&quot;<br></div><div>`=
-``</div><div><br></div><div>Looking at the documentation and some examples =
-online, I wanted to try moving that to a GPT partition table. But whatever =
-I do, I always end up with an image that just does not boot at all (and my =
-FTDI connection does not give me any serial output at all, not even an erro=
-r). For instance I tried something like this:</div><div><br></div><div>```<=
-/div><div>part /boot --source bootimg-efi --ondisk mmcblk0 --fstype=3Dvfat =
---label boot --part-name boot --active --align 1024 --sourceparams=3D&quot;=
-loader=3Dgrub-efi&quot; --use-uuid<br>part / --source rootfs --ondisk mmcbl=
-k --fstype=3Dext4 --label root --part-name system --align 1024 --use-uuid<b=
-r>bootloader --ptable gpt --append=3D&quot;console=3DttyS0,115200&quot;<br>=
-</div><div>```</div><div><br></div><div>So I obviously started with `--ptab=
-le gpt`, and then gradually tried to change other things (like `bootimg-efi=
-` instead of `bootimg-partition`, changing the `--align` value, etc. Honest=
-ly I don&#39;t really know what I am doing, but I have not found references=
- that helped me online (probably because I&#39;m a beginner and I do not kn=
-ow what to search for).</div><div><br></div><div>I would love to get some i=
-nsights about this. Like how could I verify if my pocketbeagle can run from=
- GPT at all (I have read that some ROMs do not support it because it is too=
- big)? And does GPT require EFI and/or grub at all, or is that independent?=
-</div><div><br></div><div>After all, I would just like to have a GPT partit=
-ion table that looks very similar to my MBR table, except that with GPT I c=
-ould benefit from the `--part-name` for fastboot. I don&#39;t think I want =
-grub at all, for instance.</div><div><br></div><div>Best Regards,</div><div=
->Jonas</div></div>
-
---000000000000d4b74005bd9bf248--
