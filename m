@@ -1,80 +1,131 @@
-Received: from smtp.vivaldi.net (smtp.vivaldi.net [31.209.137.12])
- by mx.groups.io with SMTP id smtpd.web10.1084.1615849881439686819
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+ by mx.groups.io with SMTP id smtpd.web12.1592.1615852376371325303
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 Mar 2021 16:11:21 -0700
+ Mon, 15 Mar 2021 16:52:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@vivaldi.net header.s=default header.b=f01xoGCE;
- spf=pass (domain: vivaldi.net, ip: 31.209.137.12, mailfrom: jchludzinski@vivaldi.net)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp.vivaldi.net (Postfix) with ESMTP id 6A1D0BD041
-	for <yocto@lists.yoctoproject.org>; Mon, 15 Mar 2021 23:11:18 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 6A1D0BD041
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1615849878;
-	bh=n8qOBV4n2Fss/Odo59NoNK4iGp3RcmEqxlHY8O5eGrw=;
-	h=Date:From:To:Subject:From;
-	b=f01xoGCET2dqttoqqwW5p3s5uNVFL9d9c5pSy+/2FvS0AIndwrdnNGVscWRzU5ty/
-	 hbiUAh7FnPOAcNA/E1KLrq5RskY1Rwcxwktzw782KsJj8PfS7YTEAlkpeM4j5TRvYx
-	 o7PUKVHJFdH3vOUwJBiig+Z5ClJKIUXheCIQiPSAu8Tm5kgoCOcyDiWBHHAO+z7Swi
-	 Gs20IllFwWljdDbPcAbQGr33p0Qq04ILH7bVEIp8hyoGfOF7hg7nYgdqVxnqaBMrVY
-	 ijYlmOeyUNeh0LFIcdEaGfsHa9OxJ2PwOMxTczr2pj9gWVS+5AW3vNM5Wwm4cOoHHe
-	 WqInpA8P+WH/A==
-X-Virus-Scanned: Debian amavisd-new at smtp.vivaldi.net
-Received: from smtp.vivaldi.net ([127.0.0.1])
-	by localhost (mxo.viv.dc01 [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id DHvkr2jEB8VD for <yocto@lists.yoctoproject.org>;
-	Mon, 15 Mar 2021 23:11:16 +0000 (UTC)
-Date: Mon, 15 Mar 2021 19:11:16 -0400
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 36F5CBD017
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1615849876;
-	bh=n8qOBV4n2Fss/Odo59NoNK4iGp3RcmEqxlHY8O5eGrw=;
-	h=Date:From:To:Subject:From;
-	b=bYqP7jyDkmcCzkEIJcajdj4OIHV+kuQaxLkYf7GMi9BR5mdQH/B+XLNm6D0s4E0Kw
-	 KjFZ/Yy1+CCtSKmUDeFTT/ZSYl+5iDke4lF54SzqmJtAUmyqPuxXP6IZNO35bkZCjf
-	 cJiaCVwZIoXzlVSck6CkxkfUHcr0T6I4RloO+Dx+q0G1e7dxHuDrj64nKtDEUkHJz+
-	 G1ojx8NIC9W5QwkE179CCvcaqGKcARqILmQbdPdWm6knntGI0valhfW+9GN/xRgWk8
-	 R6Lt9+Woiu1PNbF41Be8ndEziI4kMRqkuNb9Pn818kMbK35joyvIxCdtvfHJAy1oy7
-	 jPJEbicYw1FYQ==
-From: "jchludzinski" <jchludzinski@vivaldi.net>
-To: Yocto <yocto@lists.yoctoproject.org>
-Subject: Building test code?
-User-Agent: Roundcube Webmail/1.4.4
-Message-ID: <bdb239f7ebf89f1567d5fbd2530fa12c@vivaldi.net>
-X-Sender: jchludzinski@vivaldi.net
-Content-Type: multipart/alternative;
- boundary="=_b438b3797dca4af038f9a523bc5220aa"
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=cXfm0cLy;
+ spf=pass (domain: gmail.com, ip: 209.85.160.173, mailfrom: jonas.vautherin@gmail.com)
+Received: by mail-qt1-f173.google.com with SMTP id c6so10466505qtc.1
+        for <yocto@lists.yoctoproject.org>; Mon, 15 Mar 2021 16:52:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=0f64MU/37Q41GOHbCZX11XY8XKGUubKvxEkRihPM7wQ=;
+        b=cXfm0cLybeJhfcd2K6WQBeZCv6evVWexa5r48Xyhui/DfqbwskP8c11xLJKgVtqGrC
+         DuF0f+hmiIgyH3kjbsiRPJSW6nQfEQd+yok+nuL5RdaV5GG0wgLIACHuHmyXonIAoRfb
+         NmMwS0vEoF8NjEUoSxO5vZynm00XneZBWZkSutPpNqsIz+ljVMG1k73bv4dgHMEtwnpk
+         8WkvN10n9HXHC/7ZDDaYNxDVbtK+0+hNZ0uq+yWtdbCzw+YeQFGMsK9vKd+8nqyRAB7X
+         488lc4xQ4W0nGsuoBRKrw/EO5alUXYkGpJGctVMxAz8IcvpnMrXQi1ahp0tTtjiV2P3s
+         uKnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=0f64MU/37Q41GOHbCZX11XY8XKGUubKvxEkRihPM7wQ=;
+        b=LI0EayupW1zQHawTk9TDiaUUehNgVjkRm+YPEBW5bl8uUp6Ddy5k0+6HrKQtn2aErw
+         0mq5aExOhgUjKB/cNIW4Aydy+2IJbNbtv/zsX/wIO8vK1PRTp88yeQrAqMbnsb330sYM
+         3fcX/RYGD6QxQleOlriFhreWYx42VstplWjP9bmQQ1sfmQeJvlUI/SpE0uftNbbvjPza
+         gFORzQ4dOku9P3NqAeLBq2V7EWUeM3J3yOF1oxOLJpGV+HAHRLQngHR+boLZ/CA4iwb6
+         l6e6YrkFVKOfjIG6V3QfqTI/uuQdW0E4pKvHr/PPTq/uHtmFXEqfZJ6FGVc8x3EFziYb
+         udoA==
+X-Gm-Message-State: AOAM533MFKU6JaPHvB9xF5OL22GdtZ3TCLx9l7pCntpFV1YymWHDDaXa
+	PyhimyKPwiqKNyy4DS91so2fBIRDGm8GovR025g5sV0DenMbHQ==
+X-Google-Smtp-Source: ABdhPJyWcuhdPsEMffx3Ddt5VOeG5N30pOHeBozUoQFNQCTYwloVI+fx+VQOnEgjJHfazG896y0/0g7mo/CjLo5MT6g=
+X-Received: by 2002:ac8:6044:: with SMTP id k4mr25095478qtm.4.1615852375159;
+ Mon, 15 Mar 2021 16:52:55 -0700 (PDT)
+MIME-Version: 1.0
+From: "Jonas Vautherin" <jonas.vautherin@gmail.com>
+Date: Tue, 16 Mar 2021 00:52:44 +0100
+Message-ID: <CAEyb4nFbodTcim5A-cGTLJsa+t8od3W-JrJw6YHr+SDTQPTt3w@mail.gmail.com>
+Subject: GPT instead of MBR in my WKS file
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000d4b74005bd9bf248"
 
---=_b438b3797dca4af038f9a523bc5220aa
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+--000000000000d4b74005bd9bf248
+Content-Type: text/plain; charset="UTF-8"
 
-I got a piece of code from github:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/spi/spidev_test.c
+Hello :-),
 
-I'd like to add it somewhere under _tools/testing_ and build it there. 
+Learning Yocto with my Pocketbeagle, I have been looking at the WKS file
+recently. Starting with the default beaglebone-yocto.wks, it is working
+fine for an MBR partition table:
 
-Not sure if this is appropriate? If so, how do I go about this?
+```
+part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat
+--label boot --active --align 4 --size 16 --sourceparams="loader=u-boot"
+--use-uuid
+part / --source rootfs --ondisk mmcblk --fstype=ext4 --label root --align 4
+--use-uuid
+bootloader --append="console=ttyS0,115200"
+```
 
-If not, what's the best way to build this?
+Looking at the documentation and some examples online, I wanted to try
+moving that to a GPT partition table. But whatever I do, I always end up
+with an image that just does not boot at all (and my FTDI connection does
+not give me any serial output at all, not even an error). For instance I
+tried something like this:
 
---=_b438b3797dca4af038f9a523bc5220aa
+```
+part /boot --source bootimg-efi --ondisk mmcblk0 --fstype=vfat --label boot
+--part-name boot --active --align 1024 --sourceparams="loader=grub-efi"
+--use-uuid
+part / --source rootfs --ondisk mmcblk --fstype=ext4 --label root
+--part-name system --align 1024 --use-uuid
+bootloader --ptable gpt --append="console=ttyS0,115200"
+```
+
+So I obviously started with `--ptable gpt`, and then gradually tried to
+change other things (like `bootimg-efi` instead of `bootimg-partition`,
+changing the `--align` value, etc. Honestly I don't really know what I am
+doing, but I have not found references that helped me online (probably
+because I'm a beginner and I do not know what to search for).
+
+I would love to get some insights about this. Like how could I verify if my
+pocketbeagle can run from GPT at all (I have read that some ROMs do not
+support it because it is too big)? And does GPT require EFI and/or grub at
+all, or is that independent?
+
+After all, I would just like to have a GPT partition table that looks very
+similar to my MBR table, except that with GPT I could benefit from the
+`--part-name` for fastboot. I don't think I want grub at all, for instance.
+
+Best Regards,
+Jonas
+
+--000000000000d4b74005bd9bf248
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
-=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Verdana,Gen=
-eva,sans-serif'>
-<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
-I got a piece of code from github:<br /><a href=3D"https://git.kernel.org/p=
-ub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/spi/spidev_test.c" ta=
-rget=3D"_blank" rel=3D"noopener noreferrer">https://git.kernel.org/pub/scm/=
-linux/kernel/git/torvalds/linux.git/tree/tools/spi/spidev_test.c</a><br /><=
-br />I'd like to add it somewhere under <span style=3D"text-decoration: und=
-erline;"><em><strong>tools/testing</strong></em></span> and build it there=
-=2E <br /><br />Not sure if this is appropriate? If so, how do I go about t=
-his?<br /><br />If not, what's the best way to build this?</div>
-</body></html>
+<div dir=3D"ltr">Hello :-),<div><br></div><div>Learning Yocto with my Pocke=
+tbeagle, I have been looking at the WKS file recently. Starting with the de=
+fault beaglebone-yocto.wks, it is working fine for an MBR partition table:<=
+/div><div><br></div><div>```</div><div>part /boot --source bootimg-partitio=
+n --ondisk mmcblk0 --fstype=3Dvfat --label boot --active --align 4 --size 1=
+6 --sourceparams=3D&quot;loader=3Du-boot&quot; --use-uuid<br>part / --sourc=
+e rootfs --ondisk mmcblk --fstype=3Dext4 --label root --align 4 --use-uuid<=
+br>bootloader --append=3D&quot;console=3DttyS0,115200&quot;<br></div><div>`=
+``</div><div><br></div><div>Looking at the documentation and some examples =
+online, I wanted to try moving that to a GPT partition table. But whatever =
+I do, I always end up with an image that just does not boot at all (and my =
+FTDI connection does not give me any serial output at all, not even an erro=
+r). For instance I tried something like this:</div><div><br></div><div>```<=
+/div><div>part /boot --source bootimg-efi --ondisk mmcblk0 --fstype=3Dvfat =
+--label boot --part-name boot --active --align 1024 --sourceparams=3D&quot;=
+loader=3Dgrub-efi&quot; --use-uuid<br>part / --source rootfs --ondisk mmcbl=
+k --fstype=3Dext4 --label root --part-name system --align 1024 --use-uuid<b=
+r>bootloader --ptable gpt --append=3D&quot;console=3DttyS0,115200&quot;<br>=
+</div><div>```</div><div><br></div><div>So I obviously started with `--ptab=
+le gpt`, and then gradually tried to change other things (like `bootimg-efi=
+` instead of `bootimg-partition`, changing the `--align` value, etc. Honest=
+ly I don&#39;t really know what I am doing, but I have not found references=
+ that helped me online (probably because I&#39;m a beginner and I do not kn=
+ow what to search for).</div><div><br></div><div>I would love to get some i=
+nsights about this. Like how could I verify if my pocketbeagle can run from=
+ GPT at all (I have read that some ROMs do not support it because it is too=
+ big)? And does GPT require EFI and/or grub at all, or is that independent?=
+</div><div><br></div><div>After all, I would just like to have a GPT partit=
+ion table that looks very similar to my MBR table, except that with GPT I c=
+ould benefit from the `--part-name` for fastboot. I don&#39;t think I want =
+grub at all, for instance.</div><div><br></div><div>Best Regards,</div><div=
+>Jonas</div></div>
 
---=_b438b3797dca4af038f9a523bc5220aa--
+--000000000000d4b74005bd9bf248--
