@@ -1,105 +1,123 @@
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
- by mx.groups.io with SMTP id smtpd.web09.6091.1615888175611911892
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+ by mx.groups.io with SMTP id smtpd.web08.6182.1615888758336153670
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Mar 2021 02:49:36 -0700
+ Tue, 16 Mar 2021 02:59:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=X6a0Ygz3;
- spf=pass (domain: linaro.org, ip: 209.85.218.50, mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-ej1-f50.google.com with SMTP id ci14so70881073ejc.7
-        for <yocto@lists.yoctoproject.org>; Tue, 16 Mar 2021 02:49:35 -0700 (PDT)
+ dkim=pass header.i=@theyoctojester-info.20150623.gappssmtp.com header.s=20150623 header.b=UG0i1GLo;
+ spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.171, mailfrom: jester@theyoctojester.info)
+Received: by mail-lj1-f171.google.com with SMTP id 16so19706023ljc.11
+        for <yocto@lists.yoctoproject.org>; Tue, 16 Mar 2021 02:59:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=theyoctojester-info.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CS/u0HyccCuj/YAPEueGjfF8NaKm/i6Na6rAO9ntGCk=;
-        b=X6a0Ygz3uYMJ/O1Bdyvtw0oIiU7w1VXPkS4k1MofgESwe+d/AYf7xzAfNgXMIVdIS4
-         7GMBrVPs9aNBJ0NoxHpcYJ7tbSLh3g77/j6k7JdM4b6PjXNwUSecttzEfLIuFqIbTe3V
-         uOTgap7LddUaxGY7ywYGfUJFI+Q+iVS5bzemdC7ZqQKYe9N3drTvU3JOKQ2mE1Y75Lbm
-         4bn++kHr+zpvWUaJxYTEH+X5rAf5j4Ul0sZWcUJbcz7bP27ARI9De6IVGL+vMXptbmuh
-         IFpnSScvEHJbAmhLkIBCtpGLrPGtVAMIneVdroyzrkl7UnBtvokxBijm/2iOZUK2R3tw
-         WihQ==
+         :cc:content-transfer-encoding;
+        bh=55igmS/r5YPDepCvfXgSD9/aMu2c9GiB8ahmHnPWFWg=;
+        b=UG0i1GLoUblczzVHDyZEucaTo0sS3FzFGL0b2cbQTIqTxIwGDRYpw5Zzs7og0cp0Gj
+         KVXLKxaLqIMRrJ7Y1iygz9Cj4E2PZXXSmhTlHK4zKMGYx75DqTP7KrIc/pdI8FaBrtN/
+         EULk3dlldXftKICiWyaPrcCKLHDVjrROOxEDpR3OoARpwcDY4EVAuddKQXZMe1oHhkas
+         99ig8VesWUUMlQFA9c+8lxU5wGrnJHLGh8P2eC/BFQdDqIj4Dea6D+ya/P5kAR71p4+y
+         ixp+xtAaOVglXhPH8oMozShQypi0bGK+dgGm2MBuw99AmF507DkHB+l1oCGcSEId5VcT
+         70hA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CS/u0HyccCuj/YAPEueGjfF8NaKm/i6Na6rAO9ntGCk=;
-        b=WAPhXKG+WiVG9dLS7al8pAYvxScG62TfNt1s5a0ceNN8LIeTZX6Aw/Y3hmToWGpPR0
-         2RjSMh7Y87iEYFyjolQzIFTzA7Idp6VZbMLFit7vC4cplT4bMtjPjLortEU3OpFW2MWP
-         +qOP4U/4/Jg9H+zfWXSlGjSYE4qhYGq8ep2rFDXeoCu6q0T7yWZsQDjnt8hAlBIMORLL
-         /yoWDta8uw1iJ81L+/6S8gv7DhJ2bOL+U7fA7PHNfXfBT0tv+KpaHAcbl1lzuLwCviFI
-         gsdK4+pDQ8b21IkbywYV85tLuh2UaOsGqOfwnPB4b31wN196dipCrnfC3+CxdcSSHi++
-         2ALQ==
-X-Gm-Message-State: AOAM533ArORwAiuMy0rTxeExktOPxYeYBTzhohKkAouHrSwJCnXgPrWB
-	VKRXTAjINfEx0KAIYmBQw7Jk7P5WNvVd8xGMTsoXmQ==
-X-Google-Smtp-Source: ABdhPJxtDyalXEivP39oVmEH0D3G3QJnI/XhhCU7VU9wab6EmVKpXYjzdw4jo1+FCpz1Fnh8/UoTEij+catZ0vEk17U=
-X-Received: by 2002:a17:906:fc1c:: with SMTP id ov28mr28807085ejb.342.1615888174038;
- Tue, 16 Mar 2021 02:49:34 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=55igmS/r5YPDepCvfXgSD9/aMu2c9GiB8ahmHnPWFWg=;
+        b=hCR95oF1c0T15lx65Dpmlsbk+lrtHe4bd9rsLrf1GHh912KC6eIzAEHcCH1L5RFBMM
+         KcBJw6G3wVYUwtc4PIefUb4PiRgW5p3K7Sc2GdNcSSvCoAX/AfWUiA1uUTh99V3IUbch
+         RMp/GS8VTgvuuy+dinEA5onSpS26UsZ1f+wEF2yk4m8+4PFepiGt+sgTJkHO6cnWHh3C
+         O7xN5h42PgAmuxpEZPPmNWqk/qbac/xlrbSifQQxDIMbVHaSRSjE1h4KzoRYn+ybeXbL
+         EE+tEMpHwcx3Hx8YHAHf/jpsgWl0TC+KbNhduofke5fj6TB6i74A5Q46Gmd0zZyMdDDj
+         kI8A==
+X-Gm-Message-State: AOAM5325+Myg9vmfrt/TuLFPscyB4ZiUVhEdGrgnHenvlXBLGJJBz45I
+	lL9ajdzRekAH7hCqbl8b1yVk5U7gWG1UWwqFQqA1kQ==
+X-Google-Smtp-Source: ABdhPJx6W0+LgrC4fkCjXXlF/qnInMW6ayWMh55ztGxk298Ny4sFINpF8Gy/UUQ4Ra4Ys9OiMhcEgcIQIsZ/5zFbb0k=
+X-Received: by 2002:a2e:7409:: with SMTP id p9mr2113492ljc.165.1615888756184;
+ Tue, 16 Mar 2021 02:59:16 -0700 (PDT)
 MIME-Version: 1.0
 References: <bdb239f7ebf89f1567d5fbd2530fa12c@vivaldi.net> <503454c9-ea3c-6ecb-bfdf-eb5fce6feeee@gmail.com>
- <247c426e3db4a7f031aad842303134f1@vivaldi.net>
-In-Reply-To: <247c426e3db4a7f031aad842303134f1@vivaldi.net>
-From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
-Date: Tue, 16 Mar 2021 10:49:23 +0100
-Message-ID: <CAP71WjwJmSVGGXCtfChNkoN3u-UjXXCmWbO_1tj2iF+aP2RHPQ@mail.gmail.com>
+ <247c426e3db4a7f031aad842303134f1@vivaldi.net> <CAP71WjwJmSVGGXCtfChNkoN3u-UjXXCmWbO_1tj2iF+aP2RHPQ@mail.gmail.com>
+In-Reply-To: <CAP71WjwJmSVGGXCtfChNkoN3u-UjXXCmWbO_1tj2iF+aP2RHPQ@mail.gmail.com>
+From: "Josef Holzmayr" <jester@theyoctojester.info>
+Date: Tue, 16 Mar 2021 10:58:49 +0100
+Message-ID: <CAEt6NwpHM72t3KLzU=2kNApQxqqZN4FJOsUiZUV+WumDT2qjNg@mail.gmail.com>
 Subject: Re: [yocto] Building test code?
-To: jchludzinski@vivaldi.net
-Cc: akuster <akuster808@gmail.com>, Yocto <yocto@lists.yoctoproject.org>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Cc: jchludzinski@vivaldi.net, akuster <akuster808@gmail.com>, 
+	Yocto <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 16, 2021 at 8:07 AM jchludzinski via
-lists.yoctoproject.org
-<jchludzinski=vivaldi.net@lists.yoctoproject.org> wrote:
+Am Di., 16. M=C3=A4rz 2021 um 10:49 Uhr schrieb Nicolas Dechesne
+<nicolas.dechesne@linaro.org>:
 >
-> It certainly appears to be BUT I'm not certain what I'm looking at?
+> On Tue, Mar 16, 2021 at 8:07 AM jchludzinski via
+> lists.yoctoproject.org
+> <jchludzinski=3Dvivaldi.net@lists.yoctoproject.org> wrote:
+> >
+> > It certainly appears to be BUT I'm not certain what I'm looking at?
+> >
+> > What is meta-openembedded?
+> >
+> > Is it a GIT repo that can be cloned and built?
 >
-> What is meta-openembedded?
->
-> Is it a GIT repo that can be cloned and built?
+> Short answer is yes. The whole Yocto Project / Open Embedded concept
+> is based around 'layers. A layer is a repository that contains recipes
+> (and/or machine/distro, ..). The Yocto Project releases include a
+> couple of common/core layers, but there are plenty of layers out there
+> which can be used
+> I am sure there are quite a bit of documentation on this topic, but
+> perhaps you might want to start with:
+> https://docs.yoctoproject.org/overview-manual/yp-intro.html#the-yocto-pr=
+oject-layer-model
 
-Short answer is yes. The whole Yocto Project / Open Embedded concept
-is based around 'layers. A layer is a repository that contains recipes
-(and/or machine/distro, ..). The Yocto Project releases include a
-couple of common/core layers, but there are plenty of layers out there
-which can be used
-I am sure there are quite a bit of documentation on this topic, but
-perhaps you might want to start with:
-https://docs.yoctoproject.org/overview-manual/yp-intro.html#the-yocto-project-layer-model
+Or grab a beer and start bingewatching
+https://www.youtube.com/playlist?list=3DPLD4M5FoHz-TxMfBFrDKfIS_GLY25Qsfyj
 
+</SCNR>
 
 >
 >
+> >
+> >
+> >
+> > How do I use this to build spidev-test?
+> >
+> >
+> > ---John
+> >
+> >
+> > On 2021-03-15 19:54, akuster wrote:
+> >
+> > On 3/15/21 4:11 PM, jchludzinski via lists.yoctoproject.org wrote:
+> >
+> > I got a piece of code from github:
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
+e/tools/spi/spidev_test.c
+> >
+> > I'd like to add it somewhere under /*tools/testing*/ and build it ther=
+e.
+> >
+> > Not sure if this is appropriate? If so, how do I go about this?
+> >
+> > If not, what's the best way to build this?
+> >
+> >
+> > Is this what you are looking for?
+> >  https://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-k=
+ernel/spidev-test/spidev-test.bb
+> >
+> > -armin
+> >
+> >
+> >
+> >
+> >
+> >
+> >
+> >
+> >
+> >
 >
-> How do I use this to build spidev-test?
->
->
-> ---John
->
->
-> On 2021-03-15 19:54, akuster wrote:
->
-> On 3/15/21 4:11 PM, jchludzinski via lists.yoctoproject.org wrote:
->
-> I got a piece of code from github:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/spi/spidev_test.c
->
-> I'd like to add it somewhere under /*tools/testing*/ and build it there.
->
-> Not sure if this is appropriate? If so, how do I go about this?
->
-> If not, what's the best way to build this?
->
->
-> Is this what you are looking for?
->  https://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-kernel/spidev-test/spidev-test.bb
->
-> -armin
->
->
->
->
->
->
->
->
-> 
+>=20
 >
