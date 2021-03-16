@@ -1,151 +1,64 @@
-Received: from smtp.vivaldi.net (smtp.vivaldi.net [31.209.137.12])
- by mx.groups.io with SMTP id smtpd.web08.963.1615909848477498799
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.964.1615909849100493084
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Mar 2021 08:50:49 -0700
+ Tue, 16 Mar 2021 08:50:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@vivaldi.net header.s=default header.b=K9NASEzd;
- spf=pass (domain: vivaldi.net, ip: 31.209.137.12, mailfrom: jchludzinski@vivaldi.net)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp.vivaldi.net (Postfix) with ESMTP id 57E1CBD045;
-	Tue, 16 Mar 2021 15:50:46 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 57E1CBD045
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1615909846;
-	bh=BtI3GEvYt5xeqk3HW3M1Uy8c00wkH0BzKngbRi++d7c=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=K9NASEzdoPwX67/tz1dEMvaRIe92RXG8zr6+WM/cEjGAvbUjQJpmIRb+0DjCgtZL8
-	 2Y3GZpgEwK3x5+CIyfCgGfyhgO03C9yHY4TvZ2qhGXm5dG9B0fBhxlugZsuJoKA/6I
-	 +TN62rOHaH7wRaqdH5uY1GU7TpAvKVzFLTcPuvpTh6BTz/CPymvwCmD1qpvnPlMA8g
-	 J86NNwdeVqkWhjKvvF/a00YqYPh5Ng72WXqHUnrFjF6gzudrh/niPz3dSv1qQrLgKm
-	 XT3FqbJ0X+aGJ0onhNWoYEtmHozO2krhl0R75qos1kiUQjZ3HJrEWCkLdltSk3FuMf
-	 zbQRQtJdNdp3Q==
-X-Virus-Scanned: Debian amavisd-new at smtp.vivaldi.net
-Received: from smtp.vivaldi.net ([127.0.0.1])
-	by localhost (mxo.viv.dc01 [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 74fZlPq-dUha; Tue, 16 Mar 2021 15:50:42 +0000 (UTC)
-Date: Tue, 16 Mar 2021 11:50:42 -0400
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 40AEABD026
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1615909842;
-	bh=BtI3GEvYt5xeqk3HW3M1Uy8c00wkH0BzKngbRi++d7c=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=sChSt2l/2N2ouyN7QtTakoRrnRhroYjmMwQ+hupglpwZK8ABKwIKFt9TWVwEKDjJw
-	 7QcQVe8l58AkCxCmQG/EcW/9TtF1xPxcmUW9w46rdjo57umE+sURnx3AGwGGclP6WB
-	 XFH3WCUznui2OBVq/jNcs0Vv/t5fkYHx/vr0VNHNX7pl3Lxh0ccTr9Qgfyzt1JsIPW
-	 RL7JRV1sg+NTktx2G/2uQ2vjRg1dpeEHuka+F1z/AwDhzvdD9oeSw6HcuEIgs59aeh
-	 DZAj8+Pw1dWExuhccVzAlX+uY6LwVil9ARFbckvyJdDTlg6wHo420OtufCfj+dqoco
-	 RLFxWHhuUXysg==
-From: "jchludzinski" <jchludzinski@vivaldi.net>
-To: jchludzinski@vivaldi.net
-Cc: Josef Holzmayr <jester@theyoctojester.info>, Nicolas Dechesne
- <nicolas.dechesne@linaro.org>, akuster <akuster808@gmail.com>, Yocto
- <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Building test code?
-In-Reply-To: <166CDA589776C94C.8652@lists.yoctoproject.org>
-References: <bdb239f7ebf89f1567d5fbd2530fa12c@vivaldi.net>
- <503454c9-ea3c-6ecb-bfdf-eb5fce6feeee@gmail.com>
- <247c426e3db4a7f031aad842303134f1@vivaldi.net>
- <CAP71WjwJmSVGGXCtfChNkoN3u-UjXXCmWbO_1tj2iF+aP2RHPQ@mail.gmail.com>
- <CAEt6NwpHM72t3KLzU=2kNApQxqqZN4FJOsUiZUV+WumDT2qjNg@mail.gmail.com>
- <166CDA589776C94C.8652@lists.yoctoproject.org>
-User-Agent: Roundcube Webmail/1.4.4
-Message-ID: <6b47dbaa6ee4a30b21120cf809dd7934@vivaldi.net>
-X-Sender: jchludzinski@vivaldi.net
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+ dkim=pass header.i=@aruba.it header.s=a1 header.b=kzw8vb/o;
+ spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 198.145.29.25, mailfrom: mauro@faresoftware.it)
+Received: from smtpcmd04132.aruba.it (smtpcmd04132.aruba.it [62.149.158.132])
+	by mail.yoctoproject.org (Postfix) with ESMTP id 5E8B538C083D
+	for <yocto@yoctoproject.org>; Tue, 16 Mar 2021 15:50:48 +0000 (UTC)
+Received: from z600 ([93.38.119.136])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id MBy1ltqn1Jy7DMBy1l0YfJ; Tue, 16 Mar 2021 16:50:46 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1615909846; bh=1g4wMrrOZEaH4IfjQucKGSoEi3MzT5saSd6OY4XBWts=;
+	h=Date:From:To:Subject:MIME-Version:Content-Type;
+	b=kzw8vb/oA1vIh6r8IoDzwVAiIGxcMxsfbrWwtbMIO+T2E/qI0LY3iQ7M26OQwJ5xs
+	 sPR8FG/PYRwE8LB39WZ7kCEVI0GbmLSSnAAaMgDSH08V9F4A1iq1ayfROJelx3GYZ2
+	 9lTAd3PppfGgF7gw4TdAYCLCOpXw5/l2OprzC2/NHZg0chk0TIcudTnQC7JfUml3fZ
+	 ewqlBNDjtNtvT92VLBkj3n/SOO8ATx4t+vqvKG2THjHZDSnuFl77RoD6cxz905Cp2G
+	 6CMa06caQI1B6Q/ZRl5F/0Xx9HUBdKPxXECh7cagI6Pv8Lu6JWh/UI75fTUSp5xE4o
+	 uAXvp25BRGLYA==
+Date: Tue, 16 Mar 2021 16:50:44 +0100
+From: "Mauro Ziliani" <mauro@faresoftware.it>
+To: "=?utf-8?Q?yocto=40yoctoproject.org?=" <yocto@yoctoproject.org>
+Message-ID: <60D63209-17B3-49B8-9FE0-1BFFC4F0BC39@getmailspring.com>
+Subject: Which recipes put qtwebkit in my image?
+X-Mailer: Mailspring
+MIME-Version: 1.0
+X-CMAE-Envelope: MS4wfHgo2jZ5kZynFVLO2HPzAebwhjBpGcmdfePCB+2a7Rh0GqP+YJU+lNDFmLPvA8p2qfJb1v2iXf1uGCO1ZXUeDgVIn6g4fvrxrZODXLleeRv1bolN2mjy
+ gOLpdOGZZ8FhtjNxkeOmt//KONlZImcfQFVbMjoU8+X/QRiRl6hYLmzA
+Content-Type: multipart/alternative; boundary="6050d3d4_42eaf200_1211"
+
+--6050d3d4_42eaf200_1211
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+Hi all.I need to find which recipe installs qtwebkit in my final image.
+
+I look in on every recipes I make but I don't find who put qtwebkit in my image.
+I have the same matter with *-dev packages
+
+I use bitbake -g but I don't find the "source" of qtwebkit.
+
+Thanks all
+Mz
+Sent from Mailspring (https://getmailspring.com/), the best free email app for work
+
+--6050d3d4_42eaf200_1211
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-I'm 'bitbaking' now.
+<div>Hi all.I need to find which recipe installs qtwebkit in my final ima=
+ge.</div><br><div>I look in on every recipes I make but&nbsp; I don't fin=
+d who put qtwebkit in my image.</div><div>I have the same matter with *-d=
+ev packages</div><br><div>I use bitbake -g but I don't find the =22source=
+=22 of qtwebkit.</div><br><br><div>Thanks all</div><br><div>Mz</div><br><=
+div><signature id=3D=22initial=22><div><div>Sent from <a href=3D=22https:=
+//getmailspring.com/=22>Mailspring</a>, the best free email app for work<=
+/div></div></signature></div>
 
-On 2021-03-16 10:53, jchludzinski via lists.yoctoproject.org wrote:
-> Well, because time is of the essence, could you give me a little
-> assist here and explain how I might build spidev-test using
-> OpenEmbedded?
->=20
-> THANKS for your help!
-> ---John
->=20
->=20
-> On 2021-03-16 05:58, Josef Holzmayr wrote:
->> Am Di., 16. M=C3=A4rz 2021 um 10:49 Uhr schrieb Nicolas Dechesne
->> <nicolas.dechesne@linaro.org>:
->>>=20
->>> On Tue, Mar 16, 2021 at 8:07 AM jchludzinski via
->>> lists.yoctoproject.org
->>> <jchludzinski=3Dvivaldi.net@lists.yoctoproject.org> wrote:
->>> >
->>> > It certainly appears to be BUT I'm not certain what I'm looking at?
->>> >
->>> > What is meta-openembedded?
->>> >
->>> > Is it a GIT repo that can be cloned and built?
->>>=20
->>> Short answer is yes. The whole Yocto Project / Open Embedded concept
->>> is based around 'layers. A layer is a repository that contains=20
->>> recipes
->>> (and/or machine/distro, ..). The Yocto Project releases include a
->>> couple of common/core layers, but there are plenty of layers out=20
->>> there
->>> which can be used
->>> I am sure there are quite a bit of documentation on this topic, but
->>> perhaps you might want to start with:
->>> https://docs.yoctoproject.org/overview-manual/yp-intro.html#the-yocto-=
-project-layer-model
->>=20
->> Or grab a beer and start bingewatching
->> https://www.youtube.com/playlist?list=3DPLD4M5FoHz-TxMfBFrDKfIS_GLY25Qs=
-fyj
->>=20
->> </SCNR>
->>=20
->>>=20
->>>=20
->>> >
->>> >
->>> >
->>> > How do I use this to build spidev-test?
->>> >
->>> >
->>> > ---John
->>> >
->>> >
->>> > On 2021-03-15 19:54, akuster wrote:
->>> >
->>> > On 3/15/21 4:11 PM, jchludzinski via lists.yoctoproject.org wrote:
->>> >
->>> > I got a piece of code from github:
->>> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/t=
-ree/tools/spi/spidev_test.c
->>> >
->>> > I'd like to add it somewhere under /*tools/testing*/ and build it th=
-ere.
->>> >
->>> > Not sure if this is appropriate? If so, how do I go about this?
->>> >
->>> > If not, what's the best way to build this?
->>> >
->>> >
->>> > Is this what you are looking for?
->>> >  https://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes=
--kernel/spidev-test/spidev-test.bb
->>> >
->>> > -armin
->>> >
->>> >
->>> >
->>> >
->>> >
->>> >
->>> >
->>> >
->>> >
->>> >
->>>=20
->>>=20
->>>=20
->>=20
->>=20
->>=20
->=20
->=20
->=20
+--6050d3d4_42eaf200_1211--
