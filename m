@@ -1,43 +1,47 @@
 Received: from IND01-MA1-obe.outbound.protection.outlook.com (IND01-MA1-obe.outbound.protection.outlook.com [40.107.138.57])
- by mx.groups.io with SMTP id smtpd.web12.5862.1615885915569030440
+ by mx.groups.io with SMTP id smtpd.web08.5966.1615886779373405299
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Mar 2021 02:11:56 -0700
+ Tue, 16 Mar 2021 02:26:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kpit.com header.s=selector1 header.b=xXTjiIAt;
+ dkim=pass header.i=@kpit.com header.s=selector1 header.b=dBDO1Kpf;
  spf=pass (domain: kpit.com, ip: 40.107.138.57, mailfrom: purushottam.choudhary@kpit.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hEt+tVSoFRaf/UU/tbcSU4pMnKeU9NLQIhXV7vetelpkccqNitEVtCEn4nkPt4u0yzm29IUCsQYMRt/zWmQ1sjT1XJUDHF68i754UtPZtsMOp51ZyQK3/6193DiThcJoCeEKniuZmWFFzAmLH1F3O43MZyRCvnKrY/DUog4AgQrPaIZSSM/sA6MV0KDeL689PGLpFffPvrZjqq7FdWP1Vmx19m3pIGuI9oUUjhxPKhijzrNaKQMbZ6/B9xrn5SzqdTow1kpiPJPl1cw9JiUzWfLRKqvJSt6noNR8w50xMcb99rk9EyhjvN4/lUCqCpVY5vYp3I1bBCR87dZfPd61yA==
+ b=ej+bDPRBaKBFGuMLdQSkAgZNnmBUhINNM+O8JU+8oxvKKkDpgYP91C12sWCRYb3IhESyLZeLps734BMqDfXK5sDPMIOD8KVLrTOPaPCSPDKN6Bh/zXe6mSXYFYWydqQz8pvWszdGW8MSvc1In8/bT/ufQot6G1PRRcjmb4NbRRlQjtFJNyEqempOPCXhfCFIkFufM0K8sXQT1dSG3z52neQNb1MK/ml4ZhEuybs9YJSXCo13G9uQAVx5A/sdOyV34KzLsfMj9ygLI0VD74oVPRsgFKzZku5HG3ZK3OLRLuqJf3wsA0gcTma48HLooBxnVxqq4Szc2QZJWz6Klzmmjg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QVifQ8WWPONBrwRbzqvMqufhibPLXPtWhsOYTWfAUP0=;
- b=RRFUkFLFWaju5jPDSpYWSjpSOmpwrOJyvaYIM9nTGGeo6mXhADncx1GCaTL2MZuIdB8j5oi1lhxem5psof8bPBocRRYpirt2vkPVt+ajp5Z+WwGKkd/ATlHnWNFw8WXAdQ4Uma7olMlNdBLU2UGwrDcLr8AaFnRpIbdjIsODy834SDC/DiHCIvvWe1R53shyFP+5WcmFha3yFmowjPodElWmoP/Ts+gaYZV3xWvz/eYbhW6lbjvC1kD9MlP1ZIrjlYaKJMSRKhDmjLIHuewH2W5wpkQMXWmu/hn+T7UjG1xjlrcdGKqtd9MlhwPoldCHhr4YmKhCH2/D24BVIYUGkA==
+ bh=vHgqClWPjMQvwkc6TpjQWG9mCZNRNPc6aT2FVjPa7Y4=;
+ b=aTi68gpxLQuIwV4SPniEMZ4qFFrBhf6/ycwaQ7uLFopU3hDq90B3iPbl+vav+Qwk7ukcn1CopWwY8w2uo5hq3RLopeW9uGtIEvpZq6s4k7sA4J2+ItCX7O5+ZWjZuVoPJokEqU7dCz2Dr9fmR4DNl3re6/xDgK2xxjEtKuY+hyo5AAyQ/o5WLh8p3idfj2HrJgptc5vr6g24FRcXMvQPikI+0Ks8ftyaLkS21gF5auSyZ7TFWFaCTylQkTA5B5pHAZRdY6PcTz1YNyK3wV4eC3y+khkWO/2bEWf8hJ/DK+xUEIe+TYV4H37WgfZ83E68QBZcMtdbMYeCLqiSvN2wCw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=kpit.com; dmarc=pass action=none header.from=kpit.com;
  dkim=pass header.d=kpit.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kpit.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QVifQ8WWPONBrwRbzqvMqufhibPLXPtWhsOYTWfAUP0=;
- b=xXTjiIAtGQTilY/iSF/PrxXMXXbWcZhsIQgoxjCGXXvtsRr+HJuVtIeVWrPE45UCnJArMYDKu80X3zHJG2ts2t92bcNPjzaqK3ybejuNOrXVWaAv2vaCnPRGJiUy/twjh49C7x4XRH+YsH8hwRh4z7cnLfmoLKpFdTbbpspoN7c=
+ bh=vHgqClWPjMQvwkc6TpjQWG9mCZNRNPc6aT2FVjPa7Y4=;
+ b=dBDO1KpfuV69SxO7W4yrAOPnV7nYOreGWZlJQnA3GJm5D791MnFoGUj5AsxMbtByiNyGtJzffE7ttFPqu1kOs2V+J9kwBjMtQfMg72goqUN453Xa223Coqsg/JBr5GRf6DRSgV9CyyJ4IXdgfYKG51WnvnSzTssZhiIg9cAfWts=
 Received: from PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:1c::9)
- by PN2PR01MB4540.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:d::13) with
+ by PN1PR0101MB1808.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c00:16::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.32; Tue, 16 Mar
- 2021 09:11:49 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.31; Tue, 16 Mar
+ 2021 09:26:05 +0000
 Received: from PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM
  ([fe80::f0db:6436:b4a0:7db7]) by PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM
  ([fe80::f0db:6436:b4a0:7db7%4]) with mapi id 15.20.3933.032; Tue, 16 Mar 2021
- 09:11:49 +0000
+ 09:26:05 +0000
 From: "Purushottam choudhary" <purushottam.choudhary@kpit.com>
-To: Joe MacDonald <joe@deserted.net>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>, Nisha
- Parrakat <Nisha.Parrakat@kpit.com>
+To: Joe MacDonald <joe@deserted.net>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+CC: Nisha Parrakat <Nisha.Parrakat@kpit.com>
 Subject: Re: [yocto] [meta-selinux][PATCH] openssh: don't overwrite sshd_config unconditionally
 Thread-Topic: [yocto] [meta-selinux][PATCH] openssh: don't overwrite
  sshd_config unconditionally
-Thread-Index: AQHXGkQxOzklJ4LuKEiIsyjfBk9oFQ==
-Date: Tue, 16 Mar 2021 09:11:48 +0000
+Thread-Index: AQHXGkQxOzklJ4LuKEiIsyjfBk9oFaqGV33d
+Date: Tue, 16 Mar 2021 09:26:04 +0000
 Message-ID: 
+ <PNZPR01MB42242D8FA44397E4E37974FB906B9@PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM>
+References: 
+ <PNZPR01MB4224133A8F7ECB6409BD62E8906B9@PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: 
  <PNZPR01MB4224133A8F7ECB6409BD62E8906B9@PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM>
 Accept-Language: en-US
 X-MS-Has-Attach: 
@@ -47,70 +51,87 @@ authentication-results: deserted.net; dkim=none (message not signed)
 x-originating-ip: [49.37.86.70]
 x-ms-publictraffictype: Email
 x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 3e9fcfad-75b1-4b47-cec0-08d8e85b87c9
-x-ms-traffictypediagnostic: PN2PR01MB4540:
+x-ms-office365-filtering-correlation-id: d243780b-30df-47a4-d726-08d8e85d85f7
+x-ms-traffictypediagnostic: PN1PR0101MB1808:
 x-ms-exchange-transport-forked: True
 x-microsoft-antispam-prvs: 
- <PN2PR01MB4540A551245C94702414B343906B9@PN2PR01MB4540.INDPRD01.PROD.OUTLOOK.COM>
+ <PN1PR0101MB1808D96664DAA22C4183E59F906B9@PN1PR0101MB1808.INDPRD01.PROD.OUTLOOK.COM>
 x-ms-oob-tlc-oobclassifiers: OLM:10000;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- 3CQCJwvegZ9sKgQVJmNF5r8EsaR343STRlxK0/Ikq3ZIKkMsbO0pDLZMbyhu95/VobNbAcS5t7HNX4bH86kbjFeNevmo1yz8Mc0vfqXJhPG3LVmz3a2ZewbdoDjxING2RNOyrT4q2EB7LtwfuG7jiBfeeHlP0UdYq64hYEZO1oKYx75iOmuycThHwstMGkLBLBx4k1pDdHOxwd+6lsPpESFYna5TyDkZLcISfw6yf+IAi9GLXqnjRyWpb6K8H10Q7frASGKpYDIuFGValkvhiyeonUFkytulj4GJFpUPq1WmSb1cNtTz98ozG+x2pJIPBJ6i+Q6JLQdq7uo57sZAbXl32zhv0QvTXLe7ESIeVhbriu+VLElaln2b/F5mdt3f+/iD1J+dPuxLcesjDRvmT4zONB+xIJwPBtY5MqDYA7N0O2SC96kQGrxuK4no3LCU+gLPQJLrLvH8P3G/n1Mrfy8Vvyn/4JHsJ3biJgsZcQhn+ud6wWnkYoPOrv3gcQVIq2R2MBIW9a5EN0YXVhOS2CeuM6cezbjKBxn5K773gBsap8SAwDmR0OwwxR5Jx9n3T7yrIpTU0t+Zbl4YkiGHKc0b1or2y3g5rOM2STMRu+OOcUXUUA3sdGozkq1i+hXGMkYQ5jWu+7H4K/oydMQKrA==
+ 595jkt3Yv15qikX6QHmFZuAxMXlSsEkeeCt+brmGoIyL5BJTpj6xF1INm9vTTpZ8+x9tvNJohtcNCfGFAuuxxuAHveSC8A5csX4R1L3W2UmSitWLzM9btYsgAmWZWPgHl0x4lva2hEiOa18ju3JMWfpLieXwZsmbBaAmJh8AfJ1U3Usn8CC282R2cpqipWm3EF3QCwrOFpfYsvn4utky5nl+jQ2+vln/4W8npuxJ2ByJiI6lP4Y11DWgXmoQuuE6H6e9mDfbFtMkMC1YpH9tpBnuMSKh5SgOpcSL2gWryd+K32iQFfXS1s+bp/aXKcnXKP807gy/hkgq7exkVXyLrhEYMyDQd6Ynvgxw5cKcz+BhCcrLanIvjTHGy7uMtXC2zCNJkPMpbHY/fwZ/wyi2LjT4TEnGAqLb7XgHxehJ0vk6Xc6oZv4mClJll85AaPsZEdKbZFKd0xugknL6Cz94d1D79W4jw9jz7uWAGVn+u4R1/uql1o21u6KC1T4JMVoZdo0onBrWjawioZbj+d3nno0Df4+jOE6M8mSLfT+d3LVGlSNzb+I2yGwFbC0o7mfCLarGoS9fFIqa8m1CUvWYQMtbz1HVmTU4Bqv8UCns81BUcpzUckwobyBIxLQsmk4JggWPFVlEYr54zsn0fDTY7g==
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(396003)(136003)(346002)(366004)(376002)(83380400001)(55016002)(6916009)(64756008)(66446008)(52536014)(9686003)(76116006)(26005)(478600001)(107886003)(966005)(54906003)(2906002)(316002)(166002)(86362001)(7696005)(4326008)(53546011)(66574015)(8936002)(66946007)(6506007)(8676002)(19627405001)(66556008)(186003)(66476007)(5660300002)(71200400001)(33656002)(30864003);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(376002)(136003)(366004)(346002)(39850400004)(396003)(8676002)(53546011)(83380400001)(186003)(7696005)(110136005)(33656002)(26005)(478600001)(5660300002)(66574015)(71200400001)(55016002)(4326008)(6506007)(166002)(8936002)(64756008)(30864003)(52536014)(76116006)(2940100002)(966005)(9686003)(2906002)(66556008)(66446008)(107886003)(66476007)(66946007)(19627405001)(316002)(86362001);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata: 
- =?iso-2022-jp?B?ZU9VcHg3UkFtTVNpVkhMcHpaZlI3MUZSSVhOK3NrR2NzUVFoWWJiaUJ6?=
- =?iso-2022-jp?B?TlFwcmhHNksybndVblRaOGY3cVJBb2FjeXd1Vk9hSWI5ekw0bU9BRHZo?=
- =?iso-2022-jp?B?TWM4eVF4MzJIUnVUazQrbDJFeVNBRk5NL0tLZ2tJeE9rNkFkVldmZlVF?=
- =?iso-2022-jp?B?Q1hTcEpVQUpsVjJibFJXQ3lsQmxSRzVZbEdHdjdTZzM0dUdJZVFrdGs3?=
- =?iso-2022-jp?B?cEJKdE01Y1pzK1QxWkF2MFpsdVMyQllMdUwyMkhrYk55eFlRSmdVYnVi?=
- =?iso-2022-jp?B?NnMvSjlvTHBEL293MGsrSzVHZG1NanhwK1RoYzhOVzU0Y0kvNVhIa2dL?=
- =?iso-2022-jp?B?TXBqUzh2NEdtazM3aFlFd0hYcUNRRW1sNk5paUhCVm5YeHpaV2xBeXc4?=
- =?iso-2022-jp?B?czlleEhtQUNvS3Ewb1h1UE5NNzZZYjBXNEI5T1RIWlVtVlFjemhwZFJW?=
- =?iso-2022-jp?B?cWs5cXA3YVVYVU01VE5WeEN1VjVidURsemJ0eWVJOWZiU0lWcUliNE01?=
- =?iso-2022-jp?B?ZWp3TVU5MVNtTUc1UWtpYUQyU2JrYWE0aVlta1VOOFQzb1dVRTE0V1Qy?=
- =?iso-2022-jp?B?WHIwbUNuQkduQWpVOE1TODZnZlN2bG5jTmJ5TFV6cnFtbVFTQjl1RkpY?=
- =?iso-2022-jp?B?TFovUjQxQ3JNeWM4TGJiTG9LSTBsSy9HVDRreU9iOFJoNzc4LzV2UURC?=
- =?iso-2022-jp?B?SUc2K3l3SElVdXIzM1VEVy91RmNGNFhvNjEzQjA0cEpINmNSb2Ezai84?=
- =?iso-2022-jp?B?SUFhWFdFNGVTaUs2ZmRGRy9nZm5KVWxiYWVCRDRORWFKRllXSEtzcXFL?=
- =?iso-2022-jp?B?V2oxbS9USXFJUW9FM2QrOXExcWhwZzNkZ0NodU9wZFJQSlBvTEJoT0Nj?=
- =?iso-2022-jp?B?bTg4YnZNM1pWSnBXcU1GR3ljZ1hDektjbVNBdVYvZ3diTEV1UXRLQXpn?=
- =?iso-2022-jp?B?bmdOYlVueEVobVRpMnBxMTEwNVBMd1dJZUgzejg5c3NkckVncEdFYWhk?=
- =?iso-2022-jp?B?bVl2RHpCRUh1NHhCZDNWOThGbXc1L0lNTVpSQXFvRmlma2p3YW04dEI0?=
- =?iso-2022-jp?B?MVh5WTRMYWtKMlI3OHkxT21hMXpKS2FudTBBUms1cWR3WUU1MkxiS0pp?=
- =?iso-2022-jp?B?aWh6dHllY05aVFBhNDdjZnJvTzhGUUdNelpQUmRFZVc4bWZtYXo0bWEr?=
- =?iso-2022-jp?B?VmlsYnJQS0pURFE5NTMzSjBveWdWOGtjNEcvZXpHVFJMU2RWenduUXNF?=
- =?iso-2022-jp?B?aktFOFpHdmY1Zk5VWkgveEdTRFlua3UvMjRGN2xqeXBEd25aRFhjM3VR?=
- =?iso-2022-jp?B?Q01zTEQ5MWZlL29RQ0hmaTMzeXp5Y1p0RDQzdmIzQ1gxejByRHI4SXkv?=
- =?iso-2022-jp?B?Z1pBK2xUVTcvUGRyenZrbUY2TFhhczcxdFIyaHJMZFB1Sk9sdkVKdEZM?=
- =?iso-2022-jp?B?bzFHdnN1NTNuSUx0bUNWVEVEZlNFTGhrSU5tOUZXOHUwUGZkZjFyTWV2?=
- =?iso-2022-jp?B?VVloaEZIRWFySjNTcUk0dVErZlZEVzRHVDdpaWx1QkhOV3JqVzRiTzVV?=
- =?iso-2022-jp?B?QWNBOGxWc09YS0JqUGVSOWo0TGVUNUdLY1VPVzBVQmlER1VhdmhCbzFO?=
- =?iso-2022-jp?B?cTRnekdxbktyVytYeHRpc3hBWExqMUZTVGR3d25FZUIzUGU1YmZwakdE?=
- =?iso-2022-jp?B?R0FvRzAySGNoeEJMdzFxSWg2ekdRMlNkQVUzQnZuMm4vMHh5S2Mwc2hw?=
- =?iso-2022-jp?B?dDU4WkN5UjBrU20rVGl6emM4eFVzc1IwalU4cmN3cXFaTjd0T3dTK3VZ?=
- =?iso-2022-jp?B?c0w3T1FQN0I0MEM4WW81WXQyUTNCVTFJZ3NUOTN2aktrZmxNTURPL0Yv?=
- =?iso-2022-jp?B?a3RpUlk2SnhTZFhrZ1RMbCtRdkhrPQ==?=
+ =?iso-2022-jp?B?Nlc2b2RsYWxJcDVaNUFVTTR5V2cvbTJjVC81aGFQckdjNFdLUjNGUmpL?=
+ =?iso-2022-jp?B?SmZMdnBTcHJhRkJnOTNVYkpRVnhkK0FKczFXN2YwcVVmMi9oZWtqNURp?=
+ =?iso-2022-jp?B?cnFFN3Z3dGw2U2tzNDJBWGxrTFhxNU9USTgxVlFadzJuZ1ZPUDBzSFUr?=
+ =?iso-2022-jp?B?dEo0c3d6bXNMeExlT0VwMW9vVG10MDh5R29DSEMxN0hEYTVEd0ZJR2xB?=
+ =?iso-2022-jp?B?L1lKMG1YWmNCeXM5NVRMTzhBY002WE9iaGdOOTVMaGdaNkFaV29qMmNZ?=
+ =?iso-2022-jp?B?Nk4xYzBDTE5uUTFVUDVLckdkWjEyUFZDbzBXNWNCY081VUdkZmZySWNq?=
+ =?iso-2022-jp?B?cFpQVVpZQWpjbkN5SW9ENkdoYjd4QmZiYjlleXRYT0cyTTYyZ0F5S0xP?=
+ =?iso-2022-jp?B?RysvNC9BMWsyQ3lyZUVtMEpuL2QxQk92dkNNK2k5dlk2OXRCNzNwbXhZ?=
+ =?iso-2022-jp?B?QzFGdUlBQVdrZGFBbVcrQ3pVUjZ2Wm01WHYzcW4zd2xvR2tZNGNlNmM3?=
+ =?iso-2022-jp?B?SmVDU1VDdDJzUHJoTEJPYzZwQm40V3g4a0U3TlB2cEM3cDhFNm9vb25H?=
+ =?iso-2022-jp?B?dXNTc2dvdFcxdkFocS9sN0FqQ3hvQS8zVVZoVXUrRklVdzYyb0pqWjgz?=
+ =?iso-2022-jp?B?MlN3emJ4dktTM2JrdS90Sk9QL08ydFhKS0dDTkJjTmZFNlpDcjJvcnVs?=
+ =?iso-2022-jp?B?TU1yVDd3YUFUeEFzQnJaRno3alBHUWRweTlhVUpQUUd1d3lya2g0N0w5?=
+ =?iso-2022-jp?B?dWlzUXJzYWVmdEIwS0RtQWZKVEJBWmF5VHlPYk9rc05WelRndUJZaGRi?=
+ =?iso-2022-jp?B?M21ySDkwbEliMXRvRWorUlFjVmQwU3JNSmM1WFYyeDUvTytDNlZPT2M4?=
+ =?iso-2022-jp?B?QkYrbnhhQXNSRnU4MXg2ak9lQTRFSVNCVkdsMWRmejNBN1VWQ3d2M3lF?=
+ =?iso-2022-jp?B?alF2NnErMnhJSTY5dEl4MlgyNDVwcnpLOGN0SUhtczRuenZPK2ZZZGRK?=
+ =?iso-2022-jp?B?cmJTdW9RQ0JncmkzdDc2T2xKTGl4RVYzYWJ2M0tJUnpNNEs2dWtLejUw?=
+ =?iso-2022-jp?B?REpzWU1FdjRBWWhhdjJXRWQ4YW9mUXA1YnhpVTJGS0VJYWhhcFJWWFAx?=
+ =?iso-2022-jp?B?RFJ5UHNIbzZVY1NxR0NRSDFRTEt2OHRUY0RBaVd1MHFUTW1GdFlmSmZZ?=
+ =?iso-2022-jp?B?eTVBa05GRWdYVlNRNEIwYy9oU2NGemdiZnpURUxWUU1SY1RzekJ4aThv?=
+ =?iso-2022-jp?B?am1qcTZxV2hIcHViYTg0OXFKZGZYTnkxM1lDTDY1OTQxSE54NXVRZ2Rk?=
+ =?iso-2022-jp?B?OTRWRUxHM0VqRzdnei8xVTVCb3lRWHFtaTIzSWROV1dSVjJlSERqUlVi?=
+ =?iso-2022-jp?B?MHU1SHVKT2p1bmdxQWRmVUExdlZqYy9NVExxcC82emt2OHd1cExMM1k2?=
+ =?iso-2022-jp?B?MW9wVEhwZWZnbm05L1dzMGpQb1lzOHVZS3l2bzZsd3Vrc0RrRDJEdUox?=
+ =?iso-2022-jp?B?d3F2alhORTR0VU8wWlFRVzFNWW9aaXZBK0NVSjZ6YkZSVWk2Szd6MkVC?=
+ =?iso-2022-jp?B?Q25hbDFQZUVRaGJTSDI4bXljSG9oYThsaXlUQWNMaHdpZGIzUmZRRWZr?=
+ =?iso-2022-jp?B?ZU1QWXM5RkcyL2FHVTZ3Zi82Tk9UWDc5TjFrUjJnbWJ1WkwrdFZoNDBQ?=
+ =?iso-2022-jp?B?VjZnVXNNKzZaVDUyWkRkY1dYVU0yb0I4K28yTFRWVytJMnFLNTMrNjZC?=
+ =?iso-2022-jp?B?c2RIOGM2c1dtYnRSWUJZL0NWc3lDZ0NwUTBvaVgxTE5pZTZiMytnYnYr?=
+ =?iso-2022-jp?B?MUtwQXlzMEJDVC95MU53dFlEV3pUR2xQaG9Mb0FNeDBGR0JrK1RCOWRJ?=
+ =?iso-2022-jp?B?Rnc1WmlDVjJ2MUxGaDM0WS9Xdm5nPQ==?=
 MIME-Version: 1.0
 X-OriginatorOrg: kpit.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e9fcfad-75b1-4b47-cec0-08d8e85b87c9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2021 09:11:48.1060
+X-MS-Exchange-CrossTenant-Network-Message-Id: d243780b-30df-47a4-d726-08d8e85d85f7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2021 09:26:04.7217
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3539451e-b46e-4a26-a242-ff61502855c7
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: j3imhhsIjNRfR08ILr1k3CbG4UcPHbnQCZR47Nib6DH0plRMKDoXDf2KLDX728Kb2r+rr85v1NOYWokpZbTABA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2PR01MB4540
+X-MS-Exchange-CrossTenant-userprincipalname: L3Er0y7irTWON2D8xGISsZs3EFBOy/H4zoOLlLD0BhTx3Q8qX1bbcKgsiah+ocShlHnoS8/dX4+lCXZCbsS9aQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN1PR0101MB1808
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_PNZPR01MB4224133A8F7ECB6409BD62E8906B9PNZPR01MB4224INDP_"
+	boundary="_000_PNZPR01MB42242D8FA44397E4E37974FB906B9PNZPR01MB4224INDP_"
 
---_000_PNZPR01MB4224133A8F7ECB6409BD62E8906B9PNZPR01MB4224INDP_
+--_000_PNZPR01MB42242D8FA44397E4E37974FB906B9PNZPR01MB4224INDP_
 Content-Type: text/plain; charset="iso-2022-jp"
 Content-Transfer-Encoding: quoted-printable
+
+Hi Joe,
+
+Also, we're using many system users and in addition are separating service=
+s using SELinux, and since none of the users have passwords (or any other a=
+uthentication methods, for that matter) configured, we don't need PAM.
+
+Thanks & Regards,
+Purushottam
+________________________________
+From: Purushottam Choudhary
+Sent: Tuesday, March 16, 2021 2:41 PM
+To: Joe MacDonald <joe@deserted.net>
+Cc: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>; Nisha Par=
+rakat <Nisha.Parrakat@kpit.com>
+Subject: Re: [yocto] [meta-selinux][PATCH] openssh: don't overwrite sshd_c=
+onfig unconditionally
 
 Hi Joe,
 
@@ -432,7 +453,7 @@ or, please notify the sender immediately and delete all copies of this mess=
 age. KPIT Technologies Ltd. does not accept any liability for virus infecte=
 d mails.
 
---_000_PNZPR01MB4224133A8F7ECB6409BD62E8906B9PNZPR01MB4224INDP_
+--_000_PNZPR01MB42242D8FA44397E4E37974FB906B9PNZPR01MB4224INDP_
 Content-Type: text/html; charset="iso-2022-jp"
 Content-Transfer-Encoding: quoted-printable
 
@@ -448,9 +469,57 @@ ottom:0;} </style>
 e: 12pt; color: rgb(0, 0, 0);">
 Hi Joe,<br>
 <br>
-<div style=3D"box-sizing:border-box;font-family:&quot;Segoe UI&quot;, syst=
-em-ui, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, sans-seri=
-f;font-size:14px;orphans:2;widows:2">
+<span style=3D"box-sizing:border-box;font-family:&quot;Segoe UI&quot;, sys=
+tem-ui, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, sans-ser=
+if;font-size:14px;orphans:2;widows:2">Also, we're using many system users a=
+nd in addition are separating services using SELinux, and since none
+ of the users have passwords (or any other authentication methods, for tha=
+t matter) configured, we don't need PAM.</span><br>
+</div>
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
+e: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature">
+<div>
+<div name=3D"divtagdefaultwrapper" style=3D"font-family:Calibri,Arial,Helv=
+etica,sans-serif; font-size:; margin:0">
+<div>Thanks &amp; Regards,</div>
+<div>Purushottam<br>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" s=
+tyle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Purushottam Choudhar=
+y<br>
+<b>Sent:</b> Tuesday, March 16, 2021 2:41 PM<br>
+<b>To:</b> Joe MacDonald &lt;joe@deserted.net&gt;<br>
+<b>Cc:</b> yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&g=
+t;; Nisha Parrakat &lt;Nisha.Parrakat@kpit.com&gt;<br>
+<b>Subject:</b> Re: [yocto] [meta-selinux][PATCH] openssh: don't overwrite=
+ sshd_config unconditionally</font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
+pt; color:rgb(0,0,0)">
+Hi Joe,<br>
+<br>
+<div style=3D"box-sizing:border-box; font-family:&quot;Segoe UI&quot;,syst=
+em-ui,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,sans-serif; =
+font-size:14px; orphans:2; widows:2">
 <div>PAM is an option distro feature and SElinux is also a different distr=
 o feature.<br>
 Ours is an embedded system with no requirement of the users to login to th=
@@ -496,23 +565,23 @@ sshd_config changes are currently the same as in yocto.</div>
 <br>
 </div>
 <div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
+pt; color:rgb(0,0,0)">
 <br>
 </div>
-<div id=3D"Signature">
+<div id=3D"x_Signature">
 <div>
-<div name=3D"divtagdefaultwrapper" style=3D"font-family:Calibri,Arial,Helv=
-etica,sans-serif; font-size:; margin:0">
+<div name=3D"x_divtagdefaultwrapper" style=3D"font-family:Calibri,Arial,He=
+lvetica,sans-serif; font-size:; margin:0">
 <div>Thanks &amp; Regards,</div>
 <div>Purushottam<br>
 </div>
 </div>
 <div>
 <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0);">
+pt; color:rgb(0,0,0)">
 <br>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%;">
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
 <b>From:</b> Joe MacDonald<br>
 <b>Sent:</b> Friday, March 12, 2021 9:39 PM<br>
 <b>To:</b> Purushottam Choudhary<br>
@@ -522,9 +591,9 @@ pt; color:rgb(0,0,0);">
 <div><br>
 </div>
 </div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt=
-;">
-<div class=3D"PlainText">Hi Purushottam,<br>
+<div class=3D"x_BodyFragment"><font size=3D"2"><span style=3D"font-size:11=
+pt">
+<div class=3D"x_PlainText">Hi Purushottam,<br>
 <br>
 [Re: [yocto] [meta-selinux][PATCH] openssh: don't overwrite sshd_config un=
 conditionally] On 21.03.12 (Fri 12:05) Purushottam choudhary wrote:<br>
@@ -853,6 +922,7 @@ ils.<br>
 </div>
 </div>
 </div>
+</div>
 This message contains information that may be privileged or confidential a=
 nd is the property of the KPIT Technologies Ltd. It is intended only for th=
 e person to whom it is addressed. If you are not the intended recipient, yo=
@@ -865,4 +935,4 @@ t accept any liability for virus
 </body>
 </html>
 
---_000_PNZPR01MB4224133A8F7ECB6409BD62E8906B9PNZPR01MB4224INDP_--
+--_000_PNZPR01MB42242D8FA44397E4E37974FB906B9PNZPR01MB4224INDP_--
