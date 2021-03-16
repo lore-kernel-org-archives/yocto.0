@@ -1,140 +1,88 @@
-Received: from smtp.vivaldi.net (smtp.vivaldi.net [31.209.137.12])
- by mx.groups.io with SMTP id smtpd.web11.28.1615906439692752017
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.180.1615907001394216884
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Mar 2021 07:54:00 -0700
+ Tue, 16 Mar 2021 08:03:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@vivaldi.net header.s=default header.b=s8x/jodt;
- spf=pass (domain: vivaldi.net, ip: 31.209.137.12, mailfrom: jchludzinski@vivaldi.net)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp.vivaldi.net (Postfix) with ESMTP id 673C4BD02C;
-	Tue, 16 Mar 2021 14:53:56 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 673C4BD02C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1615906436;
-	bh=2e6JUCz2PYDk1qtYhB/GeDpGJeMFzDSg4Ly1gWwwPAs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=s8x/jodtNfL+30nfmKRKtdCq9MEkBhTLbek4zhP2ThOVKQs5Trcd/nqwXh9s/zbB9
-	 lk3TPurEcAYdSlBZm4BI7d4qtIUdGVXhH81aCT46wuyi3bnt0hRbY8KHYzrt8r9RMT
-	 FSUdt38Z9OI7riSZIuFG57pzUnU8j7xcsS6cqhdkTL0QJUMdRAE1TBerikViHU4Zw2
-	 ni8nmR/zQE4oGlwyMKEtbXuoqZgK1moMcSyMXAWs+84qPWldFnfOX6/75PcTbQSRDE
-	 ZAi9Fypyd0+0970WsssmAcL7ipmiQncPVI37bKBBiOCuSp2QSVAZ3u5AGlPp7dUp6m
-	 hM/lxsS2Ub4xQ==
-X-Virus-Scanned: Debian amavisd-new at smtp.vivaldi.net
-Received: from smtp.vivaldi.net ([127.0.0.1])
-	by localhost (mxo.viv.dc01 [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id aOOfGTwBvVfw; Tue, 16 Mar 2021 14:53:52 +0000 (UTC)
-Date: Tue, 16 Mar 2021 10:53:52 -0400
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 4FF3FBD00D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1615906432;
-	bh=2e6JUCz2PYDk1qtYhB/GeDpGJeMFzDSg4Ly1gWwwPAs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=kH/4GpJCuFRiYbIzxFofodzgvrUkcNExQ+SbdeKiSGfWrTSqjowl9K8nlTZiSIVKP
-	 Hic41AmvdUpQofM/L6uRlwT8W/9IJkuQUuGdlq6XS/ML6fs7HA+vsPqoRBX5MzMpZ6
-	 NqffzvmAcdEfj+k1MPPs3huqxeVJcEhDBq7hcMr2Kf+BT84vRpB7NbyJ0dyXawmG1g
-	 i+Fd6YpEWIxPN6y6y8wQ9/HvuJD3OEHa/fElZwZkLFIRD1fUQ4WdefZjdnhizNDwNS
-	 4Z9pd5/qzuxnniSiKSAQ3BfF5orqlaF6ml4bFElM6nbLXPK9Uz6M6dyeWOTZ6EHpdH
-	 BRlB2gKZpmblQ==
-From: "jchludzinski" <jchludzinski@vivaldi.net>
-To: Josef Holzmayr <jester@theyoctojester.info>
-Cc: Nicolas Dechesne <nicolas.dechesne@linaro.org>, akuster
- <akuster808@gmail.com>, Yocto <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Building test code?
-In-Reply-To: <CAEt6NwpHM72t3KLzU=2kNApQxqqZN4FJOsUiZUV+WumDT2qjNg@mail.gmail.com>
-References: <bdb239f7ebf89f1567d5fbd2530fa12c@vivaldi.net>
- <503454c9-ea3c-6ecb-bfdf-eb5fce6feeee@gmail.com>
- <247c426e3db4a7f031aad842303134f1@vivaldi.net>
- <CAP71WjwJmSVGGXCtfChNkoN3u-UjXXCmWbO_1tj2iF+aP2RHPQ@mail.gmail.com>
- <CAEt6NwpHM72t3KLzU=2kNApQxqqZN4FJOsUiZUV+WumDT2qjNg@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.4
-Message-ID: <10f436d4d4f9993ed8496bc502e16dc8@vivaldi.net>
-X-Sender: jchludzinski@vivaldi.net
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=TuC246iL;
+ spf=softfail (domain: sakoman.com, ip: 198.145.29.25, mailfrom: steve@sakoman.com)
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 563D038C06CF
+	for <yocto@yoctoproject.org>; Tue, 16 Mar 2021 15:03:20 +0000 (UTC)
+Received: by mail-wm1-f45.google.com with SMTP id m20-20020a7bcb940000b029010cab7e5a9fso1630872wmi.3
+        for <yocto@yoctoproject.org>; Tue, 16 Mar 2021 08:03:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IBJMrPa7royZJLZA94vyQC8fBJAO0hLwz05A3gtd69w=;
+        b=TuC246iLGxTNkl4477ZdjxhcSUG6JTmwBLP/oCeYKg0kgCgUkTbhHxwwmxEgrP1/gG
+         nbqKdcpdK3Nad1K7TzoxuJXbOiZPmvGt7g/ECmfNib5eYXsHGL5Xh1I0XYNFdTxpEqj/
+         hXOm108fMGY5e0op3ciJ+7QXX0b9N1r+wAdTbD4HoaWImXfMwVTDkL5qhGqWLQM4x++1
+         0x/Od23nUNdmEX4gUAEQBTOsQoUCnF3jXjjKYLgfhPtrhe1kenUCqkb2gmk1cRSJ1h8t
+         7BVNrg72Vjhfvjx5uF/fsDF64mU4jvdM5mA6MJ+i6pSd2fjDQDABSyA0zcwmdOIWeLgB
+         rwAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IBJMrPa7royZJLZA94vyQC8fBJAO0hLwz05A3gtd69w=;
+        b=RuEDwbIt2QPe2BPaxr9jRVrfft8gkFhXBssTJf3upMgt4eokzU9dreZwHuQeYp/gdN
+         pVZq9/9kZEwmwxm5OQ6LUCxwZWwXAs+ems2GOXsGsKMJOBXIpnBo/FuOF0x+hA2voFH0
+         p9NHf9i/S46CsTvKd1VgwJrc5zkzFMcF4ISzVJf5IPSjrJyj/DbWB79qTd8SsLBXFkmQ
+         MtVIcrUvE81fGidwuIC3fSCu9vSMxM5eZjtzHS6jrS3iHWXN+H7Ab87fudygckOVIIgy
+         Jq7FI+h/eRpiRGN6uEtbCgrZQO88hL1X1FDv2TFtItzCjpgFOgwRKAt33RYCkutuUZz1
+         ygWw==
+X-Gm-Message-State: AOAM532XegYMEa1lu3ZR7/7iZ3bkFXj2/8qGhVCCMwkBetawMU2QzrZ0
+	lYHzy3vjqkh3ZwQqd+ykqiRd+DDOFV0CBu5W8ljUZu0jKm2TwisHiYQ=
+X-Google-Smtp-Source: ABdhPJzcTUrm6lrQ/EXZN1BcdIofxkr5qY4t3JtELd51F3tjg4l1XhH8LrhCf7dC68WjppyRIyW6950T6VMaphH4v6k=
+X-Received: by 2002:a1c:1f04:: with SMTP id f4mr125621wmf.12.1615906998758;
+ Tue, 16 Mar 2021 08:03:18 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAAfyv348tD+NJ=GMhEM5HHi1_yfbStK+qkp3c+xQxZMhJJZy=w@mail.gmail.com>
+In-Reply-To: <CAAfyv348tD+NJ=GMhEM5HHi1_yfbStK+qkp3c+xQxZMhJJZy=w@mail.gmail.com>
+From: "Steve Sakoman" <steve@sakoman.com>
+Date: Tue, 16 Mar 2021 05:03:06 -1000
+Message-ID: <CAOSpxdZWVFHtUUxcN9N=hmDoc6FTSF_k5q_6V80mTV7gK5vJOg@mail.gmail.com>
+Subject: Re: [yocto] dunfell: regression linux-fimware installed in rootfs in actual dunfell master
+To: Marek Belisko <marek.belisko@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Well, because time is of the essence, could you give me a little assist=20
-here and explain how I might build spidev-test using OpenEmbedded?
+On Thu, Mar 11, 2021 at 11:44 AM Marek Belisko <marek.belisko@gmail.com> wrote:
+>
+> Hi,
+>
+> I've bumped from poky dunfell: dunfell-23.0.6 to actual dunfell branch
+> and I have an problem that all linux-firmware packages are installed
+> in my rootfs (even I have in IMAGE_INSTALL only
+> linux-firmware-bcm43430). Any ideas? In the commit log I saw that
+> linux-firmware package was bumped.
 
-THANKS for your help!
----John
+It appears that the upstream directory layout changed, so this is also
+an issue in master.
 
+A patch has been submitted to resolve the issue and I will cherry-pick
+it to dunfell after it appears in master.
 
-On 2021-03-16 05:58, Josef Holzmayr wrote:
-> Am Di., 16. M=C3=A4rz 2021 um 10:49 Uhr schrieb Nicolas Dechesne
-> <nicolas.dechesne@linaro.org>:
->>=20
->> On Tue, Mar 16, 2021 at 8:07 AM jchludzinski via
->> lists.yoctoproject.org
->> <jchludzinski=3Dvivaldi.net@lists.yoctoproject.org> wrote:
->> >
->> > It certainly appears to be BUT I'm not certain what I'm looking at?
->> >
->> > What is meta-openembedded?
->> >
->> > Is it a GIT repo that can be cloned and built?
->>=20
->> Short answer is yes. The whole Yocto Project / Open Embedded concept
->> is based around 'layers. A layer is a repository that contains recipes
->> (and/or machine/distro, ..). The Yocto Project releases include a
->> couple of common/core layers, but there are plenty of layers out there
->> which can be used
->> I am sure there are quite a bit of documentation on this topic, but
->> perhaps you might want to start with:
->> https://docs.yoctoproject.org/overview-manual/yp-intro.html#the-yocto-p=
-roject-layer-model
->=20
-> Or grab a beer and start bingewatching
-> https://www.youtube.com/playlist?list=3DPLD4M5FoHz-TxMfBFrDKfIS_GLY25Qsf=
-yj
->=20
-> </SCNR>
->=20
->>=20
->>=20
->> >
->> >
->> >
->> > How do I use this to build spidev-test?
->> >
->> >
->> > ---John
->> >
->> >
->> > On 2021-03-15 19:54, akuster wrote:
->> >
->> > On 3/15/21 4:11 PM, jchludzinski via lists.yoctoproject.org wrote:
->> >
->> > I got a piece of code from github:
->> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr=
-ee/tools/spi/spidev_test.c
->> >
->> > I'd like to add it somewhere under /*tools/testing*/ and build it the=
-re.
->> >
->> > Not sure if this is appropriate? If so, how do I go about this?
->> >
->> > If not, what's the best way to build this?
->> >
->> >
->> > Is this what you are looking for?
->> >  https://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-=
-kernel/spidev-test/spidev-test.bb
->> >
->> > -armin
->> >
->> >
->> >
->> >
->> >
->> >
->> >
->> >
->> >
->> >
->>=20
->>=20
->>=20
->=20
->=20
->=20
+https://lists.openembedded.org/g/openembedded-core/message/149552
+
+Steve
+
+> Thanks and BR,
+>
+> marek
+>
+> --
+> as simple and primitive as possible
+> -------------------------------------------------
+> Marek Belisko - OPEN-NANDRA
+> Freelance Developer
+>
+> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+> Tel: +421 915 052 184
+> skype: marekwhite
+> twitter: #opennandra
+> web: http://open-nandra.com
+>
+> 
+>
