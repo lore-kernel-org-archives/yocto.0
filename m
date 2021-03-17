@@ -1,74 +1,135 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.2212.1615954163304591867
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+ by mx.groups.io with SMTP id smtpd.web10.2404.1615955000483784872
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Mar 2021 21:09:23 -0700
+ Tue, 16 Mar 2021 21:23:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=V1keZXne;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: ms.priyanshu.sharma@gmail.com)
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id C940C38C0894
-	for <yocto@yoctoproject.org>; Wed, 17 Mar 2021 04:09:22 +0000 (UTC)
-Received: by mail-lj1-f175.google.com with SMTP id 184so1464403ljf.9
-        for <yocto@yoctoproject.org>; Tue, 16 Mar 2021 21:09:22 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Llfn4ssV;
+ spf=pass (domain: gmail.com, ip: 209.85.210.170, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f170.google.com with SMTP id y200so231139pfb.5
+        for <yocto@lists.yoctoproject.org>; Tue, 16 Mar 2021 21:23:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=vxUHUgqVHZiXL56iT7yZcnrBjHthT4lFIJHATTrR5Vk=;
-        b=V1keZXneTyjSIs7gSJNSGi9eg+irfS/szPwmjDWi6GjsYj8I1AjaL6CetzzEmjuOsC
-         R6HI68YdHLNqhs96oTsQRu/vicrSmq5iUbuhq1sYJ0rcKaM2vGQF42wQdtnj0updaWET
-         rVs+IxKBBncK5OsDPFYre2cPEoBWUmAF7A0rAy+pEe7L7qbVu3/8/4Q8gskm9w5k0W2a
-         ldlMXDsL/ac2DD/zXD+7e5MwoaCagK/0kE8Yp6ulVHwAsFJZJBnYzFmiM6enlDjum+Gy
-         jhn+s+mAXKvJffq86+3Lw/AoovTqloNZ/KerAMA1pbhGg/6dOzGdWfqptv3sjSc+YKou
-         KX5g==
+        h=from:to:subject:date:message-id;
+        bh=S8sJHuPDVyw6qZOQkRCYsjW200hVQGcPh+qNnuEnlMw=;
+        b=Llfn4ssVWwKkFNQJgOAQdI+dXqvVEwRIVYMXogoXlnE6sOajDcYMWKUcv+m6mqogIE
+         Tx8kgZ0syGzjmpPl69Cz/qmtlBWdzE++52u61O5MZ2J++7ysO3zifzPY9G4NAxzcvlVr
+         LtFM1WsUej8HJmoFXQFei1ngFLdCycHnE+gCAYVID6Z6iOIomeYdCxllki06wLs1xRDO
+         bh1+JmHvh/+6u373gPMzYwTfwU/M84ylbVaqxGrlC/0d7Sx4EENAsE9ziwEGkYCrm81O
+         9hLzxdSzvbEDdhI/5YK0w9iKIoDkOpEGTca4LzlgCNh+ETuAExaUQ8UMdxYIIQNPhGh/
+         yfIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=vxUHUgqVHZiXL56iT7yZcnrBjHthT4lFIJHATTrR5Vk=;
-        b=DWk5/pznzZNiCBudxG67cwSdAYnn0C0M+X0t9vopbgdgXKuibkllkJu8rYHKoOdtnc
-         Qy6r3TFFWnOQW0oJHmTubxD7LFGDgvztN5OV2OshNgDfQF8dGIdTYrxbvCXbSN29Gu2s
-         gjnMg1K3TYivr5E/cuEOnom27G5PhsVUoMK13RjNbmIrWtF9lq4Yk66K0vgZcoz12Df8
-         vjwYjmiZWlejZeOUQ+kel/hobCFM6fj4XEl7g7fgzENzxMcEqwhAf5bQrWqgsrQSHRWK
-         NJJPH9MArsOrCTCOPImdp4OfxTBaDl+IbRbq8Xs9nHG1HRTrjJn5UsP2bDn97dZYMs9Q
-         rXuA==
-X-Gm-Message-State: AOAM5325H4fKuSXrZRd65jzcl0p+ePpbb29payZMaNJlYU7nOWZ/iKj6
-	AAO/SnqmQKE5TSGxy1MbQgw9TWyRHjb1HkMaVltp0LJr
-X-Google-Smtp-Source: ABdhPJwnHXdF+wo9Aw2wN1DUXDrjJeqQMNFg4D9dHZqVAdgiGei+ZNqnCDlS3JeCPdbSMcKpxQpjtWxGyXJAECHxu+Q=
-X-Received: by 2002:a2e:a494:: with SMTP id h20mr1205778lji.292.1615954160624;
- Tue, 16 Mar 2021 21:09:20 -0700 (PDT)
-MIME-Version: 1.0
-From: "Priyanshu Sharma" <ms.priyanshu.sharma@gmail.com>
-Date: Wed, 17 Mar 2021 09:39:09 +0530
-Message-ID: <CAA_f9eNSA2FRm+-Vrrady3o6Vuwe-xOmiwvwW-LWKithvx4yog@mail.gmail.com>
-Subject: How to create a list of source files for an Image?
-To: yocto@yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000b7a7c305bdb3a50c"
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=S8sJHuPDVyw6qZOQkRCYsjW200hVQGcPh+qNnuEnlMw=;
+        b=OAlFe8kewC5v79MS+2An/lo8nvPCCtJ5yDEWTgeWJTPll5hRJJeLx1slQs9t6m9tbH
+         glNnp8ilLKEGYln9/GmkRqrzvXksLZ0WJi4OH52eytHZGvk9Mw+OMrjU1btLR6EDDXeb
+         6xeqg9PBDcCvKEEBaszkJaaJCJ8m2UjWLdnwhRLkNhRl2qlZqouZllQY9Etxqu7DAVll
+         Ku2gG9n09aK7iUdOJBPk3Ih6AM4XivbIyX+dQgpwoeTyzYrzxJakEUgztXkegIKsOv/f
+         8u3wBipG0BK69lEFUZW7YRKzlMpuCYbEF4mZVmlMk2ZL0gLLoam7x9rCpD/a5dvx9IFr
+         lueQ==
+X-Gm-Message-State: AOAM531VaxflH9OxdNJXdgiJETWGZ56FrhT1+DV0YQewzcDe0uJbSpul
+	2JNwu7lutyIu2j4u9u6VSKqs84I5mmM=
+X-Google-Smtp-Source: ABdhPJymuVwQcKRYbyvv2ZPTbvUzp4OgJWtyotiR3K03IbpJuX/g+3ueff0EdkEyUuWJV5RUDHiEMQ==
+X-Received: by 2002:a63:6dca:: with SMTP id i193mr970945pgc.81.1615954999434;
+        Tue, 16 Mar 2021 21:23:19 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:25c8:44cd:2453:cf2a])
+        by smtp.gmail.com with ESMTPSA id o13sm18216855pfp.26.2021.03.16.21.23.18
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Mar 2021 21:23:19 -0700 (PDT)
+From: "akuster" <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] layer.conf: Add hardknott to LAYERSERIES_COMPAT
+Date: Tue, 16 Mar 2021 21:23:17 -0700
+Message-Id: <20210317042317.23425-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
---000000000000b7a7c305bdb3a50c
-Content-Type: text/plain; charset="UTF-8"
+Thats codename for 3.3
 
-Hi,
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ conf/layer.conf                          | 2 +-
+ meta-hardening/conf/layer.conf           | 2 +-
+ meta-integrity/conf/layer.conf           | 2 +-
+ meta-security-compliance/conf/layer.conf | 2 +-
+ meta-security-isafw/conf/layer.conf      | 2 +-
+ meta-tpm/conf/layer.conf                 | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
 
-I want to create a text file containing a list of all the source files used
-to build my Yocto image. Is there any mechanism to do that?
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 8c0254b..fd21da1 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -9,6 +9,6 @@ BBFILE_COLLECTIONS += "security"
+ BBFILE_PATTERN_security = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_security = "8"
+ 
+-LAYERSERIES_COMPAT_security = "gatesgarth"
++LAYERSERIES_COMPAT_security = "hardknott"
+ 
+ LAYERDEPENDS_security = "core openembedded-layer perl-layer networking-layer meta-python"
+diff --git a/meta-hardening/conf/layer.conf b/meta-hardening/conf/layer.conf
+index 22d8874..085ea45 100644
+--- a/meta-hardening/conf/layer.conf
++++ b/meta-hardening/conf/layer.conf
+@@ -8,6 +8,6 @@ BBFILE_COLLECTIONS += "harden-layer"
+ BBFILE_PATTERN_harden-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_harden-layer = "10"
+ 
+-LAYERSERIES_COMPAT_harden-layer = "gatesgarth"
++LAYERSERIES_COMPAT_harden-layer = "hardknott"
+ 
+ LAYERDEPENDS_harden-layer = "core openembedded-layer"
+diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
+index 76374eb..ba028da 100644
+--- a/meta-integrity/conf/layer.conf
++++ b/meta-integrity/conf/layer.conf
+@@ -20,7 +20,7 @@ INTEGRITY_BASE := '${LAYERDIR}'
+ # interactive shell is enough.
+ OE_TERMINAL_EXPORTS += "INTEGRITY_BASE"
+ 
+-LAYERSERIES_COMPAT_integrity = "gatesgarth"
++LAYERSERIES_COMPAT_integrity = "hardknott"
+ # ima-evm-utils depends on keyutils from meta-oe
+ LAYERDEPENDS_integrity = "core openembedded-layer"
+ 
+diff --git a/meta-security-compliance/conf/layer.conf b/meta-security-compliance/conf/layer.conf
+index db243f7..2024d4a 100644
+--- a/meta-security-compliance/conf/layer.conf
++++ b/meta-security-compliance/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "scanners-layer"
+ BBFILE_PATTERN_scanners-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_scanners-layer = "10"
+ 
+-LAYERSERIES_COMPAT_scanners-layer = "gatesgarth"
++LAYERSERIES_COMPAT_scanners-layer = "hardknott"
+ 
+ LAYERDEPENDS_scanners-layer = "core openembedded-layer meta-python"
+ 
+diff --git a/meta-security-isafw/conf/layer.conf b/meta-security-isafw/conf/layer.conf
+index b8ee1c0..1f1095f 100644
+--- a/meta-security-isafw/conf/layer.conf
++++ b/meta-security-isafw/conf/layer.conf
+@@ -14,4 +14,4 @@ LAYERVERSION_security-isafw = "1"
+ 
+ LAYERDEPENDS_security-isafw = "core"
+ 
+-LAYERSERIES_COMPAT_security-isafw = "gatesgarth"
++LAYERSERIES_COMPAT_security-isafw = "hardknott"
+diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
+index cd62fba..65788eb 100644
+--- a/meta-tpm/conf/layer.conf
++++ b/meta-tpm/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "tpm-layer"
+ BBFILE_PATTERN_tpm-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_tpm-layer = "10"
+ 
+-LAYERSERIES_COMPAT_tpm-layer = "gatesgarth"
++LAYERSERIES_COMPAT_tpm-layer = "hardknott"
+ 
+ LAYERDEPENDS_tpm-layer = " \
+     core \
+-- 
+2.17.1
 
-I found out that archiever.bbclass creates a sub-folder deploy/sources,
-with all used sources in archived form. But is there any way to directly
-create a list file?
-
-Thanks!
-
-Warm regards,
-Priyanshu Sharma
-
---000000000000b7a7c305bdb3a50c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>I want to create a text file contai=
-ning a list of all the source files used to build my Yocto image. Is there =
-any mechanism to do that?<br><br>I found out that archiever.bbclass creates=
- a sub-folder deploy/sources, with all used sources in archived form. But i=
-s there any way to directly create a list file?</div><div><br></div><div>Th=
-anks!<br><br>Warm=C2=A0regards,<br>Priyanshu Sharma</div></div>
-
---000000000000b7a7c305bdb3a50c--
