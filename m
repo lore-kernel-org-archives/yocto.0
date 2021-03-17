@@ -1,247 +1,236 @@
-Received: from smtp.vivaldi.net (smtp.vivaldi.net [31.209.137.12])
- by mx.groups.io with SMTP id smtpd.web08.278.1615999285134677912
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (NAM12-MW2-obe.outbound.protection.outlook.com [40.107.244.44])
+ by mx.groups.io with SMTP id smtpd.web12.320.1615999543039149618
  for <yocto@lists.yoctoproject.org>;
- Wed, 17 Mar 2021 09:41:25 -0700
+ Wed, 17 Mar 2021 09:45:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@vivaldi.net header.s=default header.b=a/hvmBtR;
- spf=pass (domain: vivaldi.net, ip: 31.209.137.12, mailfrom: jchludzinski@vivaldi.net)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp.vivaldi.net (Postfix) with ESMTP id CBEF5BD053
-	for <yocto@lists.yoctoproject.org>; Wed, 17 Mar 2021 16:41:11 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net CBEF5BD053
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1615999271;
-	bh=5HrqRGpWZYAOo0of6amqbey1RRvenHer0+sfRCofpIM=;
-	h=Date:From:To:Subject:From;
-	b=a/hvmBtRbBDyNQKG0m0sO8KezJpBh8bb52qvAupDcb8rzmiKf4ghGzWmlytGAkjwd
-	 sIQ3XX8CelmRcEMogc1WKS+UMZWUU6Qq5XQqQp5BpcXQnkay/qpWNkdJJOPEkduJU+
-	 VJnSWiOjdwPeqhvWBSTlWlii/ytcEnJqBbXhflaicmdO1tQkpw2HjBX0JFV8eQyi1e
-	 BC7S0FFgq0ON8ywGbBjRYVfJBZGA6QEb2y75N3bWjgNgPDoqoaAklptglI+H3IdRrO
-	 qry0eTNZPav9ybeBDCzpqH8v+zMUk8ezKKGwMNR/1BFEiFo8yOB7YlsWWgM8KCl6Zv
-	 /7wscndwXu6bA==
-X-Virus-Scanned: Debian amavisd-new at smtp.vivaldi.net
-Received: from smtp.vivaldi.net ([127.0.0.1])
-	by localhost (mxo.viv.dc01 [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id TrKmzu_s4KMW for <yocto@lists.yoctoproject.org>;
-	Wed, 17 Mar 2021 16:41:09 +0000 (UTC)
-Date: Wed, 17 Mar 2021 12:41:08 -0400
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 4279CBD029
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1615999269;
-	bh=5HrqRGpWZYAOo0of6amqbey1RRvenHer0+sfRCofpIM=;
-	h=Date:From:To:Subject:From;
-	b=frl2EaJvFzIMluBQq/+0BaI6AsgBgmFdZzjX5e0kaHTXGfGCCZHxW/vL/T/3J8j2c
-	 nwJcKD7kUKY1AyJn0E1cPZ/IXdoNLInxC8UTpf+RzjH5CZV5Ni1PUncTwl62TIP1zF
-	 jPLkVRaxqF0+8BcHbkRXdIxN2FfTtetrUI6kpg3perCzSRJPJhlFRklFtRs9CGz3Y2
-	 l63soMeBXvL5Orohv19Bf1vCaJeW2EKL5zwBfrKfLs8UvzmbHDZhck84Lx9ETEmiM9
-	 Rr+JElSe6hmpI08X0bKguXAwHELmgIamrOs1jPM0ecoaXb/59+2TKtN+DF+2f2eJ7h
-	 O5N1527U6rfAA==
-From: "jchludzinski" <jchludzinski@vivaldi.net>
-To: Yocto <yocto@lists.yoctoproject.org>
-Subject: spidev.c ?
-User-Agent: Roundcube Webmail/1.4.4
-Message-ID: <aabf284011d330a7f236b77b39963b93@vivaldi.net>
-X-Sender: jchludzinski@vivaldi.net
+ dkim=pass header.i=@sierrawireless.com header.s=selector1 header.b=hoyjv+S6;
+ spf=pass (domain: sierrawireless.com, ip: 40.107.244.44, mailfrom: dwatkins@sierrawireless.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=a9lIezBIRR01PXQX7oeVW6kHRzMH2y1J6cNOuV/nLh9ygCSR6NvPJH8F4FyKYuDQWj45A/yVxrYS8VqBPAlCPwJNsg/UGgxk0DORW6WqQI8lDAzBX8OFYCntZbv+gGtgV6qVgSud4HaumOwlKrQtLKOh8okM95119m/cqLaomiZGRkj+zLDUzyXVM9oD6F3akDb8+sIhlT3QSNsdLx3qf6OYKtri71as4ZdpZpa7E5jxYdtrtQubAK8gdTBcKRy8bmkSGzzO2IGzM+/Wg3bE0kBBdP7JKWvq/+tkIWJPVWti4LctW4D6kXlFQSoyGCzdXF0WY/gUhus/VeTUord4HQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=k7XsdPQkiGp+wUR+mL0BGA8Sbu5c0L14lIjlrcKmmGs=;
+ b=PH7+QAmF49EwBe+cHT4T1hT1OfqTHmOfm4Zv+u/BTXpl0nDRWhxeMOZmv7ym1p5X6HDEWI//4kLsQYmAAPPRH/B1uJ3FM82ei2+VZ+gYve4PgS2D52sNa9PNRVwioSwAruSH/afxsokT2YDWcy/wJnlDqjdQ+3zymUkclXoI0gL1Mc2W1iRDNj5GCXmQFmJ/o4ho3wqi+vRd/cuR8I4+YyTV0atWOgXb0j+Gj0ZZykNm6LyDUZC7TzFck4/QG25LAZh8aZJq0rTDlGmDlWDNVYNrcYv3dnjKD9hJIgz9iOdx+AgiZBwqVaWHzcYi/DobU8JqNyWXrVtbG5xfzzcHsA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=sierrawireless.com; dmarc=pass action=none
+ header.from=sierrawireless.com; dkim=pass header.d=sierrawireless.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sierrawireless.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=k7XsdPQkiGp+wUR+mL0BGA8Sbu5c0L14lIjlrcKmmGs=;
+ b=hoyjv+S6SBtfYVP+/jEjINPcxc180ekmm8tAGr6dvjfMRN/gJD/nlqRMKXASMwY/QGcecMb+8GWIw7fciy5GeHDrI88nL/5/xvFiZlJsrpwZJ26GZjnQaZm8L4ui5BaCqtNCO+EZDPWaj8s+xbx7QcyyngD8UO0VMZltVNmwh6U=
+Received: from MWHPR02MB2429.namprd02.prod.outlook.com (2603:10b6:300:40::7)
+ by MW4PR02MB7124.namprd02.prod.outlook.com (2603:10b6:303:7c::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Wed, 17 Mar
+ 2021 16:45:41 +0000
+Received: from MWHPR02MB2429.namprd02.prod.outlook.com
+ ([fe80::c96e:5159:62eb:783a]) by MWHPR02MB2429.namprd02.prod.outlook.com
+ ([fe80::c96e:5159:62eb:783a%3]) with mapi id 15.20.3933.032; Wed, 17 Mar 2021
+ 16:45:41 +0000
+From: "Darcy Watkins" <dwatkins@sierrawireless.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: do_populate_cve_db CERTIFICATE_VERIFY_FAILED
+Thread-Topic: do_populate_cve_db CERTIFICATE_VERIFY_FAILED
+Thread-Index: AQHXG0z3Mkhy3thrrEma7Zpr8lfb2Q==
+Date: Wed, 17 Mar 2021 16:45:40 +0000
+Message-ID: <5B28ED1C-2E07-4D20-8D11-C7D137797ADB@sierrawireless.com>
+Accept-Language: en-CA, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/16.47.21031401
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=sierrawireless.com;
+x-originating-ip: [142.179.59.203]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 74bbdb02-e9b0-4a82-def0-08d8e96419b2
+x-ms-traffictypediagnostic: MW4PR02MB7124:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: 
+ <MW4PR02MB71241F8522E19E21E6B28AFBB26A9@MW4PR02MB7124.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ JGrASvTHbukfydCiTcXhYpgVkYrzD79z1L4ACJ/YZhfYViy4DC/Z6b5kcI/HlNUIfSE9F7hPVaeoAeGgYcevzYYk0ZxdAVw46M3SQrd2pE7r40NYQDQLB/3C3LeivrgtRhbh1MwCq98uKE+9KdltCJIRVmCYVMmRqIKP5Yq6LcwvTVzlzOJvhTHXMuoYnXCK1CdEr/egmjNGMjWWVGVv5ni7WJ3qcGPdDnlk/huRsP9pWZIqoSs+hbAgEfCmvRfFJHI/e9ZckuV23eKxGaTxUt8MNkAYQtNZ5uq7PMZuv+mDy0v8qNjsgaUSGznlUwws/UdtR2TqiZz2yGF7HpcVajRRlBO1vice0oA2zottiL6itwqfXOeBTwiWnyCOZMHG05rD3HJyeQwBzFdnW+7hhAyITEBoHQxk9rfSvBU6+4LWlJztIVEMFdiu0xRzkH6lZk2HFYBK6f33aQbw7E+q4znszfREQwNkG/tv6TmEbG7PkGBhiGvisfi/FqktwesSIh2XjcTljG9YTIUCN2817/aT6fbA5M9udATyg+72fHgGm1JcdDCM7ns6vYMupHJLkkJwO0dqEfZTMHSBcH5KVdTKtufX2Ab8lQkJIm0669wmk74l1l8L7EHdQT2PWY70tM6oo5hdBWcFdEikjwrOPEEpxKIgpH7fI9ufCiIb1Pd/BwDXBUXDfgr2r4RhWOOt
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR02MB2429.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39860400002)(346002)(136003)(376002)(366004)(6512007)(71200400001)(66946007)(186003)(5660300002)(8676002)(7116003)(6916009)(316002)(86362001)(8936002)(83380400001)(33656002)(166002)(2906002)(478600001)(9326002)(76116006)(6486002)(2616005)(26005)(91956017)(64756008)(6506007)(66556008)(66476007)(36756003)(66446008)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 
+ =?utf-8?B?WVVwRzJ0WmxjdktTb3o4ZmRzc3NGNFFMa2E5Z1ZaUkV5aUhOK3JMd3BBaDJK?=
+ =?utf-8?B?ckZyOC9PcW42TXdnSzVGSGlvM3NtZU1KQTNFbHRtbDZTMW9GQnRrcDhMSnh2?=
+ =?utf-8?B?RE5HZU5LZFRJbFhEdnV5dnU1WXVlQUUwUjJGQ2dKeUFUbTdRRld2OVZ4KzBy?=
+ =?utf-8?B?M1BwTEtScmpxWmpreW1ScUMvUk5VaUFVTHpCTWY5bDFwS0tJTlhrSzJTVi9k?=
+ =?utf-8?B?L1RxTVZQeXlkbVVSWnNSQkFIb21Pakt5S0taUWVZaEtwV0RCRlFoL3R0N3Y3?=
+ =?utf-8?B?d0ZQMzcwNGdZc0RXdWQrSjRNMjhLVFNtTlVnalJ4RlB4dFkweFVHbHNHaEpu?=
+ =?utf-8?B?blVlWXhWUDdpMS9peVVtZHM4TEh3dUxiMlUzbk5nQU5MaUVNZmNpVERqWlly?=
+ =?utf-8?B?SjJ6QktVeWJSSWk4NWpKbDB4Z1c4MWorOFR6YlRQU1QvSWo2cFJibEVkWUpC?=
+ =?utf-8?B?L3RtMlM0MWRsYTNQQzVaV2lrRzdxNGlwV0cyaDVLQ20ySFdBZW5xbTBvdUwz?=
+ =?utf-8?B?enRzMDRzZ3Rrb3ZUem5uMkxvRXA5aFFzYURmSWpncWNRdjhKVm9jS2t2a01P?=
+ =?utf-8?B?ZE10RldFNUVtNDFzL0M3MmVzY3hwNnh4NGxxeFJVSTdIQzIzQ2U2QUxjcXNM?=
+ =?utf-8?B?YkhWQ1o5dDViZ0JLZUpNV0FqaFBBcFppcWFMZFhWdnpUYi9lbk9ZZStxdTVL?=
+ =?utf-8?B?ajZZVEVnVUR6eWxRL2lxUUtzbmJ3b3BtczJtd1VuN2F6SFF4NDI2WVFyek1s?=
+ =?utf-8?B?Vit4dU8vWGhHc1RiUlBxOXNNTXNHNGt4YW5mMU10V1k4N29BaVlad2l6d3BX?=
+ =?utf-8?B?NThWdVM1MEg1UXN3WGhnTG1WbTh4TytEWUxjaEpDK3F2TlVuK0R5T2wvU0cw?=
+ =?utf-8?B?dTFaL3Q5cFJjRkdad2s0SG1VV0V6aU1McklSSHh0bTdWVHphbWJOejlpVWxv?=
+ =?utf-8?B?M3duSjkvbUQ3WGw0NDBZMUJVcUhLUjM2N0k5SWVWRVBIeU8rU2xaTFhlN3o5?=
+ =?utf-8?B?SldQSGtuelRncVlXTmdJa3liZGE0L0hLV3lqazRkd3poL3JkSENvT2t0RmUr?=
+ =?utf-8?B?akNLUkRpSlRMSHBwMExPUjg3Nmo2dGVuenp3WlNlRm4yNU42OTg2ZDFjS3pE?=
+ =?utf-8?B?TlUvTjRVMXhLbE00dVM3R0dZRE5QUEFGZ3ZoblF6aGsrMUxxM3oxZzZ6dHlJ?=
+ =?utf-8?B?UXZtTG5JR2F0RDBxaVVyMWg0UDZIVVIwSnQwaW5BUnVralhsVzM2MUtMTnZP?=
+ =?utf-8?B?dmlwM3VMWXU1eUZPKytOVlpBNXh2RFhBY1BVL3RMRWhNQkhUMlU4Y3hsODhX?=
+ =?utf-8?B?S1UxSkp5MGgwSE9odHhHMzVyeThUeHdHUUd0eUFQMk9LQ05rYThBdnpEcDNL?=
+ =?utf-8?B?SXlzak1YbE8vVlhqaFNFSGhTRlRRUHJNQWNWOTZuSmNueHJlUTY2RzlSUmdt?=
+ =?utf-8?B?MHBNWndmY0VUbWxOZzYyMWhUUWlVT1R1OUVvUWJrZEdaSFZ1VWc5YWNTdm1L?=
+ =?utf-8?B?SkhXbS9sbGVIdWZramxEUUlPVDFSN3lMLys4a3Q4YzRkdzc4MlRwcTFXbjc2?=
+ =?utf-8?B?TkdpSFVVMXZLYWxQZllWOVZXeEFGTXFZVC9GMVNYbHluWDcwa0ppV0FpOGln?=
+ =?utf-8?B?a1J6YnkrSzF0UmdjRXVYL0p2K082MzREZFp1OXh0SkJwOW5saG1pWDU3OUl1?=
+ =?utf-8?B?Y25sNXZFd0lHUlRPTXgvbks3ZzQ1Y1k3YUlEbUZ6WnErN1ZmM2ZEMEdXMUp0?=
+ =?utf-8?Q?kIPldBoMQWSg5hgV1Q6HUc/ePRBsZGrbAVsWAn4?=
+MIME-Version: 1.0
+X-OriginatorOrg: sierrawireless.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR02MB2429.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 74bbdb02-e9b0-4a82-def0-08d8e96419b2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2021 16:45:40.8180
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: sLFVoVS/CxcZCQneZryzyN2yLgcTuqGv/VaO0ov4RuDdEuJDVYZ6E+V/9vlaEcvmhB/Ny9394LHBPHkakhhd0043G9CrNHVIWHKny3fjOmU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR02MB7124
+Content-Language: en-US
 Content-Type: multipart/alternative;
- boundary="=_7431c210b054a314e1dea94a6d07c337"
+	boundary="_000_5B28ED1C2E074D208D11C7D137797ADBsierrawirelesscom_"
 
---=_7431c210b054a314e1dea94a6d07c337
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+--_000_5B28ED1C2E074D208D11C7D137797ADBsierrawirelesscom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-In the YOCTO/Linux source tree there's _drivers/spi/_ which has all the
-source for SPI drivers. There's only 1 file, _spidev.c_, which has: 
+SGksDQoNCkFueW9uZSBlbHNlIGVuY291bnRlciB0aGlzPw0KDQoNCldBUk5JTkc6IGN2ZS11cGRh
+dGUtZGItbmF0aXZlLTEuMC1yMCBkb19wb3B1bGF0ZV9jdmVfZGI6IEZhaWxlZCB0byBmZXRjaCBD
+VkUgZGF0YSAoW1NTTDogQ0VSVElGSUNBVEVfVkVSSUZZX0ZBSUxFRF0gY2VydGlmaWNhdGUgdmVy
+aWZ5IGZhaWxlZDogdW5hYmxlIHRvIGdldCBsb2NhbCBpc3N1ZXIgY2VydGlmaWNhdGUgKF9zc2wu
+YzoxMTA4KSkNCg0KSSBhbSBub3Qgc3VyZSBob3cgdG8gcmVzb2x2ZSB0aGlzLiAgQWZ0ZXIgZ29v
+Z2xpbmcgb24gdGhlIHN1YmplY3QsIEkgZm91bmQgbm90aGluZyByZWFsbHkgaGVscGZ1bC4gIE1v
+c3QgaGl0cyBzdWdnZXN0IHRoYXQgdGhlIGNlcnRpZmljYXRlcyBhcmUgb3V0IG9mIGRhdGUuICBJ
+IHRyaWVkIHZhcmlvdXMgc3VnZ2VzdGVkIHdheXMgdG8gcmVzb2x2ZSBpdCwgYnV0IG5vdGhpbmcg
+d29ya3MuDQoNCkZ1cnRoZXJtb3JlLCBhcyBJIGRpZyBpbnRvIHRoaXMsIGl0IGJlY29tZXMgYXBw
+YXJlbnQgdGhhdCB0aGlzIGNvdWxkIGJlIGNvbmZ1c2VkIGJ5IHRoZSBkaWZmZXJlbnQgcHl0aG9u
+MyB0aGF0IGFyZSBvbiB0aGUgc3lzdGVtLiAg4oCYd2hpY2ggcHl0aG9uM+KAmSBwb2ludHMgdG8g
+YSBweXRob24zIHRoYXQgaXMgaW4gdGhlIGJ1aWxkdG9vbHMuICBTbyBJIGhhdmUgYSBweXRob24z
+IGZyb20gbXkgQ2VudE9TIDcgZGlzdHJvLCB0aGVyZSBhcHBlYXJzIHRvIGJlIG9uZSBhcyBwYXJ0
+IG9mIHRoZSBidWlsZHRvb2xzIChuZWVkZWQgd2hlbiB5b3UgdXNlIENlbnRPUykuICBUaGVuIHRo
+ZXJlIGlzIHB5dGhvbjMtbmF0aXZlIGFuZCBmaW5hbGx5IHRoZSBweXRob24zIHRoYXQgaXMgYnVp
+bHQgZm9yIHRoZSB0YXJnZXQuDQoNCkkgc3VzcGVjdCB0aGF0IHRoaXMgbWF5IGJlIHJlbGF0ZWQg
+dG8gdGhlIHB5dGhvbjMgaW4gdGhlIGJ1aWxkdG9vbHMuICBBbnlvbmUgdXNpbmcgYSBuZXdlciBk
+aXN0cm8gbm90IHJlcXVpcmluZyBidWlsZHRvb2xzIG1heSBub3QgYmUgYWZmZWN0ZWQuDQoNCkkg
+YW0gdXNpbmcgQ2VudE9TNywgWW9jdG8g4oCYZHVuZmVsbOKAmSAoaW5jbHVkaW5nIHRoZSBidWls
+ZHRvb2xzKSBhbmQgYnVpbGRpbmcgZm9yIGFuIE5YUCBMYXllcnNjYXBlIHRhcmdldC4gIFRoaXMg
+cGFydGljdWxhciBidWlsZCBhZGRzIG1ldGEtc2VjdXJpdHkgYW5kIHRoZSBtZXRhLXNlY3VyaXR5
+LWlzYWZ3IHN1Yi1sYXllciAoYWxvbmcgd2l0aCBwcmVyZXF1aXNpdGVzKS4NCg0KDQpSZWdhcmRz
+LA0KDQpEYXJjeQ0KDQpEYXJjeSBXYXRraW5zIDo6ICBTZW5pb3IgU3RhZmYgRW5naW5lZXIsIEZp
+cm13YXJlDQoNClNJRVJSQSBXSVJFTEVTUw0KRGlyZWN0ICArMSA2MDQgMjMzIDc5ODkgICA6OiAg
+RmF4ICArMSA2MDQgMjMxIDExMDkgIDo6ICBNYWluICArMSA2MDQgMjMxIDExMDANCjEzODExIFdp
+cmVsZXNzIFdheSAgOjogUmljaG1vbmQsIEJDIENhbmFkYSBWNlYgM0E0DQpbTTRdDQpkd2F0a2lu
+c0BzaWVycmF3aXJlbGVzcy5jb208bWFpbHRvOmR3YXRraW5zQHNpZXJyYXdpcmVsZXNzLmNvbT4g
+Ojogd3d3LnNpZXJyYXdpcmVsZXNzLmNvbTxodHRwOi8vd3d3LnNpZXJyYXdpcmVsZXNzLmNvbS8+
+DQo=
 
-static int __init spidev_init(void)
-{
-        int status;
+--_000_5B28ED1C2E074D208D11C7D137797ADBsierrawirelesscom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <FF6FFFA2B1685F4ABF7CE5B03FDA2DFB@namprd02.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-        /* Claim our 256 reserved device numbers.  Then register a class
-         * that will key udev/mdev to add/remove /dev nodes.  Last,
-register
-         * the driver which manages those device numbers.
-         */
-        BUILD_BUG_ON(N_SPI_MINORS > 256);
-        status = register_chrdev(SPIDEV_MAJOR, "spi", &spidev_fops);
-        if (status < 0)
-                return status;
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
+bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
+IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
+IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5Ok1lbmxvOw0K
+CXBhbm9zZS0xOjIgMTEgNiA5IDMgOCA0IDIgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25zICov
+DQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowY207
+DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9
+DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0K
+CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0K
+cC5wMSwgbGkucDEsIGRpdi5wMQ0KCXttc28tc3R5bGUtbmFtZTpwMTsNCgltYXJnaW46MGNtOw0K
+CWZvbnQtc2l6ZTo4LjVwdDsNCglmb250LWZhbWlseTpNZW5sbzsNCgljb2xvcjojQUFBQjI1O30N
+CnNwYW4uczINCgl7bXNvLXN0eWxlLW5hbWU6czI7DQoJY29sb3I6YmxhY2s7fQ0Kc3Bhbi5zMQ0K
+CXttc28tc3R5bGUtbmFtZTpzMTt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpl
+eHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpAcGFnZSBX
+b3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA3Mi4w
+cHQgNzIuMHB0IDcyLjBwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24x
+O30NCi0tPjwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1DQSIgbGluaz0iIzA1NjND
+MSIgdmxpbms9IiM5NTRGNzIiIHN0eWxlPSJ3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8ZGl2IGNs
+YXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGksPG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPkFueW9uZSBlbHNlIGVuY291bnRlciB0aGlzPzxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0icDEi
+PjxzcGFuIGNsYXNzPSJzMSI+PGI+V0FSTklORzwvYj48L3NwYW4+PHNwYW4gY2xhc3M9InMyIj46
+IDwvc3Bhbj48c3BhbiBjbGFzcz0iczEiPmN2ZS11cGRhdGUtZGItbmF0aXZlLTEuMC1yMCBkb19w
+b3B1bGF0ZV9jdmVfZGI6IEZhaWxlZCB0byBmZXRjaCBDVkUgZGF0YSAoW1NTTDogQ0VSVElGSUNB
+VEVfVkVSSUZZX0ZBSUxFRF0gY2VydGlmaWNhdGUgdmVyaWZ5IGZhaWxlZDogdW5hYmxlIHRvIGdl
+dCBsb2NhbCBpc3N1ZXIgY2VydGlmaWNhdGUNCiAoX3NzbC5jOjExMDgpKTwvc3Bhbj48bzpwPjwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+SSBhbSBub3Qgc3VyZSBob3cgdG8gcmVzb2x2ZSB0aGlzLiZuYnNw
+OyBBZnRlciBnb29nbGluZyBvbiB0aGUgc3ViamVjdCwgSSBmb3VuZCBub3RoaW5nIHJlYWxseSBo
+ZWxwZnVsLiZuYnNwOyBNb3N0IGhpdHMgc3VnZ2VzdCB0aGF0IHRoZSBjZXJ0aWZpY2F0ZXMgYXJl
+IG91dCBvZiBkYXRlLiZuYnNwOyBJIHRyaWVkIHZhcmlvdXMgc3VnZ2VzdGVkIHdheXMgdG8gcmVz
+b2x2ZSBpdCwgYnV0IG5vdGhpbmcgd29ya3MuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkZ1cnRo
+ZXJtb3JlLCBhcyBJIGRpZyBpbnRvIHRoaXMsIGl0IGJlY29tZXMgYXBwYXJlbnQgdGhhdCB0aGlz
+IGNvdWxkIGJlIGNvbmZ1c2VkIGJ5IHRoZSBkaWZmZXJlbnQgcHl0aG9uMyB0aGF0IGFyZSBvbiB0
+aGUgc3lzdGVtLiZuYnNwOyDigJh3aGljaCBweXRob24z4oCZIHBvaW50cyB0byBhIHB5dGhvbjMg
+dGhhdCBpcyBpbiB0aGUgYnVpbGR0b29scy4mbmJzcDsgU28gSSBoYXZlIGEgcHl0aG9uMyBmcm9t
+IG15IENlbnRPUyA3IGRpc3RybywNCiB0aGVyZSBhcHBlYXJzIHRvIGJlIG9uZSBhcyBwYXJ0IG9m
+IHRoZSBidWlsZHRvb2xzIChuZWVkZWQgd2hlbiB5b3UgdXNlIENlbnRPUykuJm5ic3A7IFRoZW4g
+dGhlcmUgaXMgcHl0aG9uMy1uYXRpdmUgYW5kIGZpbmFsbHkgdGhlIHB5dGhvbjMgdGhhdCBpcyBi
+dWlsdCBmb3IgdGhlIHRhcmdldC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBzdXNwZWN0IHRo
+YXQgdGhpcyBtYXkgYmUgcmVsYXRlZCB0byB0aGUgcHl0aG9uMyBpbiB0aGUgYnVpbGR0b29scy4m
+bmJzcDsgQW55b25lIHVzaW5nIGEgbmV3ZXIgZGlzdHJvIG5vdCByZXF1aXJpbmcgYnVpbGR0b29s
+cyBtYXkgbm90IGJlIGFmZmVjdGVkLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGFtIHVzaW5n
+IENlbnRPUzcsIFlvY3RvIOKAmGR1bmZlbGzigJkgKGluY2x1ZGluZyB0aGUgYnVpbGR0b29scykg
+YW5kIGJ1aWxkaW5nIGZvciBhbiBOWFAgTGF5ZXJzY2FwZSB0YXJnZXQuJm5ic3A7IFRoaXMgcGFy
+dGljdWxhciBidWlsZCBhZGRzIG1ldGEtc2VjdXJpdHkgYW5kIHRoZSBtZXRhLXNlY3VyaXR5LWlz
+YWZ3IHN1Yi1sYXllciAoYWxvbmcgd2l0aCBwcmVyZXF1aXNpdGVzKS48bzpwPjwvbzpwPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+
+Jm5ic3A7PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiPlJlZ2FyZHMsPC9z
+cGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOzwvc3Bhbj48L2I+PHNw
+YW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIj5EYXJjeTwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4t
+VVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFu
+IGxhbmc9IkVOLVVTIj4mbmJzcDs8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1V
+UyI+RGFyY3kgV2F0a2lucyA6OiZuYnNwOyZuYnNwO1NlbmlvciBTdGFmZiBFbmdpbmVlciwgRmly
+bXdhcmU8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7PC9zcGFu
+PjwvYj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjpyZWQiPlNJRVJS
+QSBXSVJFTEVTUzwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjpyZWQi
+PjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9
+IkVOLVVTIj5EaXJlY3QmbmJzcDsgKzEgNjA0IDIzMyA3OTg5Jm5ic3A7ICZuYnNwOzo6Jm5ic3A7
+Jm5ic3A7RmF4Jm5ic3A7Jm5ic3A7KzEgNjA0IDIzMSAxMTA5Jm5ic3A7IDo6Jm5ic3A7Jm5ic3A7
+TWFpbiZuYnNwOyZuYnNwOysxIDYwNCAyMzEgMTEwMDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4xMzgxMSBXaXJlbGVzcyBXYXkm
+bmJzcDsgOjombmJzcDtSaWNobW9uZCwgQkMgQ2FuYWRhIFY2ViAzQTQ8bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+W000XTxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
+Ij48YSBocmVmPSJtYWlsdG86ZHdhdGtpbnNAc2llcnJhd2lyZWxlc3MuY29tIj48c3BhbiBzdHls
+ZT0iY29sb3I6IzA1NjNDMSI+ZHdhdGtpbnNAc2llcnJhd2lyZWxlc3MuY29tPC9zcGFuPjwvYT4m
+bmJzcDs6OiZuYnNwOzxhIGhyZWY9Imh0dHA6Ly93d3cuc2llcnJhd2lyZWxlc3MuY29tLyI+PHNw
+YW4gc3R5bGU9ImNvbG9yOiMwNTYzQzEiPnd3dy5zaWVycmF3aXJlbGVzcy5jb208L3NwYW4+PC9h
+Pg0KPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-        spidev_class = class_create(THIS_MODULE, "spidev");
-        if (IS_ERR(spidev_class)) {
-                unregister_chrdev(SPIDEV_MAJOR,
-spidev_spi_driver.driver.name);
-                return PTR_ERR(spidev_class);
-        }
-
-        status = spi_register_driver(&spidev_spi_driver);
-        if (status < 0) {
-                class_destroy(spidev_class);
-                unregister_chrdev(SPIDEV_MAJOR,
-spidev_spi_driver.driver.name);
-        }
-        return status;
-}
-module_init(spidev_init); 
-
-... for creating device files in _udev_. 
-
-So when I use '_make nconfig_' to specifiy that I want a loadable module
-for the ALTERA SPI driver, why don't I see a _spidev.o_ file in
-_drivers/spi/_ ? 
-
-How does _spi-altera.ko_ create device files without a call to
-register_chrdev(...). 
-
-How is it a loadable module without module_init(...)? 
-
-When I separately build _spidev.c_ as an _.ko_ and try loading it, I
-get: "_Device or resourse busy_" 
-
----John
-
---=_7431c210b054a314e1dea94a6d07c337
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
-=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Verdana,Gen=
-eva,sans-serif'>
-<div class=3D"v1pre"><span style=3D"font-size: 12pt;">In the YOCTO/Linux so=
-urce tree there's <span style=3D"text-decoration: underline;"><em><strong>d=
-rivers/spi/</strong></em></span> which has all the source for SPI drivers=
-=2E There's only 1 file, <span style=3D"text-decoration: underline;"><em><s=
-trong>spidev.c</strong></em></span>, which has:</span></div>
-<div class=3D"v1pre">&nbsp;</div>
-<div class=3D"v1pre">
-<div tabindex=3D"-1">
-<div tabindex=3D"0" aria-label=3D"Message Contents" aria-selected=3D"true">
-<div class=3D"_rp_f5" tabindex=3D"-1" aria-label=3D"Expanded Message Conten=
-ts">
-<div class=3D"_rp_R4 ms-border-color-neutralLight ShowConsesusSchedulingLin=
-k ShowReferenceAttachmentsLinks" tabindex=3D"-1">
-<div class=3D"_rp_45 _rp_35">
-<div role=3D"document">
-<div id=3D"Item.MessagePartBody" class=3D"_rp_T4">
-<div id=3D"Item.MessageUniqueBody" class=3D"_rp_U4 ms-font-weight-regular m=
-s-font-color-neutralDark rpHighlightAllClass rpHighlightBodyClass">
-<div class=3D"rps_c962">
-<div>
-<div class=3D"BodyFragment">
-<div class=3D"PlainText" style=3D"padding-left: 30px;"><span style=3D"font-=
-size: 12pt;"><strong><span style=3D"font-family: 'courier new', courier, mo=
-nospace;">static int __init spidev_init(void)</span></strong></span><br /><=
-span style=3D"font-size: 12pt;"><strong><span style=3D"font-family: 'courie=
-r new', courier, monospace;">{</span></strong></span><br /><span style=3D"f=
-ont-size: 12pt;"><strong><span style=3D"font-family: 'courier new', courier=
-, monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int status;</span>=
-</strong></span><br /><br /><span style=3D"font-size: 12pt;"><strong><span =
-style=3D"font-family: 'courier new', courier, monospace;">&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; /* Claim our 256 reserved device numbers.&nbsp; T=
-hen register a class</span></strong></span><br /><span style=3D"font-size: =
-12pt;"><strong><span style=3D"font-family: 'courier new', courier, monospac=
-e;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * that will key udev/m=
-dev to add/remove /dev nodes.&nbsp; Last, register</span></strong></span><b=
-r /><span style=3D"font-size: 12pt;"><strong><span style=3D"font-family: 'c=
-ourier new', courier, monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; * the driver which manages those device numbers.</span></strong></s=
-pan><br /><span style=3D"font-size: 12pt;"><strong><span style=3D"font-fami=
-ly: 'courier new', courier, monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; */</span></strong></span><br /><span style=3D"font-size: 12pt=
-;"><strong><span style=3D"font-family: 'courier new', courier, monospace;">=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BUILD_BUG_ON(N_SPI_MINORS &gt; 2=
-56);</span></strong></span><br /><span style=3D"font-size: 12pt;"><strong><=
-span style=3D"font-family: 'courier new', courier, monospace;">&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; status =3D register_chrdev(SPIDEV_MAJOR, "sp=
-i", &amp;spidev_fops);</span></strong></span><br /><span style=3D"font-size=
-: 12pt;"><strong><span style=3D"font-family: 'courier new', courier, monosp=
-ace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (status &lt; 0)</span><=
-/strong></span><br /><span style=3D"font-size: 12pt;"><strong><span style=
-=3D"font-family: 'courier new', courier, monospace;">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return=
- status;</span></strong></span><br /><br /><span style=3D"font-size: 12pt;"=
-><strong><span style=3D"font-family: 'courier new', courier, monospace;">&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spidev_class =3D class_create(THIS=
-_MODULE, "spidev");</span></strong></span><br /><span style=3D"font-size: 1=
-2pt;"><strong><span style=3D"font-family: 'courier new', courier, monospace=
-;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (IS_ERR(spidev_class)) {</=
-span></strong></span><br /><span style=3D"font-size: 12pt;"><strong><span s=
-tyle=3D"font-family: 'courier new', courier, monospace;">&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; un=
-register_chrdev(SPIDEV_MAJOR, spidev_spi_driver.driver.name);</span></stron=
-g></span><br /><span style=3D"font-size: 12pt;"><strong><span style=3D"font=
--family: 'courier new', courier, monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return PTR_ERR=
-(spidev_class);</span></strong></span><br /><span style=3D"font-size: 12pt;=
-"><strong><span style=3D"font-family: 'courier new', courier, monospace;">&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></strong></span><br /><br=
- /><span style=3D"font-size: 12pt;"><strong><span style=3D"font-family: 'co=
-urier new', courier, monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- status =3D spi_register_driver(&amp;spidev_spi_driver);</span></strong></s=
-pan><br /><span style=3D"font-size: 12pt;"><strong><span style=3D"font-fami=
-ly: 'courier new', courier, monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; if (status &lt; 0) {</span></strong></span><br /><span style=3D"fon=
-t-size: 12pt;"><strong><span style=3D"font-family: 'courier new', courier, =
-monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; class_destroy(spidev_class);</span></strong></s=
-pan><br /><span style=3D"font-size: 12pt;"><strong><span style=3D"font-fami=
-ly: 'courier new', courier, monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unregister_chrdev(S=
-PIDEV_MAJOR, spidev_spi_driver.driver.name);</span></strong></span><br /><s=
-pan style=3D"font-size: 12pt;"><strong><span style=3D"font-family: 'courier=
- new', courier, monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</s=
-pan></strong></span><br /><span style=3D"font-size: 12pt;"><strong><span st=
-yle=3D"font-family: 'courier new', courier, monospace;">&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp; return status;</span></strong></span><br /><span st=
-yle=3D"font-size: 12pt;"><strong><span style=3D"font-family: 'courier new',=
- courier, monospace;">}</span></strong></span><br /><span style=3D"font-siz=
-e: 12pt;"><strong><span style=3D"font-family: 'courier new', courier, monos=
-pace;">module_init(spidev_init);</span></strong></span></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class=3D"_pe_d _pe_62" style=3D"padding-left: 30px;" tabindex=3D"-1" a=
-ria-expanded=3D"false" aria-haspopup=3D"false">&nbsp;</div>
-</div>
-<div class=3D"_rp_Z4"><span style=3D"font-size: 12pt;">... for creating dev=
-ice files in <span style=3D"text-decoration: underline;"><em><strong>udev</=
-strong></em></span>.</span></div>
-<div class=3D"_rp_Z4"><span style=3D"font-size: 12pt;">&nbsp;</span></div>
-<div class=3D"_rp_Z4"><span style=3D"font-size: 12pt;">So when I use '<span=
- style=3D"text-decoration: underline;"><em><strong>make nconfig</strong></e=
-m></span>' to specifiy that I want a loadable module for the ALTERA SPI dri=
-ver, why don't I see a <span style=3D"text-decoration: underline;"><em><str=
-ong>spidev.o</strong></em></span>&nbsp;file in <span style=3D"text-decorati=
-on: underline;"><em><strong>drivers/spi/</strong></em></span> ? </span></di=
-v>
-<div class=3D"_rp_Z4">&nbsp;</div>
-<div class=3D"_rp_Z4"><span style=3D"font-size: 12pt;">How does&nbsp;<span =
-style=3D"text-decoration: underline;"><em><strong>spi-altera.ko</strong></e=
-m></span> create device files without a call to&nbsp;<strong><span style=3D=
-"font-family: 'courier new', courier, monospace;">register_chrdev(...)</spa=
-n></strong>. </span></div>
-<div class=3D"_rp_Z4">&nbsp;</div>
-<div class=3D"_rp_Z4"><span style=3D"font-size: 12pt;"><span style=3D"font-=
-size: 12pt;">How is it a loadable module without&nbsp;</span></span><span s=
-tyle=3D"font-size: 12pt;"><strong><span style=3D"font-family: 'courier new'=
-, courier, monospace;">module_init(...)</span></strong></span><span style=
-=3D"font-size: 12pt;">?</span></div>
-<div class=3D"_rp_Z4">&nbsp;</div>
-<div class=3D"_rp_Z4"><span style=3D"font-size: 12pt;">When I separately bu=
-ild <span style=3D"text-decoration: underline;"><em><strong>spidev.c</stron=
-g></em></span> as an&nbsp;<span style=3D"text-decoration: underline;"><em><=
-strong>.ko</strong></em></span> and try loading it, I get: "<strong><em>Dev=
-ice or resourse busy</em></strong>"</span></div>
-<div class=3D"_rp_Z4">&nbsp;</div>
-<div class=3D"_rp_Z4"><span style=3D"font-size: 12pt;">---John</span></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</body></html>
-
---=_7431c210b054a314e1dea94a6d07c337--
+--_000_5B28ED1C2E074D208D11C7D137797ADBsierrawirelesscom_--
