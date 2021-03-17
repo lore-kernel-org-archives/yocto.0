@@ -1,100 +1,74 @@
-Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
- by mx.groups.io with SMTP id smtpd.web10.1141.1615920233307295576
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web09.2212.1615954163304591867
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Mar 2021 11:43:53 -0700
+ Tue, 16 Mar 2021 21:09:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: crashcourse.ca, ip: 199.212.143.3, mailfrom: rpjday@crashcourse.ca)
-Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:56136 helo=fedora)
-	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1lMEfW-00HAOm-64; Tue, 16 Mar 2021 14:43:50 -0400
-Date: Tue, 16 Mar 2021 14:43:43 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: jchludzinski@vivaldi.net
-cc: Josef Holzmayr <jester@theyoctojester.info>, 
-    Nicolas Dechesne <nicolas.dechesne@linaro.org>, 
-    akuster <akuster808@gmail.com>, Yocto <yocto@lists.yoctoproject.org>, 
-    "jchludzinski via lists.yoctoproject.org" <jchludzinski=vivaldi.net@lists.yoctoproject.org>
-Subject: Re: [yocto] Building test code?
-In-Reply-To: <baac6e467b320e2678f9ee7f668b287b@vivaldi.net>
-Message-ID: <902ab76c-de1-3e5b-2bef-3b5ed093b093@crashcourse.ca>
-References: <bdb239f7ebf89f1567d5fbd2530fa12c@vivaldi.net> <503454c9-ea3c-6ecb-bfdf-eb5fce6feeee@gmail.com> <247c426e3db4a7f031aad842303134f1@vivaldi.net> <CAP71WjwJmSVGGXCtfChNkoN3u-UjXXCmWbO_1tj2iF+aP2RHPQ@mail.gmail.com>
- <CAEt6NwpHM72t3KLzU=2kNApQxqqZN4FJOsUiZUV+WumDT2qjNg@mail.gmail.com> <166CDA589776C94C.8652@lists.yoctoproject.org> <166CDD724205027D.27789@lists.yoctoproject.org> <baac6e467b320e2678f9ee7f668b287b@vivaldi.net>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=V1keZXne;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: ms.priyanshu.sharma@gmail.com)
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id C940C38C0894
+	for <yocto@yoctoproject.org>; Wed, 17 Mar 2021 04:09:22 +0000 (UTC)
+Received: by mail-lj1-f175.google.com with SMTP id 184so1464403ljf.9
+        for <yocto@yoctoproject.org>; Tue, 16 Mar 2021 21:09:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=vxUHUgqVHZiXL56iT7yZcnrBjHthT4lFIJHATTrR5Vk=;
+        b=V1keZXneTyjSIs7gSJNSGi9eg+irfS/szPwmjDWi6GjsYj8I1AjaL6CetzzEmjuOsC
+         R6HI68YdHLNqhs96oTsQRu/vicrSmq5iUbuhq1sYJ0rcKaM2vGQF42wQdtnj0updaWET
+         rVs+IxKBBncK5OsDPFYre2cPEoBWUmAF7A0rAy+pEe7L7qbVu3/8/4Q8gskm9w5k0W2a
+         ldlMXDsL/ac2DD/zXD+7e5MwoaCagK/0kE8Yp6ulVHwAsFJZJBnYzFmiM6enlDjum+Gy
+         jhn+s+mAXKvJffq86+3Lw/AoovTqloNZ/KerAMA1pbhGg/6dOzGdWfqptv3sjSc+YKou
+         KX5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=vxUHUgqVHZiXL56iT7yZcnrBjHthT4lFIJHATTrR5Vk=;
+        b=DWk5/pznzZNiCBudxG67cwSdAYnn0C0M+X0t9vopbgdgXKuibkllkJu8rYHKoOdtnc
+         Qy6r3TFFWnOQW0oJHmTubxD7LFGDgvztN5OV2OshNgDfQF8dGIdTYrxbvCXbSN29Gu2s
+         gjnMg1K3TYivr5E/cuEOnom27G5PhsVUoMK13RjNbmIrWtF9lq4Yk66K0vgZcoz12Df8
+         vjwYjmiZWlejZeOUQ+kel/hobCFM6fj4XEl7g7fgzENzxMcEqwhAf5bQrWqgsrQSHRWK
+         NJJPH9MArsOrCTCOPImdp4OfxTBaDl+IbRbq8Xs9nHG1HRTrjJn5UsP2bDn97dZYMs9Q
+         rXuA==
+X-Gm-Message-State: AOAM5325H4fKuSXrZRd65jzcl0p+ePpbb29payZMaNJlYU7nOWZ/iKj6
+	AAO/SnqmQKE5TSGxy1MbQgw9TWyRHjb1HkMaVltp0LJr
+X-Google-Smtp-Source: ABdhPJwnHXdF+wo9Aw2wN1DUXDrjJeqQMNFg4D9dHZqVAdgiGei+ZNqnCDlS3JeCPdbSMcKpxQpjtWxGyXJAECHxu+Q=
+X-Received: by 2002:a2e:a494:: with SMTP id h20mr1205778lji.292.1615954160624;
+ Tue, 16 Mar 2021 21:09:20 -0700 (PDT)
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: multipart/mixed; boundary="8323328-171389226-1615920230=:9985"
+From: "Priyanshu Sharma" <ms.priyanshu.sharma@gmail.com>
+Date: Wed, 17 Mar 2021 09:39:09 +0530
+Message-ID: <CAA_f9eNSA2FRm+-Vrrady3o6Vuwe-xOmiwvwW-LWKithvx4yog@mail.gmail.com>
+Subject: How to create a list of source files for an Image?
+To: yocto@yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000b7a7c305bdb3a50c"
 
---8323328-171389226-1615920230=:9985
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+--000000000000b7a7c305bdb3a50c
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 16 Mar 2021, jchludzinski via lists.yoctoproject.org wrote:
+Hi,
 
-> I tried to build spidev-test using the bitbake recipe: 
->
-> spidev-test.bb
->  
-> I set:
-> ARCH=arm
-> BBPATH
-> CROSS_COMPILER=arm-linux-gnueabihf-
-> PATH
->
-> ... and then tried to build spidev-test:
->
-> $ bitbake -b spidev-test.bb
-> WARNING: Buildfile specified, dependencies will not be handled. If this is not what you want, do not use -b / --buildfile.
-> Loading cache: 100% |################################################################| Time: 0:00:00
-> Loaded 1433 entries from dependency cache.
->
-> Build Configuration:
-> BB_VERSION           = "1.49.2"
-> BUILD_SYS            = "x86_64-linux"
-> NATIVELSBSTRING      = "fedora-33"
-> TARGET_SYS           = "x86_64-oe-linux"
-> MACHINE              = "qemux86-64"
-> DISTRO               = "nodistro"
-> DISTRO_VERSION       = "nodistro.0"
-> TUNE_FEATURES        = "m64 core2"
-> TARGET_FPU           = ""
-> meta                 = "master:fa1e1fbc082e82e41ccfeae58af97fe048c9aac7"
->
-> Initialising tasks: 100% |###########################################################| Time: 0:00:00
-> Sstate summary: Wanted 6 Local 0 Network 0 Missed 6 Current 0 (0% match, 0% complete)
-> NOTE: Executing Tasks
-> WARNING: spidev-test-1.0-r0 do_populate_lic: Could not copy license file /home/fedora/openembedded-core/meta/files/common-lic
-> enses/GPL-2.0 to /home/fedora/openembedded-core/build/tmp-glibc/work/qemux86_64-oe-linux/spidev-test/1.0-r0/license-destdir/s
-> pidev-test/GPL-2.0: [Errno 2] No such file or directory: '/home/fedora/openembedded-core/meta/files/common-licenses/GPL-2.0'
-> ERROR: spidev-test-1.0-r0 do_populate_lic: QA Issue: spidev-test: LIC_FILES_CHKSUM points to an invalid file: /home/fedora/op
-> enembedded-core/meta/files/common-licenses/GPL-2.0 [license-checksum]
-> ERROR: spidev-test-1.0-r0 do_populate_lic: Fatal QA errors found, failing task.
-> ERROR: Logfile of failure stored in: /home/fedora/openembedded-core/build/tmp-glibc/work/qemux86_64-oe-linux/spidev-test/1.0-
-> r0/temp/log.do_populate_lic.281153
-> ERROR: Task (/home/fedora/junk/meta-openembedded/meta-oe/recipes-kernel/spidev-test/spidev-test.bb:do_populate_lic) failed wi
-> th exit code '1'
-> NOTE: Tasks Summary: Attempted 3 tasks of which 0 didn't need to be rerun and 1 failed.
->
-> Summary: 1 task failed:
->   /home/fedora/junk/meta-openembedded/meta-oe/recipes-kernel/spidev-test/spidev-test.bb:do_populate_lic
-> Summary: There were 2 WARNING messages shown.
-> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-> What's this about licences?
+I want to create a text file containing a list of all the source files used
+to build my Yocto image. Is there any mechanism to do that?
 
-  in current OE, there is no "GPL-2.0" license file, there is
-"GPL-2.0-only" and "GPL-2.0-or-later" and a bunch of others, so i
-think you need to pick one of those.
+I found out that archiever.bbclass creates a sub-folder deploy/sources,
+with all used sources in archived form. But is there any way to directly
+create a list file?
 
-rday
+Thanks!
 
---8323328-171389226-1615920230=:9985--
+Warm regards,
+Priyanshu Sharma
+
+--000000000000b7a7c305bdb3a50c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I want to create a text file contai=
+ning a list of all the source files used to build my Yocto image. Is there =
+any mechanism to do that?<br><br>I found out that archiever.bbclass creates=
+ a sub-folder deploy/sources, with all used sources in archived form. But i=
+s there any way to directly create a list file?</div><div><br></div><div>Th=
+anks!<br><br>Warm=C2=A0regards,<br>Priyanshu Sharma</div></div>
+
+--000000000000b7a7c305bdb3a50c--
