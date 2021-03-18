@@ -1,49 +1,51 @@
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
- by mx.groups.io with SMTP id smtpd.web12.10688.1616081527492448925
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web09.10814.1616081623401813175
  for <yocto@lists.yoctoproject.org>;
- Thu, 18 Mar 2021 08:32:07 -0700
+ Thu, 18 Mar 2021 08:33:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=eQPyh3zL;
- spf=pass (domain: gmail.com, ip: 209.85.167.176, mailfrom: akuster808@gmail.com)
-Received: by mail-oi1-f176.google.com with SMTP id w195so1775206oif.11
-        for <yocto@lists.yoctoproject.org>; Thu, 18 Mar 2021 08:32:07 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=MiLQXN7Y;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: akuster808@gmail.com)
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 5ED3F38C069A
+	for <yocto@yoctoproject.org>; Thu, 18 Mar 2021 15:33:42 +0000 (UTC)
+Received: by mail-ot1-f46.google.com with SMTP id v24-20020a9d69d80000b02901b9aec33371so5573490oto.2
+        for <yocto@yoctoproject.org>; Thu, 18 Mar 2021 08:33:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=QkORj+enIdskK6ij3+YO8JlXy7tBrS8DTRWsb2dujbw=;
-        b=eQPyh3zLu/2N9BGI5558/zFCI32Y877mpvYy6b+zkyxJU5KMJFqjJ/GxWBjjMl+ifJ
-         GBQKlYxxjBxcB9aBFGDvMZvn7poneNgiLIWF3imUIjtXIrvhj7Hb6waOnZD3YhF+Loru
-         ZDouvfkLI3etAvYt3Ecy0TBC7XcfkzN9rzNJUvKyK+L+2HG6peEv9MMk3pNVUkS3GRkc
-         692hIPUHNS/ZyXfRKaLvxgHtd/TyxygF7Kr+eTmIMQizMH0+QPC/Dp4M14BH6mda9FLX
-         hY1LNrhGdAYUOFIng4Tsx1nFQnAW1ZrZJJ1Z/+0vQAt6Z4VgQOLr9gISt4qNdQNTxXNy
-         j8uw==
+        bh=j9YhJgNWuwdSIQMU/VG655IuDHZaPsAvzC8GuOw21kc=;
+        b=MiLQXN7YnS3NZ5ilUpNIkmXZSYqVNYBLJv0PoPPifUbBzes0xUF30CBa7rJ2ETNfSw
+         24uy3tyShnAKJsLxLuslGfX5WQp77dJ/QUGzkwZFLR9rlO/9w1dR6G9VzMFf0Z8Uj1IP
+         bvU90F1JCIXBE8LgNws/zYlsEJ9MylrH8Y7uxeoB5oxtsS62hZSgAUhw0ttd9ZnxkZSN
+         YLNdfYtogZye2ZZqPX8Zk54boFDCDGh4tXgvXz1et8tZ+Yh/DGiPk9T0DokqZWVCC3Ac
+         +nwOnS4dP9JB4BQBxDpdBflphn+5RVQYnBAEEX6lsBgMTeY7+XYEpqdf7T9QmLS9054L
+         ObRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
-         :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=QkORj+enIdskK6ij3+YO8JlXy7tBrS8DTRWsb2dujbw=;
-        b=ENVw8VUPDsV9SmSe/gSOGOTbe5koeo3A+sr680NHQLu8mn9LUTrLVmvdpL9Us2w/1/
-         ejx6NdGyM74J0+WeEk3iaI13RZNq6bERTq2vEqQ0/3hxlp/rH9gJNClN+aRy1jVZFiPI
-         HuZdIS0tv+renoqO4jVS4kZyvdFqd20yKWcTq31s5OyBzQYWfb+rNhffOtu30AAQ5V+X
-         2a5WcIGlb7HM1kt9dqn+8ia9Yrs2SvbunzRNNYEbccOvNMH8hGch0gToTBRvpAwmoBJ8
-         jB8LCPR/i5pq2wlrIqJ23aBjX3rmadW7/RgJXnK6mHip8NBHStKi908CWfWMASPFMwqr
-         kNTA==
-X-Gm-Message-State: AOAM533yfTnntqfor9TA9i+nk+8NmgO/QYirkJqOMf/S4tRf7cgcV4BE
-	9SEUaJ5dpGgCrfEaFx4wrA4q5WiYf8Q=
-X-Google-Smtp-Source: ABdhPJy4Rhlymb04i7zOzp8qoohlQPSqaiv9xQ2MrVsoo1k2ECEZ71QFXI8SjHhcmdy9NAWHwDtXHQ==
-X-Received: by 2002:aca:53cc:: with SMTP id h195mr3447847oib.16.1616081526484;
-        Thu, 18 Mar 2021 08:32:06 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-transfer-encoding:content-language;
+        bh=j9YhJgNWuwdSIQMU/VG655IuDHZaPsAvzC8GuOw21kc=;
+        b=h0Pr+o+p08NRPTTN0xQaWUU/AnjQlTSGozLJBMEH4uhg3hwEo4tYRmyvhGFz90q+2B
+         /3dLVZ4fPiuYu5NSqXiE1um3jC19azK7osETuVQcwUFqXEMLb3YY7fQaT2A3vbc5xuwo
+         7IUGC/Tsul3Mec7fketF7kc73kuYtlFbpgO6UgBUh2Pa9AdTnMDgwnT6m/ceyaMZ0A21
+         XhO2MqRYMBiXLH+7fYIq038cBOjnFi2JHQsef+hBxFXABosekv2EFrUI3FxXw/HQbCRL
+         YfmNol1fxnQZlq/Sm2MYadbFEBEG8SnIn/tbd/wB9yGK7RJFsd9uqsilOaGsV46QQTVx
+         Q7Hw==
+X-Gm-Message-State: AOAM532SRG1gHhhbrAW4aqzUMAni1OsX+nXWZpD4yYE0Fj2xVWOhxqk6
+	GZtSZj+AiDLr8KjJ9jtjgfg=
+X-Google-Smtp-Source: ABdhPJyBfZGFGQVwSrY33kPkOHnKVTzA1Itzmvbnru6vDGO68lC7ebhEtStiQKusqguwIsj0JF1OlQ==
+X-Received: by 2002:a9d:6a14:: with SMTP id g20mr6144395otn.205.1616081621571;
+        Thu, 18 Mar 2021 08:33:41 -0700 (PDT)
 Received: from ?IPv6:2601:202:4180:a5c0:3162:4312:5c6d:827f? ([2601:202:4180:a5c0:3162:4312:5c6d:827f])
-        by smtp.gmail.com with ESMTPSA id g2sm521993otn.32.2021.03.18.08.32.05
-        for <yocto@lists.yoctoproject.org>
+        by smtp.gmail.com with ESMTPSA id s191sm580312oie.0.2021.03.18.08.33.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Mar 2021 08:32:06 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][PATCH v2] samhain: fix compile error on powerpc
-To: yocto@lists.yoctoproject.org
-References: <20210311093458.12043-1-kai.kang@windriver.com>
+        Thu, 18 Mar 2021 08:33:41 -0700 (PDT)
+Subject: Re: [meta-security][PATCH] ima-evm-keys: add file-checksums to IMA_EVM_X509
+To: liu.ming50@gmail.com, yocto@yoctoproject.org
+Cc: sergio.prado@toradex.com
+References: <20210312095324.31413-1-liu.ming50@gmail.com>
 From: "akuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -88,85 +90,37 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <fd88dfde-be07-9e88-4aa2-ad7b31d54453@gmail.com>
-Date: Thu, 18 Mar 2021 08:32:05 -0700
+Message-ID: <16730d86-3f5c-33b6-219e-3e24df039eda@gmail.com>
+Date: Thu, 18 Mar 2021 08:33:40 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210311093458.12043-1-kai.kang@windriver.com>
+In-Reply-To: <20210312095324.31413-1-liu.ming50@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-merged
+merged,
 thanks
 
-On 3/11/21 1:34 AM, kai wrote:
-> From: Kai Kang <kai.kang@windriver.com>
+On 3/12/21 1:53 AM, liu.ming50@gmail.com wrote:
+> From: Ming Liu <liu.ming50@gmail.com>
 >
-> It fails to comile samhain for powerpc(qemuppc):
+> This ensures when a end user change the IMA_EVM_X509 key file,
+> ima-evm-keys recipe will be rebuilt.
 >
-> | x_sh_dbIO.c: In function 'swap_short':
-> | x_sh_dbIO.c:229:36: error: initializer element is not constant
-> |   229 |       static unsigned short ooop = *iptr;
-> |       |                                    ^
->
-> Assign after initialization of the static variable to avoid the failure.
->
-> Signed-off-by: Kai Kang <kai.kang@windriver.com>
+> Signed-off-by: Ming Liu <liu.ming50@gmail.com>
 > ---
->  ...-initializer-element-is-not-constant.patch | 28 +++++++++++++++++++
->  recipes-ids/samhain/samhain.inc               |  1 +
->  2 files changed, 29 insertions(+)
->  create mode 100644 recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch
+>  meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch b/recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch
-> new file mode 100644
-> index 0000000..72cb880
-> --- /dev/null
-> +++ b/recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch
-> @@ -0,0 +1,28 @@
-> +Fix error when compile for powerpc:
-> +
-> +| x_sh_dbIO.c: In function 'swap_short':
-> +| x_sh_dbIO.c:229:36: error: initializer element is not constant
-> +|   229 |       static unsigned short ooop = *iptr;
-> +|       |                                    ^
-> +
-> +Upstream-Status: Pending
-> +
-> +Signed-off-by: Kai Kang <kai.kang@windriver.com>
-> +---
-> + src/sh_dbIO.c | 3 ++-
-> + 1 file changed, 2 insertions(+), 1 deletion(-)
-> +
-> +diff --git a/src/sh_dbIO.c b/src/sh_dbIO.c
-> +index b547ac5..23a9621 100644
-> +--- a/src/sh_dbIO.c
-> ++++ b/src/sh_dbIO.c
-> +@@ -226,7 +226,8 @@ static unsigned short *  swap_short (unsigned short * iptr)
-> +   else
-> +     {
-> +       /* alignment problem */
-> +-      static unsigned short ooop = *iptr;
-> ++      static unsigned short ooop;
-> ++      ooop = *iptr;
-> +       unsigned short hi   = (ooop & 0xff00);
-> +       unsigned short lo   = (ooop & 0xff);
-> +       ooop = (lo << 8) | (hi >> 8);
-> diff --git a/recipes-ids/samhain/samhain.inc b/recipes-ids/samhain/samhain.inc
-> index 6a2eb08..0148e46 100644
-> --- a/recipes-ids/samhain/samhain.inc
-> +++ b/recipes-ids/samhain/samhain.inc
-> @@ -18,6 +18,7 @@ SRC_URI = "https://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
->             file://samhain-avoid-searching-host-for-postgresql.patch \
->             file://samhain-add-LDFLAGS-variable-for-samhain_setpwd.patch \
->             file://fix-build-with-new-version-attr.patch \
-> +           file://samhain-fix-initializer-element-is-not-constant.patch \
->             "
->  
->  SRC_URI[sha256sum] = "3e57574036d5055e9557ec5095818b419ea6c4365370fc2ccce1e9f87f9fad08"
->
-> 
->
+> diff --git a/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb b/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
+> index 62685bb..7708aef 100644
+> --- a/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
+> +++ b/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
+> @@ -14,3 +14,4 @@ do_install () {
+>          lnr ${D}${sysconfdir}/keys/x509_evm.der ${D}${sysconfdir}/keys/x509_ima.der
+>      fi
+>  }
+> +do_install[file-checksums] += "${@'${IMA_EVM_X509}:%s' % os.path.exists('${IMA_EVM_X509}')}"
 
