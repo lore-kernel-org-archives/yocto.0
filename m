@@ -1,48 +1,49 @@
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
- by mx.groups.io with SMTP id smtpd.web08.10854.1616081506726802654
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+ by mx.groups.io with SMTP id smtpd.web12.10688.1616081527492448925
  for <yocto@lists.yoctoproject.org>;
- Thu, 18 Mar 2021 08:31:46 -0700
+ Thu, 18 Mar 2021 08:32:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ajfGMrJ2;
- spf=pass (domain: gmail.com, ip: 209.85.167.180, mailfrom: akuster808@gmail.com)
-Received: by mail-oi1-f180.google.com with SMTP id x2so1399597oiv.2
-        for <yocto@lists.yoctoproject.org>; Thu, 18 Mar 2021 08:31:46 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=eQPyh3zL;
+ spf=pass (domain: gmail.com, ip: 209.85.167.176, mailfrom: akuster808@gmail.com)
+Received: by mail-oi1-f176.google.com with SMTP id w195so1775206oif.11
+        for <yocto@lists.yoctoproject.org>; Thu, 18 Mar 2021 08:32:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=wBy6jMbFf90+9o0tgEkH87n7qP6L3bIcsDaG+FiYj+U=;
-        b=ajfGMrJ2h0pk6JXTpDmKgPZH2UuunbHcH0r3yUJQXpvULNbb8tusz21bhFLNwBkf1R
-         1BFHL7tD2dY5LdfJB2JJgBuFPwfylEQM3gPQTP5tILg+oslJIXWmxIh3h99+oKgFyiiG
-         teOQJJgafS2BoZl5BwB2nIT9WC79xitzoORoIdBgKQwEE/3SnHAIaE//Dq6e3G0L9jM9
-         ie1QGyLVPeBaYWoXTgVeT2fsvPbf1F3Rl+/pCU0groAFA/PmUJ/mtDJzk24Is/Mn2+6D
-         G8kpYevGdXLCCnjrg61yAgehE4Gto25PCG/MCi87qrexMTvOZYpGyp4BJSov5+R4FuFK
-         kshQ==
+        bh=QkORj+enIdskK6ij3+YO8JlXy7tBrS8DTRWsb2dujbw=;
+        b=eQPyh3zLu/2N9BGI5558/zFCI32Y877mpvYy6b+zkyxJU5KMJFqjJ/GxWBjjMl+ifJ
+         GBQKlYxxjBxcB9aBFGDvMZvn7poneNgiLIWF3imUIjtXIrvhj7Hb6waOnZD3YhF+Loru
+         ZDouvfkLI3etAvYt3Ecy0TBC7XcfkzN9rzNJUvKyK+L+2HG6peEv9MMk3pNVUkS3GRkc
+         692hIPUHNS/ZyXfRKaLvxgHtd/TyxygF7Kr+eTmIMQizMH0+QPC/Dp4M14BH6mda9FLX
+         hY1LNrhGdAYUOFIng4Tsx1nFQnAW1ZrZJJ1Z/+0vQAt6Z4VgQOLr9gISt4qNdQNTxXNy
+         j8uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
          :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
          :content-language;
-        bh=wBy6jMbFf90+9o0tgEkH87n7qP6L3bIcsDaG+FiYj+U=;
-        b=kuRbX77Gxdel4EwSnrf2kH9gM70ng94YxLm1ZyrOO2NOWHNqifzhcd8+p+6YSgd/Gx
-         2MK9FO3QWZCFtattDMFABfSuXDi9UvBkrJrYhWP6GCBB02TMqd+XVm/u0F2vsvvZt8y/
-         VsKbE9PZVu4mJUUoGrwvPGKTRgnHa3F2cQc6VasLUSqUib4psUOTwjk/BZqA6CCMjvJz
-         qXnkvA4bF7q85NLzwQeXvPKJKqbn0zAyeA1huGeWnXmPu2UVew/MbNxMbQ3xNWTX4/T3
-         n6r8bFWnZJtIoTTieL75839PoulUl8vIWqMHmJNxfTqO1Tu4Exslm7h/LsJUIv8ub9+x
-         sc5Q==
-X-Gm-Message-State: AOAM531hPiRlICUjY3wTTwiFBunHKfZ9uC4bIgbOotPLNQJIj3AlmoqP
-	fNsuh/5VKvTo6OVy3exSto1vI0/mcRg=
-X-Google-Smtp-Source: ABdhPJwMIIwth4Hu35PvEKJv//xia/5hLXAdfl1CyAi4Owx+Vas8ZnIBK8Spv66q7avNYfR9OgPxTg==
-X-Received: by 2002:a05:6808:f12:: with SMTP id m18mr3265441oiw.62.1616081505798;
-        Thu, 18 Mar 2021 08:31:45 -0700 (PDT)
+        bh=QkORj+enIdskK6ij3+YO8JlXy7tBrS8DTRWsb2dujbw=;
+        b=ENVw8VUPDsV9SmSe/gSOGOTbe5koeo3A+sr680NHQLu8mn9LUTrLVmvdpL9Us2w/1/
+         ejx6NdGyM74J0+WeEk3iaI13RZNq6bERTq2vEqQ0/3hxlp/rH9gJNClN+aRy1jVZFiPI
+         HuZdIS0tv+renoqO4jVS4kZyvdFqd20yKWcTq31s5OyBzQYWfb+rNhffOtu30AAQ5V+X
+         2a5WcIGlb7HM1kt9dqn+8ia9Yrs2SvbunzRNNYEbccOvNMH8hGch0gToTBRvpAwmoBJ8
+         jB8LCPR/i5pq2wlrIqJ23aBjX3rmadW7/RgJXnK6mHip8NBHStKi908CWfWMASPFMwqr
+         kNTA==
+X-Gm-Message-State: AOAM533yfTnntqfor9TA9i+nk+8NmgO/QYirkJqOMf/S4tRf7cgcV4BE
+	9SEUaJ5dpGgCrfEaFx4wrA4q5WiYf8Q=
+X-Google-Smtp-Source: ABdhPJy4Rhlymb04i7zOzp8qoohlQPSqaiv9xQ2MrVsoo1k2ECEZ71QFXI8SjHhcmdy9NAWHwDtXHQ==
+X-Received: by 2002:aca:53cc:: with SMTP id h195mr3447847oib.16.1616081526484;
+        Thu, 18 Mar 2021 08:32:06 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from ?IPv6:2601:202:4180:a5c0:3162:4312:5c6d:827f? ([2601:202:4180:a5c0:3162:4312:5c6d:827f])
-        by smtp.gmail.com with ESMTPSA id y200sm572164oia.49.2021.03.18.08.31.44
+        by smtp.gmail.com with ESMTPSA id g2sm521993otn.32.2021.03.18.08.32.05
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Mar 2021 08:31:45 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][PATCH] fscryptctl: Fix installation path
-To: lukasz.plachno@assaabloy.com, yocto@lists.yoctoproject.org
-References: <20210310165241.23796-1-lukasz.plachno@assaabloy.com>
+        Thu, 18 Mar 2021 08:32:06 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH v2] samhain: fix compile error on powerpc
+To: yocto@lists.yoctoproject.org
+References: <20210311093458.12043-1-kai.kang@windriver.com>
 From: "akuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -87,40 +88,84 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <6d5444d8-1a61-9e07-31a7-cf6cbdf2c94f@gmail.com>
-Date: Thu, 18 Mar 2021 08:31:43 -0700
+Message-ID: <fd88dfde-be07-9e88-4aa2-ad7b31d54453@gmail.com>
+Date: Thu, 18 Mar 2021 08:32:05 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210310165241.23796-1-lukasz.plachno@assaabloy.com>
+In-Reply-To: <20210311093458.12043-1-kai.kang@windriver.com>
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-merged.
-
+merged
 thanks
 
-On 3/10/21 8:52 AM, Łukasz Płachno via lists.yoctoproject.org wrote:
->  - Without the patch fscryptctl is installed in
->    /usr/bin/usr/local/bin instead of /usr/bin.
-> ---
->  recipes-security/fscryptctl/fscryptctl_1.0.0.bb | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+On 3/11/21 1:34 AM, kai wrote:
+> From: Kai Kang <kai.kang@windriver.com>
 >
-> diff --git a/recipes-security/fscryptctl/fscryptctl_1.0.0.bb b/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
-> index 440b4e3..df76a3d 100644
-> --- a/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
-> +++ b/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
-> @@ -15,7 +15,7 @@ SRC_URI = "git://github.com/google/fscryptctl.git"
->  S = "${WORKDIR}/git"
+> It fails to comile samhain for powerpc(qemuppc):
+>
+> | x_sh_dbIO.c: In function 'swap_short':
+> | x_sh_dbIO.c:229:36: error: initializer element is not constant
+> |   229 |       static unsigned short ooop = *iptr;
+> |       |                                    ^
+>
+> Assign after initialization of the static variable to avoid the failure.
+>
+> Signed-off-by: Kai Kang <kai.kang@windriver.com>
+> ---
+>  ...-initializer-element-is-not-constant.patch | 28 +++++++++++++++++++
+>  recipes-ids/samhain/samhain.inc               |  1 +
+>  2 files changed, 29 insertions(+)
+>  create mode 100644 recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch
+>
+> diff --git a/recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch b/recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch
+> new file mode 100644
+> index 0000000..72cb880
+> --- /dev/null
+> +++ b/recipes-ids/samhain/files/samhain-fix-initializer-element-is-not-constant.patch
+> @@ -0,0 +1,28 @@
+> +Fix error when compile for powerpc:
+> +
+> +| x_sh_dbIO.c: In function 'swap_short':
+> +| x_sh_dbIO.c:229:36: error: initializer element is not constant
+> +|   229 |       static unsigned short ooop = *iptr;
+> +|       |                                    ^
+> +
+> +Upstream-Status: Pending
+> +
+> +Signed-off-by: Kai Kang <kai.kang@windriver.com>
+> +---
+> + src/sh_dbIO.c | 3 ++-
+> + 1 file changed, 2 insertions(+), 1 deletion(-)
+> +
+> +diff --git a/src/sh_dbIO.c b/src/sh_dbIO.c
+> +index b547ac5..23a9621 100644
+> +--- a/src/sh_dbIO.c
+> ++++ b/src/sh_dbIO.c
+> +@@ -226,7 +226,8 @@ static unsigned short *  swap_short (unsigned short * iptr)
+> +   else
+> +     {
+> +       /* alignment problem */
+> +-      static unsigned short ooop = *iptr;
+> ++      static unsigned short ooop;
+> ++      ooop = *iptr;
+> +       unsigned short hi   = (ooop & 0xff00);
+> +       unsigned short lo   = (ooop & 0xff);
+> +       ooop = (lo << 8) | (hi >> 8);
+> diff --git a/recipes-ids/samhain/samhain.inc b/recipes-ids/samhain/samhain.inc
+> index 6a2eb08..0148e46 100644
+> --- a/recipes-ids/samhain/samhain.inc
+> +++ b/recipes-ids/samhain/samhain.inc
+> @@ -18,6 +18,7 @@ SRC_URI = "https://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
+>             file://samhain-avoid-searching-host-for-postgresql.patch \
+>             file://samhain-add-LDFLAGS-variable-for-samhain_setpwd.patch \
+>             file://fix-build-with-new-version-attr.patch \
+> +           file://samhain-fix-initializer-element-is-not-constant.patch \
+>             "
 >  
->  do_install() {
-> -    oe_runmake DESTDIR=${D}${bindir} install
-> +    oe_runmake DESTDIR=${D} PREFIX=/usr install
->  }
->  
->  RRECOMMENDS_${PN} += "\
+>  SRC_URI[sha256sum] = "3e57574036d5055e9557ec5095818b419ea6c4365370fc2ccce1e9f87f9fad08"
 >
 > 
 >
