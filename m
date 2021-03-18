@@ -1,104 +1,57 @@
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
- by mx.groups.io with SMTP id smtpd.web08.5981.1616053510056758893
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.9006.1616074945332753455
  for <yocto@lists.yoctoproject.org>;
- Thu, 18 Mar 2021 00:45:10 -0700
+ Thu, 18 Mar 2021 06:42:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=NifiOAiY;
- spf=pass (domain: gmail.com, ip: 209.85.166.43, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-io1-f43.google.com with SMTP id v3so1295867ioq.2
-        for <yocto@lists.yoctoproject.org>; Thu, 18 Mar 2021 00:45:09 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ufAKZ7qU;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: twoerner@gmail.com)
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 3C40338C069A
+	for <yocto@yoctoproject.org>; Thu, 18 Mar 2021 13:42:24 +0000 (UTC)
+Received: by mail-qk1-f181.google.com with SMTP id l132so1959603qke.7
+        for <yocto@yoctoproject.org>; Thu, 18 Mar 2021 06:42:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zsLtdu4ieNBtrGbfRQuBqlyKgyRCJSumgsispn7uiD0=;
-        b=NifiOAiY2ifsFIUc7b3UYKUY0JsQ2KRNFGqUVDn7PDWZ9CnMqo07lNXcZ/1EVvSwh/
-         FyYmpF5phvNC9koVSKkHbDaq+vpZ5YRuD9r+AbA2o1kxxZTaetpYE/xtUlP2GU6o7u/l
-         vOOms9wlU5TXiAZVNJQzWhySCeiID+Fuc/IapXBQzgq3kKyrdidm+qFB3HGMvr7FyQLR
-         93m0lR9qRJBFTd5hOEfNM2R5Jh/PkY+1HAgrfDu694cmbz+G4qh4M4SXpYs7hLCCxeB8
-         mHK04tdIeYc3kZOJk3E4v2gjHbSFwy8FP6ws5YayRIPYw8OHAspBQJTzybk1EHy6aSkZ
-         dDsQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=7nsv50c6CxPpQCkAYYrtH9fzn02kkag6wtSxfqoDeNU=;
+        b=ufAKZ7qUYAlGqQFEZngDPg8MZ/NJWY3cmkjK63MyI66vq9sKHB2pg6BBobS2wxGvnR
+         thRHgO3erIs/I79qLIK6JvHJz4C1xwQhwqW5NpW0Jxcs45lEf3w2FCWa+sLY3pva/IGh
+         bsCtJoYa0mubPnCVrnrosaA37DXKe7FEgrdOmqPPgNpP5/ATtPJLKQF0mmVb8NidJU/0
+         9NjyKDagzdCi++Nk+eiz8/GmmY+vAijpsRDQ44A4cCYXb3cSq6JCu1PFl1dkuDEXm1sM
+         mFZ6TRGH40OyVIZ06DI7He4ExeaUNbXnNTe2x1EgMCGffDaxWKwyLVqod4rjQ99JTdPG
+         Zu8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zsLtdu4ieNBtrGbfRQuBqlyKgyRCJSumgsispn7uiD0=;
-        b=nNm2hP4ZezwHVgMzwcmWZVkEgFzgZiCOopHYYKnXmgeZJW/N/3YhobAqYMR6kr2Ku6
-         H0HOGgmJiTSpieK9NBZ1tmpuixp8qGCmOKQ03ybUIhJeSGk8ttdlpK2mJtYgHDWpBQ/d
-         mAgLbTHiwy0A9MN1ZoYpSUCKMe2iM2UmW/VTSXo6s2o4gvkOtr2kUrF4SRdgybd+gsXr
-         qdriM0wPCLNS12paOlS8E1xx4tHAmy7+nhIpFpq3O4PExONHz71KKI7VcJ5pG+sClDYw
-         9x2T9XaXUtm7uc2HVumX958G/J+nW61gdzzbPJEBfp5PA43w+Jkjc9uDGaDqhZblUl6i
-         TaOg==
-X-Gm-Message-State: AOAM532JtGrppUvARhdCAAEgERwqPc/x2xKtoMg/WNSYnbvQ2v79uZAX
-	T3K0Z6Ov0sVegvBLxevm0KyK9RWvHLg8tGmBgpI=
-X-Google-Smtp-Source: ABdhPJzfLCFefH5d5p5G955yDLHjq4Swe22EBIlX9+ttItCOj3m4iIcDNhftVJLcEkIePrHAY4PeUHzB41P5nT3MlWs=
-X-Received: by 2002:a05:6638:d4e:: with SMTP id d14mr6046856jak.103.1616053509110;
- Thu, 18 Mar 2021 00:45:09 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=7nsv50c6CxPpQCkAYYrtH9fzn02kkag6wtSxfqoDeNU=;
+        b=C34oW6dzOwLvoHmd4yet68qufwyjZcQ9MufFIiYFZbVeUYLdwEiRnKPZLZrsH8CWTA
+         M1Du0ai3A+OAd2qi2OTcB4RO2sKbVbUoPMSYgii1akIxkg/d6FmqRDmt246QVK7yTkvD
+         t3LLWjzCt1LGvzx29n+zi0N7mf8H4G1BwMHq3BJ9HeZBN9hMpHC19xX7j+vIMnG5KNio
+         bbFxi24eXe4yC+XUKbAa84dqkE1En+V0wGXaGKFaMKvAPai792gA3iGciMPT3y/H4KoE
+         LNBrHKrjH14Xh1Za/czsUUdTYDRtz0ZXhrpcgpuh1hYSCmlpqwOgIhb59sJrrKMF+4b6
+         7xYA==
+X-Gm-Message-State: AOAM530MMfVNr8PrM+m2zufBjoRDAwmi+iuY6JBj7UDV2WDJ9gvW1lln
+	dNLiwqLA3P4TE/HInZWiEBg=
+X-Google-Smtp-Source: ABdhPJxCm9fDI/nEkQGT/YkyPPACFEXxGQhYAR0Dq7EGaizmJp5zOYGzlMY0QOQfIvUpLjEM5fStPA==
+X-Received: by 2002:ae9:f706:: with SMTP id s6mr4440030qkg.163.1616074943283;
+        Thu, 18 Mar 2021 06:42:23 -0700 (PDT)
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id v2sm1451539qti.94.2021.03.18.06.42.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Mar 2021 06:42:22 -0700 (PDT)
+Date: Thu, 18 Mar 2021 09:42:20 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-rockchip][PATCH] layer.conf: Add hardknott to compatible release branches
+Message-ID: <20210318134220.GA15259@localhost>
+References: <20210318061536.1556104-1-raj.khem@gmail.com>
 MIME-Version: 1.0
-References: <aabf284011d330a7f236b77b39963b93@vivaldi.net>
-In-Reply-To: <aabf284011d330a7f236b77b39963b93@vivaldi.net>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Thu, 18 Mar 2021 08:44:57 +0100
-Message-ID: <CAGAf8Lx7kc0ORJpi-XrYOGERLGGAs7RwxgiG8gtM4i1ShDMy-g@mail.gmail.com>
-Subject: Re: [yocto] spidev.c ?
-To: jchludzinski@vivaldi.net
-Cc: Yocto <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210318061536.1556104-1-raj.khem@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-I am guessing here.... But what do you have while executing the
-following command being in /sys
- as root?
-
-root@arm:/sys# find . -name spi*
-
-Zee
-_______
-
-On Wed, Mar 17, 2021 at 5:41 PM jchludzinski via
-lists.yoctoproject.org
-<jchludzinski=vivaldi.net@lists.yoctoproject.org> wrote:
->
-> In the YOCTO/Linux source tree there's drivers/spi/ which has all the source for SPI drivers. There's only 1 file, spidev.c, which has:
->
-> static int __init spidev_init(void)
-> {
->         int status;
->
->         /* Claim our 256 reserved device numbers.  Then register a class
->          * that will key udev/mdev to add/remove /dev nodes.  Last, register
->          * the driver which manages those device numbers.
->          */
->         BUILD_BUG_ON(N_SPI_MINORS > 256);
->         status = register_chrdev(SPIDEV_MAJOR, "spi", &spidev_fops);
->         if (status < 0)
->                 return status;
->
->         spidev_class = class_create(THIS_MODULE, "spidev");
->         if (IS_ERR(spidev_class)) {
->                 unregister_chrdev(SPIDEV_MAJOR, spidev_spi_driver.driver.name);
->                 return PTR_ERR(spidev_class);
->         }
->
->         status = spi_register_driver(&spidev_spi_driver);
->         if (status < 0) {
->                 class_destroy(spidev_class);
->                 unregister_chrdev(SPIDEV_MAJOR, spidev_spi_driver.driver.name);
->         }
->         return status;
-> }
-> module_init(spidev_init);
->
-> ... for creating device files in udev.
->
-> So when I use 'make nconfig' to specifiy that I want a loadable module for the ALTERA SPI driver, why don't I see a spidev.o file in drivers/spi/ ?
->
-> How does spi-altera.ko create device files without a call to register_chrdev(...).
->
-> How is it a loadable module without module_init(...)?
->
-> When I separately build spidev.c as an .ko and try loading it, I get: "Device or resourse busy"
->
-> ---John
->
-> 
->
+Applied. Thank you! :-)
