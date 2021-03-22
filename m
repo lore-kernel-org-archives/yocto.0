@@ -1,172 +1,100 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.12437.1616418147961863959
+ by mx.groups.io with SMTP id smtpd.web11.12803.1616420272368733481
  for <yocto@lists.yoctoproject.org>;
- Mon, 22 Mar 2021 06:02:28 -0700
+ Mon, 22 Mar 2021 06:37:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=sRuJIdwf;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: liu.ming50@gmail.com)
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id B1D0638C085C
-	for <yocto@yoctoproject.org>; Mon, 22 Mar 2021 13:02:26 +0000 (UTC)
-Received: by mail-ej1-f49.google.com with SMTP id u5so21123460ejn.8
-        for <yocto@yoctoproject.org>; Mon, 22 Mar 2021 06:02:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4N5bgw/9DlMNSz/UTs8GDYBuSXXa6+Psl5lcwbYSuHM=;
-        b=sRuJIdwfMBIs9IEoLJIr/yFmH2G6j6M7NrG6s30fmk623uJ8OknCRcz6qPjOlX6Vnk
-         a1mn/g1sM8OGCPef056dciYmyuIrPHThcO/uJTMTSmmmEJhNWPen0nPrvVzrjuaKqToO
-         G2rnOz37lLTrQUZKVwjz4znpSnn87q4RAngldiBmbxrxcyCm02vgqE0U5SW9SIW9bu7Y
-         ibe2vCapvN4aspuXvF7IF4l4vJ7T7VxQnfLge3YWiYYPijOHQIgfp2eJ5KSi505u7Fmp
-         F5j44VvR/h7z3A/NSDRDOsdHomagz3aRwmql44/7kDeY+qllP3xG7Hy2DVLPzrvPRoyD
-         28+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4N5bgw/9DlMNSz/UTs8GDYBuSXXa6+Psl5lcwbYSuHM=;
-        b=aHTzu8BbsVQPB/uqbvNUg3/fL3K69a9dYLmuB9fUaaI7VwnejgaW9scYJu59xmYbhB
-         N7xcvVE/RjWRu5qQxXYebIIVIUCVGKpZI6dQ3+AICrIzX5n6xxXsehTgMpAMbmM275Q+
-         pHuRcheFU3iYRWmUZ3UMpXVn2wtT50HehiqBHAXI3pBuTPfODfp53ZIQiKjDNLWJ43K8
-         Ejr6GWfBdNSrCFJdmVP2Wyz4TejZXp5TkJGih2x6OExadapSD+e35au3rNYVIoRhPokS
-         XidTU2lml7PrXTwnYADujFjNdynpNhEJ9+5l+OUFGHNtBL6Qde35bhHbcFZ72btTfWs2
-         BLXw==
-X-Gm-Message-State: AOAM53037MqKGkceYqadZX0eoz7PZ/XXkRkVH+xt8OahGSDdovBH/4qy
-	FTYb0W+woxNUq4BVDtcUvTZ3zkqya78e2g==
-X-Google-Smtp-Source: ABdhPJxoMIYjwtP0Jvwe7EtPic99kvjmDA4v5VPY++QIZWo1Ku8ZAAtWRf4Vnw0iNuUPCQ6umzZjMw==
-X-Received: by 2002:a17:906:fcb2:: with SMTP id qw18mr18569997ejb.434.1616418144998;
-        Mon, 22 Mar 2021 06:02:24 -0700 (PDT)
-Received: from localhost.localdomain ([2a00:801:3f2:97f0:dd10:a2d1:c32:6e8f])
-        by smtp.gmail.com with ESMTPSA id r17sm11490407edx.1.2021.03.22.06.02.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Mar 2021 06:02:23 -0700 (PDT)
-From: "Ming Liu" <liu.ming50@gmail.com>
-To: yocto@yoctoproject.org
-Cc: akuster808@gmail.com,
-	sergio.prado@toradex.com,
-	Ming Liu <liu.ming50@gmail.com>
-Subject: [meta-security][PATCH] meta: drop IMA_POLICY from policy recipes
-Date: Mon, 22 Mar 2021 14:02:15 +0100
-Message-Id: <20210322130215.8033-1-liu.ming50@gmail.com>
-X-Mailer: git-send-email 2.29.0
+ dkim=pass header.i=@aruba.it header.s=a1 header.b=nHo1ZJDq;
+ spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 198.145.29.25, mailfrom: mauro@faresoftware.it)
+Received: from smtpcmd04132.aruba.it (smtpcmd04132.aruba.it [62.149.158.132])
+	by mail.yoctoproject.org (Postfix) with ESMTP id CBECC38C06FF
+	for <yocto@yoctoproject.org>; Mon, 22 Mar 2021 13:37:49 +0000 (UTC)
+Received: from z600 ([93.38.119.136])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id OKkMl5JkmnsTeOKkclQjz9; Mon, 22 Mar 2021 14:37:47 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1616420267; bh=wjQ2cPAqBaLCsRww61KIOcsixPX7F0IoNG6cyyYypEc=;
+	h=Date:From:To:Subject:MIME-Version:Content-Type;
+	b=nHo1ZJDq8tW/NewEsi68v3Au0pOonnZKQxbuxpgDl6o74voBWsJQ9QqxRYBfXnY0A
+	 LMASMGB6ehVOE8agAHa6T+JZriev27h3WmiwBS1abGcKGrPdj/bPTwpH2apOt4dGHg
+	 z8i47xSx8f3SOgwVZlg5yLJUGHTlL5jKBZnuJDnQ2WhosYY6SUTEM+e6+GC10Tb7TI
+	 6lpejo05SLWZ8CvjPWyjyi5nw7lecnTEnZErawul8VtjMptRFMIIKb2iLxClaisiCP
+	 FzRAmavbhoxqz5iRZKnAyV8TTv+TvhOqh/K+mOUXj0s1egDmNNCjA2lZEIW3VtLcb4
+	 p7qXai8+XUMfA==
+Date: Mon, 22 Mar 2021 14:37:22 +0100
+From: "Mauro Ziliani" <mauro@faresoftware.it>
+To: Quentin Schulz <quentin.schulz@streamunlimited.com>
+Cc: "=?utf-8?Q?yocto=40yoctoproject.org?=" <yocto@yoctoproject.org>
+Message-ID: <8FCE0664-661D-43F8-AF73-BD8D5623E6AF@getmailspring.com>
+In-Reply-To: <20210316155630.wicookhtcfdvita4@qschulz>
+References: <20210316155630.wicookhtcfdvita4@qschulz>
+Subject: Re: [yocto] Which recipes put qtwebkit in my image?
+X-Mailer: Mailspring
 MIME-Version: 1.0
+X-CMAE-Envelope: MS4wfPOOWJW1nonwv7ISofjILIwaJDqTBT6ymW4nI4NopPc/vXAzIQLnVmhMjY18x0z1hxFrHwa8jHi+3eLLA88vrvXVzanf6+Jt21tZ6yKhzY/E89EX0AGY
+ yuArFaoC3IwLyThp171/TmaG7ou3xkHEH4xkSifhSrbxLCpsLX+2/MYRhIQD+3FS+blNPvqLGIrvWlomkCIWehr3bdUjBvoURiU=
+Content-Type: multipart/alternative; boundary="60589d92_7f9c9671_123d"
+
+--60589d92_7f9c9671_123d
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+Hello.
+I find it.
+Inside a software there two executables programs which need QtWebKit.
+So yocto warn me to include QtWebKit in the imge.
+
+MZ
+Sent from Mailspring (https://getmailspring.com/), the best free email app for work
+On mar 16 2021, at 4:56 pm, Quentin Schulz <quentin.schulz@streamunlimited.com> wrote:
+> Hi Mauro,
+>
+> On Tue, Mar 16, 2021 at 04:50:44PM +0100, Mauro Ziliani wrote:
+> > Hi all.I need to find which recipe installs qtwebkit in my final image.
+> >
+> > I look in on every recipes I make but I don't find who put qtwebkit in my image.
+> > I have the same matter with *-dev packages
+> >
+> > I use bitbake -g but I don't find the "source" of qtwebkit.
+> >
+>
+> oe-pkgdata-util lookup-recipe qtwebkit
+> could help. Or if you know which file you don't want in your fs and want
+> to know which package is installing it:
+>
+> oe-pkgdata-util find-path '*qtwebkit*'
+> (provided the file you're looking for has qtwebkit in its filename)
+>
+> Hope this helps,
+> Cheers,
+> Quentin
+>
+
+
+--60589d92_7f9c9671_123d
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-From: Ming Liu <liu.ming50@gmail.com>
+<div>Hello.</div><div>I find it.</div><div>Inside a software there two ex=
+ecutables programs which need QtWebKit.</div><div>So yocto warn me to inc=
+lude QtWebKit in the imge.</div><br><div>MZ</div><br><div><signature id=3D=
+=22initial=22><div><div>Sent from <a href=3D=22https://getmailspring.com/=
+=22>Mailspring</a>, the best free email app for work</div></div></signatu=
+re></div><div class=3D=22gmail=5Fquote=5Fattribution=22>On mar 16 2021, a=
+t 4:56 pm, Quentin Schulz &lt;quentin.schulz=40streamunlimited.com&gt; wr=
+ote:</div><blockquote><div><div>Hi Mauro,</div><br><div>On Tue, Mar 16, 2=
+021 at 04:50:44PM +0100, Mauro Ziliani wrote:</div><div>&gt; Hi all.I nee=
+d to find which recipe installs qtwebkit in my final image.</div><div>&gt=
+;</div><div>&gt; I look in on every recipes I make but I don't find who p=
+ut qtwebkit in my image.</div><div>&gt; I have the same matter with *-dev=
+ packages</div><div>&gt;</div><div>&gt; I use bitbake -g but I don't find=
+ the =22source=22 of qtwebkit.</div><div>&gt;</div><br><div>oe-pkgdata-ut=
+il lookup-recipe qtwebkit</div><br><div>could help. Or if you know which =
+file you don't want in your fs and want</div><div>to know which package i=
+s installing it:</div><br><div>oe-pkgdata-util find-path '*qtwebkit*'</di=
+v><div>(provided the file you're looking for has qtwebkit in its filename=
+)</div><br><div>Hope this helps,</div><div>Cheers,</div><div>Quentin</div=
+></div></blockquote>
 
-IMA_POLICY is being referred as policy recipe name in some places and it
-is also being referred as policy file in other places, they are
-conflicting with each other which make it impossible to set a IMA_POLICY
-global variable in config file.
-
-Fix it by dropping IMA_POLICY definitions from policy recipes
-
-Signed-off-by: Ming Liu <liu.ming50@gmail.com>
----
- .../ima-policy-appraise-all_1.0.bb                       | 9 ++-------
- .../ima_policy_hashed/ima-policy-hashed_1.0.bb           | 9 ++-------
- .../ima_policy_simple/ima-policy-simple_1.0.bb           | 9 ++-------
- 3 files changed, 6 insertions(+), 21 deletions(-)
-
-diff --git a/meta-integrity/recipes-security/ima_policy_appraise_all/ima-=
-policy-appraise-all_1.0.bb b/meta-integrity/recipes-security/ima_policy_a=
-ppraise_all/ima-policy-appraise-all_1.0.bb
-index da62a4c..84ea161 100644
---- a/meta-integrity/recipes-security/ima_policy_appraise_all/ima-policy-=
-appraise-all_1.0.bb
-+++ b/meta-integrity/recipes-security/ima_policy_appraise_all/ima-policy-=
-appraise-all_1.0.bb
-@@ -2,19 +2,14 @@ SUMMARY =3D "IMA sample simple appraise policy "
- LICENSE =3D "MIT"
- LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
-b788c80a0384361b4de20420"
-=20
--# This policy file will get installed as /etc/ima/ima-policy.
--# It is located via the normal file search path, so a .bbappend
--# to this recipe can just point towards one of its own files.
--IMA_POLICY ?=3D "ima_policy_appraise_all"
--
--SRC_URI =3D " file://${IMA_POLICY}"
-+SRC_URI =3D " file://ima_policy_appraise_all"
-=20
- inherit features_check
- REQUIRED_DISTRO_FEATURES =3D "ima"
-=20
- do_install () {
-     install -d ${D}/${sysconfdir}/ima
--    install ${WORKDIR}/${IMA_POLICY}  ${D}/${sysconfdir}/ima/ima-policy
-+    install ${WORKDIR}/ima_policy_appraise_all ${D}/${sysconfdir}/ima/im=
-a-policy
- }
-=20
- FILES_${PN} =3D "${sysconfdir}/ima"
-diff --git a/meta-integrity/recipes-security/ima_policy_hashed/ima-policy=
--hashed_1.0.bb b/meta-integrity/recipes-security/ima_policy_hashed/ima-po=
-licy-hashed_1.0.bb
-index ebb0426..ff7169e 100644
---- a/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed=
-_1.0.bb
-+++ b/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed=
-_1.0.bb
-@@ -2,13 +2,8 @@ SUMMARY =3D "IMA sample hash policy"
- LICENSE =3D "MIT"
- LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
-b788c80a0384361b4de20420"
-=20
--# This policy file will get installed as /etc/ima/ima-policy.
--# It is located via the normal file search path, so a .bbappend
--# to this recipe can just point towards one of its own files.
--IMA_POLICY ?=3D "ima_policy_hashed"
--
- SRC_URI =3D " \
--    file://${IMA_POLICY} \
-+    file://ima_policy_hashed \
- "
-=20
- inherit features_check
-@@ -16,7 +11,7 @@ REQUIRED_DISTRO_FEATURES =3D "ima"
-=20
- do_install () {
-     install -d ${D}/${sysconfdir}/ima
--    install ${WORKDIR}/${IMA_POLICY}  ${D}/${sysconfdir}/ima/ima-policy
-+    install ${WORKDIR}/ima_policy_hashed ${D}/${sysconfdir}/ima/ima-poli=
-cy
- }
-=20
- FILES_${PN} =3D "${sysconfdir}/ima"
-diff --git a/meta-integrity/recipes-security/ima_policy_simple/ima-policy=
--simple_1.0.bb b/meta-integrity/recipes-security/ima_policy_simple/ima-po=
-licy-simple_1.0.bb
-index cb4b6b8..0e56aec 100644
---- a/meta-integrity/recipes-security/ima_policy_simple/ima-policy-simple=
-_1.0.bb
-+++ b/meta-integrity/recipes-security/ima_policy_simple/ima-policy-simple=
-_1.0.bb
-@@ -2,19 +2,14 @@ SUMMARY =3D "IMA sample simple policy"
- LICENSE =3D "MIT"
- LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
-b788c80a0384361b4de20420"
-=20
--# This policy file will get installed as /etc/ima/ima-policy.
--# It is located via the normal file search path, so a .bbappend
--# to this recipe can just point towards one of its own files.
--IMA_POLICY ?=3D "ima_policy_simple"
--
--SRC_URI =3D " file://${IMA_POLICY}"
-+SRC_URI =3D " file://ima_policy_simple"
-=20
- inherit features_check
- REQUIRED_DISTRO_FEATURES =3D "ima"
-=20
- do_install () {
-     install -d ${D}/${sysconfdir}/ima
--    install ${WORKDIR}/${IMA_POLICY}  ${D}/${sysconfdir}/ima/ima-policy
-+    install ${WORKDIR}/ima_policy_simple ${D}/${sysconfdir}/ima/ima-poli=
-cy
- }
-=20
- FILES_${PN} =3D "${sysconfdir}/ima"
---=20
-2.29.0
-
+--60589d92_7f9c9671_123d--
