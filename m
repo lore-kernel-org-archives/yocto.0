@@ -1,1518 +1,647 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.9896.1616510612081712832
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (EUR04-HE1-obe.outbound.protection.outlook.com [40.107.7.100])
+ by mx.groups.io with SMTP id smtpd.web12.195.1616517245852194489
  for <yocto@lists.yoctoproject.org>;
- Tue, 23 Mar 2021 07:43:32 -0700
+ Tue, 23 Mar 2021 09:34:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=T8HjBboH;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id CB47538C0734
-	for <yocto@yoctoproject.org>; Tue, 23 Mar 2021 14:43:28 +0000 (UTC)
-Received: by mail-pg1-f171.google.com with SMTP id k24so11918506pgl.6
-        for <yocto@yoctoproject.org>; Tue, 23 Mar 2021 07:43:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version:thread-index
-         :content-language;
-        bh=TXHMCCQdeyJvhQfBWbVrlJSpNqQQaftrPymFXI8JD54=;
-        b=T8HjBboHJspdkNcP+jDzCZA2yt2oDZG37JnohAcskw5x14Mw/ZRyIijBJFfnXivwh+
-         iGekhB2YXjfhnFXZLYJK2jq/GaGMU07qwX0SAcf7DjLP8KNMdCHXabwG24EJMiX1uSdY
-         ZdOkpvjbt6jW/SV8Jzk3MQYG0PCjcysKeRpCM08MffnMOsSD1gDPI6vYXqC2P+CYmTp5
-         Rm7yZztTuY9rwClFbYsD6rAlHuBiZ4yyEpnMAfebWIxGwP22wOfoS4WZYM4b+vHJV9rh
-         y/wIA+eLQPJMk5kYh8D5VXZXI5BLqc6H0a6oAnG90vZBpf/FQ0Vo7XUJx37PXoU7jv5h
-         phow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :thread-index:content-language;
-        bh=TXHMCCQdeyJvhQfBWbVrlJSpNqQQaftrPymFXI8JD54=;
-        b=FMoy+cjnCXyyFCTnmy6n/da1DcS9uQdTFxe44dtjYk2jnkndnoAgLyYbUuy4vguUUU
-         Zi8tAjY510fEzsOHDDQudu7xcf2YYSKHFUlrIN2kJfkzXnC5ngbSNy36MxNr3BRKQibS
-         D86f9LSkXgH+UO2km+P/LnbV67w6gC6tbG7OFAu6a+JXUJ3OUNmU+DuvAarSY4/94cNe
-         FmMzYXuzduIifkK1p79TwRkFndnkpv57sQrkzIq01Jgd/B/iQ6z6jtZ02lTr3wOvjRbS
-         WNfCE61319TLOFI/5PF/y3CtjdI4IlA89NcTf9v1Z1EXS8tSJGTbJYJZb8pyOO/9Pgd2
-         qFLQ==
-X-Gm-Message-State: AOAM53057fkQD8PXd/8T68VETIiFyehQ2wL9nhq1JJ9PwVWr3zzOXRls
-	hgBvpOJ23/XmBTszVFaN6bM=
-X-Google-Smtp-Source: ABdhPJzrG5Gl2bVGInzE0DMD1aJvGpOVLKhTCU0ezMCiabVOAi2nyafTmaEUyMQ9cybtb+GbVABgHA==
-X-Received: by 2002:a63:c647:: with SMTP id x7mr4316976pgg.15.1616510608311;
-        Tue, 23 Mar 2021 07:43:28 -0700 (PDT)
-Received: from skjolley (wsip-72-194-163-85.ph.ph.cox.net. [72.194.163.85])
-        by smtp.gmail.com with ESMTPSA id u17sm15325012pgl.80.2021.03.23.07.43.27
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 23 Mar 2021 07:43:27 -0700 (PDT)
-From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Subject: Yocto Project Status WW11`21
-Date: Tue, 23 Mar 2021 07:43:27 -0700
-Message-ID: <1bc401d71ff2$e307b9c0$a9172d40$@gmail.com>
+ dkim=pass header.i=@zeiss.onmicrosoft.com header.s=selector2-zeiss-onmicrosoft-com header.b=q1BUrHao;
+ spf=pass (domain: zeiss.com, ip: 40.107.7.100, mailfrom: juergen.haase.ext@zeiss.com)
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
+ b=IYOA/FAA4KRFJ8SA5zAad2N1HRiShuPtWq2o5lCEVUeRkXyHVzShAZ+jMRKaUJDyiQ9wQLrb98zkZfwU/SL+BJpv93oR3mv6AMZZKOEah+6ICE1hgaghl52EnugXR5ssyOVGcAraXIcYD9ES9AHlRmPaakshA2e3e2HNfvIKHob4n70MlefbPHXVpaVbtr1mQqTUAD8ZNdI0DJsBnonrKnOQwsYEspm6hxdkkqrMOvL1REzV94CHbA4LBD/HomZWsrXA7n3t7nJEdLP3lNQsYRaPHxMed9oVxE1Jw7/fYvuKeRNr8FB74HFHn4g1CGvKxgpOAojm+yIq7V4nt4dt9A==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fXljlTGJpd7LwvmAWnVAGFvqkdvyfy7sgv6xUeNhuDg=;
+ b=gOeJCaDw5A126CIzXUjDubew4JEM4en6EhbUSdEVvx+0p+0VYIKEJqin6ZYN3SQB8zTIVssfxSWE1Wwm5Up+D3buY3JVMoRaR4bYxXrnZ2QqtVaSQkpNYS0Z8uZfeEgZPFkBuHH2lcbz63Vc7x7PDPSw9UBOlnXTGNV60gsX7UYWvlSYiH3hWQXarQBIKxm8/ko1NV5awBhmveLRnkR1ZtaHTAptO80VSzCYVJrRkghOdQRpIiowHhPs78n2UyR1evUhfsY1UBfPrghpEsZ4YXHrEliEdX5nRgugFQT4EnJ5UTjIVwAR0kwVE6ttFy2/f+sUQub8uahhnz+kfsw9qA==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 104.47.17.174) smtp.rcpttodomain=lists.yoctoproject.org
+ smtp.mailfrom=zeiss.com; dmarc=bestguesspass action=none
+ header.from=zeiss.com; dkim=pass (signature was verified)
+ header.d=zeiss.onmicrosoft.com; arc=pass (0 oda=1 ltdi=1
+ spf=[1,1,smtp.mailfrom=zeiss.com] dkim=[1,1,header.d=zeiss.com]
+ dmarc=[1,1,header.from=zeiss.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zeiss.onmicrosoft.com;
+ s=selector2-zeiss-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fXljlTGJpd7LwvmAWnVAGFvqkdvyfy7sgv6xUeNhuDg=;
+ b=q1BUrHaoscfs7CSzZxAJICAB5JWM6D1/YFkOF4vEu4LFjvd9Y1DJtvpkFyTAzihsHz3EGw5Qnv713xVoESKjy/qXiVt0tKK3H1grpeDSM0sL+smdMJwk5zhK8NfGZ4peoqn7LldG2qWvfJEakBKca3zQ6qAF3+GtYIJaK0HTbOk=
+Received: from DU2PR04CA0048.eurprd04.prod.outlook.com (2603:10a6:10:234::23)
+ by AM9P190MB1268.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:265::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Tue, 23 Mar
+ 2021 16:34:02 +0000
+Received: from DB5EUR01FT015.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:10:234:cafe::4f) by DU2PR04CA0048.outlook.office365.com
+ (2603:10a6:10:234::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18 via Frontend
+ Transport; Tue, 23 Mar 2021 16:34:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 104.47.17.174)
+ smtp.mailfrom=zeiss.com; lists.yoctoproject.org; dkim=pass (signature was
+ verified) header.d=zeiss.onmicrosoft.com;lists.yoctoproject.org;
+ dmarc=bestguesspass action=none header.from=zeiss.com;
+Received-SPF: Pass (protection.outlook.com: domain of zeiss.com designates
+ 104.47.17.174 as permitted sender) receiver=protection.outlook.com;
+ client-ip=104.47.17.174; helo=EUR05-VI1-obe.outbound.protection.outlook.com;
+Received: from kag06088vm002.zeiss.com (18.192.202.217) by
+ DB5EUR01FT015.mail.protection.outlook.com (10.152.5.0) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3955.18 via Frontend Transport; Tue, 23 Mar 2021 16:34:02 +0000
+Received: from ip-10-25-10-40 (localhost [127.0.0.1])
+	by kag06088vm002.zeiss.com (Postfix) with ESMTP id 0DCA31F66E7
+	for <yocto@lists.yoctoproject.org>; Tue, 23 Mar 2021 17:37:34 +0100 (CET)
+Received: from kag06088vm006.zeiss.com (kag06088vm006 [10.25.10.86])
+	by kag06088vm002.zeiss.com (Postfix) with ESMTPS id EAF2A1F66E7
+	for <yocto@lists.yoctoproject.org>; Tue, 23 Mar 2021 17:37:33 +0100 (CET)
+Received: from ip-10-25-10-86 (localhost [127.0.0.1])
+	by kag06088vm006.zeiss.com (Postfix) with ESMTP id BEC7E178FD8
+	for <yocto@lists.yoctoproject.org>; Tue, 23 Mar 2021 17:39:34 +0100 (CET)
+Received: from kag06088vm003.zeiss.com (kag06088vm003 [10.25.10.42])
+	by kag06088vm006.zeiss.com (Postfix) with ESMTPS id B6358178FD7
+	for <yocto@lists.yoctoproject.org>; Tue, 23 Mar 2021 17:39:34 +0100 (CET)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05lp2174.outbound.protection.outlook.com [104.47.17.174])
+	by kag06088vm003.zeiss.com (Postfix) with ESMTPS id C0C273EA88
+	for <yocto@lists.yoctoproject.org>; Tue, 23 Mar 2021 17:36:02 +0100 (CET)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CnQHdIa/T2yzIjhwqkmbs0C+Hgp6GRG9mRevH8C+jomnKE2qFuLa8SHO/FqhAI/S4ld9P15oUflTyR7NKPZabx4FkPUHRJNdIAVHxyAV0jKogoQt8z4k35CpIRnFKfcCtw8Tp51FgR0tNtqt3g7JgOmPXoydIIR7HBzI3zL9AWvKPRWCSvRxJg/yrBUajxNX0vigPnwqjnwP9tDMmPuidwqMnT1f7bRD9zdJbfDYmwTmx0vBQQAs2ssNo8Mqt0TF+HSd5Xqj9OqVTeWqqFEMbjeDyZW8J11fGSxOPaVTpDzsYXE46c4fLl19U+PViiNbDCWDAcnYgctADkW3haD2ww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fXljlTGJpd7LwvmAWnVAGFvqkdvyfy7sgv6xUeNhuDg=;
+ b=Sc/tYnkN+9U3xP3jSwgWNuepRXQPZRsRFqOgG6u0VxV+VZAZduTRqkiRWZN9VCwR48T8abOgCFhpCMn/P21DvxU2h5rq8mkNTfoXN0kQbkAFLzhy8Guiu/giUAZfuGelO4Xw/MBgjHDY1wYYPKbLKj1hhLuyDLyzAfVBIe4FoXu1i1MWrjblkG6X0iSVsywxbTM97OO5gkZDIvV1eGs3+hnXPyHliin7uZGRVMkpig6mQMsK+IRT+LzvVDJwqWAu1IQls2UI2s7pMPfIlEskCNc2HHdPEOd4fBUvhaKWon4MqM3GXes8+R6Lj3iWnswd8u6zvfKM+/1Gu3NDv/jqLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=zeiss.com; dmarc=pass action=none header.from=zeiss.com;
+ dkim=pass header.d=zeiss.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zeiss.onmicrosoft.com;
+ s=selector2-zeiss-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fXljlTGJpd7LwvmAWnVAGFvqkdvyfy7sgv6xUeNhuDg=;
+ b=q1BUrHaoscfs7CSzZxAJICAB5JWM6D1/YFkOF4vEu4LFjvd9Y1DJtvpkFyTAzihsHz3EGw5Qnv713xVoESKjy/qXiVt0tKK3H1grpeDSM0sL+smdMJwk5zhK8NfGZ4peoqn7LldG2qWvfJEakBKca3zQ6qAF3+GtYIJaK0HTbOk=
+Received: from AM7P190MB0582.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:122::15)
+ by AM7P190MB0582.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:122::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Tue, 23 Mar
+ 2021 16:34:00 +0000
+Received: from AM7P190MB0582.EURP190.PROD.OUTLOOK.COM
+ ([fe80::40f4:a739:7fc5:35c4]) by AM7P190MB0582.EURP190.PROD.OUTLOOK.COM
+ ([fe80::40f4:a739:7fc5:35c4%7]) with mapi id 15.20.3955.027; Tue, 23 Mar 2021
+ 16:34:00 +0000
+From: juergen.haase.ext@zeiss.com
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Build wayland/weston from source?
+Thread-Topic: Build wayland/weston from source?
+Thread-Index: AQHXIACvQMuIoK67G0+jrHym61MArg==
+Date: Tue, 23 Mar 2021 16:34:00 +0000
+Message-ID: 
+ <AM7P190MB058232A99CDEF9BA4A40943CB0649@AM7P190MB0582.EURP190.PROD.OUTLOOK.COM>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Authentication-Results-Original: lists.yoctoproject.org; dkim=none (message
+ not signed) header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=zeiss.com;
+x-originating-ip: [2a02:8070:d1d3:ab00:6199:e296:5f91:55e2]
+x-ms-publictraffictype: Email
+X-MS-Office365-Filtering-Correlation-Id: 5f862371-1c67-44a1-70d4-08d8ee1977a7
+x-ms-traffictypediagnostic: AM7P190MB0582:|AM9P190MB1268:
+X-Microsoft-Antispam-PRVS: 
+	<AM9P190MB1268E0455A018167B74D6CF8B0649@AM9P190MB1268.EURP190.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: 
+ BHc7lYlabTxE/X4N/GvRIMTvKzvnq9GO4JKdenGnNN9udcXyuas1/ikjndfQx9HUI8+VxsGI2zXBFdCfv1TLGSjXvQKfWZEB4SdyME9AR3F7zRmQCzQQruffwW4hL5GbR6J5Bv8zbEoMA5zEBYQGsNucdW3yeIyTDPdtUBS5Cnq2xBMLXfnKRrPuXI5OJTJwqybo5Bprl9QvD4Wuu2OKE/sZHzuhyevogJilAlhZqBwi2te1284JZToF1+iGV7UjVePA4gWnKRuY+vx6h1UqRWslLK1vXMVjZxb3vupdgunHvf6C9RIUmgcPysrG4EMNEd6uAdCtw2/DRjivVficCvpWB4mrgRkw5UqkBRDsPESiJJpus0VgBO5wXfrz5ydsF7JM5q5IxQVAheH0vGH40LvbkOsMoq4ucXqTH6sLZQnU3Go64QAKBxsV7eSlgjHwpLvUygF55vCymdD0+eSkFsBCVond+nk1bbAxgheT5RIz+AVgXsTpw8Uuq9yrWJhXm3MeSGRHIT17yEiNcHmL1p7oLhRlH7mISITkqiMC5SHOsiSQ4jVJaIUoSygi3+U+obC4rR8pLqxS85vF+wYApMsgxO7Ub8jKo272xjDJ+Fk9QaLEBCAMkTedZjFFBQ9DDrVllSNw7+iC0zc6E9arG+7KxTFNhEizb04aJuZLx9ZoV6TIPCq883+pD2UIuXcaVGjmzS0VaHH6TaeVz51m9ZzSirgGt6lTi1xt6isBJM8=
+X-Forefront-Antispam-Report-Untrusted: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7P190MB0582.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(376002)(396003)(136003)(366004)(346002)(8676002)(7696005)(33656002)(71200400001)(38100700001)(52536014)(6506007)(316002)(83380400001)(66574015)(2906002)(966005)(66946007)(86362001)(8936002)(91956017)(19627405001)(76116006)(6916009)(5660300002)(186003)(3480700007)(9686003)(55016002)(66556008)(478600001)(66476007)(66446008)(64756008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: 
+ =?iso-8859-1?Q?NIVvzduNPvg+jhDbT24K7/DRZ/tb4dUpi+lPYhZFsETz6rZxz8YTEEdCiZ?=
+ =?iso-8859-1?Q?CmFSjWUjO6PGz95vGGEKohW/1giMqruoXd5lRCuxdZ1Zu97RzkAr8htFBj?=
+ =?iso-8859-1?Q?uu1AtY99kDbKt1YsqSbUNZwEwNyt4/4I3uZG41U3XskWzkLU9SF81RvRpM?=
+ =?iso-8859-1?Q?v/j4jKmNSEBorcFpWqe2VY868N83AuimpNDN3zQ+nMiU+NNYMvnaB4kf9x?=
+ =?iso-8859-1?Q?Dwt1NrIaWGIqClPq1MvvB9yYShtSsXfwmDQ4r7/fIZD3IdEZK8Mpufmi5A?=
+ =?iso-8859-1?Q?Nauz3Ml/uTXhKTE5gvkULYZ/4lVa5O92h+TbQnHbL+KSuF/HMtt70aoMpn?=
+ =?iso-8859-1?Q?UoxHCC+RCOWBPChFqDwm4LlwDOmp/G8lJnIOCEw8g8md9He5UhnIMVul2d?=
+ =?iso-8859-1?Q?tsKWP3gPg0dj+mnk62dv191KoOXwQMhVLcYk3DLYT/wGErHDCcf+hGyvGe?=
+ =?iso-8859-1?Q?pqJ4Rxl+SUrY1+GQxw0zw1S+J7GKyR/x7MYLWA9c/q/0DbjXw400/dYB88?=
+ =?iso-8859-1?Q?GeuYWmRygzVSNxKH05UdceH+amHzZZwPzqi6j5w/NfwTJKQayTHirpu0Ix?=
+ =?iso-8859-1?Q?EddDtGGI4fGuT9MgfKcGGC/ZyTCfFru5I3akvLu7/nOrtt3+8/RiRuYvus?=
+ =?iso-8859-1?Q?FX5o4PKXQrQz0924DOo81L0LSe/yGpZPa/2nRu7WJVkeKvqHGV4w6XIKN4?=
+ =?iso-8859-1?Q?xPH6TyFf+SqqPkLKmmALG23KvPW5tZGm7NAaZQ7A33V8lCZHZlfNRvtTKF?=
+ =?iso-8859-1?Q?uhe0vPRTdvTv/fYsYv0A3F8HUJ1F4r2wTFY4HAnPr9tFUogz3XAWhek+GK?=
+ =?iso-8859-1?Q?FrKm8bqkLDXyfVw9ld/K3D51Z74bN59TrECcVCF+1gnRxssZJO7vJIiFz2?=
+ =?iso-8859-1?Q?B0NaStswV8aoWf5x+RCK/Liue9uswHQ4ZunN6hxaPrfKhAwgaD9GOynzOr?=
+ =?iso-8859-1?Q?lKKJOL/n/uGj4EBV3JaFJfKmwmvlFYZBVrDgOn09xyE3zDph9NumxJUR7f?=
+ =?iso-8859-1?Q?MeVXKmMRKI/yVelcL/Fs2hDVe2I4/UjjWGODNu6WtLbeKQ6f7FPbeJG8Bn?=
+ =?iso-8859-1?Q?ukM7jHgIyAYG/zqpydp5UbfWTyeEOhdsvBge6bwBsFdqfT6PCTsxSD7XMu?=
+ =?iso-8859-1?Q?DZHYNf+QWCCmRWN7Ll9olfeA3ve3QakA7EmFn8qziGydXYg2fRDXuS1S2w?=
+ =?iso-8859-1?Q?JUp80vNS04wWIMKCfCVrEQ1Kknzz5PVX59UWx/zwAyKc19HpKVQdILrgP8?=
+ =?iso-8859-1?Q?B2ojZDHZdg8HLoheW+9nhKfaX//Sw/efuF4jyrQ7WDXtoYITyp6OETvBfL?=
+ =?iso-8859-1?Q?Ttei/5avzk8kSsjDftjEq0xYi4+XOK1Lf6+pv2RU+TBEo1bJ0o9h9DuXdg?=
+ =?iso-8859-1?Q?3exZWeGEFRSdSluwx3h/sLpnrcTnr1GCfRGO6uA8pU4SZn1XwXhlo=3D?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQG8Pg/WvzlENyM0C4WDuNwX6O+i2Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7P190MB0582
+Return-Path: juergen.haase.ext@zeiss.com
+X-EOPAttributedMessage: 0
+X-MS-Exchange-SkipListedInternetSender: 
+ ip=[104.47.17.174];domain=EUR05-VI1-obe.outbound.protection.outlook.com
+X-MS-Exchange-ExternalOriginalInternetSender: 
+ ip=[104.47.17.174];domain=EUR05-VI1-obe.outbound.protection.outlook.com
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
+ DB5EUR01FT015.eop-EUR01.prod.protection.outlook.com
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 
+	5b7a2e1d-2383-48a4-5d5e-08d8ee197687
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	pcOoCcZuIVUdLDu+JUuPC3D71AxMZJeVXKHkaWAwrfhw0zLMuyscdvaWzKNDiLdFMBb/kOFBY2yKjIYYl9E9/w1ERMMHeJfkYNkn81qBJZdPw8repPelYVZxjaDf9cIJxofyyPeHDYFRIuwx3O/d18snWT9ArrGlRqbpz7ztVH/lKLySvv/vnj6nDqs2R6kMJFiLCvSwbZG/WE90wfsEierDrpbEdmSLTjRyJCZ77oYp7uPBG21ls3XG1ZcB5jIEWEy4V+EsjFMKlJUSkGJfrDnH9LWq5jmsVns4SvmYMXiG1NEa1MQq63T9Y4zeoIPDKUIDtaR8oXhgYiRu4eZauDC4Yj0qTCCx7rrtGICs/f0n2po8HIXOtJYjz6/2Imvoba/rYETV5r95hss2sf5zt3D80mpoGQ5TpfKk1R4HWt7IAcyn/jlq1UhiiahDwWKpvlJjlk5B0eWg6FQse+9Y1i3E1+ERqscHTOFjgwJOoTXXbW/0A3GLjbGZ0NRxcJ7Z3bo6iy4Pz2bdAp22rbcDhOXlNKo9YGBia+vlGglR42aQ/QFnaSBypXxkawHMN882H+01wVnTmrtG8ilh2ch4BLXneNi0iVXqy/ogEd5SokK0/z26cFGBeTlhNNPV9EoQmJDul4pjqk/MGjq5p7IfOgxQEh6dgpnRiIYqV3UT8GN/7+ICDBXq8K+PA6SIacN8PBpS76FsPtaA/Z/iALscMFpbjwYyRpUI4A0ctYB80bVRDceB7PFHonNPEG9Im+CcVjQUSXk9J/IDT3UzkUBwaFDf4CWGHGhoA8MzADKGQs4+R3iTxZ3qi4cU3q79ua3l25UepktuNBaPNH8yi71l1w==
+X-Forefront-Antispam-Report: 
+	CIP:18.192.202.217;CTRY:AT;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:EUR05-VI1-obe.outbound.protection.outlook.com;PTR:mail-vi1eur05lp2174.outbound.protection.outlook.com;CAT:NONE;SFS:(4636009)(136003)(39860400002)(376002)(346002)(396003)(46966006)(36840700001)(47076005)(3480700007)(70206006)(186003)(156005)(26005)(83380400001)(7636003)(82310400003)(66574015)(966005)(32850700002)(33656002)(70586007)(86362001)(82740400003)(336012)(19627405001)(30864003)(316002)(6916009)(6506007)(36860700001)(478600001)(55016002)(52536014)(2906002)(7696005)(5660300002)(8936002)(9686003)(8676002);DIR:OUT;SFP:1102;
+X-OriginatorOrg: zeiss.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2021 16:34:02.1100
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5f862371-1c67-44a1-70d4-08d8ee1977a7
+X-MS-Exchange-CrossTenant-Id: 28042244-bb51-4cd6-8034-7776fa3703e8
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=28042244-bb51-4cd6-8034-7776fa3703e8;Ip=[18.192.202.217];Helo=[kag06088vm002.zeiss.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	DB5EUR01FT015.eop-EUR01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9P190MB1268
+Content-Language: de-DE
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_1BC5_01D71FB8.36B00DB0"
-Content-Language: en-us
+	boundary="_000_AM7P190MB058232A99CDEF9BA4A40943CB0649AM7P190MB0582EURP_"
 
-------=_NextPart_000_1BC5_01D71FB8.36B00DB0
-Content-Type: text/plain;
-	charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-
-Current Dev Position: YP 3.3 M4 (Feature Freeze)
-
-Next Deadline: 5th April 2021 YP 3.3 M4 build
-
- 
-
-Next Team Meetings:
-
-*	Bug Triage meeting Thursday Mar. 25th at 7:30am PDT (
-<https://zoom.us/j/454367603?pwd=ZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09>
-https://zoom.us/j/454367603?pwd=ZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09)
-*	Monthly Project Meeting Tuesday Apr. 6th at 8am PDT (
-<https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09>
-https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09
-<https://zoom.us/j/990892712> )
-*	Weekly Engineering Sync Tuesday Mar. 23rd at 8am PDT (
-<https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09>
-https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09
-<https://zoom.us/j/990892712> )
-*	Twitch -  See https://www.twitch.tv/theyoctojester
-
- 
-
-Key Status/Updates:
-
-*	YP 3.3 M3 rc1 had an issue with the beaglebone reference platform.
-As such, we plan to build an rc2 when this has been fixed.
-*	The release series name for core has been bumped to "hardknott" and
-the previous one, "gatesgarth" has now been removed. We do this so that
-layers being actively maintained can be clearly identified compared to those
-which are not. Layers will need to be updated to show compatibility with the
-3.3 core.
-*	We've taken a number of version upgrades and other changes as the
-benefits to taking them seem to outweigh the potential risk.
-*	There is a pending change to remove 'stale' sstate task output
-before the main build starts in master-next. This has been testing for a
-while with no reports of issues and seems to perform well so will likely be
-included in M3 rc2.
-*	"Pending" state patch review is still needed, we have some really
-old stale ones which really need decisions to be made about their future. It
-would help a lot if recipe maintainers could review recipe patchsets and
-upstream them or remove them if they are no longer relevant. 
-*	Intermittent autobuilder issues continue to occur and are now at a
-record high level. You can see the list of failures we're continuing to see
-by searching for the "AB-INT" tag in bugzilla:
-<https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=AB-INT>
-https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=AB-INT
-
-We are working to identify the load pattern on the infrastructure that seems
-to trigger these.
-
- 
-
-Ways to contribute:
-
-*	There are bugs identified as possible for newcomers to the project:
-<https://wiki.yoctoproject.org/wiki/Newcomers>
-https://wiki.yoctoproject.org/wiki/Newcomers
-*	There are bugs that are currently unassigned for YP 3.3. See:
-<https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_3.3_Unassigned_Enha
-ncements.2FBugs>
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_3.3_Unassigned_Enhan
-cements.2FBugs
-*	We'd welcome new maintainers for recipes in OE-Core. Please see the
-list at:
-<http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/include/mai
-ntainers.inc>
-http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/include/main
-tainers.inc and discuss with the existing maintainer, or ask on the OE-Core
-mailing list. We will likely move a chunk of these to "Unassigned" soon to
-help facilitate this.
-
- 
-
-YP 3.3 Milestone Dates:
-
-*	YP 3.3 M3 will go back to QA for rc2 soon.
-*	YP 3.3 M4 build date 2021/04/05
-*	YP 3.3 M4 Release date 2021/04/30
-
- 
-
-Planned upcoming dot releases:
-
-*	YP 3.2.3 build date 2021/03/22
-*	YP 3.2.3 release date 2021/04/02
-*	YP 3.1.7 build date 2021/03/29
-*	YP 3.1.7 release date 2021/04/09
-*	YP 3.2.4 build date 2021/05/3
-*	YP 3.2.4 release date 2021/05/14
-*	YP 3.1.8 build date 2021/05/17
-*	YP 3.1.8 release date 2021/05/28
-
- 
-
-Tracking Metrics:
-
-*	WDD 2748 (last week 2759) (
-<https://wiki.yoctoproject.org/charts/combo.html>
-https://wiki.yoctoproject.org/charts/combo.html)
-*	Poky Patch Metrics
-
-*	Total patches found: 1309 (last week 1319)
-*	Patches in the Pending State: 492 (38%) [last week 489 (37%)]
-
- 
-
-The Yocto Project's technical governance is through its Technical Steering
-Committee, more information is available at:
-
- <https://wiki.yoctoproject.org/wiki/TSC>
-https://wiki.yoctoproject.org/wiki/TSC
-
- 
-
-The Status reports are now stored on the wiki at:
-<https://wiki.yoctoproject.org/wiki/Weekly_Status>
-https://wiki.yoctoproject.org/wiki/Weekly_Status
-
- 
-
-[If anyone has suggestions for other information you'd like to see on this
-weekly status update, let us know!]
-
- 
-
-Thanks,
-
- 
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
-
- 
-
-
-------=_NextPart_000_1BC5_01D71FB8.36B00DB0
-Content-Type: text/html;
-	boundary="----=_NextPart_000_013E_01D71A38.CBD25950";
-	charset="US-ASCII"
+--_000_AM7P190MB058232A99CDEF9BA4A40943CB0649AM7P190MB0582EURP_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:5444387;
-	mso-list-template-ids:-1902115514;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:56127616;
-	mso-list-template-ids:1963094326;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2
-	{mso-list-id:270286893;
-	mso-list-template-ids:2049737702;}
-@list l2:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l2:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3
-	{mso-list-id:802504257;
-	mso-list-template-ids:260108060;}
-@list l3:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l3:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l3:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4
-	{mso-list-id:1090276192;
-	mso-list-template-ids:-1141183546;}
-@list l4:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l4:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l4:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5
-	{mso-list-id:1137183292;
-	mso-list-template-ids:-1814003948;}
-@list l5:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l5:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l5:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6
-	{mso-list-id:1180966738;
-	mso-list-template-ids:-1613720796;}
-@list l6:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l6:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l6:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7
-	{mso-list-id:1263149664;
-	mso-list-template-ids:-628987884;}
-@list l7:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l7:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l7:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8
-	{mso-list-id:1357998403;
-	mso-list-template-ids:-284015472;}
-@list l8:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l8:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l8:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9
-	{mso-list-id:1403912221;
-	mso-list-template-ids:415291052;}
-@list l9:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l9:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l9:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10
-	{mso-list-id:1586184852;
-	mso-list-template-ids:-917614482;}
-@list l10:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l10:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l10:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11
-	{mso-list-id:1755316694;
-	mso-list-template-ids:1274689762;}
-@list l11:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l11:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l11:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l12
-	{mso-list-id:1809469603;
-	mso-list-template-ids:1627974728;}
-@list l12:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l12:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l12:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l12:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l12:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l12:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l12:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l12:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l12:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p style=3D'margin:0in'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Current Dev =
-Position: YP 3.3 M4 (Feature Freeze)</span><o:p></o:p></p><p =
-style=3D'margin:0in'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Next Deadline: 5th =
-April 2021 YP 3.3 M4 build</span><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Next Team =
-Meetings:</span><o:p></o:p></p><ul =
-style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
-lfo8;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Bug Triage meeting Thursday =
-Mar. 25th at 7:30am PDT (<a =
-href=3D"https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz0=
-9"><span =
-style=3D'color:#1155CC'>https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y=
-0bFd5aVpHVVZ6dz09</span></a>)<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
-lfo8;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Monthly Project Meeting Tuesday =
-Apr. 6th at 8am PDT (<a =
-href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT0=
-9"><span =
-style=3D'color:#1155CC'>https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck8=
-1bkcrYjRrcmJsUT09</span></a><a =
-href=3D"https://zoom.us/j/990892712"><span =
-style=3D'color:#1155CC'>)</span></a><o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
-lfo8;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Weekly Engineering Sync Tuesday =
-Mar. 23rd at 8am PDT (<a =
-href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT0=
-9"><span =
-style=3D'color:#1155CC'>https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck8=
-1bkcrYjRrcmJsUT09</span></a><a =
-href=3D"https://zoom.us/j/990892712"><span =
-style=3D'color:#1155CC'>)</span></a><o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
-lfo8;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Twitch -&nbsp; See =
-https://www.twitch.tv/theyoctojester<o:p></o:p></span></li></ul><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Key =
-Status/Updates:</span><o:p></o:p></p><ul =
-style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
-lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.3 M3 rc1 had an issue with =
-the beaglebone reference platform. As such, we plan to build an rc2 when =
-this has been fixed.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
-lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>The release series name for =
-core has been bumped to &#8220;hardknott&#8221; and the previous one, =
-&#8220;gatesgarth&#8221; has now been removed. We do this so that layers =
-being actively maintained can be clearly identified compared to those =
-which are not. Layers will need to be updated to show compatibility with =
-the 3.3 core.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
-lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>We&#8217;ve taken a number of =
-version upgrades and other changes as the benefits to taking them seem =
-to outweigh the potential risk.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
-lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>There is a pending change to =
-remove &#8216;stale&#8217; sstate task output before the main build =
-starts in master-next. This has been testing for a while with no reports =
-of issues and seems to perform well so will likely be included in M3 =
-rc2.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
-lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>&#8220;Pending&#8221; state =
-patch review is still needed, we have some really old stale ones which =
-really need decisions to be made about their future. It would help a lot =
-if recipe maintainers could review recipe patchsets and upstream them or =
-remove them if they are no longer =
-relevant.&nbsp;<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
-lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Intermittent autobuilder issues =
-continue to occur and are now at a record high level. You can see the =
-list of failures we&#8217;re continuing to see by searching for the =
-&#8220;AB-INT&#8221; tag in bugzilla: <a =
-href=3D"https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DAB-IN=
-T"><span =
-style=3D'color:#1155CC'>https://bugzilla.yoctoproject.org/buglist.cgi?qui=
-cksearch=3DAB-INT</span></a><o:p></o:p></span></li></ul><p =
-style=3D'mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin=
--left:.5in'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>We are working to =
-identify the load pattern on the infrastructure that seems to trigger =
-these.</span><o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Ways to =
-contribute:</span><o:p></o:p></p><ul =
-style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l0 level1 =
-lfo10;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>There are bugs identified as =
-possible for newcomers to the project: <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Newcomers"><span =
-style=3D'color:#1155CC'>https://wiki.yoctoproject.org/wiki/Newcomers</spa=
-n></a><o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l0 level1 =
-lfo10;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>There are bugs that are =
-currently unassigned for YP 3.3. See: <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_3.3_Unass=
-igned_Enhancements.2FBugs"><span =
-style=3D'color:#1155CC'>https://wiki.yoctoproject.org/wiki/Bug_Triage#Med=
-ium.2B_3.3_Unassigned_Enhancements.2FBugs</span></a><o:p></o:p></span></l=
-i><li style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l0 =
-level1 lfo10;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>We&#8217;d welcome new =
-maintainers for recipes in OE-Core. Please see the list at: <a =
-href=3D"http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/i=
-nclude/maintainers.inc"><span =
-style=3D'color:#1155CC'>http://git.yoctoproject.org/cgit.cgi/poky/tree/me=
-ta/conf/distro/include/maintainers.inc</span></a> and discuss with the =
-existing maintainer, or ask on the OE-Core mailing list. We will likely =
-move a chunk of these to &#8220;Unassigned&#8221; soon to help =
-facilitate this.<o:p></o:p></span></li></ul><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>YP 3.3 Milestone =
-Dates:</span><o:p></o:p></p><ul =
-style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l6 level1 =
-lfo11;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.3 M3 will go back to QA =
-for rc2 soon.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l6 level1 =
-lfo11;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.3 M4 build date =
-2021/04/05<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l6 level1 =
-lfo11;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.3 M4 Release date =
-2021/04/30<o:p></o:p></span></li></ul><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Planned upcoming =
-dot releases:</span><o:p></o:p></p><ul =
-style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
-lfo12;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.2.3 build date =
-2021/03/22<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
-lfo12;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.2.3 release date =
-2021/04/02<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
-lfo12;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.1.7 build date =
-2021/03/29<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
-lfo12;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.1.7 release date =
-2021/04/09<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
-lfo12;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.2.4 build date =
-2021/05/3<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
-lfo12;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.2.4 release date =
-2021/05/14<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
-lfo12;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.1.8 build date =
-2021/05/17<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
-lfo12;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.1.8 release date =
-2021/05/28<o:p></o:p></span></li></ul><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Tracking =
-Metrics:</span><o:p></o:p></p><ul =
-style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
-lfo13;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>WDD 2748 (last week =
-2759)</span><span style=3D'font-family:Consolas'> (</span><span =
-style=3D'font-family:"Arial",sans-serif'><a =
-href=3D"https://wiki.yoctoproject.org/charts/combo.html"><span =
-style=3D'color:#1155CC'>https://wiki.yoctoproject.org/charts/combo.html</=
-span></a></span><span style=3D'font-family:Consolas'>)</span><span =
-style=3D'font-family:"Arial",sans-serif'><o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
-lfo13;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Poky Patch Metrics</span><span =
-style=3D'font-family:Consolas'><o:p></o:p></span></li><ul =
-style=3D'margin-top:0in;padding-inline-start:48px' type=3Dcircle><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level2 =
-lfo13;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Total patches found: 1309 (last =
-week 1319)<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level2 =
-lfo13;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Patches in the Pending State: =
-492 (38%) [last week 489 (37%)]</span><span =
-style=3D'font-family:Consolas'><o:p></o:p></span></li></ul></ul><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>The Yocto =
-Project&#8217;s technical governance is through its Technical Steering =
-Committee, more information is available at:</span><o:p></o:p></p><p =
-style=3D'margin:0in'><a =
-href=3D"https://wiki.yoctoproject.org/wiki/TSC"><span =
-style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://wiki.yocto=
-project.org/wiki/TSC</span></a><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>The Status reports =
-are now stored on the wiki at: </span><a =
-href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status"><span =
-style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://wiki.yocto=
-project.org/wiki/Weekly_Status</span></a><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>[If anyone has =
-suggestions for other information you&#8217;d like to see on this weekly =
-status update, let us know!]</span><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif",serif;color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif",serif;color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif",serif'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif",serif;color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+Hi. I'm probably not exactly on topic in the yocto mailing list, but though=
+t maybe someone can point me into the right direction.
 
-------=_NextPart_000_1BC5_01D71FB8.36B00DB0--
+What I want to do:
+I've made a modification to weston and am planning to do some more, so I wo=
+uld like to integrate this modified version of wayland/weston into my Petal=
+inux 2019.1 config (have to use that version).
+At the moment my wayland branch is based on v9.0.0.
+
+What I've tried so far (please do tell me if I'm doing something totally st=
+upid):
+Unfortunately I don't have very good understanding about petalinux/yocto, I=
+ tried to start with the following steps:
+
+I began with trying to integrate the wayland recipes from openembedded:
+http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-graphics/w=
+ayland
+
+I copied this folder over into my petalinux recipes folder and ran
+
+    $ petalinux-build -c wayland
+    [INFO] building wayland
+    [INFO] sourcing bitbake
+    [INFO] generating user layers
+    INFO: bitbake wayland
+    Loading cache: 100% |##################################################=
+##########| Time: 0:00:00
+    Loaded 3826 entries from dependency cache.
+    ERROR: ParseError at <my_petalinuxroot>/project-spec/meta-user/recipes-=
+apps/wayland/weston_9.0.0.bb:22: Could not inherit file classes/features_ch=
+eck.bbclass
+
+    Summary: There was 1 ERROR message shown, returning a non-zero exit cod=
+e.
+    ERROR: Failed to build wayland
+
+I searched through my Petalinux project and didn't find any other *.bbclass=
+ files, so I don't know where this could be put if I copied it over from op=
+enembedded.
+So I grepped for this and found:
+
+    $ rg features_check
+    weston_9.0.0.bb
+    22:inherit meson pkgconfig useradd features_check
+
+    weston-init.bb
+    65:inherit update-rc.d features_check systemd useradd
+
+Since it wasn't obvious to me if the inclusion of this even does anything, =
+I removed it and ran the build again:
+
+    $ petalinux-build -c wayland
+    [INFO] building wayland
+    [INFO] sourcing bitbake
+    [INFO] generating user layers
+    INFO: bitbake wayland
+    Loading cache: 100% |##################################################=
+##########| Time: 0:00:00
+    Loaded 3826 entries from dependency cache.
+    Parsing recipes: 100% |################################################=
+##########| Time: 0:00:02
+    Parsing of 2799 .bb files complete (2791 cached, 8 parsed). 3836 target=
+s, 162 skipped, 0 masked, 0 errors.
+    NOTE: Resolving any missing task queue dependencies
+    Initialising tasks: 100% |#############################################=
+##########| Time: 0:00:00
+    Checking sstate mirror object availability: 100% |#####################=
+##########| Time: 0:00:03
+    Sstate summary: Wanted 62 Found 18 Missed 88 Current 320 (29% match, 88=
+% complete)
+    NOTE: Executing SetScene Tasks
+    NOTE: Executing RunQueue Tasks
+    ERROR: wayland-native-1.19.0-r0 do_configure: meson failed
+    ERROR: wayland-native-1.19.0-r0 do_configure: Function failed: do_confi=
+gure (log file is located at <my_petalinuxroot>/build/tmp/work/x86_64-linux=
+/wayland-native/1.19.0-r0/temp/log.do_configure.8492)
+    ERROR: Logfile of failure stored in: <my_petalinuxroot>/build/tmp/work/=
+x86_64-linux/wayland-native/1.19.0-r0/temp/log.do_configure.8492
+    Log data follows:
+    | DEBUG: Executing shell function do_configure
+    | NOTE: Executing meson -Ddocumentation=3Dfalse -Dlibraries=3Dfalse -Dd=
+td_validation=3Dtrue...
+    | The Meson build system
+    | Version: 0.47.2
+    | Source dir: <my_petalinuxroot>/build/tmp/work/x86_64-linux/wayland-na=
+tive/1.19.0-r0/wayland-1.19.0
+    | Build dir: <my_petalinuxroot>/build/tmp/work/x86_64-linux/wayland-nat=
+ive/1.19.0-r0/build
+    | Build type: native build
+    |
+    | meson.build:1:0: ERROR:  Meson version is 0.47.2 but project requires=
+ >=3D 0.52.1.
+    |
+    | A full log can be found at <my_petalinuxroot>/build/tmp/work/x86_64-l=
+inux/wayland-native/1.19.0-r0/build/meson-logs/meson-log.txt
+    | ERROR: meson failed
+    | WARNING: <my_petalinuxroot>/build/tmp/work/x86_64-linux/wayland-nativ=
+e/1.19.0-r0/temp/run.do_configure.8492:1 exit 1 from 'exit 1'
+    | ERROR: Function failed: do_configure (log file is located at <my_peta=
+linuxroot>/build/tmp/work/x86_64-linux/wayland-native/1.19.0-r0/temp/log.do=
+_configure.8492)
+    ERROR: Task (virtual:native:<my_petalinuxroot>/project-spec/meta-user/r=
+ecipes-apps/wayland/wayland_1.19.0.bb:do_configure) failed with exit code '=
+1'
+    NOTE: Tasks Summary: Attempted 1328 tasks of which 1314 didn't need to =
+be rerun and 1 failed.
+
+    Summary: 1 task failed:
+      virtual:native:<my_petalinuxroot>/project-spec/meta-user/recipes-apps=
+/wayland/wayland_1.19.0.bb:do_configure
+    Summary: There were 2 ERROR messages shown, returning a non-zero exit c=
+ode.
+    ERROR: Failed to build wayland
+
+Ok, it seems I need a newer meson, so I copied this over too from openembed=
+ded and tried to build it:
+http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-devtools/m=
+eson
+
+    $ petalinux-build -c meson
+    [INFO] building meson
+    [INFO] sourcing bitbake
+    [INFO] generating user layers
+    INFO: bitbake meson
+    Loading cache: 100% |##################################################=
+##########| Time: 0:00:00
+    Loaded 3835 entries from dependency cache.
+    Parsing recipes: 100% |################################################=
+##########| Time: 0:00:01
+    Parsing of 2801 .bb files complete (2798 cached, 3 parsed). 3839 target=
+s, 162 skipped, 0 masked, 0 errors.
+    NOTE: Resolving any missing task queue dependencies
+    ERROR: Nothing RPROVIDES 'python3-pkg-resources' (but <my_petalinuxroot=
+>/project-spec/meta-user/recipes-apps/meson/meson_0.57.1.bb RDEPENDS on or =
+otherwise requires it)
+    NOTE: Runtime target 'python3-pkg-resources' is unbuildable, removing..=
+.
+    Missing or unbuildable dependency chain was: ['python3-pkg-resources']
+    ERROR: Required build target 'meson' has no buildable providers.
+    Missing or unbuildable dependency chain was: ['meson', 'python3-pkg-res=
+ources']
+
+    Summary: There were 2 ERROR messages shown, returning a non-zero exit c=
+ode.
+    ERROR: Failed to build meson
+
+And this is where I started to get stuck. Grepping the openembedded repo fo=
+r 'python3-pkg-resources' didn't turn up anything. Googling it seeems to su=
+ggest it is part of python-setuptools.
+So I tried to install python3-setuptools by copying it over again:
+http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-devtools/p=
+ython/python3-setuptools_54.1.1.bb
+
+    $ petalinux-build -c python3-setuptools
+    [INFO] building python3-setuptools
+    [INFO] sourcing bitbake
+    [INFO] generating user layers
+    INFO: bitbake python3-setuptools
+    Loading cache: 100% |##################################################=
+##########| Time: 0:00:00
+    Loaded 3838 entries from dependency cache.
+    WARNING: <my_petalinuxroot>/project-spec/meta-user/recipes-apps/python3=
+-setuptools/python3-setuptools_54.1.1.bb: Unable to get checksum for python=
+3-setuptools-native SRC_URI entry 0001-conditionally-do-not-fetch-code-by-e=
+asy_install.patch: file could not be found
+    Parsing recipes: 100% |################################################=
+##########| Time: 0:00:01
+    Parsing of 2802 .bb files complete (2800 cached, 2 parsed). 3842 target=
+s, 162 skipped, 0 masked, 0 errors.
+    NOTE: Resolving any missing task queue dependencies
+    ERROR: Nothing RPROVIDES 'python3-pkg-resources-native' (but virtual:na=
+tive:<my_petalinuxroot>/project-spec/meta-user/recipes-apps/python3-setupto=
+ols/python3-setuptools_54.1.1.bb RDEPENDS on or otherwise requires it)
+    NOTE: Runtime target 'python3-pkg-resources-native' is unbuildable, rem=
+oving...
+    Missing or unbuildable dependency chain was: ['python3-pkg-resources-na=
+tive']
+    ERROR: Required build target 'python3-setuptools' has no buildable prov=
+iders.
+    Missing or unbuildable dependency chain was: ['python3-setuptools', 'py=
+thon3-setuptools-native', 'python3-pkg-resources-native']
+
+    Summary: There was 1 WARNING message shown.
+    Summary: There were 2 ERROR messages shown, returning a non-zero exit c=
+ode.
+    ERROR: Failed to build python3-setuptools
+
+I couldn't find 'python3-setuptools-native' or 'python3-pkg-resources-nativ=
+e' in the openembedded repo, so here my journey is over for now.
+
+
+Is this way I tried even the correct way to get wayland from source into my=
+ petalinux project? Or is there a better solution?
+
+Any help would be really appreciated.
+
+Rgeards,
+J=FCrgen Haase
+
+
+--_000_AM7P190MB058232A99CDEF9BA4A40943CB0649AM7P190MB0582EURP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hi. I'm probably not exactly on topic in the yocto mailing list, but though=
+t maybe someone can point me into the right direction.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+What I want to do:
+<div>I've made a modification to weston and am planning to do some more, so=
+ I would like to integrate this modified version of wayland/weston into my =
+Petalinux 2019.1 config (have to use that version).</div>
+<div>At the moment my wayland branch is based on v9.0.0.</div>
+<div><br>
+</div>
+<div>What I've tried so far (please do tell me if I'm doing something total=
+ly stupid):</div>
+<div>Unfortunately I don't have very good understanding about petalinux/yoc=
+to, I tried to start with the following steps:</div>
+<div><br>
+</div>
+<div>I began with trying to integrate the wayland recipes from openembedded=
+:</div>
+<div>http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-graph=
+ics/wayland</div>
+<div><br>
+</div>
+<div>I copied this folder over into my petalinux recipes folder and ran</di=
+v>
+<div><br>
+</div>
+<div>&nbsp;&nbsp;&nbsp; $ petalinux-build -c wayland</div>
+<div>&nbsp; &nbsp; [INFO] building wayland</div>
+<div>&nbsp;&nbsp;&nbsp; [INFO] sourcing bitbake</div>
+<div>&nbsp; &nbsp; [INFO] generating user layers</div>
+<div>&nbsp; &nbsp; INFO: bitbake wayland</div>
+<div>&nbsp;&nbsp;&nbsp; Loading cache: 100% |##############################=
+##############################| Time: 0:00:00</div>
+<div>&nbsp; &nbsp; Loaded 3826 entries from dependency cache.</div>
+<div>&nbsp;&nbsp;&nbsp; ERROR: ParseError at &lt;my_petalinuxroot&gt;/proje=
+ct-spec/meta-user/recipes-apps/wayland/weston_9.0.0.bb:22: Could not inheri=
+t file classes/features_check.bbclass</div>
+<div>&nbsp;&nbsp; <br>
+</div>
+<div>&nbsp;&nbsp;&nbsp; Summary: There was 1 ERROR message shown, returning=
+ a non-zero exit code.</div>
+<div>&nbsp;&nbsp;&nbsp; ERROR: Failed to build wayland</div>
+<div><br>
+</div>
+<div>I searched through my Petalinux project and didn't find any other *.bb=
+class files, so I don't know where this could be put if I copied it over fr=
+om openembedded.</div>
+<div>So I grepped for this and found:</div>
+<div><br>
+</div>
+<div>&nbsp; &nbsp; $ rg features_check</div>
+<div>&nbsp;&nbsp;&nbsp; weston_9.0.0.bb</div>
+<div>&nbsp;&nbsp;&nbsp; 22:inherit meson pkgconfig useradd features_check</=
+div>
+<div>&nbsp; <br>
+</div>
+<div>&nbsp;&nbsp;&nbsp; weston-init.bb</div>
+<div>&nbsp;&nbsp;&nbsp; 65:inherit update-rc.d features_check systemd usera=
+dd</div>
+<div><br>
+</div>
+<div>Since it wasn't obvious to me if the inclusion of this even does anyth=
+ing, I removed it and ran the build again:</div>
+<div><br>
+</div>
+<div>&nbsp;&nbsp;&nbsp; $ petalinux-build -c wayland</div>
+<div>&nbsp;&nbsp;&nbsp; [INFO] building wayland</div>
+<div>&nbsp;&nbsp;&nbsp; [INFO] sourcing bitbake</div>
+<div>&nbsp;&nbsp;&nbsp; [INFO] generating user layers</div>
+<div>&nbsp; &nbsp; INFO: bitbake wayland</div>
+<div>&nbsp; &nbsp; Loading cache: 100% |###################################=
+#########################| Time: 0:00:00</div>
+<div>&nbsp; &nbsp; Loaded 3826 entries from dependency cache.</div>
+<div>&nbsp; &nbsp; Parsing recipes: 100% |#################################=
+#########################| Time: 0:00:02</div>
+<div>&nbsp; &nbsp; Parsing of 2799 .bb files complete (2791 cached, 8 parse=
+d). 3836 targets, 162 skipped, 0 masked, 0 errors.</div>
+<div>&nbsp; &nbsp; NOTE: Resolving any missing task queue dependencies</div=
+>
+<div>&nbsp; &nbsp; Initialising tasks: 100% |##############################=
+#########################| Time: 0:00:00</div>
+<div>&nbsp; &nbsp; Checking sstate mirror object availability: 100% |######=
+#########################| Time: 0:00:03</div>
+<div>&nbsp; &nbsp; Sstate summary: Wanted 62 Found 18 Missed 88 Current 320=
+ (29% match, 88% complete)</div>
+<div>&nbsp; &nbsp; NOTE: Executing SetScene Tasks</div>
+<div>&nbsp; &nbsp; NOTE: Executing RunQueue Tasks</div>
+<div>&nbsp; &nbsp; ERROR: wayland-native-1.19.0-r0 do_configure: meson fail=
+ed</div>
+<div>&nbsp; &nbsp; ERROR: wayland-native-1.19.0-r0 do_configure: Function f=
+ailed: do_configure (log file is located at &lt;my_petalinuxroot&gt;/build/=
+tmp/work/x86_64-linux/wayland-native/1.19.0-r0/temp/log.do_configure.8492)<=
+/div>
+<div>&nbsp; &nbsp; ERROR: Logfile of failure stored in: &lt;my_petalinuxroo=
+t&gt;/build/tmp/work/x86_64-linux/wayland-native/1.19.0-r0/temp/log.do_conf=
+igure.8492</div>
+<div>&nbsp; &nbsp; Log data follows:</div>
+<div>&nbsp; &nbsp; | DEBUG: Executing shell function do_configure</div>
+<div>&nbsp; &nbsp; | NOTE: Executing meson -Ddocumentation=3Dfalse -Dlibrar=
+ies=3Dfalse -Ddtd_validation=3Dtrue...</div>
+<div>&nbsp; &nbsp; | The Meson build system</div>
+<div>&nbsp; &nbsp; | Version: 0.47.2</div>
+<div>&nbsp; &nbsp; | Source dir: &lt;my_petalinuxroot&gt;/build/tmp/work/x8=
+6_64-linux/wayland-native/1.19.0-r0/wayland-1.19.0</div>
+<div>&nbsp; &nbsp; | Build dir: &lt;my_petalinuxroot&gt;/build/tmp/work/x86=
+_64-linux/wayland-native/1.19.0-r0/build</div>
+<div>&nbsp; &nbsp; | Build type: native build</div>
+<div>&nbsp; &nbsp; |</div>
+<div>&nbsp; &nbsp; | meson.build:1:0: ERROR: &nbsp;Meson version is 0.47.2 =
+but project requires &gt;=3D 0.52.1.</div>
+<div>&nbsp; &nbsp; |</div>
+<div>&nbsp; &nbsp; | A full log can be found at &lt;my_petalinuxroot&gt;/bu=
+ild/tmp/work/x86_64-linux/wayland-native/1.19.0-r0/build/meson-logs/meson-l=
+og.txt</div>
+<div>&nbsp; &nbsp; | ERROR: meson failed</div>
+<div>&nbsp; &nbsp; | WARNING: &lt;my_petalinuxroot&gt;/build/tmp/work/x86_6=
+4-linux/wayland-native/1.19.0-r0/temp/run.do_configure.8492:1 exit 1 from '=
+exit 1'</div>
+<div>&nbsp; &nbsp; | ERROR: Function failed: do_configure (log file is loca=
+ted at &lt;my_petalinuxroot&gt;/build/tmp/work/x86_64-linux/wayland-native/=
+1.19.0-r0/temp/log.do_configure.8492)</div>
+<div>&nbsp; &nbsp; ERROR: Task (virtual:native:&lt;my_petalinuxroot&gt;/pro=
+ject-spec/meta-user/recipes-apps/wayland/wayland_1.19.0.bb:do_configure) fa=
+iled with exit code '1'</div>
+<div>&nbsp; &nbsp; NOTE: Tasks Summary: Attempted 1328 tasks of which 1314 =
+didn't need to be rerun and 1 failed.</div>
+<div>&nbsp; <br>
+</div>
+<div>&nbsp; &nbsp; Summary: 1 task failed:</div>
+<div>&nbsp; &nbsp; &nbsp; virtual:native:&lt;my_petalinuxroot&gt;/project-s=
+pec/meta-user/recipes-apps/wayland/wayland_1.19.0.bb:do_configure</div>
+<div>&nbsp; &nbsp; Summary: There were 2 ERROR messages shown, returning a =
+non-zero exit code.</div>
+<div>&nbsp; &nbsp; ERROR: Failed to build wayland</div>
+<div><br>
+</div>
+<div>Ok, it seems I need a newer meson, so I copied this over too from open=
+embedded and tried to build it:</div>
+<div>http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-devto=
+ols/meson</div>
+<div><br>
+</div>
+<div>&nbsp; &nbsp; $ petalinux-build -c meson</div>
+<div>&nbsp; &nbsp; [INFO] building meson</div>
+<div>&nbsp; &nbsp; [INFO] sourcing bitbake</div>
+<div>&nbsp; &nbsp; [INFO] generating user layers</div>
+<div>&nbsp; &nbsp; INFO: bitbake meson</div>
+<div>&nbsp; &nbsp; Loading cache: 100% |###################################=
+#########################| Time: 0:00:00</div>
+<div>&nbsp; &nbsp; Loaded 3835 entries from dependency cache.</div>
+<div>&nbsp; &nbsp; Parsing recipes: 100% |#################################=
+#########################| Time: 0:00:01</div>
+<div>&nbsp;&nbsp;&nbsp; Parsing of 2801 .bb files complete (2798 cached, 3 =
+parsed). 3839 targets, 162 skipped, 0 masked, 0 errors.</div>
+<div>&nbsp; &nbsp; NOTE: Resolving any missing task queue dependencies</div=
+>
+<div>&nbsp; &nbsp; ERROR: Nothing RPROVIDES 'python3-pkg-resources' (but &l=
+t;my_petalinuxroot&gt;/project-spec/meta-user/recipes-apps/meson/meson_0.57=
+.1.bb RDEPENDS on or otherwise requires it)</div>
+<div>&nbsp; &nbsp; NOTE: Runtime target 'python3-pkg-resources' is unbuilda=
+ble, removing...</div>
+<div>&nbsp; &nbsp; Missing or unbuildable dependency chain was: ['python3-p=
+kg-resources']</div>
+<div>&nbsp; &nbsp; ERROR: Required build target 'meson' has no buildable pr=
+oviders.</div>
+<div>&nbsp; &nbsp; Missing or unbuildable dependency chain was: ['meson', '=
+python3-pkg-resources']</div>
+<div>&nbsp; <br>
+</div>
+<div>&nbsp; &nbsp; Summary: There were 2 ERROR messages shown, returning a =
+non-zero exit code.</div>
+<div>&nbsp; &nbsp; ERROR: Failed to build meson</div>
+<div><br>
+</div>
+<div>And this is where I started to get stuck. Grepping the openembedded re=
+po for 'python3-pkg-resources' didn't turn up anything. Googling it seeems =
+to suggest it is part of python-setuptools.</div>
+<div>So I tried to install python3-setuptools by copying it over again:</di=
+v>
+<div>http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-devto=
+ols/python/python3-setuptools_54.1.1.bb</div>
+<div><br>
+</div>
+<div>&nbsp; &nbsp; $ petalinux-build -c python3-setuptools</div>
+<div>&nbsp; &nbsp; [INFO] building python3-setuptools</div>
+<div>&nbsp; &nbsp; [INFO] sourcing bitbake</div>
+<div>&nbsp; &nbsp; [INFO] generating user layers</div>
+<div>&nbsp; &nbsp; INFO: bitbake python3-setuptools</div>
+<div>&nbsp; &nbsp; Loading cache: 100% |###################################=
+#########################| Time: 0:00:00</div>
+<div>&nbsp; &nbsp; Loaded 3838 entries from dependency cache.</div>
+<div>&nbsp; &nbsp; WARNING: &lt;my_petalinuxroot&gt;/project-spec/meta-user=
+/recipes-apps/python3-setuptools/python3-setuptools_54.1.1.bb: Unable to ge=
+t checksum for python3-setuptools-native SRC_URI entry 0001-conditionally-d=
+o-not-fetch-code-by-easy_install.patch: file could
+ not be found</div>
+<div>&nbsp; &nbsp; Parsing recipes: 100% |#################################=
+#########################| Time: 0:00:01</div>
+<div>&nbsp; &nbsp; Parsing of 2802 .bb files complete (2800 cached, 2 parse=
+d). 3842 targets, 162 skipped, 0 masked, 0 errors.</div>
+<div>&nbsp; &nbsp; NOTE: Resolving any missing task queue dependencies</div=
+>
+<div>&nbsp; &nbsp; ERROR: Nothing RPROVIDES 'python3-pkg-resources-native' =
+(but virtual:native:&lt;my_petalinuxroot&gt;/project-spec/meta-user/recipes=
+-apps/python3-setuptools/python3-setuptools_54.1.1.bb RDEPENDS on or otherw=
+ise requires it)</div>
+<div>&nbsp; &nbsp; NOTE: Runtime target 'python3-pkg-resources-native' is u=
+nbuildable, removing...</div>
+<div>&nbsp; &nbsp; Missing or unbuildable dependency chain was: ['python3-p=
+kg-resources-native']</div>
+<div>&nbsp; &nbsp; ERROR: Required build target 'python3-setuptools' has no=
+ buildable providers.</div>
+<div>&nbsp; &nbsp; Missing or unbuildable dependency chain was: ['python3-s=
+etuptools', 'python3-setuptools-native', 'python3-pkg-resources-native']</d=
+iv>
+<div>&nbsp; <br>
+</div>
+<div>&nbsp; &nbsp; Summary: There was 1 WARNING message shown.</div>
+<div>&nbsp; &nbsp; Summary: There were 2 ERROR messages shown, returning a =
+non-zero exit code.</div>
+<div>&nbsp; &nbsp; ERROR: Failed to build python3-setuptools</div>
+<div><br>
+</div>
+<div>I couldn't find 'python3-setuptools-native' or 'python3-pkg-resources-=
+native' in the openembedded repo, so here my journey is over for now.</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>Is this way I tried even the correct way to get wayland from source in=
+to my petalinux project? Or is there a better solution?</div>
+<div><br>
+</div>
+<div>Any help would be really appreciated.</div>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Rgeards,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+J=FCrgen Haase</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+</body>
+</html>
+
+--_000_AM7P190MB058232A99CDEF9BA4A40943CB0649AM7P190MB0582EURP_--
