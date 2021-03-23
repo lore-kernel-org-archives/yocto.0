@@ -1,185 +1,140 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.6842.1616494843291546586
+ by mx.groups.io with SMTP id smtpd.web09.7745.1616500779074229559
  for <yocto@lists.yoctoproject.org>;
- Tue, 23 Mar 2021 03:20:43 -0700
+ Tue, 23 Mar 2021 04:59:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=s1MwsfDK;
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=QBV7kdLX;
  spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id B769A38C0532
-	for <yocto@yoctoproject.org>; Tue, 23 Mar 2021 10:20:41 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id j4-20020a05600c4104b029010c62bc1e20so10485295wmi.3
-        for <yocto@yoctoproject.org>; Tue, 23 Mar 2021 03:20:41 -0700 (PDT)
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 6915038C0570
+	for <yocto@yoctoproject.org>; Tue, 23 Mar 2021 11:59:37 +0000 (UTC)
+Received: by mail-vs1-f48.google.com with SMTP id v2so9217152vsq.11
+        for <yocto@yoctoproject.org>; Tue, 23 Mar 2021 04:59:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=blade-group.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8DzzuXT/tke/HQEi/IcXBmn4VBvgQJCS3plkrxP2zqc=;
-        b=s1MwsfDKTbNNORty+8vyTKbjGKjpZYxzseP1y+3GVgyxWRG+qZ4+79C+ogMzLqCLv0
-         /dXZssUUs8qeBpsj3LOrWyTWvhbLVmTXnegent/qR5NWzlhMMmyl0SDzW701H5zyMXkz
-         IZxQcJ2SIEXnul1pv2ZYjDJ8T7PYkJ6ewKIdmyi95GZRgyiqM7WQ6G+HFHUia+qiSZ+q
-         5KgMtZ1B8Y2pPnUzOM25Il0E/mPB4TZ52u689DGno/hZFWShgFmIk0t4rGDlr8AtNPXT
-         hvaBrT1UgWoDRHee1BYKeFb/ODGKQBLurZjC/pru3i6nuhAhp1pbTwftIbcZ7ZmlODYF
-         sszg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=9Ad6cVIc7IqtaIMUs2dHn0pR0TuDGtTEATuRZMZ37/8=;
+        b=QBV7kdLX3/M36NR3y6mlv0o56i00o0Fa2484oMSnqDz5TTijb/oZx6XEULcrUF29r+
+         jC3zIw0wsvThcO13bQf9RzvdCuhlV+CPLf8bV6BTY+nbHGYMncL2elcYpVSJ0F9i0LKb
+         rBQRiW8gFgxEVB0KG2zYePxpDP0XMghsGFU3+e7ifBUizGEF3fgzkaw+n2Hwdc5pZHpB
+         68YMmHrrHn8AaPaSi4afoJPO1xYE7qLcj39q37WGumvszCbYjk1LdCgt4s8CImLL3Zzp
+         nqaQbwEEKBqlPQb/2UMky3a4u74v49UVMFEvIzLd1M3QI8V2bAOmmIOofCzobksNRxyl
+         c+Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8DzzuXT/tke/HQEi/IcXBmn4VBvgQJCS3plkrxP2zqc=;
-        b=tqvjFxxhv+DBdFSJJ4gxV96ynHKuV5H/LDTRcTmvOkop9IiXDeIX4hleuPgcj/h4Xp
-         t3bbiMG2e6AOOvppI0y7O+cqbDVih2Rawhe8pZhX6+dcGzc6a/dg5sOL9p5pUWA/0R0I
-         +foXS4iPMBYMdSCtWQv8g6qeaqZ30HrOooEjLOzenIirMN+2DqapnV/WaHgIj9yzfMNC
-         cQP6Ocx/MVmYv37GC1crkz6am0B2ZHNrMO9PzdedTe3Wa0MPARXTCfV7iMtkFALXgAP3
-         zt0Mu+b6sINCeMWyDM0lcgX6O/vdXBTggfCZBW52CzDzZEAzlOtT410heqSjx3dWqyhI
-         navw==
-X-Gm-Message-State: AOAM5320v6yRhMaWf+34LRKEzHYq/FTLT4pKEj9GN4JewMPiJAYxciCl
-	LQy5rBIjIjV0CI/g/vYIBDzQ7KZBKHYJqw==
-X-Google-Smtp-Source: ABdhPJzlur8ELAj2A+9Xjfa3L4Btf14vfMxQruNuf38faFPZgKt4Wy9hLtL+DLcvaTKOXq809UL61w==
-X-Received: by 2002:a7b:c841:: with SMTP id c1mr2580669wml.123.1616494840086;
-        Tue, 23 Mar 2021 03:20:40 -0700 (PDT)
-Received: from blanquette.lan ([88.120.44.86])
-        by smtp.gmail.com with ESMTPSA id v3sm2056341wmj.25.2021.03.23.03.20.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 03:20:39 -0700 (PDT)
-From: "Yann Dirson" <yann.dirson@blade-group.com>
-X-Google-Original-From: yann@blade-group.com
-To: yocto@yoctoproject.org
-Cc: twoerner@gmail.com,
-	Yann Dirson <yann@blade-group.com>
-Subject: [meta-rockchip][PATCH v3] NanoPi-M4: add machines
-Date: Tue, 23 Mar 2021 11:20:13 +0100
-Message-Id: <20210323102013.717850-1-yann@blade-group.com>
-X-Mailer: git-send-email 2.30.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=9Ad6cVIc7IqtaIMUs2dHn0pR0TuDGtTEATuRZMZ37/8=;
+        b=OFI9nM7OpITf+842OdfO/FeeowA3FutFGWo2gvzcvxqKWdGuDsDGLrYOgTLZQDurzP
+         nPAyhhtMquU12Mx67jsLAut35RGnzUrLeBybbvY0eB0pH3upi6wgFlWRoyKx3xKsO66q
+         7tUe9g8HxaTbKieYeuoJRfECyYoxfaASLJElHkMCIwlH6RTfn3g68zkE0PhOLTxANF4j
+         dCT1tlm77Gwc/TvCjcaJWAaBnnLsfdsI12Zx+PQKTKvF+eEc7gowXs+c7eWjlGJFubJA
+         rEqmc0cpvpOKFEITEaHU5i9I3uyXcwRSWh7aKe29nzInoi9WXnNceAevjENo0ypQ4yCl
+         lhuA==
+X-Gm-Message-State: AOAM5302WJ/Aq8ZGO4MG9QjsIvJD7VSS5mINwnHbbuYfKqaBnT4IAt1i
+	5BXim6C5CEtGOy3QB+1GYbqCwAFf1lYHMyw1qAz3Hw==
+X-Google-Smtp-Source: ABdhPJzGkrCwli+iMaHYcVOI72Zrhp/cyHC5IRvV4xaUiVsH6cKzgNrkTGT8rkfUtXQnwvC9jaWZ9jCRyMZi4VhHgN4=
+X-Received: by 2002:a67:f04f:: with SMTP id q15mr2919020vsm.22.1616500776236;
+ Tue, 23 Mar 2021 04:59:36 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210322134212.576790-1-yann@blade-group.com> <20210322144753.GA33662@localhost>
+ <166EB22A27C12C43.28220@lists.yoctoproject.org> <CA+4=imZsRTr40jO+aOHDrXogiEqLRCdkB=5L-tWtOSREC+EDnQ@mail.gmail.com>
+ <20210322155021.GA23379@localhost>
+In-Reply-To: <20210322155021.GA23379@localhost>
+From: "Yann Dirson" <yann.dirson@blade-group.com>
+Date: Tue, 23 Mar 2021 12:59:24 +0100
+Message-ID: <CA+4=imbGcUVwsz3kF411s1OeSRL=vrWt=Cpsb-3ud+P-86nkTw@mail.gmail.com>
+Subject: [yocto] [meta-rockchip] defconfig alternatives
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>, Yann Dirson <yann@blade-group.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-From: Yann Dirson <yann@blade-group.com>
+Hi Trevor,
 
-We have two board variants, respectively with 2GB and 4GB RAM.
+Le lun. 22 mars 2021 =C3=A0 16:50, Trevor Woerner <twoerner@gmail.com> a =
+=C3=A9crit :
+> > BTW, I'm also unclear on what to do next to better support those
+> > boards: with the default
+> > kernel config only a subset of the hardware is supported, and for
+> > state-of-the-art hw
+> > support we'll also need patches not yet in upstream kernel (from eg.
+> > armbian and libreelec).
+> >
+> > I feel it would be good to provide defconfig files for those machines,
+> > but then there are
+> > several options to handle that.  Would a minimal hw-focused defconfig
+> > suitable for
+> > `KCONFIG_MODE =3D "--allnoconfig"` be a good option ?
+>
+> I feel exactly the same way.
+>
+> By default all arm64 kernels are configured with the one, in-kernel, gene=
+ric
+> arm64 defconfig. That gives me a kernel that is over 11MB in size, and
+> includes all sorts of useless drivers.
+>
+> I've been working off-and-on on a mechanism for meta-rockchip that would =
+allow
+> users to decide between the default in-kernel arm64 defconfig (which woul=
+d
+> be selected by doing nothing) or using a leaner defconfig that I have bee=
+n
+> tweaking specifically for each board. Currently I only have a lean defcon=
+fig
+> for rock-pi-4b, but it was my hope to generate defconfigs for all support=
+ed
+> boards.
+>
+> Ideally I had wanted to leverage the linux-yocto kmeta mechanism to gener=
+ate
+> defconfigs dynamically based on the specific machine and specific user
+> preferences, but that didn't go as smoothly as I was hoping, then I got
+> distracted by other things.
+>
+> I had created a spreadsheet with a comparison between the various boards =
+that
+> would have been a basis for the individual kmeta pieces. Maybe I'll find =
+some
+> more time to poke at it later this week. I could also push my WIP stuff t=
+o
+> somewhere if you'd like to take a look.
+>
+> In any case, my point is, I'm very interested in something better than wh=
+at
+> currently exists :-)
 
-Signed-off-by: Yann Dirson <yann@blade-group.com>
----
+On my side I have a minimal defconfig for our own board, which is very simi=
+lar
+to the nanopi-m4, which could be used as a starting point for the latter.
 
-Changes from v2:
-- commit message rework
-- add wic.bmap
-Changes from v1:
-- split in two distinct machines: nanopi-m4 and nanopi-m4-2gb
 
- conf/machine/include/nanopi-m4.inc            | 22 +++++++++++++++++++
- conf/machine/nanopi-m4-2gb.conf               |  8 +++++++
- conf/machine/nanopi-m4.conf                   |  8 +++++++
- recipes-kernel/linux/linux-yocto-dev.bbappend |  2 ++
- .../linux/linux-yocto-rt_%.bbappend           |  2 ++
- .../linux/linux-yocto-tiny_%.bbappend         |  2 ++
- recipes-kernel/linux/linux-yocto_%.bbappend   |  2 ++
- 7 files changed, 46 insertions(+)
- create mode 100644 conf/machine/include/nanopi-m4.inc
- create mode 100644 conf/machine/nanopi-m4-2gb.conf
- create mode 100644 conf/machine/nanopi-m4.conf
+> One thing that I'd like to keep clear in meta-rockchip is to always allow=
+ the
+> user to choose between upstream and "extras". My feeling is: the simplest
+> build, if the user does nothing explicit, will always pull from pure upst=
+ream
+> with no out-of-tree patches or vendor pieces. But I'm not opposed to havi=
+ng
+> a mechanism whereby if the user does something explicit, they can choose =
+to
+> use a vendor tree or make use of out-of-tree patches for various things.
 
-diff --git a/conf/machine/include/nanopi-m4.inc b/conf/machine/include/na=
-nopi-m4.inc
-new file mode 100644
-index 0000000..74cdae8
---- /dev/null
-+++ b/conf/machine/include/nanopi-m4.inc
-@@ -0,0 +1,22 @@
-+# Copyright (C) 2021 Blade SAS
-+# Common definitions for all NanoPi M4 RK3399 board variants
-+
-+require rk3399.inc
-+
-+KERNEL_DEVICETREE =3D "rockchip/rk3399-nanopi-m4.dtb"
-+
-+RK_BOOT_DEVICE =3D "mmcblk1"
-+WKS_FILE ?=3D "rock-pi-4.wks"
-+IMAGE_FSTYPES +=3D "wic wic.bmap"
-+
-+WKS_FILE_DEPENDS ?=3D " \
-+    mtools-native \
-+    dosfstools-native \
-+    virtual/bootloader \
-+    virtual/kernel \
-+    "
-+IMAGE_BOOT_FILES ?=3D "\
-+    ${KERNEL_IMAGETYPE} \
-+    "
-+
-+SERIAL_CONSOLES =3D "1500000;ttyS2"
-diff --git a/conf/machine/nanopi-m4-2gb.conf b/conf/machine/nanopi-m4-2gb=
-.conf
-new file mode 100644
-index 0000000..9fd7279
---- /dev/null
-+++ b/conf/machine/nanopi-m4-2gb.conf
-@@ -0,0 +1,8 @@
-+# Copyright (C) 2021 Blade SAS
-+
-+#@TYPE: Machine
-+#@NAME: NanoPi M4
-+#@DESCRIPTION: NanoPi M4 RK3399 board from FriendlyElec, 2GB variant
-+
-+require include/nanopi-m4.inc
-+UBOOT_MACHINE =3D "nanopi-m4-2gb-rk3399_defconfig"
-diff --git a/conf/machine/nanopi-m4.conf b/conf/machine/nanopi-m4.conf
-new file mode 100644
-index 0000000..648fc75
---- /dev/null
-+++ b/conf/machine/nanopi-m4.conf
-@@ -0,0 +1,8 @@
-+# Copyright (C) 2021 Blade SAS
-+
-+#@TYPE: Machine
-+#@NAME: NanoPi M4
-+#@DESCRIPTION: NanoPi M4 RK3399 board from FriendlyElec, 4GB variant
-+
-+require include/nanopi-m4.inc
-+UBOOT_MACHINE =3D "nanopi-m4-rk3399_defconfig"
-diff --git a/recipes-kernel/linux/linux-yocto-dev.bbappend b/recipes-kern=
-el/linux/linux-yocto-dev.bbappend
-index e5ea197..7702e3f 100644
---- a/recipes-kernel/linux/linux-yocto-dev.bbappend
-+++ b/recipes-kernel/linux/linux-yocto-dev.bbappend
-@@ -6,3 +6,5 @@ COMPATIBLE_MACHINE_vyasa-rk3288 =3D "vyasa-rk3288"
- COMPATIBLE_MACHINE_tinker-board =3D "tinker-board"
- COMPATIBLE_MACHINE_tinker-board-s =3D "tinker-board-s"
- COMPATIBLE_MACHINE_rock-pi-4 =3D "rock-pi-4"
-+COMPATIBLE_MACHINE_nanopi-m4 =3D "nanopi-m4"
-+COMPATIBLE_MACHINE_nanopi-m4-2gb =3D "nanopi-m4-2gb"
-diff --git a/recipes-kernel/linux/linux-yocto-rt_%.bbappend b/recipes-ker=
-nel/linux/linux-yocto-rt_%.bbappend
-index e5ea197..7702e3f 100644
---- a/recipes-kernel/linux/linux-yocto-rt_%.bbappend
-+++ b/recipes-kernel/linux/linux-yocto-rt_%.bbappend
-@@ -6,3 +6,5 @@ COMPATIBLE_MACHINE_vyasa-rk3288 =3D "vyasa-rk3288"
- COMPATIBLE_MACHINE_tinker-board =3D "tinker-board"
- COMPATIBLE_MACHINE_tinker-board-s =3D "tinker-board-s"
- COMPATIBLE_MACHINE_rock-pi-4 =3D "rock-pi-4"
-+COMPATIBLE_MACHINE_nanopi-m4 =3D "nanopi-m4"
-+COMPATIBLE_MACHINE_nanopi-m4-2gb =3D "nanopi-m4-2gb"
-diff --git a/recipes-kernel/linux/linux-yocto-tiny_%.bbappend b/recipes-k=
-ernel/linux/linux-yocto-tiny_%.bbappend
-index e5ea197..7702e3f 100644
---- a/recipes-kernel/linux/linux-yocto-tiny_%.bbappend
-+++ b/recipes-kernel/linux/linux-yocto-tiny_%.bbappend
-@@ -6,3 +6,5 @@ COMPATIBLE_MACHINE_vyasa-rk3288 =3D "vyasa-rk3288"
- COMPATIBLE_MACHINE_tinker-board =3D "tinker-board"
- COMPATIBLE_MACHINE_tinker-board-s =3D "tinker-board-s"
- COMPATIBLE_MACHINE_rock-pi-4 =3D "rock-pi-4"
-+COMPATIBLE_MACHINE_nanopi-m4 =3D "nanopi-m4"
-+COMPATIBLE_MACHINE_nanopi-m4-2gb =3D "nanopi-m4-2gb"
-diff --git a/recipes-kernel/linux/linux-yocto_%.bbappend b/recipes-kernel=
-/linux/linux-yocto_%.bbappend
-index e5ea197..7702e3f 100644
---- a/recipes-kernel/linux/linux-yocto_%.bbappend
-+++ b/recipes-kernel/linux/linux-yocto_%.bbappend
-@@ -6,3 +6,5 @@ COMPATIBLE_MACHINE_vyasa-rk3288 =3D "vyasa-rk3288"
- COMPATIBLE_MACHINE_tinker-board =3D "tinker-board"
- COMPATIBLE_MACHINE_tinker-board-s =3D "tinker-board-s"
- COMPATIBLE_MACHINE_rock-pi-4 =3D "rock-pi-4"
-+COMPATIBLE_MACHINE_nanopi-m4 =3D "nanopi-m4"
-+COMPATIBLE_MACHINE_nanopi-m4-2gb =3D "nanopi-m4-2gb"
+One possibility would be using a KERNEL_CONFIG_VARIANT variable, whose
+values would select consistent sets of KBUILD_DEFCONFIG + KCONFIG_MODE
++ SRC_URI_append.  Standard variants could include "mainline" as the
+default, and
+maybe "customhw" which would bring just the hw features for the board
+in allnoconfig
+mode.
+
+Or maybe we could try to fit such a selection mechanism in the PACKAGECONFI=
+G
+system, but I'm not sure it would really fit.
+
+
+
 --=20
-2.30.2
-
+Yann Dirson <yann@blade-group.com>
+Blade / Shadow -- http://shadow.tech
