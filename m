@@ -1,61 +1,127 @@
-Subject: Quectel EG25-G LTE modem
-To: yocto@lists.yoctoproject.org
-From: "Zoltan Kerenyi Nagy" <kerenyi.nagy.zoltan@gmail.com>
-X-Originating-Location: Tamasi, Tolna megye, HU (84.1.252.39)
-X-Originating-Platform: Linux Firefox 86
-User-Agent: GROUPS.IO Web Poster
+Received: from outbound1.mail.transip.nl (outbound1.mail.transip.nl [149.210.149.72])
+ by mx.groups.io with SMTP id smtpd.web11.3451.1616579203207028212
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 24 Mar 2021 02:46:45 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@herrie.org header.s=transip-a header.b=vKgnoO40;
+ spf=pass (domain: herrie.org, ip: 149.210.149.72, mailfrom: me@herrie.org)
+Received: from submission0.mail.transip.nl (unknown [10.100.4.69])
+	by outbound1.mail.transip.nl (Postfix) with ESMTP id 4F53KX58g3zRhjK;
+	Wed, 24 Mar 2021 10:46:40 +0100 (CET)
+Received: from transip.email (unknown [10.100.4.34])
+	by submission0.mail.transip.nl (Postfix) with ESMTPA id 4F53KV33Syz3qcd9;
+	Wed, 24 Mar 2021 10:46:38 +0100 (CET)
 MIME-Version: 1.0
-Date: Wed, 24 Mar 2021 02:41:55 -0700
-Message-ID: <eFOx.1616578915599039270.fmsb@lists.yoctoproject.org>
-X-Groupsio-MsgNum: 52832
-Content-Type: multipart/related; boundary="47Nl8Occb5juPxpyHuE7"
+Date: Wed, 24 Mar 2021 10:46:38 +0100
+From: "Herman van Hazendonk (Herrie)" <yoctoproject.org@herrie.org>
+To: Zoltan Kerenyi Nagy <kerenyi.nagy.zoltan@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] Quectel EG25-G LTE modem
+Reply-To: yoctoproject.org@herrie.org
+Mail-Reply-To: yoctoproject.org@herrie.org
+In-Reply-To: <eFOx.1616578915599039270.fmsb@lists.yoctoproject.org>
+References: <eFOx.1616578915599039270.fmsb@lists.yoctoproject.org>
+Message-ID: <9685e2a612a17ae37567840e3417aba7@herrie.org>
+X-Sender: me@herrie.org
+User-Agent: Webmail
+X-Scanned-By: ClueGetter at submission0.mail.transip.nl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=transip-a; d=herrie.org; t=1616579198; h=from:reply-to:subject:to:
+ cc:references:in-reply-to:date:mime-version:content-type;
+ bh=fRxy1kQMyWN6pWoH22qfb7aoahsSg/maxa3A28J4scQ=;
+ b=vKgnoO40h8ogbxuaoGZ/l1YlkM8pE2kqfMkfHsofzvRKA6IO9t0CvYXek//hGBMLeQ/3v4
+ aYdXM0ACW3t1u9f7diADz7rtvYwFsgA6aJFCdI+CwcM8YvzP2du4dO2xawLEjWwPCuGnC7
+ R9MG6zqlGGhdUe8ZTf8nGdCjcl1sGBrNJvPzqRxTMOTJl/Yt6nQ7W6XBBAo1f0ksqwIGBT
+ b4NAM2l5tArqx84jJleNbyXAFmVGq6J4OXdmvgQI1ypIEzH4X1M1RyIw7yQcqOm/ud2e1E
+ xRq93cf/RXcnu+9Yw/Ks5XslmtmP3tXTcxXdpLS/CGYuxPUg6kMfcL1lvH3Oag==
+X-Report-Abuse-To: abuse@transip.nl
+X-Groupsio-MsgNum: 52833
+Content-Type: multipart/alternative;
+ boundary="=_6e3e3f6493a9a909bf76a2d640b83739"
 
---47Nl8Occb5juPxpyHuE7
-Content-Type: multipart/alternative; boundary="KQRenmH8F4tM1NF4AmjK"
+--=_6e3e3f6493a9a909bf76a2d640b83739
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII
 
---KQRenmH8F4tM1NF4AmjK
-Content-Type: text/plain; charset="utf-8"
+Hi Zolee, 
+
+You might want to have a look at our LuneOS meta-smartphone layer where
+one of our devs added the modem support for the modem of the PinePhone
+which seems to be the same one: 
+
+https://github.com/shr-distribution/meta-smartphone/tree/gatesgarth/meta-qualcomm-modems
+
+
+Best regards,
+Herman 
+
+On 2021-03-24 10:41, Zoltan Kerenyi Nagy wrote:
+
+> Hi,
+> 
+> I'm trying to make a recipie for a quectel-cm driver. I created a folder for it and put all the source files into a file folder.
+> This would be the first time that I'm making a recipie for multiple files with a Makefile. In the manuals there is only an example for a singe helloworld.c file, which is easy.
+> I tried with devtool to add a recipe but it's just skeleton.
+> 
+> Could you help me to to create a good recipe file for this quectel driver please?
+> 
+> Here are the sources:
+> 
+> -- 
+> Zolee 
+> 
+> 
+
+--=_6e3e3f6493a9a909bf76a2d640b83739
+Content-Type: multipart/related;
+ boundary="=_7d25f57f4a5e7ee635eacc72cd2a0d83"
+
+--=_7d25f57f4a5e7ee635eacc72cd2a0d83
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
-Hi,
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=
+=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Verdana,Ge=
+neva,sans-serif'>
+<p>Hi Zolee,</p>
+<p>You might want to have a look at our LuneOS meta-smartphone layer where=
+&nbsp;one of our devs added the modem support for the modem of the PinePhon=
+e which seems to be the same one:</p>
+<p><a href=3D"https://github.com/shr-distribution/meta-smartphone/tree/gat=
+esgarth/meta-qualcomm-modems">https://github.com/shr-distribution/meta-smar=
+tphone/tree/gatesgarth/meta-qualcomm-modems</a></p>
+<p>Best regards,<br />Herman</p>
+<p><br /></p>
+<p><br /></p>
+<p>On 2021-03-24 10:41, Zoltan Kerenyi Nagy wrote:</p>
+<blockquote type=3D"cite" style=3D"padding: 0 0.4em; border-left: #1010ff =
+2px solid; margin: 0"><!-- html ignored --><!-- head ignored --><!-- meta i=
+gnored -->
+<p>Hi,<br /><br />I'm trying to make a recipie for a quectel-cm driver. I =
+created a folder for it and put all the source files into a file folder.<br=
+ />This would be the first time that I'm making a recipie for multiple file=
+s with a Makefile. In the manuals there is only an example for a singe hell=
+oworld.c file, which is easy.<br />I tried with devtool to add a recipe but=
+ it's just skeleton.<br /><br />Could you help me to to create a good recip=
+e file for this quectel driver please?<br /><br />Here are the sources:<br =
+/><img src=3D"cid:1616579198605b0a7e4ae05698608675@herrie.org" /><br />-- <=
+br />Zolee </p>
+<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace"=
+><br /> <br /> </div>
+</blockquote>
+<p><br /></p>
 
-I'm trying to make a recipie for a quectel-cm driver. I created a folder f=
-or it and put all the source files into a file folder.
-This would be the first time that I'm making a recipie for multiple files =
-with a Makefile. In the manuals there is only an example for a singe hellow=
-orld.c file, which is easy.
-I tried with devtool to add a recipe but it's just skeleton.
+</body></html>
 
-Could you help me to to create a good recipe file for this quectel driver =
-please?
-
-Here are the sources:
-
---
-Zolee
-
---KQRenmH8F4tM1NF4AmjK
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,<br /><br />I'm trying to make a recipie for a quectel-cm driver. I crea=
-ted a folder for it and put all the source files into a file folder.<br />T=
-his would be the first time that I'm making a recipie for multiple files wi=
-th a Makefile. In the manuals there is only an example for a singe hellowor=
-ld.c file, which is easy.<br />I tried with devtool to add a recipe but it'=
-s just skeleton.<br /><br />Could you help me to to create a good recipe fi=
-le for this quectel driver please?<br /><br />Here are the sources:<br /><i=
-mg src=3D"cid:attach_0_166F3DF56FADFABC_22743@lists.yoctoproject.org" /><br=
- />-- <br />Zolee
-
---KQRenmH8F4tM1NF4AmjK--
-
---47Nl8Occb5juPxpyHuE7
-Content-Id: <attach_0_166F3DF56FADFABC_22743@lists.yoctoproject.org>
-X-Attachment-Id: attach_0_166F3DF56FADFABC_22743@lists.yoctoproject.org
-Content-Type: image/png; name="Screenshot from 2021-03-24 10-37-14.png"
+--=_7d25f57f4a5e7ee635eacc72cd2a0d83
 Content-Transfer-Encoding: base64
-Content-Disposition: inline; filename="Screenshot from 2021-03-24 10-37-14.png"
+Content-ID: <1616579198605b0a7e4ae05698608675@herrie.org>
+Content-Type: image/png;
+ name="Screenshot from 2021-03-24 10-37-14.png"
+Content-Disposition: inline;
+ filename="Screenshot from 2021-03-24 10-37-14.png";
+ size=31934
 
 iVBORw0KGgoAAAANSUhEUgAAB9wAAADzCAIAAABL+fq2AAAABmJLR0QA/wD/AP+gvaeTAAAACXBI
 WXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5QMYCSUt+q2SLAAAIABJREFUeNrs3Xd8E/X/B/D35+6y
@@ -619,4 +685,6 @@ AAAAAAAAAACihE55AAAAAAAAAACihE55AAAAAAAAAACihE55AAAAAAAAAACihE55AAAAAAAAAACi
 hE55AAAAAAAAAACihE55AAAAAAAAAACihE55AAAAAAAAAACihE55AAAAAAAAAACi5P8Bvj3sYhaL
 jckAAAAASUVORK5CYII=
 
---47Nl8Occb5juPxpyHuE7--
+--=_7d25f57f4a5e7ee635eacc72cd2a0d83--
+
+--=_6e3e3f6493a9a909bf76a2d640b83739--
