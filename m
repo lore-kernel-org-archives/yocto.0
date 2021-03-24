@@ -1,107 +1,93 @@
-Subject: Issue generating working sdk containing Clang (meta-clang) and package_deb for compiling eBPF #sdk #dunfell #yocto #kernel #linux
-To: yocto@lists.yoctoproject.org
-From: "msg board" <msgboardpana@gmail.com>
-X-Originating-Location: Fremont, California, US (73.231.211.214)
-X-Originating-Platform: Mac Chrome 89
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+ by mx.groups.io with SMTP id smtpd.web09.2610.1616618006105525015
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 24 Mar 2021 13:33:26 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=g2GlNeeE;
+ spf=pass (domain: gmail.com, ip: 209.85.167.50, mailfrom: arunlee@gmail.com)
+Received: by mail-lf1-f50.google.com with SMTP id v15so3773546lfq.5
+        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 13:33:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=khxGqFfyNbP45TCVlGITOih8vBZYFbp/uwU5BphM8+A=;
+        b=g2GlNeeEH83FqrhZXMRo40LSxFYeWyKkcnF0kLH3kG38eSlS7cxSdL/5wN9pNEvJTM
+         E+hBXNuTxd/V7PqWXz6sJkEmSfJHDgB1RUKB/PfAl6Ds5r7g9NQRZKfgzLI0ZFyks/LN
+         6uAy1xjucvyJqS4RpWJZsUVWtMFYF6Vev50ZpguN5Zj3wYv3I5F8JEi+26z06tbmJMxi
+         nmR65OHUg8cU0mEuREA80Md49kJ7PFl5R56K0P669r48ASITa9xrQjFkHOu7aTl8RuqX
+         DbqX/sIXI9MINAbaImrpx+q+hsKfok2gGlkXmG/KnAa0EGfCFOowRHk8aLoiJ9AarvM0
+         WWJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=khxGqFfyNbP45TCVlGITOih8vBZYFbp/uwU5BphM8+A=;
+        b=MegyDIZi+FbOFym0c2DUZ50OoRszi1qTBSr85DUSVGdeaGlFL3rPIABhPBGh57HgDD
+         G+OOj0btUhT2Jxb0Sg1jhZhW+RjxTdCglC5VSYrWumzWy7NDpf80b/cVBuSM1C5EPHmu
+         dcRJCJcqg/T7XYBHeTt6XAB4joPNMsU5aXoKRD96lwN+YZ7H6F7etRrDNE+auh+2wxcz
+         5oTz0XxtSSip8jFAKWN1ZAxRhYiKNEvY03guxd+F+hjhZxM5ei0RBVkPf2ORCNrhigvR
+         GJyrqTmnID03SGO1taR8ODSa4HfeSfhYt8rV/NScKPZJWXAOaxpzb6yqerXT/yMeZa0H
+         Y6Jg==
+X-Gm-Message-State: AOAM531Gf1VDud0WG7+07cA35iNgAcKHBYRNo6J9Xq6BzY07Au2S1tXz
+	y6/KFY+lZ5O4uBbbnI2g2EMNiX+1i53MMGmDZNo=
+X-Google-Smtp-Source: ABdhPJxPKh2wepvk9119WL62qxYg6Z4ejRgUsdhltNvnhbek7bB7JRxbqwynPySe83w4H2LzPxvJNDUxLMd+SmK9IAM=
+X-Received: by 2002:ac2:5937:: with SMTP id v23mr2973472lfi.82.1616618004304;
+ Wed, 24 Mar 2021 13:33:24 -0700 (PDT)
 MIME-Version: 1.0
-Date: Thu, 25 Mar 2021 09:16:29 -0700
-Message-ID: <8S52.1616688989583067700.ubBM@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="UsH5vJAiqbjQCCApBWKs"
-
---UsH5vJAiqbjQCCApBWKs
-Content-Type: text/plain; charset="utf-8"
+References: <1bf54cb4-31c0-863c-ead4-c02431ba1c36@gmail.com>
+ <12874.1616616288995699304@lists.yoctoproject.org> <CAMKF1srkxBEhG0uHqo218AGiLmeqSAC83kkwb4wJa98HJQ9CZA@mail.gmail.com>
+In-Reply-To: <CAMKF1srkxBEhG0uHqo218AGiLmeqSAC83kkwb4wJa98HJQ9CZA@mail.gmail.com>
+From: arunlee@gmail.com
+Date: Wed, 24 Mar 2021 22:33:13 +0200
+Message-ID: <CAFDdYFgeeEZjDY0N6ZQvuEOrzYeiNkz1R8CLz9O04WF29nhVzg@mail.gmail.com>
+Subject: Re: Private: Re: [poky] Weird Compilation issue with a c++ recipe
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+>
+> Adding yp mailing list back.
+>
+> On Wed, Mar 24, 2021 at 1:04 PM <arunlee@gmail.com> wrote:
+> >
+> > This what i see:
+> >
+> > /build$ bitbake -e rs-oem-kit-server | grep -e "CXX=3D"
+> > export BUILD_CXX=3D"g++ "
+> > export CXX=3D"aarch64-poky-linux-g++  -mcpu=3Dcortex-a72+crc+crypto -fs=
+tack-protector-strong  -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -We=
+rror=3Dformat-security --sysroot=3D/home/aravind2/work/mevolve-yocto/mvdevi=
+ce/build/tmp/work/aarch64-poky-linux/rs-oem-kit-server/1.8.2.0-r0/recipe-sy=
+sroot"
+>
+> but the logs you posted doesn't show this as CXX, so somewhere its
+> being overwritten. Are there more CMakeFiles that are in play ?
 
-I=C2=A0need Clang=C2=A0compiler apart=C2=A0from currently=C2=A0available d=
-efault gcc compiler as I am trying to compile eBPF which will run on my cus=
-tom yocto which is based on core-image-minimal. Therefore I=C2=A0added Clan=
-g=C2=A0compiler to my yocto sdk build using the meta-clang layer available =
-at https://github.com/kraj/meta-clang. My yocto is based on dunfell and use=
-s package_deb inside local.conf. SDK compilation succeeded with command "bi=
-tbake <mycustomdistro> -c populate_sdk " but while installation on host the=
-re errors similar to the ones mentioned in this issue ( https://github.com/=
-kraj/meta-clang/issues/119 ).=C2=A0 Therefore, I removed the LDFLAGS_append=
-_class-nativesdk =3D " -fuse-ld=3Dgold" line from clang_git.bb and compiled=
-. This gave me errors related to this issue ( https://stackoverflow.com/que=
-stions/60058817/bitbake-populate-sdk-for-image-fails-with-error ). Therefor=
-e, I added package_ipk and also kept package_deb . The compilation was succ=
-essful but there was one warning as below :
+I have posted the top level CMakeList.txt in the first post, which
+added a sub directory
 
--------------------------
+INCLUDE_DIRECTORIES(include)
 
-<CUSTOMDISTRO> do_populate_sdk: Unable to install packages. Command <Path>=
-/opkg --volatile-cache -f <Path>/opkg.conf -t <Path>/sysroots/core2-64-poky=
--linux --force-postinstall --prefer-arch-to-version install <Long list of s=
-pace seperate package names> returned 1
+# Add the sources to the target
+add_subdirectory(src)
 
-Collected errors: Solver encountered 1 problem(s) ....
 
--------------------------
+that has one CMakeList.txt.
 
-The installation of on host was successful
 
-When I tried to use the sdk to compile eBPF, I got errors mentioning that =
-the sysroot does not contain /usr/include/gelf.h . After looking I saw that=
- elfutils-dev tools were not installed. elfutils-dev would have installed g=
-elf.h. in /usr/include of sysroot.
+# Set minimum required CMake version
+cmake_minimum_required(VERSION 3.5.1)
 
-Without the addition of Clang I was able to generate working sdk with just=
- package_deb in local.conf.
+# Name the project
+project (sources)
 
---UsH5vJAiqbjQCCApBWKs
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+add_subdirectory(calsimple)
+add_subdirectory(calibinfo)
+add_subdirectory(writer)
+add_subdirectory(converter)
+add_subdirectory(server)
 
-<p>Hello,</p>
-<p>I&nbsp;need Clang&nbsp;compiler apart&nbsp;from currently&nbsp;availabl=
-e default gcc compiler as I am trying to compile eBPF which will run on my =
-custom yocto which is based on core-image-minimal. Therefore I&nbsp;added C=
-lang&nbsp;compiler to my yocto sdk build using the meta-clang layer availab=
-le at&nbsp;<a href=3D"https://github.com/kraj/meta-clang" target=3D"_blank"=
- rel=3D"nofollow noopener">https://github.com/kraj/meta-clang</a>&nbsp;. My=
- yocto is based on dunfell and uses package_deb inside local.conf. SDK comp=
-ilation succeeded with command "bitbake &lt;mycustomdistro&gt; -c populate_=
-sdk " but while installation on host there errors similar to the ones menti=
-oned in&nbsp;<a href=3D"https://github.com/kraj/meta-clang/issues/119" targ=
-et=3D"_blank" rel=3D"nofollow noopener">this issue</a>&nbsp;.&nbsp; Therefo=
-re, I removed the&nbsp;<span style=3D"font-size: 12px; font-family: SFMono-=
-Regular, Consolas, 'Liberation Mono', Menlo, monospace; color: #24292e;">LD=
-FLAGS_append_class-nativesdk =3D " -fuse-ld=3Dgold"&nbsp;</span><span style=
-=
-=3D"color: #24292e;"><span style=3D"font-family: arial, sans-serif;">line =
-from clang_git.bb and compiled. This gave me errors related to this&nbsp;<a=
- href=3D"https://stackoverflow.com/questions/60058817/bitbake-populate-sdk-=
-for-image-fails-with-error" target=3D"_blank" rel=3D"nofollow noopener">iss=
-ue</a>&nbsp;. Therefore, I added package_ipk and also kept package_deb . Th=
-e compilation was successful but there was one warning as below :</span></s=
-pan></p>
-<p><span style=3D"color: #24292e;"><span style=3D"font-family: arial, sans=
--serif;">-------------------------</span></span></p>
-<p><span style=3D"color: #24292e;"><span style=3D"font-family: arial, sans=
--serif;">&lt;CUSTOMDISTRO&gt; do_populate_sdk: Unable to install packages. =
-Command &lt;Path&gt;/opkg --volatile-cache -f &lt;Path&gt;/opkg.conf -t &lt=
-;Path&gt;/sysroots/core2-64-poky-linux --force-postinstall --prefer-arch-to=
--version install &lt;Long list of space seperate package names&gt; returned=
- 1</span></span></p>
-<p><span style=3D"color: #24292e;"><span style=3D"font-family: arial, sans=
--serif;">Collected errors:&nbsp;</span></span><span style=3D"font-family: a=
-rial, sans-serif; color: #24292e;">Solver encountered 1 problem(s) ....</sp=
-an></p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p><span style=3D"color: #24292e;"><span style=3D"font-family: arial, sans=
--serif;">-------------------------</span></span></p>
-<p>The installation of on host was successful</p>
-<p><span style=3D"color: #24292e;"><span style=3D"font-family: arial, sans=
--serif;">When I tried to use the sdk to compile eBPF, I got errors mentioni=
-ng that the sysroot does not contain /usr/include/gelf.h . After looking I =
-saw that elfutils-dev tools were not installed. elfutils-dev would have ins=
-talled gelf.h. in /usr/include of sysroot.</span></span></p>
-<p>Without the addition of Clang I was able to generate working sdk with j=
-ust package_deb in local.conf.&nbsp;</p>
-
---UsH5vJAiqbjQCCApBWKs--
+regards
+Arun
