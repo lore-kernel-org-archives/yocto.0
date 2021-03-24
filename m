@@ -1,105 +1,155 @@
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
- by mx.groups.io with SMTP id smtpd.web11.691.1616610341675431722
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.754.1616610647839598213
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Mar 2021 11:25:41 -0700
+ Wed, 24 Mar 2021 11:30:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=cZOjGVhT;
- spf=pass (domain: gmail.com, ip: 209.85.215.173, mailfrom: raj.khem@gmail.com)
-Received: by mail-pg1-f173.google.com with SMTP id m7so15210108pgj.8
-        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 11:25:41 -0700 (PDT)
+ dkim=pass header.i=@linaro.org header.s=google header.b=wG+QLVx8;
+ spf=softfail (domain: linaro.org, ip: 198.145.29.25, mailfrom: anibal.limon@linaro.org)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id B4DFA38C081C
+	for <yocto@yoctoproject.org>; Wed, 24 Mar 2021 18:30:46 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id 12so13428633wmf.5
+        for <yocto@yoctoproject.org>; Wed, 24 Mar 2021 11:30:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+mFuu/jA6RlDw1RSqgof1kZqDDqqy+KBBVxddMw9uF0=;
-        b=cZOjGVhTgolWLEU/HkJ2ZyLG7n9M04rRgmARmp4Xgxq/BoUkkkg8CnzJVYjBmiL5g7
-         +cB8aG28RxiDJRbvtFgxQ0/8q1mLSMH/m8L6B765ry7CWs5JmrTvp4aIJxHiKbRtyvye
-         NEFJVNuPYVLO5Ut3Uhi118dvEyvDK3+NN7+wuRrrs6m8pR76L3OAMLmXIXPxUm+6Eqxw
-         fiLFExy/h5DnTL6qRPIuqjFjhKGwqm6h0dP1gD1fn7YQ4f2zsyX8caHlMtXMgitVAH2y
-         3Y7HUSN+YtMB3divOnrZDmubmafQ5gjh3Q51NKjjdQyTuHFzpjjhMMr1tiwEz1rBS07Q
-         onjQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HHEvnsCJNTxXkgnGMJ9VrGSKCPwQzLkBrkRNUQgrXx4=;
+        b=wG+QLVx8Uh+gVWJqpQsdYK3JvxixU4QzIuAj51wDw9q7LxcQqiz5ZsEZ8TXzuB+3ZN
+         X03tO5rACcHjgfdViuc/QhRd+OQGkLe7hhaw3kadLZL4l7PYplKgMy48lBAovvCgY4mj
+         G4y1TCPcz9+JseT6vPfKHIm+EKAq+IB7RYpF9/F6VPrMEh8AFPZDM6WYs7UH+9+tCdej
+         w2neBjHCumxci0k1+h92RF7r35nUugfdsFD8wYBgEnSVj4LFoGgYPnHvsrzvAXwwdGPY
+         w8GdNcVNv6etoYK4BjVujB2pWksfAI4KBi54WxO3kgBbJp7qEu/Dv1Q8KiODh3gsFs63
+         DJuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=+mFuu/jA6RlDw1RSqgof1kZqDDqqy+KBBVxddMw9uF0=;
-        b=AHstOANpvWUlmdYVHzuOP/bLj+elD7y4gh4Xi3MDM8AuRlFKylwZvY4SYPvOO2Ije2
-         8uqnSjwJPI62kgpfwbjgrElGl/pRjzqlIC/XdUtbYCwgofvH2QKQsDwfBWwHSIznqe6w
-         O0f/aDEmhHIKamLXQBYbLB7gqzne2PzgwaUvrAGWOux/L6EYLMa8xCoPhDJtLHMuKEV5
-         H2+tSepPhHQiJ+DoPp2Xjai+h189q0gBLVVYtEsl84JRiW69qUr5rvbA2rM2hHM8zgta
-         E8xE0zfkt29SJeOYKUhfigxZiXcGAOSFKe5f6xZzR/y4xwBrXbwIrLPz5565iy7wMw/2
-         Aolg==
-X-Gm-Message-State: AOAM5318a+ikDSrvkK2aBzn8Ld0gIHqRI+MwfqTkba8zNP/CbLLqqfvv
-	IKu9pBo6Pcklp7VtPfVFVOd0Tg9YhG6cog==
-X-Google-Smtp-Source: ABdhPJxl+Yh4kB3BysWffMpOgp41DJ6tOef8UdR0mk1XizMCrJnCfLkE0RlsIjF/EHc7J6NoKmPdyw==
-X-Received: by 2002:a63:cf4b:: with SMTP id b11mr4208431pgj.257.1616610340752;
-        Wed, 24 Mar 2021 11:25:40 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:a0f0:2da1:1afd:1712:ea8b? ([2601:646:9200:a0f0:2da1:1afd:1712:ea8b])
-        by smtp.gmail.com with ESMTPSA id e131sm3465551pfh.176.2021.03.24.11.25.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Mar 2021 11:25:40 -0700 (PDT)
-Subject: Re: [yocto] Change (and remove unused) init system on a per-image basis #yocto #bitbake #systemd #sysvinit
-To: lel@iesy.com, yocto@lists.yoctoproject.org
-References: <cZz1.1616595127408925958.SGte@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <01be3f74-a7b1-7e96-5c25-f1748bda9ffb@gmail.com>
-Date: Wed, 24 Mar 2021 11:25:39 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:78.0)
- Gecko/20100101 Thunderbird/78.8.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HHEvnsCJNTxXkgnGMJ9VrGSKCPwQzLkBrkRNUQgrXx4=;
+        b=lF/jGY732Szyt4bwV/0a2/mk09nj2Yno/vommpTMrMEfm7TOg9UxjpOlIqE7XgozdB
+         wN1FltUhbO+HQYz+29V2o7cjDo3VrekFaU1UrhlKM1n5pY7v0Z+s99U1lauUa7Dteh2v
+         SOG4LP+XJRbI/YXycrI62HCVW1VYVT7wvUZnyffUoYKcEKE51BKV4DyyUkDxFKmU562o
+         qA6ci4P2W8YL1XTn8snMZ3JQKi/Vp1bvyMnM7pFWSKkpZs3Z7p/QsYodjTLIlOaC6qaz
+         yLVZ1VuqeJSf5qWwOFxf+PDAtid4CDoEvKGbeDUpimAl2LKqE0BB2jGuWvMN46b65IUf
+         EnXQ==
+X-Gm-Message-State: AOAM5315gX9BmchP/AdZzZ/RZvA1R9YXGshq4taxmraPyGDp6tNaQU8u
+	VPM9A8CKdPbHGG8O2BsBoy/3d4d7c0xBV/ZrpWDA8w==
+X-Google-Smtp-Source: ABdhPJz7+JLvVmcgrxz66ez/hyxTlRanXZDvKFs3/fp+gY4RGLJSO4PwqTdF00AYjKOPDlmwxcyvPaeh6FyD8PRkTqQ=
+X-Received: by 2002:a1c:6745:: with SMTP id b66mr4291254wmc.114.1616610645185;
+ Wed, 24 Mar 2021 11:30:45 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <cZz1.1616595127408925958.SGte@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <20210323021038.1049654-1-anibal.limon@linaro.org>
+ <20210323021038.1049654-4-anibal.limon@linaro.org> <29a34816-abe7-e267-2f62-44bb891fcf78@windriver.com>
+In-Reply-To: <29a34816-abe7-e267-2f62-44bb891fcf78@windriver.com>
+From: "Anibal Limon" <anibal.limon@linaro.org>
+Date: Wed, 24 Mar 2021 12:30:34 -0600
+Message-ID: <CA+_AqitfyYi4C0AKPa5RZT2nWgt-ufpO2UyJTThMT_0nM66VLQ@mail.gmail.com>
+Subject: Re: [ptest-runner][PATCH 4/4] utils.c: wait_child reimplement timeout using alarm
+To: Yi Fan Yu <yifan.yu@windriver.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>, "MacLeod, Randy" <Randy.MacLeod@windriver.com>, 
+	Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Content-Type: multipart/alternative; boundary="0000000000003f492205be4c7f09"
 
-you are better off by having two different DISTROs like poky and 
-poky-altcfg is.
+--0000000000003f492205be4c7f09
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 3/24/21 7:12 AM, lel@iesy.com wrote:
-> Hi all,
-> 
-> I would like to change the init system (systemd / SysVinit) on a 
-> per-image basis.
-> Therefore I added both "systemd" and "sysvinit" to my DISTRO_FEATURES.
-> 
-> I set this inside my *image-systemd.bb* to make sure that systemd is 
-> available as a distro feature:
-> 
-> REQUIRED_DISTRO_FEATURES = "systemd"
-> 
-> 
-> Now I want to prevent the "unused" init system (in this case sysvinit) 
-> from being added to the rootfs.
-> Therefore I tried something like this inside my *distro.conf*:
-> 
-> DISTRO_FEATURES_BACKFILL_CONSIDERED = "${@bb.utils.contains('REQUIRED_DISTRO_FEATURES', 'systemd', 'sysvinit', '', d)}"
-> 
-> 
-> As expected, this leads into the following. So far so good:
-> 
-> $ bitbake image-systemd -e | grep DISTRO_FEATURES_BACKFILL_CONSIDERED=
-> DISTRO_FEATURES_BACKFILL_CONSIDERED="sysvinit"
-> 
-> But the final rootfs still contains sysvinit scripts (/etc/init.d/*)
-> 
-> Now the strange thing:
-> If I instead do this inside my *distro.conf*, /etc/init.d is not being 
-> created, exactly as I wanted:
-> 
-> DISTRO_FEATURES_BACKFILL_CONSIDERED="sysvinit"
-> 
-> 
-> So I don't really understand why this solution doesn't work.
-> Any help would be appreciated.
-> 
-> 
-> Thanks and Regards,
-> Stefan
-> 
-> 
-> 
-> 
-> 
+On Wed, 24 Mar 2021 at 09:56, Yi Fan Yu <yifan.yu@windriver.com> wrote:
+
+> On 3/22/21 10:10 PM, An=C3=ADbal Lim=C3=B3n wrote:
+> > Since we are using threads to read from child, no complex logic is
+> > needed for handle timeouts use alarm(2).
+> TY for the patches.
+>
+> This would change its behaviour to timeout exactly at X seconds.
+>
+> New behaviour: if test exceeds X seconds, gets killed.
+> Old behaviour: if test exceeds X seconds with no output, get killed. If
+> output is detected X-1 seconds, the timeout timer resets.
+> so a program could take 2X seconds and not get killed
+>
+
+Yeah, thanks for remind me the old behavior, some years and I forget about
+it, I will fix it and put certain comments about that.
+
+
+>
+>
+> Comment about the other patches:
+>
+> We don't even need an extra thread because before the wait_for_child had
+> to do 2 things:
+>
+> * read a pipe and output that pipe to stdout (child_reader does that)
+> * check for timeout (sigalarm takes care of that now)
+>
+>
+>
+> last thing, can you push this to a branch (let's say) master-next, so I
+> can test it with a full ptest run.
+>
+
+I pushed to dev branch,
+
+http://git.yoctoproject.org/cgit/cgit.cgi/ptest-runner2/log/?h=3Ddev
+
+Regards,
+Anibal
+
+
+>
+> yifan
+>
+
+--0000000000003f492205be4c7f09
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Wed, 24 Mar 2021 at 09:56, Yi Fan =
+Yu &lt;<a href=3D"mailto:yifan.yu@windriver.com">yifan.yu@windriver.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 3=
+/22/21 10:10 PM, An=C3=ADbal Lim=C3=B3n wrote:<br>
+&gt; Since we are using threads to read from child, no complex logic is<br>
+&gt; needed for handle timeouts use alarm(2).<br>
+TY for the patches.<br>
+<br>
+This would change its behaviour to timeout exactly at X seconds.<br>
+<br>
+New behaviour: if test exceeds X seconds, gets killed.<br>
+Old behaviour: if test exceeds X seconds with no output, get killed. If <br=
+>
+output is detected X-1 seconds, the timeout timer resets.<br>
+so a program could take 2X seconds and not get killed<br></blockquote><div>=
+<br></div><div>Yeah, thanks for remind me the old behavior, some years and =
+I forget about it, I will fix it and put certain comments about that.</div>=
+<div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+<br>
+Comment about the other patches:<br>
+<br>
+We don&#39;t even need an extra thread because before the wait_for_child ha=
+d <br>
+to do 2 things:<br>
+<br>
+* read a pipe and output that pipe to stdout (child_reader does that)<br>
+* check for timeout (sigalarm takes care of that now)<br>
+<br>
+<br>
+<br>
+last thing, can you push this to a branch (let&#39;s say) master-next, so I=
+ <br>
+can test it with a full ptest run.<br></blockquote><div><br></div><div>I pu=
+shed to dev branch,</div><div><br></div><div><a href=3D"http://git.yoctopro=
+ject.org/cgit/cgit.cgi/ptest-runner2/log/?h=3Ddev">http://git.yoctoproject.=
+org/cgit/cgit.cgi/ptest-runner2/log/?h=3Ddev</a><br></div><div><br></div><d=
+iv>Regards,</div><div>Anibal</div><div>=C2=A0</div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex">
+<br>
+yifan<br>
+</blockquote></div></div>
+
+--0000000000003f492205be4c7f09--
