@@ -1,634 +1,985 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.781.1616610738545678998
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+ by mx.groups.io with SMTP id smtpd.web08.810.1616610918692132246
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Mar 2021 11:32:18 -0700
+ Wed, 24 Mar 2021 11:35:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=QlUL98/X;
- spf=softfail (domain: linaro.org, ip: 198.145.29.25, mailfrom: anibal.limon@linaro.org)
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id EE27638C081C
-	for <yocto@yoctoproject.org>; Wed, 24 Mar 2021 18:32:17 +0000 (UTC)
-Received: by mail-wr1-f43.google.com with SMTP id x7so2995871wrw.10
-        for <yocto@yoctoproject.org>; Wed, 24 Mar 2021 11:32:17 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Bp0re12a;
+ spf=pass (domain: gmail.com, ip: 209.85.210.173, mailfrom: raj.khem@gmail.com)
+Received: by mail-pf1-f173.google.com with SMTP id x26so17960292pfn.0
+        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 11:35:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xP3ZAld+IpSIaMZRvEjkKq2dFe5W2ROIrF6hsApFpfk=;
-        b=QlUL98/XxRyABJgUtZFdRll2W8/czcFKS5vNm+qCULY5fZ1HlreJjxl1qTfeCuJKqa
-         RH6ZpxIWd1NSPiEw3LIkE/PrNziEgb+V2RPn4Xd/B695cqIsFfJ9p8fI2luOGkFepoc+
-         cU4f8eq7gq5ut2LHKwSJjD8SS3qu2cjnNL9HDpS/0pXXqpuaP8bK2xBP/8k7kkq8wFjn
-         iPPxNYtAWDC80eXqkuzbyzQoxhDxA0TFubwlz/o4mDnEgeAmOTPoNTWyiMUelj7Rdzu2
-         OA7eM4qdRpl0RbbnkHxHfcKZuvR1YM/IqJzClz5tGYPIILZ2wsr+6a8J/DspsmcfTnSL
-         7Y2w==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=OgqXUE1B5qAQPJ7SDmz8p8mOeyAzQgMSR+CPFoVaShA=;
+        b=Bp0re12aXq+84dQiaEU2U00YlNopoa8YJYadWDrTB0ezszzjX1tHMXhl/qcRdYaEkH
+         xuEv1Jj903ATPgKv1UqstoJgJwDs6pGjLp3WXJxWdEUqf7abhNCzwvtiScr/kNJay2Rs
+         vg02WCV2a1yb0+J5TLdgKpmTRF5ukdDwtE+uzka4bium38Z4CtIBDN/T5f8D8/wFYf1V
+         r3FJQIUYZrIPytfOIGFrD8uTQRR34YICKVCGWY7uLByA7S0aVoC4GftwPAiHxiHdHNVr
+         rio/c7/rBZ38keHX6EViMT7lq9t5tlzn9jRBj4dL3MC5srkpTKYBg8RCvnlufDBT0ZVB
+         +I7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xP3ZAld+IpSIaMZRvEjkKq2dFe5W2ROIrF6hsApFpfk=;
-        b=MULHSd2I78tX5LtQQtm0EUBiywGIQxrNslcRBuSWmRKBCiJqHPVNu3uJT7C94M006M
-         AIs+PgtHUlNchbHBt9mNY22PWJM2fIHcOutvUPYxrqTmAN/frNJl6bktdaTqZxpnVgUx
-         1djvo6FQzJvTC4pYKJfC27mVMtYZwI7yXL1q+MNmde0qdiGIioTcUOL9KoJqJmVjfau9
-         O8IpIt+FTOYq32cexRAbjp38jourCwGzNQkvgcAqv6hrUTxzlSN07X+ROVLGJBROgn2m
-         XoCD0KnVD/VaI5NebB2uTzD3BSwVY89/9uJWD34/5DrC8BOz4XwxhMtE900zUucJloBd
-         /R9g==
-X-Gm-Message-State: AOAM531Jcir87jKeS2sGgQCYbpuQ3NrFwx56l23uK9uRogu2ZP5loyRk
-	D5uQ5xx1SpmyHq8o6TJiizzEE+HS4ZO/cJ+lcOjvpA==
-X-Google-Smtp-Source: ABdhPJy/GbLy2VVazFSCikgm1W2yMa8dxYohiDHctkB/0usaecc9R9YVF0Qc9yY0KElg/rsZeO0JXMTwXpmI/VJYxxY=
-X-Received: by 2002:a5d:5044:: with SMTP id h4mr3988761wrt.95.1616610736510;
- Wed, 24 Mar 2021 11:32:16 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=OgqXUE1B5qAQPJ7SDmz8p8mOeyAzQgMSR+CPFoVaShA=;
+        b=PNtOqcXfNWtYsJ5+D9UUVlSt0oclVyYxgFMhJyr2mrhNOiU1XFNDM7M4DVHMh06RKG
+         3oi5RkKYyR9Z1wI6Ttape7MBeISJi87Y4Q1HHwfTeFnIkaaC9yWDOF/SrSADsTZDR1eR
+         T8wCeOxZcnlsJ68H82Jlag9C+xQLkaDmYASqq9MqPuKTIGtcA81e6gl96eyWfhNvU998
+         YCUsNKhxDsoYeO5F8x28ZL3G9vaM+vdEL7OPJetQl03j/6hZsUPAnmmHU4LLs2E4ys6t
+         XT8zftuByUWggaE3Uipj+vGsb2vsQRVusfZcvFGs6uLPNDqJSw/hwhRNG5j6b8+aG0L7
+         sj2g==
+X-Gm-Message-State: AOAM530K7nmLg6OtxaJqv1h61x2rr1EPUesDPqFX/Hx2lts+KX+qAPBn
+	q3egt8/Zg+tHqzEjK+AXldxHUiL/ZOnq0g==
+X-Google-Smtp-Source: ABdhPJxWgrJZ2AwT2MMBErO58Cs7k+Z6fCTmu6k+o3xgaRIHww6cGzEBMfSACj8Rqts/GcpLuZE9Qw==
+X-Received: by 2002:a17:902:f68a:b029:e5:b17f:9154 with SMTP id l10-20020a170902f68ab02900e5b17f9154mr4836918plg.28.1616610917292;
+        Wed, 24 Mar 2021 11:35:17 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:a0f0:2da1:1afd:1712:ea8b? ([2601:646:9200:a0f0:2da1:1afd:1712:ea8b])
+        by smtp.gmail.com with ESMTPSA id i13sm3069615pgi.3.2021.03.24.11.35.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Mar 2021 11:35:16 -0700 (PDT)
+Subject: Re: [yocto] #yocto #sdk
+To: steven.monsees@baesystems.com
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <MADEUP.166F53A2942DA5DE.11971@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <e443df78-b218-0cd7-8179-b68428ce2cb9@gmail.com>
+Date: Wed, 24 Mar 2021 11:35:15 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:78.0)
+ Gecko/20100101 Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210323185719.2949300-1-anibal.limon@linaro.org> <93334bd2-01c5-815b-3f46-09be1ce67a56@windriver.com>
-In-Reply-To: <93334bd2-01c5-815b-3f46-09be1ce67a56@windriver.com>
-From: "Anibal Limon" <anibal.limon@linaro.org>
-Date: Wed, 24 Mar 2021 12:32:05 -0600
-Message-ID: <CA+_AqitZVcXTn1vCYVR5A+hKWA53yd0k3hYrg911cfLuO9UjMA@mail.gmail.com>
-Subject: Re: [ptest-runner][PATCH 1/2] Add support to specify timeout by ptest
-To: Yi Fan Yu <yifan.yu@windriver.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>, "MacLeod, Randy" <Randy.MacLeod@windriver.com>, 
-	Nicolas Dechesne <nicolas.dechesne@linaro.org>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-Content-Type: multipart/alternative; boundary="000000000000b0cc3f05be4c84dd"
+In-Reply-To: <MADEUP.166F53A2942DA5DE.11971@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 
---000000000000b0cc3f05be4c84dd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I think there still are signature differences. perhaps try to add 
+incremntally on top of minimal sdk and see where it breaks.
 
-On Wed, 24 Mar 2021 at 10:25, Yi Fan Yu <yifan.yu@windriver.com> wrote:
-
-> On 3/23/21 2:57 PM, An=C3=ADbal Lim=C3=B3n wrote:
-> > [Please note: This e-mail is from an EXTERNAL e-mail address]
-> >
-> > The ptest-runner has a default timeout of 300 secs and can be override
-> > usint -t option in the runner.
-> >
-> > There is a need to specify timeout by ptest because not all ptests take=
-s
-> > the sametime also are affected by machine. So add support to read a fil=
-e
-> > inside ptest folder (timeout-ptest) and override global timeout with it=
-.
-> >
-> > For example in glib-2.0,
-> >
-> >    /usr/lib/glib-2.0/ptest/run-ptest
-> >    /usr/lib/glib-2.0/ptest/timeout-ptest
-> >
->
-> I don't see a huge amount of use of `timeout-ptest` since
->
-> many tests I looked at have their own timeout mechanism built-in to
-> individual tests (OR we have patched in... ex: valgrind).
->
->
-> This has the advantage that the entire testsuite doesn't get killed,
-> only that particular hanging test.
->
-> I think the highest timeout I have bumped up is with valgrind at 90s
->
-
-Ack, I changed the behavior of timeout so that's the reason I'm seeing this
-error.
-
-I don't see any reason to not support this may be useful in the future.
-
-Regards,
-Anibal
-
-
->
-> yifan
->
-> > Signed-off-by: An=C3=ADbal Lim=C3=B3n <anibal.limon@linaro.org>
-> > ---
-> >   main.c       |  2 +-
-> >   ptest_list.c |  3 ++-
-> >   ptest_list.h |  3 ++-
-> >   utils.c      | 69 +++++++++++++++++++++++++++++++++++++--------------=
--
-> >   utils.h      |  2 +-
-> >   5 files changed, 55 insertions(+), 24 deletions(-)
-> >
-> > diff --git a/main.c b/main.c
-> > index e3a1b69..467548e 100644
-> > --- a/main.c
-> > +++ b/main.c
-> > @@ -158,7 +158,7 @@ main(int argc, char *argv[])
-> >          for (i =3D 0; i < opts.dirs_no; i ++) {
-> >                  struct ptest_list *tmp;
-> >
-> > -               tmp =3D get_available_ptests(opts.dirs[i]);
-> > +               tmp =3D get_available_ptests(opts.dirs[i], opts.timeout=
-);
-> >                  if (tmp =3D=3D NULL) {
-> >                          fprintf(stderr, PRINT_PTESTS_NOT_FOUND_DIR,
-> opts.dirs[i]);
-> >                          continue;
-> > diff --git a/ptest_list.c b/ptest_list.c
-> > index 917ef4f..b689670 100644
-> > --- a/ptest_list.c
-> > +++ b/ptest_list.c
-> > @@ -166,7 +166,7 @@ ptest_list_search_by_file(struct ptest_list *head,
-> char *run_ptest, struct stat
-> >   }
-> >
-> >   struct ptest_list *
-> > -ptest_list_add(struct ptest_list *head, char *ptest, char *run_ptest)
-> > +ptest_list_add(struct ptest_list *head, char *ptest, char *run_ptest,
-> int timeout)
-> >   {
-> >          struct ptest_list *n, *p;
-> >
-> > @@ -179,6 +179,7 @@ ptest_list_add(struct ptest_list *head, char *ptest=
-,
-> char *run_ptest)
-> >
-> >          n->ptest =3D ptest;
-> >          n->run_ptest =3D run_ptest;
-> > +       n->timeout =3D timeout;
-> >
-> >          n->prev =3D NULL;
-> >          n->next =3D NULL;
-> > diff --git a/ptest_list.h b/ptest_list.h
-> > index 02a64bb..e583d9f 100644
-> > --- a/ptest_list.h
-> > +++ b/ptest_list.h
-> > @@ -50,6 +50,7 @@
-> >   struct ptest_list {
-> >          char *ptest;
-> >          char *run_ptest;
-> > +       int timeout;
-> >
-> >          struct ptest_list *next;
-> >          struct ptest_list *prev;
-> > @@ -62,7 +63,7 @@ extern int ptest_list_free_all(struct ptest_list *);
-> >   extern int ptest_list_length(struct ptest_list *);
-> >   extern struct ptest_list *ptest_list_search(struct ptest_list *, char
-> *);
-> >   extern struct ptest_list *ptest_list_search_by_file(struct ptest_list
-> *, char *, struct stat);
-> > -extern struct ptest_list *ptest_list_add(struct ptest_list *, char *,
-> char *);
-> > +extern struct ptest_list *ptest_list_add(struct ptest_list *, char *,
-> char *, int);
-> >   extern struct ptest_list *ptest_list_remove(struct ptest_list *, char
-> *, int);
-> >   extern struct ptest_list *ptest_list_extend(struct ptest_list *,
-> struct ptest_list *);
-> >
-> > diff --git a/utils.c b/utils.c
-> > index 1a3c90f..424115f 100644
-> > --- a/utils.c
-> > +++ b/utils.c
-> > @@ -84,9 +84,30 @@ check_allocation1(void *p, size_t size, char *file,
-> int line, int exit_on_null)
-> >          }
-> >   }
-> >
-> > +static inline char *
-> > +get_ptest_file(char **ptest_file, struct stat *st_buf, const char
-> *main_dir,
-> > +               const char *ptest_dir, const char *file_name)
-> > +{
-> > +       if (asprintf(ptest_file, "%s/%s/ptest/%s",
-> > +           main_dir, ptest_dir, file_name) =3D=3D -1)  {
-> > +               return NULL;
-> > +       }
-> > +
-> > +       if (stat(*ptest_file, st_buf) =3D=3D -1) {
-> > +               free(*ptest_file);
-> > +               return NULL;
-> > +       }
-> > +
-> > +       if (!S_ISREG(st_buf->st_mode)) {
-> > +               free(*ptest_file);
-> > +               return NULL;
-> > +       }
-> > +
-> > +       return *ptest_file;
-> > +}
-> >
-> >   struct ptest_list *
-> > -get_available_ptests(const char *dir)
-> > +get_available_ptests(const char *dir, int global_timeout)
-> >   {
-> >          struct ptest_list *head;
-> >          struct stat st_buf;
-> > @@ -123,10 +144,11 @@ get_available_ptests(const char *dir)
-> >                          break;
-> >                  }
-> >
-> > -
-> >                  fail =3D 0;
-> >                  for (i =3D 0; i < n; i++) {
-> >                          char *run_ptest;
-> > +                       char *timeout_ptest;
-> > +                       int timeout;
-> >
-> >                          char *d_name =3D strdup(namelist[i]->d_name);
-> >                          CHECK_ALLOCATION(d_name,
-> sizeof(namelist[i]->d_name), 0);
-> > @@ -142,34 +164,38 @@ get_available_ptests(const char *dir)
-> >                                  continue;
-> >                          }
-> >
-> > -                       if (asprintf(&run_ptest, "%s/%s/ptest/run-ptest=
-",
-> > -                           realdir, d_name) =3D=3D -1)  {
-> > -                               fail =3D 1;
-> > +                       if (get_ptest_file(&run_ptest, &st_buf, realdir=
-,
-> d_name, "run-ptest") =3D=3D NULL) {
-> >                                  saved_errno =3D errno;
-> >                                  free(d_name);
-> > -                               break;
-> > -                       }
-> > -
-> > -                       if (stat(run_ptest, &st_buf) =3D=3D -1) {
-> > -                               free(run_ptest);
-> > -                               free(d_name);
-> >                                  continue;
-> >                          }
-> >
-> > -                       if (!S_ISREG(st_buf.st_mode)) {
-> > +                       if (ptest_list_search_by_file(head, run_ptest,
-> st_buf)) {
-> >                                  free(run_ptest);
-> >                                  free(d_name);
-> >                                  continue;
-> >                          }
-> >
-> > -                       if (ptest_list_search_by_file(head, run_ptest,
-> st_buf)) {
-> > -                               free(run_ptest);
-> > -                               free(d_name);
-> > -                               continue;
-> > +                       timeout =3D global_timeout;
-> > +                       if (get_ptest_file(&timeout_ptest, &st_buf,
-> realdir, d_name, "timeout-ptest")) {
-> > +                               FILE *f =3D fopen(timeout_ptest, "r");
-> > +
-> > +                               if (f =3D=3D NULL) {
-> > +                                       fail =3D 1;
-> > +                                       saved_errno =3D errno;
-> > +                                       free(run_ptest);
-> > +                                       free(d_name);
-> > +                                       free(timeout_ptest);
-> > +                                       break;
-> > +                               }
-> > +                               fscanf(f, "%d", &timeout);
-> > +                               fclose(f);
-> > +
-> > +                               free(timeout_ptest);
-> >                          }
-> >
-> >                          struct ptest_list *p =3D ptest_list_add(head,
-> > -                               d_name, run_ptest);
-> > +                               d_name, run_ptest, timeout);
-> >                          CHECK_ALLOCATION(p, sizeof(struct ptest_list
-> *), 0);
-> >                          if (p =3D=3D NULL) {
-> >                                  fail =3D 1;
-> > @@ -229,6 +255,7 @@ filter_ptests(struct ptest_list *head, char
-> **ptests, int ptest_num)
-> >                  for (i =3D 0; i < ptest_num; i++) {
-> >                          char *ptest;
-> >                          char *run_ptest;
-> > +                       int timeout;
-> >
-> >                          n =3D ptest_list_search(head, ptests[i]);
-> >                          if (n =3D=3D NULL) {
-> > @@ -239,13 +266,14 @@ filter_ptests(struct ptest_list *head, char
-> **ptests, int ptest_num)
-> >
-> >                          ptest =3D strdup(n->ptest);
-> >                          run_ptest =3D strdup(n->run_ptest);
-> > +                       timeout =3D n->timeout;
-> >                          if (ptest =3D=3D NULL || run_ptest =3D=3D NULL=
-) {
-> >                                  saved_errno =3D errno;
-> >                                  fail =3D 1;
-> >                                  break;
-> >                          }
-> >
-> > -                       if (ptest_list_add(head_new, ptest, run_ptest)
-> =3D=3D NULL) {
-> > +                       if (ptest_list_add(head_new, ptest, run_ptest,
-> timeout) =3D=3D NULL) {
-> >                                  saved_errno =3D errno;
-> >                                  fail =3D 1;
-> >                                  break;
-> > @@ -509,8 +537,7 @@ run_ptests(struct ptest_list *head, const struct
-> ptest_options opts,
-> >                                  fprintf(fp, "%s\n", get_stime(stime,
-> GET_STIME_BUF_SIZE, sttime));
-> >                                  fprintf(fp, "BEGIN: %s\n", ptest_dir);
-> >
-> > -
-> > -                               status =3D wait_child(child, opts.timeo=
-ut);
-> > +                               status =3D wait_child(child, p->timeout=
-);
-> >
-> >                                  entime =3D time(NULL);
-> >                                  duration =3D entime - sttime;
-> > @@ -528,6 +555,8 @@ run_ptests(struct ptest_list *head, const struct
-> ptest_options opts,
-> >
-> >                                  fprintf(fp, "END: %s\n", ptest_dir);
-> >                                  fprintf(fp, "%s\n", get_stime(stime,
-> GET_STIME_BUF_SIZE, entime));
-> > +
-> > +                               free(ptest_dir);
-> >                          }
-> >                  PTEST_LIST_ITERATE_END
-> >                  fprintf(fp, "STOP: %s\n", progname);
-> > diff --git a/utils.h b/utils.h
-> > index 39832e6..69940d0 100644
-> > --- a/utils.h
-> > +++ b/utils.h
-> > @@ -45,7 +45,7 @@ struct ptest_options {
-> >
-> >
-> >   extern void check_allocation1(void *, size_t, char *, int, int);
-> > -extern struct ptest_list *get_available_ptests(const char *);
-> > +extern struct ptest_list *get_available_ptests(const char *, int);
-> >   extern int print_ptests(struct ptest_list *, FILE *);
-> >   extern struct ptest_list *filter_ptests(struct ptest_list *, char **,
-> int);
-> >   extern int run_ptests(struct ptest_list *, const struct ptest_options=
-,
-> > --
-> > 2.31.0
-> >
->
-
---000000000000b0cc3f05be4c84dd
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
-
-PGRpdiBkaXI9Imx0ciI+PGRpdiBkaXI9Imx0ciI+PGJyPjwvZGl2Pjxicj48ZGl2IGNsYXNzPSJn
-bWFpbF9xdW90ZSI+PGRpdiBkaXI9Imx0ciIgY2xhc3M9ImdtYWlsX2F0dHIiPk9uIFdlZCwgMjQg
-TWFyIDIwMjEgYXQgMTA6MjUsIFlpIEZhbiBZdSAmbHQ7PGEgaHJlZj0ibWFpbHRvOnlpZmFuLnl1
-QHdpbmRyaXZlci5jb20iPnlpZmFuLnl1QHdpbmRyaXZlci5jb208L2E+Jmd0OyB3cm90ZTo8YnI+
-PC9kaXY+PGJsb2NrcXVvdGUgY2xhc3M9ImdtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjBweCAw
-cHggMHB4IDAuOGV4O2JvcmRlci1sZWZ0OjFweCBzb2xpZCByZ2IoMjA0LDIwNCwyMDQpO3BhZGRp
-bmctbGVmdDoxZXgiPk9uIDMvMjMvMjEgMjo1NyBQTSwgQW7DrWJhbCBMaW3Ds24gd3JvdGU6PGJy
-Pg0KJmd0OyBbUGxlYXNlIG5vdGU6IFRoaXMgZS1tYWlsIGlzIGZyb20gYW4gRVhURVJOQUwgZS1t
-YWlsIGFkZHJlc3NdPGJyPg0KJmd0OyA8YnI+DQomZ3Q7IFRoZSBwdGVzdC1ydW5uZXIgaGFzIGEg
-ZGVmYXVsdCB0aW1lb3V0IG9mIDMwMCBzZWNzIGFuZCBjYW4gYmUgb3ZlcnJpZGU8YnI+DQomZ3Q7
-IHVzaW50IC10IG9wdGlvbiBpbiB0aGUgcnVubmVyLjxicj4NCiZndDsgPGJyPg0KJmd0OyBUaGVy
-ZSBpcyBhIG5lZWQgdG8gc3BlY2lmeSB0aW1lb3V0IGJ5IHB0ZXN0IGJlY2F1c2Ugbm90IGFsbCBw
-dGVzdHMgdGFrZXM8YnI+DQomZ3Q7IHRoZSBzYW1ldGltZSBhbHNvIGFyZSBhZmZlY3RlZCBieSBt
-YWNoaW5lLiBTbyBhZGQgc3VwcG9ydCB0byByZWFkIGEgZmlsZTxicj4NCiZndDsgaW5zaWRlIHB0
-ZXN0IGZvbGRlciAodGltZW91dC1wdGVzdCkgYW5kIG92ZXJyaWRlIGdsb2JhbCB0aW1lb3V0IHdp
-dGggaXQuPGJyPg0KJmd0OyA8YnI+DQomZ3Q7IEZvciBleGFtcGxlIGluIGdsaWItMi4wLDxicj4N
-CiZndDsgPGJyPg0KJmd0O8KgIMKgIC91c3IvbGliL2dsaWItMi4wL3B0ZXN0L3J1bi1wdGVzdDxi
-cj4NCiZndDvCoCDCoCAvdXNyL2xpYi9nbGliLTIuMC9wdGVzdC90aW1lb3V0LXB0ZXN0PGJyPg0K
-Jmd0OyA8YnI+DQo8YnI+DQpJIGRvbiYjMzk7dCBzZWUgYSBodWdlIGFtb3VudCBvZiB1c2Ugb2Yg
-YHRpbWVvdXQtcHRlc3RgIHNpbmNlPGJyPg0KPGJyPg0KbWFueSB0ZXN0cyBJIGxvb2tlZCBhdCBo
-YXZlIHRoZWlyIG93biB0aW1lb3V0IG1lY2hhbmlzbSBidWlsdC1pbiB0byA8YnI+DQppbmRpdmlk
-dWFsIHRlc3RzIChPUiB3ZSBoYXZlIHBhdGNoZWQgaW4uLi4gZXg6IHZhbGdyaW5kKS48YnI+DQo8
-YnI+DQo8YnI+DQpUaGlzIGhhcyB0aGUgYWR2YW50YWdlIHRoYXQgdGhlIGVudGlyZSB0ZXN0c3Vp
-dGUgZG9lc24mIzM5O3QgZ2V0IGtpbGxlZCwgPGJyPg0Kb25seSB0aGF0IHBhcnRpY3VsYXIgaGFu
-Z2luZyB0ZXN0Ljxicj4NCjxicj4NCkkgdGhpbmsgdGhlIGhpZ2hlc3QgdGltZW91dCBJIGhhdmUg
-YnVtcGVkIHVwIGlzIHdpdGggdmFsZ3JpbmQgYXQgOTBzPGJyPjwvYmxvY2txdW90ZT48ZGl2Pjxi
-cj48L2Rpdj48ZGl2PkFjaywgSSBjaGFuZ2VkIHRoZSBiZWhhdmlvciBvZiB0aW1lb3V0IHNvIHRo
-YXQmIzM5O3MgdGhlIHJlYXNvbiBJJiMzOTttIHNlZWluZyB0aGlzIGVycm9yLjwvZGl2PjxkaXY+
-PGJyPjwvZGl2PjxkaXY+SSBkb24mIzM5O3Qgc2VlIGFueSByZWFzb24gdG8gbm90IHN1cHBvcnQg
-dGhpcyBtYXkgYmUgdXNlZnVsIGluIHRoZSBmdXR1cmUuPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRp
-dj5SZWdhcmRzLDwvZGl2PjxkaXY+QW5pYmFsPC9kaXY+PGRpdj7CoDwvZGl2PjxibG9ja3F1b3Rl
-IGNsYXNzPSJnbWFpbF9xdW90ZSIgc3R5bGU9Im1hcmdpbjowcHggMHB4IDBweCAwLjhleDtib3Jk
-ZXItbGVmdDoxcHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTtwYWRkaW5nLWxlZnQ6MWV4Ij4NCjxi
-cj4NCnlpZmFuPGJyPg0KPGJyPg0KJmd0OyBTaWduZWQtb2ZmLWJ5OiBBbsOtYmFsIExpbcOzbiAm
-bHQ7PGEgaHJlZj0ibWFpbHRvOmFuaWJhbC5saW1vbkBsaW5hcm8ub3JnIiB0YXJnZXQ9Il9ibGFu
-ayI+YW5pYmFsLmxpbW9uQGxpbmFyby5vcmc8L2E+Jmd0Ozxicj4NCiZndDsgLS0tPGJyPg0KJmd0
-O8KgIMKgbWFpbi5jwqAgwqAgwqAgwqB8wqAgMiArLTxicj4NCiZndDvCoCDCoHB0ZXN0X2xpc3Qu
-YyB8wqAgMyArKy08YnI+DQomZ3Q7wqAgwqBwdGVzdF9saXN0LmggfMKgIDMgKystPGJyPg0KJmd0
-O8KgIMKgdXRpbHMuY8KgIMKgIMKgIHwgNjkgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKy0tLS0tLS0tLS0tLS0tLTxicj4NCiZndDvCoCDCoHV0aWxzLmjCoCDCoCDCoCB8wqAg
-MiArLTxicj4NCiZndDvCoCDCoDUgZmlsZXMgY2hhbmdlZCwgNTUgaW5zZXJ0aW9ucygrKSwgMjQg
-ZGVsZXRpb25zKC0pPGJyPg0KJmd0OyA8YnI+DQomZ3Q7IGRpZmYgLS1naXQgYS9tYWluLmMgYi9t
-YWluLmM8YnI+DQomZ3Q7IGluZGV4IGUzYTFiNjkuLjQ2NzU0OGUgMTAwNjQ0PGJyPg0KJmd0OyAt
-LS0gYS9tYWluLmM8YnI+DQomZ3Q7ICsrKyBiL21haW4uYzxicj4NCiZndDsgQEAgLTE1OCw3ICsx
-NTgsNyBAQCBtYWluKGludCBhcmdjLCBjaGFyICphcmd2W10pPGJyPg0KJmd0O8KgIMKgIMKgIMKg
-IMKgIGZvciAoaSA9IDA7IGkgJmx0OyBvcHRzLmRpcnNfbm87IGkgKyspIHs8YnI+DQomZ3Q7wqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgc3RydWN0IHB0ZXN0X2xpc3QgKnRtcDs8YnI+DQomZ3Q7
-IDxicj4NCiZndDsgLcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgdG1wID0gZ2V0X2F2YWlsYWJsZV9w
-dGVzdHMob3B0cy5kaXJzW2ldKTs8YnI+DQomZ3Q7ICvCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoHRt
-cCA9IGdldF9hdmFpbGFibGVfcHRlc3RzKG9wdHMuZGlyc1tpXSwgb3B0cy50aW1lb3V0KTs8YnI+
-DQomZ3Q7wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgaWYgKHRtcCA9PSBOVUxMKSB7PGJyPg0K
-Jmd0O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGZwcmludGYoc3RkZXJy
-LCBQUklOVF9QVEVTVFNfTk9UX0ZPVU5EX0RJUiwgb3B0cy5kaXJzW2ldKTs8YnI+DQomZ3Q7wqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgY29udGludWU7PGJyPg0KJmd0OyBk
-aWZmIC0tZ2l0IGEvcHRlc3RfbGlzdC5jIGIvcHRlc3RfbGlzdC5jPGJyPg0KJmd0OyBpbmRleCA5
-MTdlZjRmLi5iNjg5NjcwIDEwMDY0NDxicj4NCiZndDsgLS0tIGEvcHRlc3RfbGlzdC5jPGJyPg0K
-Jmd0OyArKysgYi9wdGVzdF9saXN0LmM8YnI+DQomZ3Q7IEBAIC0xNjYsNyArMTY2LDcgQEAgcHRl
-c3RfbGlzdF9zZWFyY2hfYnlfZmlsZShzdHJ1Y3QgcHRlc3RfbGlzdCAqaGVhZCwgY2hhciAqcnVu
-X3B0ZXN0LCBzdHJ1Y3Qgc3RhdDxicj4NCiZndDvCoCDCoH08YnI+DQomZ3Q7IDxicj4NCiZndDvC
-oCDCoHN0cnVjdCBwdGVzdF9saXN0ICo8YnI+DQomZ3Q7IC1wdGVzdF9saXN0X2FkZChzdHJ1Y3Qg
-cHRlc3RfbGlzdCAqaGVhZCwgY2hhciAqcHRlc3QsIGNoYXIgKnJ1bl9wdGVzdCk8YnI+DQomZ3Q7
-ICtwdGVzdF9saXN0X2FkZChzdHJ1Y3QgcHRlc3RfbGlzdCAqaGVhZCwgY2hhciAqcHRlc3QsIGNo
-YXIgKnJ1bl9wdGVzdCwgaW50IHRpbWVvdXQpPGJyPg0KJmd0O8KgIMKgezxicj4NCiZndDvCoCDC
-oCDCoCDCoCDCoCBzdHJ1Y3QgcHRlc3RfbGlzdCAqbiwgKnA7PGJyPg0KJmd0OyA8YnI+DQomZ3Q7
-IEBAIC0xNzksNiArMTc5LDcgQEAgcHRlc3RfbGlzdF9hZGQoc3RydWN0IHB0ZXN0X2xpc3QgKmhl
-YWQsIGNoYXIgKnB0ZXN0LCBjaGFyICpydW5fcHRlc3QpPGJyPg0KJmd0OyA8YnI+DQomZ3Q7wqAg
-wqAgwqAgwqAgwqAgbi0mZ3Q7cHRlc3QgPSBwdGVzdDs8YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAg
-bi0mZ3Q7cnVuX3B0ZXN0ID0gcnVuX3B0ZXN0Ozxicj4NCiZndDsgK8KgIMKgIMKgIMKgbi0mZ3Q7
-dGltZW91dCA9IHRpbWVvdXQ7PGJyPg0KJmd0OyA8YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAgbi0m
-Z3Q7cHJldiA9IE5VTEw7PGJyPg0KJmd0O8KgIMKgIMKgIMKgIMKgIG4tJmd0O25leHQgPSBOVUxM
-Ozxicj4NCiZndDsgZGlmZiAtLWdpdCBhL3B0ZXN0X2xpc3QuaCBiL3B0ZXN0X2xpc3QuaDxicj4N
-CiZndDsgaW5kZXggMDJhNjRiYi4uZTU4M2Q5ZiAxMDA2NDQ8YnI+DQomZ3Q7IC0tLSBhL3B0ZXN0
-X2xpc3QuaDxicj4NCiZndDsgKysrIGIvcHRlc3RfbGlzdC5oPGJyPg0KJmd0OyBAQCAtNTAsNiAr
-NTAsNyBAQDxicj4NCiZndDvCoCDCoHN0cnVjdCBwdGVzdF9saXN0IHs8YnI+DQomZ3Q7wqAgwqAg
-wqAgwqAgwqAgY2hhciAqcHRlc3Q7PGJyPg0KJmd0O8KgIMKgIMKgIMKgIMKgIGNoYXIgKnJ1bl9w
-dGVzdDs8YnI+DQomZ3Q7ICvCoCDCoCDCoCDCoGludCB0aW1lb3V0Ozxicj4NCiZndDsgPGJyPg0K
-Jmd0O8KgIMKgIMKgIMKgIMKgIHN0cnVjdCBwdGVzdF9saXN0ICpuZXh0Ozxicj4NCiZndDvCoCDC
-oCDCoCDCoCDCoCBzdHJ1Y3QgcHRlc3RfbGlzdCAqcHJldjs8YnI+DQomZ3Q7IEBAIC02Miw3ICs2
-Myw3IEBAIGV4dGVybiBpbnQgcHRlc3RfbGlzdF9mcmVlX2FsbChzdHJ1Y3QgcHRlc3RfbGlzdCAq
-KTs8YnI+DQomZ3Q7wqAgwqBleHRlcm4gaW50IHB0ZXN0X2xpc3RfbGVuZ3RoKHN0cnVjdCBwdGVz
-dF9saXN0ICopOzxicj4NCiZndDvCoCDCoGV4dGVybiBzdHJ1Y3QgcHRlc3RfbGlzdCAqcHRlc3Rf
-bGlzdF9zZWFyY2goc3RydWN0IHB0ZXN0X2xpc3QgKiwgY2hhciAqKTs8YnI+DQomZ3Q7wqAgwqBl
-eHRlcm4gc3RydWN0IHB0ZXN0X2xpc3QgKnB0ZXN0X2xpc3Rfc2VhcmNoX2J5X2ZpbGUoc3RydWN0
-IHB0ZXN0X2xpc3QgKiwgY2hhciAqLCBzdHJ1Y3Qgc3RhdCk7PGJyPg0KJmd0OyAtZXh0ZXJuIHN0
-cnVjdCBwdGVzdF9saXN0ICpwdGVzdF9saXN0X2FkZChzdHJ1Y3QgcHRlc3RfbGlzdCAqLCBjaGFy
-ICosIGNoYXIgKik7PGJyPg0KJmd0OyArZXh0ZXJuIHN0cnVjdCBwdGVzdF9saXN0ICpwdGVzdF9s
-aXN0X2FkZChzdHJ1Y3QgcHRlc3RfbGlzdCAqLCBjaGFyICosIGNoYXIgKiwgaW50KTs8YnI+DQom
-Z3Q7wqAgwqBleHRlcm4gc3RydWN0IHB0ZXN0X2xpc3QgKnB0ZXN0X2xpc3RfcmVtb3ZlKHN0cnVj
-dCBwdGVzdF9saXN0ICosIGNoYXIgKiwgaW50KTs8YnI+DQomZ3Q7wqAgwqBleHRlcm4gc3RydWN0
-IHB0ZXN0X2xpc3QgKnB0ZXN0X2xpc3RfZXh0ZW5kKHN0cnVjdCBwdGVzdF9saXN0ICosIHN0cnVj
-dCBwdGVzdF9saXN0ICopOzxicj4NCiZndDsgPGJyPg0KJmd0OyBkaWZmIC0tZ2l0IGEvdXRpbHMu
-YyBiL3V0aWxzLmM8YnI+DQomZ3Q7IGluZGV4IDFhM2M5MGYuLjQyNDExNWYgMTAwNjQ0PGJyPg0K
-Jmd0OyAtLS0gYS91dGlscy5jPGJyPg0KJmd0OyArKysgYi91dGlscy5jPGJyPg0KJmd0OyBAQCAt
-ODQsOSArODQsMzAgQEAgY2hlY2tfYWxsb2NhdGlvbjEodm9pZCAqcCwgc2l6ZV90IHNpemUsIGNo
-YXIgKmZpbGUsIGludCBsaW5lLCBpbnQgZXhpdF9vbl9udWxsKTxicj4NCiZndDvCoCDCoCDCoCDC
-oCDCoCB9PGJyPg0KJmd0O8KgIMKgfTxicj4NCiZndDsgPGJyPg0KJmd0OyArc3RhdGljIGlubGlu
-ZSBjaGFyICo8YnI+DQomZ3Q7ICtnZXRfcHRlc3RfZmlsZShjaGFyICoqcHRlc3RfZmlsZSwgc3Ry
-dWN0IHN0YXQgKnN0X2J1ZiwgY29uc3QgY2hhciAqbWFpbl9kaXIsPGJyPg0KJmd0OyArwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqBjb25zdCBjaGFyICpwdGVzdF9kaXIsIGNvbnN0IGNoYXIgKmZpbGVf
-bmFtZSk8YnI+DQomZ3Q7ICt7PGJyPg0KJmd0OyArwqAgwqAgwqAgwqBpZiAoYXNwcmludGYocHRl
-c3RfZmlsZSwgJnF1b3Q7JXMvJXMvcHRlc3QvJXMmcXVvdDssPGJyPg0KJmd0OyArwqAgwqAgwqAg
-wqAgwqAgwqBtYWluX2RpciwgcHRlc3RfZGlyLCBmaWxlX25hbWUpID09IC0xKcKgIHs8YnI+DQom
-Z3Q7ICvCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoHJldHVybiBOVUxMOzxicj4NCiZndDsgK8KgIMKg
-IMKgIMKgfTxicj4NCiZndDsgKzxicj4NCiZndDsgK8KgIMKgIMKgIMKgaWYgKHN0YXQoKnB0ZXN0
-X2ZpbGUsIHN0X2J1ZikgPT0gLTEpIHs8YnI+DQomZ3Q7ICvCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oGZyZWUoKnB0ZXN0X2ZpbGUpOzxicj4NCiZndDsgK8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgcmV0
-dXJuIE5VTEw7PGJyPg0KJmd0OyArwqAgwqAgwqAgwqB9PGJyPg0KJmd0OyArPGJyPg0KJmd0OyAr
-wqAgwqAgwqAgwqBpZiAoIVNfSVNSRUcoc3RfYnVmLSZndDtzdF9tb2RlKSkgezxicj4NCiZndDsg
-K8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgZnJlZSgqcHRlc3RfZmlsZSk7PGJyPg0KJmd0OyArwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqByZXR1cm4gTlVMTDs8YnI+DQomZ3Q7ICvCoCDCoCDCoCDCoH08
-YnI+DQomZ3Q7ICs8YnI+DQomZ3Q7ICvCoCDCoCDCoCDCoHJldHVybiAqcHRlc3RfZmlsZTs8YnI+
-DQomZ3Q7ICt9PGJyPg0KJmd0OyA8YnI+DQomZ3Q7wqAgwqBzdHJ1Y3QgcHRlc3RfbGlzdCAqPGJy
-Pg0KJmd0OyAtZ2V0X2F2YWlsYWJsZV9wdGVzdHMoY29uc3QgY2hhciAqZGlyKTxicj4NCiZndDsg
-K2dldF9hdmFpbGFibGVfcHRlc3RzKGNvbnN0IGNoYXIgKmRpciwgaW50IGdsb2JhbF90aW1lb3V0
-KTxicj4NCiZndDvCoCDCoHs8YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAgc3RydWN0IHB0ZXN0X2xp
-c3QgKmhlYWQ7PGJyPg0KJmd0O8KgIMKgIMKgIMKgIMKgIHN0cnVjdCBzdGF0IHN0X2J1Zjs8YnI+
-DQomZ3Q7IEBAIC0xMjMsMTAgKzE0NCwxMSBAQCBnZXRfYXZhaWxhYmxlX3B0ZXN0cyhjb25zdCBj
-aGFyICpkaXIpPGJyPg0KJmd0O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IGJyZWFrOzxicj4NCiZndDvCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCB9PGJyPg0KJmd0OyA8
-YnI+DQomZ3Q7IC08YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgZmFpbCA9IDA7
-PGJyPg0KJmd0O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGZvciAoaSA9IDA7IGkgJmx0OyBu
-OyBpKyspIHs8YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-Y2hhciAqcnVuX3B0ZXN0Ozxicj4NCiZndDsgK8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgY2hhciAqdGltZW91dF9wdGVzdDs8YnI+DQomZ3Q7ICvCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoGludCB0aW1lb3V0Ozxicj4NCiZndDsgPGJyPg0KJmd0O8KgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGNoYXIgKmRfbmFtZSA9IHN0cmR1cChuYW1l
-bGlzdFtpXS0mZ3Q7ZF9uYW1lKTs8YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgQ0hFQ0tfQUxMT0NBVElPTihkX25hbWUsIHNpemVvZihuYW1lbGlzdFtpXS0m
-Z3Q7ZF9uYW1lKSwgMCk7PGJyPg0KJmd0OyBAQCAtMTQyLDM0ICsxNjQsMzggQEAgZ2V0X2F2YWls
-YWJsZV9wdGVzdHMoY29uc3QgY2hhciAqZGlyKTxicj4NCiZndDvCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBjb250aW51ZTs8YnI+DQomZ3Q7wqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgfTxicj4NCiZndDsgPGJyPg0KJmd0OyAt
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBpZiAoYXNwcmludGYoJmFtcDtydW5f
-cHRlc3QsICZxdW90OyVzLyVzL3B0ZXN0L3J1bi1wdGVzdCZxdW90Oyw8YnI+DQomZ3Q7IC3CoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoHJlYWxkaXIsIGRfbmFtZSkgPT0g
-LTEpwqAgezxicj4NCiZndDsgLcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgZmFpbCA9IDE7PGJyPg0KJmd0OyArwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqBpZiAoZ2V0X3B0ZXN0X2ZpbGUoJmFtcDtydW5fcHRlc3QsICZhbXA7c3RfYnVmLCBy
-ZWFsZGlyLCBkX25hbWUsICZxdW90O3J1bi1wdGVzdCZxdW90OykgPT0gTlVMTCkgezxicj4NCiZn
-dDvCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBzYXZl
-ZF9lcnJubyA9IGVycm5vOzxicj4NCiZndDvCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCBmcmVlKGRfbmFtZSk7PGJyPg0KJmd0OyAtwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBicmVhazs8YnI+DQomZ3Q7IC3CoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoH08YnI+DQomZ3Q7IC08YnI+DQomZ3Q7IC3C
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoGlmIChzdGF0KHJ1bl9wdGVzdCwgJmFt
-cDtzdF9idWYpID09IC0xKSB7PGJyPg0KJmd0OyAtwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqBmcmVlKHJ1bl9wdGVzdCk7PGJyPg0KJmd0OyAtwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBmcmVlKGRfbmFtZSk7PGJyPg0K
-Jmd0O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGNv
-bnRpbnVlOzxicj4NCiZndDvCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCB9
-PGJyPg0KJmd0OyA8YnI+DQomZ3Q7IC3CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oGlmICghU19JU1JFRyhzdF9idWYuc3RfbW9kZSkpIHs8YnI+DQomZ3Q7ICvCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoGlmIChwdGVzdF9saXN0X3NlYXJjaF9ieV9maWxlKGhlYWQs
-IHJ1bl9wdGVzdCwgc3RfYnVmKSkgezxicj4NCiZndDvCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBmcmVlKHJ1bl9wdGVzdCk7PGJyPg0KJmd0O8KgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGZyZWUoZF9uYW1l
-KTs8YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgY29udGludWU7PGJyPg0KJmd0O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIH08YnI+DQomZ3Q7IDxicj4NCiZndDsgLcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgaWYgKHB0ZXN0X2xpc3Rfc2VhcmNoX2J5X2ZpbGUoaGVhZCwgcnVuX3B0ZXN0LCBz
-dF9idWYpKSB7PGJyPg0KJmd0OyAtwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqBmcmVlKHJ1bl9wdGVzdCk7PGJyPg0KJmd0OyAtwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBmcmVlKGRfbmFtZSk7PGJyPg0KJmd0OyAtwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBjb250aW51ZTs8YnI+
-DQomZ3Q7ICvCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoHRpbWVvdXQgPSBnbG9i
-YWxfdGltZW91dDs8YnI+DQomZ3Q7ICvCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oGlmIChnZXRfcHRlc3RfZmlsZSgmYW1wO3RpbWVvdXRfcHRlc3QsICZhbXA7c3RfYnVmLCByZWFs
-ZGlyLCBkX25hbWUsICZxdW90O3RpbWVvdXQtcHRlc3QmcXVvdDspKSB7PGJyPg0KJmd0OyArwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBGSUxFICpmID0gZm9w
-ZW4odGltZW91dF9wdGVzdCwgJnF1b3Q7ciZxdW90Oyk7PGJyPg0KJmd0OyArPGJyPg0KJmd0OyAr
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBpZiAoZiA9PSBO
-VUxMKSB7PGJyPg0KJmd0OyArwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqBmYWlsID0gMTs8YnI+DQomZ3Q7ICvCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoHNhdmVkX2Vycm5vID0g
-ZXJybm87PGJyPg0KJmd0OyArwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqBmcmVlKHJ1bl9wdGVzdCk7PGJyPg0KJmd0OyArwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBmcmVlKGRf
-bmFtZSk7PGJyPg0KJmd0OyArwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqBmcmVlKHRpbWVvdXRfcHRlc3QpOzxicj4NCiZndDsgK8KgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgYnJl
-YWs7PGJyPg0KJmd0OyArwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqB9PGJyPg0KJmd0OyArwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqBmc2NhbmYoZiwgJnF1b3Q7JWQmcXVvdDssICZhbXA7dGltZW91dCk7PGJyPg0KJmd0
-OyArwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqBmY2xvc2Uo
-Zik7PGJyPg0KJmd0OyArPGJyPg0KJmd0OyArwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqBmcmVlKHRpbWVvdXRfcHRlc3QpOzxicj4NCiZndDvCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCB9PGJyPg0KJmd0OyA8YnI+DQomZ3Q7wqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgc3RydWN0IHB0ZXN0X2xpc3QgKnAgPSBw
-dGVzdF9saXN0X2FkZChoZWFkLDxicj4NCiZndDsgLcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgZF9uYW1lLCBydW5fcHRlc3QpOzxicj4NCiZndDsgK8KgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgZF9uYW1lLCBydW5fcHRl
-c3QsIHRpbWVvdXQpOzxicj4NCiZndDvCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCBDSEVDS19BTExPQ0FUSU9OKHAsIHNpemVvZihzdHJ1Y3QgcHRlc3RfbGlzdCAqKSwgMCk7
-PGJyPg0KJmd0O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGlmIChwID09
-IE5VTEwpIHs8YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgZmFpbCA9IDE7PGJyPg0KJmd0OyBAQCAtMjI5LDYgKzI1NSw3IEBAIGZpbHRl
-cl9wdGVzdHMoc3RydWN0IHB0ZXN0X2xpc3QgKmhlYWQsIGNoYXIgKipwdGVzdHMsIGludCBwdGVz
-dF9udW0pPGJyPg0KJmd0O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGZvciAoaSA9IDA7IGkg
-Jmx0OyBwdGVzdF9udW07IGkrKykgezxicj4NCiZndDvCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCBjaGFyICpwdGVzdDs8YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgY2hhciAqcnVuX3B0ZXN0Ozxicj4NCiZndDsgK8KgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgaW50IHRpbWVvdXQ7PGJyPg0KJmd0OyA8YnI+DQomZ3Q7
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgbiA9IHB0ZXN0X2xpc3Rfc2Vh
-cmNoKGhlYWQsIHB0ZXN0c1tpXSk7PGJyPg0KJmd0O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIGlmIChuID09IE5VTEwpIHs8YnI+DQomZ3Q7IEBAIC0yMzksMTMgKzI2Niwx
-NCBAQCBmaWx0ZXJfcHRlc3RzKHN0cnVjdCBwdGVzdF9saXN0ICpoZWFkLCBjaGFyICoqcHRlc3Rz
-LCBpbnQgcHRlc3RfbnVtKTxicj4NCiZndDsgPGJyPg0KJmd0O8KgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIHB0ZXN0ID0gc3RyZHVwKG4tJmd0O3B0ZXN0KTs8YnI+DQomZ3Q7
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgcnVuX3B0ZXN0ID0gc3RyZHVw
-KG4tJmd0O3J1bl9wdGVzdCk7PGJyPg0KJmd0OyArwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqB0aW1lb3V0ID0gbi0mZ3Q7dGltZW91dDs8YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgaWYgKHB0ZXN0ID09IE5VTEwgfHwgcnVuX3B0ZXN0ID09
-IE5VTEwpIHs8YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgc2F2ZWRfZXJybm8gPSBlcnJubzs8YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgZmFpbCA9IDE7PGJyPg0KJmd0O8Kg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGJyZWFrOzxi
-cj4NCiZndDvCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCB9PGJyPg0KJmd0
-OyA8YnI+DQomZ3Q7IC3CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoGlmIChwdGVz
-dF9saXN0X2FkZChoZWFkX25ldywgcHRlc3QsIHJ1bl9wdGVzdCkgPT0gTlVMTCkgezxicj4NCiZn
-dDsgK8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgaWYgKHB0ZXN0X2xpc3RfYWRk
-KGhlYWRfbmV3LCBwdGVzdCwgcnVuX3B0ZXN0LCB0aW1lb3V0KSA9PSBOVUxMKSB7PGJyPg0KJmd0
-O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIHNhdmVk
-X2Vycm5vID0gZXJybm87PGJyPg0KJmd0O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIGZhaWwgPSAxOzxicj4NCiZndDvCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBicmVhazs8YnI+DQomZ3Q7IEBAIC01MDks
-OCArNTM3LDcgQEAgcnVuX3B0ZXN0cyhzdHJ1Y3QgcHRlc3RfbGlzdCAqaGVhZCwgY29uc3Qgc3Ry
-dWN0IHB0ZXN0X29wdGlvbnMgb3B0cyw8YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgZnByaW50ZihmcCwgJnF1b3Q7JXNcbiZxdW90Oywg
-Z2V0X3N0aW1lKHN0aW1lLCBHRVRfU1RJTUVfQlVGX1NJWkUsIHN0dGltZSkpOzxicj4NCiZndDvC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBmcHJpbnRm
-KGZwLCAmcXVvdDtCRUdJTjogJXNcbiZxdW90OywgcHRlc3RfZGlyKTs8YnI+DQomZ3Q7IDxicj4N
-CiZndDsgLTxicj4NCiZndDsgLcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgc3RhdHVzID0gd2FpdF9jaGlsZChjaGlsZCwgb3B0cy50aW1lb3V0KTs8YnI+DQom
-Z3Q7ICvCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoHN0YXR1
-cyA9IHdhaXRfY2hpbGQoY2hpbGQsIHAtJmd0O3RpbWVvdXQpOzxicj4NCiZndDsgPGJyPg0KJmd0
-O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGVudGlt
-ZSA9IHRpbWUoTlVMTCk7PGJyPg0KJmd0O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIGR1cmF0aW9uID0gZW50aW1lIC0gc3R0aW1lOzxicj4NCiZndDsg
-QEAgLTUyOCw2ICs1NTUsOCBAQCBydW5fcHRlc3RzKHN0cnVjdCBwdGVzdF9saXN0ICpoZWFkLCBj
-b25zdCBzdHJ1Y3QgcHRlc3Rfb3B0aW9ucyBvcHRzLDxicj4NCiZndDsgPGJyPg0KJmd0O8KgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGZwcmludGYoZnAs
-ICZxdW90O0VORDogJXNcbiZxdW90OywgcHRlc3RfZGlyKTs8YnI+DQomZ3Q7wqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgZnByaW50ZihmcCwgJnF1b3Q7
-JXNcbiZxdW90OywgZ2V0X3N0aW1lKHN0aW1lLCBHRVRfU1RJTUVfQlVGX1NJWkUsIGVudGltZSkp
-Ozxicj4NCiZndDsgKzxicj4NCiZndDsgK8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgZnJlZShwdGVzdF9kaXIpOzxicj4NCiZndDvCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCB9PGJyPg0KJmd0O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIFBURVNUX0xJU1RfSVRFUkFURV9FTkQ8YnI+DQomZ3Q7wqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgZnByaW50ZihmcCwgJnF1b3Q7U1RPUDogJXNcbiZxdW90OywgcHJvZ25hbWUpOzxicj4N
-CiZndDsgZGlmZiAtLWdpdCBhL3V0aWxzLmggYi91dGlscy5oPGJyPg0KJmd0OyBpbmRleCAzOTgz
-MmU2Li42OTk0MGQwIDEwMDY0NDxicj4NCiZndDsgLS0tIGEvdXRpbHMuaDxicj4NCiZndDsgKysr
-IGIvdXRpbHMuaDxicj4NCiZndDsgQEAgLTQ1LDcgKzQ1LDcgQEAgc3RydWN0IHB0ZXN0X29wdGlv
-bnMgezxicj4NCiZndDsgPGJyPg0KJmd0OyA8YnI+DQomZ3Q7wqAgwqBleHRlcm4gdm9pZCBjaGVj
-a19hbGxvY2F0aW9uMSh2b2lkICosIHNpemVfdCwgY2hhciAqLCBpbnQsIGludCk7PGJyPg0KJmd0
-OyAtZXh0ZXJuIHN0cnVjdCBwdGVzdF9saXN0ICpnZXRfYXZhaWxhYmxlX3B0ZXN0cyhjb25zdCBj
-aGFyICopOzxicj4NCiZndDsgK2V4dGVybiBzdHJ1Y3QgcHRlc3RfbGlzdCAqZ2V0X2F2YWlsYWJs
-ZV9wdGVzdHMoY29uc3QgY2hhciAqLCBpbnQpOzxicj4NCiZndDvCoCDCoGV4dGVybiBpbnQgcHJp
-bnRfcHRlc3RzKHN0cnVjdCBwdGVzdF9saXN0ICosIEZJTEUgKik7PGJyPg0KJmd0O8KgIMKgZXh0
-ZXJuIHN0cnVjdCBwdGVzdF9saXN0ICpmaWx0ZXJfcHRlc3RzKHN0cnVjdCBwdGVzdF9saXN0ICos
-IGNoYXIgKiosIGludCk7PGJyPg0KJmd0O8KgIMKgZXh0ZXJuIGludCBydW5fcHRlc3RzKHN0cnVj
-dCBwdGVzdF9saXN0ICosIGNvbnN0IHN0cnVjdCBwdGVzdF9vcHRpb25zLDxicj4NCiZndDsgLS08
-YnI+DQomZ3Q7IDIuMzEuMDxicj4NCiZndDsgPGJyPg0KPC9ibG9ja3F1b3RlPjwvZGl2PjwvZGl2
-Pg0K
-
---000000000000b0cc3f05be4c84dd--
+On 3/24/21 9:18 AM, Monsees, Steven C (US) via lists.yoctoproject.org wrote:
+> I corrected for the sig warnings, but still have an issue with the 
+> extended SDK installing correctly
+> 
+> (though I think I am close…)
+> 
+> *Note: The only issue now appears to be around the “…/poky/meta” layer…  
+> and all with regards to “do_populate_sysroot” task…*
+> 
+> I am building my kernel clean, and update the MIRRORS after…
+> 
+> The unihash & taskhash values are identical with respect to each 
+> component below…
+> 
+> I am building “uninative” support into the EXT SDK only…
+> 
+> *None of the poky/meta references below are being modified by bbappends… 
+> should be a straight build*…
+> 
+> The EXT SDK local.conf appears to be setup correctly for my build env…
+> 
+> Am I missing something, a required variable setting, an additional 
+> support component ? *- seems odd it is all centered around the one 
+> unmodified layer…*
+> 
+> I am able to build and install the “minimum” EXT SDK correctly, but I of 
+> course need the toolset…
+> 
+> I would appreciate any advice on how I might resolve this issue.
+> 
+> Install Output:
+> 
+> 10:50 smonsees@yix490016 
+> /disk0/scratch/smonsees/yocto/workspace_3/builds2/sbcb-default/tmp/deploy/sdk>ls
+> 
+> limws-glibc-x86_64-aiox_orange-corei7-64-toolchain-ext-3.0.4.host.manifest
+> 
+> limws-glibc-x86_64-aiox_orange-corei7-64-toolchain-ext-3.0.4.sh
+> 
+> limws-glibc-x86_64-aiox_orange-corei7-64-toolchain-ext-3.0.4.target.manifest
+> 
+> limws-glibc-x86_64-aiox_orange-corei7-64-toolchain-ext-3.0.4.testdata.json
+> 
+> x86_64-buildtools-nativesdk-standalone-3.0.4.host.manifest
+> 
+> x86_64-buildtools-nativesdk-standalone-3.0.4.sh
+> 
+> x86_64-buildtools-nativesdk-standalone-3.0.4.target.manifest
+> 
+> x86_64-buildtools-nativesdk-standalone-3.0.4.testdata.json
+> 
+> 10:50 smonsees@yix490016 
+> /disk0/scratch/smonsees/yocto/workspace_3/builds2/sbcb-default/tmp/deploy/sdk> 
+> ./limws-glibc-x86_64-aiox_orange-corei7-64-toolchain-ext-3.0.4.sh
+> 
+> LIMWS (BAE LIMWS base distro) Extensible SDK installer version 3.0.4
+> 
+> ====================================================================
+> 
+> Enter target directory for SDK (default: ~/limws_sdk):  
+> /disk0/scratch/smonsees/sbcbSDK_EXT
+> 
+> You are about to install the SDK to 
+> "/disk0/scratch/smonsees/sbcbSDK_EXT". Proceed [Y/n]? Y
+> 
+> Extracting SDK...............done
+> 
+> Setting it up...
+> 
+> Extracting buildtools...
+> 
+> Preparing build system...
+> 
+> Parsing recipes: 100% 
+> |#############################################################################################| 
+> Time: 0:01:33
+> 
+> Initialising tasks: 100% 
+> |##########################################################################################| 
+> Time: 0:00:00
+> 
+> Checking sstate mirror object availability: 100% 
+> |##################################################################| 
+> Time: 0:00:00
+> 
+> ERROR: Task quilt-native.do_fetch attempted to execute unexpectedly
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gcc/libgcc_9.2.bb:do_populate_sysroot, 
+> unihash 
+> d5a9dff48660903403f33fe67d6d43e03c97c03232c6d8f0ed71f99a94670bce, 
+> taskhash d5a9dff48660903403f33fe67d6d43e03c97c03232c6d8f0ed71f99a94670bce
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/gmp/gmp_6.1.2.bb:do_populate_sysroot, 
+> unihash 
+> cde9ef4fc769ee9a2733a1023534c15bfe199009270bcebb6c24c638729194dc, 
+> taskhash cde9ef4fc769ee9a2733a1023534c15bfe199009270bcebb6c24c638729194dc
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/libtool/libtool-native_2.4.6.bb:do_populate_sysroot, 
+> unihash 
+> a1def57d3e655defdf1f85eec749be672ffe52a0a3c247585da9d6c57617cca2, 
+> taskhash a1def57d3e655defdf1f85eec749be672ffe52a0a3c247585da9d6c57617cca2
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gcc/gcc-cross_9.2.bb:do_populate_sysroot, 
+> unihash 
+> 5f0f3533314c754b184e6f63f11ef2b570c7a5d47bc18fee2b4217aa294f08eb, 
+> taskhash 5f0f3533314c754b184e6f63f11ef2b570c7a5d47bc18fee2b4217aa294f08eb
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-connectivity/openssl/openssl_1.1.1g.bb:do_populate_sysroot, 
+> unihash 
+> d5e6bedb0cfb876a2925ea2e7f3bd00b090326b1cebf1182a6322974a6f055a3, 
+> taskhash d5e6bedb0cfb876a2925ea2e7f3bd00b090326b1cebf1182a6322974a6f055a3
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/python/python3_3.7.8.bb:do_populate_sysroot, 
+> unihash 
+> 8ee0c0eafd3b1c3f774a26f59659fc0c563816b6badfa57d9fa9097a182b1de5, 
+> taskhash 8ee0c0eafd3b1c3f774a26f59659fc0c563816b6badfa57d9fa9097a182b1de5
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-gnome/gtk-doc/gtk-doc_1.31.bb:do_populate_sysroot, 
+> unihash 
+> fbc7421c8a324ed0cbca81f98430f509ce4cf6593b0961cad8109d467df9e35e, 
+> taskhash fbc7421c8a324ed0cbca81f98430f509ce4cf6593b0961cad8109d467df9e35e
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/meta/meta-extsdk-toolchain.bb:do_populate_sysroot, 
+> unihash 
+> b9d46f79061ad82c4630a3db00aefe484f743a84a526e8afb24d953d04752276, 
+> taskhash b9d46f79061ad82c4630a3db00aefe484f743a84a526e8afb24d953d04752276
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/attr/attr_2.4.47.bb:do_populate_sysroot, 
+> unihash 
+> 3a6c84cf03e3103e46c02b01aed446fc31617f348b40d9e51b5b2ee8c2f3d0ee, 
+> taskhash 3a6c84cf03e3103e46c02b01aed446fc31617f348b40d9e51b5b2ee8c2f3d0ee
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/libmpc/libmpc_1.1.0.bb:do_populate_sysroot, 
+> unihash 
+> 39109487309272ea510afb753a0dd84775625c73f7a261b9d0078fe0ea718f17, 
+> taskhash 39109487309272ea510afb753a0dd84775625c73f7a261b9d0078fe0ea718f17
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/util-linux/util-linux_2.34.bb:do_populate_sysroot, 
+> unihash 
+> 51964ba6ff2cd62ad6d9077e9fddfe53be566eb23beca10e9c882a1eee20aa5d, 
+> taskhash 51964ba6ff2cd62ad6d9077e9fddfe53be566eb23beca10e9c882a1eee20aa5d
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-multimedia/libpng/libpng_1.6.37.bb:do_populate_sysroot, 
+> unihash 
+> 6d92093db77054a96cd23e00ca2bf3468a9ae8ebddc191a59e1a0136778d6be1, 
+> taskhash 6d92093db77054a96cd23e00ca2bf3468a9ae8ebddc191a59e1a0136778d6be1
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gcc/gcc-cross_9.2.bb:do_gcc_stash_builddir, 
+> unihash 
+> 62ba54c4db5ba11db400ba0277892d92f665f35b5c334c17f8e6ad9ded9c16b1, 
+> taskhash 62ba54c4db5ba11db400ba0277892d92f665f35b5c334c17f8e6ad9ded9c16b1
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/xz/xz_5.2.4.bb:do_populate_sysroot, 
+> unihash 
+> 01723d04843fdbeec3fabd109c34281bd49c0979e09c722b2c189335cb6c957a, 
+> taskhash 01723d04843fdbeec3fabd109c34281bd49c0979e09c722b2c189335cb6c957a
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/m4/m4-native_1.4.18.bb:do_populate_sysroot, 
+> unihash 
+> 19b266239a8f93f5273ac6213d0f58a73bfc1ecbe84c5cfd273f5351b0740ca1, 
+> taskhash 19b266239a8f93f5273ac6213d0f58a73bfc1ecbe84c5cfd273f5351b0740ca1
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-graphics/xorg-lib/pixman_0.38.4.bb:do_populate_sysroot, 
+> unihash 
+> 66cca6669fc3fdc571970b1ccabb7a8b334139013df8b71c8b033d15705ec5a7, 
+> taskhash 66cca6669fc3fdc571970b1ccabb7a8b334139013df8b71c8b033d15705ec5a7
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/unfs3/unfs3_git.bb:do_populate_sysroot, 
+> unihash 
+> 46e3dd7e07935b77a618c4587f5bc8dbaaff1ba030e779683e2bf2679f57c8fb, 
+> taskhash 46e3dd7e07935b77a618c4587f5bc8dbaaff1ba030e779683e2bf2679f57c8fb
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gcc/gcc-runtime_9.2.bb:do_populate_sysroot, 
+> unihash 
+> 7200138112d31332099cf647ee83441c6739d6f276f2ba859bd440b7a4eed9fb, 
+> taskhash 7200138112d31332099cf647ee83441c6739d6f276f2ba859bd440b7a4eed9fb
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/meson/meson_0.51.2.bb:do_populate_sysroot, 
+> unihash 
+> ac801ce28f4bf45c7c08e2721a765872a1bd6561f783c570ed47dad7e9642901, 
+> taskhash ac801ce28f4bf45c7c08e2721a765872a1bd6561f783c570ed47dad7e9642901
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/expat/expat_2.2.8.bb:do_populate_sysroot, 
+> unihash 
+> c47a5a2b37341edbfeab516b931c8f0015b52d6159f251e70f57e086a6502fe1, 
+> taskhash c47a5a2b37341edbfeab516b931c8f0015b52d6159f251e70f57e086a6502fe1
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/bison/bison_3.4.1.bb:do_populate_sysroot, 
+> unihash 
+> f8fb4d2026cb4192c03bc75c357f9890dcb4f7593d23407f9a60c32d383d7c57, 
+> taskhash f8fb4d2026cb4192c03bc75c357f9890dcb4f7593d23407f9a60c32d383d7c57
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-kernel/dtc/dtc_1.5.1.bb:do_populate_sysroot, 
+> unihash 
+> 8ee1e9314ae7a6235f2ec876f7d30336d6e65d7879ac17cd1044ac3f20f969ec, 
+> taskhash 8ee1e9314ae7a6235f2ec876f7d30336d6e65d7879ac17cd1044ac3f20f969ec
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/autoconf-archive/autoconf-archive_2019.01.06.bb:do_populate_sysroot, 
+> unihash 
+> 7aaaf6c0cf3a9c104029683b93a62b965e91827c487ee707a23c84560aea1d3e, 
+> taskhash 7aaaf6c0cf3a9c104029683b93a62b965e91827c487ee707a23c84560aea1d3e
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/bzip2/bzip2_1.0.8.bb:do_populate_sysroot, 
+> unihash 
+> 66c8139add58f12cae0334108b226f4f91f1fdb34fd34822c9ff9612d6c11b64, 
+> taskhash 66c8139add58f12cae0334108b226f4f91f1fdb34fd34822c9ff9612d6c11b64
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-graphics/xorg-util/util-macros_1.19.2.bb:do_populate_sysroot, 
+> unihash 
+> 070d343bb7de5e6402f4190283e6d40ca33031eac71601d7ab92a92ef0e175d0, 
+> taskhash 070d343bb7de5e6402f4190283e6d40ca33031eac71601d7ab92a92ef0e175d0
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/python/python3-setuptools_41.2.0.bb:do_populate_sysroot, 
+> unihash 
+> e8771b3e23f0d5c3e799b093dd9657a2fd863abf459fa500399930111a8fd388, 
+> taskhash e8771b3e23f0d5c3e799b093dd9657a2fd863abf459fa500399930111a8fd388
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/qemu/qemu-system-native_4.1.0.bb:do_populate_sysroot, 
+> unihash 
+> 33ac287a8d8aded61eb77dd21cb3c54986126430c78a243f706a5917ef0a0183, 
+> taskhash 33ac287a8d8aded61eb77dd21cb3c54986126430c78a243f706a5917ef0a0183
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/mpfr/mpfr_4.0.2.bb:do_populate_sysroot, 
+> unihash 
+> 25d61942ed599e037b2e75a5b722ce5ff251005c2a4ee23e9faef34c9e54777b, 
+> taskhash 25d61942ed599e037b2e75a5b722ce5ff251005c2a4ee23e9faef34c9e54777b
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/re2c/re2c_1.0.1.bb:do_populate_sysroot, 
+> unihash 
+> 6ebe8680a921a8927ef6cd0061b2b50667bb787be010c8ee4ca6ccc3593024b7, 
+> taskhash 6ebe8680a921a8927ef6cd0061b2b50667bb787be010c8ee4ca6ccc3593024b7
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot, 
+> unihash 
+> 28e64747a95953ec8626d3027958e12d1fd854a7615bc69cf5adbbc3d49c323a, 
+> taskhash 28e64747a95953ec8626d3027958e12d1fd854a7615bc69cf5adbbc3d49c323a
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/libtirpc/libtirpc_1.1.4.bb:do_populate_sysroot, 
+> unihash 
+> 147f1ca7d20e89f2786b48fcda4ebaf36c1c3d941b53b0b8b56c42beb9220c1d, 
+> taskhash 147f1ca7d20e89f2786b48fcda4ebaf36c1c3d941b53b0b8b56c42beb9220c1d
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/qemu/qemu-native_4.1.0.bb:do_populate_sysroot, 
+> unihash 
+> 00651d4d53b4b7b10e44770326d5f0a1f5482c1262671621523ba12c21508977, 
+> taskhash 00651d4d53b4b7b10e44770326d5f0a1f5482c1262671621523ba12c21508977
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/gettext/gettext_0.19.8.1.bb:do_populate_sysroot, 
+> unihash 
+> bf9b767f8e30be92fa06079f2e7350aa304648b0d113829d315e6cb64bad0565, 
+> taskhash bf9b767f8e30be92fa06079f2e7350aa304648b0d113829d315e6cb64bad0565
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/glibc/glibc_2.30.bb:do_stash_locale, 
+> unihash 
+> d64e054d019028151912ffface31585789df48f4de7e3a66b201cd614c2f4aca, 
+> taskhash d64e054d019028151912ffface31585789df48f4de7e3a66b201cd614c2f4aca
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/ninja/ninja_1.9.0.bb:do_populate_sysroot, 
+> unihash 
+> ab3ecdf2561adc51338d36576f60eab1e05fc09ed69bb6444075d7adbeb57b9e, 
+> taskhash ab3ecdf2561adc51338d36576f60eab1e05fc09ed69bb6444075d7adbeb57b9e
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/sqlite/sqlite3_3.29.0.bb:do_populate_sysroot, 
+> unihash 
+> c1a988a16d4368098e178f7fe5f0e2e5f8adf4fa485a7b79c4c093a38005264e, 
+> taskhash c1a988a16d4368098e178f7fe5f0e2e5f8adf4fa485a7b79c4c093a38005264e
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/automake/automake_1.16.1.bb:do_populate_sysroot, 
+> unihash 
+> ad223f3318940531fa279bd74480cd6410abc46644f8fe98f7399a71cfe09179, 
+> taskhash ad223f3318940531fa279bd74480cd6410abc46644f8fe98f7399a71cfe09179
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/patch/patch_2.7.6.bb:do_populate_sysroot, 
+> unihash 
+> be5aa9a356c12c9b4220c3d3d6dfe16c737e9be88e7d331c0511b275e4d603c4, 
+> taskhash be5aa9a356c12c9b4220c3d3d6dfe16c737e9be88e7d331c0511b275e4d603c4
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/flex/flex_2.6.0.bb:do_populate_sysroot, 
+> unihash 
+> 9c37027658f2832321efe3657d91f29d1bf286ad1fda0c9916b256adfa246455, 
+> taskhash 9c37027658f2832321efe3657d91f29d1bf286ad1fda0c9916b256adfa246455
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/readline/readline_8.0.bb:do_populate_sysroot, 
+> unihash 
+> 3d909d0d6de7cf72b631aa1805efc1147459bef5bddca5f60ff07022ba777e0e, 
+> taskhash 3d909d0d6de7cf72b631aa1805efc1147459bef5bddca5f60ff07022ba777e0e
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/libnsl/libnsl2_git.bb:do_populate_sysroot, 
+> unihash 
+> 19357ca137093c4e1e063d14a0d3844f889dce933a4eebdc34acf0c321d707ec, 
+> taskhash 19357ca137093c4e1e063d14a0d3844f889dce933a4eebdc34acf0c321d707ec
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/glibc/glibc_2.30.bb:do_populate_sysroot, 
+> unihash 
+> df6ecc8017c1a3fa278fc743c85fa6049465da674f169777b9a544eb423b84b5, 
+> taskhash df6ecc8017c1a3fa278fc743c85fa6049465da674f169777b9a544eb423b84b5
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/gdbm/gdbm_1.18.1.bb:do_populate_sysroot, 
+> unihash 
+> 8b0d7a859afc0cc39a32d26b8d5c79b5c1b8970a8e5d566098ff59fc916335f5, 
+> taskhash 8b0d7a859afc0cc39a32d26b8d5c79b5c1b8970a8e5d566098ff59fc916335f5
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/libcap-ng/libcap-ng_0.7.9.bb:do_populate_sysroot, 
+> unihash 
+> 784e3c4b04d227379d94e85251233a568fb9e9f841d737584882d0da0b009d5c, 
+> taskhash 784e3c4b04d227379d94e85251233a568fb9e9f841d737584882d0da0b009d5c
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/zlib/zlib_1.2.11.bb:do_populate_sysroot, 
+> unihash 
+> 770d0b4be83a17d65464ade3adc3c6be443a9f8fffbe53d303c5765674a274d7, 
+> taskhash 770d0b4be83a17d65464ade3adc3c6be443a9f8fffbe53d303c5765674a274d7
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/unzip/unzip_6.0.bb:do_populate_sysroot, 
+> unihash 
+> 82d365cde8a3375461fb47f650aa3fd7c8aa029b0cd2f23ccd38b6f73a9902d9, 
+> taskhash 82d365cde8a3375461fb47f650aa3fd7c8aa029b0cd2f23ccd38b6f73a9902d9
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/pkgconfig/pkgconfig_git.bb:do_populate_sysroot, 
+> unihash 
+> de3b4482bf2a0878b99c904fecac19e917d374838da4c9df62929bb14d1282d1, 
+> taskhash de3b4482bf2a0878b99c904fecac19e917d374838da4c9df62929bb14d1282d1
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/binutils/binutils-cross_2.32.bb:do_populate_sysroot, 
+> unihash 
+> 50ce76092848b0214480dd7a4f0fcc7e5927f4f8071601bc094847d20d2c879d, 
+> taskhash 50ce76092848b0214480dd7a4f0fcc7e5927f4f8071601bc094847d20d2c879d
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gnu-config/gnu-config_git.bb:do_populate_sysroot, 
+> unihash 
+> 90db72e6ab74de51a86e0b14980b2c204076fc3ef8297a374b660d8645853cac, 
+> taskhash 90db72e6ab74de51a86e0b14980b2c204076fc3ef8297a374b660d8645853cac
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-headers_5.2.bb:do_populate_sysroot, 
+> unihash 
+> 7b6f6e59c3431987b308c78d6f72e5aefae1b9afbf158a47540f0db5e04ebdb0, 
+> taskhash 7b6f6e59c3431987b308c78d6f72e5aefae1b9afbf158a47540f0db5e04ebdb0
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gdb/gdb-cross_8.3.1.bb:do_populate_sysroot, 
+> unihash 
+> c623832386a7201b2a59b170e7c9015edfffbfb21dbec6ab44e81662d1d7c504, 
+> taskhash c623832386a7201b2a59b170e7c9015edfffbfb21dbec6ab44e81662d1d7c504
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/quilt/quilt-native_0.66.bb:do_populate_sysroot, 
+> unihash 
+> 23290d029e88d49579ce286326ba82d42ad77874a2cd0e05e71166b964190822, 
+> taskhash 23290d029e88d49579ce286326ba82d42ad77874a2cd0e05e71166b964190822
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/libffi/libffi_3.3~rc0.bb:do_populate_sysroot, 
+> unihash 
+> 5be2fdefd4b14100290247d24d2df8da234ea32cb91e4508ffd793aabc06d30e, 
+> taskhash 5be2fdefd4b14100290247d24d2df8da234ea32cb91e4508ffd793aabc06d30e
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/make/make_4.2.1.bb:do_populate_sysroot, 
+> unihash 
+> 7a82e867fd7be399f5d92200e43de6e7d9d42ad98e5f771a6e54a0975053ae2e, 
+> taskhash 7a82e867fd7be399f5d92200e43de6e7d9d42ad98e5f771a6e54a0975053ae2e
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/texinfo-dummy-native/texinfo-dummy-native.bb:do_populate_sysroot, 
+> unihash 
+> 2d20a98fe86b071366643317507293df9594c15528ef49f3fbeeffe4af532501, 
+> taskhash 2d20a98fe86b071366643317507293df9594c15528ef49f3fbeeffe4af532501
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/gettext/gettext-minimal-native_0.19.8.1.bb:do_populate_sysroot, 
+> unihash 
+> d579308c5efa4cef283785d540731bf0f02dffeef6ea677b0fa7cec6332e7902, 
+> taskhash d579308c5efa4cef283785d540731bf0f02dffeef6ea677b0fa7cec6332e7902
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/glib-2.0/glib-2.0_2.60.7.bb:do_populate_sysroot, 
+> unihash 
+> b7ff5dcd7278fab62aa716be6cf652bcc1d463d884738fb3232297fe6f81880a, 
+> taskhash b7ff5dcd7278fab62aa716be6cf652bcc1d463d884738fb3232297fe6f81880a
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/gperf/gperf_3.1.bb:do_populate_sysroot, 
+> unihash 
+> 6765ae416e5360039914d6216c0d02541c5afc070545804303d75d1016b7b460, 
+> taskhash 6765ae416e5360039914d6216c0d02541c5afc070545804303d75d1016b7b460
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/ncurses/ncurses_6.1+20190803.bb:do_populate_sysroot, 
+> unihash 
+> f468831b3be537588a35b7fdf2e1a46dc52d1737fbf168c0e83ff0f162a99cf9, 
+> taskhash f468831b3be537588a35b7fdf2e1a46dc52d1737fbf168c0e83ff0f162a99cf9
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-multimedia/alsa/alsa-lib_1.1.9.bb:do_populate_sysroot, 
+> unihash 
+> 39d5b05d5ec0e2b2abbb710c7c31f17d3047a255f5a11deb121d7323e06fb900, 
+> taskhash 39d5b05d5ec0e2b2abbb710c7c31f17d3047a255f5a11deb121d7323e06fb900
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/libpcre/libpcre_8.43.bb:do_populate_sysroot, 
+> unihash 
+> 3eed4e011c853b98bf31e1c1b2eee2073aeb4ef0546c9bd230f2bfcc3ac05088, 
+> taskhash 3eed4e011c853b98bf31e1c1b2eee2073aeb4ef0546c9bd230f2bfcc3ac05088
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/autoconf/autoconf_2.69.bb:do_populate_sysroot, 
+> unihash 
+> 373490cc20455b0913b69b35ab9cc61340356d7b27f7ecb6cf51a3ad9459a068, 
+> taskhash 373490cc20455b0913b69b35ab9cc61340356d7b27f7ecb6cf51a3ad9459a068
+> 
+> Task 
+> virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/unifdef/unifdef_2.11.bb:do_populate_sysroot, 
+> unihash 
+> 3e6814932d42ab266096948b4b81f9c1fbdbb26f7b990963ca4322a718e13170, 
+> taskhash 3e6814932d42ab266096948b4b81f9c1fbdbb26f7b990963ca4322a718e13170
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gcc/libgcc-initial_9.2.bb:do_populate_sysroot, 
+> unihash 
+> 07136816c5d9bb085d8dab671c1689d08254d92b7e0edbb4a23abb3ae2628bea, 
+> taskhash 07136816c5d9bb085d8dab671c1689d08254d92b7e0edbb4a23abb3ae2628bea
+> 
+> Task 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/qemu/qemu-helper-native_1.0.bb:do_populate_sysroot, 
+> unihash 
+> 4ba7e532221d903e4c3556460d09d7bf7eabc9c4ca73f6a481849be0eaba23a3, 
+> taskhash 4ba7e532221d903e4c3556460d09d7bf7eabc9c4ca73f6a481849be0eaba23a3
+> 
+> This is usually due to missing setscene tasks. Those missing in this 
+> build were: 
+> {'/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/gettext/gettext-minimal-native_0.19.8.1.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/glibc/glibc_2.30.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/glibc/glibc_2.30.bb:do_stash_locale',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/meta/meta-extsdk-toolchain.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/binutils/binutils-cross_2.32.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gcc/gcc-cross_9.2.bb:do_gcc_stash_builddir',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gcc/gcc-cross_9.2.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gcc/gcc-runtime_9.2.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gcc/libgcc-initial_9.2.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gcc/libgcc_9.2.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gdb/gdb-cross_8.3.1.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/libtool/libtool-native_2.4.6.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/m4/m4-native_1.4.18.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/qemu/qemu-helper-native_1.0.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/qemu/qemu-native_4.1.0.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/qemu/qemu-system-native_4.1.0.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/quilt/quilt-native_0.66.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/texinfo-dummy-native/texinfo-dummy-native.bb:do_populate_sysroot',
+> 
+> '/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-headers_5.2.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-connectivity/openssl/openssl_1.1.1g.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/expat/expat_2.2.8.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/gettext/gettext_0.19.8.1.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/glib-2.0/glib-2.0_2.60.7.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/ncurses/ncurses_6.1+20190803.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/readline/readline_8.0.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/util-linux/util-linux_2.34.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-core/zlib/zlib_1.2.11.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/autoconf-archive/autoconf-archive_2019.01.06.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/autoconf/autoconf_2.69.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/automake/automake_1.16.1.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/bison/bison_3.4.1.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/flex/flex_2.6.0.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/gnu-config/gnu-config_git.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/make/make_4.2.1.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/meson/meson_0.51.2.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/ninja/ninja_1.9.0.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/patch/patch_2.7.6.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/pkgconfig/pkgconfig_git.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/python/python3-setuptools_41.2.0.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/python/python3_3.7.8.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/unfs3/unfs3_git.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/unifdef/unifdef_2.11.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/bzip2/bzip2_1.0.8.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/gperf/gperf_3.1.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/libnsl/libnsl2_git.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/libtirpc/libtirpc_1.1.4.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/unzip/unzip_6.0.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-extended/xz/xz_5.2.4.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-gnome/gtk-doc/gtk-doc_1.31.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-graphics/xorg-lib/pixman_0.38.4.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-graphics/xorg-util/util-macros_1.19.2.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-kernel/dtc/dtc_1.5.1.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-multimedia/alsa/alsa-lib_1.1.9.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-multimedia/libpng/libpng_1.6.37.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/attr/attr_2.4.47.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/gdbm/gdbm_1.18.1.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/gmp/gmp_6.1.2.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/libcap-ng/libcap-ng_0.7.9.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/libffi/libffi_3.3~rc0.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/libmpc/libmpc_1.1.0.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/libpcre/libpcre_8.43.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/mpfr/mpfr_4.0.2.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/re2c/re2c_1.0.1.bb:do_populate_sysroot',
+> 
+> 'virtual:native:/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-support/sqlite/sqlite3_3.29.0.bb:do_populate_sysroot'}
+> 
+> ERROR: Task 
+> (/disk0/scratch/smonsees/sbcbSDK_EXT/layers/poky/meta/recipes-devtools/quilt/quilt-native_0.66.bb:do_fetch) 
+> failed with exit code 'setscene whitelist'
+> 
+> ERROR: SDK preparation failed: error log written to 
+> /disk0/scratch/smonsees/sbcbSDK_EXT/preparing_build_system.log
+> 
+> 10:52 smonsees@yix490016 
+> /disk0/scratch/smonsees/yocto/workspace_3/builds2/sbcb-default/tmp/deploy/sdk>
+> 
+> *From:*Khem Raj <raj.khem@gmail.com>
+> *Sent:* Thursday, March 4, 2021 1:22 PM
+> *To:* Monsees, Steven C (US) <steven.monsees@baesystems.com>
+> *Cc:* yocto@lists.yoctoproject.org
+> *Subject:* Re: [yocto] #yocto #sdk
+> 
+> *_External Email Alert_*
+> 
+> *This email has been sent from an account outside of the BAE Systems 
+> network.*
+> 
+> Please treat the email with caution, especially if you are requested to 
+> click on a link, decrypt/open an attachment, or enable macros.  For 
+> further information on how to spot phishing, access “Cybersecurity 
+> OneSpace Page” and report phishing by clicking the button “Report 
+> Phishing” on the Outlook toolbar.
+> 
+> right, the change seems to be happening in task checksums and that 
+> happens if some of bitbake variables change when SDK is built built and 
+> when it is being installed ( when it will run parse again ) perhaps the 
+> workspace under the hood is still accessible and you can use 
+> bitbake-diffsigs to narrow it down the variable that is changing
+> 
+> On Thu, Mar 4, 2021 at 9:38 AM Monsees, Steven C (US) via 
+> lists.yoctoproject.org <http://lists.yoctoproject.org> 
+> <steven.monsees=baesystems.com@lists.yoctoproject.org 
+> <mailto:baesystems.com@lists.yoctoproject.org>> wrote:
+> 
+>     I am seeing similar issues on line  for my eSDK install issue, but
+>     no resolutions…
+> 
+>     Can someone advise on best course of action to debug this ?
+> 
+>     11:10 smonsees@yix490016
+>     /disk0/scratch/smonsees/yocto/workspace_3/builds2/sbcb-default/tmp/deploy/sdk>
+>     ./limws-glibc-x86_64-aiox_orange-corei7-64-toolchain-ext-3.0.4.sh
+>     <http://limws-glibc-x86_64-aiox_orange-corei7-64-toolchain-ext-3.0.4.sh>
+> 
+>     LIMWS (BAE LIMWS base distro) Extensible SDK installer version 3.0.4
+> 
+>     ====================================================================
+> 
+>     Enter target directory for SDK (default: ~/limws_sdk):
+>     /disk0/scratch/smonsees/testSDK
+> 
+>     You are about to install the SDK to
+>     "/disk0/scratch/smonsees/testSDK". Proceed [Y/n]? Y
+> 
+>     Extracting
+>     SDK..............................................................................done
+> 
+>     Setting it up...
+> 
+>     Extracting buildtools...
+> 
+>     Preparing build system...
+> 
+>     Parsing recipes: 100%
+>     |##########################################################################################|
+>     Time: 0:01:36
+> 
+>     Initialising tasks: 100%
+>     |#######################################################################################|
+>     Time: 0:00:04
+> 
+>     Checking sstate mirror object availability: 100%
+>     |###############################################################|
+>     Time: 0:00:02
+> 
+>     WARNING: The efitools:do_compile sig is computed to be
+>     5851605e22907038837428950427053e22ea655641a08b5dafa39d6d6e1c5e15,
+>     but the sig is locked to
+>     b81a26e3591c71acd3d22212bfdb70a15a0df49af72e7634e6a39851f16e18b5 in
+>     SIGGEN_LOCKEDSIGS_t-corei7-64
+> 
+>     The monkeysphere:do_install sig is computed to be
+>     13a65b26dfff91f2432a8064d98003559eafffa214d81c3c6ea112c2dfba0391,
+>     but the sig is locked to
+>     2058fc9032b0e7f5c1ea358de4fa8d25ccec7204b73ebc636e79222d8cc00469 in
+>     SIGGEN_LOCKEDSIGS_t-corei7-64
+> 
+>     The signature:do_compile sig is computed to be
+>     ac0c5c19cdbe7484046657ccb7b768c02fbbabb43166befa93b71a85d5fcf55b,
+>     but the sig is locked to
+>     cf5c3f72489f447b1199aafe4b4148988ff91cecd970422352f2238afb127683 in
+>     SIGGEN_LOCKEDSIGS_t-corei7-64
+> 
+>     The grub-efi-native:do_clean_grub sig is computed to be
+>     4e16b100c32e9428126eb10864508038527cec795c5e4391208d96a55735c90a,
+>     but the sig is locked to
+>     a2bd26be0297624af53d6f8cf657d79740fb229db821c446d564c5ee9dc80ea3 in
+>     SIGGEN_LOCKEDSIGS_t-x86-64
+> 
+>     The grub-efi-native:do_compile sig is computed to be
+>     630cc346f7ececf98c54f9134e8fee546e85c92f1e3c6ac3c258a1cdf24d4565,
+>     but the sig is locked to
+>     802bba0874ce26169a9e16dcdb440795e8fa904977b036d637d6c4086ce72de8 in
+>     SIGGEN_LOCKEDSIGS_t-x86-64
+> 
+>     The grub-efi:do_clean_grub sig is computed to be
+>     faf0ae3c9159ef3ebb13d2521ecf51dfeeac0c2c47691cd0aaa80de91187af3c,
+>     but the sig is locked to
+>     0075bbd34297bfbc62685ff5477feec11d0dd2bcda6787a151cfb7927a7f39c2 in
+>     SIGGEN_LOCKEDSIGS_t-corei7-64
+> 
+>     The grub-efi:do_compile sig is computed to be
+>     30c09f3e8db4059b7e1ff23823f208be94d0e622904fc43eda497027be095a71,
+>     but the sig is locked to
+>     a9e8ddd9ecac11e67c66d9fccbabe23b6eb4a19c5996baef8ff960dfcdc898ed in
+>     SIGGEN_LOCKEDSIGS_t-corei7-64
+> 
+>     ERROR: Task quilt-native.do_fetch attempted to execute unexpectedly
+> 
+>     Task
+>     /disk0/scratch/smonsees/testSDK/layers/poky/meta/recipes-support/db/db_5.3.28.bb:do_populate_sysroot,
+>     unihash
+>     dcfb179ae99ac73583d33eec1357ff5d06fb58f160e5d7285061b6e1c9c3a9c0,
+>     taskhash
+>     dcfb179ae99ac73583d33eec1357ff5d06fb58f160e5d7285061b6e1c9c3a9c0
+> 
+>     Task
+>     /disk0/scratch/smonsees/testSDK/layers/poky/meta/recipes-extended/sed/sed_4.2.2.bb:do_package_write_ipk,
+>     unihash
+>     a37dc1cc0064749d1f6de69d0a9b8eab9ff6ef4089eff28a76e1851f8f8f8fe3,
+>     taskhash
+>     a37dc1cc0064749d1f6de69d0a9b8eab9ff6ef4089eff28a76e1851f8f8f8fe3
+> 
+>     Task
+>     /disk0/scratch/smonsees/testSDK/layers/poky/meta/recipes-support/libatomic-ops/libatomic-ops_7.6.10.bb:do_package_qa,
+>     unihash
+>     2b17b70b3e1568840e3b39488b9e6470c89d5ffd502f02b2c129331d7609add8,
+>     taskhash
+>     2b17b70b3e1568840e3b39488b9e6470c89d5ffd502f02b2c129331d7609add8
+> 
+>     Task
+>     /disk0/scratch/smonsees/testSDK/layers/poky/meta/recipes-connectivity/openssh/openssh_8.0p1.bb:do_package_qa,
+>     unihash
+>     87a24567344a646de9ab6fba50b398e41711ff4d1bca749ebe02d84359c2a155,
+>     taskhash
+>     87a24567344a646de9ab6fba50b398e41711ff4d1bca749ebe02d84359c2a155
+> 
+>     .
+> 
+>     .
+> 
+>     https://www.mail-archive.com/search?l=yocto@yoctoproject.org&q=subject:%22Re%5C%3A+%5C%5Byocto%5C%5D+eSDK+install+script+failure%22&o=newest&f=1
+>     <https://www.mail-archive.com/search?l=yocto@yoctoproject.org&q=subject:%22Re%5C%3A+%5C%5Byocto%5C%5D+eSDK+install+script+failure%22&o=newest&f=1>
+> 
+>     https://www.yoctoproject.org/pipermail/yocto/2017-August/037359.html
+>     <https://www.yoctoproject.org/pipermail/yocto/2017-August/037359.html>
+> 
+>     https://bugzilla.yoctoproject.org/show_bug.cgi?id=12344
+>     <https://bugzilla.yoctoproject.org/show_bug.cgi?id=12344>
+> 
+>     *From:* yocto@lists.yoctoproject.org
+>     <mailto:yocto@lists.yoctoproject.org> <yocto@lists.yoctoproject.org
+>     <mailto:yocto@lists.yoctoproject.org>> *On Behalf Of *Monsees,
+>     Steven C (US) via lists.yoctoproject.org <http://lists.yoctoproject.org>
+>     *Sent:* Thursday, March 4, 2021 8:13 AM
+>     *To:* Monsees, Steven C (US) <steven.monsees@baesystems.com
+>     <mailto:steven.monsees@baesystems.com>>;
+>     yocto@lists.yoctoproject.org <mailto:yocto@lists.yoctoproject.org>
+>     *Subject:* Re: [yocto] #yocto #sdk
+> 
+>     *_External Email Alert_*
+> 
+>     *This email has been sent from an account outside of the BAE Systems
+>     network.*
+> 
+>     Please treat the email with caution, especially if you are requested
+>     to click on a link, decrypt/open an attachment, or enable macros. 
+>     For further information on how to spot phishing, access
+>     “Cybersecurity OneSpace Page” and report phishing by clicking the
+>     button “Report Phishing” on the Outlook toolbar.
+> 
+>     Is there a list of certain classes that might interfere with the
+>     ability of the eSDK to lock down the configuratiuon ?
+> 
+>     Thanks,
+> 
+>     Steve
+> 
+>     *From:* yocto@lists.yoctoproject.org
+>     <mailto:yocto@lists.yoctoproject.org> <yocto@lists.yoctoproject.org
+>     <mailto:yocto@lists.yoctoproject.org>> *On Behalf Of *Monsees,
+>     Steven C (US) via lists.yoctoproject.org <http://lists.yoctoproject.org>
+>     *Sent:* Tuesday, March 2, 2021 3:26 PM
+>     *To:* yocto@lists.yoctoproject.org <mailto:yocto@lists.yoctoproject.org>
+>     *Subject:* [yocto] #yocto #sdk
+> 
+>     *_External Email Alert_*
+> 
+>     *This email has been sent from an account outside of the BAE Systems
+>     network.*
+> 
+>     Please treat the email with caution, especially if you are requested
+>     to click on a link, decrypt/open an attachment, or enable macros. 
+>     For further information on how to spot phishing, access
+>     “Cybersecurity OneSpace Page” and report phishing by clicking the
+>     button “Report Phishing” on the Outlook toolbar.
+> 
+>     I still appear to be having an issue with the SXT SDK install…
+> 
+>     Building for zeus/x86_64 Intel based platform…
+> 
+>     I build my kernel image clean, fully functional…
+> 
+>     Standard SDK builds clean and appears functional…
+> 
+>     Ext SDK builds clean, but on install I am still seeing Error below…
+> 
+>     (1)What is it comparing  between unhash/task hash ?, more sig issues ?
+> 
+>     (2)What is meant by “This is usually due to missing setscene tasks” ?
+> 
+>     (3)In the local.conf under the SDK they set :
+> 
+>     SSTATE_MIRRORS += " file://universal/(.*) <file://universal/(.*)>
+>     file://universal-4.9/\1 <file://universal-4.9/1>
+>     file://universal-4.9/(.*) <file://universal-4.9/(.*)>
+>     file://universal-4.8/\1 <file://universal-4.8/1>"
+> 
+>     Under sdk-extra.conf I set :
+> 
+>     SSTATE_MIRRORS += file://.* <file://.*>
+>     file:///ede/tms/yocto/zeus/sstate_cache/PATH
+>     <file:///ede/tms/yocto/zeus/sstate_cache/PATH>
+> 
+>     My SSTATE_MIRRIOR is based off the clean builds I mentioned above,
+>     is this the correct procedure ?
+> 
+>     I am trying to figure out how best to debug this issue, it is
+>     occurring on the post install, and everything pretty much appears in
+>     place.
+> 
+>     Steve
+> 
+>     14:43 smonsees@yix490038
+>     /disk0/scratch/smonsees/yocto/workspace_3/builds2/sbcb-default/tmp/deploy/sdk>./limws-glibc-x86_64-aiox_orange-corei7-64-toolchain-ext-3.0.4.sh
+>     <http://limws-glibc-x86_64-aiox_orange-corei7-64-toolchain-ext-3.0.4.sh>
+> 
+>     LIMWS (BAE LIMWS base distro) Extensible SDK installer version 3.0.4
+> 
+>     ====================================================================
+> 
+>     Enter target directory for SDK (default: ~/limws_sdk):
+>     /disk0/scratch/smonsees/testSDK
+> 
+>     You are about to install the SDK to
+>     "/disk0/scratch/smonsees/testSDK". Proceed [Y/n]? Y
+> 
+>     Extracting
+>     SDK..............................................................................done
+> 
+>     Setting it up...
+> 
+>     Extracting buildtools...
+> 
+>     Preparing build system...
+> 
+>     Parsing recipes: 100%
+>     |###########################################################################################|
+>     Time: 0:01:32
+> 
+>     Initialising tasks: 100%
+>     |########################################################################################|
+>     Time: 0:00:04
+> 
+>     Checking sstate mirror object availability: 100%
+>     |################################################################|
+>     Time: 0:00:03
+> 
+>     ERROR: Task quilt-native.do_fetch attempted to execute unexpectedly
+> 
+>     Task
+>     /disk0/scratch/smonsees/testSDK/layers/poky/meta/recipes-support/liburcu/liburcu_0.11.1.bb:do_populate_sysroot,
+>     unihash
+>     cdb08644b85fa162bd9f88cb00113fe3193cc347e39e33e8f405f9c23f60c601,
+>     taskhash
+>     cdb08644b85fa162bd9f88cb00113fe3193cc347e39e33e8f405f9c23f60c601
+> 
+>     Task
+>     /disk0/scratch/smonsees/testSDK/layers/poky/meta/recipes-devtools/python/python3_3.7.8.bb:do_packagedata,
+>     unihash
+>     925a72cbe872aad09bd3fbbe74ed1c944e9c19a732e120feae5c4784e6330d4f,
+>     taskhash
+>     925a72cbe872aad09bd3fbbe74ed1c944e9c19a732e120feae5c4784e6330d4f
+> 
+>     .
+> 
+>     .
+> 
+>     .
+> 
+>     This is usually due to missing setscene tasks. Those missing in this
+>     build were:
+> 
+>     <<appears to list every recipe under ./testSDK/layers directory here>>
+> 
+> 
+> 
+> 
+> 
+> 
