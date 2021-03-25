@@ -1,50 +1,50 @@
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
- by mx.groups.io with SMTP id smtpd.web11.1367.1616632841889685868
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web08.1407.1616632843836712246
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Mar 2021 17:40:41 -0700
+ Wed, 24 Mar 2021 17:40:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=finhuoUy;
- spf=softfail (domain: sakoman.com, ip: 209.85.210.181, mailfrom: steve@sakoman.com)
-Received: by mail-pf1-f181.google.com with SMTP id q5so218344pfh.10
-        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 17:40:41 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=L6wu7gzZ;
+ spf=softfail (domain: sakoman.com, ip: 209.85.215.172, mailfrom: steve@sakoman.com)
+Received: by mail-pg1-f172.google.com with SMTP id v186so92228pgv.7
+        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 17:40:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sakoman-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=AQ/IOuSNJ2icXnAz/9np8qbd41/XAPNnBAS1LvofxKk=;
-        b=finhuoUyctteDxGK0EwRXJ4PdrXnB1pLY+yIYli4DeqJ8U1ZlZzcvXouNcIjdEn5lJ
-         t2Z+3toriJLzMGwEvjIWRaW2MJNGUPPIYP/nB3ga42WFoOjsykXDKaYhs8wKVta1ClSc
-         RWlY6IZdZ6zvhAExq+Mu8eAQ54aE92maM4VPVJjjNwUjtSX0uzChEMX5hQ61Mbivmxvt
-         vc3PADUx6Cc/YQlNODEkNVM9BFpQMfbYuaEH8xK8za5BiO8wFnJi/fZh8r+XC3d1pWy0
-         FjIfHhWTqka9D0xYVC2zDtw7pJuqx7zTq5z2ljXKeJpB/51JhaVbn/jLHAB66V6SYq+6
-         vAfQ==
+        bh=VnY/mjqUWY3io9QVq5jqMND/CQgQ0Wc/9aHq834vUgc=;
+        b=L6wu7gzZDCwrSnhaWwtUscWOFq0pONXzrdv7OEWRzAT6WMUohieBLh77kpyLQnq//N
+         rDinXu2nVCVDhfFe7EhlYPpEySaS+AjozzjsS8BHsg9k7KbxVlYqxn3nz+RdPJfyTJNy
+         FKZQwN9YA1kDkvwYCAVLT36zGp5d+HrfxEdcqbuTUGSpMKY47lGWJl0qYKMgH9DQFsS1
+         vqvrVo1eJv5Aq749SeExrZecRf01NrAyj+4KZRGQncugGU53dJbcZLLbJaSz9jF3g9Rv
+         SFSj9+xI097k910gI1KrPJxtbjHghA0t8nPAZVsaddSRluiFMDWZHPVeYjAv+0K997d9
+         ACYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=AQ/IOuSNJ2icXnAz/9np8qbd41/XAPNnBAS1LvofxKk=;
-        b=s/eEhZAGhl1uVp1Tpi4YpO4gyxAmzNA7XwNiai7BOfW3py3KyikIghaQQFn+ChlTj9
-         1OLuz8osIGWDa4iSspfmccT6QuPfzIExsLVSPmuB4fCQ1HIEB8jt0nWiBFSHyPDHNZTo
-         R4RCpGZtwJzUNguLNtOKofF28Yf23CCkL8dZSnvTFzJ2tC2udIeMGuv8Z3Op2fGIyWLe
-         tsxxUQNhIJhB3pdsPKLap0DY+iOCaNM1i701ayarsffF3d4eHfEPj25FUF0SneOvZf3w
-         KxnL76ECZHugT8bVyI9tkGBBQUJxJwUEV70OXq5byp11uBeTIrO7OdxJgudnl853DD+C
-         Zysw==
-X-Gm-Message-State: AOAM532cWT7hfzOBTrPlV6HDoJhRY3++f1V73j8FMZeCrBSTE33yoTjn
-	wkWWbaeTytNqQ6fWg8YqYg2EEQPuqL0ngmFT
-X-Google-Smtp-Source: ABdhPJx/PYQmWkXbNp+idepvcoVHKd8K5BZyUNynr3Jq6KzsK2bJpkoGadFYIS4n9/bziDj4CtfJTA==
-X-Received: by 2002:a62:7517:0:b029:21d:2eb4:ee5d with SMTP id q23-20020a6275170000b029021d2eb4ee5dmr5144191pfc.64.1616632840990;
-        Wed, 24 Mar 2021 17:40:40 -0700 (PDT)
+        bh=VnY/mjqUWY3io9QVq5jqMND/CQgQ0Wc/9aHq834vUgc=;
+        b=rCQQdhZpLAadgiZ1dqOwGuzcHh9/MldSbp60o2gu9AiCgMdljqF3/VsFKP70vJsjAR
+         2jsvbTEEVWUC1KvxMlRtyXEfo5c8BwwuzpZIr0O+uDTYhbRvnT3g1CncbqlsjK5c5kvK
+         H3LtJG1VQph7ckSHIFwQMLhvss3cmeH/n9DTX5IQOOvoNO7y2mDfb0fGqGOZZPdEqCgg
+         whCLx4mvuHndfzwXvRdunKJlEL6yadW/SF1TTMiQzD0751+QYfa3/wVqTWAAuvntcto1
+         EMdn6+i4Bj1EllpLo+AlZWSDGrgKLGg8aDjxwyFYatb94DmJqzUrZY3t8SKq+bopbxSy
+         jQuA==
+X-Gm-Message-State: AOAM531lfQbEuS600uPHqDDjn72Zkn8xpX/JIZt8biMPdp5COaXrFxIq
+	CBOagSgdoT55wHp9ilFmndQx7Mz2axckaEb8
+X-Google-Smtp-Source: ABdhPJys8gS34waQ021DzoHAvTXthUVDWnQPIbo8GFfsc9GJVe65PxEy8djGJ1TkW7gS/auB4NIahA==
+X-Received: by 2002:a63:f506:: with SMTP id w6mr5066019pgh.367.1616632842863;
+        Wed, 24 Mar 2021 17:40:42 -0700 (PDT)
 Return-Path: <steve@sakoman.com>
 Received: from localhost.localdomain (rrcs-66-91-142-162.west.biz.rr.com. [66.91.142.162])
-        by smtp.gmail.com with ESMTPSA id o13sm3706924pfp.26.2021.03.24.17.40.39
+        by smtp.gmail.com with ESMTPSA id o13sm3706924pfp.26.2021.03.24.17.40.41
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 17:40:40 -0700 (PDT)
+        Wed, 24 Mar 2021 17:40:42 -0700 (PDT)
 From: "Steve Sakoman" <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][dunfell 21/23] scripts/run-config: Disable output buffering
-Date: Wed, 24 Mar 2021 14:39:30 -1000
-Message-Id: <b152dd1dea8b720bcf0848e515de5d1d79a1ba90.1616625264.git.steve@sakoman.com>
+Subject: [yocto-autobuilder-helper][dunfell 22/23] config.json: Split reproduciblity tests into their own target
+Date: Wed, 24 Mar 2021 14:39:31 -1000
+Message-Id: <98fed776845eed52b2a3cc8d0f879552eee539c3.1616625264.git.steve@sakoman.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <cover.1616625264.git.steve@sakoman.com>
 References: <cover.1616625264.git.steve@sakoman.com>
@@ -53,31 +53,68 @@ Content-Transfer-Encoding: 8bit
 
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Line buffering (bufsize=1) is unavailable with binary mode so use unbuffered
-mode instead. This fixes python runtime warnings.
-
-[YOCTO #14093]
-
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-(cherry picked from commit c21732937c89f7b13a4f8a9a02d7fcb15a4bad2d)
+(cherry picked from commit 97e0979d6eb0300951445bb2cc5eda315681302e)
 Signed-off-by: Steve Sakoman <steve@sakoman.com>
 ---
- scripts/run-config | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ config.json | 30 +++++++++++++++++++++++++++++-
+ 1 file changed, 29 insertions(+), 1 deletion(-)
 
-diff --git a/scripts/run-config b/scripts/run-config
-index aab52c1..8ed88cf 100755
---- a/scripts/run-config
-+++ b/scripts/run-config
-@@ -193,7 +193,7 @@ def bitbakecmd(builddir, cmd, report, stepnum, stepname, oeenv=True):
- 
-     flush()
- 
--    with subprocess.Popen(cmd, shell=True, cwd=builddir + "/..", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=1) as p, open(log, 'ab') as f:
-+    with subprocess.Popen(cmd, shell=True, cwd=builddir + "/..", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=0) as p, open(log, 'ab') as f:
-         for line in p.stdout:
-             writelog(line, f, sys.stdout.buffer)
-             sys.stdout.flush()
+diff --git a/config.json b/config.json
+index 8eb05e6..3ce10c9 100644
+--- a/config.json
++++ b/config.json
+@@ -171,7 +171,7 @@
+             },
+             "step2" : {
+                 "shortname" : "OE Selftest",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail/ DISPLAY=:1 oe-selftest --skip-tests distrodata.Distrodata.test_checkpkg buildoptions.SourceMirroring.test_yocto_source_mirror devtool.DevtoolAddTests.test_devtool_add_npm recipetool.RecipetoolTests.test_recipetool_create_npm -T machine -T toolchain-user -T toolchain-system -j 15"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail/ DISPLAY=:1 oe-selftest --skip-tests distrodata.Distrodata.test_checkpkg buildoptions.SourceMirroring.test_yocto_source_mirror devtool.DevtoolAddTests.test_devtool_add_npm recipetool.RecipetoolTests.test_recipetool_create_npm reproducible -T machine -T toolchain-user -T toolchain-system -j 15"],
+                 "ADDLAYER" : ["${BUILDDIR}/../meta-selftest"]
+             },
+             "step3" : {
+@@ -179,6 +179,16 @@
+                 "EXTRACMDS" : ["if [ `which oe-pylint` ]; then mkdir -p ${HELPERRESULTSDIR}/${HELPERTARGET}; oe-pylint > ${HELPERRESULTSDIR}/${HELPERTARGET}/pylint.log || true; fi"]
+             }
+         },
++        "reproducible" : {
++            "MACHINE" : "qemux86-64",
++            "SDKMACHINE" : "x86_64",
++            "step1" : {
++                "shortname" : "Reproducible Selftest",
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail/ DISPLAY=:1 oe-selftest -r reproducible -j 1"],
++                "ADDLAYER" : ["${BUILDDIR}/../meta-selftest"]
++
++            }
++        },
+         "trigger-build" : {
+             "SDKMACHINE" : "x86_64",
+             "MACHINE" : "qemux86",
+@@ -725,6 +735,24 @@
+         "oe-selftest-centos" : {
+             "TEMPLATE" : "selftest"
+         },
++        "reproducible" : {
++            "TEMPLATE" : "reproducible"
++        },
++        "reproducible-ubuntu" : {
++            "TEMPLATE" : "reproducible"
++        },
++        "reproducible-debian" : {
++            "TEMPLATE" : "reproducible"
++        },
++        "reproducible-fedora" : {
++            "TEMPLATE" : "reproducible"
++        },
++        "reproducible-opensuse" : {
++            "TEMPLATE" : "reproducible"
++        },
++        "reproducible-centos" : {
++            "TEMPLATE" : "reproducible"
++        },
+         "check-layer" : {
+             "NEEDREPOS" : ["poky", "meta-gplv2", "meta-mingw"],
+             "step1" : {
 -- 
 2.25.1
 
