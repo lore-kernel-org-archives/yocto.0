@@ -1,60 +1,107 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.33337.1617473450749398942
- for <yocto@lists.yoctoproject.org>;
- Sat, 03 Apr 2021 11:10:50 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 198.145.29.25, mailfrom: rpjday@crashcourse.ca)
-Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 9F9B438C07D7
-	for <yocto@yoctoproject.org>; Sat,  3 Apr 2021 18:10:48 +0000 (UTC)
-Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:39528 helo=fedora)
-	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1lSkjO-0000rd-LG
-	for yocto@yoctoproject.org; Sat, 03 Apr 2021 14:10:47 -0400
-Date: Sat, 3 Apr 2021 14:10:44 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: does meta-virtualization layer have superfluous dynamic layers stuff?
-Message-ID: <ba377363-9dad-e8c9-c37f-2686db59e75@crashcourse.ca>
+Subject: Issue generating working sdk containing Clang (meta-clang) and package_deb for compiling eBPF #sdk #dunfell #yocto #kernel #linux
+To: yocto@lists.yoctoproject.org
+From: "msg board" <msgboardpana@gmail.com>
+X-Originating-Location: Fremont, California, US (73.231.211.214)
+X-Originating-Platform: Mac Chrome 89
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+Date: Thu, 25 Mar 2021 09:16:29 -0700
+Message-ID: <8S52.1616688989583067700.ubBM@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="UsH5vJAiqbjQCCApBWKs"
 
+--UsH5vJAiqbjQCCApBWKs
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-  just noticed this is meta-virt layer, file layer.conf:
+Hello,
 
-# The dynamic-layers directory hosts extensions and layer-specific
-# modifications.
-#
-# The .bbappend and .bb files are included if the respective layer
-# collection is available.
-BBFILES += "${@' '.join('${LAYERDIR}/dynamic-layers/%s/recipes*/*/*.bbappend' % layer \
-               for layer in BBFILE_COLLECTIONS.split())}"
-BBFILES += "${@' '.join('${LAYERDIR}/dynamic-layers/%s/recipes*/*/*.bb' % layer \
-               for layer in BBFILE_COLLECTIONS.split())}"
+I=C2=A0need Clang=C2=A0compiler apart=C2=A0from currently=C2=A0available d=
+efault gcc compiler as I am trying to compile eBPF which will run on my cus=
+tom yocto which is based on core-image-minimal. Therefore I=C2=A0added Clan=
+g=C2=A0compiler to my yocto sdk build using the meta-clang layer available =
+at https://github.com/kraj/meta-clang. My yocto is based on dunfell and use=
+s package_deb inside local.conf. SDK compilation succeeded with command "bi=
+tbake <mycustomdistro> -c populate_sdk " but while installation on host the=
+re errors similar to the ones mentioned in this issue ( https://github.com/=
+kraj/meta-clang/issues/119 ).=C2=A0 Therefore, I removed the LDFLAGS_append=
+_class-nativesdk =3D " -fuse-ld=3Dgold" line from clang_git.bb and compiled=
+. This gave me errors related to this issue ( https://stackoverflow.com/que=
+stions/60058817/bitbake-populate-sdk-for-image-fails-with-error ). Therefor=
+e, I added package_ipk and also kept package_deb . The compilation was succ=
+essful but there was one warning as below :
 
-BBFILES_DYNAMIC += " \
-    raspberrypi:${LAYERDIR}/dynamic-layers/raspberrypi/*/*/*.bb \
-    raspberrypi:${LAYERDIR}/dynamic-layers/rasbperrypi/*/*/*.bbappend \
-    xilinx:${LAYERDIR}/dynamic-layers/xilinx/*/*/*.bb \
-    xilinx:${LAYERDIR}/dynamic-layers/xilinx/*/*/*.bbappend \
-"
+-------------------------
 
-  i'm *assuming* that those first two assignments to BBFILES
-represent the earlier technique for supporting dynamic layers,
-otherwise i'm not sure what they're doing there. with the assignment
-to BBFILES_DYNAMIC, is there any value to the earlier assignments?
+<CUSTOMDISTRO> do_populate_sdk: Unable to install packages. Command <Path>=
+/opkg --volatile-cache -f <Path>/opkg.conf -t <Path>/sysroots/core2-64-poky=
+-linux --force-postinstall --prefer-arch-to-version install <Long list of s=
+pace seperate package names> returned 1
 
-rday
+Collected errors: Solver encountered 1 problem(s) ....
+
+-------------------------
+
+The installation of on host was successful
+
+When I tried to use the sdk to compile eBPF, I got errors mentioning that =
+the sysroot does not contain /usr/include/gelf.h . After looking I saw that=
+ elfutils-dev tools were not installed. elfutils-dev would have installed g=
+elf.h. in /usr/include of sysroot.
+
+Without the addition of Clang I was able to generate working sdk with just=
+ package_deb in local.conf.
+
+--UsH5vJAiqbjQCCApBWKs
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hello,</p>
+<p>I&nbsp;need Clang&nbsp;compiler apart&nbsp;from currently&nbsp;availabl=
+e default gcc compiler as I am trying to compile eBPF which will run on my =
+custom yocto which is based on core-image-minimal. Therefore I&nbsp;added C=
+lang&nbsp;compiler to my yocto sdk build using the meta-clang layer availab=
+le at&nbsp;<a href=3D"https://github.com/kraj/meta-clang" target=3D"_blank"=
+ rel=3D"nofollow noopener">https://github.com/kraj/meta-clang</a>&nbsp;. My=
+ yocto is based on dunfell and uses package_deb inside local.conf. SDK comp=
+ilation succeeded with command "bitbake &lt;mycustomdistro&gt; -c populate_=
+sdk " but while installation on host there errors similar to the ones menti=
+oned in&nbsp;<a href=3D"https://github.com/kraj/meta-clang/issues/119" targ=
+et=3D"_blank" rel=3D"nofollow noopener">this issue</a>&nbsp;.&nbsp; Therefo=
+re, I removed the&nbsp;<span style=3D"font-size: 12px; font-family: SFMono-=
+Regular, Consolas, 'Liberation Mono', Menlo, monospace; color: #24292e;">LD=
+FLAGS_append_class-nativesdk =3D " -fuse-ld=3Dgold"&nbsp;</span><span style=
+=
+=3D"color: #24292e;"><span style=3D"font-family: arial, sans-serif;">line =
+from clang_git.bb and compiled. This gave me errors related to this&nbsp;<a=
+ href=3D"https://stackoverflow.com/questions/60058817/bitbake-populate-sdk-=
+for-image-fails-with-error" target=3D"_blank" rel=3D"nofollow noopener">iss=
+ue</a>&nbsp;. Therefore, I added package_ipk and also kept package_deb . Th=
+e compilation was successful but there was one warning as below :</span></s=
+pan></p>
+<p><span style=3D"color: #24292e;"><span style=3D"font-family: arial, sans=
+-serif;">-------------------------</span></span></p>
+<p><span style=3D"color: #24292e;"><span style=3D"font-family: arial, sans=
+-serif;">&lt;CUSTOMDISTRO&gt; do_populate_sdk: Unable to install packages. =
+Command &lt;Path&gt;/opkg --volatile-cache -f &lt;Path&gt;/opkg.conf -t &lt=
+;Path&gt;/sysroots/core2-64-poky-linux --force-postinstall --prefer-arch-to=
+-version install &lt;Long list of space seperate package names&gt; returned=
+ 1</span></span></p>
+<p><span style=3D"color: #24292e;"><span style=3D"font-family: arial, sans=
+-serif;">Collected errors:&nbsp;</span></span><span style=3D"font-family: a=
+rial, sans-serif; color: #24292e;">Solver encountered 1 problem(s) ....</sp=
+an></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style=3D"color: #24292e;"><span style=3D"font-family: arial, sans=
+-serif;">-------------------------</span></span></p>
+<p>The installation of on host was successful</p>
+<p><span style=3D"color: #24292e;"><span style=3D"font-family: arial, sans=
+-serif;">When I tried to use the sdk to compile eBPF, I got errors mentioni=
+ng that the sysroot does not contain /usr/include/gelf.h . After looking I =
+saw that elfutils-dev tools were not installed. elfutils-dev would have ins=
+talled gelf.h. in /usr/include of sysroot.</span></span></p>
+<p>Without the addition of Clang I was able to generate working sdk with j=
+ust package_deb in local.conf.&nbsp;</p>
+
+--UsH5vJAiqbjQCCApBWKs--
