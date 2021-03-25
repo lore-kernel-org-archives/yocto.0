@@ -1,50 +1,50 @@
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
- by mx.groups.io with SMTP id smtpd.web11.1552.1616688202687842893
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+ by mx.groups.io with SMTP id smtpd.web10.1461.1616688207804145069
  for <yocto@lists.yoctoproject.org>;
- Thu, 25 Mar 2021 09:03:22 -0700
+ Thu, 25 Mar 2021 09:03:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=C0RpJYF+;
- spf=softfail (domain: sakoman.com, ip: 209.85.210.180, mailfrom: steve@sakoman.com)
-Received: by mail-pf1-f180.google.com with SMTP id j25so2533312pfe.2
-        for <yocto@lists.yoctoproject.org>; Thu, 25 Mar 2021 09:03:22 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=WFcjVUPu;
+ spf=softfail (domain: sakoman.com, ip: 209.85.216.48, mailfrom: steve@sakoman.com)
+Received: by mail-pj1-f48.google.com with SMTP id il9-20020a17090b1649b0290114bcb0d6c2so2927823pjb.0
+        for <yocto@lists.yoctoproject.org>; Thu, 25 Mar 2021 09:03:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sakoman-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=XTT4wPdLmNq2khuLBaxLzvNPqQukJWdTRwWjB5ndjUM=;
-        b=C0RpJYF+JKGy6wvD2dEglqLFyWFG45tH7YgLCBxWa1GT4eSRvecZlIKI24m4olMchp
-         tlIPoX7rmHldTL9KZWBbCQ5Lb48BrLvUKX9e6xDs3i48vlRjZJrgrs1LTcdtRcrVvoo4
-         6RPLrDOAxn0zWYyk8YfvtDuzv4OAmeyCTt0lHwBhmYozpQvgAkIKXRjpsqIU2O/E6w51
-         bYdh/4oWE9PUlIuYHEKJcUOjZue4gy5qmWF/A+y4nyeyrWKDmW0aQiRqnfqBxFwAhGVW
-         C2exPmvaXPwiARuPGXxFpGfVrHMQZoBNFEGNI/1M79AvJdPMZtUkfqktkf97j6SqOq+b
-         j0Ow==
+        bh=28NqjFVZb85b4fI+XYM35i2bXbpxI911Znln/S2RQKg=;
+        b=WFcjVUPuq3qucMCHugILfRzGfz0mqM9raV/KuzEPjSgCsn+imNpJPgrMAG1eRW+1fT
+         6pDf3+z6Tp+fjEBWsGA1FEmkntIJjlbdZiFFHzfZjf6uv2l+ZEY0g1aICqBhU+044Xm5
+         QgmUZ0sUqUVjaSsxvVET6uY6VGN8lFWaZHYAKh5iCl7+wco7xgv25fxHezFZz4BYCmvE
+         0JvXligvm2Kt9NVn9muNlJJ2sDVZM7s7M+ZMqxWD4ANBAY7cmob7zA/eKNch6bYsDY4Q
+         HrQxY4ifKwp9iWiCBXUx3h5yTGzAScHloQbGs4HMgMN7iLZ4k90WdeXaqRQPoEgmGiwM
+         4Y2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=XTT4wPdLmNq2khuLBaxLzvNPqQukJWdTRwWjB5ndjUM=;
-        b=WocV12+dwWRPoN5b3PiUzdoXgnn7qhP4A+/Wnzp9lOCTySG4s/DOKprBd4MvdLqO/B
-         vcMb02ZwE7m8nD0waoDR8w+TCDygUtKi5AOMXMJA/LwcXjEX871j8AJk9hIhsqGFi57I
-         rcm4aNuDkfhsQtgUeSMNW5SepIN0gwhxTo8KLrX3RoJQ/dPHNmE5qSVcJOlfqEckunO4
-         KjjHofIosoweQRkf81gJBvAgbZOkQyDRfICBCan3iopeBev9CWBfh2Arm6hGTV8rI7ef
-         6BK3aqJeXxrpIPBWT3aGaB6FaKyZxeipmqxDuuze1pZ8JkGrtB+blrVUGlJIL0Z9wyF2
-         nmCg==
-X-Gm-Message-State: AOAM530TmpW0UW7RS9xzP+MAei/uB+zOXnYVMsp7K8hGmGz3Y2qcMRXb
-	6xqNl65xrZ9E9csUvDUmc8tqYEtWDx9WMeEX
-X-Google-Smtp-Source: ABdhPJzYoJK/w90wu6CNw8C8t++Dx9TDlcgduAGuiOJWMWmMAIDZQwRP/JTOVFew6rD9oYmm9LEzDg==
-X-Received: by 2002:a63:485b:: with SMTP id x27mr2263719pgk.0.1616688201747;
-        Thu, 25 Mar 2021 09:03:21 -0700 (PDT)
+        bh=28NqjFVZb85b4fI+XYM35i2bXbpxI911Znln/S2RQKg=;
+        b=tYMEGPatXmPYD1eX/PUToQBxXX/VwG3LdE3xNXDtE6g/+aLpy9TNpHncRAa+qZtxD+
+         5DLjufNH96YGiVA97YVhB2vmLXKA09oNRMEVJlGtOsPlZ2vUzQ57waHd+kWsFfF2yh8m
+         MKpV6klzjvWD5tqLFpqkjI915B14XXCY16m3rjaBfWPImmoSo+eGJU8C6Ti+FPZszXHa
+         GFcRzbBj72kBhX0psFfOVvF8mJVkUk8U+/AFhqBkDCqzzco7W/o9IrA5cq5hcOVNTFlE
+         b/DT5+ncBkkInHWzA89/OUvy1IcCBO6/fvPfQsUKYXr82ziryWXx4196V1Gcuj1CdW5p
+         sZQA==
+X-Gm-Message-State: AOAM530fdMnOP5Yb+QCnyfVsDsVBlesohboE6idmZGIgKROZR1+la2nN
+	AToxOne2rkem7IX5ftcFEtxenu5WQnfoiJPE
+X-Google-Smtp-Source: ABdhPJyIUgWqI8MFlVUQcXrxhlp1ev3vCu8jZcRJAJr8MYXY7DxrmABGonUp36xaRKHCRp7dHecciA==
+X-Received: by 2002:a17:90a:66c2:: with SMTP id z2mr10018940pjl.139.1616688206880;
+        Thu, 25 Mar 2021 09:03:26 -0700 (PDT)
 Return-Path: <steve@sakoman.com>
 Received: from localhost.localdomain ([72.173.249.164])
-        by smtp.gmail.com with ESMTPSA id t18sm6290054pfh.57.2021.03.25.09.03.18
+        by smtp.gmail.com with ESMTPSA id t18sm6290054pfh.57.2021.03.25.09.03.23
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 09:03:21 -0700 (PDT)
+        Thu, 25 Mar 2021 09:03:26 -0700 (PDT)
 From: "Steve Sakoman" <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][dunfell V2 05/15] scripts/run-config: Improve logfile naming
-Date: Thu, 25 Mar 2021 06:02:11 -1000
-Message-Id: <b21aabbf2ab5fde1b5d89ace0ab1dc485c4a6088.1616687842.git.steve@sakoman.com>
+Subject: [yocto-autobuilder-helper][dunfell V2 06/15] scripts/run-config: Ensure logging to both logfile and stdout
+Date: Thu, 25 Mar 2021 06:02:12 -1000
+Message-Id: <43628b7edfc9b5a41d5abe95c83702dbd64debcf.1616687842.git.steve@sakoman.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <cover.1616687842.git.steve@sakoman.com>
 References: <cover.1616687842.git.steve@sakoman.com>
@@ -54,110 +54,61 @@ Content-Transfer-Encoding: 8bit
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
 
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-(cherry picked from commit 4a4c888f6618c3a7273c6dfe30b640e75e2b0de8)
+(cherry picked from commit b1bc4d64c2d0a7e61aea154635996b6b4a4d04c2)
 Signed-off-by: Steve Sakoman <steve@sakoman.com>
 ---
- scripts/run-config | 28 ++++++++++++----------------
- 1 file changed, 12 insertions(+), 16 deletions(-)
+ scripts/run-config | 27 ++++++++++++++++-----------
+ 1 file changed, 16 insertions(+), 11 deletions(-)
 
 diff --git a/scripts/run-config b/scripts/run-config
-index 116dd49..25a4296 100755
+index 25a4296..05c0579 100755
 --- a/scripts/run-config
 +++ b/scripts/run-config
-@@ -131,11 +131,8 @@ def flush():
-     sys.stdout.flush()
-     sys.stderr.flush()
+@@ -153,6 +153,10 @@ def bitbakecmd(builddir, cmd, report, stepnum, stepname, oeenv=True):
+     except FileNotFoundError:
+         numreports = 0
  
--lognum = 0
--def logname(path, stepnum, logsuffix):
--    global lognum
--    lognum += 1
--    return path + "/command.log.%s%s" % (stepnum, logsuffix)
-+def logname(path, stepnum, stepname):
-+    return path + "/command-%s-%s.log" % (stepnum, stepname)
++    def writelog(msg, a, b):
++        a.write(msg)
++        b.write(msg)
++
+     if oeenv:
+         cmd = ". ./oe-init-build-env; %s" % cmd
  
- utils.mkdir(args.builddir)
+@@ -160,21 +164,22 @@ def bitbakecmd(builddir, cmd, report, stepnum, stepname, oeenv=True):
+         print("Would run '%s'" % cmd)
+         return
  
-@@ -146,10 +143,10 @@ utils.mkdir(errordir)
+-    print("Running '%s' with output to %s" % (cmd, log))
+-    flush()
++    with open(log, "a") as outf:
++        writelog("Running '%s' with output to %s\n" % (cmd, log), outf, sys.stdout)
  
- errorlogs = set()
- 
--def bitbakecmd(builddir, cmd, report, stepnum, logsuffix, oeenv=True):
-+def bitbakecmd(builddir, cmd, report, stepnum, stepname, oeenv=True):
-     global finalret
-     flush()
--    log = logname(builddir, stepnum, logsuffix)
-+    log = logname(builddir, stepnum, stepname)
-     errordir = utils.errorreportdir(builddir)
-     try:
-         numreports = len(os.listdir(errordir))
-@@ -176,10 +173,9 @@ def bitbakecmd(builddir, cmd, report, stepnum, logsuffix, oeenv=True):
+-    autoconf = builddir + "/conf/auto.conf"
+-    if os.path.exists(autoconf):
+-        with open(autoconf, "r") as inf, open(log, "a") as outf:
+-            outf.write("auto.conf settings:\n")
+-            for line in inf.readlines():
+-                outf.write(line)
+-            outf.write("\n")
++        autoconf = builddir + "/conf/auto.conf"
++        if os.path.exists(autoconf):
++            with open(autoconf, "r") as inf, open(log, "a") as outf:
++                writelog("auto.conf settings:\n", outf, sys.stdout)
++                for line in inf.readlines():
++                    writelog(line, outf, sys.stdout)
++                writelog("\n", outf, sys.stdout)
++
++    flush()
  
      with subprocess.Popen(cmd, shell=True, cwd=builddir + "/..", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=1) as p, open(log, 'ab') as f:
          for line in p.stdout:
--            if not args.quietlogging:
--                sys.stdout.buffer.write(line)
--                sys.stdout.flush()
-+            sys.stdout.buffer.write(line)
-             f.write(line)
-+            sys.stdout.flush()
+-            sys.stdout.buffer.write(line)
+-            f.write(line)
++            writelog(line, f, sys.stdout.buffer)
+             sys.stdout.flush()
              f.flush()
          ret = p.wait()
-     if ret:
-@@ -221,7 +217,7 @@ def handle_stepnum(stepnum):
-             jsonconfig.append({"name" : "add-layers", "description" : "Adding layers %s" % str(layers), "phase" : str(stepnum)})
-     elif args.stepname == "add-layers":
-         for layer in layers:
--            bitbakecmd(args.builddir, "bitbake-layers add-layer %s" % layer, report, stepnum, 'a')
-+            bitbakecmd(args.builddir, "bitbake-layers add-layer %s" % layer, report, stepnum, args.stepname)
- 
-     flush()
- 
-@@ -239,7 +235,7 @@ def handle_stepnum(stepnum):
-             jsonconfig.append({"name" : "build-targets", "description" : "Building targets %s" % str(targets), "phase" : str(stepnum)})
-         elif args.stepname == "build-targets":
-             hp.printheader("Step %s/%s: Running bitbake %s" % (stepnum, maxsteps, targets))
--            bitbakecmd(args.builddir, "bitbake %s -k" % targets, report, stepnum, 'b')
-+            bitbakecmd(args.builddir, "bitbake %s -k" % targets, report, stepnum, args.stepname)
- 
-     # Execute the sanity targets for this configuration
-     sanitytargets = utils.getconfigvar("SANITYTARGETS", ourconfig, args.target, stepnum)
-@@ -248,7 +244,7 @@ def handle_stepnum(stepnum):
-             jsonconfig.append({"name" : "test-targets", "description" : "Running OEQA test targets %s" % str(sanitytargets), "phase" : str(stepnum)})
-         elif args.stepname == "test-targets":
-             hp.printheader("Step %s/%s: Running bitbake %s" % (stepnum, maxsteps, sanitytargets))
--            bitbakecmd(args.builddir, "%s/checkvnc; DISPLAY=:1 bitbake %s -k" % (scriptsdir, sanitytargets), report, stepnum, 'c')
-+            bitbakecmd(args.builddir, "%s/checkvnc; DISPLAY=:1 bitbake %s -k" % (scriptsdir, sanitytargets), report, stepnum, args.stepname)
- 
-     # Run any extra commands specified
-     cmds = utils.getconfiglist("EXTRACMDS", ourconfig, args.target, stepnum)
-@@ -258,7 +254,7 @@ def handle_stepnum(stepnum):
-     elif args.stepname == "cmds":
-         for cmd in cmds:
-             hp.printheader("Step %s/%s: Running command %s" % (stepnum, maxsteps, cmd))
--            bitbakecmd(args.builddir, cmd, report, stepnum, 'd')
-+            bitbakecmd(args.builddir, cmd, report, stepnum, args.stepname)
- 
-     cmds = utils.getconfiglist("EXTRAPLAINCMDS", ourconfig, args.target, stepnum)
-     if jcfg:
-@@ -267,7 +263,7 @@ def handle_stepnum(stepnum):
-     elif args.stepname == "plain-cmds":
-         for cmd in cmds:
-             hp.printheader("Step %s/%s: Running 'plain' command %s" % (stepnum, maxsteps, cmd))
--            bitbakecmd(args.builddir, cmd, report, stepnum, 'd', oeenv=False)
-+            bitbakecmd(args.builddir, cmd, report, stepnum, args.stepname, oeenv=False)
- 
-     if jcfg:
-         if layers:
-@@ -275,7 +271,7 @@ def handle_stepnum(stepnum):
-     elif args.stepname == "remove-layers":
-         # Remove any layers we added in a reverse order
-         for layer in reversed(layers):
--            bitbakecmd(args.builddir, "bitbake-layers remove-layer %s" % layer, report, stepnum, 'a')
-+            bitbakecmd(args.builddir, "bitbake-layers remove-layer %s" % layer, report, stepnum, args.stepname)
- 
-     if not jcfg:
-         sys.exit(finalret)
 -- 
 2.25.1
 
