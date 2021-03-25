@@ -1,50 +1,50 @@
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
- by mx.groups.io with SMTP id smtpd.web11.1360.1616632827810051845
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+ by mx.groups.io with SMTP id smtpd.web11.1361.1616632829707144638
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Mar 2021 17:40:27 -0700
+ Wed, 24 Mar 2021 17:40:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=S+7jMIlD;
- spf=softfail (domain: sakoman.com, ip: 209.85.210.170, mailfrom: steve@sakoman.com)
-Received: by mail-pf1-f170.google.com with SMTP id x126so201188pfc.13
-        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 17:40:27 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=H4k9aYKS;
+ spf=softfail (domain: sakoman.com, ip: 209.85.215.180, mailfrom: steve@sakoman.com)
+Received: by mail-pg1-f180.google.com with SMTP id l76so95355pga.6
+        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 17:40:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sakoman-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=RQ/YoTz3kYww2vNJolt36+TQDXicHE3JSV+EpOUoC6A=;
-        b=S+7jMIlDxza4pKB99dl9uMka/NlcMdNedZeB2OFT8vrhpAZMeIIugOJAmdZM0XZrvA
-         WLKEnXxTWWk38FxzO9SqRn37RBk6GfmneEvkbmejUSDdexM65W6afVhdzTW2e3UknXrJ
-         gM4DJ+uoxqk9F93EUaY4xXr0YSFF6jd+7VsbD90Dunx8FLrjhHp/hooE87hNC7XSfLG8
-         aiVvacYm26vEtrpn1S9u7TAo4NkWeXrRb7A/X6SWqGFySZ2wd4xinVfKBlLjnmvWo6+1
-         pVoOmnaT+MZrzk9+PSNX3Rq8FOLaaotGEtuKvMQw1/zj1Xw5umkMcz1SdLWwTkrYFpca
-         Hatg==
+        bh=evCyxrMO9CeeU+byyVYu6K06RqUfjL9OqYBXpYK6bD4=;
+        b=H4k9aYKSPClh6dr68EuPDhPZkqpJKF2Y6Twe8CsrwTBvdGbSfiMXfzH1lC/Rmjzdcj
+         EEY9jaXfCy9UUJntOQUqBHlH8oAUO47brMO31nUcXBB/Z81ch/wPck4zjHrenjXLiz9T
+         iwe3jT9zR8HkyHZG5XCSyPy1CqRxZaKL/8A/a9IyHjiZ/186W/JpF3btUdP9LE+ONjHx
+         ps1oRzRxZp95Q6/UYXYDL2ciqmB/BwewejO293YgFIWTSfRXwhbWr7QDabIl5Ecx3Dtc
+         98Zz2TbELbQQ//ZxSOqEhbe4SFuL11pR6te7WGuYTro73w76QKsrsHl5vWUYMs6oMTKS
+         cumw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=RQ/YoTz3kYww2vNJolt36+TQDXicHE3JSV+EpOUoC6A=;
-        b=N3IjASMgoAzySv40SsHnTf79mxiL1sSoxKTfQ/4DMd1baxDgprY2AC7Q9nFGfqkPrZ
-         bUqI1J6uDPoHLWPaJl6w2qxNpMHG9UKKOqtluiVFe3FrzZdzzgTy16xZpc5bK/jMEk9p
-         PPaE87vF+uNd9WKpw8FohKafaCf9oTdzqPBZmYWrfBDPdW7jVmY6KDghTNRmx31UAm4B
-         kNUGtdYC8w5hKT2EEhFGHvfeI0v/TUd5vVk5ryjq5Bb+ADI2434h3OxkC3Z0xTSHVBW8
-         r8Rn6+jaQGYENEU+0PmuIN9eJ9SPvrXKbdbtwNFQ7vFhYi2Q2o8yi898U6DmA+wqUeDV
-         mQ6A==
-X-Gm-Message-State: AOAM531/FnGWsyKIcmQQbmgC3p86hMu/RlzIQRl0O4S5D3Aw0sAlMtLN
-	jCnCEN/LMCRJusX84ljqRlxeIgqHSi+QK84j
-X-Google-Smtp-Source: ABdhPJxsiziUvqKjKxyGOLhOjDrlhDXiUK9GisGM2hP2/l7iTLgLItNU2opGu2NjS0NG/SU7UMFuGQ==
-X-Received: by 2002:a17:902:bd8b:b029:e7:147e:ee5b with SMTP id q11-20020a170902bd8bb02900e7147eee5bmr1202245pls.9.1616632826737;
-        Wed, 24 Mar 2021 17:40:26 -0700 (PDT)
+        bh=evCyxrMO9CeeU+byyVYu6K06RqUfjL9OqYBXpYK6bD4=;
+        b=OEgkJzjRU8a8xSlU3PR9WKMKblzRDi45+8JPLY7rUwEquqrV6NMvE+TfL9bKvjBo1S
+         /17Qq49zSN1p6uE/xfb3lYF1QbAhjXuhqftUYMFw886UhIC/azZOYZaZYHpBiSr3XQ3t
+         CJXmX/uNXdg+1iANbIa5CMpR4CC52GWFkCSUvJrPpkcGeMD5NIyZFmp130+dWPJ3YKlf
+         aEtbfGeQX+Q/vMnTyD44WVMZaFXZ1//0tcaitDJPnq3h2Ut9oOOFtVhvAlMRj4swsbCf
+         JRnVPwQ7shOFWO5qEHxFyhk0MFFvn1oce/r+LqOLBmLo8sxHmfDWN6I/KatcBOLziPsN
+         cRUw==
+X-Gm-Message-State: AOAM531Bik6wIJ+Cy9RJu3z1nTuizvkTHAwCT5d6Gu0Ze29wolycT880
+	blJGKK5ltXtMqn8IfAjQtiw7dTnVheupsfVZ
+X-Google-Smtp-Source: ABdhPJxQa3U83zgO6IdR5h+DRMS4qVp4mNh8KjBHniNqPO1DnBvFy6DnsHwuNgh72FCQYaVeK5fHdw==
+X-Received: by 2002:a65:4344:: with SMTP id k4mr5257789pgq.48.1616632828804;
+        Wed, 24 Mar 2021 17:40:28 -0700 (PDT)
 Return-Path: <steve@sakoman.com>
 Received: from localhost.localdomain (rrcs-66-91-142-162.west.biz.rr.com. [66.91.142.162])
-        by smtp.gmail.com with ESMTPSA id o13sm3706924pfp.26.2021.03.24.17.40.25
+        by smtp.gmail.com with ESMTPSA id o13sm3706924pfp.26.2021.03.24.17.40.27
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 17:40:26 -0700 (PDT)
+        Wed, 24 Mar 2021 17:40:28 -0700 (PDT)
 From: "Steve Sakoman" <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][dunfell 15/23] scripts/run-config: Remove redundant boilerplate json
-Date: Wed, 24 Mar 2021 14:39:24 -1000
-Message-Id: <3d357aefa91b00e0917ff4652373c5323423a5af.1616625264.git.steve@sakoman.com>
+Subject: [yocto-autobuilder-helper][dunfell 16/23] scripts/shared-repo-unpack: Add flush call to update the output more regularly before buildtools
+Date: Wed, 24 Mar 2021 14:39:25 -1000
+Message-Id: <cca9f32401c8f3891426da9cdf23cd048e980c9b.1616625264.git.steve@sakoman.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <cover.1616625264.git.steve@sakoman.com>
 References: <cover.1616625264.git.steve@sakoman.com>
@@ -54,147 +54,24 @@ Content-Transfer-Encoding: 8bit
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
 
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-(cherry picked from commit 2bb48042438f3154bbfa6fbc7f2c7556bfa7c762)
+(cherry picked from commit 6e2825564c0b7b69f56e6e589ec15a1cebdb26d1)
 Signed-off-by: Steve Sakoman <steve@sakoman.com>
 ---
- scripts/run-config | 31 +++++++++++++++++--------------
- 1 file changed, 17 insertions(+), 14 deletions(-)
+ scripts/shared-repo-unpack | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/scripts/run-config b/scripts/run-config
-index 89506f5..58ce364 100755
---- a/scripts/run-config
-+++ b/scripts/run-config
-@@ -112,10 +112,13 @@ if args.json_outputfile:
-     jsonconfig = []
-     jcfg = True
+diff --git a/scripts/shared-repo-unpack b/scripts/shared-repo-unpack
+index 7dc250c..f08efa8 100755
+--- a/scripts/shared-repo-unpack
++++ b/scripts/shared-repo-unpack
+@@ -60,6 +60,7 @@ for repo in sorted(repos.keys()):
+         utils.fetchgitrepo(targetsubdir, repo, repos[repo], stashdir)
+         if args.publish_dir:
+             utils.publishrepo(targetsubdir, repo, args.publish_dir)
++    utils.flush()
  
-+def addentry(name, description, phase):
-+    jsonconfig.append({"name" : name, "bbname" : description[:45], "phase" : phase, "description" : description})
-+
- if jcfg:
-     buildtools = utils.setup_buildtools_tarball(ourconfig, args.workername, None, checkonly=True)
-     if buildtools:
--        jsonconfig.append({"name" : "buildtools", "bbname" : "Extract and setup buildtools tarball", "phase" : "init"})
-+        addentry("buildtools", "Extract and setup buildtools tarball", "init")
- else:
-     utils.setup_buildtools_tarball(ourconfig, args.workername, args.builddir + "/../buildtools")
-     if args.phase == "init" and args.stepname == "buildtools":
-@@ -208,14 +211,14 @@ def runcmd(cmd, *args, **kwargs):
- bh_path, remoterepo, remotebranch, baseremotebranch = utils.getbuildhistoryconfig(ourconfig, args.builddir, args.target, args.reponame, args.branchname, 1)
- if bh_path:
-     if jcfg:
--        jsonconfig.append({"name" : "buildhistory-init", "bbname" : "Initialize buildhistory", "phase" : "init"})
-+        addentry("buildhistory-init", "Initialize buildhistory", "init")
- if args.phase == "init" and args.stepname == "buildhistory-init":
-     if bh_path:
-         runcmd([os.path.join(scriptsdir, "buildhistory-init"), bh_path, remoterepo, remotebranch, baseremotebranch])
-     sys.exit(0)
+ utils.setup_buildtools_tarball(ourconfig, args.workername, args.abworkdir + "/buildtools")
  
- def handle_stepnum(stepnum):
--    desc = utils.getconfigvar("description", ourconfig, args.target, stepnum)
-+    desc = utils.getconfigvar("description", ourconfig, args.target, stepnum) or ""
-     if desc:
-         desc = desc + ": "
- 
-@@ -223,7 +226,7 @@ def handle_stepnum(stepnum):
-     layers = utils.getconfiglist("ADDLAYER", ourconfig, args.target, stepnum)
-     if jcfg:
-         if layers:
--            jsonconfig.append({"name" : "add-layers", "bbname" : "%sAdding layers %s" % (desc, str(layers)), "phase" : str(stepnum)})
-+            addentry("add-layers", "%sAdding layers %s" % (desc, str(layers)), str(stepnum))
-     elif args.stepname == "add-layers":
-         for layer in layers:
-             bitbakecmd(args.builddir, "bitbake-layers add-layer %s" % layer, report, stepnum, args.stepname)
-@@ -233,7 +236,7 @@ def handle_stepnum(stepnum):
-     # Generate the configuration files needed for this step
-     if utils.getconfigvar("WRITECONFIG", ourconfig, args.target, stepnum):
-         if jcfg:
--            jsonconfig.append({"name" : "write-config", "bbname" : "%sWriting configuration files" % desc, "phase" : str(stepnum)})
-+            addentry("write-config", "%sWriting configuration files" % desc, str(stepnum))
-         elif args.stepname == "write-config":
-             runcmd([scriptsdir + "/setup-config", args.target, str(stepnum - 1), args.builddir, args.branchname, args.reponame, "-s", args.sstateprefix, "-b", args.buildappsrcrev])
- 
-@@ -241,7 +244,7 @@ def handle_stepnum(stepnum):
-     targets = utils.getconfigvar("BBTARGETS", ourconfig, args.target, stepnum)
-     if targets:
-         if jcfg:
--            jsonconfig.append({"name" : "build-targets", "bbname" : "%sBuilding targets %s" % (desc, str(targets)), "phase" : str(stepnum)})
-+            addentry("build-targets", "%sBuilding targets %s" % (desc, str(targets)), str(stepnum))
-         elif args.stepname == "build-targets":
-             hp.printheader("Step %s/%s: Running bitbake %s" % (stepnum, maxsteps, targets))
-             bitbakecmd(args.builddir, "bitbake %s -k" % targets, report, stepnum, args.stepname)
-@@ -250,7 +253,7 @@ def handle_stepnum(stepnum):
-     sanitytargets = utils.getconfigvar("SANITYTARGETS", ourconfig, args.target, stepnum)
-     if sanitytargets:
-         if jcfg:
--            jsonconfig.append({"name" : "test-targets", "bbname" : "%sRunning OEQA test targets %s" % (desc, str(sanitytargets)), "phase" : str(stepnum)})
-+            addentry("test-targets", "%sRunning OEQA test targets %s" % (desc, str(sanitytargets)), str(stepnum))
-         elif args.stepname == "test-targets":
-             hp.printheader("Step %s/%s: Running bitbake %s" % (stepnum, maxsteps, sanitytargets))
-             bitbakecmd(args.builddir, "%s/checkvnc; DISPLAY=:1 bitbake %s -k" % (scriptsdir, sanitytargets), report, stepnum, args.stepname)
-@@ -259,7 +262,7 @@ def handle_stepnum(stepnum):
-     cmds = utils.getconfiglist("EXTRACMDS", ourconfig, args.target, stepnum)
-     if jcfg:
-         if cmds:
--            jsonconfig.append({"name" : "cmds", "bbname" : "%sRunning bitbake environment commands %s" % (desc, str(cmds)), "phase" : str(stepnum)})
-+            addentry("cmds", "%sRunning bitbake environment commands %s" % (desc, str(cmds)), str(stepnum))
-     elif args.stepname == "cmds":
-         for cmd in cmds:
-             hp.printheader("Step %s/%s: Running command %s" % (stepnum, maxsteps, cmd))
-@@ -268,7 +271,7 @@ def handle_stepnum(stepnum):
-     cmds = utils.getconfiglist("EXTRAPLAINCMDS", ourconfig, args.target, stepnum)
-     if jcfg:
-         if cmds:
--            jsonconfig.append({"name" : "plain-cmds", "bbname" : "%sRunning commands %s" % (desc, str(cmds)), "phase" : str(stepnum)})
-+            addentry("plain-cmds", "%sRunning commands %s" % (desc, str(cmds)), str(stepnum))
-     elif args.stepname == "plain-cmds":
-         for cmd in cmds:
-             hp.printheader("Step %s/%s: Running 'plain' command %s" % (stepnum, maxsteps, cmd))
-@@ -276,7 +279,7 @@ def handle_stepnum(stepnum):
- 
-     if jcfg:
-         if layers:
--            jsonconfig.append({"name" : "remove-layers", "bbname" : "%sRemoving layers %s" % (desc, str(layers)), "phase" : str(stepnum)})
-+            addentry("remove-layers", "%sRemoving layers %s" % (desc, str(layers)), str(stepnum))
-     elif args.stepname == "remove-layers":
-         # Remove any layers we added in a reverse order
-         for layer in reversed(layers):
-@@ -299,7 +302,7 @@ else:
- 
- 
- if jcfg:
--    jsonconfig.append({"name" : "publish", "bbname" : "Publishing artefacts", "phase" : "finish"})
-+    addentry("publish", "Publishing artefacts", "finish")
- elif args.phase == "finish" and args.stepname == "publish":
-     if args.publish_dir:
-         hp.printheader("Running publish artefacts")
-@@ -307,7 +310,7 @@ elif args.phase == "finish" and args.stepname == "publish":
-     sys.exit(0)
- 
- if jcfg:
--    jsonconfig.append({"name" : "collect-results", "bbname" : "Collecting result files", "phase" : "finish"})
-+    addentry("collect-results", "Collecting result files", "finish")
- elif args.phase == "finish" and args.stepname == "collect-results":
-     if args.results_dir:
-         hp.printheader("Running results collection")
-@@ -315,7 +318,7 @@ elif args.phase == "finish" and args.stepname == "collect-results":
-     sys.exit(0)
- 
- if jcfg:
--    jsonconfig.append({"name" : "send-errors", "bbname" : "Sending error reports", "phase" : "finish"})
-+    addentry("send-errors", "Sending error reports", "finish")
- elif args.phase == "finish" and args.stepname == "send-errors":
-     if args.build_url and utils.getconfigvar("SENDERRORS", ourconfig, args.target, stepnum):
-         hp.printheader("Sending any error reports")
-@@ -323,7 +326,7 @@ elif args.phase == "finish" and args.stepname == "send-errors":
-     sys.exit(0)
- 
- if jcfg:
--    jsonconfig.append({"name" : "builddir-cleanup", "bbname" : "Cleaning up build directory", "phase" : "finish"})
-+    addentry("builddir-cleanup", "Cleaning up build directory", "finish")
- elif args.phase == "finish" and args.stepname == "builddir-cleanup":
-     if args.builddir and os.path.exists(args.builddir):
-         runcmd(["mv", args.builddir, args.builddir + "-renamed"])
 -- 
 2.25.1
 
