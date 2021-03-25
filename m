@@ -1,50 +1,50 @@
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
- by mx.groups.io with SMTP id smtpd.web09.1471.1616632834242231901
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web09.1473.1616632836174244932
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Mar 2021 17:40:34 -0700
+ Wed, 24 Mar 2021 17:40:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=ddlOj6L+;
- spf=softfail (domain: sakoman.com, ip: 209.85.210.182, mailfrom: steve@sakoman.com)
-Received: by mail-pf1-f182.google.com with SMTP id q5so218048pfh.10
-        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 17:40:34 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=hMS0qgOB;
+ spf=softfail (domain: sakoman.com, ip: 209.85.215.172, mailfrom: steve@sakoman.com)
+Received: by mail-pg1-f172.google.com with SMTP id v186so91970pgv.7
+        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 17:40:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sakoman-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=DOVDCiTz6UTOq72ne4mTeZZuawFs5FJI+9oSVV9cc5s=;
-        b=ddlOj6L+z6aVx4PdvbcKeTQk+Y1NfZvFt98yEvf/n4Xdv5DZaWre13dJf2aJS+hUIF
-         aVzlRshanacjUAiS9/UsXVYCuRPNCoKFwJJZgN744suwGT9Ou9RwvUmLXgJUjOwXj/Tz
-         63JwblUtHfQHHcSAWCTJCA+Z2s2UiI21N0hsh7lISh+F19kXCeeSRGYwmflZ7uF0br90
-         94KmBIBvryYUObZTX7Da/wDOMl6iX5IisvYRupJyR6LgyP0Wj3XEuFVqbyiFLqBkSb1v
-         r3E8eMh0/0Zkif7QzhxoQ+OZk7bHwlRLG0syiVzBPTexlYPpyiA61cd+Ju7GJRf1wcCf
-         ye/g==
+        bh=ABzhdyqfqDw+ynrj0bEKauIqQvkLl3qbUFgDzlSB9gE=;
+        b=hMS0qgOBB0Az9f3V5OJEq7T7k4mIrH+fFMDojh0nsdhuK/QvlPcxANUp0sJYRbtM7T
+         X2l7CW3eecJ7D3tjUGNnEmPu4FHx74c3hz3ezILzbpHKoo2wI0Wv+J3ZxsXSsu2ykjX7
+         UbzriVg7wnxGcQGWloCk+dR0+FEqljmQMPy+YGJXjsyv+7DxM6g2JUDFyVIKEaYFA85X
+         HJokMHELc2cj++QS+9ElUvsiHdzffuqlw0BWL95YZ4ApKznWx3F3X4XzD6Q6kuFUTrEp
+         mSca2ZWquz1bb9N7s7THQd1TuKGfmqwMyRPpV6wKeBLYskmch5ZdQk6R+LOwIimO/3c4
+         m2NQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=DOVDCiTz6UTOq72ne4mTeZZuawFs5FJI+9oSVV9cc5s=;
-        b=GSemmSsi/j1l8EPZ+ZILhaXiKCWfnEB1b10OdcvwNzQNQadZfw9oFX7snesByMH33H
-         7TkyhBGZMHFUwhAG4zhym2d10EapJ5iP+nzGtCzYD7puyoZYU1v5+sDuIH1b9gffLxcZ
-         20rB3j0Q0G3l65AiajYYRofmrjfC5uuImtH+RK/PxxrdbTcfctKIqf59Xv5jxd1/aX6O
-         8ZOBLNw0BfQQQqd1JAR3gsmVymlolGXFZ8I3d/9+4yJOMRKo9C+WfhZ5Yx72hORwA4sX
-         +mwnCuR/wEzk/Fe9/qAajqSXfcrc9mceXMWZ8LQAWnGXCGjdK10LehGS9f4QUIzpA0xM
-         2hYQ==
-X-Gm-Message-State: AOAM532DdpMbplNeJkk0xrFtlEFR2k5z3fbvVjTToLmBP1+fcWpGKJy+
-	7msPD8Py6FDBkcTD6npx9WNR7jSSSFNIaiKC
-X-Google-Smtp-Source: ABdhPJzk+UekWbTEBI1bHqpJmhaYV7gvNsj4Re+de7xTI3sfj0SndYGU9Cg5H+DP1qYjKkeuck/LMg==
-X-Received: by 2002:a62:8103:0:b029:1ef:26e4:494f with SMTP id t3-20020a6281030000b02901ef26e4494fmr5287254pfd.41.1616632833222;
-        Wed, 24 Mar 2021 17:40:33 -0700 (PDT)
+        bh=ABzhdyqfqDw+ynrj0bEKauIqQvkLl3qbUFgDzlSB9gE=;
+        b=JaALE6VRxjqVjeA4xhgjqxeskZ1uoBaEmFVw+iquH3wazUBDR6Di3IvS0hSYkb5Nvf
+         7IEvBocc2osbD5Z4+OgCCsHVroSKvAIJRn5EmCFvqprvA8qz8QBAZN2rUZ3Hz1uinrv3
+         3rGvHDHv7FoeMLMLhpA8QupqHjV3cDpi4euEfxzCx6oT3QA6XRI+FCIJ4DDgIeYr9Ywb
+         bKtGOsMt5bkxcL7RrzlX1ov0GG1XsorQaaWNrIyOB2guSJPw++OMy8mJkLQD/AeT/xQC
+         oPi9RuJKVwVN/KLWQ2XOe+MIgr93ySoARKkpHq0A49ATPe6Gy+Bi3BoTPil3tasizdOu
+         iaUw==
+X-Gm-Message-State: AOAM532lh2ZLGGd6xDARtdxIPiaF+5HYHH/McZyPRvl3ZmffqEpA3pfP
+	nVXOXUSoyw2PytT0HrJcix4YQWvynPlYH/YI
+X-Google-Smtp-Source: ABdhPJyX/fLC51ghXwfNiKNMsV1IXYtWcf8GqiayhCwN2U4eVOWB3NYC4dgnDASwzTAqwGEMRqMQxA==
+X-Received: by 2002:a62:160c:0:b029:20a:7b41:f10f with SMTP id 12-20020a62160c0000b029020a7b41f10fmr5452294pfw.67.1616632835234;
+        Wed, 24 Mar 2021 17:40:35 -0700 (PDT)
 Return-Path: <steve@sakoman.com>
 Received: from localhost.localdomain (rrcs-66-91-142-162.west.biz.rr.com. [66.91.142.162])
-        by smtp.gmail.com with ESMTPSA id o13sm3706924pfp.26.2021.03.24.17.40.31
+        by smtp.gmail.com with ESMTPSA id o13sm3706924pfp.26.2021.03.24.17.40.34
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 17:40:32 -0700 (PDT)
+        Wed, 24 Mar 2021 17:40:34 -0700 (PDT)
 From: "Steve Sakoman" <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][dunfell 17/23] config.json/run-config: Add support for shortnames and descriptions
-Date: Wed, 24 Mar 2021 14:39:26 -1000
-Message-Id: <0ddf6fcc57ed9a5bd1bf50577ef4604801cbaa62.1616625264.git.steve@sakoman.com>
+Subject: [yocto-autobuilder-helper][dunfell 18/23] config.json: Unbreak qa-extras locked sigs test
+Date: Wed, 24 Mar 2021 14:39:27 -1000
+Message-Id: <13d2f38ae812b972b221b7ce088ad5500db3826c.1616625264.git.steve@sakoman.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <cover.1616625264.git.steve@sakoman.com>
 References: <cover.1616625264.git.steve@sakoman.com>
@@ -53,184 +53,99 @@ Content-Transfer-Encoding: 8bit
 
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Learn from the previous experiments and add meaninful shortnames and
-descriptions to work around the 50 char name limit.
+qa-extras and qa-extras2 were split incorrectly, fix this.
 
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-(cherry picked from commit bceb63fb7952c6ed289733471a0177cfbc365a1e)
+(cherry picked from commit 80fe0ab06972c46c82cde29cbdfcdac6e87dde99)
 Signed-off-by: Steve Sakoman <steve@sakoman.com>
 ---
- config.json        | 16 +++++++++++-----
- scripts/run-config | 34 +++++++++++++++++++++++-----------
- 2 files changed, 34 insertions(+), 16 deletions(-)
+ config.json | 26 +++++++++++++-------------
+ 1 file changed, 13 insertions(+), 13 deletions(-)
 
 diff --git a/config.json b/config.json
-index 1fcc45d..4856507 100644
+index 4856507..ddf36ae 100644
 --- a/config.json
 +++ b/config.json
-@@ -453,7 +453,8 @@
-             "MACHINE" : "qemux86-64",
-             "SDKMACHINE" : "x86_64",
-             "step1" : {
--                "description" : "x86_64 32bit multilib image with rpm",
-+                "shortname" : "x86-64 lib32-img rpm",
-+                "description" : "qemux86-64 32bit multilib image with rpm",
-                 "BBTARGETS" : "lib32-core-image-minimal",
-                 "SANITYTARGETS" : "lib32-core-image-minimal:do_testimage",
+@@ -802,18 +802,18 @@
+                     "TMPDIR = '${TOPDIR}/newtmp'",
+                     "require ../locked-sigs.inc"
+                 ]
+-            }
+-        },
+-        "qa-extras2" : {
+-            "MACHINE" : "qemux86-64",
+-            "step1" : {
++            },
++            "step7" : {
+                 "SDKMACHINE" : "x86_64",
+                 "BBTARGETS" : "core-image-sato:do_populate_sdk_ext",
                  "extravars" : [
-@@ -464,7 +465,8 @@
+                     "TMPDIR = '${TOPDIR}/sdktmp'"
                  ]
-             },
-             "step2" : {
--                "description" : "x86_64 32bit multilib image with ipk",
-+                "shortname" : "x86-64 lib32-img ipk",
-+                "description" : "qemux86-64 32bit multilib image with ipk",
-                 "PACKAGE_CLASSES" : "package_ipk",
-                 "BBTARGETS" : "lib32-core-image-minimal",
-                 "SANITYTARGETS" : "lib32-core-image-minimal:do_testimage",
-@@ -476,7 +478,8 @@
-                 ]
-             },
-             "step3" : {
--                "description" : "x86_64 64bit image and 32 bit multilibs with rpm",
-+                "shortname" : "x86-64 lib32 rpm",
-+                "description" : "qemux86-64 64bit image and 32 bit multilibs with rpm",
+-            },
+-            "step2" : {
++            }
++        },
++        "qa-extras2" : {
++            "MACHINE" : "qemux86-64",
++            "step1" : {
                  "BBTARGETS" : "core-image-sato",
                  "SANITYTARGETS" : "core-image-sato:do_testimage",
                  "extravars" : [
-@@ -489,7 +492,8 @@
+@@ -821,7 +821,7 @@
+                     "TEST_SUITES_append = ' logrotate'"
                  ]
              },
-             "step4" : {
--                "description" : "x86_64 64bit image and 32 bit multilibs with ipk",
-+                "shortname" : "x86-64 lib32 ipk",
-+                "description" : "qemux86-64 64bit image and 32 bit multilibs with ipk",
-                 "PACKAGE_CLASSES" : "package_ipk",
+-            "step3" : {
++            "step2" : {
                  "BBTARGETS" : "core-image-sato",
                  "SANITYTARGETS" : "core-image-sato:do_testimage",
-@@ -503,6 +507,7 @@
+                 "extravars" : [
+@@ -829,7 +829,7 @@
+                     "TEST_SUITES_append = ' pam'"
                  ]
              },
-             "step5" : {
-+                "shortname" : "x86-64 lib64-img",
-                 "description" : "x86 building 64bit multilib image",
-                 "MACHINE" : "qemux86",
-                 "SDKMACHINE" : "i686",
-@@ -514,7 +519,8 @@
+-            "step4" : {
++            "step3" : {
+                 "BBTARGETS" : "core-image-sato",
+                 "SANITYTARGETS" : "core-image-sato:do_testimage",
+                 "extravars" : [
+@@ -838,7 +838,7 @@
+                 ],
+                 "ADDLAYER" : ["${BUILDDIR}/../meta-skeleton"]
+             },
+-            "step5" : {
++            "step4" : {
+                 "BBTARGETS" : "core-image-sato",
+                 "SANITYTARGETS" : "core-image-sato:do_testimage",
+                 "extravars" : [
+@@ -847,7 +847,7 @@
+                     "TEST_SUITES_append = ' systemd'"
                  ]
              },
-             "step6" : {
--                "description" : "mips64 image using n32 as default",
-+                "shortname" : "mip64 n32",
-+                "description" : "qemumips64 image using n32 as default",
-                 "MACHINE" : "qemumips64",
-                 "BBTARGETS" : "core-image-minimal core-image-minimal:do_populate_sdk",
-                 "SANITYTARGETS" : "core-image-minimal:do_testimage core-image-minimal:do_testsdk",
-diff --git a/scripts/run-config b/scripts/run-config
-index 58ce364..aab52c1 100755
---- a/scripts/run-config
-+++ b/scripts/run-config
-@@ -112,13 +112,26 @@ if args.json_outputfile:
-     jsonconfig = []
-     jcfg = True
- 
-+# There is a 50 char limit on "bbname" but buildbot may append "_1", "_2" if multiple steps
-+# with the same name exist in a build
- def addentry(name, description, phase):
--    jsonconfig.append({"name" : name, "bbname" : description[:45], "phase" : phase, "description" : description})
-+    jsonconfig.append({"name" : name, "bbname" : description[:46], "phase" : phase, "description" : description})
-+
-+def addstepentry(name, taskdesc, shortname, description, detail, phase):
-+    bbname = taskdesc
-+    if shortname:
-+        bbname = shortname + ": " + taskdesc
-+    bbdesc = taskdesc
-+    if description:
-+        bbdesc = description
-+    if detail:
-+        bbdesc = bbdesc + ": " + detail
-+    jsonconfig.append({"name" : name, "bbname" : bbname[:46], "phase" : phase, "description" : bbdesc})
- 
- if jcfg:
-     buildtools = utils.setup_buildtools_tarball(ourconfig, args.workername, None, checkonly=True)
-     if buildtools:
--        addentry("buildtools", "Extract and setup buildtools tarball", "init")
-+        addentry("buildtools", "Setup buildtools tarball", "init")
- else:
-     utils.setup_buildtools_tarball(ourconfig, args.workername, args.builddir + "/../buildtools")
-     if args.phase == "init" and args.stepname == "buildtools":
-@@ -218,15 +231,14 @@ if args.phase == "init" and args.stepname == "buildhistory-init":
-     sys.exit(0)
- 
- def handle_stepnum(stepnum):
-+    shortdesc = utils.getconfigvar("shortname", ourconfig, args.target, stepnum) or ""
-     desc = utils.getconfigvar("description", ourconfig, args.target, stepnum) or ""
--    if desc:
--        desc = desc + ": "
- 
-     # Add any layers specified
-     layers = utils.getconfiglist("ADDLAYER", ourconfig, args.target, stepnum)
-     if jcfg:
-         if layers:
--            addentry("add-layers", "%sAdding layers %s" % (desc, str(layers)), str(stepnum))
-+            addstepentry("add-layers", "Add layers", shortdesc, desc, str(layers), str(stepnum))
-     elif args.stepname == "add-layers":
-         for layer in layers:
-             bitbakecmd(args.builddir, "bitbake-layers add-layer %s" % layer, report, stepnum, args.stepname)
-@@ -236,7 +248,7 @@ def handle_stepnum(stepnum):
-     # Generate the configuration files needed for this step
-     if utils.getconfigvar("WRITECONFIG", ourconfig, args.target, stepnum):
-         if jcfg:
--            addentry("write-config", "%sWriting configuration files" % desc, str(stepnum))
-+            addstepentry("write-config", "Write config", shortdesc, desc, None, str(stepnum))
-         elif args.stepname == "write-config":
-             runcmd([scriptsdir + "/setup-config", args.target, str(stepnum - 1), args.builddir, args.branchname, args.reponame, "-s", args.sstateprefix, "-b", args.buildappsrcrev])
- 
-@@ -244,7 +256,7 @@ def handle_stepnum(stepnum):
-     targets = utils.getconfigvar("BBTARGETS", ourconfig, args.target, stepnum)
-     if targets:
-         if jcfg:
--            addentry("build-targets", "%sBuilding targets %s" % (desc, str(targets)), str(stepnum))
-+            addstepentry("build-targets", "Build targets", shortdesc, desc, str(targets), str(stepnum))
-         elif args.stepname == "build-targets":
-             hp.printheader("Step %s/%s: Running bitbake %s" % (stepnum, maxsteps, targets))
-             bitbakecmd(args.builddir, "bitbake %s -k" % targets, report, stepnum, args.stepname)
-@@ -253,7 +265,7 @@ def handle_stepnum(stepnum):
-     sanitytargets = utils.getconfigvar("SANITYTARGETS", ourconfig, args.target, stepnum)
-     if sanitytargets:
-         if jcfg:
--            addentry("test-targets", "%sRunning OEQA test targets %s" % (desc, str(sanitytargets)), str(stepnum))
-+            addstepentry("test-targets", "QA targets", shortdesc, desc, str(sanitytargets), str(stepnum))
-         elif args.stepname == "test-targets":
-             hp.printheader("Step %s/%s: Running bitbake %s" % (stepnum, maxsteps, sanitytargets))
-             bitbakecmd(args.builddir, "%s/checkvnc; DISPLAY=:1 bitbake %s -k" % (scriptsdir, sanitytargets), report, stepnum, args.stepname)
-@@ -262,7 +274,7 @@ def handle_stepnum(stepnum):
-     cmds = utils.getconfiglist("EXTRACMDS", ourconfig, args.target, stepnum)
-     if jcfg:
-         if cmds:
--            addentry("cmds", "%sRunning bitbake environment commands %s" % (desc, str(cmds)), str(stepnum))
-+            addstepentry("cmds", "Run cmds", shortdesc, desc, str(cmds), str(stepnum))
-     elif args.stepname == "cmds":
-         for cmd in cmds:
-             hp.printheader("Step %s/%s: Running command %s" % (stepnum, maxsteps, cmd))
-@@ -271,7 +283,7 @@ def handle_stepnum(stepnum):
-     cmds = utils.getconfiglist("EXTRAPLAINCMDS", ourconfig, args.target, stepnum)
-     if jcfg:
-         if cmds:
--            addentry("plain-cmds", "%sRunning commands %s" % (desc, str(cmds)), str(stepnum))
-+            addstepentry("plain-cmds", "Run cmds", shortdesc, desc, str(cmds), str(stepnum))
-     elif args.stepname == "plain-cmds":
-         for cmd in cmds:
-             hp.printheader("Step %s/%s: Running 'plain' command %s" % (stepnum, maxsteps, cmd))
-@@ -279,7 +291,7 @@ def handle_stepnum(stepnum):
- 
-     if jcfg:
-         if layers:
--            addentry("remove-layers", "%sRemoving layers %s" % (desc, str(layers)), str(stepnum))
-+            addstepentry("remove-layers", "Remove layers", shortdesc, desc, str(layers), str(stepnum))
-     elif args.stepname == "remove-layers":
-         # Remove any layers we added in a reverse order
-         for layer in reversed(layers):
+-            "step6" : {
++            "step5" : {
+                 "BBTARGETS" : "core-image-sato",
+                 "SANITYTARGETS" : "core-image-sato:do_testimage",
+                 "extravars" : [
+@@ -855,7 +855,7 @@
+                     "VIRTUAL-RUNTIME_init_manager = 'sysvinit'"
+                 ]
+             },
+-            "step7" : {
++            "step6" : {
+                 "BBTARGETS" : "core-image-sato",
+                 "SANITYTARGETS" : "core-image-sato:do_testimage",
+                 "extravars" : [
+@@ -865,7 +865,7 @@
+                     "DISTRO_FEATURES_BACKFILL_CONSIDERED = 'sysvinit'"
+                 ]
+             },
+-            "step8" : {
++            "step7" : {
+                 "BBTARGETS" : "core-image-sato",
+                 "SANITYTARGETS" : "core-image-sato:do_testimage",
+                 "extravars" : [
 -- 
 2.25.1
 
