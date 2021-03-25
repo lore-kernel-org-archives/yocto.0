@@ -1,77 +1,108 @@
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
- by mx.groups.io with SMTP id smtpd.web10.968.1616686328659219195
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+ by mx.groups.io with SMTP id smtpd.web08.1512.1616688171353437536
  for <yocto@lists.yoctoproject.org>;
- Thu, 25 Mar 2021 08:32:09 -0700
+ Thu, 25 Mar 2021 09:02:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=AG+LKwjr;
- spf=softfail (domain: sakoman.com, ip: 209.85.221.43, mailfrom: steve@sakoman.com)
-Received: by mail-wr1-f43.google.com with SMTP id e18so2716286wrt.6
-        for <yocto@lists.yoctoproject.org>; Thu, 25 Mar 2021 08:32:08 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=T4GNzGcQ;
+ spf=softfail (domain: sakoman.com, ip: 209.85.216.46, mailfrom: steve@sakoman.com)
+Received: by mail-pj1-f46.google.com with SMTP id ot17-20020a17090b3b51b0290109c9ac3c34so2899300pjb.4
+        for <yocto@lists.yoctoproject.org>; Thu, 25 Mar 2021 09:02:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sakoman-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UZJ6RDznpZgoUdfYuF7kKj+j3M8BU0+Csw5neIaqGRY=;
-        b=AG+LKwjrXqUlDdneb9UonM/m4rKgukDsLlskxSk5jjn1yL13hXxdc9x+abMS81AZ5T
-         fKc0ZlAiiAqMgzBUNBYMGEwNCXVzC6eEjTyx3/Fx+nGC817fPAbOFZlyEstoAReCUm0K
-         CtmmbfTOC1l7DpKF3FUocTFWssGD/p/MB4JaP5p9/sGNJwoBIEMnKVwrYX5QCSPMTtPl
-         IAdX3Jj3ynIswWRVAYR3iNSNeWqbG/SqFu7w4U6SjSooefwNzuFUnXgk5J3MVeF7qJep
-         9IO6ajaH3kM+KVBkcr8agZ6TeonXDZdCnvpf580E/04maGqNHZr1nXSpfEM295HMS6qI
-         PYwA==
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OjKyAv9Asnnmt2ksxBbwfQGLA45QGwFmeljTu+2ZucU=;
+        b=T4GNzGcQT9hN2vNi7jKRii3pL48+k7T96YzXDbh3Rm/avLYdkU5LvNyVAJSqFg4FWK
+         lZDQkI/o22CjCwChNIn02dFbh8NSFczILvQix6GjAwJZjdJ8FvWUWz+iGEXM+Gg8E+C9
+         Ue8NUuqyxbrtgsgyZD4jkLIa18VhcQapzYk8Bt+TWNql1LPbsjaHKDjJ9Th3+OdBlQKe
+         +wWF/8qoC3BKna3+dIeu+Cj3JrgIZXH68YXio/GEF75M/kP1lXxkaMpl/f+DEUb51+YG
+         n3ufiXNOJ9rGSrSWDhvuyZwG/3CPTnr5QY4dFWv+RUfMNYyhXJy4KB+0Xc9AtNjuhO6R
+         EQSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UZJ6RDznpZgoUdfYuF7kKj+j3M8BU0+Csw5neIaqGRY=;
-        b=OA+IvVi+ADQxRFLpRLS3yWTEZ7s2zva1sYXydnV+9SDbj+ZfBuKEXAMak9CkOIbHmL
-         Elu2F1g304U+HZYDj7a9BhxHWiN7MqxEihI8Kv9ql837R7LpsnO6LjQ2yrkoZ/hyWSTz
-         1VThPdr9Ny1mTg56Cwx3KcvIhYydTOBPYrBhjR3Ugr1B7wmWz1vB5nDkwGj0oIVXMJvr
-         OsFDQBEVJxArDx8ZSpYQbeovvVkiUoXZMoXSUTohA9lZAFQYSGUfzi80WuR+nVCmgJ7f
-         5zJI6sAeqMKckzark2jJn+noBvS3WvWCXc7wOCURHXVPpJ0P0cujbszaHRb4O6U4Oryh
-         IMvA==
-X-Gm-Message-State: AOAM530uj/YwTgPMCKO//jn8NfpwaDXYkO5clBQeqgeE1Zw1FJdXmTCg
-	yt6FPpq20NqT3Wi25GW/ar6dOf/mvkv2sDUUwWDkeQ==
-X-Google-Smtp-Source: ABdhPJzTHEp/2XN73RRN+ogPiutnRWaxF9u4MKcc0TH+ecWZuU7OwiJLWuXFQkisd2tF3TDUmxlQOIWZreoPlKg+IYs=
-X-Received: by 2002:adf:ed46:: with SMTP id u6mr9587290wro.350.1616686326912;
- Thu, 25 Mar 2021 08:32:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1616625264.git.steve@sakoman.com> <347bae056acff57ee70d8dedd121ed04e4e4c554.1616625264.git.steve@sakoman.com>
- <3af78152f03202ea5b93ea02c6fc4314cfae52f3.camel@linuxfoundation.org>
-In-Reply-To: <3af78152f03202ea5b93ea02c6fc4314cfae52f3.camel@linuxfoundation.org>
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OjKyAv9Asnnmt2ksxBbwfQGLA45QGwFmeljTu+2ZucU=;
+        b=mNSqAuVw6innBjvniYlqieV6Pz5+E2EpIlJ8fkO5Jm6trM82LUuNSfYBdv6VbM8Lhz
+         DsX2QxpmkhYDTXXWU51hg/9USDbwhOkDySzo4jjjrivb6lyj4de/K4ubliIi2fOb6RDJ
+         IEW4sqOaDBcJ9MZW2VKobVo/vf5d4RlUOuNnZDtNdQncxqWRQ938zSJHcPYeiO7RsD7Z
+         K4Kn+g25waXSkXfirnJJsl5jB78rCtN0YYMxrPOehwUF6G71obOCFof1APeMRLgO1B4H
+         TEacWA68TWjQf4DuEk9E4KHvm+n5Qy2+oF5iwRfEveWIp6SWwfB42eEjVEoNZ6N3HRxY
+         28ag==
+X-Gm-Message-State: AOAM531hakcVdia8mfkAg+TeMImHQkekMI8PJo/0Ky0McksepQOBY26/
+	wSG2w/NPMT3LL1xCuOC9wAbVgnrv+LMzO6U/
+X-Google-Smtp-Source: ABdhPJxDXTkruSdNwrYTgfAb8SXAVxeiI2pNGq1m37tKzSGP0BPn/HcR9iVF+1ykG/r68FGv49cOxw==
+X-Received: by 2002:a17:90a:7061:: with SMTP id f88mr9600904pjk.56.1616688170303;
+        Thu, 25 Mar 2021 09:02:50 -0700 (PDT)
+Return-Path: <steve@sakoman.com>
+Received: from localhost.localdomain ([72.173.249.164])
+        by smtp.gmail.com with ESMTPSA id t18sm6290054pfh.57.2021.03.25.09.02.46
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Mar 2021 09:02:49 -0700 (PDT)
 From: "Steve Sakoman" <steve@sakoman.com>
-Date: Thu, 25 Mar 2021 05:31:54 -1000
-Message-ID: <CAOSpxdbVDHJFRtuROth0VT8k-sa8zpZ8dj0E5E-KjfQtmOZc5A@mail.gmail.com>
-Subject: Re: [yocto] [yocto-autobuilder-helper][dunfell 01/23] scripts: Add runqemu-renice.c for renicing runqemu
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder-helper][dunfell V2 00/15] Patch review V2
+Date: Thu, 25 Mar 2021 06:02:06 -1000
+Message-Id: <cover.1616687842.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Thu, Mar 25, 2021 at 4:20 AM Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
->
-> On Wed, 2021-03-24 at 14:39 -1000, Steve Sakoman wrote:
-> > From: Richard Purdie <richard.purdie@linuxfoundation.org>
-> >
-> > Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-> > (cherry picked from commit 838be1a00c0383b63d1ab60aa991919404b82655)
-> > Signed-off-by: Steve Sakoman <steve@sakoman.com>
-> > ---
-> >  scripts/runqemu-renice.c | 44 ++++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 44 insertions(+)
-> >  create mode 100644 scripts/runqemu-renice.c
->
-> This is another one which is only relevant to master, it isn't used from the
-> older branches.
+Please review this next set of patches for dunfell.
 
-OK, removed!
+V2 removes:
 
-Steve
+  scripts: Add runqemu-renice.c for renicing runqemu
+  scripts/generate-testresult-index: Update after 'posttrigger' renaming
+    broke the index generation
+  scripts/generate-testresult-index: Ensure backwards compatibility with
+    older layout
+  scripts/generate-testresult-index.py: Ensure we're not always
+    rerunning resulttool
+  scripts/generate-testresult-index: Improve index to list test reports,
+    ptest and buildperf separately
+  scripts/generate-testresult-index: Reorder buildhistory to improve
+    display
+  scripts/generate-testresult-index.py: Use bulma css to improve the
+    look of the index
+  config.json: Use buildtools tarball on debian9
+  
+The following changes since commit ef52b284e8cbe90c18fdab6a0d6fa8095a2c4ed9:
 
-> [Basically the autobuilder has some code which it pulls from the helper
-> but uses it from the master branch, it isn't release specific. This is
-> the janitor, index code and renice offhand, there may be other bits I forget]
->
-> Cheers,
->
-> Richard
->
+  send-qa-email: Save the QA email in case it doesn't reach the mailing lists. (2021-02-23 10:24:14 +0000)
+
+are available in the Git repository at:
+
+  git://git.yoctoproject.org/yocto-autobuilder-helper contrib/sakoman
+  http://git.yoctoproject.org/cgit.cgi/yocto-autobuilder-helper/log/?h=contrib/sakoman
+
+Richard Purdie (14):
+  scripts/run-config: Don't execute steps that don't exist!
+  scripts/run-config: Ensure stepnum has a value when there are no steps
+  scripts/run-config: If target is present default to 1 step
+  run-config: Adapt to two pass execution
+  scripts/run-config: Improve logfile naming
+  scripts/run-config: Ensure logging to both logfile and stdout
+  config.json/run-config: Add human readable descriptions of steps
+  scripts/run-config: Remove redundant boilerplate json
+  scripts/shared-repo-unpack: Add flush call to update the output more
+    regularly before buildtools
+  config.json/run-config: Add support for shortnames and descriptions
+  config.json: Unbreak qa-extras locked sigs test
+  config.json: Add further descriptions
+  scripts/run-config: Disable output buffering
+  config.json: Split reproduciblity tests into their own target
+
+Ross Burton (1):
+  config: build and test SDKs when using package_deb
+
+ config.json                | 101 +++++++++++++---
+ scripts/run-config         | 235 ++++++++++++++++++++++++++-----------
+ scripts/shared-repo-unpack |   1 +
+ scripts/utils.py           |   5 +-
+ 4 files changed, 259 insertions(+), 83 deletions(-)
+
+-- 
+2.25.1
+
