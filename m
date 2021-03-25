@@ -1,50 +1,50 @@
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
- by mx.groups.io with SMTP id smtpd.web08.1389.1616632797185778405
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+ by mx.groups.io with SMTP id smtpd.web08.1390.1616632799902894203
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Mar 2021 17:39:57 -0700
+ Wed, 24 Mar 2021 17:40:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=PA2pX5hO;
- spf=softfail (domain: sakoman.com, ip: 209.85.215.174, mailfrom: steve@sakoman.com)
-Received: by mail-pg1-f174.google.com with SMTP id m7so86652pgj.8
-        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 17:39:57 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=1OESlURN;
+ spf=softfail (domain: sakoman.com, ip: 209.85.215.179, mailfrom: steve@sakoman.com)
+Received: by mail-pg1-f179.google.com with SMTP id e33so67343pgm.13
+        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 17:39:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sakoman-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=jTWiksMN1eChqX5CzCX40YftXmLCUHKLegIvZp6qtus=;
-        b=PA2pX5hOSDyCtyY9x9fnQFA6o8Z8yD24vC3uw72dmjanSqaQyJSns/YnVl/4LbWIbv
-         PahFkde6srqH4MBkc7/wDB/Ymv71xZY/PO9XRsOPFYlABSl68piuvoPUYxdtxHQ2Rxmf
-         FkP52wEp1vrpEzZyeozbDBcX0/5RyNpISPZYX0l25JZkbsTov//28fE/m8oU1fo7RT94
-         2LUStXK7N4wDm55IwB0xF/n0JXRzaILy13rLHJ0cWA47bl50NDwL6QW3Xmz2vJ2ZH4yt
-         jvO5lua+VTqRDJpd8zhFwC+GbECj4WqOR6jcwRjljlN1t5fdvG3wSHFAvA+tjaL86zUq
-         6y5g==
+        bh=+wLBPeubiXGuuka3OqL0KFkE5XTmNOzNA51xIS3mXl4=;
+        b=1OESlURN2RyNQFtLwwxHQksOnZTsRQ41hwlFvpH/G0sI/7sxtGa4/oeFbqzTW8eEEE
+         PKQv1iFY48yHMjssXDtv6dGtexd1qw9YC2gQ//qW6xtCanSsWxL2z2liY9FfNJK3++lA
+         3RdqGdulQy7Wq1DUz/TsOEsUVky87WW1SC6KRG7ATK27b1ykGhUb9twFRgEYx4v7vwan
+         DVAYTfc2Lm1Y7leppjv4Spt/g6tBtgvKdJGbBB3JP/YBbhnBoFTSddcTlUx3PX6ETL20
+         vTkbd8vhSnErvmZgfL1VXchs8tW9aFB5Ho0XOQZwl0EFbvPCpairUqYZacvSqhjx+6mN
+         RHsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=jTWiksMN1eChqX5CzCX40YftXmLCUHKLegIvZp6qtus=;
-        b=lZGbMOiDuFzM9HyNBQ+nk5yF3334Ch6w1ASo37dSd2N28S69qFxh0RmZyho0OFZfa9
-         9OIm8pR+GPzJQfD1MK1fhFt/J8oAUVTeiJkhfH7lb5NW1d593T2ZE5KGLlZ+f5H5Ad9S
-         lrc8sT7A2CelFxwYU/I4Y3I+dlQxbY8Lt2JVC6E5iW4/LjXiMnQtxWg4y9Rqhus8Diph
-         rZRoEwJZCkkELSz0nNYhPnG05DqSlrz85Zu/fCvXprtejOyCjvafO/nXaOSgYtD9eJn7
-         4TANl5MBfalhPMKP7Itw+dY57EZeU35U1sELe1hLtAn+4xhDCE1OKw+AXC6kGY5698fd
-         +lMw==
-X-Gm-Message-State: AOAM533+mpFZDlaFMcZVyNXuOmTL0zTv4nNJG52DYknSABAOjHneLBVy
-	qm3PGoEOFyUI1aziXfSiPxGlsIzPvkYmsRxr
-X-Google-Smtp-Source: ABdhPJxmM6iIFVYGDZSWnBQ2o6KBkvbwo5wofBn0nq9n/VHeipWeu5Hqx/Du4+XwYX1pmvS1/NXoXw==
-X-Received: by 2002:a17:902:c14c:b029:e5:cd82:a0b with SMTP id 12-20020a170902c14cb02900e5cd820a0bmr6363782plj.34.1616632796169;
-        Wed, 24 Mar 2021 17:39:56 -0700 (PDT)
+        bh=+wLBPeubiXGuuka3OqL0KFkE5XTmNOzNA51xIS3mXl4=;
+        b=c6xgKGKoKODdMd7D9bkpiHuWkhnZkdLxh/bg7zKrfhr1E/5QVNVBlVLlmeTaZEnAak
+         TlXIMcfWuenYAMwyheq4vTNZ9NP4g8yIt3OLs8FrvUBbv89fPjrBoUjNR3ZMo/eQmpox
+         7raJjYK8gRMhYf73yuEvut+3rZYWDwGPMaj8R4oAT327NySFUM+PFGu0FAd+1mKs8Ozw
+         9CPYCF39gb8L7xiaWZZ7OKOmSxITXthwoASyUHEhV+C2QWfpgVA9n2GbCTiTKCDJ6/M1
+         mdSPTo2jBIB39hgFrWnQGtRIOKfToPjv1GYs5m7qgB3qJl/pJeerooW3VEuQi4zXtaFo
+         ZKxw==
+X-Gm-Message-State: AOAM533ou31SJ+4aWTN1tFjps8dKTTCZ8r6zQcqBwIHHS2qogfdT1Iak
+	DLaMj1m18rMogz7jV1VAJ9myqi9T9ZkDYva9
+X-Google-Smtp-Source: ABdhPJw8zAxclaOf/dyM1cesOZmNPpInPM2pBpUoBBF8hfdrqBxZYktum3p2+XrQdzSkjPrfumXmzw==
+X-Received: by 2002:a17:902:ead2:b029:e5:ba7a:a232 with SMTP id p18-20020a170902ead2b02900e5ba7aa232mr6371489pld.19.1616632799019;
+        Wed, 24 Mar 2021 17:39:59 -0700 (PDT)
 Return-Path: <steve@sakoman.com>
 Received: from localhost.localdomain (rrcs-66-91-142-162.west.biz.rr.com. [66.91.142.162])
-        by smtp.gmail.com with ESMTPSA id o13sm3706924pfp.26.2021.03.24.17.39.54
+        by smtp.gmail.com with ESMTPSA id o13sm3706924pfp.26.2021.03.24.17.39.57
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 17:39:55 -0700 (PDT)
+        Wed, 24 Mar 2021 17:39:58 -0700 (PDT)
 From: "Steve Sakoman" <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][dunfell 01/23] scripts: Add runqemu-renice.c for renicing runqemu
-Date: Wed, 24 Mar 2021 14:39:10 -1000
-Message-Id: <347bae056acff57ee70d8dedd121ed04e4e4c554.1616625264.git.steve@sakoman.com>
+Subject: [yocto-autobuilder-helper][dunfell 02/23] scripts/generate-testresult-index: Update after 'posttrigger' renaming broke the index generation
+Date: Wed, 24 Mar 2021 14:39:11 -1000
+Message-Id: <383ab66f729da3f0a34fef22fa359265226acd7d.1616625264.git.steve@sakoman.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <cover.1616625264.git.steve@sakoman.com>
 References: <cover.1616625264.git.steve@sakoman.com>
@@ -54,63 +54,28 @@ Content-Transfer-Encoding: 8bit
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
 
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-(cherry picked from commit 838be1a00c0383b63d1ab60aa991919404b82655)
+(cherry picked from commit 6d6c45cbda5fb19c40a532b1f5c9fad39a354df6)
 Signed-off-by: Steve Sakoman <steve@sakoman.com>
 ---
- scripts/runqemu-renice.c | 44 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
- create mode 100644 scripts/runqemu-renice.c
+ scripts/generate-testresult-index.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/scripts/runqemu-renice.c b/scripts/runqemu-renice.c
-new file mode 100644
-index 0000000..9003e35
---- /dev/null
-+++ b/scripts/runqemu-renice.c
-@@ -0,0 +1,44 @@
-+/*
-+ * Copyright (C) 2020 Richard Purdie
-+ *
-+ * SPDX-License-Identifier: GPL-2.0-only
-+ *
-+ * Needs sudo setcap 'cap_sys_nice=ep' renice
-+ */
-+
-+#include <sys/time.h>
-+#include <sys/resource.h>
-+#include <sys/syscall.h>
-+#include <stdio.h>
-+#include <stdlib.h>
-+#include <unistd.h>
-+
-+enum {
-+    IOPRIO_WHO_PROCESS = 1,
-+};
-+
-+#define IOPRIO_CLASS_SHIFT 13
-+#define IOPRIO_PRIO_MASK ((1UL << IOPRIO_CLASS_SHIFT) - 1)
-+#define IOPRIO_PRIO_CLASS(mask) ((mask) >> IOPRIO_CLASS_SHIFT)
-+#define IOPRIO_PRIO_DATA(mask) ((mask) & IOPRIO_PRIO_MASK)
-+#define IOPRIO_PRIO_VALUE(class, data) (((class) << IOPRIO_CLASS_SHIFT) | data)
-+
-+int main(int argc, char *argv[])
-+{
-+    int pid, rc;
-+    if (argc != 2) {
-+        printf("Please specify only the process PID to adjust\n");
-+        exit(1);
-+    }
-+    pid = atoi(argv[1]);
-+    rc = setpriority(PRIO_PROCESS, pid, -5);
-+    if (rc != 0) {
-+        printf("setpriority failed: %d\n", rc);
-+        exit(1);
-+    }
-+    rc = syscall(__NR_ioprio_set, IOPRIO_WHO_PROCESS, pid, IOPRIO_PRIO_VALUE(2, 0));
-+    if (rc != 0) {
-+        printf("ioprio_set failed: %d\n", rc);
-+        exit(1);
-+    }
-+}
+diff --git a/scripts/generate-testresult-index.py b/scripts/generate-testresult-index.py
+index 827395e..d372f30 100755
+--- a/scripts/generate-testresult-index.py
++++ b/scripts/generate-testresult-index.py
+@@ -83,9 +83,9 @@ for build in sorted(os.listdir(path), key=keygen, reverse=True):
+     reldir = "./" + build + "/testresults/"
+     btype = "other"
+     files = os.listdir(buildpath)
+-    if os.path.exists(buildpath + "/a-full"):
++    if os.path.exists(buildpath + "/a-full-posttrigger"):
+         btype = "full"
+-    elif os.path.exists(buildpath + "/a-quick"):
++    elif os.path.exists(buildpath + "/a-quick-posttrigger"):
+         btype = "quick"
+     elif len(files) == 1:
+         btype = files[0]
 -- 
 2.25.1
 
