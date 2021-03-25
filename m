@@ -1,50 +1,50 @@
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
- by mx.groups.io with SMTP id smtpd.web12.1354.1616632813334969224
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+ by mx.groups.io with SMTP id smtpd.web10.1390.1616632815170329252
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Mar 2021 17:40:13 -0700
+ Wed, 24 Mar 2021 17:40:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=LjjDof5x;
- spf=softfail (domain: sakoman.com, ip: 209.85.215.172, mailfrom: steve@sakoman.com)
-Received: by mail-pg1-f172.google.com with SMTP id e33so67869pgm.13
-        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 17:40:13 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=oraVdfxU;
+ spf=softfail (domain: sakoman.com, ip: 209.85.210.175, mailfrom: steve@sakoman.com)
+Received: by mail-pf1-f175.google.com with SMTP id x126so200746pfc.13
+        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 17:40:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sakoman-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=8b+BgQJ14/KgrdtMCF/olDyCYmyEUrs+nCvN2Pg7DIo=;
-        b=LjjDof5xe+4jyFvJOKl37FhCKikF1m5B4xRDgqUER4W4JH2XQ4UsvE1kbVOwZzDeED
-         bYmyQl5NjAlfGbIFk72WikQeaNQko7POnA05jwdDBNT7A1luCenaE+8KBFR7Dkx2muLq
-         W+eyZfAoFaF8BJwt0RZhsdToaJ+T8ZtfuuSBCe5c2vtIprCzi6TOy2lWhBnsqJQ/mJAK
-         FxgOY1apS/eDpoow0d2QlthSb7Jc9FEsce65RUkboaQfd/4Wd5qTmHIFyeqHiILGY2Vb
-         GxF3/pbqg8rhj9PwdvCtq+1paJEqUhxVjERhsW1wzX/EuOxqq7F18X3QDWUOIOtPpybb
-         TdYg==
+        bh=jEGMbVYH2tbdnAN0Qe8KbtapZ6FfSnNNcv8/wkBTizw=;
+        b=oraVdfxUtI3Dp3Sknl3y0Wni6slvI+OeztcPS1m4pyN69MaPy/9MDgfoJgze98WrJv
+         GneNodwjdLOKk+Z1ohSNXBh8Mb06uX89K97vMSIMdCeZofD2RJKjqzIqlvw6yAtObiQ6
+         0jVai6FdXMzilkoJ71iCI4tfdlS2Y74t/8iUEsgm8QR78vHODVmIEFheVDDl848VZ0S7
+         Efz11PwXdG5LxydY+O69JKideFJJ5QsbIQV4y1ks7qXfolVklFagFq69VOx9WqZvtaT8
+         AR55Ym0PZCcplmu4SxfNAdvgi7XeCqGekCcRTx4Btsk1yihhJdq3eFGhcJvpUGXoLJPe
+         p07g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=8b+BgQJ14/KgrdtMCF/olDyCYmyEUrs+nCvN2Pg7DIo=;
-        b=WPnIok2ZC2etKvg0v9AZtVF3S8LPh4hGYjh+UVTeLBPyWw6I0xPObDLyMVZyaiQDN3
-         hFjN5SRWMwmdWCCP/n8qJ4eWZEIsDMzxFJvh/9PWB2xnEDiJge62T44F0jHAEzLsohp1
-         Dt2wXLmQzUq3AeYDczDuVZwnMOrIs3WCG1IdrKSsWFmdwg3nzxS28/JxDgOhQ3zHrK2v
-         KUL6/8Kog1cAp+0BKlN5gjIdW2jjOk9sPogXKnXmZFGY/l5/ZrwSyw3HAiBsdhyF7SOV
-         rG1DdPpw/YorMtaLlgS10iUgq2gMSVQQVW5spZKhfSqG9O1MFoZ9NCxFxpvlsFkbHgxO
-         BAEQ==
-X-Gm-Message-State: AOAM530hVkNeCn/O1IvuhbbCwW6tYgVuDh30S4fbAOJ+XdtxIhzLHPeg
-	sYokPn8BwMBXOUtVQOJJcmwSbGtJUF110cxU
-X-Google-Smtp-Source: ABdhPJyTrSiVnVIw/rGhBv74E9fh42D1MhsJnM34AXhS5ZTlZi8AR947soFm3Oz5oSvraNUxFxqMEQ==
-X-Received: by 2002:a17:902:9886:b029:e6:2bc6:b74 with SMTP id s6-20020a1709029886b02900e62bc60b74mr6284129plp.13.1616632812409;
-        Wed, 24 Mar 2021 17:40:12 -0700 (PDT)
+        bh=jEGMbVYH2tbdnAN0Qe8KbtapZ6FfSnNNcv8/wkBTizw=;
+        b=k2a/ES7cZVjkdXF96SjQsRtrhDs/lDoff2sS3LDwCj9zGA5qlGyBXiNOs+28N7jGsA
+         u88YHBxxQX85hEQ2vLq6Iv99Qo8UmPk4gI4pRtncBrrhUR/sQfrf15h4cZPOCYmfXfkM
+         INvJNho1mkZbf3ZCm8HW5+e2hL5/INx6Cpq8QraZ8utoikuRCnvbzbKsQb7lTkqfFe/x
+         AlnyV7hnbdVe4tc9sd3tKuJ6ct/N5FSu+rCJCETchKZmzI73ixCY+TNQ7+vmJOxW+Veq
+         d64+0dzgQ9YCUwPq+uiE9BgcN6R7mXbizpsE9RolTJaFjfGTXMRnEBOalOKIWmcgCM2F
+         iqXg==
+X-Gm-Message-State: AOAM533oCFYuoKCPHbFbvBD6Jj284BZpCrXgmrlv0z8cfniiJtbFpFHx
+	6lczoofKdfSvX9tOm4x+P6RcxAXKjuTouAB1
+X-Google-Smtp-Source: ABdhPJzj1sL/PY/xYDb25lHvBFuKMUihAaKYO74rANS0tN+gyRomC1ldAFF+R8qH6q73Y4RUr7iF4A==
+X-Received: by 2002:a17:902:e5c8:b029:e4:c22d:4da6 with SMTP id u8-20020a170902e5c8b02900e4c22d4da6mr6448480plf.10.1616632814260;
+        Wed, 24 Mar 2021 17:40:14 -0700 (PDT)
 Return-Path: <steve@sakoman.com>
 Received: from localhost.localdomain (rrcs-66-91-142-162.west.biz.rr.com. [66.91.142.162])
-        by smtp.gmail.com with ESMTPSA id o13sm3706924pfp.26.2021.03.24.17.40.11
+        by smtp.gmail.com with ESMTPSA id o13sm3706924pfp.26.2021.03.24.17.40.13
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 17:40:12 -0700 (PDT)
+        Wed, 24 Mar 2021 17:40:13 -0700 (PDT)
 From: "Steve Sakoman" <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][dunfell 08/23] scripts/run-config: Don't execute steps that don't exist!
-Date: Wed, 24 Mar 2021 14:39:17 -1000
-Message-Id: <cf6d0ad49d67d656c61e452a17c5d8753452b25e.1616625264.git.steve@sakoman.com>
+Subject: [yocto-autobuilder-helper][dunfell 09/23] scripts/run-config: Ensure stepnum has a value when there are no steps
+Date: Wed, 24 Mar 2021 14:39:18 -1000
+Message-Id: <b32daf98ecbf9ccebf4234a38180ce3511a996fb.1616625264.git.steve@sakoman.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <cover.1616625264.git.steve@sakoman.com>
 References: <cover.1616625264.git.steve@sakoman.com>
@@ -54,22 +54,21 @@ Content-Transfer-Encoding: 8bit
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
 
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-(cherry picked from commit 290e1bc2ee18d5fa88aca84125fb6691db3db5f9)
+(cherry picked from commit afb6c5a88773d4da4a8dfd88f19654ca585efc95)
 Signed-off-by: Steve Sakoman <steve@sakoman.com>
 ---
- scripts/run-config | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ scripts/run-config | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/scripts/run-config b/scripts/run-config
-index ce6072c..ff56fbe 100755
+index ff56fbe..e600bf9 100755
 --- a/scripts/run-config
 +++ b/scripts/run-config
-@@ -81,7 +81,7 @@ elif args.build_type == "full":
-         ourconfig["HELPERSTMACHTARGS"] = "-a -t machine -t toolchain-user"
+@@ -82,6 +82,7 @@ elif args.build_type == "full":
  
  # Find out the number of steps this target has
--maxsteps = 1
-+maxsteps = 0
+ maxsteps = 0
++stepnum = 0
  if args.target in ourconfig['overrides']:
      for v in ourconfig['overrides'][args.target]:
          if v.startswith("step"):
