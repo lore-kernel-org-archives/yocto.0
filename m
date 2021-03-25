@@ -1,50 +1,50 @@
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
- by mx.groups.io with SMTP id smtpd.web11.1365.1616632840055202978
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+ by mx.groups.io with SMTP id smtpd.web11.1367.1616632841889685868
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Mar 2021 17:40:40 -0700
+ Wed, 24 Mar 2021 17:40:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=UpFPdxQD;
- spf=softfail (domain: sakoman.com, ip: 209.85.215.170, mailfrom: steve@sakoman.com)
-Received: by mail-pg1-f170.google.com with SMTP id l1so98687pgb.5
-        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 17:40:40 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=finhuoUy;
+ spf=softfail (domain: sakoman.com, ip: 209.85.210.181, mailfrom: steve@sakoman.com)
+Received: by mail-pf1-f181.google.com with SMTP id q5so218344pfh.10
+        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 17:40:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sakoman-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=d2dQJsqeOnGIcJBVrMKnIiOF/sLfim5jbX9hIyijhks=;
-        b=UpFPdxQDC/h4TM3EdTu75XYdk8hF8RpLmeT3Hwob3b1ckNRCwg9xCjzQ8UzYd6c0TV
-         qg7k/gaCJ61mEfgkP/+SKnxWaaOtqQFc/byo7RIi0k2qOtyCIccI1zXGJQf4pDAUA/7y
-         Jq54qwdCd1ip5WwSqj+iW5YyYPN6DR1TOEe92gGZUhsoSwSyq+PfeOpuOb/fpzWjZYAz
-         bq97FwDf3yAlrx9gjeytdHvlInAxyPX+jNtUPNotbqeDQeNOPuXejJnzsVqbacR5F3Q+
-         jLeIDlT3Tuuj0n9uaG9K2kPLQ4kaOvUBfw9JFxe8sNoJPeUOIALg3l34qPnEYv/GEoLn
-         +FWg==
+        bh=AQ/IOuSNJ2icXnAz/9np8qbd41/XAPNnBAS1LvofxKk=;
+        b=finhuoUyctteDxGK0EwRXJ4PdrXnB1pLY+yIYli4DeqJ8U1ZlZzcvXouNcIjdEn5lJ
+         t2Z+3toriJLzMGwEvjIWRaW2MJNGUPPIYP/nB3ga42WFoOjsykXDKaYhs8wKVta1ClSc
+         RWlY6IZdZ6zvhAExq+Mu8eAQ54aE92maM4VPVJjjNwUjtSX0uzChEMX5hQ61Mbivmxvt
+         vc3PADUx6Cc/YQlNODEkNVM9BFpQMfbYuaEH8xK8za5BiO8wFnJi/fZh8r+XC3d1pWy0
+         FjIfHhWTqka9D0xYVC2zDtw7pJuqx7zTq5z2ljXKeJpB/51JhaVbn/jLHAB66V6SYq+6
+         vAfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=d2dQJsqeOnGIcJBVrMKnIiOF/sLfim5jbX9hIyijhks=;
-        b=PzdXV8wpSvAhkz4OY5CEWknz3DxqroJdZr242/T9z222zL+F3GtfjWO7dk3B4UIQ2r
-         7HI+guAaTgCvjrspYdvZ3/+gB1APGNm3GJF5sKUkmhkM5W8rX6MRHMyiLXkcuedmN/1V
-         v0NRcNQBawOJMCDX/3qNhhv2gGDpA+XbCvUs3GPTecAXzb+umUcQ6la0M6zCEx/bI+Bw
-         6hhruYuDqMPrPCqowLMoNqZek/LBfWajdblmN0QByUPKKGrFIkJMphB9MLze/nDgvBOb
-         QmeyUeaMLdej76KO1r4h6PGtn84UgMauYxZDhWnDCFPIcSJxK3PMKI0yfaeWS8c9Ojge
-         3M9w==
-X-Gm-Message-State: AOAM5316qu1w3HHrW+d7nCWWgarK+yyiDrD3PX+sf8cOVbzo5tIB9bH4
-	24PLacAOkDS8CnD8L65JxI8VBhZJENyNWdO0
-X-Google-Smtp-Source: ABdhPJwmreJt5EaDA2WntSVXRB1R/rdNCK2mKsD26SmdskHnt7rg7t3c70UuKduUyfe8jtClUX4RlA==
-X-Received: by 2002:a65:5c88:: with SMTP id a8mr5008072pgt.130.1616632839131;
-        Wed, 24 Mar 2021 17:40:39 -0700 (PDT)
+        bh=AQ/IOuSNJ2icXnAz/9np8qbd41/XAPNnBAS1LvofxKk=;
+        b=s/eEhZAGhl1uVp1Tpi4YpO4gyxAmzNA7XwNiai7BOfW3py3KyikIghaQQFn+ChlTj9
+         1OLuz8osIGWDa4iSspfmccT6QuPfzIExsLVSPmuB4fCQ1HIEB8jt0nWiBFSHyPDHNZTo
+         R4RCpGZtwJzUNguLNtOKofF28Yf23CCkL8dZSnvTFzJ2tC2udIeMGuv8Z3Op2fGIyWLe
+         tsxxUQNhIJhB3pdsPKLap0DY+iOCaNM1i701ayarsffF3d4eHfEPj25FUF0SneOvZf3w
+         KxnL76ECZHugT8bVyI9tkGBBQUJxJwUEV70OXq5byp11uBeTIrO7OdxJgudnl853DD+C
+         Zysw==
+X-Gm-Message-State: AOAM532cWT7hfzOBTrPlV6HDoJhRY3++f1V73j8FMZeCrBSTE33yoTjn
+	wkWWbaeTytNqQ6fWg8YqYg2EEQPuqL0ngmFT
+X-Google-Smtp-Source: ABdhPJx/PYQmWkXbNp+idepvcoVHKd8K5BZyUNynr3Jq6KzsK2bJpkoGadFYIS4n9/bziDj4CtfJTA==
+X-Received: by 2002:a62:7517:0:b029:21d:2eb4:ee5d with SMTP id q23-20020a6275170000b029021d2eb4ee5dmr5144191pfc.64.1616632840990;
+        Wed, 24 Mar 2021 17:40:40 -0700 (PDT)
 Return-Path: <steve@sakoman.com>
 Received: from localhost.localdomain (rrcs-66-91-142-162.west.biz.rr.com. [66.91.142.162])
-        by smtp.gmail.com with ESMTPSA id o13sm3706924pfp.26.2021.03.24.17.40.38
+        by smtp.gmail.com with ESMTPSA id o13sm3706924pfp.26.2021.03.24.17.40.39
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 17:40:38 -0700 (PDT)
+        Wed, 24 Mar 2021 17:40:40 -0700 (PDT)
 From: "Steve Sakoman" <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][dunfell 20/23] config.json: Use buildtools tarball on debian9
-Date: Wed, 24 Mar 2021 14:39:29 -1000
-Message-Id: <fbd459aa8fcd8fdbdae57f41e7f47ff0de78bbec.1616625264.git.steve@sakoman.com>
+Subject: [yocto-autobuilder-helper][dunfell 21/23] scripts/run-config: Disable output buffering
+Date: Wed, 24 Mar 2021 14:39:30 -1000
+Message-Id: <b152dd1dea8b720bcf0848e515de5d1d79a1ba90.1616625264.git.steve@sakoman.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <cover.1616625264.git.steve@sakoman.com>
 References: <cover.1616625264.git.steve@sakoman.com>
@@ -53,28 +53,31 @@ Content-Transfer-Encoding: 8bit
 
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-debian9 has python 3.5 which doesn't work with new qemu versions. Its
-the only remaining 3.5 distro so lets move to a minimum of 3.6.
+Line buffering (bufsize=1) is unavailable with binary mode so use unbuffered
+mode instead. This fixes python runtime warnings.
+
+[YOCTO #14093]
 
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-(cherry picked from commit 62b3f5553e9c215cf94798ae4694ccb97f6e85dd)
+(cherry picked from commit c21732937c89f7b13a4f8a9a02d7fcb15a4bad2d)
 Signed-off-by: Steve Sakoman <steve@sakoman.com>
 ---
- config.json | 1 +
- 1 file changed, 1 insertion(+)
+ scripts/run-config | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/config.json b/config.json
-index cedcef7..8eb05e6 100644
---- a/config.json
-+++ b/config.json
-@@ -1006,6 +1006,7 @@
-     },
-     "buildtools" : {
-         "debian8*" : "${BUILDTOOLS_URL}",
-+        "debian9*" : "${BUILDTOOLS_URL}",
-         "centos7*" : "${BUILDTOOLS_URL}",
-         "perf-centos7*" : "${BUILDTOOLS_URL}"
-     }
+diff --git a/scripts/run-config b/scripts/run-config
+index aab52c1..8ed88cf 100755
+--- a/scripts/run-config
++++ b/scripts/run-config
+@@ -193,7 +193,7 @@ def bitbakecmd(builddir, cmd, report, stepnum, stepname, oeenv=True):
+ 
+     flush()
+ 
+-    with subprocess.Popen(cmd, shell=True, cwd=builddir + "/..", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=1) as p, open(log, 'ab') as f:
++    with subprocess.Popen(cmd, shell=True, cwd=builddir + "/..", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=0) as p, open(log, 'ab') as f:
+         for line in p.stdout:
+             writelog(line, f, sys.stdout.buffer)
+             sys.stdout.flush()
 -- 
 2.25.1
 
