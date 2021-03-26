@@ -1,161 +1,195 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.12608.1616766158832425859
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+ by mx.groups.io with SMTP id smtpd.web09.1728.1616784595394205895
  for <yocto@lists.yoctoproject.org>;
- Fri, 26 Mar 2021 06:42:40 -0700
+ Fri, 26 Mar 2021 11:49:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@aruba.it header.s=a1 header.b=becF/B33;
- spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 198.145.29.25, mailfrom: mauro@faresoftware.it)
-Received: from smtpcmd11117.aruba.it (smtpcmd11117.aruba.it [62.149.156.117])
-	by mail.yoctoproject.org (Postfix) with ESMTP id 370C338C06E6
-	for <yocto@yoctoproject.org>; Fri, 26 Mar 2021 13:42:37 +0000 (UTC)
-Received: from p50 ([213.213.6.58])
-	by Aruba Outgoing Smtp  with ESMTPSA
-	id PmjSl0gYskeOqPmjSlaGmn; Fri, 26 Mar 2021 14:42:35 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-	t=1616766155; bh=hYdBUKWm3PGsuDfIbEhTlOcgQYYfFTQoMMfM7tbzf8c=;
-	h=Date:From:To:Subject:MIME-Version:Content-Type;
-	b=becF/B33XucaQkVqf15F0yrOnSkHox/p3wJlSRL29r+nhwVqgCsXWLWYrPPOexPyl
-	 4j18jargc/4N9Iy2McK55OxucnxboqjHQtNC+aDKJKjIy++bwRIn6heCp3TMIr2L7s
-	 3NNCZL4HV9OGL/K2Z6aGDLzoTP9uR+lUD5VFl8KR5cT+QGGiCkNHSHgb51BEap7Sf7
-	 sP9KU0qCWxbsEuOrRAmajTx9qfXdAAnLOveT11iOJzTsADP99L0e6R0w43zTh0ajss
-	 NWXL8wvmDpCvTVt4LfruOImswXMfUHQKvAeT8sXaoSYokbqXZf1CRd1cJflaZbashU
-	 QNLYvajawHVpg==
-Date: Fri, 26 Mar 2021 14:42:34 +0100
-From: "Mauro Ziliani" <mauro@faresoftware.it>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "=?utf-8?Q?yocto=40yoctoproject.org?=" <yocto@yoctoproject.org>
-Message-ID: <3B4105AB-4627-4A78-BFEC-D37451DE317E@getmailspring.com>
-In-Reply-To: <9ac096ac-77fc-699d-3458-4dd3e9af0925@gmail.com>
-References: <9ac096ac-77fc-699d-3458-4dd3e9af0925@gmail.com>
-Subject: Re: [yocto] Howto read bitbake -g files?
-X-Mailer: Mailspring
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=V/Tn7fQE;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.210.173, mailfrom: mhalstead@linuxfoundation.org)
+Received: by mail-pf1-f173.google.com with SMTP id x26so5513756pfn.0
+        for <yocto@lists.yoctoproject.org>; Fri, 26 Mar 2021 11:49:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8e7tYKG+zhYXjSw/QlAnSxn2ytOaCzoseB2qI58uHFk=;
+        b=V/Tn7fQEnYvu+LBRtiedTHphHA+Dens8OddjYdUsmIjn2hj58t7cf4l1L+wD3z4ZAx
+         RiEDJWked8n/K8zbFlaFcxaG/ws9a6l65rBseiavd4gRtSYrQK1ZYdYP9t227fSZWpRZ
+         pYXzH/f2YjRAm0Iw8d3BI5BFu0uOr8XXGmbaA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8e7tYKG+zhYXjSw/QlAnSxn2ytOaCzoseB2qI58uHFk=;
+        b=cKnYQNAZKRUdR+3GoneIZhYKP63vtahcD+zTrIHOGeAJC8ZH/1eG+DFtXdB2pUv55U
+         og3sbICuBAHWq5LuY0031XltlNQ7FLoxtoSDCZ+MGCl1eGV7Za8kGH9hJwwD/D1coHsv
+         SzRJSB8YBT+rrZDfEByKDrrgMikCzGKzy4fuapyC9GlrLM+6mr5JbzdiNbMGrDnuzlJk
+         EKqi65sDSYsfZiDVOndfv6L6K+x+areoDcUYcYSgO9cQCJQpj06R8RjcatDMY/9Ip4mZ
+         IFQKvDcV6JkQbsaM0WOHl2W4qF878iCnmq0aFPA0xJRHdqrMv6yGoc+D5URcHBnhdPDF
+         YMfQ==
+X-Gm-Message-State: AOAM532YAy+dMHss3XjLKW0O9Wvw3U4nZhHs9welgNCT2iNRzuO2ukHf
+	JYSZVpKwDa5LHeAlt4rIFKwNjYzog3EdxA==
+X-Google-Smtp-Source: ABdhPJwWe0ahUDPUncMfeQluFHzMz36ZPmW50wjnuKRwiBI26b7ig7oamxSdU4DxeteY0gI6LUk7dw==
+X-Received: by 2002:aa7:8649:0:b029:1fb:283:6047 with SMTP id a9-20020aa786490000b02901fb02836047mr14416902pfo.62.1616784594507;
+        Fri, 26 Mar 2021 11:49:54 -0700 (PDT)
+Return-Path: <mhalstead@linuxfoundation.org>
+Received: from localhost.localdomain.org (c-24-21-216-192.hsd1.or.comcast.net. [24.21.216.192])
+        by smtp.gmail.com with ESMTPSA id fa21sm9132905pjb.41.2021.03.26.11.49.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Mar 2021 11:49:53 -0700 (PDT)
+From: "Michael Halstead" <mhalstead@linuxfoundation.org>
+To: yocto@lists.yoctoproject.org
+Cc: Amanda Brindle <amanda.r.brindle@intel.com>
+Subject: [error-report-web][PATCH 1/5] purge.py: Create script that will purge database
+Date: Fri, 26 Mar 2021 11:49:48 -0700
+Message-Id: <20210326184952.712938-1-mhalstead@linuxfoundation.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-CMAE-Envelope: MS4wfO1LPczcRL1hqn5+ZSIwKyzb+id4JMUlb4uw8hqrgTMu8ogntg9PkGkX/PCif0QxzHZQ2ej2YNwB9t626QUkqPyy9Q/fTUvdEINOqn50Xx8ZFc8eq8XQ
- Qa4u5UmE4RTH0a7OXSdLcKsoPIcf8rYGVF9XvakxPYO2x/4/7vCQuCqG5KdzQSxosxZv3Ygb1vBmUg==
-Content-Type: multipart/alternative; boundary="605de4ca_ee15fdf_e03"
+Content-Transfer-Encoding: 8bit
 
---605de4ca_ee15fdf_e03
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+From: Amanda Brindle <amanda.r.brindle@intel.com>
 
-Thank you for the answer.
-I analyze the problem.
+The script will be run on a regular basis to get rid of old reports that
+we don't need. This will improve the performance of the application
+since the database has grown to a huge size.
 
-opencv_3.1.bb installs many debug packages by PACKAGES variable
-Removing unneeded packages for PACKAGES every *-dev packages disappears from production image.
-MZ
-On mar 25 2021, at 7:34 pm, Khem Raj <raj.khem@gmail.com> wrote:
->
->
-> On 3/25/21 3:37 AM, Mauro Ziliani wrote:
-> > An example about my question
-> >
-> > Inside package-depends.dot I see this
-> >
-> > "opencv-dev" [label="opencv-dev(opencv)
-> > :3.1+gitAUTOINC+92387b1ef8-r0\n/Sources/softfx/krogoth/sources/meta-openembedded/meta-oe/recipes-support/opencv/opencv_3.1.bb"]
-> >
-> > I need to remote opencv-dev from final image.
-> >
-> > In pn-depends.dot I see
-> >
-> > "opencv" -> "opencv-dev" [style=dashed]
->
-> this should only happen if opencv-dev has a .so which is not a symlink
-> and there is a program in opencv package which depends on it. Can you
-> expand the content of opencv-dev and see whats in there ?
-> secondly you can also look at content of opencv package and readelf -d
-> over the binaries in it and see if some binary is dependent on .so from
-> -dev package.
->
-> you can do this inside opencv build tree under packages-split/ area.
-> of a built tree.
->
-> >
-> > I understand that
-> > opencv generates opencv-dev from the recipe opencv_3.1.bb
-> >
-> >
-> >
-> > Sent from Mailspring <https://getmailspring.com/>, the best free email
-> > app for work
-> > On mar 25 2021, at 8:39 am, Mauro Ziliani <mauro@faresoftware.it> wrote:
-> >
-> > Hi all
-> >
-> > I have to look for the recipes put in my image the *-dev packages.
-> >
-> > I removed dev-pkgs and dng-pkgs from IMAGE_FEATURES and debug tweaks
-> > from DISTRO_FEATURES.
-> > I don't IMAGE_INSTALL_append any *-dev packages
-> >
-> > I generate bitbake -g image, but I don't produce the PDF because is
-> > unreadable.
-> >
-> > So I read the dot source. I use dot and I know the syntax.
-> >
-> > But I don't how to read the graph.
-> >
-> >
-> > MZ
-> >
-> >
-> >
-> >
-> > Sent from Mailspring <https://getmailspring.com/>, the best free
-> > email app for work
-> >
-> >
-> >
-> > 
-> >
->
+The script will remove reports older than thirty days if they have not
+been referred to by a host other than the Error Reporting Tool.
 
+The function details() in views.py will keep trick of the referer when
+a build failure report is accessed. If there is no referer, we will note
+that in the database in order to determine how often there is no
+referer. It's possible that crawlers will access reports with no
+referer; if that's the case, a lack of a referer should not determine
+whether we save an older report or not.
 
---605de4ca_ee15fdf_e03
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+Fixes [YOCTO #12332]
 
-<div>Thank you for the answer.</div><div>I analyze the problem.</div><br><d=
-iv>opencv_3.1.bb installs many debug packages by PACKAGES variable</div><br=
-><div>Removing unneeded packages for PACKAGES every *-dev&nbsp; packages di=
-sappears from production image.</div><br><div>MZ</div><br><div class=3D"gma=
-il_quote_attribution">On mar 25 2021, at 7:34 pm, Khem Raj &lt;raj.khem@gma=
-il.com&gt; wrote:</div><blockquote><div><br><br><div>On 3/25/21 3:37 AM, Ma=
-uro Ziliani wrote:</div><div>&gt; An example about my question</div><div>&g=
-t;</div><div>&gt; Inside package-depends.dot I see this</div><div>&gt;</div=
-><div>&gt; "opencv-dev" [label=3D"opencv-dev(opencv)</div><div>&gt; :3.1+gi=
-tAUTOINC+92387b1ef8-r0\n/Sources/softfx/krogoth/sources/meta-openembedded/m=
-eta-oe/recipes-support/opencv/opencv_3.1.bb"]</div><div>&gt;</div><div>&gt;=
- I need to remote opencv-dev from final image.</div><div>&gt;</div><div>&gt=
-; In pn-depends.dot I see</div><div>&gt;</div><div>&gt; "opencv" -&gt; "ope=
-ncv-dev" [style=3Ddashed]</div><br><div>this should only happen if opencv-d=
-ev has a .so which is not a symlink</div><div>and there is a program in ope=
-ncv package which depends on it. Can you</div><div>expand the content of op=
-encv-dev and see whats in there ?</div><div>secondly you can also look at c=
-ontent of opencv package and readelf -d</div><div>over the binaries in it a=
-nd see if some binary is dependent on .so from</div><div>-dev package.</div=
-><br><div>you can do this inside opencv build tree under packages-split/ ar=
-ea.</div><div>of a built tree.</div><br><div>&gt;</div><div>&gt; I understa=
-nd that</div><div>&gt; opencv generates opencv-dev from the recipe opencv_3=
-.1.bb</div><div>&gt;</div><div>&gt;</div><div>&gt;</div><div>&gt; Sent from=
- Mailspring &lt;https://getmailspring.com/&gt;, the best free email</div><d=
-iv>&gt; app for work</div><div>&gt; On mar 25 2021, at 8:39 am, Mauro Zilia=
-ni &lt;mauro@faresoftware.it&gt; wrote:</div><div>&gt;</div><div>&gt; Hi al=
-l</div><div>&gt;</div><div>&gt; I have to look for the recipes put in my im=
-age the *-dev packages.</div><div>&gt;</div><div>&gt; I removed dev-pkgs an=
-d dng-pkgs from IMAGE_FEATURES and debug tweaks</div><div>&gt; from DISTRO_=
-FEATURES.</div><div>&gt; I don't IMAGE_INSTALL_append any *-dev packages</d=
-iv><div>&gt;</div><div>&gt; I generate bitbake&nbsp; -g image, but I don't =
-produce the PDF because is</div><div>&gt; unreadable.</div><div>&gt;</div><=
-div>&gt; So I read the dot source. I use dot and I know the syntax.</div><d=
-iv>&gt;</div><div>&gt; But I don't how to read the graph.</div><div>&gt;</d=
-iv><div>&gt;</div><div>&gt; MZ</div><div>&gt;</div><div>&gt;</div><div>&gt;=
-</div><div>&gt;</div><div>&gt; Sent from Mailspring &lt;https://getmailspri=
-ng.com/&gt;, the best free</div><div>&gt; email app for work</div><div>&gt;=
-</div><div>&gt;</div><div>&gt;</div><div>&gt; </div><div>&gt;</div></div></=
-blockquote>
+Signed-off-by: Amanda Brindle <amanda.r.brindle@intel.com>
+---
+ Post/migrations/0006_buildfailure_referer.py | 19 ++++++++++++++++++
+ Post/models.py                               | 10 ++++++++++
+ Post/purge.py                                | 29 ++++++++++++++++++++++++++++
+ Post/views.py                                | 16 +++++++++++++--
+ 4 files changed, 72 insertions(+), 2 deletions(-)
+ create mode 100644 Post/migrations/0006_buildfailure_referer.py
+ create mode 100644 Post/purge.py
 
---605de4ca_ee15fdf_e03--
+diff --git a/Post/migrations/0006_buildfailure_referer.py b/Post/migrations/0006_buildfailure_referer.py
+new file mode 100644
+index 0000000..5fad048
+--- /dev/null
++++ b/Post/migrations/0006_buildfailure_referer.py
+@@ -0,0 +1,19 @@
++# -*- coding: utf-8 -*-
++from __future__ import unicode_literals
++
++from django.db import migrations, models
++
++
++class Migration(migrations.Migration):
++
++    dependencies = [
++        ('Post', '0005_build_error_type'),
++    ]
++
++    operations = [
++        migrations.AddField(
++            model_name='buildfailure',
++            name='REFERER',
++            field=models.CharField(default=b'NOT_VISITED', max_length=14, choices=[(b'NO_REFERER', b'no_referer'), (b'OTHER', b'other'), (b'NOT_VISITED', b'not_visited')]),
++        ),
++    ]
+diff --git a/Post/models.py b/Post/models.py
+index cf8c1c2..3fa66f2 100644
+--- a/Post/models.py
++++ b/Post/models.py
+@@ -61,6 +61,16 @@ class BuildFailure(models.Model):
+     ERROR_DETAILS = models.TextField(max_length=int(settings.MAX_UPLOAD_SIZE))
+     BUILD = models.ForeignKey(Build)
+     LEV_DISTANCE = models.IntegerField(blank=True, null=True)
++    REFERER_CHOICES = (
++            ('NO_REFERER', 'no_referer'),
++            ('OTHER', 'other'),
++            ('NOT_VISITED', 'not_visited')
++    )
++    REFERER = models.CharField(
++            max_length = 14,
++            choices = REFERER_CHOICES,
++            default = 'NOT_VISITED'
++    )
+ 
+     def get_similar_fails(self):
+         if self.LEV_DISTANCE is None:
+diff --git a/Post/purge.py b/Post/purge.py
+new file mode 100644
+index 0000000..829fada
+--- /dev/null
++++ b/Post/purge.py
+@@ -0,0 +1,29 @@
++from datetime import datetime
++from django.utils import timezone
++import os
++import sys
++
++def setup_django():
++    import django
++    # Get access to our Django model
++    newpath = os.path.abspath(os.path.dirname(__file__)) + '/..'
++    sys.path.append(newpath)
++    os.environ['DJANGO_SETTINGS_MODULE'] = 'project.settings'
++    django.setup()
++
++def main():
++    setup_django()
++    from Post.models import BuildFailure
++    items = BuildFailure.objects.all()
++    now = timezone.now()
++    for item in items:
++        if item.REFERER == 'OTHER' or item.REFERER == 'NO_REFERER':
++            continue
++        difference = now - item.BUILD.DATE
++        if difference.days > 30:
++            item.delete()
++
++if __name__ == "__main__":
++    main()
++
++
+diff --git a/Post/views.py b/Post/views.py
+index fe7100e..5737076 100644
+--- a/Post/views.py
++++ b/Post/views.py
+@@ -24,6 +24,7 @@ from django.http import JsonResponse
+ from django.db.models import Q
+ import json
+ import urllib
++from urlparse import urlparse
+ 
+ class results_mode(object):
+     LATEST = 0
+@@ -258,9 +259,20 @@ def search(request, mode=results_mode.LATEST, **kwargs):
+ 
+ def details(request, fail_id):
+     try:
+-      build_failure = BuildFailure.objects.get(id=fail_id)
++        build_failure = BuildFailure.objects.get(id=fail_id)
+     except ObjectDoesNotExist:
+-      build_failure = None
++        build_failure = None
++    try:
++        referer = urlparse(request.META['HTTP_REFERER'])
++        referer_hostname = referer.hostname
++        if referer.port:
++            referer_hostname += ":" + str(referer.port)
++        if referer_hostname != request.get_host():
++            build_failure.REFERER = 'OTHER'
++    except KeyError:
++        # There is no referer
++        build_failure.REFERER = 'NO_REFERER'
++    build_failure.save()
+ 
+     context = {'detail' : build_failure, 'error_types' : ErrorType }
+ 
+-- 
+2.11.0
+
