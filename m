@@ -1,324 +1,543 @@
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
- by mx.groups.io with SMTP id smtpd.web11.10483.1616753790769137807
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.10766.1616754930998553777
  for <yocto@lists.yoctoproject.org>;
- Fri, 26 Mar 2021 03:16:31 -0700
+ Fri, 26 Mar 2021 03:35:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=W6e+hhXU;
- spf=pass (domain: linaro.org, ip: 209.85.208.45, mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-ed1-f45.google.com with SMTP id b16so5677661eds.7
-        for <yocto@lists.yoctoproject.org>; Fri, 26 Mar 2021 03:16:30 -0700 (PDT)
+ dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=AlKnXRjt;
+ spf=permerror, err=parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 198.145.29.25, mailfrom: mshah@mvista.com)
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id D0BA138C06B9
+	for <yocto@yoctoproject.org>; Fri, 26 Mar 2021 10:35:29 +0000 (UTC)
+Received: by mail-ej1-f49.google.com with SMTP id l4so7621265ejc.10
+        for <yocto@yoctoproject.org>; Fri, 26 Mar 2021 03:35:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=mvista-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=o7rtm83QXTWg+uzDlrIt8g4YuSV4gqIRSq/g4k08Z3Y=;
-        b=W6e+hhXU/GA/TDy4oupCRx52gvK5ekSnPWLkm5LrAIVQRo7L6MP9g4sTxt4Fl03ERk
-         YciqOEBR+nNMiNxUvme9UXUyG4j/OvTcD4S/FcaXoMSMTyHLn+TfrxwyJ+WrED4T4d0C
-         QmKGJJoC2mRgFmx+A7DdtRlyIewYNcOTUHzqQouGv5LEeN24Bm34Y7NjMYXGeMH0QYJO
-         RpML3YbEHIPtizrtjrtVMWllepYnrdk5oddVz4qJrfGMRAzGaTucbVAomRORhxeh+ROA
-         FLzCRhkw3kIOpVI8hDhNuKSNAOKfZdOrW5l5J17X1k6I9WiRXK39io7U7E6CYAejGeMb
-         Pppg==
+        bh=Ki/NH6k+i5ZjmX6SvKr2Qz/7l1BBTkWP8OfI+eDPPss=;
+        b=AlKnXRjtP5dKsj8mNz0NVifiymuc+ywNcOuQxzmh47IriIKZZeJZy3DyvitkzMO8yy
+         HvxYipe+tvPAgKa5SMJZ7l3zaYcPSs/UP2htYvpmSV+dkpxjR1VM+Ibp5L/PZU0ybJQ5
+         byWEKPNUnjlZBG2hnOgCS96gTtxxjEfa02PgAIYh03qNJZyVL47U8LFehpKNa3gxpsNd
+         BEj6ni8hNTQ0lTpIrNyKygjGcO5edAyQJuC4HKwUqUawUe4uwZQxaw2GFCkiHC982/Nc
+         Oqa7xkDKVeMPdhU1CJCJ44QUbj7Ph4m7YIov3yFt1Fzt14InM1vuYnJDse1wI66wr6y/
+         p8fA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=o7rtm83QXTWg+uzDlrIt8g4YuSV4gqIRSq/g4k08Z3Y=;
-        b=mkvVuoom5+KUWO93pOD57pwKbcGDFYeaihhEpVBq1L1qNU47p0WNX61cqSleRlq3mf
-         EWlb8KpkkGzDXro5577AAi+PZq5qd38bzbiQPr9JqOdJ9Z/fwMsT8EKRftmxpA8Blnje
-         eBeIOxuGcpQ1OT4ram+zBnPZkTpVs3RWAT1r/XOFEy1Fx59l7c/6dznIeDNb7HYLwcMp
-         49bnKamkxBbVmaR/kt1F58GRQBccNNo6CPRX54z5+YBosRhV2MoZDtXTTpV/3z2oZIIq
-         jwf3SJbPrkiB3RY5AvbI4dLpMijAoRkk4Qgfcu/T0j2kjYHOsuusf5mxWYe9mvC8fDLm
-         OGTw==
-X-Gm-Message-State: AOAM531tsUrqjnDQ8dTfqPzdob3wil/8mIzwqRBzoHbugi7oSlM60sW1
-	TjYrrwhLLDsmEF+570TAth8YoIbJPfQPwX2JKLF1+g==
-X-Google-Smtp-Source: ABdhPJyJKkZXr/l1Ik0xXAlJUn2z9BIpMuXvk4BMHg86kzvjeXd/2q1EATD7Y1JoM/Ahi1+8f6Z0jJb9S7847X9V02o=
-X-Received: by 2002:a05:6402:34c4:: with SMTP id w4mr14467507edc.367.1616753789204;
- Fri, 26 Mar 2021 03:16:29 -0700 (PDT)
+        bh=Ki/NH6k+i5ZjmX6SvKr2Qz/7l1BBTkWP8OfI+eDPPss=;
+        b=ubsjhxN5Z/cWFxWcXHTYiJb1+YZCmo8Y6wOFUijQ67A3UY/gz+j3pgeUo7+oLtQCKu
+         6pfqnEFa1WCAztHEf1mW3xHST0Llkmv2AAFGGiWlrPxtdv/ytwEA52zaAIHpY88gRCG0
+         WNb/1il3CGFNyp8FHeAmLBk3WfV4y79vPXM5qwrZ9LDliYZ6QOBjZiJiVy1pmb5I3qc6
+         yvzk9wgbvTOsSSCzqDQcNYzp4PBMW7ibHLmEXpVyGiQ2geMk9ksjBUG7aswOlP4E/tOp
+         2f+KVM96kolxDm5g3BB4yB5eXG1dFHlGTr8gHC+wY17bN9t67ehK98DsuGpKvTfNuvXD
+         qF9Q==
+X-Gm-Message-State: AOAM533j/jV3rJgoOQlOI4WnXK05nQwYNb0JOtdE7fB7VzQWqn5D/pGn
+	pRgz8VXlQZ4RcAGc9Qstt2k6Ocv/kusIJSA/zw31G6JNbP/cm10p
+X-Google-Smtp-Source: ABdhPJygS230uoxyIgH9hUPln4Q2QoPH6AJogm11SQE6J344IbTHLhWvyQmIvrGqmKNXhLCqlL5y/CpT+qmZf9QTMTc=
+X-Received: by 2002:a17:906:81c9:: with SMTP id e9mr14307788ejx.456.1616754927957;
+ Fri, 26 Mar 2021 03:35:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210325181211.59332-1-nicolas.dechesne@linaro.org> <20210326100835.yqjsor3qrgfagdvg@qschulz>
-In-Reply-To: <20210326100835.yqjsor3qrgfagdvg@qschulz>
-From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
-Date: Fri, 26 Mar 2021 11:16:18 +0100
-Message-ID: <CAP71Wjwd05Nw6HxLBW-gZENj8mD+VnGHQ-cWbV+p6T4hF2Pjfw@mail.gmail.com>
-Subject: Re: [docs] [PATCH 1/2] scripts/run-docs-build: add for loop when publishing tags/branches
-To: Quentin Schulz <quentin.schulz@streamunlimited.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	YP docs mailing list <docs@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000004b955c05be6dd382"
+References: <1609940317-21943-1-git-send-email-mshah@mvista.com>
+ <CA+=qD9M-rk13kgw0fVvn3ChzCVrO6VQk-uxWspE7PKUG_Y99Aw@mail.gmail.com>
+ <CA+=qD9O1A-Cp=3z336qpeKgMCvdgbK=NATA8uqLuAPcbF=EPUw@mail.gmail.com>
+ <CA+=qD9N2mxJ55Aaz1ahNrrivgam0wBqMx5vk1duqM+Fd_ENZBQ@mail.gmail.com> <CA+=qD9O1gf9quyPuQ9JBbR79=hL=aQ0gMCtke92Kp0uHt-w2hg@mail.gmail.com>
+In-Reply-To: <CA+=qD9O1gf9quyPuQ9JBbR79=hL=aQ0gMCtke92Kp0uHt-w2hg@mail.gmail.com>
+From: "Milan Shah" <mshah@mvista.com>
+Date: Fri, 26 Mar 2021 16:04:51 +0530
+Message-ID: <CA+=qD9NoNqBWv+ATf_tw-cc+Vz0xaDO6biCMFmx_M2Xq0LpA2A@mail.gmail.com>
+Subject: Re: [error-report-web][PATCH] report-error.bbclass: Add layer and bitbake version info to error report
+To: yocto@yoctoproject.org
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, Paul Barker <pbarker@konsulko.com>, 
+	Armin Kuster <akuster@mvista.com>
+Content-Type: multipart/alternative; boundary="0000000000002b8a0d05be6e1726"
 
---0000000000004b955c05be6dd382
+--0000000000002b8a0d05be6e1726
 Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Mar 26, 2021 at 11:08 AM Quentin Schulz <
-quentin.schulz@streamunlimited.com> wrote:
+Hi Richard,
 
-> Hi Nicolas,
+It seems like patches sent for *error-report-web* are not much important to
+the community as this patch has *not been reviewed/commented on* by
+anyone *since
+6th January 2021* (*more than 2.5 months*).
+
+Still, I'm sending a reminder one last time for [*YOCTO #9700*].
+https://lists.yoctoproject.org/g/yocto/message/51891
+
+Please review/comment on it so that things can move further.
+
+Thanks & Regards,
+Milan Shah
+
+<https://www.mvista.com/>
+*Milan Shah* * | Software Engineer*
+*a: * MontaVista Software, LLC | Bangalore, India
+*e:* info@mvista.com | *w:* www.mvista.com/
+*p:* +91-80-4939-5000
+
+
+On Mon, Mar 15, 2021 at 4:36 PM Milan Shah <mshah@mvista.com> wrote:
+
+> Hi,
 >
-> On Thu, Mar 25, 2021 at 07:12:10PM +0100, Nicolas Dechesne wrote:
-> > Use for loop to avoid repeating the same pattern over and over.
-> >
-> > Signed-off-by: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-> > ---
-> >  scripts/run-docs-build | 72 ++++++++++++++++--------------------------
-> >  1 file changed, 27 insertions(+), 45 deletions(-)
-> >
-> > diff --git a/scripts/run-docs-build b/scripts/run-docs-build
-> > index 79b1edc..e8e081c 100755
-> > --- a/scripts/run-docs-build
-> > +++ b/scripts/run-docs-build
-> > @@ -33,17 +33,14 @@ make publish
-> >  mkdir $outputdir/bitbake/next
-> >  cp -r ./_build/final/* $outputdir/bitbake/next
-> >
-> > -git checkout 1.48
-> > -make clean
-> > -make publish
-> > -mkdir $outputdir/bitbake/1.48
-> > -cp -r ./_build/final/* $outputdir/bitbake/1.48
-> > -
-> > -git checkout 1.46
-> > -make clean
-> > -make publish
-> > -mkdir $outputdir/bitbake/1.46
-> > -cp -r ./_build/final/* $outputdir/bitbake/1.46
-> > +# stable branches
-> > +for branch in 1.46 1.48; do
-> > +    git checkout $branch
-> > +    make clean
-> > +    make publish
-> > +    mkdir $outputdir/bitbake/$branch
-> > +    cp -r ./_build/final/* $outputdir/bitbake/$branch
-> > +done
-> >
-> >  # only sync bitbake folder for now. We need bitbake to be published
-> first
-> >  # since the bitbake intersphinx index will be downloaded to build
-> yocto-docs
-> > @@ -69,40 +66,25 @@ make publish
-> >  mkdir $outputdir/next
-> >  cp -r ./_build/final/* $outputdir/next
-> >
-> > -cd $ypdocs
-> > -git checkout gatesgarth
-> > -make clean
-> > -make publish
-> > -mkdir $outputdir/gatesgarth
-> > -cp -r ./_build/final/* $outputdir/gatesgarth
-> > -
-> > -cd $ypdocs
-> > -git checkout dunfell
-> > -make clean
-> > -make publish
-> > -mkdir $outputdir/dunfell
-> > -cp -r ./_build/final/* $outputdir/dunfell
-> > -
-> > -cd $ypdocs
-> > -git checkout yocto-3.2.1
-> > -make clean
-> > -make publish
-> > -mkdir $outputdir/3.2.1
-> > -cp -r ./_build/final/* $outputdir/3.2.1
-> > -
-> > -cd $ypdocs
-> > -git checkout yocto-3.2
-> > -make clean
-> > -make publish
-> > -mkdir $outputdir/3.2
-> > -cp -r ./_build/final/* $outputdir/3.2
-> > -
-> > -cd $ypdocs
-> > -git checkout yocto-3.1.5
-> > -make clean
-> > -make publish
-> > -mkdir $outputdir/3.1.5
-> > -cp -r ./_build/final/* $outputdir/3.1.5
-> > +# stable branches
-> > +for branch in dunfell gatesgarth; do
-> > +    cd $ypdocs
-> > +    git checkout $branch
-> > +    make clean
-> > +    make publish
-> > +    mkdir $outputdir/$branch
-> > +    cp -r ./_build/final/* $outputdir/$branch
-> > +done
-> > +
-> > +# Yocto Project releases/tags
-> > +for tag in 3.1.5 3.2 3.2.1; do
+> Review reminder for [YOCTO #9700].
 >
-> What about using `git tag -l 3.2*` so that we don't need to maintain the
-> list of tags?
+> https://lists.yoctoproject.org/g/yocto/message/51891
 >
-> Or, maybe `git tag --contains <3.1.5 commit hash introducing sphinx doc>
-> --contains <3.2 commit hash introducing sphinx doc>` so that the
-> 3.1.[56789] tags don't need to be added either?
+> Thanks & Regards,
+> Milan Shah
 >
-
-yes, I thought about that too.. I wanted to get a quick fix first to
-publish 3.1.6 and 3.2.2 which were missing..
-on the other hand, we have a larger issue with this. The 'release'
-information is needed here , but it's also needed on the website
-(downloads) and it's needed in the switchers.js as well...
-So we probably want to take a high level view of the problem. Michael
-created https://bugzilla.yoctoproject.org/show_bug.cgi?id=14330 to let us
-think about it.
-
-my idea would be a publish/maintain a yaml file that would represent the
-database of all our releases and docs, which would be maintained/updated by
-the release manager, it would include all information we need to build and
-publish the docs, update the 'download' page on the website, ...
-
-up until now, we have been using:
-http://api-v1.yoctoproject.org/documentation-api
-http://api-v1.yoctoproject.org/api/downloads?release
-
-i think we need a few improvements to that..
-
-
-
-> Same mechanism can be used for bitbake git repo I guess.
+> <https://www.mvista.com/>
+> *Milan Shah* * | Software Engineer*
+> *a: * MontaVista Software, LLC | Bangalore, India
+> *e:* info@mvista.com | *w:* www.mvista.com/
+> *p:* +91-80-4939-5000
 >
-> Cheers,
-> Quentin
 >
+> On Tue, Feb 23, 2021 at 3:21 PM Milan Shah <mshah@mvista.com> wrote:
+>
+>> Hi All,
+>>
+>> This has not been reviewed yet and it is given since January 6th.
+>> Please review it and provide review comments if any as soon as possible
+>> to resolve this issue.
+>>
+>> Thanks & Regards,
+>> Milan Shah
+>>
+>> <https://www.mvista.com/>
+>> *Milan Shah* * | Software Engineer*
+>> *a: * MontaVista Software, LLC | Bangalore, India
+>> *e:* info@mvista.com | *w:* www.mvista.com/
+>> *p:* +91-80-4939-5000
+>>
+>>
+>> On Mon, Feb 1, 2021 at 10:06 AM Milan Shah <mshah@mvista.com> wrote:
+>>
+>>> Hi All,
+>>>
+>>> A gentle reminder to review this patch.
+>>>
+>>> -----------------------
+>>> Thanks & Regards,
+>>> *Milan Shah*
+>>> MontaVista Software, Bangalore, India
+>>>
+>>>
+>>> On Mon, Jan 11, 2021 at 6:45 PM Milan Shah <mshah@mvista.com> wrote:
+>>>
+>>>> Hi All,
+>>>>
+>>>> This is a Gentle Reminder to review this Patch.
+>>>>
+>>>> -----------------------
+>>>> Thanks & Regards,
+>>>> *Milan Shah*
+>>>> MontaVista Software, Bangalore, India
+>>>>
+>>>>
+>>>> On Wed, Jan 6, 2021 at 7:09 PM Milan Shah <mshah@mvista.com> wrote:
+>>>>
+>>>>> Instead of just providing local.conf info, add layer names and their
+>>>>> revisions with bitbake version information into error report
+>>>>> makes it easier to understand and reproduce failed build.
+>>>>>
+>>>>> [YOCTO #9700]
+>>>>>
+>>>>> Signed-off-by: Milan Shah <mshah@mvista.com>
+>>>>> ---
+>>>>>  meta/classes/report-error.bbclass | 4 ++++
+>>>>>  1 file changed, 4 insertions(+)
+>>>>>
+>>>>> diff --git a/meta/classes/report-error.bbclass
+>>>>> b/meta/classes/report-error.bbclass
+>>>>> index 1a12db1..9cb6b0b 100644
+>>>>> --- a/meta/classes/report-error.bbclass
+>>>>> +++ b/meta/classes/report-error.bbclass
+>>>>> @@ -6,6 +6,8 @@
+>>>>>  #
+>>>>>  # Licensed under the MIT license, see COPYING.MIT for details
+>>>>>
+>>>>> +inherit base
+>>>>> +
+>>>>>  ERR_REPORT_DIR ?= "${LOG_DIR}/error-report"
+>>>>>
+>>>>>  def errorreport_getdata(e):
+>>>>> @@ -64,6 +66,8 @@ python errorreport_handler () {
+>>>>>              data['failures'] = []
+>>>>>              data['component'] = " ".join(e.getPkgs())
+>>>>>              data['branch_commit'] = str(base_detect_branch(e.data)) +
+>>>>> ": " + str(base_detect_revision(e.data))
+>>>>> +            data['bitbake_version'] = e.data.getVar("BB_VERSION")
+>>>>> +            data['layer_version'] = get_layers_branch_rev(e.data)
+>>>>>              data['local_conf'] = get_conf_data(e, 'local.conf')
+>>>>>              data['auto_conf'] = get_conf_data(e, 'auto.conf')
+>>>>>              lock = bb.utils.lockfile(datafile + '.lock')
+>>>>> --
+>>>>> 2.7.4
+>>>>>
+>>>>>
 
---0000000000004b955c05be6dd382
+--0000000000002b8a0d05be6e1726
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Fri, Mar 26, 2021 at 11:08 AM Quen=
-tin Schulz &lt;<a href=3D"mailto:quentin.schulz@streamunlimited.com">quenti=
-n.schulz@streamunlimited.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">Hi Nicolas,<br>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
+ans-serif">Hi Richard,</div><div class=3D"gmail_default" style=3D"font-fami=
+ly:tahoma,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-=
+family:tahoma,sans-serif">It seems like patches sent for <b>error-report-we=
+b</b> are not much important to the community as this patch has <b>not been=
+ reviewed/commented on</b> by anyone <b>since 6th January 2021</b> (<b>more=
+ than 2.5 months</b>).</div><div class=3D"gmail_default" style=3D"font-fami=
+ly:tahoma,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-=
+family:tahoma,sans-serif">Still, I&#39;m sending a reminder one last time f=
+or [<b>YOCTO #9700</b>].<div class=3D"gmail_default" style=3D"font-family:t=
+ahoma,sans-serif"><a href=3D"https://lists.yoctoproject.org/g/yocto/message=
+/51891" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/message/51=
+891</a></div><div class=3D"gmail_default" style=3D"font-family:tahoma,sans-=
+serif"><br></div><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
+ans-serif">Please review/comment on it so that things can move further.<br>=
+</div></div><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=
+=3D"gmail_signature"><div dir=3D"ltr"><div><br></div><div><span style=3D"fo=
+nt-family:tahoma,sans-serif"><font size=3D"2"><span style=3D"color:rgb(0,0,=
+0)">Thanks &amp; Regards,</span></font></span></div><div><span style=3D"fon=
+t-family:Arial,sans-serif;font-size:11pt;color:#1793d2"><span style=3D"font=
+-family:tahoma,sans-serif"><font size=3D"2"><span style=3D"color:rgb(0,0,0)=
+">Milan Shah</span></font></span><br></span></div><div><br></div><div>
+<table style=3D"width:525px;font-size:11pt;font-family:Arial,sans-serif" ce=
+llspacing=3D"0" cellpadding=3D"0">
+<tbody>
+ <tr>
+  <td style=3D"font-size:10pt;font-family:Arial,sans-serif;border-right:1px=
+ solid;border-right-color:#fb6303;width:125px;padding-right:10px;vertical-a=
+lign:top" rowspan=3D"6" width=3D"125" valign=3D"top">
+		<a href=3D"https://www.mvista.com/" target=3D"_blank"><img src=3D"https:/=
+/docs.google.com/uc?export=3Ddownload&amp;id=3D1Qm7yQfvCvd_kh_U4m6GVByOdaJD=
+PquiJ&amp;revid=3D0B4U1D7fiiJwsSjRjMWRWSnByanRKcyszUkE3TzNKcHVZTFlNPQ"></a>
+		  =20
+  </td>
+   =20
+ <td style=3D"padding-left:10px">
+  <table cellspacing=3D"0" cellpadding=3D"0">
+  <tbody>
+    <tr>
+      <td style=3D"font-size:10pt;color:#0079ac;font-family:Arial,sans-seri=
+f;width:400px;padding-bottom:5px;padding-left:10px;vertical-align:top" vali=
+gn=3D"top">
+       <b><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:=
+#fb6303">Milan Shah</span></b>
+       <b style=3D"font-family:Arial,sans-serif;font-size:11pt;color:#00000=
+0"><span> | </span>Software Engineer</b>
+      </td>
+    </tr>=20
+    <tr>
+      <td style=3D"font-size:10pt;color:#444444;font-family:Arial,sans-seri=
+f;padding-bottom:5px;padding-top:5px;padding-left:10px;vertical-align:top;l=
+ine-height:17px" valign=3D"top">
+	 =20
+		<span>
+			<span style=3D"color:#fb6303"><b>a: </b></span>
+		</span>
+		<span>
+			<span style=3D"font-family:Arial,sans-serif;font-size:10pt;color:#000000=
+">MontaVista Software, LLC</span>  =20
+		</span>
+		<span>
+			<span style=3D"font-size:10pt;font-family:Arial,sans-serif;color:#000000=
+"><span> | </span>Bangalore, India</span>
+		=09
+		</span>
+	=09
+		<span><br></span>
+		<span><span style=3D"color:#fb6303"><b>e:</b></span><span style=3D"font-s=
+ize:10pt;font-family:Arial,sans-serif;color:#000000"> <a href=3D"mailto:inf=
+o@mvista.com" target=3D"_blank">info@mvista.com</a></span></span>
+		<span><span> | </span><span style=3D"color:#fb6303"><b>w:</b></span><a hr=
+ef=3D"http://www.mvista.com/" rel=3D"noopener" style=3D"text-decoration:non=
+e" target=3D"_blank"><span style=3D"font-size:10pt;font-family:Arial,sans-s=
+erif;color:#000000"> www.mvista.com/</span></a></span>
+       =20
+		<span><br></span>
+	=09
+        <span><span style=3D"color:#fb6303"><b>p:</b></span><span style=3D"=
+font-size:10pt;font-family:Arial,sans-serif;color:#000000"> +91-80-4939-500=
+0</span></span>
+       =20
+      </td>
+    </tr>
+   =20
+   =20
+  </tbody>
+  </table>
+ </td></tr>=20
+</tbody>
+</table>
+</div></div></div></div><br></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Mon, Mar 15, 2021 at 4:36 PM Milan Shah &l=
+t;<a href=3D"mailto:mshah@mvista.com">mshah@mvista.com</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div=
+ class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Hi,</div><=
+div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br></d=
+iv><div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Rev=
+iew reminder for [YOCTO #9700].</div><div class=3D"gmail_default" style=3D"=
+font-family:tahoma,sans-serif"><br></div><div class=3D"gmail_default" style=
+=3D"font-family:tahoma,sans-serif"><a href=3D"https://lists.yoctoproject.or=
+g/g/yocto/message/51891" target=3D"_blank">https://lists.yoctoproject.org/g=
+/yocto/message/51891</a></div><div><div dir=3D"ltr"><div dir=3D"ltr"><div><=
+br></div><div><span style=3D"font-family:tahoma,sans-serif"><font size=3D"2=
+"><span style=3D"color:rgb(0,0,0)">Thanks &amp; Regards,</span></font></spa=
+n></div><div><span style=3D"font-family:Arial,sans-serif;font-size:11pt;col=
+or:rgb(23,147,210)"><span style=3D"font-family:tahoma,sans-serif"><font siz=
+e=3D"2"><span style=3D"color:rgb(0,0,0)">Milan Shah</span></font></span><br=
+></span></div><div><br></div><div>
+<table style=3D"width:525px;font-size:11pt;font-family:Arial,sans-serif" ce=
+llspacing=3D"0" cellpadding=3D"0">
+<tbody>
+ <tr>
+  <td style=3D"font-size:10pt;font-family:Arial,sans-serif;border-right:1px=
+ solid rgb(251,99,3);width:125px;padding-right:10px;vertical-align:top" row=
+span=3D"6" width=3D"125" valign=3D"top">
+		<a href=3D"https://www.mvista.com/" target=3D"_blank"><img src=3D"https:/=
+/docs.google.com/uc?export=3Ddownload&amp;id=3D1Qm7yQfvCvd_kh_U4m6GVByOdaJD=
+PquiJ&amp;revid=3D0B4U1D7fiiJwsSjRjMWRWSnByanRKcyszUkE3TzNKcHVZTFlNPQ"></a>
+		  =20
+  </td>
+   =20
+ <td style=3D"padding-left:10px">
+  <table cellspacing=3D"0" cellpadding=3D"0">
+  <tbody>
+    <tr>
+      <td style=3D"font-size:10pt;color:rgb(0,121,172);font-family:Arial,sa=
+ns-serif;width:400px;padding-bottom:5px;padding-left:10px;vertical-align:to=
+p" valign=3D"top">
+       <b><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:=
+rgb(251,99,3)">Milan Shah</span></b>
+       <b style=3D"font-family:Arial,sans-serif;font-size:11pt;color:rgb(0,=
+0,0)"><span> | </span>Software Engineer</b>
+      </td>
+    </tr>=20
+    <tr>
+      <td style=3D"font-size:10pt;color:rgb(68,68,68);font-family:Arial,san=
+s-serif;padding-bottom:5px;padding-top:5px;padding-left:10px;vertical-align=
+:top;line-height:17px" valign=3D"top">
+	 =20
+		<span>
+			<span style=3D"color:rgb(251,99,3)"><b>a: </b></span>
+		</span>
+		<span>
+			<span style=3D"font-family:Arial,sans-serif;font-size:10pt;color:rgb(0,0=
+,0)">MontaVista Software, LLC</span>  =20
+		</span>
+		<span>
+			<span style=3D"font-size:10pt;font-family:Arial,sans-serif;color:rgb(0,0=
+,0)"><span> | </span>Bangalore, India</span>
+		=09
+		</span>
+	=09
+		<span><br></span>
+		<span><span style=3D"color:rgb(251,99,3)"><b>e:</b></span><span style=3D"=
+font-size:10pt;font-family:Arial,sans-serif;color:rgb(0,0,0)"> <a href=3D"m=
+ailto:info@mvista.com" target=3D"_blank">info@mvista.com</a></span></span>
+		<span><span> | </span><span style=3D"color:rgb(251,99,3)"><b>w:</b></span=
+><a href=3D"http://www.mvista.com/" rel=3D"noopener" style=3D"text-decorati=
+on:none" target=3D"_blank"><span style=3D"font-size:10pt;font-family:Arial,=
+sans-serif;color:rgb(0,0,0)"> www.mvista.com/</span></a></span>
+       =20
+		<span><br></span>
+	=09
+        <span><span style=3D"color:rgb(251,99,3)"><b>p:</b></span><span sty=
+le=3D"font-size:10pt;font-family:Arial,sans-serif;color:rgb(0,0,0)"> +91-80=
+-4939-5000</span></span>
+       =20
+      </td>
+    </tr>
+   =20
+   =20
+  </tbody>
+  </table>
+ </td></tr>=20
+</tbody>
+</table>
+</div></div></div></div><br></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Tue, Feb 23, 2021 at 3:21 PM Milan Shah &l=
+t;<a href=3D"mailto:mshah@mvista.com" target=3D"_blank">mshah@mvista.com</a=
+>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
+v dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,sans=
+-serif">Hi All,</div><div class=3D"gmail_default" style=3D"font-family:taho=
+ma,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:=
+tahoma,sans-serif">This has not been reviewed=C2=A0yet and it is given sinc=
+e January 6th. <br></div><div class=3D"gmail_default" style=3D"font-family:=
+tahoma,sans-serif">Please review it and provide review comments if any as s=
+oon as possible to resolve this issue.<br></div><div><div dir=3D"ltr"><div =
+dir=3D"ltr"><div><br></div><div><span style=3D"font-family:tahoma,sans-seri=
+f"><font size=3D"2"><span style=3D"color:rgb(0,0,0)">Thanks &amp; Regards,<=
+/span></font></span></div><div><span style=3D"font-family:Arial,sans-serif;=
+font-size:11pt;color:rgb(23,147,210)"><span style=3D"font-family:tahoma,san=
+s-serif"><font size=3D"2"><span style=3D"color:rgb(0,0,0)">Milan Shah</span=
+></font></span><br></span></div><div><br></div><div>
+<table style=3D"width:525px;font-size:11pt;font-family:Arial,sans-serif" ce=
+llspacing=3D"0" cellpadding=3D"0">
+<tbody>
+ <tr>
+  <td style=3D"font-size:10pt;font-family:Arial,sans-serif;border-right:1px=
+ solid rgb(251,99,3);width:125px;padding-right:10px;vertical-align:top" row=
+span=3D"6" width=3D"125" valign=3D"top">
+		<a href=3D"https://www.mvista.com/" target=3D"_blank"><img src=3D"https:/=
+/docs.google.com/uc?export=3Ddownload&amp;id=3D1Qm7yQfvCvd_kh_U4m6GVByOdaJD=
+PquiJ&amp;revid=3D0B4U1D7fiiJwsSjRjMWRWSnByanRKcyszUkE3TzNKcHVZTFlNPQ"></a>
+		  =20
+  </td>
+   =20
+ <td style=3D"padding-left:10px">
+  <table cellspacing=3D"0" cellpadding=3D"0">
+  <tbody>
+    <tr>
+      <td style=3D"font-size:10pt;color:rgb(0,121,172);font-family:Arial,sa=
+ns-serif;width:400px;padding-bottom:5px;padding-left:10px;vertical-align:to=
+p" valign=3D"top">
+       <b><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:=
+rgb(251,99,3)">Milan Shah</span></b>
+       <b style=3D"font-family:Arial,sans-serif;font-size:11pt;color:rgb(0,=
+0,0)"><span> | </span>Software Engineer</b>
+      </td>
+    </tr>=20
+    <tr>
+      <td style=3D"font-size:10pt;color:rgb(68,68,68);font-family:Arial,san=
+s-serif;padding-bottom:5px;padding-top:5px;padding-left:10px;vertical-align=
+:top;line-height:17px" valign=3D"top">
+	 =20
+		<span>
+			<span style=3D"color:rgb(251,99,3)"><b>a: </b></span>
+		</span>
+		<span>
+			<span style=3D"font-family:Arial,sans-serif;font-size:10pt;color:rgb(0,0=
+,0)">MontaVista Software, LLC</span>  =20
+		</span>
+		<span>
+			<span style=3D"font-size:10pt;font-family:Arial,sans-serif;color:rgb(0,0=
+,0)"><span> | </span>Bangalore, India</span>
+		=09
+		</span>
+	=09
+		<span><br></span>
+		<span><span style=3D"color:rgb(251,99,3)"><b>e:</b></span><span style=3D"=
+font-size:10pt;font-family:Arial,sans-serif;color:rgb(0,0,0)"> <a href=3D"m=
+ailto:info@mvista.com" target=3D"_blank">info@mvista.com</a></span></span>
+		<span><span> | </span><span style=3D"color:rgb(251,99,3)"><b>w:</b></span=
+><a href=3D"http://www.mvista.com/" rel=3D"noopener" style=3D"text-decorati=
+on:none" target=3D"_blank"><span style=3D"font-size:10pt;font-family:Arial,=
+sans-serif;color:rgb(0,0,0)"> www.mvista.com/</span></a></span>
+       =20
+		<span><br></span>
+	=09
+        <span><span style=3D"color:rgb(251,99,3)"><b>p:</b></span><span sty=
+le=3D"font-size:10pt;font-family:Arial,sans-serif;color:rgb(0,0,0)"> +91-80=
+-4939-5000</span></span>
+       =20
+      </td>
+    </tr>
+   =20
+   =20
+  </tbody>
+  </table>
+ </td></tr>=20
+</tbody>
+</table>
+</div></div></div></div><br></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Mon, Feb 1, 2021 at 10:06 AM Milan Shah &l=
+t;<a href=3D"mailto:mshah@mvista.com" target=3D"_blank">mshah@mvista.com</a=
+>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
+v dir=3D"ltr"><div>Hi All,</div><div><br></div><div>A gentle reminder to re=
+view this patch.</div><div><div><div dir=3D"ltr"><div dir=3D"ltr"><div><div=
+ dir=3D"ltr"><font face=3D"times new roman, serif"><br></font></div><div di=
+r=3D"ltr"><font face=3D"times new roman, serif">-----------------------<br>=
+</font></div><div dir=3D"ltr"><font face=3D"times new roman, serif">Thanks =
+&amp; Regards,</font><div><font face=3D"times new roman, serif"><b>Milan Sh=
+ah</b></font></div><div><span style=3D"background-color:rgb(255,255,255)"><=
+font color=3D"#ff0000"><font face=3D"times new roman, serif">MontaVista Sof=
+tware, </font></font></span><span style=3D"background-color:rgb(255,255,255=
+)"><font color=3D"#ff0000"><font face=3D"times new roman, serif"><span styl=
+e=3D"font-family:&quot;times new roman&quot;,serif">Bangalore</span></font>=
+<span style=3D"font-family:&quot;times new roman&quot;,serif">, India</span=
+></font></span><br></div></div></div></div></div></div><br></div></div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Ja=
+n 11, 2021 at 6:45 PM Milan Shah &lt;<a href=3D"mailto:mshah@mvista.com" ta=
+rget=3D"_blank">mshah@mvista.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi All,</div><div><b=
+r></div><div>This is a Gentle Reminder to review this Patch.<br></div><div>=
+<div><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><font face=3D"=
+times new roman, serif"><br></font></div><div dir=3D"ltr"><font face=3D"tim=
+es new roman, serif">-----------------------<br></font></div><div dir=3D"lt=
+r"><font face=3D"times new roman, serif">Thanks &amp; Regards,</font><div><=
+font face=3D"times new roman, serif"><b>Milan Shah</b></font></div><div><sp=
+an style=3D"background-color:rgb(255,255,255)"><font color=3D"#ff0000"><fon=
+t face=3D"times new roman, serif">MontaVista Software, </font></font></span=
+><span style=3D"background-color:rgb(255,255,255)"><font color=3D"#ff0000">=
+<font face=3D"times new roman, serif"><span style=3D"font-family:&quot;time=
+s new roman&quot;,serif">Bangalore</span></font><span style=3D"font-family:=
+&quot;times new roman&quot;,serif">, India</span></font></span><br></div></=
+div></div></div></div></div><br></div></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jan 6, 2021 at 7:09 PM Milan =
+Shah &lt;<a href=3D"mailto:mshah@mvista.com" target=3D"_blank">mshah@mvista=
+.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
+ex">Instead of just providing local.conf info, add layer names and their<br=
+>
+revisions with bitbake version information into error report<br>
+makes it easier to understand and reproduce failed build.<br>
 <br>
-On Thu, Mar 25, 2021 at 07:12:10PM +0100, Nicolas Dechesne wrote:<br>
-&gt; Use for loop to avoid repeating the same pattern over and over.<br>
-&gt; <br>
-&gt; Signed-off-by: Nicolas Dechesne &lt;<a href=3D"mailto:nicolas.dechesne=
-@linaro.org" target=3D"_blank">nicolas.dechesne@linaro.org</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 scripts/run-docs-build | 72 ++++++++++++++++--------------------=
-------<br>
-&gt;=C2=A0 1 file changed, 27 insertions(+), 45 deletions(-)<br>
-&gt; <br>
-&gt; diff --git a/scripts/run-docs-build b/scripts/run-docs-build<br>
-&gt; index 79b1edc..e8e081c 100755<br>
-&gt; --- a/scripts/run-docs-build<br>
-&gt; +++ b/scripts/run-docs-build<br>
-&gt; @@ -33,17 +33,14 @@ make publish<br>
-&gt;=C2=A0 mkdir $outputdir/bitbake/next<br>
-&gt;=C2=A0 cp -r ./_build/final/* $outputdir/bitbake/next<br>
-&gt;=C2=A0 <br>
-&gt; -git checkout 1.48<br>
-&gt; -make clean<br>
-&gt; -make publish<br>
-&gt; -mkdir $outputdir/bitbake/1.48<br>
-&gt; -cp -r ./_build/final/* $outputdir/bitbake/1.48<br>
-&gt; -<br>
-&gt; -git checkout 1.46<br>
-&gt; -make clean<br>
-&gt; -make publish<br>
-&gt; -mkdir $outputdir/bitbake/1.46<br>
-&gt; -cp -r ./_build/final/* $outputdir/bitbake/1.46<br>
-&gt; +# stable branches<br>
-&gt; +for branch in 1.46 1.48; do<br>
-&gt; +=C2=A0 =C2=A0 git checkout $branch<br>
-&gt; +=C2=A0 =C2=A0 make clean<br>
-&gt; +=C2=A0 =C2=A0 make publish<br>
-&gt; +=C2=A0 =C2=A0 mkdir $outputdir/bitbake/$branch<br>
-&gt; +=C2=A0 =C2=A0 cp -r ./_build/final/* $outputdir/bitbake/$branch<br>
-&gt; +done<br>
-&gt;=C2=A0 <br>
-&gt;=C2=A0 # only sync bitbake folder for now. We need bitbake to be publis=
-hed first<br>
-&gt;=C2=A0 # since the bitbake intersphinx index will be downloaded to buil=
-d yocto-docs<br>
-&gt; @@ -69,40 +66,25 @@ make publish<br>
-&gt;=C2=A0 mkdir $outputdir/next<br>
-&gt;=C2=A0 cp -r ./_build/final/* $outputdir/next<br>
-&gt;=C2=A0 <br>
-&gt; -cd $ypdocs<br>
-&gt; -git checkout gatesgarth<br>
-&gt; -make clean<br>
-&gt; -make publish<br>
-&gt; -mkdir $outputdir/gatesgarth<br>
-&gt; -cp -r ./_build/final/* $outputdir/gatesgarth<br>
-&gt; -<br>
-&gt; -cd $ypdocs<br>
-&gt; -git checkout dunfell<br>
-&gt; -make clean<br>
-&gt; -make publish<br>
-&gt; -mkdir $outputdir/dunfell<br>
-&gt; -cp -r ./_build/final/* $outputdir/dunfell<br>
-&gt; -<br>
-&gt; -cd $ypdocs<br>
-&gt; -git checkout yocto-3.2.1<br>
-&gt; -make clean<br>
-&gt; -make publish<br>
-&gt; -mkdir $outputdir/3.2.1<br>
-&gt; -cp -r ./_build/final/* $outputdir/3.2.1<br>
-&gt; -<br>
-&gt; -cd $ypdocs<br>
-&gt; -git checkout yocto-3.2<br>
-&gt; -make clean<br>
-&gt; -make publish<br>
-&gt; -mkdir $outputdir/3.2<br>
-&gt; -cp -r ./_build/final/* $outputdir/3.2<br>
-&gt; -<br>
-&gt; -cd $ypdocs<br>
-&gt; -git checkout yocto-3.1.5<br>
-&gt; -make clean<br>
-&gt; -make publish<br>
-&gt; -mkdir $outputdir/3.1.5<br>
-&gt; -cp -r ./_build/final/* $outputdir/3.1.5<br>
-&gt; +# stable branches<br>
-&gt; +for branch in dunfell gatesgarth; do<br>
-&gt; +=C2=A0 =C2=A0 cd $ypdocs<br>
-&gt; +=C2=A0 =C2=A0 git checkout $branch<br>
-&gt; +=C2=A0 =C2=A0 make clean<br>
-&gt; +=C2=A0 =C2=A0 make publish<br>
-&gt; +=C2=A0 =C2=A0 mkdir $outputdir/$branch<br>
-&gt; +=C2=A0 =C2=A0 cp -r ./_build/final/* $outputdir/$branch<br>
-&gt; +done<br>
-&gt; +<br>
-&gt; +# Yocto Project releases/tags<br>
-&gt; +for tag in 3.1.5 3.2 3.2.1; do<br>
+[YOCTO #9700]<br>
 <br>
-What about using `git tag -l 3.2*` so that we don&#39;t need to maintain th=
-e<br>
-list of tags?<br>
+Signed-off-by: Milan Shah &lt;<a href=3D"mailto:mshah@mvista.com" target=3D=
+"_blank">mshah@mvista.com</a>&gt;<br>
+---<br>
+=C2=A0meta/classes/report-error.bbclass | 4 ++++<br>
+=C2=A01 file changed, 4 insertions(+)<br>
 <br>
-Or, maybe `git tag --contains &lt;3.1.5 commit hash introducing sphinx doc&=
-gt;<br>
---contains &lt;3.2 commit hash introducing sphinx doc&gt;` so that the<br>
-3.1.[56789] tags don&#39;t need to be added either?<br></blockquote><div><b=
-r></div><div>yes, I thought about that too.. I wanted to get a quick fix fi=
-rst to publish 3.1.6 and 3.2.2 which were missing..=C2=A0</div><div>on the =
-other hand, we have a larger issue with this. The &#39;release&#39; informa=
-tion is needed here , but it&#39;s also needed on the website (downloads) a=
-nd it&#39;s needed in the switchers.js as well...=C2=A0</div><div>So we pro=
-bably want to take a high level view of the problem. Michael created=C2=A0<=
-a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14330">https:=
-//bugzilla.yoctoproject.org/show_bug.cgi?id=3D14330</a> to let us think abo=
-ut it.</div><div><br></div><div>my idea would be a publish/maintain a yaml =
-file that would represent the database of all our releases and docs, which =
-would be maintained/updated by the release manager, it would include all in=
-formation we need to build and publish the docs, update the &#39;download&#=
-39; page on the website, ...=C2=A0</div><div><br></div><div>up until now, w=
-e have been using:</div><div><a href=3D"http://api-v1.yoctoproject.org/docu=
-mentation-api">http://api-v1.yoctoproject.org/documentation-api</a><br></di=
-v><div><a href=3D"http://api-v1.yoctoproject.org/api/downloads?release">htt=
-p://api-v1.yoctoproject.org/api/downloads?release</a><br></div><div><br></d=
-iv><div>i think we need a few improvements to that..=C2=A0</div><div><br></=
-div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+diff --git a/meta/classes/report-error.bbclass b/meta/classes/report-error.=
+bbclass<br>
+index 1a12db1..9cb6b0b 100644<br>
+--- a/meta/classes/report-error.bbclass<br>
++++ b/meta/classes/report-error.bbclass<br>
+@@ -6,6 +6,8 @@<br>
+=C2=A0#<br>
+=C2=A0# Licensed under the MIT license, see COPYING.MIT for details<br>
 <br>
-Same mechanism can be used for bitbake git repo I guess.<br>
++inherit base<br>
++<br>
+=C2=A0ERR_REPORT_DIR ?=3D &quot;${LOG_DIR}/error-report&quot;<br>
 <br>
-Cheers,<br>
-Quentin<br>
-</blockquote></div></div>
+=C2=A0def errorreport_getdata(e):<br>
+@@ -64,6 +66,8 @@ python errorreport_handler () {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0data[&#39;failures&#39;] =
+=3D []<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0data[&#39;component&#39;] =
+=3D &quot; &quot;.join(e.getPkgs())<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0data[&#39;branch_commit&#39=
+;] =3D str(base_detect_branch(e.data)) + &quot;: &quot; + str(base_detect_r=
+evision(e.data))<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 data[&#39;bitbake_version&#39;] =
+=3D e.data.getVar(&quot;BB_VERSION&quot;)<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 data[&#39;layer_version&#39;] =
+=3D get_layers_branch_rev(e.data)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0data[&#39;local_conf&#39;] =
+=3D get_conf_data(e, &#39;local.conf&#39;)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0data[&#39;auto_conf&#39;] =
+=3D get_conf_data(e, &#39;auto.conf&#39;)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0lock =3D bb.utils.lockfile(=
+datafile + &#39;.lock&#39;)<br>
+-- <br>
+2.7.4<br>
+<br>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
 
---0000000000004b955c05be6dd382--
+--0000000000002b8a0d05be6e1726--
