@@ -1,285 +1,193 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.2207.1616785879527930648
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+ by mx.groups.io with SMTP id smtpd.web09.3292.1616791434518912020
  for <yocto@lists.yoctoproject.org>;
- Fri, 26 Mar 2021 12:11:19 -0700
+ Fri, 26 Mar 2021 13:43:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=HnvRVqsq;
- spf=softfail (domain: windriver.com, ip: 198.145.29.25, mailfrom: yifan.yu@windriver.com)
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com (mail-eopbgr750058.outbound.protection.outlook.com [40.107.75.58])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id AEC1B38C0856
-	for <yocto@yoctoproject.org>; Fri, 26 Mar 2021 19:11:17 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CwBgWf++3n8IWWOrEzFxjK7WGlsfATsxmJbFvc5mWo5tBqomXi47oNehygK+9BSXD4tQHfQNAJxEelfQ4fdu43KWmAiqWiDPJYkFFSgSqGAbPG09/02BSJaDYqF1lw0Rgxp0c4lkcUXy+doZNUcCfw7eCqGiLwcFF2eaPWeInMrH/c3qEYeeRiwOMLaG/qfGgcMFJGLMcBDgMXbeICNAkghNbYlwMRpsPWqQvEwiS7pQ+4VNHwhhsbL6p44h/TwqaKnmNv2XyQFRcRxXv2LfJoRELKWZcrCY/E8ZYfrhdEQM7F0PQoDPl+NUVto/xkR5ImI6gUqJfALOBQsyOBRGHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v9J9wj4Zbhgrh8mlYQzFNsFG4hZYtbUHZrAtP9jShsM=;
- b=XKE7j3qU1foeY++L8zKLpZuiLLjnnfGOrflQFpXIqUxsQvw5W1Y3TS5EifRluzXEhJgh7S9co0CUR72+hFJ2thB5yYsZiCEWhNSHwZP1SUb4dCBEmIWGmMSUN2NU666qdTsNzhf6WNcaSUNFSzzGplUp3IASljyS8P32PxqCcxAtl5QBufDbzskTaXrhABv1a4pYtsFHwr0xvpgJdlJPLM2KSCZDph1rIykn6QAjYl5Cgq4hneE0h898RhMvgb1EV9U1P2aWD4g8jzbrPzWlf+seM+FaRiokuCx8xlLkHZnyUbYsY2Tb2E/7C5AJXQPKZiSGdWKr8S7qHLNTP9rhag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=oAFE1/qR;
+ spf=pass (domain: gmail.com, ip: 209.85.160.181, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f181.google.com with SMTP id a11so5224240qto.2
+        for <yocto@lists.yoctoproject.org>; Fri, 26 Mar 2021 13:43:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=windriversystems.onmicrosoft.com;
- s=selector2-windriversystems-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v9J9wj4Zbhgrh8mlYQzFNsFG4hZYtbUHZrAtP9jShsM=;
- b=HnvRVqsqH7kENYC3knbuEpSzEOrRixU/QqXuU9B2xrhMMiPz4uj9mXimjB/I8xt8jBca/vf09h418F1nDgM0pHfpT5K6E4x4VeJ/+64qDtBRPBMVBgEZoV3K+wQOGu5DSBVUoxqJHobk2yEUaCJYhAlD5EXcVYZ6hlYgOvTR6zc=
-Authentication-Results: windriver.com; dkim=none (message not signed)
- header.d=none;windriver.com; dmarc=none action=none
- header.from=windriver.com;
-Received: from SA0PR11MB4719.namprd11.prod.outlook.com (2603:10b6:806:95::17)
- by SN6PR11MB2559.namprd11.prod.outlook.com (2603:10b6:805:57::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Fri, 26 Mar
- 2021 19:11:15 +0000
-Received: from SA0PR11MB4719.namprd11.prod.outlook.com
- ([fe80::24e6:c5dd:a024:807f]) by SA0PR11MB4719.namprd11.prod.outlook.com
- ([fe80::24e6:c5dd:a024:807f%9]) with mapi id 15.20.3977.029; Fri, 26 Mar 2021
- 19:11:15 +0000
-Subject: Re: [ptest-runner][PATCH 4/4v2] utils.c: wait_child reimplement timeout using alarm
-To: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linaro.org>,
- yocto@yoctoproject.org
-Cc: Randy.MacLeod@windriver.com
-References: <20210324184059.3699215-1-anibal.limon@linaro.org>
-From: "Yi Fan Yu" <yifan.yu@windriver.com>
-Message-ID: <5a6c8d83-edb6-be5f-1d63-c44afcf60e78@windriver.com>
-Date: Fri, 26 Mar 2021 15:11:11 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
-In-Reply-To: <20210324184059.3699215-1-anibal.limon@linaro.org>
-X-Originating-IP: [135.0.247.71]
-X-ClientProxiedBy: SJ0PR05CA0199.namprd05.prod.outlook.com
- (2603:10b6:a03:330::24) To SA0PR11MB4719.namprd11.prod.outlook.com
- (2603:10b6:806:95::17)
+        d=gmail.com; s=20161025;
+        h=date:from:to:subject:message-id:mime-version:content-disposition
+         :content-transfer-encoding:user-agent;
+        bh=7SNFqH78uzn7EP2lAtB5Ulv1liS313p0XwUiMYKUbqw=;
+        b=oAFE1/qRI5z8FFi6JnZCIN84ZVtZzt1RCpXVsUqKEkceIwAfe+ShpOl1fWSA51uBK/
+         bFl7qIxqHf/KpEtRcUABexePnrwClVu4Y41LR8iMTOoiaz1MJOEz801fUHyt6YnY/kOz
+         t3Irvm/FvAlP+4ybF7sIFL30fd2+H8keJV3jGSWTN2ZIddx55huI9ZrBjl1GSmkIheWc
+         U02qWnDhjMxXqY7aDJVE9u87sEvc2EED/QlHyJQL/jNvbJLpDzVpBXlcUJ3yLYWHNFzf
+         QWm+tJOWKpQoNkgQ9nsS7v/Ko6O/Z3yDYOPFdYzXeK0WMvzX4tsegSDfM+8eCJSFtVry
+         epFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition:content-transfer-encoding:user-agent;
+        bh=7SNFqH78uzn7EP2lAtB5Ulv1liS313p0XwUiMYKUbqw=;
+        b=S3H2NGTtV4nWSw0ZEYCVjdoa/YHnQHuilQsu7NhA4J2EIWngL/VJNPGOkE6C4uzVeU
+         mzOJpe7YqiJbpljEzMbZGSy8603TS5ibFSEzzjc24TuHrw+NHBh2UB9HRDgjG+0+7GlJ
+         TzbXQUrhWsMzilDsSXaASruWrlhqCuTflP1XYexK8NlbrurfLP+bapGehzUIClwFCnfo
+         QrZPlBYvJFIQAoIwtMHWxGhyezfr4+oz9eixKCowh1z4fFE4FQVajSCM9rpfMcEPLctM
+         baLo0moCvDOEcK6TF8at8XJAA2FmoH5pbFfnruI+QrZwvPou3xpBAAe7xogwH1is54CR
+         FSnQ==
+X-Gm-Message-State: AOAM5303U9my0ap/0PIMWAQVho6lSdO0BWH8ug7D9G9DuZzfhRZeKNsb
+	z0bK2IRTI15PitkCx28ZJwd6hWa00uU=
+X-Google-Smtp-Source: ABdhPJx9z9PhfxfyNl9EfTbhOwFGWjdzq8Ey7iQ4QhRStgptpHtM0YC0xrG3oBiVBj61LeYk5q/t3g==
+X-Received: by 2002:ac8:7a69:: with SMTP id w9mr13797787qtt.60.1616791433087;
+        Fri, 26 Mar 2021 13:43:53 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id p5sm7741108qkj.35.2021.03.26.13.43.52
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Mar 2021 13:43:52 -0700 (PDT)
+Date: Fri, 26 Mar 2021 16:43:50 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: Yocto Technical Team Minutes, Engineering Sync, for March 23, 2021
+Message-ID: <20210326204350.GA26379@localhost>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.1.42] (135.0.247.71) by SJ0PR05CA0199.namprd05.prod.outlook.com (2603:10b6:a03:330::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.18 via Frontend Transport; Fri, 26 Mar 2021 19:11:14 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 51875a11-53e1-4f61-f560-08d8f08aed35
-X-MS-TrafficTypeDiagnostic: SN6PR11MB2559:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: 
-	<SN6PR11MB2559B2365AF3FB6F23A1D26280619@SN6PR11MB2559.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:303;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	A41rGdB17sRQ3RTcT/5tjzkX1zAy00X7RxPvl2BUEFhZ9Nj2oyJFTGlKO3oTowwBFTSKDfttbNRzvxklfRQP1p1fWPh3j+8oWk7E72EioO7tPGA47UA726rbNEpnCekUDfNY+tRiEzs6FsdBM3EvvraOtZMz7hmb+QhelJIc0oMoIJIOcx65iporpd14ghtbXwsIIZN/xh+KRZ/S5dADKc0VBZ4gdDRKBKDljXvSpA824L34DG3A1QVywgbDOOTzdvCIizo/H1ALLtKy+iAXqBiV2iDEfPgqUd9Tutpi50vyWvEQ30PD1tLquqRc43hZGw1ggtMRKMyAtqVH+qf9t7bwXdqo5qjyCYNQRXmCMAjb2E4Bsgy9HdP3Yz9hoX5qR9pGzU1YnfUe52g+6OgbutEtTI+he5jncoIODKs1cfV7y1X40Vw+A4rI+DWmTpIlCSZ3Z5YS2f9GyzD4NN2ZCjbCXB4GMP8b4FVLVmYyM60km4bwl7X1KBjIhrn/Wd1/GAyqMoiI6twvsr/IINIIiFBckrJADsTyGoPv/oKbwIGXbFYbYJIhvSpNQNqN6Ox1wKV9ElBLkJnfHTbhAsFb354tmWnsSsE8H4agg2zNWNbeeFbP1j44JRkw1euDq9wMItdF2rYhw5WbJ9sCyZjWkFiRgU8g7wP+uHwNvd0B7Dy0Qj3rqWCGezk3I62+Ri2KsYMzvKGbJls+pv3TlKoMQ3BSaDM2jwOHBvYO/CWnBIMziS7cAv99Arh7gj5w2sXP6R1t89wj4OAw+gfNysL8dk/wzzTdvTfoELOiZxTu0oQ=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA0PR11MB4719.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(346002)(136003)(366004)(376002)(396003)(107886003)(6486002)(6666004)(5660300002)(52116002)(53546011)(26005)(66556008)(186003)(16526019)(2906002)(86362001)(966005)(478600001)(66574015)(66476007)(8676002)(8936002)(4326008)(38100700001)(2616005)(83380400001)(31686004)(316002)(66946007)(36756003)(16576012)(956004)(31696002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: 
-	=?utf-8?B?Rkw5M1pXV1RXR0o1cm1JL1I0UmlZNmZBSVQreHVkUE1JTlBCTmN0YmljTWZP?=
- =?utf-8?B?bm5VK3RWNTFhRDFnYk5Jdi91dU5QR0pWNjlIL0FKTVhFUXdNUk1Vdkkvblow?=
- =?utf-8?B?WkhBOWUvZ3J6U0o1Sy95UUxyQnR5eC82RjE1M0Q2NURWQnN4cmFCVEZQekha?=
- =?utf-8?B?YTNvdjBlWkVocThoZ3o1SS9LNkVUaHFwelZOQVQxVmFLMFczK2dXVmYwQ2Vt?=
- =?utf-8?B?MTI2eURLZVJ1OEYzbHR1MUx5ZVErUUt3K2JaYW5vT0txOGxQL21KbVZ1R21G?=
- =?utf-8?B?Ym4rd081NmVvaWR4M0NDZC8wcEg5RC9TTEdZemJsNWJGbGpsTHg4T3p1dXll?=
- =?utf-8?B?Q2l3NzBrUkxvMjBBMFlFekVtT0tKL2ozdWRkVDlSTnk4RTMwYk9ZUUNOd2xp?=
- =?utf-8?B?L28rNlU4U1Bhb3NObDNQNldQQ3daTTlicGlJYlhSdjNBNXVrTzFvNHd3OTk5?=
- =?utf-8?B?Mk43RTEyOVU5aENpcU1xSGRQcFMrUEhCQlNXdm5ma0xaVmQ0TGY3NldiRFRp?=
- =?utf-8?B?UklFT0hQTDNLQTdSM0duaWFNbnBwV3JMQXNuUHB3b1U0RXVzTkVDdzFyYk51?=
- =?utf-8?B?U2liekxwVVByREhXT05vaSsvVktGbHZOK3Mrby85ajB0cngrVFpmUExBU1VU?=
- =?utf-8?B?UlFmWEJsSTJHT0VxRkRKNkY5cTl2VU5zY3BXVkNZS3EzYUxRdHR5NWZ2NTJX?=
- =?utf-8?B?N1V0c3RCSEEyckF1SHRJSDVNQ3oyOFlvbXB6L1pwOVZNeWlFYXNJU3h6NGU4?=
- =?utf-8?B?TTJkeURoblEvd3E1QVdEMlZ4cjNVM0FPMFBobEhKTndoNHJqU1dQV3gyTSsz?=
- =?utf-8?B?MjkzTlNldnlaV1VRZy9MWEVGNEYvWng5bytLNHlFZXMzbFJCaFFxOExaUUVY?=
- =?utf-8?B?K3pQWjNxdDhQazFHWk1LRHBHLzNuRDFRZ2g3Z0RTNDdtVWhuODVPN3MrWmNP?=
- =?utf-8?B?NExkd2NSMmdERU1TWnhHZFFnWnpjRlp0Ym1rZmVLUFNIdmRLWFlTM20rN2sw?=
- =?utf-8?B?QnVGUmtvZWhIUGJDd0QzMER1NU5WSHAyMUI3a0hHTG9xaHhEYVUwV3VyMURu?=
- =?utf-8?B?aU5yWHRJa3h5MkZjbkhNcXE0b1Q5OWFnbkxUTjdYOWtxZTc2VExWVDEyVWJo?=
- =?utf-8?B?NlM2MVN1QmlXT0dDcVdUakloOGg4ZHlncVQ0VTZqeFlZTFdkVG8yTG1NeHhC?=
- =?utf-8?B?SGl5WEx2d1FuTGRkVElBL0VRaUNLaWZoUFphbHRGMURzVU1RK2o5ZGVkbXBY?=
- =?utf-8?B?bWNFZkVGM2Zxa1E0YXhuSnpzSTBlZEwreGZpZVl3V1FVTHVPVTgrNFA5bkRq?=
- =?utf-8?B?Z2VRNXRNL3hEQ1dmQjlId2g1MEgyd3pVMjNEOEVwUjFZN2NXVCthNGlPQThy?=
- =?utf-8?B?UnVXNm1kV2Z3ck5ESnorTlh2amYxV3dYMFZveUtiek1GajZ0TngxTlpuOHc3?=
- =?utf-8?B?M0Q0bGhyZDAySTFtUmE4UkJ1UElSVER0TktjSHdzN0gvdDFJQWFqanAvM0lm?=
- =?utf-8?B?REQ5UC9PaUQ3ZXpUMUpNM1dlSzgxSmlnZnd3SUJZOWxkeHFvbTV0bWllZW9v?=
- =?utf-8?B?V1VSNlJnSGdBUGlFQ3YxWnBaNkVvTWI2SDJDeGxsWU5nV2ZTSmlyTG4rRUtj?=
- =?utf-8?B?NHZXZkFqZ25KOE9KdkgxTVdraXR5MWNRbU5mdjJyRUJxY2ZhdHIraXBCQm40?=
- =?utf-8?B?K2lIdkhDT2VsekhzZEg5YjV4Y280bkdPRGRPcDJLelpZTzR1Qi9tUzVvN2g1?=
- =?utf-8?Q?yyCvvFAbF4QUAw6qftDzkN7x1wxZyQ3+GKtHqTk?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51875a11-53e1-4f61-f560-08d8f08aed35
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR11MB4719.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2021 19:11:15.0238
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8z/eHYtWNxXDb8gTcbenvb8O92R7krpWbx3O33OMuq025RXDKh4tUXGy6Ch6RozEQb8GB1Q09n62OgYRrvmHxw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB2559
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On 3/24/21 2:40 PM, An=C3=ADbal Lim=C3=B3n wrote:
-> [Please note: This e-mail is from an EXTERNAL e-mail address]
->=20
-> Since we are using threads to read from child, no complex logic is
-> needed for handle timeouts by std{out,err} in the child using alarm(2).
->=20
-> [YOCTO #14220]
->=20
-> Signed-off-by: An=C3=ADbal Lim=C3=B3n <anibal.limon@linaro.org>
->=20
+Yocto Technical Team Minutes, Engineering Sync, for March 23, 2021
+archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit
 
-LGTM, solves my bug and my issue with the old timeout behaviour.
+== disclaimer ==
+Best efforts are made to ensure the below is accurate and valid. However,
+errors sometimes happen. If any errors or omissions are found, please feel
+free to reply to this email with any corrections.
 
-I tested glib-2.0 with the extra debugging output. It works.
-Also doesn't timeout.
+== attendees ==
+Trevor Woerner, Stephen Jolley, Armin Kuster, Michael Opdenacker, Joshua
+Watt (JPEW), Saul Wold, Jan-Simon Möller, Scott Murray, Richard Purdie,
+Alexandre Belloni, Randy MacLeod, Steve Sakoman, Tim Orling, Trevor
+Gamblin, Bruce Ashfield, Michael Halstead, Peter Kjellerstedt (saur), Paul
+Barker
+
+== notes ==
+- 3.3-m3 rc1 had issue with beaglebone, rc2 to be built as soon as it’s fixed
+- layer compatibility bumped to hardknott
+- a bunch of version updates were taken (based on guidance from TSC)
+- sstate task output before build stats (master-next)
+- still lots of “pending” patches which appear to be stale
+- still lots of AB-INT issues
+
+== general ==
+AlexB: is the stale sstate thing optional? maybe useful cache might be lost
+RP: it’s not removing it from cache, it’s removing it if installed in
+    build directory. see util-linux patch for an example of when/why (the
+    old util-linux was split into: util-linux-uuid and util-linux). the new
+    packages have overlapping files that depend on each other. the cache
+    wasn’t cleaned until -uuid was run which lead to stale data. so this was
+    proposed as a fix for issues such as this
+<various>: sounds like a good change
+RP: i’m pretty sure it’s not going to cause issues, but we’re still
+    leaving it in master-next for the time-being. i’m happy with how fast it
+    runs and my initial testing seems to indicate there aren’t any follow-on
+    problems. it’s running on the AB. master-next will become -rc2
 
 
----
->   utils.c | 65 ++++++++++++++++++++++++--------------------------------=
--
->   1 file changed, 27 insertions(+), 38 deletions(-)
->=20
-> diff --git a/utils.c b/utils.c
-> index 84cb570..b28107d 100644
-> --- a/utils.c
-> +++ b/utils.c
-> @@ -57,6 +57,10 @@
->   static struct {
->          int fds[2];
->          FILE *fps[2];
-> +
-> +       int timeout;
-> +       int timeouted;
-> +       pid_t pid;
->   } _child_reader;
->=20
->   static inline char *
-> @@ -304,6 +308,9 @@ read_child(void *arg)
->                                          fwrite(buf, (size_t)n, 1, _chi=
-ld_reader.fps[1]);
->                          }
->=20
-> +                       /* Child output reset alarm */
-> +                       alarm(0);
-> +                       alarm(_child_reader.timeout);
+RP: TimO: any perl updates? I saw some perl patches on the list and was hoping
+    for your input
+TimO: sorry, haven’t seen the patch
+RP: it’s in master-next right now, looks like just a SRC_URI change for now
+TimO: i’ve been working on fixing this sort of issue at a higher level.
+    i’m working on the perl-deps issue, but i don’t want to hold up the
+    release
 
-I looked at https://linux.die.net/man/2/alarm
-I don't think alarm(0) is necessary, but it is fine.
 
->                  }
->=20
->                  fflush(_child_reader.fps[0]);
-> @@ -335,45 +342,28 @@ run_child(char *run_ptest, int fd_stdout, int fd_=
-stderr)
->          /* exit(1); not needed? */
->   }
->=20
-> -static inline int
-> -wait_child(pid_t pid, int timeout, int *timeouted)
-> +static void
-> +timeout_child_handler(int signo)
->   {
-> -       struct timespec sentinel;
-> -       clockid_t clock =3D CLOCK_MONOTONIC;
-> -       int looping =3D 1;
-> +       _child_reader.timeouted =3D 1;
-> +       kill(-_child_reader.pid, SIGKILL);
-> +}
->=20
-> +static inline int
-> +wait_child(pid_t pid, int timeout)
-> +{
->          int status =3D -1;
-> -       int waitflags;
-> -
-> -       if (clock_gettime(clock, &sentinel) =3D=3D -1) {
-> -               clock =3D CLOCK_REALTIME;
-> -               clock_gettime(clock, &sentinel);
-> -       }
->=20
-> -       *timeouted =3D 0;
-> +       _child_reader.timeout =3D timeout;
-> +       _child_reader.timeouted =3D 0;
-> +       _child_reader.pid =3D pid;
->=20
-> -       while (looping) {
-> -               waitflags =3D WNOHANG;
-> +       /* setup alarm to timeout based on std{out,err} in the child */
-> +       alarm(timeout);
->=20
-> -               if (timeout >=3D 0) {
-> -                       struct timespec time;
-> -
-> -                       clock_gettime(clock, &time);
-> -                       if ((time.tv_sec - sentinel.tv_sec) > timeout) =
-{
-> -                               *timeouted =3D 1;
-> -                               kill(-pid, SIGKILL);
-> -                               waitflags =3D 0;
-> -                       }
-> -               }
-> -
-> -               if (waitpid(pid, &status, waitflags) =3D=3D pid)
-> -                       looping =3D 0;
-> -
-> -               clock_gettime(clock, &sentinel);
-> -
-> -               if (WIFEXITED(status))
-> -                       status =3D WEXITSTATUS(status);
-> -       }
-> +       waitpid(pid, &status, 0);
-> +       if (WIFEXITED(status))
-> +               status =3D WEXITSTATUS(status);
->=20
->          return status;
->   }
-> @@ -438,7 +428,6 @@ run_ptests(struct ptest_list *head, const struct pt=
-est_options opts,
->          pid_t child;
->          int pipefd_stdout[2];
->          int pipefd_stderr[2];
-> -       int timeouted;
->          time_t sttime, entime;
->          time_t duration;
->          int slave;
-> @@ -477,6 +466,7 @@ run_ptests(struct ptest_list *head, const struct pt=
-est_options opts,
->                          close(pipefd_stdout[1]);
->                          break;
->                  }
-> +               signal(SIGALRM, timeout_child_handler);
->=20
->                  fprintf(fp, "START: %s\n", progname);
->                  PTEST_LIST_ITERATE_START(head, p)
-> @@ -527,8 +517,7 @@ run_ptests(struct ptest_list *head, const struct pt=
-est_options opts,
->                                  fprintf(fp, "BEGIN: %s\n", ptest_dir);
->=20
->=20
-> -                               status =3D wait_child(child, opts.timeo=
-ut, &timeouted);
-> -
-> +                               status =3D wait_child(child, opts.timeo=
-ut);
->=20
->                                  entime =3D time(NULL);
->                                  duration =3D entime - sttime;
-> @@ -538,11 +527,11 @@ run_ptests(struct ptest_list *head, const struct =
-ptest_options opts,
->                                          rc +=3D 1;
->                                  }
->                                  fprintf(fp, "DURATION: %d\n", (int) du=
-ration);
-> -                               if (timeouted)
-> +                               if (_child_reader.timeouted)
->                                          fprintf(fp, "TIMEOUT: %s\n", p=
-test_dir);
->=20
->                                  if (opts.xml_filename)
-> -                                       xml_add_case(xh, status, ptest_=
-dir, timeouted, (int) duration);
-> +                                       xml_add_case(xh, status, ptest_=
-dir, _child_reader.timeouted, (int) duration);
->=20
->                                  fprintf(fp, "END: %s\n", ptest_dir);
->                                  fprintf(fp, "%s\n", get_stime(stime, G=
-ET_STIME_BUF_SIZE, entime));
-> --
-> 2.31.0
->=20
+TimO: i’ve also been working on recipe-tool for perl modules. currently lost
+    down a rabbit hole of elastic-search (i.e. the backend for cpan)
+ScottM: that goes beyond just using cpan?
+TimO: yes, i want to search the cpan for dependencies myself while working on
+    automated dependency tracking
+RP: doing it in self-contained steps is recommended
+
+
+Randy: anyone heard from Kevin wrt beaglebone blocking -m3
+RP: a patch was sent last night, looks like a wic issue (dosutils)
+Randy: are you building -rc2 now, or waiting for valgrind
+RP: i think i’m going to skip valgrind now. -rc2 already has a lot of
+    patches (more than usual) so i think we’ll try to cut it off
+Randy: one of the things a new valgrind brings is something related to
+    debuginfod, which might be interesting
+RP: yes, given the outreachy project. but given valgrind’s history and
+    issues we’ve had in the past, i’d rather wait for a new release before
+    pulling that in, we’re too late now
+
+
+RP: Randy, any news on AB load issue
+Randy: none. still under investigation. maybe tomorrow? we have an in-house
+    setup that we’re working with
+RP: TrevorG do you have a question for MichaelH?
+TrevorG: wondering about updates to AB, automated? manual?
+MichaelH: for the workers i do them manually. I do some tests to start on each
+    of them, then start the update manually. we could do something at startup
+    to look for updates automatically
+TrevorG: it works for me with CentOS and Fedora
+MichaelH: there are differences between the versions of systemd, so we’re
+    not sure of the update scripts will work across all workers yet
+TrevorG: we just want to make sure that our internal AB setup is as close as
+    possible to the “real” AB setup
+
+
+RP: after we started the AB after some maintenance the connection to the
+    swapbot was lost (the connection wasn’t initialized properly at
+    startup). i noticed this on Monday and re-init the connection, so it’s
+    working now, but there seems to be something amiss
+MichaelH: okay. we’ll need to add this to the maintenance routine and make
+    sure that’s working
+AlexB: last week was quite quiet, least number of failures i’ve seen recently
+RP: probably 2 reasons:
+    1. we’re reaching a release milestone, so less invasive changes lately
+    2. fewer changes in the earliest pieces (e.g. gcc patches) leads to more
+       sstate reuse and tends to cause fewer issues overall
+SteveS: it was nice getting builds done fast this week
+
+
+ScottM: docs status update
+RP: MichaelO from Bootlin is on today’s call, and will be helping out with
+    the docs going forward taking over some of the work Scott Rifenbark used
+    to do. Nico gave it a good push and MarkM had been working on it, but
+    it’ll be nice to get some fresh eyes on it.
+
+
+MichaelO: any plans to support clang
+RP: it’s there, but not in core (yet?)
+MichaelO: maybe something good to document?
+RP: hard to say because it’s not in core. we might have to re-evaluate these
+    sorts of things (pick specific examples of not-in-core things to document)
+
+
+Randy: should we consider removing MIPS (now that MIPS has joined RISC-V)
+RP: existing hardware isn’t going to disappear, and we do still have members
+    using it. but we could re-focus our testing away from it moving forward.
+    e.g. just move to qemu only testing and remove the actual MIPS hardware
+    being supported (edge router)
+PaulB: should we move it out of core into meta-mips (?)
+RP: there isn’t much there, so probably not worth moving out (i.e. a couple
+    machines and some compiler tunings)
+PaulB: well, mostly about reducing the test matrix size
+RP: i’d like to keep the optics that it is supported, if we cut it out, i
+    don’t like the message it might send to the embedded community. but we
+    don’t have to test *everything* that’s in oe-core
+PaulB: each machine in oe-core expands to all sorts of builds and build tests
+    (e.g. reproducibility, ptests, etc…)
+RP: there already are areas that aren’t extensively tested across all of
+    oe-core (e.g. musl)
+Armin: ppc64 is in oe-core, but not tested as much as others
+RP: we’ve been reducing our coverage, we are in control of the test matrix
+
+
+RP: if anyone knows any RISC-V companies, we’d like to get some of them
+    interested in becoming members. i’d really like to add RISC-V as part
+    of our matrix, but that would be hard if it doesn’t have a source of
+    funding
+
+
+TimO: thinking about 5.12 kernel (in rc4 now)
+RP: -m3 is delayed and late, so expect -m4 to be very short. if the kernel is
+    still at only -rc4 then we’re probably still weeks away until a final
+    kernel release. so i doubt they’ll align in time
