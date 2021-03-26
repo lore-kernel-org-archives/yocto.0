@@ -1,47 +1,47 @@
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
- by mx.groups.io with SMTP id smtpd.web11.2001.1616785227217368362
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+ by mx.groups.io with SMTP id smtpd.web10.2056.1616785228708369896
  for <yocto@lists.yoctoproject.org>;
- Fri, 26 Mar 2021 12:00:27 -0700
+ Fri, 26 Mar 2021 12:00:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=U5iTQUG7;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.210.180, mailfrom: mhalstead@linuxfoundation.org)
-Received: by mail-pf1-f180.google.com with SMTP id y137so203470pfg.1
-        for <yocto@lists.yoctoproject.org>; Fri, 26 Mar 2021 12:00:27 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=eekp1z59;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.210.171, mailfrom: mhalstead@linuxfoundation.org)
+Received: by mail-pf1-f171.google.com with SMTP id q5so5463531pfh.10
+        for <yocto@lists.yoctoproject.org>; Fri, 26 Mar 2021 12:00:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=XyGWSzO+GJMhzKX0VyRrsAHSUp7NkuYBbgRcp+oboPQ=;
-        b=U5iTQUG7n0yQj8aEkv1i3QT2nZN1UOMBEPMIJoAZSjsN8hFwBLDN1zjO7YItZM4pdk
-         jG/D3xV++wzdvDaPSmL9dZPVnmzNRNF2sZZZY4OuFT6+P2BQyc4l4dYwUieXjWkcUAlz
-         7c0NeOLTeLb2B85CJ3Z4xDmmmRBGqXifcZn2Y=
+        bh=VWgZ8+5SMVRBWGvNaLG7UYhSx8U0iP3XNqpvXFl98ck=;
+        b=eekp1z59Yo1Ll6MaKGB2Gm3QAZz2CQXq46tfH2/TMKArgNWkaeRQCitdLyRzbsMKFo
+         MvkkUQd7C9abTOfUztuQ9KDN3eheiRLW/aAqC+cZ8VAuigqdCNV8cI2x++lvUBUSoJbX
+         egPJU+YV1L0voASzjdR4sF/E3d9I+KREEAdhE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=XyGWSzO+GJMhzKX0VyRrsAHSUp7NkuYBbgRcp+oboPQ=;
-        b=a7jjhNrF8VMzOqSdpeuHv2IV0C5nWieD6GR26Ax4Y45P3V5Sm/5rc0ztdpwGN6KKS6
-         vka109Qceaz2UaZrAw55oTJovt9doufFzsdFkBoxHPFqkdGhM8nCqlwf8QTesdjY1FYB
-         q4XX2YT7NPxbAehdVH5C1PitxR+ppX29ykJS2JFs5HSoOHWUQiO5sUcpflofTU8Dy48r
-         rFZo7m75ZgQ7rAaC3L7WYO9BdHUNsZ7FsDOFvPar4UpbVyJjjRTf44PxAxIBEDsJAnkr
-         UjF2LaM0Zk0hLEJ9IYGptY+1ZjHri3ami6bleywikEdZWxaNZcaPNbPMowVkktrmmldt
-         opUw==
-X-Gm-Message-State: AOAM532Bc7IN35kR4WlTM74Ll3PV5AcIsDAZwAaLcE82+4/pht8+vYGv
-	ALXRLHkpN8WM4AG8GBiqHUUKfp7Q4LJO4A==
-X-Google-Smtp-Source: ABdhPJzW7/jGWh6h5pLznq22Y3CWNcosaRXgyGioQlAwY6ssXdF41BsxWDqIFolEKjnwDuhyjoeOHw==
-X-Received: by 2002:a62:6497:0:b029:220:d96a:8a79 with SMTP id y145-20020a6264970000b0290220d96a8a79mr10132614pfb.23.1616785226072;
-        Fri, 26 Mar 2021 12:00:26 -0700 (PDT)
+        bh=VWgZ8+5SMVRBWGvNaLG7UYhSx8U0iP3XNqpvXFl98ck=;
+        b=Bv+GTaig3g1ibk0nw/ir+jnVR0/O6F/iloKW035BWz0SFdEPw4wjfCJm1GoJ2hKGjw
+         qYUFmzRpcjiLP4aHkLJkpkSNGP1opbr1Pm8HwPdfy9mxrMUb3C9UAzyGh3/mv6ZxrcFA
+         WBESzlMdPfC8XE4d/Jgho4yalHjg1Jv1yehkADE4LtdEOmDI3sa5NnWbeYmoiiCgyxq5
+         TZ7ADMqOyCIehQaxfKbMIFyEq8H8gF5vdzsapsea2RkXWktRHDT9b9UI8uInAodS1Jz6
+         rU9v6nKKeULJPpPwfQLO60X9FnzGrxNUX1K1PEgIi/FDSYpeRItZNLgGnGa0qaFD/NNE
+         CE6g==
+X-Gm-Message-State: AOAM531DDsOZFlqK37arPqNO07cAejhkJK95IdK8UCZrL8KGpF8t5UIm
+	DFxPF6aCuYOaVeXvDgrPO7w+FJ+hb0gXwg==
+X-Google-Smtp-Source: ABdhPJy4/o3UoDO84Ntt4pJcz7stQzU1l5NsIcX6dinupgV0lTw2m0onpEwzTMhc44GLli9Z8lpstw==
+X-Received: by 2002:a63:d44a:: with SMTP id i10mr13567447pgj.57.1616785227890;
+        Fri, 26 Mar 2021 12:00:27 -0700 (PDT)
 Return-Path: <mhalstead@linuxfoundation.org>
 Received: from localhost.localdomain.org (c-24-21-216-192.hsd1.or.comcast.net. [24.21.216.192])
-        by smtp.gmail.com with ESMTPSA id j21sm9832786pfc.114.2021.03.26.12.00.25
+        by smtp.gmail.com with ESMTPSA id j21sm9832786pfc.114.2021.03.26.12.00.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Mar 2021 12:00:25 -0700 (PDT)
+        Fri, 26 Mar 2021 12:00:27 -0700 (PDT)
 From: "Michael Halstead" <mhalstead@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
 Cc: richard.purdie@linuxfoundation.org
-Subject: [error-report-web][PATCH v2 2/5] Avoid errors caused by attempting to update referrers for objects that don't exist.
-Date: Fri, 26 Mar 2021 12:00:20 -0700
-Message-Id: <20210326190023.713835-2-mhalstead@linuxfoundation.org>
+Subject: [error-report-web][PATCH v2 3/5] Allow alternate settings, avoid out of memory condition
+Date: Fri, 26 Mar 2021 12:00:21 -0700
+Message-Id: <20210326190023.713835-3-mhalstead@linuxfoundation.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210326190023.713835-1-mhalstead@linuxfoundation.org>
 References: <20210326190023.713835-1-mhalstead@linuxfoundation.org>
@@ -49,49 +49,49 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
 ---
- Post/views.py | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ Post/purge.py | 19 ++++++++-----------
+ 1 file changed, 8 insertions(+), 11 deletions(-)
 
-diff --git a/Post/views.py b/Post/views.py
-index 5737076..0ad58ba 100644
---- a/Post/views.py
-+++ b/Post/views.py
-@@ -256,23 +256,23 @@ def search(request, mode=results_mode.LATEST, **kwargs):
-         items = items.order_by()
-         return render(request, "latest-errors.html", context)
+diff --git a/Post/purge.py b/Post/purge.py
+index 829fada..1289d13 100644
+--- a/Post/purge.py
++++ b/Post/purge.py
+@@ -1,4 +1,4 @@
+-from datetime import datetime
++from datetime import datetime, timedelta
+ from django.utils import timezone
+ import os
+ import sys
+@@ -8,22 +8,19 @@ def setup_django():
+     # Get access to our Django model
+     newpath = os.path.abspath(os.path.dirname(__file__)) + '/..'
+     sys.path.append(newpath)
+-    os.environ['DJANGO_SETTINGS_MODULE'] = 'project.settings'
++    if not os.getenv('DJANGO_SETTINGS_MODULE'):
++        os.environ['DJANGO_SETTINGS_MODULE'] = 'project.settings'
+     django.setup()
  
+ def main():
+     setup_django()
+     from Post.models import BuildFailure
+-    items = BuildFailure.objects.all()
+-    now = timezone.now()
++    delete_before = timezone.now()-timedelta(days=30)
++    query = "SELECT bf.id FROM Post_buildfailure bf LEFT JOIN Post_build b ON (bf.BUILD_id = b.id) WHERE bf.REFERER NOT IN ('OTHER','NO_REFERER') AND b.DATE < '{0}'".format(delete_before.date())
++    print query
++    items = BuildFailure.objects.raw(query)
+     for item in items:
+-        if item.REFERER == 'OTHER' or item.REFERER == 'NO_REFERER':
+-            continue
+-        difference = now - item.BUILD.DATE
+-        if difference.days > 30:
+-            item.delete()
++        item.delete()
+ 
+ if __name__ == "__main__":
+     main()
 -
- def details(request, fail_id):
-     try:
-         build_failure = BuildFailure.objects.get(id=fail_id)
-     except ObjectDoesNotExist:
-         build_failure = None
--    try:
--        referer = urlparse(request.META['HTTP_REFERER'])
--        referer_hostname = referer.hostname
--        if referer.port:
--            referer_hostname += ":" + str(referer.port)
--        if referer_hostname != request.get_host():
--            build_failure.REFERER = 'OTHER'
--    except KeyError:
--        # There is no referer
--        build_failure.REFERER = 'NO_REFERER'
--    build_failure.save()
-+    if build_failure:
-+        try:
-+            referer = urlparse(request.META['HTTP_REFERER'])
-+            referer_hostname = referer.hostname
-+            if referer.port:
-+                referer_hostname += ":" + str(referer.port)
-+            if referer_hostname != request.get_host():
-+                build_failure.REFERER = 'OTHER'
-+        except KeyError:
-+            # There is no referer
-+            build_failure.REFERER = 'NO_REFERER'
-+        build_failure.save()
- 
-     context = {'detail' : build_failure, 'error_types' : ErrorType }
- 
+-
 -- 
 2.11.0
 
