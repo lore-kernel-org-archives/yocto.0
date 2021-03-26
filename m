@@ -1,47 +1,47 @@
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
- by mx.groups.io with SMTP id smtpd.web09.1729.1616784597165158348
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+ by mx.groups.io with SMTP id smtpd.web08.1840.1616784598495553882
  for <yocto@lists.yoctoproject.org>;
- Fri, 26 Mar 2021 11:49:57 -0700
+ Fri, 26 Mar 2021 11:49:58 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=H7vVNAss;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.216.45, mailfrom: mhalstead@linuxfoundation.org)
-Received: by mail-pj1-f45.google.com with SMTP id nh23-20020a17090b3657b02900c0d5e235a8so2918722pjb.0
-        for <yocto@lists.yoctoproject.org>; Fri, 26 Mar 2021 11:49:57 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=eSDBi3Sw;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.214.176, mailfrom: mhalstead@linuxfoundation.org)
+Received: by mail-pl1-f176.google.com with SMTP id o2so1350286plg.1
+        for <yocto@lists.yoctoproject.org>; Fri, 26 Mar 2021 11:49:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=hFkU2j3ZmO6044OkweAq/RL9AkzTVB+23cUHvABL76s=;
-        b=H7vVNAssRCA79IRkmlYykFI0eZd+PiadgC7QOUJbY/IOP/saFnrOJ6AlFXV+ur+HE1
-         YXmRZ9k8w6OLcvcIanKL2BxzYA2CZwyY/G1y0tLQhPjdEpJ4J7RPHSpO2ZtgGLqmd9xH
-         NFSdPNWGz6x6m6NMI00sCTf1bOZdhoORZ52+M=
+        bh=DA2dFqx/9bmz0pe/MnpaVXDQYHHdibEb+du3py0Nya0=;
+        b=eSDBi3Sw2apbdVQRQggu/1zaAkw+51qghdvB/tDVnOob6kIkRDHk9O+wfEId2dOXn9
+         y5ukaxjEQcJUP19zHVWI6a4Zb3SeQT8ddWOXo4C732j20doO43nUiQZ5LKxO17l2cQlk
+         oxaAb3CE/yfnAWxre5pe5SOBR16QLKynqbePI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=hFkU2j3ZmO6044OkweAq/RL9AkzTVB+23cUHvABL76s=;
-        b=TVyfZ8/0r8eaLrvRPcDKHYIS50w9wHbCTv6MicXoPOoeWlz6GyeTk3+cVCEsBBLM8j
-         aBLkAq/NI9mS4I3h3sDhvSoExZ7q3r1TF45UzKCGjbU+MyG8D568NL57/blupGsW0Ltm
-         3xzyWFsnFQHmDpFzxrlt5DLKIQSSzNof19ZIDO5KcHyT5F+pVc3aKVDNcGLtJIuXQZbn
-         93U3WDoEdAVzhLOFED5IqgeOaYGWQAgW7zziWBpOSzqLozbiNkT/88HPSch+KBvPRXz9
-         5L91fdMMleIjCS6qUFNErpW/8GOTrHno8u75xg8nFCfGpZYQxYMArmpde2hXb7oy6XmU
-         +4TQ==
-X-Gm-Message-State: AOAM53088/0NPuWgNglUm/OLZePDnwS9N0rI99+V+jt1NHdIqARiCGXF
-	jQZEaUb6mgL5xJeYxcSIFJJ3QT2l+5p5DA==
-X-Google-Smtp-Source: ABdhPJzBCT2mXYZVAWlL9TBfDPdy94xIAPiEIpzTj15itpuxzefkMKpeiwB+gtryzuj3nozCA7IWaA==
-X-Received: by 2002:a17:902:a587:b029:e7:347d:4872 with SMTP id az7-20020a170902a587b02900e7347d4872mr2345095plb.2.1616784596430;
-        Fri, 26 Mar 2021 11:49:56 -0700 (PDT)
+        bh=DA2dFqx/9bmz0pe/MnpaVXDQYHHdibEb+du3py0Nya0=;
+        b=rs3bd/0UTjKJNdHCWwIS/Us5/SXcgNNVTtb7ie5m8MVACXMy48/XAnBqTp9Dhx1QQg
+         A7Fve+TXgijGmDyZBGkwn8I3ZCdEbagmov0FWDSCW99HPi4dMMVQqkjaIxXMTiWd+kkq
+         2MQEjOygfcH6TqPL9B6i4hEvlYhNBnEs/aRwZIR5vBvqXu8VAOgnrm9UBM2mx0xjFtHC
+         KQ66lOu13IH4Jb/zvbEtGpBOUDBF8AbIwMETDmbPuMicI1yrV5go1EVDkKMWmfUZPmRT
+         MMqDNzpgipML0B1lmqqkpjcJ/8G2sBoolbBp7Clq46Tg1bz2uoxHejvUX5U8/rdYgonR
+         1RkQ==
+X-Gm-Message-State: AOAM533q2A5DyXXlhf6WFgviHgdKn+g3s91KMts+8eZm+yJARTmiqNtz
+	hGwVp+JNec2QwHEu4S5KHyteHbsXtU6Etw==
+X-Google-Smtp-Source: ABdhPJxy5XMeaSf78EIN8/4crfffShPcv2RW8uAXNQY9P+AWHSDD3EwqbTfR0Jpu9EcniF4OFQnLBQ==
+X-Received: by 2002:a17:903:22c7:b029:e6:faf5:eb3a with SMTP id y7-20020a17090322c7b02900e6faf5eb3amr15892604plg.23.1616784597681;
+        Fri, 26 Mar 2021 11:49:57 -0700 (PDT)
 Return-Path: <mhalstead@linuxfoundation.org>
 Received: from localhost.localdomain.org (c-24-21-216-192.hsd1.or.comcast.net. [24.21.216.192])
-        by smtp.gmail.com with ESMTPSA id fa21sm9132905pjb.41.2021.03.26.11.49.55
+        by smtp.gmail.com with ESMTPSA id fa21sm9132905pjb.41.2021.03.26.11.49.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Mar 2021 11:49:56 -0700 (PDT)
+        Fri, 26 Mar 2021 11:49:57 -0700 (PDT)
 From: "Michael Halstead" <mhalstead@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
 Cc: Michael Halstead <mhalstead@linxufoundation.org>
-Subject: [error-report-web][PATCH 3/5] Allow alternate settings, avoid out of memory condition
-Date: Fri, 26 Mar 2021 11:49:50 -0700
-Message-Id: <20210326184952.712938-3-mhalstead@linuxfoundation.org>
+Subject: [error-report-web][PATCH 4/5] Search on contains, enalble admin, and keep more error history.
+Date: Fri, 26 Mar 2021 11:49:51 -0700
+Message-Id: <20210326184952.712938-4-mhalstead@linuxfoundation.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210326184952.712938-1-mhalstead@linuxfoundation.org>
 References: <20210326184952.712938-1-mhalstead@linuxfoundation.org>
@@ -51,49 +51,78 @@ Content-Transfer-Encoding: 8bit
 From: Michael Halstead <mhalstead@linxufoundation.org>
 
 ---
- Post/purge.py | 19 ++++++++-----------
- 1 file changed, 8 insertions(+), 11 deletions(-)
+ Post/feed.py    | 2 +-
+ Post/purge.py   | 5 +++--
+ Post/views.py   | 3 +--
+ project/urls.py | 2 +-
+ 4 files changed, 6 insertions(+), 6 deletions(-)
 
+diff --git a/Post/feed.py b/Post/feed.py
+index 7e5bfdb..5d57b54 100644
+--- a/Post/feed.py
++++ b/Post/feed.py
+@@ -27,7 +27,7 @@ class LatestEntriesFeed(Feed):
+         if self.mode == results_mode.SPECIAL_SUBMITTER and hasattr(settings,"SPECIAL_SUBMITTER"):
+             #Special submitter mode see settings.py to enable
+             name = settings.SPECIAL_SUBMITTER['name']
+-            queryset = BuildFailure.objects.order_by('-BUILD__DATE').filter(BUILD__NAME__istartswith=name)[:self.limit]
++            queryset = BuildFailure.objects.order_by('-BUILD__DATE').filter(BUILD__NAME__icontains=name)[:self.limit]
+ 
+         else:
+             queryset = BuildFailure.objects.order_by('-BUILD__DATE')[:self.limit]
 diff --git a/Post/purge.py b/Post/purge.py
-index 829fada..1289d13 100644
+index 1289d13..dd58441 100644
 --- a/Post/purge.py
 +++ b/Post/purge.py
-@@ -1,4 +1,4 @@
--from datetime import datetime
-+from datetime import datetime, timedelta
- from django.utils import timezone
- import os
- import sys
-@@ -8,22 +8,19 @@ def setup_django():
-     # Get access to our Django model
-     newpath = os.path.abspath(os.path.dirname(__file__)) + '/..'
-     sys.path.append(newpath)
--    os.environ['DJANGO_SETTINGS_MODULE'] = 'project.settings'
-+    if not os.getenv('DJANGO_SETTINGS_MODULE'):
-+        os.environ['DJANGO_SETTINGS_MODULE'] = 'project.settings'
-     django.setup()
- 
+@@ -15,11 +15,12 @@ def setup_django():
  def main():
      setup_django()
      from Post.models import BuildFailure
--    items = BuildFailure.objects.all()
--    now = timezone.now()
-+    delete_before = timezone.now()-timedelta(days=30)
-+    query = "SELECT bf.id FROM Post_buildfailure bf LEFT JOIN Post_build b ON (bf.BUILD_id = b.id) WHERE bf.REFERER NOT IN ('OTHER','NO_REFERER') AND b.DATE < '{0}'".format(delete_before.date())
-+    print query
-+    items = BuildFailure.objects.raw(query)
+-    delete_before = timezone.now()-timedelta(days=30)
++    delete_before = timezone.now()-timedelta(days=45)
+     query = "SELECT bf.id FROM Post_buildfailure bf LEFT JOIN Post_build b ON (bf.BUILD_id = b.id) WHERE bf.REFERER NOT IN ('OTHER','NO_REFERER') AND b.DATE < '{0}'".format(delete_before.date())
+-    print query
++    #print query
+     items = BuildFailure.objects.raw(query)
      for item in items:
--        if item.REFERER == 'OTHER' or item.REFERER == 'NO_REFERER':
--            continue
--        difference = now - item.BUILD.DATE
--        if difference.days > 30:
--            item.delete()
-+        item.delete()
++        print "Deleting: ", item.id
+         item.delete()
  
  if __name__ == "__main__":
-     main()
+diff --git a/Post/views.py b/Post/views.py
+index 0ad58ba..7791201 100644
+--- a/Post/views.py
++++ b/Post/views.py
+@@ -45,7 +45,6 @@ def common_context(request):
+ 
+     return ret
+ 
 -
--
+ @csrf_exempt
+ def addData(request, return_json=False):
+     response = ''
+@@ -208,7 +207,7 @@ def search(request, mode=results_mode.LATEST, **kwargs):
+     if mode == results_mode.SPECIAL_SUBMITTER and hasattr(settings,"SPECIAL_SUBMITTER"):
+         #Special submitter mode see settings.py to enable
+         name = settings.SPECIAL_SUBMITTER['name']
+-        items = items.filter(BUILD__NAME__istartswith=name)
++        items = items.filter(BUILD__NAME__icontains=name)
+ 
+     elif mode == results_mode.SEARCH and "query" in request.GET:
+         query = request.GET["query"]
+diff --git a/project/urls.py b/project/urls.py
+index 1f51c7c..c1ac55f 100644
+--- a/project/urls.py
++++ b/project/urls.py
+@@ -24,7 +24,7 @@ urlpatterns = patterns('',
+     #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+ 
+     # Uncomment the next line to enable the admin:
+-    #url(r'^admin/', include(admin.site.urls)),
++    url(r'^admin/', include(admin.site.urls)),
+     #url(r'^accounts/', include('registration.backends.default.urls')),
+     url(r'^(?i)Errors/Latest/$', 'Post.views.search', { 'mode' : results_mode.LATEST }, name= "latest_errors"),
+     url(r'^(?i)Errors/Latest/feed$', LatestEntriesFeed(), name="errors_feed"),
 -- 
 2.11.0
 
