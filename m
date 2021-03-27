@@ -1,63 +1,89 @@
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
- by mx.groups.io with SMTP id smtpd.web12.362.1616880002456317052
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+ by mx.groups.io with SMTP id smtpd.web09.1494.1616886474107664372
  for <yocto@lists.yoctoproject.org>;
- Sat, 27 Mar 2021 14:20:02 -0700
+ Sat, 27 Mar 2021 16:07:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=Z8j6RvX3;
- spf=pass (domain: burtonini.com, ip: 209.85.221.53, mailfrom: ross@burtonini.com)
-Received: by mail-wr1-f53.google.com with SMTP id o16so9045122wrn.0
-        for <yocto@lists.yoctoproject.org>; Sat, 27 Mar 2021 14:20:02 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=ssXPUj3v;
+ spf=softfail (domain: sakoman.com, ip: 209.85.167.169, mailfrom: steve@sakoman.com)
+Received: by mail-oi1-f169.google.com with SMTP id k25so9543862oic.4
+        for <yocto@lists.yoctoproject.org>; Sat, 27 Mar 2021 16:07:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZmhAaamch4RkOaSlIGskRFqJL4yzHVsXVJH+ygis8RQ=;
-        b=Z8j6RvX38B7xyt5p60nPvBQ1m+1d/jMDhTL1ZjZ3fuwrS4UXYHoRQ73mMJGhOTrl7P
-         lohvxY18ECq+X1RRXeP4OHhPRpHHIri8BBPWGT0yXE0BZzgLrWyWjqMc2XjpZPV7WEAA
-         OaonvIZuqDBGU6RH1fuiIHvFvHbDIJ74eX93J3lyCpn8kvDti5EIjyoNcDftY3JjzSfz
-         Sv5snDSvon1i/vKl58kit7WhV9909OqBRPE3eip8kf+jCLChURXjojOuBKKZc2s9t1JM
-         M9nZi5WJpvrjoyKMqj0jAFEGxv8MOopAW3yrrMTTa61+NpqJqzES8akCPpXNWfQoLUyW
-         H4JQ==
+        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=h78naIBm7kaeiZUC1yrg0OWDMnb9ShvFNQawn7XTo+k=;
+        b=ssXPUj3vYe9i6EVltx/C+uGyIbzoprEj6vACZc7XCGXuxr+SqaZT2eNwPYvyrQ74H4
+         Xvj4QYezu2ie6irChDY4FWaWAeGJSXTIlKAyt/NQoO2E86CLAzxvd5is2NrxcHywEa5+
+         0pKt/ZH01cNL0bpVGbSU1uF5kvnDYVZcm2Pce00cw0Nz1uiuD52eGqMB5pza+pPY3ybS
+         rrksU6LoEiqMKLUI/hB+EavhkabqAHp/lVudHEhoQrHCVtuuyzPnzcsIcO+8QElovdaC
+         MtoD5GAQfd/6W1MTS+V1+dwEDaWz9Py0H4cEwEKml1uc79NRRM1A+lij4YOyE3pxAb+r
+         FqUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZmhAaamch4RkOaSlIGskRFqJL4yzHVsXVJH+ygis8RQ=;
-        b=aRRZ1JWXplggFLCyVk/2IyOm6JDb4p+5LiT1nrdcRgCP26VGjJHHGkpm8qHs3pEVo1
-         Mcmyb642q3S6kb06dwyQza4wLyjJJAUetK3qaDjtgUJvRkJuEHIR5kfXSAwJ6logizG3
-         pIyLBElfzq5/4iy0BsbInVKVTPu8ftRNNCWqNR1GpAVCKqxJ293nFemiaz0cMl0bF/LT
-         Pq7R6VI0b4Eq4uI54rlrR/LlKT6mRJvUOrdbBb+K+rissV1VtWls5+8Mufm0eKKwWT7Y
-         leUeyTfYBERJfr4wk70HOSy1eMGj9CS2QX2fnPuIGNpPYxIPK2Qwixm53ghvHlnZgN0R
-         Kx6Q==
-X-Gm-Message-State: AOAM532wNbnAq0nAXkGA72hn5mtyXNJokdd0dEVdPcLixnPnDeJ4urjj
-	NK5S8a9gQAx3Ios/WXwaWMlBoNdl+g4roTxnabkFbw==
-X-Google-Smtp-Source: ABdhPJxiNDCqfc6wDLhl7NzfEekE2AwIk7cqyYoW8Qd6f/Fbq64B3x+Ap/hAoHyGDEFZxYY0Ukp1b6MenovczXT+UqA=
-X-Received: by 2002:adf:dd4f:: with SMTP id u15mr21491379wrm.260.1616880000938;
- Sat, 27 Mar 2021 14:20:00 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=h78naIBm7kaeiZUC1yrg0OWDMnb9ShvFNQawn7XTo+k=;
+        b=pZb0VyIxEicmfh08BtdyAnVOA89lzlto05LW4wEk52SzRsSqhu9keOnkK+tcOOFhtD
+         K87JJgsVoUmsRUr5pm9Ek+NxpL9iFmClBKUMyLjbCCqsXtqqSlBoIoRyhHOPOY8t5HwV
+         lTiVmMFq/mWmYExVspl9Y636ABZG/i6APn1wxjkv7qzarkVEzSiJnIj7VedxaZ9WikEC
+         WyalFDGVKtxWvhMxXsYi/EuejQ+hFQPnFxDD2ic14kIx29t+5nEiBHJdcescEUGLhjt7
+         Ckp44UTBwzdfh3aGIEC90js7ZgLyMgMdFC1hikLk32YJhOUHoFPVmMMwm/QZSCT+hkNW
+         oeIQ==
+X-Gm-Message-State: AOAM531I2Mpp3FHdcmZ2DEVGYEEbhjptXCo2rIeMy8tvjR2cpP4kqigG
+	bSaHGbWX3K4yfIRxeRkPBXFeRni8Hmb6t0ea
+X-Google-Smtp-Source: ABdhPJwcUWGXLCyOZqrNJvT4pte4ZNt3FIhsXlHGhXqACVMSZHlnTHaj8S5EIC5SOn5Gm3coCCvzXw==
+X-Received: by 2002:aca:d608:: with SMTP id n8mr14042577oig.127.1616886472827;
+        Sat, 27 Mar 2021 16:07:52 -0700 (PDT)
+Return-Path: <steve@sakoman.com>
+Received: from hexa.router0800d9.com ([72.173.249.164])
+        by smtp.gmail.com with ESMTPSA id r16sm2504239oij.13.2021.03.27.16.07.49
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 Mar 2021 16:07:52 -0700 (PDT)
+From: "Steve Sakoman" <steve@sakoman.com>
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder-helper][dunfell 00/15] Pull request (cover letter only)
+Date: Sat, 27 Mar 2021 13:07:30 -1000
+Message-Id: <cover.1616886363.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <PR0P264MB0889619029EC3D585324E10BE1619@PR0P264MB0889.FRAP264.PROD.OUTLOOK.COM>
-In-Reply-To: <PR0P264MB0889619029EC3D585324E10BE1619@PR0P264MB0889.FRAP264.PROD.OUTLOOK.COM>
-From: "Ross Burton" <ross@burtonini.com>
-Date: Sat, 27 Mar 2021 21:19:50 +0000
-Message-ID: <CAAnfSTsD-5QfBYueQsUF6BLwxD6rXX9evxvn1NKX9q65b3mkig@mail.gmail.com>
-Subject: Re: [yocto] To burn 'bitbake package-index' into build process
-To: keydi <krzysztof.dudziak@thalesgroup.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=ross/index
-is close to what you want, but I didn't quite finish it off!
+The following changes since commit ef52b284e8cbe90c18fdab6a0d6fa8095a2c4ed9:
 
-Ross
+  send-qa-email: Save the QA email in case it doesn't reach the mailing lists. (2021-02-23 10:24:14 +0000)
 
-On Fri, 26 Mar 2021 at 16:45, keydi <krzysztof.dudziak@thalesgroup.com> wrote:
->
-> Should it be feasible to burn execution of 'bitbake package-index' into distribution/image build process
-> by conducting an adaption of meta-data ?
-> I mean high-level script is used to spawn Bitbake environment then start Bitbake image target.
-> I am unhappy to mess up high-level script to add that step to build process.
-> I am unhappy to make detail that level be visible in high-level script.
-> Rather I prefer to modify meta-data.
->
-> 
->
+are available in the Git repository at:
+
+  git://git.yoctoproject.org/yocto-autobuilder-helper contrib/sakoman
+  http://git.yoctoproject.org/cgit.cgi/yocto-autobuilder-helper/log/?h=contrib/sakoman
+
+Richard Purdie (14):
+  scripts/run-config: Don't execute steps that don't exist!
+  scripts/run-config: Ensure stepnum has a value when there are no steps
+  scripts/run-config: If target is present default to 1 step
+  run-config: Adapt to two pass execution
+  scripts/run-config: Improve logfile naming
+  scripts/run-config: Ensure logging to both logfile and stdout
+  config.json/run-config: Add human readable descriptions of steps
+  scripts/run-config: Remove redundant boilerplate json
+  scripts/shared-repo-unpack: Add flush call to update the output more
+    regularly before buildtools
+  config.json/run-config: Add support for shortnames and descriptions
+  config.json: Unbreak qa-extras locked sigs test
+  config.json: Add further descriptions
+  scripts/run-config: Disable output buffering
+  config.json: Split reproduciblity tests into their own target
+
+Ross Burton (1):
+  config: build and test SDKs when using package_deb
+
+ config.json                | 101 +++++++++++++---
+ scripts/run-config         | 235 ++++++++++++++++++++++++++-----------
+ scripts/shared-repo-unpack |   1 +
+ scripts/utils.py           |   5 +-
+ 4 files changed, 259 insertions(+), 83 deletions(-)
+
+-- 
+2.25.1
+
