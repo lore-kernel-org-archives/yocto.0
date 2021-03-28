@@ -1,89 +1,75 @@
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
- by mx.groups.io with SMTP id smtpd.web09.1494.1616886474107664372
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+ by mx.groups.io with SMTP id smtpd.web09.10014.1616951419747781617
  for <yocto@lists.yoctoproject.org>;
- Sat, 27 Mar 2021 16:07:54 -0700
+ Sun, 28 Mar 2021 10:10:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=ssXPUj3v;
- spf=softfail (domain: sakoman.com, ip: 209.85.167.169, mailfrom: steve@sakoman.com)
-Received: by mail-oi1-f169.google.com with SMTP id k25so9543862oic.4
-        for <yocto@lists.yoctoproject.org>; Sat, 27 Mar 2021 16:07:54 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=jk/uwWMW;
+ spf=pass (domain: gmail.com, ip: 209.85.215.175, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f175.google.com with SMTP id y32so6770791pga.11
+        for <yocto@lists.yoctoproject.org>; Sun, 28 Mar 2021 10:10:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
+        d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=h78naIBm7kaeiZUC1yrg0OWDMnb9ShvFNQawn7XTo+k=;
-        b=ssXPUj3vYe9i6EVltx/C+uGyIbzoprEj6vACZc7XCGXuxr+SqaZT2eNwPYvyrQ74H4
-         Xvj4QYezu2ie6irChDY4FWaWAeGJSXTIlKAyt/NQoO2E86CLAzxvd5is2NrxcHywEa5+
-         0pKt/ZH01cNL0bpVGbSU1uF5kvnDYVZcm2Pce00cw0Nz1uiuD52eGqMB5pza+pPY3ybS
-         rrksU6LoEiqMKLUI/hB+EavhkabqAHp/lVudHEhoQrHCVtuuyzPnzcsIcO+8QElovdaC
-         MtoD5GAQfd/6W1MTS+V1+dwEDaWz9Py0H4cEwEKml1uc79NRRM1A+lij4YOyE3pxAb+r
-         FqUA==
+        bh=Wy3iMKP4oCdOG3xGlSRkdRiIy0IpExR6r7h+XFpIWfs=;
+        b=jk/uwWMWXi3pd/BEhgVTtkq0Pm7/Pb6hR68JflD3mCz3wmBJSUTRMT+DmY2UjHbMrh
+         sQN777HdBQaDKe1Sl5UVTIR6/bEavuPawazfa0qCZOvzqC4oEqj2qRrtwTRJGYH5Hcgy
+         Urdp6DA+umlY/kXwNu0daQ5Jw6Ib6iF7BgY/q3W3DE4KgY+Wdu4O7bRuIpuU8wtLrh9B
+         +SC85pm061nZu5lY0B41OVVscXXYhm5761+tP4+U+4a5B30GXYkLQwJ86hAIsYfzkpyy
+         dQStFBiGBw/8uBrLqSGV8yU5IQxEGDuH0GQM+DWwXzfDixfEvSLo9/htm7TYwook6gQf
+         Q5eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=h78naIBm7kaeiZUC1yrg0OWDMnb9ShvFNQawn7XTo+k=;
-        b=pZb0VyIxEicmfh08BtdyAnVOA89lzlto05LW4wEk52SzRsSqhu9keOnkK+tcOOFhtD
-         K87JJgsVoUmsRUr5pm9Ek+NxpL9iFmClBKUMyLjbCCqsXtqqSlBoIoRyhHOPOY8t5HwV
-         lTiVmMFq/mWmYExVspl9Y636ABZG/i6APn1wxjkv7qzarkVEzSiJnIj7VedxaZ9WikEC
-         WyalFDGVKtxWvhMxXsYi/EuejQ+hFQPnFxDD2ic14kIx29t+5nEiBHJdcescEUGLhjt7
-         Ckp44UTBwzdfh3aGIEC90js7ZgLyMgMdFC1hikLk32YJhOUHoFPVmMMwm/QZSCT+hkNW
-         oeIQ==
-X-Gm-Message-State: AOAM531I2Mpp3FHdcmZ2DEVGYEEbhjptXCo2rIeMy8tvjR2cpP4kqigG
-	bSaHGbWX3K4yfIRxeRkPBXFeRni8Hmb6t0ea
-X-Google-Smtp-Source: ABdhPJwcUWGXLCyOZqrNJvT4pte4ZNt3FIhsXlHGhXqACVMSZHlnTHaj8S5EIC5SOn5Gm3coCCvzXw==
-X-Received: by 2002:aca:d608:: with SMTP id n8mr14042577oig.127.1616886472827;
-        Sat, 27 Mar 2021 16:07:52 -0700 (PDT)
-Return-Path: <steve@sakoman.com>
-Received: from hexa.router0800d9.com ([72.173.249.164])
-        by smtp.gmail.com with ESMTPSA id r16sm2504239oij.13.2021.03.27.16.07.49
+        bh=Wy3iMKP4oCdOG3xGlSRkdRiIy0IpExR6r7h+XFpIWfs=;
+        b=pmT9YC5q1NRvDYo/ATuhNo8oCF55937Drk5cNBD6JvGCBoU/VqrORbJzqnYU0UtzMY
+         ihAaY/YMbL7bKLtx+OSWT5RFAYYNr4dCFYprQ3ccqlKNft+688eKnRm4uWTaxZs3F4aE
+         /QJ10QkdchyAoEy8HSp1S+AYCQZCZatCnWhZrgRowx9ZIc3uF2RGf8xhvJaSdv2+yWpd
+         CqKpwwPR0OwYT/9BWQEoi8zQVA2WQOgnTFgNdih1UYzGcp/0JEj1IQFV3uLYK7u+agOU
+         sBl1zFlXH1z4V4l8kfKMJ2Et6Ys9gVi7DvltShTyLSgwq4uIRdK+uOh06avBMzpCzALd
+         XqLw==
+X-Gm-Message-State: AOAM532Y/mdK7Giy7GRO9QAcJKolQVg2xXd7Fc9lnaYB6mnB/QavXCT6
+	1cwbSHErTSCJlb6V6ndbNZgTtvSyYto=
+X-Google-Smtp-Source: ABdhPJz4sreW24hs2Ekhxc8KHO733YlSEUe65CITPYRfsIqVTQx0SwQUpEXuy0ZcBei7FpSon2YPMw==
+X-Received: by 2002:a62:1594:0:b029:1f1:5ede:5245 with SMTP id 142-20020a6215940000b02901f15ede5245mr22150807pfv.6.1616951418829;
+        Sun, 28 Mar 2021 10:10:18 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
+        by smtp.gmail.com with ESMTPSA id d17sm7787243pfn.60.2021.03.28.10.10.18
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Mar 2021 16:07:52 -0700 (PDT)
-From: "Steve Sakoman" <steve@sakoman.com>
+        Sun, 28 Mar 2021 10:10:18 -0700 (PDT)
+From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][dunfell 00/15] Pull request (cover letter only)
-Date: Sat, 27 Mar 2021 13:07:30 -1000
-Message-Id: <cover.1616886363.git.steve@sakoman.com>
+Subject: [meta-security][PATCH] packagegroup-core-security: drop clamav-cvd
+Date: Sun, 28 Mar 2021 17:10:16 +0000
+Message-Id: <20210328171016.2149532-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The following changes since commit ef52b284e8cbe90c18fdab6a0d6fa8095a2c4ed9:
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-core/packagegroup/packagegroup-core-security.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-  send-qa-email: Save the QA email in case it doesn't reach the mailing lists. (2021-02-23 10:24:14 +0000)
-
-are available in the Git repository at:
-
-  git://git.yoctoproject.org/yocto-autobuilder-helper contrib/sakoman
-  http://git.yoctoproject.org/cgit.cgi/yocto-autobuilder-helper/log/?h=contrib/sakoman
-
-Richard Purdie (14):
-  scripts/run-config: Don't execute steps that don't exist!
-  scripts/run-config: Ensure stepnum has a value when there are no steps
-  scripts/run-config: If target is present default to 1 step
-  run-config: Adapt to two pass execution
-  scripts/run-config: Improve logfile naming
-  scripts/run-config: Ensure logging to both logfile and stdout
-  config.json/run-config: Add human readable descriptions of steps
-  scripts/run-config: Remove redundant boilerplate json
-  scripts/shared-repo-unpack: Add flush call to update the output more
-    regularly before buildtools
-  config.json/run-config: Add support for shortnames and descriptions
-  config.json: Unbreak qa-extras locked sigs test
-  config.json: Add further descriptions
-  scripts/run-config: Disable output buffering
-  config.json: Split reproduciblity tests into their own target
-
-Ross Burton (1):
-  config: build and test SDKs when using package_deb
-
- config.json                | 101 +++++++++++++---
- scripts/run-config         | 235 ++++++++++++++++++++++++++-----------
- scripts/shared-repo-unpack |   1 +
- scripts/utils.py           |   5 +-
- 4 files changed, 259 insertions(+), 83 deletions(-)
-
+diff --git a/recipes-core/packagegroup/packagegroup-core-security.bb b/recipes-core/packagegroup/packagegroup-core-security.bb
+index 0a4452e..9ac0d2c 100644
+--- a/recipes-core/packagegroup/packagegroup-core-security.bb
++++ b/recipes-core/packagegroup/packagegroup-core-security.bb
+@@ -51,9 +51,9 @@ RDEPENDS_packagegroup-security-scanners = "\
+     isic \
+     nikto \
+     checksecurity \
+-    ${@bb.utils.contains_any("TUNE_FEATURES", "riscv32 riscv64", "", " clamav clamav-freshclam clamav-cvd",d)} \
++    ${@bb.utils.contains_any("TUNE_FEATURES", "riscv32 riscv64", "", " clamav clamav-freshclam",d)} \
+     "
+-RDEPENDS_packagegroup-security-scanners_remove_libc-musl = "clamav clamav-freshclam clamav-cvd"
++RDEPENDS_packagegroup-security-scanners_remove_libc-musl = "clamav clamav-freshclam"
+ 
+ SUMMARY_packagegroup-security-audit = "Security Audit tools "
+ RDEPENDS_packagegroup-security-audit = " \
 -- 
 2.25.1
 
