@@ -1,186 +1,108 @@
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
- by mx.groups.io with SMTP id smtpd.web11.1048.1617143539923268234
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+ by mx.groups.io with SMTP id smtpd.web08.1317.1617145217632209545
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Mar 2021 15:32:20 -0700
+ Tue, 30 Mar 2021 16:00:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=frcLy9Pm;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.208.177, mailfrom: mhalstead@linuxfoundation.org)
-Received: by mail-lj1-f177.google.com with SMTP id u9so21574096ljd.11
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Mar 2021 15:32:19 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=QeMNKk8m;
+ spf=pass (domain: gmail.com, ip: 209.85.210.175, mailfrom: raj.khem@gmail.com)
+Received: by mail-pf1-f175.google.com with SMTP id 11so13146553pfn.9
+        for <yocto@lists.yoctoproject.org>; Tue, 30 Mar 2021 16:00:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Mx24laxp3b7DlsaQ3D9n+uIiwYyKgYEfracVyw2hAKw=;
-        b=frcLy9PmHnInd09Hy+jHSyLErMFweH6xqR1QeFAPE6tmCEZLBCWCxXvF4SZToD8xy2
-         KD4GYjLF4Tnr1VZG3AZV7d3Ka8JXKddy8PI8UETR7e2bZ4unj/kEZodnh14sjOShDTXG
-         PLFusOElcd3ZeXoOLu8e8M4eNrUGoSRbx3zls=
+        d=gmail.com; s=20161025;
+        h=to:references:from:organization:subject:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/HSX600RHH6PO/DMlFDt0JKno24t/HzdioP7ZxbnjJE=;
+        b=QeMNKk8mkiC6QJHAsMlhSWdlaGUps7yFRvgnlgvUXyPiFSHEY0pDWQh56O2gIrGZIk
+         sXRjzO5JDwFpCOowVBO9ZV5Mz+pkaDxf0QDsPS49fQlO0Njt3ECuEpvONp4T1jX0b36k
+         +L1ljyU65hze7ZsJqZ0vkL5cJwQNSFxErYJK3code4rRtT3G+kI0cWOA1arW+fkO+4BF
+         d98TAJV+Lxr/4qCANH0PSgn1jJUsfhOVZQveXL/O80RGGzcMv5FC98CpnJ8b4HPMXYpB
+         xut+8/M1pXJ1a2sWVrHzXW+xeSJrhBFG/UyXmpwp9cK6VwUxv5oYfDsIrDVdaFo4Law4
+         HxsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Mx24laxp3b7DlsaQ3D9n+uIiwYyKgYEfracVyw2hAKw=;
-        b=Ni06dgQVNvNas5bhvDcbcs3fYcWLnGQK+fLtjsHQ/OlQCE58YKfzKObSUTzL97oFCG
-         7IAjgn7zMRttsNcB3BUrGuzHHj2nndr3QCWg9tpgAwsDqWbEmR7c6ogD9EkVpf0u70vw
-         Jd0pBso2ZSMCWq2qNfUZwd9M4Bd9zJUctrBIHFpa1AN1YFhoimZmjtggh+KhrNHFk3+Q
-         pM3hjIgki9vW//SxEtWQ+6yjo5pXjYZT/oEKmr70Jr012hGqWiWFCyjmuP/LkdF2uUnf
-         Uk4J2LrwjRsdGYFurR+egGRBidzL0BT/c5HerMj9ZsFRuOnpRqqJ/GX5arSJOQ8SZR3E
-         T75A==
-X-Gm-Message-State: AOAM533PqQ4qSYu/3rlBtMffGPNuvJiA+6fX3atwN95BWDS4MVUb8N8k
-	+IN7lHH0a6trmfzUNqcvawNwPj06MaDswZrAJB4fmg==
-X-Google-Smtp-Source: ABdhPJzChcoLivc4R6ZIDAXzt+HU4A3CxjVzMWUb4DR3BPyeu8/fmqVnSx2WqU1X337/K/EFcarvvUjVYoImHnd9jmo=
-X-Received: by 2002:a2e:9a03:: with SMTP id o3mr173132lji.501.1617143537743;
- Tue, 30 Mar 2021 15:32:17 -0700 (PDT)
+        h=x-gm-message-state:to:references:from:organization:subject
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=/HSX600RHH6PO/DMlFDt0JKno24t/HzdioP7ZxbnjJE=;
+        b=DUZrxiOAj06ezt2QdrI187CPijpgIyLxXJvs27XVEr6V9e5iXthdtWIm/EFCdYnDD7
+         ISAm6ANcedfqaH7LS8p0oHXTWx6vJL03uykkEJCtWQlqOHPyvuhwqU/wS46F6FdttgoD
+         nk07p4nszoRJTpsvhxl+WhZ9maY3cw6B5960Owxh2KgVO9bA35yCL3UPJa58Gvmes9/X
+         c/kpNxqPuw47PFP8fUlMmLIFH1EvzR8MKWXNnGKG4FHIIxvjSMI/6ybFkx/R/e/kyEXB
+         1n6kCmmMetATU3fy+152ylw8FQcpasTm4x+aco33ytI3Rl1DCvq2VVNRTd2Eoygzs9eQ
+         jGVg==
+X-Gm-Message-State: AOAM533GadywMQqzQsaBL+SDjEu0Rox/5nmKyroDwlIkO16hn2l+viHg
+	cQuLSlhtaEg5HM5gZcAMiNdsnAqY+1msqg==
+X-Google-Smtp-Source: ABdhPJwsOaPQmVQAt3bq3NjDnncPycRY38qepNTLmCeb97vsbNjbLNeIQaTZj2ByCb5JZRkF/Pv4Qg==
+X-Received: by 2002:a63:c4f:: with SMTP id 15mr369997pgm.379.1617145216402;
+        Tue, 30 Mar 2021 16:00:16 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:a0f0:d828:cc50:358c:26a2? ([2601:646:9200:a0f0:d828:cc50:358c:26a2])
+        by smtp.gmail.com with ESMTPSA id q19sm258915pgv.38.2021.03.30.16.00.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Mar 2021 16:00:16 -0700 (PDT)
+To: rohitbjadhav1@gmail.com, yocto@lists.yoctoproject.org
+References: <XSIe.1617090160270326998.hymp@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Subject: Re: [yocto] How can I use old Package version with latest Yocto version. #cups #zeus
+Message-ID: <48b05c22-d0ed-a9cb-e9b1-0b90d3f00a77@gmail.com>
+Date: Tue, 30 Mar 2021 16:00:15 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.9.0
 MIME-Version: 1.0
-References: <4Qxn.1617074544212136798.2egN@lists.yoctoproject.org>
- <CAEt6NwotWrmAwXcFsD2asp0LUG42pn1J_6WzW4vDAF+RvrA3ig@mail.gmail.com> <1671286A89D1134A.4802@lists.yoctoproject.org>
-In-Reply-To: <1671286A89D1134A.4802@lists.yoctoproject.org>
-From: "Michael Halstead" <mhalstead@linuxfoundation.org>
-Date: Tue, 30 Mar 2021 15:32:06 -0700
-Message-ID: <CADfgfoZLDXGvTzkoskkShT6sioAAFvV9W3DVXQxSbA1hhwGjgA@mail.gmail.com>
-Subject: Re: [yocto] eula-downloads.yoctoproject.org down???
-To: Michael Halstead <mhalstead@linuxfoundation.org>
-Cc: Josef Holzmayr <jester@theyoctojester.info>, anthony.l@axxin.com, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000001e5af005bec89230"
+In-Reply-To: <XSIe.1617090160270326998.hymp@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 
---0000000000001e5af005bec89230
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-After further discussion we've decided to take the site offline again as
-recommended <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14174>. T=
-his
-check was removed on Jan 29 2016 and any systems still performing the chec=
-k
-need to be updated.
 
-On Tue, Mar 30, 2021 at 8:29 AM Michael Halstead via lists.yoctoproject.or=
-g
-<mhalstead=3Dlinuxfoundation.org@lists.yoctoproject.org> wrote:
+On 3/30/21 12:42 AM, rohitbjadhav1@gmail.com wrote:
+> Hi
+>     I was using very old version of Yocto i.e. Krogoth. In that version 
+> I am able to use following packages with respective version:
+>      Package name   Version
+>     Cups                     2.2.4
+>     Cups-filter            1.14.0
+>     qpdf                      6.0.0
+>     Opencv                 2.4
+> It was working fine. But When I switch to any other version of Yocto 
+> like  Zeus [which I have tried on ].
+> Specifically for cups-filter pakage observed following errors while 
+> compilation and generation of rootfs
+> ERROR: cups-filters-1.14.0-r0 do_compile: oe_runmake failed
+> ERROR: cups-filters-1.14.0-r0 do_compile: Execution of 
+> '/home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/cups-filters/1.14.0-r0/temp/run.do_compile.17590' 
+> failed with exit code 1:
+> 
+> It is observed due to wrong c standard while compilation as some log 
+> says as follow:
+> warning: ISO C99 doesn't support unnamed structs/unions [-Wpedantic]
+> warning: ' LPT #' directive output may be truncated writing 6 bytes into 
+> a region of size between 1 and 1024 [-Wformat-truncation=]
+> warning: 'strncpy' specified bound 1024 equals destination size 
+> [-Wstringop-truncation]
+> filter/pdftoopvp/oprs/OPVPSplash.h:53:3: error: 'GBool' does not name a type
+> 
 
-> I have restored https://eula-downloads.yoctoproject.org/index.php since
-> these connectivity checks rely on it. The driver binaries are not availa=
-ble
-> any longer so I will alter the site to indicate that.
->
-> On Tue, Mar 30, 2021 at 1:02 AM Josef Holzmayr <jester@theyoctojester.in=
-fo>
-> wrote:
->
->> Am Di., 30. M=C3=A4rz 2021 um 05:22 Uhr schrieb anthony.l via
->> lists.yoctoproject.org <anthony.l=3Daxxin.com@lists.yoctoproject.org>:
->> >
->> > Getting a message today
->> > Fetcher failure for URL: '
->> https://eula-downloads.yoctoproject.org/index.php'. URL
->> https://eula-downloads.yoctoproject.org/index.php doesn't work. Please
->> ensure your network is configured correctly.
->> >
->> > Can't ping the url?  Anyone have an ETA on this being back up?  Just
->> trying to get some urgent builds done today.
->>
->> Please see
->> https://www.yoctoproject.org/pipermail/poky/2016-January/010357.html
->>
->> If you are experiencing problems, you can override the connectivity
->> check, and then please revisit your versions and/or third party
->> layers.
->>
->> Greetz
->>
->> >
->> > Many thanks.
->> > Anthony
->> >
->> >
->>
->>
->>
->>
->
-> --
-> Michael Halstead
-> Linux Foundation / Yocto Project
-> Systems Operations Engineer
->
->=20
->
->
+it seems you are locking above said packages to revisions you want, but 
+they also have additional dependencies, eg. the one which is causing 
+issue here is poppler, since poppler version in zeus is 0.80.0 and 
+krogoth has 0.41, however poppler switched to using standard types for 
+bool starting 0.71,
 
---=20
-Michael Halstead
-Linux Foundation / Yocto Project
-Systems Operations Engineer
+my suggestion is to use the versions that come with zeus release and 
+forward port your app to consume them or second option is to fork 
+versions then you must look at what would be the right set of packages 
+you need to lock to older versions in-order for you to keep things going 
+forward.
 
---0000000000001e5af005bec89230
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">After further discussion we&#39;ve decide=
-d to take the site offline again as <a href=3D"https://bugzilla.yoctoprojec=
-t.org/show_bug.cgi?id=3D14174">recommended</a>. This check was removed on J=
-an 29 2016 and any systems still performing the check need to be updated.<b=
-r></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
-l_attr">On Tue, Mar 30, 2021 at 8:29 AM Michael Halstead via <a href=3D"htt=
-p://lists.yoctoproject.org">lists.yoctoproject.org</a> &lt;mhalstead=3D<a h=
-ref=3D"mailto:linuxfoundation.org@lists.yoctoproject.org">linuxfoundation.o=
-rg@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
-4,204);padding-left:1ex"><div dir=3D"ltr">I have restored=C2=A0<a href=3D"h=
-ttps://eula-downloads.yoctoproject.org/index.php" target=3D"_blank">https:/=
-/eula-downloads.yoctoproject.org/index.php</a> since these connectivity che=
-cks rely on it. The driver binaries are not available any longer so I will =
-alter the site to indicate that.</div><br><div class=3D"gmail_quote"><div d=
-ir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 30, 2021 at 1:02 AM Josef Holzm=
-ayr &lt;<a href=3D"mailto:jester@theyoctojester.info" target=3D"_blank">jes=
-ter@theyoctojester.info</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex">Am Di., 30. M=C3=A4rz 2021 um 05:22 Uhr schrieb anth=
-ony.l via<br>
-<a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer" target=3D"_bl=
-ank">lists.yoctoproject.org</a> &lt;anthony.l=3D<a href=3D"mailto:axxin.com=
-@lists.yoctoproject.org" target=3D"_blank">axxin.com@lists.yoctoproject.org=
-</a>&gt;:<br>
-&gt;<br>
-&gt; Getting a message today<br>
-&gt; Fetcher failure for URL: &#39;<a href=3D"https://eula-downloads.yocto=
-project.org/index.php" rel=3D"noreferrer" target=3D"_blank">https://eula-do=
-wnloads.yoctoproject.org/index.php</a>&#39;. URL <a href=3D"https://eula-do=
-wnloads.yoctoproject.org/index.php" rel=3D"noreferrer" target=3D"_blank">ht=
-tps://eula-downloads.yoctoproject.org/index.php</a> doesn&#39;t work. Pleas=
-e ensure your network is configured correctly.<br>
-&gt;<br>
-&gt; Can&#39;t ping the url?=C2=A0 Anyone have an ETA on this being back u=
-p?=C2=A0 Just trying to get some urgent builds done today.<br>
-<br>
-Please see <a href=3D"https://www.yoctoproject.org/pipermail/poky/2016-Jan=
-uary/010357.html" rel=3D"noreferrer" target=3D"_blank">https://www.yoctopro=
-ject.org/pipermail/poky/2016-January/010357.html</a><br>
-<br>
-If you are experiencing problems, you can override the connectivity<br>
-check, and then please revisit your versions and/or third party<br>
-layers.<br>
-<br>
-Greetz<br>
-<br>
-&gt;<br>
-&gt; Many thanks.<br>
-&gt; Anthony<br>
-&gt; <br>
-&gt;<br>
-<br>
-<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
-"><div dir=3D"ltr">Michael Halstead<div>Linux Foundation / Yocto Project</d=
-iv><div>Systems Operations Engineer</div></div></div>
-<br>
-<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
-" class=3D"gmail_signature"><div dir=3D"ltr">Michael Halstead<div>Linux Fou=
-ndation / Yocto Project</div><div>Systems Operations Engineer</div></div></=
-div>
-
---0000000000001e5af005bec89230--
+> Just Need some guideline to resolve this issue.
+> Please also suggest is there any way to use old pakage of Yocto version 
+> to latest Yocto version.
+> Thanks and Regards
+> Rohit
+> 
+> 
+> 
+> 
