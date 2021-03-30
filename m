@@ -1,143 +1,66 @@
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
- by mx.groups.io with SMTP id smtpd.web10.2835.1617102220032808401
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.3887.1617108258312241872
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Mar 2021 04:03:40 -0700
+ Tue, 30 Mar 2021 05:44:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ohET6/oN;
- spf=pass (domain: gmail.com, ip: 209.85.166.49, mailfrom: lefevre.da@gmail.com)
-Received: by mail-io1-f49.google.com with SMTP id b10so15961634iot.4
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Mar 2021 04:03:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5oyCnnB4HIEbJpVu1t6ZY1wsnNr9v2z7Qi4sBAl5Ff0=;
-        b=ohET6/oNweH3Sp0P385O2mG3txNAklN2RSVH0jCdPWMROhYNYMMZDSKXmieqStz17Z
-         24hrLQ5+s8mFOrX39fKK+NGCCfbPDAoVMg52910P5jsNcHLVF3dRb9cmBpjjDQhmy2yH
-         bjYyYQ/ORaXYD4Sw7iSmxF8H0ZIlH0+i+ZXTBn/ytoCWEWBo2mKQD0QwbVgX7DaPWz33
-         HZobQMJFBVaNwLSxJAXzWiMZ5refwPkm14qcpmELklEJZDMA/ZI1MtkgbuRQZwE283oo
-         7YXrPp946ZYjHOJHx7xLGs782M51I8QHSGWOeLnYeXO7IuxkPIr3tNRJw6U7FmwV/yFF
-         2PKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5oyCnnB4HIEbJpVu1t6ZY1wsnNr9v2z7Qi4sBAl5Ff0=;
-        b=mah8B/TpsBnmp8/LeckREGIDePvVBCKpkvVo0EvMtIw12tMPLiT7f7Maq2Sj9p759Y
-         KrIYcA9yEJxAxVpgOEwtZ2VkjQ9QT1ELXI93pu9G/uGUp03I4ijjY4nOztS/sv5ND4mM
-         /bo37+2+2RIfuoS9owIgFcMen8V6tbCX0JN/S8m32vwoCUNYV7m8wtTBa0WNlpWBkjeD
-         diDIW9wiBjJxNFIZsN5GpA6wb4ETgDeFZIzdsInlIx2kH6r1Bp4naL5vBCueJJ0h03lk
-         Y5VWM9AW31m/RaTL+RUYK1iOMvEuAYma7qvIs0lvhJYTh8+U0olUGpRdn2P0GTEed4Oj
-         lQVg==
-X-Gm-Message-State: AOAM531mjhJjwnd2EIhPpYSWOD56rTTgTYMkT1CvMWkEFKpjv2J5yW+r
-	IT8+JpsygnfAwWlpTVcxUM+vgj8Mmuc7WCyOSbu0IwY=
-X-Google-Smtp-Source: ABdhPJzFLBltJMhbthHp5y//SjcPBOoyTjfkFxSxxp1Uoue1H1yf1+E4YghqO0pf1cZyq54FzPxKBZdJ1C17Bj2eskk=
-X-Received: by 2002:a05:6638:3809:: with SMTP id i9mr28633174jav.24.1617102219345;
- Tue, 30 Mar 2021 04:03:39 -0700 (PDT)
+ dkim=pass header.i=@aruba.it header.s=a1 header.b=EJq3cfro;
+ spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 198.145.29.25, mailfrom: mauro@faresoftware.it)
+Received: from smtpcmd0872.aruba.it (smtpcmd0872.aruba.it [62.149.156.72])
+	by mail.yoctoproject.org (Postfix) with ESMTP id 23CB838C06D7
+	for <yocto@yoctoproject.org>; Tue, 30 Mar 2021 12:44:16 +0000 (UTC)
+Received: from z600 ([93.38.119.136])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id RDjDlUpepHTbyRDjDlE8va; Tue, 30 Mar 2021 14:44:15 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1617108255; bh=M8h/zLBdCR5NqOWjyyYuOhcgll3qjySWzFxWsOfLpd8=;
+	h=Date:From:To:Subject:MIME-Version:Content-Type;
+	b=EJq3cfro7NiZzZrPiLxqwWneaHavUFgSF/I9rdI3IEvV/3WmDanI3UfVl7uaAfMZX
+	 o8LuTtwX4lC6PXDj/fQRgMzKN4sILBYF/bxfdJXRKQJhN5djD6HDzobQ3SS4EZ6kuX
+	 jpJSj96Bd0mTZu7sGYhu+ri8kMF06gsAHCflAEehIB+2GEq3a8xv/0vckCvUgyDofk
+	 zHyRxo1kdZZG4hpA2c1l5Uq4KeMCHmRjQZXtTKOzBiP0GBeRuM1zJBm10BI810E82c
+	 fVJD1RPTRZZsgjQPpGUdCjpRgP0qf6mNPsCu/gJVNPekSxyiORuT3Mrdp7eRZGSI/b
+	 Esbf0mPcnd3kA==
+Date: Tue, 30 Mar 2021 14:44:14 +0200
+From: "Mauro Ziliani" <mauro@faresoftware.it>
+To: "=?utf-8?Q?yocto=40yoctoproject.org?=" <yocto@yoctoproject.org>
+Message-ID: <BEC32350-FB95-4EA8-8F01-754104D706D9@getmailspring.com>
+Subject: Get PR value of another recipe
+X-Mailer: Mailspring
 MIME-Version: 1.0
-References: <CA+FhBv8odAVKKe5YvVGjzUqQP_69yaQpfh8zuLQ3MB2ZnF+tBw@mail.gmail.com>
- <20210329131407.wwa55qzdj77tckd7@qschulz>
-In-Reply-To: <20210329131407.wwa55qzdj77tckd7@qschulz>
-From: "Damien LEFEVRE" <lefevre.da@gmail.com>
-Date: Tue, 30 Mar 2021 14:03:28 +0300
-Message-ID: <CA+FhBv-eMdHF3oRChrZGhR+j+DXVhgh3FKNJh+WNNP7njC7ErA@mail.gmail.com>
-Subject: Re: [yocto] Naming images
-To: Quentin Schulz <quentin.schulz@streamunlimited.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000059809705bebef39a"
+X-CMAE-Envelope: MS4wfDVC7xIILxf9ZiRhcCwDqLNLzP5PUWUoMB9sbSD6fHlN8mvJuqgyB9a8zf/dI3IseWo4Nc+VR/dHlvlkTjyBoGhzszw/U/O//rWW+cLnEkqH79I1HOEr
+ 1VVnxMtnh0x6v/uCwqATuS9/hPux483tbJUzKIswCMxoNSJkh8kYlpdH
+Content-Type: multipart/alternative; boundary="60631d1e_ec734d4_48b5"
 
---00000000000059809705bebef39a
-Content-Type: text/plain; charset="UTF-8"
+--60631d1e_ec734d4_48b5
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Thanks Quentin! That's just what I needed.
+Hi all.
 
-Do you know if there's a variable to control the content of /etc/version?
+From an image recipe a-image_1.0.bb with IMAGE_INSTALL_append = " a " defined, can I get the PR value of recipe a?
+a_1.0.bb:
+PR="r5"
 
-Cheers,
--Damien
+a-image_1.0.bb:
+A_PR_VALUE := " <get PR of >"
 
-On Mon, Mar 29, 2021 at 4:14 PM Quentin Schulz <
-quentin.schulz@streamunlimited.com> wrote:
+MZ
+Sent from Mailspring (https://getmailspring.com/), the best free email app for work
 
-> Hi Damien,
->
-> On Mon, Mar 29, 2021 at 03:33:09PM +0300, Damien LEFEVRE wrote:
-> > Hi,
-> >
-> > In my build system the generated images are in this format:
-> >
-> > imagename-machine-timestamp.img
-> >
-> > For release builds, I'd like to replace the time stamp with the image
-> > version. I could rename the image after the build but is there a better
-> way?
-> >
->
-> IMAGE_NAME variable is the one specifying the name which should be used
-> for the final image. c.f.
-> https://docs.yoctoproject.org/ref-manual/variables.html#term-IMAGE_NAME
->
-> By default, its value is
-> "${IMAGE_BASENAME}-${MACHINE}${IMAGE_VERSION_SUFFIX}"
->
-> IMAGE_VERSION_SUFFIX is by default set to "-${DATETIME}" as documented
-> here:
-> https://docs.yoctoproject.org/ref-manual/variables.html#term-IMAGE_VERSION_SUFFIX
->
-> Therefore to put the image version, you just need to change
-> IMAGE_VERSION_SUFFIX to what you want it to contain.
->
-> Cheers,
-> Quentin
->
-
---00000000000059809705bebef39a
-Content-Type: text/html; charset="UTF-8"
+--60631d1e_ec734d4_48b5
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-<div dir=3D"ltr">Thanks Quentin! That&#39;s just what I needed.<div><br></d=
-iv><div>Do you know if there&#39;s a variable to control the content of /et=
-c/version?</div><div><br></div><div>Cheers,</div><div>-Damien</div></div><b=
-r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, =
-Mar 29, 2021 at 4:14 PM Quentin Schulz &lt;<a href=3D"mailto:quentin.schulz=
-@streamunlimited.com">quentin.schulz@streamunlimited.com</a>&gt; wrote:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Damien,<br>
-<br>
-On Mon, Mar 29, 2021 at 03:33:09PM +0300, Damien LEFEVRE wrote:<br>
-&gt; Hi,<br>
-&gt; <br>
-&gt; In my build system the generated images are in this format:<br>
-&gt; <br>
-&gt; imagename-machine-timestamp.img<br>
-&gt; <br>
-&gt; For release builds, I&#39;d like to replace the time stamp with the im=
-age<br>
-&gt; version. I could rename the image after the build but is there a bette=
-r way?<br>
-&gt; <br>
-<br>
-IMAGE_NAME variable is the one specifying the name which should be used<br>
-for the final image. c.f. <a href=3D"https://docs.yoctoproject.org/ref-manu=
-al/variables.html#term-IMAGE_NAME" rel=3D"noreferrer" target=3D"_blank">htt=
-ps://docs.yoctoproject.org/ref-manual/variables.html#term-IMAGE_NAME</a><br=
->
-<br>
-By default, its value is &quot;${IMAGE_BASENAME}-${MACHINE}${IMAGE_VERSION_=
-SUFFIX}&quot;<br>
-<br>
-IMAGE_VERSION_SUFFIX is by default set to &quot;-${DATETIME}&quot; as docum=
-ented<br>
-here: <a href=3D"https://docs.yoctoproject.org/ref-manual/variables.html#te=
-rm-IMAGE_VERSION_SUFFIX" rel=3D"noreferrer" target=3D"_blank">https://docs.=
-yoctoproject.org/ref-manual/variables.html#term-IMAGE_VERSION_SUFFIX</a><br=
->
-<br>
-Therefore to put the image version, you just need to change<br>
-IMAGE_VERSION_SUFFIX to what you want it to contain.<br>
-<br>
-Cheers,<br>
-Quentin<br>
-</blockquote></div>
+<div>Hi all.</div><br><div>=46rom an image recipe a-image=5F1.0.bb with I=
+MAGE=5FINSTALL=5Fappend =3D =22 a =22 defined, can I get the PR value of&=
+nbsp; recipe a=3F</div><br><div>a=5F1.0.bb:&nbsp;&nbsp; </div><div>&nbsp;=
+&nbsp;&nbsp;&nbsp; PR=3D=22r5=22</div><br><div>a-image=5F1.0.bb:</div><di=
+v>A=5FPR=5FVALUE :<span data-emoji-typing=3D=22true=22>=3D</span>&nbsp;=22=
+ &lt;get PR of &gt;=22</div><br><div>MZ</div><br><div><signature id=3D=22=
+initial=22><div><div>Sent from <a href=3D=22https://getmailspring.com/=22=
+>Mailspring</a>, the best free email app for work</div></div></signature>=
+</div>
 
---00000000000059809705bebef39a--
+--60631d1e_ec734d4_48b5--
