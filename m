@@ -1,89 +1,186 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.47.1617139205090155132
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+ by mx.groups.io with SMTP id smtpd.web11.1048.1617143539923268234
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Mar 2021 14:20:05 -0700
+ Tue, 30 Mar 2021 15:32:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Pm+iQVL0;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: raj.khem@gmail.com)
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id E515238C057C
-	for <yocto@yoctoproject.org>; Tue, 30 Mar 2021 21:20:01 +0000 (UTC)
-Received: by mail-pg1-f177.google.com with SMTP id v186so12629081pgv.7
-        for <yocto@yoctoproject.org>; Tue, 30 Mar 2021 14:20:01 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=frcLy9Pm;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.208.177, mailfrom: mhalstead@linuxfoundation.org)
+Received: by mail-lj1-f177.google.com with SMTP id u9so21574096ljd.11
+        for <yocto@lists.yoctoproject.org>; Tue, 30 Mar 2021 15:32:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=MBHL7kRymEKPTMaE5PA2HQrN45786vJ2NRQwnNz25UA=;
-        b=Pm+iQVL0E77gWu3oGBKjtowlT0ny/rD0wXElexprhdUBAXLo+VAcwDck5Hh5jv61aI
-         aZU7+I+8KEIcYuWHFN9mH0qHasCvi3vdez7GfbHmTatBK7VzpG8PjZs4HB301vAG2fGG
-         wfENnpOgMQsTpjeBH9Y8/xOjhDYdNG6SCedQZVGoV4HFffIdFDSsl66WPHUy7XlLOT9g
-         Ca6CnV/5dzvyzE4xVDHKkVtsvzEHdukf5UE0IFm+JXTkGDnT38UYKo6zLXOSdqqybIDC
-         OXm51Mxf46QQabbaLNafJPvUABYEffX2wnn3MTB6A+15piIrh94+U+KEudU0T1UvLane
-         hoYQ==
+        d=linuxfoundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Mx24laxp3b7DlsaQ3D9n+uIiwYyKgYEfracVyw2hAKw=;
+        b=frcLy9PmHnInd09Hy+jHSyLErMFweH6xqR1QeFAPE6tmCEZLBCWCxXvF4SZToD8xy2
+         KD4GYjLF4Tnr1VZG3AZV7d3Ka8JXKddy8PI8UETR7e2bZ4unj/kEZodnh14sjOShDTXG
+         PLFusOElcd3ZeXoOLu8e8M4eNrUGoSRbx3zls=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=MBHL7kRymEKPTMaE5PA2HQrN45786vJ2NRQwnNz25UA=;
-        b=dJNsfXgcWlv66MthCgLVRk6gpegsRN9gekXjoToFO32Dehtmzjo3mGtukkiZHJFPDN
-         GDphrmaEqEjM0zPauzwjEuoFwA8I4H+5gUnqNNF54LqFyeoRe4W1njrkwsidsEJwPd6s
-         OIn1C/5OrLjb7Ppo/JOhtxQoKenAuKEpDz0xWnr5Pz6ORP81/ertwO7ZvULPztPP4OX9
-         kLg0itMOJUkDoMqxBGNF2NsgsKdLqtkEHAoNmJCSUo5FSXXnuLnl9Y0EJkC7TGCRuaIS
-         sNATbs6IcLUP8wP96K0F9kaZs8DZHG2CCyFkuq30iO1IPUW850K6rR8CyXvNZv85tfKI
-         5o/g==
-X-Gm-Message-State: AOAM531H4xXaK+QBB1CgylLr3KJsiAElFn0M4Jvhbqhl5MyNJMVaOgnC
-	u2PW4pCWF24I/C+RyHa/KpdLCm+DDEKLDg==
-X-Google-Smtp-Source: ABdhPJxmfW/gLgTVhKrT+4BWLqO6/17qmNfkb3CM34TuZ8CQrQSApVuk9kO4PiVh/xquom9eyaxLIQ==
-X-Received: by 2002:aa7:86cf:0:b029:20a:f9d5:da77 with SMTP id h15-20020aa786cf0000b029020af9d5da77mr25673pfo.16.1617139200713;
-        Tue, 30 Mar 2021 14:20:00 -0700 (PDT)
-Received: from ?IPv6:2601:646:9200:a0f0:d828:cc50:358c:26a2? ([2601:646:9200:a0f0:d828:cc50:358c:26a2])
-        by smtp.gmail.com with ESMTPSA id i13sm148158pgi.3.2021.03.30.14.20.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Mar 2021 14:20:00 -0700 (PDT)
-Subject: Re: [yocto] No significant diff b/w qemux86 and qemuarm poky build of core-image-minimal
-To: Ross Burton <ross@burtonini.com>
-Cc: Randy MacLeod <randy.macleod@windriver.com>,
- Yocto discussion list <yocto@yoctoproject.org>
-References: <4eef7ff7-0bcc-3bb7-6b08-a194de2b2491@windriver.com>
- <111337d5-90b2-2bcf-8d7b-b68ed39e265b@gmail.com>
- <CAAnfSTs54V+AvonHAssbvwzO6fM3zxJ3dgFOU7BN38Sp2xj=gQ@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <4e4b5508-dc30-5f6a-a664-9462eca41c04@gmail.com>
-Date: Tue, 30 Mar 2021 14:19:59 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.9.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Mx24laxp3b7DlsaQ3D9n+uIiwYyKgYEfracVyw2hAKw=;
+        b=Ni06dgQVNvNas5bhvDcbcs3fYcWLnGQK+fLtjsHQ/OlQCE58YKfzKObSUTzL97oFCG
+         7IAjgn7zMRttsNcB3BUrGuzHHj2nndr3QCWg9tpgAwsDqWbEmR7c6ogD9EkVpf0u70vw
+         Jd0pBso2ZSMCWq2qNfUZwd9M4Bd9zJUctrBIHFpa1AN1YFhoimZmjtggh+KhrNHFk3+Q
+         pM3hjIgki9vW//SxEtWQ+6yjo5pXjYZT/oEKmr70Jr012hGqWiWFCyjmuP/LkdF2uUnf
+         Uk4J2LrwjRsdGYFurR+egGRBidzL0BT/c5HerMj9ZsFRuOnpRqqJ/GX5arSJOQ8SZR3E
+         T75A==
+X-Gm-Message-State: AOAM533PqQ4qSYu/3rlBtMffGPNuvJiA+6fX3atwN95BWDS4MVUb8N8k
+	+IN7lHH0a6trmfzUNqcvawNwPj06MaDswZrAJB4fmg==
+X-Google-Smtp-Source: ABdhPJzChcoLivc4R6ZIDAXzt+HU4A3CxjVzMWUb4DR3BPyeu8/fmqVnSx2WqU1X337/K/EFcarvvUjVYoImHnd9jmo=
+X-Received: by 2002:a2e:9a03:: with SMTP id o3mr173132lji.501.1617143537743;
+ Tue, 30 Mar 2021 15:32:17 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAAnfSTs54V+AvonHAssbvwzO6fM3zxJ3dgFOU7BN38Sp2xj=gQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <4Qxn.1617074544212136798.2egN@lists.yoctoproject.org>
+ <CAEt6NwotWrmAwXcFsD2asp0LUG42pn1J_6WzW4vDAF+RvrA3ig@mail.gmail.com> <1671286A89D1134A.4802@lists.yoctoproject.org>
+In-Reply-To: <1671286A89D1134A.4802@lists.yoctoproject.org>
+From: "Michael Halstead" <mhalstead@linuxfoundation.org>
+Date: Tue, 30 Mar 2021 15:32:06 -0700
+Message-ID: <CADfgfoZLDXGvTzkoskkShT6sioAAFvV9W3DVXQxSbA1hhwGjgA@mail.gmail.com>
+Subject: Re: [yocto] eula-downloads.yoctoproject.org down???
+To: Michael Halstead <mhalstead@linuxfoundation.org>
+Cc: Josef Holzmayr <jester@theyoctojester.info>, anthony.l@axxin.com, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000001e5af005bec89230"
 
+--0000000000001e5af005bec89230
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+After further discussion we've decided to take the site offline again as
+recommended <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14174>. T=
+his
+check was removed on Jan 29 2016 and any systems still performing the chec=
+k
+need to be updated.
 
-On 3/30/21 1:48 PM, Ross Burton wrote:
-> On Tue, 30 Mar 2021 at 20:41, Khem Raj <raj.khem@gmail.com> wrote:
->> Thanks for this infor Randy, really appreciated, I think I will also
->> look at the h/w angle.
-> 
-> Khem: if you can reproduce this on demand with a clean build (ie
-> oe-init-build-env with a clean build directory, just set DL_DIR) then
-> enabling buildstats would give some interesting metrics.
-> buildstats-diff can compare two build runs and tell you what the
-> differences are.
-> 
+On Tue, Mar 30, 2021 at 8:29 AM Michael Halstead via lists.yoctoproject.or=
+g
+<mhalstead=3Dlinuxfoundation.org@lists.yoctoproject.org> wrote:
 
-yeah this is doing world build of not only core but several other layers 
-included a usual build takes around 10 hrs for this machine config, I am 
-planning to
+> I have restored https://eula-downloads.yoctoproject.org/index.php since
+> these connectivity checks rely on it. The driver binaries are not availa=
+ble
+> any longer so I will alter the site to indicate that.
+>
+> On Tue, Mar 30, 2021 at 1:02 AM Josef Holzmayr <jester@theyoctojester.in=
+fo>
+> wrote:
+>
+>> Am Di., 30. M=C3=A4rz 2021 um 05:22 Uhr schrieb anthony.l via
+>> lists.yoctoproject.org <anthony.l=3Daxxin.com@lists.yoctoproject.org>:
+>> >
+>> > Getting a message today
+>> > Fetcher failure for URL: '
+>> https://eula-downloads.yoctoproject.org/index.php'. URL
+>> https://eula-downloads.yoctoproject.org/index.php doesn't work. Please
+>> ensure your network is configured correctly.
+>> >
+>> > Can't ping the url?  Anyone have an ETA on this being back up?  Just
+>> trying to get some urgent builds done today.
+>>
+>> Please see
+>> https://www.yoctoproject.org/pipermail/poky/2016-January/010357.html
+>>
+>> If you are experiencing problems, you can override the connectivity
+>> check, and then please revisit your versions and/or third party
+>> layers.
+>>
+>> Greetz
+>>
+>> >
+>> > Many thanks.
+>> > Anthony
+>> >
+>> >
+>>
+>>
+>>
+>>
+>
+> --
+> Michael Halstead
+> Linux Foundation / Yocto Project
+> Systems Operations Engineer
+>
+>=20
+>
+>
 
-1. Collect build stats
-2. buiid another qemu machine on this VM
+--=20
+Michael Halstead
+Linux Foundation / Yocto Project
+Systems Operations Engineer
 
-it could very well be rotting hardware underneath the VM.
+--0000000000001e5af005bec89230
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> Ross
-> 
+<div dir=3D"ltr"><div dir=3D"ltr">After further discussion we&#39;ve decide=
+d to take the site offline again as <a href=3D"https://bugzilla.yoctoprojec=
+t.org/show_bug.cgi?id=3D14174">recommended</a>. This check was removed on J=
+an 29 2016 and any systems still performing the check need to be updated.<b=
+r></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Tue, Mar 30, 2021 at 8:29 AM Michael Halstead via <a href=3D"htt=
+p://lists.yoctoproject.org">lists.yoctoproject.org</a> &lt;mhalstead=3D<a h=
+ref=3D"mailto:linuxfoundation.org@lists.yoctoproject.org">linuxfoundation.o=
+rg@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div dir=3D"ltr">I have restored=C2=A0<a href=3D"h=
+ttps://eula-downloads.yoctoproject.org/index.php" target=3D"_blank">https:/=
+/eula-downloads.yoctoproject.org/index.php</a> since these connectivity che=
+cks rely on it. The driver binaries are not available any longer so I will =
+alter the site to indicate that.</div><br><div class=3D"gmail_quote"><div d=
+ir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 30, 2021 at 1:02 AM Josef Holzm=
+ayr &lt;<a href=3D"mailto:jester@theyoctojester.info" target=3D"_blank">jes=
+ter@theyoctojester.info</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex">Am Di., 30. M=C3=A4rz 2021 um 05:22 Uhr schrieb anth=
+ony.l via<br>
+<a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer" target=3D"_bl=
+ank">lists.yoctoproject.org</a> &lt;anthony.l=3D<a href=3D"mailto:axxin.com=
+@lists.yoctoproject.org" target=3D"_blank">axxin.com@lists.yoctoproject.org=
+</a>&gt;:<br>
+&gt;<br>
+&gt; Getting a message today<br>
+&gt; Fetcher failure for URL: &#39;<a href=3D"https://eula-downloads.yocto=
+project.org/index.php" rel=3D"noreferrer" target=3D"_blank">https://eula-do=
+wnloads.yoctoproject.org/index.php</a>&#39;. URL <a href=3D"https://eula-do=
+wnloads.yoctoproject.org/index.php" rel=3D"noreferrer" target=3D"_blank">ht=
+tps://eula-downloads.yoctoproject.org/index.php</a> doesn&#39;t work. Pleas=
+e ensure your network is configured correctly.<br>
+&gt;<br>
+&gt; Can&#39;t ping the url?=C2=A0 Anyone have an ETA on this being back u=
+p?=C2=A0 Just trying to get some urgent builds done today.<br>
+<br>
+Please see <a href=3D"https://www.yoctoproject.org/pipermail/poky/2016-Jan=
+uary/010357.html" rel=3D"noreferrer" target=3D"_blank">https://www.yoctopro=
+ject.org/pipermail/poky/2016-January/010357.html</a><br>
+<br>
+If you are experiencing problems, you can override the connectivity<br>
+check, and then please revisit your versions and/or third party<br>
+layers.<br>
+<br>
+Greetz<br>
+<br>
+&gt;<br>
+&gt; Many thanks.<br>
+&gt; Anthony<br>
+&gt; <br>
+&gt;<br>
+<br>
+<br>
+<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
+"><div dir=3D"ltr">Michael Halstead<div>Linux Foundation / Yocto Project</d=
+iv><div>Systems Operations Engineer</div></div></div>
+<br>
+<br>
+<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
+" class=3D"gmail_signature"><div dir=3D"ltr">Michael Halstead<div>Linux Fou=
+ndation / Yocto Project</div><div>Systems Operations Engineer</div></div></=
+div>
+
+--0000000000001e5af005bec89230--
