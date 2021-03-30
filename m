@@ -1,147 +1,75 @@
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
- by mx.groups.io with SMTP id smtpd.web11.52.1617118178660313383
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+ by mx.groups.io with SMTP id smtpd.web09.887.1617121104566017643
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Mar 2021 08:29:39 -0700
+ Tue, 30 Mar 2021 09:18:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=SyCYt1aM;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.167.46, mailfrom: mhalstead@linuxfoundation.org)
-Received: by mail-lf1-f46.google.com with SMTP id d12so3335622lfv.11
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Mar 2021 08:29:38 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=WDUPRulx;
+ spf=pass (domain: gmail.com, ip: 209.85.160.171, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f171.google.com with SMTP id g24so12305198qts.6
+        for <yocto@lists.yoctoproject.org>; Tue, 30 Mar 2021 09:18:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=z2g8uchHM8tN8CGqQXJq9WwJ15OXhyl+zG2gKkuc17s=;
-        b=SyCYt1aMPSxFhE6LAFv1qOZTZ/4PVi+RnWWa+/Wa6DOQsotF48RK0eldv2buO5HWOE
-         tP1q3eMchg/Gih4Iq7HRkzhFL0fpnvIqs0Qf5vKZGhkaAVa3x9UxaF4nLB5UACPSKJVg
-         PbrV7ORp8GHiBS3Vf3DvHG3lAms3r3mjKdFv0=
+        d=gmail.com; s=20161025;
+        h=date:from:to:subject:message-id:mime-version:content-disposition
+         :user-agent;
+        bh=hYnOGHTVAkTiA5SZ7CJ29lyEmltF8SgGXiO9poOdGP0=;
+        b=WDUPRulxbryHg26bloBOdkjZYMtGMcFqr/2XMQSNaYCVy+pj5OmhQmGMWmDV4Zj+Kk
+         cOpLvkTB+U4/SOwOlgB1PqfomPM6CA18prH3PlV7QuGSiuaSWASnDqqBJu8R71qPGWNX
+         +GbMq0EarpWvAXoy6PQJo2sr56/GE9G+qfpB2t3dMy60832DvzvnmrF7P+TkjENVJoaV
+         FxBk15gnOI6t4TdGKmEkGolYSmNwSpQyu0B5/9tepYt+oS02EazoSlY0n7zeQXJvy/lI
+         buwaXOFRtazJQlL3z8WPcFJvn9JQyHDlvLlVQZqI1EkJlIn8hqdsQ9noBvm0nvdOaZo6
+         B13A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=z2g8uchHM8tN8CGqQXJq9WwJ15OXhyl+zG2gKkuc17s=;
-        b=Nebz8an9p6uZhJTH2mdl6++zs8CuWT0NW/24ZB90jLXeUCUdoXAikQc3HWY7AxKhnC
-         J4NrqK2Qcb8S7G9tLEBCgVi/HzCm6NI3y0qrSlzwcaNR6M49OhHvmhJbswjG+G1a1NSD
-         HJyLO4N5hQTz136+V2MAgW5hnko+1kiWMHEr6HsoPa8DypVYXxsja0c6txjXmcsbrt0o
-         R8xjf/azsMiBWf2EYgm/T9FL3pBFrSUeSPyAovJMy2VTqUjlM2ej/CHAG1IQGZlvZGGf
-         uZ2WmAbeVerI+98VkuF36cznrOUK1gBjjIG1fxG2RktiRWKc4IwhYTOppDfok04rjDoZ
-         4X5g==
-X-Gm-Message-State: AOAM531gMmq1lvLaLPgtJIQmGLJUhRF07XMZft0qxA0aFtg4/nqrmMj2
-	eYZE+ZRcipba/IDtL+HNxuOg6MkpvxRcizXhQl6idw==
-X-Google-Smtp-Source: ABdhPJzG1yUwZ/hz+OAdi1TTdYslaSmXZC2lFzxF7618WzCcHtwEW8kM2rtD3ejnckEakqFmBO+JuzqZ3kYppQig3M4=
-X-Received: by 2002:a19:48d2:: with SMTP id v201mr19610630lfa.504.1617118176652;
- Tue, 30 Mar 2021 08:29:36 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=hYnOGHTVAkTiA5SZ7CJ29lyEmltF8SgGXiO9poOdGP0=;
+        b=id296dPQ7AyA3yuPfAh87eLj6YLN74x392QyLMbn+sDJDIy0YSYSPbDSl7bgijH23/
+         V6B1KRKf2iamWFwY1TpH+6fMGDYeW+e3/g1CFB4GlHrzatGh8tmyLf16UIlfh3JaZF1U
+         0zg3AH+okET6yuG+Ak8xoX6QUd1xZuYM7hMG87r91UTWX5LTJk7ILAvfxEhRqsyAuUfC
+         ehfGODDltRpH1TZjhQMKvyUoNEon8ZqBfwExgm9Qy6bMxg745Kb8eVNDbVRalwTTONzJ
+         /p+lFyIX6GYP9kE8IkimOyudckwScyRWiCU4CrkR6qr9CcLf8oSFYb2MXpNcFrV36DkO
+         cIPg==
+X-Gm-Message-State: AOAM530/CPaF4r3Np9UAU17gJmMqcjJCYDVZMazWOVTiqadXgDaHzsRf
+	mUeEr+hJaaBmqGMu4dSFtCXf/iSThik=
+X-Google-Smtp-Source: ABdhPJyozjLF9MSAfpKPIsK91P/EznPdZ+8HlmVP5EjclR+7/gFVkOc06220r8bElBWrY2jfkvVcKQ==
+X-Received: by 2002:ac8:698f:: with SMTP id o15mr29033952qtq.39.1617121103347;
+        Tue, 30 Mar 2021 09:18:23 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id y13sm13175666qto.39.2021.03.30.09.18.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Mar 2021 09:18:22 -0700 (PDT)
+Date: Tue, 30 Mar 2021 12:18:20 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org,
+	openembedded-architecture@lists.openembedded.org,
+	openembedded-core@lists.openembedded.org,
+	automated-testing@yoctoproject.org, yocto-advocacy@yoctoproject.org,
+	linux-embedded@vger.kernel.org
+Subject: Yocto Project Virtual Summit 2021
+Message-ID: <20210330161820.GA35681@localhost>
 MIME-Version: 1.0
-References: <4Qxn.1617074544212136798.2egN@lists.yoctoproject.org> <CAEt6NwotWrmAwXcFsD2asp0LUG42pn1J_6WzW4vDAF+RvrA3ig@mail.gmail.com>
-In-Reply-To: <CAEt6NwotWrmAwXcFsD2asp0LUG42pn1J_6WzW4vDAF+RvrA3ig@mail.gmail.com>
-From: "Michael Halstead" <mhalstead@linuxfoundation.org>
-Date: Tue, 30 Mar 2021 08:29:25 -0700
-Message-ID: <CADfgfobBY_YZnoZ=1y146pD839A5nVEB70vzuCWB8m47FO-Qrw@mail.gmail.com>
-Subject: Re: [yocto] eula-downloads.yoctoproject.org down???
-To: Josef Holzmayr <jester@theyoctojester.info>
-Cc: anthony.l@axxin.com, Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000007ac30505bec2aa73"
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
---0000000000007ac30505bec2aa73
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The Yocto Project Summit Planning Committee is happy to announce the
+upcoming 3rd Yocto Project Summit to take place Tuesday and Wednesday
+May 25-26 2021, virtually.
 
-I have restored https://eula-downloads.yoctoproject.org/index.php since
-these connectivity checks rely on it. The driver binaries are not availabl=
-e
-any longer so I will alter the site to indicate that.
+The 2-day event will run in 2 tracks including a virtual developers meeting,
+beginner tutorial sessions, hands-on intermediate instruction, lightning
+talks, regular talks, and social events.
 
-On Tue, Mar 30, 2021 at 1:02 AM Josef Holzmayr <jester@theyoctojester.info=
->
-wrote:
+The cost for all attendees will be $40USD. The event will run both days from
+noon until 8pm GMT. Registration is not yet open but will be shortly, please
+watch for further announcements.
 
-> Am Di., 30. M=C3=A4rz 2021 um 05:22 Uhr schrieb anthony.l via
-> lists.yoctoproject.org <anthony.l=3Daxxin.com@lists.yoctoproject.org>:
-> >
-> > Getting a message today
-> > Fetcher failure for URL: '
-> https://eula-downloads.yoctoproject.org/index.php'. URL
-> https://eula-downloads.yoctoproject.org/index.php doesn't work. Please
-> ensure your network is configured correctly.
-> >
-> > Can't ping the url?  Anyone have an ETA on this being back up?  Just
-> trying to get some urgent builds done today.
->
-> Please see
-> https://www.yoctoproject.org/pipermail/poky/2016-January/010357.html
->
-> If you are experiencing problems, you can override the connectivity
-> check, and then please revisit your versions and/or third party
-> layers.
->
-> Greetz
->
-> >
-> > Many thanks.
-> > Anthony
-> >
-> >
->
->=20
->
->
+The call for papers is now open and will close at 11:59 PM PST on Sunday,
+April 25, 2021. To submit a proposal please visit:
+	https://pretalx.com/yocto-project-summit-2021/cfp
 
---=20
-Michael Halstead
-Linux Foundation / Yocto Project
-Systems Operations Engineer
+For more information please visit:
+	https://www.yoctoproject.org/yocto-project-virtual-summit-2021/
 
---0000000000007ac30505bec2aa73
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I have restored=C2=A0<a href=3D"https://eula-downloads.yoc=
-toproject.org/index.php">https://eula-downloads.yoctoproject.org/index.php<=
-/a> since these connectivity checks rely on it. The driver binaries are not=
- available any longer so I will alter the site to indicate that.</div><br><=
-div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar=
- 30, 2021 at 1:02 AM Josef Holzmayr &lt;<a href=3D"mailto:jester@theyoctoje=
-ster.info">jester@theyoctojester.info</a>&gt; wrote:<br></div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex">Am Di., 30. M=C3=A4rz 2021 um 05:22 Uh=
-r schrieb anthony.l via<br>
-<a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer" target=3D"_bl=
-ank">lists.yoctoproject.org</a> &lt;anthony.l=3D<a href=3D"mailto:axxin.com=
-@lists.yoctoproject.org" target=3D"_blank">axxin.com@lists.yoctoproject.org=
-</a>&gt;:<br>
-&gt;<br>
-&gt; Getting a message today<br>
-&gt; Fetcher failure for URL: &#39;<a href=3D"https://eula-downloads.yocto=
-project.org/index.php" rel=3D"noreferrer" target=3D"_blank">https://eula-do=
-wnloads.yoctoproject.org/index.php</a>&#39;. URL <a href=3D"https://eula-do=
-wnloads.yoctoproject.org/index.php" rel=3D"noreferrer" target=3D"_blank">ht=
-tps://eula-downloads.yoctoproject.org/index.php</a> doesn&#39;t work. Pleas=
-e ensure your network is configured correctly.<br>
-&gt;<br>
-&gt; Can&#39;t ping the url?=C2=A0 Anyone have an ETA on this being back u=
-p?=C2=A0 Just trying to get some urgent builds done today.<br>
-<br>
-Please see <a href=3D"https://www.yoctoproject.org/pipermail/poky/2016-Jan=
-uary/010357.html" rel=3D"noreferrer" target=3D"_blank">https://www.yoctopro=
-ject.org/pipermail/poky/2016-January/010357.html</a><br>
-<br>
-If you are experiencing problems, you can override the connectivity<br>
-check, and then please revisit your versions and/or third party<br>
-layers.<br>
-<br>
-Greetz<br>
-<br>
-&gt;<br>
-&gt; Many thanks.<br>
-&gt; Anthony<br>
-&gt; <br>
-&gt;<br>
-<br>
-<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
-" class=3D"gmail_signature"><div dir=3D"ltr">Michael Halstead<div>Linux Fou=
-ndation / Yocto Project</div><div>Systems Operations Engineer</div></div></=
-div>
-
---0000000000007ac30505bec2aa73--
+We look forward to seeing you at the conference!
