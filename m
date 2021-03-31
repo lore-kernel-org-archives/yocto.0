@@ -1,72 +1,78 @@
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
- by mx.groups.io with SMTP id smtpd.web11.1969.1617162686166476620
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+ by mx.groups.io with SMTP id smtpd.web10.2014.1617162686871659836
  for <yocto@lists.yoctoproject.org>;
  Tue, 30 Mar 2021 20:51:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=gpAGNIa+;
- spf=pass (domain: gmail.com, ip: 209.85.214.171, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f171.google.com with SMTP id ay2so7221282plb.3
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ubkmf6fI;
+ spf=pass (domain: gmail.com, ip: 209.85.216.49, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f49.google.com with SMTP id s21so8831619pjq.1
         for <yocto@lists.yoctoproject.org>; Tue, 30 Mar 2021 20:51:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=HQosNAuVhqLy5xbLmJxt+R0seJPHDA1DDqIWoNYo5PA=;
-        b=gpAGNIa+/zbagE2yfQtSAirSpGtfWTVWzmJ5hfQ4Mw0xem78dcUToJw61JhRkZOeZs
-         PgtW3qo+VhnNa3e9/eJw+mPSgGXK0EiBX9WINkvLo1C0aqfWv8yw4pouVdS88HuuY1lp
-         iZxnvVoqkakhZJls0OCYIb7CfJvbaTTedwWBwm2Ib8VBY/GvNUoh0bWts2dySRPf0SPD
-         T9KRLMt+6BqoMWYhD77tICmaPvisM5Y+vJzdeDu4Sc5rKMP8UcyP9DsseBkw+02P6CNo
-         FK+xF6zuob3RsgaYqZfMynscfL9BsV6TKmCXNh+ryuRiLy0ZIdg+j2xGYy4trzNpBJnG
-         cOxQ==
+        h=from:to:subject:date:message-id:in-reply-to:references;
+        bh=lA0LSsyMOoA5grc78GRuD05W8Y39w65MtAv2VZinDbw=;
+        b=ubkmf6fIZMBxA4O5V1VbKixDQ8XGb+LE3CBOPabpZYmf+JW3hrjktuf1T/YfShC+n3
+         vzzGi0sbxA/WmLiIr4haJhMEE6gbE93RGcQWdsDsTc6dbnhVbHwQP8rw/PmXkayd9oLO
+         7SgPGwXN2JUcJuJg/8tvwbu6EBDTOLIuPG2p2CmZiYvy3kz1L9QsJpxD2XLUzuNQUKUg
+         B3//6ppVRTAYzU8uIQe/keupibh41p5+BPdhHOaxphdB623fObYM6tcUGOMq2CibnVIy
+         t8qd/FNa+vMiUP6kHvslWnkizthtOVp4YbNGenahZ5eIaTUeQfcIAfEQ3Rz086/otqwJ
+         bu8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=HQosNAuVhqLy5xbLmJxt+R0seJPHDA1DDqIWoNYo5PA=;
-        b=QEtRYEn8YY8H4GyV20It5LSoXFw8XkB9OA51EC0wE4lPbK0bAY8TtNv7UCDiuolGjz
-         /GY7Yb6DyR4+2LE+rOTk/KifWCC1yOl1BhDd4SwA34Doc0KTgObOLB8bUbqmKJuABnAs
-         5Tyr/AvcWkSN+Mq/FJZ0vjBKtf/8egU4dzAgcuaHVoyUUaLH1Rc7WTOGFFNI5ALzvZy2
-         eJ1lHfRy74z5CzZmLBeS2BVqcJYchpsRCwRwEu+G72JefSwLwqCMRU/Xy3u+p1Bqekap
-         RVXRmOdBEHz4DDtEpc8DH7CbbRg3kFkWVXC/0wj2cc8zAVycRZFjTe57FI1rJPckj3h/
-         PQ5g==
-X-Gm-Message-State: AOAM5322PqNgske3Mh0VF3kzhP/+xXI41NDnf+XUuLwe2GobvQr37gH6
-	liK9sNP+QrkqXhy41JaIekA04kfA7U8=
-X-Google-Smtp-Source: ABdhPJwW0GdXGa24QnGhJxmmknkXDTac4NhfU5BEVysyHE688JcsJm3APZ9ELlNw308G+Is1gOwrDw==
-X-Received: by 2002:a17:90a:d507:: with SMTP id t7mr1538553pju.54.1617162685409;
-        Tue, 30 Mar 2021 20:51:25 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references;
+        bh=lA0LSsyMOoA5grc78GRuD05W8Y39w65MtAv2VZinDbw=;
+        b=T0I3xhwR4VGBUTfv6e1cdZhl83A0JFoPrKsfuSQ+Cttes0cbIe0B1/qh9/q7QMq1r8
+         jpvHoMvusRW0/5evy9UrGRgHSDoO4GgQMZV2DGk/1P1G86sdvV9IkzQPEutu7r0Ksvwt
+         VoDwp+fxHwAtPJKqR4jTUHkQMy8yAEyT+DK/IOGggZ8thU6GG/aIOlWGGnRTCeA4F2Us
+         g9cGwXNVWIOMJs3FR53kHGYLeGcuNsKQddb3tN28GIjZyUctjiu8SX60kAN5RT7EQUNN
+         0+5e0AFWif0Y9fvmLN8/rOi6+UHaucfnfjb84REll5a+D624wiTippu+qv4yKDKDiBUQ
+         e1+w==
+X-Gm-Message-State: AOAM532QKFzWZ7IliFnZ4Ok2FIziPeqdbUH53dkcGEL48V1b5ty+CUuN
+	56mkzHI7/lSwyowThJ+VvBm6d0hrphA=
+X-Google-Smtp-Source: ABdhPJyBZJ3kL7vGjyLP6fE3o239zQkwxcJhJzBKeNBGWEqOprGwAPecRm0LuHeN0DJgkHAqzkr9pQ==
+X-Received: by 2002:a17:902:c643:b029:e7:3c10:4695 with SMTP id s3-20020a170902c643b02900e73c104695mr1394203pls.41.1617162686288;
+        Tue, 30 Mar 2021 20:51:26 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:20e0:2ff7:e997:1a04])
-        by smtp.gmail.com with ESMTPSA id s8sm500713pjg.29.2021.03.30.20.51.24
+        by smtp.gmail.com with ESMTPSA id s8sm500713pjg.29.2021.03.30.20.51.25
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Tue, 30 Mar 2021 20:51:25 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/4] python3-privacyidea: upgrade 3.5.1 -> 3.5.2
-Date: Tue, 30 Mar 2021 20:51:20 -0700
-Message-Id: <20210331035123.15205-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/4] clamav: fix systemd service install
+Date: Tue, 30 Mar 2021 20:51:21 -0700
+Message-Id: <20210331035123.15205-2-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210331035123.15205-1-akuster808@gmail.com>
+References: <20210331035123.15205-1-akuster808@gmail.com>
+
+ERROR: clamav-0.104.0-r0 do_package: QA Issue: clamav: Files/directories were installed but not shipped in any package:
+  /lib/systemd/system/clamav-daemon.service
+    /lib/systemd/system/clamav-clamonacc.service
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- ...ython3-privacyidea_3.5.1.bb => python3-privacyidea_3.5.2.bb} | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename recipes-security/mfa/{python3-privacyidea_3.5.1.bb => python3-privacyidea_3.5.2.bb} (96%)
+ recipes-scanners/clamav/clamav_0.104.0.bb | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/recipes-security/mfa/python3-privacyidea_3.5.1.bb b/recipes-security/mfa/python3-privacyidea_3.5.2.bb
-similarity index 96%
-rename from recipes-security/mfa/python3-privacyidea_3.5.1.bb
-rename to recipes-security/mfa/python3-privacyidea_3.5.2.bb
-index fb84411..cd0acf8 100644
---- a/recipes-security/mfa/python3-privacyidea_3.5.1.bb
-+++ b/recipes-security/mfa/python3-privacyidea_3.5.2.bb
-@@ -6,7 +6,7 @@ LICENSE = "AGPL-3.0"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=c0acfa7a8a03b718abee9135bc1a1c55"
+diff --git a/recipes-scanners/clamav/clamav_0.104.0.bb b/recipes-scanners/clamav/clamav_0.104.0.bb
+index 9e50466..ba036b0 100644
+--- a/recipes-scanners/clamav/clamav_0.104.0.bb
++++ b/recipes-scanners/clamav/clamav_0.104.0.bb
+@@ -105,7 +105,10 @@ FILES_${PN}-daemon = "${bindir}/clamconf ${bindir}/clamdtop ${sbindir}/clamd \
+                         /usr/etc/clamd.conf* \
+                         ${systemd_unitdir}/system/clamav-daemon/* \
+                         ${docdir}/clamav-daemon/*  ${sysconfdir}/clamav-daemon \
+-                        ${sysconfdir}/logcheck/ignore.d.server/clamav-daemon "
++                        ${sysconfdir}/logcheck/ignore.d.server/clamav-daemon \
++                        ${systemd_unitdir}/system/clamav-daemon.service \
++                        ${systemd_unitdir}/system/clamav-clamonacc.service \
++                        "
  
- PYPI_PACKAGE = "privacyIDEA"
--SRC_URI[sha256sum] = "c10f8e9ec681af4cb42fde70864c2b9a4b47e2bcccfc1290f83c1283748772c6"
-+SRC_URI[sha256sum] = "26aeb0d353af1f212c4df476202516953c20f7f31566cfe0b67cbb553de04763"
- 
- inherit pypi setuptools3
- 
+ FILES_${PN}-freshclam = "${bindir}/freshclam \
+                         ${sysconfdir}/freshclam.conf*  \
 -- 
 2.17.1
 
