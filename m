@@ -1,70 +1,81 @@
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
- by mx.groups.io with SMTP id smtpd.web10.2015.1617162688036052958
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+ by mx.groups.io with SMTP id smtpd.web08.2128.1617162688713062610
  for <yocto@lists.yoctoproject.org>;
  Tue, 30 Mar 2021 20:51:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=uQXrfR84;
- spf=pass (domain: gmail.com, ip: 209.85.210.179, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f179.google.com with SMTP id x126so13552218pfc.13
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ONtvFcRR;
+ spf=pass (domain: gmail.com, ip: 209.85.215.180, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f180.google.com with SMTP id f10so13200970pgl.9
         for <yocto@lists.yoctoproject.org>; Tue, 30 Mar 2021 20:51:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=vnx1FEtJTpwqM2dQSB4rTikc6XV4YHiUB+6+mBNgJTc=;
-        b=uQXrfR84FCZccdX0BSHpQn/YgXFFkdZmwiNlA5fjKuB0YrnFnAxWjW+n7XzVeLTD82
-         8F1aG5gHvyyZyyiqKN8BAx45WL615t2Gbc1rw4oIy3XOXTZTbNxCmnF7MPqdf+DQOvP1
-         cdwTLdFXo+Y1kQL3AvvLSowertasuZER8P1GVnTtqgxxkULkEB6fFoJPCSxB+HzUgac+
-         hP8cmVBrrQdiI1HzxSFWwNY+GXN3Bczu+X553UGA2ibe762ZnZdrBAnKR4kFWVYAN2tA
-         mhwM1dtwbAVa6zNCx6aV3MhSPEx17wV/I587XwQMghofwdV31NRLF0rveDRThaIr6GRO
-         //qg==
+        bh=xED1gA9V2UXCZtF/ZT7K7nNw326orM1X1u8PZNQsOYU=;
+        b=ONtvFcRRzuxACY8q40ZYNkuZwjAwaw2a8EI2jJFZV4hP8g4nCAVd7ueKi1YC85Nf7n
+         dPuUPmm4EoMj1WAo5Y2xMlaZykjrqVn0dmbZE+VlUnWJiDuQnPLtIFWjdpDZPlQEmtti
+         QwW7IuhNLgx3s7co3V0lstvD4Kce40OhPW9szf8rCrU8KxQHHa8WD5oWLvtTbWpe2B2x
+         GSfuBrP0O8JBT2PJK4y01tNPrzfKDmI04N/ttHK9uBelSVTBOmT6u/ECjqNy2FLEQFqZ
+         2fbkpzyqwB6tHjwSYK2kg5c0F9PUqeyYDlwEeICdi89XebHx4I3wNtscpKKaTMfre6RW
+         z9/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=vnx1FEtJTpwqM2dQSB4rTikc6XV4YHiUB+6+mBNgJTc=;
-        b=qw4xMJ968G05V+1uJLO4XxmBhZngRqJmLqylNyR+Pb7IW3mIBhJfZMyEsdrBUtYjIZ
-         hKbrqJ3s9w73yNm4OLCDn5enEliV0HAzoLJvymwJIhUHNsq1CAvXtN8Zt9cToF0FsPSm
-         DARBvUIueBfXm3geCHtnfNg1ovd1uFnJq/82cVI9KhzHNMArhYusOJN6u11EsI46hna0
-         txysDUT7wP4OjuZqcwPox0NPvCAqCfdfbVLRX8VH/++/rdSMou7uPl5RD7WXPmIGM2Jt
-         Ye7o7/0F5RFrjozyDBd7vExDb7MlMFlMA3ovbPfsbRZ+IgS5OJziRzhGor2DWQ2pm//H
-         jPXw==
-X-Gm-Message-State: AOAM5300+0wDqCDDXew6HfQCtThdJDRviM2B1i+ZwBtTnGILl1eQlcO5
-	LHY2gr95rtG0HM1W8OQ9lIfPjGf57JY=
-X-Google-Smtp-Source: ABdhPJyI7Jw0C5OkEdkism6oRPH16Y/QvH0ZIrUJDG1KjaTGTnmevZGsEdY6r7xQnq/intlyFXWDjg==
-X-Received: by 2002:aa7:8d8a:0:b029:1f8:aa27:7203 with SMTP id i10-20020aa78d8a0000b02901f8aa277203mr1066097pfr.64.1617162687288;
-        Tue, 30 Mar 2021 20:51:27 -0700 (PDT)
+        bh=xED1gA9V2UXCZtF/ZT7K7nNw326orM1X1u8PZNQsOYU=;
+        b=mkG62Asly2f/X3w31ZuJ99dJDKWyfiwySMPvxI0G8BOCssqWOqKkIJ4P6E6v6nis8b
+         UQFrcYHHJy5K2rqe4n+Rw6Jbxa/G7P2Ej3ApsnskR4eUIh/lNR9Mc1hn5/2XTiGdcp3H
+         lie97Bhjveuocfq9oyNPEUsDtoc6JRfcpbVY5bM9lHxFAOpf7HJFh8txXWeJVdCqlY1t
+         ynhbhSm0bFsG5hpsGWr41uN71xXo44/f7oFQl3b9DqzcMfGVq9mdcGiZFP0IcS2FMfdz
+         xu2BKIpUzkR6tFEVI6dgqSZ28PiDuRplthOQDTZqi/EQVnu7+NBWfNAfRxWSHTRkrdmh
+         YkQA==
+X-Gm-Message-State: AOAM5307xxyjjl0T3pRil8h2GQXhxi2My6CSHN5CZX6U/kbwFCgcAbAk
+	BTEE/gssxcWOUrUkMUOq7sbY/Ezrgio=
+X-Google-Smtp-Source: ABdhPJz+5yZbxQcqLntFAN2RPVAy626lQEVEOl0vEHdUp2/aYpMwmlSiIu5/uwrnvPY4Ebf6aPCeKA==
+X-Received: by 2002:a63:508:: with SMTP id 8mr1291461pgf.220.1617162688139;
+        Tue, 30 Mar 2021 20:51:28 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:20e0:2ff7:e997:1a04])
-        by smtp.gmail.com with ESMTPSA id s8sm500713pjg.29.2021.03.30.20.51.26
+        by smtp.gmail.com with ESMTPSA id s8sm500713pjg.29.2021.03.30.20.51.27
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Mar 2021 20:51:26 -0700 (PDT)
+        Tue, 30 Mar 2021 20:51:27 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 3/4] swtpm: now need python-cryptography, pull in layer
-Date: Tue, 30 Mar 2021 20:51:22 -0700
-Message-Id: <20210331035123.15205-3-akuster808@gmail.com>
+Subject: [meta-security][PATCH 4/4] swtpm: file pip3 issue
+Date: Tue, 30 Mar 2021 20:51:23 -0700
+Message-Id: <20210331035123.15205-4-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210331035123.15205-1-akuster808@gmail.com>
 References: <20210331035123.15205-1-akuster808@gmail.com>
 
+need native pip3, was using host's
+
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- meta-tpm/conf/layer.conf | 1 +
- 1 file changed, 1 insertion(+)
+ meta-tpm/recipes-tpm/swtpm/swtpm_0.5.2.bb | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
-index 65788eb..1b766cb 100644
---- a/meta-tpm/conf/layer.conf
-+++ b/meta-tpm/conf/layer.conf
-@@ -13,6 +13,7 @@ LAYERSERIES_COMPAT_tpm-layer = "hardknott"
- LAYERDEPENDS_tpm-layer = " \
-     core \
-     openembedded-layer \
-+    meta-python \
- "
- BBLAYERS_LAYERINDEX_NAME_tpm-layer = "meta-tpm"
+diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_0.5.2.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_0.5.2.bb
+index b7ff2ad..c0bd35e 100644
+--- a/meta-tpm/recipes-tpm/swtpm/swtpm_0.5.2.bb
++++ b/meta-tpm/recipes-tpm/swtpm/swtpm_0.5.2.bb
+@@ -7,7 +7,7 @@ DEPENDS = "libtasn1 coreutils-native expect socat glib-2.0 net-tools-native libt
  
+ # configure checks for the tools already during compilation and
+ # then swtpm_setup needs them at runtime
+-DEPENDS += "tpm-tools-native expect-native socat-native"
++DEPENDS += "tpm-tools-native expect-native socat-native python3-pip-native"
+ 
+ SRCREV = "e59c0c1a7b4c8d652dbb280fd6126895a7057464"
+ SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=stable-0.5 \
+@@ -18,7 +18,6 @@ PE = "1"
+ S = "${WORKDIR}/git"
+ 
+ inherit autotools pkgconfig python3-dir
+-PARALLEL_MAKE = ""
+ 
+ TSS_USER="tss"
+ TSS_GROUP="tss"
 -- 
 2.17.1
 
