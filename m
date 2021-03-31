@@ -1,78 +1,70 @@
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
- by mx.groups.io with SMTP id smtpd.web10.2014.1617162686871659836
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+ by mx.groups.io with SMTP id smtpd.web10.2015.1617162688036052958
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Mar 2021 20:51:26 -0700
+ Tue, 30 Mar 2021 20:51:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ubkmf6fI;
- spf=pass (domain: gmail.com, ip: 209.85.216.49, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f49.google.com with SMTP id s21so8831619pjq.1
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Mar 2021 20:51:26 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=uQXrfR84;
+ spf=pass (domain: gmail.com, ip: 209.85.210.179, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f179.google.com with SMTP id x126so13552218pfc.13
+        for <yocto@lists.yoctoproject.org>; Tue, 30 Mar 2021 20:51:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=lA0LSsyMOoA5grc78GRuD05W8Y39w65MtAv2VZinDbw=;
-        b=ubkmf6fIZMBxA4O5V1VbKixDQ8XGb+LE3CBOPabpZYmf+JW3hrjktuf1T/YfShC+n3
-         vzzGi0sbxA/WmLiIr4haJhMEE6gbE93RGcQWdsDsTc6dbnhVbHwQP8rw/PmXkayd9oLO
-         7SgPGwXN2JUcJuJg/8tvwbu6EBDTOLIuPG2p2CmZiYvy3kz1L9QsJpxD2XLUzuNQUKUg
-         B3//6ppVRTAYzU8uIQe/keupibh41p5+BPdhHOaxphdB623fObYM6tcUGOMq2CibnVIy
-         t8qd/FNa+vMiUP6kHvslWnkizthtOVp4YbNGenahZ5eIaTUeQfcIAfEQ3Rz086/otqwJ
-         bu8w==
+        bh=vnx1FEtJTpwqM2dQSB4rTikc6XV4YHiUB+6+mBNgJTc=;
+        b=uQXrfR84FCZccdX0BSHpQn/YgXFFkdZmwiNlA5fjKuB0YrnFnAxWjW+n7XzVeLTD82
+         8F1aG5gHvyyZyyiqKN8BAx45WL615t2Gbc1rw4oIy3XOXTZTbNxCmnF7MPqdf+DQOvP1
+         cdwTLdFXo+Y1kQL3AvvLSowertasuZER8P1GVnTtqgxxkULkEB6fFoJPCSxB+HzUgac+
+         hP8cmVBrrQdiI1HzxSFWwNY+GXN3Bczu+X553UGA2ibe762ZnZdrBAnKR4kFWVYAN2tA
+         mhwM1dtwbAVa6zNCx6aV3MhSPEx17wV/I587XwQMghofwdV31NRLF0rveDRThaIr6GRO
+         //qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=lA0LSsyMOoA5grc78GRuD05W8Y39w65MtAv2VZinDbw=;
-        b=T0I3xhwR4VGBUTfv6e1cdZhl83A0JFoPrKsfuSQ+Cttes0cbIe0B1/qh9/q7QMq1r8
-         jpvHoMvusRW0/5evy9UrGRgHSDoO4GgQMZV2DGk/1P1G86sdvV9IkzQPEutu7r0Ksvwt
-         VoDwp+fxHwAtPJKqR4jTUHkQMy8yAEyT+DK/IOGggZ8thU6GG/aIOlWGGnRTCeA4F2Us
-         g9cGwXNVWIOMJs3FR53kHGYLeGcuNsKQddb3tN28GIjZyUctjiu8SX60kAN5RT7EQUNN
-         0+5e0AFWif0Y9fvmLN8/rOi6+UHaucfnfjb84REll5a+D624wiTippu+qv4yKDKDiBUQ
-         e1+w==
-X-Gm-Message-State: AOAM532QKFzWZ7IliFnZ4Ok2FIziPeqdbUH53dkcGEL48V1b5ty+CUuN
-	56mkzHI7/lSwyowThJ+VvBm6d0hrphA=
-X-Google-Smtp-Source: ABdhPJyBZJ3kL7vGjyLP6fE3o239zQkwxcJhJzBKeNBGWEqOprGwAPecRm0LuHeN0DJgkHAqzkr9pQ==
-X-Received: by 2002:a17:902:c643:b029:e7:3c10:4695 with SMTP id s3-20020a170902c643b02900e73c104695mr1394203pls.41.1617162686288;
-        Tue, 30 Mar 2021 20:51:26 -0700 (PDT)
+        bh=vnx1FEtJTpwqM2dQSB4rTikc6XV4YHiUB+6+mBNgJTc=;
+        b=qw4xMJ968G05V+1uJLO4XxmBhZngRqJmLqylNyR+Pb7IW3mIBhJfZMyEsdrBUtYjIZ
+         hKbrqJ3s9w73yNm4OLCDn5enEliV0HAzoLJvymwJIhUHNsq1CAvXtN8Zt9cToF0FsPSm
+         DARBvUIueBfXm3geCHtnfNg1ovd1uFnJq/82cVI9KhzHNMArhYusOJN6u11EsI46hna0
+         txysDUT7wP4OjuZqcwPox0NPvCAqCfdfbVLRX8VH/++/rdSMou7uPl5RD7WXPmIGM2Jt
+         Ye7o7/0F5RFrjozyDBd7vExDb7MlMFlMA3ovbPfsbRZ+IgS5OJziRzhGor2DWQ2pm//H
+         jPXw==
+X-Gm-Message-State: AOAM5300+0wDqCDDXew6HfQCtThdJDRviM2B1i+ZwBtTnGILl1eQlcO5
+	LHY2gr95rtG0HM1W8OQ9lIfPjGf57JY=
+X-Google-Smtp-Source: ABdhPJyI7Jw0C5OkEdkism6oRPH16Y/QvH0ZIrUJDG1KjaTGTnmevZGsEdY6r7xQnq/intlyFXWDjg==
+X-Received: by 2002:aa7:8d8a:0:b029:1f8:aa27:7203 with SMTP id i10-20020aa78d8a0000b02901f8aa277203mr1066097pfr.64.1617162687288;
+        Tue, 30 Mar 2021 20:51:27 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:20e0:2ff7:e997:1a04])
-        by smtp.gmail.com with ESMTPSA id s8sm500713pjg.29.2021.03.30.20.51.25
+        by smtp.gmail.com with ESMTPSA id s8sm500713pjg.29.2021.03.30.20.51.26
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Mar 2021 20:51:25 -0700 (PDT)
+        Tue, 30 Mar 2021 20:51:26 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/4] clamav: fix systemd service install
-Date: Tue, 30 Mar 2021 20:51:21 -0700
-Message-Id: <20210331035123.15205-2-akuster808@gmail.com>
+Subject: [meta-security][PATCH 3/4] swtpm: now need python-cryptography, pull in layer
+Date: Tue, 30 Mar 2021 20:51:22 -0700
+Message-Id: <20210331035123.15205-3-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210331035123.15205-1-akuster808@gmail.com>
 References: <20210331035123.15205-1-akuster808@gmail.com>
 
-ERROR: clamav-0.104.0-r0 do_package: QA Issue: clamav: Files/directories were installed but not shipped in any package:
-  /lib/systemd/system/clamav-daemon.service
-    /lib/systemd/system/clamav-clamonacc.service
-
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-scanners/clamav/clamav_0.104.0.bb | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ meta-tpm/conf/layer.conf | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/recipes-scanners/clamav/clamav_0.104.0.bb b/recipes-scanners/clamav/clamav_0.104.0.bb
-index 9e50466..ba036b0 100644
---- a/recipes-scanners/clamav/clamav_0.104.0.bb
-+++ b/recipes-scanners/clamav/clamav_0.104.0.bb
-@@ -105,7 +105,10 @@ FILES_${PN}-daemon = "${bindir}/clamconf ${bindir}/clamdtop ${sbindir}/clamd \
-                         /usr/etc/clamd.conf* \
-                         ${systemd_unitdir}/system/clamav-daemon/* \
-                         ${docdir}/clamav-daemon/*  ${sysconfdir}/clamav-daemon \
--                        ${sysconfdir}/logcheck/ignore.d.server/clamav-daemon "
-+                        ${sysconfdir}/logcheck/ignore.d.server/clamav-daemon \
-+                        ${systemd_unitdir}/system/clamav-daemon.service \
-+                        ${systemd_unitdir}/system/clamav-clamonacc.service \
-+                        "
+diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
+index 65788eb..1b766cb 100644
+--- a/meta-tpm/conf/layer.conf
++++ b/meta-tpm/conf/layer.conf
+@@ -13,6 +13,7 @@ LAYERSERIES_COMPAT_tpm-layer = "hardknott"
+ LAYERDEPENDS_tpm-layer = " \
+     core \
+     openembedded-layer \
++    meta-python \
+ "
+ BBLAYERS_LAYERINDEX_NAME_tpm-layer = "meta-tpm"
  
- FILES_${PN}-freshclam = "${bindir}/freshclam \
-                         ${sysconfdir}/freshclam.conf*  \
 -- 
 2.17.1
 
