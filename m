@@ -1,111 +1,83 @@
-Received: from mail.inside-m2m.de (mail.inside-m2m.de [188.68.57.244])
- by mx.groups.io with SMTP id smtpd.web10.4692.1617266019900273503
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.4985.1617267158355273384
  for <yocto@lists.yoctoproject.org>;
- Thu, 01 Apr 2021 01:33:41 -0700
+ Thu, 01 Apr 2021 01:52:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@inside-m2m.de header.s=default header.b=FeQj59tb;
- spf=pass (domain: inside-m2m.de, ip: 188.68.57.244, mailfrom: konstantin.kletschke@inside-m2m.de)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.inside-m2m.de (Postfix) with ESMTP id B010A410B2
-	for <yocto@lists.yoctoproject.org>; Thu,  1 Apr 2021 10:33:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=inside-m2m.de;
-	s=default; t=1617266007;
-	bh=ly9ALKxRzeSPYP8YHYll7Y16corysJUJBtK1oKSV3Vw=;
-	h=Date:From:To:Subject:From;
-	b=FeQj59tb7bbC0gvx17w5MCSJVQw1aLmtgIJ5iXSZtae1KAKb/hH0uc9ZSLdVcy57F
-	 0v/mBrKg1w1gOmwOZ8S/xukL2IFfMlfLMFeSn2qGegsn1o4fxgBm2/PWJTr1dgBLRG
-	 PBadcIjVBDzeX4dYMTWVQesagBOZKQnnwEJdlfnFrHHlILlwlk5F/Kjw6tp02DRJG+
-	 H0Jg690f9IFg6CGq4B5TWqXyxdlkklrvv94edTll043oyRemxcI0FVO/a5DuVt1HTN
-	 p0iDzsx6nl9FysRbjopItDCWTDb8D7qAXtlm3scftt6dgKtLP24OCqs9dZVUOrvvtL
-	 i0kt6QIoBm+xQ==
-X-Virus-Scanned: Debian amavisd-new at mail.inside-m2m.de
-Received: from mail.inside-m2m.de ([127.0.0.1])
-	by localhost (mail.inside-m2m.de [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id vIVU5lMIrtdk for <yocto@lists.yoctoproject.org>;
-	Thu,  1 Apr 2021 10:33:27 +0200 (CEST)
-Received: from mail.inside-m2m.de (mail.inside-m2m.de [188.68.57.244])
-	(Authenticated sender: konstantin.kletschke@inside-m2m.de)
-	by mail.inside-m2m.de (Postfix) with ESMTPSA id 3A30D4020F
-	for <yocto@lists.yoctoproject.org>; Thu,  1 Apr 2021 10:33:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=inside-m2m.de;
-	s=default; t=1617266007;
-	bh=ly9ALKxRzeSPYP8YHYll7Y16corysJUJBtK1oKSV3Vw=;
-	h=Date:From:To:Subject:From;
-	b=FeQj59tb7bbC0gvx17w5MCSJVQw1aLmtgIJ5iXSZtae1KAKb/hH0uc9ZSLdVcy57F
-	 0v/mBrKg1w1gOmwOZ8S/xukL2IFfMlfLMFeSn2qGegsn1o4fxgBm2/PWJTr1dgBLRG
-	 PBadcIjVBDzeX4dYMTWVQesagBOZKQnnwEJdlfnFrHHlILlwlk5F/Kjw6tp02DRJG+
-	 H0Jg690f9IFg6CGq4B5TWqXyxdlkklrvv94edTll043oyRemxcI0FVO/a5DuVt1HTN
-	 p0iDzsx6nl9FysRbjopItDCWTDb8D7qAXtlm3scftt6dgKtLP24OCqs9dZVUOrvvtL
-	 i0kt6QIoBm+xQ==
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=LaCvcWd8;
+ spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id A4F7538C093C
+	for <yocto@yoctoproject.org>; Thu,  1 Apr 2021 08:52:37 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id 12so645247wmf.5
+        for <yocto@yoctoproject.org>; Thu, 01 Apr 2021 01:52:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=blade-group.com; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=qlaVcWOuR0xzbTEoBL8UY2lU3wrwzBByJiQH0p/LRT4=;
+        b=LaCvcWd8RYKhLEjhojcjrBGouQxSX1LnpuyFzobDRkOhrcvo0OjxsrgyjCjDEp/L9r
+         BgiQ1tbF8nQPjVZlLqT2ekp0DVCGNy5qy+Vdvx9UaWz45oMVNo7CJj+pDg3FyiFDtGkY
+         e/laLgW++Xj1mxwMD4y1f8HRuMn1Sy/KbilS4D9oIEjL4PRJTqgIbsjSSxV+t5uii1T2
+         ZcIzafzaw53VDs8jgwQrJiBnpOH9Y3p/xJCnXmQ2eEfvDbntJvv/jyqwi31+ykCW6aVY
+         OXYdxcTjat9S3o0nWlHzFUk01oO1GWULnWHk6Juuz+2+x6NNq45Jn4iwY/5sBJcEnd8b
+         fLUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=qlaVcWOuR0xzbTEoBL8UY2lU3wrwzBByJiQH0p/LRT4=;
+        b=QtMIhoECa8vostfIy286jJxbtB+r5Bhdbv3E6K+4r9rpASeN5OQ426d3RoxlESe1k+
+         /KlZUVU0yhix4xM9mBiOEO5ppU7G8Fg7bOcBIrP87cCNl0UnpACyD0eVfBqF/JNVSQq2
+         J2qfrrF0Q+fdudeg5NSYiI7Mm5hfwi8cVhuzeYrowdp5S1f4AqmT4dsMe44OhvWjszA+
+         7LTjGShvPWgYNAEBTw4pgd72sZhhvjwrBOBWAPJbQEL8BemJrxvRZ/GxTGJp2b/3IKV7
+         egthcqizLlRVmVvP/1AWip5Z2AmGRT6lObu+UbRVHJNBXrh/9WAQjO9MV0zjxwjPcB5q
+         lGYQ==
+X-Gm-Message-State: AOAM5328BKk69NS3rWSxPkBaAQ8vl9iPGTcoOSde8Bx8c6+Fe1Sukv4P
+	0gJXMMQvFHJzo/VXUDfw6mK/0UGSZwyunQ==
+X-Google-Smtp-Source: ABdhPJxCvVC1ld7yTB0kM+Bo1CEOSsyeo8fIL6YsiK+lF2+6AvliZ+DrmHe9AEtLEQxU8pLsplpUvw==
+X-Received: by 2002:a1c:7ed4:: with SMTP id z203mr6656371wmc.89.1617267156223;
+        Thu, 01 Apr 2021 01:52:36 -0700 (PDT)
+Received: from blanquette.lan ([88.120.44.86])
+        by smtp.gmail.com with ESMTPSA id 9sm7143467wmf.13.2021.04.01.01.52.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Apr 2021 01:52:35 -0700 (PDT)
+From: "Yann Dirson" <yann.dirson@blade-group.com>
+X-Google-Original-From: yann@blade-group.com
+To: yocto@yoctoproject.org
+Cc: twoerner@gmail.com,
+	Yann Dirson <yann@blade-group.com>
+Subject: [meta-rockchip][PATCH v2 2/4] rockchip-defaults: don't force KCONFIG_MODE to alldefconfig
+Date: Thu,  1 Apr 2021 10:52:11 +0200
+Message-Id: <20210401085213.1209080-3-yann@blade-group.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210401085213.1209080-1-yann@blade-group.com>
+References: <20210401085213.1209080-1-yann@blade-group.com>
 MIME-Version: 1.0
-Date: Thu, 01 Apr 2021 10:33:27 +0200
-From: konstantin.kletschke@inside-m2m.de
-To: yocto@lists.yoctoproject.org
-Subject: BeagleBone Black wig image does not boot
-Organization: Inside M2M GmbH
-Message-ID: <fce20dedb8dd11bd95e1c1cca206cdf6@inside-m2m.de>
-X-Sender: konstantin.kletschke@inside-m2m.de
-User-Agent: Roundcube Webmail/1.3.0 
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+From: Yann Dirson <yann@blade-group.com>
 
-I successfully compile/create a target image and binaries for a 
-BeagleBone Black:
+When using in-kernel defconfig this is already the default, but
+linux-yocto defaults to "allnoconfig" mode when a defconfig is
+specified in SRC_URI, and there is no reason to override this
+globally.
+---
+ conf/machine/include/rockchip-defaults.inc | 1 -
+ 1 file changed, 1 deletion(-)
 
-MACHINE ?= "beaglebone-yocto"
-
-The resulting wic image does not boot, when I write it to a sdcard nor 
-when I write it directly into the internal /dev/mmcblk0. There is no 
-console output despite of some capital "C" sometimes (the internal boot 
-loader-loader failing to find u-boot?).
-The image looks rather healthy, though:
-
-fdisk p output:
-
-Disk core-image-base-beaglebone-yocto-20210331083925.rootfs.wic: 1 GiB, 
-1098599424 bytes, 2145702 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disklabel type: dos
-Disk identifier: 0xa63a46ea
-
-Device                                                      Boot Start   
-   End Sectors    Size Id Type
-core-image-base-beaglebone-yocto-20210331083925.rootfs.wic1 *        8   
-49065   49058     24M  c W95 FAT32 (LBA)
-core-image-base-beaglebone-yocto-20210331083925.rootfs.wic2      49072 
-2145701 2096630 1023.8M 83 Linux
-
-ls -la of the mounted first boot partition:
-
-insidem2m@konsti ~/Y $ ls -la /mnt
-total 8648
-drwxr-xr-x  3 root root   16384 Jan  1  1970 .
-drwxr-xr-x 17 root root    4096 Mar  4 12:06 ..
--rwxr-xr-x  1 root root  107940 Apr  6  2011 MLO
--rwxr-xr-x  1 root root   59303 Apr  6  2011 am335x-bone.dtb
--rwxr-xr-x  1 root root   62629 Apr  6  2011 am335x-boneblack.dtb
--rwxr-xr-x  1 root root   59567 Apr  6  2011 am335x-bonegreen.dtb
-drwxr-xr-x  2 root root    2048 Apr  6  2011 extlinux
--rwxr-xr-x  1 root root  892736 Apr  6  2011 u-boot.img
--rwxr-xr-x  1 root root 7645608 Apr  6  2011 zImage
-
-
-
-The strange thing is, when I prepare a sdcard (or the internal flash!) 
-with partitions manually, format manually and copy the same kernel and 
-u-boot binaries into the first and the rootfs into the second partition, 
-the system works fine!
-
-
-Since the complete Image layout looks fine to me, what could be the 
-culprit of that?
-
-Kind Regards
-Konsti
-
+diff --git a/conf/machine/include/rockchip-defaults.inc b/conf/machine/in=
+clude/rockchip-defaults.inc
+index a4e2a2c..17d1d0b 100644
+--- a/conf/machine/include/rockchip-defaults.inc
++++ b/conf/machine/include/rockchip-defaults.inc
+@@ -2,7 +2,6 @@
+=20
+ # kernel
+ PREFERRED_PROVIDER_virtual/kernel ?=3D "linux-yocto"
+-KCONFIG_MODE ?=3D "alldefconfig"
+ LINUX_VERSION_EXTENSION ?=3D "-rockchip"
+=20
+ # xserver
+--=20
+2.30.2
 
