@@ -1,188 +1,111 @@
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by mx.groups.io with SMTP id smtpd.web10.3682.1617258192661350936
+Received: from mail.inside-m2m.de (mail.inside-m2m.de [188.68.57.244])
+ by mx.groups.io with SMTP id smtpd.web10.4692.1617266019900273503
  for <yocto@lists.yoctoproject.org>;
- Wed, 31 Mar 2021 23:23:13 -0700
+ Thu, 01 Apr 2021 01:33:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=CpLJlQXD;
- spf=pass (domain: intel.com, ip: 134.134.136.31, mailfrom: sangeeta.jain@intel.com)
-IronPort-SDR: CvcD0VX+NCfasXLkUBUOVX1K/ybym/e2GoQC+8UmB4BI+CslDM06F0k0eh5+vsW72gIgqPt3H8
- Z4Q8IOClZlcg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9940"; a="253499429"
-X-IronPort-AV: E=Sophos;i="5.81,296,1610438400"; 
-   d="scan'208";a="253499429"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2021 23:23:11 -0700
-IronPort-SDR: OiXIuAOTN/CHE/hzXWnZPdiESLxlvZLkljtbBRR0ZikQsqnT1I8i1YteICrvdjJGVeAYz2b7l+
- 7141MGYcb80Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,296,1610438400"; 
-   d="scan'208";a="596204646"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
-  by orsmga005.jf.intel.com with ESMTP; 31 Mar 2021 23:23:11 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 31 Mar 2021 23:23:11 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2
- via Frontend Transport; Wed, 31 Mar 2021 23:23:11 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.171)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2106.2; Wed, 31 Mar 2021 23:23:11 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NZqa3sGoEeVdK+uhXcA31vJxYM9nrYCt79cQe/3WtSZAuDu0rDcaZvIQPRpx3qT3+RGnydZ7NRjk6lba8G9dc/S4uOmnPFxB6EaF2xJnm+wtcw4ciV4BqXfP80qN8FeD8yNLPe/R55VeAvl5IENBU5epGjku3bO32pp2BEoMCRMMrBlgvwDUYrRSEyEeKNQH/L7DJMxPk6T0oTC8aruVwfGmRxDzJ2bgmdn+6HPoslKuig+zp4lxdhv4c8FQ824kXHKx0ZfWl6We7vNePp0vTHuNF45N2FaPAP4My1KGmKz+BH/LjMue1AZ6oE/tRRZVZy7xYHb8M8d0kixfOOgWRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TcyYk2Qd32+CLkOJSVNsvuopRHrsTd1YOZMF0kNCqZY=;
- b=SNbv3rsut6wIBE6juia1XjRxYz1AhNM4wl+z1jeyK2IHuIZSuQOrZzqSWJp40UfZ/6/AHANNK1ZGd+zn1Pa7TafRVCdfoW83UmteZAuedb7O69Q0qkqrYyi+I9nH/xJoJN+hvNhVFsNalBI28Gm8hT893wO3263LQn6vxBIHtBsXHB3vt7PQT73rW2Gd59wzq6Zp3ydTRL/voJP1yWoku1ONZt3OrO75/kFcG/9jUOd1ow/kxTOE2vHnK2pEFaTVqEgGMu3OVXb3CgkvfQCoyIgZvT0qjMg3MGXzjLEFY/eXm9hmG7W9LWqyHDF3iuQ1LNWL+U8NMnq6AETN+0AAtA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TcyYk2Qd32+CLkOJSVNsvuopRHrsTd1YOZMF0kNCqZY=;
- b=CpLJlQXDIwZiMiaK04y6ptL0E+E/xHlAID1Iy8BqATyzrOlxIiifYGTCJbHbPQVTV7OD8Rev1oWZxAXGHFfVBVeFffT0mAq55pKu8N/HJpo2llLWwvbpWqY+ydHqh57YE/ji89oeZGUQVBheIwE/wM+9S2YR65iALiRpfGPDi+0=
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com (2603:10b6:a03:b1::33)
- by SJ0PR11MB4928.namprd11.prod.outlook.com (2603:10b6:a03:2d2::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.27; Thu, 1 Apr
- 2021 06:23:10 +0000
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::92d:48c1:669e:364c]) by BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::92d:48c1:669e:364c%6]) with mapi id 15.20.3977.033; Thu, 1 Apr 2021
- 06:23:10 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder build (yocto-3.2.3.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.2.3.rc1)
-Thread-Index: AQHXJE57LjP72qvC6EeczLw76qHg3qqfNiXw
-Date: Thu, 1 Apr 2021 06:23:10 +0000
-Message-ID: <BYAPR11MB36243440966ACEEA5740684FE37B9@BYAPR11MB3624.namprd11.prod.outlook.com>
-References: <20210329034900.510C02A08D8@ubuntu1804-ty-2.yocto.io>
-In-Reply-To: <20210329034900.510C02A08D8@ubuntu1804-ty-2.yocto.io>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.0.76
-dlp-product: dlpe-windows
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=intel.com;
-x-originating-ip: [60.53.116.239]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 99919a1a-8442-4d6f-5aaf-08d8f4d69f42
-x-ms-traffictypediagnostic: SJ0PR11MB4928:
-x-microsoft-antispam-prvs: <SJ0PR11MB4928BE95056122C6DE9909D5E37B9@SJ0PR11MB4928.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: LBRPJEXez4Du6dfzgg5nQnkBMgiFUoAlJkEWrswWvl+b/NfKjD8QpHLeG6TWXS1U+ZtMv0ddvt8JEay4Yi/Fo4sLEEAXsbmTVHZOjts3VpIkV27nCaGsY/XG9JLc+yuSoQ4WFEXDD9nuArre6z+F2I7q558i6MZWCDJQuKnDbAqxDXxQ5zYQxCLtHMEKkJSa6866E0CfhBTxpnmBOMFz8oYchUHfkWXKWviFPjuxosHgQyfpOUWzojAS8P2inwwsiy8Ei/GiGbp3dtVbRdvj6QfhsBKPZbtpzj73yEyysTiOaUmNLfVAYqhkNmMl5RlIPpWmOfTO5QkpP+wncxyfi5f7hH71Lmh8t+aqE3B4ykACedRaNtzqurJQoPIBwvJN6YfLs5Ii3du7eZ9YODfM3VmoKWrmFoJslLxscI7U4wQckza85l90fTcs5v+ic7cNg7opmMg+d6PPPv/lZcpszbEtc/JHNiyM6GssB7xO0k328Rx1TKEq0W2bIVCJavjdcvv+MoYXc12L24WsOqnH6cePz6ulWe5FxcjkqkneFGganYqo2isDNpu3hZMj27pFC7UOLY8/1p/ZSrVx5ygnDJvc7kobv6+nWIAGMlFczKyR0agXrpgiAyONGnD/2x393GTOWqW8Js+OTSr8STZ3jXDHYBocbaV5SEjKyhgXo8ommlHpoDTugex3K4RN33/6W3b5FiHLf/TfcrSkKPJNvxpnKGcSuGN+0zF0jWfzRL4=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3624.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(376002)(136003)(366004)(346002)(39860400002)(76116006)(66946007)(86362001)(38100700001)(64756008)(9686003)(66556008)(316002)(55016002)(71200400001)(52536014)(8936002)(8676002)(53546011)(6506007)(966005)(15650500001)(186003)(478600001)(83380400001)(5660300002)(7696005)(66476007)(26005)(2906002)(33656002)(66446008)(110136005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?eeHLq62SeqgiDji4gqgtLQFBwRPOls+EG/28o3pMQvxqjcc4usNMrgQwBU8y?=
- =?us-ascii?Q?rLPRuv8ffgPWFZ7BUpMULwIV7BxuSRRW1rcp+6K3ErfLTY5s3ighJTBDM7la?=
- =?us-ascii?Q?yyvWh0ceQdFQDEHHQMuCvbrymE2q6YPZorkLq0URYejP921FRcPFEGBTkRhc?=
- =?us-ascii?Q?SE4UMK5m+tkf+rxRYK/Y2aqZAy0P/MoQGLh+/WvFJOzdCKYnNLxYCJDEqlil?=
- =?us-ascii?Q?MHRPotj3jdbHR0oSgBLEiqE4ZS0BhPgLUrwn5VHjZ1ITHPJwFxd+YR3Uvg7J?=
- =?us-ascii?Q?wXqL3OqGy6dPCABnG9HriDqx07MTn/hTm/b8vTwd2IqIqgVer2b/d3c9Q4VG?=
- =?us-ascii?Q?iWgECU6p9bFsPIHwnoS//KwU9+W7JHfWMwuQAr7t9kOhX3S78O97PhDa9htk?=
- =?us-ascii?Q?IL6FOWXenSItD/8YxrZce3k6GWofUC+zSqIwRJsLHhRDxfeUlKGDlaGqErh4?=
- =?us-ascii?Q?qBE8d8ydkC3YqHJ0FdS/9XkfiWN29IMry3XNgbkS1yo7LZsQGnavCJZw4eAv?=
- =?us-ascii?Q?9lF8nEbnBKuKc5PxTZexPJhGLNlzYmFujEuEKbzHjsu8hs19WSwlnsQV928E?=
- =?us-ascii?Q?7nIaZk1notlQ+5+GMXSf7PL7ysxd6xWpugWGpI1JnjI6Nlz5DmhMimMveVNL?=
- =?us-ascii?Q?1esP/+LMjScWvK5IDoURlCRdJQXAaFmpNcXJfqpyv+fkr6XIHNc84TuHp8Tr?=
- =?us-ascii?Q?U29L47GtXPoh719Mk6pD5kvdrExZsdxOVj88m/GIiVLcCHUpvUqqhaKpvRm6?=
- =?us-ascii?Q?4oT+isaZEuvE5BtT000PVV6ePEI4dRupYTPR6/r0Pk2TOgppLQ5bFLiJjWfe?=
- =?us-ascii?Q?6TbcKtGgca2gjmPrPRbhe2x0VnYRkHW2492TJP+KMxAZgBYgo5dgSlYdmPIU?=
- =?us-ascii?Q?WvyIQnhBsRcy3pyjCWiOCCiHBVZA5L/5PSlhNX9q3bjxvp6vUHcKZu1uHmcF?=
- =?us-ascii?Q?AKp5nPhRJxJGe+3Z7KP5owRLcR2HkakIIwAni5V5KvJ6zVZ660N0IshQeIOw?=
- =?us-ascii?Q?fcnPLY46gAAl0dcCpNHsQiDNx4ObdG+xueDzOmA49COr/pXCWX72HNcXZ42B?=
- =?us-ascii?Q?7312jq7a+8J2wbkuMBOkZ1K11eXOJWlMLhlk0ZQ8uswrVTtSfhZUQHO6HKKt?=
- =?us-ascii?Q?IYZeWAD6kU/8HUl7JsAzHYPZLlrkrzWnc/JtpL7iGnyd0urA5LvxPNJBNoVT?=
- =?us-ascii?Q?qB3IQ2RzI6GBHHrOOzVadJtUqZPxoIw023u2Tpope1wDYkK+cpWaGWDmy5UP?=
- =?us-ascii?Q?zatP9H6BXW1ovyZaVUISqtEsLrw5G4C7lR3JrQ1fxyopsLITHIaSJpC9A0Fj?=
- =?us-ascii?Q?rV0xdtKyFhsZezIOYp1IC3Sp?=
-x-ms-exchange-transport-forked: True
+ dkim=pass header.i=@inside-m2m.de header.s=default header.b=FeQj59tb;
+ spf=pass (domain: inside-m2m.de, ip: 188.68.57.244, mailfrom: konstantin.kletschke@inside-m2m.de)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.inside-m2m.de (Postfix) with ESMTP id B010A410B2
+	for <yocto@lists.yoctoproject.org>; Thu,  1 Apr 2021 10:33:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=inside-m2m.de;
+	s=default; t=1617266007;
+	bh=ly9ALKxRzeSPYP8YHYll7Y16corysJUJBtK1oKSV3Vw=;
+	h=Date:From:To:Subject:From;
+	b=FeQj59tb7bbC0gvx17w5MCSJVQw1aLmtgIJ5iXSZtae1KAKb/hH0uc9ZSLdVcy57F
+	 0v/mBrKg1w1gOmwOZ8S/xukL2IFfMlfLMFeSn2qGegsn1o4fxgBm2/PWJTr1dgBLRG
+	 PBadcIjVBDzeX4dYMTWVQesagBOZKQnnwEJdlfnFrHHlILlwlk5F/Kjw6tp02DRJG+
+	 H0Jg690f9IFg6CGq4B5TWqXyxdlkklrvv94edTll043oyRemxcI0FVO/a5DuVt1HTN
+	 p0iDzsx6nl9FysRbjopItDCWTDb8D7qAXtlm3scftt6dgKtLP24OCqs9dZVUOrvvtL
+	 i0kt6QIoBm+xQ==
+X-Virus-Scanned: Debian amavisd-new at mail.inside-m2m.de
+Received: from mail.inside-m2m.de ([127.0.0.1])
+	by localhost (mail.inside-m2m.de [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id vIVU5lMIrtdk for <yocto@lists.yoctoproject.org>;
+	Thu,  1 Apr 2021 10:33:27 +0200 (CEST)
+Received: from mail.inside-m2m.de (mail.inside-m2m.de [188.68.57.244])
+	(Authenticated sender: konstantin.kletschke@inside-m2m.de)
+	by mail.inside-m2m.de (Postfix) with ESMTPSA id 3A30D4020F
+	for <yocto@lists.yoctoproject.org>; Thu,  1 Apr 2021 10:33:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=inside-m2m.de;
+	s=default; t=1617266007;
+	bh=ly9ALKxRzeSPYP8YHYll7Y16corysJUJBtK1oKSV3Vw=;
+	h=Date:From:To:Subject:From;
+	b=FeQj59tb7bbC0gvx17w5MCSJVQw1aLmtgIJ5iXSZtae1KAKb/hH0uc9ZSLdVcy57F
+	 0v/mBrKg1w1gOmwOZ8S/xukL2IFfMlfLMFeSn2qGegsn1o4fxgBm2/PWJTr1dgBLRG
+	 PBadcIjVBDzeX4dYMTWVQesagBOZKQnnwEJdlfnFrHHlILlwlk5F/Kjw6tp02DRJG+
+	 H0Jg690f9IFg6CGq4B5TWqXyxdlkklrvv94edTll043oyRemxcI0FVO/a5DuVt1HTN
+	 p0iDzsx6nl9FysRbjopItDCWTDb8D7qAXtlm3scftt6dgKtLP24OCqs9dZVUOrvvtL
+	 i0kt6QIoBm+xQ==
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3624.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 99919a1a-8442-4d6f-5aaf-08d8f4d69f42
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Apr 2021 06:23:10.3970
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WCpXdvY2sH/DWWrOvpuAhnLmZNWM/xwGQIKxzZSdp2C5QjH9QdwtjfMrPpTzLyq9I0JnI2yhZEXXI/SpkpEO9A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4928
-Return-Path: sangeeta.jain@intel.com
-X-OriginatorOrg: intel.com
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Date: Thu, 01 Apr 2021 10:33:27 +0200
+From: konstantin.kletschke@inside-m2m.de
+To: yocto@lists.yoctoproject.org
+Subject: BeagleBone Black wig image does not boot
+Organization: Inside M2M GmbH
+Message-ID: <fce20dedb8dd11bd95e1c1cca206cdf6@inside-m2m.de>
+X-Sender: konstantin.kletschke@inside-m2m.de
+User-Agent: Roundcube Webmail/1.3.0 
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello All,
+Hi all,
 
-This is the full report for yocto-3.2.3.rc1:  
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/=
-?h=3Dintel-yocto-testresults
+I successfully compile/create a target image and binaries for a 
+BeagleBone Black:
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.=20
+MACHINE ?= "beaglebone-yocto"
 
-No new issues found
+The resulting wic image does not boot, when I write it to a sdcard nor 
+when I write it directly into the internal /dev/mmcblk0. There is no 
+console output despite of some capital "C" sometimes (the internal boot 
+loader-loader failing to find u-boot?).
+The image looks rather healthy, though:
+
+fdisk p output:
+
+Disk core-image-base-beaglebone-yocto-20210331083925.rootfs.wic: 1 GiB, 
+1098599424 bytes, 2145702 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xa63a46ea
+
+Device                                                      Boot Start   
+   End Sectors    Size Id Type
+core-image-base-beaglebone-yocto-20210331083925.rootfs.wic1 *        8   
+49065   49058     24M  c W95 FAT32 (LBA)
+core-image-base-beaglebone-yocto-20210331083925.rootfs.wic2      49072 
+2145701 2096630 1023.8M 83 Linux
+
+ls -la of the mounted first boot partition:
+
+insidem2m@konsti ~/Y $ ls -la /mnt
+total 8648
+drwxr-xr-x  3 root root   16384 Jan  1  1970 .
+drwxr-xr-x 17 root root    4096 Mar  4 12:06 ..
+-rwxr-xr-x  1 root root  107940 Apr  6  2011 MLO
+-rwxr-xr-x  1 root root   59303 Apr  6  2011 am335x-bone.dtb
+-rwxr-xr-x  1 root root   62629 Apr  6  2011 am335x-boneblack.dtb
+-rwxr-xr-x  1 root root   59567 Apr  6  2011 am335x-bonegreen.dtb
+drwxr-xr-x  2 root root    2048 Apr  6  2011 extlinux
+-rwxr-xr-x  1 root root  892736 Apr  6  2011 u-boot.img
+-rwxr-xr-x  1 root root 7645608 Apr  6  2011 zImage
 
 
-Thanks,
-Sangeeta
 
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Monday, 29 March, 2021 11:49 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuild=
-er build
-> (yocto-3.2.3.rc1)
->=20
->=20
-> A build flagged for QA (yocto-3.2.3.rc1) was completed on the autobuilde=
-r and is
-> available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.2.3.rc1
->=20
->=20
-> Build hash information:
->=20
-> bitbake: 5d02c98489d3a5836676b9c3fb3bd0157449db2b
-> meta-arm: e219ef606e297b98512887c96522d8d8c536bd6b
-> meta-gplv2: 6e8e969590a22a729db1ff342de57f2fd5d02d43
-> meta-intel: 76e0a427e58d068d0758fa052d2d1548067cf592
-> meta-kernel: 29329d7cacc71595cecfdd05a455a0cfb164564d
-> meta-mingw: 352d8b0aa3c7bbd5060a4cc2ebe7c0e964de4879
-> oecore: fdae970656cc421c542af9856bc9ae038c61db13
-> poky: 08665a81dcd41069eed1468f1587abe6b5893471
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
->=20
->=20
+The strange thing is, when I prepare a sdcard (or the internal flash!) 
+with partitions manually, format manually and copy the same kernel and 
+u-boot binaries into the first and the rootfs into the second partition, 
+the system works fine!
+
+
+Since the complete Image layout looks fine to me, what could be the 
+culprit of that?
+
+Kind Regards
+Konsti
+
 
