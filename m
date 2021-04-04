@@ -1,93 +1,113 @@
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
- by mx.groups.io with SMTP id smtpd.web09.2610.1616618006105525015
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+ by mx.groups.io with SMTP id smtpd.web11.40347.1617521020821407567
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Mar 2021 13:33:26 -0700
+ Sun, 04 Apr 2021 00:23:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=g2GlNeeE;
- spf=pass (domain: gmail.com, ip: 209.85.167.50, mailfrom: arunlee@gmail.com)
-Received: by mail-lf1-f50.google.com with SMTP id v15so3773546lfq.5
-        for <yocto@lists.yoctoproject.org>; Wed, 24 Mar 2021 13:33:25 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=uuCX5Ti2;
+ spf=pass (domain: gmail.com, ip: 209.85.160.170, mailfrom: raj.khem@gmail.com)
+Received: by mail-qt1-f170.google.com with SMTP id s2so6490670qtx.10
+        for <yocto@lists.yoctoproject.org>; Sun, 04 Apr 2021 00:23:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=khxGqFfyNbP45TCVlGITOih8vBZYFbp/uwU5BphM8+A=;
-        b=g2GlNeeEH83FqrhZXMRo40LSxFYeWyKkcnF0kLH3kG38eSlS7cxSdL/5wN9pNEvJTM
-         E+hBXNuTxd/V7PqWXz6sJkEmSfJHDgB1RUKB/PfAl6Ds5r7g9NQRZKfgzLI0ZFyks/LN
-         6uAy1xjucvyJqS4RpWJZsUVWtMFYF6Vev50ZpguN5Zj3wYv3I5F8JEi+26z06tbmJMxi
-         nmR65OHUg8cU0mEuREA80Md49kJ7PFl5R56K0P669r48ASITa9xrQjFkHOu7aTl8RuqX
-         DbqX/sIXI9MINAbaImrpx+q+hsKfok2gGlkXmG/KnAa0EGfCFOowRHk8aLoiJ9AarvM0
-         WWJA==
+        bh=8M46Qn7ePwRZphz0Z/9Y+jjsYK969FEtBPi0vFcQsz8=;
+        b=uuCX5Ti2t6SWf00FfcAEad0z3bqXBKKPFlopWzdXyeB/q6HW5C/6my5Cx4qgP9Q8In
+         FwhvhF2m4YQhoJtXKmAbHTfCRRdNewwl+I/AhmXLGKiM/qXE25hJjvC9mgpAZnG0jf3g
+         Bzsuclpukez3Uz4y/5bRtBldZj85ee8ixXNfQg4UY2F5O813f0Tfpc8PeVeA9gsVUYfY
+         1HbGScSNA2ZRS4Ck2W4SJKcH2lsnAuL1pKvGnnnRftfdxzQCefr/45xsWlpbBEncGwpK
+         h+Nmq1SG54ssi2dolFx+TA4uE0UydnnUEuh5Sv3nHARjkcK5TwcgXdtaJ+C1MGSln4wk
+         x8jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=khxGqFfyNbP45TCVlGITOih8vBZYFbp/uwU5BphM8+A=;
-        b=MegyDIZi+FbOFym0c2DUZ50OoRszi1qTBSr85DUSVGdeaGlFL3rPIABhPBGh57HgDD
-         G+OOj0btUhT2Jxb0Sg1jhZhW+RjxTdCglC5VSYrWumzWy7NDpf80b/cVBuSM1C5EPHmu
-         dcRJCJcqg/T7XYBHeTt6XAB4joPNMsU5aXoKRD96lwN+YZ7H6F7etRrDNE+auh+2wxcz
-         5oTz0XxtSSip8jFAKWN1ZAxRhYiKNEvY03guxd+F+hjhZxM5ei0RBVkPf2ORCNrhigvR
-         GJyrqTmnID03SGO1taR8ODSa4HfeSfhYt8rV/NScKPZJWXAOaxpzb6yqerXT/yMeZa0H
-         Y6Jg==
-X-Gm-Message-State: AOAM531Gf1VDud0WG7+07cA35iNgAcKHBYRNo6J9Xq6BzY07Au2S1tXz
-	y6/KFY+lZ5O4uBbbnI2g2EMNiX+1i53MMGmDZNo=
-X-Google-Smtp-Source: ABdhPJxPKh2wepvk9119WL62qxYg6Z4ejRgUsdhltNvnhbek7bB7JRxbqwynPySe83w4H2LzPxvJNDUxLMd+SmK9IAM=
-X-Received: by 2002:ac2:5937:: with SMTP id v23mr2973472lfi.82.1616618004304;
- Wed, 24 Mar 2021 13:33:24 -0700 (PDT)
+        bh=8M46Qn7ePwRZphz0Z/9Y+jjsYK969FEtBPi0vFcQsz8=;
+        b=E/nJoY2pndMLhcXqarotxvWvAwJLZikiQ4RUfuprcxZ7/SNZob4hdBseJgdEzr+6WV
+         AuWlWgFuRz+PhtZg+CozDP5NKkgNd+M+5WCiVveIwjE6h9YqiO+AtilwFEpGZVdGcE/T
+         kRCvJMdLRWW92XjYO7P++YrOa4Mk2Jd0Lm2cS7uy5rYiE5Vq++3IEFv7ZO5w8zr07zLn
+         IDCJMqfJGd5ZSStwtOxGbdIVONC83NC3QAOkYW35KS7Psbp21ZdaBVwJVUNMc0M9n7j+
+         sL07XwYs8yyKgGAlakWRLLjIdddbpDcqG4Z1cRwSoh85eQ9RAx4/Eefkohh0om3wSade
+         0MAQ==
+X-Gm-Message-State: AOAM530VI8WFEu++jVw0ljI9tp9l3FTRy1tajhx7Agfafpm8DD0X4Giu
+	/50mKjSJCQPa+qjr3yTE8YsYXvM5HoXJm0h+/og=
+X-Google-Smtp-Source: ABdhPJyrXOzhbqTqkzC2k0/qg8Pr6LIbx/cLdD7XQbc3z5trpv1MWFr1AlRzmdTDoFtrzckLKI6G+KhSqfkvifaR6Ss=
+X-Received: by 2002:ac8:4b6d:: with SMTP id g13mr17720634qts.369.1617521019931;
+ Sun, 04 Apr 2021 00:23:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <1bf54cb4-31c0-863c-ead4-c02431ba1c36@gmail.com>
- <12874.1616616288995699304@lists.yoctoproject.org> <CAMKF1srkxBEhG0uHqo218AGiLmeqSAC83kkwb4wJa98HJQ9CZA@mail.gmail.com>
-In-Reply-To: <CAMKF1srkxBEhG0uHqo218AGiLmeqSAC83kkwb4wJa98HJQ9CZA@mail.gmail.com>
-From: arunlee@gmail.com
-Date: Wed, 24 Mar 2021 22:33:13 +0200
-Message-ID: <CAFDdYFgeeEZjDY0N6ZQvuEOrzYeiNkz1R8CLz9O04WF29nhVzg@mail.gmail.com>
-Subject: Re: Private: Re: [poky] Weird Compilation issue with a c++ recipe
-To: Khem Raj <raj.khem@gmail.com>
+References: <8S52.1616688989583067700.ubBM@lists.yoctoproject.org>
+In-Reply-To: <8S52.1616688989583067700.ubBM@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Sun, 4 Apr 2021 00:23:13 -0700
+Message-ID: <CAMKF1so-kbZLH1D2J8LfrSZy6=yhmJF4CbQnqckMOY+Q1r2_cA@mail.gmail.com>
+Subject: Re: [yocto] Issue generating working sdk containing Clang (meta-clang) and package_deb for compiling eBPF #sdk #dunfell #yocto #kernel #linux
+To: msg board <msgboardpana@gmail.com>
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+Hi
+
+Can you try this patch ( if you are using master ) and see if that helps
+
+diff --git a/recipes-devtools/clang/clang_git.bb
+b/recipes-devtools/clang/clang_git.bb
+index b8986be..b0c81f1 100644
+--- a/recipes-devtools/clang/clang_git.bb
++++ b/recipes-devtools/clang/clang_git.bb
+@@ -15,7 +15,6 @@ BUILD_CXX_class-nativesdk =3D "clang++"
+BUILD_AR_class-nativesdk =3D "llvm-ar"
+BUILD_RANLIB_class-nativesdk =3D "llvm-ranlib"
+BUILD_NM_class-nativesdk =3D "llvm-nm"
+-LDFLAGS_append_class-nativesdk =3D " -fuse-ld=3Dlld"
+
+inherit cmake cmake-native pkgconfig python3native
+
+
+On Sat, Apr 3, 2021 at 3:34 PM msg board <msgboardpana@gmail.com> wrote:
 >
-> Adding yp mailing list back.
+> Hello,
 >
-> On Wed, Mar 24, 2021 at 1:04 PM <arunlee@gmail.com> wrote:
-> >
-> > This what i see:
-> >
-> > /build$ bitbake -e rs-oem-kit-server | grep -e "CXX=3D"
-> > export BUILD_CXX=3D"g++ "
-> > export CXX=3D"aarch64-poky-linux-g++  -mcpu=3Dcortex-a72+crc+crypto -fs=
-tack-protector-strong  -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -We=
-rror=3Dformat-security --sysroot=3D/home/aravind2/work/mevolve-yocto/mvdevi=
-ce/build/tmp/work/aarch64-poky-linux/rs-oem-kit-server/1.8.2.0-r0/recipe-sy=
-sroot"
+> I need Clang compiler apart from currently available default gcc compile=
+r as I am trying to compile eBPF which will run on my custom yocto which is=
+ based on core-image-minimal. Therefore I added Clang compiler to my yocto =
+sdk build using the meta-clang layer available at https://github.com/kraj/m=
+eta-clang . My yocto is based on dunfell and uses package_deb inside local.=
+conf. SDK compilation succeeded with command "bitbake <mycustomdistro> -c p=
+opulate_sdk " but while installation on host there errors similar to the on=
+es mentioned in this issue .  Therefore, I removed the LDFLAGS_append_class=
+-nativesdk =3D " -fuse-ld=3Dgold" line from clang_git.bb and compiled. This=
+ gave me errors related to this issue . Therefore, I added package_ipk and =
+also kept package_deb . The compilation was successful but there was one wa=
+rning as below :
 >
-> but the logs you posted doesn't show this as CXX, so somewhere its
-> being overwritten. Are there more CMakeFiles that are in play ?
-
-I have posted the top level CMakeList.txt in the first post, which
-added a sub directory
-
-INCLUDE_DIRECTORIES(include)
-
-# Add the sources to the target
-add_subdirectory(src)
-
-
-that has one CMakeList.txt.
-
-
-# Set minimum required CMake version
-cmake_minimum_required(VERSION 3.5.1)
-
-# Name the project
-project (sources)
-
-add_subdirectory(calsimple)
-add_subdirectory(calibinfo)
-add_subdirectory(writer)
-add_subdirectory(converter)
-add_subdirectory(server)
-
-regards
-Arun
+> -------------------------
+>
+> <CUSTOMDISTRO> do_populate_sdk: Unable to install packages. Command <Pat=
+h>/opkg --volatile-cache -f <Path>/opkg.conf -t <Path>/sysroots/core2-64-po=
+ky-linux --force-postinstall --prefer-arch-to-version install <Long list of=
+ space seperate package names> returned 1
+>
+> Collected errors: Solver encountered 1 problem(s) ....
+>
+>
+>
+>
+>
+>
+>
+> -------------------------
+>
+> The installation of on host was successful
+>
+> When I tried to use the sdk to compile eBPF, I got errors mentioning tha=
+t the sysroot does not contain /usr/include/gelf.h . After looking I saw th=
+at elfutils-dev tools were not installed. elfutils-dev would have installed=
+ gelf.h. in /usr/include of sysroot.
+>
+> Without the addition of Clang I was able to generate working sdk with ju=
+st package_deb in local.conf.
+>
+>
+>=20
+>
