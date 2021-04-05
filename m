@@ -1,123 +1,75 @@
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
- by mx.groups.io with SMTP id smtpd.web10.46792.1617569446920802343
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+ by mx.groups.io with SMTP id smtpd.web09.5671.1617633748472197257
  for <yocto@lists.yoctoproject.org>;
- Sun, 04 Apr 2021 13:50:47 -0700
+ Mon, 05 Apr 2021 07:42:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=i8Hl15aD;
- spf=pass (domain: gmail.com, ip: 209.85.166.47, mailfrom: twoerner@gmail.com)
-Received: by mail-io1-f47.google.com with SMTP id v26so10258707iox.11
-        for <yocto@lists.yoctoproject.org>; Sun, 04 Apr 2021 13:50:46 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=LF+I+uEO;
+ spf=pass (domain: gmail.com, ip: 209.85.219.173, mailfrom: kent.dorfman766@gmail.com)
+Received: by mail-yb1-f173.google.com with SMTP id x189so12730366ybg.5
+        for <yocto@lists.yoctoproject.org>; Mon, 05 Apr 2021 07:42:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LXoWMHswAX0oCy1aYicZJh0t+sx4P8p/PTkL6VRYpSE=;
-        b=i8Hl15aDTSGPib1rKDZlpWrM0eJ15qlM+10c36duO5yKWAONkOsnbvRKVtBCE7J5qH
-         8u00ozwAJZQ4IC3hjEF9IuBWK82jsodAK2PQ9jidU7b3jAsGUtSe7YiateUz0v8lWuDr
-         mruz/JkzbIrnRmQN7xCS09Kce9zg+vmrVUNrG7s5f4moyECZwLhPmE6gl7iffmvI/Ttd
-         Wdg3Jj5RQ+K0QaPx3v2Fj8UQUMgoPK5xXjFZ27VzuJ2Q+FEkYXoS1JBwps+q1Msthsq0
-         VWavn7VOTwZSbjW1Q3dij2vSp8UQ00McmIfun3Bg7FnUV6A6v6lrzDfjxzfTSWwBlKTY
-         yD2Q==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=0gja7lZ1dqJmhpjnj+mfThuuleEKbEfTCLsrnAXpq9I=;
+        b=LF+I+uEOOh+BkIpluZc+k7OecU+01/c2Ft89eAztLlpOk+yhodopnadBIKvx7VnfpH
+         d0HZLVbpoxDy3MgLObvu5V7194alz3T7M/G2RozMM4j6KcbbGUUxEXkE5RV3aQAhL5Ny
+         nIUkEKXWIBP2FEtGhDfDeHFWu9mmFbZygpdofJ1lEP9UNYfYWQaTZfGBmY9Ul2DgnjfT
+         tvHgrc95lz12WLdf+XgX4LGJ+FZFezgPsR/nG4z++DDZxx7vBdVzopVH0iBdbc4+ZO1t
+         BdT+Y/0hZsJDZ1GWRX4DAIUpQgaIQbP0/CmbP65aYwxwZ9lph7+aGYGAeIhPA1SL7axg
+         aMtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LXoWMHswAX0oCy1aYicZJh0t+sx4P8p/PTkL6VRYpSE=;
-        b=Xls0JJIJ7SULBm+W8W+D/jpkNb47aHkuLMkWmhIlJMsnajXgLNrsSywzhw9h7Dsh1n
-         N+dj7Gw+F7yXnnjBU23ji8iajZDisTA/oIHzjGktryrdZ/x8aZZLOVLFmrKhnFzTlnxY
-         rHGKCSLCk29B1gGG3Zh4jFg4KcDHaKB5P9BrY/9VCSItXLYyBKCkh8kCgktFDQqkXeoV
-         u2o0OtZJO7LIgQWMtJ960wmj2agRTebETSAb4lAcqwECumJi3drHUtaFwFvlVADba4Ca
-         isONRncYZlfOXTyGHCkWTL5daa88i9Gi/nX3vthHP0EDEm69xp7BbNvF3CWRhxuOJN5k
-         XZnA==
-X-Gm-Message-State: AOAM530A6DtWT6XQe4l7hPrV2Fr8/XQkfovtZUVwsUIQxZLyjvwFbmTP
-	5woz9PvwcXak2eyl1fdsls9tXqnYVP0uxhMQ5zo=
-X-Google-Smtp-Source: ABdhPJxx9J17LmkwGitktVYN9ALAPkuD5D+yTgl95x7lRC/+0r/em/+x+mI5B3yMMbvsTA8nsiy3zhxBhQV7MCTCba0=
-X-Received: by 2002:a02:9645:: with SMTP id c63mr21085897jai.84.1617569446319;
- Sun, 04 Apr 2021 13:50:46 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=0gja7lZ1dqJmhpjnj+mfThuuleEKbEfTCLsrnAXpq9I=;
+        b=BF0w98yuXak/DYakfbSSSAM82X93aokxZ6+bNHxIN16TgcsLQgXOM932euWSWoYDje
+         6Dca5q5TNUnSzQ0ihnnXl9lYs/8sf5LkzoYg35dQEGvWDYCgKt0y4Qnwm6blybnlv3Rp
+         BcoHnqC5thbKJzYYHS8Wwwx1NjLwJ2nv0Tkeyw6PUCBOZIZ1u46SAaliQkczxH+LSLIp
+         yBODIe/iSocuribM8IIKEpy9mBCTLYudszDq95ZuZ/UTc230g+9FQn1q2Zek/5a+eRsw
+         AKX2quoPh6RDvnBPIxzyOljFo4oGUBL0ONKNFscYoY/CZWb0ZVC0AOgdqc4tZ41PjTos
+         8fmg==
+X-Gm-Message-State: AOAM5301onEAsfXhwYv+3D1KxVsZvUmSdbsa9UYsRSnXvyaEjfagwnnm
+	iG8iyp2izk+GohCRQVLJegTWSuUIHLcWgxakF4L4//aSTH0=
+X-Google-Smtp-Source: ABdhPJyEz4IbsxzCMy1I47gCu+No06aaGN2vGhp5mbAqdwAxUOA2XylcDfZSo7jgCHDGVC723xUgEIC2fOkQZWEvvHk=
+X-Received: by 2002:a25:8143:: with SMTP id j3mr35830500ybm.237.1617633747365;
+ Mon, 05 Apr 2021 07:42:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210401085213.1209080-1-yann@blade-group.com> <20210401085213.1209080-2-yann@blade-group.com>
-In-Reply-To: <20210401085213.1209080-2-yann@blade-group.com>
-From: "Trevor Woerner" <twoerner@gmail.com>
-Date: Sun, 4 Apr 2021 16:50:35 -0400
-Message-ID: <CAHUNapQ3169SniA9LDu-Gf9PqEqAb-uTjA5mkS2Ma=mOfDe82w@mail.gmail.com>
-Subject: Re: [meta-rockchip][PATCH v2 1/4] linux-yocto: reduce bbappend duplication
-To: Yann Dirson <yann.dirson@blade-group.com>
-Cc: Yann Dirson <yann@blade-group.com>, yocto@lists.yoctoproject.org
+Received: by 2002:a05:7110:5108:b029:36:f02c:a4b3 with HTTP; Mon, 5 Apr 2021
+ 07:42:27 -0700 (PDT)
+From: "Kent Dorfman" <kent.dorfman766@gmail.com>
+Date: Mon, 5 Apr 2021 10:42:27 -0400
+Message-ID: <CAK4PFCXOJzbjnahWDVeZkT4EsReB03rt=ZssTCQ+ohH=RQSA7Q@mail.gmail.com>
+Subject: BB_NO_NETWORK ignored, causing fetch failure
+To: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Yann,
+upstream vendors provided me with a git repo of ALL necessary layers
+with the understanding that I'd clone the repo locally and disable
+network access, using only our local cloned repo in dl_mirror/
 
-I've added this one to master, thanks!
-I'm still playing around with the others, thanks for your patience :-)
+The files in dl_mirror are either raw tarballs, gitshallow, or
+gitsmshallow.  I've touched the .done file for all of them.
 
-On Thu, Apr 1, 2021 at 4:52 AM <yann.dirson@blade-group.com> wrote:
->
-> From: Yann Dirson <yann@blade-group.com>
->
-> Signed-off-by: Yann Dirson <yann@blade-group.com>
-> ---
->  ...{linux-yocto-dev.bbappend => linux-yocto%.bbappend} |  0
->  recipes-kernel/linux/linux-yocto-rt_%.bbappend         | 10 ----------
->  recipes-kernel/linux/linux-yocto-tiny_%.bbappend       | 10 ----------
->  recipes-kernel/linux/linux-yocto_%.bbappend            | 10 ----------
->  4 files changed, 30 deletions(-)
->  rename recipes-kernel/linux/{linux-yocto-dev.bbappend => linux-yocto%.bbappend} (100%)
->  delete mode 100644 recipes-kernel/linux/linux-yocto-rt_%.bbappend
->  delete mode 100644 recipes-kernel/linux/linux-yocto-tiny_%.bbappend
->  delete mode 100644 recipes-kernel/linux/linux-yocto_%.bbappend
->
-> diff --git a/recipes-kernel/linux/linux-yocto-dev.bbappend b/recipes-kernel/linux/linux-yocto%.bbappend
-> similarity index 100%
-> rename from recipes-kernel/linux/linux-yocto-dev.bbappend
-> rename to recipes-kernel/linux/linux-yocto%.bbappend
-> diff --git a/recipes-kernel/linux/linux-yocto-rt_%.bbappend b/recipes-kernel/linux/linux-yocto-rt_%.bbappend
-> deleted file mode 100644
-> index 7702e3f..0000000
-> --- a/recipes-kernel/linux/linux-yocto-rt_%.bbappend
-> +++ /dev/null
-> @@ -1,10 +0,0 @@
-> -COMPATIBLE_MACHINE_marsboard-rk3066 = "marsboard-rk3066"
-> -COMPATIBLE_MACHINE_rock2-square = "rock2-square"
-> -COMPATIBLE_MACHINE_radxarock = "radxarock"
-> -COMPATIBLE_MACHINE_firefly-rk3288 = "firefly-rk3288"
-> -COMPATIBLE_MACHINE_vyasa-rk3288 = "vyasa-rk3288"
-> -COMPATIBLE_MACHINE_tinker-board = "tinker-board"
-> -COMPATIBLE_MACHINE_tinker-board-s = "tinker-board-s"
-> -COMPATIBLE_MACHINE_rock-pi-4 = "rock-pi-4"
-> -COMPATIBLE_MACHINE_nanopi-m4 = "nanopi-m4"
-> -COMPATIBLE_MACHINE_nanopi-m4-2gb = "nanopi-m4-2gb"
-> diff --git a/recipes-kernel/linux/linux-yocto-tiny_%.bbappend b/recipes-kernel/linux/linux-yocto-tiny_%.bbappend
-> deleted file mode 100644
-> index 7702e3f..0000000
-> --- a/recipes-kernel/linux/linux-yocto-tiny_%.bbappend
-> +++ /dev/null
-> @@ -1,10 +0,0 @@
-> -COMPATIBLE_MACHINE_marsboard-rk3066 = "marsboard-rk3066"
-> -COMPATIBLE_MACHINE_rock2-square = "rock2-square"
-> -COMPATIBLE_MACHINE_radxarock = "radxarock"
-> -COMPATIBLE_MACHINE_firefly-rk3288 = "firefly-rk3288"
-> -COMPATIBLE_MACHINE_vyasa-rk3288 = "vyasa-rk3288"
-> -COMPATIBLE_MACHINE_tinker-board = "tinker-board"
-> -COMPATIBLE_MACHINE_tinker-board-s = "tinker-board-s"
-> -COMPATIBLE_MACHINE_rock-pi-4 = "rock-pi-4"
-> -COMPATIBLE_MACHINE_nanopi-m4 = "nanopi-m4"
-> -COMPATIBLE_MACHINE_nanopi-m4-2gb = "nanopi-m4-2gb"
-> diff --git a/recipes-kernel/linux/linux-yocto_%.bbappend b/recipes-kernel/linux/linux-yocto_%.bbappend
-> deleted file mode 100644
-> index 7702e3f..0000000
-> --- a/recipes-kernel/linux/linux-yocto_%.bbappend
-> +++ /dev/null
-> @@ -1,10 +0,0 @@
-> -COMPATIBLE_MACHINE_marsboard-rk3066 = "marsboard-rk3066"
-> -COMPATIBLE_MACHINE_rock2-square = "rock2-square"
-> -COMPATIBLE_MACHINE_radxarock = "radxarock"
-> -COMPATIBLE_MACHINE_firefly-rk3288 = "firefly-rk3288"
-> -COMPATIBLE_MACHINE_vyasa-rk3288 = "vyasa-rk3288"
-> -COMPATIBLE_MACHINE_tinker-board = "tinker-board"
-> -COMPATIBLE_MACHINE_tinker-board-s = "tinker-board-s"
-> -COMPATIBLE_MACHINE_rock-pi-4 = "rock-pi-4"
-> -COMPATIBLE_MACHINE_nanopi-m4 = "nanopi-m4"
-> -COMPATIBLE_MACHINE_nanopi-m4-2gb = "nanopi-m4-2gb"
-> --
-> 2.30.2
->
+After removing all state cache and attempting a clean rebuild I'm
+getting a do_fetch failure on a recipe for one of the vendor specific
+fragments.
+
+ERROR: XXX-pll-ctrl-git-r0 do_fetch: Network access disabled through
+BB_NO_NETWORK (or set indirectly due to use of BB_FETCH_PREMIRRORONLY)
+but access requested with command \
+LANG=C git -c core.fsyncobjectfiles=0 clone --bare --mirror \
+    ssh://git@gitlab.XXXXXX.com/XXXXXX/internal/sw/XXXXXXXXX/XXX_pll_ctrl.git
+/HD/home/XXdev/XX-yocto-git/build/../dl_mirror \
+    /git2/gitlab.XXXXXX.com.XXXXXX.internal.sw.XXXXXXXXX.XXX_pll_ctrl.git \
+    --progress (for url
+git://gitlab.XXXXXX.com/XXXXXX/internal/sw/XXXXXXXXX/XXX_pll_ctrl.git;user=git;protocol=ssh;branch=master)
+
+ERROR: XXX-pll-ctrl-git-r0 do_fetch: Function failed: base_do_fetch
+ERROR: Logfile of failure stored in:
+/HD/home/XXdev/XX-yocto-git/build/tmp-glibc/work/cortexa9hf-neon-XXXXXX-linux-gnueabi/XXX-pll-ctrl/git-r0/temp/log.do_fetch.7513
+
+
+I need to force yocto to ONLY use or attempt to use dl_mirror/
+content...regardless of what the SRC_URI is in the recipe.  Not clear
+on why "git clone --mirror" still references upstream repo
+
+How to accomplish bombproof local dl_mirror/ reference only?
