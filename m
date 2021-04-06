@@ -1,69 +1,129 @@
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
- by mx.groups.io with SMTP id smtpd.web09.147.1617728805034503310
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+ by mx.groups.io with SMTP id smtpd.web11.296.1617729418760992267
  for <yocto@lists.yoctoproject.org>;
- Tue, 06 Apr 2021 10:06:45 -0700
+ Tue, 06 Apr 2021 10:16:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=IUwPEyxe;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.216.45, mailfrom: mhalstead@linuxfoundation.org)
-Received: by mail-pj1-f45.google.com with SMTP id ep1-20020a17090ae641b029014d48811e37so2741310pjb.4
-        for <yocto@lists.yoctoproject.org>; Tue, 06 Apr 2021 10:06:45 -0700 (PDT)
+ dkim=pass header.i=@linaro.org header.s=google header.b=rF5hyklD;
+ spf=pass (domain: linaro.org, ip: 209.85.208.44, mailfrom: nicolas.dechesne@linaro.org)
+Received: by mail-ed1-f44.google.com with SMTP id s15so2529823edd.4
+        for <yocto@lists.yoctoproject.org>; Tue, 06 Apr 2021 10:16:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JcuOkdMY1WX/MNThb0oKNndiKajnHdwaAtpugR4LF9A=;
-        b=IUwPEyxeb84NW0iOSkZ6KFaYVkqaivftoCa45Hx2022zoPZzzeAc08PfbEsBi3P1bt
-         q1uZ/RJPs3f/kjpu4THlSyvvaMs3Z6Akv9GztiTal1Q9NlaOECRKyauhiwKBMJaCI5li
-         I25lD8X1QqBG/ffI7mAViMNvZi3tpsLKyyUng=
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KAKdv/wRaCTSQt/p5PsAS+Nl673SKz/7moqyh8tAJN4=;
+        b=rF5hyklDg40JbVuQGDsr3Ic8GwrCFww0kIZ7/xIXy5w8L+6WuGUf9BL8cMMb2D/cQa
+         eoBUJLNy2udx7I7Z3igiPNwCEDdnTX+WnCCi9bECjyiq6N3kXNcbTIaE8EIaIUzSRYS2
+         EhpU/E1c8MTTsbvIo/aKA6+37G8Z+IAnQ1BFrwwPq3NmjoUTLOulXdcOqc54VxAE13+u
+         0F/VkTHuTt22ah/rXaqBT355VuZ5ynsc7CRgb3XhlG3q7OTaYN9X5PWczQd2xI4eUmc2
+         +IXlHLaxjq8zsuTJplk5iicp6JNDKFTrgGoYJWONUpAQno3psQzBsNbcIDuYGu+zGHwY
+         SEZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JcuOkdMY1WX/MNThb0oKNndiKajnHdwaAtpugR4LF9A=;
-        b=tjfRQtYtIypNkuTLTAvuGQ41qbtYHKpK+pLIdkB3+cE4n/9yaZnaUdNJrhXpDiVmeh
-         5Xm/bDUSPBFKXvIUP5yFqxaTpbPnugJ3lIV/YnRuF7HEoe3e0Fvbg7QDuXdeyjM3WniW
-         1GGcsl59cQq1guoHpjRawOl3cLilrgKpfPjG8nRw9zPoplDME4o/2tGtxlXmL4i6bkpE
-         MhkwKU62lJrD5iYGszOazGk0ao7whcdWxv5ES8tyeZFkbCfUw3nhgaAnPklawA3nCrQ7
-         da13gMCv6O72xSqmdiR5IWeHwbSdcVd2YXFzVEer4bWsjfAaErdVu3ApWkZPlzceuhU/
-         6+8w==
-X-Gm-Message-State: AOAM532X0fALop0P/wwjEHtwLX9HTSr1cjAOKvtUN7WmlwhPKb+7gST3
-	bdLpxIn2RiayXzXtIhDLnNTdhWAlhf18ww==
-X-Google-Smtp-Source: ABdhPJxq2wEPSOGG/7jtuZVGHRfoKk/McVTI82AxZILGI/5qeVY3ffCl/Zt1AoM1HkGPU1Zf4bPZ7w==
-X-Received: by 2002:a17:90a:7896:: with SMTP id x22mr5117328pjk.182.1617728804222;
-        Tue, 06 Apr 2021 10:06:44 -0700 (PDT)
-Return-Path: <mhalstead@linuxfoundation.org>
-Received: from localhost.localdomain (c-24-21-216-192.hsd1.or.comcast.net. [24.21.216.192])
-        by smtp.gmail.com with ESMTPSA id v27sm19403057pfi.89.2021.04.06.10.06.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Apr 2021 10:06:43 -0700 (PDT)
-From: "Michael Halstead" <mhalstead@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org
-Cc: Michael Halstead <mhalstead@linuxfoundation.org>
-Subject: [PATCH yocto-autobuilder-helper] run-docs-build: add 3.2.3 release to docs build
-Date: Tue,  6 Apr 2021 10:06:33 -0700
-Message-Id: <20210406170633.8165-1-mhalstead@linuxfoundation.org>
-X-Mailer: git-send-email 2.30.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KAKdv/wRaCTSQt/p5PsAS+Nl673SKz/7moqyh8tAJN4=;
+        b=QGNiB0t0s5kZA7XIzMLUT5jKyEvoVrlnBfXWKYtUL+gyBFXg2tElcdoOdsymQ7z5CV
+         b+3+r8dp2Lf+eVuOTgRwnxrHpYx6eplTu6/3H8MdXM6/EzmNmVTjU6F561whbZMQjngi
+         42n8nNYbY3Whm4Ww/BLxgj02CAx7lnhYPo3SdJhNqWZkILZ/JhoDIigWA+T7cl4BZsw8
+         vO0AKFyd0SqmwzSUIM57vwvj8rBu8mwMHVHKqOC63agKui8FaO8sVKB8nRZzVJj5mmbf
+         Y1RPcOokIgmC1P7gcL7RC6g8qk8/GdN1gvsdvTSuVIgBYFgSfW4vC4OYFzyArLl+glsS
+         XUDA==
+X-Gm-Message-State: AOAM5320iKnpPxQUUdWOLbAd2Yy9/xJSHyw7qaQOoXfmWovWNW4Hr8yY
+	9mKi04VsZlKhrDAaVdO5DmIo+srIJ5fzSjTc1/MM4A==
+X-Google-Smtp-Source: ABdhPJyw8sbnhuPDdhiU9R1TSKPuAm6c+hX/Fi0ACdKF9w5UdXjVtpk6/V0zcC5tV2K+dPljGAK6rsV6YYOjvaJR9+8=
+X-Received: by 2002:a05:6402:22f9:: with SMTP id dn25mr717285edb.101.1617729415792;
+ Tue, 06 Apr 2021 10:16:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210406170633.8165-1-mhalstead@linuxfoundation.org>
+In-Reply-To: <20210406170633.8165-1-mhalstead@linuxfoundation.org>
+From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
+Date: Tue, 6 Apr 2021 19:16:45 +0200
+Message-ID: <CAP71Wjyi+OwUV5GPjOd5w+=u_9H2to608Tc8NHno0UsC-9b39g@mail.gmail.com>
+Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] run-docs-build: add 3.2.3 release to docs build
+To: Michael Halstead <mhalstead@linuxfoundation.org>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000002bdb0e05bf50fbb0"
 
-Signed-off-by: Michael Halstead <mhalstead@linuxfoundation.org>
----
- scripts/run-docs-build | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--0000000000002bdb0e05bf50fbb0
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/scripts/run-docs-build b/scripts/run-docs-build
-index 4af23fd..910f03d 100755
---- a/scripts/run-docs-build
-+++ b/scripts/run-docs-build
-@@ -77,7 +77,7 @@ for branch in dunfell gatesgarth hardknott; do
- done
- 
- # Yocto Project releases/tags
--for tag in 3.1.5 3.1.6 3.2 3.2.1 3.2.2; do
-+for tag in 3.1.5 3.1.6 3.2 3.2.1 3.2.2 3.2.3; do
-     cd $ypdocs
-     git checkout yocto-$tag
-     make clean
--- 
-2.30.2
+On Tue, Apr 6, 2021 at 7:06 PM Michael Halstead <
+mhalstead@linuxfoundation.org> wrote:
 
+> Signed-off-by: Michael Halstead <mhalstead@linuxfoundation.org>
+>
+
+Thanks for the patch.
+
+Reviewed-by: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+
+
+> ---
+>  scripts/run-docs-build | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/scripts/run-docs-build b/scripts/run-docs-build
+> index 4af23fd..910f03d 100755
+> --- a/scripts/run-docs-build
+> +++ b/scripts/run-docs-build
+> @@ -77,7 +77,7 @@ for branch in dunfell gatesgarth hardknott; do
+>  done
+>
+>  # Yocto Project releases/tags
+> -for tag in 3.1.5 3.1.6 3.2 3.2.1 3.2.2; do
+> +for tag in 3.1.5 3.1.6 3.2 3.2.1 3.2.2 3.2.3; do
+>      cd $ypdocs
+>      git checkout yocto-$tag
+>      make clean
+> --
+> 2.30.2
+>
+>
+> 
+>
+>
+
+--0000000000002bdb0e05bf50fbb0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 6, 2021 at 7:06 PM Michae=
+l Halstead &lt;<a href=3D"mailto:mhalstead@linuxfoundation.org">mhalstead@l=
+inuxfoundation.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex">Signed-off-by: Michael Halstead &lt;<a href=3D"mailto:mha=
+lstead@linuxfoundation.org" target=3D"_blank">mhalstead@linuxfoundation.org=
+</a>&gt;<br></blockquote><div><br></div><div>Thanks for the patch.</div><di=
+v><br></div><div>Reviewed-by: Nicolas Dechesne &lt;<a href=3D"mailto:nicola=
+s.dechesne@linaro.org">nicolas.dechesne@linaro.org</a>&gt;=C2=A0</div><div>=
+=
+=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+---<br>
+=C2=A0scripts/run-docs-build | 2 +-<br>
+=C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
+<br>
+diff --git a/scripts/run-docs-build b/scripts/run-docs-build<br>
+index 4af23fd..910f03d 100755<br>
+--- a/scripts/run-docs-build<br>
++++ b/scripts/run-docs-build<br>
+@@ -77,7 +77,7 @@ for branch in dunfell gatesgarth hardknott; do<br>
+=C2=A0done<br>
+<br>
+=C2=A0# Yocto Project releases/tags<br>
+-for tag in 3.1.5 3.1.6 3.2 3.2.1 3.2.2; do<br>
++for tag in 3.1.5 3.1.6 3.2 3.2.1 3.2.2 3.2.3; do<br>
+=C2=A0 =C2=A0 =C2=A0cd $ypdocs<br>
+=C2=A0 =C2=A0 =C2=A0git checkout yocto-$tag<br>
+=C2=A0 =C2=A0 =C2=A0make clean<br>
+-- <br>
+2.30.2<br>
+<br>
+<br>
+<br>
+<br>
+</blockquote></div></div>
+
+--0000000000002bdb0e05bf50fbb0--
