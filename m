@@ -1,95 +1,161 @@
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
- by mx.groups.io with SMTP id smtpd.web08.2217.1617749979704339545
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web09.2900.1617752847714179505
  for <yocto@lists.yoctoproject.org>;
- Tue, 06 Apr 2021 15:59:39 -0700
+ Tue, 06 Apr 2021 16:47:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Z+wQJEW6;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.210.180, mailfrom: mhalstead@linuxfoundation.org)
-Received: by mail-pf1-f180.google.com with SMTP id i190so3269417pfc.12
-        for <yocto@lists.yoctoproject.org>; Tue, 06 Apr 2021 15:59:39 -0700 (PDT)
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=ibEE090B;
+ spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 1FC2038C06D4
+	for <yocto@yoctoproject.org>; Tue,  6 Apr 2021 23:47:27 +0000 (UTC)
+Received: by mail-wr1-f51.google.com with SMTP id e18so15939888wrt.6
+        for <yocto@yoctoproject.org>; Tue, 06 Apr 2021 16:47:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
+        d=blade-group.com; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=2T/H9c56c8PgBtj3OLjcaQsSMe1O0yS6v9eBitaeM+8=;
-        b=Z+wQJEW6ypKpSpIlRODwVKSLz9EER7uE5J0F9qOilUYpYqEd4daLW24eljOcWzVse7
-         gq2kGLo0BY2Q6n+bO5jX3kHbQqoejDlFQKp2EV37pv0Bac2j2v80UmY438CVbHk7Lkml
-         bTaJY2MU7EUjhiCmBJRTC3T2/bWZ6GXkHQWmA=
+        bh=H5U8X/giPh7slgzko9OTYICh/1nkkRYPjJf3yjl4uj0=;
+        b=ibEE090B3amuIdSji9Abu+Eu0CT0+YEYh9tJ81vlWGfamCwKmz9AIXW/c0vG8wCQeE
+         Wyy+CDExrhxtE7MnfxH2MU8jJnRpqZAAsmzp8HRveaCS32OIK+rNhsW9EkyNLL7JnUCl
+         3wEFeS5B3oGGxkFb+B/dobKZDEuZSRnJ6QUg2amqGljbCcC4qxAmKQSbZn1ErmvjnZ30
+         xaFTyNr6Kb0ed0nW/2nN6EwydcimptUplYEiFqKQln0DeuEqfmokFfplIgAa7hduE36n
+         mZG2HBZBQRm2T8/KSxJ3Hkk68ofsEv/5SoOOmjh6lqnL0QPgoq/sATsWH65z9GS/UUt0
+         Wlwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=2T/H9c56c8PgBtj3OLjcaQsSMe1O0yS6v9eBitaeM+8=;
-        b=BZvrKiKCadtg/FCCulOH1EOuSp257ptnFpR1ZZQ/oPJ+0AnqfLVS1XoY7Y26WteVyW
-         xkK/vBY7AEnpmpr+m28NkMhaf6omTn4N/FFhR0IOUqDdbJKo5CZOVmlPflM5sHPyuruz
-         AiVGCPyr4nT84WT+0rcYnYro0/+kagxScK3yoJWj7Jrf8IA4nf9SLtreKUvD2pXhhyQe
-         sikiGKRUJIIHEy5P0BOJOMJG+CQtuTBjdLlaN8rYwxg7Cj6YgfsjczVbR8T6bTR5lhuv
-         w7SgSMAWxla2om4L3jZfZdYPmtLuNPB1G1bC/o1W0WN15aO09rOWbc3YG2r7WI3/AWJH
-         xcpg==
-X-Gm-Message-State: AOAM532vLtOcXfUE/6Hc2Ug5bmMaGQJnTw67B2MTMHrojgQIFzbbp3XR
-	pIK1ZNJWPPhOnZBy/59D8MtZK7A49Aj1/A==
-X-Google-Smtp-Source: ABdhPJx4iHZfycr/yCRXbiVojlQctnO87HFOjv2lxGwo9RDpNM3ppJkQUZ47C3tdWBh+gyRF2wuHUg==
-X-Received: by 2002:aa7:8187:0:b029:213:d43b:4782 with SMTP id g7-20020aa781870000b0290213d43b4782mr353387pfi.26.1617749978655;
-        Tue, 06 Apr 2021 15:59:38 -0700 (PDT)
-Return-Path: <mhalstead@linuxfoundation.org>
-Received: from localhost.localdomain.org (c-24-21-216-192.hsd1.or.comcast.net. [24.21.216.192])
-        by smtp.gmail.com with ESMTPSA id fu11sm3384422pjb.35.2021.04.06.15.59.37
+        bh=H5U8X/giPh7slgzko9OTYICh/1nkkRYPjJf3yjl4uj0=;
+        b=A8+oQBlylbzCavOzoDggwNUztK5FOoOTbpbgMhJzxHQFehgFUpdwJQhQRtG+jsFjI1
+         roYAU8XK62w+RHZvHmDIE5xvhlvl8h+wQz+bMqmUSKxEPcu4wu2TdzmG3gxDCPq993zG
+         ZPxqHau+XzH43KK1XYXMq4QnR9y4HCIFW8p1DY1S68MvDkfKhghHhjiB0IJCCtoesGCo
+         G+CyhNn+gI1sjDU5S1Ssr0hEeU63OqPUm+uullm2GR0ttm1NuVc8MPJDshEcBDKnStgd
+         NxRSjZC2TCQaqm5u45p5pxtWERzumJNYTQNzsjQCJObEXR+i+CrMMV/v29kRtt0mLIQS
+         D9+g==
+X-Gm-Message-State: AOAM532ywzRm7GT1Mf5BUWhkmhaBeBYQE1XW0xaPfTaj4+ccEe3IgL6V
+	OlNIH4nLBWTu9JZq/NjWvbxbeBvEStmrQQ==
+X-Google-Smtp-Source: ABdhPJx6eNbAUNEhm8hkdOQFz92Zgw2jNPDCSTC66AlF0+ZdPxF9MMG7uWAko/qDbGvu0qQKBjs5mA==
+X-Received: by 2002:a5d:5291:: with SMTP id c17mr796899wrv.110.1617752845459;
+        Tue, 06 Apr 2021 16:47:25 -0700 (PDT)
+Received: from blanquette.lan ([88.120.44.86])
+        by smtp.gmail.com with ESMTPSA id 128sm5001953wmc.43.2021.04.06.16.47.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Apr 2021 15:59:38 -0700 (PDT)
-From: "Michael Halstead" <mhalstead@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org
-Cc: Michael Halstead <mhalstead@linuxfoundation.org>,
-	nicolas.dechesne@linaro.org
-Subject: [PATCH yocto-autobuilder-helper] run-docs-build: build from tags dynamically instead of static list
-Date: Tue,  6 Apr 2021 15:58:20 -0700
-Message-Id: <20210406225819.37683-1-mhalstead@linuxfoundation.org>
+        Tue, 06 Apr 2021 16:47:24 -0700 (PDT)
+From: "Yann Dirson" <yann.dirson@blade-group.com>
+X-Google-Original-From: yann@blade-group.com
+To: yocto@yoctoproject.org
+Cc: twoerner@gmail.com,
+	Yann Dirson <yann@blade-group.com>
+Subject: [meta-rockchip][PATCH] trusted-firmware-a: use 1500000 baud for serial console
+Date: Wed,  7 Apr 2021 01:47:00 +0200
+Message-Id: <20210406234700.2493404-1-yann@blade-group.com>
 X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 
-All new releases are Sphinx ready so we exclude old tags and build for
-all the rest.
+From: Yann Dirson <yann@blade-group.com>
 
-Signed-off-by: Michael Halstead <mhalstead@linuxfoundation.org>
+TF-A runs between two u-boot stages which both uses 1500000 baud, it
+just makes no sense to use the same UART at a different rate.
+
+Here is a sample session with the successive stages, with TF-A artificial=
+ly
+separated for emphasis:
+
+ [20210406-175438.135934] U-Boot TPL 2021.01 (Jan 11 2021 - 18:11:43)
+ [20210406-175438.135956] Channel 0: DDR3, 933MHz
+ [20210406-175438.236974] BW=3D32 Col=3D10 Bk=3D8 CS0 Row=3D15 CS=3D1 Die=
+ BW=3D16 Size=3D1024MB
+ [20210406-175438.237000] Channel 1: DDR3, 933MHz
+ [20210406-175438.237004] BW=3D32 Col=3D10 Bk=3D8 CS0 Row=3D15 CS=3D1 Die=
+ BW=3D16 Size=3D1024MB
+ [20210406-175438.237008] 256B stride
+ [20210406-175438.237012] Trying to boot from BOOTROM
+ [20210406-175438.237015] Returning to boot ROM...
+ [20210406-175438.237018]
+ [20210406-175438.573394] U-Boot SPL 2021.01 (Jan 11 2021 - 18:11:43 +000=
+0)
+ [20210406-175438.573431] Trying to boot from MMC1
+
+ [20210406-175438.589254] NOTICE:  BL31: v2.3():v2.3-dirty
+ [20210406-175440.534055] NOTICE:  BL31: Built : 15:56:43, Apr 20 2020
+
+ [20210406-175441.393423] U-Boot 2021.01 (Jan 11 2021 - 18:11:43 +0000)
+ [20210406-175441.393429]
+ [20210406-175441.393433] SoC: Rockchip rk3399
+
+Signed-off-by: Yann Dirson <yann@blade-group.com>
 ---
- scripts/run-docs-build | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+ .../files/serial-console-baudrate.patch       | 35 +++++++++++++++++++
+ .../trusted-firmware-a_%.bbappend             |  5 +++
+ 2 files changed, 40 insertions(+)
+ create mode 100644 recipes-bsp/trusted-firmware-a/files/serial-console-b=
+audrate.patch
 
-diff --git a/scripts/run-docs-build b/scripts/run-docs-build
-index 910f03d..13df34a 100755
---- a/scripts/run-docs-build
-+++ b/scripts/run-docs-build
-@@ -7,6 +7,7 @@ ypdocs=$2/documentation/
- bbdocs=$3/doc/
- docs_buildtools=/srv/autobuilder/autobuilder.yoctoproject.org/pub/buildtools/x86_64-buildtools-docs-nativesdk-standalone-3.2+snapshot-20201105.sh
- outputdir=$builddir/output
-+excluded_tags="yocto-3.1.4 yocto-3.1.3 yocto-3.1.2 yocto-3.1.1 yocto-3.1 yocto-3.0.1 yocto-3.0 yocto-2.6.4 yocto-2.6.3 yocto-2.7.1 yocto-2.6.2 yocto-2.7 yocto-2.6.1 yocto-2.6 yocto-2.5.2 yocto-2.5.1 yocto-2.4.4 yocto-2.4.3 yocto-2.5 yocto-2.3.4 yocto-1.0.2 yocto-1.1.2 yocto-1.2.2 yocto-1.2.1 yocto-1.3 yocto-1.3.1 yocto-1.3.2 yocto-1.4.3 yocto-1.4.2 yocto-1.4.1 yocto-1.4 yocto-2.1.3 yocto-2.4.2 yocto-2.1.1 yocto-2.1.2 yocto-2.0.3 yocto-1.8.2 yocto-2.2.3 yocto-2.4.1 yocto-2.3.3 yocto-2.3.2 yocto-2.4 yocto-2.2.2 yocto-2.3.1 yocto-2.3 yocto-2.2.1 yocto-2.0.2 yocto-2.2 yocto-2.1 yocto-2.0.1 yocto-2.0 yocto-1.8.1 yocto-1.7.3 yocto-1.6.3 yocto-1.7.2 yocto-1.8 yocto-1.5.1"
- 
- 
- cd $builddir
-@@ -77,13 +78,18 @@ for branch in dunfell gatesgarth hardknott; do
- done
- 
- # Yocto Project releases/tags
--for tag in 3.1.5 3.1.6 3.2 3.2.1 3.2.2 3.2.3; do
-+cd $ypdocs
-+for tag in $(git tag -l  |grep 'yocto-' |sort); do
-+    if [[ $excluded_tags =~ $tag ]]; then
-+        continue
-+    fi
-     cd $ypdocs
--    git checkout yocto-$tag
-+    git checkout $tag
-     make clean
-     make publish
--    mkdir $outputdir/$tag
--    cp -r ./_build/final/* $outputdir/$tag
-+    version=$(echo $tag | cut -c7-)
-+    mkdir $outputdir/$version
-+    cp -r ./_build/final/* $outputdir/$version
- done
- 
- # Update switchers.js with the copy from master ypdocs
--- 
+diff --git a/recipes-bsp/trusted-firmware-a/files/serial-console-baudrate=
+.patch b/recipes-bsp/trusted-firmware-a/files/serial-console-baudrate.pat=
+ch
+new file mode 100644
+index 0000000..10b5a2b
+--- /dev/null
++++ b/recipes-bsp/trusted-firmware-a/files/serial-console-baudrate.patch
+@@ -0,0 +1,35 @@
++From 840d6b6420e1fd8cdf6e4de7fa58a6f8de151622 Mon Sep 17 00:00:00 2001
++From: Yann Dirson <yann@blade-group.com>
++Date: Tue, 6 Apr 2021 17:28:45 +0200
++Subject: [PATCH] Set serial console baudrate back to 1500000.
++
++TF-A runs between two u-boot stages which both uses 1500000 baud, it
++just makes no sense to use the same UART at a different rate.
++
++This effectively reverts part of 0c05748bdebfad9fa43a80962186438bb8fbce6=
+2.
++Main reason for that change stated in https://developer.trustedfirmware.=
+org/T762
++is ChromeOS compatibility.
++
++Looks like this patch may become unnecessary in the future, when
++u-boot and TF-A get to communicate this value.
++
++---
++ plat/rockchip/rk3399/rk3399_def.h | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/plat/rockchip/rk3399/rk3399_def.h b/plat/rockchip/rk3399/rk=
+3399_def.h
++index ba83242eb..8d6ecfbe6 100644
++--- a/plat/rockchip/rk3399/rk3399_def.h
+++++ b/plat/rockchip/rk3399/rk3399_def.h
++@@ -17,7 +17,7 @@
++ /**********************************************************************=
+****
++  * UART related constants
++  **********************************************************************=
+****/
++-#define RK3399_BAUDRATE			115200
+++#define RK3399_BAUDRATE			1500000
++ #define RK3399_UART_CLOCK		24000000
++=20
++ /**********************************************************************=
+********
++--=20
++2.30.2
++
+diff --git a/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend=
+ b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
+index 442dee8..1942c17 100644
+--- a/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
++++ b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
+@@ -4,3 +4,8 @@ DEPENDS_append_rk3399 =3D " virtual/arm-none-eabi-gcc-nat=
+ive"
+=20
+ COMPATIBLE_MACHINE_append_rk3399 =3D "|rk3399"
+ COMPATIBLE_MACHINE_append_rk3328 =3D "|rk3328"
++
++FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
++SRC_URI +=3D "\
++    file://serial-console-baudrate.patch \
++"
+--=20
 2.30.2
 
