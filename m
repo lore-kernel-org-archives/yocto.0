@@ -1,417 +1,277 @@
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
- by mx.groups.io with SMTP id smtpd.web09.1209.1617648955356741140
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web09.7422.1617681128585938154
  for <yocto@lists.yoctoproject.org>;
- Mon, 05 Apr 2021 11:55:55 -0700
+ Mon, 05 Apr 2021 20:52:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=TqCAvRaW;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.208.182, mailfrom: mhalstead@linuxfoundation.org)
-Received: by mail-lj1-f182.google.com with SMTP id o16so13718048ljp.3
-        for <yocto@lists.yoctoproject.org>; Mon, 05 Apr 2021 11:55:55 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=LM8QXI3w;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 602E038C077D
+	for <yocto@yoctoproject.org>; Tue,  6 Apr 2021 03:52:07 +0000 (UTC)
+Received: by mail-pj1-f45.google.com with SMTP id cl21-20020a17090af695b02900c61ac0f0e9so605095pjb.1
+        for <yocto@yoctoproject.org>; Mon, 05 Apr 2021 20:52:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Lq1+e0LKqbG4FANUR9HbBssvRzdduaXcLAInHHhG1aI=;
-        b=TqCAvRaW9eGXo6Q9DtxKmaE4+P/renOWstR/hYQ8b8eo/SChqyjORGkcZKUsD4OzwB
-         wr0SlWmuqLl84huuXH/K1dQ+hUQgATxLr6Ho00hQgtSFvOwKI1LG4Koih8p9WDc0SCb2
-         kYek7Gkmd9QZtH6SUpB8BbziJEhHskBd+QrcE=
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=03eTSJ3fYctsBp9T8QH9/pefbiVGztzP8tfSGLXKgLM=;
+        b=LM8QXI3w8J/d3IfJRjQiGZbuhyFhtWCKw2SFP9x3hnjMxqI0nvlGA5r9X4OOyIKf/d
+         vVytr8Ra2A/cPpyP6y5tpRuV9b3YeDfqjeqHsd9VLjn+rPihXqY8iO8G7QnFIL7//Gni
+         dgaOTXfHu9uMayCebqGzqMDiq1CW5l/YCjBZD6VP3QV6G/lWz7d0+3WxjeAMYmDcdPIs
+         XK7ELzd28vviuE4UBib6c0grQJfZtk4E7Vw0Yt1yPVr/8tiTaRsg5upjfAuuArsqcIlT
+         r63Kowuw4fgEsegbxIG5lhULtXMzsvivDu9mmWjumw7vf2pA56qb1ijWJ5NGHqne636M
+         IAcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Lq1+e0LKqbG4FANUR9HbBssvRzdduaXcLAInHHhG1aI=;
-        b=C+3prNwRR+83UfjklIs3XxJFe52g0XEfjhFu1enG21v8hCULUPB5CinXQ5k7orsQzI
-         JSR2KxsnzCLRsDw4gg4bV6v60gBgE0eVJtbXRwXbfSXKF1zJL7QbUXiE+6AMXS6du6O8
-         KuhVs9einAsX1s0Bnb3PE2wwnkydQg3aY64z5ARS8geCg+FaKFrwWOQbaLE56G281Olh
-         0Xx8U7EukA7wWSR74HSu9rVR2nYzubjC6PbHnqTJPbiwEcFpQMLE9l0NCET9c6P7zd3x
-         onnnATs4B6YTIZQ1sKxV54VPF8XoagLiApy4Kip9Ht7rQijboy1/JioygGwiVxJ07LEF
-         lq1g==
-X-Gm-Message-State: AOAM533YeTlLkwBHZPSLqTzkuUGUmptmTwU+QPZcDcgj3HwjL0j3bcKv
-	JusJ+EFREnSF0nE5ku2Wbph9M90IhD2F93TX8SbxbQ==
-X-Google-Smtp-Source: ABdhPJy3GBrLuooI+ehftic4UYHBguezFyuIjaKYbLyovEjtocf0oeyF2jPUeAyx+ULc939XzpTFhode3sGgH8lioLU=
-X-Received: by 2002:a2e:9a42:: with SMTP id k2mr17332540ljj.363.1617648953437;
- Mon, 05 Apr 2021 11:55:53 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=03eTSJ3fYctsBp9T8QH9/pefbiVGztzP8tfSGLXKgLM=;
+        b=r8H3+YKHo3BiCx3YRyNWw4w7YgYaL7YSrsqPL3d3a444GwyCILRj1ItbaZ0YVeFv89
+         l+NPLHw0o15VYFUhMjg64eBMPxotatKPrOobVsEpnm2WRYPM2fETsEfx7zz2t+m43gJU
+         goNtko4yd9mwHsQUxOkPFUL+ostChXAgsclCQtuujYX3SKY94UpIGeZUCSC0JB7HVEOz
+         kPmPX1HuSecMy/1TJ5lk8HF1XM7HVZiRWezqWwlRRgqoF3roKlQ8EF2bfE2wjJh4HP15
+         oskeEOEl1pmgHiOexatVGlVsjXi+HM+VhnEPta6cTssPQh6erHOCI9XcGhgVSHPDd8GN
+         mlnA==
+X-Gm-Message-State: AOAM532jN4WziTLnnvRG6NG8iRSfWUUgZNN0xIA7g4XWxzTfdtvoJq/M
+	IskA+62RL07c8aIALItb+PA=
+X-Google-Smtp-Source: ABdhPJyGYvi0NqfQOTb/9/cvdUxo8JMgC9pH+ZJ9tunIofXl/4Sj7j/d0SaW/ql73UqcjQWs2goYrw==
+X-Received: by 2002:a17:902:b088:b029:e6:e1d8:20cc with SMTP id p8-20020a170902b088b02900e6e1d820ccmr26399492plr.27.1617681126732;
+        Mon, 05 Apr 2021 20:52:06 -0700 (PDT)
+Received: from skjolley (wsip-72-194-163-85.ph.ph.cox.net. [72.194.163.85])
+        by smtp.gmail.com with ESMTPSA id o3sm806832pjm.30.2021.04.05.20.52.05
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 05 Apr 2021 20:52:06 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 5 Apr 2021 20:52:06 -0700
+Message-ID: <096d01d72a98$36d9fbd0$a48df370$@gmail.com>
 MIME-Version: 1.0
-References: <20210405162305.1419881-1-trevor.gamblin@windriver.com>
-In-Reply-To: <20210405162305.1419881-1-trevor.gamblin@windriver.com>
-From: "Michael Halstead" <mhalstead@linuxfoundation.org>
-Date: Mon, 5 Apr 2021 11:55:42 -0700
-Message-ID: <CADfgfoYc1_xe5MHrMuHe0KZ+z3k=5XUNbKwBNR375XJbC1pzaQ@mail.gmail.com>
-Subject: Re: [yocto] [yocto-autobuilder2][RFC][PATCH] README-Guide.md: Add multi-node content, extra config info
-To: Trevor Gamblin <trevor.gamblin@windriver.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000003dc2be05bf3e3f77"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJa1MaK4jBrPosKrLyh4TkOoe6tvQ==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_096E_01D72A5D.8A7B23D0"
+Content-Language: en-us
 
---0000000000003dc2be05bf3e3f77
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_096E_01D72A5D.8A7B23D0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 5, 2021 at 9:23 AM Trevor Gamblin <trevor.gamblin@windriver.com>
-wrote:
+All,
 
-> Signed-off-by: Trevor Gamblin <trevor.gamblin@windriver.com>
-> ---
->  README-Guide.md | 94 +++++++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 94 insertions(+)
->
-> diff --git a/README-Guide.md b/README-Guide.md
-> index 21dd7c1..8558c48 100644
-> --- a/README-Guide.md
-> +++ b/README-Guide.md
-> @@ -43,6 +43,16 @@ yocto-controller/yoctoabb
->  yocto-worker
->  ```
->
-> +Before proceeding, make sure that the following is added to the
-> +pokybuild3 user's exports (e.g. in .bashrc), or builds will fail after
-> +being triggered:
-> +
-> +```
-> +export LC_ALL=en_US.UTF-8
-> +export LANG=en_US.UTF-8
-> +export LANGUAGE=en_US.UTF-8
-> +```
->
+ 
 
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
 
-On the AB at typhoon.yocto.io only LANG=en_US.UTF-8 is set. I don't know
-why LC_ALL or LANGUAGE need to be set on your cluster for builds to succeed.
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
+ 
 
-> +
->  Next, we need to update the `yocto-controller/yoctoabb/master.cfg`
-> towards the bottom where the `title`, `titleURL`, and `buildbotURL` are all
-> set.  This is also where you would specify a different password for binding
-> workers to the master.
->
->  Then, we need to update the `yocto-controller/yoctoabb/config.py` to
-> include our worker.  In that file, find the line where `workers` is set and
-> add: ["example-worker"].  _NOTE:_ if your worker's name is different, use
-> that here.  Section 3.1 discusses how to further refine this list of
-> workers.
-> @@ -112,6 +122,90 @@ sudo
-> /home/pokybuild3/yocto-worker/qemuarm/build/scripts/runqemu-gen-tapdevs \
->
->  In the above command, we assume the a build named qemuarm failed.  The
-> value of 8 is the number of tap interfaces to create on the worker.
->
-> +### 1.3) Adding Dedicated Worker Nodes
-> +
-> +Running both the controller and the worker together on a single machine
-> +can quickly result in long build times and an unresponsive web UI,
-> +especially if you plan on running any of the more comprehensive builders
-> +(e.g. a-full). Additional workers can be added to the cluster by
-> +following the steps given above, except that the yocto-controller steps
-> +do not need to be repeated. For example, to add a new worker
-> +"ala-blade51" to an Autobuilder cluster with a yocto-controller at the
-> +IP address 147.11.105.72:
-> +
-> +1. On the yocto-controller host, add the name of the new worker to a
-> worker
-> +list (or create a new one) e.g. 'workers_wrlx = ["ala-blade51"]' and
-> +make sure that it is added to the "workers" list.
-> +
-> +2. On the new worker node:
-> +
-> +```
-> +sudo apt-get install gawk wget git-core diffstat unzip texinfo \
-> +gcc-multilib build-essential chrpath socat cpio python python3 \
-> +python3-pip python3-pexpect xz-utils debianutils iputils-ping \
-> +libsdl1.2-dev xterm
->
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 360
+unassigned or newcomer bugs.
 
-Should we link to
-https://docs.yoctoproject.org/ref-manual/system-requirements.html#ubuntu-and-debian
-for the current package set as well as listing this information here?
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.2", "3.3, "3.99" and "Future", the more pressing/urgent issues
+being in "3.2" and then "3.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
 
 
-> +
-> +sudo pip3 install buildbot buildbot-www buildbot-waterfall-view \
-> +buildbot-console-view buildbot-grid-view buildbot-worker
-> +
-> +useradd -m --system pokybuild3
-> +cd /home/pokybuild3
-> +mkdir -p git/trash
-> +buildbot-worker create-worker -r --umask=0o22 yocto-worker 147.11.105.72
-> ala-blade51 pass
-> +chown -R pokybuild3:pokybuild3 /home/pokybuild3
-> +```
-> +
-> + > Note 1: The URL/IP given to the create-worker command must match the
-> +host running the yocto-controller.
-> +
-> + > Note 2: The "pass" argument given to the create-worker command must
-> +match the common "worker_pass" variable set in
-> yocto-controller/yoctoabb/config.py.
-> +
-> +
-> +### 1.4) Configuring NFS for the Autobuilder Cluster
-> +
-> +The Yocto Autobuilder relies on NFS to distribute a common sstate cache
-> +and other outputs between nodes. A similar configuration can be
-> +deployed by performing the steps given below, which were written for
-> +Ubuntu 18.04.In order for both the controller and worker nodes to be
-> able
-> +to access the NFS share without issue, the "pokybuild3" user on all
-> +systems must have the same UID/GID, or sufficient permissions must be
-> +granted on the /srv/autobuilder path (or wherever you modified the config
-> +files to point to). The following instructions assume a controller node
-> +at 147.11.105.72 and a single worker node at 147.11.105.71, but
-> +additional worker nodes can be added as needed (see the previous
-> +section).
-> +
-> +1. On the NFS host:
-> +
-> +```
-> +sudo apt install -y nfs-kernel-server
-> +sudo mkdir -p /srv/autobuilder/autobuilder.yoctoproject.org/pub/sstate
-> +sudo chown -R pokybuild3:pokybuild3 /srv
->
-
-Let's only chown the directories we intend to export. Other data may be
-present in /srv and leaving its owner intact is desirable.
-
-
-> +```
-> +2. Add the following to /etc/exports, replacing the path and IP fields
-> +   as necessary for each client node:
-> +```
-> +/srv/autobuilder/autobuilder.yoctoproject.org/pub/sstate
-> 147.11.105.71(rw,sync,no_subtree_check)
-> +```
-> +
-> +3. Run
-> +```
-> +sudo systemctl restart nfs-kernel-server
-> +```
-> +
-> +4. Adjust the firewall (if required). Example:
-> +```
-> +sudo ufw allow from 147.11.105.71 to any port nfs
-> +```
-> +
-> +5. On the client node(s):
-> +```
-> +sudo mkdir -p /srv/autobuilder/autobuilder.yoctoproject.org/pub/sstate
-> +sudo chown -R pokybuild3:pokybuild3 /srv/autobuilder/
-> +sudo mount 147.11.105.72:/srv/autobuilder/
-> autobuilder.yoctoproject.org/pub/sstate /srv/autobuilder/
-> autobuilder.yoctoproject.org/pub/sstate
-> +```
-> +
->  ## 2) Basics
->
->  This section is an overview of operation and a few basic configuration
-> file relationships.  See Section 3 for more detailed instructions.
-> --
-> 2.30.2
->
->
-> 
->
->
-
--- 
-Michael Halstead
-Linux Foundation / Yocto Project
-Systems Operations Engineer
-
---0000000000003dc2be05bf3e3f77
-Content-Type: text/html; charset="UTF-8"
+------=_NextPart_000_096E_01D72A5D.8A7B23D0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_1457_01D724B1.0B0BE820";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 5, 2021 at 9:23 AM Trevor=
- Gamblin &lt;<a href=3D"mailto:trevor.gamblin@windriver.com">trevor.gamblin=
-@windriver.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex">Signed-off-by: Trevor Gamblin &lt;<a href=3D"mailto:trevor.ga=
-mblin@windriver.com" target=3D"_blank">trevor.gamblin@windriver.com</a>&gt;=
-<br>
----<br>
-=C2=A0README-Guide.md | 94 +++++++++++++++++++++++++++++++++++++++++++++++=
-++<br>
-=C2=A01 file changed, 94 insertions(+)<br>
-<br>
-diff --git a/README-Guide.md b/README-Guide.md<br>
-index 21dd7c1..8558c48 100644<br>
---- a/README-Guide.md<br>
-+++ b/README-Guide.md<br>
-@@ -43,6 +43,16 @@ yocto-controller/yoctoabb<br>
-=C2=A0yocto-worker<br>
-=C2=A0```<br>
-<br>
-+Before proceeding, make sure that the following is added to the<br>
-+pokybuild3 user&#39;s exports (e.g. in .bashrc), or builds will fail afte=
-r<br>
-+being triggered:<br>
-+<br>
-+```<br>
-+export LC_ALL=3Den_US.UTF-8<br>
-+export LANG=3Den_US.UTF-8<br>
-+export LANGUAGE=3Den_US.UTF-8<br>
-+```<br></blockquote><div><br></div><div><br></div><div>On the AB at <a hr=
-ef=3D"http://typhoon.yocto.io">typhoon.yocto.io</a> only LANG=3Den_US.UTF-8=
- is set. I don&#39;t know why LC_ALL or LANGUAGE need to be set on your clu=
-ster for builds to succeed.</div><div><br></div><div>=C2=A0</div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex">
-+<br>
-=C2=A0Next, we need to update the=C2=A0`yocto-controller/yoctoabb/master.c=
-fg` towards the bottom where the=C2=A0`title`,=C2=A0`titleURL`, and=C2=A0`b=
-uildbotURL` are all set.=C2=A0 This is also where you would specify a diffe=
-rent password for binding workers to the master.<br>
-<br>
-=C2=A0Then, we need to update the=C2=A0`yocto-controller/yoctoabb/config.p=
-y` to include our worker.=C2=A0 In that file, find the line where=C2=A0`wor=
-kers` is set and add:=C2=A0[&quot;example-worker&quot;].=C2=A0=C2=A0_NOTE:_=
- if your worker&#39;s name is different, use that here.=C2=A0 Section 3.1 d=
-iscusses how to further refine this list of workers.<br>
-@@ -112,6 +122,90 @@ sudo /home/pokybuild3/yocto-worker/qemuarm/build/scri=
-pts/runqemu-gen-tapdevs \<br>
-<br>
-=C2=A0In the above command, we assume the a build named=C2=A0qemuarm faile=
-d.=C2=A0 The value of=C2=A08=C2=A0is the number of tap interfaces to create=
- on the worker.<br>
-<br>
-+### 1.3) Adding Dedicated Worker Nodes<br>
-+<br>
-+Running both the controller and the worker together on a single machine<b=
-r>
-+can quickly result in long build times and an unresponsive web UI,<br>
-+especially if you plan on running any of the more comprehensive builders<=
-br>
-+(e.g. a-full). Additional workers can be added to the cluster by<br>
-+following the steps given above, except that the yocto-controller steps<b=
-r>
-+do not need to be repeated. For example, to add a new worker<br>
-+&quot;ala-blade51&quot; to an Autobuilder cluster with a yocto-controller=
- at the<br>
-+IP address <a href=3D"http://147.11.105.72" rel=3D"noreferrer" target=3D"=
-_blank">147.11.105.72</a>:<br>
-+<br>
-+1. On the yocto-controller host, add the name of the new worker to a work=
-er<br>
-+list (or create a new one) e.g. &#39;workers_wrlx =3D [&quot;ala-blade51&=
-quot;]&#39; and<br>
-+make sure that it is added to the &quot;workers&quot; list.<br>
-+<br>
-+2. On the new worker node:<br>
-+<br>
-+```<br>
-+sudo apt-get install gawk wget git-core diffstat unzip texinfo \<br>
-+gcc-multilib build-essential chrpath socat cpio python python3 \<br>
-+python3-pip python3-pexpect xz-utils debianutils iputils-ping \<br>
-+libsdl1.2-dev xterm<br></blockquote><div><br></div><div>Should we link to=
-=
-=C2=A0<a href=3D"https://docs.yoctoproject.org/ref-manual/system-requireme=
-nts.html#ubuntu-and-debian">https://docs.yoctoproject.org/ref-manual/system=
--requirements.html#ubuntu-and-debian</a> for the current package set as wel=
-l as listing this information here?</div><div>=C2=A0</div><blockquote class=
-=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">
-+<br>
-+sudo pip3 install buildbot buildbot-www buildbot-waterfall-view \<br>
-+buildbot-console-view buildbot-grid-view buildbot-worker<br>
-+<br>
-+useradd -m --system pokybuild3<br>
-+cd /home/pokybuild3<br>
-+mkdir -p git/trash<br>
-+buildbot-worker create-worker -r --umask=3D0o22 yocto-worker 147.11.105.7=
-2 ala-blade51 pass<br>
-+chown -R pokybuild3:pokybuild3 /home/pokybuild3<br>
-+```<br>
-+<br>
-+ &gt; Note 1: The URL/IP given to the create-worker command must match th=
-e<br>
-+host running the yocto-controller.<br>
-+<br>
-+ &gt; Note 2: The &quot;pass&quot; argument given to the create-worker co=
-mmand must<br>
-+match the common &quot;worker_pass&quot; variable set in yocto-controller=
-/yoctoabb/config.py.<br>
-+<br>
-+<br>
-+### 1.4) Configuring NFS for the Autobuilder Cluster<br>
-+<br>
-+The Yocto Autobuilder relies on NFS to distribute a common sstate cache<b=
-r>
-+and other outputs between nodes. A similar configuration can be<br>
-+deployed by performing the steps given below, which were written for<br>
-+Ubuntu <a href=3D"http://18.04.In" rel=3D"noreferrer" target=3D"_blank">1=
-8.04.In</a> order for both the controller and worker nodes to be able <br>
-+to access the NFS share without issue, the &quot;pokybuild3&quot; user on=
- all <br>
-+systems must have the same UID/GID, or sufficient permissions must be <br=
->
-+granted on the /srv/autobuilder path (or wherever you modified the config=
- <br>
-+files to point to). The following instructions assume a controller node<b=
-r>
-+at 147.11.105.72 and a single worker node at 147.11.105.71, but<br>
-+additional worker nodes can be added as needed (see the previous<br>
-+section).<br>
-+<br>
-+1. On the NFS host:<br>
-+<br>
-+```<br>
-+sudo apt install -y nfs-kernel-server<br>
-+sudo mkdir -p /srv/autobuilder/<a href=3D"http://autobuilder.yoctoproject=
-.org/pub/sstate" rel=3D"noreferrer" target=3D"_blank">autobuilder.yoctoproj=
-ect.org/pub/sstate</a><br>
-+sudo chown -R pokybuild3:pokybuild3 /srv<br></blockquote><div><br></div><=
-div>Let&#39;s only chown the directories we intend to export. Other data ma=
-y be present in /srv and leaving its owner intact is desirable.</div><div>=
-=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-+```<br>
-+2. Add the following to /etc/exports, replacing the path and IP fields<br=
->
-+=C2=A0 =C2=A0as necessary for each client node:<br>
-+```<br>
-+/srv/autobuilder/<a href=3D"http://autobuilder.yoctoproject.org/pub/sstat=
-e" rel=3D"noreferrer" target=3D"_blank">autobuilder.yoctoproject.org/pub/ss=
-tate</a> 147.11.105.71(rw,sync,no_subtree_check)<br>
-+```<br>
-+<br>
-+3. Run<br>
-+```<br>
-+sudo systemctl restart nfs-kernel-server<br>
-+```<br>
-+<br>
-+4. Adjust the firewall (if required). Example:<br>
-+```<br>
-+sudo ufw allow from 147.11.105.71 to any port nfs<br>
-+```<br>
-+<br>
-+5. On the client node(s):<br>
-+```<br>
-+sudo mkdir -p /srv/autobuilder/<a href=3D"http://autobuilder.yoctoproject=
-.org/pub/sstate" rel=3D"noreferrer" target=3D"_blank">autobuilder.yoctoproj=
-ect.org/pub/sstate</a><br>
-+sudo chown -R pokybuild3:pokybuild3 /srv/autobuilder/<br>
-+sudo mount 147.11.105.72:/srv/autobuilder/<a href=3D"http://autobuilder.y=
-octoproject.org/pub/sstate" rel=3D"noreferrer" target=3D"_blank">autobuilde=
-r.yoctoproject.org/pub/sstate</a> /srv/autobuilder/<a href=3D"http://autobu=
-ilder.yoctoproject.org/pub/sstate" rel=3D"noreferrer" target=3D"_blank">aut=
-obuilder.yoctoproject.org/pub/sstate</a><br>
-+```<br>
-+<br>
-=C2=A0## 2) Basics<br>
-<br>
-=C2=A0This section is an overview of operation and a few basic configurati=
-on file relationships.=C2=A0 See Section 3 for more detailed instructions.<=
-br>
--- <br>
-2.30.2<br>
-<br>
-<br>
-<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
-" class=3D"gmail_signature"><div dir=3D"ltr">Michael Halstead<div>Linux Fou=
-ndation / Yocto Project</div><div>Systems Operations Engineer</div></div></=
-div></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 360 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.2&#8221;, &#8220;3.3, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.2&quot; and then &#8220;3.3&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
---0000000000003dc2be05bf3e3f77--
+------=_NextPart_000_096E_01D72A5D.8A7B23D0--
