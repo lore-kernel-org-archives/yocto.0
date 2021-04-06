@@ -1,94 +1,69 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.1104.1617724520727759023
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+ by mx.groups.io with SMTP id smtpd.web09.147.1617728805034503310
  for <yocto@lists.yoctoproject.org>;
- Tue, 06 Apr 2021 08:55:20 -0700
+ Tue, 06 Apr 2021 10:06:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=gXetPmEa;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: raj.khem@gmail.com)
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id D9C5138C0830
-	for <yocto@yoctoproject.org>; Tue,  6 Apr 2021 15:55:19 +0000 (UTC)
-Received: by mail-pl1-f176.google.com with SMTP id j7so3063527plx.2
-        for <yocto@yoctoproject.org>; Tue, 06 Apr 2021 08:55:19 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=IUwPEyxe;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.216.45, mailfrom: mhalstead@linuxfoundation.org)
+Received: by mail-pj1-f45.google.com with SMTP id ep1-20020a17090ae641b029014d48811e37so2741310pjb.4
+        for <yocto@lists.yoctoproject.org>; Tue, 06 Apr 2021 10:06:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        d=linuxfoundation.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=0EvL8jJoY8Wmyd3qy12dvPN9AvUhpaO2B2/gQTfxrDI=;
-        b=gXetPmEa7ZmcRmW/hrQnT2n4AOjKlMRAzrbKdbVfEOVFBAU4pl2npRCxaXTUnamb8d
-         UAwjuhsP1hlSauLRn+i50AG50bjSlMZ0v2H4BiEbm3CGQDpMmDOkPfPMFbCOxmidVGCe
-         OFqM/IJQyMR0LB8IQC7wtZ3VnRlBKr2ygjIoNZ0kPvJCtnvCOm/ziA4QwzMcGjjVfeXj
-         zY25FrcZ+l8AUro6h6L55fa+fD7fGh7WdEYsPoS4GhKbiQUpg4WNFUALHYEp572/oDmt
-         h41CQ6Qy/jA3luL3oqvtVI8dyIbXfgno+rCOIX3nHkhV21xL9Wx4Mh2FjoUIdQOorI2h
-         fYWw==
+        bh=JcuOkdMY1WX/MNThb0oKNndiKajnHdwaAtpugR4LF9A=;
+        b=IUwPEyxeb84NW0iOSkZ6KFaYVkqaivftoCa45Hx2022zoPZzzeAc08PfbEsBi3P1bt
+         q1uZ/RJPs3f/kjpu4THlSyvvaMs3Z6Akv9GztiTal1Q9NlaOECRKyauhiwKBMJaCI5li
+         I25lD8X1QqBG/ffI7mAViMNvZi3tpsLKyyUng=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=0EvL8jJoY8Wmyd3qy12dvPN9AvUhpaO2B2/gQTfxrDI=;
-        b=ACfsN4EpukPLZ/UypKMldLLkrbsgc5HlB716aGD5PrIY+HjrNJihLdcSCh3nt+Qvz3
-         m7dVWh3C4tHD4kF6UU3Ybpozr1QSoww3BlRqV0wdIeKEK0WfEN5zmHVIIz280nI/1SiQ
-         gs8kBvp0Z7aZ+TwafFdPukFHBCDW+jxuj+cImaUTIxF4BVI0x4ITbe6UNDs8bngnbA4z
-         mUZqcga9DG3TqEbgpImyoPgfTkEk2RHgkWMTNqwbVav9RGUswU8ywz/3B8GlbwM8JWYG
-         sZK7c8pwTZ7fx8WJKwDWkl1wv3FmdURwyBHj8mrCi4uILZ+e52a5Ihq0DAhAioLmPrlr
-         l8kg==
-X-Gm-Message-State: AOAM530ERzwuEvTRl7duLbb0eESpzPldCGWd9AfP/Cc9s7B3AggbVqVl
-	SC90FKo+ukb/qKKAETiR570=
-X-Google-Smtp-Source: ABdhPJz1NFg+/BWaCnwr0a7PNMJBmYhf4rH8L7Ujrj7EHQeCHRrDxBOIsP9KudXwZYvWSdYgvGpy5Q==
-X-Received: by 2002:a17:902:eccf:b029:e9:3dcf:a59a with SMTP id a15-20020a170902eccfb02900e93dcfa59amr3800673plh.55.1617724519357;
-        Tue, 06 Apr 2021 08:55:19 -0700 (PDT)
-Received: from ?IPv6:2601:646:9200:a0f0:b8fd:d0e9:5b84:68b6? ([2601:646:9200:a0f0:b8fd:d0e9:5b84:68b6])
-        by smtp.gmail.com with ESMTPSA id d20sm18794009pfn.166.2021.04.06.08.55.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Apr 2021 08:55:18 -0700 (PDT)
-Subject: Re: [OE-core] WiFi P2P support
-To: JH <jupiter.hce@gmail.com>, Yocto discussion list <yocto@yoctoproject.org>
-Cc: Patches and discussions about the oe-core layer
- <openembedded-core@lists.openembedded.org>
-References: <CAA=hcWRmH9m3ynX9w7_FXVfeK=ofrbneqZ7Z8QQj6ShftESteA@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <c3bd4663-7820-aaba-8c6c-2e432c867609@gmail.com>
-Date: Tue, 6 Apr 2021 08:55:17 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.9.0
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=JcuOkdMY1WX/MNThb0oKNndiKajnHdwaAtpugR4LF9A=;
+        b=tjfRQtYtIypNkuTLTAvuGQ41qbtYHKpK+pLIdkB3+cE4n/9yaZnaUdNJrhXpDiVmeh
+         5Xm/bDUSPBFKXvIUP5yFqxaTpbPnugJ3lIV/YnRuF7HEoe3e0Fvbg7QDuXdeyjM3WniW
+         1GGcsl59cQq1guoHpjRawOl3cLilrgKpfPjG8nRw9zPoplDME4o/2tGtxlXmL4i6bkpE
+         MhkwKU62lJrD5iYGszOazGk0ao7whcdWxv5ES8tyeZFkbCfUw3nhgaAnPklawA3nCrQ7
+         da13gMCv6O72xSqmdiR5IWeHwbSdcVd2YXFzVEer4bWsjfAaErdVu3ApWkZPlzceuhU/
+         6+8w==
+X-Gm-Message-State: AOAM532X0fALop0P/wwjEHtwLX9HTSr1cjAOKvtUN7WmlwhPKb+7gST3
+	bdLpxIn2RiayXzXtIhDLnNTdhWAlhf18ww==
+X-Google-Smtp-Source: ABdhPJxq2wEPSOGG/7jtuZVGHRfoKk/McVTI82AxZILGI/5qeVY3ffCl/Zt1AoM1HkGPU1Zf4bPZ7w==
+X-Received: by 2002:a17:90a:7896:: with SMTP id x22mr5117328pjk.182.1617728804222;
+        Tue, 06 Apr 2021 10:06:44 -0700 (PDT)
+Return-Path: <mhalstead@linuxfoundation.org>
+Received: from localhost.localdomain (c-24-21-216-192.hsd1.or.comcast.net. [24.21.216.192])
+        by smtp.gmail.com with ESMTPSA id v27sm19403057pfi.89.2021.04.06.10.06.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Apr 2021 10:06:43 -0700 (PDT)
+From: "Michael Halstead" <mhalstead@linuxfoundation.org>
+To: yocto@lists.yoctoproject.org
+Cc: Michael Halstead <mhalstead@linuxfoundation.org>
+Subject: [PATCH yocto-autobuilder-helper] run-docs-build: add 3.2.3 release to docs build
+Date: Tue,  6 Apr 2021 10:06:33 -0700
+Message-Id: <20210406170633.8165-1-mhalstead@linuxfoundation.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <CAA=hcWRmH9m3ynX9w7_FXVfeK=ofrbneqZ7Z8QQj6ShftESteA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
+Signed-off-by: Michael Halstead <mhalstead@linuxfoundation.org>
+---
+ scripts/run-docs-build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/scripts/run-docs-build b/scripts/run-docs-build
+index 4af23fd..910f03d 100755
+--- a/scripts/run-docs-build
++++ b/scripts/run-docs-build
+@@ -77,7 +77,7 @@ for branch in dunfell gatesgarth hardknott; do
+ done
+ 
+ # Yocto Project releases/tags
+-for tag in 3.1.5 3.1.6 3.2 3.2.1 3.2.2; do
++for tag in 3.1.5 3.1.6 3.2 3.2.1 3.2.2 3.2.3; do
+     cd $ypdocs
+     git checkout yocto-$tag
+     make clean
+-- 
+2.30.2
 
-On 4/6/21 12:33 AM, JH wrote:
-> Hi,
-> 
-> I am building WiFi wlan Linux image on Zeus using Linux WiFi
-> linux-firmware-sd8801 and connman, I need to add WiFi P2P support, is
-> it sufficient to create wpa-supplicant_2.9.bbappend to enable
-> CONFIG_P2P=y (it is disabled in wpa-supplicant_2.9 defconfig)?
-> 
-> Do I need to make other changes on OE configurations?
-> 
-
-I dont think there is a canned recipe for P2P so you will discover on way.
-
-I would suggest to look at
-
-https://w1.fi/cgit/hostap/tree/wpa_supplicant/README-P2P
-
-Once you get working it will be valuable if you can then share what 
-steps you needed for it to work end to end.
-
-> Thank you very much.
-> 
-> Kind regards,
-> 
-> jupier
-> 
-> 
-> 
-> 
-> 
