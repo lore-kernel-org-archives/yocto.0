@@ -1,255 +1,210 @@
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
- by mx.groups.io with SMTP id smtpd.web10.4116.1617783426243352411
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web09.4449.1617785705357956823
  for <yocto@lists.yoctoproject.org>;
- Wed, 07 Apr 2021 01:17:06 -0700
+ Wed, 07 Apr 2021 01:55:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=ePzWfzQe;
- spf=pass (domain: linaro.org, ip: 209.85.218.41, mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-ej1-f41.google.com with SMTP id hq27so26140722ejc.9
-        for <yocto@lists.yoctoproject.org>; Wed, 07 Apr 2021 01:17:06 -0700 (PDT)
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=oCmgglaZ;
+ spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 2B0AD38C04F7
+	for <yocto@yoctoproject.org>; Wed,  7 Apr 2021 08:55:04 +0000 (UTC)
+Received: by mail-vs1-f54.google.com with SMTP id d65so5164049vsd.6
+        for <yocto@yoctoproject.org>; Wed, 07 Apr 2021 01:55:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=blade-group.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=S9iD0TvpVxMv20YgAFUQLRVenqTG5WDFKYRUv89mo+8=;
-        b=ePzWfzQeYQqIo+wsFi2YkfJoYI9N7V6lEBq7Qx+vCiZyPqyJB3MbepfYbIYdR9dXv2
-         s/G+5XLmnSvM/+CLCjTEQfaCDtFQYUb6GPczisxQQuy6/c+bTakUrM5oksXeLFC2UMKn
-         Q4L5BQQUkAC343KhiLS9L+bQv/7qnYojfFbnuXgcsU3lrd4k1LIzD3uM3yTvHspo5olf
-         VRGNqoaw+3wIu0CPKhQlaq0st370WD+medlubppQh2o/k49ddR7tyMh1UoYDZt53RCdJ
-         qOrDfeQOa6KNQbboUfxjZ7NcmB3vV6cNJdZRsPEjtwso6yan6rbt+KYZr+5VSiEzo1c+
-         MSCg==
+         :cc:content-transfer-encoding;
+        bh=0cgMM1dvSbjWk5hC7f4/15Rig4eP2/kI1Kr5Wy/xR+k=;
+        b=oCmgglaZwCFL5KW6u4NEn+ypnYTLF1JU4NOrnBY4p35YBOTnrjp+X4k9OA9DX9vLCs
+         oJS2r+PgJgCgQkhUDvMLVfFomJPNn4cMA8OwquEDgmmBFz7qXUZJd3HfAwWhGxAttW7T
+         83rxsWVrHqMysx12oyXD9A4o2DXs7tw8Z+7/VSOSKFpoyEiZv3I3huk6fOajcrVSXph9
+         w9ZVRiv+mNL2TN9fQOJX5wgHEHQK8GEI6RMDNMM8btVTzwqTN1pBrWc7UacSRZJAq/xh
+         4Ul/nxhDiyKRuhaAm0YopzkDkGWjcLi1H/sbGDmOALWKCmFcemBadDfKnCMXBWFfw+5N
+         G+FQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=S9iD0TvpVxMv20YgAFUQLRVenqTG5WDFKYRUv89mo+8=;
-        b=nkqSHDx46fli1P9SoKb9RXtV7TCbnKH4XQBsOzMAQ7IKP9EqxVyx4uuMB9deSFce/U
-         +7kVwR7JIpA+z3CKyNCLP7dweziPZ8ovJI+Ns1B7R6FQp4XMNECQEV2mRKrjxjKIIowc
-         uxAC/VtWH5ufjguDI7nXjUBJpH0ABQH476TIVC/8Q/Ms4WvuXtq4aM0BKiJA2Od7FtMm
-         BNOOiuo43GlLnGw4nkkokNuTGqF4qwT3+fDLm3KLVQ0D70AfLExQgCQ09j7eJZVuqhk6
-         8CVPLs/dy5flGYswnO2tZb2kNeV63WAGQoqGsZzPyRDq161BTK0HpRL4IPXNjJy9cJ6R
-         ffgA==
-X-Gm-Message-State: AOAM531MlNSUTz9X2290B118ZU5402LG/qK4z+bkncb8rbODYbhqb1Z3
-	6EwduuXUfyVD+GwjXtuIFaJRk6+gpzluwiLhlJ+/UA==
-X-Google-Smtp-Source: ABdhPJx5ZyfQIKIdXclF0f52Ug045J6kMUEae1LxCdIIuSNS8OJe3wGUb9qgxZEkkrSjTMoNVGxVBOCnXeRONSpTwn4=
-X-Received: by 2002:a17:906:d9ca:: with SMTP id qk10mr2269901ejb.436.1617783424582;
- Wed, 07 Apr 2021 01:17:04 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=0cgMM1dvSbjWk5hC7f4/15Rig4eP2/kI1Kr5Wy/xR+k=;
+        b=YRDfLoB69l1wVg1UuqqudMfp7UedUtKd1W+4OHEoTpbotVXRYOA1+S6OYHEwngwi7o
+         QhVlsRfGNzKEb+qnjKGRWNxJetOlsezm0fReWcadN+mwaQIqOZBjvYqJFkuCjyiBxDmU
+         LTFDe/8HxgJwchq4GhszAmRRpa3zKcbsw3SJ6HQrj0swmYtHPL4vwU9bcx+f3jS8akb/
+         pmKxtHwk+iD8sdswkuBvWIaaICfN42/d1cnbvt4ShlcbVLpUWZdyxZDyES8BdxRSvYVj
+         Wx0+gBjO8VsXeQ3nuvTBgo0t6pA6/WLAMuzhVDXDbQTAg+7n5AgM/h3zlfjvA3gyAiYI
+         Gm1Q==
+X-Gm-Message-State: AOAM531nYqkW7DVf9df3QR4OSZofSMR079atImyS9ZN+LCgYXYQupdpv
+	kPVbHNMVxI5TIn2Bs7atNG59hgaqu2XxXBvKwjkjAA==
+X-Google-Smtp-Source: ABdhPJzanj6FyjxihntefPsnUspldajg5Nc9xPdWOZ2yYGKE4IoIIWq7HBm0vkQyWlcn/sb7WsUPxJ4wPcW8tdt8X5U=
+X-Received: by 2002:a67:ebc7:: with SMTP id y7mr1148154vso.41.1617785702958;
+ Wed, 07 Apr 2021 01:55:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210406225819.37683-1-mhalstead@linuxfoundation.org> <6B8E39A6-3CA5-41BC-BB1B-EA87B379F104@0leil.net>
-In-Reply-To: <6B8E39A6-3CA5-41BC-BB1B-EA87B379F104@0leil.net>
-From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
-Date: Wed, 7 Apr 2021 10:16:53 +0200
-Message-ID: <CAP71Wjzt7Fd5RpLry5ghUP_xWDdEWmat9d2ETYYJ32ac9=rUEA@mail.gmail.com>
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] run-docs-build: build from tags dynamically instead of static list
-To: Quentin Schulz <foss@0leil.net>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	Michael Halstead <mhalstead@linuxfoundation.org>
-Content-Type: multipart/alternative; boundary="000000000000589a5105bf5d8e8e"
-
---000000000000589a5105bf5d8e8e
+References: <20210406234700.2493404-1-yann@blade-group.com> <CAGAf8Lwh8vP8K+ppSY1nefdw_Rx0eGnjz=P4=tyztPKPhMniqg@mail.gmail.com>
+In-Reply-To: <CAGAf8Lwh8vP8K+ppSY1nefdw_Rx0eGnjz=P4=tyztPKPhMniqg@mail.gmail.com>
+From: "Yann Dirson" <yann.dirson@blade-group.com>
+Date: Wed, 7 Apr 2021 10:54:52 +0200
+Message-ID: <CA+4=imZ1R=X+QCR46Xj4sSmLR9L3OUgk_KXVXO=3QoQGk-KnAA@mail.gmail.com>
+Subject: Re: [yocto] [meta-rockchip][PATCH] trusted-firmware-a: use 1500000 baud for serial console
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>, Trevor Woerner <twoerner@gmail.com>, 
+	Yann Dirson <yann@blade-group.com>
 Content-Type: text/plain; charset="UTF-8"
-
-hey!
-
-On Wed, Apr 7, 2021 at 9:31 AM Quentin Schulz <foss@0leil.net> wrote:
-
-> Hi Michael,
->
-> On April 6, 2021 10:58:20 PM UTC, Michael Halstead <
-> mhalstead@linuxfoundation.org> wrote:
-> >All new releases are Sphinx ready so we exclude old tags and build for
-> >all the rest.
->
-
-Thanks for starting this!
-
-
-> >
-> >Signed-off-by: Michael Halstead <mhalstead@linuxfoundation.org>
-> >---
-> > scripts/run-docs-build | 14 ++++++++++----
-> > 1 file changed, 10 insertions(+), 4 deletions(-)
-> >
-> >diff --git a/scripts/run-docs-build b/scripts/run-docs-build
-> >index 910f03d..13df34a 100755
-> >--- a/scripts/run-docs-build
-> >+++ b/scripts/run-docs-build
-> >@@ -7,6 +7,7 @@ ypdocs=$2/documentation/
-> > bbdocs=$3/doc/
-> > docs_buildtools=/srv/autobuilder/
-> autobuilder.yoctoproject.org/pub/buildtools/x86_64-buildtools-docs-nativesdk-standalone-3.2+snapshot-20201105.sh
-> > outputdir=$builddir/output
-> >+excluded_tags="yocto-3.1.4 yocto-3.1.3 yocto-3.1.2 yocto-3.1.1 yocto-3.1
-> yocto-3.0.1 yocto-3.0 yocto-2.6.4 yocto-2.6.3 yocto-2.7.1 yocto-2.6.2
-> yocto-2.7 yocto-2.6.1 yocto-2.6 yocto-2.5.2 yocto-2.5.1 yocto-2.4.4
-> yocto-2.4.3 yocto-2.5 yocto-2.3.4 yocto-1.0.2 yocto-1.1.2 yocto-1.2.2
-> yocto-1.2.1 yocto-1.3 yocto-1.3.1 yocto-1.3.2 yocto-1.4.3 yocto-1.4.2
-> yocto-1.4.1 yocto-1.4 yocto-2.1.3 yocto-2.4.2 yocto-2.1.1 yocto-2.1.2
-> yocto-2.0.3 yocto-1.8.2 yocto-2.2.3 yocto-2.4.1 yocto-2.3.3 yocto-2.3.2
-> yocto-2.4 yocto-2.2.2 yocto-2.3.1 yocto-2.3 yocto-2.2.1 yocto-2.0.2
-> yocto-2.2 yocto-2.1 yocto-2.0.1 yocto-2.0 yocto-1.8.1 yocto-1.7.3
-> yocto-1.6.3 yocto-1.7.2 yocto-1.8 yocto-1.5.1"
-> >
-> >
-> > cd $builddir
-> >@@ -77,13 +78,18 @@ for branch in dunfell gatesgarth hardknott; do
-> > done
-> >
-> > # Yocto Project releases/tags
-> >-for tag in 3.1.5 3.1.6 3.2 3.2.1 3.2.2 3.2.3; do
-> >+cd $ypdocs
-> >+for tag in $(git tag -l  |grep 'yocto-' |sort); do
->
-> IIUC the man page,
-> git tag --list 'yocto-*' | sort
->
-
-sort -V is even better since it does "natural sort of (version) numbers
-within text", let's get ready for 3.10 ;)
-
-And using -V, how about something along these lines:
-
-v_sphinx='yocto-3.1.5'
-for v in $(git tag --list 'yocto-*'); do
-    first=$(printf '%s\n%s' $v $v_sphinx | sort -V | head -n1)
-    if [ "$first" = "$v_sphinx" ]; then
-        echo "Yocto $v uses Sphinx!"
-    fi
-done
-
-and it outputs the following when I run it locally:
-
-Yocto yocto-3.1.5 uses Sphinx!
-Yocto yocto-3.1.6 uses Sphinx!
-Yocto yocto-3.2 uses Sphinx!
-Yocto yocto-3.2.1 uses Sphinx!
-Yocto yocto-3.2.2 uses Sphinx!
-Yocto yocto-3.2.3 uses Sphinx!
-
-
-
-would be doing the same thing as the one command with grep above.
-> Discovered it recently so just wanted to share.
->
-> I guess this is something we can also do for bitbake Sphinx documentation?
->
-
-yes.
-
-
->
-> Removed the git context inadvertently but, is =~ some bash built-in? I
-> don't know what's the shebang on top but maybe we want to force it to bash
-> since I'm not sure it's POSIX "compliant" anymore?
-
-
-It is bash already.
-
-
->
-> Reviewed-by: Quentin Schulz <foss@0leil.net>
->
-> Thanks,
-> Quentin
->
-
---000000000000589a5105bf5d8e8e
-Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">hey!</div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Wed, Apr 7, 2021 at 9:31 AM Quenti=
-n Schulz &lt;<a href=3D"mailto:foss@0leil.net">foss@0leil.net</a>&gt; wrote=
-:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Michael,<br=
+Le mer. 7 avr. 2021 =C3=A0 06:07, Zoran Stojsavljevic
+<zoran.stojsavljevic@gmail.com> a =C3=A9crit :
 >
-<br>
-On April 6, 2021 10:58:20 PM UTC, Michael Halstead &lt;<a href=3D"mailto:mh=
-alstead@linuxfoundation.org" target=3D"_blank">mhalstead@linuxfoundation.or=
-g</a>&gt; wrote:<br>
-&gt;All new releases are Sphinx ready so we exclude old tags and build for<=
-br>
-&gt;all the rest.<br></blockquote><div><br></div><div>Thanks for starting t=
-his!</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-">
-&gt;<br>
-&gt;Signed-off-by: Michael Halstead &lt;<a href=3D"mailto:mhalstead@linuxfo=
-undation.org" target=3D"_blank">mhalstead@linuxfoundation.org</a>&gt;<br>
-&gt;---<br>
-&gt; scripts/run-docs-build | 14 ++++++++++----<br>
-&gt; 1 file changed, 10 insertions(+), 4 deletions(-)<br>
-&gt;<br>
-&gt;diff --git a/scripts/run-docs-build b/scripts/run-docs-build<br>
-&gt;index 910f03d..13df34a 100755<br>
-&gt;--- a/scripts/run-docs-build<br>
-&gt;+++ b/scripts/run-docs-build<br>
-&gt;@@ -7,6 +7,7 @@ ypdocs=3D$2/documentation/<br>
-&gt; bbdocs=3D$3/doc/<br>
-&gt; docs_buildtools=3D/srv/autobuilder/<a href=3D"http://autobuilder.yocto=
-project.org/pub/buildtools/x86_64-buildtools-docs-nativesdk-standalone-3.2+=
-snapshot-20201105.sh" rel=3D"noreferrer" target=3D"_blank">autobuilder.yoct=
-oproject.org/pub/buildtools/x86_64-buildtools-docs-nativesdk-standalone-3.2=
-+snapshot-20201105.sh</a><br>
-&gt; outputdir=3D$builddir/output<br>
-&gt;+excluded_tags=3D&quot;yocto-3.1.4 yocto-3.1.3 yocto-3.1.2 yocto-3.1.1 =
-yocto-3.1 yocto-3.0.1 yocto-3.0 yocto-2.6.4 yocto-2.6.3 yocto-2.7.1 yocto-2=
-.6.2 yocto-2.7 yocto-2.6.1 yocto-2.6 yocto-2.5.2 yocto-2.5.1 yocto-2.4.4 yo=
-cto-2.4.3 yocto-2.5 yocto-2.3.4 yocto-1.0.2 yocto-1.1.2 yocto-1.2.2 yocto-1=
-.2.1 yocto-1.3 yocto-1.3.1 yocto-1.3.2 yocto-1.4.3 yocto-1.4.2 yocto-1.4.1 =
-yocto-1.4 yocto-2.1.3 yocto-2.4.2 yocto-2.1.1 yocto-2.1.2 yocto-2.0.3 yocto=
--1.8.2 yocto-2.2.3 yocto-2.4.1 yocto-2.3.3 yocto-2.3.2 yocto-2.4 yocto-2.2.=
-2 yocto-2.3.1 yocto-2.3 yocto-2.2.1 yocto-2.0.2 yocto-2.2 yocto-2.1 yocto-2=
-.0.1 yocto-2.0 yocto-1.8.1 yocto-1.7.3 yocto-1.6.3 yocto-1.7.2 yocto-1.8 yo=
-cto-1.5.1&quot;<br>
-&gt; <br>
-&gt; <br>
-&gt; cd $builddir<br>
-&gt;@@ -77,13 +78,18 @@ for branch in dunfell gatesgarth hardknott; do<br>
-&gt; done<br>
-&gt; <br>
-&gt; # Yocto Project releases/tags<br>
-&gt;-for tag in 3.1.5 3.1.6 3.2 3.2.1 3.2.2 3.2.3; do<br>
-&gt;+cd $ypdocs<br>
-&gt;+for tag in $(git tag -l=C2=A0 |grep &#39;yocto-&#39; |sort); do<br>
-<br>
-IIUC the man page,<br>
-git tag --list &#39;yocto-*&#39; | sort<br></blockquote><div><br></div><div=
->sort -V is even better since it does &quot;natural sort of (version) numbe=
-rs within text&quot;, let&#39;s get ready for 3.10 ;)=C2=A0</div><div>=C2=
-=A0</div><div>And using -V, how about something along these lines:</div><di=
-v><br></div><div>v_sphinx=3D&#39;yocto-3.1.5&#39;<br>for v in $(git tag --l=
-ist &#39;yocto-*&#39;); do<br>=C2=A0 =C2=A0 first=3D$(printf &#39;%s\n%s&#3=
-9; $v $v_sphinx | sort -V | head -n1)<br>=C2=A0 =C2=A0 if [ &quot;$first&qu=
-ot; =3D &quot;$v_sphinx&quot; ]; then<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 echo &=
-quot;Yocto $v uses Sphinx!&quot;<br>=C2=A0 =C2=A0 fi<br>done<br></div><div>=
-<br></div><div>and it outputs the following when I run it locally:</div><di=
-v><br></div><div>Yocto yocto-3.1.5 uses Sphinx!<br>Yocto yocto-3.1.6 uses S=
-phinx!<br>Yocto yocto-3.2 uses Sphinx!<br>Yocto yocto-3.2.1 uses Sphinx!<br=
->Yocto yocto-3.2.2 uses Sphinx!<br>Yocto yocto-3.2.3 uses Sphinx!<br></div>=
-<div><br></div><div><br></div><div><br></div><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
-);padding-left:1ex">
-would be doing the same thing as the one command with grep above.<br>
-Discovered it recently so just wanted to share.<br>
-<br>
-I guess this is something we can also do for bitbake Sphinx documentation?<=
-br></blockquote><div><br></div><div>yes.</div><div>=C2=A0</div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
-id rgb(204,204,204);padding-left:1ex">
-<br>
-Removed the git context inadvertently but, is =3D~ some bash built-in? I do=
-n&#39;t know what&#39;s the shebang on top but maybe we want to force it to=
- bash since I&#39;m not sure it&#39;s POSIX &quot;compliant&quot; anymore?=
-=C2=A0</blockquote><div><br></div><div>It is bash already.=C2=A0</div><div>=
-=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-Reviewed-by: Quentin Schulz &lt;<a href=3D"mailto:foss@0leil.net" target=3D=
-"_blank">foss@0leil.net</a>&gt;<br>
-<br>
-Thanks,<br>
-Quentin<br>
-</blockquote></div></div>
+> > +-#define RK3399_BAUDRATE                       115200
+> > ++#define RK3399_BAUDRATE                       1500000
+> > + #define RK3399_UART_CLOCK             24000000
+>
+> Interesting... For years (a few decades) everybody has used 115200 as
+> the standard setup for UART, as global definition.
 
---000000000000589a5105bf5d8e8e--
+Sure it is awkward when all tools have come to default to 115200, but then
+is the situation so different form when we transitionned from, say, 9600 ?
+
+> Why suddenly somebody changed the UART baud rate to be non-standard?
+> From the speed point of view???
+>
+> Don't think so.
+
+Hopefully someone from Rockchip will answer :)
+
+> Should U-Boot be adjusted to the standard baud rate of 115200 for RK3399=
+?
+
+When working on this platform everyone now has his tools setup for 1500000=
+,
+because that's the vendor BSP settings.  Would we have good technical reas=
+ons
+to switch back ?
+
+
+>
+> My two cent addendum/thinking,
+> Zee
+> _______
+>
+>
+> On Wed, Apr 7, 2021 at 1:47 AM Yann Dirson <yann.dirson@blade-group.com>=
+ wrote:
+> >
+> > From: Yann Dirson <yann@blade-group.com>
+> >
+> > TF-A runs between two u-boot stages which both uses 1500000 baud, it
+> > just makes no sense to use the same UART at a different rate.
+> >
+> > Here is a sample session with the successive stages, with TF-A artific=
+ially
+> > separated for emphasis:
+> >
+> >  [20210406-175438.135934] U-Boot TPL 2021.01 (Jan 11 2021 - 18:11:43)
+> >  [20210406-175438.135956] Channel 0: DDR3, 933MHz
+> >  [20210406-175438.236974] BW=3D32 Col=3D10 Bk=3D8 CS0 Row=3D15 CS=3D1 =
+Die BW=3D16 Size=3D1024MB
+> >  [20210406-175438.237000] Channel 1: DDR3, 933MHz
+> >  [20210406-175438.237004] BW=3D32 Col=3D10 Bk=3D8 CS0 Row=3D15 CS=3D1 =
+Die BW=3D16 Size=3D1024MB
+> >  [20210406-175438.237008] 256B stride
+> >  [20210406-175438.237012] Trying to boot from BOOTROM
+> >  [20210406-175438.237015] Returning to boot ROM...
+> >  [20210406-175438.237018]
+> >  [20210406-175438.573394] U-Boot SPL 2021.01 (Jan 11 2021 - 18:11:43 +=
+0000)
+> >  [20210406-175438.573431] Trying to boot from MMC1
+> >
+> >  [20210406-175438.589254] NOTICE:  BL31: v2.3():v2.3-dirty
+> >  [20210406-175440.534055] NOTICE:  BL31: Built : 15:56:43, Apr 20 2020
+> >
+> >  [20210406-175441.393423] U-Boot 2021.01 (Jan 11 2021 - 18:11:43 +0000=
+)
+> >  [20210406-175441.393429]
+> >  [20210406-175441.393433] SoC: Rockchip rk3399
+> >
+> > Signed-off-by: Yann Dirson <yann@blade-group.com>
+> > ---
+> >  .../files/serial-console-baudrate.patch       | 35 ++++++++++++++++++=
++
+> >  .../trusted-firmware-a_%.bbappend             |  5 +++
+> >  2 files changed, 40 insertions(+)
+> >  create mode 100644 recipes-bsp/trusted-firmware-a/files/serial-consol=
+e-baudrate.patch
+> >
+> > diff --git a/recipes-bsp/trusted-firmware-a/files/serial-console-baudr=
+ate.patch b/recipes-bsp/trusted-firmware-a/files/serial-console-baudrate.pa=
+tch
+> > new file mode 100644
+> > index 0000000..10b5a2b
+> > --- /dev/null
+> > +++ b/recipes-bsp/trusted-firmware-a/files/serial-console-baudrate.pat=
+ch
+> > @@ -0,0 +1,35 @@
+> > +From 840d6b6420e1fd8cdf6e4de7fa58a6f8de151622 Mon Sep 17 00:00:00 200=
+1
+> > +From: Yann Dirson <yann@blade-group.com>
+> > +Date: Tue, 6 Apr 2021 17:28:45 +0200
+> > +Subject: [PATCH] Set serial console baudrate back to 1500000.
+> > +
+> > +TF-A runs between two u-boot stages which both uses 1500000 baud, it
+> > +just makes no sense to use the same UART at a different rate.
+> > +
+> > +This effectively reverts part of 0c05748bdebfad9fa43a80962186438bb8fb=
+ce62.
+> > +Main reason for that change stated in https://developer.trustedfirmwa=
+re.org/T762
+> > +is ChromeOS compatibility.
+> > +
+> > +Looks like this patch may become unnecessary in the future, when
+> > +u-boot and TF-A get to communicate this value.
+> > +
+> > +---
+> > + plat/rockchip/rk3399/rk3399_def.h | 2 +-
+> > + 1 file changed, 1 insertion(+), 1 deletion(-)
+> > +
+> > +diff --git a/plat/rockchip/rk3399/rk3399_def.h b/plat/rockchip/rk3399=
+/rk3399_def.h
+> > +index ba83242eb..8d6ecfbe6 100644
+> > +--- a/plat/rockchip/rk3399/rk3399_def.h
+> > ++++ b/plat/rockchip/rk3399/rk3399_def.h
+> > +@@ -17,7 +17,7 @@
+> > + /*******************************************************************=
+*******
+> > +  * UART related constants
+> > +  *******************************************************************=
+*******/
+> > +-#define RK3399_BAUDRATE                       115200
+> > ++#define RK3399_BAUDRATE                       1500000
+> > + #define RK3399_UART_CLOCK             24000000
+> > +
+> > + /*******************************************************************=
+***********
+> > +--
+> > +2.30.2
+> > +
+> > diff --git a/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbapp=
+end b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
+> > index 442dee8..1942c17 100644
+> > --- a/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
+> > +++ b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
+> > @@ -4,3 +4,8 @@ DEPENDS_append_rk3399 =3D " virtual/arm-none-eabi-gcc-=
+native"
+> >
+> >  COMPATIBLE_MACHINE_append_rk3399 =3D "|rk3399"
+> >  COMPATIBLE_MACHINE_append_rk3328 =3D "|rk3328"
+> > +
+> > +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+> > +SRC_URI +=3D "\
+> > +    file://serial-console-baudrate.patch \
+> > +"
+> > --
+> > 2.30.2
+> >
+> >
+> >=20
+> >
+
+
+
+--=20
+Yann Dirson <yann@blade-group.com>
+Blade / Shadow -- http://shadow.tech
