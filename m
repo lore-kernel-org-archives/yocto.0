@@ -1,123 +1,85 @@
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
- by mx.groups.io with SMTP id smtpd.web11.2611.1617769359193369712
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+ by mx.groups.io with SMTP id smtpd.web10.3773.1617780677344847230
  for <yocto@lists.yoctoproject.org>;
- Tue, 06 Apr 2021 21:22:39 -0700
+ Wed, 07 Apr 2021 00:31:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=pUUEKqkx;
- spf=pass (domain: gmail.com, ip: 209.85.210.177, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f177.google.com with SMTP id a12so11986449pfc.7
-        for <yocto@lists.yoctoproject.org>; Tue, 06 Apr 2021 21:22:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=q2uW15Gf7vwPhBigFRdYg54CI4VVG7q2lQvIksXFGz4=;
-        b=pUUEKqkxBNkuuqDVyW/Aq8qGx15VVi7mcLHA2fhZU/rFi4zov4jBYl+Jrmt7oBKizC
-         N6knGBhJf0DORbGMHhFvI4USkVU59PvWvCJ8kwBAuaw31RZwfjvjq1qsQt3SoUqQj0nJ
-         n80Uzy7Q1yQ1CVroi4hxJwOf9L+ZImbofNZQz0HaLGDrl+HFwCuHBtlqwE8Hqq2p4Q6O
-         h+3YnECulKP6R9Oy1QZilAAlmiH2wOV5BudWjvpOxUuU+ppkSbtZfjaCbFeTgJ+xZxP6
-         WPq9nK6clCFTKML05Nb9TjVL48/uTspvR/19PFr8wbSHvIV9beWjrDMi+dQEUa8l5jxn
-         pMcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=q2uW15Gf7vwPhBigFRdYg54CI4VVG7q2lQvIksXFGz4=;
-        b=kVxG2qibJNBG+m44B3tlx3uOtH1oUZmCvfTf1QmmrmWvTyqIu2Sem3UpTJbTJUSJoJ
-         iqQ3NqA8CRbS3qKmS9YYHlAzfTkoyqeXwh5WncXaEf3R8ULUaYU4usmpPJoaawCBIk0U
-         5eNLJwkuIM2if7/Nrk3KjM/ip6lnOoDJHYSLCro/8Win1l8lJqjNa/pIEI7BrTKVFC3h
-         ZCUslCxGKBsgJ21v50U8h5iZusSi7scS2ctsD7iz/Pn9bYIXyoTF1hjG8B4K7pr/AHSn
-         KMQ7aQWcYoZSNkgpeox67UC3/c/xKMWZW6Hf+8U2KBq18ehe0am/LmqQxFJ1yLY0v+4a
-         r39w==
-X-Gm-Message-State: AOAM530OU+CoHu/Afmy2+VdNGwSLF6GqrcrGFjjsv5fz0g0k35K01uku
-	BJk0cDpOch0L+jH+A0UIMRw2BGukGyw=
-X-Google-Smtp-Source: ABdhPJyea5i6xQ9npLusAJr6UYJ9Es2Y5Gu97WqOBzXgQc5AtAXJAv00ifY7JzwA0lOOIfs1N3QdmA==
-X-Received: by 2002:a62:e20b:0:b029:23d:f634:e70e with SMTP id a11-20020a62e20b0000b029023df634e70emr1236466pfi.70.1617769358460;
-        Tue, 06 Apr 2021 21:22:38 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id v134sm19722791pfc.182.2021.04.06.21.22.37
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Apr 2021 21:22:37 -0700 (PDT)
-From: "akuster" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 5/5] README: cleanup
-Date: Wed,  7 Apr 2021 04:22:32 +0000
-Message-Id: <20210407042232.3373253-5-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210407042232.3373253-1-akuster808@gmail.com>
-References: <20210407042232.3373253-1-akuster808@gmail.com>
+ dkim=missing; spf=none, err=permanent DNS error (domain: 0leil.net, ip: 217.70.183.199, mailfrom: foss@0leil.net)
+X-Originating-IP: 92.184.123.131
+Received: from [127.0.0.1] (pop.92-184-123-131.mobile.abo.orange.fr [92.184.123.131])
+	(Authenticated sender: foss@0leil.net)
+	by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 089DEFF808;
+	Wed,  7 Apr 2021 07:31:14 +0000 (UTC)
+Date: Wed, 07 Apr 2021 07:31:11 +0000
+From: "Quentin Schulz" <foss@0leil.net>
+To: yocto@lists.yoctoproject.org,
+ Michael Halstead <mhalstead@linuxfoundation.org>
+CC: nicolas.dechesne@linaro.org
+Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] run-docs-build: build from tags dynamically instead of static list
+In-Reply-To: <20210406225819.37683-1-mhalstead@linuxfoundation.org>
+References: <20210406225819.37683-1-mhalstead@linuxfoundation.org>
+Message-ID: <6B8E39A6-3CA5-41BC-BB1B-EA87B379F104@0leil.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Add note about rust.
+Hi Michael,
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- README | 27 +++++++++++++++------------
- 1 file changed, 15 insertions(+), 12 deletions(-)
+On April 6, 2021 10:58:20 PM UTC, Michael Halstead <mhalstead@linuxfoundat=
+ion=2Eorg> wrote:
+>All new releases are Sphinx ready so we exclude old tags and build for
+>all the rest=2E
+>
+>Signed-off-by: Michael Halstead <mhalstead@linuxfoundation=2Eorg>
+>---
+> scripts/run-docs-build | 14 ++++++++++----
+> 1 file changed, 10 insertions(+), 4 deletions(-)
+>
+>diff --git a/scripts/run-docs-build b/scripts/run-docs-build
+>index 910f03d=2E=2E13df34a 100755
+>--- a/scripts/run-docs-build
+>+++ b/scripts/run-docs-build
+>@@ -7,6 +7,7 @@ ypdocs=3D$2/documentation/
+> bbdocs=3D$3/doc/
+> docs_buildtools=3D/srv/autobuilder/autobuilder=2Eyoctoproject=2Eorg/pub/=
+buildtools/x86_64-buildtools-docs-nativesdk-standalone-3=2E2+snapshot-20201=
+105=2Esh
+> outputdir=3D$builddir/output
+>+excluded_tags=3D"yocto-3=2E1=2E4 yocto-3=2E1=2E3 yocto-3=2E1=2E2 yocto-3=
+=2E1=2E1 yocto-3=2E1 yocto-3=2E0=2E1 yocto-3=2E0 yocto-2=2E6=2E4 yocto-2=2E=
+6=2E3 yocto-2=2E7=2E1 yocto-2=2E6=2E2 yocto-2=2E7 yocto-2=2E6=2E1 yocto-2=
+=2E6 yocto-2=2E5=2E2 yocto-2=2E5=2E1 yocto-2=2E4=2E4 yocto-2=2E4=2E3 yocto-=
+2=2E5 yocto-2=2E3=2E4 yocto-1=2E0=2E2 yocto-1=2E1=2E2 yocto-1=2E2=2E2 yocto=
+-1=2E2=2E1 yocto-1=2E3 yocto-1=2E3=2E1 yocto-1=2E3=2E2 yocto-1=2E4=2E3 yoct=
+o-1=2E4=2E2 yocto-1=2E4=2E1 yocto-1=2E4 yocto-2=2E1=2E3 yocto-2=2E4=2E2 yoc=
+to-2=2E1=2E1 yocto-2=2E1=2E2 yocto-2=2E0=2E3 yocto-1=2E8=2E2 yocto-2=2E2=2E=
+3 yocto-2=2E4=2E1 yocto-2=2E3=2E3 yocto-2=2E3=2E2 yocto-2=2E4 yocto-2=2E2=
+=2E2 yocto-2=2E3=2E1 yocto-2=2E3 yocto-2=2E2=2E1 yocto-2=2E0=2E2 yocto-2=2E=
+2 yocto-2=2E1 yocto-2=2E0=2E1 yocto-2=2E0 yocto-1=2E8=2E1 yocto-1=2E7=2E3 y=
+octo-1=2E6=2E3 yocto-1=2E7=2E2 yocto-1=2E8 yocto-1=2E5=2E1"
+>=20
+>=20
+> cd $builddir
+>@@ -77,13 +78,18 @@ for branch in dunfell gatesgarth hardknott; do
+> done
+>=20
+> # Yocto Project releases/tags
+>-for tag in 3=2E1=2E5 3=2E1=2E6 3=2E2 3=2E2=2E1 3=2E2=2E2 3=2E2=2E3; do
+>+cd $ypdocs
+>+for tag in $(git tag -l  |grep 'yocto-' |sort); do
 
-diff --git a/README b/README
-index f223fee..eb15366 100644
---- a/README
-+++ b/README
-@@ -11,28 +11,19 @@ This layer depends on:
- 
-   URI: git://git.openembedded.org/openembedded-core
-   branch: master
--  revision: HEAD
--  prio: default
- 
-   URI: git://git.openembedded.org/meta-openembedded/meta-oe
-   branch: master
--  revision: HEAD
--  prio: default
- 
-   URI: git://git.openembedded.org/meta-openembedded/meta-perl
-   branch: master
--  revision: HEAD
--  prio: default
- 
-   URI: git://git.openembedded.org/meta-openembedded/meta-python
-   branch: master
--  revision: HEAD
--  prio: default
- 
-   URI: git://git.openembedded.org/meta-openembedded/meta-networking
-   branch: master
--  revision: HEAD
--  prio: default
-+
- 
- Adding the security layer to your build
- ========================================
-@@ -51,11 +42,23 @@ other layers needed. e.g.:
-     /path/to/meta-openembedded/meta-perl \
-     /path/to/meta-openembedded/meta-python \
-     /path/to/meta-openembedded/meta-networking \
--    /path/to/layer/meta-security \
-+    /path/to/layer/meta-security "
-+
-+Optional Rust dependancy
-+======================================
-+If you want to use the latest Suricata that needs rust, you will need to clone
-+
-+  URI: https://github.com/meta-rust/meta-rust.git
-+  branch: master
-+
-+  BBLAYERS += "/path/to/layer/meta-rust"
-+
-+This will activate the dynamic-layer mechanism and pull in the newer suricata
-+
- 
- 
- Maintenance
-------------
-+======================================
- 
- Send pull requests, patches, comments or questions to yocto@lists.yoctoproject.org
- 
--- 
-2.25.1
+IIUC the man page,
+git tag --list 'yocto-*' | sort
+would be doing the same thing as the one command with grep above=2E
+Discovered it recently so just wanted to share=2E
 
+I guess this is something we can also do for bitbake Sphinx documentation?
+
+Removed the git context inadvertently but, is =3D~ some bash built-in? I d=
+on't know what's the shebang on top but maybe we want to force it to bash s=
+ince I'm not sure it's POSIX "compliant" anymore?
+
+Reviewed-by: Quentin Schulz <foss@0leil=2Enet>
+
+Thanks,
+Quentin
