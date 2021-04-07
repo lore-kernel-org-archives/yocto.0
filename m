@@ -1,67 +1,46 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.4983.1617789975178202017
+Received: from cam-smtp0.cambridge.arm.com (cam-smtp0.cambridge.arm.com [217.140.106.51])
+ by mx.groups.io with SMTP id smtpd.web10.5038.1617790808745816249
  for <yocto@lists.yoctoproject.org>;
- Wed, 07 Apr 2021 03:06:16 -0700
+ Wed, 07 Apr 2021 03:20:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@aruba.it header.s=a1 header.b=BDIM/sL2;
- spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 198.145.29.25, mailfrom: mauro@faresoftware.it)
-Received: from smtpcmd01-sp1.aruba.it (smtpcmd01-sp1.aruba.it [62.149.158.218])
-	by mail.yoctoproject.org (Postfix) with ESMTP id B506A38C0530
-	for <yocto@yoctoproject.org>; Wed,  7 Apr 2021 10:06:13 +0000 (UTC)
-Received: from p50 ([213.213.6.58])
-	by Aruba Outgoing Smtp  with ESMTPSA
-	id U54cljAoaTIb1U54dlIt34; Wed, 07 Apr 2021 12:06:11 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-	t=1617789972; bh=hbDvKhwu36iGwPR02lTI5fZV/arrRoAiqhcrRFc08T8=;
-	h=Date:From:To:Subject:MIME-Version:Content-Type;
-	b=BDIM/sL2Q+4vevhlsFBsko48F3UanIB+X2eXnXLw1kHFD73GnQKLddwWK3Ug9Ptwd
-	 RmUAYUV+PeC9HvnB+63oG/4cnvigPufFnFffq49b6YHR1pijM0pYkrfJBhpZYfgGPc
-	 Dqgr89KS3nl3s4WPOWEdx8Hzb7823wD1nb0kecxBuqggKjIgfXYBlZTm9bsh5nqDqC
-	 ldWes09v86AFd0IveIU432RnYLQ/xLunen2l/8skwcYzeBz54Z24WEC9yURl3Ca3CA
-	 XumeDBD+8zbnEhQ01KukJunwKhgUrDh3OYYXiURkoGPbbRYNXswSjB3AaDIj96Z9lG
-	 ydlku1InFo3Hg==
-Date: Wed, 7 Apr 2021 12:06:10 +0200
-From: "Mauro Ziliani" <mauro@faresoftware.it>
-To: "=?utf-8?Q?yocto=40yoctoproject.org?=" <yocto@yoctoproject.org>
-Message-ID: <412C5A1E-455B-4640-A54E-5465F84D546F@getmailspring.com>
-Subject: dpkg-scanpackages from my recipe
-X-Mailer: Mailspring
+ dkim=missing; spf=pass (domain: arm.com, ip: 217.140.106.51, mailfrom: anton.antonov@arm.com)
+Received: from atg-devlab-kelpie.cambridge.arm.com (atg-devlab-kelpie.cambridge.arm.com [10.2.80.92])
+	by cam-smtp0.cambridge.arm.com (8.13.8/8.13.8) with ESMTP id 137AJvbD026467;
+	Wed, 7 Apr 2021 11:19:57 +0100
+From: anton.antonov@arm.com
+To: yocto@lists.yoctoproject.org
+Cc: Anton.Antonov@arm.com
+Subject: [meta-security][PATCH] Use libest "main" branch instead of "master".
+Date: Wed,  7 Apr 2021 11:19:54 +0100
+Message-Id: <20210407101954.1422-1-Anton.Antonov@arm.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-CMAE-Envelope: MS4wfJu4YzA+7rC/34POFYCmgjrFPEo3RLTulSk8YC0sBT7i1ail9jBUF5xI7gW/36qxyqa8tSnYSQ68iiB/FCUDkmkwMmJDPyLLHjmnqR0/99W7biL7PSzA
- eXKfsPvr5qN22KlqcuIrCq72G6LJzIwE4YLE3HPKqox0YsgXfUY3ZYi+
-Content-Type: multipart/alternative; boundary="606d8412_751230e1_15d5"
+Content-Transfer-Encoding: 8bit
 
---606d8412_751230e1_15d5
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+This patch fixes the issue:
 
-Hi all.
-I'd like to use dpkg-scanpackages inside my recipe
+WARNING: libest-3.2.0-r0 do_fetch: Failed to fetch URL git://github.com/cisco/libest, attempting MIRRORS if available
+ERROR: libest-3.2.0-r0 do_fetch: Fetcher failure: Unable to find revision 4ca02c6d7540f2b1bcea278a4fbe373daac7103b in branch master even from upstream
+ERROR: libest-3.2.0-r0 do_fetch: Fetcher failure for URL: 'git://github.com/cisco/libest'. Unable to fetch URL from any source.
 
-The recipe copies some deb package into my folder ${D}/myfolder
-Then I'd like to apply dpkg-scanpackages to ${D}/myfolder
+Signed-off-by: Anton Antonov <Anton.Antonov@arm.com>
+---
+ recipes-security/libest/libest_3.2.0.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I miss last step.
-Running dpkg-scanpackages ${D}/myfolder ends with and error.
-Dpkg.pm missing
+diff --git a/recipes-security/libest/libest_3.2.0.bb b/recipes-security/libest/libest_3.2.0.bb
+index f993bd6..5b6dc99 100644
+--- a/recipes-security/libest/libest_3.2.0.bb
++++ b/recipes-security/libest/libest_3.2.0.bb
+@@ -6,7 +6,7 @@ LICENSE = "OpenSSL"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=ecb78acde8e3b795de8ef6b61aed5885"
+ 
+ SRCREV = "4ca02c6d7540f2b1bcea278a4fbe373daac7103b"
+-SRC_URI = "git://github.com/cisco/libest"
++SRC_URI = "git://github.com/cisco/libest;branch=main"
+ 
+ DEPENDS = "openssl"
+ 
+-- 
+2.20.1
 
-How can I "install" Dpkg.pm so I can use dpkg-scanpackages directly from my recipe?
-Best regards,
-MZ
-
---606d8412_751230e1_15d5
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
-
-<div>Hi all.</div><div>I'd like to use dpkg-scanpackages inside my recipe=
-</div><br><div>The recipe copies some deb package into my folder =24=7BD=7D=
-/myfolder</div><div>Then I'd like to apply dpkg-scanpackages to =24=7BD=7D=
-/myfolder</div><br><br><div>I miss last step.</div><div>Running dpkg-scan=
-packages =24=7BD=7D/myfolder ends with and error.</div><div>Dpkg.pm missi=
-ng</div><br><div>How can I =22install=22 Dpkg.pm so I can use dpkg-scanpa=
-ckages directly from my recipe=3F</div><br><div>Best regards,</div><div>&=
-nbsp; MZ</div>
-
---606d8412_751230e1_15d5--
