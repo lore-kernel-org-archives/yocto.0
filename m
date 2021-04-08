@@ -1,74 +1,56 @@
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
- by mx.groups.io with SMTP id smtpd.web12.360.1617900118731663001
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+ by mx.groups.io with SMTP id smtpd.web08.759.1617901569780614067
  for <yocto@lists.yoctoproject.org>;
- Thu, 08 Apr 2021 09:41:58 -0700
+ Thu, 08 Apr 2021 10:06:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=sKdKA4FF;
- spf=pass (domain: gmail.com, ip: 209.85.210.173, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f173.google.com with SMTP id m11so2228607pfc.11
-        for <yocto@lists.yoctoproject.org>; Thu, 08 Apr 2021 09:41:58 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Mq2k0Zuc;
+ spf=pass (domain: gmail.com, ip: 209.85.222.173, mailfrom: twoerner@gmail.com)
+Received: by mail-qk1-f173.google.com with SMTP id x11so2904277qkp.11
+        for <yocto@lists.yoctoproject.org>; Thu, 08 Apr 2021 10:06:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=9LWuzYEgvsiFOtd2F51QvBgFa5T6tDYjRr1Ndttql34=;
-        b=sKdKA4FFIqw9JrNTfEXUuCC6VAoHOa+1hlDpDpriQ8kZ9l/78dzctRkybpV8BUeNr6
-         OqPGRbHEABCyBIBZTA+DlMdits/oYxHvNnqUDrvGNuWKCRhBktkdbivCl99eXIqpq1ep
-         1VSEV5puowuZra3lLmwWNoRjGDMo1Bj/4Y5638krSyX3R7mm96vQ3JN7TRQK5lUwXK+j
-         kTNOI7o+2wLR35x2l0fw9uFWYOGYv7hmJUaR1ypeSYxSAduXps6aeG+LjdTbw+ZojD4Y
-         qnXoyq63a+A6A9ZtbfOgUlJ4t2tN8c/ndwNVSUbzqGTM6eESrrjUv+mb5e40iwnuc5Db
-         /WuA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=ufFM/HnzCmESpiorJrkfCstf+zGpgfbBT1q4IvE6kAc=;
+        b=Mq2k0Zuc2sfvkYWh/dLTa0HbmEvKeDm0t121XyKHFUoOYh6Ut9lq5QakiL7tVGKFuW
+         s8zN8HUoT5Tmi+TswinebnwKGkh0Q3pnQdjESGiY9GnCQzi9OvCvRRJa+eyFAzgUeLrs
+         eLA1+9YBM96Tm4KHEUGzdWb3VpHtDR5konfVmEG9z8P6asBPK22CklLJ7WoVjVonaqLN
+         TVZL46wzRsUJfH/d/t5cQXOkzHFZbEtS7EGIO/kqPio7IPRDR1qJUMY6M7oiNgNtp3oi
+         QGzzj3JEe+7pmBGwgQ/GCdXNQC02TaqaNPDRXM8c0idPmGNGQkpyPP11c58+04ddbemC
+         WoFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=9LWuzYEgvsiFOtd2F51QvBgFa5T6tDYjRr1Ndttql34=;
-        b=P6oJ/UPrWHfT5ZBY4dzRhtJJpMMXcLBWhc4nD+kO3/i2ew9O17RWPj26Xx0Gv3ppbU
-         9YSENfjreUAavfdwPHqDsGHb/Sh4lky0bZPdJZQX4JXRfYax2IDDfU0DiLbsAchbtzgS
-         wD9rwySAWfJpORdwztfFEaudcQyv15+SNwkG6iG1mG3v6+/BN7Ye6TEcPyy9/RkoOpi1
-         XKcUVDLP46fo0bcwj+dw6iLHnaRGj9KEDpiajR33cW2psMf6XMODg/smJ+aKIAuNIVdd
-         UrpXmTO13rUz+/XgxY5v+ffPTn0VZ+1Qj7pih6HRURrr6VnCBX7/vESo1xglCdLRJVUX
-         94RQ==
-X-Gm-Message-State: AOAM533pu204eh95EdYyI1qzaRT7UDcqeQWn8P+3JcbosjqpRkSMfmzB
-	aaw9hiz7DnLPbfXdqwbfEylrTqPatF53nQ==
-X-Google-Smtp-Source: ABdhPJxHuuPyiiIHfJDCjaYy39SdidHxTGdlYpVmhJsSc6tbe9f8YXRpBVYRf3N+eivqNioWSpIpcA==
-X-Received: by 2002:a63:e712:: with SMTP id b18mr4632452pgi.2.1617900117877;
-        Thu, 08 Apr 2021 09:41:57 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:a0f0:b8fd:d0e9:5b84:68b6? ([2601:646:9200:a0f0:b8fd:d0e9:5b84:68b6])
-        by smtp.gmail.com with ESMTPSA id iq12sm5864251pjb.9.2021.04.08.09.41.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Apr 2021 09:41:57 -0700 (PDT)
-Subject: Re: [yocto] esdk issue using gatesgarth sources
-To: sateesh m <sateesh0457@gmail.com>, yocto@lists.yoctoproject.org
-References: <NPNi.1617868588737091497.PZd2@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <ed3183dd-1da9-f534-1e2e-6fc0d09f03d8@gmail.com>
-Date: Thu, 8 Apr 2021 09:41:56 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.9.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ufFM/HnzCmESpiorJrkfCstf+zGpgfbBT1q4IvE6kAc=;
+        b=YLOi3nbW/00xPLlpzc5QGJwoVHZaYm3C/1lZDIy+yL+BZaunRkNGd/ZjmcNozACd1y
+         z5J2qC1yuH/KN0+NT7k9um5EaMM01rdY107Q+Pxo/y+5YTGruKYHXi856TfGf68fwaRD
+         zZk00H2l0GCAYPATF35qvRfg64sh3gxC79LtXfpN3DeZHvlcq73xrr5/qOyN18Vj2u5f
+         V/ioy4m11wFHneNJEHh24YGoGdyN/JwyCHAbWZbU+jPq6M48UeOFu/P5/DnjB9/lOCit
+         U4Vr3hjgD/MM4dmNGFIBww3BmMIJOtABLN6brNpNQqx4EhCaHWBKqvty3P9lzJ5PLAkY
+         QREA==
+X-Gm-Message-State: AOAM533NrdSudik6ohyGqI1l02lIBAPuxx/TsU86oNCOWL+4bTngQDcQ
+	kAh4MmVz03D6v/qw8AQ31dk=
+X-Google-Smtp-Source: ABdhPJyCdiVsj7j7UV1OFmsezNKVomwSyZk9wdwqd8dwtjt0SZlDFrLvzYr/TrJ6v4OXcT3r7CBrHg==
+X-Received: by 2002:a05:620a:2207:: with SMTP id m7mr9607975qkh.405.1617901568895;
+        Thu, 08 Apr 2021 10:06:08 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id q3sm9625qtr.82.2021.04.08.10.06.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Apr 2021 10:06:08 -0700 (PDT)
+Date: Thu, 8 Apr 2021 13:06:06 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yann.dirson@blade-group.com
+Cc: yocto@lists.yoctoproject.org, Yann Dirson <yann@blade-group.com>
+Subject: Re: [meta-rockchip][PATCH v2] trusted-firmware-a: use 1500000 baud for serial console
+Message-ID: <20210408170606.GA23527@localhost>
+References: <20210408073402.2537232-1-yann@blade-group.com>
 MIME-Version: 1.0
-In-Reply-To: <NPNi.1617868588737091497.PZd2@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210408073402.2537232-1-yann@blade-group.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-can you post detailed log
-
-On 4/8/21 12:56 AM, sateesh m wrote:
-> Hi Guys,
-> 
->                 I am trying to build  core-image-base using gatesgarth 
-> sources to generate esdk. But i am facing issue with 
-> opensbi_0.8.bb:do_fetch failed with exit code 'setscene whitelist'. can 
-> anybody help me to fix this issue.
-> 
-> 
-> Regards,
-> Sateesh
-> 
-> 
-> 
-> 
+Tested with rock-pi-4b and applied to master.
+Thanks!
