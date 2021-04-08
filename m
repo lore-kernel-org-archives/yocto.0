@@ -1,56 +1,129 @@
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
- by mx.groups.io with SMTP id smtpd.web08.759.1617901569780614067
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.925.1617907105342707780
  for <yocto@lists.yoctoproject.org>;
- Thu, 08 Apr 2021 10:06:10 -0700
+ Thu, 08 Apr 2021 11:38:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Mq2k0Zuc;
- spf=pass (domain: gmail.com, ip: 209.85.222.173, mailfrom: twoerner@gmail.com)
-Received: by mail-qk1-f173.google.com with SMTP id x11so2904277qkp.11
-        for <yocto@lists.yoctoproject.org>; Thu, 08 Apr 2021 10:06:09 -0700 (PDT)
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=O4oLif4x;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: liu.ming50@gmail.com)
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 50A8B38C087B
+	for <yocto@yoctoproject.org>; Thu,  8 Apr 2021 18:38:24 +0000 (UTC)
+Received: by mail-ed1-f47.google.com with SMTP id w18so3672212edc.0
+        for <yocto@yoctoproject.org>; Thu, 08 Apr 2021 11:38:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ufFM/HnzCmESpiorJrkfCstf+zGpgfbBT1q4IvE6kAc=;
-        b=Mq2k0Zuc2sfvkYWh/dLTa0HbmEvKeDm0t121XyKHFUoOYh6Ut9lq5QakiL7tVGKFuW
-         s8zN8HUoT5Tmi+TswinebnwKGkh0Q3pnQdjESGiY9GnCQzi9OvCvRRJa+eyFAzgUeLrs
-         eLA1+9YBM96Tm4KHEUGzdWb3VpHtDR5konfVmEG9z8P6asBPK22CklLJ7WoVjVonaqLN
-         TVZL46wzRsUJfH/d/t5cQXOkzHFZbEtS7EGIO/kqPio7IPRDR1qJUMY6M7oiNgNtp3oi
-         QGzzj3JEe+7pmBGwgQ/GCdXNQC02TaqaNPDRXM8c0idPmGNGQkpyPP11c58+04ddbemC
-         WoFQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lYvlLuh9h8UVIpJldzccDR/Jf+CIq/0kj6RMQk7YbSs=;
+        b=O4oLif4xNcWC84Y1VXeUPj8Cs896va01SKTZCpZfokJObSiOcAeY+mMAIzmaCoql+t
+         jDRYgXCDplX2c9I6w4jyt1HyJBkYy+BtyfobRYQkFVxfvjiAi+6OImYyMK+s93JAtUpQ
+         kfVB25GyALBdfe1DkNRwSIbUqPNh6wYuro9XOlpIXkuhqe6hpxlGnr0FSNbvIjIKXMEL
+         vpmCqhCbeXiedUrr/Aae0rVUiXum3r0zAwbGhIeh1V1R+Ocs/klGa6yVh+PP36Be1kOy
+         eBaaTf+CEch+5wZV4eSw2YFwJxRHzafUj5ak2WkKr0GkFV3Vk2ubSBP+TBkqC+nLgicO
+         zgwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ufFM/HnzCmESpiorJrkfCstf+zGpgfbBT1q4IvE6kAc=;
-        b=YLOi3nbW/00xPLlpzc5QGJwoVHZaYm3C/1lZDIy+yL+BZaunRkNGd/ZjmcNozACd1y
-         z5J2qC1yuH/KN0+NT7k9um5EaMM01rdY107Q+Pxo/y+5YTGruKYHXi856TfGf68fwaRD
-         zZk00H2l0GCAYPATF35qvRfg64sh3gxC79LtXfpN3DeZHvlcq73xrr5/qOyN18Vj2u5f
-         V/ioy4m11wFHneNJEHh24YGoGdyN/JwyCHAbWZbU+jPq6M48UeOFu/P5/DnjB9/lOCit
-         U4Vr3hjgD/MM4dmNGFIBww3BmMIJOtABLN6brNpNQqx4EhCaHWBKqvty3P9lzJ5PLAkY
-         QREA==
-X-Gm-Message-State: AOAM533NrdSudik6ohyGqI1l02lIBAPuxx/TsU86oNCOWL+4bTngQDcQ
-	kAh4MmVz03D6v/qw8AQ31dk=
-X-Google-Smtp-Source: ABdhPJyCdiVsj7j7UV1OFmsezNKVomwSyZk9wdwqd8dwtjt0SZlDFrLvzYr/TrJ6v4OXcT3r7CBrHg==
-X-Received: by 2002:a05:620a:2207:: with SMTP id m7mr9607975qkh.405.1617901568895;
-        Thu, 08 Apr 2021 10:06:08 -0700 (PDT)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id q3sm9625qtr.82.2021.04.08.10.06.08
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lYvlLuh9h8UVIpJldzccDR/Jf+CIq/0kj6RMQk7YbSs=;
+        b=i2T7DcryH/uY6xnSuIwNEYRCTH5G+Za7hwHQVWd+0/JncbTVmwSOGZdg9dYNASdvnt
+         0edLpe653szzCQTezUbHZJhfE6RfEn53hYjr++jnY8LBt+PtkHvmw0gIK1UhJpfpxC2w
+         eHQntK0Sj4gSiDGe9NcaYKPdaFLINyhrLcGtYZUoG3bFvPBi11FkffkXwvyBPmh45dPF
+         km/8eXRzDcJKYRr10TnY9jJg7WdKYGZ8lYUudcoRss2sDDt8/E0F7UgR5tLWF4p1ACKh
+         xp+TEFSqtSgX9YJYadIUwFoGmHbGjllw8TaVsrmnLNkaQH83y+MvYbheuzyH0+G2Qx/y
+         V+Nw==
+X-Gm-Message-State: AOAM531nYh9lYe5oLykmaEjno/Ypw2c7fzFp/V5/i5VlEkAuKtWSkWkh
+	FiSTRpVyYxLdOtJ4ohbdfeh/9p747Z7N4w==
+X-Google-Smtp-Source: ABdhPJynrj0+aqW+oXEnWTIENfOsOhkN7sjL3j7PNmdveIizCjHyfME30gHdKJJ2Rrj1nwG0Yu40uQ==
+X-Received: by 2002:aa7:dd4d:: with SMTP id o13mr13602969edw.53.1617907102717;
+        Thu, 08 Apr 2021 11:38:22 -0700 (PDT)
+Received: from localhost.localdomain (customer-212-100-112-191.stosn.net. [212.100.112.191])
+        by smtp.gmail.com with ESMTPSA id k9sm92972edv.69.2021.04.08.11.38.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Apr 2021 10:06:08 -0700 (PDT)
-Date: Thu, 8 Apr 2021 13:06:06 -0400
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: yann.dirson@blade-group.com
-Cc: yocto@lists.yoctoproject.org, Yann Dirson <yann@blade-group.com>
-Subject: Re: [meta-rockchip][PATCH v2] trusted-firmware-a: use 1500000 baud for serial console
-Message-ID: <20210408170606.GA23527@localhost>
-References: <20210408073402.2537232-1-yann@blade-group.com>
+        Thu, 08 Apr 2021 11:38:22 -0700 (PDT)
+From: "Ming Liu" <liu.ming50@gmail.com>
+To: yocto@yoctoproject.org
+Cc: Ming Liu <liu.ming50@gmail.com>,
+	Sergio Prado <sergio.prado@toradex.com>
+Subject: [meta-security][PATCH] initramfs-framework-ima: introduce IMA_FORCE
+Date: Thu,  8 Apr 2021 20:38:14 +0200
+Message-Id: <20210408183814.387126-1-liu.ming50@gmail.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-In-Reply-To: <20210408073402.2537232-1-yann@blade-group.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Tested with rock-pi-4b and applied to master.
-Thanks!
+From: Ming Liu <liu.ming50@gmail.com>
+
+Introduce IMA_FORCE to allow the IMA policy be applied forcely even
+'no_ima' boot parameter is available.
+
+This ensures the end users have a way to disable 'no_ima' support if
+they want to, because it may expose a security risk if an attacker can
+find a way to change kernel arguments, it will easily bypass rootfs
+authenticity checks.
+
+Signed-off-by: Sergio Prado <sergio.prado@toradex.com>
+Signed-off-by: Ming Liu <liu.ming50@gmail.com>
+---
+ .../initrdscripts/initramfs-framework-ima.bb             | 5 +++++
+ .../initrdscripts/initramfs-framework-ima/ima            | 9 +++++++--
+ 2 files changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/meta-integrity/recipes-core/initrdscripts/initramfs-framewor=
+k-ima.bb b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-=
+ima.bb
+index 77f6f7c..6471c53 100644
+--- a/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima.b=
+b
++++ b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima.b=
+b
+@@ -14,6 +14,9 @@ LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.M=
+IT;md5=3D3da9cfbcb788c80a0384
+ # to this recipe can just point towards one of its own files.
+ IMA_POLICY ?=3D "ima-policy-hashed"
+=20
++# Force proceed IMA procedure even 'no_ima' boot parameter is available.
++IMA_FORCE ?=3D "false"
++
+ SRC_URI =3D " file://ima"
+=20
+ inherit features_check
+@@ -23,6 +26,8 @@ do_install () {
+     install -d ${D}/${sysconfdir}/ima
+     install -d ${D}/init.d
+     install ${WORKDIR}/ima  ${D}/init.d/20-ima
++
++    sed -i "s/@@FORCE_IMA@@/${IMA_FORCE}/g" ${D}/init.d/20-ima
+ }
+=20
+ FILES_${PN} =3D "/init.d ${sysconfdir}"
+diff --git a/meta-integrity/recipes-core/initrdscripts/initramfs-framewor=
+k-ima/ima b/meta-integrity/recipes-core/initrdscripts/initramfs-framework=
+-ima/ima
+index cff26a3..8971494 100644
+--- a/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/i=
+ma
++++ b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/i=
+ma
+@@ -2,11 +2,16 @@
+ #
+ # Loads IMA policy into the kernel.
+=20
++force_ima=3D@@FORCE_IMA@@
++
+ ima_enabled() {
+-    if [ "$bootparam_no_ima" =3D "true" ]; then
++    if [ "$force_ima" =3D "true" ]; then
++        return 0
++    elif [ "$bootparam_no_ima" =3D "true" ]; then
+         return 1
++    else
++        return 0
+     fi
+-    return 0
+ }
+=20
+ ima_run() {
+--=20
+2.29.0
+
