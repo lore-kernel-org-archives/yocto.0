@@ -1,163 +1,76 @@
-Received: from cam-smtp0.cambridge.arm.com (cam-smtp0.cambridge.arm.com [217.140.106.49])
- by mx.groups.io with SMTP id smtpd.web08.7569.1617966889200614706
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.7946.1617969534047261313
  for <yocto@lists.yoctoproject.org>;
- Fri, 09 Apr 2021 04:14:49 -0700
+ Fri, 09 Apr 2021 04:58:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: arm.com, ip: 217.140.106.49, mailfrom: anton.antonov@arm.com)
-Received: from atg-devlab-kelpie.cambridge.arm.com (atg-devlab-kelpie.cambridge.arm.com [10.2.80.92])
-	by cam-smtp0.cambridge.arm.com (8.13.8/8.13.8) with ESMTP id 139BEfQM022209;
-	Fri, 9 Apr 2021 12:14:46 +0100
-From: "Anton Antonov" <anton.antonov@arm.com>
-To: yocto@lists.yoctoproject.org
-Cc: Anton.Antonov@arm.com, Anton Antonov <anton.antonov@arm.com>
-Subject: [meta-security][PATCH 2/2] Define secure images with parsec-service and parsec-tool included and add the images into gitlab CI
-Date: Fri,  9 Apr 2021 12:14:08 +0100
-Message-Id: <20210409111408.31628-2-Anton.Antonov@arm.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210409111408.31628-1-Anton.Antonov@arm.com>
-References: <20210409111408.31628-1-Anton.Antonov@arm.com>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=uORqNICk;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 3B6D638C08EA
+	for <yocto@yoctoproject.org>; Fri,  9 Apr 2021 11:58:52 +0000 (UTC)
+Received: by mail-yb1-f172.google.com with SMTP id k73so2759ybf.3
+        for <yocto@yoctoproject.org>; Fri, 09 Apr 2021 04:58:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=yiJ1tl/KWBlYiRii5sRw1jgzIwPitQxwSLmGABYRQ30=;
+        b=uORqNICk+W7h0LZaopdtcnjaz05B868qOkenNnvOwOXK9r4V2eq+9yXV3rwRhvcxJd
+         +JEmY61nFjPEmGVYLEaw5EUmEny3teuGVSrla1VqY6jghkovXJXqkZAvLybVExAlcUZd
+         TSXAEFmDnVW1iGrZoC8KP7bs90SXpVZ2ZROP9m+pat0Kq144dIGQgCWZmJYVYxZhqwF6
+         2G7ARNgREuZC5d5P5T/fYL2kxziIGkjQ40GJdKYtf84/gtyQRxDqDRFhrSNCit2M/v9d
+         Ms+PBISamPq81pqswkKbD4Ug0yhLXM6IiXA5tyIYlUGYmgOg3lZCqQcOHamDZh61Tbjv
+         ISIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=yiJ1tl/KWBlYiRii5sRw1jgzIwPitQxwSLmGABYRQ30=;
+        b=IbIPG8OrnLKvSpeuVDv3akzkVLz0NvmOnWfWN9VWvXc9VWQTqlUWCDmwO04wOzvCpk
+         N//9L5Gb4sOr8pkRLkWtEbUXJhzxYGvcxbwzd6w/1G54STeLz6GDax+hz7Zwks+S90S+
+         j5qxzeynAeEpPvCfrBLX5FT0775wMia7x57xjrNfZQjz5OoK9blbM0a1z5WcTtjngxpA
+         rT1z7Sg9Ei1RSW732fT+cRWP27P+TcIs+2xZqgCpAsETsKu1Gedw2z7mYkyW2KnczQ4q
+         FFMWw5tf5zQmpFpywP+nFbIm5iqDny1dt1g/oYrxKBlFMmg4VBFZtURRUf8mNNJvAm2V
+         mbkA==
+X-Gm-Message-State: AOAM5329nSzhCKMZ13ksNUWPI6NgsMewP1AFnwfq0JW7DEXe3Cw2z53f
+	STyewgtfyDUm8EvGPgpWmChIqKm/NJdx9an1zYKihT3KvUczJdZ5
+X-Google-Smtp-Source: ABdhPJycyEsXevltU/WbZVhqwV6s8j6p67rTFgtTChdoO7AKsYvSm5VBG4xmPHQ6rzstuMWbXVNkGHpX8ixLrwsDpM4=
+X-Received: by 2002:a25:cf16:: with SMTP id f22mr18276308ybg.342.1617969530984;
+ Fri, 09 Apr 2021 04:58:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Marek Belisko" <marek.belisko@gmail.com>
+Date: Fri, 9 Apr 2021 13:58:40 +0200
+Message-ID: <CAAfyv34u-w-+Q8PoV+6DU6ucJQwFMSru4RF9ic3o2Q1c_AopTQ@mail.gmail.com>
+Subject: pycoral recipe
+To: yocto <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-From: Anton Antonov <anton.antonov@arm.com>
+Hi,
 
-Signed-off-by: Anton Antonov <Anton.Antonov@arm.com>
----
- .gitlab-ci.yml              | 25 +++++++++++++++++++++++++
- kas/kas-security-parsec.yml | 21 +++++++++++++++++++++
- kas/qemuarm-parsec.yml      |  6 ++++++
- kas/qemuarm64-parsec.yml    |  6 ++++++
- kas/qemuppc-parsec.yml      |  6 ++++++
- kas/qemux86-64-parsec.yml   |  6 ++++++
- kas/qemux86-parsec.yml      |  6 ++++++
- 7 files changed, 76 insertions(+)
- create mode 100644 kas/kas-security-parsec.yml
- create mode 100644 kas/qemuarm-parsec.yml
- create mode 100644 kas/qemuarm64-parsec.yml
- create mode 100644 kas/qemuppc-parsec.yml
- create mode 100644 kas/qemux86-64-parsec.yml
- create mode 100644 kas/qemux86-parsec.yml
+Just want to ask if anyone working/can share a recipe for a pycoral
+package (https://github.com/google-coral/pycoral). I have some
+barebone but seems not straightforward. It's using bazel build system
+and as I understand it needs to add some patch for adding yocto
+compiler otherwise it fails with:
 
-diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
-index 1442239..323285a 100644
---- a/.gitlab-ci.yml
-+++ b/.gitlab-ci.yml
-@@ -151,3 +151,28 @@ qemux86-test:
-   script:
-   - kas build --target security-test-image kas/$CI_JOB_NAME.yml 
-   - kas build -c testimage --target security-test-image kas/$CI_JOB_NAME.yml 
-+
-+qemux86-parsec:
-+  extends: .build
-+  script:
-+  - kas build --target security-build-image kas/$CI_JOB_NAME.yml 
-+
-+qemux86-64-parsec:
-+  extends: .build
-+  script:
-+  - kas build --target security-build-image kas/$CI_JOB_NAME.yml 
-+
-+qemuarm-parsec:
-+  extends: .build
-+  script:
-+  - kas build --target security-build-image kas/$CI_JOB_NAME.yml 
-+
-+qemuarm-64-parsec:
-+  extends: .build
-+  script:
-+  - kas build --target security-build-image kas/$CI_JOB_NAME.yml 
-+
-+qemuppc-parsec:
-+  extends: .build
-+  script:
-+  - kas build --target security-build-image kas/$CI_JOB_NAME.yml 
-diff --git a/kas/kas-security-parsec.yml b/kas/kas-security-parsec.yml
-new file mode 100644
-index 0000000..6152f0c
---- /dev/null
-+++ b/kas/kas-security-parsec.yml
-@@ -0,0 +1,21 @@
-+header:
-+    version: 9
-+    includes:
-+        - kas-security-base.yml
-+
-+repos:
-+  meta-security:
-+    layers:
-+      meta-parsec:
-+
-+  meta-rust:
-+    url: https://github.com/meta-rust/meta-rust.git
-+    refspec: master
-+
-+  meta-clang:
-+    url: https://github.com/kraj/meta-clang.git
-+    refspec: master
-+
-+local_conf_header:
-+  meta-parsec: |
-+    IMAGE_INSTALL_append = " parsec-service parsec-tool"
-diff --git a/kas/qemuarm-parsec.yml b/kas/qemuarm-parsec.yml
-new file mode 100644
-index 0000000..cef2818
---- /dev/null
-+++ b/kas/qemuarm-parsec.yml
-@@ -0,0 +1,6 @@
-+header:
-+  version: 8
-+  includes:
-+    - kas-security-parsec.yml
-+
-+machine: qemuarm
-diff --git a/kas/qemuarm64-parsec.yml b/kas/qemuarm64-parsec.yml
-new file mode 100644
-index 0000000..9b593bc
---- /dev/null
-+++ b/kas/qemuarm64-parsec.yml
-@@ -0,0 +1,6 @@
-+header:
-+  version: 8
-+  includes:
-+    - kas-security-parsec.yml
-+
-+machine: qemuarm64
-diff --git a/kas/qemuppc-parsec.yml b/kas/qemuppc-parsec.yml
-new file mode 100644
-index 0000000..1176d13
---- /dev/null
-+++ b/kas/qemuppc-parsec.yml
-@@ -0,0 +1,6 @@
-+header:
-+  version: 8
-+  includes:
-+    - kas-security-parsec.yml
-+
-+machine: qemuppc
-diff --git a/kas/qemux86-64-parsec.yml b/kas/qemux86-64-parsec.yml
-new file mode 100644
-index 0000000..ec39c14
---- /dev/null
-+++ b/kas/qemux86-64-parsec.yml
-@@ -0,0 +1,6 @@
-+header:
-+  version: 8
-+  includes:
-+    - kas-security-parsec.yml
-+
-+machine: qemux86-64
-diff --git a/kas/qemux86-parsec.yml b/kas/qemux86-parsec.yml
-new file mode 100644
-index 0000000..370947d
---- /dev/null
-+++ b/kas/qemux86-parsec.yml
-@@ -0,0 +1,6 @@
-+header:
-+  version: 8
-+  includes:
-+    - kas-security-parsec.yml
-+
-+machine: qemux86
+Error in which: Program argument of which() may not contains a / or a
+\ ('arm-poky-linux-gnueabi-gcc  -mthumb -mfpu=neon-vfpv4
+-mfloat-abi=hard -mcpu=cortex-a7 -fstack-protector-strong
+-D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security
+--sysroot=/home/test/recipe-sysroot' given)
+
+Any suggestions?
+
+Thanks and regards,
+
+marek
+
 -- 
-2.20.1
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
 
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
