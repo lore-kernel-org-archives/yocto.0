@@ -1,76 +1,76 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.7946.1617969534047261313
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+ by mx.groups.io with SMTP id smtpd.web09.9590.1617976418220370452
  for <yocto@lists.yoctoproject.org>;
- Fri, 09 Apr 2021 04:58:54 -0700
+ Fri, 09 Apr 2021 06:53:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=uORqNICk;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 3B6D638C08EA
-	for <yocto@yoctoproject.org>; Fri,  9 Apr 2021 11:58:52 +0000 (UTC)
-Received: by mail-yb1-f172.google.com with SMTP id k73so2759ybf.3
-        for <yocto@yoctoproject.org>; Fri, 09 Apr 2021 04:58:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=yiJ1tl/KWBlYiRii5sRw1jgzIwPitQxwSLmGABYRQ30=;
-        b=uORqNICk+W7h0LZaopdtcnjaz05B868qOkenNnvOwOXK9r4V2eq+9yXV3rwRhvcxJd
-         +JEmY61nFjPEmGVYLEaw5EUmEny3teuGVSrla1VqY6jghkovXJXqkZAvLybVExAlcUZd
-         TSXAEFmDnVW1iGrZoC8KP7bs90SXpVZ2ZROP9m+pat0Kq144dIGQgCWZmJYVYxZhqwF6
-         2G7ARNgREuZC5d5P5T/fYL2kxziIGkjQ40GJdKYtf84/gtyQRxDqDRFhrSNCit2M/v9d
-         Ms+PBISamPq81pqswkKbD4Ug0yhLXM6IiXA5tyIYlUGYmgOg3lZCqQcOHamDZh61Tbjv
-         ISIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=yiJ1tl/KWBlYiRii5sRw1jgzIwPitQxwSLmGABYRQ30=;
-        b=IbIPG8OrnLKvSpeuVDv3akzkVLz0NvmOnWfWN9VWvXc9VWQTqlUWCDmwO04wOzvCpk
-         N//9L5Gb4sOr8pkRLkWtEbUXJhzxYGvcxbwzd6w/1G54STeLz6GDax+hz7Zwks+S90S+
-         j5qxzeynAeEpPvCfrBLX5FT0775wMia7x57xjrNfZQjz5OoK9blbM0a1z5WcTtjngxpA
-         rT1z7Sg9Ei1RSW732fT+cRWP27P+TcIs+2xZqgCpAsETsKu1Gedw2z7mYkyW2KnczQ4q
-         FFMWw5tf5zQmpFpywP+nFbIm5iqDny1dt1g/oYrxKBlFMmg4VBFZtURRUf8mNNJvAm2V
-         mbkA==
-X-Gm-Message-State: AOAM5329nSzhCKMZ13ksNUWPI6NgsMewP1AFnwfq0JW7DEXe3Cw2z53f
-	STyewgtfyDUm8EvGPgpWmChIqKm/NJdx9an1zYKihT3KvUczJdZ5
-X-Google-Smtp-Source: ABdhPJycyEsXevltU/WbZVhqwV6s8j6p67rTFgtTChdoO7AKsYvSm5VBG4xmPHQ6rzstuMWbXVNkGHpX8ixLrwsDpM4=
-X-Received: by 2002:a25:cf16:: with SMTP id f22mr18276308ybg.342.1617969530984;
- Fri, 09 Apr 2021 04:58:50 -0700 (PDT)
+ dkim=pass header.i=@gmx.net header.s=badeba3b8450 header.b=kbOHWkYu;
+ spf=pass (domain: gmx.de, ip: 212.227.17.21, mailfrom: juergen.landwehr@gmx.de)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=badeba3b8450; t=1617976416;
+	bh=9llIqQob+eMPS53yhzbr4deBUTr6rQgQWi0trWRm9cs=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+	b=kbOHWkYustTrOpPSRwHVi1Q6kAsC9fCcChuR+qJy063VkUUcX+Cssw8igTibh/Tsb
+	 vKle7i9a/zJyP074/5bj6txfSawHaN3p/kkR7SrUcAEbb1jCUgzzftbv2FIUf21fB/
+	 V5FeJGLbJLPYAmdGuiP4LWi8nXOY0KDXhTx0DRr8=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [46.223.148.168] ([46.223.148.168]) by web-mail.gmx.net
+ (3c-app-gmx-bap62.server.lan [172.19.172.132]) (via HTTP); Fri, 9 Apr 2021
+ 15:53:35 +0200
 MIME-Version: 1.0
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Fri, 9 Apr 2021 13:58:40 +0200
-Message-ID: <CAAfyv34u-w-+Q8PoV+6DU6ucJQwFMSru4RF9ic3o2Q1c_AopTQ@mail.gmail.com>
-Subject: pycoral recipe
-To: yocto <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <trinity-ee96bdd6-9e22-468a-b5a7-f4909bb2b709-1617976415845@3c-app-gmx-bap62>
+From: juergen.landwehr@gmx.de
+To: yocto@lists.yoctoproject.org
+Cc: alexander.kanavin@daimler.com, raj.khem@gmail.com
+Subject: #golang: go fetches dependencies in compile phase
+Date: Fri, 9 Apr 2021 15:53:35 +0200
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:Wei6Nl0vbN6TdpPsmdMLn6R/a9DWJ4LUFPfgoIcRxbeE8vuuaqM82P+qmrNtyUvOPgTgr
+ kr0Q5UmCXBk9V6yhUVY/huvLt9BrIFhL4c1ppnfPzAOLmqPcpHKxzkwhI3SmZ+N4UWfQg3fvglqG
+ ofnAd9AJM9SZREB3He5ACWLgps/BpY04QeeqNBM8fPvhpW/DqctbzXGv3//sITEoGU2Js6vr1iFg
+ FpBFY8q17H9D1WHv87RHyqZLgTIwRWkrX9LlURqr/jEgVi5BXPr7pMiCfjj/nPrbXUSvgCkRmJ3y
+ MM=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:HWCd9PujLO4=:JkGLxBQ2GY1ndIO0CzS8ZK
+ pC2WC3CIf/DnSW7GtyWGSF4qWp9nOzmOg3oU64dkKk9FXORRCVo+n7RFpO5XYAtGXsywlGJkT
+ 4rBTndk8jKAIOUsxpZjzBdXhGrZ9z8lYm2olzDGIFbwvtxVgxstKVmiygdosa+WhGJ84QQ5HN
+ pd/gdbf4/G+C/YuWvEbUYuUxYtSFfp6zTqhSuyn9CMY/MTBOFYulNB8v//hSTObDUaZXGfafQ
+ GmpHTBC3hXyJcYjKa60hrAmZhYk4tvq7XJdcfw4Zv224AV3pOhgX7Tc7kzo2ouJJQkiQ0+Auw
+ cd5Oyr0iA+Rqf95mj79YXwinBQWidaWFm9i8H79NKTF1bmJBwqom5sFuUSy6DQDerVEW9Q2v2
+ anPTW8abFbvorg+mUcET4AGz4YPlJ4xm1E/RnEDknQ05x+ZwurBlxU5I9RUohaN1ibvSdbYxx
+ SJ+W85rkql+IyEn63/xVnWPmRhrIqOBS8VSsxa98fCLs6hD4DJGUr/98PU2/HUDllQAdgizlE
+ 6nrlG16fv/6ATupYbm5iC0uDS+eZkSa8Zn3czvfYxef5xBe3Nj1N++LrJoy1Ob94sZrVV7DBc
+ peX6aF7impOQi0q5lAXHi421ufnliFKIrAx1++R9iSPiOUWEOozMMbsBdXa9r4UXPcShbzwGT
+ daSo03dpwke/CbfLwKExT+IPIyoinjgxuaf6LhcY2+Olfo7lxurOyrxLos3bGwjsk+nrdpxMF
+ kKZWbMXn0Z3I/GPUQp9yxGX4QEjnno3c4TiqLgP68tyD07M/f+FaNWEFvzRfouwuXB4IpZdX0
+ 4JCw763PP4ehnboRNckSxKtzNz9EjijIVweu4J2/e8BirDBD0VZeyfsuW0rsA1l7RCY5CmK1q
+ IWhZyAH9PzxqocAyOMkJkGHXalRzgixZh4xEyPuQzXYZyo3Yrl8t50+4Z3Uet+hGNBeS+11s9
+ Jsu2b/gsk9Q==
+Content-Type: text/html; charset=UTF-8
 
-Hi,
+<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>Hi,</div>
 
-Just want to ask if anyone working/can share a recipe for a pycoral
-package (https://github.com/google-coral/pycoral). I have some
-barebone but seems not straightforward. It's using bazel build system
-and as I understand it needs to add some patch for adding yocto
-compiler otherwise it fails with:
+<div>&nbsp;</div>
 
-Error in which: Program argument of which() may not contains a / or a
-\ ('arm-poky-linux-gnueabi-gcc  -mthumb -mfpu=neon-vfpv4
--mfloat-abi=hard -mcpu=cortex-a7 -fstack-protector-strong
--D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security
---sysroot=/home/test/recipe-sysroot' given)
+<div>we are developing an application in go and use the &quot;go-mod&quot; bb-class from poky. This works fine.</div>
 
-Any suggestions?
+<div>&nbsp;</div>
 
-Thanks and regards,
+<div>However, the problem is, that the dependencies in go.mod are now fetched in the compile phase and not in the fetch phase.</div>
 
-marek
+<div>&nbsp;</div>
 
--- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+<div>This is not allowed in our project setup and kind of contradicts the Yocto paradigmn of having a fetch and a compile phase.</div>
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+<div>&nbsp;</div>
+
+<div>Is there a way to avoid this or some other solution that we could use?</div>
+
+<div>&nbsp;</div>
+
+<div>Thanks,</div>
+
+<div>&nbsp;</div>
+
+<div>J&uuml;rgen</div></div></body></html>
