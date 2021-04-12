@@ -1,111 +1,88 @@
-Subject: #golang: go fetches dependencies in compile phase
-To: yocto@lists.yoctoproject.org
-From: "Juergen Landwehr" <juergen.landwehr@gmx.de>
-X-Originating-Location: Stuttgart, Baden-Württemberg, DE (141.113.11.14)
-X-Originating-Platform: Mac Firefox 87
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+ by mx.groups.io with SMTP id smtpd.web10.31556.1618230075262219964
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 12 Apr 2021 05:21:15 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=dGnrjTn1;
+ spf=pass (domain: gmail.com, ip: 209.85.217.54, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-vs1-f54.google.com with SMTP id 66so6510327vsk.9
+        for <yocto@lists.yoctoproject.org>; Mon, 12 Apr 2021 05:21:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=U7nb9JnsgfLj6YavCiVGowR5k5zMl3xdJhUO0wJFIEI=;
+        b=dGnrjTn1KvOn1zPo75DimleAgndd7m5B7QqW/b3otm1KsGGgEQmqjR+oMx4dxxT1BK
+         Ttast+xgEn6C5RXQeNvsdjcoJRAE8O8WbGUWF82S3sFvuflIN5F0jTicP+e1uZUQrDSk
+         +dWfcwixcvYyNx0MCKnE7yaPLCLxogPEi13+msp58VALELaea5726qSZPTXTbT/GI15Q
+         3gRhRpjWmmXN3TImO5G/BexxvpSk+q9MWqnOqCLjw911FQZNQWzBflZrh8cqBFOlvX0l
+         P2v2cT824Ti+2vGJom+vBBjFmpIM+q8F8DfcF/g80uplQuNMAdmTnlm6MSSJC3SuMJvW
+         Gxzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=U7nb9JnsgfLj6YavCiVGowR5k5zMl3xdJhUO0wJFIEI=;
+        b=LMkUTDtQRDnvBYfzdo4tC2KHr71x5k1r9psJGlbztU59yy9TSNL+OQXtajFRKOqHLC
+         +dw6buhHBbpnU14m9VSG34Dk7vlF8i5btw2ERJXW12J6mHaJ6p+oLDH/EE4/FgcZ2CLy
+         YOsvRxYRGh/t61X3ur+uo5IawTDozHzgqwcdNiSrIVqGHUQripkq5gT2/uoPghgeNHhT
+         eZH+54vAePrOyRrnYskx+IoneHehOG1PiipMe+QiWxhH+pV29U9gUgfx7rBbuLClQClY
+         2l8zuweJCAh8HPvPoyOCMAcqEYpa3+StK0K3derm8TyuekTiCcIB6RinrQ4NHe8BeX44
+         Tq6g==
+X-Gm-Message-State: AOAM530YU5ERWJ9aaJZvY/bF5URaUJC3Og5Eyrh8dKUY7YPJzzNsQml0
+	IDLY3NI3+F16UymfdFD6trYQM9QGK8rBO0cWmsg=
+X-Google-Smtp-Source: ABdhPJzw2x435lhxvB+Flt5RvBUvOV/Zj+6qmfIxdkTlLar5DJnNpWQRq6zPLsZ5CGJO2M3bw6Na8+pwPysEhpapU/o=
+X-Received: by 2002:a67:8c1:: with SMTP id 184mr19097627vsi.31.1618230074370;
+ Mon, 12 Apr 2021 05:21:14 -0700 (PDT)
 MIME-Version: 1.0
-Date: Mon, 12 Apr 2021 04:47:33 -0700
-References: <8f3535e5-42c0-baf7-ae8b-fca906f33d05@gmail.com>
-In-Reply-To: <8f3535e5-42c0-baf7-ae8b-fca906f33d05@gmail.com>
-Message-ID: <7847.1618228053017471875@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="RO5QskGs7l4d8YEDFrSo"
+References: <8f3535e5-42c0-baf7-ae8b-fca906f33d05@gmail.com> <7847.1618228053017471875@lists.yoctoproject.org>
+In-Reply-To: <7847.1618228053017471875@lists.yoctoproject.org>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Mon, 12 Apr 2021 14:21:03 +0200
+Message-ID: <CANNYZj9xvzTtg-zaZk+X9W0R9FL-O+g-6eFURFbaeJu0TUGbOA@mail.gmail.com>
+Subject: Re: [yocto] #golang: go fetches dependencies in compile phase
+To: Juergen Landwehr <juergen.landwehr@gmx.de>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000bf6ba105bfc58c4d"
 
---RO5QskGs7l4d8YEDFrSo
-Content-Type: text/plain; charset="utf-8"
+--000000000000bf6ba105bfc58c4d
+Content-Type: text/plain; charset="UTF-8"
+
+On Mon, 12 Apr 2021 at 13:47, Juergen Landwehr <juergen.landwehr@gmx.de>
+wrote:
+
+> But dependency management in go is not that arbitrary as it may seem.
+> Dependencies and their version is stored in "go.mod". To ensure
+> reproducable builds, hashes for each dependency and version are stored in
+> "go.sum". Both files are in git and together with a local golang proxy,
+> this should ensure reproducable builds, right?
+>
+
+Reproducibility means anyone can run a build at any point in the future
+even if the upstream repositories are gone, so all inputs must be stored in
+a local download cache, which is the other thing SRC_URI guarantees, in
+addition to verifying integrity of the inputs.
+
+Alex
+
+--000000000000bf6ba105bfc58c4d
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Robert,
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Mon, 12 Apr 2021 at 13:47, Juergen Landwehr &lt;<a href=3D"mailto=
+:juergen.landwehr@gmx.de">juergen.landwehr@gmx.de</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex">But dependency management =
+in go is not that arbitrary as it may seem. Dependencies and their version =
+is stored in &quot;go.mod&quot;. To ensure reproducable builds, hashes for =
+each dependency and version are stored in &quot;go.sum&quot;. Both files ar=
+e in git and together with a local golang proxy, this should ensure reprodu=
+cable builds, right?<br></blockquote><div><br></div><div>Reproducibility me=
+ans anyone can run a build at any point in the future even if the upstream =
+repositories are gone, so all inputs must be stored in a local download cac=
+he, which is the other thing SRC_URI guarantees, in addition to verifying i=
+ntegrity of the inputs.<br></div><div><br></div><div>Alex<br></div></div></=
+div>
 
-thanks for your thoughts.
-
-I see your point and the last thing I want is "NOT reproducable builds".
-
-But dependency management in go is not that arbitrary as it may seem. Depe=
-ndencies and their version is stored in "go.mod". To ensure reproducable bu=
-ilds, hashes for each dependency and version are stored in "go.sum". Both f=
-iles are in git and together with a local golang proxy, this should ensure =
-reproducable builds, right?
-
-To ensure that licences are valid and did not change over time, we develop=
-ed a little tool, that goes through all dependencies and creates the follow=
-ing output, which we insert into our recipe:
-
-LICENSE =3D "Apache-2.0 & MIT & MIT & BSD-2-Clause & BSD-3-Clause & ...
-
-LIC_FILES_CHKSUM =3D " \
-file://${S}/src/${GO_IMPORT}/vendor/github.com/coreos/go-oidc/LICENSE;md5=
-=3Dd2794c0df5b907fdace235a619d80314 \
-file://${S}/src/${GO_IMPORT}/vendor/github.com/go-playground/locales/LICEN=
-SE;md5=3D3ccbda375ee345400ad1da85ba522301 \
-file://${S}/src/${GO_IMPORT}/vendor/github.com/go-playground/universal-tra=
-nslator/LICENSE;md5=3D2e2b21ef8f61057977d27c727c84bef1 \
-file://${S}/src/${GO_IMPORT}/vendor/github.com/godbus/dbus/v5/LICENSE;md5=
-=3D09042bd5c6c96a2b9e45ddf1bc517eed \
-file://${S}/src/${GO_IMPORT}/vendor/github.com/golang/gddo/LICENSE;md5=3D4=
-c728948788b1a02f33ae4e906546eef \
-... This is a manual step and whenever dependencies change we have to crea=
-te this list again and add it to the recipe, but it contains all the requir=
-ed license information and makes them visible in the recipe.
-
-It might pollute the recipe a bit, but luckily we do not have thousands of=
- dependencies like some npm projects. So I think it is still manageable. An=
-d is it much less work, than defining a recipe for each dependency.
-
-So we would
-* guarantee reproducable builds
-* use the programming language (in our case golang) to handle dependency m=
-anagement
-* ensure that licenses are visible and correct
-
-I mean it is not perfect and still a compromise, but it should work withou=
-t breaking reproducable builds or causing license issues?
-What do you think?
-
-Regards,
-J=C3=BCrgen
-
-PS: Thanks for the link. I was not aware of this discussion (it is quite a=
- bit to read:))
-
---RO5QskGs7l4d8YEDFrSo
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Robert, <br /><br />thanks for your thoughts. <br /><br />I see your poi=
-nt and the last thing I want is "NOT reproducable builds". <br /><br />But =
-dependency management in go is not that arbitrary as it may seem. Dependenc=
-ies and their version is stored in "go.mod". To ensure reproducable builds,=
- hashes for each dependency and version are stored in "go.sum". Both files =
-are in git and together with a local golang proxy, this should ensure repro=
-ducable builds, right?<br /><br />To ensure that licences are valid and did=
- not change over time, we developed a little tool, that goes through all de=
-pendencies and creates the following output, which we insert into our recip=
-e: <br /><br />
-<pre style=3D"background-color: #ffffff; color: #080808; font-family: 'Jet=
-Brains Mono',monospace; font-size: 12,0pt;">LICENSE =3D "Apache-2.0 &amp; M=
-IT &amp; MIT &amp; BSD-2-Clause &amp; BSD-3-Clause &amp; ...<br /><br />LIC=
-_FILES_CHKSUM =3D " \<br />file://${S}/src/${GO_IMPORT}/vendor/github.com/c=
-oreos/go-oidc/LICENSE;md5=3Dd2794c0df5b907fdace235a619d80314 \<br />file://=
-${S}/src/${GO_IMPORT}/vendor/github.com/go-playground/locales/LICENSE;md5=
-=3D3ccbda375ee345400ad1da85ba522301 \<br />file://${S}/src/${GO_IMPORT}/ve=
-ndor/github.com/go-playground/universal-translator/LICENSE;md5=3D2e2b21ef8f=
-61057977d27c727c84bef1 \<br />file://${S}/src/${GO_IMPORT}/vendor/github.co=
-m/godbus/dbus/v5/LICENSE;md5=3D09042bd5c6c96a2b9e45ddf1bc517eed \<br />file=
-://${S}/src/${GO_IMPORT}/vendor/github.com/golang/gddo/LICENSE;md5=3D4c7289=
-48788b1a02f33ae4e906546eef \<br />...</pre>
-This is a manual step and whenever dependencies change we have to create t=
-his list again and add it to the recipe, but it contains all the required l=
-icense information and makes them visible in the recipe. <br /><br />It mig=
-ht pollute the recipe a bit, but luckily we do not have thousands of depend=
-encies like some npm projects. So I think it is still manageable. And is it=
- much less work, than defining a recipe for each dependency.<br /><br />So =
-we would<br />* guarantee reproducable builds<br />* use the programming la=
-nguage (in our case golang) to handle dependency management<br />* ensure t=
-hat licenses are visible and correct<br /><br />I mean it is not perfect an=
-d still a compromise, but it should work without breaking reproducable buil=
-ds or causing license issues?<br />What do you think?<br /><br />Regards, <=
-br />J&uuml;rgen<br /><br />PS: Thanks for the link. I was not aware of thi=
-s discussion (it is quite a bit to read:))
-
---RO5QskGs7l4d8YEDFrSo--
+--000000000000bf6ba105bfc58c4d--
