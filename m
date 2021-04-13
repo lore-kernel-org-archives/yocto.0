@@ -1,108 +1,146 @@
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
- by mx.groups.io with SMTP id smtpd.web11.9660.1618322157172688919
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+ by mx.groups.io with SMTP id smtpd.web11.9724.1618322400496124968
  for <yocto@lists.yoctoproject.org>;
- Tue, 13 Apr 2021 06:55:57 -0700
+ Tue, 13 Apr 2021 07:00:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Rgo2Yg9I;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f54.google.com with SMTP id u5-20020a7bcb050000b029010e9316b9d5so8800235wmj.2
-        for <yocto@lists.yoctoproject.org>; Tue, 13 Apr 2021 06:55:56 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=CSSeHXZD;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.51, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f51.google.com with SMTP id x7so16558149wrw.10
+        for <yocto@lists.yoctoproject.org>; Tue, 13 Apr 2021 07:00:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
         h=from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Hk8sq6h/G3CazDjKZhnT8Kqw+bYTFyuuuBp8IiLUGoQ=;
-        b=Rgo2Yg9IVhpsS6dYhmWJQvk0AInvCl/2d8lZP7r48rP5Qa+CcyM5NMtqZTq+3E/e+q
-         CZYNxW+ODssC228Mf3G1f0XrzpjqBqKTJv3Jo8wAxxpEH0a2zm63xV9tFeXqa5EI3dfC
-         GA+nPCSDKOC4qu5WyIUVsaAopGX3vPA7qBggc=
+        bh=cJ47ztZjeiVphfl5uOTkBB/Ftpgex/WtcUCdriqMHco=;
+        b=CSSeHXZD9kWvcnfHaWZqPse6vSZq5dr3NhuwIdigqe23T2Ayzt4t7TTANoAUI4zjti
+         Yk3ZWJc53H2CTIZeTDKYHyP5XgVIhWSsbe/S1enrdQ7LQ+Dlyv4q/lRCLaOnwVJzOkIy
+         8IOr86rGW85p+WWsNoe5S4SuVkx0g5128iVg4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Hk8sq6h/G3CazDjKZhnT8Kqw+bYTFyuuuBp8IiLUGoQ=;
-        b=b5YlFAMx2ubOrGmfBxRZL8cb+cNMMA8u9AOXXSsvtsopL4dMtzl09LZAzw95rszWh9
-         sZG7GxIAWfbnTkRhbmkQqm+0Nxe7ZbvB9QuTCwtpF82QXPsyGzx3aI8fS6OssW9ao7jI
-         86QTlkPm9wZkXZ5glgQrESxK81/DkuLnf4LIYECxUtqIHYazjRCM9yBUqBMhBRHYUZlU
-         pFvCuKWmdIgGpmftpcDYggnh95KpcIHEyjjBt85WzoH9Tn5VApZ/xeGBDzrJhVdv1mJR
-         SYWJazo8vhjNjCfsaj9DLrMEzb+8XWkX9rtUreG2lI/mNngpbQIZ+1TKKlUdnL81juTr
-         DYCA==
-X-Gm-Message-State: AOAM532lg8Sw4wzoHkPrnQDrqZ/MiGtv/TfiOtwxsknMXksajdY1/4n9
-	EU54rlkA1/VJjB4rMX0K+9U6wuG5CaarLw==
-X-Google-Smtp-Source: ABdhPJy4CmDrZN8tfVJKmF1632+cUi9xGFyY8ZoMtod1OOKT7uVCjRXXH7smNS5HfSR67z7YAKbItw==
-X-Received: by 2002:a1c:5445:: with SMTP id p5mr127358wmi.5.1618322155416;
-        Tue, 13 Apr 2021 06:55:55 -0700 (PDT)
+        bh=cJ47ztZjeiVphfl5uOTkBB/Ftpgex/WtcUCdriqMHco=;
+        b=bgZhNpHX5TttLPxpebrI7jt+E3Y7LEXOghAG3vuSFUZPaOslNMQo3f4UlMy5bU4Lz0
+         XFQ8zhKLLL4+B+yGqFBy4yugFZM0+ISglUiB+/kHVLiQOQPYEJC3Qy+jNJsBYjEtJZH0
+         FrPla5pH4k/Xa0h0NgWfMwa3DrQvam5afzWG3xQS+SIl6C2cRGTH8CLuGuKv8OBRm7zD
+         S/n32yHXe82BGyZxwBdRoL3wi5/133YZXUDPYHaJSZfDWvsdNfjr8XJPv99zuQRLZlbz
+         QpyNgy0AOasaoMO+op+8lDBdHASu5+YD0Ry0nlQyG5NpKhrhCREqmlAJUgZRDVSUdwrV
+         hNuQ==
+X-Gm-Message-State: AOAM530WXIwJThAvV3QeTT9G82AdF27GDHZF52dYE1hLsW9prbYjqLz9
+	d3sK0Nu4gpaqcf6CBsRafRJXTmhuBjfe2g==
+X-Google-Smtp-Source: ABdhPJx5Zj2dUskK4o6p8NYRL4rHOAD4PF1YhrfeptYAG+rxnRfFLecKYBgKHc8RioScoCmI48+5KQ==
+X-Received: by 2002:adf:cd10:: with SMTP id w16mr3455085wrm.158.1618322398887;
+        Tue, 13 Apr 2021 06:59:58 -0700 (PDT)
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from hex.int.rpsys.net ([2001:8b0:aba:5f3c:cfa:4562:e70e:c00b])
-        by smtp.gmail.com with ESMTPSA id c1sm5131586wrx.89.2021.04.13.06.55.55
+        by smtp.gmail.com with ESMTPSA id l14sm20673276wrm.77.2021.04.13.06.59.58
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Apr 2021 06:55:55 -0700 (PDT)
+        Tue, 13 Apr 2021 06:59:58 -0700 (PDT)
 From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder2] [PATCH] config/schedulers: Add hardknott config for new release
-Date: Tue, 13 Apr 2021 14:55:54 +0100
-Message-Id: <20210413135554.1239393-1-richard.purdie@linuxfoundation.org>
+Subject: [yocto-autobuilder2] [PATCH] config: Add meta-aws to base configuration
+Date: Tue, 13 Apr 2021 14:59:58 +0100
+Message-Id: <20210413135958.1239507-1-richard.purdie@linuxfoundation.org>
 X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 ---
- config.py     |  1 +
- schedulers.py | 14 ++++++++++++--
- 2 files changed, 13 insertions(+), 2 deletions(-)
+ bsp-addition-example.patch | 54 --------------------------------------
+ config.py                  |  3 +++
+ 2 files changed, 3 insertions(+), 54 deletions(-)
+ delete mode 100644 bsp-addition-example.patch
 
+diff --git a/bsp-addition-example.patch b/bsp-addition-example.patch
+deleted file mode 100644
+index 7f92789d..00000000
+--- a/bsp-addition-example.patch
++++ /dev/null
+@@ -1,54 +0,0 @@
+-From d5fb6c086c18722532333c8af1e19b42b9ffb138 Mon Sep 17 00:00:00 2001
+-From: Aaron Chan <aaron.chun.yew.chan@intel.com>
+-Date: Tue, 28 Aug 2018 10:49:13 +0800
+-Subject: [PATCH] config.py: Add new job category with suffix bsp
+-
+-Add new support on Open Source Automated Hardware Tests on BSP test
+-cases. New job category is define with builder name standard as
+-"nightly-<arch>-bsp" where Yocto Project supports architecutures on
+-hardware platforms of x86, x86-64, arm, arm64, mips, mips64, pcc.
+-
+-Add initial support on x86-64 BSP hardware tests and included meta
+-layers needed to run QA test cases on these platforms.
+-Community to adopt and add support to autobuilder job config to
+-support future BSP testing and validation on their architecture.
+-
+-Signed-off-by: Aaron Chan <aaron.chun.yew.chan@intel.com>
+----
+- config.py | 9 +++++++--
+- 1 file changed, 7 insertions(+), 2 deletions(-)
+-
+-diff --git a/config.py b/config.py
+-index 2568768..10f740d 100644
+---- a/config.py
+-+++ b/config.py
+-@@ -11,6 +11,7 @@
+-     "nightly-oecore": ["oecore", "bitbake"],
+-     "nightly-checkuri": ["poky", "meta-qt4", "meta-qt3"],
+-     "nightly-check-layer": ["poky", "meta-mingw", "meta-gplv2"],
+-+    "nightly-x86-64-bsp": ["poky", "meta-intel", "meta-openembedded", "meta-security", "meta-ros", "meta-browser"],
+-     "default": ["poky"]
+- }
+- 
+-@@ -32,7 +33,11 @@
+-     "meta-qt4": ["git://git.yoctoproject.org/meta-qt4", "master"],
+-     "meta-qt3": ["git://git.yoctoproject.org/meta-qt3", "master"],
+-     "meta-mingw": ["git://git.yoctoproject.org/meta-mingw", "master"],
+--    "meta-gplv2": ["git://git.yoctoproject.org/meta-gplv2", "master"]
+-+    "meta-gplv2": ["git://git.yoctoproject.org/meta-gplv2", "master"],
+-+    "meta-security": ["git://git.yoctoproject.org/meta-security", "master"],
+-+    "meta-openembedded": ["git://git.openembedded.org/meta-openembedded", "master"],
+-+    "meta-ros": ["git://github.com/bmwcarit/meta-ros", "master"],
+-+    "meta-browser": ["git://github.com/OSSystems/meta-browser", "master"]
+- }
+- 
+- trigger_builders_wait = [
+-@@ -40,7 +45,7 @@
+-     "nightly-mips", "nightly-mips-lsb", "nightly-mips64",
+-     "nightly-multilib", "nightly-x32",
+-     "nightly-ppc", "nightly-ppc-lsb",
+--    "nightly-x86-64", "nightly-x86-64-lsb",
+-+    "nightly-x86-64", "nightly-x86-64-lsb", "nightly-x86-64-bsp",
+-     "nightly-x86", "nightly-x86-lsb",
+-     "nightly-packagemanagers",
+-     "nightly-rpm-non-rpm", "nightly-deb-non-deb",
 diff --git a/config.py b/config.py
-index 299f2aa5..903cb4b8 100644
+index 903cb4b8..54ec9ce8 100644
 --- a/config.py
 +++ b/config.py
-@@ -142,6 +142,7 @@ all_workers = workers + workers_bringup + workers_buildperf + workers_arm
+@@ -19,6 +19,7 @@ buildertorepos = {
+     "meta-intel": ["poky", "meta-intel"],
+     "meta-arm": ["poky", "meta-arm", "meta-kernel"],
+     "meta-agl-core": ["poky", "meta-agl"],
++    "meta-aws": ["poky", "meta-aws", "meta-openembedded"],
+     "qemuarm-oecore": ["oecore", "bitbake"],
+     "checkuri": ["poky"],
+     "check-layer": ["poky", "meta-mingw", "meta-gplv2"],
+@@ -40,6 +41,7 @@ repos = {
+     "meta-intel": ["git://git.yoctoproject.org/meta-intel", "master"],
+     "meta-arm": ["git://git.yoctoproject.org/meta-arm", "master"],
+     "meta-agl": ["https://git.automotivelinux.org/AGL/meta-agl", "next"],
++    "meta-aws": ["https://github.com/aws/meta-aws.git", "master"],
+     "oecore": ["git://git.openembedded.org/openembedded-core",
+                           "master"],
+     "bitbake": ["git://git.openembedded.org/bitbake", "master"],
+@@ -107,6 +109,7 @@ builders_others = [
+     "bringup",
+     "qemuarm-armhost",
+     "meta-agl-core",
++    "meta-aws",
+     "auh"
+ ]
  
- # Worker filtering for older releases
- workers_prev_releases = {
-+    "hardknott" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora31", "fedora32", "fedora33", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu2004", "perf-"),
-     "gatesgarth" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora30", "fedora31", "fedora32", "opensuse150", "opensuse151", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
-     "dunfell" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora29", "fedora30", "fedora31", "fedora32", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
-     "zeus" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
-diff --git a/schedulers.py b/schedulers.py
-index 84792909..b8a73f10 100644
---- a/schedulers.py
-+++ b/schedulers.py
-@@ -169,7 +169,7 @@ def parent_scheduler(target):
-             name="branchselector",
-             default="master",
-             label="Release Shortcut Selector",
--            choices=["master", "master-next", "mut", "gatesgarth", "dunfell", "zeus", "warrior", "thud", "sumo", "rocko", "pyro", "morty"],
-+            choices=["master", "master-next", "mut", "hardknott", "gatesgarth", "dunfell", "zeus", "warrior", "thud", "sumo", "rocko", "pyro", "morty"],
-             selectors={
-               'master': {
-                 'branch': 'master',
-@@ -202,6 +202,16 @@ def parent_scheduler(target):
-                 'branch_meta-mingw': 'master',
-                 'branch_oecore': 'master',
-               },
-+              'hardknott': {
-+                'branch': 'hardknott',
-+                'branch_poky': 'hardknott',
-+                'branch_bitbake': '1.50',
-+                'branch_meta-arm': 'hardknott',
-+                'branch_meta-gplv2': 'hardknott',
-+                'branch_meta-intel': 'hardknott',
-+                'branch_meta-mingw': 'hardknott',
-+                'branch_oecore': 'hardknott',
-+              },
-               'gatesgarth': {
-                 'branch': 'gatesgarth',
-                 'branch_poky': 'gatesgarth',
-@@ -354,7 +364,7 @@ schedulers.append(sched.Nightly(name='nightly-auh', branch='master', properties=
- 
- # If any of our sphinx docs branches change, trigger a build
- schedulers.append(sched.AnyBranchScheduler(name="yocto-docs-changed",
--            change_filter=util.ChangeFilter(project=["yocto-docs"], branch=["master", "master-next", "gatesgarth", "dunfell", "transition"]),
-+            change_filter=util.ChangeFilter(project=["yocto-docs"], branch=["master", "master-next", "hardknott", "gatesgarth", "dunfell", "transition"]),
-             codebases = ['', 'yocto-docs', 'bitbake'],
-             treeStableTimer=60,
-             builderNames=["docs"]))
 -- 
 2.30.2
 
