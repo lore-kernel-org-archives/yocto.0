@@ -1,41 +1,32 @@
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
- by mx.groups.io with SMTP id smtpd.web10.989.1618336814268307062
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
+ by mx.groups.io with SMTP id smtpd.web09.996.1618336968466321487
  for <yocto@lists.yoctoproject.org>;
- Tue, 13 Apr 2021 11:00:14 -0700
+ Tue, 13 Apr 2021 11:02:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: bootlin.com, ip: 217.70.183.198, mailfrom: michael.opdenacker@bootlin.com)
-X-Originating-IP: 109.210.254.211
+ dkim=missing; spf=pass (domain: bootlin.com, ip: 217.70.178.231, mailfrom: michael.opdenacker@bootlin.com)
 Received: from [192.168.1.20] (amontpellier-552-1-199-211.w109-210.abo.wanadoo.fr [109.210.254.211])
 	(Authenticated sender: michael.opdenacker@bootlin.com)
-	by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 7CF97C0006
-	for <yocto@lists.yoctoproject.org>; Tue, 13 Apr 2021 18:00:12 +0000 (UTC)
-To: yocto@lists.yoctoproject.org
+	by relay11.mail.gandi.net (Postfix) with ESMTPSA id B53D1100007
+	for <yocto@lists.yoctoproject.org>; Tue, 13 Apr 2021 18:02:46 +0000 (UTC)
+Subject: Re: ref-manual: reverse the order of migration guides?
 From: "Michael Opdenacker" <michael.opdenacker@bootlin.com>
-Subject: ref-manual: reverse the order of migration guides?
+To: yocto@lists.yoctoproject.org
+References: <aa9e2f70-95d9-f703-441f-ddf973f34eca@bootlin.com>
 Organization: Bootlin
-Message-ID: <aa9e2f70-95d9-f703-441f-ddf973f34eca@bootlin.com>
-Date: Tue, 13 Apr 2021 20:00:11 +0200
+Message-ID: <4321774b-856c-78ae-7c0a-d88ac0f422b4@bootlin.com>
+Date: Tue, 13 Apr 2021 20:02:46 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.7.1
 MIME-Version: 1.0
+In-Reply-To: <aa9e2f70-95d9-f703-441f-ddf973f34eca@bootlin.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-Greetings,
+Oops, sent to the wrong list (meant to use the "docs" list). You can
+remove if this list is moderated.
 
-Wouldn't it make sense to reverse the order of migration guides in the
-reference manual
-(https://www.yoctoproject.org/docs/3.0/ref-manual/ref-manual.html#migration)?
-
-I guess it would be easier to start mentioning the migration path from
-the most recent release, as version 1.3 looks ancient.
-
-Would it make sense? If so, it's easy to propose a patch...
-
-Thanks in advance,
-
-Michael.
+Apologies
 
 -- 
 Michael Opdenacker, Bootlin
