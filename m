@@ -1,80 +1,180 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.14041.1618411044063484632
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+ by mx.groups.io with SMTP id smtpd.web10.16223.1618419160978920064
  for <yocto@lists.yoctoproject.org>;
- Wed, 14 Apr 2021 07:37:24 -0700
+ Wed, 14 Apr 2021 09:52:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=AMOTKVBl;
- spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id EE22738C0530
-	for <yocto@yoctoproject.org>; Wed, 14 Apr 2021 14:37:23 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id y20-20020a1c4b140000b029011f294095d3so12777854wma.3
-        for <yocto@yoctoproject.org>; Wed, 14 Apr 2021 07:37:23 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=A9rI9UQ9;
+ spf=pass (domain: gmail.com, ip: 209.85.160.169, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f169.google.com with SMTP id 1so15968589qtb.0
+        for <yocto@lists.yoctoproject.org>; Wed, 14 Apr 2021 09:52:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=blade-group.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xMmVR9Frzk4q8Q/JHETMM8H2c8XVBy3wnbfm8GkooAQ=;
-        b=AMOTKVBlh7VjLHSWJIkcgTDMP4vnxLPbnPSRLwY41t4vRILMw8Fx2bPXpXcVn17Id3
-         P2CPUnWfmO3KftiBbzecOerlvlMwgh1+lhu0/TfOa5VPemBxKG5C03IfZ3AqCIYPyfTT
-         mLm3of63HU0y+p13G226ukw9db3AaMwwxV09IfQJSMh0g0hmca3Gag0lFG9OYn/B1Dgc
-         vH+A2PWFhz2EHOMtkW442h6SQUrw1M9c+2g5HdHOPnt7eMFxiYLr1GGoQc6m8NJvfaoQ
-         xJIAXtValw3doVcdUhTldtw7rjiAdhC9TFF3h4i6u3bUkaH+rFzlkitSsY/QiFnwpJ5R
-         ldKw==
+        d=gmail.com; s=20161025;
+        h=date:from:to:subject:message-id:mime-version:content-disposition
+         :content-transfer-encoding:user-agent;
+        bh=VpsgFJXCZCnI0ThJhtzRQSszJOgtTUpuKkrHH3g0CtM=;
+        b=A9rI9UQ9xN6bi7XXru3KMu5ldTjgFmQ0p9wyeEggjaLbp0hB6nWg4u54JuNV2XJuLa
+         nBclvp2SYqlGWL2Sde+4o1zDorOwUs7bl3mDP0fT1B4Wfv80KnNTNpGWeGk9HOeo9N2v
+         Pv53i9UBgV6RObFOk3FrCLbApVne/20wwO7/6vRbfRReV7cwdfsCbDIkNPkdl7Q91GKK
+         LKKpH3rBPaR09zzOHB0ovC3auevNLkcpQ8jPQC89icXzJWrosWA2FtXTeW7HBDXMmVoq
+         vjohmTfKtKzjJQSIR4KAJouhncCllpO0s2yL3CDSw+D5Suk80LPk59afv61veckG3JNu
+         vaJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xMmVR9Frzk4q8Q/JHETMM8H2c8XVBy3wnbfm8GkooAQ=;
-        b=IcHildJ4amsG3E9f775/7acYhEKDRmdW/N4HMcQsqKrtDHdS2kB5D4kjyFC75AtYkh
-         CaiOo5VAiZPVWQNIjZzbtL6aU5gHo3br88hSpw85mVGUo7PMWleJIhESBgPea/dhetbG
-         WPkesgaE8AsL28FWHElJ3JxtZW9XJ8bBKnRqbHcCphMMQyYB0kBkTf/pTOXotMihm30v
-         9EfcbBNZOq6UZFZ8H/pbss31Zpb6LCD5hjfPMt6G8GTv0yv6Wd6vqfVw+mbaCO0gL9Y9
-         dC342Lbm4kxUcEhl/jIhJjCv802tfOre4qupTK5+upmQRhpHxvvu579nztWY/UshmIiB
-         RQAQ==
-X-Gm-Message-State: AOAM532lESwPqgXOdkrQYluF5ovkSy/kJusxtJYoDlTM9fshgK8qJdUf
-	S40jnI1I6mDxdpeZ4+UnY8lKBme8qKZvyQ==
-X-Google-Smtp-Source: ABdhPJyBH6hkcv/XqCd9ck5jxxSZc35PQILQJJ3a4bV+q0SI5iabYXKO6Pn/mq9dg9ybJEkwTNbJ7Q==
-X-Received: by 2002:a05:600c:1548:: with SMTP id f8mr3363610wmg.81.1618411042647;
-        Wed, 14 Apr 2021 07:37:22 -0700 (PDT)
-Received: from blanquette.lan ([88.120.44.86])
-        by smtp.gmail.com with ESMTPSA id u8sm24410120wrr.42.2021.04.14.07.37.21
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition:content-transfer-encoding:user-agent;
+        bh=VpsgFJXCZCnI0ThJhtzRQSszJOgtTUpuKkrHH3g0CtM=;
+        b=YsF4o5YY/3FRFuuxklVJuG/A3UDOSTi5EKMK0hv9SGUcY2XdpCjHuPCfeMgEIiTblj
+         WbqFmU97bN9uKp1F1ZIuB71A7dlvDtxkbiVtgfLTPLtydVGVXupgndk2t7qUjHKy+qP8
+         zW5cTCrk/MNP6rvAPXgKTgi2BJBItTBlHZwjAAqbUJXs0r2BODM8wXB9Te/khMTgE9tF
+         sFZiPdq5jvtdjY6e3SZvz7jJHosjW2ZhEFbc7wHrApj0IApT1gzTtoXvpoP3Gelc5CDv
+         OX3mNmBh5Tq/IMTsWWuLeFJFEWinJoTvuesJ8LfzqHjhEESzNiMHZOAiHyBxvW+U8gcB
+         YbkQ==
+X-Gm-Message-State: AOAM531arMHBTF/SpADEi446qDa5VqakYPMMMo+FE88oFYbVXrUyqICU
+	ocMBSME57kjwq+b2xmf/3pgxtch8uDU=
+X-Google-Smtp-Source: ABdhPJz95nyURLaA1+ZIYe1WxVb8+J7TCvtvm0c+eItoGvML//Su5d8daebHQAvJZ8eVkhmr+nQFSg==
+X-Received: by 2002:ac8:5745:: with SMTP id 5mr36074685qtx.252.1618419159476;
+        Wed, 14 Apr 2021 09:52:39 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id i2sm1009088qkn.29.2021.04.14.09.52.38
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Apr 2021 07:37:22 -0700 (PDT)
-From: "Yann Dirson" <yann.dirson@blade-group.com>
-X-Google-Original-From: yann@blade-group.com
-To: yocto@yoctoproject.org
-Cc: twoerner@gmail.com,
-	Yann Dirson <yann@blade-group.com>
-Subject: [meta-rockchip][PATCH v2 6/6] WIP kernel config feature for OP-TEE activation
-Date: Wed, 14 Apr 2021 16:36:38 +0200
-Message-Id: <20210414143638.4139270-7-yann@blade-group.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210414143638.4139270-1-yann@blade-group.com>
-References: <20210414143638.4139270-1-yann@blade-group.com>
+        Wed, 14 Apr 2021 09:52:38 -0700 (PDT)
+Date: Wed, 14 Apr 2021 12:52:37 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: Yocto Technical Team Minutes, Engineering Sync, for April 13, 2021
+Message-ID: <20210414165237.GA22412@localhost>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-From: Yann Dirson <yann@blade-group.com>
+Yocto Technical Team Minutes, Engineering Sync, for April 13, 2021
+archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit
 
-FIXME:
-- provide an .scc with proper information
-- maybe bundle with dts overlay
-- select a more suitable path in config namespace
----
- recipes-kernel/linux/files/bsp/tee.cfg | 2 ++
- 1 file changed, 2 insertions(+)
- create mode 100644 recipes-kernel/linux/files/bsp/tee.cfg
+== announcements ==
+The upcoming Yocto Project Summit is taking place May 25-26 2021
+details: https://www.yoctoproject.org/yocto-project-virtual-summit-2021/
+CfP: https://pretalx.com/yocto-project-summit-2021/cfp
+registration: https://www.cvent.com/d/yjq4dr/4W?ct=868bfddd-ca91-46bb-aaa5-62d2b61b2501
 
-diff --git a/recipes-kernel/linux/files/bsp/tee.cfg b/recipes-kernel/linu=
-x/files/bsp/tee.cfg
-new file mode 100644
-index 0000000..82213a5
---- /dev/null
-+++ b/recipes-kernel/linux/files/bsp/tee.cfg
-@@ -0,0 +1,2 @@
-+CONFIG_TEE=3Dm
-+CONFIG_OPTEE=3Dm
---=20
-2.30.2
+== disclaimer ==
+Best efforts are made to ensure the below is accurate and valid. However,
+errors sometimes happen. If any errors or omissions are found, please feel
+free to reply to this email with any corrections.
 
+== attendees ==
+Trevor Woerner, Stephen Jolley, Alexandre Belloni, Jere Viikari, Richard
+Purdie, Scott Murray, Peter Kjellerstedt, Armin Kuster, Saul Wold, Steve
+Sakoman, Randy MacLeod, Trevor Gamblin, Ross Burton, Bruce Ashfield, Paul
+Barker, sakib.sajal@WR, Tim Orling, Joshua Watt, Alejandro H
+
+== notes ==
+- 3.3-rc2 had a clean QA, waiting on TSC approval and release notes update
+- 3.3-rc1 was abandoned due to build issue
+- 3.1.7 building as we speak
+- prserv rework and git fetcher work underway
+
+== general ==
+RP: relatively quiet week, couple of issues here and there bitbake setscene
+    (covered vs not-covered)
+Ross: interesting cycle, lots of good work
+RP: agreed, community effort
+RP: i think the next release won’t be as quiet, there are a number of things
+    that we need to shake up
+
+
+Randy: Sakib and I have some filters enabled to capture stats when AB issues
+    occur. ready to be enabled. tested locally but our cluster isn’t pushed
+    as hard as the real AB
+
+
+JPEW: next release in Oct?
+RP: yes, see report sent by S Jolley
+JPEW: then the release after that is the LTS?
+RP: yes, Spring 2022.
+RP: however, we need to get buy-in from members. the first was an experiment,
+    it seems good
+JPEW: LTS works for me. seems like lots of BSP vendors focused on LTS which
+    made it easy to build across a large range of MACHINEs
+Randy: yocto LTS or kernel LTS?
+JPEW: yocto LTS, we’re stuck with vendor kernels for the most part
+RP: informal survey wrt LTS: general feeling that it was liked among member
+    companies
+RP: can we “prove” the value of LTS with data? perhaps CVE fixes?
+Saul: lots of problems collecting data (e.g. we don’t even know how people
+    are using it)
+AlexB: premirrors for poky?
+RP: true, but there are guidelines wrt the use of that data
+RP: to be a true comparison we’d have to compare LTS to a non-LTS, but
+    non-LTS don’t occur over the same time-span, so a comparison might be
+    hard. maybe CVE commits
+SS: I do have data since June of CVE adds/removes etc. but the data can get
+    confusing
+RP: what if we looked at the data wrt each point release
+SS: it’s possible, it’ll take time. we could also try to increase the
+    number of dot releases
+
+
+TrevorW: i don’t think Dunfell is y2038 safe
+AlexB: i *know* it’s not safe, need kernel and glibc
+TrevorW: okay, is this something that we’re going to worry about for dunfell
+RP: i’ve been getting private emails on this topic (not sure why they’re
+    private) so it is something we should look at. i recommend we start a wiki
+    page. some people say we need a 5.10 kernel to be compatible
+AlexB: i think 5.5 is good enough
+PaulB: i think some people are saying 5.10 because it is an LTS kernel (?)
+AlexB: time_t from 32 to 64 bits
+JPEW: should be easy to test in qemu
+AlexB: there are lots of places that need fixing, lots and lots just in
+    oe-core, nevermind meta-oe
+RP: we can break the ABI in our builds
+TrevorW: is this something we want to do in dunfell
+RP: if there are easy fixes okay, but probably not in the context of dunfell.
+    i’m happy to see dunfell fixed, but a wholesale kernel upgrade might be
+    out of scope
+AlexB: the 5.4 kernel is probably fine, the biggest issue is the glibc, and i
+    doubt it’ll get backported
+
+
+TimO: python parsing
+RP: there are some classes that are python nightmares. parsing in
+    bitbake context has a lot of overhead whereas parsing outside of
+    bitbake reduces the memory overhead. so there are pros and cons.
+    package.bbclass and patch.bbclass and a lot of the code in utils needs to
+    be moved/re-arranged. there might be compatibility issues, the question is
+    how to balance compatibility vs cleanup
+
+
+Randy: we’ve seen issues where VMs with 46GB run out of memory. some people
+    say it’s an underlying issue with cmake or meson. but is this an
+    underlying issue, or is it something bitbake should handle?
+RP: tricky question. it’s hard to tell how much load a job is going to
+    generate. shared job pool between make and bbthreads might be a viable way
+    to improve things. but there are limits to what bitbake can do. throttling
+    down the number of thread used by, for example, c++ builds or webkit are
+    useful. perhaps a global include file that puts limits
+JPEW: it’d be nice to specify parallel make without having to specify the
+    “-j”, makes it clumsy to update in a script when you have to keep
+    parsing out the -j and then putting it back in again
+RP: probably need a 2nd variable. parallel-make is really old, regressing
+    gracefully is the trick
+Randy: handling things like ninja is hard
+JPEW: ninja is meant to be simple
+RossB: i think there’s a samurai update to ninja that has more options
+JPEW: there is an open issue to add job server support to ninja
+RP: which sounds like they don’t want to
+ScottM: there was a patch suggested, which was rejected. we could add it
+    ourselves, but then we’d have to support it
+RP: i wonder if samurai supports it
+RossB: not quite, but there are bits and pieces, so maybe they’d take the
+    patch
+RP: maybe check bugzilla, i’m sure i documented this somewhere
+
+
+TimO: ptest output consistency. switching output formats might be too late,
+    there are already so many tools etc. would that be a true statement?
+RP: we can *add* a new output format, just don’t throw away the old ones. it
+    would have to be opt-in but we don’t want a flag day
