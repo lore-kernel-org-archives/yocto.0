@@ -1,49 +1,49 @@
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
- by mx.groups.io with SMTP id smtpd.web11.13271.1618408551076144893
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+ by mx.groups.io with SMTP id smtpd.web10.13394.1618408595508309325
  for <yocto@lists.yoctoproject.org>;
- Wed, 14 Apr 2021 06:55:51 -0700
+ Wed, 14 Apr 2021 06:56:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=rzyX5A2l;
- spf=pass (domain: gmail.com, ip: 209.85.214.176, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f176.google.com with SMTP id u7so8332566plr.6
-        for <yocto@lists.yoctoproject.org>; Wed, 14 Apr 2021 06:55:51 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=jKAP5GaG;
+ spf=pass (domain: gmail.com, ip: 209.85.215.178, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f178.google.com with SMTP id t22so14496797pgu.0
+        for <yocto@lists.yoctoproject.org>; Wed, 14 Apr 2021 06:56:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=4w2pvV46/Nh9uaaLNp7uzQorvukhJrwNZUJmWeRb2g0=;
-        b=rzyX5A2lXvEQTEkLepJtZ0oI2OI2pj/0IFBP+ZOWqvtCr6jBL2jWzUE4z/9uC1UKzJ
-         O+wVO502Gy8f40LtlR4qPOHxsMgjreN2Wnj0u/u01L8SKku6iaTxucfdS5u2oa2i40iW
-         A+SPxIULY+/l8DRraPlVGVzamhpgWfwEuLLnZiedFztvhD8tFAjRhWfra1Dgk5sRE9L8
-         31Hwv/sE/+5LrNUr5eAzvNH0w4M/mU5x2ilYvUKJhOmqHup8WtnXFF3TIz+FFkF3yGXL
-         y/UR1whLrCZylLUwPxq5ZNRL1DbQxg+3jaVKpJ7uYbxiIjVvRNqHgN2PlX6StKGtCvw3
-         7CxA==
+        bh=tuNX6X5ye8cXc9Fd1lgVUbrlkWnRPx+KLmT4Lr0dp08=;
+        b=jKAP5GaG9hkappe6Q2lFIyiU3gyln9rD+kb986kaZQP3qItGz6US1LJDRUpIDPHYms
+         gqou7if+ddUvIg7JYq1K4GcwJ7BdAYvs1OlENskNWs8aSrmyMCPCdmMlI7X7Oiv8l9t9
+         QLKBTEkXqw6aFlW++dhy1bjz8igP3fAo/rNkswQhg/f4f5S+FzFvrhVPfxq3R1p9C2ya
+         4y0fUV7xLhU9PojQ/RDFn1aSLaNiEXSUjFHbz+uvIZKC6+rS4mOB/yedpTMFHDQd3Tnn
+         l0mxSO/49wp8dToHuOeov4JgT/TqLxqpa0i1xKQG8QTB8VFZnyfsvWmmyAPfU7E9PSPj
+         S8hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
          :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
          :content-language;
-        bh=4w2pvV46/Nh9uaaLNp7uzQorvukhJrwNZUJmWeRb2g0=;
-        b=hsYWNEs3sN22ayKYsflhvUCHWCcku1CvnWRIIX8DijDRmM0Bt1n29qulY3zNlGKU+w
-         jr4plotcG5T/PYm7PUTJjQKIUwxdPNffcS74Ikhbwd+2gFEjNxTTzp0bR7KrBDU/jw5J
-         Br9xlWg5O4AXrbgHyQ8lfe0tC/MtUTInCwNtpTQp1vD/ax4rGAmRxYtQzlUDzR9/kHJF
-         adBct5l6tpp1FEW36AOZRVGCzH+RuCzQDKn+HaubUVIIg1qE0vUdLk+3hrsmsrqshXxv
-         QlrN2pf88GNe6CDwHmPdQVwSL2rq7dNofudIGiEti4RfIwQr4QowSfd85Jy43RkBflZd
-         S00A==
-X-Gm-Message-State: AOAM531i6u2uBpBkOsL81ZsjiU1BR475ytC5e6MiSZQbDwP/KuqOsiwH
-	V74pOJARRM8hoKlKE75aaKG6Njtt9jO9EA==
-X-Google-Smtp-Source: ABdhPJxgEkYEMlzIZn90GqBPE44P6b08bLP0+LC+pILbrDBLQxHrcz0Ge6U8qrUoEcblaIxNzJFMHQ==
-X-Received: by 2002:a17:902:c408:b029:e7:3242:5690 with SMTP id k8-20020a170902c408b02900e732425690mr38450045plk.85.1618408550470;
-        Wed, 14 Apr 2021 06:55:50 -0700 (PDT)
+        bh=tuNX6X5ye8cXc9Fd1lgVUbrlkWnRPx+KLmT4Lr0dp08=;
+        b=GqQIzKbaEHbgmwQOBAnMBbT2I7+N5ooOSkAwnpvH6hEUrxywmPI2ryFsQFQSzkNjtF
+         yds/QWiN5EMZM35YmvZRhAzZm6IT+53SI5rh7NYdWCaCRIGCEEnXYBrQapeuEs6N5Eyo
+         /QpN0Yvm000AUFVB1ihbB+YOAiBH/qPS+CUYLN/ova6C6wUyGeAEpWzpktGDcK8E6JDq
+         ivQwVrSmjSqrXdg1/1Nnpn6zLKjNFuUtdz6AqDdRzo3+zSTj7XJ6OH9MOn9mGGZO3V2m
+         9bcXkTwJbkGGgtQ4sIuSL4l3ZCT4tGeYAF6pgRMyDtUv0wK5LBDNaTjcT0dHo9D/fzgB
+         +90g==
+X-Gm-Message-State: AOAM533yXppCBicMFs3xBU/vk0eKE9x/4W1H0eqgTqxK6l0PpswKvPj4
+	TMdY9BwT7zRZ3BjXGtLOC6RAMWttoSvaQA==
+X-Google-Smtp-Source: ABdhPJxchGU5dwlv8RlIMI90hTD221BuxjvYdFZUEznCw2wVIJliM8HivQjGMErvGlpY2yOTjY1AHA==
+X-Received: by 2002:a63:3704:: with SMTP id e4mr6571551pga.125.1618408594772;
+        Wed, 14 Apr 2021 06:56:34 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from ?IPv6:2601:202:4180:a5c0:2d0c:893d:5593:863c? ([2601:202:4180:a5c0:2d0c:893d:5593:863c])
-        by smtp.gmail.com with ESMTPSA id ms9sm1336273pjb.32.2021.04.14.06.55.49
+        by smtp.gmail.com with ESMTPSA id 8sm11690957pfw.118.2021.04.14.06.56.34
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Apr 2021 06:55:49 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][PATCH] Use libest "main" branch instead of "master".
+        Wed, 14 Apr 2021 06:56:34 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH] initramfs-framework-ima: introduce IMA_FORCE
 To: yocto@lists.yoctoproject.org
-References: <20210407101954.1422-1-Anton.Antonov@arm.com>
+References: <20210408183814.387126-1-liu.ming50@gmail.com>
 From: "Armin Kuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -88,46 +88,83 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <fc4bb981-3826-589e-db64-1a70bccfe77a@gmail.com>
-Date: Wed, 14 Apr 2021 06:55:49 -0700
+Message-ID: <3f2f0dc3-2d87-a43e-d04c-f11cdb2c26e3@gmail.com>
+Date: Wed, 14 Apr 2021 06:56:33 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210407101954.1422-1-Anton.Antonov@arm.com>
+In-Reply-To: <20210408183814.387126-1-liu.ming50@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-merged
+merged,
+Thanks
 
-thanks,
-armin
-
-On 4/7/21 3:19 AM, Anton Antonov wrote:
-> This patch fixes the issue:
+On 4/8/21 11:38 AM, Ming Liu wrote:
+> From: Ming Liu <liu.ming50@gmail.com>
 >
-> WARNING: libest-3.2.0-r0 do_fetch: Failed to fetch URL git://github.com/cisco/libest, attempting MIRRORS if available
-> ERROR: libest-3.2.0-r0 do_fetch: Fetcher failure: Unable to find revision 4ca02c6d7540f2b1bcea278a4fbe373daac7103b in branch master even from upstream
-> ERROR: libest-3.2.0-r0 do_fetch: Fetcher failure for URL: 'git://github.com/cisco/libest'. Unable to fetch URL from any source.
+> Introduce IMA_FORCE to allow the IMA policy be applied forcely even
+> 'no_ima' boot parameter is available.
 >
-> Signed-off-by: Anton Antonov <Anton.Antonov@arm.com>
+> This ensures the end users have a way to disable 'no_ima' support if
+> they want to, because it may expose a security risk if an attacker can
+> find a way to change kernel arguments, it will easily bypass rootfs
+> authenticity checks.
+>
+> Signed-off-by: Sergio Prado <sergio.prado@toradex.com>
+> Signed-off-by: Ming Liu <liu.ming50@gmail.com>
 > ---
->  recipes-security/libest/libest_3.2.0.bb | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../initrdscripts/initramfs-framework-ima.bb             | 5 +++++
+>  .../initrdscripts/initramfs-framework-ima/ima            | 9 +++++++--
+>  2 files changed, 12 insertions(+), 2 deletions(-)
 >
-> diff --git a/recipes-security/libest/libest_3.2.0.bb b/recipes-security/libest/libest_3.2.0.bb
-> index f993bd6..5b6dc99 100644
-> --- a/recipes-security/libest/libest_3.2.0.bb
-> +++ b/recipes-security/libest/libest_3.2.0.bb
-> @@ -6,7 +6,7 @@ LICENSE = "OpenSSL"
->  LIC_FILES_CHKSUM = "file://LICENSE;md5=ecb78acde8e3b795de8ef6b61aed5885"
+> diff --git a/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima.bb b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima.bb
+> index 77f6f7c..6471c53 100644
+> --- a/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima.bb
+> +++ b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima.bb
+> @@ -14,6 +14,9 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384
+>  # to this recipe can just point towards one of its own files.
+>  IMA_POLICY ?= "ima-policy-hashed"
 >  
->  SRCREV = "4ca02c6d7540f2b1bcea278a4fbe373daac7103b"
-> -SRC_URI = "git://github.com/cisco/libest"
-> +SRC_URI = "git://github.com/cisco/libest;branch=main"
+> +# Force proceed IMA procedure even 'no_ima' boot parameter is available.
+> +IMA_FORCE ?= "false"
+> +
+>  SRC_URI = " file://ima"
 >  
->  DEPENDS = "openssl"
+>  inherit features_check
+> @@ -23,6 +26,8 @@ do_install () {
+>      install -d ${D}/${sysconfdir}/ima
+>      install -d ${D}/init.d
+>      install ${WORKDIR}/ima  ${D}/init.d/20-ima
+> +
+> +    sed -i "s/@@FORCE_IMA@@/${IMA_FORCE}/g" ${D}/init.d/20-ima
+>  }
 >  
+>  FILES_${PN} = "/init.d ${sysconfdir}"
+> diff --git a/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/ima b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/ima
+> index cff26a3..8971494 100644
+> --- a/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/ima
+> +++ b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/ima
+> @@ -2,11 +2,16 @@
+>  #
+>  # Loads IMA policy into the kernel.
+>  
+> +force_ima=@@FORCE_IMA@@
+> +
+>  ima_enabled() {
+> -    if [ "$bootparam_no_ima" = "true" ]; then
+> +    if [ "$force_ima" = "true" ]; then
+> +        return 0
+> +    elif [ "$bootparam_no_ima" = "true" ]; then
+>          return 1
+> +    else
+> +        return 0
+>      fi
+> -    return 0
+>  }
+>  
+>  ima_run() {
 >
 > 
 >
