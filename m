@@ -1,54 +1,54 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.13963.1618411043338200090
+ by mx.groups.io with SMTP id smtpd.web12.14041.1618411044063484632
  for <yocto@lists.yoctoproject.org>;
- Wed, 14 Apr 2021 07:37:23 -0700
+ Wed, 14 Apr 2021 07:37:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=o8NiV3aF;
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=AMOTKVBl;
  spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 2CAC138C0530
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id EE22738C0530
 	for <yocto@yoctoproject.org>; Wed, 14 Apr 2021 14:37:23 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id w186so6218636wmg.3
+Received: by mail-wm1-f52.google.com with SMTP id y20-20020a1c4b140000b029011f294095d3so12777854wma.3
         for <yocto@yoctoproject.org>; Wed, 14 Apr 2021 07:37:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=blade-group.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=+gnR0ktL0evJuve4Jc/b0LVrSrQJuZz81H6WSoi1omM=;
-        b=o8NiV3aF4rfJjBw0rrdkSmOWy0BGdvT1wORhvnPsQBFRGm7W/rJGKwVPgXQtrByUE4
-         S9ivN8F8sJ+CE6SdxDYhFb8DW8Bd8elSikpkK7+y79MRs5ME1X0SDtsoN1flinEQX+DJ
-         7fuUAEIkKf2unwUH+1xXGKlTOFckYnslmgaXZTssDfxFojSlEpBy+KA+Oy990pER9zXJ
-         X7ssHGKfSUwIzQfgJix50BDxANomixKPswuqr7gTVBZI6vlZ+qz+HVMkfYAglWXN88hg
-         SdiwMXxo54leQS2SUFDH6CK4i2BunBnjgH3AsEZTCFfhxE1QAMOGxFEciBi1/zMPup+W
-         4T2A==
+        bh=xMmVR9Frzk4q8Q/JHETMM8H2c8XVBy3wnbfm8GkooAQ=;
+        b=AMOTKVBlh7VjLHSWJIkcgTDMP4vnxLPbnPSRLwY41t4vRILMw8Fx2bPXpXcVn17Id3
+         P2CPUnWfmO3KftiBbzecOerlvlMwgh1+lhu0/TfOa5VPemBxKG5C03IfZ3AqCIYPyfTT
+         mLm3of63HU0y+p13G226ukw9db3AaMwwxV09IfQJSMh0g0hmca3Gag0lFG9OYn/B1Dgc
+         vH+A2PWFhz2EHOMtkW442h6SQUrw1M9c+2g5HdHOPnt7eMFxiYLr1GGoQc6m8NJvfaoQ
+         xJIAXtValw3doVcdUhTldtw7rjiAdhC9TFF3h4i6u3bUkaH+rFzlkitSsY/QiFnwpJ5R
+         ldKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=+gnR0ktL0evJuve4Jc/b0LVrSrQJuZz81H6WSoi1omM=;
-        b=nIJaJmJ2XthmBbFmVVs1klsRSLl1+HzuaNLArhdzFnJndqonT94rnc4jW+T0aIDD+Q
-         q3cZ1z32V11o5j0XAC2Sg5S3n64S+D1apQ9nNTnazGGXNVON/m7aIX4VuUGHFHfrjkcE
-         Yp9q3jbEoaU8rG+XGoYpwmK8n5kKm4fSEj86wmDRY0bbrLjQXZQhDxHlVsG22NMP2zJy
-         ispL9uSxq/F49kp/H/BVrjxeXVU1VBMWIa9SKS5UjyN+UMDV9IiF0AqxPam1zDhIECRn
-         pUfX6PJOx/GZ07fx140BfWbooPIuM1UnWNXgV01MytXkWEXQZTJ+2Xsq5W31rzgob5QK
-         BgyQ==
-X-Gm-Message-State: AOAM532i0iAzh4Y1uxIKbhx6dTozPsKGVX/v8VNddXQsbpufpxPGNOQs
-	Hv+oO7lURQj7DY/YpZ+RiER1IDPCMkZvCQ==
-X-Google-Smtp-Source: ABdhPJxL6kR1e7qcnmFPSL6KCkYyVWQSxKQfpwJTYAKDsTHRXXrd7cf9+9MA1KFbnhWmb4pA1npVvQ==
-X-Received: by 2002:a7b:cb45:: with SMTP id v5mr3484731wmj.2.1618411041878;
-        Wed, 14 Apr 2021 07:37:21 -0700 (PDT)
+        bh=xMmVR9Frzk4q8Q/JHETMM8H2c8XVBy3wnbfm8GkooAQ=;
+        b=IcHildJ4amsG3E9f775/7acYhEKDRmdW/N4HMcQsqKrtDHdS2kB5D4kjyFC75AtYkh
+         CaiOo5VAiZPVWQNIjZzbtL6aU5gHo3br88hSpw85mVGUo7PMWleJIhESBgPea/dhetbG
+         WPkesgaE8AsL28FWHElJ3JxtZW9XJ8bBKnRqbHcCphMMQyYB0kBkTf/pTOXotMihm30v
+         9EfcbBNZOq6UZFZ8H/pbss31Zpb6LCD5hjfPMt6G8GTv0yv6Wd6vqfVw+mbaCO0gL9Y9
+         dC342Lbm4kxUcEhl/jIhJjCv802tfOre4qupTK5+upmQRhpHxvvu579nztWY/UshmIiB
+         RQAQ==
+X-Gm-Message-State: AOAM532lESwPqgXOdkrQYluF5ovkSy/kJusxtJYoDlTM9fshgK8qJdUf
+	S40jnI1I6mDxdpeZ4+UnY8lKBme8qKZvyQ==
+X-Google-Smtp-Source: ABdhPJyBH6hkcv/XqCd9ck5jxxSZc35PQILQJJ3a4bV+q0SI5iabYXKO6Pn/mq9dg9ybJEkwTNbJ7Q==
+X-Received: by 2002:a05:600c:1548:: with SMTP id f8mr3363610wmg.81.1618411042647;
+        Wed, 14 Apr 2021 07:37:22 -0700 (PDT)
 Received: from blanquette.lan ([88.120.44.86])
         by smtp.gmail.com with ESMTPSA id u8sm24410120wrr.42.2021.04.14.07.37.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Apr 2021 07:37:21 -0700 (PDT)
+        Wed, 14 Apr 2021 07:37:22 -0700 (PDT)
 From: "Yann Dirson" <yann.dirson@blade-group.com>
 X-Google-Original-From: yann@blade-group.com
 To: yocto@yoctoproject.org
 Cc: twoerner@gmail.com,
 	Yann Dirson <yann@blade-group.com>
-Subject: [meta-rockchip][PATCH v2 5/6] WIP nanopi-m4: declare OP-TEE presence in devicetree
-Date: Wed, 14 Apr 2021 16:36:37 +0200
-Message-Id: <20210414143638.4139270-6-yann@blade-group.com>
+Subject: [meta-rockchip][PATCH v2 6/6] WIP kernel config feature for OP-TEE activation
+Date: Wed, 14 Apr 2021 16:36:38 +0200
+Message-Id: <20210414143638.4139270-7-yann@blade-group.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210414143638.4139270-1-yann@blade-group.com>
 References: <20210414143638.4139270-1-yann@blade-group.com>
@@ -58,70 +58,23 @@ Content-Transfer-Encoding: quoted-printable
 From: Yann Dirson <yann@blade-group.com>
 
 FIXME:
-
- - this is not specific to the board, and would indeed apply to any SoC
-   supported by OP-TEE.
- - should rather be selected by "optee" in DISTRO_FEATURES, maybe using
-   a dts overlay
+- provide an .scc with proper information
+- maybe bundle with dts overlay
+- select a more suitable path in config namespace
 ---
- .../0001-nanopi-declare-optee-presence.patch  | 30 +++++++++++++++++++
- recipes-kernel/linux/linux-yocto%.bbappend    |  1 +
- 2 files changed, 31 insertions(+)
- create mode 100644 recipes-kernel/linux/files/0001-nanopi-declare-optee-=
-presence.patch
+ recipes-kernel/linux/files/bsp/tee.cfg | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 recipes-kernel/linux/files/bsp/tee.cfg
 
-diff --git a/recipes-kernel/linux/files/0001-nanopi-declare-optee-presenc=
-e.patch b/recipes-kernel/linux/files/0001-nanopi-declare-optee-presence.p=
-atch
+diff --git a/recipes-kernel/linux/files/bsp/tee.cfg b/recipes-kernel/linu=
+x/files/bsp/tee.cfg
 new file mode 100644
-index 0000000..aede781
+index 0000000..82213a5
 --- /dev/null
-+++ b/recipes-kernel/linux/files/0001-nanopi-declare-optee-presence.patch
-@@ -0,0 +1,30 @@
-+From 30cb714e717990276a5fabc50dc616c83b223ee7 Mon Sep 17 00:00:00 2001
-+From: Yann Dirson <yann@blade-group.com>
-+Date: Mon, 12 Apr 2021 15:50:26 +0200
-+Subject: [PATCH] nanopi: declare optee presence
-+
-+---
-+ arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4.dts | 7 +++++++
-+ 1 file changed, 7 insertions(+)
-+
-+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4.dts b/arch/ar=
-m64/boot/dts/rockchip/rk3399-nanopi-m4.dts
-+index 60358ab8c7df..ef11639b03f6 100644
-+--- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4.dts
-++++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4.dts
-+@@ -16,6 +16,13 @@ / {
-+ 	model =3D "FriendlyElec NanoPi M4";
-+ 	compatible =3D "friendlyarm,nanopi-m4", "rockchip,rk3399";
-+=20
-++	firmware {
-++		optee {
-++			compatible =3D "linaro,optee-tz";
-++			method =3D "smc";
-++		};
-++	};
-++
-+ 	vdd_5v: vdd-5v {
-+ 		compatible =3D "regulator-fixed";
-+ 		regulator-name =3D "vdd_5v";
-+--=20
-+2.30.2
-+
-diff --git a/recipes-kernel/linux/linux-yocto%.bbappend b/recipes-kernel/=
-linux/linux-yocto%.bbappend
-index 9658681..97b3238 100644
---- a/recipes-kernel/linux/linux-yocto%.bbappend
-+++ b/recipes-kernel/linux/linux-yocto%.bbappend
-@@ -2,6 +2,7 @@ FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
-=20
- SRC_URI_append =3D "\
-  file://bsp;type=3Dkmeta;subdir=3Dkernel-meta \
-+ file://0001-nanopi-declare-optee-presence.patch \
- "
-=20
- COMPATIBLE_MACHINE_marsboard-rk3066 =3D "marsboard-rk3066"
++++ b/recipes-kernel/linux/files/bsp/tee.cfg
+@@ -0,0 +1,2 @@
++CONFIG_TEE=3Dm
++CONFIG_OPTEE=3Dm
 --=20
 2.30.2
 
