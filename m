@@ -1,51 +1,49 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.13337.1618408533565431183
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+ by mx.groups.io with SMTP id smtpd.web11.13271.1618408551076144893
  for <yocto@lists.yoctoproject.org>;
- Wed, 14 Apr 2021 06:55:33 -0700
+ Wed, 14 Apr 2021 06:55:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=TitIf0DK;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: akuster808@gmail.com)
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 30C2138C06BB
-	for <yocto@yoctoproject.org>; Wed, 14 Apr 2021 13:55:33 +0000 (UTC)
-Received: by mail-pj1-f45.google.com with SMTP id cu16so8315365pjb.4
-        for <yocto@yoctoproject.org>; Wed, 14 Apr 2021 06:55:33 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=rzyX5A2l;
+ spf=pass (domain: gmail.com, ip: 209.85.214.176, mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f176.google.com with SMTP id u7so8332566plr.6
+        for <yocto@lists.yoctoproject.org>; Wed, 14 Apr 2021 06:55:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=NEC+VnHcTbvICBOkHK+ImqoXHv05Jf0+rfRalxXQJo0=;
-        b=TitIf0DKrCFcva5bJDzIbo8G/gi/mCyOjUIqoK21RJ1xitrEmCz5sydcDYhSSyTDzX
-         UsXO8ofN6QXGQcNcie5aNKE+9O02jCKqGyOrrBQR56NskK2FygOFU28SC4WTgrwAd5YT
-         Jq28Vw/quAg7XJzWqFYU3uHI6rs0+aNRo0nRMmjJTePjUmsfOGx3POCPJi0zGHbbGUvW
-         iT+6lvD+tB8oUafF5PXT/uFKXgGPlXC/hVm7IA4KjmuptnptVGCVOJeoJdXpjkumsm//
-         QkW7sKSgfs7G4m4Rw1hFb4ZaxTWikG4hvRICBQY+6qbCeRv5VFRJr/ljmheSM67KsXZM
-         SNGw==
+        bh=4w2pvV46/Nh9uaaLNp7uzQorvukhJrwNZUJmWeRb2g0=;
+        b=rzyX5A2lXvEQTEkLepJtZ0oI2OI2pj/0IFBP+ZOWqvtCr6jBL2jWzUE4z/9uC1UKzJ
+         O+wVO502Gy8f40LtlR4qPOHxsMgjreN2Wnj0u/u01L8SKku6iaTxucfdS5u2oa2i40iW
+         A+SPxIULY+/l8DRraPlVGVzamhpgWfwEuLLnZiedFztvhD8tFAjRhWfra1Dgk5sRE9L8
+         31Hwv/sE/+5LrNUr5eAzvNH0w4M/mU5x2ilYvUKJhOmqHup8WtnXFF3TIz+FFkF3yGXL
+         y/UR1whLrCZylLUwPxq5ZNRL1DbQxg+3jaVKpJ7uYbxiIjVvRNqHgN2PlX6StKGtCvw3
+         7CxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-transfer-encoding:content-language;
-        bh=NEC+VnHcTbvICBOkHK+ImqoXHv05Jf0+rfRalxXQJo0=;
-        b=E/NLf8nRwgCrEab/othPUE/bcWyMo4UghVmMy4qmhjNk0dZ3uQGYmVld6iX5ae9BCr
-         Tl+2DeSgIJphlkrJ6CQlpEMtctwdcAqFjCG9ytVEwP2vOsgVZkS2VO+up69w2RJjjYTs
-         mfNuCTQDY52bUVeSlJDzQKNrBUvunLdZrlw9d25Vt/F2m3DBDeD1JRG2cGFVRcL3N7qA
-         IgOqQpcWqhzt0E64+fvWqfpAncDiYhfS0CPJc+tdgt33SoVsZPAhjqbK0/aZQPBiuWjO
-         dJKfSrGnhFNYZClHDNzeHTfdenEc3Sl9xTr/WiV28PZQBysuGho7qQdfmsb9oGamwjLt
-         Cuww==
-X-Gm-Message-State: AOAM530k/ilEQFymb+imF+py1jLbJh9pbAZu6sQVYLIigUSFSN6Yzgwr
-	xfxp6xosnK2Y2n6ndveKYHU=
-X-Google-Smtp-Source: ABdhPJxNiMt8RZXlEv2Yr9dctE1Iz2eAAUbcefrfxwdxmB9p3PrvWFGTj7+kqKqtcf9tYI4cS2I0Ow==
-X-Received: by 2002:a17:902:cec4:b029:e9:58eb:562b with SMTP id d4-20020a170902cec4b02900e958eb562bmr37879845plg.63.1618408532351;
-        Wed, 14 Apr 2021 06:55:32 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=4w2pvV46/Nh9uaaLNp7uzQorvukhJrwNZUJmWeRb2g0=;
+        b=hsYWNEs3sN22ayKYsflhvUCHWCcku1CvnWRIIX8DijDRmM0Bt1n29qulY3zNlGKU+w
+         jr4plotcG5T/PYm7PUTJjQKIUwxdPNffcS74Ikhbwd+2gFEjNxTTzp0bR7KrBDU/jw5J
+         Br9xlWg5O4AXrbgHyQ8lfe0tC/MtUTInCwNtpTQp1vD/ax4rGAmRxYtQzlUDzR9/kHJF
+         adBct5l6tpp1FEW36AOZRVGCzH+RuCzQDKn+HaubUVIIg1qE0vUdLk+3hrsmsrqshXxv
+         QlrN2pf88GNe6CDwHmPdQVwSL2rq7dNofudIGiEti4RfIwQr4QowSfd85Jy43RkBflZd
+         S00A==
+X-Gm-Message-State: AOAM531i6u2uBpBkOsL81ZsjiU1BR475ytC5e6MiSZQbDwP/KuqOsiwH
+	V74pOJARRM8hoKlKE75aaKG6Njtt9jO9EA==
+X-Google-Smtp-Source: ABdhPJxgEkYEMlzIZn90GqBPE44P6b08bLP0+LC+pILbrDBLQxHrcz0Ge6U8qrUoEcblaIxNzJFMHQ==
+X-Received: by 2002:a17:902:c408:b029:e7:3242:5690 with SMTP id k8-20020a170902c408b02900e732425690mr38450045plk.85.1618408550470;
+        Wed, 14 Apr 2021 06:55:50 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
 Received: from ?IPv6:2601:202:4180:a5c0:2d0c:893d:5593:863c? ([2601:202:4180:a5c0:2d0c:893d:5593:863c])
-        by smtp.gmail.com with ESMTPSA id e8sm15256062pfc.215.2021.04.14.06.55.31
+        by smtp.gmail.com with ESMTPSA id ms9sm1336273pjb.32.2021.04.14.06.55.49
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Apr 2021 06:55:31 -0700 (PDT)
-Subject: Re: [meta-security][PATCH] meta: drop IMA_POLICY from policy recipes
-To: liu.ming50@gmail.com, yocto@yoctoproject.org
-Cc: sergio.prado@toradex.com
-References: <20210322130215.8033-1-liu.ming50@gmail.com>
+        Wed, 14 Apr 2021 06:55:49 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH] Use libest "main" branch instead of "master".
+To: yocto@lists.yoctoproject.org
+References: <20210407101954.1422-1-Anton.Antonov@arm.com>
 From: "Armin Kuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -90,116 +88,47 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <b72e60ee-bdb7-03eb-27a0-c2d2aa457373@gmail.com>
-Date: Wed, 14 Apr 2021 06:55:30 -0700
+Message-ID: <fc4bb981-3826-589e-db64-1a70bccfe77a@gmail.com>
+Date: Wed, 14 Apr 2021 06:55:49 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210322130215.8033-1-liu.ming50@gmail.com>
+In-Reply-To: <20210407101954.1422-1-Anton.Antonov@arm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-merged.
+merged
 
-thanks
--armin
+thanks,
+armin
 
-On 3/22/21 6:02 AM, liu.ming50@gmail.com wrote:
-> From: Ming Liu <liu.ming50@gmail.com>
+On 4/7/21 3:19 AM, Anton Antonov wrote:
+> This patch fixes the issue:
 >
-> IMA_POLICY is being referred as policy recipe name in some places and it
-> is also being referred as policy file in other places, they are
-> conflicting with each other which make it impossible to set a IMA_POLICY
-> global variable in config file.
+> WARNING: libest-3.2.0-r0 do_fetch: Failed to fetch URL git://github.com/cisco/libest, attempting MIRRORS if available
+> ERROR: libest-3.2.0-r0 do_fetch: Fetcher failure: Unable to find revision 4ca02c6d7540f2b1bcea278a4fbe373daac7103b in branch master even from upstream
+> ERROR: libest-3.2.0-r0 do_fetch: Fetcher failure for URL: 'git://github.com/cisco/libest'. Unable to fetch URL from any source.
 >
-> Fix it by dropping IMA_POLICY definitions from policy recipes
->
-> Signed-off-by: Ming Liu <liu.ming50@gmail.com>
+> Signed-off-by: Anton Antonov <Anton.Antonov@arm.com>
 > ---
->  .../ima-policy-appraise-all_1.0.bb                       | 9 ++-------
->  .../ima_policy_hashed/ima-policy-hashed_1.0.bb           | 9 ++-------
->  .../ima_policy_simple/ima-policy-simple_1.0.bb           | 9 ++-------
->  3 files changed, 6 insertions(+), 21 deletions(-)
+>  recipes-security/libest/libest_3.2.0.bb | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/meta-integrity/recipes-security/ima_policy_appraise_all/ima-policy-appraise-all_1.0.bb b/meta-integrity/recipes-security/ima_policy_appraise_all/ima-policy-appraise-all_1.0.bb
-> index da62a4c..84ea161 100644
-> --- a/meta-integrity/recipes-security/ima_policy_appraise_all/ima-policy-appraise-all_1.0.bb
-> +++ b/meta-integrity/recipes-security/ima_policy_appraise_all/ima-policy-appraise-all_1.0.bb
-> @@ -2,19 +2,14 @@ SUMMARY = "IMA sample simple appraise policy "
->  LICENSE = "MIT"
->  LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> diff --git a/recipes-security/libest/libest_3.2.0.bb b/recipes-security/libest/libest_3.2.0.bb
+> index f993bd6..5b6dc99 100644
+> --- a/recipes-security/libest/libest_3.2.0.bb
+> +++ b/recipes-security/libest/libest_3.2.0.bb
+> @@ -6,7 +6,7 @@ LICENSE = "OpenSSL"
+>  LIC_FILES_CHKSUM = "file://LICENSE;md5=ecb78acde8e3b795de8ef6b61aed5885"
 >  
-> -# This policy file will get installed as /etc/ima/ima-policy.
-> -# It is located via the normal file search path, so a .bbappend
-> -# to this recipe can just point towards one of its own files.
-> -IMA_POLICY ?= "ima_policy_appraise_all"
-> -
-> -SRC_URI = " file://${IMA_POLICY}"
-> +SRC_URI = " file://ima_policy_appraise_all"
+>  SRCREV = "4ca02c6d7540f2b1bcea278a4fbe373daac7103b"
+> -SRC_URI = "git://github.com/cisco/libest"
+> +SRC_URI = "git://github.com/cisco/libest;branch=main"
 >  
->  inherit features_check
->  REQUIRED_DISTRO_FEATURES = "ima"
+>  DEPENDS = "openssl"
 >  
->  do_install () {
->      install -d ${D}/${sysconfdir}/ima
-> -    install ${WORKDIR}/${IMA_POLICY}  ${D}/${sysconfdir}/ima/ima-policy
-> +    install ${WORKDIR}/ima_policy_appraise_all ${D}/${sysconfdir}/ima/ima-policy
->  }
->  
->  FILES_${PN} = "${sysconfdir}/ima"
-> diff --git a/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed_1.0.bb b/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed_1.0.bb
-> index ebb0426..ff7169e 100644
-> --- a/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed_1.0.bb
-> +++ b/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed_1.0.bb
-> @@ -2,13 +2,8 @@ SUMMARY = "IMA sample hash policy"
->  LICENSE = "MIT"
->  LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
->  
-> -# This policy file will get installed as /etc/ima/ima-policy.
-> -# It is located via the normal file search path, so a .bbappend
-> -# to this recipe can just point towards one of its own files.
-> -IMA_POLICY ?= "ima_policy_hashed"
-> -
->  SRC_URI = " \
-> -    file://${IMA_POLICY} \
-> +    file://ima_policy_hashed \
->  "
->  
->  inherit features_check
-> @@ -16,7 +11,7 @@ REQUIRED_DISTRO_FEATURES = "ima"
->  
->  do_install () {
->      install -d ${D}/${sysconfdir}/ima
-> -    install ${WORKDIR}/${IMA_POLICY}  ${D}/${sysconfdir}/ima/ima-policy
-> +    install ${WORKDIR}/ima_policy_hashed ${D}/${sysconfdir}/ima/ima-policy
->  }
->  
->  FILES_${PN} = "${sysconfdir}/ima"
-> diff --git a/meta-integrity/recipes-security/ima_policy_simple/ima-policy-simple_1.0.bb b/meta-integrity/recipes-security/ima_policy_simple/ima-policy-simple_1.0.bb
-> index cb4b6b8..0e56aec 100644
-> --- a/meta-integrity/recipes-security/ima_policy_simple/ima-policy-simple_1.0.bb
-> +++ b/meta-integrity/recipes-security/ima_policy_simple/ima-policy-simple_1.0.bb
-> @@ -2,19 +2,14 @@ SUMMARY = "IMA sample simple policy"
->  LICENSE = "MIT"
->  LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
->  
-> -# This policy file will get installed as /etc/ima/ima-policy.
-> -# It is located via the normal file search path, so a .bbappend
-> -# to this recipe can just point towards one of its own files.
-> -IMA_POLICY ?= "ima_policy_simple"
-> -
-> -SRC_URI = " file://${IMA_POLICY}"
-> +SRC_URI = " file://ima_policy_simple"
->  
->  inherit features_check
->  REQUIRED_DISTRO_FEATURES = "ima"
->  
->  do_install () {
->      install -d ${D}/${sysconfdir}/ima
-> -    install ${WORKDIR}/${IMA_POLICY}  ${D}/${sysconfdir}/ima/ima-policy
-> +    install ${WORKDIR}/ima_policy_simple ${D}/${sysconfdir}/ima/ima-policy
->  }
->  
->  FILES_${PN} = "${sysconfdir}/ima"
+>
+> 
+>
 
