@@ -1,115 +1,175 @@
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
- by mx.groups.io with SMTP id smtpd.web12.18648.1618428068228423163
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+ by mx.groups.io with SMTP id smtpd.web11.18714.1618428661306970275
  for <yocto@lists.yoctoproject.org>;
- Wed, 14 Apr 2021 12:21:08 -0700
+ Wed, 14 Apr 2021 12:31:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=CV6eyOoY;
- spf=pass (domain: gmail.com, ip: 209.85.219.177, mailfrom: tagliapietra.alessandro@gmail.com)
-Received: by mail-yb1-f177.google.com with SMTP id k73so17094861ybf.3
-        for <yocto@lists.yoctoproject.org>; Wed, 14 Apr 2021 12:21:08 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=AqrtSH12;
+ spf=pass (domain: gmail.com, ip: 209.85.128.50, mailfrom: robert.berger.yocto.user@gmail.com)
+Received: by mail-wm1-f50.google.com with SMTP id b136-20020a1c1b8e0000b029012c69da2040so3739680wmb.1
+        for <yocto@lists.yoctoproject.org>; Wed, 14 Apr 2021 12:31:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=rSUOgpzudjwgA/bOMAU3gkMQ3XYJ1aRHqzKbFzcPt+o=;
-        b=CV6eyOoYdBNN297GpPvIfgMeMvW7PFNTA3I88ZEIsqBwjNApqAEvNKw8BJkqkJA1+r
-         rA9pGESkgpFs4oASlEA+hQxC5pfxuEPokxzbUeXS59FAwZR5OHYLgcEBtyEuV2vazK0j
-         kVWT0mQNEEzvIIggIpDDTP66oz7ScGOKqn+yRzM9zG21YVvol7NM+oqoWgict5A+rfaK
-         kgEEwfL8/eviSA9Br8Umwn4qtGvyy2E59XrMUr1q4mZ/B93iC+qtZBLxuZLNFJ/RAHcQ
-         elg9POvOgxirOljTH5Y6hEPe8XPEBykrNCnTH56vNiodQ2HiGmz3bhzfWot9l6O0FZxP
-         Wp0A==
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=wZCJxX2/sxHXgE5DuS44YAXQeaFEKpefzgT/Ldl1FzY=;
+        b=AqrtSH12rKBSC3TOaSg3ARUmY1BmuTitxjcKDJvW4g1b4KNTpoYzteHQDwu2xwss5r
+         ggbgUzCXr6w0bVOkOq+8W7RUMzp66QcbpLFISi41/NCg486KV0JdCtzT8LWsi+dqIvUh
+         MzCrqc+nvwcHZO6VrFlv0Z2LnTTuTLY2J+Lc+iKCAoBjWWfjjUEhGU4ttFVC68zVH8w3
+         1uqun91GoXyB6crCr6/vh7JV59gRCCI5+RVXTpu38taFWx+VsBkvddmsc3ifPiZIOx+1
+         g7IwrMTwPxPQitoX/85+mhhwJvMkBu2HHJWJ2USoGjpW+0hTPPRLfPGjZYO4dqrTs95K
+         3Ohw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=rSUOgpzudjwgA/bOMAU3gkMQ3XYJ1aRHqzKbFzcPt+o=;
-        b=PM1Gj1f8/K5Asu6ZapI75xFytzApClTAw/Y195I3iC+CT2vOhBeeljamZkWNJuCyUh
-         7I7eNLbHztNjfIcG+6b9WjElRsbPcbmuWdv7e2em9G0Oe/viZpfmxyaOF/ufnBoFwxs9
-         JzeJ/Nb02VR8dPoWPxCHmZL2LE+azu+pc7/C1mptGHu2yVjVxmVqF3PMjUQNKtjp+xd0
-         c+5+PMmeAOURKPjFdMf9FyA0hSQmOH4TpQ7qDi56aKkRlGGIjGzzJwffPj/m6qhmqJQ8
-         IXuhbC8wpAUeIK13qGn2VFvr3cKuPcxL7yvK9muCicjVALJJB1ahMZG0AHNTvoHF5At9
-         6vow==
-X-Gm-Message-State: AOAM533RtWi3e9d/387v/0Bh4l2ft8AqlWJO75yYDHxify1fan3SZ31q
-	NIQ8P9ztPW78ILzG6hG9OQRmMimUBbb9WKlMiJaY7eYlqqnFVg==
-X-Google-Smtp-Source: ABdhPJyuT5eLRLknF506D9lVfZXhP4jQ23HEovOQRNz9IoXOY4QqUCK3ssckCjqUjFKJdEVTR4RJYOVFltGLhCmY5Go=
-X-Received: by 2002:a25:d848:: with SMTP id p69mr40541228ybg.124.1618428067046;
- Wed, 14 Apr 2021 12:21:07 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=wZCJxX2/sxHXgE5DuS44YAXQeaFEKpefzgT/Ldl1FzY=;
+        b=LQEZm3q7ZeNKWEnnRPu5ISd7xXA9L8cKUzarAd07b1Wu8cD6zUI2yOoVHXQwyT5CjE
+         DdU771wEt6w67tdSkqJiRSGaEh/JtLqgmb7FF6Fa1/PVBV4KwsT+2NflQnEVTRo2EJQJ
+         u0XLEoFVOap1Rhr0O00ZUDecV1cBGlPL0s0LFTIMh+bZAVFZLArhYsGfoAlbwM+MAnB1
+         Ts4XARApf/zv1qr9347i+EITNCW7uve1cUQiFmzOaHJDi61WSjUia7M5I6b6ScnVIJui
+         ZyYy3IsA+tpeZdYQQs80OnwbBNCX8rqO+lvzQUEnpLwHDTfCnmy4StJqsCvIY8CxCKyN
+         ye8g==
+X-Gm-Message-State: AOAM533BW71LlK4AEVonM0/NhP4/kQbsjom0Y2YvCn91KKkQuQ3ul4gm
+	QoYH6/m4WRv+YEO9x4E8F4LwUEBq6tM=
+X-Google-Smtp-Source: ABdhPJz8Kk6q2HtBl7+Aj3iGfoMqecreIkRSNZVBfO0di8z/ojZKJeSWVztJEL+y2CwoImq514Nayg==
+X-Received: by 2002:a1c:c910:: with SMTP id f16mr2261538wmb.136.1618428659681;
+        Wed, 14 Apr 2021 12:30:59 -0700 (PDT)
+Return-Path: <robert.berger.yocto.user@gmail.com>
+Received: from [192.168.42.52] (ppp-2-86-147-152.home.otenet.gr. [2.86.147.152])
+        by smtp.gmail.com with ESMTPSA id d5sm433446wrx.0.2021.04.14.12.30.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Apr 2021 12:30:59 -0700 (PDT)
+Subject: Re: [yocto] #golang: go fetches dependencies in compile phase
+To: Juergen Landwehr <juergen.landwehr@gmx.de>, yocto@lists.yoctoproject.org
+References: <8f3535e5-42c0-baf7-ae8b-fca906f33d05@gmail.com>
+ <7847.1618228053017471875@lists.yoctoproject.org>
+From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
+Message-ID: <5331e9f9-b681-b550-68c0-8cbc752bba1d@gmail.com>
+Date: Wed, 14 Apr 2021 22:30:57 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <STZO.1618381881072205498.KBTw@lists.yoctoproject.org>
-In-Reply-To: <STZO.1618381881072205498.KBTw@lists.yoctoproject.org>
-From: "Alessandro Tagliapietra" <tagliapietra.alessandro@gmail.com>
-Date: Wed, 14 Apr 2021 12:20:56 -0700
-Message-ID: <CAKKtPp9D9fOBEmp6KMO0Mi5uwQ2iwK3fPUCZ8Hee7GurB5_QhA@mail.gmail.com>
-Subject: Re: [yocto] Cannot execute nodejs
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000007e97e05bff3a675"
+In-Reply-To: <7847.1618228053017471875@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
---00000000000007e97e05bff3a675
-Content-Type: text/plain; charset="UTF-8"
+Hi,
 
-I was able to solve it by forcing recompiling nodejs with `bitbake -f -c
-compile nodejs`
+My comments are inline.
 
-Not sure what happened there
-
---
-Alessandro Tagliapietra
-
-
-
-On Wed, Apr 14, 2021 at 11:51 AM Alessandro Tagliapietra <
-tagliapietra.alessandro@gmail.com> wrote:
-
-> Hi everyone,
->
-> I've installed nodejs and node-red  by using meta-oe and meta-iot-cloud,
-> with
->
-> IMAGE_INSTALL_append = " nodejs node-red bash"
->
-> it was initially working but then I've got some pseudo aborts that fixed
-> automatically and then I saw that:
->  - /usr/bin/node doesn't have the +x flag
->  - the file is 1.1G big (however the image is 200MB)
->  - trying to run it says "cannot execute binary file: Exec format error"
->
-> any idea why?
->
-> Target is core-image-minimal with machine qemuarm.
-> I've checked the source of the file with `oe-pkgdata-util find-path` it
-> came from the nodejs recipe. I've also tried bitbake -c clean nodejs and
-> nothing changed
+On 12/04/2021 14:47, Juergen Landwehr wrote:
+> Hi Robert,
 > 
->
->
+> thanks for your thoughts.
+> 
+> I see your point and the last thing I want is "NOT reproducable builds".
+> 
+> But dependency management in go is not that arbitrary as it may seem. 
 
---00000000000007e97e05bff3a675
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+... if everybody does what they are supposed to - which is not the case.
 
-<div dir=3D"ltr">I was able to solve it by forcing recompiling nodejs with =
-`bitbake -f -c compile nodejs`<div><br></div><div>Not sure what happened th=
-ere<br><div><br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signatur=
-e" data-smartmail=3D"gmail_signature"><div dir=3D"ltr">--<div>Alessandro Ta=
-gliapietra</div><div><br></div></div></div></div><br></div></div></div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Ap=
-r 14, 2021 at 11:51 AM Alessandro Tagliapietra &lt;<a href=3D"mailto:taglia=
-pietra.alessandro@gmail.com">tagliapietra.alessandro@gmail.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi everyone,<=
-br><br>I&#39;ve installed nodejs and node-red=C2=A0 by using meta-oe and me=
-ta-iot-cloud, with<br><br>IMAGE_INSTALL_append =3D &quot; nodejs node-red b=
-ash&quot;<br><br>it was initially working but then I&#39;ve got some pseudo=
- aborts that fixed automatically and then I saw that:<br>=C2=A0- /usr/bin/n=
-ode doesn&#39;t have the +x flag<br>=C2=A0- the file is 1.1G big (however t=
-he image is 200MB)<br>=C2=A0- trying to run it says &quot;cannot execute bi=
-nary file: Exec format error&quot;<br><br>any idea why?<br><br>Target is=C2=
-=
-=A0core-image-minimal with machine qemuarm.<br>I&#39;ve checked the source=
- of the file with `oe-pkgdata-util find-path` it came from the nodejs recip=
-e. I&#39;ve also tried bitbake -c clean nodejs and nothing changed
-<br>
-<br>
-<br>
-</blockquote></div>
+> Dependencies and their version is stored in "go.mod". To ensure 
+> reproducable builds, hashes for each dependency and version are stored 
+> in "go.sum". Both files are in git and together with a local golang 
+> proxy, this should ensure reproducable builds, right?
 
---00000000000007e97e05bff3a675--
+This does not sound too bad. This would also mean, that if the outside 
+repo dies you can still build and that you know what's on your proxy.
+
+> 
+> To ensure that licences are valid and did not change over time, we 
+> developed a little tool, that goes through all dependencies and creates 
+> the following output, which we insert into our recipe:
+> 
+> LICENSE = "Apache-2.0 & MIT & MIT & BSD-2-Clause & BSD-3-Clause & ...
+
+Here you
+
+1) Totally lost which License comes from which module and I hope 2 times 
+MIT is just a typo.
+
+Of course if you are really serious about licensing you should use a 
+tool like fossology, upload all your sources there and inspect them.
+You will be surprised.
+
+There are a couple of tools out there which scan your sources and some 
+which claim to do stuff with golang as well.
+
+2) Do you check if the licenses are compatible?
+
+MIT and Apache are compatible:
+
+some googling:
+
+"Both the Apache License and the MIT license are permissive, so 
+incorporating MIT licensed code into your Apache licensed project is 
+certainly allowed. Just be sure to attribute the original author for the 
+parts your incorporated and include a copy of the MIT License terms, as 
+required by the license."
+
+Apache and BSD should also be OK:
+
+some googling:
+
+"In both of them you must:
+
+     Include copyright
+
+But in Apache, unlike BSD you must:
+
+     Include License
+     State Changes
+     Include Notice
+"
+
+> 
+> LIC_FILES_CHKSUM = " \
+> file://${S}/src/${GO_IMPORT}/vendor/github.com/coreos/go-oidc/LICENSE;md5=d2794c0df5b907fdace235a619d80314 \
+> file://${S}/src/${GO_IMPORT}/vendor/github.com/go-playground/locales/LICENSE;md5=3ccbda375ee345400ad1da85ba522301 \
+> file://${S}/src/${GO_IMPORT}/vendor/github.com/go-playground/universal-translator/LICENSE;md5=2e2b21ef8f61057977d27c727c84bef1 \
+> file://${S}/src/${GO_IMPORT}/vendor/github.com/godbus/dbus/v5/LICENSE;md5=09042bd5c6c96a2b9e45ddf1bc517eed \
+> file://${S}/src/${GO_IMPORT}/vendor/github.com/golang/gddo/LICENSE;md5=4c728948788b1a02f33ae4e906546eef \
+> ...
+> 
+> This is a manual step and whenever dependencies change we have to create 
+> this list again and add it to the recipe, but it contains all the 
+> required license information and makes them visible in the recipe.
+
+really all?
+
+You search through every single file of a go module and it's 
+dependencies? Or just the license text, if there is one?
+
+> 
+> It might pollute the recipe a bit, but luckily we do not have thousands 
+> of dependencies like some npm projects. So I think it is still 
+> manageable. And is it much less work, than defining a recipe for each 
+> dependency.
+> 
+> So we would
+> * guarantee reproducable builds
+> * use the programming language (in our case golang) to handle dependency 
+> management
+> * ensure that licenses are visible and correct
+> 
+> I mean it is not perfect and still a compromise, but it should work 
+> without breaking reproducable builds or causing license issues?
+> What do you think?
+> 
+> Regards,
+> Jürgen
+> 
+> PS: Thanks for the link. I was not aware of this discussion (it is quite 
+> a bit to read:))
+
+Regards,
+
+Robert
+
+> 
+> 
+> 
+> 
+
