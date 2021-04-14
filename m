@@ -1,90 +1,196 @@
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
- by mx.groups.io with SMTP id smtpd.web08.7013.1618364494977635279
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+ by mx.groups.io with SMTP id smtpd.web12.7044.1618364495372751291
  for <yocto@lists.yoctoproject.org>;
  Tue, 13 Apr 2021 18:41:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=oJthVduW;
- spf=pass (domain: gmail.com, ip: 209.85.214.173, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f173.google.com with SMTP id j7so9225634plx.2
-        for <yocto@lists.yoctoproject.org>; Tue, 13 Apr 2021 18:41:34 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=M8sX4egT;
+ spf=pass (domain: gmail.com, ip: 209.85.216.44, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f44.google.com with SMTP id u11so5772882pjr.0
+        for <yocto@lists.yoctoproject.org>; Tue, 13 Apr 2021 18:41:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=7Zl1GywJt6nYgRh2nTlNqx0nZR4sehudsQTS6xGFJY8=;
-        b=oJthVduWcOsnD/XO4IAf+5tks/fqrXaEjKo+6a+TM4yqTlopdy9758F26vt4Kpuhiu
-         x8qHbV+N9ixCGhBStYWYGIQJ07DBgjdJ58mzABXh/3wjfHJcbyjNcLg0mApgSo5ZVQN6
-         1/prUyz5n06XFi+iy5TTIkojZdtzSOQFLnylEcIwkkwUF9hM/BXzCwadp4nGZ2ZlCSMf
-         HTwl/gm9MeFCk0+YRPVUhNrEt1EgSBvGbiR1xlNljs7KogLdGvpF+wlsAu1Ed0p8EGah
-         D1XKpoHBI1OM5uwYph/LSZ2ZV+40i5JLsNy41T+rwDVl6O6gzTuDDyo8STnrLOehPC9v
-         zVMw==
+        bh=Sh3FtOZOhthGr/8RD4rH3+tP48x+1KmnN3F22wn7yUI=;
+        b=M8sX4egTMwBNcl9UZ/CoqVoL4Nmjag/PGHKeawn/iC4Qsed6tUHrTrLB+z7q29aPhK
+         6AliLHRvvl0NjTfX6LMuwNy5zcK/nB/C20m3Vkze2yz34W+wQKZKSh+ueyO8rPNTJpnb
+         o0RdwWHQte+mktpdVnMrg+az9sQ5KRlAmv759YMgIDhkJdE3h5VUpJnNporCgyZo6D23
+         icsvE6SKwKI1KdpKg1PjVeH+VmKJs3i/kLgsWb+EjP7gRfiA8PrdtYDftN5WetuHa2+D
+         nF01cgHbIA33l9H3t394mbfgohdoA9Hcamz/Bqmon+NGUlQKaFqhSJnNmmVjGiAHdCWm
+         ZOkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7Zl1GywJt6nYgRh2nTlNqx0nZR4sehudsQTS6xGFJY8=;
-        b=ljzO+Afgo59nNVe56JWouycc3TVkracJg2XKZLr3RMXzUX8OE+U9Sb6PdvW2deAo6E
-         6Ak5Z2JIgBaV/OF6y7WrMJ2eDQTB0Y8KEnyLnp3QttdZx2di3bCdjyVDpT+URAgVRXKW
-         Psr33SLr6CKAzJ8dhJgui+dvSjaU8MYzAytU4M19Nq8ZZm0evTPyN+duKrVgrePNLRc7
-         ToogCa5uw0t6yf/7BIG4enu5mM9tSH/8zmGoGCGb/aj76aEE2Dx1xnlwChYfG3uGRrVM
-         xzHFuOmM6RmTMBpZ1PgHtTpb/VtHlWB1/4Wrqbs9rvAH/itRlZWa6EPRSbkAKFvUNv2r
-         rsJg==
-X-Gm-Message-State: AOAM531HMWDbwsQ2udWKz7ioe9IhqmZ2zQ/iSQtFR5vEiAf5IjuN5buO
-	qcqXvQxAitR21ggElJzHE/2oGYe9Zp7h1w==
-X-Google-Smtp-Source: ABdhPJyCR57FzMELkNiQXjHKl26fbaDjml7FBkHxYQq3at3XS+9BRpRWqdPjemPcYDfS91H63nrFBg==
-X-Received: by 2002:a17:90a:414e:: with SMTP id m14mr719673pjg.9.1618364493990;
-        Tue, 13 Apr 2021 18:41:33 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Sh3FtOZOhthGr/8RD4rH3+tP48x+1KmnN3F22wn7yUI=;
+        b=OMAn3QwZ1xZSh1VAJP0tE82LBw6YDY332rwKCgXXTriwW3yEYB4DMRzDvDhZ+2Mpu7
+         OaJmzXy9rrSoebzVsZOA93ML/yvY0z+cIRE7C6YZDCh+brSoxvkhI0RwUaRlouoTpIva
+         4lf575nUdsRGegZRLWE+GuUOy1n0yDDHdC1dlZ2qUEFA8IynG5KJbSG0a7+oydDXwQpn
+         EWw1zVWZk94cTgParTinEHn7d0R0/hmY5GvLN8XDB8vK8+mPBL7o9C9iZvaLoxAyRQA9
+         +PWAdh4evaRKduaZ7uaF0t9bwIFPHMygH1uV6YXERww/rs8NApzKc/zMw5hxsgafVh/e
+         vz0A==
+X-Gm-Message-State: AOAM532UFngrZ7F/XnWlzuSeK+0O443bGN+QVBDqC1E/ntUNPHkYAa0A
+	fn5rqzooY8WfjPUB2QzBdHWjldy0hqezjw==
+X-Google-Smtp-Source: ABdhPJwP8zBdNxhdcrR1GvuoP3Kv1hjGFoXGltRTutJjtB7I94meuapJq87RaX8gV9otDeuX9+wdhA==
+X-Received: by 2002:a17:90a:4d86:: with SMTP id m6mr704109pjh.197.1618364494615;
+        Tue, 13 Apr 2021 18:41:34 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id g24sm13427307pgn.18.2021.04.13.18.41.33
+        by smtp.gmail.com with ESMTPSA id g24sm13427307pgn.18.2021.04.13.18.41.34
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Apr 2021 18:41:33 -0700 (PDT)
+        Tue, 13 Apr 2021 18:41:34 -0700 (PDT)
 From: "Armin Kuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/2] clamav: remove rest of mirror.dat ref
-Date: Wed, 14 Apr 2021 01:41:31 +0000
-Message-Id: <20210414014132.2273249-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/2] lkrg-module: Add Linux Kernel Runtime Guard
+Date: Wed, 14 Apr 2021 01:41:32 +0000
+Message-Id: <20210414014132.2273249-2-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210414014132.2273249-1-akuster808@gmail.com>
+References: <20210414014132.2273249-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
+For more info see: https://github.com/openwall/lkrg
+
+Add to local.conf:
+IMAGE_INSTALL_append = " kernel-module-lkrg"
+
+Need these kconfig options enabled:
+CONFIG_KALLSYMS_ALL=y
+CONFIG_JUMP_LABEL=y
+CONFIG_DEBUG_KERNEL=y
+
+To invoke module:
+
+sudo insmod {path-to-modules}/p_lkrg.ko kint_enforce=1
+
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-scanners/clamav/clamav_0.104.0.bb | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ .../lkrg/files/makefile_cleanup.patch         | 73 +++++++++++++++++++
+ recipes-kernel/lkrg/lkrg-module_0.9.0.bb      | 33 +++++++++
+ 2 files changed, 106 insertions(+)
+ create mode 100644 recipes-kernel/lkrg/files/makefile_cleanup.patch
+ create mode 100644 recipes-kernel/lkrg/lkrg-module_0.9.0.bb
 
-diff --git a/recipes-scanners/clamav/clamav_0.104.0.bb b/recipes-scanners/clamav/clamav_0.104.0.bb
-index ba036b0..36e498d 100644
---- a/recipes-scanners/clamav/clamav_0.104.0.bb
-+++ b/recipes-scanners/clamav/clamav_0.104.0.bb
-@@ -31,7 +31,7 @@ inherit cmake chrpath pkgconfig useradd systemd multilib_header multilib_script
- CLAMAV_UID ?= "clamav"
- CLAMAV_GID ?= "clamav"
- 
--MULTILIB_SCRIPTS = "${PN}-dev:${bindir}/clamav-config ${PN}-cvd:${localstatedir}/lib/clamav/mirrors.dat"
-+MULTILIB_SCRIPTS = "${PN}-dev:${bindir}/clamav-config"
- 
- EXTRA_OECMAKE = " -DCMAKE_BUILD_TYPE=Release -DOPTIMIZE=ON -DENABLE_JSON_SHARED=OFF \
-                   -DCLAMAV_GROUP=${CLAMAV_GID} -DCLAMAV_USER=${CLAMAV_UID} \ 
-@@ -85,7 +85,7 @@ pkg_postinst_ontarget_${PN} () {
- }
- 
- 
--PACKAGES = "${PN} ${PN}-dev ${PN}-dbg ${PN}-daemon ${PN}-doc ${PN}-cvd \
-+PACKAGES = "${PN} ${PN}-dev ${PN}-dbg ${PN}-daemon ${PN}-doc \
-             ${PN}-clamdscan ${PN}-freshclam ${PN}-libclamav ${PN}-staticdev"
- 
- FILES_${PN} = "${bindir}/clambc ${bindir}/clamscan ${bindir}/clamsubmit ${sbindir}/clamonacc \
-@@ -134,8 +134,6 @@ FILES_${PN}-doc = "${mandir}/man/* \
-                    ${datadir}/man/* \
-                    ${docdir}/* "
- 
--FILES_${PN}-cvd =  "${localstatedir}/lib/clamav/*.cvd ${localstatedir}/lib/clamav/*.dat"
--
- USERADD_PACKAGES = "${PN}"
- GROUPADD_PARAM_${PN} = "--system ${CLAMAV_UID}"
- USERADD_PARAM_${PN} = "--system -g ${CLAMAV_GID} --home-dir  \
+diff --git a/recipes-kernel/lkrg/files/makefile_cleanup.patch b/recipes-kernel/lkrg/files/makefile_cleanup.patch
+new file mode 100644
+index 0000000..106dc3f
+--- /dev/null
++++ b/recipes-kernel/lkrg/files/makefile_cleanup.patch
+@@ -0,0 +1,73 @@
++Upstream-Status: Pending
++
++This needs more work. Its my starting point.
++
++Signed-off-by: Armin Kuster <akuster808@gmail.com>
++
++Index: lkrg-0.9.0/Makefile
++===================================================================
++--- lkrg-0.9.0.orig/Makefile
+++++ lkrg-0.9.0/Makefile
++@@ -4,28 +4,10 @@
++ # Author:
++ #  - Adam 'pi3' Zabrocki (http://pi3.com.pl)
++ ##
++-
++-P_OUTPUT = output
++ P_PWD ?= $(shell pwd)
++-P_KVER ?= $(shell uname -r)
++-P_BOOTUP_SCRIPT ?= scripts/bootup/lkrg-bootup.sh
++-TARGET := p_lkrg
++-ifneq ($(KERNELRELEASE),)
++-    KERNEL := /lib/modules/$(KERNELRELEASE)/build
++-else
++-    ## KERNELRELEASE not set.
++-    KERNEL := /lib/modules/$(P_KVER)/build
++-endif
++-
++-#
++-# Uncomment for debug compilation
++-#
++-# ccflags-m := -ggdb -DP_LKRG_DEBUG_BUILD -finstrument-functions
++-# ccflags-y := ${ccflags-m}
++-# p_lkrg-objs += src/modules/print_log/p_lkrg_debug_log.o
++ 
++-obj-m += $(TARGET).o
++-$(TARGET)-objs += src/modules/ksyms/p_resolve_ksym.o \
+++obj-m := p_lkrg.o
+++p_lkrg-y := src/modules/ksyms/p_resolve_ksym.o \
++                   src/modules/hashing/p_lkrg_fast_hash.o \
++                   src/modules/comm_channel/p_comm_channel.o \
++                   src/modules/integrity_timer/p_integrity_timer.o \
++@@ -91,23 +73,14 @@ $(TARGET)-objs += src/modules/ksyms/p_re
++                   src/p_lkrg_main.o
++ 
++ 
++-all:
++-#	$(MAKE) -C $(KERNEL) M=$(P_PWD) modules CONFIG_DEBUG_SECTION_MISMATCH=y
++-	$(MAKE) -C $(KERNEL) M=$(P_PWD) modules
++-	mkdir -p $(P_OUTPUT)
++-	cp $(P_PWD)/$(TARGET).ko $(P_OUTPUT)
++-
++-install:
++-	$(MAKE) -C $(KERNEL) M=$(P_PWD) modules_install
++-	depmod -a
++-	$(P_PWD)/$(P_BOOTUP_SCRIPT) install
++ 
++-uninstall:
++-	$(P_PWD)/$(P_BOOTUP_SCRIPT) uninstall
+++modules:
+++	$(MAKE) -C $(KERNEL_SRC) M=$(P_PWD) modules
+++
+++modules_install:
+++	$(MAKE) -C $(KERNEL_SRC) M=$(P_PWD) modules_install
++ 
++ clean:
++-	$(MAKE) -C $(KERNEL) M=$(P_PWD) clean
++-	$(RM) Module.markers modules.order
++-	$(RM) $(P_PWD)/src/modules/kmod/client/kmod/Module.markers
++-	$(RM) $(P_PWD)/src/modules/kmod/client/kmod/modules.order
++-	$(RM) -rf $(P_OUTPUT)
+++	rm -f *.o *~ core .depend .*.cmd *.ko *.mod.c
+++	rm -f Module.markers Module.symvers modules.order
+++	rm -rf .tmp_versions Modules.symvers
+diff --git a/recipes-kernel/lkrg/lkrg-module_0.9.0.bb b/recipes-kernel/lkrg/lkrg-module_0.9.0.bb
+new file mode 100644
+index 0000000..dbc195d
+--- /dev/null
++++ b/recipes-kernel/lkrg/lkrg-module_0.9.0.bb
+@@ -0,0 +1,33 @@
++SUMMARY = "Linux Kernel Runtime Guard"
++DESCRIPTION="LKRG performs runtime integrity checking of the Linux \
++kernel and detection of security vulnerability exploits against the kernel."
++SECTION = "security"
++HOMEPAGE = "https://www.openwall.com/lkrg/"
++LICENSE = "GPLv2"
++
++LIC_FILES_CHKSUM = "file://LICENSE;md5=d931f44a1f4be309bcdac742d7ed92f9"
++
++DEPENDS = "virtual/kernel elfutils"
++
++SRC_URI = "https://www.openwall.com/lkrg/lkrg-${PV}.tar.gz \
++           file://makefile_cleanup.patch "
++
++SRC_URI[sha256sum] = "a997e4d98962c359f3af163bbcfa38a736d2a50bfe35c15065b74cb57f8742bf"
++
++S = "${WORKDIR}/lkrg-${PV}"
++
++inherit module kernel-module-split
++
++MAKE_TARGETS = "modules"
++
++MODULE_NAME = "p_lkrg"
++
++module_do_install() {
++    install -d ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}
++    install -m 0644 ${MODULE_NAME}.ko \
++    ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}/${MODULE_NAME}.ko
++}
++
++RPROVIDES_${PN} += "kernel-module-lkrg"
++
++COMPATIBLE_HOST = "(i.86|x86_64|arm|aarch64).*-linux"
 -- 
 2.25.1
 
