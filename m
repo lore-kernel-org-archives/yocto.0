@@ -1,196 +1,114 @@
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
- by mx.groups.io with SMTP id smtpd.web12.7044.1618364495372751291
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+ by mx.groups.io with SMTP id smtpd.web10.7281.1618365662160516882
  for <yocto@lists.yoctoproject.org>;
- Tue, 13 Apr 2021 18:41:35 -0700
+ Tue, 13 Apr 2021 19:01:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=M8sX4egT;
- spf=pass (domain: gmail.com, ip: 209.85.216.44, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f44.google.com with SMTP id u11so5772882pjr.0
-        for <yocto@lists.yoctoproject.org>; Tue, 13 Apr 2021 18:41:35 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=r+OO/C/A;
+ spf=pass (domain: gmail.com, ip: 209.85.214.182, mailfrom: raj.khem@gmail.com)
+Received: by mail-pl1-f182.google.com with SMTP id w8so6906590plg.9
+        for <yocto@lists.yoctoproject.org>; Tue, 13 Apr 2021 19:01:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Sh3FtOZOhthGr/8RD4rH3+tP48x+1KmnN3F22wn7yUI=;
-        b=M8sX4egTMwBNcl9UZ/CoqVoL4Nmjag/PGHKeawn/iC4Qsed6tUHrTrLB+z7q29aPhK
-         6AliLHRvvl0NjTfX6LMuwNy5zcK/nB/C20m3Vkze2yz34W+wQKZKSh+ueyO8rPNTJpnb
-         o0RdwWHQte+mktpdVnMrg+az9sQ5KRlAmv759YMgIDhkJdE3h5VUpJnNporCgyZo6D23
-         icsvE6SKwKI1KdpKg1PjVeH+VmKJs3i/kLgsWb+EjP7gRfiA8PrdtYDftN5WetuHa2+D
-         nF01cgHbIA33l9H3t394mbfgohdoA9Hcamz/Bqmon+NGUlQKaFqhSJnNmmVjGiAHdCWm
-         ZOkg==
+        bh=cg9AM9V55oL41hltJL4DHZOnruGQZykCGT0P6niVAqg=;
+        b=r+OO/C/AE/cDTJ8HaKL5/sgFcEzmPu0GqdW4jNKfEJWnPjgDT1Q6tQ10EIbIDIZGaz
+         LPd6WGBGlLoc7qNut6VqU3LROJf1TEMZDFvOL6QPi8U7oUE/JToD9SDn7yrgEflsjVEw
+         /NYCGFKdaYcspL3lLSBDhxhEWAywph1eaLQB+TmY1eEICJ/5FweOXtre7xN8s46gUV8g
+         WEIJF9DdPGyUao5+3PY3DLlhy0WdHCmbT+pfFjgPax6rdPOr8P/FhT/GWo6t8tdyNlx0
+         r0Abhkjiq/+yZ/mvoFYZ9mGj7Q95M99LD5+3H2L9anF94KEGN07SENJxNdwi5B8n/ftp
+         u4Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Sh3FtOZOhthGr/8RD4rH3+tP48x+1KmnN3F22wn7yUI=;
-        b=OMAn3QwZ1xZSh1VAJP0tE82LBw6YDY332rwKCgXXTriwW3yEYB4DMRzDvDhZ+2Mpu7
-         OaJmzXy9rrSoebzVsZOA93ML/yvY0z+cIRE7C6YZDCh+brSoxvkhI0RwUaRlouoTpIva
-         4lf575nUdsRGegZRLWE+GuUOy1n0yDDHdC1dlZ2qUEFA8IynG5KJbSG0a7+oydDXwQpn
-         EWw1zVWZk94cTgParTinEHn7d0R0/hmY5GvLN8XDB8vK8+mPBL7o9C9iZvaLoxAyRQA9
-         +PWAdh4evaRKduaZ7uaF0t9bwIFPHMygH1uV6YXERww/rs8NApzKc/zMw5hxsgafVh/e
-         vz0A==
-X-Gm-Message-State: AOAM532UFngrZ7F/XnWlzuSeK+0O443bGN+QVBDqC1E/ntUNPHkYAa0A
-	fn5rqzooY8WfjPUB2QzBdHWjldy0hqezjw==
-X-Google-Smtp-Source: ABdhPJwP8zBdNxhdcrR1GvuoP3Kv1hjGFoXGltRTutJjtB7I94meuapJq87RaX8gV9otDeuX9+wdhA==
-X-Received: by 2002:a17:90a:4d86:: with SMTP id m6mr704109pjh.197.1618364494615;
-        Tue, 13 Apr 2021 18:41:34 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id g24sm13427307pgn.18.2021.04.13.18.41.34
-        for <yocto@lists.yoctoproject.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cg9AM9V55oL41hltJL4DHZOnruGQZykCGT0P6niVAqg=;
+        b=Sw2cXzC2BIF5ldhMH9Pkak6aRmdfUVC4rSitzd6WajNbOZizUaMD1oReG86tZh0bf8
+         A8PXwt6r0b1V1naizkL3eu1IZnD59enqA2+ZQ+yWyVyLnbZSFs++5GzLEgRZXacZ78CP
+         Wa/bAQgeQrUDoUG1onLf3sz5I93o6NU8qvtyLj+HoVxbvQGHKdEZrk4f0eJgEhSYdKeR
+         3rmqQNMil9pK2ok6K45r2wE6M8JfuSn5u225xj12JwR+0b/AhNr7koXpQYfYMTGzrrfC
+         RGvajcVPYdXmo14zf2tODsWYp9l3FfkWd88c8rI8OEQat2XSJ/gmZoBUWfIksD91f4UU
+         9b/g==
+X-Gm-Message-State: AOAM532YgFfrDxmsEtsn6pf9d2Jd+hRWoY0cpZ1bn6ChIqm0kqEGvWhc
+	SR79dOmODp2TAp1RkISiDZN4ijeHdVNvAg==
+X-Google-Smtp-Source: ABdhPJwrPHWBI/PDk+UFpWuhXNTFfZSKVJlhnEnKE9eCQKvM/r6W0WLeVIU1zntiPzrmJir3IJOe2w==
+X-Received: by 2002:a17:90a:ba05:: with SMTP id s5mr829315pjr.194.1618365661166;
+        Tue, 13 Apr 2021 19:01:01 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from apollo.hsd1.ca.comcast.net ([2601:646:9200:a0f0::630])
+        by smtp.gmail.com with ESMTPSA id e6sm15621830pgh.17.2021.04.13.19.01.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Apr 2021 18:41:34 -0700 (PDT)
-From: "Armin Kuster" <akuster808@gmail.com>
+        Tue, 13 Apr 2021 19:01:00 -0700 (PDT)
+From: "Khem Raj" <raj.khem@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/2] lkrg-module: Add Linux Kernel Runtime Guard
-Date: Wed, 14 Apr 2021 01:41:32 +0000
-Message-Id: <20210414014132.2273249-2-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210414014132.2273249-1-akuster808@gmail.com>
-References: <20210414014132.2273249-1-akuster808@gmail.com>
+Cc: jpewhacker@gmail.com,
+	Khem Raj <raj.khem@gmail.com>
+Subject: [meta-mingw] [PATCH] mingw-w64: Check for __builtin_ia32_rdtsc
+Date: Tue, 13 Apr 2021 19:00:58 -0700
+Message-Id: <20210414020058.875501-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-For more info see: https://github.com/openwall/lkrg
-
-Add to local.conf:
-IMAGE_INSTALL_append = " kernel-module-lkrg"
-
-Need these kconfig options enabled:
-CONFIG_KALLSYMS_ALL=y
-CONFIG_JUMP_LABEL=y
-CONFIG_DEBUG_KERNEL=y
-
-To invoke module:
-
-sudo insmod {path-to-modules}/p_lkrg.ko kint_enforce=1
-
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- .../lkrg/files/makefile_cleanup.patch         | 73 +++++++++++++++++++
- recipes-kernel/lkrg/lkrg-module_0.9.0.bb      | 33 +++++++++
- 2 files changed, 106 insertions(+)
- create mode 100644 recipes-kernel/lkrg/files/makefile_cleanup.patch
- create mode 100644 recipes-kernel/lkrg/lkrg-module_0.9.0.bb
+ ...rincs-Check-for-__builtin_ia32_rdtsc.patch | 33 +++++++++++++++++++
+ .../nativesdk-mingw-w64-runtime_7.0.0.bb      |  2 ++
+ 2 files changed, 35 insertions(+)
+ create mode 100644 recipes-devtools/mingw-w64/files/0001-intrincs-Check-for-__builtin_ia32_rdtsc.patch
 
-diff --git a/recipes-kernel/lkrg/files/makefile_cleanup.patch b/recipes-kernel/lkrg/files/makefile_cleanup.patch
+diff --git a/recipes-devtools/mingw-w64/files/0001-intrincs-Check-for-__builtin_ia32_rdtsc.patch b/recipes-devtools/mingw-w64/files/0001-intrincs-Check-for-__builtin_ia32_rdtsc.patch
 new file mode 100644
-index 0000000..106dc3f
+index 0000000..ce4ba81
 --- /dev/null
-+++ b/recipes-kernel/lkrg/files/makefile_cleanup.patch
-@@ -0,0 +1,73 @@
-+Upstream-Status: Pending
-+
-+This needs more work. Its my starting point.
-+
-+Signed-off-by: Armin Kuster <akuster808@gmail.com>
-+
-+Index: lkrg-0.9.0/Makefile
-+===================================================================
-+--- lkrg-0.9.0.orig/Makefile
-++++ lkrg-0.9.0/Makefile
-+@@ -4,28 +4,10 @@
-+ # Author:
-+ #  - Adam 'pi3' Zabrocki (http://pi3.com.pl)
-+ ##
-+-
-+-P_OUTPUT = output
-+ P_PWD ?= $(shell pwd)
-+-P_KVER ?= $(shell uname -r)
-+-P_BOOTUP_SCRIPT ?= scripts/bootup/lkrg-bootup.sh
-+-TARGET := p_lkrg
-+-ifneq ($(KERNELRELEASE),)
-+-    KERNEL := /lib/modules/$(KERNELRELEASE)/build
-+-else
-+-    ## KERNELRELEASE not set.
-+-    KERNEL := /lib/modules/$(P_KVER)/build
-+-endif
-+-
-+-#
-+-# Uncomment for debug compilation
-+-#
-+-# ccflags-m := -ggdb -DP_LKRG_DEBUG_BUILD -finstrument-functions
-+-# ccflags-y := ${ccflags-m}
-+-# p_lkrg-objs += src/modules/print_log/p_lkrg_debug_log.o
-+ 
-+-obj-m += $(TARGET).o
-+-$(TARGET)-objs += src/modules/ksyms/p_resolve_ksym.o \
-++obj-m := p_lkrg.o
-++p_lkrg-y := src/modules/ksyms/p_resolve_ksym.o \
-+                   src/modules/hashing/p_lkrg_fast_hash.o \
-+                   src/modules/comm_channel/p_comm_channel.o \
-+                   src/modules/integrity_timer/p_integrity_timer.o \
-+@@ -91,23 +73,14 @@ $(TARGET)-objs += src/modules/ksyms/p_re
-+                   src/p_lkrg_main.o
-+ 
-+ 
-+-all:
-+-#	$(MAKE) -C $(KERNEL) M=$(P_PWD) modules CONFIG_DEBUG_SECTION_MISMATCH=y
-+-	$(MAKE) -C $(KERNEL) M=$(P_PWD) modules
-+-	mkdir -p $(P_OUTPUT)
-+-	cp $(P_PWD)/$(TARGET).ko $(P_OUTPUT)
-+-
-+-install:
-+-	$(MAKE) -C $(KERNEL) M=$(P_PWD) modules_install
-+-	depmod -a
-+-	$(P_PWD)/$(P_BOOTUP_SCRIPT) install
-+ 
-+-uninstall:
-+-	$(P_PWD)/$(P_BOOTUP_SCRIPT) uninstall
-++modules:
-++	$(MAKE) -C $(KERNEL_SRC) M=$(P_PWD) modules
-++
-++modules_install:
-++	$(MAKE) -C $(KERNEL_SRC) M=$(P_PWD) modules_install
-+ 
-+ clean:
-+-	$(MAKE) -C $(KERNEL) M=$(P_PWD) clean
-+-	$(RM) Module.markers modules.order
-+-	$(RM) $(P_PWD)/src/modules/kmod/client/kmod/Module.markers
-+-	$(RM) $(P_PWD)/src/modules/kmod/client/kmod/modules.order
-+-	$(RM) -rf $(P_OUTPUT)
-++	rm -f *.o *~ core .depend .*.cmd *.ko *.mod.c
-++	rm -f Module.markers Module.symvers modules.order
-++	rm -rf .tmp_versions Modules.symvers
-diff --git a/recipes-kernel/lkrg/lkrg-module_0.9.0.bb b/recipes-kernel/lkrg/lkrg-module_0.9.0.bb
-new file mode 100644
-index 0000000..dbc195d
---- /dev/null
-+++ b/recipes-kernel/lkrg/lkrg-module_0.9.0.bb
++++ b/recipes-devtools/mingw-w64/files/0001-intrincs-Check-for-__builtin_ia32_rdtsc.patch
 @@ -0,0 +1,33 @@
-+SUMMARY = "Linux Kernel Runtime Guard"
-+DESCRIPTION="LKRG performs runtime integrity checking of the Linux \
-+kernel and detection of security vulnerability exploits against the kernel."
-+SECTION = "security"
-+HOMEPAGE = "https://www.openwall.com/lkrg/"
-+LICENSE = "GPLv2"
++From 346de7591f58015d111f4d4f3b001382c04d5557 Mon Sep 17 00:00:00 2001
++From: Khem Raj <raj.khem@gmail.com>
++Date: Tue, 13 Apr 2021 18:44:25 -0700
++Subject: [PATCH] intrincs: Check for __builtin_ia32_rdtsc
 +
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=d931f44a1f4be309bcdac742d7ed92f9"
++on modern gcc ( >=4.6 ) __rdtsc function is implemented using
++special builtin function called __builtin_ia32_rdtsc, its actually
++a define in gcc, so __has_builtin check fails for __rdtsc even
++though it is defined to imply __builtin_ia32_rdtsc(), therefore
++check for existence of __builtin_ia32_rdtsc as well
 +
-+DEPENDS = "virtual/kernel elfutils"
++Upstream-Status: Pending
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++---
++ mingw-w64-crt/intrincs/rdtsc.c | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
 +
-+SRC_URI = "https://www.openwall.com/lkrg/lkrg-${PV}.tar.gz \
-+           file://makefile_cleanup.patch "
++diff --git a/mingw-w64-crt/intrincs/rdtsc.c b/mingw-w64-crt/intrincs/rdtsc.c
++index bf9c03b..df04711 100644
++--- a/mingw-w64-crt/intrincs/rdtsc.c
+++++ b/mingw-w64-crt/intrincs/rdtsc.c
++@@ -11,7 +11,7 @@
++   #define __has_builtin(x) 0
++ #endif
++ 
++-#if !__has_builtin(__rdtsc)
+++#if !__has_builtin(__rdtsc) && !__has_builtin(__builtin_ia32_rdtsc)
++ unsigned __int64 __rdtsc(void)
++ {
++ #ifdef _WIN64
++-- 
++2.31.1
 +
-+SRC_URI[sha256sum] = "a997e4d98962c359f3af163bbcfa38a736d2a50bfe35c15065b74cb57f8742bf"
+diff --git a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_7.0.0.bb b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_7.0.0.bb
+index 9f79ffe..0368841 100644
+--- a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_7.0.0.bb
++++ b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_7.0.0.bb
+@@ -2,6 +2,8 @@ DESCRIPTION = "Runtime libraries from MinGW-w64 project"
+ 
+ require mingw-w64.inc
+ 
++SRC_URI += "file://0001-intrincs-Check-for-__builtin_ia32_rdtsc.patch;striplevel=2"
 +
-+S = "${WORKDIR}/lkrg-${PV}"
-+
-+inherit module kernel-module-split
-+
-+MAKE_TARGETS = "modules"
-+
-+MODULE_NAME = "p_lkrg"
-+
-+module_do_install() {
-+    install -d ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}
-+    install -m 0644 ${MODULE_NAME}.ko \
-+    ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}/${MODULE_NAME}.ko
-+}
-+
-+RPROVIDES_${PN} += "kernel-module-lkrg"
-+
-+COMPATIBLE_HOST = "(i.86|x86_64|arm|aarch64).*-linux"
+ S = "${WORKDIR}/mingw-w64-v${PV}/mingw-w64-crt"
+ B = "${WORKDIR}/build-${TARGET_SYS}"
+ 
 -- 
-2.25.1
+2.31.1
 
