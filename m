@@ -1,200 +1,175 @@
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by mx.groups.io with SMTP id smtpd.web10.7781.1618368926827408081
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+ by mx.groups.io with SMTP id smtpd.web10.7966.1618370088599006376
  for <yocto@lists.yoctoproject.org>;
- Tue, 13 Apr 2021 19:55:27 -0700
+ Tue, 13 Apr 2021 20:14:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=IzZ5GuHo;
- spf=pass (domain: intel.com, ip: 134.134.136.20, mailfrom: sangeeta.jain@intel.com)
-IronPort-SDR: 4M+TF/0Jo+hvSuqrLJd3DaTbv2XL9LCiYWpn+KGNCB48cL++uxTQZfKID4q34iTj5otpSHKKMo
- 1AyQAWCLaGMw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9953"; a="181675157"
-X-IronPort-AV: E=Sophos;i="5.82,221,1613462400"; 
-   d="scan'208";a="181675157"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2021 19:55:22 -0700
-IronPort-SDR: yR1aBH6HKgQ3+dJUyjamNTxSWNoowVHKqiwxgg7sqowao3XXb8A4dowDTIu4ntocyRzfvyUS55
- Ig/k/RzXqqHg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,221,1613462400"; 
-   d="scan'208";a="418116961"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
-  by fmsmga008.fm.intel.com with ESMTP; 13 Apr 2021 19:55:21 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Tue, 13 Apr 2021 19:55:21 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Tue, 13 Apr 2021 19:55:21 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2
- via Frontend Transport; Tue, 13 Apr 2021 19:55:21 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.44) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2106.2; Tue, 13 Apr 2021 19:55:21 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=flU6eQrxMvOQEAI2eP6/UVAL9zq8gqbWNWpmT9HJXTY5kh8vTn+X81wxDUz11b9yH0N977ZfXDj79WtYKpoA3UKnJEeTqQ3QnN1Uzqzr6g+pZC7jCC6gUKqYhwSU+fQ68TNZHQb+ZVjrC63lf3rqMfOe2xGzhCje+FPxO7NMO31WmGtHjb0BYJD0nS729mub/ZhrSELOvrsH+NSqTxkRgFnu6Tgh91PAkHhP/60VLGA5Ziz1OErX04hwHcmDZ3ACdtfk9ffqxrp2ly/E9q4I56B3kHt/rJfZBrEAAV1Xv1PIG2kwkkLgWXcu9KKFWGZ6QGBPb2gZakBjAdLaslyPJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T1qcge9YYWpLzIhljBlUO++aKd0COWsoUpP5QG9LDEE=;
- b=PXMRKUzTj2A+Bl/RniLQKrcVoo59m7sd0ZTq6Gsgs9WvfIIkwf4TXGwUUEn12epKPqikmJvtY/qcknBjD8OL6K1LhMYy7Rx9vHZdfsQlHNuSrE/QqYOExfP656/Y+2C3jCEAgQsOr/6SU5TBv+5Kp+jiXNa/a8F/zog8OuH0VvE35nVZJ2YDC2tK5x1lJK8w4rRq0A3SPDq92VmgnZiNZpFlGfoQU1lTYv75Og7WNoKdm4jF8yNNDMjvDyA3af3HtW1rw5vkXMg0Wnc0YUSmj03lA6bdJ6J1Z7pQAFQRg/tpzwo0oPhXbCn5I+JaPLCnqimjxWVw7iyTbk42DhahYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T1qcge9YYWpLzIhljBlUO++aKd0COWsoUpP5QG9LDEE=;
- b=IzZ5GuHoM6TeubzeAyTx9fML7D3zQJmqCg5jpT0yuQfsU7tNivTOq75DiNOQq2Dq4CtFwkGxkj1u897Sk/iRjnN8e4iPjpfQSqXJiLpekeD4zeEeWigkeN3NzZzlusjEZW1xoQ3UtB4UMqqStRqv7befdrw3WF98pNpCPA8w8aQ=
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com (2603:10b6:a03:b1::33)
- by BY5PR11MB3896.namprd11.prod.outlook.com (2603:10b6:a03:187::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.22; Wed, 14 Apr
- 2021 02:55:20 +0000
-Received: from BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::92d:48c1:669e:364c]) by BYAPR11MB3624.namprd11.prod.outlook.com
- ([fe80::92d:48c1:669e:364c%6]) with mapi id 15.20.4020.022; Wed, 14 Apr 2021
- 02:55:20 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder build (yocto-3.1.7.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.1.7.rc1)
-Thread-Index: AQHXMK+7MxP69Lpzb0eGZy9C58RNa6qzUYUQ
-Date: Wed, 14 Apr 2021 02:55:20 +0000
-Message-ID: <BYAPR11MB362465365029F0A9560FCFCEE34E9@BYAPR11MB3624.namprd11.prod.outlook.com>
-References: <20210413215524.AACEEB805C7@ubuntu1804-ty-3.yocto.io>
-In-Reply-To: <20210413215524.AACEEB805C7@ubuntu1804-ty-3.yocto.io>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.0.76
-dlp-product: dlpe-windows
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=intel.com;
-x-originating-ip: [60.53.116.239]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 20ae8619-875d-44a3-f2d4-08d8fef0bde7
-x-ms-traffictypediagnostic: BY5PR11MB3896:
-x-microsoft-antispam-prvs: <BY5PR11MB38964304428727D28EE82284E34E9@BY5PR11MB3896.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: bH15SsyWApP8iF6+niE4kFVLB3oNtVbJ1ZFqwxKiayPSXRJ8dbhyob3Wo6ffaa7J/rfJ3KJ2gJGASrutHGS81tjWIRy1/NgWWNQVD25iLabwnubJ8LgdSfTrNnmZqO52GMg9BvpAZ3Ebv14GzxvEjdJ9Q1n0LAjkdVCFLr8bpsKsEr2LIsm0Vbc51SNfIJuOn0UJJCWBoAoobdMahSJgVYNCJVjh0/cCf3hNSTdyMgi/3+DqYcdDQuyPzwY5ZBHMa/JHffFBuxELzemjkM0Dk41X/bvdc+DJHZSeUyjvH/+LZxO9W/W4nDmwVWB2q8zJvd3RWQnNojYP5673S7WtJt8foQ0eg4X5E7UkidJ5mhDObLj2Fnpzdi7du6acT6Ef7zNm3G8Pcev0nNqdPndBHwwSrJ9IjjTQvkC/8+jarQ9gj2qVc1FLenwRySQH2krpd8QR+S/7axBk99PWpRWJEuYo2pLS1+TsyEbUYH9A10JLio9EpPEHuaBnSxLuiV/6JeG9XYyD7XwR4b3I1nrimqtqQWgAM3OkRWMoYBbHzizZcFfOnTytQAoHPtmestrg53FwRvnuYTNqPwztA4nQ8jYxTGGLHMklZkE1jQwNBRH2S3YguoBrEEDq+7wQ4JzIREGOnTjdTSiqZf3e9GpnNz/KsX7HNc2IefUjV+07JvL1L6TZPIe6hR9pwqbyO1oj
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3624.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(39860400002)(376002)(396003)(346002)(366004)(316002)(122000001)(38100700002)(2906002)(186003)(478600001)(966005)(15650500001)(66446008)(7696005)(86362001)(110136005)(52536014)(66946007)(9686003)(64756008)(66556008)(8936002)(33656002)(55016002)(53546011)(6506007)(71200400001)(76116006)(5660300002)(26005)(66476007)(83380400001)(8676002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?ViALeGpL5rt/e6qI3TNVjb654gowhc7ulZ1HDf5dsS1LylXxsnYOCCo6ObP1?=
- =?us-ascii?Q?rxqomocjhnOCtYbuiALOeYcN+QGWK1outnqAxguuK85zSZId8PpoUal1KdB+?=
- =?us-ascii?Q?3RydDwJvvG3NKrhxuwiHz7n/V0BHmVN0O/zNfSOt0qDu/W5w4j93oOu23lLU?=
- =?us-ascii?Q?Tj+Kk6g7akZa5PktMdPCdLHhWz1c212pbt5u2nSQeR/pHaBOsE12nNzCWI5x?=
- =?us-ascii?Q?VrjUEcsksIFFMOOVSgfORGyMVZHt2TEaOPIUzpeZ981KVKJEYi61dH7gqw9x?=
- =?us-ascii?Q?m+GurmR7aYA9TwPVW2zK+dorG+JeYKZvA6Unp7za9u3G72D2OTQM931hljm8?=
- =?us-ascii?Q?47lv2FfNrVt3HUp1Ti/zOSO0ajKanpFZXR1GK43zMUZeKDn6Y3iNXdyek5Vb?=
- =?us-ascii?Q?ZZJkymX2Rjt4LlF99wLCFU3zm+aibx3rIGpq/l60tx6Nm6Rpif4A15AAKqiL?=
- =?us-ascii?Q?svTpe6aAxXIe75AYWjUzIhvStx7O93LZpTXye7oRY1wuosWaygXxqZFqYUB2?=
- =?us-ascii?Q?Qv2MAmHxdYr07iFl14PbVDM1rK/A6uved9UledN6cY8s4wDZ+uq2oqSp+MLe?=
- =?us-ascii?Q?bWebUasJG+4pM4zQ16qVf9K4Wh/EBZLO69Hcgr6brLzrF4DYtcCm1fpLWf1z?=
- =?us-ascii?Q?SGe4Bv5KoNYJyX4EPhEY+l1qCSBJ5ptwUtX8v7/So2uj6fDcq8Lj0kkB+pqV?=
- =?us-ascii?Q?sfLI2bocLvrKxaBPs4dROxYL9+M7/yRkgYw+N4EgQLh8wYkPO+eWGcdAVy5K?=
- =?us-ascii?Q?xipEUMadrsDmdMILVwShIFR746r/T0I3UOwvsWhOD9HTaBLovmeICbS7+nth?=
- =?us-ascii?Q?pCDxienCWQJI+dKK95bBB0082LiEYVAyDSG3lHoGgv9IY1jcmkBoq7+tJQod?=
- =?us-ascii?Q?EN7Ve9exnCJdHx4xcA1N/ogOjBVfGjC1L2iRGLEYPv82lpxcz7qCFgeuscz2?=
- =?us-ascii?Q?EHbnSmnifuX4A+K9+H+bGSMOl04qZlLwOijGHIkUngUD3fMKV0cGaGZ5sFGq?=
- =?us-ascii?Q?2skt4MXd+gNb/xkb67vuDJggBGrPxZmrUQG+SUbjGHJkssQqrY9UVfP2kFpn?=
- =?us-ascii?Q?18jDySilzg2sDKc2amtY+BAiKgCw1J/1Od3mdm24uFOmEE4s2bXQcAmVONxG?=
- =?us-ascii?Q?S8Z4qCHtC4sRLNpFO+CX8ZE6VR/qhmxim0dtjhe/6FBr1AfMBr9gKmI5gFcG?=
- =?us-ascii?Q?7ahL1z0i8I7vjy5coE9tRoIAGQnf3jaJw3PdVVVqutHaGJhWDCdgrH6Hvrsd?=
- =?us-ascii?Q?qJ5DONeHMt39LO498bNeFMHO/629r/HuOw/vfYIEfm8EK4qwOHfzwklcIBH5?=
- =?us-ascii?Q?ZtBiaMzjp292j595fUcKMDzc?=
-x-ms-exchange-transport-forked: True
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=IzE1+I6h;
+ spf=pass (domain: gmail.com, ip: 209.85.160.177, mailfrom: raj.khem@gmail.com)
+Received: by mail-qt1-f177.google.com with SMTP id t11so5901743qtr.8
+        for <yocto@lists.yoctoproject.org>; Tue, 13 Apr 2021 20:14:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IzcUJY6xhI4HaPZLRxilzsG0LvB2u9kgUKkfU7ay6Gk=;
+        b=IzE1+I6huLTWG9qlMS2txsFuTF4Pq82OYbFgpW4NQ9D4xnNufKWs9IG7d+1ZCiYqZk
+         NIOjMph/3nnKy61t1VnlsRKo8FUBawTaXmhHfHPX/ZmkNn0Jt6Utd0CsphGupIJXTIUF
+         LxGbPI8MxyquUbRaA/dcFVO1kpUFz/6EsAvfk8wNY1cmcX/Udt5KFqbp9O8yxjeMtLB6
+         wuk5i+78bu88P0gstqSKQrPB6NRXD0M6Kf3bsI1d2Tf2Ee9F+/IUCRJrWNUfTZhfUvd1
+         Sc+Xc1QDLhaNMusma0p9Xf8+Fb7FvD6palSYvNAMXEJOBnzvULetjNtdEeGH1qAMThfe
+         tizQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IzcUJY6xhI4HaPZLRxilzsG0LvB2u9kgUKkfU7ay6Gk=;
+        b=WBghJV3/T+QWYCQMIVtVpgpVMCzxlDLgL96OE9PXjlT5em7mYDyYie3dhhSG/Quw2E
+         8e6HavsExVA8nxIolwdPfk87RfFTFJfBJae5uCJx7A3e9Oz3rwj7binDx+SIEV9AbqHR
+         +Ybgga3DXiNPCB3lBohJyFUrnu9yE20fheaoEO4P48LwR03cjBZOWQcWZAi6R4jHguxG
+         MwYVCJHvdDztzcXXBpfV7FMMYtfBPgpezL9esiuLzRvlJFcQB7uxZEa/NQbIifgFQM86
+         B9LROaN8iQoQYsSWjJr65LkI7szkC34SYEoXOUPe4KXQy+c31LHESdlLd402n+YRMJ6q
+         lDSg==
+X-Gm-Message-State: AOAM533/enb2yXRS8gF/rsqrws9nydmzHHpreCKmD2p6m93KCC5a9IXp
+	6V96i6QXdYpZU9QwNpCGFwhR2FiVoORe8DY1014=
+X-Google-Smtp-Source: ABdhPJwmtcx74LhsIXmMEeVPA8jzwNsqhvuWtDO1mnz9RB2KTv5KJ2080pAd+4qJgkQ1hKxSYMqGDD6qpAqKJYiOTWs=
+X-Received: by 2002:ac8:7ef9:: with SMTP id r25mr23333364qtc.369.1618370087704;
+ Tue, 13 Apr 2021 20:14:47 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3624.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20ae8619-875d-44a3-f2d4-08d8fef0bde7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Apr 2021 02:55:20.3836
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: OXPgE3tSkPKcJQkfgMj2rogcz94wJHo98kij79T8zylEUpMqFDlw8V+O1vTZej5/dEDJpR5dnf4AGVjloyowJw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB3896
-Return-Path: sangeeta.jain@intel.com
-X-OriginatorOrg: intel.com
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+References: <s4v495$bak$1@ciao.gmane.io> <CANNYZj_CsY0YL_bjtgf6O3A16FXe38-hLke4wEQR6mMz58SMVg@mail.gmail.com>
+ <d8ab0231-717d-69e4-e6f9-739b9a08bd29@gmail.com> <CANNYZj_K-zpP-iTQMh5YA58dhBV88wLP-PouXS5KrHjybfsy-g@mail.gmail.com>
+ <14207c27-7f5e-9a13-d8e8-28dbb0e7ea7b@gmail.com> <CANNYZj8MtLM5KdUqMsqhiVMHTnmj4VMoSf3XnCLvSns8grpmmA@mail.gmail.com>
+ <0c8c0d85-c3e0-41d5-1a0b-2d121302439a@windriver.com>
+In-Reply-To: <0c8c0d85-c3e0-41d5-1a0b-2d121302439a@windriver.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Tue, 13 Apr 2021 20:14:19 -0700
+Message-ID: <CAMKF1sq6AKTpi-WDUbAJhBzSgnMgMxr7S3+k2gUeKWJo7enrAw@mail.gmail.com>
+Subject: Re: [yocto] bitbake controlling memory use
+To: Randy MacLeod <randy.macleod@windriver.com>
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>, Gmane Admin <gley-yocto@m.gmane-mx.org>, 
+	"Li, Changqing" <changqing.li@windriver.com>, 
+	Richard Purdie <richard.purdie@linuxfoundation.org>, Ross Burton <ross@burtonini.com>, 
+	Joshua Watt <JPEWhacker@gmail.com>, Trevor Woerner <twoerner@gmail.com>, yocto@lists.yoctoproject.org, 
+	yocto-gJxINTE1zeQw8ufyyF7U+SST3g8Odh+X-XMD5yJDbdMReXY1tMh2IBg@public.gmane.org, 
+	yocto-gJxINTE1zeQw8ufyyF7U+SST3g8Odh+X@public.gmane.org, 
+	Ferry Toth <fntoth-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi all,
+I use
 
-Intel and WR YP QA is planning for QA execution for YP build yocto-3.1.7.r=
-c1 We are planning to execute following tests for this cycle:
+BUILDHISTORY_COMMIT_forcevariable = "1"
+PARALLEL_MAKE = "-j 11"
+BB_NUMBER_THREADS = "11"
+INHERIT += "rm_work"
+XZ_DEFAULTS = "--threads=8"
 
-OEQA-manual tests for following module:
-1. OE-Core
-2. BSP-hw
-
-Runtime auto test for following platforms:
-1. MinnowTurbot 32-bit
-2. Coffee Lake
-3. NUC 7
-4. NUC 6
-5. Edgerouter
-6. Beaglebone
-
-ETA for completion is next Monday, April 19
-
-
-Thanks,
-Sangeeta
-
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Wednesday, 14 April, 2021 5:55 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuild=
-er build
-> (yocto-3.1.7.rc1)
->=20
->=20
-> A build flagged for QA (yocto-3.1.7.rc1) was completed on the autobuilde=
-r and is
-> available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.1.7.rc1
->=20
->=20
-> Build hash information:
->=20
-> bitbake: 017a39ed05d065bf28fd38f91bcde8a098300551
-> meta-arm: 1cf8b975e1c40bf8e8c0bf315db5d4cddcb01a7b
-> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-> meta-intel: 4bd62a7e154b8c9e8a114f452d3b062d8d058118
-> meta-kernel: 29329d7cacc71595cecfdd05a455a0cfb164564d
-> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
-> oecore: a3de6239e98efafe3668396e69133ffee3d9b27f
-> poky: 13f4ddf50eccaeed96a40a5f1a1d4173e677e98a
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
->=20
->=20
-
+On Tue, Apr 13, 2021 at 6:15 PM Randy MacLeod
+<randy.macleod@windriver.com> wrote:
+>
+> On 2021-04-11 12:19 p.m., Alexander Kanavin wrote:
+> > make already has -l option for limiting new instances if load average is
+> > too high, so it's only natural to add a RAM limiter too.
+> >
+> >    -l [N], --load-average[=N], --max-load[=N]
+> >                                Don't start multiple jobs unless load is
+> > below N.
+> >
+> > In any case, patches welcome :)
+>
+> During today's Yocto technical call (1),
+> we talked about approaches to limiting the system load and avoiding
+> swap and/or OOM events. Here's what (little!) i recall from the
+> discussion, 9 busy hours later.
+>
+> In the short run, instead of independently maintaining changes to
+> configurations to limit parallelism or xz memory usage, etc, we
+> could develop an optional common include file where such limits
+> are shared across the community.
+>
+> In the longer run, changes to how bitbake schedules work may be needed.
+>
+> Richard says that there was a make/build server idea and maybe even a
+> patch from a while ago. It may be in one of his poky-contrib branches.
+> I took a few minutes to look but nothing popped up. A set of keywords to
+> search for might help me find it.
+>
+> Someone mentioned that while ninja has not been open to accepting any
+> patches that would complicate and potentially slow down builds, there
+> is a fork of ninja calls 'samurai' that does seem to be open to some
+> improvements that we could benefit from.
+>
+> It was also suggested that  there were existing defects in the YP BZ (2)
+> but I didn't find any earlier and it's too late in my day to start
+> looking now! If no one replies with a relevant BZ ID, I'll create one.
+>
+> I'm sure I missed some things that were mentioned but Trevor Woerner
+> sometimes takes notes so I'll check on them once / if they are sent out.
+>
+> ../Randy
+>
+>
+> 1) https://www.yoctoproject.org/public-virtual-meetings/
+>
+> 2) https://bugzilla.yoctoproject.org/
+>
+> >
+> > Alex
+> >
+> > On Sun, 11 Apr 2021 at 18:08, Gmane Admin <gley-yocto@m.gmane-mx.org
+> > <mailto:gley-yocto@m.gmane-mx.org>> wrote:
+> >
+> >     Op 11-04-2021 om 17:55 schreef Alexander Kanavin:
+> >      > On Sun, 11 Apr 2021 at 17:49, Gmane Admin
+> >     <gley-yocto@m.gmane-mx.org <mailto:gley-yocto@m.gmane-mx.org>
+> >      > <mailto:gley-yocto@m.gmane-mx.org
+> >     <mailto:gley-yocto@m.gmane-mx.org>>> wrote:
+> >      >
+> >      >     Yes, and make project doesn't care, because make is called
+> >     with -j
+> >      >     16 so
+> >      >     that is what it does.
+> >      >
+> >      >     So here's my pitch: bitbake can stop processes spawned by
+> >     make, because
+> >      >     it knows that it started make on 4 recipies, each with -j 16. The
+> >      >     individual makes don't know about each other.
+> >      >
+> >      >
+> >      > And neither they should. They can simply abstain from spawning new
+> >      > compilers if used RAM is, say, at 90% total. Then bitbake does
+> >     not have
+> >      > to get involved in babysitting those makes.
+> >      >
+> >      > Alex
+> >     Bitbake does a lot of babysitting anyway :-) And is pretty good at
+> >     it too.
+> >
+> >     To me, fixing make et al. is more work and less effective then adding a
+> >     feature to bitbake. The only way to know how much memory the compiler
+> >     will use for each spawned compiler is to let it run. And then it's
+> >     too late.
+> >
+> >     This memory issue is all over our eco system and nobody cares (kernel,
+> >     make etc.) The only thing moving is systemd's oom killer will arrive
+> >     and
+> >     start killing processes. So that will just stop our builds from
+> >     completing.
+> >
+> >     Yeah, I prefer a babysitter over a child murderer :-)
+> >
+> >     Ferry
+> >
+> >
+> >
+> >
+> >
+> >
+> >
+> >
+>
+>
+> --
+> # Randy MacLeod
+> # Wind River Linux
+>
+> 
+>
