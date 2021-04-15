@@ -1,175 +1,125 @@
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
- by mx.groups.io with SMTP id smtpd.web11.18714.1618428661306970275
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com (NAM04-SN1-obe.outbound.protection.outlook.com [40.107.70.53])
+ by mx.groups.io with SMTP id smtpd.web12.2083.1618456487621442189
  for <yocto@lists.yoctoproject.org>;
- Wed, 14 Apr 2021 12:31:01 -0700
+ Wed, 14 Apr 2021 20:14:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=AqrtSH12;
- spf=pass (domain: gmail.com, ip: 209.85.128.50, mailfrom: robert.berger.yocto.user@gmail.com)
-Received: by mail-wm1-f50.google.com with SMTP id b136-20020a1c1b8e0000b029012c69da2040so3739680wmb.1
-        for <yocto@lists.yoctoproject.org>; Wed, 14 Apr 2021 12:31:01 -0700 (PDT)
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=aLSWzwA7;
+ spf=pass (domain: windriver.com, ip: 40.107.70.53, mailfrom: meng.li@windriver.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=afjIVu3j7ARZXyZeFG1jRbBhdRvinfNXGOb7OmouXIj1caPA6m2s/PhcjAA/HZ9fhfDntdCpxCISe06uUg+B1+/BKhnPYEPi8K4IopG+nwuwhb4SJZ0Sw7mg1i5hJp10lCj2fRGkCtfA2wIkdkrWMzxhsSJZeiqus3ufWiYTnv4yd/g2gFMZu9O7ioMCK87mU1oVQ+l9xbQKN/aUPoifcW/9Q9XPKKM/pUAxyi3gpoHk0tuxBBwe/jPB1PtxREKKxcKJwF72AtOjbEqLO2liNn5BKw0c0E//mM5avxq8p34f3hc1XdbYSYUBShlyPJYVSi9yvxUaPuEKE6pxQSuGgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mL75o3L2AysbPpCoFzGE5tL2L2EI3GFDFjikfG5wUFU=;
+ b=RObpg6EC0g/jJ9QA2ppzNpSd++VogQCUymhwFIo1qd8Awz0GOx2Qej5oOJyh2Mr2803Y2VTUj5LCUUeLc77uNhTQMbTbszVOG4iBqg3frZ7Sz1IO0y3oOGOrJmEGor+ys+3oKJvmzN85zQlNSSG7k9sNoWelhzjnZ41k79w5DDjcU2g7j8dhjKQqd+HguhFAkMgos8lhkrrLVTOJR8zPmvM+75f2f3jJHoWo7bStxUQkjcjr1Y+IWYtxYsN/aXFxzLmUI3jaeyqMP1PVshy2t/IvwCLPRQPQ/1c3gxVXjN6B09ScLiNXOmMDwJUK82fkeUFBxgH0eV2oXuJYg5XxzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=wZCJxX2/sxHXgE5DuS44YAXQeaFEKpefzgT/Ldl1FzY=;
-        b=AqrtSH12rKBSC3TOaSg3ARUmY1BmuTitxjcKDJvW4g1b4KNTpoYzteHQDwu2xwss5r
-         ggbgUzCXr6w0bVOkOq+8W7RUMzp66QcbpLFISi41/NCg486KV0JdCtzT8LWsi+dqIvUh
-         MzCrqc+nvwcHZO6VrFlv0Z2LnTTuTLY2J+Lc+iKCAoBjWWfjjUEhGU4ttFVC68zVH8w3
-         1uqun91GoXyB6crCr6/vh7JV59gRCCI5+RVXTpu38taFWx+VsBkvddmsc3ifPiZIOx+1
-         g7IwrMTwPxPQitoX/85+mhhwJvMkBu2HHJWJ2USoGjpW+0hTPPRLfPGjZYO4dqrTs95K
-         3Ohw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=wZCJxX2/sxHXgE5DuS44YAXQeaFEKpefzgT/Ldl1FzY=;
-        b=LQEZm3q7ZeNKWEnnRPu5ISd7xXA9L8cKUzarAd07b1Wu8cD6zUI2yOoVHXQwyT5CjE
-         DdU771wEt6w67tdSkqJiRSGaEh/JtLqgmb7FF6Fa1/PVBV4KwsT+2NflQnEVTRo2EJQJ
-         u0XLEoFVOap1Rhr0O00ZUDecV1cBGlPL0s0LFTIMh+bZAVFZLArhYsGfoAlbwM+MAnB1
-         Ts4XARApf/zv1qr9347i+EITNCW7uve1cUQiFmzOaHJDi61WSjUia7M5I6b6ScnVIJui
-         ZyYy3IsA+tpeZdYQQs80OnwbBNCX8rqO+lvzQUEnpLwHDTfCnmy4StJqsCvIY8CxCKyN
-         ye8g==
-X-Gm-Message-State: AOAM533BW71LlK4AEVonM0/NhP4/kQbsjom0Y2YvCn91KKkQuQ3ul4gm
-	QoYH6/m4WRv+YEO9x4E8F4LwUEBq6tM=
-X-Google-Smtp-Source: ABdhPJz8Kk6q2HtBl7+Aj3iGfoMqecreIkRSNZVBfO0di8z/ojZKJeSWVztJEL+y2CwoImq514Nayg==
-X-Received: by 2002:a1c:c910:: with SMTP id f16mr2261538wmb.136.1618428659681;
-        Wed, 14 Apr 2021 12:30:59 -0700 (PDT)
-Return-Path: <robert.berger.yocto.user@gmail.com>
-Received: from [192.168.42.52] (ppp-2-86-147-152.home.otenet.gr. [2.86.147.152])
-        by smtp.gmail.com with ESMTPSA id d5sm433446wrx.0.2021.04.14.12.30.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Apr 2021 12:30:59 -0700 (PDT)
-Subject: Re: [yocto] #golang: go fetches dependencies in compile phase
-To: Juergen Landwehr <juergen.landwehr@gmx.de>, yocto@lists.yoctoproject.org
-References: <8f3535e5-42c0-baf7-ae8b-fca906f33d05@gmail.com>
- <7847.1618228053017471875@lists.yoctoproject.org>
-From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
-Message-ID: <5331e9f9-b681-b550-68c0-8cbc752bba1d@gmail.com>
-Date: Wed, 14 Apr 2021 22:30:57 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mL75o3L2AysbPpCoFzGE5tL2L2EI3GFDFjikfG5wUFU=;
+ b=aLSWzwA7MPk21cwonS6hM8A0oGAYaWghdReeNFWScSJSuNTtfIb2nuPb2s9zD5k4DTGNRlkhU87FVgqS9lCJPauIdcPLA2b/NOn0JV2hRRecU2gaIamrLhrh9VuBy1K0oZiQCTgNGZFrdPTISIWL47Org4azbHlptZ9LBZaTVDY=
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from PH0PR11MB5191.namprd11.prod.outlook.com (2603:10b6:510:3e::24)
+ by PH0PR11MB5126.namprd11.prod.outlook.com (2603:10b6:510:3a::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.21; Thu, 15 Apr
+ 2021 03:14:44 +0000
+Received: from PH0PR11MB5191.namprd11.prod.outlook.com
+ ([fe80::35d1:d393:5e05:4efa]) by PH0PR11MB5191.namprd11.prod.outlook.com
+ ([fe80::35d1:d393:5e05:4efa%7]) with mapi id 15.20.4020.023; Thu, 15 Apr 2021
+ 03:14:44 +0000
+From: "Meng Li" <meng.li@windriver.com>
+To: yocto@lists.yoctoproject.org,
+	rebecca.swee.fun.chang@intel.com,
+	raj.khem@gmail.com
+Cc: meta-intel@lists.yoctoproject.org,
+	meng.li@windriver.com
+Subject: [yocto] [meta-intel-fpga] [PATCH] layer.conf: add layer compatibility to hardknott
+Date: Thu, 15 Apr 2021 11:14:28 +0800
+Message-Id: <20210415031428.9050-1-Meng.Li@windriver.com>
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [60.247.85.82]
+X-ClientProxiedBy: HK2PR02CA0155.apcprd02.prod.outlook.com
+ (2603:1096:201:1f::15) To PH0PR11MB5191.namprd11.prod.outlook.com
+ (2603:10b6:510:3e::24)
+Return-Path: Meng.Li@windriver.com
 MIME-Version: 1.0
-In-Reply-To: <7847.1618228053017471875@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from pek-mli1-d2.wrs.com (60.247.85.82) by HK2PR02CA0155.apcprd02.prod.outlook.com (2603:1096:201:1f::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.16 via Frontend Transport; Thu, 15 Apr 2021 03:14:42 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d949f414-2a6a-4821-3a2a-08d8ffbc9dfd
+X-MS-TrafficTypeDiagnostic: PH0PR11MB5126:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: 
+	<PH0PR11MB51265459608CB53A90853134F14D9@PH0PR11MB5126.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:626;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	OCx3PxEwskUi07BiMztGaKmAeHCoCbJr5V8kACOeS95zClNIs6G7s9tu5qYgA2R0fCnkGAEI4V+g3nUCeLbcMZL2V5NOFEfktgQ5b+X9dX4ORfFe10NalQpwuXDN9tn2J1NYxBGkr0OVNUWHKwVAyEDZeU0nj+bSbbFsbduKs7bS93EQ958TiNNwrMhHaLL/w5SbnO9nL/0g6Ew+EqKCyCLSFZowdJgXdPS0B+o/Zie78bOPQstni5guPlmqSXZKoWc1cmA56ybrZ4OM5TteaWdqzxbxgYrq1S598zxbL/DZvnd4KmeV+6GsGpRnUywJzJ7SFpvwyQvfOJTqkY0s2dOfzMIFs7wqlNfEnPZaqjMNeS713QzAOzxuXFoyZhB6YQxegp1g2HBQJvRwb3dfnTC+MyWO+THEuVFq5QM3auxh7wmNaI10DVS6TFTkDJBiKVv7fqaAb25tdj7SDl7mKOzCAg7ovZ2FE+lldDp6GKoE29faQwIk/Njxw9i2vGlhaTCHDIdOsdlUEQspgIkdXR/9lwmCquu+IYcDBjNqN2H0DQbC4iHnj9qYdMq4JqOKgzB4H60OeVNwgqshyFILLKJaUfukaRGIvVZww5GmHFP0S8g+MSWwkTQkxXnwyBKJufnJNLVpl/qmntAAxPeBBkW7LdwAfjWw07jf6DzWejM=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB5191.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(346002)(366004)(376002)(39850400004)(36756003)(8936002)(86362001)(956004)(38100700002)(38350700002)(2906002)(6506007)(186003)(66556008)(107886003)(9686003)(6486002)(83380400001)(66946007)(16526019)(66476007)(478600001)(4326008)(4744005)(2616005)(8676002)(5660300002)(316002)(26005)(6666004)(1076003)(52116002)(6512007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	=?us-ascii?Q?yqH1NO435IBfcOeha7/iHzn+9mJlJ7r5zzGRZMYC/VKf7d3AH/0BbYRMUl/X?=
+ =?us-ascii?Q?Gqrf76Rpp1dV2JedYVStDJ1vbV4smXBUzxya0D4pGbVJYJ5fwIGeqosaW+4o?=
+ =?us-ascii?Q?lS1McjvmjRWYxxO0fgVvaU2lee78MYMVj5RpKe9ckquN2HnBscoFxoY8B2Pz?=
+ =?us-ascii?Q?sxiqS83HX6rhitptu+N5eKxnGMag40YwKubyyprpcrucJDVzGjweOLjgD3v7?=
+ =?us-ascii?Q?YmnsU/BZZ0RkRv/uGMnhLOaXZzRXeOUDKRZlhWhxbbiX8eqBIl+U53vB2xQj?=
+ =?us-ascii?Q?GrKhiuIWCVLG+4/GYa7aTcOHWd5b8KB6DhejRaW3Fm3gu+ltioa6wqHmCdKJ?=
+ =?us-ascii?Q?TBiMEnBgQbgcEmRNaRav2OOwKeF4DOLEavlOXZQp8gU9vkGmQVRC+WlLofhI?=
+ =?us-ascii?Q?+sdfNuvvA0x3YTDgDDRW8tgW+4pnMxzkSic+n90s/a1ZuHEdtDLf6GFp/n3V?=
+ =?us-ascii?Q?1kIANPcWftXkJohXnhOxErSEgB3wnGig3vi8elRIxKYO1nnLGN2Mf2hLX/Lm?=
+ =?us-ascii?Q?0QMWj5wN0zm6cehG+ZeY7bVcbq9Cau4BxBvl0jKkqafvj+1X0VpArBDdz/R4?=
+ =?us-ascii?Q?O7rm9tMdAamKlgg5Thg7CnD7hRDuKrarrIHwCuZuRG/KsecauHYeDVKXxvpo?=
+ =?us-ascii?Q?BGZ76x6PW58R48idWyAsViVA1ve9F2ONpuVEJWY1dpaXySM0eGT8fd9o5yvN?=
+ =?us-ascii?Q?8h3HPilDg20vsGECg7rWwJm4XMLXB910zEboT2FU+6ybx0ycsz90iIkhzuq6?=
+ =?us-ascii?Q?sV7uXLbjP+ZypN15JiPo/Tc2cjX+xUogwE08jC3PutH5LwTCaGDs1cUf5AHq?=
+ =?us-ascii?Q?qv3hTTC06s9fSHU2zKqFXQ2WtgfSqGFJ/IZydkbUedKW/giSd2xAUncVpZ8p?=
+ =?us-ascii?Q?fcLFEf9AVgwm1J6Wfh7/DzLBx2N1MyA+8WrdbrNfdN2MXebKdJMGbMk314na?=
+ =?us-ascii?Q?nGYuyIjytLhXw0DlbC204ED69e1YCJLx/tbFcg5hmEAJrd4NhtPx/140ewzI?=
+ =?us-ascii?Q?2WSLcVQTqRiBmmbq8H+k1N+PQWvTwr4liCqub1942FGz+hHqGc/keqLhdnYq?=
+ =?us-ascii?Q?PCaaTdR60xYeqa2aBzXZgy9+fyk3rsPWPWF6dFfNpli7Qf+iDpII/4/UiSUe?=
+ =?us-ascii?Q?+6t1PL54jZuLKPE7s8EvoVTZwylJ1GF1I+VH6bT3F/PAREmLfSvF6rXw0Thc?=
+ =?us-ascii?Q?wY/UOeabhL9emKgU8bHt96c5HMlrRNOO438meNcMrpM+QZQqAU53rhbOuXy0?=
+ =?us-ascii?Q?m0y2tILp/1sdUXkojCjaJFEWUO2rWavakgLMFlpu713U8c4supHdDw07PZe0?=
+ =?us-ascii?Q?9nYfnMdGiTZszVd8yu2srf5m?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d949f414-2a6a-4821-3a2a-08d8ffbc9dfd
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5191.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2021 03:14:44.5365
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AGtyCaYiTCCwtGFeX+UciAXQHsGd3xLkPWy/PYxW31NCFgmx+Ym9kXi+gf6MX50LziJLhm9NX5n89XUqwNND9w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5126
+Content-Type: text/plain
 
-Hi,
+From: Meng Li <Meng.Li@windriver.com>
 
-My comments are inline.
+Signed-off-by: Meng Li <Meng.Li@windriver.com>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 12/04/2021 14:47, Juergen Landwehr wrote:
-> Hi Robert,
-> 
-> thanks for your thoughts.
-> 
-> I see your point and the last thing I want is "NOT reproducable builds".
-> 
-> But dependency management in go is not that arbitrary as it may seem. 
-
-... if everybody does what they are supposed to - which is not the case.
-
-> Dependencies and their version is stored in "go.mod". To ensure 
-> reproducable builds, hashes for each dependency and version are stored 
-> in "go.sum". Both files are in git and together with a local golang 
-> proxy, this should ensure reproducable builds, right?
-
-This does not sound too bad. This would also mean, that if the outside 
-repo dies you can still build and that you know what's on your proxy.
-
-> 
-> To ensure that licences are valid and did not change over time, we 
-> developed a little tool, that goes through all dependencies and creates 
-> the following output, which we insert into our recipe:
-> 
-> LICENSE = "Apache-2.0 & MIT & MIT & BSD-2-Clause & BSD-3-Clause & ...
-
-Here you
-
-1) Totally lost which License comes from which module and I hope 2 times 
-MIT is just a typo.
-
-Of course if you are really serious about licensing you should use a 
-tool like fossology, upload all your sources there and inspect them.
-You will be surprised.
-
-There are a couple of tools out there which scan your sources and some 
-which claim to do stuff with golang as well.
-
-2) Do you check if the licenses are compatible?
-
-MIT and Apache are compatible:
-
-some googling:
-
-"Both the Apache License and the MIT license are permissive, so 
-incorporating MIT licensed code into your Apache licensed project is 
-certainly allowed. Just be sure to attribute the original author for the 
-parts your incorporated and include a copy of the MIT License terms, as 
-required by the license."
-
-Apache and BSD should also be OK:
-
-some googling:
-
-"In both of them you must:
-
-     Include copyright
-
-But in Apache, unlike BSD you must:
-
-     Include License
-     State Changes
-     Include Notice
-"
-
-> 
-> LIC_FILES_CHKSUM = " \
-> file://${S}/src/${GO_IMPORT}/vendor/github.com/coreos/go-oidc/LICENSE;md5=d2794c0df5b907fdace235a619d80314 \
-> file://${S}/src/${GO_IMPORT}/vendor/github.com/go-playground/locales/LICENSE;md5=3ccbda375ee345400ad1da85ba522301 \
-> file://${S}/src/${GO_IMPORT}/vendor/github.com/go-playground/universal-translator/LICENSE;md5=2e2b21ef8f61057977d27c727c84bef1 \
-> file://${S}/src/${GO_IMPORT}/vendor/github.com/godbus/dbus/v5/LICENSE;md5=09042bd5c6c96a2b9e45ddf1bc517eed \
-> file://${S}/src/${GO_IMPORT}/vendor/github.com/golang/gddo/LICENSE;md5=4c728948788b1a02f33ae4e906546eef \
-> ...
-> 
-> This is a manual step and whenever dependencies change we have to create 
-> this list again and add it to the recipe, but it contains all the 
-> required license information and makes them visible in the recipe.
-
-really all?
-
-You search through every single file of a go module and it's 
-dependencies? Or just the license text, if there is one?
-
-> 
-> It might pollute the recipe a bit, but luckily we do not have thousands 
-> of dependencies like some npm projects. So I think it is still 
-> manageable. And is it much less work, than defining a recipe for each 
-> dependency.
-> 
-> So we would
-> * guarantee reproducable builds
-> * use the programming language (in our case golang) to handle dependency 
-> management
-> * ensure that licenses are visible and correct
-> 
-> I mean it is not perfect and still a compromise, but it should work 
-> without breaking reproducable builds or causing license issues?
-> What do you think?
-> 
-> Regards,
-> Jürgen
-> 
-> PS: Thanks for the link. I was not aware of this discussion (it is quite 
-> a bit to read:))
-
-Regards,
-
-Robert
-
-> 
-> 
-> 
-> 
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 756e7f4..4b45db9 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -9,6 +9,6 @@ BBFILE_PATTERN_meta-intel-fpga := "^${LAYERDIR}/"
+ 
+ # Increase the layer priority
+ BBFILE_PRIORITY_meta-intel-fpga = "6"
+-LAYERSERIES_COMPAT_meta-intel-fpga = "dunfell gatesgarth"
++LAYERSERIES_COMPAT_meta-intel-fpga = "dunfell gatesgarth hardknott"
+ 
+ BBDEBUG = "yes"
+-- 
+2.17.1
 
