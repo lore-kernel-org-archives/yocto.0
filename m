@@ -1,54 +1,54 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.5405.1618814532486049950
+ by mx.groups.io with SMTP id smtpd.web09.5276.1618814535684335878
  for <yocto@lists.yoctoproject.org>;
- Sun, 18 Apr 2021 23:42:12 -0700
+ Sun, 18 Apr 2021 23:42:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=cnMinmP2;
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=LVDDanJ4;
  spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: liu.ming50@gmail.com)
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 1562838C06E9
-	for <yocto@yoctoproject.org>; Mon, 19 Apr 2021 06:42:12 +0000 (UTC)
-Received: by mail-lf1-f51.google.com with SMTP id n138so54320435lfa.3
-        for <yocto@yoctoproject.org>; Sun, 18 Apr 2021 23:42:12 -0700 (PDT)
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 935C638C084F
+	for <yocto@yoctoproject.org>; Mon, 19 Apr 2021 06:42:15 +0000 (UTC)
+Received: by mail-lf1-f49.google.com with SMTP id j18so54258500lfg.5
+        for <yocto@yoctoproject.org>; Sun, 18 Apr 2021 23:42:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=PRS50Uy8HE6ElCuFrPQGJWN6U7lKcsioc3T58SJUtgY=;
-        b=cnMinmP2gKieXqHCSB3/cuiJfOLe/1jcrCWXmq/XTkp4j+x2ZR8mN1zTCNUyyHuqUc
-         Hr4KvNYLIn2ij1vzLZOH4wiYz7xHurgFu07PJPYFjr+ZTG1gnFGQiXhkdcpdNHuXL2cZ
-         Ph4mzFObsCxXd+N/utDVMdTnDq7nznmOX2o+t7pZvWCpcnL1XQXK7qrKSk/OoTtDOqYN
-         OA2oD5T3aa/psvsgyscQIdrueREPLs3w1Ynxzt7TX6EdifcpaupUSZseDLJst01M6U+8
-         HGCIbr/NiM5CsFGtCD9r9oNMArRNWO7fnkLkzKEGwEK7l/3WFC7+rb00y5oUzYHsU19C
-         Px5w==
+        bh=UohWlS2ztbbrOqPVq/PzMCQcuQWCls1v79i7XdHZUUk=;
+        b=LVDDanJ4JImJU0phLivmwKDBmk/iJ2AXLtZuWIexj1K0js/qAJkapq4l06JAVuh8Uk
+         /pNmB1r/IqXpKkE11J4VLbxLEwxjgspM/bq7x+qrl57EZpBrx/vqHV5w1MAn7CNVIIVX
+         zWCJlzLCvMjR9BXUHjEsmh9iix369Hf0rkV0ksp6mQ5UnlLycerlmW/ODhEHWxjmqXeP
+         S86A37gBBEZZ4NPK+c+jURTuizHu5Viv5hawf/YE3z86MykPTc0DXUMYfbgEjJI7JKTQ
+         PCa0qTulsUHmrpy7F/CzpStL0C7+stI40a9oXG3FivIAmT7hG9iY2xgccIJSLP4Fjc1W
+         5dbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=PRS50Uy8HE6ElCuFrPQGJWN6U7lKcsioc3T58SJUtgY=;
-        b=OKDpJv/8z0EoR65UYq+3tODxUy3Pfn+2nBVeWdlJoowFIvB+pJxAw8C3hvN1mTLyuq
-         N4eYncecms2vCSuvLCsIvwyfauywKhbpo3wLuEbBhE1KZuFohNHtZnqU88c0TcQXfQBY
-         JolqPZCAx6kD1Rbs3qxWZpd/dX/ozW3Uyd2+P3zzZzoCn7MifPY51uRr8DaPAPxLiJEi
-         ATaepoEFUi3p77Su3hFiDCx1/rv3M2Wt9ZobTi4axbXWuPt9fpCvUyc4hX5tOMt/dY3Q
-         T0hbQqqdsLTlKGu9nDar0eSwgm3bQY3hbgELAaX8tFDkDu+U/1aUEeYQapJ5J15c63dn
-         RTpQ==
-X-Gm-Message-State: AOAM531a++JvkrKdloV1Gwpup6aTGfoFk/bdvuIV45ygVbt6TCYx0Xec
-	muMLmC6qB9p02hB58nuIMOa1Vn3Ue2yl+g==
-X-Google-Smtp-Source: ABdhPJw31XcxMYHcSuuB9r5v8C/Ovwxy6BTe+su7v/7rYVFT4HmcRA3CIDfuIL5eLbIhDSjjgmwDrw==
-X-Received: by 2002:a19:c218:: with SMTP id l24mr8262052lfc.529.1618814530414;
-        Sun, 18 Apr 2021 23:42:10 -0700 (PDT)
+        bh=UohWlS2ztbbrOqPVq/PzMCQcuQWCls1v79i7XdHZUUk=;
+        b=uLSqn9FUHhVkpIGuyGB34R02ILh5gI/woLicGPwTwyuYmOJ6Tt1iLp3xx+hjZ++mQG
+         1u4vwP9vBiTsTwT2ygAE8LJirjWXrMGEm5D2CtmtZBjc6Dsi5hjabFQ81PbCh9aFflh3
+         F9TNeyUqUWslmAHWuZXC4sa/w52khTAcs7MeQCGYYffzF5Pdg+3TFuKxbt9akrlI3fhf
+         tH2JmHJQENwqCm96YUiRhHHMOsf3XwFZ+tBy2U5sWtKm+191vAzyUVZVvCz8Yrr2/tEZ
+         y1MF+lkIUThxfwi6L1qCNxbFDbfLs9rhIeWE1zLyBC/paioEoxEhF2Zd4keYizSWd8uW
+         SZFw==
+X-Gm-Message-State: AOAM53318PiT/mCxvOH89Pn6LRsEvYflN6vw9s0q9w/Yozf0Lk8np14X
+	2e6CvsxAZzJAoRlypvHgHc8KT+wXkpvSZg==
+X-Google-Smtp-Source: ABdhPJx98JRcQbp7UPRHLpbUvGYAB2vs+Upjqyz5hVjrHB9R15htSA0E8jsl8G5fp0/WkM7/bPIVsg==
+X-Received: by 2002:a19:23c2:: with SMTP id j185mr5330350lfj.134.1618814533910;
+        Sun, 18 Apr 2021 23:42:13 -0700 (PDT)
 Received: from localhost.localdomain ([2a00:801:234:864a:9887:2624:8ad3:e96d])
-        by smtp.gmail.com with ESMTPSA id q29sm602509lfd.264.2021.04.18.23.42.09
+        by smtp.gmail.com with ESMTPSA id q29sm602509lfd.264.2021.04.18.23.42.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Apr 2021 23:42:10 -0700 (PDT)
+        Sun, 18 Apr 2021 23:42:13 -0700 (PDT)
 From: "Ming Liu" <liu.ming50@gmail.com>
 To: yocto@yoctoproject.org
 Cc: akuster808@gmail.com,
 	sergio.prado@toradex.com,
 	Ming Liu <liu.ming50@gmail.com>
-Subject: [meta-security] [dunfell] [PATCH 2/3] meta: drop IMA_POLICY from policy recipes
-Date: Mon, 19 Apr 2021 08:41:58 +0200
-Message-Id: <20210419064159.12487-3-liu.ming50@gmail.com>
+Subject: [meta-security] [dunfell] [PATCH 3/3] initramfs-framework-ima: introduce IMA_FORCE
+Date: Mon, 19 Apr 2021 08:41:59 +0200
+Message-Id: <20210419064159.12487-4-liu.ming50@gmail.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20210419064159.12487-1-liu.ming50@gmail.com>
 References: <20210419064159.12487-1-liu.ming50@gmail.com>
@@ -57,119 +57,77 @@ Content-Transfer-Encoding: quoted-printable
 
 From: Ming Liu <liu.ming50@gmail.com>
 
-IMA_POLICY is being referred as policy recipe name in some places and it
-is also being referred as policy file in other places, they are
-conflicting with each other which make it impossible to set a IMA_POLICY
-global variable in config file.
+Introduce IMA_FORCE to allow the IMA policy be applied forcely even
+'no_ima' boot parameter is available.
 
-Fix it by dropping IMA_POLICY definitions from policy recipes
+This ensures the end users have a way to disable 'no_ima' support if
+they want to, because it may expose a security risk if an attacker can
+find a way to change kernel arguments, it will easily bypass rootfs
+authenticity checks.
 
+Signed-off-by: Sergio Prado <sergio.prado@toradex.com>
 Signed-off-by: Ming Liu <liu.ming50@gmail.com>
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../ima-policy-appraise-all_1.0.bb                       | 9 ++-------
- .../ima_policy_hashed/ima-policy-hashed_1.0.bb           | 9 ++-------
- .../ima_policy_simple/ima-policy-simple_1.0.bb           | 9 ++-------
- 3 files changed, 6 insertions(+), 21 deletions(-)
+ .../initrdscripts/initramfs-framework-ima.bb             | 5 +++++
+ .../initrdscripts/initramfs-framework-ima/ima            | 9 +++++++--
+ 2 files changed, 12 insertions(+), 2 deletions(-)
 
-diff --git a/meta-integrity/recipes-security/ima_policy_appraise_all/ima-=
-policy-appraise-all_1.0.bb b/meta-integrity/recipes-security/ima_policy_a=
-ppraise_all/ima-policy-appraise-all_1.0.bb
-index da62a4c..84ea161 100644
---- a/meta-integrity/recipes-security/ima_policy_appraise_all/ima-policy-=
-appraise-all_1.0.bb
-+++ b/meta-integrity/recipes-security/ima_policy_appraise_all/ima-policy-=
-appraise-all_1.0.bb
-@@ -2,19 +2,14 @@ SUMMARY =3D "IMA sample simple appraise policy "
- LICENSE =3D "MIT"
- LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
-b788c80a0384361b4de20420"
+diff --git a/meta-integrity/recipes-core/initrdscripts/initramfs-framewor=
+k-ima.bb b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-=
+ima.bb
+index 77f6f7c..6471c53 100644
+--- a/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima.b=
+b
++++ b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima.b=
+b
+@@ -14,6 +14,9 @@ LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.M=
+IT;md5=3D3da9cfbcb788c80a0384
+ # to this recipe can just point towards one of its own files.
+ IMA_POLICY ?=3D "ima-policy-hashed"
 =20
--# This policy file will get installed as /etc/ima/ima-policy.
--# It is located via the normal file search path, so a .bbappend
--# to this recipe can just point towards one of its own files.
--IMA_POLICY ?=3D "ima_policy_appraise_all"
--
--SRC_URI =3D " file://${IMA_POLICY}"
-+SRC_URI =3D " file://ima_policy_appraise_all"
++# Force proceed IMA procedure even 'no_ima' boot parameter is available.
++IMA_FORCE ?=3D "false"
++
+ SRC_URI =3D " file://ima"
 =20
  inherit features_check
- REQUIRED_DISTRO_FEATURES =3D "ima"
-=20
- do_install () {
+@@ -23,6 +26,8 @@ do_install () {
      install -d ${D}/${sysconfdir}/ima
--    install ${WORKDIR}/${IMA_POLICY}  ${D}/${sysconfdir}/ima/ima-policy
-+    install ${WORKDIR}/ima_policy_appraise_all ${D}/${sysconfdir}/ima/im=
-a-policy
+     install -d ${D}/init.d
+     install ${WORKDIR}/ima  ${D}/init.d/20-ima
++
++    sed -i "s/@@FORCE_IMA@@/${IMA_FORCE}/g" ${D}/init.d/20-ima
  }
 =20
- FILES_${PN} =3D "${sysconfdir}/ima"
-diff --git a/meta-integrity/recipes-security/ima_policy_hashed/ima-policy=
--hashed_1.0.bb b/meta-integrity/recipes-security/ima_policy_hashed/ima-po=
-licy-hashed_1.0.bb
-index ebb0426..ff7169e 100644
---- a/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed=
-_1.0.bb
-+++ b/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed=
-_1.0.bb
-@@ -2,13 +2,8 @@ SUMMARY =3D "IMA sample hash policy"
- LICENSE =3D "MIT"
- LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
-b788c80a0384361b4de20420"
+ FILES_${PN} =3D "/init.d ${sysconfdir}"
+diff --git a/meta-integrity/recipes-core/initrdscripts/initramfs-framewor=
+k-ima/ima b/meta-integrity/recipes-core/initrdscripts/initramfs-framework=
+-ima/ima
+index cff26a3..8971494 100644
+--- a/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/i=
+ma
++++ b/meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/i=
+ma
+@@ -2,11 +2,16 @@
+ #
+ # Loads IMA policy into the kernel.
 =20
--# This policy file will get installed as /etc/ima/ima-policy.
--# It is located via the normal file search path, so a .bbappend
--# to this recipe can just point towards one of its own files.
--IMA_POLICY ?=3D "ima_policy_hashed"
--
- SRC_URI =3D " \
--    file://${IMA_POLICY} \
-+    file://ima_policy_hashed \
- "
-=20
- inherit features_check
-@@ -16,7 +11,7 @@ REQUIRED_DISTRO_FEATURES =3D "ima"
-=20
- do_install () {
-     install -d ${D}/${sysconfdir}/ima
--    install ${WORKDIR}/${IMA_POLICY}  ${D}/${sysconfdir}/ima/ima-policy
-+    install ${WORKDIR}/ima_policy_hashed ${D}/${sysconfdir}/ima/ima-poli=
-cy
++force_ima=3D@@FORCE_IMA@@
++
+ ima_enabled() {
+-    if [ "$bootparam_no_ima" =3D "true" ]; then
++    if [ "$force_ima" =3D "true" ]; then
++        return 0
++    elif [ "$bootparam_no_ima" =3D "true" ]; then
+         return 1
++    else
++        return 0
+     fi
+-    return 0
  }
 =20
- FILES_${PN} =3D "${sysconfdir}/ima"
-diff --git a/meta-integrity/recipes-security/ima_policy_simple/ima-policy=
--simple_1.0.bb b/meta-integrity/recipes-security/ima_policy_simple/ima-po=
-licy-simple_1.0.bb
-index cb4b6b8..0e56aec 100644
---- a/meta-integrity/recipes-security/ima_policy_simple/ima-policy-simple=
-_1.0.bb
-+++ b/meta-integrity/recipes-security/ima_policy_simple/ima-policy-simple=
-_1.0.bb
-@@ -2,19 +2,14 @@ SUMMARY =3D "IMA sample simple policy"
- LICENSE =3D "MIT"
- LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
-b788c80a0384361b4de20420"
-=20
--# This policy file will get installed as /etc/ima/ima-policy.
--# It is located via the normal file search path, so a .bbappend
--# to this recipe can just point towards one of its own files.
--IMA_POLICY ?=3D "ima_policy_simple"
--
--SRC_URI =3D " file://${IMA_POLICY}"
-+SRC_URI =3D " file://ima_policy_simple"
-=20
- inherit features_check
- REQUIRED_DISTRO_FEATURES =3D "ima"
-=20
- do_install () {
-     install -d ${D}/${sysconfdir}/ima
--    install ${WORKDIR}/${IMA_POLICY}  ${D}/${sysconfdir}/ima/ima-policy
-+    install ${WORKDIR}/ima_policy_simple ${D}/${sysconfdir}/ima/ima-poli=
-cy
- }
-=20
- FILES_${PN} =3D "${sysconfdir}/ima"
+ ima_run() {
 --=20
 2.29.0
 
