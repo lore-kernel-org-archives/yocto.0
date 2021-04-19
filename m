@@ -1,230 +1,57 @@
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
- by mx.groups.io with SMTP id smtpd.web09.7495.1618831231469423905
+Received: from wp323.webpack.hosteurope.de (wp323.webpack.hosteurope.de [80.237.133.92])
+ by mx.groups.io with SMTP id smtpd.web12.8912.1618838624204920963
  for <yocto@lists.yoctoproject.org>;
- Mon, 19 Apr 2021 04:20:32 -0700
+ Mon, 19 Apr 2021 06:23:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@holoplot-com.20150623.gappssmtp.com header.s=20150623 header.b=oA/ZgmBX;
- spf=pass (domain: holoplot.com, ip: 209.85.218.54, mailfrom: morgan.hill@holoplot.com)
-Received: by mail-ej1-f54.google.com with SMTP id n2so52270776ejy.7
-        for <yocto@lists.yoctoproject.org>; Mon, 19 Apr 2021 04:20:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=holoplot-com.20150623.gappssmtp.com; s=20150623;
-        h=message-id:subject:from:to:date:user-agent:mime-version
-         :content-transfer-encoding;
-        bh=5qT6o8b1bONoVSUWQsnZtv+xBnte/Xmc8AaZMOZsIvo=;
-        b=oA/ZgmBXEw3wfPBc9SF9ukpzvyXzUNln7+iwerdi14fcQIerUiyjllUKoXTk9hNC0k
-         R5m1cOXECD72346QSIt/JaQeYQvTl861MNn1zP9QY3AW10Gff1maUYVy0QmzAfmOHkKZ
-         dCkvz4ej8CqyQ3IYI1VoGB8UisGoJfidkcTaWFgxsDxyll21jKx/u08L2njky++m5FZ2
-         clI89QOY/tUho9IFMtVsFI7v/uv3V0sprexgBJ3E2GRJoFQVIquzg4mRxA5kgEnYhQSH
-         CH1Qo2fPqjo8kR1Jv81ra0R5AN7nML5O7/ghAM64IvAZPsE10EPu+5jzKS1BJap8rnXg
-         WmAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=5qT6o8b1bONoVSUWQsnZtv+xBnte/Xmc8AaZMOZsIvo=;
-        b=ON78Wy7CiTM77nFccsbIgozYUz62wB2tU8ifA6zWXK1LOUDk9Y9KugnVOZeIdr5K/S
-         UdaqolUuV1gKpfjvpCdM4MlAhgac1R8NSQdzDUi73fgZCK/Gz9UZXV9oDk88103WGzHG
-         0SIOP1wOmvWSDRGN4MLnL4GaVYGTGuhEZ7aFRsmsSRe32ACbvnnQCyGJuT518mmcJX4R
-         urUVFLssCAx+6n3rRiR8UtkuUUeibjCHl25babieYiD6zYWBsOTUbWjwkxnN8xS6jWZa
-         yz88RUv0FC2iCXDpseLVMt9/hR4TVgEAe8qnts1fSu06OKTKYrSYzN0RFGZLL4woq5Kk
-         347g==
-X-Gm-Message-State: AOAM530DvKkY8N6ESNtBmjwk3bXL/S3xVxIpOXmFMYMRFHvQrgV7rpXT
-	4BY6GijvkbK0k8yN48OFkAPmW/cpRkCBjw8rnoZyC/bV89bXFf28Os7pcDxYIhoE86/cDsT68EF
-	gLTEiAI01s4Zq+Xl8UfO7iTpoXep/
-X-Google-Smtp-Source: ABdhPJx4iLKnVJFwm/gc/rJkrtyYJ6+zrw/fM6L4gYtgSWBzoPunJo8SJY0HOwi5K+6vlsyqkTK4Fw==
-X-Received: by 2002:a17:906:e949:: with SMTP id jw9mr22400623ejb.433.1618831223516;
-        Mon, 19 Apr 2021 04:20:23 -0700 (PDT)
-Return-Path: <morgan.hill@holoplot.com>
-Received: from HQ-00111.holoplot.net ([176.126.217.202])
-        by smtp.gmail.com with ESMTPSA id a17sm10326959ejx.13.2021.04.19.04.20.23
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Apr 2021 04:20:23 -0700 (PDT)
-Message-ID: <0f45e89ad02bdb3225ecc1913ac57126d0b5943e.camel@holoplot.com>
-Subject: [meta-networking][gatesgarth] keepalived exec_python_func() error
-From: morgan.hill@holoplot.com
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Date: Mon, 19 Apr 2021 13:20:21 +0200
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+ dkim=missing; spf=pass (domain: delisys.ch, ip: 80.237.133.92, mailfrom: n.jeker@delisys.ch)
+Received: from 22.71.14.46.static.wline.lns.sme.cust.swisscom.ch ([46.14.71.22] helo=[192.168.120.138]); authenticated
+	by wp323.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	id 1lYTsK-0002Ng-W2; Mon, 19 Apr 2021 15:23:41 +0200
+Message-ID: <fe703c1154051815d4df6c6ccd6ec9e95c351b63.camel@delisys.ch>
+Subject: Wrong OELAYOUT_ABI in poky dunfell 3.1.6 suppresses message
+From: "Nicolas Jeker" <n.jeker@delisys.ch>
+To: yocto@lists.yoctoproject.org
+Date: Mon, 19 Apr 2021 15:23:40 +0200
+User-Agent: Evolution 3.40.0 
 MIME-Version: 1.0
+X-bounce-key: webpack.hosteurope.de;n.jeker@delisys.ch;1618838624;f7708d26;
+X-HE-SMSGID: 1lYTsK-0002Ng-W2
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+
+Hi all,
+
+I recently upgraded my project from dunfell 3.1.5 to 3.1.6 and saw
+errors about pseudo path mismatches on various build machines. Removing
+TMPDIR solved the problem, but I did some digging to see if I find the
+source of the problem.
+
+First of all: The wiki page about pseudo aborts [1] is generally a good
+thing, I hope it gets higher into search machines result lists as time
+passes (a week ago I didn't find it at all, now it's result #4 on
+Google for "yocto exit code 134" which is okay).
+
+Second, a nice message was added to sanity.bbclass that the user should
+clean the TMPDIR and rebuild. Sadly, an override of the OELAYOUT_ABI
+variable in meta-poky/conf/distro/poky.conf suppressed this message for
+dunfell 3.1.6. It's fixed in the branch for 3.1.7 (the offending code
+was removed).
+
+# $OELAYOUT_ABI [2 operations]
+#   set /workdir/build/../layers/poky/meta/conf/abi_version.conf:7
+#     "14"
+#   set /workdir/build/../layers/poky/meta-
+poky/conf/distro/poky.conf:76
+#     "12"
+# pre-expansion value:
+#   "12"
+OELAYOUT_ABI="12"
+
+Maybe we should add a section about that bug which suppresses the
+message and that emptying the TMPDIR is recommended when updating to
+3.1.6 from an older release to the wiki page?
+
+I haven't checked if this also affects other versions.
+
+[1]: https://wiki.yoctoproject.org/wiki/Pseudo_Abort
 
-Hello,
-
-We are experiencing a build failures only on our build servers, but not
-using the same containerised build environment locally, which is
-confusing to say the least. We have already tried the nuclear option
-and deleted all the caches to no avail.
-
-The following is the error message we are getting, if anyone has an
-idea for further debugging it would be much appreciated:
-
-ERROR: keepalived-2.1.5-r0 do_package: Error executing a python
-function in exec_python_func() autogenerated:
-
-
-The stack trace of python calls that resulted in this exception/failure
-was:
-
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-
-     0001:
-
- *** 0002:perform_packagecopy(d)
-
-     0003:
-
-File: '/var/sstate/build/intel-corei7-
-64/poky/build/conf/../../../poky/meta/classes/package.bbclass', lineno:
-826, function: perform_packagecopy
-
-     0822:        rpath_replace (dvar, d)
-
-     0823:}
-
-     0824:perform_packagecopy[cleandirs] =3D "${PKGD}"
-
-     0825:perform_packagecopy[dirs] =3D "${PKGD}"
-
- *** 0826:
-
-     0827:# We generate a master list of directories to process, we
-start by
-
-     0828:# seeding this list with reasonable defaults, then load from
-
-     0829:# the fs-perms.txt files
-
-     0830:python fixup_perms () {
-
-File: '/usr/lib/python3.6/subprocess.py', lineno: 356, function:
-check_output
-
-     0352:        # empty string. That is maintained here for backwards
-compatibility.
-
-     0353:        kwargs['input'] =3D '' if
-kwargs.get('universal_newlines', False) else b''
-
-     0354:
-
-     0355:    return run(*popenargs, stdout=3DPIPE, timeout=3Dtimeout,
-check=3DTrue,
-
- *** 0356:               **kwargs).stdout
-
-     0357:
-
-     0358:
-
-     0359:class CompletedProcess(object):
-
-     0360:    """A process that has finished running.
-
-File: '/usr/lib/python3.6/subprocess.py', lineno: 438, function: run
-
-     0434:            raise
-
-     0435:        retcode =3D process.poll()
-
-     0436:        if check and retcode:
-
-     0437:            raise CalledProcessError(retcode, process.args,
-
- *** 0438:                                     output=3Dstdout,
-stderr=3Dstderr)
-
-     0439:    return CompletedProcess(process.args, retcode, stdout,
-stderr)
-
-     0440:
-
-     0441:
-
-     0442:def list2cmdline(seq):
-
-Exception: subprocess.CalledProcessError: Command 'tar -cf - -C
-/var/sstate/build/intel-corei7-64/poky/build/tmp-glibc/work/corei7-64-
-holoplot-linux/keepalived/2.1.5-r0/image -p -S . | tar -xf - -C
-/var/sstate/build/intel-corei7-64/poky/build/tmp-glibc/work/corei7-64-
-holoplot-linux/keepalived/2.1.5-r0/package' returned non-zero exit
-status 2.
-
-
-Subprocess output:
-
-abort()ing pseudo client by server request. See
-https://wiki.yoctoproject.org/wiki/Pseudo_Abort for more details on
-this.
-
-Check logfile: /var/sstate/build/intel-corei7-64/poky/build/tmp-
-glibc/work/corei7-64-holoplot-linux/keepalived/2.1.5-
-r0/pseudo//pseudo.log
-
-Aborted (core dumped)
-
-tar: Unexpected EOF in archive
-
-tar: Unexpected EOF in archive
-
-tar: Error is not recoverable: exiting now
-
-
-Best regards,
-
-Morgan
-
-
---=20
-=20
-<http://holoplot.com/?utm_source=3Demail&utm_medium=3Dsg&utm_campaign=3DHol=
-oplot_Signature+>
-
- <https://holoplot.com/>*HOLOPLOT GmbH - Headquarters*
-
-
-Ringbahnstr. 12=20
-(10-14) / A2
-
-12099 Berlin, Germany
-
-+49 (0) 30 40745812
-
-
-
-
-*HOLOPLOT GmbH=20
-- Manufacturing*
-
-
-Alboinstr. 17-23 / Hall 12
-
-12103 Berlin, Germany
-
-+49=20
-(0) 30 959988740
-
-
-www.holoplot.com <https://holoplot.com/>
-
-
-
-Follow us on=20
-<https://www.facebook.com/OriginalHOLOPLOT/?utm_source=3Demail&utm_medium=
-=3Dsg&utm_campaign=3DHoloplot_Signature+>=20
-LinkedIn=20
-<https://www.linkedin.com/company/holoplot-gmbh?utm_source=3Demail&utm_medi=
-um=3Dsg&utm_campaign=3DHoloplot_Signature+>.=20
-
-
-
-
-Roman Sick =E2=80=93 CEO | HRB183974B, Register Court Charlottenburg, Germa=
-ny |=20
-EU Tax-Registration No. DE277000701 This e-mail contains confidential=20
-and/or privileged information. If you are not the intended recipient (or=20
-have received this e-mail in error) please notify the sender immediately=20
-and destroy this e-mail. Any unauthorized copying, disclosure or=20
-distribution of the information in this e-mail is strictly forbidden.
