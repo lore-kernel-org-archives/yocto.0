@@ -1,76 +1,73 @@
-Subject: Re: [yocto-rocko] : fsl-community-bsp X11 build touch screen calibration issue on iMX6UL
-To: yocto@lists.yoctoproject.org
-From: "rohit jadhav" <rohitbjadhav1@gmail.com>
-X-Originating-Location: Pune, Maharashtra, IN (157.33.98.9)
-X-Originating-Platform: Linux Firefox 66
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
+ by mx.groups.io with SMTP id smtpd.web12.7525.1618831143800879533
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 19 Apr 2021 04:19:03 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=mykEPe70;
+ spf=pass (domain: gmail.com, ip: 209.85.222.44, mailfrom: murugesh.pappu@gmail.com)
+Received: by mail-ua1-f44.google.com with SMTP id c19so1590590uap.5
+        for <yocto@lists.yoctoproject.org>; Mon, 19 Apr 2021 04:19:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Ms6SVzTSC63bydhXK7jeoEOmG3TPfzXmmzUC3CREpMM=;
+        b=mykEPe70Vtz+TKHyUwWyhn6osok0j3KWyDCyREfMCrw65CX+BiFcacWVnwMeTtL9wa
+         5KkHV43VUMH0ROxdoRRNQzX1Ut4VXDr8MKwnDPT1Nz+r/84VKlrYJbWPyLznSqDiDjNL
+         ytAJKN8cSvvCc3lf+hP/xuiXjwpuLkmb7toxu10Gs6y016G8wNBEnnrg1R2PoHO2hb/B
+         mK82PL3FUzMl2IrxWOqa51TrtxyvmhfEls13l/qTVJDvV/wJH/tqoNIfyyANz8O0PNSK
+         34lw9nyYqZQiqJ/ueShrXKHoxwJpJRyu2ZcnAlSajb0Mk5CA6oBfEnH2RdzWgFl+hxQ3
+         uBpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Ms6SVzTSC63bydhXK7jeoEOmG3TPfzXmmzUC3CREpMM=;
+        b=Btjmyu1XBJI5oVh595T6XbOm1xG+YdOy59wKrvp9+YBVK6iwDwf6TmZLOtKsVsIHY3
+         2QBnAjYOva+j0M0bCoJ+N0RDZeGV5ew+NPrXZjGgu4FHMu907Pkk7gNF9YqD3GdJ1bX+
+         Mull0HZ/2V1Ylvp8cf7vkAhMPpV22eloKfjWsHRyi6j8aE6QSH1mltlCZ//gHiRhJ1m+
+         AoiUya2j2sc0QWcAwqJAizYA4XdDCgPzV99bk14WfnSNeSwYiRD4qaqTbSYfpxr45nYC
+         yXc2LSY1o5hZsO6eE2v+S5Re+eEfzDlrgChrwobxhxxir7XI0r0FYYkAVMXcP92lf80i
+         EUkA==
+X-Gm-Message-State: AOAM533ElTalu2OzR+erg2QWe9IyRR5umW40es4JRaAQJMGxPOnn1MuW
+	ujP7nvnlYu/+IZbY+MfVeePpxm9n1hoIlc7AuWS+fYGn
+X-Google-Smtp-Source: ABdhPJzMp27fuIniegghzoUY/LEtCxRKUizNMFHq3nRgNbpxBTSV7uciRd5pIpAxe1PTyocn5qUg6dlBidaND3WzKpw=
+X-Received: by 2002:a4a:b997:: with SMTP id e23mr13041331oop.13.1618830811208;
+ Mon, 19 Apr 2021 04:13:31 -0700 (PDT)
 MIME-Version: 1.0
-Date: Mon, 19 Apr 2021 03:19:52 -0700
-References: <025901d48bd4$aabe8fd0$003baf70$@renuelectronics.com>
-In-Reply-To: <025901d48bd4$aabe8fd0$003baf70$@renuelectronics.com>
-Message-ID: <5487.1618827592883821244@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="QqGa0gk7ZemMjh8LFUKj"
+From: "Murugesh M" <murugesh.pappu@gmail.com>
+Date: Mon, 19 Apr 2021 16:43:19 +0530
+Message-ID: <CAOpumBkfLArN6SLspXxQBKXuC9B+7Sx5-QTERhrBSYk20Y0Bnw@mail.gmail.com>
+Subject: Verifying Yocto image in beaglebone
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000741fcf05c0516b37"
 
---QqGa0gk7ZemMjh8LFUKj
-Content-Type: text/plain; charset="utf-8"
+--000000000000741fcf05c0516b37
+Content-Type: text/plain; charset="UTF-8"
+
+Hello
+
+I have built the Yocto gatesgarth image for Beaglebone black. Then I loaded
+the image in SD card and booted with beagle.
+
+Is there any way to check whether the image is built and working with
+beagle correctly?
+
+Please suggest.
+
+Note: I don't have UART to usb converter with me.
+
+Thanks.
+
+--000000000000741fcf05c0516b37
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello ,
-I am experiencing same issue for Rocko build rootfs with QT application fo=
-r X11.
+<div dir=3D"auto">Hello<div dir=3D"auto"><br><div dir=3D"auto">I have built=
+ the Yocto gatesgarth image for Beaglebone black. Then I loaded the image i=
+n SD card and booted with beagle.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Is there any way to check whether the image is built and working =
+with beagle correctly?</div><div dir=3D"auto"><br></div><div dir=3D"auto">P=
+lease suggest.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Note: I d=
+on&#39;t have UART to usb converter with me.</div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto">Thanks.</div></div></div>
 
-I have tried the solution provided by Max , but it did not worked for me.
-
-as Per my log :
-Using calibration data stored in /etc/pointercal.xinput
-Invalid format 42060
-unable to find device EETI eGalax Touch Screen
-INFO: width=3D1024, height=3D600
-imx6ull14x14evk login: RandR extension missing
-matchbox: Cant find a keycode for keysym 269025056
-matchbox: ignoring key shortcut XF86Calendar=3D!$contacts
-
-matchbox: Cant find a keycode for keysym 2809
-matchbox: ignoring key shortcut telephone=3D!$dates
-
-matchbox: Cant find a keycode for keysym 269025050
-matchbox: ignoring key shortcut XF86Start=3D!matchbox-remote -desktop
-
-Activating service name=3D'org.a11y.atspi.Registry'
-Successfully activated service 'org.a11y.atspi.Registry'
-SpiRegistry daemon is running with well-known name - org.a11y.atspi.Regist=
-ry
-random: nonblocking pool is initialized
-
-I have used Touch screen module of TFT TOUCH MODULE ,MODULE NO. : SF 70175=
-.
-
-Please provide some guidance.
-Thank You.
-
-Regards
-Rohit J.
-
---QqGa0gk7ZemMjh8LFUKj
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello ,<br />I am experiencing same issue for Rocko build rootfs with QT ap=
-plication for X11.<br /><br />I have tried the solution provided by Max , b=
-ut it did not worked for me.<br /><br />as Per my log :<br />Using calibrat=
-ion data stored in /etc/pointercal.xinput<br />Invalid format 42060<br />un=
-able to find device EETI eGalax Touch Screen<br />INFO: width=3D1024, heigh=
-t=3D600<br />imx6ull14x14evk login: RandR extension missing<br />matchbox: =
-Cant find a keycode for keysym 269025056<br />matchbox: ignoring key shortc=
-ut XF86Calendar=3D!$contacts<br /><br />matchbox: Cant find a keycode for k=
-eysym 2809<br />matchbox: ignoring key shortcut telephone=3D!$dates<br /><b=
-r />matchbox: Cant find a keycode for keysym 269025050<br />matchbox: ignor=
-ing key shortcut XF86Start=3D!matchbox-remote -desktop<br /><br />Activatin=
-g service name=3D'org.a11y.atspi.Registry'<br />Successfully activated serv=
-ice 'org.a11y.atspi.Registry'<br />SpiRegistry daemon is running with well-=
-known name - org.a11y.atspi.Registry<br />random: nonblocking pool is initi=
-alized<br /><br />I have used Touch screen module of TFT TOUCH MODULE ,MODU=
-LE NO. : SF 70175.<br /><br />Please provide some guidance.<br />Thank You.=
-<br /><br />Regards<br />Rohit J.
-
---QqGa0gk7ZemMjh8LFUKj--
+--000000000000741fcf05c0516b37--
