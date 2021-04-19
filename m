@@ -1,54 +1,54 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.5403.1618814528861600017
+ by mx.groups.io with SMTP id smtpd.web10.5405.1618814532486049950
  for <yocto@lists.yoctoproject.org>;
- Sun, 18 Apr 2021 23:42:08 -0700
+ Sun, 18 Apr 2021 23:42:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=es+rtE2J;
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=cnMinmP2;
  spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: liu.ming50@gmail.com)
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id BF96C38C05BA
-	for <yocto@yoctoproject.org>; Mon, 19 Apr 2021 06:42:08 +0000 (UTC)
-Received: by mail-lj1-f175.google.com with SMTP id l22so30695149ljc.9
-        for <yocto@yoctoproject.org>; Sun, 18 Apr 2021 23:42:08 -0700 (PDT)
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 1562838C06E9
+	for <yocto@yoctoproject.org>; Mon, 19 Apr 2021 06:42:12 +0000 (UTC)
+Received: by mail-lf1-f51.google.com with SMTP id n138so54320435lfa.3
+        for <yocto@yoctoproject.org>; Sun, 18 Apr 2021 23:42:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=V71hNWZzqV5b+7HI/ns8Toxumo+rSo1TaPDhuf8siCo=;
-        b=es+rtE2JMmImcZwWbAHzJA5U7Hp15GpB5JEDyYzHKxYI2NeE95rpnor3CKwDZ1GTCK
-         437mfI5DLvSUcoZOX7gqyw92NbqbAVgMwQx6apG3xD/CyGp7YcL84VfMTYYpyf0pjDur
-         zDk5QSM4SVENqbRdoVBGfn49oQ6oUUPV7ajEsd0uKB0IQmsoKP/QZZ4+B/Mf110DxKyb
-         ETtOdssHPuQWe/YHP2yRZwK0SCwVR9EHL0alD1GwuVr5TjmvQCWu+D6ArJA6tWAfCqdZ
-         /7ngGGopAQmcKZ97GkYms3aITt5iJGvCDLuJgPy7QL0cfrxck+mrHE31QYmXpX7nQecc
-         fE8A==
+        bh=PRS50Uy8HE6ElCuFrPQGJWN6U7lKcsioc3T58SJUtgY=;
+        b=cnMinmP2gKieXqHCSB3/cuiJfOLe/1jcrCWXmq/XTkp4j+x2ZR8mN1zTCNUyyHuqUc
+         Hr4KvNYLIn2ij1vzLZOH4wiYz7xHurgFu07PJPYFjr+ZTG1gnFGQiXhkdcpdNHuXL2cZ
+         Ph4mzFObsCxXd+N/utDVMdTnDq7nznmOX2o+t7pZvWCpcnL1XQXK7qrKSk/OoTtDOqYN
+         OA2oD5T3aa/psvsgyscQIdrueREPLs3w1Ynxzt7TX6EdifcpaupUSZseDLJst01M6U+8
+         HGCIbr/NiM5CsFGtCD9r9oNMArRNWO7fnkLkzKEGwEK7l/3WFC7+rb00y5oUzYHsU19C
+         Px5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=V71hNWZzqV5b+7HI/ns8Toxumo+rSo1TaPDhuf8siCo=;
-        b=EjTNjfixl2Q7QMm7tpxdYrV2S5AsNU1xfvwQQcmd/JDEeyRXikIFtQ5ROpGSYX+LYn
-         d/rLnpM6GM4WvK3W4SfyoA8uWmBBU78ZsJqkvUKUi6S5hytJvubu4AhKnBD6YxMJwz+U
-         +5TCXEhk1+0hOI+HyJGlslLBHklxQPDYykNMoFx21ZsDHqmN5y/pF3+L+6ht1OE9B1xQ
-         SxmYazZHNiqC3nUifhBbtTlavx4enWRXzyRAkG5tGsHNFlLPzyCpwT+WSoH3OHMBxHE0
-         f8WosWOrlJv7sW4cfigpgmMcP4I1T2dE+Ek+2TusefYKsMG7rm1+vUTic9LDRBllo+Ey
-         oRUQ==
-X-Gm-Message-State: AOAM533+GI6VXJC763CieckS4VemMEqQ7T7/+XYPrX+TKMhrdBUS0vE5
-	H3yW8eE9d10yagPV0JFkRjRn4T7m1utWTA==
-X-Google-Smtp-Source: ABdhPJzEcZd0NlWBRLiVwLo1efIxTsslD3zHU/kHXHV1f3f6seoNssOsn+4xQedSmBYJTvdtpl4BIA==
-X-Received: by 2002:a2e:5855:: with SMTP id x21mr10141797ljd.203.1618814527180;
-        Sun, 18 Apr 2021 23:42:07 -0700 (PDT)
+        bh=PRS50Uy8HE6ElCuFrPQGJWN6U7lKcsioc3T58SJUtgY=;
+        b=OKDpJv/8z0EoR65UYq+3tODxUy3Pfn+2nBVeWdlJoowFIvB+pJxAw8C3hvN1mTLyuq
+         N4eYncecms2vCSuvLCsIvwyfauywKhbpo3wLuEbBhE1KZuFohNHtZnqU88c0TcQXfQBY
+         JolqPZCAx6kD1Rbs3qxWZpd/dX/ozW3Uyd2+P3zzZzoCn7MifPY51uRr8DaPAPxLiJEi
+         ATaepoEFUi3p77Su3hFiDCx1/rv3M2Wt9ZobTi4axbXWuPt9fpCvUyc4hX5tOMt/dY3Q
+         T0hbQqqdsLTlKGu9nDar0eSwgm3bQY3hbgELAaX8tFDkDu+U/1aUEeYQapJ5J15c63dn
+         RTpQ==
+X-Gm-Message-State: AOAM531a++JvkrKdloV1Gwpup6aTGfoFk/bdvuIV45ygVbt6TCYx0Xec
+	muMLmC6qB9p02hB58nuIMOa1Vn3Ue2yl+g==
+X-Google-Smtp-Source: ABdhPJw31XcxMYHcSuuB9r5v8C/Ovwxy6BTe+su7v/7rYVFT4HmcRA3CIDfuIL5eLbIhDSjjgmwDrw==
+X-Received: by 2002:a19:c218:: with SMTP id l24mr8262052lfc.529.1618814530414;
+        Sun, 18 Apr 2021 23:42:10 -0700 (PDT)
 Received: from localhost.localdomain ([2a00:801:234:864a:9887:2624:8ad3:e96d])
-        by smtp.gmail.com with ESMTPSA id q29sm602509lfd.264.2021.04.18.23.42.06
+        by smtp.gmail.com with ESMTPSA id q29sm602509lfd.264.2021.04.18.23.42.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Apr 2021 23:42:06 -0700 (PDT)
+        Sun, 18 Apr 2021 23:42:10 -0700 (PDT)
 From: "Ming Liu" <liu.ming50@gmail.com>
 To: yocto@yoctoproject.org
 Cc: akuster808@gmail.com,
 	sergio.prado@toradex.com,
 	Ming Liu <liu.ming50@gmail.com>
-Subject: [meta-security] [dunfell] [PATCH 1/3] ima-evm-keys: add file-checksums to IMA_EVM_X509
-Date: Mon, 19 Apr 2021 08:41:57 +0200
-Message-Id: <20210419064159.12487-2-liu.ming50@gmail.com>
+Subject: [meta-security] [dunfell] [PATCH 2/3] meta: drop IMA_POLICY from policy recipes
+Date: Mon, 19 Apr 2021 08:41:58 +0200
+Message-Id: <20210419064159.12487-3-liu.ming50@gmail.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20210419064159.12487-1-liu.ming50@gmail.com>
 References: <20210419064159.12487-1-liu.ming50@gmail.com>
@@ -57,27 +57,119 @@ Content-Transfer-Encoding: quoted-printable
 
 From: Ming Liu <liu.ming50@gmail.com>
 
-This ensures when a end user change the IMA_EVM_X509 key file,
-ima-evm-keys recipe will be rebuilt.
+IMA_POLICY is being referred as policy recipe name in some places and it
+is also being referred as policy file in other places, they are
+conflicting with each other which make it impossible to set a IMA_POLICY
+global variable in config file.
+
+Fix it by dropping IMA_POLICY definitions from policy recipes
 
 Signed-off-by: Ming Liu <liu.ming50@gmail.com>
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb | 1 +
- 1 file changed, 1 insertion(+)
+ .../ima-policy-appraise-all_1.0.bb                       | 9 ++-------
+ .../ima_policy_hashed/ima-policy-hashed_1.0.bb           | 9 ++-------
+ .../ima_policy_simple/ima-policy-simple_1.0.bb           | 9 ++-------
+ 3 files changed, 6 insertions(+), 21 deletions(-)
 
-diff --git a/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.=
-0.bb b/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
-index 62685bb..7708aef 100644
---- a/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
-+++ b/meta-integrity/recipes-security/ima-evm-keys/ima-evm-keys_1.0.bb
-@@ -14,3 +14,4 @@ do_install () {
-         lnr ${D}${sysconfdir}/keys/x509_evm.der ${D}${sysconfdir}/keys/x=
-509_ima.der
-     fi
+diff --git a/meta-integrity/recipes-security/ima_policy_appraise_all/ima-=
+policy-appraise-all_1.0.bb b/meta-integrity/recipes-security/ima_policy_a=
+ppraise_all/ima-policy-appraise-all_1.0.bb
+index da62a4c..84ea161 100644
+--- a/meta-integrity/recipes-security/ima_policy_appraise_all/ima-policy-=
+appraise-all_1.0.bb
++++ b/meta-integrity/recipes-security/ima_policy_appraise_all/ima-policy-=
+appraise-all_1.0.bb
+@@ -2,19 +2,14 @@ SUMMARY =3D "IMA sample simple appraise policy "
+ LICENSE =3D "MIT"
+ LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
+b788c80a0384361b4de20420"
+=20
+-# This policy file will get installed as /etc/ima/ima-policy.
+-# It is located via the normal file search path, so a .bbappend
+-# to this recipe can just point towards one of its own files.
+-IMA_POLICY ?=3D "ima_policy_appraise_all"
+-
+-SRC_URI =3D " file://${IMA_POLICY}"
++SRC_URI =3D " file://ima_policy_appraise_all"
+=20
+ inherit features_check
+ REQUIRED_DISTRO_FEATURES =3D "ima"
+=20
+ do_install () {
+     install -d ${D}/${sysconfdir}/ima
+-    install ${WORKDIR}/${IMA_POLICY}  ${D}/${sysconfdir}/ima/ima-policy
++    install ${WORKDIR}/ima_policy_appraise_all ${D}/${sysconfdir}/ima/im=
+a-policy
  }
-+do_install[file-checksums] +=3D "${@'${IMA_EVM_X509}:%s' % os.path.exist=
-s('${IMA_EVM_X509}')}"
+=20
+ FILES_${PN} =3D "${sysconfdir}/ima"
+diff --git a/meta-integrity/recipes-security/ima_policy_hashed/ima-policy=
+-hashed_1.0.bb b/meta-integrity/recipes-security/ima_policy_hashed/ima-po=
+licy-hashed_1.0.bb
+index ebb0426..ff7169e 100644
+--- a/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed=
+_1.0.bb
++++ b/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed=
+_1.0.bb
+@@ -2,13 +2,8 @@ SUMMARY =3D "IMA sample hash policy"
+ LICENSE =3D "MIT"
+ LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
+b788c80a0384361b4de20420"
+=20
+-# This policy file will get installed as /etc/ima/ima-policy.
+-# It is located via the normal file search path, so a .bbappend
+-# to this recipe can just point towards one of its own files.
+-IMA_POLICY ?=3D "ima_policy_hashed"
+-
+ SRC_URI =3D " \
+-    file://${IMA_POLICY} \
++    file://ima_policy_hashed \
+ "
+=20
+ inherit features_check
+@@ -16,7 +11,7 @@ REQUIRED_DISTRO_FEATURES =3D "ima"
+=20
+ do_install () {
+     install -d ${D}/${sysconfdir}/ima
+-    install ${WORKDIR}/${IMA_POLICY}  ${D}/${sysconfdir}/ima/ima-policy
++    install ${WORKDIR}/ima_policy_hashed ${D}/${sysconfdir}/ima/ima-poli=
+cy
+ }
+=20
+ FILES_${PN} =3D "${sysconfdir}/ima"
+diff --git a/meta-integrity/recipes-security/ima_policy_simple/ima-policy=
+-simple_1.0.bb b/meta-integrity/recipes-security/ima_policy_simple/ima-po=
+licy-simple_1.0.bb
+index cb4b6b8..0e56aec 100644
+--- a/meta-integrity/recipes-security/ima_policy_simple/ima-policy-simple=
+_1.0.bb
++++ b/meta-integrity/recipes-security/ima_policy_simple/ima-policy-simple=
+_1.0.bb
+@@ -2,19 +2,14 @@ SUMMARY =3D "IMA sample simple policy"
+ LICENSE =3D "MIT"
+ LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
+b788c80a0384361b4de20420"
+=20
+-# This policy file will get installed as /etc/ima/ima-policy.
+-# It is located via the normal file search path, so a .bbappend
+-# to this recipe can just point towards one of its own files.
+-IMA_POLICY ?=3D "ima_policy_simple"
+-
+-SRC_URI =3D " file://${IMA_POLICY}"
++SRC_URI =3D " file://ima_policy_simple"
+=20
+ inherit features_check
+ REQUIRED_DISTRO_FEATURES =3D "ima"
+=20
+ do_install () {
+     install -d ${D}/${sysconfdir}/ima
+-    install ${WORKDIR}/${IMA_POLICY}  ${D}/${sysconfdir}/ima/ima-policy
++    install ${WORKDIR}/ima_policy_simple ${D}/${sysconfdir}/ima/ima-poli=
+cy
+ }
+=20
+ FILES_${PN} =3D "${sysconfdir}/ima"
 --=20
 2.29.0
 
