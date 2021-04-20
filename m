@@ -1,75 +1,277 @@
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
- by mx.groups.io with SMTP id smtpd.web12.3507.1618878212076281677
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.3745.1618879874967577549
  for <yocto@lists.yoctoproject.org>;
- Mon, 19 Apr 2021 17:23:32 -0700
+ Mon, 19 Apr 2021 17:51:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: redrectangle.org, ip: 217.70.183.197, mailfrom: robert.joslyn@redrectangle.org)
-X-Originating-IP: 173.197.191.182
-Received: from macbook-air.localdomain (rrcs-173-197-191-182.west.biz.rr.com [173.197.191.182])
-	(Authenticated sender: robert.joslyn@redrectangle.org)
-	by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 0C2CD1C0004;
-	Tue, 20 Apr 2021 00:23:28 +0000 (UTC)
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.60.0.2.21\))
-Subject: Re: [yocto] [meta-gplv2] [PATCH] conf/distro: Add removal of btrfs-tools from util-linux ptest depends
-From: "Robert Joslyn" <robert.joslyn@redrectangle.org>
-In-Reply-To: <CAAnfSTsgWjNbpQHZs9wzL2T_3+Mi4FhngP23A8rBMgUur2Sayg@mail.gmail.com>
-Date: Mon, 19 Apr 2021 17:23:25 -0700
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>,
- yocto@lists.yoctoproject.org
-Message-Id: <9C8F19BA-B505-43D5-8FA2-C4A643361C9C@redrectangle.org>
-References: <20210419204657.1477082-1-richard.purdie@linuxfoundation.org>
- <CAAnfSTsgWjNbpQHZs9wzL2T_3+Mi4FhngP23A8rBMgUur2Sayg@mail.gmail.com>
-To: Ross Burton <ross@burtonini.com>
-X-Mailer: Apple Mail (2.3654.60.0.2.21)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=MjR17Sxo;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id E2B7E38C027C
+	for <yocto@yoctoproject.org>; Tue, 20 Apr 2021 00:51:12 +0000 (UTC)
+Received: by mail-pf1-f170.google.com with SMTP id m11so24371558pfc.11
+        for <yocto@yoctoproject.org>; Mon, 19 Apr 2021 17:51:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=s5Qv6RzX45+OO3AApp62DNtgidOMe96LAwovPcHsnbs=;
+        b=MjR17SxoMmeS8LhYI3Lkqquc+ZZY4nNxsfzAVXdC7a+ZZyiYruSj/qfP26LNHZjRo0
+         0SktdLoObYIEKNZae9j14ZMpt/DMqcwCQg1d5gruVvEq+Nov5BfCh7rWaggyH8WG/L8Q
+         kSvLIqaTs1WVx4/IDD4mIoW7A352wm87IaYV6t39q4JHdA0C+vzr6sg16lydqq0v1RJ3
+         dYB6pc1IV/0SAK/7BGma8G+gHsoQpLl9vSGNwzukeGpxkc3C2gbpsvh9IuAgSaw7SwlE
+         jRtBEFjIUjSnWz9rQ1Ynx7cgD7eDrMIfHnr3TP4Zjs3IuH6a3YfUbJn0NS5xM6xHsl/B
+         pxSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=s5Qv6RzX45+OO3AApp62DNtgidOMe96LAwovPcHsnbs=;
+        b=SULGvjioIpOeOBiyIF403MVQLtT3i5Y/sZfQFPOTkpZB2JKJO7pvnKTVysQC6CSA0B
+         KAdzXM8EWpe3w4xQiPrGr8VWDDZwtomzn3Q5lOZ9H9YlucOsTWZTdDjEqNZVk3ZfbRER
+         tA+Njq03vSWgP8Woe782peYK+G6k6Vj0GIYnGvgURzZxS2FPZ2gYYnjsIOdlqQYrUxsj
+         8Aj/Pw6jqDjMYTSdTrcWC0KqVxJiR9C4SbT5Y8QZgiHznkrQXUOyfclrhjd4bUAY0Zq9
+         60Y/ClI9PujFx5dIIi/Nynmhg2bkgGzg+OrtO+OseuYjBv8XZh1CmzrH7CXP86w4sde6
+         iRdw==
+X-Gm-Message-State: AOAM530pubdSPyMg3GSUmxUyZ8Z+LTcFT5CaHn9zkdWlL67it97G2PPd
+	CzVy6eWNFzMC28d7FNn4i2o=
+X-Google-Smtp-Source: ABdhPJxzZ27JmtSMbi3o66b+BHHwX17z+fgamBpSTleOTnmsUobsS9CdgjEU7xWtcjGOCUc+KkIbQA==
+X-Received: by 2002:a62:d153:0:b029:257:9600:c95a with SMTP id t19-20020a62d1530000b02902579600c95amr21859055pfl.78.1618879872222;
+        Mon, 19 Apr 2021 17:51:12 -0700 (PDT)
+Received: from skjolley (wsip-72-194-163-85.ph.ph.cox.net. [72.194.163.85])
+        by smtp.gmail.com with ESMTPSA id oa9sm516736pjb.44.2021.04.19.17.51.11
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 19 Apr 2021 17:51:11 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 19 Apr 2021 17:51:10 -0700
+Message-ID: <06a201d7357f$42450fe0$c6cf2fa0$@gmail.com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQDkAkMuDMwxw5iFDogTppe009IVFA==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_06A3_01D73544.95E8A8E0"
+Content-Language: en-us
+
+------=_NextPart_000_06A3_01D73544.95E8A8E0
 Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Just to clarify, btrfs-tools has always had an LGPL-3.0 library (libbtrfsut=
-il), the recipe just never declared it before. Upstream is relicensing that=
- library to LGPL-2.1+, which should be done for the next release.
+All,
 
-Sorry about this, I sent the update and didn=E2=80=99t realize it broke th=
-e non-gplv3 builds. I=E2=80=99ll keep an eye out for the next upstream rele=
-ase which should allow this patch to be reverted.
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 357
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.2", "3.3, "3.99" and "Future", the more pressing/urgent issues
+being in "3.2" and then "3.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
 
 Thanks,
-Robert
 
-> On Apr 19, 2021, at 2:29 PM, Ross Burton <ross@burtonini.com> wrote:
->=20
-> +1.
->=20
-> Ross
->=20
-> On Mon, 19 Apr 2021 at 21:47, Richard Purdie
-> <richard.purdie@linuxfoundation.org> wrote:
->>=20
->> btrfs-tools has changed to LGPL-3.1 so to allow util-linux to build,
->> remove the dependency from its ptest package. This may regress some
->> ptests but keeps the gplv2 layer working.
->>=20
->> Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
->> ---
->> conf/distro/include/disable-gplv3.inc | 1 +
->> 1 file changed, 1 insertion(+)
->>=20
->> diff --git a/conf/distro/include/disable-gplv3.inc b/conf/distro/includ=
-e/disable-gplv3.inc
->> index bded378..3285543 100644
->> --- a/conf/distro/include/disable-gplv3.inc
->> +++ b/conf/distro/include/disable-gplv3.inc
->> @@ -1,3 +1,4 @@
->> INCOMPATIBLE_LICENSE =3D '*GPLv3*'
->> WARN_QA_remove =3D 'incompatible-license'
->> RDEPENDS_${PN}-ptest_remove_pn-glib-2.0 =3D "python3-dbusmock"
->> +RDEPENDS_${PN}-ptest_remove_pn-util-linux =3D "btrfs-tools"
->> --
->> 2.30.2
->>=20
->>=20
->>=20
->>=20
->=20
->=20
+ 
 
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_06A3_01D73544.95E8A8E0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_1111_01D72FC1.1F0083C0";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 357 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.2&#8221;, &#8220;3.3, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.2&quot; and then &#8220;3.3&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_06A3_01D73544.95E8A8E0--
