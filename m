@@ -1,193 +1,129 @@
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web10.10193.1618923586555934565
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+ by mx.groups.io with SMTP id smtpd.web11.10324.1618923937366550281
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 Apr 2021 05:59:48 -0700
+ Tue, 20 Apr 2021 06:05:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=FG3heF+R;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1618923586; x=1776603586;
-  h=from:to:subject:date:mime-version;
-  bh=zCbeNXU++g/VEk2jTdYk1ikLHGE87z/5iXifHjYI61Q=;
-  b=FG3heF+RsOq9VN8v/d4J542qL06PF16U8uDOAFmwlL7D52CINyTz7pSe
-   4/s8m/Iu7EnHdh//DTpDlHoY1q381EF5m6Qo/HDHBnBtub/wx7wAfi0Km
-   TrT9ZsHeHUghmUD6jDm+NV7+9TSTsGeGM9ryuZ7kMv78NFSHy3sreh37f
-   w=;
-IronPort-SDR: 5i/845WoScEKo/junD6giykd8n6WW2BeqplzzS8cCPstfdjDiEzR7SosEpKUpQnL7WOWOGFjFD
- Bry777G5xEeA==
-IronPort-PHdr: =?us-ascii?q?A9a23=3AtH6Y1xZC/mKVcyghQ0cQzmv/LTGg0IqcDmYuw?=
- =?us-ascii?q?qpisKpHd+GZx7+nAna3zctkgFKBZ4jH8fUM07OQ7/mxHzZYvN3a7zgrS99lb?=
- =?us-ascii?q?1c9k8IYnggtUoauKHbQC7rUVRE8B9lIT1R//nu2YgB/Ecf6YEDO8DXptWZBU?=
- =?us-ascii?q?hrwOhBoKevrB4Xck9q41/yo+53Ufg5EmCexbal9IRmrqQjdrNcajZdiJ6o+x?=
- =?us-ascii?q?BbEoGZDdvhLy29vOV+dhQv36N2q/J5k/SRQuvYh+NBFXK7nYak2TqFWASo/P?=
- =?us-ascii?q?Wwt68LlqRfMTQ2U5nsBSWoWiQZHAxLE7B7hQJj8tDbxu/dn1ymbOc32Sq00W?=
- =?us-ascii?q?Sin4qx2RhLklDsLOjgk+2zRl8d+jr9UoAi5qhJ/3YDafZ2VOvR9cKPcYdwVS?=
- =?us-ascii?q?nFMUdxNWyxDGI6wc5cDA/QHMO1Fr4f9vVwOrR6mCAWiA+3vzTlIhmTo0qIky?=
- =?us-ascii?q?OQtCRzN0hE8H90QrnTbstP1P7oMXOuoyKXHwyjNY/ZY1Tzg74XIaQwhru+SX?=
- =?us-ascii?q?b1ud8rd00wvFwTDjlWLt4PqISiV2/8WvGeB8eVgTuKui3U7qw5vpziv3d0gh?=
- =?us-ascii?q?ZXOhoIQ013J8zhyz4kpK9OiUkF7fcKkH4VKtyGcL4Z4TM0vTn1ptSs4y7AKp?=
- =?us-ascii?q?4O3cTYJxZknwxPSZPOKf5WG7B/jW+idPDN1iXBldb+whhu+7Fatx+n/W8S3z?=
- =?us-ascii?q?VtGsyVLn9/RvX4Ozxze8tWLRudn8kqv2zuDzR3f5+VKLEwulKfWK4YtzqMsm?=
- =?us-ascii?q?pYJvknOETX6lUrsgKOLdkgp/PWj5f79bbX8vJCcMpd5igT5MqszhMOyGf84M?=
- =?us-ascii?q?g0SX2iD/uS8yaHj8VX5QLpUiv02lbHUsI7AKsQboK65BhRV34In5hu7Ezuqz?=
- =?us-ascii?q?c4UnX8dI15fYx2IlZbmO0rOIfDjEfewnVGskCxxy//aOb3hB43BLnnFkLj/Y?=
- =?us-ascii?q?bZw81NQxBYpwd1R5Z9YEKwNLfb9V0PrtdHVDgc1MwmuzObmDNV92JkeWWWKA?=
- =?us-ascii?q?qKBK6PSrUGH5vwxLOmKfoMVvTH9K/4+5/Hwk3A5gkQQcrKz0pQJc3C5Hu9mI?=
- =?us-ascii?q?1mHbnrpmdcNC3sFvg07TODykl2NTSZTZ2quX6I7/jw6CIWmApvfRoCqm7GB2?=
- =?us-ascii?q?Ca7HoZKZmBdEFyNEXDoeJmYW/cLcCKSOMhhkj4aWre9V48tzxautBX1y+kvE?=
- =?us-ascii?q?u2BsDwfvo7k/Nx0/PHI0wA1/iBzF96a0WyGUydzhGxCD2sn26tjpmR5y0yfy?=
- =?us-ascii?q?u5phPdEEsRJ4PFEWRt8MoTTmb9UEdf3D0jkedGSRVu9Bp2dHTwvQ9R56JdOX?=
- =?us-ascii?q?n08UZ32lQzOwSesRboSkaeGCYcc+KvRxGnqO8t40DDN06x33ApueddGKWDz3?=
- =?us-ascii?q?v03zAPUHYOcyy2k?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AUwKcbapbVhwW2HicEvg5JakaV5vHL9V00z?=
- =?us-ascii?q?AX/kB9WHVpW+STncy2gbA/3Rj7lD4eVBgb6Ki9EYOHRm7R8oMwxIEXM6urUg?=
- =?us-ascii?q?WOghrSEKhJ64z+zzr8XxDv7+I179YRT4FSAMD9ZGIK6/rSzxK/F78bsbq62Y?=
- =?us-ascii?q?Cyg+DmyWxxCTtGUMhbhDtRLia+PglISBJdBZw/faDslfZvgza7Y3wYYoCaKx?=
- =?us-ascii?q?A+LpH+jubGnp7nfhIKbiRPgGfu7Q+A07LmDwOemi4XTjIn+8ZRzUH+jwf76q?=
- =?us-ascii?q?+/2svLryP06m7J45xa3Pvnx9dTbfb87fQ9FzT2hg6kILlmQr2J1QpFxN2H1V?=
- =?us-ascii?q?BCqqivnz4Qe+hj4XLYeW+45SDg3gHxuQxF11bSjX+Ch3zbp9flABoEYvAvua?=
- =?us-ascii?q?tpNj/ir2spppVVzb9C1WPxjessMTrw2ADGo+Xuez4vvEyuunYmmfMUlBVkIP?=
- =?us-ascii?q?YjQY4Ul6A50W9vVLc4dRiW1KkXVNNDK+zx37JsXWqnUljlnk9JqebBYl0/Gw?=
- =?us-ascii?q?7DW1MFt9CezlFt7QxE5kYc3YgFkn8L6ZI6TPB/lpr5G6lsjfVQQtQNbaR7bd?=
- =?us-ascii?q?1xPvefGyjKWhLDMGWbPFThGuUGIhv22u/K3Ik=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2DlAwBzz35g/0HBJQpagQkJgUmBI4F?=
- =?us-ascii?q?/gUyxG4F8CwEBAQEBAQEBAQgBNAQBAYZHJjUIDgIDAQEMAQEGAQEBAQEGBAG?=
- =?us-ascii?q?BA4VRDII4IoQeXgEMCWsmAQQbgmqBfqoFgTQaAmWEWIUbCQGBMIFlhRyCXoY?=
- =?us-ascii?q?DQY8tBIUgnVieZQcDgwydBB4PlEsDkDSVHqM+AgQCBAUCFoFWAYIQcIM6Txc?=
- =?us-ascii?q?CnHqBKwIGCgEBAwmLf4EQAQE?=
-X-IPAS-Result: =?us-ascii?q?A2DlAwBzz35g/0HBJQpagQkJgUmBI4F/gUyxG4F8CwEBA?=
- =?us-ascii?q?QEBAQEBAQgBNAQBAYZHJjUIDgIDAQEMAQEGAQEBAQEGBAGBA4VRDII4IoQeX?=
- =?us-ascii?q?gEMCWsmAQQbgmqBfqoFgTQaAmWEWIUbCQGBMIFlhRyCXoYDQY8tBIUgnVieZ?=
- =?us-ascii?q?QcDgwydBB4PlEsDkDSVHqM+AgQCBAUCFoFWAYIQcIM6TxcCnHqBKwIGCgEBA?=
- =?us-ascii?q?wmLf4EQAQE?=
-X-IronPort-AV: E=Sophos;i="5.82,236,1613433600"; 
-   d="scan'208,217";a="367321128"
-IronPort-SDR: chvOit2FIn2KCldgofWqatRBZOMejVPwJ37erB3hFyPO+I0ZSy03rksfle7tyZNMuZNigr65rO
- oCR4FQwW/6hQ==
-X-IronPort-AV: E=Sophos;i="5.82,236,1613433600"; 
-   d="scan'208,217";a="2861952"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: #yocto llvm support
-Thread-Topic: #yocto llvm support
-Thread-Index: Adc15CeJBNXiVQrnS+CDBQ6ketFtuQ==
-Date: Tue, 20 Apr 2021 12:59:44 +0000
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.6.100.33
-dlp-reaction: no-action
-x-originating-ip: [10.44.4.15]
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=oLF8jFip;
+ spf=pass (domain: gmail.com, ip: 209.85.218.47, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-ej1-f47.google.com with SMTP id r12so58184041ejr.5
+        for <yocto@lists.yoctoproject.org>; Tue, 20 Apr 2021 06:05:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=W8gjdFMxrOm4/Qz3Nep3oeWwerxnXTCVLiceqnrsqCE=;
+        b=oLF8jFipIFBcGFNHrcv08sOgzB2jbFYcI+c9MYqvwiFGdSoAM52v6vCH53pj4hM3BS
+         d4H2vO6NZ8wkRUeQC3k1kNjmwOFSx7HKoRRdEZ2SePCo1gwgCgIcyONKFGeGyQZbhPhd
+         5XCpgFZfxtWH3WqI1Nn9xYxCtwez2DEjOX3vczRVV2it4ZPlqc4EAneJV/FCZqR0IrRs
+         mknkTwr8VDBSxxRxZL+tObAkWKg6HQpTdn0QW+Uv+1JXG29wsbzusK8/HnEkipueDGjW
+         Pt82Unj2fo9iZ+saVoS4svqb1XgNKM+Le22OF6hH7yss29MbSVbxVRqmuU2Us+U1XNa5
+         y/1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=W8gjdFMxrOm4/Qz3Nep3oeWwerxnXTCVLiceqnrsqCE=;
+        b=N5jLzJv8DgegbFAQ3nzHirPENR9NLt4fPO9VkDaoAUGjfcmVCIJi+uWetPKRg7W+5Y
+         wt/FWhz1cBisgoCGH0RnLIrff3mAC40bVSPj8D76jFgTU38itRgLSswrcm4Cf0n1d46b
+         W8NIlaxUlJNeRkNuC9XFFU86++eLmydBDLJWYR14X1xCC3y4Tc3dxV76fryP1o+T2i+b
+         +8Du1iVMrCkul6tanjkzYc0v5SbjIUS8sE3E2+oKw6OnT9jfkH+0JtuMpwdC0YEo6YGP
+         BDMkduEd6cyCHZ9YWx50YUdBABGhUOikn8FDewRU4JdraEB6P0+6GgVybm5Elub80dvf
+         UjNw==
+X-Gm-Message-State: AOAM533EvQ7XAVXUwZ1KFn5At6UolVhZ6Nvh4DzJFvWlgXweQtThgfJX
+	qTCW+f44MEBb8OcFFjCuq/EUxEPT4S9rIwSWXSY=
+X-Google-Smtp-Source: ABdhPJyJHdG4mUbndsPDrrLoPH4daLG5MStHCgtoKnwaovsfRC/iuaHJbONYGs0Vq576LJ+IO5IksIN6k2M63bJOU5g=
+X-Received: by 2002:a17:906:3749:: with SMTP id e9mr18233586ejc.247.1618923935854;
+ Tue, 20 Apr 2021 06:05:35 -0700 (PDT)
 MIME-Version: 1.0
-Return-Path: steven.monsees@baesystems.com
-Message-ID: <MADEUP.1677926D36628F94.782@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_f4bdc04263474eb99fd144c0dc4b4f47baesystemscom_"
+References: <167790D9FF7CF994.30395@lists.yoctoproject.org>
+In-Reply-To: <167790D9FF7CF994.30395@lists.yoctoproject.org>
+From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
+Date: Tue, 20 Apr 2021 09:05:24 -0400
+Message-ID: <CADkTA4M7E-7V1e9447pnZJWZ49+rhwBwLrh3xxWtAMvNPknofQ@mail.gmail.com>
+Subject: Re: [yocto] [PATCH] linux-yocto/5.4: fix arm defconfig warnings
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
+	yocto <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
---_000_f4bdc04263474eb99fd144c0dc4b4f47baesystemscom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Obviously this is to the wrong list!
 
+It escaped before I could stop it :D
 
-Under ../poky/meta/recipes-devtools the is "llvm"...
+I've already resent to oe-core.
 
-Devtool search <component>
-Devtool sdk-install <component>
+Bruce
 
-Will add this component to my EXT SDK...
-
-Is this a fully functional llvm drop ?,
-(i.e. is it compatible with meta-clang?, and can I use them together to bui=
-ld 3rd party extensions for my platform ?)
-
-Is it better to add supported components this way rather than building them=
- in directly to EXT SDK ?
-
-Thanks,
-Steve
-
---_000_f4bdc04263474eb99fd144c0dc4b4f47baesystemscom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Tue, Apr 20, 2021 at 8:31 AM Bruce Ashfield via
+lists.yoctoproject.org
+<bruce.ashfield=gmail.com@lists.yoctoproject.org> wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Under ../poky/meta/recipes-devtools the is &#8220;ll=
-vm&#8221;&#8230;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Devtool search &lt;component&gt;<o:p></o:p></p>
-<p class=3D"MsoNormal">Devtool sdk-install &lt;component&gt;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Will add this component to my EXT SDK&#8230;<o:p></o=
-:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is this a fully functional llvm drop ?, <o:p></o:p><=
-/p>
-<p class=3D"MsoNormal">(i.e. is it compatible with meta-clang?, and can I u=
-se them together to build 3<sup>rd</sup> party extensions for my platform ?=
-)<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is it better to add supported components this way ra=
-ther than building them in directly to EXT SDK ?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Steve<o:p></o:p></p>
-</div>
-</body>
-</html>
+> From: Bruce Ashfield <bruce.ashfield@gmail.com>
+>
+> A recent fix to the kern-tools promoted some previously unseen
+> issues to warnings. This commit fixes them by tagging some BT
+> options as non-hardware so they won't generate warnings if they
+> don't appear in the final .config. These are sub BT options and
+> shouldn't warn when/if their controlling option is disabled by
+> a fragment.
+>
+>     d7fd0213b75 base: exclude some BT options as non-hardware
+>
+> Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
+> ---
+>  meta/recipes-kernel/linux/linux-yocto-rt_5.4.bb   | 2 +-
+>  meta/recipes-kernel/linux/linux-yocto-tiny_5.4.bb | 2 +-
+>  meta/recipes-kernel/linux/linux-yocto_5.4.bb      | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/meta/recipes-kernel/linux/linux-yocto-rt_5.4.bb b/meta/recipes-kernel/linux/linux-yocto-rt_5.4.bb
+> index e52c9ebe0e..a802a570a1 100644
+> --- a/meta/recipes-kernel/linux/linux-yocto-rt_5.4.bb
+> +++ b/meta/recipes-kernel/linux/linux-yocto-rt_5.4.bb
+> @@ -12,7 +12,7 @@ python () {
+>  }
+>
+>  SRCREV_machine ?= "324e77d816cf6434507ab29140beb24044009efa"
+> -SRCREV_meta ?= "5017570a130f142365dfdcd043d84143fdd6e255"
+> +SRCREV_meta ?= "d7fd0213b75ce9b6206f63dbdd435ab326598642"
+>
+>  SRC_URI = "git://git.yoctoproject.org/linux-yocto.git;branch=${KBRANCH};name=machine \
+>             git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=yocto-5.4;destsuffix=${KMETA}"
+> diff --git a/meta/recipes-kernel/linux/linux-yocto-tiny_5.4.bb b/meta/recipes-kernel/linux/linux-yocto-tiny_5.4.bb
+> index f07375c761..1edc632de7 100644
+> --- a/meta/recipes-kernel/linux/linux-yocto-tiny_5.4.bb
+> +++ b/meta/recipes-kernel/linux/linux-yocto-tiny_5.4.bb
+> @@ -17,7 +17,7 @@ KCONF_BSP_AUDIT_LEVEL = "2"
+>
+>  SRCREV_machine_qemuarm ?= "8463db325b93f0669446f68c19334cfe11ffb9c2"
+>  SRCREV_machine ?= "5f54b437b6502d3febee553100b2cb2a9e0c5f8a"
+> -SRCREV_meta ?= "5017570a130f142365dfdcd043d84143fdd6e255"
+> +SRCREV_meta ?= "d7fd0213b75ce9b6206f63dbdd435ab326598642"
+>
+>  PV = "${LINUX_VERSION}+git${SRCPV}"
+>
+> diff --git a/meta/recipes-kernel/linux/linux-yocto_5.4.bb b/meta/recipes-kernel/linux/linux-yocto_5.4.bb
+> index 4f056d6d82..3a9463af6a 100644
+> --- a/meta/recipes-kernel/linux/linux-yocto_5.4.bb
+> +++ b/meta/recipes-kernel/linux/linux-yocto_5.4.bb
+> @@ -23,7 +23,7 @@ SRCREV_machine_qemux86 ?= "5f54b437b6502d3febee553100b2cb2a9e0c5f8a"
+>  SRCREV_machine_qemux86-64 ?= "5f54b437b6502d3febee553100b2cb2a9e0c5f8a"
+>  SRCREV_machine_qemumips64 ?= "996fe040c8d8d01a9af6be42dae3844d127471bf"
+>  SRCREV_machine ?= "5f54b437b6502d3febee553100b2cb2a9e0c5f8a"
+> -SRCREV_meta ?= "5017570a130f142365dfdcd043d84143fdd6e255"
+> +SRCREV_meta ?= "d7fd0213b75ce9b6206f63dbdd435ab326598642"
+>
+>  # remap qemuarm to qemuarma15 for the 5.4 kernel
+>  # KMACHINE_qemuarm ?= "qemuarma15"
+> --
+> 2.19.1
+>
+>
+> 
+>
 
---_000_f4bdc04263474eb99fd144c0dc4b4f47baesystemscom_--
+
+-- 
+- Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end
+- "Use the force Harry" - Gandalf, Star Trek II
