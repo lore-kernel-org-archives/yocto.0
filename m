@@ -1,111 +1,88 @@
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
- by mx.groups.io with SMTP id smtpd.web09.10033.1618921856672536891
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.10143.1618923275956558860
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 Apr 2021 05:30:56 -0700
+ Tue, 20 Apr 2021 05:54:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=SwNCxytT;
- spf=pass (domain: gmail.com, ip: 209.85.222.173, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-qk1-f173.google.com with SMTP id z2so2056369qkb.9
-        for <yocto@lists.yoctoproject.org>; Tue, 20 Apr 2021 05:30:56 -0700 (PDT)
+ dkim=pass header.i=@smile-fr.20150623.gappssmtp.com header.s=20150623 header.b=YlezvayF;
+ spf=softfail (domain: smile.fr, ip: 198.145.29.25, mailfrom: yoann.congal@smile.fr)
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 3490238C05BA
+	for <yocto@yoctoproject.org>; Tue, 20 Apr 2021 12:54:33 +0000 (UTC)
+Received: by mail-ed1-f53.google.com with SMTP id h10so44892932edt.13
+        for <yocto@yoctoproject.org>; Tue, 20 Apr 2021 05:54:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=V1INWpMJkxLK1bi0HPxkI+HSlFZEzlDvSfc04NLS2Jc=;
-        b=SwNCxytTDMZNXR6Yk8Tmn8QN7jXjm/dWmIW3bTl96t6oRs4ArP8OsY+KOkff7vtjxS
-         HrlYoqZoI6zouC6Hiws/P/pYiEcalcPdk72yZorhwwCTpLcNukkXUuBBU97MYnQ8Qsqy
-         M1iKHydIKdBUK5Y9ApDpEiv2DVLboMTv1aRjmPBUPUoDB7sfY/jvtq0eWE0DswXEyIHB
-         JgWPlqEg+X3EjReBsdFWFsKPEA+mqYULlJt+TNM8WrxVvWfudDQuFZ5QjN1uVcMrZ5Sw
-         ML/17/7ORuFnPra1I12AghcVyrMhkLRVVMez9hwl/oMJDETP25ljAvY/uxSlKp0PiRgq
-         pGhg==
+        d=smile-fr.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bjkaYGeFl8rEeY0kisc1XL3VhvE1Mku+yF8hw2E/AiM=;
+        b=YlezvayFv6LViGmvFV58gXcuxVlptoGBWN8G3za7sbay+J+3Xoca7+WUUn+61Z/hq3
+         24xevci9AYV4XERNzGWXD5P3iMHCEMtTiqWb3hFwzMNfxfPBS5PnJfS6x8bzXvHacIjA
+         6IOxA96l6pNvYAa3en9k0vIQwFBQ6tofOu+k5SxIjxeFMXaHB+tSRz9U6ugfNx9LQf6v
+         U9bfsD6SuodEotfgfiso3EyAouYxTk4XItN/4boSe1SmVd1cOSGoPDdBrMaFib5Xci7G
+         M492XptxR5WpVy3bFB4pp1sS39JY7wQMlQHRNl+I4HfDwC97JQWe0RaQiw/zIGqAHnod
+         Sxxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=V1INWpMJkxLK1bi0HPxkI+HSlFZEzlDvSfc04NLS2Jc=;
-        b=C/ZFFip+MYbYKsQzkv2f/6ekglFF+y3nFidNaKCbP0cuL5inbB1oEQxMCRLTXQub0S
-         /GjhegasUzWf9S3nRpWw4MNrqsNi2SH9XELrpZp20d6uZ1Dtge7InjubGf8TffNp53sb
-         Ogal5uc7/PvtcVHiT6r5a9+7vsuttJ4hAq3emc0D0glWgldNHVPRXXEFybpJ6vVx3PIu
-         pV8Q9/K2ViIRWKJXFoYwSCWNSDr/UiG25G3IZeUmgrkHBPCYe4m+44ZDqVYKpDDPfR7T
-         ZCsMU1nuq96NFPdhQ4xjy1LoPCnKe8n25BDynE6ezFjxDVIAPGPW4dt92Mp4BatpadeO
-         4EIg==
-X-Gm-Message-State: AOAM531u35FFwmPp6THA3QbtHBSlIXRYFMpe9sMbxIs0a0rm+3BmBIEm
-	BFqdZ5lFBvhoGvnP1q/RDO8=
-X-Google-Smtp-Source: ABdhPJxv/NKjUg9QkUBRgpAhGi8dxIQyFb/3RANz5w6dQUdHwRqqlO/Oua5JH8neqJ4E7IPunqaMvw==
-X-Received: by 2002:a05:620a:559:: with SMTP id o25mr10401514qko.75.1618921855749;
-        Tue, 20 Apr 2021 05:30:55 -0700 (PDT)
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from build.lan (cpe04d4c4975b80-cmf4c11490699b.cpe.net.cable.rogers.com. [174.112.159.151])
-        by smtp.gmail.com with ESMTPSA id a8sm11204735qtx.9.2021.04.20.05.30.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Apr 2021 05:30:55 -0700 (PDT)
-From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
-To: richard.purdie@linuxfoundation.org
-Cc: yocto@lists.yoctoproject.org
-Subject: [PATCH] linux-yocto/5.4: fix arm defconfig warnings
-Date: Tue, 20 Apr 2021 08:30:53 -0400
-Message-Id: <20210420123053.63283-1-bruce.ashfield@gmail.com>
-X-Mailer: git-send-email 2.19.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bjkaYGeFl8rEeY0kisc1XL3VhvE1Mku+yF8hw2E/AiM=;
+        b=WK3Yl17TJbJWH79bjn48uZYUp5kVMnBoVc9HqKlAuXjy6Es23VkoFZKwxGoUK5LvpU
+         fPsv4jPhIVNzTcUhWwzeHvBS6KP7iktMIqfgEQrWfzh/RBGY0+G6rWfukuxJjxvKFrZN
+         EuGNhzxL3Q+4SvSSXLg5jARnFCkkv8Wnw5O//9AnDb4jLkFHqCNzN+DjBXAzx2Rgv6OQ
+         hgA/+huYKTxVBp7YkRi1TXI6c4sKAAAeQydT7rmLlE7e6PDAOr0hKGDFB1i3Ke0qmUjM
+         CuHXY2MgZDhHLn/Qd5EoSln7jfXVm75BO3exmJnJkSF749bdve1yOjuyadt5x/DyLAdR
+         j6MQ==
+X-Gm-Message-State: AOAM5300HJ3HOsJxsN7IFWrS6g1GiPSGZQYpDdRuj0ezhZVMz5/Ab5I8
+	k+yadO/4x97+uYhI892bmOHLHIeI6NXdQMj5IuQDDKvFTOwgRg==
+X-Google-Smtp-Source: ABdhPJzna9iTii9YRUSQviK0sGEry4KlVDEtMHU6o6NWfn/PcDvp0A6Coptk/c4KdsaWzbgujQUdF0dSEwZlz2xIGBo=
+X-Received: by 2002:a05:6402:1a2b:: with SMTP id be11mr32287445edb.304.1618923271754;
+ Tue, 20 Apr 2021 05:54:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <60a75986-68f2-94c7-592-99dbb3891e3@crashcourse.ca>
+In-Reply-To: <60a75986-68f2-94c7-592-99dbb3891e3@crashcourse.ca>
+From: "Yoann Congal" <yoann.congal@smile.fr>
+Date: Tue, 20 Apr 2021 14:54:05 +0200
+Message-ID: <CAMSfU+7oAzF5=nZJhtPEreG6dVBmN4g448ns1x=ZfLx2Xg_YTA@mail.gmail.com>
+Subject: Re: [yocto] what to include in a "hardware bringup image"?
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000008827e305c066f2d7"
 
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
+--0000000000008827e305c066f2d7
+Content-Type: text/plain; charset="UTF-8"
 
-A recent fix to the kern-tools promoted some previously unseen
-issues to warnings. This commit fixes them by tagging some BT
-options as non-hardware so they won't generate warnings if they
-don't appear in the final .config. These are sub BT options and
-shouldn't warn when/if their controlling option is disabled by
-a fragment.
+Hello,
 
-    d7fd0213b75 base: exclude some BT options as non-hardware
+It might be a bit heavy but I usually install a text editor and
+python-periphery (https://github.com/vsergeev/python-periphery)
+(It did not know c-periphery but this is the same author)
 
-Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
----
- meta/recipes-kernel/linux/linux-yocto-rt_5.4.bb   | 2 +-
- meta/recipes-kernel/linux/linux-yocto-tiny_5.4.bb | 2 +-
- meta/recipes-kernel/linux/linux-yocto_5.4.bb      | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+Before having full fledged linux drivers, it allows to check devices IDs,
+make simple requests like get a sensor value or enable a PMIC regulator.
 
-diff --git a/meta/recipes-kernel/linux/linux-yocto-rt_5.4.bb b/meta/recipes-kernel/linux/linux-yocto-rt_5.4.bb
-index e52c9ebe0e..a802a570a1 100644
---- a/meta/recipes-kernel/linux/linux-yocto-rt_5.4.bb
-+++ b/meta/recipes-kernel/linux/linux-yocto-rt_5.4.bb
-@@ -12,7 +12,7 @@ python () {
- }
- 
- SRCREV_machine ?= "324e77d816cf6434507ab29140beb24044009efa"
--SRCREV_meta ?= "5017570a130f142365dfdcd043d84143fdd6e255"
-+SRCREV_meta ?= "d7fd0213b75ce9b6206f63dbdd435ab326598642"
- 
- SRC_URI = "git://git.yoctoproject.org/linux-yocto.git;branch=${KBRANCH};name=machine \
-            git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=yocto-5.4;destsuffix=${KMETA}"
-diff --git a/meta/recipes-kernel/linux/linux-yocto-tiny_5.4.bb b/meta/recipes-kernel/linux/linux-yocto-tiny_5.4.bb
-index f07375c761..1edc632de7 100644
---- a/meta/recipes-kernel/linux/linux-yocto-tiny_5.4.bb
-+++ b/meta/recipes-kernel/linux/linux-yocto-tiny_5.4.bb
-@@ -17,7 +17,7 @@ KCONF_BSP_AUDIT_LEVEL = "2"
- 
- SRCREV_machine_qemuarm ?= "8463db325b93f0669446f68c19334cfe11ffb9c2"
- SRCREV_machine ?= "5f54b437b6502d3febee553100b2cb2a9e0c5f8a"
--SRCREV_meta ?= "5017570a130f142365dfdcd043d84143fdd6e255"
-+SRCREV_meta ?= "d7fd0213b75ce9b6206f63dbdd435ab326598642"
- 
- PV = "${LINUX_VERSION}+git${SRCPV}"
- 
-diff --git a/meta/recipes-kernel/linux/linux-yocto_5.4.bb b/meta/recipes-kernel/linux/linux-yocto_5.4.bb
-index 4f056d6d82..3a9463af6a 100644
---- a/meta/recipes-kernel/linux/linux-yocto_5.4.bb
-+++ b/meta/recipes-kernel/linux/linux-yocto_5.4.bb
-@@ -23,7 +23,7 @@ SRCREV_machine_qemux86 ?= "5f54b437b6502d3febee553100b2cb2a9e0c5f8a"
- SRCREV_machine_qemux86-64 ?= "5f54b437b6502d3febee553100b2cb2a9e0c5f8a"
- SRCREV_machine_qemumips64 ?= "996fe040c8d8d01a9af6be42dae3844d127471bf"
- SRCREV_machine ?= "5f54b437b6502d3febee553100b2cb2a9e0c5f8a"
--SRCREV_meta ?= "5017570a130f142365dfdcd043d84143fdd6e255"
-+SRCREV_meta ?= "d7fd0213b75ce9b6206f63dbdd435ab326598642"
- 
- # remap qemuarm to qemuarma15 for the 5.4 kernel
- # KMACHINE_qemuarm ?= "qemuarma15"
+I'm interested in the list of packages you'll end up with... Will you share
+it here ?
+
+Regards,
 -- 
-2.19.1
+Yoann Congal
+Smile ECS - Expert technique
 
+--0000000000008827e305c066f2d7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hello,</div><div><br></div><div>It m=
+ight be a bit heavy but I usually install a text editor and python-peripher=
+y (<a href=3D"https://github.com/vsergeev/python-periphery">https://github.=
+com/vsergeev/python-periphery</a>)</div><div>(It did not know c-periphery b=
+ut this is the same author)</div><div><br></div><div>Before having full fle=
+dged linux drivers, it allows to check devices IDs, make simple requests li=
+ke get a sensor value or enable a PMIC regulator.</div><div><br></div><div>=
+I&#39;m interested in the list of packages you&#39;ll end up with... Will y=
+ou share it here ?<br></div><div><br></div><div>Regards,<br></div></div>-- =
+<br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><font face=
+=3D"Raleway, regular">Yoann Congal</font><div><font face=3D"Raleway, regula=
+r">Smile ECS - Expert technique</font></div></div></div></div>
+
+--0000000000008827e305c066f2d7--
