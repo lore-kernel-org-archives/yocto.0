@@ -1,142 +1,187 @@
-Received: from esa14.hc324-48.eu.iphmx.com (esa14.hc324-48.eu.iphmx.com [207.54.69.24])
- by mx.groups.io with SMTP id smtpd.web12.8699.1618915070280960663
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by mx.groups.io with SMTP id smtpd.web09.9020.1618916262158699057
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 Apr 2021 03:37:51 -0700
+ Tue, 20 Apr 2021 03:57:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1 header.b=gCdrChf0;
- spf=pass (domain: bmw.de, ip: 207.54.69.24, mailfrom: prvs=737acabf9=mikko.rapeli@bmw.de)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1618915070; x=1650451070;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=qflV0/JSfmJMwaHDcnCRshMCkP+Z2+rbtfWXFLWR0DE=;
-  b=gCdrChf0iULern2z8g3r1Sf6vQz/YuGaIeevibkvrJQhUneecwHQCGpF
-   U1IeCyprrtoDJ3IgGk5uO9S+tR9lZCtJrzEsa/ATl7ajDJqbaoaAqhtJC
-   iNRaDvSx2gprpiGy1i+aNOfMOS+tYIMn6ayluNYeglnrZcxF8nKq0vGDr
-   Q=;
-Received: from esagw3.bmwgroup.com (HELO esagw3.muc) ([160.46.252.35]) by
- esa14.hc324-48.eu.iphmx.com with ESMTP/TLS; 20 Apr 2021 12:37:46 +0200
-Received: from esabb3.muc ([160.50.100.30])  by esagw3.muc with ESMTP/TLS;
- 20 Apr 2021 12:37:46 +0200
-Received: from smucm33k.bmwgroup.net (HELO smucm33k.europe.bmw.corp) ([160.46.167.67])
- by esabb3.muc with ESMTP/TLS; 20 Apr 2021 12:37:46 +0200
-Received: from smucm33l.europe.bmw.corp (160.46.167.68) by smucm33k.europe.bmw.corp
- (160.46.167.67) with Microsoft SMTP Server (TLS;
- Tue, 20 Apr 2021 12:37:45 +0200
-Received: from smucm33l.europe.bmw.corp ([160.46.167.68]) by
- smucm33l.europe.bmw.corp ([160.46.167.68]) with mapi id 15.00.1497.015; Tue,
- 20 Apr 2021 12:37:46 +0200
-From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
-To: <anthony.marchand@navocap.com>
-CC: <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Yocto Dunfell: u-boot-fw-utils ERROR #yocto #dunfell #swupdtae #libubootenv #imx6
-Thread-Topic: [yocto] Yocto Dunfell: u-boot-fw-utils ERROR #yocto #dunfell
- #swupdtae #libubootenv #imx6
-Thread-Index: AQHXNc9fbmuR3BvPmEK6qPR/29vmoqq9FUCA
-Date: Tue, 20 Apr 2021 10:37:46 +0000
-Message-ID: <YH6u+RDEf0uxFWNy@korppu>
-References: <i5eY.1618914265035644273.UGev@lists.yoctoproject.org>
-In-Reply-To: <i5eY.1618914265035644273.UGev@lists.yoctoproject.org>
-Accept-Language: en-US, de-DE
+ dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=zYhPG1md;
+ spf=pass (domain: intel.com, ip: 134.134.136.126, mailfrom: sangeeta.jain@intel.com)
+IronPort-SDR: uLVnWmwv5B7TyOZV7nETdOwgoWA/iWExmR2K4Q2wFlL3YfvGVrwGXPPq1LOBmiOgoRUhvjpu7g
+ YOYoyexoKGPw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9959"; a="182978594"
+X-IronPort-AV: E=Sophos;i="5.82,236,1613462400"; 
+   d="scan'208";a="182978594"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Apr 2021 03:57:41 -0700
+IronPort-SDR: QlyFB0lAVX+RoeEe0t3VRXntMyBYO4l0xPmr9r7ctMgjKDjBd18VTZcNtyBKvZJynKvB8yv0Ss
+ mB1Ef4QyQyGw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,236,1613462400"; 
+   d="scan'208";a="390957585"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+  by fmsmga007.fm.intel.com with ESMTP; 20 Apr 2021 03:57:40 -0700
+Received: from orsmsx605.amr.corp.intel.com (10.22.229.18) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Tue, 20 Apr 2021 03:57:40 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2
+ via Frontend Transport; Tue, 20 Apr 2021 03:57:40 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.42) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2106.2; Tue, 20 Apr 2021 03:57:40 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bbaO1v1lpX8W4RfHxVB3t0Z/DIe1cCahPMidlWncE+55IF9stQQoCLDzLC+gNskEiu1mc81jC1S0VbRinU028LRLcJegl5m6paLZMlDI129a2AzbVhkLhE306h8XsWxcWOsV4AjHqvN+tT6qx54tN2DwcUnKen5jlx5CtC4ET0wpzksXvMJVjzvSkjgBFG+g0I2Bk7CTNxPycreQjO6jb5EJgMyuxJvVnLdqOZT5pKHsbN94lCw04zTd2r43w957TojmQuRFiORx0f9KMF1qZ8H46jQcTl/88yJOdEFLv8JXdjoRl5vtViPcTN2XlIqkEI0UfAlQ6AmSrivRQBs9lQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fWBbRCYtowxr3OVgwlL7gMiYN/i1xjONscGdp0GyZuk=;
+ b=CRF/TeaFyJl4k0zzj4CxogNediF3QdRHx7QZaSeFYtO2vd4PkIJVmkwpDW4FW3TBBBNPE+eQq/LloFDZ/x7PlvN6fYbAORIjVPBfpoINQPDigwN9HljKAOlwlpuThnAb8zFnftb2AcHgc9WYVNSOIDRh4oSNM4UrbbE/eB+UC1Ufi2VXAaRpHqdYrZqBtwa2cXTGBe/dJcqCYYgp6dGBE81TVAs4sSI4EFJv6J/3w87sIzq9Lmah5H5Npz4MZO4KmQj5uhFyG7p91rufPlYOScCq/r/qA6oeAQpJkQzYWcIX+bfSmwkYR5xW4ETKU8FLyMSwWTZy7nrqa9LQ0LrJLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fWBbRCYtowxr3OVgwlL7gMiYN/i1xjONscGdp0GyZuk=;
+ b=zYhPG1md1vw7x+/al0dfee6pK5H7S/X2vVW43KN/7q0MJirA/UE15nLCbupB/QtWNflnWNFswOv1lV9e4sOK+ojBWG62BVASwNMV3axPeMjowBwCKpg1Ab/7vOW8m2JH8JL4km9NIjA6rnIwlaOLwQb8TTsWv1t7yze0I4B/H5U=
+Received: from BYAPR11MB3624.namprd11.prod.outlook.com (2603:10b6:a03:b1::33)
+ by SJ0PR11MB5039.namprd11.prod.outlook.com (2603:10b6:a03:2da::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.16; Tue, 20 Apr
+ 2021 10:57:39 +0000
+Received: from BYAPR11MB3624.namprd11.prod.outlook.com
+ ([fe80::92d:48c1:669e:364c]) by BYAPR11MB3624.namprd11.prod.outlook.com
+ ([fe80::92d:48c1:669e:364c%6]) with mapi id 15.20.4042.024; Tue, 20 Apr 2021
+ 10:57:39 +0000
+From: "Sangeeta Jain" <sangeeta.jain@intel.com>
+To: "qa-build-notification@lists.yoctoproject.org"
+	<qa-build-notification@lists.yoctoproject.org>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [qa-build-notification] QA notification for completed autobuilder build (yocto-3.1.7.rc1)
+Thread-Topic: [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-3.1.7.rc1)
+Thread-Index: AQHXMK+7MxP69Lpzb0eGZy9C58RNa6q9RnHg
+Date: Tue, 20 Apr 2021 10:57:39 +0000
+Message-ID: <BYAPR11MB36242823DE493883F2C8C538E3489@BYAPR11MB3624.namprd11.prod.outlook.com>
+References: <20210413215524.AACEEB805C7@ubuntu1804-ty-3.yocto.io>
+In-Reply-To: <20210413215524.AACEEB805C7@ubuntu1804-ty-3.yocto.io>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
+dlp-reaction: no-action
+dlp-version: 11.6.0.76
+dlp-product: dlpe-windows
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=intel.com;
+x-originating-ip: [60.53.116.239]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c44a0b1b-34b8-402b-cdbe-08d903eb1d86
+x-ms-traffictypediagnostic: SJ0PR11MB5039:
+x-microsoft-antispam-prvs: <SJ0PR11MB50392C45828C88C9396E6566E3489@SJ0PR11MB5039.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: L03htdlwSdcHFfiR8q+QdrMmH1ixlfn4649oB93iw3VU5wFKKRk6smyTHU6XExz0pcIiLy5LZdtTH9LNQ+9kpQxcJAzJneWYa5RL+rf7FuJt8MkLfdYgYzrs9ARAGtoFWo3wsP/TMPD+Rpc+ZShpxGbcSo0DA6v3Vl2w53q5uSyS3R3r0rU4zmqa6Uui+eoAbSha9pnIyC4dV92rBRzLtiBqn3ys8XJiOtk7Q49wELkhMFB0vgSLlAwjjFlLdQGMynhH8szBlX/ZtzgR1BfjjqyIYu/w1S0dmNn3D3tcxcywoVleZyO9jj2YcwykdEDctYwVwmiaVv7WZFMjw8uD7wHUsruq1Ja5KCB5YO5zZXkG7rh1q1162KDvQUinrcRwt6s2ihDKFPDBg1CAQzcUwi/sbheRxdwdl8CmnXW1ffzE8O0roYQoQrUR5LyBnDgwsRydZdXGeHCsQQYaUzlreiR1V8NI11NDHpNri/1lVtM2qIj2fjpvOzIpmBVGIAhgrbQ33AD49SnfT3Y1zEJSawty9t/nXQk41RUMJqzZubDvKnBPJL/rAca+83HjYAeHenRkPV8qwp34YukPJk3qUNf/FRvCHiZZnfR/pDZwEarGGI4I+bG86JP0HDB+DFc6TwWIMUdOcpIYQQoAnBPAfL1LrXyP7VPLuW644EE+8PdKkEBG2FyJHGt/0A5rrhjx
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3624.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(136003)(346002)(376002)(39860400002)(396003)(8936002)(76116006)(9686003)(52536014)(966005)(26005)(316002)(55016002)(83380400001)(15650500001)(33656002)(8676002)(7696005)(110136005)(66446008)(38100700002)(53546011)(122000001)(5660300002)(86362001)(186003)(478600001)(6506007)(66556008)(66476007)(64756008)(2906002)(71200400001)(66946007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?B3GDl0htebs5V/WgC/OGSEg2BjOH282FThqcKinprIaGFuetGLDPNDwbcUkb?=
+ =?us-ascii?Q?YiBu8bDyqE9pkB/i/Xt3GeX35DKra8h1mbo92wZyb0iA68zSpacajczd0EMi?=
+ =?us-ascii?Q?VbOP01AKzaLbFr62xIV/SRu9q6b3dZmWrU+pSGAD1lyltSe1lA+sSQkwMGPh?=
+ =?us-ascii?Q?iIPsWLxzwx5dqOvbWl4QKeevjaUc4z9tAorz6N4CpivPy7uh7gP9ueRx95+G?=
+ =?us-ascii?Q?rueOaO4Ov2mg7z6yLOFKAZwkWMB2fY8xlKy8Iw9dvZ1CKEpoz4DkVb4ruH5S?=
+ =?us-ascii?Q?5Cm81TAxeX8yVl/JWX/THxy6bskT+52eE+DYVIXc8vDzB/BntdPF5rBsaXPe?=
+ =?us-ascii?Q?vncdzsDnjH4ZvyuWEQog6S13pakWUtdFQqpfOgoW7+65cn5IF6Vl+2TAiuUi?=
+ =?us-ascii?Q?nYzIp4au7+CDxJXspClmqJMM1EhSL6zEdJbAp5emBCesJvGCiI65tPXjKp6N?=
+ =?us-ascii?Q?Dxlt0cVLXYGq1AwXYZ4leQ4AGhuqfY7iTcl0Ln+gdjpq0PBlLvJDDjaRyeCh?=
+ =?us-ascii?Q?VWg9PUOPNbcC9xYnglFSikmgSwjfdMu/q6tlpPDdWKPsopvPOkf9j0AfTLtu?=
+ =?us-ascii?Q?PL3KhDczRGF5p1MHthRSqJOYRQ79n3Wjtb0tJ3zxNLOn8ilddNGXydMADzPU?=
+ =?us-ascii?Q?IkB7iJotDmw8MKSktlAKTMSeJOecX48H2PcbjilPLM1ZxCQ1gv4nrAjzYaAP?=
+ =?us-ascii?Q?R16bG2Qb+zl61jmHEjydDoMdhfxtQS7YA+vZu+o7Sr+II4+viLeVEVjLkihS?=
+ =?us-ascii?Q?rl8LtqKSTmxrFoBUf1gF2+ed3VXh5wvSyzYDXkWZr4WJ8Bt1Fz0VOIAf46N7?=
+ =?us-ascii?Q?3GJWttyesZT/T0e+9Q3G+gek9Q0h6hD+eQ8l8fczmM2HfzR9ckM5Pag459sA?=
+ =?us-ascii?Q?OgcOhXJvhMOOQCtYKemYmQQPzD2ibJTnRGdxyhb44jcZEcasb0HqT/RaGa9j?=
+ =?us-ascii?Q?ixhzLCLNJgCnv17OuoWOtMBkVtBznMwrVstRWm6Ax4eBZO/t7aDNYtv9MXEF?=
+ =?us-ascii?Q?8HMlv9pxXH1oQqI+Muj7BvW20iuI6RBJt9emY3e0KP+9dZhXT6gZepTlvcj+?=
+ =?us-ascii?Q?oZ6DDuS2xrNL/tBzD8RP8d5f1APt4V2hNCOIgnNC67WCcf2aADRzguBle68Y?=
+ =?us-ascii?Q?4UValJh2Zg4hUPGYSYBpgRe6oGDFBElbKmfiOEFjrocubdrJ3Ms+psZBTUHu?=
+ =?us-ascii?Q?XQMSGWiG8XyNeZXBVsVUwcLYJBxyLWgcMEw42qgMJZB7/IHOlAs1kwOFhED8?=
+ =?us-ascii?Q?u5ZA0NlosbY8lwJ/vtgOsHi5rAjTfkPQZqc29CbL3uZKEGtgzKxTW19JPSsc?=
+ =?us-ascii?Q?rbOZaR5G2DBtB0aGagJwcqRy?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3624.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c44a0b1b-34b8-402b-cdbe-08d903eb1d86
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2021 10:57:39.6677
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0vgUrXY/odQavtO5HIbFptIbtApkasxyGI/irypgBwShxPHfzORMMfeiryyHY8m2uOxAZB7uOMqcWWnPJcuzdw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5039
+Return-Path: sangeeta.jain@intel.com
+X-OriginatorOrg: intel.com
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <4B3831F21AFD4745AB95EB03C2E991C5@bmwmail.corp>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi All,
 
-On Tue, Apr 20, 2021 at 03:24:25AM -0700, anthony.marchand@navocap.com wro=
-te:
-> Hello,
-> I'm actually migrating a yocto project zeus version to dunfell LTS to bu=
-ild my imx6 Linux system on this LTS release.
+This is the full report for yocto-3.1.7.rc1:  
+https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/=
+?h=3Dintel-yocto-testresults
+
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+No high milestone defects.=20
+
+no new issue found
+
+Thanks,
+Sangeeta
+
+> -----Original Message-----
+> From: qa-build-notification@lists.yoctoproject.org <qa-build-
+> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
+> Sent: Wednesday, 14 April, 2021 5:55 AM
+> To: yocto@lists.yoctoproject.org
+> Cc: qa-build-notification@lists.yoctoproject.org
+> Subject: [qa-build-notification] QA notification for completed autobuild=
+er build
+> (yocto-3.1.7.rc1)
 >=20
-> Almost all works fine except the following message I try to understand w=
-hen I try to compile the image:
 >=20
-> ------------------------------------------------------------------------=
----------------------------------------------------------------------------=
-------
-> ERROR: Multiple .bb files are due to be built which each provide u-boot-=
-fw-utils:=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0| ETA:=A0 0:00:01
-> Dunfell/build/../meta-mymeta/recipes-bsp/u-boot/u-boot-fw-utils_2018.09.=
-bb
-> Dunfell/build/../openembedded-core/meta/recipes-bsp/u-boot/libubootenv_0=
-.3.1.bb
-> A list of tasks depending on these providers is shown and may help expla=
-in where the dependency comes from.
-> Dunfell/build/../meta-mymeta/recipes-bsp/u-boot/u-boot-fw-utils_2018.09.=
-bb has unique dependees:
+> A build flagged for QA (yocto-3.1.7.rc1) was completed on the autobuilde=
+r and is
+> available at:
 >=20
-> Dunfell/build/../openembedded-core/meta/recipes-bsp/u-boot/libubootenv_0=
-.3.1.bb has unique dependees:
-> Dunfell/build/../meta-swupdate/recipes-support/swupdate/swupdate_2020.11=
-.bb:do_build
-> Dunfell/build/../meta-swupdate/recipes-support/swupdate/swupdate_2020.11=
-.bb:do_package
-> Dunfell/build/../meta-swupdate/recipes-support/swupdate/swupdate_2020.11=
-.bb:do_prepare_recipe_sysroot
-> It could be that one recipe provides something the other doesn't and sho=
-uld. The following provider and runtime provider differences may be helpful=
-.
-> Dunfell/build/../meta-mymeta/recipes-bsp/u-boot/u-boot-fw-utils_2018.09.=
-bb has unique provides:
 >=20
-> Dunfell/build/../meta-mymeta/recipes-bsp/u-boot/u-boot-fw-utils_2018.09.=
-bb has unique rprovides:
-> u-boot-fw-utils-dev
-> u-boot-fw-utils-locale
-> u-boot-fw-utils-dbg
-> u-boot-fw-utils-staticdev
-> u-boot-fw-utils-doc
-> ^u-boot-fw-utils-locale-.*
-> u-boot-fw-utils-src
-> Dunfell/build/../openembedded-core/meta/recipes-bsp/u-boot/libubootenv_0=
-.3.1.bb has unique provides:
-> libubootenv
-> Dunfell/build/../openembedded-core/meta/recipes-bsp/u-boot/libubootenv_0=
-.3.1.bb has unique rprovides:
-> libubootenv
-> libubootenv-src
-> libubootenv-bin
-> libubootenv-dbg
-> libubootenv-doc
-> ^libubootenv-locale-.*
-> libubootenv-locale
-> libubootenv-dev
-> libubootenv-staticdev
-> ------------------------------------------------------------------------=
----------------------------------------------------------------------------=
-------
-> Does someone already meet this problem? Do you know what I should look i=
-n for to solve it?
-
-Multiple ways to fix this. One is to switch to using dunfell branches for =
-the
-BSP SW stack, if they are available. Alternatively you can use the old
-zeus based BSP SW stack but for that you need to copy the files which
-BSP SW stack depends on poky side from zeus branch to the BSP SW meta laye=
-r.
-
-Then things will work out with minor bug fixes or API changes.
-
-For IMX*, I copied the old u-boot recipe files from poky zeus branch over =
-to
-the BSP so that meta-freescale* and meta-imx find them and prefer over
-the newer u-boot version from poky dunfell branch.
-
-Hope this helps,
-
--Mikko
-
-> Thanks by advance, best reguards.
-
+>     https://autobuilder.yocto.io/pub/releases/yocto-3.1.7.rc1
+>=20
+>=20
+> Build hash information:
+>=20
+> bitbake: 017a39ed05d065bf28fd38f91bcde8a098300551
+> meta-arm: 1cf8b975e1c40bf8e8c0bf315db5d4cddcb01a7b
+> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
+> meta-intel: 4bd62a7e154b8c9e8a114f452d3b062d8d058118
+> meta-kernel: 29329d7cacc71595cecfdd05a455a0cfb164564d
+> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
+> oecore: a3de6239e98efafe3668396e69133ffee3d9b27f
+> poky: 13f4ddf50eccaeed96a40a5f1a1d4173e677e98a
 >=20
 >=20
 >=20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+
