@@ -1,56 +1,49 @@
-Subject: need support for QPSQL plugins for PostgreSQL in rootfs created with Rocko version #qt5 #rocko
-To: yocto@lists.yoctoproject.org
-From: "rohit jadhav" <rohitbjadhav1@gmail.com>
-X-Originating-Location: Pune, Maharashtra, IN (157.33.93.48)
-X-Originating-Platform: Linux Firefox 66
-User-Agent: GROUPS.IO Web Poster
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.2424.1619035470838704236
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 21 Apr 2021 13:04:31 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 198.145.29.25, mailfrom: denis@denix.org)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 9AF7C38C0507
+	for <yocto@yoctoproject.org>; Wed, 21 Apr 2021 20:04:30 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id E128640C2A;
+	Wed, 21 Apr 2021 20:04:29 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id BPR5SLYDzSOM; Wed, 21 Apr 2021 20:04:29 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id AD957407FE;
+	Wed, 21 Apr 2021 20:04:25 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 7257A1745C6; Wed, 21 Apr 2021 16:04:25 -0400 (EDT)
+Date: Wed, 21 Apr 2021 16:04:25 -0400
+From: "Denys Dmytriyenko" <denis@denix.org>
+To: "openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>,
+	openembedded-architecture <openembedded-architecture@lists.openembedded.org>,
+	Yocto Project <yocto@yoctoproject.org>,
+	openembedded-members@lists.openembedded.org
+Subject: OpenEmbedded Happy Hour April 28 9pm/2100 UTC
+Message-ID: <20210421200425.GS15937@denix.org>
 MIME-Version: 1.0
-Date: Wed, 21 Apr 2021 10:31:15 -0700
-Message-ID: <CFX3.1619026275548673974.MSFP@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="h5tXufukgomHcDYaz3fM"
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---h5tXufukgomHcDYaz3fM
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-I have created Rootfs with Rocko build=C2=A0 for imx6. I am trying to use q=
-t application with PostgreSQL database.
-Not able to access database.
-Showing log like :
-QSqlDatabase: QPSQL driver not loaded
-QSqlDatabase: available drivers:
-"Driver not loaded Driver not loaded"
+Please join us for the upcoming OpenEmbedded Happy Hour on April 28 for 
+Asia/Pacific timezones @ 2100/9pm UTC (5pm EDT):
 
-Is related to qtdeclarative-plugins?
-If yes if I try to include it in local.conf and try to build then it showi=
-ng error :
-qtdeclarative-plugins
-No package qtdeclarative-plugins available.
+https://www.openembedded.org/wiki/Calendar
+https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+April+28&iso=20210428T21
 
-It was working with Krogoth.
-
-OR
-To include QPSQL in rootfs did missed any Package in my=C2=A0 Rocko build =
-?
-
-Please guide me in this regards
-
-Thanks and Regards
-Rohit J
-
---h5tXufukgomHcDYaz3fM
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-I have created Rootfs with Rocko build&nbsp; for imx6. I am trying to use q=
-t application with PostgreSQL database.<br />Not able to access database.<b=
-r />Showing log like :<br />QSqlDatabase: QPSQL driver not loaded<br />QSql=
-Database: available drivers: <br />"Driver not loaded Driver not loaded"<br=
- /><br />Is related to qtdeclarative-plugins?<br />If yes if I try to inclu=
-de it in local.conf and try to build then it showing error :<br />qtdeclara=
-tive-plugins<br />No package qtdeclarative-plugins available.<br /><br />It=
- was working with Krogoth.<br /><br />OR <br />To include QPSQL in rootfs d=
-id missed any Package in my&nbsp; Rocko build ?<br /><br />Please guide me =
-in this regards<br /><br />Thanks and Regards<br />Rohit J
-
---h5tXufukgomHcDYaz3fM--
+-- 
+Regards,
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
