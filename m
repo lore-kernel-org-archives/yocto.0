@@ -1,17 +1,17 @@
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (NAM02-DM3-obe.outbound.protection.outlook.com [40.107.95.60])
- by mx.groups.io with SMTP id smtpd.web08.8835.1619074588530535537
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (NAM02-DM3-obe.outbound.protection.outlook.com [40.107.95.43])
+ by mx.groups.io with SMTP id smtpd.web09.8749.1619074591369741719
  for <yocto@lists.yoctoproject.org>;
- Wed, 21 Apr 2021 23:56:28 -0700
+ Wed, 21 Apr 2021 23:56:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=aG+z725z;
- spf=pass (domain: windriver.com, ip: 40.107.95.60, mailfrom: yi.zhao@windriver.com)
+ dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=nGVdLIYm;
+ spf=pass (domain: windriver.com, ip: 40.107.95.43, mailfrom: yi.zhao@windriver.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ndqymbPjIyb1xyfAmF/71e1WgJc2O1ao54HzewzLF9Cq/qUz6XDd7TqcW7xFUK01KWfFDbmG46a+PWklkNkPpFq/fF7MvEw5FMGSNEEKC3ZZJk1d+dUB5waIfcJ1lDHCw4H70H0Q5rsvqlcuWdbzkj7J4+IRIfNM3LyKiTg81//dRJyzdYYHZwZN63dqvtFHMEtmICg7wWl3PX8+eKHhzV4dI1FZha2IOwlo3JKrIe/YBr9m5jWH625dZpA45EtVag+2YwV1ihL4bsEF+AAZmGwOdUBy4cp2WxnCogmhEGVfx0rVKR9TnJtVhf/h+E8ayRezsRKMImsYue6UXxMsdg==
+ b=FckqlznlTwwnxDO6aaxwayJLJa9XotxWc+rVlMCGEy7BTyK38qZkz9Uctt/6DuodZS2SIRhp/5UNuakKhSf3gTr6zVv+GjOAQvOR17AL8xpw9fnH+JxiFCx7eR0nydNG61zAOVO24dDizUkt9Rbivi6Z8tNy1M8Kmt6qYQ94+FY8wKlyc6JtsT5MMQ1+UVkRZcpV7oX+FSvtkPK6egQw0lVnazHJgZu32/vwrNJrKIXdCSINE5l55XsX1TJRLNDtcM3EEE19+ckTlAS8Nx9DBkqUVhradOZ77dL/PLj1PzrcWhcoQFAB8r7ylZmEqCb7zy1kxJ2kh5qQHswJaswONA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XFhU+b5cggfG4N5KWK9YZlxbXhQd1x/sAWUAysRAWtM=;
- b=WXll6NYESYVyU1MSnHePCOPIo9slkmEafjlb3Fw9yphJIIOdxd6NoZtYm4Bd/eTjUF2cB/I+dlU6qV4tAttiejr2QsNCYsNLcE0/LnTml/DMywuEf7sZ20eZV1Cf2RjCuaGyMQXFpbtaYkK587CbkFNM8NTPj5xfETrSLH5tHAfiY29tFL1bv/qJ++ZIQcAmlK9wvcWor6eMfuMUq8c4dOOgkQZWj+kyDRujq3ACIhxmS6zEnG/aLocN29eGfrRA3BujtvdDQUoB9GYeyAfHSlroUQ3JC7j9WFEym4MtIHGbUCl3v1eB/ic2RchB8MnzgVrrI2mzrDp1s/i4MPOyLw==
+ bh=ZsNgTBOofceTey+62MoBVvm82nUR5HfQosUN0VD85ac=;
+ b=fHlHgk2t/tFXhX83R43d6xyOWG1CxBZ+n8Ef0EYNHCCmNBlDxxaFoMo5nMyiWFIgrrK+RtDMpZI3YolSeLK0ou8KQUtKRQ095sMS9PeFhHPMosvWCqQr0Cb2V8QZDjLLvltMoJKfRrIACaQxpsByHZhcnuK8mkGPRPqAOXK0mOuRPIXJl+YRc1emYjrxlSX4ukliRI3ZGUcpZsIGMGYBVCeoh0ZUBTTzrZbHxDhnmk85CZCBgOtYvHosRy8WIRlGK8xk02hWKxGbDY3FUpZxqCvLn+q7T5qR2vc0pmRuCN3L8hcfX59Xi+qPUAbO7WHVK5wpE0w1s6EpvpXenzPCxg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
@@ -19,8 +19,8 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=windriversystems.onmicrosoft.com;
  s=selector2-windriversystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XFhU+b5cggfG4N5KWK9YZlxbXhQd1x/sAWUAysRAWtM=;
- b=aG+z725zpxZqkE3QJOLfPRai11aG4HAc7gmRJPu4urwI091vLQIMB8cU9IThyd3jv/hey05/wfNMgajh8a0NBwuEUIH8qarM/8Ox2mnGwrmY+VJl3M/s8OtJb1Km4+ldUGSxp+cFwdZLV+CU5/yqCPNxJG0uo+OPz8vTjbgBrLY=
+ bh=ZsNgTBOofceTey+62MoBVvm82nUR5HfQosUN0VD85ac=;
+ b=nGVdLIYmdgtA38AuPDv8E+l5Oc+jD97m6rv4kTkcK//dXJCBslcGjXSCd/CeJrHFkK8ZOgOVzqmLA8lwXL4I0fv78K5N3cL7ChwnaMw1cP0QTpI5UJeMWbIv/vMmu68HEy0euq/u82U4SNS4mEloQIRzcST55SevRIBT2Yu+58U=
 Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
  header.d=none;lists.yoctoproject.org; dmarc=none action=none
  header.from=windriver.com;
@@ -28,18 +28,18 @@ Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
  by MWHPR11MB1789.namprd11.prod.outlook.com (2603:10b6:300:108::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.16; Thu, 22 Apr
- 2021 06:56:27 +0000
+ 2021 06:56:30 +0000
 Received: from CO1PR11MB4867.namprd11.prod.outlook.com
  ([fe80::55fe:763e:6961:7bbf]) by CO1PR11MB4867.namprd11.prod.outlook.com
  ([fe80::55fe:763e:6961:7bbf%4]) with mapi id 15.20.4065.021; Thu, 22 Apr 2021
- 06:56:27 +0000
+ 06:56:30 +0000
 From: "Yi Zhao" <yi.zhao@windriver.com>
 To: yocto@lists.yoctoproject.org,
 	jason.wessel@windriver.com,
 	mark.hatle@kernel.crashing.org
-Subject: [meta-openssl102-fips][PATCH 3/6] openssh: fix the double free error for ssh-cavs
-Date: Thu, 22 Apr 2021 14:56:06 +0800
-Message-ID: <20210422065609.143415-4-yi.zhao@windriver.com>
+Subject: [meta-openssl102-fips][PATCH 4/6] openssh: refresh patches to 8.5p1
+Date: Thu, 22 Apr 2021 14:56:07 +0800
+Message-ID: <20210422065609.143415-5-yi.zhao@windriver.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210422065609.143415-1-yi.zhao@windriver.com>
 References: <20210422065609.143415-1-yi.zhao@windriver.com>
@@ -50,294 +50,404 @@ X-ClientProxiedBy: BY3PR10CA0023.namprd10.prod.outlook.com
 Return-Path: yi.zhao@windriver.com
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by BY3PR10CA0023.namprd10.prod.outlook.com (2603:10b6:a03:255::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.22 via Frontend Transport; Thu, 22 Apr 2021 06:56:25 +0000
+Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by BY3PR10CA0023.namprd10.prod.outlook.com (2603:10b6:a03:255::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.22 via Frontend Transport; Thu, 22 Apr 2021 06:56:27 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9dcfa2d2-431f-4a89-39b9-08d9055bbfb3
+X-MS-Office365-Filtering-Correlation-Id: fb603088-050d-4d94-95a7-08d9055bc0f0
 X-MS-TrafficTypeDiagnostic: MWHPR11MB1789:
 X-MS-Exchange-Transport-Forked: True
 X-Microsoft-Antispam-PRVS: 
-	<MWHPR11MB1789C6B698A6A09D6084E5FDF9469@MWHPR11MB1789.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:72;
+	<MWHPR11MB1789080583841054E6BED669F9469@MWHPR11MB1789.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	pW8DnQqV1xhM+F2qGgqg0UE5dYnwLsms0eqVkThthbUtlkVHGdhcAgV4UXtscGLgTxTCh8eKu5OG4hoztgcO1rvSLpAFLP8etb16O7ebLtSeyf/ounWK643iwhzQcxdysV602A4qCg9iL+S6haS90xR3/z1L3aoXD4ApTb4P9b4G2ohHLc6UegIKCKwwlX/dBU4DzmtcyO3h8RR9PsGy+JOdqcUZDS7QbclOlZFLzeYsC6+cfIgc3S6H3BQ9KlWJ08bMnFy/oW4D8R1p0eXQMRTA5zCmNwdFpznZBIJjalfLzdhYlVqDqMOhEqztS3m1w5LQyQ8LjQS2rw0N3EffsRF2CSuh72q+Lawvf6P6hrOuoAbYLGIiIcgBBj3DWmFntnvxwbXZiRnyAog5DsgnVVP2qbx5sCtbbJlznAuQLkRj/dDnVFgxo4onxp8IRQEjvJRgwHVKXnBdtFcUtBdb+v4RC23bJBUO2YZJJzAQWBUpuoD/1OaO9wWZAmtGGrrAWmImor5QXzI0iSqYgrQAOHmrGnEjYJf1DKa8BxHOOGfdA8aDwgHxlRSeZPDKwPEhmGFwxjszytinvX2HD87UBWDVmodClgk17fB5GWac7rKm4N5JGD3QVY0ldyeq3uMG73c3ACxHfX3tfYukPlFk6lGD1xwTPJ7rOf6X5MA4SnjBdBUao4mCcEt9GSl0BnU7avWkRlvsUXq93VTOEYKjL3yeAT//KXOcXN71JW+YA6c=
+	ahIWkjJ+PXGMWSpJE0tB4ew7I17+SwVsA2UG4OQmCzltwThiFLqYjxHhLVjWwnzs7Rdjlb5pf3wlpCf8/CBSf5IOtmZY5e60rbtvTVqHOl17bTI9M73fp7hE1cNUph3qig33+fTZB0m+BPGVV6A5pcy+xIrF7kXWG0CFkyGzxEXPRvB30B8X80f2cw4EWlXLnlCD2eRQRPJmM1SO1fN40y5BqrkxfeFqvlH+3/EQC+pOw9arBwe/T8pxtdKN4o07rQekpgFJ8LohdYvQSfaouVopejsmvrnTIERKbF/PUxazA9EyHG4jPOe3yS8Yb0+7rd64EaS5oxBvnIDfLO1NY3W/C2LfggoFwrqOWJ1j/Rc+fMa2w6sciMAyokiQjJYq9SLXeDTX+l0ueW8DTefx/UIPWsfc3IzgK/H9omrGYKQqpA/NlDQCkh8m4t8SxQCtMzvstSJkmJSWuGxY9j1ISijIvrMJcTuCFjTWc0EwgrC9EDsawt5WPuoTXfD9ujnXoS/h6Rxjrx7oc5VbEgroXQzTw8JKvajokCtuWylC+3zPFDIQk3snTEDhMwmC3QpiyK20m9H5GgkhLHqwugfq+gVFHXKbL6dieat1hR+4mKgzw/d0tlicIrdXs7cGiK/U2lIfuWBk99GYsWyTK9Wb8zCfdkAmQZ8MHHjYMCAeUQo=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(366004)(39850400004)(346002)(376002)(86362001)(26005)(38100700002)(6512007)(66556008)(5660300002)(2906002)(66476007)(186003)(6666004)(38350700002)(83380400001)(316002)(52116002)(956004)(966005)(36756003)(6506007)(8676002)(478600001)(66946007)(2616005)(8936002)(44832011)(16526019)(1076003)(6486002);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(366004)(39850400004)(346002)(376002)(86362001)(26005)(38100700002)(6512007)(66556008)(5660300002)(2906002)(66476007)(186003)(6666004)(38350700002)(83380400001)(316002)(52116002)(956004)(36756003)(6506007)(53546011)(8676002)(30864003)(478600001)(66946007)(2616005)(8936002)(44832011)(16526019)(1076003)(6486002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData: 
-	=?us-ascii?Q?PD99IkY9MiDKJPKHbckM8QQrhiY7c8O/EwqqkKkbmF7a8ejnbhh5v/HopdIw?=
- =?us-ascii?Q?b0B4orfWnjJRJqRmQg/oiRcN+237y3bbdbVfC+zxlmHEh1ywktUm5OgX7IEb?=
- =?us-ascii?Q?3FnVKTnnWc432A/tqYvb9MVKurRGzKGBqgUbRNyw5PmcDynA5+91Ga17Mr1p?=
- =?us-ascii?Q?770G/RGVNdL3z0lZpY2PsOpxKcxb3pcVoNh9qa+MmBxJqLtnMFxNk8MG6x7J?=
- =?us-ascii?Q?LKzFFFyz1/v5R+gpsBY293++OWb0WYvMvHSH4GLqFh39VbImIkh+SgvmHnDf?=
- =?us-ascii?Q?EL5OHzXeXxNZ4wOhyBcNf5UNqrK4QT14ix5hWHMCYopWSmwcHZS0vVew5bE5?=
- =?us-ascii?Q?lJ1FvMUquXI7MGM1F+MV9AUTPQXZa8cA/UIZTTH5frnzc2fTGKvnFtUiwhul?=
- =?us-ascii?Q?Catd9EG2jGrsgFbR70UtsFumKMZ5evUFXTBwMF/C8B4SNoHDGj67JqQUcfkd?=
- =?us-ascii?Q?2/p/tO4+0GtywqFCGOvd8mIsVA3Sts+npm/pZkR4GE7uONuTS+SFSKf+VWq0?=
- =?us-ascii?Q?UrXfDZvTRkeBGrV7/VqBV7cS5upaEXTQUI1JEUTWwHLM+acvadceaLrqVEGM?=
- =?us-ascii?Q?Tvbo9h2EQIavA/aOHH/b8EGaZQR7mQUUc00c4zZW0dO+i8f51LjQz+vjDxRq?=
- =?us-ascii?Q?ymLq6rnYEZWHFYv6aZ6+NdixvUNS8Z//tyDCrvL4fZwchiue44KoUuoKUc65?=
- =?us-ascii?Q?6Lj+SZ2W1OIgQsr7gFgAnvttIhx1B92eTRTpVmlAjjMo/k0JROEgYkEFRnAi?=
- =?us-ascii?Q?p9e3HownV2a1TQHR53aeuV3LwmyOebcQ2yzwcvQ7VAsQsHC5FQD1NUqvUt2L?=
- =?us-ascii?Q?RKhwB5cc2zj1gb0JtSe0g/nCVqTg/+xaSu0qaEERhALF/llR3qLtB++aJJuW?=
- =?us-ascii?Q?5NNp7EiPEacKX+uOkeJr6O3z2SbOlPsPQJ1uXtHlzEwc3u2oILgaN0+stxJ7?=
- =?us-ascii?Q?dP8dhaE1TAZCjoUAC7HX+mG1rMPGiyfFBoBKjqVQXknZ3jNM3IjlE2YSh0Zd?=
- =?us-ascii?Q?U+XbQaxP/z4yNT3gb51GvhIrkR1hUe1w3F4Mc9UbWqQcEv6NDyVc6Q1BVz2C?=
- =?us-ascii?Q?Kz7b3eI51bpUlog3OrjsSMXeSKyT1MvPkqcGuLfle8TepsqHnFLaYQSaJb7v?=
- =?us-ascii?Q?cnxNZcT2R+1845/Wt5B5FyvldazJuGs+lzyNTFJu+PL4RASrJNvFUO0wMmSL?=
- =?us-ascii?Q?vw0rB5fyajO94QnM89t+JJFkVu+Mw0GOyCqWP2A+nd7QciwVnhMh/DigkNgz?=
- =?us-ascii?Q?H5NW33x+FWb/1uLmDn1vqwuBD7qZD5utUY7dleRN958zkqhUmcDM9FvMIjq/?=
- =?us-ascii?Q?2pH9mi9bYs0D0lQ+ovl+wUFz?=
+	=?us-ascii?Q?e5mc1JejHKnbz5fei7FaIaa+lPfqyz3AbsYGF/R8iP6qSMRsBe6NgIBB28Eo?=
+ =?us-ascii?Q?wLtRP4xS5NbvGrXUOR89Z0ZYWAhQqwKr4Tl7v/5lMa2xas3GBMzEaGdE0oRH?=
+ =?us-ascii?Q?H52/s0q/32uCUBsBHsEGmqqKoqE4fIehTt4uLZpLFU9B8ykqYHvmZi4adcmi?=
+ =?us-ascii?Q?H9GjmPPIxUTDZX6QLHJ/+w+lP9BgdT4YpKLugnMd0ZMyP0BrbK7Smzo211o0?=
+ =?us-ascii?Q?itbo10tpnfchp/Vck7kHeW91pHE33awn0ANmWxmPtaAmbyhwyaEIYl0gxFkP?=
+ =?us-ascii?Q?E6vg8iA1BVYgQplL7ldImFEEPakVwomKJR6mOQOsT3SnTT+RxdXrko4Ot/5x?=
+ =?us-ascii?Q?hiXuf9xgfjpk7zPgGevfPyWdDpGL3SWaAc+DgnU9Q2noh+ADGzbHDdBOd0Jl?=
+ =?us-ascii?Q?OvK+Sgh6Tvs50ojbYZrtkUTo5z7z1OsaP8phZwc6nvVKd93oA8tTLlN5bAOF?=
+ =?us-ascii?Q?fJTTUXugLJ9T2/nYVbs6DK9xc58WPKxnMf7TkoXBvRFhMWhEK/VbE6j2JTkk?=
+ =?us-ascii?Q?cgJaGgJtQVCRfPoQz2CD4bW+jOxgSXvjWdc6B+TjMQNpQCVbao5OT9o8bdaP?=
+ =?us-ascii?Q?AFXXsfP+iquiseCEdHTEED8yYoqTp+Ij2tn/xyY4rryNMEI5OucUlWde+3Ee?=
+ =?us-ascii?Q?3ESVs9dKHwHwWZcao7Ny6eUNJxaWAdDkxUorUSV1fAyanhg077A8uGnne4MW?=
+ =?us-ascii?Q?b32AaD28UOkPYeIwRQz2SJFoymdbR74JeS3ruvH8/73kg4WwqlTaLBIQGpIR?=
+ =?us-ascii?Q?2Q8KngwX/xdbJXJNu5SD/dlHDyEBepkaajUrCbTGaJxbyFsgI/1jDEBmbLs4?=
+ =?us-ascii?Q?8mXX2+snt7wnnRV/UaO1S7JTii3XT266cGK17XtJTARo8FeTl1OF0o98ckl/?=
+ =?us-ascii?Q?wHSBx0jruNEji3vQPaDLzw9JKX1I+jRjQ03VZZaBQearErR4qv/ghXp+jvv8?=
+ =?us-ascii?Q?SbHGpExHcginbW2sZ/ixzmMYJ9XPFUzu69DlYk8Ly6aoutHWgqKBbqszJ19h?=
+ =?us-ascii?Q?NzP4Zl5D6ChglNKOpp96j19wKb0koOYEinPbg1BqFqIv1yZVqgQqgjZAXcid?=
+ =?us-ascii?Q?9fNNRV7QJrpunDhrdNkpxbFPCDlNx3aUpAHJtbVIne4SC/MhmbFB2Hv2Jg0o?=
+ =?us-ascii?Q?zPmyBlY53X+zAxCK2DddzrxZAW4IR9ukw91+HHFchT4HzCQhj4y20g7f0puj?=
+ =?us-ascii?Q?2vi6Dk3By0K+r4PPGlH1t1kfLw429VdO97D3ke3JHPIktm2d4OkGUT62JNyR?=
+ =?us-ascii?Q?mBxlA2a+4GM6kOW+uIsqtCsgCLma0MY5m9hh+p2zft1cubp3CX16mve62Zbc?=
+ =?us-ascii?Q?WeJShc1Ac6X5cpXwnQUSKetc?=
 X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9dcfa2d2-431f-4a89-39b9-08d9055bbfb3
+X-MS-Exchange-CrossTenant-Network-Message-Id: fb603088-050d-4d94-95a7-08d9055bc0f0
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2021 06:56:27.2195
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2021 06:56:30.1207
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Blvl6y7tPgaKNZOUUhzPkvAzLudFjMA+exdFYT9xU6Lggl7B8/8r513TlWQzdg+29+Y6koC6cgoRHiWYpfLpUA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: Hbl4TPN4xj7/WalF1O02YHGBGtsoGclgMXiaRJbLO//FbCuvza9uzA4En6MzFtSWoAXO0yNY/f0qI/4yeP21bQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1789
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain
 
-There is a 'double free or corruption' error when running ssh-cavs:
-$ /usr/libexec/ssh-cavs -K
-0055d50f2d163cc07cd8a93cc7c3430c30ce786b572c01ad29fec7597000cf8618d664e2ec3=
-dcbc8bb7a1a7eb7ef67f61cdaf291625da879186ac0a5cb27af571b59612d6a6e0627344d84=
-6271959fda61c78354aa498773d59762f8ca2d0215ec590d8633de921f920d41e47b3de6ab9=
-a3d0869e1c826d0e4adebf8e3fb646a15dea20a410b44e969f4b791ed6a67f13f1b74234004=
-d5fa5e87eff7abc32d49bbdf44d7b0107e8f10609233b7e2b7eff74a4daf25641de7553975d=
-ac6ac1e5117df6f6dbaa1c263d23a6c3e5a3d7d49ae8a828c1e333ac3f85fbbf57b5c1a45be=
-45e43a7be1a4707eac779b8285522d1f531fe23f890fd38a004339932b93eda4
--H d3ab91a850febb417a25d892ec48ed5952c7a5de -s d3ab91a850febb417a25d892ec48=
-ed5952c7a5de -i 8 -e 24 -m 20
-Initial IV (client to server) =3D 4bb320d1679dfd3a
-Initial IV (server to client) =3D 43dea6fdf263a308
-Encryption key (client to server) =3D 13048cc600b9d3cf9095aa6cf8e2ff9cf1c54=
-ca0520c89ed
-Encryption key (server to client) =3D 1e483c5134e901aa11fc4e0a524e7ec7b7555=
-6148a222bb0
-Integrity key (client to server) =3D ecef63a092b0dcc585bdc757e01b2740af57d6=
-40
-Integrity key (server to client) =3D 7424b05f3c44a72b4ebd281fb71f9cbe7b64d4=
-79
-double free or corruption (out)
-Aborted
+From: Changqing Li <changqing.li@windriver.com>
 
-Since openssh 8.x, the ssh->kex has been allocated when struct ssh is
-initialized in function ssh_alloc_session_state()[1] and will be freed
-in function ssh_packet_close()[2]. We don't need to make the ssh->kex to
-point a extra kex struct which will cause the memory corruption and
-memory leak.
-
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+Signed-off-by: Changqing Li <changqing.li@windriver.com>
 ---
- ...1-ssh-cavs-fix-the-double-free-error.patch | 161 ++++++++++++++++++
- recipes-connectivity/openssh/openssh_fips.inc |   1 +
- 2 files changed, 162 insertions(+)
- create mode 100644 recipes-connectivity/openssh/openssh/0001-ssh-cavs-fix-=
-the-double-free-error.patch
+ .../0001-conditional-enable-fips-mode.patch   | 40 ++++++++--------
+ .../openssh/0001-openssh-8.4p1-fips.patch     | 48 +++++++++----------
+ 2 files changed, 44 insertions(+), 44 deletions(-)
 
-diff --git a/recipes-connectivity/openssh/openssh/0001-ssh-cavs-fix-the-dou=
-ble-free-error.patch b/recipes-connectivity/openssh/openssh/0001-ssh-cavs-f=
-ix-the-double-free-error.patch
-new file mode 100644
-index 0000000..7d7fc14
---- /dev/null
-+++ b/recipes-connectivity/openssh/openssh/0001-ssh-cavs-fix-the-double-fre=
-e-error.patch
-@@ -0,0 +1,161 @@
-+From b6202d402a27467a8a4bacaca4064ee731a03fa7 Mon Sep 17 00:00:00 2001
-+From: Yi Zhao <yi.zhao@windriver.com>
-+Date: Sun, 17 Jan 2021 11:17:53 +0800
-+Subject: [PATCH] ssh-cavs: fix the double free error
-+
-+There is a 'double free or corruption' error when running ssh-cavs:
-+$ /usr/libexec/ssh-cavs -K
-+0055d50f2d163cc07cd8a93cc7c3430c30ce786b572c01ad29fec7597000cf8618d664e2ec=
-3dcbc8bb7a1a7eb7ef67f61cdaf291625da879186ac0a5cb27af571b59612d6a6e0627344d8=
-46271959fda61c78354aa498773d59762f8ca2d0215ec590d8633de921f920d41e47b3de6ab=
-9a3d0869e1c826d0e4adebf8e3fb646a15dea20a410b44e969f4b791ed6a67f13f1b7423400=
-4d5fa5e87eff7abc32d49bbdf44d7b0107e8f10609233b7e2b7eff74a4daf25641de7553975=
-dac6ac1e5117df6f6dbaa1c263d23a6c3e5a3d7d49ae8a828c1e333ac3f85fbbf57b5c1a45b=
-e45e43a7be1a4707eac779b8285522d1f531fe23f890fd38a004339932b93eda4
-+-H d3ab91a850febb417a25d892ec48ed5952c7a5de -s d3ab91a850febb417a25d892ec4=
-8ed5952c7a5de -i 8 -e 24 -m 20
-+Initial IV (client to server) =3D 4bb320d1679dfd3a
-+Initial IV (server to client) =3D 43dea6fdf263a308
-+Encryption key (client to server) =3D 13048cc600b9d3cf9095aa6cf8e2ff9cf1c5=
-4ca0520c89ed
-+Encryption key (server to client) =3D 1e483c5134e901aa11fc4e0a524e7ec7b755=
-56148a222bb0
-+Integrity key (client to server) =3D ecef63a092b0dcc585bdc757e01b2740af57d=
-640
-+Integrity key (server to client) =3D 7424b05f3c44a72b4ebd281fb71f9cbe7b64d=
-479
-+double free or corruption (out)
-+Aborted
-+
-+Since openssh 8.x, the ssh->kex has been allocated when struct ssh is
-+initialized in function ssh_alloc_session_state()[1] and will be freed
-+in function ssh_packet_close()[2]. We don't need to make the ssh->kex to
-+point a extra kex struct which will cause the memory corruption and
-+memory leak.
-+
-+[1] https://github.com/openssh/openssh-portable/commit/0a843d9a0e805f14653=
-a555f5c7a8ba99d62c12d
-+[2] https://github.com/openssh/openssh-portable/commit/55ef3e9cbd5b336bd0f=
-89205716924886fcf86de
-+
-+Upstream-Status: Pending
-+
-+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-+---
-+ ssh-cavs.c | 60 ++++++++++++++++++++++++------------------------------
-+ 1 file changed, 27 insertions(+), 33 deletions(-)
-+
-+diff --git a/ssh-cavs.c b/ssh-cavs.c
-+index b74ae7f..641a453 100644
-+--- a/ssh-cavs.c
-++++ b/ssh-cavs.c
-+@@ -164,7 +164,6 @@ struct kdf_cavs {
-+ static int sshkdf_cavs(struct kdf_cavs *test)
-+ {
-+ 	int ret =3D 0;
-+-	struct kex kex;
-+ 	struct sshbuf *Kb =3D NULL;
-+ 	BIGNUM *Kbn =3D NULL;
-+ 	int mode =3D 0;
-+@@ -175,8 +174,6 @@ static int sshkdf_cavs(struct kdf_cavs *test)
-+ #define HEXOUTLEN 500
-+ 	char hex[HEXOUTLEN];
-+=20
-+-	memset(&kex, 0, sizeof(struct kex));
-+-
-+ 	Kbn =3D BN_new();
-+ 	BN_bin2bn(test->K, test->Klen, Kbn);
-+ 	if (!Kbn) {
-+@@ -192,24 +189,29 @@ static int sshkdf_cavs(struct kdf_cavs *test)
-+ 	}
-+ 	sshbuf_put_bignum2(Kb, Kbn);
-+=20
-+-	kex.session_id =3D test->session_id;
-+-	kex.session_id_len =3D test->session_id_len;
-++	if ((ssh =3D ssh_packet_set_connection(NULL, -1, -1)) =3D=3D NULL){
-++		printf("Allocation error\n");
-++		goto out;
-++	}
-++
-++	ssh->kex->session_id =3D test->session_id;
-++	ssh->kex->session_id_len =3D test->session_id_len;
-+=20
-+ 	/* setup kex */
-+=20
-+ 	/* select the right hash based on struct ssh_digest digests */
-+ 	switch (test->ik_len) {
-+ 		case 20:
-+-			kex.hash_alg =3D SSH_DIGEST_SHA1;
-++			ssh->kex->hash_alg =3D SSH_DIGEST_SHA1;
-+ 			break;
-+ 		case 32:
-+-			kex.hash_alg =3D SSH_DIGEST_SHA256;
-++			ssh->kex->hash_alg =3D SSH_DIGEST_SHA256;
-+ 			break;
-+ 		case 48:
-+-			kex.hash_alg =3D SSH_DIGEST_SHA384;
-++			ssh->kex->hash_alg =3D SSH_DIGEST_SHA384;
-+ 			break;
-+ 		case 64:
-+-			kex.hash_alg =3D SSH_DIGEST_SHA512;
-++			ssh->kex->hash_alg =3D SSH_DIGEST_SHA512;
-+ 			break;
-+ 		default:
-+ 			printf("Wrong hash type %u\n", test->ik_len);
-+@@ -219,41 +221,35 @@ static int sshkdf_cavs(struct kdf_cavs *test)
-+=20
-+ 	/* implement choose_enc */
-+ 	for (mode =3D 0; mode < 2; mode++) {
-+-		kex.newkeys[mode] =3D calloc(1, sizeof(struct newkeys));
-+-		if (!kex.newkeys[mode]) {
-++		ssh->kex->newkeys[mode] =3D calloc(1, sizeof(struct newkeys));
-++		if (!ssh->kex->newkeys[mode]) {
-+ 			printf("allocation of newkeys failed\n");
-+ 			ret =3D 1;
-+ 			goto out;
-+ 		}
-+-		kex.newkeys[mode]->enc.iv_len =3D test->iv_len;
-+-		kex.newkeys[mode]->enc.key_len =3D test->ek_len;
-+-		kex.newkeys[mode]->enc.block_size =3D (test->iv_len =3D=3D 64) ? 8 : 16=
-;
-+-		kex.newkeys[mode]->mac.key_len =3D test->ik_len;
-++		ssh->kex->newkeys[mode]->enc.iv_len =3D test->iv_len;
-++		ssh->kex->newkeys[mode]->enc.key_len =3D test->ek_len;
-++		ssh->kex->newkeys[mode]->enc.block_size =3D (test->iv_len =3D=3D 64) ? =
-8 : 16;
-++		ssh->kex->newkeys[mode]->mac.key_len =3D test->ik_len;
-+ 	}
-+=20
-+ 	/* implement kex_choose_conf */
-+-	kex.we_need =3D kex.newkeys[0]->enc.key_len;
-+-	if (kex.we_need < kex.newkeys[0]->enc.block_size)
-+-		kex.we_need =3D kex.newkeys[0]->enc.block_size;
-+-	if (kex.we_need < kex.newkeys[0]->enc.iv_len)
-+-		kex.we_need =3D kex.newkeys[0]->enc.iv_len;
-+-	if (kex.we_need < kex.newkeys[0]->mac.key_len)
-+-		kex.we_need =3D kex.newkeys[0]->mac.key_len;
-++	ssh->kex->we_need =3D ssh->kex->newkeys[0]->enc.key_len;
-++	if (ssh->kex->we_need < ssh->kex->newkeys[0]->enc.block_size)
-++		ssh->kex->we_need =3D ssh->kex->newkeys[0]->enc.block_size;
-++	if (ssh->kex->we_need < ssh->kex->newkeys[0]->enc.iv_len)
-++		ssh->kex->we_need =3D ssh->kex->newkeys[0]->enc.iv_len;
-++	if (ssh->kex->we_need < ssh->kex->newkeys[0]->mac.key_len)
-++		ssh->kex->we_need =3D ssh->kex->newkeys[0]->mac.key_len;
-+=20
-+ 	/* MODE_OUT (1) -> server to client
-+ 	 * MODE_IN (0) -> client to server */
-+-	kex.server =3D 1;
-++	ssh->kex->server =3D 1;
-+=20
-+-	/* do it */
-+-	if ((ssh =3D ssh_packet_set_connection(NULL, -1, -1)) =3D=3D NULL){
-+-		printf("Allocation error\n");
-+-		goto out;
-+-	}
-+-	ssh->kex =3D &kex;
-+ 	kex_derive_keys(ssh, test->H, test->Hlen, Kb);
-+=20
-+-	ctoskeys =3D kex.newkeys[0];
-+-	stockeys =3D kex.newkeys[1];
-++	ctoskeys =3D ssh->kex->newkeys[0];
-++	stockeys =3D ssh->kex->newkeys[1];
-+=20
-+ 	/* get data */
-+ 	memset(hex, 0, HEXOUTLEN);
-+@@ -376,8 +372,6 @@ int main(int argc, char *argv[])
-+ 	ret =3D sshkdf_cavs(&test);
-+=20
-+ out:
-+-	if (test.session_id)
-+-		free(test.session_id);
-+ 	if (test.K)
-+ 		free(test.K);
-+ 	if (test.H)
-+--=20
-+2.17.1
-+
-diff --git a/recipes-connectivity/openssh/openssh_fips.inc b/recipes-connec=
-tivity/openssh/openssh_fips.inc
-index 4fdb2aa..961f2d5 100644
---- a/recipes-connectivity/openssh/openssh_fips.inc
-+++ b/recipes-connectivity/openssh/openssh_fips.inc
-@@ -10,6 +10,7 @@ SRC_URI +=3D " \
-     file://0001-conditional-enable-fips-mode.patch \
-     file://openssh-6.6p1-ctr-cavstest.patch \
-     file://openssh-6.7p1-kdf-cavs.patch \
-+    file://0001-ssh-cavs-fix-the-double-free-error.patch \
- "
+diff --git a/recipes-connectivity/openssh/openssh/0001-conditional-enable-f=
+ips-mode.patch b/recipes-connectivity/openssh/openssh/0001-conditional-enab=
+le-fips-mode.patch
+index 17c5967..9fd19c0 100644
+--- a/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mod=
+e.patch
++++ b/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mod=
+e.patch
+@@ -1,4 +1,4 @@
+-From 571b24129e3c3a84e38a59a32aa61fa40e04e1e2 Mon Sep 17 00:00:00 2001
++From 48888de317391522186c6ae24a8d6d7d7add2673 Mon Sep 17 00:00:00 2001
+ From: Hongxu Jia <hongxu.jia@windriver.com>
+ Date: Sat, 21 Dec 2019 13:03:23 +0800
+ Subject: [PATCH] conditional enable fips mode
+@@ -44,10 +44,10 @@ index 06566d3..a10566d 100644
+  	sanitise_stdfd();
+ =20
+ diff --git a/sftp-server.c b/sftp-server.c
+-index 55386fa..8c1634e 100644
++index 7300900..42da9d7 100644
+ --- a/sftp-server.c
+ +++ b/sftp-server.c
+-@@ -1577,6 +1577,7 @@ sftp_server_main(int argc, char **argv, struct passw=
+d *user_pw)
++@@ -1616,6 +1616,7 @@ sftp_server_main(int argc, char **argv, struct passw=
+d *user_pw)
+  	extern char *optarg;
+  	extern char *__progname;
+ =20
+@@ -56,10 +56,10 @@ index 55386fa..8c1634e 100644
+  	log_init(__progname, log_level, log_facility, log_stderr);
+ =20
+ diff --git a/sftp.c b/sftp.c
+-index c88c861..171bc56 100644
++index fb3c08d..85b9b67 100644
+ --- a/sftp.c
+ +++ b/sftp.c
+-@@ -2390,6 +2390,7 @@ main(int argc, char **argv)
++@@ -2345,6 +2345,7 @@ main(int argc, char **argv)
+  	size_t num_requests =3D DEFAULT_NUM_REQUESTS;
+  	long long limit_kbps =3D 0;
+ =20
+@@ -68,10 +68,10 @@ index c88c861..171bc56 100644
+  	sanitise_stdfd();
+  	msetlocale();
+ diff --git a/ssh-add.c b/ssh-add.c
+-index 936dc21..b7ac2d2 100644
++index 7edb9f9..c75f85b 100644
+ --- a/ssh-add.c
+ +++ b/ssh-add.c
+-@@ -671,6 +671,7 @@ main(int argc, char **argv)
++@@ -667,6 +667,7 @@ main(int argc, char **argv)
+  	SyslogFacility log_facility =3D SYSLOG_FACILITY_AUTH;
+  	LogLevel log_level =3D SYSLOG_LEVEL_INFO;
+ =20
+@@ -80,10 +80,10 @@ index 936dc21..b7ac2d2 100644
+  	sanitise_stdfd();
+ =20
+ diff --git a/ssh-agent.c b/ssh-agent.c
+-index e1fd1f3..da49b57 100644
++index 58fe6dd..9018a7c 100644
+ --- a/ssh-agent.c
+ +++ b/ssh-agent.c
+-@@ -1289,6 +1289,7 @@ main(int ac, char **av)
++@@ -1388,6 +1388,7 @@ main(int ac, char **av)
+  	size_t npfd =3D 0;
+  	u_int maxfds;
+ =20
+@@ -92,10 +92,10 @@ index e1fd1f3..da49b57 100644
+  	sanitise_stdfd();
+ =20
+ diff --git a/ssh-keygen.c b/ssh-keygen.c
+-index cb8e569..67c7d62 100644
++index 6451584..246caa1 100644
+ --- a/ssh-keygen.c
+ +++ b/ssh-keygen.c
+-@@ -3184,6 +3184,7 @@ main(int argc, char **argv)
++@@ -3153,6 +3153,7 @@ main(int argc, char **argv)
+  	extern int optind;
+  	extern char *optarg;
+ =20
+@@ -104,7 +104,7 @@ index cb8e569..67c7d62 100644
+  	sanitise_stdfd();
+ =20
+ diff --git a/ssh-keyscan.c b/ssh-keyscan.c
+-index ca19042..c667f2c 100644
++index 7abbcbf..b604bfd 100644
+ --- a/ssh-keyscan.c
+ +++ b/ssh-keyscan.c
+ @@ -667,6 +667,7 @@ main(int argc, char **argv)
+@@ -116,7 +116,7 @@ index ca19042..c667f2c 100644
+  	seed_rng();
+  	TAILQ_INIT(&tq);
+ diff --git a/ssh-keysign.c b/ssh-keysign.c
+-index 7991e0f..26a3bab 100644
++index 907162d..294148a 100644
+ --- a/ssh-keysign.c
+ +++ b/ssh-keysign.c
+ @@ -173,6 +173,7 @@ main(int argc, char **argv)
+@@ -128,10 +128,10 @@ index 7991e0f..26a3bab 100644
+  		fatal("%s: pledge: %s", __progname, strerror(errno));
+ =20
+ diff --git a/ssh-pkcs11-helper.c b/ssh-pkcs11-helper.c
+-index d73e835..e508684 100644
++index a9a6fe3..3c76f70 100644
+ --- a/ssh-pkcs11-helper.c
+ +++ b/ssh-pkcs11-helper.c
+-@@ -332,6 +332,7 @@ main(int argc, char **argv)
++@@ -326,6 +326,7 @@ main(int argc, char **argv)
+  	extern char *__progname;
+  	struct pollfd pfd[2];
+ =20
+@@ -140,22 +140,22 @@ index d73e835..e508684 100644
+  	seed_rng();
+  	TAILQ_INIT(&pkcs11_keylist);
+ diff --git a/ssh.c b/ssh.c
+-index aabd5d3..81393f1 100644
++index 729d87a..ab78b53 100644
+ --- a/ssh.c
+ +++ b/ssh.c
+-@@ -660,6 +660,7 @@ main(int ac, char **av)
+- 	size_t n, len;
++@@ -650,6 +650,7 @@ main(int ac, char **av)
+  	u_int j;
++ 	struct ssh_conn_info *cinfo =3D NULL;
+ =20
+ +	ssh_enable_fips_mode();
+  	/* Ensure that fds 0, 1 and 2 are open or directed to /dev/null */
+  	sanitise_stdfd();
+ =20
+ diff --git a/sshd.c b/sshd.c
+-index 1f1fcc2..0f68419 100644
++index fee4703..07faf7b 100644
+ --- a/sshd.c
+ +++ b/sshd.c
+-@@ -1553,6 +1553,7 @@ main(int ac, char **av)
++@@ -1534,6 +1534,7 @@ main(int ac, char **av)
+  	Authctxt *authctxt;
+  	struct connection_info *connection_info =3D NULL;
+ =20
+diff --git a/recipes-connectivity/openssh/openssh/0001-openssh-8.4p1-fips.p=
+atch b/recipes-connectivity/openssh/openssh/0001-openssh-8.4p1-fips.patch
+index 48c18b4..10687ff 100644
+--- a/recipes-connectivity/openssh/openssh/0001-openssh-8.4p1-fips.patch
++++ b/recipes-connectivity/openssh/openssh/0001-openssh-8.4p1-fips.patch
+@@ -1,4 +1,4 @@
+-From 059b61a58b27c40fbb78b3930cdcf110ff717340 Mon Sep 17 00:00:00 2001
++From 0452f9dc4acf90b8d7ac6ddf6ebbe455d202ce54 Mon Sep 17 00:00:00 2001
+ From: Hongxu Jia <hongxu.jia@windriver.com>
+ Date: Sat, 21 Dec 2019 11:45:38 +0800
+ Subject: [PATCH] openssh 8.4p1 fips
+@@ -38,7 +38,7 @@ Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+  14 files changed, 171 insertions(+), 20 deletions(-)
 =20
- do_install_append() {
+ diff --git a/Makefile.in b/Makefile.in
+-index acfb919..5b2c397 100644
++index e3cd296..bf53fb0 100644
+ --- a/Makefile.in
+ +++ b/Makefile.in
+ @@ -204,25 +204,25 @@ libssh.a: $(LIBSSH_OBJS)
+@@ -97,7 +97,7 @@ index 32771f2..74fac3b 100644
+  	return (&aes_ctr);
+  }
+ diff --git a/dh.c b/dh.c
+-index 7cb135d..306f1bc 100644
++index b5bb35e..676f893 100644
+ --- a/dh.c
+ +++ b/dh.c
+ @@ -152,6 +152,12 @@ choose_dh(int min, int wantbits, int max)
+@@ -165,10 +165,10 @@ index 5d6df62..54c7aa2 100644
+  u_int	 dh_estimate(int);
+ =20
+ diff --git a/kex.c b/kex.c
+-index aecb939..3d5d3b0 100644
++index 30425ab..1250f42 100644
+ --- a/kex.c
+ +++ b/kex.c
+-@@ -163,7 +163,10 @@ kex_names_valid(const char *names)
++@@ -165,7 +165,10 @@ kex_names_valid(const char *names)
+  	for ((p =3D strsep(&cp, ",")); p && *p !=3D '\0';
+  	    (p =3D strsep(&cp, ","))) {
+  		if (kex_alg_by_name(p) =3D=3D NULL) {
+@@ -181,7 +181,7 @@ index aecb939..3d5d3b0 100644
+  			return 0;
+  		}
+ diff --git a/kexgexc.c b/kexgexc.c
+-index 323a659..812112d 100644
++index 4a2e741..2535732 100644
+ --- a/kexgexc.c
+ +++ b/kexgexc.c
+ @@ -28,6 +28,7 @@
+@@ -192,7 +192,7 @@ index 323a659..812112d 100644
+  #include <sys/types.h>
+ =20
+  #include <openssl/dh.h>
+-@@ -113,6 +114,10 @@ input_kex_dh_gex_group(int type, u_int32_t seq, struc=
+t ssh *ssh)
++@@ -115,6 +116,10 @@ input_kex_dh_gex_group(int type, u_int32_t seq, struc=
+t ssh *ssh)
+  		r =3D SSH_ERR_ALLOC_FAIL;
+  		goto out;
+  	}
+@@ -204,7 +204,7 @@ index 323a659..812112d 100644
+ =20
+  	/* generate and send 'e', client DH public key */
+ diff --git a/myproposal.h b/myproposal.h
+-index 5312e60..d0accae 100644
++index f03b7df..57b8779 100644
+ --- a/myproposal.h
+ +++ b/myproposal.h
+ @@ -57,6 +57,20 @@
+@@ -255,12 +255,12 @@ index 5312e60..d0accae 100644
+ +
+  /* Not a KEX value, but here so all the algorithm defaults are together *=
+/
+  #define	SSH_ALLOWED_CA_SIGALGS	\
+- 	"ecdsa-sha2-nistp256," \
++ 	"ssh-ed25519," \
+ diff --git a/readconf.c b/readconf.c
+-index 554efd7..16eda65 100644
++index 724974b..870a654 100644
+ --- a/readconf.c
+ +++ b/readconf.c
+-@@ -2255,11 +2255,16 @@ fill_default_options(Options * options)
++@@ -2475,11 +2475,16 @@ fill_default_options(Options * options)
+  	all_key =3D sshkey_alg_list(0, 0, 1, ',');
+  	all_sig =3D sshkey_alg_list(0, 1, 1, ',');
+  	/* remove unsupported algos from default lists */
+@@ -283,7 +283,7 @@ index 554efd7..16eda65 100644
+  	do { \
+  		if ((r =3D kex_assemble_names(&options->what, \
+ diff --git a/sandbox-seccomp-filter.c b/sandbox-seccomp-filter.c
+-index e0768c0..8971bba 100644
++index d8dc712..c6e62e4 100644
+ --- a/sandbox-seccomp-filter.c
+ +++ b/sandbox-seccomp-filter.c
+ @@ -157,6 +157,9 @@ static const struct sock_filter preauth_insns[] =3D {
+@@ -297,10 +297,10 @@ index e0768c0..8971bba 100644
+  	SC_DENY(__NR_openat, EACCES),
+  #endif
+ diff --git a/servconf.c b/servconf.c
+-index f08e374..dbcee84 100644
++index 9695583..98f6303 100644
+ --- a/servconf.c
+ +++ b/servconf.c
+-@@ -213,11 +213,16 @@ assemble_algorithms(ServerOptions *o)
++@@ -218,11 +218,16 @@ assemble_algorithms(ServerOptions *o)
+  	all_key =3D sshkey_alg_list(0, 0, 1, ',');
+  	all_sig =3D sshkey_alg_list(0, 1, 1, ',');
+  	/* remove unsupported algos from default lists */
+@@ -323,10 +323,10 @@ index f08e374..dbcee84 100644
+  	do { \
+  		if ((r =3D kex_assemble_names(&o->what, defaults, all)) !=3D 0) \
+ diff --git a/ssh-keygen.c b/ssh-keygen.c
+-index a12b79a..cb8e569 100644
++index cfb5f11..6451584 100644
+ --- a/ssh-keygen.c
+ +++ b/ssh-keygen.c
+-@@ -204,6 +204,12 @@ type_bits_valid(int type, const char *name, u_int32_t=
+ *bitsp)
++@@ -205,6 +205,12 @@ type_bits_valid(int type, const char *name, u_int32_t=
+ *bitsp)
+  #endif
+  	}
+  #ifdef WITH_OPENSSL
+@@ -339,7 +339,7 @@ index a12b79a..cb8e569 100644
+  	switch (type) {
+  	case KEY_DSA:
+  		if (*bitsp !=3D 1024)
+-@@ -1094,9 +1100,17 @@ do_gen_all_hostkeys(struct passwd *pw)
++@@ -1095,9 +1101,17 @@ do_gen_all_hostkeys(struct passwd *pw)
+  			first =3D 1;
+  			printf("%s: generating new host keys: ", __progname);
+  		}
+@@ -359,7 +359,7 @@ index a12b79a..cb8e569 100644
+  			error("Could not save your private key in %s: %s",
+  			    prv_tmp, strerror(errno));
+ diff --git a/ssh.c b/ssh.c
+-index f34ca0d..aabd5d3 100644
++index 53330da..729d87a 100644
+ --- a/ssh.c
+ +++ b/ssh.c
+ @@ -77,6 +77,8 @@
+@@ -371,7 +371,7 @@ index f34ca0d..aabd5d3 100644
+  #include "openbsd-compat/openssl-compat.h"
+  #include "openbsd-compat/sys-queue.h"
+ =20
+-@@ -662,6 +664,16 @@ main(int ac, char **av)
++@@ -652,6 +654,16 @@ main(int ac, char **av)
+  	sanitise_stdfd();
+ =20
+  	__progname =3D ssh_get_progname(av[0]);
+@@ -388,7 +388,7 @@ index f34ca0d..aabd5d3 100644
+ =20
+  #ifndef HAVE_SETPROCTITLE
+  	/* Prepare for later setproctitle emulation */
+-@@ -1500,6 +1512,10 @@ main(int ac, char **av)
++@@ -1506,6 +1518,10 @@ main(int ac, char **av)
+  		exit(0);
+  	}
+ =20
+@@ -400,7 +400,7 @@ index f34ca0d..aabd5d3 100644
+  	if (options.sk_provider !=3D NULL && *options.sk_provider =3D=3D '$' &&
+  	    strlen(options.sk_provider) > 1) {
+ diff --git a/sshd.c b/sshd.c
+-index 5af7986..1f1fcc2 100644
++index eff4778..fee4703 100644
+ --- a/sshd.c
+ +++ b/sshd.c
+ @@ -66,6 +66,7 @@
+@@ -420,7 +420,7 @@ index 5af7986..1f1fcc2 100644
+  #include "openbsd-compat/openssl-compat.h"
+  #endif
+ =20
+-@@ -1555,6 +1558,18 @@ main(int ac, char **av)
++@@ -1536,6 +1539,18 @@ main(int ac, char **av)
+  #endif
+  	__progname =3D ssh_get_progname(av[0]);
+ =20
+@@ -439,7 +439,7 @@ index 5af7986..1f1fcc2 100644
+  	/* Save argv. Duplicate so setproctitle emulation doesn't clobber it */
+  	saved_argc =3D ac;
+  	rexec_argc =3D ac;
+-@@ -2039,6 +2054,10 @@ main(int ac, char **av)
++@@ -2017,6 +2032,10 @@ main(int ac, char **av)
+  	/* Reinitialize the log (because of the fork above). */
+  	log_init(__progname, options.log_level, options.log_facility, log_stderr=
+);
+ =20
+@@ -451,7 +451,7 @@ index 5af7986..1f1fcc2 100644
+  	   unmounted if desired. */
+  	if (chdir("/") =3D=3D -1)
+ diff --git a/sshkey.c b/sshkey.c
+-index ac451f1..4f72eab 100644
++index b25c59a..8fcfe22 100644
+ --- a/sshkey.c
+ +++ b/sshkey.c
+ @@ -34,6 +34,7 @@
 --=20
 2.25.1
 
