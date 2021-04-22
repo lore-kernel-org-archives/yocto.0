@@ -1,87 +1,96 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.11603.1619095587541523982
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+ by mx.groups.io with SMTP id smtpd.web10.12832.1619100229706762631
  for <yocto@lists.yoctoproject.org>;
- Thu, 22 Apr 2021 05:46:27 -0700
+ Thu, 22 Apr 2021 07:03:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ry4KMbkK;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: marek.belisko@gmail.com)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 79AE938C052B
-	for <yocto@yoctoproject.org>; Thu, 22 Apr 2021 12:46:26 +0000 (UTC)
-Received: by mail-yb1-f181.google.com with SMTP id k73so44945537ybf.3
-        for <yocto@yoctoproject.org>; Thu, 22 Apr 2021 05:46:26 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=beaeTWwt;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.41, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f41.google.com with SMTP id p6so38256070wrn.9
+        for <yocto@lists.yoctoproject.org>; Thu, 22 Apr 2021 07:03:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=Q18rrjBbipkn2ZoqDxNogU+MCvaw5jnItj/O88+Mx40=;
-        b=ry4KMbkKn6WkLfMAQ8gv7+/XXDRzEHI8M08hqKzqBlzApJuTYRoxD7UntHQ1qPm6vj
-         9oZk1C17DHley3xka3/+6n7kM6cymuVubPMMOTrfiLlw+ZdjcWhNEs7BBXqxgmn1xCgL
-         c2G8YqHQx4PZ/1xxvObjjJcXKIO2o9Z2/nLTxgCoQE49IIx7YuIrMHOAZ73LFKK2TE08
-         qExGzZHJrRtkNfhv2iL4ZVy8OiAtKRj36GZM8PDvoYCiYqHmDamGiI8fBbAIYih5FHaZ
-         yOp1FyfZ+cdJerTQ5r5t6GOMo6VHqLlaRs/uCnrArDuWO6RTh8JM1jw0y0KRf6KRohAI
-         lgCg==
+        d=linuxfoundation.org; s=google;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zt7vBZQvDKDcCFAtpMa+sYoMvIwMDE2Drl/R/ayS+EI=;
+        b=beaeTWwtF/Wp2cxhHSPQ80wZTc2vgKrMytKfiG+A8axCTrPGo0mb6HLapwMaxQb//W
+         CPZhJPhUK03mqBwAvG1R9GjYzfNqV53Pb6H9D1+lpaXQE50K79R8MwPGH8+c45GqBcNK
+         ekDAhnSDcsKHBL5W0VJggKL6HuOhRs4BxekHo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=Q18rrjBbipkn2ZoqDxNogU+MCvaw5jnItj/O88+Mx40=;
-        b=XyVtJexxQU+y6K11PNDK+mFKOQ9VMiimeU2QytLs1JMFpxN4UtaQ2mMyNwx4ukVyW0
-         XQRiCw9V1pkPYs4RcE4gpmqJPoKp7ZrCGZXBWwqgy0hss4uuBtX4MJfx/i3e1d3gg+lL
-         q1s/F+CaP5jvxQTTd83/s57A4YZybxeKR+LTDIr4VdP3k9Lc5BqRBB4YlOvE740zXQAA
-         cL61VbmSKmaARleGh8k5Y61yPKeNlmywpops2rLDWKQZnn+sbRf5ObJ95n9nhB6Mr3yh
-         ksYVZXien9h4LqRtMhsphCjhgXtsJttIQJU5ny0wWQ+RkAYmjIwqIBaN3siQTJLFZNEx
-         GEJw==
-X-Gm-Message-State: AOAM530PwntAiuvBX8b6eoAut1/AOqQoF2V3/VhcAQqcSvPc6GhW9xfm
-	0gkcu20x3in8VFcL0e8OUXw1iV/Cgsv+o1Ojd66gNNhy1Up0cQ==
-X-Google-Smtp-Source: ABdhPJzVpfrpJGaQhasnUjIeYDfKnPFM0NZbteI8J462ZVS1dUys/MF+avtDGcBQamovAzap9ZJ4LC4PE9fCkAy91pM=
-X-Received: by 2002:a25:ced0:: with SMTP id x199mr4424962ybe.236.1619095585043;
- Thu, 22 Apr 2021 05:46:25 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zt7vBZQvDKDcCFAtpMa+sYoMvIwMDE2Drl/R/ayS+EI=;
+        b=J8Ou+bI6WaRdNlCzYiuAdbj25Gqgigi6Gi5JjJdpr8OJGOPr1kIvfqStq6SKBwZ/Zu
+         7/6yq7tPLbXgHFsjZqy7a0BCKV5x3OrBpy91qAKXbPhS1hs7VZX9D/Pw8dByyQo+A1WH
+         VCVVje7IDwk+HmIKzzXezd/K5Tx6f0G8R9lGl2QaI009fjscyxD3bmN7kJyP5hy67swE
+         vG/nNgiNiR4yLm87KqbMqI+KVJna/9+f3SDdSvshf+IHc4h0J9Fs2znvWYrFux7jPKPc
+         3kjEF43b1nY7sn83jspg9b0RgW9tXJyffRAAslKMl8GG/4fJrM0v/szFCRTDBOkc4yOY
+         7Qcg==
+X-Gm-Message-State: AOAM5322rrgFUf5eZtR7Dy2sdk8BR6DHjstwZwt9/nN1l7+NXWu7QHva
+	4wWZJ3MoBgvCIyfc2SNGGPrvpPOYpYGl4g==
+X-Google-Smtp-Source: ABdhPJwqQBWnbjyYA9iMZ+Gv9/pzS7yfjYFyKtvaYbKi+ctvcNCvPP9oOSGT+duiQpV2iwfa1Z+sUg==
+X-Received: by 2002:a5d:4850:: with SMTP id n16mr4403473wrs.294.1619100228016;
+        Thu, 22 Apr 2021 07:03:48 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from hex.int.rpsys.net ([2001:8b0:aba:5f3c:bd84:c44c:f28b:9534])
+        by smtp.gmail.com with ESMTPSA id o17sm3675842wrv.16.2021.04.22.07.03.47
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Apr 2021 07:03:47 -0700 (PDT)
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder2] [PATCH] config/schedulers: Add check-layer-nightly
+Date: Thu, 22 Apr 2021 15:03:47 +0100
+Message-Id: <20210422140347.1578894-1-richard.purdie@linuxfoundation.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Thu, 22 Apr 2021 14:46:14 +0200
-Message-ID: <CAAfyv34aLoMErgY-PpQjkuowf20S2x2AKtKuhh6_jMCJV7cZVw@mail.gmail.com>
-Subject: hardknott build issue
-To: yocto <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Add a new target to run layer checks every 24 hours on various layers we don't
+test as part of the standard test runs.
 
-I'm meta-sunxi co-maintainer and in order to add hardknott support to
-meta-sunxi I try to build few days ago image from hardknott release
-and hitting this issue:
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ config.py     | 2 ++
+ schedulers.py | 5 +++++
+ 2 files changed, 7 insertions(+)
 
-WARNING: core-image-base-1.0-r0 do_rootfs: libglib-2.0-0.postinst
-returned 126, marking as unpacked only, configuration required on
-target.
-WARNING: core-image-base-1.0-r0 do_rootfs: eudev-hwdb.postinst
-returned 126, marking as unpacked only, configuration required on
-target.
-ERROR: core-image-base-1.0-r0 do_rootfs: Postinstall scriptlets of
-['libglib-2', 'eudev-hwdb'] have failed. If the intention is to defer
-them to first boot,
-then please place them into pkg_postinst_ontarget_${PN} ().
-Deferring to first boot via 'exit 1' is no longer supported.
-Details of the failure are in
-/home/builder/build/tmp/work/orange_pi_zero-poky-linux-gnueabi/core-image-base/1.0-r0/temp/log.do_rootfs.
-ERROR: Logfile of failure stored in:
-/home/builder/build/tmp/work/orange_pi_zero-poky-linux-gnueabi/core-image-base/1.0-r0/temp/log.do_rootfs.8491
-ERROR: Task (/home/builder/poky/meta/recipes-core/images/core-image-base.bb:do_rootfs)
-failed with exit code '1'
-
-I'm building core-image-base without any other changes. Ideas?
-
-Thanks and BR,
-
-marek
-
-
+diff --git a/config.py b/config.py
+index 54ec9ce8..82076cd3 100644
+--- a/config.py
++++ b/config.py
+@@ -23,6 +23,7 @@ buildertorepos = {
+     "qemuarm-oecore": ["oecore", "bitbake"],
+     "checkuri": ["poky"],
+     "check-layer": ["poky", "meta-mingw", "meta-gplv2"],
++    "check-layer-nightly": ["poky", "meta-agl", "meta-arm", "meta-aws", "meta-intel", "meta-openembedded", "meta-virtualization"],
+     "docs": ["yocto-docs", "bitbake"],
+     "default": ["poky"]
+ }
+@@ -110,6 +111,7 @@ builders_others = [
+     "qemuarm-armhost",
+     "meta-agl-core",
+     "meta-aws",
++    "check-layer-nightly",
+     "auh"
+ ]
+ 
+diff --git a/schedulers.py b/schedulers.py
+index 9d81806b..8b166e0b 100644
+--- a/schedulers.py
++++ b/schedulers.py
+@@ -352,6 +352,11 @@ schedulers.append(sched.Nightly(name='nightly-quick', branch='master', propertie
+ schedulers.append(sched.Nightly(name='nightly-full', branch='master', properties=parent_default_props('a-full'),
+                   builderNames=['a-full'], hour=1, minute=0, dayOfWeek=6))
+ 
++# Run check-layer-nightly each day
++schedulers.append(sched.Nightly(name='nightly-check-layer', branch='master', properties=parent_default_props('check-layer-nightly'),
++                  builderNames=['check-layer-nightly'], hour=0, minute=0))
++
++
+ # Run the build performance tests at 3am, 9am, 3pm and 9pm
+ schedulers.append(sched.Nightly(name='nightly-buildperf-ubuntu1604', branch='master', properties=parent_default_props('buildperf-ubuntu1604'),
+                   builderNames=['buildperf-ubuntu1604'], hour=[3,9,15,21], minute=0))
 -- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+2.30.2
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
