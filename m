@@ -1,127 +1,627 @@
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (NAM12-MW2-obe.outbound.protection.outlook.com [40.107.244.66])
- by mx.groups.io with SMTP id smtpd.web09.8750.1619074595496000883
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+ by mx.groups.io with SMTP id smtpd.web12.9294.1619077638055406778
  for <yocto@lists.yoctoproject.org>;
- Wed, 21 Apr 2021 23:56:35 -0700
+ Thu, 22 Apr 2021 00:47:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=jjESQ5GY;
- spf=pass (domain: windriver.com, ip: 40.107.244.66, mailfrom: yi.zhao@windriver.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Fuh7Zq7RLLMOi00ZFeGeqXio0i8GLKT7c2kBaTflF4h1r4o7D7NVazmRArPrEjeGzEzbZ9fE5EhzpixViesN+aAgFBiz25vKdq+/MS5P4e2g6YKOJvYaQLZA77VsMZRfEnjDia9bOu6qVJdnDSma/kss1MfDxpNwtZDwXVjRQm1UsY/OHmlKPi4lq7qoamPcT9WumHrYEoOFZEqxIQfJoz7ul37Q35zGh6LwkHO46gu6N++Joo2xPPDlQnsStEqH27gk4Te3njF0QthJ1W91ja8UJVELabyk1/HAI1kJrnALLn2mM4wxBUuXgJGGtwK/D/GYpjSXr2wnruZP6IVxsQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kjzhRdRO36QRLgbWpqwzAS7JoJwUAy97FpOErj2wCvc=;
- b=UOpfWROtlXVO/HeQNnTEDX1STRI2cAVfPA7Kfi2bzF+bWOTX5atg9wy1u9VlsVMaoe3zayr8/SlnMWnTnQayEJcH0qvtp+2bCywEIaMoEjom6kTegI3/Q56v4RwhkZdZDElgYbmha8ShT10bFuov0jdL8GLxmEpcLh8pvgmRkewRqkHhusQ4Fnb9aHLW8rJV6ftjtqhUx+BVCaCN8znxGbI8QJs5vZJSv7OytkscUbWidT8q403vpQjAObvaGzpAaUg+k6Kgj2BPg6uYfvyGeNGKvpt4SGXSVxSLfPqGV3HdDvnGlkFExlHuSZ+7gBNpM4Dabgg61OUN5gO5j0zbGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+ dkim=pass header.i=@linaro.org header.s=google header.b=MYr0ct2H;
+ spf=pass (domain: linaro.org, ip: 209.85.218.52, mailfrom: nicolas.dechesne@linaro.org)
+Received: by mail-ej1-f52.google.com with SMTP id u17so67373038ejk.2
+        for <yocto@lists.yoctoproject.org>; Thu, 22 Apr 2021 00:47:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=windriversystems.onmicrosoft.com;
- s=selector2-windriversystems-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kjzhRdRO36QRLgbWpqwzAS7JoJwUAy97FpOErj2wCvc=;
- b=jjESQ5GYwTiGpNJ3UNTkh0u7KO4N7Lb7iIZ4YxIGXBPR9i90lTLsTP0iMN12TOqcvyMrnmCoV8PDJwnYHcqigKmOmDNI9RyJGqhpfsPaBoUjwi4C6TzEWlIgQinjTpxvQ461SOixnUMvOHex2Vlbwd8dLcPb42SxdR/HXIub/9I=
-Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=windriver.com;
-Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
- by CO1PR11MB4849.namprd11.prod.outlook.com (2603:10b6:303:90::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.20; Thu, 22 Apr
- 2021 06:56:33 +0000
-Received: from CO1PR11MB4867.namprd11.prod.outlook.com
- ([fe80::55fe:763e:6961:7bbf]) by CO1PR11MB4867.namprd11.prod.outlook.com
- ([fe80::55fe:763e:6961:7bbf%4]) with mapi id 15.20.4065.021; Thu, 22 Apr 2021
- 06:56:33 +0000
-From: "Yi Zhao" <yi.zhao@windriver.com>
-To: yocto@lists.yoctoproject.org,
-	jason.wessel@windriver.com,
-	mark.hatle@kernel.crashing.org
-Subject: [meta-openssl102-fips][PATCH 6/6] layer.conf: add hardknott to LAYERSERIES_COMPAT
-Date: Thu, 22 Apr 2021 14:56:09 +0800
-Message-ID: <20210422065609.143415-7-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210422065609.143415-1-yi.zhao@windriver.com>
-References: <20210422065609.143415-1-yi.zhao@windriver.com>
-X-Originating-IP: [60.247.85.82]
-X-ClientProxiedBy: BY3PR10CA0023.namprd10.prod.outlook.com
- (2603:10b6:a03:255::28) To CO1PR11MB4867.namprd11.prod.outlook.com
- (2603:10b6:303:9a::13)
-Return-Path: yi.zhao@windriver.com
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/XC4OvHal2dp+Rx9URiMX6PZKl/6Sp/W8ETsTQbD9Eg=;
+        b=MYr0ct2HJcJqNaxpae/ds2g5m1l1vin5mVNvgOfTJnLZnArhhjPJCE1EN1TZfS+TXs
+         lSUqCRjTuzadhR5oTbVsDQPF13YsrnGZQn2xVDRCOhY4VIxaAn0WXSNMf37MI+69LYic
+         l2SAa/maT+/gg2Th5e7kBksWL5uomgoFQrbIcwMgBirNbGTyDU4iM2JBIvNg5WiKJbIl
+         8nB5EyglOP8AZQMfuXvoc+IiefXyGcmZUY6mG+6pjfAlJtkUt8QukV1PX97mms6J0Qva
+         ed3HOm/SRiFLZtPDY8CtZfFddN9ATbdFzKlYmrLhsvNTBuudVt7sX+MTrioimII32hUv
+         1Jrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/XC4OvHal2dp+Rx9URiMX6PZKl/6Sp/W8ETsTQbD9Eg=;
+        b=srgLBZOGWVKZ/f7kvrf4QtqXBuonxcPywxvBpBFJiH7jGV+EMkP54cRnzowMmmtgIg
+         TEw8NJInjlc9QLfdYIloyUVz0aEOwR4VT8wF9CzWX5fvOpHWkoQxnwcqN4u8BuTtf6EP
+         SHpGor8zmKuuJuBSnq3LWyU53Bbnf59ZpfPcgu4fW+2bBICDPiQECrLoIDJcQzMmJWED
+         zALXiqjjOsko0LAOwv22oTtv1V1Uto/crrbcL+KyLLyr6DCDWATEdpihCEIY1MJCZKIG
+         XyA5KjdOsaOzIBACD6xrL0owGMEhOU8Za2J1sQEHvr2M67y6GNuOQA0KFTBTmnelDKQI
+         UJbA==
+X-Gm-Message-State: AOAM531hDuP+6hZiA3aj2eGJjer3g0SjB53xudRQYfTxbYARMMGPDpuC
+	rVwJbXSBlR4c0JRFh2WKAkG1zY5BI7QnKoy57VAK6A==
+X-Google-Smtp-Source: ABdhPJwsP+WIWEacYk/mr7KP4H4zFSnvwfINIKM3mL2o4MSUnhPhYOeEt3GTWfpzChVSfIlWh8MbaEGyaW81a71wdFg=
+X-Received: by 2002:a17:906:8812:: with SMTP id zh18mr1973812ejb.342.1619077636157;
+ Thu, 22 Apr 2021 00:47:16 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by BY3PR10CA0023.namprd10.prod.outlook.com (2603:10b6:a03:255::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.22 via Frontend Transport; Thu, 22 Apr 2021 06:56:32 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8e7af999-1abf-440b-09ec-08d9055bc3d5
-X-MS-TrafficTypeDiagnostic: CO1PR11MB4849:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: 
-	<CO1PR11MB4849B60133177F01CF18A820F9469@CO1PR11MB4849.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:296;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	HfHIg+VmO9lWXlRCtOuD4mU1+bhVhRnZsa/fnNcEGx+81/8SIme2qykroFyQ68OIBD48jr8d4z4iH07uCsN/yYHZSuj5kd0H7VzaCIT7ltN7T6KWg/92NcSDOzjAjS1lP2Yo0ui4BjOo7BqpJ2NR1DnQwQB6K9HurNafMOyPJ7UvNU9n8SgXme2MgCXzxCAlzfoLeLylnjMwijfXsagcnCr6mrE2DAHsIjzth3uyiECkodzENiDSkWH8DvMe9QNAVAqtzXQJj2y83PEL0TXhUsID65Uk68Y3stQv24GaWvQO5hjBFjXKpWommC6nyUzZ4hbz2+UdDsDp51hLsUhdsI/w8DcOhATA5DdJwLgDJdgaD+HYW/G4nZnuH7A2AUxlgZd2ri7w+eimNSNWILI9CDb/WyReYGb6JIW4ezE6QaegmA+c1Z8u4LC8TGX4i02eW5ia0muw/QzON0tfveT/tmZCFXyFV9wk8vS53o4bPhMUYMtQEQ8DR6Gt3PPqLDJvXRdibuA5YHOrsiQIoLmgWxonmat3HOi1LO4r/hOJSO+3Vy/jnwG04mFEJRYbijVJbcWZ+2tG7I6bKdMyTeqzFt40LZKSrRP6ZhFzdYubKdl95J9WsNwZfxCeAxXIqIDhg7P1QEMS3T9qBIrb5FLxKVbodrOhRQZXwNfICCGDEWU=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(39850400004)(376002)(346002)(396003)(136003)(8936002)(6666004)(8676002)(316002)(6486002)(1076003)(478600001)(38350700002)(36756003)(86362001)(2616005)(6506007)(38100700002)(186003)(16526019)(52116002)(26005)(66946007)(66556008)(44832011)(2906002)(956004)(4744005)(83380400001)(6512007)(66476007)(5660300002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: 
-	=?us-ascii?Q?5jKJJasMTXWMnajD0vxL8cjoaTpimChmksmEe/e8iw/Y7imqHzfeTdzxZg4j?=
- =?us-ascii?Q?5+oB3m2A645APjkl8ctsGO2LJfBrcgHQ+O2f8F3XDj3RA5rZQ+uqJTX+tG6j?=
- =?us-ascii?Q?0/CP3nehRD/9/Tk6TcJvzJTa92wZ3esDL4sQU+ap6yyqSBAu/2Rcd2LSUrzX?=
- =?us-ascii?Q?KFEzMVGX8yekL+kVsyt3UEp69tIISqk+E9Z62LQ2j/mKf1bmELUjJU7EBVBL?=
- =?us-ascii?Q?DQB1ZeZqaX032XZ9p5aEtoy/U+hF2N9G+KoNkgXSiUMzZVY9VPGX/5hjcm0G?=
- =?us-ascii?Q?FzGGXqsxwObz5XUxuJy8w4kvuSxP+qCpfPX+Ku2QKyxEvMOCOfCwfn/ILHWO?=
- =?us-ascii?Q?YSXryqsCdOf34Oht07hIBAhKWSiFsfO7b0hB7w9W/NIafkjHwTCxG4H6+qTa?=
- =?us-ascii?Q?RQe5NMPRIKdSY7YPaL5Nww8WYgBX17g+5nVqr7Pg2YIArUTblTU8LFOH0HT6?=
- =?us-ascii?Q?9KfPF6MSpGx0yiieVW2cdGoHAFU4MvXdLcpHOfehZT5Mtyv2BYad/iNqh3m4?=
- =?us-ascii?Q?ET32AoDn4/eOx6RHZhgXkyKrybGtr+BjjCtwTtHDe7p0C47E3dF/MeKTpcWl?=
- =?us-ascii?Q?KyUnp9OxKwFujfGg/+QGaGsDjeoo/wydZoAMdxrZVIYuVogoXhh7E2CtGdpI?=
- =?us-ascii?Q?ccNNspziJaHDQCG27N/X3yXn7rA4pihfU7fEOJ2BgToUEIYw2QzQAnnwYeOp?=
- =?us-ascii?Q?dWnb024A/j1ipO2oDvaKZCuvUe4VrfSmcIAz7vjD7TCZJNEo579jYGC3ui7a?=
- =?us-ascii?Q?sseI8/3bBPHVmRvd4n9AF2h5vdXjnddkaZU1v1uOBp8bnnBAodv+qMUal8xq?=
- =?us-ascii?Q?yje2/SE6jIEg9EFwfttd+JfWjV87V0v8wcQTOw88yjZAUsqrWVlS0P1hAfKO?=
- =?us-ascii?Q?vcABym5N1iR7zxlSKRFOhZrQOFwZkUCimCSEZSrHt20vXNl+H0ZWeqlT3q9P?=
- =?us-ascii?Q?9rmsKSeJTav8LLXslBrhAr89kn92Cy7Hn8o6QjLpWCmkv8KLc4VMcAiHpCiS?=
- =?us-ascii?Q?5MaWe6keLaGGUZU8XBWAnGBOovjwMYjzt8CY2lYHM6lH9+Q6WHhrgJxyw5UZ?=
- =?us-ascii?Q?aDUC3++CfJOi7yL1HNgowVhZBm3KfpK1pGWArO2F/MACw05PZYXoxq5Od9we?=
- =?us-ascii?Q?cvDZSOzPEaofqKgr42rYX5Ar+pQsXo/LrL5x2c88A8UZXwuyGzV6YR5jdS6W?=
- =?us-ascii?Q?ZwJ8tu6jEANIlr3eXGPcX0LZ3qtdNtZO3uy12YTdxYukXIHVmt0cARpMzJSF?=
- =?us-ascii?Q?ASbBhz5QzH+MBF+6G2lxKXMm6qkJXAqvflfPqEDLgR/L4jnogxRtJeC6jCBi?=
- =?us-ascii?Q?jFPaXZxdfKYc7LCzi3p2Exvg?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e7af999-1abf-440b-09ec-08d9055bc3d5
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2021 06:56:33.7876
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uXC9k1GK0gD63y2lo3tBjMwEHzop4Mg+KBwQyVmS2n55sgceBcF5I+26lpG29UtynKBWuz6musp6ulg9xILYUQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4849
+References: <20210420173537.GA17644@localhost>
+In-Reply-To: <20210420173537.GA17644@localhost>
+From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
+Date: Thu, 22 Apr 2021 09:47:05 +0200
+Message-ID: <CAP71WjyNm5pEBii6VLZKcTTEJJCkzB7o_ocDgyvwfNbhZv6hcA@mail.gmail.com>
+Subject: Re: [yocto] Yocto Technical Team Minutes, Engineering Sync, for April 20, 2021
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000005e07db05c08ae32d"
+
+--0000000000005e07db05c08ae32d
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
 
-From: Chen Qi <Qi.Chen@windriver.com>
+On Tue, Apr 20, 2021 at 7:35 PM Trevor Woerner <twoerner@gmail.com> wrote:
 
-Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
----
- conf/layer.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Yocto Technical Team Minutes, Engineering Sync, for April 20, 2021
+> archive:
+> https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWV=
+Dg9dDH4/edit
+>
+> =3D=3D announcements =3D=3D
+> The upcoming Yocto Project Summit is taking place May 25-26 2021
+> details: https://www.yoctoproject.org/yocto-project-virtual-summit-2021/
+> CfP: https://pretalx.com/yocto-project-summit-2021/cfp
+> registration:
+> https://www.cvent.com/d/yjq4dr/4W?ct=3D868bfddd-ca91-46bb-aaa5-62d2b61b2=
+501
+>
+> =3D=3D disclaimer =3D=3D
+> Best efforts are made to ensure the below is accurate and valid. However=
+,
+> errors sometimes happen. If any errors or omissions are found, please fe=
+el
+> free to reply to this email with any corrections.
+>
+> =3D=3D attendees =3D=3D
+> Trevor Woerner, Stephen Jolley, Armin Kuster, Steve Sakoman, Peter
+> Kjellerstedt, Alexandre Belloni, Michael Opdenacker, Scott Murray, Jon
+> Mason, Michael Halstead, Richard Purdie, Bruce Ashfield, Ross Burton, Ra=
+ndy
+> MacLeod, Saul Wold, Tim Orling, Daiane Angolini
+>
+> =3D=3D notes =3D=3D
+> - 3.3 (hardknott) released!!
+> - 3.1.7 (dunfell) through QA, pending TSC approval
+> - YP TSC: 3 seats re-elected, 2 seats up for re-election
+> - master branch open for 3.4 (honister) and things are starting to merge
+> - new command proposed: bitbake-getvar
+> - AB issues: 59 (going up)
+>
+> =3D=3D general =3D=3D
+> RP: the re-election for OE TSC is coming up in August, but the re-electi=
+on
+> for
+>     the YP TSC is in May. a call for candidates will be going out soon
+> TrevorW: do we want to align the voting with the conference?
+> RP: probably not
+>
+>
+> MichaelO: is there a 3.3 celebration?
+> RP: usually we do it at the conferences, but we=E2=80=99ll have to do it=
+ at the
+>     virtual one this year
+> MichaelO: i didn=E2=80=99t see anything on lwn
+> RP: we don=E2=80=99t have a mechanism for this
+> MichaelO: there are usually release notes
+> RP: yocto-announce mailing list
+> TrevorW: release notes?
+> RP: yes, PaulE put together some notes
+> TrevorW: is someone putting a release note together?
+> MichaelO: okay, i=E2=80=99ll put it together and email internally first
+> RP: advocacy is less that it was, if people can think of places to
+>     help/advertise that would be great. sometime i publish something in
+> the LF
+>     newsletter
+>
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 892cf79..01026f0 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -10,7 +10,7 @@ BBFILE_PRIORITY_meta-openssl-one-zero-two-fips =3D "5"
-=20
- LAYERVERSION_meta-openssl-one-zero-two-fips =3D "1"
-=20
--LAYERSERIES_COMPAT_meta-openssl-one-zero-two-fips =3D "zeus"
-+LAYERSERIES_COMPAT_meta-openssl-one-zero-two-fips =3D "hardknott"
-=20
- LAYERPATH_meta-openssl-one-zero-two-fips =3D "${LAYERDIR}"
-=20
---=20
-2.25.1
+I think we should indeed improve that a bit. As far as I know, the only
+place for the release notes is the 'email' sent to yocto-announce, which
+includes the content from this file:
+http://downloads.yoctoproject.org/releases/yocto/yocto-3.3/RELEASENOTES
 
+At the very least we should probably produce (as part of the release
+process) a similar document that we publish on the website site. That woul=
+d
+help us share the news on various social media. We either need to reformat
+the content for the web , e.g. more verbose, or at least copy/paste into a=
+n
+html page.
+We also recently discussed moving the release notes to docs.yp.org, so
+perhaps that could be enough to publish it here. The point is it's simpler
+to share a link on twitter, linkedin, .. that this 'raw/text' file.
+
+
+>
+>
+> RP: bitbake-getvar, instead of =E2=80=9Cbitbake -e | grep=E2=80=9D. save=
+s people some
+>     keystrokes
+> RP: uses tinfoil, acts as a very good, very small example of how to writ=
+e a
+>     small tinfoil tool (e.g. c larson=E2=80=99s bb tool). maybe a way of=
+ expanding
+>     this infrastructure to make it easier to add tools in the future,
+> perhaps
+>     expandable in layers itself
+> RP: also perhaps could be used for layer and config setup (e.g. kas,
+>     combo-layer)
+> AlexB: sounds great! i often show students =E2=80=9Cbitbake -e | grep=E2=
+=
+=80=9D and
+>     they=E2=80=99re often surprised and happy to see it
+> ScottM: +1
+> RP: it=E2=80=99s in master-next. there are probably a lot of tutorials t=
+hat will
+>     need updating after this :-) and there are places in selftest where =
+we
+> do
+>     =E2=80=9Cbitbake -e | grep=E2=80=9D (it runs it once then builds a d=
+ictionary of the
+>     results to avoid having to run it multiple times throughout the test
+> run)
+> RossB: it=E2=80=99s similar to bbvars
+> RP: i=E2=80=99d like to keep it simple, single variable, i don=E2=80=99t=
+ want to get too
+>     much scope creep which makes it more complicated. not meant to solve
+> all
+>     problems, just solve one elegantly. if we add something to take
+> multiple
+>     vars then we=E2=80=99d have to return JSON (?) or something else tha=
+t would be
+>     machine-parsable
+> RP: i think a separate command to do multiple vars would be best
+>
+>
+> PeterK: don't forget to move poky-conf back to master
+> RP: ah, thanks
+>
+>
+> Saul: CentOS 8 issues, grrr
+> RP: i haven=E2=80=99t looked into it
+> Saul: i think qemu is dying and qmp is trying to read the linux socket a=
+nd
+>     getting nothing. maybe i could take out the centos builder for a whi=
+le
+> RP: sounds reasonable. if you want to pull one builder out to work on it=
+,
+> that
+>     would be fine
+> Saul: i=E2=80=99ll talk to MichaelH about it
+>
+>
+> Saul: any cmake experts out there?
+> <crickets>
+> Saul: i have a nasty cmake + python issue wrt ceph: it doesn=E2=80=99t f=
+ind the
+>     core gcc libraries, sysroot being set to /not/exist. i think there=
+=E2=80=99s an
+>     environment passing issue between cmake and the python
+> RP: that /not/exist is something *we* hardcode into the compiler to make
+> sure
+>     sysroot gets set
+> Bruce: have a look at what we did in libvirt recently. we had a similar
+> issue
+>     with meson whereby it couldn=E2=80=99t find getent from libc. we had=
+ to create
+> a
+>     patch. meson+cmake couldn=E2=80=99t find getent from libc
+> RossB: i=E2=80=99ll take a look at your patch Bruce, meson acts strange =
+in some
+>     ways, but sometimes there=E2=80=99s a way to straighten it out
+>
+>
+> ScottM: Steve: 3.1.7 this week?
+> SteveS: up to TSC to approve it
+> RP: it=E2=80=99s through QA, QA didn=E2=80=99t flag any issues (there wa=
+s one failure but
+>     it succeeded on a subsequent build). the TSC meeting is later today,
+> so if
+>     they approve it=E2=80=99ll be out by tomorrow
+>
+>
+> Randy: latency monitoring. turned down from 10 to 6 seconds, tuned timeo=
+ut
+>     from 5 to 15 seconds. new column in AB console to link to this new
+> data.
+>     generates graphs of =E2=80=9Ctime to dd 100 kb periodically=E2=80=9D=
+ to hopefully help
+>     correlate failures with load. we usually see 3-5 seconds but sometim=
+es
+> 50s
+>     for unexplained reasons
+> RP: that=E2=80=99s very interesting. but we still don=E2=80=99t know wha=
+t the system is
+>     doing at those times when we see the 20. it=E2=80=99s one thing to k=
+now it=E2=80=99s
+>     happening, it=E2=80=99s another to know why. i=E2=80=99ve noticed th=
+at webkit builds
+>     add a lot of load, also compression adds a lot of load (xz)
+> Randy: behind on the rust things since i=E2=80=99ve been working on this
+>
+>
+> RP: speaking of languages, Go also worries me. Go has 2 issues: the fetc=
+her
+>     is messy and builds are not reproducible. are there any Go experts i=
+n
+> our
+>     community who can help?
+> TimO: Bruce and I have been struggling over a bunch of things, but it=E2=
+=
+=80=99s not
+>     fun
+> Bruce: working on something; i=E2=80=99m currently up to 37 fetches, but=
+ it=E2=80=99s not
+>     just fetching but also a layout issue. if you fetch something to =E2=
+=
+=80=9Cc/a=E2=80=9D
+>     but Go expects to find it at =E2=80=9Ca=E2=80=9D then it won=E2=80=
+=99t use it
+> Randy: someone wrote a cargo module for Rust to do something similar (i.=
+e.
+> a
+>     translation between Rust and bitbake), would that pattern be useful
+> here?
+> Bruce: probably, hard to know at what point we need to make deep changes=
+ vs
+>     patches on the surface. the =E2=80=9Cmake=E2=80=9D infrastructure do=
+esn=E2=80=99t help, too
+>     many hard-coded paths and options in the Go  =E2=80=9Cmake=E2=80=9D =
+files
+> RP: and that=E2=80=99s only =C2=BD the problem (still have build reprodu=
+cibility issues)
+> Bruce: Khem can bump the Go version, but then we need to chase after all
+> these
+>     fixes
+>
+>
+> Randy: suricata?
+> Armin: yes, those are in meta-security now, donated by ARM
+> Randy: did you use a cargo build
+> Armin: it was a couple things, had to start with one but then switch ove=
+r
+>     partway
+>
+>
+> TrevorW: is there any update on the =E2=80=9Clayout of where patches go=
+=E2=80=9D work?
+> RP: you mean =E2=80=9Cwork directory=E2=80=9D vs =E2=80=9Csource directo=
+ry=E2=80=9D?
+> RP: pretty invasive things, put it aside for now. a change like this wil=
+l
+> end
+>     up causing lots of follow-on issues for weeks to come. the cleanup
+> would
+>     be nice, don=E2=80=99t know if the cost is worth it and would eat up=
+ my time
+> for
+>     a while. although i agree the time would be best now to do it (start=
+ of
+>     new release). i think this is the second time i=E2=80=99ve tried
+>
+>
+> RP: parallel make job server (another such example of something I=E2=80=
+=99ve looked
+>     at and think would be nice, but have had to put aside for the
+> time-being)
+> RP: the todo list isn=E2=80=99t too bad, but it=E2=80=99s something that=
+ fell off to the
+>     side.
+> RP: i get the feeling that some of the things Randy is trying to track d=
+own
+>     (load on AB servers) might end up being helped by having a parallel =
+job
+>     server, but we just don=E2=80=99t know
+> ScottM: is that branch still around. i=E2=80=99m interested in tinkering=
+ with it
+> RP: ignore the branch, just take the commit.
+> RP: i had hard-coded the fifo to one place (/tmp) on the machine, which
+> means
+>     every build on that machine is tied together. is that good or bad?
+> ScottM: is that something you could see being global for all bitbake on =
+the
+>     machine
+> RP: as long as all the builds are being run by the same user. probably
+> need to
+>     create a separate fifo, give it a relevant name, and place it somewh=
+ere
+>     where each user can access it themselves. maybe i should try it on t=
+he
+> AB
+>     and see what blows up
+>
+>=20
+>
+>
+
+--0000000000005e07db05c08ae32d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 20, 2021 at 7:35 PM Trevo=
+r Woerner &lt;<a href=3D"mailto:twoerner@gmail.com">twoerner@gmail.com</a>&=
+gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Yocto=
+ Technical Team Minutes, Engineering Sync, for April 20, 2021<br>
+archive: <a href=3D"https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2Q=
+skANXW3ZT7QwKC5wWVDg9dDH4/edit" rel=3D"noreferrer" target=3D"_blank">https:=
+//docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/e=
+dit</a><br>
+<br>
+=3D=3D announcements =3D=3D<br>
+The upcoming Yocto Project Summit is taking place May 25-26 2021<br>
+details: <a href=3D"https://www.yoctoproject.org/yocto-project-virtual-sum=
+mit-2021/" rel=3D"noreferrer" target=3D"_blank">https://www.yoctoproject.or=
+g/yocto-project-virtual-summit-2021/</a><br>
+CfP: <a href=3D"https://pretalx.com/yocto-project-summit-2021/cfp" rel=3D"=
+noreferrer" target=3D"_blank">https://pretalx.com/yocto-project-summit-2021=
+/cfp</a><br>
+registration: <a href=3D"https://www.cvent.com/d/yjq4dr/4W?ct=3D868bfddd-c=
+a91-46bb-aaa5-62d2b61b2501" rel=3D"noreferrer" target=3D"_blank">https://ww=
+w.cvent.com/d/yjq4dr/4W?ct=3D868bfddd-ca91-46bb-aaa5-62d2b61b2501</a><br>
+<br>
+=3D=3D disclaimer =3D=3D<br>
+Best efforts are made to ensure the below is accurate and valid. However,<=
+br>
+errors sometimes happen. If any errors or omissions are found, please feel=
+<br>
+free to reply to this email with any corrections.<br>
+<br>
+=3D=3D attendees =3D=3D<br>
+Trevor Woerner, Stephen Jolley, Armin Kuster, Steve Sakoman, Peter<br>
+Kjellerstedt, Alexandre Belloni, Michael Opdenacker, Scott Murray, Jon<br>
+Mason, Michael Halstead, Richard Purdie, Bruce Ashfield, Ross Burton, Rand=
+y<br>
+MacLeod, Saul Wold, Tim Orling, Daiane Angolini<br>
+<br>
+=3D=3D notes =3D=3D<br>
+- 3.3 (hardknott) released!!<br>
+- 3.1.7 (dunfell) through QA, pending TSC approval<br>
+- YP TSC: 3 seats re-elected, 2 seats up for re-election<br>
+- master branch open for 3.4 (honister) and things are starting to merge<b=
+r>
+- new command proposed: bitbake-getvar<br>
+- AB issues: 59 (going up)<br>
+<br>
+=3D=3D general =3D=3D<br>
+RP: the re-election for OE TSC is coming up in August, but the re-election=
+ for<br>
+=C2=A0 =C2=A0 the YP TSC is in May. a call for candidates will be going ou=
+t soon<br>
+TrevorW: do we want to align the voting with the conference?<br>
+RP: probably not<br>
+<br>
+<br>
+MichaelO: is there a 3.3 celebration?<br>
+RP: usually we do it at the conferences, but we=E2=80=99ll have to do it a=
+t the<br>
+=C2=A0 =C2=A0 virtual one this year<br>
+MichaelO: i didn=E2=80=99t see anything on lwn<br>
+RP: we don=E2=80=99t have a mechanism for this<br>
+MichaelO: there are usually release notes<br>
+RP: yocto-announce mailing list<br>
+TrevorW: release notes?<br>
+RP: yes, PaulE put together some notes<br>
+TrevorW: is someone putting a release note together?<br>
+MichaelO: okay, i=E2=80=99ll put it together and email internally first<br=
+>
+RP: advocacy is less that it was, if people can think of places to<br>
+=C2=A0 =C2=A0 help/advertise that would be great. sometime i publish somet=
+hing in the LF<br>
+=C2=A0 =C2=A0 newsletter<br></blockquote><div><br></div><div>I think we sh=
+ould indeed improve that a bit. As far as I know, the only place for the re=
+lease notes is the &#39;email&#39; sent to yocto-announce, which includes t=
+he content from this file:</div><a href=3D"http://downloads.yoctoproject.or=
+g/releases/yocto/yocto-3.3/RELEASENOTES" rel=3D"noreferrer" target=3D"_blan=
+k">http://downloads.yoctoproject.org/releases/<span class=3D"gmail-il">yoct=
+o</span>/<span class=3D"gmail-il">yocto</span>-3.3/RELEASENOTES</a><br><div=
+><br></div><div>At the very least we should probably produce (as part of th=
+e release process) a similar document that we publish on the website site. =
+That would help us share the news on various social media. We either need t=
+o reformat the content for the web , e.g. more verbose, or at least copy/pa=
+ste into an html page.=C2=A0</div><div>We also recently discussed moving th=
+e release notes to <a href=3D"http://docs.yp.org">docs.yp.org</a>, so perha=
+ps that could be enough to publish it here. The point is it&#39;s simpler t=
+o share a link on twitter, linkedin, .. that this &#39;raw/text&#39; file.<=
+/div><div>=C2=A0<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+>
+<br>
+<br>
+RP: bitbake-getvar, instead of =E2=80=9Cbitbake -e | grep=E2=80=9D. saves =
+people some<br>
+=C2=A0 =C2=A0 keystrokes<br>
+RP: uses tinfoil, acts as a very good, very small example of how to write =
+a<br>
+=C2=A0 =C2=A0 small tinfoil tool (e.g. c larson=E2=80=99s bb tool). maybe =
+a way of expanding<br>
+=C2=A0 =C2=A0 this infrastructure to make it easier to add tools in the fu=
+ture, perhaps<br>
+=C2=A0 =C2=A0 expandable in layers itself<br>
+RP: also perhaps could be used for layer and config setup (e.g. kas,<br>
+=C2=A0 =C2=A0 combo-layer)<br>
+AlexB: sounds great! i often show students =E2=80=9Cbitbake -e | grep=E2=
+=80=9D and<br>
+=C2=A0 =C2=A0 they=E2=80=99re often surprised and happy to see it<br>
+ScottM: +1<br>
+RP: it=E2=80=99s in master-next. there are probably a lot of tutorials tha=
+t will<br>
+=C2=A0 =C2=A0 need updating after this :-) and there are places in selftes=
+t where we do<br>
+=C2=A0 =C2=A0 =E2=80=9Cbitbake -e | grep=E2=80=9D (it runs it once then bu=
+ilds a dictionary of the<br>
+=C2=A0 =C2=A0 results to avoid having to run it multiple times throughout =
+the test run)<br>
+RossB: it=E2=80=99s similar to bbvars<br>
+RP: i=E2=80=99d like to keep it simple, single variable, i don=E2=80=99t w=
+ant to get too<br>
+=C2=A0 =C2=A0 much scope creep which makes it more complicated. not meant =
+to solve all<br>
+=C2=A0 =C2=A0 problems, just solve one elegantly. if we add something to t=
+ake multiple<br>
+=C2=A0 =C2=A0 vars then we=E2=80=99d have to return JSON (?) or something =
+else that would be<br>
+=C2=A0 =C2=A0 machine-parsable<br>
+RP: i think a separate command to do multiple vars would be best<br>
+<br>
+<br>
+PeterK: don&#39;t forget to move poky-conf back to master<br>
+RP: ah, thanks<br>
+<br>
+<br>
+Saul: CentOS 8 issues, grrr<br>
+RP: i haven=E2=80=99t looked into it<br>
+Saul: i think qemu is dying and qmp is trying to read the linux socket and=
+<br>
+=C2=A0 =C2=A0 getting nothing. maybe i could take out the centos builder f=
+or a while<br>
+RP: sounds reasonable. if you want to pull one builder out to work on it, =
+that<br>
+=C2=A0 =C2=A0 would be fine<br>
+Saul: i=E2=80=99ll talk to MichaelH about it<br>
+<br>
+<br>
+Saul: any cmake experts out there?<br>
+&lt;crickets&gt;<br>
+Saul: i have a nasty cmake + python issue wrt ceph: it doesn=E2=80=99t fin=
+d the<br>
+=C2=A0 =C2=A0 core gcc libraries, sysroot being set to /not/exist. i think=
+ there=E2=80=99s an<br>
+=C2=A0 =C2=A0 environment passing issue between cmake and the python<br>
+RP: that /not/exist is something *we* hardcode into the compiler to make s=
+ure<br>
+=C2=A0 =C2=A0 sysroot gets set<br>
+Bruce: have a look at what we did in libvirt recently. we had a similar is=
+sue<br>
+=C2=A0 =C2=A0 with meson whereby it couldn=E2=80=99t find getent from libc=
+. we had to create a<br>
+=C2=A0 =C2=A0 patch. meson+cmake couldn=E2=80=99t find getent from libc<br=
+>
+RossB: i=E2=80=99ll take a look at your patch Bruce, meson acts strange in=
+ some<br>
+=C2=A0 =C2=A0 ways, but sometimes there=E2=80=99s a way to straighten it o=
+ut<br>
+<br>
+<br>
+ScottM: Steve: 3.1.7 this week?<br>
+SteveS: up to TSC to approve it<br>
+RP: it=E2=80=99s through QA, QA didn=E2=80=99t flag any issues (there was =
+one failure but<br>
+=C2=A0 =C2=A0 it succeeded on a subsequent build). the TSC meeting is late=
+r today, so if<br>
+=C2=A0 =C2=A0 they approve it=E2=80=99ll be out by tomorrow<br>
+<br>
+<br>
+Randy: latency monitoring. turned down from 10 to 6 seconds, tuned timeout=
+<br>
+=C2=A0 =C2=A0 from 5 to 15 seconds. new column in AB console to link to th=
+is new data.<br>
+=C2=A0 =C2=A0 generates graphs of =E2=80=9Ctime to dd 100 kb periodically=
+=E2=80=9D to hopefully help<br>
+=C2=A0 =C2=A0 correlate failures with load. we usually see 3-5 seconds but=
+ sometimes 50s<br>
+=C2=A0 =C2=A0 for unexplained reasons<br>
+RP: that=E2=80=99s very interesting. but we still don=E2=80=99t know what =
+the system is<br>
+=C2=A0 =C2=A0 doing at those times when we see the 20. it=E2=80=99s one th=
+ing to know it=E2=80=99s<br>
+=C2=A0 =C2=A0 happening, it=E2=80=99s another to know why. i=E2=80=99ve no=
+ticed that webkit builds<br>
+=C2=A0 =C2=A0 add a lot of load, also compression adds a lot of load (xz)<=
+br>
+Randy: behind on the rust things since i=E2=80=99ve been working on this<b=
+r>
+<br>
+<br>
+RP: speaking of languages, Go also worries me. Go has 2 issues: the fetche=
+r<br>
+=C2=A0 =C2=A0 is messy and builds are not reproducible. are there any Go e=
+xperts in our<br>
+=C2=A0 =C2=A0 community who can help?<br>
+TimO: Bruce and I have been struggling over a bunch of things, but it=E2=
+=80=99s not<br>
+=C2=A0 =C2=A0 fun<br>
+Bruce: working on something; i=E2=80=99m currently up to 37 fetches, but i=
+t=E2=80=99s not<br>
+=C2=A0 =C2=A0 just fetching but also a layout issue. if you fetch somethin=
+g to =E2=80=9Cc/a=E2=80=9D<br>
+=C2=A0 =C2=A0 but Go expects to find it at =E2=80=9Ca=E2=80=9D then it won=
+=
+=E2=80=99t use it<br>
+Randy: someone wrote a cargo module for Rust to do something similar (i.e.=
+ a<br>
+=C2=A0 =C2=A0 translation between Rust and bitbake), would that pattern be=
+ useful here?<br>
+Bruce: probably, hard to know at what point we need to make deep changes v=
+s<br>
+=C2=A0 =C2=A0 patches on the surface. the =E2=80=9Cmake=E2=80=9D infrastru=
+cture doesn=E2=80=99t help, too<br>
+=C2=A0 =C2=A0 many hard-coded paths and options in the Go=C2=A0 =E2=80=9Cm=
+ake=E2=80=9D files<br>
+RP: and that=E2=80=99s only =C2=BD the problem (still have build reproduci=
+bility issues)<br>
+Bruce: Khem can bump the Go version, but then we need to chase after all t=
+hese<br>
+=C2=A0 =C2=A0 fixes<br>
+<br>
+<br>
+Randy: suricata?<br>
+Armin: yes, those are in meta-security now, donated by ARM<br>
+Randy: did you use a cargo build<br>
+Armin: it was a couple things, had to start with one but then switch over<=
+br>
+=C2=A0 =C2=A0 partway<br>
+<br>
+<br>
+TrevorW: is there any update on the =E2=80=9Clayout of where patches go=E2=
+=
+=80=9D work?<br>
+RP: you mean =E2=80=9Cwork directory=E2=80=9D vs =E2=80=9Csource directory=
+=
+=E2=80=9D?<br>
+RP: pretty invasive things, put it aside for now. a change like this will =
+end<br>
+=C2=A0 =C2=A0 up causing lots of follow-on issues for weeks to come. the c=
+leanup would<br>
+=C2=A0 =C2=A0 be nice, don=E2=80=99t know if the cost is worth it and woul=
+d eat up my time for<br>
+=C2=A0 =C2=A0 a while. although i agree the time would be best now to do i=
+t (start of<br>
+=C2=A0 =C2=A0 new release). i think this is the second time i=E2=80=99ve t=
+ried<br>
+<br>
+<br>
+RP: parallel make job server (another such example of something I=E2=80=99=
+ve looked<br>
+=C2=A0 =C2=A0 at and think would be nice, but have had to put aside for th=
+e time-being)<br>
+RP: the todo list isn=E2=80=99t too bad, but it=E2=80=99s something that f=
+ell off to the<br>
+=C2=A0 =C2=A0 side.<br>
+RP: i get the feeling that some of the things Randy is trying to track dow=
+n<br>
+=C2=A0 =C2=A0 (load on AB servers) might end up being helped by having a p=
+arallel job<br>
+=C2=A0 =C2=A0 server, but we just don=E2=80=99t know<br>
+ScottM: is that branch still around. i=E2=80=99m interested in tinkering w=
+ith it<br>
+RP: ignore the branch, just take the commit.<br>
+RP: i had hard-coded the fifo to one place (/tmp) on the machine, which me=
+ans<br>
+=C2=A0 =C2=A0 every build on that machine is tied together. is that good o=
+r bad?<br>
+ScottM: is that something you could see being global for all bitbake on th=
+e<br>
+=C2=A0 =C2=A0 machine<br>
+RP: as long as all the builds are being run by the same user. probably nee=
+d to<br>
+=C2=A0 =C2=A0 create a separate fifo, give it a relevant name, and place i=
+t somewhere<br>
+=C2=A0 =C2=A0 where each user can access it themselves. maybe i should try=
+ it on the AB<br>
+=C2=A0 =C2=A0 and see what blows up<br>
+<br>
+<br>
+<br>
+</blockquote></div></div>
+
+--0000000000005e07db05c08ae32d--
