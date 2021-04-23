@@ -1,173 +1,140 @@
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web12.2200.1619117480581602118
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (NAM12-DM6-obe.outbound.protection.outlook.com [40.107.243.76])
+ by mx.groups.io with SMTP id smtpd.web10.4529.1619146431117551786
  for <yocto@lists.yoctoproject.org>;
- Thu, 22 Apr 2021 11:51:22 -0700
+ Thu, 22 Apr 2021 19:53:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=INRhWJiz;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1619117480; x=1776797480;
-  h=from:to:subject:date:mime-version;
-  bh=b3FpX16fjfdNQCXM7SPTduyhlmVuMDuJjuuV1oPUJ/M=;
-  b=INRhWJizV8ZnTCMTsXWmzJLDUug7ZKxG4Dt7kaz8UW9o8nnUqa5aHpF1
-   RblZQmPzDPX1bgEYnW2EbIKMCcpmbofYcgr5M/yTe/nOiGkulFmfAU1iJ
-   Kh3CcINgEcIAtcdKxme3boIYmkaAGXRk591ckeUssSiKoIRUPKAXcWF9w
-   w=;
-IronPort-SDR: XNgxQ0IM1G0ll/1ZIIeQmweDgsq9l9nO9iGI7s6GcnPab7vT4Oa7ahRffs8PiKx9sqiL0DZjwe
- O7oXNHKr0xVQ==
-IronPort-PHdr: =?us-ascii?q?A9a23=3AO/LxTB/aOhHImv9uWay8ngc9DhMPi/DPJgcQr?=
- =?us-ascii?q?6AfoPdwSMyLwZ3uMQTl6Ol3ixeRBMOHsqMC0bOO+P64EUU7or+5+EgYd5JNU?=
- =?us-ascii?q?xJXwe43pCcHRPC/NEvgMfTxZDY7FskRHHVs/nW8LFQHUJ2mPw6arXK99yMdF?=
- =?us-ascii?q?QviPgRpOOv1BpTSj8Oq3Oyu5pHfeQpFiCe5bL9oMhm6sBndusYXjId+N6081?=
- =?us-ascii?q?gbHrnxUdupM2GhmP0iTnxHy5sex+J5s7SFdsO8/+sBDTKv3Yb02QaRXAzo6P?=
- =?us-ascii?q?W814tbrtQTYQguU+nQcSGQWnQFWDAXD8Rr3Q43+sir+tup6xSmaIcj7Rq06V?=
- =?us-ascii?q?Di+86tmTgLjhSEaPDA77W7XkNR9gqJFrhy8uxxxzY3aYICJO/VxZa7SZ88WR?=
- =?us-ascii?q?WhbU8pNSyBNHIWxZJYPAeobOuZYqpHwq1UJoxu5AwmsH/3gxSFThnPuwKY0z?=
- =?us-ascii?q?vghHh/Y3AM+GdIFrWrZp8jxOKgcTO65yafExijEYvNNxTfy9pbIfQ4nof2WW?=
- =?us-ascii?q?LJwdszRyVIxGAzblVWdspfqMCmL2eQWs2mb9PZgWvyqi248sQ1+vj+vxsI1h?=
- =?us-ascii?q?4TPm4kaxUzK+z9jz4YpOd23VlR7Ydi8HZVeuSyXK4p7T8EjTm12pSo31L4Lt?=
- =?us-ascii?q?J6/cSUFx5kr2hDRZvyIfYSV5h/uVuacLDh5iX54Zr+ygxW//Eu9x+HhWce51?=
- =?us-ascii?q?ktBoCldktTUq3wBywbf58aFR/dn40us3TiC2xrS5+xFOUw4iLbXJ4Quz7M/j?=
- =?us-ascii?q?JYevl7PEjL2lUjwkaSYbF8r+vKy5OTierjmo5icOJJqhQzmKaQun9C/Afw/M?=
- =?us-ascii?q?ggTQ2iX4eS826Pn/U3+WLhKiP02kq/Dv5DfPsQWpa60DxNJ3oo+8Rq/CS2p3?=
- =?us-ascii?q?M4DknYdMl1FYxKGj5P1O17QJfD4Fu2zjEirkDdu3/zGP7vhDYvRLnXbjbvtY?=
- =?us-ascii?q?axx5kBexQYp0NxS45xZBqsALf/yQkPxscbXDh49Mwy62ebnD9B925sFWWKTH?=
- =?us-ascii?q?KCZLr3dsVmS6uIqJOmMYpQVtyjjJPg+/PPhlmU2lkEGfaipxpsXdG63HvF9I?=
- =?us-ascii?q?0mDfXXshdIBHX8QvgUiVOzqlEGCUTlLaneyWKIz+i07CIW9AIfHR4Ctm6CB3?=
- =?us-ascii?q?DyhEpxWYWBJFkyMEXDwd4WeXPcMajydLdN9kjAeUrihUYAhhlmSs1qw2r1sM?=
- =?us-ascii?q?u38/iwDqYmlxd9+++rLjxYw+DdoScOH3CvFG3BzlX8Pbzs3x7xk5116wUuEy?=
- =?us-ascii?q?bJ/gfFTCZpU/fwfASkgMpuJhcl9Dcv/VxmFNuyVRUirRJ2NSXEMdZN7i4sVf?=
- =?us-ascii?q?0tjFtPkixfFxCenGJcfnrGQFYco/6fHmXP2IpAumD79yKA9ggx+EYN0Pmq8i?=
- =?us-ascii?q?/snnzU=3D?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3A93qG9Kme5zYxj8k8dJBF3fhHq2npDfP6im?=
- =?us-ascii?q?dD5ilNYBxZY6WkvuillvgDyFvQgDEeRHkvlbm7Sc+9aFnb8oN45pRUGL+kUh?=
- =?us-ascii?q?XvtmfAFvAa0aLJxTr8FyristNMzKsISdkBNPTcBUV35PyKhDWQPM0nxLC8kZ?=
- =?us-ascii?q?yApfzZyE5qVhwvUYxahj0TNi++MmlbADZLHoA4Ep303Ls3mxOFdW4MZsq2Ql?=
- =?us-ascii?q?kpNtKzwOHjr57tbR4YCxNP0mDn4l2VwYTnGBuV1Ap2aUIt/Z4e8HPImwG8xq?=
- =?us-ascii?q?Kvv+DT8G6460bv7o9bkNak991bBMbksLl2FhzQjG+TBLhJavmvrTo1qOag5B?=
- =?us-ascii?q?IQnNzFs34bVfhb2jf0RCWVqQGo8xT82DwugkWSsWOwsD/Gm4jFYx4UT+BGnp?=
- =?us-ascii?q?lUdxPF7VFIhqAG7It7m1i0kLd6NlfhpU3GiuTgZlVRum2YjUFnqsIrs0F2bK?=
- =?us-ascii?q?s5T9ZqwbA38UZNVI4aGi/n4p1PKpgVMOjQ4e8Tal+TZW3YuG4H+q3RYl0/Gw?=
- =?us-ascii?q?7DXUQYoMyS1FFt7Q1E5lpdwtcekHcG/I88TJcB5/2sCNUWqI1z?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2DlAwCDxIFg/0LBJQpagQkJgUmBI4F?=
- =?us-ascii?q?/gUyxF4F8CwEBAQEBAQEBAQgBNAQBAYZLJjUIDgIDAQEMAQEGAQEBAQEGBAG?=
- =?us-ascii?q?BA4VRDII4IoQeXgEMCWsmAQQbgmqBfqpDgTQaAmWEWIR4gTqBZYUdgl6GBEG?=
- =?us-ascii?q?PLQSif55qBwODDp0QHhCUUQOQOZUlo0kCBAIEBQIWgVYBghBwgzpPFwKceoE?=
- =?us-ascii?q?rAgYKAQEDCYt/gRABAQ?=
-X-IPAS-Result: =?us-ascii?q?A2DlAwCDxIFg/0LBJQpagQkJgUmBI4F/gUyxF4F8CwEBA?=
- =?us-ascii?q?QEBAQEBAQgBNAQBAYZLJjUIDgIDAQEMAQEGAQEBAQEGBAGBA4VRDII4IoQeX?=
- =?us-ascii?q?gEMCWsmAQQbgmqBfqpDgTQaAmWEWIR4gTqBZYUdgl6GBEGPLQSif55qBwODD?=
- =?us-ascii?q?p0QHhCUUQOQOZUlo0kCBAIEBQIWgVYBghBwgzpPFwKceoErAgYKAQEDCYt/g?=
- =?us-ascii?q?RABAQ?=
-X-IronPort-AV: E=Sophos;i="5.82,243,1613433600"; 
-   d="scan'208,217";a="368294990"
-IronPort-SDR: gGuq/1smRu/cVnBZlNSjhWDdhx7D7m0kojLMHj3+Fr3cT28GwnG2zpj6Z/qCOsbpXoBml30n4B
- rzgry1tJfMu1dPfiEuaj/tOdNcwoF32nE+0Td2gd7WI2oTIIN+UgTj1t0tLZjkFlAkVsniLtR5
- Z9wmjQe+1BFEcXvZR6GBMHZQYKI5MYi8MUGHqAw4/J8RJ7TGi79UgKAmKrPWojIY6vebdFmNWn
- GqPPZvBIFcMx7FpC9jDUbgxKJyMcdU70Szl+eg5Ab2HZ8hJq8HQuemCp+jGXyAjaTwX4BMoSmr
- LZw=
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: #yocto #sdk #cmake
-Thread-Topic: #yocto #sdk #cmake
-Thread-Index: Adc3p8DXjZ2GOZacQO6IBxhR92MSyQ==
-Date: Thu, 22 Apr 2021 18:51:16 +0000
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.6.100.33
-dlp-reaction: no-action
-x-originating-ip: [10.44.4.15]
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=MNgxIlb8;
+ spf=pass (domain: windriver.com, ip: 40.107.243.76, mailfrom: jason.wessel@windriver.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=evlAN3s8CTFD8HPT0r/2qsFEDDCRPEg/KMgAxmuQqytUZu3bzsNny+fXNSmEh5V8dtZyTZmEAGVxtlZHIOzcLYTv+nhhOfLKLx9lueIXSk81/SgjNCOBSW2vE9n5b+9I01J05eRtL+t+qsgHtfaYQB9h7LAF8iz1d+0f0+ppjzIzsMauqV9SCphIjM28+pxFs3TNzdF1ZX/NDQ2OOAdTJibAnasdqUnRt9zxXJbrLqFFLwh+JMrNCzve69bjrEuQplg4h7Jet7D4r1+TFd5RbxhRLE5fAxzhVfncLExxAsoDO0t0XkNa7fob8pKgYKlrHqgxa3QL8Wko4HvjfkO5cg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=f4XveF8Vyi9/pxghSbqO+vImA1JvS0/EWYlGB712Gfc=;
+ b=l4y8JG4+0NdFUY8ObV3TAQK5VUpgYHtX6trJVoqci1QWO/kLda1LxY4XjYLYia9zlKjblpp5SCj+nkTmtoei1azXZ1cBojNSiGdsNCXNfT++XKL6qNkBP//KXUnD4KzPC7iXMMHnZkEZdDDrICShmQTxx2htUDPHS6fdqxkXrQSQzVDVDK0/ox1n7+YESeh5ieXbP/QnpcxfCswFTET8pI/W+0GZocqgJGFaaGchL3h5gVvcFWkOqXhx0b7vLzHe3haB0Arr7rpNs0J0YcxwzvpNnSvBNKpSKgvEImFvhRkKGunW0RhDSF+vIfo4COo7Zo9YN/gYo0a8dyt4GM3omA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=f4XveF8Vyi9/pxghSbqO+vImA1JvS0/EWYlGB712Gfc=;
+ b=MNgxIlb8I3F5bKnZusZOEMo6ecwjkRDQfQyi4R0xZx8GlkCKsPdWglABNRyo8dbVO2LFflfDgQKdoRbBunYrFhlDmC8kyjFW8bajR0XlMcfPmxQa3t/sHos5UlZJyDWKxoWGjVWNaagLU48pUmUqFuRMUNLXVDae4SUQ4Dxa5Vg=
+Authentication-Results: kernel.crashing.org; dkim=none (message not signed)
+ header.d=none;kernel.crashing.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from SJ0PR11MB5181.namprd11.prod.outlook.com (2603:10b6:a03:2de::10)
+ by BYAPR11MB3590.namprd11.prod.outlook.com (2603:10b6:a03:b2::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.22; Fri, 23 Apr
+ 2021 02:53:48 +0000
+Received: from SJ0PR11MB5181.namprd11.prod.outlook.com
+ ([fe80::74b1:2357:c5c8:10ec]) by SJ0PR11MB5181.namprd11.prod.outlook.com
+ ([fe80::74b1:2357:c5c8:10ec%5]) with mapi id 15.20.4065.023; Fri, 23 Apr 2021
+ 02:53:48 +0000
+Subject: Re: [meta-openssl102-fips][PATCH 0/6] hardknott fixes
+To: Yi Zhao <yi.zhao@windriver.com>, yocto@lists.yoctoproject.org,
+ mark.hatle@kernel.crashing.org
+References: <20210422065609.143415-1-yi.zhao@windriver.com>
+From: "Jason Wessel" <jason.wessel@windriver.com>
+Message-ID: <a94154c5-52d6-f934-15b4-04647b500a0d@windriver.com>
+Date: Thu, 22 Apr 2021 21:53:45 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+In-Reply-To: <20210422065609.143415-1-yi.zhao@windriver.com>
+X-Originating-IP: [73.74.120.8]
+X-ClientProxiedBy: SJ0PR03CA0112.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::27) To SJ0PR11MB5181.namprd11.prod.outlook.com
+ (2603:10b6:a03:2de::10)
+Return-Path: jason.wessel@windriver.com
 MIME-Version: 1.0
-Message-ID: <MADEUP.167842C5B6229391.407@lists.yoctoproject.org>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.0.2.15] (73.74.120.8) by SJ0PR03CA0112.namprd03.prod.outlook.com (2603:10b6:a03:333::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.21 via Frontend Transport; Fri, 23 Apr 2021 02:53:47 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 30eae833-c959-4009-70cc-08d90603049f
+X-MS-TrafficTypeDiagnostic: BYAPR11MB3590:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: 
+	<BYAPR11MB35904AC821CEA2D9B2CB92C297459@BYAPR11MB3590.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2512;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	Z9KKluhNfx3zRPvybW6X4lWoy1DSTsCmId7j2KXw8+3UCp4i2jTwI2ZzuYLv4Qq9tNj9ANqRAozMkngWlymorx83XDmY13zCDdkFEKmzcTexQCWRjMb+DsArr2z75PzjzJzqGR/khUWjgAkvDj3NPSm/50yXv0mTolxG5pkfjF4XmjHD4w4Js1cQIhnoFxsHDJEdWIcEOCLYCG+/rIY82KbDppPE4KBEf9VX+E3XP1rQq1OODDUNoVtLzbeGF6UxEIyq2f/nqMxV1gkvDfqCw6vjkLLEEISfaUuxgNdHsSOdZtxawTAy/RCpzsW/ThYYAY3SIDtn6geZYSplZ+bbd2u6T5vX1ycN3FVwuKXehhZvEBLcdr7JOfYEjUmIcKxDBzqccfTE1Qz4jsAXtcirh/cy3Ju+cJsw+Z5/RXQChlfkjksE2zMLXq7IM497j6MtDrDFefeCo9OWClahsDCH9vxwiXKpN8OKRHizDQQ7CCULZFuw9L9OUk8eulzxA7afcl15aPgfYgw5S3WV6BndZwEyqq8ZT/S1/Lm1jtoHYJypq0GF5ebm56h1YEgxE01sxT/zPM4Db4VQfQDsMMORZNFTBu+8QfgdbU+iBXr2xn/kSOWgF6tQZLUdZeip4kfuXQFitzXEl15YXSYG+7nPbRMNKcoK6GfWa9xlmPyd30qvjkKwytKhbT9+jE08ZwdX
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR11MB5181.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(396003)(366004)(39850400004)(136003)(31686004)(36756003)(83380400001)(6486002)(2906002)(8936002)(66946007)(66556008)(66476007)(53546011)(86362001)(8676002)(5660300002)(16576012)(44832011)(316002)(2616005)(956004)(31696002)(16526019)(38100700002)(478600001)(186003)(26005)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: 
+	=?utf-8?B?STE0K3pCR284cmc4R2tSbGhMWE9xZUc5bnVOcXdpYU8zVTJ3aDFwd0E1VHhi?=
+ =?utf-8?B?N29PNXZOWnZnbGFmMGhqQ00xZG5JOGgrRG5xVU54aGY0cElnZTBKY3RiM2JO?=
+ =?utf-8?B?bkRxQjZXNERCbGJTYXFOWWJCN0hvVkdoTnNTWlUvRGVPRGFhWDl5ejUydXJK?=
+ =?utf-8?B?MFRnVG84eW5ydXZWOVhSdEtUSEErQzhXcU1SVFQxZEswKzB5enNvL3FkQzRP?=
+ =?utf-8?B?ZXhxdFU4VVJMNUVuaWVoMGVBSzI3M1daYUw1dkRaeDE1cGhpN3YxU21uaEc1?=
+ =?utf-8?B?RWttMzZySE1nVG82MXQrbjhzaTVSMURsY3JHa2FGUE83RUZVekRFUmtyNXRJ?=
+ =?utf-8?B?THpmSUVqanp6dHVRZzJVa0ZjTyswSlg0Z2hBcEdCNEU3U2h0RTdBQXIvTVBt?=
+ =?utf-8?B?ZnQ2VmZPWU1LN0RmcW80K2MxODFmSjJER0Z2eDlaSGlsMUNUeUF5cWhiRm1J?=
+ =?utf-8?B?N1ZJY2ZVQ0FhNG9IZUlLTHEvaCsyUnZLbjdRUDhCWDNSVUFlR2l6bkVTRmVX?=
+ =?utf-8?B?UjYwL2RhV2RQeWViV3cxbzNZQ1hYTDJGMzUyK2diOVFQNTkyeEpITjl2MnJT?=
+ =?utf-8?B?SmtNdXdmdmFXRGlLY0JkUUgvNXdyTHpFK0w1ZTFhQmpYVVFyRno0aTVjZk1m?=
+ =?utf-8?B?VnJtdnlyRmFWRGVxRCsvUFU0ZmJURU1oZGNybXA2VGpNQjZPTGlHTk9mVlZj?=
+ =?utf-8?B?cWNjUGlLQVg3L3ZCV1NYQ2YvT0V1cVZNQlN5bng3NkVDNGpzNUhyVWtSak8y?=
+ =?utf-8?B?RWJFc1NPR3VlWU1lU3FweXlPOG43Tnh5Y1hzSi9VL1R0SWZPci9GeEJ5QkxX?=
+ =?utf-8?B?bG52NnI1UjJ5ZnNKZG45WTNYcDdOOCtwdUI4aGJmZVQvTFM4R3RSbW1oV3RB?=
+ =?utf-8?B?VUVUOUpHV2ZzSlpyY1pIMEdkL0R2MDNqbm15enM2WU5EbE42MXZnNFZoZCsz?=
+ =?utf-8?B?d1J1TjgzZ0FYMWRFTDBFVXkvSVladUswY1Y0MnZHeVdrZm9HRHJTZUVCeGpa?=
+ =?utf-8?B?WGh6c2E0aUU1WEtVY0VLRzBoSjhmNHlGc3dHcSt2SjdBcHZVbytOcnVCc0FF?=
+ =?utf-8?B?Zkx1VTY1b1hZRnhVOXVoQVcvV2Q5QXN2dXNndmJZcGpzR1k5OW05L002aDZO?=
+ =?utf-8?B?QU5wQ1phZnBXVXl5aVpCYUJNWm53UWFWclhqK05TR1RaY0NQWHdVTjJsQU5W?=
+ =?utf-8?B?Y1NFWDV3a0JvZFlDcmVBcVl3NlFCMHNybXM1dzJzbEExMEczNUZKd2R4S1ly?=
+ =?utf-8?B?ejJKczNxSHhmVXp5WlcyYWJLUnRScXh5M0FtNVlndmk1Mm83V1Z0MEdjb0JZ?=
+ =?utf-8?B?TzlvcjRER2NvOU0zMGNwb2l4Ly9HSEk0QUhxYk4xVGgyNTYwZU1XZTFmWTBS?=
+ =?utf-8?B?RTRFdk0weGc5Rzc4UFZ4SXlpYjM5alo1U2tWOEc0NEsrMklscERQbndvdi9y?=
+ =?utf-8?B?MFVuVkZpTUlxUzhUemFKOExjRVZ2Q3h3aENWTVRNZERkeHlYdUtFZ0VhV2xm?=
+ =?utf-8?B?WEJ3Sm9XU1NnQ0xiVHN1STNzeENPcmR3ZzdUdU84V1dwMGFaRU5rbUgreG9z?=
+ =?utf-8?B?M0NMenkxNjgzMnY0UHdXSVJ0aTZVMXExL1dyV2lCRnRkWmh0ek80QVZJK0pk?=
+ =?utf-8?B?dUNqNHVJZmowclo1NkVCTlBOKzF5MzhxeWRqMG14cFFCZnBjbEVaSTQrclZ1?=
+ =?utf-8?B?K1lNWElGT3ZzOHozcnkwNDF5bW41MUQ2OW8xNjl0Q2tkU3lIU0pEa2x2akw0?=
+ =?utf-8?Q?412oejynmJlfA3G/4G7YKXxlbT6WkSjfBwiTkgP?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 30eae833-c959-4009-70cc-08d90603049f
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB5181.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2021 02:53:48.3604
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Oetg/eHWOuSfo7mfM0K/zthPDBaKSH4iZBQ2q92wmsEO7SMP4k++mQsCKHjWZ/2K8U00/2PAS+VR9NlNYcy2f7K0eogHX999c3PKQtwp08Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3590
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_c5446dc22b8b4c78aee3e1c5f7db5d03baesystemscom_"
 
---_000_c5446dc22b8b4c78aee3e1c5f7db5d03baesystemscom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Merged.
 
-
-When setting up an SDK, (standard or extensible),  build which will be usin=
-g cmake, is there a proper way to pre-configure OEToolchainConfig.cmake for=
- ones env/applications ?
-
-Currently I build the SDK, install, and then manually edit...
-
-Thanks,
-Steve
-
---_000_c5446dc22b8b4c78aee3e1c5f7db5d03baesystemscom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 4/22/21 1:56 AM, Yi Zhao wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">When setting up an SDK, (standard or extensible), &n=
-bsp;build which will be using cmake, is there a proper way to pre-configure=
- OEToolchainConfig.cmake for ones env/applications ?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Currently I build the SDK, install, and then manuall=
-y edit&#8230;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Steve<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_c5446dc22b8b4c78aee3e1c5f7db5d03baesystemscom_--
+> Changqing Li (1):
+>    openssh: refresh patches to 8.5p1
+>
+> Chen Qi (1):
+>    layer.conf: add hardknott to LAYERSERIES_COMPAT
+>
+> Yi Zhao (4):
+>    README.build: add "Known Issues" section
+>    openssh: refresh patches to 8.4p1
+>    openssh: fix the double free error for ssh-cavs
+>    openssh: set kex->sessin_id via sshbuf_put in ssh-cavs
+>
+>   README.build                                  |  28 +++
+>   conf/layer.conf                               |   2 +-
+>   .../0001-conditional-enable-fips-mode.patch   |  46 ++---
+>   ...ps.patch => 0001-openssh-8.4p1-fips.patch} | 173 +++++++-----------
+>   ...1-ssh-cavs-fix-the-double-free-error.patch | 161 ++++++++++++++++
+>   ...avs-set-kex-sessin_id-via-sshbuf_put.patch |  45 +++++
+>   recipes-connectivity/openssh/openssh_fips.inc |   4 +-
+>   7 files changed, 327 insertions(+), 132 deletions(-)
+>   rename recipes-connectivity/openssh/openssh/{0001-openssh-8.2p1-fips.patch => 0001-openssh-8.4p1-fips.patch} (73%)
+>   create mode 100644 recipes-connectivity/openssh/openssh/0001-ssh-cavs-fix-the-double-free-error.patch
+>   create mode 100644 recipes-connectivity/openssh/openssh/0001-ssh-cavs-set-kex-sessin_id-via-sshbuf_put.patch
+>
