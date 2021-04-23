@@ -1,102 +1,83 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.10322.1619187475269842562
+ by mx.groups.io with SMTP id smtpd.web11.10585.1619187475725241509
  for <yocto@lists.yoctoproject.org>;
  Fri, 23 Apr 2021 07:17:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=dy9VwsNe;
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=bUCvjA63;
  spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 8F99F38C0534
-	for <yocto@yoctoproject.org>; Fri, 23 Apr 2021 14:17:54 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id i21-20020a05600c3555b029012eae2af5d4so1328289wmq.4
-        for <yocto@yoctoproject.org>; Fri, 23 Apr 2021 07:17:54 -0700 (PDT)
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 86DE538C0892
+	for <yocto@yoctoproject.org>; Fri, 23 Apr 2021 14:17:55 +0000 (UTC)
+Received: by mail-wr1-f45.google.com with SMTP id s7so48503318wru.6
+        for <yocto@yoctoproject.org>; Fri, 23 Apr 2021 07:17:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=blade-group.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=FNeaM8eQbM3/CL+dZl6MkUs5o08JCzFwEOu1VGcsbMc=;
-        b=dy9VwsNeZ+7Dp35jhGZgv9dH4YJOTxapzi92GtLKse0ad1XSQdPm2Qnus7kmU0bRnZ
-         oF3hlrDHV270mEme2QJB9D7DYKfb076Z2gd3/l2z+N1Ga1QzlX0RS4cz7ijaVqVb2pnp
-         YHCniVfVgmbUAK07oh7Brkz4DVQ5K62Mz2Z12eWLvdl11K1n10sqw7G9P70RZBQRX35+
-         HaakUQEFC5vxPqvZ3ehUCxtzVA6foRz84ourJ0q7wWf0DHSaCFog8VPXxV+jRy3WPCbg
-         HIuUlpLEWg3W5z1+ovRp8mMb6ht9rDI6HYA7Qr2gFrKl0eoRpzxOItBIFav+GtE7gxTY
-         FssQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=F/SBqFd23Xh5XmOR24CgWZg2E62o57tunZUOj/cEy/A=;
+        b=bUCvjA63CQykwz4/Daw91jaivtuSSntO7HWqlTVUIAB80Mr7omJQ3RbWymfDZ6OT9w
+         8AFXvGxz1Wx7JhN7bKSES0tMHMYdKsxU38RSJWzJAZcppL4MHyU72tQKAWCAlGPLUlWx
+         O3McjXhYv9Yt8+Z1QdeHFVjQamJfBCGp3LsTRXwj+xKkl91xKYFD6l4xn3aiNzGLAr49
+         CAIEf8U+B1CVK5qCYjI1KjSRWwwXbrmzg66dh4bPpxzvRvT4idt0VwvJcUyTzKwS1V7m
+         RiDJLb+aQ3tWsdA+FNU9HiCDiphByn4Jn8pdeWMwDhUm5TP3A/MwZOD/fgQDTiYv5bri
+         RNkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=FNeaM8eQbM3/CL+dZl6MkUs5o08JCzFwEOu1VGcsbMc=;
-        b=DtkoompN+GoHC87Zi7vX9ki8jHta8xkDrkS3y0mtx3CgnjiPIulrTwPcMhqVGP01rA
-         nhIUSjA+3WrAL/XD/tCuzfT+JeljhbKunP0xCyhJrnJ/xaqRgCT/ZpDXXLfu4dtu8zDp
-         L+B9Nyux2EmgVGrx/Ls8/5Y/hUhvpEyUSHXQm25EGE5v6lPSfZdVGeWFoJvvi8XF4I+f
-         CqvjmPpfaGagTV1sba1U3+vZj5g2ERUlSonrvzlEaleDwBAtWrmsH0/Vx+a9qhmnq5hh
-         1fqh8KDl6aqVG69HAlcb4qpem8ZuLUwN35+Rtu0IOgpuoWpPylkr8JyeJNq4hRYXWiN6
-         PiqQ==
-X-Gm-Message-State: AOAM531cgO5aTtdNxzs7rXAerXkLNp4t+EEfWuuAZYSjMruN3BbgnaGM
-	/jYXZPyfY+SGZ62C9wb2lxjPk8jdHDt1sA==
-X-Google-Smtp-Source: ABdhPJzVCN9JfhQY5x6qThuNMnwvLE8sDtGmCIgs3fZB9nmliXdVhi6rxqOr47ioaRi7hn68/i3aYA==
-X-Received: by 2002:a1c:2587:: with SMTP id l129mr4474191wml.135.1619187473134;
-        Fri, 23 Apr 2021 07:17:53 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=F/SBqFd23Xh5XmOR24CgWZg2E62o57tunZUOj/cEy/A=;
+        b=iJJBTzpwpXBppOCB50HuTFXkV6g24vPeHj8yVy7zYUNWwJw81XcTl1wNFU7DihWGsO
+         dgbxjJVl9IKF/iP5R4zhzMGgZJ5o6jF15Z+mMeghvd/4I9lCYI+GLxdnxhDoCEdq/4Kq
+         TUgwh6CjxXobbXd5rVrVGYx9k/z6DE+O2YnggU43Cq8DCUzIjma/KJFM9nFODe2yaeCS
+         dKyz6KvVUQoidz0DpD2OmeBGC0+LARo5O0+NOl7LzaQ7LXkwkvM2sn15ZMFMv0KsyEz8
+         kX9I0j9gJqATzjfFYMqhs9HUJEh3KoKntvpJVq9ZNiXMaeE0LStVnUXLWRil9VXNXwLg
+         ei+w==
+X-Gm-Message-State: AOAM530dczjwOREnogyx/LKkP8VpT6GoPEnOt4WUBKPgCIXr4T9HnElo
+	2W5W1LW1IAuprIixjjjiRarQ/UeZwr+otQ==
+X-Google-Smtp-Source: ABdhPJx/0uWgKJhVF/cPtCLwgCcND/JfWAGo538WQRDkRX/wTUiF7MHmOSebCDWOW2YPGVmOB5Lfkw==
+X-Received: by 2002:a5d:43c1:: with SMTP id v1mr5070065wrr.419.1619187474319;
+        Fri, 23 Apr 2021 07:17:54 -0700 (PDT)
 Received: from blanquette.lan ([88.120.44.86])
-        by smtp.gmail.com with ESMTPSA id t14sm9432928wrz.55.2021.04.23.07.17.52
+        by smtp.gmail.com with ESMTPSA id t14sm9432928wrz.55.2021.04.23.07.17.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Apr 2021 07:17:52 -0700 (PDT)
+        Fri, 23 Apr 2021 07:17:53 -0700 (PDT)
 From: "Yann Dirson" <yann.dirson@blade-group.com>
 X-Google-Original-From: yann@blade-group.com
 To: yocto@yoctoproject.org
 Cc: twoerner@gmail.com,
 	Yann Dirson <yann@blade-group.com>
-Subject: [meta-rockchip][PATCH v3 0/3] kmeta BSP for nanopi-m4
-Date: Fri, 23 Apr 2021 16:17:10 +0200
-Message-Id: <20210423141713.1970329-1-yann@blade-group.com>
+Subject: [meta-rockchip][PATCH v3 2/3] NanoPi-M4: declare "usbhost" in MACHINE_FEATURES
+Date: Fri, 23 Apr 2021 16:17:12 +0200
+Message-Id: <20210423141713.1970329-3-yann@blade-group.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210423141713.1970329-1-yann@blade-group.com>
+References: <20210423141713.1970329-1-yann@blade-group.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
 From: Yann Dirson <yann@blade-group.com>
 
-Changes from in v3:
-- relocate the bsp files into files/ so we don't have to add linux-yocto/
-  to FILESEXTRAPATHS for all other kernels
-- removed the "don't force KCONFIG_MODE to alldefconfig" (not needed fina=
-lly,
-  and causing interferences in default setup)
-- add "usbhost" to MACHINE_FEATURES to enable lsusb and friends
-- better hardware coverage (though still no wifi/bt/audio, and buggy hdmi=
-)
+Lets USB tools be installed if the distro activates the feature.
 
-The Wifi/BT support requires firmware, to be properly packaged; BT
-support itself is still buggy in mainline; audio jack requires a
-couple of patches; HDMI requires at the very least a DTS patch, and
-LibreELEC maintains a "latest and greatest" DRM patchset, but it can
-conflicts with some patches in default kmeta.
+Signed-off-by: Yann Dirson <yann@blade-group.com>
+---
+ conf/machine/include/nanopi-m4.inc | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Yann Dirson (3):
-  rockchip-defaults: don't force KCONFIG_MODE to alldefconfig
-  NanoPi-M4: let all variants use the same KMACHINE type
-  linux-yocto: add a NanoPi-M4 BSP
-
- conf/machine/include/nanopi-m4.inc            |  1 +
- conf/machine/include/rockchip-defaults.inc    |  1 -
- .../linux/files/bsp/nanopi-m4-standard.scc    |  7 +++
- .../linux/files/bsp/nanopi-m4-tiny.scc        |  7 +++
- recipes-kernel/linux/files/bsp/nanopi-m4.cfg  | 40 ++++++++++++++
- recipes-kernel/linux/files/bsp/nanopi-m4.scc  |  5 ++
- recipes-kernel/linux/files/bsp/rk3399.cfg     | 50 +++++++++++++++++
- recipes-kernel/linux/files/bsp/rk3399.scc     |  5 ++
- recipes-kernel/linux/files/bsp/rockchip.cfg   | 53 +++++++++++++++++++
- recipes-kernel/linux/files/bsp/rockchip.scc   |  6 +++
- recipes-kernel/linux/linux-yocto%.bbappend    |  6 +++
- 11 files changed, 180 insertions(+), 1 deletion(-)
- create mode 100644 recipes-kernel/linux/files/bsp/nanopi-m4-standard.scc
- create mode 100644 recipes-kernel/linux/files/bsp/nanopi-m4-tiny.scc
- create mode 100644 recipes-kernel/linux/files/bsp/nanopi-m4.cfg
- create mode 100644 recipes-kernel/linux/files/bsp/nanopi-m4.scc
- create mode 100644 recipes-kernel/linux/files/bsp/rk3399.cfg
- create mode 100644 recipes-kernel/linux/files/bsp/rk3399.scc
- create mode 100644 recipes-kernel/linux/files/bsp/rockchip.cfg
- create mode 100644 recipes-kernel/linux/files/bsp/rockchip.scc
-
+diff --git a/conf/machine/include/nanopi-m4.inc b/conf/machine/include/na=
+nopi-m4.inc
+index 603160f..1a16eae 100644
+--- a/conf/machine/include/nanopi-m4.inc
++++ b/conf/machine/include/nanopi-m4.inc
+@@ -3,6 +3,8 @@
+=20
+ require rk3399.inc
+=20
++MACHINE_FEATURES +=3D "usbhost"
++
+ KMACHINE =3D "nanopi-m4"
+ KERNEL_DEVICETREE =3D "rockchip/rk3399-nanopi-m4.dtb"
+=20
 --=20
 2.30.2
 
