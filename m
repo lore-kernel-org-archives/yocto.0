@@ -1,118 +1,101 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.537.1619190389442586253
+ by mx.groups.io with SMTP id smtpd.web10.216.1619197133772856632
  for <yocto@lists.yoctoproject.org>;
- Fri, 23 Apr 2021 08:06:29 -0700
+ Fri, 23 Apr 2021 09:58:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Mz4KBXde;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: akuster808@gmail.com)
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id AA83F38C03DF;
-	Fri, 23 Apr 2021 15:06:28 +0000 (UTC)
-Received: by mail-ot1-f46.google.com with SMTP id y14-20020a056830208eb02902a1c9fa4c64so9062961otq.9;
-        Fri, 23 Apr 2021 08:06:28 -0700 (PDT)
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=YCODu8bl;
+ spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 953D738C089F
+	for <yocto@yoctoproject.org>; Fri, 23 Apr 2021 16:58:53 +0000 (UTC)
+Received: by mail-wm1-f52.google.com with SMTP id y204so24988905wmg.2
+        for <yocto@yoctoproject.org>; Fri, 23 Apr 2021 09:58:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=to:from:subject:autocrypt:message-id:date:user-agent:mime-version
-         :content-transfer-encoding:content-language;
-        bh=JILy8ZHl5pwvPXa0mtUjHdlQ3BcKOMGNk83p3KqJDOg=;
-        b=Mz4KBXdeLVRw3g7nMrKNq7Sd6LG6nauNQ5zZZC47IVWy3HtV/GZst8cvfQJrzBoDMR
-         OqKzJou7NJnF6AdP5NgIfMsuPeYLhXYSSbL0a0aMyyh4rGPaG3YKbn/L8wYoetnI5IX0
-         +ZLF8Qh9OyAR4uyHaHMLyPe6iOlHpkKhY3/Vxfzvr4agmEm0Bz+9mTv6iIJmKBWIQU98
-         jf0ENlwPx6f7WVJ2Ks0ff9klOIBEOOfWMAg3WmdyrmZUmX4/BgKKNWQ53kt2K4fZy5Ii
-         ZUMJYTLdbn4f5qts6zh27HsXamEO3PnaKCLmqSgghnDFpvBVcsjitp/NjwZjD4hL6uLg
-         KebQ==
+        d=blade-group.com; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=xf3ahpUMriP3TFMYoxSj3hktkAB+3N3zI93hsfcMbZk=;
+        b=YCODu8blh0OsqXI2vgIA5GPYFcCRJ33ikWOOd0zamLWi4yEK/F5uv4/35HS+Md84WK
+         q8VajTeH55qei74sPwji3QwanJVS+lxo3UFnxVYbAVXsA9p2F+6qYCRCalulRYsclInY
+         OE14XTF+zCCYPIetMkNwYuj4GazeFtRMoelDyRWx1dUJD0ZWr6yKRIDChpnfGdbeG66p
+         LVLw5kY7mUDzlMpH1ege5HmGGItGXvGasGQCQXI4mZ7iu6MOCEdh0J2Ow+IyV4LPlOJp
+         P+5tljEgRAW/Xm6hbFqqeEWk7WAJcL+xEvxaxO1nnB1WPjqrzjgVzDTy+JoSfyruhoF6
+         eoMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:from:subject:autocrypt:message-id:date
-         :user-agent:mime-version:content-transfer-encoding:content-language;
-        bh=JILy8ZHl5pwvPXa0mtUjHdlQ3BcKOMGNk83p3KqJDOg=;
-        b=cl+urxOYqF+wUtjpBOxb9WU3sCJC0tQ5f6xQK8KPBtXhZEXs/AtDeE0EYialDw3h16
-         s45tzrzD9SABvoHwO/Bf7WV79a1JzBG7lAADVzukGOyEfE16J8JpDDY+XSqCU9K7Mc3M
-         3wb99mnSnHt5QhRRBanaR7F8mc/2DHNR4s75ka6GRJzyy0BlzL1QloroPx5w2YwpaY/u
-         ZlfV4OGE0GUO89oe5daWwLycZI+1UXQuCU1d63K2LAkym02iIAjE8VXrDY8WZJ+95jtt
-         6NbS3rYQitA8A4cPQVmglva/hrSkZHeBBmRUINxQmTQaTzJcrCh7v75kOWAsyP1JUOKy
-         hb/A==
-X-Gm-Message-State: AOAM530NOqltfegy9sKUOw0KSuVMBcz4WWzk8pu98H2KXzE7LaouBqSv
-	urwJyzDIhJoJ25QBNJSHCB75OUXcEJmqlg==
-X-Google-Smtp-Source: ABdhPJwilO2KJ1Ir7sJ32Cb3/PcBTjAvbEeQ2y8BEz5rWGN36Mq7s1hTHdy2x0oantX7Ilg/5CiqPQ==
-X-Received: by 2002:a05:6830:1e3a:: with SMTP id t26mr3699845otr.134.1619190387690;
-        Fri, 23 Apr 2021 08:06:27 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:a5c0:e183:e120:a0a1:83e4? ([2601:202:4180:a5c0:e183:e120:a0a1:83e4])
-        by smtp.gmail.com with ESMTPSA id w66sm1452023otb.69.2021.04.23.08.06.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Apr 2021 08:06:27 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
- Patches and discussions about the oe-core layer
- <openembedded-core@lists.openembedded.org>,
- OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
- "bitbake-devel@lists.openembedded.org"
- <bitbake-devel@lists.openembedded.org>,
- "conferences@yoctoproject.org" <conferences@yoctoproject.org>
-From: "Armin Kuster" <akuster808@gmail.com>
-Subject: The Yocto Project 2021 virtual Summit CFP reminder
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <ee79718a-8ae2-6e9f-a071-9072f106dce2@gmail.com>
-Date: Fri, 23 Apr 2021 08:06:25 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=xf3ahpUMriP3TFMYoxSj3hktkAB+3N3zI93hsfcMbZk=;
+        b=SShhx6BJYJb+e9MHWR+B4m+XT/YyH8hh9ptBnvf9Rwgzc4g0pbVsqB4YHPPKaf9cY1
+         9TAPrD9I22epMDhb55Jqqb5vWEWMDlR6N+k9fkU0lPGFrwPCzQer4TWcHs62I0Xya9mj
+         Q2WuZKriruItaX6d5f2b21d+9YquXDldM2Ow5ero2OrgIkgCA9D5K7lA+zeMSnZiaQbR
+         lSZMOPFNLD0x9RrrTsw/i3g+YYqNnIfJ0fWJKFODLcLfKiBUX4sdkUKx+GnvzetnVV33
+         LlDv+FJ/b9ZB2tUKpia9c2yb5urkkIHAz/i/kaXCQA1FRBfTCR4PRWCj5I98WpusfJ+u
+         Exxw==
+X-Gm-Message-State: AOAM533Q4Dg/t3T4iyvM1SUIW515KqzXg1RqOeHXcEXlqdlunB3L0/Ap
+	Q3CtL4n1m9B+0oTCvqU1hcbawm7AYVnVHA==
+X-Google-Smtp-Source: ABdhPJxejxGU2q7mZG+VMfR1r/JId4cqMv09EuwnqKcfOtjPKx+eCn8GSx1aW8uykp592fYBQwStAw==
+X-Received: by 2002:a1c:64c4:: with SMTP id y187mr6574081wmb.162.1619197132119;
+        Fri, 23 Apr 2021 09:58:52 -0700 (PDT)
+Received: from blanquette.lan ([88.120.44.86])
+        by smtp.gmail.com with ESMTPSA id e18sm10393549wrc.85.2021.04.23.09.58.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Apr 2021 09:58:51 -0700 (PDT)
+From: "Yann Dirson" <yann.dirson@blade-group.com>
+X-Google-Original-From: yann@blade-group.com
+To: yocto@yoctoproject.org
+Cc: twoerner@gmail.com,
+	Yann Dirson <yann@blade-group.com>
+Subject: [meta-rockchip][PATCH v3 1/7] trusted-firmware-a: include optee support when requested by DISTRO_FEATURE
+Date: Fri, 23 Apr 2021 18:58:20 +0200
+Message-Id: <20210423165826.2229787-2-yann@blade-group.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210423165826.2229787-1-yann@blade-group.com>
+References: <20210423165826.2229787-1-yann@blade-group.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
 
-Hello all,
+From: Yann Dirson <yann@blade-group.com>
 
-This is a reminder that the 2021 Yocto Project Summit CFP window closes
-this Sunday at 11:59 PM PST.
+This instructs TF-A to:
 
-If anyone is interested, please visit:
-https://pretalx.com/yocto-project-summit-2021/cfp
+ - load OP-TEE OS as BL32, but still relies on the actual image to be
+   provided through other means, eg. in u-boot.itb
+ - run opteed as Secure Payload Dispatcher
 
-Kind regards,
-Armin
+This has to be enabled through PACKAGECONFIG +=3D "optee".
 
-sorry about the cross posting.
+Signed-off-by: Yann Dirson <yann@blade-group.com>
+---
+ .../trusted-firmware-a_%.bbappend                   | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
+diff --git a/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend=
+ b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
+index 1942c17..638d53f 100644
+--- a/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
++++ b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
+@@ -9,3 +9,16 @@ FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+ SRC_URI +=3D "\
+     file://serial-console-baudrate.patch \
+ "
++
++# OP-TEE, dependent on "optee" DISTRO_FEATURES
++
++OPTEE_OEMAKE ?=3D " \
++    BL32=3D${STAGING_DIR_TARGET}${nonarch_base_libdir}/firmware/tee-head=
+er_v2.bin \
++    BL32_EXTRA1=3D${STAGING_DIR_TARGET}${nonarch_base_libdir}/firmware/t=
+ee-pager_v2.bin \
++    BL32_EXTRA2=3D${STAGING_DIR_TARGET}${nonarch_base_libdir}/firmware/t=
+ee-pageable_v2.bin \
++    "
++
++EXTRA_OEMAKE_append =3D " ${PACKAGECONFIG_CONFARGS}"
++PACKAGECONFIG[optee] =3D "${OPTEE_OEMAKE},,optee-os"
++
++TFA_SPD =3D "${@bb.utils.contains('PACKAGECONFIG', 'optee', 'opteed', ''=
+, d)}"
+--=20
+2.30.2
 
