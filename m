@@ -1,50 +1,80 @@
-Received: from smtp.vivaldi.net (smtp.vivaldi.net [31.209.137.12])
- by mx.groups.io with SMTP id smtpd.web10.103.1619209663217028408
- for <yocto@lists.yoctoproject.org>;
- Fri, 23 Apr 2021 13:27:43 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@vivaldi.net header.s=default header.b=tXfW6DY2;
- spf=pass (domain: vivaldi.net, ip: 31.209.137.12, mailfrom: jchludzinski@vivaldi.net)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp.vivaldi.net (Postfix) with ESMTP id 9E5C0BD10D
-	for <yocto@lists.yoctoproject.org>; Fri, 23 Apr 2021 20:27:39 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 9E5C0BD10D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1619209659;
-	bh=VH0pjYlBzDRRQHxRGzSuop2PC4n2gh1t50XgaILLd3w=;
-	h=Date:From:To:Subject:From;
-	b=tXfW6DY2hWb1j4SjNhcEtM71MMaj4ivX3YhgZLBE94EfKORzqpQmQO3+3jir0lxZr
-	 RiVeUvg7j6qfq0cILPenN0qzvkX8DgUufwITS6dHcL8hQKqOp+vvD+HWt3j90JneBk
-	 8+SeCAf1DaombsoQRXgdM6ywofxY0RgLNobU15zaYwruu87V1Jouwd6a0cdbBomK7q
-	 OEBqJ5oVXvvjIMdp+bkQYwnC1EBqkb8mP7xUhoZ2Yn3tff7hhHMA7Hrg/8xczDIQwU
-	 8gkrjJV+XID0RkQuaTiUJ9rQb6bR41KaPamSdgL0t5aIL/VmqeKHvcxa5ihxgQgbIS
-	 hdFdkfo9os5TQ==
-X-Virus-Scanned: Debian amavisd-new at smtp.vivaldi.net
-Received: from smtp.vivaldi.net ([127.0.0.1])
-	by localhost (mxo.viv.dc01 [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 1Gvy3bMh1ixv for <yocto@lists.yoctoproject.org>;
-	Fri, 23 Apr 2021 20:27:35 +0000 (UTC)
-Date: Fri, 23 Apr 2021 16:27:35 -0400
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 8A0A1BD01D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1619209655;
-	bh=VH0pjYlBzDRRQHxRGzSuop2PC4n2gh1t50XgaILLd3w=;
-	h=Date:From:To:Subject:From;
-	b=RVQkLNlvjLchc/5HcHkVptN6andA+nhD9ViAhrHKjD+WymNqlk7Cuj0Gou6zGU3vJ
-	 ORzT2rFuhRp/sl/TbPOAWwYbAutqsGcIz6+AKPIFDRjb+H6vYu3rOL8IPGLFJhTDFS
-	 Oqff7UmxnA7IrYC0G+QOMGPk+BlY0pfzkTsFlVRz6CM0c+b1txJ5v5WgCV8FMazDaA
-	 fpaD4R6c7+fNVNLUXhnPaW0XHp5EqvmWEFaIXH9ZVVO48cYF+pP3ZOjS6frEJRtMGZ
-	 LKq3SBlOiiWelYApB9pQkLm/f2Wi78GLdeB78UGmXa3yseYcaEILQB2krGu0RFpT9t
-	 bWPO8XqIY32jQ==
-From: "jchludzinski" <jchludzinski@vivaldi.net>
-To: Yocto <yocto@lists.yoctoproject.org>
-Subject: OpenBIOS
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <6b3326edd3a226bbf65b51c889ad12c4@vivaldi.net>
-X-Sender: jchludzinski@vivaldi.net
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: core-image-sato -staticdev
+To: yocto@lists.yoctoproject.org
+From: "sateesh m" <sateesh0457@gmail.com>
+X-Originating-Location: Bengaluru, Karnataka, IN (106.51.242.123)
+X-Originating-Platform: Linux Chrome 89
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Sat, 24 Apr 2021 23:30:27 -0700
+Message-ID: <jrxX.1619332227003979265.e90f@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="QgIoF40nXPDvikpiO5qQ"
 
-What is the relationship between OpenBIOS and YOCTO? Between OpenBIOS 
-and U-boot?
+--QgIoF40nXPDvikpiO5qQ
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Guys,
+
+I am newly facing this when I want to build core-image-sato image. how can=
+ I fix this issue can anybody know please suggest me.
+
+Loading cache: 100% |
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |###################################################=
+###########################################################################=
+#########| Time: 0:00:17
+Parsing of 3450 .bb files complete (0 cached, 3450 parsed). 5058 targets, =
+469 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing RPROVIDES '-staticdev' (sources/openembedded-core/meta/reci=
+pes-sato/images/core-image-sato.bb RDEPENDS on or otherwise requires it)
+NOTE: Runtime target '-staticdev' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['-staticdev']
+ERROR: Required build target 'core-image-sato' has no buildable providers.
+Missing or unbuildable dependency chain was: ['core-image-sato', '-staticd=
+ev']
+
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code=
+.
+
+--
+Regards,
+Sateesh
+
+--QgIoF40nXPDvikpiO5qQ
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Guys,<br /><br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ I am newly facing this when I want to build core-image-sato image. how can=
+ I fix this issue can anybody know please suggest me.<br /><br />
+<div>Loading cache: 100% |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>Loaded 0 entries from dependency cache.</div>
+<div>Parsing recipes: 100% |##############################################=
+###########################################################################=
+##############| Time: 0:00:17</div>
+<div>Parsing of 3450 .bb files complete (0 cached, 3450 parsed). 5058 targ=
+ets, 469 skipped, 0 masked, 0 errors.</div>
+<div>NOTE: Resolving any missing task queue dependencies</div>
+<div>ERROR: Nothing RPROVIDES '-staticdev' (sources/openembedded-core/meta=
+/recipes-sato/images/core-image-sato.bb RDEPENDS on or otherwise requires i=
+t)</div>
+<div>NOTE: Runtime target '-staticdev' is unbuildable, removing...</div>
+<div>Missing or unbuildable dependency chain was: ['-staticdev']</div>
+<div>ERROR: Required build target 'core-image-sato' has no buildable provi=
+ders.</div>
+<div>Missing or unbuildable dependency chain was: ['core-image-sato', '-st=
+aticdev']</div>
+<div>&nbsp;</div>
+<div>Summary: There were 2 ERROR messages shown, returning a non-zero exit=
+ code.</div>
+<div>&nbsp;</div>
+<br /><br /><br />-- <br />Regards,<br />Sateesh
+
+--QgIoF40nXPDvikpiO5qQ--
