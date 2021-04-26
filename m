@@ -1,58 +1,114 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.4072.1619425106826620520
+Received: from mx0.itk-engineering.de (mx0.itk-engineering.de [212.121.145.30])
+ by mx.groups.io with SMTP id smtpd.web08.6167.1619440881889221682
  for <yocto@lists.yoctoproject.org>;
- Mon, 26 Apr 2021 01:18:27 -0700
+ Mon, 26 Apr 2021 05:41:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=SBL7tbot;
- spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id E2AA738C069E
-	for <yocto@yoctoproject.org>; Mon, 26 Apr 2021 08:18:25 +0000 (UTC)
-Received: by mail-vs1-f52.google.com with SMTP id k19so14746030vsg.0
-        for <yocto@yoctoproject.org>; Mon, 26 Apr 2021 01:18:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=blade-group.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=4JKCQ/jk7D4oWIqgivBJAq/1nwC+itQmyHLOWR+4daA=;
-        b=SBL7tbotQd8cEWYgATfU7z2kjahC50hFXw2ZO0QBafGJ6Fj4d1kP0iwmBRZqUhOxFV
-         Kg5Kdv/RYyi5CePddicckQIcG9cJpfb2xPvHFkc+MvFfu9PRk0thNRnvJsvSHeDqv9KJ
-         4wXupAHtJE5o5d01U02vqbgV5qlYqregcuDonICAId4rc4HrhZnC4/1/2tnLPvoGcGFL
-         UeYeVvxtNLZKsFAb1/bSLrwqZ2UWXwR7YUdaEqDq5foWEu0Jhb6hdv0uy+XWfD8T9cIE
-         NoAz1uH0irW2Q8Z5oTrvC82WKRcNuJV3hGihRK2gtjZ67Zxp2Y5cgDk/K/8r+XcTTpYK
-         wLbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=4JKCQ/jk7D4oWIqgivBJAq/1nwC+itQmyHLOWR+4daA=;
-        b=aQO/ZSLqRnR1q1X0qXpyAZyOAprj0Rt8IC3es4adt0UKnn4jiCwgZEu0oU9QeMqEOW
-         aLIzbBAZUmRkZjs+iyes6o+ut5+K8k+jWxw92kL6WHw3kioUvr1qLrHH8oRqwW6BGnPP
-         q6kIzbcIXfvzsg3lZQW18I2RB3zIvJPPfAiV64ADIIg8OsYEnbyzGXItpjTnGjc3+Jen
-         IbfMxBDNhsP+7YttPyJ/mCMcv3dE7LeoJNCtiPAEGwK/X7KQZz3e62oZyR/Pr9Xvj2vD
-         HaZQoP7NkHE9T9LjJuGjjoL+7ybLBpSV7MLAq9VMLEFoqkJIagFEt9OVkE0BG8SBMP/L
-         tK4A==
-X-Gm-Message-State: AOAM531xO/TYskKDbYv62LG4Lm+UGhGfPjTyZ/uA4a7XmE8n9ocpBmTk
-	o/ERnSTJJdHzhDMMEvXwwkkhlitUoCfHqpc6/2wEfP+U7eY=
-X-Google-Smtp-Source: ABdhPJwk+/3+lEPFj5IkSS/VeLuTLQQ4SLiaDHQbg0ZWuHjdzpliKP256hZoVDHwvyj0cGsgXQeBVJGmEqStnQY/Znw=
-X-Received: by 2002:a05:6102:418:: with SMTP id d24mr2056052vsq.54.1619425105008;
- Mon, 26 Apr 2021 01:18:25 -0700 (PDT)
+ dkim=missing; spf=pass (domain: itk-engineering.de, ip: 212.121.145.30, mailfrom: martin.hollingsworth@itk-engineering.de)
+From: "Martin Hollingsworth" <martin.hollingsworth@itk-engineering.de>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Switching a recipe between git head and git tag (for a release)
+Thread-Topic: Switching a recipe between git head and git tag (for a release)
+Thread-Index: Adc6mU0jp2GxFawMRMOiPpbMwjMfkQ==
+Date: Mon, 26 Apr 2021 12:41:18 +0000
+Message-ID: <f0ca1454c6894538bf2393bb6b232ff4@itk-engineering.de>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-c2processedorg: bf590b95-2eae-4fb0-b3c4-e2662b925c35
 MIME-Version: 1.0
-References: <20210423141713.1970329-1-yann@blade-group.com> <1678826E6B5435AA.9108@lists.yoctoproject.org>
-In-Reply-To: <1678826E6B5435AA.9108@lists.yoctoproject.org>
-From: "Yann Dirson" <yann.dirson@blade-group.com>
-Date: Mon, 26 Apr 2021 10:18:13 +0200
-Message-ID: <CA+4=imZwt7i3EO6MFvKwNJwOUcbTp9K9b2oEN_U1pUTBGJxrpA@mail.gmail.com>
-Subject: Re: [yocto] [meta-rockchip][PATCH v3 3/3] linux-yocto: add an initial NanoPi-M4 BSP
-To: Yocto discussion list <yocto@yoctoproject.org>, Trevor Woerner <twoerner@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+x-msw-jemd-newsletter: false
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_f0ca1454c6894538bf2393bb6b232ff4itkengineeringde_"
 
->  create mode 100644 recipes-kernel/linux/files/bsp/nanopi-m4-standard.scc
->  create mode 100644 recipes-kernel/linux/files/bsp/nanopi-m4-tiny.scc
->  create mode 100644 recipes-kernel/linux/files/bsp/nanopi-m4.cfg
->  create mode 100644 recipes-kernel/linux/files/bsp/nanopi-m4.scc
->  create mode 100644 recipes-kernel/linux/files/bsp/rk3399.cfg
->  create mode 100644 recipes-kernel/linux/files/bsp/rk3399.scc
->  create mode 100644 recipes-kernel/linux/files/bsp/rockchip.cfg
->  create mode 100644 recipes-kernel/linux/files/bsp/rockchip.scc
+--_000_f0ca1454c6894538bf2393bb6b232ff4itkengineeringde_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Ah, I forgot to put all of this in a bsp/rockchip/ dir, will reroll.
+Hello community,
+
+I am looking for a best practice / a simple solution for switching the SRCR=
+EV in a bitbake recipe between git master HEAD (default, used in nightly bu=
+ilds) and a tagged release version (needed for a reproducible release confi=
+g).
+
+
+
+How can I minimize the amount of changes necessary to the recipe when switc=
+hing to a release version?
+
+
+
+Thanks and regards,
+
+Martin
+
+
+--_000_f0ca1454c6894538bf2393bb6b232ff4itkengineeringde_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
+ak-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello community,<o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">I am looking for a best practic=
+e / a simple solution for switching the SRCREV in a bitbake recipe between =
+git master HEAD (default, used in nightly builds) and a tagged release vers=
+ion (needed for a reproducible release
+ config).<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">How can I minimize the amount o=
+f changes necessary to the recipe when switching to a release version?<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">Thanks and regards,<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">Martin<o:p></o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_f0ca1454c6894538bf2393bb6b232ff4itkengineeringde_--
