@@ -1,43 +1,43 @@
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
- by mx.groups.io with SMTP id smtpd.web12.5006.1619432864616374555
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+ by mx.groups.io with SMTP id smtpd.web10.5202.1619433815750059600
  for <yocto@lists.yoctoproject.org>;
- Mon, 26 Apr 2021 03:27:45 -0700
+ Mon, 26 Apr 2021 03:43:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=K5nro4ep;
- spf=pass (domain: gmail.com, ip: 209.85.167.51, mailfrom: aladyshev22@gmail.com)
-Received: by mail-lf1-f51.google.com with SMTP id n138so87634144lfa.3;
-        Mon, 26 Apr 2021 03:27:44 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=gj+ppQdC;
+ spf=pass (domain: gmail.com, ip: 209.85.208.180, mailfrom: aladyshev22@gmail.com)
+Received: by mail-lj1-f180.google.com with SMTP id a13so9654359ljp.2
+        for <yocto@lists.yoctoproject.org>; Mon, 26 Apr 2021 03:43:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:from:date:message-id:subject:to;
         bh=7DWKXWr3N9/Ctm6PkRGatJVfiipFWDzXjRpzTEdSgPE=;
-        b=K5nro4epazha8PfpAoaYzYEdsoLLzumUFPQ4pch+yz+I9o9hsKpKi5+S/Ft+9XVMSg
-         m5poCQ9Luu5Wa20IWqSqzPG/g3KhzRazZV4XjmWlcM5jU1j/feS+rRHTiS5zh69QzyL5
-         9JuVE33wDUw5Nf7+ihhbNUgcXcAtSQV+ypBrHCK74Imq1DQ0oMb4WA2rd8QfuvNxFNaB
-         Uplal5nai5Dsro8MpAqU+KuE5PaCu0uJWDzl4gOIAs7Zr7S+o08KBTX1Kxwd87boLfxl
-         ZBj5KOv4ZuP/4N1zUcf1DR7SpGYharaCcMznuDu+AX6zjOpCKcgKu6zcml2JqaUD1Knj
-         6Uqg==
+        b=gj+ppQdCBxOcPZUnra9dXIE0otW0WUZ5ss/dg1yA+R0Hdpi8oLVxmeGSsTAgCDIPX2
+         q7u5cmAcJB6+8wqkFDTTb3YFbBoyYn4AYi6xpZelDmwEnd1gjg9F8saSsPetoouuyh1e
+         ji3xV9u80V3I2DrBpY3kyeqpjeurWXZK1xGVV3PYd86n9n3A1GABnTuYE8HP27+HKS0r
+         3Uxrzrc2yN0juU6FD2igAXiglwrRXzGWiaAoUnusEWn0JXdPILvOXWEQA+2krgJ9nvXx
+         s+K5/V7jXCKpl8bi2kqmsIXDSD193jEm8HwAnQ/DDGl7WN/88H8k/bunkHPdTjzX5Apx
+         Trww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
         bh=7DWKXWr3N9/Ctm6PkRGatJVfiipFWDzXjRpzTEdSgPE=;
-        b=rXqx9hRcIZxV2JSOc3hXUbMYw1WNLpHMjjLM6KM6SRMTFdAd34ClHA9wCZ3EOhkRop
-         3KmSMUijy6U6Rj6t11ZOkXF047UXBBDks1tMaPSF1/CrIYC6RsaCsm0gfKEDBxyNaBD/
-         A60kEYH5IbifhxhMeUr8VWt2B3lZfAUusQLjBwa5PYGBCvAIt94KRYRVCM9AQoXn3YTN
-         LWWA+tmJW+WKf8Rj+wJ1N2nxK/2O0a5g+QlzAfz5OrVLaWuYqQyI20Qvn/GHG/P8c3vV
-         WCDcC1OQPL7axaTvAm67dl2LtqXC4WmC4WYyQXlP8Job/m3o3SukqJH4kBmwuiXccj0A
-         Zl4w==
-X-Gm-Message-State: AOAM5313wJstfx28xEtDuln7nY0E/Y9fEbXdKBKqO4lm+AlxdApAvBml
-	Ge070uuvBalf1Ad41cUvWTLgvDYdjHTpxmm2+8P0fxX+UZgeSw==
-X-Google-Smtp-Source: ABdhPJwRqUe5iM3+RBeeeGPKi0TbvRSZIhxChgpwRq8M1dgTlr06v/fGeBWJHc6Lhe+VFdRAUhpajxO0ZS/51ZXZJ/A=
-X-Received: by 2002:a05:6512:3087:: with SMTP id z7mr11925982lfd.285.1619432862099;
- Mon, 26 Apr 2021 03:27:42 -0700 (PDT)
+        b=cxjN0/c6kp/g68qZqPUZRRDXqKJVpXWK7J3Cl1kltYZlaOWcYE0NLMcnXRlSJFR70f
+         m+ntm6V1u3EWNUlPaUOG5YQtPD4kSaXVrlgiL6iFXBdtfJXqShJyrry1I9yILPRNKzWG
+         vNx3J49jkUMzIP/ERM94qIgFqNo7yEcWg58frdxiCLuBKIiq47Lm4q3BQCxVDnnjNr/p
+         ZK2M2geEGK0x3SFlcpbwXzDGxkkf0ocrBKYTDQqcMti4V1AWw029HCcf/MC8FpZLeSDT
+         NWw7C0weDfQXh2h3+/+Nari0j509N+gSH86taJWiCtEKcf4xKZ0ScRygwkirBC9H/ohc
+         4jvQ==
+X-Gm-Message-State: AOAM532d73AyjjZV4lChU8EuNxGoEza+z6a4kQlGxEglKM+rajDgORew
+	T75N1TTPPeLX9I164OhfRodIRFL2gT+HOwtBTcKvAp28uKHY8g==
+X-Google-Smtp-Source: ABdhPJyeKmW4Y68J/gJ2hJC934d7ae60TCDbb4+cVYKD2nhYe5eM7MkWnUSMWeCCHFIXuGhWwrHTC4g5crb7pG0q1Sc=
+X-Received: by 2002:a2e:b168:: with SMTP id a8mr12412012ljm.412.1619433813283;
+ Mon, 26 Apr 2021 03:43:33 -0700 (PDT)
 MIME-Version: 1.0
-From: aladyshev22@gmail.com
-Date: Mon, 26 Apr 2021 13:29:39 +0300
-Message-ID: <CACSj6VWHwj-t37BpGr57sbP8WL4iOM2i8hRdsrLLNGGeq5HwWg@mail.gmail.com>
+From: "Konstantin Aladyshev" <aladyshev22@gmail.com>
+Date: Mon, 26 Apr 2021 13:45:30 +0300
+Message-ID: <CACSj6VUQ5SSpcrucTJ89eW=WJ41ZDPHc=CNhm6SOP-EgHtZh0A@mail.gmail.com>
 Subject: AppArmor with BusyBox
-To: yocto@lists.yoctoproject.org, main@lists.yoctoproject.org
+To: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 
 I'm using the OpenBMC system (https://github.com/openbmc/openbmc) and
