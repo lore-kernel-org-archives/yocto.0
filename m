@@ -1,125 +1,53 @@
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
- by mx.groups.io with SMTP id smtpd.web10.7763.1619446941338940735
+Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
+ by mx.groups.io with SMTP id smtpd.web08.7727.1619447761989505981
  for <yocto@lists.yoctoproject.org>;
- Mon, 26 Apr 2021 07:22:21 -0700
+ Mon, 26 Apr 2021 07:36:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=uykwTAO9;
- spf=pass (domain: gmail.com, ip: 209.85.215.178, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f178.google.com with SMTP id p12so40142244pgj.10
-        for <yocto@lists.yoctoproject.org>; Mon, 26 Apr 2021 07:22:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jCYiLXLmVn3MJdvQw0LJn2vAR8pySsbkDbRvFHnbhzg=;
-        b=uykwTAO9ADRF/fGB6giMuBGZbx3B3RrCzm5lnp+aV/PzQl8brDMjjYRJi9KsPwL+gf
-         sLQl6UNbqIVHuoV+F//Wh3IH/KUhkywLl7qNyOlwmCaGmLXoFCnd0tNBp91s0CVFa7HC
-         ICNVLoZg2nmqAiaBTSV+e7o9XTVpMHd48xHCf8xgDOD1HYVJWcU6uNNtnDYaPYc5ElHM
-         6J8eUwJRiJnDFbm7HSZhPhmG11/+4b1uKR3eIRKg8TNJTFXoohiFqNJbQIqmZS3KkxR7
-         m0vY1sBAX/CY/toYTGw1WaLFnwkSm0pwaIMgGK2ui3UeOAQspzfzVV4bQq/eUuOYPgOD
-         dBww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jCYiLXLmVn3MJdvQw0LJn2vAR8pySsbkDbRvFHnbhzg=;
-        b=KPXStWRA4gYPXchXBZkYqMyMqtbm1ClFUmwrfrFJPijE097wvnUfoXsN0FY+ucL9DI
-         wInGbZtUa88Oj88pAIYqabKTvFC64P9EHnilWWYaK6e2otRVFqdHEdC4UeTx8AK60o91
-         d1Lh7Pd4XQzpD6YeCuChdT47j7R3iJRjPVFtYnpkZ5OL2QjyS7+xcxHXmci8buWvtZYI
-         OEd2sIBMVGZWZcjCzingmbr/FRlhdKAnz3J5uKhkEqTQo7hXBCV4cUr57H71rEo5ns1V
-         KdoxJ88xc8OdGyZRDQ6Ns3Uv46TTjZFcytwafLnnaQST1TaOHLhbUh4cnh59YlSkS2ZO
-         Ghdg==
-X-Gm-Message-State: AOAM533mUbMbb5/StBAvras8Nmt+EXAFlD1Wg6telhe/G2Arg9Z9waO7
-	Fx2XMlXsFQvvkX+3tXzBgzUMJ5XLu0CxIQ==
-X-Google-Smtp-Source: ABdhPJzbh+rWDn0+WIK/NCQiKrEc0AUSEc+KvWfL/KsQyoMmdZyiKzxnr+hTLbBwUG1GKyTXV8pCAw==
-X-Received: by 2002:a65:584e:: with SMTP id s14mr16800575pgr.229.1619446940478;
-        Mon, 26 Apr 2021 07:22:20 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id b10sm17134pfb.27.2021.04.26.07.22.19
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Apr 2021 07:22:20 -0700 (PDT)
-From: "Armin Kuster" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] libseccomp: drop recipe. In core now
-Date: Mon, 26 Apr 2021 14:22:18 +0000
-Message-Id: <20210426142218.1233159-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.16, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp2.bon.at (Postfix) with ESMTPSA id 4FTSB713Bhz5tlH;
+	Mon, 26 Apr 2021 16:35:58 +0200 (CEST)
+Date: Mon, 26 Apr 2021 16:35:57 +0200
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: Martin Hollingsworth <martin.hollingsworth@itk-engineering.de>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Switching a recipe between git head and git tag (for a release)
+Message-ID: <20210426143557.hip35352ebd2wfit@qschulz>
+References: <f0ca1454c6894538bf2393bb6b232ff4@itk-engineering.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <f0ca1454c6894538bf2393bb6b232ff4@itk-engineering.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/libseccomp/files/run-ptest   |  4 --
- .../libseccomp/libseccomp_2.5.1.bb            | 47 -------------------
- 2 files changed, 51 deletions(-)
- delete mode 100644 recipes-security/libseccomp/files/run-ptest
- delete mode 100644 recipes-security/libseccomp/libseccomp_2.5.1.bb
+Hi Martin,
 
-diff --git a/recipes-security/libseccomp/files/run-ptest b/recipes-security/libseccomp/files/run-ptest
-deleted file mode 100644
-index 54b4a63..0000000
---- a/recipes-security/libseccomp/files/run-ptest
-+++ /dev/null
-@@ -1,4 +0,0 @@
--#!/bin/sh
--
--cd tests
--./regression -a
-diff --git a/recipes-security/libseccomp/libseccomp_2.5.1.bb b/recipes-security/libseccomp/libseccomp_2.5.1.bb
-deleted file mode 100644
-index 40ac1a8..0000000
---- a/recipes-security/libseccomp/libseccomp_2.5.1.bb
-+++ /dev/null
-@@ -1,47 +0,0 @@
--SUMMARY = "interface to seccomp filtering mechanism"
--DESCRIPTION = "The libseccomp library provides and easy to use, platform independent,interface to the Linux Kernel's syscall filtering mechanism: seccomp."
--SECTION = "security"
--LICENSE = "LGPL-2.1"
--LIC_FILES_CHKSUM = "file://LICENSE;beginline=0;endline=1;md5=8eac08d22113880357ceb8e7c37f989f"
--
--DEPENDS += "gperf-native"
--
--SRCREV = "4bf70431a339a2886ab8c82e9a45378f30c6e6c7"
--
--SRC_URI = "git://github.com/seccomp/libseccomp.git;branch=release-2.5 \
--           file://run-ptest \
--           "
--
--COMPATIBLE_HOST_riscv32 = "null"
--
--S = "${WORKDIR}/git"
--
--inherit autotools-brokensep pkgconfig ptest
--
--PACKAGECONFIG ??= ""
--PACKAGECONFIG[python] = "--enable-python, --disable-python, python3"
--
--DISABLE_STATIC = ""
--
--do_compile_ptest() {
--    oe_runmake -C tests check-build
--}
--
--do_install_ptest() {
--    install -d ${D}${PTEST_PATH}/tests
--    install -d ${D}${PTEST_PATH}/tools
--    for file in $(find tests/* -executable -type f); do
--        install -m 744 ${S}/${file} ${D}/${PTEST_PATH}/tests
--    done
--    for file in $(find tests/*.tests -type f); do
--        install -m 744 ${S}/${file} ${D}/${PTEST_PATH}/tests
--    done
--    for file in $(find tools/* -executable -type f); do
--        install -m 744 ${S}/${file} ${D}/${PTEST_PATH}/tools
--    done
--}
--
--FILES_${PN} = "${bindir} ${libdir}/${BPN}.so*"
--FILES_${PN}-dbg += "${libdir}/${PN}/tests/.debug/* ${libdir}/${PN}/tools/.debug"
--
--RDEPENDS_${PN}-ptest = "coreutils bash"
--- 
-2.25.1
+On Mon, Apr 26, 2021 at 12:41:18PM +0000, Martin Hollingsworth wrote:
+> Hello community,
+> 
+> I am looking for a best practice / a simple solution for switching the SRCREV in a bitbake recipe between git master HEAD (default, used in nightly builds) and a tagged release version (needed for a reproducible release config).
+> 
 
+Look how swupdate recipes are done in meta-swupdate:
+https://github.com/sbabic/meta-swupdate/tree/master/recipes-support/swupdate
+
+Basically all variants include the .inc file where everything in common is
+specified.
+
+Then the git recipe would point to your git master HEAD (I guess you\re
+using AUTOREV mechanism?) and the point releases are e.g. foo_1.5.0.bb
+where you put a given SRCREV only (or even a tarball if you want).
+
+In the git recipe, add:
+
+DEFAULT_PREFERENCE = "-1"
+
+This means it'll never be preferred to other recipes (if there are
+others).
+
+For your nightly builds, you put PREFERRED_VERSION_foo = "git" in
+local.conf and you should be good to go (don't add it for release builds
+obviously :) ).
+
+Hope that helps,
+Cheers,
+Quentin
