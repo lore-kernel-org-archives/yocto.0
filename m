@@ -1,574 +1,277 @@
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
- by mx.groups.io with SMTP id smtpd.web12.1311.1619480396929696056
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web09.1569.1619481569854393698
  for <yocto@lists.yoctoproject.org>;
- Mon, 26 Apr 2021 16:39:57 -0700
+ Mon, 26 Apr 2021 16:59:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kudzu-us.20150623.gappssmtp.com header.s=20150623 header.b=LnMH87Gq;
- spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.222.173, mailfrom: jdmason@kudzu.us)
-Received: by mail-qk1-f173.google.com with SMTP id q136so37403355qka.7
-        for <yocto@lists.yoctoproject.org>; Mon, 26 Apr 2021 16:39:56 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=h4p1dcyh;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 7383D38C11E5
+	for <yocto@yoctoproject.org>; Mon, 26 Apr 2021 23:59:29 +0000 (UTC)
+Received: by mail-pg1-f178.google.com with SMTP id m12so374164pgr.9
+        for <yocto@yoctoproject.org>; Mon, 26 Apr 2021 16:59:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kudzu-us.20150623.gappssmtp.com; s=20150623;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=j58bROBs7zNXQSsMVF60Ppj8FV95UFkpdWyyY2ekKKQ=;
-        b=LnMH87GqfpCewH3WAU+I4Kd6GyN3eOdF41s7JcR9Kv0pNlJCy71VYHZUmbV8Rr9ese
-         6Lt6C/sAirb9PqEjt3UC9s8SqWmU69C6HOuyiQiPiz/0JITVFocD07bOYPVKGz1VdC9G
-         E4KVMK8EMVxcBUKrZnijLy2KV/SMTmJ1+cNQqmj9754GjC3nN2gnIybtWc9WcnGMHTqR
-         8fzAiSfEn3ngmHfJXil3dwYtxhwKFxaOBQAA2BrwXftNhjz3cU7UMkvn9+kBOzezsdZz
-         SWNN4x/yOeocjTuRoDkXowLmLsY5vDHYcRVjYjgm+vsh5laqB/unugh29rbph4JEMm5C
-         bPsw==
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=FXz1QHQOpOlGXYc9XyZZ7tX35CPvnj/D73quun6LNoU=;
+        b=h4p1dcyh13//7SE5kAk2aavJWX/qNxSqSCEDGHf29BLj346hdZKYq6WJ6oNqZQMpFF
+         2THjRwvhJcO9qg79tzhzHyi2RyJdHY8q0x/xBNVRnIuZcnfEHa05icQ3ycUH1zLJIkxM
+         n8Jk5GQv34qfhjF/WL6Zwa5F3aXZrVFwyWi5lbn609RlN/q9IogkPQ8gPe4iaLPavE0z
+         WJ4u/cmzvGY5P8g1ue2sktrbjptObknIJ37eOH2KNvDylcLPGePP5j5Wh8CcpiyXR032
+         hmJb8Lor4/mxIZJyQwmP+nyHRkJ+bHs8fewZcjJSAJtUZaPpvwdtTVO2AR5scReqqrn/
+         ejUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=j58bROBs7zNXQSsMVF60Ppj8FV95UFkpdWyyY2ekKKQ=;
-        b=FyZfLfbzLULUtTT1P54LzPMkkWI6cVy4jRg6h4Vrtt1p2GahCTtbEQ6pb4Pg1Kc1SM
-         zACAC/g/2J1wAcAqu5/wWgQHHDIiqyPUIjddIZ6QpCCn7yE1lzllaLbbdhqaODClOeEo
-         8d+m/hkcEzrKI3QV4DPRQ2SLONDr/8MUevpb6a9Mx8STgRgVcm4RwkDssmBrfTBhsfBF
-         gZVRr9dqBJYVfFv/dI7IVTVCyF5BcQfm8c1TkuStQpKqW5XcLhh2kmb5F4MJeZ0iCDjP
-         hS/0bo84nOuVDSJxrV/L3A4BBRh3/rXWOo2OnD37rgkC0L6Uqm1VZBklkRBejmxFIUCl
-         tjUQ==
-X-Gm-Message-State: AOAM5310dco9VPGHk3skA7tmWXgnOggLAz6C/5ijp/MDhiIVni0fwYT/
-	4K7k0yjLSH4jUSlwio+NVWUdASFVMGkAbw==
-X-Google-Smtp-Source: ABdhPJyuZgEBJRlKYFkSRZp8y8m+ztqK8WWo2YaPfnd2zKG9QgENS78nLrLCKnpt/5yNNDaMQ0oD4Q==
-X-Received: by 2002:a37:a357:: with SMTP id m84mr7905179qke.178.1619480395590;
-        Mon, 26 Apr 2021 16:39:55 -0700 (PDT)
-Return-Path: <jdmason@kudzu.us>
-Received: from localhost ([2605:a601:a601:f800:15bd:5247:a67c:4a90])
-        by smtp.gmail.com with ESMTPSA id b1sm1490107qkh.26.2021.04.26.16.39.55
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Apr 2021 16:39:55 -0700 (PDT)
-From: "Jon Mason" <jdmason@kudzu.us>
-X-Google-Original-From: Jon Mason <jon.mason@arm.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-zephyr][PATCH 1/1] CI: add Gitlab CI support
-Date: Mon, 26 Apr 2021 19:39:53 -0400
-Message-Id: <20210426233953.11927-2-jon.mason@arm.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210426233953.11927-1-jon.mason@arm.com>
-References: <20210426233953.11927-1-jon.mason@arm.com>
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=FXz1QHQOpOlGXYc9XyZZ7tX35CPvnj/D73quun6LNoU=;
+        b=Un0YMdttvi8aEPtoE3I3Hi0s+3+u3XHu4peSRRDcCv/+jvBwOeIzBGJZ7WSJB6hWxa
+         Ra97ytDKk5uhkIGlWR2lvmVZpjcFo7nFb+8tYvnhpTFkD9ihwylLibi5BRqRCgbSoVvy
+         1aBIS7bjASOLlS7MusdAEC3Ocrtci9nPSOi3DY3ZigMnn5ZnqWrYSeLfYNqPM4UY/sCL
+         hVP/8KQYT680m4EtuuwsjpEcfQKaS/uiHB68uTLBuPAyjB15NE14dUO6SXs4K+W04E6i
+         5mFGJPF06GqJPieBq3UAIwErlzgJCwivhcK2sF+IvyhnEHFsEph1/mMCObrXy72li8XV
+         AlGw==
+X-Gm-Message-State: AOAM533p0ZjC1xhUxaFIRKyAVEnS1VEsUscY4T1D9iczjdDh90WKH5VA
+	6tfBx61AhWlXYNLZ0Vx6dhM=
+X-Google-Smtp-Source: ABdhPJwfPPNCLYrOtxyALjF8uXS5CrZmApfaTsElSSJ5ooqCHNyxKC4QLyqmLFGOA7mCu4Ic+izGIw==
+X-Received: by 2002:a65:4c0c:: with SMTP id u12mr18872070pgq.122.1619481568991;
+        Mon, 26 Apr 2021 16:59:28 -0700 (PDT)
+Received: from skjolley (wsip-72-194-163-85.ph.ph.cox.net. [72.194.163.85])
+        by smtp.gmail.com with ESMTPSA id s32sm687428pfw.2.2021.04.26.16.59.27
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 26 Apr 2021 16:59:28 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 26 Apr 2021 16:59:28 -0700
+Message-ID: <03d601d73af8$32072b30$96158190$@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQLkayZ37EpRDH6C1lmCAoIsZ1RF9Q==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_03D7_01D73ABD.85AA9D20"
+Content-Language: en-us
 
-Signed-off-by: Jon Mason <jon.mason@arm.com>
----
- .gitlab-ci.yml            | 172 ++++++++++++++++++++++++++++++++++++++
- ci/96b-avenger96.yml      |   9 ++
- ci/96b-nitrogen.yml       |   6 ++
- ci/acrn.yml               |   6 ++
- ci/base.yml               |  35 ++++++++
- ci/check-machine-coverage |  26 ++++++
- ci/check-warnings         |  18 ++++
- ci/jobs-to-kas            |  19 +++++
- ci/logging.yml            |  13 +++
- ci/meta-oe.yml            |   8 ++
- ci/meta-python.yml        |  10 +++
- ci/qemu-cortex-m3.yml     |   6 ++
- ci/qemu-nios2.yml         |   6 ++
- ci/qemu-x86.yml           |   6 ++
- ci/testimage.yml          |   5 ++
- ci/update-repos           |  40 +++++++++
- 16 files changed, 385 insertions(+)
- create mode 100644 .gitlab-ci.yml
- create mode 100644 ci/96b-avenger96.yml
- create mode 100644 ci/96b-nitrogen.yml
- create mode 100644 ci/acrn.yml
- create mode 100644 ci/base.yml
- create mode 100755 ci/check-machine-coverage
- create mode 100755 ci/check-warnings
- create mode 100755 ci/jobs-to-kas
- create mode 100644 ci/logging.yml
- create mode 100644 ci/meta-oe.yml
- create mode 100644 ci/meta-python.yml
- create mode 100644 ci/qemu-cortex-m3.yml
- create mode 100644 ci/qemu-nios2.yml
- create mode 100644 ci/qemu-x86.yml
- create mode 100644 ci/testimage.yml
- create mode 100755 ci/update-repos
+------=_NextPart_000_03D7_01D73ABD.85AA9D20
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
-new file mode 100644
-index 000000000000..06cdf535e53b
---- /dev/null
-+++ b/.gitlab-ci.yml
-@@ -0,0 +1,172 @@
-+image: ghcr.io/siemens/kas/kas
-+
-+  # First do a common bootstrap, and then build all the targets
-+stages:
-+  - prep
-+  - bootstrap
-+  - build
-+  - test
-+
-+# Common job fragment to get a worker ready
-+.setup:
-+  stage: build
-+  variables:
-+    KAS_WORK_DIR: $CI_PROJECT_DIR/work
-+    KAS_REPO_REF_DIR: $CI_BUILDS_DIR/persist/repos
-+    SSTATE_DIR: $CI_BUILDS_DIR/persist/sstate
-+    DL_DIR: $CI_BUILDS_DIR/persist/downloads
-+    BB_LOGCONFIG: $CI_PROJECT_DIR/ci/logging.yml
-+  before_script:
-+    - echo KAS_WORK_DIR = $KAS_WORK_DIR
-+    - echo SSTATE_DIR = $SSTATE_DIR
-+    - echo DL_DIR = $DL_DIR
-+    - mkdir --verbose --parents $KAS_WORK_DIR $KAS_REPO_REF_DIR $SSTATE_DIR $DL_DIR
-+
-+# Generalised fragment to do a Kas build
-+.build:
-+  extends: .setup
-+  script:
-+  - KASFILES=$(./ci/jobs-to-kas $CI_JOB_NAME)
-+  - kas shell --update --force-checkout $KASFILES -c 'cat conf/*.conf'
-+  - kas build $KASFILES
-+  - ./ci/check-warnings $KAS_WORK_DIR/build/warnings.log
-+
-+# KAS testing
-+.test:
-+  extends: .setup
-+  stage: test
-+  script:
-+    - KASFILES=$(./ci/jobs-to-kas $CI_JOB_NAME)
-+    - kas build $KASFILES -c testimage
-+
-+
-+#
-+# Prep stage, update repositories once
-+#
-+update-repos:
-+  extends: .setup
-+  stage: prep
-+  script:
-+  - flock --verbose --timeout 60 $KAS_REPO_REF_DIR ./ci/update-repos
-+
-+
-+#
-+# Bootstrap stage, machine coverage
-+#
-+
-+# What percentage of machines in the layer do we build
-+machine-coverage:
-+  stage: bootstrap
-+  script:
-+  - ./ci/check-machine-coverage
-+  coverage: '/Coverage: \d+/'
-+
-+
-+#
-+# Build stage, the actual build jobs
-+#
-+
-+96b-avenger96:
-+  extends: .build
-+
-+96b-nitrogen:
-+  extends: .build
-+
-+acrn:
-+  extends: .build
-+
-+qemu-cortex-m3:
-+  extends: .build
-+  artifacts:
-+    paths:
-+      - work/build/tmp-newlib/deploy/images/qemu-cortex-m3/*
-+    expire_in: 1 day
-+
-+qemu-nios2:
-+  extends: .build
-+  artifacts:
-+    paths:
-+      - work/build/tmp-newlib/deploy/images/qemu-nios2/*
-+    expire_in: 1 day
-+  allow_failure: true
-+
-+qemu-x86:
-+  extends: .build
-+  artifacts:
-+    paths:
-+      - work/build/tmp-newlib/deploy/images/qemu-x86/*
-+    expire_in: 1 day
-+
-+
-+#
-+# Third phase, the test jobs
-+#
-+
-+# QEMU based machines can use testimage, others will need something else (i.e., LAVA)
-+
-+qemu-cortex-m3/testimage:
-+  extends: .test
-+  needs:
-+    - job: qemu-cortex-m3
-+
-+qemu-nios2/testimage:
-+  extends: .test
-+  needs:
-+    - job: qemu-nios2
-+  allow_failure: true
-+
-+qemu-x86/testimage:
-+  extends: .test
-+  needs:
-+    - job: qemu-x86
-+
-+
-+#
-+# Utility tasks, not executed automatically
-+#
-+
-+# Make the persistant files modifiable by all runners
-+chmod-presistent:
-+  extends: .setup
-+  stage: prep
-+  when: manual
-+  script:
-+  - chmod -R 755 $CI_BUILDS_DIR/persist/*
-+
-+delete-dl-dir:
-+  extends: .setup
-+  stage: prep
-+  when: manual
-+  script:
-+  - rm -rf $DL_DIR/*
-+
-+delete-repo-dir:
-+  extends: .setup
-+  stage: prep
-+  when: manual
-+  script:
-+  - rm -rf $KAS_REPO_REF_DIR/*
-+
-+# Delete all sstate
-+delete-sstate:
-+  extends: .setup
-+  stage: prep
-+  when: manual
-+  script:
-+  - rm -rf $SSTATE_DIR/*
-+
-+# Wipe out old sstate
-+prune-sstate:
-+  extends: .setup
-+  stage: prep
-+  when: manual
-+  script:
-+  - find $SSTATE_DIR -type f -atime +30 -delete
-+
-+# Report on disk usage
-+usage:
-+  extends: .setup
-+  stage: prep
-+  when: manual
-+  script:
-+  - du -h -s $DL_DIR $SSTATE_DIR $KAS_REPO_REF_DIR
-diff --git a/ci/96b-avenger96.yml b/ci/96b-avenger96.yml
-new file mode 100644
-index 000000000000..9ab58aa83ffa
---- /dev/null
-+++ b/ci/96b-avenger96.yml
-@@ -0,0 +1,9 @@
-+header:
-+  version: 9
-+  includes:
-+    - base.yml
-+
-+machine: 96b-avenger96
-+
-+target:
-+  - zephyr-philosophers
-diff --git a/ci/96b-nitrogen.yml b/ci/96b-nitrogen.yml
-new file mode 100644
-index 000000000000..ecd96fb67136
---- /dev/null
-+++ b/ci/96b-nitrogen.yml
-@@ -0,0 +1,6 @@
-+header:
-+  version: 9
-+  includes:
-+    - base.yml
-+
-+machine: 96b-nitrogen
-diff --git a/ci/acrn.yml b/ci/acrn.yml
-new file mode 100644
-index 000000000000..53748defebec
---- /dev/null
-+++ b/ci/acrn.yml
-@@ -0,0 +1,6 @@
-+header:
-+  version: 9
-+  includes:
-+    - base.yml
-+
-+machine: acrn
-diff --git a/ci/base.yml b/ci/base.yml
-new file mode 100644
-index 000000000000..8e6cf0caf525
---- /dev/null
-+++ b/ci/base.yml
-@@ -0,0 +1,35 @@
-+header:
-+  version: 9
-+  includes:
-+    - meta-python.yml
-+
-+distro: zephyr
-+
-+defaults:
-+  repos:
-+    refspec: hardknott
-+
-+repos:
-+  meta-zephyr:
-+
-+  poky:
-+    url: https://git.yoctoproject.org/git/poky
-+    layers:
-+      meta:
-+      meta-poky:
-+
-+env:
-+  BB_LOGCONFIG: ""
-+
-+local_conf_header:
-+  base: |
-+    CONF_VERSION = "1"
-+    INHERIT += "rm_work"
-+    ERROR_QA = "${WARN_QA}"
-+  testimage: |
-+    IMAGE_CLASSES += "testimage"
-+
-+machine: unset
-+
-+target:
-+  - zephyr-kernel-test-device
-diff --git a/ci/check-machine-coverage b/ci/check-machine-coverage
-new file mode 100755
-index 000000000000..726714d8b0fe
---- /dev/null
-+++ b/ci/check-machine-coverage
-@@ -0,0 +1,26 @@
-+#! /usr/bin/env python3
-+
-+from pathlib import Path
-+import sys
-+
-+metazephyr = Path.cwd()
-+
-+if metazephyr.name != "meta-zephyr":
-+    print("Not running inside meta-zephyr")
-+    sys.exit(1)
-+
-+# All machine configurations
-+machines = metazephyr.glob("conf/machine/*.conf")
-+machines = set(p.stem for p in machines)
-+
-+# All kas files
-+kas = metazephyr.glob("ci/*.yml")
-+kas = set(p.stem for p in kas)
-+
-+missing = machines - kas
-+print(f"The following machines are missing: {', '.join(sorted(missing))}.")
-+
-+covered = len(machines) - len(missing)
-+total = len(machines)
-+percent = int(covered / total * 100)
-+print(f"Coverage: {percent}%")
-diff --git a/ci/check-warnings b/ci/check-warnings
-new file mode 100755
-index 000000000000..cc396423d8bf
---- /dev/null
-+++ b/ci/check-warnings
-@@ -0,0 +1,18 @@
-+#! /bin/bash
-+
-+# Expects the path to a log file as $1, and if this file has any content
-+# then display the contents and exit with an error code.
-+
-+set -e -u
-+
-+LOGFILE=$1
-+
-+if test -s $LOGFILE; then
-+    echo ==============================
-+    echo The build had warnings/errors:
-+    echo ==============================
-+    cat $LOGFILE
-+    exit 1
-+fi
-+
-+exit 0
-diff --git a/ci/jobs-to-kas b/ci/jobs-to-kas
-new file mode 100755
-index 000000000000..70579703bc07
---- /dev/null
-+++ b/ci/jobs-to-kas
-@@ -0,0 +1,19 @@
-+#! /bin/bash
-+
-+# Read a GitLab CI job name on $1 and transform it to a
-+# list of Kas yaml files
-+
-+set -e -u
-+
-+# Read Job namne from $1 and split on /
-+IFS=/ read -r -a PARTS<<<$1
-+
-+# Prefix each part with ci/
-+PARTS=("${PARTS[@]/#/ci/}")
-+
-+# Suffix each part with .yml
-+PARTS=("${PARTS[@]/%/.yml}")
-+
-+# Print colon-separated
-+IFS=":"
-+echo "${PARTS[*]}"
-diff --git a/ci/logging.yml b/ci/logging.yml
-new file mode 100644
-index 000000000000..3af10295f8f3
---- /dev/null
-+++ b/ci/logging.yml
-@@ -0,0 +1,13 @@
-+# Python logging configuration to write all warnings to a separate file
-+version: 1
-+
-+handlers:
-+  warnings:
-+    class: logging.FileHandler
-+    level: WARNING
-+    filename: warnings.log
-+    formatter: BitBake.logfileFormatter
-+
-+loggers:
-+  BitBake:
-+    handlers: [warnings]
-diff --git a/ci/meta-oe.yml b/ci/meta-oe.yml
-new file mode 100644
-index 000000000000..ccd34f3a3ffa
---- /dev/null
-+++ b/ci/meta-oe.yml
-@@ -0,0 +1,8 @@
-+header:
-+  version: 9
-+
-+repos:
-+  meta-openembedded:
-+    url: https://git.openembedded.org/meta-openembedded
-+    layers:
-+      meta-oe:
-diff --git a/ci/meta-python.yml b/ci/meta-python.yml
-new file mode 100644
-index 000000000000..3f76118ccd09
---- /dev/null
-+++ b/ci/meta-python.yml
-@@ -0,0 +1,10 @@
-+header:
-+  version: 9
-+  includes:
-+    - meta-oe.yml
-+
-+repos:
-+  meta-openembedded:
-+    url: https://git.openembedded.org/meta-openembedded
-+    layers:
-+      meta-python:
-diff --git a/ci/qemu-cortex-m3.yml b/ci/qemu-cortex-m3.yml
-new file mode 100644
-index 000000000000..73b46039abed
---- /dev/null
-+++ b/ci/qemu-cortex-m3.yml
-@@ -0,0 +1,6 @@
-+header:
-+  version: 9
-+  includes:
-+    - base.yml
-+
-+machine: qemu-cortex-m3
-diff --git a/ci/qemu-nios2.yml b/ci/qemu-nios2.yml
-new file mode 100644
-index 000000000000..75166054c265
---- /dev/null
-+++ b/ci/qemu-nios2.yml
-@@ -0,0 +1,6 @@
-+header:
-+  version: 9
-+  includes:
-+    - base.yml
-+
-+machine: qemu-nios2
-diff --git a/ci/qemu-x86.yml b/ci/qemu-x86.yml
-new file mode 100644
-index 000000000000..c5d23f471bf8
---- /dev/null
-+++ b/ci/qemu-x86.yml
-@@ -0,0 +1,6 @@
-+header:
-+  version: 9
-+  includes:
-+    - base.yml
-+
-+machine: qemu-x86
-diff --git a/ci/testimage.yml b/ci/testimage.yml
-new file mode 100644
-index 000000000000..19ea66773b94
---- /dev/null
-+++ b/ci/testimage.yml
-@@ -0,0 +1,5 @@
-+header:
-+  version: 9
-+
-+target:
-+  - zephyr-kernel-test-device
-diff --git a/ci/update-repos b/ci/update-repos
-new file mode 100755
-index 000000000000..fa638aad2efb
---- /dev/null
-+++ b/ci/update-repos
-@@ -0,0 +1,40 @@
-+#! /usr/bin/env python3
-+
-+# Update clones of the repositories we need in KAS_REPO_REF_DIR to speed up fetches
-+
-+import sys
-+import os
-+import subprocess
-+import pathlib
-+
-+def repo_shortname(url):
-+    # Taken from Kas (Repo.__getattr__) to ensure the logic is right
-+    from urllib.parse import urlparse
-+    url = urlparse(url)
-+    return ('{url.netloc}{url.path}'
-+            .format(url=url)
-+            .replace('@', '.')
-+            .replace(':', '.')
-+            .replace('/', '.')
-+            .replace('*', '.'))
-+
-+repositories = (
-+    "https://git.yoctoproject.org/git/poky",
-+    "https://git.openembedded.org/meta-openembedded",
-+)
-+
-+if __name__ == "__main__":
-+    if "KAS_REPO_REF_DIR" not in os.environ:
-+        print("KAS_REPO_REF_DIR needs to be set")
-+        sys.exit(1)
-+
-+    base_repodir = pathlib.Path(os.environ["KAS_REPO_REF_DIR"])
-+
-+    for repo in repositories:
-+        repodir = base_repodir / repo_shortname(repo)
-+        if repodir.exists():
-+            print("Updating %s..." % repo)
-+            subprocess.run(["git", "-C", repodir, "fetch"], check=True)
-+        else:
-+            print("Cloning %s..." % repo)
-+            subprocess.run(["git", "clone", "--bare", repo, repodir], check=True)
--- 
-2.20.1
+All,
 
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 356
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.2", "3.3, "3.99" and "Future", the more pressing/urgent issues
+being in "3.2" and then "3.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_03D7_01D73ABD.85AA9D20
+Content-Type: text/html;
+	boundary="----=_NextPart_000_06A3_01D73544.95E8A8E0";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 356 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.2&#8221;, &#8220;3.3, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.2&quot; and then &#8220;3.3&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif",serif'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_03D7_01D73ABD.85AA9D20--
