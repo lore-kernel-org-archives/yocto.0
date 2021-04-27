@@ -1,59 +1,46 @@
-Subject: Re: running application in user mode instead of root #yocto
-To: yocto@lists.yoctoproject.org
-From: "Alessandro Tagliapietra" <tagliapietra.alessandro@gmail.com>
-X-Originating-Location: Las Vegas, Nevada, US (72.207.140.105)
-X-Originating-Platform: Linux Chrome 90
-User-Agent: GROUPS.IO Web Poster
+Received: from bsmtp1.bon.at (bsmtp1.bon.at [213.33.87.15])
+ by mx.groups.io with SMTP id smtpd.web11.5549.1619511721346051104
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 27 Apr 2021 01:22:02 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.15, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp1.bon.at (Postfix) with ESMTPSA id 4FTvr65hByz5tlH;
+	Tue, 27 Apr 2021 10:21:58 +0200 (CEST)
+Date: Tue, 27 Apr 2021 10:21:57 +0200
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: jchludzinski@vivaldi.net
+Cc: Yocto <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] ERROR: Fetcher failure: Fetch command export...
+Message-ID: <20210427082157.ejgupbni2ronc2b3@qschulz>
+References: <5bdffd88cda11c8ca92eb10bb2d7fe25@vivaldi.net>
 MIME-Version: 1.0
-Date: Tue, 27 Apr 2021 00:38:38 -0700
-References: <Mgmv.1619507435353064322.vAYm@lists.yoctoproject.org>
-In-Reply-To: <Mgmv.1619507435353064322.vAYm@lists.yoctoproject.org>
-Message-ID: <1187.1619509118723710252@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="U9g35DaeOAk4EfQOfiOQ"
+In-Reply-To: <5bdffd88cda11c8ca92eb10bb2d7fe25@vivaldi.net>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---U9g35DaeOAk4EfQOfiOQ
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Tue, Apr 27, 2021 at 02:01:24AM -0400, jchludzinski via lists.yoctoproject.org wrote:
+> When I trying using bitbake to build openembedded Linux kernel, it dies with
+> these download failures:
+> 
+> NOTE: Fetching uninative binary shim http://downloads.yoctoproject.org/releases/uninative/3.0/x86_64-nativesdk-libc.tar.xz;sha256sum=5ec5a9276046e7eceeac749a18b175667384e1f445cd4526300a41404d985a5b
+> (will check PREMIRRORS first)
+> WARNING: Failed to fetch URL http://downloads.yoctoproject.org/releases/uninative/3.0/x86_64-nativesdk-libc.tar.xz;sha256sum=5ec5a9276046e7eceeac749a18b175667384e1f445cd4526300a41404d985a5b,
+> attempting MIRRORS if available
+> ERROR: Fetcher failure: Fetch command export PSEUDO_DISABLED=1; export
+> DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"; export
+> SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"; export PATH="/home/jski/poky/scripts:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot/usr/bin/crossscripts:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot-native/usr/sbin:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot-native/usr/bin:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot-native/sbin:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot-native/bin:/home/jski/poky/bitbake/bin:/home/jski/poky/build/tmp/hosttools";
+> export HOME="/home/jski"; /usr/bin/env wget -t 2 -T 30 --passive-ftp
+> --no-check-certificate -P /home/jski/poky/build/downloads/uninative/5ec5a9276046e7eceeac749a18b175667384e1f445cd4526300a41404d985a5b 'http://downloads.yoctoproject.org/releases/uninative/3.0/x86_64-nativesdk-libc.tar.xz'
+> --progress=dot -v failed with exit code 4, output:
+> --2021-04-27 01:49:09--  http://downloads.yoctoproject.org/releases/uninative/3.0/x86_64-nativesdk-libc.tar.xz
+> Resolving downloads.yoctoproject.org (downloads.yoctoproject.org)... failed:
+> Connection timed out.
+> wget: unable to resolve host address 'downloads.yoctoproject.org'
+> 
 
-I'm new to yocto as well but what we do is in our own custom image:
+It looks like an issue with your DNS which does not return anything for
+downloads.yoctoproject.org?
 
-inherit extrausers
-EXTRA_USERS_PARAMS =3D " useradd nodered"
-
-and then since we use systemd we've created our own service file that incl=
-udes:
-
-User=3Dnodered
-
-in the [service] block definition, so the executable is run using that use=
-r instead of root.
-
-Extrausers docs are https://www.yoctoproject.org/docs/current/mega-manual/=
-mega-manual.html#ref-classes-extrausers
-
-An alternative you might look at is the useradd class https://git.yoctopro=
-ject.org/cgit.cgi/poky/tree/meta-skeleton/recipes-skeleton/useradd/useradd-=
-example.bb which probably lets you set the users in your own recipe instead=
- at image level
-
---U9g35DaeOAk4EfQOfiOQ
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-I'm new to yocto as well but what we do is in our own custom image:<br /><b=
-r />inherit extrausers<br />EXTRA_USERS_PARAMS =3D " useradd nodered"<br />=
-<br />and then since we use systemd we've created our own service file that=
- includes:<br /><br />User=3Dnodered<br /><br />in the [service] block defi=
-nition, so the executable is run using that user instead of root.<br /><br =
-/>Extrausers docs are&nbsp;<a href=3D"https://www.yoctoproject.org/docs/cur=
-rent/mega-manual/mega-manual.html#ref-classes-extrausers" target=3D"_blank"=
- rel=3D"noopener">https://www.yoctoproject.org/docs/current/mega-manual/meg=
-a-manual.html#ref-classes-extrausers</a><br /><br />An alternative you migh=
-t look at is the useradd class&nbsp;<a href=3D"https://git.yoctoproject.org=
-/cgit.cgi/poky/tree/meta-skeleton/recipes-skeleton/useradd/useradd-example.=
-bb" target=3D"_blank" rel=3D"noopener">https://git.yoctoproject.org/cgit.cg=
-i/poky/tree/meta-skeleton/recipes-skeleton/useradd/useradd-example.bb</a>&n=
-bsp;which probably lets you set the users in your own recipe instead at ima=
-ge level
-
---U9g35DaeOAk4EfQOfiOQ--
+Cheers,
+Quentin
