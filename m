@@ -1,196 +1,140 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.2230.1619555788385791185
+Received: from smtp.vivaldi.net (smtp.vivaldi.net [31.209.137.12])
+ by mx.groups.io with SMTP id smtpd.web12.3389.1619560857522157697
  for <yocto@lists.yoctoproject.org>;
- Tue, 27 Apr 2021 13:36:28 -0700
+ Tue, 27 Apr 2021 15:00:58 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=U2Px2Bbc;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: akuster808@gmail.com)
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id EDF1338C06A4
-	for <yocto@yoctoproject.org>; Tue, 27 Apr 2021 20:36:27 +0000 (UTC)
-Received: by mail-il1-f174.google.com with SMTP id y10so9840716ilv.0
-        for <yocto@yoctoproject.org>; Tue, 27 Apr 2021 13:36:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=o+XafxgxnY9IhEW9I5KaFuzbKY2lpMDNQCK28ttb+eM=;
-        b=U2Px2Bbco1FmVKg3Xn0hRVGTQJsYZm74dnvl0i9mpmVDCfuNjeWSK+e8GJASdmh3ou
-         P4xA9ikCxu0UoFL/HmcX9+iDaNVNi72eU8CTQEiRYzLWkojVVJ+rlLMwt1ZJ2F7q/2Mn
-         8as9MiqTPrXBJlLjyx6YRHagEagU0narZsri82dkLbScQfUb2RmhvF4luX7aJepX/y5p
-         OsyDU2pFk/cYNs+ULyYVqHh2MvAU3ysS1ZaiRiyBnPnDijaPlHeyOjyDLw0r6piWmBkX
-         vDVfW3Pe2tBgu7t5Yr9jz2nR7T8f9p7LoYRRm9MlTuQe4c+cOEwPSp/gp3ARYg3urvSD
-         YzDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
-         :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=o+XafxgxnY9IhEW9I5KaFuzbKY2lpMDNQCK28ttb+eM=;
-        b=MZZLyrAJhaQ/DdSvUTcb8EZSQRwHqQA9glwViy5hC3HNesmPKqLj0XpOVDngSuR8VX
-         1x+TEUo6tuGw+TyFlYOPW0Yyq1nipjUt4h5yPl9YRoVAR121c+1AnW9cYXxiP6hw75h5
-         w122lg1mty+rezN13NXTaH8lxfrSf8mpL2tYEckFsBNS/2cVxWK7ZEQyBCz0pDAjNzEU
-         YmBMbshZxDE/NhIu3VmQTLSJi8xA5u9t72/8OZMwikJqkdPO+vzzCLGAP9V/QMc/7G9z
-         MH77Gum4QSz5c9LJAnjnKxBrffU47OZKWo5aLXuUAbWlofh3LWrvEt86fn3bryxJn2sq
-         nhZA==
-X-Gm-Message-State: AOAM533q1JZB3KqX//8GvH7KnIhqsIi8lWgiVqr5VrvSFDFpDpDWKSau
-	MNotQxt6K0JXYPSVbzU4X3vshxsvfpDUsQ==
-X-Google-Smtp-Source: ABdhPJyEIe1dii8ky76fm2tsfNds+NWSjc07YNnXMAlBx3rKFodFdawyXmg6py5d6Fc9j0JVpElDGA==
-X-Received: by 2002:a92:c566:: with SMTP id b6mr19990401ilj.162.1619555787037;
-        Tue, 27 Apr 2021 13:36:27 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:a5c0:d576:9b40:49cc:6195? ([2601:202:4180:a5c0:d576:9b40:49cc:6195])
-        by smtp.gmail.com with ESMTPSA id a7sm1812630iln.57.2021.04.27.13.36.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Apr 2021 13:36:26 -0700 (PDT)
-Subject: Re: [OE-core] [PATCH 6/7] default-distrovars.inc: add wayland/opengl to default distro features
-To: Randy MacLeod <randy.macleod@windriver.com>,
- Alexander Kanavin <alex.kanavin@gmail.com>,
- openembedded-core@lists.openembedded.org,
- "Wei, Yunguo (Bryan)" <Yunguo.Wei@windriver.com>,
- Kevin Hao <kexin.hao@windriver.com>,
- Yocto discussion list <yocto@yoctoproject.org>
-References: <20210423180254.706537-1-alex.kanavin@gmail.com>
- <20210423180254.706537-6-alex.kanavin@gmail.com>
- <8295040a-2b00-92f2-7ad5-95e2941f0dd6@windriver.com>
-From: "Armin Kuster" <akuster808@gmail.com>
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <0c3b5a85-06e8-0097-a71c-42d4dbcc2d21@gmail.com>
-Date: Tue, 27 Apr 2021 13:36:25 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <8295040a-2b00-92f2-7ad5-95e2941f0dd6@windriver.com>
-Content-Type: text/plain; charset=utf-8
+ dkim=pass header.i=@vivaldi.net header.s=default header.b=PD6AfFry;
+ spf=pass (domain: vivaldi.net, ip: 31.209.137.12, mailfrom: jchludzinski@vivaldi.net)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp.vivaldi.net (Postfix) with ESMTP id 4734EBD042
+	for <yocto@lists.yoctoproject.org>; Tue, 27 Apr 2021 22:00:55 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 4734EBD042
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
+	s=default; t=1619560855;
+	bh=m9qcUbNzfu6mMWtaBHt8SB+JFtUVOJvXd8uQ4594mVU=;
+	h=Date:From:To:Subject:From;
+	b=PD6AfFrymkR+hWbm6PcQrN++Se0v4BaUFi0Hn8tUoc7hDEa9KzEtSyyqUeIHZnLW7
+	 1AQyAIk3sZ4B41YzzoNLzdFVeKx4tFnq8s4Y8LVx9LAh9H7ZAmUDxA4Xwy8Tk9l2of
+	 S8DjwVGBOuMoZzmmgYVcGFWSbZJUqIieOKjJW50N1YOtvLa9bWYwARCzponMLK/z3B
+	 rKPvV9WnYSXKlxTalo6R5TxPTJTrpUtOeMxWsh1MuENvW0Jr0KEzXntXYWzOpVOm30
+	 LXHS/9Iz77knTZmoYnU41Kfju8Qcd/AWClCoYdyG2ChC+Wy83AVQGOK66qOFC30OF3
+	 s3uzHN3W4t7bQ==
+X-Virus-Scanned: Debian amavisd-new at smtp.vivaldi.net
+Received: from smtp.vivaldi.net ([127.0.0.1])
+	by localhost (mxo.viv.dc01 [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id vyUxjhsOrD97 for <yocto@lists.yoctoproject.org>;
+	Tue, 27 Apr 2021 22:00:51 +0000 (UTC)
+Date: Tue, 27 Apr 2021 18:00:51 -0400
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 8C583BD040
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
+	s=default; t=1619560851;
+	bh=m9qcUbNzfu6mMWtaBHt8SB+JFtUVOJvXd8uQ4594mVU=;
+	h=Date:From:To:Subject:From;
+	b=SQn68byx7aW7BRN+a0tYffra6LCz4Wd5L3RdYzM2pyFRSDoUXW7BamT9LJ7C8SmKx
+	 o7HpJ5odx7IiBrNt453+6+4rycZAWniWheXEZdNHG3M9GNQwCIEAUgsLY7M6S/UN1+
+	 4D2DyoZbxWXBDm0jqRP/PNMuunM/9mxoUHaqwAxwL4RtGjLSwgDkqUjbE416l5RxHf
+	 uc9MTZnmFTKOd4hC9YU712lnLBZt4BODHYdJvajSArfEJthCnxgIr+BKOktN0LPgcp
+	 JM6V4SH5OpdgBYVynQS/mNbRtGsftgSqLkPrqmul2aJDAInv22ftln5KBnnrHPZYOp
+	 buh91/Fv/1tBA==
+From: "jchludzinski" <jchludzinski@vivaldi.net>
+To: Yocto <yocto@lists.yoctoproject.org>
+Subject: Bitbake build failures?
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <77c8136227cb22a1fcaf247799f1ca70@vivaldi.net>
+X-Sender: jchludzinski@vivaldi.net
+Content-Type: multipart/alternative;
+ boundary="=_29828ff1671aa5edacf86c6836d3f3d5"
+
+--=_29828ff1671aa5edacf86c6836d3f3d5
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+
+When I trying using bitbake to build openembedded Linux kernel, it dies 
+with these download failures:
+
+NOTE: Fetching uninative binary shim 
+http://downloads.yoctoproject.org/releases/uninative/3.0/x86_64-nativesdk-libc.tar.xz;sha256sum=5ec5a9276046e7eceeac749a18b175667384e1f445cd4526300a41404d985a5b 
+(will check PREMIRRORS first)
+WARNING: Failed to fetch URL 
+http://downloads.yoctoproject.org/releases/uninative/3.0/x86_64-nativesdk-libc.tar.xz;sha256sum=5ec5a9276046e7eceeac749a18b175667384e1f445cd4526300a41404d985a5b, 
+attempting MIRRORS if available
+ERROR: Fetcher failure: Fetch command export PSEUDO_DISABLED=1; export 
+DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"; export 
+SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"; export 
+PATH="/home/jski/poky/scripts:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot/usr/bin/crossscripts:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot-native/usr/sbin:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot-native/usr/bin:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot-native/sbin:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot-native/bin:/home/jski/poky/bitbake/bin:/home/jski/poky/build/tmp/hosttools"; 
+export HOME="/home/jski"; /usr/bin/env wget -t 2 -T 30 --passive-ftp 
+--no-check-certificate -P 
+/home/jski/poky/build/downloads/uninative/5ec5a9276046e7eceeac749a18b175667384e1f445cd4526300a41404d985a5b 
+'http://downloads.yoctoproject.org/releases/uninative/3.0/x86_64-nativesdk-libc.tar.xz' 
+--progress=dot -v failed with exit code 4, output:
+--2021-04-27 01:49:09--  
+http://downloads.yoctoproject.org/releases/uninative/3.0/x86_64-nativesdk-libc.tar.xz
+Resolving downloads.yoctoproject.org (downloads.yoctoproject.org)... 
+failed: Connection timed out.
+wget: unable to resolve host address 'downloads.yoctoproject.org'
+
+WARNING: Disabling uninative as unable to fetch uninative tarball: 
+Fetcher failure for URL: 
+'http://downloads.yoctoproject.org/releases/uninative/3.0/x86_64-nativesdk-libc.tar.xz;sha256sum=5ec5a9276046e7eceeac749a18b175667384e1f445cd4526300a41404d985a5b'. 
+Unable to fetch URL from any source.
+WARNING: To build your own uninative loader, please bitbake 
+uninative-tarball and set UNINATIVE_TARBALL appropriately.
+
+Why do I ALWAYS get these download failures?
+
+--=_29828ff1671aa5edacf86c6836d3f3d5
 Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
+Content-Type: text/html; charset=UTF-8
 
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Verdana,Gen=
+eva,sans-serif'>
+<div class=3D"v1pre"><span style=3D"font-size: 12pt;">When I trying using b=
+itbake to build openembedded Linux kernel, it dies with these download fail=
+ures:</span><br /><br /></div>
+<div class=3D"v1pre">
+<pre><span><span style=3D"font-size: 12pt;"><span style=3D"color: #ff0000;"=
+><span style=3D"color: #000000;">NOTE: Fetching uninative binary shim http:=
+//downloads.yoctoproject.org/releases/uninative/3.0/x86_64-nativesdk-libc.t=
+ar.xz;sha256sum=3D5ec5a9276046e7eceeac749a18b175667384e1f445cd4526300a41404=
+d985a5b</span> (will check PREMIRRORS first)
+WARNING: Failed to fetch URL http://downloads.yoctoproject.org/releases/uni=
+native/3.0/x86_64-nativesdk-libc.tar.xz;sha256sum=3D5ec5a9276046e7eceeac749=
+a18b175667384e1f445cd4526300a41404d985a5b, attempting MIRRORS if available
+ERROR: Fetcher failure: Fetch command export PSEUDO_DISABLED=3D1; export DB=
+US_SESSION_BUS_ADDRESS=3D"unix:path=3D/run/user/1000/bus"; export SSH_AUTH_=
+SOCK=3D"/run/user/1000/keyring/ssh"; export PATH=3D"/home/jski/poky/scripts=
+:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/r=
+ecipe-sysroot-native/usr/bin/x86_64-poky-linux:/home/jski/poky/build/tmp/wo=
+rk/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot/usr/bin/crosssc=
+ripts:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0=
+-r0/recipe-sysroot-native/usr/sbin:/home/jski/poky/build/tmp/work/core2-64-=
+poky-linux/defaultpkgname/1.0-r0/recipe-sysroot-native/usr/bin:/home/jski/p=
+oky/build/tmp/work/core2-64-poky-linux/defaultpkgname/1.0-r0/recipe-sysroot=
+-native/sbin:/home/jski/poky/build/tmp/work/core2-64-poky-linux/defaultpkgn=
+ame/1.0-r0/recipe-sysroot-native/bin:/home/jski/poky/bitbake/bin:/home/jski=
+/poky/build/tmp/hosttools"; export HOME=3D"/home/jski"; /usr/bin/env wget -=
+t 2 -T 30 --passive-ftp --no-check-certificate -P /home/jski/poky/build/dow=
+nloads/uninative/5ec5a9276046e7eceeac749a18b175667384e1f445cd4526300a41404d=
+985a5b 'http://downloads.yoctoproject.org/releases/uninative/3.0/x86_64-nat=
+ivesdk-libc.tar.xz' --progress=3Ddot -v failed with exit code 4, output:
+--2021-04-27 01:49:09--  http://downloads.yoctoproject.org/releases/uninati=
+ve/3.0/x86_64-nativesdk-libc.tar.xz
+Resolving downloads.yoctoproject.org (downloads.yoctoproject.org)... failed=
+: Connection timed out.
+wget: unable to resolve host address &lsquo;downloads.yoctoproject.org&rsqu=
+o;
+</span>
+<span style=3D"color: #ff9900;">WARNING: Disabling uninative as unable to f=
+etch uninative tarball: Fetcher failure for URL: 'http://downloads.yoctopro=
+ject.org/releases/uninative/3.0/x86_64-nativesdk-libc.tar.xz;sha256sum=3D5e=
+c5a9276046e7eceeac749a18b175667384e1f445cd4526300a41404d985a5b'. Unable to =
+fetch URL from any source.
+WARNING: To build your own uninative loader, please bitbake uninative-tarba=
+ll and set UNINATIVE_TARBALL appropriately.<br /><br /></span>Why do I ALWA=
+YS get these download failures?</span></span></pre>
+</div>
+</body></html>
 
-
-On 4/27/21 9:09 AM, Randy MacLeod wrote:
-> Cross-posting to yocto since this is of general interest.
->
-> On 2021-04-23 2:02 p.m., Alexander Kanavin wrote:
->> This puts them on equal terms with x11 distro feature
->> (which I think is due).
->>
->> Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
->> ---
->> =C2=A0 meta/conf/distro/include/default-distrovars.inc | 2 +-
->> =C2=A0 1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/meta/conf/distro/include/default-distrovars.inc
->> b/meta/conf/distro/include/default-distrovars.inc
->> index 9fcc10f83a..384ee7fc98 100644
->> --- a/meta/conf/distro/include/default-distrovars.inc
->> +++ b/meta/conf/distro/include/default-distrovars.inc
->> @@ -10,7 +10,7 @@ LOCALE_UTF8_ONLY ?=3D "0"
->> =C2=A0 LOCALE_UTF8_IS_DEFAULT ?=3D "1"
->> =C2=A0 LOCALE_UTF8_IS_DEFAULT_class-nativesdk =3D "0"
->> =C2=A0 -DISTRO_FEATURES_DEFAULT ?=3D "acl alsa argp bluetooth debuginfo=
-d
->> ext2 ipv4 ipv6 largefile pcmcia usbgadget usbhost wifi xattr nfs
->> zeroconf pci 3g nfc x11 vfat"
->> +DISTRO_FEATURES_DEFAULT ?=3D "acl alsa argp bluetooth debuginfod ext2
->> ipv4 ipv6 largefile pcmcia usbgadget usbhost wifi xattr nfs zeroconf
->> pci 3g nfc x11 vfat wayland opengl"
->> =C2=A0 DISTRO_FEATURES ?=3D "${DISTRO_FEATURES_DEFAULT}"
->> =C2=A0 IMAGE_FEATURES ?=3D ""
->> =C2=A0
->
-Randy,
-
-
-> We (Wind River) already drop the x11 DF from some of our distros and
-> we'd likely do the same for wayland and opengl so while this seems
-> like the wrong change for headless systems it is one we could deal with.
->
-> There was some discussion about this topic on the tech call today and
-> people were concerned about BSP support for opengl since the software
-> rendering in mesa is horridly slow.
-
-Thanks for bring this issue up.
-
->
-> Kevin, Bryan,
-> Can you comment if you think we'd have any show-stopper problems
-> with opengl support for BSPs?
-
-Err, are they going to check my BSP ; )
-
->
-> Joshua said that weston has a usable RDP (remote desktop backend) but
-> I'm not sure how usable it is especially for single application sharing.
-> This contrasts with x11 where you can use X11 forwarding over
-> ssh trivially for whole desktops or an application.
->
-> In conclusion, I see the value in pushing yocto forward but we may need
-> to wait for agreement from BSP folks so let's see what they say.
-The layer index=C2=A0 BSP list is long so waiting for feedback may not be
-practical.=C2=A0 I think it may be=C2=A0 more of an awareness and how can =
-the BSP
-maintainers work around the default if there are issues rather than=C2=A0
-stopping this progress=C2=A0 in core.
-
-I personal would rather see my layer break so that I will be forced to
-take action.=C2=A0 I see this as being=C2=A0 no different than when we upd=
-ate
-u-boot or the kernel.
-
-- armin
-
-> ../Randy
->
->
->>
->>
->>
->>
->
->
->
->=20
->
-
-
+--=_29828ff1671aa5edacf86c6836d3f3d5--
