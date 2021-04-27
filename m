@@ -1,65 +1,59 @@
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
- by mx.groups.io with SMTP id smtpd.web11.5222.1619508761045298720
- for <yocto@lists.yoctoproject.org>;
- Tue, 27 Apr 2021 00:32:41 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=NsLYOZy7;
- spf=pass (domain: blade-group.com, ip: 209.85.217.45, mailfrom: yann.dirson@blade-group.com)
-Received: by mail-vs1-f45.google.com with SMTP id r18so23676172vso.12
-        for <yocto@lists.yoctoproject.org>; Tue, 27 Apr 2021 00:32:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=blade-group.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tUQASOjIK+YrLuHBFHEoCoCxrmwMW5XfgNAGojXHG94=;
-        b=NsLYOZy7ed+1ETz8plBUh6+8Rp4V4x9LYGEvOmTqbm3e6Pbp/3MfNAxg01zYk7rpRP
-         qiIw31c/eDmPfk+vOKIPBlxPk90CsScDQAj5U50QQtmOTPhme7+IPXS1EuXdIGFI+mO/
-         L5US6PW0h9NuMcsN9OInBa/4/2hzd3dzTJj/yZ+DdG6VfXWMwl4VCRViCxn8aBRRepdF
-         syBRl831F4RI/Of4z+y8B1HkjGvSfif4dax76qSjUxzC4FERdSv/NV0RxguNediq5D70
-         3z9gotFG8vCCZPIqU2PxwsWTLNxcynNTlPp09BLqn8RdSrQ4G3YFG65pgMC6pttmSM9/
-         hCLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tUQASOjIK+YrLuHBFHEoCoCxrmwMW5XfgNAGojXHG94=;
-        b=IBwwo9JHADo9EggcbYUZWm1E2ZRCxmwwh5XD8ZlKja+ioguCQKW/L7WsvU6Qnb1yyT
-         /A6mUtXGbggZJh6HFPKKzDAlpTV5KxPya0HgLEXQlRPTUf5RdmWl0RmPOuls779zf9DS
-         0hQ8JtgSYVjd6n5sDk2xkO0+6marKkmpHHzKIUuAphjnXh876WAKfj5qJE+CJBiHWYpF
-         iSBOQ1Oz6wWGzqMYy0W/TZe6IFMzi0RkDkgaURUaonQkXteg0ynC51uymOKePHqYQTQk
-         tDIUHU38fukAL5MhD4b/4Ykx1WSyhy9IATQxVz1amGz6ywGzO3qBpf32APtxcEGXjAiC
-         U98Q==
-X-Gm-Message-State: AOAM530bbNr9WqcJS6G4MTYHpwtwDqe+NCuwUueKIzUPD2kv2Es9RekQ
-	3fu+ogUUS5t16Go3PWRLCGh5Xx17qd7gE1SnT9Qftw==
-X-Google-Smtp-Source: ABdhPJyh1Zvn7GGW4zwJOPbGsPRLEKcc+f7k21CKnroJqVdEzywS6tyCIEQ93Pq4Td/QbTFhWgxQUXQlacJ0S4Whqmo=
-X-Received: by 2002:a67:2ecb:: with SMTP id u194mr15804769vsu.41.1619508760274;
- Tue, 27 Apr 2021 00:32:40 -0700 (PDT)
+Subject: Re: running application in user mode instead of root #yocto
+To: yocto@lists.yoctoproject.org
+From: "Alessandro Tagliapietra" <tagliapietra.alessandro@gmail.com>
+X-Originating-Location: Las Vegas, Nevada, US (72.207.140.105)
+X-Originating-Platform: Linux Chrome 90
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Tue, 27 Apr 2021 00:38:38 -0700
 References: <Mgmv.1619507435353064322.vAYm@lists.yoctoproject.org>
 In-Reply-To: <Mgmv.1619507435353064322.vAYm@lists.yoctoproject.org>
-From: "Yann Dirson" <yann.dirson@blade-group.com>
-Date: Tue, 27 Apr 2021 09:32:29 +0200
-Message-ID: <CA+4=imY9G8tOf5VA=TJih_t-aFhGxs6P59Ekg6ogCW0nLFcmfg@mail.gmail.com>
-Subject: Re: [yocto] running application in user mode instead of root #yocto
-To: mail2uvijay@gmail.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <1187.1619509118723710252@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="U9g35DaeOAk4EfQOfiOQ"
 
-Hello,
+--U9g35DaeOAk4EfQOfiOQ
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-> I am trying to run my application in less privilege mode instead of root user.
-> As i am new to Yocto build could you please some one suggest on how to configure my build environment to get user and run
-> my application with the user privileges at startup.
+I'm new to yocto as well but what we do is in our own custom image:
 
-You may be interested in ROOTLESS_X="1", to open a non-priviledged X11 session.
+inherit extrausers
+EXTRA_USERS_PARAMS =3D " useradd nodered"
 
->
-> Regards,
-> Vijay
-> 
->
+and then since we use systemd we've created our own service file that incl=
+udes:
 
+User=3Dnodered
 
--- 
-Yann Dirson <yann@blade-group.com>
-Blade / Shadow -- http://shadow.tech
+in the [service] block definition, so the executable is run using that use=
+r instead of root.
+
+Extrausers docs are https://www.yoctoproject.org/docs/current/mega-manual/=
+mega-manual.html#ref-classes-extrausers
+
+An alternative you might look at is the useradd class https://git.yoctopro=
+ject.org/cgit.cgi/poky/tree/meta-skeleton/recipes-skeleton/useradd/useradd-=
+example.bb which probably lets you set the users in your own recipe instead=
+ at image level
+
+--U9g35DaeOAk4EfQOfiOQ
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I'm new to yocto as well but what we do is in our own custom image:<br /><b=
+r />inherit extrausers<br />EXTRA_USERS_PARAMS =3D " useradd nodered"<br />=
+<br />and then since we use systemd we've created our own service file that=
+ includes:<br /><br />User=3Dnodered<br /><br />in the [service] block defi=
+nition, so the executable is run using that user instead of root.<br /><br =
+/>Extrausers docs are&nbsp;<a href=3D"https://www.yoctoproject.org/docs/cur=
+rent/mega-manual/mega-manual.html#ref-classes-extrausers" target=3D"_blank"=
+ rel=3D"noopener">https://www.yoctoproject.org/docs/current/mega-manual/meg=
+a-manual.html#ref-classes-extrausers</a><br /><br />An alternative you migh=
+t look at is the useradd class&nbsp;<a href=3D"https://git.yoctoproject.org=
+/cgit.cgi/poky/tree/meta-skeleton/recipes-skeleton/useradd/useradd-example.=
+bb" target=3D"_blank" rel=3D"noopener">https://git.yoctoproject.org/cgit.cg=
+i/poky/tree/meta-skeleton/recipes-skeleton/useradd/useradd-example.bb</a>&n=
+bsp;which probably lets you set the users in your own recipe instead at ima=
+ge level
+
+--U9g35DaeOAk4EfQOfiOQ--
