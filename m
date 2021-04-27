@@ -1,94 +1,112 @@
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
- by mx.groups.io with SMTP id smtpd.web11.10486.1619538925565117995
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web09.11354.1619543355057321029
  for <yocto@lists.yoctoproject.org>;
- Tue, 27 Apr 2021 08:55:26 -0700
+ Tue, 27 Apr 2021 10:09:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=mGCrJmqy;
- spf=pass (domain: gmail.com, ip: 209.85.208.177, mailfrom: aladyshev22@gmail.com)
-Received: by mail-lj1-f177.google.com with SMTP id l22so61396461ljc.9
-        for <yocto@lists.yoctoproject.org>; Tue, 27 Apr 2021 08:55:25 -0700 (PDT)
+ dkim=pass header.i=@ossystems-com-br.20150623.gappssmtp.com header.s=20150623 header.b=A92KOCOn;
+ spf=softfail (domain: ossystems.com.br, ip: 198.145.29.25, mailfrom: otavio.salvador@ossystems.com.br)
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 489CA38C0738
+	for <yocto@yoctoproject.org>; Tue, 27 Apr 2021 17:09:14 +0000 (UTC)
+Received: by mail-qv1-f42.google.com with SMTP id dm16so4527813qvb.3
+        for <yocto@yoctoproject.org>; Tue, 27 Apr 2021 10:09:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=EEQLnUFYwG8PxqG65A0rp9pJY0xcnQDv6PlhLcE8v7k=;
-        b=mGCrJmqytLpuKph5wCq88yZIjNrZwmdxcyFXjyX1lKfrZiyTK73Cjkps+QQFJhe+O9
-         3lvaEj2485QVY3fELnjxGTJlttFtQSKQiTmbYS8+y42V9c4mnToxjZJvbNOl9N2TCTWC
-         Vb23//4Hc1gTqlSvSWF1W54VllgHlfVkF7iFDxlr+aECHs3BZVvO/N+uEYCylEnZhHZt
-         Z0a5P3ZCr1btodrXr8AXDYrQXjSdXqt95rJyGKZLsyevroXq1Sau5JI7inbndGnMg8T6
-         OMNeQr9dix/+HTXGPubZs7892xHn5tf4HtksCTEk+f5dz5aXMwydDQkAT1sr7Q0FK/Ix
-         fzEA==
+        d=ossystems-com-br.20150623.gappssmtp.com; s=20150623;
+        h=from:mime-version:references:in-reply-to:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=ooEpEwCZsA23m5QF3RdvHPVa+RYtbxKa7lMW7gKl/jg=;
+        b=A92KOCOn9QgCWt4DDjZLHvuYRf5+j5LFrIrxB4QwV7hKFzpzK53/J7T38hdvANLcwJ
+         Rhx0GS1QicOc3pfBfy8Umaic17+6bva7fCA7Z7EupBSBS7jbOGoOLCIdEeLMASiVA9Bn
+         P6kOeHsJrE/XxzLgWshvDi4gJzLcesdzxRvGUOhWM2HeS8n6rXpq0X/THMZDJdjdQPkp
+         BSmm17sxtr1/ctyyS5XU+CuSArSdgcU4L3hkGazVpHQ0y11oRAXfpSO2kq5JpMRvekPs
+         m+kfeh6k6J9FSm05Y6J0+i3NNzNlHqrnW+Oi26xS3zL34E4UMWi7GE9aW1pWknNuIBxn
+         TBXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=EEQLnUFYwG8PxqG65A0rp9pJY0xcnQDv6PlhLcE8v7k=;
-        b=jVpxMLxYK4qN59c2Scj1bgaCx64zobbhwYDvHpGFp4MQ15Vfew2ll6VIi1LHXlYrgN
-         u9jVXQ6BIPQExngVOsI2gDx6IDd4yXAtHyEF5otBUxkWmeE9QJTidUQ6PXKZxp4n1V54
-         RmHYaUimqNfZHZ8ATWfBf5bgR3RmppNA94SaOCl3bMSbS1aDv35v9UeQ3jlqO9qgfBb1
-         N++0/eAKwdYbR4SPPdfRDdP38zLl2i1RV6r3wxgrTHxcHDe2WWa8Bhf4n/dwjwvOznus
-         B3wVBpQlEgRPs4zVPpmNCtMnHs5JdCb4cX2kfzrner71noPErG25QHttyU+CET8wUzkF
-         WeIA==
-X-Gm-Message-State: AOAM531noPV+4g4p3s6pTb61SJTzTgGnlGh1sLWjRh5AzBMPFF206XOg
-	q/tezIbn0RJt/oTj4WyhI9jBNVI1RUaDFYCEKB35BoNu2yF1eg==
-X-Google-Smtp-Source: ABdhPJyCb2Dh1ICQkZRcpy6PGadDuKSD/ATNlb1QXjL5ORaHPqFPvG+Q3IVwDhh66vydNh0sAImStOT9cs9AeNTWhyI=
-X-Received: by 2002:a05:651c:124b:: with SMTP id h11mr17033960ljh.131.1619538921916;
- Tue, 27 Apr 2021 08:55:21 -0700 (PDT)
+        h=x-gm-message-state:from:mime-version:references:in-reply-to:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=ooEpEwCZsA23m5QF3RdvHPVa+RYtbxKa7lMW7gKl/jg=;
+        b=ETLsC8jbnN2mDh+0WY9D4KZO7ww8+0RQIrSM/VY9LlrfgSH38fNXR3xtxtXK5lH6ax
+         5ZJY2g02UHf83zd91oShW175Q3UqdsttXOoQjBLCv4znuwFo6Stg1f71zvfP1rjbXs0s
+         9+PFTSGV3WfRPwRkv7q/9mEThgesGORuu8xL2GQ4jurnWXSNoV/KPT1JgjnOWTj0hKZA
+         KNnwOaz1dUHWGxx4pzGhvj2a4A+/GY25M7+28vrYqb3aK2+Dn1VpfRBE7HLxM1/Ao10c
+         eC8/pFWauMOV2nNqsP9OKHLNm+gMK4xMeAyIpDP7U/cfB4mYUJDN30+XhONh+MjQek4l
+         Sevg==
+X-Gm-Message-State: AOAM531BxZaN8FreBDMUxpsNGTOWfaKe7J+NKQXLqdnyfnU6s2uiVCSh
+	3KDW688aNtVR8VfnznrOw/flbNH+21deyHaa
+X-Google-Smtp-Source: ABdhPJxDzv73sZ0COj7PsVkHOgWqKI622ktq0U4kABFfRIdEVTjzwUTnvt6EF9EfV+PD8pVGGnYGGg==
+X-Received: by 2002:ad4:59c7:: with SMTP id el7mr17439713qvb.26.1619543352958;
+        Tue, 27 Apr 2021 10:09:12 -0700 (PDT)
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com. [209.85.222.179])
+        by smtp.gmail.com with ESMTPSA id a10sm322194qtm.16.2021.04.27.10.09.12
+        for <yocto@yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Apr 2021 10:09:12 -0700 (PDT)
+From: "Otavio Salvador" <otavio.salvador@ossystems.com.br>
+X-Google-Original-From: Otavio Salvador <otavio@ossystems.com.br>
+Received: by mail-qk1-f179.google.com with SMTP id q127so1534045qkb.1
+        for <yocto@yoctoproject.org>; Tue, 27 Apr 2021 10:09:12 -0700 (PDT)
+X-Received: by 2002:a37:7646:: with SMTP id r67mr23707786qkc.78.1619543352200;
+ Tue, 27 Apr 2021 10:09:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <CACSj6VUQ5SSpcrucTJ89eW=WJ41ZDPHc=CNhm6SOP-EgHtZh0A@mail.gmail.com>
- <20210426140851.e2g7okmtyt25rrna@qschulz>
-In-Reply-To: <20210426140851.e2g7okmtyt25rrna@qschulz>
-From: "Konstantin Aladyshev" <aladyshev22@gmail.com>
-Date: Tue, 27 Apr 2021 18:57:20 +0300
-Message-ID: <CACSj6VVqDkssoEEXNjMQw7DGzeMgFBObGJQmucT7=PH64=Ppdw@mail.gmail.com>
-Subject: Re: [yocto] AppArmor with BusyBox
-To: yocto@lists.yoctoproject.org
+References: <20210423180254.706537-1-alex.kanavin@gmail.com>
+ <20210423180254.706537-6-alex.kanavin@gmail.com> <8295040a-2b00-92f2-7ad5-95e2941f0dd6@windriver.com>
+In-Reply-To: <8295040a-2b00-92f2-7ad5-95e2941f0dd6@windriver.com>
+Date: Tue, 27 Apr 2021 14:09:00 -0300
+X-Gmail-Original-Message-ID: <CAP9ODKqCevEQXOLn4xW0vQkrUOP3xgnQBLiRoG3d9rz3tY6znQ@mail.gmail.com>
+Message-ID: <CAP9ODKqCevEQXOLn4xW0vQkrUOP3xgnQBLiRoG3d9rz3tY6znQ@mail.gmail.com>
+Subject: Re: [OE-core] [PATCH 6/7] default-distrovars.inc: add wayland/opengl to default distro features
+To: Randy MacLeod <randy.macleod@windriver.com>
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>, 
+	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>, 
+	"Wei, Yunguo (Bryan)" <Yunguo.Wei@windriver.com>, Kevin Hao <kexin.hao@windriver.com>, 
+	Yocto discussion list <yocto@yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I've added `IMAGE_INSTALL += "findutils"` to my `conf/local.conf`
-file, and it seems like it was enough. There weren't any build
-conflicts.
-
-Should the AppArmor recipe be upgraded in some way to indicate that it
-needs a full-featured findutils package instead of a busybox one?
-
-Best regards,
-Konstantin Aladyshev
-
-On Mon, Apr 26, 2021 at 5:08 PM Quentin Schulz
-<quentin.schulz@streamunlimited.com> wrote:
+Em ter., 27 de abr. de 2021 =C3=A0s 13:10, Randy MacLeod
+<randy.macleod@windriver.com> escreveu:
 >
-> Hi Konstantin,
+> Cross-posting to yocto since this is of general interest.
 >
-> On Mon, Apr 26, 2021 at 01:45:30PM +0300, Konstantin Aladyshev wrote:
-> > I'm using the OpenBMC system (https://github.com/openbmc/openbmc) and
-> > I've tried to enable AppArmor functionality from the 'meta-security'
-> > layer.
+> On 2021-04-23 2:02 p.m., Alexander Kanavin wrote:
+> > This puts them on equal terms with x11 distro feature
+> > (which I think is due).
 > >
-> > To achieve this I've added these strings to my local.conf file:
-> > DISTRO_FEATURES_append = " apparmor"
-> > IMAGE_INSTALL += "apparmor"
+> > Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+> > ---
+> >   meta/conf/distro/include/default-distrovars.inc | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
 > >
-> > The AppArmor functionality was installed to my image, but
-> > unfortunately I've come to this issue:
+> > diff --git a/meta/conf/distro/include/default-distrovars.inc b/meta/con=
+f/distro/include/default-distrovars.inc
+> > index 9fcc10f83a..384ee7fc98 100644
+> > --- a/meta/conf/distro/include/default-distrovars.inc
+> > +++ b/meta/conf/distro/include/default-distrovars.inc
+> > @@ -10,7 +10,7 @@ LOCALE_UTF8_ONLY ?=3D "0"
+> >   LOCALE_UTF8_IS_DEFAULT ?=3D "1"
+> >   LOCALE_UTF8_IS_DEFAULT_class-nativesdk =3D "0"
 > >
-> > kernel: AppArmor: AppArmor initialized
-> > kernel: AppArmor: AppArmor Filesystem Enabled
-> > kernel: AppArmor: AppArmor sha1 policy hashing enabled
-> > systemd[1]: systemd 247.3+ running in system mode. (+PAM -AUDIT
-> > -SELINUX -IMA -APPARMOR -SMACK +SYSVINIT -UTMP -LIBCRYPTSETUP -GCRYPT
-> > -GNUTLS -ACL +XZ -LZ4 -ZSTD -SECCOMP +BLKID -ELFUTILS +KMOD -IDN2 -IDN
-> > -PCRE2 default-hierarchy=hybrid)
-> > systemd[1]: Starting AppArmor initialization...
-> > apparmor[113]: Starting AppArmor profiles
-> > apparmor[128]: xargs: invalid option -- 'd'
+> > -DISTRO_FEATURES_DEFAULT ?=3D "acl alsa argp bluetooth debuginfod ext2 =
+ipv4 ipv6 largefile pcmcia usbgadget usbhost wifi xattr nfs zeroconf pci 3g=
+ nfc x11 vfat"
+> > +DISTRO_FEATURES_DEFAULT ?=3D "acl alsa argp bluetooth debuginfod ext2 =
+ipv4 ipv6 largefile pcmcia usbgadget usbhost wifi xattr nfs zeroconf pci 3g=
+ nfc x11 vfat wayland opengl"
+> >   DISTRO_FEATURES ?=3D "${DISTRO_FEATURES_DEFAULT}"
+> >   IMAGE_FEATURES ?=3D ""
+> >
+> >
 >
-> Busybox implementation of xargs does not support specifying a delimiter.
->
-> I suggest you to install the full-featured xargs which is provided by
-> the findutils recipe.
->
-> You probably need to disable xargs Busybox implementation otherwise
-> there'll be a conflict (you'll know, Yocto won't create the image).
->
-> Cheers,
-> Quentin
+> We (Wind River) already drop the x11 DF from some of our distros and
+> we'd likely do the same for wayland and opengl so while this seems
+> like the wrong change for headless systems it is one we could deal with.
+
+Adding wayland seems Ok but forcing the opengl support doesn't seems a
+good default. Especially because we just also ensure software
+rendering is also wrong (slow or not).
+
+--=20
+Otavio Salvador                             O.S. Systems
+http://www.ossystems.com.br        http://code.ossystems.com.br
+Mobile: +55 (53) 9 9981-7854          Mobile: +1 (347) 903-9750
