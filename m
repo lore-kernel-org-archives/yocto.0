@@ -1,68 +1,90 @@
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by mx.groups.io with SMTP id smtpd.web08.1797.1619666739291531689
+Received: from mail.cybernetics.com (mail.cybernetics.com [173.71.130.66])
+ by mx.groups.io with SMTP id smtpd.web10.6821.1619702691929575885
  for <yocto@lists.yoctoproject.org>;
- Wed, 28 Apr 2021 20:25:39 -0700
+ Thu, 29 Apr 2021 06:24:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.24, mailfrom: anuj.mittal@intel.com)
-IronPort-SDR: mui1ryd3EDl9+bAfyhCPuyBVOLOtFW2yjNX5qFI4cTTFTFZ8M0mY/bQe7VRFNTsB7jTRCqxuaB
- afpak/pN6NNQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9968"; a="197015107"
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; 
-   d="scan'208";a="197015107"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2021 20:25:37 -0700
-IronPort-SDR: NKpgHDuovjfJ6mxxVBd6neHI2Q2LAdFwIkiO89HkIT6PtWYM5Y150UBTXkJ5qHyAr1kWqnunkP
- oyg9LpxxmBag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; 
-   d="scan'208";a="537216696"
-Received: from pgsmsx603.gar.corp.intel.com ([10.108.199.138])
-  by orsmga004.jf.intel.com with ESMTP; 28 Apr 2021 20:25:33 -0700
-Received: from pgsmsx601.gar.corp.intel.com (10.108.199.136) by
- pgsmsx603.gar.corp.intel.com (10.108.199.138) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Thu, 29 Apr 2021 11:25:31 +0800
-Received: from pgsmsx601.gar.corp.intel.com ([10.108.199.136]) by
- pgsmsx601.gar.corp.intel.com ([10.108.199.136]) with mapi id 15.01.2106.013;
- Thu, 29 Apr 2021 11:25:31 +0800
-From: "Anuj Mittal" <anuj.mittal@intel.com>
-To: Tony Battersby <tonyb@cybernetics.com>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
+ dkim=fail reason="body hash did not verify" header.i=@cybernetics.com header.s=mail header.b=MMqy1dWO;
+ spf=pass (domain: cybernetics.com, ip: 173.71.130.66, mailfrom: btv1==7537c857054==tonyb@cybernetics.com)
+X-ASG-Debug-ID: 1619702688-0fb3b0366be3420001-O4Qx4w
+Received: from cybernetics.com ([10.10.4.126]) by mail.cybernetics.com with ESMTP id lYCT7DHQnqfOCea6; Thu, 29 Apr 2021 09:24:48 -0400 (EDT)
+X-Barracuda-Envelope-From: tonyb@cybernetics.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.4.126
+X-ASG-Whitelist: Client
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=cybernetics.com; s=mail;
+	bh=4B764HEx9dmAp4uVR/97n5oUpPCLL+nlhUt2Mau94ac=;
+	h=Content-Language:Content-Transfer-Encoding:Content-Type:In-Reply-To:
+	MIME-Version:Date:Message-ID:From:References:To:Subject; b=MMqy1dWO7aghV40EEQ
+	cShqHdo3xlk9ZJiane6AbWXMj+BY4EiAMbSFR+jhDS8cBL3/h61uG6bVsrHhuLluZn2Uo7abPbAp9
+	EvuHK8/rspuIhV8BzoDA9BFgk1CWyGgA1/5FlI1CoRMDqi7A3IhVmOZWX3Cc9QheY/XDKs8w+TnU=
+Received: from [10.157.2.224] (HELO [192.168.200.1])
+  by cybernetics.com (CommuniGate Pro SMTP 6.2.14)
+  with ESMTPS id 10820881; Thu, 29 Apr 2021 09:24:48 -0400
 Subject: Re: [yocto] Hardknott: grub immediately reboots
-Thread-Topic: [yocto] Hardknott: grub immediately reboots
-Thread-Index: AQHXOtJoBsZj+CrrxUyDZolMbtbzyKrK18Cg
-Date: Thu, 29 Apr 2021 03:25:31 +0000
-Message-ID: <93a23c9788814396ad254155c102f203@intel.com>
+X-Barracuda-RBL-Trusted-Forwarder: 10.157.2.224
+To: "Mittal, Anuj" <anuj.mittal@intel.com>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+X-ASG-Orig-Subj: Re: [yocto] Hardknott: grub immediately reboots
 References: <dc59708d-c7b0-8e8c-99d2-079a1b51fb96@cybernetics.com>
-In-Reply-To: <dc59708d-c7b0-8e8c-99d2-079a1b51fb96@cybernetics.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-x-originating-ip: [10.108.32.68]
+ <93a23c9788814396ad254155c102f203@intel.com>
+From: "Tony Battersby" <tonyb@cybernetics.com>
+Message-ID: <56463ae6-69a1-8d3b-804c-7e8e4cbd6488@cybernetics.com>
+Date: Thu, 29 Apr 2021 09:24:48 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
+In-Reply-To: <93a23c9788814396ad254155c102f203@intel.com>
+X-Barracuda-Connect: UNKNOWN[10.10.4.126]
+X-Barracuda-Start-Time: 1619702688
+X-Barracuda-URL: https://10.10.4.122:443/cgi-mod/mark.cgi
+X-Barracuda-BRTS-Status: 1
+X-Virus-Scanned: by bsmtpd at cybernetics.com
+X-Barracuda-Scan-Msg-Size: 1251
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogeW9jdG9AbGlzdHMueW9j
-dG9wcm9qZWN0Lm9yZyA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gT24gQmVoYWxmIE9m
-DQo+IFRvbnkgQmF0dGVyc2J5DQo+IFNlbnQ6IFR1ZXNkYXksIEFwcmlsIDI3LCAyMDIxIDAzOjA3
-IEFNDQo+IFRvOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6IFt5b2N0
-b10gSGFyZGtub3R0OiBncnViIGltbWVkaWF0ZWx5IHJlYm9vdHMNCj4gDQo+IEFmdGVyIHVwZ3Jh
-ZGluZyBmcm9tIER1bmZlbGwgKFlQIDMuMSkgdG8gSGFyZGtub3R0IChZUCAzLjMpLCBvdXIgZmly
-bXdhcmUgd2FzDQo+IHVuYWJsZSB0byBib290LsKgIE91ciB0YXJnZXQgaGFyZHdhcmUgaXMgeDg2
-LTY0IGJvb3RpbmcgaW4gbGVnYWN5IEJJT1MgbW9kZSB1c2luZw0KPiBncnViIG9uIGEgdmFyaWV0
-eSBvZiBtb3RoZXJib2FyZHMgYW5kIENQVXMuwqAgVGhlIGdydWIgbWVudSB3b3VsZCBuZXZlciBz
-aG93IHVwOw0KPiBpbnN0ZWFkIGl0IHdvdWxkIHJlYm9vdCBpbW1lZGlhdGVseSwgbGVhZGluZyB0
-byBhbiBlbmRsZXNzIHJlYm9vdCBsb29wLg0KPiANCj4gSSBoYXZlIHR3byBkaWZmZXJlbnQgd29y
-a2Fyb3VuZHMuwqAgQ3JlYXRlIGEgYmJhcHBlbmQgZmlsZSBmb3IgZ3J1YiwgYW5kIGRvIG9uZSBv
-ZiB0aGUNCj4gZm9sbG93aW5nIHR3byB0aGluZ3M6DQo+IA0KPiAxKSBBZGQgdGhlIGZvbGxvd2lu
-ZyBsaW5lOg0KPiANCj4gQ0ZMQUdTX3JlbW92ZSA9ICItTzIiDQoNCkkgdGhpbmsgd2Ugc2hvdWxk
-IHByb2JhYmx5IHJlbW92ZSB0aGlzLiBUaGF0J3Mgd2hhdCBGZWRvcmEgYWxzbyBzZWVtcyB0byBi
-ZSBkb2luZyBzbyBPcyBpcyB1c2VkLg0KDQpodHRwczovL3NyYy5mZWRvcmFwcm9qZWN0Lm9yZy9y
-cG1zL2dydWIyL2Jsb2IvcmF3aGlkZS9mL2dydWIubWFjcm9zI18xOQ0KDQphbmQgd2hhdCBncnVi
-IGNvbmZpZ3VyZSBleHBlY3RzOg0KDQpodHRwczovL2dpdC5zYXZhbm5haC5nbnUub3JnL2NnaXQv
-Z3J1Yi5naXQvdHJlZS9jb25maWd1cmUuYWMjbjQxDQoNClRoYW5rcywNCg0KQW51ag0K
+On 4/28/21 11:25 PM, Mittal, Anuj wrote:
+>
+>> -----Original Message-----
+>> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On B=
+ehalf Of
+>> Tony Battersby
+>> Sent: Tuesday, April 27, 2021 03:07 AM
+>> To: yocto@lists.yoctoproject.org
+>> Subject: [yocto] Hardknott: grub immediately reboots
+>>
+>> After upgrading from Dunfell (YP 3.1) to Hardknott (YP 3.3), our firmw=
+are was
+>> unable to boot.=C2=A0 Our target hardware is x86-64 booting in legacy =
+BIOS mode using
+>> grub on a variety of motherboards and CPUs.=C2=A0 The grub menu would =
+never show up;
+>> instead it would reboot immediately, leading to an endless reboot loop=
+.
+>>
+>> I have two different workarounds.=C2=A0 Create a bbappend file for gru=
+b, and do one of the
+>> following two things:
+>>
+>> 1) Add the following line:
+>>
+>> CFLAGS_remove =3D "-O2"
+> I think we should probably remove this. That's what Fedora also seems t=
+o be doing so Os is used.
+>
+> https://src.fedoraproject.org/rpms/grub2/blob/rawhide/f/grub.macros#_19
+>
+> and what grub configure expects:
+>
+> https://git.savannah.gnu.org/cgit/grub.git/tree/configure.ac#n41
+>
+> Thanks,
+>
+> Anuj
+
+I have opened a Yocto bug here:
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14367
+
+Tony
+
