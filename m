@@ -1,85 +1,88 @@
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
- by mx.groups.io with SMTP id smtpd.web08.1036.1619662024609316905
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by mx.groups.io with SMTP id smtpd.web11.1222.1619662546717211942
  for <yocto@lists.yoctoproject.org>;
- Wed, 28 Apr 2021 19:07:04 -0700
+ Wed, 28 Apr 2021 19:15:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=b+sFkdhE;
- spf=pass (domain: gmail.com, ip: 209.85.214.174, mailfrom: raj.khem@gmail.com)
-Received: by mail-pl1-f174.google.com with SMTP id y1so18266078plg.11
-        for <yocto@lists.yoctoproject.org>; Wed, 28 Apr 2021 19:07:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ffy33FoXtWR4HolB2uR4DgmQQDDcWEsu48GA5JiwoAo=;
-        b=b+sFkdhELumLW7o0Slv8PVCzyi4OML4m7yl4kZ7EH+Q5pqX8xJSkUptsccExRdWtIw
-         hE745XP7qWjVhUKZTECoQUuLuFHk8rfA/zAFwPPKq5vs4fU2za7Z7SfDDEitQR+AnLI0
-         rENQcZVWEs37W1h2ufeUUk7vErqXK4Q7v6VtXugSnuzZQAiTLgFivoC8Jya0hZuS8k9a
-         ZlUqHpoQsy4IwhJXUWYQHZLUjixE5c0Jtgus+k+EQEpUDREzqoJFxIicOeqycxyyhyTt
-         DGndlH1L34V/7wAaVZAmNXNqeI+QO8Pr/9RhfRj5oFKYnjlNFV2fWLqrEUpAHbJ0KNIz
-         BBpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=ffy33FoXtWR4HolB2uR4DgmQQDDcWEsu48GA5JiwoAo=;
-        b=hSHjcoyI9eNvM/o+4Hd2h2GqKnMejaDXtT2KoXYUwxYNUd6j+OYFV8xnZwPmRGc9FJ
-         vJYMMgfR82BW2/gnHXCrflgrR5Ny/Y6QXD6icSeSG74b0TBIp2/Y2ZVcELPhTN9mYStO
-         wnngEOSovuPGDht0CkIQLl1t2S67t8Bi1KOnuN+DtWF1htETs8j5YWdtR59VtfYMesC3
-         28bZykqajA/Ei5u/we6o5mjcaIujLWbB7IT0q9RwITFy4/07xD9aOMDxU4jHIrLJ3W4E
-         65SFz7SM57UEkWLIUX8zeZqK8H6RIraTe17cRITTwzqLLn9uaoMBq95gGKpugWQNzYlS
-         dZLQ==
-X-Gm-Message-State: AOAM531kDSpKHzCrIm7vUzei/4mjL45ybc8cz0JVmJaVHndz3IJ37TWh
-	xAGuOXZ/M0NKMMhXS+iiY2IoqQ/KRIMjAg==
-X-Google-Smtp-Source: ABdhPJz/nH+KeSdd1LB/MOaq0OXX6ZTL6RIkkAKIjFKaCimAib/P93aA6JTVk9paGXyH+jS/LTCRMQ==
-X-Received: by 2002:a17:90a:e615:: with SMTP id j21mr6948903pjy.43.1619662023813;
-        Wed, 28 Apr 2021 19:07:03 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:a0f0:8058:8c19:26cf:84fa? ([2601:646:9200:a0f0:8058:8c19:26cf:84fa])
-        by smtp.gmail.com with ESMTPSA id x22sm818722pfa.24.2021.04.28.19.07.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Apr 2021 19:07:03 -0700 (PDT)
+ dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.88, mailfrom: anuj.mittal@intel.com)
+IronPort-SDR: RbzkRB5wpupKq2CRENMuMYunMos5eang65xrHo1kEumO+VCvpZTz3cuGPKx4SEYGE/iONXMizX
+ Am5xPzx1n6Pw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9968"; a="217627918"
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; 
+   d="scan'208";a="217627918"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2021 19:15:45 -0700
+IronPort-SDR: 6iTvkHvVcwloDj8JMxXlfwbnjKRC8A15GBDeqfyJyZACuZqM0va2B7xUhxcvCNUM6p+k0b3ogv
+ 3e2GqujN05CA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; 
+   d="scan'208";a="466163697"
+Received: from kmsmsx602.gar.corp.intel.com ([172.21.219.142])
+  by orsmga001.jf.intel.com with ESMTP; 28 Apr 2021 19:15:44 -0700
+Received: from pgsmsx601.gar.corp.intel.com (10.108.199.136) by
+ kmsmsx602.gar.corp.intel.com (172.21.219.142) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Thu, 29 Apr 2021 10:15:43 +0800
+Received: from pgsmsx601.gar.corp.intel.com ([10.108.199.136]) by
+ pgsmsx601.gar.corp.intel.com ([10.108.199.136]) with mapi id 15.01.2106.013;
+ Thu, 29 Apr 2021 10:15:43 +0800
+From: "Anuj Mittal" <anuj.mittal@intel.com>
+To: Khem Raj <raj.khem@gmail.com>, "steven.monsees@baesystems.com"
+	<steven.monsees@baesystems.com>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] #yocto opencl
-To: steven.monsees@baesystems.com,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Thread-Topic: [yocto] #yocto opencl
+Thread-Index: Adc8U9WP5gqlK8L+SxSyMXjFES0bZgABXRQAABDrudA=
+Date: Thu, 29 Apr 2021 02:15:43 +0000
+Message-ID: <e37281fac1264c73b4e28c3722049d22@intel.com>
 References: <MADEUP.167A15D6303F863D.17467@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <158a82d4-064b-72fe-01c8-ae8e6ba5f69e@gmail.com>
-Date: Wed, 28 Apr 2021 19:07:02 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.10.0
+ <158a82d4-064b-72fe-01c8-ae8e6ba5f69e@gmail.com>
+In-Reply-To: <158a82d4-064b-72fe-01c8-ae8e6ba5f69e@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-In-Reply-To: <MADEUP.167A15D6303F863D.17467@lists.yoctoproject.org>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beha=
+lf Of
+> Khem Raj
+> Sent: Thursday, April 29, 2021 10:07 AM
+> To: steven.monsees@baesystems.com; yocto@lists.yoctoproject.org
+> Subject: Re: [yocto] #yocto opencl
+>=20
+>=20
+>=20
+> On 4/28/21 10:30 AM, Monsees, Steven C (US) via lists.yoctoproject.org
+> wrote:
+> > Can someone tell me is this supported under Yocto in any way?
+> >
+> > meta-beignet/recipes-opencl at ross * rossburton/meta-beignet * GitHub
+> > <https://github.com/rossburton/meta-beignet/tree/ross/recipes-opencl>
+> >
+> > Any docs, or updates ?
+> >
+> > Wanted to know if this would work under Zeus, with meta-clang ?
+> >
+> > Looking to build opencl shared library support...
+>=20
+> meta-intel has it see
+> https://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/dynamic-layers=
+/clang-
+> layer/recipes-opencl/opencl-clang?h=3Dzeus
+>=20
 
+Yes, please see the compute-runtime recipe that builds NEO driver instead f=
+or later platforms. More details on the project site:
 
-On 4/28/21 10:30 AM, Monsees, Steven C (US) via lists.yoctoproject.org 
-wrote:
-> Can someone tell me is this supported under Yocto in any way?
-> 
-> meta-beignet/recipes-opencl at ross · rossburton/meta-beignet · GitHub 
-> <https://github.com/rossburton/meta-beignet/tree/ross/recipes-opencl>
-> 
-> Any docs, or updates ?
-> 
-> Wanted to know if this would work under Zeus, with meta-clang ?
-> 
-> Looking to build opencl shared library support…
+https://github.com/intel/compute-runtime/blob/master/opencl/doc/FAQ.md
 
-meta-intel has it see
-https://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/dynamic-layers/clang-layer/recipes-opencl/opencl-clang?h=zeus
+Thanks,
 
-> 
-> Thanks,
-> 
-> Steve
-> 
-> 
-> 
-> 
-> 
+Anuj
