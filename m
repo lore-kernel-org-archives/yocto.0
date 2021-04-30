@@ -1,56 +1,76 @@
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
- by mx.groups.io with SMTP id smtpd.web12.9417.1619777711784508307
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+ by mx.groups.io with SMTP id smtpd.web09.9565.1619777968206677467
  for <yocto@lists.yoctoproject.org>;
- Fri, 30 Apr 2021 03:15:12 -0700
+ Fri, 30 Apr 2021 03:19:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=wG65hUVe;
- spf=pass (domain: burtonini.com, ip: 209.85.221.44, mailfrom: ross@burtonini.com)
-Received: by mail-wr1-f44.google.com with SMTP id n2so16765285wrm.0
-        for <yocto@lists.yoctoproject.org>; Fri, 30 Apr 2021 03:15:11 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=tDaHP3kF;
+ spf=pass (domain: gmail.com, ip: 209.85.221.52, mailfrom: fede.evol@gmail.com)
+Received: by mail-wr1-f52.google.com with SMTP id x7so69898626wrw.10
+        for <yocto@lists.yoctoproject.org>; Fri, 30 Apr 2021 03:19:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=T0IwhDX4oGxZXuQw5mlR0sVe9PpVaLSivg+/vJSbpjk=;
-        b=wG65hUVe4G+/x8x1/LZskf0IBcP9IGxz5it6dngOX81F9QeFYGJMtxQCdc80U+8uOu
-         iQO/ZBM4n3eHYyPCPDW1s9G1I6oGno2TBSHtpFToZrp+YZSI64VC25YmpBEIWciSsh8/
-         BXANTpwUTAZpU68fbwFtP7ex/f7+FMVFW+PxsONABz5QoHU99AOZOle7FbgdmYWJRXwL
-         zCQSrqto0OE3YDA0uPVvDz3EqrHDmyMKBf9Wpkmz0/ql/gZab9dTNCGZg0/mYZmkXNFA
-         KxQwMzKc2AICmDrbClWwTWn9iBJ/rVTGC2ba96TsHkH9nNLfmP+sDz0Kj3QHRVxHnQTi
-         mFiA==
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zdxzPLmeaxUrztT1/oZ1hRHFdGCmuGG4/Epq58Gv+kU=;
+        b=tDaHP3kFsCTab99jJtul7oPaau0uWSZYwRRTZnVvS1/l2pIBpfajugPY3x/kbQPhNv
+         9xINOrJuaDt9VN6wSlYKvAISs3ooCuoqACscsVTS+SRNqK4/V9RjqEsjKRtReDin80Rg
+         vGgAQhXG1bo43lxd0/w+pbYvYP9QgnOiaGrgZAv6NFXoCNk2krAdx5qYc5FT9yBfM6qS
+         ZNXJHGb8yMos9oWr7ghOdN4kgU8g8MBDyN2UlO+a9tpFFWfPn2y5F89T5ZtE8HdzycSF
+         B31XBxnjK0pd17CgX3wPLgvS5RlebsTjhTDCeHF2pKs1Pm02GeAABC/M6v4+DZDiZzu7
+         nlrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=T0IwhDX4oGxZXuQw5mlR0sVe9PpVaLSivg+/vJSbpjk=;
-        b=C30RB7kBDk2LHZIqIUq/MoILvJnRCtWI3Pd9w37AYxJvEKo5caJbHkxHU3HTJhIgxn
-         WXWXhqqmD95xTdm59CCEkHsDQwpKTabQyOHXV4URz4BfH4WyvzFqWTCts8ngxc4vqzGZ
-         6Vg4ipfTusNqhQCYeq7b5fFPotNdStjtC+TGUxfL3aYvfOCzmfNfC+xo1VCPzjYE0hRK
-         6HdM3AiKnVn0qHMjMXlIlbWEru85PnOGz+N2VKNnAqA8j31E8luz5o2Z3hBX27dLX+OJ
-         3p3APSK910Sx+LqMSTUwGFtiqb+6yAGbKfEalhWSR3n4sl4pTL1Z10cMuQpwHz/5Fae1
-         RDXg==
-X-Gm-Message-State: AOAM5334Xmhev3r/jCsTDyas24c2NEom9ORY0h44SJNFpZx5fzTOsrRr
-	vxNL8Ijia7RogCQWmR04vYCndcndvWD7AB8tsnzPPg==
-X-Google-Smtp-Source: ABdhPJw0kM/rnEtBomXe9YlKNV1LODpS1RPJWLiVNXEGHtZkWEzpTHqlRZtGByU3XTJ8IbTvsnjyidJMUVtLP/MpjfA=
-X-Received: by 2002:a5d:6648:: with SMTP id f8mr6046742wrw.396.1619777710362;
- Fri, 30 Apr 2021 03:15:10 -0700 (PDT)
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=zdxzPLmeaxUrztT1/oZ1hRHFdGCmuGG4/Epq58Gv+kU=;
+        b=gxNr1zXmFAMLDAwSlk6/sSIFl+27Sd4wMzEbUyd06SmzhnWEuWUnpTJK5aPUR9u1D6
+         pbqfSci1TRK1jnhJIE/li891nKnmQaLmJ9GviFHy9nSh+0YzfpXFYGnWI4Ehuy4i74bd
+         hds4lCWCW1WhI7sANOfSe52QKR/4TiaDXckOXFM4WofUHtYeho9Cp0M1B8P3F7ODk1eK
+         IyhN0mfgYdJLzjsDZ9sSHa8B/gmzzzJoVWIP9hWC3qNy5V/88fo7E2hMQmGleTPOMqPp
+         6f/nhiqXMtLX+9SUeR0GUHnVQZtT2n6iZqBtntF7Ak5RT8QJ7X//SunvzZ88SN7X61Tu
+         hvYw==
+X-Gm-Message-State: AOAM533tLA2khmwxdr/ArkUxD8jHWxV18AYuJ4Jena2AMsFJ2BGINdpJ
+	aYHuig3y2//5HbisJmCELCqVURDarFpfkg==
+X-Google-Smtp-Source: ABdhPJz/6uWMU1E4veIew6KrRV2bC924+vTn2m/rCCJ6EXTxjnsBXLC6TMBNN8tDt3d0k4oOvHbCTA==
+X-Received: by 2002:a05:6000:1aca:: with SMTP id i10mr5968973wry.194.1619777966774;
+        Fri, 30 Apr 2021 03:19:26 -0700 (PDT)
+Return-Path: <fede.evol@gmail.com>
+Received: from interzone.fritz.box ([2a02:2455:e61:2400:2f61:91f0:79ef:cf93])
+        by smtp.gmail.com with ESMTPSA id l14sm1785869wrv.94.2021.04.30.03.19.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Apr 2021 03:19:26 -0700 (PDT)
+Sender: Federico Pellegrin <fede.evol@gmail.com>
+From: "Federico Pellegrin" <fede@evolware.org>
+To: yocto@lists.yoctoproject.org
+Cc: Federico Pellegrin <fede@evolware.org>
+Subject: [yocto][meta-gplv2][PATCH] gnutls: add possibility to build with cryptodev support
+Date: Fri, 30 Apr 2021 12:19:15 +0200
+Message-Id: <20210430101915.57520-1-fede@evolware.org>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-References: <20210428150904.958213-1-ross.burton@arm.com> <d194d584-ce2f-9d27-f645-d05eafa378c0@windriver.com>
- <CAAnfSTukcCWtcLktcpXn1kKwZ7ME8LqbANomjeSzm56TL1axCw@mail.gmail.com> <84e9d090-031d-c9f2-b87b-8ced4803293c@gmail.com>
-In-Reply-To: <84e9d090-031d-c9f2-b87b-8ced4803293c@gmail.com>
-From: "Ross Burton" <ross@burtonini.com>
-Date: Fri, 30 Apr 2021 11:14:59 +0100
-Message-ID: <CAAnfSTubxaYK1CQFM25pt+angD_FSCu3a4dxCAN8jk+_vrzh-Q@mail.gmail.com>
-Subject: Re: [yocto] [PATCH yocto-autobuilder2 1/2] meta-arm has a hardknott branch now
-To: akuster808 <akuster808@gmail.com>
-Cc: Randy MacLeod <randy.macleod@windriver.com>, Yocto <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, 29 Apr 2021 at 22:40, akuster808 <akuster808@gmail.com> wrote:
-> > When we actually release, yes.
-> So do you plan on doing the dot releases too?
+Add possibility, via PACKAGECONFIG variable, to enable cryptodev
+(hardware crypto acceleration) for gnutls in a very similar way
+as it is already present for openssl.
 
-The plan is that today-ish we roll the 3.3 release for hardknott and
-also tag point releases on the stable branches too.
+Signed-off-by: Federico Pellegrin <fede@evolware.org>
+---
+ meta/recipes-support/gnutls/gnutls_3.7.1.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-Ross
+diff --git a/meta/recipes-support/gnutls/gnutls_3.7.1.bb b/meta/recipes-support/gnutls/gnutls_3.7.1.bb
+index 350d0a018bd..6674542a77d 100644
+--- a/meta/recipes-support/gnutls/gnutls_3.7.1.bb
++++ b/meta/recipes-support/gnutls/gnutls_3.7.1.bb
+@@ -36,6 +36,7 @@ PACKAGECONFIG[libidn] = "--with-idn,--without-idn,libidn2"
+ PACKAGECONFIG[libtasn1] = "--with-included-libtasn1=no,--with-included-libtasn1,libtasn1"
+ PACKAGECONFIG[p11-kit] = "--with-p11-kit,--without-p11-kit,p11-kit"
+ PACKAGECONFIG[tpm] = "--with-tpm,--without-tpm,trousers"
++PACKAGECONFIG[cryptodev-linux] = "--enable-cryptodev,,cryptodev-linux,cryptodev-module"
+ 
+ EXTRA_OECONF = " \
+     --enable-doc \
+-- 
+2.26.3
+
