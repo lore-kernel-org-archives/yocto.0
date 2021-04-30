@@ -1,57 +1,65 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.10779.1619786056078306097
+ by mx.groups.io with SMTP id smtpd.web12.901.1619804313098387549
  for <yocto@lists.yoctoproject.org>;
- Fri, 30 Apr 2021 05:34:17 -0700
+ Fri, 30 Apr 2021 10:38:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=parse error for token &{10 18 a1.net}: parse error for token &{10 18 spf.a1.net}: parse error for token &{10 18 a1telekom.at}: parse error for token &{10 18 spf.qb-feedback.com}: parse error for token &{10 18 spf2.qb-feedback.com}: limit exceeded (domain: streamunlimited.com, ip: 198.145.29.25, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from bsmtp3.bon.at (bsmtp3.bon.at [213.33.87.17])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 6797138C05F4
-	for <yocto@yoctoproject.org>; Fri, 30 Apr 2021 12:34:14 +0000 (UTC)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp3.bon.at (Postfix) with ESMTPSA id 4FWsHm2zRqz5tlF;
-	Fri, 30 Apr 2021 14:34:12 +0200 (CEST)
-Date: Fri, 30 Apr 2021 14:34:10 +0200
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [yocto] any compelling reason to use SDK rather than eSDK?
-Message-ID: <20210430123410.vcckkhffayup536m@qschulz>
-References: <e6a4527-77e4-9caf-b2a7-a81dd959c08a@crashcourse.ca>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=JZY+HVbz;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: kent.dorfman766@gmail.com)
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 2906C38C0554
+	for <yocto@yoctoproject.org>; Fri, 30 Apr 2021 17:38:31 +0000 (UTC)
+Received: by mail-pf1-f179.google.com with SMTP id p4so1478403pfo.3
+        for <yocto@yoctoproject.org>; Fri, 30 Apr 2021 10:38:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=PU3cv+CsJPrwVRexN2RdmLpTkDXDrnblZED4JwE+GDY=;
+        b=JZY+HVbzbvgjzESos32ngxoJFMIW0fuw1XwpTacAakMTegggiZXf19vVNIqQQyTC2M
+         OMdj7SDMD2z8vOLLuatxHXbro079hD1EMpk6h+eLzK13BKWT3+5HKVgcga2Uu+zX8Ka5
+         E6PpvyBM3zjGGcOsqY3frUC/apfiq+nE5zn09W6pNgyQ7Eq2QBl8msVVCmK1+Nlnktnr
+         3CjoHQllS+J6w9AIaYgmZnONOJnQ2Hr3qHf+TvnnlcsSzRO5B4/Am2VMHedKHmWTeXa3
+         yyH/uQtGer9NrPoPtFVw+RSgShjUGkA9JnfvlUTGtc7rdkhdt1FoQ2CEk0ScXO8mIfPe
+         9wng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=PU3cv+CsJPrwVRexN2RdmLpTkDXDrnblZED4JwE+GDY=;
+        b=qceSINBCMPSRlSpADIUBZV+dvvgnWuAbCtrCOSgh2gBLTGfiZ6l2Fa5VNmM2Qv3KhD
+         fVz9Q/5Y6lmVkJR+ZaQqjswvt7NmVEcRIAuTQXxPUUGBGjo8mvZuRZyXIJRTENnCmuyo
+         OU36mwte+SsTGF2cCeLCQ6Uj6dbSq/cqdoX9ucS1PF+gSQbOEzIvKrvN8UFIPVwLWESM
+         XC3gUjRl2gGfAbLTYBfQrirh7d4poSNzH3CFHaemmBsFUobdQSJndBaTyKtSRA9av7Bm
+         dbhsYuIw7t1mVaNbmoxf0zSFS7Es32nz5pF2vU9zo+PhZ0aCwglFxgjCB0nWuWuLhavA
+         9xlQ==
+X-Gm-Message-State: AOAM53321Eygqe4Aakl+eNAa9T6a8UUUWRA3Ljr5OZA353ZCleIb2TkU
+	3ggtjtZPAUh6Ujpef9yUHMKbQH/1R6loW06mRx5Fjw+llf0=
+X-Google-Smtp-Source: ABdhPJzc4S8mru46JC4Nr3KL8pwPlky2RxV9Log7en7CflZzu8c3qOElEiL3O7srrXOe/+x6dNkAlIC2zOiI4cBfVJo=
+X-Received: by 2002:aa7:908c:0:b029:209:aacd:d8b with SMTP id
+ i12-20020aa7908c0000b0290209aacd0d8bmr6045297pfa.74.1619804309497; Fri, 30
+ Apr 2021 10:38:29 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <e6a4527-77e4-9caf-b2a7-a81dd959c08a@crashcourse.ca>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Received: by 2002:a05:6a20:7da9:b029:1c:3e3c:2c94 with HTTP; Fri, 30 Apr 2021
+ 10:38:28 -0700 (PDT)
+From: "Kent Dorfman" <kent.dorfman766@gmail.com>
+Date: Fri, 30 Apr 2021 13:38:28 -0400
+Message-ID: <CAK4PFCWvjp5Zzm-LCTo3Wr1+_VVzQgMfD+3L4B0_RQx3UNzcGg@mail.gmail.com>
+Subject: devtool modify fails
+To: yocto@yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+To my way of thinking, a
 
-On Fri, Apr 30, 2021 at 05:49:29AM -0400, Robert P. J. Day wrote:
-> 
->   colleague wants to get into working with SDKs, and as i'm just
-> diving into the intricacies of that myself, i'm not sure how to
-> answser the question: "is there any reason to use the regular SDK as
-> opposed to the extensible SDK?"
-> 
->   superficially, it would seem that the eSDK has nothing but benefits,
+$ devtool modify linux
 
-It's very big and probably include your proprietary SW header and
-libraries at the very least... or third party prebuilt
-binaries/libraries you're not supposed to share outside of your product.
+should NEVER fail if it is preceded by
 
-This is useful if you're doing active development internally and you
-don't upgrade your Yocto layers too often. This means non-Yocto verse
-people could work on the main SW stack without caring about Yocto at
-all.
+$ bitbake -c do_cleanall linux
 
-> so other than perhaps needing more resources, is there any reason to
-> use the regular SDK and forego the benefits of eSDK?
-> 
+The intended staging of the kernel into the workspace fails, saying
+that it cannot find miscellaneous and adhoc .scc files that no longer
+exist after several variants of kernel config modifications.
 
-Normal SDK is just a toolchain, very practical if a third party vendor
-requires you to send them something so they can build a blob that works
-on your machine. And usually, you don't want to send anything that is
-remotely critical to your business, IP wise.
+fails on do_kernel_metadata...
 
-I have barely used SDK, so to be taken with a grain of salt as usual.
+| ERROR. input file "cfg/xilinx_intc.scc" does not exist
 
-Cheers,
-Quentin
+How to fix???
