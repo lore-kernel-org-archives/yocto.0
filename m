@@ -1,68 +1,80 @@
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44])
- by mx.groups.io with SMTP id smtpd.web12.23163.1619978046908456936
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.25967.1619991823128769095
  for <yocto@lists.yoctoproject.org>;
- Sun, 02 May 2021 10:54:07 -0700
+ Sun, 02 May 2021 14:43:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=WcWrlvAg;
- spf=pass (domain: gmail.com, ip: 209.85.217.44, mailfrom: rohitbjadhav1@gmail.com)
-Received: by mail-vs1-f44.google.com with SMTP id b4so1803866vst.13
-        for <yocto@lists.yoctoproject.org>; Sun, 02 May 2021 10:54:06 -0700 (PDT)
+ dkim=fail reason="body hash did not verify" header.i=@twobit-org.20150623.gappssmtp.com header.s=20150623 header.b=zVO9ddYs;
+ spf=none, err=SPF record not found (domain: twobit.org, ip: 198.145.29.25, mailfrom: flihp@twobit.org)
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id B067D38C05F4
+	for <yocto@yoctoproject.org>; Sun,  2 May 2021 21:43:41 +0000 (UTC)
+Received: by mail-pj1-f48.google.com with SMTP id md17so1993411pjb.0
+        for <yocto@yoctoproject.org>; Sun, 02 May 2021 14:43:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=3WBqU1lw0KEUPNr1l6pphnQSBfOBxvIzXwN5vODDw/M=;
-        b=WcWrlvAg0wL0pK/rKUGzp/GHrkd/r8/fkpjUWmdkdV08z7Zb0JxVlJdUe6OJirprl8
-         lXpabJd+uSg6s+5VE9W7l6v99gfzy33/LmQ12bPpIoT8uDiqH/fTeDttk8xLFMPtO66h
-         gHmx/rTNKcFKOG43ZHdvyMe4nSXKFtaWUdzlsCfwsXupE3sPzd365n8O2R1ifCQxdK9G
-         oUPV1JDdH5l2AEit8vB13GGerGCXXc40/TYjFuuf0F58dU15v63176up2ar43jvJ2/aF
-         2OBuRwmyBDMyvDAXT65/WBZvGK4QVpehqjRz+ubE8H+rtBCSbeWk1/vXTopUv6GhDwB5
-         VlFQ==
+        d=twobit-org.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kqA+GZd32QqlaTrEOwtuUaloqEWZimYjo3B4fRVL80A=;
+        b=zVO9ddYsLC+xB7JA1G+31ixVLpDxwKzI0nyzYkOfTbweebO/fyWDyaL5G+UJrZ+s6Y
+         P6xht3zLgikka5bKkc+lVPaP2Iucbh9piwIxlLX8gaJ13Bdtjc9Dss69oQFBWtbCi4Jd
+         NjvfIZSoB1xarnOwECzqwKWUzYUHFfXKrseLb4fuF6MAGjkuL43NqV9rioPLI22BljBz
+         Dy2knIrEW0KwHJl/EIppUxFIriS6VTDxlvRItgrdOvxfYWAf3TY5AUSYl8Vck+nzhZz8
+         Z2CIKo0IaMATIFUWFJyTy/kdIlYtb1uiTDr6iI9jUVe6Lrw1FlLqCVs6gP3SJBttcnX4
+         bshA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=3WBqU1lw0KEUPNr1l6pphnQSBfOBxvIzXwN5vODDw/M=;
-        b=adR/8BLdaKYHf5MI1vbqsoehZlhvNZyF0bhY4fqa2A7LCBDE85w+QBdxZO++bs0kgr
-         kcT4q6fW/T3Wztq0gHM4fURMc6PlYMKZWsfpQqMwxdCauZ6pxqM6q/duWu1PuNMY9IXV
-         +OykFTiX4DBmbIbmiES6MC0VV3h35DMMQ7Xfm9idyGQaqFh6nokeMiPgGd5Xm7iPqAMr
-         YJgJYf3AO4kNkCaJjgigwPkrFKMm1+EsQQzkWtUg9CrpwbTevzJUl8giOjWnz11tZlSc
-         a4gFXSj1toCD3sJVX2JTOvfmt4Tg2foeoygMgUX27qzI4PMwdKiG3kH2ua9i8Y8U+CnX
-         vExg==
-X-Gm-Message-State: AOAM531H0o3GjDp06JnpHPOMSdM7dBBil3IlHmELFeEvCAAUB4yJBDC9
-	J4+sOAti9okLdZzaFdhs8FYUr+JorBzsc0+HZ2//fT5//z5g7A==
-X-Google-Smtp-Source: ABdhPJxmq/10NVEWx0xheOT50cvaFWM/Zz/SXUYbssuZ/i40lonpTH/IKYaH3SHmLc9G5NkUAsZsaBV1e2+w7nesRxI=
-X-Received: by 2002:a67:f988:: with SMTP id b8mr13375214vsq.14.1619978045804;
- Sun, 02 May 2021 10:54:05 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kqA+GZd32QqlaTrEOwtuUaloqEWZimYjo3B4fRVL80A=;
+        b=Lnv2NrU4qzLXff+b23DhS3u4vsCDV5lphZFYcO0o8vuirGaob+jMXHh645+U12n3Pp
+         v2GZb7yj7g+nkbYk57XK1LNdznxVGAUsp0ilypi9Sh7k2BNAAO6S1YtAqY/YmY8vKIXn
+         Qq0pJctTzhWtOuR7YnrIOkZb6Lm2/63MYVNAd8Ivi9Dq0h2nFUDdOe7AoMXPdrav0/Hr
+         OWc7SLVcG6reB3GzoH614LRNbYZVF/DDgMOhU2c51oFWYSfM3lRi+bU3zpt9XZrCcjSz
+         BJ4fGKlHhkjlNHQ32s6X19ZtMJRW3ny8bcXls3awNd3BxnZXGQncoe3CHf2q9Nahmv8A
+         /9aQ==
+X-Gm-Message-State: AOAM530H1zWUT3CtjviDu3MpO9KMKOl1NJ/lwqsIlBp0tsm8StH/Tk/E
+	Rm5C3fVTxNX3OSq5NRtiJaHOp4ooG5YrYWIa
+X-Google-Smtp-Source: ABdhPJzzeHdH3TtQ5oVRTdqyq2aEmMUk9Mf+C39xDnQ4NiLL3nbI6KX+o2O8stpU6zXaXkzS1ePz4A==
+X-Received: by 2002:a17:90a:6745:: with SMTP id c5mr20288637pjm.4.1619991821139;
+        Sun, 02 May 2021 14:43:41 -0700 (PDT)
+Received: from jake.grassy-knoll.twobit.us ([76.243.124.129])
+        by smtp.gmail.com with ESMTPSA id n129sm2251956pfn.54.2021.05.02.14.43.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 May 2021 14:43:40 -0700 (PDT)
+From: flihp@twobit.org
+X-Google-Original-From: Philip Tricca <flihp@twobit.us>
+To: yocto@yoctoproject.org
+Cc: joe_macdonald@mentor.com
+Subject: [meta-selinux] MAINTAINERS: Remove myself.
+Date: Sun,  2 May 2021 14:43:14 -0700
+Message-Id: <20210502214314.11029-1-flihp@twobit.us>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: "rohit jadhav" <rohitbjadhav1@gmail.com>
-Date: Sun, 2 May 2021 23:23:54 +0530
-Message-ID: <CAGqYRWEHcBf8VJpwxBS8r2t2w3=Zmm93jwJcrCjvhky+BsmQaA@mail.gmail.com>
-Subject: Observed issue regarding hostapd
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000f6d50d05c15c874e"
-
---000000000000f6d50d05c15c874e
-Content-Type: text/plain; charset="UTF-8"
-
-Hi
-can you please help out with following issue
-ERROR: core-image-minimal-1.0-r0 do_rootfs: Postinstall scriptlets of
-['hostapd'] have failed. If the intention is to defer them to first boot,
-then please place them into pkg_postinst_ontarget_${PN} ().
-Deferring to first boot via 'exit 1' is no longer supported.
-
-Thanks and regards
-rohit
-
---000000000000f6d50d05c15c874e
-Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi <br></div><div>can you please help out with follow=
-ing issue<br></div><div>ERROR: core-image-minimal-1.0-r0 do_rootfs: Postins=
-tall scriptlets of [&#39;hostapd&#39;] have failed. If the intention is to =
-defer them to first boot,</div>then please place them into pkg_postinst_ont=
-arget_${PN} ().<br><div>Deferring to first boot via &#39;exit 1&#39; is no =
-longer supported.</div><div><br></div><div>Thanks and regards</div><div>roh=
-it<br></div></div>
+I have been inactive for an extended period.
 
---000000000000f6d50d05c15c874e--
+Signed-off-by: Philip Tricca <flihp@twobit.us>
+---
+ MAINTAINERS | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 36c451f..3166b32 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -24,11 +24,6 @@ F:	conf
+ F:	classes
+ F:	recipes-*
+=20
+-M:	Philip Tricca <flihp@twobit.us>
+-F:	conf
+-F:	classes
+-F:	recipes-*
+-
+ COMMON
+ M:	Yi Zhao <yi.zhao@windriver.com>
+ F:	conf
+--=20
+2.20.1
+
