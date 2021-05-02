@@ -1,137 +1,68 @@
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
- by mx.groups.io with SMTP id smtpd.web12.1248.1619827170092041532
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+ by mx.groups.io with SMTP id smtpd.web10.19485.1619956777835281583
  for <yocto@lists.yoctoproject.org>;
- Fri, 30 Apr 2021 16:59:30 -0700
+ Sun, 02 May 2021 04:59:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=L4GaOy5m;
- spf=pass (domain: gmail.com, ip: 209.85.215.178, mailfrom: raj.khem@gmail.com)
-Received: by mail-pg1-f178.google.com with SMTP id z16so9542871pga.1
-        for <yocto@lists.yoctoproject.org>; Fri, 30 Apr 2021 16:59:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MtauGit7KqFbjzFjln31Eh3qZ3C6u3caoREofLeZA7Q=;
-        b=L4GaOy5mBz1IatA4++PLFpziOnzrFVCDSW25QjqMyu50kF0xSVUD657qWXm5dAbsmA
-         z6BGptzEXv9NoULVmYeAXARdrw70DOnpqej0/TcDFgyrtxYq6ugLkNTuoteWzHIsO9ac
-         Y3RcOMrOxCKzr85gwZlPA6r+dKj6zvpyxMdlD+RkiIbDuI/HXg5626qdq6oxlTiCcK0p
-         vEhSX5WwpxxROOTO3LujAO1ZF7oAOC/gAh69IA0onvzLQH/C3Fd/a1Wwp4+trmQVS4O3
-         RhlKWJTx7iAIMWGtFTudoqHSy3rll9TFAp4xYqdbapN0QmYCL+WlUIGxnsjAx611P3SL
-         sO+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=MtauGit7KqFbjzFjln31Eh3qZ3C6u3caoREofLeZA7Q=;
-        b=T2S2uxMylH46s5fFJNn9Vyf7PPoripaAiH3ETy26wpUGsxfgjvHnSM522rAU35NfXb
-         S8Oo4pv1ig6AzkEaCHbaUiRZJo43jwcUo4qP/QKbcrdLXLUp5pb7HfkGukpLJEdiU1tQ
-         K61CQrlHtcZ0OfHGZMcvY8m3Td7FtZkcm3b1/oInPSsSVjRBUdJqMbNKyrK0MKnUtsYL
-         Cq+LZeDzXpzGOB0ml7qfOfbDNoNATvRTWL4ALO4c6B4QaKcb1nMwRk/+Jz7KhfR9nurw
-         ZZkyIVcXHxG02wFl03VBSkuuUyNVzup5lhY24JxkqqbLbJ6N5p9bcYKypEGVoO6WbIwp
-         d8QQ==
-X-Gm-Message-State: AOAM53156y/G+g253eYJGnuMjqzz9gBeWFzSMVTBdr6akprKmoAv1clr
-	3jyh4ZJaszKKk7ttOJKl21L6FygWvoO2Og==
-X-Google-Smtp-Source: ABdhPJw84s24OciEUzlO2d5qahp97uR2b3T1jIayufSo133C5B+QblehrVDqtot4bkf+BXBpNrs8iA==
-X-Received: by 2002:a65:4303:: with SMTP id j3mr6865347pgq.55.1619827169343;
-        Fri, 30 Apr 2021 16:59:29 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from apollo.hsd1.ca.comcast.net ([2601:646:9200:a0f0::ef3])
-        by smtp.gmail.com with ESMTPSA id a16sm560557pfc.37.2021.04.30.16.59.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Apr 2021 16:59:28 -0700 (PDT)
-From: "Khem Raj" <raj.khem@gmail.com>
+ dkim=pass header.i=@fastmail.fm header.s=fm3 header.b=eDfYX0DL;
+ spf=pass (domain: fastmail.fm, ip: 66.111.4.28, mailfrom: manwag@fastmail.fm)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.nyi.internal (Postfix) with ESMTP id 38F905C0143
+	for <yocto@lists.yoctoproject.org>; Sun,  2 May 2021 07:59:37 -0400 (EDT)
+Received: from imap9 ([10.202.2.59])
+  by compute3.internal (MEProxy); Sun, 02 May 2021 07:59:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.fm; h=
+	mime-version:message-id:date:from:to:subject:content-type; s=
+	fm3; bh=k7sKrzwe0n8o3E0o2K3Vt4vKTzlU/OF8kIybcsChpf4=; b=eDfYX0DL
+	mKFc5ILWrErjMf7PJnay8LETRzTE+FZR7prxpXJgbAn+7VURF6PbO34DV5fXJLOM
+	UDsFqmxaW/vJ0oKvpmTLu/wUvFlRr8BBMkPIoEe6SolUE5HMQqATmidy/mDh1aVP
+	+ia4yHwm77JuT0y2d/EEl3pShq5Du8CWNVGNoq27gGsvPlT8v93yCQz9ydQBWRPM
+	tZuYWexly3OLDihnJoqtTo4M0mC58lRB5k+858e3bxwjsd2YvzJjMA8kc5VBkwPH
+	PV3SmpT/KYiee7VPgFNMxLD8Qr5gHKPBE0b7VPlxT1yey5F+xNB0aZ04arbbAwpQ
+	38eHMZbO4rgVqg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=content-type:date:from:message-id
+	:mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm2; bh=k7sKrzwe0n8o3E0o2K3Vt4vKTzlU/
+	OF8kIybcsChpf4=; b=j5YtgmUIWlk7iDZKpIUxTMBwowXDQOkKyIIgC0jOsqiyu
+	6b3fSV55x2W/UzImugBnrUVZ6ZWnRVuAjGu3iR/4QObVyQQt3CQ9BeoIXYjs4WLq
+	mwsI3cYYGCfYHwjuqDnWzHkkAvF+qIZ1DICwH/wBFoKn6+UlDCZmY2KgWdvl1qsK
+	oCK/AKQHFKEFLvfrCuV3T4e1/TSLq4uaHcEvpn/E0M9ATjyTv6Bl25RZ4TlND8/W
+	aHCh2cX6bbNLNfpWDYgFYQr0ItE4DLzWG0906GbvYruHU/xZeaxl3qSkhxN7diVJ
+	bWhuGYc4mSgQ/YGo6HS4yfLrxllmetoWN8A5nQzsQ==
+X-ME-Sender: <xms:KZSOYIsEW7Yx_vConcClGlA5Ic2i-wv7dKUOdNq--cDPpeu0UN_X9Q>
+    <xme:KZSOYFft72xt_xom6Hh1BlkVxEnAOKpeDuA8m-cpc3p1dQOcWCoGxm4tUbel61vEG
+    0I5lfJRyjkkCGJH>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdefuddgleejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfffhffvufgtsehttdertd
+    erredtnecuhfhrohhmpedfofgrnhhuvghlucghrghgvghsrhgvihhthhgvrhdfuceoofgr
+    nhghrghgsefhrghsthforghilhdrhffoqeenucggtffrrghtthgvrhhnpeeugedtieetud
+    euledugeffgefgteetkeeuteeukeefudfgudeukeffgeeliedvieenucevlhhushhtvghr
+    ufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpeforghnhggrgheshfgrshhtof
+    grihhlrdfhof
+X-ME-Proxy: <xmx:KZSOYDyQ-CZ11hlZgPVAeQWSCxdnAPKTyRKI502NeWtjOpoipgOGeQ>
+    <xmx:KZSOYLO9ni0l8yVksMfC9Miw7As_RPb0GsH1onUKSe5wvSH53QD9FA>
+    <xmx:KZSOYI9bTWJQzWL9PdT6alz5ysz-SisRFRcefwtZ2CA4erynXkr1fA>
+    <xmx:KZSOYLJV9ZIJzgFIZd69CWSZS1NCWVp7xDf4uglXoM541OspfHtJPA>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id F27832E0062; Sun,  2 May 2021 07:59:36 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-403-gbc3c488b23-fm-20210419.005-gbc3c488b
+Mime-Version: 1.0
+Message-Id: <1f69bfc7-5f29-46ce-8c3f-5a67413aa704@www.fastmail.com>
+Date: Sun, 02 May 2021 13:59:15 +0200
+From: "Manuel Wagesreither" <ManWag@FastMail.FM>
 To: yocto@lists.yoctoproject.org
-Cc: jpewhacker@gmail.com,
-	Khem Raj <raj.khem@gmail.com>
-Subject: [meta-mingw] [PATCH 2/2] nativesdk-mingw-w64-winpthreads: Implement __udivmoddi4
-Date: Fri, 30 Apr 2021 16:59:20 -0700
-Message-Id: <20210430235920.3800985-2-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210430235920.3800985-1-raj.khem@gmail.com>
-References: <20210430235920.3800985-1-raj.khem@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: [meta-raspberrypi] Booting a Raspberry Pi 4 using PXE
+Content-Type: text/plain
 
-Fixes build with gcc 11+
+Hello all!
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- .../0001-winpthreads-Add-__udivmoddi4.patch   | 52 +++++++++++++++++++
- .../nativesdk-mingw-w64-winpthreads_8.0.0.bb  |  2 +
- 2 files changed, 54 insertions(+)
- create mode 100644 recipes-devtools/mingw-w64/files/0001-winpthreads-Add-__udivmoddi4.patch
+Since a certain eeprom version, the Raspberry Pi 4 can directly boot from network. Has anyone experience on this?
 
-diff --git a/recipes-devtools/mingw-w64/files/0001-winpthreads-Add-__udivmoddi4.patch b/recipes-devtools/mingw-w64/files/0001-winpthreads-Add-__udivmoddi4.patch
-new file mode 100644
-index 0000000..3eb298e
---- /dev/null
-+++ b/recipes-devtools/mingw-w64/files/0001-winpthreads-Add-__udivmoddi4.patch
-@@ -0,0 +1,52 @@
-+From 3b0af7327446ae179dc93b6a6ab1074251d348d0 Mon Sep 17 00:00:00 2001
-+From: Khem Raj <raj.khem@gmail.com>
-+Date: Fri, 30 Apr 2021 16:50:36 -0700
-+Subject: [PATCH] winpthreads: Add __udivmoddi4
-+
-+Newer GCC ( 11.1.0+ ) is generating calls to __udivmoddi4 on i686
-+architecture, therefore provide an implementation to avoid undefined
-+references
-+
-+Upstream-Status: Pending
-+Signed-off-by: Khem Raj <raj.khem@gmail.com>
-+---
-+ .../winpthreads/src/libgcc/dll_math.c            | 16 +++++++++++++++-
-+ 1 file changed, 15 insertions(+), 1 deletion(-)
-+
-+diff --git a/mingw-w64-libraries/winpthreads/src/libgcc/dll_math.c b/mingw-w64-libraries/winpthreads/src/libgcc/dll_math.c
-+index aeec068..d170967 100644
-+--- a/mingw-w64-libraries/winpthreads/src/libgcc/dll_math.c
-++++ b/mingw-w64-libraries/winpthreads/src/libgcc/dll_math.c
-+@@ -121,6 +121,7 @@ u_quad_t	__udivdi3(u_quad_t a, u_quad_t b);
-+ u_quad_t	__umoddi3(u_quad_t a, u_quad_t b);
-+ int		__ucmpdi2(u_quad_t a, u_quad_t b);
-+ quad_t	__divmoddi4(quad_t a, quad_t b, quad_t *rem);
-++u_quad_t	__udivmoddi4(u_quad_t a, u_quad_t b, u_quad_t *rem);
-+ 
-+ #endif /* !_LIBKERN_QUAD_H_ */
-+ 
-+@@ -573,7 +574,20 @@ __divmoddi4(a, b, rem)
-+ 	return (negq ? -uq : uq);
-+ }
-+ 
-++/*
-++ * Divide two unsigned quads.
-++ * This function is new in GCC 7.
-++ */
-++u_quad_t
-++__udivmoddi4(a, b, rem)
-++	u_quad_t a, b, *rem;
-++{
-++	u_quad_t q = __udivdi3(a, b);
-++	if (rem)
-++		*rem = a - b * q;
-++	return q;
-++}
-++
-+ #else
-+ static int __attribute__((unused)) dummy;
-+ #endif /*deined (_X86_) && !defined (__x86_64__)*/
-+-
-+-- 
-+2.31.1
-+
-diff --git a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_8.0.0.bb b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_8.0.0.bb
-index e694e5b..814268d 100644
---- a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_8.0.0.bb
-+++ b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_8.0.0.bb
-@@ -2,6 +2,8 @@ DESCRIPTION = "Winpthreads runtime libraries from MinGW-w64 project"
- 
- require mingw-w64.inc
- 
-+SRC_URI += "file://0001-winpthreads-Add-__udivmoddi4.patch;striplevel=3"
-+
- S = "${WORKDIR}/mingw-w64-v${PV}/mingw-w64-libraries/winpthreads"
- B = "${WORKDIR}/build-${TARGET_SYS}"
- 
--- 
-2.31.1
+I already managed to to have the Raspi to load the kernel and all the device tree stuff over network. I then exported `build/tmp/work/raspberrypi4_64-poky-linux/bora-image/1.0-r0/rootfs/` as via nfs and changed the linux kernel commandline so it would use this share as nfsroot. At boot many failing services get reported and and the boot progress stops somewhere along the way. It tells me the system is in emergency mode and asks me for the root password for maintenance. I have an empty root password. When I press Control-D to continue, the same prompt reappears. Same when I simply press enter.
 
+Has onyone any input for me? I guess I'll need to monitor what gets written to the serial port.
+
+Regards,
+Manuel
