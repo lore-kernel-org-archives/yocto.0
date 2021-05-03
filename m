@@ -1,80 +1,93 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.25967.1619991823128769095
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+ by mx.groups.io with SMTP id smtpd.web09.30064.1620024086552948536
  for <yocto@lists.yoctoproject.org>;
- Sun, 02 May 2021 14:43:43 -0700
+ Sun, 02 May 2021 23:41:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@twobit-org.20150623.gappssmtp.com header.s=20150623 header.b=zVO9ddYs;
- spf=none, err=SPF record not found (domain: twobit.org, ip: 198.145.29.25, mailfrom: flihp@twobit.org)
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id B067D38C05F4
-	for <yocto@yoctoproject.org>; Sun,  2 May 2021 21:43:41 +0000 (UTC)
-Received: by mail-pj1-f48.google.com with SMTP id md17so1993411pjb.0
-        for <yocto@yoctoproject.org>; Sun, 02 May 2021 14:43:41 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=fis9UCEj;
+ spf=pass (domain: gmail.com, ip: 209.85.218.42, mailfrom: martin.jansa@gmail.com)
+Received: by mail-ej1-f42.google.com with SMTP id a4so6255877ejk.1
+        for <yocto@lists.yoctoproject.org>; Sun, 02 May 2021 23:41:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=twobit-org.20150623.gappssmtp.com; s=20150623;
+        d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=kqA+GZd32QqlaTrEOwtuUaloqEWZimYjo3B4fRVL80A=;
-        b=zVO9ddYsLC+xB7JA1G+31ixVLpDxwKzI0nyzYkOfTbweebO/fyWDyaL5G+UJrZ+s6Y
-         P6xht3zLgikka5bKkc+lVPaP2Iucbh9piwIxlLX8gaJ13Bdtjc9Dss69oQFBWtbCi4Jd
-         NjvfIZSoB1xarnOwECzqwKWUzYUHFfXKrseLb4fuF6MAGjkuL43NqV9rioPLI22BljBz
-         Dy2knIrEW0KwHJl/EIppUxFIriS6VTDxlvRItgrdOvxfYWAf3TY5AUSYl8Vck+nzhZz8
-         Z2CIKo0IaMATIFUWFJyTy/kdIlYtb1uiTDr6iI9jUVe6Lrw1FlLqCVs6gP3SJBttcnX4
-         bshA==
+        bh=GdcTjo73O8GrWer+y1VtX8ONHMWqby50Xv8S/zllBqg=;
+        b=fis9UCEjO1tXxvAiuAP7jhaXdkq+Q38uqeI5M7m3dYsupBLnlfHEiU0kx/KbYNHh+s
+         RtAvdzcWRy1pp4cSh58jf7mdNN/eXma3VEhUA8frbPk0M3pqZJl7YNDg1Ka8HEu5SflG
+         AaGgLiDMft7fJqNEb8lT89WC5E/ymEElb+lf3c8HtNIpoKItvhlclrrzVyPGtXrJ+vi6
+         BA8uLn+Q9sZZkJU7hUEA51n8iSrlEBPf2T7Jo8znxR2FjN7c4I7O4y9geqc2ZZ1/xrQA
+         01SRtrsWNOUqJF/Fdf3E5b5FJiMBilP7vz5JgjlVL2unGQ4Yq9n2yU2JUQP1HklA4AvT
+         F2wQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=kqA+GZd32QqlaTrEOwtuUaloqEWZimYjo3B4fRVL80A=;
-        b=Lnv2NrU4qzLXff+b23DhS3u4vsCDV5lphZFYcO0o8vuirGaob+jMXHh645+U12n3Pp
-         v2GZb7yj7g+nkbYk57XK1LNdznxVGAUsp0ilypi9Sh7k2BNAAO6S1YtAqY/YmY8vKIXn
-         Qq0pJctTzhWtOuR7YnrIOkZb6Lm2/63MYVNAd8Ivi9Dq0h2nFUDdOe7AoMXPdrav0/Hr
-         OWc7SLVcG6reB3GzoH614LRNbYZVF/DDgMOhU2c51oFWYSfM3lRi+bU3zpt9XZrCcjSz
-         BJ4fGKlHhkjlNHQ32s6X19ZtMJRW3ny8bcXls3awNd3BxnZXGQncoe3CHf2q9Nahmv8A
-         /9aQ==
-X-Gm-Message-State: AOAM530H1zWUT3CtjviDu3MpO9KMKOl1NJ/lwqsIlBp0tsm8StH/Tk/E
-	Rm5C3fVTxNX3OSq5NRtiJaHOp4ooG5YrYWIa
-X-Google-Smtp-Source: ABdhPJzzeHdH3TtQ5oVRTdqyq2aEmMUk9Mf+C39xDnQ4NiLL3nbI6KX+o2O8stpU6zXaXkzS1ePz4A==
-X-Received: by 2002:a17:90a:6745:: with SMTP id c5mr20288637pjm.4.1619991821139;
-        Sun, 02 May 2021 14:43:41 -0700 (PDT)
-Received: from jake.grassy-knoll.twobit.us ([76.243.124.129])
-        by smtp.gmail.com with ESMTPSA id n129sm2251956pfn.54.2021.05.02.14.43.40
+        bh=GdcTjo73O8GrWer+y1VtX8ONHMWqby50Xv8S/zllBqg=;
+        b=ka/XzhnqrxxtklHr/AZ9zMvUWY+dXLqFdYepkFqtsR5IGkWP2JySdMgGRrchULZZeX
+         cFjVqiCMNU5JRd4dE/93OxGjCWoCa1VR8u/X9Qmeep5fcqCn0fIn3xSKtHvhMIA06qFl
+         FlGHjPgxxrwcUiD0M58bCZU1lQlGhsMHzXN2Fg7QEQFQEpqp6NZoG/KCGrRl0bGxZx2f
+         Kg9T0svLQKRCzkx6/64FWOnXcC35Xl0uEvhfr5EiM5TNuk02vmHRbQF4z727aaTG2ftD
+         AQ3OE672ZrJPGYSQlyZ65r+leEMr4bO6E7AfFFFgvhEdMbBJVGDuVF5LmH3LmeonHUwS
+         5Nzw==
+X-Gm-Message-State: AOAM530+RqhTlkWd9z6aEYJqkZ+G2ejO1z2QR4BTv9cP4cLCRIHM3kBE
+	vVpy4KX8bqohdLXAHzJ2wJY3Z0HYB8U=
+X-Google-Smtp-Source: ABdhPJyDyoY5XZrDWB9CHQZx5I138H+VOexekHVhhaXIYcAmT4LikBU4T6o0LiuB3eNu5Hh5f0BKgg==
+X-Received: by 2002:a17:906:7d82:: with SMTP id v2mr15568999ejo.524.1620024085156;
+        Sun, 02 May 2021 23:41:25 -0700 (PDT)
+Return-Path: <martin.jansa@gmail.com>
+Received: from localhost (ip-109-238-218-228.aim-net.cz. [109.238.218.228])
+        by smtp.gmail.com with ESMTPSA id p14sm11529974eds.28.2021.05.02.23.41.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 May 2021 14:43:40 -0700 (PDT)
-From: flihp@twobit.org
-X-Google-Original-From: Philip Tricca <flihp@twobit.us>
-To: yocto@yoctoproject.org
-Cc: joe_macdonald@mentor.com
-Subject: [meta-selinux] MAINTAINERS: Remove myself.
-Date: Sun,  2 May 2021 14:43:14 -0700
-Message-Id: <20210502214314.11029-1-flihp@twobit.us>
-X-Mailer: git-send-email 2.20.1
+        Sun, 02 May 2021 23:41:24 -0700 (PDT)
+From: "Martin Jansa" <Martin.Jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Martin Jansa <Martin.Jansa@gmail.com>
+Subject: [meta-gplv2][PATCH] elfutils: ignore format-truncation and stringop-overflow issues to fix build with gcc-11
+Date: Mon,  3 May 2021 08:41:18 +0200
+Message-Id: <20210503064118.1954696-1-Martin.Jansa@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-I have been inactive for an extended period.
+* works around:
+  http://errors.yoctoproject.org/Errors/Details/580076/
+  elfutils-0.148/src/ar.c:1088:56: error: '%-*ld' directive output may be truncated writing between 6 and 10 bytes into a region of size 7 [-Werror=format-truncation=]
+   1088 |   snprintf (tmpbuf, sizeof (tmpbuf), ofmt ? "%-*lo" : "%-*ld", bufsize, val);
+        |                                                        ^~~~~
+  elfutils-0.148/src/ar.c:1088:55: note: directive argument in the range [0, 4294967295]
+   1088 |   snprintf (tmpbuf, sizeof (tmpbuf), ofmt ? "%-*lo" : "%-*ld", bufsize, val);
+        |                                                       ^~~~~~~
 
-Signed-off-by: Philip Tricca <flihp@twobit.us>
+  http://errors.yoctoproject.org/Errors/Details/580078/
+  elfutils-0.148/tests/addrcfi.c:90:16: error: 'dwarf_frame_register' accessing 96 bytes in a region of size 64 [-Werror=stringop-overflow=]
+     90 |   int result = dwarf_frame_register (stuff->frame, regno, ops_mem, &ops, &nops);
+        |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
 ---
- MAINTAINERS | 5 -----
- 1 file changed, 5 deletions(-)
+ recipes-devtools/elfutils/elfutils_0.148.bb | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 36c451f..3166b32 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -24,11 +24,6 @@ F:	conf
- F:	classes
- F:	recipes-*
-=20
--M:	Philip Tricca <flihp@twobit.us>
--F:	conf
--F:	classes
--F:	recipes-*
--
- COMMON
- M:	Yi Zhao <yi.zhao@windriver.com>
- F:	conf
---=20
-2.20.1
+diff --git a/recipes-devtools/elfutils/elfutils_0.148.bb b/recipes-devtools/elfutils/elfutils_0.148.bb
+index 1f07a28..654a715 100644
+--- a/recipes-devtools/elfutils/elfutils_0.148.bb
++++ b/recipes-devtools/elfutils/elfutils_0.148.bb
+@@ -61,6 +61,14 @@ inherit autotools gettext
+ # but 0.175 has different license, so to be safe don't backport the fix, just ignore the issue
+ CFLAGS += "-Wno-error=missing-attributes"
+ 
++# There is a fix in 0.171 version (commit b10d7eb74064c5906f031cd17c0f82041c6a4ca1)
++# but 0.171 has different license, so to be safe don't backport the fix, just ignore the issue
++CFLAGS += "-Wno-error=format-truncation="
++
++# There is a fix in 0.182 version (commit 5621fe5443da23112170235dd5cac161e5c75e65)
++# but 0.182 has different license, so to be safe don't backport the fix, just ignore the issue
++CFLAGS += "-Wno-error=stringop-overflow="
++
+ EXTRA_OECONF = "--program-prefix=eu- --without-lzma"
+ EXTRA_OECONF_append_class-native = " --without-bzlib"
+ EXTRA_OECONF_append_libc-uclibc = " --enable-uclibc"
+-- 
+2.30.2
 
