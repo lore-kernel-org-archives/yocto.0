@@ -1,60 +1,59 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.3578.1620090029968451060
+ by mx.groups.io with SMTP id smtpd.web08.3698.1620090608079749505
  for <yocto@lists.yoctoproject.org>;
- Mon, 03 May 2021 18:00:30 -0700
+ Mon, 03 May 2021 18:10:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=nD7s9C1k;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=KfJ+qNVL;
  spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 47F1538C083A
-	for <yocto@yoctoproject.org>; Tue,  4 May 2021 01:00:29 +0000 (UTC)
-Received: by mail-pf1-f181.google.com with SMTP id c17so5756833pfn.6
-        for <yocto@yoctoproject.org>; Mon, 03 May 2021 18:00:29 -0700 (PDT)
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 6577638C069E
+	for <yocto@yoctoproject.org>; Tue,  4 May 2021 01:10:07 +0000 (UTC)
+Received: by mail-pg1-f170.google.com with SMTP id i14so5207118pgk.5
+        for <yocto@yoctoproject.org>; Mon, 03 May 2021 18:10:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:mime-version:thread-index
          :content-language;
-        bh=hVF3t7LrrEXKsBiuveUUQc1UUO81TEz2A6l7e3/foF0=;
-        b=nD7s9C1kxELJNw4nlxgzHYmVPc0sMrg+1u00YrXqYXNtJ+UrrvJZs1m9rNYRBUcJDo
-         +JokA1JU7Hli4/YaDKVRVUWGtAfLWcK2XkMe83tp1OtxRyOUIJd+LvtS0C8jer+3H/li
-         C6ZuIVcCNNOlzDk5DzvtHk7zqYXPzim/OgDJojb6skLPaKGkPSsMXWsCerywETQlsEzy
-         fG/wGYLu8JdK73r+neQ1XSRvVeXNa2m5P25vIMur65+YvJmTes9zEUib42Mj5L2mZNe/
-         2DwN+Ig+87QUiPNtN3ShYfW8tUF52/UrNr2Hbv8a+Tty4nD+x16Atoql57xlm6pKFRgg
-         u+Qw==
+        bh=gxQJllA8pQjkWAc2/utBO74dc8ZUg2otfflJJkye6h4=;
+        b=KfJ+qNVLY4NKryHncLUSOmB7Z3I0bjzN0SnXcoaqdvOIcW6zrc9R/U8WwWyVAIan6+
+         sszold+YQEtN8goMmO6+lm88sjE28XP8Sxjk7JVSxLqb5dQY6B0bUwpyaoym/Q74sghZ
+         KHHka+jZfY20Xrl5ieBg5ez7UqAYljLVy2sHdW0XvOZDViJrjAGHPScXepcGjvY545x+
+         DH2kQK2EEvyagXWncw3YNZxKoOC0BCw7LhM2hpRrUSB9g2/4Y4smrLPU3YrynxAmpb8d
+         XqWiAPLDyU11BS9XVpZQvM51cqg1n8XuM6BpOBAuG2iWiF4Lmltd7yiKVpgwpJsMzwVw
+         nj/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :thread-index:content-language;
-        bh=hVF3t7LrrEXKsBiuveUUQc1UUO81TEz2A6l7e3/foF0=;
-        b=i9Lsfe5IGH6qJQnZ16uB4dpaYpZs7lrzzYQOxNxDJZzZz7Tuu6/rbWf19QejAO9ZgK
-         ntR8HhVSzk0jKmiGaxEGI1l/zyZ4CJ4HOfJnltl9AhJM+YtV5T/PXHn6CS6Xc79WjpjW
-         EJK4xvHuMQQRZSea5ltT8lDL+C30KxoFqBMcVCN9mwlkcuBF2zZ35WNDOPxWvox3fLUG
-         NpA/3LIjvxoHRTYE275La844Ulb1p863AFQfPmknO2gWyuysIuO9XgwxLWe+Ambclw3U
-         FS7oBjyjpN2QkuJ0F2qCdRtgpVap0NsvIZSj4nxZREEXjq3AYjZvJsttWqJY+Hi/A28+
-         qeVA==
-X-Gm-Message-State: AOAM5339LlBmCWwcQMX3j04MTmgZNv7Hq091RIZs3MON0XN7qDrxMFB9
-	b/1njxhgLEvgoETSDTRnjgY=
-X-Google-Smtp-Source: ABdhPJw169mfm6yrURwTyrixiqxkS6Vp9AgoJjXeanrW7MHJMSVP/QsPyt7GXogz5XcpUfP2CqcZug==
-X-Received: by 2002:aa7:8198:0:b029:274:8a92:51b5 with SMTP id g24-20020aa781980000b02902748a9251b5mr21566583pfi.5.1620090028886;
-        Mon, 03 May 2021 18:00:28 -0700 (PDT)
+        bh=gxQJllA8pQjkWAc2/utBO74dc8ZUg2otfflJJkye6h4=;
+        b=Q2HOgDY3nMRrMbN1WkWbRMgVrQcHn6upHffO79dm8O24MH3HBzYbsKzEwZlwAK8Wt9
+         TZ4E324zNUPIxXU10LL4wqD5wInlKYT6aABWmSkYfI+/glukm2xwTwaaSuWiThVnpTEk
+         iQ6ro7MgDqYWEXN4Gq1BlXU2kZJT0FUHRgjrdJSdV5G3Zutrs68HPJFqEonuF9qWKqyh
+         KCnKtc2Jv/KJCkAKJnPUWyA9hNHUXTtVvx/86dgHgxmdFH+zSLeVgPZFXpmaUJtzXf+K
+         tFRPHyNQ3F7+l0PFitg0yGgTd2X/T3+JcFbUgEWyh0vxDBFTOVyfYlYfsnaHe5D5lLhl
+         Ko8w==
+X-Gm-Message-State: AOAM5322bRgWLPCggcjHzDkNUb26NVew2C90v31MOznYsIVwYWltPf1O
+	X6Zu5k5SoFb2oGWsVb6ZZ0E=
+X-Google-Smtp-Source: ABdhPJwCYgfloiYXMUMBhIkWzv0XcRkrk0PsJV+/ki3xiWcjENPobzTzmR3L68wNQFDYwwgMzWCCrA==
+X-Received: by 2002:a62:e203:0:b029:28e:8267:e02e with SMTP id a3-20020a62e2030000b029028e8267e02emr9702429pfi.75.1620090606961;
+        Mon, 03 May 2021 18:10:06 -0700 (PDT)
 Received: from skjolley (wsip-72-194-163-85.ph.ph.cox.net. [72.194.163.85])
-        by smtp.gmail.com with ESMTPSA id p22sm942389pjg.39.2021.05.03.18.00.27
+        by smtp.gmail.com with ESMTPSA id z29sm1012811pga.52.2021.05.03.18.10.05
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 03 May 2021 18:00:28 -0700 (PDT)
+        Mon, 03 May 2021 18:10:06 -0700 (PDT)
 From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
-Date: Mon, 3 May 2021 18:00:28 -0700
-Message-ID: <13f501d74080$e04aa9a0$a0dffce0$@gmail.com>
+To: <yocto@yoctoproject.org>
+Subject: Current high bug count owners for Yocto Project 3.4
+Date: Mon, 3 May 2021 18:10:06 -0700
+Message-ID: <13fa01d74082$389fc580$a9df5080$@gmail.com>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQGaKShUWSv59CtxH9qSIf7SXeEkTg==
+Thread-Index: AQHtG7g8XgybcwBTt7zJ5tQ1rTV+oQ==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_13F6_01D74046.33F06580"
+	boundary="----=_NextPart_000_13FB_01D74047.8C433770"
 Content-Language: en-us
 
-------=_NextPart_000_13F6_01D74046.33F06580
+------=_NextPart_000_13FB_01D74047.8C433770
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -63,53 +62,270 @@ All,
 
  
 
-The triage team is starting to try and collect up and classify bugs which a
-newcomer to the project would be able to work on in a way which means people
-can find them. They're being listed on the triage page under the appropriate
-heading:
+Below is the list as of top 50 bug owners as of the end of WW18 of who have
+open medium or higher bugs and enhancements against YP 3.4.   There are 125
+possible work days left until the final release candidates for YP 3.4 needs
+to be released.
 
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
-review:
-https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
-how to create a bugzilla account at:
-<https://bugzilla.yoctoproject.org/createaccount.cgi>
-https://bugzilla.yoctoproject.org/createaccount.cgi
 
-The idea is these bugs should be straight forward for a person to help work
-on who doesn't have deep experience with the project.  If anyone can help,
-please take ownership of the bug and send patches!  If anyone needs
-help/advice there are people on irc who can likely do so, or some of the
-more experienced contributors will likely be happy to help too.
+Who
 
- 
+Count
 
-Also, the triage team meets weekly and does its best to handle the bugs
-reported into the Bugzilla. The number of people attending that meeting has
-fallen, as have the number of people available to help fix bugs. One of the
-things we hear users report is they don't know how to help. We (the triage
-team) are therefore going to start reporting out the currently 359
-unassigned or newcomer bugs.
 
- 
+richard.purdie@linuxfoundation.org
 
-We're hoping people may be able to spare some time now and again to help out
-with these.  Bugs are split into two types, "true bugs" where things don't
-work as they should and "enhancements" which are features we'd want to add
-to the system.  There are also roughly four different "priority" classes
-right now, "3.2", "3.3, "3.99" and "Future", the more pressing/urgent issues
-being in "3.2" and then "3.3".
+30
 
- 
 
-Please review this link and if a bug is something you would be able to help
-with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
-like and I will assign it to you (please make sure you have a Bugzilla
-account).  The list is at:
-https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
-_Bugs
+ross@burtonini.com
 
- 
+28
+
+
+david.reyna@windriver.com
+
+22
+
+
+bruce.ashfield@gmail.com
+
+20
+
+
+michael.opdenacker@bootlin.com
+
+17
+
+
+trevor.gamblin@windriver.com
+
+13
+
+
+bluelightning@bluelightning.org
+
+12
+
+
+timothy.t.orling@intel.com
+
+12
+
+
+akuster808@gmail.com
+
+11
+
+
+randy.macleod@windriver.com
+
+11
+
+
+sakib.sajal@windriver.com
+
+10
+
+
+JPEWhacker@gmail.com
+
+10
+
+
+kai.kang@windriver.com
+
+8
+
+
+hongxu.jia@windriver.com
+
+7
+
+
+raj.khem@gmail.com
+
+6
+
+
+chee.yang.lee@intel.com
+
+6
+
+
+Qi.Chen@windriver.com
+
+6
+
+
+mingli.yu@windriver.com
+
+5
+
+
+yi.zhao@windriver.com
+
+4
+
+
+saul.wold@windriver.com
+
+3
+
+
+mostthingsweb@gmail.com
+
+3
+
+
+pokylinux@reliableembeddedsystems.com
+
+2
+
+
+stacygaikovaia@gmail.com
+
+2
+
+
+ydirson@free.fr
+
+2
+
+
+nicolas.dechesne@linaro.org
+
+2
+
+
+mshah@mvista.com
+
+2
+
+
+jon.mason@arm.com
+
+2
+
+
+alejandro@enedino.org
+
+2
+
+
+alexandre.belloni@bootlin.com
+
+2
+
+
+jaewon@xilinx.com
+
+2
+
+
+yf3yu@uwaterloo.ca
+
+2
+
+
+john.kaldas.enpj@gmail.com
+
+1
+
+
+changqing.li@windriver.com
+
+1
+
+
+mhalstead@linuxfoundation.org
+
+1
+
+
+open.source@oleksandr-kravchuk.com
+
+1
+
+
+yoctoproject@cookiesoft.de
+
+1
+
+
+liezhi.yang@windriver.com
+
+1
+
+
+devendra.tewari@gmail.com
+
+1
+
+
+prabin.ca@arm.com
+
+1
+
+
+shachar@vdoo.com
+
+1
+
+
+Martin.Jansa@gmail.com
+
+1
+
+
+mister_rs@web.de
+
+1
+
+
+jeanmarie.lemetayer@gmail.com
+
+1
+
+
+victor.kamensky7@gmail.com
+
+1
+
+
+aehs29@gmail.com
+
+1
+
+
+kexin.hao@windriver.com
+
+1
+
+
+matthewzmd@posteo.net
+
+1
+
+
+dl9pf@gmx.de
+
+1
+
+
+naveen.kumar.saini@intel.com
+
+1
+
+
+diego.sueiro@arm.com
+
+1
+
+
+Nathan.Dunne@arm.com
+
+1
 
 Thanks,
 
@@ -127,9 +343,9 @@ Yocto Project Program Manager
  
 
 
-------=_NextPart_000_13F6_01D74046.33F06580
+------=_NextPart_000_13FB_01D74047.8C433770
 Content-Type: text/html;
-	boundary="----=_NextPart_000_096E_01D72A5D.8A7B23D0";
+	boundary="----=_NextPart_000_03DC_01D73ABD.CD2C6E30";
 	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -190,57 +406,590 @@ div.WordSection1
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
 link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
 class=3DWordSection1><p class=3DMsoNormal =
-style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>The triage team is starting to try and =
-collect up and classify bugs which a newcomer to the project would be =
-able to work on in a way which means people can find them. They're being =
-listed on the triage page under the appropriate =
-heading:<o:p></o:p></p><p><a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
-s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
-please review: <a =
-href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
-bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
-bedded</a> and how to create a bugzilla account at: <a =
-href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
-style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
-/span></a><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>The idea is these bugs should be straight =
-forward for a person to help work on who doesn't have deep experience =
-with the project.&nbsp; If anyone can help, please take ownership of the =
-bug and send patches!&nbsp; If anyone needs help/advice there are people =
-on irc who can likely do so, or some of the more experienced =
-contributors will likely be happy to help too.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
-meets weekly and does its best to handle the bugs reported into the =
-Bugzilla. The number of people attending that meeting has fallen, as =
-have the number of people available to help fix bugs. One of the things =
-we hear users report is they don't know how to help. We (the triage =
-team) are therefore going to start reporting out the currently 359 =
-unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>We're hoping people may be able to spare =
-some time now and again to help out with these.&nbsp; Bugs are split =
-into two types, &quot;true bugs&quot; where things don't work as they =
-should and &quot;enhancements&quot; which are features we'd want to add =
-to the system.&nbsp; There are also roughly four different =
-&quot;priority&quot; classes right now, &#8220;3.2&#8221;, &#8220;3.3, =
-&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
-being in &quot;3.2&quot; and then &#8220;3.3&#8221;.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
-and if a bug is something you would be able to help with either take =
-ownership of the bug, or send me (<a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
-e-mail with the bug number you would like and I will assign it to you =
-(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
-or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
-nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+style=3D'text-autospace:none'><span =
+style=3D'color:black'>All,<o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:black'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:black'>Below is the =
+list as of top 50 bug owners as of the end of WW18 of who have open =
+medium or higher bugs and enhancements against YP 3.4.&nbsp;&nbsp; There =
+are 125 possible work days left until the final release candidates for =
+YP 3.4 needs to be released.<o:p></o:p></span></p><table =
+class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 =
+style=3D'margin-left:-1.9pt;border-collapse:collapse'><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;background:#CCCCFF;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><b><span =
+style=3D'color:black'>Who<o:p></o:p></span></b></p></td><td width=3D46 =
+valign=3Dtop style=3D'width:34.65pt;border:solid windowtext =
+1.0pt;border-left:none;background:#CCCCFF;padding:0in 5.4pt 0in =
+5.4pt;height:14.5pt'><p class=3DMsoNormal =
+style=3D'text-autospace:none'><b><span =
+style=3D'color:black'>Count<o:p></o:p></span></b></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
+></p></td><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>30<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>ross@burtonini.com<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>28<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>david.reyna@windriver.com<o:p></o:p></span></p></td=
+><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>22<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>bruce.ashfield@gmail.com<o:p></o:p></span></p></td>=
+<td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>20<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>michael.opdenacker@bootlin.com<o:p></o:p></span></p=
+></td><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>17<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>trevor.gamblin@windriver.com<o:p></o:p></span></p><=
+/td><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>13<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>bluelightning@bluelightning.org<o:p></o:p></span></=
+p></td><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>12<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>timothy.t.orling@intel.com<o:p></o:p></span></p></t=
+d><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>12<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>akuster808@gmail.com<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>11<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
+td><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>11<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>sakib.sajal@windriver.com<o:p></o:p></span></p></td=
+><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>10<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>JPEWhacker@gmail.com<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>10<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
+d width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>8<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>hongxu.jia@windriver.com<o:p></o:p></span></p></td>=
+<td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>7<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>raj.khem@gmail.com<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>6<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>chee.yang.lee@intel.com<o:p></o:p></span></p></td><=
+td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>6<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>Qi.Chen@windriver.com<o:p></o:p></span></p></td><td=
+ width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>6<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>mingli.yu@windriver.com<o:p></o:p></span></p></td><=
+td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>5<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>yi.zhao@windriver.com<o:p></o:p></span></p></td><td=
+ width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>4<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>saul.wold@windriver.com<o:p></o:p></span></p></td><=
+td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>3<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>mostthingsweb@gmail.com<o:p></o:p></span></p></td><=
+td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>3<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>pokylinux@reliableembeddedsystems.com<o:p></o:p></s=
+pan></p></td><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>stacygaikovaia@gmail.com<o:p></o:p></span></p></td>=
+<td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>ydirson@free.fr<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>nicolas.dechesne@linaro.org<o:p></o:p></span></p></=
+td><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>mshah@mvista.com<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>jon.mason@arm.com<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>alejandro@enedino.org<o:p></o:p></span></p></td><td=
+ width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>alexandre.belloni@bootlin.com<o:p></o:p></span></p>=
+</td><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>jaewon@xilinx.com<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>yf3yu@uwaterloo.ca<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>john.kaldas.enpj@gmail.com<o:p></o:p></span></p></t=
+d><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>changqing.li@windriver.com<o:p></o:p></span></p></t=
+d><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>mhalstead@linuxfoundation.org<o:p></o:p></span></p>=
+</td><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>open.source@oleksandr-kravchuk.com<o:p></o:p></span=
+></p></td><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>yoctoproject@cookiesoft.de<o:p></o:p></span></p></t=
+d><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>liezhi.yang@windriver.com<o:p></o:p></span></p></td=
+><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>devendra.tewari@gmail.com<o:p></o:p></span></p></td=
+><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>prabin.ca@arm.com<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>shachar@vdoo.com<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>Martin.Jansa@gmail.com<o:p></o:p></span></p></td><t=
+d width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>mister_rs@web.de<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>jeanmarie.lemetayer@gmail.com<o:p></o:p></span></p>=
+</td><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>victor.kamensky7@gmail.com<o:p></o:p></span></p></t=
+d><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>aehs29@gmail.com<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>kexin.hao@windriver.com<o:p></o:p></span></p></td><=
+td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>matthewzmd@posteo.net<o:p></o:p></span></p></td><td=
+ width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>dl9pf@gmx.de<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>naveen.kumar.saini@intel.com<o:p></o:p></span></p><=
+/td><td width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>diego.sueiro@arm.com<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:14.5pt'><td width=3D269 valign=3Dtop =
+style=3D'width:201.5pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:14.5pt'><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:black'>Nathan.Dunne@arm.com<o:p></o:p></span></p></td><td =
+width=3D46 valign=3Dtop =
+style=3D'width:34.65pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:14.5pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right;text-autospace:none'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr></table><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>Thanks,</span><o:p></o:p></p><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
 style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
 style=3D'font-size:16.0pt;font-family:"Times New =
@@ -274,4 +1023,4 @@ href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
 style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
 an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-------=_NextPart_000_13F6_01D74046.33F06580--
+------=_NextPart_000_13FB_01D74047.8C433770--
